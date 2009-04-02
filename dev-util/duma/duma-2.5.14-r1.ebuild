@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/duma-2.5.14.ebuild,v 1.1 2009/01/03 11:56:19 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/duma-2.5.14-r1.ebuild,v 1.2 2009/04/01 01:02:31 nerdboy Exp $
 
 EAPI="prefix"
 
@@ -48,18 +48,21 @@ src_unpack(){
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.5.13-prefix.patch
 	epatch "${FILESDIR}"/${PN}-2.5.13-soname.patch
-	sed -i -e "s:(prefix)/lib:(prefix)/$(get_libdir):g" Makefile
-	sed -i -e "s:share/doc/duma:share/doc/${P}:g" Makefile
-	sed -i -e "s:lib\(/libduma.dylib\):$(get_libdir)\1:" duma.sh
+	sed -i -e "s:(prefix)/lib:(prefix)/$(get_libdir):g" \
+	    -i -e "s:share/doc/duma:share/doc/${P}:g" \
+	    Makefile || die "sed failed"
+	sed -i -e "s:lib\(/libduma.dylib\):$(get_libdir)\1:" duma.sh || die
 	eprefixify duma.sh
 }
 
 src_compile(){
 	use amd64 && export DUMA_ALIGNMENT=16
 	# append-flags doesn't work here (stupid static makefile) and neither
-	# does distcc :(
-	make CFLAGS="${DUMA_OPTIONS} ${CFLAGS}" CC=$(tc-getCC) \
-	    CXX=$(tc-getCXX) CPPFLAGS="${CXXFLAGS}" OS=${OS} || die "emake failed"
+	# does distcc or some user-defined CFLAGS.  Custom function definitions
+	# and all that...
+	gmake -j1 CFLAGS="${DUMA_OPTIONS} -O0 -Wall" CC=$(tc-getCC) \
+	    CXX=$(tc-getCXX) CPPFLAGS="${CXXFLAGS}" OS=${OS} \
+		|| die "emake failed"
 }
 
 src_test() {

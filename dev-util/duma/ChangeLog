@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/duma
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.8 2009/01/03 11:56:19 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.9 2009/04/01 00:47:27 nerdboy Exp $
+
+*duma-2.5.14-r1 (01 Apr 2009)
+
+  01 Apr 2009; Steve Arnold <nerdboy@gentoo.org> -duma-2.5.14.ebuild,
+  +duma-2.5.14-r1.ebuild:
+  Updated latest ~arch to build with current toolchain (bug #262514).
+  Based on what this package does, as well as the failures reported in
+  the above bug, it doesn't seem appropriate to pass every random set
+  of user-supplied CFLAGS.  Feel free to comment with justification
+  for specific flags and/or pointers to relevant info.
 
 *duma-2.5.14 (03 Jan 2009)
 
