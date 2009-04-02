@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p6.ebuild,v 1.6 2009/01/13 17:31:11 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p6.ebuild,v 1.7 2009/03/29 19:51:25 vapier Exp $
 
 EAPI="prefix"
 
-inherit eutils toolchain-funcs
+inherit eutils toolchain-funcs flag-o-matic
 
 MY_P=${P/_p/p}
 DESCRIPTION="Network Time Protocol suite/programs"
@@ -55,6 +55,7 @@ src_unpack() {
 	# Needs to be ported ...
 	#epatch "${FILESDIR}"/4.2.0.20040617-hostname.patch
 	epatch "${FILESDIR}"/${PN}-4.2.4_p5-adjtimex.patch #254030
+	append-cppflags -D_GNU_SOURCE #264109
 
 	sed -i \
 		-e 's:md5\.h:touch_not_my_md5:g' \
