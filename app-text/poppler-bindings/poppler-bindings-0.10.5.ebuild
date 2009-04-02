@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.10.5.ebuild,v 1.1 2009/03/11 23:39:45 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.10.5.ebuild,v 1.2 2009/04/01 14:42:45 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -28,7 +28,8 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="gtk qt3 cairo qt4 test"
 
-RDEPEND="~app-text/poppler-${PV}
+RDEPEND="
+	~app-text/poppler-${PV}
 	cairo? (
 		>=x11-libs/cairo-1.4
 		!gtk? (
@@ -49,10 +50,18 @@ RDEPEND="~app-text/poppler-${PV}
 
 			=x11-libs/qt-4.3*
 		)
-	)"
-DEPEND="${RDEPEND}
+	)
+	!dev-libs/poppler-qt3
+	!dev-libs/poppler-qt4
+	!dev-libs/poppler
+	!dev-libs/poppler-glib
+	!app-text/poppler-utils
+	"
+DEPEND="
+	${RDEPEND}
 	dev-util/pkgconfig
-	test? ( gtk? ( >=gnome-base/libglade-2 ) )"
+	test? ( gtk? ( >=gnome-base/libglade-2 ) )
+	"
 
 S="${WORKDIR}/${MY_P}"
 
