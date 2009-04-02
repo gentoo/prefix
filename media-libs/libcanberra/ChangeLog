@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.16 2009/03/18 14:59:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.17 2009/03/28 18:25:12 ulm Exp $
+
+*libcanberra-0.11-r5 (28 Mar 2009)
+
+  28 Mar 2009; Ulrich Mueller <ulm@gentoo.org>
+  +files/libcanberra-0.11-dont-crash-without-display.patch,
+  -libcanberra-0.9.ebuild, -libcanberra-0.10.ebuild,
+  +libcanberra-0.11-r5.ebuild:
+  Add patch from upstream: don't crash if there is no default display on
+  initialization. Fixes bug 259891. Revbump to -r5 as requested by leio.
+  Remove old.
 
   18 Mar 2009; Raúl Porcel <armin76@gentoo.org> libcanberra-0.11.ebuild:
   alpha/ia64 stable wrt #260063

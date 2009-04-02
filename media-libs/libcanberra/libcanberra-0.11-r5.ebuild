@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.10.ebuild,v 1.6 2009/02/11 08:48:36 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.11-r5.ebuild,v 1.1 2009/03/28 18:25:12 ulm Exp $
 
 EAPI="prefix 1"
 
-inherit gnome2-utils
+inherit eutils gnome2-utils
 
 DESCRIPTION="Portable Sound Event Library"
 HOMEPAGE="http://0pointer.de/lennart/projects/libcanberra/"
@@ -13,7 +13,7 @@ SRC_URI="http://0pointer.de/lennart/projects/${PN}/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="alsa doc gstreamer +gtk pulseaudio"
+IUSE="alsa doc gstreamer +gtk oss pulseaudio"
 
 RDEPEND="media-libs/libvorbis
 	sys-devel/libtool
@@ -27,14 +27,20 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.17
 	doc? ( >=dev-util/gtk-doc-1.9 )"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-dont-crash-without-display.patch"	#259891
+}
+
 src_compile() {
 	econf --disable-static \
 		$(use_enable alsa) \
-		$(use_enable gtk) \
-		$(use_enable pulseaudio pulse) \
 		$(use_enable gstreamer) \
+		$(use_enable gtk) \
+		$(use_enable oss) \
+		$(use_enable pulseaudio pulse) \
 		$(use_enable doc gtk-doc) \
-		--disable-oss \
 		--disable-tdb \
 		--disable-lynx
 	# tdb support would need a split-out from samba before we can use it
