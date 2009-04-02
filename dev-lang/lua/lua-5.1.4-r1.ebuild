@@ -12,7 +12,7 @@ SRC_URI="http://www.lua.org/ftp/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 IUSE="+deprecated readline static"
 
 DEPEND="readline? ( sys-libs/readline )"
@@ -22,7 +22,22 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-r1.patch
+	if [[ ${CHOST} == *-winnt* ]]; then
+		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-no-libtool.patch
+	else
+		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make-r1.patch
+
+		# Using dynamic linked lua is not recommended upstream for performance
+		# reasons. http://article.gmane.org/gmane.comp.lang.lua.general/18519
+		# Mainly, this is of concern if your arch is poor with GPRs, like x86
+		# Not that this only affects the interpreter binary (named lua), not the lua
+		# compiler (built statically) nor the lua libraries (both shared and static
+		# are installed)
+		if use static ; then
+			epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make_static-r1.patch
+		fi
+	fi
+
 	epatch "${FILESDIR}"/${PN}-${PATCH_PV}-module_paths.patch
 
 	# fix libtool and ld usage on OSX
@@ -49,16 +64,6 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-readline.patch
 	fi
 
-	# Using dynamic linked lua is not recommended upstream for performance
-	# reasons. http://article.gmane.org/gmane.comp.lang.lua.general/18519
-	# Mainly, this is of concern if your arch is poor with GPRs, like x86
-	# Not that this only affects the interpreter binary (named lua), not the lua
-	# compiler (built statically) nor the lua libraries (both shared and static
-	# are installed)
-	if use static ; then
-		epatch "${FILESDIR}"/${PN}-${PATCH_PV}-make_static-r1.patch
-	fi
-
 	# We want packages to find our things...
 	sed -i -e "s:/usr/local:${EPREFIX}/usr:" etc/lua.pc
 }
@@ -70,6 +75,8 @@ src_compile() {
 	liblibs="-lm"
 	if [[ $CHOST == *-darwin* ]]; then
 		mycflags="${mycflags} -DLUA_USE_MACOSX"
+	elif [[ ${CHOST} == *-winnt* ]]; then
+		: # nothing for now...
 	else # building for standard linux (and bsd too)
 		mycflags="${mycflags} -DLUA_USE_LINUX"
 	fi
