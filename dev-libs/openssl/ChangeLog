@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.286 2009/03/26 17:09:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.287 2009/03/29 21:26:21 maekke Exp $
+
+  29 Mar 2009; Markus Meier <maekke@gentoo.org> openssl-0.9.8k.ebuild:
+  x86 stable, bug #263751
 
   26 Mar 2009; Jeroen Roovers <jer@gentoo.org> openssl-0.9.8k.ebuild:
   Stable for HPPA (bug #263751).
