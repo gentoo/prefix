@@ -1,6 +1,12 @@
 # ChangeLog for media-plugins/gst-plugins-mpeg2dec
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-mpeg2dec/ChangeLog,v 1.79 2008/12/05 22:16:38 ssuominen Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-mpeg2dec/ChangeLog,v 1.80 2009/03/30 04:55:39 tester Exp $
+
+*gst-plugins-mpeg2dec-0.10.11 (30 Mar 2009)
+
+  30 Mar 2009; Olivier Crête <tester@gentoo.org>
+  +gst-plugins-mpeg2dec-0.10.11.ebuild:
+  Version bump
 
 *gst-plugins-mpeg2dec-0.10.10 (05 Dec 2008)
 
