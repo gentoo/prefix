@@ -1,6 +1,9 @@
 # ChangeLog for games-emulation/zsnes
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/zsnes/ChangeLog,v 1.42 2009/02/28 10:21:00 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/zsnes/ChangeLog,v 1.43 2009/03/31 13:23:07 darkside Exp $
+
+  31 Mar 2009; Jeremy Olexa <darkside@gentoo.org> zsnes-1.51-r2.ebuild:
+  amd64 stable, bug 264211
 
   28 Feb 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
   custom-cflags is a global USE-flag
