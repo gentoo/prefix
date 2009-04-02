@@ -53,7 +53,7 @@ __python_version_extract() {
 python_version() {
 	[[ -n "${PYVER}" ]] && return 0
 	local tmpstr
-	python=${python:-${EPREFIX}/usr/bin/python}
+	python=${python:-"$(type -P python)"}
 	tmpstr="$(${python} -V 2>&1 )"
 	export PYVER_ALL="${tmpstr#Python }"
 	__python_version_extract $PYVER_ALL
