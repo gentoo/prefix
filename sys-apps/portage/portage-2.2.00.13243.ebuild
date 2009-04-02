@@ -82,6 +82,7 @@ src_unpack() {
 	if use prefix-chaining; then
 		epatch "${FILESDIR}"/${PN}-2.2.00.13133-prefix-chaining.patch
 		epatch "${FILESDIR}"/${PN}-2.2.00.13243-prefix-chaining-utils.patch
+		epatch "${FILESDIR}"/${PN}-2.2.00.13243-prefix-chaining-sync.patch
 	fi
 }
 
