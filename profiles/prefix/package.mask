@@ -32,6 +32,12 @@
 
 #--- END OF EXAMPLES ---
 
+
+# Fabian Groffen <grobian@gentoo.org> (02 Apr 2009)
+# Masked for as long as autoconf-wrapper doesn't understand its version
+# (not hard, but I prefer waiting for SpanKY to do it)
+=sys-devel/autoconf-2.63b
+
 # Jeremy Olexa <darkside@gentoo.org> (26 Mar 2009)
 # xfce4-4.6.0 requires xorg-server-1.5.3 to work 100%.
 # If you a) have that or b) don't care that somethings might not work, then

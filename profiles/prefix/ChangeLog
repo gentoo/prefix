@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  02 Apr 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask autoconf-2.63b for as long autoconf-wrapper doesn't deal with it
+
   26 Mar 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask xfce4-4.6.0 based on its dependance for xorg-server-1.5.3
 
