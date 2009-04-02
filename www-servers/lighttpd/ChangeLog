@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/lighttpd
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.193 2009/02/03 12:46:51 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.194 2009/04/01 19:03:45 bangert Exp $
+
+  01 Apr 2009; Thilo Bangert <bangert@gentoo.org>
+  files/lighttpd.initd-1.4.13-r3:
+  add dns and netmount to use - bug #235303
 
   03 Feb 2009; Petteri Räty <betelgeuse@gentoo.org> lighttpd-1.4.20.ebuild:
   Block lighttpd until spawn-fcgi collision is fixed. See bug #224781.
