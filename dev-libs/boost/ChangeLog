@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.148 2009/03/25 01:34:13 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.149 2009/04/01 18:17:37 josejx Exp $
+
+  01 Apr 2009; Joseph Jezak <josejx@gentoo.org> boost-1.35.0-r2.ebuild:
+  Marked ppc stable for bug #245192.
 
   25 Mar 2009; Ryan Hill <dirtyepic@gentoo.org> boost-1.35.0-r2.ebuild:
   Fix testsuite processing for paludis users.
