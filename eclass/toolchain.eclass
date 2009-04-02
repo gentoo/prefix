@@ -789,10 +789,10 @@ add_profile_eselect_conf() {
 		LDPATH="${LIBPATH}/${MULTIDIR}"
 	fi
 
-	echo "	ldpath=${EPREFIX}/${LDPATH}" >> ${compiler_config_file}
+	echo "	ldpath=${EPREFIX}${LDPATH}" >> ${compiler_config_file}
 
 	if [[ -n ${gcc_specs_file} ]] ; then
-		echo "	specs=${EPREFIX}/${gcc_specs_file}" >> ${compiler_config_file}
+		echo "	specs=${EPREFIX}${gcc_specs_file}" >> ${compiler_config_file}
 	fi
 
 	var="CFLAGS_${abi}"
@@ -810,9 +810,9 @@ create_eselect_conf() {
 
 	echo "[global]" > ${compiler_config_file}
 	echo "	version=${CTARGET}-${GCC_CONFIG_VER}" >> ${compiler_config_file}
-	echo "	binpath=${EPREFIX}/${BINPATH}" >> ${compiler_config_file}
-	echo "	manpath=${EPREFIX}/${DATAPATH}/man" >> ${compiler_config_file}
-	echo "	infopath=${EPREFIX}/${DATAPATH}/info" >> ${compiler_config_file}
+	echo "	binpath=${EPREFIX}${BINPATH}" >> ${compiler_config_file}
+	echo "	manpath=${EPREFIX}${DATAPATH}/man" >> ${compiler_config_file}
+	echo "	infopath=${EPREFIX}${DATAPATH}/info" >> ${compiler_config_file}
 	echo "	alias_cc=gcc" >> ${compiler_config_file}
 	echo "	stdcxx_incdir=${STDCXX_INCDIR##*/}" >> ${compiler_config_file}
 	echo "	bin_prefix=${CTARGET}" >> ${compiler_config_file}
@@ -1389,17 +1389,17 @@ gcc_do_configure() {
 			*-cygwin)        needed_libc=cygwin;;
 			mingw*|*-mingw*) needed_libc=mingw-runtime;;
 			avr)			 confgcc="${confgcc} --enable-shared --disable-threads";;
-			*-apple-darwin*) confgcc="${confgcc} --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}";;
-			*-solaris*)      confgcc="${confgcc} --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}";;
-			*-freebsd*)      confgcc="${confgcc} --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}";;
+			*-apple-darwin*) confgcc="${confgcc} --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}";;
+			*-solaris*)      confgcc="${confgcc} --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}";;
+			*-freebsd*)      confgcc="${confgcc} --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}";;
 		esac
 		if [[ -n ${needed_libc} ]] ; then
 			if ! has_version ${CATEGORY}/${needed_libc} ; then
 				confgcc="${confgcc} --disable-shared --disable-threads --without-headers"
 			elif built_with_use --hidden --missing false ${CATEGORY}/${needed_libc} crosscompile_opts_headers-only ; then
-				confgcc="${confgcc} --disable-shared --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}"
+				confgcc="${confgcc} --disable-shared --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}"
 			else
-				confgcc="${confgcc} --with-sysroot=${EPREFIX}/${PREFIX}/${CTARGET}"
+				confgcc="${confgcc} --with-sysroot=${EPREFIX}${PREFIX}/${CTARGET}"
 			fi
 		fi
 
@@ -1546,7 +1546,7 @@ gcc_do_make() {
 	emake \
 		LDFLAGS="${LDFLAGS}" \
 		STAGE1_CFLAGS="${STAGE1_CFLAGS}" \
-		LIBPATH="${LIBPATH}" \
+		LIBPATH="${EPREFIX}${LIBPATH}" \
 		BOOT_CFLAGS="${BOOT_CFLAGS}" \
 		${GCC_MAKE_TARGET} \
 		|| die "emake failed with ${GCC_MAKE_TARGET}"
@@ -1725,12 +1725,12 @@ gcc-library_src_install() {
 	emake -j1 \
 		DESTDIR="${D}" \
 		prefix=${PREFIX} \
-		bindir=${BINPATH} \
-		includedir=${LIBPATH}/include \
-		datadir=${DATAPATH} \
-		mandir=${DATAPATH}/man \
-		infodir=${DATAPATH}/info \
-		LIBPATH="${LIBPATH}" \
+		bindir=${EPREFIX}${BINPATH} \
+		includedir=${EPREFIX}${LIBPATH}/include \
+		datadir=${EPREFIX}${DATAPATH} \
+		mandir=${EPREFIX}${DATAPATH}/man \
+		infodir=${EPREFIX}${DATAPATH}/info \
+		LIBPATH="${EPREFIX}${LIBPATH}" \
 		${GCC_INSTALL_TARGET} || die
 
 	if [[ ${GCC_LIB_COMPAT_ONLY} == "true" ]] ; then
@@ -1747,7 +1747,7 @@ gcc-library_src_install() {
 		mv "${WORKDIR}"/${GCC_LIB_USE_SUBDIR}/ "${ED}"${LIBPATH}
 
 		dodir /etc/env.d
-		echo "LDPATH=\"${EPREFIX}/${LIBPATH}/${GCC_LIB_USE_SUBDIR}/\"" >> "${ED}"/etc/env.d/99${PN}
+		echo "LDPATH=\"${EPREFIX}${LIBPATH}/${GCC_LIB_USE_SUBDIR}/\"" >> "${ED}"/etc/env.d/99${PN}
 	fi
 
 	if [[ ${GCC_VAR_TYPE} == "non-versioned" ]] ; then
@@ -1968,7 +1968,7 @@ gcc_slot_java() {
 	# SLOT up libgcj.pc (and let gcc-config worry about links)
 	local libgcj=$(find "${ED}"${PREFIX}/lib/pkgconfig/ -name 'libgcj*.pc')
 	if [[ -n ${libgcj} ]] ; then
-		sed -i "/^libdir=/s:=.*:=${LIBPATH}:" "${libgcj}"
+		sed -i "/^libdir=/s:=.*:=${EPREFIX}${LIBPATH}:" "${libgcj}"
 		mv "${libgcj}" "${ED}"/usr/lib/pkgconfig/libgcj-${GCC_PV}.pc || die
 	fi
 
@@ -2551,10 +2551,10 @@ fix_libtool_libdir_paths() {
 	allarchives="\(${allarchives// /\\|}\)"
 
 	sed -i \
-		-e "/^libdir=/s:=.*:='${dir}':" \
+		-e "/^libdir=/s:=.*:='${EPREFIX}${dir##/}':" \
 		./${dir}/*.la
 	sed -i \
-		-e "/^dependency_libs=/s:/[^ ]*/${allarchives}:${LIBPATH}/\1:g" \
+		-e "/^dependency_libs=/s:/[^ ]*/${allarchives}:${EPREFIX}${LIBPATH##/}/\1:g" \
 		$(find ./${PREFIX}/lib* -maxdepth 3 -name '*.la') \
 		./${dir}/*.la
 
