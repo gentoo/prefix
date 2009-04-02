@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libusb
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.81 2008/06/25 03:25:44 robbat2 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.83 2009/03/28 11:30:42 vapier Exp $
+
+  28 Mar 2009; Mike Frysinger <vapier@gentoo.org> libusb-0.1.12-r5.ebuild:
+  Dont move the C++ lib to /lib #245645 by DarkNRG.
+
+*libusb-0.1.12-r5 (28 Mar 2009)
+
+  28 Mar 2009; Mike Frysinger <vapier@gentoo.org> +libusb-0.1.12-r5.ebuild:
+  Use gen_usr_ldscript -a to relocate shared libs to the root dir.
 
 *libusb-0.1.12-r4 (25 Jun 2008)
 
