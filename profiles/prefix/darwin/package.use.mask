@@ -1,4 +1,8 @@
 
+# Fabian Groffen <grobian@gentoo.org> (03 Apr 2009)
+# ld: unknown option: -R/Library/Gentoo/usr/lib
+~sys-devel/gcc-4.3.3 gcj
+
 # Fabian Groffen <grobian@gentoo.org> (08 Aug 2008)
 # mmx don't really works on x86-macos
 net-irc/xchat mmx
