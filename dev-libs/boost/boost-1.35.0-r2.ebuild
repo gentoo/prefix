@@ -96,7 +96,12 @@ generate_options() {
 		OPTIONS="${OPTIONS} --without-mpi"
 	fi
 
-	[[ ${CHOST} == *-winnt* ]] && OPTIONS="${OPTIONS} --without-python -sNO_BZIP2=1"
+	# if there is no local python, don't build support for it!
+	# it would work to take python from somewhere else (as with
+	# a chained environment), but that causes big headaches!
+	[[ -x "${EPREFIX}"/usr/bin/python ]] || OPTIONS="${OPTIONS} --without-python"
+
+	[[ ${CHOST} == *-winnt* ]] && OPTIONS="${OPTIONS} -sNO_BZIP2=1"
 
 	local mybuild=$(type -p bjam)
 	OPTIONS="${OPTIONS} --user-config=${S}/user-config.jam --boost-build=${mybuild%/bin/bjam}/share/boost-build"
