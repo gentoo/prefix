@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.149 2009/04/01 18:17:37 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.150 2009/04/02 17:13:27 bluebird Exp $
+
+  02 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
+  boost-1.35.0-r2.ebuild:
+  Stable on sparc, bug #245192
 
   01 Apr 2009; Joseph Jezak <josejx@gentoo.org> boost-1.35.0-r2.ebuild:
   Marked ppc stable for bug #245192.
