@@ -46,8 +46,7 @@ src_unpack() {
 		epatch
 	fi
 
-# fails, perhaps needs resubmission to gnu-coreutils ml iso bugtracker
-	#epatch "${FILESDIR}"/${PN}-7.1-mint.patch
+	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
 	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 	epatch "${FILESDIR}"/${PN}-6.12-interix-sleep.patch
 
