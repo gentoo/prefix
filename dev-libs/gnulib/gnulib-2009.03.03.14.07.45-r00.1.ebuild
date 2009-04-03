@@ -48,7 +48,7 @@ src_unpack() {
 			requested_gnulib_modules="alphasort dirfd getopt scandir strcasestr stdint strndup xvasprintf"
 			;;
 		*-solaris2.10)
-			requested_gnulib_modules="getopt strcasestr strndup xvasprintf"
+			requested_gnulib_modules="dirfd getopt strcasestr strndup xvasprintf"
 			;;
 		*-aix*)
 			requested_gnulib_modules="alphasort dirfd getopt scandir strcasestr strndup xvasprintf"
