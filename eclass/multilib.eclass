@@ -518,12 +518,12 @@ create_ml_includes-sym_for_dir() {
 # @FUNCTION: get_libname
 # @USAGE: [version]
 # @DESCRIPTION:
-# Returns libname with proper suffix {.so,.dylib} and optionally supplied version
-# for ELF/MACH-O shared objects
+# Returns libname with proper suffix {.so,.dylib,.dll,etc} and optionally
+# supplied version for the current platform identified by CHOST.
 #
 # Example:
 #     get_libname libfoo ${PV}
-#     Returns: libfoo.so.${PV} (ELF) || libfoo.${PV}.dylib (MACH)
+#     Returns: libfoo.so.${PV} (ELF) || libfoo.${PV}.dylib (MACH) || ...
 get_libname() {
 	local libname
 	local ver=$1
