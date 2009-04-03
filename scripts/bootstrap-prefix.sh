@@ -285,7 +285,7 @@ bootstrap_portage() {
 		--with-portage-user="`id -un`" \
 		--with-portage-group="`id -gn`" \
 		--with-eapi='"prefix"' \
-		--mandir="${ROOT}/automatically-removed"
+		--mandir="${ROOT}/automatically-removed" \
 		--with-default-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}"
 	$MAKE ${MAKEOPTS} || exit 1
 
