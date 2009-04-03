@@ -1,0 +1,117 @@
+From: Gabor Melis <mega@hotpop.com>
+Date: Sun, 22 Mar 2009 21:45:04 +0000 (+0000)
+Subject: 1.0.26.16: fix gencgc on ppc
+X-Git-Tag: sbcl.1.0.27~7
+X-Git-Url: http://git.boinkor.net/gitweb/sbcl.git?a=commitdiff_plain;h=7a0ba26f6a662f592b168353c135204f65fda2d2
+
+1.0.26.16: fix gencgc on ppc
+
+Regression from 1.0.25.37.
+
+Store the context of allocation trap in interrupt_data and frob that
+when gencgc wants to block deferrables.
+
+Also: remove unused, buggy get_interrupt_context_for_thread.
+---
+
+diff --git a/src/runtime/gencgc.c b/src/runtime/gencgc.c
+index c87669e..2a6d7ea 100644
+--- a/src/runtime/gencgc.c
++++ b/src/runtime/gencgc.c
+@@ -4726,10 +4726,14 @@ general_alloc_internal(long nbytes, int page_type_flag, struct alloc_region *reg
+             if (SymbolValue(GC_INHIBIT,thread) == NIL) {
+                 set_pseudo_atomic_interrupted(thread);
+ #ifdef LISP_FEATURE_PPC
+-                /* PPC calls alloc() from a trap, look up the most
+-                 * recent one and frob that. */
+-                maybe_save_gc_mask_and_block_deferrables
+-                    (get_interrupt_context_for_thread(thread));
++                /* PPC calls alloc() from a trap or from pa_alloc(),
++                 * look up the most context if it's from a trap. */
++                {
++                    os_context_t *context =
++                        thread->interrupt_data->allocation_trap_context;
++                    maybe_save_gc_mask_and_block_deferrables
++                        (context ? os_context_sigmask_addr(context) : NULL);
++                }
+ #else
+                 maybe_save_gc_mask_and_block_deferrables(NULL);
+ #endif
+diff --git a/src/runtime/interrupt.h b/src/runtime/interrupt.h
+index 4f2b097..0c3984e 100644
+--- a/src/runtime/interrupt.h
++++ b/src/runtime/interrupt.h
+@@ -113,6 +113,14 @@ struct interrupt_data {
+      * NIL. Both deferrable interrupt handlers and gc are careful not
+      * to clobber each other's pending_mask. */
+     boolean gc_blocked_deferrables;
++#ifdef LISP_FEATURE_PPC
++    /* On PPC when consing wants to turn to alloc(), it does so via a
++     * trap. When alloc() wants to save the sigmask it consults
++     * allocation_trap_context. It does not look up the most recent
++     * context, because alloc() can be called from other places
++     * too. */
++    os_context_t *allocation_trap_context;
++#endif
+ };
+ 
+ extern boolean interrupt_handler_pending_p(void);
+diff --git a/src/runtime/ppc-arch.c b/src/runtime/ppc-arch.c
+index db0ced7..533293d 100644
+--- a/src/runtime/ppc-arch.c
++++ b/src/runtime/ppc-arch.c
+@@ -16,6 +16,7 @@
+ #include "globals.h"
+ #include "validate.h"
+ #include "os.h"
++#include "interrupt.h"
+ #include "lispregs.h"
+ #include "signal.h"
+ #include "interrupt.h"
+@@ -356,7 +357,13 @@ handle_allocation_trap(os_context_t * context)
+             dynamic_space_free_pointer);
+ #endif
+ 
+-    memory = (char *) alloc(size);
++    {
++        struct interrupt_data *data =
++            arch_os_get_current_thread()->interrupt_data;
++        data->allocation_trap_context = context;
++        memory = (char *) alloc(size);
++        data->allocation_trap_context = 0;
++    }
+ 
+ #if 0
+     fprintf(stderr, "alloc returned %p\n", memory);
+diff --git a/src/runtime/thread.c b/src/runtime/thread.c
+index 84fb947..3d2620b 100644
+--- a/src/runtime/thread.c
++++ b/src/runtime/thread.c
+@@ -472,6 +472,9 @@ create_thread_struct(lispobj initial_function) {
+     }
+     th->interrupt_data->pending_handler = 0;
+     th->interrupt_data->gc_blocked_deferrables = 0;
++#ifdef LISP_FEATURE_PPC
++    th->interrupt_data->allocation_trap_context = 0;
++#endif
+     th->no_tls_value_marker=initial_function;
+ 
+     th->stepping = NIL;
+diff --git a/src/runtime/thread.h b/src/runtime/thread.h
+index 306d133..1872483 100644
+--- a/src/runtime/thread.h
++++ b/src/runtime/thread.h
+@@ -169,13 +169,6 @@ StaticSymbolFunction(lispobj sym)
+     return ((struct fdefn *)native_pointer(SymbolValue(sym, 0)))->fun;
+ }
+ 
+-static inline
+-os_context_t *get_interrupt_context_for_thread(struct thread *th)
+-{
+-    return th->interrupt_contexts
+-        [fixnum_value(SymbolValue(FREE_INTERRUPT_CONTEXT_INDEX,th)-1)];
+-}
+-
+ #if defined(LISP_FEATURE_SB_THREAD) && defined(LISP_FEATURE_GCC_TLS)
+ extern __thread struct thread *current_thread;
+ #endif
