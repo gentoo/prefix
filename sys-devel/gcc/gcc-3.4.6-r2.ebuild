@@ -39,7 +39,7 @@ SPLIT_SPECS=${SPLIT_SPECS-true}
 #GENTOO_PATCH_EXCLUDE=""
 #PIEPATCH_EXCLUDE=""
 
-inherit toolchain eutils
+inherit toolchain eutils prefix
 
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
@@ -109,6 +109,12 @@ src_unpack() {
 
 	# http://gcc.gnu.org/PR20366
 	epatch "${FILESDIR}"/${P}-aix-largefiles.patch
+
+	# replace nasty multilib dirs like ../lib64 that occur on --disable-multilib
+	if use prefix; then
+		epatch "${FILESDIR}"/3.4.4/prefix-search-dirs.patch
+		eprefixify "${S}"/gcc/gcc.c
+	fi
 
 	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/3.4.4/gcc-3.4.4-softfloat.patch
 
