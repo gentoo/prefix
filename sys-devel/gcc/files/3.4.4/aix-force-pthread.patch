@@ -1,0 +1,231 @@
+Because '-pthread' needs a different multilib library on AIX,
+always build with pthreads enabled, as we disable multilib in Prefix.
+Mixing pthread- and non-pthread-libs causes troubles anyway.
+--- gcc/config/rs6000/aix41.h.orig	2009-04-03 09:01:40.000000000 +0200
++++ gcc/config/rs6000/aix41.h	2009-04-03 09:14:09.000000000 +0200
+@@ -51,7 +51,7 @@
+ #define CPP_SPEC "%{posix: -D_POSIX_SOURCE}\
+    %{ansi: -D_ANSI_C_SOURCE}\
+    %{mpe: -I/usr/lpp/ppe.poe/include}\
+-   %{pthread: -D_THREAD_SAFE}"
++   %{pthread} -D_THREAD_SAFE"
+ 
+ #undef TARGET_DEFAULT
+ #define TARGET_DEFAULT MASK_NEW_MNEMONICS
+@@ -75,8 +75,8 @@
+ #define LIB_SPEC "%{pg:-L/lib/profiled -L/usr/lib/profiled}\
+    %{p:-L/lib/profiled -L/usr/lib/profiled} %{!shared:%{g*:-lg}}\
+    %{mpe:-L/usr/lpp/ppe.poe/lib -lmpi -lvtd}\
+-   %{pthread: -L/usr/lib/threads -lpthreads -lc_r /usr/lib/libc.a}\
+-   %{!pthread: -lc}"
++   %{pthread:} -L/usr/lib/threads -lpthreads -lc_r /usr/lib/libc.a\
++   "
+ 
+ #undef LINK_SPEC
+ #define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
+@@ -89,8 +89,8 @@
+          %{!pg:%{p:/usr/lpp/ppe.poe/lib/mcrt0.o}\
+                %{!p:/usr/lpp/ppe.poe/lib/crt0.o}}}\
+    %{!mpe:\
+-     %{pthread:%{pg:gcrt0_r%O%s}%{!pg:%{p:mcrt0_r%O%s}%{!p:crt0_r%O%s}}}\
+-     %{!pthread:%{pg:gcrt0%O%s}%{!pg:%{p:mcrt0%O%s}%{!p:crt0%O%s}}}}}"
++     %{pthread:}%{pg:gcrt0_r%O%s}%{!pg:%{p:mcrt0_r%O%s}%{!p:crt0_r%O%s}}\
++     }}"
+ 
+ /* AIX 4 uses PowerPC nop (ori 0,0,0) instruction as call glue for PowerPC
+    and "cror 31,31,31" for POWER architecture.  */
+--- gcc/config/rs6000/aix43.h.orig	2009-04-03 08:58:47.000000000 +0200
++++ gcc/config/rs6000/aix43.h	2009-04-03 09:14:34.000000000 +0200
+@@ -116,7 +116,7 @@
+    %{ansi: -D_ANSI_C_SOURCE}\
+    %{maix64: -D__64BIT__}\
+    %{mpe: -I/usr/lpp/ppe.poe/include}\
+-   %{pthread: -D_THREAD_SAFE}"
++   %{pthread:} -D_THREAD_SAFE"
+ 
+ /* The GNU C++ standard library requires that these macros be 
+    defined.  */
+@@ -128,7 +128,7 @@
+    -D_ALL_SOURCE				\
+    %{maix64: -D__64BIT__}			\
+    %{mpe: -I/usr/lpp/ppe.poe/include}		\
+-   %{pthread: -D_THREAD_SAFE}"
++   %{pthread:} -D_THREAD_SAFE"
+ 
+ #undef TARGET_DEFAULT
+ #define TARGET_DEFAULT MASK_NEW_MNEMONICS
+@@ -153,8 +153,8 @@
+    %{p:-L/lib/profiled -L/usr/lib/profiled}\
+    %{!maix64:%{!shared:%{g*:-lg}}}\
+    %{mpe:-L/usr/lpp/ppe.poe/lib -lmpi -lvtd}\
+-   %{pthread:-L/usr/lib/threads -lpthreads -lc_r /usr/lib/libc.a}\
+-   %{!pthread:-lc}"
++   %{pthread:}-L/usr/lib/threads -lpthreads -lc_r /usr/lib/libc.a\
++   "
+ 
+ #undef LINK_SPEC
+ #define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
+@@ -166,8 +166,8 @@
+ #define STARTFILE_SPEC "%{!shared:\
+    %{maix64:%{pg:gcrt0_64%O%s}%{!pg:%{p:mcrt0_64%O%s}%{!p:crt0_64%O%s}}}\
+    %{!maix64:\
+-     %{pthread:%{pg:gcrt0_r%O%s}%{!pg:%{p:mcrt0_r%O%s}%{!p:crt0_r%O%s}}}\
+-     %{!pthread:%{pg:gcrt0%O%s}%{!pg:%{p:mcrt0%O%s}%{!p:crt0%O%s}}}}}"
++     %{pthread:}%{pg:gcrt0_r%O%s}%{!pg:%{p:mcrt0_r%O%s}%{!p:crt0_r%O%s}}\
++     }}"
+ 
+ /* AIX 4.3 typedefs ptrdiff_t as "long" while earlier releases used "int".  */
+ 
+--- gcc/config/rs6000/aix51.h.orig	2009-04-03 08:58:19.000000000 +0200
++++ gcc/config/rs6000/aix51.h	2009-04-03 09:14:51.000000000 +0200
+@@ -117,7 +117,7 @@
+   %{ansi: -D_ANSI_C_SOURCE}			\
+   %{maix64: -D__64BIT__}			\
+   %{mpe: -I/usr/lpp/ppe.poe/include}		\
+-  %{pthread: -D_THREAD_SAFE}"
++  %{pthread:} -D_THREAD_SAFE"
+ 
+ /* The GNU C++ standard library requires that these macros be 
+    defined.  */
+@@ -129,7 +129,7 @@
+    -D_ALL_SOURCE				\
+    %{maix64: -D__64BIT__}			\
+    %{mpe: -I/usr/lpp/ppe.poe/include}		\
+-   %{pthread: -D_THREAD_SAFE}"
++   %{pthread:} -D_THREAD_SAFE"
+ 
+ #undef TARGET_DEFAULT
+ #define TARGET_DEFAULT MASK_NEW_MNEMONICS
+@@ -154,7 +154,7 @@
+    %{p:-L/lib/profiled -L/usr/lib/profiled}\
+    %{!maix64:%{!shared:%{g*:-lg}}}\
+    %{mpe:-L/usr/lpp/ppe.poe/lib -lmpi -lvtd}\
+-   %{pthread:-lpthreads} -lc"
++   %{pthread:}-lpthreads -lc"
+ 
+ #undef LINK_SPEC
+ #define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
+@@ -166,8 +166,8 @@
+ #define STARTFILE_SPEC "%{!shared:\
+    %{maix64:%{pg:gcrt0_64%O%s}%{!pg:%{p:mcrt0_64%O%s}%{!p:crt0_64%O%s}}}\
+    %{!maix64:\
+-     %{pthread:%{pg:gcrt0_r%O%s}%{!pg:%{p:mcrt0_r%O%s}%{!p:crt0_r%O%s}}}\
+-     %{!pthread:%{pg:gcrt0%O%s}%{!pg:%{p:mcrt0%O%s}%{!p:crt0%O%s}}}}}"
++     %{pthread:}%{pg:gcrt0_r%O%s}%{!pg:%{p:mcrt0_r%O%s}%{!p:crt0_r%O%s}}\
++     }}"
+ 
+ /* AIX V5 typedefs ptrdiff_t as "long" while earlier releases used "int".  */
+ 
+--- gcc/config/rs6000/aix52.h.orig	2009-04-03 08:58:14.000000000 +0200
++++ gcc/config/rs6000/aix52.h	2009-04-03 09:15:08.000000000 +0200
+@@ -105,7 +105,7 @@
+   %{ansi: -D_ANSI_C_SOURCE}			\
+   %{maix64: -D__64BIT__}			\
+   %{mpe: -I/usr/lpp/ppe.poe/include}		\
+-  %{pthread: -D_THREAD_SAFE}"
++  %{pthread:} -D_THREAD_SAFE"
+ 
+ /* The GNU C++ standard library requires that these macros be 
+    defined.  */
+@@ -117,7 +117,7 @@
+    -D_ALL_SOURCE				\
+    %{maix64: -D__64BIT__}			\
+    %{mpe: -I/usr/lpp/ppe.poe/include}		\
+-   %{pthread: -D_THREAD_SAFE}"
++   %{pthread:} -D_THREAD_SAFE"
+ 
+ #undef  TARGET_DEFAULT
+ #define TARGET_DEFAULT (MASK_POWERPC | MASK_NEW_MNEMONICS)
+@@ -146,7 +146,7 @@
+    %{p:-L/lib/profiled -L/usr/lib/profiled}\
+    %{!maix64:%{!shared:%{g*:-lg}}}\
+    %{mpe:-L/usr/lpp/ppe.poe/lib -lmpi -lvtd}\
+-   %{pthread:-lpthreads} -lc"
++   %{pthread:}-lpthreads -lc"
+ 
+ #undef LINK_SPEC
+ #define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
+@@ -158,8 +158,8 @@
+ #define STARTFILE_SPEC "%{!shared:\
+    %{maix64:%{pg:gcrt0_64%O%s}%{!pg:%{p:mcrt0_64%O%s}%{!p:crt0_64%O%s}}}\
+    %{!maix64:\
+-     %{pthread:%{pg:gcrt0_r%O%s}%{!pg:%{p:mcrt0_r%O%s}%{!p:crt0_r%O%s}}}\
+-     %{!pthread:%{pg:gcrt0%O%s}%{!pg:%{p:mcrt0%O%s}%{!p:crt0%O%s}}}}}"
++     %{pthread:}%{pg:gcrt0_r%O%s}%{!pg:%{p:mcrt0_r%O%s}%{!p:crt0_r%O%s}}\
++     }}"
+ 
+ /* AIX V5 typedefs ptrdiff_t as "long" while earlier releases used "int".  */
+ 
+--- gcc/config/rs6000/t-aix43.orig	2009-04-03 08:58:28.000000000 +0200
++++ gcc/config/rs6000/t-aix43	2009-04-03 09:15:31.000000000 +0200
+@@ -10,13 +10,13 @@
+ 	echo '#define FLOAT' > fp-bit.c
+ 	cat $(srcdir)/config/fp-bit.c >> fp-bit.c
+ 
+-# Build the libraries for pthread and all of the 
++# Build the libraries for all of the 
+ # different processor models
+ 
+-MULTILIB_OPTIONS	= pthread \
++MULTILIB_OPTIONS	= \
+ 			  mcpu=common/mcpu=power/mcpu=powerpc/maix64
+ 
+-MULTILIB_DIRNAMES	= pthread \
++MULTILIB_DIRNAMES	= \
+ 			  common power powerpc ppc64
+ 
+ MULTILIB_MATCHES	= mcpu?power=mcpu?power \
+@@ -47,7 +47,7 @@
+ 	-Wl,-bE:@shlib_map_file@ -o @multilib_dir@/shr.o \
+ 	@multilib_flags@ @shlib_objs@ -lc \
+ 	`case @shlib_base_name@ in \
+-	*pthread*) echo -L/usr/lib/threads -lpthreads -lc_r /usr/lib/libc.a ;; \
++	*) echo -L/usr/lib/threads -lpthreads -lc_r /usr/lib/libc.a ;; \
+ 	*) echo -lc ;; esac` ; \
+ 	rm -f tmp-@shlib_base_name@.a ; \
+ 	$(AR_CREATE_FOR_TARGET) tmp-@shlib_base_name@.a @multilib_dir@/shr.o ; \
+@@ -56,7 +56,7 @@
+ # $(slibdir) double quoted to protect it from expansion while building
+ # libgcc.mk.  We want this delayed until actual install time.
+ SHLIB_INSTALL = $(INSTALL_DATA) @shlib_base_name@.a $$(DESTDIR)$$(slibdir)/
+-SHLIB_LIBS = -lc `case @shlib_base_name@ in *pthread*) echo -lpthread ;; esac`
++SHLIB_LIBS = -lc `case @shlib_base_name@ in *) echo -lpthread ;; esac`
+ SHLIB_MKMAP = $(srcdir)/mkmap-flat.awk
+ SHLIB_MAPFILES = $(srcdir)/libgcc-std.ver $(srcdir)/config/rs6000/libgcc-ppc64.ver
+ SHLIB_NM_FLAGS = -Bpg -X32_64
+--- gcc/config/rs6000/t-aix52.orig	2009-04-03 08:55:55.000000000 +0200
++++ gcc/config/rs6000/t-aix52	2009-04-03 09:15:42.000000000 +0200
+@@ -10,12 +10,12 @@
+ 	echo '#define FLOAT' > fp-bit.c
+ 	cat $(srcdir)/config/fp-bit.c >> fp-bit.c
+ 
+-# Build the libraries for pthread and all of the 
++# Build the libraries for all of the 
+ # different processor models
+ 
+-MULTILIB_OPTIONS	= pthread maix64
++MULTILIB_OPTIONS	= maix64
+ 
+-MULTILIB_DIRNAMES	= pthread ppc64
++MULTILIB_DIRNAMES	= ppc64
+ 
+ MULTILIB_MATCHES	= 
+ 
+@@ -28,7 +28,7 @@
+ 	-Wl,-bE:@shlib_map_file@ -o @multilib_dir@/shr.o \
+ 	@multilib_flags@ @shlib_objs@ -lc \
+ 	`case @shlib_base_name@ in \
+-	*pthread*) echo -L/usr/lib/threads -lpthreads -lc_r /usr/lib/libc.a ;; \
++	*) echo -L/usr/lib/threads -lpthreads -lc_r /usr/lib/libc.a ;; \
+ 	*) echo -lc ;; esac` ; \
+ 	rm -f tmp-@shlib_base_name@.a ; \
+ 	$(AR_CREATE_FOR_TARGET) tmp-@shlib_base_name@.a @multilib_dir@/shr.o ; \
+@@ -37,7 +37,7 @@
+ # $(slibdir) double quoted to protect it from expansion while building
+ # libgcc.mk.  We want this delayed until actual install time.
+ SHLIB_INSTALL = $(INSTALL_DATA) @shlib_base_name@.a $$(DESTDIR)$$(slibdir)/
+-SHLIB_LIBS = -lc `case @shlib_base_name@ in *pthread*) echo -lpthread ;; esac`
++SHLIB_LIBS = -lc `case @shlib_base_name@ in *) echo -lpthread ;; esac`
+ SHLIB_MKMAP = $(srcdir)/mkmap-flat.awk
+ SHLIB_MAPFILES = $(srcdir)/libgcc-std.ver $(srcdir)/config/rs6000/libgcc-ppc64.ver
+ SHLIB_NM_FLAGS = -Bpg -X32_64

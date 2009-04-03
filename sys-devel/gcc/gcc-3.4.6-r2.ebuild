@@ -110,6 +110,9 @@ src_unpack() {
 	# http://gcc.gnu.org/PR20366
 	epatch "${FILESDIR}"/${P}-aix-largefiles.patch
 
+	# Always behave as if -pthread were passed on AIX
+	epatch "${FILESDIR}"/3.4.4/aix-force-pthread.patch
+
 	# replace nasty multilib dirs like ../lib64 that occur on --disable-multilib
 	if use prefix; then
 		epatch "${FILESDIR}"/3.4.4/prefix-search-dirs.patch
