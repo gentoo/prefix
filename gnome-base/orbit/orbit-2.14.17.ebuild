@@ -6,7 +6,7 @@ EAPI="prefix"
 
 GCONF_DEBUG="no"
 
-inherit gnome2 toolchain-funcs
+inherit gnome2 toolchain-funcs eutils autotools
 
 MY_P="ORBit2-${PV}"
 PVP=(${PV//[-\._]/ })
@@ -29,6 +29,20 @@ DEPEND="
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README* TODO"
+
+src_unpack() {
+	gnome2_src_unpack
+
+	epatch "${FILESDIR}"/${PN}-2.14.14-interix.patch
+	epatch "${FILESDIR}"/${PN}-2.14.16-interix.patch
+
+	if [[ ${CHOST} == *-winnt* ]]; then 
+		epatch "${FILESDIR}"/${PN}-2.14.16-winnt.patch
+		epatch "${FILESDIR}"/${PN}-2.14.17-winnt.patch
+	fi
+
+	eautoreconf # required for winnt
+}
 
 src_compile() {
 	# We need to unset IDL_DIR, which is set by RSI's IDL.  This causes certain
