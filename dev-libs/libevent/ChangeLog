@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libevent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/ChangeLog,v 1.99 2009/03/26 18:20:03 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/ChangeLog,v 1.101 2009/04/02 18:07:51 jer Exp $
+
+  02 Apr 2009; Jeroen Roovers <jer@gentoo.org> -libevent-1.3a.ebuild,
+  -libevent-1.3e.ebuild, -libevent-1.4.3.ebuild, -libevent-1.4.4.ebuild,
+  -libevent-1.4.5.ebuild:
+  Remove old.
+
+  02 Apr 2009; Raúl Porcel <armin76@gentoo.org> libevent-1.4.9.ebuild:
+  arm/ia64/s390/sh/sparc/x86 stable wrt #252430
 
   26 Mar 2009; Brent Baude <ranger@gentoo.org> libevent-1.4.9.ebuild:
   stable ppc, bug 252430
