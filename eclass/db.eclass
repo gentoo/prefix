@@ -5,7 +5,7 @@
 #
 # Bugs: pauldv@gentoo.org
 
-inherit libtool
+inherit libtool multilib
 
 IUSE="doc test"
 
