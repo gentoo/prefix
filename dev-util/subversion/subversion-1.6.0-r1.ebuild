@@ -150,6 +150,10 @@ src_compile() {
 			# -lintl isn't added for some reason
 			use nls && append-libs -lintl
 		;;
+		*-mint*)
+			# probably a broken configure check somewhere
+			append-libs -lpthread
+		;;
 		*-aix*)
 			# avoid recording immediate path to sharedlibs into executables
 			append-ldflags -Wl,-bnoipath
