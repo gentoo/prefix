@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.342 2009/03/11 20:35:07 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.345 2009/04/02 21:53:37 maekke Exp $
+
+  02 Apr 2009; Markus Meier <maekke@gentoo.org> openssh-5.2_p1-r1.ebuild:
+  amd64/x86 stable, bug #247466
+
+  02 Apr 2009; Brent Baude <ranger@gentoo.org> openssh-5.2_p1-r1.ebuild:
+  Marking openssh-5.2_p1-r1 ppc64 and ppc for bug 247466
+
+  02 Apr 2009; Jeroen Roovers <jer@gentoo.org> openssh-5.2_p1-r1.ebuild:
+  Stable for HPPA (bug #247466).
 
   11 Mar 2009; Robin H. Johnson <robbat2@gentoo.org>
   openssh-5.2_p1-r1.ebuild, openssh-5.2_p1-r2.ebuild:
