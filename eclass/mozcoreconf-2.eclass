@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.10 2009/02/23 16:36:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.12 2009/04/02 21:40:39 solar Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
@@ -80,7 +80,7 @@ mozconfig_init() {
 	# Set optimization level
 	if [[ ${ARCH} == hppa ]]; then
 		mozconfig_annotate "more than -O0 causes segfaults on hppa" --enable-optimize=-O0
-	elif use custom-optimization; then
+	elif use custom-optimization || [[ ${ARCH} == alpha ]]; then
 		# Set optimization level based on CFLAGS
 		if is-flag -O0; then
 			mozconfig_annotate "from CFLAGS" --enable-optimize=-O0
