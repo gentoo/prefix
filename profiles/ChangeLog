@@ -1,10 +1,32 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2480 2009/03/28 22:35:01 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2488 2009/04/02 19:30:09 ulm Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  02 Apr 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask app-text/tetex for removal.
+
+  01 Apr 2009; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Remove beta app-admin/sysstat mask.
+
+  01 Apr 2009; Mike Auty <ikelos@gentoo.org> package.mask:
+  Remove the mask for app-emulation/vmware-esx-console since it's now been removed.
+
+  01 Apr 2009; Christian Faulhammer <fauli@gentoo.org> use.desc:
+  Change description of global nsplugin USE flag
+
+  31 Mar 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask sci-visualization/gnuplot-4.2.5 for testing.
+
+  30 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Add package.mask entry for mono-2.4 and friends w.r.t. bug 257313.
+
+  30 Mar 2009; <chainsaw@gentoo.org> package.mask:
+  Widen net-misc/dhcp mask for v4, clarify reason. 4.0.1 is going in and
+  4.0.0 is being deleted.
 
   28 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   Mask dev-util/intltool-0.40.6, bug #264114.

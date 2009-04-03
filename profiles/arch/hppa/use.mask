@@ -1,11 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# # $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/use.mask,v 1.8 2009/04/02 03:45:09 jer Exp $
+# # $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/use.mask,v 1.9 2009/04/02 18:31:00 jer Exp $
 # DON'T TOUCH THIS FILE. Instead, file a bug and assign it to <hppa@gentoo.org>.
-
-# Jeroen Roovers <jer@gentoo.org> (4 Jan 2008)
-# This doesn't seem to work really well anywhere, regardless of whether the Qt
-# or GTK fork is used
-webkit
 
 # Unmask the flag which corresponds to ARCH.
 -hppa

@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo/hppa profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/ChangeLog,v 1.16 2009/04/02 03:45:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/ChangeLog,v 1.17 2009/04/02 18:31:00 jer Exp $
+
+  02 Apr 2009; Jeroen Roovers <jer@gentoo.org> package.use.mask, use.mask:
+  Move media-gfx/gimp USE=webkit mask from use.mask to package.use.mask.
+  Incidentally I also correct the date on the entry.
 
   02 Apr 2009; Jeroen Roovers <jer@gentoo.org> use.mask:
   Mask USE=webkit generally.
