@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4328 2009/04/01 14:47:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4333 2009/04/03 18:14:01 matsuu Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -42,7 +42,9 @@ app-admin/gnome-system-tools:nfs - Adds support for NFS shares
 app-admin/gnome-system-tools:policykit - Use sys-auth/policykit to gain privileges to change configuration files
 app-admin/lcap:lids - If you have the Linux Intrusion Detection System
 app-admin/prelude-manager:tcpwrapper - Add support for tcp_wrappers
+app-admin/puppet:augeas - Eanble augeas support
 app-admin/puppet:rrdtool - Eanble rrdtool support
+app-admin/puppet:shadow - Eanble shadow support
 app-admin/rsyslog:dbi - Add support for logging into various databases through dev-db/libdbi
 app-admin/rsyslog:relp - Add support for the Reliable Event Logging Protocol using dev-libs/librelp
 app-admin/sshguard:ipfilter - Enable ipfilter firewall support (only for *bsd)
@@ -54,6 +56,7 @@ app-admin/testdisk:reiserfs - include reiserfs reading ability
 app-admin/ulogd:ip-as-string - Logs IP addresses as stings
 app-admin/ulogd:pcap - Build the PCAP plugin. Use the net-libs/libpcap library
 app-admin/webalizer:xtended - Include the 404 extension
+app-antivirus/clamav:clamdtop - A Top like tool which shows what clamd is currently scanning amongst other things
 app-arch/cabextract:extra-tools - Install experimental tools: wince_info and wince_rename for examining and processing Windows CE installation cabinet header files; cabinfo for examining the structure of a cab file.
 app-arch/dump:ermt - encrypted rmt support
 app-arch/file-roller:nautilus - Enable file-roller to integrate with gnome-base/nautilus by providing entries in its context menu.
@@ -2421,6 +2424,9 @@ sci-geosciences/mapserver:gdal - Enable sci-libs/gdal library support
 sci-geosciences/mapserver:geos - Enable sci-libs/geos library support
 sci-geosciences/mapserver:postgis - Enable dev-db/postgis support
 sci-geosciences/mapserver:proj - Enable sci-libs/proj library support (geographic projections)
+sci-geosciences/merkaartor:gdal - Enable sci-libs/gdal library support
+sci-geosciences/merkaartor:proj - Enable sci-libs/proj library support
+sci-geosciences/merkaartor:webkit - Enable net-libs/webkit-gtk library support
 sci-libs/acml:gfortran - Fetch and install acml compiled with GNU gfortran
 sci-libs/acml:ifc - Fetch and install acml compiled with Intel Fortran Compiler (dev-lang/ifc)
 sci-libs/acml:int64 - Install the 64 bits integer library
@@ -2481,7 +2487,6 @@ sci-mathematics/octave:sparse - Enable enhanced support for sparse matrix algebr
 sci-mathematics/octave-forge:qhull - Add support for media-libs/qhull (geometric extensions)
 sci-mathematics/pari:elliptic - Add additional elliptic curve data
 sci-mathematics/pari:galois - Add additional data to compute Galois groups of degree 8 to 11
-sci-mathematics/pspp:psppire - Enable GTK psppire GUI
 sci-mathematics/singular:boost - Compile against external boost headers (dev-libs/boost)
 sci-mathematics/yacas:server - Build the network server version
 sci-misc/boinc:cuda -  Use nvidia cuda toolkit for speeding up computations. NOTE: works only for subset of nvidia graphic cards so make sure your card is supported before opening bug about it. 
