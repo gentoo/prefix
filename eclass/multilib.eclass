@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.72 2009/02/20 23:20:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.73 2009/02/20 23:20:22 vapier Exp $
 
 # @ECLASS: multilib.eclass
 # @MAINTAINER:
@@ -535,7 +535,7 @@ get_libname() {
 		*)                        libname="so";;
 	esac
 
-	if [[ -z $@ ]] ; then
+	if [[ -z $* ]] ; then
 		echo ".${libname}"
 	else
 		for ver in "$@" ; do
