@@ -1,6 +1,24 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.324 2009/03/23 23:16:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.327 2009/04/03 09:02:18 robbat2 Exp $
+
+*git-9999 (03 Apr 2009)
+*git-1.6.2.2-r1 (03 Apr 2009)
+
+  03 Apr 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.2.2-r1.ebuild,
+  +git-9999.ebuild:
+  Bug #238023 - add an scm-capable ebuild for Git, use it to tidy up the
+  ebuild a bit too.
+
+*git-1.6.2.2 (03 Apr 2009)
+
+  03 Apr 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.2.2.ebuild:
+  Version bump, also fixes bug #237210 for Emacs users.
+
+  03 Apr 2009; Robin H. Johnson <robbat2@gentoo.org>
+  files/20090305-git-1.6.2-noperl.patch:
+  Fix testsuite functionality with USE=-perl, the add-interactive test uses
+  perl and was not excluded.
 
   23 Mar 2009; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
   Update metadata, ricmm is joining as a maintainer.

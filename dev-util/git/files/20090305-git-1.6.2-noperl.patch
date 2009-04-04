@@ -15,6 +15,8 @@ Notes: Ported from 20080322-git-1.5.4.5-noperl.patch
 Notes: Ported from 20080528-git-1.5.6.1-noperl.patch
 Notes: Ported from 20080626-git-1.5.6.1-noperl.patch and 20081123-git-1.6.0.4-noperl-cvsserver.patch
 Notes: Ported from 20090126-git-1.6.1.1-noperl.patch
+Notes: t3701-add-interactive.sh block added 2009/04/02 as it was missed, broke
+       testsuite with USE=-perl.
 
 diff --git a/Makefile b/Makefile
 index 0675c43..0adb2b5 100644
@@ -368,3 +370,19 @@ index d2379e7..75bf178 100755
  
  cvsps_version=`cvsps -h 2>&1 | sed -ne 's/cvsps version //p'`
  case "$cvsps_version" in
+--- git-1.6.2.2.orig/t/t3701-add-interactive.sh	2009-04-02 14:26:45.000000000 -0700
++++ git-1.6.2.2/t/t3701-add-interactive.sh	2009-04-02 23:06:20.543358154 -0700
+@@ -3,6 +3,13 @@
+ test_description='add -i basic tests'
+ . ./test-lib.sh
+ 
++if test -n "$NO_PERL"
++then
++	test_expect_success 'skipping add-interactive tests, NO_PERL defined' :
++	test_done
++	exit
++fi
++
+ test_expect_success 'setup (initial)' '
+ 	echo content >file &&
+ 	git add file &&
