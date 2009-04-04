@@ -448,6 +448,8 @@ fetch_files() {
 	has() { :; }
 	hasq() { :; }
 	use() { :; }
+	use_enable() { ;; }
+	use_with() { :; }
 	addwrite() { :; }
 	addpredict() { :; }
 	debug-print-function() { :; }
