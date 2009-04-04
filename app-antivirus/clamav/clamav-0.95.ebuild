@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.95.ebuild,v 1.1 2009/03/31 13:26:26 lordvan Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.95.ebuild,v 1.2 2009/04/03 08:20:19 lordvan Exp $
 
 EAPI="prefix"
 
@@ -18,14 +18,13 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
-IUSE="bzip2 crypt iconv mailwrapper milter nls selinux ipv6"
+IUSE="bzip2 clamdtop crypt iconv milter selinux ipv6"
 
 COMMON_DEPEND="bzip2? ( app-arch/bzip2 )
 	crypt? ( >=dev-libs/gmp-4.1.2 )
 	milter? ( || ( mail-filter/libmilter mail-mta/sendmail ) )
 	iconv? ( virtual/libiconv )
-	nls? ( sys-devel/gettext )
-	dev-libs/gmp
+	clamdtop? ( sys-libs/ncurses )
 	>=sys-libs/zlib-1.2.1-r3
 	>=sys-apps/sed-4"
 
@@ -57,24 +56,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.92.1-interix.patch
 	epatch "${FILESDIR}"/${PN}-0.93-prefix.patch
 	eprefixify "${S}"/configure.in
-
-	# This newer version of ClamAV packages libtool.m4 and lt*.m4 in m4,
-	# while previous versions did not.
-	# Since autoreconf invokes libtoolize, a different version of ltmain.sh that doesn't
-	# match up with the version of the *.m4 files gets thrown into this directory.
-	# This problem showed up for me in the packages libtool's use of $ECHO while my
-	# system's libtool's instead used $echo internally, and the .m4 file provides the value of
-	# $echo or $ECHO.
-	einfo "removing possibly incompatible libtool-related m4 files"
-	rm m4/libtool.m4 m4/lt*.m4 || die "unable to remove possibly incompatible libtool-related m4 files"
-	#epatch "${FILESDIR}"/${PN}-0.94.1-buildfix.patch
-	#epatch "${FILESDIR}"/${PN}-0.94-nls.patch
-
-	# If nls flag is disabled, gettext may not be available, but eautoreconf
-	# needs this file (bug #218892).
-	use nls || cp "${FILESDIR}"/lib-ld.m4 m4/
-
-	AT_M4DIR="m4" eautoreconf
 }
 
 src_compile() {
@@ -89,8 +70,6 @@ src_compile() {
 	myconf="${myconf} --enable-id-check"
 	use milter && {
 		myconf="${myconf} --enable-milter"
-		use mailwrapper && \
-			myconf="${myconf} --with-sendmail=${EPREFIX}/usr/sbin/sendmail.sendmail"
 	}
 
 	[[ ${CHOST} == *-interix* ]] && {
@@ -103,8 +82,8 @@ src_compile() {
 	ht_fix_file configure
 	econf ${myconf} \
 		$(use_enable bzip2) \
-		$(use_enable nls) \
 		$(use_enable ipv6) \
+		$(use_enable clamdtop) \
 		$(use_with iconv) \
 		--disable-experimental \
 		--disable-clamav \
