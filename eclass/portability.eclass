@@ -128,7 +128,7 @@ is-login-disabled() {
 get_bmake() {
 	if [[ ${USERLAND} == *BSD ]]; then
 		echo make
-	elif [[ ${CHOST} == *-darwin* ]]; then
+	elif [[ ${USERLAND} == Darwin ]]; then
 		echo bsdmake
 	else
 		echo pmake
