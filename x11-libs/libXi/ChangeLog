@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXi
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXi/ChangeLog,v 1.60 2009/02/26 07:49:17 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXi/ChangeLog,v 1.62 2009/04/03 14:30:36 ranger Exp $
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> libXi-1.2.1.ebuild:
+  Marking libXi-1.2.1 ppc64 stable for bug 251832
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> libXi-1.2.1.ebuild:
+  Marking libXi-1.2.1 ppc stable for bug 251832
 
 *libXi-1.2.1 (26 Feb 2009)
 
