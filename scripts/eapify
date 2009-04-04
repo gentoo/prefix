@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
-# Copyright Gentoo Foundation 2006-2007
+# Copyright Gentoo Foundation 2006-2009
 
+# <grobian@gentoo.org> -- 2009-04-04
+# added -E flag to enable the previously default behaviour to inject
+# EAPI=prefix, this coincides with EAPI=prefix being dropped in our tree
+# since this was the main effort of this script, its arguments -f
+# (force replacement) is void and ignored for backwards compatability
+# removed the very old EDEST and PROOT legacy removal code, it should
+# not be used anywhere any more
 # <grobian@gentoo.org> -- 2007-11-08
 # changed EAPI injection to extend for prefix in case a main tree EAPI
 # was defined
@@ -19,21 +26,30 @@
 # all ${D} not in a make call and ${ROOT} variables.
 # <grobian@gentoo.org> -- 2006-09-22
 # eapify is a small hackish script that usually does fine in adding
-# EAPI="prefix" if there is not yet a EAPI=something line in the ebuild.
-# Next to this, it applies ${D} -> ${EDEST} transformation to "make
-# DESTDIR=${D} install".  Because of the nature of this script, running
-# it multiple times should not harm.  It might, however, do wrong
-# things, so always check the result.  You have been warned.
+# EAPI="prefix", or extending if there is already a EAPI=something line
+# in the ebuild, if -E flag is given.  It transforms ${ROOT} into
+# ${EROOT}.  Next to this, it applies ${D} -> ${ED} transformations to
+# all but "make DESTDIR=${D} install".  Because of the nature of this
+# script, running it multiple times should not harm.  It might, however,
+# do wrong things, so always check the result.  You have been warned.
 
-force=0
+doeapi=0
 isebuild=0
 while [[ ! -z $1 ]] ; do
 	case $1 in
 		-f)
-			force=1
+			# ignored for backwards compatability
+			# nothing to force any more since we can't check if we
+			# already eapified it, and the real old legacy bits are
+			# removed
+			:
 		;;
 		-e)
+			doeapi=0
 			isebuild=1
+		;;
+		-E)
+			doeapi=1
 		;;
 		*)
 			[[ -z $files ]] \
@@ -71,16 +87,18 @@ for f in $files ; do
 
 	echo "Processing $f"
 
-	if [[ $isebuild == 1 ]] || [[ ${f##*.} == "ebuild" ]] ; then
+	if [[ ${f##*.} != "eclass" && ${f##*.} != "ebuild" && ${isebuild} != 1 ]] ; then
+		# don't try anything on arbitrary files
+		continue
+	fi
+
+	if [[ ${doeapi} != 0 ]] ; then
 		unset EAPI
 		echo -n "  EAPI ... "
 		eval "$(egrep "^EAPI=" "$f")"
 
 		if [[ ${EAPI} == *prefix* ]] ; then
 			echo "already $EAPI"
-			# don't process any more, we're done with this ebuild
-			# (unless we were forced)
-			[[ $force == 1 ]] || continue
 		elif [[ -n ${EAPI} ]] ; then
 			sed -i \
 				-e '/^EAPI=/cEAPI="prefix '"${EAPI}"'"' \
@@ -92,15 +110,6 @@ for f in $files ; do
 				"$f"
 			echo 'added EAPI="prefix"'
 		fi
-	elif [[ ${f##*.} != "eclass" ]] ; then
-		# don't try anything on arbitrary files
-		continue
-	fi
-
-	if [[ $force == 1 ]] ; then 
-		# cleanup mess from previous portage APIs
-		replace '${EDEST}' '${D}' "$f"
-		replace '${PROOT}' '${EROOT}' "$f"
 	fi
 
 	# we replace all ${D} with ${ED} if not in a make ... install line
