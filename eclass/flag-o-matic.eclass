@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.132 2009/01/21 00:42:20 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.133 2009/01/21 00:42:20 gengor Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
