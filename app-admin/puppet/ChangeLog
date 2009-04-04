@@ -1,6 +1,12 @@
 # ChangeLog for app-admin/puppet
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.34 2009/01/01 03:04:10 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.35 2009/04/03 18:20:29 matsuu Exp $
+
+*puppet-0.24.8 (03 Apr 2009)
+
+  03 Apr 2009; MATSUU Takuto <matsuu@gentoo.org> metadata.xml,
+  +puppet-0.24.8.ebuild:
+  Version bumped, bug #263526. Added augeas and shadow USE flag.
 
   01 Jan 2009; MATSUU Takuto <matsuu@gentoo.org>
   -files/puppet-0.24.5-eix-0.14.0.patch, -puppet-0.24.5-r4.ebuild,

@@ -1,9 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.24.7.ebuild,v 1.1 2008/12/19 18:07:43 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.24.8.ebuild,v 1.1 2009/04/03 18:20:29 matsuu Exp $
 
-EAPI="prefix"
-
+EAPI="prefix 2"
 inherit elisp-common eutils ruby
 
 DESCRIPTION="A system automation and configuration management software"
@@ -12,48 +11,37 @@ SRC_URI="http://reductivelabs.com/downloads/${PN}/${P}.tgz"
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="emacs ldap rrdtool vim-syntax"
+IUSE="augeas emacs ldap rrdtool shadow vim-syntax"
+#KEYWORDS="~amd64 ~ppc ~sparc ~x86"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
-DEPEND="emacs? ( virtual/emacs )
+DEPEND="virtual/ruby[ssl]
+	emacs? ( virtual/emacs )
 	>=dev-ruby/facter-1.5.0"
 RDEPEND="${DEPEND}
 	>=app-portage/eix-0.9.4
+	augeas? ( dev-ruby/ruby-augeas )
 	ldap? ( dev-ruby/ruby-ldap )
-	rrdtool? (
-		|| (
-			>=net-analyzer/rrdtool-1.2.23
-			dev-ruby/ruby-rrd
-		)
-	)"
+	rrdtool? ( >=net-analyzer/rrdtool-1.2.23[ruby] )
+	shadow? ( dev-ruby/ruby-shadow )"
 #	|| (
 #		www-servers/webrick
 #		www-servers/mongrel
 #	)
 #	dev-ruby/diff-lcs
 #	dev-ruby/rails
-#	dev-ruby/ruby-shadow
 
 USE_RUBY="ruby18 ruby19"
 
 SITEFILE="50${PN}-mode-gentoo.el"
 
 pkg_setup() {
-	built_with_use virtual/ruby ipv6 || \
-		die "Ruby must be built with ipv6 support, otherwise puppet will not be able to run"
-
-	built_with_use virtual/ruby ssl || \
-		die "Ruby must be built with ssl support, otherwise puppet will not be able to run"
-
-	if use rrdtool && \
-		has_version '>=net-analyzer/rrdtool-1.2.23' && \
-		! built_with_use '>=net-analyzer/rrdtool-1.2.23' ruby
-	then
-		die "net-analyzer/rrdtool must be built with ruby USE flag."
-	fi
-
 	enewgroup puppet
 	enewuser puppet -1 -1 /var/lib/puppet puppet
+}
+
+src_prepare() {
+	epatch "${FILESDIR}/${PN}-0.24.6-eix.patch"
 }
 
 src_compile() {

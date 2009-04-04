@@ -1,5 +1,3 @@
-;;
-;; Setup puppet-mode for autoloading
 
 ;;; puppet-mode site-lisp configuration
 

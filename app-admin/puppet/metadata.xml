@@ -19,6 +19,8 @@
 		and prerequisite relationships between objects clearly and explicitly.
 	</longdescription>
 	<use>
+		<flag name='augeas'>Eanble augeas support</flag>
 		<flag name='rrdtool'>Eanble rrdtool support</flag>
+		<flag name='shadow'>Eanble shadow support</flag>
 	</use>
 </pkgmetadata>
