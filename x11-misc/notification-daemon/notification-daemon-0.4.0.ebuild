@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/notification-daemon-0.4.0.ebuild,v 1.5 2009/03/26 18:12:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/notification-daemon-0.4.0.ebuild,v 1.6 2009/04/03 11:02:43 chainsaw Exp $
 
 EAPI="prefix"
 
 WANT_AUTOMAKE="1.9"
 
-inherit gnome2 eutils autotools
+inherit gnome2 eutils
 
 DESCRIPTION="Notifications daemon"
 HOMEPAGE="http://www.galago-project.org/"
@@ -29,7 +29,8 @@ RDEPEND=">=dev-libs/glib-2.4.0
 DEPEND="${RDEPEND}
 		dev-util/intltool
 		>=sys-devel/gettext-0.14
-		!xfce-extra/notification-daemon-xfce"
+		!xfce-extra/notification-daemon-xfce
+		!x11-misc/xfce4-notifyd"
 
 pkg_setup() {
 	DOCS="AUTHORS ChangeLog NEWS"

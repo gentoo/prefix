@@ -1,6 +1,11 @@
 # ChangeLog for x11-misc/notification-daemon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.55 2009/03/26 18:12:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.56 2009/04/03 11:02:43 chainsaw Exp $
+
+  03 Apr 2009; <chainsaw@gentoo.org> notification-daemon-0.4.0.ebuild:
+  Block x11-misc/xfce4-notifyd as it provides the same D-Bus service. A
+  prerequisite to resolving bug #260686 by Joshua Rich. Also remove
+  unnecessary inherit of autotools eclass.
 
   26 Mar 2009; Brent Baude <ranger@gentoo.org>
   notification-daemon-0.4.0.ebuild:
