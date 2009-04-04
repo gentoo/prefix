@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXext
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.45 2008/02/29 19:52:41 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.47 2009/04/03 14:30:27 ranger Exp $
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> libXext-1.0.4.ebuild:
+  Marking libXext-1.0.4 ppc64 stable for bug 251832
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> libXext-1.0.4.ebuild:
+  Marking libXext-1.0.4 ppc stable for bug 251832
 
 *libXext-1.0.4 (29 Feb 2008)
 
