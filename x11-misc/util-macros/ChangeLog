@@ -1,6 +1,12 @@
 # ChangeLog for x11-misc/util-macros
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/ChangeLog,v 1.61 2009/01/13 02:13:50 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/ChangeLog,v 1.63 2009/04/03 14:30:42 ranger Exp $
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> util-macros-1.2.1.ebuild:
+  Marking util-macros-1.2.1 ppc64 stable for bug 251832
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> util-macros-1.2.1.ebuild:
+  Marking util-macros-1.2.1 ppc stable for bug 251832
 
 *util-macros-1.2.1 (13 Jan 2009)
 
