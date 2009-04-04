@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXrender
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrender/ChangeLog,v 1.48 2007/12/20 07:24:27 opfer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrender/ChangeLog,v 1.50 2009/04/03 14:30:37 ranger Exp $
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> libXrender-0.9.4.ebuild:
+  Marking libXrender-0.9.4 ppc64 stable for bug 251832
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> libXrender-0.9.4.ebuild:
+  Marking libXrender-0.9.4 ppc stable for bug 251832
 
   20 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
   libXrender-0.9.4.ebuild:
