@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2009
 
+# <grobian@gentoo.org> -- 2009-04-04
+# add eapi mode which only removes EAPI=prefix
 # <grobian@gentoo.org> -- 2009-03-27
 # add switch to control full reverse of eapify and gentoo-x86
 # compatibility mode, set the latter one as default
@@ -25,7 +27,7 @@ replace() {
 }
 
 do_usage() {
-	echo "usage: ${0##*/} [-m <compat|reverse>] [file ...]"
+	echo "usage: ${0##*/} [-m <compat|reverse|eapi>] [file ...]"
 	exit
 }
 
@@ -45,6 +47,7 @@ while [[ ${#*} > 0 ]] ; do
 			case ${arg} in
 				reverse|rev)        MODE=reverse  ;;
 				compatible|compat)  MODE=compat   ;;
+				eapi)               MODE=eapi     ;;
 				*)
 					do_usage;
 				;;
@@ -106,6 +109,9 @@ for f in $files ; do
 
 		# expand ${EROOT} into ${ROOT}${EPREFIX}
 		replace '${EROOT}' '${ROOT%/}${EPREFIX}/' "${f}"
+	elif [[ ${MODE} == "eapi" ]] ; then
+		# we already de-eapi-fied, so nothing to do here!
+		:
 	else
 		echo "I don't know this mode: ${MODE}"
 	fi
