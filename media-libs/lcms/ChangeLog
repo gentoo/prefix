@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/lcms
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.89 2008/04/20 17:01:55 flameeyes Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.90 2009/04/03 17:40:53 scarabeus Exp $
+
+*lcms-1.18 (03 Apr 2009)
+
+  03 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> +lcms-1.18.ebuild:
+  Version bump. Needed in koffice2.
 
   20 Apr 2008; Diego Pettenò <flameeyes@gentoo.org> lcms-1.17.ebuild:
   Make swig a build-time only dependency, fixes bug #216993.
