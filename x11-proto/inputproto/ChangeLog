@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/inputproto
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.66 2008/12/02 18:31:32 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.68 2009/04/03 14:30:41 ranger Exp $
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> inputproto-1.5.0.ebuild:
+  Marking inputproto-1.5.0 ppc64 stable for bug 251832
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> inputproto-1.5.0.ebuild:
+  Marking inputproto-1.5.0 ppc stable for bug 251832
 
 *inputproto-1.5.0 (02 Dec 2008)
 
