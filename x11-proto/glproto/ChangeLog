@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/glproto
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/ChangeLog,v 1.50 2008/02/05 11:51:04 corsair Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/ChangeLog,v 1.51 2009/04/03 13:55:31 ranger Exp $
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> glproto-1.4.9.ebuild:
+  Marking glproto-1.4.9 ppc stable for bug 251832
 
   05 Feb 2008; Markus Rothe <corsair@gentoo.org> glproto-1.4.9.ebuild:
   Stable on ppc64
