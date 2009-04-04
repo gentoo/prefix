@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.395 2009/03/15 07:13:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.396 2009/03/15 07:13:25 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1420,9 +1420,6 @@ gcc_do_configure() {
 	[[ ${CTARGET} == *-elf ]] && confgcc="${confgcc} --with-newlib"
 	# __cxa_atexit is "essential for fully standards-compliant handling of
 	# destructors", but apparently requires glibc.
-	# --enable-sjlj-exceptions : currently the unwind stuff seems to work
-	# for statically linked apps but not dynamic
-	# so use setjmp/longjmp exceptions by default
 	if [[ ${CTARGET} == *-uclibc* ]] ; then
 		confgcc="${confgcc} --disable-__cxa_atexit --enable-target-optspace"
 		[[ ${GCCMAJOR}.${GCCMINOR} == 3.3 ]] && confgcc="${confgcc} --enable-sjlj-exceptions"
@@ -1638,8 +1635,11 @@ gcc_do_filter_flags() {
 	3.4|4.*)
 		case $(tc-arch) in
 			x86|amd64) filter-flags '-mcpu=*';;
-			# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=25127
-			*-macos) filter-flags '-mcpu=*' '-march=*' '-mtune=*';;
+			*-macos)
+				# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=25127
+				[[ ${GCC_BRANCH_VER} == 4.0 || ${GCC_BRANCH_VER}  == 4.1 ]] && \
+					filter-flags '-mcpu=*' '-march=*' '-mtune=*'
+			;;
 		esac
 		;;
 	esac
