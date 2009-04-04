@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.15 2008/12/10 01:15:47 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.16 2008/12/10 01:15:47 robbat2 Exp $
 
 # @ECLASS: apache-2.eclass
 # @MAINTAINER:
