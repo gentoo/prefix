@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libassuan
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.61 2009/04/02 18:37:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.62 2009/04/03 20:56:08 tcunha Exp $
+
+  03 Apr 2009; Tiago Cunha <tcunha@gentoo.org> libassuan-1.0.5.ebuild:
+  stable amd64, bug 263875
 
   02 Apr 2009; Raúl Porcel <armin76@gentoo.org> libassuan-1.0.5.ebuild:
   alpha/arm/ia64/s390/sh/sparc/x86 stable wrt #263875
