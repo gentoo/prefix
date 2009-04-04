@@ -1,6 +1,14 @@
 # ChangeLog for dev-python/simplejson
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/simplejson/ChangeLog,v 1.9 2009/03/06 15:53:51 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/simplejson/ChangeLog,v 1.11 2009/04/03 13:02:09 josejx Exp $
+
+  03 Apr 2009; Joseph Jezak <josejx@gentoo.org> simplejson-2.0.4.ebuild:
+  Marked ppc stable for bug #243812.
+
+*simplejson-2.0.9 (03 Apr 2009)
+
+  03 Apr 2009; Patrick Lauer <patrick@gentoo.org> +simplejson-2.0.9.ebuild:
+  Bump to 2.0.9, fixes #264556
 
   06 Mar 2009; Brent Baude <ranger@gentoo.org> simplejson-2.0.4.ebuild:
   marking simplejson-2.0.4 ~ppc for 253853
