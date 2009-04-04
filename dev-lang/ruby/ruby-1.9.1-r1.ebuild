@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1.ebuild,v 1.1 2009/03/21 10:12:08 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1-r1.ebuild,v 1.1 2009/04/03 12:26:26 a3li Exp $
 
-EAPI="prefix"
+EAPI="prefix 2"
 
 inherit autotools eutils flag-o-matic multilib versionator
 
@@ -31,7 +31,7 @@ RDEPEND="
 	gdbm? ( sys-libs/gdbm )
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
-	tk? ( dev-lang/tk )
+	tk? ( dev-lang/tk[threads] )
 	>=app-admin/eselect-ruby-20080921
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!dev-ruby/rdoc
@@ -53,9 +53,7 @@ pkg_setup() {
 	epause 5
 }
 
-src_unpack() {
-	unpack ${A}
-
+src_prepare() {
 	cd "${S}"
 
 	# Patch wrt bug #238061
@@ -64,6 +62,7 @@ src_unpack() {
 	epatch "${FILESDIR}/ruby19-rubygems-gentoo.patch"
 
 	epatch "${FILESDIR}/${PN}-ossl_ocsp-verification.patch"
+	epatch "${FILESDIR}/${PN}${MY_SUFFIX}-mkmf-parallel-install.patch"
 
 	epatch "${FILESDIR}/${PN}-1.9.1-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.9.1-prefix.patch"
@@ -83,7 +82,7 @@ src_unpack() {
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	# -fomit-frame-pointer makes ruby segfault, see bug #150413.
 	filter-flags -fomit-frame-pointer
 	# In many places aliasing rules are broken; play it safe
@@ -116,7 +115,9 @@ src_compile() {
 		--with-readline-dir="${EPREFIX}"/usr \
 		--enable-option-checking=no \
 		|| die "econf failed"
+}
 
+src_compile() {
 	emake EXTLDFLAGS="${LDFLAGS}" || die "emake failed"
 }
 

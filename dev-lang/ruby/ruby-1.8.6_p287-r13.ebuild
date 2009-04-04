@@ -1,31 +1,26 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p72-r10.ebuild,v 1.3 2009/03/20 04:58:23 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p287-r13.ebuild,v 1.1 2009/04/03 12:26:26 a3li Exp $
 
 EAPI="prefix"
 
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
-
-#PATCHES APPLY, DOESN'T COMPILE THOUGH
-#ONIGURUMA="onigd2_5_9"
+ONIGURUMA="onigd2_5_9"
 
 inherit autotools eutils flag-o-matic multilib versionator
-
-SLOT=$(get_version_component_range 1-2)
-MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 
 MY_P="${PN}-$(replace_version_separator 3 '-')"
 S=${WORKDIR}/${MY_P}
 
+SLOT=$(get_version_component_range 1-2)
+MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
+
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
 SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2"
-#	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
 LICENSE="Ruby"
-KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs" #cjk
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
@@ -46,6 +41,8 @@ PROVIDE="virtual/ruby"
 pkg_setup() {
 	use tk || return
 
+	# Note for EAPI-2 lovers: We'd like to show that custom message.
+	# *If* you can make USE dependencies show that, too, feel free to migrate.
 	if (use threads && ! built_with_use dev-lang/tk threads) \
 		|| (! use threads && built_with_use dev-lang/tk threads) ; then
 		eerror
@@ -62,23 +59,20 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 
-#	if use cjk ; then
-#		einfo "Applying ${ONIGURUMA}"
-#		pushd "${WORKDIR}/oniguruma"
-#		econf --with-rubydir="${S}" || die "oniguruma econf failed"
-#		emake $MY_SUFFIX || die "oniguruma emake failed"
-#		popd
-#	fi
-
 	cd "${S}/ext/dl"
 	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
 	cd "${S}"
-	epatch "${FILESDIR}/${PN}-1.8.6-shortname_constants.patch"
-	epatch "${FILESDIR}/${PN}-mkconfig.patch"
-	epatch "${FILESDIR}/${PN}-ossl_ocsp-verification.patch"
 
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
+
+	epatch "${FILESDIR}/${P}-entity_expansion_limit.diff"
+	epatch "${FILESDIR}/${PN}-1.8.6-shortname_constants.patch"
+	epatch "${FILESDIR}/${PN}-1.8.6-openssl.patch"
+	epatch "${FILESDIR}/${PN}-mkconfig.patch"
+	epatch "${FILESDIR}/${PN}-ossl_ocsp-verification.patch"
+	epatch "${FILESDIR}/${PN}${MY_SUFFIX}-mkmf-parallel-install.patch"
+	epatch "${FILESDIR}/${PN}-1.8.6-uclibc-udp.patch"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
@@ -148,11 +142,8 @@ src_test() {
 }
 
 src_install() {
-	# Ruby is involved in the install process, we don't want interference here.
-	unset RUBYOPT
-
 	LD_LIBRARY_PATH="${ED}/usr/$(get_libdir)"
-	RUBYLIB="${S}:${LD_LIBRARY_PATH}/ruby/${SLOT}"
+	RUBYLIB="${S}:${ED}/usr/$(get_libdir)/ruby/${SLOT}"
 	for d in $(find "${S}/ext" -type d) ; do
 		RUBYLIB="${RUBYLIB}:$d"
 	done
