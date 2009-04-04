@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXxf86vm
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXxf86vm/ChangeLog,v 1.33 2008/07/05 06:28:48 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXxf86vm/ChangeLog,v 1.35 2009/04/03 14:30:33 ranger Exp $
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> libXxf86vm-1.0.2.ebuild:
+  Marking libXxf86vm-1.0.2 ppc64 stable for bug 251832
+
+  03 Apr 2009; Brent Baude <ranger@gentoo.org> libXxf86vm-1.0.2.ebuild:
+  Marking libXxf86vm-1.0.2 ppc stable for bug 251832
 
 *libXxf86vm-1.0.2 (05 Jul 2008)
 
