@@ -1266,7 +1266,7 @@ unpack_makeself() {
 				;;
 			2.1.3)
 				skip=`grep -a ^offset= "${src}" | awk '{print $3}'`
-				LET SKIP="skip + 1"
+				let skip="skip + 1"
 				;;
 			2.1.4|2.1.5)
 				skip=$(grep -a offset=.*head.*wc "${src}" | awk '{print $3}' | head -n 1)
