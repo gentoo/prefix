@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/gnome-media-2.24.0.1-r1.ebuild,v 1.7 2009/03/18 15:24:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/gnome-media-2.24.0.1-r1.ebuild,v 1.8 2009/04/03 15:59:47 dang Exp $
 
 EAPI="prefix 1"
 
@@ -38,6 +38,7 @@ RDEPEND=">=dev-libs/glib-2.16.0:2
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9
 	>=app-text/scrollkeeper-0.3.11
+	>=app-text/gnome-doc-utils-0.3.2
 	>=dev-util/intltool-0.35.0"
 
 DOCS="AUTHORS ChangeLog NEWS README"
