@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/powertop-1.11.ebuild,v 1.1 2009/03/01 19:12:11 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/powertop-1.11.ebuild,v 1.2 2009/04/04 02:39:04 gengor Exp $
 
 EAPI="prefix"
 
@@ -16,6 +16,7 @@ KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="unicode"
 
 DEPEND="sys-libs/ncurses"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
