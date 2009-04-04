@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libnotify/libnotify-0.4.5.ebuild,v 1.5 2009/03/26 18:12:08 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libnotify/libnotify-0.4.5.ebuild,v 1.6 2009/04/03 11:09:59 chainsaw Exp $
 
 EAPI="prefix"
 
@@ -21,7 +21,8 @@ RDEPEND=">=x11-libs/gtk+-2.6
 DEPEND="${RDEPEND}
 		doc? ( >=dev-util/gtk-doc-1.4 )"
 PDEPEND="|| ( x11-misc/notification-daemon
-			x11-misc/notification-daemon-xfce )"
+		x11-misc/notification-daemon-xfce
+		x11-misc/xfce4-notifyd )"
 
 src_install() {
 	emake install DESTDIR="${D}" || die "make install failed"

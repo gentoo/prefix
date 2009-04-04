@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libnotify
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libnotify/ChangeLog,v 1.47 2009/03/26 18:12:08 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libnotify/ChangeLog,v 1.48 2009/04/03 11:09:59 chainsaw Exp $
+
+  03 Apr 2009; <chainsaw@gentoo.org> libnotify-0.4.5.ebuild:
+  Add x11-misc/xfce4-notifyd as the third possibility for the notification
+  daemon PDEPEND. Resolves bug #260686 by Joshua Rich.
 
   26 Mar 2009; Brent Baude <ranger@gentoo.org> libnotify-0.4.5.ebuild:
   stable ppc, bug 263411
