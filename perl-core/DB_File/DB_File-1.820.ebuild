@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/DB_File/DB_File-1.818.ebuild,v 1.1 2009/02/01 14:44:08 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/DB_File/DB_File-1.820.ebuild,v 1.1 2009/04/03 20:25:33 tove Exp $
 
 EAPI="prefix"
 
@@ -9,13 +9,12 @@ inherit perl-module multilib eutils
 
 DESCRIPTION="A Berkeley DB Support Perl Module"
 
-LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
 DEPEND="dev-lang/perl
-		sys-libs/db"
+	sys-libs/db"
 
 SRC_TEST="do"
 
