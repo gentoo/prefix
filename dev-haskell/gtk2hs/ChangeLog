@@ -1,6 +1,10 @@
 # ChangeLog for dev-haskell/gtk2hs
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.49 2009/02/10 19:32:40 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.50 2009/04/03 22:13:20 fauli Exp $
+
+  03 Apr 2009; Christian Faulhammer <fauli@gentoo.org> gtk2hs-0.9.11.ebuild,
+  gtk2hs-0.9.12.ebuild, gtk2hs-0.9.12.1.ebuild:
+  completely drop support for Firefox as it depends on version 2
 
   10 Feb 2009; Lennart Kolmodin <kolmodin@gentoo.org>
   +files/gtk2hs-0.9.12.1-librsvg-2.22.3.patch, gtk2hs-0.9.12.1.ebuild:

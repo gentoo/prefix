@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.9 2009/02/10 19:32:40 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.10 2009/04/03 22:13:20 fauli Exp $
 
 EAPI="prefix"
 
@@ -14,7 +14,7 @@ SLOT="0"
 
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
-IUSE="doc glade gnome opengl svg firefox seamonkey profile xulrunner"
+IUSE="doc glade gnome opengl svg seamonkey profile xulrunner"
 
 RDEPEND=">=dev-lang/ghc-6.4
 		dev-haskell/mtl
@@ -26,8 +26,7 @@ RDEPEND=">=dev-lang/ghc-6.4
 		svg?   ( >=gnome-base/librsvg-2.16 )
 		opengl? ( x11-libs/gtkglext )
 		xulrunner? ( =net-libs/xulrunner-1.8* )
-		!xulrunner? ( firefox? ( =www-client/mozilla-firefox-2* ) )
-		!xulrunner? ( !firefox? ( seamonkey? ( =www-client/seamonkey-1* ) ) )"
+		!xulrunner? ( seamonkey? ( =www-client/seamonkey-1* ) )"
 
 DEPEND="${RDEPEND}
 		doc? ( >=dev-haskell/haddock-0.8 )
@@ -57,7 +56,6 @@ src_compile() {
 		$(use_enable svg svg) \
 		$(use_enable opengl opengl) \
 		$(use_enable seamonkey seamonkey) \
-		$(use_enable firefox firefox) \
 		$(use_enable xulrunner xulrunner) \
 		$(use_enable doc docs) \
 		$(use_enable profile profiling) \
@@ -101,7 +99,7 @@ src_install() {
 			"${ED}/usr/$(get_libdir)/gtk2hs/svgcairo.package.conf") \
 		$(use opengl && echo \
 			"${ED}/usr/$(get_libdir)/gtk2hs/gtkglext.package.conf") \
-		$(use seamonkey || use firefox || use xulrunner && echo \
+		$(use seamonkey || use xulrunner && echo \
 			"${ED}/usr/$(get_libdir)/gtk2hs/mozembed.package.conf")
 	ghc-install-pkg
 }
