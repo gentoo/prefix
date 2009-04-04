@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/cscope-15.7.ebuild,v 1.3 2009/04/02 02:08:26 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/cscope-15.7.ebuild,v 1.4 2009/04/03 22:02:40 tcunha Exp $
 
 EAPI="prefix"
 
