@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.90 2009/03/28 11:09:27 vapier Exp $
 
+inherit eutils
+
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
 # Toolchain Ninjas <toolchain@gentoo.org>
@@ -562,11 +564,14 @@ gen_usr_ldscript() {
 # example:
 # keep_aix_runtime_object "/usr/lib/libiconv.a "/usr/lib/libiconv.a(shr4.o,...)"
 keep_aix_runtime_objects() {
+	local target sources s
+	local sourcelib sourceobjs so
+
 	[[ ${CHOST} == *-*-aix* ]] || return 0
 
-	local target=$1
+	target=$1
 	shift
-	local sources="$@"
+	sources=( "$@" )
 
 	# strip possible ${ED} prefixes
 	target=${target##/}
@@ -574,38 +579,32 @@ keep_aix_runtime_objects() {
 	target=${target#${EPREFIX##/}}
 	target=${target##/}
 
-	if ! $(tc-getAR) -t "${ED}${target}" &>/dev/null; then
-		if [[ -e ${ED}${target} ]]; then
+	if ! $(tc-getAR) -t "${ED}${target}" &>/dev/null ; then
+		if [[ -e ${ED}${target} ]] ; then
 			ewarn "${target} is not an archive."
 		fi
 		return 0
 	fi
 
-	local tmpdir=${TMP}/keep_aix_runtime_object-$$
-	mkdir ${tmpdir} || die
-
-	local origdir=$(pwd)
-	local s
-	for s in ${sources}; do
-		local sourcelib sourceobjs so
+	pushd $(emktemp -d) > /dev/null
+	for s in "${sources[@]}" ; do
 		# format of $s: "/usr/lib/libiconv.a(shr4.o,shr.o)"
 		sourcelib=${s%%(*}
 		sourceobjs=${s#*(}
 		sourceobjs=${sourceobjs%)}
 		sourceobjs=${sourceobjs//,/ }
-		cd ${tmpdir} || die
-		for so in ${sourceobjs}; do
+		for so in ${sourceobjs} ; do
 			ebegin "keeping aix runtime object '${sourcelib}(${so})' in '${EPREFIX}/${target}'"
-			if ! $(tc-getAR) -x "${sourcelib}" ${so}; then
+			if ! $(tc-getAR) -x "${sourcelib}" ${so} ; then
 				eend 1
 			   	continue
 			fi
-			chmod +w ${so} &&
-			$(tc-getSTRIP) -e ${so} &&
-			$(tc-getAR) -q "${ED}${target}" ${so} &&
-			eend 0 ||
-			eend 1
+			chmod +w ${so} && \
+				$(tc-getSTRIP) -e ${so} && \
+				$(tc-getAR) -q "${ED}${target}" ${so} && \
+				eend 0 || \
+				eend 1
 		done
 	done
-	cd "${origdir}"
+	popd > /dev/null
 }
