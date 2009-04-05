@@ -165,42 +165,24 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 	[[ -z ${host} ]] && host=${CTARGET:-${CHOST}}
 
 	case ${host} in
-		powerpc-apple-darwin*)
-					echo ppc-macos;;
-		powerpc64-apple-darwin*)
-					echo ppc64-macos;;
-		i?86-apple-darwin*)
-					echo x86-macos;;
-		x86_64-apple-darwin*)
-					echo x64-macos;;
-		sparc-sun-solaris*)
-					echo sparc-solaris;;
-		sparcv9-sun-solaris*)
-					echo sparc64-solaris;;
-		i?86-pc-solaris*)
-					echo x86-solaris;;
-		x86_64-pc-solaris*)
-					echo x64-solaris;;
-		powerpc-ibm-aix*)
-					echo ppc-aix;;
-		mips-sgi-irix*)
-					echo mips-irix;;
-		ia64-hp-hpux*)
-					echo ia64-hpux;;
-		i?86-pc-freebsd*)
-					echo x86-freebsd;;
-		x86_64-pc-freebsd*)
-					echo x64-freebsd;;
-		i?86-pc-netbsd*)
-					echo x86-netbsd;;
-		i?86-pc-interix*)
-					echo x86-interix;;
-		i?86-pc-winnt*)
-					echo x86-winnt;;
-		i*-pc-freebsd*)
-					echo x86-freebsd;;
-		x86_64-pc-freebsd*)
-					echo x64-freebsd;;
+		powerpc-apple-darwin*)    echo ppc-macos;;
+		powerpc64-apple-darwin*)  echo ppc64-macos;;
+		i?86-apple-darwin*)       echo x86-macos;;
+		x86_64-apple-darwin*)     echo x64-macos;;
+		sparc-sun-solaris*)       echo sparc-solaris;;
+		sparcv9-sun-solaris*)     echo sparc64-solaris;;
+		i?86-pc-solaris*)         echo x86-solaris;;
+		x86_64-pc-solaris*)       echo x64-solaris;;
+		powerpc-ibm-aix*)         echo ppc-aix;;
+		mips-sgi-irix*)           echo mips-irix;;
+		ia64-hp-hpux*)            echo ia64-hpux;;
+		i?86-pc-freebsd*)         echo x86-freebsd;;
+		x86_64-pc-freebsd*)       echo x64-freebsd;;
+		i?86-pc-netbsd*)          echo x86-netbsd;;
+		i?86-pc-interix*)         echo x86-interix;;
+		i?86-pc-winnt*)           echo x86-winnt;;
+		i*-pc-freebsd*)           echo x86-freebsd;;
+		x86_64-pc-freebsd*)       echo x64-freebsd;;
 
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
@@ -508,7 +490,7 @@ gen_usr_ldscript() {
 			# do nothing
 			return
 			;;
-		*)	
+		*)
 			local tlib
 			if ${auto} ; then
 				lib="lib${lib}${suffix}"
