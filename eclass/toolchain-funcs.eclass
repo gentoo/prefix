@@ -180,11 +180,12 @@ ninj() { [[ ${type} == "kern" ]] && echo $1 || echo $2 ; }
 		ia64-hp-hpux*)            echo ia64-hpux;;
 		i?86-pc-freebsd*)         echo x86-freebsd;;
 		x86_64-pc-freebsd*)       echo x64-freebsd;;
+		powerpc-unknown-openbsd*) echo ppc-openbsd;;
+		i?86-pc-openbsd*)         echo x86-openbsd;;
+		x86_64-pc-openbsd*)       echo x64-openbsd;;
 		i?86-pc-netbsd*)          echo x86-netbsd;;
 		i?86-pc-interix*)         echo x86-interix;;
 		i?86-pc-winnt*)           echo x86-winnt;;
-		i*-pc-freebsd*)           echo x86-freebsd;;
-		x86_64-pc-freebsd*)       echo x64-freebsd;;
 
 		alpha*)		echo alpha;;
 		arm*)		echo arm;;
