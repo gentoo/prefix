@@ -8,5 +8,6 @@
   +files/unixtop-3.8_beta1-memleak-fix.patch,
   +files/unixtop-3.8_beta1-renice-segfault.patch, metadata.xml,
   -unixtop-3.8_beta1.ebuild, +unixtop-3.8_beta1-r1.ebuild:
-  Bump for two patches from OpenSolaris folks to fix segfaults
+  Bump for two patches from OpenSolaris folks to fix a memleak and a
+  segfault
 
