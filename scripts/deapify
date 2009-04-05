@@ -12,8 +12,11 @@
 
 
 replace() {
+	local cnt
 	echo -n "  replacing $1 -> $2 ... "
-	local cnt=$(sed -e "${4:-s}|$1|$2|g" "$3" | diff "$3" - | grep -o "$2" | wc -l)
+	[[ -z $2 ]] \
+		&& cnt=$(sed -e "${4:-s}|$1|$2|g" "$3" | diff -U0 "$3" - | wc -l) \
+		|| cnt=$(sed -e "${4:-s}|$1|$2|g" "$3" | diff "$3" - | grep -o "$2" | wc -l)
 	if [[ $cnt > 0 ]];
 	then
 		sed -i -e "${4:-s}|$1|$2|g" "$3"
