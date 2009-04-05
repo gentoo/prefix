@@ -523,41 +523,43 @@ gen_usr_ldscript() {
 	done
 }
 
+# @FUNCTION: keep_aix_runtime_objects
+# @USAGE: <target-archive inside EPREFIX> <source-archive(objects)>
+# @DESCRIPTION:
 # This function is for AIX only.
 #
 # Showing a sample IMO is the best description:
 #
-# First, AIX has its own /usr/lib/libiconv.a containing 'shr.o' and 'shr4.o'.
-# Both of them are shared-objects packed into an archive, thus /usr/lib/libiconv.a
-# is a shared library (!), even it is called lib*.a.
-# This is the default layout on aix for shared libraries.
-# Read the ld(1) manpage for more information.
+# First, AIX has its own /usr/lib/libiconv.a containing 'shr.o' and
+# 'shr4.o'.  Both of them are shared-objects packed into an archive,
+# thus /usr/lib/libiconv.a is a shared library (!), even it is called
+# lib*.a.  This is the default layout on AIX for shared libraries.  Read
+# the AIX ld(1) manpage for more information.
 #
 # But now, we want to install GNU libiconv (sys-libs/libiconv) both as
-# shared and static library.
-# AIX (since 4.3) can create shared libraries if '-brtl' or '-G' linker flags
-# are used.
+# shared and static library.  AIX (since 4.3) can create shared
+# libraries if '-brtl' or '-G' linker flags are used.
 #
-# Now assume we have GNU tar installed while GNU libiconv was not.
-# This tar now has a runtime dependency on "libiconv.a(shr4.o)".
-# With our ld-wrapper (from sys-devel/binutils-config) we add EPREFIX/usr/lib
-# as linker path, thus it is recorded as loader path into the binary.
+# Now assume we have GNU tar installed while GNU libiconv was not.  This
+# tar now has a runtime dependency on "libiconv.a(shr4.o)".  With our
+# ld-wrapper (from sys-devel/binutils-config) we add EPREFIX/usr/lib as
+# linker path, thus it is recorded as loader path into the binary.
 #
-# When having libiconv.a (the static GNU libiconv) in prefix, the loader finds
-# that one and claims that it does not contain an 'shr4.o' object file:
+# When having libiconv.a (the static GNU libiconv) in Prefix, the loader
+# finds that one and claims that it does not contain an 'shr4.o' object
+# file:
 #
-#     Could not load program tar:
-#           Dependent module EPREFIX/usr/lib/libiconv.a(shr4.o) could not be loaded.
-#           Member shr4.o is not found in archive
+#   Could not load program tar:
+#     Dependent module EPREFIX/usr/lib/libiconv.a(shr4.o) could not be loaded.
+#     Member shr4.o is not found in archive
 #
-# According to gcc's "host/target specific installation notes" for *-ibm-aix* [1],
-# we can extract that 'shr4.o' from /usr/lib/libiconv.a, mark it as
-# non-linkable, and include it in our new static library.
+# According to gcc's "host/target specific installation notes" for
+# *-ibm-aix* [1], we can extract that 'shr4.o' from /usr/lib/libiconv.a,
+# mark it as non-linkable, and include it in our new static library.
 #
 # [1] http://gcc.gnu.org/install/specific.html#x-ibm-aix
 #
-# usage:
-# keep_aix_runtime_object <target-archive inside EPREFIX> <source-archive(objects)>
+# example:
 # keep_aix_runtime_object "/usr/lib/libiconv.a "/usr/lib/libiconv.a(shr4.o,...)"
 keep_aix_runtime_objects() {
 	[[ ${CHOST} == *-*-aix* ]] || return 0
