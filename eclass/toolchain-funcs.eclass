@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.90 2009/03/28 11:09:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.90 2009/04/05 07:50:08 grobian Exp $
 
 inherit eutils
 
@@ -447,7 +447,7 @@ gen_usr_ldscript() {
 		# Ensure /lib/${lib} exists to avoid dangling scripts/symlinks.
 		# This especially is for AIX where $(get_libname) can return ".a",
 		# so /lib/${lib} might be moved to /usr/lib/${lib} (by accident).
-		[[ -r ${ED}/${libdir}/${lib} ]] || continue
+		[[ -r ${D%/}${EPREFIX}/${libdir}/${lib} ]] || continue
 
 		case ${CHOST} in
 		*-darwin*)
@@ -458,14 +458,14 @@ gen_usr_ldscript() {
 			# libdir=/lib because that messes up libtool files.
 			# Make sure we don't lose the specific version, so just modify the
 			# existing install_name
-			install_name=$(otool -DX "${ED}"/${libdir}/${lib})
-			[[ -z ${install_name} ]] && die "No install name found for ${ED}/${libdir}/${lib}"
+			install_name=$(otool -DX "${D%/}${EPREFIX}/"${libdir}/${lib})
+			[[ -z ${install_name} ]] && die "No install name found for ${D%/}${EPREFIX}/${libdir}/${lib}"
 			install_name_tool \
 				-id "${EPREFIX}"/${libdir}/${install_name##*/} \
-				"${ED}"/${libdir}/${lib}
+				"${D%/}${EPREFIX}/"${libdir}/${lib}
 			# Now as we don't use GNU binutils and our linker doesn't
 			# understand linker scripts, just create a symlink.
-			pushd "${ED}/usr/${libdir}" > /dev/null
+			pushd "${D%/}${EPREFIX}/usr/${libdir}" > /dev/null
 			ln -snf "../../${libdir}/${lib}" "${lib}"
 			popd > /dev/null
 			;;
@@ -473,7 +473,7 @@ gen_usr_ldscript() {
 			# we don't have GNU binutils on these platforms, so we symlink
 			# instead, which seems to work fine.  Keep it relative, otherwise
 			# we break some QA checks in Portage
-			pushd "${ED}/usr/${libdir}" > /dev/null
+			pushd "${D%/}${EPREFIX}/usr/${libdir}" > /dev/null
 			ln -snf "../../${libdir}/${lib}" "${lib}"
 			popd > /dev/null
 			;;
@@ -488,7 +488,7 @@ gen_usr_ldscript() {
 			# this has been seen while building shared-mime-info which needs
 			# libxml2, but links without libtool (and does not add libz to the
 			# command line by itself).
-			pushd "${ED}/usr/${libdir}" > /dev/null
+			pushd "${D%/}${EPREFIX}/usr/${libdir}" > /dev/null
 			ln -snf "../../${libdir}/${lib}" "${lib}"
 			popd > /dev/null
 			;;
@@ -496,18 +496,18 @@ gen_usr_ldscript() {
 			local tlib
 			if ${auto} ; then
 				lib="lib${lib}${suffix}"
-				tlib=$(scanelf -qF'%S#F' "${ED}"/usr/${libdir}/${lib})
-				mv "${ED}"/usr/${libdir}/${lib}* "${ED}"/${libdir}/ || die
+				tlib=$(scanelf -qF'%S#F' "${D%/}${EPREFIX}/"usr/${libdir}/${lib})
+				mv "${D%/}${EPREFIX}/"usr/${libdir}/${lib}* "${D%/}${EPREFIX}/"${libdir}/ || die
 				# some SONAMEs are funky: they encode a version before the .so
 				if [[ ${tlib} != ${lib}* ]] ; then
-					mv "${ED}"/usr/${libdir}/${tlib}* "${ED}"/${libdir}/ || die
+					mv "${D%/}${EPREFIX}/"usr/${libdir}/${tlib}* "${D%/}${EPREFIX}/"${libdir}/ || die
 				fi
 				[[ -z ${tlib} ]] && die "unable to read SONAME from ${lib}"
-				rm -f "${ED}"/${libdir}/${lib}
+				rm -f "${D%/}${EPREFIX}/"${libdir}/${lib}
 			else
 				tlib=${lib}
 			fi
-			cat > "${ED}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
+			cat > "${D%/}${EPREFIX}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
 			/* GNU ld script
 			   Since Gentoo has critical dynamic libraries in /lib, and the static versions
 			   in /usr/lib, we need to have a "fake" dynamic lib in /usr/lib, otherwise we
@@ -574,14 +574,14 @@ keep_aix_runtime_objects() {
 	shift
 	sources=( "$@" )
 
-	# strip possible ${ED} prefixes
+	# strip possible ${D%/}${EPREFIX}/ prefixes
 	target=${target##/}
 	target=${target#${D##/}}
 	target=${target#${EPREFIX##/}}
 	target=${target##/}
 
-	if ! $(tc-getAR) -t "${ED}${target}" &>/dev/null ; then
-		if [[ -e ${ED}${target} ]] ; then
+	if ! $(tc-getAR) -t "${D%/}${EPREFIX}/${target}" &>/dev/null ; then
+		if [[ -e ${D%/}${EPREFIX}/${target} ]] ; then
 			ewarn "${target} is not an archive."
 		fi
 		return 0
@@ -602,7 +602,7 @@ keep_aix_runtime_objects() {
 			fi
 			chmod +w ${so} && \
 				$(tc-getSTRIP) -e ${so} && \
-				$(tc-getAR) -q "${ED}${target}" ${so} && \
+				$(tc-getAR) -q "${D%/}${EPREFIX}/${target}" ${so} && \
 				eend 0 || \
 				eend 1
 		done
