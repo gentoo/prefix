@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.90 2009/04/05 07:50:08 grobian Exp $
 
-inherit eutils
-
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
 # Toolchain Ninjas <toolchain@gentoo.org>
