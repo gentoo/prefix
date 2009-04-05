@@ -543,6 +543,10 @@ bootstrap_grep() {
 	bootstrap_gnu grep 2.5.1a
 }
 
+bootstrap_grep4() {
+	bootstrap_gnu grep 2.5.4 "${GNU_URL}/grep/grep-2.5.4.tar.gz"
+}
+
 bootstrap_coreutils() {
 	bootstrap_gnu coreutils 5.94
 }
