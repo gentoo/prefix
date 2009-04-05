@@ -422,6 +422,10 @@ gcc-specs-nostrict() {
 # correctly to point to the latest version of the library present.
 gen_usr_ldscript() {
 	local lib libdir=$(get_libdir) output_format="" auto=false suffix=$(get_libname)
+
+	# *MiNT doesn't have shared libraries, so nothing to do here
+	[[ ${CHOST} == *-mint* ]] && return
+
 	# Just make sure it exists
 	dodir /usr/${libdir}
 
@@ -437,11 +441,10 @@ gen_usr_ldscript() {
 	[[ -n ${output_format} ]] && output_format="OUTPUT_FORMAT ( ${output_format} )"
 
 	for lib in "$@" ; do
-
 		# Ensure /lib/${lib} exists to avoid dangling scripts/symlinks.
 		# This especially is for AIX where $(get_libname) can return ".a",
 		# so /lib/${lib} might be moved to /usr/lib/${lib} (by accident).
-		[[ -r "${ED}"/${libdir}/${lib} ]] || continue
+		[[ -r ${ED}/${libdir}/${lib} ]] || continue
 
 		case ${CHOST} in
 		*-darwin*)
@@ -485,10 +488,6 @@ gen_usr_ldscript() {
 			pushd "${ED}/usr/${libdir}" > /dev/null
 			ln -snf "../../${libdir}/${lib}" "${lib}"
 			popd > /dev/null
-			;;
-		*-mint*)
-			# do nothing
-			return
 			;;
 		*)
 			local tlib
