@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI="prefix"
 
@@ -25,6 +25,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-ncurses.patch
 	epatch "${FILESDIR}"/${P}-no-AX-macros.patch
+	epatch "${FILESDIR}"/${P}-renice-segfault.patch
+	epatch "${FILESDIR}"/${P}-memleak-fix.patch
 	eautoreconf
 }
 
