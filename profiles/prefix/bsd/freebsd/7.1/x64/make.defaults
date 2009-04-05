@@ -1,5 +1,4 @@
-# retain backwards compatability for freebsd keywords/conditionals
-ARCH="x64-fbsd"
+ARCH="x64-freebsd"
 CHOST="x86_64-pc-freebsd7.1"
-ACCEPT_KEYWORDS="~x86-freebsd"
+ACCEPT_KEYWORDS="~x64-freebsd"
 
