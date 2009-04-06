@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre6.ebuild,v 1.3 2009/03/03 07:45:42 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre6.ebuild,v 1.4 2009/04/04 15:55:21 tcunha Exp $
 
 EAPI="prefix"
 
