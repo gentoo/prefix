@@ -1,6 +1,14 @@
 # ChangeLog for dev-java/commons-lang
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/ChangeLog,v 1.55 2008/10/27 23:18:35 ranger Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-lang/ChangeLog,v 1.57 2009/04/04 23:13:10 betelgeuse Exp $
+
+  04 Apr 2009; Petteri Räty <betelgeuse@gentoo.org>
+  commons-lang-2.0-r2.ebuild:
+  Migrate to EAPI 2 and nuke prebuild binary in java_prepare.
+
+  04 Apr 2009; Petteri Räty <betelgeuse@gentoo.org>
+  -commons-lang-2.3.ebuild:
+  Remove old version.
 
   27 Oct 2008; Brent Baude <ranger@gentoo.org> commons-lang-2.4.ebuild:
   stable ppc64, bug 242968
