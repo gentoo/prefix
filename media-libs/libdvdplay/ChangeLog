@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libdvdplay
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdplay/ChangeLog,v 1.21 2008/08/08 15:00:55 aballier Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdplay/ChangeLog,v 1.22 2009/04/04 20:10:00 solar Exp $
+
+  04 Apr 2009; <solar@gentoo.org> libdvdplay-1.0.1.ebuild:
+  - Keyword ~arm
 
   08 Aug 2008; Alexis Ballier <aballier@gentoo.org> libdvdplay-1.0.1.ebuild:
   run elibtoolize to get a sane .so versionning on fbsd and keyword it
