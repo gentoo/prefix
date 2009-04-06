@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/ia64 profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.27 2009/03/20 15:30:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.28 2009/04/04 14:20:54 armin76 Exp $
+
+  04 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Add mpi to use.mask
 
   20 Mar 2009; Raúl Porcel <armin76@gentoo.org> package.use.mask:
   Remask webkit on qt packages since qt-webkit is not stable

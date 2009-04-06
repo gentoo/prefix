@@ -83,6 +83,14 @@ mzscheme
 xemacs
 scanner
 madwifi
+libupnp
+zvbi
+kate
+v4l
+v4l2
+dvd
+fluidsynth
+gnomecd
 
 # 2006/02/05 - Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures on which they aren't available

@@ -1,6 +1,15 @@
 # ChangeLog for Gentoo/ARM profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/ChangeLog,v 1.24 2009/03/30 16:31:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/arm/ChangeLog,v 1.30 2009/04/05 17:33:54 armin76 Exp $
+
+  05 Apr 2009; Raúl Porcel <armin76@gentoo.org> -package.mask:
+  Remove gnome-2.22 mask
+
+  05 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask gnomecd
+
+  04 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask zvbi, kate, v4l, v4l2, dvd, fluidsynth
 
   30 Mar 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Add madwifi to use.mask

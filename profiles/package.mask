@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9626 2009/04/02 19:30:09 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9635 2009/04/06 04:58:01 mr_bones_ Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,11 @@
 
 #--- END OF EXAMPLES ---
 
+# Markus Ullmann <jokey@gentoo.org> (5 Apr 2009)
+# mask until gnome 2.26 is in-tree (needs libsoup 2.26)
+>=www-client/midori-0.1.5
+>=net-libs/webkit-gtk-0_p42000
+
 # Ulrich Mueller <ulm@gentoo.org> (2 Apr 2009)
 # De-supported by upstream since three years, see http://tug.org/teTeX/
 # Please use app-text/texlive as a replacement. A migration guide is at
@@ -38,10 +43,6 @@
 # Package has open security issues in bug 264598.
 # Masked for removal in 60 days, bug 227443.
 app-text/tetex
-
-# Ulrich Mueller <ulm@gentoo.org> (31 Mar 2009)
-# Ebuild rewritten and new intrusive patches. Needs testing.
-~sci-visualization/gnuplot-4.2.5
 
 # Peter Alfredsen <loki_val@gentoo.org> (30 Mar 2009)
 # HERE BE DRAGONS!
@@ -276,11 +277,6 @@ net-libs/fec
 >=dev-util/kdevelop-3.9.91
 >=dev-util/kdevplatform-0.9.91
 
-# Michael Sterrett <mr_bones_@gentoo.org> (28 Feb 2009)
-# mask for removal in 30 days.  Old and unmaintained.  Upstream seems dead.
-# Segfaults after the opening menu.
-games-action/parsec
-
 # Jeffrey Gardner <je_fro@gentoo.org> (27 Feb 2009)
 # Masked while we switch to sci-chemistry/gchemutils
 # which now provides this package.
@@ -288,7 +284,7 @@ sci-chemistry/gchempaint
 
 # Alexis Ballier <aballier@gentoo.org> (27 Feb 2009)
 # release candidate
->=media-video/vlc-0.9.9_rc
+>=media-video/vlc-1.0.0_alpha
 
 # Timothy Redaelli <drizzt@gentoo.org> (26 Feb 2009)
 # Masked for testing
@@ -327,14 +323,6 @@ x11-plugins/desklet-sidecandyrhythmbox
 x11-plugins/desklet-calendar
 x11-plugins/desklet-clock
 =gnome-extra/gdesklets-core-0.35.4
-
-# Petteri Räty <betelgeuse@gentoo.org> (19 Feb 2009)
-# The newer versions of the driver found in
-# dev-java/jdbc-postgresql also work with PostgreSQL
-# version >=7.2 so there is no need to keep these old
-# versions around any more. See bug #259559 for more
-# information
-dev-java/jdbc2-postgresql
 
 # Ben de Groot <yngwin@gentoo.org> (14 Feb 2009)
 # Masking because of build failures, bug 258961
@@ -457,12 +445,6 @@ sys-apps/baselayout-vserver
 # Portage 2.2 is masked due to known bugs in the
 # package sets and preserve-libs features.
 >=sys-apps/portage-2.2_pre
-
-# Joerg Bornkessel <hd_brummy@gentoo.org> (05 Jan 2009)
-# masked for testing
-# http://www.vdr-portal.de/board/thread.php?threadid=74833 (german)
-=net-www/xxv-1.2.1383
-=x11-themes/xxv-skins-1.2.1383
 
 # Diego E. Pettenò <flameeyes@gentoo.org> (03 Jan 2009)
 # These packages are not supposed to be merged directly, instead
@@ -617,12 +599,6 @@ app-crypt/truecrypt
 # glitch with Qt-4.4.2 that needs to be looked at (bug #243362)
 # Qt-4.3 users should probably be fine.
 =sci-visualization/paraview-3.4.0
-
-# Joerg Bornkessel <hd_brummy@gentoo.org> (27 Oct 2008)
-# masked for testing
-# http://www.vdr-portal.de/board/thread.php?threadid=74833 (german)
-=net-www/xxv-1.2.1359
-=x11-themes/xxv-skins-1.2.1359
 
 # Federico Ferri <mescalinum@gentoo.org> (27 Oct 2008)
 # Until Tcl-8.5 gets unmasked
@@ -1049,12 +1025,6 @@ games-fps/doomsday-resources
 # Masked development sources
 >=sys-kernel/openvz-sources-2.6.22
 
-# Lennart Kolmodin <kolmodin@gentoo.org> (01 Jan 2008)
-# hs-plugins only works with the outdated GHC 6.4.2 compiler,
-# and has not been updated upstream for two years.
-# Pending removal 01 Feb 2008
-dev-haskell/hs-plugins
-
 # Mart Raudsepp <leio@gentoo.org> (28 Dec 2007)
 # Live Subversion ebuild until pending first upstream release
 =games-mud/wxmud-9999
@@ -1313,7 +1283,6 @@ app-admin/system-config-language
 app-admin/system-config-lvm
 app-admin/system-config-printer
 dev-libs/alchemist
-dev-python/pycups
 # for system-config-bind
 net-dns/bind-dns-keygen
 

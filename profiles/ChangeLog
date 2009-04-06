@@ -1,10 +1,29 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2490 2009/04/03 18:14:01 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2496 2009/04/06 01:08:13 hd_brummy Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  06 Apr 2009; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  removed hardmask for xxv, xxv-skins
+
+  05 Apr 2009; Petteri Räty <betelgeuse@gentoo.org> package.mask:
+  Remove mask for jdbc2-postgresql as it has been removed from the main
+  tree.
+
+  05 Apr 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Unmask sci-visualization/gnuplot-4.2.5.
+
+  05 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
+  Remove pycups from mask.
+
+  05 Apr 2009; Markus Ullmann <jokey@gentoo.org> package.mask:
+  Mask newer webkit-gtk for soup dependency
+
+  04 Apr 2009; Alexis Ballier <aballier@gentoo.org> package.mask:
+  adjust vlc mask now that 0.9.9 is released
 
   03 Apr 2009; MATSUU Takuto <matsuu@gentoo.org> use.local.desc:
   Added augeas and shadow local use flags for app-admin/puppet.

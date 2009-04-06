@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4333 2009/04/03 18:14:01 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4338 2009/04/05 20:08:11 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -783,7 +783,7 @@ dev-python/visual:numeric - enable support for numeric
 dev-python/wxpython:doc - Install HTML wxWidgets docs and wxpython API reference.
 dev-python/wxpython:examples - Install interactive demo module browser and sample applets.
 dev-python/zsi:twisted - add support for dev-python/twisted
-dev-ruby/camping:mongrel - Also install dev-ruby/mongrel
+dev-ruby/camping:mongrel - Also install www-servers/mongrel
 dev-ruby/nitro:lighttpd - Also install www-servers/lighttpd
 dev-ruby/nitro:xslt - Enable dev-libs/libxslt support
 dev-ruby/og:kirbybase - Enable dev-ruby/kirbybase support
@@ -1258,6 +1258,7 @@ media-gfx/fontforge:type3 - Build in support for type3/svg fonts containing mult
 media-gfx/gimp:smp -  Enable support for multiprocessors 
 media-gfx/gimp:webkit -  Enable the webkit rendering engine 
 media-gfx/graphviz:cgraph -  Enables cgraph (PostScript plotting library in C) library 
+media-gfx/graphviz:lasi -  Enables PostScript output via media-libs/lasi library 
 media-gfx/graphviz:pango -  Enables the rendering of the graphs using pango & cairo (with antialiasing support) 
 media-gfx/gthumb:iptc -  Add support for IPTC metadata 
 media-gfx/gwenview:kipi -  Support for the KDE Image Plugin Interface. 
@@ -1871,6 +1872,7 @@ net-analyzer/symon:symux - Enables the multiplexer which stores incoming symon s
 net-analyzer/tcpdump:chroot - Enable chrooting when dropping privileges
 net-analyzer/tcpdump:smi - Build with net-libs/libsmi to load MIBs on the fly to decode SNMP packets
 net-analyzer/tcpreplay:pcapnav - Enable if you want the jump to byte offset feature via net-libs/libpcapnav
+net-analyzer/tcpreplay:tcpdump - Use net-analyzer/tcpdump for packet decoding feature 
 net-analyzer/wireshark:ares - Use GNU net-dns/c-ares library to resolve DNS names
 net-analyzer/wireshark:gcrypt - Use GNU crypto library (dev-libs/libgcrypt) to decrypt SSL traffic
 net-analyzer/wireshark:pcap - Use net-libs/libpcap for network packet capturing (build dumpcap, rawshark)
@@ -2386,6 +2388,7 @@ sci-biology/biopython:kdtree - Do not build KDTree module and its dependencies (
 sci-biology/clustalw-mpi:mpi_njtree - Use MPI (as opposed to serial) code for computing neighbor-joining trees
 sci-biology/clustalw-mpi:static_pairalign - Use static (as opposed to dynamic) scheduling for pair alignments
 sci-biology/hmmer:pvm - Add support for parallel virtual machine (sys-cluster/pvm)
+sci-biology/mcl:blast -  add support for NCBI BLAST data 
 sci-biology/plink:webcheck -  add support for online update checking every time the program starts 
 sci-biology/vienna-rna:no-readseq - Do not include the modified version of Don Gilbert's readseq program
 sci-biology/vienna-rna:no-utils - Do not include sequence format conversion and representation utilities
@@ -2874,6 +2877,7 @@ x11-themes/gentoo-artwork:grub - Install extra sys-boot/grub themes
 x11-themes/gentoo-artwork:icons - Install icons
 x11-themes/gentoo-artwork:lilo - Install extra sys-boot/lilo themes
 x11-themes/gentoo-artwork:pixmaps - Install pixmaps
+x11-themes/gtk-engines-murrine:animation-rtl - progressbar animation from right to left
 x11-themes/gtk-engines-qt:gnome - Enable proper theming of buttons in gnome toolbars (as opposed to just plain gtk+ toolbars)
 x11-themes/gtk-engines-qtcurve:firefox3 - Install GUI theme tweaks for version 3 of www-client/mozilla-firefox 
 x11-themes/gtk-engines-qtcurve:mozilla - Install GUI theme tweaks for mozilla based browsers, including version 2 of www-client/mozilla-firefox 
