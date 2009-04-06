@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.200 2009/04/03 14:30:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.202 2009/04/05 21:41:07 maekke Exp $
+
+  05 Apr 2009; Markus Meier <maekke@gentoo.org> mesa-7.3-r1.ebuild:
+  x86 stable, bug #251832
+
+  05 Apr 2009; Olivier Crête <tester@gentoo.org> mesa-7.3-r1.ebuild:
+  Stable on amd64, bug #251832
+
+  05 Apr 2009; Olivier Crête <tester@gentoo.org> mesa-7.3-r1.ebuild:
+  Stable on amd64, bug #251832
 
   03 Apr 2009; Brent Baude <ranger@gentoo.org> mesa-7.3-r1.ebuild:
   Marking mesa-7.3-r1 ppc64 stable for bug 251832
