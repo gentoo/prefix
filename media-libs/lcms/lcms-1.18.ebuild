@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-1.18.ebuild,v 1.1 2009/04/03 17:40:53 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-1.18.ebuild,v 1.7 2009/04/05 12:16:54 bluebird Exp $
 
 EAPI="prefix 2"
 
