@@ -47,7 +47,7 @@ src_compile() {
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die
+	emake install EPREFIX="${EPREFIX}" DESTDIR="${D}" || die
 }
 
 pkg_postinst() {
