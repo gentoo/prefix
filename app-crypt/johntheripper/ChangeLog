@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/johntheripper
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.89 2009/03/03 13:54:27 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.90 2009/04/05 04:55:22 arfrever Exp $
+
+  05 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  johntheripper-1.7.3.1.ebuild:
+  Don't pre-strip files (bug #248715).
 
   03 Mar 2009; Peter Volkov <pva@gentoo.org> johntheripper-1.7.3.1.ebuild:
   ~mips keyword back, bug #227631.
