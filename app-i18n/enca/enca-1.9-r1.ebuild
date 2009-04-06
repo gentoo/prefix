@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/enca-1.9-r1.ebuild,v 1.10 2009/03/21 02:49:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/enca-1.9-r1.ebuild,v 1.12 2009/04/04 18:46:30 solar Exp $
 
-EAPI="prefix"
-
+inherit toolchain-funcs
 DESCRIPTION="ENCA detects the character coding of a file and converts it if desired"
 HOMEPAGE="http://trific.ath.cx/software/enca/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
@@ -22,7 +21,9 @@ src_compile() {
 		--enable-external \
 		$(use_enable doc gtk-doc) \
 		|| die "configure failed"
-
+	if tc-is-cross-compiler; then
+		( cd "${S}"/tools && $(tc-getBUILD_CC) -o make_hash make_hash.c ) || die "native make_hash failed"
+	fi
 	emake || die "make failed"
 }
 
