@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.112 2009/04/02 03:04:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.113 2009/04/05 09:00:22 vapier Exp $
+
+*sandbox-1.8 (05 Apr 2009)
+
+  05 Apr 2009; Mike Frysinger <vapier@gentoo.org> +sandbox-1.8.ebuild:
+  Version bump to fix #263657 #264399 #264476 #264478 #264676.
 
 *sandbox-1.6-r2 (02 Apr 2009)
 
