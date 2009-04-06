@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.2.2-r1.ebuild,v 1.2 2009/04/03 15:23:32 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.2.2-r1.ebuild,v 1.3 2009/04/05 00:04:16 robbat2 Exp $
 
 EAPI="prefix 2"
 
@@ -189,7 +189,7 @@ src_compile() {
 	git_emake || die "emake failed"
 
 	if use emacs ; then
-		elisp-compile contrib/emacs/git.el \
+		elisp-compile contrib/emacs/git{,-blame}.el \
 			|| die "emacs modules failed"
 	fi
 
