@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/leafpad
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/leafpad/ChangeLog,v 1.20 2009/03/20 03:15:46 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/leafpad/ChangeLog,v 1.21 2009/04/04 10:15:16 solar Exp $
+
+  04 Apr 2009; <solar@gentoo.org> leafpad-0.8.14.ebuild:
+  - Keyword ~arm
 
   20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
