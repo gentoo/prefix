@@ -1,10 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.4.ebuild,v 1.8 2009/03/25 03:35:39 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.4.ebuild,v 1.9 2009/04/05 05:39:48 arfrever Exp $
 
-EAPI="prefix"
-
-inherit eutils autotools
+inherit eutils flag-o-matic toolchain-funcs autotools
 
 DESCRIPTION="general purpose crypto library based on the code used in GnuPG"
 HOMEPAGE="http://www.gnupg.org/"
@@ -32,6 +30,10 @@ src_unpack() {
 	rm -f m4/libtool.m4
 
 	AT_M4DIR="m4" eautoreconf # need new libtool for interix
+}
+
+pkg_setup() {
+	[[ $(tc-arch) == x86 && $(gcc-version) == 4.1 ]] && replace-flags -O3 -O2
 }
 
 src_compile() {

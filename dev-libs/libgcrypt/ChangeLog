@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.123 2009/03/25 03:35:39 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.124 2009/04/05 05:39:48 arfrever Exp $
+
+  05 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libgcrypt-1.4.4.ebuild:
+  Replace -O3 with -O2 on x86 when using GCC 4.1 (bug #263589).
 
   25 Mar 2009; Joseph Jezak <josejx@gentoo.org> libgcrypt-1.4.4.ebuild:
   Marked ppc stable for bug #263319.
