@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.135 2009/03/08 13:24:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.136 2009/04/05 03:38:14 vapier Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -88,7 +88,18 @@ prepgamesdirs() {
 			mode=o-rwx,g+r,g-w
 			[[ ${dir} = ${GAMES_STATEDIR} ]] && mode=o-rwx,g+r
 			find "${D}/${dir}" -type f -print0 | xargs -0 chmod $mode
+
+			# common trees should not be games owned #264872
+			if [[ ${dir} == "${GAMES_PREFIX_OPT}" ]] ; then
+				fowners root:root "${dir}"
+				fperms 755 "${dir}"
+				for d in $(get_libdir) bin ; do
+					fowners root:root "${dir}/${d}"
+					fperms 755 "${dir}/${d}"
+				done
+			fi
 		) &>/dev/null
+
 		f=$(find "${D}/${dir}" -perm +4000 -a -uid 0 2>/dev/null)
 		if [[ -n ${f} ]] ; then
 			eerror "A game was detected that is setuid root!"

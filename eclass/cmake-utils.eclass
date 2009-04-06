@@ -1,15 +1,17 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.22 2009/03/19 09:12:41 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.23 2009/04/04 12:28:10 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
 # kde@gentoo.org
-# @AUTHORS:
+#
+# @CODE
 # Tomáš Chvátal <scarabeus@gentoo.org>
 # Maciej Mrozowski <reavertm@poczta.fm>
 # (undisclosed contributors)
 # Original author: Zephyrus (zephyrus@mirach.it)
+# @CODE
 # @BLURB: common ebuild functions for cmake-based packages
 # @DESCRIPTION:
 # The cmake-utils eclass contains functions that make creating ebuilds for
@@ -32,21 +34,48 @@ EXPORT_FUNCTIONS ${EXPF}
 
 : ${DESCRIPTION:="Based on the ${ECLASS} eclass"}
 
-DEPEND="
-	>=dev-util/cmake-2.6.2-r1
+if [[ ${PN} != cmake ]]; then
+	CMAKEDEPEND=">=dev-util/cmake-2.6.2-r1"
+fi
+
+DEPEND="${CMAKEDEPEND}
 	userland_GNU? ( >=sys-apps/findutils-4.4.0 )
 "
 
 # Internal functions used by cmake-utils_use_*
 _use_me_now() {
 	debug-print-function ${FUNCNAME} "$@"
+
+	local uper capitalised x
 	[[ -z $2 ]] && die "cmake-utils_use-$1 <USE flag> [<flag name>]"
-	echo "-D$1${3:-$2}=$(use $2 && echo ON || echo OFF)"
+	if [[ ! -z $3 ]]; then
+		# user specified the use name so use it
+		echo "-D$1$3=$(use $2 && echo ON || echo OFF)"
+	else
+		# use all various most used combinations
+		uper=$(echo ${2} | tr '[:lower:]' '[:upper:]')
+		capitalised=$(echo ${2} | sed 's/\<\(.\)\([^ ]*\)/\u\1\L\2/g')
+		for x in $2 $uper $capitalised; do
+			echo "-D$1$x=$(use $2 && echo ON || echo OFF) "
+		done
+	fi
 }
 _use_me_now_inverted() {
 	debug-print-function ${FUNCNAME} "$@"
+
+	local uper capitalised x
 	[[ -z $2 ]] && die "cmake-utils_use-$1 <USE flag> [<flag name>]"
-	echo "-D$1${3:-$2}=$(use $2 && echo OFF || echo ON)"
+	if [[ ! -z $3 ]]; then
+		# user specified the use name so use it
+		echo "-D$1$3=$(use $2 && echo OFF || echo ON)"
+	else
+		# use all various most used combinations
+		uper=$(echo ${2} | tr '[:lower:]' '[:upper:]')
+		capitalised=$(echo ${2} | sed 's/\<\(.\)\([^ ]*\)/\u\1\L\2/g')
+		for x in $2 $uper $capitalised; do
+			echo "-D$1$x=$(use $2 && echo OFF || echo ON) "
+		done
+	fi
 }
 
 # @ECLASS-VARIABLE: DOCS
@@ -58,7 +87,7 @@ _use_me_now_inverted() {
 # Documents passed to dohtml command.
 
 # @ECLASS-VARIABLE: PREFIX
-# @DESCRIPTION
+# @DESCRIPTION:
 # Eclass respects PREFIX variable, though it's not recommended way to set
 # install/lib/bin prefixes.
 # Use -DCMAKE_INSTALL_PREFIX=... CMake variable instead.
