@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.5.ebuild,v 1.4 2009/04/03 14:30:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.5.ebuild,v 1.6 2009/04/05 21:36:41 maekke Exp $
 
 EAPI="prefix"
 
