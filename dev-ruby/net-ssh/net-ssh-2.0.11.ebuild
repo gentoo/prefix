@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/net-ssh-2.0.11.ebuild,v 1.2 2009/04/03 05:17:14 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/net-ssh-2.0.11.ebuild,v 1.3 2009/04/05 14:12:40 maekke Exp $
 
 EAPI="prefix"
 

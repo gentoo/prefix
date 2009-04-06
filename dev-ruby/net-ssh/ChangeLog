@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/net-ssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/ChangeLog,v 1.46 2009/04/03 05:17:14 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/ChangeLog,v 1.47 2009/04/05 14:12:40 maekke Exp $
+
+  05 Apr 2009; Markus Meier <maekke@gentoo.org> net-ssh-2.0.11.ebuild:
+  amd64/x86 stable, bug #264325
 
   03 Apr 2009; Joseph Jezak <josejx@gentoo.org> net-ssh-2.0.11.ebuild:
   Marked ppc/ppc64 stable for bug #264325.
