@@ -1,6 +1,9 @@
 # ChangeLog for dev-dotnet/gtk-sharp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.95 2009/03/27 15:53:56 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/ChangeLog,v 1.96 2009/04/04 14:25:19 maekke Exp $
+
+  04 Apr 2009; Markus Meier <maekke@gentoo.org> gtk-sharp-2.12.8.ebuild:
+  amd64/x86 stable, bug #234305
 
   27 Mar 2009; Brent Baude <ranger@gentoo.org> gtk-sharp-2.12.8.ebuild:
   Marking gtk-sharp-2.12.8 ppc stable for bug 234305
