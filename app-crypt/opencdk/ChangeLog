@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/opencdk
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/ChangeLog,v 1.68 2008/03/10 01:43:23 ricmm Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/ChangeLog,v 1.69 2009/04/05 19:04:04 arfrever Exp $
+
+  05 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  opencdk-0.6.6.ebuild:
+  Don't build tests with FEATURES="-test" (bug #226357).
 
   10 Mar 2008; <ricmm@gentoo.org> opencdk-0.5.5.ebuild:
   Drop to ~mips due to unstable deps
