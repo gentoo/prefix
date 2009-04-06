@@ -1,6 +1,22 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.279 2009/03/31 19:28:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.282 2009/04/04 15:54:15 aballier Exp $
+
+  04 Apr 2009; Alexis Ballier <aballier@gentoo.org>
+  -files/ffmpeg-0.4.9_p20081014-sparc-gcc43.patch,
+  -files/ffmpeg-shared-gcc4.1.patch, -ffmpeg-0.4.9_p20081014.ebuild,
+  -ffmpeg-0.4.9_p20081219.ebuild, -ffmpeg-0.4.9_p20090121.ebuild,
+  -ffmpeg-0.4.9_p20090201-r1.ebuild:
+  remove old
+
+  04 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  ffmpeg-0.4.9_p20090201.ebuild, ffmpeg-0.4.9_p20090201-r1.ebuild,
+  ffmpeg-0.5-r1.ebuild, ffmpeg-9999.ebuild:
+  Enable arm optimizations again, now that i've found out that using -march
+  works fine
+
+  04 Apr 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  add jack useflag
 
   31 Mar 2009; Raúl Porcel <armin76@gentoo.org>
   ffmpeg-0.4.9_p20090201.ebuild, ffmpeg-0.4.9_p20090201-r1.ebuild,
