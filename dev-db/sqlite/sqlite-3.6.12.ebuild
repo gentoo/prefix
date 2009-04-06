@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.12.ebuild,v 1.2 2009/04/01 07:19:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.12.ebuild,v 1.3 2009/04/04 18:24:40 arfrever Exp $
 
 EAPI="prefix 1"
 
@@ -65,7 +65,7 @@ src_compile() {
 src_test() {
 	if has userpriv ${FEATURES} ; then
 		local test=test
-		use debug && tets=fulltest
+		use debug && test=fulltest
 		emake ${test} || die "some test(s) failed"
 	fi
 }
