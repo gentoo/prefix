@@ -1,0 +1,27 @@
+* add back -DPIC for vanilla FreeBSD (64-bits) that got destroyed by the
+  gfbsd patch
+
+--- ncurses-5.7/aclocal.m4
++++ ncurses-5.7/aclocal.m4
+@@ -4289,6 +4289,9 @@
+ 		cf_cv_rm_so_locs=yes
+ 		;;
+ 	linux*|gnu*|k*bsd*-gnu|netbsd*|freebsd*|dragonfly*)
++		case $cf_cv_system_name in
++			*bsd*)  CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"  ;;
++		esac
+ 		if test "$DFT_LWR_MODEL" = "shared" ; then
+ 			LOCAL_LDFLAGS="-Wl,-rpath,\$(LOCAL_LIBDIR)"
+ 			LOCAL_LDFLAGS2="$LOCAL_LDFLAGS"
+--- ncurses-5.7/configure
++++ ncurses-5.7/configure
+@@ -5107,6 +5107,9 @@
+ 		cf_cv_rm_so_locs=yes
+ 		;;
+ 	linux*|gnu*|k*bsd*-gnu|netbsd*|freebsd*|dragonfly*)
++		case $cf_cv_system_name in
++			*bsd*)  CC_SHARED_OPTS="$CC_SHARED_OPTS -DPIC"  ;;
++		esac
+ 		if test "$DFT_LWR_MODEL" = "shared" ; then
+ 			LOCAL_LDFLAGS="-Wl,-rpath,\$(LOCAL_LIBDIR)"
+ 			LOCAL_LDFLAGS2="$LOCAL_LDFLAGS"
