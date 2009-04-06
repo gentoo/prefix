@@ -1,6 +1,16 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.240 2009/03/31 04:52:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.242 2009/04/05 18:46:49 armin76 Exp $
+
+  05 Apr 2009; Raúl Porcel <armin76@gentoo.org> emacs-cvs-23.0.92.ebuild,
+  emacs-cvs-23.0.9999-r1.ebuild:
+  Add ~sh wrt #238712
+
+  04 Apr 2009; Ulrich Mueller <ulm@gentoo.org>
+  +files/emacs-23.0.92-sh.patch, emacs-cvs-23.0.92.ebuild,
+  emacs-cvs-23.0.9999-r1.ebuild:
+  Add __sh__ to the garbage collector conditional in gnu-linux.h. Turn off
+  optimisation on sh, in order to fix the build failure of bug 262359.
 
 *emacs-cvs-23.0.92 (31 Mar 2009)
 

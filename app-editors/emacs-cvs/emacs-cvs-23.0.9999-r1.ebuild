@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.6 2009/03/26 20:25:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.8 2009/04/05 18:46:49 armin76 Exp $
 
 EAPI="prefix 2"
 
@@ -119,7 +119,11 @@ src_configure() {
 	ALLOWED_FLAGS=""
 	strip-flags
 	#unset LDFLAGS
-	replace-flags -O[3-9] -O2
+	if use sh; then
+		replace-flags -O[1-9] -O0		#262359
+	else
+		replace-flags -O[3-9] -O2
+	fi
 
 	local myconf
 
