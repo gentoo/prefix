@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/xf86driproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86driproto/ChangeLog,v 1.24 2009/04/03 14:30:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86driproto/ChangeLog,v 1.26 2009/04/05 21:07:06 maekke Exp $
+
+  05 Apr 2009; Markus Meier <maekke@gentoo.org> xf86driproto-2.0.4.ebuild:
+  x86 stable, bug #251832
+
+  05 Apr 2009; Olivier Crête <tester@gentoo.org> xf86driproto-2.0.4.ebuild:
+  Stable on amd64, bug #251832
 
   03 Apr 2009; Brent Baude <ranger@gentoo.org> xf86driproto-2.0.4.ebuild:
   Marking xf86driproto-2.0.4 ppc64 stable for bug 251832
