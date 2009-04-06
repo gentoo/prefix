@@ -1,6 +1,11 @@
 # ChangeLog for virtual/perl-Getopt-Long
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Getopt-Long/ChangeLog,v 1.24 2009/04/01 19:35:50 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Getopt-Long/ChangeLog,v 1.25 2009/04/04 17:33:45 armin76 Exp $
+
+  04 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  perl-Getopt-Long-2.36.ebuild, perl-Getopt-Long-2.37.ebuild,
+  perl-Getopt-Long-2.38.ebuild:
+  Add ~arm/~s390/~sh
 
 *perl-Getopt-Long-2.38 (01 Apr 2009)
 
