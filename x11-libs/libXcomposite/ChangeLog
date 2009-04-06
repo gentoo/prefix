@@ -1,6 +1,6 @@
 # ChangeLog for x11-libs/libXcomposite
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcomposite/ChangeLog,v 1.47 2007/10/09 09:29:51 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcomposite/ChangeLog,v 1.50 2009/04/05 21:38:00 maekke Exp $
 
   09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   -files/drop-extra-unlockdisplay.patch, -libXcomposite-0.3.ebuild,
