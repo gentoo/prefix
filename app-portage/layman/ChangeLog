@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/layman
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.70 2009/03/27 18:18:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.71 2009/04/05 15:41:32 jokey Exp $
+
+  05 Apr 2009; Markus Ullmann <jokey@gentoo.org> layman-1.1.1.ebuild,
+  layman-1.2.3.ebuild:
+  Missing dependency, bug #255342
 
   27 Mar 2009; Raúl Porcel <armin76@gentoo.org> layman-1.1.1.ebuild:
   arm stable
