@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.88 2009/03/15 16:56:09 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.89 2009/04/04 12:39:26 scarabeus Exp $
+
+*cmake-2.6.3-r1 (04 Apr 2009)
+
+  04 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org>
+  -files/cmake-2.0.6-rpath-fix.patch, -files/cmake-2.4.7-findkde4.patch,
+  -files/FindSWIG.cmake, +files/cmake-FindJNI.patch, -cmake-2.4.7-r1.ebuild,
+  -cmake-2.4.8.ebuild, -cmake-2.6.3.ebuild, +cmake-2.6.3-r1.ebuild:
+  Revision bump. Introduce some fixes. Remove old.
 
   15 Mar 2009; Tomas Chvatal <scarabeus@gentoo.org> -cmake-2.4.6-r1.ebuild,
   -cmake-2.6.2.ebuild:
