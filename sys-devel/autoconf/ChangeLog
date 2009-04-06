@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.129 2009/04/01 16:35:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.130 2009/04/05 04:00:19 vapier Exp $
+
+*autoconf-2.63-r1 (05 Apr 2009)
+
+  05 Apr 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/autoconf-2.63-sh.patch, +autoconf-2.63-r1.ebuild:
+  Fix from upstream for handling of little endian fortran on SuperH #264303
+  by Raúl Porcel.
 
 *autoconf-2.63b (01 Apr 2009)
 
