@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  06 Apr 2009; Fabian Groffen <grobian@gentoo.org>
+  bsd/freebsd/7.1/x64/make.defaults:
+  retain backwards compatability for freebsd keywords/conditionals for new
+  64-bits profile
+
   05 Apr 2009; Fabian Groffen <grobian@gentoo.org>
   bsd/freebsd/7.1/x64/make.defaults:
   Fix up x64-freebsd profile, there is no backwards compat issue, and the
