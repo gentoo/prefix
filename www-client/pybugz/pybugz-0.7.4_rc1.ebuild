@@ -19,13 +19,6 @@ DEPEND="|| ( >=dev-lang/python-2.5[readline]
 		dev-python/elementtree ) )"
 		RDEPEND="zsh-completion? ( app-shells/zsh )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-0.7.1-prefix.patch
-	eprefixify bugz.py
-}
-
 src_install() {
 	distutils_src_install
 
