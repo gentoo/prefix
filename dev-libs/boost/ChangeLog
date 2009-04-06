@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.150 2009/04/02 17:13:27 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.152 2009/04/04 14:25:00 armin76 Exp $
+
+  04 Apr 2009; Raúl Porcel <armin76@gentoo.org> boost-1.35.0-r2.ebuild:
+  alpha/ia64 stable wrt #245192
+
+  04 Apr 2009; Markus Meier <maekke@gentoo.org> boost-1.35.0-r2.ebuild:
+  x86 stable, bug #245192
 
   02 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   boost-1.35.0-r2.ebuild:
