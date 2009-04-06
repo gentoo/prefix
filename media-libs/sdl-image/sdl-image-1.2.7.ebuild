@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/sdl-image-1.2.7.ebuild,v 1.1 2008/11/27 19:29:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/sdl-image-1.2.7.ebuild,v 1.2 2009/04/04 20:23:05 solar Exp $
 
 EAPI="prefix"
 
@@ -19,6 +19,7 @@ DEPEND="sys-libs/zlib
 	png? ( >=media-libs/libpng-1.2.1 )
 	jpeg? ( >=media-libs/jpeg-6b )
 	tiff? ( media-libs/tiff )"
+RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
