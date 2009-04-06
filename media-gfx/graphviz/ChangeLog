@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.188 2009/03/19 18:18:29 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.189 2009/04/05 20:00:13 maekke Exp $
+
+*graphviz-2.22.2-r1 (05 Apr 2009)
+
+  05 Apr 2009; Markus Meier <maekke@gentoo.org> metadata.xml,
+  graphviz-2.22.1.ebuild, graphviz-2.22.2.ebuild,
+  +graphviz-2.22.2-r1.ebuild:
+  disable automagic media-libs/lasi dep, create a new revision with lasi
+  USE-flag, bug #264362
 
 *graphviz-2.22.2 (19 Mar 2009)
 
