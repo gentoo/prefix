@@ -134,7 +134,7 @@ src_unpack() {
 }
 
 src_compile() {
-	econf \
+	CONFIG_SHELL="${EPREFIX}"/bin/bash econf \
 		$(use_enable cairo) \
 		$(use_enable cups) \
 		$(use_enable gtk) \
