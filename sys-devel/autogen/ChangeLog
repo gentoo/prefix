@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/autogen
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.50 2008/05/12 16:11:29 corsair Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.51 2009/04/05 18:50:29 pva Exp $
+
+*autogen-5.9.7 (05 Apr 2009)
+
+  05 Apr 2009; Peter Volkov <pva@gentoo.org> +autogen-5.9.7.ebuild:
+  Version bump, bug #264742.
 
   12 May 2008; Markus Rothe <corsair@gentoo.org> autogen-5.9.4.ebuild:
   Stable on ppc64
