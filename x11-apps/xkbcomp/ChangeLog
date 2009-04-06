@@ -1,6 +1,12 @@
 # ChangeLog for x11-apps/xkbcomp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xkbcomp/ChangeLog,v 1.48 2009/04/03 14:30:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xkbcomp/ChangeLog,v 1.50 2009/04/05 21:29:31 maekke Exp $
+
+  05 Apr 2009; Markus Meier <maekke@gentoo.org> xkbcomp-1.0.5.ebuild:
+  x86 stable, bug #251832
+
+  05 Apr 2009; Olivier Crête <tester@gentoo.org> xkbcomp-1.0.5.ebuild:
+  Stable on amd64, bug #251832
 
   03 Apr 2009; Brent Baude <ranger@gentoo.org> xkbcomp-1.0.5.ebuild:
   Marking xkbcomp-1.0.5 ppc64 stable for bug 251832
