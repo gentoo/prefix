@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.181 2009/04/01 10:14:56 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.182 2009/04/05 16:50:25 maekke Exp $
+
+  05 Apr 2009; Markus Meier <maekke@gentoo.org> gnutls-2.6.4.ebuild:
+  amd64/x86 stable, bug #264392
 
   01 Apr 2009; Joseph Jezak <josejx@gentoo.org> gnutls-2.6.4.ebuild:
   Marked ppc/ppc64 stable for bug #264392.
