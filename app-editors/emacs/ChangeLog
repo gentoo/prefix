@@ -1,6 +1,17 @@
 # ChangeLog for app-editors/emacs
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.309 2009/03/31 16:38:13 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.312 2009/04/04 16:22:10 ranger Exp $
+
+  04 Apr 2009; Brent Baude <ranger@gentoo.org> emacs-21.4-r18.ebuild,
+  emacs-22.3-r2.ebuild:
+  Marking powerpc stabilizations for 264504
+
+  04 Apr 2009; Tiago Cunha <tcunha@gentoo.org> emacs-21.4-r18.ebuild,
+  emacs-22.3-r2.ebuild:
+  stable amd64/sparc, bug 264504
+
+  04 Apr 2009; Brent Baude <ranger@gentoo.org> emacs-21.4-r18.ebuild:
+  stable ppc64, bug 264504
 
 *emacs-21.4-r18 (12 Mar 2009)
 
