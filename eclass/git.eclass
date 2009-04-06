@@ -19,7 +19,8 @@ inherit eutils
 EGIT="git.eclass"
 
 EXPORTED_FUNCTIONS="src_unpack"
-case "${EAPI:-0}" in
+eapi=${EAPI/prefix/} ; eapi=${eapi# }
+case "${eapi:-0}" in
 	2) EXPORT_FUNCTIONS="${EXPORTED_FUNCTIONS} src_prepare" ;;
 	0|1) ;;
 	*) die "Unknown EAPI, Bug eclass maintainers." ;;
