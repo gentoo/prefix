@@ -22,4 +22,7 @@ The Engine is cairo-based, and it's very fast compared to clearlooks-cairo and
 ubuntulooks (30% faster and more), since I have tried to optimize the code and
 removed a lot of slow gradients to provide this unique style.
 	</longdescription>
+<use>
+<flag name="animation-rtl">progressbar animation from right to left</flag>
+</use>
 </pkgmetadata>
