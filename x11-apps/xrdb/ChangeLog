@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xrdb
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xrdb/ChangeLog,v 1.44 2008/03/10 02:00:59 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xrdb/ChangeLog,v 1.45 2009/04/05 23:39:28 tester Exp $
+
+  05 Apr 2009; Olivier Crête <tester@gentoo.org> xrdb-1.0.5.ebuild:
+  amd64 stable
 
 *xrdb-1.0.5 (10 Mar 2008)
 
