@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.ebuild,v 1.1 2009/03/30 21:48:20 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.ebuild,v 1.2 2009/04/04 23:26:03 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -39,11 +39,6 @@ PATCHES=(
 	"${FILESDIR}/mono-2.2-ppc-threading.patch"
 	"${FILESDIR}/mono-2.2-uselibdir.patch"
 )
-
-pkg_setup() {
-	MONO_NUNIT_DIR="/usr/$(get_libdir)/mono/mono-nunit"
-	NUNIT_DIR="/usr/$(get_libdir)/mono/nunit"
-}
 
 src_prepare() {
 	sed -e "s:@MONOLIBDIR@:$(get_libdir):" \
@@ -90,23 +85,12 @@ src_test() {
 
 src_install() {
 	go-mono_src_install
+
 	#Bug 255610
 	sed -i -e "s:mono/2.0/mod.exe:mono/1.0/mod.exe:" \
 		"${ED}"/usr/bin/mod || die "Failed to fix mod."
 
 	find "${ED}"/usr/ -name '*nunit-docs*' -exec rm -rf '{}' '+' || die "Removing nunit .docs failed"
-
-	#Standardize install paths for eselect-nunit
-	dodir ${MONO_NUNIT_DIR}
-	rm -f "${ED}"/usr/bin/nunit-console*
-
-	for file in "${ED}"/usr/$(get_libdir)/mono/1.0/nunit*.dll "${ED}"/usr/$(get_libdir)/mono/1.0/nunit*.exe
-	do
-		dosym ../1.0/${file##*/} ${MONO_NUNIT_DIR}/${file##*/}
-	done
-
-	make_wrapper "nunit-console" "mono ${MONO_NUNIT_DIR}/nunit-console.exe" "" "" "${MONO_NUNIT_DIR}"
-	dosym nunit-console "${MONO_NUNIT_DIR}"/nunit-console2
 }
 
 #THINK!!!! Before touching postrm and postinst
@@ -116,48 +100,38 @@ src_install() {
 #pkg_postrm
 #pkg_postinst
 
-pkg_postrm() {
-	if [[ "$(readlink "${EROOT}"/${NUNIT_DIR})" == *"mono-nunit" ]]
+pkg_preinst() {
+	local symlink
+	local NUNIT_DIR="/usr/$(get_libdir)/mono/nunit"
+	local pv_atom
+	if  [[ "$(readlink "${EROOT}"/${NUNIT_DIR})" == *"mono-nunit"* ]]
 	then
-		ebegin "Removing old symlinks for nunit"
-		rm -rf "${EROOT}"/${NUNIT_DIR} &> /dev/null
-		rm -rf "${EROOT}"/usr/bin/nunit-console &> /dev/null
-		rm -rf "${EROOT}"/usr/bin/nunit-console2 &> /dev/null
-		rm -rf "${EROOT}"/usr/$(get_libdir)/pkgconfig/nunit.pc &> /dev/null
-		eend 0
+		for pv_atom in 2.2{,-r1,-r2,-r3,-r4} '2.4_pre*' '2.4_rc*' 2.4
+		do
+			if has_version "=dev-lang/mono-${pv_atom}"
+			then
+				einfo "If you just received a file collision warning message,"
+				einfo "be advised that this is a known problem, which will now be fixed:"
+				ebegin "Found broken symlinks created by $(best_version dev-lang/mono), fixing"
+				for symlink in						\
+				    "${EROOT}/${NUNIT_DIR}"				\
+				    "${EROOT}/usr/$(get_libdir)/pkgconfig/nunit.pc"	\
+				    "${EROOT}/usr/bin/nunit-console"			\
+				    "${EROOT}/usr/bin/nunit-console2"
+				do
+					if [[ -L "${symlink}" ]]
+					then
+						rm -f "${symlink}" &> /dev/null
+					fi
+				done
+				eend 0
+				break
+			fi
+		done
 	fi
 }
 
 pkg_postinst() {
-	local -a FAIL
-	local fail return=0
-	if ! [[ -L "${EROOT}/${NUNIT_DIR}" ]]
-	then
-		einfo "No default NUnit installed, using mono-nunit as default."
-		ebegin "Removing stale symlinks for nunit, if any"
-		rm -rf "${EROOT}"/${NUNIT_DIR} &> /dev/null
-		rm -rf "${EROOT}"/usr/bin/nunit-console &> /dev/null
-		rm -rf "${EROOT}"/usr/bin/nunit-console2 &> /dev/null
-		rm -rf "${EROOT}"/usr/$(get_libdir)/pkgconfig/nunit.pc &> /dev/null
-		eend 0
-
-		ebegin "Installing mono-nunit symlinks"
-		ln -sf mono-nunit "${EROOT}/${NUNIT_DIR}"					|| { return=1; FAIL+=( $NUNIT_DIR ) ; }
-		ln -sf ../..${NUNIT_DIR}/nunit-console  "${EROOT}"/usr/bin/nunit-console	|| { return=1; FAIL+=( /usr/bin/nunit-console ) ; }
-		ln -sf ../..${NUNIT_DIR}/nunit-console2 "${EROOT}"/usr/bin/nunit-console2	|| { return=1; FAIL+=( /usr/bin/nunit-console2 ) ; }
-		ln -sf mono-nunit.pc "${EROOT}"/usr/$(get_libdir)/pkgconfig/nunit.pc		|| { return=1; FAIL+=( /usr/$(get_libdir)/pkgconfig/nunit.pc ) ; }
-		eend $return
-
-		if [[ "$return" = "1" ]]
-		then
-			elog "These errors are non-fatal, if re-emerging mono does not solve them, file a bug."
-			for fail in "${FAIL[@]}"
-			do
-				eerror "Linking $fail failed"
-			done
-		fi
-	fi
-
 	elog "PLEASE TAKE NOTE!"
 	elog ""
 	elog "Some of the namespaces supported by Mono require extra packages to be installed."
