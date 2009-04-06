@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/portage-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.101 2009/04/02 12:24:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.102 2009/04/06 01:58:26 vapier Exp $
+
+  06 Apr 2009; Mike Frysinger <vapier@gentoo.org> portage-utils-0.2.ebuild:
+  Make sure we use [ rather than [[ in the makefile.
 
   02 Apr 2009; Mike Frysinger <vapier@gentoo.org> portage-utils-0.2.ebuild:
   Use `emake install` in src_install rather than do things by hand.
