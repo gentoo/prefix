@@ -1,6 +1,9 @@
 # ChangeLog for virtual/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/emacs/ChangeLog,v 1.24 2009/01/02 13:21:35 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/emacs/ChangeLog,v 1.25 2009/04/05 18:47:59 armin76 Exp $
+
+  05 Apr 2009; Raúl Porcel <armin76@gentoo.org> emacs-23.ebuild:
+  Add ~sh wrt #238712
 
   02 Jan 2009; Ulrich Mueller <ulm@gentoo.org> emacs-23.ebuild:
   Add ~arm/~s390, reflects keywording of app-editors/emacs-cvs.
