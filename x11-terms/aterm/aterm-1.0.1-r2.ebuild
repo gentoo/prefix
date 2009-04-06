@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.1-r2.ebuild,v 1.1 2008/10/02 02:37:46 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.1-r2.ebuild,v 1.2 2009/04/04 21:36:13 loki_val Exp $
 
 EAPI="prefix"
 
@@ -33,6 +33,10 @@ src_unpack() {
 	# Security bug #219746
 	epatch "${FILESDIR}/${P}-display-security-issue.patch"
 	epatch "${FILESDIR}"/${P}-deadkeys.patch
+
+	#fix pre-stripped files
+	sed -i -e "/INSTALL_PROGRAM/ s:-s::" autoconf/Make.common.in || die "sed Makefile
+	failed"
 }
 
 src_compile() {
