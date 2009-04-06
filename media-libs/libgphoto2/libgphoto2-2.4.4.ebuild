@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.4.ebuild,v 1.1 2009/01/31 16:10:17 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.4.ebuild,v 1.3 2009/04/05 21:28:12 mr_bones_ Exp $
 
 # TODO
 # 1. Track upstream bug --disable-docs does not work.
@@ -113,24 +113,18 @@ src_configure() {
 	[ "${cameras}" != "all" ] && \
 		ewarn "Upstream will not support you if you do not compile all camera drivers first"
 
-	local myconf
-
-	use exif \
-		&& myconf="${myconf} --with-libexif=${EPPREFIX}/usr" \
-		|| myconf="${myconf} --with-libexif=no"
-
 	econf \
-		${myconf} \
 		--disable-docs \
 		--disable-gp2ddb \
 		$(use_enable bonjour) \
 		$(use_enable hal) \
 		$(use_enable nls) \
+		$(use_with exif libexif) \
 		--with-drivers=${cameras} \
 		--with-doc-dir="${EPREFIX}"/usr/share/doc/${PF} \
 		--with-html-dir="${EPREFIX}"/usr/share/doc/${PF}/html \
 		--with-hotplug-doc-dir="${EPREFIX}"/usr/share/doc/${PF}/hotplug \
-		--with-rpmbuild="${EPREFIX}"/bin/true \
+		--with-rpmbuild=$(type -P true) \
 		udevscriptdir="${EPREFIX}"/$(get_libdir)/udev
 
 # FIXME: gtk-doc is currently broken
