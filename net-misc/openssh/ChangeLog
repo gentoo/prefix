@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.345 2009/04/02 21:53:37 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.346 2009/04/04 15:45:37 armin76 Exp $
+
+  04 Apr 2009; Raúl Porcel <armin76@gentoo.org> openssh-5.2_p1-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #247466
 
   02 Apr 2009; Markus Meier <maekke@gentoo.org> openssh-5.2_p1-r1.ebuild:
   amd64/x86 stable, bug #247466
