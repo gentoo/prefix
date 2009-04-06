@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/genindent/genindent-1.0.ebuild,v 1.13 2006/12/07 02:10:38 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/genindent/genindent-1.0.ebuild,v 1.14 2009/04/04 16:06:53 armin76 Exp $
 
 EAPI="prefix"
 
