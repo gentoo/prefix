@@ -3,6 +3,6 @@
 <pkgmetadata>
   <herd>ruby</herd>
   <use>
-    <flag name='mongrel'>Also install <pkg>dev-ruby/mongrel</pkg></flag>
+    <flag name='mongrel'>Also install <pkg>www-servers/mongrel</pkg></flag>
   </use>
 </pkgmetadata>
