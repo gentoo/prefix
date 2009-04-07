@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/elementtree
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/elementtree/ChangeLog,v 1.36 2009/02/13 14:47:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/elementtree/ChangeLog,v 1.37 2009/04/06 18:05:48 armin76 Exp $
+
+  06 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  elementtree-1.2.6-r2.ebuild:
+  s390/sh stable wrt #193387
 
   13 Feb 2009; Raúl Porcel <armin76@gentoo.org>
   elementtree-1.2.6-r2.ebuild:
