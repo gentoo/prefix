@@ -1,6 +1,11 @@
 # ChangeLog for gnome-base/gnome-light
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/ChangeLog,v 1.96 2009/03/19 22:30:05 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/ChangeLog,v 1.97 2009/04/06 20:29:37 eva Exp $
+
+  06 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-light-2.24.1.ebuild:
+  Stabilize for arches that have gnome-base/gnome already stable, bug
+  #262744.
 
   19 Mar 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -gnome-light-2.20.3.ebuild:
