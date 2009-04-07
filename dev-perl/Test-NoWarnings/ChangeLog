@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Test-NoWarnings
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-NoWarnings/ChangeLog,v 1.18 2009/03/21 03:20:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-NoWarnings/ChangeLog,v 1.19 2009/04/06 15:38:43 armin76 Exp $
+
+  06 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  Test-NoWarnings-0.084.ebuild:
+  Add ~arm/~s390/~sh
 
   21 Mar 2009; Jeroen Roovers <jer@gentoo.org> Test-NoWarnings-0.084.ebuild:
   Marked ~hppa (bug #261707).
