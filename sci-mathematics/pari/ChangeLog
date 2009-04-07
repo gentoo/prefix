@@ -1,6 +1,13 @@
 # ChangeLog for sci-mathematics/pari
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.66 2009/01/15 17:19:08 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.67 2009/04/06 21:40:16 bicatali Exp $
+
+*pari-2.3.4-r1 (06 Apr 2009)
+
+  06 Apr 2009; Sébastien Fabbro <bicatali@gentoo.org> metadata.xml,
+  -pari-2.3.3.ebuild, +pari-2.3.4-r1.ebuild:
+  Added more data which can be merged with a data flag. Fixed doc help (bug
+  #264579) and display doc with default dvi viewer launched by xdg-open
 
 *pari-2.3.4 (15 Jan 2009)
 
