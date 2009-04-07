@@ -1,0 +1,13 @@
+Add jni support for Solaris
+Patch by Heiko Przybyl
+
+--- Modules/FindJNI.cmake
++++ Modules/FindJNI.cmake
+@@ -144,6 +144,7 @@ FIND_PATH(JAVA_INCLUDE_PATH2 jni_md.h 
+   ${JAVA_INCLUDE_PATH}/win32
+   ${JAVA_INCLUDE_PATH}/linux
+   ${JAVA_INCLUDE_PATH}/freebsd
++  ${JAVA_INCLUDE_PATH}/solaris
+ )
+ 
+ FIND_PATH(JAVA_AWT_INCLUDE_PATH jawt.h

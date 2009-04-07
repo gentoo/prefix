@@ -47,6 +47,10 @@ PATCHES=(
 	"${FILESDIR}/${PN}-FindPythonInterp.patch"
 	"${FILESDIR}"/${PN}-2.6.1-no_host_paths.patch
 	"${FILESDIR}"/${PN}-2.6.0-interix.patch
+	"${FILESDIR}"/${PN}-2.6.3-solaris-jni-support.patch
+	"${FILESDIR}"/${PN}-2.6.3-more-no_host_paths.patch
+	"${FILESDIR}"/${PN}-2.6.3-darwin-bundle.patch
+	"${FILESDIR}"/${PN}-2.6.3-no-duplicates-in-rpath.patch
 )
 
 src_configure() {
@@ -86,6 +90,7 @@ src_configure() {
 		# around.
 		use qt4 && qt_arg="ON" || qt_arg="OFF"
 		mycmakeargs="-DCMAKE_USE_SYSTEM_LIBRARIES=ON
+			-DCMAKE_INSTALL_PREFIX=${EPREFIX}/usr
 			-DCMAKE_DOC_DIR=/share/doc/${PF}
 			-DCMAKE_MAN_DIR=/share/man
 			-DCMAKE_DATA_DIR=/share/${PN}
