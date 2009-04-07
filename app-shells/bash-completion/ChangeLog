@@ -1,6 +1,19 @@
 # ChangeLog for app-shells/bash-completion
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.163 2009/03/18 08:05:23 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.164 2009/04/07 04:20:22 darkside Exp $
+
+  07 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  -files/20050121/01_all_gkrellm.diff, -files/20050121/03_all_timidity.diff,
+  -files/20050121/07_all_find.diff, -files/20050121/02_all_cvs.diff,
+  -files/20050121/04_all_mplayer.diff, -files/20050121/08_all_lvm.diff,
+  -files/20050121/05_all_muttng.diff, -files/20050121/09_all_command.diff,
+  -files/20050121/06_all_tar.diff, -files/20050721/01_all_gkrellm.diff,
+  -files/20050721/02_all_cvs.diff, -files/20050721/03_all_find.diff,
+  -files/20050721/04_all_command.diff, -files/20060301/01_all_no_xine.diff,
+  -files/20060301/02_all_mplayer_flac.diff,
+  -bash-completion-20050121-r10.ebuild, -bash-completion-20050721.ebuild,
+  -bash-completion-20060301.ebuild, -bash-completion-20060301-r3.ebuild:
+  remove old
 
   18 Mar 2009; Joseph Jezak <josejx@gentoo.org>
   bash-completion-20081219-r1.ebuild:
