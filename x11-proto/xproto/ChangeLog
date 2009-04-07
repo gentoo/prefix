@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/xproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.63 2009/04/05 21:03:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.64 2009/04/06 19:45:15 bluebird Exp $
+
+  06 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> xproto-7.0.14.ebuild:
+  Stable on sparc, bug #251832
 
   05 Apr 2009; Markus Meier <maekke@gentoo.org> xproto-7.0.14.ebuild:
   x86 stable, bug #251832
