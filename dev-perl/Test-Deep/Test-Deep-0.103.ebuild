@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Deep/Test-Deep-0.103.ebuild,v 1.1 2008/07/18 13:15:25 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Deep/Test-Deep-0.103.ebuild,v 1.2 2009/04/06 15:44:58 armin76 Exp $
 
 EAPI="prefix"
 
