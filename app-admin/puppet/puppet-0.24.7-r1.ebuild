@@ -1,13 +1,11 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.24.7-r1.ebuild,v 1.1 2008/12/23 16:49:41 matsuu Exp $
-
-EAPI="prefix"
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.24.7-r1.ebuild,v 1.2 2009/04/07 00:04:56 matsuu Exp $
 
 inherit elisp-common eutils ruby
 
 DESCRIPTION="A system automation and configuration management software"
-HOMEPAGE="http://reductivelabs.com/projects/puppet/index.html"
+HOMEPAGE="http://reductivelabs.com/projects/puppet"
 SRC_URI="http://reductivelabs.com/downloads/${PN}/${P}.tgz"
 
 LICENSE="GPL-2"

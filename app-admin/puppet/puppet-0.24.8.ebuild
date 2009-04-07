@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.24.8.ebuild,v 1.1 2009/04/03 18:20:29 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.24.8.ebuild,v 1.3 2009/04/07 00:04:56 matsuu Exp $
 
-EAPI="prefix 2"
+EAPI="2"
 inherit elisp-common eutils ruby
 
 DESCRIPTION="A system automation and configuration management software"
-HOMEPAGE="http://reductivelabs.com/projects/puppet/index.html"
+HOMEPAGE="http://reductivelabs.com/projects/puppet"
 SRC_URI="http://reductivelabs.com/downloads/${PN}/${P}.tgz"
 
 LICENSE="GPL-2"
@@ -15,7 +15,7 @@ IUSE="augeas emacs ldap rrdtool shadow vim-syntax"
 #KEYWORDS="~amd64 ~ppc ~sparc ~x86"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 
-DEPEND="virtual/ruby[ssl]
+DEPEND="dev-lang/ruby[ssl]
 	emacs? ( virtual/emacs )
 	>=dev-ruby/facter-1.5.0"
 RDEPEND="${DEPEND}
