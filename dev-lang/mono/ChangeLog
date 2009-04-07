@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/mono
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.160 2009/04/04 23:26:02 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.161 2009/04/06 15:12:26 ranger Exp $
+
+  06 Apr 2009; Brent Baude <ranger@gentoo.org> mono-2.2-r5.ebuild:
+  Marking mono-2.2-r5 ~ppc for bug 255410
 
 *mono-2.2-r5 (04 Apr 2009)
 
