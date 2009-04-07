@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/extutils-depends
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-depends/ChangeLog,v 1.34 2008/12/13 13:05:46 aballier Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-depends/ChangeLog,v 1.35 2009/04/06 14:11:09 armin76 Exp $
+
+  06 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  extutils-depends-0.205.ebuild, extutils-depends-0.300.ebuild,
+  extutils-depends-0.301.ebuild:
+  Add ~arm/~sh
 
   13 Dec 2008; Alexis Ballier <aballier@gentoo.org>
   extutils-depends-0.301.ebuild:
