@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/arora/arora-0.6-r1.ebuild,v 1.1 2009/04/05 20:25:17 yngwin Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit eutils qt4
 
 DESCRIPTION="A cross-platform Qt4 WebKit browser"
@@ -50,7 +50,7 @@ src_prepare() {
 }
 
 src_configure() {
-	eqmake4 arora.pro PREFIX=/usr
+	eqmake4 arora.pro PREFIX="${EPREFIX}"/usr
 }
 
 src_compile() {
