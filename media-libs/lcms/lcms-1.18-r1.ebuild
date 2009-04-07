@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-1.18.ebuild,v 1.9 2009/04/06 16:16:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-1.18-r1.ebuild,v 1.1 2009/04/06 13:38:46 dang Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit libtool eutils multilib
 
@@ -22,6 +22,9 @@ DEPEND="${RDEPEND}
 	python? ( >=dev-lang/swig-1.3.31 )"
 
 src_prepare() {
+	# Fix for CVE-2009-0793, bug #264604
+	epatch "${FILESDIR}"/${PN}-CVE-2009-0793.patch
+
 	# run swig to regenerate lcms_wrap.cxx and lcms.py (bug #148728)
 	if use python; then
 		cd "${S}"/python
