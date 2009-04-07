@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/printproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/printproto/ChangeLog,v 1.32 2009/04/05 21:13:02 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/printproto/ChangeLog,v 1.33 2009/04/06 19:34:40 bluebird Exp $
+
+  06 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
+  printproto-1.0.4.ebuild:
+  Stable on sparc, bug #251832
 
   05 Apr 2009; Markus Meier <maekke@gentoo.org> printproto-1.0.4.ebuild:
   x86 stable, bug #251832
