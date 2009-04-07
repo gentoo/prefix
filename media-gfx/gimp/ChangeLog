@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.289 2009/04/02 03:47:23 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.290 2009/04/06 14:23:25 ranger Exp $
+
+  06 Apr 2009; Brent Baude <ranger@gentoo.org> gimp-2.6.4.ebuild:
+  Marking gimp-2.6.4 ppc for bug 258344
 
   02 Apr 2009; Jeroen Roovers <jer@gentoo.org> gimp-2.6.6.ebuild:
   Marked ~hppa (bug #240433).
