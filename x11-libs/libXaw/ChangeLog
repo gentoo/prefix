@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXaw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/ChangeLog,v 1.54 2009/04/05 21:41:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/ChangeLog,v 1.55 2009/04/06 18:50:53 bluebird Exp $
+
+  06 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> libXaw-1.0.5.ebuild:
+  Stable on sparc, bug #251832
 
   05 Apr 2009; Markus Meier <maekke@gentoo.org> libXaw-1.0.5.ebuild:
   x86 stable, bug #251832
