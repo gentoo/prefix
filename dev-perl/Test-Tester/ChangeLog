@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Tester
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Tester/ChangeLog,v 1.29 2009/03/21 03:19:36 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Tester/ChangeLog,v 1.30 2009/04/06 15:37:53 armin76 Exp $
+
+  06 Apr 2009; Raúl Porcel <armin76@gentoo.org> Test-Tester-0.107.ebuild:
+  Add ~arm/~s390/~sh
 
   21 Mar 2009; Jeroen Roovers <jer@gentoo.org> Test-Tester-0.107.ebuild:
   Marked ~hppa (bug #261707).
