@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9635 2009/04/06 04:58:01 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9640 2009/04/07 04:07:36 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,23 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Jeremy Olexa <darkside@gentoo.org> (07 Apr 2009)
+# Not supported in Gentoo anymore, use 'eselect bashcomp' now
+# Comments on bug 253878 - removed in 30 days.
+app-shells/bash-completion-config
+
+# Michael Sterrett <mr_bones_@gentoo.org> (06 Apr 2009)
+# Masked for removal in 30 days.
+# Doesn't work with the latest versions of dev-util/scons.
+# Last release in 2006.  Removal approved by Gentoo KDE team.
+kde-misc/kleansweep
+
+# Paul Varner <fuzzyray@gentoo.org> (06 Apr 2009)
+# Dead upstream and has issues with newer portages.
+# Due to popular demand and no suitable replacement, it will stay in the tree
+# in a masked status until it completely breaks or is replaced.
+app-portage/udept
 
 # Markus Ullmann <jokey@gentoo.org> (5 Apr 2009)
 # mask until gnome 2.26 is in-tree (needs libsoup 2.26)
@@ -499,10 +516,6 @@ app-admin/eselect-boost
 # Fails to build, bug #247946. Somebody needs to port it to new spandsp interface
 net-dialup/ivcall
 
-# Paul Varner <fuzzyray@gentoo.org> (14 Dec 2008)
-# Dead upstream, masked for removal in ~30 to 60 days.
-app-portage/udept
-
 # Alin Năstac <mrness@gentoo.org> (14 Dec 2008)
 # Dead upstream, masked for removal in ~60 days.
 net-proxy/squirm
@@ -619,11 +632,6 @@ app-portage/genflags
 # Alexis Ballier <aballier@gentoo.org> (15 Oct 2008)
 # Breaks ocamlduce
 >=dev-lang/ocaml-3.11.0_beta1
-
-# Peter Volkov <pva@gentoo.org> (13 Oct 2008)
-# Does not work with sys-apps/net-tools inside container
-# Trying to resolve issue inside openrc
->=sys-cluster/vzctl-3.0.22-r10
 
 # Rémi Cardona <remi@gentoo.org> (11 Oct 2008)
 # Old versions, those are no longer maintained and
@@ -840,11 +848,6 @@ media-sound/lastfmproxy
 # Masked for testing
 #>=mail-client/mozilla-thunderbird-3.0_alpha1
 >=mail-client/mozilla-thunderbird-bin-3.0_alpha1
-
-# Benedikt Böhm <hollow@gentoo.org> (6 Apr 2008)
-# Mask ebuilds using new qmail.eclass for testing
-=mail-mta/netqmail-1.06
-=mail-mta/qmail-ldap-1.03-r8
 
 # Christian Faulhammer <fauli@gentoo.org> (01 Apr 2008)
 # Masked for security reasons: bug 215699

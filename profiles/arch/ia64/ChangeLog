@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/ia64 profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.28 2009/04/04 14:20:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.29 2009/04/06 17:21:12 armin76 Exp $
+
+  06 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Add lasi to use.mask
 
   04 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Add mpi to use.mask

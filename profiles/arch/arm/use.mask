@@ -61,6 +61,8 @@ octave
 tracker
 xindy
 lyx
+mpi
+lasi
 
 # havent tested yet
 cupsddk
@@ -91,6 +93,7 @@ v4l2
 dvd
 fluidsynth
 gnomecd
+lapack
 
 # 2006/02/05 - Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures on which they aren't available

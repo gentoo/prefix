@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4338 2009/04/05 20:08:11 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4339 2009/04/06 21:48:15 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -2488,6 +2488,7 @@ sci-mathematics/maxima:sbcl - Add support for Steel Bank Common Lisp (dev-lisp/s
 sci-mathematics/nusmv:minisat - Enable support for MiniSat
 sci-mathematics/octave:sparse - Enable enhanced support for sparse matrix algebra
 sci-mathematics/octave-forge:qhull - Add support for media-libs/qhull (geometric extensions)
+sci-mathematics/pari:data - Add additional data (elldata, galdata, seadata, nftables)
 sci-mathematics/pari:elliptic - Add additional elliptic curve data
 sci-mathematics/pari:galois - Add additional data to compute Galois groups of degree 8 to 11
 sci-mathematics/singular:boost - Compile against external boost headers (dev-libs/boost)

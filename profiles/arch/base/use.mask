@@ -1,6 +1,7 @@
 # Mask flags that correspond to all possible ARCH values.
 alpha
 amd64
+amd64-fbsd
 arm
 hppa
 ia64
