@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXv
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXv/ChangeLog,v 1.43 2009/04/05 21:26:32 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXv/ChangeLog,v 1.44 2009/04/06 19:12:01 bluebird Exp $
+
+  06 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> libXv-1.0.4.ebuild:
+  Stable on sparc, bug #251832
 
   05 Apr 2009; Markus Meier <maekke@gentoo.org> libXv-1.0.4.ebuild:
   x86 stable, bug #251832
