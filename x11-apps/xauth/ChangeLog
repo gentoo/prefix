@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xauth
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xauth/ChangeLog,v 1.44 2009/04/05 21:42:48 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xauth/ChangeLog,v 1.45 2009/04/06 17:48:41 bluebird Exp $
+
+  06 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> xauth-1.0.3.ebuild:
+  Stable on sparc, bug #251832
 
   05 Apr 2009; Markus Meier <maekke@gentoo.org> xauth-1.0.3.ebuild:
   x86 stable, bug #251832
