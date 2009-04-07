@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/ecb/ecb-2.32-r3.ebuild,v 1.1 2009/03/04 00:20:42 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/ecb/ecb-2.32-r3.ebuild,v 1.3 2009/04/06 20:45:49 maekke Exp $
 
 EAPI="prefix"
 
