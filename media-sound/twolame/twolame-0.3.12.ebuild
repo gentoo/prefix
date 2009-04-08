@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=">=media-libs/libsndfile-1"
@@ -22,6 +22,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	sed -i -e 's:-O3::' configure
+	# libsndfile doesn't like -std=c99 on Solaris
+	sed -i -e 's:-std=c99::' configure
 	# Needed for FreeBSD to get a sane .so versioning.
 	elibtoolize
 }
