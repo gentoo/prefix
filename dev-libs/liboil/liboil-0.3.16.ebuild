@@ -30,6 +30,10 @@ src_prepare() {
 			-i Makefile.am Makefile.in || die "sed failed."
 	fi
 
+	# Darwin fix stolen from MacPorts
+	sed -i \
+		-e 's/x${ac_cv_sys_symbol_underscore}/x${lt_cv_sys_symbol_underscore}/' \
+		configure
 }
 
 src_configure() {
