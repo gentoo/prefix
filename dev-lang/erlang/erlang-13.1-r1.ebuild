@@ -1,8 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-12.2.5.ebuild,v 1.6 2008/12/17 22:21:08 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-13.1-r1.ebuild,v 1.1 2009/04/08 23:11:56 fauli Exp $
 
 EAPI="prefix"
+
+EAPI=2
 
 inherit autotools elisp-common eutils flag-o-matic multilib versionator
 
@@ -14,7 +16,7 @@ inherit autotools elisp-common eutils flag-o-matic multilib versionator
 # make it more sane (see e.g. #26420)
 
 # the next line selects the right source.
-MY_PV="R$(get_major_version)B-$(get_version_component_range 3)"
+MY_PV="R$(get_major_version)A"
 
 # ATTN!! Take care when processing the C, etc version!
 MY_P=otp_src_${MY_PV}
@@ -28,7 +30,7 @@ SRC_URI="http://www.erlang.org/download/${MY_P}.tar.gz
 LICENSE="EPL"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="doc emacs hipe java kpoll odbc smp sctp ssl tk"
+IUSE="doc emacs hipe java kpoll odbc smp sctp ssl tk wxwindows"
 
 RDEPEND=">=dev-lang/perl-5.6.1
 	ssl? ( >=dev-libs/openssl-0.9.7d )
@@ -36,6 +38,7 @@ RDEPEND=">=dev-lang/perl-5.6.1
 	java? ( >=virtual/jdk-1.2 )
 	odbc? ( dev-db/unixODBC )"
 DEPEND="${RDEPEND}
+	wxwindows? ( x11-libs/wxGTK:2.8[opengl] )
 	sctp? ( net-misc/lksctp-tools )
 	tk? ( dev-lang/tk )"
 
@@ -43,12 +46,13 @@ S="${WORKDIR}/${MY_P}"
 
 SITEFILE=50${PN}-gentoo.el
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	use odbc || sed -i 's: odbc : :' lib/Makefile
-
+	if ! use wxwindows; then
+		sed -i 's: wx : :' lib/Makefile
+		rm -rf lib/wx
+	fi
+	epatch "${FILESDIR}"/${P}-LDFLAGS.patch # bug 263129
 	if use hipe; then
 		ewarn
 		ewarn "You enabled High performance Erlang. Be aware that this extension"
@@ -59,7 +63,7 @@ src_unpack() {
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	use java || export JAVAC=false
 
 	local myconf=
@@ -72,8 +76,12 @@ src_compile() {
 		$(use_enable ssl dynamic-ssl-lib) \
 		$(use_enable kpoll kernel-poll) \
 		$(use_enable smp smp-support) \
-		|| die "econf failed"
-	emake -j1 || die "emake failed"
+		|| die
+}
+
+src_compile() {
+	use java || export JAVAC=false
+	emake -j1 || die
 
 	if use emacs ; then
 		pushd lib/tools/emacs
@@ -91,7 +99,7 @@ src_install() {
 	local ERL_INTERFACE_VER=$(extract_version lib/erl_interface EI_VSN)
 	local ERL_ERTS_VER=$(extract_version erts VSN)
 
-	emake -j1 INSTALL_PREFIX="${D}" install || die "install failed"
+	emake -j1 INSTALL_PREFIX="${D}" install || die
 	dodoc AUTHORS README
 
 	dosym "${ERL_LIBDIR}/bin/erl" /usr/bin/erl
@@ -115,9 +123,6 @@ src_install() {
 			dodir "${ERL_LIBDIR}/${i##${WORKDIR}}"
 		done
 		for file in "${WORKDIR}"/man/man*/*.[1-9]; do
-			# Man page processing tools expect a capitalized "SEE ALSO" section
-			# header, has been reported upstream, should be fixed in R12
-			sed -i -e 's,\.SH See Also,\.SH SEE ALSO,g' ${file}
 			# doman sucks so we can't use it
 			cp ${file} "${ED}/${ERL_LIBDIR}"/man/man${file##*.}/
 		done

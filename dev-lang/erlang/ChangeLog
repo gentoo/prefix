@@ -1,6 +1,20 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.155 2009/03/24 16:17:32 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.157 2009/04/08 23:11:56 fauli Exp $
+
+*erlang-13.1-r1 (08 Apr 2009)
+
+  08 Apr 2009; Christian Faulhammer <fauli@gentoo.org>
+  +files/erlang-13.1-LDFLAGS.patch, -erlang-13.1.ebuild,
+  +erlang-13.1-r1.ebuild:
+  revision bump to make all modules respect LDFLAGS, patch provided by
+  Davide Pesavento <davidepesa AT gmail DOT com> in bug 263129
+
+*erlang-13.1 (07 Apr 2009)
+
+  07 Apr 2009; Christian Faulhammer <fauli@gentoo.org> +erlang-13.1.ebuild:
+  version bump for 13A beta version, brings in WxWindows bindings, ported
+  ebuild to EAPI 2
 
   24 Mar 2009; Christian Faulhammer <fauli@gentoo.org>
   -erlang-12.2.5.ebuild:
