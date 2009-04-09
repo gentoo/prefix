@@ -1,21 +1,21 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.2.1.ebuild,v 1.9 2009/04/09 04:45:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.3.0.ebuild,v 1.1 2009/04/07 15:22:37 bicatali Exp $
 
 EAPI="prefix"
 
 NEED_PYTHON=2.4
-
-inherit distutils eutils flag-o-matic fortran
+EAPI=2
+inherit eutils distutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Fast array and numerical python library"
 SRC_URI="mirror://sourceforge/numpy/${P}.tar.gz"
-HOMEPAGE="http://numeric.scipy.org/"
+HOMEPAGE="http://numpy.scipy.org/"
 
 RDEPEND="lapack? ( virtual/cblas virtual/lapack )"
 DEPEND="${RDEPEND}
-	test? ( >=dev-python/nose-0.10 )
-	lapack? ( dev-util/pkgconfig )"
+	lapack? ( dev-util/pkgconfig )
+	test? ( >=dev-python/nose-0.10 )"
 
 IUSE="lapack test"
 SLOT="0"
@@ -37,34 +37,13 @@ pkg_setup() {
 	# linking with cblas and lapack library will force
 	# autodetecting and linking to all available fortran compilers
 	use lapack || return
-	FORTRAN="gfortran g77 ifc"
-	fortran_pkg_setup
-	local fc=
-	case ${FORTRANC} in
-		gfortran) fc=gnu95 ;;
-		g77) fc=gnu ;;
-		ifc|ifort)
-			if use ia64; then
-				fc=intele
-			elif use amd64; then
-				fc=intelem
-			else
-				fc=intel
-			fi
-			;;
-		*) eerror "Unknown fortran compiler: ${FORTRANC}"
-		   die "numpy_fortran_setup failed" ;;
-	esac
-
+	[[ -z ${FC} ]] && FC=$(tc-getFC)
 	# when fortran flags are set, pic is removed.
-	use amd64 && FFLAGS="${FFLAGS} -fPIC"
-	export NUMPY_FCONFIG="config_fc --fcompiler=${fc} --noopt --noarch"
+	FFLAGS="${FFLAGS} -fPIC"
+	export NUMPY_FCONFIG="config_fc --noopt --noarch"
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# Fix some paths and docs in f2py
 	epatch "${FILESDIR}"/${PN}-1.1.0-f2py.patch
 
@@ -112,7 +91,6 @@ src_unpack() {
 }
 
 src_compile() {
-	# when fortran flags are set, pic is removed but unfortunately needed
 	distutils_src_compile ${NUMPY_FCONFIG}
 }
 
@@ -131,19 +109,8 @@ src_test() {
 src_install() {
 	distutils_src_install ${NUMPY_FCONFIG}
 	dodoc THANKS.txt DEV_README.txt COMPATIBILITY
-	rm -f "${ED}"/usr/lib/python*/site-packages/numpy/*.txt
+	rm -f "${ED}"/usr/lib/python*/site-packages/numpy/*.txt || die
 	docinto f2py
 	dodoc numpy/f2py/docs/*.txt || die "dodoc f2py failed"
 	doman numpy/f2py/f2py.1 || die "doman failed"
-}
-
-pkg_postinst() {
-	if ( has_version sys-devel/gcc && ! built_with_use sys-devel/gcc fortran ||
-		! has_version sys-devel/gcc ) &&
-		! has_version dev-lang/ifc
-	then
-		ewarn "To use numpy's f2py you need a fortran compiler."
-		ewarn "You can either set USE=fortran flag and re-install gcc,"
-		ewarn "or install dev-lang/ifc"
-	fi
 }
