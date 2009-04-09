@@ -98,14 +98,14 @@ src_unpack() {
 		epatch "${WORKDIR}"/${MY_P}-${JUMBO}.diff
 		PATCHLIST=stackdef.S
 	fi
-	PATCHLIST="${PATCHLIST} params.h mkdir-sandbox"
+	PATCHLIST="${PATCHLIST} params.h mkdir-sandbox prefix cflags"
 
 	cd "${S}/src"
 	for p in ${PATCHLIST}; do
 		epatch "${FILESDIR}/${P}-${p}.patch"
 	done
 
-	sed -e "s/LDFLAGS  *=  */override LDFLAGS += /" -e "/LDFLAGS/s/-s//" -i Makefile || die "sed Makefile failed"
+	sed -e "s/LDFLAGS  *=  */override LDFLAGS += /" -e "/LDFLAGS/s/-s//" -e '/LDFLAGS/s/-L[^ ]* //g' -i Makefile || die "sed Makefile failed"
 }
 
 src_compile() {
@@ -119,7 +119,7 @@ src_compile() {
 	use mpi && CPP=mpicxx CC=mpicc AS=mpicc LD=mpicc
 	emake \
 		CPP=${CPP} CC=${CC} AS=${AS} LD=${LD} \
-		CFLAGS="-c -Wall ${CFLAGS} -DJOHN_SYSTEMWIDE -DJOHN_SYSTEMWIDE_HOME=\"\\\"${EPREFIX}/etc/john\\\"\"" \
+		CFLAGS="-c -Wall ${CFLAGS} -DJOHN_SYSTEMWIDE=1 -DJOHN_SYSTEMWIDE_HOME=\\\"\\\\\\\"${EPREFIX}/etc/john\\\\\\\"\\\" -DJOHN_SYSTEMWIDE_EXEC=\\\"\\\\\\\"${EPREFIX}/usr/libexec/john\\\\\\\"\\\" -DCFG_FULL_NAME=\\\"\\\\\\\"${EPREFIX}/etc/john/john.conf\\\\\\\"\\\" -DCFG_ALT_NAME=\\\"\\\\\\\"${EPREFIX}/etc/john/john.ini\\\\\\\"\\\"" \
 		LDFLAGS="${LDFLAGS}" \
 		OPT_NORMAL="" \
 		$(get_target) \
