@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/openal
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.107 2009/03/15 15:00:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.108 2009/04/08 20:11:46 hanno Exp $
+
+*openal-1.7.411 (08 Apr 2009)
+
+  08 Apr 2009; Hanno Boeck <hanno@gentoo.org>
+  +files/openal-soft-1.7.411-multilib.patch, +openal-1.7.411.ebuild:
+  Version bump and patch for correct multilib installation path.
 
   15 Mar 2009; Brent Baude <ranger@gentoo.org> openal-1.6.372.ebuild:
   stable ppc64, bug 254583
