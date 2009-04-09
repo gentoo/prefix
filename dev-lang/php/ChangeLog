@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.319 2009/03/18 10:41:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.320 2009/04/07 11:03:16 fauli Exp $
+
+  07 Apr 2009; Christian Faulhammer <fauli@gentoo.org> php-5.2.8-r1.ebuild,
+  php-5.2.8-r2.ebuild:
+  revert from EAPI 2 to 0 again, see bug 265245
 
   18 Mar 2009; Raúl Porcel <armin76@gentoo.org> php-5.2.8-r1.ebuild,
   php-5.2.8-r2.ebuild:
