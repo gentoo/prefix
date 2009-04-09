@@ -1,9 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.35.ebuild,v 1.6 2009/04/08 17:51:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.37.ebuild,v 1.1 2009/04/07 09:00:36 bicatali Exp $
 
 EAPI="prefix"
 
+EAPI=2
 inherit flag-o-matic
 
 DESCRIPTION="GNU Linear Programming Kit"
@@ -22,7 +23,7 @@ RDEPEND="odbc? ( || ( dev-db/libiodbc dev-db/unixODBC ) )
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-src_compile() {
+src_configure() {
 	local myconf="--disable-dl"
 	if use mysql || use odbc; then
 		myconf="--enable-dl"
@@ -37,13 +38,11 @@ src_compile() {
 		$(use_enable odbc) \
 		$(use_enable mysql) \
 		${myconf}
-	emake || die "emake failed"
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 
-	# INSTALL include some usage docs
 	dodoc AUTHORS ChangeLog NEWS README || \
 		die "failed to install docs"
 
