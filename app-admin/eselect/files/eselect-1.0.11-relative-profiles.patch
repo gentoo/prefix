@@ -1,0 +1,40 @@
+Allow relative paths to be shown instead of abs paths for eselect profile show, 
+
+patch by Thomas Bellman in bug 248487
+
+Already in svn.
+
+--- modules/profile.eselect	(revision 397)
++++ modules/profile.eselect	(working copy)
+@@ -83,9 +83,10 @@
+ do_show() {
+ 	write_list_start "Current make.profile symlink:"
+ 	if [[ -L "${ROOT}/etc/make.profile" ]] ; then
+-		local link=$(canonicalise ${ROOT}/etc/make.profile)
++		local link=$(canonicalise "${ROOT}/etc/make.profile")
+ 		local portdir=$(portageq portdir)
+-		link=${link##..${ROOT}/${portdir}/profiles/}
++		local profiledir=$(canonicalise "${ROOT}/${portdir}/profiles")
++		link=${link##${profiledir}/}
+ 		write_kv_list_entry "${link}" ""
+ 	else
+ 		write_kv_list_entry "(unset)" ""
+@@ -99,13 +100,15 @@
+ }
+ 
+ do_list() {
+-	local active targets
++	local portdir profiledir active targets
+ 	targets=( $(find_targets) )
+ 
+ 	[[ -z "${targets}" ]] && die -q "Failed to get a list of valid profiles"
+ 
+-	active=$(canonicalise ${ROOT}/etc/make.profile)
+-	active=${active##*profiles/}
++	portdir=$(portageq portdir)
++	profiledir=$(canonicalise "${ROOT}/${portdir}/profiles")
++	active=$(canonicalise "${ROOT}/etc/make.profile")
++	active=${active##${profiledir}/}
+ 	if [[ -n ${targets[@]} ]] ; then
+ 		local i
+ 		for (( i = 0 ; i < ${#targets[@]} ; i = i + 1 )) ; do

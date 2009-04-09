@@ -1,0 +1,15 @@
+Allow parent profiles to be selectable, patch by Thomas Bellman in bug 248470
+
+Already in svn.
+
+--- modules/profile.eselect.orig	2009-04-08 00:18:09.366660181 -0500
++++ modules/profile.eselect	2009-04-08 00:18:49.572626838 -0500
+@@ -47,7 +47,7 @@
+ 		[[ -z "${arch}" && ${2} != "--force" ]] && return 1
+ 
+ 		# do a reverse lookup and find the arch associated with ${target}
+-		parch=$(sed -n -e "s|^\([[:alnum:]]\+\)[[:space:]].*${target}.*$|\1|p" \
++		parch=$(sed -n -e "s|^\([[:alnum:]]\+\)[[:space:]].*${target}[[:space:]].*$|\1|p" \
+ 			${ROOT}/${portdir}/profiles/profiles.desc)
+ 
+ 		if [[ ${arch} != ${parch} && ${2} != "--force" ]] ; then

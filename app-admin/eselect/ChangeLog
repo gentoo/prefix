@@ -1,6 +1,23 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.78 2009/03/17 10:00:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.81 2009/04/08 05:36:35 darkside Exp $
+
+  08 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  +files/eselect-1.0.11-relative-profiles.patch, eselect-1.0.11-r2.ebuild:
+  Make 'eselect profile show' show the relative path. Patch by Thomas Bellman
+  in bug 248487
+
+*eselect-1.0.11-r2 (08 Apr 2009)
+
+  08 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  +files/eselect-1.0.11-parent-profiles.patch, -eselect-1.0.2.ebuild,
+  -eselect-1.0.7.ebuild, -eselect-1.0.8.ebuild, -eselect-1.0.9.ebuild,
+  -eselect-1.0.11.ebuild, +eselect-1.0.11-r2.ebuild:
+  Version bump to fix bug 248470, patch by Thomas Bellman. Allows parent
+  profiles to be selectable. Also, remove old versions
+
+  08 Apr 2009; Jeremy Olexa <darkside@gentoo.org> eselect-1.0.11-r1.ebuild:
+  fix postinst message to include instructions for enabling globally, bug 265168
 
   17 Mar 2009; Raúl Porcel <armin76@gentoo.org> eselect-1.0.11-r1.ebuild:
   m68k stable wrt #208898, thanks to kolla for testing

@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.9.ebuild,v 1.2 2007/05/06 23:17:05 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.11-r2.ebuild,v 1.2 2009/04/08 05:36:35 darkside Exp $
 
 EAPI="prefix"
 
@@ -8,11 +8,11 @@ inherit eutils prefix
 
 DESCRIPTION="Modular -config replacement utility"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI="http://dev.gentooexperimental.org/~peper/distfiles/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc bash-completion vim-syntax"
 
 DEPEND="sys-apps/sed
@@ -28,11 +28,24 @@ RDEPEND="sys-apps/sed
 
 src_unpack() {
 	unpack ${A}
+
 	cd "${S}"
+	epatch "${FILESDIR}/${P}-fix-paludis-command.patch"
+	epatch "${FILESDIR}/${P}-parent-profiles.patch"
+	epatch "${FILESDIR}/${P}-relative-profiles.patch"
 
-	epatch "${FILESDIR}/${PN}-no-pgrep.patch"
+	# where does pgrep work?  Linux, Solaris and FreeBSD
+	case ${CHOST} in
+		*-linux-gnu|*-solaris*|*-freebsd*)
+			: # leave it as is
+		;;
+		*)
+			# revert to some layman's ps approach (not perfect at all)
+			epatch "${FILESDIR}/${PN}-no-pgrep.patch"
+		;;
+	esac
 
-	epatch "${FILESDIR}"/${PN}-1.0.9-prefix.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify \
 		$(find "${S}"/bin -type f) \
 		$(find "${S}"/libs -type f) \
@@ -70,12 +83,10 @@ pkg_postinst() {
 		elog
 		elog "  eselect bashcomp enable eselect"
 		elog
+		elog "to install locally, or"
+		elog
+		elog "  eselect bashcomp enable --global eselect"
+		elog
+		elog "to install system-wide."
 	fi
-
-	elog "Modules cblas.eselect, blas.eselect and lapack.eselect have"
-	elog "been split-out to separate packages called:"
-	elog
-	elog "  app-admin/eselect-cblas"
-	elog "  app-admin/eselect-blas"
-	elog "  app-admin/eselect-lapack"
 }
