@@ -1,6 +1,11 @@
 # ChangeLog for www-client/elinks
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.113 2009/03/22 08:24:14 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.114 2009/04/08 18:40:09 spock Exp $
+
+*elinks-0.11.6 (08 Apr 2009)
+
+  08 Apr 2009; Michał Januszewski <spock@gentoo.org> +elinks-0.11.6.ebuild:
+  Version bump (bug #265302).
 
   21 Mar 2009; Michał Januszewski <spock@gentoo.org> elinks-0.11.5.ebuild:
   Drop all AUTO* variables (bug #260784).
