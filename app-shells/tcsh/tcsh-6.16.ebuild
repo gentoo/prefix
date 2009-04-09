@@ -6,7 +6,7 @@ EAPI="prefix"
 
 inherit eutils flag-o-matic autotools prefix
 
-CONFVER="1.9"
+CONFVER="1.10"
 
 MY_P="${P}.00"
 DESCRIPTION="Enhanced version of the Berkeley C shell (csh)"
