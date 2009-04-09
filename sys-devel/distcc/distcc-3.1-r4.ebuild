@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r2.ebuild,v 1.1 2009/02/10 00:09:35 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r4.ebuild,v 1.1 2009/04/07 15:52:16 matsuu Exp $
 
-EAPI="prefix"
-
+EAPI="2"
 inherit eutils flag-o-matic toolchain-funcs fdo-mime prefix
 
 DESCRIPTION="a program to distribute compilation of C code across several machines on a network"
@@ -19,7 +18,7 @@ RESTRICT="test"
 
 RDEPEND=">=dev-lang/python-2.4
 	dev-libs/popt
-	avahi? ( >=net-dns/avahi-0.6 )
+	avahi? ( >=net-dns/avahi-0.6[dbus] )
 	gnome? (
 		>=gnome-base/libgnome-2
 		>=gnome-base/libgnomeui-2
@@ -33,7 +32,7 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 RDEPEND="${RDEPEND}
 	!net-misc/pump
-	>=sys-devel/gcc-config-1.3.1
+	>=sys-devel/gcc-config-1.4.1
 	selinux? ( sec-policy/selinux-distcc )
 	xinetd? ( sys-apps/xinetd )"
 
@@ -45,14 +44,15 @@ pkg_setup() {
 	enewuser distcc 240 -1 -1 daemon
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}/${PN}-3.0-xinetd.patch"
 	# bug #253786
 	epatch "${FILESDIR}/${PN}-3.0-fix-fortify.patch"
 	# bug #255188
 	epatch "${FILESDIR}/${P}-freedesktop.patch"
+	# bug #258364
+	epatch "${FILESDIR}/${P}-python.patch"
+
 	sed -i -e "/PATH/s:\$distcc_location:${DCCC_PATH}:" pump.in || die
 
 	# Bugs #120001, #167844 and probably more. See patch for description.
@@ -64,7 +64,7 @@ src_unpack() {
 	eprefixify distcc-config
 }
 
-src_compile() {
+src_configure() {
 	local myconf="--disable-Werror --with-docdir=${EPREFIX}/usr/share/doc/${PF}"
 	# More legacy stuff?
 	[ "$(gcc-major-version)" = "2" ] && filter-lfs-flags
@@ -77,7 +77,6 @@ src_compile() {
 		$(use_with gtk) \
 		$(use_with gnome) \
 		${myconf} || die "econf failed"
-	emake || die "emake failed"
 }
 
 src_install() {
@@ -86,7 +85,7 @@ src_install() {
 
 	dobin "${FILESDIR}/3.0/distcc-config"
 
-	newinitd "${FILESDIR}/3.0/init" distccd
+	newinitd "${FILESDIR}/${PV}/init" distccd
 
 	cp "${FILESDIR}/3.0/conf" "${T}/distccd"
 	if use avahi; then
