@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.190 2009/04/06 17:24:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.191 2009/04/07 19:48:34 klausman Exp $
+
+  07 Apr 2009; Tobias Klausmann <klausman@gentoo.org>
+  graphviz-2.22.2-r1.ebuild:
+  Keyworded on alpha, bug #265013
 
   06 Apr 2009; Raúl Porcel <armin76@gentoo.org> graphviz-2.22.2-r1.ebuild:
   Re-add ~ia64 wrt #265013
