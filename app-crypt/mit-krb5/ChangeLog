@@ -1,6 +1,21 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.206 2009/03/27 21:41:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.209 2009/04/08 17:53:57 keytoaster Exp $
+
+  08 Apr 2009; Tobias Heinlein <keytoaster@gentoo.org>
+  mit-krb5-1.6.3-r6.ebuild:
+  amd64 stable wrt security bug #263398
+
+  08 Apr 2009; Raúl Porcel <armin76@gentoo.org> mit-krb5-1.6.3-r6.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc/x86 stable wrt #263398 and also
+  stabilize on hppa/ppc/ppc64
+
+*mit-krb5-1.6.3-r6 (08 Apr 2009)
+
+  08 Apr 2009; Michael Hammer <mueli@gentoo.org>
+  +files/CVE-2009-0844+CVE-2009-0847.patch, +files/CVE-2009-0846.patch,
+  +mit-krb5-1.6.3-r6.ebuild:
+  added mit-krb5-1.6.3-r6 - see bug #263398
 
   27 Mar 2009; Jeroen Roovers <jer@gentoo.org> mit-krb5-1.6.3-r5.ebuild:
   Stable for HPPA (bug #262736).
