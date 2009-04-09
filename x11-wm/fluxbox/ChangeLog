@@ -1,6 +1,10 @@
 # ChangeLog for x11-wm/fluxbox
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.264 2009/03/16 12:56:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.265 2009/04/08 16:40:32 lack Exp $
+
+  08 Apr 2009; Jim Ramsay <lack@gentoo.org> +files/keyparse_hang.patch,
+  fluxbox-1.1.0.1.ebuild, fluxbox-1.1.1.ebuild:
+  Fix hang reported in #263379
 
   16 Mar 2009; Raúl Porcel <armin76@gentoo.org> fluxbox-1.1.1.ebuild,
   fluxbox-9999.ebuild:

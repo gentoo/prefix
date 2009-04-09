@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.1.1.ebuild,v 1.4 2009/03/16 12:56:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.1.1.ebuild,v 1.5 2009/04/08 16:40:32 lack Exp $
 
 EAPI="prefix 2"
 inherit eutils
@@ -50,6 +50,9 @@ src_unpack() {
 		util/fluxbox-generate_menu.in || die
 
 	epatch "${FILESDIR}"/${P}-osx-has-otool.patch
+
+	# Patch to handle a broken key file gracefully, #263379
+	epatch "${FILESDIR}/keyparse_hang.patch"
 
 	# Add in the Gentoo -r number to fluxbox -version output.
 	if [[ "${PR}" == "r0" ]] ; then
