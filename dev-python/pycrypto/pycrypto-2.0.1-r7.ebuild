@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/pycrypto-2.0.1-r7.ebuild,v 1.1 2009/03/01 08:24:02 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/pycrypto-2.0.1-r7.ebuild,v 1.2 2009/04/08 18:42:18 zmedico Exp $
 
-EAPI="prefix"
-
+EAPI=1
 NEED_PYTHON=2.5
 inherit distutils toolchain-funcs flag-o-matic
 

@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/pycrypto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.71 2009/03/07 10:56:19 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.72 2009/04/08 18:42:18 zmedico Exp $
+
+  08 Apr 2009; Zac Medico <zmedico@gentoo.org> pycrypto-2.0.1-r7.ebuild,
+  pycrypto-2.0.1-r8.ebuild:
+  Bug #263521 - Bump to EAPI 1 for versions that require python-2.5 since
+  that also requires EAPI 1.
 
   07 Mar 2009; Markus Meier <maekke@gentoo.org> pycrypto-2.0.1-r8.ebuild:
   amd64 stable, bug #258049
