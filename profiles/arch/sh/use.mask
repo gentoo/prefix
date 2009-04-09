@@ -31,6 +31,7 @@ xindy
 lyx
 mpi
 lasi
+fusion
 
 # Stuff that doesn't make sense on this arch
 3dfx
@@ -65,6 +66,7 @@ gimp
 xemacs
 gnomecd
 lapack
+cblas
 
 # 2006/02/05 - Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures on which they aren't available

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4339 2009/04/06 21:48:15 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4345 2009/04/08 20:07:48 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -81,6 +81,7 @@ app-backup/bacula:logwatch - Install support files for logwatch
 app-backup/boxbackup:client-only - Disable server support, and just build a client
 app-backup/dar:dar32 - Enables --enable-mode=32 option, which replace infinite by 32 bit integers
 app-backup/dar:dar64 - Enables --enable-mode=64 option, which replace infinite by 64 bit integers
+app-backup/duplicity:s3 - Support for backing up to the Amazon S3 system
 app-backup/kdar:dar32 - Support libdar32.so usage
 app-backup/kdar:dar64 - Support libdar64.so usage
 app-benchmarks/bootchart:acct - Enable process accounting
@@ -180,6 +181,7 @@ app-editors/xemacs:xim - Enable X11 XiM input method
 app-editors/xmlcopyeditor:guidexml - Install GuideXML templates to work with Gentoo official docs
 app-emacs/auctex:preview-latex - Use bundled preview-latex
 app-emacs/bbdb:tex - Install plain TeX support files
+app-emacs/company-mode:semantic - Install backend for semantic (app-emacs/cedet)
 app-emacs/delicious:planner - Include support for app-emacs/planner
 app-emacs/easypg:gnus - Include support for the Gnus newsreader
 app-emacs/emhacks:jde - Enable support for Java Development Environment
@@ -666,6 +668,7 @@ dev-libs/ace:tao - Include the ACE ORB (CORBA stuff) (called tao) into the build
 dev-libs/apr:urandom - Use /dev/urandom instead of /dev/random
 dev-libs/boost:bcp - Install the bcp tool http://www.boost.org/tools/bcp/bcp.html
 dev-libs/boost:bjam - Install the BoostJam tool http://www.boost.org/tools/build/jam_src/index.html
+dev-libs/boost:eselect - Run "eselect boost update" even if version is already selected
 dev-libs/boost:pyste - Add support for the pyste frontend
 dev-libs/boost:threadsonly - Only build multithreaded libs
 dev-libs/boost:tools - Build and install the boost tools (bcp, quickbook, inspect, wave)
@@ -2096,6 +2099,7 @@ net-libs/libesmtp:ssl -  Enable support for advanced SMTP authentication methods
 net-libs/libetpan:liblockfile - Enable support for liblockfile library
 net-libs/libfwbuilder:bind - Use bind's name resolving library
 net-libs/libfwbuilder:stlport - Enagle support for STLport
+net-libs/libinfinity:server -  Build and install the server binary including init.d/conf.d-scripts. Needed if you want to host an infinote server for gobby. 
 net-libs/libpri:bri - Enable ISDN BRI support (bristuff)
 net-libs/libssh2:libgcrypt - Use libgcrypt for crypto
 net-libs/libvncserver:no24bpp - disable 24bpp support

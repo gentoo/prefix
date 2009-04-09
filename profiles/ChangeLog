@@ -1,10 +1,38 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2501 2009/04/07 04:07:36 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2510 2009/04/08 23:11:37 volkmar Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  08 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Add net-libs/zapata for removal
+
+  08 Apr 2009; Patrick Lauer <patrick@gentoo.org> package.mask:
+  Removing python 2.6 mask
+
+  08 Apr 2009; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  Mask for testing, bug #265385
+
+  08 Apr 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Remove sudo 1.7.1 beta masking, moved on to RCs.
+
+  08 Apr 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Remove ruby-gdchart masking (it has been removed).
+
+  08 Apr 2009; Andreas Proschofsky <suka@gentoo.org> package.mask:
+  Mask pre-releases of OpenOffice.org 3.1 for testing
+
+  07 Apr 2009; Benedikt Böhm <hollow@gentoo.org> use.local.desc:
+  add s3 USE flag for app-backup/duplicity
+
+  07 Apr 2009; Sébastien Fabbro <bicatali@gentoo.org> package.mask:
+  Removed =dev-python/visual-4* for testing, now gone from the tree
+
+  07 Apr 2009; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  mask dev-lang/erlang 13A beta version to give some users a test
+  possibility
 
   07 Apr 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask app-shells/bash-completion-config for removal - bug 253878
