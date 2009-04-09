@@ -1,6 +1,14 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.212 2009/02/04 09:15:26 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.213 2009/04/08 07:42:13 suka Exp $
+
+*openoffice-bin-3.1.0_rc1 (08 Apr 2009)
+
+  08 Apr 2009; Andreas Proschofsky <suka@gentoo.org>
+  +openoffice-bin-3.1.0_rc1.ebuild:
+  RC1 for OpenOffice.org 3.1. This adds back AMD64-support. Please also note
+  that this release is missing some language packs, these should be back
+  with RC2
 
 *openoffice-bin-3.0.1 (04 Feb 2009)
 
