@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/sdl-image
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.44 2009/04/04 20:23:05 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.45 2009/04/07 19:21:29 klausman Exp $
+
+  07 Apr 2009; Tobias Klausmann <klausman@gentoo.org>
+  sdl-image-1.2.7.ebuild:
+  Stable on alpha, bug #264906
 
   04 Apr 2009; <solar@gentoo.org> sdl-image-1.2.7.ebuild:
   - Keyword ~arm
