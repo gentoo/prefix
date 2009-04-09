@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.214 2009/03/23 18:34:21 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.215 2009/04/08 06:21:16 vapier Exp $
+
+*bash-4.0_p17 (08 Apr 2009)
+
+  08 Apr 2009; Mike Frysinger <vapier@gentoo.org> +bash-4.0_p17.ebuild:
+  Version bump.
 
   23 Mar 2009; Fabian Groffen <grobian@gentoo.org> bash-3.1_p17.ebuild,
   bash-3.2_p39.ebuild, bash-3.2_p48.ebuild, bash-3.2_p48-r1.ebuild,
