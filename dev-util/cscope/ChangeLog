@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cscope
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.106 2009/04/03 22:02:40 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.107 2009/04/07 18:39:15 klausman Exp $
+
+  07 Apr 2009; Tobias Klausmann <klausman@gentoo.org> cscope-15.7.ebuild:
+  Stable on alpha, bug #264509
 
   03 Apr 2009; Tiago Cunha <tcunha@gentoo.org> cscope-15.7.ebuild:
   stable amd64, bug 264509
