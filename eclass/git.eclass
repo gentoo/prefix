@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.19 2009/04/06 20:47:09 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.22 2009/04/08 16:46:34 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
 # Tomas Chvatal <scarabeus@gentoo.org>
 # Donnie Berkholz <dberkholz@gentoo.org>
-# @BLURB: This eclass provides functions for fetch and unpack git repozitories
+# @BLURB: This eclass provides functions for fetch and unpack git repositories
 # @DESCRIPTION:
 # The eclass is based on subversion eclass.
 # If you use this eclass, the ${S} is ${WORKDIR}/${P}.
@@ -14,7 +14,7 @@
 # @THANKS TO:
 # Fernando J. Pereda <ferdy@gentoo.org>
 
-inherit eutils
+inherit eutils base
 
 EGIT="git.eclass"
 
@@ -47,7 +47,7 @@ EGIT_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/git-src"
 # @ECLASS-VARIABLE: EGIT_FETCH_CMD
 # @DESCRIPTION:
 # Command for cloning the repository.
-EGIT_FETCH_CMD="git clone --bare"
+: ${EGIT_FETCH_CMD:="git clone --bare"}
 
 # @ECLASS-VARIABLE: EGIT_UPDATE_CMD
 # @DESCRIPTION:
@@ -145,7 +145,7 @@ git_fetch() {
 
 	# If we have same branch and the tree we can do --depth 1 clone
 	# which outputs into really smaller data transfers.
-	# Sadly we can do shallow copy for now because quite few packages need .git
+	# Sadly we can do shallow copy for now because quite a few packages need .git
 	# folder.
 	#[[ ${EGIT_TREE} = ${EGIT_BRANCH} ]] && \
 	#	EGIT_FETCH_CMD="${EGIT_FETCH_CMD} --depth 1"
@@ -183,6 +183,13 @@ git_fetch() {
 	debug-print "${FUNCNAME}: EGIT_OPTIONS = \"${EGIT_OPTIONS}\""
 
 	export GIT_DIR="${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}"
+
+	# we also have to remove all shallow copied repositories
+	# and fetch them again
+	if [[ -e "${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}/shallow" ]]; then
+		rm -rf "${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}"
+		einfo "The ${EGIT_CLONE_DIR} was shallow copy. Refetching."
+	fi
 
 	if [[ ! -d ${EGIT_CLONE_DIR} ]] ; then
 		# first clone
@@ -224,7 +231,6 @@ git_fetch() {
 		else
 			${elogcmd} "   at the commit: 		${cursha1}"
 		fi
-		# piping through cat is needed to avoid a stupid Git feature
 		${EGIT_DIFFSTAT_CMD} ${oldsha1}..${EGIT_BRANCH}
 	fi
 
@@ -329,7 +335,10 @@ git_src_unpack() {
 # src_prepare function for git stuff. Patches, bootstrap...
 git_src_prepare() {
 	debug-print-function ${FUNCNAME} "$@"
-
+	
+	# apply EGIT_PATCHES
 	git_apply_patches
+	# apply patches from PATCHES array too
+	base_src_prepare
 	git_bootstrap
 }

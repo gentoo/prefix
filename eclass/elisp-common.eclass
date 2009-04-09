@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.58 2009/03/26 14:14:22 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.59 2009/04/08 10:47:42 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -86,7 +86,7 @@
 # settings.  Give a hint in pkg_postinst(), which should be enough.
 #
 # The naming scheme for this site-init file matches the shell pattern
-# "[1-8][0-9]*-gentoo.el", where the two digits at the beginning define
+# "[1-8][0-9]*-gentoo*.el", where the two digits at the beginning define
 # the loading order (numbers below 10 or above 89 are reserved for
 # internal use).  So if your initialisation depends on another Emacs
 # package, your site file's number must be higher!
@@ -100,8 +100,11 @@
 #
 #   	elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
 #
-# in src_install().  If your subdirectory is not named ${PN}, give the
-# differing name as second argument.
+# in src_install().  Any characters after the "-gentoo" part and before
+# the extension will be stripped from the destination file's name.
+# For example, a file "50${PN}-gentoo-${PV}.el" will be installed as
+# "50${PN}-gentoo.el".  If your subdirectory is not named ${PN}, give
+# the differing name as second argument.
 #
 # .SS
 # pkg_postinst() / pkg_postrm() usage:
@@ -245,13 +248,23 @@ elisp-install() {
 # @FUNCTION: elisp-site-file-install
 # @USAGE: <site-init file> [subdirectory]
 # @DESCRIPTION:
-# Install Emacs site-init file in SITELISP directory.
+# Install Emacs site-init file in SITELISP directory.  Automatically
+# inserts a standard comment header with the name of the package (unless
+# it is already present).  Tokens @SITELISP@ and @SITEETC@ are replaced
+# by the path to the package's subdirectory in SITELISP and SITEETC,
+# respectively.
 
 elisp-site-file-install() {
-	local sf="${T}/${1##*/}" my_pn="${2:-${PN}}" ret
+	local sf="${1##*/}" my_pn="${2:-${PN}}" ret
+	local header=";;; ${PN} site-lisp configuration"
+
+	[[ ${sf} == [0-9][0-9]*-gentoo*.el ]] \
+		|| ewarn "elisp-site-file-install: bad name of site-init file"
+	sf="${T}/${sf/%-gentoo*.el/-gentoo.el}"
 	ebegin "Installing site initialisation file for GNU Emacs"
 	cp "$1" "${sf}"
-	sed -i -e "s:@SITELISP@:${ESITELISP}/${my_pn}:g" \
+	sed -i -e "1{:x;/^\$/{n;bx;};/^;.*${PN}/I!s:^:${header}\n\n:;1s:^:\n:;}" \
+		-e "s:@SITELISP@:${ESITELISP}/${my_pn}:g" \
 		-e "s:@SITEETC@:${ESITEETC}/${my_pn}:g;\$q" "${sf}"
 	( # subshell to avoid pollution of calling environment
 		insinto "${SITELISP}/site-gentoo.d"
