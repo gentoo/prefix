@@ -1,6 +1,11 @@
 # ChangeLog for dev-haskell/gtk2hs
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.50 2009/04/03 22:13:20 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.51 2009/04/07 10:50:56 fauli Exp $
+
+  07 Apr 2009; Christian Faulhammer <fauli@gentoo.org> gtk2hs-0.9.11.ebuild,
+  gtk2hs-0.9.12.ebuild, gtk2hs-0.9.12.1.ebuild:
+  disable Firefox support the hard way and make seamonkey not depend on
+  USE=xulrunner
 
   03 Apr 2009; Christian Faulhammer <fauli@gentoo.org> gtk2hs-0.9.11.ebuild,
   gtk2hs-0.9.12.ebuild, gtk2hs-0.9.12.1.ebuild:
