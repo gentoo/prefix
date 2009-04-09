@@ -1,6 +1,29 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.172 2009/03/30 15:34:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.179 2009/04/08 20:57:18 bluebird Exp $
+
+  08 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> mpg123-1.7.2.ebuild:
+  Stable on sparc, security bug #265342
+
+  08 Apr 2009; Tobias Heinlein <keytoaster@gentoo.org> mpg123-1.7.2.ebuild:
+  amd64 stable wrt security bug #265342
+
+  08 Apr 2009; Tobias Klausmann <klausman@gentoo.org> mpg123-1.7.2.ebuild:
+  Stable on alpha, bug #265342
+
+  08 Apr 2009; Tobias Klausmann <klausman@gentoo.org> ChangeLog:
+  Stable on alpha, bug #265342
+
+  08 Apr 2009; Jeroen Roovers <jer@gentoo.org> mpg123-1.7.2.ebuild:
+  Stable for HPPA (bug #265342).
+
+  08 Apr 2009; Brent Baude <ranger@gentoo.org> mpg123-1.7.2.ebuild:
+  Marking mpg123-1.7.2 ppc64 and ppc for bug 265342
+
+*mpg123-1.7.2 (08 Apr 2009)
+
+  08 Apr 2009; Alexis Ballier <aballier@gentoo.org> +mpg123-1.7.2.ebuild:
+  version bump, bug #264829 and bug #265342
 
   30 Mar 2009; Raúl Porcel <armin76@gentoo.org> mpg123-1.3.1.ebuild,
   mpg123-1.6.2.ebuild, mpg123-1.6.4.ebuild:
