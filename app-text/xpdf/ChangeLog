@@ -1,21 +1,21 @@
 # ChangeLog for app-text/xpdf
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.178 2009/04/02 21:56:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.179 2009/04/07 10:07:45 rbu Exp $
 
   02 Apr 2009; Markus Meier <maekke@gentoo.org> xpdf-3.02-r2.ebuild:
-  amd64 stable
+  amd64 stable (bug #242930)
 
   02 Apr 2009; Joseph Jezak <josejx@gentoo.org> xpdf-3.02-r2.ebuild:
-  Marked ppc/ppc64 stable.
+  Marked ppc/ppc64 stable (bug #242930).
 
   02 Apr 2009; Raúl Porcel <armin76@gentoo.org> xpdf-3.02-r2.ebuild:
-  alpha/arm/ia64/sh/x86 stable
+  alpha/arm/ia64/sh/x86 stable (bug #242930)
 
   02 Apr 2009; Jeroen Roovers <jer@gentoo.org> xpdf-3.02-r2.ebuild:
-  Stable for HPPA too.
+  Stable for HPPA too (bug #242930).
 
   02 Apr 2009; Ferris McCormick <fmccor@gentoo.org> xpdf-3.02-r2.ebuild:
-  Sparc stable --- works fine for me.
+  Sparc stable --- works fine for me (bug #242930).
 
   30 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> xpdf-3.02-r1.ebuild,
   xpdf-3.02-r2.ebuild:
@@ -26,7 +26,7 @@
   29 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> +xpdf-3.02-r2.ebuild:
   Bump. Fixes bug 200023. Thanks to KIMURA Masaru / hiyuh
   <hiyuh.root@gmail.com> for the fix and Joseph <syscon780@gmail.com> for
-  the report.
+  the report. Also fixes bug #242930 (CVE-2009-1144).
 
   16 Jan 2009; Peter Alfredsen <loki_val@gentoo.org>
   +files/xpdf-3.02-as-needed.patch, xpdf-3.02-r1.ebuild:
