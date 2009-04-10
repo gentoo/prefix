@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/python.eselect-${PVR}.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x64-solaris"
 IUSE=""
 
 RDEPEND=">=app-admin/eselect-1.0.2"
