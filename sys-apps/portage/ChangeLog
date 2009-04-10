@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.13286 (10 Apr 2009)
+
+  10 Apr 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.13133.ebuild, +portage-2.2.00.13286.ebuild:
+  New snapshot. This version uses BASH and MV from the locations configure
+  found, which should help to reduce the prefix-chaining patch a bit.
+
 *portage-2.2.00.13280 (02 Apr 2009)
 
   02 Apr 2009; Fabian Groffen <grobian@gentoo.org>

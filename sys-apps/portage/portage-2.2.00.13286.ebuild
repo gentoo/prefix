@@ -57,10 +57,8 @@ prefix_src_archives() {
 PV_PL="2.1.2"
 PATCHVER_PL=""
 TARBALL_PV="${PV}"
-SRC_URI="mirror://gentoo/prefix-${PN}-${TARBALL_PV}.tar.bz2
-	$(prefix_src_archives prefix-${PN}-${TARBALL_PV}.tar.bz2)
-	linguas_pl? ( mirror://gentoo/${PN}-man-pl-${PV_PL}.tar.bz2
-		$(prefix_src_archives ${PN}-man-pl-${PV_PL}.tar.bz2) )"
+SRC_URI="$(prefix_src_archives prefix-${PN}-${TARBALL_PV}.tar.bz2)
+	linguas_pl? ( $(prefix_src_archives ${PN}-man-pl-${PV_PL}.tar.bz2) )"
 
 #PATCHVER=$PV  # in prefix we don't do this
 if [ -n "${PATCHVER}" ]; then
