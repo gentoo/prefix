@@ -54,7 +54,7 @@ src_prepare() {
 		sed -i -e "/^${x} =.*/s:@${x}@::" config/Makefile.inc.in || die "sed failed"
 	done
 
-	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
 
 	if [[ ${CHOST} == *-winnt* ]]; then
 		epatch "${FILESDIR}"/${P}-winnt-basic.patch
