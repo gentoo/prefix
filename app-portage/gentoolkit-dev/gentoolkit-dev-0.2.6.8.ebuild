@@ -10,7 +10,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz http://dev.gentoo.org/~fuzzyray/distfiles/$
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x64-solaris"
+KEYWORDS="~ppc-macos ~x64-solaris"
 IUSE=""
 
 DEPEND=">=sys-apps/portage-2.0.50
@@ -18,6 +18,13 @@ DEPEND=">=sys-apps/portage-2.0.50
 	>=dev-util/dialog-0.7
 	>=dev-lang/perl-5.6
 	>=sys-apps/grep-2.4"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	sed -i -e "1s:^#!\( \|\):#!${EPREFIX}:" \
+		src/*/{echangelog,ekeyword,eviewcvs,ebump} || die "@!@#"
+}
 
 src_install() {
 	make DESTDIR="${D}/${EPREFIX}" install-gentoolkit-dev || die
