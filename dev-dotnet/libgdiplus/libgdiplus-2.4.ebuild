@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/libgdiplus-2.4.ebuild,v 1.1 2009/03/30 21:45:09 loki_val Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit go-mono mono flag-o-matic
 
