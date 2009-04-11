@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-1.5.1-r1.ebuild,v 1.8 2009/03/14 21:32:55 nixnut Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P="${P/_/-}"
