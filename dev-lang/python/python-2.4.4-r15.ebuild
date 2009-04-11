@@ -7,7 +7,7 @@
 #   in dev-lang/python. It _WILL_ stop people installing from
 #   Gentoo 1.4 images.
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit autotools eutils flag-o-matic python multilib versionator toolchain-funcs alternatives prefix
 
