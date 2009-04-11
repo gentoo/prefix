@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/lxde-base/lxappearance/lxappearance-0.2.ebuild,v 1.1 2008/11/07 14:28:51 yngwin Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 DESCRIPTION="LXDE GTK+ theme switcher"
 HOMEPAGE="http://lxde.sourceforge.net"
