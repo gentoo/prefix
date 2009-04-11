@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Manifest/Test-Manifest-1.21.ebuild,v 1.5 2008/02/05 10:29:00 corsair Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Interact with a t/test_manifest file"
