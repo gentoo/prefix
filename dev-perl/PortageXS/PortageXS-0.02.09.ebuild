@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/PortageXS/PortageXS-0.02.09.ebuild,v 1.5 2009/01/19 11:39:49 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils prefix
 DESCRIPTION="Portage abstraction layer for perl"
 HOMEPAGE="http://download.mpsna.de/opensource/PortageXS/"
