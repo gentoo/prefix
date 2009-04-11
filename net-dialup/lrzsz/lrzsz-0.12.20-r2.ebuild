@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dialup/lrzsz/lrzsz-0.12.20-r2.ebuild,v 1.2 2009/01/12 22:17:17 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dialup/lrzsz/lrzsz-0.12.20-r2.ebuild,v 1.3 2009/04/10 23:02:09 mrness Exp $
 
-EAPI="prefix"
+EAPI="2"
 
 inherit flag-o-matic eutils toolchain-funcs
 
@@ -15,17 +15,18 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="nls"
 
-src_unpack() {
-	unpack ${A}
+DEPEND="nls? ( virtual/libintl )"
+RDEPEND="${DEPEND}"
+
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-makefile-smp.patch
 	epatch "${FILESDIR}"/${PN}-implicit-decl.patch
 }
 
-src_compile() {
+src_configure() {
 	tc-export CC
 	append-flags -Wstrict-prototypes
 	econf $(use_enable nls) || die "econf failed"
-	emake || die "emake failed"
 }
 
 src_test() {
