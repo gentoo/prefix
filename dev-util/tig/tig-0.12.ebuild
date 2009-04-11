@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/tig/tig-0.12.ebuild,v 1.3 2008/11/04 09:36:49 vapier Exp $
 
-EAPI="prefix"
-
 inherit bash-completion
 
 DESCRIPTION="Tig: text mode interface for git"
