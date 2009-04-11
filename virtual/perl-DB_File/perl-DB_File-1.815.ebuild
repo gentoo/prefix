@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-DB_File/perl-DB_File-1.815.ebuild,v 1.9 2008/03/31 17:04:04 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Virtual for DB_File"
