@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomecanvas/libgnomecanvas-2.14.0.ebuild,v 1.17 2008/03/31 04:12:53 ricmm Exp $
 
-EAPI="prefix"
-
 inherit virtualx gnome2
 
 DESCRIPTION="The Gnome 2 Canvas library"
