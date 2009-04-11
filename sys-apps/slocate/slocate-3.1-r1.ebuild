@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/slocate-3.1-r1.ebuild,v 1.12 2008/03/16 08:41:57 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils prefix
 
 DESCRIPTION="Secure way to index and quickly search for files on your system (drop-in replacement for 'locate')"
