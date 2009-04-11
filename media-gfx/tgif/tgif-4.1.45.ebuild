@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/tgif-4.1.45.ebuild,v 1.5 2009/03/13 22:52:01 bangert Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 MY_P="${PN}-QPL-${PV}"
