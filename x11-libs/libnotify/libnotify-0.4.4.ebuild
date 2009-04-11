@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/libnotify/libnotify-0.4.4.ebuild,v 1.14 2009/01/19 19:18:38 pva Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Notifications library"
