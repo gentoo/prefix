@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Params-Util/Params-Util-0.35.ebuild,v 1.1 2008/11/21 10:08:38 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ADAMK
 inherit perl-module
 

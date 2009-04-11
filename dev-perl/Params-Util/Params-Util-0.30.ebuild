@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Params-Util/Params-Util-0.30.ebuild,v 1.5 2008/03/19 01:31:46 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Utility functions to aid in parameter checking"
