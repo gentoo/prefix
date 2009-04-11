@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/gob/gob-2.0.15.ebuild,v 1.9 2008/09/27 16:36:38 armin76 Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 MY_PN=gob2
