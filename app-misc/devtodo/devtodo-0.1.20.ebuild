@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/devtodo/devtodo-0.1.20.ebuild,v 1.12 2008/08/10 13:13:13 jokey Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils bash-completion flag-o-matic
 
 DESCRIPTION="A nice command line todo list for developers"
