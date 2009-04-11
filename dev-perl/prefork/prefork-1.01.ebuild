@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/prefork/prefork-1.01.ebuild,v 1.10 2007/07/13 17:22:18 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Optimized module loading for forking or non-forking processes"
