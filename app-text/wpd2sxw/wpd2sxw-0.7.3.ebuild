@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/wpd2sxw/wpd2sxw-0.7.3.ebuild,v 1.2 2008/10/05 13:09:12 gentoofan23 Exp $
 
-EAPI="prefix"
-
 IUSE=""
 
 DESCRIPTION="WordPerfect Document (wpd) to OpenOffice.org (sxw) converter"
