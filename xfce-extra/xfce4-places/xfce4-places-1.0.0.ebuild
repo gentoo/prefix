@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-places/xfce4-places-1.0.0.ebuild,v 1.7 2007/12/17 18:51:39 jer Exp $
 
-EAPI="prefix"
-
 inherit xfce44
 
 xfce44
