@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-ldap/perl-ldap-0.38.ebuild,v 1.2 2008/09/30 06:45:54 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=GBARR
 inherit perl-module
 

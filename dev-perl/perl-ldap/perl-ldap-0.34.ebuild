@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-ldap/perl-ldap-0.34.ebuild,v 1.11 2008/10/28 09:02:49 tove Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="A collection of perl modules which provide an object-oriented interface to LDAP servers."
