@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.80.ebuild,v 1.13 2008/11/27 18:49:00 jer Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils libtool multilib autotools
 
