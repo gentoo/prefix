@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/pygments-0.11.1.ebuild,v 1.1 2008/10/07 12:21:10 caleb Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.3
 
 inherit distutils
