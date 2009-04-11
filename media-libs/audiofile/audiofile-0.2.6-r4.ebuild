@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/audiofile/audiofile-0.2.6-r4.ebuild,v 1.7 2009/03/29 18:45:15 armin76 Exp $
 
-EAPI="prefix"
-
 inherit libtool autotools base flag-o-matic
 
 DESCRIPTION="An elegant API for accessing audio files"
