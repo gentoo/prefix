@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.10.ebuild,v 1.10 2007/08/25 11:45:27 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Modular -config replacement utility"
