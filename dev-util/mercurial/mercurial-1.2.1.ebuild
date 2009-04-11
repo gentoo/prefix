@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.2.1.ebuild,v 1.1 2009/03/21 12:03:25 nelchael Exp $
 
-EAPI="prefix"
-
 inherit bash-completion elisp-common flag-o-matic eutils distutils prefix
 
 DESCRIPTION="Scalable distributed SCM"
