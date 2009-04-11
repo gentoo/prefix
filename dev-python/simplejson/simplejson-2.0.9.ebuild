@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/simplejson/simplejson-2.0.9.ebuild,v 1.1 2009/04/03 09:43:10 patrick Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
