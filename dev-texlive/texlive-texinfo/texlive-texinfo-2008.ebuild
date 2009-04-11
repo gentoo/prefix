@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-texinfo/texlive-texinfo-2008.ebuild,v 1.11 2009/03/18 20:54:00 ranger Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULE_CONTENTS="texinfo collection-texinfo
 "
 TEXLIVE_MODULE_DOC_CONTENTS="texinfo.doc "

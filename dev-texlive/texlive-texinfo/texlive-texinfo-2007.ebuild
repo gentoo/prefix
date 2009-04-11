@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-texinfo/texlive-texinfo-2007.ebuild,v 1.17 2009/02/02 07:16:33 aballier Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULES_DEPS="dev-texlive/texlive-basic dev-texlive/texlive-genericrecommended"
 TEXLIVE_MODULE_CONTENTS="bin-texinfo texinfo collection-texinfo
 "
