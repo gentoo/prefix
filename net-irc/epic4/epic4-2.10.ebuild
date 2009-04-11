@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-irc/epic4/epic4-2.10.ebuild,v 1.7 2009/03/07 21:14:47 cla Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit flag-o-matic eutils toolchain-funcs
 
