@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/freemind-0.9.0_rc3.ebuild,v 1.1 2009/03/28 11:17:59 caster Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 # will handle rewriting myself
 JAVA_PKG_BSFIX="off"
