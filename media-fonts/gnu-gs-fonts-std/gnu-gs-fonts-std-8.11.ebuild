@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/gnu-gs-fonts-std/gnu-gs-fonts-std-8.11.ebuild,v 1.10 2007/07/12 10:09:18 uberlord Exp $
 
-EAPI="prefix"
-
 MY_PN=ghostscript-fonts-std
 MY_P=${MY_PN}-${PV}
 
