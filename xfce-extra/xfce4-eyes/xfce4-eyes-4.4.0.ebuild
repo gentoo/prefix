@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-eyes/xfce4-eyes-4.4.0.ebuild,v 1.23 2008/09/21 19:04:04 angelos Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils xfce44
 
 xfce44
