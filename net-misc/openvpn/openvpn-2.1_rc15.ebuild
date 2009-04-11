@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc15.ebuild,v 1.1 2009/01/03 18:36:43 cedk Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib prefix
 
 DESCRIPTION="OpenVPN is a robust and highly flexible tunneling application compatible with many OSes."
