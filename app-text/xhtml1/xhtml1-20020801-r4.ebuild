@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/xhtml1/xhtml1-20020801-r4.ebuild,v 1.4 2008/01/19 15:16:46 grobian Exp $
 
-EAPI="prefix"
-
 inherit sgml-catalog eutils
 
 DESCRIPTION="DTDs for the eXtensible HyperText Markup Language 1.0"
