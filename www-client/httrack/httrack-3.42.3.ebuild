@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/httrack/httrack-3.42.3.ebuild,v 1.4 2008/08/08 20:22:13 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit versionator
 
 MY_P="${PN}-$(get_version_component_range 1-2)-$(get_version_component_range 3)"
