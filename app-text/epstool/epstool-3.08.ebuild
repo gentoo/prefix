@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/epstool/epstool-3.08.ebuild,v 1.11 2009/02/19 18:38:39 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Creates or extracts preview images in EPS files, fixes bounding boxes,converts to bitmaps."
