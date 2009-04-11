@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.24.0.ebuild,v 1.6 2009/03/18 14:54:55 armin76 Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="Gnome keyboard configuration library"
