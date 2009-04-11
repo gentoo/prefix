@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/syck/syck-0.55-r4.ebuild,v 1.11 2008/08/09 21:35:20 hoffie Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic distutils
 
 IUSE="php python"
