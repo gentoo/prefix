@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/automake-wrapper-1-r1.ebuild,v 1.6 2006/11/03 18:35:40 grobian Exp $
 
-EAPI="prefix"
-
 inherit multilib
 
 DESCRIPTION="wrapper for automake to manage multiple automake versions"
