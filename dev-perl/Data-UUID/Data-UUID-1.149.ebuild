@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Data-UUID/Data-UUID-1.149.ebuild,v 1.1 2008/12/08 02:09:35 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Perl extension for generating Globally/Universally Unique
