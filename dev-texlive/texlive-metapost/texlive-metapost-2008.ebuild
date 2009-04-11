@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-metapost/texlive-metapost-2008.ebuild,v 1.10 2009/03/18 20:57:32 ranger Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULE_CONTENTS="automata bbcard blockdraw_mp bpolynomial cmarrows dviincl emp epsincl expressg exteps featpost hatching latexmp metaobj metaplot metapost metauml mfpic mfpic4ode mp3d mpattern piechartmp roex slideshow splines textpath bin-metapost collection-metapost
 "
 TEXLIVE_MODULE_DOC_CONTENTS="automata.doc bbcard.doc blockdraw_mp.doc bpolynomial.doc cmarrows.doc dviincl.doc emp.doc epsincl.doc expressg.doc exteps.doc featpost.doc hatching.doc latexmp.doc metaobj.doc metaplot.doc metapost.doc metauml.doc mfpic.doc mfpic4ode.doc mp3d.doc mpattern.doc piechartmp.doc slideshow.doc splines.doc textpath.doc bin-metapost.doc "

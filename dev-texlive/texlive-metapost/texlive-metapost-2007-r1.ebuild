@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-metapost/texlive-metapost-2007-r1.ebuild,v 1.11 2008/09/09 18:35:36 aballier Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULES_DEPS="dev-texlive/texlive-basic
 "
 TEXLIVE_MODULE_CONTENTS="bin-metapost cmarrows emp expressg exteps featpost hatching latexmp metaobj metaplot metapost metauml mfpic mp3d mpattern piechartmp roex slideshow splines textpath collection-metapost
