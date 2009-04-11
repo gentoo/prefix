@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/mscompress/mscompress-0.3.ebuild,v 1.18 2008/01/26 18:51:29 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="Microsoft compress.exe/expand.exe compatible (de)compressor"
