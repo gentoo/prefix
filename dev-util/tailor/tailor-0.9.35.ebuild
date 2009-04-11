@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/tailor/tailor-0.9.35.ebuild,v 1.1 2009/03/22 15:10:39 nelchael Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 
 inherit distutils
