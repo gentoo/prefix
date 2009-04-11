@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-Rijndael/Crypt-Rijndael-1.04.ebuild,v 1.6 2008/03/19 02:44:09 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils
 
 DESCRIPTION="Crypt::CBC compliant Rijndael encryption module"
