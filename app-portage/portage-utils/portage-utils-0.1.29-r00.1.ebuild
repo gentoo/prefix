@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.1.29.ebuild,v 1.9 2008/10/25 22:37:53 vapier Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils flag-o-matic prefix
 
 DESCRIPTION="small and fast portage helper tools written in C"
