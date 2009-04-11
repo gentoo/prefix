@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/hicolor-icon-theme/hicolor-icon-theme-0.10.ebuild,v 1.11 2007/06/24 23:08:15 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2-utils
 
 DESCRIPTION="Fallback theme for the freedesktop icon theme specification"
