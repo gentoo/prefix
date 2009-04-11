@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/ipcalc/ipcalc-0.41.ebuild,v 1.11 2008/02/03 16:30:42 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="calculates broadcast/network/etc... from an IP address and netmask"
 HOMEPAGE="http://jodies.de/ipcalc"
 SRC_URI="http://jodies.de/ipcalc-archive/${P}.tar.gz"
