@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.1.ebuild,v 1.5 2009/02/11 01:07:35 chainsaw Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic autotools
 
 MY_P="${P/_/-}"
