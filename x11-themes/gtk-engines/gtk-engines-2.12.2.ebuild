@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.12.2.ebuild,v 1.8 2007/12/11 10:46:13 vapier Exp $
 
-EAPI="prefix"
-
 inherit gnome2 autotools
 
 DESCRIPTION="GTK+2 standard engines and themes"
