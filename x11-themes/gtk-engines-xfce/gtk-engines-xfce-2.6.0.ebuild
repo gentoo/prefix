@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-xfce/gtk-engines-xfce-2.6.0.ebuild,v 1.1 2009/03/10 13:55:18 angelos Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 MY_PN="gtk-xfce-engine"
 inherit xfce4
