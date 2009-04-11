@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/album/album-4.02.ebuild,v 1.7 2007/06/29 21:59:06 pylon Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="HTML photo album generator"
 HOMEPAGE="http://MarginalHacks.com/Hacks/album/"
 SRC_URI="http://marginalhacks.com/bin/album.versions/${P}.tar.gz"
