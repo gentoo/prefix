@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/lxde-base/lxterminal/lxterminal-0.1.4.ebuild,v 1.1 2009/01/12 23:31:27 bluebird Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 DESCRIPTION="Lightweight vte-based tabbed terminal emulator for LXDE"
 HOMEPAGE="http://lxde.sf.net/"
