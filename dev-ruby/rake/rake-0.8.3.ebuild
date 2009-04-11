@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/rake-0.8.3.ebuild,v 1.7 2009/03/16 16:00:06 a3li Exp $
 
-EAPI="prefix"
-
 inherit gems
 USE_RUBY="ruby18"
 
