@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/libiconv/libiconv-0.ebuild,v 1.4 2008/01/25 19:40:48 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for the GNU conversion library"
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/"
 SRC_URI=""
