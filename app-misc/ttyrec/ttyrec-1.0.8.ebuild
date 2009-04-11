@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/ttyrec/ttyrec-1.0.8.ebuild,v 1.1 2008/02/09 01:04:47 matsuu Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="tty recorder"
