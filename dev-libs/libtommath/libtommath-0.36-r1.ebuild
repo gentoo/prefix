@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/libtommath-0.36-r1.ebuild,v 1.10 2009/03/30 16:28:55 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 DESCRIPTION="highly optimized and portable routines for integer based number theoretic applications"
