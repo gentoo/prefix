@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libaio/libaio-0.3.107.ebuild,v 1.11 2009/03/18 15:03:45 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib toolchain-funcs
 
 DESCRIPTION="Asynchronous input/output library that uses the kernels native interface"
