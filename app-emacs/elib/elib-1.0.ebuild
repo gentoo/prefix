@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/elib/elib-1.0.ebuild,v 1.15 2008/01/25 12:10:09 opfer Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="The Emacs Lisp Library"
