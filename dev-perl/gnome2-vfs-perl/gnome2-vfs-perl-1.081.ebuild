@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/gnome2-vfs-perl/gnome2-vfs-perl-1.081.ebuild,v 1.1 2008/09/21 06:22:45 tove Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Gnome2-VFS-${PV}
