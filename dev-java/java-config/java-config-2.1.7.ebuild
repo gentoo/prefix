@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.7.ebuild,v 1.8 2009/03/18 15:01:39 ranger Exp $
 
-EAPI="prefix"
-
 inherit fdo-mime gnome2-utils distutils eutils prefix
 
 DESCRIPTION="Java environment configuration tool"

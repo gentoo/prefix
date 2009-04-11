@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.4.ebuild,v 1.7 2008/09/27 17:11:43 armin76 Exp $
 
-EAPI="prefix"
-
 inherit distutils eutils prefix
 
 DESCRIPTION="Java environment configuration tool"
