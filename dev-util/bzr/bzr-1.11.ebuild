@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-1.11.ebuild,v 1.1 2009/01/20 11:58:51 pva Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 
 inherit distutils bash-completion elisp-common eutils versionator
