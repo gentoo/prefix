@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.3.ebuild,v 1.10 2009/01/01 15:47:52 gmsoft Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 DESCRIPTION="Standard EXT2 and EXT3 filesystem utilities"
