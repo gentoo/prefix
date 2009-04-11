@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.7.7.ebuild,v 1.3 2008/10/28 11:56:18 hawking Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.3
 
 inherit python toolchain-funcs versionator multilib eutils
