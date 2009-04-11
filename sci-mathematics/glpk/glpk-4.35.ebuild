@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.35.ebuild,v 1.6 2009/04/08 17:51:54 jer Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="GNU Linear Programming Kit"
