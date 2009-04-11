@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r1.ebuild,v 1.7 2009/03/30 02:06:40 loki_val Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 DESCRIPTION="An X Viewer for PDF Files"

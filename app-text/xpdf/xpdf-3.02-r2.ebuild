@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r2.ebuild,v 1.7 2009/04/02 21:56:53 maekke Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils flag-o-matic
 
