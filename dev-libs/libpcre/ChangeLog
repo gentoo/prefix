@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libpcre
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.146 2008/11/05 11:42:25 loki_val Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.147 2009/04/09 16:08:21 loki_val Exp $
+
+*libpcre-7.9_rc2 (09 Apr 2009)
+*libpcre-7.8-r1 (09 Apr 2009)
+
+  09 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> -libpcre-7.7-r1.ebuild,
+  +libpcre-7.8-r1.ebuild, +libpcre-7.9_rc2.ebuild:
+  Bump. No longer include .la and .a files. Revision bump for 7.8 with the
+  same changes. Move libpcre.so* to /lib for grep - bug 1638 and bug 53627.
 
   05 Nov 2008; Peter Alfredsen <loki_val@gentoo.org> -libpcre-7.4.ebuild:
   Clean out GLSA'd ebuild
