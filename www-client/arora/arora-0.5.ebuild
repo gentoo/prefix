@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/arora/arora-0.5.ebuild,v 1.1 2009/02/21 10:35:32 yngwin Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit eutils qt4
 
 DESCRIPTION="A cross-platform Qt4 WebKit browser"
