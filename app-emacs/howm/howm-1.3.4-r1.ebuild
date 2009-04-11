@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/howm/howm-1.3.4-r1.ebuild,v 1.4 2007/12/01 12:01:23 nixnut Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="Note-taking tool on Emacs"
