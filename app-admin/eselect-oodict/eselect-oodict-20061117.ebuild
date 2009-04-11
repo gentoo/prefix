@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-admin/eselect-oodict/eselect-oodict-20061117.ebuild,v 1.7 2007/10/06 07:30:56 tgall Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Manages configuration of dictionaries for OpenOffice.Org."
 HOMEPAGE="http://www.gentoo.org/"
 
