@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/hteditor/hteditor-2.0.14.ebuild,v 1.1 2008/08/17 04:47:40 dragonheart Exp $
 
-EAPI="prefix"
-
 MY_PV=${PV/_/}
 
 DESCRIPTION="editor for executable files"

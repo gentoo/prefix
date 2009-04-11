@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/hteditor/hteditor-2.0.ebuild,v 1.5 2007/05/05 14:59:10 dertobi123 Exp $
 
-EAPI="prefix"
-
 MY_PV=${PV/_/}
 DESCRIPTION="editor for executable files"
 HOMEPAGE="http://hte.sourceforge.net/"
