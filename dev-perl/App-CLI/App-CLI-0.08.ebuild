@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/App-CLI/App-CLI-0.08.ebuild,v 1.1 2009/02/26 11:41:32 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ALEXMV
 inherit perl-module
 

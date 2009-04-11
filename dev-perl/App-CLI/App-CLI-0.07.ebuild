@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/App-CLI/App-CLI-0.07.ebuild,v 1.2 2008/11/18 14:21:07 tove Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Dispatcher module for command line interface programs"
