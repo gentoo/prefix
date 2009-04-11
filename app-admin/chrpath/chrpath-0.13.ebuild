@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/chrpath/chrpath-0.13.ebuild,v 1.10 2008/11/23 18:05:16 patrick Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="chrpath can modify the rpath and runpath of ELF executables"
