@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/lxml-2.0.5.ebuild,v 1.4 2008/07/13 22:07:53 josejx Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON="2.3"
 
 inherit distutils eutils multilib
