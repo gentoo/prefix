@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/xjavac/xjavac-20041208-r5.ebuild,v 1.9 2008/01/16 22:19:40 caster Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="The implementation of the javac compiler for IBM JDK 1.4 (needed for xerces-2)"
