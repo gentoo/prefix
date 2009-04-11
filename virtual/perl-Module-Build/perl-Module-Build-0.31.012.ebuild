@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-Module-Build/perl-Module-Build-0.31.012.ebuild,v 1.1 2009/01/14 14:31:04 tove Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Build and install Perl modules"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI=""
