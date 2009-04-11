@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Params-Validate/Params-Validate-0.88.ebuild,v 1.7 2007/11/10 14:19:00 drac Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="A module to provide a flexible system for validation method/function call parameters"

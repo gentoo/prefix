@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Params-Validate/Params-Validate-0.91.ebuild,v 1.1 2008/09/08 07:20:08 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=DROLSKY
 inherit perl-module
 
