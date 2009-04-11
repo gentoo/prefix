@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.4.3.ebuild,v 1.7 2008/12/15 05:04:19 jer Exp $
 
-EAPI="prefix"
-
 HOMEPAGE="http://www.xfce.org"
 DESCRIPTION="Meta package for Xfce4 desktop, merge this package to install."
 SRC_URI=""

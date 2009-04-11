@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.6.0.ebuild,v 1.2 2009/03/16 08:04:10 angelos Exp $
 
-EAPI="prefix"
-
 XFCE_VERSION=${PV}
 
 HOMEPAGE="http://www.xfce.org"
