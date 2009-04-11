@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/g-cpan/g-cpan-0.15.0-r1.ebuild,v 1.13 2007/08/10 18:04:15 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module prefix
 
 DESCRIPTION="g-cpan: generate and install CPAN modules using portage"
