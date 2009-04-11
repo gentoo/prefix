@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/treecc/treecc-0.3.10.ebuild,v 1.2 2007/08/28 23:27:35 jurek Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="compiler-compiler tool for aspect-oriented programming"
 HOMEPAGE="http://www.southern-storm.com.au/treecc.html"
 SRC_URI="http://www.southern-storm.com.au/download/${P}.tar.gz
