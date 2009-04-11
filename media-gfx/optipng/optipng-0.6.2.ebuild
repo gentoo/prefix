@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/optipng-0.6.2.ebuild,v 1.5 2008/12/07 13:41:52 nyhm Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="Compress PNG files without affecting image quality"
