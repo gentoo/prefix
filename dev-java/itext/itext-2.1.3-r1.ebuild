@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/itext/itext-2.1.3-r1.ebuild,v 1.1 2008/07/15 06:30:11 wltjr Exp $
 
-EAPI="prefix 1"
+EAPI=1
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-ant-2
