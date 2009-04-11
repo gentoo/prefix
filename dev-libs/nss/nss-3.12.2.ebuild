@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.2.ebuild,v 1.5 2009/02/15 11:32:16 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic multilib toolchain-funcs
 
 NSPR_VER="4.7.3"
