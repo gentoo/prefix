@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r7.ebuild,v 1.3 2008/01/12 21:09:48 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools multilib
 
 DESCRIPTION="fast compiler cache"
