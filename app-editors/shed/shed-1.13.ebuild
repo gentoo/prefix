@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/shed/shed-1.13.ebuild,v 1.4 2008/02/08 19:32:02 coldwind Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 IUSE=""
