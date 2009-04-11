@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_ssh/pam_ssh-1.92.ebuild,v 1.21 2009/03/15 16:55:46 ranger Exp $
 
-EAPI="prefix"
-
 inherit pam eutils
 
 DESCRIPTION="Uses ssh-agent to provide single sign-on"
