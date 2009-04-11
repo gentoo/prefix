@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/Archive-Zip-1.20.ebuild,v 1.10 2008/11/18 14:22:37 tove Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="A wrapper that lets you read Zip archive members as if they were files"
