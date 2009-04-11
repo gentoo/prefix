@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/a52dec-0.7.4-r6.ebuild,v 1.2 2008/06/16 10:42:16 flameeyes Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
 
