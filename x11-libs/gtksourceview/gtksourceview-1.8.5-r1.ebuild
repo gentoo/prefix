@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-libs/gtksourceview/gtksourceview-1.8.5-r1.ebuild,v 1.11 2008/06/15 19:44:52 swegener Exp $
 
-EAPI="prefix"
-
 inherit gnome2 flag-o-matic autotools
 
 DESCRIPTION="A text widget implementing syntax highlighting and other features"
