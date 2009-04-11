@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/libspectre/libspectre-0.2.1.ebuild,v 1.8 2008/11/01 17:27:45 nixnut Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="Library to render Postscript documents."
