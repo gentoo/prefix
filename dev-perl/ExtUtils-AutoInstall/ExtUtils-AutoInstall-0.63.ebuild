@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/ExtUtils-AutoInstall/ExtUtils-AutoInstall-0.63.ebuild,v 1.12 2007/07/10 23:33:30 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Allows module writers to specify a more sophisticated form of dependency information"
