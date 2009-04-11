@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/commons-collections/commons-collections-3.2-r1.ebuild,v 1.7 2008/06/23 09:43:33 ali_bush Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source test"
 
 inherit java-pkg-2 java-ant-2 eutils
