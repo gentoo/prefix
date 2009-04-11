@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.19-r2.ebuild,v 1.7 2008/04/20 21:13:10 vapier Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
 inherit eutils autotools depend.php
