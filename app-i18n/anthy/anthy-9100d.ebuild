@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/anthy-9100d.ebuild,v 1.8 2008/03/07 16:34:08 beandog Exp $
 
-EAPI="prefix"
-
 inherit elisp-common eutils
 
 IUSE="emacs"
