@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.9.ebuild,v 1.8 2009/03/22 19:37:28 armin76 Exp $
 
-EAPI="prefix"
-
 # doc package for -dev version exists?
 doc_available=true
 

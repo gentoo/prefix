@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.4-r1.ebuild,v 1.11 2009/01/21 11:20:25 tove Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib autotools prefix
 
 LOVERS_PV=0.5
