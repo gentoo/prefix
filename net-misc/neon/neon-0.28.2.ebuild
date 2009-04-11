@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.2.ebuild,v 1.3 2008/06/14 16:33:52 nixnut Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils libtool versionator
 
 RESTRICT="test"

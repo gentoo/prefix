@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.26.4.ebuild,v 1.10 2008/06/01 12:08:15 hollow Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool versionator autotools
 
 DESCRIPTION="HTTP and WebDAV client library"
