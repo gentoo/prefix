@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/libsamplerate-0.1.6.ebuild,v 1.1 2009/02/08 09:41:03 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="Secret Rabbit Code (aka libsamplerate) is a Sample Rate Converter for audio"

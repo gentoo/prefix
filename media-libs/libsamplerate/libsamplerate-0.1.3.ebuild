@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/libsamplerate-0.1.3.ebuild,v 1.2 2008/05/13 09:28:20 drac Exp $
 
-EAPI="prefix"
-
 WANT_AUTOMAKE=1.7
 
 inherit eutils autotools
