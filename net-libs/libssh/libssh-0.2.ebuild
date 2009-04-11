@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-libs/libssh/libssh-0.2.ebuild,v 1.1 2007/01/07 04:17:23 dragonheart Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Access a working SSH implementation by means of a library"
