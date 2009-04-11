@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Ogg-Vorbis-Header-PurePerl/Ogg-Vorbis-Header-PurePerl-1.0.ebuild,v 1.1 2008/11/25 10:08:01 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=DANIEL
 inherit perl-module
 
