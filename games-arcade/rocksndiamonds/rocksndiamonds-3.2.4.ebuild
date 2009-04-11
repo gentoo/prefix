@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.2.4.ebuild,v 1.5 2008/06/25 18:55:13 nixnut Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils games
 
 DESCRIPTION="A Boulderdash clone"
