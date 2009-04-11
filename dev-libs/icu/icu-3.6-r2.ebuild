@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-3.6-r2.ebuild,v 1.8 2008/12/07 12:06:07 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="IBM Internationalization Components for Unicode"

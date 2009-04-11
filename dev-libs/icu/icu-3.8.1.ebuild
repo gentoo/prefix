@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-3.8.1.ebuild,v 1.1 2008/01/04 13:34:10 jokey Exp $
 
-EAPI="prefix"
-
 inherit eutils versionator
 
 DESCRIPTION="International Components for Unicode"
