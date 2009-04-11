@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Cairo/Cairo-1.06.0.ebuild,v 1.6 2008/06/13 09:32:04 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module versionator
 
 MY_P="${PN}-$(delete_version_separator 2)"
