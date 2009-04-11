@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-0.7.43.ebuild,v 1.1 2009/03/22 13:46:18 voxus Exp $
 
-EAPI="prefix"
-
 inherit eutils ssl-cert toolchain-funcs
 
 DESCRIPTION="Robust, small and high performance http and reverse proxy server"
