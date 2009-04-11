@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/par/par-1.52.ebuild,v 1.10 2008/01/03 18:16:00 grobian Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 MY_P="Par${PV/./}"
