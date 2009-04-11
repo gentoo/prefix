@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-common/gnome-common-2.12.0.ebuild,v 1.16 2007/08/06 05:29:16 kumba Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="Common files for development of Gnome packages"
