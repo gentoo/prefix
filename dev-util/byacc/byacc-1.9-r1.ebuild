@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/byacc/byacc-1.9-r1.ebuild,v 1.9 2006/01/21 23:13:03 weeve Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="the best variant of the Yacc parser generator"
