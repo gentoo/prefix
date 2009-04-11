@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/xar/xar-1.5.2.ebuild,v 1.4 2008/05/26 05:48:44 jer Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit autotools eutils
 
