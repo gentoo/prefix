@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r3.ebuild,v 1.1 2009/02/21 10:22:46 drizzt Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils
 

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r2.ebuild,v 1.14 2009/02/02 16:50:24 drizzt Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P=${PN}${PV}
