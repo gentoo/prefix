@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/libassuan-1.0.2-r1.ebuild,v 1.11 2008/08/30 06:16:44 dragonheart Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="Standalone IPC library used by gpg, gpgme and newpg"
