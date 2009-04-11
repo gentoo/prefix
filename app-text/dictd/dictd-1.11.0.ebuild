@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.11.0.ebuild,v 1.6 2008/12/22 20:39:35 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="Dictionary Client/Server for the DICT protocol"
