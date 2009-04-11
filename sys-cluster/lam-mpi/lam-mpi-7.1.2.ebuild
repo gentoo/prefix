@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.2.ebuild,v 1.17 2008/03/11 14:34:41 jsbronder Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils fortran flag-o-matic multilib portability
 
 # LAM is a PITA with PBS. If it's detected, there is NO way to turn it off!
