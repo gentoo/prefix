@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/extutils-pkgconfig/extutils-pkgconfig-1.12.ebuild,v 1.3 2009/04/06 14:23:51 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=TSCH
 MY_PN=ExtUtils-PkgConfig
 MY_P=${MY_PN}-${PV}
