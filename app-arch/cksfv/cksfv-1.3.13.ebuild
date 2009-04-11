@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/cksfv/cksfv-1.3.13.ebuild,v 1.6 2009/02/22 20:28:40 tcunha Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="SFV checksum utility (simple file verification)"
