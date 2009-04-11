@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-plugins/replytolist/replytolist-0.3.0.ebuild,v 1.1 2007/12/11 17:45:32 armin76 Exp $
 
-EAPI="prefix"
-
 inherit mozextension multilib
 
 DESCRIPTION="Thunderbird extension to reply to mailing list"
