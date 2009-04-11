@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p6.ebuild,v 1.7 2009/03/29 19:51:25 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs flag-o-matic
 
 MY_P=${P/_p/p}
