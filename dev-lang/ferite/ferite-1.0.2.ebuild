@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/ferite/ferite-1.0.2.ebuild,v 1.11 2008/10/29 11:23:14 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit multilib
 
 DESCRIPTION="A clean, lightweight, object oriented scripting language"
