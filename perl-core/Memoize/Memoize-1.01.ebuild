@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Memoize/Memoize-1.01.ebuild,v 1.3 2006/08/04 13:28:44 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Memoize-${PV}
