@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/notification-daemon-0.3.7-r1.ebuild,v 1.1 2008/11/20 14:48:07 cardoe Exp $
 
-EAPI="prefix"
-
 inherit gnome2 eutils
 
 DESCRIPTION="Notifications daemon"

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/notification-daemon-0.4.0.ebuild,v 1.9 2009/04/05 14:12:08 klausman Exp $
 
-EAPI="prefix"
-
 WANT_AUTOMAKE="1.9"
 
 inherit gnome2 eutils
