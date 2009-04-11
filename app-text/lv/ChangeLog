@@ -1,6 +1,9 @@
 # ChangeLog for app-text/lv
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.31 2008/12/01 21:45:21 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.32 2009/04/11 01:11:07 matsuu Exp $
+
+  11 Apr 2009; MATSUU Takuto <matsuu@gentoo.org> -lv-4.51.ebuild:
+  Removed old version.
 
   01 Dec 2008; Brent Baude <ranger@gentoo.org> lv-4.51-r1.ebuild:
   Marking lv-4.51-r1 ppc64 for bug 243734
