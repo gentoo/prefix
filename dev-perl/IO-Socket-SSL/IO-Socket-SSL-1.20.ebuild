@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/IO-Socket-SSL-1.20.ebuild,v 1.1 2009/01/16 10:37:32 robbat2 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=SULLR
 inherit perl-module
 
