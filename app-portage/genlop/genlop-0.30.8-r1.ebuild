@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/genlop/genlop-0.30.8-r1.ebuild,v 1.9 2009/03/26 12:33:09 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils bash-completion prefix
 
 DESCRIPTION="A nice emerge.log parser"
