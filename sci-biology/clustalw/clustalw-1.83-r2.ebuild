@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/clustalw-1.83-r2.ebuild,v 1.1 2008/08/27 22:51:42 ribosome Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="General purpose multiple alignment program for DNA and proteins"
