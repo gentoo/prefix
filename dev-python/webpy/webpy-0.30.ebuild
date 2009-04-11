@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/webpy/webpy-0.30.ebuild,v 1.1 2009/01/04 20:24:24 patrick Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 MY_PN="web.py"
