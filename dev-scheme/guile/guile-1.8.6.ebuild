@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.6.ebuild,v 1.1 2008/12/11 16:17:19 hkbst Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic elisp-common
 
 DESCRIPTION="Scheme interpreter"

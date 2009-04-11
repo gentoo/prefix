@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.3-r2.ebuild,v 1.10 2008/02/24 19:46:45 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools flag-o-matic
 
 DESCRIPTION="Scheme interpreter"
