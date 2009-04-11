@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.0.3-r12.ebuild,v 1.1 2009/03/07 22:20:53 dang Exp $
 
-EAPI="prefix"
-
 inherit autotools bash-completion gnome2 eutils flag-o-matic
 
 DESCRIPTION="GNOME Virtual Filesystem Layer"
