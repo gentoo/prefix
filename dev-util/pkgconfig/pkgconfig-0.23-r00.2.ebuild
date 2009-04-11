@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/pkgconfig-0.23.ebuild,v 1.8 2008/11/04 09:37:09 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils
 
 MY_PN="pkg-config"

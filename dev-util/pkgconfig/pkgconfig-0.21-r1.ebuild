@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/pkgconfig-0.21-r1.ebuild,v 1.14 2007/11/03 17:16:39 grobian Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils
 
 MY_P="pkg-config"-${PV}
