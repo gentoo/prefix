@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/dmake/dmake-4.1-r1.ebuild,v 1.21 2007/04/01 19:16:12 anant Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Improved make"
