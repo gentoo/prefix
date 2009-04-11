@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.6-r2.ebuild,v 1.4 2009/04/09 21:33:33 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.9.ebuild,v 1.3 2009/04/09 21:28:18 vapier Exp $
 
 EAPI="prefix"
 
@@ -30,14 +30,6 @@ has sandbox_death_notice ${EBUILD_DEATH_HOOKS} || EBUILD_DEATH_HOOKS="${EBUILD_D
 sandbox_death_notice() {
 	ewarn "If configure failed with a 'cannot run C compiled programs' error, try this:"
 	ewarn "FEATURES=-sandbox emerge sandbox"
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-disable-qa-static.patch
-	epatch "${FILESDIR}"/${P}-disable-pthread.patch
-	epatch "${FILESDIR}"/0001-libsandbox-handle-more-at-functions.patch
 }
 
 src_compile() {
