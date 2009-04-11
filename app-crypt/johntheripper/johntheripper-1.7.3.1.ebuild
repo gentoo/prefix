@@ -21,7 +21,7 @@ SRC_URI="http://www.openwall.com/john/g/${MY_P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
-EAPI="prefix 1"
+EAPI=1
 IUSE="mmx altivec sse2 custom-cflags -minimal -mpi"
 
 # Seems a bit fussy with other MPI implementations.
