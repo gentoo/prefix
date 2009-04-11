@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/cfv/cfv-1.18.1.ebuild,v 1.10 2008/07/02 15:04:33 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Utility to test and create .sfv, .csv, .crc and md5sum files"

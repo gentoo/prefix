@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/cfv/cfv-1.18.2.ebuild,v 1.5 2009/03/17 12:06:16 tcunha Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Utility to test and create .sfv, .csv, .crc and md5sum files"
 HOMEPAGE="http://cfv.sourceforge.net/"
 SRC_URI="mirror://sourceforge/cfv/${P}.tar.gz"
