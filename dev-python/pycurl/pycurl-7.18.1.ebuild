@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/pycurl-7.18.1.ebuild,v 1.1 2008/05/21 21:12:31 hawking Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="python binding for curl/libcurl"
