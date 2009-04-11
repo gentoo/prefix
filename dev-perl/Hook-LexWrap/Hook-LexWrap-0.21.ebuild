@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Hook-LexWrap/Hook-LexWrap-0.21.ebuild,v 1.1 2008/12/08 02:19:36 robbat2 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR="CHORNY"
 MODULE_A="${P}.zip"
 inherit perl-module
