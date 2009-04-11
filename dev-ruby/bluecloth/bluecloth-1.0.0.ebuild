@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/bluecloth-1.0.0.ebuild,v 1.12 2008/11/03 00:41:01 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 MY_P="BlueCloth-${PV}"
