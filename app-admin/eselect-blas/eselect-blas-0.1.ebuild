@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-blas/eselect-blas-0.1.ebuild,v 1.19 2008/12/07 18:25:47 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="BLAS module for eselect"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
 SRC_URI=""
