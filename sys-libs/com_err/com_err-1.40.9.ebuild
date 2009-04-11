@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/com_err/com_err-1.40.9.ebuild,v 1.9 2008/08/26 18:44:03 gentoofan23 Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="common error display library"
