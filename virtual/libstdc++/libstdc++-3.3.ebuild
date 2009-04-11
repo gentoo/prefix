@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/libstdc++/libstdc++-3.3.ebuild,v 1.13 2007/12/24 19:34:16 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for the GNU Standard C++ Library"
 HOMEPAGE="http://www.gentoo.org/proj/en/base/"
 SRC_URI=""
