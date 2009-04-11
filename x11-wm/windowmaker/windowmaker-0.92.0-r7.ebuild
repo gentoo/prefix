@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-wm/windowmaker/windowmaker-0.92.0-r7.ebuild,v 1.8 2008/08/26 06:56:22 grobian Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit autotools eutils gnustep-base flag-o-matic
 
