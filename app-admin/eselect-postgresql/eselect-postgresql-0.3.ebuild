@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-admin/eselect-postgresql/eselect-postgresql-0.3.ebuild,v 1.3 2008/05/19 07:06:50 dev-zero Exp $
 
-EAPI="prefix"
-
 inherit multilib eutils prefix
 
 DESCRIPTION="Utility to change the default postgresql installation"
