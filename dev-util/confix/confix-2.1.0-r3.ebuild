@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/confix/confix-2.1.0-r3.ebuild,v 1.1 2008/12/17 15:00:48 mduft Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="Confix: A Build Tool on Top of GNU Automake"
