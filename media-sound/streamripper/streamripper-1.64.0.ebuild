@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/streamripper/streamripper-1.64.0.ebuild,v 1.6 2008/12/01 15:41:24 ranger Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Extracts and records individual MP3 file tracks from shoutcast streams"
 HOMEPAGE="http://streamripper.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
