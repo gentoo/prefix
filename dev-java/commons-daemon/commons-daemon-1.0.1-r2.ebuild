@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/commons-daemon/commons-daemon-1.0.1-r2.ebuild,v 1.5 2007/11/25 12:06:34 nelchael Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF=2.5
 inherit java-pkg-2 java-ant-2 eutils autotools
 
