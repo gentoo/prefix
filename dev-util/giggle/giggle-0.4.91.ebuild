@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/giggle-0.4.91.ebuild,v 1.2 2009/04/03 12:36:50 ikelos Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit autotools gnome2
 

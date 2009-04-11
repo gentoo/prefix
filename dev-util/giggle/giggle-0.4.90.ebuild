@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/giggle-0.4.90.ebuild,v 1.3 2009/02/15 14:25:01 ikelos Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit gnome2
 
