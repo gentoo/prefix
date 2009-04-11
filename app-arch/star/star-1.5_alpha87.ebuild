@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5_alpha87.ebuild,v 1.7 2007/12/16 08:51:02 drac Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="An enhanced (world's fastest) tar, as well as enhanced mt/rmt"
