@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/sharutils/sharutils-4.6.3.ebuild,v 1.11 2009/03/18 14:40:46 ricmm Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P="${P/_/-}"
