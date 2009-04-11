@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.11-r1.ebuild,v 1.1 2009/03/11 02:24:33 dang Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit gnome2-utils
 
