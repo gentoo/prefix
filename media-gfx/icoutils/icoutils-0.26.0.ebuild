@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/icoutils/icoutils-0.26.0.ebuild,v 1.4 2007/04/08 21:41:40 welp Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="A set of programs for extracting and converting images in Microsoft Windows icon and cursor files (.ico, .cur)."
