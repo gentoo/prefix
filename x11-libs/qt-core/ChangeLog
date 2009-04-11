@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.39 2009/04/05 16:47:19 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.40 2009/04/09 15:24:11 armin76 Exp $
+
+  09 Apr 2009; Raúl Porcel <armin76@gentoo.org> qt-core-4.4.2-r2.ebuild:
+  ia64/sparc stable wrt #263945
 
   05 Apr 2009; Tobias Klausmann <klausman@gentoo.org>
   qt-core-4.4.2-r2.ebuild:
