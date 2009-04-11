@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.2.ebuild,v 1.4 2009/03/07 20:43:18 betelgeuse Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit distutils webapp
 
