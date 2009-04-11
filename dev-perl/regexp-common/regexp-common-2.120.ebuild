@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/regexp-common/regexp-common-2.120.ebuild,v 1.11 2007/07/10 23:33:28 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Regexp-Common-${PV}

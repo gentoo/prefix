@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/regexp-common/regexp-common-2.122.ebuild,v 1.1 2008/07/22 10:08:11 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ABIGAIL
 inherit perl-module
 
