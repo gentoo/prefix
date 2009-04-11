@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.8.3.ebuild,v 1.9 2009/03/17 11:40:24 loki_val Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils multilib perl-app toolchain-funcs
 
