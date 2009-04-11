@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus/argus-2.0.6.ebuild,v 1.5 2008/11/21 12:45:05 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="network Audit Record Generation and Utilization System"
