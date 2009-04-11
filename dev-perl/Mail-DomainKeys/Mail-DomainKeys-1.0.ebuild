@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Mail-DomainKeys/Mail-DomainKeys-1.0.ebuild,v 1.5 2008/09/30 14:21:40 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ANTHONYU
 inherit perl-module
 
