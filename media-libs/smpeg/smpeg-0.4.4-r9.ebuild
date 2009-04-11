@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/smpeg/smpeg-0.4.4-r9.ebuild,v 1.10 2007/08/25 03:04:15 josejx Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 inherit eutils toolchain-funcs autotools flag-o-matic
