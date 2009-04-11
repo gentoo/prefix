@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-doc/phrack-all/phrack-all-65.ebuild,v 1.1 2008/05/10 10:34:51 vapier Exp $
 
-EAPI="prefix"
-
 MY_P=${PN}${PV}
 DESCRIPTION="...a Hacker magazine by the community, for the community... (this will install *all* issues of phrack)"
 HOMEPAGE="http://www.phrack.org/"
