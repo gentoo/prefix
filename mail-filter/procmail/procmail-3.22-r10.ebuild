@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/procmail-3.22-r10.ebuild,v 1.8 2009/02/16 16:55:58 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs prefix
 
 DESCRIPTION="Mail delivery agent/filter"
