@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/grep-2.5.4.ebuild,v 1.4 2009/04/09 16:09:35 loki_val Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="GNU regular expression matcher"
