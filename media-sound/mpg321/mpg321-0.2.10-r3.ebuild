@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/mpg321-0.2.10-r3.ebuild,v 1.12 2008/07/15 19:50:51 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Free MP3 player, drop-in replacement for mpg123"
