@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/amrwb/amrwb-7.0.0.2.ebuild,v 1.9 2008/05/25 09:04:18 aballier Exp $
 
-EAPI="prefix"
-
 SPEC_VER="26204-700"
 
 DESCRIPTION="Wrapper library for 3GPP Adaptive Multi-Rate Wideband Floating-point Speech Codec"
