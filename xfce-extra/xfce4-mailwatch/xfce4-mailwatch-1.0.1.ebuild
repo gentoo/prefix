@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-mailwatch/xfce4-mailwatch-1.0.1.ebuild,v 1.18 2007/05/18 11:51:39 armin76 Exp $
 
-EAPI="prefix"
-
 inherit xfce44
 
 xfce44
