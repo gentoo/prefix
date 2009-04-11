@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/which/which-2.19.ebuild,v 1.9 2008/03/29 15:28:11 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Prints out location of specified executables that are in your path"
