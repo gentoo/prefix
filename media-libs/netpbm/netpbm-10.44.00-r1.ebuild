@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.44.00-r1.ebuild,v 1.7 2009/03/06 02:51:02 jer Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic toolchain-funcs eutils multilib prefix
 
 MAN_VER=10.33
