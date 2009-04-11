@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/feynmf/feynmf-1.08-r3.ebuild,v 1.10 2009/03/18 19:28:33 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils latex-package
 
 DESCRIPTION="Combined LaTeX/Metafont package for drawing of Feynman diagrams"
