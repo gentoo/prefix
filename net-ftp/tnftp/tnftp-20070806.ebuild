@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-ftp/tnftp/tnftp-20070806.ebuild,v 1.7 2008/06/15 18:39:45 swegener Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="none"
 
