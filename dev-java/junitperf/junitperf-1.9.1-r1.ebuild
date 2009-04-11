@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/junitperf/junitperf-1.9.1-r1.ebuild,v 1.12 2008/03/26 16:30:32 corsair Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc test source"
 
 inherit java-pkg-2 java-ant-2
