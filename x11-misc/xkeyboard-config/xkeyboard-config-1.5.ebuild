@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.5.ebuild,v 1.7 2009/04/06 19:28:12 bluebird Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 DESCRIPTION="X keyboard configuration database"
