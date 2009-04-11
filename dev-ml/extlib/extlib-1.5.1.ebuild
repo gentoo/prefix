@@ -4,7 +4,7 @@
 
 inherit findlib eutils
 
-EAPI="prefix 1"
+EAPI=1
 
 DESCRIPTION="Standard library extensions for O'Caml"
 HOMEPAGE="http://code.google.com/p/ocaml-extlib/"
