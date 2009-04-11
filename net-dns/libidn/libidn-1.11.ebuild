@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/libidn-1.11.ebuild,v 1.1 2008/11/27 21:33:35 jer Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-opt-2 mono elisp-common
 
 DESCRIPTION="Internationalized Domain Names (IDN) implementation"
