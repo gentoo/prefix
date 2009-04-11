@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.1.ebuild,v 1.1 2009/02/12 05:53:26 keri Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 DESCRIPTION="GNU Prolog is a native Prolog compiler with constraint solving over finite domains (FD)"
