@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/alternate/alternate-2.15.ebuild,v 1.2 2008/09/20 08:05:29 hawking Exp $
 
-EAPI="prefix"
-
 inherit vim-plugin eutils
 
 DESCRIPTION="vim plugin: quickly switch between .c and .h files"
