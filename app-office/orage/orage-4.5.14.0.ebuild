@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-office/orage/orage-4.5.14.0.ebuild,v 1.3 2009/02/04 18:45:02 angelos Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils gnome2-utils
 
 DESCRIPTION="Calendar suite for Xfce4"
