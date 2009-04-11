@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="prefix"
-
 inherit games toolchain-funcs
 
 MY_P="kboard-alpha-0.9b"
