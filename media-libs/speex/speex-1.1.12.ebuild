@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/speex/speex-1.1.12.ebuild,v 1.13 2008/01/10 15:00:52 drac Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools libtool
 
 DESCRIPTION="Speech encoding library"

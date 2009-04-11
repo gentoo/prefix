@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/speex/speex-1.2_beta3.ebuild,v 1.9 2008/01/10 08:54:33 vapier Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils flag-o-matic
 
 MY_P=${P/_/}
