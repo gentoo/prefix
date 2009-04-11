@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.2.0.ebuild,v 1.1 2009/01/08 22:44:59 patrick Exp $
 
-EAPI="prefix"
-
 inherit eutils distutils versionator
 
 MY_P=TwistedCore-${PV}
