@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/gnome-python-base/gnome-python-base-2.22.3.ebuild,v 1.7 2009/03/23 04:40:43 jer Exp $
 
-EAPI="prefix"
-
 inherit versionator eutils gnome2
 
 # This ebuild does nothing -- we just want to get the pkgconfig file installed
