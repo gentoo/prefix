@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/zsh-completion-20080310.ebuild,v 1.2 2008/03/21 11:43:10 cla Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Programmable Completion for zsh (includes emerge and ebuild commands)"
 HOMEPAGE="http://gzc.tuxfamily.org/"
 SRC_URI="http://download.tuxfamily.org/gzc/${PF}.tar.bz2"
