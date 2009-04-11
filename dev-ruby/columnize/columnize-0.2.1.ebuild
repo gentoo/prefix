@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/columnize/columnize-0.2.1.ebuild,v 1.1 2009/01/02 09:28:48 graaff Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 DESCRIPTION="Sorts an array in column order."
