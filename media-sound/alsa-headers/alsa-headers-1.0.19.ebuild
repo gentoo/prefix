@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/alsa-headers-1.0.19.ebuild,v 1.1 2009/01/19 15:05:52 chainsaw Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_PN=${PN/headers/driver}
