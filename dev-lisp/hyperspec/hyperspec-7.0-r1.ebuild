@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/hyperspec/hyperspec-7.0-r1.ebuild,v 1.3 2008/07/16 14:11:13 aballier Exp $
 
-EAPI="prefix"
-
 MY_PV=${PV/./-}
 MY_P=HyperSpec-${MY_PV}
 
