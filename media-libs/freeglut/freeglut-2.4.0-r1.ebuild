@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/freeglut-2.4.0-r1.ebuild,v 1.14 2008/11/30 09:34:32 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic libtool
 
 DESCRIPTION="A completely OpenSourced alternative to the OpenGL Utility Toolkit (GLUT) library"
