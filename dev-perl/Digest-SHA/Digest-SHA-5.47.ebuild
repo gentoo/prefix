@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Digest-SHA/Digest-SHA-5.47.ebuild,v 1.1 2008/07/24 11:11:59 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=MSHELOR
 inherit perl-module
 
