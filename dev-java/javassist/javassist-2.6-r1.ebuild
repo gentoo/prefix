@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/javassist/javassist-2.6-r1.ebuild,v 1.6 2008/03/30 17:11:09 corsair Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Javassist makes Java bytecode manipulation simple."
