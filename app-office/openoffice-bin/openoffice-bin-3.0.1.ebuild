@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.1.ebuild,v 1.1 2009/02/04 09:15:26 suka Exp $
 
-EAPI="prefix"
-
 inherit eutils fdo-mime rpm multilib prefix
 
 IUSE="gnome java kde"
