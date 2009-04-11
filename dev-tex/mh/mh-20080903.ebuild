@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/mh/mh-20080903.ebuild,v 1.15 2009/03/18 20:48:54 ranger Exp $
 
-EAPI="prefix"
-
 inherit latex-package
 
 DESCRIPTION="Additional LaTeX math tools."
