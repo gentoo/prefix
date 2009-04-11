@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/mt-daapd-0.2.4.1.ebuild,v 1.8 2007/12/31 03:10:40 vapier Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="A multi-threaded implementation of Apple's DAAP server"
