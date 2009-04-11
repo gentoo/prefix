@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/axel/axel-1.1.ebuild,v 1.7 2008/07/17 18:48:05 corsair Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="light Unix download accelerator"

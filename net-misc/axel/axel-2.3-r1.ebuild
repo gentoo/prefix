@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/axel/axel-2.3-r1.ebuild,v 1.1 2009/02/07 10:28:35 drizzt Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="light Unix download accelerator"
