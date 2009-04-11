@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/mDNSResponder/mDNSResponder-107.6-r5.ebuild,v 1.12 2008/09/21 13:04:29 jmbsvicetto Exp $
 
-EAPI="prefix"
-
 inherit eutils base toolchain-funcs flag-o-matic java-pkg-opt-2
 
 DESCRIPTION="The mDNSResponder project is a component of Bonjour, Apple's initiative for zero-configuration networking."
