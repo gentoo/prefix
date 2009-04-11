@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.6.0-r2.ebuild,v 1.14 2009/03/07 19:10:43 betelgeuse Exp $
 
-EAPI="prefix 2"
+EAPI=2
 WANT_AUTOMAKE=1.9
 
 inherit eutils autotools libtool toolchain-funcs flag-o-matic
