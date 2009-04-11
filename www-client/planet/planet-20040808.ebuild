@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/planet/planet-20040808.ebuild,v 1.7 2007/02/28 22:25:49 genstef Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="App to create sites like http://planet.kde.org/"
 HOMEPAGE="http://planetplanet.org/"
 SRC_URI="http://dev.gentoo.org/~stuart/planet/${P}.tar.bz2"
