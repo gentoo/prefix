@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/linux-logo/linux-logo-5.03.ebuild,v 1.7 2008/10/29 17:27:35 spock Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 MY_P=${PN/-/_}-${PV}
