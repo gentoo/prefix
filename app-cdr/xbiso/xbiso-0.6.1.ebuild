@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-cdr/xbiso/xbiso-0.6.1.ebuild,v 1.5 2008/06/21 08:18:17 opfer Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="Xbox xdvdfs ISO extraction utility"
