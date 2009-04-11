@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/PlRPC/PlRPC-0.2020-r1.ebuild,v 1.9 2008/06/07 09:48:58 aballier Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 S=${WORKDIR}/${PN}
