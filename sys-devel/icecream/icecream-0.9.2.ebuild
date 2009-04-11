@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/icecream-0.9.2.ebuild,v 1.4 2009/01/10 15:22:36 maekke Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils flag-o-matic prefix
 
 MY_P="icecc-${PV}"
