@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.9-r1.ebuild,v 1.9 2007/11/18 02:43:01 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 DESCRIPTION="A file archival tool which can also read and write tar files"
