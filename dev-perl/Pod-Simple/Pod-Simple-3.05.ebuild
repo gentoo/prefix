@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Simple/Pod-Simple-3.05.ebuild,v 1.11 2008/06/06 08:53:08 aballier Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="framework for parsing Pod"

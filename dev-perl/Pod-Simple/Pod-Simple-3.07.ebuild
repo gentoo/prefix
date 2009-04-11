@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Simple/Pod-Simple-3.07.ebuild,v 1.1 2008/08/01 09:40:45 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ARANDAL
 inherit perl-module
 
