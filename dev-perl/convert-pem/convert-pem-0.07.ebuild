@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/convert-pem/convert-pem-0.07.ebuild,v 1.17 2007/01/15 15:17:57 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Convert-PEM-${PV}
