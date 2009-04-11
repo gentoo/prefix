@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.5.ebuild,v 1.13 2009/02/02 19:44:57 solar Exp $
 
-EAPI="prefix"
-
 # Must be before x-modular eclass is inherited
 SNAPSHOT="yes"
 PATCHES="${FILESDIR}/libXt-1.0.5-cross.patch"
