@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.4-r2.ebuild,v 1.13 2008/06/29 10:36:49 tove Exp $
 
-EAPI="prefix"
-
 inherit distutils eutils multilib
 
 DESCRIPTION="Set of python tools for processing plaintext docs into HTML, XML, etc..."

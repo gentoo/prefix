@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.5.ebuild,v 1.1 2008/08/14 17:41:40 hawking Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 
 inherit distutils eutils multilib
