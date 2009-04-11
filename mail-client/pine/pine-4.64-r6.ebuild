@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r6.ebuild,v 1.5 2007/08/06 13:32:17 uberlord Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 # Using this ugly hack, since we're making our own versioned copies of chappa
