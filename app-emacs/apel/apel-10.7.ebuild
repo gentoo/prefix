@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/apel/apel-10.7.ebuild,v 1.11 2007/07/03 09:13:50 opfer Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="A Portable Emacs Library is a library for making portable Emacs Lisp programs."
