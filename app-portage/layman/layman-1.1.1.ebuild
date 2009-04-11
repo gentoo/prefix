@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.14 2009/04/05 15:41:32 jokey Exp $
 
-EAPI="prefix 2"
+EAPI=2
 NEED_PYTHON=2.5
 
 inherit eutils distutils prefix
