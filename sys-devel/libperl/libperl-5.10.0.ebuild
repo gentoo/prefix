@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r1.ebuild,v 1.21 2007/02/17 22:31:17 grobian Exp $
 
-EAPI="prefix"
-
 # The basic theory based on comments from Daniel Robbins <drobbins@gentoo.org>.
 #
 # We split the perl ebuild into libperl and perl.  The layout is as follows:

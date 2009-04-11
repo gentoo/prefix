@@ -52,8 +52,6 @@
 #
 # Martin Schlemmer <azarah@gentoo.org> (28 Dec 2002).
 
-EAPI="prefix"
-
 IUSE="berkdb debug gdbm ithreads"
 
 inherit eutils flag-o-matic toolchain-funcs multilib
