@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r1.ebuild,v 1.11 2007/12/11 23:37:02 vapier Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="free lossless audio encoder and decoder"
