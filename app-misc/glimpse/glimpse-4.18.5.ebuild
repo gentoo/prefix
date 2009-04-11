@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/glimpse/glimpse-4.18.5.ebuild,v 1.11 2008/01/11 21:00:12 grobian Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils
 
 DESCRIPTION="A index/query system to search a large set of files quickly"
