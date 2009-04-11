@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.3.1-r1.ebuild,v 1.16 2008/09/29 22:49:42 jer Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils flag-o-matic libtool
 
 MY_P=${P/lib}
