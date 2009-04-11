@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-irc/irssi-svn/irssi-svn-0.3.ebuild,v 1.22 2008/11/10 18:59:46 swegener Exp $
 
-EAPI="prefix"
-
 inherit perl-module flag-o-matic subversion
 
 ESVN_REPO_URI="http://svn.irssi.org/repos/irssi/trunk"
