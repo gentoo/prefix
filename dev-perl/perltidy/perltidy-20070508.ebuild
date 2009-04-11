@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/perltidy/perltidy-20070508.ebuild,v 1.6 2007/11/10 19:14:13 drac Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 S=${WORKDIR}/${P/perltidy/Perl-Tidy}
