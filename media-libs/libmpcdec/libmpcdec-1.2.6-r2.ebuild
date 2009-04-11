@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libmpcdec/libmpcdec-1.2.6-r2.ebuild,v 1.8 2008/11/10 11:36:22 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool autotools
 
 DESCRIPTION="Musepack decoder library"
