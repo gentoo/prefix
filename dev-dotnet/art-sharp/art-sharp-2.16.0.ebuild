@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-dotnet/art-sharp/art-sharp-2.16.0.ebuild,v 1.8 2008/11/27 18:56:49 ssuominen Exp $
 
-EAPI="prefix"
-
 GTK_SHARP_TARBALL_PREFIX="gnome-sharp"
 GTK_SHARP_REQUIRED_VERSION="2.10"
 
