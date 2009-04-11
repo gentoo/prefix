@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/gam-server-0.1.10.ebuild,v 1.7 2009/02/07 01:31:06 jer Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils flag-o-matic libtool python
 
 MY_PN="gamin"
