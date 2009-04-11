@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pmw/pmw-1.3.2-r1.ebuild,v 1.1 2009/03/01 20:34:32 neurogeek Exp $
 
-EAPI="prefix 2"
+EAPI=2
 PYTHON_MODNAME="Pmw"
 
 inherit distutils
