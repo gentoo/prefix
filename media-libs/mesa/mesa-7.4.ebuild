@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.4.ebuild,v 1.1 2009/03/29 17:56:54 remi Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 EGIT_REPO_URI="git://anongit.freedesktop.org/mesa/mesa"
 
