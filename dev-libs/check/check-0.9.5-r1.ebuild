@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/check/check-0.9.5-r1.ebuild,v 1.8 2009/02/06 16:26:15 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="A unit test framework for C"
