@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/autoconf-wrapper-6.ebuild,v 1.8 2009/01/15 16:02:22 vapier Exp $
 
-EAPI="prefix"
-
 inherit multilib
 
 DESCRIPTION="wrapper for autoconf to manage multiple autoconf versions"
