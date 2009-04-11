@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-extras/xfce4-extras-4.4.2.ebuild,v 1.9 2009/02/09 19:53:11 angelos Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Meta ebuild for panel plugins and extra applications"
 HOMEPAGE="http://www.xfce.org"
 SRC_URI=""
