@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-puri/cl-puri-1.5.ebuild,v 1.1 2006/11/19 17:52:52 mkennedy Exp $
 
-EAPI="prefix"
-
 inherit common-lisp
 
 DESCRIPTION="Portable URI library for Common Lisp based on the Franz, Inc. :net.uri module."
