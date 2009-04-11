@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/faad2-2.6.1-r2.ebuild,v 1.9 2008/11/05 04:10:23 beandog Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="AAC audio decoding library"
