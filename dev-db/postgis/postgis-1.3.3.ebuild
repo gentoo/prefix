@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/postgis/postgis-1.3.3.ebuild,v 1.4 2009/03/07 06:27:50 zmedico Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils versionator
 
 KEYWORDS="~amd64-linux ~x86-linux"
