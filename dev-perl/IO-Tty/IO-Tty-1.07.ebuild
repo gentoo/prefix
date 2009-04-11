@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Tty/IO-Tty-1.07.ebuild,v 1.10 2008/09/10 19:10:44 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=RGIERSIG
 inherit perl-module
 
