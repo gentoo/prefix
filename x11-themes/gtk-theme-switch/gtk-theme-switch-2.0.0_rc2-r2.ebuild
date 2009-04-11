@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-theme-switch/gtk-theme-switch-2.0.0_rc2-r2.ebuild,v 1.11 2008/04/20 15:29:14 drac Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 MY_P=${P/_/}
