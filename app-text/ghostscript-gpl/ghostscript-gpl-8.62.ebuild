@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.62.ebuild,v 1.9 2008/10/31 20:13:08 opfer Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils versionator flag-o-matic
 
 DESCRIPTION="GPL Ghostscript - the most current Ghostscript, AFPL, relicensed"
