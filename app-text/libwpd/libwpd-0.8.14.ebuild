@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/libwpd/libwpd-0.8.14.ebuild,v 1.9 2008/09/24 14:37:57 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="WordPerfect Document import/export library"
