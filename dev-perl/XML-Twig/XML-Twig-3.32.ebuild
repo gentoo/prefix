@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Twig/XML-Twig-3.32.ebuild,v 1.1 2008/04/29 00:38:31 yuval Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="This module provides a way to process XML documents. It is build on top of XML::Parser"
