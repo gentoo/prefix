@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/PPI-1.118.ebuild,v 1.5 2008/02/20 19:58:27 nixnut Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Parse, Analyze and Manipulate Perl (without perl)"
