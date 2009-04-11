@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.1-r1.ebuild,v 1.11 2008/09/10 15:06:07 darkside Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="A terminal emulator with transparency support as well as rxvt backwards compatibility"
