@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/otter/otter-3.3-r1.ebuild,v 1.5 2008/01/28 19:19:09 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="An Automated Deduction System."
 SRC_URI="http://www-unix.mcs.anl.gov/AR/${PN}/${P}.tar.gz"
 HOMEPAGE="http://www-unix.mcs.anl.gov/AR/otter/"
