@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.2-r1.ebuild,v 1.10 2009/03/14 15:38:40 armin76 Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit elisp-common toolchain-funcs eutils versionator flag-o-matic
 
