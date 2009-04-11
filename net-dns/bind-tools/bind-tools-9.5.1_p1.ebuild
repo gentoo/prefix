@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.5.1_p1.ebuild,v 1.2 2009/02/11 16:30:59 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 MY_PN=${PN//-tools}
