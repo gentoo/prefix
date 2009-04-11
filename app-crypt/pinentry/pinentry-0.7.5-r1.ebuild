@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.5-r1.ebuild,v 1.1 2009/01/22 19:17:41 swegener Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit qt3 multilib eutils flag-o-matic
 
