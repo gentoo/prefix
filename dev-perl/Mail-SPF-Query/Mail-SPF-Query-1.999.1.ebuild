@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Mail-SPF-Query/Mail-SPF-Query-1.999.1.ebuild,v 1.16 2008/09/30 14:27:26 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=JMEHNLE
 MODULE_SECTION=mail-spf-query
 inherit perl-module
