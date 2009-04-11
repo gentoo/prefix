@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/meme/meme-3.5.7.ebuild,v 1.2 2008/09/12 18:24:11 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils toolchain-funcs
 
 DESCRIPTION="The MEME/MAST system - Motif discovery and search"
