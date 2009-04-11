@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/IP-Country/IP-Country-2.23.ebuild,v 1.8 2008/05/17 11:31:06 nixnut Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="fast lookup of country codes from IP addresses"

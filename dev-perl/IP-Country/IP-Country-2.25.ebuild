@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/IP-Country/IP-Country-2.25.ebuild,v 1.1 2008/09/30 06:09:51 robbat2 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR="NWETTERS"
 inherit perl-module
 
