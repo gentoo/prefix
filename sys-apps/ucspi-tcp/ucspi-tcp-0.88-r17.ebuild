@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/ucspi-tcp/ucspi-tcp-0.88-r17.ebuild,v 1.1 2008/04/06 16:57:17 hollow Exp $
 
-EAPI="prefix"
-
 inherit eutils fixheadtails flag-o-matic qmail
 
 DESCRIPTION="Collection of tools for managing UNIX services"

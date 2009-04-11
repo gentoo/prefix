@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/ucspi-tcp/ucspi-tcp-0.88-r16.ebuild,v 1.9 2008/04/12 09:12:32 nixnut Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs fixheadtails flag-o-matic
 
 DESCRIPTION="Collection of tools for managing UNIX services"
