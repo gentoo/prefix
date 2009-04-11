@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/MailTools/MailTools-2.04.ebuild,v 1.3 2009/01/01 19:44:05 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=MARKOV
 inherit perl-module
 
