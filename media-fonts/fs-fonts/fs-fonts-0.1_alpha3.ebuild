@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/fs-fonts/fs-fonts-0.1_alpha3.ebuild,v 1.11 2008/02/24 12:15:16 armin76 Exp $
 
-EAPI="prefix"
-
 inherit font
 
 IUSE=""
