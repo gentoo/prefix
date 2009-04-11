@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/elph/elph-1.0.1.ebuild,v 1.3 2008/06/29 08:25:29 tove Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="Estimated Locations of Pattern Hits - Motif finder program"
