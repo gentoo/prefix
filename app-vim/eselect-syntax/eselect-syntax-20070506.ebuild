@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/eselect-syntax/eselect-syntax-20070506.ebuild,v 1.11 2007/08/25 11:45:24 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils vim-plugin
 
 DESCRIPTION="vim plugin: Eselect syntax highlighting, filetype and indent settings"
