@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/pytz-2009a.ebuild,v 1.1 2009/02/25 10:56:45 bicatali Exp $
 
 NEED_PYTHON=2.3
-EAPI="prefix 2"
+EAPI=2
 inherit eutils distutils
 
 DESCRIPTION="World Timezone Definitions for Python"
