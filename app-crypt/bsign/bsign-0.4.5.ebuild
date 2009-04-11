@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/bsign/bsign-0.4.5.ebuild,v 1.9 2008/12/30 17:50:04 angelos Exp $
 
-EAPI="prefix"
-
 inherit autotools toolchain-funcs
 
 DESCRIPTION="embed secure hashes (SHA1) and digital signatures (GNU Privacy Guard) into files"
