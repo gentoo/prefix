@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/libart_lgpl-2.3.19-r1.ebuild,v 1.12 2007/09/09 14:02:34 drac Exp $
 
-EAPI="prefix"
-
 inherit gnome2 eutils
 
 DESCRIPTION="a LGPL version of libart"
