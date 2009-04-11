@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/tetex/tetex-2.0.2-r9.ebuild,v 1.14 2009/03/12 00:12:36 fauli Exp $
 
-EAPI="prefix"
-
 inherit tetex-2 flag-o-matic
 
 DESCRIPTION="a complete TeX distribution"
