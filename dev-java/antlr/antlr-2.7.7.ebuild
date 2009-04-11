@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/antlr-2.7.7.ebuild,v 1.16 2009/03/29 23:29:15 serkan Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit base java-pkg-2 mono distutils multilib
 

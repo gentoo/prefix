@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/antlr/antlr-3.1.3.ebuild,v 1.2 2009/03/29 16:48:01 betelgeuse Exp $
 
-EAPI="prefix 2"
+EAPI=2
 JAVA_PKG_IUSE="source"
 
 inherit eutils java-pkg-2 java-ant-2
