@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/psycopg-2.0.7.ebuild,v 1.1 2008/05/26 12:46:54 nelchael Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 
 inherit eutils distutils
