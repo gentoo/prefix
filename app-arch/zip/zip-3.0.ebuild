@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/zip/zip-3.0.ebuild,v 1.3 2008/10/04 13:09:52 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils flag-o-matic
 
 MY_P="${PN}${PV//.}"
