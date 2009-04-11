@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/localepurge/localepurge-0.5.3.3.ebuild,v 1.2 2008/01/26 10:20:17 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Script to recover diskspace wasted for unneeded locale files and localized man pages."
