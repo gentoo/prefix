@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-mail/mailbase/mailbase-1.ebuild,v 1.19 2007/11/14 07:57:49 vapier Exp $
 
-EAPI="prefix"
-
 inherit pam eutils prefix
 
 DESCRIPTION="MTA layout package"
