@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/cvsd-1.0.8.ebuild,v 1.4 2007/03/05 03:43:00 genone Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="CVS pserver daemon."
