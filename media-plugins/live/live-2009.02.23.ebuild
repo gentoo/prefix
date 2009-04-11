@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-plugins/live/live-2009.02.23.ebuild,v 1.1 2009/03/08 22:52:07 aballier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils toolchain-funcs multilib
 
 DESCRIPTION="Source-code libraries for standards-based RTP/RTCP/RTSP multimedia streaming, suitable for embedded and/or low-cost streaming applications"
