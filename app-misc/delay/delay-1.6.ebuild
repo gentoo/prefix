@@ -4,8 +4,6 @@
 
 inherit toolchain-funcs
 
-EAPI="prefix"
-
 DESCRIPTION="sleeplike program that counts down the number of seconds specified"
 HOMEPAGE="http://onegeek.org/~tom/software/delay/"
 SRC_URI="http://onegeek.org/~tom/software/delay/dl/${P}.tar.gz"
