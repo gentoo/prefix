@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/gnump3d-3.0.ebuild,v 1.6 2008/12/19 17:06:13 pva Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib prefix
 
 MY_PV=${PV/9/9final}
