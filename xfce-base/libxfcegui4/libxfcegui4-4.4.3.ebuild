@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/libxfcegui4-4.4.3.ebuild,v 1.8 2009/03/13 10:18:44 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils xfce44
 
 XFCE_VERSION=4.4.3
