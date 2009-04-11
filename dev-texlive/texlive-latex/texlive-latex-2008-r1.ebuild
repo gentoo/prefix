@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latex/texlive-latex-2008-r1.ebuild,v 1.9 2009/03/18 21:16:19 ranger Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULE_CONTENTS="ae amscls amsmath amsrefs babel babelbib carlisle colortbl fancyhdr geometry graphics hyperref latex latex-fonts latexconfig ltxmisc mfnfss natbib pdftex-def pslatex psnfss pspicture tools bin-latex luatex pdftex collection-latex
 "
 TEXLIVE_MODULE_DOC_CONTENTS="ae.doc amscls.doc amsmath.doc amsrefs.doc babel.doc babelbib.doc carlisle.doc colortbl.doc fancyhdr.doc geometry.doc graphics.doc hyperref.doc latex.doc natbib.doc psnfss.doc pspicture.doc tools.doc bin-latex.doc luatex.doc pdftex.doc "
