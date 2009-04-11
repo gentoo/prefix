@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/prints/prints-38.0.ebuild,v 1.8 2006/11/02 20:21:23 grobian Exp $
 
-EAPI="prefix"
-
 MY_PV="${PV/./_}"
 
 DESCRIPTION="A protein motif fingerprint database"
