@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/xfishtank/xfishtank-2.1.ebuild,v 1.12 2006/10/21 22:24:31 omp Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 MY_P=${P}tp
