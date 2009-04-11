@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/gzip-1.3.12.ebuild,v 1.12 2007/07/20 16:34:15 uberlord Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic prefix
 
 DESCRIPTION="Standard GNU compressor"
