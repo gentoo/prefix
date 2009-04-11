@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/mirrorselect/mirrorselect-1.4.1.ebuild,v 1.1 2009/01/01 06:09:04 zmedico Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Tool to help select distfiles mirrors for Gentoo"
