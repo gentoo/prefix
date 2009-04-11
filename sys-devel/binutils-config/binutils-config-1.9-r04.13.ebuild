@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/binutils-config-1.9-r4.ebuild,v 1.1 2007/05/06 09:04:01 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs prefix
 
 DESCRIPTION="Utility to change the binutils version being used - prefix version"
