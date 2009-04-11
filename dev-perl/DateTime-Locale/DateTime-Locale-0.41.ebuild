@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime-Locale/DateTime-Locale-0.41.ebuild,v 1.7 2009/01/08 20:49:36 ranger Exp $
 
-EAPI="prefix"
-
 inherit versionator perl-module
 
 MY_P="${PN}-$(delete_version_separator 2)"
