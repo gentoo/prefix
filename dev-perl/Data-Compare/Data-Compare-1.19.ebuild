@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Data-Compare/Data-Compare-1.19.ebuild,v 1.1 2008/07/24 11:44:24 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=DCANTRELL
 inherit perl-module
 

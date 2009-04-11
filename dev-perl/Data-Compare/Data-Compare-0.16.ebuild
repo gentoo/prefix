@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Data-Compare/Data-Compare-0.16.ebuild,v 1.5 2008/03/19 02:25:36 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="compare perl data structures"
