@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/File-chdir/File-chdir-0.08.ebuild,v 1.6 2007/11/10 13:08:30 drac Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="An alternative to File::Spec and CWD"
