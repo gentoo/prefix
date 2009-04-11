@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/pwgen-2.05.ebuild,v 1.2 2007/04/28 16:36:35 tove Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Password Generator"
