@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/mousepad/mousepad-0.2.14.ebuild,v 1.6 2008/12/15 04:49:46 jer Exp $
 
-EAPI="prefix 1"
-
 inherit fdo-mime
 
 DESCRIPTION="A simple GTK+ text editor for Xfce4 (based on leafpad)"
@@ -46,8 +44,6 @@ pkg_postrm() {
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/mousepad/mousepad-0.2.14.ebuild,v 1.1 2008/10/30 22:15:10 angelos Exp $
-
-EAPI="prefix"
 
 inherit xfce44
 

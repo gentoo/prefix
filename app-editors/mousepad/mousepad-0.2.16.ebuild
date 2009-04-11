@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/mousepad/mousepad-0.2.16.ebuild,v 1.2 2009/03/10 13:54:10 angelos Exp $
 
-EAPI="prefix 1"
-
 inherit xfce4
 
 XFCE_VERSION=4.6.0
@@ -25,8 +23,6 @@ DOCS="AUTHORS ChangeLog NEWS README TODO"
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/mousepad/mousepad-0.2.16.ebuild,v 1.2 2009/03/10 13:54:10 angelos Exp $
-
-EAPI="prefix"
 
 inherit xfce44
 
