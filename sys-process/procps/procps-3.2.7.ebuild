@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.7.ebuild,v 1.11 2007/05/18 20:46:08 ferdy Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils toolchain-funcs multilib
 
 DESCRIPTION="Standard informational utilities and process-handling tools"
