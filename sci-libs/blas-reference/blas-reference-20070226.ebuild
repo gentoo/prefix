@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-reference/blas-reference-20070226.ebuild,v 1.18 2008/12/07 18:26:29 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools fortran multilib flag-o-matic
 
 LAPACKPV="3.1.1"
