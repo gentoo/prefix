@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.1_beta2.ebuild,v 1.2 2008/12/10 10:22:00 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils mozilla-launcher multilib mozextension prefix
 
 LANGS="af ar be bg bn-IN ca cs cy de el en-GB en-US eo es-AR es-ES et eu fi fr fy-NL ga-IE gu-IN he hi-IN hu id is it ja kn ko lt lv mr nb-NO nl nn-NO pa-IN pl pt-BR pt-PT ro ru si sk sl sq sv-SE te tr uk zh-CN zh-TW"
