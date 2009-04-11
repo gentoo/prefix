@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jaxen/jaxen-1.1.1.ebuild,v 1.5 2007/09/28 21:45:22 philantrop Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc examples source test"
 
 inherit java-pkg-2 eutils java-ant-2
