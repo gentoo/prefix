@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.21-r10.ebuild,v 1.1 2009/01/09 12:54:19 loki_val Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit autotools eutils multilib versionator
 #inherit libtool versionator

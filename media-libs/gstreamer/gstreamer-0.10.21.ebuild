@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.21.ebuild,v 1.2 2008/12/06 06:46:42 ssuominen Exp $
 
-EAPI="prefix"
-
 # inherit libtool
 inherit autotools eutils
 
