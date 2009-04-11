@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-SubCalls/Test-SubCalls-1.06.ebuild,v 1.6 2008/02/20 19:57:08 nixnut Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Track the number of times subs are called"
