@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tcltk/snack/snack-2.2.10-r1.ebuild,v 1.9 2008/08/08 16:55:30 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 DESCRIPTION="The Snack Sound Toolkit (Tcl)"
