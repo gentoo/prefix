@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/mail-client/mailx/mailx-8.1.2.20050715-r1.ebuild,v 1.12 2007/04/25 15:01:13 gustavoz Exp $
 
-EAPI="prefix"
-
 inherit ccc eutils flag-o-matic
 
 MX_MAJ_VER=${PV%.*}
