@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/hunit-1.2.0.0.ebuild,v 1.4 2008/10/03 23:46:30 fmccor Exp $
 
-EAPI="prefix"
-
 CABAL_FEATURES="lib profile haddock"
 inherit base haskell-cabal
 
