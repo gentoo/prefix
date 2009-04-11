@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/euses/euses-2.5.4.ebuild,v 1.10 2008/03/17 13:02:09 fmccor Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs autotools
 
 WANT_AUTOCONF="latest"
