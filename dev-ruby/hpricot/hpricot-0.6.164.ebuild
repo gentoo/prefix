@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/hpricot/hpricot-0.6.164.ebuild,v 1.1 2008/12/20 13:37:14 graaff Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 USE_RUBY="ruby18"
