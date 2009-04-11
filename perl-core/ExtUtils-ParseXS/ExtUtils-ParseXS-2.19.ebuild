@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/ExtUtils-ParseXS/ExtUtils-ParseXS-2.19.ebuild,v 1.3 2009/01/11 15:07:28 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=KWILLIAMS
 inherit perl-module
 
