@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/iso-codes-3.3.ebuild,v 1.7 2008/11/22 16:07:44 jer Exp $
 
-EAPI="prefix"
-
 WANT_AUTOMAKE="latest"
 
 inherit eutils autotools
