@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.24.1.ebuild,v 1.1 2009/03/17 08:42:54 nirbheek Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 pam
 
 DESCRIPTION="Password and keyring managing daemon"
