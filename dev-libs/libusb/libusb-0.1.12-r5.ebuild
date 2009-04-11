@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/libusb-0.1.12-r5.ebuild,v 1.2 2009/03/28 11:30:42 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool autotools toolchain-funcs
 
 DESCRIPTION="Userspace access to USB devices"

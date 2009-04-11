@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/libusb-0.1.12-r3.ebuild,v 1.1 2008/06/07 00:59:04 robbat2 Exp $
 
-EAPI="prefix"
-
 WANT_AUTOMAKE="latest"
 WANT_AUTOCONF="latest"
 inherit eutils libtool autotools toolchain-funcs
