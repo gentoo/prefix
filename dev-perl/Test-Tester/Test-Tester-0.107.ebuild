@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Tester/Test-Tester-0.107.ebuild,v 1.9 2009/04/06 15:37:53 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=FDALY
 inherit perl-module
 

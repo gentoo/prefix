@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Tester/Test-Tester-0.106.ebuild,v 1.4 2008/01/13 21:50:56 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 IUSE=""
 
