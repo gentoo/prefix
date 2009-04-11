@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-SAX/XML-SAX-0.96.ebuild,v 1.1 2008/08/24 08:48:50 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=GRANTM
 inherit perl-module eutils
 

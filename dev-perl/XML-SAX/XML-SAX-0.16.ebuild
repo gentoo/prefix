@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-SAX/XML-SAX-0.16.ebuild,v 1.10 2008/03/28 09:08:11 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils
 
 DESCRIPTION="Perl module for using and building Perl SAX2 XML parsers, filters, and drivers"
