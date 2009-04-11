@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/File-Temp/File-Temp-0.21.ebuild,v 1.2 2009/01/01 19:40:19 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=TJENNESS
 inherit perl-module
 

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/File-Temp/File-Temp-0.20.ebuild,v 1.2 2008/07/15 18:33:20 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="File::Temp can be used to create and open temporary files in a safe way."
