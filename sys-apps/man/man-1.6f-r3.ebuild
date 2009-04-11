@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6f-r3.ebuild,v 1.10 2009/03/17 09:50:47 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs flag-o-matic prefix
 
 DESCRIPTION="Standard commands to read man pages"
