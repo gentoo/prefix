@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/convertlit/convertlit-1.8-r1.ebuild,v 1.6 2008/02/27 11:32:35 coldwind Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 MY_P="clit${PV//./}"
