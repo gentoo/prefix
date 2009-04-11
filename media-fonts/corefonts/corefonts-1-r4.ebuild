@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/corefonts-1-r4.ebuild,v 1.6 2008/06/16 03:45:57 josejx Exp $
 
-EAPI="prefix"
-
 inherit font
 
 DESCRIPTION="Microsoft's TrueType core fonts"
