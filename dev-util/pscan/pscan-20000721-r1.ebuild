@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/pscan/pscan-20000721-r1.ebuild,v 1.6 2007/05/11 09:05:05 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="A limited problem scanner for C source files"
