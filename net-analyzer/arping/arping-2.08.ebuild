@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/arping/arping-2.08.ebuild,v 1.1 2008/09/28 13:05:18 cedk Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="A utility to see if a specific IP address is taken and what MAC address owns it"
