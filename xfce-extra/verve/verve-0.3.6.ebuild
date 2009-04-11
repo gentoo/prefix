@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/verve/verve-0.3.6.ebuild,v 1.6 2009/01/25 16:33:05 klausman Exp $
 
-EAPI="prefix"
-
 # Christoph Mende <angelos@gentoo.org>
 # Move this package to xfce4-verve as soon as 0.3.6 is stable
 MY_PN="xfce4-${PN}-plugin"

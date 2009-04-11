@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/verve/verve-0.3.5.ebuild,v 1.19 2007/07/01 09:35:27 welp Exp $
 
-EAPI="prefix"
-
 inherit xfce44
 
 xfce44
