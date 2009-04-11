@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/tagsoup/tagsoup-1.1.ebuild,v 1.7 2007/08/13 12:28:11 opfer Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 WANT_ANT_TASKS="ant-trax"
 
