@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.1.1.ebuild,v 1.5 2009/04/06 18:17:44 armin76 Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 
 inherit distutils eutils flag-o-matic fortran
