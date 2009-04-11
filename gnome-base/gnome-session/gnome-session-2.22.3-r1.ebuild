@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.22.3-r1.ebuild,v 1.8 2009/03/18 15:22:16 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 autotools
 
 DESCRIPTION="Gnome session manager"
