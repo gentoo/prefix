@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/vorbis-tools-1.2.0-r1.ebuild,v 1.10 2008/05/26 16:57:30 drac Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit autotools eutils
 
