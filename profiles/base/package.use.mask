@@ -41,7 +41,7 @@ www-client/opera ia32
 
 # Ben de Groot <yngwin@gentoo.org> (22 Jun 2008)
 # does not work with ffmpeg new headers yet
-<net-www/gnash-0.8.3 ffmpeg
+<www-plugins/gnash-0.8.3 ffmpeg
 
 # Markus Ullmann <jokey@gentoo.org> (21 Mar 2008)
 # still work in progress
