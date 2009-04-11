@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.85.ebuild,v 1.8 2008/11/28 15:29:28 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp eutils latex-package
 
 DESCRIPTION="Extended support for writing, formatting and using (La)TeX, Texinfo and BibTeX files"
