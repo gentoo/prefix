@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/sys-fs/dd-rescue/dd-rescue-1.12.ebuild,v 1.1 2006/11/29 01:59:17 vapier Exp $
 
-EAPI="prefix"
-
 MY_PN=${PN/-/_}
 MY_P=${MY_PN}-${PV}
 DESCRIPTION="similar to dd but can copy from source with errors"
