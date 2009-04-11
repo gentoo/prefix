@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Compress-Raw-Bzip2/Compress-Raw-Bzip2-2.015.ebuild,v 1.10 2008/12/10 17:12:51 aballier Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=PMQS
 inherit perl-module
 
