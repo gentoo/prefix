@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/xfce4-mixer-4.6.0.ebuild,v 1.1 2009/03/10 13:58:15 angelos Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit xfce4
 
