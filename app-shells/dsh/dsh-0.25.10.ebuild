@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/dsh/dsh-0.25.10.ebuild,v 1.5 2008/05/12 16:18:13 maekke Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Distributed Shell"
 HOMEPAGE="http://www.netfort.gr.jp/~dancer/software/dsh.html.en"
 SRC_URI="http://www.netfort.gr.jp/~dancer/software/downloads/${P}.tar.gz"
