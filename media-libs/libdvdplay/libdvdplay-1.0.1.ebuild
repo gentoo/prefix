@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdplay/libdvdplay-1.0.1.ebuild,v 1.22 2009/04/04 20:10:00 solar Exp $
 
-EAPI="prefix"
-
 inherit libtool
 
 IUSE=""
