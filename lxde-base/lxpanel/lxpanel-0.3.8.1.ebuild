@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/lxde-base/lxpanel/lxpanel-0.3.8.1.ebuild,v 1.3 2009/01/02 00:36:52 yngwin Exp $
 
-EAPI="prefix 1"
+EAPI=1
 inherit eutils autotools
 
 DESCRIPTION="Lightweight X11 desktop panel for LXDE"
