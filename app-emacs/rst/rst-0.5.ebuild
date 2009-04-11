@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/rst/rst-0.5.ebuild,v 1.1 2009/03/29 21:06:11 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="ReStructuredText support for Emacs"
