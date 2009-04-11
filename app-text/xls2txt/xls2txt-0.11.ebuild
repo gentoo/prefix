@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="prefix"
-
 DESCRIPTION="Prints Excel spreadsheet (XLS, XLW) as a plain text"
 HOMEPAGE="http://wizard.ae.krakow.pl/~jb/xls2txt/"
 SRC_URI="http://wizard.ae.krakow.pl/~jb/xls2txt/xls2txt-0.11.tar.gz"
