@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.97.2.ebuild,v 1.3 2008/07/27 01:03:32 carlo Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils flag-o-matic multilib
 
