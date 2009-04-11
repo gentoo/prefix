@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.4-r1.ebuild,v 1.4 2009/03/23 20:45:42 mabi Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils portability versionator toolchain-funcs
 
