@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-themes/gtk-engines-candido/gtk-engines-candido-0.9.1.ebuild,v 1.3 2008/12/18 10:38:13 ssuominen Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 MY_P=candido-engine-${PV}
