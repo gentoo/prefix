@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/xmlcopyeditor-1.2.0.2-r1.ebuild,v 1.2 2008/10/24 21:13:39 pvdabeel Exp $
 
-EAPI="prefix"
-
 WX_GTK_VER="2.8"
 
 inherit wxwidgets eutils
