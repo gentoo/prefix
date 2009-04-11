@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/cooledit/cooledit-3.17.17.ebuild,v 1.7 2008/12/07 13:04:19 ssuominen Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="Cooledit is a full featured multiple window text editor"
