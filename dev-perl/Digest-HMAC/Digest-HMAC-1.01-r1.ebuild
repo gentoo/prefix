@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Digest-HMAC/Digest-HMAC-1.01-r1.ebuild,v 1.27 2008/08/22 21:28:24 aballier Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Keyed Hashing for Message Authentication"
