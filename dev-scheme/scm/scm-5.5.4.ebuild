@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-scheme/scm/scm-5.5.4.ebuild,v 1.3 2008/11/17 13:40:07 pchrist Exp $
 
-EAPI="prefix"
-
 inherit versionator eutils
 
 #version magic thanks to masterdriverz and UberLord using bash array instead of tr
