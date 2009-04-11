@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libebml/libebml-0.7.7-r1.ebuild,v 1.12 2008/02/04 20:34:14 grobian Exp $
 
-EAPI="prefix"
-
 inherit multilib toolchain-funcs
 
 DESCRIPTION="Extensible binary format library (kinda like XML)"
