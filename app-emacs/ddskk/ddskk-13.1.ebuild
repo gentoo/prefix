@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/ddskk/ddskk-13.1.ebuild,v 1.4 2008/08/27 08:32:17 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="One Japanese input methods on Emacs"
