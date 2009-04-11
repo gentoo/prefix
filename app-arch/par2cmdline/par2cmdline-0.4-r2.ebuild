@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/par2cmdline/par2cmdline-0.4-r2.ebuild,v 1.6 2008/12/29 14:03:11 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="A PAR-2.0 file verification and repair tool"
