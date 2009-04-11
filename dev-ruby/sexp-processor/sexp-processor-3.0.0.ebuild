@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/sexp-processor/sexp-processor-3.0.0.ebuild,v 1.1 2008/12/28 09:34:23 graaff Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 MY_PN="sexp_processor"
