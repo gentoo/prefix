@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-4.26.ebuild,v 1.1 2008/09/17 09:51:34 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils distutils libtool flag-o-matic
 
 DESCRIPTION="identify a file's format by scanning binary data for patterns"
