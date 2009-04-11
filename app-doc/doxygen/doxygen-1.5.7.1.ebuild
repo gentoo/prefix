@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.7.1.ebuild,v 1.3 2008/12/24 02:18:09 nerdboy Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils flag-o-matic toolchain-funcs qt3 fdo-mime
 
