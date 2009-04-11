@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-bibtexextra/texlive-bibtexextra-2008.ebuild,v 1.10 2009/03/18 20:59:54 ranger Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULE_CONTENTS="aichej apacite beebe bibarts bibhtml biblist bibtopic bibtopicprefix bibunits chicago compactbib custom-bib din1505 dk-bib doipubmed elsevier-bib fbs figbib footbib harvard harvmac ijqc inlinebib iopart-num jneurosci jurabib listbib multibib munich notes2bib perception rsc sort-by-letters splitbib urlbst collection-bibtexextra
 "
 TEXLIVE_MODULE_DOC_CONTENTS="apacite.doc bibarts.doc bibhtml.doc biblist.doc bibtopic.doc bibtopicprefix.doc bibunits.doc custom-bib.doc din1505.doc dk-bib.doc doipubmed.doc elsevier-bib.doc figbib.doc footbib.doc harvard.doc harvmac.doc ijqc.doc inlinebib.doc iopart-num.doc jneurosci.doc jurabib.doc listbib.doc multibib.doc munich.doc notes2bib.doc perception.doc rsc.doc sort-by-letters.doc splitbib.doc urlbst.doc "
