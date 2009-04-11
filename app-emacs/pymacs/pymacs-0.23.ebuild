@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/pymacs/pymacs-0.23.ebuild,v 1.13 2008/11/24 11:00:55 ulm Exp $
 
-EAPI="prefix"
-
 inherit distutils elisp
 
 MY_P=Pymacs-${PV}
