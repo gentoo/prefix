@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/qt-demo-4.4.2-r1.ebuild,v 1.1 2009/02/01 22:43:43 yngwin Exp $
 
-EAPI="prefix 1"
+EAPI=1
 inherit qt4-build
 
 DESCRIPTION="Demonstration module of the Qt toolkit"
