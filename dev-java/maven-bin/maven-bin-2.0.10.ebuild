@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-2.0.10.ebuild,v 1.1 2009/03/04 10:27:11 ali_bush Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 prefix
 
 MY_PN=apache-${PN%%-bin}
