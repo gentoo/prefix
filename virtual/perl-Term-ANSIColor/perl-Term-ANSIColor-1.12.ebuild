@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-Term-ANSIColor/perl-Term-ANSIColor-1.12.ebuild,v 1.4 2008/11/18 09:50:56 tove Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Color screen output using ANSI escape sequences."
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI=""
