@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ksh-93.20071105.ebuild,v 1.5 2008/11/10 23:15:51 darkside Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs autotools prefix
 
 RELEASE="2007-11-05"
