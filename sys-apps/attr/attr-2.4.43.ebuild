@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/attr/attr-2.4.43.ebuild,v 1.8 2009/03/14 12:31:23 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools toolchain-funcs multilib flag-o-matic
 
 MY_P="${PN}_${PV}-1"
