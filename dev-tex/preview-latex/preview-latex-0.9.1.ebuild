@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/preview-latex/preview-latex-0.9.1.ebuild,v 1.3 2007/01/19 15:03:31 masterdriverz Exp $
 
-EAPI="prefix"
-
 inherit latex-package elisp-common
 
 DESCRIPTION="Renders embed latex environments such as math or figures in realtime"
