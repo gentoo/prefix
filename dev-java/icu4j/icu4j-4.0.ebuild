@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/icu4j-4.0.ebuild,v 1.2 2008/11/24 10:21:50 caster Exp $
 
-EAPI="prefix"
-
 # We currently download the Javadoc documentation.
 # It could optionally be built using the Ant build file.
 # testdata.jar and icudata.jar do not contain *.class files but *.res files
