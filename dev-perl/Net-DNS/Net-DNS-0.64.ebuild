@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/Net-DNS-0.64.ebuild,v 1.1 2008/12/31 16:51:09 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=OLAF
 inherit perl-module
 
