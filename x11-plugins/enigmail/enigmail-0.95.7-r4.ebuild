@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r4.ebuild,v 1.6 2009/03/22 15:28:20 armin76 Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils nsplugins mozcoreconf mozextension makeedit multilib autotools
