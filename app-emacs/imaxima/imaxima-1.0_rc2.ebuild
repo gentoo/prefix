@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/imaxima/imaxima-1.0_rc2.ebuild,v 1.4 2009/03/25 20:53:44 tcunha Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 MY_P="${PN}-imath-${PV/_}"
