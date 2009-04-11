@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/postgresql-8.2.6.ebuild,v 1.2 2008/05/19 19:22:40 dev-zero Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic multilib toolchain-funcs versionator
 
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
