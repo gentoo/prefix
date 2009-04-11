@@ -5,7 +5,7 @@
 JAVA_PKG_IUSE="readline source doc servletapi mysql postgres examples oracle"
 #jdnc
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit base java-pkg-2 java-ant-2
 

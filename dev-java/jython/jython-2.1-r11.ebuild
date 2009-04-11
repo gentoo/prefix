@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.1-r11.ebuild,v 1.9 2009/01/10 13:13:06 ali_bush Exp $
 
-EAPI="prefix"
-
 inherit base java-pkg-2
 
 DESCRIPTION="An implementation of Python written in Java"
