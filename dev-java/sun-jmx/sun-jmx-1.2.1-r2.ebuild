@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jmx/sun-jmx-1.2.1-r2.ebuild,v 1.8 2007/04/07 12:05:54 betelgeuse Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 eutils java-ant-2
 
 MY_PN=${PN//sun-/}

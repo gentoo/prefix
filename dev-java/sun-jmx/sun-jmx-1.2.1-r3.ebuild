@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jmx/sun-jmx-1.2.1-r3.ebuild,v 1.9 2008/08/17 17:09:05 maekke Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc examples"
 
 inherit java-pkg-2
