@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-manager/xfce-mcs-manager-4.4.3.ebuild,v 1.6 2008/12/15 04:56:17 jer Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit xfce44
 
