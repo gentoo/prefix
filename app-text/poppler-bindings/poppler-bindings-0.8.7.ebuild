@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.7.ebuild,v 1.17 2009/04/01 14:42:45 loki_val Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 #Inherit qt3 to get QTDIR even if the env file has not yet been sourced.
 
