@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-4.4.0-r1.ebuild,v 1.2 2008/01/17 14:15:30 armin76 Exp $
 
-EAPI="prefix"
-
 inherit distutils fdo-mime eutils
 
 MY_P="${P/bittorrent/BitTorrent}"
