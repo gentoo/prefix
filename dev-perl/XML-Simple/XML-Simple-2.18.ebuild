@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Simple/XML-Simple-2.18.ebuild,v 1.8 2008/03/19 03:22:47 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="XML::Simple - Easy API to read/write XML (esp config files)"
