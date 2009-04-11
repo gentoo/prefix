@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/gnuconfig-20090203.ebuild,v 1.1 2009/03/09 21:32:35 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 if [[ ${PV} == "99999999" ]] ; then
 	EGIT_REPO_URI="git://git.savannah.gnu.org/config.git"

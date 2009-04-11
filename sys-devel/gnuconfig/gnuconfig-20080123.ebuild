@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/gnuconfig-20080123.ebuild,v 1.2 2008/05/28 19:43:19 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Updated config.sub and config.guess file from GNU"
