@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/crypt-cbc/crypt-cbc-2.29.ebuild,v 1.2 2008/06/13 16:59:28 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Crypt-CBC-${PV}
