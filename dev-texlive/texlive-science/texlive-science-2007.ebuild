@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-science/texlive-science-2007.ebuild,v 1.16 2008/09/09 18:40:05 aballier Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULES_DEPS="dev-texlive/texlive-latex
 !dev-tex/SIunits"
 TEXLIVE_MODULE_CONTENTS="SIstyle SIunits alg algorithm2e algorithmicx algorithms biocon bitfield bpchem bytefield chemarrow chemcompounds chemcono clrscode complexity computational-complexity digiconfigs dyntree formula functan galois gastex hepparticles hepthesis hepunits karnaugh mhchem mhs miller newalg objectz pseudocode scientificpaper sciposter struktex t-angles textopo unitsdef youngtab collection-science
