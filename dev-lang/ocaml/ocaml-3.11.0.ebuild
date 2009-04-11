@@ -4,7 +4,7 @@
 
 inherit flag-o-matic eutils multilib versionator toolchain-funcs
 
-EAPI="prefix 1"
+EAPI=1
 
 MY_P="${P/_/+}"
 DESCRIPTION="Fast modern type-inferring functional programming language descended from the ML family"
