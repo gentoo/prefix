@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pexpect/pexpect-2.3.ebuild,v 1.7 2009/01/10 16:55:09 armin76 Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="Python module for spawning child applications and responding to expected patterns"
