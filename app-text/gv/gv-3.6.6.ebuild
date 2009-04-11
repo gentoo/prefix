@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/gv/gv-3.6.6.ebuild,v 1.1 2009/02/04 17:25:55 patrick Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="gv is used to view PostScript and PDF documents using Ghostscript"
