@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-3.8.5.ebuild,v 1.7 2008/12/07 11:02:28 vapier Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils
 
 MY_PN=${PN}src
