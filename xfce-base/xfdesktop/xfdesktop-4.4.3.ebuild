@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.4.3.ebuild,v 1.6 2008/12/15 04:59:59 jer Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils xfce44
 
