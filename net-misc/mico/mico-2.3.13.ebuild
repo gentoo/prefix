@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/mico/mico-2.3.13.ebuild,v 1.3 2009/03/31 12:13:18 haubi Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="A freely available and fully compliant implementation of the CORBA standard"
