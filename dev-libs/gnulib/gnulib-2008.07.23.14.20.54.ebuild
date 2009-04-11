@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/gnulib/gnulib-9999.ebuild,v 1.2 2007/10/28 21:03:33 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="Gnulib is a library of common routines intended to be shared at the source level."

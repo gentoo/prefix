@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/gnulib/gnulib-9999-r1.ebuild,v 1.3 2009/02/02 18:55:47 drizzt Exp $
 
-EAPI="prefix"
-
 EGIT_REPO_URI="git://git.savannah.gnu.org/gnulib.git"
 
 inherit eutils git autotools
