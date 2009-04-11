@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak-fullimage/squeak-fullimage-3.8.6665.ebuild,v 1.3 2007/02/06 09:05:08 genone Exp $
 
-EAPI="prefix"
-
 MY_P="Squeak3.8-6665"
 DESCRIPTION="Squeak full image file"
 HOMEPAGE="http://www.squeak.org/"
