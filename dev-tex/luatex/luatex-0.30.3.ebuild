@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.30.3.ebuild,v 1.10 2009/03/30 01:28:27 loki_val Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit libtool multilib eutils toolchain-funcs
 
