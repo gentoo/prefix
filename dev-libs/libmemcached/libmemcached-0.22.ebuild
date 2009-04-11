@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcached/libmemcached-0.22.ebuild,v 1.1 2008/07/15 14:12:09 caleb Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="a C client library to the memcached server"
 HOMEPAGE="http://tangent.org/552/libmemcached.html"
 SRC_URI="http://download.tangent.org/${P}.tar.gz"
