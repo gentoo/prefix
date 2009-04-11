@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/diffutils-2.8.7-r2.ebuild,v 1.5 2009/03/31 01:17:37 solar Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 DESCRIPTION="Tools to make diffs and compare files"
