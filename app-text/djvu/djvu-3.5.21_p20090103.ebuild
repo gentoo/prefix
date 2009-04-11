@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.21_p20090103.ebuild,v 1.7 2009/04/10 13:55:39 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 inherit fdo-mime nsplugins flag-o-matic eutils multilib toolchain-funcs confutils
 
 MY_P="${PN}libre-${PV#*_p}"

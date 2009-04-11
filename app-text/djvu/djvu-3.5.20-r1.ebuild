@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.20-r1.ebuild,v 1.9 2008/10/27 05:50:09 vapier Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 inherit fdo-mime nsplugins flag-o-matic eutils multilib toolchain-funcs autotools confutils
