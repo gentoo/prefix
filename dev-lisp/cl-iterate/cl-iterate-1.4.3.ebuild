@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-iterate/cl-iterate-1.4.3.ebuild,v 1.1 2006/08/25 05:48:59 mkennedy Exp $
 
-EAPI="prefix"
-
 inherit common-lisp eutils
 
 DESCRIPTION="ITERATE is a lispy and extensible replacement for the Common Lisp LOOP macro"
