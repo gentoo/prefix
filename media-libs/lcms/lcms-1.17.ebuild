@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-1.17.ebuild,v 1.11 2008/04/20 17:01:55 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils multilib
 
 DESCRIPTION="A lightweight, speed optimized color management engine"
