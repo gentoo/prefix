@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/wavpack/wavpack-4.41.0-r1.ebuild,v 1.1 2008/04/20 21:43:29 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils flag-o-matic autotools
 
 DESCRIPTION="WavPack audio compression tools"
