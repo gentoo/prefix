@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/unison/unison-2.27.57-r1.ebuild,v 1.11 2008/12/04 18:48:33 darkside Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils versionator
 
