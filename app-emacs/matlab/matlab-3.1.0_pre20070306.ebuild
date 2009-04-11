@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/matlab/matlab-3.1.0_pre20070306.ebuild,v 1.5 2008/08/27 13:26:37 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="Major modes for MATLAB dot-m and dot-tlc files"
