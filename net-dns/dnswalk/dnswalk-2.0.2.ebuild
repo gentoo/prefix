@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-dns/dnswalk/dnswalk-2.0.2.ebuild,v 1.16 2007/07/16 14:43:35 armin76 Exp $
 
-EAPI="prefix"
-
 S=${WORKDIR}
 DESCRIPTION="dnswalk is a DNS database debugger"
 SRC_URI="mirror://sourceforge/dnswalk/${P}.tar.gz"
