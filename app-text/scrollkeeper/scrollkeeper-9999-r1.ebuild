@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/scrollkeeper-9999-r1.ebuild,v 1.3 2009/03/02 18:48:01 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Dummy scrollkeeper for testing rarian"
 HOMEPAGE="http://gnome.gentoo.org"
 

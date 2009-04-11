@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper/scrollkeeper-0.3.14-r2.ebuild,v 1.16 2008/07/05 05:14:46 ricmm Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils
 
 DESCRIPTION="cataloging system for documentation on open systems"
