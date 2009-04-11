@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.16.06-r1.ebuild,v 1.3 2009/01/03 17:52:01 loki_val Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils multilib base
 
