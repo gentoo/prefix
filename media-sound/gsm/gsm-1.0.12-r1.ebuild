@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.12-r1.ebuild,v 1.14 2008/12/22 14:20:05 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic multilib toolchain-funcs versionator
 
 DESCRIPTION="Lossy speech compression library and tool."
