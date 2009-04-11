@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/junit-addons/junit-addons-1.4.ebuild,v 1.3 2008/10/08 04:16:54 serkan Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-ant-2
