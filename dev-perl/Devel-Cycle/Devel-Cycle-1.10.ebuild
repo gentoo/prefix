@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Devel-Cycle/Devel-Cycle-1.10.ebuild,v 1.1 2008/09/07 07:01:45 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=LDS
 inherit perl-module
 
