@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/atk-1.20.0.ebuild,v 1.12 2008/09/29 19:25:47 leio Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="GTK+ & GNOME Accessibility Toolkit"

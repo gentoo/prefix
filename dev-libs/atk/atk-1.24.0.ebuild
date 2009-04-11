@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/atk-1.24.0.ebuild,v 1.7 2009/03/27 17:45:20 armin76 Exp $
 
-EAPI="prefix"
-
 inherit gnome2 autotools
 
 DESCRIPTION="GTK+ & GNOME Accessibility Toolkit"
