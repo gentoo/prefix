@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/cl-asdf-1.89.ebuild,v 1.6 2009/01/10 15:31:00 armin76 Exp $
 
-EAPI="prefix"
-
 DEB_PV=1
 
 inherit eutils
