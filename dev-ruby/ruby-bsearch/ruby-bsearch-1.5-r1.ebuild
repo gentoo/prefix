@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-bsearch/ruby-bsearch-1.5-r1.ebuild,v 1.16 2008/01/27 19:59:34 grobian Exp $
 
-EAPI="prefix"
-
 inherit ruby
 
 DESCRIPTION="A binary search library for Ruby"
