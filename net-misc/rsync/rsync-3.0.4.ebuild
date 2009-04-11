@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.4.ebuild,v 1.10 2009/01/08 06:16:16 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic prefix
 
 DESCRIPTION="File transfer program to keep remote files into sync"
