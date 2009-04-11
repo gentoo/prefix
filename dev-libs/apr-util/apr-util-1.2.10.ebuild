@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.2.10.ebuild,v 1.12 2008/06/01 11:42:35 hollow Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils flag-o-matic libtool db-use
 
 DBD_MYSQL=84

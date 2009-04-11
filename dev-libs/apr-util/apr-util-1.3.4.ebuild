@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.4.ebuild,v 1.8 2009/01/23 11:43:14 armin76 Exp $
 
-EAPI="prefix"
-
 # usually apr-util has the same PV as apr, but in case of security fixes, this
 # may change.
 #APR_PV=${PV}

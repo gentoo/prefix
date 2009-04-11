@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.0.ebuild,v 1.2 2008/06/15 16:21:55 hollow Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic libtool db-use
 
 DESCRIPTION="Apache Portable Runtime Utility Library"
