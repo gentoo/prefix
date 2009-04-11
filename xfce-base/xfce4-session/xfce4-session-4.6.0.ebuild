@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-session/xfce4-session-4.6.0.ebuild,v 1.1 2009/03/10 13:51:09 angelos Exp $
 
-EAPI="prefix"
-
 inherit xfce4
 
 xfce4_core

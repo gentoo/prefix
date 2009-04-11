@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-session/xfce4-session-4.4.3.ebuild,v 1.6 2008/12/15 05:02:01 jer Exp $
 
-EAPI="prefix"
-
 inherit xfce44
 
 XFCE_VERSION=4.4.3
