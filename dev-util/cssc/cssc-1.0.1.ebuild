@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cssc/cssc-1.0.1.ebuild,v 1.4 2008/04/18 22:05:05 maekke Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="CSSC is the GNU Project's replacement for SCCS"
 SRC_URI="mirror://sourceforge/cssc/CSSC-${PV}.tar.gz"
 HOMEPAGE="http://cssc.sourceforge.net/"
