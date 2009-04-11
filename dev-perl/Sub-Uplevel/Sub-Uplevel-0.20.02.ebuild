@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Sub-Uplevel/Sub-Uplevel-0.20.02.ebuild,v 1.2 2008/11/18 15:31:43 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=DAGOLDEN
 inherit perl-module versionator
 
