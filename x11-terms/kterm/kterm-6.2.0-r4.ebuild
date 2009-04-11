@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r4.ebuild,v 1.7 2008/06/20 18:01:50 matsuu Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 IUSE="Xaw3d"
