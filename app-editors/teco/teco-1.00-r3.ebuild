@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/teco/teco-1.00-r3.ebuild,v 1.7 2007/10/10 07:22:43 opfer Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs flag-o-matic
 
 DESCRIPTION="Classic TECO editor, Predecessor to EMACS"
