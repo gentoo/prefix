@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/glark/glark-1.8.0.ebuild,v 1.2 2008/01/17 20:36:45 grobian Exp $
 
-EAPI="prefix"
-
 inherit bash-completion
 
 DESCRIPTION="File searcher similar to grep but with fancy output"
