@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/hunspell/hunspell-1.2.7.ebuild,v 1.3 2008/12/30 18:48:24 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib autotools
 
 MY_P=${PN}-${PV/_beta/b}
