@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.73-r2.ebuild,v 1.8 2008/11/09 12:15:15 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic autotools eutils
 
 DESCRIPTION="My TraceRoute. Excellent network diagnostic tool."

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.75.ebuild,v 1.1 2008/11/16 14:40:13 pva Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="My TraceRoute. Excellent network diagnostic tool."
 HOMEPAGE="http://www.bitwizard.nl/mtr/"
 SRC_URI="ftp://ftp.bitwizard.nl/mtr/${P}.tar.gz
