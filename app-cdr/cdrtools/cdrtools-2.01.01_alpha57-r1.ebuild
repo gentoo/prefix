@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha57-r1.ebuild,v 1.1 2009/02/02 22:49:38 loki_val Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit multilib eutils toolchain-funcs flag-o-matic
 

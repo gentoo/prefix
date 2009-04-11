@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha51.ebuild,v 1.8 2008/12/07 11:58:19 vapier Exp $
 
-EAPI="prefix"
-
 inherit multilib eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="A set of tools for CD/DVD reading and recording, including cdrecord"
