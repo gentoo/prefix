@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/paramiko/paramiko-1.7.2.ebuild,v 1.6 2008/10/18 14:06:06 nixnut Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.3
 
 inherit distutils eutils
