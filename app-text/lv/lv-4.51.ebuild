@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/lv/lv-4.51.ebuild,v 1.13 2008/03/21 11:29:02 opfer Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P=${PN}${PV//./}
