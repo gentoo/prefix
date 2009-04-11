@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/hgsvn/hgsvn-0.1.4.ebuild,v 1.2 2008/06/13 05:49:49 wormo Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 
 inherit distutils
