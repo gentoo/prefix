@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.4.ebuild,v 1.2 2009/03/15 05:01:39 vapier Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit flag-o-matic toolchain-funcs
 

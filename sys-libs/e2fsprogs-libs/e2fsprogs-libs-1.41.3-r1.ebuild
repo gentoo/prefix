@@ -4,7 +4,7 @@
 
 inherit flag-o-matic toolchain-funcs
 
-EAPI="prefix 2"
+EAPI=2
 DESCRIPTION="e2fsprogs libraries (common error, subsystem, uuid, block id)"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
 SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
