@@ -1,6 +1,12 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.193 2009/03/08 10:35:21 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.194 2009/04/10 20:03:10 spock Exp $
+
+*nmap-4.85_beta7 (10 Apr 2009)
+
+  10 Apr 2009; Michał Januszewski <spock@gentoo.org>
+  +nmap-4.85_beta7.ebuild:
+  Version bump (bug #265692).
 
   08 Mar 2009; Dawid Węgliński <cla@gentoo.org> nmap-4.76.ebuild:
   Prevent double emake
