@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/cabal-1.2.3.0.ebuild,v 1.8 2008/10/18 18:01:34 nixnut Exp $
 
-EAPI="prefix"
-
 CABAL_FEATURES="bootstrap profile lib"
 inherit base haskell-cabal
 
