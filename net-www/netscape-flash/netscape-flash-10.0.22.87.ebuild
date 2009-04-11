@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-www/netscape-flash/netscape-flash-10.0.22.87.ebuild,v 1.4 2009/03/08 14:39:36 maekke Exp $
 
-EAPI="prefix 1"
+EAPI=1
 inherit nsplugins rpm multilib
 
 MY_32B_URI="http://fpdownload.macromedia.com/get/flashplayer/current/flash-plugin-${PV}-release.i386.rpm"
