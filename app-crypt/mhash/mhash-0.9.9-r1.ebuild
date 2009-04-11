@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/mhash-0.9.9-r1.ebuild,v 1.8 2008/06/08 21:38:23 the_paya Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="library providing a uniform interface to a large number of hash algorithms"
