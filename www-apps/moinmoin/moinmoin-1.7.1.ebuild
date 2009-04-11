@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/moinmoin-1.7.1.ebuild,v 1.4 2008/08/04 16:42:10 keytoaster Exp $
 
-EAPI="prefix"
-
 MY_PN="moin"
 PYTHON_MODNAME="MoinMoin"
 
