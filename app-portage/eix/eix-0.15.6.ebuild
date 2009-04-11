@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.15.6.ebuild,v 1.2 2009/03/28 14:12:52 darkside Exp $
 
-EAPI=prefix
-
 inherit multilib eutils
 
 DESCRIPTION="Search and query ebuilds, portage incl. local settings, ext.
