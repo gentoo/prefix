@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/groff-1.19.2-r3.ebuild,v 1.11 2009/01/25 14:38:36 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs multilib autotools
 
 DESCRIPTION="Text formatter used for man pages"
