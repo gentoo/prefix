@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/lout/lout-3.38.ebuild,v 1.1 2009/03/01 15:25:14 patrick Exp $
 
-EAPI="prefix"
-
 IUSE="zlib doc"
 
 DESCRIPTION="high-level language for document formatting"
