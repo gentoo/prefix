@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CSV_XS/Text-CSV_XS-0.62.ebuild,v 1.1 2009/03/14 10:15:02 tove Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 MODULE_AUTHOR=HMBRAND
 MODULE_A=${P}.tgz
