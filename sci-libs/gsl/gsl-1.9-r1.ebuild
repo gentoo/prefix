@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/gsl-1.9-r1.ebuild,v 1.4 2008/01/09 16:15:02 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs autotools
 
 DESCRIPTION="The GNU Scientific Library"
