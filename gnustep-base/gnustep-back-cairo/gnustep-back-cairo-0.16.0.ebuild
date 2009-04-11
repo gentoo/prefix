@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-cairo/gnustep-back-cairo-0.16.0.ebuild,v 1.1 2008/12/22 14:02:52 voyageur Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit gnustep-base
 
