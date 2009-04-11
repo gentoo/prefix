@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Sys-Hostname-Long/Sys-Hostname-Long-1.4.ebuild,v 1.14 2007/07/10 23:33:27 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Try every conceivable way to get full hostname"
