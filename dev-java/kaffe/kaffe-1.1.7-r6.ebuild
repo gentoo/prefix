@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/kaffe/kaffe-1.1.7-r6.ebuild,v 1.3 2008/07/25 21:58:35 betelgeuse Exp $
 
-EAPI="prefix"
-
 JAVA_SUPPORTS_GENERATION_1="true"
 inherit base eutils java-vm-2 flag-o-matic
 
