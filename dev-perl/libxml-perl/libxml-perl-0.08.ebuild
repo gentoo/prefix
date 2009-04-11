@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/libxml-perl/libxml-perl-0.08.ebuild,v 1.15 2007/01/16 01:11:50 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Collection of Perl modules for working with XML"
