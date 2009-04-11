@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/levee/levee-3.4o.ebuild,v 1.20 2008/12/03 11:57:14 loki_val Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 IUSE=""
