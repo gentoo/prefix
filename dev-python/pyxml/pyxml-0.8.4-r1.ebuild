@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/pyxml-0.8.4-r1.ebuild,v 1.12 2009/03/14 17:40:25 armin76 Exp $
 
-EAPI="prefix"
-
 inherit python distutils
 
 MY_P=${P/pyxml/PyXML}
