@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/startup-notification/startup-notification-0.8.ebuild,v 1.16 2007/03/11 14:34:42 drac Exp $
 
-EAPI="prefix"
-
 inherit gnome.org
 
 DESCRIPTION="Application startup notification and feedback library"
