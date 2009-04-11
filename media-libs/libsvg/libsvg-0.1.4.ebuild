@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libsvg/libsvg-0.1.4.ebuild,v 1.23 2009/01/04 15:42:10 angelos Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils libtool
 
 DESCRIPTION="A parser for SVG content in files or buffers"
