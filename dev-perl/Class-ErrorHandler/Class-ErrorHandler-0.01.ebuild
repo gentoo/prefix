@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-ErrorHandler/Class-ErrorHandler-0.01.ebuild,v 1.20 2009/01/14 11:01:55 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=BTROTT
 inherit perl-module
 
