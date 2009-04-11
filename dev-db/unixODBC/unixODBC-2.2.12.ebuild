@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/dev-db/unixODBC/unixODBC-2.2.12.ebuild,v 1.15 2008/06/15 17:33:57 hoffie Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 PATCH_VERSION="2.2.12-r0"
