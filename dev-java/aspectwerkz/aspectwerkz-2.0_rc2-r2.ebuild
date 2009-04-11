@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/aspectwerkz/aspectwerkz-2.0_rc2-r2.ebuild,v 1.12 2008/03/30 17:12:41 corsair Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_BSFIX="off"
 # no rewriting required since we patch build.xml to contain target/source
 
