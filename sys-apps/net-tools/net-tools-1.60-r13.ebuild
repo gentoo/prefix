@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60-r13.ebuild,v 1.12 2008/04/10 21:13:43 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic toolchain-funcs eutils
 
 PVER="1.6"
