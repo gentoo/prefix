@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/fpconst/fpconst-0.7.3.ebuild,v 1.7 2009/03/14 17:38:35 armin76 Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="Python Module for handling IEEE 754 floating point special values"
