@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-i18n/skk-jisyo/skk-jisyo-200707.ebuild,v 1.4 2008/03/22 13:27:41 jokey Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Jisyo (dictionary) files for the SKK Japanese-input software"
 HOMEPAGE="http://openlab.ring.gr.jp/skk/dic.html"
 SRC_URI="mirror://gentoo/${P}.tar.gz"
