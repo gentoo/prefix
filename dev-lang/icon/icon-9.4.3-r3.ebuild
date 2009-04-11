@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/icon-9.4.3-r3.ebuild,v 1.3 2008/08/27 18:12:37 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 MY_PV=${PV//./}

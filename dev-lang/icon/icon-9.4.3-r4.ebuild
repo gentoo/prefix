@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/icon-9.4.3-r4.ebuild,v 1.1 2008/10/06 20:24:45 truedfx Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic multilib toolchain-funcs
 
 MY_PV=${PV//./}
