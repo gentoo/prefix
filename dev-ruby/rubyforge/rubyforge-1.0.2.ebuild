@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/rubyforge-1.0.2.ebuild,v 1.2 2009/01/29 21:02:41 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 DESCRIPTION="Simplistic script which automates a limited set of rubyforge operations"
