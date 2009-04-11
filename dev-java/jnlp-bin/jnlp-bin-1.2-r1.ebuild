@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jnlp-bin/jnlp-bin-1.2-r1.ebuild,v 1.5 2008/06/07 10:53:43 serkan Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2
 
 DESCRIPTION="Java Network Launching Protocol (JNLP)"
