@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 DESCRIPTION="Apple branch of the GNU Debugger, 10.5"
