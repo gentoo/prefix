@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/medusa/medusa-0.5.4.ebuild,v 1.16 2008/10/24 11:20:35 armin76 Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="A framework for writing long-running, high-performance network servers in Python, using asynchronous sockets"
