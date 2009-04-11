@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/kiwi/kiwi-1.9.22.ebuild,v 1.1 2008/06/25 10:47:03 hawking Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.3
 
 inherit distutils versionator
