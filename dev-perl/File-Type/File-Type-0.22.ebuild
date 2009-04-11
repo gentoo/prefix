@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Type/File-Type-0.22.ebuild,v 1.16 2008/11/19 13:43:54 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=PMISON
 inherit perl-module
 
