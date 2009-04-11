@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.24 2008/12/14 10:43:30 grobian Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
 
