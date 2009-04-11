@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/eselect-ruby-20081227.ebuild,v 1.6 2009/03/20 04:57:31 josejx Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Manages multiple Ruby versions"
 HOMEPAGE="http://www.gentoo.org"
 SRC_URI="http://dev.a3li.info/gentoo/distfiles/ruby.eselect-${PVR}.bz2"
