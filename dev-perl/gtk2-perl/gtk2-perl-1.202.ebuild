@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/gtk2-perl/gtk2-perl-1.202.ebuild,v 1.2 2008/11/28 23:12:17 maekke Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=TSCH
 MY_PN=Gtk2
 MY_P=${MY_PN}-${PV}
