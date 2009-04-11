@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-netload/xfce4-netload-0.4.0.ebuild,v 1.19 2008/12/08 23:15:51 angelos Exp $
 
-EAPI="prefix"
-
 inherit xfce44 eutils autotools
 
 xfce44
