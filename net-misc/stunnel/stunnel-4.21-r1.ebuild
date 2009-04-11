@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.21-r1.ebuild,v 1.9 2008/02/16 16:11:14 rbu Exp $
 
-EAPI="prefix"
-
 inherit autotools ssl-cert eutils
 
 DESCRIPTION="TLS/SSL - Port Wrapper"
