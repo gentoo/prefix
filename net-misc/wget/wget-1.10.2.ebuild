@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.10.2.ebuild,v 1.19 2008/12/07 06:00:15 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 PATCHVER=0.2

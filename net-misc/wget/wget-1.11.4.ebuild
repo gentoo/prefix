@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.11.4.ebuild,v 1.1 2008/08/16 15:39:06 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 DESCRIPTION="Network utility to retrieve files from the WWW"
