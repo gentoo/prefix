@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-ClassAPI/Test-ClassAPI-1.05.ebuild,v 1.1 2008/08/02 10:58:49 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ADAMK
 inherit perl-module
 

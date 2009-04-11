@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-ClassAPI/Test-ClassAPI-1.04-r1.ebuild,v 1.6 2008/03/28 09:49:07 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Provides basic first-pass API testing for large class trees"
