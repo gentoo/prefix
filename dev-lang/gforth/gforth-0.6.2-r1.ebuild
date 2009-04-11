@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/gforth-0.6.2-r1.ebuild,v 1.6 2008/09/06 06:50:36 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp-common eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="GNU Forth is a fast and portable implementation of the ANSI Forth language"
