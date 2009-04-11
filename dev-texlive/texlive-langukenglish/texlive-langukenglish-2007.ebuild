@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-langukenglish/texlive-langukenglish-2007.ebuild,v 1.16 2008/09/09 18:31:23 aballier Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULES_DEPS="dev-texlive/texlive-basic
 "
 TEXLIVE_MODULE_CONTENTS="hyphen-ukenglish collection-langukenglish
