@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0-r7.ebuild,v 1.11 2008/09/18 01:23:32 vapier Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils
 
 DESCRIPTION="Convert a .rpm file to a .tar.gz archive"
