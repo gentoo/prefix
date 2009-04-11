@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-x/gst-plugins-x-0.10.21.ebuild,v 1.1 2008/12/05 20:05:38 ssuominen Exp $
 
-EAPI="prefix"
-
 inherit gst-plugins-base
 
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
