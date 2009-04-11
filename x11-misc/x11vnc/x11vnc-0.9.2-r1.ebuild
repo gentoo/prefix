@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.2-r1.ebuild,v 1.12 2008/01/11 21:10:52 swegener Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A VNC server for real X displays"
 HOMEPAGE="http://www.karlrunge.com/x11vnc/"
 SRC_URI="mirror://sourceforge/libvncserver/${P}.tar.gz"
