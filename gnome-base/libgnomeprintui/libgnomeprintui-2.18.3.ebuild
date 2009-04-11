@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprintui/libgnomeprintui-2.18.3.ebuild,v 1.6 2009/03/18 15:23:32 armin76 Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="User interface libraries for gnome print"

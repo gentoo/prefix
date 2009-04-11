@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprintui/libgnomeprintui-2.18.4.ebuild,v 1.1 2009/03/08 01:26:41 eva Exp $
 
-EAPI="prefix"
-
 GCONF_DEBUG="no"
 
 inherit gnome2
