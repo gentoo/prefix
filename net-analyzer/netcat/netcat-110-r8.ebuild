@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/netcat/netcat-110-r8.ebuild,v 1.11 2007/07/08 11:39:27 uberlord Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs flag-o-matic
 
 PATCH_VER="1.0"
