@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/IO/IO-1.23.01.ebuild,v 1.11 2009/03/18 07:29:47 josejx Exp $
 
-EAPI="prefix"
-
 inherit versionator perl-module
 
 MY_P="${PN}-$(delete_version_separator 2)"
