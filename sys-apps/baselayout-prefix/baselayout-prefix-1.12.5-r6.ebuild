@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="prefix"
-
 RESTRICT="mirror"
 
 inherit eutils toolchain-funcs multilib prefix
