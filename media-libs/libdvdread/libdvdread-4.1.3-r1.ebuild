@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/libdvdread-4.1.3-r1.ebuild,v 1.1 2008/12/03 02:50:01 beandog Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 WANT_AUTOCONF="2.5"
 inherit eutils autotools multilib
