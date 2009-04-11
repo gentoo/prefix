@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/pycrypto-2.0.1-r6.ebuild,v 1.9 2008/08/21 06:20:27 ricmm Exp $
 
-EAPI="prefix"
-
 inherit eutils distutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="Python Cryptography Toolkit"
