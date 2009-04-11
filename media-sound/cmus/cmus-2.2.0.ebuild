@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0.ebuild,v 1.9 2008/10/25 22:18:35 pvdabeel Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 DESCRIPTION="A ncurses based music player with plugin support for many formats"
