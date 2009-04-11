@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.4-r1.ebuild,v 1.7 2009/03/06 00:13:27 jer Exp $
 
-EAPI="prefix"
-
 inherit base eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="BitTorrent Client using libtorrent"
