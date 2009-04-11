@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/parrot-0.4.6.ebuild,v 1.2 2008/01/29 21:30:15 grobian Exp $
 
-EAPI="prefix"
-
 inherit base eutils multilib
 
 DESCRIPTION="The virtual machine that perl6 relies on."
