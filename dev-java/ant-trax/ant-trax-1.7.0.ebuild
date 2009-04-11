@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ant-trax/ant-trax-1.7.0.ebuild,v 1.10 2007/05/12 18:19:06 wltjr Exp $
 
-EAPI="prefix"
-
 ANT_TASK_DEPNAME="xalan"
 
 inherit ant-tasks
