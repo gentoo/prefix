@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.13.ebuild,v 1.2 2008/12/09 11:41:52 ssuominen Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 
 inherit autotools eutils multilib python
