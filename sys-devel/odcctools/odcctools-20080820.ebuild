@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Darwin assembler as(1) and static linker ld(1), Xcode Tools 3.1"
