@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/twisted-web-8.2.0.ebuild,v 1.1 2009/01/09 17:54:49 patrick Exp $
 
-EAPI="prefix"
-
 MY_PACKAGE=Web
 
 inherit twisted eutils versionator
