@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pychecker/pychecker-0.8.17-r1.ebuild,v 1.1 2008/09/01 22:03:58 hawking Exp $
 
-EAPI="prefix"
-
 inherit distutils eutils
 
 DESCRIPTION="Tool for finding common bugs in python source code"

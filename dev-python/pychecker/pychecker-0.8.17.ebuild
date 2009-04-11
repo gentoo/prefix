@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pychecker/pychecker-0.8.17.ebuild,v 1.6 2008/02/17 15:49:15 coldwind Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="tool for finding common bugs in python source code"
