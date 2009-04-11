@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/SGMLSpm/SGMLSpm-1.03-r5.ebuild,v 1.20 2007/07/12 08:45:04 uberlord Exp $
 
-EAPI="prefix"
-
 MY_P="${P}ii"
 DESCRIPTION="Perl library for parsing the output of nsgmls"
 HOMEPAGE="http://search.cpan.org/author/DMEGG/SGMLSpm-1.03ii/"
