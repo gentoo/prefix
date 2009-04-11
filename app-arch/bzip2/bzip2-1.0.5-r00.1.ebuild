@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.5.ebuild,v 1.8 2008/03/24 12:06:36 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib toolchain-funcs flag-o-matic prefix
 
 DESCRIPTION="A high-quality data compressor used extensively by Gentoo Linux"
