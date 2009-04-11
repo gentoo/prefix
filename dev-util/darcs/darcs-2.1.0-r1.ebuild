@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.1.0-r1.ebuild,v 1.1 2008/10/20 17:39:18 kolmodin Exp $
 
-EAPI="prefix"
-
 inherit base autotools eutils
 
 DESCRIPTION="David's Advanced Revision Control System is yet another replacement for CVS"
