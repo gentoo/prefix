@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-pipes/cl-pipes-1.2.1.ebuild,v 1.11 2008/03/27 16:18:45 armin76 Exp $
 
-EAPI="prefix"
-
 inherit common-lisp
 
 DESCRIPTION="Common Lisp library for pipes or streams"
