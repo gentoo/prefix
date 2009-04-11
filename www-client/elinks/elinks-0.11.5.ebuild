@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.5.ebuild,v 1.6 2009/03/22 08:24:14 spock Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools flag-o-matic
 
 MY_P="${P/_/}"
