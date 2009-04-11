@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-langdutch/texlive-langdutch-2008.ebuild,v 1.10 2009/03/18 21:07:47 ranger Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULE_CONTENTS="hyphen-dutch collection-langdutch
 "
 TEXLIVE_MODULE_DOC_CONTENTS=""
