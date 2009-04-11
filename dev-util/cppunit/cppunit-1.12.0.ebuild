@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cppunit/cppunit-1.12.0.ebuild,v 1.16 2008/07/27 20:18:05 carlo Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=1.9
