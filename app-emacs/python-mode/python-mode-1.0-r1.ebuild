@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/python-mode/python-mode-1.0-r1.ebuild,v 1.7 2008/09/20 17:59:06 vapier Exp $
 
-EAPI="prefix"
-
 inherit elisp distutils
 
 DESCRIPTION="An Emacs major mode for editing Python source"
