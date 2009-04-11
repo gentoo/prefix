@@ -15,7 +15,7 @@
 # TODO: We should implement the doc USE flag properly
 #
 
-EAPI="prefix 2"
+EAPI=2
 WANT_ANT_TASKS="ant-antlr ant-trax"
 
 inherit versionator java-pkg-2 java-ant-2
