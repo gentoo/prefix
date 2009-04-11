@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/CGI/CGI-3.42.ebuild,v 1.1 2008/09/09 08:33:19 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=LDS
 inherit perl-module
 
