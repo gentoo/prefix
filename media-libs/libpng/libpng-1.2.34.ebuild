@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.34.ebuild,v 1.9 2009/02/02 19:25:39 armin76 Exp $
 
-EAPI="prefix"
-
 inherit autotools multilib eutils
 
 MY_PV=${PV/_}
