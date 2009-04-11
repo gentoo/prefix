@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/tango-icon-theme-extras/tango-icon-theme-extras-0.1.0-r1.ebuild,v 1.11 2008/06/29 07:41:08 tove Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2-utils
 
 DESCRIPTION="This is an extension to the Tango Icon Theme. It includes Tango icons for iPod Digital Audio Player (DAP) devices and the Dell Pocket DJ DAP."
