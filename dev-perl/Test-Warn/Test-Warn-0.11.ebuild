@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Warn/Test-Warn-0.11.ebuild,v 1.5 2009/02/17 17:56:13 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=CHORNY
 inherit perl-module
 
