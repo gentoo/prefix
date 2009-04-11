@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/python-fchksum/python-fchksum-1.7.1.ebuild,v 1.25 2007/02/28 22:07:20 genstef Exp $
 
-EAPI="prefix"
-
 # DON'T inherit distutils because it will cause a circular dependency with python
 #inherit distutils
 
