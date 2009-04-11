@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/postgresql-base/postgresql-base-8.3.ebuild,v 1.2 2008/05/19 07:15:47 dev-zero Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 DESCRIPTION="Virtual for PostgreSQL base (clients + libraries)"
 HOMEPAGE="http://www.postgresql.org/"
