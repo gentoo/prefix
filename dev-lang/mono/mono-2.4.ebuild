@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.ebuild,v 1.2 2009/04/04 23:26:03 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.ebuild,v 1.3 2009/04/10 23:11:08 loki_val Exp $
 
 EAPI="prefix 2"
 
@@ -38,6 +38,7 @@ PATCHES=(
 	"${WORKDIR}/mono-2.2-libdir126.patch"
 	"${FILESDIR}/mono-2.2-ppc-threading.patch"
 	"${FILESDIR}/mono-2.2-uselibdir.patch"
+	"${FILESDIR}/mono-2.4-ppcbuild-fix.patch"
 )
 
 src_prepare() {

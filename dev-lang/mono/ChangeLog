@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/mono
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.161 2009/04/06 15:12:26 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.162 2009/04/10 23:11:08 loki_val Exp $
+
+  10 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/mono-2.4-ppcbuild-fix.patch, mono-2.4.ebuild:
+  Add fix for build on ppc/ppc64 from upstream CVS
 
   06 Apr 2009; Brent Baude <ranger@gentoo.org> mono-2.2-r5.ebuild:
   Marking mono-2.2-r5 ~ppc for bug 255410
