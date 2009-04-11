@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/unadf/unadf-0.7.9b.ebuild,v 1.9 2007/04/11 00:15:21 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Extract files from Amiga adf disk images"
