@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Spec/perl-File-Spec-3.25.ebuild,v 1.9 2008/03/31 16:53:35 jer Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for File-Spec"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI=""
