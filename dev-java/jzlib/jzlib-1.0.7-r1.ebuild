@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jzlib/jzlib-1.0.7-r1.ebuild,v 1.11 2007/07/11 19:58:37 mr_bones_ Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-ant-2
