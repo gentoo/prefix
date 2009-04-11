@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/icon-naming-utils-0.8.7.ebuild,v 1.6 2009/03/18 14:47:10 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Utils to help with the transition to the new freedesktop.org naming scheme."
 HOMEPAGE="http://tango.freedesktop.org"
 SRC_URI="http://tango.freedesktop.org/releases/${P}.tar.gz"
