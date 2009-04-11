@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/svk/svk-1.08.ebuild,v 1.4 2008/11/18 16:04:43 tove Exp $
 
-EAPI="prefix"
-
 inherit eutils perl-module bash-completion
 
 MY_P=${P/svk/SVK}
