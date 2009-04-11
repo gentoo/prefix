@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/freeciv-2.1.9.ebuild,v 1.1 2009/04/06 02:45:58 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit eutils games
 
 DESCRIPTION="multiplayer strategy game (Civilization Clone)"
