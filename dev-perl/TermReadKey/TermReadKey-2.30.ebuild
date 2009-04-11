@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/TermReadKey/TermReadKey-2.30.ebuild,v 1.16 2009/03/06 11:57:51 tove Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 MODULE_AUTHOR=JSTOWE
 inherit perl-module
