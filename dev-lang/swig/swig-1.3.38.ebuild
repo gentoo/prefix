@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/swig/swig-1.3.38.ebuild,v 1.1 2009/02/05 00:29:15 hkbst Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic mono eutils autotools #48511
 
 DESCRIPTION="Simplified Wrapper and Interface Generator"
