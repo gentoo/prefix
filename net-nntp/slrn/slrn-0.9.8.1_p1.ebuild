@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-nntp/slrn/slrn-0.9.8.1_p1.ebuild,v 1.6 2008/03/10 14:02:31 drac Exp $
 
-EAPI="prefix"
-
 MY_P=${P/_p/pl}
 
 DESCRIPTION="a s-lang based newsreader"

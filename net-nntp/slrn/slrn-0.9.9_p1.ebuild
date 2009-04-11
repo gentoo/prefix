@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-nntp/slrn/slrn-0.9.9_p1.ebuild,v 1.1 2008/10/07 21:31:16 swegener Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P="${P/_}"
