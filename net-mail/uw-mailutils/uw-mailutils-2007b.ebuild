@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2007b.ebuild,v 1.8 2008/09/20 10:02:50 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 MY_P="imap-${PV}"
