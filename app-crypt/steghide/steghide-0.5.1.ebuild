@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/steghide/steghide-0.5.1.ebuild,v 1.12 2008/05/13 20:42:48 drac Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="A steganography program which hides data in various media files"
