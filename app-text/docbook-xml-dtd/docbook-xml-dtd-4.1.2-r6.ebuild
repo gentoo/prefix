@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/docbook-xml-dtd-4.1.2-r6.ebuild,v 1.16 2007/08/20 09:53:52 leonardop Exp $
 
-EAPI="prefix"
-
 inherit sgml-catalog
 
 MY_P="docbkx412"
