@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/jde/jde-2.3.5.1-r2.ebuild,v 1.4 2009/04/06 20:44:59 maekke Exp $
 
-EAPI="prefix"
-
 inherit elisp eutils
 
 DESCRIPTION="Java Development Environment for Emacs"

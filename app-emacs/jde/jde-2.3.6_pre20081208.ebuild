@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/jde/jde-2.3.6_pre20081208.ebuild,v 1.1 2009/03/28 18:41:17 ulm Exp $
 
-EAPI="prefix 2"
+EAPI=2
 WANT_ANT_TASKS="ant-nodeps"
 JAVA_PKG_IUSE="doc source"
 
