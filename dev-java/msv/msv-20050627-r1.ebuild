@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/msv/msv-20050627-r1.ebuild,v 1.11 2007/05/09 15:02:38 armin76 Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 eutils java-ant-2
 
 DESCRIPTION="Multi-Schema XML Validator, a Java tool for validating XML documents"
