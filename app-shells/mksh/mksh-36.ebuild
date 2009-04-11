@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/mksh/mksh-36.ebuild,v 1.1 2008/10/25 22:37:34 hanno Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="MirBSD KSH Shell"

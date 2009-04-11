@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/mksh/mksh-33.ebuild,v 1.1 2008/03/26 00:12:51 hanno Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="MirBSD KSH Shell"
 HOMEPAGE="http://mirbsd.de/mksh"
 SRC_URI="http://www.mirbsd.org/MirOS/dist/mir/mksh/${PN}-R${PV}.cpio.gz
