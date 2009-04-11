@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.17.4-r3.ebuild,v 1.7 2009/03/18 14:28:12 armin76 Exp $
 
-EAPI="prefix"
-
 inherit gnome2 eutils flag-o-matic
 
 DESCRIPTION="Gnome terminal widget"
