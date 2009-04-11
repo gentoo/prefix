@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.20.0.ebuild,v 1.8 2008/04/20 01:35:57 vapier Exp $
 
-EAPI="prefix"
-
 inherit gnome2 multilib
 
 DESCRIPTION="Scalable Vector Graphics (SVG) rendering library"
