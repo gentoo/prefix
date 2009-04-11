@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/libutempter/libutempter-1.1.5.ebuild,v 1.11 2007/12/15 12:28:32 drac Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic versionator toolchain-funcs
 
 DESCRIPTION="Library that allows non-privileged apps to write utmp (login) info, which need root access"
