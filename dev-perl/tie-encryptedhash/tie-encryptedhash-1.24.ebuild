@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/tie-encryptedhash/tie-encryptedhash-1.24.ebuild,v 1.1 2008/08/23 21:15:13 tove Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Tie-EncryptedHash-${PV}
