@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-calculators/wcalc/wcalc-2.2.1.ebuild,v 1.5 2008/01/31 07:24:24 opfer Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A flexible command-line scientific calculator"
 HOMEPAGE="http://w-calc.sourceforge.net"
 SRC_URI="mirror://sourceforge/w-calc/Wcalc-${PV}.tar.bz2"
