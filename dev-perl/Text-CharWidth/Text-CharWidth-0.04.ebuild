@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CharWidth/Text-CharWidth-0.04.ebuild,v 1.16 2007/12/24 14:56:16 ranger Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Get number of occupied columns of a string on terminal"
