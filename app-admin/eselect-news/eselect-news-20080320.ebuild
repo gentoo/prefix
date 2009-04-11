@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-news/eselect-news-20080320.ebuild,v 1.11 2009/03/17 10:08:28 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="GLEP 42 news reader"
 HOMEPAGE="http://paludis.pioto.org/"
 SRC_URI="http://dev.gentooexperimental.org/~peper/distfiles/news.eselect-${PV}"
