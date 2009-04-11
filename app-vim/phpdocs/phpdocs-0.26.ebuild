@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/phpdocs/phpdocs-0.26.ebuild,v 1.15 2007/02/11 14:05:38 grobian Exp $
 
-EAPI="prefix"
-
 inherit vim-plugin
 
 DESCRIPTION="vim plugin: PHPDoc Support in VIM"
