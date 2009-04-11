@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/class-loader/class-loader-2.03.ebuild,v 1.10 2007/07/10 23:33:30 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Class-Loader-${PV}
