@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Scalar-Properties/Scalar-Properties-0.12.ebuild,v 1.14 2008/03/19 02:24:51 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="run-time properties on scalar variables"
