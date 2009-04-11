@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/yaml/yaml-0.68.ebuild,v 1.2 2009/03/19 14:30:31 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P="YAML-${PV}"
