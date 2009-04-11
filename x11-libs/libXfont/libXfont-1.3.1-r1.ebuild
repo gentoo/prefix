@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/libXfont-1.3.1-r1.ebuild,v 1.9 2008/04/13 22:50:49 vapier Exp $
 
-EAPI="prefix"
-
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
 
