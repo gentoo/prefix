@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.3.4.ebuild,v 1.5 2009/04/08 17:23:24 klausman Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Zile is a small Emacs clone"
 HOMEPAGE="http://www.gnu.org/software/zile/"
 SRC_URI="mirror://gnu/zile/${P}.tar.gz"
