@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.4.1.ebuild,v 1.1 2008/09/04 03:35:22 fuzzyray Exp $
 
-EAPI="prefix"
-
 inherit eutils python prefix
 
 DESCRIPTION="Collection of administration scripts for Gentoo"
