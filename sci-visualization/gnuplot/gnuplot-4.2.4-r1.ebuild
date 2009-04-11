@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.4-r1.ebuild,v 1.13 2009/04/01 20:26:54 ulm Exp $
 
-EAPI="prefix"
-
 WX_GTK_VER="2.8"
 
 inherit autotools elisp-common eutils multilib wxwidgets flag-o-matic

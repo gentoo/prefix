@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.2-r1.ebuild,v 1.14 2008/04/24 12:11:00 opfer Exp $
 
-EAPI="prefix"
-
 inherit eutils elisp-common multilib wxwidgets flag-o-matic
 
 MY_P="${P/_/.}"
