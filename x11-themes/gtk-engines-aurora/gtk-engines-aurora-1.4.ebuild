@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-themes/gtk-engines-aurora/gtk-engines-aurora-1.4.ebuild,v 1.3 2008/07/18 07:58:42 opfer Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 DESCRIPTION="Aurora GTK+ Theme Engine"
