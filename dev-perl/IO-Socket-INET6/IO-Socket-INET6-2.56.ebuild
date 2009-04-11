@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-INET6/IO-Socket-INET6-2.56.ebuild,v 1.2 2008/12/10 07:41:54 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR="SHLOMIF"
 inherit perl-module
 
