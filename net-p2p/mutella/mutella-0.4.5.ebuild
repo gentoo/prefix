@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-p2p/mutella/mutella-0.4.5.ebuild,v 1.8 2009/02/24 02:21:11 dirtyepic Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Text-mode gnutella client"
