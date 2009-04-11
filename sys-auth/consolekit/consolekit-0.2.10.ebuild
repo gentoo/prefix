@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.2.10.ebuild,v 1.10 2009/03/17 22:48:43 loki_val Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools multilib pam
 
 MY_PN="ConsoleKit"
