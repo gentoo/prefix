@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/string-crc32/string-crc32-1.4.ebuild,v 1.15 2007/12/11 09:41:18 vapier Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=String-CRC32-${PV}
