@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-phonon/qt-phonon-4.5.0.ebuild,v 1.5 2009/03/21 11:51:49 armin76 Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The Phonon module for the Qt toolkit"
