@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.3-r1.ebuild,v 1.1 2008/11/06 08:10:02 dragonheart Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="general purpose crypto library based on the code used in GnuPG"
