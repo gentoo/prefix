@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/httpd-cgi/httpd-cgi-0.ebuild,v 1.3 2008/07/08 15:51:18 mr_bones_ Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for CGI-enabled webservers"
 HOMEPAGE="http://gentoo.org/"
 SRC_URI=""
