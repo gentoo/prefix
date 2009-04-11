@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/html2text/html2text-1.3.2-r1.ebuild,v 1.1 2009/03/19 13:41:39 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="A HTML to text converter"
