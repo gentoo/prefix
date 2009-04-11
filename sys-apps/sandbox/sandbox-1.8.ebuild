@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.8.ebuild,v 1.1 2009/04/05 09:00:22 vapier Exp $
 
-EAPI="prefix"
-
 #
 # don't monkey with this ebuild unless contacting portage devs.
 # period.

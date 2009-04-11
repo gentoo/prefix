@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.2.18.1-r3.ebuild,v 1.2 2008/11/09 07:26:17 truedfx Exp $
 
-EAPI="prefix"
-
 #
 # don't monkey with this ebuild unless contacting portage devs.
 # period.
