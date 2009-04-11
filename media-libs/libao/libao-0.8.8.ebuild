@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libao/libao-0.8.8.ebuild,v 1.8 2008/05/26 15:30:46 drac Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="the audio output library"
