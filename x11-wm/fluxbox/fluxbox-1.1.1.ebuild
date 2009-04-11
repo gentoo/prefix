@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.1.1.ebuild,v 1.5 2009/04/08 16:40:32 lack Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit eutils
 
 IUSE="nls xinerama truetype gnome +imlib +slit +toolbar vim-syntax"
