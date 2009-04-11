@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.81-r2.ebuild,v 1.9 2009/03/17 10:22:21 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic fixheadtails toolchain-funcs
 
 MY_P=${P/-/_}
