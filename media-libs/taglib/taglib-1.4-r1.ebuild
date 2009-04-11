@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-libs/taglib/taglib-1.4-r1.ebuild,v 1.11 2008/01/06 23:27:56 philantrop Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="A library for reading and editing audio meta data"
