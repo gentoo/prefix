@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.8.2-r4.ebuild,v 1.6 2008/11/27 06:09:09 nerdboy Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool
 
 DESCRIPTION="Library for manipulation of TIFF (Tag Image File Format) images"
