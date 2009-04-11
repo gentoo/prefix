@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ufed-0.40-r10.ebuild,v 1.8 2008/10/25 22:37:37 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Gentoo Linux USE flags editor"
