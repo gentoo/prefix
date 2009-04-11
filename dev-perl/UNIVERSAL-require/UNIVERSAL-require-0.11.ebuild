@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/UNIVERSAL-require/UNIVERSAL-require-0.11.ebuild,v 1.6 2009/01/08 14:32:38 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="UNIVERSAL::require - require() modules from a variable"
