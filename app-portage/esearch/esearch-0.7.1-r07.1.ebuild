@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/esearch/esearch-0.7.1-r7.ebuild,v 1.2 2009/03/07 19:54:57 betelgeuse Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit base eutils
 
