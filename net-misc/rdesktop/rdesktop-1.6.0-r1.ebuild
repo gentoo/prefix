@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.6.0-r1.ebuild,v 1.1 2008/05/21 14:13:19 voyageur Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_PV=${PV/_/-}
