@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-dicts/aspell-de/aspell-de-0.60_pre20030222.ebuild,v 1.17 2007/11/03 22:03:00 uberlord Exp $
 
-EAPI="prefix"
-
 ASPELL_LANG="German and Swiss-German"
 ASPOSTFIX="6"
 
