@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-news/snownews/snownews-1.5.11.ebuild,v 1.1 2009/03/20 10:31:07 cedk Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="Snownews, a text-mode RSS/RDF newsreader"
