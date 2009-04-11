@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-0.9.8-r2.ebuild,v 1.8 2008/11/04 03:36:16 vapier Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils multilib toolchain-funcs
 
 DESCRIPTION="A system-independent library for user-level network packet capture"
