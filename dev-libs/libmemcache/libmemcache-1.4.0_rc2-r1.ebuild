@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcache/libmemcache-1.4.0_rc2-r1.ebuild,v 1.2 2008/10/10 08:53:01 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs autotools
 
 MY_PV="${PV/_rc/.rc}"
