@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/xdg-utils-1.0.2.ebuild,v 1.11 2007/12/11 10:58:57 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Portland utils for cross-platform/cross-toolkit/cross-desktop interoperability"
 HOMEPAGE="http://portland.freedesktop.org/wiki/Portland"
 SRC_URI="http://portland.freedesktop.org/download/${P}.tgz"
