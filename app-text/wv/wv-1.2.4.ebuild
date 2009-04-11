@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-text/wv/wv-1.2.4.ebuild,v 1.1 2008/02/19 15:09:59 caleb Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Tool for conversion of MSWord doc and rtf files to something readable"
@@ -11,7 +9,7 @@ SRC_URI="mirror://sourceforge/wvware/${P}.tar.gz"
 HOMEPAGE="http://wvware.sourceforge.net/"
 
 IUSE="wmf"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 LICENSE="GPL-2"
 
