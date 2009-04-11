@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Tagset/HTML-Tagset-3.20.ebuild,v 1.4 2008/11/04 10:20:27 vapier Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="data tables useful in parsing HTML"
