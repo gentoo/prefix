@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r5.ebuild,v 1.6 2009/03/27 21:41:44 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic versionator autotools
 
 PATCHV="0.5"
