@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/crypt-random/crypt-random-1.25.ebuild,v 1.12 2006/10/20 14:51:29 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Crypt-Random-${PV}
