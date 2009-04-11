@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/smartmontools-5.37-r1.ebuild,v 1.1 2008/03/10 19:29:06 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="control and monitor storage systems using the Self-Monitoring, Analysis and Reporting Technology System (S.M.A.R.T.)"
