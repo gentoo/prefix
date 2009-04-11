@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/libwww-5.4.0-r7.ebuild,v 1.13 2007/07/12 10:21:05 uberlord Exp $
 
-EAPI="prefix"
-
 WANT_AUTOMAKE="latest"
 WANT_AUTOCONF="latest"
 inherit eutils multilib autotools
