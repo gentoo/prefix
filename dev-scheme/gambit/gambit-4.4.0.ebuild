@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-scheme/gambit/gambit-4.4.0.ebuild,v 1.4 2009/01/28 16:46:59 hkbst Exp $
 
-EAPI="prefix"
-
 inherit eutils elisp-common check-reqs multilib
 
 MY_PN=gambc
