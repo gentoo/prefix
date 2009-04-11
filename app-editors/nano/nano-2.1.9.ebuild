@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.9.ebuild,v 1.1 2009/02/17 05:17:22 vapier Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit eutils
 if [[ ${PV} == "9999" ]] ; then
 	ESVN_REPO_URI="svn://svn.savannah.gnu.org/nano/trunk/nano"
