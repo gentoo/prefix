@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/javatoolkit/javatoolkit-0.3.0-r2.ebuild,v 1.8 2009/03/04 20:40:54 betelgeuse Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit distutils eutils multilib prefix
 
