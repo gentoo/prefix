@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/vim-core-7.2.ebuild,v 1.7 2008/10/27 05:45:36 vapier Exp $
 
-EAPI="prefix"
-
 inherit vim 
 
 VIM_VERSION="7.2"
