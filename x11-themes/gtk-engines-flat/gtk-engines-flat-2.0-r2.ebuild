@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-flat/gtk-engines-flat-2.0-r2.ebuild,v 1.14 2008/03/22 10:28:58 drac Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 MY_P=gtk-flat-theme-${PV}
