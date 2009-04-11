@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/snobol/snobol-1.1.ebuild,v 1.4 2008/01/29 21:31:52 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Phil Budne's port of Macro SNOBOL4 in C, for modern machines"
 HOMEPAGE="http://www.snobol4.org/csnobol4/"
 MY_PN="snobol4"
