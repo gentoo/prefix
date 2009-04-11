@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/patch/patch-2.5.9-r1.ebuild,v 1.18 2008/03/18 12:34:29 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils
 
 DESCRIPTION="Utility to apply diffs to files"
