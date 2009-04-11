@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/whois/whois-4.7.27.ebuild,v 1.8 2008/12/29 13:42:26 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 MY_P=${P/-/_}
