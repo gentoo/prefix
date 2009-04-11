@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/net-ping/net-ping-2.31.ebuild,v 1.8 2007/01/19 18:02:35 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Net-Ping-${PV}
