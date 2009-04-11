@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-i18n/kakasi/kakasi-2.3.4-r1.ebuild,v 1.1 2008/10/30 23:11:00 matsuu Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="Converts Japanese text between kanji, kana, and romaji"

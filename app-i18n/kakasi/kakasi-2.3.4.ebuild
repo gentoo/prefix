@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-i18n/kakasi/kakasi-2.3.4.ebuild,v 1.13 2006/07/12 21:09:14 agriffis Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 DESCRIPTION="Converts Japanese text between kanji, kana, and romaji"
