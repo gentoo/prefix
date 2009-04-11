@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/ftjam/ftjam-2.5.3_rc2.ebuild,v 1.13 2008/08/03 08:35:40 dirtyepic Exp $
 
-EAPI="prefix"
-
 inherit eutils versionator
 
 MY_PV=$(delete_version_separator _)
