@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-plugins/asclock/asclock-2.0.12-r1.ebuild,v 1.6 2008/06/29 13:47:54 drac Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 IUSE=""
