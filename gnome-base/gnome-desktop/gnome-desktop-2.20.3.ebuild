@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.20.3.ebuild,v 1.10 2008/11/08 12:59:57 eva Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="Libraries for the gnome desktop that is not part of the UI"

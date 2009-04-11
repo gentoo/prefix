@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.24.2-r1.ebuild,v 1.1 2009/01/04 00:20:24 eva Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2
 
 DESCRIPTION="Libraries for the gnome desktop that are not part of the UI"
