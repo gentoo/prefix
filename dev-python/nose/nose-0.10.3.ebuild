@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/nose/nose-0.10.3.ebuild,v 1.7 2008/12/07 19:22:45 vapier Exp $
 
-EAPI="prefix"
-
 inherit distutils eutils
 
 DESCRIPTION="A unittest extension offering automatic test suite discovery and easy test authoring"
