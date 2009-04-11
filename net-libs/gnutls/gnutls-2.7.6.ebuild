@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.7.6.ebuild,v 1.1 2009/02/28 23:16:47 dragonheart Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit libtool autotools
 
 DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
