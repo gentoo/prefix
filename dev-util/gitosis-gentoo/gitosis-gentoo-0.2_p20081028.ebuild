@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/gitosis-gentoo/gitosis-gentoo-0.2_p20081028.ebuild,v 1.2 2008/11/24 01:26:33 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="gitosis -- software for hosting git repositories, Gentoo fork"
