@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20061015-r1.ebuild,v 1.3 2008/06/27 10:23:37 ulm Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic toolchain-funcs eutils autotools
 
 DESCRIPTION="Development toolkit and applications for computational biology"
