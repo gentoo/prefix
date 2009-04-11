@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/uudeview/uudeview-0.5.20.ebuild,v 1.15 2008/01/17 20:21:50 grobian Exp $
 
-EAPI="prefix"
-
 IUSE="tk debug"
 
 DESCRIPTION="uu, xx, base64, binhex decoder"

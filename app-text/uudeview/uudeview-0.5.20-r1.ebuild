@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/uudeview/uudeview-0.5.20-r1.ebuild,v 1.4 2008/08/03 17:58:05 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 IUSE="tk"
 
