@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/leafpad/leafpad-0.8.14.ebuild,v 1.4 2009/04/04 10:15:16 solar Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2-utils
 
 DESCRIPTION="Simple GTK+ Text Editor"
