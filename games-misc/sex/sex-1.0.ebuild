@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-misc/sex/sex-1.0.ebuild,v 1.18 2008/05/14 23:51:40 nyhm Exp $
 
-EAPI="prefix"
-
 inherit games
 
 DESCRIPTION="Spouts silly mad-lib-style porn-like text"
