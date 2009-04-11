@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.6.ebuild,v 1.1 2009/04/09 21:14:15 eva Exp $
 
-EAPI="prefix"
-
 inherit gnome2 eutils mono libtool
 
 DESCRIPTION="Utilities for creating and parsing messages using MIME"
