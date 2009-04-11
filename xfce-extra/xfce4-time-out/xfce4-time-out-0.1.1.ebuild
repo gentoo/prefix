@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-time-out/xfce4-time-out-0.1.1.ebuild,v 1.9 2008/08/08 17:51:25 aballier Exp $
 
-EAPI="prefix"
-
 inherit xfce44
 
 xfce44
