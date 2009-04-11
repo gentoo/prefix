@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Quoted/Text-Quoted-2.02.ebuild,v 1.5 2009/03/07 11:24:56 tove Exp $
 
-EAPI="prefix"
-
 # this is an RT dependency
 
 inherit perl-module
