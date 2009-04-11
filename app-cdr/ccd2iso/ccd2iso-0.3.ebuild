@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-cdr/ccd2iso/ccd2iso-0.3.ebuild,v 1.1 2007/04/01 07:28:53 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Converts CloneCD images (popular under Windows) to ISOs"
