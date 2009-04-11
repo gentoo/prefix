@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Flat/File-Flat-1.00.ebuild,v 1.9 2008/03/19 03:20:11 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Implements a flat filesystem"
