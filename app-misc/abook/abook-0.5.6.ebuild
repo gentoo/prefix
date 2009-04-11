@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/abook/abook-0.5.6.ebuild,v 1.8 2007/07/21 21:08:54 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Abook is a text-based addressbook program designed to use with mutt mail client."
 HOMEPAGE="http://abook.sourceforge.net/"
 SRC_URI="mirror://sourceforge/abook/${P}.tar.gz"
