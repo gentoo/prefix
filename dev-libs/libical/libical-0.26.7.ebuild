@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/libical-0.26.7.ebuild,v 1.9 2007/10/06 04:53:20 tgall Exp $
 
-EAPI="prefix"
-
 inherit versionator
 
 MY_VER=$(replace_version_separator 2 -)

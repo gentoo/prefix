@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/libical-0.33-r1.ebuild,v 1.1 2008/10/01 15:11:33 s4t4n Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="a implementation of basic iCAL protocols from citadel, previously known as aurore."
 HOMEPAGE="http://www.citadel.org"
 SRC_URI="http://easyinstall.citadel.org/${P}.tar.gz"
