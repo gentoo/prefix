@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/buddy/buddy-2.4.ebuild,v 1.3 2009/02/10 04:29:43 dirtyepic Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="BuDDY - A Binary Decision Diagram Package"
