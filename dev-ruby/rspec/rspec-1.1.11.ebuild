@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/rspec-1.1.11.ebuild,v 1.6 2008/12/20 18:51:00 maekke Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 DESCRIPTION="A Behaviour Driven Development (BDD) framework for Ruby"
