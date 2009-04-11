@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.68.ebuild,v 1.1 2009/03/24 15:36:50 grozin Exp $
-EAPI="prefix 2"
+EAPI=2
 inherit eutils autotools elisp-common latex-package multilib python
 
 DESCRIPTION="A vector graphics language that provides a framework for technical drawing"

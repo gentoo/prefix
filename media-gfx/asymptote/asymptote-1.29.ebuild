@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.29.ebuild,v 1.5 2008/09/04 07:52:46 opfer Exp $
 
-EAPI="prefix"
-
 inherit eutils elisp-common
 
 DESCRIPTION="A vector graphics language that provides a framework for technical drawing"
