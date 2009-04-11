@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r17.ebuild,v 1.17 2009/03/12 01:00:05 ulm Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic eutils toolchain-funcs autotools

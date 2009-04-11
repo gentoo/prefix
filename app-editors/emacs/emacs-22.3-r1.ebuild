@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r1.ebuild,v 1.12 2009/03/12 01:00:05 ulm Exp $
 
-EAPI="prefix"
-
 inherit autotools elisp-common eutils flag-o-matic
 
 DESCRIPTION="The extensible, customizable, self-documenting real-time display editor"
