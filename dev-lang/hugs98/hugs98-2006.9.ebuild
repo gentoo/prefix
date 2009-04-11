@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/hugs98/hugs98-2006.9.ebuild,v 1.1 2008/01/26 20:29:19 dcoutts Exp $
 
-EAPI="prefix"
-
 inherit base flag-o-matic eutils versionator multilib
 
 IUSE="X opengl openal doc"
