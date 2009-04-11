@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/statcvs/statcvs-0.4.0.ebuild,v 1.2 2009/01/05 22:56:48 maekke Exp $
 
-EAPI="prefix 1"
+EAPI=1
 JAVA_PKG_IUSE="doc source test"
 
 inherit eutils java-pkg-2 java-ant-2
