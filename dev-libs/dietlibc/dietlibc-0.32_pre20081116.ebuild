@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/dietlibc/dietlibc-0.32_pre20081116.ebuild,v 1.1 2008/11/16 14:13:41 hollow Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 DESCRIPTION="A minimal libc"
