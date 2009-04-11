@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/gedit-2.24.3.ebuild,v 1.8 2009/03/18 15:47:17 armin76 Exp $
 
-EAPI="prefix"
-
 GCONF_DEBUG="no"
 
 inherit gnome2 python eutils autotools
