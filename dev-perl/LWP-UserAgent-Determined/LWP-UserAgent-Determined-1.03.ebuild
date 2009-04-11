@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/LWP-UserAgent-Determined/LWP-UserAgent-Determined-1.03.ebuild,v 1.1 2008/08/22 15:49:48 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=SBURKE
 inherit perl-module
 
