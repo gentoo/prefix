@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.7.1.ebuild,v 1.2 2008/03/17 17:18:17 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit depend.php
 
 ARCHIVE_TAR="1.3.2"
