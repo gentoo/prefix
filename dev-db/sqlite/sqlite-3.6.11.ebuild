@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.11.ebuild,v 1.7 2009/04/07 18:46:54 klausman Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils flag-o-matic multilib versionator
 
