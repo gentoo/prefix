@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/java-config-wrapper-0.15.ebuild,v 1.8 2009/03/08 19:17:59 klausman Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Wrapper for java-config"
