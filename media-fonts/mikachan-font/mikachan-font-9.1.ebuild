@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/mikachan-font/mikachan-font-9.1.ebuild,v 1.12 2008/01/15 18:02:43 grobian Exp $
 
-EAPI="prefix"
-
 inherit font
 
 MY_PN="${PN/-/}"
