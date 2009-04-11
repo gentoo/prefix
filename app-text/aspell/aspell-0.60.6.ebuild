@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/aspell/aspell-0.60.6.ebuild,v 1.11 2009/03/18 07:35:09 josejx Exp $
 
-EAPI="prefix"
-
 # N.B. This is before inherit of autotools, as autotools.eclass adds the
 # relevant dependencies to DEPEND.
 WANT_AUTOMAKE="1.10"
