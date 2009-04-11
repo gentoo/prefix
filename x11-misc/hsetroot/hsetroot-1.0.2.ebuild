@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/hsetroot/hsetroot-1.0.2.ebuild,v 1.8 2007/01/16 20:48:26 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Tool which allows you to compose wallpapers ('root pixmaps') for X"
 HOMEPAGE="http://thegraveyard.org/hsetroot.php"
 SRC_URI="http://thegraveyard.org/files/${P}.tar.gz"
