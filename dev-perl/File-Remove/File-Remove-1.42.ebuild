@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Remove/File-Remove-1.42.ebuild,v 1.1 2008/07/24 11:55:09 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ADAMK
 inherit perl-module
 
