@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0_beta2-r1.ebuild,v 1.9 2008/04/03 18:27:35 pva Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="The Theora Video Compression Codec"
