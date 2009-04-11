@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.2.ebuild,v 1.11 2008/06/14 17:49:57 zmedico Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-opt-2 flag-o-matic libtool python perl-module multilib
 
 MY_PN="${PN/pdf/PDF}-Lite"

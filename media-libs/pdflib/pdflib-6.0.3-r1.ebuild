@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-6.0.3-r1.ebuild,v 1.10 2007/07/05 19:29:31 anant Exp $
 
-EAPI="prefix"
-
 # eutils must be inherited since get_libdir() is only
 # globally available on baselayout-1.11 (still on ~arch)
 inherit base eutils java-pkg-opt-2 flag-o-matic
