@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/facter/facter-1.5.2.ebuild,v 1.1 2008/09/09 09:33:56 matsuu Exp $
 
-EAPI="prefix"
-
 inherit ruby
 
 DESCRIPTION="A cross-platform Ruby library for retrieving facts from operating systems"
