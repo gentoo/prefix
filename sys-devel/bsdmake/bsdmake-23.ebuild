@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="Apple's version of FreeBSD's make"
