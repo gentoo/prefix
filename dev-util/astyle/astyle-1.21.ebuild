@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/astyle/astyle-1.21.ebuild,v 1.8 2008/09/10 13:06:01 fmccor Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 DESCRIPTION="Artistic Style is a reindenter and reformatter of C++, C and Java source code"
