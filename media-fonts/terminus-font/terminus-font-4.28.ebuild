@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/terminus-font-4.28.ebuild,v 1.8 2009/01/12 04:25:00 jer Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils font
 
