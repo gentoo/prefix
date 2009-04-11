@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/perl-cleaner-1.04.3.ebuild,v 1.13 2009/02/05 05:39:37 darkside Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="User land tool for cleaning up old perl installs"
