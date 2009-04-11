@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/webpy/webpy-0.31.ebuild,v 1.2 2009/04/02 09:25:48 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/webpy/webpy-0.31.ebuild,v 1.3 2009/04/10 10:27:26 gmsoft Exp $
 
 EAPI="prefix"
 

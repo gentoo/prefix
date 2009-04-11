@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/webpy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/webpy/ChangeLog,v 1.8 2009/04/02 09:25:48 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/webpy/ChangeLog,v 1.9 2009/04/10 10:27:26 gmsoft Exp $
+
+  10 Apr 2009; Guy Martin <gmsoft@gentoo.org> webpy-0.31.ebuild:
+  Added ~hppa to KEYWORDS.
 
   02 Apr 2009; Patrick Lauer <patrick@gentoo.org> webpy-0.31.ebuild:
   SRC_URI fix, thanks to Xiaobing Jiang for noticing.
