@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/blas/blas-1.0.ebuild,v 1.4 2008/12/07 18:42:22 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for FORTRAN 77 BLAS implementation"
 HOMEPAGE="http://www.gentoo.org/proj/en/science/"
 SRC_URI=""
