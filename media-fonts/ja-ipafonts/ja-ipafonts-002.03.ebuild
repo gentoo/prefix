@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/ja-ipafonts/ja-ipafonts-002.03.ebuild,v 1.2 2009/01/19 14:18:42 matsuu Exp $
 
-EAPI="prefix"
-
 inherit font
 
 MY_P="IPAfont${PV/.}"
