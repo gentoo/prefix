@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/sitecopy-0.16.3.ebuild,v 1.5 2006/07/28 19:16:51 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 IUSE="expat nls rsh ssl webdav xml zlib"
