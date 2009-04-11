@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpflow/tcpflow-0.21.ebuild,v 1.8 2006/08/15 09:17:49 blubb Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="A Tool for monitoring, capturing and storing TCP connections flows"
