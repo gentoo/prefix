@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.1.ebuild,v 1.8 2008/05/24 00:41:21 dirtyepic Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic libtool toolchain-funcs
 
 DESCRIPTION="A Type 1 Font Rasterizer Library for UNIX/X11"
