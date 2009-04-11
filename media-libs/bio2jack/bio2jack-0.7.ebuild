@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/bio2jack/bio2jack-0.7.ebuild,v 1.14 2008/01/29 21:50:24 grobian Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="2.5"
 WANT_AUTOMAKE="1.8"
 
