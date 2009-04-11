@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Base/Test-Base-0.55.ebuild,v 1.2 2009/02/13 11:50:34 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=INGY
 inherit perl-module
 
