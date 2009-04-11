@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.9.1-r3.ebuild,v 1.8 2009/02/15 15:19:44 ranger Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils versionator flag-o-matic
 
