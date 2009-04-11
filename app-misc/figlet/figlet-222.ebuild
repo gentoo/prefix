@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/figlet/figlet-222.ebuild,v 1.14 2008/05/11 20:35:07 solar Exp $
 
-EAPI="prefix"
-
 inherit eutils bash-completion toolchain-funcs
 
 MY_P=${P/-/}
