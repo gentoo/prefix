@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/gentoo-syntax/gentoo-syntax-20070506.ebuild,v 1.10 2007/08/25 11:56:23 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils vim-plugin
 
 DESCRIPTION="vim plugin: Gentoo Ebuild, Eclass, GLEP, ChangeLog and Portage Files syntax highlighting, filetype and indent settings"
