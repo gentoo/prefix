@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/python-docs-2.4.4.ebuild,v 1.13 2007/06/26 16:22:20 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="HTML documentation for Python"
 HOMEPAGE="http://www.python.org/doc/${PV}/"
 SRC_URI="http://www.python.org/ftp/python/doc/${PV}/html-${PV}.tar.bz2
