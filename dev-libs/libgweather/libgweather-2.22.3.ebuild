@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.22.3.ebuild,v 1.7 2008/11/13 19:14:49 ranger Exp $
 
-EAPI="prefix"
-
 inherit gnome2 autotools
 
 DESCRIPTION="Library to access weather information from online services"
