@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/mmm-mode/mmm-mode-0.4.8-r1.ebuild,v 1.5 2007/11/06 08:07:26 opfer Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="Enables the user to edit different parts of a file in different major modes"
