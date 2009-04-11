@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/detex/detex-2.7.ebuild,v 1.23 2008/05/11 19:04:03 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="A filter program that removes the LaTeX (or TeX) control sequences"
