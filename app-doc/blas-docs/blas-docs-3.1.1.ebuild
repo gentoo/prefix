@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-doc/blas-docs/blas-docs-3.1.1.ebuild,v 1.10 2008/12/07 18:26:22 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Documentation reference and man pages for blas implementations"
 HOMEPAGE="http://www.netlib.org/blas"
 SRC_URI="mirror://gentoo/lapack-man-${PV}.tgz
