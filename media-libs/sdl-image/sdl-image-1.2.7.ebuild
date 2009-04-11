@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/sdl-image-1.2.7.ebuild,v 1.3 2009/04/07 19:21:29 klausman Exp $
 
-EAPI="prefix"
-
 MY_P="${P/sdl-/SDL_}"
 DESCRIPTION="image file loading library"
 HOMEPAGE="http://www.libsdl.org/projects/SDL_image/index.html"
