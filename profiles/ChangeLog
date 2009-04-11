@@ -1,10 +1,46 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2510 2009/04/08 23:11:37 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2522 2009/04/10 23:12:38 mrness Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  10 Apr 2009; Alin Năstac <mrness@gentoo.org> package.mask:
+  P.mask net-dialup/qlcr (#264785).
+
+  10 Apr 2009; Ulrich Mueller <ulm@gentoo.org> updates/2Q-2009,
+  base/package.use.mask, default-linux/package.use.mask,
+  hardened/package.use.mask:
+  Package move gecko-mediaplayer, mplayerplug-in, and gnash to www-plugins,
+  bug 265569. Update package.use.mask files accordingly.
+
+  10 Apr 2009; Thomas Anderson <gentoofan23@gentoo.org> package.mask:
+  p.mask lvm2-2.02.45 to avoid issues with internal device-mapper
+
+  10 Apr 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask >=bash-completion-20000000 to force a downgrade to the proper naming
+  scheme
+
+  10 Apr 2009; Ulrich Mueller <ulm@gentoo.org>
+  arch/amd64/no-multilib/package.mask,
+  default-linux/amd64/2007.0/no-multilib/package.mask,
+  features/64bit-native/package.mask, updates/2Q-2009:
+  Package move libflashsupport, netscape-flash, and swfdec-mozilla
+  to www-plugins, bug 265569. Update masks accordingly.
+
+  09 Apr 2009; Ulrich Mueller <ulm@gentoo.org>
+  arch/amd64/no-multilib/package.mask,
+  default-linux/amd64/2007.0/no-multilib/package.mask,
+  features/64bit-native/package.mask, updates/2Q-2009:
+  Package move mozplugger and nspluginwrapper to www-plugins, bug 265569.
+  Update masks accordingly.
+
+  09 Apr 2009; Ulrich Mueller <ulm@gentoo.org> categories, updates/1Q-2009,
+  +updates/2Q-2009:
+  Add www-plugins category. Move entry from April from 1Q-2009 to 2Q-2009.
+  Package move awstats to www-misc. Package move kaffeine-mozilla-plugin to
+  www-plugins.
 
   08 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
   Add net-libs/zapata for removal

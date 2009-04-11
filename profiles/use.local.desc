@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4345 2009/04/08 20:07:48 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4354 2009/04/10 21:27:41 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -562,6 +562,7 @@ dev-java/ant-tasks:log4j - Enable Apache log4j Ant tasks
 dev-java/ant-tasks:oro - Enable Apache Oro Ant tasks
 dev-java/ant-tasks:regexp - Enable Apache Regexp Ant tasks
 dev-java/ant-tasks:resolver - Enable Apache Resolver Ant tasks
+dev-java/antlr:gunit -  gUnit is a "Unit Test" framework for ANTLR grammars 
 dev-java/antlr:script - Install a script to run antlr
 dev-java/avalon-logkit:javamail - Enable support for javamail
 dev-java/avalon-logkit:jms - Enable support for JMS (Java Message Service)
@@ -720,7 +721,6 @@ dev-libs/yaz:ziffy - Install ziffy, a promiscuous Z39.50 APDU sniffer
 dev-lisp/abcl:clisp - Build Armed Bear Common Lisp using GNU CLISP
 dev-lisp/abcl:cmucl - Build Armed Bear Common Lisp using CMU Common Lisp
 dev-lisp/abcl:jad - Enable support for disassembling compiled code using JAD
-dev-lisp/cl-araneida:standalone - tired of waiting for the lisp team to add this
 dev-lisp/cl-tbnl:standalone -  Use TBNL without a front-end (ie. no Apache dependency)
 dev-lisp/clisp:hyperspec - Use local hyperspec instead of online version
 dev-lisp/clisp:new-clx - Build CLISP with support for the NEW-CLX module which is a C binding to the Xorg libraries
@@ -870,8 +870,6 @@ dev-util/strace:aio - Enable libaio support
 dev-util/subversion:ctypes-python - Build and install ctypes python bindings
 dev-util/subversion:dso - Enable runtime module search
 dev-util/subversion:extras - Install extras scripts (examples, tools, hooks)
-dev-util/subversion:nowebdav - Disables WebDAV support via neon library
-dev-util/subversion:svnserve - Install scripts for svnserve
 dev-util/subversion:webdav-neon - Enable WebDAV support using net-misc/neon
 dev-util/subversion:webdav-serf - Enable WebDAV support using net-libs/serf
 dev-util/svk:log4p - Enable perl logger support
@@ -1348,7 +1346,7 @@ media-libs/swfdec:alsa - Use ALSA for audio output
 media-libs/swfdec:doc - Build documentation
 media-libs/swfdec:ffmpeg - Use media-plugins/gst-plugins-ffmpeg to enable Flash video support. Necessary if you want to use sites like youtube
 media-libs/swfdec:gstreamer - Enable media-libs/gstreamer to support various media input formats. i.e. audio (mp3) and video (flv)
-media-libs/swfdec:gtk - Enable GTK+ convenience library while is necessary for all GTK+ apps using swfdec (gnome-extra/swfdec-gnome and net-www/swfdec-mozilla)
+media-libs/swfdec:gtk - Enable GTK+ convenience library while is necessary for all GTK+ apps using swfdec (gnome-extra/swfdec-gnome and www-plugins/swfdec-mozilla)
 media-libs/swfdec:oss - Use Open Sound System for audio output
 media-libs/swfdec:pulseaudio - Use media-sound/pulseaudio for audio output
 media-libs/urt:gs - Add support for postscript
@@ -2363,12 +2361,6 @@ net-wireless/wireless-tools:multicall - Build the most commonly used tools as on
 net-wireless/wpa_supplicant:gsm - Add support for EAP-SIM authentication algorithm
 net-wireless/wpa_supplicant:madwifi - Add support for madwifi (Atheros chipset)
 net-wireless/wpa_supplicant:ps3 - Add support for ps3 hypervisor driven gelic wifi
-net-www/gnash:agg - Rendering based on the Anti-Grain Geometry Rendering Engine library
-net-www/mplayerplug-in:divx - Divx Playback Support
-net-www/mplayerplug-in:gmedia - Google Media Playback Support
-net-www/mplayerplug-in:realmedia - Real Media Playback Support
-net-www/mplayerplug-in:wmp - Windows Media Playback Support
-net-www/netscape-flash:32bit - For amd64-multilib, installs the 32-bit plugin alongside the native 64-bit plugin
 net-www/vdradmin-am:vdr -  Support for media-video/vdr. Disable this if the VDR you want to control runs at a remote machine. 
 net-www/xxv:themes - Enable more themes via x11-themes/xxv-skins
 rox-base/rox:video - Enable rox-extra/videothumbnail for creating thumbnails of videos with mplayer or totem.
@@ -2792,6 +2784,12 @@ www-client/seamonkey:moznoroaming - sroaming extension support
 www-client/seamonkey:xforms - XForms is a standard to split up XHTML into XForms, instance data, and user interface
 www-client/w3m:lynxkeymap - If you prefer Lynx-like key binding
 www-misc/zoneminder:X10 - Enable support for X10 devices
+www-plugins/adobe-flash:32bit - For amd64-multilib, installs the 32-bit plugin alongside the native 64-bit plugin
+www-plugins/gnash:agg - Rendering based on the Anti-Grain Geometry Rendering Engine library
+www-plugins/mplayerplug-in:divx - Divx Playback Support
+www-plugins/mplayerplug-in:gmedia - Google Media Playback Support
+www-plugins/mplayerplug-in:realmedia - Real Media Playback Support
+www-plugins/mplayerplug-in:wmp - Windows Media Playback Support
 www-servers/apache:sni - Enable TLS Server Name Indication (SNI) - EXPERIMENTAL!
 www-servers/apache:suexec - Install suexec with apache
 www-servers/cherokee:admin - Install web based cherokee conf tool

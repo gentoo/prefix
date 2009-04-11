@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/s390 profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/s390/ChangeLog,v 1.13 2009/04/08 13:34:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/s390/ChangeLog,v 1.14 2009/04/10 14:05:12 armin76 Exp $
+
+  10 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Add kde to use.mask
 
   08 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Add lasi to use.mask

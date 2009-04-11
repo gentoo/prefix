@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9651 2009/04/08 22:08:07 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9655 2009/04/10 23:12:39 mrness Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,24 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Alin Năstac <mrness@gentoo.org> (10 Apr 2009)
+# Homepage no longer available (#264785)
+# To be removed by the tree cleaners after 30 days.
+net-dialup/qlcr
+
+# Thomas Anderson <gentoofan23@gentoo.org> (10 Apr 2009)
+# Lvm2 ships with device mapper internally and thus blocks against the
+# in-tree device-mapper. Unfortunately some packages still need to be fixed
+# to handle this transition.
+=sys-fs/lvm2-2.02.45
+
+# Jeremy Olexa <darkside@gentoo.org> (10 Apr 2009)
+# The bash-completion upstream naming scheme has drastically changed. As such,
+# I have renamed the 20081219-r1 to 0.20081219-r1 to allow for ~arch testing of
+# 1.0. v0.20081219-r1 is the stable version, v1.0* is the ~arch version. It will
+# seem like a downgrade for stable and ~arch users, but it is not.
+>=app-shells/bash-completion-20000000
 
 # Mounir Lamouri <volkmar@gentoo.org> (08 Apr 2009)
 # This lib is not used by any package and it doesn't work on amd64
@@ -881,11 +899,6 @@ media-sound/lastfmproxy
 # Joerg Bornkessel <hd_brummy@gentoo.org (26 Mar 2008)
 # initial ebuild masked for testing
 =app-misc/iguanaIR-0.93
-
-# Caleb Tennis <caleb@gentoo.org> (26 Mar 2008)
-# Masking per dev-zero request for more testing time
-=dev-db/libpq-8.3*
-=dev-db/postgresql-8.3*
 
 # William L. Thomson Jr. <wltjr@gentoo.org> (25 Mar 2008)
 # Masked due to bugs and availability of forked alternative Frostwire.
