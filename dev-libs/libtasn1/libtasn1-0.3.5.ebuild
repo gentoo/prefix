@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/libtasn1-0.3.5.ebuild,v 1.16 2008/12/26 22:55:51 dragonheart Exp $
 
-EAPI="prefix"
-
 inherit libtool multilib autotools
 
 DESCRIPTION="provides ASN.1 structures parsing capabilities for use with GNUTLS"
