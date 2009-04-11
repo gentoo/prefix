@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/wtf-20080912.ebuild,v 1.7 2008/12/02 20:19:32 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="translates acronyms for you"
