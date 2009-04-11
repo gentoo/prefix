@@ -1,6 +1,32 @@
 # ChangeLog for app-shells/bash-completion
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.164 2009/04/07 04:20:22 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.168 2009/04/10 01:36:29 darkside Exp $
+
+*bash-completion-0.20081219-r1 (10 Apr 2009)
+
+  10 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  +bash-completion-0.20081219-r1.ebuild,
+  -bash-completion-20081219-r1.ebuild:
+  sort out the upgrade path. This will make it 'seem' like a downgrade but it
+  is not. v0.* is stable, v1.0* is ~arch
+
+*bash-completion-1.0-r1 (09 Apr 2009)
+
+  09 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  +files/bash-completion-1.0-bash4.patch, -bash-completion-1.0.ebuild,
+  +bash-completion-1.0-r1.ebuild:
+  Add patch for bash4, see bug 262246
+
+  09 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  bash-completion-1.0.ebuild, bash-completion-20081219-r1.ebuild:
+  Add missing dep on sys-apps/miscfiles. bug 262291 by Jeroen Roovers
+
+*bash-completion-1.0 (09 Apr 2009)
+
+  09 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  +files/bash-completion-1.0-gentoo.patch, +bash-completion-1.0.ebuild:
+  Version bump, bug 265240. Big thanks to ColdWind for re-working the awk
+  split in the ebuild
 
   07 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
   -files/20050121/01_all_gkrellm.diff, -files/20050121/03_all_timidity.diff,
