@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libmpeg2/libmpeg2-0.4.1.ebuild,v 1.12 2007/10/26 00:49:21 beandog Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool
 
 MY_P="mpeg2dec-${PV}"

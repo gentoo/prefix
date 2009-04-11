@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libmpeg2/libmpeg2-0.5.1.ebuild,v 1.9 2009/02/18 19:03:52 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool
 
 DESCRIPTION="library for decoding mpeg-2 and mpeg-1 video"
