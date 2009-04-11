@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r2.ebuild,v 1.4 2009/03/21 13:06:59 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic multilib autotools pam
 
 # Make it more portable between straight releases
