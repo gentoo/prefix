@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.4.ebuild,v 1.1 2007/03/25 05:53:33 fuzzyray Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Collection of developer scripts for Gentoo"
