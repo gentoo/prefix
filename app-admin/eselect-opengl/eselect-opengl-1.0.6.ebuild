@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-admin/eselect-opengl/eselect-opengl-1.0.6.ebuild,v 1.3 2007/12/27 23:41:51 eradicator Exp $
 
-EAPI="prefix"
-
 inherit multilib
 
 DESCRIPTION="Utility to change the OpenGL interface being used"
