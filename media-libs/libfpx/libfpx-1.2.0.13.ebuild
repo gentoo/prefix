@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libfpx/libfpx-1.2.0.13.ebuild,v 1.2 2007/09/28 13:40:11 uberlord Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 ### uncomment the right variables depending on if we have a patchlevel or not
