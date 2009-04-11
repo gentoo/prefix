@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/PodParser/PodParser-1.36.ebuild,v 1.1 2009/01/23 09:04:16 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=MAREKR
 MY_PN=Pod-Parser
 MY_P=${MY_PN}-${PV}

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/PodParser/PodParser-1.35.ebuild,v 1.11 2008/03/28 06:58:25 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Pod-Parser-${PV}
