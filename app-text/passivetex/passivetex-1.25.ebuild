@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/passivetex/passivetex-1.25.ebuild,v 1.19 2009/03/18 20:49:13 ranger Exp $
 
-EAPI="prefix"
-
 inherit latex-package
 
 S=${WORKDIR}/${PN}
