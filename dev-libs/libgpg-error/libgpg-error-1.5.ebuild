@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libgpg-error/libgpg-error-1.5.ebuild,v 1.12 2008/01/02 18:32:14 alonbl Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils
 
 DESCRIPTION="Contains error handling functions used by GnuPG software"
