@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/antiword/antiword-0.37.ebuild,v 1.11 2008/12/30 20:57:48 angelos Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 IUSE="kde"
