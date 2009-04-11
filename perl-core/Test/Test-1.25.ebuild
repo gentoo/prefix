@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Test/Test-1.25.ebuild,v 1.8 2009/01/30 13:22:12 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=SBURKE
 inherit perl-module
 
