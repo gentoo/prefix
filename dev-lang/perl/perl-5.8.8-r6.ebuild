@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r6.ebuild,v 1.2 2009/03/11 21:47:17 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 # The slot of this binary compat version of libperl.so
