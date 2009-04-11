@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/common-lisp-controller/common-lisp-controller-5.13-r1.ebuild,v 1.5 2009/01/10 15:32:31 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Common Lisp Controller"
