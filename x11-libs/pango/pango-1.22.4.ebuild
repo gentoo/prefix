@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.22.4.ebuild,v 1.8 2009/03/28 17:06:31 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 multilib
 
 DESCRIPTION="Text rendering and layout library"
