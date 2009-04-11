@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdcss/libdvdcss-1.2.10.ebuild,v 1.1 2008/08/29 21:50:30 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="A portable abstraction library for DVD decryption"
