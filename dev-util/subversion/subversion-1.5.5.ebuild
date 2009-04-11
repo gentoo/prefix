@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.5.ebuild,v 1.7 2009/03/06 01:47:09 jer Exp $
 
-EAPI="prefix 1"
+EAPI=1
 WANT_AUTOMAKE="none"
 
 inherit autotools bash-completion confutils depend.apache elisp-common eutils flag-o-matic java-pkg-opt-2 libtool multilib perl-module python
