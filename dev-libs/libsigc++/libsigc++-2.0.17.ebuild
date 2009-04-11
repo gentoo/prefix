@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/libsigc++-2.0.17.ebuild,v 1.15 2007/10/26 13:29:25 dang Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome.org flag-o-matic
 
 DESCRIPTION="Typesafe callback system for standard C++"
