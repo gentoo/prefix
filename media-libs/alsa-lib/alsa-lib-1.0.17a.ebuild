@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.17a.ebuild,v 1.10 2009/03/31 09:31:17 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool
 
 MY_P="${P/_rc/rc}"
