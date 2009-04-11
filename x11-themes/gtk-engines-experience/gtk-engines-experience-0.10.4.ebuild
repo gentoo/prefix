@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-experience/gtk-engines-experience-0.10.4.ebuild,v 1.5 2008/12/18 18:40:14 ssuominen Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 MY_PN=experience
