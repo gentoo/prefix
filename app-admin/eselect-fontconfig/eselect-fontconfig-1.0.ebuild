@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-fontconfig/eselect-fontconfig-1.0.ebuild,v 1.18 2007/12/29 11:40:34 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="An eselect module to manage /etc/fonts/conf.d symlinks."
