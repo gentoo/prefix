@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-backup/rdiff-backup/rdiff-backup-1.2.4.ebuild,v 1.1 2009/01/05 17:54:10 patrick Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="Remote incremental file backup utility; uses librsync's rdiff utility to create concise, versioned backups."
