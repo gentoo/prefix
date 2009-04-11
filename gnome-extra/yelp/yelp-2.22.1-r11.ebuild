@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/yelp-2.22.1-r11.ebuild,v 1.4 2009/01/08 16:53:50 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils autotools gnome2
 

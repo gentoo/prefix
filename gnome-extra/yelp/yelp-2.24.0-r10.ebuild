@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/yelp-2.24.0-r10.ebuild,v 1.9 2009/04/10 20:47:12 bluebird Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit gnome2
 
