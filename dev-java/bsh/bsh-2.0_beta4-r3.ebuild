@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/bsh/bsh-2.0_beta4-r3.ebuild,v 1.7 2008/09/22 20:27:08 serkan Exp $
 
-EAPI="prefix 1"
+EAPI=1
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 eutils java-ant-2
