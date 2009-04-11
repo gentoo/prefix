@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-electronics/gtkwave/gtkwave-3.2.0.ebuild,v 1.1 2009/03/07 21:54:55 patrick Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A wave viewer for LXT, LXT2, VZT, GHW and standard Verilog VCD/EVCD files"
 HOMEPAGE="http://gtkwave.sourceforge.net/"
 
