@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/memcached-1.2.6.ebuild,v 1.7 2008/12/07 11:07:22 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_PV="${PV/_rc/-rc}"
