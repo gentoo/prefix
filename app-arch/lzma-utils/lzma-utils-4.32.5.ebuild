@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.5.ebuild,v 1.9 2008/05/10 08:35:08 vapier Exp $
 
-EAPI="prefix"
-
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
 

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.7.ebuild,v 1.7 2008/10/27 22:29:04 ranger Exp $
 
-EAPI="prefix"
-
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
 
