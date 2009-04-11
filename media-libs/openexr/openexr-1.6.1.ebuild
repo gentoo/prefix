@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/openexr/openexr-1.6.1.ebuild,v 1.12 2009/02/28 16:59:42 armin76 Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils
 
 DESCRIPTION="ILM's OpenEXR high dynamic-range image file format libraries"
