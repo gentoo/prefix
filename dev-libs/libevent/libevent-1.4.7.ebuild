@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.7.ebuild,v 1.8 2008/12/07 12:04:05 vapier Exp $
 
-EAPI="prefix"
-
 inherit libtool
 
 MY_P="${P}-stable"
