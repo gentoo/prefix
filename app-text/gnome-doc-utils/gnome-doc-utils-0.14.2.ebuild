@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.14.2.ebuild,v 1.8 2009/03/18 14:29:34 armin76 Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils python gnome2
 
