@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/tex-base/tex-base-0.ebuild,v 1.2 2008/02/12 20:03:17 opfer Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for basic TeX binaries (tex, kpathsea)"
 HOMEPAGE="http://www.ctan.org/"
 SRC_URI=""
