@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8j.ebuild,v 1.7 2009/02/19 10:40:13 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Toolkit for SSL v2/v3 and TLS v1"
