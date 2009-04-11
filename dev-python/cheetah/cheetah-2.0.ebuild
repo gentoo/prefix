@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/cheetah-2.0.ebuild,v 1.1 2007/10/12 23:46:37 pythonhead Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.2
 
 inherit distutils
