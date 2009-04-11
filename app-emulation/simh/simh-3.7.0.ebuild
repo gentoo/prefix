@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emulation/simh/simh-3.7.0.ebuild,v 1.6 2009/04/03 02:51:14 josejx Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs versionator
 
 MY_P="${PN}v$(get_version_component_range 1)$(get_version_component_range 2)-$(get_version_component_range 3)"
