@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/MP3-Tag/MP3-Tag-0.9714.ebuild,v 1.1 2009/01/07 19:43:09 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ILYAZ
 MODULE_SECTION=modules
 inherit perl-module eutils
