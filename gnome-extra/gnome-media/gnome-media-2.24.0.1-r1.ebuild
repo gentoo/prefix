@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/gnome-media-2.24.0.1-r1.ebuild,v 1.9 2009/04/05 17:30:39 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils gnome2
 
