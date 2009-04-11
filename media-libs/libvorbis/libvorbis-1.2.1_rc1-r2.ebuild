@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.1_rc1-r2.ebuild,v 1.1 2008/12/15 03:47:23 yngwin Exp $
 
-EAPI="prefix 1"
+EAPI=1
 inherit autotools flag-o-matic eutils toolchain-funcs
 
 MY_P=${P/_/}
