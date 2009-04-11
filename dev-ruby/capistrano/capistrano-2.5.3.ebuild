@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/capistrano-2.5.3.ebuild,v 1.1 2008/12/20 12:42:17 graaff Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 DESCRIPTION="A distributed application deployment system"
