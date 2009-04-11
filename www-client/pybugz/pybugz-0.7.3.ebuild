@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/pybugz-0.7.3.ebuild,v 1.12 2009/03/28 22:17:19 williamh Exp $
 
-EAPI="prefix"
-
 inherit distutils eutils prefix
 
 DESCRIPTION="Command line interface to (Gentoo) Bugzilla"

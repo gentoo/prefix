@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/pybugz-0.7.4_rc1.ebuild,v 1.1 2009/03/28 22:17:19 williamh Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit distutils eutils prefix
 
