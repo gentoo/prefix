@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/gtk2-spell/gtk2-spell-1.03.ebuild,v 1.15 2008/01/17 16:37:47 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Gtk2-Spell-${PV}
