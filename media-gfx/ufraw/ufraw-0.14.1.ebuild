@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ufraw-0.14.1.ebuild,v 1.12 2009/01/01 15:00:51 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools fdo-mime gnome2-utils
 
 DESCRIPTION="RAW Image format viewer and GIMP plugin"
