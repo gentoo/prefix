@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.6.ebuild,v 1.7 2008/10/27 06:07:35 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="A set of tools that use the proc filesystem"
