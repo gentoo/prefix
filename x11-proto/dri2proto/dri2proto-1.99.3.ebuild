@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-proto/dri2proto/dri2proto-1.99.3.ebuild,v 1.7 2009/04/06 19:30:53 bluebird Exp $
 
-EAPI="prefix"
-
 inherit x-modular
 
 DESCRIPTION="X.Org DRI2 protocol headers"
