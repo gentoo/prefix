@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libgadu/libgadu-1.7.1.ebuild,v 1.7 2007/05/21 19:59:59 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool
 
 DESCRIPTION="This library implements the client side of the Gadu-Gadu protocol"
