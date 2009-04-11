@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/quilt/quilt-0.46.ebuild,v 1.14 2009/01/12 14:02:52 fmccor Exp $
 
-EAPI="prefix"
-
 inherit bash-completion eutils
 
 DESCRIPTION="quilt patch manager"
