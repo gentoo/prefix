@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7.ebuild,v 1.4 2009/01/06 20:59:57 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 MY_PV=${PV:0:3}
