@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.86.ebuild,v 1.1 2009/03/14 11:18:31 maekke Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="Exif Jpeg camera setting parser and thumbnail remover"
