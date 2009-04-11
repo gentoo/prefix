@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Data-Hierarchy/Data-Hierarchy-0.34.ebuild,v 1.5 2007/03/05 11:37:19 ticho Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Data::Hierarchy - Handle data in a hierarchical structure"
