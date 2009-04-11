@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/proj/proj-4.6.1.ebuild,v 1.1 2008/09/11 02:26:15 djay Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Proj.4 cartographic projection software with updated NAD27 grids"
