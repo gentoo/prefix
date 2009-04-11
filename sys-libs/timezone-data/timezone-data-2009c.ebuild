@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2009c.ebuild,v 1.5 2009/04/10 13:40:51 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs flag-o-matic
 
 code_ver=${PV/c/b}
