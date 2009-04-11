@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-LibIDN/Net-LibIDN-0.12.ebuild,v 1.1 2009/03/01 12:40:33 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=THOR
 inherit perl-module
 
