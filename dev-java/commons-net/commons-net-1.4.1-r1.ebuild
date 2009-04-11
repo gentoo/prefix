@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/commons-net/commons-net-1.4.1-r1.ebuild,v 1.12 2008/02/15 03:55:43 betelgeuse Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc examples source" # junit
 
 inherit eutils java-pkg-2 java-ant-2
