@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.17.1.ebuild,v 1.7 2009/02/28 10:54:05 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="EXIF and IPTC metadata C++ library and command line utility"
