@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/emacs-updater/emacs-updater-1.3.ebuild,v 1.7 2009/03/22 18:56:28 darkside Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Rebuild Emacs packages"
 HOMEPAGE="http://www.gentoo.org/proj/en/lisp/emacs/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
