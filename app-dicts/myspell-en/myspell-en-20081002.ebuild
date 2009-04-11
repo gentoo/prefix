@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-dicts/myspell-en/myspell-en-20081002.ebuild,v 1.8 2009/03/30 14:51:34 armin76 Exp $
 
-EAPI="prefix"
-
 MYSPELL_SPELLING_DICTIONARIES=(
 "en,AU,en_AU,English (Australian),en_AU.zip"
 "en,GB,en_GB,English (United Kingdom),en_GB.zip"
