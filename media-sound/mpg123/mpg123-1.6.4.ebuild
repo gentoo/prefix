@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.6.4.ebuild,v 1.2 2009/03/30 15:34:00 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="a realtime MPEG 1.0/2.0/2.5 audio player for layers 1, 2 and 3."
 HOMEPAGE="http://www.mpg123.org"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
