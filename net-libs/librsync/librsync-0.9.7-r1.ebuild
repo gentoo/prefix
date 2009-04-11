@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/librsync/librsync-0.9.7-r1.ebuild,v 1.2 2008/01/16 20:56:17 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="Flexible remote checksum-based differencing"
