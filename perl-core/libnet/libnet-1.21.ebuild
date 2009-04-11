@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/libnet/libnet-1.21.ebuild,v 1.13 2009/03/26 12:29:40 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="A URI Perl Module"
