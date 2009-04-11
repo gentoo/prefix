@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/most/most-4.10.2-r1.ebuild,v 1.12 2008/02/10 11:33:52 drac Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="An extremely excellent text file reader"

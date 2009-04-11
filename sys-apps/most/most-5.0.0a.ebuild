@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/most/most-5.0.0a.ebuild,v 1.10 2008/09/25 11:58:05 aballier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="a paging program that displays, one windowful at a time, the contents of a file."
 HOMEPAGE="ftp://space.mit.edu/pub/davis/most"
 SRC_URI="ftp://space.mit.edu/pub/davis/${PN}/${P}.tar.bz2"
