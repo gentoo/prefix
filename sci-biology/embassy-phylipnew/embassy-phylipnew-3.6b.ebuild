@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-phylipnew/embassy-phylipnew-3.6b.ebuild,v 1.7 2008/08/27 17:47:36 ribosome Exp $
 
-EAPI="prefix"
-
 EBOV="4.0.0"
 
 inherit embassy
