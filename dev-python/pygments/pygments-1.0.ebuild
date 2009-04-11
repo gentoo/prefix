@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/pygments-1.0.ebuild,v 1.6 2009/04/09 02:35:57 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/pygments-1.0.ebuild,v 1.7 2009/04/10 15:26:42 armin76 Exp $
 
 EAPI="prefix"
 
