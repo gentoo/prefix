@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/net-ssh-1.1.3.ebuild,v 1.6 2008/06/23 21:07:14 opfer Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 DESCRIPTION="Non-interactive SSH processing in pure Ruby"
