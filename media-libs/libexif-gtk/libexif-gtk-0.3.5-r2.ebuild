@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libexif-gtk/libexif-gtk-0.3.5-r2.ebuild,v 1.5 2007/11/17 13:17:13 nixnut Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="GTK+ frontend to the libexif library (parsing, editing, and saving EXIF data)"
