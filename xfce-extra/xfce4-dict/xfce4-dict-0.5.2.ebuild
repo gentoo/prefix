@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/xfce4-dict-0.5.2.ebuild,v 1.8 2009/02/04 21:17:43 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit fdo-mime gnome2-utils
 
