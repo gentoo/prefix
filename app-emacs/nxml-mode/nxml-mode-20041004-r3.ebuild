@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/nxml-mode/nxml-mode-20041004-r3.ebuild,v 1.7 2008/11/17 09:57:23 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp eutils
 
 DESCRIPTION="A major mode for GNU Emacs for editing XML documents."
