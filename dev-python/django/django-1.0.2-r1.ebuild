@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-1.0.2-r1.ebuild,v 1.1 2009/02/15 17:25:42 patrick Exp $
-EAPI="prefix 2"
+EAPI=2
 
 inherit bash-completion subversion distutils multilib versionator webapp
 
