@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/Class-MethodMaker-2.15.ebuild,v 1.1 2009/02/15 07:51:34 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=SCHWIGON
 MODULE_SECTION=class-methodmaker
 inherit perl-module eutils
