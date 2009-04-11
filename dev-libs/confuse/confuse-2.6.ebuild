@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/confuse-2.6.ebuild,v 1.9 2008/05/17 03:07:07 matsuu Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 DESCRIPTION="a configuration file parser library"

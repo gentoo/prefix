@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/confuse-2.6-r3.ebuild,v 1.6 2008/12/17 22:09:10 maekke Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 inherit eutils
