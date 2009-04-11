@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.6.4-r1.ebuild,v 1.9 2009/01/05 13:26:13 remi Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic libtool
 
 DESCRIPTION="A vector graphics library with cross-device output support"
