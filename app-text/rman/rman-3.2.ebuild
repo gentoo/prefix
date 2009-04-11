@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/rman/rman-3.2.ebuild,v 1.16 2006/11/29 18:17:38 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="PolyGlotMan man page translator AKA RosettaMan"
