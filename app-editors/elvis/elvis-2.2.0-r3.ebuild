@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/elvis-2.2.0-r3.ebuild,v 1.10 2008/03/11 11:24:56 nelchael Exp $
 
-EAPI="prefix"
-
 inherit eutils versionator
 
 MY_PV="$(replace_version_separator 2 '_')"
