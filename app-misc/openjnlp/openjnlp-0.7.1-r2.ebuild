@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/openjnlp/openjnlp-0.7.1-r2.ebuild,v 1.8 2007/10/24 02:30:53 wltjr Exp $
 
-EAPI="prefix"
-
 WANT_ANT_TASKS="ant-nodeps"
 
 inherit java-pkg-2 java-ant-2
