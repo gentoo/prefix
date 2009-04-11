@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs
 
 RESTRICT="test" # the test suite will test what's installed.
