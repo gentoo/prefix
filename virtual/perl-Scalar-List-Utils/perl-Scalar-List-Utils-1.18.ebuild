@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-Scalar-List-Utils/perl-Scalar-List-Utils-1.18.ebuild,v 1.12 2007/12/29 10:13:55 welp Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for Scalar-List-Utils"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI=""
