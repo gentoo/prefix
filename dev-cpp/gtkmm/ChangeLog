@@ -1,6 +1,9 @@
 # ChangeLog for dev-cpp/gtkmm
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.156 2009/03/24 10:11:09 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.157 2009/04/10 13:19:51 armin76 Exp $
+
+  10 Apr 2009; Raúl Porcel <armin76@gentoo.org> gtkmm-2.12.7.ebuild:
+  arm/sh stable
 
   24 Mar 2009; Rémi Cardona <remi@gentoo.org> gtkmm-2.12.1.ebuild,
   gtkmm-2.12.7.ebuild, gtkmm-2.14.1.ebuild, gtkmm-2.14.3.ebuild:
