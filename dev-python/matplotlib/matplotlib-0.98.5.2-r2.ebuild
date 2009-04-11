@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2-r2.ebuild,v 1.2 2009/03/30 15:32:32 loki_val Exp $
 
 WX_GTK_VER=2.8
-EAPI="prefix 2"
+EAPI=2
 inherit distutils wxwidgets
 
 PDOC="users_guide_${PV}"
