@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libdca/libdca-0.0.5-r2.ebuild,v 1.2 2008/06/16 10:37:49 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit autotools base
 
 DESCRIPTION="library for decoding DTS Coherent Acoustics streams used in DVD"
@@ -13,7 +11,7 @@ SRC_URI="http://www.videolan.org/pub/videolan/${PN}/${PV}/${P}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="oss debug"
 
 RDEPEND="!media-libs/libdts"
