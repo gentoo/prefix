@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/xforms/xforms-1.0.90-r1.ebuild,v 1.14 2008/07/05 10:20:07 loki_val Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 DESCRIPTION="A graphical user interface toolkit for X"
