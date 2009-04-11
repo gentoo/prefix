@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/quixote/quixote-2.5.ebuild,v 1.1 2008/02/23 23:04:32 hollow Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 MY_P=${P/q/Q}
