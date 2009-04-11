@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Copy-Recursive/File-Copy-Recursive-0.36.ebuild,v 1.3 2008/09/30 12:50:42 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=DMUEY
 inherit perl-module
 
