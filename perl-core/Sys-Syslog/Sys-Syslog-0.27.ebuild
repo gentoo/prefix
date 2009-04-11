@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Sys-Syslog/Sys-Syslog-0.27.ebuild,v 1.8 2009/03/24 20:39:58 ranger Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=SAPER
 inherit perl-module
 

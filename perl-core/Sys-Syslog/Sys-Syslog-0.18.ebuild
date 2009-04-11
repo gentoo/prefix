@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Sys-Syslog/Sys-Syslog-0.18.ebuild,v 1.13 2008/06/07 09:56:55 aballier Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Provides same functionality as BSD syslog"
