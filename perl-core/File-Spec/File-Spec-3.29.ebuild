@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/File-Spec/File-Spec-3.29.ebuild,v 1.2 2008/11/18 14:18:11 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=SMUELLER
 MY_PN=PathTools
 MY_P=${MY_PN}-${PV}

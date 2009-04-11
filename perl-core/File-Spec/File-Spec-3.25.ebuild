@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/File-Spec/File-Spec-3.25.ebuild,v 1.10 2008/11/18 14:18:11 tove Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P="PathTools-${PV}"
