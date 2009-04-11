@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-chemistry/moldy/moldy-2.16e.ebuild,v 1.9 2008/06/09 10:30:12 markusle Exp $
 
-EAPI="prefix"
-
 IUSE=""
 
 S=${WORKDIR}
