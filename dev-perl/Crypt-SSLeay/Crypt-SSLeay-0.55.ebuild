@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-SSLeay/Crypt-SSLeay-0.55.ebuild,v 1.8 2007/11/10 12:04:29 drac Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Crypt::SSLeay module for perl"
