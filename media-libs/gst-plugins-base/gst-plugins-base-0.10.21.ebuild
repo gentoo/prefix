@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.21.ebuild,v 1.3 2008/12/09 12:02:35 ssuominen Exp $
 
-EAPI="prefix"
-
 # order is important, gnome2 after gst-plugins
 inherit gst-plugins-base gst-plugins10 gnome2 flag-o-matic autotools eutils
 # libtool

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.21-r1.ebuild,v 1.2 2008/12/31 03:30:28 mr_bones_ Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit autotools eutils flag-o-matic multilib versionator
 
