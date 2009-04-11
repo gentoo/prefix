@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.24.3.ebuild,v 1.7 2009/03/18 14:28:53 armin76 Exp $
 
-EAPI="prefix"
-
 inherit gnome2 eutils
 
 DESCRIPTION="An HTTP library implementation in C"
