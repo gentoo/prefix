@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.17.ebuild,v 1.3 2009/03/17 15:48:59 leio Exp $
 
-EAPI="prefix"
-
 GCONF_DEBUG="no"
 
 inherit gnome2 toolchain-funcs eutils autotools
