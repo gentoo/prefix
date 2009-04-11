@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-0.8.4-r1.ebuild,v 1.2 2008/08/25 08:46:32 hawking Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.3
 
 inherit eutils distutils elisp-common
