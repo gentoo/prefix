@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-2.31.ebuild,v 1.1 2009/03/14 12:39:51 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic autotools
 
 DESCRIPTION="A selection of tools from Debian"
