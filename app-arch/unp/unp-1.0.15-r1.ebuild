@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/unp/unp-1.0.15-r1.ebuild,v 1.1 2009/01/12 12:32:59 hanno Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Script for unpacking various file formats"

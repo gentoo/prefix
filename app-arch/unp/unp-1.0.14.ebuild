@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/unp/unp-1.0.14.ebuild,v 1.4 2008/01/06 01:10:47 hanno Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Script for unpacking various file formats"
 HOMEPAGE="http://packages.qa.debian.org/u/unp.html"
 SRC_URI="mirror://debian/pool/main/u/unp/${PN}_${PV}.tar.gz"
