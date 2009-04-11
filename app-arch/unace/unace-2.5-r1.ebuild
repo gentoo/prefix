@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/unace/unace-2.5-r1.ebuild,v 1.6 2008/04/15 15:13:09 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DEB_VER="5"
