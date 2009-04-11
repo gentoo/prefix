@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-quicklauncher/xfce4-quicklauncher-1.9.4.ebuild,v 1.12 2008/06/23 00:04:07 drac Exp $
 
-EAPI="prefix"
-
 inherit autotools xfce44
 
 xfce44
