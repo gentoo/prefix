@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-0.8.ebuild,v 1.15 2008/10/04 10:12:48 armin76 Exp $
 
-EAPI="prefix"
-
 CABAL_FEATURES="bin"
 inherit haskell-cabal eutils versionator autotools prefix
 
