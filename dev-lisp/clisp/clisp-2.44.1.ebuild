@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.44.1.ebuild,v 1.3 2008/07/30 13:51:14 pchrist Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils toolchain-funcs multilib
 
 DESCRIPTION="A portable, bytecode-compiled implementation of Common Lisp"
