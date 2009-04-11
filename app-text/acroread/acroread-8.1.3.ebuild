@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-8.1.3.ebuild,v 1.3 2008/11/08 13:36:42 maekke Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2-utils nsplugins
 
 DESCRIPTION="Adobe's PDF reader"
