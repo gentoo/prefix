@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/rebase-610.ebuild,v 1.6 2006/11/20 20:56:47 blubb Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A restriction enzyme database"
 LICENSE="public-domain"
 HOMEPAGE="http://rebase.neb.com"

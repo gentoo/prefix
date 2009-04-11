@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/rebase-808.ebuild,v 1.1 2008/08/27 14:58:50 ribosome Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A restriction enzyme database"
 LICENSE="public-domain"
 HOMEPAGE="http://rebase.neb.com"
