@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/sound-theme-freedesktop/sound-theme-freedesktop-0.2.ebuild,v 1.9 2009/03/18 15:00:09 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Default freedesktop.org sound theme following the XDG theming specification"
 HOMEPAGE="http://www.freedesktop.org/wiki/Specifications/sound-theme-spec"
 SRC_URI="http://people.freedesktop.org/~mccann/dist/${P}.tar.bz2"
