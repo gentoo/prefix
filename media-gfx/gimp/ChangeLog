@@ -1,6 +1,12 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.290 2009/04/06 14:23:25 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.291 2009/04/10 23:19:10 loki_val Exp $
+
+  10 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> gimp-2.3.19.ebuild,
+  gimp-2.4.6.ebuild, gimp-2.4.7.ebuild, gimp-2.6.4.ebuild,
+  gimp-2.6.5.ebuild, gimp-2.6.6.ebuild, gimp-9999.ebuild:
+  Updating media-gfx/gimp for virtual/poppler-glib update; cairo is the
+  superior backend, always enable it anywhere it can be used.
 
   06 Apr 2009; Brent Baude <ranger@gentoo.org> gimp-2.6.4.ebuild:
   Marking gimp-2.6.4 ppc for bug 258344

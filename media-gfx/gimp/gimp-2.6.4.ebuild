@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.4.ebuild,v 1.8 2009/04/06 14:23:25 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.4.ebuild,v 1.9 2009/04/10 23:19:10 loki_val Exp $
 
-EAPI="prefix"
+EAPI=2
 
 inherit eutils gnome2 fdo-mime multilib python
 
@@ -18,6 +18,7 @@ IUSE="aqua alsa aalib altivec curl dbus debug doc exif gnome hal jpeg lcms mmx m
 
 RDEPEND=">=dev-libs/glib-2.18.1
 	>=x11-libs/gtk+-2.12.5
+	aqua? ( >=x11-libs/gtk+-2.12.5[aqua] )
 	>=x11-libs/pango-1.18.0
 	>=media-libs/freetype-2.1.7
 	>=media-libs/fontconfig-2.2.0
@@ -29,7 +30,7 @@ RDEPEND=">=dev-libs/glib-2.18.1
 	x11-themes/hicolor-icon-theme
 	>=media-libs/gegl-0.0.22
 	aalib? ( media-libs/aalib )
-	alsa? ( >=media-libs/alsa-lib-1.0.14a-r1 )
+	alsa? ( >=media-libs/alsa-lib-1.0.14a-r1[midi] )
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib )
 	hal? ( sys-apps/hal )
@@ -39,7 +40,7 @@ RDEPEND=">=dev-libs/glib-2.18.1
 	exif? ( >=media-libs/libexif-0.6.15 )
 	lcms? ( media-libs/lcms )
 	mng? ( media-libs/libmng )
-	pdf? ( >=virtual/poppler-glib-0.3.1 )
+	pdf? ( >=virtual/poppler-glib-0.3.1[cairo] )
 	png? ( >=media-libs/libpng-1.2.2 )
 	python?	( >=dev-lang/python-2.5.0
 		>=dev-python/pygtk-2.10.4 )
@@ -55,17 +56,8 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog* HACKING NEWS README*"
 
 pkg_setup() {
-	if use alsa && ! built_with_use media-libs/alsa-lib midi; then
-		eerror "This package requires media-libs/alsa-lib compiled with midi support."
-		die "Please reemerge media-libs/alsa-lib with USE=\"midi\"."
-	fi
-	if use aqua && ! built_with_use x11-libs/gtk+ aqua; then
-		eerror "This package requires x11-libs/gtk+ compiled with aqua support."
-		die "Please reemerge x11-libs/gtk+ with USE=\"aqua\"."
-	fi
-
 	G2CONF="--enable-default-binary \
-		--with-x \
+		$(use_with !aqua x) \
 		$(use_with aalib aa) \
 		$(use_with alsa) \
 		$(use_enable altivec) \
