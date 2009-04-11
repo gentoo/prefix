@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Aspell/Text-Aspell-0.08.ebuild,v 1.5 2007/11/10 15:00:12 drac Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Perl interface to the GNU Aspell Library"
