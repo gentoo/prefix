@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Getopt-Long/Getopt-Long-2.36.ebuild,v 1.9 2009/04/04 17:32:22 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Advanced handling of command line options"
