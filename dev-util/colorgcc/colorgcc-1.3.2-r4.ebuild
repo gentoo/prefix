@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/colorgcc/colorgcc-1.3.2-r4.ebuild,v 1.15 2008/04/13 19:58:55 grobian Exp $
 
-EAPI="prefix"
-
 IUSE=""
 
 inherit eutils
