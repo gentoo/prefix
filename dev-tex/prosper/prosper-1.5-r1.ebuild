@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/prosper/prosper-1.5-r1.ebuild,v 1.7 2008/02/05 20:32:02 grobian Exp $
 
-EAPI="prefix"
-
 inherit latex-package
 
 CONTRIB="contrib-prosper-1.0.0"
