@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.14.7.ebuild,v 1.1 2009/01/15 00:58:21 leio Exp $
 
-EAPI="prefix"
-
 WANT_AUTOMAKE="1.7"
 
 inherit gnome.org flag-o-matic eutils libtool virtualx
