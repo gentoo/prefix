@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/libgnome-2.22.0.ebuild,v 1.7 2008/11/13 19:07:54 ranger Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="Essential Gnome Libraries"
