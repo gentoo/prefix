@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/supybot-0.83.2.ebuild,v 1.6 2007/05/06 12:47:11 genone Exp $
 
-EAPI="prefix"
-
 inherit distutils eutils
 
 MY_P=${P/supybot/Supybot}
