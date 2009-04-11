@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/opencdk/opencdk-0.5.7.ebuild,v 1.17 2007/08/01 19:32:21 grobian Exp $
 
-EAPI="prefix"
-
 inherit libtool
 
 DESCRIPTION="Open Crypto Development Kit for basic OpenPGP message manipulation"
