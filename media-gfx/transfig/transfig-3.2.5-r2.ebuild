@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/transfig/transfig-3.2.5-r2.ebuild,v 1.7 2008/12/02 22:58:28 ranger Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils flag-o-matic
 
 MY_P=${PN}.${PV}
