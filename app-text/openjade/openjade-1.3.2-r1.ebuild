@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/openjade/openjade-1.3.2-r1.ebuild,v 1.37 2008/12/09 21:23:47 bluebird Exp $
 
-EAPI="prefix"
-
 inherit autotools sgml-catalog eutils flag-o-matic multilib
 
 DESCRIPTION="Jade is an implementation of DSSSL - an ISO standard for formatting SGML and XML documents"
