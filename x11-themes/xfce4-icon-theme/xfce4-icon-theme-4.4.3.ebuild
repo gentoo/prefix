@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/xfce4-icon-theme/xfce4-icon-theme-4.4.3.ebuild,v 1.6 2008/12/15 04:52:47 jer Exp $
 
-EAPI="prefix"
-
 inherit gnome2-utils
 
 DESCRIPTION="Default icon theme for Xfce4, called Rodent."
@@ -41,8 +39,6 @@ pkg_postrm() {
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/xfce4-icon-theme/xfce4-icon-theme-4.4.3.ebuild,v 1.1 2008/10/30 22:11:49 angelos Exp $
-
-EAPI="prefix"
 
 inherit xfce44
 
