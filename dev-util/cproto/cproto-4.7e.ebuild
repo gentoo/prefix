@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cproto/cproto-4.7e.ebuild,v 1.7 2008/01/27 10:19:43 grobian Exp $
 
-EAPI="prefix"
-
 MY_PV="4_7e"
 MY_P=${PN}-${MY_PV}
 S=${WORKDIR}/${MY_P}
