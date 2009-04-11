@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libpano13/libpano13-2.9.14_beta2.ebuild,v 1.1 2009/03/07 23:00:07 maekke Exp $
 
-EAPI="prefix"
-
 inherit eutils versionator
 
 DESCRIPTION="Helmut Dersch's panorama toolbox library"
