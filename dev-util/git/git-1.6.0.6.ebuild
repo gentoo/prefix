@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.0.6.ebuild,v 1.9 2009/01/08 19:00:42 ranger Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils elisp-common perl-module bash-completion multilib
 
 MY_PV="${PV/_rc/.rc}"
