@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/aegis/aegis-4.24.ebuild,v 1.1 2008/06/30 01:43:53 darkside Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 IUSE="tk"
