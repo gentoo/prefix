@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/qt-qt3support-4.5.0_rc1.ebuild,v 1.1 2009/02/11 23:18:29 yngwin Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The Qt3 support module for the Qt toolkit"
