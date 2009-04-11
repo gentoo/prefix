@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.13.ebuild,v 1.2 2009/04/02 21:55:20 maekke Exp $
 
-EAPI="prefix"
-
 inherit versionator java-vm-2 eutils pax-utils
 
 UPDATE="$(get_version_component_range 4)"
