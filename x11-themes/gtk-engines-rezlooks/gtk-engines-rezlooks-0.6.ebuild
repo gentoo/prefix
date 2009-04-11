@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-themes/gtk-engines-rezlooks/gtk-engines-rezlooks-0.6.ebuild,v 1.7 2008/12/20 18:58:42 maekke Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 DESCRIPTION="Rezlooks GTK+ Engine"
