@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/rhino/rhino-1.6.5.ebuild,v 1.7 2007/11/25 12:02:27 nelchael Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc examples source"
 inherit java-pkg-2 java-ant-2 eutils versionator
 
