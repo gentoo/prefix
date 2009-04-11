@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-humanities/texlive-humanities-2008.ebuild,v 1.10 2009/03/18 21:06:30 ranger Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULE_CONTENTS="alnumsec arydshln bibleref covington dramatist ecltree ednotes gb4e jura juraabbrev juramisc jurarsp ledmac lexikon lineno linguex numline parallel parrun plari play poemscol qobitree qtree rtklage screenplay sides stage tree-dvips verse xyling collection-humanities
 "
 TEXLIVE_MODULE_DOC_CONTENTS="alnumsec.doc arydshln.doc bibleref.doc covington.doc dramatist.doc ecltree.doc ednotes.doc gb4e.doc jura.doc juraabbrev.doc juramisc.doc jurarsp.doc ledmac.doc lexikon.doc lineno.doc linguex.doc parallel.doc parrun.doc plari.doc play.doc poemscol.doc qobitree.doc qtree.doc rtklage.doc screenplay.doc sides.doc stage.doc tree-dvips.doc verse.doc xyling.doc "
