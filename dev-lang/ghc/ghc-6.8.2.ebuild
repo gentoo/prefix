@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.8.2.ebuild,v 1.10 2008/10/04 10:15:33 armin76 Exp $
 
-EAPI="prefix"
-
 # Brief explanation of the bootstrap logic:
 #
 # Previous ghc ebuilds have been split into two: ghc and ghc-bin,
