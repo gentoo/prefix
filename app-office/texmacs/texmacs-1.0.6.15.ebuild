@@ -1,8 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/texmacs-1.0.6.15.ebuild,v 1.2 2008/08/26 06:35:49 grozin Exp $
-
-EAPI="prefix"
 inherit eutils
 MY_P=${P/tex/TeX}-src
 DESCRIPTION="Wysiwyg text processor with high-quality maths"
