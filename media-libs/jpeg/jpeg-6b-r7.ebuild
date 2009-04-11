@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-6b-r7.ebuild,v 1.17 2008/05/23 16:45:26 maekke Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils toolchain-funcs
 
 PATCH_VER=1.4
