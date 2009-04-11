@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/version/version-0.76.ebuild,v 1.2 2008/11/04 09:41:07 vapier Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=JPEACOCK
 inherit perl-module
 
