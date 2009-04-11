@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-1.2.10-r5.ebuild,v 1.53 2008/08/03 22:36:31 eva Exp $
 
-EAPI="prefix"
-
 inherit autotools libtool flag-o-matic eutils portability
 
 DESCRIPTION="The GLib library of C routines"
