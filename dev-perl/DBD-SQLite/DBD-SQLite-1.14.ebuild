@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-SQLite/DBD-SQLite-1.14.ebuild,v 1.9 2008/06/07 09:50:44 aballier Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils
 
 DESCRIPTION="Self Contained RDBMS in a DBI Driver"
