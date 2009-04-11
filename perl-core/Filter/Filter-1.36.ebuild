@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Filter/Filter-1.36.ebuild,v 1.1 2009/03/01 14:33:40 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=PMQS
 inherit perl-module
 

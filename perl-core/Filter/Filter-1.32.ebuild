@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Filter/Filter-1.32.ebuild,v 1.11 2007/05/11 02:18:26 kumba Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Interface for creation of Perl Filters"
