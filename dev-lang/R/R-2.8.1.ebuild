@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.8.1.ebuild,v 1.4 2009/04/10 10:26:35 jer Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit eutils fortran flag-o-matic bash-completion versionator
 
 DESCRIPTION="Language and environment for statistical computing and graphics"
