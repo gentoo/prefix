@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.2.11.ebuild,v 1.11 2008/06/01 11:35:11 hollow Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 DESCRIPTION="Apache Portable Runtime Library"
