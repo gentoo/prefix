@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/Perl-Critic-1.092.ebuild,v 1.1 2008/12/08 02:40:16 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit versionator
 MODULE_AUTHOR="THALJEF"
 MODULE_SECTION=perlcritic

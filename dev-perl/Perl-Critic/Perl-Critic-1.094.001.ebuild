@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Perl-Critic/Perl-Critic-1.094.001.ebuild,v 1.2 2009/01/09 21:32:18 josejx Exp $
 
-EAPI="prefix"
-
 inherit versionator
 MODULE_AUTHOR=ELLIOTJS
 MY_P="${PN}-$(delete_version_separator 2)"
