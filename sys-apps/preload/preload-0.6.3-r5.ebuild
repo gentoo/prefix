@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/preload-0.6.3-r5.ebuild,v 1.1 2008/10/28 02:02:14 darkside Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Adaptive readahead daemon."
