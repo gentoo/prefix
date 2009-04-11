@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/pike/pike-7.6.112-r1.ebuild,v 1.1 2008/11/27 23:14:01 araujo Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Pike programming language and runtime"
 HOMEPAGE="http://pike.ida.liu.se/"
 SRC_URI="http://pike.ida.liu.se/pub/pike/all/${PV}/Pike-v${PV}.tar.gz"
