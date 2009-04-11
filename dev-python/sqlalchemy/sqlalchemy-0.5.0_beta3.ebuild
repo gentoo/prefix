@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/sqlalchemy-0.5.0_beta3.ebuild,v 1.1 2008/08/16 12:21:16 dev-zero Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 
 inherit distutils
