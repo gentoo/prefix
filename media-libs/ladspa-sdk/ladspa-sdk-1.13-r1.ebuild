@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ladspa-sdk-1.13-r1.ebuild,v 1.3 2008/03/01 13:29:43 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs portability flag-o-matic
 
 MY_PN=${PN/-/_}

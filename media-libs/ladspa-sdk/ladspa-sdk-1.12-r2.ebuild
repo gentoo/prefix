@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/ladspa-sdk/ladspa-sdk-1.12-r2.ebuild,v 1.19 2007/11/18 15:45:47 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_PN=${PN/-/_}
