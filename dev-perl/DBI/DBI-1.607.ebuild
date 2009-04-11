@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/DBI-1.607.ebuild,v 1.2 2009/02/13 10:26:54 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=TIMB
 inherit perl-module eutils
 

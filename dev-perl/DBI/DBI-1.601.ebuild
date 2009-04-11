@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/DBI-1.601.ebuild,v 1.6 2008/06/07 10:01:00 aballier Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils
 
 DESCRIPTION="The Perl DBI Module"
