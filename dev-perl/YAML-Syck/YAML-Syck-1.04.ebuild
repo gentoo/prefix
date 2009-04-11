@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/YAML-Syck/YAML-Syck-1.04.ebuild,v 1.1 2008/04/28 23:31:44 yuval Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Fast, lightweight YAML loader and dumper"
