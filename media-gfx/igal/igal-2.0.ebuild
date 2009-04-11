@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/igal/igal-2.0.ebuild,v 1.6 2009/03/23 12:41:06 tcunha Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 MY_P=${PN}2-${PV}
 
