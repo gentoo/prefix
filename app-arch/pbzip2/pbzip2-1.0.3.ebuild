@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/pbzip2-1.0.3.ebuild,v 1.1 2008/11/17 07:43:54 jer Exp $
 
-EAPI="prefix"
-
 inherit multilib eutils
 
 DESCRIPTION="parallel bzip2 (de)compressor using libbz2"
