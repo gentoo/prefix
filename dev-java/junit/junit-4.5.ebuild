@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/junit/junit-4.5.ebuild,v 1.5 2009/01/07 15:00:59 ranger Exp $
 
-EAPI="prefix"
-
 # WARNING: JUNIT.JAR IS _NOT_ SYMLINKED TO ANT-CORE LIB FOLDER AS JUNIT3 IS
 
 JAVA_PKG_IUSE="doc examples source test"
