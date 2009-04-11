@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/squeak-3.10.ebuild,v 1.1 2008/06/09 17:55:03 araujo Exp $
 
-EAPI="prefix"
-
 inherit base fixheadtails eutils
 
 MY_PV="${PV}-1"

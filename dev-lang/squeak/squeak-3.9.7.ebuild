@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/squeak-3.9.7.ebuild,v 1.5 2008/06/09 19:24:37 araujo Exp $
 
-EAPI="prefix"
-
 inherit base versionator fixheadtails eutils
 
 MY_PV=$(replace_version_separator 2 '-')
