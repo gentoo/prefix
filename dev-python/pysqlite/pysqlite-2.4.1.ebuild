@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/pysqlite-2.4.1.ebuild,v 1.3 2008/10/09 20:23:41 maekke Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.3
 
 inherit distutils
