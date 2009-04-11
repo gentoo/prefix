@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/xsd2jibx/xsd2jibx-0.2a_beta.ebuild,v 1.3 2007/05/26 17:21:32 nelchael Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 inherit java-pkg-2 java-ant-2
 
