@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-postgres/ruby-postgres-0.7.1.20060406.ebuild,v 1.5 2008/05/19 19:54:29 dev-zero Exp $
 
-EAPI="prefix"
-
 inherit ruby gems versionator
 
 # changes 0.7.1.20060406 to 0.7.1.2006.04.06
