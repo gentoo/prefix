@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/madplay/madplay-0.15.2b-r1.ebuild,v 1.11 2008/01/16 18:31:36 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="The MAD audio player"
