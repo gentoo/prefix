@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-dicts/wordnet/wordnet-3.0-r3.ebuild,v 1.1 2009/03/15 11:45:29 pva Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic autotools
 
 DESCRIPTION="A lexical database for the English language"
