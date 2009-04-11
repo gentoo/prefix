@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/needle/needle-1.3.0.ebuild,v 1.9 2007/04/08 12:18:33 corsair Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 DESCRIPTION="Dependency injection for Ruby"
