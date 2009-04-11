@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/fastjar/fastjar-0.95.ebuild,v 1.7 2008/03/31 22:02:38 maekke Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 DESCRIPTION="A jar program written in C"
