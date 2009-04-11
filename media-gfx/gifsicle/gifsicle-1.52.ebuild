@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/gifsicle/gifsicle-1.52.ebuild,v 1.4 2009/02/07 21:23:53 maekke Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A command-line tool for creating, editing, and getting information about GIF images and animations"
 HOMEPAGE="http://www.lcdf.org/~eddietwo/gifsicle/"
 SRC_URI="http://www.lcdf.org/~eddietwo/gifsicle/${P}.tar.gz"
