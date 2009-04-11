@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.0.1.ebuild,v 1.1 2009/03/02 08:58:57 dev-zero Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils
 

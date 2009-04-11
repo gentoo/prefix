@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-2.8.0-r1.ebuild,v 1.4 2008/10/25 17:48:58 halcy0n Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils multilib versionator flag-o-matic toolchain-funcs
 
