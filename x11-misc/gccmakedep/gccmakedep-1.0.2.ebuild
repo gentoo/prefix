@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/gccmakedep/gccmakedep-1.0.2.ebuild,v 1.9 2006/10/11 00:30:02 dberkholz Exp $
 
-EAPI="prefix"
-
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
 
