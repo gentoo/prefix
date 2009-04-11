@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8k.ebuild,v 1.7 2009/04/02 14:46:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8k.ebuild,v 1.8 2009/04/09 20:20:29 vapier Exp $
 
 EAPI="prefix"
 
@@ -218,11 +218,11 @@ src_install() {
 	done
 	[[ -n $(find -L ${d} -type l) ]] && die "broken manpage links found :("
 
-	diropts -m0700
-	keepdir /etc/ssl/private
-
 	dodir /etc/sandbox.d #254521
 	echo 'SANDBOX_PREDICT="/dev/crypto"' > "${ED}"/etc/sandbox.d/10openssl
+
+	diropts -m0700
+	keepdir /etc/ssl/private
 }
 
 pkg_preinst() {
