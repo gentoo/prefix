@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-229.ebuild,v 1.9 2007/11/20 05:21:47 kumba Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="Terminal Emulator for X Windows"

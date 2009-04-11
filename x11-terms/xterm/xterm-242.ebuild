@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-242.ebuild,v 1.6 2009/04/06 19:47:17 bluebird Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="Terminal Emulator for X Windows"
