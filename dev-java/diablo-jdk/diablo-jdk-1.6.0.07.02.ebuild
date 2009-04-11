@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/diablo-jdk/diablo-jdk-1.6.0.07.02.ebuild,v 1.1 2008/10/15 13:31:56 aballier Exp $
 
-EAPI="prefix"
-
 inherit java-vm-2 eutils versionator
 
 DESCRIPTION="Java Development Kit"
