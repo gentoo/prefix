@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/t1utils/t1utils-1.34.ebuild,v 1.10 2009/03/18 19:03:55 armin76 Exp $
 
-EAPI="prefix"
-
 IUSE=""
 
 DESCRIPTION="Type 1 Font utilities"
