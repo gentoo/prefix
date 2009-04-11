@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-mail/offlineimap/offlineimap-6.0.3.ebuild,v 1.5 2009/03/18 07:13:26 josejx Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 S=${WORKDIR}/${PN}
