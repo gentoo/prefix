@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/nokogiri/nokogiri-1.2.3.ebuild,v 1.1 2009/03/28 08:11:44 graaff Exp $
 
-EAPI="prefix"
-
 inherit gems
 USE_RUBY="ruby18 ruby19"
 
