@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/thunar-thumbnailers/thunar-thumbnailers-0.3.2.ebuild,v 1.9 2008/09/28 15:17:39 armin76 Exp $
 
-EAPI="prefix"
-
 inherit xfce44
 
 xfce44
