@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/vile/vile-9.5-r1.ebuild,v 1.5 2008/03/08 14:44:55 nelchael Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="VI Like Emacs -- yet another full-featured vi clone"
