@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Tree/HTML-Tree-3.23.ebuild,v 1.15 2008/09/30 13:59:05 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=PETEK
 inherit perl-module
 
