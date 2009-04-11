@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-nntp/newspost/newspost-2.1.1-r2.ebuild,v 1.1 2007/08/18 22:49:32 philantrop Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="a usenet binary autoposter for unix"
