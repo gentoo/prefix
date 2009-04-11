@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-video/dirac/dirac-1.0.0.ebuild,v 1.13 2009/03/08 07:49:13 kumba Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
