@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-vim/ant_menu/ant_menu-0.5.5.ebuild,v 1.1 2008/04/06 14:53:47 hawking Exp $
 
-EAPI="prefix"
-
 inherit vim-plugin
 
 DESCRIPTION="vim plugin: Java ant build system integration"
