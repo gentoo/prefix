@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Socket6/Socket6-0.23.ebuild,v 1.1 2008/12/08 02:38:54 robbat2 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=UMEMOTO
 inherit perl-module
 
