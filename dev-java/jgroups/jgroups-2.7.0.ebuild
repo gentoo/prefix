@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jgroups/jgroups-2.7.0.ebuild,v 1.3 2009/03/18 15:04:37 ranger Exp $
 
-EAPI="prefix 2"
+EAPI=2
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-ant-2
