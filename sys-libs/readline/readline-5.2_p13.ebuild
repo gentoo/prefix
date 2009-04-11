@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.2_p13.ebuild,v 1.9 2009/02/21 21:31:57 fmccor Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib toolchain-funcs flag-o-matic
 
 # Official patches

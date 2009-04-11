@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-5.1_p4.ebuild,v 1.17 2008/11/23 18:27:39 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib toolchain-funcs
 
 # Official patches

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.0.ebuild,v 1.4 2009/02/24 08:57:47 kumba Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils multilib toolchain-funcs flag-o-matic
 
 # Official patches
