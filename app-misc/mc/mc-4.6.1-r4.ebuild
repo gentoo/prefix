@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r4.ebuild,v 1.15 2008/09/14 02:04:27 solar Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils
 
 U7Z_PV="4.29"

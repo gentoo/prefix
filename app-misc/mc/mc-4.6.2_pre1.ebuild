@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.7 2008/11/24 17:55:35 ssuominen Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils toolchain-funcs
 
