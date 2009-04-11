@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.20.0-r1.ebuild,v 1.12 2009/03/09 23:55:52 eva Exp $
 
-EAPI="prefix"
-
 inherit virtualx eutils gnome2 autotools
 
 DESCRIPTION="A file manager for the GNOME desktop"

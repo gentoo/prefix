@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.24.2-r3.ebuild,v 1.1 2009/03/21 13:32:36 eva Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit gnome2 eutils virtualx
 
