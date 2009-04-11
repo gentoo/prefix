@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/thunar-0.9.3.ebuild,v 1.9 2009/02/05 22:42:50 betelgeuse Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils virtualx xfce44 flag-o-matic
 
