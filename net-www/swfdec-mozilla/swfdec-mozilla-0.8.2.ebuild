@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-www/swfdec-mozilla/swfdec-mozilla-0.8.2.ebuild,v 1.1 2008/11/06 14:37:36 remi Exp $
 
-EAPI="prefix"
-
 inherit multilib versionator eutils
 
 MY_PV=$(get_version_component_range 1-2)
