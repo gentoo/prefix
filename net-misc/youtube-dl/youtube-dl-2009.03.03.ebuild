@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/youtube-dl/youtube-dl-2009.03.03.ebuild,v 1.1 2009/03/20 18:21:53 bangert Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 DESCRIPTION="A small command-line program to download videos from YouTube."
 HOMEPAGE="http://bitbucket.org/rg3/youtube-dl/"
