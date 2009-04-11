@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/libedit-20090111.3.0.ebuild,v 1.1 2009/03/07 12:47:17 drizzt Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs versionator
 
 MY_PV=$(get_major_version)-$(get_after_major_version)
