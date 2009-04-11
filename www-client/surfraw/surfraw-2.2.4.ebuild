@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/surfraw-2.2.4.ebuild,v 1.2 2009/04/10 22:47:34 jer Exp $
 
-EAPI="prefix"
-
 inherit bash-completion eutils
 
 DESCRIPTION="A fast unix command line interface to WWW"
