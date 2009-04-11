@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/java-virtuals/jmx/jmx-1.0.ebuild,v 1.4 2008/06/26 16:36:00 nixnut Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit java-virtuals-2
 
