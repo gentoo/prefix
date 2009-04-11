@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/intltool-0.37.1.ebuild,v 1.10 2008/12/07 12:14:46 vapier Exp $
 
-EAPI="prefix"
-
 inherit gnome.org eutils
 
 DESCRIPTION="Tools for extracting translatable strings from various sourcefiles"
