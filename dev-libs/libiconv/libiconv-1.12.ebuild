@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libiconv/libiconv-1.12.ebuild,v 1.3 2008/06/08 20:41:36 the_paya Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib flag-o-matic toolchain-funcs autotools
 
 DESCRIPTION="GNU charset conversion library for libc which doesn't implement it"
