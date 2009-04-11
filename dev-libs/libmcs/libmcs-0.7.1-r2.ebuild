@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/libmcs-0.7.1-r2.ebuild,v 1.8 2009/03/14 21:25:29 nixnut Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Abstracts the storage of configuration settings away from applications."
 HOMEPAGE="http://sacredspiral.co.uk/~nenolod/mcs/"
 SRC_URI="http://distfiles.atheme.org/${P}.tgz"

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcs/libmcs-0.7.1.ebuild,v 1.1 2008/04/20 23:13:54 chainsaw Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic kde-functions multilib
 
 DESCRIPTION="Abstracts the storage of configuration settings away from applications."
