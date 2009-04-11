@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.18.ebuild,v 1.1 2009/02/28 12:40:33 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool autotools
 
 MY_P=${P/_pre/pre}

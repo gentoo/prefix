@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.17-r1.ebuild,v 1.15 2009/02/28 12:45:00 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool autotools
 
 DESCRIPTION="A C library for reading and writing files containing sampled sound"

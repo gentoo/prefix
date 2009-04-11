@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.18-r1.ebuild,v 1.2 2009/03/04 13:59:42 loki_val Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool autotools
 
 MY_P=${P/_pre/pre}
