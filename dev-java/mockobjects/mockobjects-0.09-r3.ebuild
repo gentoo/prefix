@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/mockobjects/mockobjects-0.09-r3.ebuild,v 1.3 2008/08/30 14:36:57 ranger Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc examples source test"
 inherit eutils java-pkg-2 java-ant-2
 
