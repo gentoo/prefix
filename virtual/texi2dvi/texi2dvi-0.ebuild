@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/texi2dvi/texi2dvi-0.ebuild,v 1.1 2008/07/07 16:54:10 ulm Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for texi2dvi (and texi2pdf)"
 HOMEPAGE=""
 SRC_URI=""
