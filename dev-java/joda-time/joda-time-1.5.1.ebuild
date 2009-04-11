@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/joda-time/joda-time-1.5.1.ebuild,v 1.7 2008/03/30 17:03:41 corsair Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc examples source test"
 
 inherit java-pkg-2 java-ant-2
