@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/texlive-latexrecommended-2007.ebuild,v 1.19 2008/10/04 08:54:52 aballier Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULES_DEPS="dev-texlive/texlive-latex
 !dev-tex/xkeyval
 !dev-tex/floatflt

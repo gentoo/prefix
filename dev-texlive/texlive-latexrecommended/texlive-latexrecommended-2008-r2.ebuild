@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latexrecommended/texlive-latexrecommended-2008-r2.ebuild,v 1.9 2009/03/18 21:17:16 ranger Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULE_CONTENTS="anysize  booktabs caption cite citeref cmap crop ctable ec eso-pic euler extsizes fancybox fancyref fancyvrb float fp ifxetex index jknapltx koma-script listings mdwtools memoir microtype ms ntgclass oberdiek pdfpages powerdot psfrag rcs rotating seminar setspace subfig thumbpdf  xkeyval collection-latexrecommended
 "
 TEXLIVE_MODULE_DOC_CONTENTS="anysize.doc booktabs.doc caption.doc cite.doc cmap.doc crop.doc ctable.doc ec.doc eso-pic.doc euler.doc extsizes.doc fancybox.doc fancyref.doc fancyvrb.doc float.doc fp.doc ifxetex.doc index.doc jknapltx.doc koma-script.doc listings.doc mdwtools.doc memoir.doc microtype.doc ms.doc ntgclass.doc oberdiek.doc pdfpages.doc powerdot.doc psfrag.doc rcs.doc rotating.doc seminar.doc subfig.doc thumbpdf.doc xkeyval.doc "
