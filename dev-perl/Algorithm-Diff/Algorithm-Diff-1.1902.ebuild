@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Algorithm-Diff/Algorithm-Diff-1.1902.ebuild,v 1.7 2009/01/30 11:07:48 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=TYEMQ
 inherit perl-module
 
