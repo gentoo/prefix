@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pygoogle/pygoogle-0.6.ebuild,v 1.6 2008/01/17 18:35:50 grobian Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="A Python wrapper for the Google web API"
