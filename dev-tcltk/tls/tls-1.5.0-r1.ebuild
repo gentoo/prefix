@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tls/tls-1.5.0-r1.ebuild,v 1.2 2007/12/24 04:08:28 matsuu Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="TLS OpenSSL extension to Tcl."
