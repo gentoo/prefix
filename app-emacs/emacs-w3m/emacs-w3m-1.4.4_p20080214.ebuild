@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-w3m/emacs-w3m-1.4.4_p20080214.ebuild,v 1.2 2008/11/27 00:40:05 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp autotools
 
 DESCRIPTION="emacs-w3m is an interface program of w3m on Emacs"
