@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/shash/shash-0.2.6-r1.ebuild,v 1.21 2008/06/07 22:08:49 swegener Exp $
 
-EAPI="prefix"
-
 inherit bash-completion eutils
 
 DESCRIPTION="Generate or check digests or MACs of files"
