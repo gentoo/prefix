@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-mail/mailwrapper/mailwrapper-0.2.1-r1.ebuild,v 1.11 2006/10/17 10:56:50 uberlord Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs prefix
 
 DESCRIPTION="Program to invoke an appropriate MTA based on a config file"
