@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/libXau/libXau-1.0.4.ebuild,v 1.6 2009/04/06 18:48:23 bluebird Exp $
 
-EAPI="prefix"
-
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
