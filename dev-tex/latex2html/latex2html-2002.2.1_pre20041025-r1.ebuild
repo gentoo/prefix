@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/latex2html-2002.2.1_pre20041025-r1.ebuild,v 1.15 2007/10/14 21:43:06 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 BASE_PV="${PV/_*/}"	# 2002.2.1_pre20041025 -> 2002.2.1

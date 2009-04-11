@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/latex2html-2008.ebuild,v 1.7 2009/01/30 22:47:19 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 DESCRIPTION="convertor written in Perl that converts LATEX documents to HTML"
