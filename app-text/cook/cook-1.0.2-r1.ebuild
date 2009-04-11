@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/cook/cook-1.0.2-r1.ebuild,v 1.6 2007/03/21 21:16:13 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="COOK is an embedded language which can be used as a macro preprocessor and for similar text processing."
 HOMEPAGE="http://cook.sourceforge.net/"
 SRC_URI="mirror://sourceforge/cook/${P}.tar.gz"
