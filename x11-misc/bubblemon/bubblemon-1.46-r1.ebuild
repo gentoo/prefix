@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/bubblemon-1.46-r1.ebuild,v 1.7 2008/01/06 14:56:44 drac Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="A fun monitoring applet for your desktop, complete with swimming duck"

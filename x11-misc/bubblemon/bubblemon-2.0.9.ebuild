@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/bubblemon-2.0.9.ebuild,v 1.1 2009/01/18 23:19:03 nelchael Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="A fun monitoring applet for your desktop, complete with swimming duck"
