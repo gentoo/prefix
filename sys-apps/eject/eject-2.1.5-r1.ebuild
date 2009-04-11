@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/eject/eject-2.1.5-r1.ebuild,v 1.11 2007/05/25 22:04:59 kloeri Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="A command to eject a disc from the CD-ROM drive"
