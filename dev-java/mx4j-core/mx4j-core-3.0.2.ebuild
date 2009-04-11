@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/mx4j-core/mx4j-core-3.0.2.ebuild,v 1.1 2008/06/17 14:01:51 nelchael Exp $
 
-EAPI="prefix"
-
 inherit eutils java-pkg-2 java-ant-2
 
 MY_P="${P/-core/}"
