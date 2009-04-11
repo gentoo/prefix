@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/docbook-xml-simple-dtd-4.1.2.5.ebuild,v 1.3 2008/01/25 19:29:13 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Simplified Docbook DTD for XML"
 HOMEPAGE="http://www.oasis-open.org/docbook/xml/simple/4.1.2.5/"
 SRC_URI="http://www.nwalsh.com/docbook/simple/${PV}/simple4125.zip"
