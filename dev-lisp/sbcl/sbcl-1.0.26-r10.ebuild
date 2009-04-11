@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.26-r10.ebuild,v 1.1 2009/03/11 14:32:38 hkbst Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils flag-o-matic
 

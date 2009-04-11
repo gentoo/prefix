@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.15.ebuild,v 1.3 2008/11/16 16:31:39 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 #same order as http://www.sbcl.org/platform-table.html
