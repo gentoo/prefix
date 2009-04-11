@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/chasen/chasen-2.4.0.ebuild,v 1.7 2008/01/15 05:33:19 drac Exp $
 
-EAPI="prefix"
-
 inherit perl-app
 
 MY_P="${P/_pre/-preview}"

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/chasen/chasen-2.4.4.ebuild,v 1.1 2008/07/31 16:07:27 matsuu Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Japanese Morphological Analysis System, ChaSen"
