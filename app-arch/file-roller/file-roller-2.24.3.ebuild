@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.24.3.ebuild,v 1.6 2009/03/18 15:06:47 armin76 Exp $
 
-EAPI="prefix"
-
 GCONF_DEBUG="no"
 
 inherit eutils gnome2
