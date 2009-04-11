@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/perl-tk-804.027.ebuild,v 1.26 2008/12/23 18:54:48 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils multilib
 
 MY_P=Tk-${PV}

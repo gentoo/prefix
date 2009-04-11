@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/perl-tk-804.028-r1.ebuild,v 1.1 2009/02/21 14:18:01 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR="SREZIC"
 MY_PN=Tk
 MY_P=${MY_PN}-${PV}
