@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/giflib/giflib-4.1.6.ebuild,v 1.10 2008/02/22 07:15:13 lu_zero Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="Library to handle, display and manipulate GIF images"
