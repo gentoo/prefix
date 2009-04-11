@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/activerecord-1.15.6.ebuild,v 1.6 2007/12/01 22:44:02 angelos Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 DESCRIPTION="Implements the ActiveRecord pattern (Fowler, PoEAA) for ORM"
