@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/texi2html/texi2html-1.78.ebuild,v 1.3 2009/03/11 18:40:16 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Perl script that converts Texinfo to HTML"
 HOMEPAGE="http://www.nongnu.org/texi2html/"
 SRC_URI="http://download.savannah.gnu.org/releases/texi2html/${P}.tar.bz2"
