@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-cpp/pangomm/pangomm-2.14.0.ebuild,v 1.3 2008/12/31 06:27:06 mr_bones_ Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit gnome2
 
