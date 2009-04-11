@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-7.0.0.0.ebuild,v 1.10 2009/03/01 14:06:28 loki_val Exp $
 
-EAPI="prefix"
-
 SPEC_VER="26104-700"
 
 DESCRIPTION="Wrapper library for 3GPP Adaptive Multi-Rate Floating-point Speech Codec"
