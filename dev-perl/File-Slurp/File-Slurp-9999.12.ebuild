@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Slurp/File-Slurp-9999.12.ebuild,v 1.16 2008/11/09 11:41:21 vapier Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Efficient Reading/Writing of Complete Files"
