@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.12.ebuild,v 1.23 2008/05/11 19:54:58 maekke Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
 
