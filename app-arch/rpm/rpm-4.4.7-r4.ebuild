@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r4.ebuild,v 1.1 2008/05/20 07:44:25 caster Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools distutils perl-module flag-o-matic
 
 DESCRIPTION="Red Hat Package Management Utils"

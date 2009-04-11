@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-5.1.6.ebuild,v 1.1 2008/12/27 22:04:05 caleb Exp $
 
-EAPI="prefix"
-
 inherit multilib distutils python
 
 MY_P=${P/_alpha/a}
