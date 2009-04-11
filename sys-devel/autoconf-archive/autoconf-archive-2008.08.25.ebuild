@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-archive/autoconf-archive-2008.08.25.ebuild,v 1.2 2009/01/29 16:10:26 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_PV=${PV//./-}
