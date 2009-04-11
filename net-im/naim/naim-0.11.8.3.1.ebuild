@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-im/naim/naim-0.11.8.3.1.ebuild,v 1.2 2008/03/31 02:08:51 mr_bones_ Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="An ncurses based AOL Instant Messenger"
 HOMEPAGE="http://naim.n.ml.org"
 SRC_URI="http://naim.googlecode.com/files/${P}.tar.bz2"
