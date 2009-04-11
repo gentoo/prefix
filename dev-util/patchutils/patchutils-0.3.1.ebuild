@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/patchutils/patchutils-0.3.1.ebuild,v 1.1 2009/03/16 14:31:12 dev-zero Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A collection of tools that operate on patch files"
 HOMEPAGE="http://cyberelk.net/tim/patchutils/"
 SRC_URI="http://cyberelk.net/tim/data/patchutils/stable/${P}.tar.bz2"
