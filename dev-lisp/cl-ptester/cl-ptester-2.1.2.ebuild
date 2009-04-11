@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-ptester/cl-ptester-2.1.2.ebuild,v 1.6 2005/05/24 18:48:34 mkennedy Exp $
 
-EAPI="prefix"
-
 inherit common-lisp
 
 DESCRIPTION="A Common Lisp test harness based on the Franz, Inc. tester module."
