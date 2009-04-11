@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/libtorrent-0.12.4.ebuild,v 1.6 2009/03/06 00:11:38 jer Exp $
 
-EAPI="prefix"
-
 inherit base eutils toolchain-funcs flag-o-matic libtool
 
 DESCRIPTION="LibTorrent is a BitTorrent library written in C++ for *nix."
