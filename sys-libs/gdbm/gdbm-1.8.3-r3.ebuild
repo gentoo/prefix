@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r3.ebuild,v 1.3 2007/02/17 22:45:04 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool multilib
 
 DESCRIPTION="Standard GNU database libraries"
