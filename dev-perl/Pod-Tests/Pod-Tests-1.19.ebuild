@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Tests/Pod-Tests-1.19.ebuild,v 1.1 2008/08/01 10:07:57 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ADAMK
 inherit perl-module
 
