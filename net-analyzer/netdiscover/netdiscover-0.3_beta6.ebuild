@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/netdiscover/netdiscover-0.3_beta6.ebuild,v 1.1 2006/07/19 00:33:31 vanquirius Exp $
 
-EAPI="prefix"
-
 MY_PV="${PV/_/-}"
 MY_P="${PN}-${MY_PV}"
 
