@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/cairomm-1.6.0.ebuild,v 1.10 2009/04/10 14:00:16 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="C++ bindings for the Cairo vector graphics library"
