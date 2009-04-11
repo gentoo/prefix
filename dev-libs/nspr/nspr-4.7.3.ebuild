@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.3.ebuild,v 1.7 2008/12/27 16:14:04 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib toolchain-funcs
 
 DESCRIPTION="Netscape Portable Runtime"
