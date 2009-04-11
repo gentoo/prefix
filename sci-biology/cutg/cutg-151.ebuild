@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/cutg/cutg-151.ebuild,v 1.7 2006/11/20 20:58:15 blubb Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Codon usage tables calculated from GenBank"
 LICENSE="public-domain"
 HOMEPAGE="http://www.kazusa.or.jp/codon/"
