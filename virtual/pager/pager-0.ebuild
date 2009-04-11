@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/pager/pager-0.ebuild,v 1.1 2008/03/21 11:16:02 opfer Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for command-line pagers"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI=""
