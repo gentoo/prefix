@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.14.0.ebuild,v 1.7 2009/03/30 13:33:28 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic gnome.org python virtualx
 
 DESCRIPTION="GTK+2 bindings for Python"
