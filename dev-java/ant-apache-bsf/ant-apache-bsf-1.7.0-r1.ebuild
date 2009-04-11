@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bsf/ant-apache-bsf-1.7.0-r1.ebuild,v 1.3 2007/06/01 19:50:15 caster Exp $
 
-EAPI="prefix"
-
 ANT_TASK_DEPNAME="bsf-2.3"
 
 inherit eutils ant-tasks
