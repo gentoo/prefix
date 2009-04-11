@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.7.8.ebuild,v 1.1 2009/03/14 08:09:30 keri Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic java-pkg-opt-2
 
 PATCHSET_VER="0"
