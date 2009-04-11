@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/packit/packit-1.0-r1.ebuild,v 1.2 2008/02/06 21:07:29 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="network auditing tool that allows you to monitor, manipulate, and inject customized IPv4 traffic"
