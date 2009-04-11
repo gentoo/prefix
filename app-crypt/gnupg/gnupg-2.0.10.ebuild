@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.10.ebuild,v 1.4 2009/03/23 17:15:20 jer Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic toolchain-funcs
 
 DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
