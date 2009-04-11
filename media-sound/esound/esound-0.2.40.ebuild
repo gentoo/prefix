@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/esound/esound-0.2.40.ebuild,v 1.1 2008/09/07 18:48:48 eva Exp $
 
-EAPI="prefix"
-
 inherit libtool gnome.org eutils flag-o-matic
 
 DESCRIPTION="The Enlightened Sound Daemon"

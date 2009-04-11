@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/esound/esound-0.2.38-r1.ebuild,v 1.10 2008/06/17 13:09:45 remi Exp $
 
-EAPI="prefix"
-
 WANT_AUTOMAKE=1.10
 inherit libtool gnome.org eutils autotools flag-o-matic
 
