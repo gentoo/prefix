@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/pth/pth-2.0.7-r1.ebuild,v 1.2 2008/01/15 00:05:10 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils fixheadtails autotools libtool
 
 DESCRIPTION="GNU Portable Threads"
