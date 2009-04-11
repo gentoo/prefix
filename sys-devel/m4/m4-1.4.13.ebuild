@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.13.ebuild,v 1.1 2009/04/01 15:56:38 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="GNU macro processor"
