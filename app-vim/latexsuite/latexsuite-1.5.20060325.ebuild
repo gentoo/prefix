@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/latexsuite/latexsuite-1.5.20060325.ebuild,v 1.9 2008/09/12 22:23:44 maekke Exp $
 
-EAPI="prefix"
-
 inherit vim-plugin versionator
 
 DESCRIPTION="vim plugin: a comprehensive set of tools to view, edit and compile LaTeX documents"
