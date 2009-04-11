@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.18.ebuild,v 1.2 2009/02/25 02:29:16 vapier Exp $
 
-EAPI="prefix"
-
 GENTOO_PATCH=2
 
 DESCRIPTION="A somewhat comprehensive collection of Linux man pages"
