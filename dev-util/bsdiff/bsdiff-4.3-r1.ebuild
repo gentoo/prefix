@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/bsdiff/bsdiff-4.3-r1.ebuild,v 1.10 2007/07/14 21:58:03 angelos Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs flag-o-matic
 
 IUSE=""
