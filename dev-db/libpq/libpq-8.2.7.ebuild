@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/libpq-8.2.7.ebuild,v 1.2 2008/05/19 19:19:30 dev-zero Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs
 
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
