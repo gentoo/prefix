@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/babl/babl-0.0.22.ebuild,v 1.11 2009/04/06 14:14:42 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="A dynamic, any to any, pixel format conversion library"
