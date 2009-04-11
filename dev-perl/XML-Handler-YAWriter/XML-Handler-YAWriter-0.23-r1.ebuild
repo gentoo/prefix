@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Handler-YAWriter/XML-Handler-YAWriter-0.23-r1.ebuild,v 1.17 2007/01/19 17:28:04 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P="${P/_/}"
