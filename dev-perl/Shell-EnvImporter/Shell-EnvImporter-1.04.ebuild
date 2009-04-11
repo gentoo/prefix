@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Shell-EnvImporter/Shell-EnvImporter-1.04.ebuild,v 1.18 2008/07/02 18:11:39 the_paya Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Perl extension for importing environment variable changes from external commands or shell scripts"
