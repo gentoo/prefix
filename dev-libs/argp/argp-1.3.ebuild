@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="prefix"
-
 inherit multilib
 
 DESCRIPTION="Standalone version of arguments parsing functions from GLIBC"
