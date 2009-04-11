@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Tabs+Wrap/Text-Tabs+Wrap-2006.1117.ebuild,v 1.8 2008/09/30 15:19:36 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=MUIR
 MODULE_SECTION=modules
 inherit perl-module
