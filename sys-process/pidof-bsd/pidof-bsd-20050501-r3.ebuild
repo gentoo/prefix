@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-process/pidof-bsd/pidof-bsd-20050501-r3.ebuild,v 1.3 2007/07/14 23:02:48 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit base toolchain-funcs
 
 DESCRIPTION="pidof(1) utility for *BSD"
