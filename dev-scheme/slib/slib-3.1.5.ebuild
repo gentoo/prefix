@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.5.ebuild,v 1.1 2008/01/18 12:50:22 hkbst Exp $
 
-EAPI="prefix"
-
 inherit versionator eutils
 
 #version magic thanks to masterdriverz and UberLord using bash array instead of tr
