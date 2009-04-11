@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p72-r11.ebuild,v 1.2 2009/04/03 18:19:18 mr_bones_ Exp $
 
-EAPI="prefix"
-
 #PATCHES APPLY, DOESN'T COMPILE THOUGH
 #ONIGURUMA="onigd2_5_9"
 

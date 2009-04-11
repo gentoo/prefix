@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p287-r13.ebuild,v 1.1 2009/04/03 12:26:26 a3li Exp $
 
-EAPI="prefix"
-
 ONIGURUMA="onigd2_5_9"
 
 inherit autotools eutils flag-o-matic multilib versionator

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p114.ebuild,v 1.13 2008/12/23 20:20:12 graaff Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 

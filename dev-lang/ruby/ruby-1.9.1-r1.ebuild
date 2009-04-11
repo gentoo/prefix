@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1-r1.ebuild,v 1.1 2009/04/03 12:26:26 a3li Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit autotools eutils flag-o-matic multilib versionator
 
