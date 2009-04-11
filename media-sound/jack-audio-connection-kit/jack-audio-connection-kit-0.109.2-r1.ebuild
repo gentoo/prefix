@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.109.2-r1.ebuild,v 1.10 2008/12/20 14:36:56 nixnut Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils multilib linux-info autotools multilib
 
 NETJACK=netjack-0.12

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.116.1.ebuild,v 1.2 2008/12/14 20:18:33 armin76 Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils multilib multilib
 
 DESCRIPTION="A low-latency audio server"
