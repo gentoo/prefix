@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/colordiff-1.0.8a.ebuild,v 1.1 2009/02/02 04:34:07 darkside Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Colorizes output of diff"
