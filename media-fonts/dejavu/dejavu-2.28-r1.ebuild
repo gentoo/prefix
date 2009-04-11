@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.28-r1.ebuild,v 1.8 2009/03/15 18:46:26 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit font versionator
 
