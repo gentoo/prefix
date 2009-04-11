@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Parser/HTML-Parser-3.56.ebuild,v 1.13 2008/09/29 07:54:50 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=GAAS
 inherit perl-module
 
