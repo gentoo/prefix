@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-apps/xkill/xkill-1.0.1.ebuild,v 1.7 2008/09/24 09:58:59 aballier Exp $
 
-EAPI="prefix"
-
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
