@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Singleton/Class-Singleton-1.4.ebuild,v 1.2 2008/06/13 16:53:50 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Implementation of a Singleton class"
