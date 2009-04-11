@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/kid/kid-0.9.6.ebuild,v 1.1 2007/07/17 07:35:25 lucass Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.3
 
 inherit distutils
