@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/xmltex/xmltex-1.9-r1.ebuild,v 1.8 2008/09/14 18:05:38 aballier Exp $
 
-EAPI="prefix"
-
 inherit latex-package
 
 IUSE=""
