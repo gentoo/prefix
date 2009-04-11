@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/parsec/parsec-2.1.0.0.ebuild,v 1.10 2008/10/18 18:02:56 nixnut Exp $
 
-EAPI="prefix"
-
 CABAL_FEATURES="lib profile haddock"
 CABAL_MIN_VERSION=1.2
 inherit haskell-cabal
