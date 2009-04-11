@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4.ebuild,v 1.17 2008/02/11 20:00:04 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 #The configure script finds the 5.50 ghostscript Fontmap file while run.
