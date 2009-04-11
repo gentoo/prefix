@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/fondu/fondu-20040925.ebuild,v 1.2 2004/11/04 15:52:53 usata Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Utilities for converting between and manipulating mac fonts and unix fonts"
 HOMEPAGE="http://fondu.sourceforge.net/"
 # 20040527 -> 040527
