@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/tcsh-6.15-r2.ebuild,v 1.13 2009/03/17 21:14:01 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic autotools prefix
 
 CONFVER="1.9"
