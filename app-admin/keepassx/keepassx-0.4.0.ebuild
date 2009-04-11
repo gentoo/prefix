@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/keepassx/keepassx-0.4.0.ebuild,v 1.1 2009/03/31 02:17:44 tgurr Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils qt4
 
