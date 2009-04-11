@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/libgnomeui-2.24.1.ebuild,v 1.1 2009/03/08 01:36:03 eva Exp $
 
-EAPI="prefix"
-
 GCONF_DEBUG="no"
 
 inherit eutils gnome2

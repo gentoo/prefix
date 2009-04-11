@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeui/libgnomeui-2.22.1.ebuild,v 1.8 2008/11/13 19:09:07 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2
 
 DESCRIPTION="User Interface routines for Gnome"
