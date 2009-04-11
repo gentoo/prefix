@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/gif2png/gif2png-2.5.1.ebuild,v 1.14 2008/01/26 10:32:00 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Converts images from gif format to png format"
