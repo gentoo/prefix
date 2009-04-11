@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/text-reform/text-reform-1.11.ebuild,v 1.20 2007/07/10 23:33:30 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Text-Reform-${PV}
