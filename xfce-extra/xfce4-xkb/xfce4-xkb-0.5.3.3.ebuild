@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-xkb/xfce4-xkb-0.5.3.3.ebuild,v 1.2 2009/03/16 14:44:47 angelos Exp $
 
-EAPI="prefix"
-
 inherit xfce4
 
 XFCE_VERSION=4.4
