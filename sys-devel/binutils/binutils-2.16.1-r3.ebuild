@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.16.1-r3.ebuild,v 1.7 2006/09/16 21:53:51 vapier Exp $
 
-EAPI="prefix"
-
 PATCHVER="1.11"
 UCLIBC_PATCHVER="1.1"
 ELF2FLT_VER=""

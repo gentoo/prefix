@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/binutils-2.19.ebuild,v 1.12 2009/01/08 10:08:37 the_paya Exp $
 
-EAPI="prefix"
-
 PATCHVER="1.1"
 ELF2FLT_VER=""
 inherit toolchain-binutils
