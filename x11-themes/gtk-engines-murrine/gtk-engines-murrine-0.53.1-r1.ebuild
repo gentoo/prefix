@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-themes/gtk-engines-murrine/gtk-engines-murrine-0.53.1-r1.ebuild,v 1.5 2008/07/07 21:55:24 jokey Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 MY_PN="murrine"
