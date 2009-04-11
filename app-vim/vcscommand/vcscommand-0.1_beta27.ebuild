@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/vcscommand/vcscommand-0.1_beta27.ebuild,v 1.1 2008/09/20 15:43:20 hawking Exp $
 
-EAPI="prefix"
-
 VIM_PLUGIN_VIM_VERSION="7.0"
 inherit vim-plugin
 
