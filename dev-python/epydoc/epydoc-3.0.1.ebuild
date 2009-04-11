@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/epydoc-3.0.1.ebuild,v 1.7 2009/03/15 13:21:09 ranger Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="Tool for generating API documentation for Python modules, based on their docstrings"
