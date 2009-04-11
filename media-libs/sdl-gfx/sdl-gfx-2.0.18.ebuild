@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-gfx/sdl-gfx-2.0.18.ebuild,v 1.1 2008/12/21 23:27:47 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils flag-o-matic libtool
 
 MY_P="${P/sdl-/SDL_}"
