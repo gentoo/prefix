@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-posix/regex-posix-0.92.ebuild,v 1.6 2008/03/01 11:27:25 armin76 Exp $
 
-EAPI="prefix"
-
 CABAL_FEATURES="profile haddock lib"
 inherit haskell-cabal
 
