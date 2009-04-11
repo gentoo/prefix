@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.3.ebuild,v 1.10 2007/12/27 19:29:06 vapier Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs flag-o-matic
 
 DESCRIPTION="A yacc-compatible parser generator"
