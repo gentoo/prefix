@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/urlview/urlview-0.9.ebuild,v 1.27 2008/02/03 15:43:44 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="extracts urls from text and will send them to another app"
