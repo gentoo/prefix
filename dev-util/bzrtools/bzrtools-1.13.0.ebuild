@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.13.0.ebuild,v 1.1 2009/03/15 06:39:41 pva Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 inherit distutils versionator
 
