@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/libwww-perl-5.823.ebuild,v 1.1 2009/01/13 19:53:06 robbat2 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=GAAS
 inherit perl-module
 
