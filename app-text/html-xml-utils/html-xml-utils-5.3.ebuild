@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/html-xml-utils/html-xml-utils-5.3.ebuild,v 1.1 2009/03/11 22:32:56 loki_val Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="A number of simple utilities for manipulating HTML and XML files."
