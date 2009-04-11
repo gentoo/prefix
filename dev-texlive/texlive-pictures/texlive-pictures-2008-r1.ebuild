@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pictures/texlive-pictures-2008-r1.ebuild,v 1.9 2009/03/18 21:18:53 ranger Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULE_CONTENTS="autoarea bardiag curve curve2e curves dcpic dottex dratex eepic epspdf epspdfconversion gnuplottex miniplot pb-diagram petri-nets  pgf-soroban pgfopts pgfplots picinpar pict2e pictex pictex2 pinlabel pmgraph randbild swimgraf texdraw tikz-inet tufte-latex xypic collection-pictures
 "
 TEXLIVE_MODULE_DOC_CONTENTS="autoarea.doc bardiag.doc curve.doc curve2e.doc curves.doc dcpic.doc dottex.doc dratex.doc eepic.doc epspdf.doc epspdfconversion.doc gnuplottex.doc miniplot.doc pb-diagram.doc petri-nets.doc pgf-soroban.doc pgfopts.doc pgfplots.doc picinpar.doc pict2e.doc pictex.doc pinlabel.doc pmgraph.doc randbild.doc swimgraf.doc texdraw.doc tikz-inet.doc tufte-latex.doc xypic.doc "
