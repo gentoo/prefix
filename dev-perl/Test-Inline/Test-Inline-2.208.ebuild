@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Inline/Test-Inline-2.208.ebuild,v 1.7 2008/07/17 20:53:25 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ADAMK
 
 inherit perl-module

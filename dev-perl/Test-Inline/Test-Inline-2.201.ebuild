@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Inline/Test-Inline-2.201.ebuild,v 1.9 2008/03/19 03:21:51 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Inline test suite support for Perl"
