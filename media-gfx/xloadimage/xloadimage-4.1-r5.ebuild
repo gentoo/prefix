@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/xloadimage-4.1-r5.ebuild,v 1.2 2008/01/15 18:37:57 grobian Exp $
 
-EAPI="prefix"
-
 inherit alternatives eutils toolchain-funcs
 
 MY_P="${P/-/.}"
