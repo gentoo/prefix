@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/xfwm4-themes/xfwm4-themes-4.4.3.ebuild,v 1.6 2008/12/15 04:53:32 jer Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Window manager decorations & themes for Xfce4"
 HOMEPAGE="http://www.xfce.org"
 SRC_URI="mirror://xfce/xfce-${PV}/src/${P}.tar.bz2"
@@ -22,8 +20,6 @@ src_install() {
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/xfwm4-themes/xfwm4-themes-4.4.3.ebuild,v 1.1 2008/10/30 22:12:20 angelos Exp $
-
-EAPI="prefix"
 
 inherit xfce44
 
