@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/tinc-1.0.9.ebuild,v 1.1 2009/01/04 07:15:08 dragonheart Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="tinc is an easy to configure VPN implementation"
 HOMEPAGE="http://www.tinc-vpn.org/"
 SRC_URI="http://www.tinc-vpn.org/packages/${P}.tar.gz"
