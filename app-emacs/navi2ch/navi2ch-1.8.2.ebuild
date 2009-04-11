@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/navi2ch/navi2ch-1.8.2.ebuild,v 1.1 2009/03/01 23:52:46 matsuu Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="A navigator for 2ch"
