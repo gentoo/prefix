@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-rails/eselect-rails-0.14.ebuild,v 1.6 2009/01/10 16:27:19 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Manages Ruby on Rails symlinks"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
