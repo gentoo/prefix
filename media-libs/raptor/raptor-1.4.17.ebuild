@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/raptor-1.4.17.ebuild,v 1.2 2008/05/12 09:39:42 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 DESCRIPTION="The RDF Parser Toolkit"
