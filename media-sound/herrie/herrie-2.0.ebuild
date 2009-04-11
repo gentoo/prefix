@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/herrie-2.0.ebuild,v 1.4 2008/04/26 17:22:58 nixnut Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="Herrie is a command line music player."
