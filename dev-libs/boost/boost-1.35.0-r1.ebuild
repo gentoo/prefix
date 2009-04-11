@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r1.ebuild,v 1.4 2009/02/07 19:58:38 klausman Exp $
 
-EAPI="prefix"
-
 inherit python flag-o-matic multilib toolchain-funcs versionator check-reqs
 
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"

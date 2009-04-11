@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.37.0.ebuild,v 1.1 2008/12/16 16:37:27 dev-zero Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit python flag-o-matic multilib toolchain-funcs versionator check-reqs
 
