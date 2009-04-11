@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/DB_File/DB_File-1.820.ebuild,v 1.1 2009/04/03 20:25:33 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=PMQS
 inherit perl-module multilib eutils
 

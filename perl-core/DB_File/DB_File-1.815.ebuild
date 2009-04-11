@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/DB_File/DB_File-1.815.ebuild,v 1.10 2008/03/28 06:39:12 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module multilib eutils
 
 DESCRIPTION="A Berkeley DB Support Perl Module"
