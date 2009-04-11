@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-1.2.6.ebuild,v 1.6 2007/12/01 22:48:48 angelos Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 DESCRIPTION="ruby on rails is a web-application and persistance framework"
