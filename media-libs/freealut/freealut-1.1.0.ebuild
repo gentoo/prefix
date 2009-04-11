@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/freealut/freealut-1.1.0.ebuild,v 1.13 2009/03/11 20:29:46 tupone Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="The OpenAL Utility Toolkit"
