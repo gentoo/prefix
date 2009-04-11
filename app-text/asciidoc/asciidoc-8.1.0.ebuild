@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/asciidoc/asciidoc-8.1.0.ebuild,v 1.4 2008/01/25 19:33:30 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A text document format for writing short documents, articles, books and UNIX man pages"
 HOMEPAGE="http://www.methods.co.nz/asciidoc/"
 SRC_URI="http://www.methods.co.nz/${PN}/${P}.tar.gz"
