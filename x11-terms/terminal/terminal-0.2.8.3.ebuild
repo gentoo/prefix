@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.8.3.ebuild,v 1.8 2008/12/15 04:51:48 jer Exp $
 
-EAPI="prefix 1"
-
 inherit fdo-mime gnome2-utils flag-o-matic
 
 MY_P=${P/t/T}
@@ -70,8 +68,6 @@ pkg_postrm() {
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.8.3.ebuild,v 1.2 2008/10/31 00:31:49 aballier Exp $
-
-EAPI="prefix"
 
 inherit xfce44
 

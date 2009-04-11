@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.10.ebuild,v 1.2 2009/03/10 17:38:48 angelos Exp $
 
-EAPI="prefix 1"
-
 MY_P="${P/t/T}"
 inherit xfce4
 
@@ -41,8 +39,6 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README THANKS TODO"
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.10.ebuild,v 1.2 2009/03/10 17:38:48 angelos Exp $
-
-EAPI="prefix"
 
 inherit xfce44
 
