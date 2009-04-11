@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libmpd/libmpd-0.18.0.ebuild,v 1.1 2009/03/13 11:31:59 angelos Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 DESCRIPTION="A library handling connections to a MPD server"
 HOMEPAGE="http://gmpcwiki.sarine.nl/index.php/Libmpd"
