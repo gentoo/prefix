@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/zentest/zentest-4.0.0.ebuild,v 1.1 2009/03/06 12:16:10 graaff Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 MY_P=${P/zentest/ZenTest}
