@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-3.7.11.ebuild,v 1.1 2009/03/23 05:40:04 jer Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A sophisticated ftp/sftp/http/https client and file transfer program"
 HOMEPAGE="http://lftp.yar.ru/"
 SRC_URI="http://ftp.yars.free.net/pub/source/lftp/${P}.tar.bz2"

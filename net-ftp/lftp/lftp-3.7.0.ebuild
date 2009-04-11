@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-3.7.0.ebuild,v 1.8 2008/11/06 02:31:36 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="A sophisticated ftp/sftp/http/https client and file transfer program"
