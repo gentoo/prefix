@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/libIDL-0.8.12.ebuild,v 1.8 2009/03/05 22:32:10 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 autotools
 
 DESCRIPTION="CORBA tree builder"
