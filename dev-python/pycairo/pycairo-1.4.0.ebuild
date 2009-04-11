@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/pycairo-1.4.0.ebuild,v 1.12 2008/03/10 05:04:17 ricmm Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.3
 
 inherit distutils
