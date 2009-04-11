@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/gthumb-2.10.10.ebuild,v 1.5 2009/02/14 18:23:00 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2
 
 DESCRIPTION="Image viewer and browser for Gnome"
