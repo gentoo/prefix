@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/libcap-2.16.ebuild,v 1.2 2009/01/17 17:18:14 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib toolchain-funcs pam
 
 DESCRIPTION="POSIX 1003.1e capabilities"
