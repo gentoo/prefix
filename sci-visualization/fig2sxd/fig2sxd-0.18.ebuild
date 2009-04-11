@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-visualization/fig2sxd/fig2sxd-0.18.ebuild,v 1.1 2008/08/21 15:07:24 markusle Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="A utility to convert files in xfig format to OpenOffice.org Draw format"
