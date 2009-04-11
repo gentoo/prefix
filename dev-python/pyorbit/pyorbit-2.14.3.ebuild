@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pyorbit/pyorbit-2.14.3.ebuild,v 1.12 2008/10/27 10:29:01 hawking Exp $
 
-EAPI="prefix"
-
 inherit python gnome2 multilib
 
 DESCRIPTION="ORBit2 bindings for Python"
