@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.2-r2.ebuild,v 1.6 2009/01/02 20:18:54 solar Exp $
 
-EAPI="prefix"
-
 PATCH_VER="1.5"
 UCLIBC_VER="1.0"
 

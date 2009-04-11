@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.2 2009/01/31 17:28:39 gmsoft Exp $
 
-EAPI="prefix"
-
 PATCH_VER="1.1"
 UCLIBC_VER="1.0"
 

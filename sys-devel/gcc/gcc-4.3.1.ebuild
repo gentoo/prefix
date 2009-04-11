@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.1.ebuild,v 1.5 2008/06/29 16:51:31 bluebird Exp $
 
-EAPI="prefix"
-
 PATCH_VER="1.0"
 UCLIBC_VER="1.0"
 
