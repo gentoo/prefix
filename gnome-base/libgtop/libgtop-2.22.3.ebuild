@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.22.3.ebuild,v 1.8 2009/01/19 01:29:28 leio Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="A library that provides top functionality to applications"

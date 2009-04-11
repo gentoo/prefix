@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.24.4.ebuild,v 1.6 2009/03/18 14:53:38 armin76 Exp $
 
-EAPI="prefix"
-
 inherit gnome2 eutils autotools
 
 DESCRIPTION="A library that provides top functionality to applications"
