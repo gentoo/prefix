@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/freefonts/freefonts-0.10-r3.ebuild,v 1.11 2007/03/18 12:05:46 blubb Exp $
 
-EAPI="prefix"
-
 inherit font
 
 DESCRIPTION="A Collection of Free Type1 Fonts"
