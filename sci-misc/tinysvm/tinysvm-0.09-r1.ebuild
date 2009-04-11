@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-misc/tinysvm/tinysvm-0.09-r1.ebuild,v 1.3 2006/11/02 17:47:07 usata Exp $
 
-EAPI="prefix"
-
 inherit perl-module flag-o-matic eutils
 
 MY_PN="TinySVM"
