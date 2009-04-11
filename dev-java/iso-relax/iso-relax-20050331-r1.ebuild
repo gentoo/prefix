@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/iso-relax/iso-relax-20050331-r1.ebuild,v 1.10 2007/11/10 19:04:16 nelchael Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="source"
 
 inherit java-pkg-2 java-ant-2
