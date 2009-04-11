@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.22.2.ebuild,v 1.7 2008/11/13 19:10:07 ranger Exp $
 
-EAPI="prefix"
-
 inherit virtualx gnome2
 
 DESCRIPTION="The Eazel Extentions Library"
