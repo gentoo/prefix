@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-cpp/libxmlpp/libxmlpp-2.24.2.ebuild,v 1.1 2009/01/03 15:07:59 eva Exp $
 
-EAPI="prefix"
-
 inherit gnome2 eutils
 
 MY_PN="${PN/pp/++}"
