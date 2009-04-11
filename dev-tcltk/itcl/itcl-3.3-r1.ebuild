@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tcltk/itcl/itcl-3.3-r1.ebuild,v 1.6 2006/05/24 20:15:44 hansmi Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P="${PN}${PV}"
