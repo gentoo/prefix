@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/plotutils/plotutils-2.5.1.ebuild,v 1.8 2009/01/07 15:58:17 ranger Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils flag-o-matic
 
 #The plotutils package contains extra X fonts.	These fonts are not installed
