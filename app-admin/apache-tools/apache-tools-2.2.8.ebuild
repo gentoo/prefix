@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.8.ebuild,v 1.9 2008/06/15 15:40:46 hollow Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils
 
 DESCRIPTION="Useful Apache tools - htdigest, htpasswd, ab, htdbm"
