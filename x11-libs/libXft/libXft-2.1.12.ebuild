@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/libXft/libXft-2.1.12.ebuild,v 1.10 2007/07/02 13:36:24 armin76 Exp $
 
-EAPI="prefix"
-
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
