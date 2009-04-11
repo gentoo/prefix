@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-compat/regex-compat-0.91.ebuild,v 1.3 2008/10/04 18:00:09 armin76 Exp $
 
-EAPI="prefix"
-
 CABAL_FEATURES="profile haddock lib"
 inherit haskell-cabal
 
