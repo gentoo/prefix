@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_passwdqc/pam_passwdqc-1.0.5.ebuild,v 1.10 2008/08/22 14:25:41 aballier Exp $
 
-EAPI="prefix"
-
 inherit pam eutils toolchain-funcs
 
 DESCRIPTION="Password strength checking for PAM aware password changing programs"
