@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/xchat-2.8.6-r1.ebuild,v 1.8 2008/09/28 06:29:46 leio Exp $
 
-EAPI="prefix"
-
 inherit eutils versionator gnome2 autotools flag-o-matic
 
 DESCRIPTION="Graphical IRC client"
