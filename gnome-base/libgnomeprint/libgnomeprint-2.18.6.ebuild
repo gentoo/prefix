@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprint/libgnomeprint-2.18.6.ebuild,v 1.1 2009/03/08 01:26:00 eva Exp $
 
-EAPI="prefix"
-
 GCONF_DEBUG="no"
 
 inherit gnome2
