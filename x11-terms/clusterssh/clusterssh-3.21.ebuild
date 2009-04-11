@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/clusterssh/clusterssh-3.21.ebuild,v 1.2 2008/06/06 06:03:18 corsair Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Concurrent Multi-Server Terminal Access."
