@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/gtkhtml-3.24.5.ebuild,v 1.6 2009/03/18 14:58:12 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit autotools gnome2
 
