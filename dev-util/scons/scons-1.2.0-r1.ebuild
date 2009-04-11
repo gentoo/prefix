@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-1.2.0-r1.ebuild,v 1.5 2009/04/10 15:22:11 armin76 Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit distutils
 
 DESCRIPTION="Extensible Python-based build utility"

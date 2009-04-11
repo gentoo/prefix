@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-0.97.ebuild,v 1.11 2008/08/20 04:26:40 neurogeek Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON="1.5.2"
 
 inherit distutils
