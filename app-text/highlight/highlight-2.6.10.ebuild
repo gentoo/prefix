@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/highlight/highlight-2.6.10.ebuild,v 1.6 2008/06/19 17:04:43 ken69267 Exp $
 
-EAPI="prefix"
-
 WX_GTK_VER=2.6
 
 inherit wxwidgets eutils toolchain-funcs
