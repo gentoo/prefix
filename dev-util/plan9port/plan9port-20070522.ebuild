@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/plan9port/plan9port-20070522.ebuild,v 1.3 2009/03/20 17:43:23 jmbsvicetto Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Plan 9 From User Space"
 HOMEPAGE="http://swtch.com/plan9port/"
 SRC_URI="http://www.kix.in/plan9/${PN}-repack-${PV}.tar.bz2"

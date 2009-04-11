@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/plan9port/plan9port-20080130.ebuild,v 1.1 2008/03/11 13:03:53 coldwind Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Plan 9 From User Space"
