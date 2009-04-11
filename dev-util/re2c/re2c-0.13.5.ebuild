@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/re2c-0.13.5.ebuild,v 1.7 2008/09/29 20:03:51 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="tool for generating C-based recognizers from regular expressions"

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/re2c/re2c-0.12.0.ebuild,v 1.11 2008/08/04 17:53:28 loki_val Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="tool for generating C-based recognizers from regular expressions"
