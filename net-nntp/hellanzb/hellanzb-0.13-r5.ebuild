@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-nntp/hellanzb/hellanzb-0.13-r5.ebuild,v 1.2 2008/06/01 22:20:11 aballier Exp $
 
-EAPI="prefix"
-
 inherit distutils eutils
 
 DESCRIPTION="Retrieves and processes .nzb files"
