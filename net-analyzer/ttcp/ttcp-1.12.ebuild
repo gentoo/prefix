@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/ttcp/ttcp-1.12.ebuild,v 1.13 2008/02/06 20:40:04 grobian Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils
 
 IUSE=""
