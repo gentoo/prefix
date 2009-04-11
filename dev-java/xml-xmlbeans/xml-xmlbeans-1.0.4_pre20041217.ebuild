@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/xml-xmlbeans/xml-xmlbeans-1.0.4_pre20041217.ebuild,v 1.2 2007/05/09 15:17:45 armin76 Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 
 inherit eutils java-pkg-2 java-ant-2
