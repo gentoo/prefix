@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/pgf-1.18.ebuild,v 1.14 2008/03/15 23:03:28 coldwind Exp $
 
-EAPI="prefix"
-
 inherit latex-package
 
 DESCRIPTION="pgf -- The TeX Portable Graphic Format"
