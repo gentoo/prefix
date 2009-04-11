@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/easyedit/easyedit-1.4.6.ebuild,v 1.20 2008/10/26 16:10:13 hattya Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 IUSE=""
