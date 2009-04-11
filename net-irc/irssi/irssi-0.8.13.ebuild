@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.13.ebuild,v 1.1 2009/04/01 08:19:09 swegener Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="A modular textUI IRC client with IPv6 support"
