@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-unison/eselect-unison-0.1.ebuild,v 1.8 2008/06/30 20:37:46 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="unison module for eselect"
