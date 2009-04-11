@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime/DateTime-0.45.01.ebuild,v 1.6 2009/01/11 21:34:07 maekke Exp $
 
-EAPI="prefix"
-
 inherit versionator
 MY_P=${PN}-$(delete_version_separator 2)
 S=${WORKDIR}/${MY_P}
