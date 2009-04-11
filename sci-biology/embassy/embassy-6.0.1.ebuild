@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy/embassy-6.0.1.ebuild,v 1.1 2008/08/27 21:24:49 ribosome Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A meta-package for installing all EMBASSY packages (EMBOSS add-ons)"
 HOMEPAGE="http://www.emboss.org/"
 SRC_URI=""
