@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.20.1-r1.ebuild,v 1.11 2008/04/20 01:36:03 vapier Exp $
 
-EAPI="prefix"
-
 inherit gnome2 autotools
 
 MY_PN=GConf
