@@ -1,6 +1,10 @@
 # ChangeLog for app-text/djvu
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.93 2009/03/26 16:33:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.94 2009/04/10 13:55:39 armin76 Exp $
+
+  10 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  djvu-3.5.21_p20090103.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #262776
 
   26 Mar 2009; Jeroen Roovers <jer@gentoo.org> djvu-3.5.21_p20090103.ebuild:
   Stable for HPPA (bug #262776).
