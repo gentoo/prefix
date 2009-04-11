@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Glob/Text-Glob-0.08.ebuild,v 1.10 2008/11/23 08:13:14 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=RCLAMP
 inherit perl-module
 
