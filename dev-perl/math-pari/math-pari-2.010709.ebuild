@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/math-pari-2.010709.ebuild,v 1.6 2008/03/28 09:10:02 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils
 
 MY_P="Math-Pari-${PV}"
