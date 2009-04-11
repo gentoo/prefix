@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/maatkit/maatkit-2442.ebuild,v 1.2 2008/12/13 23:36:26 bluebird Exp $
 
-EAPI="prefix"
-
 inherit perl-app
 
 IUSE=""

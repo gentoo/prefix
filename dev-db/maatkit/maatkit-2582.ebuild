@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/maatkit/maatkit-2582.ebuild,v 1.1 2009/03/07 15:15:50 patrick Exp $
 
-EAPI="prefix"
-
 inherit perl-app
 
 IUSE=""
