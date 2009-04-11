@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/xmlstarlet/xmlstarlet-1.0.1-r1.ebuild,v 1.5 2007/12/26 07:54:47 drac Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A set of tools to transform, query, validate, and edit XML documents"
 HOMEPAGE="http://xmlstar.sourceforge.net/"
 SRC_URI="mirror://sourceforge/xmlstar/${P}.tar.gz"
