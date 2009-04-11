@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/dialog-1.1.20070930.ebuild,v 1.5 2007/12/11 16:48:52 vapier Exp $
 
-EAPI="prefix"
-
 # porting note:
 # manpages were installed in the wrong location (double prefix)
 # solution: replaced make install with einstall
