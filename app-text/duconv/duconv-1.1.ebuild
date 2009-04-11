@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/duconv/duconv-1.1.ebuild,v 1.21 2008/06/15 20:12:14 loki_val Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs base
 
 DESCRIPTION="A small util that converts from dos<->unix"
