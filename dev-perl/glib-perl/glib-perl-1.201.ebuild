@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/glib-perl/glib-perl-1.201.ebuild,v 1.3 2009/04/06 14:40:02 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=TSCH
 MY_PN=Glib
 MY_P=${MY_PN}-${PV}

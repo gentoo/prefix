@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/glib-perl/glib-perl-1.200.ebuild,v 1.3 2009/04/06 14:40:02 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Glib-${PV}
