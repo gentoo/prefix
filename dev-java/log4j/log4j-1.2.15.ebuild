@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.15.ebuild,v 1.7 2008/05/12 14:14:56 corsair Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc javamail jms jmx source"
 
 inherit java-pkg-2 java-ant-2

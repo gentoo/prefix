@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.14-r1.ebuild,v 1.7 2008/02/13 04:16:05 ali_bush Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 java-ant-2
 
 MY_P="logging-${P}"
