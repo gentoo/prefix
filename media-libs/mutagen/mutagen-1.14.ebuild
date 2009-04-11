@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/mutagen-1.14.ebuild,v 1.7 2008/08/09 16:33:13 coldwind Exp $
 
-EAPI="prefix"
-
 inherit distutils eutils
 
 DESCRIPTION="Mutagen is an audio metadata tag reader and writer implemented in pure Python."
