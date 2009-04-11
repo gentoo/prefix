@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Module-Build/Module-Build-0.31.ebuild,v 1.1 2008/12/23 08:59:18 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit versionator
 MODULE_AUTHOR=KWILLIAMS
 MY_PN=Module-Build
