@@ -1,6 +1,22 @@
 # ChangeLog for app-shells/gentoo-bashcomp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.22 2009/02/23 03:45:24 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.26 2009/04/11 03:27:12 jer Exp $
+
+  11 Apr 2009; Jeroen Roovers <jer@gentoo.org>
+  gentoo-bashcomp-20090222.ebuild:
+  Stable for HPPA (bug #256596).
+
+  10 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  gentoo-bashcomp-20090222.ebuild:
+  alpha/arm/ia64/s390/sparc/x86 stable wrt #256596
+
+  10 Apr 2009; Olivier Crête <tester@gentoo.org>
+  gentoo-bashcomp-20090222.ebuild:
+  Stable on amd64, bug #256596
+
+  10 Apr 2009; Olivier Crête <tester@gentoo.org>
+  gentoo-bashcomp-20050516.ebuild:
+  Remove version requirement, breaks with bash-completion versioning change
 
 *gentoo-bashcomp-20090222 (23 Feb 2009)
 
