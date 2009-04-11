@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-plugins/swh-plugins/swh-plugins-0.4.15-r1.ebuild,v 1.1 2009/01/13 07:38:36 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="Large collection of LADSPA audio plugins/effects"
