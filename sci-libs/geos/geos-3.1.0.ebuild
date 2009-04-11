@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/geos-3.1.0.ebuild,v 1.1 2009/03/27 12:30:19 bicatali Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 DESCRIPTION="Geometry engine library for Geographic Information Systems"
 HOMEPAGE="http://geos.refractions.net"

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/geos-3.0.3.ebuild,v 1.1 2008/11/27 11:36:57 bicatali Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Geometry engine library for Geographic Information Systems"
