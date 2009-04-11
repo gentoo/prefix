@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/set-scalar/set-scalar-1.23.ebuild,v 1.1 2009/01/19 10:10:33 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=JHI
 MY_PN=Set-Scalar
 MY_P=${MY_PN}-${PV}
