@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-servers/mongrel/mongrel-1.1.5.ebuild,v 1.7 2008/11/30 14:17:28 graaff Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 DESCRIPTION="A small fast HTTP library and server that runs Rails, Camping, and Nitro apps"
