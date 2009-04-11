@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jacc-api/sun-jacc-api-20070102.ebuild,v 1.2 2007/04/23 17:37:00 betelgeuse Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Java Authorization Contract for Containers"
