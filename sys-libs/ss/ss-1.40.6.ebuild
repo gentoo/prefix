@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/ss/ss-1.40.6.ebuild,v 1.6 2008/08/26 18:45:44 gentoofan23 Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Subsystem command parsing library"
