@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.16.0.ebuild,v 1.3 2009/02/07 14:46:28 eva Exp $
 
-EAPI="prefix"
-
 inherit autotools gnome2 python virtualx
 
 DESCRIPTION="GLib's GObject library bindings for Python"
