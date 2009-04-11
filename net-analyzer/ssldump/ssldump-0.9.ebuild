@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/ssldump/ssldump-0.9.ebuild,v 1.16 2008/02/06 21:12:19 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 IUSE="ssl"

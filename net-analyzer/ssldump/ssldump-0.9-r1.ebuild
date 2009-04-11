@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/ssldump/ssldump-0.9-r1.ebuild,v 1.4 2008/11/07 10:21:34 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 MY_P=${PN}-0.9b3
