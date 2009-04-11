@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/mmv/mmv-1.01b_p14.ebuild,v 1.4 2008/02/20 23:06:53 coldwind Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="Move/copy/append/link multiple files according to a set of wildcard patterns."
