@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/pep/pep-2.8.ebuild,v 1.11 2008/03/27 16:03:46 fmccor Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="General purpose filter and file cleaning program"
