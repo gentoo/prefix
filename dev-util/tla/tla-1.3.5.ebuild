@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/tla/tla-1.3.5.ebuild,v 1.9 2007/05/21 16:48:02 armin76 Exp $
 
-EAPI="prefix"
-
 S="${WORKDIR}/${P}/src/=build"
 DESCRIPTION="Revision control system ideal for widely distributed development"
 HOMEPAGE="http://savannah.gnu.org/projects/gnu-arch http://wiki.gnuarch.org/ http://arch.quackerhead.com/~lord/"
