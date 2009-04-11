@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.6.0.ebuild,v 1.5 2009/03/06 14:27:43 ranger Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils libtool toolchain-funcs autotools
 
