@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/arc/arc-5.21m-r1.ebuild,v 1.1 2007/07/14 14:25:43 drizzt Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="Create & extract files from DOS .ARC files"
