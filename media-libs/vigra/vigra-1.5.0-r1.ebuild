@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/vigra-1.5.0-r1.ebuild,v 1.5 2008/08/11 18:45:37 bluebird Exp $
 
-EAPI="prefix"
-
 inherit multilib
 
 DESCRIPTION="C++ computer vision library with emphasize on customizable algorithms and data structures"
