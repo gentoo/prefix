@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/source-highlight/source-highlight-2.9.ebuild,v 1.3 2008/04/26 20:31:52 maekke Exp $
 
-EAPI="prefix"
-
 inherit bash-completion
 
 DESCRIPTION="Generate highlighted source code as an (x)html document"
