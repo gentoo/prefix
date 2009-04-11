@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/gail-1.22.3.ebuild,v 1.8 2008/11/13 19:00:28 ranger Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="Accessibility support for Gtk+ and libgnomecanvas"

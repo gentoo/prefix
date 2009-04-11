@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gail/gail-1000.ebuild,v 1.7 2009/03/30 13:46:40 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Dummy gail to handle migration to gtk+"
 HOMEPAGE="http://gnome.gentoo.org"
 
