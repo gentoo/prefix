@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/ilmbase/ilmbase-1.0.1.ebuild,v 1.10 2009/03/11 19:45:06 armin76 Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils
 
 DESCRIPTION="OpenEXR ILM Base libraries"
