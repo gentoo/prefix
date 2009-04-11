@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/eclass-manpages-20080531.ebuild,v 1.3 2008/08/30 03:59:33 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="collection of Gentoo eclass manpages"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI=""
