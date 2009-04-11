@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-emulation/snes9x/snes9x-1.51.ebuild,v 1.2 2008/02/09 06:22:47 mr_bones_ Exp $
 
-EAPI="prefix"
-
 # 3dfx support (glide) is disabled because it requires
 # glide-v2 while we only provide glide-v3 in portage
 # http://bugs.gentoo.org/show_bug.cgi?id=93097
