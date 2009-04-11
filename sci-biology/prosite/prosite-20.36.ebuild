@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/prosite/prosite-20.36.ebuild,v 1.1 2008/08/27 14:57:17 ribosome Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A protein families and domains database"
 LICENSE="swiss-prot"
 HOMEPAGE="http://ca.expasy.org/prosite"
