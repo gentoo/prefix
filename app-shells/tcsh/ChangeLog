@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/tcsh
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.93 2009/03/23 16:45:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/tcsh/ChangeLog,v 1.94 2009/04/10 19:52:35 grobian Exp $
+
+  10 Apr 2009; Fabian Groffen <grobian@gentoo.org> tcsh-6.16.ebuild:
+  Bump patchset to remove cr0 from stty call, since this is non-POSIX, and
+  (even GNU coreutils on) FreeBSD chokes on it. Since there is no bug reported
+  for this, I don't bump the package.
 
   23 Mar 2009; Brent Baude <ranger@gentoo.org> tcsh-6.16.ebuild:
   stable ppc64, bug 262849
