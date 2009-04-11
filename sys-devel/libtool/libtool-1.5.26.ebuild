@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.26.ebuild,v 1.9 2008/03/14 11:22:20 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="A shared library tool for developers"
