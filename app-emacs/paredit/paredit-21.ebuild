@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/paredit/paredit-21.ebuild,v 1.1 2008/07/25 22:15:32 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="Minor mode for performing structured editing of S-expressions"
