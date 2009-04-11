@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/uriparser-0.7.5.ebuild,v 1.4 2009/03/20 12:41:03 tcunha Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 DESCRIPTION="Uriparser is a strictly RFC 3986 compliant URI parsing library in C"
 HOMEPAGE="http://uriparser.sourceforge.net/"
