@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/libmad-0.15.1b-r2.ebuild,v 1.10 2007/06/14 17:26:51 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools libtool flag-o-matic
 
 DESCRIPTION="\"M\"peg \"A\"udio \"D\"ecoder library"
