@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-plugins/wmnd/wmnd-0.4.11-r1.ebuild,v 1.9 2008/08/18 10:31:30 s4t4n Exp $
 
-EAPI="prefix"
-
 IUSE="snmp"
 DESCRIPTION="WindowMaker Network Devices (dockapp)"
 HOMEPAGE="http://www.thregr.org/~wavexx/software/wmnd/"
