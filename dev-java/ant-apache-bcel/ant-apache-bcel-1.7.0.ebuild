@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-bcel/ant-apache-bcel-1.7.0.ebuild,v 1.10 2007/05/12 17:51:21 wltjr Exp $
 
-EAPI="prefix"
-
 ANT_TASK_DEPNAME="bcel"
 
 inherit ant-tasks
