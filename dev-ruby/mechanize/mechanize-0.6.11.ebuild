@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/mechanize/mechanize-0.6.11.ebuild,v 1.1 2007/12/06 00:04:02 agorf Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 DESCRIPTION="A Ruby library used for automating interaction with websites."
