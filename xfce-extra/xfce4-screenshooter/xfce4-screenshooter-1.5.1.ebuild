@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/xfce4-screenshooter-1.5.1.ebuild,v 1.1 2009/03/10 14:26:36 angelos Exp $
 
-EAPI="prefix"
-
 inherit xfce4
 
 xfce4_gzipped

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/xfce4-screenshooter-1.4.0.ebuild,v 1.7 2009/02/04 21:19:18 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils xfce44
 
 xfce44
