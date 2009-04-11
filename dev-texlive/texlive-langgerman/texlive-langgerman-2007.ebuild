@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-langgerman/texlive-langgerman-2007.ebuild,v 1.16 2008/09/09 18:22:42 aballier Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULES_DEPS="dev-texlive/texlive-basic
 "
 TEXLIVE_MODULE_CONTENTS="german germbib hyphen-german mkind-german r-und-s uhrzeit umlaute collection-langgerman
