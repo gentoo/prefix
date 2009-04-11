@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-plugins/bfm/bfm-0.6.4-r1.ebuild,v 1.6 2009/01/19 14:17:44 s4t4n Exp $
 
-EAPI="prefix"
-
 inherit multilib toolchain-funcs
 
 DESCRIPTION="a dockapp and gkrellm plug-in combining timecop's bubblemon and wmfishtime."
