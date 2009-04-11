@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-wm/evilwm/evilwm-1.0.0.ebuild,v 1.5 2008/07/18 07:12:37 aballier Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs multilib
 
 DESCRIPTION="A minimalist, no frills window manager for X."
