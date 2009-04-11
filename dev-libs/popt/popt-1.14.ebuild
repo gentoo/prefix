@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.14.ebuild,v 1.2 2009/03/23 18:11:03 jsbronder Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="Parse Options - Command line parser"
