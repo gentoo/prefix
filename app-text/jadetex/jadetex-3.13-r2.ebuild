@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/jadetex-3.13-r2.ebuild,v 1.14 2008/10/27 05:54:44 vapier Exp $
 
-EAPI="prefix"
-
 inherit latex-package
 
 DESCRIPTION="TeX macros used by Jade TeX output"
