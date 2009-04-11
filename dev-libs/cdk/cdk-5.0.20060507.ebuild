@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/cdk-5.0.20060507.ebuild,v 1.12 2008/11/27 15:50:23 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils versionator toolchain-funcs
 
 MY_P="${PN}-$(replace_version_separator 2 -)"
