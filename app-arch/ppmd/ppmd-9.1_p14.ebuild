@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/ppmd/ppmd-9.1_p14.ebuild,v 1.5 2008/03/17 02:29:00 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 PATCHV="${P##*_p}"
