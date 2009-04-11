@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pygtksourceview/pygtksourceview-2.4.0.ebuild,v 1.7 2009/03/18 15:11:23 armin76 Exp $
 
-EAPI="prefix"
-
 inherit gnome2 python flag-o-matic multilib
 
 DESCRIPTION="GTK+2 bindings for Python"
