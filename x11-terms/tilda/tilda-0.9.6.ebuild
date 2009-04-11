@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/tilda/tilda-0.9.6.ebuild,v 1.4 2009/03/24 22:45:14 josejx Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A drop down terminal, similar to the consoles found in first person shooters"
 HOMEPAGE="http://tilda.sourceforge.net"
 SRC_URI="mirror://sourceforge/tilda/${P}.tar.gz"
