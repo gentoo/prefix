@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/emboss-4.0.0.ebuild,v 1.11 2008/08/27 21:28:36 ribosome Exp $
 
-EAPI="prefix"
-
 inherit prefix
 
 DESCRIPTION="The European Molecular Biology Open Software Suite - A sequence analysis package"
