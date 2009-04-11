@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/bbdb/bbdb-2.35.ebuild,v 1.12 2008/04/12 13:08:40 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="The Insidious Big Brother Database"
