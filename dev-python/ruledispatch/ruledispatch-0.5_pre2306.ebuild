@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/ruledispatch/ruledispatch-0.5_pre2306.ebuild,v 1.2 2007/05/05 19:51:41 lucass Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 
 inherit distutils versionator
