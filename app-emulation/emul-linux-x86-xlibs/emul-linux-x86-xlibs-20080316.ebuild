@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/emul-linux-x86-xlibs-20080316.ebuild,v 1.3 2008/05/31 19:53:17 ulm Exp $
 
-EAPI="prefix"
-
 inherit emul-linux-x86
 
 LICENSE="fontconfig FTL GPL-2 LGPL-2 glut libdrm libICE libSM libX11 libXau
