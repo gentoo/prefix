@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.20.3.ebuild,v 1.10 2009/02/01 11:08:16 eva Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2
 
 DESCRIPTION="The GNOME panel"
