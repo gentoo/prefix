@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-crypto/gnu-crypto-2.0.1-r2.ebuild,v 1.11 2007/10/24 04:38:11 wltjr Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 eutils
