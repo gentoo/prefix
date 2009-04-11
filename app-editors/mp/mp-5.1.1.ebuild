@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/mp/mp-5.1.1.ebuild,v 1.1 2008/12/31 05:29:06 darkside Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Minimum Profit: A text editor for programmers"
