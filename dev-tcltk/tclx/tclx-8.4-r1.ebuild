@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tclx/tclx-8.4-r1.ebuild,v 1.9 2007/06/02 15:48:57 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 IUSE="tk threads"
