@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ant-antlr-1.7.0.ebuild,v 1.14 2009/03/24 19:45:35 betelgeuse Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit java-pkg-2 ant-tasks
 
