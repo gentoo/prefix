@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/uulib/uulib-0.5.20.ebuild,v 1.20 2008/09/21 02:23:57 solar Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 MY_P=uudeview-${PV}
