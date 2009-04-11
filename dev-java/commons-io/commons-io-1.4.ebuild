@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/commons-io/commons-io-1.4.ebuild,v 1.5 2008/03/11 20:58:12 ken69267 Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-ant-2 eutils
