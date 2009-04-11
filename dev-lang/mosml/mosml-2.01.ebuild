@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/mosml-2.01.ebuild,v 1.7 2005/06/05 12:22:21 hansmi Exp $
 
-EAPI="prefix"
-
 S="${WORKDIR}/${PN}/src"
 DESCRIPTION="Moscow ML - a lightweight implementation of Standard ML (SML)"
 SRC_URI="http://www.dina.kvl.dk/~sestoft/mosml/mos201src.tar.gz"
