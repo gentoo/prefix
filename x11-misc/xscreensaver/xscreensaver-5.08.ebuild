@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.08.ebuild,v 1.3 2009/01/19 15:09:11 ssuominen Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit autotools eutils flag-o-matic multilib pam
 

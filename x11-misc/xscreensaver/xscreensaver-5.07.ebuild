@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.07.ebuild,v 1.6 2008/11/20 20:14:18 ranger Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils flag-o-matic multilib pam
 
 DESCRIPTION="A modular screen saver and locker for the X Window System"
