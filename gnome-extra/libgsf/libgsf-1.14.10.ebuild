@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.10.ebuild,v 1.8 2009/03/05 22:33:00 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 python multilib autotools
 
 DESCRIPTION="The GNOME Structured File Library"
