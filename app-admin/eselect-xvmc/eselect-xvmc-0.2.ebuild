@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-xvmc/eselect-xvmc-0.2.ebuild,v 1.1 2008/10/29 14:37:29 cardoe Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Manages XvMC implementations"
