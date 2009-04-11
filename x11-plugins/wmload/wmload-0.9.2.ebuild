@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-plugins/wmload/wmload-0.9.2.ebuild,v 1.10 2008/11/26 00:01:43 tcunha Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 IUSE=""
