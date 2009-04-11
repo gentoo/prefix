@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-plugins/xfce-mcs-plugins-4.4.2-r1.ebuild,v 1.7 2008/07/28 15:35:11 drac Exp $
 
-EAPI="prefix"
-
 inherit eutils xfce44
 
 XFCE_VERSION=4.4.2
