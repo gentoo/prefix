@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20080521-r1.ebuild,v 1.1 2009/02/21 20:29:09 darkside Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Gentoo-specific bash command-line completions (emerge, ebuild, equery, etc)"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"

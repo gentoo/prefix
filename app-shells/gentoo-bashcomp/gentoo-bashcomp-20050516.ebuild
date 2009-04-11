@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20050516.ebuild,v 1.14 2009/04/10 03:53:47 tester Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Gentoo-specific bash command-line completions (emerge, ebuild, equery, etc)"
 HOMEPAGE="http://developer.berlios.de/projects/gentoo-bashcomp/"
 SRC_URI="mirror://berlios/${PN}/${P}.tar.bz2"
