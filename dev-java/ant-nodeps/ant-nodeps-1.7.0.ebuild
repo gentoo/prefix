@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ant-nodeps/ant-nodeps-1.7.0.ebuild,v 1.11 2007/08/21 12:50:18 opfer Exp $
 
-EAPI="prefix"
-
 inherit ant-tasks
 
 DESCRIPTION="Apache Ant's optional tasks requiring no external deps"
