@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.4_p6.ebuild,v 1.25 2008/11/23 14:56:33 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P="${P/_/-}"
