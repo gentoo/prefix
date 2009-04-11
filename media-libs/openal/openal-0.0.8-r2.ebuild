@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-0.0.8-r2.ebuild,v 1.8 2008/12/17 05:09:40 ssuominen Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="an open, vendor-neutral, cross-platform API for interactive, primarily spatialized audio"

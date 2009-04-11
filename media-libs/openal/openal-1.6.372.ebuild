@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-1.6.372.ebuild,v 1.10 2009/03/15 15:00:54 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils cmake-utils
 
 MY_P=${PN}-soft-${PV}
