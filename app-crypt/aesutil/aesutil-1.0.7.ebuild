@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/aesutil/aesutil-1.0.7.ebuild,v 1.6 2009/01/03 17:57:52 angelos Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 MY_P="${PN/util/}-${PV}"
