@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-3.2.9_p2.ebuild,v 1.10 2008/10/26 12:27:40 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils db
 
 #Number of official patches

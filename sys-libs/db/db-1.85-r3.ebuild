@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-1.85-r3.ebuild,v 1.14 2008/08/16 03:46:59 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs multilib
 
 DESCRIPTION="old berk db kept around for really old packages"

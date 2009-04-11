@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.7.25_p1-r1.ebuild,v 1.7 2009/02/07 09:10:23 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
 #Number of official patches

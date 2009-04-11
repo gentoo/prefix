@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4-r1.ebuild,v 1.3 2009/03/14 12:54:49 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
 #Number of official patches
