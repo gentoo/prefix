@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.7.1-r3.ebuild,v 1.9 2008/03/30 16:17:56 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils
 
 export CTARGET=${CTARGET:-${CHOST}}
