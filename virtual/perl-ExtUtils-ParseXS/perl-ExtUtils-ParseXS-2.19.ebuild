@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-ExtUtils-ParseXS/perl-ExtUtils-ParseXS-2.19.ebuild,v 1.3 2008/11/04 10:07:48 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Converts Perl XS code into C code"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI=""
