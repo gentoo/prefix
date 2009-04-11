@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/mplib/mplib-1.091.ebuild,v 1.7 2008/10/05 19:51:16 jer Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit libtool
 
