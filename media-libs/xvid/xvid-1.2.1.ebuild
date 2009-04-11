@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.2.1.ebuild,v 1.3 2009/02/11 19:35:19 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils fixheadtails
 
 MY_PN="${PN}core"

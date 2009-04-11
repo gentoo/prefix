@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.1.3.ebuild,v 1.12 2007/09/07 11:58:16 redhatter Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils fixheadtails autotools
 
 MY_P=${PN}core-${PV}
