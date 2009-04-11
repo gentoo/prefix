@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.2-r1.ebuild,v 1.11 2009/03/30 12:54:11 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.22.2-r1.ebuild,v 1.12 2009/04/10 23:20:05 loki_val Exp $
 
-EAPI="prefix 2"
+EAPI=2
+
 inherit eutils gnome2
 
 DESCRIPTION="Simple document viewer for GNOME"
@@ -25,7 +26,7 @@ RDEPEND="
 	>=gnome-base/libglade-2
 	>=gnome-base/gconf-2
 	gnome? ( >=gnome-base/nautilus-2.10 )
-	>=virtual/poppler-glib-0.6
+	>=virtual/poppler-glib-0.6[cairo]
 	dvi? (
 		virtual/tex-base
 		t1lib? ( >=media-libs/t1lib-5.0.0 )

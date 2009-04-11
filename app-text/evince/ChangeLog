@@ -1,6 +1,11 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.167 2009/03/30 12:54:11 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.168 2009/04/10 23:20:05 loki_val Exp $
+
+  10 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  evince-2.22.2-r1.ebuild:
+  Updating app-text/evince for virtual/poppler-glib update; cairo is the
+  superior backend, always enable it anywhere it can be used.
 
   30 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> -evince-2.20.1.ebuild,
   evince-2.22.2-r1.ebuild, evince-2.24.2.ebuild:
