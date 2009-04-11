@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Parse-RecDescent/Parse-RecDescent-1.94.ebuild,v 1.22 2006/10/16 02:16:09 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Parse::RecDescent - generate recursive-descent parsers"
