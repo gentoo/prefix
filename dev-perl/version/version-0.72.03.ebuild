@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/version/version-0.72.03.ebuild,v 1.7 2007/08/09 15:37:18 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit versionator perl-module
 
 MY_P="${PN}-$(delete_version_separator 2)"
