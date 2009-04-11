@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/mmsclient/mmsclient-0.0.3-r1.ebuild,v 1.11 2008/02/03 15:40:35 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="mms protocol download utility"
