@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/dog
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/ChangeLog,v 1.23 2008/02/04 18:07:51 grobian Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/ChangeLog,v 1.24 2009/04/10 04:34:37 darkside Exp $
+
+*dog-1.7-r3 (10 Apr 2009)
+
+  10 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  +files/dog-1.7-strfry.patch, +dog-1.7-r3.ebuild:
+  Fix strfry issue if len = 0. bug 251675, patch by bob5972
 
   04 Feb 2008; Fabian Groffen <grobian@gentoo.org> dog-1.7-r1.ebuild,
   dog-1.7-r2.ebuild:
