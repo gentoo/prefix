@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/colorcvs/colorcvs-1.4-r1.ebuild,v 1.1 2009/03/10 13:50:52 idl0r Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="A tool based on colorgcc to beautify cvs output"
