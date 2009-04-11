@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libesmtp/libesmtp-1.0.4.ebuild,v 1.14 2009/03/13 02:20:09 jer Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils libtool
 
 DESCRIPTION="lib that implements the client side of the SMTP protocol"
