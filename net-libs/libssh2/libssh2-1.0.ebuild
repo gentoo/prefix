@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libssh2/libssh2-1.0.ebuild,v 1.2 2009/04/09 13:44:02 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Library implementing the SSH2 protocol"
