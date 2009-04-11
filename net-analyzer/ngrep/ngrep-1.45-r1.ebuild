@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ngrep-1.45-r1.ebuild,v 1.11 2008/11/09 12:11:47 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="A grep for network layers"
