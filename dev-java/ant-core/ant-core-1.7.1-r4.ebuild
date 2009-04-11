@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ant-core-1.7.1-r4.ebuild,v 1.1 2009/03/17 12:54:49 betelgeuse Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 # don't depend on itself
 JAVA_ANT_DISABLE_ANT_CORE_DEP=true
