@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/dom4j-1.6.1-r2.ebuild,v 1.11 2008/01/19 07:43:53 ali_bush Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-ant-2
