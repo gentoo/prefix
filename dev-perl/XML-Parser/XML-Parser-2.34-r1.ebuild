@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Parser/XML-Parser-2.34-r1.ebuild,v 1.1 2007/08/12 15:06:53 drac Exp $
 
-EAPI="prefix"
-
 inherit perl-module multilib
 
 DESCRIPTION="A Perl extension interface to James Clark's XML parser, expat"
