@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/baekmuk-fonts/baekmuk-fonts-2.2-r2.ebuild,v 1.11 2008/01/15 17:20:24 grobian Exp $
 
-EAPI="prefix"
-
 inherit font font-ebdftopcf
 
 TTF_P="${P/fonts/ttf}"
