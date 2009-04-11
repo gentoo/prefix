@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.16-r1.ebuild,v 1.8 2008/06/14 18:18:51 zmedico Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="Library for parsing, editing, and saving EXIF data"
