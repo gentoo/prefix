@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-smartbookmark/xfce4-smartbookmark-0.4.2.ebuild,v 1.19 2007/05/18 12:03:35 armin76 Exp $
 
-EAPI="prefix"
-
 inherit xfce44
 
 xfce44
