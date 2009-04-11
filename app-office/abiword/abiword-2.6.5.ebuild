@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-office/abiword/abiword-2.6.5.ebuild,v 1.2 2009/01/04 22:51:26 ulm Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit alternatives eutils gnome2 versionator
 
