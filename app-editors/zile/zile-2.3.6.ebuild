@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.3.5.ebuild,v 1.1 2009/04/08 22:20:53 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/zile-2.3.6.ebuild,v 1.1 2009/04/10 09:29:17 ulm Exp $
 
 DESCRIPTION="Zile is a small Emacs clone"
 HOMEPAGE="http://www.gnu.org/software/zile/"
@@ -17,6 +17,7 @@ DEPEND="${RDEPEND}
 
 src_install() {
 	emake DESTDIR="${D}" install || die
+	# FAQ is installed by the build system in /usr/share/zile
 	dodoc AUTHORS BUGS NEWS README THANKS || die
 
 	rm ${ED}/usr/lib/charset.alias
