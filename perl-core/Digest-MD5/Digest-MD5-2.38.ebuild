@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Digest-MD5/Digest-MD5-2.38.ebuild,v 1.4 2009/03/19 14:35:48 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=GAAS
 inherit perl-module
 
