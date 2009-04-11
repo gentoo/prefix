@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/xfconf/xfconf-4.6.0.ebuild,v 1.4 2009/04/06 14:41:00 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit xfce4
 
