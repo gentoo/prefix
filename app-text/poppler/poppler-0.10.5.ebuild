@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/poppler/poppler-0.10.5.ebuild,v 1.2 2009/04/01 14:42:17 loki_val Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit libtool eutils flag-o-matic
 
