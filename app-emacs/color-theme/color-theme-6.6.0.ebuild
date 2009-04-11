@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/color-theme/color-theme-6.6.0.ebuild,v 1.10 2008/12/19 09:51:40 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="Install color themes (includes many themes and allows you to share your own with the world)"
