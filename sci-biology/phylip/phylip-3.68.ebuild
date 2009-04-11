@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/phylip-3.68.ebuild,v 1.1 2008/08/26 19:29:53 ribosome Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="PHYLIP - The PHYLogeny Inference Package"
