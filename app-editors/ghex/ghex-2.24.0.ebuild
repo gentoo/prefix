@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-editors/ghex/ghex-2.24.0.ebuild,v 1.1 2009/02/19 22:56:11 eva Exp $
 
-EAPI="prefix"
-
 GCONF_DEBUG="no"
 
 inherit gnome2
