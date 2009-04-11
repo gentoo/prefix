@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2cl/cvs2cl-2.71.ebuild,v 1.1 2008/11/12 19:54:50 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="produces a GNU-style ChangeLog for CVS-controlled sources"
 HOMEPAGE="http://www.red-bean.com/cvs2cl/"
 SRC_URI="mirror://gentoo/${P}.pl.bz2"
