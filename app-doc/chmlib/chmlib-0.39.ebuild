@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-doc/chmlib/chmlib-0.39.ebuild,v 1.5 2007/07/15 23:35:58 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib flag-o-matic versionator
 
 DESCRIPTION="Library for MS CHM (compressed html) file format plus extracting and http server utils"
