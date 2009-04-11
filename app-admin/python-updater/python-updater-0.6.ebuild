@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.6.ebuild,v 1.1 2008/08/25 09:56:28 hawking Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Script used to remerge python packages when changing Python version."
