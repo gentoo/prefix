@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.22 2009/04/08 16:46:34 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.23 2009/04/10 19:33:03 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -113,7 +113,7 @@ EGIT_OFFLINE="${EGIT_OFFLINE:-${ESCM_OFFLINE}}"
 
 # @ECLASS-VARIABLE: EGIT_TREE
 # @DESCRIPTION:
-# git eclass can checkout any tree.
+# git eclass can checkout any tree (commit).
 : ${EGIT_TREE:=${EGIT_BRANCH}}
 
 # @ECLASS-VARIABLE: EGIT_REPACK
@@ -244,16 +244,23 @@ git_fetch() {
 	${elogcmd} "   branch: 			${EGIT_BRANCH}"
 	${elogcmd} "   storage directory: 	\"${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}\""
 
-	# export to the ${WORKDIR}
-	mkdir -p "${S}"
-
-	# git data are used in some packages for various variables definition. So we
-	# copy also .git folder.
+	# unpack to the ${S}
+	unset GIT_DIR
+	debug-print "git clone -l -s -n \"${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}\" \"${S}\""
+	git clone -l -s -n "${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}" "${S}"
+	
+	# set correct branch and the tree ebuild specified
 	pushd "${S}" > /dev/null
-	git clone --bare ${EGIT_STORE_DIR}/${EGIT_CLONE_DIR} .git
+	local branchname=branch-${EGIT_BRANCH} src=origin/${EGIT_BRANCH}
+	if [[ ${EGIT_TREE} != ${EGIT_BRANCH} ]]; then
+		branchname=tree-${EGIT_TREE}
+		src=${EGIT_TREE}
+	fi
+	debug-print "git checkout -b ${branchname} ${src}"
+	git checkout -b ${branchname} ${src} 2>&1 > /dev/null
 	popd > /dev/null
 
-	git archive --format=tar ${EGIT_TREE} | ( cd "${S}" ; tar xf - )
+	unset branchname src
 
 	echo ">>> Unpacked to ${S}"
 }

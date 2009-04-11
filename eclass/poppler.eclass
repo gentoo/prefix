@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/poppler.eclass,v 1.2 2009/04/01 17:59:52 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/poppler.eclass,v 1.3 2009/04/10 23:18:41 loki_val Exp $
 
 # @ECLASS: poppler.eclass
 # @MAINTAINER:
@@ -143,11 +143,9 @@ poppler_src_configure() {
 	pkg_check_modules_override POPPLER_QT4_TEST QtTest
 	pkg_check_modules_override ABIWORD libxml-2.0
 	pkg_check_modules_override GTK_TEST gtk+-2.0 gdk-pixbuf-2.0 libglade-2.0 gthread-2.0
-	pkg_check_modules_override GDK gdk-2.0
 	pkg_check_modules_override POPPLER_GLIB glib-2.0 gobject-2.0
 
 	econf 	--disable-static		\
-		--enable-gdk			\
 		--enable-poppler-qt4		\
 		--enable-poppler-glib		\
 		--enable-xpdf-headers		\

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.23 2009/04/04 12:28:10 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.24 2009/04/10 20:24:56 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -227,6 +227,14 @@ Install path: ${CMAKE_INSTALL_PREFIX}\n")' >> CMakeLists.txt
 # out-of-source build.
 cmake-utils_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
+
+	# check if CMakeLists.txt exist and if no then die
+	if [[ ! -e "${S}"/CMakeLists.txt ]] ; then
+		eerror "I was unable to locate CMakeLists.txt under:"
+		eerror "\"${S}/CMakeLists.txt\""
+		eerror "You should consider not inheriting the cmake eclass."
+		die "FATAL: Unable to find CMakeLists.txt"
+	fi
 
 	# Remove dangerous things.
 	_modify-cmakelists
