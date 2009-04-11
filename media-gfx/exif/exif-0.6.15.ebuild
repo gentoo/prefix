@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/exif/exif-0.6.15.ebuild,v 1.13 2008/10/31 03:33:01 jer Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 IUSE="nls"

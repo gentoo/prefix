@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/exif/exif-0.6.17.ebuild,v 1.7 2009/02/06 20:10:57 jer Exp $
 
-EAPI="prefix"
-
 IUSE="nls"
 
 DESCRIPTION="Small CLI util to show EXIF infos hidden in JPEG files"
