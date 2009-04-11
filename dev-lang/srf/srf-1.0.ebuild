@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/srf/srf-1.0.ebuild,v 1.3 2008/01/29 21:18:49 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="The Simple Recursive Functions programming language"
 HOMEPAGE="http://www.users.qwest.net/~eballen1/srf.html"
 SRC_URI="http://www.users.qwest.net/~eballen1/${P}.tar.gz"
