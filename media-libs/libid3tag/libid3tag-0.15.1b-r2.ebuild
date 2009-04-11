@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libid3tag/libid3tag-0.15.1b-r2.ebuild,v 1.7 2008/12/07 11:51:40 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib autotools
 
 DESCRIPTION="The MAD id3tag library"
