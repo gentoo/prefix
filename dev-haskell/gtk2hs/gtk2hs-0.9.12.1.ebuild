@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.9.12.1.ebuild,v 1.11 2009/04/07 10:50:56 fauli Exp $
 
-EAPI="prefix"
-
 inherit base eutils ghc-package multilib toolchain-funcs versionator
 
 DESCRIPTION="A GUI Library for Haskell based on Gtk+"
