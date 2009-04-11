@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Algorithm-Annotate/Algorithm-Annotate-0.10.ebuild,v 1.15 2007/01/14 21:58:28 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 HOMEPAGE="http://search.cpan.org/~clkao/"
