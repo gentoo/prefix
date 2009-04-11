@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libyaml/libyaml-0.0.1.ebuild,v 1.4 2009/03/01 16:35:13 patrick Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P="${P/lib}"
