@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/figurine/figurine-1.0.5.ebuild,v 1.11 2008/01/26 10:57:10 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A vector based graphics editor similar to xfig, but simpler"
 HOMEPAGE="http://figurine.sourceforge.net/"
 SRC_URI="mirror://sourceforge/figurine/${P}.tar.gz"
