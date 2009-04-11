@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-plugins/noscript/noscript-1.9.0.4.ebuild,v 1.1 2009/02/12 16:56:59 armin76 Exp $
 
-EAPI="prefix"
-
 inherit mozextension multilib
 
 DESCRIPTION="Firefox plugin to disable javascript"
