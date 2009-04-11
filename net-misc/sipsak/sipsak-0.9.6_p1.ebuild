@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/sipsak/sipsak-0.9.6_p1.ebuild,v 1.5 2008/02/03 15:53:37 grobian Exp $
 
-EAPI="prefix"
-
 IUSE="gnutls"
 
 DESCRIPTION="small command line tool for testing SIP applications and devices"
