@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-File-Temp/perl-File-Temp-0.21.ebuild,v 1.2 2009/01/01 19:42:13 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for File-Temp"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI=""
