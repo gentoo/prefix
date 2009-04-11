@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/ruby-mode/ruby-mode-1.9.1_pre1.ebuild,v 1.1 2008/11/02 02:07:07 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 MY_PV=${PV/_pre/-preview}
