@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Kakasi/Text-Kakasi-2.04.ebuild,v 1.19 2007/01/19 16:58:12 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils
 
 DESCRIPTION="This module provides libkakasi interface for Perl."
