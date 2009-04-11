@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-nntp/nget/nget-0.27.1.ebuild,v 1.11 2009/02/15 22:38:29 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils
 
 DEB_VER="10"
