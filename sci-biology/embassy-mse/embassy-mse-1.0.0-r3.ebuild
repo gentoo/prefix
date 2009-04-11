@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-mse/embassy-mse-1.0.0-r3.ebuild,v 1.5 2006/11/03 13:17:05 nixnut Exp $
 
-EAPI="prefix"
-
 EBOV="4.0.0"
 
 inherit embassy
