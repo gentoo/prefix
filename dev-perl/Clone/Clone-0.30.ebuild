@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Clone/Clone-0.30.ebuild,v 1.1 2008/12/15 15:38:12 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=RDF
 inherit perl-module
 
