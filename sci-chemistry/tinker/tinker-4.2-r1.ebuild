@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/tinker-4.2-r1.ebuild,v 1.4 2008/11/06 23:53:23 dberkholz Exp $
 
-EAPI="prefix"
-
 inherit fortran toolchain-funcs
 
 FORTRAN="g77 gfortran ifc"
