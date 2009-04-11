@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-NoWarnings/Test-NoWarnings-0.084.ebuild,v 1.5 2009/04/06 15:38:43 armin76 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 IUSE=""
 
