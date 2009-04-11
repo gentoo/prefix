@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/trove/trove-1.0.2-r1.ebuild,v 1.6 2008/03/30 17:07:38 corsair Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2
