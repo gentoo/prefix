@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/PerlIO-via-dynamic/PerlIO-via-dynamic-0.13.ebuild,v 1.1 2008/09/20 11:46:51 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=CLKAO
 inherit perl-module
 

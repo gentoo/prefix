@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/PerlIO-via-dynamic/PerlIO-via-dynamic-0.12.ebuild,v 1.9 2007/03/05 12:21:22 ticho Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="PerlIO::via::dynamic - dynamic PerlIO layers"
