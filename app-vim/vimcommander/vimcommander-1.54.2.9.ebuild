@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/vimcommander/vimcommander-1.54.2.9.ebuild,v 1.6 2008/03/24 17:02:22 coldwind Exp $
 
-EAPI="prefix"
-
 inherit vim-plugin
 
 DESCRIPTION="vim plugin: Total Commander style file explorer"
