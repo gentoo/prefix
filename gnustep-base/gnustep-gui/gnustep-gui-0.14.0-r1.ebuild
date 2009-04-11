@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/gnustep-gui-0.14.0-r1.ebuild,v 1.1 2008/06/25 08:47:56 voyageur Exp $
 
-EAPI="prefix"
-
 inherit gnustep-base multilib
 
 DESCRIPTION="Library of GUI classes written in Obj-C"
