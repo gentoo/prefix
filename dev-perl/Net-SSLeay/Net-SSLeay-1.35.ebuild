@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-SSLeay/Net-SSLeay-1.35.ebuild,v 1.8 2009/03/21 01:48:14 jer Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=FLORA
 inherit perl-module multilib
 
