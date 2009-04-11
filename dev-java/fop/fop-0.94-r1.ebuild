@@ -6,7 +6,7 @@
 #       be built as it needs forrest which we do not have
 # TODO: package and use optional dependency jeuclid
 
-EAPI="prefix 2"
+EAPI=2
 JAVA_PKG_IUSE="doc examples source"
 WANT_ANT_TASKS="ant-trax"
 
