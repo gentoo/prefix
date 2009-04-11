@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime-TimeZone/DateTime-TimeZone-0.84.ebuild,v 1.1 2009/01/23 08:17:33 tove Exp $
 
-EAPI="prefix"
-
 inherit versionator
 MY_P=${PN}-$(delete_version_separator 2)
 MODULE_AUTHOR=DROLSKY
