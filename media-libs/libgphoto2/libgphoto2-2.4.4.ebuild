@@ -8,7 +8,7 @@
 # 3. Track upstream bug regarding rpm usage.
 #	http://sourceforge.net/tracker/index.php?func=detail&aid=1643813&group_id=8874&atid=358874
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit autotools eutils multilib
 
