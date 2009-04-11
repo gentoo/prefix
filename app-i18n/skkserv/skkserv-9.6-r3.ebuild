@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-i18n/skkserv/skkserv-9.6-r3.ebuild,v 1.6 2007/04/28 15:35:11 tove Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P="skk${PV}mu"
