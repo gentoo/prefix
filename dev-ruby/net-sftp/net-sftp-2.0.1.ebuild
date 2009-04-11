@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-sftp/net-sftp-2.0.1.ebuild,v 1.3 2008/09/21 15:55:14 ranger Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 DESCRIPTION="SFTP in pure Ruby"
