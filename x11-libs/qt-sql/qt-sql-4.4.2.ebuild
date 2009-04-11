@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.4.2.ebuild,v 1.9 2009/02/18 19:52:25 jer Exp $
 
-EAPI="prefix 1"
+EAPI=1
 inherit qt4-build
 
 DESCRIPTION="The SQL module for the Qt toolkit."
