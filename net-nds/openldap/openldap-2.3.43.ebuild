@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.43.ebuild,v 1.11 2009/03/07 13:04:12 gentoofan23 Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
