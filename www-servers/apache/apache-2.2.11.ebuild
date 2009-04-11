@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.11.ebuild,v 1.1 2009/01/01 13:54:58 hollow Exp $
 
-EAPI="prefix"
-
 # latest gentoo apache files
 GENTOO_PATCHSTAMP="20090101"
 GENTOO_DEVELOPER="hollow"
