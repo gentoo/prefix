@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Tie-IxHash/Tie-IxHash-1.21-r1.ebuild,v 1.20 2007/08/21 13:53:58 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="ordered associative arrays for Perl"
