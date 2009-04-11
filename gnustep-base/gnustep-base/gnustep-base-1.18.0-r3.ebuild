@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.18.0-r3.ebuild,v 1.2 2009/03/24 13:16:57 voyageur Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit autotools gnustep-base
 

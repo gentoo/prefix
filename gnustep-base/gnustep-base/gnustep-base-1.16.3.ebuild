@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/gnustep-base-1.16.3.ebuild,v 1.4 2008/10/03 17:21:15 bluebird Exp $
 
-EAPI="prefix"
-
 inherit gnustep-base
 
 DESCRIPTION="A library of general-purpose, non-graphical Objective C objects."
