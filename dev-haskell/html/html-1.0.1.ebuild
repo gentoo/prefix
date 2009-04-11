@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/html/html-1.0.1.ebuild,v 1.9 2008/07/15 05:43:44 jer Exp $
 
-EAPI="prefix"
-
 CABAL_FEATURES="lib profile haddock"
 inherit haskell-cabal
 
