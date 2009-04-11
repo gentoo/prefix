@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libmikmod/libmikmod-3.1.11-r5.ebuild,v 1.3 2009/01/17 00:26:39 aballier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils libtool autotools
 
 DESCRIPTION="A library to play a wide range of module formats"
