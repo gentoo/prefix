@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/Test-Class-0.24.ebuild,v 1.5 2008/11/18 15:34:31 tove Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Easily create test classes in an xUnit style."

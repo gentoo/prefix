@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Class/Test-Class-0.31.ebuild,v 1.5 2009/01/11 13:51:10 maekke Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ADIE
 inherit perl-module
 
