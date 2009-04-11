@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/tinyproxy-1.6.4.ebuild,v 1.1 2008/09/25 21:01:49 mrness Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A lightweight HTTP/SSL proxy"
 HOMEPAGE="http://www.banu.com/tinyproxy/"
 SRC_URI="http://www.banu.com/pub/tinyproxy/1.6/${P}.tar.gz"

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/tinyproxy-1.6.3-r1.ebuild,v 1.1 2008/02/16 07:11:25 mrness Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A lightweight HTTP/SSL proxy"
 HOMEPAGE="http://tinyproxy.sourceforge.net/"
 SRC_URI="mirror://sourceforge/tinyproxy/${P}.tar.gz"
