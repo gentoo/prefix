@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-taskmanager/xfce4-taskmanager-0.4.0.ebuild,v 1.9 2008/09/26 14:24:57 angelos Exp $
 
-EAPI="prefix"
-
 inherit xfce44
 
 xfce44
