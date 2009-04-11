@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/tmake/tmake-2.12.ebuild,v 1.6 2009/01/08 02:54:54 darkside Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A Cross platform Makefile tool"
 SRC_URI="mirror://sourceforge/tmake/${P}.tar.bz2"
 HOMEPAGE="http://tmake.sourceforge.net"
