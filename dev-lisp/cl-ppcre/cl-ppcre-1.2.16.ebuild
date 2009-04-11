@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-ppcre/cl-ppcre-1.2.16.ebuild,v 1.1 2006/07/23 04:08:05 mkennedy Exp $
 
-EAPI="prefix"
-
 inherit common-lisp
 
 DESCRIPTION="CL-PPCRE is a portable regular expression library for Common Lisp."
