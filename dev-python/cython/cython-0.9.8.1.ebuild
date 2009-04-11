@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cython/cython-0.9.8.1.ebuild,v 1.1 2008/08/19 09:38:08 hawking Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.2
 
 inherit distutils eutils
