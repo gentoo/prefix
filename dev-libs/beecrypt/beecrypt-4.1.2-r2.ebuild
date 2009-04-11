@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/beecrypt/beecrypt-4.1.2-r2.ebuild,v 1.6 2008/09/25 09:19:37 aballier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils multilib autotools java-pkg-opt-2
 
 DESCRIPTION="general-purpose cryptography library"
