@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/List-MoreUtils/List-MoreUtils-0.22.ebuild,v 1.6 2009/01/08 20:46:22 ranger Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=VPARSEVAL
 inherit perl-module
 
