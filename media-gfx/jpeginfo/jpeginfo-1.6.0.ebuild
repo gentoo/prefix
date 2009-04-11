@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/jpeginfo/jpeginfo-1.6.0.ebuild,v 1.15 2008/11/27 22:18:56 jer Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 IUSE=""
