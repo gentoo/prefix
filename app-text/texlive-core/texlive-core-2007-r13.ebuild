@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2007-r13.ebuild,v 1.11 2008/10/06 19:56:29 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs libtool autotools texlive-common prefix
 
 PATCHLEVEL="6"

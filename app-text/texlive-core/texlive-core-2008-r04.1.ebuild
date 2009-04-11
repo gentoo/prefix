@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008-r4.ebuild,v 1.10 2009/03/18 20:50:09 ranger Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils flag-o-matic toolchain-funcs libtool autotools texlive-common prefix
 
