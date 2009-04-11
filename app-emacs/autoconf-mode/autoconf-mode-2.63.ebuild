@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/autoconf-mode/autoconf-mode-2.63.ebuild,v 1.5 2009/02/14 11:59:12 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="Emacs major modes for editing autoconf and autotest input"
