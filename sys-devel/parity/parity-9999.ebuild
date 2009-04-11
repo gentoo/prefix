@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="prefix"
-
 inherit subversion
 
 DESCRIPTION="An Interix to native Win32 Cross-Compiler Tool (requires Visual Studio)."
