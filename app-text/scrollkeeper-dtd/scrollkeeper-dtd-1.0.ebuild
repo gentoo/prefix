@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/scrollkeeper-dtd/scrollkeeper-dtd-1.0.ebuild,v 1.2 2009/02/18 23:53:36 eva Exp $
 
-EAPI="prefix"
-
 DTD_FILE="scrollkeeper-omf.dtd"
 
 DESCRIPTION="DTD from the Scrollkeeper package"
