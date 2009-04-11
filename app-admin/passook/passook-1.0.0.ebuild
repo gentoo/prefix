@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/passook/passook-1.0.0.ebuild,v 1.22 2008/01/26 10:03:28 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 S=${WORKDIR}
