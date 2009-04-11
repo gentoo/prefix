@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/curl/curl-7.19.4.ebuild,v 1.5 2009/03/04 20:00:22 dertobi123 Exp $
 
-EAPI="prefix"
-
 # NOTE: If you bump this ebuild, make sure you bump dev-python/pycurl!
 
 inherit multilib eutils prefix
