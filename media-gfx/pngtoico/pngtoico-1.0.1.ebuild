@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/pngtoico/pngtoico-1.0.1.ebuild,v 1.1 2006/12/09 19:55:08 graaff Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="Convert png images to MS ico format"
