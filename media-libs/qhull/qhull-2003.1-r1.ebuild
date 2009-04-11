@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/qhull-2003.1-r1.ebuild,v 1.6 2009/03/23 03:17:23 darkside Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 MY_P="${PN}${PV}"
