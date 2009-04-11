@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ess-5.3.10.ebuild,v 1.2 2008/12/30 23:30:37 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="Emacs Speaks Statistics"
