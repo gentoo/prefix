@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.11.21.ebuild,v 1.2 2008/06/16 18:11:58 robbat2 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Concurrent Versions System - source code revision control tools"
 HOMEPAGE="http://www.cvshome.org/"
 SRC_URI="mirror://gnu/non-gnu/cvs/source/stable/${PV}/${P}.tar.bz2

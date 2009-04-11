@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.13.1.ebuild,v 1.5 2008/06/16 18:14:45 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit eutils pam versionator
 
 DESCRIPTION="Concurrent Versions System - source code revision control tools"
