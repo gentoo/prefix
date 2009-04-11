@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/xml2/xml2-0.4.ebuild,v 1.1 2008/05/14 18:16:25 drac Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="These tools are used to convert XML and HTML to and from a line-oriented format."
