@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/openafs-1.4.7.ebuild,v 1.3 2008/12/26 11:26:21 klausman Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils toolchain-funcs versionator pam
 
 PATCHVER=0.14
