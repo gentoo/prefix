@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/evolution-data-server-2.24.5-r1.ebuild,v 1.5 2009/03/18 21:17:43 ranger Exp $
 
-EAPI="prefix"
-
 inherit db-use eutils flag-o-matic gnome2 autotools versionator
 
 DESCRIPTION="Evolution groupware backend"
