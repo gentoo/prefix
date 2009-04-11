@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/twolame/twolame-0.3.12.ebuild,v 1.9 2009/04/04 20:16:38 solar Exp $
 
-EAPI="prefix"
-
 inherit libtool
 
 DESCRIPTION="TwoLAME is an optimised MPEG Audio Layer 2 (MP2) encoder"
