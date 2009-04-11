@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Pod-Escapes/Pod-Escapes-1.04.ebuild,v 1.23 2008/06/06 08:52:08 aballier Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="for resolving Pod E<...> sequences"
