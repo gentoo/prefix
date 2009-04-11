@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.8-r2.ebuild,v 1.4 2008/06/15 22:21:12 eva Exp $
 
-EAPI="prefix"
-
 inherit eutils elisp-common gnome2
 
 DESCRIPTION="GTK+ Documentation Generator"
