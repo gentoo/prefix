@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/rats/rats-2.1-r2.ebuild,v 1.7 2008/02/20 19:27:56 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="RATS - Rough Auditing Tool for Security"
