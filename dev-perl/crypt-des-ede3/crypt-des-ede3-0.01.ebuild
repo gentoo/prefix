@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/crypt-des-ede3/crypt-des-ede3-0.01.ebuild,v 1.19 2007/01/15 15:31:43 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Crypt-DES_EDE3-${PV}
