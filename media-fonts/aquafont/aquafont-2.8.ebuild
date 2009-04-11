@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/aquafont/aquafont-2.8.ebuild,v 1.8 2008/01/15 17:14:29 grobian Exp $
 
-EAPI="prefix"
-
 inherit font
 
 MY_P="${PN/font/}${PV/\./_}"
