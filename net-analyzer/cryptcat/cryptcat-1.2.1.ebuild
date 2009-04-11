@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-analyzer/cryptcat/cryptcat-1.2.1.ebuild,v 1.3 2007/06/02 22:48:57 jokey Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="netcat clone extended with twofish encryption"
