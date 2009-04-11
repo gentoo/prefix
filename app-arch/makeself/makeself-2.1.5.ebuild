@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/makeself/makeself-2.1.5.ebuild,v 1.8 2009/02/26 19:27:42 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="shell script that generates a self-extractible tar.gz"
