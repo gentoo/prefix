@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/grep-2.5.4.ebuild,v 1.4 2009/04/09 16:09:35 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/grep-2.5.4-r1.ebuild,v 1.1 2009/04/09 16:09:35 loki_val Exp $
 
-EAPI="prefix"
+EAPI=2
 
 inherit eutils
 
@@ -14,16 +14,14 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="nls pcre static"
+IUSE="nls pcre"
 
-RDEPEND="nls? ( virtual/libintl )"
+RDEPEND="nls? ( virtual/libintl )
+	pcre? ( >=dev-libs/libpcre-7.8-r1 )"
 DEPEND="${RDEPEND}
-	pcre? ( <=dev-libs/libpcre-7.8 )
 	nls? ( sys-devel/gettext )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.5.3-po-builddir-fix.patch
 	epatch "${FILESDIR}"/${PN}-2.5.3-nls.patch
 
@@ -31,13 +29,12 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-irix.patch
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		--bindir="${EPREFIX}"/bin \
 		$(use_enable nls) \
 		$(use_enable pcre perl-regexp) \
-		$(use_with !elibc_glibc included-regex) \
-		${myconf} \
+		$(use !elibc_glibc || echo --without-included-regex) \
 		|| die "econf failed"
 
 	if [[ $(ld --version 2>&1 | head -n1) == *GNU* ]] ; then
