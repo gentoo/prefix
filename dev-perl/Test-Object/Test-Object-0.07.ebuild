@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Object/Test-Object-0.07.ebuild,v 1.4 2008/02/20 19:55:43 nixnut Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Thoroughly testing objects via registered handlers"
