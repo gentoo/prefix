@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-dns/c-ares/c-ares-1.4.0.ebuild,v 1.11 2008/03/06 03:48:15 wolf31o2 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="C library that resolves names asynchronously"
 HOMEPAGE="http://daniel.haxx.se/projects/c-ares/"
 SRC_URI="http://daniel.haxx.se/projects/c-ares/${P}.tar.gz"
