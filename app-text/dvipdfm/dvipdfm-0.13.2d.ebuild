@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/dvipdfm/dvipdfm-0.13.2d.ebuild,v 1.4 2007/12/11 10:58:15 aballier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="DVI to PDF translator"
 SRC_URI="http://gaspra.kettering.edu/dvipdfm/${P}.tar.gz"
 HOMEPAGE="http://gaspra.kettering.edu/dvipdfm/"
