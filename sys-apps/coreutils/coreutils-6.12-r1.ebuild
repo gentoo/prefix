@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.12-r1.ebuild,v 1.1 2008/07/27 19:39:23 loki_val Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs autotools
 
 PATCH_VER="1.0"

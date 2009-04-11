@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.1.ebuild,v 1.8 2009/03/31 20:15:49 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs
 
 PATCH_VER="3"
