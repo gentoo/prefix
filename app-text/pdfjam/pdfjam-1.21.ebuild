@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/pdfjam/pdfjam-1.21.ebuild,v 1.1 2009/01/20 07:52:13 aballier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="pdfnup, pdfjoin and pdf90"
 HOMEPAGE="http://www.warwick.ac.uk/go/pdfjam"
 SRC_URI="http://www.warwick.ac.uk/go/pdfjam/${P/-/_}.tar.gz"
