@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/commons-logging-1.1.1.ebuild,v 1.6 2008/03/16 17:44:04 ken69267 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 JAVA_PKG_IUSE="doc source test"
 
 inherit java-pkg-2 java-ant-2 java-osgi
