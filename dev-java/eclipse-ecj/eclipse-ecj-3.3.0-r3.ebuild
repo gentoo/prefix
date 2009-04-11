@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/eclipse-ecj/eclipse-ecj-3.3.0-r3.ebuild,v 1.1 2008/07/21 22:07:25 betelgeuse Exp $
 
-EAPI="prefix"
-
 inherit eutils java-pkg-2
 
 MY_PN="ecj"
