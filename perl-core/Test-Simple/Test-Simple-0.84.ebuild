@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/Test-Simple-0.84.ebuild,v 1.1 2008/10/20 19:50:40 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=MSCHWERN
 inherit perl-module
 

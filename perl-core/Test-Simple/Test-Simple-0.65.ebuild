@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Simple/Test-Simple-0.65.ebuild,v 1.2 2007/01/21 20:15:47 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Basic utilities for writing tests"
