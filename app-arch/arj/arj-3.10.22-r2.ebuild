@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/arj/arj-3.10.22-r2.ebuild,v 1.7 2008/11/26 15:26:49 ranger Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils toolchain-funcs
 
 PATCH_LEVEL=4

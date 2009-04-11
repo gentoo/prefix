@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/arj/arj-3.10.22-r1.ebuild,v 1.9 2007/07/02 13:37:27 peper Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="latest"
 
 inherit eutils toolchain-funcs autotools
