@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/TimeDate/TimeDate-1.16.ebuild,v 1.18 2008/02/23 20:33:15 vapier Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="A Date/Time Parsing Perl Module"
