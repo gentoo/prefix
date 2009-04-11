@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jcommon/jcommon-1.0.13.ebuild,v 1.3 2008/10/25 17:10:51 nixnut Exp $
 
-EAPI="prefix 1"
+EAPI=1
 JAVA_PKG_IUSE="doc source test"
 
 inherit java-pkg-2 java-ant-2 versionator
