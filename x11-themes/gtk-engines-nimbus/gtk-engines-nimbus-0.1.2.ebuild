@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/gtk-engines-nimbus-0.1.2.ebuild,v 1.1 2009/02/12 13:06:33 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit gnome2-utils autotools
 
 MY_PN=nimbus
