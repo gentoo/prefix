@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/perl-support/perl-support-3.8.1.ebuild,v 1.1 2008/09/20 14:55:04 hawking Exp $
 
-EAPI="prefix"
-
 inherit vim-plugin
 
 DESCRIPTION="vim plugin: Perl-IDE - Write and run Perl scripts using menus and hotkeys"
