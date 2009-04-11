@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.3.ebuild,v 1.1 2008/08/20 14:14:16 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils libtool
 
 DESCRIPTION="Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers"
