@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jibx/jibx-1.1.5.ebuild,v 1.2 2008/02/20 00:26:36 betelgeuse Exp $
 
-EAPI="prefix 1"
+EAPI=1
 JAVA_PKG_IUSE="doc source"
 
 inherit java-pkg-2 java-ant-2 versionator
