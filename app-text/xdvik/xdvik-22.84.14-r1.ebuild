@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.14-r1.ebuild,v 1.1 2009/02/08 11:07:00 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic elisp-common toolchain-funcs
 
 XDVIK_JP="${P}-j1.40.patch.gz"
