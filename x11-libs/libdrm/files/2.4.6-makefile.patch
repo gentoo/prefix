@@ -1,0 +1,22 @@
+From 1faab66cfd1a854925da6ff7109aa614292dea90 Mon Sep 17 00:00:00 2001
+From: Dave Airlie <airlied@linux.ie>
+Date: Mon, 06 Apr 2009 23:26:32 +0000
+Subject: drm: fix test makefile
+
+no idea if this is correct but it works so meh
+---
+diff --git a/tests/Makefile.am b/tests/Makefile.am
+index bc99447..e5e9fc4 100644
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -2,6 +2,8 @@ AM_CFLAGS = \
+ 	-I $(top_srcdir)/shared-core \
+ 	-I $(top_srcdir)/libdrm
+ 
++AM_LDFLAGS = $(top_builddir)/libdrm/libdrm.la
++
+ noinst_PROGRAMS = \
+ 	dristat \
+ 	drmstat
+--
+cgit v0.8.2
