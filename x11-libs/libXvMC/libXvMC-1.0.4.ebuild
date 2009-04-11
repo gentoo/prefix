@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/libXvMC/libXvMC-1.0.4.ebuild,v 1.12 2008/10/03 14:29:48 cardoe Exp $
 
-EAPI="prefix"
-
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
 
