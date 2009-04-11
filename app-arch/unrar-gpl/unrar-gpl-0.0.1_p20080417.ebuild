@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/unrar-gpl/unrar-gpl-0.0.1_p20080417.ebuild,v 1.3 2009/01/29 16:38:51 hanno Exp $
 
-EAPI="prefix"
-
 inherit autotools flag-o-matic
 
 DESCRIPTION="Free rar unpacker"
