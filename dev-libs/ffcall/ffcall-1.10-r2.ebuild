@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ffcall-1.10-r2.ebuild,v 1.3 2009/01/10 15:22:49 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 # CLISP maintains ffcall now
