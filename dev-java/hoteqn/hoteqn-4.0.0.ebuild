@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/hoteqn/hoteqn-4.0.0.ebuild,v 1.3 2008/02/14 19:00:43 lu_zero Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2
 
 DESCRIPTION="Java applet to view and display LaTeX mathematical equations"
