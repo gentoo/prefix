@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.14.0-r3.ebuild,v 1.13 2007/10/19 22:31:08 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp eutils
 
 MY_P="wl-${PV/_/}"
