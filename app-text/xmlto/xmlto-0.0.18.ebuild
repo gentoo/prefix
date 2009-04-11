@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/xmlto-0.0.18.ebuild,v 1.24 2008/04/26 21:44:43 ricmm Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="A bash script for converting XML and DocBook formatted documents to a variety of output formats"

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/xmlto-0.0.21.ebuild,v 1.1 2008/09/22 14:20:37 flameeyes Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A bash script for converting XML and DocBook formatted documents to a variety of output formats"
 HOMEPAGE="https://fedorahosted.org/xmlto/browser"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
