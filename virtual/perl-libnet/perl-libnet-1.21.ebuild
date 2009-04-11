@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-libnet/perl-libnet-1.21.ebuild,v 1.11 2009/03/26 12:30:22 armin76 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for libnet"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI=""
