@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/diffstat-1.45.ebuild,v 1.6 2007/12/24 15:10:39 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="creates a histogram from a diff of the insertions, deletions, and modifications per-file"
