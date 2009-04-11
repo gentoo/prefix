@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc7-r1.ebuild,v 1.9 2008/01/10 09:43:08 vapier Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4.2
 
 inherit distutils eutils
