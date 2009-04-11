@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Spiffy/Spiffy-0.30.ebuild,v 1.15 2007/12/27 13:57:48 ticho Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Spiffy Perl Interface Framework For You"
