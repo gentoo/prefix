@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/latex-beamer/latex-beamer-3.07.ebuild,v 1.24 2009/03/18 19:09:54 armin76 Exp $
 
-EAPI="prefix"
-
 inherit latex-package
 
 DESCRIPTION="LaTeX class for creating presentations using a video projector."
