@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-video/asfrecorder/asfrecorder-1.1.ebuild,v 1.14 2007/11/27 12:20:01 zzam Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 MY_PN="${PN/asfr/ASFR}"
