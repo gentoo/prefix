@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/php-toolkit/php-toolkit-1.0.1.ebuild,v 1.8 2008/04/14 01:31:52 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Utilities for managing installed copies of PHP"
