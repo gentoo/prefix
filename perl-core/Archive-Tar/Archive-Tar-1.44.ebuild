@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Archive-Tar/Archive-Tar-1.44.ebuild,v 1.1 2009/01/19 19:44:28 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=KANE
 inherit perl-module
 
