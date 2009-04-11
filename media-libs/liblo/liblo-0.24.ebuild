@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/liblo/liblo-0.24.ebuild,v 1.5 2008/04/18 22:10:48 maekke Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Lightweight OSC (Open Sound Control) implementation"
 HOMEPAGE="http://plugin.org.uk/liblo"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
