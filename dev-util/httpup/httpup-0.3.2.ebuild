@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/httpup/httpup-0.3.2.ebuild,v 1.3 2008/06/20 14:07:12 loki_val Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="synchronisation tool for http file repositories"
