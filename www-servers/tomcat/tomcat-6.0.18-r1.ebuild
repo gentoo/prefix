@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.18-r1.ebuild,v 1.4 2008/12/02 23:19:57 ranger Exp $
 
-EAPI="prefix 1"
+EAPI=1
 JAVA_PKG_IUSE="doc source"
 WANT_ANT_TASKS="ant-trax"
 
