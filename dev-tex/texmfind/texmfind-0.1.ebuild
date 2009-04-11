@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tex/texmfind/texmfind-0.1.ebuild,v 1.6 2008/07/06 03:14:58 wormo Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Finds which ebuild provide a texmf file matching a grep regexp."
