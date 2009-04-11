@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/unrtf/unrtf-0.20.5.ebuild,v 1.1 2008/07/05 09:33:46 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Converts RTF files to various formats"
