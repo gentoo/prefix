@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/decoratortools/decoratortools-1.6.ebuild,v 1.1 2008/01/04 17:08:35 hawking Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 MY_PN="DecoratorTools"
