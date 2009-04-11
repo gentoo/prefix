@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/cgi_multipart_eof_fix/cgi_multipart_eof_fix-2.5.0.ebuild,v 1.6 2008/01/22 10:14:52 welp Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 USE_RUBY="ruby18"
