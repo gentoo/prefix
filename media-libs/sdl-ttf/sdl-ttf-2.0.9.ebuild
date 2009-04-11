@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-ttf/sdl-ttf-2.0.9.ebuild,v 1.9 2008/05/13 17:00:03 jer Exp $
 
-EAPI="prefix"
-
 MY_P="${P/sdl-/SDL_}"
 DESCRIPTION="library that allows you to use TrueType fonts in SDL applications"
 HOMEPAGE="http://www.libsdl.org/projects/SDL_ttf/"
