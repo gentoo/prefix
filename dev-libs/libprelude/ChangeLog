@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libprelude
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.58 2008/08/06 09:56:57 ulm Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.59 2009/04/10 19:17:10 halcy0n Exp $
+
+*libprelude-0.9.21.3 (10 Apr 2009)
+
+  10 Apr 2009; Mark Loeser <halcy0n@gentoo.org> metadata.xml,
+  libprelude-0.9.3.ebuild, libprelude-0.9.15.2.ebuild,
+  +libprelude-0.9.21.3.ebuild:
+  Version bump; fixes bug #221385 and bug #231872
 
   06 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
