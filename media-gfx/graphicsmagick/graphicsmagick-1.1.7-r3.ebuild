@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/graphicsmagick/graphicsmagick-1.1.7-r3.ebuild,v 1.6 2006/12/26 05:01:48 vapier Exp $
 
-EAPI="prefix"
-
 inherit libtool flag-o-matic perl-app multilib
 
 MY_PN="GraphicsMagick"
