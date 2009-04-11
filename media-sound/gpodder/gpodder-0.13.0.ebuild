@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/gpodder/gpodder-0.13.0.ebuild,v 1.1 2008/10/09 21:05:53 hanno Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="gPodder is a Podcast receiver/catcher written in Python, using GTK."

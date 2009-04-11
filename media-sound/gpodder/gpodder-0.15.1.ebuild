@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/gpodder/gpodder-0.15.1.ebuild,v 1.1 2009/03/18 12:29:50 hanno Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit distutils
 
