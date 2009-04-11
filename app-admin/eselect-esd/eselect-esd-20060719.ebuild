@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-esd/eselect-esd-20060719.ebuild,v 1.21 2007/05/10 08:00:17 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Manages configuration of ESounD implementation or PulseAudio wrapper"
