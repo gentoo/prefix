@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/sancho/sancho-2.1-r1.ebuild,v 1.6 2007/11/13 19:34:31 jer Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 MY_P=${P/s/S}
