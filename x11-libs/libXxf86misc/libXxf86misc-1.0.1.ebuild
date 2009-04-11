@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/libXxf86misc/libXxf86misc-1.0.1.ebuild,v 1.10 2007/02/04 18:26:42 joshuabaergen Exp $
 
-EAPI="prefix"
-
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
 
