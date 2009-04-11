@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/tomcat-servlet-api-6.0.18.ebuild,v 1.4 2008/08/24 10:56:35 corsair Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="source"
 
 inherit eutils java-pkg-2 java-ant-2

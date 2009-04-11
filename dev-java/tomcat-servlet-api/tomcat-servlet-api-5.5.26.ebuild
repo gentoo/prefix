@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/tomcat-servlet-api-5.5.26.ebuild,v 1.4 2008/05/12 10:56:22 nixnut Exp $
 
-EAPI="prefix"
-
 inherit eutils java-pkg-2 java-ant-2 java-osgi
 
 MY_P="apache-${P/-servlet-api/}-src"
