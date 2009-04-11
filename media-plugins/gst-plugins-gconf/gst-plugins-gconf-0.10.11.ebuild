@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-gconf/gst-plugins-gconf-0.10.11.ebuild,v 1.1 2008/12/05 21:32:31 ssuominen Exp $
 
-EAPI="prefix"
-
 GCONF_DEBUG=no
 
 inherit gnome2 gst-plugins-good gst-plugins10
