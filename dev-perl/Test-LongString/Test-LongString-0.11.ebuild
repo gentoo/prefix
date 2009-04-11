@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-LongString/Test-LongString-0.11.ebuild,v 1.8 2008/09/30 15:11:43 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=RGARCIA
 inherit perl-module
 
