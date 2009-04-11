@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/cdrkit-1.1.8.ebuild,v 1.8 2008/11/04 03:09:05 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="A set of tools for CD/DVD reading and recording, including cdrecord"
