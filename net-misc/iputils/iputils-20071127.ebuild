@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/iputils-20071127.ebuild,v 1.10 2008/04/20 20:55:59 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils toolchain-funcs
 
 DESCRIPTION="Network monitoring tools including ping and ping6"
