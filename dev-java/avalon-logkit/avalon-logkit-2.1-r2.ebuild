@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/avalon-logkit-2.1-r2.ebuild,v 1.8 2008/05/11 16:14:39 corsair Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source test"
 inherit java-pkg-2 java-ant-2
 
