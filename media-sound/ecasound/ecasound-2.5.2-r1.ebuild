@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.5.2-r1.ebuild,v 1.2 2008/09/29 09:05:39 flameeyes Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils multilib python autotools
 

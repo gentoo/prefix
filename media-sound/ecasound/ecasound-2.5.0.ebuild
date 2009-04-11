@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.5.0.ebuild,v 1.1 2008/08/17 12:52:40 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib python autotools
 
 DESCRIPTION="a package for multitrack audio processing"
