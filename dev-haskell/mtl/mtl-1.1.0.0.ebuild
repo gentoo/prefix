@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/mtl-1.1.0.0.ebuild,v 1.5 2008/10/04 17:47:54 armin76 Exp $
 
-EAPI="prefix"
-
 CABAL_FEATURES="lib profile haddock"
 inherit haskell-cabal
 
