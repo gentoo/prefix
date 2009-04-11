@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/batik/batik-1.6-r3.ebuild,v 1.8 2008/01/20 22:27:27 caster Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 java-ant-2 eutils
 
 DESCRIPTION="Java based SVG toolkit"
