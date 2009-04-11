@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jikes/jikes-1.22-r13.ebuild,v 1.11 2009/02/13 18:51:51 armin76 Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils prefix
 
 DESCRIPTION="IBM's open source, high performance Java compiler"
