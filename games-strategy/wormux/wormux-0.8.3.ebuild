@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/wormux-0.8.3.ebuild,v 1.1 2009/03/13 21:56:28 mr_bones_ Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit autotools eutils games
 
 DESCRIPTION="A free Worms clone"
