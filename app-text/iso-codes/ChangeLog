@@ -1,6 +1,13 @@
 # ChangeLog for app-text/iso-codes
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.65 2009/03/18 15:19:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.66 2009/04/10 23:04:20 leio Exp $
+
+*iso-codes-3.8 (10 Apr 2009)
+
+  10 Apr 2009; Mart Raudsepp <leio@gentoo.org> -iso-codes-3.2.ebuild,
+  -iso-codes-3.5.1.ebuild, +iso-codes-3.8.ebuild:
+  Version bump. Remove pkgconfig file relocation - /usr/share/pkgconfig is
+  the correct place for it as no binaries are installed. Clean out old.
 
   18 Mar 2009; Raúl Porcel <armin76@gentoo.org> iso-codes-3.6.ebuild:
   alpha/ia64 stable wrt #260063
