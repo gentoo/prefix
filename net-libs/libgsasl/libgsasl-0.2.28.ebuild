@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-libs/libgsasl/libgsasl-0.2.28.ebuild,v 1.5 2008/12/13 12:18:52 bluebird Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="The GNU SASL library"
 HOMEPAGE="http://www.gnu.org/software/gsasl/"
 SRC_URI="ftp://alpha.gnu.org/pub/gnu/gsasl/${P}.tar.gz"
