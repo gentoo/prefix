@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/when/when-1.1.13.ebuild,v 1.4 2009/02/01 21:28:32 maekke Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Extremely simple personal calendar program aimed at the Unix geek who wants something minimalistic"
