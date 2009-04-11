@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.1.0.ebuild,v 1.9 2008/11/26 16:58:03 ranger Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils
 
 DESCRIPTION="The swiss army knife of sound processing programs"
