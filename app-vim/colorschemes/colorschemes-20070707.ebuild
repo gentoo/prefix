@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/colorschemes/colorschemes-20070707.ebuild,v 1.5 2008/03/09 14:42:23 armin76 Exp $
 
-EAPI="prefix"
-
 inherit vim-plugin eutils
 
 DESCRIPTION="vim plugin: a collection of color schemes from vim.org"
