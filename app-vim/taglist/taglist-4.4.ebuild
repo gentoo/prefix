@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/taglist/taglist-4.4.ebuild,v 1.2 2007/11/29 03:47:35 hawking Exp $
 
-EAPI="prefix"
-
 inherit vim-plugin eutils
 
 DESCRIPTION="vim plugin: ctags-based source code browser"
