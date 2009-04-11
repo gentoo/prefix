@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-18.1-r6.ebuild,v 1.11 2008/12/02 17:39:58 ssuominen Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 MY_P=${PN}_v${PV/./_}

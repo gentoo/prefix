@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/portaudio-19_pre20071207.ebuild,v 1.20 2008/12/20 14:37:47 nixnut Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 MY_P=pa_stable_v${PV/pre}
 
