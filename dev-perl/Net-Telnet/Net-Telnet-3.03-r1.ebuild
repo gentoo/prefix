@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-Telnet/Net-Telnet-3.03-r1.ebuild,v 1.19 2007/01/19 15:00:12 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="A Telnet Perl Module"
