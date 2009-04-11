@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/jasper-1.900.1-r1.ebuild,v 1.11 2008/10/07 08:36:02 phosphan Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils
 
 DESCRIPTION="software-based implementation of the codec specified in the JPEG-2000 Part-1 standard"
