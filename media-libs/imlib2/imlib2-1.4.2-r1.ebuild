@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.2-r1.ebuild,v 1.6 2008/12/07 11:30:44 keytoaster Exp $
 
-EAPI="prefix"
-
 inherit enlightenment toolchain-funcs eutils
 
 MY_P=${P/_/-}
