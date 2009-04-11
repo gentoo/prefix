@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cocom/cocom-0.995.ebuild,v 1.4 2008/01/12 21:16:31 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Tool set oriented onto the creation of compilers, cross-compilers, interpreters, and other language processors"

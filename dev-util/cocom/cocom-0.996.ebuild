@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cocom/cocom-0.996.ebuild,v 1.1 2008/11/28 06:15:43 vapier Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 DESCRIPTION="Tool set oriented onto the creation of compilers, cross-compilers, interpreters, and other language processors"
