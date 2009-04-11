@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/libxslt-1.1.24-r1.ebuild,v 1.2 2008/11/05 00:36:59 vapier Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils python autotools
 
 DESCRIPTION="XSLT libraries and tools"
