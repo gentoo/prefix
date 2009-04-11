@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/pasm/pasm-1.7.ebuild,v 1.2 2004/06/24 22:53:40 agriffis Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="A portable assembler for processors of the PowerPC family"
