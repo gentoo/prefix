@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/spim-7.3.ebuild,v 1.8 2009/03/20 03:25:56 jmbsvicetto Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="MIPS Simulator"
