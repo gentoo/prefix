@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-acl-compat/cl-acl-compat-1.2.42.20060121.ebuild,v 1.2 2007/02/03 17:31:25 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit common-lisp eutils
 
 MY_PV=${PV:0:6}
