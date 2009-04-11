@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.12.ebuild,v 1.1 2008/05/05 04:24:49 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="The GNU info program and utilities"
