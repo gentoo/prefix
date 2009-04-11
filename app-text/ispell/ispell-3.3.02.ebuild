@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ispell-3.3.02.ebuild,v 1.2 2007/11/22 19:25:48 philantrop Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 PATCH_VER="0.2"
