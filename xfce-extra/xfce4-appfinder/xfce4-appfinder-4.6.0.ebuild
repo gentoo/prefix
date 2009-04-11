@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-appfinder/xfce4-appfinder-4.6.0.ebuild,v 1.3 2009/03/21 22:05:22 angelos Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit xfce4
 
