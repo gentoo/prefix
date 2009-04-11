@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/gperf-3.0.2.ebuild,v 1.3 2008/01/26 14:54:30 swegener Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A perfect hash function generator"
 HOMEPAGE="http://www.gnu.org/software/gperf/gperf.html"
 SRC_URI="mirror://gnu/gperf/${P}.tar.gz"
