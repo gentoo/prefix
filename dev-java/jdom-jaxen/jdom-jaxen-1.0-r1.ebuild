@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jdom-jaxen/jdom-jaxen-1.0-r1.ebuild,v 1.9 2008/04/08 16:01:37 ken69267 Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE=""
 
 inherit base java-pkg-2
