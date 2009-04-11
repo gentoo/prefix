@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-9.05-r2.ebuild,v 1.2 2008/10/05 08:46:19 killerfox Exp $
 
-EAPI="prefix"
-
 inherit autotools flag-o-matic
 
 DESCRIPTION="rxvt clone with xft and unicode support"

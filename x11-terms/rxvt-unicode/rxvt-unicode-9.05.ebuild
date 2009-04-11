@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-9.05.ebuild,v 1.7 2008/10/04 18:05:49 armin76 Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="rxvt clone with XFT and Unicode support"
