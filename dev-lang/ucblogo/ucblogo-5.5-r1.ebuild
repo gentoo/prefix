@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/ucblogo/ucblogo-5.5-r1.ebuild,v 1.1 2007/11/20 12:59:17 opfer Exp $
 
-EAPI="prefix"
-
 inherit eutils elisp-common
 
 DESCRIPTION="a reflective, functional programming language"
