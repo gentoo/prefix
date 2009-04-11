@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/crypt-primes/crypt-primes-0.50.ebuild,v 1.14 2007/01/15 15:36:12 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Crypt-Primes-${PV}
