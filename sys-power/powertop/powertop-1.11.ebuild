@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/powertop-1.11.ebuild,v 1.2 2009/04/04 02:39:04 gengor Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils
 
 DESCRIPTION="tool that helps you find what software is using the most power"
