@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/calc/calc-2.12.2.2.ebuild,v 1.5 2008/06/02 22:39:34 coldwind Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 DESCRIPTION="An arbitrary precision C-like arithmetic system"
