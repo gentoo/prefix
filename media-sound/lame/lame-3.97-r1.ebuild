@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/lame/lame-3.97-r1.ebuild,v 1.11 2008/11/09 21:06:42 loki_val Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic toolchain-funcs eutils autotools
 
 DESCRIPTION="LAME Ain't an MP3 Encoder"
