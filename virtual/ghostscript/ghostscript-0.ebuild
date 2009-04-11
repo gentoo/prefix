@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/ghostscript/ghostscript-0.ebuild,v 1.6 2008/01/25 19:41:42 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for Ghostscript"
 HOMEPAGE="http://www.ghostscript.com"
 SRC_URI=""
