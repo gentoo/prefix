@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-gnomevfs/gst-plugins-gnomevfs-0.10.22.ebuild,v 1.1 2009/03/30 04:51:47 tester Exp $
 
-EAPI="prefix"
-
 inherit gst-plugins-base
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
