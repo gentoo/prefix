@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/Test-Harness-2.64.ebuild,v 1.10 2008/03/28 07:01:54 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Runs perl standard test scripts with statistics"

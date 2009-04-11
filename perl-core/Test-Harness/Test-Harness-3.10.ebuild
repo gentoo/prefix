@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/Test-Harness-3.10.ebuild,v 1.4 2008/11/04 09:46:56 vapier Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=ANDYA
 
 inherit perl-module
