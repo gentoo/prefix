@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/gtk-doc-am-1.10-r1.ebuild,v 1.11 2009/01/02 12:27:21 armin76 Exp $
 
-EAPI="prefix"
-
 MY_PN="gtk-doc"
 MY_P=${MY_PN}-${PV}
 DESCRIPTION="Automake files from gtk-doc"
