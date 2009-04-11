@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ecj/eselect-ecj-0.3.ebuild,v 1.4 2009/03/15 15:30:31 ranger Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 DESCRIPTION="Manages ECJ symlinks"
 HOMEPAGE="http://www.gentoo.org/"
