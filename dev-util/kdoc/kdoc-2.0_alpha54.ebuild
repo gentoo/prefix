@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/kdoc/kdoc-2.0_alpha54.ebuild,v 1.15 2006/11/25 20:04:55 masterdriverz Exp $
 
-EAPI="prefix"
-
 inherit kde
 
 MY_P=${P/_alph/}
