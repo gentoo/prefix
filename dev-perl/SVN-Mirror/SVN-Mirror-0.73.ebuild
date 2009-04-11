@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/SVN-Mirror/SVN-Mirror-0.73.ebuild,v 1.5 2008/01/13 21:45:30 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="SVN::Mirror - Mirror remote repositories to local subversion repository"

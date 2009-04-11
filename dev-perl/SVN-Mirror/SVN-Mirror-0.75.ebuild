@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/SVN-Mirror/SVN-Mirror-0.75.ebuild,v 1.1 2008/09/13 08:23:53 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=CLKAO
 inherit perl-module eutils
 
