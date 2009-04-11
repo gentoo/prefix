@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/libmcrypt-2.5.8-r1.ebuild,v 1.1 2008/12/15 21:00:17 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="libmcrypt is a library that provides uniform interface to access several encryption algorithms."
