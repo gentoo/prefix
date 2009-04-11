@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2007-r3.ebuild,v 1.15 2008/10/31 21:04:13 ulm Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A complete TeX distribution"
 HOMEPAGE="http://tug.org/texlive/"
 SRC_URI=""
