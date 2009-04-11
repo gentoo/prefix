@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/egenix-mx-base/egenix-mx-base-3.0.0.ebuild,v 1.2 2007/08/17 15:12:00 uberlord Exp $
 
-EAPI="prefix"
-
 inherit distutils flag-o-matic
 
 DESCRIPTION="egenix utils for Python"
