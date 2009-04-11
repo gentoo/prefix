@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5-r1.ebuild,v 1.4 2009/04/04 15:05:05 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
