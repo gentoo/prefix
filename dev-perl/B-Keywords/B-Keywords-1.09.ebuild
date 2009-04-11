@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/B-Keywords/B-Keywords-1.09.ebuild,v 1.1 2009/03/09 10:44:19 tove Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 MODULE_AUTHOR=JJORE
 inherit perl-module
