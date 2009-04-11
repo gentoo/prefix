@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4util/libxfce4util-4.4.3.ebuild,v 1.7 2009/03/13 10:17:22 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit xfce44
 
