@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/virtualenv/virtualenv-1.3.ebuild,v 1.3 2009/01/04 19:54:04 pythonhead Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON="2.3"
 
 inherit distutils
