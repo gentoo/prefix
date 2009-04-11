@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-mysql/DBD-mysql-4.01.0.ebuild,v 1.1 2008/12/08 02:11:54 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit versionator
 
 MODULE_AUTHOR="CAPTTOFU"
