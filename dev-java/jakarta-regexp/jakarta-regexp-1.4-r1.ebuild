@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jakarta-regexp/jakarta-regexp-1.4-r1.ebuild,v 1.6 2007/05/12 18:02:54 wltjr Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="100% Pure Java Regular Expression package"
