@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/X11-Protocol/X11-Protocol-0.56.ebuild,v 1.12 2007/08/07 10:00:16 uberlord Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils
 
 DESCRIPTION="Client-side interface to the X11 Protocol"
