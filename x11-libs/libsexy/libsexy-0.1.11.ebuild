@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/libsexy/libsexy-0.1.11.ebuild,v 1.9 2008/10/11 23:53:13 eva Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="Sexy GTK+ Widgets"
