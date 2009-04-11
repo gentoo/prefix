@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-admin/webapp-config/webapp-config-1.50.16-r3.ebuild,v 1.2 2008/04/03 10:24:04 hollow Exp $
 
-EAPI="prefix"
-
 inherit eutils distutils prefix
 
 DESCRIPTION="Gentoo's installer for web-based applications"
