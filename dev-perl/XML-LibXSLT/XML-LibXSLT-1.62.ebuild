@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXSLT/XML-LibXSLT-1.62.ebuild,v 1.9 2007/05/05 18:10:00 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="A Perl module to parse XSL Transformational sheets using gnome's libXSLT"

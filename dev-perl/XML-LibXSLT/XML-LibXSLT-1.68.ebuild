@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXSLT/XML-LibXSLT-1.68.ebuild,v 1.1 2008/11/21 09:43:13 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=PAJAS
 inherit perl-module
 
