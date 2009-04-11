@@ -18,7 +18,7 @@
 		various media input formats. i.e. audio (mp3) and video (flv)</flag>
 	<flag name='gtk'>Enable GTK+ convenience library while is necessary for all
 		GTK+ apps using swfdec (<pkg>gnome-extra/swfdec-gnome</pkg> and
-		<pkg>net-www/swfdec-mozilla</pkg>)</flag>
+		<pkg>www-plugins/swfdec-mozilla</pkg>)</flag>
 	<flag name='oss'>Use Open Sound System for audio output</flag>
 	<flag name='pulseaudio'>Use <pkg>media-sound/pulseaudio</pkg> for audio
 		output</flag>

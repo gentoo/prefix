@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/swfdec
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/swfdec/ChangeLog,v 1.63 2009/03/18 15:50:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/swfdec/ChangeLog,v 1.64 2009/04/10 13:41:27 ulm Exp $
+
+  10 Apr 2009; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Update USE flag description to reflect package move of swfdec-mozilla to
+  www-plugins, bug 265569.
 
   18 Mar 2009; Raúl Porcel <armin76@gentoo.org> swfdec-0.8.4.ebuild:
   alpha/ia64 stable wrt #260063
