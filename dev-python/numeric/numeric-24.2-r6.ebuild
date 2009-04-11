@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/numeric-24.2-r6.ebuild,v 1.13 2009/01/02 04:13:02 vapier Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.3
 
 inherit distutils eutils
