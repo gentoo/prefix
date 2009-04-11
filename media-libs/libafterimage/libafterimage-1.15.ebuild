@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/libafterimage-1.15.ebuild,v 1.13 2008/04/08 09:20:34 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_PN="libAfterImage"
