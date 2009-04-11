@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/lesstif/lesstif-0.94.4.ebuild,v 1.21 2008/01/11 21:38:44 grobian Exp $
 
-EAPI="prefix"
-
 inherit libtool flag-o-matic multilib
 
 DESCRIPTION="An OSF/Motif(R) clone"
