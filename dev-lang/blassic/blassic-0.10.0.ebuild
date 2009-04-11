@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/blassic/blassic-0.10.0.ebuild,v 1.12 2009/01/13 17:10:29 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="classic Basic interpreter"
