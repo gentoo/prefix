@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.26-r1.ebuild,v 1.9 2008/12/18 06:32:53 kumba Exp $
 
-EAPI="prefix"
-
 inherit libtool eutils autotools flag-o-matic
 
 DESCRIPTION="Free MPEG-4 audio codecs by AudioCoding.com"
