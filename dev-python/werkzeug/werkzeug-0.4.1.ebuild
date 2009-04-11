@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/werkzeug/werkzeug-0.4.1.ebuild,v 1.1 2009/01/24 16:57:21 patrick Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON="2.4"
 
 inherit distutils
