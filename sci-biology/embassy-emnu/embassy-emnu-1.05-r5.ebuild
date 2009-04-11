@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-emnu/embassy-emnu-1.05-r5.ebuild,v 1.1 2008/08/27 20:46:10 ribosome Exp $
 
-EAPI="prefix"
-
 EBOV="6.0.1"
 
 inherit embassy
