@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/php-mode/php-mode-1.5.0.ebuild,v 1.5 2008/12/13 14:07:41 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="GNU Emacs major mode for editing PHP code"
