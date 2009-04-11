@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/java-virtuals/servlet-api/servlet-api-2.2.ebuild,v 1.8 2008/05/30 17:24:57 ken69267 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit java-virtuals-2
 
