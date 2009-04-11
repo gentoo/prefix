@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/alee-fonts/alee-fonts-12.ebuild,v 1.2 2009/03/23 16:28:53 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit font
 
 DESCRIPTION="A Lee's Hangul truetype fonts"
