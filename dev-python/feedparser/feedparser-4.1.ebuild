@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/feedparser/feedparser-4.1.ebuild,v 1.12 2008/05/11 16:45:55 corsair Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="Parse RSS and Atom feeds in Python"
