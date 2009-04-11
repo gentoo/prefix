@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/pyopenssl/pyopenssl-0.8.ebuild,v 1.1 2009/02/04 13:26:23 patrick Exp $
 
-EAPI="prefix"
-
 inherit distutils eutils
 
 MY_P=${P/openssl/OpenSSL}
