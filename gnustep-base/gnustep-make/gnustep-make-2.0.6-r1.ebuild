@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.0.6-r1.ebuild,v 1.1 2008/10/03 15:57:23 voyageur Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit gnustep-base eutils prefix
 
