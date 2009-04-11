@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/tre/tre-0.7.5.ebuild,v 1.8 2008/02/04 18:36:14 drac Exp $
 
-EAPI="prefix"
-
 IUSE="nls"
 
 DESCRIPTION="Lightweight, robust, and efficient POSIX compliant regexp matching library."
