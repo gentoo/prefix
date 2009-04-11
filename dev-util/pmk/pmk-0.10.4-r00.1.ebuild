@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/pmk/pmk-0.10.4.ebuild,v 1.1 2008/09/25 14:29:10 hawking Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="Aims to be an alternative to GNU autoconf"
