@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.22.0.ebuild,v 1.8 2008/11/13 19:07:16 ranger Exp $
 
-EAPI="prefix"
-
 WANT_AUTOMAKE=1.8
 inherit eutils gnome2 autotools
 

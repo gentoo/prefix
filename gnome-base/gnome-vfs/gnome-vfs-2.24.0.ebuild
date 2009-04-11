@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.24.0.ebuild,v 1.6 2009/03/18 14:48:52 armin76 Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils gnome2
 
 DESCRIPTION="Gnome Virtual Filesystem"
