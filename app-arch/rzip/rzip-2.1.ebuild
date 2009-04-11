@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/rzip/rzip-2.1.ebuild,v 1.10 2008/05/23 23:12:17 darkside Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="compression program for large files"
