@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp/gtk-sharp-2.10.2.ebuild,v 1.3 2009/01/06 12:51:21 loki_val Exp $
 
-EAPI="prefix"
-
 inherit eutils mono autotools
 
 DESCRIPTION="Gtk# is a C# language binding for the GTK2 toolkit and GNOME libraries"
