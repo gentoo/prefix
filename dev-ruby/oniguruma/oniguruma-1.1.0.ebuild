@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/oniguruma/oniguruma-1.1.0.ebuild,v 1.3 2007/06/26 02:01:14 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 USE_RUBY="ruby18"
