@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.0-r1.ebuild,v 1.5 2008/10/12 02:38:16 nerdboy Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="2.5"
 inherit autotools distutils eutils perl-module toolchain-funcs
 
