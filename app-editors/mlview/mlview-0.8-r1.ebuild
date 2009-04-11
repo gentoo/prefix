@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-editors/mlview/mlview-0.8-r1.ebuild,v 1.7 2008/09/13 12:56:12 remi Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 flag-o-matic
 
 DESCRIPTION="XML editor for the GNOME environment"
