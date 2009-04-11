@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/txt2tags-2.5.ebuild,v 1.1 2009/02/15 17:42:56 patrick Exp $
 
-EAPI="prefix"
-
 inherit eutils elisp-common
 
 DESCRIPTION="A tool for generating marked up documents (HTML, SGML, ...) from a plain text file with markup"
