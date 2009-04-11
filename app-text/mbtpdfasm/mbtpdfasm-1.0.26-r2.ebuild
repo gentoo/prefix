@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/mbtpdfasm/mbtpdfasm-1.0.26-r2.ebuild,v 1.1 2006/07/26 16:38:37 sbriesen Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 MY_P="mbtPdfAsm-${PV}"
