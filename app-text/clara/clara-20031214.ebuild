@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/clara/clara-20031214.ebuild,v 1.21 2009/03/22 07:56:01 spock Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="An OCR (Optical Character Recognition) program"
