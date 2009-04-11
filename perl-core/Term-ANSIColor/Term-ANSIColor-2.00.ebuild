@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Term-ANSIColor/Term-ANSIColor-2.00.ebuild,v 1.1 2009/03/01 12:52:27 tove Exp $
 
-EAPI="prefix"
-
 MY_PN="ANSIColor"
 MY_P="${MY_PN}-${PV}"
 S="${WORKDIR}/${MY_P}"
