@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Module-Pluggable/Module-Pluggable-3.8.ebuild,v 1.1 2008/09/20 11:31:55 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=SIMONW
 inherit perl-module
 
