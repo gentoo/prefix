@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/DBD-Pg-2.11.8.ebuild,v 1.2 2009/01/20 09:34:40 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=TURNSTEP
 inherit perl-module eutils
 
