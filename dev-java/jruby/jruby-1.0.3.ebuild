@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.0.3.ebuild,v 1.1 2007/12/17 13:58:17 caleb Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source test"
 inherit eutils java-pkg-2 java-ant-2
 
