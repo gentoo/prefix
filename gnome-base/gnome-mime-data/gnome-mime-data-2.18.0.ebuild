@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-mime-data/gnome-mime-data-2.18.0.ebuild,v 1.12 2008/10/12 10:13:17 eva Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="MIME data for Gnome"
