@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.14 2008/11/28 22:37:38 ulm Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils multilib toolchain-funcs mono autotools
 
 DESCRIPTION="GNU locale utilities"
