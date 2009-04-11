@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xclock/xclock-1.0.3-r1.ebuild,v 1.4 2009/04/06 16:15:56 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xclock/xclock-1.0.3-r1.ebuild,v 1.5 2009/04/09 14:54:17 armin76 Exp $
 
 EAPI="prefix"
 
