@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-video/dvdbackup/dvdbackup-0.1.1-r2.ebuild,v 1.9 2007/11/27 12:38:23 zzam Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils
 
 DESCRIPTION="Backup content from DVD to hard disk"
