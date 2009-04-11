@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/dejagnu/dejagnu-1.4.4-r1.ebuild,v 1.12 2008/06/03 07:54:50 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="framework for testing other programs"
