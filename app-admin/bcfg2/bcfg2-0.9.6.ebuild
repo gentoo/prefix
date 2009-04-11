@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/bcfg2/bcfg2-0.9.6.ebuild,v 1.3 2009/01/08 18:01:41 darkside Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="Bcfg2 is a configuration management tool."
