@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ehcache/ehcache-1.1-r1.ebuild,v 1.1 2006/09/08 04:02:51 nichoj Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Ehcache is a pure Java, fully-featured, in-process cache."
