@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/crossdev-0.9.18-r10.ebuild,v 1.3 2008/12/10 04:23:05 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Gentoo Cross-toolchain generator"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI=""
