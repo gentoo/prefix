@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/editor/editor-0.ebuild,v 1.15 2008/03/22 08:53:08 ulm Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for editor"
 HOMEPAGE=""
 SRC_URI=""
