@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonobo/libbonobo-2.20.4.ebuild,v 1.11 2009/03/08 01:19:09 eva Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="GNOME CORBA framework"
