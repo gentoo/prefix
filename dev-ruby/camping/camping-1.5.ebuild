@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/camping/camping-1.5.ebuild,v 1.2 2007/10/13 06:18:42 tgall Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 USE_RUBY="ruby18"

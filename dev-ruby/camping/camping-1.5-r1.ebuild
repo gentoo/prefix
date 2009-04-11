@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/camping/camping-1.5-r1.ebuild,v 1.1 2008/01/18 07:05:12 agorf Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 DESCRIPTION="A small web framework modeled after Ruby on Rails."
