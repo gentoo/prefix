@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Term-ReadLine-Perl/Term-ReadLine-Perl-1.0203.ebuild,v 1.24 2008/04/22 18:54:34 tove Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Quick implementation of readline utilities."
