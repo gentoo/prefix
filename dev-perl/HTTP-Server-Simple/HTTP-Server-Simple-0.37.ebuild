@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/HTTP-Server-Simple/HTTP-Server-Simple-0.37.ebuild,v 1.1 2009/01/04 11:33:58 tove Exp $
 
-EAPI="prefix"
-
 #MODULE_AUTHOR=ALEXMV
 MODULE_AUTHOR=JESSE
 inherit perl-module eutils
