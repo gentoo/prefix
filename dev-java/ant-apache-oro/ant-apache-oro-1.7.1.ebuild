@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ant-apache-oro/ant-apache-oro-1.7.1.ebuild,v 1.5 2009/01/07 19:17:50 ranger Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 ANT_TASK_DEPNAME="jakarta-oro-2.0"
 
