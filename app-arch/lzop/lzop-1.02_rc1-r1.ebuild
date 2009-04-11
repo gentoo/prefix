@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/lzop/lzop-1.02_rc1-r1.ebuild,v 1.11 2008/11/26 21:01:10 gmsoft Exp $
 
-EAPI="prefix"
-
 inherit versionator
 
 MY_P=${P/_/}
