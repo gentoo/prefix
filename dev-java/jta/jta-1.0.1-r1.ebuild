@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jta/jta-1.0.1-r1.ebuild,v 1.7 2007/11/02 00:00:39 wltjr Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2
 
 At="jta-1_0_1B-classes.zip"
