@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/rarian/rarian-0.8.0-r1.ebuild,v 1.9 2008/11/13 19:00:59 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 autotools
 
 DESCRIPTION="A documentation metadata library"
