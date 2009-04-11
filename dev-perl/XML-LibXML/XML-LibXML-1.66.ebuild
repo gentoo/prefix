@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-LibXML/XML-LibXML-1.66.ebuild,v 1.3 2008/11/04 10:20:24 vapier Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils versionator
 
 MY_P="${PN}-$(delete_version_separator 2)"
