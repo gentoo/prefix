@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/makepp/makepp-1.40.1a.ebuild,v 1.1 2005/09/22 06:27:15 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="GNU make replacement"
