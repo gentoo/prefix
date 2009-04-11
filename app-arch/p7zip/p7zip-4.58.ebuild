@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.58.ebuild,v 1.9 2009/01/25 19:29:15 radek Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs multilib
 
 DESCRIPTION="Port of 7-Zip archiver for Unix"
