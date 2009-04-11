@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/sun-javamail/sun-javamail-1.4.ebuild,v 1.13 2007/11/25 08:00:39 caster Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 inherit java-pkg-2 java-ant-2
 
