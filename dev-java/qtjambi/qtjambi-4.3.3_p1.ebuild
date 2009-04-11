@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/qtjambi-4.3.3_p1.ebuild,v 1.2 2007/12/30 17:24:29 jokey Exp $
 
-EAPI="prefix"
-
 inherit eutils java-pkg-2
 
 QTVERSION=4.3.3

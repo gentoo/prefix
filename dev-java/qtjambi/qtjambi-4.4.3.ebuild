@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/qtjambi-4.4.3.ebuild,v 1.2 2009/01/19 15:15:48 yngwin Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 
 inherit eutils java-pkg-2 java-ant-2 multilib
