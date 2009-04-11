@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cccc/cccc-3.1.4.ebuild,v 1.2 2006/06/30 10:42:50 tchiwam Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="A code counter for C and C++"
