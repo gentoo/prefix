@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.7.ebuild,v 1.10 2008/11/04 09:37:40 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Exuberant Ctags creates tags files for code browsing in editors"
