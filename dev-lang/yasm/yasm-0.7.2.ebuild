@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/yasm/yasm-0.7.2.ebuild,v 1.2 2008/10/11 08:29:42 corsair Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Assembler that supports amd64"
 HOMEPAGE="http://www.tortall.net/projects/yasm/"
 SRC_URI="http://www.tortall.net/projects/yasm/releases/${P}.tar.gz"
