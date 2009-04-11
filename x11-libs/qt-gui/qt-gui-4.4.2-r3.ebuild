@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.4.2-r3.ebuild,v 1.5 2009/04/09 15:25:44 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 inherit eutils qt4-build
 
 DESCRIPTION="The GUI module for the Qt toolkit"
