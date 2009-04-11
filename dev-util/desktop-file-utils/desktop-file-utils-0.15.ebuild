@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/desktop-file-utils-0.15.ebuild,v 1.10 2008/12/07 12:13:57 vapier Exp $
 
-EAPI="prefix"
-
 inherit elisp-common
 
 DESCRIPTION="Command line utilities to work with desktop menu entries"

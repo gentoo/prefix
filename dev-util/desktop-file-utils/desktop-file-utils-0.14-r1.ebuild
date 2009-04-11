@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/desktop-file-utils/desktop-file-utils-0.14-r1.ebuild,v 1.7 2008/03/22 03:45:29 dang Exp $
 
-EAPI="prefix"
-
 inherit eutils elisp-common autotools
 
 DESCRIPTION="Command line utilities to work with desktop menu entries"
