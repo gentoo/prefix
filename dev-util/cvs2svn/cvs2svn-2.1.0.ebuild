@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cvs2svn/cvs2svn-2.1.0.ebuild,v 1.2 2008/06/09 10:02:35 vapier Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 FILEVER="41596"
