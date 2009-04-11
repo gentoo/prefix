@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/buildutils/buildutils-0.3.ebuild,v 1.1 2008/04/05 14:51:48 hawking Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 
 inherit distutils eutils
