@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-WikiFormat/Text-WikiFormat-0.79.ebuild,v 1.7 2008/11/22 11:26:02 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=CHROMATIC
 inherit perl-module
 
