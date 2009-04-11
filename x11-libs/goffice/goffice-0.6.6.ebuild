@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/goffice-0.6.6.ebuild,v 1.1 2009/01/25 23:16:36 eva Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 flag-o-matic
 
 DESCRIPTION="A library of document-centric objects and utilities"
