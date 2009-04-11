@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cunit/cunit-2.0.ebuild,v 1.6 2007/08/13 20:46:58 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="CUnit - C Unit Test Framework"

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/cunit/cunit-2.1.ebuild,v 1.6 2008/10/27 07:25:02 pva Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 MY_PN='CUnit'
