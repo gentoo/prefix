@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.20.ebuild,v 1.6 2008/11/27 22:55:50 jer Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils prefix
 
 DESCRIPTION="Use this to make tarballs :)"
