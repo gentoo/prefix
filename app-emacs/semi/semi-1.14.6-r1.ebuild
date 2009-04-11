@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/semi-1.14.6-r1.ebuild,v 1.5 2009/02/19 20:02:58 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp eutils
 
 DESCRIPTION="A library to provide MIME feature for GNU Emacs"
