@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.6.ebuild,v 1.8 2008/11/13 19:12:21 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="High level XKB library"
