@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/htmlinc/htmlinc-1.0_beta1-r1.ebuild,v 1.3 2008/01/11 21:23:11 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="HTML Include System by Ulli Meybohm"
