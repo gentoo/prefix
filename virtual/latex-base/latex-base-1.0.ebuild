@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/latex-base/latex-base-1.0.ebuild,v 1.5 2008/02/12 20:05:57 opfer Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for basic LaTeX binaries"
 HOMEPAGE="http://www.latex-project.org/"
 SRC_URI=""
