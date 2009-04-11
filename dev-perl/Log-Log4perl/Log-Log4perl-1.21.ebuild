@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Log-Log4perl/Log-Log4perl-1.21.ebuild,v 1.1 2009/03/27 07:48:02 tove Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 MODULE_AUTHOR="MSCHILLI"
 inherit perl-module

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Log-Log4perl/Log-Log4perl-1.13.ebuild,v 1.3 2007/12/17 18:24:35 drac Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Log::Log4perl is a Perl port of the widely popular log4j logging package."
