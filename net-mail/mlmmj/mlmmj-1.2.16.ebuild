@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-mail/mlmmj/mlmmj-1.2.16.ebuild,v 1.1 2009/02/17 00:02:47 robbat2 Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_PV="${PV/_rc/-RC}"
