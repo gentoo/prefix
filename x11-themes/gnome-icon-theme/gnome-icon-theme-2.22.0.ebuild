@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/gnome-icon-theme-2.22.0.ebuild,v 1.8 2008/11/13 19:06:36 ranger Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="GNOME 2 default icon themes"
