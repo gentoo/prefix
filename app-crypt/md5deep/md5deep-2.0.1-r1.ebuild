@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/md5deep/md5deep-2.0.1-r1.ebuild,v 1.6 2008/02/04 20:22:20 grobian Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 MY_P=${P}-001

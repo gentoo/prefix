@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/md5deep/md5deep-3.2.ebuild,v 1.1 2009/01/25 14:13:09 nyhm Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="Expanded md5sum program with recursive and comparison options"

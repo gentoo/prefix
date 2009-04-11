@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/md5deep/md5deep-3.3.ebuild,v 1.1 2009/04/04 15:17:49 nyhm Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Expanded md5sum program with recursive and comparison options"
 HOMEPAGE="http://md5deep.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
