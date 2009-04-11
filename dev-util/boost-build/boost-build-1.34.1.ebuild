@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.34.1.ebuild,v 1.16 2009/03/24 04:34:42 dirtyepic Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic toolchain-funcs versionator
 
 MY_PV=$(replace_all_version_separators _)
