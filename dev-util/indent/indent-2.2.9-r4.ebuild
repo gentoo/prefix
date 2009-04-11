@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/indent/indent-2.2.9-r4.ebuild,v 1.2 2007/08/06 19:39:16 uberlord Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Indent program source files"
