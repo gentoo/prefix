@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/daemons-1.0.10.ebuild,v 1.5 2008/10/09 09:56:01 armin76 Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 DESCRIPTION="Wrap existing ruby scripts to be run as a daemon"
