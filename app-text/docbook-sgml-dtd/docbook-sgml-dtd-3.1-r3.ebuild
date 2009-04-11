@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/docbook-sgml-dtd/docbook-sgml-dtd-3.1-r3.ebuild,v 1.6 2007/07/12 09:13:39 uberlord Exp $
 
-EAPI="prefix"
-
 inherit sgml-catalog eutils
 
 MY_P="docbk31"
