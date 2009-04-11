@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.12.ebuild,v 1.8 2008/02/24 11:38:13 vapier Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs multilib autotools
 
 MY_P=${P/_}
