@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Pager/IO-Pager-0.06.ebuild,v 1.8 2007/07/10 23:33:27 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Select a pager, optionally pipe it output if destination is a TTY"
