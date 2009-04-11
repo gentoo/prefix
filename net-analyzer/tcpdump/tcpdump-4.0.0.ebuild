@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/tcpdump-4.0.0.ebuild,v 1.2 2009/02/20 18:57:18 armin76 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 inherit autotools flag-o-matic toolchain-funcs eutils
 
 DESCRIPTION="A Tool for network monitoring and data acquisition"
