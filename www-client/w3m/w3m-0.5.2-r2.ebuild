@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/w3m/w3m-0.5.2-r2.ebuild,v 1.1 2008/05/15 23:53:33 matsuu Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Text based WWW browser, supports tables and frames"
