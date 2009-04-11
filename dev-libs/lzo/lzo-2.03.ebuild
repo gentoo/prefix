@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/lzo-2.03.ebuild,v 1.1 2008/06/18 08:21:09 dragonheart Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="An extremely fast compression and decompression library"
 HOMEPAGE="http://www.oberhumer.com/opensource/lzo/"
 SRC_URI="http://www.oberhumer.com/opensource/lzo/download/${P}.tar.gz"

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/lzo-1.08-r1.ebuild,v 1.25 2007/01/16 20:19:31 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils libtool autotools
 
 DESCRIPTION="An extremely fast compression and decompression library"
