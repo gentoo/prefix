@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/checkstyle/checkstyle-4.4.ebuild,v 1.6 2009/03/29 17:05:40 betelgeuse Exp $
 
-EAPI="prefix 2"
+EAPI=2
 WANT_ANT_TASKS="ant-antlr ant-nodeps"
 JAVA_PKG_IUSE="doc source test"
 
