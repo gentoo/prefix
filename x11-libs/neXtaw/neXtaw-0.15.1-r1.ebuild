@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/neXtaw/neXtaw-0.15.1-r1.ebuild,v 1.16 2007/07/22 02:59:44 dberkholz Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Athena Widgets with N*XTSTEP appearance"
 HOMEPAGE="http://siag.nu/neXtaw/"
 SRC_URI="http://siag.nu/pub/neXtaw/${P}.tar.gz"
