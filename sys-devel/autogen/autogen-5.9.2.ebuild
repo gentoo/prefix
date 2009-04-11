@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/autogen-5.9.2.ebuild,v 1.10 2008/03/21 16:29:29 maekke Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Program and text file generation"
