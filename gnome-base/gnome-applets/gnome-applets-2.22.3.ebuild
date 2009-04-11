@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.22.3.ebuild,v 1.9 2008/11/13 19:32:17 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 python
 
 DESCRIPTION="Applets for the GNOME Desktop and Panel"
