@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/cherrypy-3.0.3.ebuild,v 1.1 2008/04/29 02:03:25 pythonhead Exp $
 
-EAPI="prefix"
-
 inherit eutils distutils
 
 MY_P=CherryPy-${PV}
