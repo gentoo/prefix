@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ncftp-3.2.2-r1.ebuild,v 1.11 2009/03/03 18:16:45 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 IPV6_P="ncftp-322-v6-20080821"
