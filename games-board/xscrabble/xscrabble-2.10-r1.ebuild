@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-board/xscrabble/xscrabble-2.10-r1.ebuild,v 1.7 2008/01/14 19:29:09 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib games toolchain-funcs
 
 DESCRIPTION="An X11 clone of the well-known Scrabble"
