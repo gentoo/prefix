@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/pmake-1.111.1-r1.ebuild,v 1.1 2008/09/25 08:45:14 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs versionator
 
 MY_P="${PN}-$(get_version_component_range 1-2)"
