@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-visualization/xgraph/xgraph-12.1-r2.ebuild,v 1.1 2009/02/01 12:50:16 bicatali Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit eutils autotools
 
 DEB_PR=10
