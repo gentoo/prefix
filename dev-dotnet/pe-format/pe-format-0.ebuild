@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-dotnet/pe-format/pe-format-0.ebuild,v 1.10 2009/03/20 23:14:50 jmbsvicetto Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="PE Format binfmt_misc entry"
