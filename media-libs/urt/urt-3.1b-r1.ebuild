@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/urt/urt-3.1b-r1.ebuild,v 1.28 2008/05/23 16:36:43 maekke Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="the Utah Raster Toolkit is a library for dealing with raster images"
