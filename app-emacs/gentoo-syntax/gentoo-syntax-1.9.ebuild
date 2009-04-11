@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/gentoo-syntax-1.9.ebuild,v 1.7 2008/10/27 22:50:44 ranger Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="Emacs modes for editing ebuilds and other Gentoo specific files"
