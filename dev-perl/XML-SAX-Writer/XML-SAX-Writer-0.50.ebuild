@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-SAX-Writer/XML-SAX-Writer-0.50.ebuild,v 1.11 2008/03/19 02:32:05 jer Exp $
 
-EAPI="prefix"
-
 inherit perl-module eutils
 
 DESCRIPTION="SAX2 Writer"
