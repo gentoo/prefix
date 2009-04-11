@@ -13,7 +13,7 @@
 # users. http://fontforge.sourceforge.net/faq.html#libraries. To see what
 # libraries fontforge thinks with use $ fontforge --library-status
 
-EAPI="prefix 2"
+EAPI=2
 inherit eutils fdo-mime
 
 CIDMAPV="20090121"

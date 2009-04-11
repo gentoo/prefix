@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20081215.ebuild,v 1.1 2008/12/21 21:31:12 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="postscript font editor and converter"
