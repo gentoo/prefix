@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p48-r1.ebuild,v 1.4 2009/03/23 18:34:21 grobian Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit eutils flag-o-matic toolchain-funcs multilib prefix
 
