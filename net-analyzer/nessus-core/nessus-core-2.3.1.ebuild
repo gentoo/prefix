@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/nessus-core/nessus-core-2.3.1.ebuild,v 1.10 2007/03/26 19:38:47 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="A remote security scanner for Linux (nessus-core)"
