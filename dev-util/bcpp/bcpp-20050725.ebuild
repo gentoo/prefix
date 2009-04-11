@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/bcpp/bcpp-20050725.ebuild,v 1.6 2008/12/17 16:55:21 darkside Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Indents C/C++ source code"
