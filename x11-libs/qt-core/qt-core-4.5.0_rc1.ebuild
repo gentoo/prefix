@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.5.0_rc1.ebuild,v 1.8 2009/02/25 09:17:26 hwoarang Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework"
