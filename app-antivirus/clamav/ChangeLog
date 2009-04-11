@@ -1,6 +1,16 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.323 2009/04/03 08:20:19 lordvan Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.325 2009/04/10 07:49:54 dertobi123 Exp $
+
+  10 Apr 2009; Tobias Scherbaum <dertobi123@gentoo.org> clamav-0.95.ebuild,
+  clamav-0.95.1.ebuild:
+  Fix soname change ewarn message.
+
+*clamav-0.95.1 (09 Apr 2009)
+
+  09 Apr 2009; Thomas Raschbacher <lordvan@gentoo.org>
+  +clamav-0.95.1.ebuild:
+  version bump
 
   03 Apr 2009; Thomas Raschbacher <lordvan@gentoo.org> metadata.xml,
   clamav-0.95.ebuild:
