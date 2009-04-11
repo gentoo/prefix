@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-romkan/ruby-romkan-0.4-r1.ebuild,v 1.16 2008/11/15 18:44:39 flameeyes Exp $
 
-EAPI="prefix"
-
 inherit ruby
 
 DESCRIPTION="A Romaji <-> Kana conversion library for Ruby"
