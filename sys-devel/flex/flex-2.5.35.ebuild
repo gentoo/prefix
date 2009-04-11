@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/flex/flex-2.5.35.ebuild,v 1.11 2009/03/26 04:27:50 dirtyepic Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic
 
 #DEB_VER=36
