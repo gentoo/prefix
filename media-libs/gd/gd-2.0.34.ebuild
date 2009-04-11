@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.34.ebuild,v 1.13 2008/03/30 23:08:36 ricmm Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="A graphics library for fast image creation"
 HOMEPAGE="http://libgd.org/"
 SRC_URI="http://libgd.org/releases/${P}.tar.bz2"
