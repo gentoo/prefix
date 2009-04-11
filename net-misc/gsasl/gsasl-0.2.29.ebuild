@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/gsasl/gsasl-0.2.29.ebuild,v 1.1 2008/11/29 20:44:21 dertobi123 Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="The GNU SASL client, server, and library"
 HOMEPAGE="http://www.gnu.org/software/gsasl/"
 SRC_URI="ftp://alpha.gnu.org/pub/gnu/${PN}/${P}.tar.gz"
