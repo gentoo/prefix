@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.2.ebuild,v 1.7 2009/01/04 22:43:51 ulm Exp $
 
-EAPI="prefix"
-
 inherit vim autotools
 
 VIM_VERSION="7.2"
