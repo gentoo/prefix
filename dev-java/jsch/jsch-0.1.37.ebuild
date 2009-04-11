@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/jsch-0.1.37.ebuild,v 1.5 2008/03/11 19:40:25 ken69267 Exp $
 
-EAPI="prefix 1"
+EAPI=1
 JAVA_PKG_IUSE="doc source examples"
 
 inherit java-pkg-2 java-ant-2 java-osgi
