@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ack-1.88-r1.ebuild,v 1.1 2009/03/13 06:39:59 rajiv Exp $
 
-EAPI="prefix"
-
 inherit perl-module bash-completion
 
 DESCRIPTION="ack is a tool like grep, aimed at programmers with large trees of heterogeneous source code"
