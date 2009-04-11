@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xcalc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xcalc/ChangeLog,v 1.24 2009/04/06 16:11:28 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xcalc/ChangeLog,v 1.25 2009/04/09 14:50:47 armin76 Exp $
+
+  09 Apr 2009; Raúl Porcel <armin76@gentoo.org> xcalc-1.0.2-r1.ebuild:
+  arm/s390/sh stable wrt #264982
 
   06 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> xcalc-1.0.2-r1.ebuild:
   Stable on sparc, bug #264982
