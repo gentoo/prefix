@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/pngcrush/pngcrush-1.6.10.ebuild,v 1.4 2008/11/30 21:32:05 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="Portable Network Graphics (PNG) optimizing utility"
