@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.1.7-r1.ebuild,v 1.11 2008/05/18 11:40:06 markusle Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs flag-o-matic prefix
 
 DESCRIPTION="pari (or pari-gp) : a software package for computer-aided number theory"
