@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/ExtUtils-CBuilder/ExtUtils-CBuilder-0.24.ebuild,v 1.1 2008/11/02 07:20:59 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=KWILLIAMS
 
 inherit perl-module
