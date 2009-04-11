@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-java/xom/xom-1.0-r6.ebuild,v 1.6 2008/03/11 15:13:16 ranger Exp $
 
 JAVA_PKG_IUSE="doc examples source"
-EAPI="prefix 1"
+EAPI=1
 
 inherit java-pkg-2 java-ant-2
 
