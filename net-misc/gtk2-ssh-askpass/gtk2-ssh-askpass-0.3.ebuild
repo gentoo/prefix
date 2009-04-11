@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/gtk2-ssh-askpass/gtk2-ssh-askpass-0.3.ebuild,v 1.17 2007/04/28 16:53:45 swegener Exp $
 
-EAPI="prefix"
-
 inherit prefix
 
 DESCRIPTION="A small SSH Askpass replacement written with GTK2."
