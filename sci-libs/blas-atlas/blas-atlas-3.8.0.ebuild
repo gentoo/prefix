@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.8.0.ebuild,v 1.11 2008/08/28 09:48:46 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs fortran multilib
 
 PATCH_V="3.7.39"
