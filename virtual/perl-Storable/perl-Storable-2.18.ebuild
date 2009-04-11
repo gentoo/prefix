@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-Storable/perl-Storable-2.18.ebuild,v 1.4 2008/11/04 10:07:52 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for Storable"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI=""
