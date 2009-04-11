@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.20.3.ebuild,v 1.10 2008/05/29 16:59:45 hawking Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 python multilib linux-info
 
 DESCRIPTION="The GNOME menu system, implementing the F.D.O cross-desktop spec"
