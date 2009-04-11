@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/servletapi/servletapi-2.4-r5.ebuild,v 1.7 2008/01/06 19:04:55 caster Exp $
 
-EAPI="prefix"
-
 inherit eutils java-pkg-2 java-ant-2
 
 TC_VERSION="5.5.20"
