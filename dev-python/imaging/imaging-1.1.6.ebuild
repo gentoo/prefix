@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/imaging-1.1.6.ebuild,v 1.8 2009/03/20 18:52:16 bicatali Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit eutils distutils
 
 MY_P=Imaging-${PV}
