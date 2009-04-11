@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/www-client/htmlview/htmlview-3.0.0-r1.ebuild,v 1.8 2007/02/04 18:47:53 beandog Exp $
 
-EAPI="prefix"
-
 inherit rpm eutils prefix
 
 IUSE=""
