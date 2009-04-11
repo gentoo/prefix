@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/dante-1.1.19-r1.ebuild,v 1.6 2008/06/24 20:59:04 mrness Exp $
 
-EAPI="prefix"
-
 inherit fixheadtails eutils
 
 DESCRIPTION="A free socks4,5 and msproxy implementation"
