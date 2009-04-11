@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Convert-ASN1/Convert-ASN1-0.22.ebuild,v 1.1 2008/09/16 10:23:01 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=GBARR
 inherit perl-module
 
