@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Cache-Memcached/Cache-Memcached-1.24.ebuild,v 1.9 2007/12/26 07:43:37 drac Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Perl API for memcached"
