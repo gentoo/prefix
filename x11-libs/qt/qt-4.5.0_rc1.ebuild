@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.5.0_rc1.ebuild,v 1.1 2009/02/14 00:37:14 yngwin Exp $
 
-EAPI="prefix 2"
+EAPI=2
 DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework"
 HOMEPAGE="http://www.trolltech.com/"
 

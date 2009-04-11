@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.3.3.ebuild,v 1.13 2008/05/19 20:23:47 dev-zero Exp $
 
-EAPI="prefix 1"
+EAPI=1
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 SRCTYPE="opensource-src"
