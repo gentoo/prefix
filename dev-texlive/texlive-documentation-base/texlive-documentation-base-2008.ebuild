@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-documentation-base/texlive-documentation-base-2008.ebuild,v 1.10 2009/03/18 21:11:26 ranger Exp $
 
-EAPI="prefix"
-
 TEXLIVE_MODULE_CONTENTS="texlive-common texlive-en collection-documentation-base
 "
 TEXLIVE_MODULE_DOC_CONTENTS="texlive-en.doc "
