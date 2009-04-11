@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/unarj/unarj-2.63a-r2.ebuild,v 1.15 2007/07/14 14:51:34 drizzt Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Utility for opening arj archives"
