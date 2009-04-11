@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Devel-Symdump/Devel-Symdump-2.08.ebuild,v 1.5 2008/11/04 10:20:24 vapier Exp $
 
-EAPI="prefix"
-
 inherit versionator perl-module
 
 MY_P="${PN}-$(delete_version_separator 2)"
