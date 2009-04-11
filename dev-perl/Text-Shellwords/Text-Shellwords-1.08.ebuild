@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-Shellwords/Text-Shellwords-1.08.ebuild,v 1.10 2007/07/10 23:33:29 mr_bones_ Exp $
 
-EAPI="prefix"
-
 IUSE=""
 
 inherit perl-module
