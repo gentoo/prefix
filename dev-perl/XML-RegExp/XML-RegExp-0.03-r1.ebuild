@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-RegExp/XML-RegExp-0.03-r1.ebuild,v 1.19 2008/05/21 18:19:03 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=TJMATHER
 inherit perl-module
 
