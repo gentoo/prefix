@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/linecache/linecache-0.43.ebuild,v 1.3 2009/03/20 05:07:23 josejx Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 DESCRIPTION="Caches files as might be used in a debugger or a tool that works with sets of Ruby source files."
