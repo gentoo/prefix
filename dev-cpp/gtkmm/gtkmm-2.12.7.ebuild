@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/gtkmm-2.12.7.ebuild,v 1.12 2009/04/10 13:19:51 armin76 Exp $
 
-EAPI="prefix"
-
 inherit gnome2 eutils
 
 DESCRIPTION="C++ interface for GTK+2"
