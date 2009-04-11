@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-net/sdl-net-1.2.7.ebuild,v 1.11 2008/09/27 16:13:25 armin76 Exp $
 
-EAPI="prefix"
-
 MY_P=${P/sdl-/SDL_}
 DESCRIPTION="Simple Direct Media Layer Network Support Library"
 HOMEPAGE="http://www.libsdl.org/projects/SDL_net/index.html"
