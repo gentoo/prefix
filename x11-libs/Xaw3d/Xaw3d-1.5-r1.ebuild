@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/Xaw3d/Xaw3d-1.5-r1.ebuild,v 1.35 2007/02/10 14:57:09 grobian Exp $
 
-EAPI="prefix"
-
 # Ok, hopefully this will resolv the problem with the version of libXaw3d that
 # gets created.
 #
