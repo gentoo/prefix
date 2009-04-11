@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/po-mode/po-mode-0.17.ebuild,v 1.8 2008/01/13 00:27:44 vapier Exp $
 
-EAPI="prefix"
-
 inherit elisp
 
 DESCRIPTION="Major mode for GNU gettext PO files"
