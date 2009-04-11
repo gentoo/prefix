@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.13-r1.ebuild,v 1.12 2009/02/17 18:15:39 mr_bones_ Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit flag-o-matic toolchain-funcs eutils libtool
 
 DESCRIPTION="Simple Direct Media Layer"
