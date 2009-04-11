@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/WWW-Mechanize-1.50.ebuild,v 1.5 2008/11/03 12:36:00 armin76 Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=PETDANCE
 inherit perl-module
 
