@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/lzma-4.63.ebuild,v 1.2 2009/01/26 23:18:01 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="LZMA Stream Compressor from the SDK"
