@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/filepath-1.0.ebuild,v 1.13 2007/12/16 18:35:49 nixnut Exp $
 
-EAPI="prefix"
-
 CABAL_FEATURES="haddock lib profile"
 inherit haskell-cabal
 
