@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/nbtscan/nbtscan-1.5.1-r1.ebuild,v 1.9 2008/01/16 20:15:38 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="NBTscan is a program for scanning IP networks for NetBIOS name information"
