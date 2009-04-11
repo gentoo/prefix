@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/gnome-light-2.22.0.ebuild,v 1.7 2008/12/20 14:02:58 gentoofan23 Exp $
 
-EAPI="prefix"
-
 S=${WORKDIR}
 DESCRIPTION="Meta package for the GNOME desktop, merge this package to install"
 HOMEPAGE="http://www.gnome.org/"
