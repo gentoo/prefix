@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.6.ebuild,v 1.9 2009/03/17 08:17:29 dragonheart Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils
 
 DESCRIPTION="GnuPG Made Easy is a library for making GnuPG easier to use"
