@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-im/pork/pork-0.99.8.1.ebuild,v 1.13 2008/02/05 21:15:25 grobian Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Console based AIM client that looks like ircII"
 HOMEPAGE="http://dev.ojnk.net/"
 SRC_URI="mirror://sourceforge/ojnk/${P}.tar.gz"
