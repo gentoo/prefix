@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/p0f/p0f-2.0.8-r1.ebuild,v 1.7 2008/02/06 20:56:23 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="p0f performs passive OS detection based on SYN packets."
