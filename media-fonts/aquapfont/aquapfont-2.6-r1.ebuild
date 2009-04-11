@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/aquapfont/aquapfont-2.6-r1.ebuild,v 1.1 2009/02/22 13:21:29 lu_zero Exp $
 
-EAPI="prefix"
-
 inherit font
 
 MY_P="${PN/font/}${PV/\./_}"
