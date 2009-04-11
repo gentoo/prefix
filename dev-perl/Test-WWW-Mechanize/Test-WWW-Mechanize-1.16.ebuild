@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-WWW-Mechanize/Test-WWW-Mechanize-1.16.ebuild,v 1.3 2008/03/22 22:20:42 coldwind Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Test::WWW::Mechanize is a subclass of WWW::Mechanize that
