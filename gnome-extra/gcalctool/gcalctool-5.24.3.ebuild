@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-extra/gcalctool/gcalctool-5.24.3.ebuild,v 1.1 2009/01/18 23:40:24 leio Exp $
 
-EAPI="prefix"
-
 inherit gnome2 eutils
 
 DESCRIPTION="A calculator application for GNOME"
