@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-editors/medit/medit-0.9.4.ebuild,v 1.1 2009/02/04 18:11:07 patrick Exp $
 
-EAPI="prefix"
-
 inherit eutils python fdo-mime gnome2-utils multilib
 
 DESCRIPTION="Multiplatform text editor"
