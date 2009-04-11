@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.18.1.ebuild,v 1.1 2008/11/03 21:04:23 eva Exp $
 
-EAPI="prefix"
-
 inherit gnome2
 
 DESCRIPTION="C++ interface for glib2"
