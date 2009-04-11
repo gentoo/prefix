@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/openjpeg/openjpeg-1.3-r2.ebuild,v 1.1 2009/02/10 11:05:21 drizzt Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs multilib flag-o-matic
 
 DESCRIPTION="An open-source JPEG 2000 codec written in C"
