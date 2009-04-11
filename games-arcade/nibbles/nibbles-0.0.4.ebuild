@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/games-arcade/nibbles/nibbles-0.0.4.ebuild,v 1.12 2009/02/02 11:41:34 tupone Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit eutils games
 
 MY_P=${PN}-v${PV}
