@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.7.ebuild,v 1.8 2008/08/20 17:26:51 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic autotools
 
 DESCRIPTION="A high-quality and portable font engine"
