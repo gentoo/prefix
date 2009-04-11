@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.0-r4.ebuild,v 1.12 2009/03/13 17:10:24 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs fdo-mime prefix
 
 DESCRIPTION="a program to distribute compilation of C code across several machines on a network"
