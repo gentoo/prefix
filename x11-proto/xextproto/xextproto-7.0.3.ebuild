@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/xextproto-7.0.3.ebuild,v 1.2 2008/10/05 17:50:06 remi Exp $
 
-EAPI="prefix"
-
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
