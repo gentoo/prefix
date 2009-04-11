@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.1.3-r1.ebuild,v 1.20 2008/06/13 05:30:44 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 DESCRIPTION="a portable programmer's library designed to allow a developer to create robust portable software."
