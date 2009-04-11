@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Time-Local/Time-Local-1.19.01.ebuild,v 1.1 2008/11/21 08:14:47 tove Exp $
 
-EAPI="prefix"
-
 inherit versionator
 MODULE_AUTHOR=DROLSKY
 MY_P=${PN}-$(delete_version_separator 2 )
