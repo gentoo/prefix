@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/xfig-3.2.5-r2.ebuild,v 1.1 2008/05/11 12:09:54 pva Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib
 
 MY_P=${PN}.${PV}
