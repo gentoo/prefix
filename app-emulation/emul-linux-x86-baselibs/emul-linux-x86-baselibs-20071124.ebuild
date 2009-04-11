@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/emul-linux-x86-baselibs-20071124.ebuild,v 1.1 2007/11/24 08:14:21 kingtaco Exp $
 
-EAPI="prefix"
-
 inherit emul-linux-x86
 
 LICENSE="|| ( Artistic GPL-2 ) || ( BSD GPL-2 ) BZIP2 CRACKLIB DB

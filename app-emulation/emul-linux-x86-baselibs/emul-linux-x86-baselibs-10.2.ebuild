@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/emul-linux-x86-baselibs-10.2.ebuild,v 1.2 2007/03/02 15:01:34 blubb Exp $
 
-EAPI="prefix"
-
 inherit emul-libs
 
 SRC_URI="mirror://gentoo/binutils-2.16.1-r3.tbz2
