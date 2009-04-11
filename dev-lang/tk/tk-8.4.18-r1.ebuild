@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.4.18-r1.ebuild,v 1.1 2008/10/27 20:27:07 mescalinum Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
 
