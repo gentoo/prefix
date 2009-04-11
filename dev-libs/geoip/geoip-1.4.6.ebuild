@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/geoip-1.4.6.ebuild,v 1.6 2009/03/23 14:16:13 armin76 Exp $
 
-EAPI="prefix 2"
+EAPI=2
 inherit libtool
 
 MY_P=${P/geoip/GeoIP}
