@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/Locale-gettext-1.05.ebuild,v 1.17 2007/07/10 23:33:30 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P="gettext-${PV}"
