@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/hoe-1.8.2.ebuild,v 1.7 2008/12/26 15:50:15 armin76 Exp $
 
-EAPI="prefix"
-
 inherit gems
 
 USE_RUBY="ruby18 ruby19"
