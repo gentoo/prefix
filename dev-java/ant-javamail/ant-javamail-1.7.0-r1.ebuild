@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ant-javamail/ant-javamail-1.7.0-r1.ebuild,v 1.2 2008/04/27 11:07:47 caster Exp $
 
-EAPI="prefix"
-
 ANT_TASK_DEPNAME="--virtual javamail"
 
 inherit ant-tasks

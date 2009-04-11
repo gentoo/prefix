@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/ant-javamail/ant-javamail-1.7.0.ebuild,v 1.9 2007/05/12 18:11:58 wltjr Exp $
 
-EAPI="prefix"
-
 ANT_TASK_DEPNAME="sun-javamail"
 
 inherit ant-tasks
