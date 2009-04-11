@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-process/htop/htop-0.8.1-r1.ebuild,v 1.10 2009/03/15 20:20:51 armin76 Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit autotools eutils flag-o-matic
 
