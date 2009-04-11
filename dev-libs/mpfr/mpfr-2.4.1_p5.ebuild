@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.4.1_p5.ebuild,v 1.1 2009/03/18 22:46:09 vapier Exp $
 
-EAPI="prefix"
-
 # NOTE: we cannot depend on autotools here starting with gcc-4.3.x
 inherit eutils
 

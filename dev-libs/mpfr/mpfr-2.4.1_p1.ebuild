@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.4.1_p1.ebuild,v 1.8 2009/04/01 11:11:58 dertobi123 Exp $
 
-EAPI="prefix"
-
 # NOTE: we cannot depend on autotools here starting with gcc-4.3.x
 inherit eutils
 
