@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_mktemp/pam_mktemp-1.0.3.ebuild,v 1.16 2008/10/27 05:59:54 vapier Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs pam
 
 DESCRIPTION="Create per-user private temporary directories during login"
