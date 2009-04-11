@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/gnome-themes-2.24.3.ebuild,v 1.8 2009/03/18 15:12:38 armin76 Exp $
 
-EAPI="prefix"
-
 GCONF_DEBUG="no"
 
 inherit eutils gnome2
