@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/libspiff-0.8.4.ebuild,v 1.1 2008/08/13 08:46:29 aballier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Library for XSPF playlist reading and writing"
 HOMEPAGE="http://libspiff.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
