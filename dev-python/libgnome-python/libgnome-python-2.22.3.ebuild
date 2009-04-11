@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/libgnome-python/libgnome-python-2.22.3.ebuild,v 1.7 2009/03/23 04:46:28 jer Exp $
 
-EAPI="prefix"
-
 G_PY_PN="gnome-python"
 G_PY_BINDINGS="gnome gnomeui"
 
