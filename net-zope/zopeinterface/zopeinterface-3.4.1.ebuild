@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/zopeinterface-3.4.1.ebuild,v 1.1 2008/10/25 13:58:21 hawking Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 MY_PN="zope.interface"
