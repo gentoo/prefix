@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/build-docbook-catalog-1.2.ebuild,v 1.16 2007/03/01 17:21:10 genstef Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="DocBook XML catalog auto-updater"
