@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.95.1.ebuild,v 1.11 2008/03/09 16:21:33 leio Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2 libtool autotools versionator
 
 DESCRIPTION="Diagram/flowchart creation program"
