@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.0.1.ebuild,v 1.7 2009/03/30 14:35:06 loki_val Exp $
 
 WANT_AUTOMAKE="1.9"
-EAPI="prefix 2"
+EAPI=2
 
 inherit check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde-functions mono multilib toolchain-funcs
 
