@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.95.ebuild,v 1.3 2009/04/10 07:49:54 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils flag-o-matic fixheadtails multilib versionator prefix
 
 # for when rc1 is appended to release candidates:
