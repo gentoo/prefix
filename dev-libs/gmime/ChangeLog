@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.88 2009/04/04 14:50:21 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.89 2009/04/09 21:14:15 eva Exp $
+
+*gmime-2.4.6 (09 Apr 2009)
+
+  09 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org> +gmime-2.4.6.ebuild:
+  Bump to 2.4.6. A nice load of fixes.
 
   04 Apr 2009; Markus Meier <maekke@gentoo.org> gmime-2.4.3.ebuild:
   amd64/x86 stable, bug #234305
