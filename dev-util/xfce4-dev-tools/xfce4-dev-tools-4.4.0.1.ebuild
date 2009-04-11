@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/xfce4-dev-tools/xfce4-dev-tools-4.4.0.1.ebuild,v 1.6 2008/12/15 04:50:36 jer Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="m4macros for autotools eclass and subversion builds"
 HOMEPAGE="http://foo-projects.org/~benny/projects/xfce4-dev-tools"
 SRC_URI="mirror://xfce/xfce-4.4.2/src/${P}.tar.bz2"
