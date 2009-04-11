@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-mad/gst-plugins-mad-0.10.10.ebuild,v 1.1 2008/12/05 22:07:28 ssuominen Exp $
 
-EAPI="prefix"
-
 inherit gst-plugins-ugly
 
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
