@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.2-r1.ebuild,v 1.11 2009/01/29 21:58:29 eva Exp $
 
-EAPI="prefix"
-
 inherit libtool flag-o-matic eutils python autotools prefix
 
 DESCRIPTION="Version 2 of the library to manipulate XML files"
