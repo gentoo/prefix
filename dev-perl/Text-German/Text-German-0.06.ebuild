@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-German/Text-German-0.06.ebuild,v 1.11 2007/05/05 19:23:36 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="German grundform reduction"
