@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-IP/Net-IP-1.25-r1.ebuild,v 1.4 2008/09/30 14:39:19 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=MANU
 inherit perl-module
 
