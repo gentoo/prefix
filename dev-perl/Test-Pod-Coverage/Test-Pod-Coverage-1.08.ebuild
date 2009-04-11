@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Pod-Coverage/Test-Pod-Coverage-1.08.ebuild,v 1.20 2009/01/26 11:52:03 tove Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=PETDANCE
 inherit perl-module
 
