@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.51.ebuild,v 1.8 2009/03/06 02:33:21 jer Exp $
 
-EAPI="prefix"
-
 inherit fdo-mime
 
 DESCRIPTION="The Shared MIME-info Database specification"
