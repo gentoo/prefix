@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/ne/ne-2.0.3.ebuild,v 1.1 2009/03/25 12:09:44 swegener Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit toolchain-funcs
 

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/ne/ne-1.43.ebuild,v 1.1 2008/06/07 22:18:26 swegener Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="the nice editor, easy to use for the beginner and powerful for the wizard"
