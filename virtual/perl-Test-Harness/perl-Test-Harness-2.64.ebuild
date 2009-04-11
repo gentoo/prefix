@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-Test-Harness/perl-Test-Harness-2.64.ebuild,v 1.11 2008/03/31 17:13:15 jer Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for Test-Harness"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI=""
