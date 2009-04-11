@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/fetchmail-6.3.8-r1.ebuild,v 1.1 2007/09/03 14:31:41 falco Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="the legendary remote-mail retrieval and forwarding utility"
