@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-dialup/minicom/minicom-2.3-r1.ebuild,v 1.6 2008/11/18 22:32:03 mrness Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 STUPID_NUM="2332"
