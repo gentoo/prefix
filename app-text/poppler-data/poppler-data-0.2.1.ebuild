@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/poppler-data/poppler-data-0.2.1.ebuild,v 1.8 2008/12/07 11:46:16 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Data files for poppler to support uncommon encodings without xpdfrc"
 HOMEPAGE="http://poppler.freedesktop.org/"
 SRC_URI="http://poppler.freedesktop.org/${P}.tar.gz"
