@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/slime/slime-2.0_p20080731.ebuild,v 1.6 2009/02/19 19:25:45 nixnut Exp $
 
-EAPI="prefix"
-
 inherit common-lisp elisp eutils prefix
 
 DESCRIPTION="SLIME, the Superior Lisp Interaction Mode (Extended)"
