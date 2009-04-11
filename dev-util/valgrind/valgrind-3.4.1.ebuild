@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.4.1.ebuild,v 1.1 2009/03/03 18:57:33 griffon26 Exp $
 
-EAPI="prefix"
-
 inherit autotools eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="An open-source memory debugger for GNU/Linux"
