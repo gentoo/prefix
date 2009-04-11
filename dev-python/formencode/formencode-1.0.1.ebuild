@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/formencode/formencode-1.0.1.ebuild,v 1.2 2008/04/22 13:44:38 chtekk Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.3
 
 inherit distutils
