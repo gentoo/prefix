@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/redcloth-4.1.9.ebuild,v 1.1 2009/03/28 08:17:05 graaff Exp $
 
-EAPI="prefix"
-
 inherit ruby gems
 
 MY_P="RedCloth-${PV}"
