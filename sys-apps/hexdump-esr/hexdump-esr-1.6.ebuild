@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/hexdump-esr/hexdump-esr-1.6.ebuild,v 1.3 2008/04/21 20:31:46 armin76 Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 MY_P=${P/-esr/}
