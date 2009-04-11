@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/nopaste/nopaste-2835.ebuild,v 1.1 2008/01/22 15:29:57 ulm Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="command-line interface to rafb.net/paste"

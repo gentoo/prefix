@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/nopaste/nopaste-2802.ebuild,v 1.1 2007/11/08 16:11:30 drac Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="command-line interface to rafb.net/paste"
 HOMEPAGE="http://n01se.net/agriffis/nopaste"
 SRC_URI="${HOMEPAGE}/${P}"
