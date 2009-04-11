@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/scala-2.7.3.ebuild,v 1.2 2009/02/05 08:13:53 ali_bush Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc examples source"
 WANT_ANT_TASKS="ant-nodeps"
 inherit eutils check-reqs java-pkg-2 java-ant-2 versionator
