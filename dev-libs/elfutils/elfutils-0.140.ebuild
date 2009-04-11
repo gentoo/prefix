@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/elfutils-0.140.ebuild,v 1.1 2009/03/15 11:29:33 pva Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Libraries/utilities to handle ELF objects (drop in replacement for libelf)"
