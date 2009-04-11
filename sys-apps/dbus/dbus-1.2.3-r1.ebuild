@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.2.3-r1.ebuild,v 1.10 2009/02/05 19:03:24 aballier Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib flag-o-matic autotools
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
