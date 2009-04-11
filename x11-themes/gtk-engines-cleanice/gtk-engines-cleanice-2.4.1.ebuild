@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-cleanice/gtk-engines-cleanice-2.4.1.ebuild,v 1.6 2009/01/21 20:14:42 jer Exp $
 
-EAPI="prefix"
-
 inherit autotools
 
 DESCRIPTION="GTK+ CleanIce Theme Engine"
