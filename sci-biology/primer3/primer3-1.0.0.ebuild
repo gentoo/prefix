@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-biology/primer3/primer3-1.0.0.ebuild,v 1.14 2008/08/26 19:08:09 ribosome Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Design primers for PCR reactions."
 HOMEPAGE="http://primer3.sourceforge.net/"
 SRC_URI="http://frodo.wi.mit.edu/${PN}/${PN}_${PV}.tar.gz"
