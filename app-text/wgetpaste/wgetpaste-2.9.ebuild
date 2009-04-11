@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/wgetpaste-2.9.ebuild,v 1.7 2008/10/27 05:51:57 vapier Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Command-line interface to various pastebins"
 HOMEPAGE="http://wgetpaste.zlin.dk/"
 SRC_URI="http://wgetpaste.zlin.dk/${PF}.bz2"
