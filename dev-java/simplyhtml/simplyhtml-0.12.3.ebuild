@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/simplyhtml-0.12.3.ebuild,v 1.4 2009/03/18 15:00:53 ranger Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source"
 inherit java-pkg-2 java-ant-2 versionator
 
