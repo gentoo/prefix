@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-vim/matrix/matrix-1.10.ebuild,v 1.1 2008/09/21 12:22:24 hawking Exp $
 
-EAPI="prefix"
-
 inherit vim-plugin
 
 DESCRIPTION="vim plugin: Screensaver inspired by the Matrix"
