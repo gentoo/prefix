@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/qgit-2.1.ebuild,v 1.4 2008/07/28 21:19:00 carlo Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit qt4
 
