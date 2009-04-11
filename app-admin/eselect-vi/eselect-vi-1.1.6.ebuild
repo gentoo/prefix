@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-vi/eselect-vi-1.1.6.ebuild,v 1.1 2008/10/06 13:59:02 hawking Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Manages the /usr/bin/vi symlink"
