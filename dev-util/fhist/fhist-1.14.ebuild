@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/fhist/fhist-1.14.ebuild,v 1.5 2008/05/12 22:23:54 pva Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="File history and comparison tools"
 HOMEPAGE="http://www.canb.auug.org.au/~millerp/fhist.html"
 SRC_URI="http://www.canb.auug.org.au/~millerp/${P}.tar.gz"
