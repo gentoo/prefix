@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3_p20070403.ebuild,v 1.4 2008/06/07 19:05:56 swegener Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF="2.5"
 
 inherit eutils flag-o-matic toolchain-funcs pam autotools
