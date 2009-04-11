@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/enscript/enscript-1.6.4-r3.ebuild,v 1.2 2008/03/04 03:07:51 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="powerful text-to-postscript converter"
