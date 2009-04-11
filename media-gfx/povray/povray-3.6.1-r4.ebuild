@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.6.1-r4.ebuild,v 1.8 2008/11/15 19:05:53 dertobi123 Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic eutils autotools
 
 DESCRIPTION="The Persistence Of Vision Ray Tracer"

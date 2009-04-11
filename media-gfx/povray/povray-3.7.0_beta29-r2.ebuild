@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta29-r2.ebuild,v 1.1 2009/01/16 21:09:50 lavajoe Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools flag-o-matic versionator
 
 POVRAY_MAJOR_VER=$(get_version_component_range 1-3)
