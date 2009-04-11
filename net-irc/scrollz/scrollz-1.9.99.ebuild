@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-irc/scrollz/scrollz-1.9.99.ebuild,v 1.4 2008/01/16 20:49:32 grobian Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P=ScrollZ-${PV}
