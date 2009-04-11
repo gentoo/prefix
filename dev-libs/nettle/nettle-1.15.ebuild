@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/nettle/nettle-1.15.ebuild,v 1.6 2007/12/11 10:03:54 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils autotools
 
 DESCRIPTION="cryptographic library that is designed to fit easily in any context"
