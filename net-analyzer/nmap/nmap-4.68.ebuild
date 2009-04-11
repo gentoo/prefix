@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.68.ebuild,v 1.8 2008/11/09 12:13:34 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic autotools
 
 DESCRIPTION="A utility for network exploration or security auditing"
