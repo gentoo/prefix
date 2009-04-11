@@ -1,6 +1,12 @@
 # ChangeLog for dev-db/postgresql-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.16 2009/01/28 22:26:31 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.17 2009/04/09 22:36:34 caleb Exp $
+
+*postgresql-server-8.3.7 (09 Apr 2009)
+
+  09 Apr 2009; Caleb Tennis <caleb@gentoo.org>
+  +postgresql-server-8.3.7.ebuild:
+  version bump
 
   28 Jan 2009; Caleb Tennis <caleb@gentoo.org> files/postgresql.conf-8.2,
   files/postgresql.init-8.2:
