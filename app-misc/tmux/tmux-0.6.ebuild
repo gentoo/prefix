@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/tmux-0.6.ebuild,v 1.1 2009/01/18 17:49:16 tcunha Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs
 
 DESCRIPTION="Terminal multiplexer"
