@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/netkit-rsh-0.17-r9.ebuild,v 1.18 2009/01/12 15:44:51 gmsoft Exp $
 
-EAPI="prefix"
-
 inherit eutils pam toolchain-funcs
 
 PATCHVER="2"
