@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-20060301-r3.ebuild,v 1.2 2008/12/14 12:30:31 coldwind Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Programmable Completion for bash"

@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-20081219-r1.ebuild,v 1.9 2009/03/18 08:05:23 josejx Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit prefix
 
