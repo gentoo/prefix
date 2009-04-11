@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/scite/scite-1.77.ebuild,v 1.1 2009/01/08 22:39:58 nelchael Exp $
 
-EAPI="prefix"
-
 inherit toolchain-funcs eutils
 
 MY_PV=${PV//./}
