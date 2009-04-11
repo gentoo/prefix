@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-misc/iperf/iperf-2.0.4.ebuild,v 1.2 2009/03/25 17:59:21 tcunha Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="tool to measure IP bandwidth using UDP or TCP"
 HOMEPAGE="http://iperf.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
