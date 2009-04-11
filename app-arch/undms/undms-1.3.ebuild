@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/undms/undms-1.3.ebuild,v 1.5 2008/08/23 18:18:41 maekke Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Decompress Amiga DMS disk images to ADF"
