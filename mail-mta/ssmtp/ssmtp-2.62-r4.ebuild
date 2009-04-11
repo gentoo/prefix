@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r4.ebuild,v 1.9 2009/03/17 10:51:05 armin76 Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs autotools flag-o-matic
 
 DESCRIPTION="Extremely simple MTA to get mail off the system to a Mailhub"
