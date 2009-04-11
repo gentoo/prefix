@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/data-buffer/data-buffer-0.04.ebuild,v 1.19 2007/07/10 23:33:33 mr_bones_ Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 MY_P=Data-Buffer-${PV}
