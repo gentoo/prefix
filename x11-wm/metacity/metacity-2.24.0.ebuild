@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.24.0.ebuild,v 1.3 2009/01/31 11:46:54 eva Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2
 
 DESCRIPTION="GNOME default window manager"
