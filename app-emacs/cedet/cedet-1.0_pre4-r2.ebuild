@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre4-r2.ebuild,v 1.8 2009/03/01 15:38:25 ulm Exp $
 
-EAPI="prefix"
-
 inherit elisp eutils versionator
 
 MY_PV=$(delete_version_separator 2)
