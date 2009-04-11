@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/gnustep-back/gnustep-back-0.16.0.ebuild,v 1.1 2008/12/22 14:05:34 voyageur Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for back-end component for the GNUstep GUI Library"
 HOMEPAGE="http://www.gnustep.org"
 SRC_URI=""
