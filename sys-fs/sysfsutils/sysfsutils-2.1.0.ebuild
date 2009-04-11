@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-fs/sysfsutils/sysfsutils-2.1.0.ebuild,v 1.9 2007/12/16 12:34:09 armin76 Exp $
 
-EAPI="prefix"
-
 inherit multilib
 
 DESCRIPTION="System Utilities Based on Sysfs"
