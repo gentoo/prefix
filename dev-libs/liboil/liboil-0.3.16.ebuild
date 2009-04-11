@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/liboil-0.3.16.ebuild,v 1.1 2009/04/05 22:49:56 yngwin Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit flag-o-matic
 

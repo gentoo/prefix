@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/liboil-0.3.15.ebuild,v 1.10 2009/03/08 07:39:21 kumba Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic
 
 DESCRIPTION="library of simple functions that are optimized for various CPUs"
