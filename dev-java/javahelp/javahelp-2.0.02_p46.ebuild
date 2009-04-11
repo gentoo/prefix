@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/javahelp/javahelp-2.0.02_p46.ebuild,v 1.8 2009/01/27 19:57:12 ranger Exp $
 
-EAPI="prefix"
-
 WANT_ANT_TASKS="ant-nodeps"
 JAVA_PKG_IUSE="doc examples source"
 
