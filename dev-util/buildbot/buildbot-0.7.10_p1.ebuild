@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.7.10_p1.ebuild,v 1.1 2009/03/22 16:40:12 neurogeek Exp $
 
-EAPI="prefix 1"
+EAPI=1
 NEED_PYTHON="2.4"
 
 MY_PV="${PV/_p/p}"
