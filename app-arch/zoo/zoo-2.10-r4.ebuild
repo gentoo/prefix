@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/zoo-2.10-r4.ebuild,v 1.7 2008/07/13 06:33:53 josejx Exp $
 
-EAPI="prefix"
-
 inherit eutils toolchain-funcs
 
 DESCRIPTION="Manipulate archives of files in compressed form."
