@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.8 2009/04/05 18:46:49 armin76 Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit autotools elisp-common eutils flag-o-matic
 
