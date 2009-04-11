@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libuninameslist/libuninameslist-20060907.ebuild,v 1.7 2008/06/07 14:00:11 nixnut Exp $
 
-EAPI="prefix"
-
 S=${WORKDIR}/${PN}
 
 DESCRIPTION="Library of unicode annotation data"
