@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/perl-core/Package-Constants/Package-Constants-0.01.ebuild,v 1.10 2008/12/10 17:05:10 aballier Exp $
 
-EAPI="prefix"
-
 MODULE_AUTHOR=KANE
 inherit perl-module
 
