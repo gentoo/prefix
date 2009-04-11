@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/pax-utils/pax-utils-0.1.18.ebuild,v 1.3 2009/01/02 03:51:19 vapier Exp $
 
-EAPI="prefix"
-
 inherit flag-o-matic toolchain-funcs eutils
 
 DESCRIPTION="ELF related utils for ELF 32/64 binaries that can check files for security relevant properties"
