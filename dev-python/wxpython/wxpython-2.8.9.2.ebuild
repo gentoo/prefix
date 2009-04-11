@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/wxpython-2.8.9.2.ebuild,v 1.1 2009/02/21 22:36:28 dirtyepic Exp $
 
-EAPI="prefix 2"
+EAPI=2
 WX_GTK_VER="2.8"
 
 inherit alternatives eutils multilib python wxwidgets flag-o-matic fdo-mime
