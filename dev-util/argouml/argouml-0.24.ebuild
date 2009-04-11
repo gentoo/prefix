@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/argouml/argouml-0.24.ebuild,v 1.3 2008/08/30 14:33:07 ranger Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2
 
 DESCRIPTION="modelling tool that helps you do your design using UML"
