@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-scheme/scheme48/scheme48-1.8-r1.ebuild,v 1.1 2008/07/09 18:15:47 pchrist Exp $
 
-EAPI="prefix"
-
 inherit elisp-common multilib eutils flag-o-matic autotools
 
 DESCRIPTION="Scheme48 is an implementation of the Scheme Programming Language."
