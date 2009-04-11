@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.2.ebuild,v 1.9 2009/03/07 20:36:17 gentoofan23 Exp $
 
 WANT_AUTOMAKE="1.9"
-EAPI="prefix 2"
+EAPI=2
 inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 autotools
 
 DESCRIPTION="GTK Instant Messenger client"
