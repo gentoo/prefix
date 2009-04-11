@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/perl-Pod-Simple/perl-Pod-Simple-3.07.ebuild,v 1.2 2008/11/03 16:47:56 mr_bones_ Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="framework for parsing Pod"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
 SRC_URI=""
