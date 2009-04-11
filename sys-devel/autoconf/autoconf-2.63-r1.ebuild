@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.63-r1.ebuild,v 1.1 2009/04/05 04:00:19 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 inherit eutils

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.63b.ebuild,v 1.1 2009/04/01 16:35:57 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Used to create autoconfiguration files"
