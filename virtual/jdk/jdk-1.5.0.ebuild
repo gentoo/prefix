@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/jdk/jdk-1.5.0.ebuild,v 1.10 2008/04/28 01:19:59 betelgeuse Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for JDK"
 HOMEPAGE="http://java.sun.com/"
 SRC_URI=""

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/jdk/jdk-1.6.0.ebuild,v 1.10 2008/12/24 22:28:21 caster Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for JDK"
 HOMEPAGE="http://java.sun.com/"
 SRC_URI=""
