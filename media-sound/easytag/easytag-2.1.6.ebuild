@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/easytag-2.1.6.ebuild,v 1.2 2008/07/29 19:37:56 drac Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="GTK+ utility for editing MP2, MP3, MP4, FLAC, Ogg and other media tags"
 HOMEPAGE="http://easytag.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
