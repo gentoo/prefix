@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-dicts/migemo-dict/migemo-dict-200812.ebuild,v 1.2 2009/04/08 16:35:01 klausman Exp $
 
-EAPI="prefix"
-
 IUSE="unicode"
 
 DESCRIPTION="Dictionary files for the Migemo and C/Migemo"
