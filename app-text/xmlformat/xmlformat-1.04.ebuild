@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/xmlformat/xmlformat-1.04.ebuild,v 1.1 2009/02/15 18:13:30 patrick Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Reformat XML documents to your custom style"
 SRC_URI="http://www.kitebird.com/software/${PN}/${P}.tar.gz"
 HOMEPAGE="http://www.kitebird.com/software/xmlformat/"
