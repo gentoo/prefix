@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-6.8.ebuild,v 1.9 2008/05/17 04:27:48 matsuu Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 MY_P="gc${PV/_/}"
