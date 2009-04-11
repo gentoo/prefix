@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.20.ebuild,v 1.15 2009/01/10 16:50:30 hanno Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF=latest
 
 inherit eutils autotools
