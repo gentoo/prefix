@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.8.ebuild,v 1.8 2009/03/12 14:28:15 ranger Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Manage multiple Emacs versions on one system"
 HOMEPAGE="http://www.gentoo.org/proj/en/lisp/emacs/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
