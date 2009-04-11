@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.2.0.1.ebuild,v 1.1 2009/03/08 21:22:09 kolmodin Exp $
 
-EAPI="prefix"
-
 CABAL_FEATURES="lib profile haddock"
 inherit haskell-cabal
 
