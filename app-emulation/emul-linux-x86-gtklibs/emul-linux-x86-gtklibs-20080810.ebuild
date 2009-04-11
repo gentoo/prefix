@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/emul-linux-x86-gtklibs-20080810.ebuild,v 1.1 2008/08/10 21:06:51 kingtaco Exp $
 
-EAPI="prefix"
-
 inherit emul-linux-x86
 
 LICENSE="GPL-2 LGPL-2 LGPL-2.1 FTL || ( LGPL-2.1 MPL-1.1 )"
