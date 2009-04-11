@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/potrace/potrace-1.8.ebuild,v 1.7 2008/10/02 16:59:31 ranger Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Transforming bitmaps into vector graphics"
 HOMEPAGE="http://potrace.sourceforge.net/"
 SRC_URI="http://potrace.sourceforge.net/download/${P}.tar.gz"
