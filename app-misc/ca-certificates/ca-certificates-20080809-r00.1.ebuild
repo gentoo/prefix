@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ca-certificates-20080809.ebuild,v 1.11 2009/02/08 19:37:12 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Common CA Certificates PEM files"
