@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.5.3-r1.ebuild,v 1.1 2009/03/04 07:15:25 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 SELINUX_PATCH="findutils-4.3.12-selinux.diff"
