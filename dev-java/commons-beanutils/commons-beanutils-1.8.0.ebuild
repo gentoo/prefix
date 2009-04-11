@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/commons-beanutils/commons-beanutils-1.8.0.ebuild,v 1.1 2009/02/15 19:46:57 caster Exp $
 
-EAPI="prefix 2"
+EAPI=2
 JAVA_PKG_IUSE="doc source test"
 
 inherit java-pkg-2 java-ant-2

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/commons-beanutils/commons-beanutils-1.7.0-r2.ebuild,v 1.11 2007/05/17 21:36:46 betelgeuse Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Provides easy-to-use wrappers around Reflection and Introspection APIs"
