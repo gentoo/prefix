@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/tcllib-1.11.ebuild,v 1.1 2008/10/26 11:35:16 mescalinum Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Tcl Standard Library."
 HOMEPAGE="http://www.tcl.tk/software/tcllib/"
 SRC_URI="mirror://sourceforge/tcllib/${P}.tar.gz"
