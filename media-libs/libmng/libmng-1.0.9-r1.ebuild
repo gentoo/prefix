@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libmng/libmng-1.0.9-r1.ebuild,v 1.15 2008/05/31 16:41:26 drac Exp $
 
-EAPI="prefix"
-
 WANT_AUTOCONF=2.5
 WANT_AUTOMAKE=1.9
 inherit autotools
