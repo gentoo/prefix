@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-Blowfish/Crypt-Blowfish-2.10.ebuild,v 1.10 2007/01/15 15:29:39 mcummings Exp $
 
-EAPI="prefix"
-
 inherit perl-module
 
 DESCRIPTION="Crypt::Blowfish module for perl"
