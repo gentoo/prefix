@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-misc/pastemecli/pastemecli-0.8.ebuild,v 1.3 2005/03/22 16:09:50 kloeri Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="Pasteme.COM Command-Line-Client"
