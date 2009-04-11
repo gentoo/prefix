@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-fonts/font-adobe-75dpi/font-adobe-75dpi-1.0.0.ebuild,v 1.16 2007/02/04 18:41:47 joshuabaergen Exp $
 
-EAPI="prefix"
-
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
