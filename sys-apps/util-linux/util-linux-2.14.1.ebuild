@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.14.1.ebuild,v 1.14 2009/02/15 00:19:52 vapier Exp $
 
-EAPI="prefix"
-
 EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/util-linux-ng/util-linux-ng.git"
 inherit eutils
 [[ ${PV} == "9999" ]] && inherit git
