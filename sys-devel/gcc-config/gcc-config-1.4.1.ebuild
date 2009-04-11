@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/gcc-config-1.4.1.ebuild,v 1.2 2009/01/28 02:32:51 vapier Exp $
 
-EAPI="prefix"
-
 inherit eutils flag-o-matic toolchain-funcs multilib prefix
 
 # Version of .c wrapper to use
