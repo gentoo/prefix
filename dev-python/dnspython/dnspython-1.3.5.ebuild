@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/dnspython/dnspython-1.3.5.ebuild,v 1.12 2007/12/15 11:34:12 lucass Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="DNS toolkit for Python."

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/dnspython/dnspython-1.6.0.ebuild,v 1.6 2008/12/07 18:08:38 vapier Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.2
 
 inherit distutils
