@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/flawfinder/flawfinder-1.27.ebuild,v 1.2 2009/01/25 23:21:01 angelos Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Examines C/C++ source code for security flaws"
 HOMEPAGE="http://www.dwheeler.com/flawfinder/"
 SRC_URI="http://www.dwheeler.com/${PN}/${P}.tar.gz"
