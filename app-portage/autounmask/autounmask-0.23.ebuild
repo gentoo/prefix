@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/autounmask/autounmask-0.23.ebuild,v 1.5 2009/01/19 11:40:51 jer Exp $
 
-EAPI="prefix"
-
 inherit eutils prefix
 
 DESCRIPTION="autounmask - Unmasking packages the easy way"
