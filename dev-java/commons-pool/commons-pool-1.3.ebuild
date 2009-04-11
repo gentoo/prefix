@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/commons-pool/commons-pool-1.3.ebuild,v 1.6 2007/05/17 20:18:30 caster Exp $
 
-EAPI="prefix"
-
 JAVA_PKG_IUSE="doc source test"
 
 inherit eutils java-pkg-2 java-ant-2
