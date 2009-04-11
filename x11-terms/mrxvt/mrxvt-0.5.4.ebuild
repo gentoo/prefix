@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/mrxvt-0.5.4.ebuild,v 1.2 2009/01/09 14:41:53 remi Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Multi-tabbed rxvt clone with XFT, transparent background and CJK support"
