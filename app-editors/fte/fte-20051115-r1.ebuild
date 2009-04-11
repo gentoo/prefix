@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/fte/fte-20051115-r1.ebuild,v 1.4 2008/03/10 13:58:16 drac Exp $
 
-EAPI="prefix"
-
 inherit eutils
 
 DESCRIPTION="Lightweight text-mode editor"
