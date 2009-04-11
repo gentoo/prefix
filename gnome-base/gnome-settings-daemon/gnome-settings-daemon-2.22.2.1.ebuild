@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/gnome-settings-daemon-2.22.2.1.ebuild,v 1.12 2008/11/13 19:26:45 ranger Exp $
 
-EAPI="prefix"
-
 inherit eutils gnome2
 
 DESCRIPTION="Gnome Settings Daemon"
