@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/psyco/psyco-1.6.ebuild,v 1.1 2008/03/08 08:30:45 dev-zero Exp $
 
-EAPI="prefix"
-
 inherit distutils
 
 DESCRIPTION="Python extension module which can massively speed up the execution of any Python code."
