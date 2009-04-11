@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaf/jaf-1.1.ebuild,v 1.4 2008/10/27 23:25:43 ranger Exp $
 
-EAPI="prefix 1"
+EAPI=1
 
 inherit java-virtuals-2
 
