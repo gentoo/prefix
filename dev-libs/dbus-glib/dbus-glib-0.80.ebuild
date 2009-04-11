@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.80.ebuild,v 1.1 2009/03/08 19:32:07 eva Exp $
 
-EAPI="prefix 2"
+EAPI=2
 
 inherit eutils bash-completion
 

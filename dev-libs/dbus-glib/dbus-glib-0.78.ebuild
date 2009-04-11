@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/dbus-glib-0.78.ebuild,v 1.4 2009/01/18 20:34:47 eva Exp $
 
-EAPI="prefix"
-
 inherit eutils multilib autotools bash-completion
 
 DESCRIPTION="D-Bus bindings for glib"
