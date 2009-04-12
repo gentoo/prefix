@@ -63,8 +63,7 @@ export WANT_JAVA_CONFIG="2"
 # portage with phase hooks support but now we use a version with proper env
 # saving. For EAPI 2 we have new enough stuff so let's have cleaner deps.
 # -----------------------------------------------------------------------------
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-hasq "${eapi}" 0 1 && JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1.2.7"
+hasq "${EAPI}" 0 1 && JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1.2.7"
 
 # -----------------------------------------------------------------------------
 # @variable-internal JAVA_PKG_E_DEPEND

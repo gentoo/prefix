@@ -10,9 +10,7 @@
 
 inherit base multilib toolchain-funcs eutils
 
-eapi=${EAPI/prefix/}
-
-case ${eapi:-0} in
+case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst pkg_postinst ;;
 	2) EXPORT_FUNCTIONS pkg_setup src_configure src_compile pkg_preinst pkg_postinst ;;
 esac
@@ -148,7 +146,7 @@ games_src_configure() {
 }
 
 games_src_compile() {
-	case ${eapi:-0} in
+	case ${EAPI:-0} in
 		0|1) games_src_configure ;;
 	esac
 	[ -e [Mm]akefile ] && { emake || die "emake failed"; }

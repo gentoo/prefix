@@ -286,8 +286,7 @@ eqmake4() {
 	return ${result}
 }
 
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-case ${eapi:-0} in
+case ${EAPI:-0} in
 	2)
 		EXPORT_FUNCTIONS pkg_setup src_prepare
 		;;

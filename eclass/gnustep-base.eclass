@@ -66,7 +66,6 @@ gnustep-base_src_configure() {
 
 gnustep-base_src_compile() {
 	egnustep_env
-	local eapi=${EAPI/prefix/}
 	case ${EAPI:-0} in
 		0|1) gnustep-base_src_configure ;;
 	esac
@@ -222,8 +221,7 @@ EOF
 	doexe "${T}"/${cfile}
 }
 
-eapi=${EAPI/prefix/}
-case ${eapi:-0} in
+case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst ;;
 	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_configure src_compile src_install pkg_postinst ;;
 esac

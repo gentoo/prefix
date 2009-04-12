@@ -11,8 +11,7 @@
 
 inherit base multilib
 
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-has 2 ${eapi} || DEPEND="EAPI-TOO-OLD"
+has 2 ${EAPI} || DEPEND="EAPI-TOO-OLD"
 
 EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install
 

@@ -18,8 +18,7 @@
 
 inherit eutils
 
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-case "${eapi:-0}" in
+case "${EAPI:-0}" in
 	2)
 		EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install
 		;;
@@ -40,8 +39,7 @@ base_src_unpack() {
 	debug-print-function $FUNCNAME "$@"
 
 	if [ -z "$1" ] ; then
-		eapi=${EAPI/prefix/} ; eapi=${eapi# }
-		case "${eapi:-0}" in
+		case "${EAPI:-0}" in
 			2)
 				base_src_util unpack
 				;;
@@ -139,8 +137,7 @@ base_src_compile() {
 
 	if [ -z "$1" ]
 	then
-		eapi=${EAPI/prefix/} ; eapi=${eapi# }
-		case "${eapi:-0}" in
+		case "${EAPI:-0}" in
 			2)
 				base_src_work make
 				;;

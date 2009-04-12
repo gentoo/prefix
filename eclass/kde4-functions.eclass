@@ -14,8 +14,7 @@
 # @DESCRIPTION:
 # By default kde4 eclasses wants eapi 2 which might be redefinable to newer
 # versions.
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-case ${eapi} in
+case ${EAPI} in
 	2) : ;;
 	*) die "No way! EAPI other than 2 is not supported for now." ;;
 esac

@@ -23,8 +23,7 @@
 inherit toolchain-funcs multilib flag-o-matic base
 
 EXPF="src_compile src_test src_install"
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-case ${eapi:-0} in
+case ${EAPI:-0} in
 	2) EXPF="${EXPF} src_configure"
 		;;
 	1|0) ;;

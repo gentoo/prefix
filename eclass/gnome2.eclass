@@ -14,8 +14,7 @@
 
 inherit fdo-mime libtool gnome.org gnome2-utils
 
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-case "${eapi:-0}" in
+case "${EAPI:-0}" in
 	0|1)
 		EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm
 		;;
@@ -47,8 +46,7 @@ fi
 gnome2_src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
-	has ${eapi:-0} 0 1 && gnome2_src_prepare
+	has ${EAPI:-0} 0 1 && gnome2_src_prepare
 }
 
 gnome2_src_prepare() {
@@ -80,8 +78,7 @@ gnome2_src_configure() {
 }
 
 gnome2_src_compile() {
-	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
-	has ${eapi:-0} 0 1 && gnome2_src_configure "$@"
+	has ${EAPI:-0} 0 1 && gnome2_src_configure "$@"
 	emake || die "compile failure"
 }
 

@@ -52,8 +52,7 @@
 
 inherit elisp-common eutils versionator
 
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-case "${eapi:-0}" in
+case "${EAPI:-0}" in
 	0|1) EXPORT_FUNCTIONS src_{unpack,compile,install} \
 		pkg_{setup,postinst,postrm} ;;
 	*) EXPORT_FUNCTIONS src_{unpack,prepare,configure,compile,install} \
@@ -83,8 +82,7 @@ elisp_src_unpack() {
 		[ -d "${S}" ] || S=${WORKDIR}
 	fi
 
-	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
-	case "${eapi:-0}" in
+	case "${EAPI:-0}" in
 		0|1) [ -d "${S}" ] && cd "${S}"
 			elisp_src_prepare ;;
 	esac

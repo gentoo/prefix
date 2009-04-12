@@ -7,8 +7,7 @@
 
 inherit perl-module
 
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-case "${eapi:-0}" in
+case "${EAPI:-0}" in
 	0|1) EXPORT_FUNCTIONS src_compile ;;
 	2)   EXPORT_FUNCTIONS src_configure src_compile ;;
 esac
@@ -22,7 +21,6 @@ perl-app_src_configure() {
 }
 
 perl-app_src_compile() {
-	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
-	has "${eapi:-0}" 0 1 && perl-app_src_prep
+	has "${EAPI:-0}" 0 1 && perl-app_src_prep
 	perl-module_src_compile
 }

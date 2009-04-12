@@ -14,8 +14,7 @@
 
 inherit eutils base
 
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-case "${eapi:-0}" in
+case "${EAPI:-0}" in
 	0|1)
 		EXPORT_FUNCTIONS pkg_setup pkg_preinst pkg_postinst pkg_prerm pkg_postrm src_compile src_install src_test src_unpack
 		;;
@@ -57,8 +56,7 @@ perlinfo_done=false
 
 perl-module_src_unpack() {
 	base_src_unpack unpack
-	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
-	has "${eapi:-0}" 0 1 && perl-module_src_prepare
+	has "${EAPI:-0}" 0 1 && perl-module_src_prepare
 }
 
 perl-module_src_prepare() {
@@ -112,8 +110,7 @@ perl-module_src_prep() {
 perl-module_src_compile() {
 	${perlinfo_done} || perlinfo
 
-	local eapi=${EAPI/prefix/} ; eapi=${eapi# }
-	has "${eapi:-0}" 0 1 && perl-module_src_prep
+	has "${EAPI:-0}" 0 1 && perl-module_src_prep
 
 	if [[ -f Build ]] ; then
 		./Build build \

@@ -6,8 +6,7 @@ inherit base
 
 # For GGZ Gaming Zone packages
 
-eapi=${EAPI/prefix/}
-case ${eapi:-0} in
+case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS src_compile src_install pkg_postinst pkg_postrm ;;
 	2) EXPORT_FUNCTIONS src_configure src_compile src_install pkg_postinst pkg_postrm ;;
 esac
@@ -26,8 +25,7 @@ games-ggz_src_configure() {
 }
 
 games-ggz_src_compile() {
-	local eapi=${EAPI/prefix/}
-	case ${eapi:-0} in
+	case ${EAPI:-0} in
 		0|1) games-ggz_src_configure "$@" ;;
 	esac
 	emake || die "emake failed"

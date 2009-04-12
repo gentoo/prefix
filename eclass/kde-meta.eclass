@@ -89,8 +89,7 @@ if [[ "${KMNAME}" != "koffice" ]]; then
 	DEPEND="${DEPEND} !=$(get-parent-package ${CATEGORY}/${PN})-${SLOT}*"
 	RDEPEND="${RDEPEND} !=$(get-parent-package ${CATEGORY}/${PN})-${SLOT}*"
 else
-	eapi=${EAPI/prefix/}
-	case ${eapi:-0} in
+	case ${EAPI:-0} in
 		0)
 		# EAPIs without SLOT dependencies.
 		IFSBACKUP="$IFS"

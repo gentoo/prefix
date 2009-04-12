@@ -626,8 +626,7 @@ qt_mkspecs_dir() {
 	echo "${spec}"
 }
 
-eapi=${EAPI/prefix/} ; eapi=${eapi# }
-case ${eapi:-0} in
+case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postrm pkg_postinst ;;
 	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_configure src_compile src_install pkg_postrm pkg_postinst ;;
 esac
