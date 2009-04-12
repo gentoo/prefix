@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/mysql-community-5.1.21_beta.ebuild,v 1.3 2008/11/14 09:43:04 robbat2 Exp $
 
-EAPI="prefix"
-
 MY_EXTRAS_VER="20070916"
 #SERVER_URI="mirror://gentoo/MySQL-${PV%.*}/mysql-${PV//_/-}.tar.gz"
 PBXT_VERSION="0.9.8-beta"
