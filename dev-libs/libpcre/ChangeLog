@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.147 2009/04/09 16:08:21 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.148 2009/04/12 11:03:12 loki_val Exp $
+
+  12 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> libpcre-7.8-r1.ebuild,
+  libpcre-7.9_rc2.ebuild:
+  Use gen_usr_ldscript instead of clunky symlinks handling. Thanks to
+  grobian.
 
 *libpcre-7.9_rc2 (09 Apr 2009)
 *libpcre-7.8-r1 (09 Apr 2009)
