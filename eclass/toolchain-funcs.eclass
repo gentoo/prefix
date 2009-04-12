@@ -447,20 +447,22 @@ gen_usr_ldscript() {
 		local tlib
 		if ${auto} ; then
 			lib="lib${lib}${suffix}"
+		else
+			# Ensure /lib/${lib} exists to avoid dangling scripts/symlinks.
+			# This especially is for AIX where $(get_libname) can return ".a",
+			# so /lib/${lib} might be moved to /usr/lib/${lib} (by accident).
+			[[ -r ${ED}/${libdir}/${lib} ]] || continue
+			#TODO: better die here?
 		fi
-
-		# Ensure /lib/${lib} exists to avoid dangling scripts/symlinks.
-		# This especially is for AIX where $(get_libname) can return ".a",
-		# so /lib/${lib} might be moved to /usr/lib/${lib} (by accident).
-		[[ -r ${ED}/${libdir}/${lib} ]] || continue
 
 		case ${CHOST} in
 		*-darwin*)
 			tlib=$(scanmacho -qF'%S#F' "${ED}"/usr/${libdir}/${lib})
 			[[ -z ${tlib} ]] && die "unable to read install_name from ${lib}"
+			tlib=${tlib##*/}
 
 			if ${auto} ; then
-				mv "${ED}"/usr/${libdir}/${lib#${suffix}}*${suffix} "${ED}"/${libdir}/ || die
+				mv "${ED}"/usr/${libdir}/${lib%${suffix}}.*${suffix#.} "${ED}"/${libdir}/ || die
 				rm -f "${ED}"/${libdir}/${lib}
 			fi
 
@@ -472,8 +474,8 @@ gen_usr_ldscript() {
 			# Make sure we don't lose the specific version, so just modify the
 			# existing install_name
 			install_name_tool \
-				-id "${EPREFIX}"/${libdir}/${tlib##*/} \
-				"${ED}"/${libdir}/${lib}
+				-id "${EPREFIX}"/${libdir}/${tlib} \
+				"${ED}"/${libdir}/${tlib}
 			# Now as we don't use GNU binutils and our linker doesn't
 			# understand linker scripts, just create a symlink.
 			pushd "${ED}/usr/${libdir}" > /dev/null
