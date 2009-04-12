@@ -15,6 +15,7 @@
 
 ___ECLASS_RECUR_TOOLCHAIN_FUNCS="yes"
 [[ -z ${___ECLASS_RECUR_MULTILIB} ]] && inherit multilib
+inherit prefix
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
@@ -423,7 +424,7 @@ gcc-specs-nostrict() {
 # correctly to point to the latest version of the library present.
 gen_usr_ldscript() {
 	local lib libdir=$(get_libdir) output_format="" auto=false suffix=$(get_libname)
-	local ED=${D%/}${EPREFIX}/
+	[[ ! ${ED+set} ]] && local ED=${D%/}${EPREFIX}/
 
 	# *MiNT doesn't have shared libraries, so nothing to do here
 	[[ ${CHOST} == *-mint* ]] && return
