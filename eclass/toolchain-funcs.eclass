@@ -456,7 +456,7 @@ gen_usr_ldscript() {
 			# libdir=/lib because that messes up libtool files.
 			# Make sure we don't lose the specific version, so just modify the
 			# existing install_name
-			install_name=$(otool -DX "${D%/}${EPREFIX}/"${libdir}/${lib})
+			install_name=$(scanmacho -qF'%S#F' "${D%/}${EPREFIX}/"${libdir}/${lib})
 			[[ -z ${install_name} ]] && die "No install name found for ${D%/}${EPREFIX}/${libdir}/${lib}"
 			install_name_tool \
 				-id "${EPREFIX}"/${libdir}/${install_name##*/} \
