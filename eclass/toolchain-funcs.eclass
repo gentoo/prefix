@@ -423,6 +423,7 @@ gcc-specs-nostrict() {
 # correctly to point to the latest version of the library present.
 gen_usr_ldscript() {
 	local lib libdir=$(get_libdir) output_format="" auto=false suffix=$(get_libname)
+	local ED=${D%/}${EPREFIX}/
 
 	# *MiNT doesn't have shared libraries, so nothing to do here
 	[[ ${CHOST} == *-mint* ]] && return
@@ -442,13 +443,26 @@ gen_usr_ldscript() {
 	[[ -n ${output_format} ]] && output_format="OUTPUT_FORMAT ( ${output_format} )"
 
 	for lib in "$@" ; do
+		local tlib
+		if ${auto} ; then
+			lib="lib${lib}${suffix}"
+		fi
+
 		# Ensure /lib/${lib} exists to avoid dangling scripts/symlinks.
 		# This especially is for AIX where $(get_libname) can return ".a",
 		# so /lib/${lib} might be moved to /usr/lib/${lib} (by accident).
-		[[ -r ${D%/}${EPREFIX}/${libdir}/${lib} ]] || continue
+		[[ -r ${ED}/${libdir}/${lib} ]] || continue
 
 		case ${CHOST} in
 		*-darwin*)
+			tlib=$(scanmacho -qF'%S#F' "${ED}"/usr/${libdir}/${lib})
+			[[ -z ${tlib} ]] && die "unable to read install_name from ${lib}"
+
+			if ${auto} ; then
+				mv "${ED}"/usr/${libdir}/${lib#${suffix}}*${suffix} "${ED}"/${libdir}/ || die
+				rm -f "${ED}"/${libdir}/${lib}
+			fi
+
 			# Mach-O files have an id, which is like a soname, it tells how
 			# another object linking against this lib should reference it.
 			# Since we moved the lib from usr/lib into lib this reference is
@@ -456,26 +470,26 @@ gen_usr_ldscript() {
 			# libdir=/lib because that messes up libtool files.
 			# Make sure we don't lose the specific version, so just modify the
 			# existing install_name
-			install_name=$(scanmacho -qF'%S#F' "${D%/}${EPREFIX}/"${libdir}/${lib})
-			[[ -z ${install_name} ]] && die "No install name found for ${D%/}${EPREFIX}/${libdir}/${lib}"
 			install_name_tool \
-				-id "${EPREFIX}"/${libdir}/${install_name##*/} \
-				"${D%/}${EPREFIX}/"${libdir}/${lib}
+				-id "${EPREFIX}"/${libdir}/${tlib##*/} \
+				"${ED}"/${libdir}/${lib}
 			# Now as we don't use GNU binutils and our linker doesn't
 			# understand linker scripts, just create a symlink.
-			pushd "${D%/}${EPREFIX}/usr/${libdir}" > /dev/null
-			ln -snf "../../${libdir}/${lib}" "${lib}"
+			pushd "${ED}/usr/${libdir}" > /dev/null
+			ln -snf "../../${libdir}/${tlib}" "${lib}"
 			popd > /dev/null
 			;;
-		*-aix*|*-irix*|*-hpux*)
+		*-aix*|*-irix*|*-hpux*|*-interix*|*-winnt*)
+			if ${auto} ; then
+				# no way to retrieve soname on these platforms (?)
+				mv "${ED}"/usr/${libdir}/${lib}* "${ED}"/${libdir}/ || die
+				rm -f "${ED}"/${libdir}/${lib}
+			fi
+			tlib=${lib}
+
 			# we don't have GNU binutils on these platforms, so we symlink
 			# instead, which seems to work fine.  Keep it relative, otherwise
 			# we break some QA checks in Portage
-			pushd "${D%/}${EPREFIX}/usr/${libdir}" > /dev/null
-			ln -snf "../../${libdir}/${lib}" "${lib}"
-			popd > /dev/null
-			;;
-		*-interix*|*-winnt*)
 			# on interix, the linker scripts would work fine in _most_
 			# situations. if a library links to such a linker script the
 			# absolute path to the correct library is inserted into the binary,
@@ -486,26 +500,24 @@ gen_usr_ldscript() {
 			# this has been seen while building shared-mime-info which needs
 			# libxml2, but links without libtool (and does not add libz to the
 			# command line by itself).
-			pushd "${D%/}${EPREFIX}/usr/${libdir}" > /dev/null
-			ln -snf "../../${libdir}/${lib}" "${lib}"
+			pushd "${ED}/usr/${libdir}" > /dev/null
+			ln -snf "../../${libdir}/${tlib}" "${lib}"
 			popd > /dev/null
 			;;
 		*)
-			local tlib
 			if ${auto} ; then
-				lib="lib${lib}${suffix}"
-				tlib=$(scanelf -qF'%S#F' "${D%/}${EPREFIX}/"usr/${libdir}/${lib})
-				mv "${D%/}${EPREFIX}/"usr/${libdir}/${lib}* "${D%/}${EPREFIX}/"${libdir}/ || die
+				tlib=$(scanelf -qF'%S#F' "${ED}"/usr/${libdir}/${lib})
+				[[ -z ${tlib} ]] && die "unable to read SONAME from ${lib}"
+				mv "${ED}"/usr/${libdir}/${lib}* "${ED}"/${libdir}/ || die
 				# some SONAMEs are funky: they encode a version before the .so
 				if [[ ${tlib} != ${lib}* ]] ; then
-					mv "${D%/}${EPREFIX}/"usr/${libdir}/${tlib}* "${D%/}${EPREFIX}/"${libdir}/ || die
+					mv "${ED}"/usr/${libdir}/${tlib}* "${ED}"/${libdir}/ || die
 				fi
-				[[ -z ${tlib} ]] && die "unable to read SONAME from ${lib}"
-				rm -f "${D%/}${EPREFIX}/"${libdir}/${lib}
+				rm -f "${ED}"/${libdir}/${lib}
 			else
 				tlib=${lib}
 			fi
-			cat > "${D%/}${EPREFIX}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
+			cat > "${ED}/usr/${libdir}/${lib}" <<-END_LDSCRIPT
 			/* GNU ld script
 			   Since Gentoo has critical dynamic libraries in /lib, and the static versions
 			   in /usr/lib, we need to have a "fake" dynamic lib in /usr/lib, otherwise we
