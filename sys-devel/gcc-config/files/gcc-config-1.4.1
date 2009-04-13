@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.1,v 1.8 2009/01/28 02:32:50 vapier Exp $
@@ -6,8 +6,8 @@
 trap ":" INT QUIT TSTP
 
 argv0=${0##*/}
-source /etc/init.d/functions.sh || {
-	echo "${argv0}: Could not source /etc/init.d/functions.sh!"
+source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh || {
+	echo "${argv0}: Could not source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh!"
 	exit 1
 }
 esyslog() { :; }
@@ -59,7 +59,7 @@ try_real_hard_to_find_CHOST() {
 	#
 
 	local varname=${1:-CHOST}
-	local conf=${ROOT}/etc/make.conf
+	local conf=${EROOT}/etc/make.conf
 	local ret=$(source "${conf}" 2>/dev/null ; echo ${!varname})
 	if [[ -z ${ret} ]] ; then
 		# newer portage supports spaces between the var and =
@@ -81,8 +81,8 @@ try_real_hard_to_find_CHOST() {
 	#
 	# Then we try /etc/env.d/gcc/config-${CTARGET}
 	#
-	if [[ -s ${ROOT}/etc/env.d/gcc/config-${CTARGET} ]] ; then
-		ret=$(split_gcc_ver $(eval $(<"${ROOT}"/etc/env.d/gcc/config-${CTARGET}) ; echo ${CURRENT}))
+	if [[ -s ${EROOT}/etc/env.d/gcc/config-${CTARGET} ]] ; then
+		ret=$(split_gcc_ver $(eval $(<"${EROOT}"/etc/env.d/gcc/config-${CTARGET}) ; echo ${CURRENT}))
 		echo ${ret% *}
 	fi
 }
@@ -98,7 +98,7 @@ get_real_chost() {
 
 	# make sure portage isnt broken
 	if python -V &>/dev/null ; then
-		export REAL_CHOST=$(env -i portageq envvar CHOST 2>/dev/null)
+		export REAL_CHOST=$(env -i "${EPREFIX}"/usr/bin/portageq envvar CHOST 2>/dev/null)
 	else
 		ewarn "Python seems to be broken, attempting to locate CHOST ourselves ..."
 		export REAL_CHOST=$(try_real_hard_to_find_CHOST)
@@ -107,7 +107,7 @@ get_real_chost() {
 	if [[ -z ${REAL_CHOST} ]] ; then
 		eerror "${argv0}: Could not get portage CHOST!"
 		eerror "${argv0}: You should verify that CHOST is set in one of these places:"
-		eerror "${argv0}:  - ${ROOT}/etc/make.conf"
+		eerror "${argv0}:  - ${EROOT}/etc/make.conf"
 		eerror "${argv0}:  - active environment"
 		exit 1
 	fi
@@ -157,7 +157,7 @@ switch_profile() {
 	local OLD_CC_COMP=
 	local GCC_PATH=
 
-	if [[ $(id -u) != "0" ]] ; then
+	if [[ ${EPREFIX%/} == "" ]] && [[ $(id -u) != "0" ]] ; then
 		eerror "${argv0}: Must be root."
 		exit 1
 	fi
@@ -249,7 +249,7 @@ switch_profile() {
 			if [[ ${ROOT} != "/" ]] ; then
 				echo "GCC_SPECS=\"\"" >> "${ENV_D}/05gcc-${CTARGET}"
 			else
-				if ! GCC_SPECS="" /usr/bin/gcc -v &>/dev/null ; then
+				if [[ -x "${EPREFIX}"/usr/bin/gcc ]] && ! GCC_SPECS="" "${EPREFIX}"/usr/bin/gcc -v &>/dev/null ; then
 					echo
 					ewarn "Your gcc has a bug with GCC_SPECS."
 					ewarn "Please re-emerge gcc."
@@ -277,7 +277,7 @@ switch_profile() {
 	# Find the bin wrapper
 	local wrapper
 	for wrapper in ${GENTOO_LIBDIR} lib lib64 lib32 lib ; do
-		wrapper="${ROOT}usr/${wrapper}/misc/gcc-config"
+		wrapper="${EROOT}usr/${wrapper}/misc/gcc-config"
 		[[ -e ${wrapper} ]] && break
 	done
 
@@ -287,9 +287,9 @@ switch_profile() {
 		[[ ${x} != ${CTARGET}-* ]] && is_cross_compiler && continue
 
 		# Make sure we have no stale wrappers
-		rm -f "${ROOT}/usr/bin/${x}"
+		rm -f "${EROOT}/usr/bin/${x}"
 		[[ ${x:${#x}-3} == "gcc" || ${x:${#x}-3} == "g++" ]] \
-			&& rm -f "${ROOT}/usr/bin/${x}"{32,64}
+			&& rm -f "${EROOT}/usr/bin/${x}"{32,64}
 
 		# Only install a wrapper if the binary exists ...
 		# We want to figure out the 'reference file' for each 
@@ -303,32 +303,32 @@ switch_profile() {
 			*)   ref=${ROOT}/${GCC_PATH}/${x};;
 		esac
 		if [[ -x ${ref} ]] ; then
-			cp -f "${wrapper}" "${ROOT}/usr/bin/${x}"
-			touch -r "${ref}" "${ROOT}/usr/bin/${x}"
+			cp -f "${wrapper}" "${EROOT}/usr/bin/${x}"
+			touch -r "${ref}" "${EROOT}/usr/bin/${x}"
 
 			# Install 32bit and 64bit wrappers if need be
 			# This should probably get folded back into the wrapper ...
 			if [[ ${x:${#x}-3} == "gcc" ]] || [[ ${x:${#x}-3} == "g++" ]] ; then
 				for bits in ${GCCBITS} ; do
-					cp -f "${wrapper}" "${ROOT}/usr/bin/${x}${bits}"
+					cp -f "${wrapper}" "${EROOT}/usr/bin/${x}${bits}"
 				done
 			fi
 		fi
 	done
 	# legacy cruft, make sure we dont leave it laying around #143205
-	rm -f "${ROOT}/usr/bin/${CTARGET}-cc"
+	rm -f "${EROOT}/usr/bin/${CTARGET}-cc"
 	# Only install cpp if switching to a native one
 	if ! is_cross_compiler && [[ ${CTARGET} != *-solaris* ]] ; then
-		rm -f "${ROOT}/lib/cpp"
-		cp -f "${wrapper}" "${ROOT}/lib/cpp"
+		rm -f "${EROOT}/lib/cpp"
+		cp -f "${wrapper}" "${EROOT}/lib/cpp"
 	fi
 
 	# Relocate random crap
 	if ! is_cross_compiler ; then
-		if [[ -e ${ROOT}/usr/${GENTOO_LIBDIR}/pkgconfig/libgcj-${CC_COMP_VERSION}.pc ]] ; then
+		if [[ -e ${EROOT}/usr/${GENTOO_LIBDIR}/pkgconfig/libgcj-${CC_COMP_VERSION}.pc ]] ; then
 			local mver=${CC_COMP_VERSION:0:3}
 			for x in "" "-${mver}" ; do
-				x="${ROOT}/usr/lib/pkgconfig/libgcj${x}.pc"
+				x="${EROOT}/usr/lib/pkgconfig/libgcj${x}.pc"
 				rm -f "${x}"
 				ln -s libgcj-${CC_COMP_VERSION}.pc "${x}"
 			done
@@ -346,30 +346,289 @@ switch_profile() {
 		# is the "root" multilib path ... maybe some day change this to use
 		# `gcc -print-file-name` ...
 		LDPATH=${LDPATH%%:*}
-		for multilib in $("${ROOT}/${GCC_PATH}"/gcc -print-multi-lib); do
-			multiarg=${multilib#*;}
-			multiarg=${multiarg/@/-}
-			multilibdir=${multilib%;*}
-			libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
-			if mkdir -p "${ROOT}/${libdir}"/.gcc.config.new ; then
-				for gcclib in gcc_s unwind ; do
-					if [[ -n $(ls "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.so.* 2>/dev/null) ]]; then
-						cp -pP "${ROOT}/${LDPATH}/${multilibdir}"/lib${gcclib}.so.* "${ROOT}/${libdir}"/.gcc.config.new/
-						# no need to sanity remove this as the `mv` should take
-						# care of it.  we also need this step to be completly atomic
-						# for systems that have even `mv` linked against libgcc_s.so.
-						# http://bugs.gentoo.org/150257
-						#rm -f "${ROOT}/${libdir}"/lib${gcclib}.so*
-						mv -f "${ROOT}/${libdir}"/.gcc.config.new/* "${ROOT}/${libdir}"/
-					fi
+
+		# We can copy the other libs to /usr/lib without funky copying,
+		# don't use symlinks as on Darwin we need to fix the
+		# install_names of the objects.  Omit libgcc and unwind as we
+		# already dealt with those above.  Remember that Prefix doesn't
+		# do multilib!
+		#
+		# To emulate properly what ld.so.conf magic does for non-prefix,
+		# we have to copy the libs of all installed (native) GCC's and
+		# make sure we do the current one as last, such that the
+		# pointers for the unversioned libs point to the currently
+		# selected version.
+		GCC_PROFILES=$(LC_ALL="C" ls ${GCC_ENV_D}/${REAL_CHOST}-*)
+
+		local dstlibgcc=${EROOT}/usr/${REAL_CHOST}/lib/gcc
+		local dstlib=${EROOT}/lib
+
+		# Prepare empty directories first
+		local temporary=.gcc.config.new
+		rm -rf   "${dstlib}"/${temporary} "${dstlibgcc}"/${temporary} || return 1
+		mkdir -p "${dstlib}"/${temporary} "${dstlibgcc}"/${temporary} || return 1
+
+		dumpargs() {
+			return 0
+			local x
+			echo "$1 \\"; shift
+			for x in "$@"; do
+				echo "  '$x' \\"
+			done
+			echo
+		}
+
+		case ${REAL_CHOST} in
+		*-mint*)
+			do_single_runtime() {
+				return 0
+			}
+			finish_runtime_dir() {
+				return 0
+			}
+			;;
+		*-aix*)
+			LIBSUFFIX="a"
+			AIXLIBS=
+
+			do_single_runtime() {
+				dumpargs do_single_runtime "$@"
+				local sourcedir=$1; shift
+				local libname=$1; shift
+				local targetdir=$1; shift
+				local finaldir=$1; shift
+
+				aixdll \
+					--merge-runtime \
+					--finish=false \
+					--target="${targetdir}"/lib${libname}.${LIBSUFFIX} \
+					"${sourcedir}"/lib${libname}.${LIBSUFFIX} \
+				|| return 1
+				[[ ${AIXLIBS} == *":${targetdir}/lib${libname}.${LIBSUFFIX}:"* ]] \
+				|| AIXLIBS="${AIXLIBS}:${targetdir}/lib${libname}.${LIBSUFFIX}:"
+			}
+
+			finish_runtime_dir() {
+				dumpargs finish_runtime_dir "$@"
+				local sourcedir=$1; shift
+				local targetdir=$1; shift
+				local cleanup=$1; shift
+
+				local f save_IFS
+				save_IFS=$IFS; IFS=:
+				for f in ${AIXLIBS}; do
+					IFS=$save_IFS
+					[[ -n ${f} ]] || continue
+					aixdll \
+						--finish-merge \
+						--keepdir=false \
+						"${f}" \
+					|| return 1
 				done
-				rmdir "${ROOT}/${libdir}"/.gcc.config.new
+				IFS=$save_IFS
+				unset AIXLIBS
+
+				finish_runtime_dir_elf \
+					"${sourcedir}" \
+					"${targetdir}" \
+					${cleanup} \
+				|| return 1
+			}
+			;;
+		*-darwin*)
+			LIBSUFFIX="dylib"
+
+			do_single_runtime() {
+				local sourcedir=$1; shift
+				local libname=$1; shift
+				local targetdir=$1; shift
+				local finaldir=$1; shift
+			
+				do_single_runtime_elf \
+					"${sourcedir}" \
+					${libname} \
+					"${targetdir}" \
+					"${finaldir}" \
+				|| return 1
+
+				# fix install_name on Darwin
+				local lib
+				for lib in "${targetdir}"/lib*; do
+					soname=$(otool -LX "${lib}" | sed -e '1!d' -e 's/^\t//' -e 's/ (compatibility.*$//')
+					install_name_tool \
+						-id "${finaldir}"/${soname##*/} \
+						"${lib}" \
+						&> /dev/null || true
+				done
+			}
+
+			finish_runtime_dir() {
+				finish_runtime_dir_elf "$@" 
+			}
+			;;
+		*)
+			LIBSUFFIX="so"
+			do_single_runtime() {
+				do_single_runtime_elf "$@"
+			}
+			finish_runtime_dir() {
+				finish_runtime_dir_elf "$@" 
+			}
+			;;
+		esac
+
+		do_single_runtime_elf() {
+			dumpargs do_single_runtime_elf "$@"
+			local sourcedir=$1; shift
+			local libname=$1; shift
+			local targetdir=$1; shift
+			local finaldir=$1; shift
+
+			# when using some simple shell script wrappers (again :)),
+			# there may be no libs around!
+			if [[ -n $(ls "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* 2>/dev/null) ]]; then
+				cp -fpP "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* "${targetdir}" || return 1
+				# we do not need the unversioned lib, as linking
+				# is done against the used gcc's private copy.
+				rm -f "${targetdir}"/lib${libname}.${LIBSUFFIX} || return 1
 			fi
+		}
+
+		finish_runtime_dir_elf() {
+			dumpargs finish_runtime_dir_elf "$@"
+			local sourcedir=$1; shift
+			local targetdir=$1; shift
+			local cleanup=$1; shift
+
+			if [[ ${cleanup} == clean ]]; then
+				if [[ ${targetdir} == *${EPREFIX}/lib ]]; then
+					echo "WARNING: not cleaning ${targetdir}" >&2
+				else
+					for f in "${targetdir}"/*; do
+						[[ ${f} == ${sourcedir} ]] && continue
+						[[ -e "${sourcedir}/${f##*/}" ]] && continue
+						rm -f "${f}"
+					done
+				fi
+			fi
+
+			# move symlinks first:
+			# because of file ordering, the real files may be
+			# moved before the symlinks, causing the symlinks
+			# going broken.
+			for f in "${sourcedir}"/*; do
+				[[ -e ${f} && -L ${f} ]] || continue
+				mv -f "${f}" "${targetdir}"/${f##*/} || return 1
+			done
+
+			for f in "${sourcedir}"/*; do
+				[[ -f "${f}" ]] || continue
+				mv -f "${f}" "${targetdir}"/${f##*/} || return 1
+			done
+			rmdir "${sourcedir}"
+		}
+
+		local targetdirs= targetdir=
+		local x multilib lib
+		local multiarg multilibdir libdir
+		local gcclib
+
+		for x in ${GCC_PROFILES} ; do
+
+			unset GCC_PATH LDPATH
+			eval $(
+				source "${x}"
+				echo "GCC_PATH='${GCC_PATH}'"
+				echo "LDPATH='${LDPATH}'"
+			)
+
+			for multilib in $(
+				echo ".;" # ensure we always operate on base libdir first
+				"${ROOT}/${GCC_PATH}"/gcc -print-multi-lib
+			); do
+				multiarg=${multilib#*;}
+				multiarg=${multiarg//@/ -}
+				multilibdir=${multilib%;*}
+				# in Prefix we don't do multilib, and this below results in
+				# getting a subdir for your 64-bits targets which breaks
+				# things badly...  Need to solve it when we go mainstream...
+				#libdir="lib/"$("${ROOT}/${GCC_PATH}"/gcc ${multiarg} -print-multi-os-directory)
+				libdir="lib/${multilibdir}"
+
+				pushd "${ROOT%/}${LDPATH}/${multilibdir}" > /dev/null || return 1
+
+				local donelibs=
+				for lib in lib*.${LIBSUFFIX}; do
+					[[ ${lib} != *.la    ]] || continue # skip libtool files.
+					gcclib=${lib#lib}
+					gcclib=${gcclib%.${LIBSUFFIX}}
+					gcclib=${gcclib%%.[0-9]*} # we need the unversioned libname.
+					[[ ${donelibs} != *" ${gcclib} "* ]] || continue
+					donelibs="${donelibs} ${gcclib} "
+					if [[ ${gcclib} == gcc_s* || ${gcclib} == unwind* ]]; then
+
+						targetdir="${EPREFIX}/${libdir}"
+
+						# finish lib/lib* at first, as the others may depend on it, and newer
+						# libs normally are compatible to older ones with same soname.
+						[[ ${targetdirs} == *":${targetdir},:"* ]] ||
+							targetdirs=":${targetdir},:${targetdirs}"
+
+						do_single_runtime \
+							"${ROOT%/}${LDPATH}/${multilibdir}" \
+							${gcclib} \
+							"${ROOT%/}${targetdir}"/${temporary} \
+							"${targetdir}" \
+						|| return 1
+
+						continue
+					fi
+
+					targetdir="${EPREFIX}/usr/${REAL_CHOST}/lib/gcc/${multilibdir}"
+
+					# finish usr/<chost>/lib/gcc/lib* after lib/lib*
+					[[ ${targetdirs} == *":${targetdir},clean:"* ]] ||
+						targetdirs="${targetdirs}:${targetdir},clean:"
+
+					do_single_runtime \
+						"${ROOT%/}${LDPATH}/${multilibdir}" \
+						${gcclib} \
+						"${ROOT%/}${targetdir}"/${temporary} \
+						"${targetdir}" \
+					|| return 1
+
+				done
+				popd > /dev/null
+
+				break # we do not do multilib in prefix any more
+			done # multilib
+		done # GCC_PROFILES
+
+		save_IFS=$IFS
+		IFS=:
+		for targetdir in ${targetdirs}; do
+			IFS=$save_IFS
+			[[ -n ${targetdir} ]] || continue
+
+			# eventually cleanup old files (not from $EPREFIX/lib)
+			clean=${targetdir##*,}
+
+			targetdir=${targetdir%,*}
+
+			finish_runtime_dir \
+				"${ROOT%/}${targetdir}"/${temporary} \
+				"${ROOT%/}${targetdir}" \
+				${clean} \
+			|| return 1
 		done
-		unset multilib
-		unset multilibdir
-		unset multiarg
-		unset libdir
+		IFS=$save_IFS
+
+		unset dstlibgcc dstlib temporary
+		unset LIBSUFFIX AIXLIBS
+		unset targetdirs targetdir
+		unset x
+		unset multilib multiarg multilibdir libdir
+		unset donelibs lib gcclib
 	fi
 
 	if [[ ${ROOT} == "/" ]] && [[ ${OLD_CC_COMP} != ${CC_COMP} || ${FORCE} == "yes" ]] ; then
@@ -379,9 +638,9 @@ switch_profile() {
 			ewarn "env-update failed to work properly; making sure ld.so.conf paths"
 			ewarn "are setup properly.  Please rerun gcc-config with the -f option."
 			echo ""
-			grep -h ^LDPATH= "${ROOT}"/etc/env.d/05gcc-${CTARGET} \
+			grep -h ^LDPATH= "${EROOT}"/etc/env.d/05gcc-${CTARGET} \
 				| sed -e 's:^LDPATH=::' -e 's:"::g' -e 's|:|\n|g' \
-				>> /etc/ld.so.conf
+				>> "${EPREFIX}"/etc/ld.so.conf
 			ldconfig
 		fi
 	fi
@@ -393,7 +652,9 @@ switch_profile() {
 		ewarn "If you intend to use the gcc from the new profile in an already"
 		ewarn "running shell, please remember to do:"
 		echo
-		ewarn "  # source /etc/profile"
+		ewarn " (bash) # source ${EPREFIX}/etc/profile"
+		ewarn "or"
+		ewarn " (tcsh) # source ${EPREFIX}/etc/csh.login"
 		echo
 	fi
 
@@ -614,7 +875,9 @@ FORCE="no"
 CC_COMP=
 [[ -z ${ROOT} ]] && ROOT="/"
 [[ ${ROOT:0-1} != "/" ]] && ROOT="${ROOT}/"
-ENV_D="${ROOT}etc/env.d"
+EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
+EROOT="${ROOT%/}${EPREFIX}/"
+ENV_D="${EROOT}etc/env.d"
 GCC_ENV_D="${ENV_D}/gcc"
 
 for x in "$@" ; do
@@ -768,17 +1031,19 @@ fi
 if [[ ${DOIT} != "get_current_profile" ]] ; then
 	GCC_LIB=$(
 		LDPATH=$(source "${GCC_ENV_D}/${CC_COMP}"; echo ${LDPATH})
-		echo ${LDPATH} | awk -F/ '{ print  "/"$2"/"$3"/"$4"/" }'
+		echo ${LDPATH} | \
+ 			sed -e "s|${EPREFIX}/*|/|g" | \
+			awk -F/ '{ print "/"$2"/"$3"/"$4"/" }'
 	)
 
 	CC_COMP_VERSION=$(chop_gcc_ver_spec ${CC_COMP})
 	CC_COMP_TARGET=${CC_COMP%-${CC_COMP_VERSION}*}
 
-	if [[ ! -d ${ROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]]; then
+	if [[ ! -d ${EROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]]; then
 		CC_COMP_VERSION=${CC_COMP_VERSION%-*}
 	fi
 
-	if [[ ! -d ${ROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]] || \
+	if [[ ! -d ${EROOT}/${GCC_LIB}/${CC_COMP_TARGET}/${CC_COMP_VERSION} ]] || \
 	   [[ ! -f ${GCC_ENV_D}/${CC_COMP} ]]
 	then
 		eerror "${argv0}: Profile does not exist or invalid setting for ${GCC_ENV_D}/${CC_COMP}" 1>&2
