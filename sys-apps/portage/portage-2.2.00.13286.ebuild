@@ -2,6 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
+# allow people to upgrade to this hybrid version
+EAPI="prefix"
+
 RESTRICT="test"
 
 inherit eutils multilib python
