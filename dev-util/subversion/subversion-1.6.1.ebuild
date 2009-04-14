@@ -191,7 +191,7 @@ src_compile() {
 		einfo
 		einfo "Building of Subversion SWIG Python bindings"
 		einfo
-		emake swig_pydir="$(python_get_sitedir)/libsvn" swig_pydir_extra="$(python_get_sitedir)/svn" swig-py \
+		emake swig_pydir="${EPREFIX}/$(python_get_sitedir)/libsvn" swig_pydir_extra="${EPREFIX}/$(python_get_sitedir)/svn" swig-py \
 			|| die "Building of Subversion SWIG Python bindings failed"
 	fi
 
