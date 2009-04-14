@@ -79,6 +79,8 @@ src_unpack() {
 	fi
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13133-prefix-chaining.patch
+
+	epatch "${FILESDIR}/${P}-dest-fix.patch"
 }
 
 src_compile() {

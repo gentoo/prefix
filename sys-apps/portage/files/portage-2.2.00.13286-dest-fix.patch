@@ -1,0 +1,13 @@
+Index: bin/ebuild.sh
+===================================================================
+--- bin/ebuild.sh	(revision 13319)
++++ bin/ebuild.sh	(revision 13320)
+@@ -630,7 +629,7 @@
+ }
+ 
+ src_install() {
+-	if hasq prefix ${EAPI}; then
++	if use prefix ; then
+ 		# this avoids misc errors in prefix because it doesn't exist
+ 		# by default
+ 		mkdir -p "${ED}"
