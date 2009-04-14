@@ -17,11 +17,3 @@ DEPEND=""
 # - Don't put elibc_glibc? ( sys-libs/glibc ) to avoid circular deps between
 # that and gcc
 RDEPEND="!elibc_glibc? ( sys-devel/gettext )"
-
-src_install() {
-	# This is a HUGE hack. portage relies on ${D} always existing so it can 'cd
-	# ${D}' during install_qa_check(), but prefix-portage does NOT guarentee
-	# that ${ED} always exists, so we make it here for this failing package.
-	# There should be some better ways of doing this in prefix-portage itself.
-	mkdir -p ${D}/${EPREFIX} || die
-}
