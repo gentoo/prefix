@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/mail-mta/msmtp/msmtp-1.4.9.ebuild,v 1.3 2008/03/22 14:51:06 tove Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="An SMTP client and SMTP plugin for mail user agents such as Mutt"
 HOMEPAGE="http://msmtp.sourceforge.net/"
 SRC_URI="mirror://sourceforge/msmtp/${P}.tar.bz2"
