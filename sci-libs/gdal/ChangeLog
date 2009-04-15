@@ -1,6 +1,15 @@
 # ChangeLog for sci-libs/gdal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.55 2009/03/02 19:51:15 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.56 2009/04/11 17:07:01 nerdboy Exp $
+
+*gdal-1.6.0 (11 Apr 2009)
+
+  11 Apr 2009; Steve Arnold <nerdboy@gentoo.org> +gdal-1.6.0.ebuild,
+  gdal-1.5.3.ebuild:
+  Updated to latest upstream version (fixes bug #253363) but had to revert 
+  to -j1 again to address reported build failures.  Also updated swig dep 
+  for the three supported bindings (perl, python, ruby).  Feel free to 
+  test the experimental java bindings and report success/failure.
 
   02 Mar 2009; Brent Baude <ranger@gentoo.org> gdal-1.5.2.ebuild:
   Marking gdal-1.5.2 ppc64 for bug 241500

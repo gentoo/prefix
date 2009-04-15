@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.3.ebuild,v 1.4 2009/04/11 17:07:01 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.6.0.ebuild,v 1.1 2009/04/11 17:07:01 nerdboy Exp $
 
 WANT_AUTOCONF="2.5"
 inherit autotools distutils eutils perl-module toolchain-funcs
@@ -50,7 +50,7 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 	sqlite? ( >=dev-db/sqlite-3 )"
 
 DEPEND="${RDEPEND}
-	ruby? ( >=dev-lang/swig-1.3.28 )
+	perl? ( python? ( ruby? ( >=dev-lang/swig-1.3.28 ) ) )
 	doc? ( app-doc/doxygen )"
 
 AT_M4DIR="${S}/m4"
@@ -62,6 +62,19 @@ pkg_setup() {
 	    elog "User-specified configure options are not set."
 	    elog "If needed, set GDAL_CONFIGURE_OPTS to enable grass support."
 	fi
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	eaclocal
+	eautoconf
+
+	epatch "${FILESDIR}"/${PN}-1.4.2-datadir.patch \
+	    "${FILESDIR}"/${PN}-1.5.0-soname.patch \
+	    "${FILESDIR}"/${PN}-1.5.1-python-install.patch \
+	    || die "sed failed"
 
 	if useq hdf; then
 	    einfo	"Checking if HDF4 is compiled with szip..."
@@ -79,24 +92,6 @@ pkg_setup() {
 		die "Please disable either the hdf or netcdf use flag."
 	    fi
 	fi
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# make sure we use a "sane" libtool, the distributed one has been messed
-	# with badly, so it's useless on at least Darwin
-	rm m4/lt* m4/libtool.m4
-
-	eaclocal
-	eautoreconf
-
-	epatch "${FILESDIR}"/${PN}-1.4.2-datadir.patch \
-	    "${FILESDIR}"/${PN}-1.5.0-soname.patch \
-	    "${FILESDIR}"/${PN}-1.5.0-makefile.patch \
-	    "${FILESDIR}"/${PN}-1.5.1-python-install.patch \
-	    "${FILESDIR}"/${PN}-1.5.2-xerces-64-bit.patch
 }
 
 src_compile() {
