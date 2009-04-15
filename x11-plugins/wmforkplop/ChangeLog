@@ -1,7 +1,0 @@
-# ChangeLog for x11-plugins/wmforkplop
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-  17 Sep 2007; Fabian Groffen <grobian@gentoo.org> ChangeLog:
-  Copy from voyageur's overlay, needs a reimport one it is moved to the main tree
-
