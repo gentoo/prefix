@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/yasm
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/yasm/ChangeLog,v 1.29 2008/10/12 15:22:53 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/yasm/ChangeLog,v 1.31 2009/04/14 16:28:23 gentoofan23 Exp $
+
+  14 Apr 2009; Thomas Anderson <gentoofan23@gentoo.org> yasm-0.7.2.ebuild:
+  stable amd64, bug 266057
+
+*yasm-0.8.0 (13 Apr 2009)
+
+  13 Apr 2009; Mike Frysinger <vapier@gentoo.org> +yasm-0.8.0.ebuild:
+  Version bump.
 
   12 Oct 2008; Markus Meier <maekke@gentoo.org> yasm-0.7.1.ebuild:
   amd64/x86 stable, bug #241188
