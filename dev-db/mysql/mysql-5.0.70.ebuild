@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.70.ebuild,v 1.12 2008/11/29 02:32:17 robbat2 Exp $
 
-EAPI="prefix"
-
 MY_EXTRAS_VER="20080601"
 SERVER_URI="http://mirror.provenscaling.com/mysql/enterprise/source/5.0/${P}.tar.gz"
 
