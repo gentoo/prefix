@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.699 2009/04/04 14:32:53 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.700 2009/04/14 20:07:45 ranger Exp $
+
+  14 Apr 2009; Brent Baude <ranger@gentoo.org> gcc-4.3.2-r3.ebuild:
+  Marking gcc-4.3.2-r3 ppc64 for bug 264121
 
   04 Apr 2009; Tobias Klausmann <klausman@gentoo.org> gcc-4.3.2-r3.ebuild:
   Stable on alpha, bug #264121
