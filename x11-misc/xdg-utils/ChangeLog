@@ -1,6 +1,17 @@
 # ChangeLog for x11-misc/xdg-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.47 2009/02/02 18:49:12 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.49 2009/04/12 23:52:17 eva Exp $
+
+  12 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  xdg-utils-1.0.2-r3.ebuild:
+  Fix test logic, thanks to ikelos for pointing it out.
+
+*xdg-utils-1.0.2-r3 (12 Apr 2009)
+
+  12 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +xdg-utils-1.0.2-r3.ebuild:
+  Bump to 1.0.2-r3. Install default XDG_DATA_DIRS, bug #264647. Add xset to
+  RDEPEND, bug #256211.
 
   02 Feb 2009; Tomas Chvatal <scarabeus@gentoo.org>
   +files/xdg-utils-1.0.2-xdgopen-kde.patch, xdg-utils-1.0.2-r2.ebuild:
