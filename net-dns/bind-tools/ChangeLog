@@ -1,6 +1,20 @@
 # ChangeLog for net-dns/bind-tools
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.124 2009/02/11 16:30:59 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.127 2009/04/14 14:48:46 jer Exp $
+
+  14 Apr 2009; Jeroen Roovers <jer@gentoo.org> bind-tools-9.4.3_p2.ebuild:
+  Stable for HPPA (bug #264301).
+
+  13 Apr 2009; Brent Baude <ranger@gentoo.org> bind-tools-9.4.3_p2.ebuild:
+  Marking bind-tools-9.4.3_p2 ppc64 and ppc for bug 264301
+
+*bind-tools-9.5.1_p2 (11 Apr 2009)
+*bind-tools-9.4.3_p2 (11 Apr 2009)
+
+  11 Apr 2009; Tobias Scherbaum <dertobi123@gentoo.org>
+  -bind-tools-9.4.1_p1.ebuild, +bind-tools-9.4.3_p2.ebuild,
+  -bind-tools-9.5.1_p1.ebuild, +bind-tools-9.5.1_p2.ebuild:
+  Version bump(s), #265095, #264301
 
   11 Feb 2009; Tobias Scherbaum <dertobi123@gentoo.org>
   bind-tools-9.5.1_p1.ebuild, bind-tools-9.6.0_p1.ebuild:
