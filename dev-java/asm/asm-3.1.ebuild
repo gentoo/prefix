@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-3.1.ebuild,v 1.4 2008/10/23 18:33:15 maekke Exp $
 
-EAPI="prefix"
-
 WANT_ANT_TASKS="ant-owanttask"
 JAVA_PKG_IUSE="doc source"
 

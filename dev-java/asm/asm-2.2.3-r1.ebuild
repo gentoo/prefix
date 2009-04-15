@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-2.2.3-r1.ebuild,v 1.6 2008/09/25 20:20:13 serkan Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Bytecode manipulation framework for Java"

@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/asm/asm-1.5.3.ebuild,v 1.7 2008/03/30 16:59:25 corsair Exp $
 
-EAPI="prefix"
-
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Bytecode manipulation framework for Java"
