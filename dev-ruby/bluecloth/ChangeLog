@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/bluecloth
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/ChangeLog,v 1.13 2008/11/03 00:41:01 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/ChangeLog,v 1.14 2009/04/14 16:14:42 a3li Exp $
+
+*bluecloth-2.0.0 (14 Apr 2009)
+
+  14 Apr 2009; Alex Legler <a3li@gentoo.org> +bluecloth-2.0.0.ebuild:
+  Version bump, seems Ruby 1.9 compatible.
 
   03 Nov 2008; Diego Pettenò <flameeyes@gentoo.org> bluecloth-1.0.0.ebuild:
   Remove outdated postinst message.
