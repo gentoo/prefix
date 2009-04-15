@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/nss
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.141 2009/02/15 11:32:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.142 2009/04/12 14:56:16 bluebird Exp $
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> nss-3.12.2.ebuild:
+  Stable on sparc, security bug #262704 and security bug #265165
 
   15 Feb 2009; Raúl Porcel <armin76@gentoo.org> -nss-3.12.2_rc1.ebuild,
   nss-3.12.2.ebuild:
