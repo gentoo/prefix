@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.7.ebuild,v 1.3 2009/04/10 23:19:10 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.4.7.ebuild,v 1.4 2009/04/11 16:16:52 mr_bones_ Exp $
 
 EAPI=2
 
@@ -122,7 +122,6 @@ src_compile() {
 
 	gnome2_src_compile
 }
-
 
 pkg_postinst() {
 	gnome2_pkg_postinst
