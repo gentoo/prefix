@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.17 2009/03/28 18:25:12 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.18 2009/04/12 20:51:12 bluebird Exp $
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
+  libcanberra-0.11.ebuild:
+  Stable on sparc, bug #260063
 
 *libcanberra-0.11-r5 (28 Mar 2009)
 
