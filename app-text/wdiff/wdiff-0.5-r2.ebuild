@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/wdiff-0.5-r2.ebuild,v 1.17 2009/04/08 09:44:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wdiff/wdiff-0.5-r2.ebuild,v 1.18 2009/04/13 02:21:27 darkside Exp $
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Create a diff disregarding formatting"
 HOMEPAGE="http://www.gnu.org/software/wdiff/"
@@ -31,6 +31,7 @@ src_compile() {
 	# comes with wdiff is too old to understand the standard
 	# options.
 
+	tc-export CC
 	./configure --prefix="${EPREFIX}"/usr || die
 	echo '#define HAVE_TPUTS 1' >> config.h
 	emake || die
