@@ -1,6 +1,17 @@
 # ChangeLog for app-crypt/mhash
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/ChangeLog,v 1.54 2008/06/08 21:38:23 the_paya Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mhash/ChangeLog,v 1.55 2009/04/12 21:46:02 robbat2 Exp $
+
+*mhash-0.9.9.9 (12 Apr 2009)
+
+  12 Apr 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +files/mhash-0.9.9-autotools-namespace-stomping.patch,
+  +files/mhash-0.9.9-fix-mem-leak.patch,
+  +files/mhash-0.9.9-fix-snefru-segfault.patch,
+  +files/mhash-0.9.9-fix-whirlpool-segfault.patch, +mhash-0.9.9.9.ebuild:
+  Version bump. Bug #221093: Fix autotools defines. Bug #256800: obsolete
+  dodoc txt. Bug #255131: segfault in snerfu and whirlpool. Bug #255006:
+  memory leak.
 
   08 Jun 2008; Javier Villavicencio <the_paya@gentoo.org>
   mhash-0.9.9-r1.ebuild:
