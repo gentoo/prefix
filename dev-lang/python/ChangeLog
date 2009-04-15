@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.369 2009/03/26 05:10:31 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.370 2009/04/12 09:35:24 vapier Exp $
+
+  12 Apr 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/python-2.6-chflags-cross.patch,
+  +files/python-2.6-cross-patch-tweak.patch, python-2.6.1-r1.ebuild:
+  Fix up cross-compiling with python-2.6.
 
   26 Mar 2009; Zac Medico <zmedico@gentoo.org> python-2.5.2-r7.ebuild,
   python-2.5.2-r8.ebuild, python-2.5.4-r2.ebuild, python-2.6-r5.ebuild,
