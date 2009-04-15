@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/virtual/jre/jre-1.6.0.ebuild,v 1.8 2008/05/22 07:48:34 corsair Exp $
 
-EAPI="prefix"
-
 DESCRIPTION="Virtual for JRE"
 HOMEPAGE="http://java.sun.com/"
 SRC_URI=""
