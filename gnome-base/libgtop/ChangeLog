@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgtop
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/ChangeLog,v 1.216 2009/03/18 14:53:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/ChangeLog,v 1.217 2009/04/12 20:46:30 bluebird Exp $
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> libgtop-2.24.4.ebuild:
+  Stable on sparc, bug #260063
 
   18 Mar 2009; Raúl Porcel <armin76@gentoo.org> libgtop-2.24.4.ebuild:
   alpha/ia64 stable wrt #260063
