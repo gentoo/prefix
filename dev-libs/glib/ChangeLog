@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.363 2009/03/26 14:03:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.364 2009/04/12 20:36:13 bluebird Exp $
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> ChangeLog:
+  Stable on sparc, bug #260063
 
   26 Mar 2009; Raúl Porcel <armin76@gentoo.org> glib-2.16.6-r1.ebuild,
   glib-2.18.4.ebuild, glib-2.18.4-r1.ebuild:
