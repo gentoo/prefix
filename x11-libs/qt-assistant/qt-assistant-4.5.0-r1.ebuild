@@ -1,14 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/qt-assistant-4.5.0_rc1.ebuild,v 1.2 2009/03/16 00:48:06 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/qt-assistant-4.5.0-r1.ebuild,v 1.1 2009/04/14 12:35:47 hwoarang Exp $
 
 EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The assistant help module for the Qt toolkit"
-HOMEPAGE="http://www.trolltech.com/"
-
-LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
@@ -43,5 +40,14 @@ src_install() {
 	insinto ${QTDOCDIR#${EPREFIX}}
 	doins -r "${S}"/doc/qch/ || die "Installing qch documentation failed"
 	dobin "${S}"/tools/qdoc3/qdoc3 || die "Installing qdoc3 failed"
-	domenu "${FILESDIR}"/Assistant.desktop
+
+	# install correct assistant icon, bug 241208
+	dodir /usr/share/pixmaps/ || die "dodir failed"
+	insinto /usr/share/pixmaps/ || die "insinto failed"
+	doins tools/assistant/tools/assistant/images/assistant.png \
+		|| die "doins failed"
+	# Note: absolute image path required here!
+	 make_desktop_entry /usr/bin/assistant Assistant \
+	 	/usr/share/pixmaps/assistant.png 'Qt;Development;GUIDesigner' \
+		|| die "make_desktop_entry failed"
 }
