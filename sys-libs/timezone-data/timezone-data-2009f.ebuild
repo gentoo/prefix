@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2009b.ebuild,v 1.7 2009/03/20 16:19:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2009f.ebuild,v 1.1 2009/04/14 01:56:52 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
-code_ver=${PV}
+code_ver=${PV/f/e}
 data_ver=${PV}
 DESCRIPTION="Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)"
 HOMEPAGE="ftp://elsie.nci.nih.gov/pub/"
@@ -72,7 +72,7 @@ pkg_config() {
 	else
 		src="/etc/timezone"
 		if [[ -e ${EROOT}/etc/timezone ]] ; then
-			tz=$(<"${EROOT}"/etc/timezone)
+			tz=$(sed -e 's:#.*::' -e 's:[[:space:]]*::g' -e '/^$/d' "${EROOT}"/etc/timezone)
 		else
 			tz="FOOKABLOIE"
 		fi
