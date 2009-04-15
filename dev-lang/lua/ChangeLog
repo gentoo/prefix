@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/lua
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.131 2009/04/05 23:23:41 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.132 2009/04/13 09:07:43 mabi Exp $
+
+  13 Apr 2009; Matti Bickel <mabi@gentoo.org>
+  files/lua-5.1-make_static-r1.patch:
+  fixed patch, once more
 
   05 Apr 2009; Matti Bickel <mabi@gentoo.org> files/lua-5.1-make-r1.patch,
   files/lua-5.1-make_static-r1.patch, -lua-5.1.3-r4.ebuild:
