@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/icu
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.77 2009/04/05 17:03:46 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.79 2009/04/14 19:37:51 arfrever Exp $
+
+  14 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +files/icu-4.0.1-TestDisplayNamesMeta.patch, icu-4.0.1.ebuild:
+  Fix TestDisplayNamesMeta test (bug #265352).
+
+  14 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +files/icu-4.0.1-fix_parallel_building.patch, icu-4.0.1.ebuild:
+  Fix parallel building (bug #265128).
 
 *icu-4.0.1 (05 Apr 2009)
 

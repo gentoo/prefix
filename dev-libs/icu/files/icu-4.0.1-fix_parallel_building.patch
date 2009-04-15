@@ -1,0 +1,10 @@
+--- data/Makefile.in
++++ data/Makefile.in
+@@ -355,6 +355,7 @@
+ endif
+ endif
+ 
++$(BUILD_DIRS): build-dir
+ 
+ build-dir:
+ 	@list='$(BUILD_DIRS)'; \
