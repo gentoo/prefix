@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.89 2009/04/04 12:39:26 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.91 2009/04/13 00:43:01 scarabeus Exp $
+
+  13 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> cmake-2.6.3-r1.ebuild:
+  Fix the has_version check. Current eclass does not support cmake 2.4...
+
+  11 Apr 2009; Joshua Kinard <kumba@gentoo.org> cmake-2.6.3-r1.ebuild:
+  Added ~mips to KEYWORDS.
 
 *cmake-2.6.3-r1 (04 Apr 2009)
 
