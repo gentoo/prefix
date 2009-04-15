@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.8.ebuild,v 1.8 2009/04/12 21:26:27 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.9.ebuild,v 1.1 2009/04/13 10:50:20 eva Exp $
 
-inherit autotools eutils
+inherit eutils
 
 DESCRIPTION="High level XKB library"
 HOMEPAGE="http://www.freedesktop.org/Software/LibXklavier"
@@ -25,18 +25,7 @@ RDEPEND="|| (
 	app-text/iso-codes"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	doc? ( >=dev-util/gtk-doc-1.4 )
-	dev-util/gtk-doc-am"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# Fix tests in configure.in, bug #253773
-	epatch "${FILESDIR}/${P}-tests.patch"
-
-	eautoreconf
-}
+	doc? ( >=dev-util/gtk-doc-1.4 )"
 
 src_compile() {
 	local xkbbase
@@ -62,7 +51,7 @@ src_install() {
 	insinto /usr/share/libxklavier
 	use sparc && doins "${FILESDIR}/sun.xml"
 
-	dodoc AUTHORS CREDITS ChangeLog NEWS README
+	dodoc AUTHORS CREDITS ChangeLog NEWS README || die "dodoc failed"
 }
 
 pkg_postinst() {
