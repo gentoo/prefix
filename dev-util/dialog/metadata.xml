@@ -6,4 +6,7 @@
 <email>truedfx@gentoo.org</email>
 <name>Harald van Dĳk</name>
 </maintainer>
+<use>
+<flag name="minimal">Disable library, install command-line program only</flag>
+</use>
 </pkgmetadata>

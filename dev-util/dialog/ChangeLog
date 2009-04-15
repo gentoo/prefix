@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/dialog
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.121 2009/03/18 15:00:27 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dialog/ChangeLog,v 1.122 2009/04/14 20:55:20 truedfx Exp $
+
+*dialog-1.1.20080819-r1 (14 Apr 2009)
+
+  14 Apr 2009; Harald van Dĳk <truedfx@gentoo.org>
+  +files/dialog-shared.patch, metadata.xml, -dialog-1.1.20070930.ebuild,
+  -dialog-1.1.20071028.ebuild, -dialog-1.1.20080727.ebuild,
+  +dialog-1.1.20080819-r1.ebuild:
+  Install libdialog (#266065), link dialog with it. Convert to EAPI2. Remove
+  old versions.
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> dialog-1.1.20080819.ebuild:
   stable ppc, bug 259919
