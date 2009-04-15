@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.3.0.ebuild,v 1.1 2009/04/07 15:22:37 bicatali Exp $
 
-EAPI="prefix"
-
 NEED_PYTHON=2.4
 EAPI=2
 inherit eutils distutils flag-o-matic toolchain-funcs
