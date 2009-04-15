@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.148 2009/04/12 11:03:12 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.149 2009/04/12 15:11:57 loki_val Exp $
+
+*libpcre-7.9 (12 Apr 2009)
+
+  12 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -libpcre-7.9_rc2.ebuild, +libpcre-7.9.ebuild:
+  Bump
 
   12 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> libpcre-7.8-r1.ebuild,
   libpcre-7.9_rc2.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.9_rc2.ebuild,v 1.3 2009/04/12 11:03:12 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.9.ebuild,v 1.1 2009/04/12 15:11:57 loki_val Exp $
 
 EAPI=2
 
