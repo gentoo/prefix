@@ -1,6 +1,13 @@
 # ChangeLog for dev-db/mysql-community
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.25 2009/02/28 10:41:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.26 2009/04/12 07:46:29 robbat2 Exp $
+
+*mysql-community-5.0.77-r1 (12 Apr 2009)
+
+  12 Apr 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-community-5.0.77-r1.ebuild:
+  Bug #238487, lots of patching fun to enable building of a shared embedded
+  libmysqld for Amarok. Ported from the mysql-5.0.76 patch.
 
 *mysql-community-5.0.77 (28 Feb 2009)
 
