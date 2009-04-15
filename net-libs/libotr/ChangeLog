@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libotr
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libotr/ChangeLog,v 1.29 2008/09/11 10:00:56 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libotr/ChangeLog,v 1.30 2009/04/11 17:15:39 armin76 Exp $
+
+  11 Apr 2009; Raúl Porcel <armin76@gentoo.org> libotr-3.2.0.ebuild:
+  Add ~alpha
 
   11 Sep 2008; Raúl Porcel <armin76@gentoo.org> libotr-3.2.0.ebuild:
   Add ~arm wrt #190684
