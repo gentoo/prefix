@@ -21,7 +21,7 @@ SRC_URI="${BASEURI}/${SRCPKG}
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris ~x86-winnt"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc examples"
 
 DEPEND="doc? ( app-arch/unzip )"
