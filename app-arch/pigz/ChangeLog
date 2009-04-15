@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/pigz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pigz/ChangeLog,v 1.2 2009/04/04 18:06:30 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pigz/ChangeLog,v 1.3 2009/04/14 09:39:38 armin76 Exp $
+
+  14 Apr 2009; Raúl Porcel <armin76@gentoo.org> pigz-2.1.4.ebuild:
+  Add ~x86 wrt #264111
 
   04 Apr 2009; Tiago Cunha <tcunha@gentoo.org> pigz-2.1.4.ebuild:
   keyworded ~arch for sparc
