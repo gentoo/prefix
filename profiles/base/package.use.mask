@@ -1,5 +1,13 @@
 # This file requires >=portage-2.1.1
 
+# Christian Hoffmann <hoffie@gentoo.org> (12 Apr 2009)
+# dev-php5/pecl-zip is masked for removal
+dev-lang/php zip-external
+
+# Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (12 Apr 2009)
+# net-wireless/bluez is masked for missing deps
+kde-base/solid bluetooth
+
 # Nirbheek Chauhan <nirbheek@gentoo.org> (17 Mar 2009)
 # policykit is masked, has smelly pants
 gnome-extra/gnome-power-manager policykit
