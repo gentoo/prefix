@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.07-r1.ebuild,v 1.1 2008/09/09 14:00:30 betelgeuse Exp $
 
-EAPI="prefix"
-
 inherit versionator eutils
 
 UPDATE="$(get_version_component_range 4)"
