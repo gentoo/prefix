@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/emacs-common-gentoo-1.0.ebuild,v 1.11 2009/04/04 16:18:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/emacs-common-gentoo-1.0.ebuild,v 1.14 2009/04/14 15:33:26 jer Exp $
 
 inherit elisp-common eutils fdo-mime gnome2-utils
 
@@ -38,6 +38,7 @@ src_install() {
 			insinto /usr/share/icons/hicolor/${i}x${i}/apps
 			newins emacs_${i}.png emacs.png || die
 		done
+		gnome2_icon_savelist
 	fi
 }
 

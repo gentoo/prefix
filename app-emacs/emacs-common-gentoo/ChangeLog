@@ -1,6 +1,18 @@
 # ChangeLog for app-emacs/emacs-common-gentoo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.10 2009/04/04 16:18:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.14 2009/04/14 18:02:24 ulm Exp $
+
+  14 Apr 2009; Ulrich Mueller <ulm@gentoo.org>
+  -emacs-common-gentoo-0.3.ebuild:
+  Remove old.
+
+  14 Apr 2009; Jeroen Roovers <jer@gentoo.org>
+  emacs-common-gentoo-1.0.ebuild:
+  Stable for HPPA (bug #264503).
+
+  12 Apr 2009; Ulrich Mueller <ulm@gentoo.org>
+  emacs-common-gentoo-0.3.ebuild, emacs-common-gentoo-1.0.ebuild:
+  Call gnome2_icon_savelist in src_install, bug 155993.
 
   04 Apr 2009; Brent Baude <ranger@gentoo.org>
   emacs-common-gentoo-1.0.ebuild:
