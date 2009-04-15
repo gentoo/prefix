@@ -1,6 +1,18 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.346 2009/04/04 15:45:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.349 2009/04/12 21:07:56 robbat2 Exp $
+
+  12 Apr 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openssh-5.2_p1-r2.ebuild:
+  Switch to UID instead of hardcoded portage per bug #264841 comment.
+
+  12 Apr 2009; Robin H. Johnson <robbat2@gentoo.org> files/sshd.rc6:
+  Bug #265491, fix opts with baselayout1.
+
+  12 Apr 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openssh-5.2_p1-r1.ebuild, openssh-5.2_p1-r2.ebuild:
+  Bug #264841, the ssh testsuite needs a real shell to run, so run a subset
+  of tests otherwise.
 
   04 Apr 2009; Raúl Porcel <armin76@gentoo.org> openssh-5.2_p1-r1.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #247466

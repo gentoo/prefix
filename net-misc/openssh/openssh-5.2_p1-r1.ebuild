@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r1.ebuild,v 1.8 2009/04/04 15:45:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r1.ebuild,v 1.10 2009/04/12 22:39:03 vapier Exp $
 
 inherit eutils flag-o-matic multilib autotools pam
 
@@ -183,18 +183,31 @@ src_install() {
 }
 
 src_test() {
-	local t failed passwd
-	for t in tests interop-tests compat-tests ; do
+	local t tests skipped failed passed shell
+	tests="interop-tests compat-tests"
+	skipped=""
+	shell=$(getent passwd ${UID} | cut -d: -f7)
+	if [[ ${shell} == */nologin ]] || [[ ${shell} == */false ]] ; then
+		elog "Running the full OpenSSH testsuite"
+		elog "requires a usable shell for the 'portage'"
+		elog "user, so we will run a subset only."
+		skipped="${skipped} tests"
+	else
+		tests="${tests} tests"
+	fi
+	for t in ${tests} ; do
 		# Some tests read from stdin ...
 		emake -k -j1 ${t} </dev/null \
 			&& passed="${passed}${t} " \
 			|| failed="${failed}${t} "
 	done
+	einfo "Passed tests: ${passed}"
+	ewarn "Skipped tests: ${skipped}"
 	if [[ -n ${failed} ]] ; then
-		einfo "Passed tests: ${passed}"
 		ewarn "Failed tests: ${failed}"
 		die "Some tests failed: ${failed}"
 	else
+		einfo "Failed tests: ${failed}"
 		return 0
 	fi
 }
