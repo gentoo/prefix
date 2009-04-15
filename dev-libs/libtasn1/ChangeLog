@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libtasn1
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.82 2009/03/24 22:31:49 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.83 2009/04/13 18:02:35 arfrever Exp $
+
+*libtasn1-2.0 (13 Apr 2009)
+
+  13 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -files/libtasn1-0.3.5-respectcflags.patch, -libtasn1-0.3.5.ebuild,
+  +libtasn1-2.0.ebuild:
+  Version bump. Remove an older version.
 
   24 Mar 2009; Joseph Jezak <josejx@gentoo.org> libtasn1-1.8.ebuild:
   Marked ppc stable for bug #218747.
