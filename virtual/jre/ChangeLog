@@ -1,0 +1,86 @@
+# ChangeLog for virtual/jre
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/jre/ChangeLog,v 1.23 2008/05/22 07:48:34 corsair Exp $
+
+  22 May 2008; Markus Rothe <corsair@gentoo.org> jre-1.6.0.ebuild:
+  Stable on ppc64
+
+  12 May 2008; nixnut <nixnut@gentoo.org> jre-1.6.0.ebuild:
+  Stable on ppc wrt bug 219657
+
+  18 Jan 2008; Brent Baude <ranger@gentoo.org> jre-1.6.0.ebuild:
+  Marking jre-1.6.0 ~ppc64 for bug 166789
+
+  24 Dec 2007; nixnut <nixnut@gentoo.org> jre-1.6.0.ebuild:
+  Added ~ppc wrt bug 166789
+
+  16 Dec 2007; Vlastimil Babka <caster@gentoo.org> jre-1.6.0.ebuild:
+  Add ibm-jre-bin-1.6 as an alternative.
+
+  25 Jun 2007; Christoph Mende <angelos@gentoo.org> jre-1.6.0.ebuild:
+  Stable on amd64 wrt bug 177842
+
+  04 Jun 2007; Christian Faulhammer <opfer@gentoo.org> jre-1.6.0.ebuild:
+  stable x86, bug 177842
+
+*jre-1.6.0 (14 Dec 2006)
+
+  14 Dec 2006; Vlastimil Babka <caster@gentoo.org> +jre-1.6.0.ebuild:
+  Version bump for 1.6 JRE.
+
+  15 Oct 2006; Tobias Scherbaum <dertobi123@gentoo.org> jre-1.5.0.ebuild:
+  ppc stable. bug #147254
+
+  15 Oct 2006; Joshua Nichols <nichoj@gentoo.org> jre-1.5.0.ebuild:
+  Stabilizing on ia64 as part of new Java system, bug #147254.
+
+  14 Oct 2006; Joshua Nichols <nichoj@gentoo.org> jre-1.5.0.ebuild:
+  Stabilizing on amd64 as part of new Java system, bug #147254.
+
+  14 Oct 2006; Joshua Nichols <nichoj@gentoo.org> jre-1.5.0.ebuild:
+  Stabilizing on ppc64 as part of new Java system, bug #147254.
+
+  14 Oct 2006; Joshua Jackson <tsunam@gentoo.org> jre-1.5.0.ebuild:
+  New java stable on x86; bug #147254
+
+  03 Sep 2006; Joshua Nichols <nichoj@gentoo.org> -jre-1.3.ebuild:
+  Removed 1.3, since there is no longer any unmasked JDKs providing it.
+
+  03 Sep 2006; Joshua Nichols <nichoj@gentoo.org> jre-1.3.ebuild,
+  jre-1.4.1.ebuild:
+  Removed deps of JREs that aren't in the tree anymore, from bug #140495
+
+  23 Aug 2006; Sven Wegener <swegener@gentoo.org> jre-1.3.ebuild,
+  jre-1.4.1.ebuild, jre-1.4.2.ebuild, jre-1.5.0.ebuild:
+  Virtual packages have no build-time dependencies.
+
+  27 Jul 2006; Doug Goldstein <cardoe@gentoo.org> jre-1.3.ebuild, jre-1.4.1.ebuild,
+  jre-1.4.2.ebuild, jre-1.5.0.ebuild:
+  Moving virtual/jdk depends first so that the JDK's JRE will provide
+  thisvirtual rather then requiring a JDK & a JRE to be installed by default.
+  Discussed a similiar change with nichoj which involved moving the body of
+  the virtual/jdk's depends to here but this is more effiecent and portable.
+
+  21 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> jre-1.5.0.ebuild:
+  Add diablo-jre-bin as option for the jre 1.5, for FreeBSD, and add ~x86-fbsd
+  keyword. See bug #141071.
+
+  08 Jul 2006; Krzysiek Pawlik <nelchael@gentoo.org> jre-1.4.1.ebuild:
+  Remove invalid versions.
+
+*jre-1.5.0 (08 Jul 2006)
+*jre-1.4.2 (08 Jul 2006)
+*jre-1.4.1 (08 Jul 2006)
+
+  08 Jul 2006; Krzysiek Pawlik <nelchael@gentoo.org> -jre-1.4.ebuild,
+  +jre-1.4.1.ebuild, +jre-1.4.2.ebuild, -jre-1.5.ebuild, +jre-1.5.0.ebuild:
+  More specific versions.
+
+*jre-1.5 (06 Jul 2006)
+*jre-1.4 (06 Jul 2006)
+*jre-1.3 (06 Jul 2006)
+
+  06 Jul 2006; Krzysiek Pawlik <nelchael@gentoo.org> +metadata.xml,
+  +jre-1.3.ebuild, +jre-1.4.ebuild, +jre-1.5.ebuild:
+  Initial version of virtual/jre.
+
