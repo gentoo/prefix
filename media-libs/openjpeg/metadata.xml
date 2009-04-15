@@ -3,7 +3,7 @@
 <pkgmetadata>
   <herd>no-herd</herd>
   <maintainer>
-    <email>drizzt@gentoo.org</email>
+    <email>loki_val@gentoo.org</email>
   </maintainer>
   <use>
     <flag name="tools">Installs tools (j2k_to_image and image_to_j2k)</flag>
