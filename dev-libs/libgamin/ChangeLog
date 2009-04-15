@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libgamin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.20 2009/03/30 13:49:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.21 2009/04/12 20:40:18 bluebird Exp $
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
+  libgamin-0.1.10-r2.ebuild:
+  Stable on sparc, bug #260063
 
   30 Mar 2009; Raúl Porcel <armin76@gentoo.org> libgamin-0.1.10-r2.ebuild:
   arm/s390/sh/sparc stable
