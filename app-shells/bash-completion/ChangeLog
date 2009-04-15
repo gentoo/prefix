@@ -1,6 +1,24 @@
 # ChangeLog for app-shells/bash-completion
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.168 2009/04/10 01:36:29 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.171 2009/04/14 15:42:10 darkside Exp $
+
+*bash-completion-1.0-r3 (14 Apr 2009)
+
+  14 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  -bash-completion-1.0-r2.ebuild, +bash-completion-1.0-r3.ebuild:
+  it is better to have a revision bump here so we can avoid any file collision
+  business in the future.
+
+  14 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  bash-completion-1.0-r2.ebuild:
+  add cowsay blocker due to file collision, bug 266112
+
+*bash-completion-1.0-r2 (12 Apr 2009)
+
+  12 Apr 2009; Jeremy Olexa <darkside@gentoo.org>
+  -bash-completion-1.0-r1.ebuild, +bash-completion-1.0-r2.ebuild:
+  Fix inconsistent file name change during upgrade path. Do not break existing
+  setups. bug 265807
 
 *bash-completion-0.20081219-r1 (10 Apr 2009)
 
