@@ -1,6 +1,18 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.184 2009/04/08 03:47:57 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.186 2009/04/12 18:07:52 arfrever Exp $
+
+*gnutls-2.6.5 (12 Apr 2009)
+
+  12 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -files/gnutls-2.2.5-CVE-2008-4989-V2.patch,
+  -files/gnutls-2.3.11+gcc-4.3.patch, -gnutls-2.2.5.ebuild,
+  -gnutls-2.4.1-r2.ebuild, -gnutls-2.6.0-r2.ebuild, -gnutls-2.6.3.ebuild,
+  +gnutls-2.6.5.ebuild, -gnutls-2.7.4.ebuild:
+  Version bump. Remove older versions.
+
+  11 Apr 2009; Raúl Porcel <armin76@gentoo.org> gnutls-2.6.4.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #264392
 
   08 Apr 2009; Jeroen Roovers <jer@gentoo.org> gnutls-2.6.4.ebuild:
   Stable for HPPA (bug #264392).
