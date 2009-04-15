@@ -1,6 +1,9 @@
 # ChangeLog for app-text/bogosort
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/bogosort/ChangeLog,v 1.10 2008/01/25 19:28:11 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/bogosort/ChangeLog,v 1.11 2009/04/13 02:26:45 darkside Exp $
+
+  13 Apr 2009; Jeremy Olexa <darkside@gentoo.org> bogosort-0.4.2.ebuild:
+  QA: respect CC, bug 243722
 
   25 Jan 2008; Fabian Groffen <grobian@gentoo.org> bogosort-0.4.2.ebuild:
   Dropped ppc-macos keyword, see you in prefix
