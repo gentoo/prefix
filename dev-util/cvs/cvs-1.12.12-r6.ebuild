@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.12-r6.ebuild,v 1.1 2009/02/01 18:04:45 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvs/cvs-1.12.12-r6.ebuild,v 1.3 2009/04/12 18:16:05 ranger Exp $
 
 inherit eutils pam
 
