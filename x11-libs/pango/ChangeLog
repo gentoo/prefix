@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pango
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.244 2009/03/28 17:06:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.245 2009/04/12 20:37:45 bluebird Exp $
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> ChangeLog:
+  Stable on sparc, bug #260063
 
   28 Mar 2009; Raúl Porcel <armin76@gentoo.org> pango-1.22.4.ebuild:
   arm/s390/sh/sparc stable
