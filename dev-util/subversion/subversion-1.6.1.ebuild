@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.1.ebuild,v 1.2 2009/04/10 17:30:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.1.ebuild,v 1.4 2009/04/15 00:40:57 arfrever Exp $
 
 EAPI=1
 
@@ -108,6 +108,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/${PN}-1.6.0-disable_linking_against_unneeded_libraries.patch"
+	epatch "${FILESDIR}/${P}-fix_sqlite_configuration.patch"
 
 	epatch "${FILESDIR}"/${PN}-1.5.4-interix.patch
 
