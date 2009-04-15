@@ -1,6 +1,12 @@
 # ChangeLog for net-nds/openldap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.341 2009/03/07 22:55:39 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.342 2009/04/14 20:53:32 dev-zero Exp $
+
+*openldap-2.4.16 (14 Apr 2009)
+
+  14 Apr 2009; Tiziano Müller <dev-zero@gentoo.org>
+  +files/openldap-2.4.15-ppolicy.patch, +openldap-2.4.16.ebuild:
+  Version bump (bug #260796). Also solved bug #245152.
 
   07 Mar 2009; Thomas Anderson <gentoofan23@gentoo.org>
   openldap-2.3.39-r2.ebuild, openldap-2.3.40-r1.ebuild,
