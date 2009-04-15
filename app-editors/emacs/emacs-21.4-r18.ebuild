@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r18.ebuild,v 1.8 2009/04/06 13:25:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r18.ebuild,v 1.9 2009/04/14 16:29:57 jer Exp $
 
 EAPI=2
 WANT_AUTOCONF="2.1"
