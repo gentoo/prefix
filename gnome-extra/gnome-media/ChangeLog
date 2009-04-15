@@ -1,6 +1,10 @@
 # ChangeLog for gnome-extra/gnome-media
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.190 2009/04/05 17:30:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.191 2009/04/12 21:06:12 bluebird Exp $
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
+  gnome-media-2.24.0.1-r1.ebuild:
+  Stable on sparc, bug #260063
 
   05 Apr 2009; Raúl Porcel <armin76@gentoo.org>
   gnome-media-2.24.0.1-r1.ebuild:
