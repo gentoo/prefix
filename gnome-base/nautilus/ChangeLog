@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.301 2009/03/21 13:32:36 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.302 2009/04/12 20:52:50 bluebird Exp $
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
+  nautilus-2.24.2.ebuild:
+  Stable on sparc, bug #260063
 
 *nautilus-2.24.2-r3 (21 Mar 2009)
 

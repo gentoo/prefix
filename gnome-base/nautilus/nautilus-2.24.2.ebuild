@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.24.2.ebuild,v 1.12 2009/03/18 15:02:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.24.2.ebuild,v 1.13 2009/04/12 20:52:50 bluebird Exp $
 
 inherit gnome2 eutils virtualx
 
