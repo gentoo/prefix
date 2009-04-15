@@ -15,3 +15,14 @@ going down).
  
  	if (dbg_print_mem) {
  		static int i = 0;
+--- bubblemon.c
++++ bubblemon.c
+@@ -1185,7 +1185,7 @@
+ #endif				/* ENABLE_MEMSCREEN */
+ #ifdef ENABLE_CPU
+     static int yoh;
+-    static int avg;
++    static unsigned int avg;
+     int hibyte, y, pos;
+ 
+     /* CPU load buffer */

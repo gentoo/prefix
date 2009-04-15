@@ -24,6 +24,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-gtk.patch
 	epatch "${FILESDIR}"/${P}-solaris-mem-no-swap.patch
+	sed -i -e 's/CFLAGS=-O3/CFLAGS=$(GENTOO_CFLAGS)/' Makefile || die
 }
 
 src_compile() {
