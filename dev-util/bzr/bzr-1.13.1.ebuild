@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-1.13.1.ebuild,v 1.1 2009/03/25 00:32:51 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-1.13.1.ebuild,v 1.2 2009/04/11 15:58:56 pva Exp $
 
 EAPI=1
 
@@ -107,10 +107,7 @@ src_test() {
 	local skip_tests="("
 	#skip_tests+="test1|"
 	#https://bugs.launchpad.net/bzr/+bug/341648
-	skip_tests+="test_osutils.TestWalkDirs.test_walkdirs_os_error|"
-	#https://bugs.launchpad.net/bzr/+bug/348220
-	skip_tests+="blackbox.test_too_much.SFTPTestsAbsolute.test_log|"
-	skip_tests+="blackbox.test_too_much.SFTPTestsRelative.test_log"
+	skip_tests+="test_osutils.TestWalkDirs.test_walkdirs_os_error"
 	skip_tests+=")"
 	# Some tests expect the usual pyc compiling behaviour.
 	python_enable_pyc
