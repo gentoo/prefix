@@ -1,0 +1,44 @@
+*** ../bash-4.0-patched/jobs.c	2009-01-29 17:09:49.000000000 -0500
+--- jobs.c	2009-04-11 15:14:27.000000000 -0400
+***************
+*** 443,447 ****
+    the_pipeline = saved_pipeline;
+    already_making_children = saved_already_making_children;
+!   if (discard)
+      discard_pipeline (old_pipeline);
+  }
+--- 443,447 ----
+    the_pipeline = saved_pipeline;
+    already_making_children = saved_already_making_children;
+!   if (discard && old_pipeline)
+      discard_pipeline (old_pipeline);
+  }
+*** ../bash-4.0-patched/trap.c	2009-01-16 17:07:53.000000000 -0500
+--- trap.c	2009-04-11 15:11:58.000000000 -0400
+***************
+*** 799,802 ****
+--- 799,803 ----
+  {
+    int trap_exit_value;
++   pid_t save_pgrp;
+  
+    /* XXX - question:  should the DEBUG trap inherit the RETURN trap? */
+***************
+*** 804,808 ****
+--- 805,820 ----
+    if ((sigmodes[DEBUG_TRAP] & SIG_TRAPPED) && ((sigmodes[DEBUG_TRAP] & SIG_IGNORED) == 0) && ((sigmodes[DEBUG_TRAP] & SIG_INPROGRESS) == 0))
+      {
++ #if defined (JOB_CONTROL)
++       save_pgrp = pipeline_pgrp;
++       pipeline_pgrp = shell_pgrp;
++       save_pipeline (1);
++       stop_making_children ();
++ #endif
+        trap_exit_value = _run_trap_internal (DEBUG_TRAP, "debug trap");
++ #if defined (JOB_CONTROL)
++       pipeline_pgrp = save_pgrp;
++       restore_pipeline (1);
++       notify_and_cleanup ();
++ #endif
+        
+  #if defined (DEBUGGER)
