@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/gnome-themes
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/ChangeLog,v 1.204 2009/03/18 15:12:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/ChangeLog,v 1.205 2009/04/12 20:59:10 bluebird Exp $
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
+  gnome-themes-2.24.3.ebuild:
+  Stable on sparc, bug #260063
 
   18 Mar 2009; Raúl Porcel <armin76@gentoo.org> gnome-themes-2.24.3.ebuild:
   alpha/ia64 stable wrt #260063
