@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.23 2009/04/10 19:33:03 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.25 2009/04/14 21:46:45 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -14,7 +14,7 @@
 # @THANKS TO:
 # Fernando J. Pereda <ferdy@gentoo.org>
 
-inherit eutils base
+inherit eutils
 
 EGIT="git.eclass"
 
@@ -342,9 +342,6 @@ git_src_unpack() {
 git_src_prepare() {
 	debug-print-function ${FUNCNAME} "$@"
 	
-	# apply EGIT_PATCHES
 	git_apply_patches
-	# apply patches from PATCHES array too
-	base_src_prepare
 	git_bootstrap
 }

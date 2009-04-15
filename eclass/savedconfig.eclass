@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.9 2008/03/20 16:23:42 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/savedconfig.eclass,v 1.10 2009/04/11 15:19:50 vapier Exp $
 
 # @ECLASS: savedconfig.eclass
 # @MAINTAINER:
@@ -80,9 +80,9 @@ restore_config() {
 	use savedconfig || return
 
 	case ${EBUILD_PHASE} in
-		unpack|compile)
+		unpack|compile|prepare)
 		;;
-		*) die "Bad package!  restore_config only for use in src_unpack or src_compile functions!"
+		*) die "Bad package!  restore_config only for use in src_{unpack,compile,prepare} functions!"
 		;;
 	esac
 	local found;

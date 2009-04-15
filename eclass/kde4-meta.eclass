@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.16 2009/03/15 15:27:13 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.17 2009/04/13 00:02:45 scarabeus Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -30,6 +30,13 @@ case ${KDEBASE} in
 		LICENSE="GPL-2"
 		;;
 esac
+
+# Add khelpcenter dependency when installing
+if [[ ${PN} != khelpcenter ]] && has doc ${IUSE//+} && use doc; then
+	RDEPEND="${RDEPEND}
+		>=kde-base/khelpcenter-${PV}:${SLOT}[kdeprefix=]
+	"
+fi
 
 # Add dependencies that all packages in a certain module share.
 case ${KMNAME} in
@@ -79,52 +86,30 @@ case ${KMNAME} in
 		;;
 	koffice)
 		[[ ${PN} != koffice-data ]] && IUSE="debug"
-		case ${PV} in
-			9999*)
-				DEPEND="${DEPEND}
-					!app-office/${PN}:2
-				"
-				;;
-			1.9*|2*)
-				DEPEND="${DEPEND}
-					!app-office/${PN}:live
-				"
-				;;
-		esac
-		DEPEND="${DEPEND}
-			!app-office/${PN}:0
-			!app-office/koffice:0
-			!app-office/koffice-meta:0
+		RDEPEND="${RDEPEND}
+			!kdeprefix? (
+				!app-office/${PN}:0
+				!app-office/koffice:0
+				!app-office/koffice-meta:0
+			)
 		"
-		case ${PN} in
-			koffice-data)
-				DEPEND="${DEPEND}
-					media-libs/lcms
-				"
-				RDEPEND="${RDEPEND}
-					media-libs/lcms
-				"
-				;;
-			*)
-				COMMON_DEPEND="
-					dev-cpp/eigen:2
-					media-gfx/imagemagick[openexr?]
-					media-libs/fontconfig
-					media-libs/freetype:2
-				"
-				DEPEND="${DEPEND} ${COMMON_DEPEND}"
-				RDEPEND="${RDEPEND} ${COMMON_DEPEND}"
-				unset COMMON_DEPEND
-				if [[ ${PN} != koffice-libs && ${PN} != koffice-data ]]; then
-					DEPEND="${DEPEND}
-						>=app-office/koffice-libs-${PV}:${SLOT}[kdeprefix=]
-					"
-					RDEPEND="${RDEPEND}
-						>=app-office/koffice-libs-${PV}:${SLOT}[kdeprefix=]
-					"
-				fi
-				;;
-		esac
+		COMMON_DEPEND="
+			dev-cpp/eigen:2
+			media-gfx/imagemagick[openexr?]
+			media-libs/fontconfig
+			media-libs/freetype:2
+		"
+		DEPEND="${DEPEND} ${COMMON_DEPEND}"
+		RDEPEND="${RDEPEND} ${COMMON_DEPEND}"
+		unset COMMON_DEPEND
+		if [[ ${PN} != koffice-libs && ${PN} != koffice-data ]]; then
+			DEPEND="${DEPEND}
+				>=app-office/koffice-libs-${PV}:${SLOT}
+			"
+			RDEPEND="${RDEPEND}
+				>=app-office/koffice-libs-${PV}:${SLOT}
+			"
+		fi
 		;;
 esac
 
@@ -137,10 +122,10 @@ case ${BUILD_TYPE} in
 		case ${KMNAME} in
 			extragear*|playground*)
 				ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}"
+				ESVN_PROJECT="${KMNAME}"
 				;;
 		esac
 		;;
-	*) ;;
 esac
 
 # @ECLASS-VARIABLE: KMNAME
@@ -345,7 +330,8 @@ kde4-meta_src_extract() {
 kde4-meta_create_extractlists() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	if has htmlhandbook ${IUSE//+} && use htmlhandbook; then
+	# TODO change to KMEXTRA for more strict check
+	if has doc ${IUSE//+} && use doc && [[ -n ${KMMODULE} ]]; then
 		# We use the basename of $KMMODULE because $KMMODULE can contain
 		# the path to the module subdirectory.
 		KMEXTRA_NONFATAL="${KMEXTRA_NONFATAL} doc/${KMMODULE##*/}"
@@ -417,7 +403,7 @@ kde4-meta_create_extractlists() {
 	case ${KMNAME} in
 		kdebase-runtime|kdebase-workspace|kdeedu|kdegames|kdegraphics|kdepim)
 			case ${PN} in
-				libkdegames|libkdeedu|marble|libkworkspace)
+				libkdegames|libkdeedu|libkworkspace)
 					KMEXTRA="${KMEXTRA}
 						cmake/modules/"
 					;;
@@ -609,6 +595,14 @@ kde4-meta_change_cmakelists() {
 				;;
 			esac
 			;;
+		kdewebdev)
+			# Disable hardcoded kdepimlibs check
+			sed -e 's/find_package(KdepimLibs REQUIRED)/macro_optional_find_package(KdepimLibs)/' \
+				-e 's/find_package(LibXml2 REQUIRED)/macro_optional_find_package(LibXml2 REQUIRED)/' \
+				-e 's/find_package(LibXslt REQUIRED)/macro_optional_find_package(LibXslt REQUIRED)/' \
+				-e 's/find_package(Boost REQUIRED)/macro_optional_find_package(Boost REQUIRED)/' \
+				-i CMakeLists.txt || die "failed to disable hardcoded checks"
+			;;
 		koffice)
 			# prevent collisions
 			if [[ ${PN} != koffice-data ]]; then
@@ -630,6 +624,19 @@ kde4-meta_change_cmakelists() {
 # ebuilds.
 kde4-meta_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
+
+	# Set some cmake default values here (usually workarounds for automagic deps)
+	case ${KMNAME} in
+		kdewebdev)
+			mycmakeargs="
+				-DWITH_KdepimLibs=OFF
+				-DWITH_LibXml2=OFF
+				-DWITH_LibXslt=OFF
+				-DWITH_Boost=OFF
+				-DWITH_LibTidy=OFF
+				${mycmakeargs}"
+			;;
+	esac
 
 	kde4-base_src_configure
 }
@@ -660,12 +667,7 @@ kde4-meta_src_test() {
 kde4-meta_src_install() {
 	debug-print-function $FUNCNAME "$@"
 
-	kde4-meta_src_make_doc
-	cmake-utils_src_install
-
-	if [[ -n ${KMSAVELIBS} ]]; then
-		install_library_dependencies
-	fi
+	kde4-base_src_install
 }
 
 # @FUNCTION: kde4-meta_src_make_doc
@@ -685,10 +687,16 @@ kde4-meta_src_make_doc() {
 
 # @FUNCTION: kde4-meta_pkg_postinst
 # @DESCRIPTION:
-# Currently just calls its equivalent in kde4-base.eclass(5). Use this in split
-# ebuilds.
+# Display information about application handbook and invoke kbuildsycoca4.
 kde4-meta_pkg_postinst() {
 	debug-print-function ${FUNCNAME} "$@"
+
+	if has doc ${IUSE//+} && ! use doc; then
+		echo
+		einfo "Application handbook for ${PN} has not been installed."
+		einfo "To install handbook, reemerge =${CATEGORY}/${P} with 'doc' USE flag."
+		echo
+	fi
 
 	kde4-base_pkg_postinst
 }

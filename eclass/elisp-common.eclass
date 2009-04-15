@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.59 2009/04/08 10:47:42 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.60 2009/04/14 15:45:45 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -262,7 +262,7 @@ elisp-site-file-install() {
 		|| ewarn "elisp-site-file-install: bad name of site-init file"
 	sf="${T}/${sf/%-gentoo*.el/-gentoo.el}"
 	ebegin "Installing site initialisation file for GNU Emacs"
-	cp "$1" "${sf}"
+	[[ $1 = ${sf} ]] || cp "$1" "${sf}"
 	sed -i -e "1{:x;/^\$/{n;bx;};/^;.*${PN}/I!s:^:${header}\n\n:;1s:^:\n:;}" \
 		-e "s:@SITELISP@:${ESITELISP}/${my_pn}:g" \
 		-e "s:@SITEETC@:${ESITEETC}/${my_pn}:g;\$q" "${sf}"
@@ -286,7 +286,7 @@ elisp-site-file-install() {
 # location is still supported when generating site-gentoo.el.
 
 elisp-site-regen() {
-	local i sf line firstrun obsolete
+	local i sf line obsolete
 	local -a sflist
 
 	if [ ! -d "${EROOT}${SITELISP}" ]; then
@@ -299,28 +299,7 @@ elisp-site-regen() {
 		return 1
 	fi
 
-	[ -e "${EROOT}${SITELISP}"/site-gentoo.el ] \
-		|| [ "${PN}" = emacs-common-gentoo ] || firstrun=t
-
-	if [ "${firstrun}" ] && [ ! -e "${EROOT}${SITELISP}"/site-start.el ]; then
-		einfo "Creating default site-start.el ..."
-		cat <<-EOF >"${T}"/site-start.el
-		;;; site-start.el
-
-		;;; Commentary:
-		;; This default site startup file is installed by elisp-common.eclass.
-		;; You may replace this file by your own site initialisation, or even
-		;; remove it completely; it will not be recreated.
-
-		;;; Code:
-		;; Load site initialisation for Gentoo-installed packages.
-		(require 'site-gentoo)
-
-		;;; site-start.el ends here
-		EOF
-	fi
-
-	einfon "Regenerating site-gentoo.el (${EBUILD_PHASE}) ..."
+	einfon "Regenerating site-gentoo.el for GNU Emacs (${EBUILD_PHASE}) ..."
 
 	# Until January 2009, elisp-common.eclass sometimes created an
 	# auxiliary file for backwards compatibility. Remove any such file.
@@ -375,32 +354,8 @@ elisp-site-regen() {
 		echo " no changes."
 	else
 		mv "${T}"/site-gentoo.el "${EROOT}${SITELISP}"/site-gentoo.el
-		[ -f "${T}"/site-start.el ] \
-			&& [ ! -e "${EROOT}${SITELISP}"/site-start.el ] \
-			&& mv "${T}"/site-start.el "${EROOT}${SITELISP}"/site-start.el
 		echo
 		einfo "... ${#sflist[@]} site initialisation file(s) included."
-	fi
-
-	if [ "${firstrun}" ]; then
-		echo
-		while read line; do einfo "${line:- }"; done <<-EOF
-		All site initialisation for Gentoo-installed packages is added to
-		${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.el; site-start.el is no longer
-		managed by Gentoo.  You are responsible for all maintenance of
-		site-start.el if there is such a file.
-
-		In order for this site initialisation to be loaded for all users
-		automatically, you can add a line like this:
-
-		(require 'site-gentoo)
-
-		to ${EPREFIX}/usr/share/emacs/site-lisp/site-start.el.  Alternatively, that line
-		can be added by individual users to their initialisation files, or,
-		for greater flexibility, users can load individual package-specific
-		initialisation files from ${EPREFIX}/usr/share/emacs/site-lisp/site-gentoo.d/.
-		EOF
-		echo
 	fi
 
 	if [ "${obsolete}" ]; then
@@ -414,7 +369,7 @@ elisp-site-regen() {
 	fi
 
 	# cleanup
-	rm -f "${T}"/site-{gentoo,start}.el
+	rm -f "${T}"/site-gentoo.el
 
 	return 0
 }

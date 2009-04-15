@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.14 2009/03/09 19:41:26 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.15 2009/04/13 00:02:45 scarabeus Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -24,40 +24,40 @@ esac
 # This gets set to a non-zero value when a package is considered a kde or
 # koffice ebuild.
 
-if [[ $CATEGORY = kde-base ]]; then
+if [[ ${CATEGORY} = kde-base ]]; then
 	debug-print "${ECLASS}: KDEBASE ebuild recognized"
 	KDEBASE=kde-base
 fi
 
 # is this a koffice ebuild?
-if [[ $KMNAME = koffice || $PN = koffice ]]; then
+if [[ ${KMNAME} = koffice || ${PN} = koffice ]]; then
 	debug-print "${ECLASS}: KOFFICE ebuild recognized"
 	KDEBASE=koffice
 fi
 
 # @ECLASS-VARIABLE: KDE_SLOTS
 # @DESCRIPTION:
-# The slots used by all KDE versions later than 4.0. The live-ebuilds use
-# KDE_LIVE_SLOTS instead.
-KDE_SLOTS=( kde-4 4.1 4.2 4.3 )
+# The slots used by all KDE versions later than 4.0. The live KDE releases use
+# KDE_LIVE_SLOTS instead. Values should be ordered.
+KDE_SLOTS=( "kde-4" "4.1" "4.2" "4.3" )
 
 # @ECLASS-VARIABLE: KDE_LIVE_SLOTS
 # @DESCRIPTION:
-# The slots used by all KDE live versions.
-KDE_LIVE_SLOTS=( live )
+# The slots used by KDE live versions. Values should be ordered.
+KDE_LIVE_SLOTS=( "live" )
 
 # @FUNCTION: buildsycoca
 # @DESCRIPTION:
 # Function to rebuild the KDE System Configuration Cache.
 # All KDE ebuilds should run this in pkg_postinst and pkg_postrm.
-#
-# Note that kde4-base.eclass already does this.
 buildsycoca() {
 	debug-print-function ${FUNCNAME} "$@"
-
+	
 	if [[ -z ${ROOT%%/} && -x ${KDEDIR}/bin/kbuildsycoca4 ]]; then
-		# Make sure tha cache file exists, or kbuildsycoca4 will fail
+		# Make sure tha cache file exists, writable by root and readable by
+		# others. Otherwise kbuildsycoca4 will fail.
 		touch "${KDEDIR}/share/kde4/services/ksycoca4"
+		chmod 644 "${KDEDIR}/share/kde4/services/ksycoca4"
 
 		# We have to unset DISPLAY and DBUS_SESSION_BUS_ADDRESS, the ones
 		# in the user's environment (through su [without '-']) may cause
@@ -65,11 +65,25 @@ buildsycoca() {
 
 		ebegin "Running kbuildsycoca4 to build global database"
 		# This is needed because we support multiple kde versions installed together.
-		XDG_DATA_DIRS="${EPREFIX}/usr/share:${KDEDIR}/share:/usr/local/share" \
+		# Lookup in order - local, KDEDIR, /usr, do not duplicate entries btw.
+		local KDEDIRS="${EPREFIX}/usr/share"
+		[[ ${KDEDIR} != "${EPREFIX}/usr" ]] && KDEDIRS="${KDEDIR}/share:${KDEDIRS}"
+		XDG_DATA_DIRS="${EPREFIX}/usr/local/share:${KDEDIRS}" \
 			DISPLAY="" DBUS_SESSION_BUS_ADDRESS="" \
 			${KDEDIR}/bin/kbuildsycoca4 --global --noincremental &> /dev/null
 		eend $?
 	fi
+
+	# fix permission for some directories
+	for x in share/config share/kde4; do
+		if [[ $(stat --format=%a "${EPREFIX}"/usr/${x}) != 755 || $(stat --format=%a "${KDEDIR}"/${x}) != 755 ]]; then
+			ewarn "Package ${PN} is breaking ${KDEDIR}/${x} permissions."
+			ewarn "Please report this issue to gentoo bugzilla."
+			einfo "Permissions will get adjusted automatically now."
+			find "${EPREFIX}"/usr/${x} -type d -print0 | xargs -0 chmod 755
+			[[ ${KDEDIR} = "${EPREFIX}"/usr ]] || find ${KDEDIR}/${x} -type d -print0 | xargs -0 chmod 755
+		fi
+	done
 }
 
 # @FUNCTION: comment_all_add_subdirectory
@@ -105,39 +119,39 @@ enable_selected_linguas() {
 	local lingua sr_mess wp
 
 	# ebuild overridable linguas directory definition
-	KDE_LINGUAS_DIR=${KDE_LINGUAS_DIR:=${S}/po}
-	cd "$KDE_LINGUAS_DIR" || die "wrong linguas dir specified"
+	KDE_LINGUAS_DIR=${KDE_LINGUAS_DIR:="${S}/po"}
+	cd "${KDE_LINGUAS_DIR}" || die "wrong linguas dir specified"
 
 	# fix all various crazy sr@Latn variations
 	# this part is only ease for ebuilds, so there wont be any die when this
 	# fail at any point
 	sr_mess="sr@latn sr@latin sr@Latin"
 	for wp in ${sr_mess}; do
-		[[ -e "$wp.po" ]] && mv "$wp.po" "sr@Latn.po"
-		if [[ -d "$wp" ]]; then
+		[[ -e "${wp}.po" ]] && mv "${wp}.po" "sr@Latn.po"
+		if [[ -d "${wp}" ]]; then
 			# move dir and fix cmakelists
-			mv "$wp" "sr@Latn"
+			mv "${wp}" "sr@Latn"
 			sed -i \
-				-e "s:$wp:sr@Latin:g" \
+				-e "s:${wp}:sr@Latin:g" \
 				CMakeLists.txt
 		fi
 	done
 
 	for lingua in ${KDE_LINGUAS}; do
-		if [[ -e "$lingua.po" ]]; then
-			mv "$lingua.po" "$lingua.po.old"
+		if [[ -e "${lingua}.po" ]]; then
+			mv "${lingua}.po" "${lingua}.po.old"
 		fi
 	done
 	comment_all_add_subdirectory "${KDE_LINGUAS_DIR}"
 	for lingua in ${LINGUAS}; do
 		ebegin "Enabling LANGUAGE: ${lingua}"
-		if [[ -d "$lingua" ]]; then
+		if [[ -d "${lingua}" ]]; then
 			sed -e "/add_subdirectory([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
 				-e "/ADD_SUBDIRECTORY([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
 				-i CMakeLists.txt || die "Sed to uncomment linguas_${lingua} failed."
 		fi
-		if [[ -e "$lingua.po.old" ]]; then
-			mv "$lingua.po.old" "$lingua.po"
+		if [[ -e "${lingua}.po.old" ]]; then
+			mv "${lingua}.po.old" "${lingua}.po"
 		fi
 		eend $?
 	done
@@ -147,7 +161,7 @@ enable_selected_linguas() {
 # @DESCRIPTION:
 # Determine whether we are using live ebuild or tbzs.
 get_build_type() {
-	if [[ $SLOT = live || $PV = 9999* ]]; then
+	if [[ ${SLOT} = live || ${PV} = 9999* ]]; then
 		BUILD_TYPE="live"
 	else
 		BUILD_TYPE="release"
@@ -155,65 +169,13 @@ get_build_type() {
 	export BUILD_TYPE
 }
 
-# @FUNCTION: get_latest_kdedir
-# @DESCRIPTION:
-# We set up KDEDIR according to the latest KDE version installed; installing our
-# package for all available installs is just insane.
-# We can check for kdelibs because it is the most basic package; no KDE package
-# working without it. This might be changed in future.
-get_latest_kdedir() {
-	case ${KDE_WANTED} in
-		# note this will need to be updated as stable moves and so on
-		live)
-			_versions="9999 4.2.61 4.2.0 4.1.0"
-			;;
-		snapshot)
-			_versions="4.2.61 4.2.0 4.1.0 9999"
-			;;
-		testing)
-			_versions="4.2.0 4.1.0 4.2.61 9999"
-			;;
-		stable)
-			_versions="4.2.0 4.1.0 4.1.61 9999"
-			;;
-		*) die "KDE_WANTED=${KDE_WANTED} not supported here." ;;
-	esac
-	# check if exists and fallback as we go
-	for X in ${_versions}; do
-		if has_version ">=kde-base/kdelibs-${X}"; then
-			# figure out which X we are in and set it into _kdedir
-			case ${X} in
-				# also keep track here same for kde_wanted
-				9999)
-					_kdedir="live"
-					break
-				;;
-				4.3.0 | 4.2.61)
-					_kdedir="4.3"
-					break
-				;;
-				4.2.0 | 4.1.61)
-					_kdedir="4.2"
-					break
-				;;
-				4.1.0)
-					_kdedir="4.1"
-					break
-				;;
-			esac
-		fi
-	done
-
-	debug-print-function ${FUNCNAME} "$@" "KDE_WANTED=${KDE_WANTED} -> _kdedir=${_kdedir}"
-}
-
 # @FUNCTION: migrate_store_dir
 # @DESCRIPTION:
-# Migrate the remnants of ${ESVN_STORE_DIR}/KDE/ to ${ESVN_STORE_DIR}/.
-# Perform experimental split of kdebase to kdebase-apps.
+# Universal store dir migration
+# * performs split of kdebase to kdebase-apps when needed
+# * moves playground/extragear kde4-base-style to toplevel dir
 migrate_store_dir() {
-	local cleandir
-	cleandir="${ESVN_STORE_DIR}/KDE"
+	local cleandir="${ESVN_STORE_DIR}/KDE"
 	if [[ -d "${cleandir}" ]]; then
 		ewarn "'${cleandir}' has been found. Moving contents to new location."
 		addwrite "${ESVN_STORE_DIR}"
@@ -232,9 +194,27 @@ migrate_store_dir() {
 		# Move the rest
 		local pkg
 		for pkg in "${cleandir}"/*; do
-			mv -f "${pkg}" "${ESVN_STORE_DIR}"/ || eerror "failed to move ${pkg}"
+			mv -f "${pkg}" "${ESVN_STORE_DIR}"/ || eerror "Failed to move '${pkg}'"
 		done
 		rmdir "${cleandir}" || die "Could not move obsolete KDE store dir. Please move '${cleandir}' contents to appropriate location (possibly ${ESVN_STORE_DIR}) and manually remove '${cleandir}' in order to continue."
+	fi
+
+	if ! hasq kde4-meta ${INHERITED}; then
+		case ${KMNAME} in
+			extragear*|playground*)
+				local svnlocalpath="${ESVN_STORE_DIR}"/"${KMNAME}"/"${PN}"
+				if [[ -d "${svnlocalpath}" ]]; then
+					local destdir="${ESVN_STORE_DIR}"/"${ESVN_PROJECT}"/"`basename "${ESVN_REPO_URI}"`"
+					ewarn "'${svnlocalpath}' has been found."
+					ewarn "Moving contents to new location: ${destdir}"
+					addwrite "${ESVN_STORE_DIR}"
+					mkdir -p "${ESVN_STORE_DIR}"/"${ESVN_PROJECT}" && mv -f "${svnlocalpath}" "${destdir}" \
+						|| die "Failed to move to '${svnlocalpath}'"
+					# Try cleaning empty directories
+					rmdir "`dirname "${svnlocalpath}"`" 2> /dev/null
+				fi
+				;;
+		esac
 	fi
 }
 
@@ -246,7 +226,7 @@ migrate_store_dir() {
 save_library_dependencies() {
 	local depsfile="${T}/${PN}:${SLOT}"
 
-	ebegin "Saving library dependendencies in ${depsfile##*/}"
+	ebegin "Saving library dependencies in ${depsfile##*/}"
 	echo "EXPORT_LIBRARY_DEPENDENCIES(\"${depsfile}\")" >> "${S}/CMakeLists.txt" || \
 		die "Failed to save the library dependencies."
 	eend $?
@@ -256,8 +236,9 @@ save_library_dependencies() {
 # @DESCRIPTION:
 # Install generated CMake library dependencies to /var/lib/kde
 install_library_dependencies() {
-	local depsfile="$T/$PN:$SLOT"
-	ebegin "Installing library dependendencies as ${depsfile##*/}"
+	local depsfile="${T}/${PN}:${SLOT}"
+
+	ebegin "Installing library dependencies as ${depsfile##*/}"
 	insinto /var/lib/kde
 	doins "${depsfile}" || die "Failed to install library dependencies."
 	eend $?
@@ -268,7 +249,7 @@ install_library_dependencies() {
 # Inject specified library dependencies in current package
 load_library_dependencies() {
 	local pn i depsfile
-	ebegin "Injecting library dependendencies from '${KMLOADLIBS}'"
+	ebegin "Injecting library dependencies from '${KMLOADLIBS}'"
 
 	i=0
 	for pn in ${KMLOADLIBS} ; do
