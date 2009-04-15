@@ -1,6 +1,16 @@
 # ChangeLog for sci-libs/fftw
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.79 2009/04/08 19:29:41 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.82 2009/04/12 18:14:44 ranger Exp $
+
+  12 Apr 2009; Brent Baude <ranger@gentoo.org> fftw-2.1.5-r5.ebuild,
+  fftw-3.2.1.ebuild:
+  Marking fftw for bug 265329 and 265331
+
+  11 Apr 2009; nixnut <nixnut@gentoo.org> fftw-2.1.5-r5.ebuild:
+  ppc stable #265331
+
+  11 Apr 2009; nixnut <nixnut@gentoo.org> fftw-3.2.1.ebuild:
+  ppc stable #265329
 
   08 Apr 2009; Tobias Klausmann <klausman@gentoo.org> fftw-2.1.5-r5.ebuild,
   fftw-3.2.1.ebuild:
