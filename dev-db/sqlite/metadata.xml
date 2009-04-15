@@ -3,6 +3,10 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
+  <email>arfrever@gentoo.org</email>
+  <name>Arfrever Frehtes Taifersar Arahesis</name>
+</maintainer>
+<maintainer>
   <email>betelgeuse@gentoo.org</email>
   <description>Take if you want it</description>
 </maintainer>
