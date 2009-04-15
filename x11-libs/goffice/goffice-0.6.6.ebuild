@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/goffice-0.6.6.ebuild,v 1.1 2009/01/25 23:16:36 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/goffice-0.6.6.ebuild,v 1.2 2009/04/11 20:05:12 loki_val Exp $
+
+EAPI=2
 
 inherit eutils gnome2 flag-o-matic
 
@@ -16,13 +18,13 @@ IUSE="doc gnome"
 # cairo support broken and -gtk broken
 
 RDEPEND=">=dev-libs/glib-2.14
-	>=gnome-extra/libgsf-1.13.3
+	>=gnome-extra/libgsf-1.13.3[gnome?]
 	>=dev-libs/libxml2-2.4.12
 	>=x11-libs/pango-1.8.1
 	>=x11-libs/gtk+-2.6
 	>=gnome-base/libglade-2.3.6
 	>=media-libs/libart_lgpl-2.3.11
-	>=x11-libs/cairo-1.2
+	>=x11-libs/cairo-1.2[svg]
 	gnome? (
 		>=gnome-base/gconf-2
 		>=gnome-base/libgnomeui-2 )"
@@ -36,27 +38,5 @@ DOCS="AUTHORS BUGS ChangeLog MAINTAINERS NEWS README"
 
 pkg_setup() {
 	G2CONF="${G2CONF} $(use_with gnome)"
-
-	local diemessage=""
-
-	if use gnome && ! built_with_use gnome-extra/libgsf gnome; then
-		eerror "Please rebuild gnome-extra/libgsf with gnome support enabled"
-		eerror "echo \"gnome-extra/libgsf gnome\" >> /etc/portage/package.use"
-		eerror "or add  \"gnome\" to your USE string in /etc/make.conf"
-		diemessage="No Gnome support found in libgsf."
-	fi
-
-	if ! built_with_use x11-libs/cairo svg ; then
-		eerror "Please rebuild x11-libs/cairo with svg support enabled"
-		eerror "echo \"x11-libs/cairo svg\" >> /etc/portage/package.use"
-		eerror "emerge -1 x11-libs/cairo"
-		diemessage="${diemessage} No SVG support found in cairo."
-	fi
-
-	[ -n "${diemessage}" ] && die ${diemessage}
-}
-
-src_compile() {
 	filter-flags -ffast-math
-	gnome2_src_compile
 }

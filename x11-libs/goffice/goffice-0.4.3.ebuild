@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/goffice-0.4.3.ebuild,v 1.9 2008/01/10 19:41:36 welp Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/goffice-0.4.3.ebuild,v 1.10 2009/04/11 20:05:12 loki_val Exp $
+
+EAPI=2
 
 inherit eutils gnome2 flag-o-matic
 
@@ -14,18 +16,18 @@ IUSE="doc gnome"
 #cairo support broken and -gtk broken
 
 RDEPEND=">=dev-libs/glib-2.8.0
-	>=gnome-extra/libgsf-1.13.3
+	>=gnome-extra/libgsf-1.13.3[gnome?]
 	>=dev-libs/libxml2-2.4.12
 	>=x11-libs/pango-1.8.1
 	>=x11-libs/gtk+-2.6
 	>=gnome-base/libglade-2.3.6
 	>=gnome-base/libgnomeprint-2.8.2
 	>=media-libs/libart_lgpl-2.3.11
-	>=x11-libs/cairo-1.2
+	>=x11-libs/cairo-1.2[svg]
 	gnome? (
 		>=gnome-base/gconf-2
 		>=gnome-base/libgnomeui-2 )
-	  dev-libs/libpcre"
+	dev-libs/libpcre[unicode]"
 
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.18
@@ -36,36 +38,11 @@ DOCS="AUTHORS BUGS ChangeLog MAINTAINERS NEWS README"
 
 pkg_setup() {
 	G2CONF="${G2CONF} $(use_with gnome)"
-
-	local diemessage=""
-
-	if use gnome && ! built_with_use gnome-extra/libgsf gnome; then
-		eerror "Please rebuild gnome-extra/libgsf with gnome support enabled"
-		eerror "echo \"gnome-extra/libgsf gnome\" >> /etc/portage/package.use"
-		eerror "or add  \"gnome\" to your USE string in /etc/make.conf"
-		diemessage="No Gnome support found in libgsf."
-	fi
-
-	if ! built_with_use x11-libs/cairo svg; then
-		eerror "Please rebuild x11-libs/cairo with svg support enabled"
-		eerror "echo \"x11-libs/cairo svg\" >> /etc/portage/package.use"
-		eerror "emerge -1 x11-libs/cairo"
-		diemessage="${diemessage} No SVG support found in cairo."
-	fi
-
-	if ! built_with_use dev-libs/libpcre unicode; then
-		eerror "Please rebuild dev-libs/libpcre with unicode support enabled"
-		eerror "echo \"dev-libs/libpcre unicode\" >> /etc/portage/package.use"
-		eerror "emerge -1 dev-libs/libpcre"
-		diemessage="${diemessage} No unicode support found in libpcre."
-	fi
-
-	[ -n "${diemessage}" ] && die ${diemessage}
+	filter-flags -ffast-math
 }
 
-src_unpack() {
-	gnome2_src_unpack
-
+src_prepare() {
+	gnome2_src_prepare
 	# fix tests
 	echo "goffice/component/go-component-factory.c" >> po/POTFILES.in
 	echo "goffice/graph/gog-graph-prefs.glade" >> po/POTFILES.in
@@ -78,9 +55,4 @@ src_unpack() {
 	echo "goffice/gtk/go-palette.c" >> po/POTFILES.in
 	echo "plugins/plot_boxes/gog-histogram.c" >> po/POTFILES.in
 	echo "plugins/reg_linear/gog-power-reg.c" >> po/POTFILES.in
-}
-
-src_compile() {
-	filter-flags -ffast-math
-	gnome2_src_compile
 }

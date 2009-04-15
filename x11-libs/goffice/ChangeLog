@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/goffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/ChangeLog,v 1.54 2009/01/25 23:16:36 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/ChangeLog,v 1.55 2009/04/11 20:05:12 loki_val Exp $
+
+  11 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> goffice-0.2.1.ebuild,
+  goffice-0.4.3.ebuild, goffice-0.6.4.ebuild, goffice-0.6.5.ebuild,
+  goffice-0.6.6.ebuild:
+  Convert to EAPI-2 use-deps. It's much nicer when the PM can just detect
+  USE dependencies.
 
 *goffice-0.6.6 (26 Jan 2009)
 
