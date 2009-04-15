@@ -1,6 +1,12 @@
 # ChangeLog for sci-libs/gsl
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.52 2009/04/08 03:52:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.54 2009/04/12 12:41:52 klausman Exp $
+
+  12 Apr 2009; Tobias Klausmann <klausman@gentoo.org> gsl-1.12.ebuild:
+  Stable on alpha, bug #265339
+
+  11 Apr 2009; nixnut <nixnut@gentoo.org> gsl-1.12.ebuild:
+  ppc stable #265339
 
   08 Apr 2009; Jeroen Roovers <jer@gentoo.org> gsl-1.12.ebuild:
   Stable for HPPA (bug #265339).
