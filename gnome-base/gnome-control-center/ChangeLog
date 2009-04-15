@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-control-center
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/ChangeLog,v 1.24 2009/04/03 15:34:22 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/ChangeLog,v 1.25 2009/04/12 20:54:00 bluebird Exp $
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
+  gnome-control-center-2.24.0.1.ebuild:
+  Stable on sparc, bug #260063
 
   03 Apr 2009; Joseph Jezak <josejx@gentoo.org>
   gnome-control-center-2.24.0.1.ebuild:
