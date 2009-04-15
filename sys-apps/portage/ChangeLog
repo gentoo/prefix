@@ -2,6 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.13346 (15 Apr 2009)
+
+  15 Apr 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.13200.ebuild, -portage-2.2.00.13280.ebuild,
+  +portage-2.2.00.13346.ebuild:
+  Version bump to 2.2_rc30+, this version no longer accepts
+  EAPI="prefix", note: you cannot downgrade from this version
+
 *portage-2.2.00.13286-r1 (14 Apr 2009)
 
   14 Apr 2009; Jeremy Olexa <darkside@gentoo.org>

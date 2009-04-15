@@ -9,7 +9,7 @@ inherit eutils multilib python
 DESCRIPTION="Prefix branch of the Portage Package Manager, used in Gentoo Prefix"
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
 IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
@@ -55,10 +55,8 @@ prefix_src_archives() {
 PV_PL="2.1.2"
 PATCHVER_PL=""
 TARBALL_PV="${PV}"
-SRC_URI="mirror://gentoo/prefix-${PN}-${TARBALL_PV}.tar.bz2
-	$(prefix_src_archives prefix-${PN}-${TARBALL_PV}.tar.bz2)
-	linguas_pl? ( mirror://gentoo/${PN}-man-pl-${PV_PL}.tar.bz2
-		$(prefix_src_archives ${PN}-man-pl-${PV_PL}.tar.bz2) )"
+SRC_URI="$(prefix_src_archives prefix-${PN}-${TARBALL_PV}.tar.bz2)
+	linguas_pl? ( $(prefix_src_archives ${PN}-man-pl-${PV_PL}.tar.bz2) )"
 
 #PATCHVER=$PV  # in prefix we don't do this
 if [ -n "${PATCHVER}" ]; then
@@ -81,12 +79,20 @@ src_unpack() {
 }
 
 src_compile() {
+	local defaultpath="/usr/bin:/bin"
+	local rootuser=$(python -c 'from portage.const import rootuser; print	rootuser')
+	# lazy check, but works for now
+	if [[ ${rootuser} == "root" ]] ; then
+		# we need this for e.g. mtree on FreeBSD (and Darwin) which is in
+		# /usr/sbin
+		defaultpath="${defaultpath}:/usr/sbin:/sbin"
+	fi
 	econf \
 		--with-portage-user="${PORTAGE_USER:-portage}" \
 		--with-portage-group="${PORTAGE_GROUP:-portage}" \
-		--with-root-user="$(python -c 'from portage.const import rootuser; print rootuser')" \
+		--with-root-user="${rootuser}" \
 		--with-offset-prefix="${EPREFIX}" \
-		--with-default-path="/usr/bin:/bin" \
+		--with-default-path="${defaultpath}" \
 		|| die "econf failed"
 	emake || die "emake failed"
 
@@ -133,8 +139,9 @@ src_install() {
 	emake DESTDIR="${D}" install || die "make install failed."
 	dodir /usr/lib/portage/bin
 
-	# die, stupid wrapper, die!
-	use prefix && rm -Rf "${ED}"${portage_base}/bin/ebuild-helpers/sed
+	if use userland_GNU; then
+		rm "${ED}"${portage_base}/bin/ebuild-helpers/sed || die "Failed to remove sed wrapper"
+	fi
 
 	# Symlinks to directories cause up/downgrade issues and the use of these
 	# modules outside of portage is probably negligible.
@@ -174,6 +181,8 @@ pkg_preinst() {
 		rm "${EROOT}/etc/make.globals"
 	fi
 
+	has_version "<=${CATEGORY}/${PN}-2.2.00.13286"
+	EAPIPREFIX_UPGRADE=$?
 }
 
 pkg_postinst() {
@@ -210,6 +219,19 @@ pkg_postinst() {
 	elog "For help with using portage please consult the Gentoo Handbook"
 	elog "at http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=3"
 	elog
+
+	if [[ ${EAPIPREFIX_UPGRADE} == 0 ]] ; then
+		local eapi
+		einfo 'removing EAPI="prefix" legacy from your vdb, please wait'
+		pushd "${EROOT}var/db/pkg" > /dev/null
+		for cpv in */*/EAPI ; do
+			eapi=$(<"${cpv}")
+			eapi=${eapi/prefix/}
+			eapi=${eapi# }
+			echo ${eapi:-0} > "${cpv}"
+		done
+		popd > /dev/null
+	fi
 
 	if [ x$MINOR_UPGRADE = x0 ] ; then
 		elog "If you're upgrading from a pre-2.2 version of portage you might"
