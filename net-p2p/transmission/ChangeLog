@@ -1,6 +1,12 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.72 2009/01/15 22:34:25 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.73 2009/04/14 23:53:05 flameeyes Exp $
+
+*transmission-1.52 (14 Apr 2009)
+
+  14 Apr 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +transmission-1.52.ebuild:
+  Version bump, closes bug #256485.
 
   15 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> metadata.xml:
   Compnerd retired.
