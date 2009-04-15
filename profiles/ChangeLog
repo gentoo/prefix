@@ -1,10 +1,57 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2522 2009/04/10 23:12:38 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2538 2009/04/15 04:40:38 volkmar Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  15 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Mask ortp-0.15.0 because it breaks compatibility with older releases
+
+  14 Apr 2009; Alexis Ballier <aballier@gentoo.org> package.mask:
+  unmask slv2 0.6 now that traverso builds and needs it
+
+  14 Apr 2009; Christoph Mende <angelos@gentoo.org> package.mask:
+  Masked media-sound/mpd pre-releases
+
+  14 Apr 2009; Jeff Gardner <je_fro@gentoo.org> package.mask:
+  Unmask ati-drivers-8.32.5 so that ati-drivers-extra can live again.
+
+  14 Apr 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  remove non-existant p.masked version of dev-db/mysql
+
+  14 Apr 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  remove entries for non-existant packages
+
+  14 Apr 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  removed openpbs-common from tree
+
+  14 Apr 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  p.mask guarddog, temperature-app, ivcall, arno-iptables-firewall, ctmkit from
+  the treecleaner queue.
+
+  13 Apr 2009; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  mask live version of app-doc/pms
+
+  13 Apr 2009; Jeff Gardner <je_fro@gentoo.org> package.mask:
+  p.mask several ati-drivers versions before cleanup
+
+  13 Apr 2009; Jeff Gardner <je_fro@gentoo.org> ChangeLog:
+  Removed ati-drivers versions from p.mask that are no longer in the tree.
+
+  12 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
+  Update mask for kde4. Block for change older than 4.2.2 due to eclass
+  update that is comming next.
+
+  12 Apr 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask net-www/adobesvg for removal, bug 265066.
+
+  11 Apr 2009; Alexey Shvetsov <alexxy@gentoo.org> package.mask:
+  mask kde 4.2.2
+
+  11 Apr 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Mask bzr prerelease candidate and dependent bzrtools
 
   10 Apr 2009; Alin Năstac <mrness@gentoo.org> package.mask:
   P.mask net-dialup/qlcr (#264785).

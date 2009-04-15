@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4354 2009/04/10 21:27:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4367 2009/04/14 21:07:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -532,7 +532,7 @@ dev-games/ogre:cegui - build the CEGUI samples
 dev-games/ogre:cg - NVIDIA toolkit plugin
 dev-games/ogre:devil - image loading support with DevIL
 dev-games/ogre:double-precision - more precise calculations at the expense of speed
-dev-games/openscenegraph:freetype -  Enable osg to use the media-libs/freetype based plugin 
+dev-games/ogre:freeimage - image loading support with FreeImage
 dev-games/openscenegraph:osgapps -  Build osg applications 
 dev-games/openscenegraph:xrandr -  Enable support for the X xrandr extension 
 dev-haskell/gtk2hs:glade - Enable gnome-base/libglade bindings compilation
@@ -826,6 +826,7 @@ dev-util/codeblocks:contrib - Build additional contrib components
 dev-util/ctags:ada - Enable Ada support
 dev-util/cvs:server - Enable server support
 dev-util/debootstrap:nodpkg - Disable support for app-arch/dpkg (useful for building a non-debian system)
+dev-util/dialog:minimal - Disable library, install command-line program only
 dev-util/eric:idl - Enable omniorb support
 dev-util/gambas:corba - Enable CORBA 2 ORB (net-misc/omniORB)
 dev-util/gambas:smtp - Enable smtp support.
@@ -853,6 +854,7 @@ dev-util/mercurial:gpg - Support signing with GnuPG.
 dev-util/mercurial:tk - Install dev-lang/tk for hgk script.
 dev-util/mercurial:zsh-completion - Install zsh command completion for hg.
 dev-util/mono-tools:webkit - Use net-libs/webkit-gtk for rendering.
+dev-util/nemiver:memoryview - Enable the optional hexadecimal memory inspection with app-editors/ghex.
 dev-util/netbeans:cxx - Adds Netbeans C/C++ Pack
 dev-util/nsis:config-log - Enable the logging facility (useful in debugging installers)
 dev-util/nsis:prebuilt-system - Use the pre-compiled System.dll from the release to workaround the System::Call issue under GCC
@@ -1104,6 +1106,8 @@ kde-base/okular:chm - Enable support for Microsoft Compiled HTML Help files
 kde-base/okular:ebook - Add E-Book suppport
 kde-base/okular:ps - Add PostScript support
 kde-base/plasma-workspace:google-gadgets - Add google-gadgets support
+kde-base/plasma-workspace:rss - Enables building RSSNOW plasmoid (requires kde-base/kdepimlibs)
+kde-base/plasma-workspace:xcomposite - Disable this flag to enable experimental fake transparency support for plasma panel.
 kde-base/pykde4:akonadi - Builds Akonadi python language bindings
 kde-base/step:qalculate - Enable the libqalculate library for unit conversion
 kde-misc/knetworkmanager:cisco - Adds support for the Cisco VPN client net-misc/vpnc
@@ -1405,6 +1409,7 @@ media-sound/alsa-tools:midi - Build the sequencer (midi) utilities
 media-sound/alsa-utils:midi - Build the sequencer (midi) utilities
 media-sound/alsaplayer:id3tag - Enables ID3 tagging with id3tag library
 media-sound/amarok:amazon - Enable support for downloading covers from amazon.com
+media-sound/amarok:cdaudio - Enable cdaudio functionality
 media-sound/amarok:daap -  Enable the scripts for music sharing through DAAP. This flag adds dependencies on www-servers/mongrel to allow sharing of the Amarok music collection through DAAP protocol. Please note that turning this flag off has no effect on DAAP browsing. 
 media-sound/amarok:ifp - Enable support for iRiver devices access through libifp
 media-sound/amarok:mp3tunes - Enable mp3tunes integration
@@ -1472,10 +1477,20 @@ media-sound/mixxx:vinylcontrol - Enable vinylcontrol feature
 media-sound/moc:sid - Build with SID (Commodore 64 Audio) support
 media-sound/mp3blaster:sid - Build with SID (Commodore 64 Audio) support
 media-sound/mp3splt-gtk:audacious - Include media-sound/audacious support.
-media-sound/mpd:curl - Support for web streams
-media-sound/mpd:icecast - Enable support for Icecast2
+media-sound/mpd:cdio - Use libcdio for CD support
+media-sound/mpd:curl - Support for web stream listening
+media-sound/mpd:fifo - Support writing audio to a FIFO
+media-sound/mpd:fluidsynth - Enables Fluidsynth MIDI software synthesis
+media-sound/mpd:gprof - Build with profiling support
+media-sound/mpd:http-stream - Support streaming via built-in HTTP server
+media-sound/mpd:icecast - Support for Icecast2 streaming
 media-sound/mpd:id3 - Support for ID3 tags
 media-sound/mpd:lame - Support for MP3 streaming via Icecast2
+media-sound/mpd:lastfmradio - Support listening to last.fm radio stations
+media-sound/mpd:libmms - Support for Microsoft Media Server (MMS) streams via libmms
+media-sound/mpd:pipe - Support writing audio to a pipe
+media-sound/mpd:sid - Build with SID (Commodore 64 Audio) support
+media-sound/mpd:zip - Support for ZIP files
 media-sound/mpfc:cdaudio - Enable cd audio playback support
 media-sound/mpfc:wav - Enable wav audio codec support
 media-sound/mpg123:3dnowext - Enable 3dnowext cpu instructions
@@ -2099,6 +2114,9 @@ net-libs/libfwbuilder:bind - Use bind's name resolving library
 net-libs/libfwbuilder:stlport - Enagle support for STLport
 net-libs/libinfinity:server -  Build and install the server binary including init.d/conf.d-scripts. Needed if you want to host an infinote server for gobby. 
 net-libs/libpri:bri - Enable ISDN BRI support (bristuff)
+net-libs/libsrtp:aesicm - Use AES ICM cryptographic algorithm
+net-libs/libsrtp:console -  Use /dev/console instead of stdout for error messages 
+net-libs/libsrtp:syslog - Use syslog for error messages
 net-libs/libssh2:libgcrypt - Use libgcrypt for crypto
 net-libs/libvncserver:no24bpp - disable 24bpp support
 net-libs/libvncserver:nobackchannel - disable backchannel support
@@ -2176,7 +2194,6 @@ net-misc/hylafax:faxonly - Don't depend on mgetty-fax
 net-misc/hylafax:html - Adds HTML documentation
 net-misc/hylafax:mgetty - Adds support for mgetty and vgetty
 net-misc/iaxmodem:logrotate -  Install support files for app-admin/logrotate 
-net-misc/icaclient:motif - Provide the motif based connection manager
 net-misc/icecast:yp - Build support for yp public directory listings
 net-misc/iputils:SECURITY_HAZARD - Allow non-root users to flood (ping -f). This is generally a very bad idea.
 net-misc/italc:system-libvncserver - Build against the system libvncserver (experimental)
@@ -2361,8 +2378,6 @@ net-wireless/wireless-tools:multicall - Build the most commonly used tools as on
 net-wireless/wpa_supplicant:gsm - Add support for EAP-SIM authentication algorithm
 net-wireless/wpa_supplicant:madwifi - Add support for madwifi (Atheros chipset)
 net-wireless/wpa_supplicant:ps3 - Add support for ps3 hypervisor driven gelic wifi
-net-www/vdradmin-am:vdr -  Support for media-video/vdr. Disable this if the VDR you want to control runs at a remote machine. 
-net-www/xxv:themes - Enable more themes via x11-themes/xxv-skins
 rox-base/rox:video - Enable rox-extra/videothumbnail for creating thumbnails of videos with mplayer or totem.
 rox-extra/archive:ace - Enable .ace extraction via app-arch/unace
 rox-extra/archive:compress - Enable tar.Z and *.Z extraction via app-arch/ncompress
@@ -2429,6 +2444,7 @@ sci-geosciences/merkaartor:webkit - Enable net-libs/webkit-gtk library support
 sci-libs/acml:gfortran - Fetch and install acml compiled with GNU gfortran
 sci-libs/acml:ifc - Fetch and install acml compiled with Intel Fortran Compiler (dev-lang/ifc)
 sci-libs/acml:int64 - Install the 64 bits integer library
+sci-libs/arprec:qd - Use sci-libs/qd
 sci-libs/blas-goto:int64 - Build the 64 bits integer library
 sci-libs/cholmod:metis - Enable the Partition module to cholmod using metis (sci-libs/metis, sci-libs/parmetis)
 sci-libs/cholmod:supernodal - Enable the Supernodal module (needs virtual/lapack)
@@ -2517,7 +2533,7 @@ sci-physics/root:pythia6 -  Builds the interface to Pythia-6 (sci-physics/pythia
 sci-physics/root:pythia8 -  Builds the interface to Pythia-8 (sci-physics/pythia) high energy physics generation events library 
 sci-physics/root:reflex - Builds the reflection database for the C++ interpretor 
 sci-physics/root:xrootd - Build the xrootd low latency file server
-sci-visualization/gwyddion:sourceview - Enable support for x11-libs/gtksourceview
+sci-visualization/gwyddion:sourceview -  Enable support for x11-libs/gtksourceview 
 sci-visualization/hippodraw:fits -  Enable HippoDraw's built-in support for reading FITS files, by using the CFITSIO library. FITS binary and ASCII tables are supported as well as images. When combine with numpy flag, it can also use the pyfits package. 
 sci-visualization/hippodraw:numpy -  Enable support for the numerical array manipulation and computational capabilities of numpy in python. HippoDraw can return a numerical array to Python from any of the type of objects that are supported. One can also import data to a HippoDraw from a numpy array. 
 sci-visualization/hippodraw:root -  Adds support for ROOT input/ouput system, storing a table of data as TBranch objects each with a single TLeaf. Files of this type can be imported by HippoDraw as a RootNTuple. Also if root flag is selected, it can use root::minuit for minimization instead of standalone minuit library. 
@@ -2783,6 +2799,8 @@ www-client/seamonkey:moznopango - Disable x11-libs/pango during runtime
 www-client/seamonkey:moznoroaming - sroaming extension support
 www-client/seamonkey:xforms - XForms is a standard to split up XHTML into XForms, instance data, and user interface
 www-client/w3m:lynxkeymap - If you prefer Lynx-like key binding
+www-misc/vdradmin-am:vdr -  Support for media-video/vdr. Disable this if the VDR you want to control runs at a remote machine. 
+www-misc/xxv:themes - Enable more themes via x11-themes/xxv-skins
 www-misc/zoneminder:X10 - Enable support for X10 devices
 www-plugins/adobe-flash:32bit - For amd64-multilib, installs the 32-bit plugin alongside the native 64-bit plugin
 www-plugins/gnash:agg - Rendering based on the Anti-Grain Geometry Rendering Engine library

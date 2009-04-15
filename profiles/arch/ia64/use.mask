@@ -10,6 +10,7 @@ dvb
 dxr3
 gnokii
 gphoto2
+gps
 ivtv
 lirc
 mythtv
@@ -47,6 +48,12 @@ networkmanager
 octave
 oracle
 timidity
+semantic-desktop
+tunepimp
+captury
+bittorrent-external
+fits
+ktts
 
 # Stuff that doesn't compile on ia64
 chicken
