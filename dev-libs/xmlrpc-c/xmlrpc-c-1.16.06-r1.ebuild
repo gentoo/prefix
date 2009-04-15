@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.16.06-r1.ebuild,v 1.3 2009/01/03 17:52:01 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.16.06-r1.ebuild,v 1.4 2009/04/11 08:37:59 kumba Exp $
 
 EAPI=1
 
