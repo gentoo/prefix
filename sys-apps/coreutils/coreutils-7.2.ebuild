@@ -46,7 +46,6 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
 	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
-	epatch "${FILESDIR}"/${PN}-6.12-interix-sleep.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
