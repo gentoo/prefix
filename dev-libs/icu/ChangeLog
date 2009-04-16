@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/icu
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.79 2009/04/14 19:37:51 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.82 2009/04/16 00:03:55 jer Exp $
+
+  16 Apr 2009; Jeroen Roovers <jer@gentoo.org> icu-4.0.1.ebuild:
+  Stable for HPPA (bug #239538).
+
+  15 Apr 2009; Markus Meier <maekke@gentoo.org> icu-4.0.1.ebuild:
+  amd64/x86 stable, bug #239538
+
+  15 Apr 2009; Brent Baude <ranger@gentoo.org> icu-4.0.1.ebuild:
+  Marking icu-4.0.1 ppc64 and ppc for bug 239538
 
   14 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   +files/icu-4.0.1-TestDisplayNamesMeta.patch, icu-4.0.1.ebuild:
