@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/numpy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.79 2009/04/14 10:09:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.80 2009/04/15 17:47:25 ranger Exp $
+
+  15 Apr 2009; Brent Baude <ranger@gentoo.org> numpy-1.2.1.ebuild:
+  Marking numpy-1.2.1 ppc64 for bug 265328
 
   14 Apr 2009; Raúl Porcel <armin76@gentoo.org> numpy-1.2.1.ebuild:
   ia64/s390/x86 stable wrt #265328
