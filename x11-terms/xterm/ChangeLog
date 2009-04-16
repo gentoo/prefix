@@ -1,6 +1,12 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.264 2009/04/06 19:47:17 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.266 2009/04/16 02:47:28 jer Exp $
+
+  16 Apr 2009; Jeroen Roovers <jer@gentoo.org> xterm-242.ebuild:
+  Stable for HPPA (bug #251832).
+
+  15 Apr 2009; Raúl Porcel <armin76@gentoo.org> xterm-242.ebuild:
+  ia64/sh stable wrt #251832
 
   06 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> xterm-242.ebuild:
   Stable on sparc, bug #251832
