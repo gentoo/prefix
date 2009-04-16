@@ -31,7 +31,7 @@ if [ "${PEER_DNS}" != "no" ]; then
 			if [ -z "${DOMAIN}" ] ; then
 				DOMAIN="${opt#dhcp-option DOMAIN *}"
 			else
-				SEARCH="${SEARCH:+ }${opt#dhcp-option DOMAIN *}"
+				SEARCH="${SEARCH}${SEARCH:+ }${opt#dhcp-option DOMAIN *}"
 			fi
 		elif [ "${opt}" != "${opt#dhcp-option DNS *}" ] ; then
 			NS="${NS}nameserver ${opt#dhcp-option DNS *}\n"
