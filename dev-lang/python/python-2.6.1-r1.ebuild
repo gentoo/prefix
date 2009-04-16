@@ -125,7 +125,7 @@ src_prepare() {
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
 	[[ ${CHOST} == *-interix* ]] && {
-		epatch "${FILESDIR}"/${PN}-2.5.1-interix.patch
+		epatch "${FILESDIR}"/${PN}-2.6.1-interix.patch
 		# this one could be applied unconditionally, but to keep it
 		# clean, i do it together with the conditional one.
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
