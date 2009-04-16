@@ -122,6 +122,8 @@ src_compile() {
 		append-ldflags -Wl,--default-symver
 	fi
 
+	tc-export CC CXX # would use CC=xlc_r on aix if not set
+
 	cd "${S}"
 	ECONF_SOURCE="${S}"/../dist \
 	STRIP="true" \
