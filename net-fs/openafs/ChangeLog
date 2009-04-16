@@ -1,6 +1,11 @@
 # ChangeLog for net-fs/openafs
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/ChangeLog,v 1.157 2009/01/04 13:04:33 stefaan Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/ChangeLog,v 1.158 2009/04/15 06:39:33 stefaan Exp $
+
+*openafs-1.4.9 (15 Apr 2009)
+
+  15 Apr 2009; Stefaan De Roeck <stefaan@gentoo.org> +openafs-1.4.9.ebuild:
+  Version bump to 1.4.9, bug #265538, fix security bug
 
 *openafs-1.4.8-r1 (04 Jan 2009)
 
