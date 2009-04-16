@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/lua
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.132 2009/04/13 09:07:43 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.133 2009/04/15 19:30:48 ranger Exp $
+
+  15 Apr 2009; Brent Baude <ranger@gentoo.org> lua-5.1.4.ebuild:
+  Marking lua-5.1.4 ppc64 for bug 255191
 
   13 Apr 2009; Matti Bickel <mabi@gentoo.org>
   files/lua-5.1-make_static-r1.patch:
