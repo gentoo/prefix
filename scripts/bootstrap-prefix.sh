@@ -259,11 +259,7 @@ bootstrap_startscript() {
 }
 
 bootstrap_portage() {
-	# don't use "latest" here, as I want to have the bootstrap script to
-	# use a portage in a known "state", in particular, any revision
-	# after 10460 needs bash 3.2.17, which only exists as patchset, see
-	# bug #229677
-	PV="2.2.00.10347"
+	PV="2.2.00.13346"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
@@ -284,18 +280,12 @@ bootstrap_portage() {
 		--with-offset-prefix="${ROOT}" \
 		--with-portage-user="`id -un`" \
 		--with-portage-group="`id -gn`" \
-		--with-eapi='"prefix"' \
 		--mandir="${ROOT}/automatically-removed" \
 		--with-default-path="${ROOT}/tmp/bin:${ROOT}/tmp/usr/bin:/bin:/usr/bin:${PATH}"
 	$MAKE ${MAKEOPTS} || exit 1
 
  	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
-
-# I think this is no longer an issue since Portage doesn't install the
-# wrapper any more
-#	einfo "making a symlink for sed in ${ROOT}/usr/bin"
-#	( cd ${ROOT}/usr/bin && ln -s ../../bin/sed )
 
 	if [[ $MAKE != "make" ]] ; then
 		einfo "making a symlink for $MAKE"
@@ -588,7 +578,9 @@ bootstrap_texinfo() {
 }
 
 bootstrap_bash() {
-	bootstrap_gnu bash 3.2
+	# distfile with included patches to make portage happy
+	bootstrap_gnu bash 3.2 \
+		"http://dev.gentoo.org/~grobian/distfiles/bash-3.2-patched.tar.gz"
 }
 
 bootstrap_gzip() {
