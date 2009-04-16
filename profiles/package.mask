@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9675 2009/04/15 04:40:39 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9678 2009/04/15 23:47:31 je_fro Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,14 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Mounir Lamouri <volkmar@gentoo.org> (15 Apr 2009)
+# >www-plugins/mozilla-weaver-0.2.104 needs masked versions of ff (ie. 3.1_beta)
+>www-plugins/mozilla-weaver-0.2.104
+
+# Torsten Veller <tove@gentoo.org> (15 Apr 2009)
+# Mask net-mail/gotmail for removal (#266204)
+net-mail/gotmail
 
 # Mounir Lamouri <volkmar@gentoo.org> (15 Apr 2009)
 # According to configure.ac ortp-0.15.0 breaks compatibility with older releases
@@ -82,6 +90,7 @@ dev-util/ctmkit
 =x11-drivers/ati-drivers-8.40.4
 =x11-drivers/ati-drivers-8.452
 =x11-drivers/ati-drivers-8.471.3
+=x11-apps/ati-drivers-extra-8.27.10
 
 # Christian Hoffmann <hoffie@gentoo.org> (12 Apr 2009)
 # Masked for security (bug 265756), unmaintained upstream (last release two

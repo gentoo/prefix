@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2538 2009/04/15 04:40:38 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2541 2009/04/15 23:47:31 je_fro Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  15 Apr 2009; Jeff Gardner <je_fro@gentoo.org> package.mask:
+  p.mask ati-drivers-extra-8.27.10 as it is no longer installable
+
+  15 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Mask >mozilla-weaver-0.2.104 because it needs a masked Firefox (3.1_beta)
+
+  15 Apr 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask net-mail/gotmail for removal (#266204)
 
   15 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
   Mask ortp-0.15.0 because it breaks compatibility with older releases
