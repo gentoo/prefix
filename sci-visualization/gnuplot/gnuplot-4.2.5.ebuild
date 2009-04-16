@@ -158,7 +158,7 @@ src_install () {
 
 	if use latex && use lua; then
 		# install style file in an (additional) place where TeX can find it
-		insinto "${TEXMF}/tex/latex/${PN}"
+		insinto "${TEXMF#${EPREFIX}}/tex/latex/${PN}"
 		doins term/lua/gnuplot-lua-tikz.sty || die
 	fi
 
