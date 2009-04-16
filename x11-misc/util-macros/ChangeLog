@@ -1,6 +1,12 @@
 # ChangeLog for x11-misc/util-macros
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/ChangeLog,v 1.66 2009/04/06 19:22:08 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/ChangeLog,v 1.68 2009/04/16 02:45:03 jer Exp $
+
+  16 Apr 2009; Jeroen Roovers <jer@gentoo.org> util-macros-1.2.1.ebuild:
+  Stable for HPPA (bug #251832).
+
+  15 Apr 2009; Raúl Porcel <armin76@gentoo.org> util-macros-1.2.1.ebuild:
+  ia64/sh stable wrt #251832
 
   06 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   util-macros-1.2.1.ebuild:

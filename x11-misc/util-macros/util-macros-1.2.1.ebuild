@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/util-macros-1.2.1.ebuild,v 1.6 2009/04/06 19:22:08 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/util-macros-1.2.1.ebuild,v 1.8 2009/04/16 02:45:03 jer Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
