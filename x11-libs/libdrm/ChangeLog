@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.71 2009/04/09 17:14:46 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.73 2009/04/16 02:03:06 jer Exp $
+
+  16 Apr 2009; Jeroen Roovers <jer@gentoo.org> libdrm-2.4.5.ebuild:
+  Stable for HPPA (bug #251832).
+
+  15 Apr 2009; Raúl Porcel <armin76@gentoo.org> libdrm-2.4.5.ebuild:
+  ia64/sh stable wrt #251832
 
   09 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org>
   +files/2.4.6-makefile.patch, libdrm-2.4.6.ebuild:
