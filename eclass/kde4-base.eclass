@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.34 2009/04/13 00:02:45 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.35 2009/04/15 11:09:50 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -263,6 +263,10 @@ RDEPEND="${RDEPEND} ${COMMONDEPEND}"
 case ${BUILD_TYPE} in
 	live)
 		SRC_URI=""
+		# @ECLASS-VARIABLE: ESVN_MIRROR
+		# @DESCRIPTION:
+		# This variable allows easy overriding of default kde mirror service
+		# (anonsvn) with anything else you might want to use.
 		ESVN_MIRROR=${ESVN_MIRROR:=svn://anonsvn.kde.org/home/kde}
 		# Split ebuild, or extragear stuff
 		if [[ -n ${KMNAME} ]]; then
