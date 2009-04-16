@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.3-r1.ebuild,v 1.6 2009/04/06 17:42:57 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.3-r1.ebuild,v 1.8 2009/04/16 02:05:10 jer Exp $
 
 GIT=$([[ ${PV} = 9999* ]] && echo "git")
 EGIT_REPO_URI="git://anongit.freedesktop.org/mesa/mesa"
