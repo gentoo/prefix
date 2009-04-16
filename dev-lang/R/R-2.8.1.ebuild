@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.8.1.ebuild,v 1.6 2009/04/12 12:30:27 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.8.1.ebuild,v 1.7 2009/04/15 18:33:32 ranger Exp $
 
 EAPI=2
 inherit eutils fortran flag-o-matic bash-completion versionator

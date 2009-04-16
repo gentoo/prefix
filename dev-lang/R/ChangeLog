@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/R
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.148 2009/04/12 12:30:27 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.149 2009/04/15 18:33:32 ranger Exp $
+
+  15 Apr 2009; Brent Baude <ranger@gentoo.org> R-2.7.2.ebuild,
+  R-2.8.1.ebuild:
+  Marking R-2.7.2 | 2.8.1 ppc64 stable for bugs 244621 and 265338 respectively
 
   12 Apr 2009; Tobias Klausmann <klausman@gentoo.org> R-2.8.1.ebuild:
   Stable on alpha, bug #265338
