@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/xproto-7.0.14.ebuild,v 1.6 2009/04/06 19:45:15 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/xproto-7.0.14.ebuild,v 1.8 2009/04/16 02:35:54 jer Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
