@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/py
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/py/ChangeLog,v 1.7 2008/10/07 00:00:16 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/py/ChangeLog,v 1.8 2009/04/15 20:12:22 maekke Exp $
+
+  15 Apr 2009; Markus Meier <maekke@gentoo.org> py-0.9.1.ebuild:
+  amd64/x86 stable, bug #261887
 
   06 Oct 2008; Brent Baude <ranger@gentoo.org> py-0.9.1.ebuild:
   Marking py-0.9.1 ~ppc64 for bug 236705
