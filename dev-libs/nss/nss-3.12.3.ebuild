@@ -1,23 +1,23 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.2_rc1.ebuild,v 1.7 2008/12/27 16:15:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.3.ebuild,v 1.1 2009/04/15 13:37:53 armin76 Exp $
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
-NSPR_VER="4.7.3"
+NSPR_VER="4.7.4"
 RTM_NAME="NSS_${PV//./_}_RTM"
 DESCRIPTION="Mozilla's Network Security Services library that implements PKI support"
 HOMEPAGE="http://www.mozilla.org/projects/security/pki/nss/"
-#SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/${RTM_NAME}/src/${P}.tar.gz"
-SRC_URI="http://dev.gentoo.org/~armin76/dist/${P}.tar.bz2
-	mirror://gentoo/${P}.tar.bz2"
+SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/${RTM_NAME}/src/${P}.tar.bz2"
+#SRC_URI="http://dev.gentoo.org/~armin76/dist/${P}.tar.bz2
+#	mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="utils"
 
-S="${WORKDIR}"
+S="${WORKDIR}/${P}"
 
 DEPEND=">=dev-libs/nspr-${NSPR_VER}
 	>=dev-db/sqlite-3.5"
@@ -42,7 +42,7 @@ src_unpack() {
 	sed -i -e 's/\$(MKSHLIB) -o/\$(MKSHLIB) \$(LDFLAGS) -o/g' rules.mk
 
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-3.11-config.patch
+	epatch "${FILESDIR}"/${PN}-3.12-config.patch
 	epatch "${FILESDIR}"/${PN}-3.12-config-1.patch
 	epatch "${FILESDIR}"/${PN}-mips64-2.patch
 
@@ -57,7 +57,7 @@ src_compile() {
 	case $(file "${T}"/test.o) in
 	*64-bit*) export USE_64=1;;
 	*32-bit*) ;;
-	*) die "FAIL";;
+	*) die "Failed to detect whether your arch is 64bits or 32bits, disable distcc if you're using it, please";;
 	esac
 
 	export NSDISTMODE=copy
