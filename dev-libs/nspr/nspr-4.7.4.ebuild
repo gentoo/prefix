@@ -1,12 +1,12 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.1.ebuild,v 1.3 2008/11/15 18:31:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.4.ebuild,v 1.1 2009/04/15 13:35:06 armin76 Exp $
 
 inherit eutils multilib toolchain-funcs
 
 DESCRIPTION="Netscape Portable Runtime"
 HOMEPAGE="http://www.mozilla.org/projects/nspr/"
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v${PV}/src/${P}.tar.gz"
 
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 SLOT="0"
@@ -36,8 +36,8 @@ src_compile() {
 	echo > "${T}"/test.c
 	$(tc-getCC) -c "${T}"/test.c -o "${T}"/test.o
 	case $(file "${T}"/test.o) in
-	    *64-bit*|ppc64|x86_64) myconf="${myconf} --enable-64bit";;
-	    *32-bit*|ppc|i386) ;;
+	    *64-bit*|*ppc*|*x86_64*) myconf="${myconf} --enable-64bit";;
+	    *32-bit*|*ppc*|*i386*) ;;
 	    *) die "Failed to detect whether your arch is 64bits or 32bits, disable distcc if you're using it, please";;
 	esac
 
