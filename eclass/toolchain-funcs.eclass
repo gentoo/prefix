@@ -457,7 +457,11 @@ gen_usr_ldscript() {
 
 		case ${CHOST} in
 		*-darwin*)
-			tlib=$(scanmacho -qF'%S#F' "${ED}"/usr/${libdir}/${lib})
+			if ${auto} ; then
+				tlib=$(scanmacho -qF'%S#F' "${ED}"/usr/${libdir}/${lib})
+			else
+				tlib=$(scanmacho -qF'%S#F' "${ED}"/${libdir}/${lib})
+			fi
 			[[ -z ${tlib} ]] && die "unable to read install_name from ${lib}"
 			tlib=${tlib##*/}
 
