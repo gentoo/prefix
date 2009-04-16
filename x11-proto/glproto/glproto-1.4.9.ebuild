@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/glproto-1.4.9.ebuild,v 1.7 2009/04/03 13:55:31 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/glproto-1.4.9.ebuild,v 1.8 2009/04/16 02:29:15 jer Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
