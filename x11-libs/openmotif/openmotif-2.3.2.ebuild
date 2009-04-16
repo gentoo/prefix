@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.2.ebuild,v 1.1 2009/04/14 17:35:19 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.2.ebuild,v 1.2 2009/04/15 21:15:50 ulm Exp $
 
 inherit autotools eutils flag-o-matic multilib
 
@@ -110,7 +110,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake -j1 DESTDIR="${D}" install || die "emake install failed"
 
 	# mwm default configs
 	insinto /usr/share/X11/app-defaults
@@ -121,7 +121,7 @@ src_install() {
 	dosym /etc/X11/mwm/system.mwmrc /usr/$(get_libdir)/X11/
 
 	if use examples; then
-		emake -C demos DESTDIR="${D}" install-data \
+		emake -j1 -C demos DESTDIR="${D}" install-data \
 			|| die "installation of demos failed"
 		dodir /usr/share/doc/${PF}/demos
 		mv "${ED}"/usr/share/Xm/* "${ED}"/usr/share/doc/${PF}/demos
