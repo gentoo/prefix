@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/dri2proto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/dri2proto/ChangeLog,v 1.9 2009/04/06 19:30:53 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/dri2proto/ChangeLog,v 1.11 2009/04/16 02:04:20 jer Exp $
+
+  16 Apr 2009; Jeroen Roovers <jer@gentoo.org> dri2proto-1.99.3.ebuild:
+  Stable for HPPA (bug #251832).
+
+  15 Apr 2009; Raúl Porcel <armin76@gentoo.org> dri2proto-1.99.3.ebuild:
+  ia64/sh stable wrt #251832
 
   06 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   dri2proto-1.99.3.ebuild:
