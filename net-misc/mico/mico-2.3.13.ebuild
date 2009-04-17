@@ -10,7 +10,7 @@ SRC_URI="http://www.mico.org/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux"
 IUSE="gtk postgres qt3 ssl tcl threads X"
 
 # doesn't compile:
