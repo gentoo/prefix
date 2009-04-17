@@ -1,6 +1,11 @@
 # ChangeLog for x11-terms/pssh
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/pssh/ChangeLog,v 1.9 2008/05/29 18:21:20 hawking Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/pssh/ChangeLog,v 1.10 2009/04/16 21:17:31 jsbronder Exp $
+
+*pssh-1.4.3 (16 Apr 2009)
+
+  16 Apr 2009; Justin Bronder <jsbronder@gentoo.org> +pssh-1.4.3.ebuild:
+  Bump pssh-1.4.3 (#265810), fixes deprecation warnings with python-2.6
 
   29 May 2008; Ali Polatel <hawking@gentoo.org> pssh-1.3.1.ebuild:
   python_mod_optimize is ROOT aware.
