@@ -99,6 +99,9 @@ src_unpack() {
 	# http://gcc.gnu.org/PR20366
 	epatch "${FILESDIR}"/${P}-aix-largefiles.patch
 
+	# Always behave as if -pthread were passed on AIX (#266548)
+	epatch "${FILESDIR}"/4.2.2/aix-force-pthread.patch
+
 	# allow gcj compilation to succeed on platforms with libiconv
 	epatch "${FILESDIR}"/gcj-${PV}-iconvlink.patch
 
