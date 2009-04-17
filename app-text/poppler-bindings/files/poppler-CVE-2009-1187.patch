@@ -1,0 +1,11 @@
+--- a/poppler/CairoOutputDev.cc
++++ b/poppler/CairoOutputDev.cc
+@@ -1605,7 +1605,7 @@ void CairoOutputDev::drawImage(GfxState *state, Object *ref, Stream *str,
+   cairo_matrix_t matrix;
+   int is_identity_transform;
+   
+-  buffer = (unsigned char *)gmalloc (width * height * 4);
++  buffer = (unsigned char *)gmallocn (width, height * 4);
+ 
+   /* TODO: Do we want to cache these? */
+   imgStr = new ImageStream(str, width,
