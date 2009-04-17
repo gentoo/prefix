@@ -1,0 +1,27 @@
+From 8f08a4f3c67746fce484f0666e1828988ef72303 Mon Sep 17 00:00:00 2001
+From: =?utf-8?q?Diego=20Elio=20'Flameeyes'=20Petten=C3=B2?= <flameeyes@gmail.com>
+Date: Fri, 17 Apr 2009 00:47:02 +0200
+Subject: [PATCH 2/2] Make sure to use the mode parameter of open(2).
+
+With _FORTIFY_SOURCE=2 on recent glibc versions, using open(2) with O_CREAT
+and no mode parameter causes a build failure. Avoid this.
+---
+ libarchive/test/test_write_disk_failures.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/libarchive/test/test_write_disk_failures.c b/libarchive/test/test_write_disk_failures.c
+index c0e1f8f..c9dc824 100644
+--- a/libarchive/test/test_write_disk_failures.c
++++ b/libarchive/test/test_write_disk_failures.c
+@@ -48,7 +48,7 @@ DEFINE_TEST(test_write_disk_failures)
+ 	assertEqualInt(0, mkdir("dir", 0555));
+ 
+ 	/* Can we? */
+-	fd = open("dir/testfile", O_WRONLY | O_CREAT);
++	fd = open("dir/testfile", O_WRONLY | O_CREAT, 0777);
+ 	if (fd >= 0) {
+ 	  /* Apparently, we can, so the test below won't work. */
+ 	  close(fd);
+-- 
+1.6.2.3
+
