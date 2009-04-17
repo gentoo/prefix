@@ -1,6 +1,17 @@
 # ChangeLog for app-emacs/python-mode
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/python-mode/ChangeLog,v 1.36 2008/09/20 21:09:47 ulm Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/python-mode/ChangeLog,v 1.38 2009/04/16 14:33:43 fauli Exp $
+
+  16 Apr 2009; Christian Faulhammer <fauli@gentoo.org>
+  python-mode-5.1.0.ebuild:
+  fix SITEFILE name, reported on bug 266382 by Martin von Gagern
+
+*python-mode-5.1.0 (16 Apr 2009)
+
+  16 Apr 2009; Christian Faulhammer <fauli@gentoo.org>
+  +files/60python-mode-gentoo-5.1.el, +python-mode-5.1.0.ebuild:
+  version bump, taken from Emacs overlay. Major rework of the mode, but
+  dropped some features, like doctest-mode which has its own ebuild now
 
   20 Sep 2008; Ulrich Mueller <ulm@gentoo.org> -python-mode-1.0.ebuild:
   Remove old.
