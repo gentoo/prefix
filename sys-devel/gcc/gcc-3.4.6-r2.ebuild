@@ -108,7 +108,7 @@ src_unpack() {
 	# http://gcc.gnu.org/PR20366
 	epatch "${FILESDIR}"/${P}-aix-largefiles.patch
 
-	# Always behave as if -pthread were passed on AIX
+	# Always behave as if -pthread were passed on AIX (#266548)
 	epatch "${FILESDIR}"/3.4.4/aix-force-pthread.patch
 
 	# AIX 5.3 TL08 binder dumps core for unknown reason (#265540),
