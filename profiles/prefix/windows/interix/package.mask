@@ -6,11 +6,6 @@
 #   or unhandled argument `../../libltdl/libltdlc.la'
 =media-gfx/graphviz-2.22.0
 
-# Markus Duft <mduft@gentoo.org> (06 Mar 2009)
-# this is even worse than on other systems, since the
-# workaround doesn't work either.
-=sys-libs/ncurses-5.7*
-
 # Markus Duft <mduft@gentoo.org> (02 Feb 2009)
 # this does not work correctly, since there seems to be some
 # more non-trivial problems with dbus :*(
