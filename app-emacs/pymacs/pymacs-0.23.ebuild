@@ -11,7 +11,7 @@ SRC_URI="http://pymacs.progiciels-bpi.ca/archives/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc"
 
 # additional doc? dependencies for multirow.sty and aeguill.sty (bug 247703)
