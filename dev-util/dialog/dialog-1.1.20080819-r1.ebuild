@@ -37,6 +37,11 @@ src_prepare() {
 src_configure() {
 	local ncursesw
 	use unicode && ncursesw="w"
+	# doing this libtool stuff through configure
+	# (--with-libtool=/path/to/libtool) strangely breaks the build
+	local glibtool="libtool"
+	[[ ${CHOST} == *-darwin* ]] && glibtool="glibtool"
+	export ac_cv_path_LIBTOOL="$(type -P ${glibtool})"
 	econf \
 		$(use_enable nls) \
 		$(use_with !minimal libtool) \
