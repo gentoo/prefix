@@ -1,6 +1,13 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.195 2009/04/01 14:42:17 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.196 2009/04/17 00:36:08 loki_val Exp $
+
+*poppler-0.10.5-r1 (17 Apr 2009)
+
+  17 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/poppler-0.10.5-xpdf-3.02pl3.patch,
+  +files/poppler-CVE-2009-1188.patch, +poppler-0.10.5-r1.ebuild:
+  Bump w.r.t. bug 263028.
 
   01 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> poppler-0.8.7.ebuild,
   poppler-0.10.4.ebuild, poppler-0.10.5.ebuild:
