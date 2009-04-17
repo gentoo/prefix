@@ -1,0 +1,64 @@
+http://bugs.gentoo.org/show_bug.cgi?id=266407
+
+--- src/libFLAC++/stream_encoder.cpp
++++ src/libFLAC++/stream_encoder.cpp
+@@ -193,7 +193,7 @@ namespace FLAC {
+ 		bool Stream::set_metadata(FLAC::Metadata::Prototype **metadata, unsigned num_blocks)
+ 		{
+ 			FLAC__ASSERT(is_valid());
+-#if (defined _MSC_VER) || (defined __BORLANDC__) || (defined __SUNPRO_CC)
++#if (defined _MSC_VER) || (defined __BORLANDC__) || (defined __SUNPRO_CC) || (defined __sgi)
+ 			// MSVC++ can't handle:
+ 			// ::FLAC__StreamMetadata *m[num_blocks];
+ 			// so we do this ugly workaround
+@@ -205,7 +205,7 @@ namespace FLAC {
+ 				// we can get away with the const_cast since we know the encoder will only correct the is_last flags
+ 				m[i] = const_cast< ::FLAC__StreamMetadata*>((const ::FLAC__StreamMetadata*)metadata[i]);
+ 			}
+-#if (defined _MSC_VER) || (defined __BORLANDC__) || (defined __SUNPRO_CC)
++#if (defined _MSC_VER) || (defined __BORLANDC__) || (defined __SUNPRO_CC) || (defined __sgi)
+ 			// complete the hack
+ 			const bool ok = (bool)::FLAC__stream_encoder_set_metadata(encoder_, m, num_blocks);
+ 			delete [] m;
+--- include/share/alloc.h
++++ include/share/alloc.h
+@@ -27,9 +27,13 @@
+  * before #including this file,  otherwise SIZE_MAX might not be defined
+  */
+ 
++#if defined(_LANGUAGE_C_PLUS_PLUS)
++# define __STDC_LIMIT_MACROS 1
++#endif
++
+ #include <limits.h> /* for SIZE_MAX */
+-#if !defined _MSC_VER && !defined __MINGW32__ && !defined __EMX__
+-#include <stdint.h> /* for SIZE_MAX in case limits.h didn't get it */
++#if !defined _MSC_VER && !defined __MINGW32__ && !defined __EMX__ && !(defined __sgi && defined _LANGUAGE_C_PLUS_PLUS)
++# include <stdint.h> /* for SIZE_MAX in case limits.h didn't get it */
+ #endif
+ #include <stdlib.h> /* for size_t, malloc(), etc */
+ 
+@@ -38,10 +42,21 @@
+ #  ifdef _MSC_VER
+ #   define SIZE_T_MAX UINT_MAX
+ #  else
+-#   error
++#   ifdef __sgi
++     /* From C99-only stdint.h */
++#    if (_MIPS_SZLONG == 32)
++#     define SIZE_MAX 0xffffffff
++#    endif
++#    if (_MIPS_SZLONG == 64)
++#     define SIZE_MAX 0xffffffffffffffff
++#    endif
++#   else
++#    error
++#   endif
+ #  endif
++# else
++#  define SIZE_MAX SIZE_T_MAX
+ # endif
+-# define SIZE_MAX SIZE_T_MAX
+ #endif
+ 
+ #ifndef FLaC__INLINE

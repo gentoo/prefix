@@ -26,7 +26,8 @@ PATCHES=( "${FILESDIR}/${P}-asneeded.patch"
 	"${FILESDIR}/${P}-asm.patch"
 	"${FILESDIR}/${P}-dontbuild-tests.patch"
 	"${FILESDIR}/${P}-dontbuild-examples.patch"
-	"${FILESDIR}/${P}-gcc-4.3-includes.patch" )
+	"${FILESDIR}/${P}-gcc-4.3-includes.patch"
+	"${FILESDIR}"/${P}-irix.patch )
 
 src_unpack() {
 	base_src_unpack
