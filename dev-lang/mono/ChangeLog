@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/mono
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.162 2009/04/10 23:11:08 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.163 2009/04/17 01:29:22 loki_val Exp $
+
+  17 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> mono-2.0.1-r1.ebuild,
+  mono-2.2-r5.ebuild, mono-2.4.ebuild:
+  Check for CONFIG_SYSVIPC, see bug 261869. Thanks to Sergey Zolotorev
+  <sergey.zolotorev@gmail.com> for finding the cause.
 
   10 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
   +files/mono-2.4-ppcbuild-fix.patch, mono-2.4.ebuild:

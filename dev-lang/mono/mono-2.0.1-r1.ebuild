@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.0.1-r1.ebuild,v 1.4 2009/04/04 14:05:21 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.0.1-r1.ebuild,v 1.5 2009/04/17 01:29:22 loki_val Exp $
 
 EAPI=2
 
-inherit base eutils flag-o-matic multilib
+inherit linux-info base eutils flag-o-matic multilib
 
 DESCRIPTION="Mono runtime and class libraries, a C# compiler/interpreter"
 HOMEPAGE="http://www.go-mono.com"
@@ -35,6 +35,22 @@ PATCHES=(	"${FILESDIR}/${PN}-biginteger_overflow.diff"
 		"${FILESDIR}/${P}-fix-wsdl-troubles-with-muine.patch"
 		"${FILESDIR}/${P}-fix_implicit_pointer_conversions.patch"
 		"${FILESDIR}/${PN}-2.0-fix-headless.patch" )
+
+pkg_setup() {
+	if use kernel_linux
+	then
+		get_version
+		require_configured_kernel
+		if linux_chkconfig_present SYSVIPC
+		then
+			einfo "CONFIG_SYSVIPC is set, looking good."
+		else
+			eerror "If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling."
+			eerror "See http://bugs.gentoo.org/261869 for more info."
+			die "Please set CONFIG_SYSVIPC in your kernel .config"
+		fi
+	fi
+}
 
 src_configure() {
 	# mono's build system is finiky, strip the flags
