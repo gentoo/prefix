@@ -134,3 +134,15 @@ src_unpack() {
 			;;
 	esac
 }
+
+src_compile() {
+	toolchain_src_compile
+
+	if [[ ${CTARGET} == *-aix* ]]; then
+		# Default to -mminimal-toc on AIX, gdb does not like bigtoc (#266483).
+		einfo "adding -mminimal-toc to specs for AIX"
+		sed -i -e '/^\*cc1_options:$/{n; s,^,-mminimal-toc ,}' \
+			"${WORKDIR}"/build/gcc/specs || die "cannot add -mminimal-toc to aix specs"
+		eend
+	fi
+}
