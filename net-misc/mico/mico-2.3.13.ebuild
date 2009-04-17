@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/mico/mico-2.3.13.ebuild,v 1.3 2009/03/31 12:13:18 haubi Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/mico/mico-2.3.13.ebuild,v 1.4 2009/04/16 20:25:03 haubi Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -37,6 +37,13 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-nolibcheck.patch
 	epatch "${FILESDIR}"/${P}-gcc43.patch
+	epatch "${FILESDIR}"/${P}-pthread.patch
+	epatch "${FILESDIR}"/${P}-aix.patch
+
+	# cannot use big TOC (AIX only), gdb doesn't like it.
+	# This assumes that the compiler (or -wrapper) uses
+	# gcc flag '-mminimal-toc' for compilation.
+	sed -i -e 's/,-bbigtoc//' "${S}"/configure
 }
 
 src_compile() {
