@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.94.1.ebuild,v 1.7 2008/11/15 17:54:00 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.94.1.ebuild,v 1.8 2009/04/16 14:39:05 lordvan Exp $
 
 inherit autotools eutils flag-o-matic fixheadtails multilib versionator prefix
 
@@ -166,7 +166,7 @@ pkg_postinst() {
 	echo
 	if use milter ; then
 		elog "For simple instructions how to setup the clamav-milter"
-		elog "read ${EROOT}/usr/share/doc/${PF}/clamav-milter.README.gentoo.gz"
+		elog "read the clamav-milter.README.gentoo in /usr/share/doc/${PF}"
 		echo
 	fi
 	ewarn "The soname for libclamav has changed in clamav-0.94."

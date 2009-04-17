@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.95.ebuild,v 1.3 2009/04/10 07:49:54 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.95.ebuild,v 1.5 2009/04/16 14:39:05 lordvan Exp $
 
 inherit autotools eutils flag-o-matic fixheadtails multilib versionator prefix
 
@@ -40,9 +40,9 @@ RESTRICT="test"
 pkg_setup() {
 	if use milter; then
 		if [ ! -e "${EPREFIX}"/usr/$(get_libdir)/libmilter.a ] ; then
-			ewarn "In order to enable milter support, clamav needs sendmail with enabled milter"
-			ewarn "USE flag, or mail-filter/libmilter package."
-		fi
+	        ewarn "In order to enable milter support, clamav needs sendmail with enabled milter"
+		ewarn "USE flag, or mail-filter/libmilter package."
+	   fi
 	fi
 	enewgroup clamav
 	enewuser clamav -1 -1 /dev/null clamav
@@ -54,6 +54,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.92.1-interix.patch
 	epatch "${FILESDIR}"/${PN}-0.93-prefix.patch
 	eprefixify "${S}"/configure.in
+	epatch "${FILESDIR}/${P}-nls.patch"
 }
 
 src_compile() {
@@ -145,7 +146,7 @@ pkg_postinst() {
 	echo
 	if use milter ; then
 		elog "For simple instructions how to setup the clamav-milter"
-		elog "read ${EROOT}/usr/share/doc/${PF}/clamav-milter.README.gentoo.gz"
+		elog "read the clamav-milter.README.gentoo in /usr/share/doc/${PF}"
 		echo
 	fi
 	ewarn "The soname for libclamav has changed in clamav-0.95."

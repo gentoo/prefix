@@ -1,10 +1,24 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.325 2009/04/10 07:49:54 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.328 2009/04/16 16:10:00 jer Exp $
+
+  16 Apr 2009; Jeroen Roovers <jer@gentoo.org> clamav-0.95.1.ebuild:
+  Stable for HPPA (bug #265545).
+
+  16 Apr 2009; Thomas Raschbacher <lordvan@gentoo.org> ChangeLog:
+  Fix for bug #260786 Thanks to Victor Ostorga <vostorga@gmail.com>
 
   10 Apr 2009; Tobias Scherbaum <dertobi123@gentoo.org> clamav-0.95.ebuild,
   clamav-0.95.1.ebuild:
   Fix soname change ewarn message.
+
+  16 Apr 2009; Thomas Raschbacher <lordvan@gentoo.org>
+  +files/clamav-0.95.1-nls.patch, +files/clamav-0.95-nls.patch,
+  clamav-0.95.ebuild, clamav-0.95.1.ebuild:
+  added patch for NLS on ulibc from Bug #264852 Thanks to Aurélien
+  Francillon <aurelien.francillon@inrialpes.fr>
+  added fix to 0.95.1 for bug #264952 thanks to Robert S
+  <robert.spam.me.senseless@gmail.com>
 
 *clamav-0.95.1 (09 Apr 2009)
 
