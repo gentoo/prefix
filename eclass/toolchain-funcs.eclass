@@ -488,9 +488,9 @@ gen_usr_ldscript() {
 			;;
 		*-aix*|*-irix*|*-hpux*|*-interix*|*-winnt*)
 			if ${auto} ; then
-				# no way to retrieve soname on these platforms (?)
 				mv "${ED}"/usr/${libdir}/${lib}* "${ED}"/${libdir}/ || die
-				rm -f "${ED}"/${libdir}/${lib}
+				# no way to retrieve soname on these platforms (?)
+				#rm -f "${ED}"/${libdir}/${lib}
 			fi
 			tlib=${lib}
 
