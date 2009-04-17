@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.63-r1.ebuild,v 1.1 2009/01/16 20:49:04 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.64-r3.ebuild,v 1.1 2009/04/17 02:06:23 tgurr Exp $
 
 inherit autotools eutils versionator flag-o-matic
 
@@ -14,21 +14,22 @@ SRC_URI="cjk? ( ftp://ftp.gyve.org/pub/gs-cjk/adobe-cmaps-200406.tar.gz
 		ftp://ftp.gyve.org/pub/gs-cjk/acro5-cmaps-2001.tar.gz )
 	!bindist? ( djvu? ( mirror://sourceforge/djvu/gsdjvu-${GSDJVU_PV}.tar.gz ) )
 	mirror://sourceforge/ghostscript/${MY_P}.tar.bz2
-	mirror://gentoo/${P}-patchset-3.tar.bz2"
+	mirror://gentoo/${P}-patchset-4.tar.bz2"
 
 LICENSE="GPL-2 CPL-1.0"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="bindist cairo cjk cups djvu gtk jpeg2k X"
 
-COMMON_DEPEND="media-libs/fontconfig
+COMMON_DEPEND="app-text/libpaper
+	media-libs/fontconfig
 	>=media-libs/jpeg-6b
 	>=media-libs/libpng-1.2.5
 	>=media-libs/tiff-3.7
 	>=sys-libs/zlib-1.1.4
 	!bindist? ( djvu? ( app-text/djvu ) )
-	cairo? ( x11-libs/cairo )
-	cups? ( >=net-print/cups-1.1.20 )
+	cairo? ( >=x11-libs/cairo-1.2.0 )
+	cups? ( >=net-print/cups-1.3.8 )
 	gtk? ( >=x11-libs/gtk+-2.0 )
 	jpeg2k? ( media-libs/jasper )
 	X? ( x11-libs/libXt x11-libs/libXext )
@@ -70,18 +71,23 @@ src_unpack() {
 
 	# Fedora patches
 	# http://cvs.fedora.redhat.com/viewcvs/devel/ghostscript/
-	epatch "${WORKDIR}/patches/${PN}-8.60-fPIC.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.64-fPIC.patch"
 	epatch "${WORKDIR}/patches/${PN}-8.61-multilib.patch"
-	epatch "${WORKDIR}/patches/${PN}-8.60-noopt.patch"
-	epatch "${WORKDIR}/patches/${PN}-8.60-scripts.patch"
-	epatch "${WORKDIR}/patches/${PN}-8.62-system-jasper.patch"
-	epatch "${WORKDIR}/patches/${PN}-8.62-pksmraw.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.64-noopt.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.64-scripts.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.64-system-jasper.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.64-pksmraw.patch"
 
-	# Gentoo patches
-	# upstream bug #689999, already fixed in ghostscript trunk
-	epatch "${WORKDIR}/patches/${PN}-8.63-cairo-automagic.patch"
-	# respect LDFLAGS, bug #215913
-	epatch "${WORKDIR}/patches/${PN}-8.63-respect-ldflags.patch"
+	# Fixes which are already applied in ghostscript trunk
+	epatch "${WORKDIR}/patches/${PN}-8.64-bitcmyk-regression-r9452.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.64-respect-ldflags-r9461.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.64-respect-ldflags-r9476.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.64-respect-gsc-ldflags.patch" #209803
+
+	# Security fixes
+	epatch "${WORKDIR}/patches/${PN}-8.64-CVE-2009-0583.patch" #261087
+	epatch "${WORKDIR}/patches/${PN}-8.64-CVE-2009-0792.patch" #264594
+	epatch "${WORKDIR}/patches/${PN}-8.64-CVE-2009-0196.patch" #264594
 
 	if use bindist && use djvu ; then
 		ewarn "You have bindist in your USE, djvu support will NOT be compiled!"
@@ -91,37 +97,36 @@ src_unpack() {
 	if ! use bindist && use djvu ; then
 		unpack gsdjvu-${GSDJVU_PV}.tar.gz
 		cp gsdjvu-${GSDJVU_PV}/gsdjvu "${S}"
-		cp gsdjvu-${GSDJVU_PV}/gdevdjvu.c "${S}/src"
-		epatch "${WORKDIR}/patches/${PN}-8.61-gsdjvu-1.3.patch"
+		cp gsdjvu-${GSDJVU_PV}/gdevdjvu.c "${S}/base"
+		epatch "${WORKDIR}/patches/${PN}-8.64-gsdjvu-1.3.patch"
 		# hard-coding paths sucks for Prefix
-		epatch "${FILESDIR}"/${PN}-8.64-gsdjvu-1.3-partial-revert.patch
+		epatch "${FILESDIR}"/${P}-gsdjvu-1.3-partial-revert.patch
 		cp gsdjvu-${GSDJVU_PV}/ps2utf8.ps "${S}/lib"
-		cp "${S}/src/contrib.mak" "${S}/src/contrib.mak.gsdjvu"
-		grep -q djvusep "${S}/src/contrib.mak" || \
-			cat gsdjvu-${GSDJVU_PV}/gsdjvu.mak >> "${S}/src/contrib.mak"
+		cp "${S}/base/contrib.mak" "${S}/base/contrib.mak.gsdjvu"
+		grep -q djvusep "${S}/base/contrib.mak" || \
+			cat gsdjvu-${GSDJVU_PV}/gsdjvu.mak >> "${S}/base/contrib.mak"
 
 		# install ps2utf8.ps, bug #197818
-		sed -i -e '/$(EXTRA_INIT_FILES)/ a\ps2utf8.ps \\' "${S}/src/unixinst.mak" \
+		sed -i -e '/$(EXTRA_INIT_FILES)/ a\ps2utf8.ps \\' "${S}/base/unixinst.mak" \
 			|| die "sed failed"
 	fi
 
 	if ! use gtk ; then
-		sed -i "s:\$(GSSOX)::" src/*.mak || die "gsx sed failed"
-		sed -i "s:.*\$(GSSOX_XENAME)$::" src/*.mak || die "gsxso sed failed"
+		sed -i "s:\$(GSSOX)::" base/*.mak || die "gsx sed failed"
+		sed -i "s:.*\$(GSSOX_XENAME)$::" base/*.mak || die "gsxso sed failed"
 	fi
 
 	# search path fix
-	sed -i -e "s:\$\(gsdatadir\)/lib:${EPREFIX}/usr/share/ghostscript/${PVM}/$(get_libdir):" \
-		-e "s:\$\(gsdir\)/fonts:${EPREFIX}/usr/share/fonts/default/ghostscript/:" \
+	sed -i -e "s:\$(gsdatadir)/lib:${EPREFIX}/usr/share/ghostscript/${PVM}/$(get_libdir):" \
+		-e 's:$(\(gsdir\|datadir\))/fonts:'"${EPREFIX}"'/usr/share/fonts/default/ghostscript/:' \
 		-e "s:exdir=.*:exdir=${EPREFIX}/usr/share/doc/${PF}/examples:" \
 		-e "s:docdir=.*:docdir=${EPREFIX}/usr/share/doc/${PF}/html:" \
 		-e "s:GS_DOCDIR=.*:GS_DOCDIR=${EPREFIX}/usr/share/doc/${PF}/html:" \
-		src/Makefile.in src/*.mak || die "sed failed"
+		base/Makefile.in base/*.mak || die "sed failed"
 
-	epatch "${FILESDIR}"/${PN}-8.62-interix.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${PN}-8.63-solaris.patch
-	cd "${S}/src"
-	epatch "${FILESDIR}"/${PN}-8.64-darwin.patch
+	epatch "${FILESDIR}"/${P}-darwin.patch
 
 	cd "${S}"
 	eautoreconf
@@ -131,7 +136,7 @@ src_unpack() {
 }
 
 src_compile() {
-	econf \
+	CONFIG_SHELL="${EPREFIX}"/bin/bash econf \
 		$(use_enable cairo) \
 		$(use_enable cups) \
 		$(use_enable gtk) \
@@ -142,7 +147,8 @@ src_compile() {
 		--enable-fontconfig \
 		--with-drivers=ALL \
 		--with-ijs \
-		--with-jbig2dec
+		--with-jbig2dec \
+		--with-libpaper
 
 	if ! use bindist && use djvu ; then
 		sed -i -e 's!$(DD)bbox.dev!& $(DD)djvumask.dev $(DD)djvusep.dev!g' Makefile
@@ -162,6 +168,9 @@ src_install() {
 	if ! use bindist && use djvu ; then
 		dobin gsdjvu || die "dobin gsdjvu install failed"
 	fi
+
+	# remove gsc in favor of gambit, bug #253064
+	rm -rf "${ED}/usr/bin/gsc"
 
 	rm -rf "${ED}/usr/share/doc/${PF}/html/"{README,PUBLIC}
 	dodoc doc/README || die "dodoc install failed"

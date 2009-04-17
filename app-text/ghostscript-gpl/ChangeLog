@@ -1,6 +1,14 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.71 2009/03/25 14:52:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.72 2009/04/17 02:06:23 tgurr Exp $
+
+*ghostscript-gpl-8.64-r3 (17 Apr 2009)
+
+  17 Apr 2009; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-8.62.ebuild,
+  -ghostscript-gpl-8.63.ebuild, -ghostscript-gpl-8.63-r1.ebuild,
+  -ghostscript-gpl-8.64.ebuild, -ghostscript-gpl-8.64-r1.ebuild,
+  +ghostscript-gpl-8.64-r3.ebuild:
+  Revbump addressing security issues, bug #264594. Remove old.
 
   25 Mar 2009; Raúl Porcel <armin76@gentoo.org>
   ghostscript-gpl-8.64-r2.ebuild:
