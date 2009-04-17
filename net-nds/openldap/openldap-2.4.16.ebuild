@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.16.ebuild,v 1.1 2009/04/14 20:53:32 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.16.ebuild,v 1.2 2009/04/16 22:28:02 mr_bones_ Exp $
 
 EAPI=2
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator toolchain-funcs
@@ -35,7 +35,7 @@ RDEPEND="sys-libs/ncurses
 		samba? ( dev-libs/openssl )
 		berkdb? ( sys-libs/db )
 		smbkrb5passwd? (
-			dev-libs/openssl			
+			dev-libs/openssl
 			app-crypt/heimdal )
 		kerberos? ( virtual/krb5 )
 	)
@@ -341,7 +341,7 @@ src_compile() {
 			${LDFLAGS} \
 			-o libaddrdnvalues-plugin.so \
 			addrdnvalues.c || die "Building libaddrdnvalues-plugin.so failed"
-						
+
 	fi
 }
 
