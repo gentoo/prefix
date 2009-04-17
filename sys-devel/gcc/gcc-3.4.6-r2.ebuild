@@ -111,6 +111,12 @@ src_unpack() {
 	# Always behave as if -pthread were passed on AIX
 	epatch "${FILESDIR}"/3.4.4/aix-force-pthread.patch
 
+	# AIX 5.3 TL08 binder dumps core for unknown reason (#265540),
+	# adding -bexpfull seems to help.
+	if [[ ${CTARGET} == *-aix5.3* ]]; then
+		epatch "${FILESDIR}"/3.4.4/aix5300-08_ldcore.patch
+	fi
+
 	# replace nasty multilib dirs like ../lib64 that occur on --disable-multilib
 	if use prefix; then
 		epatch "${FILESDIR}"/3.4.4/prefix-search-dirs.patch
