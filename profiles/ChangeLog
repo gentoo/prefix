@@ -1,10 +1,20 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2541 2009/04/15 23:47:31 je_fro Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2544 2009/04/17 04:22:35 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  17 Apr 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  General treecleaner maintenance / removals
+
+  16 Apr 2009; Paul Varner <fuzzyray@gentoo.org> package.mask:
+  Removed mask for gentoolkit-dev-0.2.6.9
+
+  16 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
+  Fix the 4.2.1 mask, will be wiped out soon. Slot deps are not allowed, thx
+  mr_bones for remind.
 
   15 Apr 2009; Jeff Gardner <je_fro@gentoo.org> package.mask:
   p.mask ati-drivers-extra-8.27.10 as it is no longer installable
