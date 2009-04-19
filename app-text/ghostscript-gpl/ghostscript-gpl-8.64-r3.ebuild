@@ -127,6 +127,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${PN}-8.63-solaris.patch
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${P}-darwin-nodebug.patch
 
 	cd "${S}"
 	eautoreconf

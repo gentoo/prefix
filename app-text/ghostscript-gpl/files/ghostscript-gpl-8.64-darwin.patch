@@ -1,5 +1,7 @@
---- base/unix-dll.mak.orig	2009-03-04 21:08:54 +0100
-+++ base/unix-dll.mak	2009-03-04 21:10:03 +0100
+Add dylib support
+
+--- base/unix-dll.mak
++++ base/unix-dll.mak
 @@ -44,22 +44,24 @@ GSSOX=$(BINDIR)/$(SOBINRELDIR)/$(GSSOX_X
  # shared library
  GS_SONAME_BASE=lib$(GS)
