@@ -1,6 +1,15 @@
 # ChangeLog for virtual/poppler-glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/poppler-glib/ChangeLog,v 1.6 2009/04/16 23:26:02 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/poppler-glib/ChangeLog,v 1.9 2009/04/18 13:01:44 ranger Exp $
+
+  18 Apr 2009; Brent Baude <ranger@gentoo.org> poppler-glib-0.10.5.ebuild:
+  Marking poppler-glib-0.10.5 ppc64 and ppc for bug 263028
+
+  18 Apr 2009; Markus Meier <maekke@gentoo.org> poppler-glib-0.10.5:
+  amd64/x86 stable, bug #263028
+
+  18 Apr 2009; Jeroen Roovers <jer@gentoo.org> poppler-glib-0.10.5:
+  Stable for HPPA (bug #263028).
 
 *poppler-glib-0.10.6 (16 Apr 2009)
 
