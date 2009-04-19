@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/libcap-2.16.ebuild,v 1.6 2009/04/16 16:14:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/libcap-2.16.ebuild,v 1.7 2009/04/18 18:22:11 armin76 Exp $
 
 inherit eutils multilib toolchain-funcs pam
 
