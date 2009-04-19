@@ -1,6 +1,23 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.83 2009/04/15 17:34:33 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.86 2009/04/18 08:27:51 ulm Exp $
+
+*eselect-9999 (18 Apr 2009)
+*eselect-1.0.12 (18 Apr 2009)
+
+  18 Apr 2009; Ulrich Mueller <ulm@gentoo.org> +eselect-1.0.12.ebuild,
+  +eselect-9999.ebuild:
+  Version bump to 1.0.12; fixes bugs 172636, 198461, 203114, 204937, 218557,
+  219864, 232874, 240402, 248470, 248487, 260464, and 264734. Add live ebuild
+  for SVN trunk. Remove dependencies on editor modes, since only few users of
+  eselect will edit its source.
+
+  17 Apr 2009; Ulrich Mueller <ulm@gentoo.org> eselect-1.0.11-r1.ebuild,
+  eselect-1.0.11-r2.ebuild:
+  Clarify the elog message in pkg_postinst, bug 187263. Remove the dependency
+  on procps (added at 14 April) again, since it leads to problems on FreeBSD;
+  bug 266540. In fact, a working "pgrep" command is not essential, since it is
+  only called from the "die" function. See bug 264734 for details.
 
   15 Apr 2009; Ulrich Mueller <ulm@gentoo.org>
   -files/eselect-1.0.8-fix-parallel-install.patch:
