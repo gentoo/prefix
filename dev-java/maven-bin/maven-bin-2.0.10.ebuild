@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-2.0.10.ebuild,v 1.1 2009/03/04 10:27:11 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/maven-bin-2.0.10.ebuild,v 1.2 2009/04/18 12:44:33 maekke Exp $
 
 inherit java-pkg-2 prefix
 
