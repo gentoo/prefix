@@ -1,6 +1,11 @@
 # ChangeLog for dev-haskell/html
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/html/ChangeLog,v 1.32 2008/10/04 17:54:26 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/html/ChangeLog,v 1.33 2009/04/17 12:24:05 kolmodin Exp $
+
+*html-1.0.1.2 (17 Apr 2009)
+
+  17 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> +html-1.0.1.2.ebuild:
+  Version bump. Part of ghc 6.10.2 extralibs.
 
   04 Oct 2008; Raúl Porcel <armin76@gentoo.org> html-1.0.1.1.ebuild:
   alpha/ia64 stable
