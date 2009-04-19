@@ -1,6 +1,15 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.134 2009/04/12 20:42:27 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.135 2009/04/19 03:19:51 leio Exp $
+
+*gnome-doc-utils-0.16.1 (19 Apr 2009)
+
+  19 Apr 2009; Mart Raudsepp <leio@gentoo.org>
+  +files/gnome-doc-utils-0.16.1-fhs.patch, -gnome-doc-utils-0.14.1.ebuild,
+  +gnome-doc-utils-0.16.1.ebuild:
+  Version bump - uses python hashlib module instead of md5 module if
+  available, as the latter is deprecated. Translation updates.
+  Do patching in src_prepare as appropriate with EAPI 2.
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   gnome-doc-utils-0.14.2.ebuild:
