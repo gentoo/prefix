@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/facter
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/facter/ChangeLog,v 1.10 2008/09/09 09:33:56 matsuu Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/facter/ChangeLog,v 1.11 2009/04/18 15:56:44 hollow Exp $
+
+*facter-1.5.2-r1 (18 Apr 2009)
+
+  18 Apr 2009; Benedikt Böhm <hollow@gentoo.org>
+  +files/facter-1.5.2-virtual.patch, +facter-1.5.2-r1.ebuild:
+  fix virtual detection for openvz and vserver
 
 *facter-1.5.2 (09 Sep 2008)
 
