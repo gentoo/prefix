@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.134 2009/04/01 16:05:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.135 2009/04/17 20:32:25 zmedico Exp $
+
+  17 Apr 2009; Zac Medico <zmedico@gentoo.org> automake-1.10b.ebuild:
+  Fix SRC_URI since alpha/beta releases are not distributed on the usual
+  mirrors.
 
 *automake-1.10b (01 Apr 2009)
 

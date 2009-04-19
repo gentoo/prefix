@@ -1,12 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10b.ebuild,v 1.1 2009/04/01 16:05:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.10b.ebuild,v 1.2 2009/04/17 20:32:25 zmedico Exp $
 
 inherit eutils
 
 DESCRIPTION="Used to generate Makefile.in from Makefile.am"
 HOMEPAGE="http://sources.redhat.com/automake/"
-SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
+# Alpha/beta releases are not distributed on the usual mirrors.
+#SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
+SRC_URI="ftp://alpha.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="${PV:0:4}"
