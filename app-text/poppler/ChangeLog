@@ -1,6 +1,15 @@
 # ChangeLog for app-text/poppler
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.196 2009/04/17 00:36:08 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler/ChangeLog,v 1.199 2009/04/18 12:42:16 ranger Exp $
+
+  18 Apr 2009; Brent Baude <ranger@gentoo.org> poppler-0.10.5-r1.ebuild:
+  Marking poppler-0.10.5-r1 ppc64 and ppc for bug 263028
+
+  18 Apr 2009; Markus Meier <maekke@gentoo.org> poppler-0.10.5-r1:
+  amd64/x86 stable, bug #263028
+
+  18 Apr 2009; Jeroen Roovers <jer@gentoo.org> poppler-0.10.5-r1:
+  Stable for HPPA (bug #263028).
 
 *poppler-0.10.5-r1 (17 Apr 2009)
 
