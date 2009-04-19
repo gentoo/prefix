@@ -1,9 +1,9 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/pager/pager-0.ebuild,v 1.1 2008/03/21 11:16:02 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/pager/pager-0.ebuild,v 1.2 2009/04/18 19:44:46 ulm Exp $
 
 DESCRIPTION="Virtual for command-line pagers"
-HOMEPAGE="http://www.gentoo.org/"
+HOMEPAGE=""
 SRC_URI=""
 
 LICENSE=""
@@ -15,4 +15,5 @@ DEPEND=""
 RDEPEND="|| ( sys-apps/less
 	sys-apps/more
 	sys-apps/most
+	sys-apps/util-linux
 	app-text/lv )"
