@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.120 2009/04/15 19:40:19 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.122 2009/04/18 17:07:27 vapier Exp $
+
+  18 Apr 2009; Mike Frysinger <vapier@gentoo.org> sandbox-1.6-r2.ebuild,
+  sandbox-1.9.ebuild:
+  Force latest stable pax-utils as some people are lazy and dont upgrade
+  #265376 by Jerome Potts.
+
+  18 Apr 2009; Raúl Porcel <armin76@gentoo.org> sandbox-1.6-r2.ebuild:
+  arm/m68k/s390/sh stable wrt #265376
 
   15 Apr 2009; Markus Meier <maekke@gentoo.org> sandbox-1.6-r2.ebuild:
   amd64/x86 stable, bug #265376
