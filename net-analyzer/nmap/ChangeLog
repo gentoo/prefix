@@ -1,6 +1,17 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.194 2009/04/10 20:03:10 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.196 2009/04/18 15:05:19 spock Exp $
+
+  18 Apr 2009; Michał Januszewski <spock@gentoo.org>
+  -files/nmap-4.01-nostrip.patch, -files/nmap-4.20-osscan.patch,
+  -files/nmap-4.68-concurrent-make-fix.patch, -files/nmap-4.68-nolua.patch,
+  -files/nmap-shtool-nls.patch, -nmap-4.20.ebuild, -nmap-4.53.ebuild,
+  -nmap-4.60.ebuild, -nmap-4.68.ebuild, -nmap-4.75.ebuild:
+  Remove old ebuilds.
+
+  18 Apr 2009; Michał Januszewski <spock@gentoo.org>
+  nmap-4.85_beta7.ebuild:
+  Fix bug #266126 (pre-stripped files installed by the ebuild).
 
 *nmap-4.85_beta7 (10 Apr 2009)
 

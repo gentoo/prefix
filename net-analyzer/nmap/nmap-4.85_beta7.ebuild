@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.85_beta7.ebuild,v 1.1 2009/04/10 20:03:10 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.85_beta7.ebuild,v 1.2 2009/04/18 14:00:52 spock Exp $
 
 EAPI=2
 
@@ -33,6 +33,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-4.75-include.patch"
 	epatch "${FILESDIR}/${PN}-4.75-nolua.patch"
+	sed -i -e 's/-m 755 -s ncat/-m 755 ncat/' ncat/Makefile.in
 }
 
 src_configure() {
