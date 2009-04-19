@@ -1,6 +1,16 @@
 # ChangeLog for sci-biology/ncbi-tools
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.66 2009/03/24 21:07:55 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.68 2009/04/18 18:54:07 klausman Exp $
+
+  18 Apr 2009; Tobias Klausmann <klausman@gentoo.org>
+  ncbi-tools-20090301.ebuild:
+  Keyworded on alpha, bug #266569
+
+*ncbi-tools-20090301 (17 Apr 2009)
+
+  17 Apr 2009; Andrey Kislyuk <weaver@gentoo.org>
+  +ncbi-tools-20090301.ebuild:
+  Version bump, minor cleanup
 
   24 Mar 2009; Olivier Fisette <ribosome@gentoo.org> metadata.xml:
   Giving up maintainership of this package.
