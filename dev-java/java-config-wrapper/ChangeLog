@@ -1,6 +1,15 @@
 # ChangeLog for dev-java/java-config-wrapper
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.45 2009/03/08 19:17:59 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.46 2009/04/18 07:17:29 caster Exp $
+
+*java-config-wrapper-0.16 (17 Apr 2009)
+
+  17 Apr 2009; Vlastimil Babka <caster@gentoo.org>
+  -java-config-wrapper-0.13.ebuild, -java-config-wrapper-0.14.ebuild,
+  +java-config-wrapper-0.16.ebuild:
+  Version bump. Stop requiring gen-1 system VM, report /etc/env.d/20java as
+  error, recommend uninstalling java-config-1 - bug #176782. Warn on global
+  CLASSPATH.
 
   08 Mar 2009; Tobias Klausmann <klausman@gentoo.org>
   java-config-wrapper-0.15.ebuild:

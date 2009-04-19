@@ -1,5 +1,7 @@
---- src/shell/java-1.5-fixer~	2007-07-24 13:23:19 +0200
-+++ src/shell/java-1.5-fixer	2007-10-16 06:48:25 +0200
+Only in java-config-wrapper-0.16: prefix
+diff -ur java-config-wrapper-0.16.orig/src/shell/java-1.5-fixer java-config-wrapper-0.16/src/shell/java-1.5-fixer
+--- java-config-wrapper-0.16.orig/src/shell/java-1.5-fixer	2007-07-27 23:24:18.000000000 +0200
++++ java-config-wrapper-0.16/src/shell/java-1.5-fixer	2009-04-19 13:34:44.032195616 +0200
 @@ -1,6 +1,6 @@
 -#!/bin/bash
 +#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
@@ -25,12 +27,11 @@
 -if [[ ${UID} != 0 ]]; then
 -	ewarn "You aren't root, so we'll just show what packages we'd emerge"
 -fi
--
 +# disable this for the time being in prefix
 +#if [[ ${UID} != 0 ]]; then
 +#	ewarn "You aren't root, so we'll just show what packages we'd emerge"
 +#fi
-+
+ 
 -QFILE="${ROOT}/usr/bin/qfile"
 +QFILE="${EROOT}/usr/bin/qfile"
  if [[ ! -x ${QFILE} ]]; then
@@ -43,7 +44,7 @@
  if [[ ! -x "${VERIFIER}" ]]; then
  	eerror "You need to emerge >=javatoolkit-0.1.6"
  	exit 1
-@@ -224,7 +220,7 @@
+@@ -224,7 +225,7 @@
  ant_package_envs=""
  # build a list of package.env files
  for ant_dep in ${ant_packages}; do
@@ -52,7 +53,7 @@
  	ant_package_envs="${ant_package_envs} ${package_env}"
  done
  # get jars from these envs
-@@ -236,16 +232,14 @@
+@@ -236,16 +237,14 @@
  eend 0
  
  if [[ -n ${broken_ant_packages} ]]; then
@@ -74,7 +75,7 @@
  eend 0
  
  ebegin "Checking for > 1.4 bytecode in system jars"
-@@ -253,19 +247,18 @@
+@@ -253,19 +252,18 @@
  eend 0
  
  if [[ -n ${broken_packages} || -n ${broken_ant_packages} ]]; then
@@ -105,8 +106,9 @@
  else
  	einfo "Congratulations! All system jars seem to have been sanely built already."
  	exit 0
---- src/shell/java-check-environment~	2007-05-21 22:37:18 +0200
-+++ src/shell/java-check-environment	2007-09-24 00:02:18 +0200
+diff -ur java-config-wrapper-0.16.orig/src/shell/java-check-environment java-config-wrapper-0.16/src/shell/java-check-environment
+--- java-config-wrapper-0.16.orig/src/shell/java-check-environment	2009-04-17 23:44:54.000000000 +0200
++++ java-config-wrapper-0.16/src/shell/java-check-environment	2009-04-19 13:37:59.489149532 +0200
 @@ -1,6 +1,6 @@
 -#!/bin/bash
 +#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
@@ -125,36 +127,16 @@
  		generation=$(source ${env}; echo $GENERATION)
  		version=$(source ${env}; echo $VERSION)
  		handle=${env#*20}
-@@ -157,7 +157,7 @@
- 	fi
- 
- 	# TODO make this check slightly better. It would match kaffe-1.1.5 for example.
--	if grep 1.5 "${ROOT}/etc/env.d/20java" >/dev/null 1>/dev/null; then
-+	if grep 1.5 "${EROOT}/etc/env.d/20java" >/dev/null 1>/dev/null; then
- 		qecho
- 		qeerror "The System VM set to a 1.5 JDK for Generation-1"
- 		qeerror "Run 'java-config-1 -L' to see a list of available VMs"
-@@ -167,8 +167,8 @@
- 		qeerror "This is a bad thing. To fix this, try running the following:"
- 
- 		# TODO should point this to migration-overlay probably
--		portdir=$(source /etc/make.conf; echo ${PORTDIR})
--		portdir=${portdir:="/usr/portage"}
-+		portdir=$(source "@GENTOO_PORTAGE_EPREFIX@"/etc/make.conf; echo ${PORTDIR})
-+		portdir=${portdir:="@GENTOO_PORTAGE_EPREFIX@"/usr/portage}
- 		qecho "# ${portdir}/dev-java/java-config-wrapper/files/java-1.5-fixer"
- 		this_result=1
- 	fi
-@@ -180,7 +180,7 @@
+@@ -150,7 +150,7 @@
  # Checks that a system-vm for generation-1 is set
  check_generation_1_system_vm() {
  	local this_result=0
 -	local env="/etc/env.d/20java"
-+	local env="@GENTOO_PORTAGE_EPREFIX@"/etc/env.d/20java
- 	# Make sure a generation-1 VM is set
- 	if [[ ! -f "${env}" || -z $(java-config-1 -f) ]]; then
- 		qeerror "No Generation-1 System VM is set! (no /etc/env.d/20java)"
-@@ -225,7 +225,7 @@
++	local env="@GENTOO_PORTAGE_EPREFIX@/etc/env.d/20java"
+ 	# Make sure that no generation-1 VM is set
+ 	if [[ -f "${env}" ]]; then
+ 		qeerror "You have a generation-1 system VM set. (${env} exists)"
+@@ -205,7 +205,7 @@
  
  		this_result=1
      fi
@@ -163,7 +145,7 @@
  		qeerror "Found virtual/{jre,jdk} entries in /etc/portage/profile/virtuals"
  		qeerror "Please remove them"
  		
-@@ -262,7 +262,7 @@
+@@ -242,7 +242,7 @@
  check_package_env() {
  	local result=0
  	local pkg owner failed
@@ -172,16 +154,16 @@
  		if grep DEPEND ${penv} | grep , > /dev/null; then
  			owner=$(qfile -qC ${penv})
  			qeerror "Syntax error in ${owner}:"
-@@ -280,7 +280,7 @@
+@@ -260,7 +260,7 @@
  					else
  						pkg=${atom}
  					fi
--					if [[ ! -e /usr/share/${pkg}/package.env ]]; then
-+					if [[ ! -e "@GENTOO_PORTAGE_EPREFIX@"/usr/share/${pkg}/package.env ]]; then
+-					if [[ ! -e /usr/share/${pkg}/package.env && ! -e "/usr/share/java-config-2/virtuals/${pkg}" ]]; then
++					if [[ ! -e "@GENTOO_PORTAGE_EPREFIX@"/usr/share/${pkg}/package.env && ! -e "@GENTOO_PORTAGE_EPREFIX@/usr/share/java-config-2/virtuals/${pkg}" ]]; then
  						return 1
  					fi
  				done
-@@ -299,7 +299,7 @@
+@@ -279,7 +279,7 @@
  }
  
  check_fastjar() {
@@ -190,8 +172,9 @@
  	local result=0
  	if [[ -x ${fjar} ]]; then
  		local tmpdir="$(mktemp -d)"
---- src/shell/java-config~	2006-08-12 09:14:52 +0200
-+++ src/shell/java-config	2007-09-24 00:02:26 +0200
+diff -ur java-config-wrapper-0.16.orig/src/shell/java-config java-config-wrapper-0.16/src/shell/java-config
+--- java-config-wrapper-0.16.orig/src/shell/java-config	2006-08-02 20:58:21.000000000 +0200
++++ java-config-wrapper-0.16/src/shell/java-config	2009-04-19 13:34:44.033273832 +0200
 @@ -1,8 +1,8 @@
 -#!/bin/bash
 +#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
