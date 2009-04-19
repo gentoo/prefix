@@ -1,6 +1,24 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.322 2009/04/16 18:28:43 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.328 2009/04/18 16:00:29 klausman Exp $
+
+  18 Apr 2009; Tobias Klausmann <klausman@gentoo.org> php-5.2.9-r2.ebuild:
+  Stable on alpha, bug #260576
+
+  18 Apr 2009; Brent Baude <ranger@gentoo.org> php-5.2.9-r2.ebuild:
+  Marking php-5.2.9-r2 ppc64 for bug 260576
+
+  18 Apr 2009; Markus Meier <maekke@gentoo.org> php-5.2.9-r2.ebuild:
+  x86 stable, bug #260576
+
+  18 Apr 2009; nixnut <nixnut@gentoo.org> php-5.2.9-r2.ebuild:
+  ppc stable #260576
+
+  17 Apr 2009; Jeroen Roovers <jer@gentoo.org> php-5.2.9-r2.ebuild:
+  Stable for HPPA (bug #260576).
+
+  17 Apr 2009; Tobias Heinlein <keytoaster@gentoo.org> php-5.2.9-r2.ebuild:
+  amd64 stable wrt security bug #260576
 
 *php-5.2.9-r2 (16 Apr 2009)
 
