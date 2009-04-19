@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.0.ebuild,v 1.1 2009/04/16 22:58:27 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.0.ebuild,v 1.2 2009/04/17 10:58:00 flameeyes Exp $
 
 EAPI=1
 
-inherit eutils libtool toolchain-funcs autotools
+inherit eutils libtool toolchain-funcs flag-o-matic
 
 DESCRIPTION="BSD tar command"
 HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive"
@@ -48,6 +48,11 @@ src_compile() {
 		myconf="--enable-bsdtar=shared --enable-bsdcpio=shared"
 	fi
 
+	# Check for need of this in 2.7.1 and later, on 2.7.0, -Werror was
+	# added to the final release, but since it's done in the
+	# Makefile.am we can just work it around this way.
+	append-flags -Wno-error
+
 	# We disable lzma because we don't have liblzma (not liblzmadec!)
 	# currently.
 	econf --bindir="${EPREFIX}"/bin \
@@ -73,11 +78,8 @@ src_install() {
 	fi
 
 	dodoc NEWS README
-
-	# just don't do this for Darwin
-	if [[ ${CHOST} != *-darwin* ]]; then
-		dodir /$(get_libdir)
-		mv "${ED}"/usr/$(get_libdir)/*.so* "${ED}"/$(get_libdir)
-		gen_usr_ldscript libarchive.so
-	fi
+	#dodir /$(get_libdir)
+	#mv "${D}"/usr/$(get_libdir)/*.so* "${D}"/$(get_libdir)
+	#gen_usr_ldscript libarchive.so
+	gen_usr_ldscript -a archive
 }
