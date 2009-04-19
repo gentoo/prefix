@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.35 2009/04/15 11:09:50 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.36 2009/04/18 21:33:08 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -397,14 +397,6 @@ kde4-base_pkg_setup() {
 
 	# Not needed anymore
 	unset _kdedir
-
-	if [[ ${BUILD_TYPE} = live ]] && [[ -z ${I_KNOW_WHAT_I_AM_DOING} ]]; then
-		echo
-		elog "WARNING! This is an experimental live ebuild of ${KMNAME:-${PN}}"
-		elog "Use it at your own risk."
-		elog "Do _NOT_ file bugs at bugs.gentoo.org because of this ebuild!"
-		echo
-	fi
 }
 
 # @FUNCTION: kde4-base_src_unpack
@@ -571,6 +563,14 @@ kde4-base_pkg_postinst() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	buildsycoca
+
+	if [[ ${BUILD_TYPE} = live ]] && [[ -z ${I_KNOW_WHAT_I_AM_DOING} ]]; then
+		echo
+		einfo "WARNING! This is an experimental live ebuild of ${KMNAME:-${PN}}"
+		einfo "Use it at your own risk."
+		einfo "Do _NOT_ file bugs at bugs.gentoo.org because of this ebuild!"
+		echo
+	fi
 }
 
 # @FUNCTION: kde4-base_pkg_postrm

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.26 2009/02/11 16:13:38 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.27 2009/04/17 22:50:41 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -19,12 +19,6 @@ hasq "${EAPI}" 0 1 && DEPEND="${DEPEND} >=sys-apps/portage-2.1"
 
 RDEPEND="
 	=dev-java/java-config-2*"
-
-# bug #176784
-if [[ ${JAVA_SUPPORTS_GENERATION_1} == 'true' && ${JAVA_VM_NO_GENERATION1} != 'true' ]]; then
-	DEPEND="${DEPEND} =dev-java/java-config-1.3*"
-	RDEPEND="${RDEPEND} =dev-java/java-config-1.3*"
-fi
 
 export WANT_JAVA_CONFIG=2
 
@@ -46,44 +40,6 @@ java-vm-2_pkg_postinst() {
 	if [[ -z "$(java-config-2 -f)" ]]; then
 		java_set_default_vm_
 	fi
-
-	# support both variables for now
-	if [[ ${JAVA_SUPPORTS_GENERATION_1} == 'true' && ${JAVA_VM_NO_GENERATION1} != 'true' ]]; then
-		local systemvm1="$(java-config-1 -f 2>/dev/null)"
-		# no generation-1 system-vm was previously set
-		if [[ -z "${systemvm1}" ]]; then
-			# if 20java exists, must be using old VM
-			if [[ -f "${EPREFIX}"/etc/env.d/20java ]]; then
-				ewarn "The current generation-1 system-vm is using an out-of-date VM,"
-				ewarn "as in, it hasn't been updated for use with the new Java sytem."
-			# othewise, it must not have been set before
-			else
-				ewarn "No generation-1 system-vm previously set."
-			fi
-			ewarn "Setting generation-1 system-vm to ${VMHANDLE}"
-			java-config-1 --set-system-vm=${P} 2>/dev/null
-		# dirty check to see if we are upgrading current generation-1 system vm
-		elif [[ "${systemvm1}" = ${VMHANDLE}* ]]; then
-			einfo "Emerging the current generation-1 system-vm..."
-			einfo "Updating its config files."
-			java-config-1 --set-system-vm=${P} 2>/dev/null
-		# dirty check to see if current system vm is a jre - replace it with
-		elif [[ "${systemvm1}" = *jre* ]]; then
-			ewarn "Current generation-1 system-vm is a JRE"
-			ewarn "For the new and old Java systems to coexist,"
-			ewarn "the generation-1 system-vm must be a JDK."
-			ewarn "Setting generation-1 system-vm to ${VMHANDLE}"
-			java-config-1 --set-system-vm=${P} 2>/dev/null
-		fi
-		# else... some other VM is being updated, so we don't have to worry
-	else
-		einfo "JREs and 1.5+ JDKs are not supported for use with generation-1."
-		einfo "This is because generation-1 is only for use for building packages."
-		einfo "Only generation-2 should be used by end-users,"
-		einfo "where all JREs and JDKs will be available"
-	fi
-
-	echo
 
 	java-vm_check-nsplugin
 	java_mozilla_clean_
@@ -189,21 +145,6 @@ set_java_env() {
 		> ${env_file} || die "sed failed"
 
 	echo "VMHANDLE=\"${VMHANDLE}\"" >> ${env_file}
-
-	# generation-1 compatibility
-	# respect both variables for now...
-	if [[ ${JAVA_SUPPORTS_GENERATION_1} == 'true' && ${JAVA_VM_NO_GENERATION1} != 'true' ]]; then
-		einfo "Enabling generation-1 compatibility..."
-		dodir /etc/env.d/java # generation-1 compatibility
-		# We need to strip some things out of the new style env,
-		# because these end up going in the env
-		sed -e 's/.*CLASSPATH.*//' \
-			-e 's/.*PROVIDES.*//' \
-			${env_file} \
-			> ${old_env_file} || die "failed to create generation-1 env file"
-	else
-		ewarn "Disabling generation-1 compatibility..."
-	fi
 
 	[[ -n ${JAVA_PROVIDE} ]] && echo "PROVIDES=\"${JAVA_PROVIDE}\"" >> ${env_file}
 

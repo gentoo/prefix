@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.15 2009/04/13 00:02:45 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.16 2009/04/17 10:41:29 scarabeus Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -77,6 +77,7 @@ buildsycoca() {
 	# fix permission for some directories
 	for x in share/config share/kde4; do
 		if [[ $(stat --format=%a "${EPREFIX}"/usr/${x}) != 755 || $(stat --format=%a "${KDEDIR}"/${x}) != 755 ]]; then
+			ewarn "QA Notice:"
 			ewarn "Package ${PN} is breaking ${KDEDIR}/${x} permissions."
 			ewarn "Please report this issue to gentoo bugzilla."
 			einfo "Permissions will get adjusted automatically now."
