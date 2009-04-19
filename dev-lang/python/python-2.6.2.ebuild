@@ -87,11 +87,9 @@ src_prepare() {
 		rm Lib/distutils/command/wininst-*.exe
 	fi
 
-	# python has some gcc-apple specific CFLAGS built in... rip them out
-#	epatch "${FILESDIR}"/${PN}-2.4.4-darwin-fsf-gcc.patch
 	# python defaults to using .so files, however they are bundles
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
-	# python doesn't build a libpython2.5.dylib by itself...
+	# python doesn't build a libpython2.6.dylib by itself...
 	epatch "${FILESDIR}"/${PN}-2.6-darwin-libpython2.6.patch
 	# and to build this lib, we need -fno-common, which python doesn't use, and
 	# to have _NSGetEnviron being used, which by default it isn't...
@@ -102,9 +100,6 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
 
-	# set RUNSHARED for 'regen' in Lib/plat-*
-	epatch "${FILESDIR}"/${PN}-2.5.1-platdir-runshared.patch
-
 	# on hpux, use gcc to link if used to compile
 #	epatch "${FILESDIR}"/${PN}-2.5.1-hpux-ldshared.patch
 
@@ -114,9 +109,11 @@ src_prepare() {
 #	epatch "${FILESDIR}"/${PN}-2.4.4-aix-semaphores.patch
 	# build shared library on aix
 #	epatch "${FILESDIR}"/${PN}-2.5.1-aix-ldshared.patch
-	# at least IRIX starts spitting out ugly errors, but we want to use prefix
+	# at least IRIX starts spitting out ugly errors, but we want to use Prefix
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
+	# make it compile on IRIX as well
+	epatch "${FILESDIR}"/${PN}-2.6.1-irix.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
 
@@ -152,8 +149,6 @@ src_configure() {
 		use tk       || disable="${disable} _tkinter"
 		export PYTHON_DISABLE_MODULES="${disable}"
 	fi
-
-	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 
 	if use !xml; then
 		ewarn "You have configured Python without XML support."
@@ -210,6 +205,12 @@ src_configure() {
 	# python defaults to use 'cc_r' on aix
 	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-gcc=$(tc-getCC)"
 
+	# Don't include libmpc on IRIX - it is only available for 64bit MIPS4
+	[[ ${CHOST} == *-irix* ]] && export ac_cv_lib_mpc_usconfig=no
+
+	# Interix poll is broken
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+
 	econf \
 		--with-fpectl \
 		--enable-shared \
@@ -225,7 +226,11 @@ src_compile() {
 	emake || die "Parallel make failed"
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		# create libpython on Darwin
-		emake libpython2.6.dylib || die
+		emake libpython${PYVER}.dylib || die
+	fi
+	if [[ ${CHOST} == *-irix* ]] ; then
+		# create libpython on IRIX
+		emake libpython${PYVER}.so || die
 	fi
 }
 
