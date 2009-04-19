@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/sound-theme-freedesktop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/sound-theme-freedesktop/ChangeLog,v 1.14 2009/04/12 20:51:24 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/sound-theme-freedesktop/ChangeLog,v 1.15 2009/04/19 04:24:48 leio Exp $
+
+  19 Apr 2009; Mart Raudsepp <leio@gentoo.org>
+  -sound-theme-freedesktop-0.ebuild:
+  Remove old
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   sound-theme-freedesktop-0.2.ebuild:
