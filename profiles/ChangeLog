@@ -1,10 +1,33 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2544 2009/04/17 04:22:35 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2550 2009/04/18 20:33:11 scarabeus Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  18 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> base/package.use.mask,
+  package.mask:
+  Unmask NetworkManager (and its kde parts). Since pkit is unmasked :]
+
+  18 Apr 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask live ebuild for app-admin/eselect.
+
+  17 Apr 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Move dev-perl/IO-Compress-Bzip2 -> perl-core/IO-Compress-Bzip2 and
+  dev-perl/Compress-Raw-Bzip2 perl-core/Compress-Raw-Bzip2. Temporary mask
+  IO-Compress which replaces Compress-Zlib, IO-Compress-Zlib,
+  IO-Compress-Bzip2 and IO-Compress-Base
+
+  17 Apr 2009; Justin Bronder <jsbronder@gentoo.org> package.mask:
+  pmask sys-cluster/mpich for removal (#266565)
+
+  17 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> package.mask:
+  Mask dev-haskell/ghc-6.8.2-r1 for testing. It includes a precompiled
+  readline version, fixing bug #259867.
+
+  17 Apr 2009; <chainsaw@gentoo.org> package.mask:
+  Mask Audacious 2.0 alpha developer previews.
 
   17 Apr 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   General treecleaner maintenance / removals

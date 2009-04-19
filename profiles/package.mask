@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9681 2009/04/17 04:22:35 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9694 2009/04/18 20:33:11 scarabeus Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,54 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Ulrich Mueller <ulm@gentoo.org> (18 Apr 2009)
+# Live ebuild for testing and debugging.
+~app-admin/eselect-9999
+
+# Torsten Veller <tove@gentoo.org> (17 Apr 2009)
+# Masks for new IO-Compress which includes
+# Compress-Zlib, IO-Compress-Zlib, IO-Compress-Bzip2, IO-Compress-Base
+perl-core/IO-Compress
+virtual/perl-IO-Compress
+=virtual/perl-Compress-Zlib-2.017
+=virtual/perl-IO-Compress-Zlib-2.017
+=virtual/perl-IO-Compress-Bzip2-2.017
+=virtual/perl-IO-Compress-Base-2.017
+# new versions
+=perl-core/Compress-Raw-Zlib-2.017
+=virtual/perl-Compress-Raw-Zlib-2.017
+=perl-core/Compress-Raw-Bzip2-2.017
+=virtual/perl-Compress-Raw-Bzip2-2.017
+
+# Justin Bronder <jsbronder@gentoo.org> (17 Apr 2009)
+# Mask sys-cluster/mpich for removal. (#266565)
+# No release since 2005, multiple bugs, easily replaced with
+# openmpi, mpich2 or lam-mpi
+sys-cluster/mpich
+
+# Lennart Kolmodin <kolmodin@gentoo.org> (17 Apr 2009)
+# Add patched dev-lang/ghc for testing.
+# It includes a bundled readline package to be able to use old bootstrapping
+# binaries. See bug #259867.
+# Only x86 and amd64 supported so far. This ebuild won't be very interesting
+# once we add ghc 6.10.2.
+=dev-lang/ghc-6.8.2-r1
+
+# Doug Goldstein <cardoe@gentoo.org> (17 Apr 2009)
+# Added for testing.These ebuilds fix the following
+# bugs #256904, #256913, #257687, #249029, #260340, #254747.
+# For me however, I am unable to create new images using virt-manager
+# patches for this welcome
+=app-emulation/libvirt-0.6.2
+=app-emulation/virt-manager-0.7.0
+=app-emulation/virtinst-0.400.3
+
+# Tony Vroon <chainsaw@gentoo.org> (17 Apr 2009)
+# Alpha-quality developer preview. Feel free to give it a go, but bugs go upstream.
+# Use this tracker: http://www.atheme.org/projects/audacious/issues
+=media-sound/audacious-2.0_alpha*
+=media-plugins/audacious-plugins-2.0_alpha*
 
 # Mounir Lamouri <volkmar@gentoo.org> (15 Apr 2009)
 # >www-plugins/mozilla-weaver-0.2.104 needs masked versions of ff (ie. 3.1_beta)
@@ -886,14 +934,6 @@ net-proxy/squirm
 # Snapshots, alphas and betas of Opera may delete kittens
 =www-client/opera-10*
 
-# Tomas Chvatal <scarabeus@gentoo.org> (04 Dec 2008)
-# new version, needs policykit which is masked
->=gnome-extra/nm-applet-0.7.0
->=net-misc/networkmanager-0.7.0
->=net-misc/networkmanager-vpnc-0.7.0
->=net-misc/networkmanager-pptp-0.7.0
->=net-misc/networkmanager-openvpn-0.7.0
-
 # Tiziano Müller <dev-zero@gentoo.org> (28 Nov 2008)
 # mask for testing/transition
 # blueman needs policykit-gnome
@@ -907,14 +947,6 @@ net-wireless/bluez
 >=net-wireless/libbtctl-0.11.0
 >=app-mobilephone/obexftp-0.23
 net-wireless/blueman
-
-# Saleem Abdulrasool <compnerd@gentoo.org> (23 Nov 2007)
-# These might break automounting, so keep them masked for now.
-# Update by Gilles Dartiguelongue <eva@gentoo.org> (27 Nov 2008)
-# gnome-mount 0.8 doesn't depend on policykit.
-=gnome-base/gnome-mount-0.7
->=sys-auth/policykit-0.6
->=gnome-extra/policykit-gnome-0.6
 
 # MATSUU Takuto <matsuu@gentoo.org> (19 Nov 2008)
 # Masked for bug #196340
@@ -1380,10 +1412,6 @@ dev-lang/ghc-bin
 # the Asterisk is coming! the Asterisk is coming!
 >=net-misc/zaptel-1.4.0
 >=net-misc/asterisk-1.4.0
-
-# Markus Ullmann <jokey@gentoo.org> (05 Sept 2007)
-# masked for testing
->=net-analyzer/snort-2.7
 
 # Doug Goldstein <cardoe@gentoo.org> (30 Aug 2007)
 # upstream has declared this module dead and broken
