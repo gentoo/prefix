@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.156 2009/03/14 21:32:55 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.157 2009/04/17 12:13:41 chainsaw Exp $
+
+*audacious-2.0_alpha1 (17 Apr 2009)
+
+  17 Apr 2009; <chainsaw@gentoo.org> +audacious-2.0_alpha1.ebuild:
+  Adding alpha 2.0 developer preview under package.mask; bugs go upstream.
 
   14 Mar 2009; nixnut <nixnut@gentoo.org> audacious-1.5.1-r1.ebuild:
   ppc stable #247287
