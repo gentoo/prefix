@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/asymptote
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.43 2009/04/11 16:52:41 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/ChangeLog,v 1.44 2009/04/17 09:20:51 bicatali Exp $
+
+  17 Apr 2009; Sébastien Fabbro <bicatali@gentoo.org> asymptote-1.68,
+  asymptote-1.70:
+  License fix GPL-2 -> GPL-3
 
 *asymptote-1.70 (11 Apr 2009)
 
