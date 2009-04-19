@@ -1,6 +1,10 @@
 # ChangeLog for x11-terms/pssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/pssh/ChangeLog,v 1.10 2009/04/16 21:17:31 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/pssh/ChangeLog,v 1.11 2009/04/17 14:54:18 jsbronder Exp $
+
+  17 Apr 2009; Justin Bronder <jsbronder@gentoo.org> pssh-1.2.0.ebuild,
+  pssh-1.3.1.ebuild, pssh-1.4.3.ebuild:
+  Add blocker against net-misc/putty, #211995
 
 *pssh-1.4.3 (16 Apr 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/pssh/pssh-1.4.3.ebuild,v 1.1 2009/04/16 21:17:31 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/pssh/pssh-1.4.3.ebuild,v 1.2 2009/04/17 14:54:18 jsbronder Exp $
 
 NEED_PYTHON=2.4
 
@@ -15,7 +15,8 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
-RDEPEND="net-misc/openssh"
+RDEPEND="net-misc/openssh
+	!net-misc/putty"
 DEPEND="${RDEPEND}
 	dev-python/setuptools"
 
