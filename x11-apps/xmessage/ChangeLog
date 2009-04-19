@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xmessage
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmessage/ChangeLog,v 1.38 2009/04/11 18:26:37 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmessage/ChangeLog,v 1.39 2009/04/17 18:43:16 jer Exp $
+
+  17 Apr 2009; Jeroen Roovers <jer@gentoo.org> xmessage-1.0.2-r1.ebuild:
+  Stable for HPPA (bug #264982).
 
   11 Apr 2009; nixnut <nixnut@gentoo.org> xmessage-1.0.2-r1.ebuild:
   ppc stable #264982
