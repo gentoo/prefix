@@ -1,6 +1,12 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.104 2009/03/14 21:30:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.105 2009/04/17 12:12:30 chainsaw Exp $
+
+*audacious-plugins-2.0_alpha1 (17 Apr 2009)
+
+  17 Apr 2009; <chainsaw@gentoo.org> metadata.xml,
+  +audacious-plugins-2.0_alpha1.ebuild:
+  Adding alpha 2.0 developer preview under package.mask; bugs go upstream.
 
   14 Mar 2009; nixnut <nixnut@gentoo.org> audacious-plugins-1.5.1-r3.ebuild:
   ppc stable #247287

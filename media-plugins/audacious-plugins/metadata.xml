@@ -9,8 +9,10 @@
 <use>
 	<flag name='adplug'>Build with AdPlug (Adlib sound card emulation)
 		support</flag>
+	<flag name='cdaudio'>Enable cd audio playback support</flag>
 	<flag name='chardet'>Try to handle non-UTF8 chinese/japanese/korean ID3
 		tags</flag>
+	<flag name='icecast'>Support for Icecast2 streaming</flag>
 	<flag name='mtp'>Build with Media Transfer Protocol music upload
 		support</flag>
 	<flag name='scrobbler'>Build with scrobbler/LastFM submission support</flag>
