@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.9.ebuild,v 1.1 2009/04/12 15:11:57 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.9-r1.ebuild,v 1.1 2009/04/18 21:18:50 loki_val Exp $
 
 EAPI=2
 
-inherit libtool eutils toolchain-funcs
+inherit libtool eutils toolchain-funcs autotools
 
 DESCRIPTION="Perl-compatible regular expression library"
 HOMEPAGE="http://www.pcre.org/"
@@ -30,6 +30,8 @@ src_prepare() {
 	sed -i -e "s:libdir=@libdir@:libdir=/$(get_libdir):" libpcre.pc.in || die "Fixing libpcre pkgconfig files failed"
 	sed -i -e "s:-lpcre ::" libpcrecpp.pc.in || die "Fixing libpcrecpp pkgconfig files failed"
 	echo "Requires: libpcre = @PACKAGE_VERSION@" >> libpcrecpp.pc.in
+	epatch "${FILESDIR}"/libpcre-7.9-pkg-config.patch
+	eautoreconf
 	elibtoolize
 }
 
@@ -52,7 +54,7 @@ src_configure() {
 		$(use_enable cxx cpp) \
 		$(use_enable zlib pcregrep-libz) \
 		$(use_enable bzip2 pcregrep-libbz2) \
-		--disable-static \
+		--enable-static \
 		--enable-shared \
 		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \

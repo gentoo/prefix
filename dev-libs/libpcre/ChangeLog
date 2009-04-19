@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.149 2009/04/12 15:11:57 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.150 2009/04/18 21:18:50 loki_val Exp $
+
+*libpcre-7.9-r1 (18 Apr 2009)
+*libpcre-7.8-r2 (18 Apr 2009)
+
+  18 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -files/libpcre-7.7-buffer-overflow.patch,
+  +files/libpcre-7.9-pkg-config.patch, -libpcre-7.8-r1.ebuild,
+  +libpcre-7.8-r2.ebuild, -libpcre-7.9.ebuild, +libpcre-7.9-r1.ebuild:
+  Provide static libraries per bug 266016. Provide pkg-config file to link
+  statically against libpcreposix as replacement for .la files. Remove old
+  patch file.
 
 *libpcre-7.9 (12 Apr 2009)
 
