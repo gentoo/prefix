@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.6.ebuild,v 1.6 2009/03/02 16:06:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.6.ebuild,v 1.7 2009/04/17 19:07:32 swegener Exp $
 
 inherit eutils
 
@@ -40,6 +40,14 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-0.9.3-interix.patch
+}
+
+pkg_setup() {
+	if use avahi && ! use threads && ! use system-libvncserver
+	then
+		ewarn "Non-native avahi support has been enabled."
+		ewarn "Native avahi support can be enabled by also enabling the threads USE flag."
+	fi
 }
 
 src_compile() {

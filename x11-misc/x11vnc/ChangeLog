@@ -1,6 +1,16 @@
 # ChangeLog for x11-misc/x11vnc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.67 2009/03/02 16:06:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.69 2009/04/17 19:07:32 swegener Exp $
+
+  17 Apr 2009; Sven Wegener <swegener@gentoo.org> x11vnc-0.9.6,
+  x11vnc-0.9.7:
+  Print a warning when non-native avahi support has been enabled, bug
+  #253218.
+
+*x11vnc-0.9.7 (17 Apr 2009)
+
+  17 Apr 2009; Sven Wegener <swegener@gentoo.org> +x11vnc-0.9.7.ebuild:
+  Version bump.
 
   02 Mar 2009; Brent Baude <ranger@gentoo.org> x11vnc-0.9.6.ebuild:
   Marking x11vnc-0.9.6 ppc64 for bug 256029

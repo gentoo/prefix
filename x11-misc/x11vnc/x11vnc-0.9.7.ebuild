@@ -1,8 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.3.ebuild,v 1.6 2008/09/21 10:40:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.7.ebuild,v 1.2 2009/04/17 19:07:32 swegener Exp $
 
 inherit eutils
+
+EAPI="2"
 
 DESCRIPTION="A VNC server for real X displays"
 HOMEPAGE="http://www.karlrunge.com/x11vnc/"
@@ -11,7 +13,7 @@ SRC_URI="mirror://sourceforge/libvncserver/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="jpeg zlib threads ssl crypt v4l xinerama avahi system-libvncserver"
+IUSE="+jpeg +zlib threads ssl crypt v4l xinerama avahi system-libvncserver"
 
 RDEPEND="system-libvncserver? ( >=net-libs/libvncserver-0.9.1 )
 	zlib? ( sys-libs/zlib )
@@ -39,10 +41,18 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-0.9.3-interix.patch
 }
 
-src_compile() {
+pkg_setup() {
+	if use avahi && ! use threads && ! use system-libvncserver
+	then
+		ewarn "Non-native avahi support has been enabled."
+		ewarn "Native avahi support can be enabled by also enabling the threads USE flag."
+	fi
+}
+
+src_configure() {
 	local myconf=""
 
 	# we need to force threads on, because our system libvncserver gets build with thread support
@@ -61,10 +71,9 @@ src_compile() {
 		$(use_with threads pthread) \
 		${myconf} \
 		|| die "econf failed"
-	emake || die "emake failed"
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc x11vnc/{ChangeLog,README}
 }
