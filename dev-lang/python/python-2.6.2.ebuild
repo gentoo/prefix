@@ -69,8 +69,6 @@ src_prepare() {
 		EPATCH_EXCLUDE=21_all_ctypes-execstack.patch
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
-	epatch "${FILESDIR}/${PN}-${PYVER}_turkish.patch"
-
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
 		Lib/distutils/sysconfig.py \
@@ -156,8 +154,6 @@ src_configure() {
 	fi
 
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
-
-	filter-flags -malign-double
 
 	if use !xml; then
 		ewarn "You have configured Python without XML support."
