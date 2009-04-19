@@ -1,6 +1,16 @@
 # ChangeLog for dev-lang/ghc
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.158 2008/10/04 10:15:33 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.159 2009/04/17 16:27:48 kolmodin Exp $
+
+*ghc-6.8.2-r1 (17 Apr 2009)
+
+  17 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> +ghc-6.8.2-r1.ebuild:
+  Add a restricted version of ghc 6.8.2 (-r1), but that can handle
+  >=sys-libs/readline-6. Previous ghc versions depends on =readline-5, which
+  gives problems now that readline-6 is in the tree. To allow other readline
+  versions we have bundled a precompiled readline-5 package, making the ghc
+  bootstrap process work. Thus, this also forced us to remove the USE=binary
+  flag. See bug #259867.
 
   04 Oct 2008; Raúl Porcel <armin76@gentoo.org> ghc-6.8.2.ebuild:
   alpha/ia64 stable
