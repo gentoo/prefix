@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/fcgi
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.38 2008/12/08 21:24:47 graaff Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.39 2009/04/18 12:32:48 graaff Exp $
+
+  18 Apr 2009; Hans de Graaff <graaff@gentoo.org>
+  +files/fcgi-2.4.1_pre0311112127-gcc44.patch,
+  fcgi-2.4.1_pre0311112127.ebuild:
+  Fix GCC 4.4 compilation. Thanks to Daniel J for the patch and Ryan Hill for
+  testing in bug #256654.
 
 *fcgi-2.4.1_pre0311112127 (08 Dec 2008)
 
