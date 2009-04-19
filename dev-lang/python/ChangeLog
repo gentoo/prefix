@@ -1,6 +1,23 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.370 2009/04/12 09:35:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.373 2009/04/18 19:57:15 arfrever Exp $
+
+*python-2.6.2 (18 Apr 2009)
+
+  18 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.6.2.ebuild:
+  Version bump (bug #266596).
+
+  18 Apr 2009; Tobias Klausmann <klausman@gentoo.org>
+  python-2.5.4-r2.ebuild:
+  Stable on alpha, bug #265790
+
+  17 Apr 2009; Joshua Kinard <kumba@gentoo.org> python-2.6-r5.ebuild,
+  python-2.6.1-r1.ebuild:
+  Python 2.6 has a build failure on MIPS for now. Dropping our unstable
+  keywords until it's fixed by upstream or if Upstreams latest patch on
+  their bug is added. Refer to #266471 for Gentoo for the tracker, or
+  http://bugs.python.org/issue4305 for the Python issue.
 
   12 Apr 2009; Mike Frysinger <vapier@gentoo.org>
   +files/python-2.6-chflags-cross.patch,

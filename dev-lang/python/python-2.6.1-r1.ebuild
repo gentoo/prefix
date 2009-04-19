@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.1-r1.ebuild,v 1.3 2009/04/12 09:35:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.1-r1.ebuild,v 1.4 2009/04/17 06:56:30 kumba Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
