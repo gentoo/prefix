@@ -2,6 +2,12 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.13369 (19 Apr 2009)
+
+  19 Apr 2009; Fabian Groffen <grobian@gentoo.org>
+  +portage-2.2.00.13369.ebuild:
+  New snapshot, fixing repoman issues, and converting the vdb more properly
+
 *portage-2.2.00.13346 (15 Apr 2009)
 
   15 Apr 2009; Fabian Groffen <grobian@gentoo.org>
