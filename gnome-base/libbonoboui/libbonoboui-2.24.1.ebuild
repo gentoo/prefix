@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/libbonoboui-2.24.1.ebuild,v 1.1 2009/03/08 01:39:47 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libbonoboui/libbonoboui-2.24.1.ebuild,v 1.2 2009/04/18 19:37:24 klausman Exp $
 
 GCONF_DEBUG="no"
 
