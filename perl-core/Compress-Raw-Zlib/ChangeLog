@@ -1,6 +1,12 @@
 # ChangeLog for perl-core/Compress-Raw-Zlib
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Zlib/ChangeLog,v 1.1 2008/11/02 07:17:55 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Zlib/ChangeLog,v 1.2 2009/04/18 17:10:10 tove Exp $
+
+*Compress-Raw-Zlib-2.017 (18 Apr 2009)
+
+  18 Apr 2009; Torsten Veller <tove@gentoo.org>
+  +Compress-Raw-Zlib-2.017.ebuild:
+  Version bump
 
   01 Nov 2008; Torsten Veller <tove@gentoo.org> +metadata.xml,
   +Compress-Raw-Zlib-2.005.ebuild, +Compress-Raw-Zlib-2.015.ebuild:
