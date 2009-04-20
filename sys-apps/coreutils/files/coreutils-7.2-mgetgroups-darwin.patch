@@ -1,0 +1,131 @@
+From: Pádraig Brady <P@draigBrady.com>
+Date: Wed, 8 Apr 2009 09:43:15 +0000 (+0100)
+Subject: id: fix infinite loop on some systems
+X-Git-Url: http://repo.or.cz/w/coreutils.git?a=commitdiff_plain;h=bf87a2c8ea4487ca4448c9fe42a9c9858400acbd
+
+id: fix infinite loop on some systems
+
+Steven Parkes reported that `id -G $USER` went into an infinite loop
+on Darwin systems for users in more than 10 groups:
+http://bugs.gentoo.org/show_bug.cgi?id=264007
+* gl/lib/mgetgroups.c (mgetgroups): Work around buggy getgrouplist
+implementations that don't update the required size correctly,
+by doubling the result buffer and retrying. Also return the
+parameter updated by getgrouplist rather than its return value,
+as the documentation doesn't actually state the number of groups
+stored is returned by getgrouplist.
+* tests/misc/id-groups: Add test to exercise this logic
+* tests/Makefile.am: Reference new test
+* NEWS: Mention the fix
+* THANKS: Update
+---
+
+* diff --git a/NEWS b/NEWS
+* index de1db44..a116b64 100644
+* --- a/NEWS
+* +++ b/NEWS
+* @@ -14,6 +14,14 @@ GNU coreutils NEWS                                    -*- outline -*-
+*    default should proceed at the speed of the disk.  Previously /dev/urandom
+*    was used if available, which is relatively slow on GNU/Linux systems.
+*  
+* +** Portability
+* +
+* +  `id -G $USER` now works correctly even on Darwin and NetBSD. Previously it
+* +  would either truncate the group list to 10, or go into an infinite loop,
+* +  due to their non-standard getgroups implementations.
+* +  [truncation introduced in coreutils-6.11]
+* +  [infinite loop introduced in coreutils-7.1]
+* +
+*  * Noteworthy changes in release 7.2 (2009-03-31) [stable]
+*  
+*  ** New features
+* diff --git a/THANKS b/THANKS
+* index 6a918a4..fe523fe 100644
+* --- a/THANKS
+* +++ b/THANKS
+* @@ -525,6 +525,7 @@ Steve McIntyre                      steve@einval.com
+*  Steve Ward                          planet36@gmail.com
+*  Steven G. Johnson                   stevenj@alum.mit.edu
+*  Steven Mocking                      ufo@quicknet.nl
+* +Steven Parkes                       smparkes@smparkes.net
+*  Steven Schveighoffer                schveiguy@yahoo.com
+*  Steven P Watson                     steven@magelico.net
+*  Stuart Kemp                         skemp@peter.bmc.com
+* diff --git a/gl/lib/mgetgroups.c b/gl/lib/mgetgroups.c
+* index e697013..736dd87 100644
+--- a/lib/mgetgroups.c
++++ b/lib/mgetgroups.c
+@@ -81,10 +81,16 @@ mgetgroups (char const *username, gid_t gid, GETGROUPS_T **groups)
+       while (1)
+ 	{
+ 	  GETGROUPS_T *h;
++	  int last_n_groups = max_n_groups;
+ 
+ 	  /* getgrouplist updates max_n_groups to num required.  */
+ 	  ng = getgrouplist (username, gid, g, &max_n_groups);
+ 
++	  /* Some systems (like Darwin) have a bug where they
++	     never increase max_n_groups.  */
++	  if (ng < 0 && last_n_groups == max_n_groups)
++	    max_n_groups *= 2;
++
+ 	  if ((h = realloc_groupbuf (g, max_n_groups)) == NULL)
+ 	    {
+ 	      int saved_errno = errno;
+@@ -97,7 +103,9 @@ mgetgroups (char const *username, gid_t gid, GETGROUPS_T **groups)
+ 	  if (0 <= ng)
+ 	    {
+ 	      *groups = g;
+-	      return ng;
++	      /* On success some systems just return 0 from getgrouplist,
++		 so return max_n_groups rather than ng.  */
++	      return max_n_groups;
+ 	    }
+ 	}
+     }
+diff --git a/tests/Makefile.am b/tests/Makefile.am
+index 07f34ec..8ce6a21 100644
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -171,6 +171,7 @@ TESTS =						\
+   misc/head-c					\
+   misc/head-pos					\
+   misc/id-context				\
++  misc/id-groups				\
+   misc/md5sum					\
+   misc/md5sum-newline				\
+   misc/mknod					\
+diff --git a/tests/misc/id-groups b/tests/misc/id-groups
+new file mode 100755
+index 0000000..dc0f54c
+--- /dev/null
++++ b/tests/misc/id-groups
+@@ -0,0 +1,28 @@
++#!/bin/sh
++# Ensure that "id" outputs groups for a user
++# Copyright (C) 2009 Free Software Foundation, Inc.
++
++# This program is free software: you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation, either version 3 of the License, or
++# (at your option) any later version.
++
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++# GNU General Public License for more details.
++
++# You should have received a copy of the GNU General Public License
++# along with this program.  If not, see <http://www.gnu.org/licenses/>.
++
++if test "$VERBOSE" = yes; then
++  set -x
++  id --version
++fi
++
++. $srcdir/test-lib.sh
++
++fail=0
++id -G $(id -nu) || fail=1
++
++Exit $fail

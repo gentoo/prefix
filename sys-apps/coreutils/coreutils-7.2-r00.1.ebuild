@@ -44,6 +44,7 @@ src_unpack() {
 		epatch
 	fi
 
+	epatch "${FILESDIR}"/${PN}-7.2-mgetgroups-darwin.patch
 	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
 	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 
