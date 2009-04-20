@@ -2551,10 +2551,10 @@ fix_libtool_libdir_paths() {
 	allarchives="\(${allarchives// /\\|}\)"
 
 	sed -i \
-		-e "/^libdir=/s:=.*:='${EPREFIX}${dir##/}':" \
+		-e "/^libdir=/s:=.*:='${EPREFIX}/${dir##/}':" \
 		./${dir}/*.la
 	sed -i \
-		-e "/^dependency_libs=/s:/[^ ]*/${allarchives}:${EPREFIX}${LIBPATH##/}/\1:g" \
+		-e "/^dependency_libs=/s:/[^ ]*/${allarchives}:${EPREFIX}/${LIBPATH##/}/\1:g" \
 		$(find ./${PREFIX}/lib* -maxdepth 3 -name '*.la') \
 		./${dir}/*.la
 
