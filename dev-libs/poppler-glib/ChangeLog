@@ -1,0 +1,25 @@
+# ChangeLog for dev-libs/poppler-glib
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler-glib/ChangeLog,v 1.4 2009/04/19 18:18:33 loki_val Exp $
+
+  19 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -poppler-glib-0.10.5.ebuild:
+  Punt for bug 266775
+
+*poppler-glib-0.10.6 (16 Apr 2009)
+
+  16 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +poppler-glib-0.10.6.ebuild:
+  Bump
+
+  10 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  poppler-glib-0.10.5.ebuild:
+  Update so we either use the superior cairo backend or a stripped-down
+  poppler-glib, using neither cairo, gdk or gdk-pixbuf, only splash.
+
+*poppler-glib-0.10.5 (01 Apr 2009)
+
+  01 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> +metadata.xml,
+  +poppler-glib-0.10.5.ebuild:
+  Add dev-libs/poppler-glib w.r.t. bug 264230
+
