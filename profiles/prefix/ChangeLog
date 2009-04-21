@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  21 Apr 2009; <mduft@gentoo.org> windows/interix/package.mask:
+  removing ncurses mask again, since bootstrapping from zero now works with it.
+
   17 Apr 2009; <mduft@gentoo.org> windows/interix/package.mask:
   revert unmasking, since bad enough, ncurses exposes the hang even with a
   fresh bootstrap :(
