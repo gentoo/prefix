@@ -1,0 +1,134 @@
+# ChangeLog for dev-libs/libnl
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libnl/ChangeLog,v 1.32 2009/03/24 23:34:31 josejx Exp $
+
+  24 Mar 2009; Joseph Jezak <josejx@gentoo.org> libnl-1.1-r1.ebuild:
+  Marked ppc stable for bug #263673.
+
+  15 Mar 2009; Raúl Porcel <armin76@gentoo.org> libnl-1.1-r1.ebuild:
+  Add ~arm wrt #253803
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> libnl-1.1-r1.ebuild:
+  Marking libnl-1.1-r1 ppc64 for bug 256245
+
+  17 Aug 2008; Markus Meier <maekke@gentoo.org> libnl-1.1-r1.ebuild:
+  x86 stable, bug #228837
+
+  28 Jul 2008; Kenneth Prugh <ken69267@gentoo.org> libnl-1.1-r1.ebuild:
+  amd64 stable, bug #228837
+
+  09 Jun 2008; Peter Volkov <pva@gentoo.org>
+  +files/libnl-1.1-glibc-2.8-ULONG_MAX.patch, libnl-1.1-r1.ebuild:
+  Fixes build with glibc-2.8, bug #225393, thank Tobias Senner and Jose
+  daLuz for report.
+
+  28 Apr 2008; Jeroen Roovers <jer@gentoo.org> libnl-1.1-r1.ebuild:
+  Marked ~sparc too.
+
+  19 Mar 2008; Jeroen Roovers <jer@gentoo.org> libnl-1.1-r1.ebuild:
+  Stable for HPPA.
+
+  25 Feb 2008; <pva@gentoo.org> files/libnl-1.1-vlan-header.patch:
+  Fix the patch to be applied correctly. Finally fixed bug #210208.
+
+*libnl-1.1-r1 (20 Feb 2008)
+
+  20 Feb 2008; <pva@gentoo.org> +files/libnl-1.1-minor-leaks.patch,
+  +files/libnl-1.1-vlan-header.patch, +libnl-1.1-r1.ebuild:
+  Fixed compilation problem repoted by Andrew Cowie <andrew AT
+  operationaldynamics.com>, bug 210208. Also backported fix from upstream to
+  fix memory leak.
+
+*libnl-1.1 (30 Jan 2008)
+
+  30 Jan 2008; <pva@gentoo.org> libnl-0.5.0.ebuild, libnl-1.0_pre6.ebuild,
+  +libnl-1.1.ebuild:
+  Version bump, bug 197450, thank you Daniel Bahrdt, valentin, and Robert
+  Buchholz.
+
+*libnl-1.0_pre6-r1 (01 Dec 2007)
+
+  01 Dec 2007; Robert Buchholz <rbu@gentoo.org>
+  +files/libnl-1.0_pre6-__u64_x86_64.patch, +libnl-1.0_pre6-r1.ebuild:
+  Non maintainer commit: Bump to the actual pre6 release (bug #197450) and do
+  not install pkgconfig file to /usr/share (bug #185878).
+
+  28 Aug 2007; nixnut <nixnut@gentoo.org> libnl-1.0_pre6.ebuild:
+  Stable on ppc wrt bug 189781
+
+  26 Aug 2007; Wulf C. Krueger <philantrop@gentoo.org>
+  libnl-1.0_pre6.ebuild:
+  Marked stable on amd64 as per bug 189781.
+
+  24 Aug 2007; Christian Faulhammer <opfer@gentoo.org>
+  libnl-1.0_pre6.ebuild:
+  stable x86, bug 189781
+
+  30 Apr 2007; Raúl Porcel <armin76@gentoo.org>
+  +files/libnl-1.0_pre5-__u64_x86_64.patch,
+  -files/libnl-1.0_pre6-amd64-typedef.diff, libnl-1.0_pre6.ebuild:
+  Add patch from Fedora to make it compile on ia64 and amd64, add ~ia64
+
+  01 Feb 2007; Markus Ullmann <jokey@gentoo.org> -libnl-1.0_pre5.ebuild:
+  cleanup
+
+  14 Jan 2007; Markus Rothe <corsair@gentoo.org> libnl-0.5.0.ebuild,
+  libnl-1.0_pre5.ebuild, libnl-1.0_pre6.ebuild:
+  Added ~ppc64
+
+  26 Dec 2006; Jeroen Roovers <jer@gentoo.org> libnl-1.0_pre6.ebuild:
+  Readded ~hppa. No idea why it was removed.
+
+*libnl-1.0_pre6 (28 Oct 2006)
+
+  28 Oct 2006; Luis Medinas <metalgod@gentoo.org>
+  +files/libnl-1.0_pre5-include.diff,
+  +files/libnl-1.0_pre6-amd64-typedef.diff, +files/libnl-1.pc,
+  +libnl-1.0_pre6.ebuild:
+  Non maintainer commit. Bumped a new prerelease version in preparation for
+  NetworkManager.
+
+  29 Aug 2006; Jeroen Roovers <jer@gentoo.org> libnl-1.0_pre5.ebuild:
+  Marked ~hppa (bug #140207).
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org> libnl-0.5.0.ebuild:
+  ppc stable
+
+  16 Jul 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  libnl-1.0_pre5.ebuild:
+  Added ~ppc, bug #140207
+
+*libnl-1.0_pre5 (15 Jul 2006)
+
+  15 Jul 2006; Marcelo Goes <vanquirius@gentoo.org> +libnl-1.0_pre5.ebuild:
+  1.0_pre5 version bump for bug 140207. Thanks to Rob M. <thehandoftyr at
+  gmail dot com>. In package.mask for testing.
+
+  07 Mar 2006; Jeroen Roovers <jer@gentoo.org> libnl-0.5.0.ebuild:
+  Stable on hppa.
+
+  10 Jan 2006; <dang@gentoo.org> libnl-0.5.0.ebuild:
+  Marked stable on amd64 per bug# 118480
+
+  04 Jan 2006; Jeroen Roovers <jer@gentoo.org> libnl-0.5.0.ebuild:
+  Marked ~hppa (bug #105527).
+
+  05 Nov 2005; Marcelo Goes <vanquirius@gentoo.org> libnl-0.5.0.ebuild:
+  0.5.0 x86 stable.
+
+  08 Oct 2005; Simon Stelling <blubb@gentoo.org>
+  +files/libnl-0.5.0-libdir.patch, libnl-0.5.0.ebuild:
+  keyword ~amd64 and make multilib-strict happy
+
+  18 Sep 2005; Tobias Scherbaum <dertobi123@gentoo.org> libnl-0.5.0.ebuild:
+  Added ~ppc Keyword
+
+  17 Sep 2005; Marcelo Goes <vanquirius@gentoo.org> libnl-0.5.0.ebuild:
+  Added quotes to be neat.
+
+*libnl-0.5.0 (10 Sep 2005)
+
+  10 Sep 2005; Marcelo Goes <vanquirius@gentoo.org>
+  +files/libnl-0.5.0-include.diff, +metadata.xml, +libnl-0.5.0.ebuild:
+  Initial commit, separating this package from net-analyzer/bmon.
+
