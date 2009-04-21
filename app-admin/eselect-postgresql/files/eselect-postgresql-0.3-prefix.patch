@@ -28,7 +28,7 @@
  	do_show() {
 -		if [[ -r "/etc/eselect/postgresql/active" ]] ; then
 -			local bn=$(basename $(canonicalise /etc/eselect/postgresql/active))
-+		if [[ -r ""@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/active" ]] ; then
++		if [[ -r "@GENTOO_PORTAGE_EPREFIX@/etc/eselect/postgresql/active" ]] ; then
 +			local bn=$(basename $(canonicalise "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/active))
  			local slot=${bn}
  			echo "${slot}"
@@ -39,7 +39,7 @@
  	do_show-service() {
 -		if [[ -r "/etc/eselect/postgresql/service" ]] ; then
 -			local bn=$(basename $(canonicalise /etc/eselect/postgresql/service))
-+		if [[ -r ""@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/service" ]] ; then
++		if [[ -r "@GENTOO_PORTAGE_EPREFIX@/etc/eselect/postgresql/service" ]] ; then
 +			local bn=$(basename $(canonicalise "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/service))
  			local slot=${bn}
  			echo "${slot}"
@@ -49,7 +49,7 @@
  
  	do_set() {
 -		local alibdir='/usr/lib/'
-+		local alibdir='"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/'
++		local alibdir='@GENTOO_PORTAGE_EPREFIX@/usr/lib/'
  		[[ ${#@} -ne 1 ]] && die -q "Only one parameter is expected"
 -		local slotdir="/etc/eselect/postgresql/slots/${1}"
 +		local slotdir="@GENTOO_PORTAGE_EPREFIX@/etc/eselect/postgresql/slots/${1}"
@@ -74,10 +74,10 @@
  
  	do_set-service() {
 -		local alibdir='/usr/lib/'
-+		local alibdir='"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/'
++		local alibdir='@GENTOO_PORTAGE_EPREFIX@/usr/lib/'
  		[[ ${#@} -ne 1 ]] && die -q "Only one parameter is expected"
 -		local slotdir="/etc/eselect/postgresql/slots/${1}"
-+		local slotdir=""@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/slots/${1}"
++		local slotdir="@GENTOO_PORTAGE_EPREFIX@/etc/eselect/postgresql/slots/${1}"
  		[[ -d "${slotdir}" ]] || die -q "No such version installed"
  		do_reset-service
  		unset postgres_service
@@ -87,7 +87,7 @@
 -		rm -f /etc/eselect/postgresql/service
 -		ln -sf slots/${1} /etc/eselect/postgresql/service
 -		touch /etc/conf.d/${p_service}
-+		[[ -x ""@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/${p_service}" ]] || die -1 "Selected installation doesn't provide PostgreSQL service"
++		[[ -x "@GENTOO_PORTAGE_EPREFIX@/etc/init.d/${p_service}" ]] || die -1 "Selected installation doesn't provide PostgreSQL service"
 +		mkdir -p "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql &>/dev/null || die "Failed to create "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql"
 +		rm -f "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/service
 +		ln -sf slots/${1} "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/service
@@ -103,7 +103,7 @@
 -		if [[ -d "$(canonicalise /etc/eselect/postgresql/active)" ]] ; then
 -			if [[ -r /etc/eselect/postgresql/active.links ]] ; then
 -				exec 9</etc/eselect/postgresql/active.links || die "Failed to access the list of links"
-+		local alibdir='"@GENTOO_PORTAGE_EPREFIX@"/usr/lib/'
++		local alibdir='@GENTOO_PORTAGE_EPREFIX@/usr/lib/'
 +		if [[ -d "$(canonicalise "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/active)" ]] ; then
 +			if [[ -r "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/active.links ]] ; then
 +				exec 9<"@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/active.links || die "Failed to access the list of links"
@@ -132,7 +132,7 @@
 -			rm -f /etc/eselect/postgresql/service
 +		if [[ -L "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/service ]] ; then
 +			local p_service="$(for s in "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/service/* ; do source $s ; done ; echo "$postgres_service")"
-+			[[ -e ""@GENTOO_PORTAGE_EPREFIX@"/etc/conf.d/${p_service}" ]] && touch ""@GENTOO_PORTAGE_EPREFIX@"/etc/conf.d/${p_service}"
++			[[ -e "@GENTOO_PORTAGE_EPREFIX@/etc/conf.d/${p_service}" ]] && touch ""@GENTOO_PORTAGE_EPREFIX@"/etc/conf.d/${p_service}"
 +			rm -f "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/service
  		fi
  	}
@@ -155,7 +155,7 @@
  		local i
  		for i in ${binaries} ; do
 -			local lip="/usr/bin/${i}"
-+			local lip=""@GENTOO_PORTAGE_EPREFIX@"/usr/bin/${i}"
++			local lip="@GENTOO_PORTAGE_EPREFIX@/usr/bin/${i}"
  			links="$(echo "${links}"|grep -v "^${lip}\$")"
  			[[ -L "${lip}" ]] && continue
  			[[ -e "${lip}" ]] && die "${lip} exists and is not a symbolic link"
