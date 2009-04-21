@@ -1,0 +1,59 @@
+# ChangeLog for net-wireless/iw
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/iw/ChangeLog,v 1.10 2009/04/20 23:26:50 chainsaw Exp $
+
+*iw-0.9.13 (20 Apr 2009)
+
+  20 Apr 2009; <chainsaw@gentoo.org> +iw-0.9.13.ebuild:
+  Version bump, adds IBSS commands and some minor UI improvements.
+
+*iw-0.9.12 (08 Apr 2009)
+
+  08 Apr 2009; <chainsaw@gentoo.org> +iw-0.9.12.ebuild:
+  Version bump, contains new plain "scan" command which triggers, waits &
+  dumps.
+
+*iw-0.9.11 (27 Mar 2009)
+
+  27 Mar 2009; Joseph Jezak <josejx@gentoo.org> +iw-0.9.11.ebuild:
+  Added iw-0.9.11.
+
+  19 Mar 2009; Joseph Jezak <josejx@gentoo.org> iw-0.9.9.ebuild,
+  iw-0.9.10.ebuild:
+  Marked ~ppc for bug #253803.
+
+  15 Mar 2009; Raúl Porcel <armin76@gentoo.org> iw-0.9.10.ebuild:
+  Add ~arm wrt #253803
+
+*iw-0.9.10 (14 Mar 2009)
+
+  14 Mar 2009; Robert Buchholz <rbu@gentoo.org> +iw-0.9.10.ebuild:
+  Version bump, some bugfixes upstream.
+
+*iw-0.9.9 (04 Feb 2009)
+
+  04 Feb 2009; Robert Buchholz <rbu@gentoo.org>
+  -files/iw-0.9.7-cflags.patch, -files/iw-0.9.7-ldflags.patch,
+  -files/iw-0_p20080605-ldflags.patch, -iw-0_p20080605.ebuild,
+  -iw-0.9.7.ebuild, +iw-0.9.9.ebuild:
+  Version bump, patches are upstream (bug #257443).
+
+  13 Jan 2009; Robert Buchholz <rbu@gentoo.org> iw-0.9.7.ebuild:
+  iw-0.9.7 needs >=dev-libs/libnl-1.1, bug #254402 by selex
+
+*iw-0.9.7 (07 Jan 2009)
+
+  07 Jan 2009; Robert Buchholz <rbu@gentoo.org>
+  +files/iw-0.9.7-cflags.patch, +files/iw-0.9.7-ldflags.patch, metadata.xml,
+  +iw-0.9.7.ebuild:
+  Version bump from obsolete version of the code to an actual release (bug
+  #238879). Include patches to fix LDFLAGS and CFLAGS, both applied upstream.
+
+*iw-0_p20080605 (05 Jan 2009)
+
+  05 Jan 2009; Robert Buchholz <rbu@gentoo.org>
+  +files/iw-0_p20080605-ldflags.patch, +metadata.xml,
+  +iw-0_p20080605.ebuild:
+  Initial version of iw for aircrack-ng, ebuild contributions by Roel Aaij and
+  Pierre Guinoiseau, bug 233285.
+
