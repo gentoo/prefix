@@ -11,7 +11,7 @@ SRC_URI="http://dev.gentoo.org/~ulm/distfiles/${P}.el.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=""
