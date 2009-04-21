@@ -32,6 +32,12 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (21 Apr 2009)
+# User reported that it works fine but will not install for me due to unknown
+# kernel location, etc. See bug 265276 for an example.
+net-wireless/iw
+dev-libs/libnl
+net-wireless/aircrack-ng
 
 # Fabian Groffen <grobian@gentoo.org> (02 Apr 2009)
 # Masked for as long as autoconf-wrapper doesn't understand its version
