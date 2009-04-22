@@ -1,12 +1,12 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.18 2008/06/07 19:05:56 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/screen-4.0.3.ebuild,v 1.19 2009/04/19 19:58:04 solar Exp $
 
 WANT_AUTOCONF="2.5"
 
 inherit eutils flag-o-matic toolchain-funcs pam autotools
 
-DESCRIPTION="Screen is a full-screen window manager that multiplexes a physical terminal between several processes"
+DESCRIPTION="Screen - A full-screen window manager that multiplexes physical terminals between several processes"
 HOMEPAGE="http://www.gnu.org/software/screen/"
 SRC_URI="ftp://ftp.uni-erlangen.de/pub/utilities/${PN}/${P}.tar.gz"
 
@@ -62,6 +62,9 @@ src_unpack() {
 
 	# compability for sys-devel/autoconf-2.62
 	epatch "${FILESDIR}"/screen-4.0.3-config.h-autoconf-2.62.patch
+
+	# crosscompile patch
+	epatch "${FILESDIR}"/"${P}"-crosscompile.patch
 
 	# Allow for more rendition (color/attribute) changes in status bars
 	sed -i \
