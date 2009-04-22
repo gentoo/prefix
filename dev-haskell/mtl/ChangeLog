@@ -1,6 +1,11 @@
 # ChangeLog for dev-haskell/mtl
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/ChangeLog,v 1.31 2008/10/04 17:47:54 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/mtl/ChangeLog,v 1.32 2009/04/19 10:00:32 kolmodin Exp $
+
+*mtl-1.1.0.2 (19 Apr 2009)
+
+  19 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> +mtl-1.1.0.2.ebuild:
+  Version bump.
 
   04 Oct 2008; Raúl Porcel <armin76@gentoo.org> mtl-1.1.0.0.ebuild:
   alpha/ia64 stable
