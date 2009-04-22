@@ -1,6 +1,12 @@
 # ChangeLog for xfce-base/thunar
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.67 2009/03/10 13:49:26 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.68 2009/04/21 04:28:48 darkside Exp $
+
+*thunar-1.0.1 (21 Apr 2009)
+
+  21 Apr 2009; Jeremy Olexa <darkside@gentoo.org> -thunar-1.0.0.ebuild,
+  +thunar-1.0.1.ebuild:
+  Version bump for xfce-4.6.1 release, remove old
 
 *thunar-1.0.0 (10 Mar 2009)
 
