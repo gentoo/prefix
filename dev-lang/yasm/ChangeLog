@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/yasm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/yasm/ChangeLog,v 1.31 2009/04/14 16:28:23 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/yasm/ChangeLog,v 1.32 2009/04/19 14:01:33 maekke Exp $
+
+  19 Apr 2009; Markus Meier <maekke@gentoo.org> yasm-0.7.2:
+  x86 stable, bug #266057
 
   14 Apr 2009; Thomas Anderson <gentoofan23@gentoo.org> yasm-0.7.2.ebuild:
   stable amd64, bug 266057
