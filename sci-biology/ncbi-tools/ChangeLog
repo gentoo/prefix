@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/ncbi-tools
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.68 2009/04/18 18:54:07 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.69 2009/04/19 21:10:42 ranger Exp $
+
+  19 Apr 2009; Brent Baude <ranger@gentoo.org> ncbi-tools-20090301.ebuild:
+  Marking ncbi-tools-20090301 ~ppc64 for bug 266569
 
   18 Apr 2009; Tobias Klausmann <klausman@gentoo.org>
   ncbi-tools-20090301.ebuild:
