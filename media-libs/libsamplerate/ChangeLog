@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libsamplerate
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/ChangeLog,v 1.60 2009/02/20 08:59:54 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/ChangeLog,v 1.61 2009/04/21 10:29:15 loki_val Exp $
+
+  21 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> libsamplerate-0.1.2-r1:
+  Fix 0.1.2-r1 to build with newer autotools, bug 266934.
 
 *libsamplerate-0.1.7 (20 Feb 2009)
 

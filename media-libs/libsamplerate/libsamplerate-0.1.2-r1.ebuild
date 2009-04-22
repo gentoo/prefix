@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/libsamplerate-0.1.2-r1.ebuild,v 1.12 2008/02/22 13:22:44 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsamplerate/libsamplerate-0.1.2-r1.ebuild,v 1.13 2009/04/21 10:29:15 loki_val Exp $
 
 WANT_AUTOMAKE=1.7
 
@@ -26,6 +26,10 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${P}-automagic.patch"
 	epatch "${FILESDIR}/${P}-dontbuild-tests-examples.patch"
+        # Fix for autoconf 2.62
+	sed -i -e '/AC_MSG_WARN(\[\[/d' \
+		"${S}/acinclude.m4"
+
 	eautoreconf
 }
 
