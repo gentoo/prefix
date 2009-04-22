@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.24.8.ebuild,v 1.5 2009/04/19 11:47:43 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.24.8-r1.ebuild,v 1.1 2009/04/19 11:47:43 hollow Exp $
 
 EAPI="2"
 inherit elisp-common eutils ruby
@@ -41,6 +41,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-0.24.6-eix.patch"
+	epatch "${FILESDIR}/${PN}-0.24.8-rc-update-show.patch"
 }
 
 src_compile() {

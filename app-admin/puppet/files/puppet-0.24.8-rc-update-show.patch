@@ -1,0 +1,25 @@
+From f888ceeeaf880e005d61387d01e7203f346c6974 Mon Sep 17 00:00:00 2001
+From: =?utf-8?q?Benedikt=20B=C3=B6hm?= <bb@xnull.de>
+Date: Sun, 19 Apr 2009 13:17:47 +0200
+Subject: [PATCH] identify services with ambiguous suffixes correctly
+
+---
+ lib/puppet/provider/service/gentoo.rb |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/lib/puppet/provider/service/gentoo.rb b/lib/puppet/provider/service/gentoo.rb
+index d62df1a..4d59d51 100644
+--- a/lib/puppet/provider/service/gentoo.rb
++++ b/lib/puppet/provider/service/gentoo.rb
+@@ -38,7 +38,7 @@ Puppet::Type.type(:service).provide :gentoo, :parent => :init do
+         return :false unless line
+ 
+         # If it's enabled then it will print output showing service | runlevel
+-        if output =~ /#{@resource[:name]}\s*\|\s*(boot|default)/
++        if output =~ /^\s*#{@resource[:name]}\s*\|\s*(boot|default)/
+             return :true
+         else
+             return :false
+-- 
+1.6.0.6
+
