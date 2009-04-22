@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-panel/xfce4-panel-4.6.0.ebuild,v 1.3 2009/03/22 12:29:28 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-panel/xfce4-panel-4.6.1.ebuild,v 1.1 2009/04/21 04:25:58 darkside Exp $
 
-EAPI=1
+EAPI="1"
 
 inherit xfce4
 
@@ -32,4 +32,4 @@ pkg_setup() {
 	XFCE_CONFIG+=" $(use_enable doc gtk-doc)"
 }
 
-DOCS="AUTHORS ChangeLog HACKING NEWS README README.Plugins"
+DOCS="AUTHORS ChangeLog HACKING NEWS README"
