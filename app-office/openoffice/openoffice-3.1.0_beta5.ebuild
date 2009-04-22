@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0_beta4.ebuild,v 1.3 2009/04/11 21:59:44 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0_beta5.ebuild,v 1.1 2009/04/20 13:44:16 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI=2
@@ -9,7 +9,7 @@ inherit bash-completion check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-
 
 IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
-MY_PV=3.0.99.4
+MY_PV=3.0.99.5
 PATCHLEVEL=OOO310
 SRC=OOo_${PV}_src
 MST=ooo310-m9
@@ -237,6 +237,7 @@ src_unpack() {
 		echo "--with-ant-home=${ANT_HOME}" >> ${CONFFILE}
 		echo "--with-jdk-home=$(java-config --jdk-home 2>/dev/null)" >> ${CONFFILE}
 		echo "--with-java-target-version=$(java-pkg_get-target)" >> ${CONFFILE}
+		echo "--with-jvm-path=/usr/$(get_libdir)/" >> ${CONFFILE}
 		echo "--with-system-beanshell" >> ${CONFFILE}
 		echo "--with-system-hsqldb" >> ${CONFFILE}
 		echo "--with-beanshell-jar=$(java-pkg_getjar bsh bsh.jar)" >> ${CONFFILE}
