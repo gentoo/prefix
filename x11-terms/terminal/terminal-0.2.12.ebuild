@@ -1,13 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.10.ebuild,v 1.2 2009/03/10 17:38:48 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.12.ebuild,v 1.1 2009/04/21 03:42:55 darkside Exp $
 
-EAPI=1
+EAPI="1"
 
 MY_P="${P/t/T}"
 inherit xfce4
 
-XFCE_VERSION=4.6.0
+XFCE_VERSION=4.6.1
 
 xfce4_core
 
