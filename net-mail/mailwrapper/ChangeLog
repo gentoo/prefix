@@ -1,6 +1,11 @@
 # ChangeLog for net-mail/mailwrapper
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/mailwrapper/ChangeLog,v 1.38 2008/07/09 06:41:02 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/mailwrapper/ChangeLog,v 1.39 2009/04/21 04:06:48 vapier Exp $
+
+  21 Apr 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/mailwrapper-0.2.1-headers.patch, mailwrapper-0.2.1,
+  mailwrapper-0.2.1-r1:
+  Fix implicit memory decls #265616.
 
   09 Jul 2008; Torsten Veller <tove@gentoo.org> metadata.xml:
   Remove g2boojum from metadata (#208353)
