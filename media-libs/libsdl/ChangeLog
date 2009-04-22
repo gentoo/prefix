@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libsdl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.159 2009/02/28 10:22:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.160 2009/04/21 20:19:50 mr_bones_ Exp $
+
+  21 Apr 2009; Michael Sterrett <mr_bones_@gentoo.org> metadata.xml:
+  remove negative assertion in the use flag description (bug #266292)
 
   28 Feb 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
   custom-cflags is a global USE-flag
