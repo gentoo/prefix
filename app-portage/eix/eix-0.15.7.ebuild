@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.15.2.ebuild,v 1.10 2009/03/27 18:58:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.15.7.ebuild,v 1.1 2009/04/20 14:34:54 darkside Exp $
 
 inherit multilib eutils
 
@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/eix/${P}.tar.lzma"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="doc sqlite"
 
 RDEPEND="sqlite? ( >=dev-db/sqlite-3 )
