@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/ant-antlr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.22 2009/04/05 14:10:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.23 2009/04/20 09:56:55 elvanor Exp $
+
+  20 Apr 2009; Jean-Noël Rivasseau <elvanor@gentoo.org>
+  ant-antlr-1.7.1-r1.ebuild:
+  Fixed DESCRIPTION.
 
   05 Apr 2009; Markus Meier <maekke@gentoo.org> ant-antlr-1.7.1-r1.ebuild:
   amd64/x86 stable, bug #264198
