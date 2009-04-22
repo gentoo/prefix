@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.16 2009/04/17 10:41:29 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.17 2009/04/19 10:23:07 scarabeus Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -76,14 +76,17 @@ buildsycoca() {
 
 	# fix permission for some directories
 	for x in share/config share/kde4; do
-		if [[ $(stat --format=%a "${EPREFIX}"/usr/${x}) != 755 || $(stat --format=%a "${KDEDIR}"/${x}) != 755 ]]; then
-			ewarn "QA Notice:"
-			ewarn "Package ${PN} is breaking ${KDEDIR}/${x} permissions."
-			ewarn "Please report this issue to gentoo bugzilla."
-			einfo "Permissions will get adjusted automatically now."
-			find "${EPREFIX}"/usr/${x} -type d -print0 | xargs -0 chmod 755
-			[[ ${KDEDIR} = "${EPREFIX}"/usr ]] || find ${KDEDIR}/${x} -type d -print0 | xargs -0 chmod 755
-		fi
+		[[ ${KDEDIR} = "${EPREFIX}"/usr ]] && DIRS="${EPREFIX}"/usr || DIRS="${EPREFIX}/usr ${KDEDIR}"
+		for y in ${DIRS}; do
+			[[ -d "${y}/${x}" ]] || break # nothing to do if directory does not exist
+			if [[ $(stat --format=%a "${y}/${x}") != 755 ]]; then
+				ewarn "QA Notice:"
+				ewarn "Package ${PN} is breaking ${y}/${x} permissions."
+				ewarn "Please report this issue to gentoo bugzilla."
+				einfo "Permissions will get adjusted automatically now."
+				find "${y}/${x}" -type d -print0 | xargs -0 chmod 755
+			fi
+		done
 	done
 }
 
