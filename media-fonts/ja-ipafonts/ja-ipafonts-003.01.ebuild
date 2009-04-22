@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/ja-ipafonts/ja-ipafonts-002.03.ebuild,v 1.4 2009/04/21 17:02:50 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/ja-ipafonts/ja-ipafonts-003.01.ebuild,v 1.1 2009/04/20 11:34:54 matsuu Exp $
 
 inherit font
 
@@ -15,10 +15,10 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 S="${WORKDIR}/${MY_P}"
-FONT_SUFFIX="ttf"
+FONT_SUFFIX="otf"
 FONT_S="${S}"
 
 DOCS="Readme*.txt"
 
 # Only installs fonts
-RESTRICT="mirror strip binchecks"
+RESTRICT="strip binchecks"
