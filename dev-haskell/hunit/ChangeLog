@@ -1,6 +1,11 @@
 # ChangeLog for dev-haskell/hunit
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.30 2008/10/03 23:46:30 fmccor Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.31 2009/04/19 09:55:59 kolmodin Exp $
+
+*hunit-1.2.0.3 (19 Apr 2009)
+
+  19 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> +hunit-1.2.0.3.ebuild:
+  Version bump.
 
   03 Oct 2008; Ferris McCormick <fmccor@gentoo.org> hunit-1.2.0.0.ebuild:
   Sparc stable, Bug #239465.
