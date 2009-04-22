@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/apache
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.98 2009/01/23 11:29:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.99 2009/04/21 14:42:13 ranger Exp $
+
+  21 Apr 2009; Brent Baude <ranger@gentoo.org> apache-2.2.11.ebuild:
+  Marking apache-2.2.11 ppc64 for bug 265705
 
   23 Jan 2009; Raúl Porcel <armin76@gentoo.org> apache-2.2.10.ebuild:
   alpha/arm/ia64/s390/sh stable wrt #252432
