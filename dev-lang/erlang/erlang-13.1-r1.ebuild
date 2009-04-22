@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-13.1-r1.ebuild,v 1.1 2009/04/08 23:11:56 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/Attic/erlang-13.1-r1.ebuild,v 1.2 2009/04/20 17:24:46 fauli Exp $
 
 EAPI=2
 
@@ -50,7 +50,8 @@ src_prepare() {
 		sed -i 's: wx : :' lib/Makefile
 		rm -rf lib/wx
 	fi
-	epatch "${FILESDIR}"/${P}-LDFLAGS.patch # bug 263129
+	epatch "${FILESDIR}"/${P}-LDFLAGS.patch # bug 263129, accepted
+											# upstream for R13B1
 	if use hipe; then
 		ewarn
 		ewarn "You enabled High performance Erlang. Be aware that this extension"
