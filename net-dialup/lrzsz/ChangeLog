@@ -1,6 +1,9 @@
 # ChangeLog for net-dialup/lrzsz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dialup/lrzsz/ChangeLog,v 1.16 2009/04/18 17:56:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dialup/lrzsz/ChangeLog,v 1.17 2009/04/19 13:51:54 maekke Exp $
+
+  19 Apr 2009; Markus Meier <maekke@gentoo.org> lrzsz-0.12.20-r2:
+  amd64 stable, bug #265708
 
   18 Apr 2009; Raúl Porcel <armin76@gentoo.org> lrzsz-0.12.20-r2.ebuild:
   arm/ia64/s390/sh/sparc/x86 stable wrt #265708
