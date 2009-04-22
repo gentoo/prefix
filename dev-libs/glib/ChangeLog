@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.364 2009/04/12 20:36:13 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.365 2009/04/19 07:47:26 leio Exp $
+
+  19 Apr 2009; Mart Raudsepp <leio@gentoo.org> -glib-2.16.5.ebuild,
+  -glib-2.16.6.ebuild, -glib-2.18.4.ebuild:
+  Remove old redundant security vulnerable revisions
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> ChangeLog:
   Stable on sparc, bug #260063
