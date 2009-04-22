@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.159 2009/04/17 16:27:48 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.161 2009/04/19 15:11:46 kolmodin Exp $
+
+  19 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> ghc-6.10.2.ebuild:
+  Minor QA.
+
+*ghc-6.10.2 (19 Apr 2009)
+
+  19 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> +ghc-6.10.2.ebuild:
+  Add ghc-6.10.2, currently masked for testing.
 
 *ghc-6.8.2-r1 (17 Apr 2009)
 

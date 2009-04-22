@@ -8,5 +8,6 @@
 <use>
 <flag name='binary'>Install the binary version directly, rather than using it to build the source version.</flag>
 <flag name='ghcbootstrap'>Internal: Bootstrap GHC from an existing GHC installation.</flag>
+<flag name='ghcmakebinary'>Internal: Used while bootstrapping for making binaries, license related tweaking.</flag>
 </use>
 </pkgmetadata>
