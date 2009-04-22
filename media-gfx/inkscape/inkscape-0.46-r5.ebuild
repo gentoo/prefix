@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r5.ebuild,v 1.11 2009/03/30 13:44:06 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r5.ebuild,v 1.12 2009/04/20 19:16:58 maekke Exp $
 
-EAPI=2
+EAPI="2"
 
-inherit gnome2 eutils
+inherit gnome2 eutils autotools
 
 DESCRIPTION="A SVG based generic vector-drawing program"
 HOMEPAGE="http://www.inkscape.org/"
@@ -74,6 +74,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-gcc43.patch
+	epatch "${FILESDIR}"/${P}-gcc44.patch
 	epatch "${FILESDIR}"/${P}-poppler-0.8.3.patch
 	epatch "${FILESDIR}"/${P}-bug-174720-0.patch
 	epatch "${FILESDIR}"/${P}-bug-174720-1.patch
