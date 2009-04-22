@@ -1,6 +1,12 @@
 # ChangeLog for media-gfx/fontforge
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.106 2009/04/09 04:48:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.107 2009/04/21 21:35:02 loki_val Exp $
+
+*fontforge-20090408-r1 (21 Apr 2009)
+
+  21 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +fontforge-20090408-r1.ebuild:
+  Provide pango and cairo use-flags and deps, bug 266868.
 
 *fontforge-20090408 (09 Apr 2009)
 

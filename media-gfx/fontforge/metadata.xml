@@ -19,6 +19,8 @@
 	capable of more exotic images than normal fonts but require much more effort
 	to support.</flag>
 
+	<flag name="pango">Enable pango font rendering</flag>
+
 	<flag name='pasteafter'>Controls whether fontforge has a paste after command
 	(Useful for making words?). This is kind of fun, but it isn't useful for
 	normal fonts.</flag>
