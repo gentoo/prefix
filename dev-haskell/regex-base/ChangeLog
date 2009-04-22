@@ -1,6 +1,16 @@
 # ChangeLog for dev-haskell/regex-base
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-base/ChangeLog,v 1.20 2008/10/04 17:58:49 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/regex-base/ChangeLog,v 1.22 2009/04/19 11:41:53 kolmodin Exp $
+
+  19 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org>
+  -regex-base-0.91.ebuild:
+  Remove hard masked (broken) version, didn't work with >=ghc-6.8
+
+*regex-base-0.72.0.2 (19 Apr 2009)
+
+  19 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org>
+  +regex-base-0.72.0.2.ebuild:
+  Version bump.
 
   04 Oct 2008; Raúl Porcel <armin76@gentoo.org> regex-base-0.93.1.ebuild:
   alpha/ia64 stable
