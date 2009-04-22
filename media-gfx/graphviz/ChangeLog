@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.191 2009/04/07 19:48:34 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.192 2009/04/20 19:45:45 maekke Exp $
+
+  20 Apr 2009; Markus Meier <maekke@gentoo.org> graphviz-2.22.1,
+  graphviz-2.22.2, graphviz-2.22.2-r1:
+  drop unused gnome USE-flag by Rafał Mużyło in bug #266145
 
   07 Apr 2009; Tobias Klausmann <klausman@gentoo.org>
   graphviz-2.22.2-r1.ebuild:

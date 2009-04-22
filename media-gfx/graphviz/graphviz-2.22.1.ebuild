@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.22.1.ebuild,v 1.3 2009/04/05 20:00:13 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.22.1.ebuild,v 1.4 2009/04/20 19:45:45 maekke Exp $
 
 EAPI=2
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.graphviz.org/pub/graphviz/ARCHIVE/${P}.tar.gz"
 LICENSE="CPL-1.0"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="cairo doc examples gnome gtk java jpeg nls perl png python ruby tcl"
+IUSE="cairo doc examples gtk java jpeg nls perl png python ruby tcl"
 
 # Requires ksh
 RESTRICT="test"
@@ -39,7 +39,6 @@ RDEPEND="
 		x11-libs/libXaw
 		>=x11-libs/pango-1.12
 		>=x11-libs/cairo-1.1.10
-		gnome? ( gnome-base/libgnomeui )
 	)"
 
 DEPEND="${RDEPEND}
@@ -166,8 +165,6 @@ src_configure() {
 		--without-ipsepcola
 		--without-sfdp
 		--without-smyrna"
-
-	use gtk && myconf="${myconf} $(use_with gnome gnomeui)"
 
 	# Bindings:
 	myconf="${myconf}
