@@ -1,6 +1,11 @@
 # ChangeLog for perl-core/Archive-Tar
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Archive-Tar/ChangeLog,v 1.8 2009/04/18 16:10:45 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Archive-Tar/ChangeLog,v 1.9 2009/04/21 16:53:31 tove Exp $
+
+*Archive-Tar-1.48 (21 Apr 2009)
+
+  21 Apr 2009; Torsten Veller <tove@gentoo.org> +Archive-Tar-1.48.ebuild:
+  Version bump
 
   18 Apr 2009; Torsten Veller <tove@gentoo.org> -Archive-Tar-1.32.ebuild,
   Archive-Tar-1.38.ebuild, Archive-Tar-1.40.ebuild, Archive-Tar-1.46.ebuild:
