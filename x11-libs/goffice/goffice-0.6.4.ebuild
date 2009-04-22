@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/goffice-0.6.4.ebuild,v 1.9 2009/04/11 20:05:12 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/goffice-0.6.4.ebuild,v 1.10 2009/04/20 21:55:13 eva Exp $
 
 EAPI=2
 
@@ -33,6 +33,7 @@ RDEPEND=">=dev-libs/glib-2.14
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.18
 	>=dev-util/intltool-0.35
+	dev-util/gtk-doc-am
 	doc? ( >=dev-util/gtk-doc-1.4 )"
 
 DOCS="AUTHORS BUGS ChangeLog MAINTAINERS NEWS README"
