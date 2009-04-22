@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano13/libpano13-2.9.14_beta2.ebuild,v 1.1 2009/03/07 23:00:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano13/libpano13-2.9.14_beta2.ebuild,v 1.2 2009/04/20 20:59:25 maekke Exp $
 
 inherit eutils versionator
 
@@ -11,7 +11,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="java"
-DEPEND="!media-libs/libpano12
+DEPEND="
 	media-libs/jpeg
 	media-libs/libpng
 	media-libs/tiff
