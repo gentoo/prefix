@@ -1,6 +1,11 @@
 # ChangeLog for dev-haskell/network
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.35 2009/03/24 14:40:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.36 2009/04/19 10:21:08 kolmodin Exp $
+
+*network-2.2.1 (19 Apr 2009)
+
+  19 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> +network-2.2.1.ebuild:
+  Version bump.
 
   24 Mar 2009; Jeroen Roovers <jer@gentoo.org> network-2.1.0.0.ebuild:
   Stable for HPPA too.
