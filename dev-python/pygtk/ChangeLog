@@ -1,6 +1,18 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.207 2009/04/18 20:12:29 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.211 2009/04/22 02:14:05 leio Exp $
+
+  22 Apr 2009; Mart Raudsepp <leio@gentoo.org> -pygtk-2.14.0.ebuild:
+  Remove old
+
+  21 Apr 2009; Raúl Porcel <armin76@gentoo.org> pygtk-2.14.1.ebuild:
+  arm/ia64/sh/sparc stable wrt #266668
+
+  20 Apr 2009; Markus Meier <maekke@gentoo.org> pygtk-2.14.1:
+  x86 stable, bug #266668
+
+  19 Apr 2009; Brent Baude <ranger@gentoo.org> pygtk-2.14.1.ebuild:
+  Marking pygtk-2.14.1 ppc64 and ppc for bug 266668
 
   18 Apr 2009; Thomas Anderson <gentoofan23@gentoo.org> pygtk-2.14.1.ebuild:
   stable amd64, bug 266668
