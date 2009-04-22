@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.498 2009/04/12 15:01:13 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.499 2009/04/21 13:24:48 armin76 Exp $
+
+  21 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.0.8.ebuild:
+  Bump patchset to add a patch for arm+gcc4.3 failure from Debian
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   mozilla-firefox-3.0.8.ebuild:
