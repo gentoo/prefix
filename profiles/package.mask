@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9694 2009/04/18 20:33:11 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9706 2009/04/22 01:55:16 volkmar Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,38 @@
 
 #--- END OF EXAMPLES ---
 
+# Mounir Lamouri <volkmar@gentoo.org> (22 Apr 2009)
+# Masked for removal in 60 days. See bug 248008.
+# Tapioca is unmaintained and they are officially abandoned subprojects.
+# In addition, tapioca-xmpp has been superseeded by telepathy-gabble.
+net-im/tapiocad
+net-im/tapioca-xmpp
+net-im/tapiocaui
+
+# Jeroen Roovers <jer@gentoo.org> (21 Apr 2009)
+# Masked until out of beta
+=dev-libs/libevent-2*
+
+# Doug Goldstein <cardoe@gentoo.org> (19 Apr 2009)
+# developing ebuild for phoronix-test-suite
+app-benchmark/phoronix-test-suite
+
+# Benedikt Böhm <hollow@gentoo.org> (19 Apr 2009)
+# masked for testing
+=net-analyzer/centreon-1.4.2.7
+
+# Lennart Kolmodin <kolmodin@gentoo.org> (19 Apr 2009)
+# Mark ghc-6.10.2 and related packages for testing.
+~dev-lang/ghc-6.10.2
+~dev-haskell/parallel-1.1.0.1
+~dev-haskell/haddock-2.4.2
+
+# Torsten Veller <tove@gentoo.org> (19 Apr 2009)
+# Uses pari-2.3* now.
+# Should fix a number of bug: 143763, 200293, 261357, 265466.
+# It "mostly works with 2.3.* too". Is "mostly" good enough?
+=dev-perl/math-pari-2.010801-r1
+
 # Ulrich Mueller <ulm@gentoo.org> (18 Apr 2009)
 # Live ebuild for testing and debugging.
 ~app-admin/eselect-9999
@@ -54,7 +86,10 @@ virtual/perl-IO-Compress
 # Mask sys-cluster/mpich for removal. (#266565)
 # No release since 2005, multiple bugs, easily replaced with
 # openmpi, mpich2 or lam-mpi
-sys-cluster/mpich
+#
+# commented out since it still being used by sci-visualization/paraview-2.6.2
+# -- mr_bones@gentoo.org
+#sys-cluster/mpich
 
 # Lennart Kolmodin <kolmodin@gentoo.org> (17 Apr 2009)
 # Add patched dev-lang/ghc for testing.
@@ -94,7 +129,7 @@ net-mail/gotmail
 
 # Christoph Mende <angelos@unkreativ.org> (14 Apr 2009)
 # Masked media-sound/mpd pre-releases
->media-sound/mpd-0.14.99
+=media-sound/mpd-0.15*
 
 # Jeremy Olexa <darkside@gentoo.org> (14 Apr 2009)
 # Masked for removal in 60 days. Dead upstream, no Gentoo maintainer, needs
@@ -614,11 +649,6 @@ kde-misc/kgraphspace
 >=dev-lang/ruby-1.9.1
 =dev-ruby/rubygems-1.3.1-r30
 
-# Markus Meier <maekke@gentoo.org> (19 Mar 2009)
-# No longer needed, use media-libs/libpano13
-# Masked for removal in 30 days
-media-libs/libpano12
-
 # Ulrich Mueller <ulm@gentoo.org> (19 Mar 2009)
 # No longer maintained as a separate package, use dev-tex/mh instead.
 # Masked for removal in 30 days, bug 262934.
@@ -686,13 +716,6 @@ app-text/ghostscript-esp
 # Unmaintained, broken, no new releases, don't work
 # due to 6.4.09
 net-misc/kickpim
-
-# Doug Goldstein <cardoe@gentoo.org> (3 Mar 2009)
-# After discussing it with NVIDIA, issues with
-# signal handling for many users require this
-# to be masked. However, some users my experience
-# better functionality with this driver
-=x11-drivers/nvidia-drivers-180.35
 
 # Thomas Sachau <tommy@gentoo.org> (2 Mar 2009)
 # Mask for removal, was merged into dev-java/fec
@@ -766,12 +789,6 @@ dev-lang/rubinius
 # I gave away maintainership a while ago nobody took it on. Prepare for remove.
 app-emulation/ganeti
 app-emulation/ganeti-instance-debian-etch
-
-# Jeremy Olexa <darkside@gentoo.org> (05 Feb 2009)
-# libjingle-0.3.11 was created by the tapioca team
-# libjingle-0.3.12 was created by the farsight team
-# As a result, some things don't work with 0.3.12 (bug 248008)
-=net-libs/libjingle-0.3.12
 
 # Santiago M. Mola <coldwind@gentoo.org> (03 Feb 2009)
 # Masked for removal in 30 days,
@@ -1142,14 +1159,6 @@ dev-cpp/bakery
 # See bug 193505 and bug 204249. You are on your own here.
 x11-libs/lesstif
 
-# Lennart Kolmodin <kolmodin@gentoo.org> (04 May 2008)
-# Some of the older 0.9x regex packages are experimental versions and does
-# not work with ghc-6.8. There are now newer versions that should be used
-# instead. This replaces the older package mask by Duncan Coutts.
-=dev-haskell/regex-compat-0.90
-=dev-haskell/regex-base-0.91
-=dev-haskell/regex-posix-0.92
-
 # Markus Ullmann <jokey@gentoo.org> (21 Apr 2008)
 # mask beta version
 =net-libs/gloox-1.0_beta*
@@ -1412,16 +1421,6 @@ dev-lang/ghc-bin
 # the Asterisk is coming! the Asterisk is coming!
 >=net-misc/zaptel-1.4.0
 >=net-misc/asterisk-1.4.0
-
-# Doug Goldstein <cardoe@gentoo.org> (30 Aug 2007)
-# upstream has declared this module dead and broken
-# it is reworked in trunk but will not be moved to 0.20
-# <gbee> not in a fit state for a backport, suppose in a couple or weeks, maybe less it might be usable enough that packagers could backport it themselves - not sure Chutt would want it backported it to -fixes though
-# <gbee> assuming you are talking about mythweather and not some other fix that I was supposed to be backporting
-# <Cardoe> yes, mythweather
-# <Chutt> that's too big for a backport
-# if someone wishes to backport the changes, feel free to open a bug
-<media-plugins/mythweather-0.21_pre10000
 
 # Robert Buchholz <rbu@gentoo.org> (29 Aug 2007)
 # PPTP Plugin doesn't work on amd64

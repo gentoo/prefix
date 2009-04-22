@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4376 2009/04/18 23:27:45 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4382 2009/04/21 21:47:43 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -610,6 +610,7 @@ dev-lang/gdl:proj - Adds proj library support (geographic projections)
 dev-lang/gforth:force-reg - Enable a possibly unstable GCC flag for possibly large performance gains
 dev-lang/ghc:binary - Install the binary version directly, rather than using it to build the source version.
 dev-lang/ghc:ghcbootstrap - Internal: Bootstrap GHC from an existing GHC installation.
+dev-lang/ghc:ghcmakebinary - Internal: Used while bootstrapping for making binaries, license related tweaking.
 dev-lang/icon:iplsrc - install the icon programming library source
 dev-lang/idb:icc - Use dev-lang/icc to install idb (default)
 dev-lang/idb:ifc - Use dev-lang/ifc to install idb
@@ -1259,6 +1260,7 @@ media-gfx/digikam:nfs - Create sqlite db within ~/.kde, instead in the albums ba
 media-gfx/eog:xmp - Adds support for XMP metadata
 media-gfx/exiv2:xmp -  Adds support for Adobe XMP 
 media-gfx/fontforge:cjk - Controls whether fontforge understands the gb12345 encoding and installs cidmap package to edit CID-keyed fonts
+media-gfx/fontforge:pango - Enable pango font rendering
 media-gfx/fontforge:pasteafter - Controls whether fontforge has a paste after command (Useful for making words?). This is kind of fun, but it isn't useful for normal fonts.
 media-gfx/fontforge:tilepath - Controls whether fontforge has a tile path command (a variant of expand stroke) This is useful for very decorative fonts, most people won't want it.
 media-gfx/fontforge:truetype-debugger - Enable enable truetype debugger in fontforge
@@ -1327,9 +1329,9 @@ media-libs/libdc1394:juju - Use the new juju firewire stack in the Linux kernel
 media-libs/libggi:vis - Enables sparc vis support for libggi
 media-libs/libgphoto2:bonjour - Adds Bonjour/Zeroconf support.
 media-libs/libifp:module - Build kernel module for non-root usage
-media-libs/libsdl:audio - Allow users to disable audio support completely (at their own risk)
-media-libs/libsdl:joystick - Allow users to disable joystick support completely (at their own risk)
-media-libs/libsdl:video - Allow users to disable video support completely (at their own risk)
+media-libs/libsdl:audio - Control audio support (disable at your own risk)
+media-libs/libsdl:joystick - Control joystick support (disable at your own risk)
+media-libs/libsdl:video - Control video support (disable at your own risk)
 media-libs/libvorbis:aotuv - Applies the aoTuV patches. Aoyumi's Tuned Vorbis is a third-party patchset that improves the vorbis encoding quality. A previous version of the aoTuV patchset has already been merged with the official libvorbis release. The current patchset especially improves encoding quality at low bitrate settings, and is very likely to be merged at some point in the future. It is recommended that all users enable this useflag. 
 media-libs/mesa:pic - disable optimized assembly code that is not PIC friendly
 media-libs/mlt:compressed-lumas - Compress the luma files in png.
@@ -2419,8 +2421,11 @@ sci-chemistry/ghemical:gamess - Add GAMESS interface for QM/MM (sci-chemistry/ga
 sci-chemistry/ghemical:mopac7 - Apply compilation fix for sci-chemistry/mopac7 support
 sci-chemistry/ghemical:openbabel - Use sci-chemistry/openbabel for file conversions
 sci-chemistry/ghemical:toolbar - Build the shortcuts toolbar
+sci-chemistry/gromacs:dmalloc - Enable use of Debug Malloc
 sci-chemistry/gromacs:double-precision - More precise calculations at the expense of speed
+sci-chemistry/gromacs:fkernels - Enable building of Fortran Kernels for platforms that dont have assembly loops
 sci-chemistry/gromacs:single-precision - Single precision version of gromacs
+sci-chemistry/gromacs:zsh-completion - Enable zsh completion support
 sci-chemistry/jmol:client-only - Install the viewer only, no applet files for httpd 
 sci-chemistry/pymol:apbs - Build the apbs plugin tool.
 sci-chemistry/pymol:shaders - Build with Shaders support - good for high-end 3D video cards.
@@ -2470,6 +2475,7 @@ sci-libs/hdf5:hlapi - Enable support for high-level library
 sci-libs/hdf5:tools - Install support and test tools
 sci-libs/libghemical:mopac7 - Use sci-chemistry/mopac7 for semi-empirical calculations
 sci-libs/libghemical:mpqc - Use sci-chemistry/mpqc for quantum-mechanical calculations
+sci-libs/libnc-dap:full-test - Enables full set of regression tests (long).
 sci-libs/libsvm:tools - Install support tools
 sci-libs/mathgl:octave - Add bindings for sci-mathematics/octave
 sci-libs/metis:int64 - Build the 64 bits integer library (metis >=5 only)
@@ -2614,6 +2620,7 @@ sys-auth/pambase:passwdqc -  Enable pam_passwdqc module on system auth stack for
 sys-auth/pambase:sha512 -  Switch Linux-PAM's pam_unix module to use sha512 for passwords hashes rather than MD5. This option requires >=sys-libs/pam-1.0.1 built against >=sys-libs/glibc-2.7, if it's built against an earlier version, it will silently be ignored, and MD5 hashes will be used. All the passwords changed after this USE flag is enabled will be saved to the shadow file hashed using SHA512 function. The password previously saved will be left untouched. Please note that while SHA512-hashed passwords will still be recognised if the USE flag is removed, the shadow file will not be compatible with systems using an earlier glibc version. 
 sys-auth/pambase:ssh -  Enable pam_ssh module on system auth stack for authentication and session handling. This module will accept as password the passphrase of a private SSH key (one of ~/.ssh/id_rsa, ~/.ssh/id_dsa or ~/.ssh/identity), and will spawn an ssh-agent instance to cache the open key. 
 sys-auth/policykit:zsh-completion - Install zsh command completion.
+sys-block/gparted:dmraid - Support for dmraid devices, also known as ATA-RAID, or Fake RAID.
 sys-block/gparted:fat - Include FAT16/FAT32 support (sys-fs/dosfstools) 
 sys-block/gparted:hfs - Include HFS support (sys-fs/hfsutils)
 sys-block/gparted:jfs - Include JFS support (sys-fs/jfsutils)

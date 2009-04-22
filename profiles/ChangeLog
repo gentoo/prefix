@@ -1,10 +1,41 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2550 2009/04/18 20:33:11 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2560 2009/04/22 01:55:16 volkmar Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  22 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Unmaks libjingle-0.3.12 as tapioca-xmpp is now masked for removal, bug 248008.
+
+  22 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Mask for removal tapiocad, tapiocad and tapioca-xmpp. See bug 180757.
+
+  21 Apr 2009; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Mask =dev-libs/libevent-2* until out of beta.
+
+  20 Apr 2009; Markus Meier <maekke@gentoo.org> package.mask:
+  remove media-libs/libpano12 mask, as it has been removed from the tree
+
+  19 Apr 2009; Doug Goldstein <cardoe@gentoo.org> package.mask:
+  mask developmental ebuild for phoronix-test-suite
+
+  19 Apr 2009; Doug Goldstein <cardoe@gentoo.org> package.mask:
+  clean up my old masks
+
+  19 Apr 2009; Benedikt Böhm <hollow@gentoo.org> package.mask:
+  mask net-analyzer/centreon-1.4.2.7 for testing
+
+  19 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> package.mask:
+  Mask dev-lang/ghc-6.10.2 and related packages for testing.
+
+  19 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> package.mask:
+  Remove the hard mask on dev-haskell/regex-*-0.9*, the packages has been
+  removed from portage.
+
+  19 Apr 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask =dev-perl/math-pari-2.010801-r1 for testing
 
   18 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> base/package.use.mask,
   package.mask:
