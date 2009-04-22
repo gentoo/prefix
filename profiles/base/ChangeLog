@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.70 2009/04/12 19:03:58 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.71 2009/04/21 22:40:37 volkmar Exp $
+
+  21 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.use.mask:
+  Mask jingle for kopete-3 and kdenetwork-3 because using old ortp version.
+  See bug 206047.
 
   12 Apr 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   package.use.mask:
