@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.24.2.ebuild,v 1.3 2008/12/31 03:26:31 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.24.3-r1.ebuild,v 1.1 2009/04/22 03:30:16 leio Exp $
 
-inherit gnome2
+inherit eutils autotools gnome2
 
 DESCRIPTION="Libraries for the gnome desktop that are not part of the UI"
 HOMEPAGE="http://www.gnome.org/"
@@ -41,6 +41,17 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 pkg_setup() {
 	G2CONF="${G2CONF} --with-gnome-distributor=Gentoo --disable-scrollkeeper"
+}
+
+src_unpack() {
+	gnome2_src_unpack
+
+	# Do not load background if not needed, bug #251350
+	epatch "${FILESDIR}/${PN}-2.24.2-background.patch"
+
+	# Broken intltool-0.40.6 used for 2.24.3, re-intltoolize
+	intltoolize --force --automake --copy || die "intltoolize failed"
+	eautomake
 }
 
 pkg_postinst() {
