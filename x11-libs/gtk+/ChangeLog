@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.418 2009/04/12 20:39:18 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.419 2009/04/22 01:27:54 leio Exp $
+
+  22 Apr 2009; Mart Raudsepp <leio@gentoo.org>
+  -files/gtk+-2.12.1-cupsutils.patch, -gtk+-2.12.8.ebuild,
+  -gtk+-2.14.4.ebuild, -gtk+-2.14.5.ebuild, -gtk+-2.14.7.ebuild,
+  -gtk+-2.14.7-r1.ebuild:
+  Remove old
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> ChangeLog:
   Stable on sparc, bug #260063
