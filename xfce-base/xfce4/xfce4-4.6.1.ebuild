@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.6.0.ebuild,v 1.2 2009/03/16 08:04:10 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.6.1.ebuild,v 1.1 2009/04/21 04:28:01 darkside Exp $
 
 XFCE_VERSION=${PV}
 
@@ -26,7 +26,7 @@ RDEPEND=">=x11-themes/gtk-engines-xfce-2.6
 		app-editors/mousepad
 		x11-terms/terminal
 		x11-themes/xfce4-icon-theme
-		>=x11-themes/xfwm4-themes-${XFCE_VERSION}
+		>=x11-themes/xfwm4-themes-4.6.0
 		>=xfce-extra/xfce4-appfinder-${XFCE_VERSION} )
 	minimal? ( x11-themes/hicolor-icon-theme )
 	xscreensaver? ( || ( >=x11-misc/xscreensaver-5.03
