@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.ebuild,v 1.4 2009/04/17 01:29:22 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.ebuild,v 1.5 2009/04/20 05:01:45 loki_val Exp $
 
 EAPI=2
 
@@ -45,14 +45,20 @@ pkg_setup() {
 	if use kernel_linux
 	then
 		get_version
-		require_configured_kernel
-		if linux_chkconfig_present SYSVIPC
+		if linux_config_exists
 		then
-			einfo "CONFIG_SYSVIPC is set, looking good."
+			if linux_chkconfig_present SYSVIPC
+			then
+				einfo "CONFIG_SYSVIPC is set, looking good."
+			else
+				eerror "If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling."
+				eerror "See http://bugs.gentoo.org/261869 for more info."
+				die "Please set CONFIG_SYSVIPC in your kernel .config"
+			fi
 		else
-			eerror "If CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling."
-			eerror "See http://bugs.gentoo.org/261869 for more info."
-			die "Please set CONFIG_SYSVIPC in your kernel .config"
+			ewarn "Was unable to determine your kernel .config"
+			ewarn "Please note that if CONFIG_SYSVIPC is not set in your kernel .config, mono will hang while compiling."
+			ewarn "See http://bugs.gentoo.org/261869 for more info."
 		fi
 	fi
 }
