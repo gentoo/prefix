@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/aespipe
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/aespipe/ChangeLog,v 1.24 2009/04/13 21:11:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/aespipe/ChangeLog,v 1.25 2009/04/19 13:59:37 maekke Exp $
+
+  19 Apr 2009; Markus Meier <maekke@gentoo.org> aespipe-2.3e:
+  amd64/x86 stable, bug #266045
 
   13 Apr 2009; Brent Baude <ranger@gentoo.org> aespipe-2.3e.ebuild:
   Marking aespipe-2.3e ppc64 for bug 266045
