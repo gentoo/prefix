@@ -139,6 +139,7 @@
           <include name="**/*Test.java"/>
           <include name="**/*TestCase.java"/>
           <exclude name="**/*Abstract*Test.java"/>
+		  <exclude name="**/ParserTestCase.java"/>
         </fileset>
       </batchtest>
       <batchtest todir="${maven.test.reports}" if="test">
