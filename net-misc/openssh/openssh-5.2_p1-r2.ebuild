@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r2.ebuild,v 1.7 2009/04/12 22:39:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r2.ebuild,v 1.8 2009/04/20 05:32:10 vapier Exp $
 
 inherit eutils flag-o-matic multilib autotools pam
 
@@ -117,18 +117,26 @@ src_unpack() {
 	eautoreconf
 }
 
+static_use_with() {
+	local flag=$1
+	if use static && use ${flag} ; then
+		ewarn "Disabling '${flag}' support because of USE='static'"
+		# rebuild args so that we invert the first one (USE flag)
+		# but otherwise leave everything else working so we can
+		# just leverage use_with
+		[[ -z $1 ]] && flag="${flag} ${flag}"
+		shift
+		set -- !${flag} "$@"
+	fi
+	use_with "$@"
+}
+
 src_compile() {
 	addwrite /dev/ptmx
 	addpredict /etc/skey/skeykeys #skey configure code triggers this
 
 	local myconf=""
-	if use static ; then
-		append-ldflags -static
-		use pam && ewarn "Disabling pam support becuse of static flag"
-		myconf="${myconf} --without-pam"
-	else
-		myconf="${myconf} $(use_with pam)"
-	fi
+	use static && append-ldflags -static
 
 	# for some reason the stack-protector detection code doesn't really work on
 	# solaris, so don't try it, FreeMiNT neither
@@ -146,10 +154,11 @@ src_compile() {
 		--with-privsep-user=sshd \
 		--with-md5-passwords \
 		--with-ssl-engine \
-		$(use_with kerberos kerberos5 /usr) \
+		$(static_use_with pam) \
+		$(static_use_with kerberos kerberos5 "${EPREFIX}"/usr) \
 		${LDAP_PATCH:+$(use ldap && use_with ldap)} \
 		$(use_with libedit) \
-		${PKCS11_PATCH:+$(use pkcs11 && use_with pkcs11)} \
+		${PKCS11_PATCH:+$(use pkcs11 && static_use_with pkcs11)} \
 		$(use_with selinux) \
 		$(use_with skey) \
 		$(use_with smartcard opensc) \
