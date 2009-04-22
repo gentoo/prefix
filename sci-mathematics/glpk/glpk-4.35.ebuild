@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.35.ebuild,v 1.6 2009/04/08 17:51:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.35.ebuild,v 1.7 2009/04/20 20:00:16 maekke Exp $
 
 inherit flag-o-matic
 
