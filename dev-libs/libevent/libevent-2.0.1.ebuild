@@ -1,10 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.5.ebuild,v 1.1 2008/07/10 19:21:37 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-2.0.1.ebuild,v 1.2 2009/04/21 06:44:43 jer Exp $
 
 inherit libtool
 
-MY_P="${P}-stable"
+MY_P="${P}-alpha"
 
 DESCRIPTION="A library to execute a function when a specific event occurs on a file descriptor"
 HOMEPAGE="http://monkey.org/~provos/libevent/"
@@ -36,17 +36,11 @@ src_unpack() {
 }
 
 src_test() {
-	einfo "Building tests"
-	cd test
-	make test || die "failed to build tests"
-
-	einfo "Running tests"
-	./test.sh > "${T}"/tests
-	cat "${T}"/tests
+	make verify | tee "${T}"/tests
 	grep FAILED "${T}"/tests &>/dev/null && die "1 or more tests failed"
 }
 
 src_install() {
 	make DESTDIR="${D}" install || die "make install failed"
-	dodoc README
+	dodoc README ChangeLog
 }
