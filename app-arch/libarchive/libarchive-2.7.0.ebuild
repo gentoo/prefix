@@ -53,6 +53,9 @@ src_compile() {
 	# Makefile.am we can just work it around this way.
 	append-flags -Wno-error
 
+	# for getpwnam_r usage
+	[[ ${CHOST} == *-solaris* ]] && append-flags -D_POSIX_PTHREAD_SEMANTICS
+
 	# We disable lzma because we don't have liblzma (not liblzmadec!)
 	# currently.
 	econf --bindir="${EPREFIX}"/bin \
