@@ -1,3 +1,5 @@
+reported upstream Apr 23 2009: https://sourceforge.net/forum/message.php?msg_id=7268389
+
 diff -ru lzma-4.32.7.orig/configure lzma-4.32.7/configure
 --- lzma-4.32.7.orig/configure	2008-08-20 14:38:49 +0200
 +++ lzma-4.32.7/configure	2008-08-20 14:41:05 +0200
