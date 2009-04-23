@@ -1,3 +1,6 @@
+reported upstream on 23 Apr 2009:
+http://lists.gnu.org/archive/html/bug-bash/2009-04/msg00142.html
+
 diff -ru bash-3.2.orig/config-bot.h bash-3.2/config-bot.h
 --- bash-3.2.orig/config-bot.h	2008-02-13 15:55:26 +0100
 +++ bash-3.2/config-bot.h	2008-02-13 15:58:05 +0100
