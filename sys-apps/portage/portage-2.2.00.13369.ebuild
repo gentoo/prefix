@@ -76,6 +76,7 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${P}-nodeps-order.patch
+	epatch "${FILESDIR}"/${P}-interix-estale.patch
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13133-prefix-chaining.patch
 }
 
