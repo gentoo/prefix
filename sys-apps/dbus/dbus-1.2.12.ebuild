@@ -147,7 +147,7 @@ pkg_postinst() {
 	ewarn "You must restart D-Bus \`/etc/init.d/dbus restart\` to run"
 	ewarn "the new version of the daemon."
 
-	if built_with_use x11-base/xorg-server hal; then
+	if use !prefix && built_with_use x11-base/xorg-server hal; then
 		elog
 		ewarn "You are currently running X with the hal useflag enabled"
 		ewarn "restarting the dbus service WILL restart X as well"
