@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/poppler/poppler-0.10.5.ebuild,v 1.8 2009/04/21 19:14:08 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/poppler/poppler-0.10.6.ebuild,v 1.1 2009/04/16 23:25:37 loki_val Exp $
 
 EAPI=2
 
@@ -15,5 +15,5 @@ IUSE=""
 
 PROPERTIES="virtual"
 
-RDEPEND="~app-text/poppler-${PV}"
+RDEPEND="~dev-libs/poppler-${PV}"
 DEPEND="${RDEPEND}"
