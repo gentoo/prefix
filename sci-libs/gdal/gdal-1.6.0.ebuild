@@ -68,8 +68,9 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	eaclocal
-	eautoconf
+#	eaclocal
+#	eautoconf
+	eautoreconf
 
 	epatch "${FILESDIR}"/${PN}-1.4.2-datadir.patch \
 	    "${FILESDIR}"/${PN}-1.5.0-soname.patch \
