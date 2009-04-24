@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/goffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/ChangeLog,v 1.58 2009/04/20 21:55:13 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/ChangeLog,v 1.59 2009/04/23 18:56:52 klausman Exp $
+
+  23 Apr 2009; Tobias Klausmann <klausman@gentoo.org> goffice-0.6.6:
+  Stable on alpha, bug #266715
 
   20 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org> goffice-0.6.4.ebuild:
   Adding gtk-doc-am to DEPEND, thanks to loki_val, bug #265928.
