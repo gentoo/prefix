@@ -1,6 +1,9 @@
 # ChangeLog for net-zope/zopeinterface
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/ChangeLog,v 1.26 2008/10/25 13:58:21 hawking Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/ChangeLog,v 1.27 2009/04/23 19:30:38 maekke Exp $
+
+  23 Apr 2009; Markus Meier <maekke@gentoo.org> zopeinterface-3.4.1:
+  amd64/x86 stable, bug #267186
 
 *zopeinterface-3.4.1 (25 Oct 2008)
 
