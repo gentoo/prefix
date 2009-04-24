@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/subversion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.369 2009/04/15 00:40:57 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.370 2009/04/23 09:14:59 armin76 Exp $
+
+  23 Apr 2009; Raúl Porcel <armin76@gentoo.org> subversion-1.6.1.ebuild:
+  Add ~ia64 wrt #263337
 
   15 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   +files/subversion-1.6.1-fix_sqlite_configuration.patch,
