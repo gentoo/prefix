@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9706 2009/04/22 01:55:16 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9710 2009/04/23 16:06:38 hwoarang Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -490,10 +490,6 @@ net-libs/libinfinity
 >=app-office/openoffice-3.1.0_beta3
 >=app-office/openoffice-bin-3.1.0_rc1
 
-# Christian Faulhammer <fauli@gentoo.org> (07 Apr 2009)
-# Mask for testing, is a beta version
-~dev-lang/erlang-13.1
-
 # Jeremy Olexa <darkside@gentoo.org> (07 Apr 2009)
 # Not supported in Gentoo anymore, use 'eselect bashcomp' now
 # Comments on bug 253878 - removed in 30 days.
@@ -674,17 +670,6 @@ dev-tex/xkeyval
 =gnome-base/gnome-keyring-2.24*
 =app-crypt/seahorse-2.24*
 =app-crypt/seahorse-plugins-2.24*
-
-# Torsten Veller <tove@gentoo.org> (16 Mar 2009)
-# Mask for removal (#247409) (16 Mar 2009)
-dev-perl/OpenCA-CRL
-dev-perl/OpenCA-OpenSSL
-dev-perl/OpenCA-REQ
-dev-perl/OpenCA-X509
-# Masked for removal (#206177,#220491) (21 Mar 2009)
-dev-perl/Inline-Java
-# Masked for removal (#151986,#171649,#239222) (23 Mar 2009)
-dev-lang/pugs
 
 # Robin H. Johnson <robbat2@gentoo.org> (11 Mar 2009)
 # HPN patch contains some breakages with port forwarding.

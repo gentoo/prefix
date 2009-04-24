@@ -1,10 +1,19 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2560 2009/04/22 01:55:16 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2563 2009/04/24 04:47:31 volkmar Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  24 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> updates/2Q-2009:
+  Slotmove for linphone from 1 to 0
+
+  23 Apr 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Remove mask of dev-lang/pugs, dev-perl/Inline-Java and dev-perl/OpenCA-*
+
+  22 Apr 2009; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  remove mask for dev-lang/erlang 13A (ebuild removed from tree)
 
   22 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
   Unmaks libjingle-0.3.12 as tapioca-xmpp is now masked for removal, bug 248008.

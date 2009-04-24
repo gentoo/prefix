@@ -1,6 +1,10 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.71 2009/04/21 22:40:37 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.72 2009/04/23 05:36:29 ulm Exp $
+
+  23 Apr 2009; Ulrich Mueller <ulm@gentoo.org> package.use:
+  Remove xpm for app-editors/emacs and app-editors/emacs-cvs from
+  package.use, since we are now using IUSE defaults.
 
   21 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.use.mask:
   Mask jingle for kopete-3 and kdenetwork-3 because using old ortp version.

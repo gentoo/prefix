@@ -119,6 +119,3 @@ nss
 # Bug #184563, 18 Sep 2007 
 # Robin H. Johnson <robbat2@gentoo.org>
 audit
-
-# net-libs/libssh2 currently missing keywords (dragonheart 20080402)
-libssh2

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4382 2009/04/21 21:47:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4386 2009/04/24 04:07:42 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -184,6 +184,7 @@ app-emacs/bbdb:tex - Install plain TeX support files
 app-emacs/company-mode:semantic - Install backend for semantic (app-emacs/cedet)
 app-emacs/delicious:planner - Include support for app-emacs/planner
 app-emacs/easypg:gnus - Include support for the Gnus newsreader
+app-emacs/emacs-common-gentoo:emacs23icons - Install Emacs 23 style icons
 app-emacs/emhacks:jde - Enable support for Java Development Environment
 app-emacs/python-mode:pymacs - Enable Emacs extensions for Python as scripting language
 app-emacs/remember:bbdb - Include support for app-emacs/bbdb
@@ -2211,6 +2212,7 @@ net-misc/mediatomb:libextractor - Use libextractor to gather files' metadata.
 net-misc/mediatomb:mysql -  Use dev-db/mysql as backend rather than SQLite3. If this USE flag is disabled, dev-db/sqlite is used in its stead. 
 net-misc/mediatomb:taglib -  Use media-libs/taglib for reading files' metadata rather than id3lib. If this USE flag is disabled media-libs/id3lib is used in its stead. 
 net-misc/neon:pkcs11 - Add support PKCS11 support
+net-misc/networkmanager:connection-sharing - Use net-dns/dnsmasq and net-firewall/iptables for connection sharing 
 net-misc/networkmanager:dhclient - Use dhclient from net-misc/dhcp for getting ip.
 net-misc/networkmanager:dhcpcd - Use net-misc/dhcpcd for getting ip.
 net-misc/networkmanager:nss - Use dev-libs/nss for cryptography.
@@ -2363,7 +2365,6 @@ net-proxy/tinyproxy:transparent-proxy - Enables support for transparent proxies
 net-proxy/tsocks:tordns -  Apply tordns patch which allows transparent TORification of the DNS queries 
 net-voip/linphone:console - Build console interface
 net-voip/linphone:gsm - Include support for the gsm audio codec
-net-voip/linphone:ilbc - Build ILBC codec plugin
 net-voip/linphone:video - Enable video support (display/capture)
 net-voip/yate:gsm - Build gsm codec plugin
 net-voip/yate:h323 - Build H.323 Channel plugin
@@ -2417,6 +2418,7 @@ sci-chemistry/avogadro:glsl - Enable glsl features via GLEW.
 sci-chemistry/caver:pymol - Install the PyMol plugin (sci-chemistry/pymol) 
 sci-chemistry/coot:new-interface - Build with the experimental GTK+-2 interface instead of GTK+-1
 sci-chemistry/eden:double-precision - More precise calculations at the expense of speed
+sci-chemistry/gamess:qmmm-tinker - Enable tinker qmmm code
 sci-chemistry/ghemical:gamess - Add GAMESS interface for QM/MM (sci-chemistry/gamess)
 sci-chemistry/ghemical:mopac7 - Apply compilation fix for sci-chemistry/mopac7 support
 sci-chemistry/ghemical:openbabel - Use sci-chemistry/openbabel for file conversions

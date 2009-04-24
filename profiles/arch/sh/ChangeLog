@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/sh profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sh/ChangeLog,v 1.25 2009/04/08 13:37:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sh/ChangeLog,v 1.26 2009/04/23 09:45:26 armin76 Exp $
+
+  23 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Unmask libssh2
 
   08 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Add cblas to use.mask
