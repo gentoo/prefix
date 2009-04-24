@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jgoodies-forms
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jgoodies-forms/ChangeLog,v 1.22 2007/12/22 11:14:43 nixnut Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jgoodies-forms/ChangeLog,v 1.23 2009/04/24 01:29:27 ranger Exp $
+
+  24 Apr 2009; Brent Baude <ranger@gentoo.org> jgoodies-forms-1.1.0.ebuild:
+  Marking jgoodies-forms-1.1.0 ~ppc64 for bug 264259
 
   22 Dec 2007; nixnut <nixnut@gentoo.org> jgoodies-forms-1.1.0.ebuild:
   Stable on ppc wrt bug 199252
