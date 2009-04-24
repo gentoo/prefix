@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/tmux-0.6.ebuild,v 1.1 2009/01/18 17:49:16 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/tmux-0.8.ebuild,v 1.1 2009/04/22 10:36:32 tcunha Exp $
 
 inherit toolchain-funcs
 
@@ -19,7 +19,7 @@ RDEPEND="vim-syntax? ( || (
 			app-editors/vim ) )"
 
 src_compile() {
-	emake CC="$(tc-getCC)" DEBUG="" || die "emake failed"
+	emake CC="$(tc-getCC)" DEBUG="" FDEBUG="" || die "emake failed"
 }
 
 src_install() {
