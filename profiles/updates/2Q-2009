@@ -14,3 +14,4 @@ move net-www/vdradmin-am www-misc/vdradmin-am
 move net-www/xxv www-misc/xxv
 move dev-perl/IO-Compress-Bzip2 perl-core/IO-Compress-Bzip2
 move dev-perl/Compress-Raw-Bzip2 perl-core/Compress-Raw-Bzip2
+slotmove net-voip/linphone 1 0
