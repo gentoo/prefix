@@ -11,7 +11,7 @@ SRC_URI="mirror://gnupg/gpgme/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="1"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x64-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="pth"
 
 DEPEND=">=dev-libs/libgpg-error-1.4
