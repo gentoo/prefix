@@ -1,6 +1,11 @@
 # ChangeLog for dev-db/maatkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/maatkit/ChangeLog,v 1.4 2009/03/07 15:15:50 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/maatkit/ChangeLog,v 1.5 2009/04/22 09:36:00 hollow Exp $
+
+*maatkit-3329 (22 Apr 2009)
+
+  22 Apr 2009; Benedikt Böhm <hollow@gentoo.org> +maatkit-3329.ebuild:
+  version bump
 
 *maatkit-2582 (07 Mar 2009)
 
