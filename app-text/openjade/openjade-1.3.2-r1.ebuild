@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/openjade/openjade-1.3.2-r1.ebuild,v 1.37 2008/12/09 21:23:47 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/openjade/openjade-1.3.2-r1.ebuild,v 1.38 2009/04/22 21:59:35 loki_val Exp $
 
 inherit autotools sgml-catalog eutils flag-o-matic multilib
 
@@ -24,6 +24,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-msggen.pl.patch
 	epatch "${FILESDIR}"/${P}-ldflags.patch
 	epatch "${FILESDIR}"/${P}-lib64-fix.patch
+	epatch "${FILESDIR}"/${P}-deplibs.patch
 	epatch "${FILESDIR}"/${P}-darwin.patch
 
 	# this adds a m4 file containing the two macros which are
