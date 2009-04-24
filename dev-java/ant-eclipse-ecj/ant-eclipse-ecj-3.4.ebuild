@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ant-eclipse-ecj-3.4.ebuild,v 1.2 2009/04/05 12:48:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ant-eclipse-ecj-3.4.ebuild,v 1.3 2009/04/24 02:03:06 ranger Exp $
 
 inherit java-pkg-2
 
