@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.2.12.ebuild,v 1.1 2009/04/21 17:52:27 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.2.12.ebuild,v 1.3 2009/04/23 05:46:44 nirbheek Exp $
 
 inherit eutils multilib flag-o-matic autotools
 
@@ -28,7 +28,7 @@ src_unpack() {
 	cd "${S}"
 
 	# Tests were restricted because of this
-	sed -e 's/.*bus_dispatch_test.*/printf ("Disabled due to excess noise\n");/' \
+	sed -e 's/.*bus_dispatch_test.*/printf ("Disabled due to excess noise\\n");/' \
 		-e '/"dispatch"/d' -i "${S}/bus/test-main.c"
 
 	epatch "${FILESDIR}"/${PN}-1.2.3-darwin.patch
@@ -147,7 +147,7 @@ pkg_postinst() {
 	ewarn "You must restart D-Bus \`/etc/init.d/dbus restart\` to run"
 	ewarn "the new version of the daemon."
 
-	if use !prefix && built_with_use x11-base/xorg-server hal; then
+	if has_version x11-base/xorg-server && built_with_use x11-base/xorg-server hal; then
 		elog
 		ewarn "You are currently running X with the hal useflag enabled"
 		ewarn "restarting the dbus service WILL restart X as well"

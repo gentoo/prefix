@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.232 2009/04/21 17:52:27 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.234 2009/04/23 05:46:44 nirbheek Exp $
+
+  23 Apr 2009; Nirbheek Chauhan <nirbheek@gentoo.org> dbus-1.2.12:
+  Fix bug 267125 (murphy's law causes a two-character change before cvs
+  commit to cause build-failure)
+
+  23 Apr 2009; Nirbheek Chauhan <nirbheek@gentoo.org> dbus-1.2.12:
+  Fix bug 267111 (check if xorg-server is installed before checking for hal
+  USE flag on it)
 
 *dbus-1.2.12 (21 Apr 2009)
 
