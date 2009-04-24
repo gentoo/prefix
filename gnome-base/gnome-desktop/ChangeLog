@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-desktop
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.239 2009/04/22 03:30:15 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.240 2009/04/23 22:03:48 eva Exp $
+
+  24 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-desktop-2.24.3-r1.ebuild:
+  Add gnome-common to DEPEND, bug #267173
 
 *gnome-desktop-2.24.3-r1 (22 Apr 2009)
 
