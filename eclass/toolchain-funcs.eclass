@@ -490,7 +490,15 @@ gen_usr_ldscript() {
 			if ${auto} ; then
 				mv "${ED}"/usr/${libdir}/${lib}* "${ED}"/${libdir}/ || die
 				# no way to retrieve soname on these platforms (?)
-				#rm -f "${ED}"/${libdir}/${lib}
+				tlib=$(readlink "${ED}"/${libdir}/${lib})
+				tlib=${tlib##*/}
+				if [[ -z ${tlib} ]] ; then
+					# ok, apparently was not a symlink, don't remove it and
+					# just link to it
+					tlib=${lib}
+				else
+					rm -f "${ED}"/${libdir}/${lib}
+				fi
 			fi
 			tlib=${lib}
 
