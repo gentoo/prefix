@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/R
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.151 2009/04/21 16:06:37 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.152 2009/04/23 13:20:31 armin76 Exp $
+
+  23 Apr 2009; Raúl Porcel <armin76@gentoo.org> R-2.8.1.ebuild:
+  ia64 stable wrt #265338
 
 *R-2.9.0 (21 Apr 2009)
 
