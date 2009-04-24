@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.31 2009/03/28 02:29:24 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.32 2009/04/23 11:45:38 hwoarang Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -64,7 +64,6 @@ qt4-build_pkg_setup() {
 		# Check USE requirements
 		qt4-build_check_use
 	fi
-
 	# Set up installation directories
 	QTBASEDIR=${EPREFIX}/usr/$(get_libdir)/qt4
 	QTPREFIXDIR=${EPREFIX}/usr
@@ -334,6 +333,13 @@ standard_configure_options() {
 		-demosdir ${QTDEMOSDIR} -silent -fast
 		$([[ ${PN} == qt-xmlpatterns ]] || echo -no-exceptions)
 		-reduce-relocations -nomake examples -nomake demos"
+	
+	# Make eclass 4.5.{1,2} ready
+	case "${MY_PV}" in
+		4.5.1 | 4.5.2)
+			myconf="${myconf} -opensource"
+			;;
+	esac
 
 	echo "${myconf}"
 }
