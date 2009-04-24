@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/psycopg
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.71 2009/04/12 18:05:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/ChangeLog,v 1.72 2009/04/23 08:50:13 patrick Exp $
+
+*psycopg-2.0.10 (23 Apr 2009)
+
+  23 Apr 2009; Patrick Lauer <patrick@gentoo.org> +psycopg-2.0.10.ebuild:
+  Bump to 2.0.10. Fixes first part of #242336. Postgres dep changed to >=8.1
+  due to upstream changes.
 
   12 Apr 2009; Brent Baude <ranger@gentoo.org> psycopg-2.0.8.ebuild:
   stable ppc64, bug 262739
