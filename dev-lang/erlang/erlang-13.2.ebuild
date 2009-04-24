@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/Attic/erlang-13.1-r1.ebuild,v 1.2 2009/04/20 17:24:46 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-13.2.ebuild,v 1.1 2009/04/22 06:51:12 fauli Exp $
 
 EAPI=2
 
@@ -14,7 +14,7 @@ inherit autotools elisp-common eutils flag-o-matic multilib versionator
 # make it more sane (see e.g. #26420)
 
 # the next line selects the right source.
-MY_PV="R$(get_major_version)A"
+MY_PV="R$(get_major_version)B"
 
 # ATTN!! Take care when processing the C, etc version!
 MY_P=otp_src_${MY_PV}
@@ -50,7 +50,7 @@ src_prepare() {
 		sed -i 's: wx : :' lib/Makefile
 		rm -rf lib/wx
 	fi
-	epatch "${FILESDIR}"/${P}-LDFLAGS.patch # bug 263129, accepted
+	epatch "${FILESDIR}"/${PN}-13.1-LDFLAGS.patch # bug 263129, accepted
 											# upstream for R13B1
 	if use hipe; then
 		ewarn
