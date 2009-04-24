@@ -59,7 +59,6 @@ src_configure() {
 		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		|| die "econf failed"
-	emake all || die "emake failed"
 }
 
 src_install() {
