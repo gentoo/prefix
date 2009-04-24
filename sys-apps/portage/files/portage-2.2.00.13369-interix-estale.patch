@@ -1,6 +1,8 @@
 reported upstream, for reference see:
 http://archives.gentoo.org/gentoo-portage-dev/msg_c50907bf94b9a7d1d82fadfaca108081.xml
 
+in svn r13387.
+
 diff -ru portage.orig/pym/portage/__init__.py portage/pym/portage/__init__.py
 --- portage.orig/pym/portage/__init__.py	2009-04-23 13:49:09 +0200
 +++ portage/pym/portage/__init__.py	2009-04-23 14:07:44 +0200
