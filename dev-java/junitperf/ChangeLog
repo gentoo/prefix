@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/junitperf
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junitperf/ChangeLog,v 1.19 2008/03/26 16:30:32 corsair Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junitperf/ChangeLog,v 1.20 2009/04/24 01:58:01 ranger Exp $
+
+  24 Apr 2009; Brent Baude <ranger@gentoo.org> junitperf-1.9.1-r1.ebuild:
+  Marking junitperf-1.9.1-r1 ppc64 for bug 242970
 
   26 Mar 2008; Markus Rothe <corsair@gentoo.org> junitperf-1.9.1-r1.ebuild:
   Added ~ppc64; bug #212999
