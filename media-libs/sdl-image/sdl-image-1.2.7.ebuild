@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/sdl-image-1.2.7.ebuild,v 1.5 2009/04/18 12:40:59 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/sdl-image-1.2.7.ebuild,v 1.6 2009/04/23 09:34:43 armin76 Exp $
 
 MY_P="${P/sdl-/SDL_}"
 DESCRIPTION="image file loading library"
