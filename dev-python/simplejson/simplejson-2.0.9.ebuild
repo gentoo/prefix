@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/simplejson/simplejson-2.0.9.ebuild,v 1.1 2009/04/03 09:43:10 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/simplejson/simplejson-2.0.9.ebuild,v 1.2 2009/04/23 20:54:24 patrick Exp $
 
 inherit distutils
 
@@ -13,7 +13,7 @@ LICENSE="MIT"
 SLOT="0"
 IUSE="doc test"
 
-RDEPEND="<dev-lang/python-2.6"
+RDEPEND="dev-lang/python"
 DEPEND="dev-python/setuptools
 		${RDEPEND}"
 
