@@ -1,5 +1,10 @@
 # $Id$
 
+# Markus Duft <mduft@gentoo.org> (24 Apr 2009)
+# python 2.6 seems to not work correctly yet. need to further
+# investigate before unmasking.
+>=dev-lang/python=2.6.0
+
 # Markus Duft <mduft@gentoo.org> (12 Mar 2009)
 # this doesn't build at least on interix:
 # libtool: link: cannot find the library `../../libltdl/libltdlc.la' 
