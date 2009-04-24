@@ -1,6 +1,12 @@
 # ChangeLog for app-emacs/emacs-common-gentoo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.14 2009/04/14 18:02:24 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.15 2009/04/22 23:14:03 ulm Exp $
+
+*emacs-common-gentoo-1.1 (23 Apr 2009)
+
+  23 Apr 2009; Ulrich Mueller <ulm@gentoo.org> metadata.xml,
+  +emacs-common-gentoo-1.1.ebuild:
+  Version bump. New "emacs23icons" USE flag for Emacs 23 style icons.
 
   14 Apr 2009; Ulrich Mueller <ulm@gentoo.org>
   -emacs-common-gentoo-0.3.ebuild:
