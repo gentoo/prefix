@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/colordiff-1.0.7.ebuild,v 1.5 2008/03/28 04:25:38 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/colordiff-1.0.7.ebuild,v 1.6 2009/04/24 00:00:52 idl0r Exp $
 
 inherit eutils prefix
 
@@ -15,8 +15,8 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND="sys-apps/diffutils"
-RDEPEND="dev-lang/perl"
+DEPEND=""
+RDEPEND="sys-apps/diffutils"
 
 src_unpack() {
 	unpack ${A}
