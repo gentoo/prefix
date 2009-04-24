@@ -1,3 +1,6 @@
+reported upstream on 24 Apr 2009:
+http://www.xray.mpe.mpg.de/mailing-lists/perl5-porters/2009-04/msg00456.html
+
 diff -ru perl-5.8.8.orig/lib/File/Find.pm perl-5.8.8/lib/File/Find.pm
 --- perl-5.8.8.orig/lib/File/Find.pm	Mon Mar 24 13:27:30 2008
 +++ perl-5.8.8/lib/File/Find.pm	Mon Mar 24 13:29:35 2008

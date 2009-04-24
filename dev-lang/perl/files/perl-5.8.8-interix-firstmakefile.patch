@@ -1,3 +1,6 @@
+reported upstream on 24 Apr 2009:
+http://www.xray.mpe.mpg.de/mailing-lists/perl5-porters/2009-04/msg00456.html
+
 diff -ruBb libperl-5.8.8-r01.1.orig/work/perl-5.8.8/Configure libperl-5.8.8-r01.1/work/perl-5.8.8/Configure
 --- libperl-5.8.8-r01.1.orig/work/perl-5.8.8/Configure	Tue Jan 15 09:24:29 2008
 +++ libperl-5.8.8-r01.1/work/perl-5.8.8/Configure	Tue Jan 15 09:32:04 2008
