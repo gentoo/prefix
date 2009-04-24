@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/dom4j
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/ChangeLog,v 1.48 2008/10/25 17:21:50 nixnut Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/dom4j/ChangeLog,v 1.49 2009/04/24 01:59:37 ranger Exp $
+
+  24 Apr 2009; Brent Baude <ranger@gentoo.org> dom4j-1.6.1-r3.ebuild:
+  Marking dom4j-1.6.1-r3 ppc64 for bug 242970
 
   25 Oct 2008; nixnut <nixnut@gentoo.org> dom4j-1.6.1-r3.ebuild:
   Stable on ppc wrt bug 242970
