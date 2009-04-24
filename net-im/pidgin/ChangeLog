@@ -1,6 +1,15 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.94 2009/03/25 19:37:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.95 2009/04/23 04:38:54 tester Exp $
+
+*pidgin-2.5.5-r1 (23 Apr 2009)
+
+  23 Apr 2009; Olivier Crête <tester@gentoo.org>
+  -files/pidgin-2.5.2-asneeded.patch,
+  -files/pidgin-2.5.4-icq-messages-magic.patch,
+  +files/pidgin-2.5.5-msnm.patch, -pidgin-2.5.2.ebuild,
+  +pidgin-2.5.5-r1.ebuild:
+  Add patch for msn taking 100% CPU, bug #266877. Remove old versions
 
   25 Mar 2009; Raúl Porcel <armin76@gentoo.org> pidgin-2.5.5.ebuild:
   ia64/sparc stable wrt #261950

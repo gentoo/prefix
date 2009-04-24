@@ -1,0 +1,17 @@
+#
+#
+# patch "libpurple/protocols/msn/soap.c"
+#  from [a6c9a90fd13661ea0885013a22674f89da8657db]
+#    to [c2484b6578c251aa8081f269eafd5f7198ae13f2]
+#
+============================================================
+--- pidgin-2.5.5/libpurple/protocols/msn/soap.c	a6c9a90fd13661ea0885013a22674f89da8657db
++++ pidgin-2.5.5/libpurple/protocols/msn/soap.c	c2484b6578c251aa8081f269eafd5f7198ae13f2
+@@ -667,6 +667,7 @@ msn_soap_connection_run(gpointer data)
+ 			conn->handled_len = 0;
+ 			conn->current_request = req;
+ 
++			purple_input_remove(conn->event_handle);
+ 			conn->event_handle = purple_input_add(conn->ssl->fd,
+ 				PURPLE_INPUT_WRITE, msn_soap_write_cb, conn);
+ 			if (!msn_soap_write_cb_internal(conn, conn->ssl->fd, PURPLE_INPUT_WRITE, TRUE)) {
