@@ -106,7 +106,7 @@ exportmakeopts() {
 	myopts="${myopts} NO_FINK=YesPlease NO_DARWIN_PORTS=YesPlease"
 	[[ ${CHOST} == *-solaris* ]] &&
 		myopts="${myopts} INSTALL=install TAR=tar"
-	use elibc_glibc || myopts="${myopts} NEEDS_LIBICONV=YesPlease"
+	use !elibc_glibc && use iconv && myopts="${myopts} NEEDS_LIBICONV=YesPlease"
 
 	use iconv || myopts="${myopts} NO_ICONV=YesPlease"
 	use tk || myopts="${myopts} NO_TCLTK=YesPlease"
