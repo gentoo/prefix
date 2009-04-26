@@ -7,7 +7,7 @@ IUSE=""
 DESCRIPTION="Type 1 Font utilities"
 SRC_URI="http://www.lcdf.org/type/${P}.tar.gz"
 HOMEPAGE="http://www.lcdf.org/type/#t1utils"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 LICENSE="BSD"
 
