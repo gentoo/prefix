@@ -2,9 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-# allow people to upgrade to this hybrid version
-EAPI="prefix"
-
 RESTRICT="test"
 
 inherit eutils multilib python
@@ -79,17 +76,23 @@ src_unpack() {
 	fi
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13133-prefix-chaining.patch
-
-	epatch "${FILESDIR}/${P}-dest-fix.patch"
 }
 
 src_compile() {
+	local defaultpath="/usr/bin:/bin"
+	local rootuser=$(python -c 'from portage.const import rootuser; print	rootuser')
+	# lazy check, but works for now
+	if [[ ${rootuser} == "root" ]] ; then
+		# we need this for e.g. mtree on FreeBSD (and Darwin) which is in
+		# /usr/sbin
+		defaultpath="${defaultpath}:/usr/sbin:/sbin"
+	fi
 	econf \
 		--with-portage-user="${PORTAGE_USER:-portage}" \
 		--with-portage-group="${PORTAGE_GROUP:-portage}" \
-		--with-root-user="$(python -c 'from portage.const import rootuser; print rootuser')" \
+		--with-root-user="${rootuser}" \
 		--with-offset-prefix="${EPREFIX}" \
-		--with-default-path="/usr/bin:/bin" \
+		--with-default-path="${defaultpath}" \
 		|| die "econf failed"
 	emake || die "emake failed"
 
@@ -136,8 +139,9 @@ src_install() {
 	emake DESTDIR="${D}" install || die "make install failed."
 	dodir /usr/lib/portage/bin
 
-	# die, stupid wrapper, die!
-	use prefix && rm -Rf "${ED}"${portage_base}/bin/ebuild-helpers/sed
+	if use userland_GNU; then
+		rm "${ED}"${portage_base}/bin/ebuild-helpers/sed || die "Failed to remove sed wrapper"
+	fi
 
 	# Symlinks to directories cause up/downgrade issues and the use of these
 	# modules outside of portage is probably negligible.
@@ -177,6 +181,8 @@ pkg_preinst() {
 		rm "${EROOT}/etc/make.globals"
 	fi
 
+	has_version "<=${CATEGORY}/${PN}-2.2.00.13346"
+	EAPIPREFIX_UPGRADE=$?
 }
 
 pkg_postinst() {
@@ -213,6 +219,29 @@ pkg_postinst() {
 	elog "For help with using portage please consult the Gentoo Handbook"
 	elog "at http://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=3"
 	elog
+
+	if [[ ${EAPIPREFIX_UPGRADE} == 0 ]] ; then
+		local eapi
+		einfo 'removing EAPI="prefix" legacy from your vdb, please wait'
+		pushd "${EROOT}var/db/pkg" > /dev/null
+		for cpv in */* ; do
+			[[ ${cpv##*/} == "-MERGING-"* ]] && continue
+			# remove "prefix" from EAPI file
+			eapi=$(<"${cpv}"/EAPI)
+			eapi=${eapi/prefix/}
+			eapi=${eapi# }
+			eapi=${eapi:-0}
+			echo ${eapi} > "${cpv}"/EAPI
+			# remove "prefix" from EAPI in stored environment
+			bzcat "${cpv}"/environment.bz2 \
+				| sed -e "s/EAPI=\([\"']\)prefix [0-9][\"']/EAPI=\1${eapi}\1/" \
+				| bzip2 -9 > "${cpv}"/environment2.bz2 \
+				&& mv -f "${cpv}"/environment{2,}.bz2
+			# remove "prefix" from the stored ebuild
+			sed -i -e "s/^EAPI=.*$/EAPI=${eapi}/" "${cpv}/${cpv##*/}.ebuild"
+		done
+		popd > /dev/null
+	fi
 
 	if [ x$MINOR_UPGRADE = x0 ] ; then
 		elog "If you're upgrading from a pre-2.2 version of portage you might"
