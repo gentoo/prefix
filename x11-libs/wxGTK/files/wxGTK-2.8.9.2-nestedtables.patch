@@ -1,0 +1,21 @@
+https://bugs.gentoo.org/show_bug.cgi?id=264544
+http://trac.wxwidgets.org/ticket/10370
+
+--- wxPython-src-2.8.9.2-orig/src/html/m_tables.cpp
++++ wxPython-src-2.8.9.2/src/html/m_tables.cpp
+@@ -684,6 +684,7 @@ TAG_HANDLER_BEGIN(TABLE, "TABLE,TR,TD,TH
+         {
+             wxHtmlTableCell *oldt = m_Table;
+ 
++            wxHtmlContainerCell *oldEnclosing = m_enclosingContainer;
+             m_enclosingContainer = c = m_WParser->OpenContainer();
+ 
+             m_Table = new wxHtmlTableCell(c, tag, m_WParser->GetPixelScale());
+@@ -722,6 +723,7 @@ TAG_HANDLER_BEGIN(TABLE, "TABLE,TR,TD,TH
+             m_WParser->CloseContainer();
+ 
+             m_Table = oldt;
++            m_enclosingContainer = oldEnclosing;
+ 
+             return true; // ParseInner() called
+         }
