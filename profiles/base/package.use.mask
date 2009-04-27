@@ -6,10 +6,6 @@
 =kde-base/kdenetwork-3* jingle
 =kde-base/kopete-3* jingle
 
-# Steve Arnold <nerdboy@gentoo.org> (20 Apr 2009)
-# masked until we have a ruby binding fix
-sci-libs/gdal ruby
-
 # Christian Hoffmann <hoffie@gentoo.org> (12 Apr 2009)
 # dev-php5/pecl-zip is masked for removal
 dev-lang/php zip-external
