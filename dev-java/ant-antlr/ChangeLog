@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/ant-antlr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.23 2009/04/20 09:56:55 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.24 2009/04/26 23:50:37 ranger Exp $
+
+  26 Apr 2009; Brent Baude <ranger@gentoo.org> ant-antlr-1.7.1-r1.ebuild:
+  Marking ant-antlr-1.7.1-r1 ppc for bug 264198
 
   20 Apr 2009; Jean-Noël Rivasseau <elvanor@gentoo.org>
   ant-antlr-1.7.1-r1.ebuild:
