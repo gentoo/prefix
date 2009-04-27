@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.61 2009/03/22 01:56:34 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.64 2009/04/26 02:33:36 arfrever Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -19,7 +19,11 @@ inherit eutils
 
 ESVN="${ECLASS}"
 
-EXPORT_FUNCTIONS src_unpack pkg_preinst
+if has "${EAPI}" 0 1; then
+	EXPORT_FUNCTIONS src_unpack src_prepare pkg_preinst
+else
+	EXPORT_FUNCTIONS src_unpack pkg_preinst
+fi
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
@@ -76,6 +80,16 @@ ESVN_REPO_URI="${ESVN_REPO_URI:-}"
 #
 # Note: This should never be set in an ebuild!
 ESVN_REVISION="${ESVN_REVISION:-}"
+
+# @ECLASS-VARIABLE: ESVN_USER
+# @DESCRIPTION:
+# User name
+ESVN_USER="${ESVN_USER:-}"
+
+# @ECLASS-VARIABLE: ESVN_PASSWORD
+# @DESCRIPTION:
+# Password
+ESVN_PASSWORD="${ESVN_PASSWORD:-}"
 
 # @ECLASS-VARIABLE: ESVN_PROJECT
 # @DESCRIPTION:
@@ -171,7 +185,7 @@ subversion_fetch() {
 	case "${protocol}" in
 		http|https)
 			if ! built_with_use --missing true -o dev-util/subversion webdav-neon webdav-serf || \
-			built_with_use --missing false dev-util/subversion nowebdav ; then
+			built_with_use --missing false dev-util/subversion nowebdav; then
 				echo
 				eerror "In order to emerge this package, you need to"
 				eerror "reinstall Subversion with support for WebDAV."
@@ -217,7 +231,7 @@ subversion_fetch() {
 
 	if [[ ! -d ${wc_path}/.svn ]]; then
 		if [[ -n ${ESVN_OFFLINE} ]]; then
-			ewarn "ESVN_OFFLINE cannot be used when the there is no existing checkout."
+			ewarn "ESVN_OFFLINE cannot be used when there is no existing checkout."
 		fi
 		# first check out
 		einfo "subversion check out start -->"
@@ -227,15 +241,21 @@ subversion_fetch() {
 
 		mkdir -p "${ESVN_PROJECT}" || die "${ESVN}: can't mkdir ${ESVN_PROJECT}."
 		cd "${ESVN_PROJECT}" || die "${ESVN}: can't chdir to ${ESVN_PROJECT}"
-		${ESVN_FETCH_CMD} ${options} "${repo_uri}" || die "${ESVN}: can't fetch to ${wc_path} from ${repo_uri}."
+		if [[ -n "${ESVN_USER}" ]]; then
+			${ESVN_FETCH_CMD} ${options} --username "${ESVN_USER}" --password "${ESVN_PASSWORD}" "${repo_uri}" || die "${ESVN}: can't fetch to ${wc_path} from ${repo_uri}."
+		else
+			${ESVN_FETCH_CMD} ${options} "${repo_uri}" || die "${ESVN}: can't fetch to ${wc_path} from ${repo_uri}."
+		fi
 
 	elif [[ -n ${ESVN_OFFLINE} ]]; then
+		svn cleanup "${wc_path}"
 		subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
 		if [[ -n ${ESVN_REVISION} && ${ESVN_REVISION} != ${ESVN_WC_REVISION} ]]; then
 			die "${ESVN}: You requested off-line updating and revision ${ESVN_REVISION} but only revision ${ESVN_WC_REVISION} is available locally."
 		fi
 		einfo "Fetching disabled: Using existing repository copy at revision ${ESVN_WC_REVISION}."
 	else
+		svn cleanup "${wc_path}"
 		subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
 
 		local esvn_up_freq=
@@ -258,7 +278,11 @@ subversion_fetch() {
 				debug-print "${FUNCNAME}: ${ESVN_SWITCH_CMD} ${options} ${repo_uri}"
 
 				cd "${wc_path}" || die "${ESVN}: can't chdir to ${wc_path}"
-				${ESVN_SWITCH_CMD} ${options} ${repo_uri} || die "${ESVN}: can't update ${wc_path} from ${repo_uri}"
+				if [[ -n "${ESVN_USER}" ]]; then
+					${ESVN_SWITCH_CMD} ${options} --username "${ESVN_USER}" --password "${ESVN_PASSWORD}" ${repo_uri} || die "${ESVN}: can't update ${wc_path} from ${repo_uri}."
+				else
+					${ESVN_SWITCH_CMD} ${options} ${repo_uri} || die "${ESVN}: can't update ${wc_path} from ${repo_uri}."
+				fi
 			else
 				# update working copy
 				einfo "subversion update start -->"
@@ -267,7 +291,11 @@ subversion_fetch() {
 				debug-print "${FUNCNAME}: ${ESVN_UPDATE_CMD} ${options}"
 
 				cd "${wc_path}" || die "${ESVN}: can't chdir to ${wc_path}"
-				${ESVN_UPDATE_CMD} ${options} || die "${ESVN}: can't update ${wc_path} from ${repo_uri}."
+				if [[ -n "${ESVN_USER}" ]]; then
+					${ESVN_UPDATE_CMD} ${options} --username "${ESVN_USER}" --password "${ESVN_PASSWORD}" || die "${ESVN}: can't update ${wc_path} from ${repo_uri}."
+				else
+					${ESVN_UPDATE_CMD} ${options} || die "${ESVN}: can't update ${wc_path} from ${repo_uri}."
+				fi
 			fi
 		fi
 	fi
@@ -342,9 +370,18 @@ subversion_bootstrap() {
 
 # @FUNCTION: subversion_src_unpack
 # @DESCRIPTION:
-# default src_unpack. fetch and bootstrap.
+# Default src_unpack. Fetch and, in older EAPIs, bootstrap.
 subversion_src_unpack() {
 	subversion_fetch     || die "${ESVN}: unknown problem occurred in subversion_fetch."
+	if has "${EAPI}" 0 1; then
+		subversion_bootstrap || die "${ESVN}: unknown problem occurred in subversion_bootstrap."
+	fi
+}
+
+# @FUNCTION: subversion_src_prepare
+# @DESCRIPTION:
+# Default src_prepare. Bootstrap.
+subversion_src_prepare() {
 	subversion_bootstrap || die "${ESVN}: unknown problem occurred in subversion_bootstrap."
 }
 

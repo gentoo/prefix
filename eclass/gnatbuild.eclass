@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.46 2009/02/03 13:58:54 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.47 2009/04/25 10:46:01 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -484,6 +484,14 @@ gnatbuild_src_compile() {
 				else
 					confgcc="${confgcc} --enable-libada"
 				fi
+
+				# multilib support
+				if is_multilib ; then
+					confgcc="${confgcc} --enable-multilib"
+				else
+					confgcc="${confgcc} --disable-multilib"
+				fi
+
 #				einfo "confgcc=${confgcc}"
 
 				cd "${GNATBUILD}"
