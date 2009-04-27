@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.700 2009/04/14 20:07:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.701 2009/04/26 20:14:11 halcy0n Exp $
+
+*gcc-4.3.2-r4 (26 Apr 2009)
+
+  26 Apr 2009; Mark Loeser <halcy0n@gentoo.org> +gcc-4.3.2-r4.ebuild:
+  Bump patchset to fix bug #261111 and bug #265367 for arm
 
   14 Apr 2009; Brent Baude <ranger@gentoo.org> gcc-4.3.2-r3.ebuild:
   Marking gcc-4.3.2-r3 ppc64 for bug 264121
