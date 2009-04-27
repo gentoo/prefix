@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0_beta5.ebuild,v 1.1 2009/04/20 13:44:16 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0_beta6.ebuild,v 1.2 2009/04/25 11:49:54 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI=2
@@ -9,10 +9,10 @@ inherit bash-completion check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-
 
 IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
-MY_PV=3.0.99.5
+MY_PV=3.0.99.6
 PATCHLEVEL=OOO310
 SRC=OOo_${PV}_src
-MST=ooo310-m9
+MST=ooo310-m10
 DEVPATH=http://download.go-oo.org/${PATCHLEVEL}/${MST}
 S=${WORKDIR}/ooo
 S_OLD=${WORKDIR}/ooo-build-${MY_PV}
@@ -69,6 +69,7 @@ KEYWORDS="~amd64-linux ~x86-linux"
 COMMON_DEPEND="!app-office/openoffice-bin
 	x11-libs/libXaw
 	x11-libs/libXinerama
+	x11-libs/libXrandr
 	>=dev-lang/perl-5.0
 	dbus? ( >=dev-libs/dbus-glib-0.71 )
 	gnome? ( >=x11-libs/gtk+-2.10
@@ -256,6 +257,7 @@ src_unpack() {
 	echo $(use_enable cups) >> ${CONFFILE}
 	echo $(use_enable dbus) >> ${CONFFILE}
 	echo $(use_enable eds evolution2) >> ${CONFFILE}
+	echo $(use_enable gnome gconf) >> ${CONFFILE}
 	echo $(use_enable gnome gnome-vfs) >> ${CONFFILE}
 	echo $(use_enable gnome lockdown) >> ${CONFFILE}
 	echo $(use_enable gstreamer) >> ${CONFFILE}
@@ -375,7 +377,7 @@ pkg_postinst() {
 	bash-completion_pkg_postinst
 
 # does this make sense for Prefix?
-	[[ -x ${EPREFIX}/sbin/chpax ]] && [[ -e ${EPREFIX}/usr/$(get_libdir)/openoffice/${BASIS}/program/soffice.bin ]] && chpax -zm ${EPREFIX}/usr/$(get_libdir)/openoffice/${BASIS}/program/soffice.bin
+	[[ -x ${EPREFIX}/sbin/chpax ]] && [[ -e ${EPREFIX}/usr/$(get_libdir)/openoffice/program/soffice.bin ]] && chpax -zm ${EPREFIX}/usr/$(get_libdir)/openoffice/program/soffice.bin
 
 	# Add available & useful jars to openoffice classpath
 	use java && ${EPREFIX}/usr/$(get_libdir)/openoffice/${BASIS}/program/java-set-classpath $(java-config --classpath=jdbc-mysql 2>/dev/null) >/dev/null

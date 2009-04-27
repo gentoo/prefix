@@ -1,6 +1,25 @@
 # ChangeLog for app-office/openoffice
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.454 2009/04/20 13:44:16 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.458 2009/04/25 11:56:53 ranger Exp $
+
+  25 Apr 2009; Brent Baude <ranger@gentoo.org> openoffice-3.0.1.ebuild:
+  Marking openoffice-3.0.1 ~ppc64 for bug 244467
+
+  25 Apr 2009; Andreas Proschofsky <suka@gentoo.org> openoffice-3.0.0,
+  openoffice-3.0.1:
+  Also fix older releases...
+
+  25 Apr 2009; Andreas Proschofsky <suka@gentoo.org> openoffice-3.1.0_beta6:
+  Add missing dependency on libXrandr, bug #266331 and fix pax check, bug
+  #258051
+
+*openoffice-3.1.0_beta6 (25 Apr 2009)
+
+  25 Apr 2009; Andreas Proschofsky <suka@gentoo.org>
+  -files/gentoo-3.1.0_beta5.diff, +files/gentoo-3.1.0_beta6.diff,
+  -openoffice-3.1.0_beta5.ebuild, +openoffice-3.1.0_beta6.ebuild:
+  Bump to newer beta release, this also fixes the gconf-check, see bug
+  #266099
 
 *openoffice-3.1.0_beta5 (20 Apr 2009)
 
