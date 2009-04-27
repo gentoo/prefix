@@ -20,7 +20,7 @@ SRC_URI="mirror://sourceforge/corefonts/andale32.exe
 
 LICENSE="MSttfEULA"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="X"
 
 DEPEND="app-arch/cabextract"
