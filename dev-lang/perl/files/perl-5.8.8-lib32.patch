@@ -6,14 +6,14 @@
  : Possible local library directories to search.
 -loclibpth="/usr/local/lib /opt/local/lib /usr/gnu/lib"
 -loclibpth="$loclibpth /opt/gnu/lib /usr/GNU/lib /opt/GNU/lib"
-+loclibpth="/usr/local/lib64 /opt/local/lib64 /usr/gnu/lib64"
-+loclibpth="$loclibpth /opt/gnu/lib64 /usr/GNU/lib64 /opt/GNU/lib64"
++loclibpth="/usr/local/lib32 /opt/local/lib32 /usr/gnu/lib32"
++loclibpth="$loclibpth /opt/gnu/lib32 /usr/GNU/lib32 /opt/GNU/lib32"
  
  : general looking path for locating libraries
 -glibpth="/lib /usr/lib $xlibpth"
 -glibpth="$glibpth /usr/ccs/lib /usr/ucblib /usr/local/lib"
-+glibpth="/lib64 /usr/lib64 $xlibpth"
-+glibpth="$glibpth /usr/ccs/lib64 /usr/ucblib /usr/local/lib64"
++glibpth="/lib32 /usr/lib32 $xlibpth"
++glibpth="$glibpth /usr/ccs/lib32 /usr/ucblib /usr/local/lib32"
  test -f /usr/shlib/libc.so && glibpth="/usr/shlib $glibpth"
  test -f /shlib/libc.so     && glibpth="/shlib $glibpth"
  
@@ -23,8 +23,8 @@
  '')	case "$prefix" in
 -		*perl*) dflt='lib';;
 -		*) dflt='lib/perl5' ;;
-+		*perl*) dflt='lib64';;
-+		*) dflt='lib64/perl5' ;;
++		*perl*) dflt='lib32';;
++		*) dflt='lib32/perl5' ;;
  	esac
  	;;
  *)	dflt="$installstyle" ;;
@@ -34,8 +34,8 @@
  case "$installstyle" in
 -*lib/perl5*) set dflt privlib lib/$package/$version ;;
 -*)	 set dflt privlib lib/$version ;;
-+*lib64/perl5*) set dflt privlib lib64/$package/$version ;;
-+*)	 set dflt privlib lib64/$version ;;
++*lib32/perl5*) set dflt privlib lib32/$package/$version ;;
++*)	 set dflt privlib lib32/$version ;;
  esac
  eval $prefixit
  $cat <<EOM
@@ -45,8 +45,8 @@
  '') case "$installstyle" in
 -	*lib/perl5*) dflt=$siteprefix/lib/$package/site_$prog/$version ;;
 -	*)	 dflt=$siteprefix/lib/site_$prog/$version ;;
-+	*lib64/perl5*) dflt=$siteprefix/lib64/$package/site_$prog/$version ;;
-+	*)	 dflt=$siteprefix/lib64/site_$prog/$version ;;
++	*lib32/perl5*) dflt=$siteprefix/lib32/$package/site_$prog/$version ;;
++	*)	 dflt=$siteprefix/lib32/site_$prog/$version ;;
  	esac
  	;;
  *)	dflt="$sitelib"
@@ -56,8 +56,8 @@
  		case "$installstyle" in
 -		*lib/perl5*) dflt=$vendorprefix/lib/$package/vendor_$prog/$version ;;
 -		*)	     dflt=$vendorprefix/lib/vendor_$prog/$version ;;
-+		*lib64/perl5*) dflt=$vendorprefix/lib64/$package/vendor_$prog/$version ;;
-+		*)	     dflt=$vendorprefix/lib64/vendor_$prog/$version ;;
++		*lib32/perl5*) dflt=$vendorprefix/lib32/$package/vendor_$prog/$version ;;
++		*)	     dflt=$vendorprefix/lib32/vendor_$prog/$version ;;
  		esac
  		;;
  	*)	dflt="$vendorlib"
@@ -68,9 +68,9 @@
 -				if test -f /usr/lib/lib$net$_a; then
 -					( ($nm $nm_opt /usr/lib/lib$net$_a | eval $nm_extract) ||  \
 -					$ar t /usr/lib/lib$net$_a) 2>/dev/null >> libc.list
-+				if test -f /usr/lib64/lib$net$_a; then
-+					( ($nm $nm_opt /usr/lib64/lib$net$_a | eval $nm_extract) ||  \
-+					$ar t /usr/lib64/lib$net$_a) 2>/dev/null >> libc.list
++				if test -f /usr/lib32/lib$net$_a; then
++					( ($nm $nm_opt /usr/lib32/lib$net$_a | eval $nm_extract) ||  \
++					$ar t /usr/lib32/lib$net$_a) 2>/dev/null >> libc.list
  					if $contains socket libc.list >/dev/null 2>&1; then
  						d_socket="$define"
  						socketlib="-l$net"
