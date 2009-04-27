@@ -1,6 +1,12 @@
 # ChangeLog for gnome-extra/libgsf
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.135 2009/04/12 21:02:43 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.136 2009/04/26 20:31:16 eva Exp $
+
+*libgsf-1.14.12 (26 Apr 2009)
+
+  26 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org> -libgsf-1.14.7.ebuild,
+  libgsf-1.14.10, +libgsf-1.14.12.ebuild:
+  Bump to 1.14.12. Clean up old revisions.
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> libgsf-1.14.11.ebuild:
   Stable on sparc, bug #260063
