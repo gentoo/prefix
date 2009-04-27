@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/libgsasl
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libgsasl/ChangeLog,v 1.41 2008/12/13 12:18:52 bluebird Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libgsasl/ChangeLog,v 1.42 2009/04/25 23:06:06 patrick Exp $
+
+*libgsasl-1.1 (25 Apr 2009)
+
+  25 Apr 2009; Patrick Lauer <patrick@gentoo.org> +libgsasl-1.1.ebuild:
+  Bump to 1.1, fixes second half of #263867
 
   13 Dec 2008; Friedrich Oslage <bluebird@gentoo.org>
   libgsasl-0.2.28.ebuild:
