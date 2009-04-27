@@ -9,7 +9,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org Fontcache protocol headers"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
