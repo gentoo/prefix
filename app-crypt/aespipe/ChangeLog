@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/aespipe
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/aespipe/ChangeLog,v 1.26 2009/04/22 18:12:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/aespipe/ChangeLog,v 1.27 2009/04/26 19:13:42 ranger Exp $
+
+  26 Apr 2009; Brent Baude <ranger@gentoo.org> aespipe-2.3e.ebuild:
+  stable ppc, bug 266045
 
   22 Apr 2009; Raúl Porcel <armin76@gentoo.org> aespipe-2.3e.ebuild:
   sparc stable wrt #266045
