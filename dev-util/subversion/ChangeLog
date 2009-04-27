@@ -1,6 +1,18 @@
 # ChangeLog for dev-util/subversion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.370 2009/04/23 09:14:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.374 2009/04/26 15:45:20 armin76 Exp $
+
+  26 Apr 2009; Raúl Porcel <armin76@gentoo.org> subversion-1.5.6.ebuild:
+  alpha/arm/ia64/s390/sh/sparc/x86 stable wrt #267270
+
+  24 Apr 2009; Brent Baude <ranger@gentoo.org> subversion-1.5.6.ebuild:
+  stable ppc, bug 267270
+
+  24 Apr 2009; Brent Baude <ranger@gentoo.org> subversion-1.5.6.ebuild:
+  stable ppc64, bug 267270
+
+  24 Apr 2009; Jeroen Roovers <jer@gentoo.org> subversion-1.5.6:
+  Stable for HPPA (bug #267270).
 
   23 Apr 2009; Raúl Porcel <armin76@gentoo.org> subversion-1.6.1.ebuild:
   Add ~ia64 wrt #263337
