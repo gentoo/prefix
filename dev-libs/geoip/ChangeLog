@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/geoip
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/ChangeLog,v 1.103 2009/03/23 14:16:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/ChangeLog,v 1.104 2009/04/26 16:08:32 armin76 Exp $
+
+  26 Apr 2009; Raúl Porcel <armin76@gentoo.org> geoip-1.4.5.ebuild:
+  arm/s390/sh stable
 
   23 Mar 2009; Raúl Porcel <armin76@gentoo.org> geoip-1.4.6.ebuild:
   Add ~arm/~ia64/~s390/~sh/~sparc wrt #262547
