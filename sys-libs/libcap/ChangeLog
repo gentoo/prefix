@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/libcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.91 2009/04/18 18:22:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.92 2009/04/26 19:09:10 ranger Exp $
+
+  26 Apr 2009; Brent Baude <ranger@gentoo.org> libcap-2.16.ebuild:
+  stable ppc, bug 265791
 
   18 Apr 2009; Raúl Porcel <armin76@gentoo.org> libcap-2.16.ebuild:
   arm/ia64/m68k/s390/sh/sparc/x86 stable wrt #265791
