@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.252 2009/04/18 17:18:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.253 2009/04/27 04:58:59 vapier Exp $
+
+  27 Apr 2009; Mike Frysinger <vapier@gentoo.org> coreutils-7.1,
+  coreutils-7.2:
+  Control gmp support via USE=gmp #267226 by Raúl Porcel.
 
   18 Apr 2009; Raúl Porcel <armin76@gentoo.org> coreutils-7.1.ebuild:
   arm/ia64/sh/sparc stable wrt #265614
