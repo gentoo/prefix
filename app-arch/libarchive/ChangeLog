@@ -1,6 +1,15 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.53 2009/04/19 15:52:53 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.56 2009/04/26 19:17:38 ranger Exp $
+
+  26 Apr 2009; Brent Baude <ranger@gentoo.org> libarchive-2.6.2.ebuild:
+  stable ppc, bug 260484
+
+  25 Apr 2009; Brent Baude <ranger@gentoo.org> libarchive-2.6.2.ebuild:
+  stable ppc64, bug 260484
+
+  24 Apr 2009; Raúl Porcel <armin76@gentoo.org> libarchive-2.6.2.ebuild:
+  arm/ia64/sh stable wrt #260484
 
   19 Apr 2009; Tiago Cunha <tcunha@gentoo.org> libarchive-2.6.2.ebuild:
   stable sparc, bug 260484
