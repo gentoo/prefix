@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cvsd
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/ChangeLog,v 1.26 2009/01/04 22:20:48 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/ChangeLog,v 1.27 2009/04/24 13:52:20 patrick Exp $
+
+  24 Apr 2009; Patrick Lauer <patrick@gentoo.org> cvsd-1.0.16:
+  Fixing deps, closes #240253
 
 *cvsd-1.0.16 (04 Jan 2009)
 

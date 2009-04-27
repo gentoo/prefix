@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/cvsd-1.0.16.ebuild,v 1.1 2009/01/04 22:20:48 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/cvsd-1.0.16.ebuild,v 1.2 2009/04/24 13:52:20 patrick Exp $
 
 inherit eutils
 
@@ -13,11 +13,10 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="tcpd"
 
-DEPEND="virtual/libc
+DEPEND=">=dev-util/cvs-1.11.6
 	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )"
 RDEPEND="${DEPEND}
-	>=dev-lang/perl-5.8.0
-	>=dev-util/cvs-1.11.6"
+	>=dev-lang/perl-5.8.0"
 
 pkg_setup() {
 	enewgroup cvsd
@@ -34,9 +33,9 @@ src_install() {
 	dosed 's:^Repos:# Repos:g' /etc/cvsd/cvsd.conf
 	keepdir /var/lib/cvsd
 
-	dodoc AUTHORS COPYING ChangeLog FAQ INSTALL NEWS README TODO
+	dodoc AUTHORS ChangeLog FAQ INSTALL NEWS README TODO
 
-	newinitd ${FILESDIR}/cvsd.rc6 ${PN}
+	newinitd "${FILESDIR}/cvsd.rc6" ${PN}
 }
 
 pkg_postinst() {
