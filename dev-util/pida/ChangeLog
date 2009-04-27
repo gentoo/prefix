@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/pida
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pida/ChangeLog,v 1.18 2008/11/26 11:42:24 welp Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pida/ChangeLog,v 1.19 2009/04/25 21:17:36 patrick Exp $
+
+*pida-0.5.1-r1 (25 Apr 2009)
+
+  25 Apr 2009; Patrick Lauer <patrick@gentoo.org> +pida-0.5.1-r1.ebuild:
+  Small fix for python paths. Fixes #262349. Ebuild fixes by Douglas
+  Anderson.
 
   26 Nov 2008; <welp@gentoo.org> -pida-0.5.0.ebuild, pida-0.5.1.ebuild:
   Remove old. Add librsvg dependency; bug 215501
