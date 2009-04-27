@@ -1,6 +1,11 @@
 # ChangeLog for dev-tcltk/tls
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tls/ChangeLog,v 1.18 2007/12/24 04:08:28 matsuu Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tls/ChangeLog,v 1.19 2009/04/26 16:29:27 mescalinum Exp $
+
+*tls-1.6 (26 Apr 2009)
+
+  26 Apr 2009; Federico Ferri <mescalinum@gentoo.org> +tls-1.6.ebuild:
+  add tls-1.6, bug #267542
 
   24 Dec 2007; MATSUU Takuto <matsuu@gentoo.org> tls-1.5.0-r1.ebuild:
   Added RESTRICT="test"
