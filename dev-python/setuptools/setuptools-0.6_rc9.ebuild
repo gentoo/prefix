@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc9.ebuild,v 1.3 2009/04/23 19:35:29 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc9.ebuild,v 1.6 2009/04/26 15:43:47 armin76 Exp $
 
 NEED_PYTHON="2.4"
 
