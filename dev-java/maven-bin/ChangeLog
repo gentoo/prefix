@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/maven-bin
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.55 2009/04/18 12:44:33 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.56 2009/04/27 00:03:10 ranger Exp $
+
+  27 Apr 2009; Brent Baude <ranger@gentoo.org> maven-bin-2.0.10.ebuild:
+  Marking maven-bin-2.0.10 ppc for bug 265108
 
   18 Apr 2009; Markus Meier <maekke@gentoo.org> maven-bin-2.0.10:
   amd64/x86 stable, bug #265018
