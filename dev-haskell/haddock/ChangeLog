@@ -1,6 +1,10 @@
 # ChangeLog for dev-haskell/haddock
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.57 2009/04/19 15:20:37 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.58 2009/04/26 16:05:27 kolmodin Exp $
+
+  26 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> haddock-0.8.ebuild,
+  haddock-0.9.ebuild:
+  Change deps so older haddock won't be used with ghc-6.10.
 
 *haddock-2.4.2 (19 Apr 2009)
 
