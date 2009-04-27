@@ -1,0 +1,13 @@
+--- makefile	2009-02-25 16:03:33.000000000 +0100
++++ makefile.new	2009-02-25 16:03:17.000000000 +0100
+@@ -55,8 +55,8 @@
+ 	$(MAKE) -C CPP/7zip/UI/Console           all
+ 
+ 7zG: common7z
+-	cd bin ; rm -f Lang ; ln ../GUI/Lang .
+-	cd bin ; rm -f help ; ln ../GUI/help .
++	cd bin ; rm -f Lang ; ln -sf ../GUI/Lang .
++	cd bin ; rm -f help ; ln -sf ../GUI/help .
+ 	$(MAKE) -C CPP/7zip/UI/GUI               all
+ 
+ clean:

@@ -1,6 +1,15 @@
 # ChangeLog for app-arch/p7zip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.104 2009/01/25 19:29:15 radek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.105 2009/04/26 20:59:25 patrick Exp $
+
+*p7zip-4.65 (26 Apr 2009)
+
+  26 Apr 2009; Patrick Lauer <patrick@gentoo.org>
+  +files/4.65-hardlink.patch, +files/4.65-makefile.patch, metadata.xml,
+  +p7zip-4.65.ebuild:
+  Bump to 4.65, closes #249780. Based on the ebuild by jlec, incorporating
+  changes from Flameeyes, Sergey Dryabzhinsky, Ilya Kashirin, A.C.Heron and
+  Chi-Thanh Christopher Nguyen.
 
   25 Jan 2009; Radoslaw Stachowiak <radek@gentoo.org> p7zip-4.58.ebuild:
   Removed unnecesary warning as per bug #126722
