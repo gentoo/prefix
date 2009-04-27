@@ -1,3 +1,6 @@
+* <grobian@gentoo.org>: small compilation fix for Darwin, and produce
+                        correct(ly named) dylibs
+
 --- libopenjpeg/opj_malloc.h
 +++ libopenjpeg/opj_malloc.h
 @@ -75,7 +75,7 @@
@@ -6,9 +9,9 @@
  			#define HAVE_MEMALIGN
 -		#elif defined(__GNUC__)
 +		#elif defined(__GNUC__) && !defined(__APPLE__)
- 			#define HAVE_MEMALIGN
- 			#include <malloc.h>		
- 		/* Linux x86_64 and OSX always align allocations to 16 bytes */
+ 			#if defined(__FreeBSD__)
+ 			#include <stdlib.h>
+ 			#include <osreldate.h>
 --- Makefile
 +++ Makefile
 @@ -26,8 +26,15 @@
