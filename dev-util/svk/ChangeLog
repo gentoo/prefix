@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/svk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/svk/ChangeLog,v 1.36 2009/01/09 22:34:17 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/svk/ChangeLog,v 1.37 2009/04/25 07:57:47 patrick Exp $
+
+  25 Apr 2009; Patrick Lauer <patrick@gentoo.org> svk-2.0.2:
+  Removing broken configure placeholder function. Now installs some files!
+  Fixes #264877, thanks to Tove
 
   09 Jan 2009; Joseph Jezak <josejx@gentoo.org> svk-2.0.2.ebuild:
   Marked ~ppc for bug #253448.
