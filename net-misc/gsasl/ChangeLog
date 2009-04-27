@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/gsasl
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/gsasl/ChangeLog,v 1.29 2008/11/29 20:44:21 dertobi123 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/gsasl/ChangeLog,v 1.30 2009/04/25 23:03:37 patrick Exp $
+
+*gsasl-1.1 (25 Apr 2009)
+
+  25 Apr 2009; Patrick Lauer <patrick@gentoo.org> +gsasl-1.1.ebuild:
+  Bump to 1.1, fixes half of #263867
 
 *gsasl-0.2.29 (29 Nov 2008)
 
