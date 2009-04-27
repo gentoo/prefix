@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.279 2009/04/21 00:59:36 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.280 2009/04/26 19:08:09 ranger Exp $
+
+  26 Apr 2009; Brent Baude <ranger@gentoo.org> db-4.6.21_p4.ebuild:
+  stable ppc, bug 248905
 
   21 Apr 2009; Brent Baude <ranger@gentoo.org> db-4.6.21_p4.ebuild:
   Marking db-4.6.21_p4 ppc64 for bug 248905
