@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/xmlrpc-c
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.79 2009/04/11 08:37:59 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.80 2009/04/27 01:12:27 loki_val Exp $
+
+*xmlrpc-c-1.18.02 (27 Apr 2009)
+
+  27 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/xmlrpc-c-1.18.02/dumpvalue.patch, +xmlrpc-c-1.18.02.ebuild:
+  Install tools, bug 242154. Install abyss server, bug 251718. Fix parallel
+  make, bug 255440. Also, bump bug 256253.
 
   11 Apr 2009; Joshua Kinard <kumba@gentoo.org> xmlrpc-c-1.16.06-r1.ebuild:
   Added ~mips to KEYWORDS.
