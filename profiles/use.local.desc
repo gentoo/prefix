@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4386 2009/04/24 04:07:42 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4396 2009/04/27 01:27:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -64,6 +64,7 @@ app-arch/gzip:pic - disable optimized assembly code that is not PIC friendly
 app-arch/libarchive:bzip2 -  Allow accessing bzip2-compressed archives through libbz2 (which comes with bzip2). 
 app-arch/libarchive:lzma -  Allow accessing lzma-compressed archives through the lzmadec library. 
 app-arch/libarchive:static -  Build bsdtar and bsdcpio as static archives, removing dependencies over the enabled compression libraries (lzmadec, libbz2, zlib). 
+app-arch/p7zip:rar - Enable support for non-free rar decoder
 app-arch/rpm:file - add magic file support
 app-arch/rpm:neon - include support for neon
 app-arch/squeeze:pathbar - Include pathbar feature
@@ -720,6 +721,9 @@ dev-libs/xerces-c:iconv - Use iconv (virtual/libiconv) as message loader and tra
 dev-libs/xerces-c:libwww - Use the net-libs/libwww library for fetching URLs, instead of the builtin method
 dev-libs/xerces-c:threads - Enable threading support through pthread (or other libraries on AIX, IRIX, HPUX, Solars). Highly recommended
 dev-libs/xerces-c:xqilla - Apply patches from the XQilla project and install additional header files
+dev-libs/xmlrpc-c:abyss - Build the Abyss mini web-server.
+dev-libs/xmlrpc-c:threads - Controls whether to build the Abyss web-server with pthreads or fork 'threading'.
+dev-libs/xmlrpc-c:tools - Build the xmlrpc* tools.
 dev-libs/xqilla:faxpp - Use dev-libs/faxpp instead of Xerces-C for certain tasks
 dev-libs/xqilla:htmltidy - Use app-text/htmltidy when parsing HTML
 dev-libs/yaz:ziffy - Install ziffy, a promiscuous Z39.50 APDU sniffer
@@ -768,14 +772,20 @@ dev-python/docutils:glep - Install support for GLEPs
 dev-python/jinja2:i18n - Enables support for i18n with dev-python/Babel
 dev-python/kaa-base:tls - SSL/TLS support via dev-python/tlslite
 dev-python/ldaptor:web - enable the web front end for ldaptor (uses dev-python/nevow)
+dev-python/markdown:pygments - Enable fancy pygments support
 dev-python/matplotlib:excel - Pull dev-python/xlwt for the exceltools toolkit
 dev-python/matplotlib:traits - Pull dev-python/traits for the experimental enthought traits support
 dev-python/nose:twisted - install nose.twistedtools to integrate tests with twisted
 dev-python/paste:flup - enable support for flup (and therefore for various wgsi servers and middleware)
 dev-python/paste:openid - enable OpenID support
 dev-python/psycopg:mxdatetime - choose MX DateTime support instead of built-in datetime
-dev-python/pycairo:numeric - enable Numeric support
 dev-python/pygobject:libffi - Enable support to connect to signals on python objects from C.
+dev-python/pylons:cheetah - Add optional cheetah support
+dev-python/pylons:genshi - Add optional genshi support
+dev-python/pylons:jinja2 - Add optional jinja2 support
+dev-python/pylons:kid - Add optional kid support
+dev-python/pylons:mako - Add optional mako support
+dev-python/pylons:myghty - Add optional myghty support
 dev-python/pyyaml:libyaml - enable libyaml support
 dev-python/pyzor:pyzord - enable support for pyzord
 dev-python/rdflib:redland - enable support for Redland triplestore
@@ -842,7 +852,7 @@ dev-util/git:mozsha1 - Makes git use an optimized SHA1 routine from Mozilla that
 dev-util/git:ppcsha1 - Make use of a bundled routine that is optimized for the PPC arch.
 dev-util/git:subversion - Include git-svn for dev-util/subversion support.
 dev-util/git:webdav - Adds support for push'ing to HTTP repositories via DAV.
-dev-util/global:vim - vim funny stuff for global
+dev-util/global:vim - Integrate the GNU GLOBAL source code tag system with Vim
 dev-util/kdevelop:ada - Support for the Ada programming language.
 dev-util/kdevelop:clearcase - Support for the ClearCase version control system.
 dev-util/kdevelop:cmake - Support for the CMake Build System.
@@ -1120,6 +1130,11 @@ kde-misc/knetworkmanager:dialup - Enables Dialup (PPP) support
 kde-misc/knetworkmanager:openvpn - Adds support for the OpenVPN net-misc/openvpn client
 kde-misc/knetworkmanager:pptp - Adds support for the PPTP (PPP) VPN client
 kde-misc/ksensors:ibmacpi - Enable monitoring of ACPI sensor data on IBM Thinkpad notebooks
+mail-client/alpine:chappa - enhance alpine by appling Eduardo Chappa's patches
+mail-client/alpine:onlyalpine - installs only the alpine binary, so it does not collied with app-editors/pico and/or mail-client/pine
+mail-client/alpine:passfile - Adds support for caching passwords into a file between sessions
+mail-client/alpine:smime - Enable support for S/MIME
+mail-client/alpine:topal - Enable support for net-mail/topal
 mail-client/balsa:crypt - Adds support for GnuPG encryption
 mail-client/balsa:gtkspell - Use gtkspell for dictionary support
 mail-client/balsa:rubrica - Adds support for app-office/rubrica addressbook
@@ -1329,11 +1344,14 @@ media-libs/libcanberra:pulseaudio - Enables PulseAudio sound driver that should 
 media-libs/libdc1394:juju - Use the new juju firewire stack in the Linux kernel
 media-libs/libggi:vis - Enables sparc vis support for libggi
 media-libs/libgphoto2:bonjour - Adds Bonjour/Zeroconf support.
+media-libs/libgpod:gtk - Enables ArtWorkDB support (including Photos and album covers)
 media-libs/libifp:module - Build kernel module for non-root usage
 media-libs/libsdl:audio - Control audio support (disable at your own risk)
 media-libs/libsdl:joystick - Control joystick support (disable at your own risk)
 media-libs/libsdl:video - Control video support (disable at your own risk)
 media-libs/libvorbis:aotuv - Applies the aoTuV patches. Aoyumi's Tuned Vorbis is a third-party patchset that improves the vorbis encoding quality. A previous version of the aoTuV patchset has already been merged with the official libvorbis release. The current patchset especially improves encoding quality at low bitrate settings, and is very likely to be merged at some point in the future. It is recommended that all users enable this useflag. 
+media-libs/mediastreamer:gsm - Enables support for the gsm lossy speech compression codec
+media-libs/mediastreamer:video - Enable video support
 media-libs/mesa:pic - disable optimized assembly code that is not PIC friendly
 media-libs/mlt:compressed-lumas - Compress the luma files in png.
 media-libs/netpbm:rle - Build converters for the RLE format (utah raster toolkit)
@@ -2269,6 +2287,7 @@ net-misc/vnc:server - Build VNC server
 net-misc/vnc:xorgmodule - Build the Xorg module
 net-misc/vpnc:hybrid-auth - Enable hybrid authentication (certificates), only if not redistributed as compiled binary
 net-misc/vpnc:resolvconf - Enable support for DNS managing framework net-dns/resolvconf
+net-misc/wicd:ioctl - Installs additional python libraries to use as a backend. This will improve speed but is experimental.
 net-misc/x2goserver:fuse - Use sys-fs/sshfs-fuse to allow shared folders
 net-misc/xsupplicant:gsm - Add support for EAP-SIM authentication algorithm
 net-misc/zaptel:astribank - Install Xorcom Astribank utilities

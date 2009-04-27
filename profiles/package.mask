@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9710 2009/04/23 16:06:38 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9719 2009/04/26 21:10:40 nixphoeni Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,32 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Joe Sapp <nixphoeni@gentoo.org> (26 Apr 2009)
+# Doesn't seem to work any more
+# Masking for removal in 30 days
+x11-plugins/desklet-wirelessmonitor
+
+# Alin Năstac <mrness@gentoo.org> (26 Apr 2009)
+# Beta version
+=net-proxy/squid-3.1*
+
+# Mounir Lamouri <volkmar@gentoo.org> (26 Apr 2009)
+# Masking >=linphone-3.1.0 because depending on masked ortp-0.15.0_p1
+>=net-voip/linphone-3.1.0
+
+# MATSUU Takuto <matsuu@gentoo.org> (25 Apr 2009)
+# Masked for testing, bug #267365.
+>=x11-libs/xcb-util-0.3.4
+
+# Mounir Lamouri <volkmar@gentoo.org> (25 Apr 2009)
+# Masking mediastreamer because depending on masked ortp-0.15.0
+media-libs/mediastreamer
+
+# Federico Ferri <mescalinum@gentoo.org> (24 Apr 2009)
+# Unmasking tcl/tk 8.5
+>=dev-lang/tcl-8.5.9999
+>=dev-lang/tk-8.5.9999
 
 # Mounir Lamouri <volkmar@gentoo.org> (22 Apr 2009)
 # Masked for removal in 60 days. See bug 248008.
@@ -480,10 +506,6 @@ net-libs/zapata
 # pre-releases
 net-libs/libinfinity
 >=app-editors/gobby-0.4.91
-
-# MATSUU Takuto <matsuu@gentoo.org> (08 Apr 2009)
-# Mask for testing, bug #265385
-=net-wireless/broadcom-sta-5.10.79.10-r2
 
 # Andreas Proschofsky <suka@gentoo.org> (08 Apr 2009)
 # pre-releases, mask for testing
@@ -986,10 +1008,6 @@ app-crypt/truecrypt
 # Qt-4.3 users should probably be fine.
 =sci-visualization/paraview-3.4.0
 
-# Federico Ferri <mescalinum@gentoo.org> (27 Oct 2008)
-# Until Tcl-8.5 gets unmasked
->=dev-libs/newt-0.52.10
-
 # Alexis Ballier <aballier@gentoo.org> (15 Oct 2008)
 # Breaks ocamlduce
 >=dev-lang/ocaml-3.11.0_beta1
@@ -1247,8 +1265,6 @@ sys-apps/mindi-busybox
 
 # MATSUU Takuto <matsuu@gentoo.org> (8 Mar 2008)
 # Masked for Bug 173467
-=dev-lang/tcl-8.5*
-=dev-lang/tk-8.5*
 >=net-im/coccinella-0.96.10
 
 # Tiziano Müller <dev-zero@gentoo.org> (8 Mar 2008)

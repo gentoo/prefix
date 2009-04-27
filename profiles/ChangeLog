@@ -1,10 +1,32 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2563 2009/04/24 04:47:31 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2570 2009/04/26 12:13:53 mescalinum Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  26 Apr 2009; Federico Ferri <mescalinum@gentoo.org> package.mask:
+  unmask >=dev-libs/newt-0.52.10
+  as tcltk 8.5 got unmasked too
+
+  26 Apr 2009; Alin Năstac <mrness@gentoo.org> package.mask:
+  P.mask beta versions of net-proxy/squid.
+
+  26 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+	Masking >=linphone-3.1.0 because depending on masked ortp-0.15.0_p1
+
+  25 Apr 2009; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  Added >=x11-libs/xcb-util-0.3.4 to p.mask.
+
+  25 Apr 2009; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  Removed net-wireless/broadcom-sta from p.mask.
+
+  25 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Masking mediastreamer because depending on masked ortp-0.15.0
+
+  24 Apr 2009; Federico Ferri <mescalinum@gentoo.org> package.mask:
+  unmasking tcl/tk 8.5
 
   24 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> updates/2Q-2009:
   Slotmove for linphone from 1 to 0

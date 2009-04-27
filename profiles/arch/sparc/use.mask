@@ -1,11 +1,15 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/use.mask,v 1.18 2009/02/11 22:56:44 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/use.mask,v 1.19 2009/04/25 18:36:22 armin76 Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -sparc
 
 # This file contains a list of useflags that cannot be used on sparc.
+
+# Raúl Porcel <armin76@gentoo.org> (25 Apr 2009)
+# Sigbuses, bug #266193
+srtp
 
 # Raúl Porcel <armin76@gentoo.org> (31 Jul 2008)
 # Sigbuses

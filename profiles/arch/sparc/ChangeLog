@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/sparc profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.42 2009/02/18 16:45:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.43 2009/04/25 18:36:22 armin76 Exp $
+
+  25 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask srtp wrt bug #266193
 
   18 Feb 2009; Raúl Porcel <armin76@gentoo.org> package.use.mask:
   Mask USE=doc for sci-geosciences/gpsbabel as it needs java stuff
