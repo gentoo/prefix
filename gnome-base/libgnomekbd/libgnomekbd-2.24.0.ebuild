@@ -1,8 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.24.0.ebuild,v 1.7 2009/04/12 20:47:06 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.24.0.ebuild,v 1.8 2009/04/26 22:36:49 eva Exp $
 
-inherit gnome2
+EAPI="2"
+
+inherit autotools eutils gnome2
 
 DESCRIPTION="Gnome keyboard configuration library"
 HOMEPAGE="http://www.gnome.org"
@@ -32,6 +34,13 @@ DOCS="AUTHORS ChangeLog NEWS README"
 pkg_setup() {
 	# Only user interaction required graphical tests at the time of 2.22.0 - not useful for us
 	G2CONF="${G2CONF} --disable-tests"
+}
+
+src_prepare() {
+	# Fix linking to system's library, bug #265428
+	epatch "${FILESDIR}/${PN}-2.22.0-system-relink.patch"
+
+	eautomake
 }
 
 src_compile() {
