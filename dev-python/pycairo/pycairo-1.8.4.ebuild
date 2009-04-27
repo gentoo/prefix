@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/pycairo-1.4.0.ebuild,v 1.12 2008/03/10 05:04:17 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/pycairo-1.8.4.ebuild,v 1.1 2009/04/25 16:25:19 arfrever Exp $
 
-NEED_PYTHON=2.3
+NEED_PYTHON=2.6
 
 inherit distutils
 
@@ -12,14 +12,15 @@ SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
 
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="examples"
 
-RDEPEND=">=x11-libs/cairo-1.4.0"
+RDEPEND=">=x11-libs/cairo-1.8.4"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 PYTHON_MODNAME="cairo"
+DOCS="AUTHORS NEWS doc/*"
 
 src_unpack() {
 	unpack ${A}
@@ -39,8 +40,6 @@ src_install() {
 		doins -r examples/*
 		rm "${ED}"/usr/share/doc/${PF}/examples/Makefile*
 	fi
-
-	dodoc AUTHORS NOTES README NEWS ChangeLog
 }
 
 src_test() {
