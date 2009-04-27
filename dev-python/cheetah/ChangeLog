@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/cheetah
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/ChangeLog,v 1.44 2008/10/15 21:21:16 neurogeek Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/ChangeLog,v 1.45 2009/04/24 15:04:10 patrick Exp $
+
+  24 Apr 2009; Patrick Lauer <patrick@gentoo.org> -cheetah-0.9.18.ebuild,
+  -cheetah-0.9.18-r1.ebuild:
+  Remove old
 
   15 Oct 2008; Jesus Rivero <neurogeek@gentoo.org> -cheetah-1.0.ebuild,
   -cheetah-2.0.ebuild:
