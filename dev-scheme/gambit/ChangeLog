@@ -1,6 +1,11 @@
 # ChangeLog for dev-scheme/gambit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gambit/ChangeLog,v 1.23 2009/03/16 21:14:49 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gambit/ChangeLog,v 1.24 2009/04/24 09:48:43 hkbst Exp $
+
+*gambit-4.4.3 (24 Apr 2009)
+
+  24 Apr 2009; Marijn Schouten <hkBst@gentoo.org> +gambit-4.4.3.ebuild:
+  bump
 
 *gambit-4.4.2 (16 Mar 2009)
 
