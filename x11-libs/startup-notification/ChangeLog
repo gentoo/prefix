@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/startup-notification
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/startup-notification/ChangeLog,v 1.61 2007/09/22 05:00:32 tgall Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/startup-notification/ChangeLog,v 1.62 2009/04/25 03:19:03 dang Exp $
+
+*startup-notification-0.10 (25 Apr 2009)
+
+  25 Apr 2009; Daniel Gryniewicz <dang@gentoo.org>
+  +startup-notification-0.10.ebuild:
+  Bump to startup-notification-0.10
+
+  - Uses XCB now
 
   22 Sep 2007; Tom Gall <tgall@gentoo.org>
   startup-notification-0.9.ebuild:
