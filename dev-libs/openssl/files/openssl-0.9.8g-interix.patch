@@ -1,4 +1,5 @@
-reported upstream to rt@openssl.org (no public copy of mail available) on 24 Apr 2009
+reported upstream to rt@openssl.org on 24 Apr 2009:
+http://rt.openssl.org/Ticket/Display.html?id=1908
 
 diff -ru openssl-0.9.8g.orig/Configure openssl-0.9.8g/Configure
 --- openssl-0.9.8g.orig/Configure	Mon Jan 21 11:20:03 2008

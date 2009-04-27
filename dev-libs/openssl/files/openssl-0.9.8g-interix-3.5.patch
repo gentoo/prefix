@@ -1,3 +1,6 @@
+reported upstream to rt@openssl.org on 24 Apr 2009:
+http://rt.openssl.org/Ticket/Display.html?id=1908
+
 --- openssl-0.9.8f/crypto/bio/bss_dgram.c.orig	Fri Oct 19 16:18:40 2007
 +++ openssl-0.9.8f/crypto/bio/bss_dgram.c	Fri Oct 19 16:19:55 2007
 @@ -341,6 +341,7 @@
