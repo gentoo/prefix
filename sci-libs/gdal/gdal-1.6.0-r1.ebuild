@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.6.0.ebuild,v 1.1 2009/04/11 17:07:01 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.6.0-r1.ebuild,v 1.1 2009/04/25 06:08:09 nerdboy Exp $
 
 WANT_AUTOCONF="2.5"
 inherit autotools distutils eutils perl-module toolchain-funcs
@@ -75,6 +75,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.4.2-datadir.patch \
 	    "${FILESDIR}"/${PN}-1.5.0-soname.patch \
 	    "${FILESDIR}"/${PN}-1.5.1-python-install.patch \
+	    "${FILESDIR}"/${P}-ruby-make.patch \
+	    "${FILESDIR}"/${P}-swig-fix.patch \
 	    || die "sed failed"
 
 	if useq hdf; then
