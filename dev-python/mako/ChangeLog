@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/mako
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/mako/ChangeLog,v 1.4 2008/07/14 03:27:16 antarus Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/mako/ChangeLog,v 1.5 2009/04/26 09:08:34 patrick Exp $
+
+*mako-0.2.4 (26 Apr 2009)
+
+  26 Apr 2009; Patrick Lauer <patrick@gentoo.org> +mako-0.2.4.ebuild:
+  Bump to 0.2.4, dep for bug #260168
 
 *mako-0.1.10-r1 (13 Jul 2008)
 
