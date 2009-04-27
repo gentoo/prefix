@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/werkzeug
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/werkzeug/ChangeLog,v 1.7 2009/01/24 16:57:21 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/werkzeug/ChangeLog,v 1.9 2009/04/25 15:44:21 patrick Exp $
+
+*werkzeug-0.5 (25 Apr 2009)
+
+  25 Apr 2009; Patrick Lauer <patrick@gentoo.org> +werkzeug-0.5.ebuild:
+  Bump to 0.5. Added nose dep to tests, small build and test fixes from
+  Priit Laes
+
+  24 Apr 2009; Patrick Lauer <patrick@gentoo.org> -werkzeug-0.4.ebuild:
+  Remove old
 
 *werkzeug-0.4.1 (24 Jan 2009)
 
