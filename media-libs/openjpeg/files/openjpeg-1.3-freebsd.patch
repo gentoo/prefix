@@ -1,0 +1,20 @@
+http://www.freebsd.org/cgi/cvsweb.cgi/~checkout~/ports/graphics/openjpeg/files/patch-opj_malloc.h?rev=1.1;content-type=text%2Fplain
+
+patch modified not to contain a bogus empty #if block
+
+--- libopenjpeg/opj_malloc.h
++++ libopenjpeg/opj_malloc.h
+@@ -76,8 +76,13 @@
+ 	#if defined(__sun)
+ 			#define HAVE_MEMALIGN
+ 		#elif defined(__GNUC__)
++			#if defined(__FreeBSD__)
++			#include <stdlib.h>
++			#include <osreldate.h>
++			#else
+ 			#define HAVE_MEMALIGN
+ 			#include <malloc.h>		
++			#endif
+ 		/* Linux x86_64 and OSX always align allocations to 16 bytes */
+ 		#elif !defined(__amd64__) && !defined(__APPLE__)	
+ 			/* FIXME: Yes, this is a big assumption */
