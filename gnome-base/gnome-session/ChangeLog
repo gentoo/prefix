@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gnome-session
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/ChangeLog,v 1.232 2009/04/12 21:04:53 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/ChangeLog,v 1.233 2009/04/27 14:35:32 jer Exp $
+
+  27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gnome-session-2.22.3-r1:
+  Stable for HPPA (bug #260063).
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   gnome-session-2.22.3-r1.ebuild:
