@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.37.ebuild,v 1.1 2009/04/07 09:00:36 bicatali Exp $
 
-EAPI="prefix"
-
 EAPI=2
 inherit flag-o-matic
 
@@ -22,6 +20,12 @@ RDEPEND="odbc? ( || ( dev-db/libiodbc dev-db/unixODBC ) )
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
+
+src_prepare() {
+	# Added for prefix, bug 267273
+	sed -i "s|export-symbols-regex '^(glp_\\|_glp_lpx_).*'|export-symbols-regex '^(glp_\\|_glp_lpx_\\|_glp_lib_fault_hook\\|_glp_lib_print_hook).*'|g" src/Makefile.am || die
+	eautoreconf
+}
 
 src_configure() {
 	local myconf="--disable-dl"
