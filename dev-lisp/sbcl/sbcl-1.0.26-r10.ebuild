@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.26-r10.ebuild,v 1.1 2009/03/11 14:32:38 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.26-r10.ebuild,v 1.2 2009/04/27 21:55:59 hkbst Exp $
 
 EAPI=2
 
@@ -188,4 +188,15 @@ EOF
 	echo "SBCL_HOME=${EPREFIX}/usr/$(get_libdir)/${PN}" > "${ENVD}"
 	echo "SBCL_SOURCE_ROOT=${EPREFIX}/usr/$(get_libdir)/${PN}/src" >> "${ENVD}"
 	doenvd "${ENVD}"
+
+	impl-save-timestamp-hack sbcl
 }
+
+pkg_postinst() {
+	standard-impl-postinst sbcl
+}
+
+pkg_postrm() {
+	standard-impl-postrm sbcl /usr/bin/sbcl
+}
+

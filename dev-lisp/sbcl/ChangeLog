@@ -1,6 +1,10 @@
 # ChangeLog for dev-lisp/sbcl
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.156 2009/04/15 23:12:34 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.157 2009/04/27 21:55:59 hkbst Exp $
+
+  27 Apr 2009; Marijn Schouten <hkBst@gentoo.org> sbcl-1.0.26-r10,
+  sbcl-1.0.27-r10:
+  temporarily restore timestamp hack
 
 *sbcl-1.0.27-r10 (15 Apr 2009)
 
