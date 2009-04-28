@@ -38,6 +38,8 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-1.0.17-regtests-need-sqlite.patch"
 	epatch "${FILESDIR}/${PN}-1.0.18-less_strict_tests.patch"
 	rm M4/libtool.m4 M4/lt*.m4 || die "rm failed"
+	
+	epatch "${FILESDIR}"/${P}-irix32.patch
 
 	AT_M4DIR=M4 eautoreconf
 	epunt_cxx
