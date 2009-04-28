@@ -1,4 +1,8 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/package.use.mask,v 1.14 2009/04/11 20:23:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/package.use.mask,v 1.15 2009/04/27 17:23:28 scarabeus Exp $
+
+# Tomas Chvatal <scarabeus@gentoo.org> (27 Apr 2009)
+# Tunepimp is not keyworded.
+kde-base/juk musicbrainz
 
 # Raúl Porcel <armin76@gentoo.org> (11 Apr 2009)
 # Keep kde4 deps minimal
