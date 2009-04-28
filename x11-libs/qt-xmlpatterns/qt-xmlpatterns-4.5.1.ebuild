@@ -1,12 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-xmlpatterns/qt-xmlpatterns-4.5.0_rc1.ebuild,v 1.1 2009/02/11 23:21:59 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-xmlpatterns/qt-xmlpatterns-4.5.1.ebuild,v 1.1 2009/04/27 19:52:04 hwoarang Exp $
 
 EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The patternist module for the Qt toolkit"
-LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
