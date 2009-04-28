@@ -7,7 +7,7 @@ EAPI=1
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="none"
 
-inherit eutils multilib toolchain-funcs versionator autotools
+inherit eutils multilib toolchain-funcs versionator autotools prefix
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
@@ -55,7 +55,10 @@ src_unpack() {
 
 	epatch "${FILESDIR}/postgresql-${SLOT}-common.patch" \
 		"${FILESDIR}/postgresql-${SLOT}-base.patch" \
-		"${FILESDIR}/postgresql-8.x-relax_ssl_perms.patch"
+		"${FILESDIR}/postgresql-8.x-relax_ssl_perms.patch" \
+		"${FILESDIR}/postgresql-${SLOT}-prefix.patch"
+	
+	eprefixify "${S}/src/include/pg_config_manual.h"
 
 	# to avoid collision - it only should be installed by server
 	rm "${S}/src/backend/nls.mk"
@@ -114,17 +117,17 @@ src_install() {
 
 	dodir /etc/eselect/postgresql/slots/${SLOT}
 
-	IDIR="/usr/include/postgresql-${SLOT}"
+	IDIR="${EPREFIX}/usr/include/postgresql-${SLOT}"
 	cat > "${ED}/etc/eselect/postgresql/slots/${SLOT}/base" <<-__EOF__
 postgres_ebuilds="\${postgres_ebuilds} ${PF}"
-postgres_prefix=/usr/$(get_libdir)/postgresql-${SLOT}
-postgres_datadir=/usr/share/postgresql-${SLOT}
-postgres_bindir=/usr/$(get_libdir)/postgresql-${SLOT}/bin
+postgres_prefix="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}"
+postgres_datadir="${EPREFIX}/usr/share/postgresql-${SLOT}"
+postgres_bindir="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin"
 postgres_symlinks=(
-	${IDIR} /usr/include/postgresql
-	${IDIR}/libpq-fe.h /usr/include/libpq-fe.h
-	${IDIR}/libpq /usr/include/libpq
-	${IDIR}/postgres_ext.h /usr/include/postgres_ext.h
+	${IDIR} "${EPREFIX}/usr/include/postgresql"
+	${IDIR}/libpq-fe.h "${EPREFIX}/usr/include/libpq-fe.h"
+	${IDIR}/libpq "${EPREFIX}/usr/include/libpq"
+	${IDIR}/postgres_ext.h "${EPREFIX}/usr/include/postgres_ext.h"
 )
 __EOF__
 
