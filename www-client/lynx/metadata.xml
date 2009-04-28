@@ -2,7 +2,10 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>no-herd</herd>
-<maintainer>
-  <email>drizzt@gentoo.org</email>
-</maintainer>
+	<maintainer>
+		<email>loki_val@gentoo.org</email>
+	</maintainer>
+	<use>
+		<flag name='openssl'>Use openssl for SSL support.</flag>
+	</use>
 </pkgmetadata>

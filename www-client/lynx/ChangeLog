@@ -1,6 +1,14 @@
 # ChangeLog for www-client/lynx
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.72 2009/02/21 10:22:46 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.73 2009/04/27 11:30:44 loki_val Exp $
+
+*lynx-2.8.7_rc2 (27 Apr 2009)
+
+  27 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> metadata.xml,
+  +lynx-2.8.7_rc2.ebuild:
+  Bump. Take over as maintainer, since drizzt retired. This version fixes
+  security bug 243058 and addresses the issues raised by Pacho Ramos in bug
+  262972.
 
 *lynx-2.8.6-r3 (21 Feb 2009)
 
