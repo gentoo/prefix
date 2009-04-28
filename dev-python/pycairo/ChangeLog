@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pycairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.63 2009/04/26 19:30:26 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.64 2009/04/27 19:43:46 maekke Exp $
+
+  27 Apr 2009; Markus Meier <maekke@gentoo.org> pycairo-1.8.2.ebuild:
+  amd64/x86 stable, bug #267433
 
   26 Apr 2009; Brent Baude <ranger@gentoo.org> pycairo-1.8.2.ebuild:
   stable ppc, bug 267433
