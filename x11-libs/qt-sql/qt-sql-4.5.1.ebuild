@@ -1,15 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.5.0_rc1.ebuild,v 1.2 2009/02/25 09:32:29 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.5.1.ebuild,v 1.1 2009/04/27 19:48:44 hwoarang Exp $
 
 EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The SQL module for the Qt toolkit"
-LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-
 IUSE="firebird +iconv mysql odbc postgres +qt3support +sqlite"
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=,qt3support=]
@@ -53,8 +51,8 @@ src_unpack() {
 src_configure() {
 	# Don't support sqlite2 anymore
 	myconf="${myconf} -no-sql-sqlite2
-		$(qt_use mysql sql-mysql plugin) $(use mysql && echo "-I/usr/include/mysql -L/usr/$(get_libdir)/mysql ")
-		$(qt_use postgres sql-psql plugin) $(use postgres && echo "-I/usr/include/postgresql/pgsql ")
+		$(qt_use mysql sql-mysql plugin) $(use mysql && echo "-I${EPREFIX}/usr/include/mysql -L${EPREFIX}/usr/$(get_libdir)/mysql ")
+		$(qt_use postgres sql-psql plugin) $(use postgres && echo "-I${EPREFIX}/usr/include/postgresql/pgsql ")
 		$(qt_use sqlite sql-sqlite plugin) $(use sqlite && echo '-system-sqlite')
 		$(qt_use odbc sql-odbc plugin)
 		$(qt_use qt3support)"
