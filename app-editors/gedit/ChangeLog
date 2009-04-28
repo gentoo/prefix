@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.269 2009/04/12 19:47:34 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.270 2009/04/27 13:12:28 jer Exp $
+
+  27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gedit-2.24.3:
+  Stable for HPPA (bug #260063).
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> gedit-2.24.3.ebuild:
   Stable on sparc, security bug #257004
