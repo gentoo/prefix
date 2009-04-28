@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.16.1.ebuild,v 1.7 2009/03/30 11:01:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.16.1.ebuild,v 1.8 2009/04/27 13:11:12 jer Exp $
 
 inherit autotools gnome2 python virtualx
 
