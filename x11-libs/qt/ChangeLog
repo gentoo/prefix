@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.570 2009/03/18 23:03:52 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.572 2009/04/27 19:57:26 hwoarang Exp $
+
+  27 Apr 2009; Markos Chandras <hwoarang@gentoo.org> -qt-3.3.8-r4.ebuild:
+  Remove masked ebuild
+
+*qt-4.5.1 (27 Apr 2009)
+
+  27 Apr 2009; Markos Chandras <hwoarang@gentoo.org> +qt-4.5.1.ebuild:
+  Version bump to 4.5.1
 
   18 Mar 2009; Markos Chandras <hwoarang@gentoo.org> metadata.xml:
   Removing obsolete use flag definitions from metadata.xml

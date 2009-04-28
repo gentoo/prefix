@@ -1,16 +1,15 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.5.0_rc1.ebuild,v 1.1 2009/02/14 00:37:14 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.5.1.ebuild,v 1.1 2009/04/27 19:52:55 hwoarang Exp $
 
 EAPI=2
 DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework"
-HOMEPAGE="http://www.trolltech.com/"
+HOMEPAGE="http://www.qtsoftware.com/"
 
-LICENSE="|| ( GPL-3 GPL-2 )"
+LICENSE="|| ( LGPL-2.1 GPL-3 )"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-
-IUSE="+dbus opengl phonon +qt3support"
+IUSE="+dbus opengl +qt3support"
 
 DEPEND=""
 RDEPEND="~x11-libs/qt-core-${PV}
@@ -21,7 +20,7 @@ RDEPEND="~x11-libs/qt-core-${PV}
 	~x11-libs/qt-xmlpatterns-${PV}
 	dbus? ( ~x11-libs/qt-dbus-${PV} )
 	opengl? ( ~x11-libs/qt-opengl-${PV} )
-	phonon? ( || ( ~x11-libs/qt-phonon-${PV} media-sound/phonon ) )
+	|| ( ~x11-libs/qt-phonon-${PV} media-sound/phonon )
 	qt3support? ( ~x11-libs/qt-qt3support-${PV} )
 	~x11-libs/qt-webkit-${PV}
 	~x11-libs/qt-test-${PV}
