@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.18.4-r1.ebuild,v 1.8 2009/03/26 14:03:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.18.4-r1.ebuild,v 1.9 2009/04/27 13:07:11 jer Exp $
 
 inherit gnome.org libtool eutils flag-o-matic multilib autotools
 
