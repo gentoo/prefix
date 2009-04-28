@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pida/pida-0.5.1-r1.ebuild,v 1.1 2009/04/25 21:17:36 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pida/pida-0.5.1-r1.ebuild,v 1.2 2009/04/27 17:35:22 patrick Exp $
+
+EAPI="2"
 
 NEED_PYTHON=2.4
 
@@ -19,7 +21,7 @@ IUSE="gnome"
 RDEPEND=">=dev-python/pygtk-2.8
 	dev-python/gnome-python
 	gnome? ( >=dev-python/gnome-python-extras-2.14.0-r1 )
-	>=x11-libs/vte-0.11.11-r2
+	>=x11-libs/vte-0.11.11-r2[python]
 	>=dev-python/kiwi-1.9.1
 	>=app-editors/gvim-6.3
 	>=gnome-base/librsvg-2.22.2"
@@ -28,13 +30,6 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 S=${WORKDIR}/${MY_P}
-
-pkg_setup() {
-	if ! built_with_use x11-libs/vte python ; then
-		eerror "x11-libs/vte has to be built with python USE-flag"
-		die "missing python USE-flag for x11-libs/vte"
-	fi
-}
 
 src_install() {
 	distutils_src_install
