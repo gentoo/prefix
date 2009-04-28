@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/qt-webkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.31 2009/04/15 12:20:25 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.32 2009/04/27 19:51:15 hwoarang Exp $
+
+*qt-webkit-4.5.1 (27 Apr 2009)
+
+  27 Apr 2009; Markos Chandras <hwoarang@gentoo.org>
+  +qt-webkit-4.5.1.ebuild:
+  Version bump to 4.5.1
 
   15 Apr 2009; Brent Baude <ranger@gentoo.org> qt-webkit-4.4.2-r1.ebuild:
   Marking qt-webkit-4.4.2-r1 ppc64 for bug 263945
