@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.22.3.ebuild,v 1.2 2008/12/07 12:13:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.22.4-r1.ebuild,v 1.1 2009/04/27 19:11:30 ford_prefect Exp $
 
 inherit eutils gnome2 multilib
 
@@ -29,7 +29,7 @@ DEPEND="${RDEPEND}
 			 )
 		X? ( x11-proto/xproto )"
 
-DOCS="AUTHORS ChangeLog* NEWS README TODO*"
+DOCS="AUTHORS ChangeLog* NEWS README THANKS"
 
 function multilib_enabled() {
 	has_multilib_profile || ( use x86 && [ "$(get_libdir)" == "lib32" ] )
@@ -52,6 +52,9 @@ pkg_setup() {
 
 src_unpack() {
 	gnome2_src_unpack
+
+	# fix crash while handling special characters (bug #267560)
+	epatch "${FILESDIR}/${P}-special-chars-crash.patch"
 
 	# make config file location host specific so that a 32bit and 64bit pango
 	# wont fight with each other on a multilib system.  Fix building for

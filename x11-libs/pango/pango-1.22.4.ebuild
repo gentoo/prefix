@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.22.4.ebuild,v 1.8 2009/03/28 17:06:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.22.4.ebuild,v 1.9 2009/04/27 13:48:00 jer Exp $
 
 inherit eutils gnome2 multilib
 

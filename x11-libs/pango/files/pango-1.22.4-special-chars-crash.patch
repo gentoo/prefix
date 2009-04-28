@@ -1,0 +1,55 @@
+From dd6ce709db5872132335fef9f75aa16a33d6e5aa Mon Sep 17 00:00:00 2001
+From: Behdad Esfahbod <behdad@behdad.org>
+Date: Mon, 06 Apr 2009 23:49:02 +0000
+Subject: [layout] Truncate final whitespace in the line before ellipsizing
+
+Bug 556132 – gnome-panel crashed with SIGSEGV in
+g_cclosure_marshal_VOID__BOXED()
+
+Not after.  Also fixes invalid memory access in case line was both
+wrapped and ellipsized.
+---
+diff --git a/pango/pango-layout.c b/pango/pango-layout.c
+index b1b75a4..4326eb4 100644
+--- a/pango/pango-layout.c
++++ b/pango/pango-layout.c
+@@ -5166,18 +5166,21 @@ pango_layout_line_postprocess (PangoLayoutLine *line,
+ 			       ParaBreakState  *state,
+ 			       gboolean         wrapped)
+ {
+-  PangoLayoutRun *last_run = line->runs->data;
+   gboolean ellipsized = FALSE;
+   
+-  /* NB: the runs are in reverse order at this point, since we prepended them to the list
++  DEBUG ("postprocessing", line, state);
++
++  /* Truncate the logical-final whitespace in the line if we broke the line at it
+    */
++  if (wrapped)
++    /* The runs are in reverse order at this point, since we prepended them to the list.
++     * So, the first run is the last logical run. */
++    zero_line_final_space (line, state, line->runs->data);
+ 
+   /* Reverse the runs
+    */
+   line->runs = g_slist_reverse (line->runs);
+ 
+-  DEBUG ("postprocessing", line, state);
+-
+   /* Ellipsize the line if necessary
+    */
+   if (G_UNLIKELY (state->line_width >= 0 &&
+@@ -5186,11 +5189,6 @@ pango_layout_line_postprocess (PangoLayoutLine *line,
+       ellipsized = _pango_layout_line_ellipsize (line, state->attrs, state->line_width);
+     }
+ 
+-  /* Truncate the logical-final whitespace in the line if we broke the line at it
+-   */
+-  if (wrapped)
+-    zero_line_final_space (line, state, last_run);
+-
+   DEBUG ("after removing final space", line, state);
+ 
+   /* Now convert logical to visual order
+--
+cgit v0.8.2
