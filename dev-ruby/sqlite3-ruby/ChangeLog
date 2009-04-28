@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/sqlite3-ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.30 2009/02/22 13:23:46 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.31 2009/04/27 15:40:47 betelgeuse Exp $
+
+  27 Apr 2009; Petteri Räty <betelgeuse@gentoo.org> sqlite3-ruby-1.2.4:
+  EAPI 1 to turn on swig by default.
 
   22 Feb 2009; Hans de Graaff <graaff@gentoo.org>
   -sqlite3-ruby-1.1.0.ebuild, -sqlite3-ruby-1.2.1.ebuild,

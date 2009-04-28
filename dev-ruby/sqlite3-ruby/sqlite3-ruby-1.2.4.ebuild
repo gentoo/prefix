@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/sqlite3-ruby-1.2.4.ebuild,v 1.8 2009/02/22 13:23:46 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/sqlite3-ruby-1.2.4.ebuild,v 1.9 2009/04/27 15:40:47 betelgeuse Exp $
+
+EAPI="1"
 
 inherit ruby
 
@@ -12,7 +14,7 @@ SRC_URI="mirror://rubyforge/sqlite-ruby/${P}.tar.bz2"
 
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 SLOT="0"
-IUSE="doc swig"
+IUSE="doc +swig"
 
 USE_RUBY="ruby18 ruby19"
 RDEPEND="=dev-db/sqlite-3*"
@@ -44,11 +46,11 @@ src_install() {
 	${RUBY} setup.rb install --prefix="${D}" \
 		|| die "setup.rb install failed"
 
-	dodoc README.rdoc CHANGELOG.rdoc
+	dodoc README.rdoc CHANGELOG.rdoc || die
 
-	dohtml doc/faq/faq.html
+	dohtml doc/faq/faq.html || die
 
 	if use doc ; then
-		dohtml -r -V api
+		dohtml -r -V api || die
 	fi
 }
