@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.2-r2.ebuild,v 1.11 2009/03/17 16:14:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.3-r1.ebuild,v 1.1 2009/04/27 21:28:46 eva Exp $
 
 inherit libtool flag-o-matic eutils python autotools prefix
 
@@ -9,7 +9,7 @@ HOMEPAGE="http://www.xmlsoft.org/"
 
 LICENSE="MIT"
 SLOT="2"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc examples ipv6 python readline test"
 
 XSTS_HOME="http://www.w3.org/XML/2004/xml-schema-test-suite"
@@ -31,18 +31,10 @@ DEPEND="${RDEPEND}
 	hppa? ( >=sys-devel/binutils-2.15.92.0.2 )"
 
 src_unpack() {
+	# ${A} isn't used to avoid unpacking of test tarballs into $WORKDIR,
+	# as they are needed as tarballs in ${S}/xstc instead and not unpacked
 	unpack ${P}.tar.gz
 	cd "${S}"
-
-	# Fix for CVE-2008-4225 and CVE-2008-4226, bug 245960
-	epatch "${FILESDIR}/${P}-CVE-2008-422x.patch"
-
-	# Few small patches from SVN (revisions 3805 and 3806)
-	epatch "${FILESDIR}/${P}-xmlTextWriterFullEndElement-indent.patch"
-	epatch "${FILESDIR}/${P}-xmlAddChildList-pointer.patch"
-
-	# Fix possibility for PHP's xml_parse_into_struct function, bug 249703
-	epatch "${FILESDIR}/${P}-old-sax-parser-behaviour-option.patch"
 
 	if use test; then
 		cp "${DISTDIR}/${XSTS_TARBALL_1}" \
@@ -52,11 +44,14 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-2.7.1-catalog_path.patch
-	epatch "${FILESDIR}"/${P}-winnt.patch
+	epatch "${FILESDIR}"/${PN}-2.7.2-winnt.patch
 
 	eprefixify catalog.c xmlcatalog.c runtest.c xmllint.c
 
 	eautoreconf # required for winnt
+
+	# Fix macro conflict with wxGTK, bug #266653
+	epatch "${FILESDIR}/${P}-printf-rename.patch"
 
 	epunt_cxx
 }
@@ -85,7 +80,7 @@ src_compile() {
 	# filter seemingly problematic CFLAGS (#26320)
 	filter-flags -fprefetch-loop-arrays -funroll-loops
 
-	econf $myconf || die "Configuration failed"
+	econf $myconf
 
 	# Patching the Makefiles to respect get_libdir
 	# Fixes BUG #86766, please keep this.
@@ -103,7 +98,7 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "Installation failed"
 
-	dodoc AUTHORS ChangeLog Copyright NEWS README* TODO*
+	dodoc AUTHORS ChangeLog Copyright NEWS README* TODO* || die "dodoc failed"
 
 	if ! use doc; then
 		rm -rf "${ED}"/usr/share/gtk-doc
@@ -132,14 +127,13 @@ pkg_preinst() {
 
 pkg_postinst() {
 	if use python; then
-		python_version
 		python_need_rebuild
-		python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages
+		python_mod_optimize $(python_get_sitedir)
 	fi
 
 	# We don't want to do the xmlcatalog during stage1, as xmlcatalog will not
 	# be in / and stage1 builds to ROOT=/tmp/stage1root. This fixes bug #208887.
-	if [[ "${ROOT}" != "/" ]]
+	if [ "${EROOT}" != "/" ]
 	then
 		elog "Skipping XML catalog creation for stage building (bug #208887)."
 	else

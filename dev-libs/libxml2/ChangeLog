@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.263 2009/04/12 20:35:46 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.264 2009/04/27 21:28:46 eva Exp $
+
+*libxml2-2.7.3-r1 (27 Apr 2009)
+
+  27 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/libxml2-2.7.2-CVE-2008-422x.patch,
+  -files/libxml2-2.7.2-old-sax-parser-behaviour-option.patch,
+  -files/libxml2-2.7.2-xmlAddChildList-pointer.patch,
+  -files/libxml2-2.7.2-xmlTextWriterFullEndElement-indent.patch,
+  +files/libxml2-2.7.3-printf-rename.patch, -libxml2-2.7.2-r1.ebuild,
+  -libxml2-2.7.2-r2.ebuild, +libxml2-2.7.3-r1.ebuild:
+  Fix macro conflict with wxGTK, bug #266653
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> ChangeLog:
   Stable on sparc, bug #260063
