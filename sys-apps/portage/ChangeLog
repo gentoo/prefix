@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.13405 (28 Apr 2009)
+
+  28 Apr 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.13346.ebuild, +portage-2.2.00.13405.ebuild:
+  New snapshot, including fix for bug #267556 and problem with sandbox reading
+  ~root/.history
+
 *portage-2.2.00.13398 (26 Apr 2009)
 
   26 Apr 2009; Fabian Groffen <grobian@gentoo.org>

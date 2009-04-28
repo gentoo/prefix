@@ -181,7 +181,7 @@ pkg_preinst() {
 		rm "${EROOT}/etc/make.globals"
 	fi
 
-	has_version "<=${CATEGORY}/${PN}-2.2.00.13286"
+	has_version "<=${CATEGORY}/${PN}-2.2.00.13346"
 	EAPIPREFIX_UPGRADE=$?
 }
 
@@ -224,11 +224,21 @@ pkg_postinst() {
 		local eapi
 		einfo 'removing EAPI="prefix" legacy from your vdb, please wait'
 		pushd "${EROOT}var/db/pkg" > /dev/null
-		for cpv in */*/EAPI ; do
-			eapi=$(<"${cpv}")
+		for cpv in */* ; do
+			[[ ${cpv##*/} == "-MERGING-"* ]] && continue
+			# remove "prefix" from EAPI file
+			eapi=$(<"${cpv}"/EAPI)
 			eapi=${eapi/prefix/}
 			eapi=${eapi# }
-			echo ${eapi:-0} > "${cpv}"
+			eapi=${eapi:-0}
+			echo ${eapi} > "${cpv}"/EAPI
+			# remove "prefix" from EAPI in stored environment
+			bzcat "${cpv}"/environment.bz2 \
+				| sed -e "s/EAPI=\([\"']\)prefix [0-9][\"']/EAPI=\1${eapi}\1/" \
+				| bzip2 -9 > "${cpv}"/environment2.bz2 \
+				&& mv -f "${cpv}"/environment{2,}.bz2
+			# remove "prefix" from the stored ebuild
+			sed -i -e "s/^EAPI=.*$/EAPI=${eapi}/" "${cpv}/${cpv##*/}.ebuild"
 		done
 		popd > /dev/null
 	fi
