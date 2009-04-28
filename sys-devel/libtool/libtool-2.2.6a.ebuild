@@ -36,6 +36,7 @@ src_unpack() {
 		cd libltdl/m4
 		epatch "${FILESDIR}"/1.5.20/${PN}-1.5.20-use-linux-version-in-fbsd.patch #109105
 		epatch "${FILESDIR}"/${PV}/${P}-darwin-module-bundle.patch
+		epatch "${FILESDIR}"/${PV}/${P}-mint.patch
 		cd ..
 		eautoreconf
 		cd ..
