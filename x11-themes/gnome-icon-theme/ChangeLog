@@ -1,6 +1,9 @@
 # ChangeLog for x11-themes/gnome-icon-theme
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/ChangeLog,v 1.158 2009/04/12 20:42:58 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-icon-theme/ChangeLog,v 1.159 2009/04/27 14:34:08 jer Exp $
+
+  27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gnome-icon-theme-2.24.0:
+  Stable for HPPA (bug #260063).
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   gnome-icon-theme-2.24.0.ebuild:
