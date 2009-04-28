@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/fftw
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.84 2009/04/18 15:06:10 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.85 2009/04/27 18:15:00 armin76 Exp $
+
+  27 Apr 2009; Raúl Porcel <armin76@gentoo.org> fftw-2.1.5-r5.ebuild,
+  fftw-3.2.1.ebuild:
+  arm/ia64/sparc stable wrt #265331
 
   18 Apr 2009; Markus Meier <maekke@gentoo.org> fftw-2.1.5-r5:
   amd64/x86 stable, bug #265331
