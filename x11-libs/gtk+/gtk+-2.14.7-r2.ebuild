@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.14.7-r2.ebuild,v 1.7 2009/03/29 14:36:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.14.7-r2.ebuild,v 1.8 2009/04/27 13:08:12 jer Exp $
 
 WANT_AUTOMAKE="1.7"
 

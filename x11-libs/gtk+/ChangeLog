@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.419 2009/04/22 01:27:54 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.420 2009/04/27 13:08:12 jer Exp $
+
+  27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gtk+-2.14.7-r2:
+  Stable for HPPA (bug #260063).
 
   22 Apr 2009; Mart Raudsepp <leio@gentoo.org>
   -files/gtk+-2.12.1-cupsutils.patch, -gtk+-2.12.8.ebuild,
