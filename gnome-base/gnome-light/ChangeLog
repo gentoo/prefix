@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gnome-light
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/ChangeLog,v 1.98 2009/04/14 11:30:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/ChangeLog,v 1.99 2009/04/27 14:49:05 jer Exp $
+
+  27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gnome-light-2.24.1:
+  Stable for HPPA (bug #260063).
 
   14 Apr 2009; Raúl Porcel <armin76@gentoo.org> gnome-light-2.24.1.ebuild:
   sparc stable
