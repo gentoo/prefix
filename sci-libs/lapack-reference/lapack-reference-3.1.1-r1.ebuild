@@ -64,7 +64,9 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc README || die "dodoc failed"
-	eselect lapack add $(get_libdir) "${FILESDIR}"/eselect.lapack.reference ${ESELECT_PROF}
+	local sys
+	[[ ${CHOST} == *-darwin* ]] && sys=.Darwin
+	eselect lapack add $(get_libdir) "${FILESDIR}"/eselect.lapack.reference${sys} ${ESELECT_PROF}
 }
 
 src_test() {
