@@ -1,0 +1,15 @@
+    Fix undefined PTRACE_SETOPTIONS error, patch by grobian
+
+diff --git a/libsandbox/trace.c b/libsandbox/trace.c
+index 7c5ec17..eaf520f 100644
+--- a/libsandbox/trace.c
++++ b/libsandbox/trace.c
+@@ -425,7 +425,7 @@ void trace_main(const char *filename, char *const argv[])
+ 		SB_DEBUG("parent waiting for child (pid=%i) to signal", trace_pid);
+ 		while (!child_stopped)
+ 			sched_yield();
+-#ifdef PTRACE_O_TRACESYSGOOD
++#if defined(PTRACE_O_TRACESYSGOOD) && defined(PTRACE_SETOPTIONS)
+ 		/* Not all kernel versions support this, so ignore return */
+ 		ptrace(PTRACE_SETOPTIONS, trace_pid, NULL, (void *)PTRACE_O_TRACESYSGOOD);
+ #endif

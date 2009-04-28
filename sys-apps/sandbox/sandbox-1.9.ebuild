@@ -31,6 +31,12 @@ sandbox_death_notice() {
 	ewarn "FEATURES=-sandbox emerge sandbox"
 }
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-setoptions.patch"
+}
+
 src_compile() {
 	filter-lfs-flags #90228
 
