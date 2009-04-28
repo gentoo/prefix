@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/icon-naming-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.72 2009/04/12 21:11:48 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/ChangeLog,v 1.73 2009/04/27 14:33:06 jer Exp $
+
+  27 Apr 2009; Jeroen Roovers <jer@gentoo.org> icon-naming-utils-0.8.7:
+  Stable for HPPA (bug #260063).
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> ChangeLog:
   Stable on sparc, bug #260063
