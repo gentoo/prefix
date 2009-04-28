@@ -19,7 +19,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-prefix.patch"
-	eprefixify postgresql.eselect
+	eprefixify postgresql.eselect binwrapper
 }
 
 src_install() {

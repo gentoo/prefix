@@ -56,6 +56,15 @@
  		[[ -d "${slotdir}" ]] || die -q "No such version installed"
  		do_reset
  		unset postgres_symlinks
+@@ -106,7 +106,7 @@
+ 		local pglibdir="$(${pgconfig} --libdir)"
+ 		[[ -d "${pglibdir}" ]] || die -q "Failed to find postgresql libdir"
+ 		local slinks="${#postgres_symlinks[*]}"
+-		for l in ${pglibdir}/lib*.{a,so} ; do
++		for l in ${pglibdir}/lib*.{a,so,dylib} ; do
+ 			local bn=$(basename $l)
+ 			postgres_symlinks[slinks++]="$l"
+ 			postgres_symlinks[slinks++]="${alibdir}${bn}"
 @@ -122,9 +122,9 @@
  				[[ -L "$d" ]] || die -q "$d exists and is not a symbolic link"
  			fi
