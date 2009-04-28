@@ -25,6 +25,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.7.0-prtime.patch
 	epatch "${FILESDIR}"/${PN}-4.7.1-solaris.patch
 	epatch "${FILESDIR}"/${PN}-4.7.4-solaris.patch
+	# make sure it won't find Perl out of Prefix
+	sed -i -e "s/perl5//g" mozilla/nsprpub/configure || die
 
 	# Respect LDFLAGS
 	sed -i -e 's/\$(MKSHLIB) \$(OBJS)/\$(MKSHLIB) \$(LDFLAGS) \$(OBJS)/g' \
