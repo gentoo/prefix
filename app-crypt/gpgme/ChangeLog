@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/gpgme
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.157 2009/04/27 00:31:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.158 2009/04/27 19:56:50 maekke Exp $
+
+  27 Apr 2009; Markus Meier <maekke@gentoo.org> gpgme-1.1.8-r1.ebuild:
+  amd64/x86 stable, bug #267578
 
   27 Apr 2009; Brent Baude <ranger@gentoo.org> gpgme-1.1.8-r1.ebuild:
   Marking gpgme-1.1.8-r1 ppc for bug 267578
