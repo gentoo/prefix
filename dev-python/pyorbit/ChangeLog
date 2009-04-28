@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pyorbit
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyorbit/ChangeLog,v 1.65 2009/04/12 21:10:44 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyorbit/ChangeLog,v 1.66 2009/04/27 09:52:17 armin76 Exp $
+
+  27 Apr 2009; Raúl Porcel <armin76@gentoo.org> pyorbit-2.24.0.ebuild:
+  arm stable
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> pyorbit-2.24.0.ebuild:
   Stable on sparc, bug #260063
