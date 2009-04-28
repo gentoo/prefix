@@ -1,12 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/qt-svg-4.5.0_rc1.ebuild,v 1.2 2009/02/25 09:36:17 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/qt-svg-4.5.1-r1.ebuild,v 1.1 2009/04/27 19:49:35 hwoarang Exp $
 
 EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The SVG module for the Qt toolkit"
-LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="+iconv"
@@ -29,9 +28,14 @@ include/QtXml/
 src/corelib/
 src/gui/
 src/plugins/
-src/svg/
 src/xml
 src/3rdparty"
+
+src_prepare() {
+	qt4-build_src_prepare
+	epatch "${FILESDIR}/0279-svg-rendering-4.5.1-regression.diff"
+	
+}
 
 src_configure() {
 	myconf="${myconf} $(qt_use iconv) -svg -no-xkb  -no-fontconfig -no-xrender -no-xrandr
