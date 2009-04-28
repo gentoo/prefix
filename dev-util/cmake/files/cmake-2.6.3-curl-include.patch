@@ -1,0 +1,15 @@
+http://public.kitware.com/Bug/view.php?id=8937
+
+--- Source/cmCTest.cxx.orig	2009-04-28 11:56:33 +0200
++++ Source/cmCTest.cxx	2009-04-28 11:57:04 +0200
+@@ -14,9 +14,8 @@
+      PURPOSE.  See the above copyright notices for more information.
+ 
+ =========================================================================*/
+-#include "cm_curl.h"
+-
+ #include "cmCTest.h"
++#include "cm_curl.h"
+ #include "cmake.h"
+ #include "cmMakefile.h"
+ #include "cmLocalGenerator.h"

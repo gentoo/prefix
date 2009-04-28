@@ -14,7 +14,7 @@ HOMEPAGE="http://www.cmake.org/"
 SRC_URI="http://www.cmake.org/files/v$(get_version_component_range 1-2)/${MY_P}.tar.gz"
 
 LICENSE="CMake"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 IUSE="emacs qt4 vim-syntax"
 
@@ -51,6 +51,8 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.6.3-more-no_host_paths.patch
 	"${FILESDIR}"/${PN}-2.6.3-darwin-bundle.patch
 	"${FILESDIR}"/${PN}-2.6.3-no-duplicates-in-rpath.patch
+	"${FILESDIR}"/${PN}-2.6.3-fix_broken_lfs_on_aix.patch
+	"${FILESDIR}"/${PN}-2.6.3-curl-include.patch
 )
 
 src_configure() {
