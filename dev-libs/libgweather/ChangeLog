@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.28 2009/04/12 20:47:40 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.29 2009/04/27 13:14:44 jer Exp $
+
+  27 Apr 2009; Jeroen Roovers <jer@gentoo.org> libgweather-2.24.3:
+  Stable for HPPA (bug #260063).
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   libgweather-2.24.3.ebuild:
