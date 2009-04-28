@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.112 2009/02/21 22:06:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.113 2009/04/27 06:46:22 vapier Exp $
+
+*gmp-4.3.0 (27 Apr 2009)
+
+  27 Apr 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/gmp-4.3.0-ABI-multilib.patch, +gmp-4.3.0.ebuild:
+  Version bump #266445 by Gabriel Máculus.
 
   21 Feb 2009; Mike Frysinger <vapier@gentoo.org> +files/4.2.4/mpf_eq.diff,
   +files/4.2.4/mpf_set_str.c.4.diff, +files/4.2.4/perfpow.c.diff:

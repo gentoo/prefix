@@ -1,18 +1,18 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.2.2-r2.ebuild,v 1.9 2008/09/20 18:23:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.3.0.ebuild,v 1.1 2009/04/27 06:46:22 vapier Exp $
 
 inherit flag-o-matic eutils libtool
 
 DESCRIPTION="Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers"
 HOMEPAGE="http://gmplib.org/"
-SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
-	doc? ( http://gmplib.org/${PN}-man-${PV}.pdf )"
+SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
+#	doc? ( http://www.nada.kth.se/~tege/${PN}-man-${PV}.pdf )"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
-IUSE="doc nocxx"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="nocxx" #doc
 
 RDEPEND=""
 DEPEND=""
@@ -22,13 +22,12 @@ src_unpack () {
 	cd "${S}"
 	[[ -d ${FILESDIR}/${PV} ]] && EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
 
-	# This is linux (elf) only:
-	# The assembler on interix fex does not understand #ifdef.
-	[[ ${CHOST} == *-linux* ]] && epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
-
-	epatch "${FILESDIR}"/${PN}-4.2.2-ABI-multilib.patch
+	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
+	epatch "${FILESDIR}"/${PN}-4.3.0-ABI-multilib.patch
 	epatch "${FILESDIR}"/${PN}-4.2.1-s390.diff
-	epatch "${FILESDIR}"/${PN}-4.2.2-cstdio-stdfile.patch
+	if [[ ${CHOST} == *-mint* ]] ; then
+		sed -i -e '8514a\ \ stack -S 512K ./a.out' configure || die
+	fi
 
 	sed -i -e 's:ABI = @ABI@:GMPABI = @GMPABI@:' \
 		Makefile.in */Makefile.in */*/Makefile.in
@@ -87,5 +86,5 @@ src_install() {
 	dodoc doc/configuration doc/isa_abi_headache
 	dohtml -r doc
 
-	use doc && cp "${DISTDIR}"/gmp-man-${PV}.pdf "${ED}"/usr/share/doc/${PF}/
+	#use doc && cp "${DISTDIR}"/gmp-man-${PV}.pdf "${ED}"/usr/share/doc/${PF}/
 }
