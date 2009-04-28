@@ -6,7 +6,7 @@ EAPI=1
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="none"
-inherit eutils multilib toolchain-funcs versionator autotools
+inherit eutils multilib toolchain-funcs versionator autotools prefix
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
@@ -52,7 +52,10 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/postgresql-${SLOT}-common.patch" \
-		"${FILESDIR}/postgresql-${SLOT}-server.patch"
+		"${FILESDIR}/postgresql-${SLOT}-server.patch" \
+		"${FILESDIR}/postgresql-${SLOT}-prefix.patch"
+
+	eprefixify "${S}/src/include/pg_config_manual.h"
 
 	if hasq test ${FEATURES}; then
 		sed -e "s|/no/such/location|${S}/src/test/regress/tmp_check/no/such/location|g" -i src/test/regress/{input,output}/tablespace.source
@@ -68,7 +71,7 @@ src_compile() {
 	# use ppc && CFLAGS="-pipe -fsigned-char"
 
 	# eval is needed to get along with pg_config quotation of space-rich entities.
-	eval econf "$(/usr/$(get_libdir)/postgresql-${SLOT}/bin/pg_config --configure)" \
+	eval econf "$(${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin/pg_config --configure)" \
 		--disable-thread-safety \
 		$(use_with perl) \
 		$(use_with python) \
