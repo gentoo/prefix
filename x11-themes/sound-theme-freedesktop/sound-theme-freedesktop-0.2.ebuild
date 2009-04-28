@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/sound-theme-freedesktop/sound-theme-freedesktop-0.2.ebuild,v 1.10 2009/04/12 20:51:24 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/sound-theme-freedesktop/sound-theme-freedesktop-0.2.ebuild,v 1.11 2009/04/27 13:59:57 jer Exp $
 
 DESCRIPTION="Default freedesktop.org sound theme following the XDG theming specification"
 HOMEPAGE="http://www.freedesktop.org/wiki/Specifications/sound-theme-spec"
