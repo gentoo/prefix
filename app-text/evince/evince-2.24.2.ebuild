@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.24.2.ebuild,v 1.10 2009/04/12 21:02:28 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/evince-2.24.2.ebuild,v 1.11 2009/04/27 13:13:34 jer Exp $
 
 EAPI=2
 

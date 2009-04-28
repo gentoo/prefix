@@ -1,6 +1,9 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.169 2009/04/12 21:02:28 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.170 2009/04/27 13:13:34 jer Exp $
+
+  27 Apr 2009; Jeroen Roovers <jer@gentoo.org> evince-2.24.2:
+  Stable for HPPA (bug #260063).
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> evince-2.24.2.ebuild:
   Stable on sparc, bug #260063
