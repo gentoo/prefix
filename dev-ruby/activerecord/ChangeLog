@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.97 2009/03/17 10:49:38 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.98 2009/04/27 15:49:56 betelgeuse Exp $
+
+  27 Apr 2009; Petteri Räty <betelgeuse@gentoo.org> activerecord-2.2.2:
+  Add USE_RUBY to silence the eclass QA warning.
 
 *activerecord-2.3.2 (17 Mar 2009)
 
