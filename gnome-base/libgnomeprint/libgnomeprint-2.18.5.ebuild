@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprint/libgnomeprint-2.18.5.ebuild,v 1.7 2009/04/12 21:04:56 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprint/libgnomeprint-2.18.5.ebuild,v 1.8 2009/04/27 13:33:30 jer Exp $
 
 inherit gnome2
 

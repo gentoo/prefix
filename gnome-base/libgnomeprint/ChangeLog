@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgnomeprint
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprint/ChangeLog,v 1.163 2009/04/12 21:04:56 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprint/ChangeLog,v 1.164 2009/04/27 13:33:30 jer Exp $
+
+  27 Apr 2009; Jeroen Roovers <jer@gentoo.org> libgnomeprint-2.18.5:
+  Stable for HPPA (bug #260063).
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   libgnomeprint-2.18.5.ebuild:
