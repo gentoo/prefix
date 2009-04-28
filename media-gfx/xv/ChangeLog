@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/xv
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/ChangeLog,v 1.100 2009/03/07 13:59:41 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/ChangeLog,v 1.101 2009/04/27 13:36:26 lavajoe Exp $
+
+  27 Apr 2009; Joe Peterson <lavajoe@gentoo.org> xv-3.10a-r15:
+  Set RDEPEND
 
   07 Mar 2009; Peter Alfredsen <loki_val@gentoo.org> xv-3.10a-r15.ebuild:
   Fix xv being placed in multimedia category. Bug 260610 by Daniel Pielmeier

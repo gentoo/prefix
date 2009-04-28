@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/xv-3.10a-r15.ebuild,v 1.11 2009/03/07 13:59:41 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xv/xv-3.10a-r15.ebuild,v 1.12 2009/04/27 13:36:26 lavajoe Exp $
 
 inherit eutils flag-o-matic
 
@@ -18,6 +18,7 @@ DEPEND="x11-libs/libXt
 	jpeg? ( >=media-libs/jpeg-6b )
 	tiff? ( >=media-libs/tiff-3.6.1-r2 )
 	png? ( >=media-libs/libpng-1.2 >=sys-libs/zlib-1.1.4 )"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
