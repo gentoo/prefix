@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.65.ebuild,v 1.2 2009/04/27 01:55:14 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.65.ebuild,v 1.3 2009/04/27 15:57:26 scarabeus Exp $
 
 EAPI="2"
 WX_GTK_VER="2.8"
@@ -17,20 +17,21 @@ KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-maco
 IUSE="wxwindows doc kde rar static"
 
 RDEPEND="wxwindows? ( x11-libs/wxGTK[X] )
-	kde? ( || ( kde-base/konqueror:3.5 kde-base/kdebase-meta:3.5 kde-base/kdebase:3.5 ) )"
+	kde? ( || ( kde-base/konqueror kde-base/kdebase-meta kde-base/kdebase ) )
+	kde? ( !wxwindows? ( x11-libs/wxGTK[X] ) )"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${PN}_${PV}
 
 src_prepare() {
 	if use kde && ! use wxwindows ; then
-		eerror "USE-flag kde needs wxwindows flag"
-		die "do USE=\"kde wxwindows\" emerge p7zip"
+		einfo "USE-flag kde needs wxwindows flag"
+		einfo "silently enabling wxwindows flag"
 	fi
 
 	# remove non-free RAR codec
 	if use rar; then
-		ewarn "Adding nonfree RAR decompressor"
+		ewarn "Enabling nonfree RAR decompressor"
 	else
 		sed -e '/Rar/d' -i makefile*
 		rm -rf CPP/7zip/Compress/Rar
@@ -64,14 +65,14 @@ src_prepare() {
 
 src_compile() {
 	emake all3 || die "compilation error"
-	if use wxwindows; then
+	if use wxwindows || use kde; then
 		emake 7zG || die "error building GUI"
 	fi
 }
 
 src_test() {
 	emake test_7z test_7zr || die "test failed"
-	if use wxwindows; then
+	if use wxwindows || use kde; then
 		emake test_7zG || die "GUI test failed"
 	fi
 }
@@ -82,7 +83,7 @@ src_install() {
 	make_wrapper 7za "/usr/$(get_libdir)/${PN}/7za"
 	make_wrapper 7z "/usr/$(get_libdir)/${PN}/7z"
 
-	if use wxwindows; then
+	if use wxwindows || use kde; then
 		make_wrapper 7zG "/usr/$(get_libdir)/${PN}/7zG"
 
 		dobin GUI/p7zipForFilemanager
