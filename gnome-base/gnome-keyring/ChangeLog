@@ -1,6 +1,17 @@
 # ChangeLog for gnome-base/gnome-keyring
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.142 2009/03/17 08:42:54 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.144 2009/04/27 22:00:09 eva Exp $
+
+  27 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gnome-keyring-2.22.3-pkg-libtasn1.patch,
+  -gnome-keyring-2.22.2.ebuild, -gnome-keyring-2.22.3.ebuild,
+  gnome-keyring-2.22.3-r1, gnome-keyring-2.24.1:
+  Fix configure with recent libtasn1, bug #266554.
+  Clean up old revisions.
+
+  27 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  gnome-keyring-2.22.3-r1.ebuild:
+  arm stable
 
 *gnome-keyring-2.24.1 (17 Mar 2009)
 
