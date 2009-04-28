@@ -1,6 +1,6 @@
 # Copyright 2004-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
-# $Header: /var/cvsroot/gentoo-x86/eclass/gdesklets.eclass,v 1.16 2008/02/19 01:51:00 nixphoeni Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gdesklets.eclass,v 1.17 2009/04/28 00:57:18 nixphoeni Exp $
 #
 # Authors:	Joe Sapp <nixphoeni@gentoo.org>
 #		Mike Gardiner <obz@gentoo.org>
@@ -19,10 +19,11 @@
 inherit eutils multilib python
 
 
-MY_P="${DESKLET_NAME}-${PV}"
-S=${WORKDIR}/${DESKLET_NAME}
+MY_PN="${DESKLET_NAME}"
+MY_P="${MY_PN}-${PV}"
+S="${WORKDIR}/${DESKLET_NAME}"
 
-SRC_URI="http://gdesklets.gnomedesktop.org/files/${MY_P}.tar.gz"
+SRC_URI="http://gdesklets.de/files/desklets/${MY_PN}/${MY_P}.tar.gz"
 
 # Ebuild writer shouldn't need to touch these (except maybe $RDEPEND)
 SLOT="0"
@@ -153,7 +154,7 @@ gdesklets_src_install() {
 		# Base installation directory for Controls
 		CONTROL_INSDIR="${GDESKLETS_INST_DIR}/Controls"
 
-		CONTROL_INITS=$(find . -iname "__init__.py" | grep [Cc]ontrols)
+		CONTROL_INITS=$(find . -iname "__init__.py")
 
 		# There are possibly multiple Controls packaged with the display.
 		# For each __init__.py found, there must be a Control associated with it.
@@ -169,7 +170,7 @@ gdesklets_src_install() {
 
 			insinto "${CONTROL_INSDIR#${EPREFIX}}/${CTRL_NAME}"
 
-			doins -r *
+			doins -r *.py
 
 			cd "${S}"
 
@@ -195,7 +196,7 @@ gdesklets_src_install() {
 	fi # if -n "${GFX}"
 
 	# Install some docs if so requested
-	[[ -n "${DOCS}" ]] && dodoc "${DOCS}" && \
+	[[ -n "${DOCS}" ]] && dodoc ${DOCS} && \
 	debug-print "Installed ${DOCS}"
 
 }
