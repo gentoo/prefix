@@ -1,6 +1,15 @@
 # ChangeLog for sys-auth/consolekit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.45 2009/03/17 22:48:43 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.46 2009/04/27 19:31:44 dang Exp $
+
+*consolekit-0.3.0-r1 (27 Apr 2009)
+
+  27 Apr 2009; Daniel Gryniewicz <dang@gentoo.org>
+  +files/consolekit-0.3.0-allow-setidle.patch, +consolekit-0.3.0-r1.ebuild:
+  Bump to consolekit-0.3.0-r1
+
+  - Add SetIdleHint to the dbus policy to handle the new default-deny on
+  dbus
 
   17 Mar 2009; Peter Alfredsen <loki_val@gentoo.org>
   consolekit-0.2.10.ebuild, consolekit-0.2.10-r1.ebuild,
