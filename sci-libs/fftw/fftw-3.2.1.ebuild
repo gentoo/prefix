@@ -23,6 +23,7 @@ pkg_setup() {
 	fi
 	if use openmp &&
 		[[ $(tc-getCC)$ == *gcc* ]] &&
+		[[ $(tc-getCC)$ != *apple* ]] &&
 		( [[ $(gcc-major-version)$(gcc-minor-version) -lt 42 ]] ||
 			! built_with_use sys-devel/gcc openmp )
 	then
