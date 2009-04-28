@@ -82,8 +82,8 @@ src_unpack() {
 		doc/screen.1 \
 		|| die "sed doc/screen.1 failed"
 
-	# proper setenv detection for Solaris
-	epatch "${FILESDIR}"/${P}-setenv_autoconf.patch
+#	# proper setenv detection for Solaris
+#	epatch "${FILESDIR}"/${P}-setenv_autoconf.patch
 
 	# reconfigure
 	eautoconf
