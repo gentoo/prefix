@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.24.0.ebuild,v 1.8 2009/04/26 22:36:49 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.24.0.ebuild,v 1.11 2009/04/27 19:42:11 eva Exp $
 
 EAPI="2"
 
@@ -40,7 +40,11 @@ src_prepare() {
 	# Fix linking to system's library, bug #265428
 	epatch "${FILESDIR}/${PN}-2.22.0-system-relink.patch"
 
-	eautomake
+	# Make it libtool-1 compatible
+	rm -v m4/lt* m4/libtool.m4 || die "removing libtool macros failed"
+
+	intltoolize --force --copy --automake || die "intltoolize failed"
+	eautoreconf
 }
 
 src_compile() {
