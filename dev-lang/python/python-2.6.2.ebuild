@@ -253,6 +253,12 @@ src_install() {
 	dosed -e 's:^OPT=.*:OPT=-DNDEBUG:' \
 			/usr/$(get_libdir)/python${PYVER}/config/Makefile
 
+	# http://src.opensolaris.org/source/xref/jds/spec-files/trunk/SUNWPython.spec
+	# These #defines cause problems when building c99 compliant python modules
+	[[ ${CHOST} == *-solaris* ]] && dosed -e \
+		's:^\(^#define \(_POSIX_C_SOURCE\|_XOPEN_SOURCE\|_XOPEN_SOURCE_EXTENDED\).*$\):/* \1 */:'
+		 /usr/include/python${PYVER}/pyconfig.h
+
 	if use build ; then
 		rm -rf "${ED}"/usr/$(get_libdir)/python${PYVER}/{test,encodings,email,lib-tk,bsddb/test}
 	else
