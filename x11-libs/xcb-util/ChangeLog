@@ -1,0 +1,121 @@
+# ChangeLog for x11-libs/xcb-util
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xcb-util/ChangeLog,v 1.29 2009/04/20 15:11:24 matsuu Exp $
+
+*xcb-util-0.3.4 (20 Apr 2009)
+
+  20 Apr 2009; MATSUU Takuto <matsuu@gentoo.org> +xcb-util-0.3.4.ebuild:
+  Version bumped.
+
+  27 Mar 2009; Raúl Porcel <armin76@gentoo.org> xcb-util-0.2.ebuild,
+  xcb-util-0.2.1.ebuild:
+  s390 stable
+
+*xcb-util-0.3.3 (07 Feb 2009)
+
+  07 Feb 2009; MATSUU Takuto <matsuu@gentoo.org> +xcb-util-0.3.3.ebuild:
+  Version bumped with p.mask.
+
+  07 Dec 2008; Mike Frysinger <vapier@gentoo.org> xcb-util-0.3.0.ebuild:
+  Add s390 love #202529.
+
+*xcb-util-0.3.0 (17 Sep 2008)
+
+  17 Sep 2008; MATSUU Takuto <matsuu@gentoo.org> +xcb-util-0.3.0.ebuild:
+  Version bumped.
+
+*xcb-util-0.2.1 (09 Aug 2008)
+
+  09 Aug 2008; MATSUU Takuto <matsuu@gentoo.org> +xcb-util-0.2.1.ebuild:
+  Version bumped, bug #234276.
+
+  24 Jun 2007; Joshua Kinard <kumba@gentoo.org> xcb-util-0.2.ebuild:
+  Stable on mips, per #175465.
+
+  30 May 2007; Raúl Porcel <armin76@gentoo.org> xcb-util-0.2.ebuild:
+  alpha stable wrt #176367
+
+  05 May 2007; Daniel Gryniewicz <dang@gentoo.org> xcb-util-0.2.ebuild:
+  Marked stable on amd64 for bug #175465
+
+  03 May 2007; Jeroen Roovers <jer@gentoo.org> xcb-util-0.2.ebuild:
+  Stable for HPPA (bug #176367).
+
+  02 May 2007; Donnie Berkholz <dberkholz@gentoo.org>; xcb-util-0.2.ebuild:
+  (#176736) Requires a new enough version of gperf for the --output-file option.
+
+  30 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> xcb-util-0.2.ebuild:
+  Stable on sparc
+
+  29 Apr 2007; Andrej Kacian <ticho@gentoo.org> xcb-util-0.2.ebuild:
+  Stable on x86, bug #175465.
+
+  28 Apr 2007; nixnut <nixnut@gentoo.org> xcb-util-0.2.ebuild:
+  Stable on ppc wrt bug 176367
+
+  25 Apr 2007; Raúl Porcel <armin76@gentoo.org> xcb-util-0.2.ebuild:
+  Stable on ia64 wrt bug #175465.
+
+  25 Apr 2007; Markus Rothe <corsair@gentoo.org> xcb-util-0.2.ebuild:
+  Stable on ppc64; bug #175465
+
+  21 Apr 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  -xcb-util-0.1_p20061216.ebuild:
+  Drop old snapshot.
+
+  17 Apr 2007; Donnie Berkholz <dberkholz@gentoo.org>;
+  xcb-util-0.1_p20061216.ebuild, xcb-util-0.2.ebuild:
+  (#174639) Update HOMEPAGE.
+
+*xcb-util-0.2 (04 Mar 2007)
+
+  04 Mar 2007; Joshua Baergen <joshuabaergen@gentoo.org>
+  +xcb-util-0.2.ebuild:
+  Version bump from upstream.
+  
+  The libraries built by this packages have changed names since the last
+  version, so this update caused quite a lot of link breakage on my system.
+  'revdep-rebuild' fixed it up nicely.
+
+  16 Jan 2007; Jeroen Roovers <jer@gentoo.org>
+  xcb-util-0.1_p20061216.ebuild:
+  Marked ~hppa (bug #158377).
+
+  08 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  xcb-util-0.1_p20061216.ebuild:
+  Add ~alpha keyword.
+
+  07 Jan 2007; Timothy Redaelli <drizzt@gentoo.org>
+  xcb-util-0.1_p20061216.ebuild:
+  Add ~x86-fbsd keyword
+
+  04 Jan 2007; Bryan Østergaard <kloeri@gentoo.org>
+  xcb-util-0.1_p20061216.ebuild:
+  Add ~ia64 keyword.
+
+  21 Dec 2006; Markus Rothe <corsair@gentoo.org>
+  xcb-util-0.1_p20061216.ebuild:
+  Added ~ppc64; bug #158377
+
+  20 Dec 2006; Jason Wever <weeve@gentoo.org> xcb-util-0.1_p20061216.ebuild:
+  Added ~sparc keyword wrt bug #158377.
+
+  18 Dec 2006; Christian Faulhammer <opfer@gentoo.org>
+  xcb-util-0.1_p20061216.ebuild:
+  keyworded ~x86, bug #158377
+
+  18 Dec 2006; Joshua Baergen <joshuabaergen@gentoo.org>
+  xcb-util-0.1_p20061216.ebuild:
+  Add gperf to DEPEND.  Thanks to Timothy Redaelli.
+
+  17 Dec 2006; Luca Barbato <lu_zero@gentoo.org>
+  xcb-util-0.1_p20061216.ebuild:
+  Marked ~ppc
+
+*xcb-util-0.1_p20061216 (16 Dec 2006)
+
+  16 Dec 2006; Joshua Baergen <joshuabaergen@gentoo.org> +metadata.xml,
+  +xcb-util-0.1_p20061216.ebuild:
+  Initial import. Using a snapshot since the 0.1 release is quite old and has
+  incorrect paths.  Closes bug #93582.
+
