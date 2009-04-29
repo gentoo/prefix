@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  29 Apr 2009; Jeremy Olexa <darkside@gentoo.org> linux/package.mask:
+  Unmask bash-4 on linux platforms, works fine for me
+
   24 Apr 2009; <mduft@gentoo.org> windows/interix/package.mask:
   masked python >= 2.6.0 on interix, since it seems to be b0rked
 
