@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/intltool
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.123 2009/04/12 20:36:30 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.124 2009/04/28 18:17:10 armin76 Exp $
+
+  28 Apr 2009; Raúl Porcel <armin76@gentoo.org> intltool-0.40.5.ebuild:
+  m68k stable
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> ChangeLog:
   Stable on sparc, bug #260063
