@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.1.3-r1.ebuild,v 1.20 2008/06/13 05:30:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.1.3-r1.ebuild,v 1.21 2009/04/29 22:24:08 ssuominen Exp $
 
 inherit eutils multilib
 
@@ -18,22 +18,13 @@ RDEPEND="sys-libs/ncurses
 	png? ( media-libs/libpng )
 	cjk? ( dev-libs/oniguruma )
 	readline? ( sys-libs/readline )"
-DEPEND="${RDEPEND}
-	!=sys-libs/slang-2.1.2"
-
-pkg_setup() {
-	local fail="Re-emerge sys-libs/ncurses with USE -minimal."
-	if built_with_use sys-libs/ncurses minimal; then
-		eerror "${fail}"
-		die "${fail}"
-	fi
-}
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.1.2-slsh-libs.patch
-	epatch "${FILESDIR}"/${P}-uclibc.patch
+	epatch "${FILESDIR}"/${PN}-2.1.2-slsh-libs.patch \
+		"${FILESDIR}"/${P}-uclibc.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
@@ -49,14 +40,14 @@ src_compile() {
 	econf $(use_with cjk onig) $(use_with pcre) $(use_with png) \
 		--with-readline=${readline}
 
-	emake -j1 elf static || die "emake elf static failed."
+	emake -j1 elf static || die "emake elf static failed"
 
 	cd slsh
-	emake -j1 slsh || die "emake slsh failed."
+	emake -j1 slsh || die "emake slsh failed"
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install-all || die "emake install-all failed."
+	emake -j1 DESTDIR="${D}" install-all || die "emake install-all failed"
 
 	rm -rf "${ED}"/usr/share/doc/{slang,slsh}
 

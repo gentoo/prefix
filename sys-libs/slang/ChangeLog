@@ -1,22 +1,27 @@
 # ChangeLog for sys-libs/slang
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.93 2008/11/03 01:47:54 matsuu Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.94 2009/04/29 22:24:08 ssuominen Exp $
+
+  30 Apr 2009; Samuli Suominen <ssuominen@gentoo.org> slang-2.1.3-r1.ebuild,
+  slang-2.1.4.ebuild:
+  Because ncurses5-config --terminfo returns /usr/share/terminfo we keepdir
+  it wrt #245374 and drop USE -minimal depend.
 
 *slang-2.1.4 (03 Nov 2008)
 
   03 Nov 2008; MATSUU Takuto <matsuu@gentoo.org> +slang-2.1.4.ebuild:
   Version bumped, bug #237144. Added EAPI=2.
 
-  12 Jun 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
+  12 Jun 2008; Samuli Suominen <ssuominen@gentoo.org> slang-2.1.3-r1.ebuild:
   arm stable
 
-  29 May 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
+  29 May 2008; Samuli Suominen <ssuominen@gentoo.org> slang-2.1.3-r1.ebuild:
   keyword ~arm
 
-  04 Apr 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
+  04 Apr 2008; Samuli Suominen <ssuominen@gentoo.org> slang-2.1.3-r1.ebuild:
   Keyword ~sparc-fbsd, thanks to Uberlord for testing.
 
-  19 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  19 Mar 2008; Samuli Suominen <ssuominen@gentoo.org>
   +files/slang-2.1.3-uclibc.patch, slang-2.1.3-r1.ebuild:
   Fix a regression from slang-1.4.9-r2, building on uclibc wrt bug 213925
   thanks to Natanael Copa.
@@ -30,7 +35,7 @@
   11 Mar 2008; Brent Baude <ranger@gentoo.org> slang-2.1.3-r1.ebuild:
   stable ppc64, bug 211986
 
-  10 Mar 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
+  10 Mar 2008; Samuli Suominen <ssuominen@gentoo.org> slang-2.1.3-r1.ebuild:
   amd64 stable wrt #211986
 
   10 Mar 2008; Raúl Porcel <armin76@gentoo.org> slang-2.1.3-r1.ebuild:
@@ -45,11 +50,11 @@
   17 Feb 2008; Alexis Ballier <aballier@gentoo.org> slang-2.1.3-r1.ebuild:
   keyword ~x86-fbsd
 
-  15 Feb 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
+  15 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> slang-2.1.3-r1.ebuild:
   If USE readline is used, and it's enabled by default in profiles use system
   readline for slsh instead of native slang.
 
-  15 Feb 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
+  15 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> slang-2.1.3-r1.ebuild:
   sys-libs/ncurses is required for /usr/share/terminfo files which means it
   cannot be built with USE minimal wrt #210063 by Saul Peebsen.
 
@@ -59,9 +64,8 @@
   11 Feb 2008; Raúl Porcel <armin76@gentoo.org> slang-2.1.3-r1.ebuild:
   Re-add ~ia64/~sparc
 
-  11 Feb 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3-r1.ebuild:
-  Force -j1 for both building and installing wrt #209643, but it fails in many
-  different ways.
+  11 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> slang-2.1.3-r1.ebuild:
+  Force -j1 for both building and installing wrt #209643.
 
   11 Feb 2008; Brent Baude <ranger@gentoo.org> slang-2.1.3-r1.ebuild:
   Marking slang-2.1.3-r1 ~ppc64 for bug 209422
@@ -71,10 +75,10 @@
 
 *slang-2.1.3-r1 (10 Feb 2008)
 
-  10 Feb 2008; Samuli Suominen <drac@gentoo.org> +slang-2.1.3-r1.ebuild:
+  10 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> +slang-2.1.3-r1.ebuild:
   USE cjk for optional dev-libs/oniguruma dep.
 
-  10 Feb 2008; Samuli Suominen <drac@gentoo.org> slang-2.1.3.ebuild:
+  10 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> slang-2.1.3.ebuild:
   Use targets elf and static in src_compile and install-all in src_install to
   avoid compiling at install phase.
 
@@ -87,13 +91,13 @@
   09 Feb 2008; Brent Baude <ranger@gentoo.org> slang-2.1.3.ebuild:
   keyworded ~arch for ppc64, bug 209434
 
-  09 Feb 2008; Samuli Suominen <drac@gentoo.org> slang-1.4.9-r2.ebuild,
+  09 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> slang-1.4.9-r2.ebuild,
   -slang-2.1.2.ebuild:
   Remove unused version and fix quoting of stable.
 
 *slang-2.1.3 (09 Feb 2008)
 
-  09 Feb 2008; Samuli Suominen <drac@gentoo.org> +slang-2.1.3.ebuild:
+  09 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> +slang-2.1.3.ebuild:
   Version bump wrt #202344, thanks to Arfrever Frehtes Taifersar Arahesis for
   reporting.
 

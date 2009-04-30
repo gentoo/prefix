@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.1.4.ebuild,v 1.1 2008/11/03 01:47:54 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.1.4.ebuild,v 1.2 2009/04/29 22:24:08 ssuominen Exp $
 
 EAPI=2
 inherit eutils multilib
@@ -14,17 +14,16 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="cjk pcre png readline"
 
-RDEPEND="sys-libs/ncurses[-minimal]
+RDEPEND="sys-libs/ncurses
 	pcre? ( dev-libs/libpcre )
 	png? ( media-libs/libpng )
 	cjk? ( dev-libs/oniguruma )
 	readline? ( sys-libs/readline )"
-DEPEND="${RDEPEND}
-	!=sys-libs/slang-2.1.2"
+DEPEND="${RDEPEND}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.1.2-slsh-libs.patch
-	epatch "${FILESDIR}"/${PN}-2.1.3-uclibc.patch
+	epatch "${FILESDIR}"/${PN}-2.1.2-slsh-libs.patch \
+		"${FILESDIR}"/${PN}-2.1.3-uclibc.patch
 	epatch "${FILESDIR}"/${PN}-2.1.3-interix.patch
 }
 
@@ -32,16 +31,16 @@ src_configure() {
 	local myconf
 
 	if use readline; then
-		myconf="${myconf} --with-readline=gnu"
+		myconf+=" --with-readline=gnu"
 	else
-		myconf="${myconf} --with-readline=slang"
+		myconf+=" --with-readline=slang"
 	fi
 
 	econf \
 		$(use_with cjk onig) \
 		$(use_with pcre) \
 		$(use_with png) \
-		${myconf} || die
+		${myconf}
 }
 
 src_compile() {
