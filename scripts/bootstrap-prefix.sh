@@ -259,7 +259,7 @@ bootstrap_startscript() {
 }
 
 bootstrap_portage() {
-	PV="2.2.00.13346"
+	PV="2.2.00.13405"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
@@ -287,11 +287,6 @@ bootstrap_portage() {
  	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
 
-	if [[ $MAKE != "make" ]] ; then
-		einfo "making a symlink for $MAKE"
-		( cd ${ROOT}/tmp/usr/bin && ln -s $(which $MAKE) make )
-	fi
-
 	bootstrap_setup
 
 	cd "${ROOT}"
@@ -304,6 +299,9 @@ bootstrap_portage() {
 	# during bootstrap_portage(), man pages are not compressed. This is
 	# problematic once you have a working prefix. So, remove them now.
 	rm -rf "${ROOT}/automatically-removed"	
+
+	# in Prefix the sed wrapper is deadly, so kill it
+	rm -f "${ROOT}"/usr/lib/portage/bin/ebuild-helpers/sed
 
 	einfo "${A%-*} successfully bootstrapped"
 }
