@@ -1,0 +1,48 @@
+--- Demo/amd_f77cross.out.orig	2008-03-15 15:36:15.767078743 +0000
++++ Demo/amd_f77cross.out	2008-03-15 15:35:35.496783869 +0000
+@@ -1,21 +1,5 @@
+-Input matrix: 5-by- 5 with 14 entries
+-
+-Column:  1 number of entries:  2 with row indices in AI (  1 ...   2)
+-    row indices:   1  2
+-
+-Column:  2 number of entries:  4 with row indices in AI (  3 ...   6)
+-    row indices:   1  2  3  5
+-
+-Column:  3 number of entries:  4 with row indices in AI (  7 ...  10)
+-    row indices:   2  3  4  5
+-
+-Column:  4 number of entries:  2 with row indices in AI ( 11 ...  12)
+-    row indices:   3  4
+-
+-Column:  5 number of entries:  2 with row indices in AI ( 13 ...  14)
+-    row indices:   2  5
+ 
+-amd:  approximate minimum degree ordering, results:
++AMD version 2.2.0, May 31, 2007, results:
+     status: OK
+     n, dimension of A:                                  5
+     nz, number of nonzeros in A:                        14
+@@ -44,6 +28,22 @@
+     LU flop count for real A (with no pivoting):        19
+     LU flop count for complex A (with no pivoting):     101
+ 
++Input matrix: 5-by- 5 with 14 entries
++
++Column:  1 number of entries:  2 with row indices in AI (  1 ...   2)
++    row indices:   1  2
++
++Column:  2 number of entries:  4 with row indices in AI (  3 ...   6)
++    row indices:   1  2  3  5
++
++Column:  3 number of entries:  4 with row indices in AI (  7 ...  10)
++    row indices:   2  3  4  5
++
++Column:  4 number of entries:  2 with row indices in AI ( 11 ...  12)
++    row indices:   3  4
++
++Column:  5 number of entries:  2 with row indices in AI ( 13 ...  14)
++    row indices:   2  5
+ PERM ( 1) =  1
+ PERM ( 2) =  4
+ PERM ( 3) =  3
