@@ -499,8 +499,9 @@ gen_usr_ldscript() {
 				else
 					rm -f "${ED}"/${libdir}/${lib}
 				fi
+			else
+				tlib=${lib}
 			fi
-			tlib=${lib}
 
 			# we don't have GNU binutils on these platforms, so we symlink
 			# instead, which seems to work fine.  Keep it relative, otherwise
