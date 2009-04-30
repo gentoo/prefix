@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/gforth
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/ChangeLog,v 1.28 2009/01/08 23:52:30 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/ChangeLog,v 1.29 2009/04/29 19:50:01 maekke Exp $
+
+  29 Apr 2009; Markus Meier <maekke@gentoo.org> gforth-0.7.0.ebuild:
+  amd64/x86 stable, bug #267031
 
   08 Jan 2009; Patrick Lauer <patrick@gentoo.org> gforth-0.7.0.ebuild:
   Readding arches that were accidentally dropped
