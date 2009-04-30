@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>sci</herd>
+<longdescription lang="en">
+  CXSparse is an extended version of CSparse, with support for double or
+  complex matrices, with int or long integers.
+</longdescription>
+</pkgmetadata>
