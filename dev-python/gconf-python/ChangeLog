@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/gconf-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gconf-python/ChangeLog,v 1.10 2009/03/23 05:05:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gconf-python/ChangeLog,v 1.11 2009/04/28 14:26:52 armin76 Exp $
+
+  28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gconf-python-2.22.3.ebuild:
+  arm/sh stable
 
   23 Mar 2009; Jeroen Roovers <jer@gentoo.org> gconf-python-2.22.3.ebuild:
   Stable for HPPA (bug #258040).
