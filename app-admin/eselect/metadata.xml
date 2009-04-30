@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>no-herd</herd>
-	<maintainer>
-		<email>eselect@gentoo.org</email>
-	</maintainer>
+<herd>no-herd</herd>
+<maintainer>
+  <email>eselect@gentoo.org</email>
+</maintainer>
+<use>
+  <flag name='paludis'>Prefer <pkg>sys-apps/paludis</pkg> over
+    <pkg>sys-apps/portage</pkg></flag>
+</use>
 </pkgmetadata>
