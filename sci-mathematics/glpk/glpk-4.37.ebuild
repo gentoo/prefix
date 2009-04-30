@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.37.ebuild,v 1.1 2009/04/07 09:00:36 bicatali Exp $
 
 EAPI=2
-inherit flag-o-matic
+inherit flag-o-matic autotools
 
 DESCRIPTION="GNU Linear Programming Kit"
 LICENSE="GPL-3"
