@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/freealut
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freealut/ChangeLog,v 1.25 2009/03/11 20:29:46 tupone Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freealut/ChangeLog,v 1.26 2009/04/29 12:20:52 ssuominen Exp $
+
+*freealut-1.1.0-r1 (29 Apr 2009)
+
+  29 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
+  -freealut-1.0.1.ebuild, -freealut-1.1.0.ebuild, +freealut-1.1.0-r1.ebuild:
+  Revision bump to force rebuild with openal-soft since the result is
+  different with sample openal implementation.
 
   11 Mar 2009; Tupone Alfredo <tupone@gentoo.org> freealut-1.0.1.ebuild,
   freealut-1.1.0.ebuild:
