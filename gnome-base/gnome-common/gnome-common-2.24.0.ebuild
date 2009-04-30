@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-common/gnome-common-2.24.0.ebuild,v 1.9 2009/04/27 13:35:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-common/gnome-common-2.24.0.ebuild,v 1.10 2009/04/28 11:17:36 armin76 Exp $
 
 inherit gnome2
 
