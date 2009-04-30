@@ -6,7 +6,7 @@ diff -ur cdrtools-2.01.01.orig/libfind/libfind.mk cdrtools-2.01.01/libfind/libfi
  
  include		Targets
 -LIBS=		
-+LIBS=		$(LIB_ACL)
++LIBS=		$(LIB_ACL_TEST)
  
  ###########################################################################
  include		$(SRCROOT)/$(RULESDIR)/rules.lib
@@ -18,7 +18,7 @@ diff -ur cdrtools-2.01.01.orig/libfind/shlfind.mk cdrtools-2.01.01/libfind/shlfi
  
  include		Targets
 -LIBS=		-lschily -lc
-+LIBS=		-lschily -lc $(LIB_ACL)
++LIBS=		-lschily -lc $(LIB_ACL_TEST)
  
  ###########################################################################
  include		$(SRCROOT)/$(RULESDIR)/rules.shl

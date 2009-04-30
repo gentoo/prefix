@@ -1,6 +1,17 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.222 2009/02/02 22:49:38 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.224 2009/04/30 01:17:05 loki_val Exp $
+
+  30 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  files/cdrtools-2.01.01_alpha50-asneeded.patch:
+  Fix as-needed patch to not link against libacl unconditionally, bug
+  265159. Thanks to Michał Górny <web-f13zto@mgorny.alt.pl>.
+
+*cdrtools-2.01.01_alpha59 (30 Apr 2009)
+
+  30 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +cdrtools-2.01.01_alpha59.ebuild:
+  Bump
 
 *cdrtools-2.01.01_alpha57-r1 (02 Feb 2009)
 
