@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.6.8.ebuild,v 1.11 2008/11/15 18:31:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.6.8.ebuild,v 1.12 2009/04/29 20:56:27 fauli Exp $
 
 inherit eutils multilib toolchain-funcs
 
@@ -14,6 +14,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris"
 IUSE="ipv6 debug"
 
 DEPEND=""
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
@@ -31,9 +32,9 @@ src_compile() {
 	echo > "${T}"/test.c
 	$(tc-getCC) -c "${T}"/test.c -o "${T}"/test.o
 	case $(file "${T}"/test.o) in
-	    *64-bit*) myconf="${myconf} --enable-64bit";;
-	    *32-bit*) ;;
-	    *) die "Failed to detect whether your arch is 64bits or 32bits, disable distcc if you're using it, please";;
+		*64-bit*) myconf="${myconf} --enable-64bit";;
+		*32-bit*) ;;
+		*) die "Failed to detect whether your arch is 64bits or 32bits, disable distcc if you're using it, please";;
 	esac
 
 	if use ipv6; then
