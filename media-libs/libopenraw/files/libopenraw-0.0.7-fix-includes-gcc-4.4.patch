@@ -1,0 +1,34 @@
+diff -ru libopenraw-0.0.6.orig/demo/cfa.cpp libopenraw-0.0.6/demo/cfa.cpp
+--- libopenraw-0.0.6.orig/demo/cfa.cpp	2009-04-29 08:35:35.000000000 +0200
++++ libopenraw-0.0.6/demo/cfa.cpp	2009-04-29 08:36:13.000000000 +0200
+@@ -20,6 +20,7 @@
+ 
+ 
+ #include <stdlib.h>
++#include <stdio.h>
+ #include <iostream>
+ #include <libopenraw/libopenraw.h>
+ #include <libopenraw/debug.h>
+diff -ru libopenraw-0.0.6.orig/demo/thumb.cpp libopenraw-0.0.6/demo/thumb.cpp
+--- libopenraw-0.0.6.orig/demo/thumb.cpp	2009-04-29 08:35:35.000000000 +0200
++++ libopenraw-0.0.6/demo/thumb.cpp	2009-04-29 08:36:41.000000000 +0200
+@@ -19,7 +19,7 @@
+  */
+ 
+ 
+-
++#include <stdio.h>
+ #include <iostream>
+ #include <libopenraw/libopenraw.h>
+ #include <libopenraw/debug.h>
+diff -ru libopenraw-0.0.6.orig/include/libopenraw/consts.h libopenraw-0.0.6/include/libopenraw/consts.h
+--- libopenraw-0.0.6.orig/include/libopenraw/consts.h	2009-04-29 08:35:35.000000000 +0200
++++ libopenraw-0.0.6/include/libopenraw/consts.h	2009-04-29 08:37:03.000000000 +0200
+@@ -31,6 +31,7 @@
+ extern "C" {
+ #endif
+ 
++#include <inttypes.h>
+ 	
+ /** 
+  * Error codes returned by libopenraw. 
