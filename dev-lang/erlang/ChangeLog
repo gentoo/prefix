@@ -1,6 +1,23 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.160 2009/04/22 06:57:53 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.163 2009/04/29 20:43:08 fauli Exp $
+
+  29 Apr 2009; Christian Faulhammer <fauli@gentoo.org>
+  erlang-13.2-r1.ebuild:
+  only call pkg_setup from wxwidgets.eclass when USE=wxwindows is set
+
+  29 Apr 2009; Christian Faulhammer <fauli@gentoo.org>
+  erlang-13.2-r1.ebuild:
+  properly choose the wxGTK version with the wxwidgets eclass, also remove
+  flag-o-matic, not used anymore, bug 267260 by Arvid Norlander <anmaster AT
+  tele2 DOT se>
+
+*erlang-13.2-r1 (29 Apr 2009)
+
+  29 Apr 2009; Christian Faulhammer <fauli@gentoo.org>
+  +files/erlang-13.2-eunit_fix.patch, +erlang-13.2-r1.ebuild:
+  fix runtime crash with eunit, patch found and reported by Sergey Sinkovskiy
+  <glorybox DOT away AT gmail.com> on bug 267329
 
   22 Apr 2009; Christian Faulhammer <fauli@gentoo.org>
   -erlang-13.1-r1.ebuild:

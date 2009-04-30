@@ -1,0 +1,35 @@
+Index: src/eunit_proc.erl
+===================================================================
+--- lib/eunit/src/eunit_proc.erl	(revision 339)
++++ lib/eunit/src/eunit_proc.erl	(working copy)
+@@ -628,16 +628,28 @@
+     catch
+ 	C:T -> {{error, {C,T,erlang:get_stacktrace()}}, Buf}
+     end;
++io_request({put_chars, _Enc, Chars}, Buf) ->
++    io_request({put_chars, Chars}, Buf);
++io_request({put_chars, _Enc, Mod, Func, Args}, Buf) ->
++    io_request({put_chars, Mod, Func, Args}, Buf);
++io_request({get_chars, _Enc, _Prompt, _N}, Buf) ->
++    {eof, Buf};
+ io_request({get_chars, _Prompt, _N}, Buf) ->
+     {eof, Buf};
+-io_request({get_chars, _Prompt, _M, _F, _Xs}, Buf) ->
+-    {eof, Buf};
+ io_request({get_line, _Prompt}, Buf) ->
+     {eof, Buf};
++io_request({get_line, _Enc, _Prompt}, Buf) ->
++    {eof, Buf};
+ io_request({get_until, _Prompt, _M, _F, _As}, Buf) ->
+     {eof, Buf};
+ io_request({setopts, _Opts}, Buf) ->
+     {ok, Buf};
++io_request(getopts, Buf) ->
++    {error, {error, enotsup}, Buf};
++io_request({get_geometry,columns}, Buf) ->
++    {error, {error, enotsup}, Buf};
++io_request({get_geometry,rows}, Buf) ->
++    {error, {error, enotsup}, Buf};
+ io_request({requests, Reqs}, Buf) ->
+     io_requests(Reqs, {ok, Buf});
+ io_request(_, Buf) ->
