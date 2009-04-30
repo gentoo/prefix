@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprintui/libgnomeprintui-2.18.3.ebuild,v 1.9 2009/04/27 13:34:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprintui/libgnomeprintui-2.18.3.ebuild,v 1.10 2009/04/28 11:24:28 armin76 Exp $
 
 inherit gnome2
 
