@@ -468,15 +468,6 @@ bootstrap_python() {
 	S="${S}"/Python-${PV}
 	cd "${S}"
 
-	# fix OpenBSD detection
-	sed -i -e 's/OpenBSD\/4.\[\[0\]\]/OpenBSD\/4.\[\[0123456789\]\]/' \
-		configure 
-	[[ ${CHOST} == *-openbsd* ]] && CFLAGS="${CFLAGS} -D_BSD_SOURCE=1"
-
-	export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter"
-	export PYTHON_DISABLE_SSL=1
-	export OPT="${CFLAGS}"
-
 	local myconf=""
 
 	case $CHOST in
@@ -490,7 +481,19 @@ bootstrap_python() {
 			# know better, so force it to listen to us
 			myconf="${myconf} --with-gcc=yes"
 		;;
+		*-openbsd*)
+			CFLAGS="${CFLAGS} -D_BSD_SOURCE=1"
+		;;
 	esac
+
+	# if the user has a $HOME/.pydistutils.cfg file, the python
+	# installation is going to be screwed up, as reported by users, so
+	# just make sure Python won't find it
+	export HOME="${S}"
+
+	export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter"
+	export PYTHON_DISABLE_SSL=1
+	export OPT="${CFLAGS}"
 
 	einfo "Compiling ${A%-*}"
 	econf \
@@ -506,7 +509,7 @@ bootstrap_python() {
 	cd "${ROOT}"/usr/bin
 	ln -sf python2.5 python
 
-	einfo "${A%-*} successfully bootstrapped"
+	einfo "${A%-*} bootstrapped"
 }
 
 bootstrap_sed() {
