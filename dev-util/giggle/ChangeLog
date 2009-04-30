@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/giggle
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/ChangeLog,v 1.14 2009/04/03 12:36:50 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/giggle/ChangeLog,v 1.15 2009/04/29 10:16:16 ikelos Exp $
+
+  29 Apr 2009; Mike Auty <ikelos@gentoo.org> -giggle-0.2.ebuild,
+  -giggle-0.3.ebuild, giggle-0.4.ebuild, giggle-0.4.90.ebuild,
+  giggle-0.4.91.ebuild:
+  Remove old versions and add DOCS to existing versions of giggle.
 
   03 Apr 2009; Mike Auty <ikelos@gentoo.org> giggle-0.4.91.ebuild:
   Add dependency on libtool-2, fixes bug 264745.
