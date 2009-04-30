@@ -1,11 +1,14 @@
 # ChangeLog for x11-themes/tango-icon-theme
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/tango-icon-theme/ChangeLog,v 1.43 2008/11/24 18:24:02 ssuominen Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/tango-icon-theme/ChangeLog,v 1.44 2009/04/28 10:53:42 ssuominen Exp $
 
-  24 Nov 2008; <ssuominen@gentoo.org> metadata.xml:
-  Re-assign to freedesktop herd.
+*tango-icon-theme-0.8.90 (28 Apr 2009)
 
-  21 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  28 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +tango-icon-theme-0.8.90.ebuild:
+  Version bump.
+
+  21 Mar 2008; Samuli Suominen <ssuominen@gentoo.org>
   -tango-icon-theme-0.8.0.ebuild, tango-icon-theme-0.8.1.ebuild:
   Fix HOMEPAGE and SRC_URI.
 
@@ -30,7 +33,7 @@
 
 *tango-icon-theme-0.8.1 (20 Sep 2007)
 
-  20 Sep 2007; Samuli Suominen <drac@gentoo.org>
+  20 Sep 2007; Samuli Suominen <ssuominen@gentoo.org>
   +tango-icon-theme-0.8.1.ebuild:
   Version bump.
 
@@ -41,18 +44,17 @@
   tango-icon-theme-0.8.0.ebuild:
   Update gtk icon cache after merge/unmerge
 
-  10 Mar 2007; Samuli Suominen <drac@gentoo.org>
+  10 Mar 2007; Samuli Suominen <ssuominen@gentoo.org>
   tango-icon-theme-0.8.0.ebuild:
-  Add depend for hicolor-icon-theme.
+  Add dep for hicolor-icon-theme.
 
   07 Mar 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   tango-icon-theme-0.8.0.ebuild:
   Stable on sparc wrt #161592
 
-  03 Mar 2007; Samuli Suominen <drac@gentoo.org>
+  03 Mar 2007; Samuli Suominen <ssuominen@gentoo.org>
   tango-icon-theme-0.8.0.ebuild:
   Fix USE -png when imagemagick is also USE -png as reported by marc_alec.
-  Thanks.
 
   03 Mar 2007; nixnut <nixnut@gentoo.org> tango-icon-theme-0.8.0.ebuild:
   Stable on ppc wrt bug 161592
@@ -72,9 +74,9 @@
   tango-icon-theme-0.8.0.ebuild:
   Stable on ppc64; bug #161592
 
-  22 Feb 2007; Samuli Suominen <drac@gentoo.org>
+  22 Feb 2007; Samuli Suominen <ssuominen@gentoo.org>
   tango-icon-theme-0.8.0.ebuild:
-  Fix Sandbox Violation. Thanks to Sami Laitinen for reporting.
+  Fix Sandbox Violation, thanks to Sami Laitinen for reporting.
 
   22 Feb 2007; Christian Faulhammer <opfer@gentoo.org>
   tango-icon-theme-0.7.2.ebuild:
@@ -82,9 +84,9 @@
 
 *tango-icon-theme-0.8.0 (21 Feb 2007)
 
-  21 Feb 2007; Samuli Suominen <drac@gentoo.org>
+  21 Feb 2007; Samuli Suominen <ssuominen@gentoo.org>
   +tango-icon-theme-0.8.0.ebuild:
-  Fix bugs 167768 166992 161592.
+  Fix bugs #167768, #166992 and #161592.
 
   30 Sep 2006; Daniel Gryniewicz <dang@gentoo.org>
   tango-icon-theme-0.7.2.ebuild:
