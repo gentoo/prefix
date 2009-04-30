@@ -25,9 +25,9 @@ CONFIGURE_OPTIONS="$(use_enable ipv6)
 	--with-bzip2
 	--with-encodingsdir=${EPREFIX}/usr/share/fonts/encodings"
 
-PATCHES=(
-	"${FILESDIR}"/${PN}-1.3.4-winnt.patch
-)
+#PATCHES=(
+#	"${FILESDIR}"/${PN}-1.3.4-winnt.patch
+#)
 
 pkg_setup() {
 	# No such function yet
