@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-control-center
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/ChangeLog,v 1.27 2009/04/27 14:02:14 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/ChangeLog,v 1.28 2009/04/28 11:18:35 armin76 Exp $
+
+  28 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  gnome-control-center-2.24.0.1.ebuild:
+  sh stable
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org>
   gnome-control-center-2.24.0.1, gnome-control-center-2.24.0.1-r1:
