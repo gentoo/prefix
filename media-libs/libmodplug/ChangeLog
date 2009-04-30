@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/libmodplug
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmodplug/ChangeLog,v 1.37 2008/04/14 14:06:31 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmodplug/ChangeLog,v 1.41 2009/04/29 22:55:09 ranger Exp $
+
+  29 Apr 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking libmodplug-0.7 ppc64 for bug 266913
+
+  29 Apr 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking libmodplug-0.7 ppc for bug 266913
+
+  29 Apr 2009; Jeroen Roovers <jer@gentoo.org> libmodplug-0.8.7.ebuild:
+  Stable for HPPA (bug #266913).
+
+*libmodplug-0.8.7 (29 Apr 2009)
+
+  29 Apr 2009; Alexis Ballier <aballier@gentoo.org>
+  +libmodplug-0.8.7.ebuild:
+  version bump, bug #266913
 
 *libmodplug-0.8.4-r3 (14 Apr 2008)
 
