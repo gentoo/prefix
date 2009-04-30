@@ -1,6 +1,9 @@
 # ChangeLog for gnome-extra/gnome-utils
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/ChangeLog,v 1.175 2009/04/27 14:05:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/ChangeLog,v 1.176 2009/04/28 11:30:11 armin76 Exp $
+
+  28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gnome-utils-2.24.1.ebuild:
+  sh stable
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gnome-utils-2.24.1:
   Stable for HPPA (bug #260063).
