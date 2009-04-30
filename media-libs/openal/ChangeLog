@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/openal
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.108 2009/04/08 20:11:46 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.109 2009/04/29 12:12:18 ssuominen Exp $
+
+  29 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
+  -files/0.0.8/000_all_freebsd.patch,
+  -files/0.0.8/002_all_alc_context.patch,
+  -files/0.0.8/002_all_alsa_default.patch, -files/0.0.8/003_all_mmx.patch,
+  -files/0.0.8/004_all_gcc42.patch,
+  -files/0.0.8/005_all_alsa_default_freq.patch, -files/openalrc,
+  -openal-0.0.8-r2.ebuild, -openal-1.5.304.ebuild,
+  openal-1.7.411.ebuild:
+  Add missing USE flag for portaudio.
 
 *openal-1.7.411 (08 Apr 2009)
 
@@ -43,7 +53,7 @@
 
 *openal-1.6.372 (17 Dec 2008)
 
-  17 Dec 2008; <ssuominen@gentoo.org> +openal-1.6.372.ebuild:
+  17 Dec 2008; Samuli Suominen <ssuominen@gentoo.org> +openal-1.6.372.ebuild:
   Version bump wrt #251023, thanks to Lars for reporting.
 
   16 Dec 2008; Brent Baude <ranger@gentoo.org> openal-1.5.304.ebuild:
@@ -55,7 +65,7 @@
   15 Dec 2008; Brent Baude <ranger@gentoo.org> openal-1.5.304.ebuild:
   Marking openal-1.5.304 ~ppc64 for bug 245771
 
-  15 Dec 2008; <ssuominen@gentoo.org> openal-1.5.304.ebuild:
+  15 Dec 2008; Samuli Suominen <ssuominen@gentoo.org> openal-1.5.304.ebuild:
   x86 stable wrt #245515
 
   16 Nov 2008; Tobias Klausmann <klausman@gentoo.org> openal-1.5.304.ebuild:
