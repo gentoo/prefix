@@ -4,7 +4,7 @@ http://bugs.gentoo.org/show_bug.cgi?id=266984
 
 diff -ur libtool-2.2.6/aclocal.m4 libtool-2.2.6-mint/aclocal.m4
 --- libtool-2.2.6/aclocal.m4	2008-09-07 17:52:46.000000000 +0000
-+++ libtool-2.2.6-mint/aclocal.m4	2009-04-21 08:48:56.000000000 +0000
++++ libtool-2.2.6/aclocal.m4	2009-04-21 08:48:56.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -19,7 +19,7 @@ diff -ur libtool-2.2.6/aclocal.m4 libtool-2.2.6-mint/aclocal.m4
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/configure libtool-2.2.6-mint/configure
 --- libtool-2.2.6/configure	2008-09-07 17:52:50.000000000 +0000
-+++ libtool-2.2.6-mint/configure	2009-04-21 08:49:27.000000000 +0000
++++ libtool-2.2.6/configure	2009-04-21 08:49:27.000000000 +0000
 @@ -4986,6 +4986,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -34,7 +34,7 @@ diff -ur libtool-2.2.6/configure libtool-2.2.6-mint/configure
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/libltdl/aclocal.m4 libtool-2.2.6-mint/libltdl/aclocal.m4
 --- libtool-2.2.6/libltdl/aclocal.m4	2008-09-07 17:53:03.000000000 +0000
-+++ libtool-2.2.6-mint/libltdl/aclocal.m4	2009-04-21 08:49:48.000000000 +0000
++++ libtool-2.2.6/libltdl/aclocal.m4	2009-04-21 08:49:48.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -49,7 +49,7 @@ diff -ur libtool-2.2.6/libltdl/aclocal.m4 libtool-2.2.6-mint/libltdl/aclocal.m4
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/libltdl/configure libtool-2.2.6-mint/libltdl/configure
 --- libtool-2.2.6/libltdl/configure	2008-09-07 17:53:05.000000000 +0000
-+++ libtool-2.2.6-mint/libltdl/configure	2009-04-21 08:50:08.000000000 +0000
++++ libtool-2.2.6/libltdl/configure	2009-04-21 08:50:08.000000000 +0000
 @@ -4422,6 +4422,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -64,7 +64,7 @@ diff -ur libtool-2.2.6/libltdl/configure libtool-2.2.6-mint/libltdl/configure
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/libltdl/m4/libtool.m4 libtool-2.2.6-mint/libltdl/m4/libtool.m4
 --- libtool-2.2.6/libltdl/m4/libtool.m4	2008-09-05 11:54:41.000000000 +0000
-+++ libtool-2.2.6-mint/libltdl/m4/libtool.m4	2009-04-21 08:50:26.000000000 +0000
++++ libtool-2.2.6/libltdl/m4/libtool.m4	2009-04-21 08:50:26.000000000 +0000
 @@ -1527,6 +1527,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -79,7 +79,7 @@ diff -ur libtool-2.2.6/libltdl/m4/libtool.m4 libtool-2.2.6-mint/libltdl/m4/libto
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/cdemo/aclocal.m4 libtool-2.2.6-mint/tests/cdemo/aclocal.m4
 --- libtool-2.2.6/tests/cdemo/aclocal.m4	2008-09-07 17:53:16.000000000 +0000
-+++ libtool-2.2.6-mint/tests/cdemo/aclocal.m4	2009-04-21 08:50:45.000000000 +0000
++++ libtool-2.2.6/tests/cdemo/aclocal.m4	2009-04-21 08:50:45.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -94,7 +94,7 @@ diff -ur libtool-2.2.6/tests/cdemo/aclocal.m4 libtool-2.2.6-mint/tests/cdemo/acl
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/cdemo/configure libtool-2.2.6-mint/tests/cdemo/configure
 --- libtool-2.2.6/tests/cdemo/configure	2008-09-07 17:53:18.000000000 +0000
-+++ libtool-2.2.6-mint/tests/cdemo/configure	2009-04-21 08:51:00.000000000 +0000
++++ libtool-2.2.6/tests/cdemo/configure	2009-04-21 08:51:00.000000000 +0000
 @@ -4395,6 +4395,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -109,7 +109,7 @@ diff -ur libtool-2.2.6/tests/cdemo/configure libtool-2.2.6-mint/tests/cdemo/conf
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/demo/aclocal.m4 libtool-2.2.6-mint/tests/demo/aclocal.m4
 --- libtool-2.2.6/tests/demo/aclocal.m4	2008-09-07 17:53:27.000000000 +0000
-+++ libtool-2.2.6-mint/tests/demo/aclocal.m4	2009-04-21 08:51:24.000000000 +0000
++++ libtool-2.2.6/tests/demo/aclocal.m4	2009-04-21 08:51:24.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -124,7 +124,7 @@ diff -ur libtool-2.2.6/tests/demo/aclocal.m4 libtool-2.2.6-mint/tests/demo/acloc
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/demo/configure libtool-2.2.6-mint/tests/demo/configure
 --- libtool-2.2.6/tests/demo/configure	2008-09-07 17:53:28.000000000 +0000
-+++ libtool-2.2.6-mint/tests/demo/configure	2009-04-21 08:51:13.000000000 +0000
++++ libtool-2.2.6/tests/demo/configure	2009-04-21 08:51:13.000000000 +0000
 @@ -4400,6 +4400,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -139,7 +139,7 @@ diff -ur libtool-2.2.6/tests/demo/configure libtool-2.2.6-mint/tests/demo/config
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/depdemo/aclocal.m4 libtool-2.2.6-mint/tests/depdemo/aclocal.m4
 --- libtool-2.2.6/tests/depdemo/aclocal.m4	2008-09-07 17:53:37.000000000 +0000
-+++ libtool-2.2.6-mint/tests/depdemo/aclocal.m4	2009-04-21 08:51:37.000000000 +0000
++++ libtool-2.2.6/tests/depdemo/aclocal.m4	2009-04-21 08:51:37.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -154,7 +154,7 @@ diff -ur libtool-2.2.6/tests/depdemo/aclocal.m4 libtool-2.2.6-mint/tests/depdemo
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/depdemo/configure libtool-2.2.6-mint/tests/depdemo/configure
 --- libtool-2.2.6/tests/depdemo/configure	2008-09-07 17:53:39.000000000 +0000
-+++ libtool-2.2.6-mint/tests/depdemo/configure	2009-04-21 08:51:45.000000000 +0000
++++ libtool-2.2.6/tests/depdemo/configure	2009-04-21 08:51:45.000000000 +0000
 @@ -4397,6 +4397,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -169,7 +169,7 @@ diff -ur libtool-2.2.6/tests/depdemo/configure libtool-2.2.6-mint/tests/depdemo/
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/f77demo/aclocal.m4 libtool-2.2.6-mint/tests/f77demo/aclocal.m4
 --- libtool-2.2.6/tests/f77demo/aclocal.m4	2008-09-07 17:53:49.000000000 +0000
-+++ libtool-2.2.6-mint/tests/f77demo/aclocal.m4	2009-04-21 08:52:08.000000000 +0000
++++ libtool-2.2.6/tests/f77demo/aclocal.m4	2009-04-21 08:52:08.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -184,7 +184,7 @@ diff -ur libtool-2.2.6/tests/f77demo/aclocal.m4 libtool-2.2.6-mint/tests/f77demo
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/f77demo/configure libtool-2.2.6-mint/tests/f77demo/configure
 --- libtool-2.2.6/tests/f77demo/configure	2008-09-07 17:53:51.000000000 +0000
-+++ libtool-2.2.6-mint/tests/f77demo/configure	2009-04-21 08:51:59.000000000 +0000
++++ libtool-2.2.6/tests/f77demo/configure	2009-04-21 08:51:59.000000000 +0000
 @@ -5539,6 +5539,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -199,7 +199,7 @@ diff -ur libtool-2.2.6/tests/f77demo/configure libtool-2.2.6-mint/tests/f77demo/
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/fcdemo/aclocal.m4 libtool-2.2.6-mint/tests/fcdemo/aclocal.m4
 --- libtool-2.2.6/tests/fcdemo/aclocal.m4	2008-09-07 17:54:02.000000000 +0000
-+++ libtool-2.2.6-mint/tests/fcdemo/aclocal.m4	2009-04-21 08:52:21.000000000 +0000
++++ libtool-2.2.6/tests/fcdemo/aclocal.m4	2009-04-21 08:52:21.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -214,7 +214,7 @@ diff -ur libtool-2.2.6/tests/fcdemo/aclocal.m4 libtool-2.2.6-mint/tests/fcdemo/a
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/fcdemo/configure libtool-2.2.6-mint/tests/fcdemo/configure
 --- libtool-2.2.6/tests/fcdemo/configure	2008-09-07 17:54:04.000000000 +0000
-+++ libtool-2.2.6-mint/tests/fcdemo/configure	2009-04-21 08:52:32.000000000 +0000
++++ libtool-2.2.6/tests/fcdemo/configure	2009-04-21 08:52:32.000000000 +0000
 @@ -5688,6 +5688,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -229,7 +229,7 @@ diff -ur libtool-2.2.6/tests/fcdemo/configure libtool-2.2.6-mint/tests/fcdemo/co
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/mdemo/aclocal.m4 libtool-2.2.6-mint/tests/mdemo/aclocal.m4
 --- libtool-2.2.6/tests/mdemo/aclocal.m4	2008-09-07 17:54:15.000000000 +0000
-+++ libtool-2.2.6-mint/tests/mdemo/aclocal.m4	2009-04-21 08:52:53.000000000 +0000
++++ libtool-2.2.6/tests/mdemo/aclocal.m4	2009-04-21 08:52:53.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -244,7 +244,7 @@ diff -ur libtool-2.2.6/tests/mdemo/aclocal.m4 libtool-2.2.6-mint/tests/mdemo/acl
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/mdemo/configure libtool-2.2.6-mint/tests/mdemo/configure
 --- libtool-2.2.6/tests/mdemo/configure	2008-09-07 17:54:17.000000000 +0000
-+++ libtool-2.2.6-mint/tests/mdemo/configure	2009-04-21 08:52:44.000000000 +0000
++++ libtool-2.2.6/tests/mdemo/configure	2009-04-21 08:52:44.000000000 +0000
 @@ -4432,6 +4432,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -259,7 +259,7 @@ diff -ur libtool-2.2.6/tests/mdemo/configure libtool-2.2.6-mint/tests/mdemo/conf
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/mdemo2/aclocal.m4 libtool-2.2.6-mint/tests/mdemo2/aclocal.m4
 --- libtool-2.2.6/tests/mdemo2/aclocal.m4	2008-09-07 17:54:25.000000000 +0000
-+++ libtool-2.2.6-mint/tests/mdemo2/aclocal.m4	2009-04-21 08:53:01.000000000 +0000
++++ libtool-2.2.6/tests/mdemo2/aclocal.m4	2009-04-21 08:53:01.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -274,7 +274,7 @@ diff -ur libtool-2.2.6/tests/mdemo2/aclocal.m4 libtool-2.2.6-mint/tests/mdemo2/a
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/mdemo2/configure libtool-2.2.6-mint/tests/mdemo2/configure
 --- libtool-2.2.6/tests/mdemo2/configure	2008-09-07 17:54:27.000000000 +0000
-+++ libtool-2.2.6-mint/tests/mdemo2/configure	2009-04-21 08:53:09.000000000 +0000
++++ libtool-2.2.6/tests/mdemo2/configure	2009-04-21 08:53:09.000000000 +0000
 @@ -4395,6 +4395,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -289,7 +289,7 @@ diff -ur libtool-2.2.6/tests/mdemo2/configure libtool-2.2.6-mint/tests/mdemo2/co
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/pdemo/aclocal.m4 libtool-2.2.6-mint/tests/pdemo/aclocal.m4
 --- libtool-2.2.6/tests/pdemo/aclocal.m4	2008-09-07 17:54:36.000000000 +0000
-+++ libtool-2.2.6-mint/tests/pdemo/aclocal.m4	2009-04-21 08:53:32.000000000 +0000
++++ libtool-2.2.6/tests/pdemo/aclocal.m4	2009-04-21 08:53:32.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -304,7 +304,7 @@ diff -ur libtool-2.2.6/tests/pdemo/aclocal.m4 libtool-2.2.6-mint/tests/pdemo/acl
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/pdemo/configure libtool-2.2.6-mint/tests/pdemo/configure
 --- libtool-2.2.6/tests/pdemo/configure	2008-09-07 17:54:38.000000000 +0000
-+++ libtool-2.2.6-mint/tests/pdemo/configure	2009-04-21 08:53:21.000000000 +0000
++++ libtool-2.2.6/tests/pdemo/configure	2009-04-21 08:53:21.000000000 +0000
 @@ -4398,6 +4398,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -319,7 +319,7 @@ diff -ur libtool-2.2.6/tests/pdemo/configure libtool-2.2.6-mint/tests/pdemo/conf
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/tagdemo/aclocal.m4 libtool-2.2.6-mint/tests/tagdemo/aclocal.m4
 --- libtool-2.2.6/tests/tagdemo/aclocal.m4	2008-09-07 17:54:47.000000000 +0000
-+++ libtool-2.2.6-mint/tests/tagdemo/aclocal.m4	2009-04-21 08:53:41.000000000 +0000
++++ libtool-2.2.6/tests/tagdemo/aclocal.m4	2009-04-21 08:53:41.000000000 +0000
 @@ -834,6 +834,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
@@ -334,7 +334,7 @@ diff -ur libtool-2.2.6/tests/tagdemo/aclocal.m4 libtool-2.2.6-mint/tests/tagdemo
      # So we just punt and use a minimum line length of 8192.
 diff -ur libtool-2.2.6/tests/tagdemo/configure libtool-2.2.6-mint/tests/tagdemo/configure
 --- libtool-2.2.6/tests/tagdemo/configure	2008-09-07 17:54:49.000000000 +0000
-+++ libtool-2.2.6-mint/tests/tagdemo/configure	2009-04-21 08:53:53.000000000 +0000
++++ libtool-2.2.6/tests/tagdemo/configure	2009-04-21 08:53:53.000000000 +0000
 @@ -5652,6 +5652,11 @@
      lt_cv_sys_max_cmd_len=8192;
      ;;
