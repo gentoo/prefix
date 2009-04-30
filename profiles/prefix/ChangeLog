@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  30 Apr 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask xmlrpc-c-1.18.02 as it doesn't compile on at least two platforms
+
   29 Apr 2009; Jeremy Olexa <darkside@gentoo.org> linux/package.mask:
   Unmask bash-4 on linux platforms, works fine for me
 

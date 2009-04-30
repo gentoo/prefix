@@ -32,6 +32,12 @@
 
 #--- END OF EXAMPLES ---
 
+
+# Fabian Groffen <grobian@gentoo.org> (30 Apr 2009)
+# Feels like it has -Werror somewhere as it dies on warnings for Darwin,
+# dies completely on Solaris.
+=dev-libs/xmlrpc-c-1.18.02
+
 # Jeremy Olexa <darkside@gentoo.org> (21 Apr 2009)
 # User reported that it works fine but will not install for me due to unknown
 # kernel location, etc. See bug 265276 for an example.
@@ -52,8 +58,8 @@ net-wireless/aircrack-ng
 =xfce-base/xfce4-session-4.6.0
 
 # Fabian Groffen <grobian@gentoo.org> (25 Mar 2009)
-# Fails to build my thesis' and paper's images with some /error
-# /fontdir, 8.63 works fine
+# Fails to build my thesis' and papers' images with
+# Error: /rangecheck in /findfont, 8.63 works fine
 =app-text/ghostscript-gpl-8.64*
 
 # Fabian Groffen <grobian@gentoo.org> (25 Feb 2009)
