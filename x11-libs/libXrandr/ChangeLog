@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libXrandr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrandr/ChangeLog,v 1.57 2009/04/16 02:21:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrandr/ChangeLog,v 1.58 2009/04/29 10:12:51 remi Exp $
+
+*libXrandr-1.3.0 (29 Apr 2009)
+
+  29 Apr 2009; Rémi Cardona <remi@gentoo.org> +libXrandr-1.3.0.ebuild:
+  import 1.3.0 from the x11 overlay
 
   16 Apr 2009; Jeroen Roovers <jer@gentoo.org> libXrandr-1.2.3.ebuild:
   Stable for HPPA (bug #251832).
