@@ -1,18 +1,19 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.1_beta2.ebuild,v 1.2 2008/12/10 10:22:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.5_beta4.ebuild,v 1.1 2009/04/28 14:17:10 armin76 Exp $
+EAPI="2"
 
 inherit eutils mozilla-launcher multilib mozextension prefix
 
-LANGS="af ar be bg bn-IN ca cs cy de el en-GB en-US eo es-AR es-ES et eu fi fr fy-NL ga-IE gu-IN he hi-IN hu id is it ja kn ko lt lv mr nb-NO nl nn-NO pa-IN pl pt-BR pt-PT ro ru si sk sl sq sv-SE te tr uk zh-CN zh-TW"
+LANGS="af ar be bg bn-IN ca cs cy da de el en-GB en-US eo es-AR es-ES et eu fa fi fr fy-NL ga-IE gl gu-IN he hi-IN hu id is it ja ka kk kn ko ku lt lv mk mn mr nb-NO nl nn-NO oc pa-IN pl pt-BR pt-PT ro ru si sk sl sq sr sv-SE ta te th tr uk vi zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR pt-BR zh-CN"
 
 MY_PV="${PV/_beta/b}"
-MY_P="${PN}-${MY_PV}"
+MY_P="${PN/-bin/}-${MY_PV}"
 
 DESCRIPTION="Firefox Web Browser"
-SRC_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/${MY_PV}/linux-i686/en-US/firefox-${MY_PV}.tar.bz2"
-HOMEPAGE="http://www.mozilla.com/firefox"
+REL_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/"
+SRC_URI="${REL_URI}/${MY_PV}/linux-i686/en-US/firefox-${MY_PV}.tar.bz2"
 RESTRICT="strip"
 
 KEYWORDS="~amd64-linux ~x86-linux"
@@ -23,14 +24,14 @@ IUSE="restrict-javascript"
 for X in ${LANGS} ; do
 	if [ "${X}" != "en" ] && [ "${X}" != "en-US" ]; then
 		SRC_URI="${SRC_URI}
-			linguas_${X/-/_}? ( http://dev.gentoo.org/~armin76/dist/${MY_P/-bin}-xpi/${MY_P/-bin/}-${X}.xpi )"
+			linguas_${X/-/_}? ( ${REL_URI}/${MY_PV}/linux-i686/xpi/${X}.xpi -> ${P/-bin/}-${X}.xpi )"
 	fi
 	IUSE="${IUSE} linguas_${X/-/_}"
 	# english is handled internally
 	if [ "${#X}" == 5 ] && ! has ${X} ${NOSHORTLANGS}; then
 		if [ "${X}" != "en-US" ]; then
 			SRC_URI="${SRC_URI}
-				linguas_${X%%-*}? ( http://dev.gentoo.org/~armin76/dist/${MY_P/-bin}-xpi/${MY_P/-bin/}-${X}.xpi )"
+				linguas_${X%%-*}? ( ${REL_URI}/${MY_PV}/linux-i686/xpi/${X}.xpi -> ${P/-bin/}-${X}.xpi )"
 		fi
 		IUSE="${IUSE} linguas_${X%%-*}"
 	fi
@@ -43,7 +44,7 @@ RDEPEND="dev-libs/dbus-glib
 	x11-libs/libXmu
 	x86? (
 		>=x11-libs/gtk+-2.2
-		>=media-libs/alsa-lib-1.0.16
+		 >=media-libs/alsa-lib-1.0.16
 	)
 	amd64? (
 		>=app-emulation/emul-linux-x86-baselibs-1.0
@@ -81,7 +82,7 @@ linguas() {
 				fi
 			done
 		fi
-		ewarn "Sorry, but mozilla-firefox does not support the ${LANG} LINGUA"
+		ewarn "Sorry, but ${PN} does not support the ${LANG} LINGUA"
 	done
 }
 
@@ -90,7 +91,7 @@ src_unpack() {
 
 	linguas
 	for X in ${linguas}; do
-		[[ ${X} != "en" ]] && xpi_unpack "${MY_P/-bin/}-${X}.xpi"
+		[[ ${X} != "en" ]] && xpi_unpack "${P/-bin/}-${X}.xpi"
 	done
 	if [[ ${linguas} != "" && ${linguas} != "en" ]]; then
 		einfo "Selected language packs (first will be default): ${linguas}"
@@ -113,7 +114,7 @@ src_install() {
 
 	linguas
 	for X in ${linguas}; do
-		[[ ${X} != "en" ]] && xpi_install "${WORKDIR}"/"${MY_P/-bin/}-${X}"
+		[[ ${X} != "en" ]] && xpi_install "${WORKDIR}"/"${P/-bin/}-${X}"
 	done
 
 	local LANG=${linguas%% *}
