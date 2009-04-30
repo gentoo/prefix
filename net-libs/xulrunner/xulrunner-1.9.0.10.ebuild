@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.9.ebuild,v 1.1 2009/04/22 18:03:32 armin76 Exp $
-
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.0.10.ebuild,v 1.3 2009/04/29 22:54:21 ranger Exp $
+EAPI="2"
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-pkg-opt-2 python autotools prefix
@@ -24,7 +24,9 @@ RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=dev-libs/nss-3.12.2
 	>=dev-libs/nspr-4.7.4
 	>=app-text/hunspell-1.1.9
-	>=media-libs/lcms-1.17"
+	>=media-libs/lcms-1.17
+	x11-libs/cairo[X]
+	x11-libs/pango[X]"
 
 DEPEND="java? ( >=virtual/jdk-1.4 )
 	${RDEPEND}
@@ -39,24 +41,11 @@ export MOZ_CO_PROJECT=xulrunner
 export BUILD_OFFICIAL=1
 export MOZILLA_OFFICIAL=1
 
-pkg_setup(){
-	if ! built_with_use x11-libs/cairo X; then
-		eerror "Cairo is not built with X useflag."
-		eerror "Please add 'X' to your USE flags, and re-emerge cairo."
-		die "Cairo needs X"
-	fi
-
-	if ! built_with_use --missing true x11-libs/pango X; then
-		eerror "Pango is not built with X useflag."
-		eerror "Please add 'X' to your USE flags, and re-emerge pango."
-		die "Pango needs X"
-	fi
+pkg_setup() {
 	java-pkg-opt-2_pkg_setup
 }
 
-src_unpack() {
-	unpack ${A}
-
+src_prepare() {
 	# Apply our patches
 	cd "${S}" || die "cd failed"
 	EPATCH_SUFFIX="patch" \
@@ -78,7 +67,7 @@ src_unpack() {
 	epatch "${WORKDIR}"/patch/000_flex-configure-LANG.patch
 }
 
-src_compile() {
+src_configure() {
 	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}-1.9"
 
 	####################################
@@ -131,15 +120,15 @@ src_compile() {
 	# Finalize and report settings
 	mozconfig_final
 
-	if [[ $(gcc-major-version) -lt 4 ]]; then
-		append-cxxflags -fno-stack-protector
-	fi
-
 	####################################
 	#
 	#  Configure and build
 	#
 	####################################
+
+	if [[ $(gcc-major-version) -lt 4 ]]; then
+		append-cxxflags -fno-stack-protector
+	fi
 
 	CPPFLAGS="${CPPFLAGS} -DARON_WAS_HERE" \
 	CC="$(tc-getCC)" CXX="$(tc-getCXX)" LD="$(tc-getLD)" \
@@ -151,8 +140,6 @@ src_compile() {
 		's|-DARON_WAS_HERE|-DGENTOO_NSPLUGINS_DIR=\\\"${EPREFIX}/usr/'"$(get_libdir)"'/nsplugins\\\" -DGENTOO_NSBROWSER_PLUGINS_DIR=\\\"${EPREFIX}/usr/'"$(get_libdir)"'/nsbrowser/plugins\\\"|' \
 		"${S}"/config/autoconf.mk \
 		"${S}"/toolkit/content/buildconfig.html
-
-	emake || die "emake failed"
 }
 
 src_install() {
