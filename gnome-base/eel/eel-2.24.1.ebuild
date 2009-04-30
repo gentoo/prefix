@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.24.1.ebuild,v 1.10 2009/04/27 13:21:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.24.1.ebuild,v 1.11 2009/04/28 10:51:18 armin76 Exp $
 
 inherit virtualx gnome2
 
