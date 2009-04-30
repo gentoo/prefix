@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/xfprint/xfprint-4.6.1.ebuild,v 1.1 2009/04/21 04:27:23 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-print/xfprint/xfprint-4.6.1.ebuild,v 1.2 2009/04/28 10:27:54 ssuominen Exp $
 
-EAPI="1"
-
+EAPI=1
 inherit xfce4
 
 xfce4_core
@@ -11,7 +10,7 @@ xfce4_core
 DESCRIPTION="Frontend for printing, management and job queue."
 HOMEPAGE="http://www.xfce.org/projects/xfprint"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="cups doc debug"
+IUSE="+cups debug"
 
 RDEPEND="app-text/a2ps
 	>=dev-libs/glib-2.6:2
@@ -22,18 +21,19 @@ RDEPEND="app-text/a2ps
 	cups? ( net-print/cups )
 	!cups? ( net-print/lprng )"
 DEPEND="${RDEPEND}
-	dev-util/intltool
-	doc? ( dev-util/gtk-doc )"
+	dev-util/intltool"
 
 pkg_setup() {
-	use cups || XFCE_CONFIG+=" --enable-bsdlpr"
-	use cups && XFCE_CONFIG+=" --enable-cups"
-	XFCE_CONFIG+=" $(use_enable doc gtk-doc)"
+	# - Cups allows you to have both bsdlpr and cups.
+	# - Enabling gtk-doc is no use, the documentation
+	# has been prebuilt.
+	XFCE_CONFIG+=" --enable-bsdlpr
+		--disable-gtk-doc $(use_enable cups)"
+	DOCS="AUTHORS ChangeLog NEWS README TODO"
 }
 
 src_unpack() {
 	xfce4_src_unpack
-	sed -i -e "/24x24/d" "${S}"/icons/Makefile.in
+	sed -i -e "/24x24/d" "${S}"/icons/Makefile.in \
+		|| die "sed failed"
 }
-
-DOCS="AUTHORS ChangeLog NEWS README TODO"
