@@ -4,8 +4,6 @@
 
 inherit eutils
 
-inherit eutils
-
 DESCRIPTION="Used to create autoconfiguration files"
 HOMEPAGE="http://www.gnu.org/software/autoconf/autoconf.html"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
@@ -25,15 +23,10 @@ PDEPEND="emacs? ( app-emacs/autoconf-mode )"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-sh.patch #264303
 
 	# usr/bin/libtool is provided by binutils-apple
 	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${PN}-2.61-darwin.patch
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-sh.patch #264303
 }
 
 src_compile() {
