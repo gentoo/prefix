@@ -1,6 +1,11 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.248 2009/03/14 13:42:57 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.249 2009/04/28 16:41:10 ssuominen Exp $
+
+  28 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
+  xscreensaver-5.08.ebuild:
+  amd64 stable and move flag-o-matic usage to src_configure where it should
+  be.
 
   14 Mar 2009; Tomas Chvatal <scarabeus@gentoo.org>
   -files/5.07/03_all_glforrestfire.patch:
@@ -25,12 +30,9 @@
   +files/5.08/02_all_no_intltool.patch, +xscreensaver-5.08.ebuild:
   Version bump.
 
-  24 Nov 2008; <ssuominen@gentoo.org> metadata.xml:
-  Rename my old e-mail drac at gentoo.org to ssuominen at gentoo.org.
-
   20 Nov 2008; Brent Baude <ranger@gentoo.org> -xscreensaver-5.05.ebuild,
   xscreensaver-5.07.ebuild:
-  Marking xscreensaver-5.07 ppc64 for bug 246717 and removing old files per drac
+  Marking xscreensaver-5.07 ppc64 for bug 246717 and removing old files.
 
   16 Nov 2008; Jeroen Roovers <jer@gentoo.org> xscreensaver-5.07.ebuild:
   Stable for HPPA (bug #246717).
@@ -69,7 +71,7 @@
 
 *xscreensaver-5.06 (04 Aug 2008)
 
-  04 Aug 2008; Samuli Suominen <drac@gentoo.org>
+  04 Aug 2008; Samuli Suominen <ssuominen@gentoo.org>
   +files/5.06/01_all_default_settings.patch,
   +files/5.06/02_all_xinerama_function.patch, +xscreensaver-5.06.ebuild:
   Version bump. Upstream applied most of our patchset. Fix building with
@@ -77,7 +79,7 @@
 
 *xscreensaver-5.05-r1 (07 May 2008)
 
-  07 May 2008; Samuli Suominen <drac@gentoo.org>
+  07 May 2008; Samuli Suominen <ssuominen@gentoo.org>
   +files/5.05/01_all_default_settings.patch,
   +files/5.05/03_all_desktop_entry.patch,
   +files/5.05/05_all_offensive.patch,
@@ -116,25 +118,25 @@
   Stable on ppc64; bug #214870. Also wrap ppc/ppc64 specific filter-flags and
   append-flags in a use ppc/ppc64 statement; bug #212191
 
-  26 Mar 2008; Samuli Suominen <drac@gentoo.org> xscreensaver-5.05.ebuild:
+  26 Mar 2008; Samuli Suominen <ssuominen@gentoo.org> xscreensaver-5.05.ebuild:
   Fix #113681 again and mark amd64 stable wrt #214870.
 
 *xscreensaver-5.05 (02 Mar 2008)
 
-  02 Mar 2008; Samuli Suominen <drac@gentoo.org>
+  02 Mar 2008; Samuli Suominen <ssuominen@gentoo.org>
   +files/xscreensaver-5.05-desktop-entry.patch,
   +files/xscreensaver-5.05-posix-head.patch, -xscreensaver-5.04.ebuild,
   +xscreensaver-5.05.ebuild:
   Version bump wrt #212060, thanks to Tobias Klausmann for reporting.
 
-  28 Feb 2008; Samuli Suominen <drac@gentoo.org>
+  28 Feb 2008; Samuli Suominen <ssuominen@gentoo.org>
   xscreensaver-5.04-r1.ebuild:
   amd64 stable wrt #210913
 
   25 Feb 2008; Jeroen Roovers <jer@gentoo.org> xscreensaver-5.04-r1.ebuild:
   Stable for HPPA (bug #210913).
 
-  21 Feb 2008; Samuli Suominen <drac@gentoo.org>
+  21 Feb 2008; Samuli Suominen <ssuominen@gentoo.org>
   files/xscreensaver-5.04-desktop-entry.patch:
   Rename desktop file to xscreensaver-properties.desktop and add NotShowIn
   GNOME to avoid duplicate entry with gnome-screensaver in Gnome environment.
@@ -159,7 +161,7 @@
 
 *xscreensaver-5.04-r1 (14 Feb 2008)
 
-  14 Feb 2008; Samuli Suominen <drac@gentoo.org>
+  14 Feb 2008; Samuli Suominen <ssuominen@gentoo.org>
   +files/xscreensaver-5.04-build.patch, +xscreensaver-5.04-r1.ebuild:
   Compile time fixes for bugs #209341 and #208731.
 
@@ -178,20 +180,20 @@
   31 Jan 2008; Brent Baude <ranger@gentoo.org> xscreensaver-5.04.ebuild:
   Marking xscreensaver-5.04 ppc64 for bug 208297
 
-  29 Jan 2008; Samuli Suominen <drac@gentoo.org> xscreensaver-5.04.ebuild:
+  29 Jan 2008; Samuli Suominen <ssuominen@gentoo.org> xscreensaver-5.04.ebuild:
   amd64 stable
 
-  01 Jan 2008; Samuli Suominen <drac@gentoo.org>
+  01 Jan 2008; Samuli Suominen <ssuominen@gentoo.org>
   files/xscreensaver-5.04-nsfw.patch, xscreensaver-5.04.ebuild:
   Update offensive patch, do less.
 
-  30 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  30 Dec 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/xscreensaver-5.04-gentoo.patch, xscreensaver-5.04.ebuild:
   Update patch. Sort ebuild.
 
 *xscreensaver-5.04 (30 Dec 2007)
 
-  30 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  30 Dec 2007; Samuli Suominen <ssuominen@gentoo.org>
   -files/xscreensaver-5.02-gdmflexiserver.patch,
   -files/xscreensaver-5.02-nsfw.patch, -files/xscreensaver-5.02-pam.patch,
   +files/xscreensaver-5.04-desktop-entry.patch,
@@ -205,7 +207,7 @@
   20 Nov 2007; Joshua Kinard <kumba@gentoo.org> xscreensaver-5.03.ebuild:
   Stable on mips, per #195253.
 
-  27 Oct 2007; Samuli Suominen <drac@gentoo.org> xscreensaver-5.03.ebuild:
+  27 Oct 2007; Samuli Suominen <ssuominen@gentoo.org> xscreensaver-5.03.ebuild:
   arm stable.
 
   14 Oct 2007; Raúl Porcel <armin76@gentoo.org> xscreensaver-5.03.ebuild:
@@ -260,29 +262,26 @@
   xscreensaver-5.02-r2.ebuild:
   Stable on amd64 wrt bug 183048
 
-  13 Jun 2007; Samuli Suominen <drac@gentoo.org>
+  13 Jun 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/xscreensaver-5.02-gentoo.patch, xscreensaver-5.02-r2.ebuild:
   Stop using invalid patch hidden inside combined
   xscreensaver-5.01-gentoo.patch after consulting upstream.
 
-  13 Jun 2007; Samuli Suominen <drac@gentoo.org> xscreensaver-5.02.ebuild,
+  13 Jun 2007; Samuli Suominen <ssuominen@gentoo.org> xscreensaver-5.02.ebuild,
   xscreensaver-5.02-r1.ebuild, xscreensaver-5.02-r2.ebuild:
   Stop using hypertorus.xml patch since it was fixed differently. Bug 154444.
 
-  09 Jun 2007; Samuli Suominen <drac@gentoo.org>
+  09 Jun 2007; Samuli Suominen <ssuominen@gentoo.org>
   xscreensaver-5.02-r2.ebuild:
   --with-gle was used only by one corrupted screensaver, stop using it.
 
-  08 Jun 2007; Samuli Suominen <drac@gentoo.org> metadata.xml:
-  Add upstream to metadata.xml per request.
-
-  07 Jun 2007; Samuli Suominen <drac@gentoo.org>
+  07 Jun 2007; Samuli Suominen <ssuominen@gentoo.org>
   xscreensaver-5.02-r1.ebuild:
   Stable on arm.
 
 *xscreensaver-5.02-r2 (06 Jun 2007)
 
-  06 Jun 2007; Samuli Suominen <drac@gentoo.org>
+  06 Jun 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/xscreensaver-5.02-pam.patch, +xscreensaver-5.02-r2.ebuild:
   Patch to fix segmentation fault with non-interactive pam by Andrea Luzzardi
   in bug 180542.
@@ -290,13 +289,13 @@
   27 May 2007; Joshua Kinard <kumba@gentoo.org> xscreensaver-5.02-r1.ebuild:
   Stable on mips.
 
-  24 May 2007; Samuli Suominen <drac@gentoo.org> xscreensaver-5.02.ebuild,
+  24 May 2007; Samuli Suominen <ssuominen@gentoo.org> xscreensaver-5.02.ebuild,
   xscreensaver-5.02-r1.ebuild:
   Add missing intltool dep for bug 131701.
 
 *xscreensaver-5.02-r1 (11 May 2007)
 
-  11 May 2007; Samuli Suominen <drac@gentoo.org>
+  11 May 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/xscreensaver-5.02-gdmflexiserver.patch,
   +xscreensaver-5.02-r1.ebuild:
   Fix gdmflexiserver handling for bug 141627. Thanks to Michal Varady.
@@ -325,29 +324,30 @@
   02 May 2007; Markus Rothe <corsair@gentoo.org> xscreensaver-5.02.ebuild:
   Stable on ppc64
 
-  01 May 2007; Samuli Suominen <drac@gentoo.org>
+  01 May 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/xscreensaver-5.02-nsfw.patch, xscreensaver-5.02.ebuild:
   Fix USE="offensive" patch.
 
 *xscreensaver-5.02 (01 May 2007)
 
-  01 May 2007; Samuli Suominen <drac@gentoo.org> +xscreensaver-5.02.ebuild:
+  01 May 2007; Samuli Suominen <ssuominen@gentoo.org>
+  +xscreensaver-5.02.ebuild:
   Version bump.
 
   06 Apr 2007; Peter Weller <welp@gentoo.org> xscreensaver-5.01-r2.ebuild:
   Stable on amd64 wrt bug 167688
 
-  22 Mar 2007; Samuli Suominen <drac@gentoo.org>
+  22 Mar 2007; Samuli Suominen <ssuominen@gentoo.org>
   xscreensaver-5.01-r3.ebuild:
   Update branding patch.
 
 *xscreensaver-5.01-r3 (18 Mar 2007)
 
-  18 Mar 2007; Samuli Suominen <drac@gentoo.org>
+  18 Mar 2007; Samuli Suominen <ssuominen@gentoo.org>
   +xscreensaver-5.01-r3.ebuild:
   USE="branding" for Gentoo style Lock Screen. Patch from Niklas Närhinen.
 
-  02 Mar 2007; Samuli Suominen <drac@gentoo.org>
+  02 Mar 2007; Samuli Suominen <ssuominen@gentoo.org>
   xscreensaver-5.01-r2.ebuild:
   Allways install Settings .desktop for enviroments following f.d.o menu spec,
   e.g. xfce-base/xfdesktop and rox-base/xdg-menu.
@@ -355,7 +355,7 @@
   24 Feb 2007; nixnut <nixnut@gentoo.org> xscreensaver-5.01-r2.ebuild:
   Stable on ppc wrt bug 167688
 
-  24 Feb 2007; Samuli Suominen <drac@gentoo.org>
+  24 Feb 2007; Samuli Suominen <ssuominen@gentoo.org>
   xscreensaver-5.01-r2.ebuild:
   Force -j1 to emake for bug 155049.
 
@@ -370,7 +370,7 @@
   xscreensaver-5.01-r2.ebuild:
   x86 stable wrt bug 167688
 
-  20 Feb 2007; Samuli Suominen <drac@gentoo.org>
+  20 Feb 2007; Samuli Suominen <ssuominen@gentoo.org>
   xscreensaver-5.01-r2.ebuild:
   Remove USE nls because it's not optional. Thanks to armin76 for pointing it
   out.
