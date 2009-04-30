@@ -1,0 +1,77 @@
+# ChangeLog for sci-libs/cholmod
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/cholmod/ChangeLog,v 1.17 2009/04/20 19:56:21 maekke Exp $
+
+  20 Apr 2009; Markus Meier <maekke@gentoo.org> cholmod-1.6.0-r1:
+  x86 stable, bug #245707
+
+  27 Mar 2009; Ferris McCormick <fmccor@gentoo.org> cholmod-1.6.0-r1.ebuild:
+  Sparc stable, preparation for bug #245707.
+
+  23 Mar 2009; Jeremy Olexa <darkside@gentoo.org> cholmod-1.6.0-r1.ebuild:
+  amd64 stable, bug 245707
+
+*cholmod-1.7.0-r1 (14 Mar 2009)
+
+  14 Mar 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  -cholmod-1.7.0.ebuild, +cholmod-1.7.0-r1.ebuild:
+  Now install headers used for internal suitesparse packages
+
+*cholmod-1.7.0 (09 Mar 2009)
+
+  09 Mar 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  +cholmod-1.7.0.ebuild:
+  Version bump
+
+  08 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  cholmod-1.6.0-r1.ebuild:
+  Stable on alpha, bug #245707
+
+  10 Oct 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  cholmod-1.6.0-r1.ebuild:
+  Fixed a syntax error in the minimal flag, and added blas configuration in
+  the supernodal mode
+
+  07 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
+  Add USE flag description to metadata wrt GLEP 56.
+
+  22 May 2008; Justin Bronder <jsbronder@gentoo.org>
+  cholmod-1.6.0-r1.ebuild:
+  Added ~ppc (#219458)
+
+  11 May 2008; Markus Rothe <corsair@gentoo.org> cholmod-1.6.0-r1.ebuild:
+  Added ppc64; bug #219458
+
+  05 May 2008; Justin Bronder <jsbronder@gentoo.org>
+  files/cholmod-1.6.0-autotools.patch:
+  Bug #220263, fix typo in patch (PARTITIOn -> PARTITION).  Thanks to Juan
+  Aguado (juantxorena at gmail) for tracking this down.
+
+  28 Apr 2008; Tobias Klausmann <klausman@gentoo.org>
+  cholmod-1.6.0-r1.ebuild:
+  Keyworded on alpha, bug #219458
+
+  28 Apr 2008; Jeroen Roovers <jer@gentoo.org> cholmod-1.6.0-r1.ebuild:
+  Marked ~hppa (bug #219458).
+
+  27 Apr 2008; Ferris McCormick <fmccor@gentoo.org> cholmod-1.6.0-r1.ebuild:
+  Add ~sparc keyword, Bug #219460.  All tests pass.
+
+*cholmod-1.6.0-r1 (28 Mar 2008)
+
+  28 Mar 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  files/cholmod-1.6.0-autotools.patch, -cholmod-1.6.0.ebuild,
+  +cholmod-1.6.0-r1.ebuild:
+  Fixed header locations for metis, added support for pkg-config for lapack
+  and metis, cleaned up autotools and ebuild
+
+  27 Mar 2008; Sébastien Fabbro <bicatali@gentoo.org> cholmod-1.6.0.ebuild:
+  Added parmetis as a possible graph partitoner
+
+*cholmod-1.6.0 (05 Feb 2008)
+
+  05 Feb 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/cholmod-1.6.0-autotools.patch, +metadata.xml,
+  +cholmod-1.6.0.ebuild:
+  Initial import. Thanks to Justin Bronder for his work, see bug #173900
+

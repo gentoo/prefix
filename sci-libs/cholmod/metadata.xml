@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>sci</herd>
+<longdescription lang="en">
+  CHOLMOD is a set of ANSI C routines for sparse Cholesky
+  factorization and update/downdate.
+</longdescription>
+<use>
+  <flag name='metis'>Enable the Partition module to cholmod using metis
+    (<pkg>sci-libs/metis</pkg>, <pkg>sci-libs/parmetis</pkg>)</flag>
+  <flag name='supernodal'>Enable the Supernodal module
+    (needs <pkg>virtual/lapack</pkg>)</flag>
+</use>
+</pkgmetadata>
