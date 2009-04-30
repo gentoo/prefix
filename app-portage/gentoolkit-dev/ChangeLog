@@ -1,6 +1,14 @@
 # ChangeLog for app-portage/gentoolkit-dev
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.59 2008/12/31 21:47:20 fuzzyray Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.60 2009/04/29 20:44:33 fuzzyray Exp $
+
+*gentoolkit-dev-0.2.6.10 (29 Apr 2009)
+
+  29 Apr 2009; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-dev-0.2.6.10.ebuild:
+  Version Bump to fix issues with git and subversion support. Also fixes
+  ekeyword handling of multiline KEYWORDS and echangelog omitting '.ebuild'
+  from ChangeLog entries. (Bugs #267250 and #267665)
 
 *gentoolkit-dev-0.2.6.9 (31 Dec 2008)
 
