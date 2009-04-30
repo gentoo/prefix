@@ -1,6 +1,20 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.500 2009/04/22 18:06:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.503 2009/04/29 22:56:16 ranger Exp $
+
+  29 Apr 2009; Brent Baude <ranger@gentoo.org>
+  mozilla-firefox-3.0.10.ebuild:
+  Marking mozilla-firefox-3.0.10 ppc64 and ppc for bug 267234
+
+  29 Apr 2009; Christian Faulhammer <fauli@gentoo.org>
+  mozilla-firefox-3.0.10.ebuild:
+  stable x86, security bug 267234
+
+*mozilla-firefox-3.0.10 (28 Apr 2009)
+
+  28 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  -mozilla-firefox-3.0.9.ebuild, +mozilla-firefox-3.0.10.ebuild:
+  Version bump
 
 *mozilla-firefox-3.0.9 (22 Apr 2009)
 

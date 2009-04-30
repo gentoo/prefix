@@ -1,7 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.9.ebuild,v 1.1 2009/04/22 18:06:12 armin76 Exp $
-EAPI="1"
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.10.ebuild,v 1.3 2009/04/29 22:56:16 ranger Exp $
+EAPI="2"
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib fdo-mime autotools mozextension
@@ -27,22 +27,18 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2
 	iceweasel? ( mirror://gentoo/iceweasel-icons-3.0.tar.bz2 )
 	!xulrunner? ( mirror://gentoo/xulrunner-1.9${MY_PV}.tar.bz2 )"
 
-# These are in
-#
-#  http://releases.mozilla.org/pub/mozilla.org/firefox/releases/${PV}/linux-i686/xpi/
-#
-# for i in $LANGS $SHORTLANGS; do wget $i.xpi -O ${P}-$i.xpi; done
+REL_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases"
 for X in ${LANGS} ; do
 	if [ "${X}" != "en" ] && [ "${X}" != "en-US" ]; then
 		SRC_URI="${SRC_URI}
-			linguas_${X/-/_}? ( http://dev.gentoo.org/~armin76/dist/${P}-xpi/${P}-${X}.xpi )"
+			linguas_${X/-/_}? ( ${REL_URI}/${PV}/linux-i686/xpi/${X}.xpi -> ${P}-${X}.xpi )"
 	fi
 	IUSE="${IUSE} linguas_${X/-/_}"
 	# english is handled internally
 	if [ "${#X}" == 5 ] && ! has ${X} ${NOSHORTLANGS}; then
 		if [ "${X}" != "en-US" ]; then
 			SRC_URI="${SRC_URI}
-				linguas_${X%%-*}? ( http://dev.gentoo.org/~armin76/dist/${P}-xpi/${P}-${X}.xpi )"
+				linguas_${X%%-*}? ( ${REL_URI}/${PV}/linux-i686/xpi/${X}.xpi -> ${P}-${X}.xpi )"
 		fi
 		IUSE="${IUSE} linguas_${X%%-*}"
 	fi
@@ -54,6 +50,8 @@ RDEPEND="java? ( virtual/jre )
 	>=dev-libs/nspr-4.7.4
 	>=app-text/hunspell-1.1.9
 	>=media-libs/lcms-1.17
+	x11-libs/cairo[X]
+	x11-libs/pango[X]
 	xulrunner? ( >=net-libs/xulrunner-1.9${MY_PV} )"
 
 DEPEND="${RDEPEND}
@@ -94,18 +92,6 @@ linguas() {
 }
 
 pkg_setup(){
-	if ! built_with_use x11-libs/cairo X; then
-		eerror "Cairo is not built with X useflag."
-		eerror "Please add 'X' to your USE flags, and re-emerge cairo."
-		die "Cairo needs X"
-	fi
-
-	if ! built_with_use --missing true x11-libs/pango X; then
-		eerror "Pango is not built with X useflag."
-		eerror "Please add 'X' to your USE flags, and re-emerge pango."
-		die "Pango needs X"
-	fi
-
 	if ! use bindist && ! use iceweasel; then
 		elog "You are enabling official branding. You may not redistribute this build"
 		elog "to any users on your network or the internet. Doing so puts yourself into"
@@ -132,7 +118,9 @@ src_unpack() {
 	if [[ ${linguas} != "" && ${linguas} != "en" ]]; then
 		einfo "Selected language packs (first will be default): ${linguas}"
 	fi
+}
 
+src_prepare() {
 	# Remove the patches we don't need
 	use xulrunner && rm "${WORKDIR}"/patch/*noxul* || rm "${WORKDIR}"/patch/*xulonly*
 
@@ -155,7 +143,7 @@ src_unpack() {
 	epatch "${WORKDIR}"/patch/000_flex-configure-LANG.patch
 }
 
-src_compile() {
+src_configure() {
 	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
 	MEXTENSIONS="default,typeaheadfind"
 
@@ -204,15 +192,15 @@ src_compile() {
 	# Finalize and report settings
 	mozconfig_final
 
-	if [[ $(gcc-major-version) -lt 4 ]]; then
-		append-cxxflags -fno-stack-protector
-	fi
-
 	####################################
 	#
 	#  Configure and build
 	#
 	####################################
+
+	if [[ $(gcc-major-version) -lt 4 ]]; then
+		append-cxxflags -fno-stack-protector
+	fi
 
 	CPPFLAGS="${CPPFLAGS} -DARON_WAS_HERE" \
 	CC="$(tc-getCC)" CXX="$(tc-getCXX)" LD="$(tc-getLD)" \
@@ -224,7 +212,9 @@ src_compile() {
 		's|-DARON_WAS_HERE|-DGENTOO_NSPLUGINS_DIR=\\\"'"${EPREFIX}"'/usr/'"$(get_libdir)"'/nsplugins\\\" -DGENTOO_NSBROWSER_PLUGINS_DIR=\\\"'"${EPREFIX}"'/usr/'"$(get_libdir)"'/nsbrowser/plugins\\\"|' \
 		"${S}"/config/autoconf.mk \
 		"${S}"/toolkit/content/buildconfig.html
+}
 
+src_compile() {
 	# Should the build use multiprocessing? Not enabled by default, as it tends to break
 	[ "${WANT_MP}" = "true" ] && jobs=${MAKEOPTS} || jobs="-j1"
 	emake ${jobs} || die
