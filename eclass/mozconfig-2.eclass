@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-2.eclass,v 1.19 2008/07/29 20:50:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig-2.eclass,v 1.20 2009/04/29 09:34:09 armin76 Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
 inherit multilib flag-o-matic mozcoreconf
 
-IUSE="debug gnome ipv6 xinerama xprint"
+IUSE="debug gnome ipv6 xinerama"
 
 RDEPEND="x11-libs/libXrender
 	x11-libs/libXt
@@ -29,13 +29,11 @@ RDEPEND="x11-libs/libXrender
 
 
 DEPEND="${RDEPEND}
-	xinerama? ( x11-proto/xineramaproto )
-	xprint? ( x11-proto/printproto )"
+	xinerama? ( x11-proto/xineramaproto )"
 
 mozconfig_config() {
 	mozconfig_use_enable ipv6
 	mozconfig_use_enable xinerama
-	mozconfig_use_enable xprint
 
 	# We use --enable-pango to do truetype fonts, and currently pango
 	# is required for it to build

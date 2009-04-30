@@ -1,12 +1,12 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig.eclass,v 1.31 2009/01/04 22:09:06 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozconfig.eclass,v 1.32 2009/04/29 09:34:09 armin76 Exp $
 #
 # mozconfig.eclass: the new mozilla.eclass
 
 inherit multilib flag-o-matic
 
-IUSE="debug gnome ipv6 moznoxft truetype xinerama xprint"
+IUSE="debug gnome ipv6 moznoxft truetype xinerama"
 
 RDEPEND="x11-libs/libXrender
 	x11-libs/libXt
@@ -31,8 +31,7 @@ RDEPEND="x11-libs/libXrender
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	x11-proto/xextproto
-	xinerama? ( x11-proto/xineramaproto )
-	xprint? ( x11-proto/printproto )"
+	xinerama? ( x11-proto/xineramaproto )"
 
 # Set by configure (plus USE_AUTOCONF=1), but useful for NSPR
 export MOZILLA_CLIENT=1
@@ -186,7 +185,6 @@ mozconfig_init() {
 		--enable-default-toolkit=gtk2
 	mozconfig_use_enable ipv6
 	mozconfig_use_enable xinerama
-	mozconfig_use_enable xprint
 
 	if [[ ${MOZ_FREETYPE2} == "no" ]] ; then
 		# Newer mozilla/firefox builds should use xft and not freetype.
