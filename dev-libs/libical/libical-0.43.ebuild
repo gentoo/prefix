@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/libical-0.43.ebuild,v 1.1 2009/02/16 18:33:51 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/libical-0.43.ebuild,v 1.5 2009/04/29 18:37:49 maekke Exp $
 
 DESCRIPTION="a implementation of basic iCAL protocols from citadel, previously known as aurore."
 HOMEPAGE="http://www.citadel.org"
