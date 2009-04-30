@@ -41,6 +41,7 @@ socks5
 mzscheme
 
 # masked until xorg builds
+pango
 cairo
 xv
 gtk

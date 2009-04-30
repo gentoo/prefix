@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.30 2009/04/27 15:01:21 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.31 2009/04/30 03:05:57 mr_bones_ Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -197,6 +197,7 @@ media-sound/shoutcast-trans-bin
 media-sound/teamspeak2-client-bin
 media-sound/teamspeak2-server-bin
 media-sound/ventrilo-server-bin
+media-tv/livestation
 media-video/binkplayer
 media-video/dvdrip
 media-video/mplayer-bin

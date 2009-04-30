@@ -1,10 +1,61 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2577 2009/04/27 19:21:57 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2594 2009/04/30 00:11:37 dirtyepic Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  30 Apr 2009; Ryan Hill <dirtyepic@gentoo.org> use.desc:
+  Add new global wxwidgets USE flag and deprecate wxwindows.
+
+  29 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
+  Introduce koffice2 mask. Adding by popular vote
+
+  29 Apr 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add latest mesa to p.mask
+
+  29 Apr 2009; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Improve masking message for net-misc/socat.
+
+  29 Apr 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  unmask libXfont 1.4.0
+
+  29 Apr 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  unmask xrandr (proto, lib and utility)
+
+  29 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
+  Remove kickpim from p.mask since it is removed from tree.
+
+  29 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
+  Remove kde 4.2.1 mask.
+
+  29 Apr 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  mask the latest rhythmbox until totem 2.26 is added to portage
+
+  29 Apr 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add p.mask for x11 overlay ebuild imports
+
+  28 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> updates/2Q-2009:
+  Move ekiga from net-im to net-voip.
+
+  28 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> updates/2Q-2009:
+  Moving kphone from net-misc to net-voip. Bug 194364.
+
+  28 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Unmasking mediastreamer plugins as mediastreamer is now unmasked.
+
+  28 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Unmasking ortp for real. Last commit unmasked linphone-3.1*.
+
+  28 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Unmasking mediastreamer as ortp-0.15.0 is now unmasked.
+
+  28 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Unmasking ortp-0.15.0. It should work for every packages in the tree.
+
+  28 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> package.mask:
+  Masking mediastreamer plugins because mediastreamer is masked.
 
   27 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
   Mask libcompizconfig-0.8.2-r1
