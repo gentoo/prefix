@@ -1,6 +1,10 @@
 # ChangeLog for gnome-extra/gnome-media
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.192 2009/04/27 14:12:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.193 2009/04/28 17:56:33 armin76 Exp $
+
+  28 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  gnome-media-2.24.0.1-r1.ebuild:
+  arm/sh stable
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gnome-media-2.24.0.1-r1:
   Stable for HPPA (bug #260063).
