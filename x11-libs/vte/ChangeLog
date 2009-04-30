@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/vte
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.222 2009/04/27 12:57:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.223 2009/04/28 11:03:52 armin76 Exp $
+
+  28 Apr 2009; Raúl Porcel <armin76@gentoo.org> vte-0.17.4-r3.ebuild:
+  arm/sh stable
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> vte-0.17.4-r3:
   Stable for HPPA (bug #260063).
