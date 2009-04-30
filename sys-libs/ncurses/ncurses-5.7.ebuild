@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7.ebuild,v 1.4 2009/01/06 20:59:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7.ebuild,v 1.5 2009/04/29 22:17:49 ssuominen Exp $
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -194,6 +194,9 @@ src_install() {
 	doenvd "${T}"/50ncurses
 
 	use minimal && rm -r "${ED}"/usr/share/terminfo*
+	# Because ncurses5-config --terminfo returns the directory we keep it
+	keepdir /usr/share/terminfo #245374
+
 	cd "${S}"
 	dodoc ANNOUNCE MANIFEST NEWS README* TO-DO doc/*.doc
 	use doc && dohtml -r doc/html/
