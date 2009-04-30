@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.97 2009/03/18 14:37:03 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.98 2009/04/28 18:14:30 armin76 Exp $
+
+  28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gamin-0.1.10.ebuild:
+  m68k stable
 
   18 Mar 2009; <ricmm@gentoo.org> gamin-0.1.9.ebuild:
   Drop down to ~mips due to unstable deps
