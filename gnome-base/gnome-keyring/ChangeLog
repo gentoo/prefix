@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-keyring
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.144 2009/04/27 22:00:09 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.145 2009/04/28 17:52:14 armin76 Exp $
+
+  28 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  gnome-keyring-2.22.3-r1.ebuild:
+  sh stable
 
   27 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org>
   +files/gnome-keyring-2.22.3-pkg-libtasn1.patch,
