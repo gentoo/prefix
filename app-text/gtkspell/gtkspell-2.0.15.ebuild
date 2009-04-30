@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gtkspell/gtkspell-2.0.15.ebuild,v 1.4 2009/04/19 15:23:26 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gtkspell/gtkspell-2.0.15.ebuild,v 1.5 2009/04/28 17:54:15 armin76 Exp $
 
 inherit eutils
 
