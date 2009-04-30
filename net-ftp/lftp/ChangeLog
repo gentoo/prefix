@@ -1,6 +1,20 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.176 2009/04/13 02:46:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.180 2009/04/29 14:52:07 ranger Exp $
+
+  29 Apr 2009; Brent Baude <ranger@gentoo.org> lftp-3.7.11.ebuild:
+  stable ppc64, bug 267832
+
+  29 Apr 2009; Jeroen Roovers <jer@gentoo.org> lftp-3.7.11.ebuild:
+  Stable for HPPA (bug #267832).
+
+  29 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> lftp-3.7.11.ebuild:
+  Marked stable on ppc, bug 267832.
+
+*lftp-3.7.12 (29 Apr 2009)
+
+  29 Apr 2009; Jeroen Roovers <jer@gentoo.org> +lftp-3.7.12.ebuild:
+  Version bump thanks to Lars (Polynomial-C) (bug #267828).
 
   13 Apr 2009; Jeroen Roovers <jer@gentoo.org> -lftp-3.7.0.ebuild,
   -lftp-3.7.3.ebuild:
