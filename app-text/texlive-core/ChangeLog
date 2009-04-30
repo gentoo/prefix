@@ -1,6 +1,13 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.96 2009/03/18 20:50:09 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.97 2009/04/29 22:32:29 aballier Exp $
+
+*texlive-core-2008-r5 (29 Apr 2009)
+
+  29 Apr 2009; Alexis Ballier <aballier@gentoo.org>
+  +texlive-core-2008-r5.ebuild:
+  Add xpdf patch for bug #264601 and set var/cache/fonts world writable by
+  default, bug #266680
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> texlive-core-2008-r4.ebuild:
   Marking texlive-core-2008-r4 ppc stable for bug 253551
