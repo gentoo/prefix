@@ -539,7 +539,7 @@ switch_profile() {
 			eval $(
 				source "${x}"
 				echo "GCC_PATH='${GCC_PATH}'"
-				echo "LDPATH='${LDPATH}'"
+				echo "LDPATH='${LDPATH%%:*}'"
 			)
 
 			for multilib in $(
