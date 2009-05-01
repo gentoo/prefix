@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/sdl-image
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.49 2009/04/26 19:34:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.51 2009/04/30 15:12:37 mr_bones_ Exp $
+
+  30 Apr 2009; Michael Sterrett <mr_bones_@gentoo.org>
+  -files/sdl-image-1.2.6-DOS.patch, -sdl-image-1.2.6-r1.ebuild:
+  clean out old files
+
+  30 Apr 2009; Jeroen Roovers <jer@gentoo.org> sdl-image-1.2.7.ebuild:
+  Stable for HPPA (bug #264906).
 
   26 Apr 2009; Brent Baude <ranger@gentoo.org> sdl-image-1.2.7.ebuild:
   stable ppc, bug 264906
