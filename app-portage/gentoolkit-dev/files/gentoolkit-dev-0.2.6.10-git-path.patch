@@ -30,9 +30,9 @@ Modified: trunk/src/echangelog/echangelog
 +				close(GIT);
 +				last;
 +			}
-+		} else {
-+			die "No CVS, .git, .svn directories found, what kind of repo is this?";
 +		}
++	} else {
++		die "No CVS, .git, .svn directories found, what kind of repo is this?";
 +	}
  }
  
