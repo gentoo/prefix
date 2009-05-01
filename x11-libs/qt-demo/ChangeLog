@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/qt-demo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.16 2009/04/01 11:43:54 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.17 2009/04/30 14:39:01 yngwin Exp $
+
+*qt-demo-4.5.1 (30 Apr 2009)
+
+  30 Apr 2009; Ben de Groot <yngwin@gentoo.org> +qt-demo-4.5.1.ebuild:
+  Version bump
 
   01 Apr 2009; Joseph Jezak <josejx@gentoo.org> qt-demo-4.5.0.ebuild:
   Marked ~ppc for bug #261313.
