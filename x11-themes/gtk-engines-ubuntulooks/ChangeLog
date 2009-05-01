@@ -1,17 +1,20 @@
 # ChangeLog for x11-themes/gtk-engines-ubuntulooks
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-ubuntulooks/ChangeLog,v 1.7 2008/12/18 10:44:49 ssuominen Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-ubuntulooks/ChangeLog,v 1.8 2009/04/30 12:14:56 ssuominen Exp $
 
-  18 Dec 2008; <ssuominen@gentoo.org>
+*gtk-engines-ubuntulooks-0.9.12-r3 (30 Apr 2009)
+
+  30 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +gtk-engines-ubuntulooks-0.9.12-r3.ebuild:
+  Bump patchset to version 12 wrt #253358, thanks to Pacho Ramos.
+
+  18 Dec 2008; Samuli Suominen <ssuominen@gentoo.org>
   gtk-engines-ubuntulooks-0.9.12-r2.ebuild:
   x86 stable
 
-  24 Nov 2008; <ssuominen@gentoo.org> metadata.xml:
-  Rename my old e-mail drac at gentoo.org to ssuominen at gentoo.org.
-
 *gtk-engines-ubuntulooks-0.9.12-r2 (14 May 2008)
 
-  14 May 2008; Samuli Suominen <drac@gentoo.org>
+  14 May 2008; Samuli Suominen <ssuominen@gentoo.org>
   +gtk-engines-ubuntulooks-0.9.12-r2.ebuild:
   Bump patchset to version 11.
 
@@ -19,19 +22,19 @@
   gtk-engines-ubuntulooks-0.9.12-r1.ebuild:
   Added ~ppc wrt bug 195000
 
-  01 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  01 Nov 2007; Samuli Suominen <ssuominen@gentoo.org>
   gtk-engines-ubuntulooks-0.9.12-r1.ebuild:
-  Keyword ~amd64 wrt #194989.
+  Keyword ~amd64 wrt #194989
 
 *gtk-engines-ubuntulooks-0.9.12-r1 (07 Oct 2007)
 
-  07 Oct 2007; Samuli Suominen <drac@gentoo.org>
+  07 Oct 2007; Samuli Suominen <ssuominen@gentoo.org>
   +gtk-engines-ubuntulooks-0.9.12-r1.ebuild:
   Bump patchset to version 8.
 
 *gtk-engines-ubuntulooks-0.9.12 (07 Oct 2007)
 
-  07 Oct 2007; Samuli Suominen <drac@gentoo.org>
+  07 Oct 2007; Samuli Suominen <ssuominen@gentoo.org>
   +gtk-engines-ubuntulooks-0.9.12.ebuild:
   Initial commit for bug 126966.
 
