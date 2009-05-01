@@ -24,6 +24,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-glep-53-keywords-sorting.patch
+	epatch "${FILESDIR}"/${P}-git-path.patch
 	sed -i -e "1s:^#!\( \|\):#!${EPREFIX}:" \
 		src/*/{ebump,echangelog,ego,ekeyword,eviewcvs,gensync} || die "@!@#"
 }

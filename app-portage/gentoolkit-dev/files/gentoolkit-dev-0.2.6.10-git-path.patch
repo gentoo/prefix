@@ -1,0 +1,39 @@
+modified this commit to apply to this release
+
+Date: 2009-05-01 19:03:07 +0000 (Fri, 01 May 2009)
+
+Modified:
+   trunk/src/echangelog/echangelog
+Log:
+Respect $PATH while looking for git, thanks to grobian.
+
+Modified: trunk/src/echangelog/echangelog
+===================================================================
+--- trunk/src/echangelog/echangelog	2009-05-01 17:39:18 UTC (rev 569)
++++ trunk/src/echangelog/echangelog	2009-05-01 19:03:07 UTC (rev 570)
+@@ -104,11 +104,20 @@
+ 	$vcs = "cvs";
+ } elsif ( -d '.svn' ) {
+ 	$vcs = "svn";
+-} elsif ( -f '/usr/bin/git' and open GIT, "git rev-parse --git-dir |" ) {
+-	$vcs = "git";
+-	close GIT;
+-} else {
+-	die "No CVS, .git, .svn directories found, what kind of repo is this?";
++} else {
++	# Respect $PATH while looking for git
++	if (getenv("PATH")) {
++		foreach my $path ( split(":", getenv("PATH")) ) {
++			if ( -X "$path/git" ) {
++				open(GIT, '-|', "git rev-parse --git-dir 2>/dev/null");
++				$vcs = "git" if defined(<GIT>);
++				close(GIT);
++				last;
++			}
++		} else {
++			die "No CVS, .git, .svn directories found, what kind of repo is this?";
++		}
++	}
+ }
+ 
+ # Read the current ChangeLog
