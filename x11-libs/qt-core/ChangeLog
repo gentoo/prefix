@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.44 2009/04/28 15:32:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.45 2009/04/30 10:37:31 hwoarang Exp $
+
+  30 Apr 2009; Markos Chandras <hwoarang@gentoo.org> qt-core-4.5.0,
+  qt-core-4.5.1:
+  Adding x11-libs/libX11 as dependency. Fixes bug #267967
 
   28 Apr 2009; Jeroen Roovers <jer@gentoo.org> qt-core-4.4.2-r2.ebuild:
   Stable for HPPA (bug #263945).
