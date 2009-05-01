@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  01 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Unmask gentoolkit-dev, at last after 2 years :)
+
   30 Apr 2009; Fabian Groffen <grobian@gentoo.org> linux/package.mask,
   package.mask:
   Don't just let the Linux peepz have all the fun, globally unmask bash-4

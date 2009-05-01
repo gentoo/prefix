@@ -206,11 +206,6 @@ dev-java/kaffe
 # see bug #189311 for details
 =sys-apps/grep-2.5.3
 
-# Fabian Groffen <grobian@gentoo.org> (10 Aug 2007)
-# echangelog is completely useless with SVN, probably remains like that
-# for a while
->=app-portage/gentoolkit-dev-0.2.6.6
-
 # Fabian Groffen <grobian@gentoo.org> (04 Apr 2007)
 # Don't use this, it is only provided for experimentation and as tool to
 # recover from broken linker situations.
