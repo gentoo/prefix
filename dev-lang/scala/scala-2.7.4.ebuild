@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/scala-2.7.3.ebuild,v 1.2 2009/02/05 08:13:53 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/scala-2.7.4.ebuild,v 1.1 2009/04/30 19:29:39 ali_bush Exp $
 
 JAVA_PKG_IUSE="doc examples source"
 WANT_ANT_TASKS="ant-nodeps"
@@ -12,7 +12,7 @@ MY_P="${P}.final-sources"
 # JAVA_PKG_FORCE_VM="$available-1.5" USE="doc examples source" ebuild scala-*.ebuild compile
 # cd $WORDKIR
 # fix dist/latest link.
-# tar -cjf $DISTDIR/scala-$PN-gentoo-binary.tar.bz2 ${MY_P}/dists ${MY_P}/docs/TODO
+# tar -cjf $DISTDIR/scala-$PV-gentoo-binary.tar.bz2 ${MY_P}/dists ${MY_P}/docs/TODO
 
 DESCRIPTION="The Scala Programming Language"
 HOMEPAGE="http://www.scala-lang.org/"
@@ -73,9 +73,7 @@ src_unpack() {
 
 src_compile() {
 	if ! use binary; then
-		# this is needed with apple-jdk-bin:1.6 at least, because it's 64bit
-		# apple-jdk-bin:1.[45] might work with 512MB
-		if use amd64 || use x86-macos; then
+		if use amd64; then
 			export ANT_OPTS="-Xmx1024M -Xms1024M"
 		else
 			export ANT_OPTS="-Xmx512M -Xms512M -Xss1024k"
@@ -93,18 +91,14 @@ src_test() {
 }
 
 scala_launcher() {
-	local SCALADIR="/usr/share/${PN}"
-	local bcp="${SCALADIR}/lib/scala-library.jar"
+	local SCALADIR="${EPREFIX}/usr/share/${PN}"
+	local bcp="${EPREFIX}${SCALADIR}/lib/scala-library.jar"
 	java-pkg_dolauncher "${1}" --main "${2}" ${3} \
-		--java_args "-Xmx256M -Xms16M -Xbootclasspath/a:${EPREFIX}${bcp} -Dscala.home=\\\"${EPREFIX}${SCALADIR}\\\" -Denv.classpath=\\\"\${CLASSPATH}\\\""
+		--java_args "-Xmx256M -Xms16M -Xbootclasspath/a:${bcp} -Dscala.home=\\\"${SCALADIR}\\\" -Denv.classpath=\\\"\${CLASSPATH}\\\""
 }
 
 src_install() {
-	if use binary ; then
-		cd dists/scala-2.7.3.r0-b20090118133557 || die
-	else
-		cd dists/latest || die
-	fi
+	cd dists/latest || die
 
 	local SCALADIR="/usr/share/${PN}/"
 
@@ -120,7 +114,7 @@ src_install() {
 
 	doman man/man1/*.1 || die
 	local docdir="doc/${PN}-devel-docs"
-	dodoc "${docdir}/README" ../../docs/TODO || die
+	dodoc doc/README ../../docs/TODO || die
 	if use doc; then
 		java-pkg_dojavadoc "${docdir}/api"
 		dohtml -r "${docdir}/tools" || die
