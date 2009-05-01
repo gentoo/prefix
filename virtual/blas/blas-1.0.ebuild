@@ -7,7 +7,7 @@ HOMEPAGE="http://www.gentoo.org/proj/en/science/"
 SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 RDEPEND="|| (
 		sci-libs/blas-reference
