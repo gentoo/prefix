@@ -1,6 +1,14 @@
 # ChangeLog for sys-auth/pambase
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.65 2009/03/21 02:36:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.66 2009/04/30 16:28:52 flameeyes Exp $
+
+*pambase-20090430 (30 Apr 2009)
+
+  30 Apr 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +pambase-20090430.ebuild:
+  Add a new pambase version, with a stricter dependency on ConsoleKit and
+  support for remote sessions as well as local. Should fix bug #260842 (PAM
+  side).
 
   21 Mar 2009; Jeroen Roovers <jer@gentoo.org> pambase-20081028.ebuild:
   Stable for HPPA (bug #261595).
