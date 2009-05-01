@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/stunnel
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.100 2008/10/08 20:07:51 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.102 2009/04/30 21:55:13 patrick Exp $
+
+  30 Apr 2009; Patrick Lauer <patrick@gentoo.org> -stunnel-3.26.ebuild,
+  -stunnel-4.21-r1.ebuild, -stunnel-4.26.ebuild:
+  Remove old
+
+*stunnel-4.27 (30 Apr 2009)
+
+  30 Apr 2009; Patrick Lauer <patrick@gentoo.org> +stunnel-4.27.ebuild:
+  Bump to 4.27, fixes #266514.
 
 *stunnel-4.26 (08 Oct 2008)
 

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.26.ebuild,v 1.2 2008/11/06 02:53:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.27.ebuild,v 1.1 2009/04/30 21:45:38 patrick Exp $
 
 inherit autotools ssl-cert eutils
 
@@ -14,7 +14,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="ipv6 selinux tcpd"
 
 DEPEND="tcpd? ( sys-apps/tcp-wrappers )
-	>=dev-libs/openssl-0.9.6j"
+	>=dev-libs/openssl-0.9.8k"
 RDEPEND="${DEPEND}
 	selinux? ( sec-policy/selinux-stunnel )"
 
