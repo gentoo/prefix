@@ -33,6 +33,8 @@ src_prepare() {
 }
 
 src_configure() {
+	# we never want to use LDCONFIG
+	export LDCONFIG=${EPREFIX}/bin/true
 	local grp=mail
 	# in privileged installs this is "mail"
 	use prefix && grp=$(id -gn)
