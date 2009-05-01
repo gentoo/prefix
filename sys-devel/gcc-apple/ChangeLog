@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  01 May 2009; Fabian Groffen <grobian@gentoo.org>
+  files/gcc-apple-4.2.1-gfortran.patch:
+  Fix fortran support for powerpc targets
+
 *gcc-apple-4.2.1_p5566-r2 (26 Mar 2009)
 *gcc-apple-4.0.1_p5490-r2 (26 Mar 2009)
 
