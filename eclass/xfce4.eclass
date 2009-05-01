@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.28 2009/03/16 14:43:37 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.29 2009/05/01 04:13:31 darkside Exp $
 
 # @ECLASS: xfce4.eclass
 # @MAINTAINER:
@@ -160,6 +160,8 @@ xfce4_src_unpack() {
 		fi
 	else
 		unpack ${A}
+		cd "${S}"
+		[ -n "${XFCE4_PATCHES}" ] && epatch ${XFCE4_PATCHES}
 		elibtoolize
 	fi
 }
