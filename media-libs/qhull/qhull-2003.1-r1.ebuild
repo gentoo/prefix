@@ -11,7 +11,7 @@ SRC_URI="${HOMEPAGE}/download/${P}.tar.gz"
 
 SLOT="0"
 LICENSE="BSD"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 src_compile() {
