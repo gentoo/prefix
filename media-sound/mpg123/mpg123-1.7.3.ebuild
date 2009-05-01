@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.6.2.ebuild,v 1.9 2009/03/30 15:34:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.7.3.ebuild,v 1.1 2009/04/30 13:35:14 ssuominen Exp $
+
+EAPI=2
 
 DESCRIPTION="a realtime MPEG 1.0/2.0/2.5 audio player for layers 1, 2 and 3."
 HOMEPAGE="http://www.mpg123.org"
@@ -22,12 +24,11 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-src_unpack() {
-	unpack ${A}
-	sed -i -e 's:-faltivec::' "${S}"/configure || die "sed failed."
+src_prepare() {
+	sed -i -e 's:-faltivec::' configure || die "sed failed"
 }
 
-src_compile() {
+src_configure() {
 	local myaudio
 
 	use alsa && myaudio="${myaudio} alsa"
@@ -62,11 +63,9 @@ src_compile() {
 		--with-audio="${myaudio}" \
 		$(use_enable network) \
 		$(use_enable ipv6)
-
-	emake || die "emake failed."
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed."
+	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS* README
 }

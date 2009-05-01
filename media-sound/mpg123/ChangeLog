@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.180 2009/04/10 13:23:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.181 2009/04/30 13:35:14 ssuominen Exp $
+
+*mpg123-1.7.3 (30 Apr 2009)
+
+  30 Apr 2009; Samuli Suominen <ssuominen@gentoo.org> -mpg123-1.3.1.ebuild,
+  -mpg123-1.6.2.ebuild, -mpg123-1.6.4.ebuild, +mpg123-1.7.3.ebuild:
+  Version bump.
 
   10 Apr 2009; Raúl Porcel <armin76@gentoo.org> mpg123-1.7.2.ebuild:
   ia64/x86 stable wrt #265342
@@ -43,7 +49,7 @@
   16 Dec 2008; Jeroen Roovers <jer@gentoo.org> mpg123-1.6.2.ebuild:
   Stable for HPPA (bug #250666).
 
-  15 Dec 2008; <ssuominen@gentoo.org> mpg123-1.6.2.ebuild:
+  15 Dec 2008; Samuli Suominen <ssuominen@gentoo.org> mpg123-1.6.2.ebuild:
   x86 stable wrt #250666
 
   13 Dec 2008; Thomas Anderson <gentoofan23@gentoo.org> mpg123-1.6.2.ebuild:
@@ -91,7 +97,7 @@
   17 May 2008; Alexis Ballier <aballier@gentoo.org> mpg123-1.4.2.ebuild:
   keyword ~x86-fbsd
 
-  17 May 2008; Samuli Suominen <drac@gentoo.org> mpg123-1.3.1.ebuild,
+  17 May 2008; Samuli Suominen <ssuominen@gentoo.org> mpg123-1.3.1.ebuild,
   mpg123-1.4.1.ebuild, mpg123-1.4.2.ebuild:
   Move mpg123 to new-style virtual.
 
@@ -102,7 +108,7 @@
 
 *mpg123-1.4.1 (17 Apr 2008)
 
-  17 Apr 2008; Samuli Suominen <drac@gentoo.org>
+  17 Apr 2008; Samuli Suominen <ssuominen@gentoo.org>
   -files/0.67-no-faltivec.patch, -mpg123-0.67.ebuild, +mpg123-1.4.1.ebuild:
   Version bump.
 
@@ -127,24 +133,24 @@
   27 Mar 2008; Markus Rothe <corsair@gentoo.org> mpg123-1.3.1.ebuild:
   Stable on ppc64; bug #215024
 
-  27 Mar 2008; Samuli Suominen <drac@gentoo.org> mpg123-1.3.1.ebuild:
+  27 Mar 2008; Samuli Suominen <ssuominen@gentoo.org> mpg123-1.3.1.ebuild:
   amd64 stable wrt #215024
 
 *mpg123-1.3.1 (15 Mar 2008)
 
-  15 Mar 2008; Samuli Suominen <drac@gentoo.org> -mpg123-1.3.0.ebuild,
+  15 Mar 2008; Samuli Suominen <ssuominen@gentoo.org> -mpg123-1.3.0.ebuild,
   +mpg123-1.3.1.ebuild:
   Version bump.
 
 *mpg123-1.3.0 (06 Mar 2008)
 
-  06 Mar 2008; Samuli Suominen <drac@gentoo.org> -mpg123-1.2.1.ebuild,
+  06 Mar 2008; Samuli Suominen <ssuominen@gentoo.org> -mpg123-1.2.1.ebuild,
   +mpg123-1.3.0.ebuild:
   Version bump.
 
 *mpg123-1.2.1 (25 Feb 2008)
 
-  25 Feb 2008; Samuli Suominen <drac@gentoo.org> +mpg123-1.2.1.ebuild:
+  25 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> +mpg123-1.2.1.ebuild:
   Version bump.
 
   25 Feb 2008; Jeroen Roovers <jer@gentoo.org> mpg123-1.2.0.ebuild:
@@ -165,51 +171,51 @@
   15 Feb 2008; nixnut <nixnut@gentoo.org> mpg123-1.2.0.ebuild:
   Stable on ppc wrt bug 210277
 
-  15 Feb 2008; Samuli Suominen <drac@gentoo.org> mpg123-1.2.0.ebuild:
+  15 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> mpg123-1.2.0.ebuild:
   amd64 stable
 
 *mpg123-1.2.0 (03 Feb 2008)
 
-  03 Feb 2008; Samuli Suominen <drac@gentoo.org>
+  03 Feb 2008; Samuli Suominen <ssuominen@gentoo.org>
   -files/mpg123-1.0.1-no-faltivec.patch, -mpg123-1.0.1.ebuild,
   -mpg123-1.1.0.ebuild, +mpg123-1.2.0.ebuild:
   Version bump wrt #208758, thanks to Tobias Jakobi.
 
 *mpg123-1.1.0 (20 Jan 2008)
 
-  20 Jan 2008; Samuli Suominen <drac@gentoo.org> +mpg123-1.1.0.ebuild:
+  20 Jan 2008; Samuli Suominen <ssuominen@gentoo.org> +mpg123-1.1.0.ebuild:
   Version bump wrt #206762, thanks to Tobias Jakobi.
 
   17 Jan 2008; Fabian Groffen <grobian@gentoo.org> -files/mpg123-osx.diff,
   mpg123-0.59s-r11.ebuild:
   Removed osx patch
 
-  07 Jan 2008; Samuli Suominen <drac@gentoo.org>
+  07 Jan 2008; Samuli Suominen <ssuominen@gentoo.org>
   -files/1.0_rc2-no-faltivec.patch, -files/1.0_rc2-pkgconfig.patch,
   mpg123-0.59s-r11.ebuild, -mpg123-1.0_rc2.ebuild:
   Remove old version and leave one ebuild behind for mips wrt #200106
 
 *mpg123-1.0.1 (30 Dec 2007)
 
-  30 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  30 Dec 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/mpg123-1.0.1-no-faltivec.patch, +mpg123-1.0.1.ebuild:
   Version bump wrt #203760, thanks to Tobias Jakobi.
 
-  10 Dec 2007; Samuli Suominen <drac@gentoo.org> mpg123-1.0_rc2.ebuild:
+  10 Dec 2007; Samuli Suominen <ssuominen@gentoo.org> mpg123-1.0_rc2.ebuild:
   Force automake-1.9 since 1.10 breaks LTCCASCOMPILE, building mmx code on
   x86. Thanks to maekke for testing.
 
-  10 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  10 Dec 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/1.0_rc2-pkgconfig.patch, mpg123-1.0_rc2.ebuild:
-  Fix bug #201892.
+  Missing pkg-config macro wrt #201892.
 
-  10 Dec 2007; Samuli Suominen <drac@gentoo.org> mpg123-1.0_rc2.ebuild:
+  10 Dec 2007; Samuli Suominen <ssuominen@gentoo.org> mpg123-1.0_rc2.ebuild:
   Add USE pulseaudio, allow more than one audio output by default, can be
   selected runtime.
 
 *mpg123-1.0_rc2 (10 Dec 2007)
 
-  10 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  10 Dec 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/1.0_rc2-no-faltivec.patch, +mpg123-1.0_rc2.ebuild:
   Version bump to 1 -series, now installs a shared library and a pkgconfig
   file for it.
@@ -230,7 +236,7 @@
   23 Nov 2007; Dawid Węgliński <cla@gentoo.org> mpg123-0.67.ebuild:
   Stable on x86 (bug #200106)
 
-  23 Nov 2007; Samuli Suominen <drac@gentoo.org> mpg123-0.67.ebuild:
+  23 Nov 2007; Samuli Suominen <ssuominen@gentoo.org> mpg123-0.67.ebuild:
   amd64 stable wrt #200106
 
   21 Oct 2007; Tony Vroon <chainsaw@gentoo.org>
@@ -240,7 +246,7 @@
 
 *mpg123-0.67 (18 Sep 2007)
 
-  18 Sep 2007; Samuli Suominen <drac@gentoo.org> +mpg123-0.67.ebuild:
+  18 Sep 2007; Samuli Suominen <ssuominen@gentoo.org> +mpg123-0.67.ebuild:
   Version bump for bug 192925, thanks to Polynomial-C.
 
   29 Jul 2007; Raúl Porcel <armin76@gentoo.org> mpg123-0.65.ebuild:
