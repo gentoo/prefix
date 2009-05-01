@@ -1,0 +1,13 @@
+--- xscreensaver-5.08/hacks/glx/Makefile.in	2008-12-28 09:59:21.000000000 +0200
++++ xscreensaver-5.08/hacks/glx/Makefile.in	2009-01-24 19:39:35.000000000 +0200
+@@ -169,8 +169,8 @@
+ GRAB_OBJS	= $(UTILS_BIN)/grabclient.o grab-ximage.o $(XSHM_OBJS)
+ EXES		= @GL_UTIL_EXES@ $(HACK_EXES)
+ 
+-RETIRED_EXES	= glforestfire
+-RETIRED_GL_EXES	= @RETIRED_GL_EXES@
++RETIRED_EXES	=
++RETIRED_GL_EXES	= glforestfire
+ 
+ HACK_OBJS	= $(HACK_BIN)/screenhack.o $(HACK_BIN)/fps.o \
+ 		  xlockmore-gl.o xlock-gl-utils.o glxfonts.o fps-gl.o \

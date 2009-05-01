@@ -1,0 +1,19 @@
+--- xscreensaver-5.08/hacks/phosphor.c.debug	2008-07-31 19:01:00.000000000 +0900
++++ xscreensaver-5.08/hacks/phosphor.c	2009-01-22 22:52:11.000000000 +0900
+@@ -1353,6 +1353,7 @@
+ 	  if (state->pid)
+ 	    {
+ 	      waitpid(state->pid, NULL, 0);
++	      state->pid = 0;
+ 	      fclose (state->pipe);
+ 	    }
+ 	  else
+@@ -1436,7 +1437,7 @@
+   resize_grid (state);
+ 
+ # if defined(HAVE_FORKPTY) && defined(TIOCSWINSZ)
+-  if (state->pid)
++  if (state->pid && state->pipe)
+     {
+       /* Tell the sub-process that the screen size has changed. */
+       struct winsize ws;

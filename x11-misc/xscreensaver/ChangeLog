@@ -1,6 +1,25 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.249 2009/04/28 16:41:10 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.252 2009/04/30 20:16:53 ssuominen Exp $
+
+  30 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
+  xscreensaver-5.08-r1.ebuild:
+  Run plain eautoconf wrt #268016, thanks to Peter Alfredsen and Christer
+  Ekholm for testing. Seems this needs to be autoconfed but not autoreconfed
+  to work.
+
+  30 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +files/xscreensaver-5.08-po-recreate.patch, xscreensaver-5.08-r1.ebuild:
+  Apply a patch from Fedora CVS to fix translations. Don't run eautoreconf
+  wrt #240958, instead only unset LINGUAS because zh matches zh_CN or zh_TW
+  which causes CATALOG error wrt #113681.
+
+*xscreensaver-5.08-r1 (30 Apr 2009)
+
+  30 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +files/xscreensaver-5.08-phosphor-segv.patch,
+  +xscreensaver-5.08-r1.ebuild:
+  Fix segv with phosphor screensaver wrt #256446, thanks to Nick Soveiko.
 
   28 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
   xscreensaver-5.08.ebuild:
