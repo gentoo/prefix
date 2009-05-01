@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  01 May 2009; Jeremy Olexa <darkside@gentoo.org> use.mask:
+  Unmask USE=prefix in prefix profiles, soon to be masked in base/
+
   01 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Unmask gentoolkit-dev, at last after 2 years :)
 

@@ -33,3 +33,6 @@ kernel_linux
 # USE flags inherited by the base/use.defaults file that shouldn't be in Prefix
 cups
 gpm
+
+# prefix USE flag should always be unmasked in prefix profiles
+-prefix
