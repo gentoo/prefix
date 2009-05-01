@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/xfce-utils
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-utils/ChangeLog,v 1.133 2009/04/21 04:25:16 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-utils/ChangeLog,v 1.134 2009/05/01 04:28:50 darkside Exp $
+
+  01 May 2009; Jeremy Olexa <darkside@gentoo.org> xfce-utils-4.4.3.ebuild:
+  Move use_enable out of global scope
 
 *xfce-utils-4.6.1 (21 Apr 2009)
 
