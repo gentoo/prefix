@@ -267,7 +267,7 @@ _EOF_
 	# NOTE CMAKE_BUILD_TYPE can be only overriden via CMAKE_BUILD_TYPE eclass variable
 	# No -DCMAKE_BUILD_TYPE=xxx definitions will be in effect.
 	local cmakeargs="
-		-DCMAKE_INSTALL_PREFIX=${PREFIX:-/usr}
+		-DCMAKE_INSTALL_PREFIX=${PREFIX:-${EPREFIX}/usr}
 		${mycmakeargs}
 		-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
 		-DCMAKE_INSTALL_DO_STRIP=OFF
