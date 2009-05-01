@@ -114,6 +114,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
 	# make it compile on IRIX as well
 	epatch "${FILESDIR}"/${PN}-2.6.1-irix.patch
+	# and generate a libpython2.6.so
+	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
 
@@ -222,18 +224,6 @@ src_configure() {
 		${myconf}
 }
 
-src_compile() {
-	emake || die "Parallel make failed"
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		# create libpython on Darwin
-		emake libpython${PYVER}.dylib || die
-	fi
-	if [[ ${CHOST} == *-irix* ]] ; then
-		# create libpython on IRIX
-		emake libpython${PYVER}.so || die
-	fi
-}
-
 src_install() {
 	dodir /usr
 	emake DESTDIR="${D}" altinstall maninstall || die
@@ -256,7 +246,7 @@ src_install() {
 	# http://src.opensolaris.org/source/xref/jds/spec-files/trunk/SUNWPython.spec
 	# These #defines cause problems when building c99 compliant python modules
 	[[ ${CHOST} == *-solaris* ]] && dosed -e \
-		's:^\(^#define \(_POSIX_C_SOURCE\|_XOPEN_SOURCE\|_XOPEN_SOURCE_EXTENDED\).*$\):/* \1 */:'
+		's:^\(^#define \(_POSIX_C_SOURCE\|_XOPEN_SOURCE\|_XOPEN_SOURCE_EXTENDED\).*$\):/* \1 */:' \
 		 /usr/include/python${PYVER}/pyconfig.h
 
 	if use build ; then

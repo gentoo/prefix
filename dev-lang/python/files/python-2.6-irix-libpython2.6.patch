@@ -1,0 +1,17 @@
+* <srcshelton@gmail.com>: make a shared libpython2.6.so on IRIX too...
+
+--- configure.in
++++ configure.in
+@@ -706,6 +706,12 @@
+ 	  RUNSHARED=LD_LIBRARY_PATH=`pwd`:${LD_LIBRARY_PATH}
+ 	  INSTSONAME="$LDLIBRARY".$SOVERSION
+           ;;
++    IRIX*)
++          LDLIBRARY='libpython$(VERSION).so'
++          BLDLIBRARY='-L. -lpython$(VERSION)'
++          RUNSHARED=LD_LIBRARYN32_PATH=`pwd`:${LD_LIBRARYN32_PATH}
++          INSTSONAME="$LDLIBRARY".$SOVERSION
++          ;;
+     Linux*|GNU*|NetBSD*|FreeBSD*|DragonFly*)
+ 	  LDLIBRARY='libpython$(VERSION).so'
+ 	  BLDLIBRARY='-L. -lpython$(VERSION)'
