@@ -1,0 +1,26 @@
+From 412d370b9ae4b2882691863a1c5e13a507574e92 Mon Sep 17 00:00:00 2001
+From: Dave Airlie <airlied@linux.ie>
+Date: Wed, 22 Apr 2009 20:25:40 +1000
+Subject: [PATCH 3/4] libdrm/mode: align subpixel results
+
+---
+ libdrm/xf86drmMode.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/libdrm/xf86drmMode.c b/libdrm/xf86drmMode.c
+index 872604f..ea11207 100644
+--- a/libdrm/xf86drmMode.c
++++ b/libdrm/xf86drmMode.c
+@@ -395,7 +395,8 @@ drmModeConnectorPtr drmModeGetConnector(int fd, uint32_t connector_id)
+ 	r->connection   = conn.connection;
+ 	r->mmWidth      = conn.mm_width;
+ 	r->mmHeight     = conn.mm_height;
+-	r->subpixel     = conn.subpixel;
++	/* convert subpixel from kernel to userspace */
++	r->subpixel     = conn.subpixel + 1;
+ 	r->count_modes  = conn.count_modes;
+ 	/* TODO we should test if these alloc & cpy fails. */
+ 	r->count_props  = conn.count_props;
+-- 
+1.6.2.3
+

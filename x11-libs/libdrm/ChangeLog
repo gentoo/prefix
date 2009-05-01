@@ -1,6 +1,17 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.73 2009/04/16 02:03:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.74 2009/04/30 11:53:46 remi Exp $
+
+*libdrm-2.4.9 (30 Apr 2009)
+
+  30 Apr 2009; Rémi Cardona <remi@gentoo.org>
+  +files/2.4.9-0001-nouveau-store-bo-handle-in-public-struct-in-bo_ref_.patc
+  h,
+  +files/2.4.9-0002-nouveau-write-posting-got-lost-somewhere-bring-it.patch,
+  +files/2.4.9-0003-libdrm-mode-align-subpixel-results.patch,
+  +files/2.4.9-0004-intel-NULL-fake-bo-block-when-freeing-in-evict_all.patch
+  , +libdrm-2.4.9.ebuild:
+  bump to 2.4.9 with patches from master
 
   16 Apr 2009; Jeroen Roovers <jer@gentoo.org> libdrm-2.4.5.ebuild:
   Stable for HPPA (bug #251832).
