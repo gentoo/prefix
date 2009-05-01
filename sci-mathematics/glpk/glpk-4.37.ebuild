@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 SLOT="0"
 IUSE="doc examples gmp odbc mysql"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 RDEPEND="odbc? ( || ( dev-db/libiodbc dev-db/unixODBC ) )
 	gmp? ( dev-libs/gmp )
