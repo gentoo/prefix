@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.4.6.1.ebuild,v 1.2 2008/05/29 14:26:59 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.1 2009/04/30 22:14:12 patrick Exp $
+
+EAPI=2
 
 inherit eutils multilib python autotools
 
@@ -17,7 +19,7 @@ DEPEND="python? ( dev-lang/python )
 	jack? ( media-sound/jack-audio-connection-kit )
 	media-libs/ladspa-sdk
 	audiofile? ( media-libs/audiofile )
-	alsa? ( media-libs/alsa-lib )
+	alsa? ( media-libs/alsa-lib[midi] )
 	vorbis? ( media-libs/libvorbis )
 	arts? ( kde-base/arts )
 	libsamplerate? ( media-libs/libsamplerate )
@@ -28,22 +30,14 @@ DEPEND="python? ( dev-lang/python )
 	sndfile? ( media-libs/libsndfile )
 	sys-libs/readline"
 
-pkg_setup() {
-	if use alsa && ! built_with_use --missing true media-libs/alsa-lib midi; then
-		die "Re-emerge media-libs/alsa-lib with USE midi."
-	fi
-}
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-gcc43.patch
-	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${PN}-2.4.5-prefix.patch
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	local PYConf
 
 	if use python; then
@@ -69,8 +63,6 @@ src_compile() {
 		--with-largefile \
 		--enable-sys-readline \
 		${PYConf} || die "econf failed"
-
-	emake || die "emake failed"
 }
 
 src_install() {
