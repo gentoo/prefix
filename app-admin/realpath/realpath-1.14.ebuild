@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/realpath-1.14.ebuild,v 1.1 2009/04/30 13:17:59 ssuominen Exp $
 
 EAPI=2
-inherit eutils toolchain-funcs
+inherit eutils toolchain-funcs prefix
 
 DESCRIPTION="Return the canonicalized absolute pathname"
 HOMEPAGE="http://packages.debian.org/unstable/utils/realpath"
@@ -17,14 +17,18 @@ IUSE=""
 RDEPEND="!sys-freebsd/freebsd-bin"
 DEPEND="${RDEPEND}
 	app-arch/dpkg
-	app-text/po4a"
+	app-text/po4a
+	virtual/libintl"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-build.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify common.mk
 }
 
 src_compile() {
 	tc-export CC
+	use !elibc_glibc && export LIBS="-lintl"
 	emake || die "emake failed"
 }
 
