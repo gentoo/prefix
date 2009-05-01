@@ -1,19 +1,18 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/lzma-4.57.ebuild,v 1.4 2008/05/11 19:44:38 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma/lzma-4.65.ebuild,v 1.1 2009/04/30 22:03:51 patrick Exp $
 
-inherit toolchain-funcs
+inherit toolchain-funcs versionator
 
+MY_P="${PN}$(replace_all_version_separators '')"
 DESCRIPTION="LZMA Stream Compressor from the SDK"
 HOMEPAGE="http://www.7-zip.org/sdk.html"
-SRC_URI="mirror://sourceforge/sevenzip/${PN}457.tar.bz2"
+SRC_URI="mirror://sourceforge/sevenzip/${MY_P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="doc"
-
-RDEPEND="!app-arch/lzma-utils"
 
 S=${WORKDIR}
 
@@ -26,7 +25,10 @@ src_compile() {
 }
 
 src_install() {
-	dobin CPP/7zip/Compress/LZMA_Alone/lzma || die
+	newbin CPP/7zip/Compress/LZMA_Alone/lzma lzma_alone || die
 	dodoc history.txt
 	use doc && dodoc 7zC.txt 7zFormat.txt lzma.txt Methods.txt
+
+	einfo "Starting from app-arch/lzma version 4.63 binary name was changed"
+	einfo "to /usr/bin/lzma_alone to avoid conflict with lzma-utils package"
 }
