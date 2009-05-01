@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-session/xfce4-session-4.4.3.ebuild,v 1.6 2008/12/15 05:02:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-session/xfce4-session-4.4.3.ebuild,v 1.7 2009/05/01 04:27:32 darkside Exp $
 
 inherit xfce44
 
@@ -28,6 +28,8 @@ RDEPEND="x11-libs/libX11
 DEPEND="${RDEPEND}
 	dev-util/intltool"
 
-XFCE_CONFIG="${XFCE_CONFIG} $(use_enable gnome) $(use_enable dbus)"
-
 DOCS="AUTHORS BUGS ChangeLog NEWS README TODO"
+
+pkg_setup() {
+	XFCE_CONFIG="${XFCE_CONFIG} $(use_enable gnome) $(use_enable dbus)"
+}
