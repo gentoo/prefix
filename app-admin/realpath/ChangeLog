@@ -1,6 +1,12 @@
 # ChangeLog for app-admin/realpath
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.38 2009/01/14 00:41:07 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.39 2009/04/30 13:17:59 ssuominen Exp $
+
+*realpath-1.14 (30 Apr 2009)
+
+  30 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +files/realpath-1.14-build.patch, +realpath-1.14.ebuild:
+  Version bump.
 
   14 Jan 2009; Joseph Jezak <josejx@gentoo.org> realpath-1.12.ebuild:
   Marked ppc stable for bug #254432.
@@ -23,7 +29,7 @@
 
 *realpath-1.12 (16 May 2008)
 
-  16 May 2008; Samuli Suominen <drac@gentoo.org> +realpath-1.12.ebuild:
+  16 May 2008; Samuli Suominen <ssuominen@gentoo.org> +realpath-1.12.ebuild:
   Version bump.
 
   27 Mar 2008; Raúl Porcel <armin76@gentoo.org> realpath-1.9.16.ebuild,
