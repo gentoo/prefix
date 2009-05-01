@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/gpgme
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.160 2009/04/29 14:54:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.161 2009/04/30 12:52:30 jer Exp $
+
+  30 Apr 2009; Jeroen Roovers <jer@gentoo.org> gpgme-1.1.8-r1.ebuild:
+  Stable for HPPA (bug #267578).
 
   29 Apr 2009; Brent Baude <ranger@gentoo.org> gpgme-1.1.8-r1.ebuild:
   stable ppc64, bug 267578
