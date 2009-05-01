@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-plugins/xfce-mcs-plugins-4.4.3.ebuild,v 1.6 2008/12/15 04:58:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce-mcs-plugins/xfce-mcs-plugins-4.4.3.ebuild,v 1.7 2009/05/01 04:29:47 darkside Exp $
 
 EAPI=1
 
@@ -37,6 +37,8 @@ DEPEND="${RDEPEND}
 	x11-proto/xf86miscproto
 	x11-proto/xf86vidmodeproto"
 
-XFCE_CONFIG+=" --enable-xf86misc --enable-xkb --enable-xinput --enable-randr --enable-xf86vm"
-
 DOCS="AUTHORS ChangeLog NEWS README"
+
+pkg_setup() {
+	XFCE_CONFIG+=" --enable-xf86misc --enable-xkb --enable-xinput --enable-randr --enable-xf86vm"
+}
