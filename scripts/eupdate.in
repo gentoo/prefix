@@ -453,6 +453,7 @@ fetch_files() {
 	addwrite() { :; }
 	addpredict() { :; }
 	debug-print-function() { :; }
+	debug-print() { :; }
 	inherit() {
 		for p in $*; do
 			source '"${PTREEDIR}"'/eclass/${p}.eclass
