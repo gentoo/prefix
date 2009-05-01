@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/cython
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.14 2009/03/26 20:07:07 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.16 2009/04/30 18:26:43 patrick Exp $
+
+  30 Apr 2009; Patrick Lauer <patrick@gentoo.org> +cython-0.9.6.12.ebuild:
+  Restore a 0.9.6 version, we don't want to break ppc
+
+  30 Apr 2009; Patrick Lauer <patrick@gentoo.org> -cython-0.9.6.6.ebuild,
+  -cython-0.9.6.10b.ebuild, -cython-0.9.6.12.ebuild:
+  Remove old
 
   26 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
