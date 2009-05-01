@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/xfwm4
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfwm4/ChangeLog,v 1.128 2009/04/21 04:27:43 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfwm4/ChangeLog,v 1.129 2009/05/01 04:23:30 darkside Exp $
+
+  01 May 2009; Jeremy Olexa <darkside@gentoo.org> xfwm4-4.4.3.ebuild:
+  Move use_enable out of global scope
 
 *xfwm4-4.6.1 (21 Apr 2009)
 
