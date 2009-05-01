@@ -232,9 +232,11 @@ src_install() {
 	insinto /usr/$(get_libdir)
 	# Should this use the -L/usr/lib instead of -L/usr/$(get_libdir)?
 	# Please confirm and update this comment or the file.
-	doins "${FILESDIR}"/lib/libGLU.la || die "doins libGLU.la failed"
+	sed -e "s:/usr/lib:${EPREFIX}/usr/lib:g" \
+		"${FILESDIR}"/lib/libGLU.la > "${T}"/libGLU.la
+	doins "${T}"/libGLU.la || die "doins libGLU.la failed"
 	sed \
-		-e "s:\${libdir}:$(get_libdir):g" \
+		-e "s:/usr/\${libdir}:${EPREFIX}/usr/$(get_libdir):g" \
 		"${FILESDIR}"/lib/libGL.la \
 		> "${ED}"/usr/$(get_libdir)/opengl/xorg-x11/lib/libGL.la
 
