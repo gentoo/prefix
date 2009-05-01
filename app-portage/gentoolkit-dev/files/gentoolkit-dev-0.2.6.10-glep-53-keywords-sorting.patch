@@ -1,0 +1,17 @@
+already applied in the repo
+
+Index: ekeyword
+===================================================================
+--- src/ekeyword/ekeyword	(revision 568)
++++ src/ekeyword/ekeyword	(working copy)
+@@ -99,6 +99,10 @@
+ 				(my $sb = $b) =~ s/^\W//;
+ 				return -1 if $sa eq '*';
+ 				return +1 if $sb eq '*';
++				$sa .= "-";
++				$sb .= "-";
++				$sa =~ s/([a-z0-9]+)-([a-z0-9]*)/$2-$1/g;
++				$sb =~ s/([a-z0-9]+)-([a-z0-9]*)/$2-$1/g;
+ 				$sa cmp $sb;
+ 			} split " ", $quoted;
+ 
