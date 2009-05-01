@@ -13,7 +13,7 @@ SRC_URI="http://www.netlib.org/lapack/${MyPN}-lite-${PV}.tgz
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE="doc"
 
 DEPEND="virtual/blas
