@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/sdl-net
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-net/ChangeLog,v 1.34 2008/09/27 16:13:25 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-net/ChangeLog,v 1.35 2009/04/30 16:39:36 mr_bones_ Exp $
+
+  30 Apr 2009; Michael Sterrett <mr_bones_@gentoo.org>
+  -sdl-net-1.2.6.ebuild:
+  clean out old ebuild
 
   27 Sep 2008; Raúl Porcel <armin76@gentoo.org> sdl-net-1.2.7.ebuild:
   arm stable wrt #222995
