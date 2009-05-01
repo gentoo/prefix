@@ -11,7 +11,7 @@ SRC_URI="ftp://ftp.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
 
 SLOT="0"
 IUSE="emacs readline zlib doc hdf5 curl fftw xemacs sparse"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
 RDEPEND="virtual/lapack
 	dev-libs/libpcre
