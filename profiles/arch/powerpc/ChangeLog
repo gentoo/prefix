@@ -1,7 +1,10 @@
 # ChangeLog for Gentoo/PPC profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ChangeLog,v 1.28 2009/03/20 04:40:26 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/powerpc/ChangeLog,v 1.29 2009/04/30 14:48:56 ranger Exp $
 
+  30 April 2009; Brent Baude <ranger@gentoo.org> ppc32/package.use.mask
+  Removing webkit masking per bug 250934
+  
   20 Mar 2009; Joseph Jezak <josejx@gentoo.org> package.use.mask:
   Masked oracle keyword for dev-ruby/ruby-dbi.
 

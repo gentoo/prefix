@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4403 2009/04/30 00:47:51 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4407 2009/04/30 20:47:40 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -390,8 +390,15 @@ app-office/gnumeric:perl - Enable perl plugin loader.
 app-office/gnumeric:python - Enable python plugin loader.
 app-office/grisbi:print - Enable printing support
 app-office/imposter:iksemel - Enable external dev-libs/iksemel parsing support
+app-office/karbon:pstoedit - Build support for PDF and PS import.
+app-office/karbon:wpg - Build wordperfect image support.
 app-office/kmymoney2:hbci - Add HBCI online banking support
 app-office/kmymoney2:qtdesigner - Installs KMyMoney specific widget library for Qt-designer
+app-office/krita:gmm - Enable library for sparse, dense and skyline matrices.
+app-office/krita:kdcraw - Enable KDE image manipulating interface.
+app-office/kspread:solver - Use solver extension for solving lingebra and others.
+app-office/kword:wpd - Build wordperfect document support.
+app-office/kword:wv2 - Build MS-Word .doc support.
 app-office/lyx:dia - Add support for diagrams (app-office/dia)
 app-office/lyx:docbook - Add support for docbook export
 app-office/lyx:dot - Add support for DOT import (media-gfx/graphviz) 
@@ -2052,12 +2059,13 @@ net-im/jabberd2:memdebug - Enable nad and pool debug. Requires USE="debug" to be
 net-im/kadu:amarok - Enables media-sound/amarok:0 (amarok1) media player support
 net-im/kadu:amarok2 - Enables media-sound/amarok:2 (amarok2) media player support
 net-im/kadu:audacious - Enables media-sound/audacious media player support
+net-im/kadu:avatar - Display Gadu Avatars in Kadu
 net-im/kadu:bmpx - Enables media-sound/bmpx media player support
 net-im/kadu:config_wizard - Enables configuration wizard module
 net-im/kadu:dragonplayer - Enables kde-base/dragonplayer KDE4 media player support
-net-im/kadu:extraicons - Enables extra icon set
 net-im/kadu:extramodules - Enables building of extra modules
 net-im/kadu:mail - Enables mail module
+net-im/kadu:phonon - Phonon sound support
 net-im/kadu:powerkadu - Installs extra powerkadu modules
 net-im/kadu:sms - Enables SMS sending plugin
 net-im/kadu:speech - Enables speech module
@@ -2586,6 +2594,7 @@ sys-apps/acl:nfs -  add support for NFS acls
 sys-apps/busybox:make-symlinks - Create all the appropriate symlinks in /bin and /sbin.
 sys-apps/einit:relaxng - Make validator for Relax NG available
 sys-apps/hal:acpi - Enables HAL to attempt to read from /proc/acpi/event, if unavailable, HAL will read events from sys-power/acpid. If you need multiple acpi readers, ensure acpid is in your default runlevel (rc-update add acpid default) along with HAL. This will also enable HAL to read Toshiba and IBM acpi events which do not get sent via /proc/acpi/event
+sys-apps/hal:consolekit - Enables HAL to interact with consolekit for determining whether a given process is running on behalf of the person setting at the console.
 sys-apps/hal:crypt - Allows HAL to mount volumes that are encrypted using LUKS. sys-fs/cryptsetup-luks which has recently been renamed to sys-fs/cryptsetup allows you to create such encrypted volumes. HAL will be able to handle volumes that are removable or fixed.
 sys-apps/hal:dell - Builds and installs the Dell addon, which reads data from the Dell SM BIOS via sys-libs/libsmbios. It will read your service tag information and your hardware backlight data as well as allow you to modify the backlight settings on a Dell laptop.
 sys-apps/hal:disk-partition - Allows HAL to use libparted from sys-apps/parted to read raw partition data from your disks and process that data. Future versions of HAL (possibly 0.5.11 and higher) will allow you to create, modify, delete and format partitions from a GUI interface agnostic of your desktop environment.
@@ -2968,6 +2977,7 @@ x11-wm/matchbox-common:pda - Support for pda folders
 x11-wm/matchbox-desktop:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:lowres - Optimize for low resolution screens.
+x11-wm/ratpoison:history - Save ratpoison command history using sys-libs/readline
 x11-wm/sawfish:pango - Enable pango support
 x11-wm/stumpwm:clisp - Use CLISP for the runtime
 x11-wm/stumpwm:sbcl - Use SBCL for the runtime

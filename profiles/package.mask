@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9739 2009/04/29 15:43:30 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9743 2009/04/30 22:48:01 ssuominen Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,31 @@
 
 #--- END OF EXAMPLES ---
 
+# Vlastimil Babka <caster@gentoo.org> (30 Apr 2009)
+# masked for removal, bug #261563
+=dev-java/ant-core-1.7.0*
+=dev-java/ant-antlr-1.7.0*
+=dev-java/ant-apache-bcel-1.7.0*
+=dev-java/ant-apache-bsf-1.7.0*
+=dev-java/ant-apache-log4j-1.7.0*
+=dev-java/ant-apache-oro-1.7.0*
+=dev-java/ant-apache-regexp-1.7.0*
+=dev-java/ant-apache-resolver-1.7.0*
+=dev-java/ant-commons-logging-1.7.0*
+=dev-java/ant-commons-net-1.7.0*
+=dev-java/ant-jai-1.7.0*
+=dev-java/ant-javamail-1.7.0*
+=dev-java/ant-jdepend-1.7.0*
+=dev-java/ant-jmf-1.7.0*
+=dev-java/ant-jsch-1.7.0*
+=dev-java/ant-junit-1.7.0*
+=dev-java/ant-junit4-1.7.0*
+=dev-java/ant-nodeps-1.7.0*
+=dev-java/ant-swing-1.7.0*
+=dev-java/ant-trax-1.7.0*
+dev-java/ant-tasks
+=dev-java/ant-1.7.0*
+
 # Tomas Chvatal <scarabeus@gentoo.org> (30 Apr 2009)
 # mask the koffice2 (notetoself dont use slot blocks)
 >=app-office/kword-1.9.99.0
@@ -49,10 +74,6 @@
 # Rémi Cardona <remi@gentoo.org> (29 Apr 2009)
 # needs a couple patches to work properly
 =media-libs/mesa-7.4.1
-
-# Rémi Cardona <remi@gentoo.org> (29 Apr 2009)
-# needs totem-pl-parser 2.26.0
->=media-sound/rhythmbox-0.12.1
 
 # Rémi Cardona <remi@gentoo.org> (29 Apr 2009)
 # packages currently in the x11 overlay which will soon be moved to portage
@@ -196,12 +217,6 @@ net-mail/gotmail
 # Christoph Mende <angelos@unkreativ.org> (14 Apr 2009)
 # Masked media-sound/mpd pre-releases
 =media-sound/mpd-0.15*
-
-# Jeremy Olexa <darkside@gentoo.org> (14 Apr 2009)
-# Masked for removal in 60 days. Dead upstream, no Gentoo maintainer, needs
-# init script. bug 182373 - you can save this one by testing the init script
-# and/or commenting on the bug.
-net-firewall/guarddog
 
 # Jeremy Olexa <darkside@gentoo.org> (14 Apr 2009)
 # Masked for removal in 60 days. Broken with gcc-4.3, doesn't work after gcc
@@ -608,10 +623,6 @@ www-misc/zoneminder
 # with recent X server due to API changes. Upstream dead. Bug 242462.
 # If you run xorg-server-1.3* then this may still work for you.
 x11-misc/hotkeys
-
-# Rémi Cardona <remi@gentoo.org> (25 Jan 2009)
-# xprint is dead, for real (see bug #254874)
-x11-apps/xphelloworld
 
 # Hanno Boeck <hanno@gentoo.org (22 Jan 2009)
 # This has been included in kernel 2.6.27 and shouldn't be used

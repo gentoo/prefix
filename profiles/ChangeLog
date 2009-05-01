@@ -1,10 +1,20 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2594 2009/04/30 00:11:37 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2597 2009/04/30 22:48:01 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  01 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Remove xphelloworld since xprint is obsolete.
+
+  30 Apr 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Remove guarddog from p.mask, bug 182373
+
+  30 Apr 2009; Vlastimil Babka <caster@gentoo.org> package.mask:
+  Masking dev-java/ant-1.7.0* packages and whole dev-java/ant-tasks, bug
+  #261563.
 
   30 Apr 2009; Ryan Hill <dirtyepic@gentoo.org> use.desc:
   Add new global wxwidgets USE flag and deprecate wxwindows.
