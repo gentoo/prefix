@@ -27,15 +27,18 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-deplibs.patch
 	epatch "${FILESDIR}"/${P}-darwin.patch
 
-	# this adds a m4 file containing the two macros which are
-	# otherwise missing (to keep down dependencies).
-	EPATCH_OPTS="-p1" epatch "${FILESDIR}"/${P}-bootstrap.patch
+	if [[ ${CHOST} == *-interix* ]] ; then
+		# this adds a m4 file containing the two macros which are
+		# otherwise missing (to keep down dependencies).
+		EPATCH_OPTS="-p1" epatch "${FILESDIR}"/${P}-bootstrap.patch
 
-	# this one disables multi byte chars for interix (support broken)
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix.patch
+		# this one disables multi byte chars for interix (support broken)
+		epatch "${FILESDIR}"/${P}-interix.patch
 
-	ln -s config/configure.in configure.in
-	AT_M4DIR="jade spgrove style config" eautoreconf # need new libtool for interix
+		ln -s config/configure.in configure.in
+		AT_M4DIR="jade spgrove style config" eautoreconf # need new libtool for interix
+		# NOTE: eautoreconf here breaks other platforms
+	fi
 }
 
 src_compile() {
