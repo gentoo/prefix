@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mailwatch/xfce4-mailwatch-1.1.0.ebuild,v 1.7 2008/11/20 16:46:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mailwatch/xfce4-mailwatch-1.1.0.ebuild,v 1.8 2009/05/01 04:31:13 darkside Exp $
 
 inherit xfce44 eutils
 
@@ -17,9 +17,11 @@ IUSE="ssl"
 RDEPEND="ssl? ( >=net-libs/gnutls-1.2 )"
 DEPEND="dev-util/intltool"
 
-XFCE_CONFIG="${XFCE_CONFIG} $(use_enable ssl)"
-
 xfce44_panel_plugin
+
+pkg_setup() {
+	XFCE_CONFIG="${XFCE_CONFIG} $(use_enable ssl)"
+}
 
 src_unpack()
 {

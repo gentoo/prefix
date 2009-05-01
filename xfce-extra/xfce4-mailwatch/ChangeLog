@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-mailwatch
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mailwatch/ChangeLog,v 1.25 2008/12/03 23:49:53 angelos Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mailwatch/ChangeLog,v 1.26 2009/05/01 04:31:13 darkside Exp $
+
+  01 May 2009; Jeremy Olexa <darkside@gentoo.org>
+  xfce4-mailwatch-1.1.0.ebuild:
+  Move use_enable out of global scope
 
   03 Dec 2008; Christoph Mende <angelos@gentoo.org>
   -xfce4-mailwatch-1.0.1.ebuild:
