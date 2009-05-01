@@ -1,0 +1,18 @@
+respect the configure nls flag
+
+http://bugs.gentoo.org/192819
+
+--- man/Makefile.in
++++ man/Makefile.in
+@@ -223,7 +223,11 @@
+ top_srcdir = @top_srcdir@
+ 
+ # Extract the list of languages from the po4a config file.
++ifeq ($(USE_NLS),yes)
+ LINGUAS = $(shell sed -ne 's/^.*\[po4a_langs\] \(.*\)$$/\1/p' $(srcdir)/po/po4a.cfg)
++else
++LINGUAS =
++endif
+ dist_man_MANS = \
+ 	822-date.1 \
+ 	cleanup-info.8 \

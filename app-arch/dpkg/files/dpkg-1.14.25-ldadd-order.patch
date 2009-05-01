@@ -1,0 +1,81 @@
+* <grobian@gentoo.org>: for some reason GNU binutils on Solaris won't
+                        find the symbols from libcompat if it is
+                        specified before the objects that use it
+
+--- dpkg-1.14.25/dpkg-deb/Makefile.in	2009-02-02 23:03:50 +0100
++++ dpkg-1.14.25/dpkg-deb/Makefile.in	2009-05-01 19:24:46 +0200
+@@ -213,8 +213,9 @@
+ 	main.c
+ 
+ dpkg_deb_LDADD = \
++	$(LIBINTL) ../lib/libdpkg.a \
+ 	../libcompat/libcompat.a \
+-	$(LIBINTL) ../lib/libdpkg.a $(ZLIB_LIBS) $(BZ2_LIBS) $(SELINUX_LIBS)
++	$(ZLIB_LIBS) $(BZ2_LIBS) $(SELINUX_LIBS)
+ 
+ all: all-am
+ 
+--- dpkg-1.14.25/dpkg-split/Makefile.in	2009-02-02 23:03:50 +0100
++++ dpkg-1.14.25/dpkg-split/Makefile.in	2009-05-01 19:25:01 +0200
+@@ -217,9 +217,9 @@
+ 	split.c
+ 
+ dpkg_split_LDADD = \
+-	../libcompat/libcompat.a \
+ 	$(LIBINTL) \
+-	../lib/libdpkg.a
++	../lib/libdpkg.a \
++	../libcompat/libcompat.a
+ 
+ pkglib_SCRIPTS = mksplit
+ EXTRA_DIST = mksplit.pl
+--- dpkg-1.14.25/dselect/Makefile.in	2009-02-02 23:03:50 +0100
++++ dpkg-1.14.25/dselect/Makefile.in	2009-05-01 19:25:16 +0200
+@@ -249,10 +249,10 @@
+ 	pkgtop.cc
+ 
+ dselect_LDADD = \
+-	../libcompat/libcompat.a \
+ 	$(LIBINTL) \
+ 	$(CURSES_LIBS) \
+-	../lib/libdpkg.a
++	../lib/libdpkg.a \
++	../libcompat/libcompat.a
+ 
+ EXTRA_DIST = keyoverride mkcurkeys.pl
+ CLEANFILES = curkeys.h
+--- dpkg-1.14.25/src/Makefile.in	2009-02-02 23:03:51 +0100
++++ dpkg-1.14.25/src/Makefile.in	2009-05-01 19:25:57 +0200
+@@ -239,8 +239,9 @@
+ 	update.c
+ 
+ dpkg_LDADD = \
++	$(LIBINTL) ../lib/libdpkg.a \
+ 	../libcompat/libcompat.a \
+-	$(LIBINTL) ../lib/libdpkg.a $(ZLIB_LIBS) $(BZ2_LIBS) $(SELINUX_LIBS)
++	$(ZLIB_LIBS) $(BZ2_LIBS) $(SELINUX_LIBS)
+ 
+ dpkg_query_SOURCES = \
+ 	errors.c \
+@@ -248,17 +249,17 @@
+ 	query.c
+ 
+ dpkg_query_LDADD = \
+-	../libcompat/libcompat.a \
+ 	$(LIBINTL) \
+-	../lib/libdpkg.a
++	../lib/libdpkg.a \
++	../libcompat/libcompat.a
+ 
+ dpkg_trigger_SOURCES = \
+ 	trigcmd.c
+ 
+ dpkg_trigger_LDADD = \
+-	../libcompat/libcompat.a \
+ 	$(LIBINTL) \
+-	../lib/libdpkg.a
++	../lib/libdpkg.a \
++	../libcompat/libcompat.a
+ 
+ all: all-am
+ 
