@@ -1,4 +1,5 @@
-Darwin linker is stricter and requires all symbols to be resolved
+* <grobian@gentoo.org>: Darwin linker is stricter and requires all
+                        symbols to be resolved
 
 --- utils/Makefile.am
 +++ utils/Makefile.am
