@@ -10,7 +10,7 @@ SRC_URI="mirror://debian/pool/main/d/dpkg/${P/-/_}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="bzip2 nls selinux test unicode zlib"
 
 RDEPEND=">=dev-lang/perl-5.6.0
@@ -31,6 +31,8 @@ src_unpack() {
 		sed -i "s:ncursesw/::" dselect/{Makefile.in,dselect.h,main.cc} #217046
 		export ac_cv_lib_ncursesw_initscr=no
 	fi
+	# don't mess with linker optimisation, respect user's flags (don't break!)
+	sed -i -e 's/ -Wl,-O1//' configure || die
 }
 
 src_compile() {
