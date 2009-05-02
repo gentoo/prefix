@@ -25,9 +25,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-orphan-file.patch
 
 	# I didn't feel like making the Makefile portable
-# needs checking -- grobian 2009-04-30
-#	[[ ${CHOST} == *-darwin* ]] \
-#		&& cp ${FILESDIR}/Makefile.Darwin.in Makefile.in
+	[[ ${CHOST} == *-darwin* ]] \
+		&& cp ${FILESDIR}/Makefile.Darwin.in Makefile.in
 	
 	eautoreconf
 }
