@@ -1,6 +1,8 @@
 * <grobian@gentoo.org>: Darwin linker is stricter and requires all
                         symbols to be resolved
 
+https://bugs.freedesktop.org/show_bug.cgi?id=21520
+
 --- utils/Makefile.am
 +++ utils/Makefile.am
 @@ -16,6 +16,12 @@
