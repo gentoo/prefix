@@ -1,0 +1,28 @@
+Darwin linker is stricter and requires all symbols to be resolved
+
+--- utils/Makefile.am
++++ utils/Makefile.am
+@@ -16,6 +16,12 @@
+ 	pdftoabw.cc				\
+ 	$(common)
+ 
++pdftoabw_LDADD = \
++	$(top_builddir)/poppler/libpoppler.la	\
++	$(UTILS_LIBS)				\
++	$(FONTCONFIG_LIBS) \
++	$(ABIWORD_LIBS)
++
+ pdftoabw_binary = pdftoabw
+ 
+ endif
+--- utils/Makefile.in
++++ utils/Makefile.in
+@@ -79,7 +79,7 @@
+ @BUILD_ABIWORD_OUTPUT_TRUE@am_pdftoabw_OBJECTS = pdftoabw.$(OBJEXT) \
+ @BUILD_ABIWORD_OUTPUT_TRUE@	$(am__objects_1)
+ pdftoabw_OBJECTS = $(am_pdftoabw_OBJECTS)
+-pdftoabw_LDADD = $(LDADD)
++pdftoabw_LDADD = $(LDADD) $(ABIWORD_LIBS)
+ pdftoabw_DEPENDENCIES = $(top_builddir)/poppler/libpoppler.la \
+ 	$(am__DEPENDENCIES_1)
+ am_pdftohtml_OBJECTS = pdftohtml.$(OBJEXT) HtmlFonts.$(OBJEXT) \
