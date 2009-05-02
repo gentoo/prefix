@@ -206,11 +206,22 @@ qt4-build_src_prepare() {
 			-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
 			-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=${LDFLAGS}:" \
 			-i "${S}"/mkspecs/common/g++.conf || die "sed ${S}/mkspecs/common/g++.conf failed"
-	else	
+	else
+		# Set FLAGS *and* remove -arch, since our gcc-apple is multilib
+		# crippled (by design) :/
 		sed -e "s:QMAKE_CFLAGS_RELEASE.*=.*:QMAKE_CFLAGS_RELEASE=${CFLAGS}:" \
 			-e "s:QMAKE_CXXFLAGS_RELEASE.*=.*:QMAKE_CXXFLAGS_RELEASE=${CXXFLAGS}:" \
 			-e "s:QMAKE_LFLAGS_RELEASE.*=.*:QMAKE_LFLAGS_RELEASE=-headerpad_max_install_names ${LDFLAGS}:" \
+			-e "s:-arch\s\w*::g" \
 			-i "${S}"/mkspecs/common/mac-g++.conf || die "sed ${S}/mkspecs/common/mac-g++.conf failed"
+
+			# Fix configure's -arch settings that appear in qmake/Makefile
+			sed \
+				-e "s:-arch i386::" \
+				-e "s:-arch ppc::" \
+				-e "s:-arch x86_64::" \
+				-e "s:-arch ppc64::" \
+				-i "${S}"/configure || die "sed ${S}/configure failed"
 	fi
 
 }
