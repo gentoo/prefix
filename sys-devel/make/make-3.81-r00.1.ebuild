@@ -29,6 +29,9 @@ src_unpack() {
 	# this disables make abortion on write errors, which
 	# seem to be reported wrongly sporadically on interix.
 	epatch "${FILESDIR}"/${P}-interix.patch
+
+	# enable library_search() to look for lib%.dylib on darwin
+	epatch "${FILESDIR}"/${P}-darwin-library_search-dylib.patch
 }
 
 src_compile() {
