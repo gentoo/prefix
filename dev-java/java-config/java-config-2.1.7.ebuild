@@ -37,6 +37,7 @@ src_install() {
 	local a=${ARCH}
 	case $a in
 		x86-freebsd)  a=x86-fbsd;; # as long as we don't push patch upstream
+		x64-freebsd)  a=x86-fbsd;; # as long as it isn't upstream
 		sparc64-solaris) a=sparc-solaris;; # as long as it isn't upstream
 		x64-solaris)  a=x86-solaris;; # as long as it isn't upstream
 		ppc*-aix)     a=${a%-aix};; # as long as ppc*-linux defaults to ibm-jdk-bin
