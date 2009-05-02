@@ -10,7 +10,7 @@ SRC_URI="mirror://debian/pool/main/p/po4a/${PN}_${PV}.orig.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="test"
 
 RDEPEND="dev-perl/SGMLSpm
