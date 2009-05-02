@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.13595 (02 May 2009)
+
+  02 May 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.13369.ebuild, +portage-2.2.00.13595.ebuild:
+  New snapshot, no longer kills airplanes, no longer barfs about mtree
+  missing on FreeBSD, matches 2.2_rc32+
+
 *portage-2.2.00.13405 (28 Apr 2009)
 
   28 Apr 2009; Fabian Groffen <grobian@gentoo.org>
