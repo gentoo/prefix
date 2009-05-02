@@ -313,8 +313,10 @@ standard_configure_options() {
 	# $(tc-arch). Therefore we convert it to supported values.
 	case "$(tc-arch)" in
 		amd64|x64-*) myconf="${myconf} -arch x86_64" ;;
+		ppc-macos) myconf="${myconf} -arch ppc" ;;
 		ppc|ppc64|ppc-*) myconf="${myconf} -arch powerpc" ;;
 		sparc|sparc-*) myconf="${myconf} -arch sparc" ;;
+		x86-macos) myconf="${myconf} -arch x86" ;;
 		x86|x86-*) myconf="${myconf} -arch i386" ;;
 		alpha|arm|ia64|mips|s390|sparc) myconf="${myconf} -arch $(tc-arch)" ;;
 		hppa|sh) myconf="${myconf} -arch generic" ;;
