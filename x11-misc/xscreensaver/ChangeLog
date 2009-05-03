@@ -1,6 +1,13 @@
 # ChangeLog for x11-misc/xscreensaver
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.252 2009/04/30 20:16:53 ssuominen Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.253 2009/05/02 10:33:48 ssuominen Exp $
+
+*xscreensaver-5.08-r2 (02 May 2009)
+
+  02 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  -xscreensaver-5.08-r1.ebuild, +xscreensaver-5.08-r2.ebuild,
+  +files/xscreensaver-5.08-randr12.patch:
+  Include XRandR 1.2 patch by Brian Tarricone wrt #249680.
 
   30 Apr 2009; Samuli Suominen <ssuominen@gentoo.org>
   xscreensaver-5.08-r1.ebuild:
