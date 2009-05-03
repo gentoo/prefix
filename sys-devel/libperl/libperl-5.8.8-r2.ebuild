@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r2.ebuild,v 1.10 2008/10/27 06:03:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r2.ebuild,v 1.11 2009/05/02 13:19:14 arfrever Exp $
 
 # The basic theory based on comments from Daniel Robbins <drobbins@gentoo.org>.
 #
@@ -170,6 +170,9 @@ src_unpack() {
 	# patch to fix bug #219203
 	epatch "${FILESDIR}"/${P}-CVE-2008-1927.patch
 
+	# Respect LDFLAGS
+	sed -e 's/$(SHRPLDFLAGS)/& $(LDFLAGS)/' -i Makefile.SH
+
 	# perl tries to link against gdbm if present, even without USE=gdbm
 	if ! use gdbm; then
 		sed -i '/^libswanted=/s/gdbm //' Configure
@@ -315,7 +318,7 @@ src_compile() {
 		"${myconf[@]}" || die "Unable to configure"
 
 	emake -j1 -f Makefile depend || die "Couldn't make libperl$(get_libname) depends"
-	emake -j1 -f Makefile LIBPERL=${LIBPERL} LIBPERL_SOVERSION=${PERLSLOT} ${LIBPERL} || die "Unable to make libperl$(get_libname)"
+	emake -j1 -f Makefile LDFLAGS="${LDFLAGS}" LIBPERL=${LIBPERL} ${LIBPERL} || die "Unable to make libperl$(get_libname)"
 	mv ${LIBPERL} "${WORKDIR}"
 }
 
