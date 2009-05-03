@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.22 2009/03/15 07:14:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-3.4.6-r2.ebuild,v 1.23 2009/05/03 00:21:52 halcy0n Exp $
 
 MAN_VER=""
 PATCH_VER="1.6"
@@ -77,9 +77,10 @@ fi
 DEPEND="${RDEPEND}
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
-|| ( ppc-aix? ( sys-devel/native-cctools )
-	>=sys-devel/binutils-2.14.90.0.8-r1
-)
+	sys-devel/flex
+	|| ( ppc-aix? ( sys-devel/native-cctools )
+		>=sys-devel/binutils-2.14.90.0.8-r1
+	)
 	amd64? ( >=sys-devel/binutils-2.15.90.0.1.1-r1 )"
 PDEPEND=">=sys-devel/gcc-config-1.4"
 

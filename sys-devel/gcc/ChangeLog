@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.701 2009/04/26 20:14:11 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.702 2009/05/03 00:21:52 halcy0n Exp $
+
+  03 May 2009; Mark Loeser <halcy0n@gentoo.org> gcc-3.4.6-r2.ebuild,
+  gcc-4.0.4.ebuild, gcc-4.1.2.ebuild, gcc-4.2.4-r1.ebuild, gcc-4.3.0.ebuild,
+  gcc-4.3.1.ebuild, gcc-4.3.1-r1.ebuild, gcc-4.3.2.ebuild,
+  gcc-4.3.2-r2.ebuild, gcc-4.3.2-r3.ebuild, gcc-4.3.2-r4.ebuild,
+  gcc-4.3.3.ebuild, gcc-4.3.3-r2.ebuild:
+  Add sys-devel/flex as a DEPEND; bug #221411
 
 *gcc-4.3.2-r4 (26 Apr 2009)
 
