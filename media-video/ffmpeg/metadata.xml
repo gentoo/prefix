@@ -12,6 +12,7 @@
       3dnowext in /proc/cpuinfo to know whehter you support it).
     </flag>
     <flag name="amr">Enables Adaptive Multi-Rate Audio support</flag>
+    <flag name="cpudetection">Enables runtime cpudetection (useful for bindist, compatability on other CPUs)</flag>
     <flag name="dirac">Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.</flag>
 	<flag name="faac">Use external faac library for AAC encoding</flag>
 	<flag name="faad">Use external faad library for AAC decoding (instead of internal libavcodec support)</flag>
