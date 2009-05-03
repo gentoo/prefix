@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Net-DNS
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/ChangeLog,v 1.132 2009/01/27 10:15:12 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/ChangeLog,v 1.133 2009/05/02 11:05:38 tove Exp $
+
+  02 May 2009; Torsten Veller <tove@gentoo.org> -Net-DNS-0.61.ebuild,
+  -Net-DNS-0.64.ebuild:
+  Cleanup
 
 *Net-DNS-0.65 (27 Jan 2009)
 
