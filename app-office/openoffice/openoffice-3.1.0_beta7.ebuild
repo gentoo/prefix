@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0_beta6.ebuild,v 1.2 2009/04/25 11:49:54 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0_beta7.ebuild,v 1.1 2009/05/01 09:10:55 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI=2
@@ -9,10 +9,10 @@ inherit bash-completion check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-
 
 IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
-MY_PV=3.0.99.6
+MY_PV=3.0.99.7
 PATCHLEVEL=OOO310
 SRC=OOo_${PV}_src
-MST=ooo310-m10
+MST=ooo310-m11
 DEVPATH=http://download.go-oo.org/${PATCHLEVEL}/${MST}
 S=${WORKDIR}/ooo
 S_OLD=${WORKDIR}/ooo-build-${MY_PV}
@@ -230,7 +230,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/gentoo-${PV}.diff"
 	epatch "${FILESDIR}/ooo-env_log.diff"
-	cp -f "${FILESDIR}/buildfix-mono-2-2.diff" "${S}/patches/dev300" || die
+#	cp -f "${FILESDIR}/buildfix-mono-2-2.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/base64.diff" "${S}/patches/hotfixes" || die
 
 	#Use flag checks
