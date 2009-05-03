@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-2.0.0.21.ebuild,v 1.6 2009/03/22 15:24:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-2.0.0.21.ebuild,v 1.7 2009/05/01 23:59:26 nirbheek Exp $
 
 WANT_AUTOCONF="2.1"
 
@@ -183,16 +183,6 @@ src_compile() {
 	edit_makefiles
 
 	emake || die
-}
-
-pkg_preinst() {
-	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
-
-	elog "Removing old installs with some really ugly code.  It potentially"
-	elog "eliminates any problems during the install, however suggestions to"
-	elog "replace this are highly welcome.  Send comments and suggestions to"
-	elog "mozilla@gentoo.org."
-	rm -rf "${EROOT}"/"${MOZILLA_FIVE_HOME}"
 }
 
 src_install() {

@@ -1,6 +1,11 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.290 2009/03/22 15:24:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.291 2009/05/01 23:59:26 nirbheek Exp $
+
+  01 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  mozilla-thunderbird-2.0.0.21:
+  Keeping the pkg_preinst is causing more problems than removing it, such as
+  bug 268060
 
   22 Mar 2009; Raúl Porcel <armin76@gentoo.org>
   mozilla-thunderbird-2.0.0.21.ebuild:
