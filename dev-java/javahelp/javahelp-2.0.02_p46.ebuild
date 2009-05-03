@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javahelp/javahelp-2.0.02_p46.ebuild,v 1.8 2009/01/27 19:57:12 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javahelp/javahelp-2.0.02_p46.ebuild,v 1.9 2009/05/01 15:14:38 ranger Exp $
 
 WANT_ANT_TASKS="ant-nodeps"
 JAVA_PKG_IUSE="doc examples source"

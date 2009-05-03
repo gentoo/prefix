@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/javahelp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javahelp/ChangeLog,v 1.13 2009/01/27 19:58:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javahelp/ChangeLog,v 1.14 2009/05/01 15:14:38 ranger Exp $
+
+  01 May 2009; Brent Baude <ranger@gentoo.org> javahelp-2.0.02_p46.ebuild:
+  stable ppc64, bug 267737
 
   27 Jan 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
   keyworded ~arch for ppc64, bug 255713
