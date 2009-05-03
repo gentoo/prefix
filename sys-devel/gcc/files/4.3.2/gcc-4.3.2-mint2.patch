@@ -1,0 +1,33 @@
+Alan Hourihane
+http://bugs.gentoo.org/show_bug.cgi?id=268343
+
+--- libiberty/configure.ac.old	2008-10-08 21:54:20.000000000 +0100
++++ libiberty/configure.ac	2008-10-08 21:55:07.000000000 +0100
+@@ -203,6 +203,7 @@
+   frag=
+   case "${host}" in
+     *-*-cygwin*)	;;
++    *-*-mint*)		;;
+     alpha*-*-linux*)	frag=mh-elfalphapic ;;
+     arm*-*-*)		frag=mh-armpic ;;
+     hppa*-*-*)		frag=mh-papic ;;
+--- libiberty/configure.old	2008-10-08 21:54:15.000000000 +0100
++++ libiberty/configure	2008-10-08 21:54:54.000000000 +0100
+@@ -3715,6 +3715,7 @@
+   frag=
+   case "${host}" in
+     *-*-cygwin*)	;;
++    *-*-mint*)		;;
+     alpha*-*-linux*)	frag=mh-elfalphapic ;;
+     arm*-*-*)		frag=mh-armpic ;;
+     hppa*-*-*)		frag=mh-papic ;;
+--- gcc/Makefile.in.old	2008-10-08 22:04:03.000000000 +0100
++++ gcc/Makefile.in	2008-10-08 22:04:29.000000000 +0100
+@@ -1567,6 +1567,7 @@
+ cc1$(exeext): $(C_OBJS) cc1-checksum.o $(BACKEND) $(LIBDEPS)
+ 	$(CC) $(ALL_CFLAGS) $(LDFLAGS) -o $@ $(C_OBJS) cc1-checksum.o \
+ 	  $(BACKEND) $(LIBS) $(GMPLIBS)
++	stack -S 3 $@
+ 
+ #
+ # Build libgcc.a.

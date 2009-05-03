@@ -28,7 +28,7 @@ inherit toolchain flag-o-matic prefix
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
 LICENSE="GPL-2 LGPL-2.1"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	>=sys-devel/gcc-config-1.4
@@ -100,6 +100,12 @@ src_unpack() {
 #	epatch "${FILESDIR}"/4.2.2/interix-x86.patch.bz2
 	# gcc sources are polluted with old stuff for interix 3.5 not needed here
 	epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
+
+	if [[ ${CHOST} == *-mint* ]] ; then
+		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint1.patch
+		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint2.patch
+		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
+	fi
 
 	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
 
