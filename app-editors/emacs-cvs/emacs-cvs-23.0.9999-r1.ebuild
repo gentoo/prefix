@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.8 2009/04/05 18:46:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.9 2009/05/01 19:49:00 ulm Exp $
 
 EAPI=2
 
@@ -143,7 +143,7 @@ src_configure() {
 		myconf="${myconf} $(use_with gif) $(use_with jpeg)"
 		myconf="${myconf} $(use_with png) $(use_with svg rsvg)"
 		myconf="${myconf} $(use_with tiff) $(use_with xpm)"
-		myconf="${myconf} $(use_with xft freetype) $(use_with xft)"
+		myconf="${myconf} $(use_with xft)"
 
 		if use xft; then
 			myconf="${myconf} $(use_with m17n-lib libotf)"
