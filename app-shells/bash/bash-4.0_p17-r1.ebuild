@@ -88,7 +88,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
 
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
-	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-3.2-mint.patch
 
 	# modify the bashrc file for prefix
 	cp "${FILESDIR}"/bashrc "${T}"
