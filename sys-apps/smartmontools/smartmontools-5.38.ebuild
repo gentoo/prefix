@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/smartmontools-5.38.ebuild,v 1.6 2008/06/16 03:23:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/smartmontools-5.38.ebuild,v 1.7 2009/05/01 13:47:34 robbat2 Exp $
 
 inherit flag-o-matic
 
@@ -17,6 +17,7 @@ RDEPEND=""
 DEPEND=""
 
 src_compile() {
+	use minimal && einfo "Skipping the monitoring daemon for minimal build."
 	use static && append-ldflags -static
 	econf || die
 	emake || die
