@@ -1,6 +1,9 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.73 2009/04/14 23:53:05 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.75 2009/05/02 16:47:42 nixnut Exp $
+
+  02 May 2009; nixnut <nixnut@gentoo.org> transmission-1.52.ebuild:
+  ppc stable #268262
 
 *transmission-1.52 (14 Apr 2009)
 
@@ -11,18 +14,20 @@
   15 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> metadata.xml:
   Compnerd retired.
 
-  02 Jan 2009; <ssuominen@gentoo.org> transmission-1.42.ebuild:
+  02 Jan 2009; Samuli Suominen <ssuominen@gentoo.org>
+  transmission-1.42.ebuild:
   Enabling and disabling nls support is misbehaving wrt #253460, thanks to
   Torsten Rehn.
 
-  01 Jan 2009; <ssuominen@gentoo.org>
+  01 Jan 2009; Samuli Suominen <ssuominen@gentoo.org>
   +files/transmission-1.42-respect_flags.patch, transmission-1.42.ebuild:
   Update icon cache. Fix LICENSE, since web/ directory includes GPL-2. Move
   glib dep. behind USE gtk. Patch to respect user cflags and cxxflags.
 
 *transmission-1.42 (01 Jan 2009)
 
-  01 Jan 2009; <ssuominen@gentoo.org> +transmission-1.42.ebuild:
+  01 Jan 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +transmission-1.42.ebuild:
   Version bump.
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
@@ -68,8 +73,8 @@
   04 May 2008; nixnut <nixnut@gentoo.org> transmission-1.1.0.ebuild:
   Stable on ppc wrt bug 220137
 
-  03 May 2008; Samuli Suominen <drac@gentoo.org> transmission-1.1.0.ebuild,
-  transmission-1.11.ebuild:
+  03 May 2008; Samuli Suominen <ssuominen@gentoo.org>
+  transmission-1.1.0.ebuild, transmission-1.11.ebuild:
   1.1.0 amd64 stable wrt #220137. fix test suite for both versions.
 
 *transmission-1.11 (20 Apr 2008)
@@ -79,7 +84,8 @@
   +transmission-1.11.ebuild:
   Version bump from upstream (bug #215525)
 
-  10 Apr 2008; Samuli Suominen <drac@gentoo.org> transmission-1.0.6.ebuild:
+  10 Apr 2008; Samuli Suominen <ssuominen@gentoo.org>
+  transmission-1.0.6.ebuild:
   amd64 stable
 
 *transmission-1.1.0 (31 Mar 2008)
