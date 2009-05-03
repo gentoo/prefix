@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.5_beta4.ebuild,v 1.1 2009/04/28 14:17:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.5_beta4.ebuild,v 1.2 2009/05/01 23:13:22 nirbheek Exp $
 EAPI="2"
 
 inherit eutils mozilla-launcher multilib mozextension prefix
@@ -149,14 +149,6 @@ EOF
 
 	rm -rf "${D}"${MOZILLA_FIVE_HOME}/plugins
 	dosym /usr/"$(get_libdir)"/nsbrowser/plugins ${MOZILLA_FIVE_HOME#${EPREFIX}}/plugins
-}
-
-pkg_preinst() {
-	declare MOZILLA_FIVE_HOME="${EPREFIX}/opt/firefox"
-
-	# Remove entire installed instance to prevent all kinds of
-	# problems... see bug 44772 for example
-	rm -rf "${ROOT}"${MOZILLA_FIVE_HOME}
 }
 
 pkg_postinst() {
