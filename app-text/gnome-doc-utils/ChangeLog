@@ -1,6 +1,17 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.137 2009/04/28 11:10:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.139 2009/05/02 21:10:35 eva Exp $
+
+  02 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-doc-utils-0.16.1.ebuild:
+  reverting unnecessary python dependency raising.
+
+  02 May 2009; Gilles Dartiguelongue <eva@gentoo.org> ChangeLog:
+  test
+
+  02 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-doc-utils-0.12.2-r1.ebuild, gnome-doc-utils-0.16.1.ebuild:
+  New version for GNOME 2.26. RTL fixes, use hashlib module.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org>
   gnome-doc-utils-0.14.2.ebuild:
