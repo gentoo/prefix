@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/openal
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.110 2009/04/30 19:26:36 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.112 2009/05/02 16:31:58 jer Exp $
+
+  02 May 2009; Jeroen Roovers <jer@gentoo.org> openal-1.7.411.ebuild:
+  Stable for HPPA (bug #267960).
+
+  01 May 2009; Brent Baude <ranger@gentoo.org> openal-1.7.411.ebuild:
+  stable ppc64, bug 267960
 
   30 Apr 2009; Brent Baude <ranger@gentoo.org> openal-1.7.411.ebuild:
   stable ppc, bug 267960
