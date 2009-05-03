@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libtheora
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.83 2008/12/08 20:41:17 ranger Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.84 2009/05/01 15:19:03 ranger Exp $
+
+  01 May 2009; Brent Baude <ranger@gentoo.org> libtheora-1.0.ebuild:
+  stable ppc64, bug 218145
 
   08 Dec 2008; Brent Baude <ranger@gentoo.org>
   libtheora-1.0_beta3-r1.ebuild:
