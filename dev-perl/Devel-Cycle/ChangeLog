@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Devel-Cycle
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Devel-Cycle/ChangeLog,v 1.18 2008/09/07 07:01:45 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Devel-Cycle/ChangeLog,v 1.19 2009/05/02 11:26:08 tove Exp $
+
+  02 May 2009; Torsten Veller <tove@gentoo.org> -Devel-Cycle-1.04.ebuild:
+  Cleanup
 
 *Devel-Cycle-1.10 (07 Sep 2008)
 
