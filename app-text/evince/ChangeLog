@@ -1,6 +1,15 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.170 2009/04/27 13:13:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.171 2009/05/02 20:46:35 eva Exp $
+
+*evince-2.26.1 (02 May 2009)
+
+  02 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/evince-0.6.1-dbus-switch.patch,
+  -files/evince-2.22.2-t1lib-fonts.patch, -evince-2.22.2-r1.ebuild,
+  +evince-2.26.1.ebuild:
+  New version for GNOME 2.26. Load of small improvments here and there.
+  Clean up old revisions.
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> evince-2.24.2:
   Stable for HPPA (bug #260063).
