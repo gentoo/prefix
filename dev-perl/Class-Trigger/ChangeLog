@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Class-Trigger
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Trigger/ChangeLog,v 1.31 2008/06/13 16:55:44 armin76 Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Trigger/ChangeLog,v 1.32 2009/05/02 13:42:40 gentoofan23 Exp $
+
+  02 May 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  Class-Trigger-0.13.ebuild:
+  stable amd64, bug 268281
 
   13 Jun 2008; Raúl Porcel <armin76@gentoo.org> Class-Trigger-0.13.ebuild:
   ia64/sparc/x86 stable
