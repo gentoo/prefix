@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Crypt-CAST5_PP
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-CAST5_PP/ChangeLog,v 1.15 2008/03/19 03:34:01 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-CAST5_PP/ChangeLog,v 1.16 2009/05/02 11:42:40 tove Exp $
+
+  02 May 2009; Torsten Veller <tove@gentoo.org> -Crypt-CAST5_PP-1.03.ebuild:
+  Cleanup
 
   19 Mar 2008; Jeroen Roovers <jer@gentoo.org> Crypt-CAST5_PP-1.04.ebuild:
   Stable for HPPA too.
