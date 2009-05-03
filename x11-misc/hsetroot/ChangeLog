@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/hsetroot
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/hsetroot/ChangeLog,v 1.6 2006/01/13 13:37:23 nelchael Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/hsetroot/ChangeLog,v 1.7 2009/05/01 18:05:45 armin76 Exp $
+
+  01 May 2009; Raúl Porcel <armin76@gentoo.org> hsetroot-1.0.2.ebuild:
+  x86 stable wrt #266096
 
   13 Jan 2006; Krzysiek Pawlik <nelchael@gentoo.org> hsetroot-1.0.2.ebuild:
   Fixed DEPEND for modular X.

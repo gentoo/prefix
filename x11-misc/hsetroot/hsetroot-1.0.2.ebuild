@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/hsetroot/hsetroot-1.0.2.ebuild,v 1.8 2007/01/16 20:48:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/hsetroot/hsetroot-1.0.2.ebuild,v 1.9 2009/05/01 18:05:45 armin76 Exp $
 
 DESCRIPTION="Tool which allows you to compose wallpapers ('root pixmaps') for X"
 HOMEPAGE="http://thegraveyard.org/hsetroot.php"
