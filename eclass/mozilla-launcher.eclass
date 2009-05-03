@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozilla-launcher.eclass,v 1.23 2009/02/04 10:54:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozilla-launcher.eclass,v 1.24 2009/05/01 21:42:38 nirbheek Exp $
 
 inherit nsplugins multilib
 
@@ -37,7 +37,7 @@ fi
 #
 update_mozilla_launcher_symlinks() {
 	local f browsers="mozilla firefox thunderbird sunbird seamonkey"
-	cd ${EROOT}/usr/bin
+	cd "${EROOT}"/usr/bin
 
 	# Remove launcher symlinks that no longer apply
 
@@ -82,7 +82,7 @@ install_mozilla_launcher_stub() {
 	dodir /usr/bin
 
 	if [[ ${PN: -4} == "-bin" ]]  || ! use moznopango; then
-	cat <<EOF >${ED}/usr/bin/${name}
+	cat <<EOF >"${ED}"/usr/bin/${name}
 #!${EPREFIX}/bin/sh
 #
 # Stub script to run mozilla-launcher.  We used to use a symlink here
@@ -96,7 +96,7 @@ ${xulparams}
 exec ${EPREFIX}/usr/libexec/mozilla-launcher "\$@"
 EOF
 	else
-	cat <<EOF >${ED}/usr/bin/${name}
+	cat <<EOF >"${ED}"/usr/bin/${name}
 #!${EPREFIX}/bin/sh
 #
 # Stub script to run mozilla-launcher.  We used to use a symlink here
@@ -111,7 +111,7 @@ export MOZ_DISABLE_PANGO=1
 exec ${EPREFIX}/usr/libexec/mozilla-launcher "\$@"
 EOF
 	fi
-	chmod 0755 ${ED}/usr/bin/${name}
+	chmod 0755 "${ED}"/usr/bin/${name}
 }
 
 warn_mozilla_launcher_stub() {

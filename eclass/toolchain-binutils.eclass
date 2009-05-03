@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.78 2008/12/09 06:06:50 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.79 2009/05/03 00:12:00 halcy0n Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -91,7 +91,8 @@ else
 fi
 DEPEND="${RDEPEND}
 	test? ( dev-util/dejagnu )
-	nls? ( sys-devel/gettext )"
+	nls? ( sys-devel/gettext )
+	sys-devel/flex"
 
 S=${WORKDIR}/binutils
 [[ ${BVER} != "cvs" ]] && S=${S}-${BVER}
