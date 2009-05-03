@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/glew/glew-1.5.1.ebuild,v 1.2 2009/04/30 17:56:59 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/glew/glew-1.5.1.ebuild,v 1.4 2009/05/02 22:59:11 solar Exp $
 
 inherit eutils multilib toolchain-funcs
 
@@ -35,13 +35,13 @@ src_unpack() {
 }
 
 src_compile(){
-	emake LD="$(tc-getCC) ${LDFLAGS}" CC="$(tc-getCC)" \
+	emake STRIP=true LD="$(tc-getCC) ${LDFLAGS}" CC="$(tc-getCC)" \
 		POPT="${CFLAGS}" M_ARCH="" AR="$(tc-getAR)" \
 		|| die "emake failed"
 }
 
 src_install() {
-	emake GLEW_DEST="${ED}/usr" LIBDIR="${ED}/usr/$(get_libdir)" \
+	emake STRIP=true GLEW_DEST="${ED}/usr" LIBDIR="${ED}/usr/$(get_libdir)" \
 		M_ARCH="" install || die "emake install failed"
 
 	dodoc README.txt
