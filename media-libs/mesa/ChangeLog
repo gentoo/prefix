@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.207 2009/04/29 17:16:18 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.209 2009/05/02 20:44:06 scarabeus Exp $
+
+  02 May 2009; Tomas Chvatal <scarabeus@gentoo.org> mesa-7.4.1-r1.ebuild:
+  Remove glew headers during install. They are needed during build time and
+  glew cant be installed before mesa.
+
+  01 May 2009; Tomas Chvatal <scarabeus@gentoo.org> mesa-7.4.1-r1.ebuild:
+  Move glew RDEPEND to PDEPEND for avoiding circular deps.
 
 *mesa-7.4.1-r1 (29 Apr 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.4.1-r1.ebuild,v 1.1 2009/04/29 17:16:18 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.4.1-r1.ebuild,v 1.3 2009/05/02 20:44:06 scarabeus Exp $
 
 EAPI=2
 
@@ -65,7 +65,6 @@ RDEPEND="!<=x11-base/xorg-x11-6.9
 	!<=x11-proto/xf86driproto-2.0.3
 	app-admin/eselect-opengl
 	dev-libs/expat
-	>=media-libs/glew-1.5.1
 	>=x11-libs/libdrm-2.4.6
 	x11-libs/libICE
 	x11-libs/libX11[xcb?]
@@ -88,6 +87,8 @@ DEPEND="${RDEPEND}
 	!hppa? ( x11-proto/xf86driproto )
 	motif? ( x11-proto/printproto )
 "
+# glew depend on mesa and it is needed in runtime
+PDEPEND=">=media-libs/glew-1.5.1"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -124,10 +125,6 @@ src_prepare() {
 		sed -i -e "s/-DHAVE_POSIX_MEMALIGN//" configure.ac
 
 	eautoreconf
-
-	# remove glew headers. We preffer to use system ones
-	rm -f "${S}"/include/GL/{glew,glxew,wglew}.h \
-		|| die "Removing glew includes failed."
 }
 
 src_configure() {
@@ -208,6 +205,9 @@ src_install() {
 	# Remove redundant headers
 	# GLUT thing
 	rm -f "${ED}"/usr/include/GL/glut*.h || die "Removing glut include failed."
+	# Glew headers
+	rm -f "${ED}"/usr/include/GL/{glew,glxew,wglew}.h \
+		|| die "Removing glew includes failed."
 
 	# Move libGL and others from /usr/lib to /usr/lib/opengl/blah/lib
 	# because user can eselect desired GL provider.
