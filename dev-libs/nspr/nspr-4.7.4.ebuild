@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.4.ebuild,v 1.6 2009/04/30 17:16:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.7.4.ebuild,v 1.7 2009/05/01 14:03:12 maekke Exp $
 
 inherit eutils multilib toolchain-funcs
 
