@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/nmap
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.197 2009/04/25 07:15:05 spock Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.198 2009/05/02 17:34:33 spock Exp $
+
+  02 May 2009; Michał Januszewski <spock@gentoo.org> nmap-4.76.ebuild,
+  nmap-4.85_beta8.ebuild, +files/su-to-zenmap.sh.diff:
+  Fix a bug in the su-to-zenmap script (bug #267322).
 
 *nmap-4.85_beta8 (25 Apr 2009)
 

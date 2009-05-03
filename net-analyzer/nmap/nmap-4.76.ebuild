@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.76.ebuild,v 1.9 2009/03/08 10:35:21 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-4.76.ebuild,v 1.10 2009/05/02 17:34:33 spock Exp $
 
 EAPI=2
 
@@ -29,6 +29,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-4.75-include.patch"
 	epatch "${FILESDIR}/${PN}-4.75-nolua.patch"
+	epatch "${FILESDIR}/su-to-zenmap.sh.diff"
 }
 
 src_configure() {
