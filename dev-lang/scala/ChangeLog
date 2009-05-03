@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/scala
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/ChangeLog,v 1.15 2009/04/30 19:29:39 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/ChangeLog,v 1.16 2009/05/01 07:44:39 ali_bush Exp $
+
+*scala-2.7.4-r1 (01 May 2009)
+
+  01 May 2009; Alistair Bush <ali_bush@gentoo.org> +scala-2.7.4-r1.ebuild:
+  Bump scala again. this time based on 2.7.3-r1.
 
 *scala-2.7.4 (30 Apr 2009)
 
