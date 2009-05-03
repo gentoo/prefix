@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.93 2009/03/21 12:03:25 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.94 2009/05/02 16:44:14 nixnut Exp $
+
+  02 May 2009; nixnut <nixnut@gentoo.org> mercurial-1.2.1.ebuild:
+  ppc stable #268205
 
 *mercurial-1.2.1 (21 Mar 2009)
 
