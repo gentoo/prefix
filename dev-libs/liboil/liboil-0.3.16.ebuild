@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/liboil-0.3.16.ebuild,v 1.1 2009/04/05 22:49:56 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/liboil-0.3.16.ebuild,v 1.2 2009/05/02 01:22:47 dang Exp $
 
 EAPI=2
 
@@ -15,7 +15,7 @@ SLOT="0.3"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc +examples test"
 
-RDEPEND="examples? ( =dev-libs/glib-2* )"
+RDEPEND="examples? ( dev-libs/glib:2 )"
 DEPEND="${RDEPEND}
 	doc? ( >=dev-util/gtk-doc-1 )"
 
