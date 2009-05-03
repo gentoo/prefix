@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/slang
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.95 2009/04/30 19:40:12 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.97 2009/05/02 15:44:19 jer Exp $
+
+  02 May 2009; Jeroen Roovers <jer@gentoo.org> slang-2.1.4.ebuild:
+  Stable for HPPA (bug #267920).
+
+  01 May 2009; Brent Baude <ranger@gentoo.org> slang-2.1.4.ebuild:
+  stable ppc64, bug 267920
 
   30 Apr 2009; Brent Baude <ranger@gentoo.org> slang-2.1.4.ebuild:
   stable ppc, bug 267920
