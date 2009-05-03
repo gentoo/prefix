@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.65.ebuild,v 1.3 2009/04/27 15:57:26 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.65.ebuild,v 1.5 2009/05/01 20:52:19 arfrever Exp $
 
 EAPI="2"
 WX_GTK_VER="2.8"
@@ -14,19 +14,18 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}_${PV}_src_all.tar.bz2"
 LICENSE="LGPL-2.1 rar? ( unRAR )"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="wxwindows doc kde rar static"
+IUSE="doc kde rar static wxwidgets"
 
-RDEPEND="wxwindows? ( x11-libs/wxGTK[X] )
-	kde? ( || ( kde-base/konqueror kde-base/kdebase-meta kde-base/kdebase ) )
-	kde? ( !wxwindows? ( x11-libs/wxGTK[X] ) )"
+RDEPEND="kde? ( x11-libs/wxGTK[X] || ( kde-base/konqueror kde-base/kdebase-meta kde-base/kdebase ) )
+	wxwidgets? ( x11-libs/wxGTK[X] )"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${PN}_${PV}
 
 src_prepare() {
-	if use kde && ! use wxwindows ; then
-		einfo "USE-flag kde needs wxwindows flag"
-		einfo "silently enabling wxwindows flag"
+	if use kde && ! use wxwidgets ; then
+		einfo "USE-flag kde needs wxwidgets flag"
+		einfo "silently enabling wxwidgets flag"
 	fi
 
 	# remove non-free RAR codec
@@ -65,14 +64,14 @@ src_prepare() {
 
 src_compile() {
 	emake all3 || die "compilation error"
-	if use wxwindows || use kde; then
+	if use kde || use wxwidgets; then
 		emake 7zG || die "error building GUI"
 	fi
 }
 
 src_test() {
 	emake test_7z test_7zr || die "test failed"
-	if use wxwindows || use kde; then
+	if use kde || use wxwidgets; then
 		emake test_7zG || die "GUI test failed"
 	fi
 }
@@ -83,7 +82,7 @@ src_install() {
 	make_wrapper 7za "/usr/$(get_libdir)/${PN}/7za"
 	make_wrapper 7z "/usr/$(get_libdir)/${PN}/7z"
 
-	if use wxwindows || use kde; then
+	if use kde || use wxwidgets; then
 		make_wrapper 7zG "/usr/$(get_libdir)/${PN}/7zG"
 
 		dobin GUI/p7zipForFilemanager
