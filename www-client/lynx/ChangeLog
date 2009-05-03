@@ -1,6 +1,9 @@
 # ChangeLog for www-client/lynx
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.73 2009/04/27 11:30:44 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.74 2009/05/01 20:44:05 loki_val Exp $
+
+  01 May 2009; Peter Alfredsen <loki_val@gentoo.org> lynx-2.8.7_rc2.ebuild:
+  Pull in pkg-config
 
 *lynx-2.8.7_rc2 (27 Apr 2009)
 
