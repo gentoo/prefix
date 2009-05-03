@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/file-roller
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/ChangeLog,v 1.254 2009/04/27 13:09:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/ChangeLog,v 1.255 2009/05/02 19:15:31 eva Exp $
+
+*file-roller-2.26.1 (02 May 2009)
+
+  02 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/file-roller-2.10-use_fr_rpm2cpio.patch, -file-roller-2.22.4.ebuild,
+  +file-roller-2.26.1.ebuild:
+  New version for GNOME 2.26. Drop libgnome{,ui} dependencies, bug fixes and
+  translation updates. Clean up old revisions.
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> file-roller-2.24.3:
   Stable for HPPA (bug #260063).
