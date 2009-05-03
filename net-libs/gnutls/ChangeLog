@@ -1,6 +1,16 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.189 2009/04/30 12:53:05 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.192 2009/05/02 13:51:06 jer Exp $
+
+  02 May 2009; Jeroen Roovers <jer@gentoo.org> gnutls-2.6.6.ebuild:
+  Stable for HPPA (bug #267774).
+
+  01 May 2009; Markus Meier <maekke@gentoo.org> gnutls-2.6.6.ebuild:
+  amd64/x86 stable, bug #267774
+
+  01 May 2009; Daniel Black <dragonheart@gentoo.org> gnutls-2.6.5-r1.ebuild,
+  gnutls-2.6.6.ebuild:
+  libtool rebuild to prevent bug #268065 which I forgot about
 
 *gnutls-2.6.6 (30 Apr 2009)
 
