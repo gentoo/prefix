@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9743 2009/04/30 22:48:01 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9747 2009/05/02 17:55:34 hd_brummy Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,14 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Joerg Bornkessel <hd_brummy@org> (02 May 2009)
+# need >=sys-kernel/linux-headers-2.6.29 with s2api header changes
+=media-tv/w_scan-20090502
+
+# Tomas Chvatal <scarabeus@gentoo.org> (1 May 2009)
+# broke nepomuk and soprano in kde so mask for now
+=dev-libs/redland-1.0.9
 
 # Vlastimil Babka <caster@gentoo.org> (30 Apr 2009)
 # masked for removal, bug #261563
@@ -69,11 +77,6 @@ dev-java/ant-tasks
 >=app-office/kspread-1.9.99.0
 >=app-office/koffice-l10n-1.9.99.0
 >=app-office/koffice-meta-1.9.99.0
-
-
-# Rémi Cardona <remi@gentoo.org> (29 Apr 2009)
-# needs a couple patches to work properly
-=media-libs/mesa-7.4.1
 
 # Rémi Cardona <remi@gentoo.org> (29 Apr 2009)
 # packages currently in the x11 overlay which will soon be moved to portage
@@ -266,11 +269,6 @@ dev-php5/pecl-zip
 # Discontinued by upstream, see http://www.adobe.com/svg/eol.html
 # Masked for removal in 30 days, bug 265066.
 net-www/adobesvg
-
-# Peter Volkov <pva@gentoo.org> (11 Apr 2009)
-# Mask bzr prerelease candidate and dependent bzrtools
-=dev-util/bzr-1.14*
-=dev-util/bzrtools-1.14*
 
 # Alin Năstac <mrness@gentoo.org> (10 Apr 2009)
 # Homepage no longer available (#264785)
@@ -812,7 +810,7 @@ app-crypt/truecrypt
 >=media-libs/libdvdread-4.1.3
 
 # Alin Năstac <mrness@gentoo.org> (21 Sep 2008)
-# Breaks L2TP connections (see bug 237132)
+# Breaks L2TP connections (see http://bugs.xelerance.com/view.php?id=1004)
 =net-misc/openswan-2.6*
 
 # Keri Harris <keri@gentoo.org> (21 Sep 2008)

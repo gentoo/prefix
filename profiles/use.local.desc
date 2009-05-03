@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4407 2009/04/30 20:47:40 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4413 2009/05/02 19:27:44 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -712,6 +712,7 @@ dev-libs/libtomcrypt:tomsfastmath - Use the optimized math library (dev-libs/tom
 dev-libs/log4cxx:smtp - Offer SMTP support via net-libs/libesmtp
 dev-libs/nss:utils - Install utilities included with the library
 dev-libs/opencryptoki:tpmtok - Offer support for TPM token
+dev-libs/openct:pcsc-lite - Enable support for sys-apps/pcsc-lite
 dev-libs/openobex:irda - Enable IrDA support
 dev-libs/opensc:openct - Build using dev-libs/openct compatibility 
 dev-libs/opensc:pcsc-lite - Build with sys-apps/pcsc-lite
@@ -1004,6 +1005,7 @@ games-strategy/x2:bonusscripts - Add bonus scripts
 games-strategy/x2:dynamic - Use dynamic binaries instead of static
 games-strategy/x2:langpacks - Install additional language packs
 games-strategy/x2:modkit - Install the modkit
+gnome-base/gdm:consolekit - Allow proper handling of removable media according to who is actually present on the machine.
 gnome-base/gdm:dmx - Enables Distributed Multihead X (DMX) support
 gnome-base/gdm:remote - Enables support for secure remote connections
 gnome-base/gnome-control-center:sound - Enable sound event support with media-libs/libcanberra
@@ -1665,6 +1667,7 @@ media-video/dvdrip:fping - Enables fping support for cluster rendering
 media-video/dvdrip:subtitles - Enables support for subtitle ripping
 media-video/ffmpeg:3dnowext -  Enable manually-optimised routines using the AMD 3DNow!Ex SIMD instruction set, present in modern AMD CPUs. (Check for 3dnowext in /proc/cpuinfo to know whehter you support it). 
 media-video/ffmpeg:amr - Enables Adaptive Multi-Rate Audio support
+media-video/ffmpeg:cpudetection - Enables runtime cpudetection (useful for bindist, compatability on other CPUs)
 media-video/ffmpeg:dirac - Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.
 media-video/ffmpeg:faac - Use external faac library for AAC encoding
 media-video/ffmpeg:faad - Use external faad library for AAC decoding (instead of internal libavcodec support)
@@ -2437,6 +2440,8 @@ sci-biology/bioperl:run - Install sci-biology/bioperl-run
 sci-biology/biopython:kdtree - Do not build KDTree module and its dependencies (NeighborSearch)
 sci-biology/clustalw-mpi:mpi_njtree - Use MPI (as opposed to serial) code for computing neighbor-joining trees
 sci-biology/clustalw-mpi:static_pairalign - Use static (as opposed to dynamic) scheduling for pair alignments
+sci-biology/exonerate:largefile - Enable largefile support on 32 bit systems
+sci-biology/exonerate:utils - Install all utilities
 sci-biology/hmmer:pvm - Add support for parallel virtual machine (sys-cluster/pvm)
 sci-biology/mcl:blast -  add support for NCBI BLAST data 
 sci-biology/plink:webcheck -  add support for online update checking every time the program starts 
@@ -2633,6 +2638,7 @@ sys-apps/qtparted:xfs - Include XFS support
 sys-apps/s390-tools:zfcpdump - build the kernel disk dumping utility
 sys-apps/shadow:audit - Enable support for sys-process/audit
 sys-apps/shadow:nousuid - When nousuid is enabled only su from the shadow package will be installed with the setuid bit (mainly for single user systems)
+sys-apps/smartmontools:minimal - Do not install the monitoring daemon and associated scripts.
 sys-apps/tinylogin:make-symlinks - Create all the appropriate symlinks in /bin and /sbin
 sys-apps/tuxonice-userui:fbsplash - Add support for framebuffer splash
 sys-apps/ucspi-ssl:tls - Add TLS support (see also http://www.suspectclass.com/~sgifford/ucspi-tls/)
@@ -2977,7 +2983,7 @@ x11-wm/matchbox-common:pda - Support for pda folders
 x11-wm/matchbox-desktop:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:dnotify - Use the linux kernel directory notification feature.
 x11-wm/matchbox-panel:lowres - Optimize for low resolution screens.
-x11-wm/ratpoison:history - Save ratpoison command history using sys-libs/readline
+x11-wm/ratpoison:history - Use sys-libs/readline for history handling
 x11-wm/sawfish:pango - Enable pango support
 x11-wm/stumpwm:clisp - Use CLISP for the runtime
 x11-wm/stumpwm:sbcl - Use SBCL for the runtime
