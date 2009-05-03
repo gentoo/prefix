@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/pinentry
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.92 2009/01/22 19:17:41 swegener Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/ChangeLog,v 1.93 2009/05/02 20:33:05 swegener Exp $
+
+  02 May 2009; Sven Wegener <swegener@gentoo.org> pinentry-0.7.5.ebuild,
+  pinentry-0.7.5-r1.ebuild:
+  Migrate gtk to slot dependency, bug #268218.
 
 *pinentry-0.7.5-r1 (22 Jan 2009)
 

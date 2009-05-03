@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.5-r1.ebuild,v 1.1 2009/01/22 19:17:41 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.5-r1.ebuild,v 1.2 2009/05/02 20:33:05 swegener Exp $
 
 EAPI=1
 
@@ -17,7 +17,7 @@ IUSE="gtk ncurses qt3 caps static"
 
 DEPEND="static? ( sys-libs/ncurses )
 	!static? (
-		gtk? ( =x11-libs/gtk+-2* )
+		gtk? ( x11-libs/gtk+:2 )
 		ncurses? ( sys-libs/ncurses )
 		qt3? ( x11-libs/qt:3 )
 		!gtk? ( !qt3? ( !ncurses? ( sys-libs/ncurses ) ) )
