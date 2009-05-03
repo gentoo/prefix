@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.18.02.ebuild,v 1.5 2009/04/29 14:46:29 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.18.02.ebuild,v 1.7 2009/05/02 15:14:49 loki_val Exp $
 
 EAPI=2
 
-inherit eutils multilib base autotools
+inherit eutils multilib base
 
 DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 SRC_URI="mirror://gentoo/${PN}/${P}.tar.bz2"
@@ -30,7 +30,11 @@ pkg_setup() {
 #Bug 214137: We need to filter this.
 unset SRCDIR
 
-PATCHES=( "${FILESDIR}/${P}/dumpvalue.patch" )
+PATCHES=(
+	"${FILESDIR}/${P}/dumpvalue.patch"
+	"${FILESDIR}/${P}/cpp-depends.patch"
+	"${FILESDIR}/${P}/dump-symlinks.patch"
+	)
 
 src_prepare() {
 	base_src_util autopatch
@@ -47,11 +51,6 @@ src_prepare() {
 			-e "/^CFLAGS_COMMON/s/= /= -std=c99 /" \
 			"${S}"/common.mk || die "404. File not found while sedding"
 	fi
-
-	sed -i \
-		-e "/^LIBINST_DIR = / s:\$(PREFIX)/lib:\$(PREFIX)/$(get_libdir):" \
-		config.mk.in
-	eautoconf
 }
 
 src_configure() {
@@ -71,7 +70,7 @@ src_configure() {
 }
 
 src_compile() {
-	emake || die "Compiling failed"
+	emake -r || die "Compiling failed"
 }
 
 src_test() {
