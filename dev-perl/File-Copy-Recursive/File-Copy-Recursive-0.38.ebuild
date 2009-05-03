@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Copy-Recursive/File-Copy-Recursive-0.38.ebuild,v 1.1 2008/12/08 02:15:49 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Copy-Recursive/File-Copy-Recursive-0.38.ebuild,v 1.3 2009/05/02 16:00:12 nixnut Exp $
 
 MODULE_AUTHOR=DMUEY
 inherit perl-module
