@@ -1,6 +1,11 @@
 # ChangeLog for net-dns/libidn
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.91 2009/03/22 21:00:54 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.92 2009/05/02 14:02:02 jer Exp $
+
+*libidn-1.14 (02 May 2009)
+
+  02 May 2009; Jeroen Roovers <jer@gentoo.org> +libidn-1.14.ebuild:
+  Version bump.
 
   22 Mar 2009; Harald van Dĳk <truedfx@gentoo.org> libidn-1.13.ebuild:
   Fix typo in emacs filename (#263390)
