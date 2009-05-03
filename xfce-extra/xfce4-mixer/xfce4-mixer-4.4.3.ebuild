@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/xfce4-mixer-4.4.3.ebuild,v 1.10 2008/12/17 17:49:37 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/xfce4-mixer-4.4.3.ebuild,v 1.11 2009/05/01 15:45:12 ssuominen Exp $
 
 EAPI=1
 
@@ -42,6 +42,7 @@ src_unpack() {
 	cd "${S}"
 	rm panel-plugin/${PN}.desktop
 	epatch "${FILESDIR}"/${P}-i18n-typo.patch
+	sed -i -e "s:-DXFCE_DISABLE_DEPRECATED::" configure
 }
 
 src_install() {
