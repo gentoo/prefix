@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/imaging-1.1.6-r1.ebuild,v 1.1 2009/03/20 18:52:16 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/imaging-1.1.6-r1.ebuild,v 1.2 2009/05/01 22:58:53 patrick Exp $
 
 EAPI=2
 inherit eutils distutils
@@ -52,6 +52,7 @@ src_compile() {
 }
 
 src_test() {
+	find . -name _imaging\*.so | xargs -r cp -v -p --target-directory=./PIL/
 	"${python}" selftest.py || die
 }
 

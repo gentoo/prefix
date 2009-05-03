@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/imaging
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.39 2009/03/20 18:52:16 bicatali Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.40 2009/05/01 22:58:53 patrick Exp $
+
+  01 May 2009; Patrick Lauer <patrick@gentoo.org> imaging-1.1.6-r1.ebuild:
+  Small fix for tests. Fixes #268126, thanks to Oliver Huber
 
 *imaging-1.1.6-r1 (20 Mar 2009)
 
