@@ -87,6 +87,9 @@ src_prepare() {
 		rm Lib/distutils/command/wininst-*.exe
 	fi
 
+	# build static for mint
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${P}-mint.patch
+
 	# python defaults to using .so files, however they are bundles
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
 	# python doesn't build a libpython2.6.dylib by itself...
@@ -121,12 +124,12 @@ src_prepare() {
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
-	[[ ${CHOST} == *-interix* ]] && {
+	if [[ ${CHOST} == *-interix* ]] ; then
 		epatch "${FILESDIR}"/${PN}-2.6.1-interix.patch
 		# this one could be applied unconditionally, but to keep it
-		# clean, i do it together with the conditional one.
+		# clean, I do it together with the conditional one.
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
-	}
+	fi
 
 	eautoreconf
 }
@@ -213,6 +216,8 @@ src_configure() {
 	# Interix poll is broken
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 
+	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
+
 	econf \
 		--with-fpectl \
 		--enable-shared \
@@ -226,6 +231,7 @@ src_configure() {
 
 src_install() {
 	dodir /usr
+	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${PYVER}/lib-dynload/
 	emake DESTDIR="${D}" altinstall maninstall || die
 
 	mv "${ED}"/usr/bin/python${PYVER}-config "${ED}"/usr/bin/python-config-${PYVER}
