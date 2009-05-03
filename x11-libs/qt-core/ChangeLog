@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/qt-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.45 2009/04/30 10:37:31 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.46 2009/05/01 18:47:58 hwoarang Exp $
+
+  01 May 2009; Markos Chandras <hwoarang@gentoo.org> qt-core-4.5.0,
+  qt-core-4.5.1:
+  Adding x11-libs/libXext as dependency. Thanks to Christian Ruppert
+  <idl0r@gentoo.org> for reporting.
 
   30 Apr 2009; Markos Chandras <hwoarang@gentoo.org> qt-core-4.5.0,
   qt-core-4.5.1:
