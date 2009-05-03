@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/PlRPC
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PlRPC/ChangeLog,v 1.45 2008/06/07 09:48:58 aballier Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PlRPC/ChangeLog,v 1.46 2009/05/02 10:52:51 tove Exp $
+
+  02 May 2009; Torsten Veller <tove@gentoo.org> -PlRPC-0.2018.ebuild,
+  -PlRPC-0.2019.ebuild:
+  Cleanup
 
   07 Jun 2008; Alexis Ballier <aballier@gentoo.org> PlRPC-0.2020-r1.ebuild:
   keyword ~sparc-fbsd
