@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Tester
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Tester/ChangeLog,v 1.30 2009/04/06 15:37:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Tester/ChangeLog,v 1.31 2009/05/02 10:27:45 tove Exp $
+
+  02 May 2009; Torsten Veller <tove@gentoo.org> -Test-Tester-0.106.ebuild:
+  Cleanup
 
   06 Apr 2009; Raúl Porcel <armin76@gentoo.org> Test-Tester-0.107.ebuild:
   Add ~arm/~s390/~sh
