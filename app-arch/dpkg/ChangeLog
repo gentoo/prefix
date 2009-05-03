@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/dpkg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.81 2009/02/18 18:43:56 yvasilev Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.82 2009/05/01 18:47:15 grobian Exp $
+
+  01 May 2009; Fabian Groffen <grobian@gentoo.org> dpkg-1.14.25.ebuild:
+  Instead of removing start-stop-daemon, just don't compile it.
 
   18 Feb 2009; Yuri Vasilevski <yvasilev@gentoo.org> -dpkg-1.14.16.6.ebuild,
   -dpkg-1.14.16.6-r1.ebuild, -dpkg-1.14.19.ebuild, -dpkg-1.14.19-r1.ebuild:

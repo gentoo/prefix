@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.14.25.ebuild,v 1.1 2009/02/18 18:28:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.14.25.ebuild,v 1.2 2009/05/01 18:47:15 grobian Exp $
 
 inherit eutils multilib
 
@@ -49,7 +49,7 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die
 	rm "${ED}"/usr/sbin/install-info
-	rm "${ED}"/usr/share/man/man?/{install-info,start-stop-daemon}.?
+	rm "${ED}"/usr/share/man/man?/install-info.?
 	dodoc ChangeLog INSTALL THANKS TODO
 	keepdir /usr/$(get_libdir)/db/methods/{mnt,floppy,disk}
 	keepdir /usr/$(get_libdir)/db/{alternatives,info,methods,parts,updates}
