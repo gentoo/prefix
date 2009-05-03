@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/rebase-610.ebuild,v 1.6 2006/11/20 20:56:47 blubb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/rebase-610.ebuild,v 1.7 2009/05/02 01:17:04 je_fro Exp $
 
 DESCRIPTION="A restriction enzyme database"
 LICENSE="public-domain"
@@ -14,6 +14,7 @@ IUSE="emboss minimal"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 
 DEPEND="emboss? ( >=sci-biology/emboss-3.0.0-r1 )"
+RDEPEND="${DEPEND}"
 
 src_compile() {
 	if use emboss; then

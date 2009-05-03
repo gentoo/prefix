@@ -1,6 +1,14 @@
 # ChangeLog for sci-biology/rebase
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/ChangeLog,v 1.87 2008/08/27 14:58:50 ribosome Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/ChangeLog,v 1.89 2009/05/02 01:25:03 je_fro Exp $
+
+  02 May 2009; Jeff Gardner <je_fro@gentoo.org> rebase-905.ebuild:
+  Fix SRC_URI
+
+*rebase-905 (02 May 2009)
+
+  02 May 2009; Jeff Gardner <je_fro@gentoo.org> +rebase-905.ebuild:
+  Latest from neb, with a kick from jlec.
 
 *rebase-808 (27 Aug 2008)
 
