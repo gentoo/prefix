@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/gconf
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.208 2009/04/28 11:14:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.209 2009/05/01 11:39:25 eva Exp $
+
+  01 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/gconf-2.20.1-automagic-ldap.patch,
+  -files/gconf-2.20.1-drop-gtk-doc.patch,
+  -files/gconf-2.22.0-automagic-ldap.patch, -gconf-2.20.1-r1.ebuild,
+  -gconf-2.22.0.ebuild, gconf-2.24.0.ebuild, gconf-2.26.0.ebuild:
+  Make gconf cross-compilable, bug #262747. Kill gconf-2.26 warning, bug
+  #268070. Clean up old revisions.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gconf-2.24.0.ebuild:
   sh stable

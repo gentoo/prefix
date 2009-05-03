@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.24.0.ebuild,v 1.10 2009/04/28 11:14:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.24.0.ebuild,v 1.11 2009/05/01 11:39:25 eva Exp $
 
 inherit autotools eutils gnome2
 
@@ -43,6 +43,9 @@ pkg_setup() {
 		$(use_with ldap openldap)"
 	#$(use_enable policykit defaults-service)
 	kill_gconf
+
+	# Need host's IDL compiler for cross or native build, bug #262747
+	export EXTRA_EMAKE="${EXTRA_EMAKE} ORBIT_IDL=${EPREFIX}/usr/bin/orbit-idl-2"
 }
 
 src_unpack() {
