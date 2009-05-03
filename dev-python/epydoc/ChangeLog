@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/epydoc
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.41 2009/03/15 13:21:09 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.42 2009/05/01 18:18:17 arfrever Exp $
+
+  01 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  epydoc-3.0.1.ebuild:
+  Fix dependencies (bug #257793).
 
   15 Mar 2009; Brent Baude <ranger@gentoo.org> epydoc-3.0.1.ebuild:
   stable ppc64, bug 241572
