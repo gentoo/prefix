@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/UNIVERSAL-require/UNIVERSAL-require-0.13.ebuild,v 1.1 2009/04/01 19:27:21 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/UNIVERSAL-require/UNIVERSAL-require-0.13.ebuild,v 1.2 2009/05/02 14:08:48 gentoofan23 Exp $
 
 EAPI=2
 
