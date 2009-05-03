@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/cmake
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.91 2009/04/13 00:43:01 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.92 2009/05/02 23:34:01 cryos Exp $
+
+*cmake-2.6.4 (02 May 2009)
+
+  02 May 2009; Marcus D. Hanwell <cryos@gentoo.org> +cmake-2.6.4.ebuild:
+  Version bump, applied patch from bug 266383.
 
   13 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> cmake-2.6.3-r1.ebuild:
   Fix the has_version check. Current eclass does not support cmake 2.4...
