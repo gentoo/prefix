@@ -1,6 +1,14 @@
 # ChangeLog for x11-misc/notification-daemon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.60 2009/04/27 16:07:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.61 2009/05/02 22:46:42 serkan Exp $
+
+*notification-daemon-0.4.0-r1 (02 May 2009)
+
+  02 May 2009; Serkan Kaba <serkan@gentoo.org>
+  +notification-daemon-0.4.0-r1.ebuild,
+  +files/notification-daemon-0.4.0-report-sound-capability.patch:
+  Add patch for the server to report its sound capability when built with
+  gstreamer USE flag. Fixes bug #268310.
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> notification-daemon-0.4.0:
   Stable for HPPA (bug #263411).
