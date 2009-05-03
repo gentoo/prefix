@@ -1,6 +1,19 @@
 # ChangeLog for dev-util/bzr
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.90 2009/04/25 06:50:03 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.92 2009/05/02 10:10:37 pva Exp $
+
+*bzr-1.14.1 (02 May 2009)
+
+  02 May 2009; Peter Volkov <pva@gentoo.org> -bzr-1.14.ebuild,
+  +bzr-1.14.1.ebuild:
+  Version bump.
+
+*bzr-1.14 (01 May 2009)
+*bzr-1.13.2 (01 May 2009)
+
+  01 May 2009; Peter Volkov <pva@gentoo.org> -bzr-1.13.1.ebuild,
+  +bzr-1.13.2.ebuild, -bzr-1.14_rc2.ebuild, +bzr-1.14.ebuild:
+  Version bump.
 
 *bzr-1.14_rc2 (25 Apr 2009)
 
