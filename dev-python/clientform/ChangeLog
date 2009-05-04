@@ -1,0 +1,97 @@
+# ChangeLog for dev-python/clientform
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/clientform/ChangeLog,v 1.24 2009/04/30 18:00:19 patrick Exp $
+
+  30 Apr 2009; Patrick Lauer <patrick@gentoo.org> -clientform-0.1.16.ebuild:
+  Remove old
+
+  07 Dec 2008; Patrick Lauer <patrick@gentoo.org> +clientform-0.2.10.ebuild:
+  Oops. Correcting keywords.
+
+*clientform-0.2.10 (07 Dec 2008)
+
+  07 Dec 2008; Patrick Lauer <patrick@gentoo.org> +clientform-0.2.10.ebuild:
+  Bump to 0.2.10. Closes #249772
+
+  22 Sep 2007; nixnut <nixnut@gentoo.org> clientform-0.2.7.ebuild:
+  Stable on ppc wrt bug 191489
+
+  18 Sep 2007; Christoph Mende <angelos@gentoo.org> clientform-0.2.7.ebuild:
+  Stable on amd64 wrt bug #191489
+
+  16 Sep 2007; Markus Meier <maekke@gentoo.org> clientform-0.2.7.ebuild:
+  x86 stable, bug #191489
+
+*clientform-0.2.7 (03 Jun 2007)
+
+  03 Jun 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  -clientform-0.2.6.ebuild, +clientform-0.2.7.ebuild:
+  Version bump. Dropped old version.
+
+*clientform-0.2.6 (25 Mar 2007)
+
+  25 Mar 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  -clientform-0.1.17.ebuild, -clientform-0.2.2.ebuild,
+  +clientform-0.2.6.ebuild:
+  Version bump: added examples useflag, keyworded ~amd64, added src_test.
+  Dropped old versions.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  files/digest-clientform-0.1.16, files/digest-clientform-0.1.17,
+  files/digest-clientform-0.2.2, Manifest:
+  Fixing SHA256 digest, pass four
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> clientform-0.2.2.ebuild:
+  Mark 0.2.2 ~ia64
+
+*clientform-0.2.2 (26 Mar 2006)
+
+  26 Mar 2006; Lukasz Strzygowski <lucass@gentoo.org> metadata.xml,
+  +clientform-0.2.2.ebuild:
+  Version bump (bug #127015). Added description to metadata.
+
+*clientform-0.1.17 (31 Jan 2005)
+
+  31 Jan 2005; Rob Cakebread <pythonhead@gentoo.org>
+  +clientform-0.1.17.ebuild:
+  Version bump.
+
+  30 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  07 Oct 2004; Bryan Østergaard <kloeri@gentoo.org> -clientform-0.1.15.ebuild,
+  -clientform-0.1.7b.ebuild:
+  Remove old version.
+
+  05 Sep 2004; David Holm <dholm@gentoo.org> clientform-0.1.16.ebuild:
+  Added to ~ppc.
+
+  27 Jun 2004; Rob Cakebread <pythonhead@gentoo.org> clientform-0.1.16.ebuild:
+  Marked stable x86
+
+  15 Jun 2004; Rob Cakebread <pythonhead@gentoo.org> clientform-0.1.15.ebuild:
+  Marked stable on x86
+
+*clientform-0.1.16 (23 May 2004)
+
+  23 May 2004; Rob Cakebread <pythonhead@gentoo.org> clientform-0.1.15.ebuild,
+  +clientform-0.1.16.ebuild:
+  Version bump
+
+  01 Apr 2004; Bryan Østergaard <kloeri@gentoo.org> clientform-0.1.7b.ebuild:
+  Stable on x86.
+
+*clientform-0.1.15 (10 Mar 2004)
+
+  10 Mar 2004; <kloeri@gentoo.org> clientform-0.1.15.ebuild:
+  Version bump.
+
+*clientform-0.1.7b (02 Oct 2003)
+
+  02 Oct 2003; Rob Cakebread <pythonhead@gentoo.org> clientform-0.1.7b.ebuild,
+  metadata.xml:
+  Initial ebuild (#27581)
+
