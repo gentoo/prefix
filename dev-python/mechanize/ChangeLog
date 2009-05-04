@@ -1,0 +1,59 @@
+# ChangeLog for dev-python/mechanize
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/mechanize/ChangeLog,v 1.14 2009/04/26 19:26:56 ranger Exp $
+
+  26 Apr 2009; Brent Baude <ranger@gentoo.org> mechanize-0.1.11.ebuild:
+  stable ppc, bug 266357
+
+  19 Apr 2009; Markus Meier <maekke@gentoo.org> mechanize-0.1.11:
+  amd64/x86 stable, bug #266357
+
+  26 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing hawking as a maintainer since he was retired.
+
+*mechanize-0.1.11 (15 Feb 2009)
+
+  15 Feb 2009; Patrick Lauer <patrick@gentoo.org> +mechanize-0.1.11.ebuild:
+  Bump to 0.1.11, fixes #258427
+
+*mechanize-0.1.10 (07 Dec 2008)
+
+  07 Dec 2008; Patrick Lauer <patrick@gentoo.org> mechanize-0.1.7b.ebuild,
+  mechanize-0.1.9.ebuild, +mechanize-0.1.10.ebuild:
+  Bump to 0.1.10, closes #249770. Fixing typo in src_test in all versions.
+
+  28 Sep 2008; Markus Meier <maekke@gentoo.org> mechanize-0.1.7b.ebuild:
+  x86 stable, bug #235445
+
+  26 Sep 2008; Santiago M. Mola <coldwind@gentoo.org>
+  mechanize-0.1.7b.ebuild:
+  amd64 stable wrt bug #235445
+
+  25 Sep 2008; Brent Baude <ranger@gentoo.org> mechanize-0.1.7b.ebuild:
+  stable ppc, bug 235445
+
+*mechanize-0.1.9 (24 Sep 2008)
+
+  24 Sep 2008; Ali Polatel <hawking@gentoo.org> +mechanize-0.1.9.ebuild:
+  Version bump.
+
+  01 Jul 2007; Lars Weiler <pylon@gentoo.org> mechanize-0.1.7b.ebuild:
+  Keyworded ~ppc; bug #166914.
+
+  30 Jun 2007; Raúl Porcel <armin76@gentoo.org> mechanize-0.1.7b.ebuild:
+  Add ~ia64 wrt #166914
+
+  30 Jun 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  mechanize-0.1.7b.ebuild:
+  Marked ~amd64.
+
+  30 Jun 2007; Ali Polatel <hawking@gentoo.org> mechanize-0.1.7b.ebuild:
+  Added NEED_PYTHON=2.3, moved DOCS to src_install, quotes and cosmetics.
+
+*mechanize-0.1.7b (30 Jun 2007)
+
+  30 Jun 2007; Ali Polatel <hawking@gentoo.org> +metadata.xml,
+  +mechanize-0.1.7b.ebuild:
+  Initial ebuild (bug #166914)
+
