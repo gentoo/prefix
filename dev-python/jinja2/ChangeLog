@@ -1,0 +1,29 @@
+# ChangeLog for dev-python/jinja2
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/ChangeLog,v 1.6 2009/04/15 21:11:38 maekke Exp $
+
+  15 Apr 2009; Markus Meier <maekke@gentoo.org> jinja2-2.1.1.ebuild:
+  amd64/x86 stable, bug #261887
+
+  02 Apr 2009; Raúl Porcel <armin76@gentoo.org> jinja2-2.1.1.ebuild:
+  Add ~ia64 wrt #263948
+
+*jinja2-2.1.1 (24 Jan 2009)
+
+  24 Jan 2009; Patrick Lauer <patrick@gentoo.org> +jinja2-2.1.1.ebuild:
+  Bump to 2.1.1, fixes #255445
+
+*jinja2-2.1 (06 Dec 2008)
+
+  06 Dec 2008; Patrick Lauer <patrick@gentoo.org> +jinja2-2.1.ebuild:
+  Bumping to 2.1, closing #248752
+
+  18 Nov 2008; Jeremy Olexa <darkside@gentoo.org> jinja2-2.0.ebuild:
+  add ~amd64, bug #246605
+
+*jinja2-2.0 (24 Oct 2008)
+
+  24 Oct 2008; Jesus Rivero <neurogeek@gentoo.org>
+  +files/jinja2-2.0_no_docs.patch, +metadata.xml, +jinja2-2.0.ebuild:
+  Initial commit. Bug #237036
+
