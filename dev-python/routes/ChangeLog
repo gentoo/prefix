@@ -1,0 +1,35 @@
+# ChangeLog for dev-python/routes
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/routes/ChangeLog,v 1.5 2009/04/26 09:49:27 patrick Exp $
+
+*routes-1.10.3 (26 Apr 2009)
+
+  26 Apr 2009; Patrick Lauer <patrick@gentoo.org> +routes-1.10.3.ebuild:
+  Bump to 1.10.3, dep for bug #260168
+
+*routes-1.8 (02 May 2008)
+
+  02 May 2008; Rob Cakebread <pythonhead@gentoo.org> +routes-1.8.ebuild:
+  Version bump. Closes bug #203949. Removed tests till new deps are in
+  portage.
+
+  04 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org> routes-1.6.3.ebuild:
+  Removed use_setuptools sed.
+
+*routes-1.6.3 (22 Apr 2007)
+
+  22 Apr 2007; Lukasz Strzygowski <lucass@gentoo.org> -routes-1.6.2.ebuild,
+  +routes-1.6.3.ebuild:
+  Version bump, removed old version.
+
+  06 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> -routes-1.6.ebuild,
+  +routes-1.6.2.ebuild:
+  Version bump
+
+  04 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> routes-1.6.ebuild:
+  Added setuptools dependency
+
+  04 Feb 2007; Tiziano Müller <dev-zero@gentoo.org> routes-1.6.ebuild,
+  +metadata.xml:
+  New ebuild for bug #155370 (thanks to Brad Walker)
+
