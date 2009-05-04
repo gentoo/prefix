@@ -14,6 +14,7 @@ MY_P="${PN/-bin/}-${MY_PV}"
 DESCRIPTION="Firefox Web Browser"
 REL_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/"
 SRC_URI="${REL_URI}/${MY_PV}/linux-i686/en-US/firefox-${MY_PV}.tar.bz2"
+HOMEPAGE="http://www.mozilla.com/firefox"
 RESTRICT="strip"
 
 KEYWORDS="~amd64-linux ~x86-linux"
