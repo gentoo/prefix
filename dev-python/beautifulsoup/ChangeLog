@@ -1,0 +1,79 @@
+# ChangeLog for dev-python/beautifulsoup
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/beautifulsoup/ChangeLog,v 1.19 2009/04/30 17:57:14 patrick Exp $
+
+  30 Apr 2009; Patrick Lauer <patrick@gentoo.org>
+  -beautifulsoup-3.0.4.ebuild:
+  Remove old
+
+  27 Apr 2009; Markus Meier <maekke@gentoo.org> beautifulsoup-3.0.7.ebuild:
+  amd64/x86 stable, bug #267336
+
+  26 Apr 2009; Brent Baude <ranger@gentoo.org> beautifulsoup-3.0.7.ebuild:
+  stable ppc, bug 267336
+
+  25 Apr 2009; Brent Baude <ranger@gentoo.org> beautifulsoup-3.0.7.ebuild:
+  stable ppc64, bug 267336
+
+  24 Apr 2009; Patrick Lauer <patrick@gentoo.org>
+  -beautifulsoup-3.0.5.ebuild:
+  Remove old
+
+*beautifulsoup-3.0.7 (25 Jun 2008)
+
+  25 Jun 2008; Ali Polatel <hawking@gentoo.org> +beautifulsoup-3.0.7.ebuild:
+  Version bump.
+
+  12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
+  Removing Marien Zwart (marienz, #107204) from metadata.xml.
+
+*beautifulsoup-3.0.5 (23 Feb 2008)
+
+  23 Feb 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +beautifulsoup-3.0.5.ebuild:
+  Version bump (bug #197293).
+
+  06 Oct 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  beautifulsoup-3.0.4.ebuild:
+  ppc stable, bug #190238
+
+  10 Sep 2007; Markus Meier <maekke@gentoo.org> beautifulsoup-3.0.4.ebuild:
+  stable on x86, wrt bug #190238
+
+  25 Aug 2007; Steve Dibb <beandog@gentoo.org> beautifulsoup-3.0.4.ebuild:
+  amd64 stable, bug 190238
+
+  15 Jul 2007; Robert Buchholz <rbu@gentoo.org> beautifulsoup-3.0.4.ebuild:
+  Adding ~ppc (bug #185159)
+
+*beautifulsoup-3.0.4 (22 Apr 2007)
+
+  22 Apr 2007; Lukasz Strzygowski <lucass@gentoo.org>
+  -beautifulsoup-2.1.1.ebuild, -beautifulsoup-3.0.3.ebuild,
+  +beautifulsoup-3.0.4.ebuild:
+  Version bump. Dropped old versions.
+
+  07 Apr 2007; Javier Villavicencio <the_paya@gentoo.org>
+  beautifulsoup-3.0.3.ebuild:
+  Add ~x86-fbsd keyword.
+
+  25 Jan 2007; Steve Dibb <beandog@gentoo.org> beautifulsoup-2.1.1.ebuild,
+  beautifulsoup-3.0.3.ebuild:
+  Add ~amd64, bug 162504
+
+  01 Aug 2006; Tom Gall <tgall@gentoo.org> beautifulsoup-3.0.3.ebuild:
+  added ~ppc64
+
+*beautifulsoup-3.0.3 (07 Jun 2006)
+
+  07 Jun 2006; Marien Zwart <marienz@gentoo.org> beautifulsoup-2.1.1.ebuild,
+  +beautifulsoup-3.0.3.ebuild:
+  Fix SRC_URI for 2.1.1 (upstream moved the file). Version bump, adding src_test.
+
+*beautifulsoup-2.1.1 (25 May 2006)
+
+  25 May 2006; Marien Zwart <marienz@gentoo.org> +metadata.xml,
+  +beautifulsoup-2.1.1.ebuild:
+  New ebuild based on one from Nilton Volpato <nilton@ic.unicamp.br>. Closes
+  bug #110076.
+
