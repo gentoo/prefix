@@ -1,0 +1,97 @@
+# ChangeLog for dev-python/astng
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/astng/ChangeLog,v 1.21 2008/02/28 20:37:47 dev-zero Exp $
+
+*astng-0.17.2 (28 Feb 2008)
+
+  28 Feb 2008; Tiziano Müller <dev-zero@gentoo.org> +astng-0.17.2.ebuild:
+  Version bump (bug #209920).
+
+  24 Jun 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -files/astng-0.16.0-revert-test.patch, -astng-0.16.0.ebuild,
+  -astng-0.16.1.ebuild, -astng-0.16.3.ebuild, astng-0.17.0.ebuild:
+  Fixed $ROOT abuse (bug #167271), cleanup, dropped old versions
+
+  20 May 2007; Christian Faulhammer <opfer@gentoo.org> astng-0.17.0.ebuild:
+  stable amd64, bug 176201
+
+  19 May 2007; nixnut <nixnut@gentoo.org> astng-0.17.0.ebuild:
+  Stable on ppc wrt bug 176201
+
+  17 May 2007; Raúl Porcel <armin76@gentoo.org> astng-0.17.0.ebuild:
+  x86 stable wrt #176201
+
+*astng-0.17.0 (02 Mar 2007)
+
+  02 Mar 2007; Marien Zwart <marienz@gentoo.org>
+  +files/astng-0.17.0-test-fixes.patch, +astng-0.17.0.ebuild:
+  Version bump, closing bug #168905, thanks to dsd@gentoo.org for reporting.
+
+  21 Feb 2007; Lukasz Strzygowski <lucass@gentoo.org> Manifest:
+  Fixed missing chksums.
+
+*astng-0.16.3 (29 Nov 2006)
+
+  29 Nov 2006; Marien Zwart <marienz@gentoo.org> -astng-0.14.0.ebuild,
+  -astng-0.15.0.ebuild, -astng-0.15.1.ebuild, +astng-0.16.3.ebuild:
+  Version bump, remove old versions.
+
+*astng-0.16.1 (26 Sep 2006)
+
+  26 Sep 2006; Marien Zwart <marienz@gentoo.org>
+  +files/astng-0.16.1-skip-gobject-test.patch, +astng-0.16.1.ebuild:
+  Version bump for bug #148865 and #148422.
+
+  01 Aug 2006; Tom Gall <tgall@gentoo.org> astng-0.16.0.ebuild:
+  added ~ppc64
+
+  27 Apr 2006; Marien Zwart <marienz@gentoo.org> files/digest-astng-0.14.0,
+  files/digest-astng-0.15.1, Manifest:
+  Fixing SHA256 digest, pass four
+
+*astng-0.16.0 (20 Apr 2006)
+
+  20 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  +files/astng-0.16.0-revert-test.patch, +astng-0.16.0.ebuild:
+  Version bump.
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> astng-0.15.1.ebuild:
+  Mark 0.15.1 ~ia64
+
+*astng-0.15.1 (10 Mar 2006)
+
+  10 Mar 2006; Marien Zwart <marienz@gentoo.org> +astng-0.15.1.ebuild:
+  Version bump.
+
+*astng-0.15.0 (06 Mar 2006)
+
+  06 Mar 2006; Marien Zwart <marienz@gentoo.org> +astng-0.15.0.ebuild:
+  Version bump.
+
+  19 Jan 2006; Marien Zwart <marienz@gentoo.org> -astng-0.13.1.ebuild,
+  astng-0.14.0.ebuild:
+  Stop installing common/__init__.py and depend on a revbumped logilab-common
+  to ensure that "owns" the installed version of that file (bug #111970). Drop
+  old version.
+
+*astng-0.14.0 (11 Jan 2006)
+
+  11 Jan 2006; Marien Zwart <marienz@gentoo.org> +astng-0.14.0.ebuild:
+  Version bump, add src_test.
+
+  08 Jan 2006; <nixnut@gentoo.org> astng-0.13.1.ebuild:
+  Added ~ppc keyword. Bug #111889
+
+  10 Nov 2005; Luis Medinas <metalgod@gentoo.org> astng-0.13.1.ebuild:
+  Added ~amd64 keyword. Bug #111888.
+
+  08 Nov 2005; Ferris McCormick <fmccor@gentoo.org> astng-0.13.1.ebuild:
+  Add ~sparc keyword at developer's request, partially closing
+  Bug #111891.
+
+*astng-0.13.1 (08 Nov 2005)
+
+  08 Nov 2005; Rob Cakebread <pythonhead@gentoo.org> +metadata.xml,
+  +astng-0.13.1.ebuild:
+  Initial ebuild. New dependency for pylint
+
