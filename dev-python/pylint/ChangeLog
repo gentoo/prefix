@@ -1,0 +1,214 @@
+# ChangeLog for dev-python/pylint
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pylint/ChangeLog,v 1.47 2009/03/26 21:13:08 jmbsvicetto Exp $
+
+  26 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  metadata.xml:
+  Removing hawking as a maintainer since he was retired.
+
+*pylint-0.15.2 (24 Jan 2009)
+
+  24 Jan 2009; Patrick Lauer <patrick@gentoo.org> +pylint-0.15.2.ebuild:
+  Bump to 0.15.2, fixes #254653
+
+  21 Oct 2008; Ali Polatel <hawking@gentoo.org> pylint-0.14.0.ebuild:
+  Fix astng dependency, #236455.
+
+  12 Jul 2008; Rob Cakebread <pythonhead@gentoo.org> pylint-0.13.1.ebuild,
+  pylint-0.14.0.ebuild:
+  Removed dep on dev-python/optik which only works with <=python-2.2
+
+*pylint-0.14.0 (21 Mar 2008)
+
+  21 Mar 2008; Ali Polatel <hawking@gentoo.org>
+  +files/pylint-0.14.0-tests-reset_cache.patch,
+  +files/pylint-0.14.0-tests-typo.patch, metadata.xml,
+  +pylint-0.14.0.ebuild:
+  Version bump. Added longdescription. Added myself as maintainer.
+
+  11 Jul 2007; Rob Cakebread <pythonhead@gentoo.org> pylint-0.13.1.ebuild:
+  Removed test dep for egenix as its only needed for logilab-common
+
+  11 Jul 2007; Rob Cakebread <pythonhead@gentoo.org> pylint-0.13.1.ebuild:
+  Added USE for test and dep for egenix-mx-base. bug #184839 Santiago M. Mola
+  <coldwind@gentoo.org>
+
+  24 Jun 2007; Tiziano Müller <dev-zero@gentoo.org>
+  -files/pylint-0.10.0-extra-todo.patch, -pylint-0.6.4.ebuild,
+  -pylint-0.11.0.ebuild, -pylint-0.12.1.ebuild, -pylint-0.12.2.ebuild:
+  Dropped old versions
+
+  20 May 2007; Christian Faulhammer <opfer@gentoo.org> pylint-0.13.1.ebuild:
+  stable amd64, bug 176201
+
+  19 May 2007; nixnut <nixnut@gentoo.org> pylint-0.13.1.ebuild:
+  Stable on ppc wrt bug 176201
+
+  17 May 2007; Raúl Porcel <armin76@gentoo.org> pylint-0.13.1.ebuild:
+  x86 stable wrt #176201
+
+  16 May 2007; Marien Zwart <marienz@gentoo.org> pylint-0.12.1.ebuild,
+  pylint-0.12.2.ebuild:
+  0.12 pylint does not work with latest astng. Bug #176201, thanks to
+  armin76@gentoo.org for reporting.
+
+  15 May 2007; Rob Cakebread <pythonhead@gentoo.org> pylint-0.12.2.ebuild,
+  pylint-0.13.1.ebuild:
+  Added tk USE flag and pkg_setup to ensure python was built with tk
+
+  05 Mar 2007; Marius Mauch <genone@gentoo.org> pylint-0.12.1.ebuild,
+  pylint-0.12.2.ebuild, pylint-0.13.1.ebuild:
+  Replacing einfo with elog
+
+*pylint-0.13.1 (02 Mar 2007)
+
+  02 Mar 2007; Marien Zwart <marienz@gentoo.org>
+  +files/pylint-0.13.1-test-fixes.patch, +pylint-0.13.1.ebuild:
+  Version bump, closes bug #168906, thanks to dsd@gentoo.org for reporting.
+
+  05 Jan 2007; Lukasz Strzygowski <lucass@gentoo.org> pylint-0.12.2.ebuild:
+  Fixed logilab-common dep, bug #157848.
+
+*pylint-0.12.2 (30 Nov 2006)
+
+  30 Nov 2006; Marien Zwart <marienz@gentoo.org>
+  -files/pylint-0.9.0-extra-todo.patch, -pylint-0.4.0.ebuild,
+  -pylint-0.7.0.ebuild, -pylint-0.8.1.ebuild, -pylint-0.9.0.ebuild,
+  -pylint-0.10.0.ebuild, +pylint-0.12.2.ebuild:
+  Version bump, remove old versions. Close bug #156624, thanks to Daniel Drake
+  <dsd@gentoo.org> for reporting.
+
+*pylint-0.12.1 (27 Sep 2006)
+
+  27 Sep 2006; Marien Zwart <marienz@gentoo.org> +pylint-0.12.1.ebuild:
+  Version bump for bug #148865 and #148422.
+
+  11 Jun 2006; Marius Mauch <genone@gentoo.org> pylint-0.9.0.ebuild,
+  pylint-0.11.0.ebuild:
+  Add ~amd64 keyword
+
+*pylint-0.11.0 (20 Apr 2006)
+
+  20 Apr 2006; Marien Zwart <marienz@gentoo.org>
+  +files/pylint-0.11.0-gui-no-tkinter.patch, +pylint-0.11.0.ebuild:
+  Version bump with more robust cleanup of test files and a friendlier failure
+  if pylint-gui is run without Tkinter present (bug #120771)
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> pylint-0.10.0.ebuild:
+  Mark 0.10.0 ~ia64
+
+  10 Mar 2006; Marien Zwart <marienz@gentoo.org>
+  +files/pylint-0.10.0-extra-gtk-disable.patch,
+  files/pylint-0.10.0-extra-todo.patch,
+  -files/pylint-0.10.0-skip-gtk-test.patch, pylint-0.10.0.ebuild:
+  Depend on a bugfixed astng allowing more tests to pass.
+
+*pylint-0.10.0 (06 Mar 2006)
+
+  06 Mar 2006; Marien Zwart <marienz@gentoo.org>
+  +files/pylint-0.10.0-extra-todo.patch,
+  +files/pylint-0.10.0-skip-gtk-test.patch, +pylint-0.10.0.ebuild:
+  Version bump
+
+  21 Jan 2006; Lars Weiler <pylon@gentoo.org> pylint-0.9.0.ebuild:
+  Added ~ppc to keywords; bug #111889.
+
+*pylint-0.9.0 (19 Jan 2006)
+
+  19 Jan 2006; Marien Zwart <marienz@gentoo.org>
+  +files/pylint-0.9.0-extra-todo.patch, +pylint-0.9.0.ebuild:
+  Version bump. Start running the tests in src_test, stop installing them (bug
+  #97506).
+
+  10 Nov 2005; Rob Cakebread <pythonhead@gentoo.org> pylint-0.8.1.ebuild:
+  Changed dep to logilab-common-0.12.0. bug# 112090
+
+  08 Nov 2005; Ferris McCormick <fmccor@gentoo.org> pylint-0.8.1.ebuild:
+  Add ~sparc keyword at developer's request.  This version (and
+  dev-python/astng) build and install fine, and initial indications
+  are that pylint does what it is supposed to do.  Tlis closes
+  Bug #111891.
+
+  08 Nov 2005; Rob Cakebread <pythonhead@gentoo.org> pylint-0.8.1.ebuild:
+  Added new dependency on dev-python/astng.
+
+*pylint-0.8.1 (07 Nov 2005)
+
+  07 Nov 2005; Rob Cakebread <pythonhead@gentoo.org> +pylint-0.8.1.ebuild:
+  Version bump.
+
+*pylint-0.7.0 (27 May 2005)
+
+  27 May 2005; Alastair Tse <liquidx@gentoo.org> -pylint-0.4.2.ebuild,
+  -pylint-0.6.0.ebuild, -pylint-0.6.3.ebuild, pylint-0.6.4.ebuild,
+  +pylint-0.7.0.ebuild:
+  version bump
+
+  22 May 2005; Jason Wever <weeve@gentoo.org> pylint-0.6.4.ebuild:
+  Added ~sparc keyword.
+
+*pylint-0.6.4 (14 Apr 2005)
+
+  14 Apr 2005; Bryan Østergaard <kloeri@gentoo.org> +pylint-0.6.4.ebuild:
+  Version bump.
+
+*pylint-0.6.3 (19 Mar 2005)
+
+  19 Mar 2005; Fernando Serboncini <fserb@gentoo.org> +pylint-0.6.3.ebuild:
+  Version bump.
+
+*pylint-0.6.0 (24 Jan 2005)
+
+  24 Jan 2005; Bryan Østergaard <kloeri@gentoo.org> +pylint-0.6.0.ebuild:
+  Version bump.
+
+  30 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  20 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> -pylint-0.3.3.ebuild,
+  pylint-0.4.0.ebuild:
+  Clean out old ebuild and bump x86 stable.
+
+*pylint-0.4.2 (20 Dec 2004)
+
+  20 Dec 2004; Bryan Østergaard <kloeri@gentoo.org> +pylint-0.4.2.ebuild:
+  Version bump, updated ebuild by Marien Zwart <m_zwart@123mail.org> in bug
+  74371.
+
+  17 Oct 2004; Dylan Carlson <absinthe@gentoo.org> pylint-0.4.0.ebuild:
+  keywords ~amd64; closes #60988.
+
+  12 May 2004; David Holm <dholm@gentoo.org> pylint-0.4.0.ebuild:
+  Added to ~ppc.
+
+*pylint-0.4.0 (12 May 2004)
+
+  12 May 2004; Bryan Østergaard <kloeri@gentoo.org> +pylint-0.4.0.ebuild:
+  Version bump.
+
+  04 May 2004; Bryan Østergaard <kloeri@gentoo.org> pylint-0.3.3.ebuild:
+  Add missing IUSE.
+
+  17 Apr 2004; Bryan Østergaard <kloeri@gentoo.org> -pylint-0.2.1.ebuild,
+  -pylint-0.3.2.ebuild, pylint-0.3.3.ebuild:
+  Pylint-0.3.3 stable on x86, remove old ebuilds.
+
+*pylint-0.3.3 (22 Feb 2004)
+
+  22 Feb 2004; Alastair Tse <liquidx@gentoo.org> pylint-0.3.3.ebuild:
+  version bump. bumped logilab-common dep
+
+*pylint-0.3.2 (17 Feb 2004)
+
+  17 Feb 2004; Bryan Østergaard,,, <kloeri@gentoo.org> pylint-0.3.2.ebuild:
+  Version bump.
+
+  06 Nov 2003; Alastair Tse <liquidx@gentoo.org> pylint-0.2.1.ebuild:
+  oops, forgot the deps in my moment of madness. adding logilab-common and optik
+  to deps (#32820)
+
+*pylint-0.2.1 (14 Oct 2003)
+
+  14 Oct 2003; Alastair Tse <liquidx@gentoo.org> pylint-0.2.1.ebuild:
+  initial ebuild. python syntax checker
+
