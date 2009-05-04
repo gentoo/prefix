@@ -1,0 +1,24 @@
+# ChangeLog for dev-python/python-memcached
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-memcached/ChangeLog,v 1.4 2009/03/31 21:02:02 patrick Exp $
+
+*python-memcached-1.43 (31 Mar 2009)
+
+  31 Mar 2009; Patrick Lauer <patrick@gentoo.org>
+  +python-memcached-1.43.ebuild:
+  Bump to 1.43, fixes #263346
+
+  02 Nov 2007; Tiziano Müller <dev-zero@gentoo.org>
+  python-memcached-1.40.ebuild:
+  Replaced dev-lang/python dependency with NEED_PYTHON var
+
+  02 Nov 2007; Robin H. Johnson <robbat2@gentoo.org>
+  python-memcached-1.40.ebuild:
+  Bug #197879, missing dep on setuptools.
+
+*python-memcached-1.40 (24 Oct 2007)
+
+  24 Oct 2007; Robin H. Johnson <robbat2@gentoo.org> +metadata.xml,
+  +python-memcached-1.40.ebuild:
+  Initial commit. Ebuild by Robin H. Johnson <robbat2@gentoo.org>.
+
