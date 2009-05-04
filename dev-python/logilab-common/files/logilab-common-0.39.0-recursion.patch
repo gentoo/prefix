@@ -1,0 +1,12 @@
+--- logilab-common-0.39.0/modutils.py	2009-03-25 09:47:08.000000000 +0100
++++ logilab-common-0.39.0/modutils.py	2009-04-18 22:03:10.000000000 +0200
+@@ -622,7 +622,7 @@ def _has_init(directory):
+     else return None
+     """
+     mod_or_pack = join(directory, '__init__')
+-    for ext in PY_SOURCE_EXTS + ('.pyc', '.pyo'):
++    for ext in PY_SOURCE_EXTS + ('pyc', 'pyo'):
+         if exists(mod_or_pack + '.' + ext):
+-            return mod_or_pack + ext
++            return mod_or_pack + '.' + ext
+     return None

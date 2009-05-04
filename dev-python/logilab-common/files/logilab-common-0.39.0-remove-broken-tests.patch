@@ -1,0 +1,29 @@
+--- test/unittest_modutils.py.old	2009-04-14 13:00:50.116522533 +0200
++++ test/unittest_modutils.py	2009-04-14 13:20:41.727764570 +0200
+@@ -120,16 +120,6 @@ class file_from_modpath_tc(TestCase):
+         self.assertEqual(path.realpath(modutils.file_from_modpath(['os', 'path']).replace('.pyc', '.py')),
+                          path.realpath(path.__file__.replace('.pyc', '.py')))
+     
+-    def test_knownValues_file_from_modpath_3(self):
+-        try:
+-            # don't fail if pyxml isn't installed
+-            from xml.dom import ext
+-        except ImportError:
+-            pass
+-        else:
+-            self.assertEqual(path.realpath(modutils.file_from_modpath(['xml', 'dom', 'ext']).replace('.pyc', '.py')),
+-                             path.realpath(ext.__file__.replace('.pyc', '.py')))
+-    
+     def test_knownValues_file_from_modpath_4(self):
+         self.assertEqual(modutils.file_from_modpath(['sys']),
+                          None)
+@@ -165,9 +155,6 @@ class is_standard_module_tc(TestCase):
+     def test_knownValues_is_standard_module_3(self):
+         self.assertEqual(modutils.is_standard_module('unknown'), False)
+ 
+-    def test_knownValues_is_standard_module_4(self):
+-        self.assertEqual(modutils.is_standard_module('StringIO'), True)
+-
+     def test_knownValues_is_standard_module_5(self):
+         self.assertEqual(modutils.is_standard_module('data.module', (DATADIR,)), True)
+         self.assertEqual(modutils.is_standard_module('data.module', (path.abspath(DATADIR),)), True)

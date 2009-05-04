@@ -1,0 +1,215 @@
+# ChangeLog for dev-python/logilab-common
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/logilab-common/ChangeLog,v 1.40 2009/04/24 20:40:45 patrick Exp $
+
+  24 Apr 2009; Patrick Lauer <patrick@gentoo.org>
+  -logilab-common-0.9.3.ebuild, -logilab-common-0.15.0.ebuild,
+  -logilab-common-0.19.2.ebuild, -logilab-common-0.21.0.ebuild,
+  -logilab-common-0.31.0.ebuild:
+  Remove ancient versions
+
+*logilab-common-0.39.0-r1 (18 Apr 2009)
+
+  18 Apr 2009; Patrick Lauer <patrick@gentoo.org>
+  +files/logilab-common-0.39.0-recursion.patch,
+  +logilab-common-0.39.0-r1.ebuild:
+  Small fix by idl0r. Now astng and pylint shouldn't hit recursion limits
+  anymore.
+
+*logilab-common-0.39.0 (18 Apr 2009)
+
+  18 Apr 2009; Patrick Lauer <patrick@gentoo.org>
+  +files/logilab-common-0.39.0-remove-broken-tests.patch,
+  +logilab-common-0.39.0.ebuild:
+  Bump to 0.39.0. Nice test fixes from idl0r. Closes #261984.
+
+*logilab-common-0.31.0 (13 May 2008)
+
+  13 May 2008; Ali Polatel <hawking@gentoo.org>
+  +files/logilab-common-0.31.0-remove-broken-tests.patch,
+  +logilab-common-0.31.0.ebuild:
+  Version bump. No need to patch files that we'll remove. Updated patch for
+  b0rked tests.
+
+  20 May 2007; Christian Faulhammer <opfer@gentoo.org>
+  logilab-common-0.21.2.ebuild:
+  stable amd64, bug 176201
+
+  19 May 2007; nixnut <nixnut@gentoo.org> logilab-common-0.21.2.ebuild:
+  Stable on ppc wrt bug 176201
+
+  17 May 2007; Raúl Porcel <armin76@gentoo.org>
+  logilab-common-0.21.2.ebuild:
+  x86 stable wrt #176201
+
+  14 May 2007; Marien Zwart <marienz@gentoo.org>
+  +files/logilab-common-0.21.2-disable-access-tests-as-root.patch,
+  logilab-common-0.21.2.ebuild:
+  Make the tests pass without FEATURES=-userpriv (bug #176201).
+
+*logilab-common-0.21.2 (02 Mar 2007)
+
+  02 Mar 2007; Marien Zwart <marienz@gentoo.org>
+  +files/logilab-common-0.21.2-remove-broken-tests.patch,
+  +logilab-common-0.21.2.ebuild:
+  Version bump changing how the tests are run.
+
+*logilab-common-0.21.0 (29 Nov 2006)
+
+  29 Nov 2006; Marien Zwart <marienz@gentoo.org>
+  -logilab-common-0.14.0.ebuild, -logilab-common-0.14.1.ebuild,
+  +logilab-common-0.21.0.ebuild:
+  Version bump, remove doc USE flag that was not doing anything.
+
+  27 Sep 2006; Marien Zwart <marienz@gentoo.org> ChangeLog:
+  Add missing IUSE (recommit because I forgot repoman).
+
+*logilab-common-0.19.2 (26 Sep 2006)
+
+  26 Sep 2006; Marien Zwart <marienz@gentoo.org>
+  +logilab-common-0.19.2.ebuild:
+  Version bump.
+
+  20 Sep 2006; Rob Cakebread <pythonhead@gentoo.org>
+  +files/logilab-common-setup.py.patch, logilab-common-0.9.3.ebuild,
+  logilab-common-0.14.0.ebuild, logilab-common-0.14.1.ebuild,
+  logilab-common-0.15.0.ebuild:
+  Fixes from future import error in Python 2.5
+
+  01 Aug 2006; Tom Gall <tgall@gentoo.org> logilab-common-0.15.0.ebuild:
+  added ~ppc64
+
+*logilab-common-0.15.0 (02 Apr 2006)
+
+  02 Apr 2006; Lukasz Strzygowski <lucass@gentoo.org>
+  -files/logilab-common-0.13.0-configuration-help-test-less-strict.patch,
+  -files/logilab-common-0.13.0-dbapi-skip-tests.patch,
+  -logilab-common-0.5.0.ebuild, -logilab-common-0.10.0.ebuild,
+  -logilab-common-0.12.0.ebuild, -logilab-common-0.13.0.ebuild,
+  -logilab-common-0.13.0-r1.ebuild, +logilab-common-0.15.0.ebuild:
+  Version bump. Fixed tests. Removed older versions: 0.5.0, 0.10.0, 0.12.0,
+  0.13.0, 0.13.0-r1.
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org>
+  logilab-common-0.14.1.ebuild:
+  Mark 0.14.1 ~ia64
+
+*logilab-common-0.14.1 (06 Mar 2006)
+
+  06 Mar 2006; Marien Zwart <marienz@gentoo.org>
+  +logilab-common-0.14.1.ebuild:
+  Version bump to the actual latest version.
+
+*logilab-common-0.14.0 (06 Mar 2006)
+
+  06 Mar 2006; Marien Zwart <marienz@gentoo.org>
+  +files/logilab-common-0.14.0-remove-broken-modutils-test.patch,
+  +logilab-common-0.14.0.ebuild:
+  Version bump.
+
+  06 Feb 2006; Simon Stelling <blubb@gentoo.org>
+  logilab-common-0.9.3.ebuild:
+  stable on amd64
+
+*logilab-common-0.13.0-r1 (19 Jan 2006)
+
+  19 Jan 2006; Marien Zwart <marienz@gentoo.org>
+  +logilab-common-0.13.0-r1.ebuild:
+  Revbump with no ebuild changes to ensure common/__init__.py is from
+  logilab-common, not astng (bug #111970).
+
+*logilab-common-0.13.0 (11 Jan 2006)
+
+  11 Jan 2006; Marien Zwart <marienz@gentoo.org>
+  +files/logilab-common-0.13.0-configuration-help-test-less-strict.patch,
+  +files/logilab-common-0.13.0-dbapi-skip-tests.patch,
+  +logilab-common-0.13.0.ebuild:
+  Bump version to 0.13.0, add src_test.
+
+*logilab-common-0.12.0 (05 Nov 2005)
+
+  05 Nov 2005; Lukasz Strzygowski <lucass@gentoo.org>
+  +logilab-common-0.12.0.ebuild:
+  Version bump. Added optional dependency on optik. Closing bug #108711.
+
+*logilab-common-0.10.0 (27 May 2005)
+
+  27 May 2005; Alastair Tse <liquidx@gentoo.org>
+  -logilab-common-0.4.4.ebuild, -logilab-common-0.9.0.ebuild,
+  -logilab-common-0.9.1.ebuild, logilab-common-0.9.3.ebuild,
+  +logilab-common-0.10.0.ebuild:
+  version bump
+
+  22 May 2005; Jason Wever <weeve@gentoo.org> logilab-common-0.9.3.ebuild:
+  Added ~sparc keyword.
+
+  24 Apr 2005; Simon Stelling <blubb@gentoo.org>
+  logilab-common-0.5.0.ebuild:
+  stable on amd64
+
+*logilab-common-0.9.3 (14 Apr 2005)
+
+  14 Apr 2005; Bryan Østergaard <kloeri@gentoo.org>
+  +logilab-common-0.9.3.ebuild:
+  Version bump.
+
+*logilab-common-0.9.1 (19 Mar 2005)
+
+  19 Mar 2005; Fernando Serboncini <fserb@gentoo.org>
+  -logilab-common-0.3.4.ebuild, +logilab-common-0.9.1.ebuild:
+  Version bump. Removed old version.
+
+*logilab-common-0.9.0 (24 Jan 2005)
+
+  24 Jan 2005; Bryan Østergaard <kloeri@gentoo.org>
+  +logilab-common-0.9.0.ebuild:
+  Version bump.
+
+  24 Jan 2005; Bryan Østergaard <kloeri@gentoo.org> :
+  Version bump.
+
+  30 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+  20 Dec 2004; Bryan Østergaard <kloeri@gentoo.org>
+  logilab-common-0.5.0.ebuild:
+  Bump x86 stable.
+
+  17 Oct 2004; Dylan Carlson <absinthe@gentoo.org>
+  logilab-common-0.5.0.ebuild:
+  keywords ~amd64; closes #60986.
+
+  07 Aug 2004; Tom Martin <slarti@gentoo.org> logilab-common-0.3.4.ebuild,
+  logilab-common-0.4.4.ebuild, logilab-common-0.5.0.ebuild:
+  Typo in DESCRIPTION: developped -> developed; functionnalities ->
+  functionality. Bug 59717.
+
+  12 May 2004; David Holm <dholm@gentoo.org> logilab-common-0.5.0.ebuild:
+  Added to ~ppc.
+
+*logilab-common-0.5.0 (12 May 2004)
+
+  12 May 2004; Bryan Østergaard <kloeri@gentoo.org>
+  +logilab-common-0.5.0.ebuild:
+  Version bump.
+
+  04 May 2004; Bryan Østergaard <kloeri@gentoo.org>
+  logilab-common-0.3.4.ebuild, logilab-common-0.4.4.ebuild:
+  Add missing IUSE.
+
+  15 Apr 2004; Michael McCabe <randy@gentoo.org>
+  logilab-common-0.4.4.ebuild:
+  adding s390 keywords
+
+*logilab-common-0.4.4 (17 Feb 2004)
+
+  17 Feb 2004; Bryan Østergaard <kloeri@gentoo.org>
+  logilab-common-0.4.4.ebuild:
+  Version bump.
+
+*logilab-common-0.3.4 (14 Oct 2003)
+
+  14 Oct 2003; Alastair Tse <liquidx@gentoo.org> logilab-common-0.3.4.ebuild,
+  metadata.xml:
+  initial ebuild. dependency for pylint
+
