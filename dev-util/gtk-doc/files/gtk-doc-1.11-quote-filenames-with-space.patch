@@ -1,0 +1,46 @@
+From d31d3e9a0733ccf229526b70b38b73889240b0ba Mon Sep 17 00:00:00 2001
+From: Stefan Kost <stefkost@src.gnome.org>
+Date: Tue, 17 Mar 2009 11:20:01 +0000
+Subject: [PATCH 3/3] 	patch by: Vincent Untz <vuntz@nome.org>
+ 	* gtkdoc-common.pl.in:
+ 	  Be more friendly for files with a space in their name. Fixes #575574.
+
+svn path=/trunk/; revision=705
+(cherry picked from commit 390599e14a7fc65945e3966e32ae06e2148089e2)
+---
+ ChangeLog           |    8 ++++++++
+ gtkdoc-common.pl.in |    2 +-
+ 2 files changed, 9 insertions(+), 1 deletions(-)
+
+diff --git a/ChangeLog b/ChangeLog
+index bc14efa..25430b8 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,3 +1,11 @@
++2009-03-17  Stefan Kost  <ensonic@users.sf.net>
++
++	patch by: Vincent Untz <vuntz@nome.org>
++
++	* gtkdoc-common.pl.in:
++	  Be more friendly for files with a space in their name. Fixes #575574.
++	  
++
+ 2009-01-04  Stefan Kost  <ensonic@users.sf.net>
+ 
+ 	* tests/gtk-doc.make:
+diff --git a/gtkdoc-common.pl.in b/gtkdoc-common.pl.in
+index 972644d..8cd7614 100644
+--- a/gtkdoc-common.pl.in
++++ b/gtkdoc-common.pl.in
+@@ -51,7 +51,7 @@ sub UpdateFileIfChanged {
+     my $exit_code = 1;
+ 
+     if (-e $old_file) {
+-	`cmp -s $old_file $new_file`;
++	`cmp -s "$old_file" "$new_file"`;
+ 	$exit_code = $? >> 8;
+ #	print "   cmp exit code: $exit_code ($?)\n";
+     }
+-- 
+1.6.1.3
+

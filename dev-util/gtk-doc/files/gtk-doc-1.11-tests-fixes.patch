@@ -1,0 +1,202 @@
+From 7ef64f1d7d3309612a14c22dba59a3a4a34bc381 Mon Sep 17 00:00:00 2001
+From: Stefan Kost <stefkost@src.gnome.org>
+Date: Sun, 4 Jan 2009 12:08:02 +0000
+Subject: [PATCH 2/3] Fix running tests, if no gtk-doc is installed yet.
+
+* gtkdoc-mkhtml.in:
+* tests/Makefile.am:
+* tests/gtk-doc.make:
+* tests/gtk-doc.notmpl.make:
+* tests/gtkdoctest.sh:
+Fix running tests, if no gtk-doc is installed yet.
+
+svn path=/trunk/; revision=630
+(cherry picked from commit 0ceaa25cb719bda5205627819fa170a41783cafc)
+
+Now aall tests pass.
+
+* tests/gtk-doc.make:
+* tests/gtk-doc.notmpl.make:
+Now aall tests pass.
+
+svn path=/trunk/; revision=631
+(cherry picked from commit b3305a943c1dfe522fdc222d495a4a449d37d30c)
+---
+ ChangeLog                 |   15 +++++++++++++++
+ gtkdoc-mkhtml.in          |   12 ++++++------
+ tests/Makefile.am         |    4 +++-
+ tests/gtk-doc.make        |   12 ++++++------
+ tests/gtk-doc.notmpl.make |   10 +++++-----
+ tests/gtkdoctest.sh       |    2 +-
+ 6 files changed, 36 insertions(+), 19 deletions(-)
+
+diff --git a/ChangeLog b/ChangeLog
+index 63fa517..bc14efa 100644
+--- a/ChangeLog
++++ b/ChangeLog
+@@ -1,3 +1,18 @@
++2009-01-04  Stefan Kost  <ensonic@users.sf.net>
++
++	* tests/gtk-doc.make:
++	* tests/gtk-doc.notmpl.make:
++	  Now aall tests pass.
++
++2009-01-04  Stefan Kost  <ensonic@users.sf.net>
++
++	* gtkdoc-mkhtml.in:
++	* tests/Makefile.am:
++	* tests/gtk-doc.make:
++	* tests/gtk-doc.notmpl.make:
++	* tests/gtkdoctest.sh:
++	  Fix running tests, if no gtk-doc is installed yet.
++
+ 2008-12-01  Stefan Kost  <ensonic@users.sf.net>
+ 
+ 	patch by: Matthias Clasen  <mclasen@redhat.com>
+diff --git a/gtkdoc-mkhtml.in b/gtkdoc-mkhtml.in
+index 1671cf0..d18b10e 100644
+--- a/gtkdoc-mkhtml.in
++++ b/gtkdoc-mkhtml.in
+@@ -29,16 +29,16 @@ shift
+ document=$1
+ shift
+ 
+-# FIXME: this is a hack to run uninstalled
+-if test "x$0" = "x../../../gtkdoc-mkhtml" ; then
+-      # uninstalled
+-      gtkdocdir=`dirname $0`
+-else
+-      # installed
++# FIXME: this is a hack to detect uninstalled
++if test "x$0" = "x@prefix@/bin/gtkdoc-mkhtml" ; then
++      #echo "installed"
+       # the first two are needed to resolve datadir
+       prefix=@prefix@
+       datarootdir=@datarootdir@
+       gtkdocdir=@datadir@/gtk-doc/data
++else
++      #echo "uninstalled"
++      gtkdocdir=`dirname $0`
+ fi
+ 
+ if head -n 1 $document | grep "<?xml" > /dev/null; then
+diff --git a/tests/Makefile.am b/tests/Makefile.am
+index 4281c5c..1b05e7a 100644
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -5,7 +5,9 @@ SUBDIRS = gobject bugs annotations .
+ if BUILD_TESTS
+ 
+ TESTS = gobject.sh bugs.sh annotations.sh
+-TESTS_ENVIRONMENT = PATH=$(top_builddir):$(srcdir):$(PATH)
++TESTS_ENVIRONMENT = \
++	PATH=$(abs_top_builddir):$(srcdir):$(PATH) \
++	PERL5LIB=$(abs_top_builddir):$(PERL5LIB)
+ 
+ endif
+ 
+diff --git a/tests/gtk-doc.make b/tests/gtk-doc.make
+index 1c37e9b..b18c405 100644
+--- a/tests/gtk-doc.make
++++ b/tests/gtk-doc.make
+@@ -59,10 +59,10 @@ $(REPORT_FILES): sgml-build.stamp
+ scan-build.stamp: $(HFILE_GLOB) $(CFILE_GLOB)
+ 	@echo 'gtk-doc: Scanning header files'
+ 	@-chmod -R u+w $(srcdir)
+-	@PATH=$(top_builddir):$(PATH) PERL5LIB=$(top_builddir):$(PERL5LIB) && cd $(srcdir) && \
++	@cd $(srcdir) && PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) \
+ 	  gtkdoc-scan --module=$(DOC_MODULE) --source-dir=$(DOC_SOURCE_DIR) --ignore-headers="$(IGNORE_HFILES)" $(SCAN_OPTIONS) $(EXTRA_HFILES)
+ 	if grep -l '^..*$$' $(srcdir)/$(DOC_MODULE).types > /dev/null 2>&1 ; then \
+-	    CC="$(GTKDOC_CC)" LD="$(GTKDOC_LD)" RUN="$(GTKDOC_RUN)" CFLAGS="$(GTKDOC_CFLAGS) $(CFLAGS)" LDFLAGS="$(GTKDOC_LIBS) $(LDFLAGS)" $(top_builddir)/gtkdoc-scangobj --module=$(DOC_MODULE) --output-dir=$(srcdir) $(SCANGOBJ_OPTIONS); \
++	    CC="$(GTKDOC_CC)" LD="$(GTKDOC_LD)" RUN="$(GTKDOC_RUN)" CFLAGS="$(GTKDOC_CFLAGS) $(CFLAGS)" LDFLAGS="$(GTKDOC_LIBS) $(LDFLAGS)" PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) gtkdoc-scangobj --module=$(DOC_MODULE) --output-dir=$(srcdir) $(SCANGOBJ_OPTIONS); \
+ 	else \
+ 	    cd $(srcdir) ; \
+ 	    for i in $(SCANOBJ_FILES) ; do \
+@@ -79,7 +79,7 @@ $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_MODULE)
+ tmpl-build.stamp: $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_MODULE)-overrides.txt
+ 	@echo 'gtk-doc: Rebuilding template files'
+ 	@-chmod -R u+w $(srcdir)
+-	@PATH=$(top_builddir):$(PATH) PERL5LIB=$(top_builddir):$(PERL5LIB) && cd $(srcdir) && \
++	@cd $(srcdir) && PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) \
+ 	gtkdoc-mktmpl --module=$(DOC_MODULE) $(MKTMPL_OPTIONS)
+ 	touch tmpl-build.stamp
+ 
+@@ -94,7 +94,7 @@ tmpl/*.sgml:
+ sgml-build.stamp: tmpl.stamp $(HFILE_GLOB) $(CFILE_GLOB) $(DOC_MODULE)-sections.txt $(srcdir)/tmpl/*.sgml $(expand_content_files)
+ 	@echo 'gtk-doc: Building XML'
+ 	@-chmod -R u+w $(srcdir)
+-	@PATH=$(top_builddir):$(PATH) PERL5LIB=$(top_builddir):$(PERL5LIB) && cd $(srcdir) && \
++	@cd $(srcdir) && PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) \
+ 	gtkdoc-mkdb --module=$(DOC_MODULE) --source-dir=$(DOC_SOURCE_DIR) --output-format=xml --expand-content-files="$(expand_content_files)" --main-sgml-file=$(DOC_MAIN_SGML_FILE) $(MKDB_OPTIONS)
+ 	touch sgml-build.stamp
+ 
+@@ -108,11 +108,11 @@ html-build.stamp: sgml.stamp $(DOC_MAIN_SGML_FILE) $(content_files)
+ 	@-chmod -R u+w $(srcdir)
+ 	rm -rf $(srcdir)/html
+ 	mkdir $(srcdir)/html
+-	@PATH=$(top_builddir):$(PATH) PERL5LIB=$(top_builddir):$(PERL5LIB) && cd $(srcdir)/html && \
++	@cd $(srcdir)/html && PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) \
+ 	gtkdoc-mkhtml --path="$(srcdir)" $(DOC_MODULE) ../$(DOC_MAIN_SGML_FILE)  $(MKHTML_OPTIONS)
+ 	test "x$(HTML_IMAGES)" = "x" || ( cd $(srcdir) && cp $(HTML_IMAGES) html )
+ 	@echo 'gtk-doc: Fixing cross-references'
+-	@PATH=$(top_builddir):$(PATH) PERL5LIB=$(top_builddir):$(PERL5LIB) && cd $(srcdir) && \
++	@cd $(srcdir) && PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) \
+ 	gtkdoc-fixxref --module-dir=html --html-dir=$(HTML_DIR) $(FIXXREF_OPTIONS)
+ 	touch html-build.stamp
+ 
+diff --git a/tests/gtk-doc.notmpl.make b/tests/gtk-doc.notmpl.make
+index 1f4c518..46bdb41 100644
+--- a/tests/gtk-doc.notmpl.make
++++ b/tests/gtk-doc.notmpl.make
+@@ -59,10 +59,10 @@ $(REPORT_FILES): sgml-build.stamp
+ scan-build.stamp: $(HFILE_GLOB) $(CFILE_GLOB)
+ 	@echo 'gtk-doc: Scanning header files'
+ 	@-chmod -R u+w $(srcdir)
+-	@PATH=$(top_builddir):$(PATH) PERL5LIB=$(top_builddir):$(PERL5LIB) && cd $(srcdir) && \
++	@cd $(srcdir) && PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) \
+ 	  gtkdoc-scan --module=$(DOC_MODULE) --source-dir=$(DOC_SOURCE_DIR) --ignore-headers="$(IGNORE_HFILES)" $(SCAN_OPTIONS) $(EXTRA_HFILES)
+ 	if grep -l '^..*$$' $(srcdir)/$(DOC_MODULE).types > /dev/null 2>&1 ; then \
+-	    CC="$(GTKDOC_CC)" LD="$(GTKDOC_LD)" RUN="$(GTKDOC_RUN)" CFLAGS="$(GTKDOC_CFLAGS) $(CFLAGS)" LDFLAGS="$(GTKDOC_LIBS) $(LDFLAGS)" $(top_builddir)/gtkdoc-scangobj --module=$(DOC_MODULE) --output-dir=$(srcdir) $(SCANGOBJ_OPTIONS); \
++	    CC="$(GTKDOC_CC)" LD="$(GTKDOC_LD)" RUN="$(GTKDOC_RUN)" CFLAGS="$(GTKDOC_CFLAGS) $(CFLAGS)" LDFLAGS="$(GTKDOC_LIBS) $(LDFLAGS)" PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) gtkdoc-scangobj --module=$(DOC_MODULE) --output-dir=$(srcdir) $(SCANGOBJ_OPTIONS); \
+ 	else \
+ 	    cd $(srcdir) ; \
+ 	    for i in $(SCANOBJ_FILES) ; do \
+@@ -79,7 +79,7 @@ $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_MODULE)
+ sgml-build.stamp: $(HFILE_GLOB) $(CFILE_GLOB) $(DOC_MODULE)-decl.txt $(SCANOBJ_FILES) $(DOC_MODULE)-sections.txt $(DOC_MODULE)-overrides.txt $(expand_content_files)
+ 	@echo 'gtk-doc: Building XML'
+ 	@-chmod -R u+w $(srcdir)
+-	@PATH=$(top_builddir):$(PATH) PERL5LIB=$(top_builddir):$(PERL5LIB) && cd $(srcdir) && \
++	@cd $(srcdir) && PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) \
+ 	gtkdoc-mkdb --module=$(DOC_MODULE) --source-dir=$(DOC_SOURCE_DIR) --output-format=xml --expand-content-files="$(expand_content_files)" --main-sgml-file=$(DOC_MAIN_SGML_FILE) $(MKDB_OPTIONS)
+ 	touch sgml-build.stamp
+ 
+@@ -93,11 +93,11 @@ html-build.stamp: sgml.stamp $(DOC_MAIN_SGML_FILE) $(content_files)
+ 	@-chmod -R u+w $(srcdir)
+ 	rm -rf $(srcdir)/html
+ 	mkdir $(srcdir)/html
+-	@PATH=$(top_builddir):$(PATH) PERL5LIB=$(top_builddir):$(PERL5LIB) && cd $(srcdir)/html && \
++	@cd $(srcdir)/html && PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) \
+ 	gtkdoc-mkhtml --path="$(srcdir)" $(DOC_MODULE) ../$(DOC_MAIN_SGML_FILE)  $(MKHTML_OPTIONS)
+ 	test "x$(HTML_IMAGES)" = "x" || ( cd $(srcdir) && cp $(HTML_IMAGES) html )
+ 	@echo 'gtk-doc: Fixing cross-references'
+-	@PATH=$(top_builddir):$(PATH) PERL5LIB=$(top_builddir):$(PERL5LIB) && cd $(srcdir) && \
++	@cd $(srcdir) && PATH=$(abs_top_builddir):$(PATH) PERL5LIB=$(abs_top_builddir):$(PERL5LIB) \
+ 	gtkdoc-fixxref --module-dir=html --html-dir=$(HTML_DIR) $(FIXXREF_OPTIONS)
+ 	touch html-build.stamp
+ 
+diff --git a/tests/gtkdoctest.sh b/tests/gtkdoctest.sh
+index 2b92d57..694c4c5 100755
+--- a/tests/gtkdoctest.sh
++++ b/tests/gtkdoctest.sh
+@@ -3,7 +3,7 @@
+ suite=$1
+ dir=`dirname $0`
+ 
+-PATH=`pwd`:$PATH PERL5LIB=`pwd`:$PERL5LIB && cd $dir/$suite/docs && gtkdoc-check
++cd $dir/$suite/docs && gtkdoc-check
+ 
+ # xmllint --noout --nonet --schema ../devhelp2.xsd ./bugs/docs/html/tester.devhelp2
+ #
+-- 
+1.6.1.3
+
