@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.420 2009/04/27 13:08:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.421 2009/05/04 22:28:22 eva Exp $
+
+*gtk+-2.16.1 (04 May 2009)
+
+  04 May 2009; Gilles Dartiguelongue <eva@gentoo.org> -gtk+-2.10.14.ebuild,
+  +gtk+-2.16.1.ebuild:
+  New version for GNOME 2.26. New GtkOrientable API, a lot of bug fixes and
+  polish all over the place.
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gtk+-2.14.7-r2:
   Stable for HPPA (bug #260063).

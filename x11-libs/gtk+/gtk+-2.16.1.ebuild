@@ -1,45 +1,46 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.12.8.ebuild,v 1.9 2008/11/30 13:13:59 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.16.1.ebuild,v 1.1 2009/05/04 22:28:22 eva Exp $
 
-WANT_AUTOMAKE="1.7"
+EAPI="2"
 
-inherit gnome.org flag-o-matic eutils autotools virtualx multilib
+inherit gnome.org flag-o-matic eutils libtool virtualx
 
 DESCRIPTION="Gimp ToolKit +"
 HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="aqua cups debug doc jpeg tiff vim-syntax xinerama"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="cups debug doc jpeg jpeg2k tiff vim-syntax xinerama aqua"
 
+# FIXME: configure says >=xrandr-1.2.99 but remi tells me it's broken
 RDEPEND="X? (
 		x11-libs/libXrender
 		x11-libs/libX11
 		x11-libs/libXi
 		x11-libs/libXt
 		x11-libs/libXext
+		>=x11-libs/libXrandr-1.2
 		x11-libs/libXcursor
-		x11-libs/libXrandr
 		x11-libs/libXfixes
 		x11-libs/libXcomposite
 		x11-libs/libXdamage
 	)
 	xinerama? ( x11-libs/libXinerama )
-	>=dev-libs/glib-2.13.5
-	>=x11-libs/pango-1.17.3
-	>=dev-libs/atk-1.10.1
-	>=x11-libs/cairo-1.2.0
-	!aqua? ( media-libs/fontconfig )
+	>=dev-libs/glib-2.19.7
+	>=x11-libs/pango-1.20
+	>=dev-libs/atk-1.13
+	>=x11-libs/cairo-1.6[X]
+	media-libs/fontconfig
 	x11-misc/shared-mime-info
 	>=media-libs/libpng-1.2.1
 	cups? ( net-print/cups )
 	jpeg? ( >=media-libs/jpeg-6b-r2 )
-	tiff? ( >=media-libs/tiff-3.5.7 )"
-
+	jpeg2k? ( media-libs/jasper )
+	tiff? ( >=media-libs/tiff-3.5.7 )
+	!<gnome-base/gail-1000"
 DEPEND="${RDEPEND}
-	sys-devel/autoconf
 	>=dev-util/pkgconfig-0.9
 	X? (
 		x11-proto/xextproto
@@ -48,10 +49,10 @@ DEPEND="${RDEPEND}
 		x11-proto/damageproto
 	)
 	xinerama? ( x11-proto/xineramaproto )
+	>=dev-util/gtk-doc-am-1.11
 	doc? (
-			>=dev-util/gtk-doc-1.6
-			~app-text/docbook-xml-dtd-4.1.2
-		 )"
+		>=dev-util/gtk-doc-1.11
+		~app-text/docbook-xml-dtd-4.1.2 )"
 PDEPEND="vim-syntax? ( app-vim/gtk-syntax )"
 
 pkg_setup() {
@@ -75,10 +76,7 @@ set_gtk2_confdir() {
 	GTK2_CONFDIR=${GTK2_CONFDIR:=/etc/gtk-2.0}
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# use an arch-specific config directory so that 32bit and 64bit versions
 	# dont clash on multilib systems
 	has_multilib_profile && epatch "${FILESDIR}/${PN}-2.8.0-multilib.patch"
@@ -86,35 +84,26 @@ src_unpack() {
 	# Workaround adobe flash infinite loop. Patch from http://bugzilla.gnome.org/show_bug.cgi?id=463773#c11
 	epatch "${FILESDIR}/${PN}-2.12.0-flash-workaround.patch"
 
-	# OpenOffice.org might hang at startup (on non-gnome env) without this workaround, bug #193513
-	epatch "${FILESDIR}/${PN}-2.12.0-openoffice-freeze-workaround.patch"
-
-	# Firefox print review crash fix, bug #195644
-	epatch "${FILESDIR}/${PN}-2.12.1-firefox-print-preview.patch"
+	# Don't break inclusion of gtkclist.h, upstream bug 536767
+	epatch "${FILESDIR}/${PN}-2.14.3-limit-gtksignal-includes.patch"
 
 	# -O3 and company cause random crashes in applications. Bug #133469
 	replace-flags -O3 -O2
 	strip-flags
 
-	# Kill -m* on ppc-macos, as it triggers altivec problems
-	[[ ${CHOST} == powerpc-apple-darwin* ]] && filter-flags "-m*"
-
 	use ppc64 && append-flags -mminimal-toc
 
-	# remember, eautoreconf applies elibtoolize.
-	# if you remove this, you should manually run elibtoolize
-	cp aclocal.m4 old_macros.m4
-	AT_M4DIR="." eautoreconf
-
-	epunt_cxx
+	elibtoolize
 }
 
-src_compile() {
+src_configure() {
 	# png always on to display icons (foser)
 	local myconf="$(use_enable doc gtk-doc) \
 		$(use_with jpeg libjpeg) \
+		$(use_with jpeg2k libjasper) \
 		$(use_with tiff libtiff) \
 		$(use_enable xinerama) \
+		$(use_enable cups cups auto) \
 		--with-libpng"
 	if use aqua; then
 		myconf="${myconf} --with-gdktarget=quartz"
@@ -128,22 +117,21 @@ src_compile() {
 
 	# need libdir here to avoid a double slash in a path that libtool doesn't
 	# grok so well during install (// between $EPREFIX and usr ...)
-	econf --libdir="${EPREFIX}/usr/$(get_libdir)" ${myconf} || die "configure failed"
+	econf --libdir="${EPREFIX}/usr/$(get_libdir)" ${myconf}
 
 	# add correct framework linking options
 	use aqua && for i in gtk demos demos/gtk-demo tests perf; do
 		sed -i -e "s:LDFLAGS =:LDFLAGS = -framework AppKit -framework Carbon:" $i/Makefile || die "sed failed"
 	done
-
-	emake || die "compile failed"
 }
 
 src_test() {
-	Xemake check || die
+	unset DBUS_SESSION_BUS_ADDRESS
+	Xemake check || die "tests failed"
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "Installation failed"
+	emake -j1 DESTDIR="${D}" install || die "Installation failed"
 
 	set_gtk2_confdir
 	dodir ${GTK2_CONFDIR}
