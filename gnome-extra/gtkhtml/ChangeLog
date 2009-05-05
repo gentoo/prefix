@@ -1,6 +1,23 @@
 # ChangeLog for gnome-extra/gtkhtml
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.184 2009/04/28 11:16:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.186 2009/05/03 22:17:27 eva Exp $
+
+  03 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/gtkhtml-3.0.10-no-extern-cluealigned.diff,
+  -files/gtkhtml-3.2-gi18n.patch, -files/gtkhtml-3.2-i18n.patch,
+  -files/gtkhtml-3.6.2-fbsd.patch,
+  -files/gtkhtml-3.14.3-get_left_margin-fix.patch:
+  Clean up orphaned patches.
+
+*gtkhtml-3.26.1.1 (03 May 2009)
+
+  03 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/gtkhtml-editor.xml, -gtkhtml-3.2.5.ebuild, -gtkhtml-3.6.2.ebuild,
+  -gtkhtml-3.16.3.ebuild, -gtkhtml-3.18.3.ebuild, -gtkhtml-3.24.1.1.ebuild,
+  -gtkhtml-3.24.2.ebuild, -gtkhtml-3.24.3.ebuild, -gtkhtml-3.24.4.ebuild,
+  +gtkhtml-3.26.1.1.ebuild:
+  New version for GNOME 2.26. Bug fixes and translation updates.
+  Clean up old releases and kill unused slots.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gtkhtml-3.18.3.ebuild:
   arm/sh stable
