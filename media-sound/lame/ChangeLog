@@ -1,6 +1,16 @@
 # ChangeLog for media-sound/lame
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.109 2009/03/29 17:14:16 beandog Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.111 2009/05/03 17:30:09 klausman Exp $
+
+  03 May 2009; Tobias Klausmann <klausman@gentoo.org> lame-3.98.2-r1.ebuild:
+  Stable on alpha, bug #266986
+
+*lame-3.98.2-r1 (03 May 2009)
+
+  03 May 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/lame-3.98.2-ffmpeg-0.5.patch, +lame-3.98.2-r1.ebuild:
+  Backport fix from upstream so ffmpeg won't choke on libmp3lame. Bug
+  265830.
 
   29 Mar 2009; Steve Dibb <beandog@gentoo.org> lame-3.98.ebuild:
   amd64 stable
