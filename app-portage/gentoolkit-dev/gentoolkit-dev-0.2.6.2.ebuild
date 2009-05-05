@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.2.ebuild,v 1.13 2008/04/25 21:21:54 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.2.ebuild,v 1.14 2009/05/05 03:49:48 fuzzyray Exp $
 
 inherit eutils
 
@@ -18,6 +18,7 @@ DEPEND=">=sys-apps/portage-2.0.50
 	>=dev-util/dialog-0.7
 	>=dev-lang/perl-5.6
 	>=sys-apps/grep-2.4"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	# This is to patch a cosmetic error in gentoolkit-dev-0.2.6.2, Remove from
