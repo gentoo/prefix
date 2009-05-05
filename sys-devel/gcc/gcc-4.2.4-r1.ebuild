@@ -103,6 +103,9 @@ src_unpack() {
 	# Always behave as if -pthread were passed on AIX (#266548)
 	epatch "${FILESDIR}"/4.2.2/aix-force-pthread.patch
 
+	# Always behave as if -Wl,-brtl were passed on AIX (#213277)
+	epatch "${FILESDIR}"/4.2.2/aix-runtimelinking.patch
+
 	# allow gcj compilation to succeed on platforms with libiconv
 	epatch "${FILESDIR}"/gcj-${PV}-iconvlink.patch
 

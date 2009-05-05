@@ -1,0 +1,33 @@
+--- gcc/config/rs6000/aix43.h.orig	2009-05-04 16:28:08 +0200
++++ gcc/config/rs6000/aix43.h	2009-05-04 16:28:29 +0200
+@@ -157,7 +157,7 @@
+    "
+ 
+ #undef LINK_SPEC
+-#define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
++#define LINK_SPEC "-brtl -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
+    %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
+    %{!maix64:%{!shared:%{g*: %(link_libg) }}} %{maix64:-b64}\
+    %{mpe:-binitfini:poe_remote_main}"
+--- gcc/config/rs6000/aix51.h.orig	2009-05-04 16:28:12 +0200
++++ gcc/config/rs6000/aix51.h	2009-05-04 16:28:32 +0200
+@@ -157,7 +157,7 @@
+    %{pthread:}-lpthreads -lc"
+ 
+ #undef LINK_SPEC
+-#define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
++#define LINK_SPEC "-brtl -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
+    %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
+    %{!maix64:%{!shared:%{g*: %(link_libg) }}} %{maix64:-b64}\
+    %{mpe:-binitfini:poe_remote_main}"
+--- gcc/config/rs6000/aix52.h.orig	2009-05-04 16:28:15 +0200
++++ gcc/config/rs6000/aix52.h	2009-05-04 16:28:35 +0200
+@@ -149,7 +149,7 @@
+    %{pthread:}-lpthreads -lc"
+ 
+ #undef LINK_SPEC
+-#define LINK_SPEC "-bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
++#define LINK_SPEC "-brtl -bpT:0x10000000 -bpD:0x20000000 %{!r:-btextro} -bnodelcsect\
+    %{static:-bnso %(link_syscalls) } %{shared:-bM:SRE %{!e:-bnoentry}}\
+    %{!maix64:%{!shared:%{g*: %(link_libg) }}} %{maix64:-b64}\
+    %{mpe:-binitfini:poe_remote_main}"

@@ -112,6 +112,9 @@ src_unpack() {
 	# Always behave as if -pthread were passed on AIX (#266548)
 	epatch "${FILESDIR}"/3.4.4/aix-force-pthread.patch
 
+	# Always behave as if -Wl,-brtl were passed on AIX (#213277)
+	epatch "${FILESDIR}"/3.4.4/aix-runtimelinking.patch
+
 	# AIX 5.3 TL08 binder dumps core for unknown reason (#265540),
 	# adding -bexpfull seems to help.
 	if [[ ${CTARGET} == *-aix5.3* ]]; then
