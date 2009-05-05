@@ -1,6 +1,17 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.195 2009/04/28 11:05:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.196 2009/05/04 23:07:23 eva Exp $
+
+*gnome-terminal-2.26.1 (04 May 2009)
+
+  04 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/gnome-terminal-2.22.3-tab-close-fix.patch,
+  -files/gnome-terminal-2-default_shell.patch,
+  -files/gnome-terminal-2-dnd_url_add_space.patch,
+  -gnome-terminal-2.18.2.ebuild, -gnome-terminal-2.22.3-r1.ebuild,
+  +gnome-terminal-2.26.1.ebuild:
+  New version for GNOME 2.26. Dropped libbonobo, libgnome and libgnomeui
+  dependencies, lots of bug fixes. Clean up old revisions.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org>
   gnome-terminal-2.24.2-r1.ebuild:
