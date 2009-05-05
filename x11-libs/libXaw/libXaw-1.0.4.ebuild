@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/libXaw-1.0.4.ebuild,v 1.8 2008/01/13 09:23:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/libXaw-1.0.4.ebuild,v 1.9 2009/05/04 17:03:40 ssuominen Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
@@ -21,9 +21,9 @@ RDEPEND="x11-libs/libX11
 DEPEND="${RDEPEND}
 	sys-apps/ed"
 
-CONFIGURE_OPTIONS="$(use_enable xprint xaw8)"
-
 pkg_setup() {
+	CONFIGURE_OPTIONS="$(use_enable xprint xaw8)"
+
 	# No such function yet
 	# x-modular_pkg_setup
 
