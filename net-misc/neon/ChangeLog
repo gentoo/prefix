@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.123 2009/04/26 15:46:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.124 2009/05/03 18:38:47 maekke Exp $
+
+  03 May 2009; Markus Meier <maekke@gentoo.org> neon-0.28.4.ebuild:
+  amd64 stable, bug #267272
 
   26 Apr 2009; Raúl Porcel <armin76@gentoo.org> neon-0.28.4.ebuild:
   alpha/arm/ia64/s390/sh/sparc/x86 stable wrt #267272
