@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/Hook-LexWrap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Hook-LexWrap/ChangeLog,v 1.16 2009/05/02 07:41:40 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Hook-LexWrap/ChangeLog,v 1.18 2009/05/04 16:13:39 armin76 Exp $
+
+  04 May 2009; Raúl Porcel <armin76@gentoo.org> Hook-LexWrap-0.22.ebuild:
+  ia64/sparc stable wrt #268204
+
+  03 May 2009; Markus Meier <maekke@gentoo.org> Hook-LexWrap-0.22.ebuild:
+  amd64 stable, bug #268204
 
   02 May 2009; Torsten Veller <tove@gentoo.org> Hook-LexWrap-0.22.ebuild:
   Stable on x86 (#268204)
