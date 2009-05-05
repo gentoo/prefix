@@ -156,6 +156,18 @@ tc-is-softfloat() {
 	esac
 }
 
+# @FUNCTION: tc-is-static-only
+# @DESCRIPTION:
+# Return shell true if the target does not support shared libs, shell false
+# otherwise.
+tc-is-static-only() {
+	local host=${CTARGET:-${CHOST}}
+
+	# *MiNT doesn't have shared libraries, only platform so far
+	return $([[ ${host} == *-mint* ]])
+}
+
+
 # Parse information from CBUILD/CHOST/CTARGET rather than
 # use external variables from the profile.
 tc-ninja_magic_to_arch() {
@@ -426,8 +438,7 @@ gen_usr_ldscript() {
 	local lib libdir=$(get_libdir) output_format="" auto=false suffix=$(get_libname)
 	[[ ! ${ED+set} ]] && local ED=${D%/}${EPREFIX}/
 
-	# *MiNT doesn't have shared libraries, so nothing to do here
-	[[ ${CHOST} == *-mint* ]] && return
+	tc-is-static-only && return
 
 	# Just make sure it exists
 	dodir /usr/${libdir}
@@ -455,7 +466,7 @@ gen_usr_ldscript() {
 			#TODO: better die here?
 		fi
 
-		case ${CHOST} in
+		case ${CTARGET:-${CHOST}} in
 		*-darwin*)
 			if ${auto} ; then
 				tlib=$(scanmacho -qF'%S#F' "${ED}"/usr/${libdir}/${lib})
