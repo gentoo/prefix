@@ -1,6 +1,13 @@
 # ChangeLog for x11-themes/gnome-themes
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/ChangeLog,v 1.208 2009/04/28 11:05:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/ChangeLog,v 1.209 2009/05/03 22:34:05 eva Exp $
+
+*gnome-themes-2.26.1 (03 May 2009)
+
+  03 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-themes-2.20.1.ebuild, -gnome-themes-2.22.2.ebuild,
+  +gnome-themes-2.26.1.ebuild:
+  New version for GNOME 2.26. Clean up old revisions.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gnome-themes-2.24.3.ebuild:
   sh stable
