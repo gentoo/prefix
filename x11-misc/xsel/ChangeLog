@@ -1,6 +1,11 @@
 # ChangeLog for x11-misc/xsel
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.15 2008/09/17 15:43:07 coldwind Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xsel/ChangeLog,v 1.16 2009/05/04 09:18:37 nelchael Exp $
+
+*xsel-1.2.0 (04 May 2009)
+
+  04 May 2009; Krzysiek Pawlik <nelchael@gentoo.org> +xsel-1.2.0.ebuild:
+  Version bump.
 
   17 Sep 2008; Santiago M. Mola <coldwind@gentoo.org> -xsel-0.9.6.ebuild:
   Remove old version.
