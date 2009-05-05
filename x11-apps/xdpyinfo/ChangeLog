@@ -1,6 +1,10 @@
 # ChangeLog for x11-apps/xdpyinfo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xdpyinfo/ChangeLog,v 1.38 2009/04/05 23:38:47 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xdpyinfo/ChangeLog,v 1.39 2009/05/04 12:45:09 ssuominen Exp $
+
+  04 May 2009; Samuli Suominen <ssuominen@gentoo.org> xdpyinfo-1.0.2.ebuild,
+  xdpyinfo-1.0.3.ebuild:
+  Move use_ functions out of global scope.
 
   05 Apr 2009; Olivier Crête <tester@gentoo.org> xdpyinfo-1.0.3.ebuild:
   amd64 stable
