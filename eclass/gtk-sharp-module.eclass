@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.23 2009/03/18 11:14:09 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.24 2009/05/03 20:03:10 loki_val Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -14,7 +14,7 @@
 WANT_AUTOMAKE=none
 WANT_AUTOCONF=none
 
-inherit eutils mono multilib autotools base versionator
+inherit eutils mono multilib libtool autotools base versionator
 
 # @ECLASS-VARIABLE: GTK_SHARP_MODULE
 # @DESCRIPTION:
@@ -456,6 +456,7 @@ gtk-sharp-module_src_prepare() {
 # If set, EAUTORECONF will be run during src_prepare.
 	[[ ${EAUTORECONF} ]] && eautoreconf
 	phase_hook ${TARBALL}-tarball-post
+	elibtoolize
 }
 
 # @FUNCTION: gtk-sharp-tarball_src_configure

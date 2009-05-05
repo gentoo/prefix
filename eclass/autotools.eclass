@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.84 2009/04/12 07:38:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.85 2009/05/04 22:27:05 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -249,23 +249,26 @@ autotools_run_tool() {
 		ewarn "QA Warning: running $1 in ${EBUILD_PHASE} phase"
 	fi
 
-	local STDERR_TARGET="${T}/$$.out"
-	local ris
+	local STDERR_TARGET="${T}/$1.out"
+	# most of the time, there will only be one run, but if there are
+	# more, make sure we get unique log filenames
+	if [[ -e ${STDERR_TARGET} ]] ; then
+		STDERR_TARGET="${T}/$1-$$.out"
+	fi
 
-	printf "***** $1 *****\n***** $*\n\n" > "${STDERR_TARGET%/*}/$1-${STDERR_TARGET##*/}"
+	printf "***** $1 *****\n***** PWD: ${PWD}\n***** $*\n\n" > "${STDERR_TARGET}"
 
 	ebegin "Running $@"
-	"$@" >> "${STDERR_TARGET%/*}/$1-${STDERR_TARGET##*/}" 2>&1
-	ris=$?
-	eend ${ris}
+	"$@" >> "${STDERR_TARGET}" 2>&1
+	eend $?
 
-	if [[ ${ris} != 0 && ${NO_FAIL} != 1 ]]; then
+	if [[ $? != 0 && ${NO_FAIL} != 1 ]] ; then
 		echo
 		eerror "Failed Running $1 !"
 		eerror
 		eerror "Include in your bugreport the contents of:"
 		eerror
-		eerror "  ${STDERR_TARGET%/*}/$1-${STDERR_TARGET##*/}"
+		eerror "  ${STDERR_TARGET}"
 		echo
 		die "Failed Running $1 !"
 	fi

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.5 2009/01/29 16:26:48 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.6 2009/05/03 12:19:35 loki_val Exp $
 
 # @ECLASS: go-mono.eclass
 # @MAINTAINER:
@@ -13,31 +13,12 @@
 inherit base versionator mono
 
 
-NO_MONO_DEPEND=(
-	"dev-lang/mono"
-	"dev-dotnet/libgdiplus"
-)
+PRE_URI="http://mono.ximian.com/monobuild/preview/sources"
 
-GO_MONO_REL_PV="$(get_version_component_range 1-2)"
+SVN_PN="${PN/mono-debugger/debugger}"
 
-if ! has "${CATEGORY}/${PN}" "${NO_MONO_DEPEND[@]}"
-then
-	RDEPEND="=dev-lang/mono-${GO_MONO_REL_PV}*"
-	DEPEND="${RDEPEND}"
-fi
+ESVN_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR:-${DISTDIR}}/svn-src/mono"
 
-# @ECLASS-VARIABLE: PRE_URI
-# @DESCRIPTION: If installing a preview, set this variable to the base
-# path on ximians's servers from which to install.
-
-DEPEND="${DEPEND}
-	>=dev-util/pkgconfig-0.23
-	userland_GNU? ( >=sys-apps/findutils-4.4.0 )"
-
-if [[ "${GO_MONO_REL_PV}" = "2.4" ]]
-then
-	PRE_URI="http://mono.ximian.com/monobuild/preview/sources"
-fi
 
 if [[ "${PV%_rc*}" != "${PV}" ]]
 then
@@ -49,21 +30,66 @@ then
 	GO_MONO_P="${P%_pre*}"
 	SRC_URI="${PRE_URI}/${PN}/${GO_MONO_P}.tar.bz2 -> ${P}.tar.bz2"
 	S="${WORKDIR}/${GO_MONO_P}"
+elif [[ "${PV}" == "9999" ]]
+then
+	GO_MONO_P=${P}
+	ESVN_REPO_URI="svn://anonsvn.mono-project.com/source/trunk/${SVN_PN}"
+	SRC_URI=""
+	inherit autotools subversion
+elif [[ "${PV%.9999}" != "${PV}" ]]
+then
+	GO_MONO_P=${P}
+	ESVN_REPO_URI="svn://anonsvn.mono-project.com/source/branches/mono-$(get_version_component_range 1)-$(get_version_component_range 2)/${SVN_PN}"
+	SRC_URI=""
+	inherit autotools subversion
 else
 	GO_MONO_P=${P}
 	SRC_URI="http://ftp.novell.com/pub/mono/sources/${PN}/${P}.tar.bz2"
 fi
 
+
+NO_MONO_DEPEND=( "dev-lang/mono" "dev-dotnet/libgdiplus" )
+
+if [[ "$(get_version_component_range 3)" != "9999" ]]
+then
+	GO_MONO_REL_PV="$(get_version_component_range 1-2)"
+
+else
+	GO_MONO_REL_PV="${PV}"
+fi
+
+if ! has "${CATEGORY}/${PN}" "${NO_MONO_DEPEND[@]}"
+then
+	RDEPEND="=dev-lang/mono-${GO_MONO_REL_PV}*"
+	DEPEND="${RDEPEND}"
+fi
+
+DEPEND="${DEPEND}
+	>=dev-util/pkgconfig-0.23
+	userland_GNU? ( >=sys-apps/findutils-4.4.0 )"
+
 # @FUNCTION: go-mono_src_unpack
 # @DESCRIPTION: Runs default()
 go-mono_src_unpack() {
-	default
+	if [[ "${PV%.9999}" != "${PV}" ||  "${PV}" == "9999" ]]
+	then
+		default
+		subversion_src_unpack
+	else
+		default
+	fi
 }
 
 # @FUNCTION: go-mono_src_prepare
 # @DESCRIPTION: Runs autopatch from base.eclass, if PATCHES is set.
 go-mono_src_prepare() {
-	base_src_util autopatch
+	if [[ "${PV%.9999}" != "${PV}" ||  "${PV}" == "9999" ]]
+	then
+		base_src_util autopatch
+		[[ "$EAUTOBOOTSTRAP" != "no" ]] && eautoreconf
+	else
+		base_src_util autopatch
+	fi
 }
 
 # @FUNCTION: go-mono_src_configure
@@ -77,7 +103,7 @@ go-mono_src_configure() {
 # @FUNCTION: go-mono_src_configure
 # @DESCRIPTION: Runs default()
 go-mono_src_compile() {
-	default
+	emake "$@" || die "emake failed"
 }
 
 # @ECLASS-VARIABLE: DOCS
@@ -88,7 +114,7 @@ go-mono_src_compile() {
 # @DESCRIPTION: Rune emake, installs common doc files, if DOCS is
 # set, installs those. Gets rid of .la files.
 go-mono_src_install () {
-	emake -j1 DESTDIR="${D}" install || die "install failed"
+	emake -j1 DESTDIR="${D}" "$@" install || die "install failed"
 	mono_multilib_comply
 	local	commondoc=( AUTHORS ChangeLog README TODO )
 	for docfile in "${commondoc[@]}"

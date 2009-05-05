@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.82 2009/03/14 13:02:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.83 2009/05/03 20:03:10 loki_val Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -125,7 +125,7 @@ elibtoolize() {
 	local do_force="no"
 	local deptoremove=
 	local my_dirlist=
-	local elt_patches="install-sh ltmain portage relink max_cmd_len sed test tmp cross"
+	local elt_patches="install-sh ltmain portage relink max_cmd_len sed test tmp cross as-needed"
 	local start_dir=${PWD}
 
 	my_dirlist=$(ELT_find_ltmain_sh)
@@ -249,6 +249,10 @@ elibtoolize() {
 						ELT_walk_patches "${x}/ltmain.sh" "${y}"
 						ret=$?
 					fi
+					;;
+				"as-needed")
+					ELT_walk_patches "${x}/ltmain.sh" "${y}"
+					ret=$?
 					;;
 				"uclibc-conf")
 					if [[ -e ${x}/configure && \
