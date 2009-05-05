@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.4.ebuild,v 1.1 2009/05/02 23:34:01 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.4.ebuild,v 1.3 2009/05/03 14:06:49 arfrever Exp $
 
 EAPI=2
 
@@ -62,17 +62,17 @@ src_configure() {
 		append-flags "-fno-stack-protector"
 	fi
 
-	bootstrp=0
-	has_version ">=dev-util/cmake-2.6.1" || bootstrp=1
-	if [[ ${bootstrp} = 0 ]]; then
+	bootstrap=0
+	has_version ">=dev-util/cmake-2.6.1" || bootstrap=1
+	if [[ ${bootstrap} = 0 ]]; then
 		# Required version of CMake found, now test if it works
 		cmake --version &> /dev/null
 		if ! [[ $? = 0 ]]; then
-			bootstrp=1
+			bootstrap=1
 		fi
 	fi
 
-	if [[${bootstrp}]]; then
+	if [[ ${bootstrap} = 1 ]]; then
 		tc-export CC CXX LD
 
 		if use qt4; then
