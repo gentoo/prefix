@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.22.3-r1.ebuild,v 1.2 2009/05/02 02:21:58 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/librsvg-2.22.3-r1.ebuild,v 1.3 2009/05/03 10:48:07 nirbheek Exp $
+
+GCONF_DEBUG="no"
 
 inherit eutils gnome2 multilib
 
