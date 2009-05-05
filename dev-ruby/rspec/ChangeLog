@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rspec
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.44 2009/04/24 16:06:59 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.45 2009/05/03 07:33:51 graaff Exp $
+
+*rspec-1.2.6 (03 May 2009)
+
+  03 May 2009; Hans de Graaff <graaff@gentoo.org> +rspec-1.2.6.ebuild:
+  Version bump with several enhancements and a few bug fixes.
 
   24 Apr 2009; Diego E. Pettenò <flameeyes@gentoo.org> rspec-1.2.4:
   Add ruby19 to USE_RUBY.
