@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.139 2009/05/02 21:10:35 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.140 2009/05/03 17:10:49 eva Exp $
+
+  03 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-doc-utils-0.16.1.ebuild:
+  Fix wrong epatch file, bug #190798, comment #6.
 
   02 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
   gnome-doc-utils-0.16.1.ebuild:
