@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9747 2009/05/02 17:55:34 hd_brummy Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9754 2009/05/04 23:28:50 eva Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,7 +31,32 @@
 
 #--- END OF EXAMPLES ---
 
-# Joerg Bornkessel <hd_brummy@org> (02 May 2009)
+# Gilles Dartiguelongue <eva@gentoo.org> (05 May 2009)
+# Requires net-wireless/gnome-bluetooth-2.27
+>=app-mobilephone/gnome-phone-manager-0.65
+
+# Nirbheek Chauhan <nirbheek@gentoo.org> (05 May 2009)
+# Requires net-wireless/bluez-4
+# Needs KEYWORDS on dev-libs/libunique, bug 268487
+=net-wireless/gnome-bluetooth-2.27*
+
+# Theo Chatzimichos <tampakrap@gentoo.org> (04 May 2009)
+# Masked for removal
+# It shouldn't be in kde-base and it can't go back to games-puzzle
+# Also the KDE 4 version is better
+=kde-base/ksudoku-0.4
+
+# Tomas Chvatal <scarabeus@gentoo.org> (03 May 2009)
+# Breaks too many packages.
+# See bug #268090 for discussion.
+=app-crypt/qca-2.0.2
+
+# Ryan Hill <dirtyepic@gentoo.org> (03 May 2009)
+# mask for removal - Jun 1 09
+# bug #268507
+app-doc/afsdoc
+
+# Joerg Bornkessel <hd_brummy@gentoo.org> (02 May 2009)
 # need >=sys-kernel/linux-headers-2.6.29 with s2api header changes
 =media-tv/w_scan-20090502
 
@@ -167,15 +192,15 @@ app-benchmark/phoronix-test-suite
 # Compress-Zlib, IO-Compress-Zlib, IO-Compress-Bzip2, IO-Compress-Base
 perl-core/IO-Compress
 virtual/perl-IO-Compress
-=virtual/perl-Compress-Zlib-2.017
-=virtual/perl-IO-Compress-Zlib-2.017
-=virtual/perl-IO-Compress-Bzip2-2.017
-=virtual/perl-IO-Compress-Base-2.017
+>=virtual/perl-Compress-Zlib-2.017
+>=virtual/perl-IO-Compress-Zlib-2.017
+>=virtual/perl-IO-Compress-Bzip2-2.017
+>=virtual/perl-IO-Compress-Base-2.017
 # new versions
-=perl-core/Compress-Raw-Zlib-2.017
-=virtual/perl-Compress-Raw-Zlib-2.017
-=perl-core/Compress-Raw-Bzip2-2.017
-=virtual/perl-Compress-Raw-Bzip2-2.017
+>=perl-core/Compress-Raw-Zlib-2.017
+>=virtual/perl-Compress-Raw-Zlib-2.017
+>=perl-core/Compress-Raw-Bzip2-2.017
+>=virtual/perl-Compress-Raw-Bzip2-2.017
 
 # Justin Bronder <jsbronder@gentoo.org> (17 Apr 2009)
 # Mask sys-cluster/mpich for removal. (#266565)
@@ -327,21 +352,6 @@ app-portage/udept
 # Package has open security issues in bug 264598.
 # Masked for removal in 60 days, bug 227443.
 app-text/tetex
-
-# Peter Alfredsen <loki_val@gentoo.org> (30 Mar 2009)
-# HERE BE DRAGONS!
-# WARNING: Mono-2.4 will deplete your available RAM if you
-# try to compile app-office/openoffice[mono] with it.
-# See http://bugs.gentoo.org/257313 for reference.
-=www-apache/mod_mono-2.4
-=dev-dotnet/xsp-2.4
-=dev-dotnet/libgdiplus-2.4
-=dev-dotnet/gluezilla-2.4
-=dev-lang/mono-2.4
-=dev-lang/mono-basic-2.4
-=dev-util/mono-debugger-2.4
-=dev-util/mono-tools-2.4
-=virtual/monodoc-2.4
 
 # Tony Vroon <chainsaw@gentoo.org> (30 Mar 2009)
 # The v4 branch of DHCP has a new build system and a "minimal" dhclient-only 

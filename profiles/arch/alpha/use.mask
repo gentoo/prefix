@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/use.mask,v 1.23 2009/04/12 16:50:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/alpha/use.mask,v 1.24 2009/05/03 18:52:10 klausman Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -alpha
@@ -158,3 +158,5 @@ audit
 # Tobias Klausmann <klausman@gentoo.org>
 afs
 
+# uses gnat/ada which is too big to support currently
+topal

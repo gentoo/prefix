@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4413 2009/05/02 19:27:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4418 2009/05/04 03:09:24 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -518,6 +518,7 @@ dev-db/postgresql-server:uuid - Enable server side UUID generation (via dev-libs
 dev-db/sqlite:soundex - Enable the soundex function to compute soundex encodings of strings
 dev-db/sqlite:threadsafe - Enable thread safe operation of sqlite
 dev-dotnet/libgdiplus:pango - Use pango instead of cairo to render text.
+dev-dotnet/nant:bootstrap - Bootstrap nant by using pre-built ndoc binaries.
 dev-dotnet/xsp:debug - Enable tracing messages (RECOMMENDED)
 dev-embedded/openocd:ft2232 - Enable support for USB chips via dev-embedded/libftd2xx
 dev-embedded/openocd:ftdi - Enable support for USB FTDI chips (dev-embedded/libftdi)
@@ -1027,6 +1028,7 @@ gnome-extra/gnome-games:artworkextra - Installs extra artwork for various games
 gnome-extra/gnome-lirc-properties:policykit - Use sys-auth/policykit to gain privileges to change configuration files
 gnome-extra/gnome-media:gnomecd - Builds the GNOME CD Player
 gnome-extra/gnome-power-manager:policykit - Enable sys-auth/policykit authentication support
+gnome-extra/gtkhtml:glade - Provide integration with dev-util/glade.
 gnome-extra/libgda:mdb - Enables Microsoft Access DB support
 gnome-extra/libgda:xbase - Enables support for xbase databases (dBase, FoxPro, etc.)
 gnome-extra/nautilus-sendto:balsa - Enables support for mail-client/balsa
@@ -2153,6 +2155,7 @@ net-libs/libfwbuilder:bind - Use bind's name resolving library
 net-libs/libfwbuilder:stlport - Enagle support for STLport
 net-libs/libinfinity:server -  Build and install the server binary including init.d/conf.d-scripts. Needed if you want to host an infinote server for gobby. 
 net-libs/libpri:bri - Enable ISDN BRI support (bristuff)
+net-libs/libproxy:webkit - Enable support for net-libs/webkit-gtk.
 net-libs/libsrtp:aesicm - Use AES ICM cryptographic algorithm
 net-libs/libsrtp:console -  Use /dev/console instead of stdout for error messages 
 net-libs/libsrtp:syslog - Use syslog for error messages
@@ -2915,10 +2918,12 @@ x11-libs/qt-gui:raster -  Use the alternative raster graphicssystem as default r
 x11-libs/qt-opengl:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/qt-qt3support:phonon -  Enable phonon configuration dialog in qtconfig 
 x11-libs/qt-sql:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/vte:glade - Provide integration with dev-util/glade.
 x11-libs/wxGTK:gnome -  Use gnome-base/libgnomeprintui for printing tasks. 
 x11-libs/wxGTK:gstreamer -  Enable the wxMediaCtrl class for playing audio and video through gstreamer. 
 x11-libs/wxGTK:sdl -  Use Simple Directmedia Layer (media-libs/libsdl) for audio. 
 x11-misc/adesklets:ctrlmenu - force CTRL to be pressed to fire context menu
+x11-misc/fbpager:xrender - Enable transparency support via x11-libs/libXrender
 x11-misc/notification-daemon-xfce:xfce - Enable integration in XFCE desktop
 x11-misc/openclipart:gzip - Compresses clip art using gzip
 x11-misc/slim:screenshot - Enable screenshot support (using media-gfx/imagemagick)

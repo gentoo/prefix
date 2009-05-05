@@ -1,6 +1,10 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/package.use.mask,v 1.17 2009/04/18 06:12:14 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/package.use.mask,v 1.19 2009/05/04 03:40:32 jer Exp $
 # DON'T TOUCH THIS FILE. Instead, file a bug and assign it to <hppa@gentoo.org>.
+
+# Jeroen Roovers <jer@gentoo.org> (19 Nov 2007)
+# build fails (bug #210880):	 
+<sys-devel/gcc-4.3 libffi
 
 # Jeroen Roovers <jer@gentoo.org> (15 Apr 2008)
 # Mask kde-base/kttsd[ktts] because of app-accessibility/freetts using Java:
@@ -48,10 +52,6 @@ media-plugins/gst-plugins-meta dvb mythtv
 # Jeroen Roovers <jer@gentoo.org> (04 Mar 2008)
 # app-mobilephone/gsmlib fails to compile
 kde-base/kopete sms
-
-# Jeroen Roovers <jer@gentoo.org> (19 Nov 2007)
-# build fails (bug #210880):
-sys-devel/gcc libffi
 
 # Jeroen Roovers <jer@gentoo.org> (19 Nov 2007)
 # This pulls in dev-scheme/drscheme which needs the (yet unported) libffi to
