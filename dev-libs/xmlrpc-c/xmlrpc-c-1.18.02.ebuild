@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.18.02.ebuild,v 1.7 2009/05/02 15:14:49 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.18.02.ebuild,v 1.8 2009/05/04 17:38:39 loki_val Exp $
 
 EAPI=2
 
@@ -74,7 +74,7 @@ src_compile() {
 }
 
 src_test() {
-	if use abyss
+	if use abyss && use curl
 	then
 		unset LDFLAGS LADD SRCDIR
 		cd "${S}"/src/test/
@@ -83,7 +83,7 @@ src_test() {
 		einfo "Running general tests"
 		./test || die "General tests failed"
 
-		if use cpp
+		if use cxx
 		then
 			cd "${S}"/src/cpp/test
 			einfo "Building C++ tests"
@@ -92,7 +92,7 @@ src_test() {
 			./test || die "C++ tests failed"
 		fi
 	else
-		elog "Running of tests in ${PN} fails unless USE='abyss' is set."
+		elog "${CATEGORY}/${PN} tests will fail unless USE='abyss curl' is set."
 	fi
 }
 

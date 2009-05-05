@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/xmlrpc-c
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.85 2009/05/02 15:14:49 loki_val Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.86 2009/05/04 17:38:39 loki_val Exp $
+
+  04 May 2009; Peter Alfredsen <loki_val@gentoo.org>
+  xmlrpc-c-1.18.02.ebuild:
+  Fix erroneous use of 'use cpp' instead of 'use cxx', make ebuild emit an
+  elog if trying to run src_test without USE='abyss curl', w.r.t. bug
+  268630, thanks to jer/rej for reporting.
 
   02 May 2009; Peter Alfredsen <loki_val@gentoo.org>
   +files/xmlrpc-c-1.18.02/cpp-depends.patch,
