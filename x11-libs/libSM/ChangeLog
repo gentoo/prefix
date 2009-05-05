@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libSM
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.62 2009/04/16 02:11:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.63 2009/05/04 17:01:42 ssuominen Exp $
+
+  04 May 2009; Samuli Suominen <ssuominen@gentoo.org> libSM-1.0.2.ebuild,
+  libSM-1.0.3.ebuild, libSM-1.1.0.ebuild:
+  Move use_ functions out of global scope.
 
   16 Apr 2009; Jeroen Roovers <jer@gentoo.org> libSM-1.1.0.ebuild:
   Stable for HPPA (bug #251832).
