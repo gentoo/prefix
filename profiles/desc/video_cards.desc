@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/video_cards.desc,v 1.11 2009/03/11 07:45:15 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/video_cards.desc,v 1.13 2009/05/03 20:34:35 remi Exp $
 
 # This file contains descriptions of VIDEO_CARDS USE_EXPAND flags.
 
@@ -29,7 +29,9 @@ mga - VIDEO_CARDS setting to build driver for mga video cards
 neomagic - VIDEO_CARDS setting to build driver for neomagic video cards
 newport - VIDEO_CARDS setting to build driver for newport video cards
 none - VIDEO_CARDS setting to build no drivers (useful when using binary drivers)
+nouveau - VIDEO_CARDS setting to build reverse-engineered driver for nvidia cards
 nsc - VIDEO_CARDS setting to build driver for nsc video cards
+nouveau - VIDEO_CARDS setting to build reverse-engineered driver for nvidia cards
 nv - VIDEO_CARDS setting to build driver for nv video cards
 nvidia - VIDEO_CARDS setting to build driver for nvidia video cards
 r128 - VIDEO_CARDS setting to build driver for r128 video cards
