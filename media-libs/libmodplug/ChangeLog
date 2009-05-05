@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/libmodplug
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmodplug/ChangeLog,v 1.43 2009/05/01 14:08:40 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmodplug/ChangeLog,v 1.46 2009/05/04 15:48:23 armin76 Exp $
+
+  04 May 2009; Raúl Porcel <armin76@gentoo.org> libmodplug-0.8.7.ebuild:
+  arm/ia64/sh stable wrt #266913
+
+  03 May 2009; Brent Baude <ranger@gentoo.org> libmodplug-0.8.7.ebuild:
+  Marking libmodplug-0.8.7 ppc64 and ppc for bug 266913
+
+  03 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  libmodplug-0.8.7.ebuild:
+  Stable on alpha, bug #266913
 
   01 May 2009; Markus Meier <maekke@gentoo.org> libmodplug-0.8.7.ebuild:
   x86 stable, bug #266913
