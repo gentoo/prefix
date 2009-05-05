@@ -1,13 +1,14 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/mx4j-core/mx4j-core-3.0.2.ebuild,v 1.1 2008/06/17 14:01:51 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/mx4j-core/mx4j-core-3.0.2.ebuild,v 1.2 2009/05/04 12:46:14 betelgeuse Exp $
 
 inherit eutils java-pkg-2 java-ant-2
 
-MY_P="${P/-core/}"
+MY_PN="${PN/-core/}"
+MY_P="${MY_PN}-${PV}"
 DESCRIPTION="Open Source implementation of the JMX and JMX Remote API (JSR 160) specifications"
 HOMEPAGE="http://mx4j.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${MY_P}-src.tar.gz"
+SRC_URI="mirror://sourceforge/${MY_PN}/${MY_P}-src.tar.gz"
 
 # The ${S}/BUILD-HOWTO is a good source for dependencies
 # This package could also be built with jdk-1.3; see special
