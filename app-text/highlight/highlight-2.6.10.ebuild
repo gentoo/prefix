@@ -1,9 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/highlight-2.6.10.ebuild,v 1.6 2008/06/19 17:04:43 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/highlight-2.6.10.ebuild,v 1.7 2009/05/04 20:17:16 ssuominen Exp $
 
 WX_GTK_VER=2.6
-
 inherit wxwidgets eutils toolchain-funcs
 
 DESCRIPTION="converts source code to formatted text ((X)HTML, RTF, (La)TeX, XSL-FO, XML) with syntax highlight"
@@ -15,7 +14,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="wxwindows"
 
-DEPEND="wxwindows? ( =x11-libs/wxGTK-2.6* )"
+RDEPEND="wxwindows? ( =x11-libs/wxGTK-2.6* )"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}

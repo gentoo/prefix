@@ -1,6 +1,12 @@
 # ChangeLog for app-text/highlight
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.24 2009/02/15 17:58:51 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/highlight/ChangeLog,v 1.25 2009/05/04 20:14:33 ssuominen Exp $
+
+*highlight-2.9 (04 May 2009)
+
+  04 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  -highlight-2.4.8.ebuild, -highlight-2.6.12.ebuild, +highlight-2.9.ebuild:
+  Version bump.
 
 *highlight-2.6.12 (15 Feb 2009)
 
@@ -22,22 +28,22 @@
   14 Jun 2008; nixnut <nixnut@gentoo.org> highlight-2.6.10.ebuild:
   Stable on ppc wrt bug 226657
 
-  26 May 2008; Samuli Suominen <drac@gentoo.org> highlight-2.6.10.ebuild:
+  26 May 2008; Samuli Suominen <ssuominen@gentoo.org> highlight-2.6.10.ebuild:
   Desktop entry with icon.
 
 *highlight-2.6.10 (23 May 2008)
 
-  23 May 2008; Samuli Suominen <drac@gentoo.org>
+  23 May 2008; Samuli Suominen <ssuominen@gentoo.org>
   +files/highlight-2.6.10-conf_dir.patch, +highlight-2.6.10.ebuild:
   Version bump. Move filetypes.conf back to where it belongs wrt #222751,
   thanks to Jeroen Roovers.
 
-  05 May 2008; Samuli Suominen <drac@gentoo.org> highlight-2.6.9.ebuild:
+  05 May 2008; Samuli Suominen <ssuominen@gentoo.org> highlight-2.6.9.ebuild:
   Replace CFLAGS with CXXFLAGS since it's g++ we are calling.
 
 *highlight-2.6.9 (04 May 2008)
 
-  04 May 2008; Samuli Suominen <drac@gentoo.org>
+  04 May 2008; Samuli Suominen <ssuominen@gentoo.org>
   +files/highlight-2.6.9-asneeded.patch, +files/highlight-2.6.9-gcc43.patch,
   +highlight-2.6.9.ebuild:
   Version bump with GCC 4.3 and -Wl,--as-needed patch by Peter Alfredsen.
