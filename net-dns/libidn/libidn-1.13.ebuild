@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/libidn-1.13.ebuild,v 1.2 2009/03/22 21:00:54 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/libidn-1.13.ebuild,v 1.4 2009/05/03 18:43:32 maekke Exp $
 
 inherit java-pkg-opt-2 mono elisp-common
 
