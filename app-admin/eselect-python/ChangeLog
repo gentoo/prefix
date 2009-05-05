@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.16 2009/04/29 11:34:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.17 2009/05/03 22:01:09 aballier Exp $
+
+  03 May 2009; Alexis Ballier <aballier@gentoo.org>
+  eselect-python-20080925.ebuild:
+  keyword ~x86-fbsd
 
   29 Apr 2009; Raúl Porcel <armin76@gentoo.org>
   eselect-python-20080925.ebuild:

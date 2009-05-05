@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/eselect-python-20080925.ebuild,v 1.3 2009/04/29 11:34:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/eselect-python-20080925.ebuild,v 1.4 2009/05/03 22:01:09 aballier Exp $
 
 inherit eutils prefix
 
