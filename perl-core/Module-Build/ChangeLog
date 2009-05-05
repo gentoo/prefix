@@ -1,6 +1,11 @@
 # ChangeLog for perl-core/Module-Build
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Module-Build/ChangeLog,v 1.8 2009/03/13 21:17:59 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Module-Build/ChangeLog,v 1.9 2009/05/04 09:49:47 tove Exp $
+
+*Module-Build-0.33 (04 May 2009)
+
+  04 May 2009; Torsten Veller <tove@gentoo.org> +Module-Build-0.33.ebuild:
+  Version bump
 
   13 Mar 2009; Torsten Veller <tove@gentoo.org>
   -Module-Build-0.28-r1.ebuild, -Module-Build-0.30.ebuild,

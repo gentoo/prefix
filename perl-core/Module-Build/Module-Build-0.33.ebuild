@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Module-Build/Module-Build-0.31.012.ebuild,v 1.1 2009/01/14 14:31:44 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Module-Build/Module-Build-0.33.ebuild,v 1.1 2009/05/04 09:49:47 tove Exp $
 
 inherit versionator
 MODULE_AUTHOR=EWILHELM
@@ -23,6 +23,7 @@ PDEPEND=">=virtual/perl-ExtUtils-CBuilder-0.15
 
 DEPEND="dev-lang/perl
 	dev-perl/yaml
-	>=virtual/perl-Archive-Tar-1.09"
+	>=virtual/perl-Archive-Tar-1.09
+	>=virtual/perl-Test-Harness-3.16"
 
 SRC_TEST="do"
