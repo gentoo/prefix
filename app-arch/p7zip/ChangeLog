@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/p7zip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.108 2009/05/01 20:52:19 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/ChangeLog,v 1.109 2009/05/03 07:12:52 dirtyepic Exp $
+
+  03 May 2009; Ryan Hill <dirtyepic@gentoo.org> p7zip-4.65.ebuild:
+  Fix build error when wxGTK built with odbc support (bug #267698) and
+  checking wxGTK USE flags even when USE="-wxwidgets" (bug #267803).
+  Also, depend on the correct SLOT.
 
   01 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   p7zip-4.65.ebuild:

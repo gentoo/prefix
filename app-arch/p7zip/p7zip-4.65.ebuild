@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.65.ebuild,v 1.5 2009/05/01 20:52:19 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/p7zip/p7zip-4.65.ebuild,v 1.6 2009/05/03 07:12:52 dirtyepic Exp $
 
 EAPI="2"
 WX_GTK_VER="2.8"
@@ -16,11 +16,15 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc kde rar static wxwidgets"
 
-RDEPEND="kde? ( x11-libs/wxGTK[X] || ( kde-base/konqueror kde-base/kdebase-meta kde-base/kdebase ) )
-	wxwidgets? ( x11-libs/wxGTK[X] )"
+RDEPEND="kde? ( x11-libs/wxGTK:2.8[X,-odbc] || ( kde-base/konqueror kde-base/kdebase-meta kde-base/kdebase ) )
+	wxwidgets? ( x11-libs/wxGTK:2.8[X,-odbc] )"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${PN}_${PV}
+
+pkg_setup() {
+	use wxwidgets && wxwidgets_pkg_setup
+}
 
 src_prepare() {
 	if use kde && ! use wxwidgets ; then
