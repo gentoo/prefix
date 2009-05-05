@@ -2,6 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  05 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask,
+  +profile.bashrc:
+  Add charset.alias removal hack from freebsd profiles
+
+  03 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Unmask dev-lang/perl-5.8.8-r6 since it's the only version we have in the
+  tree
+
   01 May 2009; Jeremy Olexa <darkside@gentoo.org> use.mask:
   Unmask USE=prefix in prefix profiles, soon to be masked in base/
 
