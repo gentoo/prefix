@@ -1,5 +1,11 @@
 # This file requires >=portage-2.1.1
 
+# Peter Alfredsen <loki_val@gentoo.org> (03 May 2009)
+# Mask mono use-flag of unstable open-office w.r.t.
+# bug 257313, since Novell seems disinclined to fix this
+# in a timely manner.
+>=app-office/openoffice-3.0.1 mono
+
 # Mounir Lamouri <volkmar@gentoo.org> (21 Apr 2009)
 # masking jingle because it's using an old ortp version
 # which is blocking stabilization of new ones, bug 206047
