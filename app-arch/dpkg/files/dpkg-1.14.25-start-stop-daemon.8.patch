@@ -1,0 +1,42 @@
+--- dpkg-1.15.0.orig/man/Makefile.am	2009-05-04 15:03:33.000000000 +0000
++++ dpkg-1.15.0/man/Makefile.am	2009-05-04 15:37:47.000000000 +0000
+@@ -37,7 +37,7 @@ install-data-local-yes:
+ 			$(MAKE) install-man \
+ 				mandir="$(mandir)/$$lang" \
+ 				man_MANS="" \
+-				dist_man_MANS="$$files"; \
++				manfiles="$$files"; \
+ 		fi \
+ 	done
+ 
+@@ -51,7 +51,7 @@ uninstall-local-yes:
+ 			$(MAKE) uninstall-man \
+ 				mandir="$(mandir)/$$lang" \
+ 				man_MANS="" \
+-				dist_man_MANS="$$files"; \
++				manfiles="$$files"; \
+ 		fi \
+ 	done
+ 
+@@ -64,7 +64,7 @@ dist-hook: man.stamp
+ 		cp -r $(srcdir)/$$lang $(distdir)/; \
+ 	done
+ 
+-dist_man_MANS = \
++manfiles = \
+ 	822-date.1 \
+ 	deb-control.5 \
+ 	deb-version.5 \
+@@ -102,6 +102,12 @@ dist_man_MANS = \
+ 	start-stop-daemon.8 \
+ 	update-alternatives.8
+ 
++if WITH_START_STOP_DAEMON
++  dist_man_MANS = $(manfiles)
++else
++  dist_man_MANS = $(filter-out %start-stop-daemon.8,$(manfiles))
++endif
++
+ EXTRA_DIST = \
+ 	po/ChangeLog \
+ 	po/po4a.cfg \

@@ -1,6 +1,32 @@
 # ChangeLog for app-arch/dpkg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.82 2009/05/01 18:47:15 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.87 2009/05/04 16:34:30 yvasilev Exp $
+
+  04 May 2009; <yvasilev@gentoo.org>
+  files/dpkg-1.14.25-start-stop-daemon.8.patch:
+  Replaced dpkg-1.14.25-start-stop-daemon.8.patch to handle nls and install
+  man pages when --without-start-stop-daemon is not passed to ./configure.
+  Fixes bug #268298.
+
+  04 May 2009; Jeroen Roovers <jer@gentoo.org> dpkg-1.14.25.ebuild,
+  dpkg-1.14.26.ebuild, dpkg-1.15.0.ebuild:
+  Remove commented rm lines.
+
+  04 May 2009; Jeroen Roovers <jer@gentoo.org> dpkg-1.14.25.ebuild,
+  +files/dpkg-1.14.25-start-stop-daemon.8.patch, dpkg-1.14.26.ebuild,
+  dpkg-1.15.0.ebuild:
+  Fix configure warning for 1.14.25. Patch to conditionally install English
+  start-stop-daemon.8 man page (bug #268298).
+
+*dpkg-1.15.0 (03 May 2009)
+
+  03 May 2009; Jeroen Roovers <jer@gentoo.org> +dpkg-1.15.0.ebuild:
+  Version bump.
+
+*dpkg-1.14.26 (03 May 2009)
+
+  03 May 2009; Jeroen Roovers <jer@gentoo.org> +dpkg-1.14.26.ebuild:
+  Version bump.
 
   01 May 2009; Fabian Groffen <grobian@gentoo.org> dpkg-1.14.25.ebuild:
   Instead of removing start-stop-daemon, just don't compile it.

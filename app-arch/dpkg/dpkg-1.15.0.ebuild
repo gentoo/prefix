@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.14.25.ebuild,v 1.4 2009/05/04 16:06:05 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.15.0.ebuild,v 1.3 2009/05/04 16:06:05 jer Exp $
 
 inherit eutils multilib autotools
 
@@ -26,12 +26,12 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.14.12-nls.patch #192819
-	epatch "${FILESDIR}"/${P}-ldadd-order.patch
+	epatch "${FILESDIR}"/${PN}-1.14.25-ldadd-order.patch
 	if ! use unicode ; then
 		sed -i "s:ncursesw/::" dselect/{Makefile.in,dselect.h,main.cc} #217046
 		export ac_cv_lib_ncursesw_initscr=no
 	fi
-	epatch "${FILESDIR}"/${P}-start-stop-daemon.8.patch
+	epatch "${FILESDIR}"/${PN}-1.14.25-start-stop-daemon.8.patch
 	eautoreconf
 	# don't mess with linker optimisation, respect user's flags (don't break!)
 	sed -i -e 's/ -Wl,-O1//' configure || die
@@ -39,7 +39,7 @@ src_unpack() {
 
 src_compile() {
 	econf \
-		$(use_with bzip2 bz2) \
+		$(use_with bzip2 bz2lib) \
 		$(use_enable nls) \
 		$(use_with selinux) \
 		$(use_with zlib) \
