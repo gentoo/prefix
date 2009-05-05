@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/Test-Base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Base/ChangeLog,v 1.47 2009/05/02 15:53:21 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Base/ChangeLog,v 1.49 2009/05/04 16:05:36 armin76 Exp $
+
+  04 May 2009; Raúl Porcel <armin76@gentoo.org> Test-Base-0.58.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #268183
+
+  03 May 2009; Markus Meier <maekke@gentoo.org> Test-Base-0.58.ebuild:
+  amd64 stable, bug #268183
 
   02 May 2009; nixnut <nixnut@gentoo.org> Test-Base-0.58.ebuild:
   ppc stable #268183
