@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.9.ebuild,v 1.1 2009/03/13 18:33:06 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.9-r1.ebuild,v 1.4 2009/05/04 17:27:20 fauli Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -60,6 +60,7 @@ src_unpack() {
 	disable_option FT_CONFIG_OPTION_OLD_INTERNALS
 
 	epatch "${FILESDIR}"/${PN}-2.3.2-enable-valid.patch
+	epatch "${FILESDIR}"/${P}-CVE-2009-0946.patch            # 263032
 
 	if use utils; then
 		cd "${WORKDIR}"/ft2demos-${PV}
