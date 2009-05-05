@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.8-r1.ebuild,v 1.6 2009/04/30 12:52:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.1.8-r1.ebuild,v 1.7 2009/05/03 19:13:49 klausman Exp $
 
 EAPI=2
 inherit libtool eutils autotools
