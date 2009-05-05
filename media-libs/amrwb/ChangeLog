@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/amrwb
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/amrwb/ChangeLog,v 1.25 2008/06/29 17:57:55 drac Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/amrwb/ChangeLog,v 1.26 2009/05/03 19:39:03 maekke Exp $
+
+  03 May 2009; Markus Meier <maekke@gentoo.org> amrwb-7.0.0.3.ebuild:
+  amd64/x86 stable, bug #268479
 
 *amrwb-7.0.0.3 (29 Jun 2008)
 
