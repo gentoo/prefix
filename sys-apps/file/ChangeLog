@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/file
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.167 2009/05/01 01:56:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.168 2009/05/05 01:02:48 vapier Exp $
+
+*file-5.02 (05 May 2009)
+
+  05 May 2009; Mike Frysinger <vapier@gentoo.org> +file-5.02.ebuild:
+  Version bump #268180 by Alex Legler.
 
 *file-5.01 (01 May 2009)
 
