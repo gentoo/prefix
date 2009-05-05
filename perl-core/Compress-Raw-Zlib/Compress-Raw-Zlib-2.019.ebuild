@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Zlib/Compress-Raw-Zlib-2.017.ebuild,v 1.1 2009/04/18 17:10:10 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Zlib/Compress-Raw-Zlib-2.019.ebuild,v 1.1 2009/05/04 14:50:20 tove Exp $
 
 MODULE_AUTHOR=PMQS
 
