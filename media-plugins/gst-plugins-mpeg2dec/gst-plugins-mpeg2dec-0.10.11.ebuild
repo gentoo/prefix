@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-mpeg2dec/gst-plugins-mpeg2dec-0.10.11.ebuild,v 1.1 2009/03/30 04:55:39 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-mpeg2dec/gst-plugins-mpeg2dec-0.10.11.ebuild,v 1.2 2009/05/03 17:51:00 klausman Exp $
 
 inherit gst-plugins-ugly
 
