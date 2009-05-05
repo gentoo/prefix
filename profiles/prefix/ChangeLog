@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  05 May 2009; Fabian Groffen <grobian@gentoo.org>
+  bsd/freebsd/7.2/x64/make.defaults, bsd/freebsd/7.2/x86/make.defaults:
+  Add profiles for FreeBSD 7.2 (for heiko)
+
   05 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask,
   +profile.bashrc:
   Add charset.alias removal hack from freebsd profiles
