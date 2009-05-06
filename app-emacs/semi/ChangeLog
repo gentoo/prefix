@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/semi
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.28 2009/02/19 20:02:58 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/semi/ChangeLog,v 1.29 2009/05/05 08:08:03 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  semi-1.14.6-r1.ebuild:
+  set explicit RDEPEND
 
   19 Feb 2009; Ulrich Mueller <ulm@gentoo.org> -files/comp.el,
   -semi-1.14.6.ebuild:
