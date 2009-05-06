@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/latex-base/latex-base-1.0.ebuild,v 1.5 2008/02/12 20:05:57 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/latex-base/latex-base-1.0.ebuild,v 1.6 2009/05/05 07:21:53 fauli Exp $
 
 DESCRIPTION="Virtual for basic LaTeX binaries"
 HOMEPAGE="http://www.latex-project.org/"
@@ -14,6 +14,5 @@ IUSE=""
 DEPEND=""
 RDEPEND="|| (
 	dev-texlive/texlive-latexrecommended
-	app-text/tetex
 	app-text/ptex
 )"
