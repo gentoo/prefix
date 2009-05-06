@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/scrnsaverproto
-# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-proto/scrnsaverproto/ChangeLog,v 1.24 2006/07/19 14:26:43 gmsoft Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/scrnsaverproto/ChangeLog,v 1.25 2009/05/05 15:24:34 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  scrnsaverproto-1.1.0.ebuild:
+  fix repoman warnings
 
   19 Jul 2006; Guy Martin <gmsoft@gentoo.org> scrnsaverproto-1.1.0.ebuild:
   Stable on hppa.
