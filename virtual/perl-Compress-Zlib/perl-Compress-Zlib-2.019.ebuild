@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Compress-Zlib/perl-Compress-Zlib-2.019.ebuild,v 1.1 2009/05/04 14:43:32 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Compress-Zlib/perl-Compress-Zlib-2.019.ebuild,v 1.2 2009/05/05 14:22:05 tove Exp $
 
 DESCRIPTION="A Zlib perl module"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"

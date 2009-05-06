@@ -1,6 +1,10 @@
 # ChangeLog for virtual/perl-Compress-Zlib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Compress-Zlib/ChangeLog,v 1.4 2009/05/04 14:43:32 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Compress-Zlib/ChangeLog,v 1.5 2009/05/05 14:22:05 tove Exp $
+
+  05 May 2009; Torsten Veller <tove@gentoo.org>
+  perl-Compress-Zlib-2.019.ebuild:
+  Add missing keywords (#268615)
 
 *perl-Compress-Zlib-2.019 (04 May 2009)
 
