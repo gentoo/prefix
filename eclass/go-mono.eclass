@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.6 2009/05/03 12:19:35 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.7 2009/05/05 12:59:13 loki_val Exp $
 
 # @ECLASS: go-mono.eclass
 # @MAINTAINER:
@@ -19,6 +19,7 @@ SVN_PN="${PN/mono-debugger/debugger}"
 
 ESVN_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR:-${DISTDIR}}/svn-src/mono"
 
+GO_MONO_SUB_BRANCH=${GO_MONO_SUB_BRANCH}
 
 if [[ "${PV%_rc*}" != "${PV}" ]]
 then
@@ -39,7 +40,7 @@ then
 elif [[ "${PV%.9999}" != "${PV}" ]]
 then
 	GO_MONO_P=${P}
-	ESVN_REPO_URI="svn://anonsvn.mono-project.com/source/branches/mono-$(get_version_component_range 1)-$(get_version_component_range 2)/${SVN_PN}"
+	ESVN_REPO_URI="svn://anonsvn.mono-project.com/source/branches/mono-$(get_version_component_range 1)-$(get_version_component_range 2)${GO_MONO_SUB_BRANCH}/${SVN_PN}"
 	SRC_URI=""
 	inherit autotools subversion
 else
