@@ -25,9 +25,6 @@ src_unpack () {
 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
 	epatch "${FILESDIR}"/${PN}-4.3.0-ABI-multilib.patch
 	epatch "${FILESDIR}"/${PN}-4.2.1-s390.diff
-	if [[ ${CHOST} == *-mint* ]] ; then
-		sed -i -e '8514a\ \ stack -S 512K ./a.out' configure || die
-	fi
 
 	sed -i -e 's:ABI = @ABI@:GMPABI = @GMPABI@:' \
 		Makefile.in */Makefile.in */*/Makefile.in
