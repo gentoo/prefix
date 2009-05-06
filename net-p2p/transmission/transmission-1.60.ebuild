@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.42.ebuild,v 1.4 2009/01/02 21:00:15 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.60.ebuild,v 1.2 2009/05/05 11:52:36 ssuominen Exp $
 
 EAPI=2
 
-inherit autotools eutils fdo-mime gnome2-utils
+inherit autotools fdo-mime gnome2-utils qt4
 
 DESCRIPTION="A Fast, Easy and Free BitTorrent client"
 HOMEPAGE="http://www.transmissionbt.com"
@@ -13,22 +13,24 @@ SRC_URI="http://download.${PN}bt.com/${PN}/files/${P}.tar.bz2"
 LICENSE="MIT GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="gtk libnotify"
+IUSE="gtk libnotify qt4"
 
 RDEPEND=">=dev-libs/openssl-0.9.4
 	|| ( >=net-misc/curl-7.16.3[ssl] >=net-misc/curl-7.16.3[gnutls] )
-	gtk? ( >=dev-libs/glib-2.15.5
-		>=x11-libs/gtk+-2.6
+	gtk? ( >=dev-libs/glib-2.15.5:2
+		>=x11-libs/gtk+-2.6:2
 		>=dev-libs/dbus-glib-0.70
-		libnotify? ( >=x11-libs/libnotify-0.4.4 ) )"
+		libnotify? ( >=x11-libs/libnotify-0.4.3 ) )
+	qt4? ( x11-libs/qt-gui:4 )"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	dev-util/intltool
-	dev-util/pkgconfig"
+	dev-util/pkgconfig
+	sys-apps/sed"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-respect_flags.patch
-	epatch "${FILESDIR}"/${P}-solaris-no-utility.patch
+	epatch "${FILESDIR}"/${PN}-1.42-solaris-no-utility.patch
+	sed -i -e 's:-g -O3 -funroll-loops::g' configure.ac || die "sed failed"
 	eautoreconf
 }
 
@@ -39,17 +41,37 @@ src_configure() {
 		$(use_enable gtk) \
 		$(use_enable libnotify) \
 		${myconf}
+
+	if use qt4; then
+		cd qt
+		eqmake4 qtr.pro
+	fi
+}
+
+src_compile() {
+	emake || die "emake failed"
+
+	if use qt4; then
+		cd qt
+		emake || die "emake failed"
+	fi
+}
+
+src_install() {
+	emake DESTDIR="${D}" install || die "emake install failed"
+
+	dodoc AUTHORS NEWS
+	rm -f "${ED}"/usr/share/${PN}/web/LICENSE
+	doinitd "${FILESDIR}"/transmission-daemon
+
+	if use qt4; then
+		cd qt
+		emake INSTALL_ROOT="${D}/usr" install || die "emake install failed"
+	fi
 }
 
 pkg_preinst() {
 	gnome2_icon_savelist
-}
-
-src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed."
-	dodoc AUTHORS NEWS
-	rm -f "${ED}"/usr/share/${PN}/web/LICENSE
-	doinitd "${FILESDIR}"/transmission-daemon
 }
 
 pkg_postinst() {
