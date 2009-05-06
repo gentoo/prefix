@@ -1,9 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.3.ebuild,v 1.2 2009/01/10 01:33:11 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.7.8.ebuild,v 1.1 2009/05/04 03:41:49 arfrever Exp $
 
-EAPI=2
-inherit eutils libtool autotools
+EAPI="2"
+
+inherit autotools eutils libtool
 
 DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
 HOMEPAGE="http://www.gnutls.org/"
@@ -21,7 +22,7 @@ unset MINOR_VERSION
 # GPL-3 for the gnutls-extras library and LGPL for the gnutls library.
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="bindist +cxx doc guile lzo nls zlib"
 
 RDEPEND="dev-libs/libgpg-error
@@ -44,23 +45,21 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	for dir in gl/m4 m4 lib/gl/m4 lib/m4 libextra/gl/m4 libextra/m4 ; do
-		rm -f ${dir}/lt* ${dir}/libtool.m4
-	done
-	find . -name ltmain.sh -exec rm {} \;
-
-	# the below patch is in 2.7.* as per
-	# https://savannah.gnu.org/support/?106542
-	epatch "${FILESDIR}"/gnutls-2.6.0-cxx-configure.in.patch
-	epatch "${FILESDIR}"/gnutls-2.6.0-openpgp-selftest.patch
-	eautoreconf
+src_prepare() {
+	epatch "${FILESDIR}/${P}-lzo.patch"
 
 	epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
-	epatch "${FILESDIR}"/${P}-irix.patch
-	epatch "${FILESDIR}"/${P}-inttypes.patch
+
+	local dir
+	for dir in m4 lib/m4 libextra/m4 ; do
+		rm -f "${dir}/lt"* "${dir}/libtool.m4"
+	done
+	find . -name ltmain.sh -exec rm {} \;
+	for dir in . lib libextra ; do
+		pushd "${dir}" > /dev/null
+		eautoreconf
+		popd > /dev/null
+	done
 
 	elibtoolize # for sane .so versioning on FreeBSD
 }
@@ -69,11 +68,11 @@ src_configure() {
 	local myconf
 	use bindist && myconf="--without-lzo" || myconf="$(use_with lzo)"
 	econf  \
-		$(use_with zlib) \
-		$(use_enable nls) \
-		$(use_enable guile) \
 		$(use_enable cxx) \
 		$(use_enable doc gtk-doc) \
+		$(use_enable guile) \
+		$(use_enable nls) \
+		$(use_with zlib) \
 		${myconf}
 }
 
