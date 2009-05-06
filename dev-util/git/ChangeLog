@@ -1,6 +1,30 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.333 2009/04/13 03:02:51 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.338 2009/05/05 19:15:12 robbat2 Exp $
+
+  05 May 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.2.5.ebuild,
+  git-1.6.3_rc4.ebuild, git-9999.ebuild:
+  Fix bug #267853: dev-python/gtksourceview-python needed for gitview.
+  Update git-9999 for getopt fixes.
+
+  05 May 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.2.5.ebuild,
+  git-1.6.3_rc4.ebuild:
+  Backport a fix from the live ebuild.
+
+  05 May 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.2.5.ebuild,
+  +files/20090505-git-1.6.2.5-getopt-fixes.patch, git-1.6.3_rc4.ebuild:
+  Fix Getopt::Long usage bug, patch submitted to upstream as well.
+
+*git-1.6.2.5 (05 May 2009)
+
+  05 May 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.2.5.ebuild:
+  Version bump.
+
+*git-1.6.3_rc4 (05 May 2009)
+
+  05 May 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.3_rc4.ebuild:
+  Version bump to release candidate for 1.6.3. In package.mask for the
+  moment.
 
 *git-1.6.2.3 (13 Apr 2009)
 

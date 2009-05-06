@@ -1,0 +1,34 @@
+From c1a15a03af9412f2c037574f2df2587036ecb4b1 Mon Sep 17 00:00:00 2001
+From: Robin H. Johnson <robbat2@gentoo.org>
+Date: Tue, 5 May 2009 11:10:56 -0700
+Subject: [PATCH] Fix sloppy Getopt::Long.
+
+Getopt-Long v2.38 is much stricter about sloppy getopt usage. The
+trailing pipe causes git-svn testcases to fail for all of the --stdin
+argument calls.
+
+Signed-off-by: Robin H. Johnson <robbat2@gentoo.org>
+
+===
+Should be applied to both the stable 1.6.2.x tree and the new 1.6.3
+tree.
+---
+ git-svn.perl |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/git-svn.perl b/git-svn.perl
+index c5965c9..ef1d30d 100755
+--- a/git-svn.perl
++++ b/git-svn.perl
+@@ -147,7 +147,7 @@ my %cmd = (
+ 	           'dry-run|n' => \$_dry_run } ],
+ 	'set-tree' => [ \&cmd_set_tree,
+ 	                "Set an SVN repository to a git tree-ish",
+-			{ 'stdin|' => \$_stdin, %cmt_opts, %fc_opts, } ],
++			{ 'stdin' => \$_stdin, %cmt_opts, %fc_opts, } ],
+ 	'create-ignore' => [ \&cmd_create_ignore,
+ 			     'Create a .gitignore per svn:ignore',
+ 			     { 'revision|r=i' => \$_revision
+-- 
+1.6.2.3
+
