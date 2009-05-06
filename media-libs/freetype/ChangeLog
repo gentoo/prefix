@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.228 2009/05/04 17:27:20 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.229 2009/05/05 05:13:25 jer Exp $
+
+  05 May 2009; Jeroen Roovers <jer@gentoo.org> freetype-2.3.9-r1.ebuild:
+  Stable for HPPA (bug #263032).
 
   04 May 2009; Christian Faulhammer <fauli@gentoo.org>
   freetype-2.3.9-r1.ebuild:
