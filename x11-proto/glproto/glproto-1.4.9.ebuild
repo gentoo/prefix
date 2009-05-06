@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/glproto-1.4.9.ebuild,v 1.8 2009/04/16 02:29:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/glproto-1.4.9.ebuild,v 1.9 2009/05/05 15:11:36 fauli Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
@@ -12,7 +12,7 @@ OPENGL_DIR="xorg-x11"
 DESCRIPTION="X.Org GL protocol headers"
 
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-
+IUSE=""
 RDEPEND="app-admin/eselect-opengl"
 DEPEND=""
 
