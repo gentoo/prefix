@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libmemcached
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcached/ChangeLog,v 1.11 2009/02/04 00:23:34 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcached/ChangeLog,v 1.12 2009/05/05 19:36:59 robbat2 Exp $
+
+*libmemcached-0.28 (05 May 2009)
+
+  05 May 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +libmemcached-0.28.ebuild, +files/libmemcached-0.28-removebogustest.patch,
+  +files/libmemcached-0.28-runtestsasuser.patch:
+  Bug #267095: version bump. Testsuite now available thanks to patches from
+  Johan Bergström <bugs@bergstroem.nu>.
 
 *libmemcached-0.26 (04 Feb 2009)
 
