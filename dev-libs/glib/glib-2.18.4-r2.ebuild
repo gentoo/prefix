@@ -1,36 +1,32 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.16.6.ebuild,v 1.8 2009/03/17 10:15:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.18.4-r2.ebuild,v 1.1 2009/05/04 22:06:50 eva Exp $
 
-inherit gnome.org libtool eutils flag-o-matic multilib autotools
+EAPI="2"
+
+inherit gnome.org libtool eutils flag-o-matic autotools
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libc
-		 virtual/libiconv
-		 xattr? ( sys-apps/attr )
-		 fam? ( virtual/fam )"
+	virtual/libiconv
+	xattr? ( sys-apps/attr )
+	fam? ( virtual/fam )"
 DEPEND="${RDEPEND}
-		>=dev-util/pkgconfig-0.16
-		>=sys-devel/gettext-0.11
-		doc?	(
-					>=dev-libs/libxslt-1.0
-					>=dev-util/gtk-doc-1.8
-					~app-text/docbook-xml-dtd-4.1.2
-				)
-		dev-util/gtk-doc-am"
+	>=dev-util/pkgconfig-0.16
+	>=sys-devel/gettext-0.11
+	doc? (
+		>=dev-libs/libxslt-1.0
+		>=dev-util/gtk-doc-1.8
+		~app-text/docbook-xml-dtd-4.1.2 )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${PN}-2.16.3-libtool.patch" #223845
-
+src_prepare() {
 	if use ppc64 && use hardened ; then
 		replace-flags -O[2-3] -O1
 		epatch "${FILESDIR}/glib-2.6.3-testglib-ssp.patch"
@@ -48,18 +44,34 @@ src_unpack() {
 	# patch avoids autoreconf necessity
 	epatch "${FILESDIR}"/${PN}-2.12.11-solaris-thread.patch
 
-	# GNOME bug #538836, fix gio test failure on various arches
-	sed -i -e 's:|\\<g_atomic_int\\|:|\\<g_atomic_int\\|\\<g_atomic_pointer_get\\|:' \
-		"${S}/gio/pltcheck.sh"
+	# Don't fail gio tests when ran without userpriv, upstream bug 552912
+	# This is only a temporary workaround, remove as soon as possible
+	epatch "${FILESDIR}/${PN}-2.18.1-workaround-gio-test-failure-without-userpriv.patch"
 
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	# add support for reading file systems on interix.
-	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
+	# Fix g_base64 overruns. bug #249214
+	epatch "${FILESDIR}"/glib2-CVE-2008-4316.patch
 
-	# properly keep symbols inside; bug #221075
+	# Fix compilation with gcc 4.4, bug #264686
+	epatch "${FILESDIR}/${P}-gcc44.patch"
+
+	# Fix GIO null unref, bug #260301
+	epatch "${FILESDIR}/${PN}-2.20.1-gio-unref.patch"
+
+	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
+	epatch "${FILESDIR}"/${PN}-2.18.2-interix.patch
+	epatch "${FILESDIR}"/${P}-irix.patch
+	epatch "${FILESDIR}"/${P}-compile-warning-sol64.patch
+
+	# build glib with parity for native win32
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-2.18.3-winnt-lt2.patch
+
+	# makes the iconv check more general, needed for winnt, but could
+	# be usefull for others too.
+	epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
 
 	# freebsd: elibtoolize would suffice
 	# interix: need recent libtool
@@ -67,7 +79,7 @@ src_unpack() {
 	AT_M4DIR="m4macros" eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 
 	epunt_cxx
@@ -92,7 +104,15 @@ src_compile() {
 		export ac_cv_func_poll=no
 	}
 
-	# always build static libs, see #153807
+	local mythreads=posix
+
+	[[ ${CHOST} == *-winnt* ]] && mythreads=win32
+
+	# without this, AIX defines EEXIST and ENOTEMPTY to the same value
+	[[ ${CHOST} == *-aix* ]] && append-cppflags -D_LINUX_SOURCE_COMPAT
+
+	# Always build static libs, see #153807
+	# Always use internal libpcre, bug #254659
 	econf ${myconf}                 \
 		  $(use_enable xattr)       \
 		  $(use_enable doc man)     \
@@ -100,9 +120,9 @@ src_compile() {
 		  $(use_enable fam)         \
 		  $(use_enable selinux)     \
 		  --enable-static           \
-		  --with-threads=posix || die "configure failed"
-
-	emake || die "make failed"
+		  --enable-regex            \
+		  --with-pcre=internal      \
+		  --with-threads=${mythreads}
 }
 
 src_install() {
@@ -111,5 +131,5 @@ src_install() {
 	# Do not install charset.alias even if generated, leave it to libiconv
 	rm -f "${ED}/usr/lib/charset.alias"
 
-	dodoc AUTHORS ChangeLog* NEWS* README
+	dodoc AUTHORS ChangeLog* NEWS* README || die "dodoc failed"
 }

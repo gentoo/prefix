@@ -1,6 +1,21 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.366 2009/04/27 13:07:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.368 2009/05/04 22:06:50 eva Exp $
+
+*glib-2.20.1-r1 (04 May 2009)
+*glib-2.18.4-r2 (04 May 2009)
+
+  04 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/glib-2.18.4-gcc44.patch, +files/glib-2.20.1-gio-unref.patch,
+  +glib-2.18.4-r2.ebuild, +glib-2.20.1-r1.ebuild:
+  Fix gio unref, bug #260301. Fix compilation of glib-2.18 with gcc 4.4, bug
+  #264686.
+
+*glib-2.20.1 (04 May 2009)
+
+  04 May 2009; Gilles Dartiguelongue <eva@gentoo.org> +glib-2.20.1.ebuild:
+  Bump to 2.20.1. Update internal copy of libprcre to 7.8, gio and
+  GHashTable enhancements.
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> glib-2.18.4-r1:
   Stable for HPPA (bug #260063).

@@ -1,0 +1,27 @@
+From 76439bd5d31019a449bac938c325990bc2a54400 Mon Sep 17 00:00:00 2001
+From: Paul Pogonyshev <pogonyshev@gmx.net>
+Date: Mon, 4 May 2009 22:32:35 +0300
+Subject: [PATCH] Don't try to ref NULL pointer in g_desktop_app_info_dup()
+
+Fixes bug #573246.
+---
+ gio/gdesktopappinfo.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/gio/gdesktopappinfo.c b/gio/gdesktopappinfo.c
+index fcd7737..fea0761 100644
+--- a/gio/gdesktopappinfo.c
++++ b/gio/gdesktopappinfo.c
+@@ -417,7 +417,8 @@ g_desktop_app_info_dup (GAppInfo *appinfo)
+   new_info->comment = g_strdup (info->comment);
+   new_info->nodisplay = info->nodisplay;
+   new_info->icon_name = g_strdup (info->icon_name);
+-  new_info->icon = g_object_ref (info->icon);
++  if (info->icon)
++    new_info->icon = g_object_ref (info->icon);
+   new_info->only_show_in = g_strdupv (info->only_show_in);
+   new_info->not_show_in = g_strdupv (info->not_show_in);
+   new_info->try_exec = g_strdup (info->try_exec);
+-- 
+1.6.2.4
+
