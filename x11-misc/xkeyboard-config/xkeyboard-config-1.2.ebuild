@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.2.ebuild,v 1.4 2008/10/23 09:39:36 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.2.ebuild,v 1.5 2009/05/05 17:41:19 ssuominen Exp $
 
 inherit eutils multilib
 
@@ -11,6 +11,7 @@ SRC_URI="http://xlibs.freedesktop.org/xkbdesc/${P}.tar.bz2"
 
 LICENSE="MIT"
 SLOT="0"
+IUSE=""
 
 RDEPEND="x11-apps/xkbcomp
 	!x11-misc/xkbdata"
