@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/damageproto
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/damageproto/ChangeLog,v 1.34 2007/10/09 09:43:56 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/damageproto/ChangeLog,v 1.35 2009/05/05 15:01:59 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  damageproto-1.1.0.ebuild:
+  fix repoman warnings
 
   09 Oct 2007; Donnie Berkholz <dberkholz@gentoo.org>;
   -damageproto-1.0.3.ebuild:
