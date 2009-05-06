@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libtheora
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.86 2009/05/03 19:16:09 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/ChangeLog,v 1.87 2009/05/05 07:29:12 ssuominen Exp $
+
+  05 May 2009; Samuli Suominen <ssuominen@gentoo.org> libtheora-1.0.ebuild:
+  Add VARTEXFONTS variable to avoid sandbox failure wrt #218145, Comment #6.
 
   03 May 2009; Markus Meier <maekke@gentoo.org> libtheora-1.0.ebuild:
   amd64/x86 stable, bug #218145
