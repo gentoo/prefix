@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.15.5_pre20071215.ebuild,v 1.1 2008/01/27 23:49:45 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.15.5_pre20071215.ebuild,v 1.3 2009/05/05 17:21:00 ulm Exp $
 
 inherit elisp
 
@@ -16,10 +16,11 @@ IUSE="bbdb ssl"
 DEPEND=">=app-emacs/apel-10.6
 	virtual/flim
 	app-emacs/semi
-	bbdb? ( app-emacs/bbdb )
-	!app-emacs/wanderlust-cvs"
+	bbdb? ( app-emacs/bbdb )"
+RDEPEND="!app-emacs/wanderlust-cvs
+	${DEPEND}"
 
-SITEFILE=70wl-gentoo.el
+SITEFILE="70wl-gentoo.el"
 
 src_compile() {
 	echo '(load "'"${EPREFIX}"'/usr/share/emacs/site-lisp/site-gentoo.el")' >> WL-CFG
