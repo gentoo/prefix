@@ -1,6 +1,10 @@
 # ChangeLog for x11-apps/bdftopcf
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/bdftopcf/ChangeLog,v 1.29 2007/02/04 18:32:45 joshuabaergen Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/bdftopcf/ChangeLog,v 1.30 2009/05/05 07:25:54 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  bdftopcf-1.0.0.ebuild:
+  add empty IUSE entry to silence repoman
 
   04 Feb 2007; Joshua Baergen <joshuabaergen@gentoo.org>
   bdftopcf-1.0.0.ebuild:
