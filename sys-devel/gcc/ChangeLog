@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.702 2009/05/03 00:21:52 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.703 2009/05/03 19:36:55 halcy0n Exp $
+
+  03 May 2009; Mark Loeser <halcy0n@gentoo.org> -gcc-4.3.3.ebuild,
+  gcc-4.3.3-r2.ebuild:
+  Add DEPEND on >=glibc-2.8; bug #267650
 
   03 May 2009; Mark Loeser <halcy0n@gentoo.org> gcc-3.4.6-r2.ebuild,
   gcc-4.0.4.ebuild, gcc-4.1.2.ebuild, gcc-4.2.4-r1.ebuild, gcc-4.3.0.ebuild,
