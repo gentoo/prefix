@@ -1,6 +1,16 @@
 # ChangeLog for dev-dotnet/libgdiplus
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/ChangeLog,v 1.94 2009/04/06 14:31:55 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/ChangeLog,v 1.95 2009/05/05 11:11:27 loki_val Exp $
+
+*libgdiplus-9999 (05 May 2009)
+*libgdiplus-2.4.9999 (05 May 2009)
+*libgdiplus-2.2.9999 (05 May 2009)
+*libgdiplus-2.0.9999 (05 May 2009)
+
+  05 May 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +libgdiplus-2.0.9999.ebuild, +libgdiplus-2.2.9999.ebuild,
+  +libgdiplus-2.4.9999.ebuild, +libgdiplus-9999.ebuild:
+  Add live ebuilds for trunk and >=2.0 branches
 
   06 Apr 2009; Brent Baude <ranger@gentoo.org> libgdiplus-2.2.ebuild:
   Marking libgdiplus-2.2 ~ppc for bug 255410
