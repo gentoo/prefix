@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4418 2009/05/04 03:09:24 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4421 2009/05/05 22:07:47 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1662,6 +1662,9 @@ media-video/avidemux:aften - Enable A/52 (AC-3) audio encoder support
 media-video/avidemux:amrnb - Enable Narrow Band Adaptive Multi-Rate Audio support
 media-video/chaplin:transcode - Enable DVD ripping and transcoding
 media-video/cinepaint:gutenprint - Enable support for gutenprint
+media-video/clive:clipboard - Support reading from X clipboard
+media-video/clive:pager - Support pager!?
+media-video/clive:password - Support password controlled sites
 media-video/devede:psyco - psyco python accelerator
 media-video/dv2sub:kino - install kino plugin
 media-video/dvd-slideshow:themes - Install theme pack
@@ -2419,7 +2422,7 @@ net-wireless/madwifi-old:onoe - Use Atsushi Onoe's bit rate control algorithm
 net-wireless/wepattack:john - Build with app-crypt/johntheripper support
 net-wireless/wifiscanner:wireshark - Use the net-analyzer/wireshark wtap library
 net-wireless/wireless-tools:multicall - Build the most commonly used tools as one binary
-net-wireless/wpa_supplicant:gsm - Add support for EAP-SIM authentication algorithm
+net-wireless/wpa_supplicant:eap-sim - Add support for EAP-SIM authentication algorithm
 net-wireless/wpa_supplicant:madwifi - Add support for madwifi (Atheros chipset)
 net-wireless/wpa_supplicant:ps3 - Add support for ps3 hypervisor driven gelic wifi
 net-wireless/wpa_supplicant:wps - Add support for Wi-Fi Protected Setup
@@ -2953,7 +2956,6 @@ x11-terms/rxvt-unicode:afterimage - Enable support for media-libs/libafterimage
 x11-terms/rxvt-unicode:iso14755 - Enable ISO-14755 support
 x11-terms/rxvt-unicode:wcwidth - Enable wide char width support
 x11-terms/rxvt-unicode:xterm-color - Enable xterm 256 color support
-x11-terms/xterm:paste64 - Enable support for bracketed paste mode
 x11-terms/xterm:toolbar - Enable the xterm toolbar to be built
 x11-themes/gentoo-artwork:grub - Install extra sys-boot/grub themes
 x11-themes/gentoo-artwork:icons - Install icons

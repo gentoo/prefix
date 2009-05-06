@@ -1,10 +1,29 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2608 2009/05/04 23:28:50 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2614 2009/05/05 19:37:59 robbat2 Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  05 May 2009; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  The git-1.6.2.* issue is solved now, patches in the ebuild.
+
+  05 May 2009; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  dev-util/git-1.6.2.5 seems to suck, testsuite failures.
+
+  05 May 2009; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  dev-util/git-1.6.3 release candidates do have user-visible behavior change
+  from upstream wrt pushing.
+
+  05 May 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add x11-misc/xkbdata to p.mask (see bug #196650)
+
+  05 May 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Add package.mask for -9999 ebuilds of mono.
+
+  05 May 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add xf86-video-intel 2.7.0 to p.mask
 
   04 May 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   Add mask for app-mobilephone/gnome-phone-manager-0.65 which needs bluez4
