@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.3.1.ebuild,v 1.1 2008/07/01 08:32:48 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.3.1.ebuild,v 1.2 2009/05/05 07:56:18 ssuominen Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
@@ -12,6 +12,7 @@ HOMEPAGE="http://dri.freedesktop.org/"
 SRC_URI="http://dri.freedesktop.org/libdrm/${P}.tar.gz"
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+IUSE=""
 
 RDEPEND=""
 DEPEND="${RDEPEND}"
