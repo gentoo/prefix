@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/oclock
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/oclock/ChangeLog,v 1.15 2007/11/24 15:29:15 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/oclock/ChangeLog,v 1.16 2009/05/05 07:35:32 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org> oclock-1.0.1.ebuild:
+  fix repoman warnings
 
   24 Nov 2007; Raúl Porcel <armin76@gentoo.org> oclock-1.0.1.ebuild:
   Add ~ia64 wrt #200202
