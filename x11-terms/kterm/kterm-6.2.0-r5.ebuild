@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r5.ebuild,v 1.1 2008/06/20 18:01:50 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r5.ebuild,v 1.2 2009/05/05 11:06:08 ssuominen Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -24,7 +24,6 @@ RDEPEND="app-text/rman
 	x11-libs/libXaw
 	x11-libs/libXp
 	Xaw3d? ( x11-libs/Xaw3d )"
-
 DEPEND="${RDEPEND}
 	x11-misc/gccmakedep
 	x11-misc/imake"
@@ -48,11 +47,11 @@ src_unpack(){
 src_compile(){
 	xmkmf -a || die
 	emake CC="$(tc-getCC)" CDEBUGFLAGS="${CFLAGS}" LOCAL_LDFLAGS="${LDFLAGS}" \
-		XAPPLOADDIR="${EPREFIX}"/etc/X11/app-defaults || die "emake failed"
+		XAPPLOADDIR="${EPREFIX}"/usr/share/X11/app-defaults || die "emake failed"
 }
 
 src_install(){
-	emake DESTDIR="${D}" BINDIR="${EPREFIX}"/usr/bin XAPPLOADDIR="${EPREFIX}"/etc/X11/app-defaults install || die
+	emake DESTDIR="${D}" BINDIR="${EPREFIX}"/usr/bin XAPPLOADDIR="${EPREFIX}"/usr/share/X11/app-defaults install || die
 
 	# install man pages
 	newman kterm.man kterm.1

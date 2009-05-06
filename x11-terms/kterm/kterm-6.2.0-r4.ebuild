@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r4.ebuild,v 1.7 2008/06/20 18:01:50 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r4.ebuild,v 1.9 2009/05/05 11:06:08 ssuominen Exp $
 
-inherit eutils flag-o-matic
+inherit eutils toolchain-funcs
 
 IUSE="Xaw3d"
 
@@ -24,35 +24,33 @@ RDEPEND="app-text/rman
 	x11-libs/libXaw
 	x11-libs/libXp
 	Xaw3d? ( x11-libs/Xaw3d )"
-
 DEPEND="${RDEPEND}
 	x11-misc/gccmakedep
 	x11-misc/imake"
 
 src_unpack(){
 	unpack ${A}
-
-	cd ${S}
-	epatch ${WORKDIR}/${P}-wpi.patch		# wallpaper patch
-	epatch ${WORKDIR}/${P}.ext02.patch		# JIS 0213 support
-	epatch ${FILESDIR}/${P}-openpty.patch
-	epatch ${FILESDIR}/${P}-gentoo.patch
-	epatch ${FILESDIR}/${PN}-ad-gentoo.diff
-	epatch ${FILESDIR}/${PV}-underline.patch
+	cd "${S}"
+	epatch "${WORKDIR}"/${P}-wpi.patch		# wallpaper patch
+	epatch "${WORKDIR}"/${P}.ext02.patch		# JIS 0213 support
+	epatch "${FILESDIR}"/${P}-openpty.patch
+	epatch "${FILESDIR}"/${P}-gentoo.patch
+	epatch "${FILESDIR}"/${PN}-ad-gentoo.diff
+	epatch "${FILESDIR}"/${PV}-underline.patch
 
 	if use Xaw3d ; then
-		epatch ${FILESDIR}/kterm-6.2.0-Xaw3d.patch
+		epatch "${FILESDIR}"/kterm-6.2.0-Xaw3d.patch
 	fi
 }
 
 src_compile(){
 	xmkmf -a || die
 	emake CC="$(tc-getCC)" CDEBUGFLAGS="${CFLAGS}" LOCAL_LDFLAGS="${LDFLAGS}" \
-		XAPPLOADDIR="${EPREFIX}"/etc/X11/app-defaults EXTRA_LDOPTIONS="$(bindnow-flags)" || die "emake failed"
+		XAPPLOADDIR="${EPREFIX}"/usr/share/X11/app-defaults EXTRA_LDOPTIONS="" || die "emake failed"
 }
 
 src_install(){
-	einstall DESTDIR=${D} BINDIR="${EPREFIX}"/usr/bin XAPPLOADDIR="${EPREFIX}"/etc/X11/app-defaults || die
+	einstall DESTDIR=${D} BINDIR="${EPREFIX}"/usr/bin XAPPLOADDIR="${EPREFIX}"/usr/share/X11/app-defaults || die
 
 	# install man pages
 	newman kterm.man kterm.1
@@ -61,7 +59,7 @@ src_install(){
 	newins kterm.ja.1 kterm.1
 
 	# Remove link to avoid collision
-	rm -f ${ED}/usr/lib/X11/app-defaults
+	rm -f "${ED}"/usr/lib/X11/app-defaults
 
 	dodoc README.kt
 }
