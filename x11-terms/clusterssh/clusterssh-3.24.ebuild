@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/clusterssh/clusterssh-3.24.ebuild,v 1.1 2009/01/15 20:32:07 tantive Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/clusterssh/clusterssh-3.24.ebuild,v 1.2 2009/05/05 10:45:34 ssuominen Exp $
 
 inherit eutils
 
@@ -13,11 +13,12 @@ LICENSE="GPL-2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
-DEPEND=">=dev-lang/perl-5.6.1
+RDEPEND=">=dev-lang/perl-5.6.1
 	dev-perl/perl-tk
 	dev-perl/Config-Simple
 	dev-perl/X11-Protocol
 	x11-apps/xlsfonts"
+DEPEND="${RDEPEND}"
 
 src_compile() {
 	# Gentoo perl ebuilds remove podchecker

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/clusterssh/clusterssh-3.21.ebuild,v 1.2 2008/06/06 06:03:18 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/clusterssh/clusterssh-3.21.ebuild,v 1.3 2009/05/05 10:44:09 ssuominen Exp $
 
 inherit eutils
 
@@ -13,14 +13,16 @@ LICENSE="GPL-2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
-DEPEND=">=dev-lang/perl-5.6.1
+RDEPEND=">=dev-lang/perl-5.6.1
 	dev-perl/perl-tk
 	dev-perl/Config-Simple
 	dev-perl/X11-Protocol
 	x11-apps/xlsfonts"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
+	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-3.21-disable-warning.patch
 	epatch "${FILESDIR}"/${PN}-3.21-xrm-remove-class.patch
 
@@ -44,8 +46,7 @@ src_compile() {
 }
 
 src_install() {
-	cd "${S}"
-	dodoc AUTHORS COPYING INSTALL NEWS README THANKS
+	dodoc AUTHORS NEWS README THANKS
 	dobin src/cssh
 	doman src/cssh.1
 }
