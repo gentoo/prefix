@@ -1,0 +1,28 @@
+Index: x264-snapshot-20090408-2245/Makefile
+===================================================================
+--- x264-snapshot-20090408-2245.orig/Makefile
++++ x264-snapshot-20090408-2245/Makefile
+@@ -71,7 +71,7 @@ DEP  = depend
+ 
+ .PHONY: all default fprofiled clean distclean install uninstall dox test testclean
+ 
+-default: $(DEP) x264$(EXE)
++default: $(DEP)
+ 
+ libx264.a: .depend $(OBJS) $(OBJASM)
+ 	$(AR) rc libx264.a $(OBJS) $(OBJASM)
+@@ -143,13 +143,12 @@ distclean: clean
+ 	rm -f config.mak config.h x264.pc
+ 	rm -rf test/
+ 
+-install: x264$(EXE) $(SONAME)
++install: libx264.a $(SONAME)
+ 	install -d $(DESTDIR)$(bindir) $(DESTDIR)$(includedir)
+ 	install -d $(DESTDIR)$(libdir) $(DESTDIR)$(libdir)/pkgconfig
+ 	install -m 644 x264.h $(DESTDIR)$(includedir)
+ 	install -m 644 libx264.a $(DESTDIR)$(libdir)
+ 	install -m 644 x264.pc $(DESTDIR)$(libdir)/pkgconfig
+-	install x264$(EXE) $(DESTDIR)$(bindir)
+ 	$(RANLIB) $(DESTDIR)$(libdir)/libx264.a
+ ifeq ($(SYS),MINGW)
+ 	$(if $(SONAME), install -m 755 $(SONAME) $(DESTDIR)$(bindir))

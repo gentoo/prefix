@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/x264
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/ChangeLog,v 1.19 2008/12/20 22:47:24 fmccor Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/ChangeLog,v 1.20 2009/05/03 20:08:47 aballier Exp $
+
+*x264-0.0.20090502 (03 May 2009)
+
+  03 May 2009; Alexis Ballier <aballier@gentoo.org>
+  +x264-0.0.20090502.ebuild, +files/x264-onlylib-20090408.patch:
+  bump a new snapshot
 
   20 Dec 2008; Ferris McCormick <fmccor@gentoo.org>
   x264-0.0.20081006.ebuild:
