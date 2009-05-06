@@ -1,6 +1,9 @@
 # ChangeLog for net-zope/zopeinterface
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/ChangeLog,v 1.29 2009/04/26 15:57:25 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/ChangeLog,v 1.30 2009/05/05 05:09:12 jer Exp $
+
+  05 May 2009; Jeroen Roovers <jer@gentoo.org> zopeinterface-3.4.1.ebuild:
+  Stable for HPPA (bug #267186).
 
   26 Apr 2009; Raúl Porcel <armin76@gentoo.org> zopeinterface-3.4.1.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable wrt #267186
