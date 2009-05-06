@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/xcb-proto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcb-proto/ChangeLog,v 1.26 2009/02/06 10:29:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcb-proto/ChangeLog,v 1.27 2009/05/05 15:29:53 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org> xcb-proto-1.0.ebuild,
+  xcb-proto-1.1.ebuild, xcb-proto-1.2.ebuild:
+  fix repoman warnings
 
   06 Feb 2009; Raúl Porcel <armin76@gentoo.org> xcb-proto-1.1.ebuild:
   arm/ia64/s390/sh stable wrt #244210
