@@ -1,6 +1,10 @@
 # ChangeLog for x11-apps/xev
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xev/ChangeLog,v 1.29 2009/04/16 02:08:23 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xev/ChangeLog,v 1.30 2009/05/05 07:50:31 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org> xev-1.0.2.ebuild,
+  xev-1.0.3.ebuild:
+  fix repoman warnings
 
   16 Apr 2009; Jeroen Roovers <jer@gentoo.org> xev-1.0.3.ebuild:
   Stable for HPPA (bug #251832).
