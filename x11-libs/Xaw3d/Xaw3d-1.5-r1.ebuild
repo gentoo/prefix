@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/Xaw3d/Xaw3d-1.5-r1.ebuild,v 1.35 2007/02/10 14:57:09 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/Xaw3d/Xaw3d-1.5-r1.ebuild,v 1.36 2009/05/05 07:34:46 ssuominen Exp $
 
 # Ok, hopefully this will resolv the problem with the version of libXaw3d that
 # gets created.
@@ -44,12 +44,12 @@ DEPEND="${DEPEND} x11-misc/makedepend" # on merge conflict, bug#213035 likely is
 
 src_unpack() {
 	unpack ${P}.tar.gz
-	cd ${S}
+	cd "${S}"
 
 	# For some reason it isn't automatically patched.
 	# That's why I manually override the source_unpack function.
-	epatch ${FILESDIR}/Xaw3d-xfree86.diff
-	epatch ${FILESDIR}/Xaw3d-out-of-tree.diff
+	epatch "${FILESDIR}"/Xaw3d-xfree86.diff \
+		"${FILESDIR}"/Xaw3d-out-of-tree.diff
 
 	# This adds more familiar scroll-bar look and feel for Emacs and
 	# others <mkennedy@gentoo.org>
