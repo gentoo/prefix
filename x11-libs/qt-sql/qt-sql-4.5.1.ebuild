@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.5.1.ebuild,v 1.1 2009/04/27 19:48:44 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.5.1.ebuild,v 1.2 2009/05/05 08:28:14 ssuominen Exp $
 
 EAPI=2
 inherit qt4-build
@@ -43,7 +43,10 @@ pkg_setup() {
 
 src_unpack() {
 	qt4-build_src_unpack
+}
 
+src_prepare() {
+	qt4-build_src_prepare
 	sed -e '/pg_config --libs/d' -i "${S}"/configure \
 		|| die 'Sed to fix postgresql usage in ./configure failed.'
 }
