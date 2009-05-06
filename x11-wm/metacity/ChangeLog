@@ -1,6 +1,14 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.232 2009/04/28 11:22:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.233 2009/05/04 22:46:39 eva Exp $
+
+*metacity-2.26.0 (04 May 2009)
+
+  04 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -metacity-2.20.1.ebuild, -metacity-2.22.0.ebuild, -metacity-2.24.0.ebuild,
+  -metacity-2.24.0-r1.ebuild, +metacity-2.26.0.ebuild:
+  New version for GNOME 2.26. Use zenity for dialogs, provide more user
+  documentation. Clean up old revisions.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> metacity-2.24.0-r2.ebuild:
   sh stable
