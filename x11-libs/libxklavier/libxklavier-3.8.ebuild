@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.8.ebuild,v 1.8 2009/04/12 21:26:27 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.8.ebuild,v 1.9 2009/05/05 16:14:52 remi Exp $
 
 inherit autotools eutils
 
@@ -13,9 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="doc"
 
-RDEPEND="|| (
-		x11-misc/xkeyboard-config
-		x11-misc/xkbdata )
+RDEPEND="x11-misc/xkeyboard-config
 	x11-libs/libX11
 	>=x11-libs/libXi-1.1.3
 	x11-apps/xkbcomp

@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libxklavier
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.126 2009/04/28 11:50:35 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.127 2009/05/05 16:14:52 remi Exp $
+
+  05 May 2009; Rémi Cardona <remi@gentoo.org> libxklavier-3.3.ebuild,
+  libxklavier-3.6.ebuild, libxklavier-3.8.ebuild, libxklavier-3.9.ebuild:
+  drop x11-misc/xkbdata support (see bug #196650)
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> libxklavier-3.6.ebuild:
   arm/sh stable
