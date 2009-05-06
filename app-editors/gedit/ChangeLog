@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.271 2009/04/28 10:56:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.272 2009/05/05 11:37:41 nirbheek Exp $
+
+*gedit-2.26.1 (05 May 2009)
+
+  05 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org> +gedit-2.26.1.ebuild:
+  Bump to 2.26.1: Bugfixes, new features galore. Including windows support
+  :p
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gedit-2.24.3.ebuild:
   arm/sh stable
