@@ -1,6 +1,87 @@
 # ChangeLog for app-portage/gentoolkit
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.134 2008/09/04 03:35:21 fuzzyray Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.153 2009/05/05 02:48:02 idl0r Exp $
+
+  05 May 2009; Christian Ruppert <idl0r@gentoo.org>
+  gentoolkit-0.2.4.3.ebuild:
+  Fixed bug 254427 and bug 254255. Cleanup.
+
+*gentoolkit-0.2.4.3 (01 May 2009)
+
+  01 May 2009; Paul Varner <fuzzyray@gentoo.org>
+  -gentoolkit-0.2.3-r1.ebuild, gentoolkit-0.2.4_pre8.ebuild,
+  -gentoolkit-0.2.4.ebuild, -gentoolkit-0.2.4.1.ebuild,
+  -gentoolkit-0.2.4.2.ebuild, gentoolkit-0.2.4.2-r1.ebuild,
+  +gentoolkit-0.2.4.3.ebuild:
+  gentoolkit-0.2.4.3 version bump. This fixes bugs #239000, #243304,
+  #249652, #253968, #259526, and #267898. Removed older ebuilds and added
+  explict RDEPEND to all ebuilds.
+
+  09 Jan 2009; Brent Baude <ranger@gentoo.org> gentoolkit-0.2.4.2-r1.ebuild:
+  stable ppc, bug 253897
+
+  08 Jan 2009; Raúl Porcel <armin76@gentoo.org>
+  gentoolkit-0.2.4.2-r1.ebuild:
+  alpha/ia64/x86 stable wrt #253897
+
+  08 Jan 2009; Jeremy Olexa <darkside@gentoo.org>
+  gentoolkit-0.2.4.2-r1.ebuild:
+  amd64 stable, bug 253897
+
+  07 Jan 2009; Jeroen Roovers <jer@gentoo.org> gentoolkit-0.2.4.2-r1.ebuild:
+  Stable for HPPA (bug #253897).
+
+  07 Jan 2009; Ferris McCormick <fmccor@gentoo.org>
+  gentoolkit-0.2.4.2-r1.ebuild:
+  Sparc stable, Bug #253897.
+
+  07 Jan 2009; Brent Baude <ranger@gentoo.org> gentoolkit-0.2.4.2-r1.ebuild:
+  stable ppc64, bug 253897
+
+*gentoolkit-0.2.4.2-r1 (30 Nov 2008)
+
+  30 Nov 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +files/equery-0.2.4.2_use_expanded.patch, +gentoolkit-0.2.4.2-r1.ebuild:
+  Add patch to read USE expanded variables from their desc files. Fixes bug
+  #238005. Thanks to Michael A. Smith <michael@smith-li.com>.
+
+  03 Oct 2008; Alexis Ballier <aballier@gentoo.org>
+  gentoolkit-0.2.4.2.ebuild:
+  unkeyword x86-fbsd, revdep-rebuild doesn't work, bug #236214
+
+  02 Oct 2008; Brent Baude <ranger@gentoo.org> gentoolkit-0.2.4.2.ebuild:
+  stable ppc, bug 170220
+
+  02 Oct 2008; Raúl Porcel <armin76@gentoo.org> gentoolkit-0.2.4.2.ebuild:
+  alpha/ia64 stable wrt #170220
+
+  01 Oct 2008; Dawid Węgliński <cla@gentoo.org> gentoolkit-0.2.4.2.ebuild:
+  Stable on x86 (bug #170220)
+
+  01 Oct 2008; Brent Baude <ranger@gentoo.org> gentoolkit-0.2.4.2.ebuild:
+  stable ppc64, bug 170220
+
+  01 Oct 2008; Jeremy Olexa <darkside@gentoo.org> gentoolkit-0.2.4.2.ebuild:
+  amd64 stable, bug #170220
+
+  01 Oct 2008; Jeroen Roovers <jer@gentoo.org> gentoolkit-0.2.4.2.ebuild:
+  Stable for HPPA (bug #170220).
+
+  30 Sep 2008; Ferris McCormick <fmccor@gentoo.org>
+  gentoolkit-0.2.4.2.ebuild:
+  Sparc stable early at developer request --- Bug #170220 --- there haven't
+  been any problems seen.
+
+  24 Sep 2008; Alexis Ballier <aballier@gentoo.org>
+  gentoolkit-0.2.4.2.ebuild:
+  keyword ~x86-fbsd thanks to Davide Italiano <dav_it@gentoo.org>, bug
+  #236214
+
+*gentoolkit-0.2.4.2 (17 Sep 2008)
+
+  17 Sep 2008; Paul Varner <fuzzyray@gentoo.org> +gentoolkit-0.2.4.2.ebuild:
+  gentoolkit-0.2.4.2 version bump. This fixes bug #233651. Bug #170220
+  tracks all fixes made for the gentoolkit-0.2.4 release.
 
 *gentoolkit-0.2.4.1 (04 Sep 2008)
 
@@ -548,6 +629,7 @@
   are no new bugs.
 
 *gentoolkit-0.2.0_pre10-r1 (31 Oct 2004)
+*gentoolkit-0.2.0_pre8-r1 (31 Oct 2004)
 
   31 Oct 2004; Marius Mauch <genone@gentoo.org>
   +files/qpkg-security-fix-68846.diff, +gentoolkit-0.2.0_pre10-r1.ebuild,

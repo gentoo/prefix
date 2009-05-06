@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.4.1.ebuild,v 1.1 2008/09/04 03:35:22 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.2.4.3.ebuild,v 1.2 2009/05/05 02:48:02 idl0r Exp $
 
 inherit eutils python prefix
 
@@ -10,21 +10,21 @@ SRC_URI="mirror://gentoo/${P}.tar.gz http://dev.gentoo.org/~fuzzyray/distfiles/$
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="userland_GNU"
+IUSE=""
 
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
-DEPEND=">=sys-apps/portage-2.1.1_pre1
-	>=dev-lang/python-2.0
-	>=dev-lang/perl-5.6
-	>=sys-apps/grep-2.4
-	userland_GNU? ( sys-apps/debianutils )"
+DEPEND="sys-apps/portage
+	dev-lang/python
+	dev-lang/perl
+	sys-apps/grep"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-revdep-prefix.patch
-	epatch "${FILESDIR}"/${P}-eclean-prefix.patch
+	epatch "${FILESDIR}"/${PN}-0.2.4.1-revdep-prefix.patch
+	epatch "${FILESDIR}"/${PN}-0.2.4.1-eclean-prefix.patch
 	# revdep-rebuild got a rewrite, none of our patches still works :(
 
 	ebegin "Adjusting to prefix (sloppyly)"
@@ -58,14 +58,16 @@ pkg_postinst() {
 	chmod 0700 "${EROOT}/var/cache/revdep-rebuild"
 
 	python_mod_optimize /usr/lib/gentoolkit
-	echo
+
+	einfo
 	elog "The default location for revdep-rebuild files has been moved"
 	elog "to /var/cache/revdep-rebuild when run as root."
-	elog
-	elog "Another alternative to equery is app-portage/portage-utils"
-	elog
-	elog "For further information on gentoolkit, please read the gentoolkit"
-	elog "guide: http://www.gentoo.org/doc/en/gentoolkit.xml"
+	einfo
+	einfo "Another alternative to equery is app-portage/portage-utils"
+	einfo
+	einfo "For further information on gentoolkit, please read the gentoolkit"
+	einfo "guide: http://www.gentoo.org/doc/en/gentoolkit.xml"
+	einfo
 }
 
 pkg_postrm() {
