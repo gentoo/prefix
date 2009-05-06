@@ -1,6 +1,63 @@
 # ChangeLog for dev-java/eclipse-ecj
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/eclipse-ecj/ChangeLog,v 1.43 2008/07/21 22:07:25 betelgeuse Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/eclipse-ecj/ChangeLog,v 1.56 2009/03/18 14:06:53 ranger Exp $
+
+  18 Mar 2009; Brent Baude <ranger@gentoo.org> eclipse-ecj-3.4-r4.ebuild:
+  Marking eclipse-ecj-3.4-r4 ppc for bug 237689
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org> eclipse-ecj-3.4-r4.ebuild:
+  amd64/x86 stable, bug #237689
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> eclipse-ecj-3.4-r4.ebuild:
+  Marking eclipse-ecj-3.4-r4 ppc64 for bug 237689
+
+*eclipse-ecj-3.4-r4 (13 Feb 2009)
+
+  13 Feb 2009; Jean-Noël Rivasseau <elvanor@gentoo.org> -files/ecj-3.4,
+  +eclipse-ecj-3.4-r4.ebuild:
+  Bump to fix #237689 by actually removing support for gcj. gcj support is
+  still available in the overlay.
+
+  11 Feb 2009; Jean-Noël Rivasseau <elvanor@gentoo.org>
+  eclipse-ecj-3.3.0-r2.ebuild, eclipse-ecj-3.3.0-r3.ebuild,
+  eclipse-ecj-3.4-r3.ebuild:
+  Fixed bug #235410.
+
+  19 Jan 2009; Petteri Räty <betelgeuse@gentoo.org>
+  eclipse-ecj-3.4-r3.ebuild:
+  Add app-arch/unzip to DEPEND.
+
+  19 Jan 2009; Petteri Räty <betelgeuse@gentoo.org>
+  -eclipse-ecj-3.4-r2.ebuild:
+  Remove old ebuild.
+
+  20 Dec 2008; Markus Meier <maekke@gentoo.org> eclipse-ecj-3.2.2-r1.ebuild,
+  eclipse-ecj-3.3.0-r3.ebuild:
+  amd64/x86 stable, bug #249521
+
+  06 Dec 2008; nixnut <nixnut@gentoo.org> eclipse-ecj-3.2.2-r1.ebuild,
+  eclipse-ecj-3.3.0-r3.ebuild:
+  Stable on ppc wrt bug 249521
+
+*eclipse-ecj-3.4-r3 (27 Sep 2008)
+
+  27 Sep 2008; Petteri Räty <betelgeuse@gentoo.org>
+  +eclipse-ecj-3.4-r3.ebuild:
+  Use EAPI 2 use dependencies for gcj.
+
+  27 Sep 2008; Petteri Räty <betelgeuse@gentoo.org>
+  eclipse-ecj-3.4-r2.ebuild:
+  Make gcj support work with stable gcc.
+
+  17 Sep 2008; Vlastimil Babka <caster@gentoo.org>
+  eclipse-ecj-3.4-r2.ebuild:
+  Don't restrict gcc dependency.
+
+*eclipse-ecj-3.4-r2 (01 Aug 2008)
+
+  01 Aug 2008; Jean-Noël Rivasseau <elvanor@gentoo.org> +files/ecj-3.4,
+  +eclipse-ecj-3.4-r2.ebuild:
+  Bumping eclipse-ecj-3.4, moving from overlay to tree.
 
 *eclipse-ecj-3.3.0-r3 (21 Jul 2008)
 *eclipse-ecj-3.2.2-r1 (21 Jul 2008)
