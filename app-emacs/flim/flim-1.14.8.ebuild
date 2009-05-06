@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/flim-1.14.8.ebuild,v 1.11 2007/10/15 22:02:27 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/flim-1.14.8.ebuild,v 1.14 2009/05/05 17:02:21 ulm Exp $
 
 inherit elisp
 
@@ -13,8 +13,9 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
-DEPEND="!app-emacs/limit
-	>=app-emacs/apel-10.3"
+DEPEND=">=app-emacs/apel-10.3"
+RDEPEND="!app-emacs/limit
+	${DEPEND}"
 
 SITEFILE=60${PN}-gentoo.el
 

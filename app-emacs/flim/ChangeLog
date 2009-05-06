@@ -1,6 +1,12 @@
 # ChangeLog for app-emacs/flim
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.28 2007/10/15 22:02:27 opfer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.31 2009/05/05 17:02:21 ulm Exp $
+
+  05 May 2009; Ulrich Mueller <ulm@gentoo.org> flim-1.14.8.ebuild:
+  Fix dependencies, blocker belongs in RDEPEND only.
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org> flim-1.14.8.ebuild:
+  set explicit RDEPEND
 
   15 Oct 2007; Christian Faulhammer <opfer@gentoo.org> flim-1.14.8.ebuild:
   stable amd64, bug 195107
