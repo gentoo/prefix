@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.44.00.ebuild,v 1.1 2008/11/01 07:19:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.46.00.ebuild,v 1.1 2009/05/05 02:10:48 vapier Exp $
 
-inherit flag-o-matic toolchain-funcs eutils multilib prefix
+inherit toolchain-funcs eutils multilib prefix
 
 MAN_VER=10.33
 DESCRIPTION="A set of utilities for converting to/from the netpbm (and related) formats"
@@ -13,7 +13,7 @@ SRC_URI="mirror://gentoo/${P}.tar.lzma
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="jbig jpeg jpeg2k png rle svga tiff xml zlib"
+IUSE="jbig jpeg jpeg2k png rle svga tiff X xml zlib"
 
 RDEPEND="jpeg? ( >=media-libs/jpeg-6b )
 	jpeg2k? ( media-libs/jasper )
@@ -23,7 +23,8 @@ RDEPEND="jpeg? ( >=media-libs/jpeg-6b )
 	zlib? ( sys-libs/zlib )
 	svga? ( media-libs/svgalib )
 	jbig? ( media-libs/jbigkit )
-	rle? ( media-libs/urt )"
+	rle? ( media-libs/urt )
+	X? ( x11-libs/libX11 )"
 DEPEND="${RDEPEND}
 	app-arch/lzma-utils"
 
@@ -81,7 +82,6 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/netpbm-10.31-build.patch
-	epatch "${FILESDIR}"/netpbm-10.35.0-xml2.patch #137871
 
 	epatch "${FILESDIR}"/${PN}-10.42.0-interix.patch
 	epatch "${FILESDIR}"/netpbm-prefix.patch
@@ -91,23 +91,31 @@ src_unpack() {
 	# Solaris needs c99 with jpeg2k, bug #244797
 	use jpeg2k && append-flags -std=c99
 
-	rm -f configure
-	cp Makefile.config.in Makefile.config
-	cat >> Makefile.config <<-EOF
-	# Gentoo toolchain options
+	# avoid ugly depend.mk warnings
+	touch $(find . -name Makefile | sed s:Makefile:depend.mk:g)
+
+	cat config.mk.in /dev/stdin >> config.mk <<-EOF
+	# Misc crap
+	BUILD_FIASCO = N
+	SYMLINK = ln -sf
+
+	# Toolchain options
 	CC = $(tc-getCC) -Wall
+	LD = \$(CC)
 	CC_FOR_BUILD = $(tc-getBUILD_CC)
+	LD_FOR_BUILD = \$(CC_FOR_BUILD)
 	AR = $(tc-getAR)
 	RANLIB = $(tc-getRANLIB)
+
 	STRIPFLAG =
 	CFLAGS_SHLIB = -fPIC
 
-	# workaround parallel build issues
-	SYMLINK = ln -sf
-
-	NETPBMLIBTYPE = $(netpbm_libtype)
-	NETPBMLIBSUFFIX = $(netpbm_libsuffix)
+	LDRELOC = \$(LD) -r
 	LDSHLIB = $(netpbm_ldshlib)
+	LINKER_CAN_DO_EXPLICIT_LIBRARY = N # we can, but dont want to
+	LINKERISCOMPILER = Y
+	NETPBMLIBSUFFIX = $(netpbm_libsuffix)
+	NETPBMLIBTYPE = $(netpbm_libtype)
 
 	# Gentoo build options
 	TIFFLIB = $(netpbm_config tiff)
@@ -122,20 +130,20 @@ src_unpack() {
 	JASPERHDR_DIR = $(netpbm_config jpeg2k "!")
 	URTLIB = $(netpbm_config rle)
 	URTHDR_DIR =
+	X11LIB = $(netpbm_config X X11)
+	X11HDR_DIR =
 	EOF
 
 	[[ ${CHOST} == *-interix3* ]] && echo "INTTYPES_H = <stdint.h>" >> Makefile.config
 }
 
 src_compile() {
-	replace-flags -mcpu=ultrasparc "-mcpu=v8 -mtune=ultrasparc"
-	replace-flags -mcpu=v9 "-mcpu=v8 -mtune=v9"
 	[[ ${CHOST} == *-darwin* ]] && append-flags -fno-common
 	# Solaris doesn't have vasprintf, libiberty does have it, for gethostbyname
 	# we need -lnsl, for connect -lsocket
 	[[ ${CHOST} == *-solaris* ]] && extlibs="-liberty -lnsl -lsocket"
 
-	emake LIBS="-lz ${extlibs}" -j1 || die
+	emake LIBS="${extlibs}" -j1 || die
 }
 
 src_install() {

@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.209 2009/03/06 02:51:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.210 2009/05/05 02:10:48 vapier Exp $
+
+*netpbm-10.46.00 (05 May 2009)
+
+  05 May 2009; Mike Frysinger <vapier@gentoo.org> +netpbm-10.46.00.ebuild:
+  Version bump.
+
+*netpbm-10.26.61 (05 May 2009)
+
+  05 May 2009; Mike Frysinger <vapier@gentoo.org> +netpbm-10.26.61.ebuild:
+  Version bump.
 
   06 Mar 2009; Jeroen Roovers <jer@gentoo.org> netpbm-10.44.00-r1.ebuild:
   Stable for HPPA (bug #249384).
