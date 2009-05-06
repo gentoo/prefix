@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/vte
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.223 2009/04/28 11:03:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.224 2009/05/03 17:24:56 eva Exp $
+
+*vte-0.20.1 (03 May 2009)
+
+  03 May 2009; Gilles Dartiguelongue <eva@gentoo.org> metadata.xml,
+  vte-0.16.8.ebuild, -vte-0.16.13.ebuild, -vte-0.16.14.ebuild,
+  -vte-0.17.4.ebuild, -vte-0.17.4-r2.ebuild, +vte-0.20.1.ebuild:
+  New version for GNOME 2.26. Provide a catalog for glade, drop old backends
+  and write a new one using pangocairo.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> vte-0.17.4-r3.ebuild:
   arm/sh stable
