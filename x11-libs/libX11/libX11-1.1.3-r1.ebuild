@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.1.3-r1.ebuild,v 1.2 2009/05/04 15:09:18 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.1.3-r1.ebuild,v 1.3 2009/05/05 07:32:46 ssuominen Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
@@ -32,7 +32,7 @@ pkg_setup() {
 	# $(use_enable nls xlocale)
 }
 
-PATCHES="${FILESDIR}/libX11-1.1.3-xcb-locking.patch"
+PATCHES=("${FILESDIR}/libX11-1.1.3-xcb-locking.patch")
 
 src_compile() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.1.2-r1.ebuild,v 1.11 2009/05/04 15:09:18 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.1.2-r1.ebuild,v 1.12 2009/05/05 07:32:46 ssuominen Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
@@ -32,5 +32,5 @@ pkg_setup() {
 	# $(use_enable nls xlocale)
 }
 
-PATCHES="${FILESDIR}/libX11-1.1.2-XGetMotionEvents-order-fix.patch
-	${FILESDIR}/libX11-1.1.2-XimGetWindowEventmask-fix.patch"
+PATCHES=("${FILESDIR}/libX11-1.1.2-XGetMotionEvents-order-fix.patch
+	${FILESDIR}/libX11-1.1.2-XimGetWindowEventmask-fix.patch")
