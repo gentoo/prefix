@@ -1,6 +1,9 @@
 # ChangeLog for virtual/tex-base
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/tex-base/ChangeLog,v 1.3 2008/02/12 20:03:17 opfer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/tex-base/ChangeLog,v 1.4 2009/05/05 07:19:07 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org> tex-base-0.ebuild:
+  remove app-text/tetex as a provider
 
   12 Feb 2008; Christian Faulhammer <opfer@gentoo.org> tex-base-0.ebuild:
   Adjust DESCRIPTION and HOMEPAGE field
