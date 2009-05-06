@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.24.1.ebuild,v 1.1 2009/05/04 21:57:34 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.24.1.ebuild,v 1.2 2009/05/05 23:36:21 mr_bones_ Exp $
 
 inherit eutils gnome2 multilib
 
@@ -86,4 +86,3 @@ pkg_postinst() {
 		pango-querymodules > ${PANGO_CONFDIR}/pango.modules
 	fi
 }
-
