@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xeyes
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xeyes/ChangeLog,v 1.14 2007/02/22 00:13:05 jokey Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xeyes/ChangeLog,v 1.15 2009/05/05 07:51:26 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org> xeyes-1.0.1.ebuild:
+  fix repoman warnings
 
   22 Feb 2007; Markus Ullmann <jokey@gentoo.org> ChangeLog:
   Redigest for Manifest2
