@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.26.1.ebuild,v 1.1 2009/05/02 19:15:31 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.26.1.ebuild,v 1.2 2009/05/05 20:24:35 ford_prefect Exp $
 
 GCONF_DEBUG="no"
 
@@ -70,7 +70,7 @@ pkg_postinst() {
 	elog "  lzma    - app-arch/lzma"
 	elog "  lzop    - app-arch/lzop"
 	elog "  cpio    - app-arch/cpio"
-	elog "  iso     - app-arch/cdrtools"
+	elog "  iso     - app-cdr/cdrtools"
 	elog "  jar,zip - app-arch/zip and app-arch/unzip"
 	elog "  lha     - app-arch/lha"
 	elog "  rar     - app-arch/unrar"
