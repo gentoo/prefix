@@ -1,9 +1,5 @@
 # $Id$
 
-# Markus Duft <mduft@gentoo.org> (05 May 2009)
-# not yet .... :*(
->=app-shells/bash-4.0
-
 # Markus Duft <mduft@gentoo.org> (24 Apr 2009)
 # python 2.6 seems to not work correctly yet. need to further
 # investigate before unmasking.
