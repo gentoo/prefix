@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/xineramaproto
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xineramaproto/ChangeLog,v 1.29 2007/09/08 15:25:26 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xineramaproto/ChangeLog,v 1.30 2009/05/05 15:43:23 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  xineramaproto-1.1.2.ebuild:
+  fix repoman warnings
 
   08 Sep 2007; <jeroen@gentoo.org> files/digest-xineramaproto-1.1.2,
   Manifest:
