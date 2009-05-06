@@ -1,6 +1,9 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.53 2009/03/18 20:47:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.54 2009/05/05 07:21:24 aballier Exp $
+
+  05 May 2009; Alexis Ballier <aballier@gentoo.org> -texlive-2007-r3.ebuild:
+  remove the 2007 meta ebuild now that 2008 is stable
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> texlive-2008.ebuild:
   Marking texlive-2008 ppc stable for bug 253551
