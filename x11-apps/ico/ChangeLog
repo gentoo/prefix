@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/ico
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/ico/ChangeLog,v 1.20 2007/12/19 23:49:47 cla Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/ico/ChangeLog,v 1.21 2009/05/05 07:33:42 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org> ico-1.0.2.ebuild:
+  fix repoman warnings
 
   19 Dec 2007; Dawid Węgliński <cla@gentoo.org> ico-1.0.2.ebuild:
   Stable on x86 (bug #202087)
