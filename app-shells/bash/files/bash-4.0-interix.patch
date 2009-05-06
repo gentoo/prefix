@@ -1,0 +1,14 @@
+diff -ru bash-4.0.orig/lib/sh/getcwd.c bash-4.0/lib/sh/getcwd.c
+--- bash-4.0.orig/lib/sh/getcwd.c	2009-05-06 11:34:51 +0200
++++ bash-4.0/lib/sh/getcwd.c	2009-05-06 11:47:01 +0200
+@@ -50,6 +50,10 @@
+ 
+ #include <xmalloc.h>
+ 
++/* make sure this agrees with externs.h!
++ * for some reason we cannot include it... */
++#define MP_RMDOT    0x04
++
+ #if !defined (errno)
+ extern int errno;
+ #endif /* !errno */

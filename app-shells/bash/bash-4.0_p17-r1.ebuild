@@ -88,6 +88,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
 
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
+	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix.patch
 
 	# modify the bashrc file for prefix
 	cp "${FILESDIR}"/bashrc "${T}"
@@ -153,6 +154,10 @@ src_compile() {
 		export ac_cv_header_inttypes_h=no
 		export gt_cv_header_inttypes_h=no
 		export jm_ac_cv_header_inttypes_h=no
+
+		# argh... something doomed this test on windows ... ???
+		export bash_cv_type_intmax_t=yes
+		export bash_cv_type_uintmax_t=yes
 	fi
 
 	econf \
