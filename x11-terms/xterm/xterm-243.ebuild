@@ -1,7 +1,8 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-229.ebuild,v 1.9 2007/11/20 05:21:47 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-243.ebuild,v 1.1 2009/05/05 12:41:03 ssuominen Exp $
 
+EAPI=2
 inherit flag-o-matic
 
 DESCRIPTION="Terminal Emulator for X Windows"
@@ -10,8 +11,8 @@ SRC_URI="ftp://invisible-island.net/${PN}/${P}.tgz"
 
 LICENSE="X11"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE="truetype Xaw3d unicode toolbar paste64"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="truetype Xaw3d unicode toolbar"
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libXrender
@@ -31,9 +32,19 @@ pkg_setup() {
 	DEFAULTS_DIR="${EPREFIX}/usr/share/X11/app-defaults"
 }
 
-src_compile() {
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# modifications needed to run on interix
+	epatch "${FILESDIR}"/${PN}-232-interix.patch
+}
+
+src_configure() {
 	filter-flags "-fstack-protector"
 	replace-flags "-Os" "-O2" # work around gcc-4.1.1-r[01] bugs
+	# laymans fix, can't find another way, fd_mask & POSIX_C_SOURCE issue
+	[[ ${CHOST} == *-darwin8* ]] && export ac_cv_header_X11_Xpoll_h=no
 
 	econf --libdir="${EPREFIX}"/etc \
 		--with-x \
@@ -55,18 +66,16 @@ src_compile() {
 		--enable-logging \
 		--enable-dabbrev \
 		--with-app-defaults=${DEFAULTS_DIR} \
+		--x-libraries="${EROOT}usr/lib" \
 		$(use_enable toolbar) \
 		$(use_enable truetype freetype) \
 		$(use_enable unicode luit) $(use_enable unicode mini-luit) \
-		$(use_with Xaw3d) \
-		$(use_enable paste64)
-
-	emake || die "emake failed."
+		$(use_with Xaw3d)
 }
 
 # Parallel make causes File exists error and dies. Forcing -j1 for now.
 src_install() {
-	emake -j1 DESTDIR="${D}" install || die "emake install failed."
+	emake -j1 DESTDIR="${D}" install || die "emake install failed"
 	dodoc README{,.i18n} ctlseqs.txt
 	dohtml xterm.log.html
 
@@ -77,17 +86,15 @@ src_install() {
 	fperms 0755 /usr/bin/xterm
 
 	# restore the navy blue
-	sed -i "s:blue2$:blue:" "${ED}"${DEFAULTS_DIR}/XTerm-color
+	sed -i "s:blue2$:blue:" "${D}"${DEFAULTS_DIR}/XTerm-color
 
 	# Fix for bug #91453 at Thomas Dickey's suggestion:
-	echo "*allowWindowOps: 	false" >> "${ED}"/${DEFAULTS_DIR}/XTerm
-	echo "*allowWindowOps: 	false" >> "${ED}"/${DEFAULTS_DIR}/UXTerm
+	echo "*allowWindowOps: 	false" >> "${D}"/${DEFAULTS_DIR}/XTerm
+	echo "*allowWindowOps: 	false" >> "${D}"/${DEFAULTS_DIR}/UXTerm
 }
 
 pkg_postinst() {
-	if use paste64 ; then
-		elog "bracketed paste mode requires the allowWindowOps resource to be true"
-		elog "which is false by default for security reasons (see bug #91453)."
-		elog "To be able to use it add 'allowWindowOps: true' to your resources"
-	fi
+	elog "bracketed paste mode requires the allowWindowOps resource to be true"
+	elog "which is false by default for security reasons (see bug #91453)."
+	elog "To be able to use it add 'allowWindowOps: true' to your resources"
 }

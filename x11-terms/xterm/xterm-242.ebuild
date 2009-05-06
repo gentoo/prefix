@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-242.ebuild,v 1.8 2009/04/16 02:47:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-242.ebuild,v 1.9 2009/05/05 12:42:53 ssuominen Exp $
 
 inherit flag-o-matic
 
@@ -95,9 +95,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	if use paste64 ; then
-		elog "bracketed paste mode requires the allowWindowOps resource to be true"
-		elog "which is false by default for security reasons (see bug #91453)."
-		elog "To be able to use it add 'allowWindowOps: true' to your resources"
-	fi
+	elog "bracketed paste mode requires the allowWindowOps resource to be true"
+	elog "which is false by default for security reasons (see bug #91453)."
+	elog "To be able to use it add 'allowWindowOps: true' to your resources"
 }

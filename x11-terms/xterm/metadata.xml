@@ -6,7 +6,6 @@
 		Default terminal for X-windows servers.
 	</longdescription>
 	<use>
-		<flag name='paste64'>Enable support for bracketed paste mode</flag>
 		<flag name='toolbar'>Enable the xterm toolbar to be built</flag>
 	</use>
 </pkgmetadata>
