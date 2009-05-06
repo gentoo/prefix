@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/x11-apps/rgb/rgb-1.0.1.ebuild,v 1.11 2006/12/19 23:54:19 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/rgb/rgb-1.0.1.ebuild,v 1.12 2009/05/05 07:37:29 fauli Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
@@ -10,7 +10,7 @@ inherit x-modular
 DESCRIPTION="uncompile an rgb color-name database"
 
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
-
+IUSE=""
 RDEPEND=""
 DEPEND="${RDEPEND}
 	x11-proto/xproto"

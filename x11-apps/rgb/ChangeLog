@@ -1,6 +1,10 @@
 # ChangeLog for x11-apps/rgb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/rgb/ChangeLog,v 1.42 2009/04/16 02:06:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/rgb/ChangeLog,v 1.43 2009/05/05 07:37:29 fauli Exp $
+
+  05 May 2009; Christian Faulhammer <fauli@gentoo.org> rgb-1.0.1.ebuild,
+  rgb-1.0.3.ebuild:
+  fix repoman warnings
 
   16 Apr 2009; Jeroen Roovers <jer@gentoo.org> rgb-1.0.3.ebuild:
   Stable for HPPA (bug #251832).
