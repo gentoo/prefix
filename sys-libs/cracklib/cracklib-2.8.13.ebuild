@@ -52,8 +52,10 @@ src_install() {
 
 	# move shared libs to /
 	dodir /$(get_libdir)
-	[[ ${CHOST} != *-mint* ]] && \
-		mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)/ || die "could not move shared"
+	if [[ ${CHOST} != *-mint* ]]; then
+		mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)/ \
+			|| die "could not move shared"
+	fi
 	gen_usr_ldscript libcrack$(get_libname)
 
 	insinto /usr/share/dict
