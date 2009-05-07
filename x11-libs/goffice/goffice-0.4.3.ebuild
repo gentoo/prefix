@@ -11,7 +11,7 @@ HOMEPAGE="http://freshmeat.net/projects/goffice/"
 
 LICENSE="GPL-2"
 SLOT="0.4"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x64-solaris"
 IUSE="doc gnome"
 #cairo support broken and -gtk broken
 

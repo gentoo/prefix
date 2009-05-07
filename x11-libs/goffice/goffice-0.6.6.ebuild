@@ -11,7 +11,7 @@ HOMEPAGE="http://freshmeat.net/projects/goffice/"
 
 LICENSE="GPL-2"
 SLOT="0.6"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x64-solaris"
 IUSE="doc gnome"
 
 # Raising glib dep to 2.14 to drop pcre dependency
