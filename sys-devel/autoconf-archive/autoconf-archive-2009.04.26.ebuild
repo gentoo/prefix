@@ -11,7 +11,7 @@ SRC_URI="http://autoconf-archive.cryp.to/${PN}-${MY_PV}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 S=${WORKDIR}/${PN}-${MY_PV}
