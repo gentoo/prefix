@@ -1,0 +1,6 @@
+# Copyright 2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+# Michael Haubenwallner <haubi@gentoo.org> (08 May 2009)
+# IBM does not provide Java Communications API support for AIX
+dev-java/ibm-jdk-bin javacomm
