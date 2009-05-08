@@ -1,6 +1,21 @@
 # ChangeLog for dev-libs/boost
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.152 2009/04/04 14:25:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.155 2009/04/14 20:01:17 ranger Exp $
+
+  14 Apr 2009; Brent Baude <ranger@gentoo.org> boost-1.35.0-r2.ebuild:
+  Marking boost-1.35.0-r2 ppc64 for bug 245192
+
+  14 Apr 2009; Tiziano Müller <dev-zero@gentoo.org> boost-1.37.0-r1.ebuild:
+  Correct non-mt symlink creation for debug libs (bug #256697)
+
+*boost-1.37.0-r1 (07 Apr 2009)
+*boost-1.36.0-r1 (07 Apr 2009)
+*boost-1.35.0-r5 (07 Apr 2009)
+
+  07 Apr 2009; Tiziano Müller <dev-zero@gentoo.org>
+  +files/1.35-remove-hardlink-creation.patch, +files/buildid-fix.patch,
+  +boost-1.35.0-r5.ebuild, +boost-1.36.0-r1.ebuild, +boost-1.37.0-r1.ebuild:
+  Slotting revisited: using profile files now. Solved bugs #259167, #258926.
 
   04 Apr 2009; Raúl Porcel <armin76@gentoo.org> boost-1.35.0-r2.ebuild:
   alpha/ia64 stable wrt #245192
