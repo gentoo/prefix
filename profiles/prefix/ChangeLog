@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  08 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask media-video/ffmpeg-9999 (vcs ebuild)
+
   08 May 2009; Michael Haubenwallner <haubi@gentoo.org>
   +aix/package.use.mask:
   use.masked javacomm for dev-java/ibm-jdk-bin:
