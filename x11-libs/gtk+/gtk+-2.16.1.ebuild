@@ -26,12 +26,15 @@ RDEPEND="X? (
 		x11-libs/libXfixes
 		x11-libs/libXcomposite
 		x11-libs/libXdamage
+		>=x11-libs/cairo-1.6[X]
+	)
+	aqua? (
+		>=x11-libs/cairo-1.6[aqua]
 	)
 	xinerama? ( x11-libs/libXinerama )
 	>=dev-libs/glib-2.19.7
 	>=x11-libs/pango-1.20
 	>=dev-libs/atk-1.13
-	>=x11-libs/cairo-1.6[X]
 	media-libs/fontconfig
 	x11-misc/shared-mime-info
 	>=media-libs/libpng-1.2.1
