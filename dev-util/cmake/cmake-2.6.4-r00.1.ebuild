@@ -58,6 +58,12 @@ PATCHES=(
 src_configure() {
 	local qt_arg par_arg
 
+	# Add gcc libs to the default link paths
+	sed -i \
+		-e "s|@GENTOO_PORTAGE_GCCLIBDIR@|${EPREFIX}/usr/${CHOST}/lib|g" \
+		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
+		Modules/Platform/{UnixPaths,Darwin}.cmake  || die "sed failed"
+
 	if [[ "$(gcc-major-version)" -eq "3" ]] ; then
 		append-flags "-fno-stack-protector"
 	fi
