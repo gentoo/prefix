@@ -40,6 +40,6 @@ src_configure() {
 # bug 265586
 src_install() {
 	qt4-build_src_install
-	insinto ${QTHEADERDIR}
+	insinto ${QTHEADERDIR#${EPREFIX}}
 	doins -r "${S}"/include/Phonon || die "failed to install Phonon headers"
 }
