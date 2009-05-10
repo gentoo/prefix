@@ -1,0 +1,15 @@
+* pngtopnm uses zlib itself, so don't rely on libpng-config, which does
+  not output -lz since it's not necessary to do so to link against
+  libpng
+
+--- converter/other/Makefile
++++ converter/other/Makefile
+@@ -152,7 +152,7 @@
+ ifeq ($(shell libpng-config --version),)
+   PNGLIB_LIBOPTS = $(shell $(LIBOPT) $(LIBOPTR) $(PNGLIB) $(ZLIB))
+ else
+-  PNGLIB_LIBOPTS = $(shell libpng-config --ldflags)
++  PNGLIB_LIBOPTS = $(shell libpng-config --ldflags) $(ZLIB)
+ endif
+ 
+ pngtopnm pngtopam: %: %.o $(NETPBMLIB) $(LIBOPT)
