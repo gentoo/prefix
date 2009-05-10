@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils flag-o-matic
+inherit common-lisp-common-3 eutils flag-o-matic
 
 #same order as http://www.sbcl.org/platform-table.html
 BV_X86=1.0.28
