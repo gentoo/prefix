@@ -56,7 +56,6 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
-	epatch "${FILESDIR}"/${PN}-2.18.4-irix.patch
 	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
 
 	# build glib with parity for native win32
