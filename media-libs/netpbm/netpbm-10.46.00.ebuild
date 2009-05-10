@@ -29,7 +29,7 @@ DEPEND="${RDEPEND}
 	app-arch/lzma-utils"
 
 maint_pkg_create() {
-	local base="/usr/local/src"
+	local base="${EPREFIX}/usr/local/src"
 	local srcdir="${base}/netpbm/release_number"
 	if [[ -d ${srcdir} ]] ; then
 		cd "${T}" || die
@@ -86,7 +86,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-10.42.0-interix.patch
 	epatch "${FILESDIR}"/netpbm-prefix.patch
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
-	editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
+		editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
 
 	# Solaris needs c99 with jpeg2k, bug #244797
 	use jpeg2k && append-flags -std=c99
