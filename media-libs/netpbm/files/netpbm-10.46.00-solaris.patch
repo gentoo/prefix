@@ -1,0 +1,17 @@
+* don't define these if you include strings.h on Solaris, the latter
+  defines them in that case
+
+--- pm_config.in.h
++++ pm_config.in.h
+@@ -103,9 +103,11 @@
+ 
+ #ifndef __SASC
+ #ifndef _DCC    /* Amiga DICE Compiler */
++#ifndef __sun__  /* Solaris */
+ #define bzero(dst,len) memset(dst,0,len)
+ #define bcopy(src,dst,len) memcpy(dst,src,len)
+ #define bcmp memcmp
++#endif
+ #endif /* _DCC */
+ #endif /* __SASC */
+ 
