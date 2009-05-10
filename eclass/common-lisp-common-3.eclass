@@ -11,8 +11,8 @@
 
 inherit eutils
 
-CLSOURCEROOT=/usr/share/common-lisp/source/
-CLSYSTEMROOT=/usr/share/common-lisp/systems/
+CLSOURCEROOT=${EPREFIX}/usr/share/common-lisp/source/
+CLSYSTEMROOT=${EPREFIX}/usr/share/common-lisp/systems/
 
 # Many of our Common Lisp ebuilds are either inspired by, or actually
 # use packages and files from the Debian project's archives.
@@ -38,17 +38,17 @@ do-debian-credits() {
 impl-save-timestamp-hack() {
 	local impl=$1
 	dodir /usr/share/${impl}
-	tar cpjf ${D}/usr/share/${impl}/portage-timestamp-compensate -C ${D}/usr/$(get_libdir)/${impl} .
+	tar cpjf ${ED}/usr/share/${impl}/portage-timestamp-compensate -C ${ED}/usr/$(get_libdir)/${impl} .
 }
 
 impl-restore-timestamp-hack() {
 	local impl=$1
-	tar xjpfo /usr/share/${impl}/portage-timestamp-compensate -C /usr/$(get_libdir)/${impl}
+	tar xjpfo ${EPREFIX}/usr/share/${impl}/portage-timestamp-compensate -C ${EPREFIX}/usr/$(get_libdir)/${impl}
 }
 
 impl-remove-timestamp-hack() {
 	local impl=$1
-	rm -rf /usr/$(get_libdir)/${impl} &>/dev/null || true
+	rm -rf ${EPREFIX}/usr/$(get_libdir)/${impl} &>/dev/null || true
 }
 
 standard-impl-postinst() {
@@ -72,7 +72,7 @@ standard-impl-postrm() {
 			*)
 				;;
 		esac
-		rm -rf /var/cache/common-lisp-controller/*/${impl}
+		rm -rf ${EPREFIX}/var/cache/common-lisp-controller/*/${impl}
 	fi
 }
 
