@@ -26,7 +26,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.14.12-nls.patch #192819
-	epatch "${FILESDIR}"/${PN}-1.14.25-ldadd-order.patch
+	#epatch "${FILESDIR}"/${PN}-1.14.25-ldadd-order.patch
 	if ! use unicode ; then
 		sed -i "s:ncursesw/::" dselect/{Makefile.in,dselect.h,main.cc} #217046
 		export ac_cv_lib_ncursesw_initscr=no
