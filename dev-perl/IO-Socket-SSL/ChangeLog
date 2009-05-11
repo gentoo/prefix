@@ -1,6 +1,16 @@
 # ChangeLog for dev-perl/IO-Socket-SSL
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/ChangeLog,v 1.109 2009/05/06 00:43:31 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Socket-SSL/ChangeLog,v 1.112 2009/05/08 17:52:55 tove Exp $
+
+  08 May 2009; Torsten Veller <tove@gentoo.org> -IO-Socket-SSL-1.12.ebuild,
+  -IO-Socket-SSL-1.13.ebuild:
+  Cleanup
+
+  07 May 2009; Raúl Porcel <armin76@gentoo.org> IO-Socket-SSL-1.24.ebuild:
+  alpha/arm/ia64/s390/sh stable wrt #268173
+
+  06 May 2009; Jeroen Roovers <jer@gentoo.org> IO-Socket-SSL-1.24.ebuild:
+  Stable for HPPA (bug #268173).
 
   06 May 2009; Tiago Cunha <tcunha@gentoo.org> IO-Socket-SSL-1.24.ebuild:
   stable sparc, bug 268173
