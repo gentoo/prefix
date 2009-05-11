@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.278 2009/04/26 11:19:56 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.279 2009/05/08 05:46:34 tove Exp $
+
+  08 May 2009; Torsten Veller <tove@gentoo.org>
+  +files/perl-fix_h2ph_include_quote.patch, perl-5.8.8-r6.ebuild:
+  Fix h2ph to handle system headers with quotes
 
   26 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
   +files/perl-5.8.8-lib32.patch, files/perl-5.8.8-lib64.patch,

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r6.ebuild,v 1.3 2009/04/26 11:19:56 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r6.ebuild,v 1.4 2009/05/08 05:46:34 tove Exp $
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -167,6 +167,10 @@ src_unpack() {
 	EOF
 	$(tc-getCC) -o "${T}"/test-asm-page.o -c "${T}"/test-asm-page.c >& /dev/null \
 	|| epatch "${FILESDIR}"/${P}-asm-page-h-compile-failure.patch
+
+	# Also add the directory prefix of the current file when the quote syntax is
+	# used; 'require' will only look in @INC, not the current directory.
+	epatch "${FILESDIR}"/${PN}-fix_h2ph_include_quote.patch
 
 	# perlcc fix patch - bug #181229
 	epatch "${FILESDIR}"/${P}-perlcc.patch
