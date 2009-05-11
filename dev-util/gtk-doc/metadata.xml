@@ -2,4 +2,10 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>gnome</herd>
+<longdescription lang="en">
+	GTK-Doc is used to document C code.
+	It is typically used to document the public API of libraries,
+	such as the GTK+ and GNOME libraries, but it can also be used
+	to document application code.
+</longdescription>
 </pkgmetadata>

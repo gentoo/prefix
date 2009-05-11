@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.104 2009/05/04 00:29:10 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.105 2009/05/09 15:57:28 leio Exp $
+
+  09 May 2009; Mart Raudsepp <leio@gentoo.org> metadata.xml:
+  Add a long description from upstream DOAP file.
 
 *gtk-doc-1.11 (04 May 2009)
 
