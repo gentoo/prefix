@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/libgnome
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.174 2009/04/28 14:35:37 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.175 2009/05/10 18:34:54 eva Exp $
+
+*libgnome-2.26.0 (10 May 2009)
+
+  10 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -libgnome-2.20.1.1.ebuild, -libgnome-2.22.0.ebuild,
+  +libgnome-2.26.0.ebuild, +files/libgnome-2.26.0-branding.patch:
+  New version for GNOME 2.26. Code cleanup and translation updates. Branding
+  patch by dang. Clean up old revisions.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> libgnome-2.24.1.ebuild:
   sh stable
