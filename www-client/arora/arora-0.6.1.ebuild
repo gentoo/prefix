@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/arora/arora-0.4.ebuild,v 1.3 2008/11/06 00:58:12 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/arora/arora-0.6.1.ebuild,v 1.2 2009/05/10 14:40:09 yngwin Exp $
 
 EAPI=2
 inherit eutils qt4
@@ -12,13 +12,16 @@ SRC_URI="http://arora.googlecode.com/files/${P}.tar.gz"
 LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE=""
+IUSE="debug"
 
-RDEPEND="x11-libs/qt-webkit:4"
+RDEPEND="x11-libs/qt-gui
+	x11-libs/qt-sql
+	x11-libs/qt-webkit"
 DEPEND="$RDEPEND"
 
-ARORA_LANGS="da de en es es_CR et fr_CA gl he hu it nl pl pt_BR ru tr"
-ARORA_NOLONGLANGS="cs_CZ fr_FR"
+ARORA_LANGS="es es_CR et_EE fr_CA gl ms nb_NO uk zh_CN"
+ARORA_NOLONGLANGS="cs_CZ da_DK de_DE fr_FR he_IL hu_HU it_IT ja_JP nl_NL pl_PL
+	ru_RU sk_SK tr_TR"
 
 for L in $ARORA_LANGS; do
 	IUSE="$IUSE linguas_$L"
@@ -49,7 +52,7 @@ src_prepare() {
 }
 
 src_configure() {
-	eqmake4 arora.pro PREFIX="${ED}/usr"
+	eqmake4 arora.pro PREFIX="${EPREFIX}"/usr
 }
 
 src_compile() {
@@ -60,6 +63,6 @@ src_compile() {
 }
 
 src_install() {
-	emake -j1 DESTDIR="${D}" install || die 'make install failed'
+	emake -j1 INSTALL_ROOT="${D}" install || die 'make install failed'
 	dodoc AUTHORS ChangeLog README
 }
