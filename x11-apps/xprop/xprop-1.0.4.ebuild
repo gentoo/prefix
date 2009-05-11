@@ -8,7 +8,7 @@
 inherit x-modular
 
 DESCRIPTION="property displayer for X"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris ~x86-winnt"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE=""
 RDEPEND="x11-libs/libXmu
 	x11-libs/libX11"
