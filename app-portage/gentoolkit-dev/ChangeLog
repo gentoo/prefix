@@ -1,6 +1,23 @@
 # ChangeLog for app-portage/gentoolkit-dev
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.61 2009/05/05 03:49:48 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.63 2009/05/08 14:42:42 idl0r Exp $
+
+*gentoolkit-dev-0.2.6.11-r1 (08 May 2009)
+
+  08 May 2009; Christian Ruppert <idl0r@gentoo.org>
+  +gentoolkit-dev-0.2.6.11-r1.ebuild, +files/echangelog-git.patch:
+  Revbump. echangelog: Re-add files (git) if the copyright has been updated,
+  thanks to Justin Lecher (jlec) <jlec@j-schmitz.net>.
+
+*gentoolkit-dev-0.2.6.11 (07 May 2009)
+
+  07 May 2009; Christian Ruppert <idl0r@gentoo.org>
+  +gentoolkit-dev-0.2.6.11.ebuild:
+  Version bump to 0.2.6.11. Fix git detection in echangelog. Add svn/git
+  support to ebump as suggested in bug 256398. Improved die message in
+  ekeyword, bug 257853. Don't eat newlines, bug 264146. Add new feature to
+  echangelog which shows the changed files when using $EDITOR. New script
+  'imlate' as suggested in bug 54725.
 
   05 May 2009; Paul Varner <fuzzyray@gentoo.org>
   gentoolkit-dev-0.2.6.2.ebuild, -gentoolkit-dev-0.2.6.4.ebuild,
