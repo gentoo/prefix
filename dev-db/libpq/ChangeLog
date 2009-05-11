@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/libpq
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.149 2009/04/09 22:48:37 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.150 2009/05/07 18:57:08 klausman Exp $
+
+  07 May 2009; Tobias Klausmann <klausman@gentoo.org> libpq-8.1.11.ebuild:
+  Stable on alpha, bug #268138
 
   09 Apr 2009; Caleb Tennis <caleb@gentoo.org>
   -files/libpq-8.3.1-gentoo.patch, -libpq-8.3.1.ebuild:
