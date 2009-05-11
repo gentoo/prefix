@@ -1,6 +1,18 @@
 # ChangeLog for gnome-base/gnome-common
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-common/ChangeLog,v 1.62 2009/04/28 11:17:36 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-common/ChangeLog,v 1.64 2009/05/10 18:15:06 eva Exp $
+
+*gnome-common-2.26.0 (10 May 2009)
+
+  10 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-common-2.12.0.ebuild, -gnome-common-2.20.0.ebuild,
+  gnome-common-2.24.0.ebuild, +gnome-common-2.26.0.ebuild:
+  New version for GNOME 2.26. Re-add mips keywords since it was forgotten
+  during 2.20 bump. Clean up old revisions.
+
+  07 May 2009; Alexis Ballier <aballier@gentoo.org>
+  gnome-common-2.24.0.ebuild:
+  keyword ~x86-fbsd
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gnome-common-2.24.0.ebuild:
   sh stable
