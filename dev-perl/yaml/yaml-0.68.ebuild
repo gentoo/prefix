@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/yaml/yaml-0.68.ebuild,v 1.7 2009/05/05 17:43:17 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/yaml/yaml-0.68.ebuild,v 1.9 2009/05/07 16:25:02 armin76 Exp $
 
 inherit perl-module
 
