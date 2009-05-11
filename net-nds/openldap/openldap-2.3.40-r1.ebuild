@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.40-r1.ebuild,v 1.6 2009/03/07 13:04:12 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.40-r1.ebuild,v 1.7 2009/05/08 01:16:29 loki_val Exp $
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
@@ -216,6 +216,8 @@ src_unpack() {
 		cd "${S}"/contrib
 		epatch "${FILESDIR}"/${PN}-2.3.24-contrib-smbk5pwd.patch
 	fi
+	# Fix gcc-4.4 compat, bug 264761
+	epatch "${FILESDIR}/openldap-2.3.XY-gcc44.patch"
 }
 
 src_compile() {

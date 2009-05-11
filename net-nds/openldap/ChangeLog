@@ -1,6 +1,15 @@
 # ChangeLog for net-nds/openldap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.342 2009/04/14 20:53:32 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.343 2009/05/08 01:16:29 loki_val Exp $
+
+  08 May 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +files/openldap-2.3.XY-gcc44.patch, openldap-2.3.39-r2.ebuild,
+  openldap-2.3.40-r1.ebuild, openldap-2.3.41.ebuild,
+  openldap-2.3.41-r1.ebuild, openldap-2.3.43.ebuild,
+  openldap-2.3.43-r1.ebuild:
+  Fix build with gcc-4.4, bug 264761. Thanks to Daniel J.
+  <sleeperseven@hotmail.com> for the patch. Versions still affected:
+  openldap-2.4.7, 2.4.10, 2.4.11*, but PMASKED. Use 2.4.16 if you have to.
 
 *openldap-2.4.16 (14 Apr 2009)
 
