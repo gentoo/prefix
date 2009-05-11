@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/ruby-fcgi
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-fcgi/ChangeLog,v 1.26 2008/12/05 09:48:32 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-fcgi/ChangeLog,v 1.27 2009/05/10 19:27:23 a3li Exp $
+
+*ruby-fcgi-0.8.7-r1 (10 May 2009)
+
+  10 May 2009; Alex Legler <a3li@gentoo.org> +ruby-fcgi-0.8.7-r1.ebuild,
+  +files/ruby-fcgi-0.8.7-19compat.patch:
+  Version bump, bug 236064.
 
   05 Dec 2008; Raúl Porcel <armin76@gentoo.org> ruby-fcgi-0.8.7.ebuild:
   ia64/sparc stable wrt #249386
