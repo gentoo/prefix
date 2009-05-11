@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.8.2.ebuild,v 1.11 2009/05/10 21:03:06 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.10.3.ebuild,v 1.1 2009/05/10 21:03:06 kolmodin Exp $
 
 # Brief explanation of the bootstrap logic:
 #
@@ -28,7 +28,7 @@
 # re-emerge ghc (or ghc-bin). People using vanilla gcc can switch between
 # gcc-3.x and 4.x with no problems.
 
-inherit base bash-completion eutils flag-o-matic toolchain-funcs ghc-package versionator autotools prefix
+inherit base autotools bash-completion eutils flag-o-matic toolchain-funcs ghc-package versionator prefix
 
 DESCRIPTION="The Glasgow Haskell Compiler"
 HOMEPAGE="http://www.haskell.org/ghc/"
@@ -38,19 +38,27 @@ IS_SNAPSHOT="$(get_version_component_range 4)" # non-empty if snapshot
 EXTRA_SRC_URI="${PV}"
 [[ "${IS_SNAPSHOT}" ]] && EXTRA_SRC_URI="stable/dist"
 
+arch_binaries=""
+
+arch_binaries="$arch_binaries x86?   ( http://code.haskell.org/~ivanm/ghc-bin-${PV}-x86.tbz2 )"
+arch_binaries="$arch_binaries amd64? ( http://haskell.org/~kolmodin/ghc-bin-${PV}-amd64.tbz2 )"
+
+#arch_binaries="$arch_binaries alpha?   ( mirror://gentoo/ghc-bin-${PV}-alpha.tbz2 )"
+#arch_binaries="$arch_binaries amd64?   ( mirror://gentoo/ghc-bin-${PV}-amd64.tbz2 )"
+#arch_binaries="$arch_binaries hppa?    ( mirror://gentoo/ghc-bin-${PV}-hppa.tbz2 )"
+#arch_binaries="$arch_binaries ia64?    ( mirror://gentoo/ghc-bin-${PV}-ia64.tbz2 )"
+#arch_binaries="$arch_binaries sparc?   ( mirror://gentoo/ghc-bin-${PV}-sparc.tbz2 )"
+#arch_binaries="$arch_binaries x86? ( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )"
+#	ppc-macos? ( http://dev.gentooexperimental.org/~grobian/distfiles/ghc-bin-${PV}-ppc-macos.tbz2 )
+#	x86-macos? ( http://dev.gentooexperimental.org/~grobian/distfiles/ghc-bin-${PV}-x86-macos.tbz2 )"
+
 SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${P}-src.tar.bz2 )
-	alpha? ( mirror://gentoo/ghc-bin-${PV}-alpha.tbz2 )
-	amd64?	( mirror://gentoo/ghc-bin-${PV}-amd64.tbz2 )
-	hppa?	( mirror://gentoo/ghc-bin-${PV}-hppa.tbz2 )
-	ia64?	( mirror://gentoo/ghc-bin-${PV}-ia64.tbz2 )
-	sparc?	( mirror://gentoo/ghc-bin-${PV}-sparc.tbz2 )
-	x86?	( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )
-	ppc-macos? ( http://dev.gentooexperimental.org/~grobian/distfiles/ghc-bin-${PV}-ppc-macos.tbz2 )
-	x86-macos? ( http://dev.gentooexperimental.org/~grobian/distfiles/ghc-bin-${PV}-x86-macos.tbz2 )"
+		!ghcbootstrap? ( $arch_binaries )"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86-macos"
+#KEYWORDS="~ppc-macos ~x86-macos"
+KEYWORDS=""
 IUSE="binary doc ghcbootstrap"
 
 RDEPEND="
@@ -60,14 +68,12 @@ RDEPEND="
 	kernel_SunOS? ( >=sys-devel/binutils-2.17 )
 	kernel_SunOS? ( app-admin/chrpath )
 	>=dev-lang/perl-5.6.1
-	>=dev-libs/gmp-4.1
-	=sys-libs/readline-5*"
+	>=dev-libs/gmp-4.1"
 
 DEPEND="${RDEPEND}
 	ghcbootstrap? (	doc? (	~app-text/docbook-xml-dtd-4.2
 							app-text/docbook-xsl-stylesheets
-							>=dev-libs/libxslt-1.1.2
-							>=dev-haskell/haddock-0.8 ) )"
+							>=dev-libs/libxslt-1.1.2 ) )"
 # In the ghcbootstrap case we rely on the developer having
 # >=ghc-5.04.3 on their $PATH already
 
@@ -135,12 +141,6 @@ pkg_setup() {
 			die "USE=\"ghcbootstrap binary\" is not a valid combination."
 		[[ -z $(type -P ghc) ]] && \
 			die "Could not find a ghc to bootstrap with."
-	elif use ppc || use ppc64; then
-		eerror "No binary .tbz2 package available yet for these arches:"
-		eerror "  ppc, ppc64"
-		eerror "Please try emerging with USE=ghcbootstrap and report build"
-		eerror "sucess or failure to the haskell team (haskell@gentoo.org)"
-		die "No binary available for this arch yet, USE=ghcbootstrap"
 	fi
 }
 
@@ -156,11 +156,6 @@ src_unpack() {
 		# Move unpacked files to the expected place
 		mv "${WORKDIR}/usr" "${S}"
 	else
-
-		# Modify the ghc driver script to use GHC_CFLAGS
-		sed -i -e "s|\$\$TOPDIROPT|\$\$TOPDIROPT ${GHC_CFLAGS}|" \
-			"${S}/driver/ghc/Makefile"
-
 		if ! use ghcbootstrap; then
 			# fix install_names on darwin
 			cd "${WORKDIR}/usr" || die "binary corrupt -- usr dir missing"
@@ -183,14 +178,22 @@ src_unpack() {
 				"${WORKDIR}"/usr/lib*/${P}/package.conf \
 				|| die "Relocating ghc from /usr to workdir failed"
 		fi
-		cd "${S}"
 
-		# Make configure find docbook-xsl-stylesheets in prefix
-		epatch "${FILESDIR}"/${P}-prefix.patch
-		eprefixify configure.ac
+		# Hack to prevent haddock being installed, remove when ./configure
+		# supports something better to not build docs or haddock.
+		sed -i -e 's/DO_NOT_INSTALL =/DO_NOT_INSTALL = haddock/' \
+			"${S}/utils/Makefile"
 
-		eautoreconf
+		# as we have changed the build system with the readline patch
+#		eautoreconf
 	fi
+
+	# Make configure find docbook-xsl-stylesheets in prefix
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-6.8.2-prefix.patch
+	eprefixify configure.ac
+
+	eautoreconf
 }
 
 src_compile() {
@@ -251,6 +254,7 @@ src_compile() {
 
 src_install() {
 	if use binary; then
+		mkdir -p "${ED}"
 		mv "${S}/usr" "${ED}"
 
 		# Remove the docs if not requested
@@ -295,6 +299,13 @@ src_install() {
 }
 
 pkg_postinst() {
+	# 'ghc-pkg check' fails in ghc 6.10.2, with the error message:
+	# There are problems in package rts-1.0:
+	#    include-dirs: PAPI_INCLUDE_DIR doesn't exist or isn't a directory
+	# Upstream suggests this solution to fix it:
+	export PATH="${EPREFIX}/usr/bin:${PATH}"
+	$(ghc-getghcpkg) describe rts | sed 's/PAPI_INCLUDE_DIR//' | $(ghc-getghcpkg) update -
+
 	ghc-reregister
 
 	ewarn "IMPORTANT:"
