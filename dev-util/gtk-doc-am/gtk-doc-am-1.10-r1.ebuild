@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/gtk-doc-am-1.10-r1.ebuild,v 1.12 2009/04/28 18:09:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc-am/gtk-doc-am-1.10-r1.ebuild,v 1.13 2009/05/10 09:35:43 eva Exp $
 
 MY_PN="gtk-doc"
 MY_P=${MY_PN}-${PV}
 DESCRIPTION="Automake files from gtk-doc"
 HOMEPAGE="http://www.gtk.org/gtk-doc/"
-SRC_URI="mirror://gnome/sources/${MY_PN}/${MY_P}.tar.bz2"
+SRC_URI="mirror://gnome/sources/${MY_PN}/${PV}/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2 FDL-1.1"
 SLOT="0"
