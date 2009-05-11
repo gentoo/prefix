@@ -1,6 +1,27 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.305 2009/04/28 11:28:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.306 2009/05/10 20:49:48 eva Exp $
+
+*nautilus-2.26.2 (10 May 2009)
+
+  10 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -nautilus-2.20.0-r1.ebuild,
+  -files/nautilus-2.20.0-async-thumbnail-framing.patch,
+  -files/nautilus-2.20.0-exempi.patch,
+  -files/nautilus-2.20.0-fix_broken_configure.patch,
+  -files/nautilus-2.20.0-small-font-crasher.patch,
+  -files/nautilus-2.20.0-sound-preview-cleanup.patch,
+  -files/nautilus-2.20.0-statfs.patch,
+  -files/nautilus-2.20.0-thumbnail-flashing.patch,
+  -files/nautilus-2.22.3-open-folder.patch,
+  -files/nautilus-2.22.3-preserve-metadata.patch,
+  -files/nautilus-2.22.3-prevent-recursive-mvcp.patch,
+  -nautilus-2.22.5.1-r1.ebuild, -files/nautilus-2.22.5.1-exempi.patch,
+  -files/nautilus-2.22.5.1-fix-stat-include.patch,
+  -files/nautilus-2.22.5-ask-what-to-do.patch, -nautilus-2.24.2-r1.ebuild,
+  -nautilus-2.24.2-r2.ebuild, +nautilus-2.26.2.ebuild:
+  New version for GNOME 2.26. Drop libgnome/gnome-vfs, merge eel, support
+  crossfades of desktop background, and more. Clean up old revisions.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> nautilus-2.24.2.ebuild:
   sh stable
