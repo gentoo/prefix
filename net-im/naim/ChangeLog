@@ -1,6 +1,10 @@
 # ChangeLog for net-im/naim
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/naim/ChangeLog,v 1.68 2008/08/05 17:45:05 gentoofan23 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-im/naim/ChangeLog,v 1.69 2009/05/09 20:13:29 gentoofan23 Exp $
+
+  09 May 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  naim-0.11.7.2.ebuild, naim-0.11.8.2.1.ebuild, naim-0.11.8.3.1.ebuild:
+  Fix some QA issues
 
   05 Aug 2008; Thomas Anderson <gentoofan23@gentoo.org> metadata.xml:
   Add USE flag description to metadata as per GLEP 56.

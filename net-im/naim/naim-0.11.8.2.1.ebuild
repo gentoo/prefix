@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/naim/naim-0.11.8.2.1.ebuild,v 1.5 2008/02/05 21:13:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/naim/naim-0.11.8.2.1.ebuild,v 1.6 2009/05/09 20:13:29 gentoofan23 Exp $
 
 DESCRIPTION="An ncurses based AOL Instant Messenger"
 HOMEPAGE="http://naim.n.ml.org"
@@ -16,15 +16,16 @@ RESTRICT=test
 
 DEPEND=">=sys-libs/ncurses-5.2
 		screen? ( app-misc/screen )"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
+	cd "${S}"
 
 	# Alter makefile so firetalk-int.h is installed
-	cd ${S}
 	sed -i 's/include_HEADERS = firetalk.h/include_HEADERS = firetalk.h firetalk-int.h/' \
 		libfiretalk/Makefile.am \
-		libfiretalk/Makefile.in
+		libfiretalk/Makefile.in || die "Sed failed!"
 }
 
 src_compile() {
@@ -36,8 +37,7 @@ src_compile() {
 
 	econf \
 		--with-pkgdocdir="${EPREFIX}"/usr/share/doc/${PF} \
-		${myconf} \
-		|| die "configure failed"
+		${myconf}
 
 	# Use -j1, because naim doesn't compile with ${MAKEOPTS} > 1
 	# see bug #139329
@@ -45,7 +45,6 @@ src_compile() {
 }
 
 src_install() {
-	cd ${S}
-	make DESTDIR=${D} install || die "make install failed"
+	make DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS FAQ BUGS README NEWS ChangeLog doc/*.hlp
 }
