@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.17 2009/04/13 00:02:45 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.18 2009/05/09 13:23:15 scarabeus Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -122,7 +122,7 @@ case ${BUILD_TYPE} in
 		case ${KMNAME} in
 			extragear*|playground*)
 				ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}"
-				ESVN_PROJECT="${KMNAME}"
+				ESVN_PROJECT="${KMNAME}${ESVN_PROJECT_SUFFIX}"
 				;;
 		esac
 		;;
@@ -252,6 +252,11 @@ kde4-meta_src_extract() {
 	else
 		local abort tarball tarfile f extractlist moduleprefix postfix
 		case ${PV} in
+			4.2.85)
+				# block for normally packed upstream unstable snapshots
+				KMTARPARAMS="${KMTARPARAMS} --bzip2" # bz2
+				postfix="bz2"
+				;;
 			4.2.9* | 4.2.8* | 4.2.7* | 4.2.6*)
 				KMTARPARAMS="${KMTARPARAMS} --lzma" # lzma
 				postfix="lzma"

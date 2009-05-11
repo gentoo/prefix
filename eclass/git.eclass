@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.25 2009/04/14 21:46:45 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.26 2009/05/09 15:10:47 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -198,16 +198,15 @@ git_fetch() {
 		${EGIT_FETCH_CMD} ${EGIT_OPTIONS} "${EGIT_REPO_URI}" ${EGIT_PROJECT} \
 			|| die "${EGIT}: can't fetch from ${EGIT_REPO_URI}."
 
-		oldsha1=$(git rev-parse ${EGIT_BRANCH})
-		${elogcmd} "   at the commit:		${oldsha1}"
-
+		cursha1=$(git rev-parse ${EGIT_BRANCH})
+		${elogcmd} "   at the commit:		${cursha1}"
 		# We use --bare cloning, so git doesn't do this for us.
 		git config remote.origin.url "${EGIT_REPO_URI}"
 	elif [[ -n ${EGIT_OFFLINE} ]] ; then
-		oldsha1=$(git rev-parse ${EGIT_BRANCH})
+		cursha1=$(git rev-parse ${EGIT_BRANCH})
 		${elogcmd} "GIT offline update -->"
 		${elogcmd} "   repository: 		${EGIT_REPO_URI}"
-		${elogcmd} "   at the commit:		${oldsha1}"
+		${elogcmd} "   at the commit:		${cursha1}"
 	else
 		# Git urls might change, so unconditionally set it here
 		git config remote.origin.url "${EGIT_REPO_URI}"
@@ -238,6 +237,9 @@ git_fetch() {
 		git gc $(${EGIT_PRUNE} && echo '--prune')
 		eend $?
 	fi
+	
+	# export the git version
+	export EGIT_VERSION="${cursha1}"
 
 	[[ ${EGIT_TREE} != ${EGIT_BRANCH} ]] && elog "   tree:			${EGIT_TREE}"
 	${elogcmd} "   branch: 			${EGIT_BRANCH}"

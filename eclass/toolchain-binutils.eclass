@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.79 2009/05/03 00:12:00 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.81 2009/05/10 01:41:33 halcy0n Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -38,7 +38,7 @@ else
 	BVER=${BINUTILS_VER}
 fi
 
-inherit eutils libtool flag-o-matic gnuconfig multilib ${extra_eclass}
+inherit eutils libtool flag-o-matic gnuconfig multilib versionator ${extra_eclass}
 EXPORT_FUNCTIONS src_unpack src_compile src_test src_install pkg_postinst pkg_postrm
 
 export CTARGET=${CTARGET:-${CHOST}}
@@ -74,8 +74,12 @@ add_src_uri binutils-${PV}-patches-${PATCHVER}.tar.bz2 ${PATCHVER}
 add_src_uri binutils-${PV}-uclibc-patches-${UCLIBC_PATCHVER}.tar.bz2 ${UCLIBC_PATCHVER}
 add_src_uri elf2flt-${ELF2FLT_VER}.tar.bz2 ${ELF2FLT_VER}
 
-LICENSE="|| ( GPL-2 LGPL-2 )"
-IUSE="nls multitarget multislot test vanilla"
+if version_is_at_least 2.18 ; then
+	LICENSE="|| ( GPL-3 LGPL-3 )"
+else
+	LICENSE="|| ( GPL-2 LGPL-2 )"
+fi
+IUSE="gold nls multitarget multislot test vanilla"
 if use multislot ; then
 	SLOT="${CTARGET}-${BVER}"
 elif is_cross ; then
@@ -84,11 +88,7 @@ else
 	SLOT="0"
 fi
 
-if is_cross ; then
-	RDEPEND=">=sys-devel/binutils-config-1.9"
-else
-	RDEPEND=">=sys-devel/binutils-config-1.8-r6"
-fi
+RDEPEND=">=sys-devel/binutils-config-1.9"
 DEPEND="${RDEPEND}
 	test? ( dev-util/dejagnu )
 	nls? ( sys-devel/gettext )
@@ -234,6 +234,7 @@ toolchain-binutils_src_compile() {
 		--enable-64-bit-bfd \
 		--enable-shared \
 		--disable-werror \
+		$(use_enable gold) \
 		${myconf} ${EXTRA_ECONF}"
 	echo ./configure ${myconf}
 	"${S}"/configure ${myconf} || die "configure failed"

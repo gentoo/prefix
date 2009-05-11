@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.36 2009/04/18 21:33:08 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.37 2009/05/09 13:23:15 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -53,6 +53,7 @@ if [[ -n ${KDE_MINIMAL} ]]; then
 	for slot in ${KDE_SLOTS[@]} ${KDE_LIVE_SLOTS[@]}; do
 		[[ ${KDE_MINIMAL} = ${slot} ]] && KDE_MINIMAL_VALID=1 && break
 	done
+	unset slot
 	[[ -z ${KDE_MINIMAL_VALID} ]] && unset KDE_MINIMAL
 else
 	KDE_MINIMAL_VALID=1
@@ -167,11 +168,12 @@ case ${KDEBASE} in
 			# All other ebuild types default to -kdeprefix as before
 			IUSE="${IUSE} kdeprefix"
 		fi
-		# Determine SLOT from PV
+		# Determine SLOT from PVs
 		case ${PV} in
+			*.9999*) SLOT="${PV/.9999*/}" ;; # stable live
 			4.3* | 4.2.9* | 4.2.8* | 4.2.7* | 4.2.6*) SLOT="4.3" ;;
 			4.2* | 4.1.9* | 4.1.8* | 4.1.7* | 4.1.6*) SLOT="4.2" ;;
-			*9999*) SLOT="live" ;;
+			9999*) SLOT="live" ;; # regular live
 			*) die "Unsupported ${PV}" ;;
 		esac
 		_kdedir="${SLOT}"
@@ -187,6 +189,7 @@ case ${KDEBASE} in
 				"
 			fi
 		done
+		unset slot
 		;;
 
 	koffice)
@@ -230,7 +233,6 @@ if [[ ${PN} != kdelibs ]]; then
 fi
 unset _pv _pvn
 kdedepend="
-	>=dev-util/cmake-2.6.2
 	dev-util/pkgconfig
 	>=sys-apps/sandbox-1.3.2
 "
@@ -262,6 +264,23 @@ RDEPEND="${RDEPEND} ${COMMONDEPEND}"
 # koffice ebuild, the URI should be set in the ebuild itself
 case ${BUILD_TYPE} in
 	live)
+		# Determine branch URL based on live type
+		local branch_prefix
+		case ${PV} in
+			9999*)
+				# trunk
+				branch_prefix="trunk/KDE"
+				;;
+			*)
+				# branch
+				branch_prefix="branches/KDE/${SLOT}"
+				# @ECLASS-VARIABLE: ESVN_PROJECT_SUFFIX
+				# @DESCRIPTION
+				# Suffix appended to ESVN_PROJECT depending on fetched branch.
+				# Defaults is empty (for -9999 = trunk), and "-${PV}" otherwise.
+				ESVN_PROJECT_SUFFIX="-${PV}"
+				;;
+		esac
 		SRC_URI=""
 		# @ECLASS-VARIABLE: ESVN_MIRROR
 		# @DESCRIPTION:
@@ -270,30 +289,30 @@ case ${BUILD_TYPE} in
 		ESVN_MIRROR=${ESVN_MIRROR:=svn://anonsvn.kde.org/home/kde}
 		# Split ebuild, or extragear stuff
 		if [[ -n ${KMNAME} ]]; then
-		    ESVN_PROJECT="${KMNAME}"
+		    ESVN_PROJECT="${KMNAME}${ESVN_PROJECT_SUFFIX}"
 			if [[ -z ${KMNOMODULE} ]] && [[ -z ${KMMODULE} ]]; then
 				KMMODULE="${PN}"
 			fi
 			# Split kde-base/ ebuilds: (they reside in trunk/KDE)
 			case ${KMNAME} in
 				kdebase-*)
-					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/KDE/kdebase/${KMNAME#kdebase-}"
+					ESVN_REPO_URI="${ESVN_MIRROR}/${branch_prefix}/kdebase/${KMNAME#kdebase-}"
 					;;
 				kdereview)
 					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}"
 					;;
 				kdesupport)
 					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}"
-					ESVN_PROJECT="${PN}"
+					ESVN_PROJECT="${PN}${ESVN_PROJECT_SUFFIX}"
 					;;
 				kde*)
-					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/KDE/${KMNAME}"
+					ESVN_REPO_URI="${ESVN_MIRROR}/${branch_prefix}/${KMNAME}"
 					;;
 				extragear*|playground*)
 					# Unpack them in toplevel dir, so that they won't conflict with kde4-meta
 					# build packages from same svn location.
 					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}"
-					ESVN_PROJECT="${PN}"
+					ESVN_PROJECT="${PN}${ESVN_PROJECT_SUFFIX}"
 					;;
 				koffice)
 					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}"
@@ -304,8 +323,8 @@ case ${BUILD_TYPE} in
 			esac
 		else
 			# kdelibs, kdepimlibs
-			ESVN_REPO_URI="${ESVN_MIRROR}/trunk/KDE/${PN}"
-			ESVN_PROJECT="${PN}"
+			ESVN_REPO_URI="${ESVN_MIRROR}/${branch_prefix}/${PN}"
+			ESVN_PROJECT="${PN}${ESVN_PROJECT_SUFFIX}"
 		fi
 		# limit syncing to 1 hour.
 		ESVN_UP_FREQ=${ESVN_UP_FREQ:-1}
@@ -327,6 +346,9 @@ case ${BUILD_TYPE} in
 			case ${KDEBASE} in
 				kde-base)
 					case ${PV} in
+						4.2.85)
+							# block for normally packed unstable releases
+							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 						4.2.9* | 4.2.8* | 4.2.7* | 4.2.6*)
 							SRC_URI="http://dev.gentooexperimental.org/~alexxy/kde/${PV}/${_kmname_pv}.tar.lzma" ;;
 						4.1.9* | 4.1.8* | 4.1.7* | 4.1.6* | 4.0.9* | 4.0.8*)
@@ -391,6 +413,7 @@ kde4-base_pkg_setup() {
 				break;
 			fi
 		done
+		unset slot
 		[[ -z KDEDIR ]] && die "Failed to determine KDEDIR!"
 		PREFIX="${PREFIX:-/usr}"
 	fi
@@ -427,6 +450,7 @@ kde4-base_src_prepare() {
 	fi
 
 	base_src_prepare
+	[[ ${BUILD_TYPE} = live ]] && subversion_src_prepare
 
 	# Save library dependencies
 	if [[ -n ${KMSAVELIBS} ]] ; then
@@ -463,17 +487,20 @@ kde4-base_src_configure() {
 	QTEST_COLORED=1
 	QT_PLUGIN_PATH="${KDEDIR}/$(get_libdir)/kde4/plugins/"
 
-	# Hardcode path to *.pc KDE files
-	export PKG_CONFIG_PATH="${PKG_CONFIG_PATH:+${PKG_CONFIG_PATH}:}${KDEDIR}/$(get_libdir)/pkgconfig"
+	# Point pkg-config path to KDE *.pc files
+	export PKG_CONFIG_PATH="${KDEDIR}/$(get_libdir)/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
 
 	# Shadow existing /usr installations
 	unset KDEDIRS
 
-	# Override some environment variables - only when kdeprefix is different,
-	# to not break ccache/distcc
 	if [[ ${KDEDIR} != /usr ]]; then
+		# Override some environment variables - only when kdeprefix is different,
+		# to not break ccache/distcc
 		PATH="${KDEDIR}/bin:${PATH}"
 		LDPATH="${KDEDIR}/$(get_libdir):${LDPATH}"
+
+		# Append full RPATH
+		cmakeargs="${cmakeargs} -DCMAKE_SKIP_RPATH=OFF"
 	fi
 
 	if has kdeprefix ${IUSE//+} && use kdeprefix; then

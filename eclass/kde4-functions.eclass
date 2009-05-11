@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.17 2009/04/19 10:23:07 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.18 2009/05/09 13:23:15 scarabeus Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -165,7 +165,7 @@ enable_selected_linguas() {
 # @DESCRIPTION:
 # Determine whether we are using live ebuild or tbzs.
 get_build_type() {
-	if [[ ${SLOT} = live || ${PV} = 9999* ]]; then
+	if [[ ${SLOT} = live || ${PV} = *9999* ]]; then
 		BUILD_TYPE="live"
 	else
 		BUILD_TYPE="release"

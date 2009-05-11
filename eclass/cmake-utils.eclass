@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.25 2009/04/11 19:44:43 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.26 2009/05/08 10:54:02 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -24,8 +24,7 @@ inherit toolchain-funcs multilib flag-o-matic base
 
 EXPF="src_compile src_test src_install"
 case ${EAPI:-0} in
-	2) EXPF="${EXPF} src_configure"
-		;;
+	2) EXPF="${EXPF} src_configure" ;;
 	1|0) ;;
 	*) die "Unknown EAPI, Bug eclass maintainers." ;;
 esac
@@ -116,11 +115,19 @@ _use_me_now_inverted() {
 # @DESCRIPTION:
 # Determine using IN or OUT source build
 _check_build_dir() {
+	# @ECLASS-VARIABLE: CMAKE_USE_DIR
+	# @DESCRIPTION:
+	# Sets the directory where we are working with cmake.
+	# For example when application uses autotools and only one
+	# plugin needs to be done by cmake.
+	# By default it uses ${S}.
+	: ${CMAKE_USE_DIR:=${S}}
+
 	# in/out source build
 	if [[ -n "${CMAKE_IN_SOURCE_BUILD}" ]]; then
-		CMAKE_BUILD_DIR="${S}"
+		CMAKE_BUILD_DIR="${CMAKE_USE_DIR}"
 	else
-		CMAKE_BUILD_DIR="${WORKDIR}/${PN}_build"
+		CMAKE_BUILD_DIR="${CMAKE_USE_DIR}_build"
 	fi
 	echo ">>> Working in BUILD_DIR: \"$CMAKE_BUILD_DIR\""
 }
@@ -208,7 +215,7 @@ _modify-cmakelists() {
 
 	# Comment out all set (<some_should_be_user_defined_variable> value)
 	# TODO Add QA checker - inform when variable being checked for below is set in CMakeLists.txt
-	find "${S}" -name CMakeLists.txt \
+	find "${CMAKE_USE_DIR}" -name CMakeLists.txt \
 		-exec sed -i -e '/^[[:space:]]*[sS][eE][tT][[:space:]]*([[:space:]]*CMAKE_BUILD_TYPE.*)/{s/^/#IGNORE /g}' {} + \
 		-exec sed -i -e '/^[[:space:]]*[sS][eE][tT][[:space:]]*([[:space:]]*CMAKE_INSTALL_PREFIX.*)/{s/^/#IGNORE /g}' {} + \
 		|| die "${LINENO}: failed to disable hardcoded settings"
@@ -227,10 +234,12 @@ Install path: ${CMAKE_INSTALL_PREFIX}\n")' >> CMakeLists.txt
 cmake-utils_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
 
+	_check_build_dir
+
 	# check if CMakeLists.txt exist and if no then die
-	if [[ ! -e "${S}"/CMakeLists.txt ]] ; then
+	if [[ ! -e "${CMAKE_USE_DIR}"/CMakeLists.txt ]] ; then
 		eerror "I was unable to locate CMakeLists.txt under:"
-		eerror "\"${S}/CMakeLists.txt\""
+		eerror "\"${CMAKE_USE_DIR}/CMakeLists.txt\""
 		eerror "You should consider not inheriting the cmake eclass."
 		die "FATAL: Unable to find CMakeLists.txt"
 	fi
@@ -282,11 +291,10 @@ _EOF_
 	[[ -n ${CMAKE_NO_COLOR} ]] && echo 'SET (CMAKE_COLOR_MAKEFILE OFF CACHE BOOL "pretty colors during make" FORCE)' >> ${common_config}
 	cmakeargs="-C ${common_config} ${cmakeargs}"
 
-	_check_build_dir
 	mkdir -p "${CMAKE_BUILD_DIR}"
 	pushd "${CMAKE_BUILD_DIR}" > /dev/null
 	debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: mycmakeargs is $cmakeargs"
-	cmake ${cmakeargs} "${S}" || die "cmake failed"
+	cmake ${cmakeargs} "${CMAKE_USE_DIR}" || die "cmake failed"
 
 	popd > /dev/null
 }

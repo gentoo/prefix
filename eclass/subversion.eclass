@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.66 2009/04/29 22:47:08 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.67 2009/05/10 20:33:38 arfrever Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -19,18 +19,23 @@ inherit eutils
 
 ESVN="${ECLASS}"
 
-EXPORTED_FUNCTIONS="src_unpack pkg_preinst"
 case "${EAPI:-0}" in
-	2) EXPORTED_FUNCTIONS="${EXPORTED_FUNCTIONS} src_prepare" ;;
-	1|0) ;;
-	*) die "Unknown EAPI, Bug eclass maintainers." ;;
+	0|1)
+		EXPORT_FUNCTIONS src_unpack pkg_preinst
+		;;
+	*)
+		EXPORT_FUNCTIONS src_unpack src_prepare pkg_preinst
+		;;
 esac
-EXPORT_FUNCTIONS ${EXPORTED_FUNCTIONS}
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
-DEPEND="dev-util/subversion
+SUBVERSION_DEPEND="dev-util/subversion
 	net-misc/rsync"
+
+if [[ -z "${ESVN_DISABLE_DEPENDENCIES}" ]]; then
+	DEPEND="${SUBVERSION_DEPEND}"
+fi
 
 # @ECLASS-VARIABLE: ESVN_STORE_DIR
 # @DESCRIPTION:
@@ -139,6 +144,12 @@ ESVN_PATCHES="${ESVN_PATCHES:-}"
 #     don't export the working copy to S.
 ESVN_RESTRICT="${ESVN_RESTRICT:-}"
 
+# @ECLASS-VARIABLE: ESVN_DISABLE_DEPENDENCIES
+# @DESCRIPTION:
+# Set this variable to a non-empty value to disable the automatic inclusion of
+# Subversion in dependencies.
+ESVN_DISABLE_DEPENDENCIES="${ESVN_DISABLE_DEPENDENCIES:-}"
+
 # @ECLASS-VARIABLE: ESVN_OFFLINE
 # @DESCRIPTION:
 # Set this variable to a non-empty value to disable the automatic updating of
@@ -186,8 +197,7 @@ subversion_fetch() {
 
 	case "${protocol}" in
 		http|https)
-			if ! built_with_use --missing true -o dev-util/subversion webdav-neon webdav-serf || \
-			built_with_use --missing false dev-util/subversion nowebdav; then
+			if ! built_with_use -o dev-util/subversion webdav-neon webdav-serf; then
 				echo
 				eerror "In order to emerge this package, you need to"
 				eerror "reinstall Subversion with support for WebDAV."
@@ -250,14 +260,16 @@ subversion_fetch() {
 		fi
 
 	elif [[ -n ${ESVN_OFFLINE} ]]; then
-		svn cleanup "${wc_path}"
+		svn upgrade "${wc_path}" &>/dev/null
+		svn cleanup "${wc_path}" &>/dev/null
 		subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
 		if [[ -n ${ESVN_REVISION} && ${ESVN_REVISION} != ${ESVN_WC_REVISION} ]]; then
 			die "${ESVN}: You requested off-line updating and revision ${ESVN_REVISION} but only revision ${ESVN_WC_REVISION} is available locally."
 		fi
 		einfo "Fetching disabled: Using existing repository copy at revision ${ESVN_WC_REVISION}."
 	else
-		svn cleanup "${wc_path}"
+		svn upgrade "${wc_path}" &>/dev/null
+		svn cleanup "${wc_path}" &>/dev/null
 		subversion_wc_info "${repo_uri}" || die "${ESVN}: unknown problem occurred while accessing working copy."
 
 		local esvn_up_freq=
@@ -375,7 +387,9 @@ subversion_bootstrap() {
 # Default src_unpack. Fetch and, in older EAPIs, bootstrap.
 subversion_src_unpack() {
 	subversion_fetch     || die "${ESVN}: unknown problem occurred in subversion_fetch."
-	has src_prepare ${EXPORTED_FUNCTIONS} || subversion_src_prepare
+	if has "${EAPI:-0}" 0 1; then
+		subversion_bootstrap || die "${ESVN}: unknown problem occurred in subversion_bootstrap."
+	fi
 }
 
 # @FUNCTION: subversion_src_prepare

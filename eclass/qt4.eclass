@@ -1,6 +1,6 @@
 # Copyright 2005-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.52 2009/03/14 23:30:05 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.54 2009/05/09 14:59:03 hwoarang Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -218,40 +218,77 @@ qt4_src_prepare() {
 # @FUNCTION: eqmake4
 # @USAGE: [.pro file] [additional parameters to qmake]
 # @DESCRIPTION:
-# Runs qmake on the specified .pro file (defaults to
-# ${PN}.pro if eqmake4 was called with no argument).
-# Additional parameters are passed unmodified to qmake.
+# Runs qmake on the specified .pro file (defaults to ${PN}.pro if called
+# without arguments). Additional parameters are appended unmodified to
+# qmake command line. For recursive build systems, i.e. those based on
+# the subdirs template, you should run eqmake4 on the top-level project
+# file only, unless you have strong reasons to do things differently.
+# During the building, qmake will be automatically re-invoked with the
+# right arguments on every directory specified inside the top-level
+# project file by the SUBDIRS variable.
 eqmake4() {
-	local LOGFILE="${T}/qmake-$$.out"
-	local projprofile="${1}"
-	[[ -z ${projprofile} ]] && projprofile="${PN}.pro"
-	shift 1
+	local projectfile="${1:-${PN}.pro}"
+	shift
 
-	ebegin "Processing qmake ${projprofile}"
-
-	# file exists?
-	if [[ ! -f ${projprofile} ]]; then
+	if [[ ! -f ${projectfile} ]]; then
 		echo
-		eerror "Project .pro file \"${projprofile}\" does not exists"
-		eerror "qmake cannot handle non-existing .pro files"
+		eerror "Project file '${projectfile#${WORKDIR}/}' does not exists!"
+		eerror "eqmake4 cannot handle non-existing project files."
+		eerror
+		eerror "This shouldn't happen - please send a bug report to http://bugs.gentoo.org/"
 		echo
-		eerror "This shouldn't happen - please send a bug report to bugs.gentoo.org"
-		echo
-		die "Project file not found in ${PN} sources"
+		die "Project file not found in ${CATEGORY}/${PN} sources."
 	fi
 
-	echo >> ${LOGFILE}
-	echo "******  qmake ${projprofile}  ******" >> ${LOGFILE}
-	echo >> ${LOGFILE}
+	ebegin "Running qmake on ${projectfile}"
 
-	# as a workaround for broken qmake, put everything into file
+	# make sure CONFIG variable is correctly set for both release and debug builds
+	local CONFIG_ADD="release"
+	local CONFIG_REMOVE="debug"
 	if has debug ${IUSE} && use debug; then
-		echo -e "\nCONFIG -= release\nCONFIG += no_fixpath debug" >> ${projprofile}
-	else
-		echo -e "\nCONFIG -= debug\nCONFIG += no_fixpath release" >> ${projprofile}
+		CONFIG_ADD="debug"
+		CONFIG_REMOVE="release"
 	fi
 
-	"${EPREFIX}"/usr/bin/qmake ${projprofile} \
+	local awkscript='BEGIN {
+				printf "### eqmake4 was here ###\n" > file;
+				fixed=0;
+			}
+			/^[[:blank:]]*CONFIG[[:blank:]]*[\+\*]?=/ {
+				for (i=1; i <= NF; i++) {
+					if ($i ~ rem || $i ~ /debug_and_release/)
+						{ $i=add; fixed=1; }
+				}
+			}
+			/^[[:blank:]]*CONFIG[[:blank:]]*-=/ {
+				for (i=1; i <= NF; i++) {
+					if ($i ~ add) { $i=rem; fixed=1; }
+				}
+			}
+			{
+				print >> file;
+			}
+			END {
+				printf "CONFIG -= debug_and_release %s\n", rem >> file;
+				printf "CONFIG += %s\n", add >> file;
+				print fixed;
+			}'
+	local file=
+	while read file; do
+		grep -q '^### eqmake4 was here ###$' "${file}" && continue
+		local retval=$({
+				rm -f "${file}" || echo "FAILED"
+				awk -v file="${file}" -- "${awkscript}" add=${CONFIG_ADD} rem=${CONFIG_REMOVE} || echo "FAILED"
+				} < "${file}")
+		if [[ ${retval} == 1 ]]; then
+			einfo "  Fixed CONFIG in ${file}"
+		elif [[ ${retval} != 0 ]]; then
+			eerror "  An error occurred while processing ${file}"
+			die "eqmake4 failed to process '${file}'."
+		fi
+	done < <(find "$(dirname "${projectfile}")" -type f -name "*.pr[io]" -printf '%P\n' 2>/dev/null)
+
+	"${EPREFIX}"/usr/bin/qmake -makefile -nocache \
 		QTDIR="${EPREFIX}"/usr/$(get_libdir) \
 		QMAKE="${EPREFIX}"/usr/bin/qmake \
 		QMAKE_CC=$(tc-getCC) \
@@ -264,26 +301,24 @@ eqmake4() {
 		QMAKE_LFLAGS_RELEASE="${LDFLAGS}" \
 		QMAKE_LFLAGS_DEBUG="${LDFLAGS}" \
 		QMAKE_STRIP= \
-		"${@}" >> ${LOGFILE} 2>&1
+		"${projectfile}" "${@}"
 		# gentoo-x86 relies on ld.so.conf to get the correct LDPATH, Gentoo
 		# Prefix can't do that, so use don't explicitly set RPATH and hence use
 		# the defaults - which works and is desired in this case.
 		#QMAKE_RPATH= \
 
-	local result=$?
-	eend ${result}
+	eend $?
 
 	# was qmake successful?
-	if [[ ${result} -ne 0 ]]; then
+	if [[ $? -ne 0 ]]; then
 		echo
-		eerror "Running qmake on \"${projprofile}\" has failed"
+		eerror "Running qmake on '${projectfile#${WORKDIR}/}' has failed!"
+		eerror "This shouldn't happen - please send a bug report to http://bugs.gentoo.org/"
 		echo
-		eerror "This shouldn't happen - please send a bug report to bugs.gentoo.org"
-		echo
-		die "qmake failed on ${projprofile}"
+		die "qmake failed on '${projectfile}'."
 	fi
 
-	return ${result}
+	return 0
 }
 
 case ${EAPI:-0} in
