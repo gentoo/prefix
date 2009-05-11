@@ -1,26 +1,25 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.12-r1.ebuild,v 1.14 2008/12/22 14:20:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.12-r1.ebuild,v 1.15 2009/05/10 17:46:23 ssuominen Exp $
 
+EAPI=2
 inherit eutils flag-o-matic multilib toolchain-funcs versionator
 
 DESCRIPTION="Lossy speech compression library and tool."
 HOMEPAGE="http://kbs.cs.tu-berlin.de/~jutta/toast.html"
 SRC_URI="http://www.cs.tu-berlin.de/~jutta/${PN}/${P}.tar.gz"
 
-LICENSE="OSI-Approved"
+LICENSE="gsm"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
-S="${WORKDIR}"/${PN}-"$(replace_version_separator 2 '-pl' )"
+S=${WORKDIR}/${PN}-"$(replace_version_separator 2 '-pl' )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-shared.patch
-	epatch "${FILESDIR}"/${P}-memcpy.patch
-	epatch "${FILESDIR}"/${P}-64bit.patch
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-shared.patch \
+		"${FILESDIR}"/${P}-memcpy.patch \
+		"${FILESDIR}"/${P}-64bit.patch
 	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${P}-darwin.patch
 }
 

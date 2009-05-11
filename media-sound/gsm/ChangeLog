@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/gsm
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/ChangeLog,v 1.36 2008/12/22 14:20:05 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/ChangeLog,v 1.37 2009/05/10 17:46:23 ssuominen Exp $
+
+  10 May 2009; Samuli Suominen <ssuominen@gentoo.org> gsm-1.0.12-r1.ebuild:
+  Rename license from OSI-Approved to gsm wrt #240392
 
   22 Dec 2008; Raúl Porcel <armin76@gentoo.org> gsm-1.0.12-r1.ebuild:
   arm/ia64 stable wrt #245285
