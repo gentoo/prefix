@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/emul-linux-x86-baselibs-20081109.ebuild,v 1.1 2008/11/10 03:28:57 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/emul-linux-x86-baselibs-20081109.ebuild,v 1.2 2009/05/10 18:27:38 arfrever Exp $
 
 inherit emul-linux-x86
 
@@ -11,6 +11,8 @@ KEYWORDS="~amd64-linux"
 
 DEPEND=""
 RDEPEND="!<app-emulation/emul-linux-x86-medialibs-10.2" # bug 168507
+
+QA_DT_HASH="usr/lib32/.*"
 
 src_unpack() {
 	export ALLOWED="(${S}/lib32/security/pam_filter/upperLOWER|${S}/etc/env.d|${S}/lib32/security/pam_ldap.so)"
