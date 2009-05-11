@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/emul-linux-x86-compat-20071125-r1.ebuild,v 1.2 2007/12/08 23:35:55 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/emul-linux-x86-compat-20071125-r1.ebuild,v 1.3 2009/05/10 18:32:57 arfrever Exp $
 
 inherit emul-linux-x86 eutils
 
@@ -17,6 +17,7 @@ S=${WORKDIR}
 
 QA_TEXTRELS_amd64="usr/lib32/libg++.so.2.7.2.8
 	usr/lib32/libstdc++.so.2.7.2.8"
+QA_DT_HASH="usr/lib32/.*"
 
 src_install() {
 	emul-linux-x86_src_install
