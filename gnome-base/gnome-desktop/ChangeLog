@@ -1,6 +1,15 @@
 # ChangeLog for gnome-base/gnome-desktop
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.243 2009/04/28 11:19:26 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.244 2009/05/10 19:06:13 eva Exp $
+
+*gnome-desktop-2.26.1 (10 May 2009)
+
+  10 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-desktop-2.20.3.ebuild, -gnome-desktop-2.22.3.ebuild,
+  +gnome-desktop-2.26.1.ebuild:
+  New version for GNOME 2.26. Drop libxml and libgnome usage, breaks
+  API/ABI, loose compatibility with GNOME 1 and KDE 2 icons in desktop
+  files. Clean up old revisions.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org>
   gnome-desktop-2.24.3.ebuild:
