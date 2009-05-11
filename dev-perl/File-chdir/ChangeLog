@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/File-chdir
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-chdir/ChangeLog,v 1.20 2009/05/03 17:50:40 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-chdir/ChangeLog,v 1.21 2009/05/06 14:39:41 tove Exp $
+
+  06 May 2009; Torsten Veller <tove@gentoo.org> -File-chdir-0.06.ebuild,
+  -File-chdir-0.08.ebuild:
+  Cleanup
 
   03 May 2009; Markus Meier <maekke@gentoo.org> File-chdir-0.1002.ebuild:
   amd64 stable, bug #268198
