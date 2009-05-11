@@ -1,6 +1,13 @@
 # ChangeLog for dev-haskell/haddock
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.58 2009/04/26 16:05:27 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.59 2009/05/06 20:55:17 kolmodin Exp $
+
+  06 May 2009; Lennart Kolmodin <kolmodin@gentoo.org>
+  +files/haddock-2.4.2-Setup.hs, haddock-2.4.2.ebuild:
+  Hide dependency on filepath and bundle dependency on ghc-paths.
+  This is to make it easier to install/upgrade haddock when you've just
+  upgraded/installed ghc-6.10.
+  Relevant bug #268248.
 
   26 Apr 2009; Lennart Kolmodin <kolmodin@gentoo.org> haddock-0.8.ebuild,
   haddock-0.9.ebuild:

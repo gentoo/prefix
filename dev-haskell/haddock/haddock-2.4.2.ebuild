@@ -1,23 +1,34 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-2.4.2.ebuild,v 1.2 2009/04/20 00:08:07 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-2.4.2.ebuild,v 1.3 2009/05/06 20:55:17 kolmodin Exp $
 
 CABAL_FEATURES="bin lib"
 # don't enable profiling as the 'ghc' package is not built with profiling
 inherit haskell-cabal autotools eutils prefix
 
+GHCPATHS_PN="ghc-paths"
+GHCPATHS_PV="0.1.0.5"
+GHCPATHS_P="${GHCPATHS_PN}-${GHCPATHS_PV}"
+
 DESCRIPTION="A documentation-generation tool for Haskell libraries"
 HOMEPAGE="http://www.haskell.org/haddock/"
-SRC_URI="http://hackage.haskell.org/packages/archive/${PN}/${PV}/${P}.tar.gz"
+SRC_URI="http://hackage.haskell.org/packages/archive/${PN}/${PV}/${P}.tar.gz
+	http://hackage.haskell.org/packages/archive/${GHCPATHS_PN}/${GHCPATHS_PV}/${GHCPATHS_P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc"
 
-RDEPEND="~dev-lang/ghc-6.10.2
-		dev-haskell/filepath
-		dev-haskell/ghc-paths"
+# haddock-2.4.2 also deps on the upgradeable package dev-haskell/filepath.
+# however, it's included in >=ghc-6.10, so we use the core package without
+# stating the dependency in DEPEND.
+
+# we bundle the dep on ghc-paths to reduce the dependencies on this critical
+# package. ghc-paths would like to be compiled with USE=doc, which pulls in
+# haddock, which requires ghc-paths, which pulls in haddock...
+
+RDEPEND="~dev-lang/ghc-6.10.2"
 DEPEND="${RDEPEND}
 		>=dev-haskell/cabal-1.6
 		doc? (  ~app-text/docbook-xml-dtd-4.2
@@ -26,6 +37,17 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
+
+	# use ghc-paths directly, not as a library
+	sed -e "s|build-depends: ghc-paths|hs-source-dirs: ../${GHCPATHS_P}|" \
+		-e "s|Simple|Custom|" \
+		-i "${S}/${PN}.cabal"
+
+	# ghc-paths has a custom Setup.hs, haddock has the default Setup.lhs.
+	# we use a somewhat modified ghc-paths Setup.hs that works better for our
+	# purposes.
+	rm "${S}/Setup.lhs"
+	cp "${FILESDIR}/${P}-Setup.hs" "${S}/Setup.hs"
 
 	if use doc; then
 		cd "${S}/doc"
