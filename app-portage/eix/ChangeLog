@@ -1,6 +1,16 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.280 2009/04/20 14:34:54 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.282 2009/05/08 04:27:10 darkside Exp $
+
+  08 May 2009; Jeremy Olexa <darkside@gentoo.org> -eix-0.15.5.ebuild,
+  -eix-0.15.6.ebuild:
+  remove old, next stable candidate is 0.15.7
+
+*eix-0.16.0 (08 May 2009)
+
+  08 May 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml,
+  +eix-0.16.0.ebuild:
+  Version bump, highlights include new USE flags and internal changes
 
 *eix-0.15.7 (20 Apr 2009)
 
