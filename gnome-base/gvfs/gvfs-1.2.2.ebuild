@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.0.3-r12.ebuild,v 1.1 2009/03/07 22:20:53 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.2.2.ebuild,v 1.1 2009/05/10 18:18:33 nirbheek Exp $
+
+EAPI="2"
 
 inherit autotools bash-completion gnome2 eutils flag-o-matic
 
@@ -10,33 +12,32 @@ HOMEPAGE="http://www.gnome.org"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="archive avahi bluetooth cdda doc fuse gnome gphoto2 hal gnome-keyring samba"
+IUSE="archive avahi bluetooth cdda doc fuse gnome gnome-keyring gphoto2 hal samba"
 
-RDEPEND=">=dev-libs/glib-2.17.6
+RDEPEND=">=dev-libs/glib-2.19
 	>=sys-apps/dbus-1.0
-	>=net-libs/libsoup-2.23.91
+	>=net-libs/libsoup-2.25.1[gnome]
 	dev-libs/libxml2
 	net-misc/openssh
 	archive? ( app-arch/libarchive )
 	avahi? ( >=net-dns/avahi-0.6 )
-	cdda?  (
-		>=sys-apps/hal-0.5.10
-		>=dev-libs/libcdio-0.78.2 )
-	fuse? ( sys-fs/fuse )
-	gnome? ( >=gnome-base/gconf-2.0 )
-	hal? ( >=sys-apps/hal-0.5.10 )
 	bluetooth? (
 		dev-libs/dbus-glib
 		net-wireless/bluez
 		dev-libs/expat )
-	gphoto2? ( >=media-libs/libgphoto2-2.4 )
+	cdda?  (
+		>=sys-apps/hal-0.5.10
+		>=dev-libs/libcdio-0.78.2[-minimal] )
+	fuse? ( sys-fs/fuse )
+	gnome? ( >=gnome-base/gconf-2.0 )
 	gnome-keyring? ( >=gnome-base/gnome-keyring-1.0 )
+	gphoto2? ( >=media-libs/libgphoto2-2.4 )
+	hal? ( >=sys-apps/hal-0.5.10 )
 	samba? ( >=net-fs/samba-3 )"
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40
 	>=dev-util/pkgconfig-0.19
-	doc? ( >=dev-util/gtk-doc-1 )
-	dev-util/gtk-doc-am"
+	doc? ( >=dev-util/gtk-doc-1 )"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
 
@@ -57,17 +58,16 @@ pkg_setup() {
 		$(use_enable hal)
 		$(use_enable gnome-keyring keyring)
 		$(use_enable samba)"
-
-	if use cdda && built_with_use dev-libs/libcdio minimal; then
-		ewarn
-		ewarn "CDDA support in gvfs requires dev-libs/libcdio to be built"
-		ewarn "without the minimal USE flag."
-		die "Please re-emerge dev-libs/libcdio without the minimal USE flag"
-	fi
 }
 
-src_unpack() {
-	gnome2_src_unpack
+src_prepare() {
+	gnome2_src_prepare
+
+	if use archive; then
+		epatch "${FILESDIR}/${P}-expose-archive-backend.patch"
+		eautoreconf
+	fi
+
 	epatch "${FILESDIR}"/${PN}-0.2.3-interix.patch
 	# There is no mkdtemp on Solaris libc. Using the same code as on Interix	
 	if [[ ${CHOST} == *-solaris* ]] ; then
@@ -87,6 +87,9 @@ src_unpack() {
 	# Add support for bluez 4, bug #250615
 	epatch "${FILESDIR}/${P}-bluez4.patch"
 
+	# Remove debug code that turns warnings into crashes, bug #262502
+	epatch "${FILESDIR}/${P}-bluez4-debug.patch"
+
 	# Fix non posixy tests, bug #256305
 	epatch "${FILESDIR}/${P}-posixtest.patch"
 
@@ -96,10 +99,14 @@ src_unpack() {
 	# Fix HTTP leaks, bug #256892
 	epatch "${FILESDIR}/${P}-http-leak.patch"
 
-	# Fix URL crash; bug #245204
-	epatch "${FILESDIR}"/${P}-gmountspec-SIGSEGV.patch
+	# Fix URL crash, bug #245204
+	epatch "${FILESDIR}/${P}-gmountspec-SIGSEGV.patch"
 
 	eautoreconf
+
+	# Fix "Function `g_volume_monitor_adopt_orphan_mount' implicitly converted to pointer at gdaemonvolumemonitor.c:155"
+	# bug 268788
+	sed -i -e 's:-DG_DISABLE_DEPRECATED::g' $(find . -name Makefile.in) || die
 }
 
 src_install() {
