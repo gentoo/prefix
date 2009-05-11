@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/imaxima
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/imaxima/ChangeLog,v 1.24 2009/04/19 13:22:36 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/imaxima/ChangeLog,v 1.25 2009/05/06 07:20:14 aballier Exp $
+
+  06 May 2009; Alexis Ballier <aballier@gentoo.org> imaxima-1.0.ebuild:
+  drop texlive 2007 support now that 2008 is stable and 2007 is going away
 
 *imaxima-1.0 (19 Apr 2009)
 
