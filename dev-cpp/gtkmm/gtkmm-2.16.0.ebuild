@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/gtkmm-2.14.1.ebuild,v 1.3 2009/03/24 10:11:09 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/gtkmm-2.16.0.ebuild,v 1.1 2009/05/10 22:17:51 eva Exp $
 
 inherit gnome2
 
@@ -12,8 +12,8 @@ SLOT="2.4"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="doc examples test"
 
-RDEPEND=">=dev-cpp/glibmm-2.18
-	>=x11-libs/gtk+-2.14.0
+RDEPEND=">=dev-cpp/glibmm-2.19
+	>=x11-libs/gtk+-2.15.5
 	>=dev-cpp/cairomm-1.2.2
 	>=dev-cpp/pangomm-2.14.0
 	>=dev-libs/atk-1.9.1"
@@ -27,7 +27,6 @@ pkg_setup() {
 	G2CONF="${G2CONF}
 		--enable-api-atkmm
 		$(use_enable doc docs)
-		$(use_enable examples)
 		$(use_enable examples demos)"
 }
 
