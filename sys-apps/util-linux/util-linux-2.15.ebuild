@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.15.ebuild,v 1.1 2009/05/05 22:07:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.15.ebuild,v 1.2 2009/05/10 21:02:46 vapier Exp $
 
 EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/util-linux-ng/util-linux-ng.git"
 inherit eutils
@@ -43,6 +43,7 @@ src_unpack() {
 		unpack ${A}
 		cd "${S}"
 		#epatch "${FILESDIR}"/${PN}-2.13-uclibc.patch #203711
+		epatch "${FILESDIR}"/${P}-cpuid-pic.patch #269001
 		use loop-aes && epatch "${WORKDIR}"/util-linux-ng-*.diff
 	fi
 	use uclibc && sed -i -e s/versionsort/alphasort/g -e s/strverscmp.h/dirent.h/g mount/lomount.c

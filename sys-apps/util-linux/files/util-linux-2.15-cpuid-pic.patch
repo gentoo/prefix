@@ -1,0 +1,51 @@
+http://bugs.gentoo.org/269001
+http://thread.gmane.org/gmane.linux.utilities.util-linux-ng/2203
+
+From 89dbd3ee8678bc43de027a99974451acbfc04cf3 Mon Sep 17 00:00:00 2001
+From: Mike Frysinger <vapier@gentoo.org>
+Date: Sun, 10 May 2009 16:34:33 -0400
+Subject: [PATCH] lscpu: fix cpuid code on x86/PIC
+
+If we build lscpu as PIE, we currently get a build failure:
+lscpu.c: In function 'main':
+lscpu.c:333: error: can't find a register in class 'BREG' while reloading 'asm'
+lscpu.c:333: error: 'asm' operand has impossible constraints
+make[2]: *** [lscpu.o] Error 1
+
+So we need a little bit of register shuffling to keep gcc happy.
+
+Signed-off-by: Mike Frysinger <vapier@gentoo.org>
+---
+ sys-utils/lscpu.c |   16 +++++++++++++---
+ 1 files changed, 13 insertions(+), 3 deletions(-)
+
+diff --git a/sys-utils/lscpu.c b/sys-utils/lscpu.c
+index 3e3fbbe..6b6082f 100644
+--- a/sys-utils/lscpu.c
++++ b/sys-utils/lscpu.c
+@@ -330,9 +330,19 @@ static inline void
+ cpuid(unsigned int op, unsigned int *eax, unsigned int *ebx,
+ 			 unsigned int *ecx, unsigned int *edx)
+ {
+-	__asm__("cpuid"
+-		: "=a" (*eax),
+-		  "=b" (*ebx),
++	__asm__(
++#if defined(__PIC__) && defined(__i386__)
++		/* x86 PIC cannot clobber ebx -- gcc bitches */
++		"pushl %%ebx;"
++		"cpuid;"
++		"movl %%ebx, %%esi;"
++		"popl %%ebx;"
++		: "=S" (*ebx),
++#else
++		"cpuid;"
++		: "=b" (*ebx),
++#endif
++		  "=a" (*eax),
+ 		  "=c" (*ecx),
+ 		  "=d" (*edx)
+ 		: "0" (op), "c"(0));
+-- 
+1.6.2.3
+
