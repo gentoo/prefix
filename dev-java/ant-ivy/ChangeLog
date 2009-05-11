@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/ant-ivy
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-ivy/ChangeLog,v 1.8 2008/07/17 19:00:55 corsair Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-ivy/ChangeLog,v 1.9 2009/05/10 15:26:26 elvanor Exp $
+
+*ant-ivy-2.0.0 (10 May 2009)
+
+  10 May 2009; Jean-Noël Rivasseau <elvanor@gentoo.org>
+  +ant-ivy-2.0.0.ebuild:
+  Version bump to 2.0.0, slotted since ant-contrib does not build with this
+  new version.
 
   17 Jul 2008; Markus Rothe <corsair@gentoo.org> ant-ivy-1.3.1-r1.ebuild:
   Added ~ppc64; bug #231107
