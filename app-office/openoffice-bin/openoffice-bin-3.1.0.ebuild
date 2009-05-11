@@ -1,37 +1,37 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.1.0_rc1.ebuild,v 1.1 2009/04/08 07:42:13 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.1.0.ebuild,v 1.1 2009/05/08 09:03:15 suka Exp $
 
 inherit eutils fdo-mime rpm multilib prefix
 
 IUSE="gnome java kde"
 
-BUILDID="9396"
+BUILDID="9399"
 BUILDID2="9393"
 UREVER="1.5.0"
-MY_PV="${PV/_/}"
-MY_PV2="${MY_PV}_20090402"
-MY_PV3="${PV/_rc1/}-${BUILDID}"
+MY_PV="${PV}rc2"
+MY_PV2="${MY_PV}_20090427"
+MY_PV3="${PV}-${BUILDID}"
 BASIS="ooobasis3.1"
-MST="OOO310_m9"
+MST="OOO310_m11"
 
 if [ "${ARCH}" = "amd64" ] ; then
 	OOARCH="x86_64"
-	PACKED="${MST}_native_packed-1"
-	PACKED2="${MST}_native_packed-1"
+	PACKED="${MST}_native_packed-3"
+	PACKED2="${MST}_native_packed-2"
 else
 	OOARCH="i586"
-	PACKED="${MST}_native_packed-1"
-	PACKED2="${MST}_native_packed-1"
+	PACKED="${MST}_native_packed-4"
+	PACKED2="${MST}_native_packed-2"
 fi
 
 S="${WORKDIR}/${PACKED}_en-US.${BUILDID}/RPMS"
 DESCRIPTION="OpenOffice productivity suite"
 
-SRC_URI="x86? ( mirror://openoffice-extended/${MY_PV}/OOo_${MY_PV2}_LinuxIntel_install_en-US.tar.gz )
-	amd64? ( mirror://openoffice-extended/${MY_PV}/OOo_${MY_PV2}_LinuxX86-64_install_en-US.tar.gz )"
+SRC_URI="x86? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxIntel_install_en-US.tar.gz )
+	amd64? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxX86-64_install_en-US.tar.gz )"
 
-LANGS="af ar as_IN be_BY bg br bs ca cs de dz el en en_GB en_ZA et fi ga gu he hi_IN hr hu ka kk km ku ml_IN mn mr_IN ne nr ns or_IN pa_IN pt rw sh sk sr ss st sw_TZ ta te_IN tg th ti_ER ts uk ur_IN ve xh zu"
+LANGS="af ar as_IN be_BY bg bn br brx bs ca cs cy da de dgo dz el en en_GB en_ZA eo et eu fa fi fr ga gl gu he hi_IN hr hu id it ja ka kk km kn_IN ko kok ks ku lt mai mk ml_IN mn mni mr_IN nb ne nl nn nr ns oc or_IN pa_IN pl pt pt_BR ru rw sa_IN sat sd sh sk sl sr ss st sw_TZ ta ta_IN te_IN tg th ti_ER tn tr ts uk ur_IN uz ve vi xh zh_CN zh_TW zu"
 
 for X in ${LANGS} ; do
 	[[ ${X} != "en" ]] && SRC_URI="${SRC_URI} linguas_${X}? (
@@ -83,7 +83,7 @@ src_unpack() {
 		rpm_unpack "${S}/${BASIS}-${i}-${MY_PV3}.${OOARCH}.rpm"
 	done
 
-	for j in base calc draw impress math writer writer2latex; do
+	for j in base calc draw impress math writer; do
 		rpm_unpack "${S}/openoffice.org3-${j}-${MY_PV3}.${OOARCH}.rpm"
 	done
 
@@ -189,12 +189,5 @@ pkg_postinst() {
 	elog " ${EPREFIX}/usr/$(get_libdir)/openoffice/share/extension/install "
 	elog " Other dictionaries can be found at Suns extension site. "
 	elog
-
-	ewarn " Please note that this release of OpenOffice.org uses a "
-	ewarn " new user install dir. As a result you will have to redo "
-	ewarn " your settings. Alternatively you might copy the old one "
-	ewarn " over from ~/.ooo-2.0 to ~/.ooo3, but be warned that this "
-	ewarn " might break stuff. "
-	ewarn
 
 }
