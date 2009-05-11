@@ -1,49 +1,38 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-6.11.ebuild,v 1.1 2008/04/19 22:20:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.4.ebuild,v 1.1 2009/05/07 19:46:35 vapier Exp $
 
-inherit eutils flag-o-matic toolchain-funcs autotools
+inherit eutils flag-o-matic toolchain-funcs
 
-PATCH_VER="1.0"
+PATCH_VER="1"
 DESCRIPTION="Standard GNU file utilities (chmod, cp, dd, dir, ls...), text utilities (sort, tr, head, wc..), and shell utilities (whoami, who,...)"
 HOMEPAGE="http://www.gnu.org/software/coreutils/"
-SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.lzma
-	mirror://gnu/${PN}/${P}.tar.lzma
-	mirror://gentoo/${P}.tar.lzma
+SRC_URI="ftp://alpha.gnu.org/gnu/coreutils/${P}.tar.gz
+	mirror://gnu/${PN}/${P}.tar.gz
+	mirror://gentoo/${P}.tar.gz
 	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.lzma
 	http://dev.gentoo.org/~vapier/dist/${P}-patches-${PATCH_VER}.tar.lzma"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="acl nls selinux static xattr vanilla"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="acl caps gmp nls selinux static vanilla xattr"
 
-RDEPEND="selinux? ( sys-libs/libselinux )
-	acl? ( sys-apps/acl )
+RDEPEND="caps? ( sys-libs/libcap )
+	gmp? ( dev-libs/gmp )
+	selinux? ( sys-libs/libselinux )
 	xattr? ( sys-apps/attr )
 	nls? ( >=sys-devel/gettext-0.15 )
 	!<sys-apps/util-linux-2.13
+	!sys-apps/stat
 	!net-mail/base64
 	!sys-apps/mktemp
+	!<app-forensics/tct-1.18-r1
+	!<net-fs/netatalk-2.0.3-r4
+	!<sci-chemistry/ccp4-6.1.1
 	>=sys-libs/ncurses-5.3-r5"
 DEPEND="${RDEPEND}
-	app-arch/lzma-utils
-	>=sys-devel/automake-1.10.1
-	>=sys-devel/autoconf-2.61
-	>=sys-devel/m4-1.4-r1"
-
-pkg_setup() {
-	# fixup expr for #123342 (rely on path)
-	if [[ $(expr a : '\(a\)') != "a" ]] ; then
-		if [[ -x ${EPREFIX}/bin/busybox ]] ; then
-			ln -sf ${EPREFIX}/bin/busybox ${EPREFIX}/bin/expr
-		else
-			eerror "Your expr binary appears to be broken, please fix it."
-			eerror "For more info, see http://bugs.gentoo.org/123342"
-			die "your expr is broke"
-		fi
-	fi
-}
+	app-arch/lzma-utils"
 
 src_unpack() {
 	unpack ${A}
@@ -56,56 +45,21 @@ src_unpack() {
 		epatch
 	fi
 
-	# no need to abort when unable to 'list mounted fs'
-	epatch "${FILESDIR}"/6.9-without-mountfs.patch
+	epatch "${FILESDIR}"/${PN}-7.2-mgetgroups-darwin.patch
+	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
+	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.
 	# Also, it's not like we changed the usage on any of these things,
 	# so let's just update the timestamps and skip the help2man step.
-	touch man/*.1
-	# There's no reason for this crap to use the private version
-	sed -i 's:__mempcpy:mempcpy:g' lib/*.c
-
-	use vanilla || AT_M4DIR="m4" eautoreconf
-
-	# For platforms which don't have /usr/bin/perl (like FreeBSD) make sure we
-	# don't regenerate wheel.h after above patches
-	touch src/wheel.h
+	set -- man/*.x
+	tc-is-cross-compiler && touch ${@/%x/1}
 }
 
 src_compile() {
-
-	if ! type -p cvs > /dev/null ; then
-		# Fix issues with gettext's autopoint if cvs is not installed,
-		# bug #28920.
-		export AUTOPOINT="${EPREFIX}/bin/true"
-	fi
-
-	local myconf=""
-	# put stuff in usr/libexec/gnu for x86-fbsd, if non-prefixed
-	if [[ ${EPREFIX%/} == "" ]] && [[ ${USERLAND} != "GNU" ]]; then
-		myconf="${myconf} --bindir=${EPREFIX}/usr/libexec/gnu"
-	fi
-
-	# somehow this works for spanky/spanky thinks this works
-#	if echo "#include <regex.h>" | $(tc-getCPP) > /dev/null ; then
-#		myconf="${myconf} --without-included-regex"
-#	fi
-	# it doesn't for Linux and Darwin, so we do it the oldfashioned way
-	[[ ${ELIBC} == "glibc" || ${ELIBC} == "uclibc" ]] \
-		&& myconf="${myconf} --without-included-regex"
-
-	# cross-compile workaround #177061
-	[[ ${CHOST} == *-linux* ]] && export fu_cv_sys_stat_statvfs=yes
-
 	if [[ ${CHOST} == *-interix* ]]; then
-		# work around broken headers
-		export ac_cv_header_inttypes_h=no
-		export ac_cv_header_stdint_h=no
-		export gl_cv_header_inttypes_h=no
-		export gl_cv_header_stdint_h=no
 		append-flags "-Dgetgrgid=getgrgid_nomembers"
 		append-flags "-Dgetgrent=getgrent_nomembers"
 		append-flags "-Dgetgrnam=getgrnam_nomembers"
@@ -115,14 +69,21 @@ src_compile() {
 	# kill/uptime - procps
 	# groups/su   - shadow
 	# hostname    - net-tools
+	if [[ ${CHOST} == *-mint* ]]; then
+		myconf="${myconf} --enable-install-program=arch,hostname,kill,uptime"
+		myconf="${myconf} --enable-no-install-program=groups,su"
+	else
+		myconf="${myconf} --enable-install-program=arch"
+		myconf="${myconf} --enable-no-install-program=groups,hostname,kill,su,uptime"
+	fi
 	econf \
-		--enable-install-program="arch" \
-		--enable-no-install-program="groups,hostname,kill,su,uptime" \
+		${myconf} \
 		--enable-largefile \
+		$(use_enable caps libcap) \
 		$(use_enable nls) \
 		$(use_enable acl) \
 		$(use_enable xattr) \
-		${myconf} \
+		$(use_with gmp) \
 		|| die "econf"
 	emake || die "emake"
 }
@@ -132,15 +93,32 @@ src_test() {
 	# accessible to non-root users
 	chmod -R go-w "${WORKDIR}"
 	chmod a+rx "${WORKDIR}"
+
+	# coreutils tests like to do `mount` and such with temp dirs
+	# so make sure /etc/mtab is writable #265725
+	mkdir -p "${T}"/mount-wrappers
+	mkwrap() {
+		local w ww
+		for w in "$@" ; do
+			ww="${T}/mount-wrappers/${w}"
+			cat <<-EOF > "${ww}"
+				#!${EPREFIX}/bin/sh
+				exec env SANDBOX_WRITE="\${SANDBOX_WRITE}:/etc/mtab" $(type -P $w) "\$@"
+			EOF
+			chmod a+rx "${ww}"
+		done
+	}
+	mkwrap mount umount
+
 	addwrite /dev/full
-	export RUN_EXPENSIVE_TESTS="yes"
+	#export RUN_EXPENSIVE_TESTS="yes"
 	#export FETISH_GROUPS="portage wheel"
-	make -k check || die "make check failed"
+	env PATH="${T}/mount-wrappers:${PATH}" \
+	emake -j1 -k check || die "make check failed"
 }
 
 src_install() {
 	emake install DESTDIR="${D}" || die
-	rm -f "${ED}"/usr/lib/charset.alias
 	dodoc AUTHORS ChangeLog* NEWS README* THANKS TODO
 
 	insinto /etc
@@ -157,6 +135,8 @@ src_install() {
 		# getting a list of mounted filesystems.
 		[[ ${CHOST} != *-interix* ]] && fhs="${fhs} df"
 
+		[[ ${CHOST} == *-mint* ]] && fhs="${fhs} hostname"
+
 		mv ${fhs} ../../bin/ || die "could not move fhs bins"
 		# move critical binaries into /bin (common scripts)
 		local com="basename chroot cut dir dirname du env expr head mkfifo
@@ -171,8 +151,11 @@ src_install() {
 		# For now, drop the man pages, collides with the ones of the system.
 		rm -rf "${ED}"/usr/share/man
 	fi
+
+	# collision with libiconv
+	rm -rf "${ED}"/usr/$(get_libdir)/charset.alias
 }
 
 pkg_postinst() {
-	ewarn "Make sure you run 'hash -r' in your active shells."
+	ewarn "Make sure you run 'hash -r' in your active shells"
 }
