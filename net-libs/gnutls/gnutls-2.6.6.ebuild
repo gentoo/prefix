@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.6.ebuild,v 1.7 2009/05/04 06:57:41 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.6.6.ebuild,v 1.8 2009/05/06 15:19:48 armin76 Exp $
 
 EAPI="2"
 inherit autotools eutils libtool
