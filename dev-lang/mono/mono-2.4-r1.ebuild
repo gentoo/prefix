@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.9999.ebuild,v 1.3 2009/05/09 00:16:48 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4-r1.ebuild,v 1.1 2009/05/08 09:44:19 flameeyes Exp $
 
 EAPI=2
 
@@ -38,16 +38,10 @@ PATCHES=(
 	"${WORKDIR}/mono-2.2-libdir126.patch"
 	"${FILESDIR}/mono-2.2-ppc-threading.patch"
 	"${FILESDIR}/mono-2.2-uselibdir.patch"
+	"${FILESDIR}/mono-2.4-ppcbuild-fix.patch"
 )
 
 pkg_setup() {
-	if ! has_version dev-lang/mono
-	then
-		eerror "To compile the SVN version of mono, you must first have a working install of"
-		eerror "dev-lang/mono. Preferably one that is not too old relative to the branch you're"
-		eerror "trying to build."
-		die "A working install of dev-lang/mono is required for building the SVN version."
-	fi
 	if use kernel_linux
 	then
 		get_version
@@ -67,12 +61,6 @@ pkg_setup() {
 			ewarn "See http://bugs.gentoo.org/261869 for more info."
 		fi
 	fi
-}
-
-src_unpack() {
-	subversion_fetch "${ESVN_REPO_URI}" mono || die "subversion_fetch mono failed"
-	subversion_fetch "${ESVN_REPO_URI%/mono}/mcs" mono/mcs || die "subversion_fetch mcs failed"
-	S="${WORKDIR}/${P}/mono"
 }
 
 src_prepare() {
@@ -126,6 +114,10 @@ src_install() {
 		"${ED}"/usr/bin/mod || die "Failed to fix mod."
 
 	find "${ED}"/usr/ -name '*nunit-docs*' -exec rm -rf '{}' '+' || die "Removing nunit .docs failed"
+
+	# Remove Jay to avoid colliding with dev-util/jay, the internal
+	# version is only used to build mcs.
+	rm -r "${ED}"/usr/share/jay "${ED}"/usr/bin/jay "${ED}"/user/share/man/man1/jay.1*
 }
 
 #THINK!!!! Before touching postrm and postinst
@@ -149,10 +141,10 @@ pkg_preinst() {
 				einfo "be advised that this is a known problem, which will now be fixed:"
 				ebegin "Found broken symlinks created by $(best_version dev-lang/mono), fixing"
 				for symlink in						\
-				    "${EROOT}/${NUNIT_DIR}"				\
-				    "${EROOT}/usr/$(get_libdir)/pkgconfig/nunit.pc"	\
-				    "${EROOT}/usr/bin/nunit-console"			\
-				    "${EROOT}/usr/bin/nunit-console2"
+					"${EROOT}/${NUNIT_DIR}"				\
+					"${EROOT}/usr/$(get_libdir)/pkgconfig/nunit.pc"	\
+					"${EROOT}/usr/bin/nunit-console"			\
+					"${EROOT}/usr/bin/nunit-console2"
 				do
 					if [[ -L "${symlink}" ]]
 					then
