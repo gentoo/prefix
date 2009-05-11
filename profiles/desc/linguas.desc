@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.36 2009/02/18 14:24:27 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/linguas.desc,v 1.37 2009/05/08 08:57:45 suka Exp $
 
 # This file contains descriptions of LINGUAS USE_EXPAND flags.
 
@@ -18,6 +18,7 @@ bn - Bengali locale
 bn_IN - Bengali locale for India
 bo - Tibetan locale
 br - Breton locale
+brx - Bodo locale for India
 bs - Bosnian locale
 ca - Catalan locale
 cs - Czech locale
@@ -26,6 +27,7 @@ cy - Welsh locale
 da - Danish locale
 de - German locale
 de_FR - German locale for France
+dgo - Dogri locale for India
 dz - Dzongkha locale
 el - Greek locale
 en - English locale
@@ -68,7 +70,10 @@ ka - Georgian locale
 kk - Kazakh locale
 km - Khmer locale
 kn - Kannada locale
+kn_IN - Kannada locale for India
 ko - Korean locale
+kok - Konkani locale
+ks - Kashmiri locale
 ku - Kurdish (latin) locale
 la - Latin2 locale
 lb - Luxembourgish locale
@@ -80,6 +85,7 @@ mk - Macedonian locale
 ml - Malayalam locale
 ml_IN - Malayalam locale for India
 mn - Mongolian locale
+mni - Manipuri locale
 mr - Marathi locale
 mr_IN - Marathi locale for India
 ms - Malay locale
@@ -106,6 +112,9 @@ pt_PT - Portuguese locale for Portugal
 ro - Romanian locale
 ru - Russian locale
 rw - Kinyarwanda locale
+sa_IN - Sanskrit locale
+sat - Santali locale
+sd - Sindhi locale
 se - Northern Saami locale
 sh - Serbo-Croatian locale
 sh_YU - Serbo-Croatian locale
