@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/herrie
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.31 2008/10/14 16:13:17 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/ChangeLog,v 1.32 2009/05/10 20:18:27 ssuominen Exp $
+
+*herrie-2.2 (10 May 2009)
+
+  10 May 2009; Samuli Suominen <ssuominen@gentoo.org> +herrie-2.2.ebuild,
+  +files/herrie-2.2-libxspf.patch:
+  Version bump with libxspf patch wrt #261928, thanks to Sebastian Pipping.
 
   14 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> herrie-2.1.ebuild:
   Fix build dependencies.

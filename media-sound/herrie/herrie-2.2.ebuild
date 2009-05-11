@@ -1,7 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/herrie-2.0.ebuild,v 1.4 2008/04/26 17:22:58 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/herrie-2.2.ebuild,v 1.2 2009/05/10 20:41:30 ssuominen Exp $
 
+EAPI=2
 inherit eutils toolchain-funcs
 
 DESCRIPTION="Herrie is a command line music player."
@@ -19,8 +20,8 @@ for X in ${APP_LINGUAS}; do
 	IUSE="${IUSE} linguas_${X}"
 done
 
-DEPEND="sys-libs/ncurses
-	>=dev-libs/glib-2.0
+RDEPEND="sys-libs/ncurses[unicode?]
+	>=dev-libs/glib-2:2
 	ao? ( media-libs/libao )
 	alsa? ( media-libs/alsa-lib )
 	http? ( net-misc/curl )
@@ -30,29 +31,18 @@ DEPEND="sys-libs/ncurses
 	pulseaudio? ( media-sound/pulseaudio )
 	sndfile? ( media-libs/libsndfile )
 	vorbis? ( media-libs/libvorbis )
-	xspf? ( >=media-libs/libspiff-0.6.5 )
-	!ao? ( !alsa? ( !pulseaudio? ( !oss? ( !coreaudio? ( media-libs/alsa-lib ) ) ) ) )
-	"
-RDEPEND="${DEPEND}"
-DEPEND="nls? ( sys-devel/gettext )
+	xspf? ( >=media-libs/libxspf-1.2 )
+	!ao? ( !alsa? ( !pulseaudio? ( !oss? ( media-libs/alsa-lib ) ) ) )"
+DEPEND="${RDEPEND}
+	nls? ( sys-devel/gettext )
 	dev-util/pkgconfig"
 
-pkg_setup() {
-	if use unicode && ! built_with_use sys-libs/ncurses unicode; then
-		echo
-		eerror "Rebuild sys-libs/ncurses with USE=unicode if you need unicode in herrie."
-		die "Rebuild sys-libs/ncurses with USE=unicode if you need unicode in herrie."
-	fi
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-1.8-chost.patch \
+		"${FILESDIR}"/${P}-libxspf.patch
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}/${PN}-1.8-chost.patch"
-}
-
-src_compile() {
+src_configure() {
 	if ! use ao && ! use alsa && ! use pulseaudio && ! use oss && ! use coreaudio ; then
 		ewarn "No audio output selected (ao, alsa, pulseaudio, oss), defaulting to alsa."
 	fi
@@ -76,10 +66,9 @@ src_compile() {
 	einfo "./configure ${EXTRA_CONF}"
 	CC="$(tc-getCC)" PREFIX="${EPREFIX}"/usr MANDIR="${EPREFIX}"/usr/share/man \
 		./configure ${EXTRA_CONF} || die "configure failed"
-	emake || die "make failed"
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc README ChangeLog
+	emake DESTDIR="${D}" install || die "emake install failed"
+	dodoc ChangeLog README
 }
