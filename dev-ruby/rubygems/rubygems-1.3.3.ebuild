@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.2.0.ebuild,v 1.12 2008/12/02 22:36:35 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.3.3.ebuild,v 1.1 2009/05/09 08:39:37 a3li Exp $
 
 inherit ruby
 
@@ -18,7 +18,8 @@ SRC_URI="mirror://rubyforge/${PN}/${P}.tgz"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 SLOT="0"
 IUSE="doc server"
-DEPEND=">=dev-lang/ruby-1.8"
+DEPEND="=dev-lang/ruby-1.8*"
+RDEPEND="${DEPEND}"
 PDEPEND="server? ( dev-ruby/builder )" # index_gem_repository.rb
 
 USE_RUBY="ruby18"
@@ -27,7 +28,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}/${P}-setup.patch"
+	epatch "${FILESDIR}/${PN}-1.3.3-setup.patch"
+	# Fixes a new "feature" that would prevent us from recognizing installed
+	# gems inside the sandbox
+	epatch "${FILESDIR}/${PN}-1.3.3-gentoo.patch"
 }
 
 src_compile() {
@@ -40,10 +44,13 @@ src_install() {
 	export RUBYOPT="${GENTOO_RUBYOPT}"
 	ewarn "RUBYOPT=${RUBYOPT}"
 
+	# Force ebuild to use Ruby 1.8
+	export RUBY="${EPREFIX}/usr/bin/ruby18"
+
 	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 
-	# rubygems tries to create GEM_HOME if it doesn't exist, upsetting
-	# sandbox, bug #202109. Since 1.2.0 we also need to set GEM_PATH
+	# rubygems tries to create GEM_HOME if it doesn't exist, upsetting sandbox,
+	# bug #202109. Since 1.2.0 we also need to set GEM_PATH
 	# for this reason, bug #230163.
 	export GEM_HOME="${ED}/usr/$(get_libdir)/ruby/gems/${ver}"
 	export GEM_PATH="${GEM_HOME}/"
@@ -55,11 +62,9 @@ src_install() {
 		myconf="${myconf} --no-rdoc"
 	fi
 
-	${RUBY} setup.rb $myconf --prefix="${D}" || die "setup.rb install failed"
+	${RUBY} setup.rb $myconf --destdir="${D}" || die "setup.rb install failed"
 
-	dosym gem18 /usr/bin/gem || die "dosym gem failed"
-
-	dodoc README ChangeLog TODO || die "dodoc README failed"
+	dodoc README || die "dodoc README failed"
 
 	cp "${FILESDIR}/auto_gem.rb" "${D}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]') || die "cp auto_gem.rb failed"
 	doenvd "${FILESDIR}/10rubygems" || die "doenvd 10rubygems failed"
@@ -77,14 +82,20 @@ pkg_postinst()
 		rm "${SOURCE_CACHE}"
 	fi
 
-	ewarn "If you have previously switched to using ruby18_with_gems using ruby-config, this"
-	ewarn "package has removed that file and makes it unnecessary anymore."
-	ewarn "Please use ruby-config to revert back to ruby18."
+	if [[ ! -n $(readlink "${EROOT}"usr/bin/gem) ]] ; then
+		eselect ruby set ruby18
+	fi
+
+	ewarn
+	ewarn "This ebuild is compatible to eselect-ruby"
+	ewarn "To switch between available Ruby profiles, execute as root:"
+	ewarn "\teselect ruby set ruby(18|19|...)"
+	ewarn
 }
 
 pkg_postrm()
 {
-	ewarn "If you have uninstalled dev-ruby/rubygems. Ruby applications are unlikely"
+	ewarn "If you have uninstalled dev-ruby/rubygems, Ruby applications are unlikely"
 	ewarn "to run in current shells because of missing auto_gem."
 	ewarn "Please run \"unset RUBYOPT\" in your shells before using ruby"
 	ewarn "or start new shells"

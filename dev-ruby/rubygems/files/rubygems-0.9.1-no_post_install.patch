@@ -1,9 +1,0 @@
-diff -ur rubygems-0.9.1/post-install.rb rubygems-0.9.1.new/post-install.rb
---- rubygems-0.9.1/post-install.rb	2007-01-16 07:31:27.000000000 +0700
-+++ rubygems-0.9.1.new/post-install.rb	2007-01-17 20:05:04.000000000 +0700
-@@ -117,5 +117,4 @@
- remove_old_rdoc
- install_rdoc
- install_windows_batch_files
--remove_stubs
- 
