@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  11 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  un-unmasking perl-5.8.8-r6, as I resurrected perl-5.8.8-r5 for bug #269430
+
   08 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask media-video/ffmpeg-9999 (vcs ebuild)
 

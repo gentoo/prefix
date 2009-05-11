@@ -37,10 +37,6 @@
 # VCS builds
 ~media-video/ffmpeg-9999
 
-# Fabian Groffen <grobian@gentoo.org> (03 May 2009)
-# Unmasking, it's the only version we have
--=dev-lang/perl-5.8.8-r6
-
 # Fabian Groffen <grobian@gentoo.org> (30 Apr 2009)
 # Feels like it has -Werror somewhere as it dies on warnings for Darwin,
 # dies completely on Solaris.
