@@ -1,10 +1,68 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2618 2009/05/07 19:45:27 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2636 2009/05/10 21:53:38 kolmodin Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  10 May 2009; Lennart Kolmodin <kolmodin@gentoo.org> package.mask:
+  Mask the haskell platform for testing.
+
+  10 May 2009; Thomas Sachau (Tommy[D]) <tommy@gentoo.org> package.mask:
+  Remove mask on net-libs/fec (dropped)
+
+  10 May 2009; Lennart Kolmodin <kolmodin@gentoo.org> package.mask:
+  Mask dev-lang/ghc-6.10.3 for testing.
+
+  10 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Remove libspiff mask because the package is now libxspf in tree.
+
+  10 May 2009; Joerg Bornkessel <hd_brummy@gentoo.org> package.mask:
+  unmask media-tv/w_scan-20090502
+
+  10 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  base/package.use.force:
+  USE flag X needs to be always enabled in media-sound/rubyripper for Xeconf
+  wrt #268980.
+
+  10 May 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Unmasking packages that were waiting for bluez4. Also doing it on behalf
+  of flameeyes.
+
+  10 May 2009; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Unmasking bluez-4 and deps. Good luck.
+
+  10 May 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Fixing invalid atom for media-gfx/eog mask.
+
+  10 May 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Mask packages that depend on the API breaking gnome-base/gnome-desktop
+
+  09 May 2009; MATSUU Takuto <matsuu@gentoo.org> thirdpartymirrors:
+  Added JAIST to sourceforge.jp.
+
+  09 May 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add a bunch of Low-Bandwidth X and X Proxy Management apps, libs and proto
+  to p.mask
+
+  08 May 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add xplsprinters, libXprintAppUtil and libXprintUtil to p.mask
+
+  08 May 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  pre-2.0 intel drivers are out from portage, drop p.mask entry
+
+  08 May 2009; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Pending removal in 15 days
+
+  08 May 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Temporarily mask mono-2.4-r1 for bug 265912.
+
+  08 May 2009; Andreas Proschofsky <suka@gentoo.org> package.mask:
+  Unmask openoffice-bin 3.1.0
+
+  08 May 2009; Andreas Proschofsky <suka@gentoo.org> desc/linguas.desc:
+  Add a bunch of new locales, used in OOo 3.1.0
 
   07 May 2009; Tomas Chvatal <scarabeus@gentoo.org> package.mask:
   Remove kde 4.2.3 mask

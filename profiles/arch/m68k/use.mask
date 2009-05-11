@@ -55,6 +55,7 @@ fusion
 pike
 R
 octave
+hal
 
 
 # USE=audit masked prior to testing on alpha, arm, hppa, ppc64, s390, sh.

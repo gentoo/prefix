@@ -12,6 +12,7 @@ lasi
 kde
 mpi
 fuse
+hal
 
 # This file contains a list of useflags that cannot be used on s390.
 bluetooth

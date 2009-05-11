@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9765 2009/05/07 19:45:27 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9782 2009/05/10 22:18:58 hwoarang Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,69 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Markos Chandras <hwoarang@gentoo.org> (11 May 2009)
+# Moved from app-misc to x11-misc
+=app-misc/rednotebook-0.6.9
+
+# Lennart Kolmodin <kolmodin@gentoo.org> (10 May 2009)
+# Mark the haskell-platform, depends on other things masked for testing.
+dev-haskell/haskell-platform
+
+# Lennart Kolmodin <kolmodin@gentoo.org> (10 May 2009)
+# Mark ghc-6.10.3 for testing.
+~dev-lang/ghc-6.10.3
+
+# Gilles Dartiguelongue <eva@gentoo.org> (10 May 2009)
+# Those packages depend on gnome-desktop which breaks API again.
+# They should be hold off until they are all moved to the tree.
+>=gnome-desktop/gnome-desktop-2.26
+>=media-gfx/eog-2.26
+>=media-video/cheese-2.26
+>=gnome-base/nautilus-2.26
+>=gnome-base/gnome-control-center-2.26
+>=gnome-base/gnome-settings-daemon-2.26
+
+# Rémi Cardona <remi@gentoo.org> (09 May 2009)
+# Low-Bandwidth X and the X Proxy Management stuff has been declared
+# dead since last century. All of those will be gone in 30 days
+x11-apps/lbxproxy
+x11-apps/proxymngr
+x11-apps/xfindproxy
+x11-apps/xfwp
+x11-apps/xrx
+x11-proto/xproxymanagementprotocol
+
+# Rémi Cardona <remi@gentoo.org> (09 May 2009)
+# XPrint is dead, long live XPrint
+# nothing in portage uses those apps and libs anymore
+# will be removed in 30 days (see bug #264982 for rationale)
+x11-apps/xplsprinters
+x11-libs/libXprintAppUtil
+x11-libs/libXprintUtil
+
+# Markos Chandras <hwoarang@gentoo.org> (08 May 2009)
+# Pending removal in 15 days.
+=x11-libs/qt-4.5.0
+=x11-libs/qt-assistant-4.5.0*
+=x11-libs/qt-core-4.5.0*
+=x11-libs/qt-dbus-4.5.0*
+=x11-libs/qt-demo-4.5.0*
+=x11-libs/qt-gui-4.5.0*
+=x11-libs/qt-opengl-4.5.0*
+=x11-libs/qt-phonon-4.5.0*
+=x11-libs/qt-qt3support-4.5.0*
+=x11-libs/qt-script-4.5.0*
+=x11-libs/qt-sql-4.5.0*
+=x11-libs/qt-svg-4.5.0*
+=x11-libs/qt-test-4.5.0*
+=x11-libs/qt-webkit-4.5.0*
+=x11-libs/qt-xmlpatterns-4.5.0*
+
+# Peter Alfredsen <loki_val@gentoo.org> (05 May 2009)
+# Masking temporarily till bug 265912 has been resolved
+# to my satisfaction.
+=dev-lang/mono-2.4-r1
 
 # Mark Loeser <halcy0n@gentoo.org> (6 May 2009)
 # Masked for testing
@@ -97,15 +160,6 @@ x11-misc/xkbdata
 =dev-util/mono-tools-9999
 =virtual/monodoc-9999
 
-# Gilles Dartiguelongue <eva@gentoo.org> (05 May 2009)
-# Requires net-wireless/gnome-bluetooth-2.27
->=app-mobilephone/gnome-phone-manager-0.65
-
-# Nirbheek Chauhan <nirbheek@gentoo.org> (05 May 2009)
-# Requires net-wireless/bluez-4
-# Needs KEYWORDS on dev-libs/libunique, bug 268487
-=net-wireless/gnome-bluetooth-2.27*
-
 # Theo Chatzimichos <tampakrap@gentoo.org> (04 May 2009)
 # Masked for removal
 # It shouldn't be in kde-base and it can't go back to games-puzzle
@@ -121,10 +175,6 @@ x11-misc/xkbdata
 # mask for removal - Jun 1 09
 # bug #268507
 app-doc/afsdoc
-
-# Joerg Bornkessel <hd_brummy@gentoo.org> (02 May 2009)
-# need >=sys-kernel/linux-headers-2.6.29 with s2api header changes
-=media-tv/w_scan-20090502
 
 # Tomas Chvatal <scarabeus@gentoo.org> (1 May 2009)
 # broke nepomuk and soprano in kde so mask for now
@@ -384,7 +434,6 @@ net-libs/libinfinity
 # Andreas Proschofsky <suka@gentoo.org> (08 Apr 2009)
 # pre-releases, mask for testing
 >=app-office/openoffice-3.1.0_beta3
->=app-office/openoffice-bin-3.1.0_rc1
 
 # Jeremy Olexa <darkside@gentoo.org> (07 Apr 2009)
 # Not supported in Gentoo anymore, use 'eselect bashcomp' now
@@ -514,11 +563,6 @@ kde-misc/kgraphspace
 # in the meantime. Bug 262863.
 =dev-dotnet/gnome-desktop-sharp-2.26*
 
-# Diego E. Pettenò <flameeyes@gentoo.org> (20 mar 2009)
-# New version with net-wireless/bluez instead of bluez-lib
-# as dependency. Good luck if you want to test.
-~app-pda/libsyncml-0.5.2
-
 # Alex Legler <a3li@gentoo.org> (20 Mar 2009)
 # Ruby 1.9.1 for preliminary testing of libraries depending on it, bug 203706.
 # Expect (many) breakages and incompatibilities.
@@ -551,10 +595,6 @@ dev-tex/xkeyval
 # HPN patch contains some breakages with port forwarding.
 =net-misc/openssh-5.2_p1-r2
 
-# Nirbheek Chauhan <nirbheek@gentoo.org> (11 Mar 2009)
-# Needs net-wireless/bluez-gnome-1.8 and net-wireless/bluez-4
-=gnome-extra/nautilus-sendto-1.1*
-
 # Tony Vroon <chainsaw@gentoo.org> (10 Mar 2009)
 # This is *very* new and will require an extensive rewrite of your
 # configuration before it will work. If you are not ready to dedicate
@@ -571,10 +611,6 @@ net-misc/dahdi-tools
 # Peter Volkov <pva@gentoo.org> (7 Mar 2009)
 # Masked for removal, please use app-text/ghostscript-gpl #261434
 app-text/ghostscript-esp
-
-# Thomas Sachau <tommy@gentoo.org> (2 Mar 2009)
-# Mask for removal, was merged into dev-java/fec
-net-libs/fec
 
 # Matti Bickel <mabi@gentoo.org> (1 Mar 2009)
 # Mask testing branch
@@ -796,20 +832,6 @@ net-proxy/squirm
 # Snapshots, alphas and betas of Opera may delete kittens
 =www-client/opera-10*
 
-# Tiziano Müller <dev-zero@gentoo.org> (28 Nov 2008)
-# mask for testing/transition
-# blueman needs policykit-gnome
-net-wireless/bluez
->=net-wireless/bluez-gnome-1.8
->=app-mobilephone/obex-data-server-0.4
->=gnome-extra/gnome-user-share-0.41
-=media-video/totem-2.24.4-r1
-=gnome-base/gvfs-1.0.3-r12
-=gnome-base/gvfs-1.0.3-r13
->=net-wireless/libbtctl-0.11.0
->=app-mobilephone/obexftp-0.23
-net-wireless/blueman
-
 # MATSUU Takuto <matsuu@gentoo.org> (19 Nov 2008)
 # Masked for bug #196340
 =media-fonts/ja-ipafonts-0.0.20040715
@@ -849,15 +871,6 @@ app-crypt/truecrypt
 # Alexis Ballier <aballier@gentoo.org> (15 Oct 2008)
 # Breaks ocamlduce
 >=dev-lang/ocaml-3.11.0_beta1
-
-# Rémi Cardona <remi@gentoo.org> (11 Oct 2008)
-# Old versions, those are no longer maintained and
-# should not be used, use 2.x instead
-<x11-drivers/xf86-video-intel-2.0.0
-
-# Alexis Ballier <aballier@gentoo.org> (06 Oct 2008)
-# API changes, the only reverse dep fails to build against it.
->=media-libs/libspiff-1.0.0
 
 # Christian Parpart <trapni@gentoo.org> (04 Oct 2008)
 # for testing/experienced users only

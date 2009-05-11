@@ -1,6 +1,13 @@
 # ChangeLog for Gentoo/hppa profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/ChangeLog,v 1.21 2009/05/04 03:40:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/ChangeLog,v 1.23 2009/05/06 23:01:15 jer Exp $
+
+  06 May 2009; Jeroen Roovers <jer@gentoo.org> package.use.mask:
+  Mask USE=solver for kde-base/kalzium or dev-ml/facile[ocamlopt] would be
+  required (bug #266459).
+
+  06 May 2009; Jeroen Roovers <jer@gentoo.org> package.use.mask:
+  Mask net-libs/libproxy webkit as to not pull in webkit-gtk (bug #268529).
 
   04 May 2009; Jeroen Roovers <jer@gentoo.org> package.use.mask:
   Reinstate p.u.m correctly for <sys-devel/gcc-4.3[libffi] (bug #210880).

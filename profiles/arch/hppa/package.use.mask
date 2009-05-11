@@ -1,6 +1,15 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/package.use.mask,v 1.19 2009/05/04 03:40:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/package.use.mask,v 1.21 2009/05/06 23:01:15 jer Exp $
 # DON'T TOUCH THIS FILE. Instead, file a bug and assign it to <hppa@gentoo.org>.
+
+# Jeroen Roovers <jer@gentoo.org> (06 May 2009)
+# Mask USE=solver for kde-base/kalzium or dev-ml/facile[ocamlopt]
+# would be required:
+kde-base/kalzium solver
+
+# Jeroen Roovers <jer@gentoo.org> (06 May 2009)
+# Mask webkit-gtk dependency for net-libs/libproxy:
+net-libs/libproxy webkit
 
 # Jeroen Roovers <jer@gentoo.org> (19 Nov 2007)
 # build fails (bug #210880):	 
