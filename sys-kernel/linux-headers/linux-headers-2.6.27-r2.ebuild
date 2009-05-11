@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.27-r2.ebuild,v 1.8 2009/01/23 11:32:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.27-r2.ebuild,v 1.9 2009/05/09 20:48:50 vapier Exp $
 
 ETYPE="headers"
 H_SUPPORTEDARCH="alpha amd64 arm cris hppa m68k mips ia64 ppc ppc64 s390 sh sparc x86"
@@ -40,7 +40,7 @@ src_install() {
 	find "${ED}" '(' -name '.install' -o -name '*.cmd' ')' -print0 | xargs -0 rm -f
 
 	# provided by libdrm (for now?)
-	rm -rf "${ED}"/usr/include/drm
+	rm -rf "${ED}"/$(kernel_header_destdir)/drm
 }
 
 src_test() {
