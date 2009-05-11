@@ -1,6 +1,10 @@
 # ChangeLog for virtual/postgresql-base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/postgresql-base/ChangeLog,v 1.4 2009/05/03 11:55:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/postgresql-base/ChangeLog,v 1.5 2009/05/07 18:57:48 klausman Exp $
+
+  07 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  postgresql-base-8.1.ebuild:
+  Stable on alpha, bug #268138
 
   03 May 2009; Raúl Porcel <armin76@gentoo.org> postgresql-base-8.3.ebuild:
   Add ~s390
