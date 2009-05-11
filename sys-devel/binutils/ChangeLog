@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.352 2009/03/14 11:41:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.354 2009/05/09 20:58:16 vapier Exp $
+
+  09 May 2009; Mike Frysinger <vapier@gentoo.org> metadata.xml:
+  Add new USE=gold flag #266282 by Dror Levin.
+
+*binutils-2.19.51.0.4 (09 May 2009)
+
+  09 May 2009; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.19.51.0.4.ebuild:
+  Version bump #267297 by Arfrever Frehtes Taifersar Arahesis.
 
 *binutils-2.19.1-r1 (14 Mar 2009)
 
