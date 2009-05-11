@@ -1,6 +1,9 @@
 # ChangeLog for games-strategy/freeciv
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/ChangeLog,v 1.88 2009/04/06 02:45:58 mr_bones_ Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/ChangeLog,v 1.89 2009/05/09 14:42:51 klausman Exp $
+
+  09 May 2009; Tobias Klausmann <klausman@gentoo.org> freeciv-2.1.9.ebuild:
+  Stable on alpha, bug #268536
 
 *freeciv-2.1.9 (06 Apr 2009)
 
