@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/preload
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.8 2008/10/28 13:04:57 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.9 2009/05/07 03:06:49 darkside Exp $
+
+*preload-0.6.4 (07 May 2009)
+
+  07 May 2009; Jeremy Olexa <darkside@gentoo.org> +preload-0.6.4.ebuild:
+  version bump, bug 267538
 
   28 Oct 2008; Jeremy Olexa <darkside@gentoo.org> files/init.d-preload:
   sys-apps/preload - fix another bashisms. bug #244491
