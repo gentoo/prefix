@@ -10,7 +10,7 @@ SRC_URI="ftp://ftp.gtk.org/pub/${PN}/0.0/${P}.tar.bz2"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="sse mmx"
 
 DEPEND="virtual/libc"
