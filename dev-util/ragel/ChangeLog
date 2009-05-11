@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/ragel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ragel/ChangeLog,v 1.22 2009/03/28 00:06:30 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ragel/ChangeLog,v 1.23 2009/05/08 13:55:50 fmccor Exp $
+
+  08 May 2009; Ferris McCormick <fmccor@gentoo.org> ragel-6.4.ebuild:
+  Add ~sparc for testing, part of bug #269021.
 
   28 Mar 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   +files/ragel-6.4-solaris.patch, ragel-6.4.ebuild:
