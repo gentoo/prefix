@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.9 2009/05/01 19:49:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.10 2009/05/10 15:53:48 ulm Exp $
 
 EAPI=2
 
@@ -150,7 +150,7 @@ src_configure() {
 			myconf="${myconf} $(use_with m17n-lib m17n-flt)"
 		else
 			myconf="${myconf} --without-libotf --without-m17n-flt"
-			use m17n-lib && einfo \
+			use m17n-lib && ewarn \
 				"USE flag \"m17n-lib\" has no effect because xft is not set."
 		fi
 
