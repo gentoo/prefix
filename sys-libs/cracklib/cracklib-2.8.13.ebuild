@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.13.ebuild,v 1.11 2009/03/17 10:13:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.13.ebuild,v 1.12 2009/05/09 18:13:56 vapier Exp $
 
-inherit eutils toolchain-funcs multilib autotools
+inherit eutils toolchain-funcs multilib libtool autotools
 
 MY_P=${P/_}
 DESCRIPTION="Password Checking Library"
@@ -35,6 +35,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.8.12-interix.patch
 
 	AT_M4DIR="m4" eautoreconf # need new libtool for interix
+	elibtoolize #269003
 }
 
 src_compile() {

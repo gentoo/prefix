@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/cracklib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.131 2009/03/17 10:13:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.132 2009/05/09 18:13:56 vapier Exp $
+
+  09 May 2009; Mike Frysinger <vapier@gentoo.org> cracklib-2.8.13.ebuild:
+  Call elibtoolize #269003 by Sven Rebhan.
 
   17 Mar 2009; Raúl Porcel <armin76@gentoo.org> cracklib-2.8.13.ebuild:
   m68k stable wrt #258530, thanks to kolla for testing
