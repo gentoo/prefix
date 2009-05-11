@@ -1,0 +1,29 @@
+One more typing fix for GCC 4.4, and fix a NULL dereference on startup.
+
+Lubomir Rintel <lkundrak@v3.sk>
+
+diff -up inkscape/src/extension/internal/bitmap/imagemagick.cpp.gcc44 inkscape/src/extension/internal/bitmap/imagemagick.cpp
+--- inkscape/src/extension/internal/bitmap/imagemagick.cpp.gcc44	2009-01-28 22:12:57.000000000 +0100
++++ inkscape/src/extension/internal/bitmap/imagemagick.cpp	2009-03-02 17:05:57.000000000 +0100
+@@ -114,7 +114,7 @@ ImageMagickDocCache::readImage(const cha
+ 	char *search = (char *) g_strndup(xlink, 30);
+ 	if (strstr(search, "base64") != (char*)NULL) {
+ 		// 7 = strlen("base64") + strlen(",")
+-		char* pureBase64 = strstr(xlink, "base64") + 7;		
++		const char* pureBase64 = strstr(xlink, "base64") + 7;		
+ 		Magick::Blob blob;
+ 		blob.base64(pureBase64);
+ 		image->read(blob);
+diff -up inkscape/src/libnr/nr-object.cpp.gcc44 inkscape/src/libnr/nr-object.cpp
+--- inkscape/src/libnr/nr-object.cpp.gcc44	2009-03-02 17:06:46.000000000 +0100
++++ inkscape/src/libnr/nr-object.cpp	2009-03-02 17:06:58.000000000 +0100
+@@ -198,8 +198,8 @@ NRObject *NRObject::alloc(NRType type)
+     );
+     memset(object, 0xf0, c->isize);
+ 
+-    object->klass = c;
+     c->cpp_ctor(object);
++    object->klass = c;
+     nr_class_tree_object_invoke_init (c, object);
+ 
+     return object;
