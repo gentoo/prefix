@@ -1,8 +1,11 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.5.6.5.ebuild,v 1.4 2008/11/24 01:20:46 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.3.ebuild,v 1.1 2009/05/08 20:15:16 robbat2 Exp $
+
+EAPI=2
 
 inherit toolchain-funcs eutils elisp-common perl-module bash-completion multilib
+[ "$PV" == "9999" ] && inherit git
 
 MY_PV="${PV/_rc/.rc}"
 MY_P="${PN}-${MY_PV}"
@@ -10,17 +13,25 @@ MY_P="${PN}-${MY_PV}"
 DOC_VER=${MY_PV}
 
 DESCRIPTION="GIT - the stupid content tracker, the revision control system heavily used by the Linux kernel team"
-HOMEPAGE="http://git.or.cz/"
-SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
-		mirror://kernel/software/scm/git/${PN}-manpages-${DOC_VER}.tar.bz2
-		doc? ( mirror://kernel/software/scm/git/${PN}-htmldocs-${DOC_VER}.tar.bz2 )"
+HOMEPAGE="http://www.git-scm.com/"
+if [ "$PV" != "9999" ]; then
+	SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
+			mirror://kernel/software/scm/git/${PN}-manpages-${DOC_VER}.tar.bz2
+			doc? ( mirror://kernel/software/scm/git/${PN}-htmldocs-${DOC_VER}.tar.bz2 )"
+else
+	SRC_URI=""
+	EGIT_BRANCH="master"
+	EGIT_REPO_URI="git://git.kernel.org/pub/scm/git/git.git"
+	# EGIT_REPO_URI="http://www.kernel.org/pub/scm/git/git.git"
+fi
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
-IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd cvs subversion vim-syntax"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd cvs subversion"
 
-DEPEND="
+# Common to both DEPEND and RDEPEND
+CDEPEND="
 	!app-misc/git
 	dev-libs/openssl
 	sys-libs/zlib
@@ -33,17 +44,29 @@ DEPEND="
 	)
 	emacs?  ( virtual/emacs )"
 
-RDEPEND="${DEPEND}
+RDEPEND="${CDEPEND}
 	perl? ( dev-perl/Error
 			dev-perl/Net-SMTP-SSL
 			dev-perl/Authen-SASL
 			cgi? ( virtual/perl-CGI )
 			cvs? ( >=dev-util/cvsps-2.1 dev-perl/DBI dev-perl/DBD-SQLite )
-			subversion? ( dev-util/subversion dev-perl/libwww-perl dev-perl/TermReadKey )
+			subversion? ( dev-util/subversion[-dso] dev-perl/libwww-perl dev-perl/TermReadKey )
 			)
-	gtk?  ( >=dev-python/pygtk-2.8 )"
+	gtk?  ( >=dev-python/pygtk-2.8 dev-python/gtksourceview-python )"
 
-SITEFILE=72${PN}-gentoo.el
+DEPEND="${CDEPEND}"
+
+# These are needed to build the docs
+if [ "$PV" == "9999" ]; then
+	DEPEND="${DEPEND}
+		doc?    (
+			app-text/asciidoc
+			app-text/xmlto
+			app-text/docbook2X
+		)"
+fi
+
+SITEFILE=50${PN}-gentoo.el
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
@@ -54,6 +77,11 @@ pkg_setup() {
 	fi
 	if use webdav && ! use curl ; then
 		ewarn "USE=webdav needs USE=curl. Ignoring"
+	fi
+	if use subversion && has_version dev-util/subversion && built_with_use --missing false dev-util/subversion dso ; then
+		ewarn "Per Gentoo bugs #223747, #238586, when subversion is built"
+		ewarn "with USE=dso, there may be weird crashes in git-svn. You"
+		ewarn "have been warned."
 	fi
 }
 
@@ -78,7 +106,7 @@ exportmakeopts() {
 	myopts="${myopts} NO_FINK=YesPlease NO_DARWIN_PORTS=YesPlease"
 	[[ ${CHOST} == *-solaris* ]] &&
 		myopts="${myopts} INSTALL=install TAR=tar"
-	use elibc_glibc || myopts="${myopts} NEEDS_LIBICONV=YesPlease"
+	use !elibc_glibc && use iconv && myopts="${myopts} NEEDS_LIBICONV=YesPlease"
 
 	use iconv || myopts="${myopts} NO_ICONV=YesPlease"
 	use tk || myopts="${myopts} NO_TCLTK=YesPlease"
@@ -86,6 +114,13 @@ exportmakeopts() {
 	use threads && myopts="${myopts} THREADED_DELTA_SEARCH=YesPlease"
 	use subversion || myopts="${myopts} NO_SVN_TESTS=YesPlease"
 
+	if [[ ${CHOST} == *-mint* ]] ; then
+		myopts="${myopts} NO_MMAP=YesPlease"
+		myopts="${myopts} NO_IPV6=YesPlease"
+		myopts="${myopts} NO_STRLCPY=YesPlease"
+		myopts="${myopts} NO_MEMMEM=YesPlease"
+		myopts="${myopts} NO_MKDTEMP=YesPlease"
+	fi
 	if [[ ${CHOST} == *-interix* ]] ; then
 		myopts="${myopts} NO_IPV6=YesPlease"
 		myopts="${myopts} NO_MEMMEM=YesPlease"
@@ -100,48 +135,91 @@ exportmakeopts() {
 }
 
 src_unpack() {
-	unpack ${MY_P}.tar.bz2
-	cd "${S}"
-	unpack ${PN}-manpages-${DOC_VER}.tar.bz2
-	use doc && cd "${S}"/Documentation && unpack ${PN}-htmldocs-${DOC_VER}.tar.bz2
-	cd "${S}"
+	if [ "${PV}" != "9999" ]; then
+		unpack ${MY_P}.tar.bz2
+		cd "${S}"
+		unpack ${PN}-manpages-${DOC_VER}.tar.bz2
+		use doc && \
+			cd "${S}"/Documentation && \
+			unpack ${PN}-htmldocs-${DOC_VER}.tar.bz2
+		cd "${S}"
+	else
+		git_src_unpack
+		cd "${S}"
+		#cp "${FILESDIR}"/GIT-VERSION-GEN .
+	fi
 
-	epatch "${FILESDIR}"/20080626-git-1.5.6.1-noperl.patch
+}
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+src_prepare() {
+	# Noperl is being merged to upstream as of 2009/04/05
+	#epatch "${FILESDIR}"/20090305-git-1.6.2-noperl.patch
+
+	# GetOpt-Long v2.38 is strict
+	# Merged in 1.6.3 final 2009/05/07
+	#epatch "${FILESDIR}"/20090505-git-1.6.2.5-getopt-fixes.patch
+
+	epatch "${FILESDIR}"/${PN}-1.6.0.2-interix.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.1.1-mint.patch
 
 	sed -i \
-		-e "s:^\(CFLAGS =\).*$:\1 ${CFLAGS} -Wall:" \
-		-e "s:^\(LDFLAGS =\).*$:\1 ${LDFLAGS}:" \
-		-e "s:^\(CC = \).*$:\1$(tc-getCC):" \
-		-e "s:^\(AR = \).*$:\1$(tc-getAR):" \
+		-e 's:^\(CFLAGS =\).*$:\1 $(OPTCFLAGS) -Wall:' \
+		-e 's:^\(LDFLAGS =\).*$:\1 $(OPTLDFLAGS):' \
+		-e 's:^\(CC = \).*$:\1$(OPTCC):' \
+		-e 's:^\(AR = \).*$:\1$(OPTAR):' \
 		-e "s:\(PYTHON_PATH = \)\(.*\)$:\1${EPREFIX}\2:" \
 		-e "s:\(PERL_PATH = \)\(.*\)$:\1${EPREFIX}\2:" \
 		Makefile || die "sed failed"
 
+	# Fix docbook2texi command
+	sed -i 's/DOCBOOK2X_TEXI=docbook2x-texi/DOCBOOK2X_TEXI=docbook2texi.pl/' \
+		Documentation/Makefile || die "sed failed"
+}
+
+git_emake() {
+	emake ${MY_MAKEOPTS} \
+		DESTDIR="${D}" \
+		OPTCFLAGS="${CFLAGS}" \
+		OPTLDFLAGS="${LDFLAGS}" \
+		OPTCC="$(tc-getCC)" \
+		OPTAR="$(tc-getAR)" \
+		prefix="${EPREFIX}"/usr \
+		htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
+		sysconfdir="${EPREFIX}"/etc \
+		"$@"
+}
+
+src_configure() {
 	exportmakeopts
 }
 
 src_compile() {
-	emake ${MY_MAKEOPTS} DESTDIR="${ED}" prefix="${EPREFIX}"/usr sysconfdir="${EPREFIX}"/etc || \
-		die "make failed"
+	git_emake || die "emake failed"
 
 	if use emacs ; then
-		elisp-compile contrib/emacs/{,vc-}git.el || die "emacs modules failed"
+		elisp-compile contrib/emacs/git{,-blame}.el \
+			|| die "emacs modules failed"
 	fi
+
 	if use perl && use cgi ; then
-		emake ${MY_MAKEOPTS} \
-		DESTDIR="${D}" \
-		prefix="${EPREFIX}"/usr \
-		sysconfdir="${EPREFIX}"/etc \
-		gitweb/gitweb.cgi || die "make gitweb/gitweb.cgi failed"
+		git_emake \
+			gitweb/gitweb.cgi \
+			|| die "emake gitweb/gitweb.cgi failed"
+	fi
+
+	if [[ "$PV" == "9999" ]] && use doc; then
+		cd Documentation
+		git_emake man info html \
+			|| die "emake man html info failed"
 	fi
 }
 
 src_install() {
-	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr sysconfdir="${EPREFIX}"/etc install || die "make install failed"
+	git_emake \
+		install || \
+		die "make install failed"
 
-	doman man?/*
+	doman man?/*.[157] Documentation/*.[157]
 
 	dodoc README Documentation/{SubmittingPatches,CodingGuidelines}
 	use doc && dodir /usr/share/doc/${PF}/html
@@ -155,12 +233,13 @@ src_install() {
 	dobashcompletion contrib/completion/git-completion.bash ${PN}
 
 	if use emacs ; then
-		elisp-install ${PN} contrib/emacs/{,vc-}git.el* || \
-			die "elisp-install failed"
-		elisp-site-file-install "${FILESDIR}"/${SITEFILE}
+		elisp-install ${PN} contrib/emacs/git.{el,elc} || die
+		elisp-install ${PN} contrib/emacs/git-blame.{el,elc} || die
+		#elisp-install ${PN}/compat contrib/emacs/vc-git.{el,elc} || die
 		# don't add automatically to the load-path, so the sitefile
 		# can do a conditional loading
-		touch "${ED}"/"${SITELISP}"/${PN}/.nosearch
+		touch "${ED}${SITELISP}/${PN}/compat/.nosearch"
+		elisp-site-file-install "${FILESDIR}"/${SITEFILE} || die
 	fi
 
 	if use gtk ; then
@@ -171,13 +250,6 @@ src_install() {
 	dobin contrib/fast-import/git-p4
 	dodoc contrib/fast-import/git-p4.txt
 	newbin contrib/fast-import/import-tars.perl import-tars
-
-	if use vim-syntax ; then
-		insinto /usr/share/vim/vimfiles/syntax/
-		doins contrib/vim/syntax/gitcommit.vim
-		insinto /usr/share/vim/vimfiles/ftdetect/
-		newins "${FILESDIR}"/vim-ftdetect-gitcommit.vim gitcommit.vim
-	fi
 
 	dodir /usr/share/${PN}/contrib
 	# The following are excluded:
@@ -208,6 +280,14 @@ src_install() {
 		docinto /
 		newdoc  "${S}"/gitweb/INSTALL INSTALL.gitweb
 		newdoc  "${S}"/gitweb/README README.gitweb
+
+		find "${ED}"/usr/lib64/perl5/ \
+			-name .packlist \
+			-exec rm \{\} \;
+	fi
+	if ! use subversion ; then
+		rm -f "${ED}"/usr/libexec/git-core/git-svn \
+			"${ED}"/usr/share/man/man1/git-svn.1*
 	fi
 
 	if use xinetd ; then
@@ -231,29 +311,39 @@ src_test() {
 					t5520-pull.sh"
 
 	# Unzip is used only for the testcase code, not by any normal parts of Git.
-	has_version app-arch/unzip || \
-		einfo "Disabling tar-tree tests" && \
-		disabled="${disabled} \
-					t5000-tar-tree.sh"
-
-	if ! has userpriv "${FEATURES}"; then
-		ewarn "Skipping CVS tests because CVS does not work as root!"
-		ewarn "You should retest with FEATURES=userpriv!"
-		disabled="${disabled} \
-					${tests_cvs}"
+	if ! has_version app-arch/unzip ; then
+		einfo "Disabling tar-tree tests"
+		disabled="${disabled} t5000-tar-tree.sh"
 	fi
 
-	use cvs && \
-		has_version dev-util/cvs && \
-		built_with_use dev-util/cvs server || \
-		einfo "Disabling CVS tests (needs dev-util/cvs[USE=server])" && \
-		disabled="${disabled} \
-					${tests_cvs}"
+	cvs=0
+	use cvs && let cvs=$cvs+1
+	if ! has userpriv "${FEATURES}"; then
+		if [[ $cvs -eq 1 ]]; then
+			ewarn "Skipping CVS tests because CVS does not work as root!"
+			ewarn "You should retest with FEATURES=userpriv!"
+			disabled="${disabled} ${tests_cvs}"
+		fi
+		# Bug #225601 - t0004 is not suitable for root perm
+		# Bug #219839 - t1004 is not suitable for root perm
+		disabled="${disabled} t0004-unwritable.sh t1004-read-tree-m-u-wf.sh"
+	else
+		[[ $cvs -gt 0 ]] && \
+			has_version dev-util/cvs && \
+			let cvs=$cvs+1
+		[[ $cvs -gt 0 ]] && \
+			built_with_use dev-util/cvs server && \
+			let cvs=$cvs+1
+		if [[ $cvs -lt 3 ]]; then
+			einfo "Disabling CVS tests (needs dev-util/cvs[USE=server])"
+			disabled="${disabled} ${tests_cvs}"
+		fi
+	fi
 
-	use perl || \
-		einfo "Disabling tests that need Perl" && \
-		disabled="${disabled} \
-					${tests_perl}"
+	if ! use perl ; then
+		einfo "Disabling tests that need Perl"
+		disabled="${disabled} ${tests_perl}"
+	fi
 
 	# Reset all previously disabled tests
 	cd "${S}/t"
@@ -267,7 +357,8 @@ src_test() {
 	cd "${S}"
 	# Now run the tests
 	einfo "Start test run"
-	emake ${MY_MAKEOPTS} DESTDIR="${D}" prefix="${EPREFIX}"/usr sysconfdir="${EPREFIX}"/etc test || die "tests failed"
+	git_emake \
+		test || die "tests failed"
 }
 
 showpkgdeps() {
@@ -277,12 +368,7 @@ showpkgdeps() {
 }
 
 pkg_postinst() {
-	if use emacs ; then
-		elisp-site-regen
-		elog "GNU Emacs has built-in Git support in versions greater 22.1."
-		elog "You can disable the emacs USE flag for dev-util/git"
-		elog "if you are using such a version."
-	fi
+	use emacs && elisp-site-regen
 	if use subversion && has_version dev-util/subversion && ! built_with_use --missing false dev-util/subversion perl ; then
 		ewarn "You must build dev-util/subversion with USE=perl"
 		ewarn "to get the full functionality of git-svn!"

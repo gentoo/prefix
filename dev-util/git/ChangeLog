@@ -1,6 +1,38 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.338 2009/05/05 19:15:12 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.343 2009/05/10 02:33:58 robbat2 Exp $
+
+  10 May 2009; Robin H. Johnson <robbat2@gentoo.org> git-9999.ebuild:
+  getopt fixes in HEAD.
+
+  08 May 2009; Robin H. Johnson <robbat2@gentoo.org> +files/50git-gentoo.el:
+  Accidently removed a used file.
+
+  08 May 2009; Robin H. Johnson <robbat2@gentoo.org> -git-1.5.1.6.ebuild,
+  -git-1.5.3.7-r1.ebuild, -git-1.5.3.8.ebuild,
+  -files/git-1.5.3.8-t9101.patch, -files/git-1.5.3.8-t9106.patch,
+  -files/20080322-git-1.5.4.4-noperl.patch, -git-1.5.5.4.ebuild,
+  -files/70git-gentoo.el, -files/git-1.5.0-symlinks.patch,
+  -git-1.5.4.5.ebuild, -files/20080423-git-1.5.5.1-noperl.patch,
+  -git-1.5.5.3.ebuild, -git-1.5.5.3-r1.ebuild,
+  -files/20080528-git-1.5.5.3-noperl.patch, -git-1.5.6.1.ebuild,
+  -files/50git-gentoo.el, -git-1.5.6.2.ebuild, -files/72git-gentoo.el,
+  -files/git-1.5.3-symlinks.patch, -git-1.5.6.3.ebuild, -git-1.5.6.4.ebuild,
+  -git-1.5.6.5.ebuild, -git-1.6.0.ebuild, -git-1.6.0.1.ebuild,
+  -git-1.6.0.2.ebuild, -git-1.6.0.3.ebuild, -git-1.6.0.4.ebuild,
+  -git-1.6.0.4-r1.ebuild, -git-1.6.0.4-r2.ebuild, -git-1.6.3_rc4.ebuild:
+  Cleanup old ebuilds and files.
+
+*git-1.6.3 (08 May 2009)
+
+  08 May 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.3.ebuild:
+  Version bump.
+
+*git-1.6.2.5-r1 (08 May 2009)
+
+  08 May 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.2.5-r1.ebuild:
+  Bug 268817: Accidently dropped the noperl patch, it's only merged in
+  upstreams 1.6.3.x series.
 
   05 May 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.2.5.ebuild,
   git-1.6.3_rc4.ebuild, git-9999.ebuild:
