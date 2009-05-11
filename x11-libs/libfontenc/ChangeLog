@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libfontenc
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libfontenc/ChangeLog,v 1.43 2008/01/31 04:32:00 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libfontenc/ChangeLog,v 1.44 2009/05/08 21:11:23 ssuominen Exp $
+
+  08 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  libfontenc-1.0.4.ebuild:
+  Missing rdepend sys-libs/zlib wrt #268997, thanks to Corbin Simpson.
 
   31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
   -libfontenc-1.0.2.ebuild:
