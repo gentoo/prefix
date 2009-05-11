@@ -1,6 +1,24 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.116 2009/04/17 19:14:15 mescalinum Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.122 2009/05/07 19:08:18 klausman Exp $
+
+  07 May 2009; Tobias Klausmann <klausman@gentoo.org> tk-8.4.18-r1.ebuild:
+  Stable on alpha, bug #268174
+
+  06 May 2009; Kenneth Prugh <ken69267@gentoo.org> tk-8.4.18-r1.ebuild:
+  amd64 stable, bug #268174
+
+  06 May 2009; Jeroen Roovers <jer@gentoo.org> tk-8.4.18-r1.ebuild:
+  Stable for HPPA (bug #268174).
+
+  06 May 2009; Ferris McCormick <fmccor@gentoo.org> tk-8.4.18-r1.ebuild:
+  Sparc stable, bug #268174.
+
+  06 May 2009; Christian Faulhammer <fauli@gentoo.org> tk-8.4.18-r1.ebuild:
+  stable x86, bug 268174
+
+  06 May 2009; Brent Baude <ranger@gentoo.org> tk-8.4.18-r1.ebuild:
+  Marking tk-8.4.18-r1 ppc64 and ppc for bug 268174
 
 *tk-8.5.7 (17 Apr 2009)
 

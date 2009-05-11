@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.4.18-r1.ebuild,v 1.1 2008/10/27 20:27:07 mescalinum Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.4.18-r1.ebuild,v 1.7 2009/05/07 19:08:18 klausman Exp $
 
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
