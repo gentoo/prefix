@@ -1,6 +1,43 @@
 # ChangeLog for dev-lang/ruby
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.391 2009/04/03 12:26:26 a3li Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.400 2009/05/10 18:52:51 a3li Exp $
+
+  10 May 2009; Alex Legler <a3li@gentoo.org> ruby-1.8.6_p114.ebuild,
+  -ruby-1.8.6_p287-r5.ebuild, -ruby-1.8.6_p287-r13.ebuild,
+  ruby-1.8.6_p368.ebuild, -ruby-1.8.7_p72-r11.ebuild,
+  ruby-1.8.7_p160.ebuild:
+  Removing vulnerable versions (#268515), fixing license (#233747).
+
+  09 May 2009; Jeroen Roovers <jer@gentoo.org> ruby-1.8.6_p368.ebuild:
+  Stable for HPPA (bug #268515).
+
+  09 May 2009; Alex Legler <a3li@gentoo.org> ruby-1.9.1-r1.ebuild:
+  Adapting rubygems notice.
+
+  08 May 2009; Alex Legler <a3li@gentoo.org> ruby-1.8.6_p368.ebuild:
+  amd64 stable, bug #268515.
+
+  08 May 2009; Raúl Porcel <armin76@gentoo.org> ruby-1.8.6_p368.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #268515
+
+  07 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  ruby-1.8.6_p368.ebuild:
+  stable x86, security bug 268515
+
+  07 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  ruby-1.8.6_p368.ebuild:
+  Stable on alpha, bug #268515
+
+  07 May 2009; Brent Baude <ranger@gentoo.org> ruby-1.8.6_p368.ebuild:
+  Marking ruby-1.8.6_p368 ppc64 and ppc for bug 268515
+
+*ruby-1.8.7_p160 (07 May 2009)
+*ruby-1.8.6_p368 (07 May 2009)
+
+  07 May 2009; Alex Legler <a3li@gentoo.org> +ruby-1.8.6_p368.ebuild,
+  +ruby-1.8.7_p160.ebuild:
+  Version bump as per secbug 268515. NB: These are the first ebuilds that
+  no longer use ruby-config.
 
 *ruby-1.9.1-r1 (03 Apr 2009)
 *ruby-1.8.7_p72-r11 (03 Apr 2009)

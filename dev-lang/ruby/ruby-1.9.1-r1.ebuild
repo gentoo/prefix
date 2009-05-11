@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1-r1.ebuild,v 1.1 2009/04/03 12:26:26 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1-r1.ebuild,v 1.2 2009/05/09 08:59:43 a3li Exp $
 
 EAPI=2
 
@@ -47,7 +47,7 @@ S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	ewarn
-	ewarn "It is highly recommended to install dev-ruby/rubygems-1.3.1-r30"
+	ewarn "It is highly recommended to install >=dev-ruby/rubygems-1.3.1-r30"
 	ewarn "if you have Ruby 1.8 on this system installed, too."
 	ewarn
 	epause 5

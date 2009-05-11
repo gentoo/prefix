@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p287-r13.ebuild,v 1.1 2009/04/03 12:26:26 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p368.ebuild,v 1.8 2009/05/10 18:52:51 a3li Exp $
 
 ONIGURUMA="onigd2_5_9"
 
@@ -16,7 +16,7 @@ DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
 SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2"
 
-LICENSE="Ruby"
+LICENSE="|| ( Ruby GPL-2 )"
 KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
 
@@ -64,11 +64,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
 
-	epatch "${FILESDIR}/${P}-entity_expansion_limit.diff"
-	epatch "${FILESDIR}/${PN}-1.8.6-shortname_constants.patch"
-	epatch "${FILESDIR}/${PN}-1.8.6-openssl.patch"
 	epatch "${FILESDIR}/${PN}-mkconfig.patch"
-	epatch "${FILESDIR}/${PN}-ossl_ocsp-verification.patch"
 	epatch "${FILESDIR}/${PN}${MY_SUFFIX}-mkmf-parallel-install.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6-uclibc-udp.patch"
 

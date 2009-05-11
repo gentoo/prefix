@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p72-r11.ebuild,v 1.2 2009/04/03 18:19:18 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p160.ebuild,v 1.2 2009/05/10 18:52:51 a3li Exp $
 
 #PATCHES APPLY, DOESN'T COMPILE THOUGH
 #ONIGURUMA="onigd2_5_9"
@@ -18,7 +18,7 @@ HOMEPAGE="http://www.ruby-lang.org/"
 SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2"
 #	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
 
-LICENSE="Ruby"
+LICENSE="|| ( Ruby GPL-2 )"
 KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs" #cjk
 
@@ -68,9 +68,7 @@ src_unpack() {
 	cd "${S}/ext/dl"
 	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
 	cd "${S}"
-	epatch "${FILESDIR}/${PN}-1.8.6-shortname_constants.patch"
 	epatch "${FILESDIR}/${PN}-mkconfig.patch"
-	epatch "${FILESDIR}/${PN}-ossl_ocsp-verification.patch"
 	epatch "${FILESDIR}/${PN}${MY_SUFFIX}-mkmf-parallel-install.patch"
 
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
