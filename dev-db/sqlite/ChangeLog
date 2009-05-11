@@ -1,6 +1,23 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.238 2009/05/04 15:45:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.242 2009/05/09 06:17:33 arfrever Exp $
+
+  09 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  sqlite-3.6.14.ebuild:
+  Fix building (bug #269075).
+
+  09 May 2009; Jeroen Roovers <jer@gentoo.org> sqlite-3.6.13.ebuild:
+  Stable for HPPA (bug #267528).
+
+*sqlite-3.6.14 (08 May 2009)
+
+  08 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -sqlite-3.6.6.2.ebuild, -sqlite-3.6.10.ebuild,
+  -files/sqlite-3.6.10-tcl-install.patch, +sqlite-3.6.14.ebuild:
+  Version bump.
+
+  07 May 2009; Raúl Porcel <armin76@gentoo.org> sqlite-3.6.13.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #267528
 
   04 May 2009; Brent Baude <ranger@gentoo.org> sqlite-3.6.12.ebuild:
   Marking sqlite-3.6.12 ppc64 for bug 267528
