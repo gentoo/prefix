@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/hsetroot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/hsetroot/ChangeLog,v 1.7 2009/05/01 18:05:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/hsetroot/ChangeLog,v 1.8 2009/05/06 21:09:48 maekke Exp $
+
+  06 May 2009; Markus Meier <maekke@gentoo.org> hsetroot-1.0.2.ebuild:
+  amd64 stable, bug #266096
 
   01 May 2009; Raúl Porcel <armin76@gentoo.org> hsetroot-1.0.2.ebuild:
   x86 stable wrt #266096
