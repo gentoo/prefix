@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/libxmlpp/libxmlpp-2.24.2.ebuild,v 1.1 2009/01/03 15:07:59 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/libxmlpp/libxmlpp-2.26.0.ebuild,v 1.1 2009/05/10 22:26:38 eva Exp $
 
 inherit gnome2 eutils
 
@@ -23,15 +23,14 @@ RDEPEND=">=dev-libs/libxml2-2.6.1
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-MAKEOPTS="${MAKEOPTS} -j1"
 DOCS="AUTHORS ChangeLog NEWS README*"
 
 src_unpack() {
 	gnome2_src_unpack
 
 	# don't waste time building the examples
-	sed -i 's/^\(SUBDIRS =.*\)examples\(.*\)$/\1\2/' Makefile.in || \
-		die "sed Makefile.in failed"
+	sed 's/^\(SUBDIRS =.*\)examples\(.*\)$/\1\2/' \
+		-i Makefile.am Makefile.in || die "sed Makefile.in failed"
 }
 
 src_install() {
