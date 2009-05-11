@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/sun-jdk
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.256 2009/04/02 21:55:20 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.257 2009/05/10 17:46:53 arfrever Exp $
+
+  10 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  sun-jdk-1.4.2.19.ebuild, sun-jdk-1.5.0.18.ebuild, sun-jdk-1.6.0.13.ebuild:
+  Set QA_DT_HASH (bug #237577).
 
   02 Apr 2009; Markus Meier <maekke@gentoo.org> sun-jdk-1.5.0.18.ebuild,
   sun-jdk-1.6.0.13.ebuild:
