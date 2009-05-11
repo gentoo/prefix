@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/gnome-python
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gnome-python/ChangeLog,v 1.136 2009/04/12 20:59:10 bluebird Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gnome-python/ChangeLog,v 1.137 2009/05/10 21:54:51 eva Exp $
+
+*gnome-python-2.26.1 (10 May 2009)
+
+  10 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-python-2.20.0.ebuild, gnome-python-2.20.1.ebuild,
+  -gnome-python-2.22.0.ebuild, +gnome-python-2.26.1.ebuild:
+  New version for GNOME 2.26. Clean up old revisions.
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> ChangeLog:
   Stable on sparc, bug #260063
