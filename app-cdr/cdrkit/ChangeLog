@@ -1,6 +1,12 @@
 # ChangeLog for app-cdr/cdrkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.67 2009/02/15 13:51:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.68 2009/05/07 20:55:51 ssuominen Exp $
+
+*cdrkit-1.1.9-r1 (07 May 2009)
+
+  07 May 2009; Samuli Suominen <ssuominen@gentoo.org> -cdrkit-1.1.6.ebuild,
+  -cdrkit-1.1.8.ebuild, +cdrkit-1.1.9-r1.ebuild:
+  Convert to cmake-utils wrt #267776, thanks to Tomáš Chvátal.
 
   15 Feb 2009; Brent Baude <ranger@gentoo.org> cdrkit-1.1.9.ebuild:
   stable ppc, bug 256106
