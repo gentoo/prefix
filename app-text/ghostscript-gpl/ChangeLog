@@ -1,6 +1,10 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.76 2009/05/05 16:33:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.77 2009/05/06 20:52:22 maekke Exp $
+
+  06 May 2009; Markus Meier <maekke@gentoo.org>
+  ghostscript-gpl-8.64-r3.ebuild:
+  amd64 stable, bug #264594
 
   05 May 2009; Raúl Porcel <armin76@gentoo.org>
   ghostscript-gpl-8.64-r3.ebuild:
