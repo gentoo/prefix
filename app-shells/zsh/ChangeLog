@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/zsh
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.143 2009/03/22 19:37:28 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.144 2009/05/07 13:26:39 tove Exp $
+
+  07 May 2009; Torsten Veller <tove@gentoo.org> zsh-4.3.9.ebuild:
+  Don't build gdbm module if USE=-gdbm for a non-dynamic zsh (#268926)
 
   22 Mar 2009; Raúl Porcel <armin76@gentoo.org> zsh-4.3.9.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #261488

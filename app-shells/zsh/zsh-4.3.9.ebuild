@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.9.ebuild,v 1.8 2009/03/22 19:37:28 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.9.ebuild,v 1.9 2009/05/07 13:26:39 tove Exp $
 
 # doc package for -dev version exists?
 doc_available=true
@@ -108,6 +108,10 @@ src_compile() {
 			-e 's/cap.mdd link=static/cap.mdd link=no/' \
 			-e 's/curses.mdd link=static/curses.mdd link=no/' \
 			config.modules || die
+		if ! use gdbm ; then
+			sed -i 's/gdbm.mdd link=static/gdbm.mdd link=no/' \
+				config.modules || die
+		fi
 #	else
 #		sed -i -e "/LIBS/s%-lpcre%${EPREFIX}/usr/$(get_libdir)/libpcre.a%" Makefile
 	fi
