@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/johntheripper
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.94 2009/04/14 10:22:40 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.96 2009/05/07 10:33:23 jer Exp $
+
+  07 May 2009; Jeroen Roovers <jer@gentoo.org> johntheripper-1.7.3.1.ebuild:
+  Move EAPI declaration to the top. Stable for HPPA (bug #265707).
 
   14 Apr 2009; Raúl Porcel <armin76@gentoo.org>
   johntheripper-1.7.3.1.ebuild:
