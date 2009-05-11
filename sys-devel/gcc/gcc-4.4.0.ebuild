@@ -1,21 +1,19 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.3.3-r2.ebuild,v 1.4 2009/05/09 21:26:12 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.0.ebuild,v 1.3 2009/05/09 21:26:12 halcy0n Exp $
 
-GENTOO_PATCH_EXCLUDE="69_all_gcc43-pr39013.patch" #262567
-
-PATCH_VER="1.1"
-UCLIBC_VER="1.1"
+PATCH_VER="1.0"
+UCLIBC_VER="1.0"
 
 ETYPE="gcc-compiler"
 
 # Hardened gcc 4 stuff
-PIE_VER="10.1.5"
-SPECS_VER="0.9.4"
+#PIE_VER="10.1.5"
+#SPECS_VER="0.9.4"
 
 # arch/libc configurations known to be stable or untested with {PIE,SSP,FORTIFY}-by-default
-PIE_GLIBC_STABLE="x86 amd64 ~ppc ~ppc64 ~arm ~sparc"
-PIE_UCLIBC_STABLE="x86 arm"
+#PIE_GLIBC_STABLE="x86 amd64 ~ppc ~ppc64 ~arm ~sparc"
+#PIE_UCLIBC_STABLE="x86 arm"
 #SSP_STABLE="amd64 x86 ppc ppc64 ~arm ~sparc"
 #SSP_UCLIBC_STABLE=""
 
@@ -27,7 +25,7 @@ inherit toolchain flag-o-matic prefix
 
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
-LICENSE="GPL-3 LGPL-2.1 libgcc libstdc++"
+LICENSE="GPL-3 LGPL-2.1 libgcc libstdc++ gcc-runtime-library-exception-3.1"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
@@ -35,6 +33,10 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 	virtual/libiconv
 	>=dev-libs/gmp-4.2.1
 	>=dev-libs/mpfr-2.3
+	graphite? (
+		>=dev-libs/ppl-0.10
+		>=dev-libs/cloog-ppl-0.15
+	)
 	!build? (
 		gcj? (
 			gtk? (
@@ -57,8 +59,6 @@ DEPEND="${RDEPEND}
 	test? ( sys-devel/autogen dev-util/dejagnu )
 	>=sys-apps/texinfo-4.2-r4
 	>=sys-devel/bison-1.875
-	sys-devel/flex
-	elibc_glibc? ( >=sys-libs/glibc-2.8 )
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	amd64? ( multilib? ( gcj? ( app-emulation/emul-linux-x86-xlibs ) ) )

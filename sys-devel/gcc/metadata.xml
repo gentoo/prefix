@@ -6,6 +6,8 @@
     <flag name="d">Enable support for the D programming language</flag>
     <flag name="fixed-point">Enable fixed-point arithmetic support for MIPS targets 
     in gcc (Warning: significantly increases compile time!)</flag>
+    <flag name="graphite">Add support for the framework for loop
+      optimizations based on a polyhedral intermediate representation</flag>
     <flag name="ip28">Enable building a compiler capable of building a kernel
     for SGI Indigo2 Impact R10000 (IP28)</flag>
     <flag name="ip32r10k">Enable building a compiler capable of building an

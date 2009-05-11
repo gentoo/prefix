@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.3 2009/05/03 00:21:52 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.4 2009/05/09 21:26:13 halcy0n Exp $
 
 PATCH_VER="1.1"
 UCLIBC_VER="1.0"
@@ -15,7 +15,7 @@ inherit toolchain flag-o-matic prefix
 
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
-LICENSE="GPL-2 LGPL-2.1"
+LICENSE="GPL-3 LGPL-2.1 libgcc libstdc++"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
