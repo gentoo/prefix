@@ -1,6 +1,11 @@
 # ChangeLog for app-text/dvipng
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.46 2009/03/18 19:27:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/ChangeLog,v 1.47 2009/05/06 21:35:47 aballier Exp $
+
+*dvipng-1.12 (06 May 2009)
+
+  06 May 2009; Alexis Ballier <aballier@gentoo.org> +dvipng-1.12.ebuild:
+  version bump
 
   18 Mar 2009; Raúl Porcel <armin76@gentoo.org> dvipng-1.11.ebuild:
   arm/s390/sh stable wrt #253551
