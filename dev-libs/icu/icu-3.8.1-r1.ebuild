@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-3.8.1-r1.ebuild,v 1.7 2008/12/07 12:06:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-3.8.1-r1.ebuild,v 1.8 2009/05/08 00:39:40 loki_val Exp $
 
 inherit eutils versionator autotools
 
@@ -50,6 +50,9 @@ src_unpack() {
 
 	# Bug 208001
 	epatch "${FILESDIR}"/${PN}-3.8-regexp-CVE-2007-4770+4771.diff
+
+	# Bug 258377
+	sed -i -e 's:^#elif$:#else:g' ${S}/layoutex/ParagraphLayout.cpp || die 'elif sed failed'
 
 	# do not hardcode used CFLAGS, LDFLAGS etc. into icu-config
 	# Bug 202059
