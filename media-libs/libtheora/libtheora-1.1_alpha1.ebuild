@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0.ebuild,v 1.7 2009/05/10 14:22:48 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.1_alpha1.ebuild,v 1.1 2009/05/07 08:38:39 ssuominen Exp $
 
-inherit autotools eutils toolchain-funcs flag-o-matic
+EAPI=2
+inherit autotools eutils flag-o-matic
 
 DESCRIPTION="The Theora Video Compression Codec"
 HOMEPAGE="http://www.theora.org"
@@ -20,18 +21,14 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 VARTEXFONTS=${T}/fonts
-
 S=${WORKDIR}/${P/_}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.0_beta2-flags.patch
-
 	AT_M4DIR="m4" eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	use x86 && filter-flags -fforce-addr -frename-registers #200549
 	use doc || export ac_cv_prog_HAVE_DOXYGEN="false"
 
@@ -43,24 +40,23 @@ src_compile() {
 	if use x86-macos && use encode; then
 		myconf="--disable-asm"
 	fi
-	econf --disable-dependency-tracking --disable-examples \
-		--disable-sdltest $(use_enable encode) ${myconf}
-
-	emake || die "emake failed."
+	econf \
+		--disable-dependency-tracking \
+		--disable-sdltest \
+		$(use_enable encode) \
+		--disable-examples
 }
 
 src_install() {
-	emake DESTDIR="${D}" docdir="${EPREFIX#/}/usr/share/doc/${PF}" \
-		install || die "emake install failed."
-
+	emake DESTDIR="${ED}" docdir="${EPREFIX}"/usr/share/doc/${PF} \
+		install || die "emake install failed"
 	dodoc AUTHORS CHANGES README
-
 	prepalldocs
 
 	if use examples; then
 		rm examples/Makefile*
 		insinto /usr/share/doc/${PF}/examples
-		doins examples/*
+		doins examples/*.[ch]
 	fi
 
 	dodoc README
