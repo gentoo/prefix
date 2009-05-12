@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libnl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libnl/ChangeLog,v 1.32 2009/03/24 23:34:31 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libnl/ChangeLog,v 1.33 2009/05/10 16:45:54 armin76 Exp $
+
+  10 May 2009; Raúl Porcel <armin76@gentoo.org> libnl-1.1-r1.ebuild:
+  arm stable
 
   24 Mar 2009; Joseph Jezak <josejx@gentoo.org> libnl-1.1-r1.ebuild:
   Marked ppc stable for bug #263673.
