@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libaio
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libaio/ChangeLog,v 1.47 2009/03/18 15:03:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libaio/ChangeLog,v 1.48 2009/05/06 17:03:18 jer Exp $
+
+  06 May 2009; Jeroen Roovers <jer@gentoo.org> libaio-0.3.107.ebuild:
+  Stable for HPPA too.
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> libaio-0.3.107.ebuild:
   stable ppc, bug 254291
