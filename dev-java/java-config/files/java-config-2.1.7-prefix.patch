@@ -1,0 +1,272 @@
+diff -ruN java-config-2.1.7.orig/config/20java-config java-config-2.1.7/config/20java-config
+--- java-config-2.1.7.orig/config/20java-config	2007-08-25 18:47:45.000000000 +0200
++++ java-config-2.1.7/config/20java-config	2009-05-12 08:49:44.000000000 +0200
+@@ -1,2 +1,2 @@
+-MANPATH=/etc/java-config/system-vm/man/
++MANPATH="@GENTOO_PORTAGE_EPREFIX@"/etc/java-config/system-vm/man/
+ CONFIG_PROTECT_MASK="/etc/env.d/java/"
+diff -ruN java-config-2.1.7.orig/setup.py java-config-2.1.7/setup.py
+--- java-config-2.1.7.orig/setup.py	2009-01-13 09:29:45.000000000 +0100
++++ java-config-2.1.7/setup.py	2009-05-12 08:49:44.000000000 +0200
+@@ -54,11 +54,11 @@
+ 		('share/pixmaps/', ['data/java-icon48.png']),
+ 		('share/java-config-2/launcher', ['src/launcher.bash']),
+ 		('share/eselect/modules', glob('src/eselect/*.eselect')),
+-		('/etc/java-config-2/', ['config/virtuals']),
+-		('/etc/java-config-2/build/', ['config/jdk.conf','config/compilers.conf']),
+-		('/etc/env.d/',['config/20java-config']),
+-		('/etc/profile.d/', glob('src/profile.d/*')),
+-		('/etc/revdep-rebuild/', ['src/revdep-rebuild/60-java'])
++		('@GENTOO_PORTAGE_EPREFIX@/etc/java-config-2/', ['config/virtuals']),
++		('@GENTOO_PORTAGE_EPREFIX@/etc/java-config-2/build/', ['config/jdk.conf','config/compilers.conf']),
++		('@GENTOO_PORTAGE_EPREFIX@/etc/env.d/',['config/20java-config']),
++		('@GENTOO_PORTAGE_EPREFIX@/etc/profile.d/', glob('src/profile.d/*')),
++		('@GENTOO_PORTAGE_EPREFIX@/etc/revdep-rebuild/', ['src/revdep-rebuild/60-java'])
+ 	]
+ )
+ 
+diff -ruN java-config-2.1.7.orig/src/depend-java-query java-config-2.1.7/src/depend-java-query
+--- java-config-2.1.7.orig/src/depend-java-query	2008-01-21 06:17:32.000000000 +0100
++++ java-config-2.1.7/src/depend-java-query	2009-05-12 08:49:44.000000000 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python -E
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/python -E
+ # -*- coding: UTF-8 -*-
+ 
+ # Copyright 2004-2005 Gentoo Foundation
+diff -ruN java-config-2.1.7.orig/src/eselect/java-nsplugin.eselect java-config-2.1.7/src/eselect/java-nsplugin.eselect
+--- java-config-2.1.7.orig/src/eselect/java-nsplugin.eselect	2007-08-25 18:47:45.000000000 +0200
++++ java-config-2.1.7/src/eselect/java-nsplugin.eselect	2009-05-12 08:49:44.000000000 +0200
+@@ -10,10 +10,10 @@
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
+ 
+ 
+-PLUGINS_HOME="${ROOT}/usr/share/java-config-2/nsplugin"
+-SYSTEM_PLUGIN_DIR="${ROOT}/usr/lib/nsbrowser/plugins"
+-SYSTEM_PLUGIN_DIR_32="${ROOT}/usr/lib32/nsbrowser/plugins"
+-SYSTEM_PLUGIN_DIR_64="${ROOT}/usr/lib64/nsbrowser/plugins"
++PLUGINS_HOME="${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/share/java-config-2/nsplugin"
++SYSTEM_PLUGIN_DIR="${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/lib/nsbrowser/plugins"
++SYSTEM_PLUGIN_DIR_32="${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/lib32/nsbrowser/plugins"
++SYSTEM_PLUGIN_DIR_64="${ROOT}@GENTOO_PORTAGE_EPREFIX@/usr/lib64/nsbrowser/plugins"
+ SYSTEM_PLUGIN="${SYSTEM_PLUGIN_DIR}/javaplugin.so"
+ SYSTEM_PLUGIN_32="${SYSTEM_PLUGIN_DIR_32}/javaplugin.so"
+ SYSTEM_PLUGIN_64="${SYSTEM_PLUGIN_DIR_64}/javaplugin.so"
+diff -ruN java-config-2.1.7.orig/src/eselect/java-vm.eselect java-config-2.1.7/src/eselect/java-vm.eselect
+--- java-config-2.1.7.orig/src/eselect/java-vm.eselect	2008-02-26 06:16:01.000000000 +0100
++++ java-config-2.1.7/src/eselect/java-vm.eselect	2009-05-12 09:00:09.000000000 +0200
+@@ -9,9 +9,9 @@
+ SVN_DATE='$Date: $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
+ 
+-VM_BASE=/usr/lib/jvm/
+-VM_SYSTEM="/etc/java-config-2/current-system-vm"
+-VM_USER="${HOME}/.gentoo/java-config-2/current-user-vm"
++VM_BASE="@GENTOO_PORTAGE_EPREFIX@"/usr/lib/jvm/
++VM_SYSTEM="@GENTOO_PORTAGE_EPREFIX@"/etc/java-config-2/current-system-vm
++VM_USER="${HOME}/.gentoo@GENTOO_PORTAGE_EPREFIX@/java-config-2/current-user-vm"
+ 
+ find_targets() {
+ 	local f
+diff -ruN java-config-2.1.7.orig/src/gjl java-config-2.1.7/src/gjl
+--- java-config-2.1.7.orig/src/gjl	2008-11-20 11:14:23.000000000 +0100
++++ java-config-2.1.7/src/gjl	2009-05-12 08:49:44.000000000 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python -E
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/python -E
+ # -*- coding: UTF-8 -*-
+ 
+ # Copyright 2004-2005 Gentoo Foundation
+@@ -232,7 +232,7 @@
+     envlp = os.getenv('LD_LIBRARY_PATH')
+     envjlp = os.getenv('JAVA_LIBRARY_PATH')
+ 
+-    newlibrary = '/lib:/usr/lib'
++    newlibrary = '@GENTOO_PORTAGE_EPREFIX@/lib:@GENTOO_PORTAGE_EPREFIX@/usr/lib'
+     if library:
+         newlibrary = ':'.join((library, newlibrary))
+     if envjlp:
+diff -ruN java-config-2.1.7.orig/src/java-config-2 java-config-2.1.7/src/java-config-2
+--- java-config-2.1.7.orig/src/java-config-2	2008-11-20 11:25:42.000000000 +0100
++++ java-config-2.1.7/src/java-config-2	2009-05-12 08:49:44.000000000 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python -E
++#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/python -E
+ # -*- coding: UTF-8 -*-
+ 
+ # Copyright 2004-2006 Gentoo Foundation
+@@ -140,7 +140,8 @@
+     if not vm:
+         fatalError("Could not find a vm matching: %s" % value)
+     else:
+-        if os.getuid() is 0:
++        # in prefix this check is disabled
++        if True or os.getuid() is 0:
+             try:
+                 manager.set_system_vm(vm)
+                 printer._print("Now using %s as your generation-2 system JVM" % (vm) )
+@@ -173,7 +174,7 @@
+ # Deprecated
+ def system_classpath_target():
+     # TODO: MAKE THIS MODULAR!! (compnerd)
+-    return [{'file': '/etc/env.d/21java-classpath', 'format': '%s=%s\n' }]
++    return [{'file': '@GENTOO_PORTAGE_EPREFIX@/etc/env.d/21java-classpath', 'format': '%s=%s\n' }]
+ 
+ def user_classpath_target():
+     # TODO: MAKE THIS MODULAR!! (compnerd)
+@@ -256,7 +257,7 @@
+         fatalError("The vm could not be found")
+ 
+ def update_env():
+-    printer._print(getoutput("/usr/sbin/env-update"))
++    printer._print(getoutput("@GENTOO_PORTAGE_EPREFIX@/usr/sbin/env-update"))
+     printer._printAlert("If you want the changes too take effect in your current session, you should update\n\
+             your environment by running: source /etc/profile")
+ 
+diff -ruN java-config-2.1.7.orig/src/java_config_2/EnvironmentManager.py java-config-2.1.7/src/java_config_2/EnvironmentManager.py
+--- java-config-2.1.7.orig/src/java_config_2/EnvironmentManager.py	2008-10-11 05:54:09.000000000 +0200
++++ java-config-2.1.7/src/java_config_2/EnvironmentManager.py	2009-05-12 09:00:01.000000000 +0200
+@@ -22,12 +22,12 @@
+     active = None
+ 
+     # Location of the vm ev files
+-    vms_path = '/usr/share/java-config-2/vm'
++    vms_path = '@GENTOO_PORTAGE_EPREFIX@/usr/share/java-config-2/vm'
+     # Location of the package env files to load
+-    pkg_path = '/usr/share/*/package.env'
+-    virtual_path = '/usr/share/java-config-2/virtuals/'
++    pkg_path = '@GENTOO_PORTAGE_EPREFIX@/usr/share/*/package.env'
++    virtual_path = '@GENTOO_PORTAGE_EPREFIX@/usr/share/java-config-2/virtuals/'
+ 
+-    system_config_path="/etc/java-config-2/"
++    system_config_path="@GENTOO_PORTAGE_EPREFIX@/etc/java-config-2/"
+ 
+     def __init__(self):
+         self.all_packages_loaded = False
+@@ -67,7 +67,7 @@
+     def load_package(self, name):
+         try:
+             name = name.replace(':', '-')
+-            pkg = Package(name, '/usr/share/' + name + '/package.env')
++            pkg = Package(name, '@GENTOO_PORTAGE_EPREFIX@/usr/share/' + name + '/package.env')
+             self.packages[name] = pkg
+             return pkg
+         except InvalidConfigError:
+@@ -240,7 +240,7 @@
+         elif os.path.exists(target):
+             raise InvalidConfigError(target)
+ 
+-        os.symlink('/usr/lib/jvm/'+vm.name(),target)
++        os.symlink('@GENTOO_PORTAGE_EPREFIX@/usr/lib/jvm/'+vm.name(),target)
+ 
+     def vm_links(self):
+         # Don't try to use user-vm if HOME is undefined
+@@ -250,10 +250,10 @@
+             return [ self.user_vm_link(), self.system_vm_link() ]
+ 
+     def user_vm_link(self):
+-        return  os.path.join(os.environ.get('HOME'), '.gentoo/java-config-2/current-user-vm')
++        return  os.path.join(os.environ.get('HOME'), '.gentoo@GENTOO_PORTAGE_EPREFIX@/java-config-2/current-user-vm')
+ 
+     def system_vm_link(self):
+-        return '/etc/java-config-2/current-system-vm'
++        return '@GENTOO_PORTAGE_EPREFIX@/etc/java-config-2/current-system-vm'
+ 
+     def clean_classpath(self, targets):
+         for target in targets:
+diff -ruN java-config-2.1.7.orig/src/java_config_2/VersionManager.py java-config-2.1.7/src/java_config_2/VersionManager.py
+--- java-config-2.1.7.orig/src/java_config_2/VersionManager.py	2008-07-03 11:32:44.000000000 +0200
++++ java-config-2.1.7/src/java_config_2/VersionManager.py	2009-05-12 08:49:44.000000000 +0200
+@@ -5,7 +5,7 @@
+ # $Header: $
+ 
+ import sys
+-sys.path.append("/usr/lib/portage/pym")
++sys.path.append("@GENTOO_PORTAGE_EPREFIX@/usr/lib/portage/pym")
+ 
+ import re
+ from string import upper
+@@ -28,7 +28,7 @@
+     #virtuals_parser = re.compile(r"([<>=]+)?java-virtuals/(.*?)")
+     #virtuals_parser = re.compile(r"([<>=~]+)?java-virtuals/(.+)[\-:]([0-9\.*]+)")
+     virtuals_parser = re.compile(r"([<>=~]+)?java-virtuals/([\w\-\.:]+)")
+-    pref_files = ['/etc/java-config-2/build/jdk.conf', '/usr/share/java-config-2/config/jdk-defaults.conf']
++    pref_files = ['@GENTOO_PORTAGE_EPREFIX@/etc/java-config-2/build/jdk.conf', '@GENTOO_PORTAGE_EPREFIX@/usr/share/java-config-2/config/jdk-defaults.conf']
+     _prefs = None
+ 
+     def __init__(self):
+diff -ruN java-config-2.1.7.orig/src/launcher.bash java-config-2.1.7/src/launcher.bash
+--- java-config-2.1.7.orig/src/launcher.bash	2008-01-21 04:40:03.000000000 +0100
++++ java-config-2.1.7/src/launcher.bash	2009-05-12 08:58:30.000000000 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # Not-so-elegant? patches more then welcome
+ 
+ abort() {
+@@ -8,8 +8,8 @@
+ 
+ # Source package env
+ # ---------------------
+-gjl_user_env="${HOME}/.gentoo/java-config-2/launcher.d/${gjl_package}"
+-gjl_system_env="/etc/java-config-2/launcher.d/${gjl_package}"
++gjl_user_env="${HOME}/.gentoo@GENTOO_PORTAGE_EPREFIX@/java-config-2/launcher.d/${gjl_package}"
++gjl_system_env="@GENTOO_PORTAGE_EPREFIX@/etc/java-config-2/launcher.d/${gjl_package}"
+ if [[ -f "${gjl_user_env}" ]]; then
+ 	source "${gjl_user_env}"
+ elif [[ -f "${gjl_system_env}" ]]; then
+diff -ruN java-config-2.1.7.orig/src/profile.d/java-config-2.csh java-config-2.1.7/src/profile.d/java-config-2.csh
+--- java-config-2.1.7.orig/src/profile.d/java-config-2.csh	2007-08-25 18:47:45.000000000 +0200
++++ java-config-2.1.7/src/profile.d/java-config-2.csh	2009-05-12 09:00:13.000000000 +0200
+@@ -2,8 +2,8 @@
+ # Distributed under the terms of the GNU General Public License, v2 or later
+ # $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/files/java-config-2.profiled.csh,v 1.3 2007/01/13 17:17:08 grobian Exp $
+ 
+-set gentoo_user_vm = "${HOME}/.gentoo/java-config-2/current-user-vm"
+-set gentoo_system_vm = "/etc/java-config-2/current-system-vm"
++set gentoo_user_vm = "${HOME}/.gentoo@GENTOO_PORTAGE_EPREFIX@/java-config-2/current-user-vm"
++set gentoo_system_vm = "@GENTOO_PORTAGE_EPREFIX@"/etc/java-config-2/current-system-vm
+ 
+ ## If we have a current-user-vm (and aren't root)... set it to JAVA_HOME
+ ## Otherwise set to the current system vm
+diff -ruN java-config-2.1.7.orig/src/profile.d/java-config-2.sh java-config-2.1.7/src/profile.d/java-config-2.sh
+--- java-config-2.1.7.orig/src/profile.d/java-config-2.sh	2007-08-25 18:47:45.000000000 +0200
++++ java-config-2.1.7/src/profile.d/java-config-2.sh	2009-05-12 09:00:19.000000000 +0200
+@@ -3,8 +3,8 @@
+ # $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/files/java-config-2.profiled.sh-r1,v 1.1 2007/03/16 11:13:16 betelgeuse Exp $
+ 
+ # If we have a current-user-vm (and aren't root)... set it to JAVA_HOME
+-gentoo_user_vm="${HOME}/.gentoo/java-config-2/current-user-vm"
+-gentoo_system_vm="/etc/java-config-2/current-system-vm"
++gentoo_user_vm="${HOME}/.gentoo@GENTOO_PORTAGE_EPREFIX@/java-config-2/current-user-vm"
++gentoo_system_vm="@GENTOO_PORTAGE_EPREFIX@"/etc/java-config-2/current-system-vm
+ 
+ # Please make sure that this script is POSIX compliant
+ # See https://bugs.gentoo.org/show_bug.cgi?id=169925
+@@ -23,7 +23,7 @@
+ if [ "${user_id}" != 0 -a -L "${gentoo_user_vm}" ]; then
+ 	export JAVA_HOME=${gentoo_user_vm}
+ # Otherwise set to the current system vm
+-elif [ -L /etc/java-config-2/current-system-vm ]; then
++elif [ -L "@GENTOO_PORTAGE_EPREFIX@"/etc/java-config-2/current-system-vm ]; then
+ 	export JAVA_HOME=${gentoo_system_vm}
+ fi
+ 
+diff -ruN java-config-2.1.7.orig/src/run-java-tool java-config-2.1.7/src/run-java-tool
+--- java-config-2.1.7.orig/src/run-java-tool	2008-02-27 11:04:13.000000000 +0100
++++ java-config-2.1.7/src/run-java-tool	2009-05-12 09:01:06.000000000 +0200
+@@ -1,10 +1,10 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ 
+-user_vm="${HOME}/.gentoo/java-config-2/current-user-vm"
+-system_vm="/etc/java-config-2/current-system-vm"
++user_vm="${HOME}/.gentoo@GENTOO_PORTAGE_EPREFIX@/java-config-2/current-user-vm"
++system_vm="@GENTOO_PORTAGE_EPREFIX@/etc/java-config-2/current-system-vm"
+ # Try GENTOO_VM
+ if [[ -n ${GENTOO_VM} ]]; then
+-	vmpath="/usr/lib/jvm/${GENTOO_VM}/"
++	vmpath="@GENTOO_PORTAGE_EPREFIX@/usr/lib/jvm/${GENTOO_VM}/"
+ # Then user VM
+ elif [[ -h ${user_vm} ]]; then
+ 	vmpath=$(readlink ${user_vm})
