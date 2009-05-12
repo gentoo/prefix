@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/liblo
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/liblo/ChangeLog,v 1.16 2008/08/13 07:13:17 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/liblo/ChangeLog,v 1.17 2009/05/06 21:12:32 ssuominen Exp $
+
+*liblo-0.26 (07 May 2009)
+
+  07 May 2009; Samuli Suominen <ssuominen@gentoo.org> +liblo-0.26.ebuild:
+  Version bump.
 
 *liblo-0.25 (13 Aug 2008)
 
@@ -17,12 +22,12 @@
   14 Apr 2008; Markus Rothe <corsair@gentoo.org> liblo-0.24.ebuild:
   Stable on ppc64; bug #217523
 
-  10 Apr 2008; Samuli Suominen <drac@gentoo.org> liblo-0.24.ebuild:
+  10 Apr 2008; Samuli Suominen <ssuominen@gentoo.org> liblo-0.24.ebuild:
   amd64 stable
 
 *liblo-0.24 (27 Mar 2008)
 
-  27 Mar 2008; Samuli Suominen <drac@gentoo.org> -liblo-0.22.ebuild,
+  27 Mar 2008; Samuli Suominen <ssuominen@gentoo.org> -liblo-0.22.ebuild,
   +liblo-0.24.ebuild:
   Version bump.
 
