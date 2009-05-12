@@ -1,2 +1,6 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
 sys-linux/glibc-0
 sys-linux/linux-sources-0

@@ -2,6 +2,12 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  12 May 2009; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults,
+  linux/ia64/make.defaults, linux/make.defaults, linux/package.mask,
+  linux/package.provided, linux/package.use.mask, linux/packages,
+  linux/use.force, linux/use.mask, linux/virtuals, linux/x86/make.defaults:
+  Update Copyright headers for linux/
+
   11 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   un-unmasking perl-5.8.8-r6, as I resurrected perl-5.8.8-r5 for bug #269430
 
