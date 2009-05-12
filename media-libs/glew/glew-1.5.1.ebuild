@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/glew/glew-1.5.1.ebuild,v 1.9 2009/05/05 17:01:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/glew/glew-1.5.1.ebuild,v 1.11 2009/05/08 12:10:35 ssuominen Exp $
 
 inherit eutils multilib toolchain-funcs
 
@@ -8,14 +8,14 @@ DESCRIPTION="The OpenGL Extension Wrangler Library"
 HOMEPAGE="http://glew.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${P}-src.tgz"
 
-LICENSE="BSD GLX SGI-B GPL-2"
+LICENSE="BSD MIT"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
-DEPEND="virtual/opengl
+RDEPEND="virtual/opengl
 	virtual/glu"
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${PN}
 
