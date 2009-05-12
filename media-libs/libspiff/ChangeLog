@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libspiff
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.26 2008/10/05 22:07:04 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libspiff/ChangeLog,v 1.27 2009/05/10 19:52:39 ssuominen Exp $
+
+  10 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  -libspiff-1.0.0.ebuild, -files/libspiff-1.0.0-testincludes.patch:
+  Remove this version because the package was renamed to media-libs/libxspf.
 
 *libspiff-1.0.0 (05 Oct 2008)
 
