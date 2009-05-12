@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/openal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.113 2009/05/03 15:43:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.116 2009/05/09 14:23:57 armin76 Exp $
+
+  09 May 2009; Raúl Porcel <armin76@gentoo.org> openal-1.7.411.ebuild:
+  arm/ia64 stable wrt #267960
+
+  07 May 2009; Ferris McCormick <fmccor@gentoo.org> openal-1.7.411.ebuild:
+  Sparc stable, bug #267960.
+
+  07 May 2009; Tobias Klausmann <klausman@gentoo.org> openal-1.7.411.ebuild:
+  Stable on alpha, bug #267960
 
   03 May 2009; Markus Meier <maekke@gentoo.org> openal-1.7.411.ebuild:
   amd64/x86 stable, bug #267960
