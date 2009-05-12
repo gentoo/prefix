@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/tiff
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.115 2008/11/27 06:09:09 nerdboy Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.116 2009/05/09 10:55:54 ssuominen Exp $
+
+  09 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  -files/tiff-buffer.patch:
+  Remove unused patch wrt #254179
 
   27 Nov 2008; Steve Arnold <nerdboy@gentoo.org> tiff-3.8.2-r4.ebuild,
   tiff-3.8.2-r5.ebuild, -files/tiff-3.8.2-goo-sec.patch:
