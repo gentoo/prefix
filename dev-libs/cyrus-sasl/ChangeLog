@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/cyrus-sasl
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.194 2008/08/06 06:49:16 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.195 2009/05/08 00:58:58 loki_val Exp $
+
+  08 May 2009; Peter Alfredsen <loki_val@gentoo.org>
+  cyrus-sasl-2.1.22-r2.ebuild, +files/cyrus-sasl-2.1.22-gcc44.patch:
+  Fix gcc-4.4 compatibility, bug 248738. Thanks to dirtyepic for the patch.
 
   06 Aug 2008; Ulrich Mueller <ulm@gentoo.org> metadata.xml:
   Add USE flag description to metadata wrt GLEP 56.
