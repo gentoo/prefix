@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4434 2009/05/10 21:07:47 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4436 2009/05/11 11:27:45 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -1043,7 +1043,9 @@ gnome-extra/libgda:xbase - Enables support for xbase databases (dBase, FoxPro, e
 gnome-extra/nautilus-sendto:balsa - Enables support for mail-client/balsa
 gnome-extra/nautilus-sendto:claws - Enables support for mail-client/claws
 gnome-extra/nautilus-sendto:eds - Enables support for evolution-sendto using gnome-extra/evolution-data-server
+gnome-extra/nautilus-sendto:empathy - Enables support for net-im/empathy
 gnome-extra/nautilus-sendto:gajim - Enables support for net-im/gajim
+gnome-extra/nautilus-sendto:mail - Enables support for mailto using gnome-extra/evolution-data-server
 gnome-extra/nautilus-sendto:pidgin - Enables support for net-im/pidgin
 gnome-extra/nautilus-sendto:sylpheed - Enables support for mail-client/sylpheed
 gnome-extra/nautilus-sendto:thunderbird - Enables support for mail-client/mozilla-thunderbird
@@ -1584,6 +1586,7 @@ media-sound/rubyripper:cli - Build command line interface rubyripper
 media-sound/rubyripper:normalize - Add support for normalizing audio file volume levels
 media-sound/rubyripper:wav - Add support for wavegain
 media-sound/sonata:lyrics - Support for lyrics fetching
+media-sound/sonata:trayicon - Enable support for trayicon
 media-sound/sonic-visualiser:id3tag - Enables ID3 tagging with id3tag library
 media-sound/sox:amrnb - Enables Adaptive Multi-Rate Audio support (Narrow Band)
 media-sound/sox:amrwb - Enables Adaptive Multi-Rate Audio support (Wide Band)

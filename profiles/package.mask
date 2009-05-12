@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9782 2009/05/10 22:18:58 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9788 2009/05/11 20:54:52 ssuominen Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,19 @@
 
 #--- END OF EXAMPLES ---
 
+# Samuli Suominen <ssuominen@gentoo.org> (11 May 2009)
+# Masked for removal wrt #267622. Broken with new tcl.
+media-sound/wavesurfer
+
+# Samuli Suominen <ssuominen@gentoo.org> (11 May 2009)
+# pkgconfig filename changed, rdeps must be checked
+=media-libs/libsoundtouch-1.4.0
+
+# Samuli Suominen <ssuominen@gentoo.org> (11 May 2009)
+# Masked for removal wrt #209500, #183928, #238620, and #247781
+# Upstream, nenolod, said i'd kill it.
+media-plugins/eq-audacious
+
 # Markos Chandras <hwoarang@gentoo.org> (11 May 2009)
 # Moved from app-misc to x11-misc
 =app-misc/rednotebook-0.6.9
@@ -42,16 +55,6 @@ dev-haskell/haskell-platform
 # Lennart Kolmodin <kolmodin@gentoo.org> (10 May 2009)
 # Mark ghc-6.10.3 for testing.
 ~dev-lang/ghc-6.10.3
-
-# Gilles Dartiguelongue <eva@gentoo.org> (10 May 2009)
-# Those packages depend on gnome-desktop which breaks API again.
-# They should be hold off until they are all moved to the tree.
->=gnome-desktop/gnome-desktop-2.26
->=media-gfx/eog-2.26
->=media-video/cheese-2.26
->=gnome-base/nautilus-2.26
->=gnome-base/gnome-control-center-2.26
->=gnome-base/gnome-settings-daemon-2.26
 
 # Rémi Cardona <remi@gentoo.org> (09 May 2009)
 # Low-Bandwidth X and the X Proxy Management stuff has been declared
@@ -557,12 +560,6 @@ kde-misc/kgraphspace
 # feedback to determine whether to remove it or fix the dep
 =dev-util/qgit-2.0-r1
 
-# Peter Alfredsen <loki_val@gentoo.org> (21 Mar 2009)
-# Masked till Gnome-2.26 makes it into the tree.
-# A public service for the crazy gnome-overlay people
-# in the meantime. Bug 262863.
-=dev-dotnet/gnome-desktop-sharp-2.26*
-
 # Alex Legler <a3li@gentoo.org> (20 Mar 2009)
 # Ruby 1.9.1 for preliminary testing of libraries depending on it, bug 203706.
 # Expect (many) breakages and incompatibilities.
@@ -803,12 +800,6 @@ sys-fs/cloop
 # Mike Pagano <mpagano@gentoo.org> (17 Dec 2008)
 # Masked waiting on >=portage-2.2* to be unmasked
 >=app-portage/portpeek-1.6
-
-# Tiziano Müller <dev-zero@gentoo.org> (16 Dec 2008)
-# Mask for testing
-app-admin/eselect-boost
->=dev-util/boost-build-1.35.0-r2
->=dev-libs/boost-1.35.0-r3
 
 # Alin Năstac <mrness@gentoo.org> (14 Dec 2008)
 # Dead upstream, masked for removal in ~60 days.

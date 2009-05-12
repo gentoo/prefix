@@ -1,10 +1,40 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2636 2009/05/10 21:53:38 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2644 2009/05/12 04:54:07 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  12 May 2009; Jeremy Olexa <darkside@gentoo.org> base/use.mask, use.desc:
+  Define prefix USE flag in use.desc. Mask prefix USE flag in base/use.mask so
+  it cannot be used on non-prefix profiles
+
+  11 May 2009; Doug Goldstein <cardoe@gentoo.org>
+  arch/amd64/no-multilib/use.mask, features/64bit-native/use.mask:
+  Mask 32bit USE flag on no-multilib arches since it always requires
+  multilib. Patch from bug #265313
+
+  11 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask media-sound/wavesurfer for removal because it's broken with new tcl
+  wrt #267622.
+
+  11 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask =media-libs/libsoundtouch-1.4.0 because pkgconfig filename changed
+  and rdeps must be checked.
+
+  11 May 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Remove gnome-desktop-sharp-2.26.0 mask. Gnome 2.26 is entering the tree.
+
+  11 May 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  pretend to unmask gnome-desktop since I failed at writing proper atom and
+  nobody noticed.
+
+  11 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask eq-audacious for removal wrt #209500, #183928, #238620 and #247781.
+
+  11 May 2009; Tiziano Müller <dev-zero@gentoo.org> package.mask:
+  Unmasking slotted boost
 
   10 May 2009; Lennart Kolmodin <kolmodin@gentoo.org> package.mask:
   Mask the haskell platform for testing.
