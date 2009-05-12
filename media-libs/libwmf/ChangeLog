@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libwmf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.57 2009/03/06 05:18:15 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.58 2009/05/10 23:52:40 loki_val Exp $
+
+*libwmf-0.2.8.4-r3 (10 May 2009)
+
+  10 May 2009; Peter Alfredsen <loki_val@gentoo.org>
+  +libwmf-0.2.8.4-r3.ebuild, +files/libwmf-0.2.8.4-pngfix.patch:
+  Drop use of internal gd w.r.t. bug 268161. Add fix for bug 269324, include
+  order bug, possibly triggered by gcc-4.4.0.
 
 *libwmf-0.2.8.4-r2 (06 Mar 2009)
 
