@@ -1,3 +1,7 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
 #Add USE flags that don't work on Darwin/OpenDarwin/OS X here
 
 # readd globally masked darwin-only flags

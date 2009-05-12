@@ -1,3 +1,5 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 # Jeremy Olexa <darkside@gentoo.org> (30 Sep 2008)

@@ -2,6 +2,35 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  12 May 2009; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/10.3/make.defaults, darwin/macos/10.3/package.mask,
+  darwin/macos/10.3/package.provided, darwin/macos/10.3/profile.bashrc,
+  darwin/macos/10.3/use.mask, darwin/macos/10.4/make.defaults,
+  darwin/macos/10.4/package.mask, darwin/macos/10.4/package.provided,
+  darwin/macos/10.4/ppc/make.defaults, darwin/macos/10.4/ppc/use.mask,
+  darwin/macos/10.4/ppc64/make.defaults, darwin/macos/10.4/ppc64/use.mask,
+  darwin/macos/10.4/profile.bashrc, darwin/macos/10.4/x86/make.defaults,
+  darwin/macos/10.4/x86/package.use.force,
+  darwin/macos/10.4/x86/package.use.mask, darwin/macos/10.4/x86/use.mask,
+  darwin/macos/10.5/make.defaults, darwin/macos/10.5/package.mask,
+  darwin/macos/10.5/package.provided, darwin/macos/10.5/package.use.mask,
+  darwin/macos/10.5/ppc/make.defaults, darwin/macos/10.5/ppc/package.mask,
+  darwin/macos/10.5/ppc/package.use.force,
+  darwin/macos/10.5/ppc/package.use.mask, darwin/macos/10.5/ppc/use.mask,
+  darwin/macos/10.5/profile.bashrc, darwin/macos/10.5/x64/make.defaults,
+  darwin/macos/10.5/x64/package.mask,
+  darwin/macos/10.5/x64/package.use.force,
+  darwin/macos/10.5/x64/package.use.mask, darwin/macos/10.5/x64/use.mask,
+  darwin/macos/10.5/x86/make.defaults, darwin/macos/10.5/x86/package.mask,
+  darwin/macos/10.5/x86/package.use.force,
+  darwin/macos/10.5/x86/package.use.mask, darwin/macos/10.5/x86/use.mask,
+  darwin/macos/make.defaults, darwin/macos/package.mask,
+  darwin/macos/package.use.force, darwin/macos/package.use.mask,
+  darwin/macos/packages, darwin/macos/virtuals, darwin/make.defaults,
+  darwin/package.mask, darwin/package.use.mask, darwin/packages,
+  darwin/use.force, darwin/use.mask, darwin/virtuals:
+  Update/add copyrights
+
   12 May 2009; Jeremy Olexa <darkside@gentoo.org> linux/amd64/make.defaults,
   linux/ia64/make.defaults, linux/make.defaults, linux/package.mask,
   linux/package.provided, linux/package.use.mask, linux/packages,

@@ -1,3 +1,6 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 # Fabian Groffen <grobian@gentoo.org> (28 Apr 2008)
 # http://www.erlang.org/pipermail/erlang-questions/2007-July/027870.html
@@ -20,18 +23,18 @@ media-video/mplayer xvmc xv dga X xinerama
 media-video/mplayer dvb esd lirc svga arts jack joystick matrox
 media-sound/mpg123 mmx
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (27 Aug 2007)
+# Elias Pipping <pipping@gentoo.org> (27 Aug 2007)
 # elinks does not compile with USE=perl (tested with 0.11.{2,3})
 www-client/elinks perl
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (01 Sep 2007)
+# Elias Pipping <pipping@gentoo.org> (01 Sep 2007)
 # libpng does not compile with USE=mmx
 media-libs/libpng mmx
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (01 Sep 2007)
+# Elias Pipping <pipping@gentoo.org> (01 Sep 2007)
 # imlib2 does not compile with USE=mmx
 media-libs/imlib2 mmx
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (13 Sep 2007)
+# Elias Pipping <pipping@gentoo.org> (13 Sep 2007)
 # mc fails to compile with USE=slang (unicode implies slang)
 app-misc/mc unicode slang
