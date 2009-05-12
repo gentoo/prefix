@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.4.ebuild,v 1.1 2009/03/29 17:56:54 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.4.ebuild,v 1.2 2009/05/09 00:04:11 remi Exp $
 
 EAPI=2
 
@@ -79,11 +79,10 @@ DEPEND="${RDEPEND}
 	x11-misc/makedepend
 	x11-proto/inputproto
 	x11-proto/xextproto
-	!hppa? ( x11-proto/xf86driproto )
+	x11-proto/xf86driproto
 	>=x11-proto/dri2proto-1.99.3
 	x11-proto/xf86vidmodeproto
-	>=x11-proto/glproto-1.4.8
-	motif? ( x11-proto/printproto )"
+	>=x11-proto/glproto-1.4.8"
 
 S="${WORKDIR}/${MY_P}"
 

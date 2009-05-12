@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.209 2009/05/02 20:44:06 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.211 2009/05/09 00:04:10 remi Exp $
+
+  09 May 2009; Rémi Cardona <remi@gentoo.org> mesa-7.4.ebuild,
+  mesa-7.4.1-r1.ebuild, mesa-7.4.1-r2.ebuild:
+  drop printproto from DEPEND (I could not find a single reference to it
+  within the code), HPPA now has xf86driproto
+
+*mesa-7.4.1-r2 (07 May 2009)
+
+  07 May 2009; Rémi Cardona <remi@gentoo.org> +mesa-7.4.1-r2.ebuild:
+  revbump to 7.4.1-r2, pull the latest patches from upstream's 7.4 branch
+  (including one that should fix R300 bug #268596)
 
   02 May 2009; Tomas Chvatal <scarabeus@gentoo.org> mesa-7.4.1-r1.ebuild:
   Remove glew headers during install. They are needed during build time and
