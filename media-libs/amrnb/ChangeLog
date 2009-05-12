@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/amrnb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/ChangeLog,v 1.30 2009/05/05 13:30:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/ChangeLog,v 1.32 2009/05/10 15:08:52 armin76 Exp $
+
+  10 May 2009; Raúl Porcel <armin76@gentoo.org> amrnb-7.0.0.2.ebuild:
+  ia64/sparc stable wrt #268479
+
+  07 May 2009; Tobias Klausmann <klausman@gentoo.org> amrnb-7.0.0.2.ebuild:
+  Stable on alpha, bug #268479
 
   05 May 2009; Jeroen Roovers <jer@gentoo.org> amrnb-7.0.0.2.ebuild:
   Stable for HPPA (bug #268479).
