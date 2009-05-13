@@ -2,7 +2,6 @@ ppc-aix
 x86-freebsd
 x64-freebsd
 ia64-hpux
-hppa-hpux
 x86-interix
 mips-irix
 amd64-linux
