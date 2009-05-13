@@ -24,7 +24,7 @@ src_prepare() {
 	epatch "${FILESDIR}/echangelog-git.patch"
 
 	sed -i -e "1s:^#!\( \|\):#!${EPREFIX}:" \
-		src/*/{ebump,echangelog,ego,ekeyword,eviewcvs,gensync} || die "@!@#"
+		src/*/{ebump,echangelog,ego,ekeyword,eviewcvs} || die "@!@#"
 }
 
 src_install() {
