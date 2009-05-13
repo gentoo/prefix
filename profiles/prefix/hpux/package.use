@@ -1,2 +1,0 @@
-# must use toolchain-prefix-wrapper on hpux
-sys-devel/binutils-config extwrapper

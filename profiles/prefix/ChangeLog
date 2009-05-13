@@ -2,6 +2,25 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  13 May 2009; Michael Haubenwallner <haubi@gentoo.org> -hpux/B.11.11,
+  -hpux/B.11.11/hppa, -hpux/B.11.11/hppa/hppa1.1,
+  -hpux/B.11.11/hppa/hppa1.1/make.defaults,
+  -hpux/B.11.11/hppa/hppa1.1/parent, -hpux/B.11.11/hppa/hppa2.0,
+  -hpux/B.11.11/hppa/hppa2.0/32,
+  -hpux/B.11.11/hppa/hppa2.0/32/make.defaults,
+  -hpux/B.11.11/hppa/hppa2.0/32/parent, -hpux/B.11.11/hppa/hppa2.0/64,
+  -hpux/B.11.11/hppa/hppa2.0/64/make.defaults,
+  -hpux/B.11.11/hppa/hppa2.0/64/parent, -hpux/B.11.11/hppa/hppa2.0/parent,
+  -hpux/B.11.11/hppa/make.defaults, -hpux/B.11.11/hppa/parent,
+  -hpux/B.11.11/package.provided, -hpux/B.11.11/parent,
+  hpux/B.11.23/ia64/make.defaults, hpux/B.11.23/package.provided,
+  hpux/B.11.31/ia64/make.defaults, hpux/B.11.31/package.provided,
+  hpux/make.defaults, hpux/package.mask, -hpux/package.use, hpux/packages,
+  hpux/profile.bashrc, hpux/use.force, hpux/use.mask, hpux/virtuals:
+  cleanup hpux profiles: update/add copyrights.
+  drop HP-UX B.11.11 profile, is hppa only, libtool still broken there.
+  binutils-config does not iuse 'extwrapper' any more.
+
   13 May 2009; Michael Haubenwallner <haubi@gentoo.org>
   aix/5.2.0.0/package.provided, aix/5.2.0.0/ppc/make.defaults,
   aix/5.3.0.0/package.provided, aix/5.3.0.0/ppc/make.defaults,

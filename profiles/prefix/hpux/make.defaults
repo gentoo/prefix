@@ -1,12 +1,13 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
-# System-wide defaults for all AIX profiles
+# System-wide defaults for all HP-UX profiles
 # This file should rarely need to be changed
 
 # 'Sane' defaults
 ELIBC="HPUX"
 KERNEL="HPUX"
 
-# Sandbox is not ported to HPUX (yet?), no scanelf
+# Sandbox is not ported to HP-UX (yet?), no scanelf
 FEATURES="-sandbox nostrip"
