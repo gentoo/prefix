@@ -1,5 +1,14 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
 # never use /bin/sh as CONFIG_SHELL on AIX: it works, but is way to slow.
 export CONFIG_SHELL=${BASH}
+
+# Portage cannot merge shared objects inside archive libraries on AIX (yet).
+# So we need to hack around by unpacking the archive libraries, let portage
+# merge/unmerge the archive library members as normal files, and recreate the
+# archive libraries after merge/unmerge.
 
 aixdll_find_unprepared() {
 	find "$1" -type f -name 'lib*.a' -print

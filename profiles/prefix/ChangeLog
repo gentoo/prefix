@@ -2,6 +2,18 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  13 May 2009; Michael Haubenwallner <haubi@gentoo.org>
+  aix/5.2.0.0/package.provided, aix/5.2.0.0/ppc/make.defaults,
+  aix/5.3.0.0/package.provided, aix/5.3.0.0/ppc/make.defaults,
+  aix/6.1.0.0/package.provided, aix/6.1.0.0/ppc/make.defaults,
+  aix/make.defaults, aix/package.unmask, -aix/package.use,
+  aix/package.use.force, aix/package.use.mask, aix/packages,
+  aix/profile.bashrc, aix/use.force, aix/use.mask, aix/virtuals:
+  cleanup aix profiles: update/add copyrights.
+  net-nds/openldap needs minimal useflag for all versions.
+  aix6.1 provides libc-6.1, not libc-5.3.
+  binutils-config does not iuse 'extwrapper' any more.
+
   13 May 2009; Markus Duft <mduft@gentoo.org>
   windows/interix/3.5/package.mask, windows/interix/3.5/package.provided,
   windows/interix/3.5/x86/make.defaults,
