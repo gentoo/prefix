@@ -1,8 +1,7 @@
-# Copyright 2007-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 ARCH="mips-irix"
 CHOST="mips-sgi-irix6.5"
 ACCEPT_KEYWORDS="~mips-irix"
-

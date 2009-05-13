@@ -2,6 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  13 May 2009; Jeremy Olexa <darkside@gentoo.org>
+  irix/6.5/mips/make.defaults, irix/6.5/package.provided,
+  irix/make.defaults, irix/package.use.mask, irix/packages,
+  irix/profile.bashrc, irix/use.force, irix/use.mask, irix/virtuals,
+  mint/m68k/make.defaults, mint/m68k/use.mask, mint/make.defaults,
+  mint/package.provided, mint/packages, mint/use.mask, mint/virtuals:
+  Update/add copyright for irix and mint profiles
+
   13 May 2009; Michael Haubenwallner <haubi@gentoo.org> -hpux/B.11.11,
   -hpux/B.11.11/hppa, -hpux/B.11.11/hppa/hppa1.1,
   -hpux/B.11.11/hppa/hppa1.1/make.defaults,
