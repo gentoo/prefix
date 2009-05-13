@@ -1,3 +1,7 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
 # those are packages not available/required on winnt, since
 # winnt can be a child EPREFIX only, which tears it's DEPENDS
 # from a parent (e.g. x86-interix) prefix.

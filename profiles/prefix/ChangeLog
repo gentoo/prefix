@@ -2,6 +2,24 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  13 May 2009; Markus Duft <mduft@gentoo.org>
+  windows/interix/3.5/package.mask, windows/interix/3.5/package.provided,
+  windows/interix/3.5/x86/make.defaults,
+  windows/interix/5.2/package.provided,
+  windows/interix/5.2/x86/make.defaults,
+  windows/interix/6.0/package.provided,
+  windows/interix/6.0/x86/make.defaults, windows/interix/make.defaults,
+  windows/interix/package.mask, windows/interix/package.use.force,
+  windows/interix/package.use.mask, windows/interix/profile.bashrc,
+  windows/interix/use.force, windows/interix/use.mask,
+  windows/interix/virtuals, windows/winnt/3.5/package.provided,
+  windows/winnt/3.5/x86/make.defaults, windows/winnt/5.2/package.provided,
+  windows/winnt/5.2/x86/make.defaults, windows/winnt/6.0/package.provided,
+  windows/winnt/6.0/x86/make.defaults, windows/winnt/make.defaults,
+  windows/winnt/packages, windows/winnt/profile.bashrc,
+  windows/winnt/use.mask, windows/winnt/virtuals:
+  cleaned up windows profiles (interix, winnt).
+
   12 May 2009; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/10.3/make.defaults, darwin/macos/10.3/package.mask,
   darwin/macos/10.3/package.provided, darwin/macos/10.3/profile.bashrc,

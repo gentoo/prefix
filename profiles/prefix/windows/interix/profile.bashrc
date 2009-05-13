@@ -1,7 +1,12 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
 # One basically always wants -D_ALL_SOURCE, it's some stupid restriction
-# to hide useful stuff
-[[ ${CFLAGS} != *"-D_ALL_SOURCE"* ]] && CFLAGS="-D_ALL_SOURCE ${CFLAGS}"
-[[ ${CXXFLAGS} != *"-D_ALL_SOURCE"* ]] && CXXFLAGS="-D_ALL_SOURCE ${CXXFLAGS}"
+# to hide useful stuff. newer GCCs have this define built-int, so no need
+# for it anymore. if there are problems, uncomment this again!
+#[[ ${CFLAGS} != *"-D_ALL_SOURCE"* ]] && CFLAGS="-D_ALL_SOURCE ${CFLAGS}"
+#[[ ${CXXFLAGS} != *"-D_ALL_SOURCE"* ]] && CXXFLAGS="-D_ALL_SOURCE ${CXXFLAGS}"
 
 # On interix, binary files (executables, shared libraries) in use
 # cannot be replaced during merge.
