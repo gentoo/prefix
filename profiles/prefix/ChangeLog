@@ -3,6 +3,9 @@
 # $Id$
 
   14 May 2009; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
+  sys-process/proctools was removed from the tree
+
+  14 May 2009; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
   Remove math-pari mask, I just fixed the problem instead
 
   13 May 2009; Jeremy Olexa <darkside@gentoo.org>
