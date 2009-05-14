@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  14 May 2009; Fabian Groffen <grobian@gentoo.org> package.use.mask:
+  dev-python/sancho is in the tree now
+
   14 May 2009; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
   sys-process/proctools was removed from the tree
 

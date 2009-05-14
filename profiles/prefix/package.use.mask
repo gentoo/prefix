@@ -21,7 +21,3 @@ dev-util/darcs doc
 # Elias Pipping <pipping@gentoo.org> (15 Nov 2007)
 # pkg_postinst tries to create/delete a user, fails
 dev-libs/cyrus-sasl berkdb gdbm
-
-# Elias Pipping <pipping@gentoo.org> (31 Oct 2007)
-# depends on =dev-python/sancho-0.11-r1, which is not in the tree.
-dev-python/pycrypto test
