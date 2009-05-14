@@ -18,7 +18,7 @@ SRC_URI="${SRC_URI}
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 # Math::Pari requires that a copy of the pari source in a parallel
@@ -33,7 +33,11 @@ DEPEND="${RDEPEND}"
 S=${WORKDIR}/${MY_P}
 SRC_TEST=do
 
-PATCHES="${FILESDIR}"/${PN}-darwin.patch
+src_prepare() {
+	perl-module_src_prepare
+	cd "${WORKDIR}"
+	epatch "${FILESDIR}"/${P}-duplicate-object-darwin.patch
+}
 
 src_configure() {
 	# Unfortunately the assembly routines math-pari has for SPARC do not appear
@@ -41,7 +45,7 @@ src_configure() {
 	# pulls in the math-pari module as DynaLoader cannot load the resulting
 	# .so files math-pari generates.  As such, we have to use the generic
 	# non-machine specific assembly methods here.
-	if use sparc || [[ ${CHOST} == *86-*-darwin* ]]; then
+	if use sparc ; then
 		myconf="${myconf} machine=none"
 	fi
 

@@ -1,0 +1,52 @@
+* grobian@gentoo.org: level0.h is used without LEVELX set, and hence
+                      generates duplicate symbols upon linking
+
+--- pari-2.1.7/src/kernel/none/level0.h
++++ pari-2.1.7/src/kernel/none/level0.h
+@@ -20,38 +20,13 @@
+ 
+ /* level0.c includes this file and never needs to be changed         */
+ /* The following seven lines are necessary for level0.c and level1.c */
+-#ifdef  LEVEL0
+-#undef  INLINE
+-#define INLINE
+-#endif
+-#ifdef  LEVEL1
+-#undef  INLINE
+-#endif
+-
+ #define LOCAL_OVERFLOW
+ #define SAVE_OVERFLOW
+ #define LOCAL_HIREMAINDER
+ #define SAVE_HIREMAINDER
+ 
+-#ifndef INLINE
+-BEGINEXTERN
+-  extern ulong overflow, hiremainder;
+-  extern long addll(ulong x, ulong y);
+-  extern long addllx(ulong x, ulong y);
+-  extern long subll(ulong x, ulong y);
+-  extern long subllx(ulong x, ulong y);
+-  extern long shiftl(ulong x, ulong y);
+-  extern long shiftlr(ulong x, ulong y);
+-  extern long mulll(ulong x, ulong y);
+-  extern long addmul(ulong x, ulong y);
+-  extern long divll(ulong x, ulong y);
+-  extern int  bfffo(ulong x);
+-ENDEXTERN
+-
+-#else
+-
+-ulong overflow;
+-ulong hiremainder;
++static ulong overflow;
++static ulong hiremainder;
+ 
+ INLINE long
+ addll(ulong x, ulong y)
+@@ -231,5 +206,3 @@
+   hiremainder = GLUE(hiremainder - aux1, LOWWORD(u4 - aux2)) >> k;
+   return GLUE(q1, q2);
+ }
+-
+-#endif
