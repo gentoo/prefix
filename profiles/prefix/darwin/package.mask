@@ -17,17 +17,13 @@ sys-devel/odcctools
 =dev-libs/xmlrpc-c-1.06.27
 
 # Fabian Groffen <grobian@gentoo.org> (28 Mar 2008)
-# This versions is taken from iPhone SDK Beta 7, and doesn't build on
+# This version is taken from iPhone SDK Beta 7, and doesn't build on
 # OSX 10.4, due to POSIX spawnattr (spawn.h)
 =sys-devel/gdb-apple-961
 
 # Elias Pipping <pipping@gentoo.org> (22 Dec 2007)
-# experimenting on this -- not yet working
+# bug #211712
 sci-libs/blas-atlas
-
-# Elias Pipping <pipping@gentoo.org> (08 Dec 2007)
-# fails to link because of duplicate symbols
-dev-perl/math-pari
 
 # Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
 # darwin-miscutils are only available on darwin

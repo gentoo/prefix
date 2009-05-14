@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  14 May 2009; Fabian Groffen <grobian@gentoo.org> darwin/package.mask:
+  Remove math-pari mask, I just fixed the problem instead
+
   13 May 2009; Jeremy Olexa <darkside@gentoo.org>
   irix/6.5/mips/make.defaults, irix/6.5/package.provided,
   irix/make.defaults, irix/package.use.mask, irix/packages,
