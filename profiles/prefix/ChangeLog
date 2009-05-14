@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  14 May 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
+  unmask python 2.6 on interix, since it seems to work fine now. time will
+  show :)
+
   14 May 2009; Fabian Groffen <grobian@gentoo.org> package.use.mask:
   dev-python/sancho is in the tree now
 
