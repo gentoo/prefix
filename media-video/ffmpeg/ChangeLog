@@ -1,6 +1,12 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.285 2009/05/03 17:31:41 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.287 2009/05/14 20:02:34 maekke Exp $
+
+  14 May 2009; Markus Meier <maekke@gentoo.org> ffmpeg-0.5-r1.ebuild:
+  amd64 stable, bug #266986
+
+  12 May 2009; Christian Faulhammer <fauli@gentoo.org> ffmpeg-0.5-r1.ebuild:
+  stable x86, bug 266986
 
   03 May 2009; Peter Alfredsen <loki_val@gentoo.org> ffmpeg-0.5-r1.ebuild:
   Update deps for USE="lame" w.r.t. bug 265830.
