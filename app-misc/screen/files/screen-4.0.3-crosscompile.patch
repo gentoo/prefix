@@ -126,14 +126,14 @@
  AC_TRY_RUN([
  #include <sys/types.h>
  #include <sys/stat.h>
-@@ -348,12 +364,14 @@
+@@ -348,12 +364,15 @@
      exit(1);
    exit(0);
  }
 -], AC_NOTE(- your fifos are usable) fifo=1,
 -AC_NOTE(- your fifos are not usable))
--rm -f /tmp/conftest*
 +], screen_cv_sys_fifo_usable=yes, screen_cv_sys_fifo_usable=no))
+ rm -f /tmp/conftest*
  
 -if test -n "$fifo"; then
 -AC_CHECKING(for broken fifo implementation)
@@ -146,18 +146,18 @@
  AC_TRY_RUN([
  #include <sys/types.h>
  #include <fcntl.h>
-@@ -398,9 +416,11 @@
+@@ -398,9 +416,12 @@
      exit(1);
    exit(0);
  }
 -], AC_NOTE(- your implementation is ok), 
 -AC_NOTE(- you have a broken implementation) AC_DEFINE(BROKEN_PIPE) fifobr=1)
--rm -f /tmp/conftest*
 +], screen_cv_sys_fifo_broken_impl=no,
 +screen_cv_sys_fifo_broken_impl=yes))
 +if test X"$screen_cv_sys_fifo_broken_impl" = Xyes; then
 +       AC_DEFINE(BROKEN_PIPE)
 +fi
+ rm -f /tmp/conftest*
  fi
  
  dnl
