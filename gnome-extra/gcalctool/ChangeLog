@@ -1,6 +1,13 @@
 # ChangeLog for gnome-extra/gcalctool
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gcalctool/ChangeLog,v 1.176 2009/04/27 14:02:39 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gcalctool/ChangeLog,v 1.177 2009/05/11 22:04:39 eva Exp $
+
+*gcalctool-5.26.1 (11 May 2009)
+
+  11 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gcalctool-5.20.2.ebuild, -gcalctool-5.22.3.ebuild,
+  -gcalctool-5.24.3.ebuild, +gcalctool-5.26.1.ebuild:
+  New version for GNOME 2.26. Clean up old revisions.
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gcalctool-5.24.3.1:
   Stable for HPPA (bug #260063).
