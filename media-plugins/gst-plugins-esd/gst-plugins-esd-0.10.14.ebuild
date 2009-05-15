@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-esd/gst-plugins-esd-0.10.14.ebuild,v 1.2 2009/05/03 17:41:19 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-esd/gst-plugins-esd-0.10.14.ebuild,v 1.4 2009/05/14 19:54:08 maekke Exp $
 
 inherit gst-plugins-good
 
