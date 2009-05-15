@@ -1,6 +1,39 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.107 2009/04/30 21:43:59 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.112 2009/05/14 16:09:28 chainsaw Exp $
+
+*audacious-plugins-2.0.1 (14 May 2009)
+
+  14 May 2009; <chainsaw@gentoo.org> -audacious-plugins-2.0.0.ebuild,
+  +audacious-plugins-2.0.1.ebuild:
+  We thank you for your bug reports about high CPU-usage. A race condition
+  was identified in the ALSA output plugin. If you noticed high overall CPU
+  usage, particularly during playback, that should now be gone.
+
+  13 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  audacious-plugins-2.0.0.ebuild, metadata.xml:
+  Introduce ProjectM visualization plug-in.
+
+*audacious-plugins-2.0.0 (13 May 2009)
+
+  13 May 2009; <chainsaw@gentoo.org> -audacious-plugins-2.0_alpha3.ebuild,
+  -audacious-plugins-2.0_beta1.ebuild, +audacious-plugins-2.0.0.ebuild:
+  The long-awaited second release of Audacious. Now out of mask and ready
+  for *you*.
+
+*audacious-plugins-2.0_beta1 (12 May 2009)
+
+  12 May 2009; <chainsaw@gentoo.org> -audacious-plugins-2.0_alpha1.ebuild,
+  +audacious-plugins-2.0_beta1.ebuild:
+  Stability is increasing noticeably as we are coming nearer to a final
+  release. This beta is however still masked.
+
+  11 May 2009; <chainsaw@gentoo.org> audacious-plugins-1.5.1-r1.ebuild,
+  audacious-plugins-1.5.1-r2.ebuild, audacious-plugins-1.5.1-r3.ebuild,
+  audacious-plugins-2.0_alpha1.ebuild, audacious-plugins-2.0_alpha3.ebuild:
+  Drop musicbrainz dependency once and for all. As per upstream bug #63 by
+  Rafał Mużyło. The Makefile variable suggesting the dependency has been
+  removed in upstream commit 3166:1ec4aa80d7f9.
 
 *audacious-plugins-2.0_alpha3 (30 Apr 2009)
 

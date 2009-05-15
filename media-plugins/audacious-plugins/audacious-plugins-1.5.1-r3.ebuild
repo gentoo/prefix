@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.1-r3.ebuild,v 1.8 2009/03/14 21:30:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.1-r3.ebuild,v 1.9 2009/05/11 16:46:15 chainsaw Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -36,8 +36,7 @@ RDEPEND="app-arch/unzip
 	mtp? ( media-libs/libmtp )
 	musepack? ( media-libs/libmpcdec media-libs/taglib )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.3 )
-	scrobbler? ( net-misc/curl
-		     media-libs/musicbrainz )
+	scrobbler? ( net-misc/curl )
 	sdl? (	>=media-libs/libsdl-1.2.5 )
 	sid? ( media-libs/libsidplay )
 	sndfile? ( >=media-libs/libsndfile-1.0.17-r1 )
