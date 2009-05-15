@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/qt-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.46 2009/05/01 18:47:58 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.48 2009/05/14 22:18:29 yngwin Exp $
+
+  14 May 2009; Ben de Groot <yngwin@gentoo.org> -qt-core-4.5.0.ebuild:
+  Remove old
+
+  13 May 2009; Brent Baude <ranger@gentoo.org> qt-core-4.5.1.ebuild:
+  Marking qt-core-4.5.1 ppc stable for bug 266201
 
   01 May 2009; Markos Chandras <hwoarang@gentoo.org> qt-core-4.5.0,
   qt-core-4.5.1:
@@ -180,7 +186,7 @@
   Added Qt-4.4.0_beta, note that the RC1 is an accidentally mislabelled
   `technical preview`, so this will appear as a downgrade if you installed
   that version.
-  Thanks to David Leverton, Bo Andresen, Bernd Steinhauser & 
+  Thanks to David Leverton, Bo Andresen, Bernd Steinhauser &
   Arfrever Frehtes Taifersar Arahesis
   Fixes bugs: 206975, 212086, 172219, 212069, 206976, 212108
 
