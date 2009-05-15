@@ -104,7 +104,6 @@ net-print
 net-proxy
 net-voip
 net-wireless
-net-www
 net-zope
 perl-core
 rox-base

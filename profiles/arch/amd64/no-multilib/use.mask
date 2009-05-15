@@ -19,3 +19,7 @@ mplayer-bin
 # 2007/08/24 Michael Marineau <marineam@gentoo.org>
 # Xen HVM support requires building 32-bit binaries.
 hvm
+
+# 2009/05/11 Doug Goldstein <cardoe@gentoo.org>
+# Mask 32bit since this will always require emulation packages
+32bit

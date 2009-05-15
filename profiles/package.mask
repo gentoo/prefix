@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9788 2009/05/11 20:54:52 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9803 2009/05/14 23:56:38 yngwin Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,53 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Gilles Dartiguelongue <eva@gentoo.org> (15 May 2009)
+# Masked for removal wrt bug #244128. Old, rotten and
+# unused. Removal in 30 days.
+gnome-base/libghttp
+
+# Samuli Suominen <ssuominen@gentoo.org> (14 May 2009)
+# Masked for removal wrt #263804, doesn't work with current
+# LastFM API and upstream has went missing. The package
+# needs new upstream, or we end up maintaining a huge
+# patchset for it.
+media-sound/lastfm-ripper
+
+# Mike Pagano <mpagano@gentoo.org> (13 May 2009)
+# Masked for testing of ~ (tilde) unmasked packages
+>=app-portage/portpeek-1.8
+
+# Thomas Sachau <tommy@gentoo.org> (12 May 2009)
+# Masked for testing
+sys-fs/aufs2
+
+# Peter Alfredsen <loki_val@gentoo.org> (12 May 2009)
+# Masked because of API changes. Development version.
+#
+# Packages known to break:
+# app-text/xpdf
+# dev-tex/pdftex
+# dev-tex/luatex
+#
+# Highlights:
+# Colour management support
+# PNG support for pdftohtml
+# Annotations support got better
+=app-text/poppler-utils-0.11*
+=dev-libs/poppler-qt3-0.11*
+=dev-libs/poppler-qt4-0.11*
+=dev-libs/poppler-0.11*
+=dev-libs/poppler-glib-0.11*
+=virtual/poppler-utils-0.11*
+=virtual/poppler-qt3-0.11*
+=virtual/poppler-qt4-0.11*
+=virtual/poppler-0.11*
+=virtual/poppler-glib-0.11*
+
+# Samuli Suominen <ssuominen@gentoo.org> (12 May 2009)
+# Masked for removal wrt security 208464, CVE-2008-0553.
+media-sound/rat
 
 # Samuli Suominen <ssuominen@gentoo.org> (11 May 2009)
 # Masked for removal wrt #267622. Broken with new tcl.
@@ -71,31 +118,9 @@ x11-proto/xproxymanagementprotocol
 # nothing in portage uses those apps and libs anymore
 # will be removed in 30 days (see bug #264982 for rationale)
 x11-apps/xplsprinters
+x11-apps/xprehashprinterlist
 x11-libs/libXprintAppUtil
 x11-libs/libXprintUtil
-
-# Markos Chandras <hwoarang@gentoo.org> (08 May 2009)
-# Pending removal in 15 days.
-=x11-libs/qt-4.5.0
-=x11-libs/qt-assistant-4.5.0*
-=x11-libs/qt-core-4.5.0*
-=x11-libs/qt-dbus-4.5.0*
-=x11-libs/qt-demo-4.5.0*
-=x11-libs/qt-gui-4.5.0*
-=x11-libs/qt-opengl-4.5.0*
-=x11-libs/qt-phonon-4.5.0*
-=x11-libs/qt-qt3support-4.5.0*
-=x11-libs/qt-script-4.5.0*
-=x11-libs/qt-sql-4.5.0*
-=x11-libs/qt-svg-4.5.0*
-=x11-libs/qt-test-4.5.0*
-=x11-libs/qt-webkit-4.5.0*
-=x11-libs/qt-xmlpatterns-4.5.0*
-
-# Peter Alfredsen <loki_val@gentoo.org> (05 May 2009)
-# Masking temporarily till bug 265912 has been resolved
-# to my satisfaction.
-=dev-lang/mono-2.4-r1
 
 # Mark Loeser <halcy0n@gentoo.org> (6 May 2009)
 # Masked for testing
@@ -344,19 +369,9 @@ virtual/perl-IO-Compress
 =app-emulation/virt-manager-0.7.0
 =app-emulation/virtinst-0.400.3
 
-# Tony Vroon <chainsaw@gentoo.org> (17 Apr 2009)
-# Alpha-quality developer preview. Feel free to give it a go, but bugs go upstream.
-# Use this tracker: http://www.atheme.org/projects/audacious/issues
-=media-sound/audacious-2.0_alpha*
-=media-plugins/audacious-plugins-2.0_alpha*
-
 # Mounir Lamouri <volkmar@gentoo.org> (15 Apr 2009)
 # >www-plugins/mozilla-weaver-0.2.104 needs masked versions of ff (ie. 3.1_beta)
 >www-plugins/mozilla-weave-0.2.104
-
-# Torsten Veller <tove@gentoo.org> (15 Apr 2009)
-# Mask net-mail/gotmail for removal (#266204)
-net-mail/gotmail
 
 # Christoph Mende <angelos@unkreativ.org> (14 Apr 2009)
 # Masked media-sound/mpd pre-releases
@@ -406,11 +421,6 @@ dev-util/ctmkit
 # replacement, which is actively maintained and has more features.
 dev-php5/pecl-zip
 
-# Ulrich Mueller <ulm@gentoo.org> (12 Apr 2009)
-# Discontinued by upstream, see http://www.adobe.com/svg/eol.html
-# Masked for removal in 30 days, bug 265066.
-net-www/adobesvg
-
 # Alin Năstac <mrness@gentoo.org> (10 Apr 2009)
 # Homepage no longer available (#264785)
 # To be removed by the tree cleaners after 30 days.
@@ -422,12 +432,6 @@ net-dialup/qlcr
 # 1.0. v0.20081219-r1 is the stable version, v1.0* is the ~arch version. It will
 # seem like a downgrade for stable and ~arch users, but it is not.
 >=app-shells/bash-completion-20000000
-
-# Mounir Lamouri <volkmar@gentoo.org> (08 Apr 2009)
-# This lib is not used by any package and it doesn't work on amd64
-# Upstream doesn't maintain this package anymore
-# See bug 180757. Masked for removal in 30 days
-net-libs/zapata
 
 # Tiziano Müller <dev-zero@gentoo.org> (08 Apr 2009)
 # pre-releases
@@ -442,12 +446,6 @@ net-libs/libinfinity
 # Not supported in Gentoo anymore, use 'eselect bashcomp' now
 # Comments on bug 253878 - removed in 30 days.
 app-shells/bash-completion-config
-
-# Michael Sterrett <mr_bones_@gentoo.org> (06 Apr 2009)
-# Masked for removal in 30 days.
-# Doesn't work with the latest versions of dev-util/scons.
-# Last release in 2006.  Removal approved by Gentoo KDE team.
-kde-misc/kleansweep
 
 # Paul Varner <fuzzyray@gentoo.org> (06 Apr 2009)
 # Dead upstream and has issues with newer portages.
@@ -469,8 +467,8 @@ app-portage/udept
 app-text/tetex
 
 # Tony Vroon <chainsaw@gentoo.org> (30 Mar 2009)
-# The v4 branch of DHCP has a new build system and a "minimal" dhclient-only 
-# build is not yet supported. The IPv6 support seems a bit rough at the edges 
+# The v4 branch of DHCP has a new build system and a "minimal" dhclient-only
+# build is not yet supported. The IPv6 support seems a bit rough at the edges
 # as well. As such, this is for the adventurous only.
 # Bug reports are welcome if they carry patches.
 >=net-misc/dhcp-4.0.0
@@ -484,18 +482,6 @@ app-text/tetex
 # Upstream is very unresponsive and we had to guess at which kernel patch was
 # needed. May not work and/or may be harmful. You have been warned.
 sys-apps/sreadahead
-
-# Ben de Groot <yngwin@gentoo.org> (27 Mar 2009)
-# Scheduled for removal in 30 days. Does not build: bug 207324.
-# Upstream inactive, last release over 6 years ago.
-media-sound/ermixer
-
-# Ben de Groot <yngwin@gentoo.org> (27 Mar 2009)
-# Scheduled for removal. Just masking now, to make sure there are no problems
-# Everyone should be using qt-3.3.8b-r1 by now
-=x11-libs/qt-3.3.8-r4
-=dev-db/qt-unixODBC-3.3.8
-=x11-libs/qt-embedded-3.3.8
 
 # Peter Alfredsen <loki_val@gentoo.org> (27 Mar 2009)
 # Breaks compilation of KDE4 packages - bug 263823
@@ -539,11 +525,6 @@ dev-embedded/gezel
 # Masked for removal in 60 days. Dead upstream (since 2001), file collisions,
 # ebuild needs love. bug 248305
 sys-devel/subterfugue
-
-# Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
-# Masked for removal in 30 days. Dead upstream, many alternatives exist (eg.
-# abcde) - bug 116747
-media-sound/cdmp3
 
 # Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
 # Masked for removal in 60 days. Dead upstream (vanished), broken with gcc-4.3 &
@@ -784,12 +765,6 @@ dev-util/w32api
 =media-libs/gst-plugins-bad-0.10.9-r1
 =media-libs/gst-plugins-ugly-0.10.10-r1
 =media-libs/gst-plugins-base-0.10.21-r1
-
-# Diego Pettenò <flameeyes@gentoo.org> (23 Dec 2008)
-# Mask these for removal, busybox provides those already, and are
-# unmaintained. As requested by solar.
-net-misc/udhcp
-sys-apps/tinylogin
 
 # Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
 # Removed in 60 days, multiple bugs - does not compile with recent kernels.
@@ -1478,15 +1453,6 @@ app-benchmarks/ltp
 # Robin H. Johnson <robbat2@gentoo.org> (11 Feb 2006)
 # zlib interaction is badly broken. See bug #124733.
 =dev-util/cvs-1.12.13*
-
-# Chris Gianelloni <wolf31o2@gentoo.org> (19 Dec 2005)
-# This is the Gentoo Linux Installer.  This is currently masked because it will
-# lead to some serious breakages on a machine.  If you are not developing on
-# this package, I would strongly recommend against using it.  If you break your
-# system with this, you're on your own.  You have been warned.
-# This package now is no longer safe to run except on a system where you are
-# planning on doing an install.
-sys-apps/gli
 
 # Luca Longinotti <chtekk@gentoo.org> (12 Jan 2007)
 # Mask MySQL 5.1.* and the alpha versions

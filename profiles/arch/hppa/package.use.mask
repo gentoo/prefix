@@ -1,6 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/package.use.mask,v 1.21 2009/05/06 23:01:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/package.use.mask,v 1.22 2009/05/12 14:53:50 jer Exp $
 # DON'T TOUCH THIS FILE. Instead, file a bug and assign it to <hppa@gentoo.org>.
+
+# Jeroen Roovers <jer@gentoo.org> (06 May 2009)
+# dev-lang/swi-prolog fails some tests but would be pulled in by dev-libs/ppl
+# (bug #269556)
+dev-libs/ppl prolog
 
 # Jeroen Roovers <jer@gentoo.org> (06 May 2009)
 # Mask USE=solver for kde-base/kalzium or dev-ml/facile[ocamlopt]

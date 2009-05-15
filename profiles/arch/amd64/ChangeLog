@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/AMD64 profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.42 2009/03/20 15:25:33 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.44 2009/05/11 09:30:34 ssuominen Exp $
+
+  11 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.use.mask:
+  Broken SSE2 detection in libsoundtouch for x86_64 wrt #262405
 
   20 Mar 2009; Bernard Cafarelli <voyageur@gentoo.org> package.use.mask:
   Mask s3 USE flag for app-backup/backup-manager, required dependencies are

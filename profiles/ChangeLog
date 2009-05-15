@@ -1,10 +1,52 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2644 2009/05/12 04:54:07 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2658 2009/05/14 23:56:38 yngwin Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  14 May 2009; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Remove qt masks since these ebuilds are no longer in the tree
+
+  14 May 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Masking gnome-base/libghttp for removal
+
+  14 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask lastrm-ripper for removal wrt #263804 because it doesn't work with
+  current LastFM API.
+
+  13 May 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  clean up p.mask for recent removals from tree
+
+  13 May 2009; <chainsaw@gentoo.org> package.mask:
+  Drop the Audacious mask. 2.0.0 final is out.
+
+  12 May 2009; <chainsaw@gentoo.org> package.mask:
+  Expand 2.0_alpha mask to include 2.0_beta as well. Lets not unleash it on
+  unsuspecting users until its a final release.
+
+  12 May 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Bug 265912 fixed. Removing mask.
+
+  12 May 2009; Federico Ferri <mescalinum@gentoo.org> updates/2Q-2009:
+  move tkdiff from cat. dev-tcltk to cat. dev-util
+
+  12 May 2009; Thomas Sachau (Tommy[D]) <tommy@gentoo.org> package.mask:
+  Add mask for sys-fs/aufs2 for testing
+
+  12 May 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  forgot to add x11-apps/xprehashprinterlist to XPrint package.mask
+
+  12 May 2009; Ulrich Mueller <ulm@gentoo.org> categories, package.mask:
+  Remove mask for net-www/adobesvg; package has been removed, bug 265066.
+  Remove empty net-www category, its packages are now in www-* categories.
+
+  12 May 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Add mask for poppler-0.11* in preparation for it entering the tree.
+
+  12 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask media-sound/rat for removal wrt security #208464, CVE-2008-0553.
 
   12 May 2009; Jeremy Olexa <darkside@gentoo.org> base/use.mask, use.desc:
   Define prefix USE flag in use.desc. Mask prefix USE flag in base/use.mask so

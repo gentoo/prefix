@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.31 2009/04/30 03:05:57 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/no-multilib/package.mask,v 1.32 2009/05/12 04:17:53 mr_bones_ Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -172,6 +172,7 @@ games-server/greenhouse
 games-server/nwn-ded
 games-server/ut2003-ded
 games-simulation/bcs-demo
+games-simulation/secondlife-bin
 games-simulation/simutrans
 games-strategy/coldwar
 games-strategy/coldwar-demo
