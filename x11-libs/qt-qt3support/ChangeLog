@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/qt-qt3support
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/ChangeLog,v 1.27 2009/04/27 19:46:50 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/ChangeLog,v 1.29 2009/05/14 20:57:31 yngwin Exp $
+
+  14 May 2009; Ben de Groot <yngwin@gentoo.org> -qt-qt3support-4.5.0.ebuild,
+  qt-qt3support-4.5.1.ebuild:
+  Remove old. Fix phonon dep, bug 269622.
+
+  13 May 2009; Brent Baude <ranger@gentoo.org> qt-qt3support-4.5.1.ebuild:
+  Marking qt-qt3support-4.5.1 ppc stable for bug 266201
 
 *qt-qt3support-4.5.1 (27 Apr 2009)
 

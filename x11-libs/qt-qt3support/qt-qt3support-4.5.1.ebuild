@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/qt-qt3support-4.5.1.ebuild,v 1.1 2009/04/27 19:46:50 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/qt-qt3support-4.5.1.ebuild,v 1.3 2009/05/14 20:57:31 yngwin Exp $
 
 EAPI=2
 inherit qt4-build
@@ -12,10 +12,10 @@ IUSE="+accessibility phonon"
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=,qt3support]
 	~x11-libs/qt-gui-${PV}[accessibility=,debug=,qt3support]
-	~x11-libs/qt-sql-${PV}[debug=,qt3support]"
+	~x11-libs/qt-sql-${PV}[debug=,qt3support]
+	phonon? ( || ( ~x11-libs/qt-phonon-${PV}[debug=]
+		media-sound/phonon[gstreamer] ) )"
 RDEPEND="${DEPEND}"
-PDEPEND="phonon? (
-	|| ( ~x11-libs/qt-phonon-${PV}[debug=] media-sound/phonon[gstreamer] ) )"
 
 QT4_TARGET_DIRECTORIES="
 src/qt3support
