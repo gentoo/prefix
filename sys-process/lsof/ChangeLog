@@ -1,6 +1,14 @@
 # ChangeLog for sys-process/lsof
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.61 2009/03/17 10:22:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.63 2009/05/11 18:08:24 vapier Exp $
+
+  11 May 2009; Mike Frysinger <vapier@gentoo.org> lsof-4.82.ebuild:
+  Improve how we past build flags/settings to avoid custom patches.
+
+*lsof-4.82 (11 May 2009)
+
+  11 May 2009; Mike Frysinger <vapier@gentoo.org> +lsof-4.82.ebuild:
+  Version bump #269341 by Lars Wendler.
 
   17 Mar 2009; Raúl Porcel <armin76@gentoo.org> lsof-4.81-r2.ebuild:
   m68k stable wrt #258195, thanks to kolla for testing
