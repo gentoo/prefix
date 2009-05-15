@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.117 2009/03/01 10:22:30 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.118 2009/05/12 10:09:41 loki_val Exp $
+
+  12 May 2009; Peter Alfredsen <loki_val@gentoo.org>
+  libpcap-1.0.0-r1.ebuild:
+  List net-wireless/bluez first in ( a b ) dependency w.r.t. bug 269519.
 
   01 Mar 2009; Tiziano Müller <dev-zero@gentoo.org>
   libpcap-1.0.0-r1.ebuild:
