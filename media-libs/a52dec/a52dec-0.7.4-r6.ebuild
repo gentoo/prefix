@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/a52dec-0.7.4-r6.ebuild,v 1.2 2008/06/16 10:42:16 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/a52dec-0.7.4-r6.ebuild,v 1.3 2009/05/12 18:26:32 ssuominen Exp $
 
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
@@ -40,6 +40,11 @@ src_compile() {
 		$(use_enable djbfft) \
 		${myconf} || die
 	emake CFLAGS="${CFLAGS}" || die "emake failed"
+}
+
+src_test() {
+	filter-flags -fPIE
+	emake check || die "emake check failed"
 }
 
 src_install() {

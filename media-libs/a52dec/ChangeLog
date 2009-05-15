@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/a52dec
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/ChangeLog,v 1.53 2008/06/16 10:42:16 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/ChangeLog,v 1.54 2009/05/12 18:26:32 ssuominen Exp $
+
+  12 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  a52dec-0.7.4-r6.ebuild:
+  filter-flags -fPIE in src_test wrt #143058
 
   16 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
   files/a52dec-0.7.4-tests-optional.patch, a52dec-0.7.4-r6.ebuild:
