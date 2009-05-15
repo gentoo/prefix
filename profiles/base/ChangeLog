@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo base-profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.74 2009/05/03 20:27:26 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/base/ChangeLog,v 1.75 2009/05/12 20:38:22 loki_val Exp $
+
+  12 May 2009; Peter Alfredsen <loki_val@gentoo.org> package.use.mask:
+  Remove mask of openoffice mono use-flag w.r.t. bug 257313.
 
   03 May 2009; Peter Alfredsen <loki_val@gentoo.org> package.use.force:
   Remove use.force on nant since mono-2.4 has been unmasked.

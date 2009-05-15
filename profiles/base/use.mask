@@ -195,3 +195,7 @@ tcc
 # pam_console was masked for removal for security issue.
 # mask the flag too.
 pam_console
+
+# Jeremy Olexa <darkside@gentoo.org>
+# The prefix USE flag should never be used on non prefix profiles
+prefix
