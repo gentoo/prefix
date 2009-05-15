@@ -1,6 +1,30 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.77 2009/05/05 11:51:23 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.82 2009/05/14 18:40:04 josejx Exp $
+
+  14 May 2009; Joseph Jezak <josejx@gentoo.org> transmission-1.61.ebuild:
+  Marked ppc stable for bug #269605.
+
+  13 May 2009; Markus Meier <maekke@gentoo.org> transmission-1.61.ebuild:
+  amd64 stable, bug #269605
+
+  13 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  transmission-1.61.ebuild:
+  stable x86, security bug 269605
+
+*transmission-1.61-r1 (12 May 2009)
+
+  12 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +transmission-1.61-r1.ebuild, +files/transmission-daemon.confd,
+  +files/transmission-daemon.initd:
+  New init.d and conf.d files wrt #238260, thanks to Tom Hendrikx, René
+  Berber, Sergey Dryabzhinsky and many others.
+
+*transmission-1.61 (12 May 2009)
+
+  12 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +transmission-1.61.ebuild:
+  Version bump wrt security #269605.
 
 *transmission-1.60 (05 May 2009)
 
