@@ -1,6 +1,18 @@
 # ChangeLog for app-portage/gentoolkit-dev
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.63 2009/05/08 14:42:42 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.64 2009/05/12 18:57:11 idl0r Exp $
+
+*gentoolkit-dev-0.2.6.11-r2 (12 May 2009)
+
+  12 May 2009; Christian Ruppert <idl0r@gentoo.org>
+  -gentoolkit-dev-0.2.6.11-r1.ebuild, +gentoolkit-dev-0.2.6.11-r2.ebuild,
+  +files/echangelog.patch, -files/echangelog-git.patch:
+  Revbump. echangelog: Update category/package when creating the initial
+  ChangeLog, thanks to Serkan Kaba <serkan@gentoo.org>. Cleanup. Ignore .git
+  dir when running echangelog in the repository root, fixes bug 199805
+  c8,c13. Improved git_unknown_objects(), git status parsing improved.
+  Thanks to Andrew Gaffney <agaffney@gentoo.org> for testing etc. Fix regex,
+  bug 269557, thanks to Samuli Suominen <ssuominen@gentoo.org>.
 
 *gentoolkit-dev-0.2.6.11-r1 (08 May 2009)
 

@@ -1,0 +1,211 @@
+--- src/echangelog/echangelog	2009-05-12 20:39:44.721829271 +0200
++++ src/echangelog/echangelog	2009-05-12 20:34:19.132577156 +0200
+@@ -11,6 +11,7 @@
+ use strict;
+ use POSIX qw(strftime getcwd setlocale);
+ use File::Find;
++use File::Basename;
+ use Getopt::Long;
+ 
+ # Fix bug 21022 by restricting to C locale
+@@ -144,6 +145,27 @@ sub changelog_info(%) {
+ 	close(INFO);
+ }
+ 
++sub update_cat_pn {
++	my $t = shift;
++	my $cwd = getcwd();
++
++	my $category = basename(dirname($cwd));
++	my $package_name = basename($cwd);
++
++	$t =~ s/^(# ChangeLog for).*/$1 $category\/$package_name/;
++
++	return $t;
++}
++
++# Just to ensure we don't get duplicate entries.
++sub mypush(\@@) {
++	my $aref = shift;
++
++	foreach my $value (@_) {
++		push(@{$aref}, $value) if !grep(/^\Q$value\E$/, @{$aref});
++	}
++}
++
+ GetOptions(
+ 	'help' => \$opt_help,
+ 	'strict' => \$opt_strict,
+@@ -166,7 +188,7 @@ if ( -d "CVS" ) {
+ 				open(GIT, '-|', "git rev-parse --git-dir 2>/dev/null");
+ 				$vcs = "git" if defined(<GIT>);
+ 				close(GIT);
+-				last;
++				last if $vcs;
+ 			}
+ 		}
+ 	}
+@@ -178,22 +200,27 @@ if ( -d "CVS" ) {
+ 
+ # Read the current ChangeLog
+ if (-f 'ChangeLog') {
+-	open I, '<ChangeLog' or die "Can't open ChangeLog for input: $!\n";
++	open(I, '<', 'ChangeLog') or die "Can't open ChangeLog for input: $!\n";
+ 	{ local $/ = undef; $text = <I>; }
+-	close I;
++	close(I);
+ } else {
+ 	# No ChangeLog here, maybe we should make one...
+ 	if (<*.ebuild>) {
+-		open C, "portageq envvar PORTDIR |" or die "Can't find PORTDIR";
+-		my ($new) = <C>;
+-		close C;
+-
+-		$new =~ s/\s+$//;
+-		open I, "< $new/skel.ChangeLog"
+-			or die "Can't open $new/skel.ChangeLog for input: $!\n";
++		open(C, '-|', "portageq portdir") or die "portageq returned with an error: $!\n";
++		my $portdir = <C>;
++		$portdir =~ s/\s+$//;
++		close(C);
++
++		die "Can't find PORTDIR\n" if (length $portdir == 0);
++
++		open(I, '<', "$portdir/skel.ChangeLog")
++			or die "Can't open $portdir/skel.ChangeLog for input: $!\n";
+ 		{ local $/ = undef; $text = <I>; }
+-		close I;
+-		$text =~ s/^\*.*//ms;   # don't need the fake entry
++		close(I);
++
++		$text =~ s/^\*.*//ms; # don't need the fake entry
++
++		$text = update_cat_pn($text);
+ 	} else {
+ 		die "This should be run in a directory with ebuilds...\n";
+ 	}
+@@ -238,49 +265,44 @@ while (<C>) {
+ 		my ($status, $filename) = ($1,$2);
+ 
+ 		if($vcs eq "git") {
+-			open P, "git rev-parse --sq --show-prefix |";
++			open(P, '-|', "git rev-parse --sq --show-prefix");
+ 			my $prefix = <P>;
+-			$prefix = substr($prefix, 0, -1);
+-			close P;
++			close(P);
+ 
+-			if ($filename =~ /$prefix(\S*)/) {
+-				$filename = $1 ;
+-			}
+-			else {
+-				next;
++			if (defined($prefix)) {
++				chomp($prefix);
++
++				if ($filename =~ /$prefix(\S*)/) {
++					$filename = $1 ;
++				}
++				else {
++					next;
++				}
+ 			}
+ 		}
+ 
+-		if( -d $filename ) {
+-			next;
+-		}
++		next if -d $filename;
+ 
+-		push @files, $filename;
++		push(@files, $filename);
+ 		($actions{$filename} = $status) =~ tr/DARM/-+-/d;
+ 	}
+ }
+ 
+-# git only shows files already added so we need to check for unknown files
+-# separately here.
+-if($vcs eq "git") {
+-	find(\&git_unknown_objects, "./");
+-}
+-
+ sub git_unknown_objects {
+ 	my $object = $_;
+-	my ($dev,$ino,$mode,$nlink,$uid,$gid);
+ 
+-	# Ignore empty directories - git doesn't version them and cvs removes them.
+-	if ( (($dev,$ino,$mode,$nlink,$uid,$gid) = lstat($_)) && ! -d _ ) {
+-		open C, $vcs." status $_ 2>&1 1>/dev/null |";
+-
+-		while (<C>) {
+-			$_ = <C>;
+-			push @unknown, $object;
+-		};
++	return if -d $object;
++	return if $File::Find::dir =~ m/^\.\/\.git\/?/;
+ 
+-		close C;
+-	};
++	open(C, '-|', "${vcs} status ${object} 2>&1 1>/dev/null");
++	push(@unknown, $object) if defined(<C>);
++	close(C);
++}
++
++# git only shows files already added so we need to check for unknown files
++# separately here.
++if($vcs eq "git") {
++	find(\&git_unknown_objects, "./");
+ }
+ 
+ # Separate out the trivial files for now
+@@ -398,18 +420,8 @@ sub sortfunc($$) {
+ 	return 0;
+ }
+ 
+-# Just to ensure we don't get duplicate entries.
+-sub mypush(\@@) {
+-	my $aref = shift;
+-
+-	foreach my $value (@_) {
+-		push(@{$aref}, $value) if !grep(/^$value$/, @{$aref});
+-	}
+-}
+-
+ # Forget ebuilds that only have changed copyrights, unless that's all
+ # the changed files we have
+-
+ @ebuilds = grep /\.ebuild$/, @files;
+ @files = grep !/\.ebuild$/, @files;
+ 
+@@ -626,18 +638,6 @@ if (@new_versions) {
+ 			or die "Failed to insert new entry (3)\n";
+ }
+ 
+-sub update_cat_pn {
+-	my ($t) = @_;
+-	my ($cwd) = getcwd();
+-
+-	$cwd =~ m|.*/(\w+-\w+\|virtual)/([^/]+)|
+-		or die "Can't figure out category/package.. sorry!\n";
+-	my ($category, $package_name) = ($1, $2);
+-	$t =~ s/^(# ChangeLog for).*/$1 $category\/$package_name/;
+-
+-	return $t;
+-}
+-
+ # New packages and/or ones that have moved around often have stale data here.
+ # But only do that in places where ebuilds are around (as echangelog can be
+ # used in profiles/ and such places).
+@@ -686,6 +686,12 @@ for my $e (grep /\.ebuild$/, @files) {
+ 		# Move things around and show the diff
+ 		system "diff -U 0 $e $e.new";
+ 		rename "$e.new", $e or warn("Can't rename $e.new: $!\n");
++
++		# git requires to re-add this file else it wouln't be included in the commit.
++		if ($vcs eq "git")
++		{
++			system("$vcs{$vcs}{add} ${e}");
++		}
+ 	}
+ }
+ 
