@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/portaudio
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.67 2008/12/20 14:37:47 nixnut Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/portaudio/ChangeLog,v 1.68 2009/05/14 17:05:16 aballier Exp $
+
+*portaudio-19_pre20090514 (14 May 2009)
+
+  14 May 2009; Alexis Ballier <aballier@gentoo.org>
+  +portaudio-19_pre20090514.ebuild:
+  push a new snapshot
 
   20 Dec 2008; nixnut <nixnut@gentoo.org> portaudio-19_pre20071207.ebuild:
   Stable on ppc wrt bug 236230
