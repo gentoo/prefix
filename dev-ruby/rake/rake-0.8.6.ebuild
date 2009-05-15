@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/rake-0.8.5.ebuild,v 1.1 2009/05/10 20:32:37 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/rake-0.8.6.ebuild,v 1.1 2009/05/12 16:01:06 a3li Exp $
 
 inherit gems
 USE_RUBY="ruby18 ruby19"
