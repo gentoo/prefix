@@ -1,6 +1,9 @@
 # ChangeLog for games-strategy/wormux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/ChangeLog,v 1.30 2009/03/13 21:56:28 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/ChangeLog,v 1.31 2009/05/13 18:49:23 maekke Exp $
+
+  13 May 2009; Markus Meier <maekke@gentoo.org> wormux-0.8.3.ebuild:
+  amd64/x86 stable, bug #268535
 
 *wormux-0.8.3 (13 Mar 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/wormux-0.8.3.ebuild,v 1.1 2009/03/13 21:56:28 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/wormux-0.8.3.ebuild,v 1.2 2009/05/13 18:49:23 maekke Exp $
 
 EAPI=2
 inherit autotools eutils games
