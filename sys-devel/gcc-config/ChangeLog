@@ -1,6 +1,18 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.178 2009/01/28 02:32:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.182 2009/05/14 19:45:49 maekke Exp $
+
+  14 May 2009; Markus Meier <maekke@gentoo.org> gcc-config-1.4.1.ebuild:
+  amd64/x86 stable, bug #269322
+
+  14 May 2009; Joseph Jezak <josejx@gentoo.org> gcc-config-1.4.1.ebuild:
+  Marked ppc/ppc64 stable for bug #269322.
+
+  13 May 2009; Jeroen Roovers <jer@gentoo.org> gcc-config-1.4.1.ebuild:
+  Stable for HPPA (bug #269322).
+
+  11 May 2009; Ferris McCormick <fmccor@gentoo.org> gcc-config-1.4.1.ebuild:
+  Sparc stable, required for Bug #269322.
 
   28 Jan 2009; Mike Frysinger <vapier@gentoo.org> files/gcc-config-1.4.1,
   gcc-config-1.4.1.ebuild:
