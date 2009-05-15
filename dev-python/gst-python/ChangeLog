@@ -1,6 +1,22 @@
 # ChangeLog for dev-python/gst-python
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.48 2008/12/09 11:41:52 ssuominen Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.51 2009/05/14 07:56:18 ssuominen Exp $
+
+  14 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  gst-python-0.10.15-r1.ebuild:
+  Insert python_need_rebuild to pkg_postinst wrt #244575.
+
+*gst-python-0.10.15-r1 (14 May 2009)
+
+  14 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  -gst-python-0.10.15.ebuild, +gst-python-0.10.15-r1.ebuild:
+  Revision bump to correctly handle bytecompiling and autotools.
+
+*gst-python-0.10.15 (13 May 2009)
+
+  13 May 2009; Olivier Crête <tester@gentoo.org>
+  +gst-python-0.10.15.ebuild:
+  Version bump
 
   09 Dec 2008; <ssuominen@gentoo.org> gst-python-0.10.13.ebuild:
   gst-python needs >= gstreamer-0.10.21 but configure.ac doesn't check for
