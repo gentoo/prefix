@@ -1,6 +1,17 @@
 # ChangeLog for www-servers/lighttpd
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.197 2009/04/03 20:59:34 bangert Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.199 2009/05/14 08:42:29 bangert Exp $
+
+*lighttpd-1.4.22-r1 (14 May 2009)
+
+  14 May 2009; Thilo Bangert <bangert@gentoo.org>
+  +files/1.4.22-r1/03_all_lighttpd-1.4.11-errorlog-pipe.diff,
+  +lighttpd-1.4.22-r1.ebuild:
+  version bump - bug #260174 - spawn-fcgi now lives in 
+  www-servers/spawn-fcgi - EAPI=2
+
+  12 May 2009; Thilo Bangert <bangert@gentoo.org> files/conf/lighttpd.conf:
+  make user screwup less likely - bug #259007
 
   03 Apr 2009; Thilo Bangert <bangert@gentoo.org>
   files/conf/mod_fastcgi.conf, files/lighttpd.initd:
