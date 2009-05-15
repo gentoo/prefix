@@ -4,7 +4,7 @@
 <herd>gnome</herd>
 <use>
 	<flag name="gnomecd">Builds the GNOME CD Player</flag>
-	<flag name="canberra">Adds support for sound notification themes using
+	<flag name="sound">Adds support for sound notification themes using
 		<pkg>media-libs/libcanberra</pkg></flag>
 </use>
 </pkgmetadata>
