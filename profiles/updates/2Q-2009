@@ -17,3 +17,4 @@ move dev-perl/Compress-Raw-Bzip2 perl-core/Compress-Raw-Bzip2
 slotmove net-voip/linphone 1 0
 move net-misc/kphone net-voip/kphone
 move net-im/ekiga net-voip/ekiga
+move dev-tcltk/tkdiff dev-util/tkdiff
