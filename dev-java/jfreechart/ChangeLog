@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/jfreechart
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jfreechart/ChangeLog,v 1.46 2008/10/05 17:47:25 betelgeuse Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jfreechart/ChangeLog,v 1.47 2009/05/11 20:48:54 serkan Exp $
+
+*jfreechart-1.0.13 (11 May 2009)
+
+  11 May 2009; Serkan Kaba <serkan@gentoo.org> +jfreechart-1.0.13.ebuild,
+  +files/jfreechart-1.0.13-build.xml.patch:
+  Version bump.
 
   05 Oct 2008; Petteri Räty <betelgeuse@gentoo.org>
   jfreechart-1.0.9-r1.ebuild, jfreechart-1.0.10.ebuild:
