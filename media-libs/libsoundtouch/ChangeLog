@@ -1,22 +1,20 @@
 # ChangeLog for media-libs/libsoundtouch
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.27 2008/09/29 22:49:42 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.28 2009/05/11 09:23:32 ssuominen Exp $
+
+*libsoundtouch-1.4.0 (11 May 2009)
+
+  11 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +libsoundtouch-1.4.0.ebuild, +files/libsoundtouch-1.4.0-flags.patch:
+  Version bump wrt #262405, thanks to Tim Harder.
 
   29 Sep 2008; Jeroen Roovers <jer@gentoo.org>
   libsoundtouch-1.3.1-r1.ebuild:
   Stable for HPPA (bug #231497).
 
-  05 May 2008; Samuli Suominen <drac@gentoo.org>
-  files/libsoundtouch-1.3.1-Makefile.patch, libsoundtouch-1.3.1-r1.ebuild:
-  Run edos2unix Makefile.am wrt #219243, thanks to Christian Lerrahn. Revert
-  last commit and run full eautoreconf wrt #220301, thanks to Andrew John
-  Hughes.
-
-  26 Apr 2008; Samuli Suominen <drac@gentoo.org>
-  files/libsoundtouch-1.3.1-Makefile.patch, libsoundtouch-1.3.1-r1.ebuild:
-  Replace patching of Makefile.am with patching of Makefile.in files, and
-  run elibtoolize instead of eautoreconf because it fails. Thanks to
-  WiLLiKiZu for reporting.
+  05 May 2008; Samuli Suominen <ssuominen@gentoo.org>
+  libsoundtouch-1.3.1-r1.ebuild:
+  Run edos2unix Makefile.am wrt #219243, thanks to Christian Lerrahn.
 
   13 Apr 2008; Alexis Ballier <aballier@gentoo.org>
   +files/libsoundtouch-1.3.1-gcc-4.3.patch, libsoundtouch-1.3.1-r1.ebuild:
@@ -46,10 +44,6 @@
   21 May 2007; Gustavo Zacarias <gustavoz@gentoo.org>
   libsoundtouch-1.3.1-r1.ebuild:
   Keyworded ~sparc wrt #179173
-
-  14 Apr 2007; Samuli Suominen <drac@gentoo.org>
-  libsoundtouch-1.3.1-r1.ebuild:
-  Close bug 148695 (again)
 
   13 Apr 2007; Peter Weller <welp@gentoo.org> libsoundtouch-1.3.1-r1.ebuild:
   Stable on amd64 wrt bug 172088

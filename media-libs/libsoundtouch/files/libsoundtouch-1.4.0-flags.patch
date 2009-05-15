@@ -1,0 +1,27 @@
+diff -ur soundtouch.orig/source/SoundStretch/Makefile.am soundtouch/source/SoundStretch/Makefile.am
+--- soundtouch.orig/source/SoundStretch/Makefile.am	2009-01-25 18:32:53.000000000 +0200
++++ soundtouch/source/SoundStretch/Makefile.am	2009-05-11 12:10:33.000000000 +0300
+@@ -43,11 +43,5 @@
+ ## linker. 
+ soundstretch_LDADD=../SoundTouch/libSoundTouch.la -lm
+ 
+-## linker flags
+-soundstretch_LDFLAGS=-s
+-
+-## additional compiler flags
+-soundstretch_CXXFLAGS=-O3
+-
+ #clean-local: 
+ #	-rm -f additional-files-to-remove-on-make-clean
+diff -ur soundtouch.orig/source/SoundTouch/Makefile.am soundtouch/source/SoundTouch/Makefile.am
+--- soundtouch.orig/source/SoundTouch/Makefile.am	2009-01-25 18:32:53.000000000 +0200
++++ soundtouch/source/SoundTouch/Makefile.am	2009-05-11 12:11:05.000000000 +0300
+@@ -36,7 +36,7 @@
+ # Note by authore: '-msse2' might not work in non-X86 compilations. If someone can
+ # fix this script to automatically check for CPU architecture, please submit a patch 
+ # to me.
+-AM_CXXFLAGS=-O3 -msse2 -fcheck-new -I../../include
++AM_CXXFLAGS=-fcheck-new -I../../include
+ 
+ 
+ # other linking flags to add
