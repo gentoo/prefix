@@ -1,6 +1,24 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.306 2009/05/10 20:49:48 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.310 2009/05/14 19:23:31 maekke Exp $
+
+  14 May 2009; Markus Meier <maekke@gentoo.org> nautilus-2.24.2-r3.ebuild:
+  amd64/x86 stable, bug #269186
+
+  14 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  nautilus-2.26.2-r1.ebuild:
+  Add description for nautilus-flipping-out patch
+
+*nautilus-2.26.2-r1 (14 May 2009)
+
+  14 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -nautilus-2.26.2.ebuild, +nautilus-2.26.2-r1.ebuild,
+  +files/nautilus-2.26.2-change-reg-desktop-file-with-no-desktop.patch:
+  Add patch to prevent nautilus from flipping out when not managing the
+  desktop. Fixes bug 266398
+
+  11 May 2009; Brent Baude <ranger@gentoo.org> nautilus-2.24.2-r3.ebuild:
+  stable ppc64, bug 269186
 
 *nautilus-2.26.2 (10 May 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.26.2.ebuild,v 1.1 2009/05/10 20:49:48 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.26.2-r1.ebuild,v 1.2 2009/05/14 13:32:24 nirbheek Exp $
 
 EAPI=2
 
@@ -71,6 +71,9 @@ src_prepare() {
 
 	# Fix intltoolize broken file, see upstream #577133
 	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
+
+	# Fix nautilus flipping-out with --no-desktop -- bug 266398
+	epatch "${FILESDIR}/${P}-change-reg-desktop-file-with-no-desktop.patch"
 }
 
 src_test() {
