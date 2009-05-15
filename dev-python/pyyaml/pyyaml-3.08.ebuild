@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/pyyaml-3.08.ebuild,v 1.2 2009/02/17 17:58:23 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/pyyaml-3.08.ebuild,v 1.3 2009/05/14 18:13:53 solar Exp $
 
 NEED_PYTHON="2.3"
 
