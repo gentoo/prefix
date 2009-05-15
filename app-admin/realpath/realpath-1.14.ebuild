@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/realpath-1.14.ebuild,v 1.1 2009/04/30 13:17:59 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/realpath-1.14.ebuild,v 1.2 2009/05/11 20:29:15 loki_val Exp $
 
 EAPI=2
 inherit eutils toolchain-funcs prefix
@@ -16,7 +16,6 @@ IUSE=""
 
 RDEPEND="!sys-freebsd/freebsd-bin"
 DEPEND="${RDEPEND}
-	app-arch/dpkg
 	app-text/po4a
 	virtual/libintl"
 
@@ -29,10 +28,10 @@ src_prepare() {
 src_compile() {
 	tc-export CC
 	use !elibc_glibc && export LIBS="-lintl"
-	emake || die "emake failed"
+	emake VERSION="${PV}"|| die "emake failed"
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake VERSION="${PV}" DESTDIR="${D}" install || die "emake install failed"
 	newdoc debian/changelog ChangeLog.debian
 }
