@@ -1,6 +1,14 @@
 # ChangeLog for app-text/cook
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/cook/ChangeLog,v 1.12 2007/05/14 20:13:35 bangert Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/cook/ChangeLog,v 1.14 2009/05/13 03:51:38 darkside Exp $
+
+  13 May 2009; Jeremy Olexa <darkside@gentoo.org> cook-1.0.2-r1.ebuild:
+  (non maintainer commit) QA fixes (documentation directory location) by Espen
+  Hustad in bug 241260
+
+  13 May 2009; Jeremy Olexa <darkside@gentoo.org> -cook-1.0.2.ebuild,
+  cook-1.0.2-r1.ebuild:
+  (non maintainer commit) QA fixes (user flags) by Espen Hustad in bug 240130
 
   14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>
