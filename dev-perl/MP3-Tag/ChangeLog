@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/MP3-Tag
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/MP3-Tag/ChangeLog,v 1.31 2009/03/13 12:50:04 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/MP3-Tag/ChangeLog,v 1.32 2009/05/11 10:35:38 tove Exp $
+
+*MP3-Tag-1.11 (11 May 2009)
+
+  11 May 2009; Torsten Veller <tove@gentoo.org> +MP3-Tag-1.11.ebuild:
+  Version bump
 
   13 Mar 2009; Torsten Veller <tove@gentoo.org> -MP3-Tag-0.9710.ebuild,
   -MP3-Tag-0.9713.ebuild:
