@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libgpg-error
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgpg-error/ChangeLog,v 1.64 2009/05/10 15:25:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgpg-error/ChangeLog,v 1.66 2009/05/14 18:04:35 tcunha Exp $
+
+  14 May 2009; Tiago Cunha <tcunha@gentoo.org> libgpg-error-1.7.ebuild:
+  stable sparc, bug 269090
+
+  13 May 2009; Markus Meier <maekke@gentoo.org> libgpg-error-1.7.ebuild:
+  amd64/x86 stable, bug #269090
 
   10 May 2009; Jeroen Roovers <jer@gentoo.org> libgpg-error-1.7.ebuild:
   Stable for HPPA (bug #269090).
