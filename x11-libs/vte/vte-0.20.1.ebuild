@@ -47,10 +47,10 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-0.17.4-no-null-backspace.patch"
 
 	use nowheelscroll && epatch "${FILESDIR}"/${PN}-0.16.12-mouse-wheel-scroll.patch
-	epatch "${FILESDIR}"/${PN}-0.16.13-interix.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
-src_compile() {
+src_configure() {
 	local myconf=
 
 	if [[ ${CHOST} == *-interix* ]]; then
@@ -60,5 +60,5 @@ src_compile() {
 
 	[[ ${CHOST} == *-interix3* ]] && myconf="${myconf} --disable-gnome-pty-helper"
 
-	gnome2_src_compile ${myconf}
+	gnome2_src_configure ${myconf}
 }
