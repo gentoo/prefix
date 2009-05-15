@@ -3,7 +3,7 @@
 <pkgmetadata>
 <herd>toolchain</herd>
 <use>
-<flag name='gold'>Use the new gold linker (written in C++) rather than the standard linker</flag>
+<flag name='gold'>Use the new gold linker (written in C++) rather than the standard linker (this _will_ break things)</flag>
 <flag name='multislot'>Allow for multiple versions of binutils to be emerged at once for same CTARGET</flag>
 <flag name='multitarget'>Adds support to binutils for cross compiling (does not work with gas)</flag>
 </use>

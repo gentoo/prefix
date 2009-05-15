@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.354 2009/05/09 20:58:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.355 2009/05/14 04:41:06 dirtyepic Exp $
+
+  14 May 2009; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
+  Set proper expectations for the gold linker.
 
   09 May 2009; Mike Frysinger <vapier@gentoo.org> metadata.xml:
   Add new USE=gold flag #266282 by Dror Levin.
