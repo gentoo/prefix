@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO/perl-IO-1.23.01.ebuild,v 1.10 2009/05/12 08:35:17 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO/perl-IO-1.25.ebuild,v 1.1 2009/05/14 10:08:05 tove Exp $
 
 DESCRIPTION="Virtual for IO"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
