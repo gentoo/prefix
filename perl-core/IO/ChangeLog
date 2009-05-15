@@ -1,6 +1,17 @@
 # ChangeLog for perl-core/IO
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/ChangeLog,v 1.10 2009/03/18 07:29:47 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/ChangeLog,v 1.12 2009/05/14 10:07:34 tove Exp $
+
+*IO-1.25 (14 May 2009)
+
+  14 May 2009; Torsten Veller <tove@gentoo.org> -IO-1.24.ebuild,
+  +IO-1.25.ebuild:
+  Version bump. Cleanup
+
+*IO-1.24 (12 May 2009)
+
+  12 May 2009; Torsten Veller <tove@gentoo.org> +IO-1.24.ebuild:
+  Version bump
 
   18 Mar 2009; Joseph Jezak <josejx@gentoo.org> IO-1.23.01.ebuild:
   Marked ppc stable.
