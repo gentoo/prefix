@@ -1,6 +1,22 @@
 # ChangeLog for gnome-base/gnome-panel
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.277 2009/04/27 13:58:15 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/ChangeLog,v 1.280 2009/05/13 14:22:12 dang Exp $
+
+  13 May 2009; Daniel Gryniewicz <dang@gentoo.org>
+  gnome-panel-2.26.1.ebuild:
+  undo Fix0r bug 269683; turns out it was a misunderstanding
+
+  13 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  gnome-panel-2.26.1.ebuild:
+  Fix0r bug 269683 -- x11-libs/cairo[X]
+
+*gnome-panel-2.26.1 (11 May 2009)
+
+  11 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-panel-2.20.3.ebuild, -gnome-panel-2.22.2.ebuild,
+  -gnome-panel-2.24.3.ebuild, +gnome-panel-2.26.1.ebuild:
+  New version for GNOME 2.26. Drop libgnome/libgnomeui dependencies. Real
+  transparency in notification area. Clean up old revisions.
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gnome-panel-2.24.3-r1:
   Stable for HPPA (bug #260063).

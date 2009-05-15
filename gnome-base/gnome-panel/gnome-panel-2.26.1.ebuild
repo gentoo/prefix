@@ -1,26 +1,28 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.24.3.ebuild,v 1.3 2009/02/05 19:25:25 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.26.1.ebuild,v 1.3 2009/05/13 14:22:12 dang Exp $
 
+EAPI="2"
 GCONF_DEBUG="no"
 
-inherit autotools gnome2
+inherit autotools eutils gnome2
 
 MY_P="${PN}-2.24.2"
 DESCRIPTION="The GNOME panel"
 HOMEPAGE="http://www.gnome.org/"
 SRC_URI="${SRC_URI}
-	mirror://gentoo/${MY_P}-logout+po.tar.bz2"
+	mirror://gentoo/${MY_P}-logout+po.tar.bz2
+	mirror://gentoo/${P}-po.patch.bz2"
 
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="doc eds networkmanager"
+IUSE="doc eds networkmanager policykit"
 
-RDEPEND=">=gnome-base/gnome-desktop-2.12
+RDEPEND=">=gnome-base/gnome-desktop-2.24.0
 	>=x11-libs/pango-1.15.4
-	>=dev-libs/glib-2.16.0
-	>=x11-libs/gtk+-2.13.1
+	>=dev-libs/glib-2.18.0
+	>=x11-libs/gtk+-2.15.1
 	>=dev-libs/libgweather-2.24.1
 	dev-libs/libxml2
 	>=gnome-base/libglade-2.5
@@ -38,9 +40,13 @@ RDEPEND=">=gnome-base/gnome-desktop-2.12
 	x11-libs/libXau
 	>=x11-libs/cairo-1.0.0
 	eds? ( >=gnome-extra/evolution-data-server-1.6 )
-	networkmanager? ( >=net-misc/networkmanager-0.6 )"
+	networkmanager? ( >=net-misc/networkmanager-0.6 )
+	policykit? (
+		>=sys-auth/policykit-0.7
+		>=gnome-extra/policykit-gnome-0.7 )"
 DEPEND="${RDEPEND}
-	app-text/scrollkeeper
+	>=dev-lang/perl-5
+	gnome-base/gnome-common
 	>=app-text/gnome-doc-utils-0.3.2
 	>=dev-util/pkgconfig-0.9
 	>=dev-util/intltool-0.40
@@ -55,21 +61,36 @@ pkg_setup() {
 		--disable-scrollkeeper
 		--disable-schemas-install
 		--with-in-process-applets=clock,notification-area,wncklet
-		--disable-polkit
+		$(use_enable policykit polkit)
 		$(use_enable networkmanager network-manager)
 		$(use_enable eds)"
 }
 
-src_unpack() {
-	gnome2_src_unpack
+src_prepare() {
+	gnome2_src_prepare
 
 	# Allow logout/shutdown without gnome-session 2.24, bug #246170
 	epatch "${WORKDIR}/${MY_P}-logout.patch"
-	epatch "${WORKDIR}/${MY_P}-po.patch"
+	epatch "${WORKDIR}/${P}-po.patch"
+	echo "gnome-panel/panel-logout.c" >> po/POTFILES.in
+
 	# Fixes build on BSD, bug #256859
-	epatch "${FILESDIR}/${P}-daylight.patch"
+	epatch "${FILESDIR}/${PN}-2.24.3-daylight.patch"
+
+	# Fixes shutdown without gdm, bug #259138
+	epatch "${FILESDIR}/${PN}-2.24.3-shutdown.patch"
 
 	intltoolize --force --copy --automake || die "intltoolize failed"
+
+	# FIXME: tarball generated with broken gtk-doc, revisit me.
+	if use doc; then
+		sed "/^TARGET_DIR/i \GTKDOC_REBASE=/usr/bin/gtkdoc-rebase" \
+			-i gtk-doc.make || die "sed 1 failed"
+	else
+		sed "/^TARGET_DIR/i \GTKDOC_REBASE=$(type -P true)" \
+			-i gtk-doc.make || die "sed 2 failed"
+	fi
+
 	eautomake
 }
 
