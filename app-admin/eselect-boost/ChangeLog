@@ -1,0 +1,35 @@
+# ChangeLog for app-admin/eselect-boost
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.6 2009/05/13 16:38:35 josejx Exp $
+
+  13 May 2009; Joseph Jezak <josejx@gentoo.org> eselect-boost-0.3.ebuild:
+  Marked ~ppc/~ppc64 for bug #269456.
+
+  12 May 2009; Jeroen Roovers <jer@gentoo.org> eselect-boost-0.3.ebuild:
+  Marked ~hppa too.
+
+*eselect-boost-0.3 (07 Apr 2009)
+
+  07 Apr 2009; Tiziano Müller <dev-zero@gentoo.org>
+  +files/boost.eselect-0.3, +eselect-boost-0.3.ebuild:
+  Version bump for new boost versions: full profile support using profile
+  files.
+
+  24 Feb 2009; Ferris McCormick <fmccor@gentoo.org>
+  eselect-boost-0.2.ebuild:
+  Add ~sparc keyword in anticipation of testing.
+
+*eselect-boost-0.2 (06 Jan 2009)
+
+  06 Jan 2009; Tiziano Müller <dev-zero@gentoo.org>
+  -files/boost.eselect-0.1, +files/boost.eselect-0.2,
+  -eselect-boost-0.1.ebuild, +eselect-boost-0.2.ebuild:
+  Version bump to fix bug #252828
+
+*eselect-boost-0.1 (16 Dec 2008)
+
+  16 Dec 2008; Tiziano Müller <dev-zero@gentoo.org>
+  +files/boost.eselect-0.1, +metadata.xml, +eselect-boost-0.1.ebuild:
+  Initial commit. Eselect module written by Łukasz Michalik with a few
+  changes made by me.
+
