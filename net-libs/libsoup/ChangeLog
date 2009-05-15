@@ -1,6 +1,15 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.178 2009/05/07 20:58:36 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.181 2009/05/11 15:59:11 eva Exp $
+
+  11 May 2009; Gilles Dartiguelongue <eva@gentoo.org> libsoup-2.26.1:
+  Fix incorrect sed, bug #269402.
+
+  11 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org> libsoup-2.26.1.ebuild:
+  Fix order of sed to prevent maintainer-mode being invoked
+
+  11 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org> libsoup-2.26.1.ebuild:
+  Fix test to follow POSIX (for x86-fbsd)
 
   07 May 2009; Tobias Klausmann <klausman@gentoo.org> libsoup-2.26.1.ebuild:
   Keyworded on alpha, bug #268529
