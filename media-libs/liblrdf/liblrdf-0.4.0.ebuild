@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/liblrdf/liblrdf-0.4.0.ebuild,v 1.11 2009/02/12 17:41:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/liblrdf/liblrdf-0.4.0.ebuild,v 1.12 2009/05/12 09:10:54 ssuominen Exp $
 
-inherit autotools libtool base
+inherit autotools eutils
 
 DESCRIPTION="A library for the manipulation of RDF file in LADSPA plugins"
 HOMEPAGE="http://lrdf.sourceforge.net"
@@ -17,19 +17,12 @@ RDEPEND=">=media-libs/raptor-0.9.12
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-PATCHES=(
-	"${FILESDIR}"/${P}-dontbuild-tests.patch
-)
-
-src_unpack() {
-	base_src_unpack
-	cd "${S}"
-
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-dontbuild-tests.patch
 	eautoreconf
-	elibtoolize
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed."
+	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS README
 }
