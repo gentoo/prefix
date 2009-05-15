@@ -48,7 +48,7 @@ src_configure() {
 }
 
 src_install() {
-	emake DESTDIR="${ED}" docdir="${EPREFIX}"/usr/share/doc/${PF} \
+	emake DESTDIR="${D}" docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		install || die "emake install failed"
 	dodoc AUTHORS CHANGES README
 	prepalldocs
