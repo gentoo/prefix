@@ -1,6 +1,13 @@
 # ChangeLog for x11-wm/metacity
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.233 2009/05/04 22:46:39 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.234 2009/05/14 20:44:38 eva Exp $
+
+*metacity-2.26.0-r1 (14 May 2009)
+
+  14 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +metacity-2.26.0-r1.ebuild, +files/metacity-2.26.0-panel-behavior.patch:
+  Add patch to prevent metacity from maximising windows under panels, bug
+  #268699.
 
 *metacity-2.26.0 (04 May 2009)
 
