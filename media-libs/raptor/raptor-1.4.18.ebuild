@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/raptor-1.4.18.ebuild,v 1.4 2009/02/14 20:48:57 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/raptor-1.4.18.ebuild,v 1.6 2009/05/12 14:15:44 fmccor Exp $
 
-inherit eutils flag-o-matic
+EAPI=2
+inherit eutils
 
 DESCRIPTION="The RDF Parser Toolkit"
 HOMEPAGE="http://librdf.org/raptor"
@@ -22,14 +23,12 @@ DEPEND="${RDEPEND}
 	sys-devel/flex
 	dev-util/pkgconfig"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epunt_cxx
 }
 
-src_compile() {
-	local myconf=""
+src_configure() {
+	local myconf
 
 	if use xml; then
 		myconf="${myconf} --with-xml-parser=libxml"
@@ -47,14 +46,13 @@ src_compile() {
 		myconf="${myconf} --with-www=none"
 	fi
 
-	econf $(use_enable unicode nfc-check) \
+	econf \
+		$(use_enable unicode nfc-check) \
 		${myconf}
-
-	emake || die "emake failed."
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed."
+	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS NOTICE README
 	dohtml NEWS.html README.html RELEASE.html
 }
