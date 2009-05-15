@@ -9,7 +9,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org xset application"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x64-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos ~x64-solaris"
 IUSE=""
 RDEPEND="x11-libs/libXmu
 	x11-libs/libXfontcache"
