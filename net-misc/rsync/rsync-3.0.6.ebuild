@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.4.ebuild,v 1.10 2009/01/08 06:16:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.6.ebuild,v 1.1 2009/05/11 16:41:54 vapier Exp $
 
 inherit eutils flag-o-matic prefix
 
@@ -10,7 +10,7 @@ SRC_URI="http://rsync.samba.org/ftp/rsync/src/${P/_/}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="acl iconv ipv6 static xattr xinetd"
 
 DEPEND=">=dev-libs/popt-1.5
@@ -58,14 +58,6 @@ src_compile() {
 	emake || die "emake failed"
 }
 
-pkg_preinst() {
-	if [[ -e ${EROOT}/etc/rsync/rsyncd.conf ]] && [[ ! -e ${EROOT}/etc/rsyncd.conf ]] ; then
-		mv "${EROOT}"/etc/rsync/rsyncd.conf "${EROOT}"/etc/rsyncd.conf
-		rm -f "${EROOT}"/etc/rsync/.keep
-		rmdir "${EROOT}"/etc/rsync >& /dev/null
-	fi
-}
-
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	newconfd "${T}"/rsyncd.conf.d rsyncd
@@ -84,9 +76,10 @@ src_install() {
 }
 
 pkg_postinst() {
-	ewarn "The rsyncd.conf file has been moved for you to ${EPREFIX}/etc/rsyncd.conf"
-	echo
-	ewarn "Please make sure you do NOT disable the rsync server running"
-	ewarn "in a chroot.  Please check ${EPREFIX}/etc/rsyncd.conf and make sure"
-	ewarn "it says: use chroot = yes"
+	if egrep -qs '^[[:space:]]use chroot[[:space:]]*=[[:space:]]*(no|0|false)' \
+		"${EROOT}"/etc/rsyncd.conf "${EROOT}"/etc/rsync/rsyncd.conf ; then
+		ewarn "You have disabled chroot support in your rsyncd.conf.  This"
+		ewarn "is a security risk which you should fix.  Please check your"
+		ewarn "${EPREFIX}/etc/rsyncd.conf file and fix the setting 'use chroot'."
+	fi
 }

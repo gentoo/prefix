@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.187 2009/03/17 10:21:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.188 2009/05/11 16:41:54 vapier Exp $
+
+*rsync-3.0.6 (11 May 2009)
+
+  11 May 2009; Mike Frysinger <vapier@gentoo.org> +rsync-3.0.6.ebuild:
+  Version bump #269375 by Lars Wendler.
 
   17 Mar 2009; Raúl Porcel <armin76@gentoo.org> rsync-3.0.5.ebuild:
   m68k stable wrt #258367, thanks to kolla for testing
