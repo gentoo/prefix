@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.37.0-r1.ebuild,v 1.2 2009/04/14 11:44:10 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.37.0-r1.ebuild,v 1.4 2009/05/13 19:11:47 dev-zero Exp $
 
 EAPI=2
 
@@ -18,11 +18,11 @@ SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2
 	http://www.gentoo.org/~dev-zero/distfiles/boost-patches-${PATCHSET_VERSION}.tbz2"
 LICENSE="freedist Boost-1.0"
 SLOT="1.37"
-IUSE="debug doc eselect expat icu mpi python tools"
+IUSE="debug doc +eselect expat icu mpi python tools"
 
 RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	expat? ( dev-libs/expat )
-	mpi? ( || ( sys-cluster/openmpi sys-cluster/mpich2 ) )
+	mpi? ( sys-cluster/openmpi[cxx] )
 	sys-libs/zlib
 	python? ( virtual/python )
 	!<=dev-libs/boost-1.35.0-r2
@@ -174,8 +174,8 @@ src_compile() {
 
 	NUMJOBS=$(sed -e 's/.*\(\-j[ 0-9]\+\) .*/\1/; s/--jobs=\?/-j/' <<< ${MAKEOPTS})
 
-	elog "Using the following options to build: "
-	elog "  ${OPTIONS}"
+	einfo "Using the following options to build: "
+	einfo "  ${OPTIONS}"
 
 	export BOOST_ROOT="${S}"
 
@@ -214,8 +214,8 @@ src_compile() {
 }
 
 src_install () {
-	elog "Using the following options to install: "
-	elog "  ${OPTIONS}"
+	einfo "Using the following options to install: "
+	einfo "  ${OPTIONS}"
 
 	export BOOST_ROOT="${S}"
 

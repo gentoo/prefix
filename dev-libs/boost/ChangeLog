@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/boost
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.155 2009/04/14 20:01:17 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.157 2009/05/13 19:11:47 dev-zero Exp $
+
+  13 May 2009; Tiziano Müller <dev-zero@gentoo.org> boost-1.35.0-r5.ebuild,
+  boost-1.36.0-r1.ebuild, boost-1.37.0-r1.ebuild:
+  Changed openmpi dep again to openmpi[cxx]. Changed eselect use flag to
+  +eselect (bug #269517). Changed elog to einfo (bug #269509).
+
+  11 May 2009; Tiziano Müller <dev-zero@gentoo.org>
+  -boost-1.35.0-r4.ebuild, boost-1.35.0-r5.ebuild, -boost-1.36.0.ebuild,
+  boost-1.36.0-r1.ebuild, -boost-1.37.0.ebuild, boost-1.37.0-r1.ebuild:
+  Changed mpi dependency to openmpi only (bug #267818, thanks to Łukasz
+  Michalik for the analysis). Dropped old revisions.
 
   14 Apr 2009; Brent Baude <ranger@gentoo.org> boost-1.35.0-r2.ebuild:
   Marking boost-1.35.0-r2 ppc64 for bug 245192
