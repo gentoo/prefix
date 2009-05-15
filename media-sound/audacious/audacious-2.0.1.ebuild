@@ -1,8 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-2.0_alpha2.ebuild,v 1.2 2009/05/04 06:56:55 mr_bones_ Exp $
-
-inherit eutils
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-2.0.1.ebuild,v 1.1 2009/05/13 09:24:22 chainsaw Exp $
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
@@ -31,13 +29,9 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9.0
 	nls? ( dev-util/intltool )"
 
-PDEPEND=">=media-plugins/audacious-plugins-2.0_alpha2"
+PDEPEND=">=media-plugins/audacious-plugins-2.0.0"
 
 src_compile() {
-	# This is masked in the portage tree, so I'll save you the
-	# popup. Be good, bugs go upstream and we like patches.
-	append-flags -DNOT_ALPHA_RELEASE
-
 	# D-Bus is a mandatory dependency, remote control,
 	# session management and some plugins depend on this.
 	# Building without D-Bus is *unsupported* and a USE-flag

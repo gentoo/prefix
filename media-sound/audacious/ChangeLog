@@ -1,6 +1,27 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.158 2009/04/30 16:41:54 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.161 2009/05/13 09:24:22 chainsaw Exp $
+
+*audacious-2.0.1 (13 May 2009)
+
+  13 May 2009; <chainsaw@gentoo.org> -audacious-2.0.0.ebuild,
+  +audacious-2.0.1.ebuild:
+  The equalizer code could fall over in some corner-case situations, which
+  has now been resolved.
+
+*audacious-2.0.0 (13 May 2009)
+
+  13 May 2009; <chainsaw@gentoo.org> -audacious-2.0_alpha2.ebuild,
+  -audacious-2.0_beta1.ebuild, +audacious-2.0.0.ebuild:
+  The long-awaited second release of Audacious. Now out of mask and ready
+  for *you*.
+
+*audacious-2.0_beta1 (12 May 2009)
+
+  12 May 2009; <chainsaw@gentoo.org> -audacious-2.0_alpha1.ebuild,
+  +audacious-2.0_beta1.ebuild:
+  Stability is increasing noticeably as we are coming nearer to a final
+  release. This beta is however still masked.
 
 *audacious-2.0_alpha2 (30 Apr 2009)
 
