@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/memcached
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.82 2009/04/13 02:28:41 robbat2 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.83 2009/05/14 23:14:17 robbat2 Exp $
+
+*memcached-1.3.3-r1 (14 May 2009)
+
+  14 May 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +memcached-1.3.3-r1.ebuild, metadata.xml:
+  Bug 268938: Support the optional slab reassignment feature as described at
+  http://code.google.com/p/memcached/wiki/MemcachedSlabAllocator.
 
   13 Apr 2009; Robin H. Johnson <robbat2@gentoo.org> memcached-1.2.8.ebuild,
   memcached-1.3.3.ebuild:

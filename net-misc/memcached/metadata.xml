@@ -16,4 +16,7 @@ memcached dropped the database load to almost nothing, yielding faster page load
 times for users, better resource utilization, and faster access to the databases
 on a memcache miss.
 </longdescription>
+<use>
+<flag name='slabs-reassign'>Allow manual reassignment of memory slabs at the cost of slab optimizations.</flag>
+</use>
 </pkgmetadata>
