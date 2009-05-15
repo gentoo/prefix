@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libsndfile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.97 2009/05/08 11:54:15 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.98 2009/05/14 18:38:24 aballier Exp $
+
+*libsndfile-1.0.20 (14 May 2009)
+
+  14 May 2009; Alexis Ballier <aballier@gentoo.org>
+  +libsndfile-1.0.20.ebuild:
+  version bump
 
   08 May 2009; Samuli Suominen <ssuominen@gentoo.org>
   libsndfile-1.0.19.ebuild, +files/libsndfile-1.0.19-automagic_jack.patch:
