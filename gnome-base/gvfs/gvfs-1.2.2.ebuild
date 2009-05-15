@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.2.2.ebuild,v 1.1 2009/05/10 18:18:33 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.2.2.ebuild,v 1.2 2009/05/14 10:43:52 nirbheek Exp $
 
 EAPI="2"
 
@@ -63,50 +63,17 @@ pkg_setup() {
 src_prepare() {
 	gnome2_src_prepare
 
-	if use archive; then
-		epatch "${FILESDIR}/${P}-expose-archive-backend.patch"
-		eautoreconf
-	fi
+	# Conditional patching purely to avoid eautoreconf
+	use gphoto2 && epatch "${FILESDIR}/${P}-gphoto2-stricter-checks.patch"
+	use archive && epatch "${FILESDIR}/${P}-expose-archive-backend.patch"
+	use gphoto2 || use archive && eautoreconf
 
 	epatch "${FILESDIR}"/${PN}-0.2.3-interix.patch
 	# There is no mkdtemp on Solaris libc. Using the same code as on Interix	
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		sed -i -e 's:mkdtemp:mktemp:g' daemon/gvfsbackendburn.c
 	fi
-}
-
-src_compile() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_header_stropts_h=no
-
-	gnome2_src_compile
-}
-
-src_unpack() {
-	gnome2_src_unpack
-
-	# Add support for bluez 4, bug #250615
-	epatch "${FILESDIR}/${P}-bluez4.patch"
-
-	# Remove debug code that turns warnings into crashes, bug #262502
-	epatch "${FILESDIR}/${P}-bluez4-debug.patch"
-
-	# Fix non posixy tests, bug #256305
-	epatch "${FILESDIR}/${P}-posixtest.patch"
-
-	# Fix themed icon for obexftp, bug #256890
-	epatch "${FILESDIR}/${P}-obexftp-icon.patch"
-
-	# Fix HTTP leaks, bug #256892
-	epatch "${FILESDIR}/${P}-http-leak.patch"
-
-	# Fix URL crash, bug #245204
-	epatch "${FILESDIR}/${P}-gmountspec-SIGSEGV.patch"
-
-	eautoreconf
-
-	# Fix "Function `g_volume_monitor_adopt_orphan_mount' implicitly converted to pointer at gdaemonvolumemonitor.c:155"
-	# bug 268788
-	sed -i -e 's:-DG_DISABLE_DEPRECATED::g' $(find . -name Makefile.in) || die
 }
 
 src_install() {
