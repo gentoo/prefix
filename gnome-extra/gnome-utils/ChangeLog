@@ -1,6 +1,14 @@
 # ChangeLog for gnome-extra/gnome-utils
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/ChangeLog,v 1.176 2009/04/28 11:30:11 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/ChangeLog,v 1.177 2009/05/11 23:13:37 eva Exp $
+
+*gnome-utils-2.26.0 (11 May 2009)
+
+  11 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-utils-2.18.1.ebuild, -gnome-utils-2.20.0.1.ebuild,
+  -gnome-utils-2.24.0.ebuild, +gnome-utils-2.26.0.ebuild:
+  New version for GNOME 2.26. Reduce libgnome/libgnomeui usage, drop
+  remaining libart* calls. Clean up old revisions.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gnome-utils-2.24.1.ebuild:
   sh stable
