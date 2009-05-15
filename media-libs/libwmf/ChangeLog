@@ -1,6 +1,23 @@
 # ChangeLog for media-libs/libwmf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.58 2009/05/10 23:52:40 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.63 2009/05/13 18:21:46 maekke Exp $
+
+  13 May 2009; Markus Meier <maekke@gentoo.org> libwmf-0.2.8.4-r3.ebuild:
+  amd64 stable, bug #268161
+
+  12 May 2009; Raúl Porcel <armin76@gentoo.org> libwmf-0.2.8.4-r3.ebuild:
+  alpha/arm/ia64/s390/sh stable wrt #268161
+
+  12 May 2009; Ferris McCormick <fmccor@gentoo.org>
+  libwmf-0.2.8.4-r3.ebuild:
+  Sparc stable, security bug #268161.
+
+  12 May 2009; Jeroen Roovers <jer@gentoo.org> libwmf-0.2.8.4-r3.ebuild:
+  Stable for HPPA (bug #268161).
+
+  11 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  libwmf-0.2.8.4-r3.ebuild:
+  stable x86, security bug 268161
 
 *libwmf-0.2.8.4-r3 (10 May 2009)
 
