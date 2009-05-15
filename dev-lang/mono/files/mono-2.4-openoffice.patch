@@ -1,0 +1,40 @@
+--- trunk/mcs/mcs/class.cs	2009/04/28 17:00:23	132860
++++ trunk/mcs/mcs/class.cs	2009/04/28 17:02:37	132861
+@@ -2905,6 +2905,9 @@
+ 	}
+ 
+ 	public sealed class Struct : ClassOrStruct {
++
++		bool is_unmanaged, has_unmanaged_check_done;
++
+ 		// <summary>
+ 		//   Modifiers allowed in a struct declaration
+ 		// </summary>
+@@ -2964,6 +2967,11 @@
+ 			if (requires_delayed_unmanagedtype_check)
+ 				return true;
+ 
++			if (has_unmanaged_check_done)
++				return is_unmanaged;
++
++			has_unmanaged_check_done = true;
++
+ 			foreach (FieldBase f in fields) {
+ 				if ((f.ModFlags & Modifiers.STATIC) != 0)
+ 					continue;
+@@ -2972,6 +2980,7 @@
+ 				// struct S { S* s; }
+ 				Type mt = f.MemberType;
+ 				if (mt == null) {
++					has_unmanaged_check_done = false;
+ 					requires_delayed_unmanagedtype_check = true;
+ 					return true;
+ 				}
+@@ -2988,6 +2997,7 @@
+ 				return false;
+ 			}
+ 
++			is_unmanaged = true;
+ 			return true;
+ 		}
+ 

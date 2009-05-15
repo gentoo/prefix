@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4-r1.ebuild,v 1.1 2009/05/08 09:44:19 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4-r3.ebuild,v 1.1 2009/05/14 16:29:43 loki_val Exp $
 
 EAPI=2
 
@@ -39,6 +39,7 @@ PATCHES=(
 	"${FILESDIR}/mono-2.2-ppc-threading.patch"
 	"${FILESDIR}/mono-2.2-uselibdir.patch"
 	"${FILESDIR}/mono-2.4-ppcbuild-fix.patch"
+	"${FILESDIR}/mono-2.4-openoffice.patch"
 )
 
 pkg_setup() {
@@ -117,7 +118,7 @@ src_install() {
 
 	# Remove Jay to avoid colliding with dev-util/jay, the internal
 	# version is only used to build mcs.
-	rm -r "${ED}"/usr/share/jay "${ED}"/usr/bin/jay "${ED}"/user/share/man/man1/jay.1*
+	rm -r "${ED}"/usr/share/jay "${ED}"/usr/bin/jay "${ED}"/usr/share/man/man1/jay.1*
 }
 
 #THINK!!!! Before touching postrm and postinst

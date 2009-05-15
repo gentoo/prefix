@@ -1,6 +1,18 @@
 # ChangeLog for dev-lang/mono
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.168 2009/05/09 00:16:48 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.170 2009/05/14 16:29:43 loki_val Exp $
+
+*mono-2.4-r3 (14 May 2009)
+
+  14 May 2009; Peter Alfredsen <loki_val@gentoo.org> -mono-2.4-r2.ebuild,
+  +mono-2.4-r3.ebuild:
+  Bump for one-character fix for bug 269790.
+
+*mono-2.4-r2 (12 May 2009)
+
+  12 May 2009; Peter Alfredsen <loki_val@gentoo.org> -mono-2.4-r1.ebuild,
+  +mono-2.4-r2.ebuild, +files/mono-2.4-openoffice.patch:
+  Revbump with fix for bug 257313, OOM bug when compiling openoffice.
 
   09 May 2009; Peter Alfredsen <loki_val@gentoo.org> mono-2.4.9999.ebuild:
   Switch back to 2-4 branch
