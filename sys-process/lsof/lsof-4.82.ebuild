@@ -46,8 +46,8 @@ target() {
 }
 ar() {
 	case ${CHOST} in
-		*-aix*)     echo 'ar -X32_64 -v -q' ;;
-		*)          echo '$(tc-getAR) rc'   ;;
+		*-aix*)     echo "ar -X32_64 -v -q" ;;
+		*)          echo "$(tc-getAR) rc"   ;;
 	esac
 }
 
@@ -58,7 +58,7 @@ src_compile() {
 	LINUX_HASSELINUX=$(yesno selinux) \
 	LSOF_CC=$(tc-getCC) \
 	LSOF_AR="$(ar)" \
-	./Configure -n $(target) || die
+	./Configure -n $(target) < /dev/null || die
 
 	emake DEBUG="" all || die "emake failed"
 }
