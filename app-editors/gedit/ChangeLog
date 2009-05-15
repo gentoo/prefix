@@ -1,6 +1,14 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.272 2009/05/05 11:37:41 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.273 2009/05/14 21:46:45 eva Exp $
+
+  14 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/gedit-2.18.1-fbsd.patch, -gedit-2.20.3.ebuild,
+  -files/gedit-2.20.3-libattr.patch,
+  -files/gedit-2.20.4-parallel-install.patch, -gedit-2.22.3.ebuild,
+  -gedit-2.22.3-r1.ebuild, -gedit-2.22.3-r2.ebuild,
+  -files/gedit-2.22.3-CVE-2009-0314.patch:
+  Clean up old revisions.
 
 *gedit-2.26.1 (05 May 2009)
 
