@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.0-r1.ebuild,v 1.8 2009/04/12 11:18:19 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.2.ebuild,v 1.1 2009/05/12 16:23:32 arfrever Exp $
 
-EAPI=1
+EAPI="2"
 
 WANT_AUTOMAKE="none"
 
-inherit bash-completion db-use depend.apache elisp-common eutils flag-o-matic java-pkg-opt-2 libtool multilib perl-module python
+inherit autotools bash-completion db-use depend.apache elisp-common eutils flag-o-matic java-pkg-opt-2 libtool multilib perl-module python
 
 DESCRIPTION="Advanced version control system"
 HOMEPAGE="http://subversion.tigris.org/"
@@ -15,10 +15,9 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 LICENSE="Subversion"
 SLOT="0"
 KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="apache2 berkdb ctypes-python debug doc +dso emacs extras gnome-keyring java kde nls perl python ruby sasl vim-syntax +webdav-neon webdav-serf"
-RESTRICT="test"
+IUSE="apache2 berkdb ctypes-python debug doc +dso emacs extras gnome-keyring java kde nls perl python ruby sasl test vim-syntax +webdav-neon webdav-serf"
 
-CDEPEND=">=dev-db/sqlite-3.4
+CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
 	>=dev-libs/apr-1.3:1
 	>=dev-libs/apr-util-1.3:1
 	dev-libs/expat
@@ -33,6 +32,7 @@ CDEPEND=">=dev-db/sqlite-3.4
 	webdav-serf? ( >=net-libs/serf-0.3.0 )"
 
 RDEPEND="${CDEPEND}
+	apache2? ( www-servers/apache[apache2_modules_dav] )
 	java? ( >=virtual/jre-1.5 )
 	kde? ( kde-base/kwalletd )
 	nls? ( virtual/libintl )
@@ -96,6 +96,59 @@ pkg_setup() {
 		ebeep
 	fi
 
+	if use test; then
+		elog
+		elog "You can set the following variables to enable testing of some features:"
+		if use webdav-neon || use webdav-serf; then
+			elog "  SVN_TEST_APACHE=1                     - Enable testing of mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf"
+			elog "                                          (See \"Testing of mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf\")"
+		fi
+		elog "  SVN_TEST_FSFS_MEMCACHED=1             - Enable using of Memcached for FSFS repositories"
+		elog "  SVN_TEST_FSFS_MEMCACHED_PORT=integer  - Set Memcached port number (Default value: 11211)"
+		elog "  SVN_TEST_FSFS_SHARDING=integer        - Enable sharding of FSFS repositories and set default shard size for FSFS repositories"
+		elog "  SVN_TEST_FSFS_PACKING=1               - Enable packing of FSFS repositories"
+		elog "                                          (SVN_TEST_FSFS_PACKING requires SVN_TEST_FSFS_SHARDING)"
+#		if use sasl; then
+#	 		elog "  SVN_TEST_SASL=1                       - Enable SASL authentication"
+#		fi
+		if use ctypes-python || use java || use perl || use python || use ruby; then
+			elog " SVN_TEST_BINDINGS=1                    - Enable testing of bindings"
+		fi
+		if use java || use perl || use python || use ruby; then
+			elog "                                          (Testing of bindings requires ${CATEGORY}/${PF})"
+		fi
+		if use java; then
+			elog "                                          (Testing of JavaHL library requires dev-java/junit:4)"
+		fi
+		elog
+
+		if { use webdav-neon || use webdav-serf; } && [[ -n "${SVN_TEST_APACHE}" ]] && ! has_version "${CATEGORY}/${PN}[apache2]"; then
+			die "${CATEGORY}/${PN} must be installed with USE=\"apache2\""
+		fi
+
+		if [[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]] && ! has_version net-misc/memcached; then
+			die "net-misc/memcached must be installed"
+		fi
+		if [[ -n "${SVN_TEST_FSFS_MEMCACHED_PORT}" ]] && ! ([[ "$((${SVN_TEST_FSFS_MEMCACHED_PORT}))" == "${SVN_TEST_FSFS_MEMCACHED_PORT}" ]]) &>/dev/null; then
+			die "Value of SVN_TEST_FSFS_MEMCACHED_PORT must be an integer"
+		fi
+		if [[ -n "${SVN_TEST_FSFS_SHARDING}" ]] && ! ([[ "$((${SVN_TEST_FSFS_SHARDING}))" == "${SVN_TEST_FSFS_SHARDING}" ]]) &>/dev/null; then
+			die "Value of SVN_TEST_FSFS_SHARDING must be an integer"
+		fi
+		if [[ -n "${SVN_TEST_FSFS_PACKING}" && -z "${SVN_TEST_FSFS_SHARDING}" ]]; then
+			die "SVN_TEST_FSFS_PACKING requires SVN_TEST_FSFS_SHARDING"
+		fi
+
+		if [[ -n "${SVN_TEST_BINDINGS}" ]]; then
+			if { use java || use perl || use python || use ruby; } && ! has_version "=${CATEGORY}/${PF}"; then
+				die "${CATEGORY}/${PF} must be installed"
+			fi
+			if use java && ! has_version dev-java/junit:4; then
+				die "dev-java/junit:4 must be installed"
+			fi
+		fi
+	fi
+
 	append-flags -fno-strict-aliasing
 
 	if use debug; then
@@ -104,41 +157,66 @@ pkg_setup() {
 }
 
 src_unpack() {
+	if use test && { use webdav-neon || use webdav-serf; }; then
+		create_apache_tests_configuration
+
+		elog
+		elog "Testing of mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf:"
+		elog " If you want to test mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf,"
+		elog " ensure that ${CATEGORY}/${PN} is installed with USE=\"apache2\","
+		elog " copy \"${T}/99_subversion_tests.conf\" to /etc/apache2/modules.d directory,"
+		elog " define DAV, SVN, SVN_AUTHZ and SVN_TESTS in APACHE2_OPTS variable in /etc/conf.d/apache2,"
+		elog " (re)start Apache and run \`SVN_TEST_APACHE=1 emerge ${CATEGORY}/${PN}\`."
+		elog
+
+		if [[ -z "${SVN_TEST_APACHE}" ]]; then
+			ebeep 24
+		else
+			if [[ ! -f "${EPREFIX}/etc/apache2/modules.d/99_subversion_tests.conf" ]]; then
+				die "${EPREFIX}/etc/apache2/modules.d/99_subversion_tests.conf doesn't exist"
+			fi
+			if ! cmp -s "${T}/99_subversion_tests.conf" "${EPREFIX}/etc/apache2/modules.d/99_subversion_tests.conf"; then
+				die "${EPREFIX}/etc/apache2/modules.d/99_subversion_tests.conf mismatch"
+			fi
+		fi
+	fi
+
 	unpack ${A}
-	cd "${S}"
+}
 
-	epatch "${FILESDIR}/${P}-disable_linking_against_unneeded_libraries.patch"
-
-	# Various fixes which will be included in 1.6.1.
-	epatch "${FILESDIR}/${P}-various_fixes.patch"
-
-	# Fix 2 messages in Polish translation. They will be fixed in 1.6.1.
-	sed -e "7420d;8586d" -i subversion/po/pl.po
+src_prepare() {
+	epatch "${FILESDIR}/${PN}-1.6.0-disable_linking_against_unneeded_libraries.patch"
+	epatch "${FILESDIR}/${P}-fix_undefined_references.patch"
+	epatch "${FILESDIR}/${P}-local_library_preloading.patch"
+	chmod +x build/transform_libtool_scripts.sh || die "chmod failed"
 
 	epatch "${FILESDIR}"/${PN}-1.5.4-interix.patch
 
-	# https://svn.collab.net/viewvc/svn?view=revision&revision=36742
-	sed -e 's/$SVN_APRUTIL_INCLUDES $SVN_DB_INCLUDES/$SVN_DB_INCLUDES $SVN_APRUTIL_INCLUDES/' -i build/ac-macros/berkeley-db.m4
+	if ! use test; then
+		sed -i \
+			-e "s/\(BUILD_RULES=.*\) bdb-test\(.*\)/\1\2/g" \
+			-e "s/\(BUILD_RULES=.*\) test\(.*\)/\1\2/g" configure.ac
+	fi
 
-	sed -i \
-		-e "s/\(BUILD_RULES=.*\) bdb-test\(.*\)/\1\2/g" \
-		-e "s/\(BUILD_RULES=.*\) test\(.*\)/\1\2/g" configure.ac
-
-	sed -e "s:@bindir@/svn-contrib:@libdir@/subversion/bin:" \
-		-e "s:@bindir@/svn-tools:@libdir@/subversion/bin:" \
-		-i Makefile.in
-
-	./autogen.sh || die "autogen.sh failed"
+	eautoconf
 	elibtoolize
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 
 	if use python || use perl || use ruby; then
-		myconf="${myconf} --with-swig"
+		myconf+=" --with-swig"
 	else
-		myconf="${myconf} --without-swig"
+		myconf+=" --without-swig"
+	fi
+
+	if use java; then
+		if use test && [[ -n "${SVN_TEST_BINDINGS}" ]]; then
+			myconf+=" --with-junit=${EPREFIX}/usr/share/junit-4/lib/junit.jar"
+		else
+			myconf+=" --without-junit"
+		fi
 	fi
 
 	case ${CHOST} in
@@ -175,15 +253,18 @@ src_compile() {
 		$(use_with sasl) \
 		$(use_with webdav-neon neon ${EPREFIX}/usr) \
 		$(use_with webdav-serf serf ${EPREFIX}/usr) \
+		${myconf} \
 		--with-apr="${EPREFIX}"/usr/bin/apr-1-config \
 		--with-apr-util="${EPREFIX}"/usr/bin/apu-1-config \
 		--disable-experimental-libtool \
 		--without-jikes \
-		--without-junit \
+		--enable-local-library-preloading \
 		--disable-mod-activation \
 		--disable-neon-version-check \
 		--with-sqlite="${EPREFIX}"/usr
+}
 
+src_compile() {
 	einfo
 	einfo "Building of core of Subversion"
 	einfo
@@ -200,7 +281,7 @@ src_compile() {
 		einfo
 		einfo "Building of Subversion SWIG Python bindings"
 		einfo
-		emake swig_pydir="$(python_get_sitedir)/libsvn" swig_pydir_extra="$(python_get_sitedir)/svn" swig-py \
+		emake swig_pydir="${EPREFIX}/$(python_get_sitedir)/libsvn" swig_pydir_extra="${EPREFIX}/$(python_get_sitedir)/svn" swig-py \
 			|| die "Building of Subversion SWIG Python bindings failed"
 	fi
 
@@ -222,13 +303,13 @@ src_compile() {
 		einfo
 		einfo "Building of Subversion JavaHL library"
 		einfo
-		make JAVAC_FLAGS="$(java-pkg_javac-args) -encoding iso8859-1" javahl \
+		emake -j1 JAVAC_FLAGS="$(java-pkg_javac-args) -encoding iso8859-1" javahl \
 			|| die "Building of Subversion JavaHL library failed"
 	fi
 
 	if use emacs; then
 		einfo
-		einfo "Compilation of Emacs support"
+		einfo "Compilation of Emacs modules"
 		einfo
 		elisp-compile contrib/client-side/emacs/{dsvn,psvn,vc-svn}.el doc/svn-doc.el doc/tools/svnbook.el || die "Compilation of Emacs modules failed"
 	fi
@@ -256,6 +337,136 @@ src_compile() {
 	fi
 }
 
+create_apache_tests_configuration() {
+cat << EOF > "${T}/99_subversion_tests.conf"
+<IfDefine SVN_TESTS>
+	User $(id -un)
+	Group $(id -gn)
+
+	<Location /svn-test-work/repositories>
+		DAV svn
+		SVNParentPath "${S}/subversion/tests/cmdline/svn-test-work/repositories"
+		AuthzSVNAccessFile "${S}/subversion/tests/cmdline/svn-test-work/authz"
+		AuthType Basic
+		AuthName "Subversion Repository"
+		AuthUserFile "${T}/apache-users"
+		Require valid-user
+	</Location>
+
+	<Location /svn-test-work/local_tmp/repos>
+		DAV svn
+		SVNPath "${S}/subversion/tests/cmdline/svn-test-work/local_tmp/repos"
+		AuthzSVNAccessFile "${S}/subversion/tests/cmdline/svn-test-work/authz"
+		AuthType Basic
+		AuthName "Subversion Repository"
+		AuthUserFile "${T}/apache-users"
+		Require valid-user
+	</Location>
+</IfDefine>
+EOF
+
+cat << EOF > "${T}/apache-users"
+jrandom:xCGl35kV9oWCY
+jconstant:xCGl35kV9oWCY
+EOF
+}
+
+initialize_tests_environment() {
+	[[ "$1" == "local" ]] && base_url="file://${S}/subversion/tests/cmdline"
+	[[ "$1" == "svn" ]] && base_url="svn://127.0.0.1"
+	[[ "$1" == "neon" ]] && base_url="http://localhost" http_library="neon"
+	[[ "$1" == "serf" ]] && base_url="http://localhost" http_library="serf"
+
+	[[ "$1" == "svn" ]] && LC_ALL="C" subversion/svnserve/svnserve -dr "subversion/tests/cmdline" --pid-file "${T}/svnserve.pid"
+	[[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]] && memcached -dp "${SVN_TEST_FSFS_MEMCACHED_PORT}" -P "${T}/memcached.pid"
+}
+
+terminate_tests_environment() {
+	[[ "$1" == "svn" ]] && kill "$(<"${T}/svnserve.pid")"
+	[[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]] && kill "$(<"${T}/memcached.pid")"
+}
+
+src_test() {
+	local fs_type fs_types ra_type ra_types options failed_tests
+
+	fs_types="fsfs"
+	use berkdb && fs_types+=" bdb"
+
+	ra_types="local svn"
+	if [[ -n "${SVN_TEST_APACHE}" ]]; then
+		use webdav-neon && ra_types+=" neon"
+		use webdav-serf && ra_types+=" serf"
+	fi
+
+	if [[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]]; then
+		[[ -z "${SVN_TEST_FSFS_MEMCACHED_PORT}" ]] && SVN_TEST_FSFS_MEMCACHED_PORT="11211"
+		sed -e "/\[memcached-servers\]/akey = 127.0.0.1:${SVN_TEST_FSFS_MEMCACHED_PORT}" -i subversion/tests/tests.conf
+	fi
+	if [[ -n "${SVN_TEST_FSFS_SHARDING}" ]]; then
+		options+=" FSFS_SHARDING=${SVN_TEST_FSFS_SHARDING}"
+	fi
+	if [[ -n "${SVN_TEST_FSFS_PACKING}" ]]; then
+		options+=" FSFS_PACKING=1"
+	fi
+#	if [[ -n "${SVN_TEST_SASL}" ]]; then
+#		options+=" ENABLE_SASL=1"
+#	fi
+
+	for ra_type in ${ra_types}; do
+		for fs_type in ${fs_types}; do
+			[[ "${ra_type}" == "local" && "${fs_type}" == "bdb" ]] && continue
+			einfo
+			einfo "\e[1;34mTesting of ra_${ra_type} + $(echo ${fs_type} | tr '[:lower:]' '[:upper:]')\e[0m"
+			einfo
+			initialize_tests_environment ${ra_type}
+			emake check FS_TYPE="${fs_type}" BASE_URL="${base_url}" HTTP_LIBRARY="${http_library}" CLEANUP="true" ${options} || failed_tests="1"
+			terminate_tests_environment ${ra_type}
+			mv tests.log tests-ra_${ra_type}-${fs_type}.log
+		done
+	done
+	unset base_url http_library
+
+	if [[ -n "${SVN_TEST_BINDINGS}" ]]; then
+		local swig_lingua swig_linguas
+		local -A linguas
+		if use ctypes-python; then
+			einfo
+			einfo "\e[1;34mTesting of Subversion Ctypes Python bindings\e[0m"
+			einfo
+			emake check-ctypes-python || failed_tests="1"
+		fi
+
+		use perl && swig_linguas+=" pl"
+		use python && swig_linguas+=" py"
+		use ruby && swig_linguas+=" rb"
+
+		linguas[pl]="Perl"
+		linguas[py]="Python"
+		linguas[rb]="Ruby"
+
+		for swig_lingua in ${swig_linguas}; do
+			einfo
+			einfo "\e[1;34mTesting of Subversion SWIG ${linguas[${swig_lingua}]} bindings\e[0m"
+			einfo
+			emake check-swig-${swig_lingua} || failed_tests="1"
+		done
+
+		if use java; then
+			einfo
+			einfo "\e[1;34mTesting of Subversion JavaHL library\e[0m"
+			einfo
+			emake check-javahl || failed_tests="1"
+		fi
+	fi
+
+	if [[ -n "${failed_tests}" ]]; then
+		ewarn
+		ewarn "\e[1;31mSome tests failed\e[0m"
+		ewarn
+		ebeep 12
+	fi
+}
+
 src_install() {
 	einfo
 	einfo "Installation of core of Subversion"
@@ -273,7 +484,7 @@ src_install() {
 		einfo
 		einfo "Installation of Subversion SWIG Python bindings"
 		einfo
-		emake -j1 DESTDIR="${D}" swig_pydir="$(python_get_sitedir)/libsvn" swig_pydir_extra="$(python_get_sitedir)/svn" install-swig-py \
+		emake -j1 DESTDIR="${D}" swig_pydir="${EPREFIX}/$(python_get_sitedir)/libsvn" swig_pydir_extra="${EPREFIX}/$(python_get_sitedir)/svn" install-swig-py \
 			|| die "Installation of Subversion SWIG Python bindings failed"
 	fi
 
@@ -306,7 +517,7 @@ src_install() {
 	# Install Apache module configuration.
 	if use apache2; then
 		dodir "${APACHE_MODULES_CONFDIR#${EPREFIX}}"
-		cat <<EOF >"${D}${APACHE_MODULES_CONFDIR}"/47_mod_dav_svn.conf
+		cat << EOF > "${D}${APACHE_MODULES_CONFDIR}"/47_mod_dav_svn.conf
 <IfDefine SVN>
 LoadModule dav_svn_module modules/mod_dav_svn.so
 <IfDefine SVN_AUTHZ>
@@ -368,7 +579,7 @@ EOF
 		elisp-install ${PN} contrib/client-side/emacs/{dsvn,psvn}.{el,elc} doc/svn-doc.{el,elc} doc/tools/svnbook.{el,elc} || die "Installation of Emacs modules failed"
 		elisp-install ${PN}/compat contrib/client-side/emacs/vc-svn.{el,elc} || die "Installation of Emacs modules failed"
 		touch "${ED}${SITELISP}/${PN}/compat/.nosearch"
-		elisp-site-file-install "${FILESDIR}/1.5.0/70svn-gentoo.el" || die "Installation of Emacs site-init file failed"
+		elisp-site-file-install "${FILESDIR}/70svn-gentoo.el" || die "Installation of Emacs site-init file failed"
 	fi
 	rm -fr contrib/client-side/emacs
 
@@ -378,8 +589,8 @@ EOF
 		einfo "Installation of contrib and tools"
 		einfo
 		doenvd "${FILESDIR}/1.5.0/80subversion-extras"
-		emake DESTDIR="${D}" install-contrib || die "Installation of contrib failed"
-		emake DESTDIR="${D}" install-tools || die "Installation of tools failed"
+		emake DESTDIR="${D}" contribdir="/usr/$(get_libdir)/subversion/bin" install-contrib || die "Installation of contrib failed"
+		emake DESTDIR="${D}" toolsdir="/usr/$(get_libdir)/subversion/bin" install-tools || die "Installation of tools failed"
 
 		find contrib tools "(" -name "*.bat" -o -name "*.in" -o -name ".libs" ")" -print0 | xargs -0 rm -fr
 		rm -fr contrib/client-side/svn-push
@@ -403,7 +614,7 @@ EOF
 		ecompressdir /usr/share/doc/${PF}/notes
 
 #		if use ruby; then
-#			make DESTDIR="${D}" install-swig-rb-doc
+#			emake DESTDIR="${D}" install-swig-rb-doc
 #		fi
 
 		if use java; then
@@ -418,7 +629,7 @@ pkg_preinst() {
 		OLD_BDB_VERSION="$(scanelf -nq "${EROOT}usr/$(get_libdir)/libsvn_subr-1.so.0" | grep -Eo "libdb-[[:digit:]]+\.[[:digit:]]+" | sed -e "s/libdb-\(.*\)/\1/")"
 		NEW_BDB_VERSION="$(scanelf -nq "${ED}usr/$(get_libdir)/libsvn_subr-1.so.0" | grep -Eo "libdb-[[:digit:]]+\.[[:digit:]]+" | sed -e "s/libdb-\(.*\)/\1/")"
 		if [[ "${OLD_BDB_VERSION}" != "${NEW_BDB_VERSION}" ]]; then
-			CHANGED_BDB_VERSION=1
+			CHANGED_BDB_VERSION="1"
 		fi
 	fi
 }
@@ -516,10 +727,6 @@ pkg_postrm() {
 }
 
 pkg_config() {
-	if [[ ! -x "${EROOT}usr/bin/svnadmin" ]]; then
-		die "You seem to only have built the Subversion client"
-	fi
-
 	einfo ">>> Initializing the database in ${EROOT}${SVN_REPOS_LOC} ..."
 	if [[ -e "${EROOT}${SVN_REPOS_LOC}/repos" ]]; then
 		echo "A Subversion repository already exists and I will not overwrite it."
