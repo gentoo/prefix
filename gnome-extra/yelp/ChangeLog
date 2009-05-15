@@ -1,6 +1,15 @@
 # ChangeLog for gnome-extra/yelp
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/ChangeLog,v 1.213 2009/04/28 09:04:33 leio Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/ChangeLog,v 1.214 2009/05/11 22:49:57 eva Exp $
+
+*yelp-2.26.0 (11 May 2009)
+
+  11 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/yelp-2.22-with-beagle-0.3.patch, -yelp-2.22.1-r2.ebuild,
+  -yelp-2.22.1-r11.ebuild, -files/yelp-2.22.1-format-string.patch,
+  -files/yelp-2.22.1-xulrunner-1.9.patch, +yelp-2.26.0.ebuild,
+  +files/yelp-2.26.0-automagic-lzma.patch:
+  New version for GNOME 2.26. Clean up old revisions.
 
   28 Apr 2009; Mart Raudsepp <leio@gentoo.org> -yelp-2.16.2.ebuild,
   -yelp-2.18.1.ebuild:
