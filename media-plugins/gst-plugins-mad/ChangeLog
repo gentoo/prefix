@@ -1,6 +1,14 @@
 # ChangeLog for media-plugins/gst-plugins-mad
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-mad/ChangeLog,v 1.124 2009/05/03 17:50:28 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-mad/ChangeLog,v 1.126 2009/05/14 19:52:22 maekke Exp $
+
+  14 May 2009; Markus Meier <maekke@gentoo.org>
+  gst-plugins-mad-0.10.11.ebuild:
+  amd64 stable, bug #266986
+
+  12 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  gst-plugins-mad-0.10.11.ebuild:
+  stable x86, bug 266986
 
   03 May 2009; Tobias Klausmann <klausman@gentoo.org>
   gst-plugins-mad-0.10.11.ebuild:
