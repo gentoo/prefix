@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/files/mt-daapd.init.2,v 1.2 2005/10/30 17:33:17 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/files/mt-daapd.init.2,v 1.3 2009/05/11 20:38:07 ssuominen Exp $
 # Somehow based on init.d file shipped with mt-daapd itself.
 #
 # You can run multiple copies of this service just symlinking them to
@@ -22,7 +22,7 @@ fi
 
 depend() {
 	need net
-	#USEHOWL need mDNSResponder
+	#USEHOWL need mDNSResponderPosix
 }
 
 start() {

@@ -1,6 +1,14 @@
 # ChangeLog for media-sound/mt-daapd
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/ChangeLog,v 1.63 2008/09/27 16:25:25 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mt-daapd/ChangeLog,v 1.65 2009/05/11 20:38:06 ssuominen Exp $
+
+  11 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mt-daapd-0.2.4.2.ebuild, files/mt-daapd.init.2:
+  Rename mDNSResponder to mDNSResponderPosix wrt #205486
+
+  11 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mt-daapd-0.2.4.2.ebuild, +files/mt-daapd-0.2.4.2-oggvorbis.patch:
+  Apply patch to fix compile with USE -vorbis wrt #200629.
 
   27 Sep 2008; Raúl Porcel <armin76@gentoo.org> mt-daapd-0.2.4.2.ebuild:
   arm/sh stable wrt #217986
