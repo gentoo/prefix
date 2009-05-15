@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/icu
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.85 2009/05/08 00:39:40 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.86 2009/05/12 15:22:41 arfrever Exp $
+
+*icu-4.2 (12 May 2009)
+
+  12 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +icu-4.2.ebuild:
+  Version bump.
 
   08 May 2009; Peter Alfredsen <loki_val@gentoo.org> icu-3.8.1-r1.ebuild,
   icu-4.0.1.ebuild:
