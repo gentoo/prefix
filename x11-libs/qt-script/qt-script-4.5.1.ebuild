@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/qt-script-4.5.1.ebuild,v 1.1 2009/04/27 19:47:51 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/qt-script-4.5.1.ebuild,v 1.2 2009/05/13 18:03:09 ranger Exp $
 
 EAPI=2
 inherit qt4-build
