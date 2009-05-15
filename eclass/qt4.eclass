@@ -1,6 +1,6 @@
 # Copyright 2005-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.54 2009/05/09 14:59:03 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.56 2009/05/12 10:41:03 hwoarang Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -15,6 +15,8 @@
 # when dealing with packages using Qt4 libraries.
 
 inherit base eutils multilib toolchain-funcs versionator
+
+export XDG_CONFIG_HOME="${T}"
 
 qt4_monolithic_to_split_flag() {
 	case ${1} in
@@ -273,8 +275,9 @@ eqmake4() {
 				printf "CONFIG += %s\n", add >> file;
 				print fixed;
 			}'
-	local file=
-	while read file; do
+	local filepath=
+	while read filepath; do
+		local file="${filepath#./}"
 		grep -q '^### eqmake4 was here ###$' "${file}" && continue
 		local retval=$({
 				rm -f "${file}" || echo "FAILED"
@@ -286,7 +289,7 @@ eqmake4() {
 			eerror "  An error occurred while processing ${file}"
 			die "eqmake4 failed to process '${file}'."
 		fi
-	done < <(find "$(dirname "${projectfile}")" -type f -name "*.pr[io]" -printf '%P\n' 2>/dev/null)
+	done < <(find "$(dirname "${projectfile}")" -type f -name "*.pr[io]" 2>/dev/null)
 
 	"${EPREFIX}"/usr/bin/qmake -makefile -nocache \
 		QTDIR="${EPREFIX}"/usr/$(get_libdir) \

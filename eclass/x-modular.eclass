@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.108 2009/03/06 21:00:00 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.109 2009/05/14 12:40:55 remi Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -16,6 +16,44 @@
 # DESCRIPTION, KEYWORDS and RDEPEND/DEPEND. If your package is hosted
 # with the other X packages, you don't need to set SRC_URI. Pretty much
 # everything else should be automatic.
+
+if [[ ${PV} = 9999* ]]; then
+	GIT_ECLASS="git"
+	SNAPSHOT="yes"
+	SRC_URI=""
+fi
+
+# If we're a font package, but not the font.alias one
+FONT_ECLASS=""
+if [[ "${PN/#font-}" != "${PN}" ]] \
+	&& [[ "${CATEGORY}" = "media-fonts" ]] \
+	&& [[ "${PN}" != "font-alias" ]] \
+	&& [[ "${PN}" != "font-util" ]]; then
+	# Activate font code in the rest of the eclass
+	FONT="yes"
+
+	# Whether to inherit the font eclass
+	FONT_ECLASS="font"
+fi
+
+inherit eutils libtool multilib toolchain-funcs flag-o-matic autotools \
+	${FONT_ECLASS} ${GIT_ECLASS}
+
+EXPORTED_FUNCTIONS="src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm"
+
+case "${EAPI:-0}" in
+	0|1)
+		;;
+	2)
+		EXPORTED_FUNCTIONS="${EXPORTED_FUNCTIONS} src_prepare src_configure"
+		;;
+	*)
+		die "Unknown EAPI ${EAPI}"
+		;;
+esac
+
+# exports must be ALWAYS after inherit
+EXPORT_FUNCTIONS ${EXPORTED_FUNCTIONS}
 
 # @ECLASS-VARIABLE: XDIR
 # @DESCRIPTION:
@@ -35,12 +73,6 @@ if [[ -z ${SNAPSHOT} ]]; then
 # If set to 'yes' and configure.ac exists, eautoreconf will run. Set
 # before inheriting this eclass.
 	SNAPSHOT="no"
-fi
-
-if [[ ${PV} = 9999* ]]; then
-	GIT_ECLASS="git"
-	SNAPSHOT="yes"
-	SRC_URI=""
 fi
 
 # Set up SRC_URI for individual modular releases
@@ -86,18 +118,7 @@ if [[ -n "${SNAPSHOT}" ]]; then
 	WANT_AUTOMAKE="latest"
 fi
 
-# If we're a font package, but not the font.alias one
-FONT_ECLASS=""
-if [[ "${PN/#font-}" != "${PN}" ]] \
-	&& [[ "${CATEGORY}" = "media-fonts" ]] \
-	&& [[ "${PN}" != "font-alias" ]] \
-	&& [[ "${PN}" != "font-util" ]]; then
-	# Activate font code in the rest of the eclass
-	FONT="yes"
-
-	# Whether to inherit the font eclass
-	FONT_ECLASS="font"
-
+if [[ -n "${FONT}" ]]; then
 	RDEPEND="${RDEPEND}
 		media-fonts/encodings
 		x11-apps/mkfontscale
@@ -169,9 +190,6 @@ RDEPEND="${RDEPEND}
 	!<=x11-base/xorg-x11-6.9"
 # Provides virtual/x11 for temporary use until packages are ported
 #	x11-base/x11-env"
-
-inherit eutils libtool multilib toolchain-funcs flag-o-matic autotools \
-	${FONT_ECLASS} ${GIT_ECLASS}
 
 # @FUNCTION: x-modular_specs_check
 # @USAGE:
@@ -308,6 +326,17 @@ x-modular_reconf_source() {
 	esac
 }
 
+# @FUNCTION: x-modular_src_prepare
+# @USAGE:
+# @DESCRIPTION:
+# Prepare a package after unpacking, performing all X-related tasks.
+x-modular_src_prepare() {
+	[[ -n ${GIT_ECLASS} ]] && has src_prepare ${EXPORTED_FUNCTIONS} \
+		&& git_src_prepare
+	x-modular_patch_source
+	x-modular_reconf_source
+}
+
 # @FUNCTION: x-modular_src_unpack
 # @USAGE:
 # @DESCRIPTION:
@@ -317,8 +346,7 @@ x-modular_src_unpack() {
 	x-modular_server_supports_drivers_check
 	x-modular_dri_check
 	x-modular_unpack_source
-	x-modular_patch_source
-	x-modular_reconf_source
+	has src_prepare ${EXPORTED_FUNCTIONS} || x-modular_src_prepare
 }
 
 # @FUNCTION: x-modular_font_configure
@@ -403,7 +431,7 @@ x-modular_src_make() {
 # @DESCRIPTION:
 # Compile a package, performing all X-related tasks.
 x-modular_src_compile() {
-	x-modular_src_configure
+	has src_configure ${EXPORTED_FUNCTIONS} || x-modular_src_configure
 	x-modular_src_make
 }
 
@@ -658,5 +686,3 @@ fix_font_permissions() {
 create_font_cache() {
 	font_pkg_postinst
 }
-
-EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm

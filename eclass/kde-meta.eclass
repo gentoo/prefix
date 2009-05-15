@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.89 2009/02/08 21:33:06 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde-meta.eclass,v 1.90 2009/05/12 12:55:46 tampakrap Exp $
 
 # @ECLASS: kde-meta.eclass
 # @MAINTAINER:
@@ -374,10 +374,17 @@ kde-meta_src_unpack() {
 	done
 }
 
-# @FUNCTION: kde-meta_src_compile
+# dull function for keep working eapi2 and later
+kde-meta_src_prepare() {
+	:
+	# prevent the patches applied twice; we cant repatch src_unpack onto
+	# two functions (unpack and prepare)
+}
+
+# @FUNCTION: kde-meta_src_configure
 # @DESCRIPTION:
-# Does some checks before it invokes kde_src_compile
-kde-meta_src_compile() {
+# Configure stub for eapi 2
+kde-meta_src_configure() {
 	debug-print-function $FUNCNAME "$@"
 
 	set_common_variables
@@ -391,7 +398,16 @@ kde-meta_src_compile() {
 		# make sure games are not installed with setgid bit, as it is a security risk.
 		myconf="$myconf --disable-setgid"
 	fi
+}
 
+# @FUNCTION: kde-meta_src_compile
+# @DESCRIPTION:
+# Does some checks before it invokes kde_src_compile
+kde-meta_src_compile() {
+	debug-print-function $FUNCNAME "$@"
+	case ${EAPI:-0} in
+		0|1) kde-meta_src_configure ;;
+	esac
 	kde_src_compile "$@"
 }
 
@@ -427,6 +443,7 @@ kde-meta_src_install() {
 		shift
 	done
 }
-
-EXPORT_FUNCTIONS src_unpack src_compile src_install
-
+case ${EAPI:-0} in
+	0|1) EXPORT_FUNCTIONS src_unpack src_compile src_install;;
+	2) EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install;;
+esac

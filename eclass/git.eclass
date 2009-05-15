@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.26 2009/05/09 15:10:47 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.27 2009/05/14 13:52:08 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -41,7 +41,8 @@ DEPEND=">=dev-util/git-1.6"
 # @ECLASS-VARIABLE: EGIT_STORE_DIR
 # @DESCRIPTION:
 # Storage directory for git sources.
-EGIT_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/git-src"
+# Can be redefined.
+[[ -z ${EGIT_STORE_DIR} ]] && EGIT_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/git-src"
 
 # @ECLASS-VARIABLE: EGIT_FETCH_CMD
 # @DESCRIPTION:

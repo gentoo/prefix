@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.18 2009/05/09 13:23:15 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.19 2009/05/14 16:46:53 scarabeus Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -87,11 +87,9 @@ case ${KMNAME} in
 	koffice)
 		[[ ${PN} != koffice-data ]] && IUSE="debug"
 		RDEPEND="${RDEPEND}
-			!kdeprefix? (
-				!app-office/${PN}:0
-				!app-office/koffice:0
-				!app-office/koffice-meta:0
-			)
+			!app-office/${PN}:0
+			!app-office/koffice:0
+			!app-office/koffice-meta:0
 		"
 		COMMON_DEPEND="
 			dev-cpp/eigen:2

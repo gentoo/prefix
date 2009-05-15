@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.32 2009/04/23 11:45:38 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.33 2009/05/12 14:21:22 hwoarang Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -332,6 +332,11 @@ standard_configure_options() {
 		alpha|arm|ia64|mips|s390|sparc) myconf="${myconf} -arch $(tc-arch)" ;;
 		hppa|sh) myconf="${myconf} -arch generic" ;;
 		*) die "$(tc-arch) is unsupported by this eclass. Please file a bug." ;;
+	esac
+
+	# Bug 261412 Qt configure detects archs by uname
+	case "$(tc-arch)" in
+		ppc) myconf="${myconf} -platform linux-g++-32";;
 	esac
 
 	# don't do this in Prefix, or we will end up with non-working stuff

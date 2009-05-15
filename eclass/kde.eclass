@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.222 2008/10/11 21:31:19 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.223 2009/05/12 12:55:46 tampakrap Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -229,17 +229,24 @@ kde_src_unpack() {
 	fi
 }
 
-# @FUNCTION: kde_src_compile
-# @USAGE: [ myconf ] [ configure ] [ make ] [ all ]
+# dull function for keep working eapi2 and later
+kde_src_prepare() {
+	:
+	# prevent the patches applied twice; we cant repatch src_unpack onto two
+	# functions (unpack and prepare)
+}
+
+# @FUNCTION: kde_src_configure
+# @USAGE: [ myconf ] [ configure ] [ all ]
 # @DESCRIPTION:
 # This function compiles the sources. It takes care of "cannot write to .kde
 # or .qt"-problem due to sandbox and some other sandbox issues.
 #
 # If no argument is given, all is assumed.
-kde_src_compile() {
+kde_src_configure() {
 	debug-print-function $FUNCNAME "$@"
 
-	[[ -z "$1" ]] && kde_src_compile all
+	[[ -z "$1" ]] && kde_src_configure all
 
 	[[ -z "${KDE_S}" ]] && KDE_S="${S}"
 	cd "${KDE_S}"
@@ -327,7 +334,7 @@ EOF
 					done
 					if [[ -f "$makefile" ]]; then
 						debug-print "$FUNCNAME: configure: generating configure script, running make -f $makefile"
-						emake -j1 -f $makefile
+						emake -f $makefile
 					fi
 					[[ -f "./configure" ]] || die "no configure script found, generation unsuccessful"
 				fi
@@ -398,7 +405,7 @@ EOF
 				use elibc_FreeBSD && myconf="${myconf} --disable-pie"
 
 				elibtoolize
-				econf ${myconf} || die "died running ./configure, $FUNCNAME:configure"
+				econf ${myconf}
 
 				# Seems ./configure add -O2 by default but hppa don't want that but we need -ffunction-sections
 				if [[ "${ARCH}" = "hppa" ]]
@@ -408,19 +415,51 @@ EOF
 						's:-O2:-ffunction-sections:g'
 				fi
 				;;
-			make)
-				debug-print-section make
-				emake || die "died running emake, $FUNCNAME:make"
-				;;
 			all)
 				debug-print-section all
-				kde_src_compile myconf configure make
+				kde_src_configure myconf configure
 				;;
 		esac
 
 	shift
 	done
 
+}
+# @FUNCTION: kde_src_compile
+# @USAGE: [ myconf ] [ configure ] [ make ] [ all ]
+# @DESCRIPTION:
+# This function compiles the sources. It takes care of "cannot write to .kde
+# or .qt"-problem due to sandbox and some other sandbox issues.
+#
+# If no argument is given, all is assumed.
+kde_src_compile() {
+	debug-print-function $FUNCNAME "$@"
+
+	[[ -z "$1" ]] && kde_src_compile all
+
+	[[ -z "${KDE_S}" ]] && KDE_S="${S}"
+	cd "${KDE_S}"
+	while [[ "$1" ]]; do
+		case $1 in
+			make)
+				debug-print-section make
+				emake || die "died running emake, $FUNCNAME:make"
+				;;
+			all)
+				case ${EAPI:-0} in
+					0|1) kde_src_configure all ;;
+				esac
+				kde_src_compile make
+				;;
+			*)
+				case ${EAPI:-0} in
+					0|1) kde_src_configure $1 ;;
+				esac
+			;;
+		esac
+
+		shift
+	done
 }
 
 # @FUNCTION: kde_src_install
@@ -509,4 +548,7 @@ kde_pkg_postrm() {
 	buildsycoca
 }
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst pkg_postrm pkg_preinst
+case ${EAPI:-0} in
+	0|1) EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst pkg_postrm pkg_preinst;;
+	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_configure src_compile src_install pkg_postinst pkg_postrm pkg_preinst;;
+esac

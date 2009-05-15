@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.9 2008/12/03 14:29:05 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.10 2009/05/11 10:58:42 voyageur Exp $
 
 inherit eutils flag-o-matic
 
@@ -122,9 +122,11 @@ egnustep_env() {
 			GNUSTEP_INSTALLATION_DOMAIN=SYSTEM \
 			GNUSTEP_ABSOLUTE_INSTALL_PATHS=yes \
 			TAR_OPTIONS="${TAR_OPTIONS} --no-same-owner" \
-			messages=yes \
-			-j1 )
-			# -j1 is needed as gnustep-make is not parallel-safe
+			messages=yes )
+
+		# Parallel-make support was added in gnustep-make 2.2.0
+		has_version "<gnustep-base/gnustep-make-2.2.0" \
+			&& GS_ENV=( "${GS_ENV[@]}" "-j1" )
 
 		use debug \
 			&& GS_ENV=( "${GS_ENV[@]}" "debug=yes" ) \
