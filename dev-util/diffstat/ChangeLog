@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/diffstat
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.69 2009/04/12 20:17:00 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.71 2009/05/15 02:35:27 tcunha Exp $
+
+  15 May 2009; Tiago Cunha <tcunha@gentoo.org> diffstat-1.47.ebuild:
+  - Don't install useless README file.
+  - Drop unneeded patch (fixed since release 1.30).
+  - Fix dependencies.
+  - While there add die to dodoc.
+
+  15 May 2009; Tiago Cunha <tcunha@gentoo.org> metadata.xml:
+  I'll be maintaining this now.
 
 *diffstat-1.47 (12 Apr 2009)
 

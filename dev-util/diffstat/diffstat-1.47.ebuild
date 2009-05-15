@@ -1,8 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/diffstat-1.47.ebuild,v 1.1 2009/04/12 20:17:00 tcunha Exp $
-
-inherit eutils
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/diffstat-1.47.ebuild,v 1.2 2009/05/15 02:35:27 tcunha Exp $
 
 DESCRIPTION="creates a histogram from a diff of the insertions, deletions, and modifications per-file"
 HOMEPAGE="http://invisible-island.net/diffstat/diffstat.html"
@@ -14,15 +12,9 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-sola
 IUSE=""
 
 DEPEND=""
-RDEPEND="sys-apps/diffutils"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.37-hard-locale.patch
-}
+RDEPEND=""
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc README CHANGES
+	dodoc CHANGES || die "dodoc failed"
 }
