@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
 SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=""
