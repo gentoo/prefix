@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Term-ReadLine-Perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Term-ReadLine-Perl/ChangeLog,v 1.26 2009/05/08 18:16:11 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Term-ReadLine-Perl/ChangeLog,v 1.27 2009/05/13 14:22:17 jer Exp $
+
+  13 May 2009; Jeroen Roovers <jer@gentoo.org>
+  Term-ReadLine-Perl-1.03.02.ebuild:
+  Stable for HPPA (bug #269054).
 
   08 May 2009; Torsten Veller <tove@gentoo.org>
   Term-ReadLine-Perl-1.03.02.ebuild, Term-ReadLine-Perl-1.0203.ebuild:
