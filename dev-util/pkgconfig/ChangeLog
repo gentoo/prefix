@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/pkgconfig
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/ChangeLog,v 1.78 2008/07/30 22:21:31 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/ChangeLog,v 1.79 2009/05/11 22:20:51 leio Exp $
+
+  11 May 2009; Mart Raudsepp <leio@gentoo.org> -pkgconfig-0.17.2-r1.ebuild,
+  -pkgconfig-0.20.ebuild:
+  Remove some very old redundant versions
 
   30 Jul 2008; Brent Baude <ranger@gentoo.org> pkgconfig-0.23.ebuild:
   stable ppc64, bug 232484
