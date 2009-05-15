@@ -1,6 +1,17 @@
 # ChangeLog for dev-util/cscope
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.117 2009/05/06 15:22:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cscope/ChangeLog,v 1.119 2009/05/11 21:03:59 ulm Exp $
+
+*cscope-15.7a-r1 (11 May 2009)
+
+  11 May 2009; Ulrich Mueller <ulm@gentoo.org> -cscope-15.6-r2.ebuild,
+  -cscope-15.6-r3.ebuild, -files/cscope-15.6-sigwinch.patch,
+  -cscope-15.7.ebuild, cscope-15.7a.ebuild, +cscope-15.7a-r1.ebuild,
+  +files/cscope-15.7a-ocs-sysdir.patch,
+  -files/cscope-158831-warning_webscope.patch:
+  Don't require that SYSDIR for ocs exists, and change its default location
+  to /var/lib/cs; bug 269305. Remove old versions wrt security bug 263023.
+  Include virtual/emacs also in run-time dependencies.
 
   06 May 2009; Raúl Porcel <armin76@gentoo.org> cscope-15.7a.ebuild:
   arm/ia64/m68k/s390/sh stable wrt #263023
