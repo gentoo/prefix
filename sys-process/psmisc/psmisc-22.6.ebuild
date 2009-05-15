@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.6.ebuild,v 1.7 2008/10/27 06:07:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.6.ebuild,v 1.8 2009/05/14 18:16:53 josejx Exp $
 
 inherit eutils autotools
 
