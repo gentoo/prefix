@@ -1,13 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1-r1.ebuild,v 1.2 2009/05/09 08:59:43 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1_p129.ebuild,v 1.2 2009/05/15 14:58:27 flameeyes Exp $
 
 EAPI=2
 
 inherit autotools eutils flag-o-matic multilib versionator
 
 # Add p0 patchlevel
-MY_P="${P}-p0"
+MY_P="${P/_/-}"
 
 # 1.9.1.0 -> 1.9
 SLOT=$(get_version_component_range 1-2)
@@ -61,7 +61,6 @@ src_prepare() {
 	# Patch for rubygems to find installed gems outside of the sandbox
 	epatch "${FILESDIR}/ruby19-rubygems-gentoo.patch"
 
-	epatch "${FILESDIR}/${PN}-ossl_ocsp-verification.patch"
 	epatch "${FILESDIR}/${PN}${MY_SUFFIX}-mkmf-parallel-install.patch"
 
 	epatch "${FILESDIR}/${PN}-1.9.1-only-ncurses.patch"
