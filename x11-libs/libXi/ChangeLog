@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXi
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXi/ChangeLog,v 1.67 2009/04/16 02:00:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXi/ChangeLog,v 1.68 2009/05/15 14:57:53 armin76 Exp $
+
+  15 May 2009; Raúl Porcel <armin76@gentoo.org> libXi-1.2.1.ebuild:
+  arm/s390 stable
 
   16 Apr 2009; Jeroen Roovers <jer@gentoo.org> libXi-1.2.1.ebuild:
   Stable for HPPA (bug #251832).
