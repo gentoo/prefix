@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.196 2009/05/06 15:19:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.197 2009/05/15 22:59:46 arfrever Exp $
+
+*gnutls-2.7.10 (15 May 2009)
+
+  15 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -gnutls-2.7.7.ebuild, +gnutls-2.7.10.ebuild:
+  Version bump.
 
   06 May 2009; Raúl Porcel <armin76@gentoo.org> gnutls-2.6.6.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #267774
