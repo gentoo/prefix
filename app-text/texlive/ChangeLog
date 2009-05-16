@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.54 2009/05/05 07:21:24 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.55 2009/05/15 15:08:08 aballier Exp $
+
+  15 May 2009; Alexis Ballier <aballier@gentoo.org> texlive-2008.ebuild,
+  metadata.xml:
+  Add latex3 useflag, by Zaba on #gentoo@freenode
 
   05 May 2009; Alexis Ballier <aballier@gentoo.org> -texlive-2007-r3.ebuild:
   remove the 2007 meta ebuild now that 2008 is stable

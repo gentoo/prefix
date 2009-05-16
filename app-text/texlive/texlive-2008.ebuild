@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2008.ebuild,v 1.12 2009/03/18 20:47:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/texlive-2008.ebuild,v 1.13 2009/05/15 15:08:08 aballier Exp $
 
 EAPI=2
 
@@ -11,8 +11,9 @@ SRC_URI=""
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="cjk context cyrillic detex doc dvi2tty extra games graphics humanities jadetex music omega
-	png pstricks publishers science tex4ht truetype xetex xindy xml X"
+IUSE="cjk context cyrillic detex doc dvi2tty extra games graphics humanities
+	jadetex latex3 music omega png pstricks publishers science tex4ht truetype
+	xetex xindy xml X"
 
 LANGS="af ar bg bn bo cs cy da de el en en_GB eo es et fi fr ga he hi hr hsb hu hy id
 	is it ja ko la ml mn nl no pl pt ro ru sk sl sr sv ta th tr uk vi zh"
@@ -45,7 +46,7 @@ RDEPEND="${DEPEND}
 	>=${TEXLIVE_CAT}/texlive-basic-${PV}
 	>=${TEXLIVE_CAT}/texlive-fontsrecommended-${PV}
 	>=${TEXLIVE_CAT}/texlive-latex-${PV}
-	>=${TEXLIVE_CAT}/texlive-latex3-${PV}
+	latex3? ( >=${TEXLIVE_CAT}/texlive-latex3-${PV} )
 	>=${TEXLIVE_CAT}/texlive-latexrecommended-${PV}
 	>=dev-tex/xcolor-2.11
 	>=dev-tex/latex-beamer-3.07
