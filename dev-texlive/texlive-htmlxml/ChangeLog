@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-htmlxml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-htmlxml/ChangeLog,v 1.34 2009/03/18 20:53:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-htmlxml/ChangeLog,v 1.35 2009/05/15 13:30:58 aballier Exp $
+
+  15 May 2009; Alexis Ballier <aballier@gentoo.org>
+  -texlive-htmlxml-2007-r2.ebuild:
+  remove old
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> texlive-htmlxml-2008.ebuild:
   Marking texlive-htmlxml-2008 ppc stable for bug 253551
