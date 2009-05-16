@@ -1,6 +1,15 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.181 2009/05/11 15:59:11 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.184 2009/05/15 19:15:50 klausman Exp $
+
+  15 May 2009; Tobias Klausmann <klausman@gentoo.org> libsoup-2.26.1.ebuild:
+  Stable on alpha, bug #269186
+
+  15 May 2009; Ferris McCormick <fmccor@gentoo.org> libsoup-2.26.1.ebuild:
+  Rekeyword ~sparc --- Bug #268529 --- all (13) tests pass.
+
+  15 May 2009; Alexis Ballier <aballier@gentoo.org> libsoup-2.26.1.ebuild:
+  keyword ~x86-fbsd, bug #268529
 
   11 May 2009; Gilles Dartiguelongue <eva@gentoo.org> libsoup-2.26.1:
   Fix incorrect sed, bug #269402.
