@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/dri2proto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/dri2proto/ChangeLog,v 1.13 2009/05/08 21:31:49 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/dri2proto/ChangeLog,v 1.14 2009/05/15 14:39:09 armin76 Exp $
+
+  15 May 2009; Raúl Porcel <armin76@gentoo.org> dri2proto-1.99.3.ebuild:
+  arm/m68k/s390 stable
 
 *dri2proto-2.0 (08 May 2009)
 
