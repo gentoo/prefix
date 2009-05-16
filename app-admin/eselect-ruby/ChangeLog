@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.15 2009/05/09 17:13:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.16 2009/05/15 14:27:27 aballier Exp $
+
+  15 May 2009; Alexis Ballier <aballier@gentoo.org>
+  eselect-ruby-20081227.ebuild:
+  keyword ~sparc-fbsd
 
   09 May 2009; Jeroen Roovers <jer@gentoo.org> eselect-ruby-20081227.ebuild:
   Stable for HPPA (bug #268515).
