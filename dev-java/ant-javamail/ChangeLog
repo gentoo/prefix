@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/ant-javamail
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-javamail/ChangeLog,v 1.16 2009/01/07 19:10:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-javamail/ChangeLog,v 1.17 2009/05/15 22:23:22 caster Exp $
+
+  15 May 2009; Vlastimil Babka <caster@gentoo.org>
+  -ant-javamail-1.7.0.ebuild, -ant-javamail-1.7.0-r1.ebuild,
+  -ant-javamail-1.7.0-r2.ebuild:
+  Removing ant 1.7.0, bug #261563.
 
   07 Jan 2009; Brent Baude <ranger@gentoo.org> ant-javamail-1.7.1.ebuild:
   Marking ant-javamail-1.7.1 ppc64 for bug 250466
