@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/exo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.82 2009/04/21 04:32:00 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.83 2009/05/15 10:36:21 aballier Exp $
+
+  15 May 2009; Alexis Ballier <aballier@gentoo.org> exo-0.3.101.ebuild:
+  change the py-compile hack so that it works on bsd too where true is not
+  in /bin
 
 *exo-0.3.101 (21 Apr 2009)
 

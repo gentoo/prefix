@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.101.ebuild,v 1.1 2009/04/21 04:32:00 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.101.ebuild,v 1.2 2009/05/15 10:36:21 aballier Exp $
 
 EAPI="1"
 
@@ -35,7 +35,8 @@ src_unpack() {
 	xfce4_src_unpack
 	cd "${S}"
 	rm py-compile
-	ln -s "${EPREFIX}"/bin/true py-compile
+	touch py-compile
+	chmod +x py-compile
 
 	epatch "${FILESDIR}"/${PN}-0.3.4-interix.patch
 	if [[ ${CHOST} == *-interix* ]] ; then
