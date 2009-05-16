@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  16 May 2009; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/package.mask:
+  Mask gnome-base/gconf-2.26.0 as it tries to link a MH_BUNDLE which won't
+  work
+
   14 May 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
   unmask python 2.6 on interix, since it seems to work fine now. time will
   show :)
