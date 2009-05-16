@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0.ebuild,v 1.7 2009/05/10 14:22:48 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.0.ebuild,v 1.8 2009/05/15 17:36:19 armin76 Exp $
 
 inherit autotools eutils toolchain-funcs flag-o-matic
 
