@@ -1,10 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.22.ebuild,v 1.4 2009/05/14 19:11:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/gst-plugins-base-0.10.22.ebuild,v 1.5 2009/05/15 05:14:22 ssuominen Exp $
 
 # order is important, gnome2 after gst-plugins
 inherit gst-plugins-base gst-plugins10 gnome2 flag-o-matic eutils
-# libtool
 
 DESCRIPTION="Basepack of plugins for gstreamer"
 HOMEPAGE="http://gstreamer.sourceforge.net"
@@ -26,19 +25,20 @@ DOCS="AUTHORS README RELEASE"
 
 src_unpack() {
 	unpack ${A}
-
-	cd ${S}
-	epatch "${FILESDIR}/gst-plugins-base-0.10.22-CVE-2009-0586.patch"
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-CVE-2009-0586.patch
+	elibtoolize
 }
 
 src_compile() {
-	# gst doesnt handle opts well, last tested with 0.10.15
+	# GStreamer doesn't handle optimization.
 	strip-flags
-	replace-flags "-O3" "-O2"
+	replace-flags -O3 -O2
 
 	gst-plugins-base_src_configure \
 		$(use_enable nls)
-	emake || die "emake failed."
+
+	emake || die "emake failed"
 }
 
 src_install() {
