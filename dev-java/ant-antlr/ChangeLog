@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/ant-antlr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.24 2009/04/26 23:50:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-antlr/ChangeLog,v 1.25 2009/05/15 22:19:53 caster Exp $
+
+  15 May 2009; Vlastimil Babka <caster@gentoo.org> -ant-antlr-1.7.0.ebuild:
+  Removing ant 1.7.0, bug #261563.
 
   26 Apr 2009; Brent Baude <ranger@gentoo.org> ant-antlr-1.7.1-r1.ebuild:
   Marking ant-antlr-1.7.1-r1 ppc for bug 264198
