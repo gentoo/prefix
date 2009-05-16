@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/gnome-desktop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.246 2009/05/14 19:26:05 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.248 2009/05/15 22:47:02 tcunha Exp $
+
+  15 May 2009; Tiago Cunha <tcunha@gentoo.org>
+  gnome-desktop-2.24.3-r1.ebuild:
+  stable sparc, bug 269203
+
+  15 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  gnome-desktop-2.24.3-r1.ebuild:
+  Stable on alpha, bug #269203
 
   14 May 2009; Markus Meier <maekke@gentoo.org>
   gnome-desktop-2.24.3-r1.ebuild:
