@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r2.ebuild,v 1.10 2009/04/14 20:01:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r2.ebuild,v 1.11 2009/05/15 14:50:06 armin76 Exp $
 
 inherit python flag-o-matic multilib toolchain-funcs versionator check-reqs
 
