@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4446 2009/05/15 04:07:47 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4449 2009/05/15 22:27:37 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -479,6 +479,7 @@ app-text/texlive:games - Add typesetting support for games (chess, etc.) (dev-te
 app-text/texlive:graphics - Add support for several graphics packages (pgf, tikz,...)
 app-text/texlive:humanities - Add LaTeX support for the humanities (dev-texlive/texlive-humanities)
 app-text/texlive:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
+app-text/texlive:latex3 - Add support for LaTeX3 (dev-texlive/texlive-latex3)
 app-text/texlive:music - Add support for music typesetting (dev-texlive/texlive-music)
 app-text/texlive:omega - Add omega packages (dev-texlive/texlive-omega)
 app-text/texlive:pstricks - Add pstricks packages (dev-texlive/texlive-pstricks)
@@ -571,19 +572,6 @@ dev-java/ant:log4j - Enable Apache log4j Ant tasks
 dev-java/ant:oro - Enable Apache Oro Ant tasks
 dev-java/ant:regexp - Enable Apache Regexp Ant tasks
 dev-java/ant:resolver - Enable Apache Resolver Ant tasks
-dev-java/ant-tasks:antlr - Enable ANTLR Ant tasks
-dev-java/ant-tasks:bcel - Enable bcel (bytecode manipulation) Ant tasks
-dev-java/ant-tasks:commonslogging - Enable commons-logging Ant tasks
-dev-java/ant-tasks:commonsnet - Enable commons-net Ant tasks
-dev-java/ant-tasks:jai - Enable JAI (Java Imaging) Ant task
-dev-java/ant-tasks:javamail - Enable JavaMail Ant task
-dev-java/ant-tasks:jdepend - Enable Jdepend Ant tasks
-dev-java/ant-tasks:jmf - Enable JMF (Java Media Framework) Ant tasks
-dev-java/ant-tasks:jsch - Disable Jsch (ssh, scp and related) Ant tasks
-dev-java/ant-tasks:log4j - Enable Apache log4j Ant tasks
-dev-java/ant-tasks:oro - Enable Apache Oro Ant tasks
-dev-java/ant-tasks:regexp - Enable Apache Regexp Ant tasks
-dev-java/ant-tasks:resolver - Enable Apache Resolver Ant tasks
 dev-java/antlr:gunit -  gUnit is a "Unit Test" framework for ANTLR grammars 
 dev-java/antlr:script - Install a script to run antlr
 dev-java/avalon-logkit:javamail - Enable support for javamail
@@ -1355,8 +1343,6 @@ media-libs/gst-plugins-bad:libmms - Enables support for accessing Microsoft Medi
 media-libs/gst-plugins-bad:mythtv - Enables support for retrieval from media-tv/mythtv backend via gmyth
 media-libs/gst-plugins-bad:neon - Enables support for HTTP and WebDAV client library via neon
 media-libs/gst-plugins-bad:twolame - Enables support for MPEG Audio Layer 2 encoder via twolame
-media-libs/gst-plugins-base:libvisual - Build libvisual plug-in
-media-libs/gst-plugins-base:pango - Build pango plug-in
 media-libs/libass:enca - Enables support for charset discovery and conversion.
 media-libs/libcanberra:alsa - Enables ALSA sound driver.
 media-libs/libcanberra:gstreamer - Enables gstreamer sound driver. Not useful when alsa or pulseaudio is available.

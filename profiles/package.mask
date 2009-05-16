@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9803 2009/05/14 23:56:38 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9807 2009/05/15 22:33:21 caster Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,17 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Alexis Ballier <aballier@gentoo.org> (15 May 2009)
+# Merged in dev-texlive/texlive-langmongolian-2008, use that instead
+# Masked for removal on 15 June 2009
+dev-texlive/texlive-langmanju
+
+# Alex Legler <a3li@gentoo.org> (15 May 2009)
+# Masked for removal wrt bug #251833. Due for removal in 30 days.
+# Use app-admin/eselect-ruby instead.
+dev-ruby/ruby-config
+=dev-lang/ruby-1.8.6_p114
 
 # Gilles Dartiguelongue <eva@gentoo.org> (15 May 2009)
 # Masked for removal wrt bug #244128. Old, rotten and
@@ -207,31 +218,6 @@ app-doc/afsdoc
 # Tomas Chvatal <scarabeus@gentoo.org> (1 May 2009)
 # broke nepomuk and soprano in kde so mask for now
 =dev-libs/redland-1.0.9
-
-# Vlastimil Babka <caster@gentoo.org> (30 Apr 2009)
-# masked for removal, bug #261563
-=dev-java/ant-core-1.7.0*
-=dev-java/ant-antlr-1.7.0*
-=dev-java/ant-apache-bcel-1.7.0*
-=dev-java/ant-apache-bsf-1.7.0*
-=dev-java/ant-apache-log4j-1.7.0*
-=dev-java/ant-apache-oro-1.7.0*
-=dev-java/ant-apache-regexp-1.7.0*
-=dev-java/ant-apache-resolver-1.7.0*
-=dev-java/ant-commons-logging-1.7.0*
-=dev-java/ant-commons-net-1.7.0*
-=dev-java/ant-jai-1.7.0*
-=dev-java/ant-javamail-1.7.0*
-=dev-java/ant-jdepend-1.7.0*
-=dev-java/ant-jmf-1.7.0*
-=dev-java/ant-jsch-1.7.0*
-=dev-java/ant-junit-1.7.0*
-=dev-java/ant-junit4-1.7.0*
-=dev-java/ant-nodeps-1.7.0*
-=dev-java/ant-swing-1.7.0*
-=dev-java/ant-trax-1.7.0*
-dev-java/ant-tasks
-=dev-java/ant-1.7.0*
 
 # Tomas Chvatal <scarabeus@gentoo.org> (30 Apr 2009)
 # mask the koffice2 (notetoself dont use slot blocks)
@@ -753,18 +739,6 @@ dev-util/w32api
 # Masked due to being broken with portage 2.1 and 2.2.
 # Users can use either the unstable versions or switch to app-portage/eix
 =app-portage/esearch-0.7.1
-
-# Samuli Suominen <ssuominen@gentoo.org> (24 Dec 2008)
-# - drop .la files (and static libs)
-# - monolithic version, EAPI=2, commented versions for new devs
-# Talk with the actual gstreamer team before unmasking these -
-# we are completely against the notion of monolithic versions, these
-# here should be considered an experimentation
-=media-libs/gstreamer-0.10.21-r10
-=media-libs/gst-plugins-good-0.10.11-r1
-=media-libs/gst-plugins-bad-0.10.9-r1
-=media-libs/gst-plugins-ugly-0.10.10-r1
-=media-libs/gst-plugins-base-0.10.21-r1
 
 # Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
 # Removed in 60 days, multiple bugs - does not compile with recent kernels.
