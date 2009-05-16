@@ -41,8 +41,6 @@ src_unpack() {
 		"${FILESDIR}"/${PN}-1.0.19-automagic_jack.patch
 
 	rm M4/libtool.m4 M4/lt*.m4 || die "rm failed"
-	
-	epatch "${FILESDIR}"/${PN}-1.0.19-irix32.patch
 
 	AT_M4DIR=M4 eautoreconf
 	epunt_cxx
