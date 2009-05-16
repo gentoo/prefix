@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/diffstat
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.71 2009/05/15 02:35:27 tcunha Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.74 2009/05/15 21:47:08 maekke Exp $
+
+  15 May 2009; Markus Meier <maekke@gentoo.org> diffstat-1.47.ebuild:
+  amd64 stable, bug #269899
+
+  15 May 2009; Ferris McCormick <fmccor@gentoo.org> diffstat-1.47.ebuild:
+  Sparc stable, Bug #269899.
+
+  15 May 2009; Christian Faulhammer <fauli@gentoo.org> diffstat-1.47.ebuild:
+  stable x86, bug 269899
 
   15 May 2009; Tiago Cunha <tcunha@gentoo.org> diffstat-1.47.ebuild:
   - Don't install useless README file.
