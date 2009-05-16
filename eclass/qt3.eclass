@@ -1,10 +1,10 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt3.eclass,v 1.39 2009/05/14 08:58:10 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt3.eclass,v 1.40 2009/05/15 20:43:18 yngwin Exp $
 
 # @ECLASS: qt3.eclass
 # @MAINTAINER:
-# Caleb Tennis <caleb@gentoo.org>
+# Qt team <qt@gentoo.org>
 # @BLURB: Eclass for Qt3 packages
 # @DESCRIPTION:
 # This eclass contains various functions that may be useful
