@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-metapost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-metapost/ChangeLog,v 1.27 2009/03/18 20:57:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-metapost/ChangeLog,v 1.28 2009/05/15 15:36:02 aballier Exp $
+
+  15 May 2009; Alexis Ballier <aballier@gentoo.org>
+  -texlive-metapost-2007-r1.ebuild:
+  remove old
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> texlive-metapost-2008.ebuild:
   Marking texlive-metapost-2008 ppc stable for bug 253551
