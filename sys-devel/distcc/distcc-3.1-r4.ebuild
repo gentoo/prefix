@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r4.ebuild,v 1.5 2009/05/14 19:46:46 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/distcc/distcc-3.1-r4.ebuild,v 1.6 2009/05/15 21:01:16 klausman Exp $
 
 EAPI="2"
 inherit eutils flag-o-matic toolchain-funcs fdo-mime prefix
