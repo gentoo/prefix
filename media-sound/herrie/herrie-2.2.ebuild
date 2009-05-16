@@ -32,7 +32,7 @@ RDEPEND="sys-libs/ncurses[unicode?]
 	sndfile? ( media-libs/libsndfile )
 	vorbis? ( media-libs/libvorbis )
 	xspf? ( >=media-libs/libxspf-1.2 )
-	!ao? ( !alsa? ( !pulseaudio? ( !oss? ( media-libs/alsa-lib ) ) ) )"
+	!ao? ( !alsa? ( !pulseaudio? ( !oss? ( !coreaudio? ( media-libs/alsa-lib ) ) ) ) )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	dev-util/pkgconfig"
