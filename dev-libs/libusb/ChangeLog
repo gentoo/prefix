@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.84 2009/05/14 23:28:09 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.85 2009/05/15 10:55:18 robbat2 Exp $
+
+  15 May 2009; Robin H. Johnson <robbat2@gentoo.org> libusb-0.1.11.ebuild,
+  libusb-0.1.12.ebuild, libusb-0.1.12-r1.ebuild, libusb-0.1.12-r2.ebuild,
+  libusb-0.1.12-r3.ebuild, libusb-0.1.12-r4.ebuild, libusb-0.1.12-r5.ebuild:
+  Bug #247687 comment #21: We need to block libusb-compat in the libusb:0
+  ebuilds.
 
 *libusb-1.0.1 (14 May 2009)
 
