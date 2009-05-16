@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.35.0-r1.ebuild,v 1.9 2009/04/14 19:59:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.35.0-r1.ebuild,v 1.10 2009/05/15 14:48:21 armin76 Exp $
 
 inherit flag-o-matic toolchain-funcs versionator
 

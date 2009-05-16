@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/boost-build
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.36 2009/04/14 19:59:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.37 2009/05/15 14:48:21 armin76 Exp $
+
+  15 May 2009; Raúl Porcel <armin76@gentoo.org>
+  boost-build-1.35.0-r1.ebuild:
+  arm/s390/sh stable wrt #245192
 
   14 Apr 2009; Brent Baude <ranger@gentoo.org> boost-build-1.35.0-r1.ebuild:
   Marking boost-build-1.35.0-r1 ppc64 for bug 245192
