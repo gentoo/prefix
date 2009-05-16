@@ -73,6 +73,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
+	epatch "${FILESDIR}"/${P}-solaris.patch
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \

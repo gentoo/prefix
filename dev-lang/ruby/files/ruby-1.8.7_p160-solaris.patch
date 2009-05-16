@@ -1,0 +1,15 @@
+http://redmine.ruby-lang.org/issues/show/1444
+
+--- ruby-1.8.7-p160/file.c
++++ ruby-1.8.7-p160/file.c
+@@ -20,6 +20,10 @@
+ #include <sys/cygwin.h>
+ #endif
+ 
++#if defined (__SVR4) && defined (__sun)
++#include <fcntl.h>
++#endif
++
+ #include "ruby.h"
+ #include "rubyio.h"
+ #include "rubysig.h"
