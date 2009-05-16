@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.344 2009/05/11 21:55:30 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.345 2009/05/15 21:14:03 maekke Exp $
+
+  15 May 2009; Markus Meier <maekke@gentoo.org> imagemagick-6.5.1.0.ebuild:
+  amd64 stable, bug #268858
 
   11 May 2009; Christian Faulhammer <fauli@gentoo.org>
   imagemagick-6.5.1.0.ebuild:
