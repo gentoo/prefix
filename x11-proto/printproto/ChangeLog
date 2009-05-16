@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/printproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/printproto/ChangeLog,v 1.36 2009/05/05 15:16:06 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/printproto/ChangeLog,v 1.37 2009/05/15 14:42:56 armin76 Exp $
+
+  15 May 2009; Raúl Porcel <armin76@gentoo.org> printproto-1.0.4.ebuild:
+  arm/s390 stable
 
   05 May 2009; Christian Faulhammer <fauli@gentoo.org>
   printproto-1.0.3.ebuild, printproto-1.0.4.ebuild:
