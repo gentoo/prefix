@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.74 2009/04/30 11:53:46 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.75 2009/05/15 14:34:12 armin76 Exp $
+
+  15 May 2009; Raúl Porcel <armin76@gentoo.org> libdrm-2.4.5.ebuild:
+  arm/s390 stable
 
 *libdrm-2.4.9 (30 Apr 2009)
 
