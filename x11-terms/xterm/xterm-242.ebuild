@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-242.ebuild,v 1.9 2009/05/05 12:42:53 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-242.ebuild,v 1.10 2009/05/15 15:23:16 armin76 Exp $
 
 inherit flag-o-matic
 
