@@ -1,6 +1,14 @@
 # ChangeLog for sys-auth/pambase
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.66 2009/04/30 16:28:52 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.67 2009/05/15 18:54:15 flameeyes Exp $
+
+*pambase-20090515 (15 May 2009)
+
+  15 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -pambase-20080318.ebuild, -pambase-20081028-r1.ebuild,
+  -pambase-20090430.ebuild, +pambase-20090515.ebuild:
+  Version bump and cleanup old version. The new version only fixes a minor
+  problem with Gentoo/FreeBSD.
 
 *pambase-20090430 (30 Apr 2009)
 

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/pambase-20081028-r1.ebuild,v 1.2 2008/11/09 12:21:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/pambase-20090515.ebuild,v 1.1 2009/05/15 18:54:15 flameeyes Exp $
 
 EAPI=2
 
@@ -24,7 +24,7 @@ RDEPEND="
 		)
 	)
 	cracklib? ( >=sys-libs/pam-0.99[cracklib] )
-	consolekit? ( sys-auth/consolekit[pam] )
+	consolekit? ( >=sys-auth/consolekit-0.3[pam] )
 	gnome-keyring? ( >=gnome-base/gnome-keyring-2.20[pam] )
 	selinux? ( >=sys-libs/pam-0.99[selinux] )
 	passwdqc? ( >=sys-auth/pam_passwdqc-1.0.4 )
