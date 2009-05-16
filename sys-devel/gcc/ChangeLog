@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.707 2009/05/11 13:42:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.708 2009/05/15 14:51:15 armin76 Exp $
+
+  15 May 2009; Raúl Porcel <armin76@gentoo.org> gcc-4.3.2-r4.ebuild:
+  arm stable wrt #264121
 
   11 May 2009; Raúl Porcel <armin76@gentoo.org>
   +files/4.4.0/gcc-4.4.0-softfloat.patch, gcc-4.4.0.ebuild:
