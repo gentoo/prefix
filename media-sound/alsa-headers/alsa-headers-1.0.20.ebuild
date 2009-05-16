@@ -14,7 +14,7 @@ SRC_URI="mirror://alsaproject/driver/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
