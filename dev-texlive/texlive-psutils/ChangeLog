@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-psutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-psutils/ChangeLog,v 1.26 2009/03/18 21:14:01 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-psutils/ChangeLog,v 1.27 2009/05/15 15:41:04 aballier Exp $
+
+  15 May 2009; Alexis Ballier <aballier@gentoo.org>
+  -texlive-psutils-2007.ebuild:
+  remove old
 
   18 Mar 2009; Brent Baude <ranger@gentoo.org> texlive-psutils-2008.ebuild:
   Marking texlive-psutils-2008 ppc stable for bug 253551
