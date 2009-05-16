@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/memcached-1.3.3-r1.ebuild,v 1.1 2009/05/14 23:14:17 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/memcached-1.3.3-r1.ebuild,v 1.2 2009/05/15 16:48:11 mr_bones_ Exp $
 
-inherit eutils autotools flag-o-matic 
+inherit eutils autotools flag-o-matic
 
 MY_PV="${PV/_rc/-rc}"
 MY_P="${PN}-${MY_PV}"
