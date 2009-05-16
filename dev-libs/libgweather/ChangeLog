@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.31 2009/05/10 19:09:22 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.32 2009/05/15 09:48:06 aballier Exp $
+
+  15 May 2009; Alexis Ballier <aballier@gentoo.org>
+  libgweather-2.26.1.ebuild:
+  keyword ~x86-fbsd, bug #269298
 
 *libgweather-2.26.1 (11 May 2009)
 
