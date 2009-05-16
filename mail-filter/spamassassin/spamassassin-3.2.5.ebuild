@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/spamassassin-3.2.5.ebuild,v 1.2 2008/11/18 16:13:26 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/spamassassin-3.2.5.ebuild,v 1.3 2009/05/16 00:24:46 halcy0n Exp $
 
 inherit perl-module eutils
 
@@ -192,13 +192,13 @@ pkg_postinst() {
 
 	if use doc; then
 		einfo
-		einfo "Please read the file"
-		einfo "  /usr/share/doc/${PF}/INSTALL.gz"
+		einfo "Please read the file INSTALL in"
+		einfo "  /usr/share/doc/${PF}/"
 		einfo "to find out which optional modules you need to install to enable"
 		einfo "additional features which depend on them."
 		einfo
-		einfo "If upgraded from 2.x, please read the file"
-		einfo "  /usr/share/doc/${PF}/UPGRADE.gz"
+		einfo "If upgraded from 2.x, please read the file UPGRADE in"
+		einfo "  /usr/share/doc/${PF}/"
 		einfo
 	fi
 
