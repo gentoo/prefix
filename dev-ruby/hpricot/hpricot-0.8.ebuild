@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
 end
 EOF
 
-	insinto $(${RUBY} -r rbconfig -e 'print Config::CONFIG["vendorlibdir"]' | sed -e 's:vendor_ruby:gems:')/specifications
+	insinto $(${RUBY} -r rbconfig -e 'print Config::CONFIG["vendorlibdir"]' | sed -e 's:vendor_ruby:gems:' -e "s:^${EPREFIX}::")/specifications
 	doins "${T}"/${P}.gemspec || die "Unable to install fake gemspec"
 }
 
@@ -56,7 +56,7 @@ src_test() {
 src_install() {
 	pushd lib
 	doruby -r *.rb hpricot || die "doruby failed"
-	exeinto $(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitearchdir"]')
+	exeinto $(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitearchdir"]' | sed -e "s:^${EPREFIX}::")
 	doexe *.so || die "doruby failed"
 	popd
 
