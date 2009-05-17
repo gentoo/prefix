@@ -28,7 +28,6 @@ DEPEND="${RDEPEND}
 	sys-apps/sed"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.42-solaris-no-utility.patch
 	sed -i -e 's:-g -O3 -funroll-loops::g' configure.ac || die "sed failed"
 	eautoreconf
 }
