@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  17 May 2009; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/package.mask:
+  Mask dev-lang/ruby-1.8.7_p160 due to segfaulting behaviour
+
   16 May 2009; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/package.mask:
   Mask gnome-base/gconf-2.26.0 as it tries to link a MH_BUNDLE which won't

@@ -1,5 +1,9 @@
 # $Id$
 
+# Fabian Groffen <grobian@gentoo.org> (17 Mar 2009)
+# segfaults during install, seems to suffer from race conditions, bug #270053
+=dev-lang/ruby-1.8.7_p160
+
 # Fabian Groffen <grobian@gentoo.org> (14 Mar 2009)
 # Fedora Linux cruft, doesn't compile, let's fix the patches once they
 # get in an official release
