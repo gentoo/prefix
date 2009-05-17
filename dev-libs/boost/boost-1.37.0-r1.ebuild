@@ -96,10 +96,10 @@ src_prepare() {
 		"${FILESDIR}/buildid-fix.patch"
 
 	# This enables building the boost.random library with /dev/urandom support
-	# Darwin hae /dev/urandom, but apparently it's not good enough
-	if [[ ${CHOST} != *-darwin* ]] ; then
+	if [[ -e /dev/urandom ]] ; then
 		mkdir -p libs/random/build
 		cp "${FILESDIR}/random-Jamfile" libs/random/build/Jamfile.v2
+		sed -i -e 's/#ifdef __linux__/#if 1/' libs/random/random_device.cpp || die
 	fi
 }
 
@@ -109,7 +109,7 @@ src_configure() {
 	local compiler compilerVersion compilerExecutable mpi
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		compiler=darwin
-		compilerVersion=$(gcc-version)
+		compilerVersion=$(gcc-fullversion)
 		compilerExecutable=$(tc-getCXX)
 		# we need to add the prefix, and in two cases this exceeds, so prepare
 		# for the largest possible space allocation
