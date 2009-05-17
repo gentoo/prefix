@@ -63,6 +63,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
+	epatch "${FILESDIR}"/${PN}-1.8.7_p160-solaris.patch
 
 	epatch "${FILESDIR}/${PN}-mkconfig.patch"
 	epatch "${FILESDIR}/${PN}${MY_SUFFIX}-mkmf-parallel-install.patch"
