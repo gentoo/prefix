@@ -1,0 +1,5 @@
+
+# Fabian Groffen <grobian@gentoo.org> (17 May 2009)
+# fails to compile, some bizarre libtool problem with a missing
+# dependency
+=x11-libs/gtk+-2.14.7-r2
