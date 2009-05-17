@@ -189,6 +189,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${P}-fix_undefined_references.patch"
 	epatch "${FILESDIR}/${P}-local_library_preloading.patch"
 	chmod +x build/transform_libtool_scripts.sh || die "chmod failed"
+	sed -i -e '1c\#!'"${EPREFIX}"'/bin/sh' build/transform_libtool_scripts.sh || die "/bin/sh is not POSIX shell!"
 
 	epatch "${FILESDIR}"/${PN}-1.5.4-interix.patch
 
