@@ -1,0 +1,23 @@
+# ChangeLog for virtual/perl-Compress-Raw-Bzip2
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Compress-Raw-Bzip2/ChangeLog,v 1.4 2009/05/05 14:11:52 tove Exp $
+
+  05 May 2009; Torsten Veller <tove@gentoo.org>
+  perl-Compress-Raw-Bzip2-2.019.ebuild:
+  Add ~mips (#268615)
+
+*perl-Compress-Raw-Bzip2-2.019 (04 May 2009)
+
+  04 May 2009; Torsten Veller <tove@gentoo.org>
+  -perl-Compress-Raw-Bzip2-2.017.ebuild,
+  +perl-Compress-Raw-Bzip2-2.019.ebuild:
+  Version bump
+
+*perl-Compress-Raw-Bzip2-2.017 (18 Apr 2009)
+*perl-Compress-Raw-Bzip2-2.015 (18 Apr 2009)
+
+  18 Apr 2009; Torsten Veller <tove@gentoo.org> +metadata.xml,
+  +perl-Compress-Raw-Bzip2-2.015.ebuild,
+  +perl-Compress-Raw-Bzip2-2.017.ebuild:
+  New virtual for Compress-Raw-Bzip2
+
