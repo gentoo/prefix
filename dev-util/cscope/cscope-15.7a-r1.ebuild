@@ -34,6 +34,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-ocs-sysdir.patch" #269305
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {

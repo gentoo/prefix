@@ -1,0 +1,12 @@
+diff -ru cscope-15.7a.orig/src/main.c cscope-15.7a/src/main.c
+--- cscope-15.7a.orig/src/main.c	2009-05-18 11:58:46 +0200
++++ cscope-15.7a/src/main.c	2009-05-18 12:01:08 +0200
+@@ -402,7 +402,7 @@
+ 	signal(SIGINT, SIG_IGN);	/* ignore interrupts */
+ 	signal(SIGPIPE, SIG_IGN);/* | command can cause pipe signal */
+ 
+-#if defined(KEY_RESIZE) && !defined(__DJGPP__)
++#if defined(KEY_RESIZE) && !defined(__DJGPP__) && !defined(__INTERIX)
+ 	winch_action.sa_sigaction = sigwinch_handler;
+ 	sigemptyset(&winch_action.sa_mask);
+ 	winch_action.sa_flags = SA_SIGINFO;
