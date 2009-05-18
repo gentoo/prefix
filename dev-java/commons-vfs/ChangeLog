@@ -1,0 +1,27 @@
+# ChangeLog for dev-java/commons-vfs
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-vfs/ChangeLog,v 1.6 2009/04/27 00:12:31 ranger Exp $
+
+  27 Apr 2009; Brent Baude <ranger@gentoo.org> commons-vfs-1.0.ebuild:
+  Marking commons-vfs-1.0 ~ppc for bug 266956
+
+  24 Apr 2009; Brent Baude <ranger@gentoo.org> commons-vfs-1.0.ebuild:
+  Marking commons-vfs-1.0 ~ppc64 for bug 266956
+
+  12 Jul 2007; Petteri Räty <betelgeuse@gentoo.org> commons-vfs-1.0.ebuild:
+  Javadoc in sun-jdk-1.6 starting with u2 works fine so removing the work
+  around from DEPEND.
+
+  12 May 2007; Alistair John Bush <ali_bush@gentoo.org>
+  commons-vfs-1.0.ebuild:
+  Added to ~amd64
+
+  06 May 2007; Vlastimil Babka <caster@gentoo.org> commons-vfs-1.0.ebuild:
+  Fix sandbox issue.
+
+*commons-vfs-1.0 (29 Mar 2007)
+
+  29 Mar 2007; Petteri Räty <betelgeuse@gentoo.org> +files/1.0-noget.patch,
+  +metadata.xml, +commons-vfs-1.0.ebuild:
+  Initial addition. Ebuild written by me. Fixes bug #163934.
+
