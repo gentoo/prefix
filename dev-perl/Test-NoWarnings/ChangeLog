@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Test-NoWarnings
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-NoWarnings/ChangeLog,v 1.21 2009/05/06 19:06:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-NoWarnings/ChangeLog,v 1.22 2009/05/16 08:20:31 aballier Exp $
+
+  16 May 2009; Alexis Ballier <aballier@gentoo.org>
+  Test-NoWarnings-0.084.ebuild:
+  keyword ~x86-fbsd
 
   06 May 2009; Jeroen Roovers <jer@gentoo.org> Test-NoWarnings-0.084.ebuild:
   Stable for HPPA (bug #268183).
