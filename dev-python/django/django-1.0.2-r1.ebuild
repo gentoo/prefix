@@ -1,52 +1,48 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-1.0.2-r1.ebuild,v 1.2 2009/04/15 17:29:43 ranger Exp $
-EAPI=2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-1.0.2-r1.ebuild,v 1.4 2009/05/18 14:58:48 arfrever Exp $
 
-inherit bash-completion subversion distutils multilib versionator webapp
+EAPI="2"
+
+inherit bash-completion distutils multilib versionator webapp
 
 MY_P="${P/#d/D}-final"
 WEBAPP_MANUAL_SLOT="yes"
 
 DESCRIPTION="High-level python web framework"
 HOMEPAGE="http://www.djangoproject.com/"
-SRC_URI="http://media.djangoproject.com/releases/${PV}/${MY_P}.tar.gz"
+SRC_URI="http://media.djangoproject.com/releases/${PV}/${MY_P}.tar.gz
+	test? ( mirror://gentoo/${P}-tests.tar.bz2 )"
+# ${P}-tests.tar.bz2 is generated from http://code.djangoproject.com/svn/django/tags/releases/${PV}/tests
+
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="doc examples mysql postgres sqlite3 test"
+IUSE="doc examples mysql postgres sqlite test"
 
 RDEPEND="dev-python/imaging
-	sqlite3? ( || (
+	sqlite? ( || (
 		( dev-python/pysqlite:2 <dev-lang/python-2.5 )
 		>=dev-lang/python-2.5[sqlite] ) )
 	test? ( || (
 		( dev-python/pysqlite:2 <dev-lang/python-2.5 )
 		>=dev-lang/python-2.5[sqlite] ) )
 	postgres? ( dev-python/psycopg )
-	mysql? ( >=dev-python/mysql-python-1.2.1_p2 )
+	mysql? ( >=dev-python/mysql-python-1.2.1_p2 )"
+DEPEND="${RDEPEND}
 	doc? ( >=dev-python/sphinx-0.3 )"
-DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
 DOCS="docs/* AUTHORS"
 
-src_unpack() {
-	distutils_src_unpack
-	if use test; then
-		local repo_uri
-		repo_uri="http://code.djangoproject.com/svn/${PN}/tags/releases/${PV}/tests/"
-		subversion_fetch ${repo_uri} tests
-	fi
-}
-
 src_compile() {
 	distutils_src_compile
+
 	if use doc ; then
-		pushd docs
-		emake html || die "docs failed"
-		popd
+		pushd docs > /dev/null
+		emake html || die "Generation of HTML documentation failed"
+		popd > /dev/null
 	fi
 }
 
@@ -57,8 +53,7 @@ DATABASE_ENGINE='sqlite3'
 ROOT_URLCONF='tests/urls.py'
 SITE_ID=1
 __EOF__
-	PYTHONPATH="." ${python} tests/runtests.py --settings=settings -v1 \
-		|| die "tests failed"
+	PYTHONPATH="." ${python} tests/runtests.py --settings=settings -v1 || die "tests failed"
 }
 
 src_install() {
@@ -75,6 +70,7 @@ src_install() {
 		insinto /usr/share/doc/${PF}
 		doins -r examples
 	fi
+
 	if use doc ; then
 		mv docs/_build/html/{_,.}sources
 		dohtml txt -r docs/_build/html/*
