@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/pango
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.251 2009/05/13 14:17:42 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.252 2009/05/18 21:09:18 eva Exp $
+
+*pango-1.24.2 (18 May 2009)
+
+  18 May 2009; Gilles Dartiguelongue <eva@gentoo.org> +pango-1.24.2.ebuild:
+  Bump to 1.24.2. Bug fixes.
 
   13 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org> pango-1.24.1.ebuild:
   Fix0r bug 269686 -- x11-libs/cairo[X?,svg]
