@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/avalon-logkit
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/ChangeLog,v 1.64 2008/05/11 16:14:39 corsair Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/ChangeLog,v 1.65 2009/05/18 19:39:26 betelgeuse Exp $
+
+*avalon-logkit-2.1-r3 (18 May 2009)
+*avalon-logkit-1.2-r4 (18 May 2009)
+
+  18 May 2009; Petteri Räty <betelgeuse@gentoo.org>
+  +avalon-logkit-1.2-r4.ebuild, +avalon-logkit-2.1-r3.ebuild:
+  Migrate to the jms virtual
 
   11 May 2008; Markus Rothe <corsair@gentoo.org>
   avalon-logkit-1.2-r3.ebuild, avalon-logkit-2.1-r2.ebuild:
