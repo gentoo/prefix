@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/dvipng-1.12.ebuild,v 1.4 2009/05/15 21:38:36 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dvipng/dvipng-1.12.ebuild,v 1.6 2009/05/18 14:00:06 jer Exp $
 
 EAPI=2
 inherit eutils
