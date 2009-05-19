@@ -16,7 +16,6 @@
     <flag name="dirac">Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.</flag>
 	<flag name="faac">Use external faac library for AAC encoding</flag>
 	<flag name="faad">Use external faad library for AAC decoding (instead of internal libavcodec support)</flag>
-    <flag name="gsm">Enables support for the gsm lossy speech compression codec via libgsm.</flag>
     <flag name="hardcoded-tables">Use pre-calculated tables rather than calculating them on the fly.</flag>
     <flag name="mmxext">Enables mmx2 support</flag>
     <flag name="network">Enables network streaming support</flag>
