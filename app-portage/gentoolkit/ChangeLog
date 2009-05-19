@@ -1,6 +1,36 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.153 2009/05/05 02:48:02 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.157 2009/05/18 22:08:39 fuzzyray Exp $
+
+*gentoolkit-0.3.0_rc6 (18 May 2009)
+*gentoolkit-0.2.4.4 (18 May 2009)
+
+  18 May 2009; Paul Varner <fuzzyray@gentoo.org> +gentoolkit-0.2.4.4.ebuild,
+  +gentoolkit-0.3.0_rc6.ebuild:
+  gentoolkit-0.2.4.4 version bump. This version fixes bugs 170784, 182990,
+  218312, 256013, 266996, and 268513. Bug 268001 tracks changes to
+  gentoolkit-0.2.4.
+  gentoolkit-0.3.0_rc6 version bump. This version fixes bugs 170784, 182990,
+  218312, and 268895. Bug 237694 tracks changes to gentoolkit-0.3.0.
+
+  17 May 2009; Alexis Ballier <aballier@gentoo.org>
+  gentoolkit-0.3.0_rc5.ebuild:
+  keyword ~x86-fbsd, bug #236214
+
+  16 May 2009; Alexis Ballier <aballier@gentoo.org>
+  gentoolkit-0.3.0_rc5.ebuild:
+  keyword ~sparc-fbsd, bug #236214
+
+*gentoolkit-0.3.0_rc5 (07 May 2009)
+
+  07 May 2009; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.3.0_rc5.ebuild:
+  New major release. This version contains the equery and gentoolkit library
+  modular rewrite by djanderson. The ebuild has been migrated to using
+  python's distutils for installation and all python modules are installed
+  in site-packages. This release includes fixes for bugs 83080, 237419,
+  256103, 266996, and 268513. Bug 237964 tracks the gentoolkit-0.3.0
+  release.
 
   05 May 2009; Christian Ruppert <idl0r@gentoo.org>
   gentoolkit-0.2.4.3.ebuild:
