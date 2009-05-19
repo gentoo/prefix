@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.15 2009/03/30 05:20:29 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.17 2009/05/16 22:08:09 tester Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -16,7 +16,7 @@
 # drac at gentoo.org:
 # This list is current to gst-plugins-bad-0.10.5 except for:
 #   Not present in 0.10.5 - wavpack
-my_gst_plugins_bad="opengl vcd x alsa amrwb bz2 cdaudio directfb dts divx faac
+my_gst_plugins_bad="opengl x alsa amrwb bz2 cdaudio directfb dts divx faac
 faad gsm gst_v4l2 ivorbis jack ladspa libmms mpeg2enc musepack musicbrainz
 mythtv nas neon timidity wildmidi sdl sdltest sndfile soundtouch spc swfdec
 theoradec x264 xvid dvb wavpack quicktime dc1394 metadata fbdev soup dirac mplex
@@ -42,6 +42,7 @@ DEPEND="${RDEPEND}
 		sys-apps/sed
 		dev-util/pkgconfig
 		sys-devel/gettext"
+RESTRICT=test
 fi
 S=${WORKDIR}/${MY_P}
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.37 2009/01/18 18:21:08 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.38 2009/05/17 09:25:55 loki_val Exp $
 
 # @ECLASS: base.eclass
 # @MAINTAINER:
@@ -69,6 +69,7 @@ base_src_prepare() {
 # The base_src_util function is the grunt function for base src_unpack
 # and base src_prepare.
 base_src_util() {
+	local x
 
 	debug-print-function $FUNCNAME "$@"
 

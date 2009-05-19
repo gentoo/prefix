@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.85 2009/05/04 22:27:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.86 2009/05/18 11:24:30 flameeyes Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -29,10 +29,10 @@ _autoconf_atom="sys-devel/autoconf"
 if [[ -n ${WANT_AUTOMAKE} ]]; then
 	case ${WANT_AUTOMAKE} in
 		none)   _automake_atom="" ;; # some packages don't require automake at all
+		# if you change the “latest” version here, change also autotools_run_tool
 		latest) _automake_atom="=sys-devel/automake-1.10*" ;;
 		*)      _automake_atom="=sys-devel/automake-${WANT_AUTOMAKE}*" ;;
 	esac
-	[[ ${WANT_AUTOMAKE} == "latest" ]] && WANT_AUTOMAKE="1.10"
 	export WANT_AUTOMAKE
 fi
 
@@ -40,10 +40,10 @@ if [[ -n ${WANT_AUTOCONF} ]] ; then
 	case ${WANT_AUTOCONF} in
 		none)       _autoconf_atom="" ;; # some packages don't require autoconf at all
 		2.1)        _autoconf_atom="=sys-devel/autoconf-${WANT_AUTOCONF}*" ;;
+		# if you change the “latest” version here, change also autotools_run_tool
 		latest|2.5) _autoconf_atom=">=sys-devel/autoconf-2.61" ;;
 		*)          _autoconf_atom="INCORRECT-WANT_AUTOCONF-SETTING-IN-EBUILD" ;;
 	esac
-	[[ ${WANT_AUTOCONF} == "latest" ]] && WANT_AUTOCONF="2.5"
 	export WANT_AUTOCONF
 fi
 DEPEND="${_automake_atom}
@@ -248,6 +248,11 @@ autotools_run_tool() {
 	if [[ ${EBUILD_PHASE} != "unpack" && ${EBUILD_PHASE} != "prepare" ]]; then
 		ewarn "QA Warning: running $1 in ${EBUILD_PHASE} phase"
 	fi
+
+	# We do the “latest” → version switch here because it solves
+	# possible order problems, see bug #270010 as an example.
+	[[ ${WANT_AUTOMAKE} == "latest" ]] && export WANT_AUTOMAKE=1.10
+	[[ ${WANT_AUTOCONF} == "latest" ]] && export WANT_AUTOCONF=2.5
 
 	local STDERR_TARGET="${T}/$1.out"
 	# most of the time, there will only be one run, but if there are

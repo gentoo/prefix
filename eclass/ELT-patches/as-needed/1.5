@@ -4,7 +4,7 @@
  	arg=`$echo "X$arg" | $Xsed -e "s/^ //"`
  	;;
  
-+      -Wl,--as-needed)
++      -Wl,--as-needed|-Wl,--no-as-needed)
 +	deplibs="$deplibs $arg"
 +	continue
 +	;;
@@ -16,7 +16,7 @@
  	lib=
  	found=no
  	case $deplib in
-+	-Wl,--as-needed)
++	-Wl,--as-needed|-Wl,--no-as-needed)
 +	  if test "$linkmode,$pass" = "prog,link"; then
 +	    compile_deplibs="$deplib $compile_deplibs"
 +	    finalize_deplibs="$deplib $finalize_deplibs"

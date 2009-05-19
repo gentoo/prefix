@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.173 2008/10/10 13:44:16 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.174 2009/05/18 17:02:32 lack Exp $
 
 # Authors:
 # 	Ryan Phillips <rphillips@gentoo.org>
@@ -160,21 +160,40 @@ apply_vim_patches() {
 	#
 	# Changed awk to gawk in the below; BSD's awk chokes on it
 	# --spb, 2004/12/18
+	#
+	# Allow either gzipped or uncompressed patches in the tarball.
+	# --lack 2009-05-18
+	# 
+	# Also removed date-seeking regexp to find first and second lines of the
+	# patch since as of 7.2.167 the date format has changed.  It is less work
+	# (while marginally less correct) to just look for lines that start with
+	# '***' and do not end with '****' (and "---" / "----" for the second line).
+	# --lack 2009-05-18
 	einfo "Filtering vim patches ..."
 	p=${WORKDIR}/${VIM_ORG_PATCHES%.tar*}.patch
 	ls "${WORKDIR}"/vimpatches | sort | \
-	while read f; do gzip -dc "${WORKDIR}"/vimpatches/${f}; done | gawk '
+	while read f; do 
+		local fpath="${WORKDIR}"/vimpatches/${f}
+		case $f in
+			*.gz)
+				gzip -dc "${fpath}"
+				;;
+			*)
+				cat "${fpath}"
+				;;
+		esac
+	done | gawk '
 		/^Subject: [Pp]atch/ {
 			if (patchnum) {printf "\n" >"/dev/stderr"}
 			patchnum = $3
 			printf "%s:", patchnum >"/dev/stderr"
 		}
-		$1=="***" && $(NF-1)~/^[0-9][0-9]:[0-9][0-9]:[0-9][0-9]$/ {
+		$1=="***" && $(NF)!="****" {
 			# First line of a patch; suppress printing
 			firstlines = $0
 			next
 		}
-		$1=="---" && $(NF-1)~/^[0-9][0-9]:[0-9][0-9]:[0-9][0-9]$/ {
+		$1=="---" && $(NF)!="----" {
 			# Second line of a patch; try to open the file to see
 			# if it exists.
 			thisfile = $2
@@ -205,7 +224,7 @@ apply_vim_patches() {
 		' > ${p} || die
 
 	# For reasons yet unknown, epatch fails to apply this cleanly
-	ebegin "Applying filtered vim patches ..."
+	ebegin "Applying filtered vim patches"
 	TMPDIR=${T} patch -f -s -p0 < ${p}
 	eend 0
 }

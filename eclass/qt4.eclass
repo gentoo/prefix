@@ -1,6 +1,6 @@
 # Copyright 2005-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.56 2009/05/12 10:41:03 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.57 2009/05/17 15:18:58 hwoarang Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -271,7 +271,7 @@ eqmake4() {
 				print >> file;
 			}
 			END {
-				printf "CONFIG -= debug_and_release %s\n", rem >> file;
+				printf "\nCONFIG -= debug_and_release %s\n", rem >> file;
 				printf "CONFIG += %s\n", add >> file;
 				print fixed;
 			}'

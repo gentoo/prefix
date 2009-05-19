@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.11 2009/03/30 04:24:15 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.12 2009/05/16 22:08:09 tester Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -45,6 +45,7 @@ RDEPEND="=media-libs/gst-plugins-base-0.10*"
 DEPEND="${RDEPEND}
 	>=sys-apps/sed-4
 	dev-util/pkgconfig"
+RESTRICT=test
 fi
 
 ###

@@ -1,6 +1,6 @@
 # Copyright 2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt3.eclass,v 1.40 2009/05/15 20:43:18 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt3.eclass,v 1.41 2009/05/17 15:17:03 hwoarang Exp $
 
 # @ECLASS: qt3.eclass
 # @MAINTAINER:
@@ -121,6 +121,7 @@ eqmake3() {
 		"${configoptminus}" \
 		"${configoptplus}" \
 		QMAKE_RPATH= \
+		QMAKE_STRIP= \
 		${@} >> ${LOGFILE} 2>&1
 
 	local result=$?
