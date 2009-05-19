@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0_beta7.ebuild,v 1.3 2009/05/12 20:36:22 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0.ebuild,v 1.1 2009/05/17 07:53:04 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI=2
@@ -9,7 +9,7 @@ inherit bash-completion check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-
 
 IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
-MY_PV=3.0.99.7
+MY_PV=3.1.0.1
 PATCHLEVEL=OOO310
 SRC=OOo_${PV}_src
 MST=ooo310-m11
@@ -53,7 +53,7 @@ SRC_URI="${DEVPATH}-artwork.tar.bz2
 	http://download.go-oo.org/SRC680/libwps-0.1.2.tar.gz
 	http://download.go-oo.org/SRC680/libwpg-0.1.3.tar.gz"
 
-LANGS1="af ar as_IN be_BY bg bn br bs ca cs cy da de dz el en_GB en_ZA eo es et fa fi fr ga gl gu he hi_IN hr hu it ja ka kk km ko ku lt lv mk ml_IN mn mr_IN nb ne nl nn nr ns or_IN pa_IN pl pt pt_BR ru rw sh sk sl sr ss st sv sw_TZ ta te_IN tg th ti_ER tn tr ts uk ur_IN ve vi xh zh_CN zh_TW zu"
+LANGS1="af ar as_IN be_BY bg bn br brx bs ca cs cy da de dgo dz el en en_GB en_ZA eo es et eu fa fi fr ga gl gu he hi_IN hr hu id it ja ka kk km kn_IN ko kok ks ku lt mai mk ml_IN mn mni mr_IN nb ne nl nn nr ns oc or_IN pa_IN pl pt pt_BR ru rw sa_IN sat sd sh sk sl sr ss st sw_TZ ta ta_IN te_IN tg th ti_ER tn tr ts uk ur_IN uz ve vi xh zh_CN zh_TW zu"
 LANGS="${LANGS1} en en_US"
 
 for X in ${LANGS} ; do
@@ -230,7 +230,6 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/gentoo-${PV}.diff"
 	epatch "${FILESDIR}/ooo-env_log.diff"
-#	cp -f "${FILESDIR}/buildfix-mono-2-2.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/base64.diff" "${S}/patches/hotfixes" || die
 
 	#Use flag checks
