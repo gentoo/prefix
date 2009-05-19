@@ -1,6 +1,15 @@
 # ChangeLog for net-mail/offlineimap
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/offlineimap/ChangeLog,v 1.38 2009/03/18 07:13:26 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/offlineimap/ChangeLog,v 1.39 2009/05/16 20:30:24 dertobi123 Exp $
+
+*offlineimap-6.0.3-r1 (16 May 2009)
+
+  16 May 2009; Tobias Scherbaum <dertobi123@gentoo.org>
+  -offlineimap-4.0.8.ebuild, -offlineimap-4.0.11.ebuild,
+  -offlineimap-4.0.13.ebuild, -offlineimap-4.0.14.ebuild,
+  -offlineimap-4.0.16.ebuild, -offlineimap-6.0.0.ebuild,
+  +offlineimap-6.0.3-r1.ebuild:
+  revbump, add dep on dev-lang/python[threads] and optional ssl useflag, #268932
 
   18 Mar 2009; Joseph Jezak <josejx@gentoo.org> offlineimap-6.0.3.ebuild:
   Marked ppc stable for bug #251087.
