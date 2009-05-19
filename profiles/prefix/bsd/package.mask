@@ -1,5 +1,7 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# Elias Pipping <pipping@mi.fu-berlin.de> (09 Oct 2007)
+# Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
 # bsd-man-pages are only available on darwin, bsd
 -sys-apps/bsd-man-pages

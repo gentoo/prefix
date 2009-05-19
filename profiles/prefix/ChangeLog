@@ -2,6 +2,24 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  19 May 2009; Fabian Groffen <grobian@gentoo.org>
+  -bsd/freebsd/6.3/package.mask, -bsd/freebsd/6.3/package.provided,
+  -bsd/freebsd/6.3/parent, -bsd/freebsd/6.3/x86/make.defaults,
+  -bsd/freebsd/6.3/x86/parent, bsd/freebsd/7.1/package.mask,
+  bsd/freebsd/7.1/package.provided, bsd/freebsd/7.1/x64/make.defaults,
+  bsd/freebsd/7.1/x86/make.defaults, bsd/freebsd/7.2/package.mask,
+  bsd/freebsd/7.2/package.provided, bsd/freebsd/7.2/x64/make.defaults,
+  bsd/freebsd/7.2/x86/make.defaults, bsd/freebsd/make.defaults,
+  bsd/freebsd/use.force, bsd/freebsd/use.mask, bsd/freebsd/virtuals,
+  bsd/netbsd/4.0/package.provided, bsd/netbsd/4.0/x86/make.defaults,
+  bsd/netbsd/make.defaults, bsd/netbsd/use.force, bsd/netbsd/use.mask,
+  bsd/netbsd/virtuals, bsd/openbsd/4.2/package.mask,
+  bsd/openbsd/4.2/package.provided, bsd/openbsd/4.2/ppc/make.defaults,
+  bsd/openbsd/4.2/x64/make.defaults, bsd/openbsd/4.2/x86/make.defaults,
+  bsd/openbsd/make.defaults, bsd/openbsd/use.force, bsd/openbsd/use.mask,
+  bsd/openbsd/virtuals, bsd/package.mask, bsd/packages, bsd/use.mask:
+  Added copyright statements to bsd/* files, drop FreeBSD 6.x profiles
+
   19 May 2009; Fabian Groffen <grobian@gentoo.org> sunos/make.defaults,
   sunos/packages, sunos/solaris/5.9/package.provided,
   sunos/solaris/5.9/sparc/make.defaults,
