@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/activesupport
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.83 2009/03/17 09:18:32 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.84 2009/05/18 19:07:07 fmccor Exp $
+
+  18 May 2009; Ferris McCormick <fmccor@gentoo.org>
+  activesupport-2.3.2.ebuild:
+  Sparc stable, Bug #270331.
 
 *activesupport-2.3.2 (17 Mar 2009)
 
