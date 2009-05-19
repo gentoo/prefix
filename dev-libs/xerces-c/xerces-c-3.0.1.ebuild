@@ -58,6 +58,8 @@ src_configure() {
 	econf \
 		$(use_enable debug) \
 		$(use_enable threads) \
+		$(use_with curl curl "${EPREFIX}"/usr) \
+		$(use_with icu icu "${EPREFIX}"/usr) \
 		--enable-msgloader-${mloader} \
 		--enable-netaccessor-${netaccessor} \
 		--enable-transcoder-${transcoder}
