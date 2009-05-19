@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/java-config-wrapper
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.46 2009/04/18 07:17:29 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.47 2009/05/16 13:07:45 klausman Exp $
+
+  16 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  java-config-wrapper-0.16.ebuild:
+  Stable on alpha, bug #270007
 
 *java-config-wrapper-0.16 (17 Apr 2009)
 
