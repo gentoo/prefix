@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.9.ebuild,v 1.9 2009/01/30 11:24:42 dragonheart Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-1.4.9.ebuild,v 1.10 2009/05/16 07:48:15 robbat2 Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -29,8 +29,8 @@ COMMON_DEPEND="
 	curl? ( net-misc/curl )
 	virtual/mta
 	readline? ( sys-libs/readline )
-	smartcard? ( dev-libs/libusb )
-	usb? ( dev-libs/libusb )"
+	smartcard? ( =virtual/libusb-0* )
+	usb? ( =virtual/libusb-0* )"
 
 RDEPEND="!static? ( ${COMMON_DEPEND} )
 	selinux? ( sec-policy/selinux-gnupg )

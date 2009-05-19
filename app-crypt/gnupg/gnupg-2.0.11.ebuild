@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.11.ebuild,v 1.7 2009/04/30 12:53:17 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.11.ebuild,v 1.8 2009/05/16 07:48:15 robbat2 Exp $
 
 inherit flag-o-matic toolchain-funcs
 
@@ -22,6 +22,7 @@ COMMON_DEPEND_LIBS="
 	bzip2? ( app-arch/bzip2 )
 	pcsc-lite? ( >=sys-apps/pcsc-lite-1.3.0 )
 	openct? ( >=dev-libs/openct-0.5.0 )
+	smartcard? ( =virtual/libusb-0* )
 	ldap? ( net-nds/openldap )"
 COMMON_DEPEND_BINS="app-crypt/pinentry"
 

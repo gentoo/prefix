@@ -1,6 +1,12 @@
 # ChangeLog for app-crypt/gnupg
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.346 2009/04/30 12:53:17 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.347 2009/05/16 07:48:15 robbat2 Exp $
+
+  16 May 2009; Robin H. Johnson <robbat2@gentoo.org> gnupg-1.4.9.ebuild,
+  gnupg-2.0.11.ebuild:
+  Migration to virtual/libusb. Verified by code inspection. Also fix missing
+  dep of libusb in the gnupg-2* series with USE=smartcard. It was automagic
+  before and not pulled in correctly.
 
   30 Apr 2009; Jeroen Roovers <jer@gentoo.org> gnupg-2.0.11.ebuild:
   Stable for HPPA (bug #267223).
