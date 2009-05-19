@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.4.ebuild,v 1.4 2009/05/16 08:03:02 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.5.ebuild,v 1.1 2009/05/16 08:55:25 hanno Exp $
 
 # TODO
 # 1. Track upstream bug --disable-docs does not work.
@@ -44,7 +44,7 @@ for camera in ${IUSE_CAMERAS}; do
 done
 
 # libgphoto2 actually links to libtool
-RDEPEND="=virtual/libusb-0*
+RDEPEND="virtual/libusb:0
 	bonjour? ( || (
 		net-dns/avahi[mdnsresponder-compat]
 		net-misc/mDNSResponder ) )
@@ -88,12 +88,6 @@ src_prepare() {
 	# Fix bug #216206, libusb detection
 	sed -i "s:usb_busses:usb_find_busses:g" libgphoto2_port/configure || die "libusb sed failed"
 
-	# Fix building on alpha, bug #221853 comment #6
-	epatch "${FILESDIR}/gphoto2-ixany.patch"
-
-	# Fix automagic dependencies, bug #242470
-	epatch "${FILESDIR}/${PN}-2.4.3-automagic.patch"
-
 	cd "${S}/libgphoto2_port"
 	eautoreconf
 }
@@ -116,8 +110,8 @@ src_configure() {
 	econf \
 		--disable-docs \
 		--disable-gp2ddb \
-		$(use_enable bonjour) \
-		$(use_enable hal) \
+		$(use_with bonjour) \
+		$(use_with hal) \
 		$(use_enable nls) \
 		$(use_with exif libexif) \
 		--with-drivers=${cameras} \
