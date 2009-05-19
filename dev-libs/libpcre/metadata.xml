@@ -5,6 +5,8 @@
 	<maintainer>
 		<email>loki_val@gentoo.org</email>
 		<name>Peter Alfredsen</name>
-		<description>Please fix my bugs</description>
 	</maintainer>
+	<use>
+		<flag name='static-libs'>Build static libs</flag>
+	</use>
 </pkgmetadata>

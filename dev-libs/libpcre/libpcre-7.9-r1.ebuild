@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.9-r1.ebuild,v 1.1 2009/04/18 21:18:50 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.9-r1.ebuild,v 1.2 2009/05/18 21:51:16 loki_val Exp $
 
 EAPI=2
 
@@ -19,7 +19,7 @@ fi
 LICENSE="BSD"
 SLOT="3"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bzip2 +cxx doc unicode zlib"
+IUSE="bzip2 +cxx doc unicode zlib static-libs"
 
 DEPEND="dev-util/pkgconfig"
 RDEPEND=""
@@ -54,7 +54,7 @@ src_configure() {
 		$(use_enable cxx cpp) \
 		$(use_enable zlib pcregrep-libz) \
 		$(use_enable bzip2 pcregrep-libbz2) \
-		--enable-static \
+		$(use_enable static-libs static) \
 		--enable-shared \
 		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
