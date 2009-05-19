@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/jhead
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/ChangeLog,v 1.105 2009/05/13 19:43:30 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/ChangeLog,v 1.106 2009/05/16 18:24:19 nixnut Exp $
+
+  16 May 2009; nixnut <nixnut@gentoo.org> jhead-2.86.ebuild:
+  ppc stable #268864
 
   13 May 2009; Markus Meier <maekke@gentoo.org> jhead-2.86.ebuild:
   amd64/x86 stable, bug #268864
