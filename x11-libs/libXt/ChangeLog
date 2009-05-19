@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/libXt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.50 2009/02/02 19:44:57 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.52 2009/05/18 11:26:07 flameeyes Exp $
+
+  18 May 2009; Diego E. Pettenò <flameeyes@gentoo.org> libXt-1.0.5.ebuild:
+  Remove WANT_AUTOMAKE which is not needed any longer since bug #270010 was
+  fixed in autotools.eclass.
+
+  18 May 2009; Rémi Cardona <remi@gentoo.org> libXt-1.0.5.ebuild:
+  add missing WANT_AUTOMAKE="1.9", fixes bug #270010
 
   02 Feb 2009; <solar@gentoo.org> +files/libXt-1.0.5-cross.patch,
   libXt-1.0.5.ebuild:
