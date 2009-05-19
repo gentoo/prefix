@@ -1,14 +1,14 @@
 #!/bin/bash
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/files/am-wrapper-2.sh,v 1.2 2006/11/10 00:04:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/files/am-wrapper-4.sh,v 1.1 2009/05/17 21:36:04 vapier Exp $
 
 # Based on the am-wrapper.pl script provided by MandrakeSoft
 # Rewritten in bash by Gregorio Guidi
 #
 # Executes the correct automake version.
 #
-# - defaults to automake-1.10
+# - defaults to newest version available (hopefully automake-1.10)
 # - runs automake-1.9 if:
 #   - envvar WANT_AUTOMAKE is set to `1.9'
 #     -or-
@@ -51,8 +51,12 @@ if [ "${0##*/}" = "am-wrapper.sh" ] ; then
 	exit 1
 fi
 
-vers="1.10 1.9 1.8 1.7 1.6 1.5 1.4"
+vers="1.11 1.10 1.9 1.8 1.7 1.6 1.5 1.4"
 
+#
+# Export the proper variable/versions and try to locate a usuable
+# default (newer versions are preferred)
+#
 binary=""
 for v in ${vers} ; do
 	eval binary_${v/./_}="${0}-${v}"
@@ -69,21 +73,31 @@ if [ -z "${binary}" ] ; then
 fi
 
 #
-# Check the WANT_AUTOMAKE setting
+# Check the WANT_AUTOMAKE setting.  We accept a whitespace delimited
+# list of automake versions.
 #
-for v in ${vers} x ; do
-	if [ "${v}" = "x" ] ; then
-		unset WANT_AUTOMAKE
-		break
-	fi
+if [ -n "${WANT_AUTOMAKE}" ] ; then
+	for v in ${vers} x ; do
+		if [ "${v}" = "x" ] ; then
+			echo "am-wrapper: warning: invalid WANT_AUTOMAKE '${WANT_AUTOMAKE}'; ignoring." >&2
+			unset WANT_AUTOMAKE
+			break
+		fi
 
-	if [ "${WANT_AUTOMAKE}" = "${v}" ] ; then
-		binary="binary_${v/./_}"
-		binary="${!binary}"
-		break
-	fi
-done
+		for wx in ${WANT_AUTOMAKE} ; do
+			if [ "${wx}" = "${v}" ] ; then
+				binary="binary_${v/./_}"
+				binary="${!binary}"
+				v="x"
+			fi
+		done
+		[ "${v}" = "x" ] && break
+	done
+fi
 
+#
+# autodetect helpers
+#
 do_awk() {
 	local file=$1 ; shift
 	local arg=$1 ; shift

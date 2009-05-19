@@ -1,6 +1,18 @@
 # ChangeLog for sys-devel/automake-wrapper
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/ChangeLog,v 1.33 2007/02/14 00:51:51 wolf31o2 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake-wrapper/ChangeLog,v 1.35 2009/05/17 21:36:03 vapier Exp $
+
+*automake-wrapper-4 (17 May 2009)
+
+  17 May 2009; Mike Frysinger <vapier@gentoo.org>
+  +automake-wrapper-4.ebuild, +files/am-wrapper-4.sh:
+  Create a real new version rather than mucking with the FILESDIR.
+
+*automake-wrapper-3-r2 (17 May 2009)
+
+  17 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +automake-wrapper-3-r2.ebuild:
+  Add an automake-wrapper compatible with automake 1.11.
 
   14 Feb 2007; Chris Gianelloni <wolf31o2@gentoo.org>
   automake-wrapper-2-r1.ebuild:
