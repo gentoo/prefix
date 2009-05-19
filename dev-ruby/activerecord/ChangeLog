@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.98 2009/04/27 15:49:56 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.99 2009/05/18 19:10:03 fmccor Exp $
+
+  18 May 2009; Ferris McCormick <fmccor@gentoo.org>
+  activerecord-2.3.2.ebuild:
+  Sparc stable, Bug #270331.
 
   27 Apr 2009; Petteri Räty <betelgeuse@gentoo.org> activerecord-2.2.2:
   Add USE_RUBY to silence the eclass QA warning.
