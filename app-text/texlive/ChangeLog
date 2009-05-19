@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.55 2009/05/15 15:08:08 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive/ChangeLog,v 1.56 2009/05/16 10:50:31 aballier Exp $
+
+  16 May 2009; Alexis Ballier <aballier@gentoo.org> texlive-2008.ebuild,
+  metadata.xml:
+  Make dvipdfm optional, by Zaba
 
   15 May 2009; Alexis Ballier <aballier@gentoo.org> texlive-2008.ebuild,
   metadata.xml:
