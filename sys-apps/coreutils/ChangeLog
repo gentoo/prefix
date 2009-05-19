@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.254 2009/05/07 19:46:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.255 2009/05/16 16:10:56 vapier Exp $
+
+  16 May 2009; Mike Frysinger <vapier@gentoo.org> coreutils-7.1.ebuild,
+  coreutils-7.2.ebuild, coreutils-7.4.ebuild:
+  Allow /dev/loop when running mount #269758 by Nick Fortino.
 
 *coreutils-7.4 (07 May 2009)
 

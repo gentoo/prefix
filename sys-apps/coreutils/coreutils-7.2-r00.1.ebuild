@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.2.ebuild,v 1.4 2009/04/27 04:58:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.2.ebuild,v 1.5 2009/05/16 16:10:56 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -96,6 +96,7 @@ src_test() {
 
 	# coreutils tests like to do `mount` and such with temp dirs
 	# so make sure /etc/mtab is writable #265725
+	# make sure /dev/loop* can be mounted #269758
 	mkdir -p "${T}"/mount-wrappers
 	mkwrap() {
 		local w ww
@@ -103,7 +104,7 @@ src_test() {
 			ww="${T}/mount-wrappers/${w}"
 			cat <<-EOF > "${ww}"
 				#!${EPREFIX}/bin/sh
-				exec env SANDBOX_WRITE="\${SANDBOX_WRITE}:/etc/mtab" $(type -P $w) "\$@"
+				exec env SANDBOX_WRITE="\${SANDBOX_WRITE}:/etc/mtab:/dev/loop" $(type -P $w) "\$@"
 			EOF
 			chmod a+rx "${ww}"
 		done
