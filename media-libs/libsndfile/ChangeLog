@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libsndfile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.101 2009/05/15 22:01:40 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.103 2009/05/18 19:00:06 ranger Exp $
+
+  18 May 2009; Brent Baude <ranger@gentoo.org> libsndfile-1.0.20.ebuild:
+  Marking libsndfile-1.0.20 ppc64 and ppc for bug 269863
+
+  16 May 2009; <chainsaw@gentoo.org> libsndfile-1.0.20.ebuild:
+  There is no TODO file in this version, stop trying to install it.
 
   15 May 2009; Markus Meier <maekke@gentoo.org> libsndfile-1.0.20.ebuild:
   amd64/x86 stable, bug #269863
