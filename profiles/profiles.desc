@@ -52,10 +52,10 @@ ia64-hpux	prefix/hpux/B.11.23/ia64			dev
 ia64-hpux	prefix/hpux/B.11.31/ia64			dev
 
 # FreeBSD Profiles
-x86-freebsd	prefix/bsd/freebsd/6.2/x86			dev
-x86-freebsd	prefix/bsd/freebsd/6.3/x86			dev
 x86-freebsd	prefix/bsd/freebsd/7.1/x86			dev
 x64-freebsd	prefix/bsd/freebsd/7.1/x64			dev
+x86-freebsd	prefix/bsd/freebsd/7.2/x86			dev
+x64-freebsd	prefix/bsd/freebsd/7.2/x64			dev
 
 # OpenBSD Profiles
 ppc-openbsd prefix/bsd/openbsd/4.2/ppc			dev
