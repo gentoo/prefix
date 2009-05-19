@@ -85,6 +85,7 @@ src_unpack() {
 	eprefixify pathnames.h.in
 
 	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
+	epatch "${FILESDIR}"/${PN}-4.0-mint.patch
 
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-4.0-interix.patch
