@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/ragel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ragel/ChangeLog,v 1.23 2009/05/08 13:55:50 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ragel/ChangeLog,v 1.25 2009/05/18 18:13:12 flameeyes Exp $
+
+*ragel-6.5 (18 May 2009)
+
+  18 May 2009; Diego E. Pettenò <flameeyes@gentoo.org> +ragel-6.5.ebuild:
+  Version bump and simplify ebuild since this time it uses automake (but
+  tests fail for now).
+
+  16 May 2009; Diego E. Pettenò <flameeyes@gentoo.org> ragel-6.4.ebuild:
+  Add ~x86-fbsd keyword.
 
   08 May 2009; Ferris McCormick <fmccor@gentoo.org> ragel-6.4.ebuild:
   Add ~sparc for testing, part of bug #269021.
