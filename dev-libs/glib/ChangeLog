@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.368 2009/05/04 22:06:50 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.370 2009/05/18 21:37:06 eva Exp $
+
+  18 May 2009; Gilles Dartiguelongue <eva@gentoo.org> glib-2.20.2.ebuild:
+  Remove unused patch.
+
+*glib-2.20.2 (18 May 2009)
+
+  18 May 2009; Gilles Dartiguelongue <eva@gentoo.org> +glib-2.20.2.ebuild:
+  Bump to 2.20.2. Bug fixes.
 
 *glib-2.20.1-r1 (04 May 2009)
 *glib-2.18.4-r2 (04 May 2009)
