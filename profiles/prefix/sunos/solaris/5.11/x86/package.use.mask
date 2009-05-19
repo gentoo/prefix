@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
-# # Distributed under the terms of the GNU General Public License v2
-# # $Header: $
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 # Jeremy Olexa <darkside@gentoo.org> (03 Dec 2008)
 # Reported that this use flag does not work on x86-solaris, bug #244797

@@ -1,3 +1,6 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 # Fabian Groffen <grobian@gentoo.org> (17 May 2009)
 # fails to compile, some bizarre libtool problem with a missing

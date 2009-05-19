@@ -1,3 +1,6 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
 # $Id$
 
 # Fabian Groffen <grobian@gentoo.org> (30 Apr 2009)

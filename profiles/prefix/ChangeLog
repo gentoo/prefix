@@ -2,6 +2,32 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  19 May 2009; Fabian Groffen <grobian@gentoo.org> sunos/make.defaults,
+  sunos/packages, sunos/solaris/5.9/package.provided,
+  sunos/solaris/5.9/sparc/make.defaults,
+  sunos/solaris/5.9/sparc/package.mask,
+  sunos/solaris/5.9/sparc64/make.defaults,
+  sunos/solaris/5.9/sparc64/package.mask,
+  sunos/solaris/5.10/package.provided,
+  sunos/solaris/5.10/sparc/make.defaults,
+  sunos/solaris/5.10/sparc/package.mask,
+  sunos/solaris/5.10/sparc64/make.defaults,
+  sunos/solaris/5.10/sparc64/package.use.mask,
+  sunos/solaris/5.10/x64/make.defaults,
+  sunos/solaris/5.10/x64/package.use.mask,
+  sunos/solaris/5.10/x86/make.defaults,
+  sunos/solaris/5.10/x86/package.use.mask,
+  sunos/solaris/5.11/package.provided,
+  sunos/solaris/5.11/sparc/make.defaults,
+  sunos/solaris/5.11/sparc64/make.defaults,
+  sunos/solaris/5.11/sparc64/package.use.mask,
+  sunos/solaris/5.11/x64/make.defaults, sunos/solaris/5.11/x64/package.mask,
+  sunos/solaris/5.11/x64/package.use.mask,
+  sunos/solaris/5.11/x86/make.defaults,
+  sunos/solaris/5.11/x86/package.use.mask, sunos/solaris/package.mask,
+  sunos/use.force, sunos/use.mask, sunos/virtuals:
+  Added copyright statements to sunos/* files
+
   19 May 2009; Michael Haubenwallner <haubi@gentoo.org>
   prefix/darwin/package.mask, prefix/package.mask,
   prefix/sunos/solaris/package.mask:
