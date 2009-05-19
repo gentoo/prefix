@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.2.ebuild,v 1.1 2009/05/12 16:23:32 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.2.ebuild,v 1.2 2009/05/18 05:47:53 arfrever Exp $
 
 EAPI="2"
 
@@ -98,11 +98,16 @@ pkg_setup() {
 
 	if use test; then
 		elog
-		elog "You can set the following variables to enable testing of some features:"
+		elog "\e[31m************************************************************************************************\e[0m"
+		elog
+		elog "NOTES ABOUT TESTS"
+		elog
+		elog "You can set the following variables to enable testing of some features and configure testing:"
 		if use webdav-neon || use webdav-serf; then
 			elog "  SVN_TEST_APACHE=1                     - Enable testing of mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf"
 			elog "                                          (See \"Testing of mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf\")"
 		fi
+		elog "  SVN_TEST_SVNSERVE_PORT=integer        - Set svnserve port number (Default value: 3690)"
 		elog "  SVN_TEST_FSFS_MEMCACHED=1             - Enable using of Memcached for FSFS repositories"
 		elog "  SVN_TEST_FSFS_MEMCACHED_PORT=integer  - Set Memcached port number (Default value: 11211)"
 		elog "  SVN_TEST_FSFS_SHARDING=integer        - Enable sharding of FSFS repositories and set default shard size for FSFS repositories"
@@ -112,7 +117,7 @@ pkg_setup() {
 #	 		elog "  SVN_TEST_SASL=1                       - Enable SASL authentication"
 #		fi
 		if use ctypes-python || use java || use perl || use python || use ruby; then
-			elog " SVN_TEST_BINDINGS=1                    - Enable testing of bindings"
+			elog "  SVN_TEST_BINDINGS=1                   - Enable testing of bindings"
 		fi
 		if use java || use perl || use python || use ruby; then
 			elog "                                          (Testing of bindings requires ${CATEGORY}/${PF})"
@@ -121,9 +126,18 @@ pkg_setup() {
 			elog "                                          (Testing of JavaHL library requires dev-java/junit:4)"
 		fi
 		elog
+		if ! use webdav-neon && ! use webdav-serf; then
+			elog "\e[31m************************************************************************************************\e[0m"
+			elog
+			epause 24
+		fi
 
 		if { use webdav-neon || use webdav-serf; } && [[ -n "${SVN_TEST_APACHE}" ]] && ! has_version "${CATEGORY}/${PN}[apache2]"; then
 			die "${CATEGORY}/${PN} must be installed with USE=\"apache2\""
+		fi
+
+		if [[ -n "${SVN_TEST_SVNSERVE_PORT}" ]] && ! ([[ "$((${SVN_TEST_SVNSERVE_PORT}))" == "${SVN_TEST_SVNSERVE_PORT}" ]]) &>/dev/null; then
+			die "Value of SVN_TEST_SVNSERVE_PORT must be an integer"
 		fi
 
 		if [[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]] && ! has_version net-misc/memcached; then
@@ -164,9 +178,12 @@ src_unpack() {
 		elog "Testing of mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf:"
 		elog " If you want to test mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf,"
 		elog " ensure that ${CATEGORY}/${PN} is installed with USE=\"apache2\","
-		elog " copy \"${T}/99_subversion_tests.conf\" to /etc/apache2/modules.d directory,"
-		elog " define DAV, SVN, SVN_AUTHZ and SVN_TESTS in APACHE2_OPTS variable in /etc/conf.d/apache2,"
+		elog " copy \"${T}/99_subversion_tests.conf\""
+		elog " to \"/etc/apache2/modules.d\" directory, add definitions of DAV, SVN, SVN_AUTHZ"
+		elog " and SVN_TESTS to APACHE2_OPTS variable in \"/etc/conf.d/apache2\" configuration file,"
 		elog " (re)start Apache and run \`SVN_TEST_APACHE=1 emerge ${CATEGORY}/${PN}\`."
+		elog
+		elog "\e[31m************************************************************************************************\e[0m"
 		elog
 
 		if [[ -z "${SVN_TEST_APACHE}" ]]; then
@@ -178,6 +195,8 @@ src_unpack() {
 			if ! cmp -s "${T}/99_subversion_tests.conf" "${EPREFIX}/etc/apache2/modules.d/99_subversion_tests.conf"; then
 				die "${EPREFIX}/etc/apache2/modules.d/99_subversion_tests.conf mismatch"
 			fi
+
+			epause 24
 		fi
 	fi
 
@@ -373,12 +392,12 @@ EOF
 }
 
 initialize_tests_environment() {
-	[[ "$1" == "local" ]] && base_url="file://${S}/subversion/tests/cmdline"
-	[[ "$1" == "svn" ]] && base_url="svn://127.0.0.1"
+	[[ "$1" == "local" ]] && base_url="file://${S}/subversion/tests/cmdline" http_library=""
+	[[ "$1" == "svn" ]] && base_url="svn://127.0.0.1" http_library=""
 	[[ "$1" == "neon" ]] && base_url="http://localhost" http_library="neon"
 	[[ "$1" == "serf" ]] && base_url="http://localhost" http_library="serf"
 
-	[[ "$1" == "svn" ]] && LC_ALL="C" subversion/svnserve/svnserve -dr "subversion/tests/cmdline" --pid-file "${T}/svnserve.pid"
+	[[ "$1" == "svn" ]] && LC_ALL="C" subversion/svnserve/svnserve -dr "subversion/tests/cmdline" --listen-port "${SVN_TEST_SVNSERVE_PORT}" --pid-file "${T}/svnserve.pid"
 	[[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]] && memcached -dp "${SVN_TEST_FSFS_MEMCACHED_PORT}" -P "${T}/memcached.pid"
 }
 
@@ -399,6 +418,7 @@ src_test() {
 		use webdav-serf && ra_types+=" serf"
 	fi
 
+	[[ -z "${SVN_TEST_SVNSERVE_PORT}" ]] && SVN_TEST_SVNSERVE_PORT="3690"
 	if [[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]]; then
 		[[ -z "${SVN_TEST_FSFS_MEMCACHED_PORT}" ]] && SVN_TEST_FSFS_MEMCACHED_PORT="11211"
 		sed -e "/\[memcached-servers\]/akey = 127.0.0.1:${SVN_TEST_FSFS_MEMCACHED_PORT}" -i subversion/tests/tests.conf
@@ -420,7 +440,7 @@ src_test() {
 			einfo "\e[1;34mTesting of ra_${ra_type} + $(echo ${fs_type} | tr '[:lower:]' '[:upper:]')\e[0m"
 			einfo
 			initialize_tests_environment ${ra_type}
-			emake check FS_TYPE="${fs_type}" BASE_URL="${base_url}" HTTP_LIBRARY="${http_library}" CLEANUP="true" ${options} || failed_tests="1"
+			emake check FS_TYPE="${fs_type}" BASE_URL="${base_url}" HTTP_LIBRARY="${http_library}" CLEANUP="1" ${options} || failed_tests="1"
 			terminate_tests_environment ${ra_type}
 			mv tests.log tests-ra_${ra_type}-${fs_type}.log
 		done
@@ -589,9 +609,15 @@ EOF
 		einfo
 		einfo "Installation of contrib and tools"
 		einfo
-		doenvd "${FILESDIR}/1.5.0/80subversion-extras"
-		emake DESTDIR="${D}" contribdir="/usr/$(get_libdir)/subversion/bin" install-contrib || die "Installation of contrib failed"
-		emake DESTDIR="${D}" toolsdir="/usr/$(get_libdir)/subversion/bin" install-tools || die "Installation of tools failed"
+
+		cat << EOF > 80subversion-extras
+PATH="${EPREFIX}"/usr/$(get_libdir)/subversion/bin
+ROOTPATH="${EPREFIX}"/usr/$(get_libdir)/subversion/bin
+EOF
+		doenvd 80subversion-extras
+
+		emake DESTDIR="${D}" contribdir="${EPREFIX}/usr/$(get_libdir)/subversion/bin" install-contrib || die "Installation of contrib failed"
+		emake DESTDIR="${D}" toolsdir="${EPREFIX}/usr/$(get_libdir)/subversion/bin" install-tools || die "Installation of tools failed"
 
 		find contrib tools "(" -name "*.bat" -o -name "*.in" -o -name ".libs" ")" -print0 | xargs -0 rm -fr
 		rm -fr contrib/client-side/svn-push
