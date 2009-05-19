@@ -1,6 +1,11 @@
 # ChangeLog for app-emacs/flim
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.31 2009/05/05 17:02:21 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.32 2009/05/16 20:09:55 ulm Exp $
+
+*flim-1.14.9 (16 May 2009)
+
+  16 May 2009; Ulrich Mueller <ulm@gentoo.org> +flim-1.14.9.ebuild:
+  Version bump. Update SRC_URI.
 
   05 May 2009; Ulrich Mueller <ulm@gentoo.org> flim-1.14.8.ebuild:
   Fix dependencies, blocker belongs in RDEPEND only.
