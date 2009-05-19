@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libwmf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.63 2009/05/13 18:21:46 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.64 2009/05/18 18:53:30 ranger Exp $
+
+  18 May 2009; Brent Baude <ranger@gentoo.org> libwmf-0.2.8.4-r3.ebuild:
+  Marking libwmf-0.2.8.4-r3 ppc64 and ppc for bug 268161
 
   13 May 2009; Markus Meier <maekke@gentoo.org> libwmf-0.2.8.4-r3.ebuild:
   amd64 stable, bug #268161
