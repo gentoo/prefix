@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.708 2009/05/15 14:51:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.709 2009/05/16 21:39:42 flameeyes Exp $
+
+  16 May 2009; Diego E. Pettenò <flameeyes@gentoo.org> gcc-4.4.0.ebuild:
+  Keyword -x86-fbsd per bug #270098 (miscompile of the C library).
 
   15 May 2009; Raúl Porcel <armin76@gentoo.org> gcc-4.3.2-r4.ebuild:
   arm stable wrt #264121
