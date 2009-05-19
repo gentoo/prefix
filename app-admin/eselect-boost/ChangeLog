@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-boost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.6 2009/05/13 16:38:35 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.7 2009/05/16 11:15:17 klausman Exp $
+
+  16 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  eselect-boost-0.3.ebuild:
+  Keyworded on alpha, bug #269456
 
   13 May 2009; Joseph Jezak <josejx@gentoo.org> eselect-boost-0.3.ebuild:
   Marked ~ppc/~ppc64 for bug #269456.
