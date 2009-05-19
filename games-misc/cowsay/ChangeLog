@@ -1,6 +1,18 @@
 # ChangeLog for games-misc/cowsay
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/ChangeLog,v 1.27 2009/04/12 04:50:44 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/ChangeLog,v 1.31 2009/05/16 16:20:41 nixnut Exp $
+
+  16 May 2009; nixnut <nixnut@gentoo.org> cowsay-3.03-r2.ebuild:
+  ppc stable #270009
+
+  16 May 2009; Jeremy Olexa <darkside@gentoo.org> cowsay-3.03-r2.ebuild:
+  amd64 stable, bug 270009
+
+  16 May 2009; Jeroen Roovers <jer@gentoo.org> cowsay-3.03-r2.ebuild:
+  Stable for HPPA (bug #270009).
+
+  16 May 2009; Tobias Klausmann <klausman@gentoo.org> cowsay-3.03-r2.ebuild:
+  Stable on alpha, bug #270009
 
 *cowsay-3.03-r2 (12 Apr 2009)
 
