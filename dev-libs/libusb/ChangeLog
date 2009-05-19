@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.85 2009/05/15 10:55:18 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.89 2009/05/17 14:20:27 aballier Exp $
+
+  17 May 2009; Alexis Ballier <aballier@gentoo.org> libusb-1.0.1.ebuild:
+  keyword -x86-fbsd for now, its not supported
+
+  16 May 2009; nixnut <nixnut@gentoo.org> libusb-0.1.12-r5.ebuild:
+  ppc stable #270023
+
+  16 May 2009; Jeroen Roovers <jer@gentoo.org> libusb-0.1.12-r5.ebuild:
+  Stable for HPPA (bug #270023).
+
+  16 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  libusb-0.1.12-r5.ebuild:
+  Stable on alpha, bug #270023
 
   15 May 2009; Robin H. Johnson <robbat2@gentoo.org> libusb-0.1.11.ebuild,
   libusb-0.1.12.ebuild, libusb-0.1.12-r1.ebuild, libusb-0.1.12-r2.ebuild,
