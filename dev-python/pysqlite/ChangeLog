@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pysqlite
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.89 2009/03/31 20:54:24 patrick Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.91 2009/05/18 13:00:05 fmccor Exp $
+
+  18 May 2009; Ferris McCormick <fmccor@gentoo.org> pysqlite-2.5.5.ebuild:
+  Sparc stable --- Bug #270087 --- which please see.
+
+  17 May 2009; Tobias Klausmann <klausman@gentoo.org> pysqlite-2.5.5.ebuild:
+  Stable on alpha, bug #270087
 
 *pysqlite-2.5.5 (31 Mar 2009)
 
