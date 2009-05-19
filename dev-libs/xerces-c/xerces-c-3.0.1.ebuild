@@ -11,7 +11,7 @@ HOMEPAGE="http://xerces.apache.org/xerces-c/"
 SRC_URI="mirror://apache/xerces/c/3/sources/${P}.tar.gz"
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="curl debug doc iconv icu libwww threads elibc_Darwin elibc_FreeBSD"
 
 RDEPEND="icu? ( dev-libs/icu )
