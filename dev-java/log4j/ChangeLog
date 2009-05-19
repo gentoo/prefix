@@ -1,6 +1,15 @@
 # ChangeLog for dev-java/log4j
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.72 2009/01/07 16:05:24 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.74 2009/05/18 19:53:47 betelgeuse Exp $
+
+*log4j-1.2.15-r2 (18 May 2009)
+
+  18 May 2009; Petteri Räty <betelgeuse@gentoo.org>
+  +log4j-1.2.15-r2.ebuild:
+  Use jms virtual instead of openjms for jms api.
+
+  18 May 2009; Petteri Räty <betelgeuse@gentoo.org> -log4j-1.2.15.ebuild:
+  Remove old revision.
 
   07 Jan 2009; Brent Baude <ranger@gentoo.org> log4j-1.2.15-r1.ebuild:
   stable ppc64, bug 242980
