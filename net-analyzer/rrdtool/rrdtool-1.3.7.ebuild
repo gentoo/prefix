@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.7.ebuild,v 1.1 2009/04/07 16:51:06 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.7.ebuild,v 1.2 2009/05/18 07:15:34 pva Exp $
 
 EAPI=2
 
@@ -79,6 +79,10 @@ pkg_postinst() {
 	ewarn "To restore a new dump with ann old rrdtool restore version, either remove"
 	ewarn "the xml header and the doctype by hand (both on the first line of the dump)"
 	ewarn "or use rrdtool dump --no-header."
+	ewarn
+	ewarn "Note: rrdtool-1.3.x doesn't have any default font bundled. Thus if you've"
+	ewarn "upgraded from rrdtool-1.2.x and don't have any font installed to make"
+	ewarn "lables visible, please, install some font, e.g. media-fonts/dejavu."
 }
 
 pkg_prerm() {
