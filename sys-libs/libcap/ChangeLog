@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/libcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.92 2009/04/26 19:09:10 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.93 2009/05/16 16:17:06 vapier Exp $
+
+*libcap-2.16-r1 (16 May 2009)
+
+  16 May 2009; Mike Frysinger <vapier@gentoo.org> libcap-2.16.ebuild,
+  +libcap-2.16-r1.ebuild, +files/libcap-2.16-drop-linux-workarounds.patch:
+  Drop linux header workarounds #265304 by Johan Hovold.
 
   26 Apr 2009; Brent Baude <ranger@gentoo.org> libcap-2.16.ebuild:
   stable ppc, bug 265791
