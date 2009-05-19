@@ -1,6 +1,20 @@
 # ChangeLog for dev-cpp/gccxml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gccxml/ChangeLog,v 1.23 2009/01/02 01:37:51 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gccxml/ChangeLog,v 1.26 2009/05/18 20:23:16 ranger Exp $
+
+  18 May 2009; Brent Baude <ranger@gentoo.org>
+  gccxml-0.9.0_pre20090516.ebuild:
+  Marking gccxml-0.9.0_pre20090516 ppc for bug 245765
+
+  18 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  gccxml-0.9.0_pre20090516.ebuild:
+  stable x86, security bug 245765
+
+*gccxml-0.9.0_pre20090516 (16 May 2009)
+
+  16 May 2009; Mark Loeser <halcy0n@gentoo.org>
+  +gccxml-0.9.0_pre20090516.ebuild:
+  Version bump; resolves bug #245765
 
   02 Jan 2009; Mark Loeser <halcy0n@gentoo.org>
   +files/gccxml-0.6.0-gcc43.patch, gccxml-0.6.0-r1.ebuild:
