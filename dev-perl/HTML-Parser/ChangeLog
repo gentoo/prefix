@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/HTML-Parser
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Parser/ChangeLog,v 1.106 2009/05/14 23:54:06 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Parser/ChangeLog,v 1.107 2009/05/16 11:16:39 klausman Exp $
+
+  16 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  HTML-Parser-3.60.ebuild:
+  Stable on alpha, bug #269576
 
   14 May 2009; Tiago Cunha <tcunha@gentoo.org> HTML-Parser-3.60.ebuild:
   stable sparc, bug 269576
