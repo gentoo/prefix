@@ -1,0 +1,104 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.18.1.ebuild,v 1.1 2009/05/17 16:34:25 sbriesen Exp $
+
+inherit eutils multilib
+
+DESCRIPTION="EXIF and IPTC metadata C++ library and command line utility"
+HOMEPAGE="http://www.exiv2.org/"
+SRC_URI="http://www.exiv2.org/${P}.tar.gz"
+
+LICENSE="GPL-2"
+SLOT="0"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+IUSE="doc nls zlib xmp examples unicode contrib"
+IUSE_LINGUAS="de es fi fr pl ru sk"
+IUSE="${IUSE} $(printf 'linguas_%s ' ${IUSE_LINGUAS})"
+
+RDEPEND="zlib? ( sys-libs/zlib )
+	xmp? ( dev-libs/expat )
+	nls? ( virtual/libintl )
+	virtual/libiconv"
+DEPEND="${RDEPEND}
+	doc? (
+		dev-lang/python
+		app-doc/doxygen
+		dev-libs/libxslt
+		dev-util/pkgconfig
+		media-gfx/graphviz
+	)
+	nls? ( sys-devel/gettext )
+	contrib? ( >=dev-libs/boost-1.37 )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	if use unicode; then
+		for i in doc/cmd.txt; do
+			echo ">>> Converting "${i}" to UTF-8"
+			iconv -f LATIN1 -t UTF-8 "${i}" > "${i}~" && mv -f "${i}~" "${i}" || rm -f "${i}~"
+		done
+	fi
+
+	if use doc; then
+		echo ">>> Updating doxygen config"
+		doxygen 2>&1 >/dev/null -u config/Doxyfile
+	fi
+
+	if use contrib; then
+		# create build environment for contrib
+		ln -snf ../../src contrib/organize/exiv2
+		sed -i -e 's:/usr/local/include/.*:/usr/include:g' \
+			-e 's:/usr/local/lib/lib:-l:g' -e 's:-gcc..-mt-._..\.a::g' \
+			contrib/organize/boost.mk
+	fi
+}
+
+src_compile() {
+	local myconf="$(use_enable nls) $(use_enable xmp)"
+	use zlib || myconf="${myconf} --without-zlib"  # plain 'use_with' fails
+	econf ${myconf} || die "econf failed"
+	# Needed for Solaris because /bin/sh is not a bash, bug #245647
+	if [[ ${CHOST} == *-solaris* ]]; then
+		sed -i -e "s:/bin/sh:${EPREFIX}/bin/sh:" src/Makefile || die "sed failed"
+	fi
+	emake || die "emake failed"
+
+	if use contrib; then
+		emake -C contrib/organize \
+			LDFLAGS="\$(BOOST_LIBS) -L../../src -lexiv2 ${LDFLAGS}" \
+			CPPFLAGS="${CPPFLAGS} -I\$(BOOST_INC_DIR) -I. -DEXV_HAVE_STDINT_H" \
+		|| die "emake organize failed"
+	fi
+
+	if use doc; then
+		emake doc || die "emake doc failed"
+	fi
+}
+
+src_install() {
+	emake DESTDIR="${D}" install || die "emake install failed"
+
+	if use contrib; then
+		emake DESTDIR="${D}" -C contrib/organize install || die "emake install organize failed"
+	fi
+
+	dodoc README doc/{ChangeLog,cmd.txt}
+	use xmp && dodoc doc/{COPYING-XMPSDK,README-XMP,cmdxmp.txt}
+	use doc && dohtml -r doc/html/.
+	if use examples; then
+		insinto /usr/share/doc/${PF}/examples
+		doins samples/*.cpp
+	fi
+}
+
+pkg_postinst() {
+	ewarn
+	ewarn "PLEASE PLEASE take note of this:"
+	ewarn "Please make *sure* to run revdep-rebuild now"
+	ewarn "Certain things on your system may have linked against a"
+	ewarn "different version of exiv2 -- those things need to be"
+	ewarn "recompiled. Sorry for the inconvenience!"
+	ewarn
+}

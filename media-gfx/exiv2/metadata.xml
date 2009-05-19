@@ -14,5 +14,8 @@
 		<flag name='xmp'>
 			Adds support for Adobe XMP
 		</flag>
+		<flag name='contrib'>
+			Build additional contrib components
+		</flag>
 	</use>
 </pkgmetadata>
