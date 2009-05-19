@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/wxpython
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.121 2009/02/21 22:36:28 dirtyepic Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.122 2009/05/18 03:21:16 dirtyepic Exp $
+
+*wxpython-2.8.10.1 (18 May 2009)
+
+  18 May 2009; Ryan Hill <dirtyepic@gentoo.org> +wxpython-2.8.10.1.ebuild:
+  Version bump.
 
 *wxpython-2.8.9.2 (21 Feb 2009)
 
