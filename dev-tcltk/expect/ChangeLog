@@ -1,6 +1,10 @@
 # ChangeLog for dev-tcltk/expect
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/ChangeLog,v 1.51 2008/12/08 14:08:02 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/ChangeLog,v 1.52 2009/05/16 13:11:21 flameeyes Exp $
+
+  16 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  expect-5.44.1.ebuild, +files/expect-5.44.1-gfbsd.patch:
+  Add patch to fix build on Gentoo/FreeBSD. Closes bug #270049.
 
   08 Dec 2008; Alexis Ballier <aballier@gentoo.org> expect-5.43.0.ebuild,
   expect-5.44.1.ebuild:

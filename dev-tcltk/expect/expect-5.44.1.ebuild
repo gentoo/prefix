@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/expect-5.44.1.ebuild,v 1.3 2008/12/08 14:08:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/expect-5.44.1.ebuild,v 1.4 2009/05/16 13:11:21 flameeyes Exp $
 
 WANT_AUTOCONF="2.5"
 inherit autotools eutils
@@ -46,6 +46,8 @@ src_unpack() {
 	sed -i -e 's/^#include "tcl.h"/#include "tclInt.h"/' exp_inter.c
 	#slacky destdir support in Makefile
 	epatch "${FILESDIR}/${P}-destdir.patch"
+
+	epatch "${FILESDIR}/${P}-gfbsd.patch"
 
 	eautoconf
 }
