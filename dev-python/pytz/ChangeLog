@@ -1,6 +1,16 @@
 # ChangeLog for dev-python/pytz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.22 2009/05/14 17:48:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.24 2009/05/17 16:53:33 armin76 Exp $
+
+  17 May 2009; Raúl Porcel <armin76@gentoo.org> pytz-2008i.ebuild,
+  pytz-2009a.ebuild, pytz-2009g.ebuild:
+  Add ~s390
+
+*pytz-2009g (16 May 2009)
+
+  16 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -pytz-2005m.ebuild, -pytz-2007f.ebuild, +pytz-2009g.ebuild:
+  Version bump (bug #269861).
 
   14 May 2009; Jeroen Roovers <jer@gentoo.org> pytz-2009a.ebuild:
   Marked ~hppa (bug #233554).
