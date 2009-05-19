@@ -1,6 +1,10 @@
 # Unmask the flag which corresponds to ARCH.
 -sh
 
+# Raúl Porcel <armin76@gentoo.org>
+# xulrunner doesn't work on sh yet
+xulrunner
+
 # Mart Raudsepp <leio@gentoo.org>
 # net-misc/networkmanager not keyworded
 networkmanager
@@ -67,6 +71,7 @@ xemacs
 gnomecd
 lapack
 cblas
+webkit
 
 # 2006/02/05 - Donnie Berkholz <dberkholz@gentoo.org>
 # Modular X: mask for architectures on which they aren't available

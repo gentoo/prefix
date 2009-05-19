@@ -54,6 +54,7 @@ captury
 bittorrent-external
 fits
 ktts
+libburn
 
 # Stuff that doesn't compile on ia64
 chicken

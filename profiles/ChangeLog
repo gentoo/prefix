@@ -1,10 +1,39 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2662 2009/05/15 22:33:21 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2671 2009/05/18 16:22:10 dertobi123 Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  18 May 2009; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  Mask =dev-libs/cyrus-sasl-2.1.23 for testing. ABI change without soname
+  change (security bug #270261)
+
+  18 May 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Updated hardmask for openvz sources, e.g. unmasked 2.6.27 kernels.
+
+  18 May 2009; Robin H. Johnson <robbat2@gentoo.org> package.mask:
+  OpenSSH HPN patch breakage has been resolved by upstream now.
+
+  17 May 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask the upcoming automake 1.11 beta.
+
+  17 May 2009; Andreas Proschofsky <suka@gentoo.org> package.mask:
+  Remove mask for app-office/openoffice-3.1.0, finally released now
+
+  17 May 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove masks for app-text/xetex and dev-tex/xkeyval; packages have been
+  removed from tree.
+
+  16 May 2009; Serkan Kaba <serkan@gentoo.org> package.mask:
+  Mask media-sound/jtagger-2008* to allow smoother upgrade.
+
+  16 May 2009; Mounir Lamouri <volkmar@gentoo.org> use.desc:
+  New global USE flag: gsm
+
+  16 May 2009; Thomas Sachau (Tommy[D]) <tommy@gentoo.org> package.mask:
+  Remove mask on sys-fs/aufs2
 
   15 May 2009; Vlastimil Babka <caster@gentoo.org> package.mask:
   Removing the treecleaned ant-1.7.0 from package mask.

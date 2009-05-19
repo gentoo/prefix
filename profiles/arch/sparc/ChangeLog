@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/sparc profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.43 2009/04/25 18:36:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/ChangeLog,v 1.44 2009/05/17 14:30:41 armin76 Exp $
+
+  17 May 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask libburn as it sigbuses
 
   25 Apr 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Use.mask srtp wrt bug #266193
