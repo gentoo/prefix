@@ -3,6 +3,10 @@
 # $Header: $
 # $Id$
 
+# Fabian Groffen <grobian@gentoo.org> (30 Apr 2009)
+# Feels like it has -Werror somewhere as it dies on warnings for Darwin,
+=dev-libs/xmlrpc-c-1.18.02
+
 # Fabian Groffen <grobian@gentoo.org> (08 Oct 2008)
 # odcctools have been replaced by binutils-apple, which is more close to
 # Apple's original sources
