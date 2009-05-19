@@ -1,6 +1,20 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.135 2009/04/17 20:32:25 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.137 2009/05/17 20:50:21 flameeyes Exp $
+
+*automake-1.11 (17 May 2009)
+
+  17 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -automake-1.11_beta.ebuild, +automake-1.11.ebuild:
+  Bump to 1.11 release.
+
+*automake-1.11_beta (17 May 2009)
+
+  17 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -automake-1.10b.ebuild, +automake-1.11_beta.ebuild:
+  Replace the 1.10b ebuild with the same source installed as 1.11_beta, with
+  1.11 slot and fixed dependencies. This version is masked, but can now be
+  used on the same system as 1.10 without extra hassle.
 
   17 Apr 2009; Zac Medico <zmedico@gentoo.org> automake-1.10b.ebuild:
   Fix SRC_URI since alpha/beta releases are not distributed on the usual
