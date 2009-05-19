@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.124 2009/04/26 19:31:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.125 2009/05/17 13:39:52 flameeyes Exp $
+
+  17 May 2009; Diego E. Pettenò <flameeyes@gentoo.org> sandbox-1.7.ebuild,
+  sandbox-1.8.ebuild, sandbox-1.9.ebuild:
+  Remove x86-fbsd keyword for sandbox versions that are known incompatible
+  with FreeBSD.
 
   26 Apr 2009; Brent Baude <ranger@gentoo.org> sandbox-1.6-r2.ebuild:
   stable ppc, bug 265376
