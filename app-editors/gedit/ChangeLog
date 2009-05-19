@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.273 2009/05/14 21:46:45 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.274 2009/05/17 21:45:24 eva Exp $
+
+*gedit-2.26.2 (17 May 2009)
+
+  17 May 2009; Gilles Dartiguelongue <eva@gentoo.org> +gedit-2.26.2.ebuild:
+  Bump to 2.26.2. Small bug fixes and translation updates.
 
   14 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -files/gedit-2.18.1-fbsd.patch, -gedit-2.20.3.ebuild,
