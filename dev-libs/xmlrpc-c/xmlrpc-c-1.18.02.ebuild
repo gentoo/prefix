@@ -10,7 +10,7 @@ DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 SRC_URI="mirror://gentoo/${PN}/${P}.tar.bz2"
 HOMEPAGE="http://xmlrpc-c.sourceforge.net/"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="+curl +cxx tools +cgi abyss threads"
 LICENSE="BSD"
 SLOT="0"
@@ -34,6 +34,7 @@ PATCHES=(
 	"${FILESDIR}/${P}/dumpvalue.patch"
 	"${FILESDIR}/${P}/cpp-depends.patch"
 	"${FILESDIR}/${P}/dump-symlinks.patch"
+	"${FILESDIR}/${P}/libtool.patch"
 	)
 
 src_prepare() {
@@ -50,6 +51,13 @@ src_prepare() {
 		sed -i \
 			-e "/^CFLAGS_COMMON/s/= /= -std=c99 /" \
 			"${S}"/common.mk || die "404. File not found while sedding"
+	fi
+
+	# shipped shared library support is broken for aix: use libtool instead
+	if [[ ${CHOST} == *-aix* ]]; then
+		sed -i \
+			-e '/^USE_LIBTOOL/s/=/= yes/' \
+			"${S}"/config.mk.in || die "404. File not found while sedding"
 	fi
 }
 
