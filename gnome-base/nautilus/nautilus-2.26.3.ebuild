@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.24.2-r3.ebuild,v 1.5 2009/05/18 14:40:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.26.3.ebuild,v 1.1 2009/05/18 21:19:46 eva Exp $
 
 EAPI=2
 
@@ -14,21 +14,19 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="beagle doc gnome tracker xmp"
 
-RDEPEND=">=gnome-base/libbonobo-2.1
-	>=gnome-base/eel-2.24.0
-	>=dev-libs/glib-2.17.5
-	>=gnome-base/gnome-desktop-2.10
-	>=gnome-base/libgnome-2.14
-	>=gnome-base/libgnomeui-2.6
-	>=gnome-base/orbit-2.4
+# not adding gnome-base/gail because it is in gtk+
+RDEPEND=">=dev-libs/glib-2.19.0
+	>=gnome-base/gnome-desktop-2.25.5
 	>=x11-libs/pango-1.1.2
-	>=x11-libs/gtk+-2.13.0
-	>=gnome-base/librsvg-2.0.1
+	>=x11-libs/gtk+-2.16.0
 	>=dev-libs/libxml2-2.4.7
-	>=x11-libs/startup-notification-0.8
 	>=media-libs/libexif-0.5.12
 	>=gnome-base/gconf-2.0
 	>=gnome-base/gvfs-0.1.2
+	dev-libs/libunique
+	dev-libs/dbus-glib
+	x11-libs/libXft
+	x11-libs/libXrender
 	beagle? ( || (
 		dev-libs/libbeagle
 		=app-misc/beagle-0.2* ) )
@@ -36,10 +34,13 @@ RDEPEND=">=gnome-base/libbonobo-2.1
 	xmp? ( >=media-libs/exempi-2 )"
 
 DEPEND="${RDEPEND}
+	>=dev-lang/perl-5
 	sys-devel/gettext
 	>=dev-util/pkgconfig-0.9
-	>=dev-util/intltool-0.35
-	doc? ( >=dev-util/gtk-doc-1.4 )"
+	>=dev-util/intltool-0.40.1
+	doc? ( >=dev-util/gtk-doc-1.4 )
+	gnome-base/gnome-common
+	dev-util/gtk-doc-am"
 
 PDEPEND="gnome? ( >=x11-themes/gnome-icon-theme-1.1.91 )"
 
@@ -48,23 +49,31 @@ DOCS="AUTHORS ChangeLog* HACKING MAINTAINERS NEWS README THANKS TODO"
 pkg_setup() {
 	G2CONF="${G2CONF}
 		--disable-update-mimedb
+		--disable-packagekit
 		$(use_enable beagle)
 		$(use_enable tracker)
 		$(use_enable xmp)"
 }
 
 src_prepare() {
-	# Fix update of scrollbars, bug #260965
-	epatch "${FILESDIR}/${P}-scrollbars.patch"
+	gnome2_src_prepare
 
-	# Fix preview on playlists, bug #263162
-	epatch "${FILESDIR}/${P}-playlist-preview.patch"
+	# FIXME: tarball generated with broken gtk-doc, revisit me.
+	if use doc; then
+		sed "/^TARGET_DIR/i \GTKDOC_REBASE=/usr/bin/gtkdoc-rebase" \
+			-i gtk-doc.make || die "sed 1 failed"
+	else
+		sed "/^TARGET_DIR/i \GTKDOC_REBASE=/bin/true" \
+			-i gtk-doc.make || die "sed 2 failed"
+	fi
 
-	# Fix non asyncness in custom icon filechooser, bug #263165
-	epatch "${FILESDIR}/${P}-filechooser-icon.patch"
+	# gtk-doc-am and gnome-common needed for this
 
-	# Fix scaling of thumbnails, bug #261219
-	epatch "${FILESDIR}/${P}-thumbnail-scaling.patch"
+	# Fix intltoolize broken file, see upstream #577133
+	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
+
+	# Fix nautilus flipping-out with --no-desktop -- bug 266398
+	epatch "${FILESDIR}/${PN}-2.26.2-change-reg-desktop-file-with-no-desktop.patch"
 }
 
 src_test() {
