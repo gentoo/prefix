@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r1.ebuild,v 1.10 2009/04/12 22:39:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r1.ebuild,v 1.11 2009/05/18 09:04:18 robbat2 Exp $
 
 inherit eutils flag-o-matic multilib autotools pam
 
@@ -92,6 +92,9 @@ src_unpack() {
 			epatch "${DISTDIR}"/${LDAP_PATCH}
 			# Not needed anymore of 0.3.11. Merged into the main patch.
 			#epatch "${FILESDIR}"/${PN}-5.1_p1-ldap-hpn-glue.patch
+
+			# Fixup per bug #266654
+			epatch "${FILESDIR}"/${PN}-5.2p1-ldap-stdargs.diff
 		fi
 		#epatch "${DISTDIR}"/openssh-5.0p1-gsskex-20080404.patch #115553 #216932
 	else

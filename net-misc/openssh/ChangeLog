@@ -1,6 +1,17 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.350 2009/04/20 05:32:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.352 2009/05/18 09:04:18 robbat2 Exp $
+
+  18 May 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openssh-5.2_p1-r1.ebuild, openssh-5.2_p1-r2.ebuild,
+  +files/openssh-5.2p1-ldap-stdargs.diff:
+  Bug #266654: Fix LPK compile under uclibc due to missing include statement
+  thanks to Bertrand Jacquin <beber@meleeweb.net>.
+
+  18 May 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openssh-5.2_p1-r2.ebuild:
+  New release of the HPN patch that makes it mostly usable now. The
+  multithreaded AES-CTR portion is disabled to avoid hangs however.
 
   20 Apr 2009; Mike Frysinger <vapier@gentoo.org> openssh-5.2_p1-r2.ebuild:
   Skip pkcs11/kerberos support when USE=static by Alon Bar-Lev #266404 by
