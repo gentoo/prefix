@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/camd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/camd/ChangeLog,v 1.13 2009/04/20 19:42:51 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/camd/ChangeLog,v 1.14 2009/05/17 13:07:48 nixnut Exp $
+
+  17 May 2009; nixnut <nixnut@gentoo.org> camd-2.2.0.ebuild:
+  ppc stable #245707
 
   20 Apr 2009; Markus Meier <maekke@gentoo.org> camd-2.2.0:
   x86 stable, bug #245707
