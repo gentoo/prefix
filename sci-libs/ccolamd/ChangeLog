@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/ccolamd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/ccolamd/ChangeLog,v 1.10 2009/04/20 19:43:44 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/ccolamd/ChangeLog,v 1.11 2009/05/17 13:09:12 nixnut Exp $
+
+  17 May 2009; nixnut <nixnut@gentoo.org> ccolamd-2.7.1.ebuild:
+  ppc stable #245707
 
   20 Apr 2009; Markus Meier <maekke@gentoo.org> ccolamd-2.7.1:
   x86 stable, bug #245707
