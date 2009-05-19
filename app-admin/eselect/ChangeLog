@@ -1,6 +1,21 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.87 2009/04/28 09:50:12 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.91 2009/05/18 19:59:00 ulm Exp $
+
+*eselect-1.1_rc1 (18 May 2009)
+
+  18 May 2009; Ulrich Mueller <ulm@gentoo.org> +eselect-1.1_rc1.ebuild:
+  Version bump.
+
+  18 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  eselect-1.0.12.ebuild:
+  stable x86, bug 270138
+
+  18 May 2009; Jeroen Roovers <jer@gentoo.org> eselect-1.0.12.ebuild:
+  Stable for HPPA (bug #270138).
+
+  17 May 2009; Tobias Klausmann <klausman@gentoo.org> eselect-1.0.12.ebuild:
+  Stable on alpha, bug #270138
 
   28 Apr 2009; Ulrich Mueller <ulm@gentoo.org> metadata.xml, eselect-9999:
   Add paludis USE flag for the live ebuild.
