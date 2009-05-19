@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/libmcrypt-2.5.8-r1.ebuild,v 1.1 2008/12/15 21:00:17 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/libmcrypt-2.5.8-r1.ebuild,v 1.4 2009/05/19 04:25:17 jer Exp $
 
 inherit eutils autotools
 
@@ -26,7 +26,7 @@ src_unpack() {
 src_install() {
 	make install DESTDIR="${D}" || die "install failure"
 
-	dodoc AUTHORS KNOWN-BUGS INSTALL NEWS README THANKS TODO ChangeLog
+	dodoc AUTHORS NEWS README THANKS TODO ChangeLog
 	dodoc doc/README.* doc/example.c
 	prepalldocs
 }
