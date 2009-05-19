@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/vte
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.224 2009/05/03 17:24:56 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.225 2009/05/16 12:39:17 eva Exp $
+
+*vte-0.20.2 (16 May 2009)
+
+  16 May 2009; Gilles Dartiguelongue <eva@gentoo.org> +vte-0.20.2.ebuild:
+  Bump to 0.20.2. Workaround buggy iconv.
 
 *vte-0.20.1 (03 May 2009)
 
