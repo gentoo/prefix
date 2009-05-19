@@ -6,12 +6,6 @@
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
 
-  19 May 2009; Michael Haubenwallner <haubi@gentoo.org>
-  prefix/darwin/package.mask, prefix/package.mask,
-  prefix/sunos/solaris/package.mask:
-  moved '=dev-libs/xmlrpc-c-1.18.02' mask from prefix/ to
-  prefix/sunos/solaris/ and prefix/darwin/, as it works on aix
-
   15 May 2009; Vlastimil Babka <caster@gentoo.org> package.mask:
   Removing the treecleaned ant-1.7.0 from package mask.
 
