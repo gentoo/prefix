@@ -1,6 +1,25 @@
 # ChangeLog for app-shells/bash-completion
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.171 2009/04/14 15:42:10 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.176 2009/05/18 16:05:19 fauli Exp $
+
+  18 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  bash-completion-1.0-r3.ebuild:
+  stable x86, bug 265504
+
+  17 May 2009; nixnut <nixnut@gentoo.org> bash-completion-1.0-r3.ebuild:
+  ppc stable #265504
+
+  16 May 2009; Jeremy Olexa <darkside@gentoo.org>
+  bash-completion-1.0-r3.ebuild:
+  amd64 stable, bug 265504
+
+  16 May 2009; Jeroen Roovers <jer@gentoo.org>
+  bash-completion-1.0-r3.ebuild:
+  Stable for HPPA (bug #265504).
+
+  16 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  bash-completion-1.0-r3.ebuild:
+  Stable on alpha, bug #265504
 
 *bash-completion-1.0-r3 (14 Apr 2009)
 
