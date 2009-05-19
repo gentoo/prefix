@@ -1,6 +1,13 @@
 # ChangeLog for app-office/dia
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.109 2008/12/04 22:08:27 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.110 2009/05/18 20:57:43 eva Exp $
+
+*dia-0.97 (18 May 2009)
+
+  18 May 2009; Gilles Dartiguelongue <eva@gentoo.org> +dia-0.97.ebuild,
+  +files/dia-0.97.0-gnome-doc.patch:
+  Bump to 0.97. Bug fixes, user GtkPrint for printing, and more, bug
+  #270306.
 
   04 Dec 2008; Gilles Dartiguelongue <eva@gentoo.org> -dia-0.96.1.ebuild,
   dia-0.96.1-r1.ebuild:
