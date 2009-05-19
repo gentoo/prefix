@@ -212,9 +212,10 @@ diff -ur Python-2.6.2/Modules/Setup.dist Python-2.6.2-mint/Modules/Setup.dist
  
  
  # Lee Busby's SIGFPE modules.
-@@ -493,3 +493,5 @@
+@@ -493,3 +493,6 @@
  
  # Another example -- the 'xxsubtype' module shows C-level subtyping in action
  xxsubtype xxsubtype.c
 +
 +datetime datetimemodule.c
++bz2 bz2module.c -lbz2
