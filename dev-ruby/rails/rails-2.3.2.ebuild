@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-2.3.2.ebuild,v 1.1 2009/03/17 10:52:50 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-2.3.2.ebuild,v 1.2 2009/05/18 19:10:45 fmccor Exp $
 
 inherit ruby gems
 USE_RUBY="ruby18 ruby19"
