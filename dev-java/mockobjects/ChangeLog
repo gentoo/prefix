@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/mockobjects
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/mockobjects/ChangeLog,v 1.23 2008/08/30 14:36:57 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/mockobjects/ChangeLog,v 1.24 2009/05/18 19:31:13 betelgeuse Exp $
+
+  18 May 2009; Petteri Räty <betelgeuse@gentoo.org>
+  -mockobjects-0.09-r2.ebuild:
+  Remove old revision.
 
   30 Aug 2008; Brent Baude <ranger@gentoo.org> mockobjects-0.09-r3.ebuild:
   stable ppc, bug 235886
