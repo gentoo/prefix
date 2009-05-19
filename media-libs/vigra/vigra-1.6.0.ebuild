@@ -1,8 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/vigra-1.6.0.ebuild,v 1.2 2008/09/28 20:10:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/vigra-1.6.0.ebuild,v 1.3 2009/05/17 13:26:46 loki_val Exp $
 
-inherit multilib
+EAPI=2
+
+inherit eutils multilib
 
 DESCRIPTION="C++ computer vision library with emphasize on customizable algorithms and data structures"
 HOMEPAGE="http://kogs-www.informatik.uni-hamburg.de/~koethe/vigra/"
@@ -11,7 +13,7 @@ SRC_URI="http://kogs-www.informatik.uni-hamburg.de/~koethe/vigra/${P/-}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
-IUSE="doc fftw jpeg png tiff zlib"
+IUSE="doc fftw jpeg png tiff zlib test"
 
 RDEPEND="png? ( media-libs/libpng )
 	tiff? ( media-libs/tiff )
@@ -24,17 +26,46 @@ S="${WORKDIR}/${P/-}"
 
 MY_DOCDIR="usr/share/doc/${PF}"
 
-src_compile() {
+pkg_setup() {
+	local flag
+	export usefail=""
+	if use test
+	then
+		for flag in png tiff jpeg fftw
+		do
+			use $flag || usefail="$usefail $flag"
+		done
+
+		if [[ -n "$usefail" ]]
+		then
+			elog "USE=test enabled but the following use-flags are disabled:"
+			elog "${usefail# }"
+			elog "Tests will be skipped, please enable the other use-flags."
+		fi
+	fi
+}
+
+src_prepare() {
+	epatch "${FILESDIR}/${P}-gcc44.patch"
+}
+
+src_configure() {
 	./configure \
-		--prefix="${EPREFIX}/usr/" \
 		--docdir="${ED}/${MY_DOCDIR}" \
+		--prefix="${EPREFIX}/usr/" \
 		$(use_with png) \
 		$(use_with tiff) \
 		$(use_with jpeg) \
 		$(use_with zlib) \
 		$(use_with fftw) \
-	|| die "configure failed"
-	emake || die "emake failed"
+		|| die "configure failed"
+}
+
+src_test() {
+	if [[ -z "${usefail}" ]]
+	then
+		default
+	fi
 }
 
 src_install() {
