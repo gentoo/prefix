@@ -13,7 +13,7 @@ SRC_URI="http://people.xiph.org/~giles/2008/${MY_P}.tar.bz2
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="+aotuv doc"
 
 RDEPEND=">=media-libs/libogg-1"
