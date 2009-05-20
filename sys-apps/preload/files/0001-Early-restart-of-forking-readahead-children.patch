@@ -37,7 +37,7 @@ index c169e81..7617449 100644
  {
    /* wait for child processes to terminate */
 -  while (procs > 0)
-+  while (procs > maxprocs)
++  while (procs >= maxprocs)
      {
        int status;
        if (wait (&status) > 0)

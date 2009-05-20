@@ -1,6 +1,25 @@
 # ChangeLog for sys-apps/preload
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.9 2009/05/07 03:06:49 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.11 2009/05/20 02:59:02 darkside Exp $
+
+  20 May 2009; Jeremy Olexa <darkside@gentoo.org> -preload-0.6.4.ebuild:
+  remove old
+
+*preload-0.6.4-r1 (20 May 2009)
+
+  20 May 2009; Jeremy Olexa <darkside@gentoo.org>
+  -files/preload-0.6.3-conf.patch, +files/00-patch-configure.diff,
+  -files/preload-0.6.3-forking-children.patch,
+  +files/0002-Create-short-overlapping-io-bursts.patch,
+  -files/preload-0.6.3-nice-segfault.patch,
+  -files/preload-0.6.3-overlapping-io-bursts.patch,
+  +files/0001-Early-restart-of-forking-readahead-children.patch,
+  +files/preload-0.6.4.init.in,
+  +files/0003-Fix-wait_for_children-loop.patch,
+  +files/02-patch-preload_conf.diff, +files/02-patch-preload_sysconfig.diff,
+  -files/conf.d-preload, -files/init.d-preload, -preload-0.6.3-r5.ebuild,
+  +preload-0.6.4-r1.ebuild:
+  Misc fixes, bug 267538 - imported from Kai Krakow's overlay
 
 *preload-0.6.4 (07 May 2009)
 

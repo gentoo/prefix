@@ -1,0 +1,13 @@
+--- a/configure.ac	2008-02-26 12:40:18.421567321 +0100
++++ b/configure.ac	2008-02-26 12:41:10.198008844 +0100
+@@ -54,8 +54,8 @@
+ 
+ # Directories we need.
+ pkgdocdir='${datadir}/doc/'${PACKAGE_NAME}-${PACKAGE_VERSION}
+-initddir='${sysconfdir}/rc.d/init.d'
+-sysconfigdir='${sysconfdir}/sysconfig'
++initddir='${sysconfdir}/init.d'
++sysconfigdir='${sysconfdir}/conf.d'
+ logrotatedir='${sysconfdir}/logrotate.d'
+ logdir='${localstatedir}/log'
+ subsysdir='${localstatedir}/lock/subsys'
