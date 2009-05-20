@@ -1,6 +1,12 @@
 # ChangeLog for app-admin/bcfg2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/bcfg2/ChangeLog,v 1.6 2009/01/08 18:01:41 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/bcfg2/ChangeLog,v 1.7 2009/05/20 02:42:34 darkside Exp $
+
+*bcfg2-1.0_pre2 (20 May 2009)
+
+  20 May 2009; Jeremy Olexa <darkside@gentoo.org> -bcfg2-0.9.6_pre2.ebuild,
+  +bcfg2-1.0_pre2.ebuild:
+  Version bump, patch by solj - bug 263983
 
   08 Jan 2009; Jeremy Olexa <darkside@gentoo.org> bcfg2-0.9.6.ebuild:
   drop gamin dep in favor of gam-server - forget about fam completely, too
