@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/layman
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.73 2009/05/18 15:11:48 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.74 2009/05/19 21:01:07 ranger Exp $
+
+  19 May 2009; Brent Baude <ranger@gentoo.org> layman-1.2.3.ebuild:
+  stable ppc64, bug 257155
 
   18 May 2009; Christian Faulhammer <fauli@gentoo.org> layman-1.2.3.ebuild:
   stable x86, bug 257155
