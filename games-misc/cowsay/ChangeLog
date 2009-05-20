@@ -1,6 +1,9 @@
 # ChangeLog for games-misc/cowsay
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/ChangeLog,v 1.31 2009/05/16 16:20:41 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/cowsay/ChangeLog,v 1.32 2009/05/19 23:30:01 tcunha Exp $
+
+  19 May 2009; Tiago Cunha <tcunha@gentoo.org> cowsay-3.03-r2.ebuild:
+  stable sparc, bug 270009
 
   16 May 2009; nixnut <nixnut@gentoo.org> cowsay-3.03-r2.ebuild:
   ppc stable #270009
