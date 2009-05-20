@@ -1,12 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1_rc1.ebuild,v 1.1 2009/05/18 19:59:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1_rc2.ebuild,v 1.1 2009/05/19 16:40:38 ulm Exp $
 
 inherit eutils prefix
 
 DESCRIPTION="Gentoo's multi-purpose configuration and management tool"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI="mirror://gentoo/${P}.tar.bz2
+	http://dev.gentoo.org/~ulm/distfiles/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
