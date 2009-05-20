@@ -1,6 +1,9 @@
 # ChangeLog for app-text/adiff
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/adiff/ChangeLog,v 1.6 2008/09/03 23:03:46 nyhm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/adiff/ChangeLog,v 1.7 2009/05/19 21:01:56 ranger Exp $
+
+  19 May 2009; Brent Baude <ranger@gentoo.org> adiff-1.4.ebuild:
+  keyworded ~arch for ppc64, bug 269944
 
   03 Sep 2008; Tristan Heaven <nyhm@gentoo.org> -adiff-1.2.ebuild,
   adiff-1.4.ebuild:
