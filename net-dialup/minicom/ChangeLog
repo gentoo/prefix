@@ -1,6 +1,10 @@
 # ChangeLog for net-dialup/minicom
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dialup/minicom/ChangeLog,v 1.67 2008/11/18 22:32:03 mrness Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-dialup/minicom/ChangeLog,v 1.68 2009/05/19 21:58:44 jokey Exp $
+
+  19 May 2009; Markus Ullmann <jokey@gentoo.org> minicom-2.3-r1.ebuild,
+  +files/minicom-2.3-getline-rename.patch:
+  Add glibc name conflict fix, thanks to Conrad Kostecki in bug #270452
 
   18 Nov 2008; Alin Năstac <mrness@gentoo.org> minicom-2.2-r1.ebuild,
   minicom-2.3-r1.ebuild:
