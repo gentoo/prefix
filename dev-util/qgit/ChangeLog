@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/qgit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.44 2009/03/21 16:07:50 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.45 2009/05/19 22:19:08 jokey Exp $
+
+*qgit-2.3 (19 May 2009)
+
+  19 May 2009; Markus Ullmann <jokey@gentoo.org> +qgit-2.3.ebuild:
+  Version bump for bug #269213
 
   21 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
