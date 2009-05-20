@@ -25,7 +25,7 @@ src_unpack() {
 }
 
 src_compile() {
-	econf --docdir=/usr/share/doc/${PF} || die "econf failed"
+	econf --docdir="${EPREFIX}"/usr/share/doc/${PF} || die "econf failed"
 	emake || die "emake failed"
 }
 
