@@ -1,6 +1,10 @@
 # ChangeLog for sys-kernel/linux-headers
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.287 2009/05/09 22:02:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/ChangeLog,v 1.288 2009/05/19 07:23:12 vapier Exp $
+
+  19 May 2009; Mike Frysinger <vapier@gentoo.org>
+  linux-headers-2.6.27-r2.ebuild, linux-headers-2.6.28-r1.ebuild:
+  Fix building with glibc-2.10 due to getline #270383 by David Hallas.
 
 *linux-headers-2.6.29 (09 May 2009)
 
