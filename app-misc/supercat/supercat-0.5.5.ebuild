@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/supercat/supercat-0.5.5.ebuild,v 1.5 2008/11/28 20:22:11 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/supercat/supercat-0.5.5.ebuild,v 1.6 2009/05/19 21:05:52 ranger Exp $
 
 DESCRIPTION="A text file colorizer using powerful regular expressions"
 HOMEPAGE="http://supercat.nosredna.net"

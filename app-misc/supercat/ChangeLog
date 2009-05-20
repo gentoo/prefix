@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/supercat
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/supercat/ChangeLog,v 1.14 2008/11/28 20:22:11 tcunha Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/supercat/ChangeLog,v 1.15 2009/05/19 21:05:52 ranger Exp $
+
+  19 May 2009; Brent Baude <ranger@gentoo.org> supercat-0.5.5.ebuild:
+  keyworded ~arch for ppc64, bug 270082
 
   28 Nov 2008; Tiago Cunha <tcunha@gentoo.org> supercat-0.5.5.ebuild:
   stable sparc
