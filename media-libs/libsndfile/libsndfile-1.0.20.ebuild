@@ -16,7 +16,7 @@ fi
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="alsa jack minimal sqlite"
 
 RDEPEND="!minimal? ( >=media-libs/flac-1.2.1
@@ -55,7 +55,7 @@ src_compile() {
 		--disable-gcc-werror \
 		--disable-gcc-pipe \
 		--disable-dependency-tracking
-	emake || die "emake failed"
+	emake || die "emake failed, if you are on OpenSolaris, see bug #270233"
 }
 
 src_install() {
