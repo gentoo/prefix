@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.7.8.ebuild,v 1.1 2009/05/04 03:41:49 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.7.11.ebuild,v 1.1 2009/05/19 13:54:09 arfrever Exp $
 
 EAPI="2"
 
-inherit autotools eutils libtool
+inherit autotools libtool
 
 DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
 HOMEPAGE="http://www.gnutls.org/"
@@ -46,8 +46,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-lzo.patch"
-
 	epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
 
 	local dir
