@@ -1,7 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/optipng-0.6.2.ebuild,v 1.5 2008/12/07 13:41:52 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/optipng/optipng-0.6.3.ebuild,v 1.2 2009/05/19 12:06:24 nyhm Exp $
 
+EAPI=2
 inherit toolchain-funcs
 
 DESCRIPTION="Compress PNG files without affecting image quality"
@@ -13,16 +14,23 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+DEPEND="media-libs/libpng"
+
+src_prepare() {
 	sed -i \
 		-e '/^C/s: -O2.*: $(GENTOO_CFLAGS) -Wall:' \
 		-e '/^LD/s: -s$: $(GENTOO_LDFLAGS):' \
-		src/scripts/gcc.mak \
-		lib/libpng/scripts/makefile.gcc \
+		src/scripts/gcc.mak.in \
 		lib/pngxtern/scripts/gcc.mak \
 		|| die "sed failed"
+	rm -rf lib/{libpng,zlib}
+}
+
+src_configure() {
+	./configure \
+		-with-system-libpng \
+		-with-system-zlib \
+		|| die "configure failed"
 }
 
 src_compile() {
