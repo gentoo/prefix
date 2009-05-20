@@ -1,10 +1,23 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2671 2009/05/18 16:22:10 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2676 2009/05/20 01:44:08 calchan Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  20 May 2009; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Masked gEDA split ebuilds until they're all committed and tested.
+
+  19 May 2009; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  p.mask postfix-2.6 for now
+
+  19 May 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Mask eselect-1.1_rc1. Remove mask again, since the bad version was removed
+  from the tree.
+
+  19 May 2009; Markos Chandras <hwoarang@gentoo.org> package.mask:
+  Remove entry about rednotebook
 
   18 May 2009; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
   Mask =dev-libs/cyrus-sasl-2.1.23 for testing. ABI change without soname
