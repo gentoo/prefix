@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libmcrypt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/ChangeLog,v 1.48 2009/05/19 04:25:17 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmcrypt/ChangeLog,v 1.49 2009/05/19 20:06:56 ranger Exp $
+
+  19 May 2009; Brent Baude <ranger@gentoo.org> libmcrypt-2.5.8-r1.ebuild:
+  stable ppc64, bug 270322
 
   19 May 2009; Jeroen Roovers <jer@gentoo.org> libmcrypt-2.5.8-r1.ebuild:
   Stable for HPPA (bug #270322).
