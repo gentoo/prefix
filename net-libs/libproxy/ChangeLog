@@ -1,0 +1,53 @@
+# ChangeLog for net-libs/libproxy
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.11 2009/05/20 15:52:15 ranger Exp $
+
+  20 May 2009; Brent Baude <ranger@gentoo.org> libproxy-0.2.3.ebuild:
+  Marking libproxy-0.2.3 ~ppc for bug 268529
+
+  17 May 2009; Raúl Porcel <armin76@gentoo.org> libproxy-0.2.3.ebuild:
+  Add ~arm/~ia64/~sh wrt #268529
+
+  15 May 2009; Tobias Klausmann <klausman@gentoo.org> libproxy-0.2.3.ebuild:
+  Stable on alpha, bug #269186
+
+  15 May 2009; Ferris McCormick <fmccor@gentoo.org> libproxy-0.2.3.ebuild:
+  Add ~sparc for testing, required by Bug #268529.
+
+  15 May 2009; Alexis Ballier <aballier@gentoo.org> libproxy-0.2.3.ebuild,
+  +files/libproxy-0.2.3-fbsd.patch,
+  files/libproxy-0.2.3-fix-as-needed-problem.patch:
+  Adjust dep on xulrunner as it requires 1.9, fix libdl linkage by using
+  portability eclass to link it only on linux, add a merge of various
+  upstream commits to build on BSD and be more POSIX compliant and
+  eventually keyword it ~x86-fbsd, bug #268529
+
+  14 May 2009; Gilles Dartiguelongue <eva@gentoo.org> libproxy-0.2.3.ebuild,
+  +files/libproxy-0.2.3-implicit-declaration.patch:
+  Include implicit declaration fix, bug #268546. Permutate files affected by
+  sed.
+
+  13 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org> metadata.xml:
+  Add more specific descriptions for gnome, kde, webkit, and xulrunner
+  USE-flags
+
+  11 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org> libproxy-0.2.3.ebuild:
+  Fix configure 'test' to follow POSIX (for BSD guys)
+
+  07 May 2009; Tobias Klausmann <klausman@gentoo.org> libproxy-0.2.3.ebuild:
+  Keyworded on alpha, bug #268529
+
+  06 May 2009; Jeroen Roovers <jer@gentoo.org> libproxy-0.2.3.ebuild:
+  Marked ~hppa (bug #268529).
+
+*libproxy-0.2.3 (03 May 2009)
+
+  03 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +files/libproxy-0.2.3-fix-as-needed-problem.patch,
+  +files/libproxy-0.2.3-fix-dbus-includes.patch,
+  +files/libproxy-0.2.3-fix-libxul-cflags.patch,
+  +files/libproxy-0.2.3-fix-python-automagic.patch, +metadata.xml,
+  +libproxy-0.2.3.ebuild:
+  libproxy is a library for automatic proxy configuration management, initial
+  ebuild by nirbheek, closes bug #244028.
+
