@@ -1,9 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.11.ebuild,v 1.1 2009/05/16 07:55:10 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.11.ebuild,v 1.2 2009/05/19 14:08:24 remi Exp $
 
 # Must be before x-modular eclass is inherited
-#SNAPSHOT="yes"
+# This is enabled due to Debian's patched and broken libtool script
+# Tarballs generated on "good" distros shouldn't need this hack
+# see bug #270071
+SNAPSHOT="yes"
 
 inherit x-modular
 
