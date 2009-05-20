@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/String-Format
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/String-Format/ChangeLog,v 1.9 2009/03/28 09:20:48 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/String-Format/ChangeLog,v 1.10 2009/05/19 05:20:06 tove Exp $
+
+*String-Format-1.16 (19 May 2009)
+
+  19 May 2009; Torsten Veller <tove@gentoo.org> +String-Format-1.16.ebuild:
+  Version bump
 
 *String-Format-1.15 (28 Mar 2009)
 
