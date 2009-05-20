@@ -1,17 +1,19 @@
 #!/sbin/runscript
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/files/rtorrentd.init,v 1.1 2008/12/26 07:01:43 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/files/rtorrentd.init,v 1.2 2009/05/20 03:08:12 darkside Exp $
 
 depend() {
 	use net.*
 }
 
 start() {
+	PWHOME="$(getent passwd $USER | awk -F: '{ print $6 }')"
+
 	ebegin "Starting rtorrent"
 	start-stop-daemon --start --chuid $USER \
 	--env TERM="xterm" \
-	--env HOME="/home/$USER" \
+	--env HOME="${PWHOME:-/home/$USER}" \
 	--exec /usr/bin/screen -- -dmS rtorrentd /usr/bin/rtorrent
 	eend $?
 }

@@ -1,6 +1,12 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.135 2009/03/06 00:13:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.136 2009/05/20 03:08:11 darkside Exp $
+
+  20 May 2009; Jeremy Olexa <darkside@gentoo.org> files/rtorrentd.init,
+  -rtorrent-0.7.9.ebuild, -rtorrent-0.8.2-r3.ebuild,
+  -rtorrent-0.8.2-r5.ebuild:
+  Allow init script to find homedir instead of hardcoding it, patch by Michał
+  Górny, bug 265969
 
   06 Mar 2009; Jeroen Roovers <jer@gentoo.org> rtorrent-0.8.4-r1.ebuild:
   Stable for HPPA (bug #255756).
