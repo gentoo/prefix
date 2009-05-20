@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/realpath
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.40 2009/05/11 20:29:15 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.41 2009/05/19 22:11:35 ulm Exp $
+
+*realpath-1.14-r1 (19 May 2009)
+
+  19 May 2009; Ulrich Mueller <ulm@gentoo.org> -realpath-1.14.ebuild,
+  +realpath-1.14-r1.ebuild, +files/realpath-1.14-no-po4a.patch:
+  Don't build translated man pages, in order to drop the build-time
+  dependency on po4a; fixes bug 269905. Re-add ~ppc64 keyword.
 
   11 May 2009; Peter Alfredsen <loki_val@gentoo.org> realpath-1.14.ebuild:
   Force-define VERSION to drop dpkg dependency.
