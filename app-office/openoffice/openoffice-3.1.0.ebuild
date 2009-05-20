@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0.ebuild,v 1.1 2009/05/17 07:53:04 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0.ebuild,v 1.2 2009/05/19 11:26:36 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI=2
@@ -231,6 +231,8 @@ src_unpack() {
 	epatch "${FILESDIR}/gentoo-${PV}.diff"
 	epatch "${FILESDIR}/ooo-env_log.diff"
 	cp -f "${FILESDIR}/base64.diff" "${S}/patches/hotfixes" || die
+	cp -f "${FILESDIR}/buildfix-gcc44.diff" "${S}/patches/hotfixes" || die
+	cp -f "${FILESDIR}/ooo_getline.diff" "${S}/patches/hotfixes" || die
 
 	#Use flag checks
 	if use java ; then
@@ -373,7 +375,7 @@ pkg_postinst() {
 
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
-	bash-completion_pkg_postinst
+	BASH_COMPLETION_NAME=ooffice && bash-completion_pkg_postinst
 
 # does this make sense for Prefix?
 	[[ -x ${EPREFIX}/sbin/chpax ]] && [[ -e ${EPREFIX}/usr/$(get_libdir)/openoffice/program/soffice.bin ]] && chpax -zm ${EPREFIX}/usr/$(get_libdir)/openoffice/program/soffice.bin
