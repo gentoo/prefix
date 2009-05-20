@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.126 2009/03/31 19:19:20 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.127 2009/05/19 21:23:32 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -432,10 +432,9 @@ java-pkg_addcp() {
 java-pkg_doso() {
 	debug-print-function ${FUNCNAME} $*
 
-	[[ ${#} -lt 1 ]] &&  "At least one argument required for ${FUNCNAME}"
 	java-pkg_check-phase install
 
-	[[ ${#} -lt 1 ]] &&  die "At least one argument required for ${FUNCNAME}"
+	[[ ${#} -lt 1 ]] && die "${FUNCNAME} requires at least one argument"
 
 	java-pkg_init_paths_
 
@@ -453,10 +452,8 @@ java-pkg_doso() {
 				debug-print "Installing ${lib} to ${JAVA_PKG_LIBDEST}"
 			# otherwise make a symlink to the symlink's origin
 			else
-				# TODO use dosym
-				ln -s "$(readlink "${lib}")" \
-					"${ED}${JAVA_PKG_LIBDEST}/$(basename "${lib}")"
-				debug-print "${lib} is a symlink, linking accordanly"
+				dosym "$(readlink "${lib}")" "${JAVA_PKG_LIBDEST}/${lib##*/}"
+				debug-print "${lib} is a symlink, linking accordantly"
 			fi
 		# otherwise die
 		else
@@ -482,7 +479,7 @@ java-pkg_regso() {
 
 	java-pkg_check-phase install
 
-	[[ ${#} -lt 1 ]] &&  "at least one argument needed"
+	[[ ${#} -lt 1 ]] && die "${FUNCNAME} requires at least one argument"
 
 	java-pkg_init_paths_
 
