@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/unifdef
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/unifdef/ChangeLog,v 1.4 2008/03/31 12:44:05 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/unifdef/ChangeLog,v 1.6 2009/05/19 07:17:53 vapier Exp $
+
+*unifdef-1.23 (19 May 2009)
+
+  19 May 2009; Mike Frysinger <vapier@gentoo.org> +unifdef-1.23.ebuild:
+  Version bump.
+
+  19 May 2009; Mike Frysinger <vapier@gentoo.org> unifdef-1.20.ebuild:
+  Fix build error with glibc-2.10 due to getline() #270369 by Harris
+  Landgarten.
 
   23 May 2007; Diego Pettenò <flameeyes@gentoo.org> unifdef-1.20.ebuild:
   Replace ~x86-fbsd with -x86-fbsd and add -sparc-fbsd, as this package is not
