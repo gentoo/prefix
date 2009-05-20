@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/puppet
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.39 2009/04/19 11:47:43 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.40 2009/05/19 15:41:56 fmccor Exp $
+
+  19 May 2009; Ferris McCormick <fmccor@gentoo.org> puppet-0.24.8-r1.ebuild:
+  Sparc stable, Bug #270432.
 
 *puppet-0.24.8-r1 (19 Apr 2009)
 
