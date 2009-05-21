@@ -1,0 +1,28 @@
+# ChangeLog for dev-perl/Readonly
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Readonly/ChangeLog,v 1.7 2009/03/01 19:26:01 tcunha Exp $
+
+  01 Mar 2009; Tiago Cunha <tcunha@gentoo.org> Readonly-1.03.ebuild:
+  stable amd64, bug 260621
+
+  01 Mar 2009; nixnut <nixnut@gentoo.org> Readonly-1.03.ebuild:
+  ppc stable #260621
+
+  17 Jul 2008; Raúl Porcel <armin76@gentoo.org> Readonly-1.03.ebuild:
+  sparc/x86 stable
+
+  23 May 2008; Samuli Suominen <drac@gentoo.org> Readonly-1.03.ebuild:
+  ~amd64 wrt #219164
+
+  17 May 2008; nixnut <nixnut@gentoo.org> Readonly-1.03.ebuild:
+  Added ~ppc wrt bug 219164
+
+  24 Apr 2008; Ferris McCormick <fmccor@gentoo.org> Readonly-1.03.ebuild:
+  Add ~sparc, part of Bug #219164, all tests pass.
+
+*Readonly-1.03 (24 Apr 2008)
+
+  24 Apr 2008; Yuval Yaari <yuval@gentoo.org> +metadata.xml,
+  +Readonly-1.03.ebuild:
+  Adding Readonly, dependency for Perl-Critic
+
