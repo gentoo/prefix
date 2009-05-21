@@ -88,6 +88,7 @@ src_configure() {
 	myconf="${myconf} $(use_with pdf pdf "${EPREFIX}"/usr/$(get_libdir))"
 	myconf="${myconf} $(use_with lua)"
 	myconf="${myconf} $(use_with doc tutorial)"
+	myconf="${myconf} $(use_with latex kpsexpand)"
 
 	use ggi \
 		&& myconf="${myconf} --with-ggi=${EPREFIX}/usr/$(get_libdir)
