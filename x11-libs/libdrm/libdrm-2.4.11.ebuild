@@ -14,7 +14,7 @@ DESCRIPTION="X.Org libdrm library"
 HOMEPAGE="http://dri.freedesktop.org/"
 SRC_URI="http://dri.freedesktop.org/libdrm/${P}.tar.gz"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 RESTRICT="test" # see bug #236845
 
