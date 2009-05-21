@@ -206,7 +206,7 @@ elibtoolize() {
 		elt_patches="${elt_patches} aixrtl"
 
 	[[ ${CHOST} == *"-darwin"* ]] && \
-		elt_patches="${elt_patches} darwin-ltconf darwin-ltmain"
+		elt_patches="${elt_patches} darwin-ltconf darwin-ltmain darwin-conf"
 
 	[[ ${CHOST} == *"-hpux"* ]] && \
 		elt_patches="${elt_patches} hpux-conf hpux-ltmain"
@@ -288,6 +288,18 @@ elibtoolize() {
 				"fbsd-ltconf")
 					if [[ -s ${x}/ltconfig ]] ; then
 						ELT_walk_patches "${x}/ltconfig" "${y}"
+						ret=$?
+					fi
+					;;
+				"darwin-conf")
+					if [[ -e ${x}/configure && \
+					      -n $(grep '&& echo \.so ||' "${x}/configure") ]] ; then
+						ELT_walk_patches "${x}/configure" "${y}"
+						ret=$?
+					# ltmain.sh and co might be in a subdirectory ...
+					elif [[ ! -e ${x}/configure && -e ${x}/../configure && \
+					        -n $(grep '&& echo \.so ||' "${x}/../configure") ]] ; then
+						ELT_walk_patches "${x}/../configure" "${y}"
 						ret=$?
 					fi
 					;;
