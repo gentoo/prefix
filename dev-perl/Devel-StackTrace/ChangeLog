@@ -1,0 +1,215 @@
+# ChangeLog for dev-perl/Devel-StackTrace
+# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Devel-StackTrace/ChangeLog,v 1.51 2008/12/30 16:02:33 tove Exp $
+
+  30 Dec 2008; Torsten Veller <tove@gentoo.org>
+  -Devel-StackTrace-1.19.ebuild, -Devel-StackTrace-1.19.02.ebuild:
+  Cleanup
+
+  18 Nov 2008; Torsten Veller <tove@gentoo.org>
+  Devel-StackTrace-1.15.ebuild, Devel-StackTrace-1.18.ebuild,
+  Devel-StackTrace-1.19.ebuild, Devel-StackTrace-1.19.02.ebuild,
+  Devel-StackTrace-1.20.ebuild:
+  New virtuals: module-build
+
+*Devel-StackTrace-1.20 (26 Oct 2008)
+
+  26 Oct 2008; Torsten Veller <tove@gentoo.org>
+  +Devel-StackTrace-1.20.ebuild:
+  Version bump
+
+  07 Sep 2008; Torsten Veller <tove@gentoo.org>
+  -Devel-StackTrace-1.12.ebuild, -Devel-StackTrace-1.13.ebuild,
+  -Devel-StackTrace-1.14.ebuild:
+  Cleanup
+
+*Devel-StackTrace-1.19.02 (07 Sep 2008)
+
+  07 Sep 2008; Torsten Veller <tove@gentoo.org>
+  +Devel-StackTrace-1.19.02.ebuild:
+  Version bump
+
+  15 Jul 2008; Raúl Porcel <armin76@gentoo.org>
+  Devel-StackTrace-1.18.ebuild:
+  alpha/ia64/sparc/x86 stable
+
+*Devel-StackTrace-1.19 (01 Jul 2008)
+
+  01 Jul 2008; wrobel@gentoo.org +Devel-StackTrace-1.19.ebuild:
+  Added Devel-StackTrace-1.19 required for rt-3.6.7 (sec issue #230007).
+
+*Devel-StackTrace-1.18 (29 Apr 2008)
+
+  29 Apr 2008; Yuval Yaari <yuval@gentoo.org> +Devel-StackTrace-1.18.ebuild:
+  Version bump
+
+  19 Mar 2008; Jeroen Roovers <jer@gentoo.org> Devel-StackTrace-1.15.ebuild:
+  Stable for HPPA too.
+
+  09 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  Devel-StackTrace-1.15.ebuild:
+  Stable on ppc.
+
+  05 Jul 2007; Raúl Porcel <armin76@gentoo.org>
+  Devel-StackTrace-1.15.ebuild:
+  alpha/ia64/x86 stable
+
+  21 Jun 2007; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.14.ebuild, Devel-StackTrace-1.15.ebuild:
+  Marking sparc stable
+
+*Devel-StackTrace-1.15 (11 May 2007)
+
+  11 May 2007; Michael Cummings <mcummings@gentoo.org>
+  +Devel-StackTrace-1.15.ebuild:
+  Version bump
+
+  18 Apr 2007; Christian Hartmann <ian@gentoo.org>
+  Devel-StackTrace-1.14.ebuild:
+  Whitespaces
+
+*Devel-StackTrace-1.14 (19 Mar 2007)
+
+  19 Mar 2007; Yuval Yaari <yuval@gentoo.org> +Devel-StackTrace-1.14.ebuild:
+  Version bump
+
+  05 Mar 2007; Andrej Kacian <ticho@gentoo.org>
+  Devel-StackTrace-1.13.ebuild:
+  Stable on x86, bug #169152.
+
+  19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.12.ebuild, Devel-StackTrace-1.13.ebuild:
+  Ebuild maintenance
+
+  15 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.12.ebuild, Devel-StackTrace-1.13.ebuild:
+  Ebuild maintenance
+
+  16 Sep 2006; Tobias Scherbaum <dertobi123@gentoo.org>
+  Devel-StackTrace-1.13.ebuild:
+  ppc stable
+
+  07 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.13.ebuild:
+  Marking amd64 stable
+
+  05 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.12.ebuild, Devel-StackTrace-1.13.ebuild:
+  Adding perl dep; fixed DEPEND
+
+  19 Jul 2006; Bryan Østergaard <kloeri@gentoo.org>
+  Devel-StackTrace-1.13.ebuild:
+  Stable on alpha.
+
+  14 Jul 2006; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.12.ebuild, Devel-StackTrace-1.13.ebuild:
+  Forcing mb version
+
+  10 Jul 2006; Aron Griffis <agriffis@gentoo.org>
+  Devel-StackTrace-1.13.ebuild:
+  Mark 1.13 stable on ia64
+
+  29 Jun 2006; Gustavo Zacarias <gustavoz@gentoo.org>
+  Devel-StackTrace-1.13.ebuild:
+  Stable on hppa
+
+  12 Jun 2006; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.13.ebuild:
+  Marking stable sparc
+
+*Devel-StackTrace-1.13 (25 Apr 2006)
+
+  25 Apr 2006; <mcummings@gentoo.org> +Devel-StackTrace-1.13.ebuild:
+  Version bump
+
+  03 Mar 2006; Chris White <chriswhite@gentoo.org>
+  -Devel-StackTrace-1.03.ebuild, -Devel-StackTrace-1.11.ebuild,
+  Devel-StackTrace-1.12.ebuild:
+  Removed old crufty versions.  amd64 stable on 1.12.
+
+  13 Feb 2006; <mcumming@gentoo.org> Devel-StackTrace-1.03.ebuild:
+  Virtual for perl-core dep
+
+  04 Feb 2006; Aron Griffis <agriffis@gentoo.org>
+  Devel-StackTrace-1.12.ebuild:
+  Mark 1.12 stable on ia64
+
+  31 Jan 2006; Aron Griffis <agriffis@gentoo.org>
+  Devel-StackTrace-1.12.ebuild:
+  Mark 1.12 stable on alpha
+
+  16 Jan 2006; Rene Nussbaumer <killerfox@gentoo.org>
+  Devel-StackTrace-1.12.ebuild:
+  Stable on hppa.
+
+  15 Jan 2006; Michael Hanselmann <hansmi@gentoo.org>
+  Devel-StackTrace-1.12.ebuild:
+  Stable on ppc.
+
+  13 Jan 2006; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.12.ebuild:
+  marking stable sparc x86
+
+*Devel-StackTrace-1.12 (19 Nov 2005)
+
+  19 Nov 2005; Michael Cummings <mcummings@gentoo.org>
+  +Devel-StackTrace-1.12.ebuild:
+  Version bump
+
+  17 Sep 2005; Aron Griffis <agriffis@gentoo.org>
+  Devel-StackTrace-1.11.ebuild:
+  Mark 1.11 stable on ia64
+
+  08 Sep 2005; Aron Griffis <agriffis@gentoo.org>
+  Devel-StackTrace-1.11.ebuild:
+  Mark 1.11 stable on alpha
+
+  25 Aug 2005; Aron Griffis <agriffis@gentoo.org>
+  Devel-StackTrace-1.11.ebuild:
+  add ~ia64
+
+  21 Aug 2005; Rene Nussbaumer <killerfox@gentoo.org>
+  Devel-StackTrace-1.11.ebuild:
+  Stable on hppa.
+
+  12 Aug 2005; Gustavo Zacarias <gustavoz@gentoo.org>
+  Devel-StackTrace-1.11.ebuild:
+  Stable on sparc
+
+  12 Aug 2005; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.11.ebuild:
+  Marking stable on x86
+
+  25 May 2005; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.03.ebuild:
+  dev-perl/Test-Simple => perl-core/Test-Simple migration
+
+  16 Mar 2005; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.11.ebuild:
+  module-build dep
+
+*Devel-StackTrace-1.11 (05 Jun 2004)
+
+  05 Jun 2004; Michael Cummings <mcummings@gentoo.org>
+  Devel-StackTrace-1.11.ebuild:
+  new version on cpan
+
+  07 Jun 2003; <rac@gentoo.org> Devel-StackTrace-1.03.ebuild:
+  Add IUSE, shift URL to by-modules
+
+*Devel-StackTrace-1.03 (22 Apr 2003)
+
+  22 Apr 2003; <rac@gentoo.org> Devel-StackTrace-1.02.ebuild,
+  Devel-StackTrace-1.02.ebuild, Devel-StackTrace-1.03.ebuild:
+  Version bump, thanks to Joshua J. Berry <condor-gentoo@condordes.net> in bug
+  #18200
+
+  06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
+ 
+*Devel-StackTrace-1.02 (13 Nov 2002)
+
+  13 Nov 2002; Matthew Kennedy <mkennedy@gentoo.org>
+  Devel-StackTrace-1.02.ebuild, ChangeLog,
+  files/digest-Devel-StackTrace-1.02 :
+
+  Initial import. Required dep by updated version of HTML::Mason.
