@@ -68,7 +68,7 @@ src_prepare() {
 	use archive && epatch "${FILESDIR}/${PN}-1.2.2-expose-archive-backend.patch"
 	use gphoto2 || use archive && eautoreconf
 
-	epatch "${FILESDIR}"/${PN}-0.2.3-interix.patch
+	#epatch "${FILESDIR}"/${PN}-0.2.3-interix.patch
 	# There is no mkdtemp on Solaris libc. Using the same code as on Interix	
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		sed -i -e 's:mkdtemp:mktemp:g' daemon/gvfsbackendburn.c
