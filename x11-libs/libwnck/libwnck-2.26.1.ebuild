@@ -28,5 +28,10 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 src_unpack() {
 	gnome2_src_unpack
+
+	# eautreconf requires a gtkdocize ran before it, otherwise the variable
+	# $GTKDOC_REBASE is not set in the Makefiles and causes failure.
+	gtkdocize
+
 	eautoreconf # need new libtool for interix
 }
