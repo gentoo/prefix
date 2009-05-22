@@ -46,6 +46,9 @@ src_prepare() {
 	for x in ARFLAGS CFLAGS CPPFLAGS CXXFLAGS FFLAGS LDFLAGS; do
 		sed -i -e "/^${x} =.*/s:@${x}@::" "config/Makefile.inc.in" || die "sed failed"
 	done
+
+	# for correct install_names
+	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
 }
 
 src_configure() {
@@ -53,6 +56,11 @@ src_configure() {
 		--enable-static \
 		$(use_enable debug) \
 		$(use_enable examples samples)
+}
+
+src_compile() {
+	# Darwin needs an object index
+	emake ARFLAGS="sr" || die
 }
 
 src_test() {
