@@ -3,6 +3,9 @@
 # $Id$
 
   22 May 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Remove broken xscreensaver-5.08 from prefix tree
+
+  22 May 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   Update mask for xfce4-4.6.*
 
   19 May 2009; Fabian Groffen <grobian@gentoo.org>

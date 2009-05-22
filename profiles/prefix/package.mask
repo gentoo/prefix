@@ -61,10 +61,6 @@ net-wireless/aircrack-ng
 # Error: /rangecheck in /findfont, 8.63 works fine
 =app-text/ghostscript-gpl-8.64*
 
-# Fabian Groffen <grobian@gentoo.org> (24 Feb 2009)
-# Get gentoo-x86 to fix bug #256072 first...
-=x11-misc/xscreensaver-5.08
-
 # Fabian Groffen <grobian@gentoo.org> (22 Feb 2009)
 # Some packages need readline-5, depending on it, causing our depgraph
 # to break, waiting for gentoo-x86 to resolve it in some way
