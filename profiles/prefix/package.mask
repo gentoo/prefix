@@ -53,8 +53,8 @@ net-wireless/aircrack-ng
 # xfce4-4.6.0 requires xorg-server-1.5.3 to work 100%.
 # If you a) have that or b) don't care that somethings might not work, then
 # xfce4-4.6.0 should work for you.
-=xfce-base/xfce4-4.6.0
-=xfce-base/xfce4-session-4.6.0
+>=xfce-base/xfce4-4.6.0
+>=xfce-base/xfce4-session-4.6.0
 
 # Fabian Groffen <grobian@gentoo.org> (25 Mar 2009)
 # Fails to build my thesis' and papers' images with
