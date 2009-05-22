@@ -60,6 +60,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-solaris.patch
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-apple.patch
+	[[ ${CHOST} == *-freebsd7* ]] && \
+		epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-freebsd7.patch
 	# /bin/sh on at least Solaris can't cope very will with these scripts
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
 }
