@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.89 2009/05/17 14:20:27 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.90 2009/05/21 16:11:18 armin76 Exp $
+
+  21 May 2009; Raúl Porcel <armin76@gentoo.org> libusb-0.1.12-r5.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #270023
 
   17 May 2009; Alexis Ballier <aballier@gentoo.org> libusb-1.0.1.ebuild:
   keyword -x86-fbsd for now, its not supported
