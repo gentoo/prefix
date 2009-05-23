@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pygments
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/ChangeLog,v 1.32 2009/05/17 16:45:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/ChangeLog,v 1.33 2009/05/21 14:50:47 armin76 Exp $
+
+  21 May 2009; Raúl Porcel <armin76@gentoo.org> pygments-0.9.ebuild,
+  pygments-0.10.ebuild, pygments-0.11.1.ebuild, pygments-1.0.ebuild:
+  Add ~arm/~sh
 
   17 May 2009; Raúl Porcel <armin76@gentoo.org> pygments-1.0.ebuild:
   Add ~s390

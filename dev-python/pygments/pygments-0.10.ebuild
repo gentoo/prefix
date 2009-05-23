@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/pygments-0.10.ebuild,v 1.9 2008/10/04 18:02:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/pygments-0.10.ebuild,v 1.10 2009/05/21 14:50:47 armin76 Exp $
 
 NEED_PYTHON=2.3
 
