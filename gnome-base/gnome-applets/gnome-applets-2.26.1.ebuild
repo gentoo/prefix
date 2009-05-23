@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.26.1.ebuild,v 1.1 2009/05/11 22:01:31 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.26.1.ebuild,v 1.3 2009/05/22 11:50:43 nirbheek Exp $
 
 inherit autotools eutils gnome2 python
 
@@ -46,7 +46,8 @@ RDEPEND=">=x11-libs/gtk+-2.13
 		>=dev-python/gnome-applets-python-2.10 )
 	gstreamer?	(
 		>=media-libs/gstreamer-0.10.2
-		>=media-libs/gst-plugins-base-0.10.14 )
+		>=media-libs/gst-plugins-base-0.10.14
+		>=media-plugins/gst-plugins-alsa-0.10.14 )
 	networkmanager? ( >=net-misc/networkmanager-0.7.0 )
 	policykit? (
 		>=sys-auth/policykit-0.7
@@ -90,10 +91,6 @@ pkg_setup() {
 		$(use_enable ipv6)
 		$(use_enable networkmanager)
 		$(use_enable policykit polkit)"
-
-	if use gstreamer; then
-		G2CONF="${G2CONF} --with-gstreamer=0.10"
-	fi
 
 	if ! use ppc && ! use apm && ! use acpi; then
 		G2CONF="${G2CONF} --disable-battstat"
