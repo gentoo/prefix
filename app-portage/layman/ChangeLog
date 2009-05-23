@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/layman
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.74 2009/05/19 21:01:07 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.75 2009/05/22 15:58:45 armin76 Exp $
+
+  22 May 2009; Raúl Porcel <armin76@gentoo.org> layman-1.2.3.ebuild:
+  alpha/arm/ia64/sparc stable wrt #257155
 
   19 May 2009; Brent Baude <ranger@gentoo.org> layman-1.2.3.ebuild:
   stable ppc64, bug 257155
