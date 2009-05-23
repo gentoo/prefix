@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/vigra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/ChangeLog,v 1.20 2009/05/19 20:13:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/ChangeLog,v 1.21 2009/05/21 19:55:38 ranger Exp $
+
+  21 May 2009; Brent Baude <ranger@gentoo.org> vigra-1.6.0.ebuild:
+  stable ppc, bug 270195
 
   19 May 2009; Brent Baude <ranger@gentoo.org> vigra-1.6.0.ebuild:
   stable ppc64, bug 270195
