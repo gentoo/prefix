@@ -2,14 +2,9 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 
 <pkgmetadata>
-<herd>no-herd</herd>
 	<maintainer>
-		<email>jokey@gentoo.org</email>
-		<name>Markus Ullmann</name>
-	</maintainer>
-	<maintainer>
-		<email>atj@pulsewidth.org.uk</email>
-		<name>Adam James</name>
+		<email>nirbheek@gentoo.org</email>
+		<name>Nirbheek Chauhan</name>
 	</maintainer>
 	<longdescription>
 "Murrine" is an Italian word meaning the glass artworks done by Venicians glass
@@ -22,7 +17,9 @@ The Engine is cairo-based, and it's very fast compared to clearlooks-cairo and
 ubuntulooks (30% faster and more), since I have tried to optimize the code and
 removed a lot of slow gradients to provide this unique style.
 	</longdescription>
-<use>
-<flag name="animation-rtl">progressbar animation from right to left</flag>
-</use>
+	<use>
+		<flag name="animation-rtl">Progressbar animation from right to left</flag>
+		<flag name="themes">Pull in themes via
+			<pkg>x11-themes/murrine-themes</pkg></flag>
+	</use>
 </pkgmetadata>
