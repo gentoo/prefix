@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/dpkg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.87 2009/05/04 16:34:30 yvasilev Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.88 2009/05/21 21:00:22 jer Exp $
+
+*dpkg-1.15.1 (21 May 2009)
+
+  21 May 2009; Jeroen Roovers <jer@gentoo.org> +dpkg-1.15.1.ebuild,
+  +files/dpkg-1.15.1-nls.patch:
+  Version bump. Rewritten -nls.patch. Drop -start-stop-daemon.8.patch as
+  that is fixed upstream now.
 
   04 May 2009; <yvasilev@gentoo.org>
   files/dpkg-1.14.25-start-stop-daemon.8.patch:
