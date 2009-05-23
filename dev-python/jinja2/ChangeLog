@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/jinja2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/ChangeLog,v 1.8 2009/05/17 16:52:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/ChangeLog,v 1.11 2009/05/21 18:54:12 jer Exp $
+
+  21 May 2009; Raúl Porcel <armin76@gentoo.org> jinja2-2.1.1.ebuild:
+  Add ~arm/~sh/~sparc
 
   17 May 2009; Raúl Porcel <armin76@gentoo.org> jinja2-2.1.1.ebuild:
   Add ~s390
