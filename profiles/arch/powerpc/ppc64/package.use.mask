@@ -1,3 +1,8 @@
+# Brent Baude <ranger@gentoo.org> (05 May 2009)
+# Masking webkit from  libproxy due to TOC failure on webkit
+# and stupid 64bit toolchain.
+net-libs/libproxy	webkit
+
 # Brent Baude <ranger@gentoo.org> (11 June 2008)
 # Masking webkit from gimp do to lame ppc64 toolchain and TOC
 >=media-gfx/gimp-2.6.4 webkit

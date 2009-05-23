@@ -1,10 +1,26 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2676 2009/05/20 01:44:08 calchan Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2681 2009/05/22 14:21:40 aballier Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  22 May 2009; Alexis Ballier <aballier@gentoo.org> profiles.desc:
+  add freebsd-7.2 profiles to profiles.desc
+
+  22 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Removed unfunctional ebuilds lastfm-ripper, rat (security issue),
+  wavesurfer, eq-audacious.
+
+  20 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Unmask media-sound/mpd-0.15_beta2.
+
+  20 May 2009; Tobias Scherbaum <dertobi123@gentoo.org> package.mask:
+  Adjust postfix-2.6 mask
+
+  20 May 2009; Denis Dupeyron <calchan@gentoo.org> package.mask:
+  Removed mask on gEDA split ebuilds since everything seems to work.
 
   20 May 2009; Denis Dupeyron <calchan@gentoo.org> package.mask:
   Masked gEDA split ebuilds until they're all committed and tested.

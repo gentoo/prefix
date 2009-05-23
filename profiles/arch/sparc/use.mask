@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/use.mask,v 1.20 2009/05/17 14:30:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/use.mask,v 1.21 2009/05/22 14:55:05 armin76 Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -sparc
@@ -76,6 +76,7 @@ xfs
 ifp
 pyste
 v4l2
+topal
 
 # No hardware to test
 ivtv

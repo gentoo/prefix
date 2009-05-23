@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9823 2009/05/20 01:44:08 calchan Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9827 2009/05/22 01:08:21 ssuominen Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,22 +31,9 @@
 
 #--- END OF EXAMPLES ---
 
-# Denis Dupeyron <calchan@gentoo.org> 19 May 2009
-# Masked all split ebuilds for gEDA until they're all committed and tested.
-=sci-libs/libgeda-1.4.3-r1
-=sci-electronics/geda-1.4.3-r1
-sci-electronics/geda-docs
-sci-electronics/geda-examples
-sci-electronics/geda-gattrib
-sci-electronics/geda-gnetlist
-sci-electronics/geda-gschem
-sci-electronics/geda-gsymcheck
-sci-electronics/geda-symbols
-sci-electronics/geda-utils
-
 # Tobias Scherbaum <dertobi123@gentoo.org> (19 May 2009)
 # Masked for testing
-=mail-mta/postfix-2.6.0
+=mail-mta/postfix-2.6.1
 
 # Tobias Scherbaum <dertobi123@gentoo.org> (18 May 2009)
 # Masked for testing, ABI change without soname change (security bug #270261)
@@ -86,13 +73,6 @@ dev-ruby/ruby-config
 # unused. Removal in 30 days.
 gnome-base/libghttp
 
-# Samuli Suominen <ssuominen@gentoo.org> (14 May 2009)
-# Masked for removal wrt #263804, doesn't work with current
-# LastFM API and upstream has went missing. The package
-# needs new upstream, or we end up maintaining a huge
-# patchset for it.
-media-sound/lastfm-ripper
-
 # Mike Pagano <mpagano@gentoo.org> (13 May 2009)
 # Masked for testing of ~ (tilde) unmasked packages
 >=app-portage/portpeek-1.8
@@ -120,22 +100,9 @@ media-sound/lastfm-ripper
 =virtual/poppler-0.11*
 =virtual/poppler-glib-0.11*
 
-# Samuli Suominen <ssuominen@gentoo.org> (12 May 2009)
-# Masked for removal wrt security 208464, CVE-2008-0553.
-media-sound/rat
-
-# Samuli Suominen <ssuominen@gentoo.org> (11 May 2009)
-# Masked for removal wrt #267622. Broken with new tcl.
-media-sound/wavesurfer
-
 # Samuli Suominen <ssuominen@gentoo.org> (11 May 2009)
 # pkgconfig filename changed, rdeps must be checked
 =media-libs/libsoundtouch-1.4.0
-
-# Samuli Suominen <ssuominen@gentoo.org> (11 May 2009)
-# Masked for removal wrt #209500, #183928, #238620, and #247781
-# Upstream, nenolod, said i'd kill it.
-media-plugins/eq-audacious
 
 # Lennart Kolmodin <kolmodin@gentoo.org> (10 May 2009)
 # Mark the haskell-platform, depends on other things masked for testing.
@@ -389,10 +356,6 @@ virtual/perl-IO-Compress
 # Mounir Lamouri <volkmar@gentoo.org> (15 Apr 2009)
 # >www-plugins/mozilla-weaver-0.2.104 needs masked versions of ff (ie. 3.1_beta)
 >www-plugins/mozilla-weave-0.2.104
-
-# Christoph Mende <angelos@unkreativ.org> (14 Apr 2009)
-# Masked media-sound/mpd pre-releases
-=media-sound/mpd-0.15*
 
 # Jeremy Olexa <darkside@gentoo.org> (14 Apr 2009)
 # Masked for removal in 60 days. Broken with gcc-4.3, doesn't work after gcc
