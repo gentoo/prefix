@@ -1,0 +1,10 @@
+# ChangeLog for dev-perl/Mac-Pasteboard
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*Mac-Pasteboard-0.002 (23 May 2009)
+
+  23 May 2009; Fabian Groffen <grobian@gentoo.org>
+  +Mac-Pasteboard-0.002.ebuild, +metadata.xml:
+  Initial ebuild by Reza Jelveh, bug #270742
+
