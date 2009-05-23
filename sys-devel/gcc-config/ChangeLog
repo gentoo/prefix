@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.183 2009/05/15 21:00:35 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.184 2009/05/20 17:43:36 armin76 Exp $
+
+  20 May 2009; Raúl Porcel <armin76@gentoo.org> gcc-config-1.4.1.ebuild:
+  ia64 stable
 
   15 May 2009; Tobias Klausmann <klausman@gentoo.org>
   gcc-config-1.4.1.ebuild:
