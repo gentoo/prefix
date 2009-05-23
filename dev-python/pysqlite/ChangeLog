@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pysqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.93 2009/05/19 20:14:22 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/ChangeLog,v 1.94 2009/05/21 20:41:45 ranger Exp $
+
+  21 May 2009; Brent Baude <ranger@gentoo.org> pysqlite-2.5.5.ebuild:
+  stable ppc, bug 270087
 
   19 May 2009; Brent Baude <ranger@gentoo.org> pysqlite-2.5.5.ebuild:
   stable ppc64, bug 270087
