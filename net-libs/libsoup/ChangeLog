@@ -1,6 +1,18 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.186 2009/05/18 21:00:08 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.190 2009/05/21 18:14:56 nirbheek Exp $
+
+  21 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org> libsoup-2.26.2.ebuild:
+  ~ppc and ~ppc64 were somehow dropped for 2.26.2, readding
+
+  21 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org> libsoup-2.26.2.ebuild:
+  Fix bug 270698 (missing ChangeLog)
+
+  20 May 2009; Brent Baude <ranger@gentoo.org> libsoup-2.26.1.ebuild:
+  Marking libsoup-2.26.1 ~ppc for bug 268529
+
+  20 May 2009; Brent Baude <ranger@gentoo.org> libsoup-2.26.1.ebuild:
+  Marking libsoup-2.26.1 ~ppc64 for bug 268529
 
 *libsoup-2.26.2 (18 May 2009)
 

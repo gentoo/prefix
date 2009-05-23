@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.26.2.ebuild,v 1.1 2009/05/18 21:00:08 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.26.2.ebuild,v 1.3 2009/05/21 18:14:56 nirbheek Exp $
 
 EAPI="2"
 
@@ -30,7 +30,7 @@ DEPEND="${RDEPEND}
 #		dev-lang/php
 #		net-misc/curl )
 
-DOCS="AUTHORS ChangeLog NEWS README"
+DOCS="AUTHORS NEWS README"
 
 pkg_setup() {
 	G2CONF="${G2CONF}
