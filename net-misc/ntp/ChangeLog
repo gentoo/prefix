@@ -1,6 +1,18 @@
 # ChangeLog for net-misc/ntp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.140 2009/05/19 23:10:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.144 2009/05/21 18:35:03 armin76 Exp $
+
+  21 May 2009; Raúl Porcel <armin76@gentoo.org> ntp-4.2.4_p7.ebuild:
+  alpha/arm/ia64/s390/sh stable wrt #263033
+
+  21 May 2009; Richard Freeman <rich0@gentoo.org> ntp-4.2.4_p7.ebuild:
+  amd64 stable - 263033
+
+  20 May 2009; Jeroen Roovers <jer@gentoo.org> ntp-4.2.4_p7.ebuild:
+  Stable for HPPA (bug #263033).
+
+  20 May 2009; Ferris McCormick <fmccor@gentoo.org> ntp-4.2.4_p7.ebuild:
+  Sparc stable, security Bug #263033 (which see).
 
 *ntp-4.2.4_p7 (19 May 2009)
 
