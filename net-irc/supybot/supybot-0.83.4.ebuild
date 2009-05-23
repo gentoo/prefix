@@ -1,8 +1,9 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/supybot-0.83.2.ebuild,v 1.6 2007/05/06 12:47:11 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/supybot-0.83.4.ebuild,v 1.1 2009/05/22 20:01:38 lack Exp $
 
-inherit distutils eutils
+NEED_PYTHON=2.3
+inherit distutils
 
 MY_P=${P/supybot/Supybot}
 MY_P=${MY_P/_rc/rc}
@@ -16,22 +17,22 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="sqlite"
 
-DEPEND=">=dev-lang/python-2.3
-	>=dev-python/twisted-1.2.0
-	sqlite? ( <dev-python/pysqlite-1.1 )"
+DEPEND=">=dev-python/twisted-1.2.0
+	sqlite? ( <dev-python/pysqlite-1.1 )
+	!<net-irc/supybot-plugins-20060723-r1"
+RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
-PYTHON_MODNAME="supybot"
-DOCS="ACKS BUGS DEVS README RELNOTES TODO"
+DOCS="ACKS RELNOTES docs/*"
 
 src_install() {
 	distutils_src_install
 	doman docs/man/*
-	dodoc docs/*
 }
 
 pkg_postinst() {
+	distutils_pkg_postinst
 	elog "Use supybot-wizard to create a configuration file"
 	use sqlite || \
 		elog "Some plugins may require emerge with USE=\"sqlite\" to work."
