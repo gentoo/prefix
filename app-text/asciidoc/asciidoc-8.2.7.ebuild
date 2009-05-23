@@ -8,7 +8,7 @@ SRC_URI="http://www.methods.co.nz/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="examples vim-syntax"
 
 DEPEND=">=virtual/python-2.4
@@ -23,6 +23,9 @@ src_unpack() {
 		-e "s:^CONFDIR=.*:CONFDIR=${ED}etc/asciidoc:" \
 		-e "s:^VIM_CONFDIR=.*:VIM_CONFDIR=${ED}usr/share/vim/vimfiles:" \
 		"${S}/install.sh"
+
+	sed -i -e "s:^CONF_DIR =.*:CONF_DIR='${EPREFIX}/etc/asciidoc':" \
+		"${S}/asciidoc.py" || die
 }
 
 src_install() {
