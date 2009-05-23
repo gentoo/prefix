@@ -1,6 +1,11 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.282 2009/05/08 04:27:10 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.283 2009/05/22 18:13:24 loki_val Exp $
+
+  22 May 2009; Peter Alfredsen <loki_val@gentoo.org> eix-0.16.0.ebuild,
+  +files/eix-0.16.0-glibc-2.10.patch:
+  Fix glibc-2.10 build, bug 270492. ++ to Martin Väth
+  <vaeth@mathematik.uni-wuerzburg.de> for the patch.
 
   08 May 2009; Jeremy Olexa <darkside@gentoo.org> -eix-0.15.5.ebuild,
   -eix-0.15.6.ebuild:

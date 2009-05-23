@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.16.0.ebuild,v 1.1 2009/05/08 04:24:40 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.16.0.ebuild,v 1.2 2009/05/22 18:13:24 loki_val Exp $
 
 inherit multilib eutils
 
@@ -21,6 +21,12 @@ DEPEND="${RDEPEND}
 	app-arch/lzma-utils
 	doc? ( dev-python/docutils )
 	nls? ( sys-devel/gettext )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${PN}-0.16.0-glibc-2.10.patch"
+}
 
 src_compile() {
 	econf --with-bzip2 $(use_with sqlite) $(use_with doc rst) \
