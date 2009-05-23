@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-boost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.7 2009/05/16 11:15:17 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.8 2009/05/20 18:04:12 armin76 Exp $
+
+  20 May 2009; Raúl Porcel <armin76@gentoo.org> eselect-boost-0.2.ebuild,
+  eselect-boost-0.3.ebuild:
+  Add ~arm/~ia64/~s390/~sh wrt #269456
 
   16 May 2009; Tobias Klausmann <klausman@gentoo.org>
   eselect-boost-0.3.ebuild:
