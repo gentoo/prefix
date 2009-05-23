@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.86.ebuild,v 1.6 2009/05/16 18:24:19 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.86.ebuild,v 1.7 2009/05/20 17:57:04 armin76 Exp $
 
 inherit toolchain-funcs
 
