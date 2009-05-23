@@ -8,8 +8,8 @@
 # http://archives.gentoo.org/gentoo-dev/msg_8cb1805411f37b4eb168a3e680e531f3.xml
 post_src_install() {
 	local f
-	[[ ${PN} != "libiconv" ]] && for f in "${ED}"/usr/lib*/charset.alias ; do
-		einfo "automatically removing ${f#${D}}"
-		rm -f "${f}"
-	done
+	if [[ ${PN} != "libiconv" && -n $(ls "${ED}"/usr/lib*/charset.alias 2>/dev/null) ]]; then
+		einfo "automatically removing charset.alias"
+		rm -f "${ED}"/usr/lib*/charset.alias
+	fi
 }
