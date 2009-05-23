@@ -1,16 +1,16 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.1.5.ebuild,v 1.20 2007/11/04 03:34:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.2.ebuild,v 1.2 2009/05/20 09:00:16 vapier Exp $
 
-inherit flag-o-matic
+inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Super-useful stream editor"
 HOMEPAGE="http://sed.sourceforge.net/"
-SRC_URI="mirror://gnu/sed/${P}.tar.gz"
+SRC_URI="mirror://gnu/sed/${P}.tar.bz2"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls static"
 
 RDEPEND="nls? ( virtual/libintl )"
@@ -20,7 +20,7 @@ DEPEND="${RDEPEND}
 src_bootstrap_sed() {
 	# make sure system-sed works #40786
 	export NO_SYS_SED=""
-	if ! type -p sed ; then
+	if ! type -p sed > /dev/null ; then
 		NO_SYS_SED="!!!"
 		./bootstrap.sh || die "couldnt bootstrap"
 		cp sed/sed "${T}"/ || die "couldnt copy"
@@ -32,15 +32,15 @@ src_bootstrap_sed() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-4.1.4-makeinfo-c-locale.patch
-	epatch "${FILESDIR}"/${P}-alloca.patch
+	epatch "${FILESDIR}"/${PN}-4.1.5-alloca.patch
 	epatch "${FILESDIR}"/${PN}-4.1.4-aix-malloc.patch
+	epatch "${FILESDIR}"/${PN}-4.1.5-regex-nobool.patch
 	# don't use sed here if we have to recover a broken host sed
 }
 
 src_compile() {
 	src_bootstrap_sed
-	# make sure all sed operations here are repeatable
+	# this has to be after the bootstrap portion
 	sed -i \
 		-e '/docdir =/s:=.*/doc:= $(datadir)/doc/'${PF}'/html:' \
 		doc/Makefile.in || die "sed html doc"
@@ -50,12 +50,12 @@ src_compile() {
 		myconf="--program-prefix=g"
 		bindir="${EPREFIX}"/usr/bin
 	fi
+
 	use static && append-ldflags -static
 	econf \
 		--bindir="${bindir}" \
 		$(use_enable nls) \
-		${myconf} \
-		|| die "Configure failed"
+		${myconf}
 	emake || die "build failed"
 }
 
@@ -64,6 +64,4 @@ src_install() {
 	dodoc NEWS README* THANKS AUTHORS BUGS ChangeLog
 	docinto examples
 	dodoc "${FILESDIR}"/{dos2unix,unix2dos}
-
-	rm -f "${ED}"/usr/lib/charset.alias "${ED}"/usr/share/locale/locale.alias
 }

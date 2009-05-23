@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/sed
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.90 2008/03/29 16:45:30 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.91 2009/05/20 08:16:00 vapier Exp $
+
+*sed-4.2 (20 May 2009)
+
+  20 May 2009; Mike Frysinger <vapier@gentoo.org> +sed-4.2.ebuild:
+  Version bump #270530 by Lars Wendler.
 
   29 Mar 2008; Raúl Porcel <armin76@gentoo.org> sed-4.1.5-r1.ebuild:
   alpha/ia64/sparc stable wrt #215072
