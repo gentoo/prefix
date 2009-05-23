@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.20.ebuild,v 1.6 2009/05/18 19:00:06 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/libsndfile-1.0.20.ebuild,v 1.7 2009/05/20 18:09:02 armin76 Exp $
 
 inherit eutils libtool autotools
 

@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libsndfile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.103 2009/05/18 19:00:06 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.104 2009/05/20 18:09:02 armin76 Exp $
+
+  20 May 2009; Raúl Porcel <armin76@gentoo.org> libsndfile-1.0.20.ebuild:
+  arm/ia64/sh/sparc stable wrt #269863
 
   18 May 2009; Brent Baude <ranger@gentoo.org> libsndfile-1.0.20.ebuild:
   Marking libsndfile-1.0.20 ppc64 and ppc for bug 269863
