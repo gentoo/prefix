@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.1 2009/04/30 22:14:12 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.2 2009/05/21 14:35:41 ssuominen Exp $
 
 EAPI=2
 
@@ -13,7 +13,7 @@ SRC_URI="http://${PN}.seul.org/download/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="1"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="alsa arts audiofile debug doc jack libsamplerate mikmod ncurses vorbis oss python ruby sndfile"
+IUSE="alsa audiofile debug doc jack libsamplerate mikmod ncurses vorbis oss python ruby sndfile"
 
 DEPEND="python? ( dev-lang/python )
 	jack? ( media-sound/jack-audio-connection-kit )
@@ -21,7 +21,6 @@ DEPEND="python? ( dev-lang/python )
 	audiofile? ( media-libs/audiofile )
 	alsa? ( media-libs/alsa-lib[midi] )
 	vorbis? ( media-libs/libvorbis )
-	arts? ( kde-base/arts )
 	libsamplerate? ( media-libs/libsamplerate )
 	mikmod? ( media-libs/libmikmod )
 	ruby? ( dev-lang/ruby )
@@ -49,8 +48,9 @@ src_configure() {
 		PYConf="$myconf --disable-pyecasound"
 	fi
 
-	econf $(use_enable alsa) \
-		$(use_enable arts) \
+	econf \
+		$(use_enable alsa) \
+		--disable-arts \
 		$(use_enable audiofile) \
 		$(use_enable debug) \
 		$(use_enable jack) \
@@ -80,11 +80,6 @@ pkg_postinst() {
 			python_mod_compile /usr/$(get_libdir)/python${PYVER}/site-packages/${PYMODULE}
 		done
 		eend $?
-	fi
-	if use arts; then
-		ewarn "WARNING: You have requested ecasound ARTS support,"
-		ewarn "this is no longer supported and will go away in"
-		ewarn "future releases."
 	fi
 }
 
