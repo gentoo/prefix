@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xmlgraphics-commons/xmlgraphics-commons-1.2.ebuild,v 1.5 2008/03/10 13:10:01 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xmlgraphics-commons/xmlgraphics-commons-1.2.ebuild,v 1.6 2009/05/22 22:34:09 caster Exp $
 
 JAVA_PKG_IUSE="doc examples source test"
 
@@ -23,8 +23,10 @@ DEPEND="|| ( =virtual/jdk-1.6* =virtual/jdk-1.5* =virtual/jdk-1.4* )
 			|| (
 				>=dev-java/sun-jdk-1.4
 				>=dev-java/blackdown-jdk-1.4
+				dev-java/icedtea6-bin
 				>=dev-java/ibm-jdk-bin-1.4
 				>=dev-java/jrockit-jdk-bin-1.4
+				dev-java/icedtea6
 				>=dev-java/apple-jdk-bin-1.4
 			)
 		)
@@ -57,7 +59,7 @@ src_unpack() {
 	# automagic bad
 	java-ant_ignore-system-classes || die
 
-	cd ${S}/lib || die
+	cd "${S}/lib" || die
 	rm -v *.jar || die
 
 	java-pkg_jarfrom commons-io-1
