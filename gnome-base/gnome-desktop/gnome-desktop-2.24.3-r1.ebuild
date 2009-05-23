@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.24.3-r1.ebuild,v 1.6 2009/05/15 22:47:02 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.24.3-r1.ebuild,v 1.8 2009/05/21 19:51:52 ranger Exp $
 
 inherit eutils autotools gnome2
 
