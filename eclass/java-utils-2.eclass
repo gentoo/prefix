@@ -897,7 +897,7 @@ java-pkg_jar-from() {
 
 	[[ -z ${target_pkg} ]] && die "Must specify a package"
 
-	if [[ "${EAPI/prefix /}" == "1" ]]; then
+	if [[ "${EAPI}" == "1" ]]; then
 		target_pkg="${target_pkg//:/-}"
 	fi
 
@@ -1023,7 +1023,7 @@ java-pkg_getjars() {
 
 	local pkgs="${1}"
 
-	if [[ "${EAPI/prefix /}" == "1" ]]; then
+	if [[ "${EAPI}" == "1" ]]; then
 		pkgs="${pkgs//:/-}"
 	fi
 
@@ -1089,7 +1089,7 @@ java-pkg_getjar() {
 
 	local pkg="${1}" target_jar="${2}" jar
 
-	if [[ "${EAPI/prefix /}" == "1" ]]; then
+	if [[ "${EAPI}" == "1" ]]; then
 		pkg="${pkg//:/-}"
 	fi
 
@@ -1164,7 +1164,7 @@ java-pkg_register-dependency() {
 
 	[[ -z "${pkgs}" ]] && die "${FUNCNAME} called with no package(s) specified"
 
-	if [[ "${EAPI/prefix /}" == "1" ]]; then
+	if [[ "${EAPI}" == "1" ]]; then
 		pkgs="${pkgs//:/-}"
 	fi
 
@@ -1219,7 +1219,7 @@ java-pkg_register-optional-dependency() {
 
 	[[ -z "${pkgs}" ]] && die "${FUNCNAME} called with no package(s) specified"
 
-	if [[ "${EAPI/prefix /}" == "1" ]]; then
+	if [[ "${EAPI}" == "1" ]]; then
 		pkgs="${pkgs//:/-}"
 	fi
 

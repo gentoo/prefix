@@ -454,7 +454,7 @@ vdr-plugin_src_unpack() {
 		die "vdr-plugin_pkg_setup not called!"
 	fi
 	if [ -z "$1" ]; then
-		case "${EAPI/prefix /}" in
+		case "${EAPI}" in
 			2)
 				vdr-plugin_src_util unpack
 				;;
@@ -597,7 +597,7 @@ vdr-plugin_pkg_config() {
 	vdr-plugin_print_enable_command
 }
 
-case "${EAPI/prefix /}" in
+case "${EAPI}" in
 	2)
 		EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_compile src_install pkg_postinst pkg_postrm pkg_config
 		;;

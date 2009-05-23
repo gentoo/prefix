@@ -57,7 +57,7 @@ fi
 # Sets up installation directories, PLATFORM, PATH, and LD_LIBRARY_PATH
 qt4-build_pkg_setup() {
 	# EAPI=2 ebuilds set use-deps, others need this:
-	if [[ ${EAPI/prefix /} != 2 ]]; then
+	if [[ ${EAPI} != 2 ]]; then
 		# Make sure debug setting corresponds with qt-core (bug 258512)
 		if [[ $PN != "qt-core" ]]; then
 			use debug && QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK}
@@ -164,7 +164,7 @@ qt4-build_src_unpack() {
 	fi
 
 	# Be backwards compatible for now
-	if [[ ${EAPI/prefix /} != 2 ]]; then
+	if [[ ${EAPI} != 2 ]]; then
 		qt4-build_src_prepare
 	fi
 }
@@ -180,7 +180,7 @@ qt4-build_src_prepare() {
 	if use aqua; then
 		sed -e '/^CONFIG/s:app_bundle::' \
 			-e '/^CONFIG/s:plugin_no_soname:plugin_with_soname absolute_library_soname:' \
-		-i "${S}"/mkspecs/macx-g++/qmake.conf || die "sed failed"
+			-i "${S}"/mkspecs/macx-g++/qmake.conf || die "sed failed"
 	fi
 
 	if [[ ${PN} != qt-core ]]; then
@@ -308,7 +308,7 @@ qt4-build_src_configure() {
 # @DESCRIPTION: Actual compile phase
 qt4-build_src_compile() {
 	# Be backwards compatible for now
-	if [[ ${EAPI/prefix /} != 2 ]]; then
+	if [[ ${EAPI} != 2 ]]; then
 		qt4-build_src_configure
 	fi
 

@@ -132,7 +132,7 @@ JAVA_ANT_CLASSPATH_TAGS="javac xjavac"
 # default: off
 # ------------------------------------------------------------------------------
 
-[[ "${EAPI/prefix /}" = "2" ]] && EXPORT_FUNCTIONS src_configure
+[[ "${EAPI}" = "2" ]] && EXPORT_FUNCTIONS src_configure
 
 # ------------------------------------------------------------------------------
 # @eclass-src_configure

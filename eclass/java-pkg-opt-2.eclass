@@ -37,7 +37,7 @@ RDEPEND="${DEPEND}"
 IUSE="${JAVA_PKG_IUSE} ${JAVA_PKG_OPT_USE}"
 
 EXPORT_FUNCTIONS pkg_setup pkg_preinst
-[[ "${EAPI/prefix /}" == "2" ]] && EXPORT_FUNCTIONS src_prepare
+[[ "${EAPI}" == "2" ]] && EXPORT_FUNCTIONS src_prepare
 
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------

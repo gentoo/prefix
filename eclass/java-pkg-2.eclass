@@ -50,7 +50,7 @@ if [[ ${CATEGORY} = dev-java && ${PN} = commons-* ]]; then
 fi
 
 EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst
-[[ "${EAPI/prefix /}" == "2" ]] && EXPORT_FUNCTIONS src_prepare
+[[ "${EAPI}" == "2" ]] && EXPORT_FUNCTIONS src_prepare
 
 # ------------------------------------------------------------------------------
 # @eclass-pkg_setup
