@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.2.ebuild,v 1.9 2009/02/04 19:40:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.2.ebuild,v 1.10 2009/05/21 16:11:32 lack Exp $
 
 EAPI=2
 
@@ -46,6 +46,8 @@ src_prepare() {
 	sed -e "s:/usr/lib:${EPREFIX}/usr/$(get_libdir):" \
 		-e "s:/usr/local/lib:${EPREFIX}/usr/local/$(get_libdir):" \
 		-i src/${PN}.h || die "sed ${PN}.h failed"
+
+	epatch "${FILESDIR}/gkrellm-2.3.2-getline-fix.patch"
 }
 
 src_compile() {
