@@ -315,7 +315,7 @@ elibtoolize() {
 					# ltmain.sh path message), newer libtools have this patch
 					# built in, so not much to patch around then
 					if [[ -e ${x}/ltmain.sh && \
-					      -n $(grep 'verstring="-compatibility_version' "${x}/ltmain.sh") ]] ; then
+					      -z $(grep 'verstring="-compatibility_version' "${x}/ltmain.sh") ]] ; then
 						ELT_walk_patches "${x}/ltmain.sh" "${y}"
 						ret=$?
 					fi
