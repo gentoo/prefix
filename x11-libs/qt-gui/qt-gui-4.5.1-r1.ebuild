@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.5.0-r2.ebuild,v 1.1 2009/04/22 11:06:12 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.5.1-r1.ebuild,v 1.2 2009/05/22 15:45:25 ranger Exp $
 
 EAPI=2
 inherit eutils qt4-build
@@ -83,12 +83,10 @@ src_prepare() {
 	EPATCH_OPTS="--ignore-whitespace"
 	epatch "${FILESDIR}"/hardcoded_fonts.patch
 
-	# linguist segfault ( bug #265878 )
-	epatch "${FILESDIR}"/qt-x11-opensource-src-4.5.0-linguist-crash.patch
-
-	# lrelease fail with translations ( bug #260244,bug #259414 )
-	epatch "${FILESDIR}"/qt-x11-opensource-src-4.5.0-lrelease.patch
-
+	# ppc fix backported from qt 4.5.2
+	# http://www.qtsoftware.com/developer/task-tracker/index_html?method=entry&id=196152
+	# http://qt.gitorious.org/qt/qt/commit/e018b82432055d9a5f13be7c17e31502830b9fa7
+	epatch "${FILESDIR}"/${P}-ppc-pixmap-fix-backport-196152.patch
 }
 
 src_configure() {
