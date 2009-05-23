@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4util/libxfce4util-4.4.3.ebuild,v 1.7 2009/03/13 10:17:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4util/libxfce4util-4.4.3.ebuild,v 1.8 2009/05/21 19:53:00 angelos Exp $
 
 EAPI=1
 
@@ -14,6 +14,7 @@ xfce44_core_package
 DESCRIPTION="Basic utilities library"
 HOMEPAGE="http://www.xfce.org/projects/libraries"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
+LICENSE="LGPL-2"
 IUSE="debug doc"
 
 RDEPEND=">=dev-libs/glib-2.6:2"
