@@ -1,0 +1,41 @@
+--- mpeg4ip-1.5.0.1.orig/configure.in
++++ mpeg4ip-1.5.0.1/configure.in
+@@ -266,7 +266,8 @@ dnl Checks for typedefs, structures, and
+ 
+ dnl Checks for library functions.
+ AC_CHECK_FUNCS(strerror strcasestr poll getopt getopt_long getopt_long_only getrusage socketpair strsep inet_ntoa)
+-
++AC_GNU_SOURCE
++AC_CHECK_DECLS([strcasestr], , ,[#include <string.h>])
+ 
+ AC_CHECK_TYPES([in_port_t, socklen_t], , , 
+ 	[#include <sys/types.h>
+--- mpeg4ip-1.5.0.1.orig/include/mpeg4ip.h
++++ mpeg4ip-1.5.0.1/include/mpeg4ip.h
+@@ -120,6 +120,7 @@
+ #endif
+ #include <sys/param.h>
+ 
++#if !defined(HAVE_DECL_STRCASESTR) || !HAVE_DECL_STRCASESTR
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -127,6 +128,7 @@ char *strcasestr(const char *haystack, c
+ #ifdef __cplusplus
+ }
+ #endif
++#endif
+ 
+ #define OPEN_RDWR O_RDWR
+ #define OPEN_CREAT O_CREAT 
+--- mpeg4ip-1.5.0.1.orig/lib/mp4v2/rtphint.cpp
++++ mpeg4ip-1.5.0.1/lib/mp4v2/rtphint.cpp
+@@ -314,7 +314,7 @@ void MP4RtpHintTrack::GetPayload(
+ 	char **ppEncodingParams)
+ {
+   const char* pRtpMap;
+-  char* pSlash;
++  const char* pSlash;
+   u_int32_t length;
+ 	InitPayload();
+ 
