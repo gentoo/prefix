@@ -310,6 +310,16 @@ elibtoolize() {
 						ret=$?
 					fi
 					;;
+				"darwin-ltmain")
+					# special case to avoid false positives (failing to apply
+					# ltmain.sh path message), newer libtools have this patch
+					# built in, so not much to patch around then
+					if [[ -e ${x}/ltmain.sh && \
+					      -n $(grep 'verstring="-compatibility_version' "${x}/ltmain.sh") ]] ; then
+						ELT_walk_patches "${x}/ltmain.sh" "${y}"
+						ret=$?
+					fi
+					;;
 				"aixrtl" | "aix-hc-L")
 					ret=1
 					local subret=0
