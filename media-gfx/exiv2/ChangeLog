@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/exiv2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/ChangeLog,v 1.66 2009/05/19 20:31:14 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/ChangeLog,v 1.67 2009/05/21 21:02:11 ranger Exp $
+
+  21 May 2009; Brent Baude <ranger@gentoo.org> exiv2-0.18.ebuild:
+  stable ppc, bug 262843
 
   19 May 2009; Brent Baude <ranger@gentoo.org> exiv2-0.18.ebuild:
   stable ppc64, bug 262843
