@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0-r1.ebuild,v 1.3 2009/05/13 18:20:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0-r1.ebuild,v 1.4 2009/05/21 14:10:21 ssuominen Exp $
 
 EAPI=2
 inherit eutils multilib
@@ -12,14 +12,13 @@ SRC_URI="http://mirror.greaterscope.net/cmus/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
-IUSE="aac alsa ao arts debug examples flac mad mikmod modplug mp3 mp4 musepack \
+IUSE="aac alsa ao debug examples flac mad mikmod modplug mp3 mp4 musepack \
 	oss pidgin unicode vorbis wavpack wma zsh-completion"
 
 DEPEND="sys-libs/ncurses[unicode?]
 	aac? ( media-libs/faad2 )
 	alsa? ( >=media-libs/alsa-lib-1.0.11 )
 	ao? (  media-libs/libao )
-	arts? ( kde-base/arts )
 	flac? ( media-libs/flac )
 	mad? ( >=media-libs/libmad-0.14 )
 	mikmod? ( media-libs/libmikmod )
@@ -56,7 +55,6 @@ src_configure() {
 	my_config aac CONFIG_AAC
 	my_config ao CONFIG_AO
 	my_config alsa CONFIG_ALSA
-	my_config arts CONFIG_ARTS
 	my_config flac CONFIG_FLAC
 	my_config mad CONFIG_MAD
 	my_config mikmod CONFIG_MIKMOD

@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/cmus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.24 2009/05/13 18:20:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.25 2009/05/21 14:10:21 ssuominen Exp $
+
+  21 May 2009; Samuli Suominen <ssuominen@gentoo.org> cmus-2.2.0-r1.ebuild:
+  Remove arts support wrt #270575.
 
   13 May 2009; Markus Meier <maekke@gentoo.org> cmus-2.2.0-r1.ebuild:
   amd64 stable, bug #250474
