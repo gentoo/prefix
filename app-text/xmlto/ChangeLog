@@ -1,6 +1,21 @@
 # ChangeLog for app-text/xmlto
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.46 2008/09/22 14:20:37 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.49 2009/05/22 13:08:08 ssuominen Exp $
+
+  22 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  files/xmlto-0.0.22-format_fo_passivetex_check.patch:
+  Change path to texmf-site in patch.
+
+  22 May 2009; Samuli Suominen <ssuominen@gentoo.org> xmlto-0.0.18.ebuild,
+  -xmlto-0.0.21.ebuild, xmlto-0.0.22.ebuild:
+  Remove usage of -j1 wrt #235998. List sys-devel/flex as depend wrt
+  #221373.
+
+*xmlto-0.0.22 (22 May 2009)
+
+  22 May 2009; Samuli Suominen <ssuominen@gentoo.org> +xmlto-0.0.22.ebuild,
+  +files/xmlto-0.0.22-format_fo_passivetex_check.patch:
+  Version bump.
 
 *xmlto-0.0.21 (22 Sep 2008)
 

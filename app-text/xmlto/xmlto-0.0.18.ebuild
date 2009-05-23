@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/xmlto-0.0.18.ebuild,v 1.24 2008/04/26 21:44:43 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/xmlto-0.0.18.ebuild,v 1.25 2009/05/22 12:57:18 ssuominen Exp $
 
 inherit eutils
 
@@ -41,11 +41,11 @@ src_compile() {
 
 	econf ${myconf} \
 		--with-bash="${EPREFIX}"/bin/bash || die
-	emake -j1 || die
+	emake || die
 }
 
 src_install() {
-	make DESTDIR="${D}" prefix="${EPREFIX}/usr" install || die
+	emake DESTDIR="${D}" prefix="${EPREFIX}/usr" install || die
 	dodoc AUTHORS ChangeLog FAQ NEWS README
 	insinto /usr/share/doc/${PF}/xml
 	doins doc/*.xml
