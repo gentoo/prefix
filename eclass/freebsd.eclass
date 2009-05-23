@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/freebsd.eclass,v 1.13 2007/04/21 12:28:43 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/freebsd.eclass,v 1.14 2009/05/22 15:23:35 aballier Exp $
 #
 # Diego Pettenò <flameeyes@gentoo.org>
 
@@ -58,9 +58,15 @@ freebsd_get_bmake() {
 }
 
 freebsd_do_patches() {
-	for patch in ${PATCHES}; do
-		epatch "${patch}"
-	done
+	if [[ ${#PATCHES[@]} -gt 1 ]] ; then
+		for x in "${PATCHES[@]}"; do
+			epatch "${x}"
+		done
+	else
+		for x in ${PATCHES} ; do
+			epatch "${x}"
+		done
+	fi
 }
 
 freebsd_rename_libraries() {

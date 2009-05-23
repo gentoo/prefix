@@ -55,8 +55,8 @@
 +    file_magic_test_file='/usr/lib/libSystem.dylib'
 +    ;;
 +  esac
-+  library_names_spec='${libname}${release}${versuffix}.$(test .$module = .yes && echo bundle || echo dylib) ${libname}${release}${major}.$(test .$module = .yes && echo bundle || echo dylib) ${libname}.$(test .$module = .yes && echo bundle || echo dylib)'
-+  soname_spec='${libname}${release}${major}.$(test .$module = .yes && echo bundle || echo dylib)'
++  library_names_spec='${libname}${release}${versuffix}.$(test .$module = .yes && echo so || echo dylib) ${libname}${release}${major}.$(test .$module = .yes && echo so || echo dylib) ${libname}.$(test .$module = .yes && echo so || echo dylib)'
++  soname_spec='${libname}${release}${major}.$(test .$module = .yes && echo so || echo dylib)'
 +  shlibpath_overrides_runpath=yes
 +  shlibpath_var=DYLD_LIBRARY_PATH
 +  ;;

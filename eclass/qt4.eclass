@@ -1,6 +1,6 @@
 # Copyright 2005-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.57 2009/05/17 15:18:58 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4.eclass,v 1.58 2009/05/22 22:21:38 hwoarang Exp $
 
 # @ECLASS: qt4.eclass
 # @MAINTAINER:
@@ -188,34 +188,6 @@ qt4_src_prepare() {
 	debug-print-function $FUNCNAME "$@"
 	base_src_prepare
 }
-
-# @FUNCTION: qt4_src_configure
-# @DESCRIPTION:
-# Default src_configure function for packages that depend on qt4. If you have to
-# override src_configure in your ebuild, call qt4_src_configure in it.
-#qt4_src_configure() {
-#    debug-print-function $FUNCNAME "$@"
-#    eqmake4
-#}
-
-# @FUNCTION: qt4_src_compile
-# @DESCRIPTION:
-# Default src_compile function for packages that depend on qt4. If you have to
-# override src_compile in your ebuild (probably you don't need to), call
-# qt4_src_compile in it.
-#qt4_src_compile() {
-#	debug-print-function $FUNCNAME "$@"
-#	case "${EAPI:-0}" in
-#		2)
-#			emake || die "emake failed"
-#			;;
-#		0|1)
-#			qt4_src_prepare
-#			qt4_src_configure
-#			emake || die "emake failed"
-#			;;
-#	esac
-#}
 
 # @FUNCTION: eqmake4
 # @USAGE: [.pro file] [additional parameters to qmake]

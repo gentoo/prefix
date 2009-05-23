@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.33 2009/05/12 14:21:22 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.35 2009/05/23 01:08:26 hwoarang Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -52,6 +52,9 @@ if version_is_at_least 4.5 ${PV} ; then
 	LICENSE="|| ( LGPL-2.1 GPL-3 )"
 fi
 
+# @FUNCTION: qt4-build_pkg_setup
+# @DESCRIPTION:
+# Sets up installation directories, PLATFORM, PATH, and LD_LIBRARY_PATH
 qt4-build_pkg_setup() {
 	# EAPI=2 ebuilds set use-deps, others need this:
 	if [[ ${EAPI/prefix /} != 2 ]]; then
@@ -122,6 +125,19 @@ qt4-build_pkg_setup() {
 
 }
 
+# @ECLASS-VARIABLE: QT4_TARGET_DIRECTORIES
+# @DESCRIPTION:
+# Arguments for build_target_directories. Takes the directories, in which the
+# code should be compiled. This is a space-separated list
+
+# @ECLASS-VARIABLE: QT4_EXTRACT_DIRECTORIES
+# @DESCRIPTION:
+# Space separated list including the directories that will be extracted from Qt
+# tarball
+
+# @FUNCTION: qt4-build_src_unpack
+# @DESCRIPTION:
+# Unpacks the sources
 qt4-build_src_unpack() {
 	local target targets licenses
 	if version_is_at_least 4.5 ${PV} ; then
@@ -153,6 +169,11 @@ qt4-build_src_unpack() {
 	fi
 }
 
+
+# @FUNCTION: qt4-build_src_prepare
+# @DESCRIPTION:
+# Prepare the sources before the configure phase. Strip CFLAGS if necessary, and fix
+# source files in order to respect CFLAGS/CXXFLAGS/LDFLAGS specified on /etc/make.conf.
 qt4-build_src_prepare() {
 	cd "${S}"
 
@@ -226,6 +247,9 @@ qt4-build_src_prepare() {
 
 }
 
+# @FUNCTION: qt4-build_src_configure
+# @DESCRIPTION:
+# Default configure phase
 qt4-build_src_configure() {
 
 	myconf="$(standard_configure_options) ${myconf}"
@@ -280,6 +304,8 @@ qt4-build_src_configure() {
 	./configure ${myconf} || die "./configure failed"
 }
 
+# @FUNCTION: qt4-build_src_compile
+# @DESCRIPTION: Actual compile phase
 qt4-build_src_compile() {
 	# Be backwards compatible for now
 	if [[ ${EAPI/prefix /} != 2 ]]; then
@@ -289,12 +315,19 @@ qt4-build_src_compile() {
 	build_directories "${QT4_TARGET_DIRECTORIES}"
 }
 
+# @FUNCTION: qt4-build_src_install
+# @DESCRIPTION:
+# Perform the actual installation including some library fixes.
 qt4-build_src_install() {
 	install_directories "${QT4_TARGET_DIRECTORIES}"
 	install_qconfigs
 	fix_library_files
 }
 
+# @FUNCTION: standard_configure_options
+# @DESCRIPTION:
+# Sets up some standard configure options, like libdir (if necessary), whether
+# debug info is wanted or not.
 standard_configure_options() {
 	local myconf=""
 
@@ -362,6 +395,10 @@ standard_configure_options() {
 	echo "${myconf}"
 }
 
+# @FUNCTION: build_directories
+# @USAGE: < directories >
+# @DESCRIPTION:
+# Compiles the code in $QT4_TARGET_DIRECTORIES
 build_directories() {
 	local dirs="$@"
 	for x in ${dirs}; do
@@ -371,6 +408,10 @@ build_directories() {
 	done
 }
 
+# @FUNCTION: install_directories
+# @USAGE: < directories >
+# @DESCRIPTION:
+# run emake install in the given directories, which are separated by spaces
 install_directories() {
 	local dirs="$@"
 	for x in ${dirs}; do
@@ -395,6 +436,8 @@ QCONFIG_REMOVE="${QCONFIG_REMOVE:-}"
 # List variables that should be defined at the top of QtCore/qconfig.h
 QCONFIG_DEFINE="${QCONFIG_DEFINE:-}"
 
+# @FUNCTION: install_qconfigs
+# @DESCRIPTION: Install gentoo-specific mkspecs configurations
 install_qconfigs() {
 	local x
 	if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} ]]; then
@@ -414,6 +457,8 @@ install_qconfigs() {
 	fi
 }
 
+# @FUNCTION: generate_qconfigs
+# @DESCRIPTION: Generates gentoo-specific configurations
 generate_qconfigs() {
 	if [[ -n ${QCONFIG_ADD} || -n ${QCONFIG_REMOVE} || -n ${QCONFIG_DEFINE} || ${CATEGORY}/${PN} == x11-libs/qt-core ]]; then
 		local x qconfig_add qconfig_remove qconfig_new
@@ -470,10 +515,15 @@ generate_qconfigs() {
 	fi
 }
 
+# @FUNCTION: qt4-build_pkg_postrm
+# @DESCRIPTION: Generate configurations when the package is completely removed
 qt4-build_pkg_postrm() {
 	generate_qconfigs
 }
 
+# @FUNCTION: qt4-build_pkg_postinst
+# @DESCRIPTION: Generate configuration, plus throws a message about possible
+# breakages and proposed solutions.
 qt4-build_pkg_postinst() {
 	generate_qconfigs
 	echo
@@ -492,23 +542,37 @@ qt4-build_pkg_postinst() {
 	echo
 }
 
+# @FUNCTION: skip_qmake_build_patch
+# @DESCRIPTION:
+# Don't need to build qmake, as it's already installed from qt-core
 skip_qmake_build_patch() {
 	# Don't need to build qmake, as it's already installed from qt-core
 	sed -i -e "s:if true:if false:g" "${S}"/configure || die "Sed failed"
 }
 
+# @FUNCTION: skip_project_generation_patch
+# @DESCRIPTION:
+# Exit the script early by throwing in an exit before all of the .pro files are scanned
 skip_project_generation_patch() {
 	# Exit the script early by throwing in an exit before all of the .pro files are scanned
 	sed -e "s:echo \"Finding:exit 0\n\necho \"Finding:g" \
 		-i "${S}"/configure || die "Sed failed"
 }
 
+# @FUNCTION: symlink_binaries_to_buildtree
+# @DESCRIPTION:
+# Symlink generated binaries to buildtree so they can be used during compilation
+# time
 symlink_binaries_to_buildtree() {
 	for bin in qmake moc uic rcc; do
 		ln -s ${QTBINDIR}/${bin} "${S}"/bin/ || die "Symlinking ${bin} to ${S}/bin failed."
 	done
 }
 
+# @FUNCTION: fix_library_files
+# @DESCRIPTION:
+# Fixes the pathes in *.la, *.prl, *.pc, as they are wrong due to sandbox and
+# moves the *.pc-files into the pkgconfig directory
 fix_library_files() {
 	for libfile in "${D}"/${QTLIBDIR}/{*.la,*.prl,pkgconfig/*.pc}; do
 		if [[ -e ${libfile} ]]; then
@@ -522,7 +586,6 @@ fix_library_files() {
 			sed -i -e "s:${S}/bin:${QTBINDIR}:g" ${libfile} || die "Sed failed"
 
 	# Move .pc files into the pkgconfig directory
-
 		dodir ${QTPCDIR#${EPREFIX}}
 		mv ${libfile} "${D}"/${QTPCDIR}/ \
 			|| die "Moving ${libfile} to ${D}/${QTPCDIR}/ failed."
@@ -533,6 +596,13 @@ fix_library_files() {
 	rmdir "${D}"/${QTLIBDIR}/pkgconfig
 }
 
+# @FUNCTION: qt_use
+# @USAGE: < flag > [ feature ] [ enableval ]
+# @DESCRIPTION:	
+# This will echo "${enableval}-${feature}" if <flag> is enabled, or
+# "-no-${feature} if the flag is disabled. If [feature] is not specified <flag>
+# will be used for that. If [enableval] is not specified, it omits the
+# assignment-part
 qt_use() {
 	local flag="${1}"
 	local feature="${1}"
@@ -564,6 +634,7 @@ qt_use() {
 
 # Run built_with_use on each flag and print appropriate error messages if any
 # flags are missing
+
 _qt_built_with_use() {
 	local missing opt pkg flag flags
 
@@ -617,6 +688,10 @@ qt4-build_check_use() {
 	fi
 }
 
+# @FUNCTION: qt_mkspecs_dir
+# @RETURN: the specs-directory w/o path
+# @DESCRIPTION:	
+# Allows us to define which mkspecs dir we want to use.
 qt_mkspecs_dir() {
 	# Allows us to define which mkspecs dir we want to use.
 	local spec
