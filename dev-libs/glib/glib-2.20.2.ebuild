@@ -51,21 +51,19 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
 
 	# build glib with parity for native win32
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-2.18.3-winnt-lt2.patch
+	if [[ ${CHOST} == *-winnt* ]] ; then
+		epatch "${FILESDIR}"/${PN}-2.18.3-winnt-lt2.patch
+		# makes the iconv check more general, needed for winnt, but could
+		# be useful for others too, requires eautoreconf
+		epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
+		AT_M4DIR="m4macros" eautoreconf
+	fi
 
-	# makes the iconv check more general, needed for winnt, but could
-	# be usefull for others too.
-	epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
-
-	# freebsd: elibtoolize would suffice
-	# interix: need recent libtool
-	# doing eautoreconf needs gtk-doc.m4, hence dep on dev-util/gtk-doc-am
-	AT_M4DIR="m4macros" eautoreconf
+	elibtoolize
 }
 
 src_configure() {
