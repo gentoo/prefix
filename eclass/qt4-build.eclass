@@ -245,6 +245,16 @@ qt4-build_src_prepare() {
 				-i "${S}"/configure || die "sed ${S}/configure failed"
 	fi
 
+	# this one is needed for all systems with a separate -liconv, apart from
+	# Darwin, for which the sources already cater for -liconv
+	if use !elibc_glibc && [[ ${CHOST} != *-darwin* ]] ; then
+		sed \
+			-e "s|mac:LIBS += -liconv|LIBS += -liconv|g" \
+			-i "${S}"/config.tests/unix/iconv/iconv.pro \
+			|| die "sed on iconv.pro failed"
+		append-libs -liconv
+	fi
+
 }
 
 # @FUNCTION: qt4-build_src_configure
