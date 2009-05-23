@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/zziplib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.61 2009/01/07 17:48:46 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.62 2009/05/23 04:51:54 mr_bones_ Exp $
+
+*zziplib-0.13.52 (23 May 2009)
+
+  23 May 2009; Michael Sterrett <mr_bones_@gentoo.org>
+  +files/zziplib-0.13.52-SDL-test.patch,
+  +files/zziplib-0.13.52-python.patch,
+  +files/zziplib-0.13.52-sparc-aligned-access.patch,
+  -zziplib-0.13.49.ebuild, +zziplib-0.13.52.ebuild:
+  version bump; clean old
 
   07 Jan 2009; Kenneth Prugh <ken69267@gentoo.org>
   zziplib-0.13.49-r1.ebuild:
