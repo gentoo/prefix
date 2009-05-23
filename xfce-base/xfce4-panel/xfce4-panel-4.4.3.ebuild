@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-panel/xfce4-panel-4.4.3.ebuild,v 1.6 2008/12/15 04:56:31 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-panel/xfce4-panel-4.4.3.ebuild,v 1.7 2009/05/21 20:09:01 angelos Exp $
 
 inherit xfce44
 
@@ -12,7 +12,7 @@ xfce44_core_package
 DESCRIPTION="Panel"
 HOMEPAGE="http://www.xfce.org/projects/xfce4-panel"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
-
+LICENSE="GPL-2 LGPL-2"
 IUSE="debug doc startup-notification"
 
 RDEPEND="x11-libs/libX11
