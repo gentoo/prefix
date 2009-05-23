@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.225 2009/05/14 19:10:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.228 2009/05/23 03:32:46 jer Exp $
+
+  23 May 2009; Jeroen Roovers <jer@gentoo.org> gstreamer-0.10.22.ebuild:
+  Stable for HPPA (bug #266986).
+
+  21 May 2009; Brent Baude <ranger@gentoo.org> gstreamer-0.10.22.ebuild:
+  Marking gstreamer-0.10.22 ppc64 stable for bug 266986
+
+  21 May 2009; Brent Baude <ranger@gentoo.org> gstreamer-0.10.22.ebuild:
+  Marking gstreamer-0.10.22 ppc stable for bug 266986
 
   14 May 2009; Markus Meier <maekke@gentoo.org> gstreamer-0.10.22.ebuild:
   amd64 stable, bug #266986
