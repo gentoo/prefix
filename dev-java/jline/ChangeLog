@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/jline
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jline/ChangeLog,v 1.18 2007/06/10 14:38:17 caster Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jline/ChangeLog,v 1.19 2009/05/21 21:47:36 caster Exp $
+
+*jline-0.9.94 (21 May 2009)
+
+  21 May 2009; Vlastimil Babka <caster@gentoo.org> +jline-0.9.94.ebuild:
+  Version bump. From java-overlay, thanks to chewi.
 
   10 Jun 2007; Vlastimil Babka <caster@gentoo.org> -files/build-0.9.9.xml,
   -jline-0.9.9-r1.ebuild, -jline-0.9.9-r2.ebuild:
