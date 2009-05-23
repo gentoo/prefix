@@ -1,6 +1,9 @@
 # ChangeLog for dev-dotnet/libgdiplus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/ChangeLog,v 1.95 2009/05/05 11:11:27 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/ChangeLog,v 1.96 2009/05/20 19:51:00 ranger Exp $
+
+  20 May 2009; Brent Baude <ranger@gentoo.org> libgdiplus-2.4.ebuild:
+  Marking libgdiplus-2.4 ~ppc for bug 268517
 
 *libgdiplus-9999 (05 May 2009)
 *libgdiplus-2.4.9999 (05 May 2009)
