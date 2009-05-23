@@ -1,6 +1,10 @@
 # ChangeLog for xfce-base/thunar
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.68 2009/04/21 04:28:48 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.69 2009/05/21 20:10:05 angelos Exp $
+
+  21 May 2009; Christoph Mende <angelos@gentoo.org> thunar-0.9.3.ebuild,
+  thunar-1.0.1.ebuild:
+  Fixed license (bug #268796)
 
 *thunar-1.0.1 (21 Apr 2009)
 
