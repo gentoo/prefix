@@ -1,6 +1,18 @@
 # ChangeLog for dev-python/python-docs
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.108 2009/04/18 20:06:12 arfrever Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.110 2009/05/22 22:39:24 arfrever Exp $
+
+  22 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-docs-2.4.4.ebuild, python-docs-2.5.1.ebuild,
+  python-docs-2.5.4.ebuild, python-docs-2.6.2.ebuild:
+  Install 50python-docs in pkg_postinst() instead of pkg_preinst() (bug
+  #232540).
+
+  22 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -python-docs-2.2.3.ebuild, -python-docs-2.3.5.ebuild,
+  -python-docs-2.4.3.ebuild, -python-docs-2.5.ebuild,
+  -python-docs-2.5.2.ebuild, -python-docs-2.6.1.ebuild:
+  Remove older versions.
 
 *python-docs-2.6.2 (18 Apr 2009)
 
