@@ -1,13 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1_rc2.ebuild,v 1.1 2009/05/19 16:40:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1_rc2.ebuild,v 1.4 2009/05/21 08:14:54 ulm Exp $
 
 inherit eutils prefix
 
 DESCRIPTION="Gentoo's multi-purpose configuration and management tool"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
-SRC_URI="mirror://gentoo/${P}.tar.bz2
-	http://dev.gentoo.org/~ulm/distfiles/${P}.tar.bz2"
+SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -47,6 +46,9 @@ src_install() {
 	dodoc AUTHORS ChangeLog NEWS README TODO doc/*.txt
 	use doc && dohtml *.html doc/*
 
+	# needed by news-tng module
+	keepdir /var/lib/gentoo/news
+
 	# we don't use bash-completion.eclass since eselect
 	# is listed in RDEPEND.
 	if use bash-completion ; then
@@ -56,6 +58,11 @@ src_install() {
 }
 
 pkg_postinst() {
+	# fowners in src_install doesn't work for the portage group:
+	# merging changes the group back to root
+	chgrp portage "${EROOT}/var/lib/gentoo/news" \
+		&& chmod g+w "${EROOT}/var/lib/gentoo/news"
+
 	if use bash-completion ; then
 		elog "In case you have not yet enabled command-line completion"
 		elog "for eselect, you can run:"

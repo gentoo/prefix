@@ -1,6 +1,21 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.92 2009/05/19 16:40:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.97 2009/05/21 19:46:36 ranger Exp $
+
+  21 May 2009; Brent Baude <ranger@gentoo.org> eselect-1.0.12.ebuild:
+  stable ppc, bug 270138
+
+  21 May 2009; Raúl Porcel <armin76@gentoo.org> eselect-1.0.12.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #270138
+
+*eselect-1.1_rc3 (21 May 2009)
+
+  21 May 2009; Ulrich Mueller <ulm@gentoo.org> +eselect-1.1_rc3.ebuild:
+  Version bump.
+
+  20 May 2009; Ulrich Mueller <ulm@gentoo.org> eselect-1.1_rc2.ebuild,
+  eselect-9999.ebuild:
+  Create directory for news-tng module. Set proper group and permissions.
 
 *eselect-1.1_rc2 (19 May 2009)
 

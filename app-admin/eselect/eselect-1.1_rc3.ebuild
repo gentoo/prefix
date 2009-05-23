@@ -1,17 +1,19 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.12.ebuild,v 1.6 2009/05/21 19:46:36 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1_rc3.ebuild,v 1.1 2009/05/21 08:14:54 ulm Exp $
 
 inherit eutils prefix
 
-DESCRIPTION="Modular -config replacement utility"
+DESCRIPTION="Gentoo's multi-purpose configuration and management tool"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc bash-completion"
+# ulm | better wait for _rc2, there were quite some header changes between the
+# two (adding -*-eselect-*- tag for emacs), so you'll have to redo it for rc2
+#KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="doc bash-completion paludis"
 
 DEPEND="sys-apps/sed
 	doc? ( dev-python/docutils )
@@ -22,25 +24,16 @@ DEPEND="sys-apps/sed
 	)"
 RDEPEND="sys-apps/sed
 	sys-apps/file
-	sys-libs/ncurses"
+	sys-libs/ncurses
+	paludis? ( sys-apps/paludis )
+	!paludis? ( >=sys-apps/portage-2.1.6 )"
 
 # Commented out: only few users of eselect will edit its source
 #PDEPEND="emacs? ( app-emacs/gentoo-syntax )
 #	vim-syntax? ( app-vim/eselect-syntax )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify \
-		$(find "${S}"/bin -type f) \
-		$(find "${S}"/libs -type f) \
-		$(find "${S}"/misc -type f) \
-		$(find "${S}"/modules -type f)
-}
-
 src_compile() {
-	econf || die "econf failed"
+	econf --with-pm="$(usev paludis || echo portage)"
 	emake || die "emake failed"
 
 	if use doc ; then
@@ -53,6 +46,12 @@ src_install() {
 	dodoc AUTHORS ChangeLog NEWS README TODO doc/*.txt
 	use doc && dohtml *.html doc/*
 
+	# needed by news-tng module
+	keepdir /var/lib/gentoo/news
+
+	# needed by news-tng module
+	keepdir /var/lib/gentoo/news
+
 	# we don't use bash-completion.eclass since eselect
 	# is listed in RDEPEND.
 	if use bash-completion ; then
@@ -62,6 +61,11 @@ src_install() {
 }
 
 pkg_postinst() {
+	# fowners in src_install doesn't work for the portage group:
+	# merging changes the group back to root
+	chgrp portage "${EROOT}/var/lib/gentoo/news" \
+		&& chmod g+w "${EROOT}/var/lib/gentoo/news"
+
 	if use bash-completion ; then
 		elog "In case you have not yet enabled command-line completion"
 		elog "for eselect, you can run:"
