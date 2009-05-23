@@ -1,6 +1,12 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.288 2009/05/17 09:48:41 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.290 2009/05/21 19:02:04 ranger Exp $
+
+  21 May 2009; Brent Baude <ranger@gentoo.org> ffmpeg-0.5-r1.ebuild:
+  Marking ffmpeg-0.5-r1 ppc64 stable for bug 266986
+
+  21 May 2009; Brent Baude <ranger@gentoo.org> ffmpeg-0.5-r1.ebuild:
+  Marking ffmpeg-0.5-r1 ppc stable for bug 266986
 
   16 May 2009; Mounir Lamouri <volkmar@gentoo.org> metadata.xml:
   Use global gsm USE flag instead of local one.
