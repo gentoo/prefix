@@ -47,9 +47,4 @@ src_install() {
 	emake DESTDIR="${D}" install install-man3 || die "make install failed"
 	dodoc ChangeLog README TODO
 	dohtml docs/*
-
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		# I really got tired of this package, bug #240566
-		rm "${ED}"/usr/$(get_libdir)/libzzip\*.so.{10,11,12}
-	fi
 }
