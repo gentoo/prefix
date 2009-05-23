@@ -1,6 +1,12 @@
 # ChangeLog for x11-apps/mkfontdir
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/mkfontdir/ChangeLog,v 1.44 2009/05/05 12:27:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/mkfontdir/ChangeLog,v 1.46 2009/05/20 13:50:01 ranger Exp $
+
+  20 May 2009; Brent Baude <ranger@gentoo.org> mkfontdir-1.0.4.ebuild:
+  Marking mkfontdir-1.0.4 ppc64 stable for bug 268581
+
+  20 May 2009; Brent Baude <ranger@gentoo.org> mkfontdir-1.0.4.ebuild:
+  Marking mkfontdir-1.0.4 ppc stable for bug 268581
 
   05 May 2009; Jeroen Roovers <jer@gentoo.org> mkfontdir-1.0.4.ebuild:
   Stable for HPPA (bug #268581).
