@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  23 May 2009; Fabian Groffen <grobian@gentoo.org> profile.bashrc:
+  Fix charset.alias removal hack, it didn't work, and the FreeBSD version
+  isn't resistant against multiple charset.alias files, so go the safe
+  route.
+
   22 May 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   Remove broken xscreensaver-5.08 from prefix tree
 
