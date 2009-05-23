@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gccxml/gccxml-0.9.0_pre20090516.ebuild,v 1.3 2009/05/18 20:23:16 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gccxml/gccxml-0.9.0_pre20090516.ebuild,v 1.4 2009/05/22 10:03:05 keytoaster Exp $
 
 inherit eutils toolchain-funcs
 
