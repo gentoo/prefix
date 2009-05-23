@@ -12,7 +12,7 @@ HOMEPAGE="http://xcb.freedesktop.org/"
 SRC_URI="http://xcb.freedesktop.org/dist/${P}.tar.bz2"
 
 LICENSE="X11"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="test"
 
 RDEPEND=">=x11-libs/libxcb-1"
