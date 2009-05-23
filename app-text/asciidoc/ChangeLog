@@ -1,6 +1,11 @@
 # ChangeLog for app-text/asciidoc
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/asciidoc/ChangeLog,v 1.46 2008/11/13 00:38:06 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/asciidoc/ChangeLog,v 1.47 2009/05/22 22:10:56 patrick Exp $
+
+*asciidoc-8.4.4 (22 May 2009)
+
+  22 May 2009; Patrick Lauer <patrick@gentoo.org> +asciidoc-8.4.4.ebuild:
+  Bump to 8.4.4, closes #270644. Ebuild fixups by Andre-Patrick Bubel
 
   13 Nov 2008; Brent Baude <ranger@gentoo.org> asciidoc-8.2.6.ebuild:
   stable ppc64, bug 224743
