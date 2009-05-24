@@ -39,6 +39,7 @@ src_unpack() {
 	mv glxext.h-${GLXEXT} glxext.h
 
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${P}-soname-copy-for-prefix.patch
 	sed -i -e "/^\(ENV_FILE=\|PREFIX=\|DST_PREFIX=\)/s:ROOT}:ROOT}${EPREFIX}:" \
 		opengl.eselect || die
 }
