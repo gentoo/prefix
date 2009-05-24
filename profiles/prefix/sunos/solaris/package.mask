@@ -31,10 +31,6 @@
 # http://sourceware.org/bugzilla/show_bug.cgi?id=9992
 =sys-devel/binutils-2.19.51*
 
-# Fabian Groffen <grobian@gentoo.org> (14 Oct 2008)
-# fails to compile on amd64 because it doesn't use -fPIC everywhere
->=x11-libs/vte-0.17.4
-
 # Fabian Groffen <grobian@gentoo.org> (02 Oct 2008)
 # Doesn't compile on Solaris.
 =app-shells/ksh-93.20081104
