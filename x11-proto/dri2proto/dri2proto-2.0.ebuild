@@ -7,7 +7,7 @@ inherit x-modular
 DESCRIPTION="X.Org DRI2 protocol headers"
 
 LICENSE="X11"
-KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x64-solaris ~x86-solaris"
 IUSE=""
 RDEPEND=""
 DEPEND="${RDEPEND}"
