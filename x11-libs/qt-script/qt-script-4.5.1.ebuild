@@ -7,7 +7,7 @@ inherit qt4-build
 
 DESCRIPTION="The ECMAScript module for the Qt toolkit"
 SLOT="4"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="+iconv"
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=]"
