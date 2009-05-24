@@ -255,6 +255,16 @@ qt4-build_src_prepare() {
 		append-libs -liconv
 	fi
 
+	# we need some patches for Solaris
+	sed -i \
+		-e '/^QMAKE_LFLAGS_THREAD/a\QMAKE_LFLAGS_DYNAMIC_LIST = -Wl,--dynamic-list,' \
+		"${S}"/mkspecs/solaris-g++/qmake.conf || die
+	# use GCC over SunStudio
+	sed -i -e '/PLATFORM=solaris-cc/s/cc/g++/' "${S}"/configure || die
+	# don't flirt with non-Prefix stuff, we're quite possessive
+	sed -i -e '/^QMAKE_\(LIB\|INC\)DIR\(_X11\|_OPENGL\|\)\t/s/=.*$/=/' \
+		"${S}"/mkspecs/solaris-g++/qmake.conf || die
+
 }
 
 # @FUNCTION: qt4-build_src_configure
