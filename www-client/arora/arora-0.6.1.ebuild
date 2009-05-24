@@ -11,7 +11,7 @@ SRC_URI="http://arora.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="debug"
 
 RDEPEND="x11-libs/qt-gui
