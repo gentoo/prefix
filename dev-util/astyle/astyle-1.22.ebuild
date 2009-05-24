@@ -24,13 +24,20 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	# Add basic soname to make QA happy...
-	[[ ${CHOST} != *-darwin* ]] && sed -i -e "s:-shared:-shared -Wl,-soname,\$@ :g" buildgcc/Makefile
+	sed -i -e "s:-shared:-shared -Wl,-soname,\$@ :g" buildgcc/Makefile
 	# Fix JAVA_HOME
 	sed -i -e \
 	    "s:/usr/lib/jvm/java-6-sun-1.6.0.00:$(java-config --jdk-home):g" \
 	    buildgcc/Makefile || die "sed failed"
 	# respect CFLAGS, remove strip and other hard-coded crap
 	epatch "${FILESDIR}"/${P}-Makefile.patch
+	# patch back for Darwin
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i \
+			-e 's:\.so:.dylib:g' \
+			-e 's:-shared -Wl,-soname,\$@ :-dynamiclib -install_name '"${EPREFIX}/usr/$(get_libdir)"'/\$@ :' \
+			buildgcc/Makefile
+	fi
 }
 
 src_compile() {
