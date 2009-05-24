@@ -35,6 +35,7 @@ PATCHES=(
 	"${FILESDIR}/${P}/cpp-depends.patch"
 	"${FILESDIR}/${P}/dump-symlinks.patch"
 	"${FILESDIR}/${P}/libtool.patch"
+	"${FILESDIR}/${P}/solaris.patch"
 	)
 
 src_prepare() {
