@@ -397,7 +397,7 @@ standard_configure_options() {
 	esac
 
 	# don't do this in Prefix, or we will end up with non-working stuff
-	# on ELF systems
+	# on ELF systems, non-Prefix uses ld.so.conf
 	use prefix || myconf="${myconf} -no-rpath"
 
 	myconf="${myconf} -stl -verbose -largefile -confirm-license
