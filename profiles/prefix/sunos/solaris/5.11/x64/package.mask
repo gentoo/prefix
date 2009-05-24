@@ -3,7 +3,7 @@
 # $Header: $
 
 # Fabian Groffen <grobian@gentoo.org> (24 May 2009)
-# causes SIGABORTS:
+# causes SIGABORTS: (experienced with media-libs/mesa-7.4.2)
 # *** libc thread failure: lfree() called with a misaligned pointer
 =sys-devel/m4-1.4.13
 
