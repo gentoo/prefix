@@ -16,17 +16,13 @@ sys-devel/odcctools
 # error: redefinition of ‘struct error_table’
 =app-crypt/mit-krb5-1.6.3-r4
 
-# Fabian Groffen <grobian@gentoo.org> (27 Jun 2008)
-# fails to compile, missing wait.h header
-=dev-libs/xmlrpc-c-1.06.27
-
 # Fabian Groffen <grobian@gentoo.org> (28 Mar 2008)
 # This version is taken from iPhone SDK Beta 7, and doesn't build on
 # OSX 10.4, due to POSIX spawnattr (spawn.h)
 =sys-devel/gdb-apple-961
 
 # Elias Pipping <pipping@gentoo.org> (22 Dec 2007)
-# bug #211712
+# bug #211712: archive has no table of contents
 sci-libs/blas-atlas
 
 # Elias Pipping <pipping@gentoo.org> (09 Oct 2007)
