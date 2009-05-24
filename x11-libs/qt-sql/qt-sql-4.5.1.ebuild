@@ -7,7 +7,7 @@ inherit qt4-build
 
 DESCRIPTION="The SQL module for the Qt toolkit"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="firebird +iconv mysql odbc postgres +qt3support +sqlite"
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=,qt3support=]
