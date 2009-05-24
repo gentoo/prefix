@@ -28,22 +28,13 @@
 
 # Fabian Groffen <grobian@gentoo.org> (16 Jan 2009)
 # makes packages fail to compile: libcharset.a is not a valid archive
+# http://sourceware.org/bugzilla/show_bug.cgi?id=9992
 =sys-devel/binutils-2.19.51*
 
 # Fabian Groffen <grobian@gentoo.org> (14 Oct 2008)
 # fails to compile on amd64 because it doesn't use -fPIC everywhere
 >=x11-libs/vte-0.17.4
-#
+
 # Fabian Groffen <grobian@gentoo.org> (02 Oct 2008)
 # Doesn't compile on Solaris.
-=app-shells/ksh-93.20080725
 =app-shells/ksh-93.20081104
-
-# Fabian Groffen <grobian@gentoo.org> (13 Oct 2007)
-# Doesn't compile, conflicting declaration, see:
-# http://www.sqlite.org/cvstrac/tktview?tn=2726
-=dev-db/sqlite-3.4.2
-
-# Fabian Groffen <grobian@gentoo.org> (30 Apr 2007)
-# Doesn't compile....
-=app-editors/emacs-cvs-23.0.0-r6

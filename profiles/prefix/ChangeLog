@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  24 May 2009; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/package.mask:
+  Remove masks for packages no longer in the tree
+
   24 May 2009; Fabian Groffen <fabian@gentoo.org>
   sunos/solaris/5.11/x64/package.mask:
   Mask sys-devel/m4-1.4.13, as it causes aborts on OpenSolaris/x64
