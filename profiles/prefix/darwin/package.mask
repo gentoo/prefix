@@ -4,7 +4,7 @@
 # $Id$
 
 # Fabian Groffen <grobian@gentoo.org> (30 Apr 2009)
-# Feels like it has -Werror somewhere as it dies on warnings for Darwin,
+# xmlrpc_pstream.cpp:18:44: error: features.h: No such file or directory
 =dev-libs/xmlrpc-c-1.18.02
 
 # Fabian Groffen <grobian@gentoo.org> (08 Oct 2008)
