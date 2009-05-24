@@ -252,7 +252,6 @@ qt4-build_src_prepare() {
 			-e "s|mac:LIBS += -liconv|LIBS += -liconv|g" \
 			-i "${S}"/config.tests/unix/iconv/iconv.pro \
 			|| die "sed on iconv.pro failed"
-		append-libs -liconv
 	fi
 
 	# we need some patches for Solaris
@@ -273,6 +272,11 @@ qt4-build_src_prepare() {
 qt4-build_src_configure() {
 
 	myconf="$(standard_configure_options) ${myconf}"
+
+	# this one is needed for all systems with a separate -liconv, apart from
+	# Darwin, for which the sources already cater for -liconv
+	use !elibc_glibc && [[ ${CHOST} != *-darwin* ]] && \
+		myconf="${myconf} -liconv"
 
 	if use glib; then
 		#use -I from configure
