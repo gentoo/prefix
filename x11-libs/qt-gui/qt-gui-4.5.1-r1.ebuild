@@ -7,7 +7,7 @@ inherit eutils qt4-build
 
 DESCRIPTION="The GUI module for the Qt toolkit"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="+accessibility cups +dbus +glib +gtkstyle mng nas nis raster tiff +qt3support xinerama"
 
 RDEPEND="media-libs/fontconfig
