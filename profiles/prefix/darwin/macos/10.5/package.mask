@@ -2,19 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# Jeremy Olexa <darkside@gentoo.org> (30 Sep 2008)
-# Based on pipping's testing. non-trivial to fix.
-# 1.22 fails to compile
-# 1.21 bus errors
-<=dev-util/astyle-1.22
-
-# Jeremy Olexa <darkside@gentoo.org> (26 Sep 2008)
-# These do not compile based on pipping's testing.
-dev-lang/hugs98
-dev-scheme/scm
-=dev-libs/libsigsegv-2.4
-
-# Elias Pipping <elias@pipping.org> (20 Sep 2008)
-# emacs 21.x does not support darwin9, 22.1 fails to compile.
+# Elias Pipping <pipping@gentoo.org> (20 Sep 2008)
+# emacs 21.x does not support darwin9
 app-editors/emacs:21
-=app-editors/emacs-22.1*
