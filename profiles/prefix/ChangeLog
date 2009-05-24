@@ -4,9 +4,14 @@
 
   24 May 2009; Fabian Groffen <grobian@gentoo.org>
   sunos/solaris/package.mask:
+  I fixed dev-libs/xmlrpc-c-1.18.02 compilation for Solaris, so we can
+  unmask
+
+  24 May 2009; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/package.mask:
   Remove masks for packages no longer in the tree
 
-  24 May 2009; Fabian Groffen <fabian@gentoo.org>
+  24 May 2009; Fabian Groffen <grobian@gentoo.org>
   sunos/solaris/5.11/x64/package.mask:
   Mask sys-devel/m4-1.4.13, as it causes aborts on OpenSolaris/x64
 
@@ -276,7 +281,7 @@
   revert libgphoto2 mask, probably a libtool problem involved but not specific
   to this package
 
-  25 Mar 2009; Fabian Groffen <fabian@gentoo.org> package.mask:
+  25 Mar 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask =app-text/ghostscript-gpl-8.64* due to b0rkage in real life
 
   24 Mar 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
