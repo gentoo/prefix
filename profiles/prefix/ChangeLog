@@ -3,6 +3,12 @@
 # $Id$
 
   24 May 2009; Fabian Groffen <grobian@gentoo.org>
+  -bsd/freebsd/6.2/package.mask, -bsd/freebsd/6.2/package.provided,
+  -bsd/freebsd/6.2/parent, -bsd/freebsd/6.2/x86/make.defaults,
+  -bsd/freebsd/6.2/x86/parent:
+  Drop FreeBSD 6.2 profile
+
+  24 May 2009; Fabian Groffen <grobian@gentoo.org>
   +sunos/solaris/5.10/x64/package.mask, sunos/solaris/5.11/x64/package.mask:
   Mask zziplib also on 5.10/x64, update to the current version in portage,
   which is still broken
