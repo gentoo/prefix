@@ -7,7 +7,7 @@ inherit qt4-build
 
 DESCRIPTION="The OpenGL module for the Qt toolkit"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="+qt3support"
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=,qt3support=]
