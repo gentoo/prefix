@@ -7,7 +7,7 @@ inherit qt4-build
 
 DESCRIPTION="The assistant help module for the Qt toolkit"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="~x11-libs/qt-gui-${PV}[debug=]
