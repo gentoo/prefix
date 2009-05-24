@@ -11,16 +11,9 @@
 # Crappy code makes it bus error on Darwin, bug #233600
 dev-python/sip
 
-# Fabian Groffen <grobian@gentoo.org> (06 May 2008)
-# ld: in netdns.a, archive has no table of contents
-=dev-perl/Net-DNS-0.63
-
-# Fabian Groffen <grobian@gentoo.org> (15 Feb 2007)
-# Runs horibly out of stack space
-=dev-lang/swi-prolog-5.6.50
-
 # Fabian Groffen <grobian@gentoo.org> (15 Feb 2007)
 # Doesn't compile, previous release (1.0.6) does.
+# error: stropts.h: No such file or directory
 =app-misc/ttyrec-1.0.8
 
 # Elias Pipping <pipping@gentoo.org> (19 Dec 2007)
