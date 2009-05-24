@@ -2,10 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# Fabian Groffen <grobian@gentoo.org> (20 Nov 2007)
-# Doesn't compile, don't know yet why, it doesn't give an error
-=media-video/mplayer-1.0_rc2_p24929
-
 # Elias Pipping <pipping@gentoo.org> (19 Dec 2007)
 # apple java6 on macosx is only released on leopard :(
 dev-java/apple-jdk-bin:1.6
