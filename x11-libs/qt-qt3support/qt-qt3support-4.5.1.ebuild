@@ -7,7 +7,7 @@ inherit qt4-build
 
 DESCRIPTION="The Qt3 support module for the Qt toolkit"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="+accessibility phonon"
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=,qt3support]
