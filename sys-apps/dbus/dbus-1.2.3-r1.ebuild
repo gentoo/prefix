@@ -36,6 +36,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.2.1-interix.patch
 	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix5.patch
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix3.patch
+	[[ ${CHOST} == x86_64-*-freebsd7* || ${CHOST} == x86_64-*-solaris* ]] && \
+		epatch "${FILESDIR}"/${P}-freebsd64.patch
 
 	eautoreconf
 }
