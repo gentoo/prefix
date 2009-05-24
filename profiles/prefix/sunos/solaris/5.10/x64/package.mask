@@ -2,11 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# Fabian Groffen <grobian@gentoo.org> (24 May 2009)
-# causes SIGABORTS: (experienced with media-libs/mesa-7.4.2)
-# *** libc thread failure: lfree() called with a misaligned pointer
-=sys-devel/m4-1.4.13
-
 # Fabian Groffen <grobian@gentoo.org> (12 Jan 2008)
 # fails to compile:
 # zzipwrap.c:(.text+0x7e): undefined reference to `zzip_opendir_ext_io64'

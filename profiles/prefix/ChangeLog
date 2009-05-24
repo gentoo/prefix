@@ -3,6 +3,11 @@
 # $Id$
 
   24 May 2009; Fabian Groffen <grobian@gentoo.org>
+  +sunos/solaris/5.10/x64/package.mask, sunos/solaris/5.11/x64/package.mask:
+  Mask zziplib also on 5.10/x64, update to the current version in portage,
+  which is still broken
+
+  24 May 2009; Fabian Groffen <grobian@gentoo.org>
   sunos/solaris/package.mask:
   I fixed dev-libs/xmlrpc-c-1.18.02 compilation for Solaris, so we can
   unmask
