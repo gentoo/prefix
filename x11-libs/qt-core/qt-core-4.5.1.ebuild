@@ -7,7 +7,7 @@ inherit qt4-build
 
 DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="doc +glib +iconv +qt3support +ssl"
 
 RDEPEND="sys-libs/zlib
