@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  25 May 2009; Fabian Groffen <fabian@gentoo.org>
+  +sunos/solaris/5.11/package.mask:
+  Mask sys-process/lsof-4.82, totally non-OpenSolaris ready
+
   14 May 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask:
   mask sed 4.2, since it causes problems on interix
 
