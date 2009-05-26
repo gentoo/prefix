@@ -1,6 +1,12 @@
 # ChangeLog for app-text/dictd
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.65 2009/03/18 06:52:47 josejx Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.66 2009/05/24 21:16:03 pva Exp $
+
+*dictd-1.11.1-r1 (24 May 2009)
+
+  24 May 2009; Peter Volkov <pva@gentoo.org> +dictd-1.11.1-r1.ebuild,
+  metadata.xml:
+  Added minimal USE flag, bug #268115, thank Nick White for report.
 
   18 Mar 2009; Joseph Jezak <josejx@gentoo.org> dictd-1.11.1.ebuild:
   Marked ~ppc for bug #250390.
