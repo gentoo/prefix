@@ -1,6 +1,17 @@
 # ChangeLog for net-misc/memcached
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.83 2009/05/14 23:14:17 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.85 2009/05/26 01:42:49 jer Exp $
+
+  26 May 2009; Jeroen Roovers <jer@gentoo.org> memcached-1.3.3-r2.ebuild:
+  Stable for HPPA (bug #271246).
+
+*memcached-1.3.3-r2 (26 May 2009)
+
+  26 May 2009; Robin H. Johnson <robbat2@gentoo.org> +files/1.3.3/conf,
+  +memcached-1.3.3-r2.ebuild, +files/1.3.3/init:
+  Bug #266061: --enable-threads is obsolete. It is now always used by
+  upstream and no longer an option. Bug #269022: Start memcached after
+  system time is accurate. Bug #270838: Specify UDP port to listen on.
 
 *memcached-1.3.3-r1 (14 May 2009)
 
