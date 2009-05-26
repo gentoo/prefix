@@ -1,6 +1,17 @@
 # ChangeLog for net-libs/libssh
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/net-libs/libssh/ChangeLog,v 1.11 2007/08/13 21:41:37 dertobi123 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/ChangeLog,v 1.12 2009/05/25 21:00:09 pva Exp $
+
+*libssh-0.3.0 (25 May 2009)
+*libssh-0.1.1 (25 May 2009)
+
+  25 May 2009; Peter Volkov <pva@gentoo.org> -libssh-0.1.ebuild,
+  +libssh-0.1.1.ebuild, libssh-0.2.ebuild, +libssh-0.3.0.ebuild,
+  +files/libssh-0.3.0-automagic-crypt.patch, -libssh-0.11.ebuild,
+  metadata.xml:
+  Removed old 0.1 and thus we don't abuse any more, bug #258104, thank Thilo
+  Bangert for report. Changed version from 0.11 to 0.1.1 since that's what
+  was intended. Fixed some QA warnings. Version bump up to 0.3.0.
 
   13 Aug 2007; Tobias Scherbaum <dertobi123@gentoo.org> libssh-0.11.ebuild:
   ppc. stable
