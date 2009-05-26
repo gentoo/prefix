@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.113 2009/04/27 06:46:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.114 2009/05/23 23:23:36 vapier Exp $
+
+*gmp-4.3.1 (23 May 2009)
+
+  23 May 2009; Mike Frysinger <vapier@gentoo.org> +gmp-4.3.1.ebuild:
+  Version bump #270810 by Arseny Solokha.
 
 *gmp-4.3.0 (27 Apr 2009)
 
