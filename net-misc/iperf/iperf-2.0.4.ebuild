@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iperf/iperf-2.0.4.ebuild,v 1.2 2009/03/25 17:59:21 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iperf/iperf-2.0.4.ebuild,v 1.4 2009/05/26 04:13:19 jer Exp $
 
 DESCRIPTION="tool to measure IP bandwidth using UDP or TCP"
 HOMEPAGE="http://iperf.sourceforge.net/"
@@ -26,8 +26,8 @@ src_install() {
 	make DESTDIR="${D}" install || die "make install failed"
 	dodoc INSTALL README
 	dohtml doc/*
-	newinitd ${FILESDIR}/${PN}.initd ${PN}
-	newconfd ${FILESDIR}/${PN}.confd ${PN}
+	newinitd "${FILESDIR}"/${PN}.initd ${PN}
+	newconfd "${FILESDIR}"/${PN}.confd ${PN}
 }
 
 pkg_postinst() {
