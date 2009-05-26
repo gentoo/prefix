@@ -1,6 +1,12 @@
 # ChangeLog for app-cdr/cdrkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.68 2009/05/07 20:55:51 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.70 2009/05/24 16:28:52 loki_val Exp $
+
+  24 May 2009; Peter Alfredsen <loki_val@gentoo.org> cdrkit-1.1.9-r1.ebuild,
+  +files/cdrkit-1.1.9-glibc-2.10.patch:
+  Fix build with glibc-2.10, bug 270372. Thanks to Curtis Magyar
+  <curtm4n@gmail.com> for getting us the patch from Paldo linux and to
+  Jonathan Adamczewski <jadamcze@utas.edu.au> for reporting.
 
 *cdrkit-1.1.9-r1 (07 May 2009)
 

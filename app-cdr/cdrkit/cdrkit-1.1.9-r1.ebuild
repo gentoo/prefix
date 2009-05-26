@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/cdrkit-1.1.9-r1.ebuild,v 1.1 2009/05/07 20:55:51 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/cdrkit-1.1.9-r1.ebuild,v 1.2 2009/05/24 14:27:43 loki_val Exp $
 
 inherit cmake-utils
 
@@ -30,6 +30,8 @@ src_unpack() {
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-1.1.7-interix.patch
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.1.8-interix3.patch
 }
+
+PATCHES=( "${FILESDIR}/${P}-glibc-2.10.patch" )
 
 src_install() {
 	cmake-utils_src_install
