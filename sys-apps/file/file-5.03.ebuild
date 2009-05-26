@@ -23,7 +23,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.00-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.00-strtoull-limits.patch #263527
 
-	eautoreconf # required for interix, was elibtoolize
+	[[ ${CHOST} == *-interix* ]] && eautoreconf # required for interix
+	elibtoolize
 	epunt_cxx
 
 	# make sure python links against the current libmagic #54401
