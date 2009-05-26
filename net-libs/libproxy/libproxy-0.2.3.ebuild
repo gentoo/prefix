@@ -12,7 +12,7 @@ SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris"
 IUSE="gnome kde networkmanager python webkit xulrunner"
 
 RDEPEND="
@@ -52,10 +52,17 @@ src_prepare() {
 	# Fix test to follow POSIX (for x86-fbsd)
 	sed -e 's/\(test.*\)==/\1=/g' -i configure.ac configure || die "sed failed"
 
+	# Fix building on platforms that do not define INET_ADDRSTRLEN
+	epatch "${FILESDIR}/${PN}-addrstrlen.patch"
+
 	eautoreconf
 }
 
 src_configure() {
+	local extralibs
+	if use sparc-solaris; then
+		extralibs="-lsocket -lnsl"
+	fi
 	econf --with-envvar \
 		--with-file \
 		--disable-static \
@@ -64,7 +71,8 @@ src_configure() {
 		$(use_with webkit) \
 		$(use_with xulrunner mozjs) \
 		$(use_with networkmanager) \
-		$(use_with python)
+		$(use_with python) \
+		LIBS="${extralibs}"
 }
 
 src_compile() {
