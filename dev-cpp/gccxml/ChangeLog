@@ -1,6 +1,10 @@
 # ChangeLog for dev-cpp/gccxml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gccxml/ChangeLog,v 1.27 2009/05/22 10:03:05 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gccxml/ChangeLog,v 1.28 2009/05/25 13:49:53 armin76 Exp $
+
+  25 May 2009; Raúl Porcel <armin76@gentoo.org>
+  gccxml-0.9.0_pre20090516.ebuild:
+  arm/ia64/s390/sh stable wrt #245765
 
   22 May 2009; Tobias Heinlein <keytoaster@gentoo.org>
   gccxml-0.9.0_pre20090516.ebuild:
