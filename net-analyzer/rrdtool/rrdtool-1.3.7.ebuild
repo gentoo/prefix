@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.7.ebuild,v 1.2 2009/05/18 07:15:34 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.7.ebuild,v 1.3 2009/05/24 21:49:21 pva Exp $
 
 EAPI=2
 
@@ -25,7 +25,7 @@ RDEPEND="
 	tcl? ( dev-lang/tcl )
 	perl? ( dev-lang/perl )
 	python? ( dev-lang/python )
-	ruby? ( dev-lang/ruby
+	ruby? ( >=dev-lang/ruby-1.8.6_p287-r13
 			!dev-ruby/ruby-rrd )"
 
 DEPEND="${RDEPEND}
@@ -54,8 +54,7 @@ src_configure() {
 }
 
 src_install() {
-	# -j1 see bug #239101 for details
-	emake -j1 DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 
 	if ! use doc ; then
 		rm -rf "${ED}"/usr/share/doc/${PF}/{html,txt}

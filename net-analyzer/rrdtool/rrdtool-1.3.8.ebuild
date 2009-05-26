@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.6.ebuild,v 1.3 2009/03/08 10:39:21 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.8.ebuild,v 1.1 2009/05/25 22:02:32 pva Exp $
 
 EAPI=2
 
@@ -25,7 +25,7 @@ RDEPEND="
 	tcl? ( dev-lang/tcl )
 	perl? ( dev-lang/perl )
 	python? ( dev-lang/python )
-	ruby? ( dev-lang/ruby
+	ruby? ( >=dev-lang/ruby-1.8.6_p287-r13
 			!dev-ruby/ruby-rrd )"
 
 DEPEND="${RDEPEND}
@@ -54,8 +54,7 @@ src_configure() {
 }
 
 src_install() {
-	# -j1 see bug #239101 for details
-	emake -j1 DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "make install failed"
 
 	if ! use doc ; then
 		rm -rf "${ED}"/usr/share/doc/${PF}/{html,txt}
@@ -79,6 +78,10 @@ pkg_postinst() {
 	ewarn "To restore a new dump with ann old rrdtool restore version, either remove"
 	ewarn "the xml header and the doctype by hand (both on the first line of the dump)"
 	ewarn "or use rrdtool dump --no-header."
+	ewarn
+	ewarn "Note: rrdtool-1.3.x doesn't have any default font bundled. Thus if you've"
+	ewarn "upgraded from rrdtool-1.2.x and don't have any font installed to make"
+	ewarn "lables visible, please, install some font, e.g. media-fonts/dejavu."
 }
 
 pkg_prerm() {
