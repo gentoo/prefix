@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/gthumb-2.10.11.ebuild,v 1.5 2009/05/20 17:42:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/gthumb-2.10.11.ebuild,v 1.6 2009/05/23 16:08:58 ssuominen Exp $
 
 EAPI=2
 
@@ -14,9 +14,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="+gphoto2 iptc raw tiff test"
 
-# Unknown item missing from deps, gtkunique.
-RDEPEND=">=dev-libs/glib-2.6
-	>=x11-libs/gtk+-2.10
+RDEPEND=">=dev-libs/glib-2.6:2
+	>=x11-libs/gtk+-2.10:2
 	>=dev-libs/libxml2-2.4
 	>=gnome-base/libgnome-2.6
 	>=gnome-base/libgnomeui-2.6
@@ -39,7 +38,7 @@ RDEPEND=">=dev-libs/glib-2.6
 DEPEND="${RDEPEND}
 	x11-proto/inputproto
 	x11-proto/xextproto
-	>=dev-util/pkgconfig-0.9.0
+	dev-util/pkgconfig
 	app-text/scrollkeeper
 	>=dev-util/intltool-0.29
 	app-text/gnome-doc-utils
