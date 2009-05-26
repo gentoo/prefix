@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-LongString
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-LongString/ChangeLog,v 1.22 2008/09/30 15:11:43 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-LongString/ChangeLog,v 1.23 2009/05/25 16:23:13 ranger Exp $
+
+  25 May 2009; Brent Baude <ranger@gentoo.org> Test-LongString-0.11.ebuild:
+  keyworded ~arch for ppc64, bug 270553
 
   30 Sep 2008; Torsten Veller <tove@gentoo.org>
   -Test-LongString-0.07.ebuild, -Test-LongString-0.09.ebuild,

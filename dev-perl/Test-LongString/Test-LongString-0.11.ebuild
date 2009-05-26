@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-LongString/Test-LongString-0.11.ebuild,v 1.8 2008/09/30 15:11:43 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-LongString/Test-LongString-0.11.ebuild,v 1.9 2009/05/25 16:23:13 ranger Exp $
 
 MODULE_AUTHOR=RGARCIA
 inherit perl-module
