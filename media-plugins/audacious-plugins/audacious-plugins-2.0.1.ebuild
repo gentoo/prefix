@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.0.1.ebuild,v 1.1 2009/05/14 16:09:28 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.0.1.ebuild,v 1.2 2009/05/24 15:43:29 ssuominen Exp $
 
 inherit eutils flag-o-matic
 
@@ -17,7 +17,6 @@ IUSE="aqua adplug alsa cdaudio esd flac gnome icecast ipv6 jack lirc mp3 mtp mus
 nls oss projectm pulseaudio scrobbler sdl sid sndfile sse2 timidity tta vorbis wavpack wma"
 
 RDEPEND="app-arch/unzip
-	>=dev-libs/libcdio-0.79-r1
 	>=dev-libs/dbus-glib-0.60
 	dev-libs/libxml2
 	>=media-sound/audacious-2.0.1
@@ -25,7 +24,8 @@ RDEPEND="app-arch/unzip
 	>=x11-libs/gtk+-2.14
 	adplug? ( >=dev-cpp/libbinio-1.4 )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
-	cdaudio? ( >=media-libs/libcddb-1.2.1 )
+	cdaudio? ( >=media-libs/libcddb-1.2.1
+		>=dev-libs/libcdio-0.79-r1 )
 	esd? ( >=media-sound/esound-0.2.38-r1 )
 	flac? ( >=media-libs/libvorbis-1.0
 		>=media-libs/flac-1.2.1-r1 )
