@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/qt-webkit-4.5.1.ebuild,v 1.3 2009/05/15 18:14:28 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/qt-webkit-4.5.1.ebuild,v 1.4 2009/05/24 12:08:37 klausman Exp $
 
-EAPI=2
-inherit qt4-build
+EAPI="2"
+inherit qt4-build flag-o-matic
 
 DESCRIPTION="The Webkit module for the Qt toolkit"
 SLOT="4"
@@ -29,6 +29,8 @@ src_prepare() {
 }
 
 src_configure() {
+	# This fixes relocation overflows on alpha
+	use alpha && append-ldflags "-Wl,--no-relax"
 	myconf="${myconf} -webkit"
 	qt4-build_src_configure
 }

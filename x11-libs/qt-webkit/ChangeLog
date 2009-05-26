@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/qt-webkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.35 2009/05/14 23:45:37 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.36 2009/05/24 12:08:37 klausman Exp $
+
+  24 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  qt-webkit-4.5.1.ebuild:
+  Keyworded on alpha, bugs 266201 and 269739
+
+  24 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  qt-webkit-4.5.1.ebuild:
+  Added code to make linking work on alpha
 
   14 May 2009; Ben de Groot <yngwin@gentoo.org> -qt-webkit-4.5.0.ebuild:
   Remove old
