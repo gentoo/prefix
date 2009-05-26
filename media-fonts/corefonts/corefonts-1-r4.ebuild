@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/corefonts-1-r4.ebuild,v 1.6 2008/06/16 03:45:57 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/corefonts-1-r4.ebuild,v 1.8 2009/05/25 02:32:08 jer Exp $
 
 inherit font
 
@@ -33,7 +33,7 @@ FONT_SUFFIX="ttf"
 src_unpack() {
 	for exe in ${A} ; do
 		echo ">>> Unpacking ${exe} to ${WORKDIR}"
-		cabextract --lowercase ${DISTDIR}/${exe} > /dev/null \
+		cabextract --lowercase "${DISTDIR}"/${exe} > /dev/null \
 			|| die "failed to unpack ${exe}"
 	done
 }

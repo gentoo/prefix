@@ -1,6 +1,12 @@
 # ChangeLog for media-fonts/corefonts
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/ChangeLog,v 1.29 2008/06/16 03:45:57 josejx Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/ChangeLog,v 1.31 2009/05/25 02:32:08 jer Exp $
+
+  25 May 2009; Jeroen Roovers <jer@gentoo.org> corefonts-1-r4.ebuild:
+  Fix quoting issue.
+
+  25 May 2009; Jeroen Roovers <jer@gentoo.org> corefonts-1-r4.ebuild:
+  Stable for HPPA too.
 
   16 Jun 2008; Joseph Jezak <josejx@gentoo.org> corefonts-1-r4.ebuild:
   Marked ppc stable.
