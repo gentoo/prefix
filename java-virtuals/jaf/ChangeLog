@@ -1,6 +1,11 @@
 # ChangeLog for java-virtuals/jaf
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaf/ChangeLog,v 1.5 2008/10/27 23:25:43 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaf/ChangeLog,v 1.6 2009/05/23 11:28:57 ali_bush Exp $
+
+*jaf-1.1-r1 (23 May 2009)
+
+  23 May 2009; Alistair Bush <ali_bush@gentoo.org> +jaf-1.1-r1.ebuild:
+  Bump to support feature available in java-config-2.1.8.
 
   27 Oct 2008; Brent Baude <ranger@gentoo.org> jaf-1.1.ebuild:
   Marking jaf-1.1 ppc64 for bug 242980
