@@ -1,6 +1,19 @@
 # ChangeLog for dev-python/python-docs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.110 2009/05/22 22:39:24 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.114 2009/05/26 01:44:23 jer Exp $
+
+  26 May 2009; Jeroen Roovers <jer@gentoo.org> python-docs-2.5.4.ebuild:
+  Stable for HPPA (bug #270943).
+
+  24 May 2009; Tiago Cunha <tcunha@gentoo.org> python-docs-2.5.4.ebuild:
+  stable sparc, bug 270943
+
+  23 May 2009; nixnut <nixnut@gentoo.org> python-docs-2.5.4.ebuild:
+  ppc stable #270943
+
+  23 May 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  python-docs-2.5.4.ebuild:
+  stable amd64, bug 270943
 
   22 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   python-docs-2.4.4.ebuild, python-docs-2.5.1.ebuild,
