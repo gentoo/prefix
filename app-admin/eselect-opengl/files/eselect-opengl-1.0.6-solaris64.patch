@@ -1,0 +1,25 @@
+* grobian@gentoo.org: backport of fix for 64-bits newer Solaris to avoid
+  conflicting re-typedef
+
+--- glxext.h
++++ glxext.h
+@@ -389,7 +389,7 @@
+ #elif defined(__sun__) || defined(__digital__)
+ #include <inttypes.h>
+ #if defined(__STDC__)
+-#if defined(__arch64__)
++#if defined(__arch64__) || defined(_LP64)
+ typedef long int int64_t;
+ typedef unsigned long int uint64_t;
+ #else
+--- glext.h
++++ glext.h
+@@ -389,7 +389,7 @@
+ #elif defined(__sun__) || defined(__digital__)
+ #include <inttypes.h>
+ #if defined(__STDC__)
+-#if defined(__arch64__)
++#if defined(__arch64__) || defined(_LP64)
+ typedef long int int64_t;
+ typedef unsigned long int uint64_t;
+ #else

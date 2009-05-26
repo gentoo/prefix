@@ -38,6 +38,7 @@ src_unpack() {
 	mv glext.h-${GLEXT} glext.h
 	mv glxext.h-${GLXEXT} glxext.h
 
+	epatch "${FILESDIR}"/${P}-solaris64.patch
 	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${P}-soname-copy-for-prefix.patch
 	sed -i -e "/^\(ENV_FILE=\|PREFIX=\|DST_PREFIX=\)/s:ROOT}:ROOT}${EPREFIX}:" \
