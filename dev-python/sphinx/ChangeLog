@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/sphinx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.16 2009/05/21 15:52:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.17 2009/05/23 19:19:10 nixnut Exp $
+
+  23 May 2009; nixnut <nixnut@gentoo.org> sphinx-0.5.2.ebuild:
+  ppc stable #270089
 
   21 May 2009; Raúl Porcel <armin76@gentoo.org> sphinx-0.6.1-r1.ebuild:
   Add ~arm/~sh/~sparc
