@@ -1,6 +1,11 @@
 # ChangeLog for lxde-base/lxpanel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/lxde-base/lxpanel/ChangeLog,v 1.3 2009/01/02 00:36:52 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxpanel/ChangeLog,v 1.4 2009/05/24 22:55:07 yngwin Exp $
+
+*lxpanel-0.4.1 (24 May 2009)
+
+  24 May 2009; Ben de Groot <yngwin@gentoo.org> +lxpanel-0.4.1.ebuild:
+  Version bump. Dropped ~ppc keyword because of unkeyworded deps.
 
   02 Jan 2009; Ben de Groot <yngwin@gentoo.org>
   +files/lxpanel-sandbox.patch, lxpanel-0.3.8.1.ebuild:
