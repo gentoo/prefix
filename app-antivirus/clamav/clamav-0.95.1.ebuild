@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.95.1.ebuild,v 1.10 2009/05/21 18:18:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.95.1.ebuild,v 1.11 2009/05/23 10:25:21 maekke Exp $
 
 inherit autotools eutils flag-o-matic fixheadtails multilib versionator prefix
 
