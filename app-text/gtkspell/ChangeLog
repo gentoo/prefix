@@ -1,6 +1,12 @@
 # ChangeLog for app-text/gtkspell
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gtkspell/ChangeLog,v 1.76 2009/05/10 15:10:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gtkspell/ChangeLog,v 1.77 2009/05/26 04:40:29 serkan Exp $
+
+*gtkspell-2.0.15-r1 (26 May 2009)
+
+  26 May 2009; Serkan Kaba <serkan@gentoo.org> +gtkspell-2.0.15-r1.ebuild,
+  +files/gtkspell-2.0.15-fix-null-list.patch:
+  Revbump to fix critical error. Closes bug #270177
 
   10 May 2009; Jeroen Roovers <jer@gentoo.org> gtkspell-2.0.15.ebuild:
   Stable for HPPA (bug #266665).
