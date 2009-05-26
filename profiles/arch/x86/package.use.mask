@@ -18,10 +18,10 @@ dev-python/kaa-base -tls
 # Serkan Kaba <serkan@gentoo.org> (20 Jul 2008)
 app-text/enchant -zemberek
 
-dev-java/sun-jdk -nsplugin
-dev-java/sun-jre-bin -nsplugin
-dev-java/ibm-jdk-bin -nsplugin 
-dev-java/ibm-jre-bin -nsplugin
+>=dev-java/sun-jdk-1.5 -nsplugin
+>=dev-java/sun-jre-bin-1.5 -nsplugin
+>=dev-java/ibm-jdk-bin-1.5 -nsplugin 
+>=dev-java/ibm-jre-bin-1.5 -nsplugin
 x11-terms/eterm sse2
 
 # Dawid Węgliński <cla@gentoo.org> (21.11.2007)

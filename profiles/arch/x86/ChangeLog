@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/x86 profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/ChangeLog,v 1.18 2009/03/20 20:02:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/x86/ChangeLog,v 1.19 2009/05/24 21:01:36 caster Exp $
+
+  24 May 2009; Vlastimil Babka <caster@gentoo.org> package.use.mask:
+  Mask nsplugin of 1.4 JVM's. Bug #263810.
 
   20 Mar 2009; Raúl Porcel <armin76@gentoo.org> package.use.mask:
   Package.use.mask sse2 on pixman, bug #260287

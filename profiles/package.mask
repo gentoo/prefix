@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9827 2009/05/22 01:08:21 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9836 2009/05/26 01:37:44 matsuu Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,28 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# MATSUU Takuto <matsuu@gentoo.org> (26 May 2009)
+# Masked for testing, bug #267365.
+>=x11-libs/xcb-util-0.3.4
+=x11-wm/awesome-3.3*
+
+# Peter Alfredsen <loki_val@gentoo.org> (26 May 2009)
+# Development version, Work-In-Progress
+=app-misc/tomboy-0.15*
+
+# Peter Volkov <pva@gentoo.org> (26 May 2009)
+# Force people to downgrade and use better version
+=net-libs/libssh-0.11
+
+# Michael Sterrett <mr_bones_@gentoo.org> (25 May 2009)
+# Masked for testing.
+=app-admin/syslog-ng-3.0.2
+
+# Jesus Rivero <neurogeek@gentoo.org> (24 May 2009)
+# Masked for removal in 30 days. Upstream is dead.
+dev-python/glewpy
+dev-python/pycrash
 
 # Tobias Scherbaum <dertobi123@gentoo.org> (19 May 2009)
 # Masked for testing
@@ -267,10 +289,6 @@ x11-plugins/desklet-wirelessmonitor
 # Beta version
 =net-proxy/squid-3.1*
 
-# MATSUU Takuto <matsuu@gentoo.org> (25 Apr 2009)
-# Masked for testing, bug #267365.
->=x11-libs/xcb-util-0.3.4
-
 # Federico Ferri <mescalinum@gentoo.org> (24 Apr 2009)
 # Unmasking tcl/tk 8.5
 >=dev-lang/tcl-8.5.9999
@@ -428,11 +446,6 @@ app-shells/bash-completion-config
 # Due to popular demand and no suitable replacement, it will stay in the tree
 # in a masked status until it completely breaks or is replaced.
 app-portage/udept
-
-# Markus Ullmann <jokey@gentoo.org> (5 Apr 2009)
-# mask until gnome 2.26 is in-tree (needs libsoup 2.26)
->=www-client/midori-0.1.5
->=net-libs/webkit-gtk-0_p42000
 
 # Ulrich Mueller <ulm@gentoo.org> (2 Apr 2009)
 # De-supported by upstream since three years, see http://tug.org/teTeX/

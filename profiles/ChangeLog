@@ -1,10 +1,37 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2681 2009/05/22 14:21:40 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2689 2009/05/26 01:37:43 matsuu Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  26 May 2009; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  add =x11-wm/awesome-3.3* into p.mask.
+
+  25 May 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Mask new Tomboy WIP version.
+
+  25 May 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Masked net-libs/libssh-0.11 sinde we want people to downgrade.
+
+  25 May 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add x11-proto/xproto back into p.mask (see bug #271066)
+
+  24 May 2009; Vlastimil Babka <caster@gentoo.org>
+  arch/x86/package.use.mask, default-linux/x86/package.use.mask,
+  hardened/ia64/package.use.mask, hardened/x86/package.use.mask,
+  uclibc/x86/package.use.mask:
+  Mask nsplugin of 1.4 JVM's. Bug #263810.
+
+  24 May 2009; MATSUU Takuto <matsuu@gentoo.org> package.mask:
+  remove x11-libs/xcb-util from p.mask
+
+  23 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org> package.mask:
+  GNOME + libsoup 2.26 are in-tree, so is latest webkit-gtk
+
+  23 May 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  remove x11-proto/xproto from p.mask
 
   22 May 2009; Alexis Ballier <aballier@gentoo.org> profiles.desc:
   add freebsd-7.2 profiles to profiles.desc

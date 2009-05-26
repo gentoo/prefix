@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4470 2009/05/22 15:27:50 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4478 2009/05/25 21:07:42 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -464,6 +464,7 @@ app-text/crm114:mimencode - Add support for using the mimencode mime (net-mail/m
 app-text/crm114:normalizemime - Add support for using the normalizemime (mail-filter/normalizemime)
 app-text/dictd:dbi - Build dbi plugin, uses dev-db/libdbi library for implementing DICT database using SQL server
 app-text/dictd:judy - Build Judy-based (dev-libs/judy) plugin implementing fast "exact" and especially "lev" strategies
+app-text/dictd:minimal - Don't build server but dict client, dictzip and dictfmt only.
 app-text/docbook-sgml-utils:jadetex - Add support for app-text/jadetex (for processing tex files produced by the TeX backend of Jade)
 app-text/enchant:aspell - Adds support for app-text/aspell spell checker
 app-text/enchant:hunspell - Adds support for app-text/hunspell spell checker
@@ -568,6 +569,12 @@ dev-games/ogre:double-precision - more precise calculations at the expense of sp
 dev-games/ogre:freeimage - image loading support with FreeImage
 dev-games/openscenegraph:osgapps -  Build osg applications 
 dev-games/openscenegraph:xrandr -  Enable support for the X xrandr extension 
+dev-games/physfs:grp - Enable Build Engine GRP archive support
+dev-games/physfs:hog - Enable Descent I/II HOG archive support
+dev-games/physfs:mvl - Enable Descent I/II MVL archive support
+dev-games/physfs:qpak - Enable Quake I/II QPAK archive support
+dev-games/physfs:wad - Enable Doom WAD archive support
+dev-games/physfs:zip - Enable ZIP archive support
 dev-haskell/gtk2hs:glade - Enable gnome-base/libglade bindings compilation
 dev-java/ant:antlr - Enable ANTLR Ant tasks
 dev-java/ant:bcel - Enable bcel (bytecode manipulation) Ant tasks
@@ -1164,13 +1171,14 @@ mail-client/claws-mail:spamassassin - Build mail-filter/spamassassin plugin
 mail-client/claws-mail:ssl - Use gnutls for Secure Socket Layer transactions (deprecated, USE=gnutls should be used)
 mail-client/evolution:crypt - Enable GPG encryption support using app-crypt/gnupg and app-crypt/pinentry
 mail-client/evolution:dbus - Allow the Mail Notification plugin to notify you about new messages via an icon in the tray using sys-apps/dbus
+mail-client/evolution:exchange - Build optional Microsoft Exchange support
 mail-client/evolution:hal - Enable support for auto-detection of inserted iPods and syncing data with them using sys-apps/hal
 mail-client/evolution:ldap - Enable support for fetching contacts from an LDAP or Active Directory server using net-nds/openldap
 mail-client/evolution:mono - Build the dev-lang/mono plugins included in Evolution
 mail-client/evolution:networkmanager - Allows Evolution to automagically toggle online/offline mode by talking to net-misc/networkmanager and getting the current network state
 mail-client/evolution:pda - Enable support for syncing Evolution Calendar and Addressbooks with PDAs using app-pda/gnome-pilot and app-pda/gnome-pilot-conduit
 mail-client/evolution:profile - Build support for profiling Evolution for development purposes
-mail-client/evolution:spell - Enable spell-checking support using app-text/gnome-spell
+mail-client/evolution:pst - Build optional plugin for PST file format import
 mail-client/mail-notification:gmail - Enable Gmail mailbox checking
 mail-client/mail-notification:mh - Enable MH mailbox checking
 mail-client/mail-notification:pop - Enable support for pop
@@ -1301,6 +1309,7 @@ media-gfx/fontforge:pasteafter - Controls whether fontforge has a paste after co
 media-gfx/fontforge:tilepath - Controls whether fontforge has a tile path command (a variant of expand stroke) This is useful for very decorative fonts, most people won't want it.
 media-gfx/fontforge:truetype-debugger - Enable enable truetype debugger in fontforge
 media-gfx/fontforge:type3 - Build in support for type3/svg fonts containing multilayered drawing with strokes, fills, images, etc. Type3 fonts are only supported by postscript printers (not by most windowing displays). They are capable of more exotic images than normal fonts but require much more effort to support.
+media-gfx/geeqie:xmp - Adds support for XMP metadata
 media-gfx/gimp:smp -  Enable support for multiprocessors 
 media-gfx/gimp:webkit -  Enable the webkit rendering engine 
 media-gfx/graphviz:cgraph -  Enables cgraph (PostScript plotting library in C) library 
@@ -1497,7 +1506,7 @@ media-sound/fapg:xspf - Enable support for saving XSPF playlists.
 media-sound/freewheeling:fluidsynth - compile with support for fluidsynth
 media-sound/gimmix:cover - Enable cover art fetching
 media-sound/gimmix:lyrics - Enable lyric fetching
-media-sound/gmpc:spiff - Use libspiff to parse XSPF playlists
+media-sound/gmpc:xspf - Enable support for reading and saving XSPF playlists
 media-sound/gmusicbrowser:webkit - Enables gtk WebKit support
 media-sound/gnusound:cpudetection - Enables runtime cpu detection
 media-sound/herrie:http - Enable http streaming
@@ -2165,6 +2174,10 @@ net-libs/libproxy:xulrunner - Enable support for reading proxy settings from net
 net-libs/libsrtp:aesicm - Use AES ICM cryptographic algorithm
 net-libs/libsrtp:console -  Use /dev/console instead of stdout for error messages 
 net-libs/libsrtp:syslog - Use syslog for error messages
+net-libs/libssh:gcrypt - Prefer dev-libs/libgcrypt over dev-libs/openssl for encryption
+net-libs/libssh:server - Build with SSH server support
+net-libs/libssh:sftp - Build with SFTP support
+net-libs/libssh:ssh1 - Build with SSH1 support
 net-libs/libssh2:libgcrypt - Use libgcrypt for crypto
 net-libs/libvncserver:no24bpp - disable 24bpp support
 net-libs/libvncserver:nobackchannel - disable backchannel support
@@ -2472,6 +2485,7 @@ sci-chemistry/gromacs:fkernels - Enable building of Fortran Kernels for platform
 sci-chemistry/gromacs:single-precision - Single precision version of gromacs
 sci-chemistry/gromacs:zsh-completion - Enable zsh completion support
 sci-chemistry/jmol:client-only - Install the viewer only, no applet files for httpd 
+sci-chemistry/pdb2pqr:opal - Add web interafce via opal
 sci-chemistry/pymol:apbs - Build the apbs plugin tool.
 sci-chemistry/pymol:shaders - Build with Shaders support - good for high-end 3D video cards.
 sci-chemistry/shelx:dosformat - Use CR/LF to end lines; useful in mixed Linux/Windows environments
@@ -2715,8 +2729,10 @@ sys-cluster/vzctl:logrotate - Enable logrotate file installation
 sys-devel/binutils:gold - Use the new gold linker (written in C++) rather than the standard linker (this _will_ break things)
 sys-devel/binutils:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 sys-devel/binutils:multitarget - Adds support to binutils for cross compiling (does not work with gas)
+sys-devel/binutils-hppa64:gold - Use the new gold linker (written in C++) rather than the standard linker (this _will_ break things)
 sys-devel/binutils-hppa64:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 sys-devel/binutils-hppa64:multitarget - Adds support to binutils for cross compiling (does not work with gas)
+sys-devel/binutils-nios2:gold - Use the new gold linker (written in C++) rather than the standard linker (this _will_ break things)
 sys-devel/binutils-nios2:multislot - Allow for multiple versions of binutils to be emerged at once for same CTARGET
 sys-devel/binutils-nios2:multitarget - Adds support to binutils for cross compiling (does not work with gas)
 sys-devel/gcc-nios2:multislot - Allow for SLOTs to include minor version (3.3.4 instead of just 3.3)
