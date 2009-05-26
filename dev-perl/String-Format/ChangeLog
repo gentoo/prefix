@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/String-Format
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/String-Format/ChangeLog,v 1.10 2009/05/19 05:20:06 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/String-Format/ChangeLog,v 1.11 2009/05/25 16:25:58 ranger Exp $
+
+  25 May 2009; Brent Baude <ranger@gentoo.org> String-Format-1.16.ebuild:
+  keyworded ~arch for ppc64, bug 270706
 
 *String-Format-1.16 (19 May 2009)
 
