@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/joe-editor/${P}.tar.gz"
 
 LICENSE="GPL-1"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris"
 IUSE="xterm"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2"
@@ -26,13 +26,16 @@ src_unpack() {
 			sed -e 's/^ -\(mouse\|joexterm\)/-\1/' -i "${i}" || die "sed failed"
 		done
 	fi
+
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-dont-mess-with-solaris.patch
 }
 
 src_compile() {
 	# Bug 34609 (joe 2.9.8 editor seg-faults on 'find and replace' when compiled with -Os)
 	replace-flags "-Os" "-O2"
 
-	econf --docdir=/usr/share/doc/${PF} || die
+	econf --docdir="${EPREFIX}"/usr/share/doc/${PF} || die
 	emake || die
 }
 
