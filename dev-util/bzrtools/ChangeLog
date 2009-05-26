@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/bzrtools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.55 2009/04/11 16:07:42 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.56 2009/05/25 17:30:14 fauli Exp $
+
+  25 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  bzrtools-1.13.0.ebuild:
+  stable x86, bug 271130
 
 *bzrtools-1.14.0 (11 Apr 2009)
 
