@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.398 2009/05/07 23:56:12 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.399 2009/05/24 16:57:43 armin76 Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1446,6 +1446,7 @@ gcc_do_configure() {
 	# create a sparc*linux*-{gcc,g++} that can handle -m32 and -m64 (biarch)
 	if [[ ${CTARGET} == sparc*linux* ]] \
 		&& is_multilib \
+		&& ! is_crosscompile \
 		&& [[ ${GCCMAJOR}.${GCCMINOR} > 4.2 ]]
 	then
 		confgcc="${confgcc} --enable-targets=all"

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.25 2009/03/17 19:39:51 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.26 2009/05/23 12:22:06 flameeyes Exp $
 
 # @ECLASS: gems.eclass
 # @MAINTAINER:
@@ -26,7 +26,7 @@ IUSE="doc"
 
 DEPEND="
 	|| ( >=dev-ruby/rubygems-0.9.4 =dev-lang/ruby-1.9* )
-	!dev-ruby/rdoc
+	!<dev-ruby/rdoc-2
 "
 RDEPEND="${DEPEND}"
 
@@ -61,7 +61,7 @@ gems_src_compile() {
 }
 
 # @FUNCTION: gems_src_install
-# @DESCRIPTION: 
+# @DESCRIPTION:
 # Installs the gem
 gems_src_install() {
 	local myconf
@@ -78,7 +78,7 @@ gems_src_install() {
 		einfo "QA notice"
 		einfo "The ebuild doesn't set USE_RUBY explicitly. Defaulting to ruby18."
 		einfo "Please check compatibility and set USE_RUBY respectively."
-		
+
 		USE_RUBY="ruby18"
 	elif [[ "${USE_RUBY}" == "any" ]]; then
 		ewarn

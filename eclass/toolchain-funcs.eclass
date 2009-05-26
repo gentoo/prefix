@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.90 2009/04/05 07:50:08 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.91 2009/05/24 07:25:48 grobian Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -436,7 +436,7 @@ gcc-specs-nostrict() {
 # correctly to point to the latest version of the library present.
 gen_usr_ldscript() {
 	local lib libdir=$(get_libdir) output_format="" auto=false suffix=$(get_libname)
-	[[ ! ${ED+set} ]] && local ED=${D%/}${EPREFIX}/
+	[[ -z ${ED+set} ]] && local ED=${D%/}${EPREFIX}/
 
 	tc-is-static-only && return
 

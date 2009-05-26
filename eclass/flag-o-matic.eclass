@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.134 2009/04/05 08:22:29 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.137 2009/05/24 00:33:33 mr_bones_ Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -41,7 +41,7 @@ setup-allowed-flags() {
 	fi
 	# allow a bunch of flags that negate features / control ABI
 	ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-stack-protector -fno-stack-protector-all \
-		-fno-strict-aliasing -fno-bounds-checking -fstrict-overflow"
+		-fno-strict-aliasing -fno-bounds-checking -fstrict-overflow -fno-omit-frame-pointer"
 	ALLOWED_FLAGS="${ALLOWED_FLAGS} -mregparm -mno-app-regs -mapp-regs \
 		-mno-mmx -mno-sse -mno-sse2 -mno-sse3 -mno-3dnow \
 		-mips1 -mips2 -mips3 -mips4 -mips32 -mips64 -mips16 \
@@ -52,7 +52,7 @@ setup-allowed-flags() {
 		-m32 -m64 -mabi -mlittle-endian -mbig-endian -EL -EB -fPIC \
 		-mlive-g0 -mcmodel -mstack-bias -mno-stack-bias \
 		-msecure-plt -m*-toc -D* -U*"
-	
+
 	# {C,CXX,F,FC}FLAGS that we are think is ok, but needs testing
 	# NOTE:  currently -Os have issues with gcc3 and K6* arch's
 	export UNSTABLE_FLAGS="-Os -O3 -freorder-blocks"
@@ -136,6 +136,16 @@ append-cppflags() {
 	return 0
 }
 
+# @FUNCTION: append-cflags
+# @USAGE: <flags>
+# @DESCRIPTION:
+# Add extra <flags> to the current CFLAGS.
+append-cflags() {
+	[[ -z $* ]] && return 0
+	export CFLAGS="${CFLAGS} $*"
+	return 0
+}
+
 # @FUNCTION: append-cxxflags
 # @USAGE: <flags>
 # @DESCRIPTION:
@@ -174,10 +184,9 @@ append-lfs-flags() {
 # Add extra <flags> to your current {C,CXX,F,FC}FLAGS.
 append-flags() {
 	[[ -z $* ]] && return 0
-	export CFLAGS="${CFLAGS} $*"
-	export CXXFLAGS="${CXXFLAGS} $*"
-	export FFLAGS="${FFLAGS} $*"
-	export FCFLAGS="${FCFLAGS} $*"
+	append-cflags "$@"
+	append-cppflags "$@"
+	append-fflags "$@"
 	return 0
 }
 

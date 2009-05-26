@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.60 2009/04/14 15:45:45 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.61 2009/05/25 16:25:32 fauli Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -64,8 +64,6 @@
 # to provide a site file (shipped in ${FILESDIR}) which contains the
 # startup code (have a look in the documentation of your software).
 # Normally this would look like this:
-#
-#   	;;; csv-mode site-lisp configuration
 #
 #   	(add-to-list 'load-path "@SITELISP@")
 #   	(add-to-list 'auto-mode-alist '("\\.csv\\'" . csv-mode))
