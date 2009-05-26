@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/cabextract
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.49 2009/01/11 16:12:23 pva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.51 2009/05/25 19:12:46 ranger Exp $
+
+  25 May 2009; Brent Baude <ranger@gentoo.org> cabextract-1.2-r1.ebuild:
+  Marking cabextract-1.2-r1 ppc64 for bug 271119
+
+  25 May 2009; Jeroen Roovers <jer@gentoo.org> cabextract-1.2-r1.ebuild:
+  Stable for HPPA (bug #271119).
 
 *cabextract-1.2-r1 (11 Jan 2009)
 
