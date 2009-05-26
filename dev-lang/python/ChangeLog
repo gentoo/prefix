@@ -1,6 +1,38 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.377 2009/04/24 14:17:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.385 2009/05/25 19:54:20 maekke Exp $
+
+  25 May 2009; Markus Meier <maekke@gentoo.org> python-2.4.6.ebuild:
+  amd64 stable, bug #252317
+
+  25 May 2009; Christian Faulhammer <fauli@gentoo.org> python-2.4.6.ebuild:
+  stable x86, security bug  252317
+
+*python-2.5.4-r3 (25 May 2009)
+
+  25 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.5.4-r3.ebuild:
+  Install libpython2.5.a in /usr/lib instead of /usr/lib/python2.5/config
+  (bug #252372). Fix building with Subversion 1.7. Use `eselect python`
+  instead of alternatives.eclass.
+
+  25 May 2009; Brent Baude <ranger@gentoo.org> python-2.4.6.ebuild:
+  Marking python-2.4.6 ppc64 and ppc for bug 252317
+
+  24 May 2009; Jeroen Roovers <jer@gentoo.org> python-2.4.6.ebuild:
+  Stable for HPPA (bug #252317).
+
+  24 May 2009; Tobias Klausmann <klausman@gentoo.org> python-2.4.6.ebuild:
+  Stable on alpha, bug #252317
+
+  24 May 2009; Tobias Klausmann <klausman@gentoo.org> python-2.4.6.ebuild:
+  Keyworded on alpha, bug #252317
+
+*python-2.4.6 (24 May 2009)
+
+  24 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.4.6.ebuild:
+  Version bump (bug #252317).
 
   24 Apr 2009; Raúl Porcel <armin76@gentoo.org> python-2.5.4-r2.ebuild:
   arm/ia64/m68k/s390/sh/sparc stable wrt #265790
