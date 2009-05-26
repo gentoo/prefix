@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.4.9.2.ebuild,v 1.2 2009/03/17 11:40:24 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.2.7.ebuild,v 1.1 2009/05/24 18:06:32 maekke Exp $
 
 EAPI=2
 
@@ -15,6 +15,8 @@ HOMEPAGE="http://www.imagemagick.org/"
 SRC_URI="mirror://imagemagick/${MY_P2}.tar.bz2
 		 mirror://imagemagick/legacy/${MY_P2}.tar.bz2"
 
+# perl tests fail with userpriv
+RESTRICT="perl? ( userpriv )"
 LICENSE="imagemagick"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
@@ -54,6 +56,7 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 
 DEPEND="${RDEPEND}
 	>=sys-apps/sed-4
+	openmp? ( >=sys-devel/gcc-4.3.0[openmp] )
 	X? ( x11-proto/xextproto )"
 
 S="${WORKDIR}/${MY_P2}"
@@ -95,20 +98,6 @@ src_configure() {
 		myconf="${myconf} --without-rsvg"
 	fi
 
-	#openmp support only works with >=sys-devel/gcc-4.3
-	# see bug #223825
-	if use openmp && built_with_use --missing false sys-devel/gcc openmp; then
-		if [[ "$(gcc-version)" == "4.2" ]] ; then
-			ewarn "you need >=sys-devel/gcc-4.3 to be able to use openmp, disabling."
-			myconf="${myconf} --disable-openmp"
-		else
-			myconf="${myconf} --enable-openmp"
-		fi
-	else
-		elog "disabling openmp support (gcc is not built with openmp support)"
-		myconf="${myconf} --disable-openmp"
-	fi
-
 	use truetype && myconf="${myconf} $(use_with corefonts windows-font-dir /usr/share/fonts/corefonts)"
 
 	econf \
@@ -134,6 +123,7 @@ src_configure() {
 		$(use_with jpeg2k jp2) \
 		$(use_with lcms) \
 		$(use_with openexr) \
+		$(use_enable openmp) \
 		$(use_with png) \
 		$(use_with svg rsvg) \
 		$(use_with tiff) \
@@ -145,8 +135,9 @@ src_configure() {
 }
 
 src_test() {
-	# make check only works after make install,
-	# --> only run if this version is already installed
+	einfo "please note that the tests will only be run when the installed"
+	einfo "version and current emerging version are the same"
+
 	if has_version ~${CATEGORY}/${P} ; then
 		emake -j1 check || die "make check failed"
 	fi
