@@ -1,6 +1,16 @@
 # ChangeLog for dev-java/itext
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/itext/ChangeLog,v 1.81 2008/12/08 02:00:15 jmbsvicetto Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/itext/ChangeLog,v 1.83 2009/05/23 07:49:56 betelgeuse Exp $
+
+  23 May 2009; Petteri Räty <betelgeuse@gentoo.org> itext-2.0.8.ebuild,
+  itext-2.1.5.ebuild:
+  Add unzip dependency for the cjk use flag.
+
+*itext-2.1.5 (23 May 2009)
+
+  23 May 2009; Petteri Räty <betelgeuse@gentoo.org> +itext-2.1.5.ebuild:
+  Version bump. Resolves bug #221011 and bug #268058. Dropped everything but
+  ~x86 because of new dependency for rups.
 
   08 Dec 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
@@ -354,6 +364,7 @@
   +itext-1.2.1.ebuild:
   Version bump: 1.2.1 (latest stable from website), remove old version
 
+*itext-1.1.4 (05 Jan 2005)
 *itext-1.1 (05 Jan 2005)
 
   05 Jan 2005; <mglauche@gentoo.org> +Changelog, +metadata.xml,
