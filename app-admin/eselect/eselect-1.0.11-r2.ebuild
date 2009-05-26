@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.11-r2.ebuild,v 1.5 2009/04/17 16:30:14 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.0.11-r2.ebuild,v 1.6 2009/05/24 19:30:15 ulm Exp $
 
 inherit eutils prefix
 
@@ -13,14 +13,15 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc bash-completion vim-syntax"
 
-DEPEND="sys-apps/sed
-	doc? ( dev-python/docutils )
+RDEPEND="sys-apps/sed
 	|| (
 		sys-apps/coreutils
 		sys-freebsd/freebsd-bin
 		app-admin/realpath
 	)"
-RDEPEND="sys-apps/sed
+DEPEND="${RDEPEND}
+	doc? ( dev-python/docutils )"
+RDEPEND="${RDEPEND}
 	sys-apps/file"
 
 src_unpack() {
