@@ -1,6 +1,14 @@
 # ChangeLog for net-libs/libnet
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/ChangeLog,v 1.44 2007/05/08 22:53:37 genone Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/ChangeLog,v 1.45 2009/05/25 23:41:56 jer Exp $
+
+*libnet-1.1.2.1-r2 (25 May 2009)
+
+  25 May 2009; Jeroen Roovers <jer@gentoo.org> libnet-1.0.2a-r3.ebuild,
+  +libnet-1.1.2.1-r2.ebuild, +files/libnet-1.1.2.1-cq_end_loop.patch:
+  Do not call autoconf directly in 1.0.2a-r2, but call eautoconf (bug
+  #226599). Apply cq_end_loop patch to new 1.1.2.1 revision to build
+  net-analyzer/dhcp_probe against.
 
   08 May 2007; Marius Mauch <genone@gentoo.org> libnet-1.0.2a-r3.ebuild:
   Replacing einfo with elog

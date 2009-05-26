@@ -1,0 +1,32 @@
+Patch needed for net-analyzer/dhcp_probe -JeR (see [1])
+
+[1] http://www.net.princeton.edu/software/dhcp_probe/INSTALL.dhcp_probe.txt
+
+--- libnet/src/libnet_cq.c.orig	2004-01-28 20:45:00.000000000 +0100
++++ libnet/src/libnet_cq.c	2008-10-27 22:51:10.000000000 +0100
+@@ -393,3 +393,15 @@
+ {
+     return (l_cqd.node);
+ }
++
++u_int32_t
++libnet_cq_end_loop()
++{
++
++    if (! clear_cq_lock(CQ_LOCK_WRITE)) 
++    { 
++    	return (0); 
++    } 
++    l_cqd.current = l_cq;
++    return (1); 
++}
+--- libnet/include/libnet/libnet-functions.h.orig	2004-03-25 19:50:48.000000000 +0100
++++ libnet/include/libnet/libnet-functions.h	2008-10-27 22:52:14.000000000 +0100
+@@ -2148,4 +2148,7 @@
+ #endif
+ #endif  /* __LIBNET_FUNCTIONS_H */
+ 
++u_int32_t 
++libnet_cq_end_loop();
++
+ /* EOF */
