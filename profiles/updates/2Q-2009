@@ -18,3 +18,5 @@ slotmove net-voip/linphone 1 0
 move net-misc/kphone net-voip/kphone
 move net-im/ekiga net-voip/ekiga
 move dev-tcltk/tkdiff dev-util/tkdiff
+move net-news/charm net-misc/charm
+move lxde-base/lxsession-lite lxde-base/lxsession
