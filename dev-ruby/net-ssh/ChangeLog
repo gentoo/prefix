@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/net-ssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/ChangeLog,v 1.48 2009/04/10 14:35:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/ChangeLog,v 1.49 2009/05/25 20:16:17 graaff Exp $
+
+  25 May 2009; Hans de Graaff <graaff@gentoo.org> -net-ssh-2.0.4.ebuild:
+  Remove old version.
 
   10 Apr 2009; Raúl Porcel <armin76@gentoo.org> net-ssh-2.0.11.ebuild:
   ia64 stable wrt #264325
