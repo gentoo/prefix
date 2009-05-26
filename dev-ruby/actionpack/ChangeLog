@@ -1,9 +1,25 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.105 2009/05/18 19:08:36 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.110 2009/05/25 20:12:01 graaff Exp $
+
+  24 May 2009; Markus Meier <maekke@gentoo.org> actionpack-2.3.2.ebuild:
+  x86 stable, bug #270331
+
+  23 May 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  actionpack-2.3.2.ebuild:
+  stable amd64, bug 270331
+
+  23 May 2009; Brent Baude <ranger@gentoo.org> actionpack-2.3.2.ebuild:
+  Marking actionpack-2.3.2 ppc64 stable for bug 270331
+
+  23 May 2009; Brent Baude <ranger@gentoo.org> actionpack-2.3.2.ebuild:
+  Marking actionpack-2.3.2 ppc stable for bug 270331
 
   18 May 2009; Ferris McCormick <fmccor@gentoo.org> actionpack-2.3.2.ebuild:
   Sparc stable, Bug #270331.
+
+  18 May 2009; Hans de Graaff <graaff@gentoo.org> -actionpack-2.1.2.ebuild:
+  Remove old and vulnerable version.
 
   25 Mar 2009; Raúl Porcel <armin76@gentoo.org> actionpack-2.1.2-r1.ebuild:
   ia64/sparc stable wrt #247549
