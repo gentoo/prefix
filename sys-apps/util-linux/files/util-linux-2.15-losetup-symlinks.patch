@@ -1,0 +1,48 @@
+http://bugs.gentoo.org/269264
+
+From 72f6902e435612f848cbe9993ce6298da8af996c Mon Sep 17 00:00:00 2001
+From: Mike Frysinger <vapier@gentoo.org>
+Date: Sun, 10 May 2009 16:57:31 -0400
+Subject: [PATCH] losetup: handle symlinks in /dev/loop/
+
+The loop_scandir() expects all the files in /dev/loop/ to be actual
+devices and not symlinks to devices.  However, udev by default sets up
+symlinks in /dev/loop/ thereby breaking the fallback scan logic when
+looking for devices more than the default number of 8.
+
+Simple way to reproduce is:
+ - <detach all devices>
+ - cd /dev/loop
+ - rm -f [2-7]
+ - losetup 0 autogen.sh
+ - mv 1 8
+ - for n in {1..7} ; do ln -s 0 $n ; done
+ - losetup -f
+	<error but should have found /dev/loop/8>
+
+[kay.sievers@vrfy.org:
+       just a note, udev does not do that by default. It is
+       devfs-nonsense, which the "default" never did.]
+
+Signed-off-by: Mike Frysinger <vapier@gentoo.org>
+Reported-by: Mario Bachmann <grafgrimm77@gmx.de>
+---
+ mount/lomount.c |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/mount/lomount.c b/mount/lomount.c
+index d62198e..c173409 100644
+--- a/mount/lomount.c
++++ b/mount/lomount.c
+@@ -256,7 +256,7 @@ loop_scandir(const char *dirname, int **ary, int hasprefix)
+ 	*ary = NULL;
+ 
+ 	while((d = readdir(dir))) {
+-		if (d->d_type != DT_BLK && d->d_type != DT_UNKNOWN)
++		if (d->d_type != DT_BLK && d->d_type != DT_UNKNOWN && d->d_type != DT_LNK)
+ 			continue;
+ 		n = name2minor(hasprefix, d->d_name);
+ 		if (n == -1 || n < NLOOPS_DEFAULT)
+-- 
+1.6.3
+

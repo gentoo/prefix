@@ -1,0 +1,54 @@
+http://bugs.gentoo.org/270168
+
+From 28d39b6dd71e6a054aa06c66f683a1e15439e56b Mon Sep 17 00:00:00 2001
+From: Karel Zak <kzak@redhat.com>
+Date: Thu, 21 May 2009 13:20:10 +0200
+Subject: [PATCH] mount: fix undefined reference to `security_get_initial_context'
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+> Gentoo-hardened stable have: sys-libs/libselinux-1.34.14
+> I have:
+> mount.c:(.text+0x12ce): undefined reference to `security_get_initial_context'
+
+Reported-by: Максим Бритов <maxim.britov@gmail.com>
+Addresses-Gentoo-Bug: #270168
+Signed-off-by: Karel Zak <kzak@redhat.com>
+---
+ configure.ac  |    5 +++++
+ mount/mount.c |    2 +-
+ 2 files changed, 6 insertions(+), 1 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index af946a1..b174bce 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -656,6 +656,11 @@ fi
+ if test "x$have_selinux" = xyes; then
+   SELINUX_LIBS="-lselinux -lsepol"
+   SELINUX_LIBS_STATIC="-lselinux -lsepol"
++  old_LDFLAGS="$LDFLAGS"
++  LDFLAGS="$LDFLAGS $SELINUX_LIBS"
++  # This function is missing in old libselinux 1.xx versions
++  AC_CHECK_FUNCS([security_get_initial_context])
++  LDFLAGS="$old_LDFLAGS"
+ fi
+ AC_SUBST([SELINUX_LIBS])
+ AC_SUBST([SELINUX_LIBS_STATIC])
+diff --git a/mount/mount.c b/mount/mount.c
+index f48f9d4..cc5b88a 100644
+--- a/mount/mount.c
++++ b/mount/mount.c
+@@ -1561,7 +1561,7 @@ mount_retry:
+ 
+  out:
+ 
+-#ifdef HAVE_LIBSELINUX
++#if defined(HAVE_LIBSELINUX) && defined(HAVE_SECURITY_GET_INITIAL_CONTEXT)
+   if (res != EX_FAIL && verbose && is_selinux_enabled() > 0) {
+       security_context_t raw = NULL, def = NULL;
+ 
+-- 
+1.6.3
+

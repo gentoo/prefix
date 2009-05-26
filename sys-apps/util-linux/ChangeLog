@@ -1,6 +1,22 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.265 2009/05/18 17:41:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.267 2009/05/24 18:38:00 vapier Exp $
+
+  24 May 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.15-r1.ebuild:
+  Re-order patches when USE=loop-aes #271041 by Lars Wendler and add
+  libtool-2 to DEPEND #271025 by Eike Hein.
+
+  23 May 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.14.2.ebuild,
+  files/util-linux-2.15-old-libselinux.patch:
+  Apply selinux fix from upstream for #270168 by Tadas.
+
+*util-linux-2.15-r1 (23 May 2009)
+
+  23 May 2009; Mike Frysinger <vapier@gentoo.org> +util-linux-2.15-r1.ebuild,
+  +files/util-linux-2.15-losetup-symlinks.patch,
+  +files/util-linux-2.15-old-libselinux.patch:
+  Grab fixes from upstream for #270168 by Tadas and #269264 by Mario
+  Bachmann.
 
   18 May 2009; Raúl Porcel <armin76@gentoo.org> util-linux-2.14.2.ebuild:
   ia64/sparc stable wrt #268765
