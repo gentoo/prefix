@@ -1,6 +1,11 @@
 # ChangeLog for java-virtuals/stax-api
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/stax-api/ChangeLog,v 1.2 2009/03/20 19:56:16 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/stax-api/ChangeLog,v 1.3 2009/05/23 11:52:55 ali_bush Exp $
+
+*stax-api-1-r1 (23 May 2009)
+
+  23 May 2009; Alistair Bush <ali_bush@gentoo.org> +stax-api-1-r1.ebuild:
+  Bump to support features available in java-config-2.1.8
 
   20 Mar 2009; Joseph Jezak <josejx@gentoo.org> stax-api-1.ebuild:
   Marked ~ppc64.
