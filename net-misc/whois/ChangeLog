@@ -1,6 +1,17 @@
 # ChangeLog for net-misc/whois
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.119 2008/12/29 13:42:26 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.122 2009/05/25 19:03:50 ranger Exp $
+
+  25 May 2009; Brent Baude <ranger@gentoo.org> whois-4.7.30.ebuild:
+  Marking whois-4.7.30 ppc64 for bug 271096
+
+  24 May 2009; Jeroen Roovers <jer@gentoo.org> whois-4.7.30.ebuild:
+  Stable for HPPA (bug #271096).
+
+*whois-4.7.33 (24 May 2009)
+
+  24 May 2009; Mike Frysinger <vapier@gentoo.org> +whois-4.7.33.ebuild:
+  Version bump.
 
   29 Dec 2008; Raúl Porcel <armin76@gentoo.org> whois-4.7.27.ebuild:
   arm/s390/sh/x86 stable wrt #252525
