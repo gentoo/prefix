@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/junit
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.49 2009/01/07 15:00:59 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.50 2009/05/23 11:14:17 serkan Exp $
+
+*junit-4.6 (23 May 2009)
+
+  23 May 2009; Serkan Kaba <serkan@gentoo.org> +junit-4.6.ebuild:
+  Version bump. Fixes bug #269084
 
   07 Jan 2009; Brent Baude <ranger@gentoo.org> junit-4.5.ebuild:
   Marking junit-4.5 ppc64 for bug 252819
