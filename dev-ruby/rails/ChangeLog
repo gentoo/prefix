@@ -1,9 +1,25 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.133 2009/05/18 19:10:45 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.138 2009/05/25 20:08:58 graaff Exp $
+
+  24 May 2009; Markus Meier <maekke@gentoo.org> rails-2.3.2.ebuild:
+  x86 stable, bug #270331
+
+  23 May 2009; Thomas Anderson <gentoofan23@gentoo.org> rails-2.3.2.ebuild:
+  stable amd64, bug 270331
+
+  23 May 2009; Brent Baude <ranger@gentoo.org> rails-2.3.2.ebuild:
+  Marking rails-2.3.2 ppc64 stable for bug 270331
+
+  23 May 2009; Brent Baude <ranger@gentoo.org> rails-2.3.2.ebuild:
+  Marking rails-2.3.2 ppc stable for bug 270331
 
   18 May 2009; Ferris McCormick <fmccor@gentoo.org> rails-2.3.2.ebuild:
   Sparc stable, Bug #270331.
+
+  18 May 2009; Hans de Graaff <graaff@gentoo.org> -rails-1.2.6.ebuild,
+  -rails-2.0.5.ebuild, -rails-2.1.2.ebuild, -rails-2.2.2.ebuild:
+  Remove old and vulnerable versions.
 
 *rails-2.3.2 (17 Mar 2009)
 
