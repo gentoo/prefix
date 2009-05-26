@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.55 2009/05/22 15:45:25 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.56 2009/05/23 12:36:41 hwoarang Exp $
+
+*qt-gui-4.5.1-r2 (23 May 2009)
+
+  23 May 2009; Markos Chandras <hwoarang@gentoo.org>
+  +qt-gui-4.5.1-r2.ebuild,
+  +files/qt-gui-4.5.1-0282-fix-qpixmapcache-leak.diff:
+  Revbump qt-gui with a patch for qpixmap memory leak.
 
   22 May 2009; Brent Baude <ranger@gentoo.org> qt-gui-4.5.1-r1.ebuild:
   Marking qt-gui-4.5.1-r1 ppc for bug 266201
