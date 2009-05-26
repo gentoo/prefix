@@ -38,8 +38,8 @@ remove_installation() {
 
 	pushd "${ROOT}/usr/%LIBDIR%" 1>/dev/null
 	local lib
-	for lib in libboost_*.{a,so} ; do
-		[[ -L "${lib}" && "${lib}" != libboost_*[[:digit:]]_[[:digit:]][[:digit:]]@(${_suffices}).@(a|so) ]] || continue
+	for lib in libboost_*.{a,so,dylib} ; do
+		[[ -L "${lib}" && "${lib}" != libboost_*[[:digit:]]_[[:digit:]][[:digit:]]@(${_suffices}).@(a|so|dylib) ]] || continue
 		rm "${lib}" || die -q "Unable to remove \"/usr/%LIBDIR%/${lib}\" symlink"
 	done
 	popd 1>/dev/null

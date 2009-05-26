@@ -18,9 +18,12 @@ RDEPEND=">=app-admin/eselect-1.0.5"
 src_install() {
 	local mdir="/usr/share/eselect/modules"
 	dodir ${mdir}
-	sed -e "s|%LIBDIR%|$(get_libdir)|g" "${FILESDIR}/boost.eselect-${PVR}" > "${ED}${mdir}/boost.eselect" || die "failed to install"
+	sed -e "s|%LIBDIR%|$(get_libdir)|g" "${FILESDIR}/boost.eselect-${PVR%-r*}" > "${ED}${mdir}/boost.eselect" || die "failed to install"
 
-	sed -i -e 's|${ROOT}|${ROOT}'"${EPREFIX}"'|g' "${ED}${mdir}/boost.eselect" || die
+	sed -i \
+		-e 's:\${ROOT}:${ROOT}'"${EPREFIX}"':g' \
+		-e 's:\${ROOT}'"${EPREFIX}"'\${\(t\|includes\)}:${ROOT}${\1}:g' \
+		"${ED}${mdir}/boost.eselect" || die
 
 	keepdir /etc/eselect/boost
 	keepdir /usr/share/boost-eselect/profiles
