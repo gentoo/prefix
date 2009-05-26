@@ -1,6 +1,18 @@
 # ChangeLog for dev-java/jruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.34 2009/03/20 12:50:02 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.36 2009/05/23 23:02:21 caster Exp $
+
+  23 May 2009; Vlastimil Babka <caster@gentoo.org> jruby-1.2.0-r1.ebuild:
+  Add pkg_setup checks to workaround bug #270953.
+
+*jruby-1.2.0-r1 (23 May 2009)
+
+  23 May 2009; Vlastimil Babka <caster@gentoo.org> +files/10jruby,
+  +jruby-1.2.0-r1.ebuild, +files/ftype-test-fixes.patch, +files/gentoo.rb,
+  +files/jruby, +files/user-test-fixes.patch:
+  Version bump, bug #217388. Fixes also #184375 and #213391. Many thanks to
+  James Le Cuirot <chewi@aura-online.co.uk> and ali_bush. The ppc keyword
+  dropped due to new deps.
 
   20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
