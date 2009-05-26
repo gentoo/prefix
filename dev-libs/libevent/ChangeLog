@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libevent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/ChangeLog,v 1.112 2009/05/21 21:11:02 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/ChangeLog,v 1.113 2009/05/24 19:38:27 maekke Exp $
+
+  24 May 2009; Markus Meier <maekke@gentoo.org> libevent-1.4.10.ebuild:
+  x86 stable, bug #270455
 
   21 May 2009; Brent Baude <ranger@gentoo.org> libevent-1.4.10.ebuild:
   stable ppc, bug 270455
