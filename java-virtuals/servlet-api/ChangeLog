@@ -1,6 +1,9 @@
 # ChangeLog for java-virtuals/servlet-api
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/servlet-api/ChangeLog,v 1.20 2008/12/08 03:06:32 jmbsvicetto Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/servlet-api/ChangeLog,v 1.21 2009/05/23 19:46:00 nixnut Exp $
+
+  23 May 2009; nixnut <nixnut@gentoo.org> servlet-api-2.5.ebuild:
+  ppc stable #270915
 
   08 Dec 2008; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
