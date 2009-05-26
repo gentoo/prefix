@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.7 2008/11/24 17:55:35 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.8 2009/05/24 21:59:33 arfrever Exp $
 
 EAPI=1
 
@@ -49,6 +49,31 @@ src_unpack() {
 	# Prevent lazy bindings in cons.saver binary for bug #135009
 	sed -i -e "s:^\(cons_saver_LDADD = .*\):\1 -Wl,-z,now:" \
 		src/Makefile.in || die "sed failed."
+
+	if use unicode; then
+		local conversion_table=(
+			"cs ISO-8859-2"
+			"es ISO-8859-1"
+			"hu ISO-8859-2"
+			"nl ISO-8859-1"
+			"pl ISO-8859-2"
+			"ru KOI8-R"
+			"sr ISO-8859-5"
+			"uk KOI8-U"
+		)
+		local element
+		for element in "${conversion_table[@]}"; do
+			local lingua="${element% *}"
+			local old_encoding="${element#* }"
+			local file
+			for file in "doc/${lingua}/xnc.hlp" "lib/mc.hint.${lingua}" "lib/mc.menu.${lingua}"; do
+				if [[ -f "${file}" ]]; then
+					mv "${file}" "${file}.${old_encoding}"
+					iconv -f ${old_encoding} -t UTF-8 -o "${file}" "${file}.${old_encoding}" || die "iconv ${file} failed"
+				fi
+			done
+		done
+	fi
 
 	# docs try to run the files it just built while trying convert .1 to .hlp files.
 	# this will never work for cross compiles, so we simply don't make docs.

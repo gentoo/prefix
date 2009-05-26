@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/mc
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.145 2008/11/24 17:55:35 ssuominen Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.146 2009/05/24 21:59:33 arfrever Exp $
+
+  24 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  mc-4.6.2_pre1.ebuild:
+  Fix encoding of some files (bug #230832).
 
   24 Nov 2008; <ssuominen@gentoo.org> metadata.xml, mc-4.6.2_pre1.ebuild:
   Rename my old e-mail drac at gentoo.org to ssuominen at gentoo.org. Move
