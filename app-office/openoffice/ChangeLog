@@ -1,6 +1,14 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.463 2009/05/19 11:26:36 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.465 2009/05/24 08:46:28 suka Exp $
+
+  24 May 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.0.ebuild:
+  Trying to fix the KDE3 / KDE4 problem again, see bug #238539
+
+  24 May 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.0.ebuild:
+  Bump to ooo-build 3.0.1.4, bunch of smaller bugfixes
 
   19 May 2009; Andreas Proschofsky <suka@gentoo.org>
   +files/buildfix-gcc44.diff, openoffice-3.1.0.ebuild,
