@@ -27,6 +27,8 @@ src_unpack() {
 #	rm -f build/libtool.m4
 #	epatch "${FILESDIR}"/${PN}-1.2.8-libtool.patch
 
+	epatch "${FILESDIR}"/${PN}-1.2.11-mint.patch
+
 	# for some reason not all the .m4 files that are referenced in
 	# configure.in exist, so we remove all references and include every
 	# .m4 file in build using aclocal via eautoreconf
@@ -35,8 +37,6 @@ src_unpack() {
 	AT_M4DIR="build" eautoreconf
 
 	epatch "${FILESDIR}"/config.layout.patch
-
-	epatch "${FILESDIR}"/${PN}-1.2.11-mint.patch
 }
 
 src_compile() {
