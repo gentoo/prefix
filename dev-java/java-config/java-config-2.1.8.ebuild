@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.7.ebuild,v 1.8 2009/03/18 15:01:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.8.ebuild,v 1.1 2009/05/23 11:04:39 ali_bush Exp $
 
 inherit fdo-mime gnome2-utils distutils eutils prefix
 
@@ -21,7 +21,7 @@ PYTHON_MODNAME="java_config_2"
 
 src_unpack() {
 	distutils_src_unpack
-	epatch "${FILESDIR}"/${PN}-2.1.6-prefix.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 
 	eprefixify \
 		config/20java-config setup.py \
