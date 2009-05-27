@@ -53,16 +53,14 @@ src_prepare() {
 	sed -e 's/\(test.*\)==/\1=/g' -i configure.ac configure || die "sed failed"
 
 	# Fix building on platforms that do not define INET_ADDRSTRLEN
-	epatch "${FILESDIR}/${PN}-addrstrlen.patch"
+	epatch "${FILESDIR}/${P}-addrstrlen.patch"
 
 	eautoreconf
 }
 
 src_configure() {
 	local extralibs
-	if use sparc-solaris; then
-		extralibs="-lsocket -lnsl"
-	fi
+	[[ ${CHOST} == *-solaris ]] && extralibs="-lsocket -lnsl"
 	econf --with-envvar \
 		--with-file \
 		--disable-static \
