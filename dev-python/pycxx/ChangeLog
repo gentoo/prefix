@@ -1,0 +1,15 @@
+# ChangeLog for dev-python/pycxx
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycxx/ChangeLog,v 1.2 2009/02/15 21:20:08 patrick Exp $
+
+*pycxx-5.5.0 (15 Feb 2009)
+
+  15 Feb 2009; Patrick Lauer <patrick@gentoo.org> +pycxx-5.5.0.ebuild:
+  Bump to 5.5.0. With thanks to idl0r for the ebuild improvements.
+
+*pycxx-5.4.2 (15 Jan 2009)
+
+  15 Jan 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/pycxx-5.4.2-headers-c.patch, +metadata.xml, +pycxx-5.4.2.ebuild:
+  Initial import
+

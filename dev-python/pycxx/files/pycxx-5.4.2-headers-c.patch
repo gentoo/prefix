@@ -1,0 +1,58 @@
+--- pycxx-5.4.2.orig/setup.py
++++ pycxx-5.4.2/setup.py
+@@ -3,7 +3,8 @@
+ from distutils.command.install import install
+ from distutils.core import setup
+ 
+-headers = glob (os.path.join ("CXX","*.hxx"))
++headers = glob (os.path.join ("CXX","*.hxx")) + \
++          glob (os.path.join ("CXX","*.h"))
+ sources = glob (os.path.join ("Src", "*.cxx")) + \
+           glob (os.path.join ("Src", "*.c"))
+ 
+--- pycxx-5.4.2.orig/CXX/WrapPython.h
++++ pycxx-5.4.2/CXX/WrapPython.h
+@@ -1,3 +1,4 @@
++/*
+ //-----------------------------------------------------------------------------
+ //
+ // Copyright (c) 1998 - 2007, The Regents of the University of California
+@@ -34,16 +35,25 @@
+ // DAMAGE.
+ //
+ //-----------------------------------------------------------------------------
++*/
+ 
+ #ifndef __PyCXX_wrap_python_hxx__
+ #define __PyCXX_wrap_python_hxx__
+ 
+-// On some platforms we have to include time.h to get select defined
++/* On some platforms we have to include time.h to get select defined */
+ #if !defined(__WIN32__) && !defined(WIN32) && !defined(_WIN32) && !defined(_WIN64)
+ #include <sys/time.h>
+ #endif
+ 
+-// pull in python definitions
++/* Prevent warnings */
++#if defined(_XOPEN_SOURCE)
++  #undef _XOPEN_SOURCE
++#endif
++#if defined(_POSIX_C_SOURCE)
++  #undef _POSIX_C_SOURCE
++#endif
++
++/* pull in python definitions */
+ #include <Python.h>
+ 
+ #endif
+--- pycxx-5.4.2.orig/CXX/Objects.hxx
++++ pycxx-5.4.2/CXX/Objects.hxx
+@@ -372,7 +372,7 @@
+         // PyObject_SetItem is too weird to be using from C++
+         // so it is intentionally omitted.
+ 
+-        void delItem (const Object& key)
++        void delItem (const Object& /*key*/)
+         {
+             //if(PyObject_DelItem(p, *key) == -1)
+             // failed to link on Windows?
