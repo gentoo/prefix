@@ -2,7 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
-  25 May 2009; Fabian Groffen <fabian@gentoo.org>
+  27 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  mask media-libs/libmp4v2-1.5.0.1-r2 to avoid extra bugs like bug #271022
+
+  25 May 2009; Fabian Groffen <grobian@gentoo.org>
   +sunos/solaris/5.11/package.mask:
   Mask sys-process/lsof-4.82, totally non-OpenSolaris ready
 
