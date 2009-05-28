@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.2.ebuild,v 1.2 2009/05/18 05:47:53 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.2.ebuild,v 1.3 2009/05/26 17:02:05 arfrever Exp $
 
 EAPI="2"
 
@@ -79,6 +79,8 @@ pkg_setup() {
 			die "Berkeley DB version mismatch"
 		fi
 	fi
+
+	depend.apache_pkg_setup
 
 	java-pkg-opt-2_pkg_setup
 
@@ -394,8 +396,8 @@ EOF
 initialize_tests_environment() {
 	[[ "$1" == "local" ]] && base_url="file://${S}/subversion/tests/cmdline" http_library=""
 	[[ "$1" == "svn" ]] && base_url="svn://127.0.0.1" http_library=""
-	[[ "$1" == "neon" ]] && base_url="http://localhost" http_library="neon"
-	[[ "$1" == "serf" ]] && base_url="http://localhost" http_library="serf"
+	[[ "$1" == "neon" ]] && base_url="http://127.0.0.1" http_library="neon"
+	[[ "$1" == "serf" ]] && base_url="http://127.0.0.1" http_library="serf"
 
 	[[ "$1" == "svn" ]] && LC_ALL="C" subversion/svnserve/svnserve -dr "subversion/tests/cmdline" --listen-port "${SVN_TEST_SVNSERVE_PORT}" --pid-file "${T}/svnserve.pid"
 	[[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]] && memcached -dp "${SVN_TEST_FSFS_MEMCACHED_PORT}" -P "${T}/memcached.pid"

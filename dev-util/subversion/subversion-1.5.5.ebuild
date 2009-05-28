@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.5.ebuild,v 1.7 2009/03/06 01:47:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.5.5.ebuild,v 1.8 2009/05/26 17:02:05 arfrever Exp $
 
 EAPI=1
 WANT_AUTOMAKE="none"
@@ -48,6 +48,7 @@ S="${WORKDIR}"/${P/_/-}
 : ${SVN_REPOS_LOC:=${EPREFIX}/var/svn}
 
 pkg_setup() {
+	depend.apache_pkg_setup
 	confutils_use_depend_built_with_all berkdb dev-libs/apr-util berkdb
 	java-pkg-opt-2_pkg_setup
 
