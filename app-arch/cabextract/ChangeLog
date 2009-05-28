@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/cabextract
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.51 2009/05/25 19:12:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.52 2009/05/27 10:49:52 fauli Exp $
+
+  27 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  cabextract-1.2-r1.ebuild:
+  stable x86, bug 271119
 
   25 May 2009; Brent Baude <ranger@gentoo.org> cabextract-1.2-r1.ebuild:
   Marking cabextract-1.2-r1 ppc64 for bug 271119
