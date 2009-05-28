@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/logilab-common
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/logilab-common/ChangeLog,v 1.40 2009/04/24 20:40:45 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/logilab-common/ChangeLog,v 1.41 2009/05/27 14:38:06 fmccor Exp $
+
+  27 May 2009; Ferris McCormick <fmccor@gentoo.org>
+  logilab-common-0.21.2.ebuild:
+  Sparc stable, tests pass, needed for Bug #271014.
 
   24 Apr 2009; Patrick Lauer <patrick@gentoo.org>
   -logilab-common-0.9.3.ebuild, -logilab-common-0.15.0.ebuild,
