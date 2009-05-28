@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/exiv2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/ChangeLog,v 1.68 2009/05/23 12:24:33 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/ChangeLog,v 1.69 2009/05/26 05:17:49 gengor Exp $
+
+  26 May 2009; Gordon Malm <gengor@gentoo.org> exiv2-0.18.ebuild,
+  exiv2-0.18.1.ebuild:
+  Fix compile on amd64 utilizing gcc-3.4. Bug #78720.
 
   23 May 2009; Markus Meier <maekke@gentoo.org> exiv2-0.18.ebuild:
   amd64/x86 stable, bug #262843

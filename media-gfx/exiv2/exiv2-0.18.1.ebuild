@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.18.1.ebuild,v 1.1 2009/05/17 16:34:25 sbriesen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.18.1.ebuild,v 1.2 2009/05/26 05:17:49 gengor Exp $
 
-inherit eutils multilib
+inherit eutils multilib toolchain-funcs
 
 DESCRIPTION="EXIF and IPTC metadata C++ library and command line utility"
 HOMEPAGE="http://www.exiv2.org/"
@@ -58,6 +58,12 @@ src_unpack() {
 src_compile() {
 	local myconf="$(use_enable nls) $(use_enable xmp)"
 	use zlib || myconf="${myconf} --without-zlib"  # plain 'use_with' fails
+
+	# Bug #78720. amd64/gcc-3.4/-fvisibility* fail.
+	if [[ $(gcc-major-version) -lt 4 ]]; then
+		use amd64 && myconf="${myconf} --disable-visibility"
+	fi
+
 	econf ${myconf} || die "econf failed"
 	# Needed for Solaris because /bin/sh is not a bash, bug #245647
 	if [[ ${CHOST} == *-solaris* ]]; then
