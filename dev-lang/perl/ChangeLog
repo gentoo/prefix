@@ -1,6 +1,15 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.279 2009/05/08 05:46:34 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.281 2009/05/27 08:39:04 tove Exp $
+
+  27 May 2009; Torsten Veller <tove@gentoo.org> -perl-5.8.8-r2.ebuild,
+  -perl-5.8.8-r3.ebuild, -perl-5.8.8-r4.ebuild:
+  Cleanup
+
+*perl-5.8.8-r7 (27 May 2009)
+
+  27 May 2009; Torsten Veller <tove@gentoo.org> +perl-5.8.8-r7.ebuild:
+  PDEPENDS on CPAN, Encode, ExtUtils-MakeMaker
 
   08 May 2009; Torsten Veller <tove@gentoo.org>
   +files/perl-fix_h2ph_include_quote.patch, perl-5.8.8-r6.ebuild:
