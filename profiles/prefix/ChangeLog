@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  28 May 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask,
+  +windows/winnt/package.mask:
+  masked new boost and boost-build versions, which dont currently work on
+  windows
+
   27 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   mask media-libs/libmp4v2-1.5.0.1-r2 to avoid extra bugs like bug #271022
 

@@ -4,6 +4,10 @@
 
 # $Id$
 
+# Markus Duft <mduft@gentoo.org> (27 May 2009)
+# boost not yet updated for winnt and interix interconnect.
+>=dev-util/boost-build-1.35.0-r2
+
 # Markus Duft <mduft@gentoo.org> (25 May 2009)
 # sed seems to be broken, it always says:
 # sed: couldn't flush stdin: Invalid seek on non-seekable object
