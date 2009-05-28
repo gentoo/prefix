@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.37.0-r1.ebuild,v 1.6 2009/05/24 05:42:24 dev-zero Exp $
 
-EAPI=2
+EAPI="2"
 
 inherit python flag-o-matic multilib toolchain-funcs versionator check-reqs
 
@@ -365,7 +365,6 @@ src_install () {
 
 	cd "${S}/status"
 	if [ -f regress.log ] ; then
-		cd "${S}/status"
 		docinto status
 		dohtml *.{html,gif} ../boost.png
 		dodoc regress.log
