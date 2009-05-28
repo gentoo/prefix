@@ -1,6 +1,22 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.233 2009/05/25 23:12:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.237 2009/05/27 17:40:47 rich0 Exp $
+
+  27 May 2009; Richard Freeman <rich0@gentoo.org>
+  freetype-1.4_pre20080316-r2.ebuild:
+  amd64 stable - 271234
+
+  27 May 2009; Raúl Porcel <armin76@gentoo.org>
+  freetype-1.4_pre20080316-r2.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #271234
+
+  27 May 2009; Brent Baude <ranger@gentoo.org>
+  freetype-1.4_pre20080316-r2.ebuild:
+  Marking freetype-1.4_pre20080316-r2 ppc64 and ppc for bug 271234
+
+  26 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  freetype-1.4_pre20080316-r2.ebuild:
+  stable x86, security bug 271234
 
   25 May 2009; Jeroen Roovers <jer@gentoo.org>
   freetype-1.4_pre20080316-r2.ebuild:
