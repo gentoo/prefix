@@ -1,0 +1,39 @@
+Index: ruby-1.9.1-p129/configure.in
+===================================================================
+--- ruby-1.9.1-p129.orig/configure.in
++++ ruby-1.9.1-p129/configure.in
+@@ -1294,7 +1294,7 @@ if test "$rb_cv_binary_elf" = yes; then
+ fi
+ 
+ case "$target_os" in
+-linux* | gnu* | k*bsd*-gnu | bsdi*)
++linux* | gnu* | k*bsd*-gnu | bsdi* | freebsd* | dragonfly* )
+     if test "$rb_cv_binary_elf" = no; then
+ 	with_dln_a_out=yes
+     else
+@@ -1381,7 +1381,7 @@ if test "$with_dln_a_out" != yes; then
+ 			*shlicc*)	: ${LDSHARED="$CC -r"}
+ 					rb_cv_dlopen=yes ;;
+ 			esac ;;
+-	linux* | gnu* | k*bsd*-gnu | netbsd* | bsdi*)
++	linux* | gnu* | k*bsd*-gnu | netbsd* | bsdi* | freebsd7*)
+ 			: ${LDSHARED='${CC} -shared'}
+ 			if test "$rb_cv_binary_elf" = yes; then
+ 			    LDFLAGS="$LDFLAGS -Wl,-export-dynamic"
+@@ -1393,7 +1393,6 @@ if test "$with_dln_a_out" != yes; then
+ 			rb_cv_dlopen=yes ;;
+ 	freebsd*|dragonfly*)       : ${LDSHARED="$CC -shared"}
+ 			if test "$rb_cv_binary_elf" = yes; then
+-			    LDFLAGS="$LDFLAGS -rdynamic"
+ 			    DLDFLAGS="$DLDFLAGS "'-Wl,-soname,$(.TARGET)'
+ 			else
+ 			  test "$GCC" = yes && test "$rb_cv_prog_gnu_ld" = yes || LDSHARED="ld -Bshareable"
+@@ -1722,7 +1721,7 @@ if test "$enable_shared" = 'yes'; then
+     sunos4*)
+ 	LIBRUBY_ALIASES='lib$(RUBY_SO_NAME).so.$(MAJOR).$(MINOR) lib$(RUBY_SO_NAME).so'
+ 	;;
+-    linux* | gnu* | k*bsd*-gnu | atheos*)
++    linux* | gnu* | k*bsd*-gnu | atheos* | freebsd7* )
+ 	LIBRUBY_DLDFLAGS='-Wl,-soname,lib$(RUBY_SO_NAME).so.$(MAJOR).$(MINOR)'
+ 	LIBRUBY_ALIASES='lib$(RUBY_SO_NAME).so.$(MAJOR).$(MINOR) lib$(RUBY_SO_NAME).so'
+ 	;;

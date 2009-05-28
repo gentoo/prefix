@@ -1,6 +1,18 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.404 2009/05/24 12:11:25 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.405 2009/05/27 16:40:13 flameeyes Exp $
+
+*ruby-1.9.1_p129-r1 (27 May 2009)
+
+  27 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +ruby-1.9.1_p129-r1.ebuild, +files/ruby-1.9.1_p129-gfbsd7.patch,
+  +files/ruby-1.9.1_p129-no-undefined-ext.patch,
+  +files/ruby-1.9.1_p129-parallelmake.patch:
+  Revision bump, add patches 1) to make Ruby behave more similarly between
+  Linux and (Gentoo/)FreeBSD; 2) to force --no-undefined when building Ruby
+  extensions (undefined symbols in them will cause abort at runtime 3) to
+  remove a concurrency issue when building the dl extension that could
+  result in a broken dl.so.
 
   24 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   ruby-1.8.7_p160.ebuild, ruby-1.9.1_p129.ebuild:
