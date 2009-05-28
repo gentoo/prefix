@@ -1,6 +1,11 @@
 # ChangeLog for dev-scheme/gambit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gambit/ChangeLog,v 1.24 2009/04/24 09:48:43 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gambit/ChangeLog,v 1.25 2009/05/26 06:09:44 pva Exp $
+
+  26 May 2009; Peter Volkov <pva@gentoo.org> gambit-4.4.1.ebuild,
+  gambit-4.4.2.ebuild, gambit-4.4.3.ebuild:
+  Removing app-text/ghostscript-esp from blockers, ghostscript-esp was
+  removed from the tree, bug #261434.
 
 *gambit-4.4.3 (24 Apr 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gambit/gambit-4.4.1.ebuild,v 1.1 2009/02/13 12:56:16 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gambit/gambit-4.4.1.ebuild,v 1.2 2009/05/26 06:09:44 pva Exp $
 
 inherit eutils elisp-common check-reqs multilib autotools
 
@@ -19,7 +19,6 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 #gsc is now Gambit Scheme Compile and not ghostscript.
 #only app-text/ghostscript-gpl-8.64 has freed gsc yet.
 DEPEND="emacs? ( virtual/emacs )
-		!app-text/ghostscript-esp
 		!app-text/ghostscript-gnu
 		!<app-text/ghostscript-gpl-8.64"
 RDEPEND=""
