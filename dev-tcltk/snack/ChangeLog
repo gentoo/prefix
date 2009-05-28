@@ -1,6 +1,16 @@
 # ChangeLog for dev-tcltk/snack
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/snack/ChangeLog,v 1.31 2008/08/08 16:55:30 armin76 Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/snack/ChangeLog,v 1.33 2009/05/27 14:23:27 mescalinum Exp $
+
+  27 May 2009; Federico Ferri <mescalinum@gentoo.org>
+  snack-2.2.10-r2.ebuild:
+  fix bug 270839
+
+*snack-2.2.10-r2 (26 May 2009)
+
+  26 May 2009; Federico Ferri <mescalinum@gentoo.org>
+  +files/alsa-undef-sym.patch, +snack-2.2.10-r2.ebuild:
+  fix use of deprecated alsa symbols, bug #226137
 
   08 Aug 2008; Raúl Porcel <armin76@gentoo.org> snack-2.2.10-r1.ebuild:
   alpha/sparc/x86 stable
