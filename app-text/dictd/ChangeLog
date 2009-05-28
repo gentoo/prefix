@@ -1,6 +1,12 @@
 # ChangeLog for app-text/dictd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.66 2009/05/24 21:16:03 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.68 2009/05/27 19:52:25 pva Exp $
+
+  27 May 2009; Peter Volkov <pva@gentoo.org> dictd-1.11.1-r1.ebuild:
+  Don't check for FEATURES inside ebuild.
+
+  27 May 2009; Christian Faulhammer <fauli@gentoo.org> dictd-1.11.1.ebuild:
+  stable x86, bug 271122
 
 *dictd-1.11.1-r1 (24 May 2009)
 

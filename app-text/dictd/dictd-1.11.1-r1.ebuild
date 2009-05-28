@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.11.1-r1.ebuild,v 1.2 2009/05/25 13:09:26 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/dictd-1.11.1-r1.ebuild,v 1.3 2009/05/27 19:52:25 pva Exp $
 
 EAPI=2
 
@@ -55,7 +55,7 @@ src_compile() {
 
 src_test() {
 	use minimal && return 0 # All tests are for dictd which we don't build...
-	if ! hasq userpriv "${FEATURES}"; then
+	if [[ ${EUID} -eq 0 ]]; then
 		# If dictd is run as root user (-userpriv) it drops its privileges to
 		# dictd user and group. Give dictd group write access to test directory.
 		chown :dictd "${WORKDIR}" "${S}/test"
