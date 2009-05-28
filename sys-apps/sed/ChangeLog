@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/sed
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.91 2009/05/20 08:16:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.92 2009/05/26 07:10:30 vapier Exp $
+
+  26 May 2009; Mike Frysinger <vapier@gentoo.org> sed-4.2.ebuild:
+  Add support for USE=acl #271212 by Daniel Robbins.
 
 *sed-4.2 (20 May 2009)
 
