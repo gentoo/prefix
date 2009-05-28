@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ngrep-1.45-r2.ebuild,v 1.2 2009/05/24 21:57:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ngrep-1.45-r2.ebuild,v 1.3 2009/05/27 10:42:45 fauli Exp $
 
 inherit eutils autotools
 
