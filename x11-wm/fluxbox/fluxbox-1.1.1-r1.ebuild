@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.1.1.ebuild,v 1.5 2009/04/08 16:40:32 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.1.1-r1.ebuild,v 1.1 2009/05/26 16:53:38 lack Exp $
 
 EAPI=2
 inherit eutils
@@ -38,10 +38,7 @@ SLOT="0"
 LICENSE="MIT"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# We need to be able to include directories rather than just plain
 	# files in menu [include] items. This patch will allow us to do clever
 	# things with style ebuilds.
@@ -52,7 +49,13 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-osx-has-otool.patch
 
 	# Patch to handle a broken key file gracefully, #263379
-	epatch "${FILESDIR}/keyparse_hang.patch"
+	epatch "${FILESDIR}/macrocmd-crash-1.1.1.patch"
+
+	# Patch to quiet fbsetbg on upgrade
+	epatch "${FILESDIR}/fbsetbg-quiet-1.1.1.patch"
+
+	# Patch to fix window focus bug when you have "focus-follows-mouse"
+	epatch "${FILESDIR}/mousefocus-1.1.1.patch"
 
 	# Add in the Gentoo -r number to fluxbox -version output.
 	if [[ "${PR}" == "r0" ]] ; then
