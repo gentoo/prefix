@@ -1,6 +1,17 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.355 2009/05/14 04:41:06 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.357 2009/05/26 16:23:30 flameeyes Exp $
+
+  26 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  binutils-2.19.51.0.5.ebuild:
+  Update patchlevel to pick up the new patch to update ld(1) wrt
+  --enable-new-dtags.
+
+*binutils-2.19.51.0.5 (26 May 2009)
+
+  26 May 2009; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.19.51.0.5.ebuild:
+  Version bump.
 
   14 May 2009; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
   Set proper expectations for the gold linker.
