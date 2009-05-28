@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="archive avahi bluetooth cdda doc fuse gnome gnome-keyring gphoto2 hal samba"
 
 RDEPEND=">=dev-libs/glib-2.19
