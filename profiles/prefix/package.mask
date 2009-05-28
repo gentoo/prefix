@@ -33,6 +33,10 @@
 #--- END OF EXAMPLES ---
 
 
+# Fabian Groffen <grobian@gentoo.org> (28 May 2009)
+# This one breaks autotools badly!
+=dev-lang/perl-5.8.8-r6
+
 # Fabian Groffen <grobian@gentoo.org> (27 May 2009)
 # b0rkend, bug #271022 ; avoid bugs
 =media-libs/libmp4v2-1.5.0.1-r2

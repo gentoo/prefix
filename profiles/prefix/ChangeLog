@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  28 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Mask dev-lang/perl-5.8.8-r6 since it still breaks autotools like hell
+
   28 May 2009; Markus Duft <mduft@gentoo.org> windows/interix/package.mask,
   +windows/winnt/package.mask:
   masked new boost and boost-build versions, which dont currently work on
