@@ -1,6 +1,14 @@
 # ChangeLog for media-video/mplayer
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.631 2009/03/24 21:32:35 yngwin Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.632 2009/05/27 10:35:14 flameeyes Exp $
+
+  27 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  mplayer-1.0_rc2_p20090322.ebuild,
+  +files/mplayer-1.0_rc2_p20090322-fix-mp3lib-use-local-labels.patch,
+  +files/mplayer-1.0_rc2_p20090322-fix-undeclared-spudec.patch:
+  Add two patches: 1) fix spudec to be declared even without dvd support
+  enabled, patch from upstream; 2) fix mp3lib to use local labels and not
+  fail with -ftracer in CFLAGS, patch by Luca Barbato.
 
   24 Mar 2009; Ben de Groot <yngwin@gentoo.org> mplayer-1.0_rc2_p28058-r1,
   mplayer-1.0_rc2_p28288, mplayer-1.0_rc2_p28450, mplayer-1.0_rc2_p20090226,

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p20090322.ebuild,v 1.4 2009/03/24 21:32:35 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p20090322.ebuild,v 1.5 2009/05/27 10:35:14 flameeyes Exp $
 
 EAPI=1
 
@@ -232,6 +232,9 @@ src_unpack() {
 
 	# Fix polish spelling errors
 	[[ -n ${LINGUAS} ]] && sed -e 's:Zarządano:Zażądano:' -i help/help_mp-pl.h
+
+	epatch "${FILESDIR}"/${P}-fix-undeclared-spudec.patch
+	epatch "${FILESDIR}"/${P}-fix-mp3lib-use-local-labels.patch
 
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p20090322-prefix.patch
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p28058-nocona.patch
