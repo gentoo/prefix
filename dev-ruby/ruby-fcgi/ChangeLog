@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/ruby-fcgi
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-fcgi/ChangeLog,v 1.27 2009/05/10 19:27:23 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-fcgi/ChangeLog,v 1.28 2009/05/27 17:04:12 flameeyes Exp $
+
+*ruby-fcgi-0.8.7-r2 (27 May 2009)
+
+  27 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -ruby-fcgi-0.8.7-r1.ebuild, +ruby-fcgi-0.8.7-r2.ebuild:
+  Replace revision of ruby-fcgi that didn't work with Ruby 1.9 with one that
+  skips over the extension for 1.9.
 
 *ruby-fcgi-0.8.7-r1 (10 May 2009)
 
