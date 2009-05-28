@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/tmux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/ChangeLog,v 1.15 2009/05/23 19:52:59 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/ChangeLog,v 1.16 2009/05/27 10:25:11 fauli Exp $
+
+  27 May 2009; Christian Faulhammer <fauli@gentoo.org> tmux-0.8.ebuild:
+  stable x86, bug 270890
 
   23 May 2009; nixnut <nixnut@gentoo.org> tmux-0.8.ebuild:
   ppc stable #270890
