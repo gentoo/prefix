@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.22.ebuild,v 1.10 2009/04/06 14:21:33 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/gegl-0.0.22.ebuild,v 1.11 2009/05/26 23:42:35 hanno Exp $
 
 inherit eutils
 
@@ -32,6 +32,7 @@ DEPEND=">=media-libs/babl-0.0.20
 	raw? ( >=media-libs/libopenraw-0.0.5 )
 	sdl? ( media-libs/libsdl )
 	svg? ( >=gnome-base/librsvg-2.14.0 )"
+RDEPEND="${DEPEND}"
 
 pkg_setup() {
 	if use doc && ! built_with_use 'media-gfx/imagemagick' 'png'; then
@@ -44,6 +45,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-locale_h.diff"
+	epatch "${FILESDIR}/replace-imgconvert-by-swsscale.patch"
 }
 
 src_compile() {

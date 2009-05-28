@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/gegl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.24 2009/04/06 14:21:33 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.25 2009/05/26 23:42:35 hanno Exp $
+
+  26 May 2009; Hanno Boeck <hanno@gentoo.org> gegl-0.0.22.ebuild,
+  +files/replace-imgconvert-by-swsscale.patch:
+  Don't use deprecated img_convert function, patch from Pardus.
 
   06 Apr 2009; Brent Baude <ranger@gentoo.org> gegl-0.0.22.ebuild:
   Marking gegl-0.0.22 ppc for bug 258344
