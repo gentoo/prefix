@@ -15,7 +15,7 @@ SRC_URI="http://ftp.gnu.org/gnu/mc/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="gpm nls samba +unicode X"
 
 RDEPEND=">=dev-libs/glib-2
@@ -69,7 +69,7 @@ src_unpack() {
 			for file in "doc/${lingua}/xnc.hlp" "lib/mc.hint.${lingua}" "lib/mc.menu.${lingua}"; do
 				if [[ -f "${file}" ]]; then
 					mv "${file}" "${file}.${old_encoding}"
-					iconv -f ${old_encoding} -t UTF-8 -o "${file}" "${file}.${old_encoding}" || die "iconv ${file} failed"
+					iconv -f ${old_encoding} -t UTF-8 "${file}.${old_encoding}"  > "${file}" || die "iconv ${file} failed"
 				fi
 			done
 		done
