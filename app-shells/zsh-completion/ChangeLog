@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/zsh-completion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.32 2009/03/20 03:27:29 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.33 2009/05/27 21:16:50 darkside Exp $
+
+  27 May 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  Add zsh-completion to shell-tools herd and remove m-needed
 
   20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
