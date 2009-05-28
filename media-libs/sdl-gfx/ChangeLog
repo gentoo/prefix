@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/sdl-gfx
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-gfx/ChangeLog,v 1.51 2008/12/21 23:27:47 mr_bones_ Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-gfx/ChangeLog,v 1.52 2009/05/26 20:31:47 nyhm Exp $
+
+*sdl-gfx-2.0.19 (26 May 2009)
+
+  26 May 2009; Tristan Heaven <nyhm@gentoo.org> +sdl-gfx-2.0.19.ebuild:
+  Version bump, bug #267375
 
   21 Dec 2008; Michael Sterrett <mr_bones_@gentoo.org>
   +files/sdl-gfx-2.0.18-gcc43.patch, +sdl-gfx-2.0.18.ebuild:
