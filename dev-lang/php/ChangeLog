@@ -1,6 +1,15 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.329 2009/04/20 15:53:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.331 2009/05/26 16:54:58 arfrever Exp $
+
+  26 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  ChangeLog:
+  Call depend.apache_pkg_setup() in pkg_setup() (bug #268371).
+
+  26 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  php-5.2.8-r2.ebuild, php-5.2.9.ebuild, php-5.2.9-r1.ebuild,
+  php-5.2.9-r2.ebuild:
+  Call depend.apache_pkg_setup() in pkg_setup() (bug #268371).
 
   20 Apr 2009; Raúl Porcel <armin76@gentoo.org> php-5.2.9-r2.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #260576
