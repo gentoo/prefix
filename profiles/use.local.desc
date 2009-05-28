@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4478 2009/05/25 21:07:42 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4481 2009/05/27 23:27:51 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -221,6 +221,7 @@ app-emulation/libvirt:openvz - Add support for sys-kernel/openvz-sources OpenVZ-
 app-emulation/libvirt:parted - Add support for the sys-apps/parted partition editor
 app-emulation/libvirt:qemu - Add support for app-emulation/qemu based virtual machines
 app-emulation/libvirt:uml - Add support for User Mode Linux based virtual machines
+app-emulation/libvirt:virtualbox - Adds support for VirtualBox based virtual machines
 app-emulation/libvirt:xen - Add support for app-emulation/xen based virtual machines
 app-emulation/mol:oldworld - Includes Macintosh's OldWorld support
 app-emulation/mol:pci - Experimental PCI proxy support
@@ -1090,7 +1091,6 @@ kde-base/kdegraphics:povray - Install KPovModeler, which needs POV-Ray
 kde-base/kdegraphics-meta:povray - Install kde-base/kpovmodeler, which needs POV-Ray
 kde-base/kdelibs:legacyssl - Support for some deprecated ciphers. Don't use this flag unless you really need it
 kde-base/kdelibs:utempter - Records user logins. Useful on multi-user systems
-kde-base/kdelibs:webkit - Enable QT-WebKit rendering support
 kde-base/kdemultimedia:akode - Support for the aKode audio-decoding frame-work
 kde-base/kdenetwork:sametime - Support for the Sametime protocol for instant messaging
 kde-base/kdepim:gnokii - Address synchronization with mobile phones via Gnokii
@@ -1111,6 +1111,7 @@ kde-base/kopete:autoreplace - Automaticaly replace selected text
 kde-base/kopete:bonjour - Enable Link-Local Messaging via the bonjour protocol.
 kde-base/kopete:connectionstatus - Builds Connection Status plugin
 kde-base/kopete:contactnotes - Enables writing personal notes for contacts.
+kde-base/kopete:emoticons-manager - Enables emoticons theme manager so that the user can edit and remove emoticons or add custom ones etc
 kde-base/kopete:gadu - Enable the Gadu protocol handler.
 kde-base/kopete:groupwise - Enable the Groupwise protocol handler.
 kde-base/kopete:highlight - Allows you to specify highlights on specific events.
