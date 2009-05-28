@@ -7,7 +7,7 @@ HOMEPAGE="http://gnome.gentoo.org"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND=">=x11-libs/gtk+-2.13.0"
