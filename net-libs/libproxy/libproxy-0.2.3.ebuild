@@ -60,7 +60,7 @@ src_prepare() {
 
 src_configure() {
 	local extralibs
-	[[ ${CHOST} == *-solaris ]] && extralibs="-lsocket -lnsl"
+	[[ ${CHOST} == *-solaris* ]] && extralibs="-lsocket -lnsl"
 	econf --with-envvar \
 		--with-file \
 		--disable-static \
