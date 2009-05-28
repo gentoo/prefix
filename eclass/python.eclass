@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.54 2008/10/30 05:21:46 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.55 2009/05/27 22:49:32 betelgeuse Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -14,8 +14,11 @@ inherit alternatives multilib
 
 
 if [[ -n "${NEED_PYTHON}" ]] ; then
-	DEPEND=">=dev-lang/python-${NEED_PYTHON}"
+	PYTHON_ATOM=">=dev-lang/python-${NEED_PYTHON}"
+	DEPEND="${PYTHON_ATOM}"
 	RDEPEND="${DEPEND}"
+else
+	PYTHON_ATOM="dev-lang/python"
 fi
 
 __python_eclass_test() {
@@ -58,6 +61,78 @@ python_version() {
 	export PYVER_ALL="${tmpstr#Python }"
 	__python_version_extract $PYVER_ALL
 }
+
+# @ECLASS-VARIABLE: PYTHON_USE_WITH
+# @DESCRIPTION:
+# Set this to a space separated list of use flags
+# the python slot in use must be built with.
+
+# @ECLASS-VARIABLE: PYTHON_USE_WITH_OR
+# @DESCRIPTION:
+# Set this to a space separated list of use flags
+# of which one must be turned on for the slot of
+# in use.
+
+# @ECLASS-VARIABLE: PYTHON_USE_WITH_OPT
+# @DESCRIPTION:
+# Set this if you need to make either PYTHON_USE_WITH or
+# PYTHON_USE_WITH_OR atoms conditional under a use flag.
+
+# @FUNCTION: python_pkg_setup
+# @DESCRIPTION:
+# Makes sure PYTHON_USE_WITH or PYTHON_USE_WITH_OR listed use flags
+# are respected. Only exported if one of those variables is set.
+if ! has ${EAPI} 0 1 && [[ -n ${PYTHON_USE_WITH} || -n ${PYTHON_USE_WITH_OR} ]]; then
+	python_pkg_setup_fail() {
+		eerror "${1}"
+		die "${1}"
+	}
+
+	python_pkg_setup() {
+		[[ ${PYTHON_USE_WITH_OPT} ]] && use !${PYTHON_USE_WITH_OPT} && return
+
+		python_version
+		local failed
+		local pyatom="dev-lang/python:${PYVER}"
+
+		for use in ${PYTHON_USE_WITH}; do
+			if ! has_version "${pyatom}[${use}]"; then
+				python_pkg_setup_fail \
+					"Please rebuild ${pyatom} with use flags: ${PYTHON_USE_WITH}"
+			fi
+		done
+
+		for use in ${PYTHON_USE_WITH_OR}; do
+			if has_version "${pyatom}[${use}]"; then
+				return
+			fi
+		done
+
+		if [[ ${PYTHON_USE_WITH_OR} ]]; then
+			python_pkg_setup_fail \
+				"Please rebuild ${pyatom} with one of: ${PYTHON_USE_WITH_OR}"
+		fi
+	}
+
+	EXPORT_FUNCTIONS pkg_setup
+
+	if [[ ${PYTHON_USE_WITH} ]]; then
+		PYTHON_USE_WITH_ATOM="${PYTHON_ATOM}[${PYTHON_USE_WITH/ /,}]"
+	elif [[ ${PYTHON_USE_WITH_OR} ]]; then
+		PYTHON_USE_WITH_ATOM="|| ( "
+		for use in ${PYTHON_USE_WITH_OR}; do
+			PYTHON_USE_WITH_ATOM="
+				${PYTHON_USE_WITH_ATOM}
+				${PYTHON_ATOM}[${use}]"
+		done
+		PYTHON_USE_WITH_ATOM="${PYTHON_USE_WITH_ATOM} )"
+	fi
+	if [[ ${PYTHON_USE_WITH_OPT} ]]; then
+		PYTHON_USE_WITH_ATOM="${PYTHON_USE_WITH_OPT}? ( ${PYTHON_USE_WITH_ATOM} )"
+	fi
+	DEPEND="${PYTHON_USE_WITH_ATOM}"
+	RDEPEND="${PYTHON_USE_WITH_ATOM}"
+fi
 
 # @FUNCTION: python_disable_pyc
 # @DESCRIPTION:

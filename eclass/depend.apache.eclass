@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.44 2008/03/04 10:59:27 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/depend.apache.eclass,v 1.45 2009/05/26 16:41:56 arfrever Exp $
 
 # @ECLASS: depend.apache.eclass
 # @MAINTAINER:
@@ -34,6 +34,10 @@
 # DEPEND="server? ( virtual/Perl-CGI )"
 # RDEPEND="${DEPEND}"
 # want_apache2 server
+#
+# pkg_setup() {
+# 	depend.apache_pkg_setup server
+# }
 # @CODE
 
 inherit multilib
@@ -132,11 +136,36 @@ _init_no_apache() {
 # PUBLIC FUNCTIONS
 # ==============================================================================
 
+# @FUNCTION: depend.apache_pkg_setup
+# @USAGE: [myiuse]
+# @DESCRIPTION:
+# An ebuild calls this in pkg_setup() to initialize variables for optional
+# apache-2.x support. If the myiuse parameter is not given it defaults to
+# apache2.
+depend.apache_pkg_setup() {
+	debug-print-function $FUNCNAME $*
+
+	if [[ "${EBUILD_PHASE}" != "setup" ]]; then
+		die "$FUNCNAME() should be called in pkg_setup()"
+	fi
+
+	local myiuse=${1:-apache2}
+	if has ${myiuse} ${IUSE}; then
+		if use ${myiuse}; then
+			_init_apache2
+		else
+			_init_no_apache
+		fi
+	fi
+}
+
 # @FUNCTION: want_apache
 # @USAGE: [myiuse]
 # @DESCRIPTION:
 # An ebuild calls this to get the dependency information for optional apache
 # support. If the myiuse parameter is not given it defaults to apache2.
+# An ebuild should additionally call depend.apache_pkg_setup() in pkg_setup()
+# with the same myiuse parameter.
 want_apache() {
 	debug-print-function $FUNCNAME $*
 	want_apache2 "$@"
@@ -147,6 +176,8 @@ want_apache() {
 # @DESCRIPTION:
 # An ebuild calls this to get the dependency information for optional apache-2.x
 # support. If the myiuse parameter is not given it defaults to apache2.
+# An ebuild should additionally call depend.apache_pkg_setup() in pkg_setup()
+# with the same myiuse parameter.
 want_apache2() {
 	debug-print-function $FUNCNAME $*
 
@@ -154,12 +185,6 @@ want_apache2() {
 	IUSE="${IUSE} ${myiuse}"
 	DEPEND="${DEPEND} ${myiuse}? ( ${APACHE2_DEPEND} )"
 	RDEPEND="${RDEPEND} ${myiuse}? ( ${APACHE2_DEPEND} )"
-
-	if use ${myiuse}; then
-		_init_apache2
-	else
-		_init_no_apache
-	fi
 }
 
 # @FUNCTION: want_apache2_2
@@ -168,6 +193,8 @@ want_apache2() {
 # An ebuild calls this to get the dependency information for optional
 # apache-2.2.x support. If the myiuse parameter is not given it defaults to
 # apache2.
+# An ebuild should additionally call depend.apache_pkg_setup() in pkg_setup()
+# with the same myiuse parameter.
 want_apache2_2() {
 	debug-print-function $FUNCNAME $*
 
@@ -175,12 +202,6 @@ want_apache2_2() {
 	IUSE="${IUSE} ${myiuse}"
 	DEPEND="${DEPEND} ${myiuse}? ( ${APACHE2_2_DEPEND} )"
 	RDEPEND="${RDEPEND} ${myiuse}? ( ${APACHE2_2_DEPEND} )"
-
-	if use ${myiuse}; then
-		_init_apache2
-	else
-		_init_no_apache
-	fi
 }
 
 # @FUNCTION: need_apache
@@ -275,3 +296,5 @@ has_apache_threads_in() {
 		die "Need missing USE flag '${myflag}' in ${myforeign}"
 	fi
 }
+
+EXPORT_FUNCTIONS pkg_setup

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.137 2009/05/24 00:33:33 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.138 2009/05/26 07:18:33 vapier Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -185,7 +185,7 @@ append-lfs-flags() {
 append-flags() {
 	[[ -z $* ]] && return 0
 	append-cflags "$@"
-	append-cppflags "$@"
+	append-cxxflags "$@"
 	append-fflags "$@"
 	return 0
 }

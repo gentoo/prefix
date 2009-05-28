@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.26 2009/05/08 10:54:02 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.27 2009/05/27 14:34:33 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -123,7 +123,12 @@ _check_build_dir() {
 	# By default it uses ${S}.
 	: ${CMAKE_USE_DIR:=${S}}
 
-	# in/out source build
+	# @ECLASS-VARIABLE: CMAKE_BUILD_DIR
+	# @DESCRIPTION:
+	# Specify the build directory where all cmake processed
+	# files should be located.
+	#
+	# For installing binary doins "${CMAKE_BUILD_DIR}/${PN}"
 	if [[ -n "${CMAKE_IN_SOURCE_BUILD}" ]]; then
 		CMAKE_BUILD_DIR="${CMAKE_USE_DIR}"
 	else
