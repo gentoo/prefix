@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cmake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.94 2009/05/03 14:06:49 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.95 2009/05/27 23:28:06 jer Exp $
+
+  27 May 2009; Jeroen Roovers <jer@gentoo.org> cmake-2.6.4.ebuild:
+  Stable for HPPA (bug #271444).
 
   03 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   cmake-2.6.4.ebuild:
