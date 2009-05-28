@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.64-r3.ebuild,v 1.6 2009/05/06 20:52:22 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.64-r3.ebuild,v 1.7 2009/05/26 06:05:25 pva Exp $
 
 inherit autotools eutils versionator flag-o-matic
 
@@ -33,7 +33,6 @@ COMMON_DEPEND="app-text/libpaper
 	gtk? ( >=x11-libs/gtk+-2.0 )
 	jpeg2k? ( media-libs/jasper )
 	X? ( x11-libs/libXt x11-libs/libXext )
-	!app-text/ghostscript-esp
 	!app-text/ghostscript-gnu"
 
 DEPEND="${COMMON_DEPEND}
