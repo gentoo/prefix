@@ -49,6 +49,19 @@ diff -ru prefix-portage-2.2.00.13625.orig/bin/ebuild.sh prefix-portage-2.2.00.13
  source "${PORTAGE_BIN_PATH}/isolated-functions.sh"  &>/dev/null
  
  # Set IMAGE for minimal backward compatibility with
+@@ -1975,7 +1975,11 @@
+ 
+ 	#PATH=$ebuild_helpers_path:$PREROOTPATH${PREROOTPATH:+:}/usr/local/sbin:/sbin:/usr/sbin:/usr/local/bin:/bin:/usr/bin${ROOTPATH:+:}$ROOTPATH
+ 	# PREFIX: same deviation as at the top of this file
+-	PATH="$ebuild_helpers_path:$PREROOTPATH${PREROOTPATH:+:}${DEFAULT_PATH}${ROOTPATH:+:}$ROOTPATH"
++	#PATH="$ebuild_helpers_path:$PREROOTPATH${PREROOTPATH:+:}${DEFAULT_PATH}${ROOTPATH:+:}$ROOTPATH"
++	# PREFIX (with CHAINING!): why the heck not simply pre-pend the paths? hell,
++	# this shot down prefix-chaining, and made me search a while...
++	# PATH has been set up at the top of the file already.
++	PATH="${ebuild_helpers_path}:${PATH}"
+ 	unset ebuild_helpers_path
+ 
+ 	if ! hasq $EBUILD_SH_ARGS clean depend help info nofetch ; then
 diff -ru prefix-portage-2.2.00.13625.orig/pym/_emerge/__init__.py prefix-portage-2.2.00.13625/pym/_emerge/__init__.py
 --- prefix-portage-2.2.00.13625.orig/pym/_emerge/__init__.py	2009-05-26 11:52:09 +0200
 +++ prefix-portage-2.2.00.13625/pym/_emerge/__init__.py	2009-05-26 12:11:31 +0200
