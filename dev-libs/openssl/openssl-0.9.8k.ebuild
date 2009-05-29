@@ -53,7 +53,7 @@ src_unpack() {
 
 	# again, this windows patch should not do any harm to others, but
 	# header files are copied instead of linked now, so leave it conditional.
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-0.9.8h-winnt.patch
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-0.9.8k-winnt.patch
 
 	# remove -arch for darwin
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
@@ -87,7 +87,9 @@ src_unpack() {
 		-e "s+libdir=\$\${exec_prefix}/lib+libdir=\$\${exec_prefix}/$(get_libdir)+g" \
 		Makefile.org engines/Makefile \
 		|| die "sed failed"
-	sed -i '1s,^:$,#!'"${EPREFIX}"'/usr/bin/perl,' Configure #141906
+	# type -P required on platforms where perl is not installed
+	# in the same prefix (prefix-chaining).
+	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure #141906
 	sed -i '/^"debug-steve/d' Configure # 0.9.8k shipped broken
 
 	# avoid waiting on terminal input forever when spitting

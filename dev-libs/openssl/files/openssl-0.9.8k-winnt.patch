@@ -1,0 +1,92 @@
+diff -ru openssl-0.9.8h.orig/Configure openssl-0.9.8h/Configure
+--- openssl-0.9.8h.orig/Configure	2008-08-28 07:50:21 +0200
++++ openssl-0.9.8h/Configure	2008-08-28 07:55:02 +0200
+@@ -468,6 +468,7 @@
+ "VC-NT","cl::::WINNT::BN_LLONG RC4_INDEX EXPORT_VAR_AS_FN ${x86_gcc_opts}:${no_asm}:win32",
+ "VC-CE","cl::::WINCE::BN_LLONG RC4_INDEX EXPORT_VAR_AS_FN ${x86_gcc_opts}:${no_asm}:win32",
+ "VC-WIN32","cl::::WIN32::BN_LLONG RC4_INDEX EXPORT_VAR_AS_FN ${x86_gcc_opts}:${no_asm}:win32",
++"winnt-parity","parity.gnu.gcc:-DNOCRYPT:::WIN32::BN_LLONG RC4_INDEX EXPORT_VAR_AS_FN ${x86_gcc_opts}::::::::::::win32:gnu:-fPIC -DPIC:-shared:.so",
+ 
+ # Interix (GCC)
+ "interix-gcc", "gcc:-D_ALL_SOURCE -DL_ENDIAN -DTERMIOS -O2 -Wall::-D_REENTRANT::-ldl:::::::::::::dlfcn:gnu:::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
+diff -ru openssl-0.9.8h.orig/Makefile.org openssl-0.9.8h/Makefile.org
+--- openssl-0.9.8h.orig/Makefile.org	2008-08-28 07:50:37 +0200
++++ openssl-0.9.8h/Makefile.org	2008-08-28 07:54:26 +0200
+@@ -269,6 +269,7 @@
+ 			done; \
+ 		fi; \
+ 		( set -x; rm -f lib$$i$(SHLIB_EXT) ); \
++		( set -x; rm -f lib$$i$(SHLIB_EXT)* ); \
+ 		if [ "$(PLATFORM)" = "Cygwin" ]; then \
+ 			( set -x; rm -f cyg$$i$(SHLIB_EXT) lib$$i$(SHLIB_EXT).a ); \
+ 		fi; \
+@@ -507,9 +508,11 @@
+ 			if [ -f "$$i" -o -f "$$i.a" ]; then \
+ 			(       echo installing $$i; \
+ 				if [ "$(PLATFORM)" != "Cygwin" ]; then \
+-					cp $$i $(INSTALL_PREFIX)$(INSTALLTOP)/lib/$$i.new; \
+-					chmod 555 $(INSTALL_PREFIX)$(INSTALLTOP)/lib/$$i.new; \
+-					mv -f $(INSTALL_PREFIX)$(INSTALLTOP)/lib/$$i.new $(INSTALL_PREFIX)$(INSTALLTOP)/lib/$$i; \
++					for x in $${i}*; do \
++						cp $$x $(INSTALL_PREFIX)$(INSTALLTOP)/lib/$$x.new; \
++						chmod 555 $(INSTALL_PREFIX)$(INSTALLTOP)/lib/$$x.new; \
++						mv -f $(INSTALL_PREFIX)$(INSTALLTOP)/lib/$$x.new $(INSTALL_PREFIX)$(INSTALLTOP)/lib/$$x; \
++					done; \
+ 				else \
+ 					c=`echo $$i | sed 's/^lib\(.*\)\.dll\.a/cyg\1-$(SHLIB_VERSION_NUMBER).dll/'`; \
+ 					cp $$c $(INSTALL_PREFIX)$(INSTALLTOP)/bin/$$c.new; \
+diff -ru openssl-0.9.8h.orig/engines/Makefile openssl-0.9.8h/engines/Makefile
+--- openssl-0.9.8h.orig/engines/Makefile	2008-08-28 07:50:34 +0200
++++ openssl-0.9.8h/engines/Makefile	2008-08-28 07:54:28 +0200
+@@ -96,6 +96,7 @@
+ 				case "$(CFLAGS)" in \
+ 				*DSO_DLFCN*)	sfx="so";;	\
+ 				*DSO_DL*)	sfx="sl";;	\
++				*DSO_WIN*)	sfx="so.dll";; \
+ 				*)		sfx="bad";;	\
+ 				esac; \
+ 				cp lib$$l.$$sfx $(INSTALL_PREFIX)$(INSTALLTOP)/lib/engines/lib$$l.$$sfx.new; \
+diff -ru openssl-0.9.8h.orig/util/mklink.pl openssl-0.9.8h/util/mklink.pl
+--- openssl-0.9.8h.orig/util/mklink.pl	2008-08-28 07:50:42 +0200
++++ openssl-0.9.8h/util/mklink.pl	2008-08-28 07:54:26 +0200
+@@ -50,23 +50,7 @@
+ my $to = join('/', @to_path);
+ 
+ my $file;
+-$symlink_exists=eval {symlink("",""); 1};
+ foreach $file (@files) {
+-    my $err = "";
+-    if ($symlink_exists) {
+-	unlink "$from/$file";
+-	symlink("$to/$file", "$from/$file") or $err = " [$!]";
+-    } else {
+-	unlink "$from/$file"; 
+-	open (OLD, "<$file") or die "Can't open $file: $!";
+-	open (NEW, ">$from/$file") or die "Can't open $from/$file: $!";
+-	binmode(OLD);
+-	binmode(NEW);
+-	while (<OLD>) {
+-	    print NEW $_;
+-	}
+-	close (OLD) or die "Can't close $file: $!";
+-	close (NEW) or die "Can't close $from/$file: $!";
+-    }
+-    print $file . " => $from/$file$err\n";
++	$err=eval {system("rm -f $from/$file; cp $file $from/$file"); 1};
++    print $file . " => $from/$file => $err\n";
+ }
+diff -ru openssl-0.9.8h.orig/util/opensslwrap.sh openssl-0.9.8h/util/opensslwrap.sh
+--- openssl-0.9.8h.orig/util/opensslwrap.sh	2008-08-28 07:50:42 +0200
++++ openssl-0.9.8h/util/opensslwrap.sh	2008-08-28 07:54:26 +0200
+@@ -7,6 +7,11 @@
+ 	OPENSSL_ENGINES="${HERE}../engines"; export OPENSSL_ENGINES
+ fi
+ 
++if [ "`uname`" = "Interix" ]; then
++	LD_LIBRARY_PATH="${HERE}..:$LD_LIBRARY_PATH"; export LD_LIBRARY_PATH
++	exec "${OPENSSL}" "$@"
++fi
++
+ if [ -x "${OPENSSL}.exe" ]; then
+ 	# The original reason for this script existence is to work around
+ 	# certain caveats in run-time linker behaviour. On Windows platforms
