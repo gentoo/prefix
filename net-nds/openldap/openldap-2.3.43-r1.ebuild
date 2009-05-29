@@ -258,7 +258,8 @@ src_prepare() {
 		done
 	fi
 	# Fix gcc-4.4 compat, bug 264761
-	epatch "${FILESDIR}/openldap-2.3.XY-gcc44.patch"
+# doesn't apply
+	#epatch "${FILESDIR}/openldap-2.3.XY-gcc44.patch"
 }
 
 src_configure() {
