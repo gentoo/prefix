@@ -21,6 +21,7 @@ RDEPEND="virtual/libc
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
 	>=sys-devel/gettext-0.11
+	x86-winnt? ( >=dev-util/gtk-doc-am-1.11 )
 	doc? (
 		>=dev-libs/libxslt-1.0
 		>=dev-util/gtk-doc-1.11
