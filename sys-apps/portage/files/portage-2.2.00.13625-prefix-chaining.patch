@@ -1,7 +1,7 @@
 diff -ru prefix-portage-2.2.00.13625.orig/bin/ebuild.sh prefix-portage-2.2.00.13625/bin/ebuild.sh
 --- prefix-portage-2.2.00.13625.orig/bin/ebuild.sh	2009-05-26 11:52:06 +0200
 +++ prefix-portage-2.2.00.13625/bin/ebuild.sh	2009-05-26 12:11:20 +0200
-@@ -80,6 +80,46 @@
+@@ -80,6 +80,47 @@
  PATH="$PORTAGE_BIN_PATH/ebuild-helpers:$PREROOTPATH${PREROOTPATH:+:}${DEFAULT_PATH}:${ROOTPATH:+:}$ROOTPATH"
  export PATH
  
@@ -10,8 +10,9 @@ diff -ru prefix-portage-2.2.00.13625.orig/bin/ebuild.sh prefix-portage-2.2.00.13
 +
 +	save_IFS=$IFS
 +	IFS=':'
++	prefixes="${PORTAGE_READONLY_EPREFIXES}:${EPREFIX}"
 +
-+	for eroot in ${PORTAGE_READONLY_EPREFIXES}:${EPREFIX}; do
++	for eroot in ${prefixes}; do
 +		IFS=$save_IFS
 +		if [[ -f ${eroot}/usr/share/portage/config/make.globals ]]; then
 +			# ok, there is a portage instance installed in this prefix,
