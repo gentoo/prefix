@@ -1,0 +1,19 @@
+# ChangeLog for java-virtuals/jaxp-virtual
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaxp-virtual/ChangeLog,v 1.3 2009/05/23 11:35:26 ali_bush Exp $
+
+*jaxp-virtual-1.4-r1 (23 May 2009)
+
+  23 May 2009; Alistair Bush <ali_bush@gentoo.org>
+  +jaxp-virtual-1.4-r1.ebuild:
+  Bump to support features available in java-config-2.1.8
+
+  20 Mar 2009; Joseph Jezak <josejx@gentoo.org> jaxp-virtual-1.4.ebuild:
+  Marked ~ppc64.
+
+*jaxp-virtual-1.4 (05 Feb 2009)
+
+  05 Feb 2009; Petteri Räty <betelgeuse@gentoo.org> +metadata.xml,
+  +jaxp-virtual-1.4.ebuild:
+  Move jaxp-virtual from java-experimental.
+
