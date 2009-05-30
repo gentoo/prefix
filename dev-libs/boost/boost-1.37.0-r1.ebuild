@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.37.0-r1.ebuild,v 1.6 2009/05/24 05:42:24 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.37.0-r1.ebuild,v 1.7 2009/05/28 17:42:51 grobian Exp $
 
 EAPI="2"
 
@@ -93,14 +93,14 @@ src_prepare() {
 
 	epatch \
 		"${FILESDIR}/remove_toolset_from_targetname.patch" \
-		"${FILESDIR}/buildid-fix.patch"
-	
-	epatch "${FILESDIR}"/${P}-darwin-long-double.patch
+		"${FILESDIR}/buildid-fix.patch" \
+		"${FILESDIR}"/${P}-darwin-long-double.patch
 
 	# This enables building the boost.random library with /dev/urandom support
 	if [[ -e /dev/urandom ]] ; then
 		mkdir -p libs/random/build
 		cp "${FILESDIR}/random-Jamfile" libs/random/build/Jamfile.v2
+		# yeah, we WANT it to work on non-Linux too
 		sed -i -e 's/#ifdef __linux__/#if 1/' libs/random/random_device.cpp || die
 	fi
 }
@@ -377,6 +377,7 @@ src_install () {
 	# DESTROOT, dynamic libraries on Darwin end messed up, referencing the
 	# DESTROOT instread of the actual EPREFIX.  There is no way out of here
 	# but to do it the dirty way of manually setting the right install_names.
+	[[ -z ${ED+set} ]] && local ED=${D%/}${EPREFIX}/
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		einfo "Working around completely broken build-system(tm)"
 		for d in "${ED}"usr/lib/*.dylib ; do
