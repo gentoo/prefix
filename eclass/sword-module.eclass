@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/sword-module.eclass,v 1.1 2008/02/23 17:09:47 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/sword-module.eclass,v 1.2 2009/05/29 18:46:24 beandog Exp $
 
 #
 # eclass to simplify installation of Sword modules
@@ -21,8 +21,7 @@ IUSE=""
 
 S="${WORKDIR}"
 
-RDEPEND="app-text/sword
-	!app-text/sword-modules"
+RDEPEND="app-text/sword"
 DEPEND="app-arch/unzip"
 
 sword-module_src_install() {

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.27 2009/05/27 14:34:33 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.28 2009/05/29 08:06:46 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -132,7 +132,9 @@ _check_build_dir() {
 	if [[ -n "${CMAKE_IN_SOURCE_BUILD}" ]]; then
 		CMAKE_BUILD_DIR="${CMAKE_USE_DIR}"
 	else
-		CMAKE_BUILD_DIR="${CMAKE_USE_DIR}_build"
+		[[ ${1} = init || -d ${CMAKE_USE_DIR}_build ]] && SUF="_build" || SUF=""
+		CMAKE_BUILD_DIR="${CMAKE_USE_DIR}${SUF}"
+
 	fi
 	echo ">>> Working in BUILD_DIR: \"$CMAKE_BUILD_DIR\""
 }
@@ -239,7 +241,7 @@ Install path: ${CMAKE_INSTALL_PREFIX}\n")' >> CMakeLists.txt
 cmake-utils_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	_check_build_dir
+	_check_build_dir init
 
 	# check if CMakeLists.txt exist and if no then die
 	if [[ ! -e "${CMAKE_USE_DIR}"/CMakeLists.txt ]] ; then
@@ -340,7 +342,7 @@ cmake-utils_src_make() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	_check_build_dir
-	pushd "${CMAKE_BUILD_DIR}" > /dev/null
+	pushd "${CMAKE_BUILD_DIR}" &> /dev/null
 	# first check if Makefile exist otherwise die
 	[[ -e Makefile ]] || die "Makefile not found. Error during configure stage."
 	if [[ -n ${CMAKE_VERBOSE} ]]; then
@@ -348,7 +350,7 @@ cmake-utils_src_make() {
 	else
 		emake "$@" || die "Make failed!"
 	fi
-	popd > /dev/null
+	popd &> /dev/null
 }
 
 # @FUNCTION: cmake-utils_src_install
@@ -358,9 +360,9 @@ cmake-utils_src_install() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	_check_build_dir
-	pushd "${CMAKE_BUILD_DIR}" > /dev/null
+	pushd "${CMAKE_BUILD_DIR}" &> /dev/null
 	emake install DESTDIR="${D}" || die "Make install failed"
-	popd > /dev/null
+	popd &> /dev/null
 
 	# Manual document installation
 	[[ -n "${DOCS}" ]] && { dodoc ${DOCS} || die "dodoc failed" ; }
@@ -374,7 +376,7 @@ cmake-utils_src_test() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	_check_build_dir
-	pushd "${CMAKE_BUILD_DIR}" > /dev/null
+	pushd "${CMAKE_BUILD_DIR}" &> /dev/null
 	# Standard implementation of src_test
 	if emake -j1 check -n &> /dev/null; then
 		einfo ">>> Test phase [check]: ${CATEGORY}/${PF}"
@@ -389,5 +391,5 @@ cmake-utils_src_test() {
 	else
 		einfo ">>> Test phase [none]: ${CATEGORY}/${PF}"
 	fi
-	popd > /dev/null
+	popd &> /dev/null
 }

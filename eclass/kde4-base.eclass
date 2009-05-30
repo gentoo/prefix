@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.37 2009/05/09 13:23:15 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.38 2009/05/28 09:47:52 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -326,8 +326,12 @@ case ${BUILD_TYPE} in
 			ESVN_REPO_URI="${ESVN_MIRROR}/${branch_prefix}/${PN}"
 			ESVN_PROJECT="${PN}${ESVN_PROJECT_SUFFIX}"
 		fi
-		# limit syncing to 1 hour.
-		ESVN_UP_FREQ=${ESVN_UP_FREQ:-1}
+		# @ECLASS-VARIABLE: ESVN_UP_FREQ
+		# @DESCRIPTION:
+		# This variable is used for specifying the timeout between svn synces
+		# for kde-base and koffice modules. Does not affect misc apps.
+		# Default value is 1 hour.
+		[[ ${KDEBASE} = kde-base || ${KDEBASE} = koffice ]] && ESVN_UP_FREQ=${ESVN_UP_FREQ:-1}
 		;;
 	*)
 		if [[ -n ${KDEBASE} ]]; then
@@ -357,7 +361,12 @@ case ${BUILD_TYPE} in
 					esac
 					;;
 				koffice)
-					SRC_URI="mirror://kde/unstable/${_kmname_pv}/src/${_kmname_pv}.tar.bz2"
+					case ${PV} in
+						1.9*)
+							SRC_URI="mirror://kde/unstable/${_kmname_pv}/src/${_kmname_pv}.tar.bz2"
+							;;
+						*) SRC_URI="mirror://kde/stable/${_kmname_pv}/src/${_kmname_pv}.tar.bz2" ;;
+					esac
 				;;
 			esac
 			fi
@@ -393,9 +402,9 @@ kde4-base_pkg_setup() {
 
 	if [[ ${KDEBASE} = kde-base ]]; then
 		if use kdeprefix; then
-			KDEDIR="/usr/kde/${_kdedir}"
+			KDEDIR="${ROOT}usr/kde/${_kdedir}"
 		else
-			KDEDIR="/usr"
+			KDEDIR="${ROOT}usr"
 		fi
 		PREFIX="${PREFIX:-${KDEDIR}}"
 	else
@@ -406,16 +415,16 @@ kde4-base_pkg_setup() {
 			[[ -z ${kde_minimal_met} ]] && [[ ${slot} = ${KDE_MINIMAL} ]] && kde_minimal_met=1
 			if [[ -n ${kde_minimal_met} ]] && has_version "kde-base/kdelibs:${slot}"; then
 				if has_version "kde-base/kdelibs:${slot}[kdeprefix]"; then
-					KDEDIR="/usr/kde/${slot}"
+					KDEDIR="${ROOT}usr/kde/${slot}"
 				else
-					KDEDIR="/usr"
+					KDEDIR="${ROOT}usr"
 				fi
 				break;
 			fi
 		done
 		unset slot
 		[[ -z KDEDIR ]] && die "Failed to determine KDEDIR!"
-		PREFIX="${PREFIX:-/usr}"
+		PREFIX="${PREFIX:-${ROOT}usr}"
 	fi
 
 	# Not needed anymore
@@ -449,8 +458,8 @@ kde4-base_src_prepare() {
 		enable_selected_linguas
 	fi
 
-	base_src_prepare
 	[[ ${BUILD_TYPE} = live ]] && subversion_src_prepare
+	base_src_prepare
 
 	# Save library dependencies
 	if [[ -n ${KMSAVELIBS} ]] ; then
@@ -477,6 +486,11 @@ kde4-base_src_configure() {
 	# Build tests in src_test only, where we override this value
 	local cmakeargs="-DKDE4_BUILD_TESTS=OFF"
 
+	# set "real" debug mode
+	if has debug ${IUSE//+} && use debug; then
+		CMAKE_BUILD_TYPE="Debugfull"
+	fi
+
 	# Set distribution name
 	[[ ${PN} = kdelibs ]] && cmakeargs="${cmakeargs} -DKDE_DISTRIBUTION_TEXT=Gentoo"
 
@@ -493,7 +507,7 @@ kde4-base_src_configure() {
 	# Shadow existing /usr installations
 	unset KDEDIRS
 
-	if [[ ${KDEDIR} != /usr ]]; then
+	if [[ ${KDEDIR} != "${ROOT}usr" ]]; then
 		# Override some environment variables - only when kdeprefix is different,
 		# to not break ccache/distcc
 		PATH="${KDEDIR}/bin:${PATH}"
@@ -509,7 +523,7 @@ kde4-base_src_configure() {
 		cmakeargs="${cmakeargs} -DCMAKE_SYSTEM_PREFIX_PATH=${KDEDIR}"
 	else
 		# If prefix is /usr, sysconf needs to be /etc, not /usr/etc
-		cmakeargs="${cmakeargs} -DSYSCONF_INSTALL_DIR=/etc"
+		cmakeargs="${cmakeargs} -DSYSCONF_INSTALL_DIR=${ROOT}etc"
 	fi
 
 	mycmakeargs="${cmakeargs} ${mycmakeargs}"
@@ -575,10 +589,10 @@ kde4-base_src_make_doc() {
 		done
 	fi
 
-	if [[ -n ${KDEBASE} ]] && [[ -d "${ED}/usr/share/doc/${PF}" ]]; then
+	if [[ -n ${KDEBASE} ]] && [[ -d "${ED}${ROOT}usr/share/doc/${PF}" ]]; then
 		# work around bug #97196
 		dodir /usr/share/doc/KDE4 && \
-			mv "${ED}/usr/share/doc/${PF}" "${ED}"/usr/share/doc/KDE4/ || \
+			mv "${ED}${ROOT}usr/share/doc/${PF}" "${ED}${ROOT}usr/share/doc/KDE4/" || \
 			die "Failed to move docs to KDE4/."
 	fi
 }

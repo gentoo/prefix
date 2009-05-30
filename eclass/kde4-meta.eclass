@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.19 2009/05/14 16:46:53 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.21 2009/05/29 10:29:10 dagger Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -91,9 +91,14 @@ case ${KMNAME} in
 			!app-office/koffice:0
 			!app-office/koffice-meta:0
 		"
-		COMMON_DEPEND="
+		if has openexr ${IUSE//+}; then
+			COMMON_DEPEND="media-gfx/imagemagick[openexr?]"
+		else
+			COMMON_DEPEND="media-gfx/imagemagick"
+		fi
+
+		COMMON_DEPEND="${COMMON_DEPEND}
 			dev-cpp/eigen:2
-			media-gfx/imagemagick[openexr?]
 			media-libs/fontconfig
 			media-libs/freetype:2
 		"
@@ -155,7 +160,7 @@ fi
 # @DESCRIPTION:
 # All subdirectories listed here will be extracted, compiled & installed.
 # $KMMODULE is always added to $KMEXTRA.
-# If the htmlhandbook USE-flag is set, and if this directory exists,
+# If the doc USE-flag is set, and if this directory exists,
 # then "doc/$KMMODULE" is added to $KMEXTRA. In other cases, this should be
 # handled in the ebuild.
 # If the documentation is in a different subdirectory, you should add it to KMEXTRA.
@@ -404,7 +409,18 @@ kde4-meta_create_extractlists() {
 	esac
 	# Don't install cmake modules for split ebuilds, to avoid collisions.
 	case ${KMNAME} in
-		kdebase-runtime|kdebase-workspace|kdeedu|kdegames|kdegraphics|kdepim)
+		kdepim)
+			# No need for unpack since 4.2.86
+			# Remove when 4.2 is wiped out from the tree
+			case ${PV} in
+				4.1*|4.2.0|4.2.1|4.2.2|4.2.3|4.2.4|4.2.85)
+					KMCOMPILEONLY="${KMCOMPILEONLY}
+						cmake/modules/"
+						;;
+				*) ;;
+			esac
+			;;
+		kdebase-runtime|kdebase-workspace|kdeedu|kdegames|kdegraphics)
 			case ${PN} in
 				libkdegames|libkdeedu|libkworkspace)
 					KMEXTRA="${KMEXTRA}
@@ -577,8 +593,9 @@ kde4-meta_change_cmakelists() {
 			fi
 			# Strip EXPORT feature section from workspace for KDE4 versions > 4.1.82
 			if [[ ${PN} != libkworkspace ]]; then
-				sed -i -e '/install(FILES ${CMAKE_CURRENT_BINARY_DIR}\/KDE4WorkspaceConfig.cmake/,/^[[:space:]]*FILE KDE4WorkspaceLibraryTargets.cmake )[[:space:]]*^/d' \
-					CMakeLists.txt || die "${LINENO}: sed died in kdebase-workspace strip EXPORT section"
+				sed -i \
+					-e '/install(FILES ${CMAKE_CURRENT_BINARY_DIR}\/KDE4WorkspaceConfig.cmake/,/^[[:space:]]*FILE KDE4WorkspaceLibraryTargets.cmake )[[:space:]]*^/d' \
+					CMakeLists.txt || die "${LINENO}: sed died in kdebase-workspace strip config install and fix EXPORT	section"
 			fi
 			;;
 		kdebase-runtime)
@@ -601,9 +618,9 @@ kde4-meta_change_cmakelists() {
 		kdewebdev)
 			# Disable hardcoded kdepimlibs check
 			sed -e 's/find_package(KdepimLibs REQUIRED)/macro_optional_find_package(KdepimLibs)/' \
-				-e 's/find_package(LibXml2 REQUIRED)/macro_optional_find_package(LibXml2 REQUIRED)/' \
-				-e 's/find_package(LibXslt REQUIRED)/macro_optional_find_package(LibXslt REQUIRED)/' \
-				-e 's/find_package(Boost REQUIRED)/macro_optional_find_package(Boost REQUIRED)/' \
+				-e 's/find_package(LibXml2 REQUIRED)/macro_optional_find_package(LibXml2)/' \
+				-e 's/find_package(LibXslt REQUIRED)/macro_optional_find_package(LibXslt)/' \
+				-e 's/find_package(Boost REQUIRED)/macro_optional_find_package(Boost)/' \
 				-i CMakeLists.txt || die "failed to disable hardcoded checks"
 			;;
 		koffice)
