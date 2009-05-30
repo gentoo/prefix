@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.3.0_rc1.ebuild,v 1.1 2009/05/27 20:19:55 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.3.0_rc1.ebuild,v 1.2 2009/05/28 13:52:33 betelgeuse Exp $
 
 # Note:this pmasked in gentoo-x86/profiles.
 # Please remove both once a full release is available.
@@ -23,7 +23,7 @@ CDEPEND=">=dev-java/bytelist-1.0.2:0
 	>=dev-java/constantine-0.5:0
 	>=dev-java/jline-0.9.94:0
 	>=dev-java/joni-1.1.3:0
-	>=dev-java/jna-posix-1.0:0
+	>=dev-java/jna-posix-1.0.1:0
 	>=dev-java/jvyamlb-0.2.5:0
 	dev-java/asm:3
 	dev-java/jcodings:0
