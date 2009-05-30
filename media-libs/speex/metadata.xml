@@ -5,7 +5,4 @@
   <maintainer>
     <email>sound@gentoo.org</email>
   </maintainer>
-  <use>
-    <flag name="vorbis-psy">Enable Vorbis-style psychoacoustics</flag>
-  </use>
 </pkgmetadata>
