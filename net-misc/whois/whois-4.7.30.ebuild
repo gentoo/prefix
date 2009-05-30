@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/whois-4.7.30.ebuild,v 1.5 2009/05/27 10:36:41 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/whois-4.7.30.ebuild,v 1.7 2009/05/28 19:50:21 beandog Exp $
 
 inherit eutils toolchain-funcs
 
