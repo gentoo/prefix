@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/t1lib
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.71 2008/09/02 23:45:33 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.72 2009/05/28 16:07:50 jer Exp $
+
+  28 May 2009; Jeroen Roovers <jer@gentoo.org> t1lib-5.0.2-r1.ebuild:
+  Stable for HPPA (bug #193437).
 
   02 Sep 2008; Alexis Ballier <aballier@gentoo.org> t1lib-5.1.2.ebuild:
   run elibtoolize to fix so versionning on fbsd and also the build.
@@ -54,12 +57,6 @@
 
   23 Sep 2007; Raúl Porcel <armin76@gentoo.org> t1lib-5.0.2-r1.ebuild:
   alpha/ia64 stable wrt security #193143
-
-  23 Sep 2007; Jeroen Roovers <jer@gentoo.org> ChangeLog:
-  Stable for HPPA (bug #193437).
-
-  23 Sep 2007; Jeroen Roovers <jer@gentoo.org> ChangeLog:
-  t1lib-5.0.2-r1.ebuild
 
   22 Sep 2007; Jurek Bartuszek <jurek@gentoo.org> t1lib-5.0.2-r1.ebuild:
   x86 stable (bug #193437)
