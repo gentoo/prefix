@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/libperl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.138 2009/05/02 13:19:14 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.139 2009/05/29 14:22:00 tove Exp $
+
+  29 May 2009; Torsten Veller <tove@gentoo.org> -libperl-5.8.8-r1.ebuild:
+  Remove security vulnerable version for bug #271738
 
   02 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   libperl-5.8.8-r2.ebuild:
