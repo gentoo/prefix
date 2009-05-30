@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/strace
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/ChangeLog,v 1.131 2009/02/14 17:53:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/ChangeLog,v 1.132 2009/05/30 00:17:44 vapier Exp $
+
+  30 May 2009; Mike Frysinger <vapier@gentoo.org> strace-4.5.18.ebuild,
+  +files/strace-4.5.18-arm-cache.patch:
+  Fix build failure on arm due to missing cachectl.h #266014 by Pinky.
 
   14 Feb 2009; Mike Frysinger <vapier@gentoo.org>
   +files/strace-4.5.18-arm-syscalls.patch, strace-4.5.18.ebuild:
