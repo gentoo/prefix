@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.1.ebuild,v 1.9 2008/11/17 21:27:32 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/gkrellm-2.3.2-r1.ebuild,v 1.1 2009/05/29 13:05:21 lack Exp $
+
+EAPI=2
 
 inherit eutils multilib toolchain-funcs
 
@@ -11,14 +13,15 @@ SRC_URI="http://members.dslextreme.com/users/billw/${PN}/${P}.tar.bz2"
 LICENSE="GPL-3"
 SLOT="2"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="hddtemp gnutls lm_sensors nls ssl X kernel_FreeBSD"
+IUSE="hddtemp gnutls lm_sensors nls ssl ntlm X kernel_FreeBSD"
 
 RDEPEND=">=dev-libs/glib-2
 	hddtemp? ( app-admin/hddtemp )
 	gnutls? ( net-libs/gnutls )
+	!gnutls? ( ssl? ( dev-libs/openssl ) )
 	lm_sensors? ( sys-apps/lm_sensors )
 	nls? ( virtual/libintl )
-	ssl? ( dev-libs/openssl )
+	ntlm? ( net-libs/libntlm )
 	X? ( >=x11-libs/gtk+-2 )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
@@ -31,13 +34,10 @@ pkg_setup() {
 	use kernel_FreeBSD && TARGET="freebsd"
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}"/${PN}-2.3-build.patch
-	epatch "${FILESDIR}"/${PN}-2.3-Makefile.patch
-	use gnutls && epatch "${FILESDIR}"/${PN}-2.3-gnutls.patch
+src_prepare() {
+	sed -e 's:-O2 ::' \
+		-e 's:override CC:CFLAGS:' \
+		-i */Makefile || die "sed Makefile(s) failed"
 
 	sed -e 's:#user\tnobody:user\tgkrellmd:' \
 		-e 's:#group\tproc:group\tgkrellmd:' \
@@ -46,50 +46,65 @@ src_unpack() {
 	sed -e "s:/usr/lib:${EPREFIX}/usr/$(get_libdir):" \
 		-e "s:/usr/local/lib:${EPREFIX}/usr/local/$(get_libdir):" \
 		-i src/${PN}.h || die "sed ${PN}.h failed"
+
+	epatch "${FILESDIR}/gkrellm-2.3.2-getline-fix.patch"
 }
 
 src_compile() {
 	if use X ; then
+		local sslopt=""
+		if use gnutls; then
+			sslopt="without-ssl=yes"
+		elif use ssl; then
+			sslopt="without-gnutls=yes"
+		else
+			sslopt="without-ssl=yes without-gnutls=yes"
+		fi
+
 		emake ${TARGET} \
 			CC="$(tc-getCC)" \
-			INSTALLROOT="${EPREFIX}"/usr \
-			INCLUDEDIR="${EPREFIX}"/usr/include/gkrellm2 \
-			LOCALEDIR="${EPREFIX}"/usr/share/locale \
+			LINK_FLAGS="$LDFLAGS -Wl,-E" \
+			STRIP="" \
+			INSTALLROOT="${EPREFIX}/usr" \
+			INCLUDEDIR="${EPREFIX}/usr/include/gkrellm2" \
+			LOCALEDIR="${EPREFIX}/usr/share/locale" \
 			$(use nls || echo enable_nls=0) \
-			$(use gnutls || echo without-gnutls=yes) \
 			$(use lm_sensors || echo without-libsensors=yes) \
-			$(use ssl || echo without-ssl=yes) \
-			|| die "emake failed"
+			${sslopt} \
+		|| die "emake failed"
 	else
 		cd server
-			emake ${TARGET} \
+		emake ${TARGET} \
 			CC="$(tc-getCC)" \
+			LINK_FLAGS="$LDFLAGS -Wl,-E" \
+			STRIP="" \
 			$(use lm_sensors || echo without-libsensors=yes) \
-			|| die "emake failed"
-			fi
+		|| die "emake failed"
+	fi
 }
 
 src_install() {
 	if use X ; then
 		emake install${TARGET:+_}${TARGET} \
 			$(use nls || echo enable_nls=0) \
-			INSTALLDIR="${ED}"/usr/bin \
-			INCLUDEDIR="${ED}"/usr/include \
-			LOCALEDIR="${ED}"/usr/share/locale \
-			PKGCONFIGDIR="${ED}"/usr/$(get_libdir)/pkgconfig \
-			MANDIR="${ED}"/usr/share/man/man1 \
-			|| die "emake install failed"
-			dosym gkrellm /usr/bin/gkrellm2
+			STRIP="" \
+			INSTALLDIR="${ED}/usr/bin" \
+			INCLUDEDIR="${ED}/usr/include" \
+			LOCALEDIR="${ED}/usr/share/locale" \
+			PKGCONFIGDIR="${ED}/usr/$(get_libdir)/pkgconfig" \
+			MANDIR="${ED}/usr/share/man/man1" \
+		|| die "emake install failed"
 
-			dohtml *.html
+		dohtml *.html
 
-			newicon src/icon.xpm ${PN}.xpm
+		newicon src/icon.xpm ${PN}.xpm
 		make_desktop_entry ${PN} GKrellM ${PN}
 	else
 		dobin server/gkrellmd || die "dobin failed"
 
 		insinto /usr/include/gkrellm2
 		doins server/gkrellmd.h || die "doins failed"
+		doins shared/log.h || die "doins failed"
 	fi
 
 	doinitd "${FILESDIR}"/gkrellmd || die "doinitd failed"
@@ -102,8 +117,8 @@ src_install() {
 }
 
 pkg_postinst() {
-	ewarn "The old executable name 'gkrellm2' is deprecated."
-	ewarn "We have provided a compatible symlink for your convenience,"
-	ewarn "but this is only temporary.  You should run this as just 'gkrellm'"
-	ewarn "instead."
+	if use X ; then
+		ewarn "The old executable name 'gkrellm2' has been removed."
+		ewarn "Run 'gkrellm' instead."
+	fi
 }
