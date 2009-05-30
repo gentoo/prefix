@@ -1,6 +1,14 @@
 # ChangeLog for media-video/mplayer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.632 2009/05/27 10:35:14 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.633 2009/05/29 02:17:59 beandog Exp $
+
+  29 May 2009; Steve Dibb <beandog@gentoo.org>
+  mplayer-1.0_rc2_p28450.ebuild, mplayer-9999.ebuild, metadata.xml:
+  Ebuild cleanup, see bug 267124. Change to EAPI2; fix faad deps; fix jack
+  deps; add libnut dep, use flag; fix rar dep; fix displaying svn version;
+  remove hppa hack; add osdmenu use flag; disable apple-ir on no lirc; add
+  shm use flag; unset more flags on custom-cflags use. Thanks to Andrew
+  Savchenko for lots of hard work.
 
   27 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   mplayer-1.0_rc2_p20090322.ebuild,

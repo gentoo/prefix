@@ -28,6 +28,8 @@
     <flag name="mp2">Enables support for twolame, an MP2 audio library</flag>
     <flag name="nemesi">Enable Nemesi Streaming Media support</flag>
 	<flag name="network">Enables network streaming support</flag>
+	<flag name="nut">Enables support for the NUT container format</flag>
+	<flag name="osdmenu">Enables support for on-screen display (OSD) menus</flag>
     <flag name="pnm">Add PNM video output option, to create PPM/PGM/PGMYUV images</flag>
     <flag name="pvr">Enable Video4Linux2 MPEG PVR</flag>
     <flag name="radio">Enable V4L2 radio interface and support</flag>
@@ -36,6 +38,7 @@
     <flag name="realcodecs">External Real Player binary codec support (UNSUPPORTED)</flag>
     <flag name="rtc">Enables usage of the linux real time clock. The alternative is software emulation of rtc</flag>
     <flag name="schroedinger">Enable Dirac video support (an advanced royalty-free video compression format) via libschroedinger (high-speed implementation in C of the Dirac codec).</flag>
+    <flag name="shm">Enable support for shm</flag>
     <flag name="ssse3">faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)</flag>
     <flag name="teletext">Support for TV teletext interface</flag>
     <flag name="tga">Enables Targa video output</flag>
