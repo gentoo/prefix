@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/gd
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.53 2008/03/30 23:08:36 ricmm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.54 2009/05/29 21:00:48 vapier Exp $
+
+  29 May 2009; Mike Frysinger <vapier@gentoo.org> -gd-2.0.34.ebuild:
+  Punt due to GLSA 200708-05 vuln #271688 by Robert Buchholz.
 
   30 Mar 2008; <ricmm@gentoo.org> gd-2.0.34.ebuild, gd-2.0.35.ebuild:
   Drop to ~mips due to unstable deps
