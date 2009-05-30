@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.5.0.1-r2.ebuild,v 1.1 2009/05/22 15:10:42 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.5.0.1-r2.ebuild,v 1.3 2009/05/29 11:29:05 flameeyes Exp $
 
 inherit libtool autotools
 
@@ -25,6 +25,10 @@ src_unpack() {
 	sed -i -e 's:nasm -r:nasm -v:g' configure.in || die "sed nasm"
 
 	epatch "${FILESDIR}"/${P}+glibc-2.10.patch
+
+	# We don't give a damn about these two, just remove the two calls
+	# so we don't have to have the macros to eautoreconf properly.
+	sed -i -e '/AM_PATH_\(GLIB\|GTK\)/d' configure.in || die
 
 	AT_NO_RECURSIVE="yes" eautoreconf
 	elibtoolize
