@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/icon-naming-utils-0.8.90.ebuild,v 1.5 2009/05/27 20:22:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/icon-naming-utils/icon-naming-utils-0.8.90.ebuild,v 1.6 2009/05/28 19:53:58 beandog Exp $
 
 DESCRIPTION="Utils to help with the transition to the new freedesktop.org naming scheme."
 HOMEPAGE="http://tango.freedesktop.org"
