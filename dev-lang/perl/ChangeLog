@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.281 2009/05/27 08:39:04 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.282 2009/05/29 13:26:28 tove Exp $
+
+  29 May 2009; Torsten Veller <tove@gentoo.org> perl-5.8.8-r6.ebuild,
+  perl-5.8.8-r7.ebuild, +files/perl-5.8.8-fix_file_path_chdir.patch:
+  Add another File-Path fix
 
   27 May 2009; Torsten Veller <tove@gentoo.org> -perl-5.8.8-r2.ebuild,
   -perl-5.8.8-r3.ebuild, -perl-5.8.8-r4.ebuild:
