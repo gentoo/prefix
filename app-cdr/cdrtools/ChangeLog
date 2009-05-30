@@ -1,6 +1,12 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.230 2009/05/21 22:15:38 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.231 2009/05/28 15:28:35 ssuominen Exp $
+
+  28 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  cdrtools-2.01.01_alpha34.ebuild, cdrtools-2.01.01_alpha51.ebuild,
+  cdrtools-2.01.01_alpha53.ebuild, cdrtools-2.01.01_alpha57-r1.ebuild,
+  cdrtools-2.01.01_alpha59.ebuild, cdrtools-2.01.01_alpha60.ebuild:
+  Remove PROVIDE for old style virtual.
 
 *cdrtools-2.01.01_alpha60 (21 May 2009)
 
