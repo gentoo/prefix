@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.8.5-r3.ebuild,v 1.18 2009/03/21 11:39:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.8.5-r3.ebuild,v 1.19 2009/05/29 23:41:11 vapier Exp $
 
 inherit eutils
 
@@ -30,6 +30,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-test-fixes.patch #159557
 	epatch "${FILESDIR}"/${PN}-1.9.6-aclocal7-test-sleep.patch #197366
 	epatch "${FILESDIR}"/${PN}-1.9.6-subst-test.patch #222225
+	epatch "${FILESDIR}"/${PN}-1.10-ccnoco-ldflags.patch #203914
 	export WANT_AUTOCONF=2.5
 }
 

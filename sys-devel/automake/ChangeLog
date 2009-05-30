@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.137 2009/05/17 20:50:21 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.138 2009/05/29 23:41:11 vapier Exp $
+
+  29 May 2009; Mike Frysinger <vapier@gentoo.org> automake-1.5.ebuild,
+  automake-1.6.3.ebuild, automake-1.7.9-r1.ebuild, automake-1.8.5-r3.ebuild,
+  automake-1.9.6-r2.ebuild, +files/automake-1.10-ccnoco-ldflags.patch:
+  Add fix from upstream for ccnoco test failure with custom LDFLAGS #203914
+  by Carsten Lohrke.
 
 *automake-1.11 (17 May 2009)
 

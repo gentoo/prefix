@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.5.ebuild,v 1.30 2008/11/23 14:56:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.5.ebuild,v 1.31 2009/05/29 23:41:11 vapier Exp $
 
 inherit eutils prefix
 
@@ -30,6 +30,7 @@ src_unpack() {
 	eprefixify aclocal.in
 
 	epatch "${FILESDIR}"/${P}-test-fixes.patch #79505
+	epatch "${FILESDIR}"/${PN}-1.10-ccnoco-ldflags.patch #203914
 	sed -i \
 		-e "/^@setfilename/s|automake|automake${SLOT}|" \
 		-e "s|automake: (automake)|automake v${SLOT}: (automake${SLOT})|" \
