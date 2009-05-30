@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/dmake
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dmake/ChangeLog,v 1.17 2007/05/15 09:10:31 bangert Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dmake/ChangeLog,v 1.18 2009/05/30 02:02:24 darkside Exp $
+
+  30 May 2009; Jeremy Olexa <darkside@gentoo.org> dmake-4.1-r1.ebuild:
+  (non maintainer commit) Respect flags and QA fixes, bug 240275 by Espen Hustad
 
   14 May 2007; Thilo Bangert <bangert@gentoo.org> metadata.xml:
   add <herd>no-herd</herd>

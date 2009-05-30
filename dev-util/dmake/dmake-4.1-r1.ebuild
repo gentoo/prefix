@@ -1,27 +1,29 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dmake/dmake-4.1-r1.ebuild,v 1.21 2007/04/01 19:16:12 anant Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dmake/dmake-4.1-r1.ebuild,v 1.22 2009/05/30 02:02:24 darkside Exp $
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Improved make"
 SRC_URI="http://public.activestate.com/gsar/${P}pl1-src.tar.gz"
 HOMEPAGE="http://tools.openoffice.org/dmake/"
 
-SLOT="0"
 LICENSE="GPL-1"
+SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND="sys-apps/groff"
+RDEPEND=""
 
 S=${WORKDIR}/${PN}
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 
-	epatch ${FILESDIR}/${PF}.diff
+	epatch "${FILESDIR}/${PF}.diff"
+	sed -i "s/gcc/$(tc-getCC) ${CFLAGS}/g" unix/linux/gnu/make.sh || die "sed failed"
 }
 
 src_compile() {
