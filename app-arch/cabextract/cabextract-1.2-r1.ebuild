@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/cabextract-1.2-r1.ebuild,v 1.4 2009/05/27 10:49:52 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/cabextract-1.2-r1.ebuild,v 1.6 2009/05/28 19:45:20 beandog Exp $
 
 inherit flag-o-matic
 
