@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.14 2008/11/28 22:37:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17.ebuild,v 1.15 2009/05/29 19:57:17 flameeyes Exp $
 
 inherit flag-o-matic eutils multilib toolchain-funcs mono autotools
 
@@ -17,7 +17,7 @@ DEPEND="virtual/libiconv
 	dev-libs/libxml2
 	!x86-winnt? ( sys-libs/ncurses )
 	dev-libs/expat
-	acl? ( kernel_linux? ( sys-apps/acl ) )"
+	acl? ( virtual/acl )"
 PDEPEND="emacs? ( app-emacs/po-mode )"
 
 src_unpack() {
