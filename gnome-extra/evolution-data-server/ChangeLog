@@ -1,6 +1,11 @@
 # ChangeLog for gnome-extra/evolution-data-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/ChangeLog,v 1.231 2009/05/23 22:11:41 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/ChangeLog,v 1.232 2009/05/28 06:34:33 dev-zero Exp $
+
+  28 May 2009; Tiziano Müller <dev-zero@gentoo.org>
+  evolution-data-server-2.26.2.ebuild,
+  +files/evolution-data-server-2.26.2-as-needed-configure.patch:
+  Fixed configure with USE=kerberos and --as-needed (bug #271492).
 
 *evolution-data-server-2.26.2 (23 May 2009)
 

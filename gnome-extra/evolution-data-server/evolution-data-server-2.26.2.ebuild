@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/evolution-data-server-2.26.2.ebuild,v 1.1 2009/05/23 22:11:42 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/evolution-data-server-2.26.2.ebuild,v 1.2 2009/05/28 06:34:33 dev-zero Exp $
 
 EAPI="2"
 
@@ -72,7 +72,10 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.8.0-camel-rewind.patch
 
 	# Fix building evo-exchange with --as-needed, upstream bug #342830
-	epatch "${FILESDIR}"/${PN}-2.25.5-as-needed.patch
+	# and configure failing to detect kerberos5-libs with as-needed
+	epatch \
+		"${FILESDIR}"/${PN}-2.25.5-as-needed.patch \
+		"${FILESDIR}"/${P}-as-needed-configure.patch
 
 	# gtk-doc-am and gnome-common needed for this
 	intltoolize --force --copy --automake || die "intltoolize failed"
