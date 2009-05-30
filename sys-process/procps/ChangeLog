@@ -1,6 +1,11 @@
 # ChangeLog for sys-process/procps
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.28 2008/08/16 03:41:37 cardoe Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.30 2009/05/29 22:49:51 vapier Exp $
+
+*procps-3.2.8 (29 May 2009)
+
+  29 May 2009; Mike Frysinger <vapier@gentoo.org> +procps-3.2.8.ebuild:
+  Version bump #269429 by Lars Wendler.
 
   16 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
