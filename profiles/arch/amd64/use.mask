@@ -1,6 +1,6 @@
 # Copyright 2004 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License, v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/use.mask,v 1.6 2009/03/11 08:10:11 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/use.mask,v 1.7 2009/05/29 20:48:20 ssuominen Exp $
 
 # Unmask the flag which corresponds to ARCH.
 -amd64
@@ -69,10 +69,6 @@
 # George Shapovalov <george@gentoo.org> (8 Apr 2007)
 # supported on amd64
 -ada
-
-# Joseph Jezak <josejx@gentoo.org> (16 May 2007)
-# Only supported on amd64
--mplayer-bin
 
 # Robert Buchholz <rbu@gentoo.org> (03 Jun 2007)
 # Unmask as it works on amd64

@@ -1,4 +1,4 @@
-# $Header: /var/cvsroot/gentoo-x86/profiles/features/64bit-native/package.mask,v 1.14 2009/04/10 13:26:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/features/64bit-native/package.mask,v 1.15 2009/05/29 20:48:23 ssuominen Exp $
 
 # AMD64 Team <amd64@gentoo.org>
 # Mask packages that rely on amd64 multilib
@@ -178,7 +178,6 @@ media-sound/teamspeak2-client-bin
 media-sound/teamspeak2-server-bin
 media-sound/ventrilo-server-bin
 media-video/binkplayer
-media-video/mplayer-bin
 media-video/realplayer
 net-dialup/slmodem
 net-im/aim

@@ -12,10 +12,6 @@ real
 # games-fps/quake3-teamarena is 32-bit
 teamarena
 
-# 2007/05/16 Joseph Jezak <josejx@gentoo.org>
-# mplayer-bin is 32 bit only
-mplayer-bin
-
 # 2007/08/24 Michael Marineau <marineam@gentoo.org>
 # Xen HVM support requires building 32-bit binaries.
 hvm

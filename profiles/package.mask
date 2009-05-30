@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9844 2009/05/27 20:15:41 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9855 2009/05/30 01:26:38 darkside Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,8 +31,40 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (30 May 2009)
+# Masked for removal in 60 days, unmaintained. Binary package in /usr. bug
+# 240029
+app-misc/cbtracker
+
+# Jeremy Olexa <darkside@gentoo.org> (30 May 2009)
+# Masked for removal in 60 days. Multiple bugs, doesn't build, version bump
+# pending, unmaintained. bug 265668
+sys-libs/libuser
+
+# Jeremy Olexa <darkside@gentoo.org> (30 May 2009)
+# Masked for removal in 60 days. Multiple bugs, upstream is dead, crashes with
+# stable gtk+ bug 271214
+app-editors/nvu
+
+# Jeremy Olexa <darkside@gentoo.org> (30 May 2009)
+# Masked for removal in 60 days. Doesn't build, version bump pending. Designed
+# for really old PDA hardware (circa '90s) - will need a maintainer that has
+# hardware. bug 227601
+app-pda/plptools
+
+# Peter Volkov <pva@gentoo.org> (29 May 2009)
+# Masked development version. Play with it, it works!
+# Also mask psimedia as it was tested with net-im/psi-0.13 only.
+=net-im/psi-0.13*
+net-im/psimedia
+
+# Ben de Groot <yngwin@gentoo.org> (28 May 2009)
+# Masked pending removal, as rafb.net closed doors, bug 271295
+# Suggested replacement: app-text/wgetpaste
+app-text/nopaste
+
 # Alistair Bush <ali_bush@gentoo.org> (28 May 2009)
-# Masked as a release candidate.  Testing is needed, 
+# Masked as a release candidate.  Testing is needed,
 # need to determine whether a new slot is required.
 ~dev-java/jruby-1.3.0_rc1
 
@@ -276,20 +308,6 @@ app-doc/afsdoc
 # broke nepomuk and soprano in kde so mask for now
 =dev-libs/redland-1.0.9
 
-# Tomas Chvatal <scarabeus@gentoo.org> (30 Apr 2009)
-# mask the koffice2 (notetoself dont use slot blocks)
->=app-office/kword-1.9.99.0
->=app-office/kplato-1.9.99.0
->=app-office/kpresenter-1.9.99.0
->=app-office/kchart-1.9.99.0
->=app-office/karbon-1.9.99.0
->=app-office/krita-1.9.99.0
->=app-office/koffice-data-1.9.99.0
->=app-office/koffice-libs-1.9.99.0
->=app-office/kspread-1.9.99.0
->=app-office/koffice-l10n-1.9.99.0
->=app-office/koffice-meta-1.9.99.0
-
 # Rémi Cardona <remi@gentoo.org> (29 Apr 2009)
 # packages currently in the x11 overlay which will soon be moved to portage
 # see bug #260582 for xorg-server 1.6.1 issues
@@ -363,10 +381,6 @@ app-benchmark/phoronix-test-suite
 # It "mostly works with 2.3.* too". Is "mostly" good enough?
 =dev-perl/math-pari-2.010801-r1
 
-# Ulrich Mueller <ulm@gentoo.org> (18 Apr 2009)
-# Live ebuild for testing and debugging.
-~app-admin/eselect-9999
-
 # Torsten Veller <tove@gentoo.org> (17 Apr 2009)
 # Masks for new IO-Compress which includes
 # Compress-Zlib, IO-Compress-Zlib, IO-Compress-Bzip2, IO-Compress-Base
@@ -398,13 +412,6 @@ virtual/perl-IO-Compress
 # Only x86 and amd64 supported so far. This ebuild won't be very interesting
 # once we add ghc 6.10.2.
 =dev-lang/ghc-6.8.2-r1
-
-# Doug Goldstein <cardoe@gentoo.org> (17 Apr 2009)
-# Added for testing.These ebuilds fix the following
-# bugs #256904, #256913, #257687, #249029, #260340, #254747.
-# For me however, I am unable to create new images using virt-manager
-# patches for this welcome
-=app-emulation/virt-manager-0.7.0
 
 # Mounir Lamouri <volkmar@gentoo.org> (15 Apr 2009)
 # >www-plugins/mozilla-weaver-0.2.104 needs masked versions of ff (ie. 3.1_beta)
@@ -471,24 +478,11 @@ net-dialup/qlcr
 net-libs/libinfinity
 >=app-editors/gobby-0.4.91
 
-# Jeremy Olexa <darkside@gentoo.org> (07 Apr 2009)
-# Not supported in Gentoo anymore, use 'eselect bashcomp' now
-# Comments on bug 253878 - removed in 30 days.
-app-shells/bash-completion-config
-
 # Paul Varner <fuzzyray@gentoo.org> (06 Apr 2009)
 # Dead upstream and has issues with newer portages.
 # Due to popular demand and no suitable replacement, it will stay in the tree
 # in a masked status until it completely breaks or is replaced.
 app-portage/udept
-
-# Ulrich Mueller <ulm@gentoo.org> (2 Apr 2009)
-# De-supported by upstream since three years, see http://tug.org/teTeX/
-# Please use app-text/texlive as a replacement. A migration guide is at
-# http://www.gentoo.org/proj/en/tex/texlive-migration-guide.xml
-# Package has open security issues in bug 264598.
-# Masked for removal in 60 days, bug 227443.
-app-text/tetex
 
 # Tony Vroon <chainsaw@gentoo.org> (30 Mar 2009)
 # The v4 branch of DHCP has a new build system and a "minimal" dhclient-only
@@ -515,50 +509,9 @@ sys-apps/sreadahead
 # Live ebuild for testing / debugging
 ~media-video/mplayer-9999
 
-# Jeremy Olexa <darkside@gentoo.org> (23 Mar 2009)
-# Masked for removal in 60 days. Broken with gcc-4.3, other issue, unmaintained.
-# bug 227743
-x11-misc/lavaps
-
 # Marijn Schouten <hkBst@gentoo.org> (22 Mar 2009)
 # Masked for removal. Dead upstream, does not build anymore. Bug 152060.
 dev-scheme/guile-pg
-
-# Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
-# Masked for removal in 60 days because of security issues. Comment on
-# bug 251612 if desired.
-sci-astronomy/maestro
-sci-astronomy/maestro-data
-
-# Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
-# Masked for removal in 60 days. Broken with gcc-4.3, unmaintained & nothing
-# depends on it. bug 251747
-x11-libs/xclass
-
-# Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
-# Masked for removal in 60 days. Broken with gcc-4.3, not much interest in
-# fixing. bug 251553
-net-p2p/knapster2
-
-# Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
-# Masked for removal in 60 days. Broken with gcc-4.3, not much interest in
-# fixing. bug 250786
-dev-embedded/gezel
-
-# Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
-# Masked for removal in 60 days. Dead upstream (since 2001), file collisions,
-# ebuild needs love. bug 248305
-sys-devel/subterfugue
-
-# Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
-# Masked for removal in 60 days. Dead upstream (vanished), broken with gcc-4.3 &
-# wxGTK-2.8, many alternatives exist, bug 251781
-x11-misc/jaffm
-
-# Jeremy Olexa <darkside@gentoo.org> (21 Mar 2009)
-# Masked for removal in 60 days. Dead upstream, broken with gcc-4.3, maybe use
-# kde-misc/filelight instead. bug 251145
-kde-misc/kgraphspace
 
 # Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org> (21 Mar 2009)
 # Masked because of the dep on =x11-libs/qt-4.3*:4. Waiting for jokey
@@ -746,12 +699,6 @@ dev-util/w32api
 # Users can use either the unstable versions or switch to app-portage/eix
 =app-portage/esearch-0.7.1
 
-# Jeremy Olexa <darkside@gentoo.org> (20 Dec 2008)
-# Removed in 60 days, multiple bugs - does not compile with recent kernels.
-# bug 251795
-# Update, user is working on this in stated bug.
-sys-fs/cloop
-
 # Mike Pagano <mpagano@gentoo.org> (17 Dec 2008)
 # Masked waiting on >=portage-2.2* to be unmasked
 >=app-portage/portpeek-1.6
@@ -845,7 +792,7 @@ gnome-extra/gnome-lirc-properties
 
 # Peter Volkov <pva@gentoo.org> (17 Sep 2008)
 # Development version, but yet nice :)
-=net-analyzer/wireshark-1.1*
+>=net-analyzer/wireshark-1.1
 
 # Michael Marineau <marineam@gentoo.org> (03 Sep 2008)
 # Unmaintained and out of date security wise,
@@ -868,11 +815,6 @@ dev-tcltk/tclgpgme
 # Mike Doty <kingtaco@gentoo.org> (11 Aug 2008)
 # Masked due to build failure, bug 234448
 =app-emulation/emul-linux-x86-gtklibs-20080810
-
-# Samuli Suominen <ssuominen@gentoo.org> (3 Aug 2008)
-# Unmaintained. Masked for removal wrt #233394.
-# Open security bugs  #208566, #215006 and #231836.
-media-video/mplayer-bin
 
 # Raúl Porcel <armin76@gentoo.org> (1 Aug 2008)
 # This is just for preview
@@ -949,6 +891,8 @@ dev-cpp/bakery
 # Ulrich Mueller <ulm@gentoo.org> (10 May 2008)
 # LessTif is unsupported since it has open issues with several packages.
 # See bug 193505 and bug 204249. You are on your own here.
+# Jeremy Olexa <darkside@gentoo.org> (30 May 2009)
+# Treecleaners will remove in 30 days. bug 193505
 x11-libs/lesstif
 
 # Markus Ullmann <jokey@gentoo.org> (21 Apr 2008)
@@ -1460,7 +1404,3 @@ games-fps/unreal-tournament-goty
 games-fps/unreal-tournament-strikeforce
 games-fps/unreal-tournament-bonuspacks
 games-fps/aaut
-
-# <lu_zero@gentoo.org> (16 Mar 2003)
-# to be tested, seems unstable
-net-dialup/hcfusbmodem

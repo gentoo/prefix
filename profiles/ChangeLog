@@ -1,10 +1,68 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2696 2009/05/27 20:15:40 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2711 2009/05/30 01:26:38 darkside Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  30 May 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Add entries for treecleaner queue
+
+  30 May 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Remove entries for non-existent packages
+
+  29 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  arch/amd64/no-multilib/package.mask, arch/amd64/no-multilib/use.mask,
+  arch/amd64/use.mask, base/use.mask,
+  default-linux/amd64/2007.0/no-multilib/package.mask,
+  default-linux/amd64/2007.0/no-multilib/use.mask,
+  default-linux/amd64/use.mask, features/64bit-native/package.mask,
+  features/64bit-native/use.mask:
+  Remove mplayer-bin from rest of the profiles wrt 233394.
+
+  29 May 2009; Steve Dibb <beandog@gentoo.org> package.mask:
+  Remove mplayer-bin from tree, bug 233394
+
+  29 May 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Updated wireshark mask to mask first prerelease candidate too.
+
+  29 May 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  base/package.use.mask:
+  Bluez no longer masked. Removing solid usemask for it.
+
+  29 May 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  mask psimedia as it was tested with net-im/psi-0.13 only
+
+  29 May 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Masked development version (psi-0.13*) of net-im/psi
+
+  28 May 2009; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Mask app-text/nopaste pending removal, bug 271295
+
+  28 May 2009; Doug Goldstein <cardoe@gentoo.org> package.mask:
+  unmask virt-manager
+
+  28 May 2009; Steve Dibb <beandog@gentoo.org> desc/lirc_devices.desc:
+  Add more LIRC devices for 0.8.5, bug 271482
+
+  28 May 2009; Samuli Suominen <ssuominen@gentoo.org> arch/alpha/virtuals,
+  arch/arm/virtuals, arch/hppa/virtuals, arch/mips/virtuals,
+  arch/s390/virtuals, arch/sh/virtuals, base/virtuals,
+  default-linux/alpha/virtuals, default-linux/arm/virtuals,
+  default-linux/ia64/2007.0/desktop/virtuals, default-linux/mips/virtuals,
+  default-linux/s390/virtuals, default-linux/sh/virtuals,
+  default-linux/sparc/virtuals, default-linux/x86/2007.0/desktop/virtuals:
+  Remove old style virtual for cdrtools.
+
+  28 May 2009; Tomáš Chvátal <scarabeus@gentoo.org> package.mask:
+  Unmask koffice-2.0.0. Released
+
+  28 May 2009; Tomáš Chvátal <scarabeus@gentoo.org> package.mask:
+  Update koffice-2 package mask.
+
+  28 May 2009; Ulrich Mueller <ulm@gentoo.org> package.mask:
+  Remove mask for app-admin/eselect-9999; live ebuild has been removed.
 
   27 May 2009; Alistair Bush <ali_bush@gentoo.org> package.mask:
   Add jruby release candidate to pmask.

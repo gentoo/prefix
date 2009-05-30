@@ -1,3 +1,2 @@
 virtual/linux-sources		sys-kernel/sh-sources
-virtual/alsa				sys-kernel/sh-sources
-virtual/cdrtools			app-cdr/cdrtools
+virtual/alsa			sys-kernel/sh-sources
