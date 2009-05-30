@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.5.1.ebuild,v 1.6 2009/05/26 16:19:30 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.5.1.ebuild,v 1.8 2009/05/29 16:27:00 hwoarang Exp $
 
 EAPI=2
 inherit qt4-build
@@ -48,9 +48,6 @@ src/3rdparty/md5/
 src/3rdparty/sha1/
 src/script/
 translations/"
-
-#patch for ia64 requested from armin76
-PATCHES=( "${FILESDIR}/${PN}-4.5-boilerplate.diff" )
 
 pkg_setup() {
 	qt4-build_pkg_setup
@@ -123,6 +120,8 @@ src_prepare(){
 		"${S}/qmake/Makefile.unix" || die "sed qmake/Makefile.unix CXXFLAGS failed"
 	sed -i -e "s:LFLAGS.*=:LFLAGS=${LDFLAGS} :" \
 		"${S}/qmake/Makefile.unix" || die "sed qmake/Makefile.unix LDFLAGS failed"
+	#patch for ia64 requested from armin76
+	epatch "${FILESDIR}/${PN}-4.5-boilerplate.diff"
 }
 
 src_configure() {
