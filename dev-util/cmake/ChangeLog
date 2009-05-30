@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/cmake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.95 2009/05/27 23:28:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.98 2009/05/28 16:50:09 scarabeus Exp $
+
+  28 May 2009; Tomáš Chvátal <scarabeus@gentoo.org> cmake-2.6.4.ebuild:
+  Add einfo informing about the test that might fail.
+
+  28 May 2009; Christian Faulhammer <fauli@gentoo.org> cmake-2.6.4.ebuild:
+  stable x86, bug 271444
+
+  28 May 2009; Ferris McCormick <fmccor@gentoo.org> cmake-2.6.4.ebuild:
+  Sparc stable, Bug #271444 (which see for comments).
 
   27 May 2009; Jeroen Roovers <jer@gentoo.org> cmake-2.6.4.ebuild:
   Stable for HPPA (bug #271444).
