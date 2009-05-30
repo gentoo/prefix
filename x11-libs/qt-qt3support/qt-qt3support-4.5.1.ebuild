@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/qt-qt3support-4.5.1.ebuild,v 1.4 2009/05/15 18:41:32 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/qt-qt3support-4.5.1.ebuild,v 1.6 2009/05/29 23:10:54 yngwin Exp $
 
 EAPI=2
 inherit qt4-build
@@ -8,13 +8,14 @@ inherit qt4-build
 DESCRIPTION="The Qt3 support module for the Qt toolkit"
 SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="+accessibility phonon"
+IUSE="+accessibility kde phonon"
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=,qt3support]
 	~x11-libs/qt-gui-${PV}[accessibility=,debug=,qt3support]
 	~x11-libs/qt-sql-${PV}[debug=,qt3support]
 	phonon? ( || ( ~x11-libs/qt-phonon-${PV}[debug=]
-		media-sound/phonon[gstreamer] ) )"
+		media-sound/phonon[gstreamer] )
+		kde? ( media-sound/phonon ) )"
 RDEPEND="${DEPEND}"
 
 QT4_TARGET_DIRECTORIES="
