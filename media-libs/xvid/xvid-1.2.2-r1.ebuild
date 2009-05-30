@@ -29,6 +29,10 @@ S=${WORKDIR}/${MY_PN}/build/generic
 #	cd "${WORKDIR}"/${MY_PN}
 #	epatch "${FILESDIR}"/${P}-no_execstacks.patch
 #}
+src_prepare() {
+	cd "${WORKDIR}"/${MY_PN}
+	epatch "${FILESDIR}"/${PN}-1.2.1-ncpu.patch
+}
 
 src_configure() {
 	local myconf
