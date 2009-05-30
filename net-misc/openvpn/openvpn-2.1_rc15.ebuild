@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc15.ebuild,v 1.1 2009/01/03 18:36:43 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc15.ebuild,v 1.2 2009/05/28 18:02:15 cedk Exp $
 
 inherit eutils multilib prefix
 
@@ -21,6 +21,7 @@ DEPEND=">=dev-libs/lzo-1.07
 	selinux? ( sec-policy/selinux-openvpn )
 	ssl? ( >=dev-libs/openssl-0.9.6 )
 	pkcs11? ( >=dev-libs/pkcs11-helper-1.05 )"
+RDEPEND="${DEPEND}"
 
 pkg_setup() {
 	if use iproute2 ; then

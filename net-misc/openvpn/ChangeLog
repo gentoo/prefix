@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.143 2009/04/15 22:00:31 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.145 2009/05/28 18:02:15 cedk Exp $
+
+  28 May 2009; Cédric Krier <cedk@gentoo.org> openvpn-2.1_rc15.ebuild:
+  Fix bad header and missing RDEPEND
+
+  28 May 2009; Cédric Krier <cedk@gentoo.org> files/up.sh:
+  Fix invalid resolv.conf when DOMAIN is empty for bug #269614
 
   15 Apr 2009; Cédric Krier <cedk@gentoo.org> files/up.sh:
   Fix up.sh to add search for all domains for bug #259382
