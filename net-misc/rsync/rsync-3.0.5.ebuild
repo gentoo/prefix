@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.5.ebuild,v 1.11 2009/03/17 10:21:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.5.ebuild,v 1.12 2009/05/29 19:59:09 flameeyes Exp $
 
 inherit eutils flag-o-matic prefix
 
@@ -14,7 +14,7 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linu
 IUSE="acl iconv ipv6 static xattr xinetd"
 
 DEPEND=">=dev-libs/popt-1.5
-	acl? ( kernel_linux? ( sys-apps/acl ) )
+	acl? ( virtual/acl )
 	xattr? ( kernel_linux? ( sys-apps/attr ) )
 	xinetd? ( sys-apps/xinetd )
 	iconv? ( virtual/libiconv )"
