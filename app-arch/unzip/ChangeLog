@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/unzip
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.57 2008/10/23 02:46:26 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.58 2009/05/29 23:50:40 vapier Exp $
+
+  29 May 2009; Mike Frysinger <vapier@gentoo.org> -unzip-5.52-r1.ebuild:
+  Punt old package vuln to GLSA 200804-06 #271725 by Robert Buchholz.
 
   23 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> unzip-5.52-r2.ebuild:
   Also AS needs to e replaced.
