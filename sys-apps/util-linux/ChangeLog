@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.267 2009/05/24 18:38:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.268 2009/05/29 23:49:28 vapier Exp $
+
+  29 May 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.15-r1.ebuild,
+  +files/util-linux-2.15-locale.patch:
+  Add fix from upstream for locale build failure on uClibc #271154 by
+  Gianluigi Tiesi.
 
   24 May 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.15-r1.ebuild:
   Re-order patches when USE=loop-aes #271041 by Lars Wendler and add

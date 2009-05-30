@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.15-r1.ebuild,v 1.2 2009/05/24 18:38:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.15-r1.ebuild,v 1.3 2009/05/29 23:49:28 vapier Exp $
 
 EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/util-linux-ng/util-linux-ng.git"
 inherit eutils autotools
@@ -51,6 +51,7 @@ src_unpack() {
 			epatch "${FILESDIR}"/${P}-losetup-symlinks.patch #269264
 		fi
 		epatch "${FILESDIR}"/${P}-old-libselinux.patch #270168
+		epatch "${FILESDIR}"/${P}-locale.patch #271154
 		eautoreconf
 	fi
 	use uclibc && sed -i -e s/versionsort/alphasort/g -e s/strverscmp.h/dirent.h/g mount/lomount.c

@@ -1,0 +1,42 @@
+http://bugs.gentoo.org/271154
+
+From a88057d9a329c11a5d4eaf7e15ce25b09be800e5 Mon Sep 17 00:00:00 2001
+From: Tom Prince <tom.prince@ualberta.net>
+Date: Thu, 14 May 2009 22:43:02 -0400
+Subject: [PATCH] cal: uClibc has langinfo.h but not _NL_TIME_WEEK_1STDAY.
+
+Signed-off-by: Tom Prince <cougar@hermes>
+---
+ configure.ac     |    2 ++
+ misc-utils/cal.c |    2 +-
+ 2 files changed, 3 insertions(+), 1 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 1abf688..af946a1 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -105,6 +105,8 @@ AC_CHECK_HEADERS([linux/raw.h],
+ 		 [AM_CONDITIONAL([HAVE_RAW], [true])],
+ 		 [AM_CONDITIONAL([HAVE_RAW], [false])])
+ 
++AC_CHECK_DECLS([_NL_TIME_WEEK_1STDAY],[],[],[[#include <langinfo.h>]])
++
+ AC_CHECK_FUNCS(
+ 	[inet_aton \
+ 	fsync \
+diff --git a/misc-utils/cal.c b/misc-utils/cal.c
+index f2d52e8..a8534b8 100644
+--- a/misc-utils/cal.c
++++ b/misc-utils/cal.c
+@@ -291,7 +291,7 @@ main(int argc, char **argv) {
+  * the locale database, which can be overridden with the
+  * -s (Sunday) or -m (Monday) options.
+  */
+-#ifdef HAVE_LANGINFO_H
++#if HAVE_DECL__NL_TIME_WEEK_1STDAY
+ 	/*
+ 	 * You need to use 2 locale variables to get the first day of the week.
+ 	 * This is needed to support first_weekday=2 and first_workday=1 for
+-- 
+1.6.3
+
