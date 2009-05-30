@@ -1,6 +1,17 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.250 2009/05/26 10:55:03 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.253 2009/05/28 20:53:11 fmccor Exp $
+
+  28 May 2009; Ferris McCormick <fmccor@gentoo.org> sqlite-3.6.14.2.ebuild:
+  re-keyword for ~sparc, Bug #270867 Comment #8, #10.
+
+  28 May 2009; Ferris McCormick <fmccor@gentoo.org>
+  -files/sqlite-3.6.14.2-fix_alignment.patch:
+  Re-add the patch without the header change.
+
+  28 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  sqlite-3.6.14.2.ebuild, +files/sqlite-3.6.14.2-fix_alignment.patch:
+  Fix alignment (bug #270867).
 
 *sqlite-3.6.14.2 (26 May 2009)
 
