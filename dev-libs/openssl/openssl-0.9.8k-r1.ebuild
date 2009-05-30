@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8h-r1.ebuild,v 1.8 2008/10/09 05:36:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8k-r1.ebuild,v 1.1 2009/05/29 21:33:52 flameeyes Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://openssl/source/${P}.tar.gz"
 
 LICENSE="openssl"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="bindist gmp kerberos sse2 test zlib"
 
 RDEPEND="gmp? ( dev-libs/gmp )
@@ -29,28 +29,31 @@ src_unpack() {
 # this patch kills Darwin, but seems not necessary on Solaris and Linux
 #	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
 	epatch "${FILESDIR}"/${PN}-0.9.7-alpha-default-gcc.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8b-parallel-build.patch
+	#Forward port of the -b patch. Parallel make fails though.
+	epatch "${FILESDIR}"/${PN}-0.9.8j-parallel-build.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-make-engines-dir.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8-toolchain.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8k-toolchain.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8b-doc-updates.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-makedepend.patch #149583
 	epatch "${FILESDIR}"/${PN}-0.9.8e-make.patch #146316
 	#epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-sslv3-no-tlsext.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
-	epatch "${FILESDIR}"/${PN}-0.9.8h-pkcs12.patch #224843
+	#epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
+	sed -i -e '/DIRS/ s/ fips / /g' Makefile{,.org} \
+		|| die "Removing fips from openssl failed."
 
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-interix-3.5.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-aixdll.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8g-mint.patch
+	#epatch "${FILESDIR}"/${PN}-0.9.8g-interix-3.5.patch
+	#epatch "${FILESDIR}"/${PN}-0.9.8g-aixdll.patch
 	if [[ ${CHOST} == *-interix* ]] ; then
 		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
 	fi
 
 	# again, this windows patch should not do any harm to others, but
 	# header files are copied instead of linked now, so leave it conditional.
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-0.9.8k-winnt.patch
 
 	# remove -arch for darwin
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
@@ -75,6 +78,7 @@ src_unpack() {
 	[[ $(tc-arch) == *-aix     ]] ||
 	[[ $(tc-arch) == *-interix ]] ||
 	[[ $(tc-arch) == *-winnt*  ]] ||
+	[[ ${CHOST} == *-mint* ]] ||
 		append-flags -Wa,--noexecstack
 
 	# using a library directory other than lib requires some magic
@@ -83,6 +87,10 @@ src_unpack() {
 		-e "s+libdir=\$\${exec_prefix}/lib+libdir=\$\${exec_prefix}/$(get_libdir)+g" \
 		Makefile.org engines/Makefile \
 		|| die "sed failed"
+	# type -P required on platforms where perl is not installed
+	# in the same prefix (prefix-chaining).
+	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure #141906
+	sed -i '/^"debug-steve/d' Configure # 0.9.8k shipped broken
 
 	# avoid waiting on terminal input forever when spitting
 	# 64bit warning message.
@@ -140,7 +148,6 @@ src_compile() {
 		$(use_ssl gmp) \
 		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
 		$(use_ssl zlib) \
-		$(use_ssl zlib zlib-dynamic) \
 		--prefix="${EPREFIX}"/usr \
 		--openssldir="${EPREFIX}"/etc/ssl \
 		shared threads \
@@ -166,17 +173,17 @@ src_compile() {
 		-e "/^SHARED_LDFLAGS=/s|$| ${LDFLAGS}|" \
 		Makefile || die
 
+	if [[ ${CHOST} == *-winnt* ]]; then
+		( cd fips && emake -j1 links PERL=$(type -P perl) ) || die "make links in fips failed"
+	fi
+
 	# depend is needed to use $confopts
 	# rehash is needed to prep the certs/ dir
 	emake -j1 depend || die "depend failed"
-	emake all || die "make all failed"
-	emake rehash || die "make rehash failed"
+	emake -j1 all rehash || die "make all failed"
 }
 
 src_test() {
-	# make sure sandbox doesnt die on *BSD
-	addpredict /dev/crypto
-
 	emake -j1 test || die "make test failed"
 }
 
@@ -210,6 +217,9 @@ src_install() {
 	done
 	[[ -n $(find -L ${d} -type l) ]] && die "broken manpage links found :("
 
+	dodir /etc/sandbox.d #254521
+	echo 'SANDBOX_PREDICT="/dev/crypto"' > "${ED}"/etc/sandbox.d/10openssl
+
 	diropts -m0700
 	keepdir /etc/ssl/private
 }
@@ -222,14 +232,4 @@ pkg_preinst() {
 pkg_postinst() {
 	preserve_old_lib_notify /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.6)
 	preserve_old_lib_notify /usr/$(get_libdir)/lib{crypto,ssl}$(get_libname 0.9.7)
-
-	if [[ ${CHOST} == i686* ]] ; then
-		ewarn "Due to the way openssl is architected, you cannot"
-		ewarn "switch between optimized versions without breaking"
-		ewarn "ABI.  The default i686 0.9.8 ABI was an unoptimized"
-		ewarn "version with horrible performance.  This version uses"
-		ewarn "the optimized ABI.  If you experience segfaults when"
-		ewarn "using ssl apps (like openssh), just re-emerge the"
-		ewarn "offending package."
-	fi
 }
