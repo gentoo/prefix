@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/mosml-2.01-r1.ebuild,v 1.1 2008/06/06 01:26:53 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/mosml-2.01-r1.ebuild,v 1.2 2009/05/30 02:11:23 darkside Exp $
 
 inherit eutils
 
@@ -19,6 +19,10 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-malloc.patch" #154859
 	sed -i -e "s|^CPP=/lib/cpp|CPP=${EPREFIX}/usr/bin/cpp|" Makefile.inc
+
+	#Fixing pre-stripped files
+	sed -i -e "/STRIP/d" mosmlyac/Makefile || die "sed Makefile failed"
+	sed -i -e "/STRIP/d" runtime/Makefile || die "sed Makefile failed"
 }
 
 src_compile() {

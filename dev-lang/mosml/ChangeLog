@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/mosml
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/ChangeLog,v 1.9 2008/06/06 01:26:53 darkside Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/ChangeLog,v 1.10 2009/05/30 02:11:23 darkside Exp $
+
+  30 May 2009; Jeremy Olexa <darkside@gentoo.org> mosml-2.01-r1.ebuild:
+  (non maintainer commit) Fix by Victor Ostorga to no longer pre-strip files,
+  bug 240215
 
 *mosml-2.01-r1 (06 Jun 2008)
 
