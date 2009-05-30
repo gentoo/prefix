@@ -1,0 +1,8 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+# Fabian Groffen <grobian@gentoo.org> (30 May 2009)
+# doesn't have Altivec or dummy backends implemented, only SSE :(
+=sci-biology/hmmer-3.0_alpha2
+

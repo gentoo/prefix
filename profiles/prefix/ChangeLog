@@ -3,6 +3,11 @@
 # $Id$
 
   30 May 2009; Fabian Groffen <grobian@gentoo.org>
+  +darwin/macos/10.4/ppc/package.mask:
+  Mask hmmer-3.0_alpha2 on ppc-macos, it can't work on anything but a SSE
+  capable CPU in this alpha
+
+  30 May 2009; Fabian Groffen <grobian@gentoo.org>
   sunos/solaris/5.10/sparc/package.mask:
   Mask gtk+-2.16.1 on sparc-solaris too
 
