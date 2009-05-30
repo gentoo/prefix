@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p24.ebuild,v 1.1 2009/05/17 20:59:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p24.ebuild,v 1.2 2009/05/29 23:07:58 vapier Exp $
 
 EAPI=1
 
@@ -69,6 +69,7 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-3.2-parallel-build.patch #189671
 		epatch "${FILESDIR}"/${PN}-4.0-ldflags-for-build.patch #211947
 		epatch "${FILESDIR}"/${PN}-4.0-negative-return.patch
+		epatch "${FILESDIR}"/${PN}-4.0-parallel-build.patch #267613
 		# Log bash commands to syslog #91327
 		if use bashlogger ; then
 			ewarn "The logging patch should ONLY be used in restricted (i.e. honeypot) envs."

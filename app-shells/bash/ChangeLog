@@ -1,6 +1,10 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.217 2009/05/17 20:59:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.218 2009/05/29 23:07:58 vapier Exp $
+
+  29 May 2009; Mike Frysinger <vapier@gentoo.org> bash-4.0_p24.ebuild,
+  +files/bash-4.0-parallel-build.patch:
+  Add dependency fix by Peter Alfredsen for parallel builds #267613.
 
 *bash-4.0_p24 (17 May 2009)
 
