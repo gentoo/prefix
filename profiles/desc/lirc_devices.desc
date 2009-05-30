@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lirc_devices.desc,v 1.10 2008/10/12 19:47:47 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/desc/lirc_devices.desc,v 1.11 2009/05/28 19:27:20 beandog Exp $
 
 # This file contains descriptions of LIRC_DEVICES USE_EXPAND flags.
 
@@ -20,6 +20,7 @@ audio_alsa - LIRC_DEVICES setting to add support for audio_alsa receiver device
 avermedia98 - LIRC_DEVICES setting to add support for avermedia98 receiver device
 avermedia - LIRC_DEVICES setting to add support for avermedia receiver device
 avermedia_vdomate - LIRC_DEVICES setting to add support for avermedia_vdomate receiver device
+awlibusb - LIRC_DEVICES setting to add support for awlibusb receiver device
 bestbuy2 - LIRC_DEVICES setting to add support for bestbuy2 receiver device
 bestbuy - LIRC_DEVICES setting to add support for bestbuy receiver device
 breakoutbox - LIRC_DEVICES setting to add support for breakoutbox receiver device
@@ -43,12 +44,16 @@ dvico - LIRC_DEVICES setting to add support for dvico receiver device
 ea65 - LIRC_DEVICES setting to add support for ea65 receiver device
 exaudio - LIRC_DEVICES setting to add support for exaudio receiver device
 flyvideo - LIRC_DEVICES setting to add support for flyvideo receiver device
+ftdi - LIRC_DEVICES setting to add support for ftdi receiver device
 gvbctv5pci - LIRC_DEVICES setting to add support for gvbctv5pci receiver device
 hauppauge_dvb - LIRC_DEVICES setting to add support for hauppauge_dvb receiver device
 hauppauge - LIRC_DEVICES setting to add support for hauppauge receiver device
 hercules_smarttv_stereo - LIRC_DEVICES setting to add support for hercules_smarttv_stereo receiver device
+i2cuser - LIRC_DEVICES setting to add support for i2cuser receiver device
 igorplugusb - LIRC_DEVICES setting to add support for igorplugusb receiver device
+iguana - LIRC_DEVICES setting to add support for iguana receiver device and software
 imon - LIRC_DEVICES setting to add support for imon receiver device
+imon_24g - LIRC_DEVICES setting to add support for imon_24g receiver device
 imon_knob - LIRC_DEVICES setting to add support for imon_knob device
 imon_lcd - LIRC_DEVICES setting to add support for imon_lcd receiver device
 imon_pad - LIRC_DEVICES setting to add support for imon_pad receiver device
@@ -79,6 +84,7 @@ mediafocusI - LIRC_DEVICES setting to add support for mediafocusI receiver devic
 mouseremote - LIRC_DEVICES setting to add support for mouseremote receiver device
 mouseremote_ps2 - LIRC_DEVICES setting to add support for mouseremote_ps2 receiver device
 mp3anywhere - LIRC_DEVICES setting to add support for mp3anywhere receiver device
+mplay - LIRC_DEVICES setting to add support for mplay receiver device
 nslu2 - LIRC_DEVICES setting to add support for nslu2 receiver device
 packard_bell - LIRC_DEVICES setting to add support for packard_bell receiver device
 parallel - LIRC_DEVICES setting to add support for parallel receiver device
@@ -115,4 +121,5 @@ usbirboy - LIRC_DEVICES setting to add support for the usbirboy homebrew device
 usb_uirt_raw - LIRC_DEVICES setting to add support for usb_uirt_raw receiver device
 usbx - LIRC_DEVICES setting to add support for usbx receiver device
 userspace - LIRC_DEVICES setting to add support for userspace receiver device
+wpc8769l - LIRC_DEVICES setting to add support for wpc8769l receiver device
 xboxusb - LIRC_DEVICES setting to add support for xboxusb receiver device
