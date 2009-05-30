@@ -3,6 +3,11 @@
 # $Id$
 
   30 May 2009; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/5.10/sparc/package.mask:
+  unmask gtk+, seems to be a local problem on my build host, as I can build
+  it on other machines, and have been told by others the same
+
+  30 May 2009; Fabian Groffen <grobian@gentoo.org>
   +darwin/macos/10.4/ppc/package.mask:
   Mask hmmer-3.0_alpha2 on ppc-macos, it can't work on anything but a SSE
   capable CPU in this alpha
