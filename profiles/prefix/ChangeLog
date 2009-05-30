@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  30 May 2009; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/5.10/sparc/package.mask:
+  Mask gtk+-2.16.1 on sparc-solaris too
+
   28 May 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
   Mask dev-lang/perl-5.8.8-r6 since it still breaks autotools like hell
 

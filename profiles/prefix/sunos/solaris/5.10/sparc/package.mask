@@ -3,6 +3,8 @@
 # $Header: $
 
 # Fabian Groffen <grobian@gentoo.org> (17 May 2009)
-# fails to compile, some bizarre libtool problem with a missing
-# dependency
+#Cannot load module /var/tmp/portage/portage/x11-libs/gtk+-2.16.1/work/gtk+-2.16.1/modules/input/im-am-et.la: ld.so.1: gtk-query-immodules-2.0: fatal: relocation error: file /var/tmp/portage/portage/x11-libs/gtk+-2.16.1/work/gtk+-2.16.1/gtk/.libs/libgtk-x11-2.0.so.0: symbol gdk_pixbuf_new_from_stream: referenced symbol not found
+#/var/tmp/portage/portage/x11-libs/gtk+-2.16.1/work/gtk+-2.16.1/modules/input/im-am-et.la does not export GTK+ IM module API: ld.so.1: gtk-query-immodules-2.0: fatal: relocation error: file /var/tmp/portage/portage/x11-libs/gtk+-2.16.1/work/gtk+-2.16.1/gtk/.libs/libgtk-x11-2.0.so.0: symbol gdk_pixbuf_new_from_stream: referenced symbol not found
 =x11-libs/gtk+-2.14.7-r2
+=x11-libs/gtk+-2.16.1
+
