@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ossp-uuid-1.6.2.ebuild,v 1.1 2009/03/21 11:58:42 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ossp-uuid-1.6.2.ebuild,v 1.2 2009/05/29 17:24:27 beandog Exp $
 
 EAPI="1"
 
