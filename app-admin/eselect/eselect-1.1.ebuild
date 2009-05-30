@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1_rc2.ebuild,v 1.5 2009/05/24 19:30:15 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1.ebuild,v 1.1 2009/05/28 05:35:51 ulm Exp $
 
 inherit eutils prefix
 
@@ -10,8 +10,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-# ulm | better wait for _rc2, there were quite some header changes between the
-# two (adding -*-eselect-*- tag for emacs), so you'll have to redo it for rc2
+# too risky to put into the wild without testing
 #KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc bash-completion paludis"
 
@@ -46,6 +45,9 @@ src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README TODO doc/*.txt
 	use doc && dohtml *.html doc/*
+
+	# needed by news-tng module
+	keepdir /var/lib/gentoo/news
 
 	# needed by news-tng module
 	keepdir /var/lib/gentoo/news
