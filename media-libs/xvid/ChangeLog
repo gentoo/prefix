@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/xvid
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.104 2009/02/11 19:35:19 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.108 2009/05/29 19:29:28 ssuominen Exp $
+
+  29 May 2009; Samuli Suominen <ssuominen@gentoo.org> xvid-1.2.2-r1.ebuild:
+  It seems xvid-1.2.2-no_execstacks.patch isn't doing everything properly,
+  commeting it out for now.
+
+*xvid-1.2.2-r1 (29 May 2009)
+
+  29 May 2009; Samuli Suominen <ssuominen@gentoo.org> +xvid-1.2.2-r1.ebuild,
+  +files/xvid-1.2.2-no_execstacks.patch:
+  Fix execstacks wrt #258804, thanks to en.ABCD at gmail.org.
+
+*xvid-1.2.2 (29 May 2009)
+
+  29 May 2009; Samuli Suominen <ssuominen@gentoo.org> +xvid-1.2.2.ebuild:
+  Version bump for security #271786, thanks to Robert Buchholz.
 
   11 Feb 2009; Alexis Ballier <aballier@gentoo.org> xvid-1.2.1.ebuild:
   depend on nasm-2 as that is what is required; use it on bsd too; dont
@@ -59,7 +74,7 @@
   13 Jul 2007; Raúl Porcel <armin76@gentoo.org> xvid-1.1.3.ebuild:
   ia64 stable wrt security #183145
 
-  13 Jul 2007; Samuli Suominen <drac@gentoo.org>
+  13 Jul 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/xvid-1.1.3-ia64-build.patch, xvid-1.1.3.ebuild:
   Fix building on ia64 as reported by armin76.
 
@@ -80,7 +95,7 @@
 
 *xvid-1.1.3 (03 Jul 2007)
 
-  03 Jul 2007; Samuli Suominen <drac@gentoo.org> +xvid-1.1.3.ebuild:
+  03 Jul 2007; Samuli Suominen <ssuominen@gentoo.org> +xvid-1.1.3.ebuild:
   Version bump for security bug 183145.
 
   01 Mar 2007; <genstef@gentoo.org> xvid-1.1.0.ebuild, xvid-1.1.0-r1.ebuild,
