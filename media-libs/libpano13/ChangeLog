@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libpano13
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano13/ChangeLog,v 1.10 2009/05/11 21:57:13 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano13/ChangeLog,v 1.11 2009/05/29 05:31:50 maekke Exp $
+
+*libpano13-2.9.14 (29 May 2009)
+
+  29 May 2009; Markus Meier <maekke@gentoo.org>
+  -libpano13-2.9.14_beta1.ebuild, -libpano13-2.9.14_beta2.ebuild,
+  -libpano13-2.9.14_rc1.ebuild, +libpano13-2.9.14.ebuild:
+  version bump to final 2.9.14 release, remove beta/rc
 
   11 May 2009; Markus Meier <maekke@gentoo.org> libpano13-2.9.14_rc1.ebuild:
   fix building with USE=java, bug #269131
