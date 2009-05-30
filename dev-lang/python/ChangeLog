@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.386 2009/05/27 15:53:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.387 2009/05/28 16:59:24 arfrever Exp $
+
+*python-2.6.2-r1 (28 May 2009)
+
+  28 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.6.2-r1.ebuild:
+  Install libpython2.6.a in /usr/lib instead of /usr/lib/python2.6/config
+  (bug #252372). Fix building with Subversion 1.7.
 
   27 May 2009; Raúl Porcel <armin76@gentoo.org> python-2.4.6.ebuild:
   arm/ia64/m68k/s390/sh/sparc stable wrt #252317
