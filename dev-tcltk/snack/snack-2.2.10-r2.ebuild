@@ -32,7 +32,8 @@ src_unpack() {
 	# bug 270839 - error from /usr/include/bits/mathcalls.h:310
 	sed -i -e 's|^\(#define roundf(.*\)|//\1|' ../generic/jkFormatMP3.c
 
-	epatch "${FILESDIR}"/${P}-darwin.patch
+	# adds -install_name (soname on Darwin)
+	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
 src_compile() {
