@@ -1,6 +1,12 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.184 2009/04/05 03:15:53 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.185 2009/05/29 23:27:02 vapier Exp $
+
+*e2fsprogs-1.41.5 (29 May 2009)
+
+  29 May 2009; Mike Frysinger <vapier@gentoo.org> +e2fsprogs-1.41.5.ebuild,
+  +files/e2fsprogs-1.41.5-makefile.patch:
+  Version bump #267402 by Paul Mulders.
 
   05 Apr 2009; Mike Frysinger <vapier@gentoo.org> e2fsprogs-1.41.4.ebuild:
   Move LDCONFIG/STRIP disabling to src_install #264469 by Nick Fortino.
