@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.245 2009/05/24 14:02:07 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.248 2009/05/28 15:39:24 ulm Exp $
+
+  28 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  emacs-cvs-23.0.90.ebuild, emacs-cvs-23.0.91.ebuild,
+  emacs-cvs-23.0.92.ebuild, emacs-cvs-23.0.93.ebuild,
+  emacs-cvs-23.0.94.ebuild, emacs-cvs-23.0.9999-r1.ebuild:
+  Remove USE=spell from all ebuilds, we don't want such dependencies, see
+  bug 72850#c1
 
   24 May 2009; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.0.94.ebuild:
   Update SRC_URI, upstream tarball appeared.
