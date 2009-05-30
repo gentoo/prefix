@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/cdrkit-1.1.9-r1.ebuild,v 1.2 2009/05/24 14:27:43 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/cdrkit-1.1.9-r1.ebuild,v 1.3 2009/05/28 15:30:51 ssuominen Exp $
 
 inherit cmake-utils
 
@@ -19,19 +19,14 @@ DEPEND="${RDEPEND}
 	!app-cdr/cdrtools
 	hfs? ( sys-apps/file )"
 
-PROVIDE="virtual/cdrtools"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# this might break others, since it removed -lrt from the
-	# link line.
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-1.1.7-interix.patch
-	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.1.8-interix3.patch
-}
-
 PATCHES=( "${FILESDIR}/${P}-glibc-2.10.patch" )
+
+pkg_setup() {
+	# this might break others (Solaris), since it removes -lrt from the
+	# link line.
+	[[ ${CHOST} == *-interix* ]] && PATCHES=( "${PATCHES[@]}" "${FILESDIR}"/${PN}-1.1.7-interix.patch )
+	[[ ${CHOST} == *-interix3* ]] && PATCHES=( "${PATCHES[@]}" "${FILESDIR}"/${PN}-1.1.8-interix3.patch )
+}
 
 src_install() {
 	cmake-utils_src_install
