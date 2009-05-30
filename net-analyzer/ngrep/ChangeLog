@@ -1,6 +1,12 @@
 # ChangeLog for net-analyzer/ngrep
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ChangeLog,v 1.56 2009/05/27 10:42:44 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/ngrep/ChangeLog,v 1.58 2009/05/29 01:20:10 beandog Exp $
+
+  29 May 2009; Steve Dibb <beandog@gentoo.org> ngrep-1.45-r2.ebuild:
+  amd64 stable, bug 271105
+
+  28 May 2009; Raúl Porcel <armin76@gentoo.org> ngrep-1.45-r2.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #271105
 
   27 May 2009; Christian Faulhammer <fauli@gentoo.org> ngrep-1.45-r2.ebuild:
   stable x86, bug 271105
