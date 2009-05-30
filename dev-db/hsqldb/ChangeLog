@@ -1,6 +1,10 @@
 # ChangeLog for dev-db/hsqldb
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.49 2008/10/27 23:24:15 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.50 2009/05/29 14:37:16 betelgeuse Exp $
+
+  29 May 2009; Petteri Räty <betelgeuse@gentoo.org>
+  -hsqldb-1.7.3.1-r3.ebuild:
+  Remove security vulnerable version. Fixes bug #271706.
 
   27 Oct 2008; Brent Baude <ranger@gentoo.org> hsqldb-1.8.0.10.ebuild:
   stable ppc64, bug 243116
