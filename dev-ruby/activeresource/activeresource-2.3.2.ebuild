@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/activeresource-2.3.2.ebuild,v 1.6 2009/05/24 18:51:32 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/activeresource-2.3.2.ebuild,v 1.7 2009/05/28 16:07:22 armin76 Exp $
 
 inherit ruby gems
 USE_RUBY="ruby18 ruby19"
