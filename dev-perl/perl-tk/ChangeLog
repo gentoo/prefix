@@ -1,6 +1,17 @@
 # ChangeLog for dev-perl/perl-tk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/ChangeLog,v 1.51 2009/05/08 17:51:19 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/ChangeLog,v 1.53 2009/05/29 17:57:14 fmccor Exp $
+
+  29 May 2009; Ferris McCormick <fmccor@gentoo.org>
+  perl-tk-804.028-r2.ebuild:
+  Sparc stable, bug #271789 blocking security bug #208464.
+
+*perl-tk-804.028-r2 (29 May 2009)
+
+  29 May 2009; Alex Legler <a3li@gentoo.org> +perl-tk-804.028-r2.ebuild,
+  +files/perl-tk-CVE-2008-0553.patch:
+  Non-maintainer commit: Revbump to fix the CVE-2008-0553 security issue,
+  bug 208464.
 
   08 May 2009; Torsten Veller <tove@gentoo.org> -perl-tk-804.027.ebuild,
   -perl-tk-804.028.ebuild:
