@@ -112,7 +112,8 @@ src_unpack() {
 	find . -name "Makefile" -print0 | xargs -0 sed \
 		-i \
 		-e 's/ -g / /g' \
-		-e 's/^OFLAG =.*$/OFLAG =/'
+		-e 's/^OFLAG =.*$/OFLAG =/' \
+		-e 's/install -c -s/install/g'
 	eend $?
 	ebegin "patching for LP64 mode"
 	ebegin "  replacing SWAP_LONG() with SWAP_INT()"
@@ -125,7 +126,10 @@ src_unpack() {
 	find . -name "*.c" -print0 | xargs -0 sed \
 		-i \
 		-e 's/sizeof(long)/sizeof(int)/g' \
-		-e 's/sizeof(unsigned long)/sizeof(unsigned int)/g'
+		-e 's/sizeof(unsigned long)/sizeof(unsigned int)/g' \
+		&& sed -i \
+		-e '/long long */!s/long */int */g' \
+		${CCTOOLS}/misc/{strip,lipo}.*
 	eend $?
 
 	# -pg is used and the two are incompatible
