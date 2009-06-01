@@ -58,7 +58,7 @@ src_configure() {
 }
 
 src_install() {
-	LC_ALL=C emake DESTDIR="${D}" -j1 nmapdatadir="${EPREFIX}"/usr/share/nmap install || die
+	LC_ALL=C emake DESTDIR="${D}" -j1 STRIP=: nmapdatadir="${EPREFIX}"/usr/share/nmap install || die
 	dodoc CHANGELOG HACKING docs/README docs/*.txt || die
 
 	use gtk && doicon "${FILESDIR}/nmap-logo-64.png"
