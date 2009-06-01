@@ -22,7 +22,7 @@ else
 	SLOT="42"
 fi
 
-KEYWORDS="~ppc-macos ~x86-macos"
+KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
 
 IUSE="fortran nls objc objc++ nocxx"
 
