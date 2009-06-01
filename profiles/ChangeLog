@@ -6,6 +6,9 @@
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
 
+  01 Jun 2009; Fabian Groffen <grobian@gentoo.org> arch.list, profiles.desc:
+  I bootstrapped my first x64-macos instance, it's alive!
+
   30 May 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   Add entries for treecleaner queue
 
