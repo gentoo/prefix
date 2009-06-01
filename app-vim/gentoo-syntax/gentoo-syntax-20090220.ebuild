@@ -10,7 +10,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2
 	http://dev.gentooexperimental.org/~darkside/distfiles/${PN}/${P}.tar.bz2"
 
 LICENSE="vim"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="ignore-glep31"
 
 VIM_PLUGIN_HELPFILES="gentoo-syntax"
