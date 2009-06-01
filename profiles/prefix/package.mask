@@ -33,9 +33,9 @@
 #--- END OF EXAMPLES ---
 
 
-# Fabian Groffen <grobian@gentoo.org> (28 May 2009)
-# This one breaks autotools badly!
-=dev-lang/perl-5.8.8-r6
+# Fabian Groffen <grobian@gentoo.org> (01 Jun 2009)
+# This is a 64-bits enabled version, that needs some thorough testing first
+=sys-devel/binutils-apple-3.2.1-r1
 
 # Fabian Groffen <grobian@gentoo.org> (27 May 2009)
 # b0rkend, bug #271022 ; avoid bugs

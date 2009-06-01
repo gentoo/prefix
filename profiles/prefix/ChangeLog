@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  01 Jun 2009; Fabian Groffen <grobian@gentoo.org> package.mask:
+  Drop perl-5.8.8-r6 mask (no longer in the tree), and mask upcoming
+  sys-devel/binutils-apple-3.2.1-r1 due to its experimentalness
+
   30 May 2009; Fabian Groffen <grobian@gentoo.org>
   sunos/solaris/5.10/sparc/package.mask:
   unmask gtk+, seems to be a local problem on my build host, as I can build
