@@ -16,7 +16,7 @@ SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/misc_cmds-$
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86-macos"
+KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
 IUSE=""
 
 S=${WORKDIR}
