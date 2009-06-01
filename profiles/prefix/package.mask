@@ -35,7 +35,7 @@
 
 # Fabian Groffen <grobian@gentoo.org> (01 Jun 2009)
 # This is a 64-bits enabled version, that needs some thorough testing first
-=sys-devel/binutils-apple-3.2.1-r1
+=sys-devel/binutils-apple-3.1.2-r1
 
 # Fabian Groffen <grobian@gentoo.org> (27 May 2009)
 # b0rkend, bug #271022 ; avoid bugs
