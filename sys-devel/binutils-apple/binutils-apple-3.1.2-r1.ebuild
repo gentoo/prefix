@@ -128,7 +128,7 @@ src_unpack() {
 		-e 's/sizeof(long)/sizeof(int)/g' \
 		-e 's/sizeof(unsigned long)/sizeof(unsigned int)/g' \
 		&& sed -i \
-		-e '/long long */!s/long */int */g' \
+		-e '/long long \*/!s/long \*/int */g' \
 		${CCTOOLS}/misc/{strip,lipo}.*
 	eend $?
 
