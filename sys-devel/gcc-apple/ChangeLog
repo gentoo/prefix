@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  01 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-4.2.1_p5566-r2.ebuild,
+  +files/gcc-apple-4.2.1_p5566-x86_64-defines.patch:
+  Add patch for x86_64-apple-darwin* suuport
+
   01 May 2009; Fabian Groffen <grobian@gentoo.org>
   files/gcc-apple-4.2.1-gfortran.patch:
   Fix fortran support for powerpc targets

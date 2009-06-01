@@ -80,6 +80,7 @@ src_unpack() {
 		gcc/Makefile.in || die "sed gcc/Makefile.in failed."
 
 	epatch "${FILESDIR}"/${PN}-4.0.1_p5465-default-altivec.patch
+	epatch "${FILESDIR}"/${P}-x86_64-defines.patch
 
 	# dsymutil stuff breaks on 10.4/x86, revert it
 	[[ ${CHOST} == *86*-apple-darwin8 ]] && \
