@@ -1,3 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
+
+# Fabian Groffen <grobian@gentoo.org> (01 Jun 2009)
+# On 64-bits Darwin we need this binutils-apple, as it's the only one
+# which compiles
+-=sys-devel/binutils-apple-3.1.2-r1
