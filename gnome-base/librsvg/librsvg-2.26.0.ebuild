@@ -9,7 +9,7 @@ HOMEPAGE="http://librsvg.sourceforge.net/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc zlib"
 
 RDEPEND=">=media-libs/fontconfig-1.0.1
