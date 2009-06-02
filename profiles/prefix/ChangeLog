@@ -2,6 +2,9 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  02 Jun 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  add net-fs/curlftpfs to p.mask, bug 272210
+
   01 Jun 2009; Fabian Groffen <grobian@gentoo.org>
   darwin/macos/10.5/x64/package.mask:
   Unmask sys-devel/binutils-apple-3.1.2-r1 on x64-macos, as it's the
