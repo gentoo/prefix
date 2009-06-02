@@ -10,7 +10,7 @@ HOMEPAGE="http://rubyforge.org/projects/activerecord/"
 
 LICENSE="MIT"
 SLOT="2.3"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="mysql postgres sqlite sqlite3"
 RESTRICT="test"
 
