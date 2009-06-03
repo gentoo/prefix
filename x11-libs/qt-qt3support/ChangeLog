@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/qt-qt3support
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/ChangeLog,v 1.32 2009/05/29 23:10:54 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/ChangeLog,v 1.34 2009/06/02 18:01:49 fauli Exp $
+
+  02 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  qt-qt3support-4.5.1.ebuild:
+  stable x86, bug 266201
+
+  30 May 2009; Ben de Groot <yngwin@gentoo.org> qt-qt3support-4.5.1.ebuild:
+  Revert kde useflag addition, as it breaks stable
 
   29 May 2009; Ben de Groot <yngwin@gentoo.org> qt-qt3support-4.5.1.ebuild:
   Add kde useflag to make dependency calculation easier, bug 270188
