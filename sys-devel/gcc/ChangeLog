@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.710 2009/05/24 23:16:31 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.711 2009/06/02 18:56:17 jer Exp $
+
+  02 Jun 2009; Jeroen Roovers <jer@gentoo.org> gcc-4.3.2-r3.ebuild,
+  gcc-4.3.2-r4.ebuild, gcc-4.3.3-r2.ebuild:
+  Remove HPPA keywording from 4.3 ebuilds (see bug #225917 and bug #264121).
 
   24 May 2009; Mark Loeser <halcy0n@gentoo.org> gcc-4.3.3-r2.ebuild,
   gcc-4.4.0.ebuild:
