@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/libtasn1-2.2.ebuild,v 1.1 2009/05/20 15:40:18 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/libtasn1-2.2.ebuild,v 1.2 2009/06/01 10:10:40 arfrever Exp $
 
 DESCRIPTION="provides ASN.1 structures parsing capabilities for use with GNUTLS"
-HOMEPAGE="http://www.gnutls.org/"
+HOMEPAGE="http://www.gnu.org/software/libtasn1/"
 SRC_URI="mirror://gnu/gnutls/${P}.tar.gz"
 
 LICENSE="GPL-3 LGPL-2.1"
