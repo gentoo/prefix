@@ -2,9 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-# Not tested, masked on other Prefix arches, candidate for global masking?
-acl
-
 # Re-add linux stuff that is masked in base/
 -elibc_glibc
 -kernel_linux

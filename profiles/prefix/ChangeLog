@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  03 Jun 2009; Jeremy Olexa <darkside@gentoo.org>
+  darwin/macos/10.5/package.use.mask, linux/use.mask, use.mask:
+  Move acl USE flag masking to a global level
+
   02 Jun 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   add net-fs/curlftpfs to p.mask, bug 272210
 
