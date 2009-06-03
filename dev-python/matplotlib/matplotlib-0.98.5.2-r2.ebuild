@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2-r2.ebuild,v 1.2 2009/03/30 15:32:32 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2-r2.ebuild,v 1.3 2009/05/30 09:07:05 ulm Exp $
 
 WX_GTK_VER=2.8
 EAPI=2
@@ -47,7 +47,6 @@ RDEPEND="${CDEPEND}
 		virtual/poppler-utils
 		media-fonts/stix-fonts
 		|| ( dev-texlive/texlive-fontsrecommended
-			 app-text/tetex
 			 app-text/ptex ) )"
 
 DOCS="INTERACTIVE"

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2-r3.ebuild,v 1.5 2009/03/30 15:32:32 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.2-r3.ebuild,v 1.6 2009/05/30 09:07:05 ulm Exp $
 
 WX_GTK_VER=2.8
 EAPI=2
@@ -34,7 +34,6 @@ DEPEND="${CDEPEND}
 		media-gfx/graphviz[cairo,png]
 		|| ( ( dev-texlive/texlive-latexextra
 			   dev-texlive/texlive-latexrecommended )
-			 ( app-text/tetex dev-tex/latex-unicode )
 			 ( app-text/ptex dev-tex/latex-unicode ) )
 		app-text/dvipng
 		dev-python/ipython )"
@@ -54,7 +53,6 @@ RDEPEND="${CDEPEND}
 		app-text/dvipng
 		virtual/poppler-utils
 		|| ( dev-texlive/texlive-fontsrecommended
-			 app-text/tetex
 			 app-text/ptex ) )"
 
 DOCS="INTERACTIVE"
