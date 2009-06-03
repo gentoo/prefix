@@ -1,6 +1,15 @@
 # ChangeLog for app-text/dictd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.68 2009/05/27 19:52:25 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.71 2009/05/31 22:38:16 maekke Exp $
+
+  31 May 2009; Markus Meier <maekke@gentoo.org> dictd-1.11.1.ebuild:
+  amd64 stable, bug #271122
+
+  31 May 2009; Brent Baude <ranger@gentoo.org> dictd-1.11.1.ebuild:
+  Marking dictd-1.11.1 ppc64 for bug 271122
+
+  30 May 2009; nixnut <nixnut@gentoo.org> dictd-1.11.1.ebuild:
+  ppc stable #271122
 
   27 May 2009; Peter Volkov <pva@gentoo.org> dictd-1.11.1-r1.ebuild:
   Don't check for FEATURES inside ebuild.
