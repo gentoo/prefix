@@ -1,0 +1,279 @@
+# ChangeLog for net-irc/quassel
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.52 2009/05/30 12:21:08 billie Exp $
+
+  30 May 2009; Pielmeier Daniel <billie@gentoo.org> metadata.xml:
+  Update email in metadata
+
+*quassel-0.4.2 (22 May 2009)
+
+  22 May 2009; Patrick Lauer <patrick@gentoo.org> +quassel-0.4.2.ebuild:
+  Bump to 0.4.2
+
+  27 Apr 2009; Tomas Chvatal <scarabeus@gentoo.org> quassel-9999:
+  Introduce italian translation for live ebuild. Lovercase local var.
+
+  01 Apr 2009; Patrick Lauer <patrick@gentoo.org> -quassel-0.3.0.3.ebuild,
+  -quassel-0.3.1-r2.ebuild, -quassel-0.3.1-r4.ebuild:
+  Removing old
+
+*quassel-0.4.1 (31 Mar 2009)
+
+  31 Mar 2009; Patrick Lauer <patrick@gentoo.org> +files/quassel.logrotate,
+  +quassel-0.4.1.ebuild, quassel-9999.ebuild:
+  Bump to 0.4.1, small improvements to -9999 ebuild. Thanks to Daniel
+  Pielmeier.
+
+  03 Mar 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +files/quassel-0.4.0-no-webkit.patch, quassel-0.4.0-r1.ebuild,
+  quassel-0.4.0-r2.ebuild:
+  Apply -webkit patch, bug 261044
+
+*quassel-0.4.0-r2 (28 Feb 2009)
+
+  28 Feb 2009; Patrick Lauer <patrick@gentoo.org> +quassel-0.4.0-r2.ebuild,
+  quassel-9999.ebuild:
+  Fixing 0.4 and 9999 ebuild deps with dev-db/sqlite[threadsafe] to fix
+  #260485
+
+*quassel-0.4.0-r1 (20 Feb 2009)
+
+  20 Feb 2009; Tomas Chvatal <scarabeus@gentoo.org>
+  +files/quasselcore-2.conf, +files/quasselcore-2.init,
+  -quassel-0.4.0.ebuild, +quassel-0.4.0-r1.ebuild, quassel-9999.ebuild:
+  Revision bump. Update initscripts. Fix live correctly. Proxycommit for
+  billie.
+
+*quassel-0.4.0 (19 Feb 2009)
+
+  19 Feb 2009; Tomas Chvatal <scarabeus@gentoo.org> metadata.xml,
+  +quassel-0.4.0.ebuild, quassel-9999.ebuild:
+  Version bump. Fix also live. Add new useflag.
+
+  25 Jan 2009; Raúl Porcel <armin76@gentoo.org> quassel-0.3.0.3.ebuild:
+  Drop ~sparc
+
+*quassel-0.3.1-r4 (21 Jan 2009)
+
+  21 Jan 2009; <jokey@gentoo.org> metadata.xml, -quassel-0.3.1.ebuild,
+  -quassel-0.3.1-r1.ebuild, -quassel-0.3.1-r3.ebuild,
+  +quassel-0.3.1-r4.ebuild, quassel-9999.ebuild:
+  Fix monolithic flag to be enabled only when actually using it and drop old
+
+*quassel-0.3.1-r3 (18 Jan 2009)
+
+  18 Jan 2009; <jokey@gentoo.org> metadata.xml, +quassel-0.3.1-r3.ebuild,
+  quassel-9999.ebuild:
+  Cleanups and monolithic flag support from Daniel Pielmeier
+
+  09 Jan 2009; Patrick Lauer <patrick@gentoo.org> quassel-9999.ebuild:
+  Small configure fix from Sput (upstream) for monolithic build
+
+  03 Jan 2009; Tomas Chvatal <scarabeus@gentoo.org> metadata.xml,
+  quassel-9999.ebuild:
+  Fix build issues in live. Basic ebuild from patrick, i am proxying because
+  he cant test.
+
+  29 Nov 2008; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  patrick will be the sole proxy committer now, removing myself from metadata
+
+*quassel-0.3.1-r2 (28 Nov 2008)
+
+  28 Nov 2008; Patrick Lauer <patrick@gentoo.org> +quassel-0.3.1-r2.ebuild:
+  Oh dear. Small fixes to make Daniel happy.
+
+*quassel-0.3.1-r1 (28 Nov 2008)
+
+  28 Nov 2008; Patrick Lauer <patrick@gentoo.org> +quassel-0.3.1-r1.ebuild:
+  Fixing a few small issues. Dropping ~sparc because webkit don't build there.
+  Improvements from Daniel Pielmeier, #248271.
+
+*quassel-0.3.1 (27 Nov 2008)
+
+  27 Nov 2008; Patrick Lauer <patrick@gentoo.org> metadata.xml,
+  +quassel-0.3.1.ebuild:
+  Bump to 0.3.1 by upstreams request, adding self to metadata
+
+  25 Nov 2008; Jeremy Olexa <darkside@gentoo.org> metadata.xml,
+  quassel-0.3.0.3.ebuild, quassel-9999.ebuild:
+  cosmetic cleanups for bug #248217 by Daniel Pielmeier (billie). Add myself
+  to metadata until jokey is free again
+
+*quassel-0.3.0.3 (26 Oct 2008)
+
+  26 Oct 2008; Markus Ullmann <jokey@gentoo.org> -quassel-0.3.0.1-r1.ebuild,
+  -quassel-0.3.0.2.ebuild, +quassel-0.3.0.3.ebuild:
+  Security Version Bump
+
+  07 Oct 2008; Markus Ullmann <jokey@gentoo.org> metadata.xml,
+  quassel-9999.ebuild:
+  Some fixes for trunk + add Daniel as proxied maintainer
+
+*quassel-0.3.0.2 (05 Oct 2008)
+
+  05 Oct 2008; Markus Ullmann <jokey@gentoo.org> +quassel-0.3.0.2.ebuild:
+  Version bump
+
+*quassel-0.3.0.1-r1 (28 Sep 2008)
+
+  28 Sep 2008; Markus Ullmann <jokey@gentoo.org> files/quasselcore.conf,
+  files/quasselcore.init, -quassel-0.2.0_rc1-r1.ebuild,
+  -quassel-0.3.0-r1.ebuild, -quassel-0.3.0.1.ebuild,
+  +quassel-0.3.0.1-r1.ebuild, quassel-9999.ebuild:
+  Import some init script fixes and ebuild improvements from Daniel
+  Pielmeier. Drop old as well
+
+*quassel-0.3.0.1 (03 Sep 2008)
+
+  03 Sep 2008; Markus Ullmann <jokey@gentoo.org> +quassel-0.3.0.1.ebuild:
+  Version bump, thanks for notification on IRC and billie for providing the
+  ebuild
+
+  01 Sep 2008; Markus Ullmann <jokey@gentoo.org> quassel-9999.ebuild:
+  Add new useflags and some style improvements to live ebuild, thanks to
+  Daniel Pielmeier for providing the ebuild diff
+
+*quassel-0.3.0-r1 (30 Aug 2008)
+*quassel-0.2.0_rc1-r1 (30 Aug 2008)
+
+  30 Aug 2008; Markus Ullmann <jokey@gentoo.org> files/quasselcore.init,
+  -quassel-0.2.0_beta1.ebuild, -quassel-0.2.0_rc1.ebuild,
+  +quassel-0.2.0_rc1-r1.ebuild, -quassel-0.2.9999.ebuild,
+  -quassel-0.3.0.ebuild, +quassel-0.3.0-r1.ebuild, +quassel-9999.ebuild,
+  -quassel-9999-r1.ebuild:
+  Make init script baselayout-1 compatible wrt bug #235953 thanks to Daniel
+  Pielmeier, revbump released versions and fix naming for the live ebuild
+
+  27 Aug 2008; Markus Ullmann <jokey@gentoo.org> quassel-0.3.0.ebuild:
+  Add some testing keywords
+
+  27 Aug 2008; Raúl Porcel <armin76@gentoo.org> quassel-0.3.0.ebuild:
+  Add ~sparc
+
+*quassel-0.3.0 (27 Aug 2008)
+
+  27 Aug 2008; Markus Ullmann <jokey@gentoo.org> +quassel-0.3.0.ebuild:
+  0Hour Version bump :D
+
+  26 Aug 2008; Markus Ullmann <jokey@gentoo.org> +files/quasselcore.conf,
+  +files/quasselcore.init, metadata.xml, quassel-0.2.0_rc1.ebuild,
+  quassel-0.2.9999.ebuild, quassel-9999-r1.ebuild:
+  Add init script and some other enhancements from Daniel Pielmeier in bug
+  #217510
+
+  02 Jul 2008; Diego Pettenò <flameeyes@gentoo.org>
+  quassel-0.2.0_rc1.ebuild, quassel-0.2.9999.ebuild, quassel-9999-r1.ebuild:
+  Add missing eutils inherit for the non-git ebuilds as otherwise it seems
+  to be failing.
+
+  02 Jul 2008; Diego Pettenò <flameeyes@gentoo.org>
+  quassel-0.2.9999.ebuild, quassel-9999-r1.ebuild:
+  Use the new icons instead of the old ones.
+
+*quassel-0.2.0_rc1 (02 Jul 2008)
+
+  02 Jul 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +quassel-0.2.0_rc1.ebuild:
+  Update to the Release Candidate (is it today RC day?). This version uses
+  cmake now so there you go with the new deps too.
+
+  29 Jun 2008; Torsten Veller <tove@gentoo.org> quassel-0.2.0_beta1.ebuild:
+  Add missing die: || "..." -> || die "..."
+
+  17 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
+  quassel-0.2.9999.ebuild, quassel-9999-r1.ebuild:
+  Depend on cmake 2.4.7 as upstream needs at least that version for the
+  build to work.
+
+*quassel-0.2.9999 (16 Jun 2008)
+
+  16 Jun 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +quassel-0.2.9999.ebuild:
+  Add live ebuild for 0.2 branch.
+
+*quassel-9999-r1 (16 Jun 2008)
+
+  16 Jun 2008; Diego Pettenò <flameeyes@gentoo.org> -quassel-9999.ebuild,
+  +quassel-9999-r1.ebuild:
+  New revision of the live ebuild. Upstream switched to cmake, so let's
+  follow with the ebuild too.
+
+  03 Jun 2008; Diego Pettenò <flameeyes@gentoo.org> quassel-9999.ebuild:
+  Update live ebuild to use GIT rather than Subversion, as upstream switched
+  repository.
+
+  18 May 2008; Diego Pettenò <flameeyes@gentoo.org>
+  quassel-0.2.0_beta1.ebuild, quassel-9999.ebuild:
+  Install the desktop file only when the GUI client is built, and fix the
+  name of the client.
+
+*quassel-0.2.0_beta1 (15 May 2008)
+
+  15 May 2008; Diego Pettenò <flameeyes@gentoo.org>
+  -quassel-0.2.0_alpha4.ebuild, -quassel-0.2.0_alpha5.ebuild,
+  +quassel-0.2.0_beta1.ebuild, quassel-9999.ebuild:
+  Version bump to the first beta.
+
+  11 Apr 2008; Diego Pettenò <flameeyes@gentoo.org> quassel-9999.ebuild:
+  Don't dodoc devnotes anymore as they are no more on the SVN repository.
+
+*quassel-0.2.0_alpha5 (10 Apr 2008)
+
+  10 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +quassel-0.2.0_alpha5.ebuild:
+  Version bump.
+
+*quassel-9999 (05 Apr 2008)
+
+  05 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
+  quassel-0.2.0_alpha4.ebuild, +quassel-9999.ebuild:
+  Avoid parallel make as per bug #216101 in alpha4, and add a live SVN
+  ebuild as was requested a couple of times (again, I prefer it here rather
+  than in a number of unofficial overlays breaking it.
+
+*quassel-0.2.0_alpha4 (01 Apr 2008)
+
+  01 Apr 2008; Diego Pettenò <flameeyes@gentoo.org>
+  -quassel-0.2.0_alpha1.ebuild, -quassel-0.2.0_alpha2.ebuild,
+  -quassel-0.2.0_alpha3.ebuild, +quassel-0.2.0_alpha4.ebuild:
+  Version bump.
+
+  24 Mar 2008; Raúl Porcel <armin76@gentoo.org>
+  quassel-0.2.0_alpha3.ebuild:
+  Add ~x86
+
+*quassel-0.2.0_alpha3 (18 Mar 2008)
+
+  18 Mar 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +quassel-0.2.0_alpha3.ebuild:
+  Version bump.
+
+  03 Mar 2008; Diego Pettenò <flameeyes@gentoo.org>
+  quassel-0.2.0_alpha2.ebuild:
+  Prefer split version to monolithic.
+
+  02 Mar 2008; Diego Pettenò <flameeyes@gentoo.org> metadata.xml:
+  Update documentation for X USE flag as the server is no more always built,
+  and add documentation for server USE flag.
+
+*quassel-0.2.0_alpha2 (02 Mar 2008)
+
+  02 Mar 2008; Diego Pettenò <flameeyes@gentoo.org>
+  +quassel-0.2.0_alpha2.ebuild:
+  Version bump and fix bug #211523.
+
+  26 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  quassel-0.2.0_alpha1.ebuild:
+  Depend on at least version 4.3.
+
+  26 Feb 2008; Diego Pettenò <flameeyes@gentoo.org>
+  quassel-0.2.0_alpha1.ebuild:
+  Enable X USE flag with USE defaults, as most users will likely want the
+  client too.
+
+*quassel-0.2.0_alpha1 (26 Feb 2008)
+
+  26 Feb 2008; Diego Pettenò <flameeyes@gentoo.org> +metadata.xml,
+  +quassel-0.2.0_alpha1.ebuild:
+  Initial import of Quassel, with a flag to enable/disable build of GUI client.
+

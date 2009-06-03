@@ -1,0 +1,48 @@
+#!/sbin/runscript
+# Copyright 1999-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/files/quasselcore-2.init,v 1.1 2009/02/20 20:02:08 scarabeus Exp $
+
+depend() {
+	need net
+}
+
+checkconfig() {
+	if [ -z "${QUASSEL_USER}" ] ; then
+		eerror "Did you read the elog messages? You need to define the"
+		eerror "QUASSEL_USER variable in /etc/conf.d/quasselcore first."
+		return 1
+	fi
+}
+
+start() {
+	checkconfig || return 1
+
+	ebegin "Starting Quassel Core"
+	local LOGFILE="/var/log/quassel.log"
+	if [ ! -e ${LOGFILE} ] ; then
+		touch ${LOGFILE} && chown ${QUASSEL_USER} ${LOGFILE}
+	fi
+
+	if [[ -n "${RC_UNAME}" ]]; then
+		# running on baselayout-2/openrc
+		start-stop-daemon --start --user ${QUASSEL_USER} --background --make-pidfile \
+		--pidfile /var/run/quassel.pid --exec /usr/bin/quasselcore -- --logfile=${LOGFILE} \
+		--loglevel=${LOGLEVEL:-"Info"} --listen=${LISTEN:-"0.0.0.0"} --port=${PORT:-"4242"} \
+		--configdir=${CONFIGDIR:-"/home/${QUASSEL_USER}/.config/quassel-irc.org"}
+	else
+		# running on baselayout-1
+		start-stop-daemon --start --chuid ${QUASSEL_USER} --background --make-pidfile \
+		--pidfile /var/run/quassel.pid --env HOME="/home/${QUASSEL_USER}" \
+		--exec /usr/bin/quasselcore -- --logfile=${LOGFILE} --loglevel=${LOGLEVEL:-"Info"} \
+		--listen=${LISTEN:-"0.0.0.0"} --port=${PORT:-"4242"} \
+		--configdir=${CONFIGDIR:-"/home/${QUASSEL_USER}/.config/quassel-irc.org"}
+	fi
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping Quassel Core"
+	start-stop-daemon --stop --pidfile /var/run/quassel.pid --exec /usr/bin/quasselcore
+	eend $?
+}
