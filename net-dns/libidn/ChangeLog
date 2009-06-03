@@ -1,6 +1,9 @@
 # ChangeLog for net-dns/libidn
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.98 2009/05/21 20:34:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.99 2009/05/30 16:37:52 jer Exp $
+
+  30 May 2009; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Take up maintainership.
 
   21 May 2009; Jeroen Roovers <jer@gentoo.org>
   -files/0.6.9-javacflags.patch, -libidn-1.0-r1.ebuild,
