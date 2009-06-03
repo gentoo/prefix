@@ -1,6 +1,15 @@
 # ChangeLog for dev-perl/Test-Exception
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Exception/ChangeLog,v 1.52 2008/11/18 15:35:47 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Exception/ChangeLog,v 1.55 2009/06/01 16:56:37 nixnut Exp $
+
+  01 Jun 2009; nixnut <nixnut@gentoo.org> Test-Exception-0.27.ebuild:
+  ppc stable #272009
+
+  31 May 2009; Brent Baude <ranger@gentoo.org> Test-Exception-0.27.ebuild:
+  Marking Test-Exception-0.27 ppc64 for bug 272009
+
+  31 May 2009; Markus Meier <maekke@gentoo.org> Test-Exception-0.27.ebuild:
+  amd64 stable, bug #272009
 
   18 Nov 2008; Torsten Veller <tove@gentoo.org> Test-Exception-0.25.ebuild,
   Test-Exception-0.27.ebuild:
