@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/herrie-2.2.ebuild,v 1.2 2009/05/10 20:41:30 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/herrie/herrie-2.2.ebuild,v 1.6 2009/06/01 16:13:50 ssuominen Exp $
 
 EAPI=2
 inherit eutils toolchain-funcs
@@ -14,7 +14,6 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="ao alsa pulseaudio oss http modplug mp3 sndfile vorbis xspf unicode nls coreaudio"
 
-# Supported languages
 APP_LINGUAS="ca da de es fi ga nl pl pt_BR ru sv tr vi zh_CN"
 for X in ${APP_LINGUAS}; do
 	IUSE="${IUSE} linguas_${X}"
@@ -38,7 +37,7 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.8-chost.patch \
+	epatch "${FILESDIR}"/${PN}-chost_issue.patch \
 		"${FILESDIR}"/${P}-libxspf.patch
 }
 
@@ -47,7 +46,6 @@ src_configure() {
 		ewarn "No audio output selected (ao, alsa, pulseaudio, oss), defaulting to alsa."
 	fi
 
-	# We could add coreaudio here if on osx
 	local EXTRA_CONF="verbose no_strip"
 	use ao && EXTRA_CONF="${EXTRA_CONF} ao"
 	use alsa && EXTRA_CONF="${EXTRA_CONF} alsa"
