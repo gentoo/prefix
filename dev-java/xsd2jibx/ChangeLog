@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/xsd2jibx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/xsd2jibx/ChangeLog,v 1.5 2009/05/23 00:01:17 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/xsd2jibx/ChangeLog,v 1.6 2009/06/01 21:56:22 caster Exp $
+
+*xsd2jibx-0.2a_beta-r2 (01 Jun 2009)
+
+  01 Jun 2009; Vlastimil Babka <caster@gentoo.org>
+  -xsd2jibx-0.2a_beta.ebuild, +xsd2jibx-0.2a_beta-r2.ebuild:
+  Revbump so that the commons-lang slot change works properly, not causing
+  bugs such as #272040.
 
   23 May 2009; Alistair Bush <ali_bush@gentoo.org>
   xsd2jibx-0.2a_beta-r1.ebuild:
