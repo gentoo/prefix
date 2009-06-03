@@ -1,6 +1,15 @@
 # ChangeLog for dev-java/simplyhtml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/ChangeLog,v 1.13 2009/05/03 13:06:17 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/ChangeLog,v 1.15 2009/06/01 16:12:43 nixnut Exp $
+
+  01 Jun 2009; nixnut <nixnut@gentoo.org> simplyhtml-0.12.5.ebuild:
+  ppc stable #267737
+
+*simplyhtml-0.13.1 (31 May 2009)
+
+  31 May 2009; Vlastimil Babka <caster@gentoo.org>
+  +simplyhtml-0.13.1.ebuild:
+  Version bump.
 
   03 May 2009; Markus Meier <maekke@gentoo.org> simplyhtml-0.12.5.ebuild:
   amd64/x86 stable, bug #267737

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/simplyhtml-0.12.5.ebuild,v 1.4 2009/06/01 16:12:43 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/simplyhtml-0.13.1.ebuild,v 1.1 2009/05/31 18:49:12 caster Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc source"
@@ -26,14 +26,14 @@ DEPEND=">=virtual/jdk-1.4
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
 
-S="${WORKDIR}/src"
-
-src_unpack() {
-	mkdir src lib && cd src || die
-	default
-}
+S="${WORKDIR}/${PN}-${MY_PV}/src"
 
 JAVA_PKG_FILTER_COMPILER="jikes"
+
+java_prepare() {
+	# it wants to copy lib jars
+	sed -i '/copy file/d' build.xml || die
+}
 
 src_compile() {
 	local cp="$(java-pkg_getjars javahelp,gnu-regexp-1)"
@@ -41,8 +41,10 @@ src_compile() {
 }
 
 src_install() {
-	cd "${WORKDIR}"
+	cd ..
 	java-pkg_dojar dist/lib/${MY_PN}*.jar
+
+	dodoc readme.txt || die
 
 	use doc && java-pkg_dojavadoc dist/api
 	use source && java-pkg_dosrc src/com src/de
