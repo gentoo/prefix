@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.26.3.ebuild,v 1.1 2009/05/18 21:19:46 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.26.3.ebuild,v 1.2 2009/05/30 23:41:18 ranger Exp $
 
 EAPI=2
 
