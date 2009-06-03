@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.8.1.ebuild,v 1.9 2009/04/23 13:20:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.8.1.ebuild,v 1.10 2009/05/30 08:30:27 ulm Exp $
 
 EAPI=2
 inherit eutils fortran flag-o-matic bash-completion versionator
@@ -35,7 +35,6 @@ DEPEND="${CDEPEND}
 	dev-util/pkgconfig
 	doc? ( virtual/latex-base
 	  || ( dev-texlive/texlive-fontsrecommended
-		   app-text/tetex
 		   app-text/ptex ) )"
 
 RDEPEND="${CDEPEND}
