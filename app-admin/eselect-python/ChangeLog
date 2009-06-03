@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.22 2009/05/25 16:05:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.23 2009/05/30 16:41:03 nixnut Exp $
+
+  30 May 2009; nixnut <nixnut@gentoo.org> ChangeLog:
+  ppc stable #271010
 
   25 May 2009; Brent Baude <ranger@gentoo.org>
   eselect-python-20080925.ebuild:
