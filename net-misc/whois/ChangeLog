@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/whois
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.126 2009/05/28 19:50:21 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.127 2009/05/30 18:24:06 nixnut Exp $
+
+  30 May 2009; nixnut <nixnut@gentoo.org> whois-4.7.30.ebuild:
+  ppc stable #271096
 
   28 May 2009; Steve Dibb <beandog@gentoo.org> whois-4.7.30.ebuild:
   amd64 stable, bug 271096
