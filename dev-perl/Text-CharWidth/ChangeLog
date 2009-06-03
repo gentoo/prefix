@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Text-CharWidth
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CharWidth/ChangeLog,v 1.15 2007/12/24 14:56:16 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CharWidth/ChangeLog,v 1.16 2009/05/31 23:46:58 ranger Exp $
+
+  31 May 2009; Brent Baude <ranger@gentoo.org> Text-CharWidth-0.04.ebuild:
+  Marking Text-CharWidth-0.04 ~ppc64 for bug 267987
 
   24 Dec 2007; Brent Baude <ranger@gentoo.org> Text-CharWidth-0.04.ebuild:
   Marking Text-CharWidth-0.04 ppc for bug 203220
