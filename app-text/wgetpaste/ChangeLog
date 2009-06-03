@@ -1,6 +1,16 @@
 # ChangeLog for app-text/wgetpaste
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.86 2009/03/17 13:57:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.88 2009/06/01 10:32:54 yngwin Exp $
+
+  01 Jun 2009; Ben de Groot <yngwin@gentoo.org> -wgetpaste-2.7.ebuild,
+  -wgetpaste-2.8.ebuild, -wgetpaste-2.9.ebuild, -wgetpaste-2.10.ebuild:
+  Actually drop old versions :-)
+
+*wgetpaste-2.13 (01 Jun 2009)
+
+  01 Jun 2009; Ben de Groot <yngwin@gentoo.org> +wgetpaste-2.13.ebuild:
+  Drop old versions. Version bump. Drop now obsolete post-install message
+  about moving config files. Add zsh-completion useflag.
 
   17 Mar 2009; Raúl Porcel <armin76@gentoo.org> wgetpaste-2.12.ebuild:
   m68k stable, thanks to kolla for testing

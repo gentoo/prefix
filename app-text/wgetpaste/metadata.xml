@@ -5,4 +5,7 @@
   <maintainer>
     <email>yngwin@gentoo.org</email>
   </maintainer>
+  <use>
+    <flag name='zsh-completion'>Install zsh command completion</flag>
+  </use>
 </pkgmetadata>
