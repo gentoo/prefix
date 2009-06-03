@@ -6,6 +6,9 @@
 		<flag name='contrast'>
 			enable the experimental contrast setting option
 		</flag>
+		<flag name='lensfun'>
+			enable the lensfun lens-correction library
+		</flag>
 		<flag name='timezone'>
 			enable DST correction for file timestamps
 		</flag>
