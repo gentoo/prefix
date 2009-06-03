@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-svg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/ChangeLog,v 1.32 2009/05/28 12:06:21 dagger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-svg/ChangeLog,v 1.33 2009/06/02 18:03:55 fauli Exp $
+
+  02 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  qt-svg-4.5.1-r1.ebuild:
+  stable x86, bug 266201
 
   28 May 2009; Robert Piasek <dagger@gentoo.org> qt-svg-4.5.1-r1.ebuild:
   stable on arm (bug #266201)
