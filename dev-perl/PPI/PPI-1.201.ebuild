@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/PPI-1.201.ebuild,v 1.3 2008/07/17 20:13:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/Attic/PPI-1.201.ebuild,v 1.4 2009/05/30 09:20:42 tove Exp $
 
 inherit perl-module
 
@@ -24,7 +24,6 @@ DEPEND="dev-perl/File-Remove
 		>=dev-perl/Params-Util-0.10
 		>=dev-perl/Clone-0.17
 		dev-perl/Test-Object
-		dev-perl/Task-Weaken
 		virtual/perl-Digest-MD5
 		dev-perl/IO-String
 		dev-perl/List-MoreUtils

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/PPI-1.203.ebuild,v 1.1 2008/07/28 07:05:46 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PPI/PPI-1.203.ebuild,v 1.5 2009/05/31 19:39:06 tcunha Exp $
 
 MODULE_AUTHOR=ADAMK
 inherit perl-module
@@ -18,7 +18,6 @@ RDEPEND="
 	>=virtual/perl-Scalar-List-Utils-1.19
 	>=dev-perl/Params-Util-0.10
 	>=dev-perl/Clone-0.25
-	dev-perl/Task-Weaken
 	virtual/perl-Digest-MD5
 	dev-perl/IO-String
 	>=dev-perl/List-MoreUtils-0.16
