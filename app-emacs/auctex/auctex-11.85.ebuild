@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.85.ebuild,v 1.9 2009/05/05 07:49:25 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.85.ebuild,v 1.10 2009/05/30 09:31:54 ulm Exp $
 
 inherit elisp eutils latex-package
 
@@ -19,8 +19,6 @@ DEPEND="virtual/latex-base
 		virtual/ghostscript )"
 RDEPEND="${DEPEND}"
 
-# Don't install in the main tree, as this causes file collisions
-# with app-text/tetex, see bug #155944
 TEXMF="/usr/share/texmf-site"
 
 src_compile() {
