@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/paramiko
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/paramiko/ChangeLog,v 1.33 2008/10/18 14:06:06 nixnut Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/paramiko/ChangeLog,v 1.35 2009/05/31 19:37:18 maekke Exp $
+
+  31 May 2009; Markus Meier <maekke@gentoo.org> paramiko-1.7.4.ebuild:
+  amd64/x86 stable, bug #271933
+
+  31 May 2009; nixnut <nixnut@gentoo.org> paramiko-1.7.4.ebuild:
+  ppc stable #271933
 
   18 Oct 2008; nixnut <nixnut@gentoo.org> paramiko-1.7.2.ebuild:
   Stable on ppc wrt bug 241740
