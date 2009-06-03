@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.5.2.ebuild,v 1.3 2008/11/30 20:06:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.5.2.ebuild,v 1.4 2009/06/01 14:58:39 ssuominen Exp $
 
 inherit eutils multilib python autotools
 
@@ -13,7 +13,7 @@ SLOT="1"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="alsa arts audiofile debug doc jack libsamplerate mikmod ncurses vorbis oss python ruby sndfile"
 
-DEPEND="python? ( dev-lang/python )
+RDEPEND="python? ( dev-lang/python )
 	jack? ( media-sound/jack-audio-connection-kit )
 	media-libs/ladspa-sdk
 	audiofile? ( media-libs/audiofile )
@@ -27,6 +27,7 @@ DEPEND="python? ( dev-lang/python )
 	ncurses? ( sys-libs/ncurses )
 	sndfile? ( media-libs/libsndfile )
 	sys-libs/readline"
+DEPEND="${RDEPEND}"
 
 pkg_setup() {
 	if use alsa && ! built_with_use --missing true media-libs/alsa-lib midi; then

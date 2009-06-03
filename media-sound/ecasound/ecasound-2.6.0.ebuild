@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.2 2009/05/21 14:35:41 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.4 2009/06/01 14:58:39 ssuominen Exp $
 
 EAPI=2
 
@@ -15,7 +15,7 @@ SLOT="1"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="alsa audiofile debug doc jack libsamplerate mikmod ncurses vorbis oss python ruby sndfile"
 
-DEPEND="python? ( dev-lang/python )
+RDEPEND="python? ( dev-lang/python )
 	jack? ( media-sound/jack-audio-connection-kit )
 	media-libs/ladspa-sdk
 	audiofile? ( media-libs/audiofile )
@@ -28,6 +28,7 @@ DEPEND="python? ( dev-lang/python )
 	ncurses? ( sys-libs/ncurses )
 	sndfile? ( media-libs/libsndfile )
 	sys-libs/readline"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
