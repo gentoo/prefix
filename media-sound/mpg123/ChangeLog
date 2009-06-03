@@ -1,6 +1,15 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.185 2009/05/26 21:15:37 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.188 2009/06/01 14:19:12 ssuominen Exp $
+
+  01 Jun 2009; Samuli Suominen <ssuominen@gentoo.org> mpg123-1.7.3.ebuild:
+  Remove esound support and enable networking by default.
+
+  31 May 2009; Brent Baude <ranger@gentoo.org> mpg123-1.7.3.ebuild:
+  stable ppc64, bug 270781
+
+  31 May 2009; nixnut <nixnut@gentoo.org> mpg123-1.7.3.ebuild:
+  ppc stable #270781
 
   26 May 2009; Christian Faulhammer <fauli@gentoo.org> mpg123-1.7.3.ebuild:
   stable x86, bug 270781
