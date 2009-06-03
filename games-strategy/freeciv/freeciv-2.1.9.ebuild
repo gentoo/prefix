@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/freeciv-2.1.9.ebuild,v 1.5 2009/05/20 16:56:08 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/freeciv-2.1.9.ebuild,v 1.7 2009/06/02 17:21:06 mr_bones_ Exp $
 
 inherit eutils games
 
@@ -10,8 +10,6 @@ SRC_URI="mirror://sourceforge/freeciv/${P}.tar.bz2
 	!dedicated? (
 		alsa? (
 			ftp://ftp.freeciv.org/freeciv/contrib/audio/soundsets/stdsounds3.tar.gz )
-		esd? (
-			ftp://ftp.freeciv.org/freeciv/contrib/audio/soundsets/stdsounds3.tar.gz )
 		sdl? (
 			ftp://ftp.freeciv.org/freeciv/contrib/audio/soundsets/stdsounds3.tar.gz )
 	)"
@@ -19,7 +17,7 @@ SRC_URI="mirror://sourceforge/freeciv/${P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="alsa auth dedicated esd gtk nls readline sdl Xaw3d"
+IUSE="alsa auth dedicated gtk nls readline sdl Xaw3d"
 
 RDEPEND="readline? ( sys-libs/readline )
 	!dedicated? (
@@ -41,7 +39,6 @@ RDEPEND="readline? ( sys-libs/readline )
 			media-libs/alsa-lib
 			media-libs/audiofile
 		)
-		esd? ( media-sound/esound )
 		sdl? ( media-libs/sdl-mixer )
 		auth? ( virtual/mysql )
 	)"
@@ -64,10 +61,10 @@ pkg_setup() {
 		else
 			einfo "The Freeciv Client will be built with the Xaw toolkit"
 		fi
-		if ! use esd && ! use alsa && ! use sdl ; then
+		if ! use alsa && ! use sdl ; then
 			ewarn
 			ewarn "To enable sound support in civclient, you must enable"
-			ewarn "at least one of this USE flags: alsa, esd, sdl"
+			ewarn "at least one of this USE flags: alsa, sdl"
 			ewarn
 		fi
 	fi
@@ -140,8 +137,8 @@ src_compile() {
 		fi
 		#FIXME --enable-{alsa,esd,sdl-mixer} actually disable them...
 		#FIXME   ==> use --disable-* only, and autodetect to enable.
+		mysoundconf="${mysoundconf} --disable-esd"
 		use alsa || mysoundconf="${mysoundconf} --disable-alsa"
-		use esd || mysoundconf="${mysoundconf} --disable-esd"
 		use sdl || mysoundconf="${mysoundconf} --disable-sdl-mixer"
 	fi
 
@@ -168,7 +165,7 @@ src_install() {
 			doins data/Freeciv || die "doins failed"
 		fi
 		# Install sounds if at least one sound plugin was built
-		if use alsa || use esd || use sdl ; then
+		if use alsa || use sdl ; then
 			insinto "${GAMES_DATADIR}"/${PN}
 			doins -r ../data/stdsounds* || die "doins sounds failed"
 		fi
