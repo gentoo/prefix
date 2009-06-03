@@ -1,6 +1,9 @@
 # ChangeLog for gnome-extra/gnome-media
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.195 2009/05/12 14:26:19 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.196 2009/05/30 14:20:42 ranger Exp $
+
+  30 May 2009; Brent Baude <ranger@gentoo.org> gnome-media-2.26.0.ebuild:
+  Marking gnome-media-2.26.0 ~ppc64 for bug 269308
 
   12 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
   gnome-media-2.26.0.ebuild, metadata.xml:
