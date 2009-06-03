@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.8.ebuild,v 1.1 2009/05/25 22:02:32 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.8.ebuild,v 1.4 2009/06/01 23:52:00 mr_bones_ Exp $
 
 EAPI=2
 
@@ -13,7 +13,7 @@ SRC_URI="http://oss.oetiker.ch/rrdtool/pub/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
-IUSE="doc perl python ruby rrdcgi tcl"
+IUSE="doc nls perl python ruby rrdcgi tcl"
 
 # This versions are minimal versions upstream tested with.
 RDEPEND="
@@ -29,6 +29,8 @@ RDEPEND="
 			!dev-ruby/ruby-rrd )"
 
 DEPEND="${RDEPEND}
+	nls? ( >=dev-util/intltool-0.35
+		sys-devel/gettext )
 	sys-apps/gawk"
 
 pkg_setup() {
@@ -44,6 +46,8 @@ src_configure() {
 	[[ ${CHOST} == *-solaris* ]] && append-flags -D__EXTENSIONS__
 
 	econf $(use_enable rrdcgi) \
+		$(use_enable nls) \
+		$(use_enable nls libintl) \
 		$(use_enable ruby) \
 		$(use_enable ruby ruby-site-install) \
 		$(use_enable perl) \
