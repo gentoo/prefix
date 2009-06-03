@@ -1,6 +1,9 @@
 # ChangeLog for mail-filter/razor
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/razor/ChangeLog,v 1.84 2009/04/14 01:18:28 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/razor/ChangeLog,v 1.85 2009/06/01 16:09:44 nixnut Exp $
+
+  01 Jun 2009; nixnut <nixnut@gentoo.org> razor-2.84.ebuild:
+  ppc stable #263455
 
   14 Apr 2009; Brent Baude <ranger@gentoo.org> razor-2.84.ebuild:
   Marking razor-2.84 ppc64 for bug 263455

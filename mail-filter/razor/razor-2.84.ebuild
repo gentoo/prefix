@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/razor/razor-2.84.ebuild,v 1.4 2009/04/14 01:18:28 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/razor/razor-2.84.ebuild,v 1.5 2009/06/01 16:09:44 nixnut Exp $
 
 inherit perl-app
 
