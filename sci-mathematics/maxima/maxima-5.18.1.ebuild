@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.18.1.ebuild,v 1.1 2009/04/19 22:03:35 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.18.1.ebuild,v 1.2 2009/05/30 06:46:38 ulm Exp $
 EAPI=2
 inherit eutils elisp-common
 
@@ -31,9 +31,7 @@ done
 RDEPEND="X? ( x11-misc/xdg-utils
 		 sci-visualization/gnuplot[gd]
 		 tk? ( dev-lang/tk ) )
-	latex? ( || ( dev-texlive/texlive-latexrecommended
-				  >=app-text/tetex-3
-				  app-text/ptex ) )
+	latex? ( virtual/latex-base )
 	emacs? ( virtual/emacs
 		latex? ( app-emacs/auctex ) )
 	xemacs? ( virtual/xemacs
