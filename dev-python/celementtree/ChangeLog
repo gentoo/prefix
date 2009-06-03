@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/celementtree
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/celementtree/ChangeLog,v 1.24 2009/05/25 13:52:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/celementtree/ChangeLog,v 1.25 2009/05/31 23:34:56 ranger Exp $
+
+  31 May 2009; Brent Baude <ranger@gentoo.org> celementtree-1.0.5-r1.ebuild:
+  Marking celementtree-1.0.5-r1 ppc64 for bug 221169
 
   25 May 2009; Raúl Porcel <armin76@gentoo.org>
   celementtree-1.0.5-r1.ebuild:
