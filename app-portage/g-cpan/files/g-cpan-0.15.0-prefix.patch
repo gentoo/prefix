@@ -1,5 +1,6 @@
---- bin/g-cpan~	2007-08-27 20:40:33 +0200
-+++ bin/g-cpan	2007-08-27 20:41:12 +0200
+diff -ru a/bin/g-cpan b/bin/g-cpan
+--- a/bin/g-cpan	2007-04-24 17:07:19 -0700
++++ b/bin/g-cpan	2009-04-22 14:24:03 -0700
 @@ -1,4 +1,4 @@
 -#!/usr/bin/perl -w
 +#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -w
@@ -15,15 +16,17 @@
  
  my %dep_list = ();
  my @perl_dirs = ("perl-gcpan", "dev-perl", "perl-core", "perl-text", "perl-tools", "perl-xml", "perl-dev", "dev-lang",);
-@@ -80,7 +80,7 @@
+@@ -80,8 +80,8 @@
  
  if ($log)
  {
 -    open my $log_test, q{>>}, "/var/log/$prog/$prog.err"
+-      or fatal(print_err("You don't have permission to perform logging to /var/log/$prog/$prog.err: $!"));
 +    open my $log_test, q{>>}, "@GENTOO_PORTAGE_EPREFIX@/var/log/$prog/$prog.err"
-       or fatal(print_err("You don't have permission to perform logging to /var/log/$prog/$prog.err: $!"));
++      or fatal(print_err("You don't have permission to perform logging to @GENTOO_PORTAGE_EPREFIX@/var/log/$prog/$prog.err: $!"));
      close($log_test);
  
+     my $log_driver = Log::Agent::Driver::File->make(
 @@ -89,8 +89,8 @@
          -magic_open => 0,
          -stampfmt   => 'date',
@@ -63,6 +66,24 @@
  if (-f "$cat_file")
  {
  
+@@ -235,7 +235,7 @@
+             }
+             else
+             {
+-                print_err("Insufficient permissions to edit /etc/portage/categories");
++                print_err("Insufficient permissions to edit @GENTOO_PORTAGE_EPREFIX@/etc/portage/categories");
+                 print_err("Please run $prog as a user with sufficient permissions");
+                 exit;
+             }
+@@ -251,7 +251,7 @@
+     }
+     else
+     {
+-        print_err("Insufficient permissions to edit /etc/portage/categories");
++        print_err("Insufficient permissions to edit @GENTOO_PORTAGE_EPREFIX@/etc/portage/categories");
+         print_err("Please run $prog as a user with sufficient permissions");
+         exit;
+     }
 @@ -493,7 +493,7 @@
      {
  
@@ -83,17 +104,27 @@
              }
              foreach my $target_dir (@overlays)
              {
-@@ -671,6 +671,8 @@
+@@ -741,7 +741,7 @@
+                             if (defined($buildpkg) or defined($buildpkgonly)) {
+                                 print $EBUILD "\npkg_postinst() {\n";
+                                 print $EBUILD "elog \"If you redistribute this package, please remember to\"\n";
+-                                print $EBUILD "elog \"update /etc/portage/categories with an entry for perl-gpcan\"\n";
++                                print $EBUILD "elog \"update @GENTOO_PORTAGE_EPREFIX@/etc/portage/categories with an entry for perl-gpcan\"\n";
  
- inherit perl-module
+                                 print $EBUILD "}\n";
+                             }
+@@ -1064,7 +1064,7 @@
  
-+EAPI="prefix"
-+
- S=\${WORKDIR}/$gcpan_run->{'cpan'}{lc($original_ebuild)}{'portage_sdir'}
+ =item B<-L,--log>
  
- DESCRIPTION="$gcpan_run->{'cpan'}{lc($original_ebuild)}{'description'}"
---- lib/Gentoo/CPAN.pm~	2007-08-27 19:45:00 +0200
-+++ lib/Gentoo/CPAN.pm	2007-08-27 19:51:02 +0200
+-Log all output to /var/log/g-cpan/g-cpan.log and g-cpan.err
++Log all output to @GENTOO_PORTAGE_EPREFIX@/var/log/g-cpan/g-cpan.log and g-cpan.err
+ 
+ =item B<-s,--search>
+ 
+diff -ru a/lib/Gentoo/CPAN.pm b/lib/Gentoo/CPAN.pm
+--- a/lib/Gentoo/CPAN.pm	2007-04-24 17:06:19 -0700
++++ b/lib/Gentoo/CPAN.pm	2009-04-22 14:13:33 -0700
 @@ -34,19 +34,19 @@
  use constant CPAN_CFG_NAME => 'MyConfig.pm';
  
@@ -135,8 +166,9 @@
    'makepl_arg' => q[],
    'mbuild_arg' => q[],
    'mbuild_install_arg' => q[],
---- lib/Gentoo/Portage.pm~	2007-08-27 19:42:52 +0200
-+++ lib/Gentoo/Portage.pm	2007-08-27 19:43:02 +0200
+diff -ru a/lib/Gentoo/Portage.pm b/lib/Gentoo/Portage.pm
+--- a/lib/Gentoo/Portage.pm	2007-04-24 17:06:19 -0700
++++ b/lib/Gentoo/Portage.pm	2009-04-22 14:13:33 -0700
 @@ -47,7 +47,7 @@
          return($var =~ /^$envvar$/ );
      };
