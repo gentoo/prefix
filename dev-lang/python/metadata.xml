@@ -3,7 +3,6 @@
 <pkgmetadata>
 <herd>python</herd>
 <use>
-	<flag name="nothreads">Disable threads (DON'T USE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)</flag>
 	<flag name="ucs2">Enable byte size 2 unicode (DON'T USE THIS UNLESS YOU KNOW WHAT YOU'RE DOING)</flag>
 	<flag name="wininst">Install required Windows executables to create an executable installer for MS Windows.</flag>
 </use>
