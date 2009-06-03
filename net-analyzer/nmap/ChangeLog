@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.199 2009/05/27 16:17:58 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.200 2009/06/02 16:07:13 spock Exp $
+
+  02 Jun 2009; Michał Januszewski <spock@gentoo.org>
+  nmap-4.85_beta9.ebuild:
+  Don't call strip from the makefile (bug #272082).
 
 *nmap-4.85_beta9 (27 May 2009)
 
