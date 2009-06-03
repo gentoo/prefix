@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/cherrypy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/ChangeLog,v 1.32 2009/02/28 19:01:51 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cherrypy/ChangeLog,v 1.33 2009/06/01 00:44:52 patrick Exp $
+
+*cherrypy-3.1.2 (01 Jun 2009)
+
+  01 Jun 2009; Patrick Lauer <patrick@gentoo.org> +cherrypy-3.1.2.ebuild:
+  Bump to 3.1.2, fixes #271215
 
 *cherrypy-3.1.1 (28 Feb 2009)
 
