@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1.ebuild,v 1.1 2009/05/28 05:35:51 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1.ebuild,v 1.2 2009/06/02 22:32:11 ulm Exp $
 
 inherit eutils prefix
 
@@ -24,7 +24,6 @@ DEPEND="${RDEPEND}
 RDEPEND="${RDEPEND}
 	sys-apps/file
 	sys-libs/ncurses
-	paludis? ( sys-apps/paludis )
 	!paludis? ( >=sys-apps/portage-2.1.6 )"
 
 # Commented out: only few users of eselect will edit its source
@@ -64,6 +63,13 @@ pkg_postinst() {
 	# merging changes the group back to root
 	chgrp portage "${EROOT}/var/lib/gentoo/news" \
 		&& chmod g+w "${EROOT}/var/lib/gentoo/news"
+
+	# we cannot properly depend on paludis because of circular dependencies
+	if use paludis && ! has_version sys-apps/paludis; then
+		ewarn "You have emerged ${PN} with the \"paludis\" USE flag enabled,"
+		ewarn "but apparently Paludis is not installed on your system."
+		ewarn "Part of eselect's functionality may therefore be missing."
+	fi
 
 	if use bash-completion ; then
 		elog "In case you have not yet enabled command-line completion"
