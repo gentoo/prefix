@@ -1,6 +1,12 @@
 # ChangeLog for gnustep-base/gnustep-base
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.84 2009/03/24 13:16:57 voyageur Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.85 2009/06/02 16:46:49 voyageur Exp $
+
+*gnustep-base-1.18.0-r4 (02 Jun 2009)
+
+  02 Jun 2009; Bernard Cafarelli <voyageur@gentoo.org>
+  +gnustep-base-1.18.0-r4.ebuild, metadata.xml:
+  Use virtual/libffi instead of gcc[libffi], bug #272062
 
   24 Mar 2009; Bernard Cafarelli <voyageur@gentoo.org>
   -gnustep-base-1.16.3-r1.ebuild, -gnustep-base-1.18.0-r1.ebuild,

@@ -13,8 +13,7 @@ It provides functionality that aims to implement the non-graphical
 portion of the OpenStep standard (the Foundation library).
 </longdescription>
 <use>
-	<flag name='gcc-libffi'>Use <pkg>dev-libs/libffi</pkg> from
-		<pkg>sys-devel/gcc</pkg> instead of <pkg>dev-libs/ffcall</pkg>. Requires
-		<pkg>sys-devel/gcc</pkg> built with USE=libffi</flag>
+	<flag name='gcc-libffi'>Use <pkg>dev-libs/libffi</pkg> from <pkg>sys-devel/gcc</pkg> instead of <pkg>dev-libs/ffcall</pkg>. Requires <pkg>sys-devel/gcc</pkg> built with USE=libffi</flag>
+	<flag name='libffi'>Use <pkg>dev-libs/libffi</pkg> instead of <pkg>dev-libs/ffcall</pkg></flag>
 </use>
 </pkgmetadata>
