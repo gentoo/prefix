@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/java-config-wrapper
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.49 2009/05/24 18:05:52 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config-wrapper/ChangeLog,v 1.50 2009/06/01 16:25:34 nixnut Exp $
+
+  01 Jun 2009; nixnut <nixnut@gentoo.org> java-config-wrapper-0.16.ebuild:
+  ppc stable #270007
 
   24 May 2009; Markus Meier <maekke@gentoo.org>
   java-config-wrapper-0.16.ebuild:
