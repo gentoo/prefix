@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/libsexy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libsexy/ChangeLog,v 1.37 2009/01/15 23:09:51 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libsexy/ChangeLog,v 1.39 2009/05/31 18:52:33 serkan Exp $
+
+  31 May 2009; Serkan Kaba <serkan@gentoo.org> libsexy-0.1.11-r1.ebuild:
+  Add missing eutils inherit for epatch.
+
+*libsexy-0.1.11-r1 (31 May 2009)
+
+  31 May 2009; Serkan Kaba <serkan@gentoo.org> +libsexy-0.1.11-r1.ebuild,
+  +files/libsexy-0.1.11-fix-null-list.patch:
+  Revbump to fix critical error. Closes bug #270179
 
   15 Jan 2009; Peter Alfredsen <loki_val@gentoo.org> metadata.xml:
   Compnerd retired.
