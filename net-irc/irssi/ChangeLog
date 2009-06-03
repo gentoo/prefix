@@ -1,6 +1,24 @@
 # ChangeLog for net-irc/irssi
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.139 2009/04/01 08:19:09 swegener Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.144 2009/06/02 06:40:07 jer Exp $
+
+  02 Jun 2009; Jeroen Roovers <jer@gentoo.org> irssi-0.8.13-r1.ebuild:
+  Stable for HPPA (bug #271875).
+
+  01 Jun 2009; Raúl Porcel <armin76@gentoo.org> irssi-0.8.13-r1.ebuild:
+  alpha/arm/ia64/s390/sh/sparc/x86 stable wrt #271875
+
+  01 Jun 2009; Dawid Węgliński <cla@gentoo.org> irssi-0.8.13-r1.ebuild:
+  Stable on amd64 (bug #271875)
+
+  31 May 2009; Brent Baude <ranger@gentoo.org> irssi-0.8.13-r1.ebuild:
+  Marking irssi-0.8.13-r1 ppc64 for bug 271875
+
+*irssi-0.8.13-r1 (31 May 2009)
+
+  31 May 2009; Sven Wegener <swegener@gentoo.org> +irssi-0.8.13-r1.ebuild,
+  +files/irssi-0.8.13-svn-5068.patch:
+  Security bump for wallop off-by-one heap access, bug #271875.
 
 *irssi-0.8.13 (01 Apr 2009)
 
