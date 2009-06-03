@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/dog
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/ChangeLog,v 1.27 2009/05/24 09:06:08 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/ChangeLog,v 1.29 2009/05/31 18:18:19 ranger Exp $
+
+  31 May 2009; Brent Baude <ranger@gentoo.org> dog-1.7-r3.ebuild:
+  stable ppc64, bug 269496
+
+  31 May 2009; nixnut <nixnut@gentoo.org> dog-1.7-r3.ebuild:
+  ppc stable #269496
 
   24 May 2009; Markus Meier <maekke@gentoo.org> dog-1.7-r3.ebuild:
   amd64 stable, bug #269496

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/dog-1.7-r3.ebuild,v 1.4 2009/05/24 09:06:08 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/dog-1.7-r3.ebuild,v 1.6 2009/05/31 18:18:19 ranger Exp $
 
 inherit eutils toolchain-funcs
 
