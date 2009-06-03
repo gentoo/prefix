@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libxslt
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.188 2008/08/04 22:38:49 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.190 2009/05/31 23:10:10 eva Exp $
+
+  31 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  libxslt-1.1.24-r1.ebuild:
+  Remove unused configure flags, bug #230750. Move documentation to one
+  folder.
+
+  31 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/libxslt-1.1.20-amd64.patch, -libxslt-1.1.22.ebuild:
+  Clean up old, vulnerable revision, bug #271742.
 
   04 Aug 2008; Gilles Dartiguelongue <eva@gentoo.org>
   -libxslt-1.1.23.ebuild, -libxslt-1.1.24.ebuild:
