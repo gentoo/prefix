@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/gnome-light-2.24.1.ebuild,v 1.6 2009/05/31 18:30:29 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/gnome-light-2.26.2.ebuild,v 1.1 2009/05/31 18:30:29 eva Exp $
 
 S=${WORKDIR}
 DESCRIPTION="Meta package for the GNOME desktop, merge this package to install"
@@ -22,51 +22,51 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 #  should be added or removed from this pack file a bug to
 #  gnome@gentoo.org on bugs.gentoo.org
 
-#	>=media-gfx/eog-2.20.4
+#	>=media-gfx/eog-2.26.2
 
 RDEPEND="!gnome-base/gnome
 
-	>=dev-libs/glib-2.18.2
-	>=x11-libs/gtk+-2.14.4
-	>=dev-libs/atk-1.24.0
-	>=x11-libs/pango-1.22.1
+	>=dev-libs/glib-2.20.2
+	>=x11-libs/gtk+-2.16.1
+	>=dev-libs/atk-1.26.0
+	>=x11-libs/pango-1.24.2
 
 	>=gnome-base/orbit-2.14.16
 
-	>=x11-libs/libwnck-2.24.1
-	>=x11-wm/metacity-2.24.0
+	>=x11-libs/libwnck-2.26.1
+	>=x11-wm/metacity-2.26.0
 
-	>=gnome-base/gnome-vfs-2.24.0
-	>=gnome-base/gconf-2.24.0
+	>=gnome-base/gnome-vfs-2.24.1
+	>=gnome-base/gconf-2.26.2
 
 	>=gnome-base/gnome-mime-data-2.18.0
 
-	>=gnome-base/libbonobo-2.24.0
-	>=gnome-base/libbonoboui-2.24.0
-	>=gnome-base/libgnome-2.24.1
-	>=gnome-base/libgnomeui-2.24.0
-	>=gnome-base/libgnomecanvas-2.20.1.1
-	>=gnome-base/libglade-2.6.3
+	>=gnome-base/libbonobo-2.24.1
+	>=gnome-base/libbonoboui-2.24.1
+	>=gnome-base/libgnome-2.26.0
+	>=gnome-base/libgnomeui-2.24.1
+	>=gnome-base/libgnomecanvas-2.26.0
+	>=gnome-base/libglade-2.6.4
 
-	>=gnome-base/gnome-settings-daemon-2.24.0
-	>=gnome-base/gnome-control-center-2.24.0.1
+	>=gnome-base/gnome-settings-daemon-2.26.1
+	>=gnome-base/gnome-control-center-2.26.0
 
-	>=gnome-base/gvfs-1.0.2
+	>=gnome-base/gvfs-1.2.3
 	>=gnome-base/eel-2.24.1
-	>=gnome-base/nautilus-2.24.1
+	>=gnome-base/nautilus-2.26.3
 
-	>=gnome-base/gnome-desktop-2.24.1
-	>=gnome-base/gnome-session-2.22.3-r1
-	>=gnome-base/gnome-panel-2.24.1
+	>=gnome-base/gnome-desktop-2.26.2
+	>=gnome-base/gnome-session-2.26.1
+	>=gnome-base/gnome-panel-2.26.2
 
-	>=x11-themes/gnome-icon-theme-2.24.0
-	>=x11-themes/gnome-themes-2.24.1
+	>=x11-themes/gnome-icon-theme-2.26.0
+	>=x11-themes/gnome-themes-2.26.2
 
-	>=x11-terms/gnome-terminal-2.24.1.1
+	>=x11-terms/gnome-terminal-2.26.2
 
-	>=gnome-base/librsvg-2.22.3
+	>=gnome-base/librsvg-2.26.0
 
-	>=gnome-extra/yelp-2.24.0"
+	>=gnome-extra/yelp-2.26.0"
 
 pkg_postinst () {
 # FIXME: Rephrase to teach about using different WMs instead, as metacity is the default anyway
