@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/pymacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/pymacs/ChangeLog,v 1.40 2009/01/29 07:20:41 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/pymacs/ChangeLog,v 1.41 2009/05/30 06:36:21 ulm Exp $
+
+  30 May 2009; Ulrich Mueller <ulm@gentoo.org> pymacs-0.23.ebuild:
+  Remove app-text/tetex from dependencies, bug 227443.
 
   29 Jan 2009; Christian Faulhammer <fauli@gentoo.org>
   -files/0.22-character-encoding-gentoo.patch, -pymacs-0.22-r1.ebuild:

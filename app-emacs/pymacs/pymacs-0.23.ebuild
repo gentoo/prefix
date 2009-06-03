@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/pymacs/pymacs-0.23.ebuild,v 1.13 2008/11/24 11:00:55 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/pymacs/pymacs-0.23.ebuild,v 1.14 2009/05/30 06:36:21 ulm Exp $
 
 inherit distutils elisp
 
@@ -20,7 +20,6 @@ DEPEND="
 		virtual/latex-base
 		|| ( ( dev-texlive/texlive-latexextra
 				dev-texlive/texlive-langfrench )
-			app-text/tetex
 			app-text/ptex ) )"
 RDEPEND=""
 
