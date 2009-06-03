@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.578 2009/05/29 23:25:42 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.580 2009/06/02 18:06:58 fauli Exp $
+
+  02 Jun 2009; Christian Faulhammer <fauli@gentoo.org> qt-4.5.1.ebuild:
+  stable x86, bug 266201
+
+  30 May 2009; Ben de Groot <yngwin@gentoo.org> qt-4.5.1.ebuild:
+  Revert kde useflag addition, as it breaks stable
 
   29 May 2009; Ben de Groot <yngwin@gentoo.org> qt-4.5.1.ebuild:
   Add kde useflag to make dependency calculation easier, bug 270188
