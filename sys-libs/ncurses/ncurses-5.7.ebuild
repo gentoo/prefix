@@ -58,7 +58,7 @@ src_compile() {
 	use nocxx && myconf="${myconf} --without-cxx --without-cxx-binding"
 	use ada || myconf="${myconf} --without-ada"
 	
-	[[ ${CHOST} == *-aix5.3* ]] && myconf="${myconf} --with-libtool"
+	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-libtool"
 
 	# First we build the regular ncurses ...
 	mkdir "${WORKDIR}"/narrowc
