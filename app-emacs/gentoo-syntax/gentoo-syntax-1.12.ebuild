@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/gentoo-syntax-1.10.ebuild,v 1.1 2008/12/27 22:47:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/gentoo-syntax-1.12.ebuild,v 1.1 2009/05/30 13:25:06 ulm Exp $
 
 inherit elisp
 
@@ -13,8 +13,8 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
-SITEFILE="51${PN}-gentoo.el"
 DOCS="ChangeLog"
+SITEFILE="50${PN}-gentoo.el"
 
 pkg_postinst() {
 	elisp-site-regen
