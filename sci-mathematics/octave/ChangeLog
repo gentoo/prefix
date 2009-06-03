@@ -1,6 +1,10 @@
 # ChangeLog for sci-mathematics/octave
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/ChangeLog,v 1.67 2009/04/20 20:01:36 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/ChangeLog,v 1.68 2009/05/30 08:41:23 ulm Exp $
+
+  30 May 2009; Ulrich Mueller <ulm@gentoo.org> octave-3.0.2.ebuild,
+  octave-3.0.3.ebuild:
+  Remove app-text/tetex from dependencies, bug 227443.
 
   20 Apr 2009; Markus Meier <maekke@gentoo.org> octave-3.0.3:
   x86 stable, bug #245707
@@ -388,7 +392,7 @@
   28 Aug 2003; Jason Wever <weeve@gentoo.org> octave-2.1.49.ebuild:
   Added ~sparc to keywords to fix bug 27486.
 
-*octave-2.1.49 (09 Jun 2003) 
+*octave-2.1.49 (09 Jun 2003)
   09 Jun 2003; George Shapovalov <george@gentoo.org> octave-2.1.49.ebuild :
   new version,
   ebuild now uses additional "static readline hdf5 zlib" use flags, hdf5 is local for now.
@@ -402,7 +406,7 @@
   Also corrected default-1.0/packages profile entry, to pick up latest release in 2.0* series.
 
   23 Feb 2003; George Shapovalov <george@gentoo.org> octave-2.0.17-r2.ebuild :
-  looks like tetex is not an optional but required dependency for 2.0.17, 
+  looks like tetex is not an optional but required dependency for 2.0.17,
   added app-text/tetex to DEPEND (#7277)
 
   02 Feb 2003; George Shapovalov <george@gentoo.org> octave-2.1.40.ebuild, octave-2.1.36-r1.ebuild :
@@ -410,7 +414,7 @@
   fixed tetex optional dependency typo. Thanks to Daniel Karlsson <d.k@home.se> (#14685) for reporting this.
 
 *octave-2.1.40 (13 Dec 2002)
-  
+
   10 Feb 2003; Peter Johanson <latexer@gentoo.org> octave-2.1.40.ebuild :
   Added ~alpha to KEYWORDS.
 
@@ -440,7 +444,7 @@
   19 Sep 2002; Owen Stampflee <owen@gentoo.org> :
   Added PPC to KEYWORDS.
 
-  15 Jul 2002; Nick Hadaway <raker@gentoo.org> 
+  15 Jul 2002; Nick Hadaway <raker@gentoo.org>
   octave-2.1.36.ebuild, files/digest-octave-2.1.36, files/filebuf.diff :
   Updated to latest "unstable" version.  Included a patch to compile
   properly with gcc-3.x.  After fixing the problem I found RedHat's
