@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-7.0.0.2.ebuild,v 1.8 2009/05/10 15:08:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/amrnb/amrnb-7.0.0.2.ebuild,v 1.10 2009/05/31 19:19:33 ranger Exp $
 
 SPEC_VER="26104-700"
 
