@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.4.ebuild,v 1.7 2009/05/28 16:50:09 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.4.ebuild,v 1.11 2009/05/31 22:51:33 maekke Exp $
 
 EAPI=2
 
