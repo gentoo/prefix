@@ -10,7 +10,7 @@ SRC_URI="http://jl.photodex.com/dog/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc64-solaris"
 IUSE=""
 
 src_unpack() {
@@ -20,6 +20,13 @@ src_unpack() {
 	epatch ${FILESDIR}/${PV}-manpage-touchup.patch
 	epatch ${FILESDIR}/${P}-64bit-goodness.patch
 	epatch ${FILESDIR}/${P}-strfry.patch
+
+	if [[ "${CHOST}" == *-solaris* ]]
+	then
+		sed -i '/gcc.*-o dog/s/$/ -lsocket/' \
+			Makefile || die "sed Makefile failed"
+	fi
+
 	sed -i \
 		-e 's,^CFLAGS,#CFLAGS,' \
 		-e "s,gcc,$(tc-getCC)," \
