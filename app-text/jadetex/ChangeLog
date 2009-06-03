@@ -1,6 +1,10 @@
 # ChangeLog for app-text/jadetex
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/ChangeLog,v 1.45 2008/09/02 17:56:55 aballier Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/jadetex/ChangeLog,v 1.46 2009/05/30 07:46:21 ulm Exp $
+
+  30 May 2009; Ulrich Mueller <ulm@gentoo.org> jadetex-3.13-r1.ebuild,
+  jadetex-3.13-r2.ebuild:
+  Remove app-text/tetex from dependencies, bug 227443.
 
   02 Sep 2008; Alexis Ballier <aballier@gentoo.org> jadetex-3.13-r1.ebuild,
   jadetex-3.13-r2.ebuild:
@@ -126,13 +130,12 @@
 
   03 Feb 2003; Matthew Turk <satai@gentoo.org> jadetex-3.12.ebuild :
   Added un-sandboxing to work with tetex-2.0.
-  
 
   22 Jan 2003; Aron Griffis <agriffis@gentoo.org> jadetex-3.12.ebuild :
   Add alpha to KEYWORDS
 
   06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
- 
+
 *jadetex-3.12 (19 Apr 2002)
 
   2 Aug 2002; phoen][x <phoenix@gentoo.org> jadetex-3.12.ebuild :
