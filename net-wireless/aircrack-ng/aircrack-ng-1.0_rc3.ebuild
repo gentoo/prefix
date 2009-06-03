@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/aircrack-ng-1.0_rc3.ebuild,v 1.5 2009/05/07 17:54:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/aircrack-ng-1.0_rc3.ebuild,v 1.6 2009/06/01 16:15:53 nixnut Exp $
 
 EAPI=2
 inherit versionator eutils toolchain-funcs
