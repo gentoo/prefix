@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/pgf-2.00.ebuild,v 1.10 2009/03/18 18:59:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/pgf/pgf-2.00.ebuild,v 1.11 2009/05/30 07:14:59 ulm Exp $
 
 inherit latex-package
 
@@ -12,17 +12,15 @@ LICENSE="GPL-2 LPPL-1.3c FDL-1.2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc"
-DEPEND="|| ( ( dev-texlive/texlive-latexrecommended >=dev-tex/xcolor-2.11 )
-	>=app-text/tetex-3.0
-	)"
+
+DEPEND="dev-texlive/texlive-latexrecommended
+	>=dev-tex/xcolor-2.11"
 
 TEXMF="/usr/share/texmf-site"
 
 src_install() {
 	insinto ${TEXMF}/tex/
-	for dir in generic latex plain context ; do
-		doins -r ${dir} || die "Failed installing"
-	done
+	doins -r generic latex plain context || die "Failed installing"
 
 	cd "${S}/doc/generic/pgf"
 	dodoc AUTHORS ChangeLog README TODO licenses/LICENSE
