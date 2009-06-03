@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.194 2009/05/19 12:07:44 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.197 2009/06/01 13:45:53 maekke Exp $
+
+  01 Jun 2009; Markus Meier <maekke@gentoo.org> graphviz-2.12.ebuild:
+  drop all arches except m68k, wrt security bug #271755
+
+  30 May 2009; Brent Baude <ranger@gentoo.org> graphviz-2.22.2-r1.ebuild:
+  Marking graphviz-2.22.2-r1 ~ppc64 for bug 265013
+
+  30 May 2009; Tiago Cunha <tcunha@gentoo.org> graphviz-2.22.2-r1.ebuild:
+  keyworded ~arch for sparc, bug 265013
 
   19 May 2009; Peter Volkov <pva@gentoo.org> graphviz-2.22.2-r1.ebuild:
   Fixed broken build caused by inability to use system ltdl reported by

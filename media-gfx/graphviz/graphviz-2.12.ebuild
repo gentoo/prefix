@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.12.ebuild,v 1.23 2008/05/11 19:54:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.12.ebuild,v 1.24 2009/06/01 13:45:53 maekke Exp $
 
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
