@@ -1,7 +1,7 @@
-Index: asymptote-1.72/settings.cc
+Index: asymptote-1.75/settings.cc
 ===================================================================
---- asymptote-1.72.orig/settings.cc
-+++ asymptote-1.72/settings.cc
+--- asymptote-1.75.orig/settings.cc
++++ asymptote-1.75/settings.cc
 @@ -81,15 +81,15 @@ const bool haveglut=false;
  bool msdos=false;
  const char *HOME="HOME";
@@ -19,5 +19,5 @@ Index: asymptote-1.72/settings.cc
 -string defaultDisplay="display";
 +string defaultDisplay="xdg-open";
  string systemDir=ASYMPTOTE_SYSDIR;
- const string docdir=ASYMPTOTE_DOCDIR;
+ string docdir=ASYMPTOTE_DOCDIR;
  void queryRegistry() {}
