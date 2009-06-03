@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.19 2009/05/28 09:47:52 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.20 2009/05/31 09:45:51 scarabeus Exp $
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -126,6 +126,9 @@ enable_selected_linguas() {
 	## even if you don't have it in make.conf
 	## Im leaving the command that *should* work if LINGUAS was unset commented
 	# if there is no linguas defined we enable everything
+	if ! $(env | grep -q "^LINGUAS="); then
+		return 0
+	fi
 	# [[ ! ${LINGUAS+set} = set ]] && LINGUAS="*"
 	# ebuild overridable linguas directory definition
 	KDE_LINGUAS_DIR=${KDE_LINGUAS_DIR:="${S}/po"}

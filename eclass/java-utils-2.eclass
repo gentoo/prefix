@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.127 2009/05/19 21:23:32 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.128 2009/06/02 07:02:01 ali_bush Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1310,83 +1310,6 @@ java-pkg_register-environment-variable() {
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
-# @ebuild-function java-pkg_need
-#
-# Adds virtual dependencies, which can optionally be controlled by a USE flag.
-# Currently supported virtuals are:
-#	javamail
-#	jdbc-stdext
-#	jaf
-#	jdbc-rowset
-#	jms
-#
-# @param $1 - Optionally indicate that the dependencies are controlled by
-#				a use flag by specifying '--use' Requires $2.
-# @param $2 - USE flag which will enable the dependencies.
-# @param $@ - virtual packages to add depenedencies for
-# ------------------------------------------------------------------------------
-# TODO rewrite to parse a line based declaration file instead -- karltk
-#java-pkg_need() {
-#	debug-print-function ${FUNCNAME} $*
-#	local useflag
-#	if [[ ${1} == "--use" ]]; then
-#		useflag="${2}"
-#		shift 2
-#	fi
-#
-#	if [[ -z ${1} ]]; then
-#		die "Must specify at least one virtual package."
-#	fi
-#
-#	local depstr newdepstr
-#
-#	for virtual in ${@}; do
-#		if has ${virtual} ${JAVA_PKG_VNEED}; then
-#			debug-print "Already registered virtual ${virtual}"
-#			continue
-#		fi
-#		case ${virtual} in
-#			javamail)
-#				debug-print "java-pkg_need: adding javamail dependencies"
-#				newdepstr="|| ( dev-java/gnu-javamail dev-java/sun-javamail-bin )"
-#				;;
-#			jdbc-stdext)
-#				debug-print "java-pkg_need: adding jdbc-stdext dependencies"
-#				newdepstr="|| ( >=virtual/jdk-1.4 dev-java/jdbc2-stdext )"
-#				;;
-#			jaf)
-#				debug-print "java-pkg_need: adding jaf dependencies"
-#				newdepstr="|| ( dev-java/gnu-jaf dev-java/sun-jaf-bin )"
-#				;;
-#			jdbc-rowset)
-#				debug-print "java-pkg_need: adding jdbc-rowset dependencies"
-#			 	newdepstr="|| ( >=virtual/jdk-1.5 dev-java/sun-jdbc-rowset )"
-#				;;
-#			jms)
-#				debug-print "java-pkg_need: adding jms dependencies"
-#				newdepstr="|| ( dev-java/sun-jms dev-java/openjms )"
-#				;;
-#			*)
-#				die "Invalid virtual: ${virtual}"
-#		esac
-#
-#		export JAVA_PKG_VNEED="${JAVA_PKG_VNEED} ${virtual}"
-#
-#		if [[ -n ${useflag} ]]; then
-#			depstr="${depstr} ${useflag}? ( ${newdepstr} )"
-#		else
-#			depstr="${depstr} ${newdepstr}"
-#		fi
-#	done
-#
-#	[[ -z ${JAVA_PKG_NV_DEPEND} ]] && export JAVA_PKG_NV_DEPEND="${DEPEND}"
-#	[[ -z ${JAVA_PKG_NV_RDEPEND} ]] && export JAVA_PKG_NV_RDEPEND="${RDEPEND}"
-#
-#	export DEPEND="${DEPEND} ${depstr}"
-#	export RDEPEND="${RDEPEND} ${depstr}"
-#}
-
-# ------------------------------------------------------------------------------
 # @ebuild-function java-pkg_find-normal-jars
 #
 # Find the files with suffix .jar file in the given directory or $WORKDIR
@@ -2544,16 +2467,11 @@ java-pkg_switch-vm() {
 			export GENTOO_VM="${JAVA_PKG_FORCE_VM}"
 		# if we're allowed to switch the vm...
 		elif [[ "${JAVA_PKG_ALLOW_VM_CHANGE}" == "yes" ]]; then
-			debug-print "depend-java-query:  NV_DEPEND:	${JAVA_PKG_NV_DEPEND:-${DEPEND}} VNEED: ${JAVA_PKG_VNEED}"
-			if [[ -n ${JAVA_PKG_VNEED} ]]; then
-				GENTOO_VM="$(depend-java-query --need-virtual "${JAVA_PKG_VNEED}" --get-vm "${JAVA_PKG_NV_DEPEND:-${DEPEND}}")"
-			else
-				GENTOO_VM="$(depend-java-query --get-vm "${JAVA_PKG_NV_DEPEND:-${DEPEND}}")"
-			fi
+			debug-print "depend-java-query:  NV_DEPEND:	${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
+			GENTOO_VM="$(depend-java-query --get-vm "${JAVA_PKG_NV_DEPEND:-${DEPEND}}")"
 			if [[ -z "${GENTOO_VM}" || "${GENTOO_VM}" == "None" ]]; then
 				eerror "Unable to determine VM for building from dependencies:"
 				echo "NV_DEPEND: ${JAVA_PKG_NV_DEPEND:-${DEPEND}}"
-				echo "VNEED: ${JAVA_PKG_VNEED}"
 				die "Failed to determine VM for building."
 			else
 				export GENTOO_VM
