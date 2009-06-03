@@ -1,6 +1,13 @@
 # ChangeLog for x11-misc/xdg-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.49 2009/04/12 23:52:17 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.51 2009/06/01 14:19:52 gentoofan23 Exp $
+
+  31 May 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  xdg-utils-1.0.2-r3.ebuild:
+  Add missing dependency on app-text/xmlto.
+
+  31 May 2009; nixnut <nixnut@gentoo.org> xdg-utils-1.0.2-r3.ebuild:
+  ppc stable #271889
 
   12 Apr 2009; Gilles Dartiguelongue <eva@gentoo.org>
   xdg-utils-1.0.2-r3.ebuild:

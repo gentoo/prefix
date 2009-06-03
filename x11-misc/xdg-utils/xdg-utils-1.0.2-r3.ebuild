@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/xdg-utils-1.0.2-r3.ebuild,v 1.3 2009/04/13 06:14:11 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/xdg-utils-1.0.2-r3.ebuild,v 1.5 2009/06/01 14:19:52 gentoofan23 Exp $
 
 inherit eutils
 
@@ -20,7 +20,7 @@ RDEPEND="x11-apps/xprop
 	x11-misc/shared-mime-info
 	x11-apps/xset"
 PDEPEND="dev-util/desktop-file-utils"
-DEPEND=""
+DEPEND="app-text/xmlto"
 
 src_unpack() {
 	unpack ${A}
