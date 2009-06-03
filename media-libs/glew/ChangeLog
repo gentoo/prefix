@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/glew
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/glew/ChangeLog,v 1.48 2009/05/20 16:45:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/glew/ChangeLog,v 1.49 2009/06/02 17:44:21 fmccor Exp $
+
+  02 Jun 2009; Ferris McCormick <fmccor@gentoo.org> glew-1.5.1.ebuild:
+  Sparc stable, Bug #268020.
 
   20 May 2009; nixnut <nixnut@gentoo.org> glew-1.5.1.ebuild:
   ppc stable #268020
