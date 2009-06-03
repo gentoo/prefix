@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.13.0.ebuild,v 1.2 2009/05/25 17:30:14 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.13.0.ebuild,v 1.3 2009/06/01 13:52:36 maekke Exp $
 
 NEED_PYTHON=2.4
 inherit distutils versionator
