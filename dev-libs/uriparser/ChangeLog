@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/uriparser
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/ChangeLog,v 1.24 2009/03/20 12:41:03 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/uriparser/ChangeLog,v 1.27 2009/06/01 15:30:59 fmccor Exp $
+
+  01 Jun 2009; Ferris McCormick <fmccor@gentoo.org> uriparser-0.7.5.ebuild:
+  Sparc stable, required for Bug #271815.
+
+  31 May 2009; Markus Meier <maekke@gentoo.org> uriparser-0.7.5.ebuild:
+  amd64/x86 stable, bug #271815
+
+  31 May 2009; nixnut <nixnut@gentoo.org> uriparser-0.7.5.ebuild:
+  ppc stable #271815
 
   20 Mar 2009; Tiago Cunha <tcunha@gentoo.org> uriparser-0.7.5.ebuild:
   keyworded ~arch for sparc, bug 261242
