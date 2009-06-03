@@ -1,6 +1,10 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.466 2009/05/26 21:09:27 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.467 2009/05/31 15:35:26 suka Exp $
+
+  31 May 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.0.ebuild:
+  Update patchset to ooo-build 3.1.0.6, some smallish bug fixes
 
   26 May 2009; Andreas Proschofsky <suka@gentoo.org>
   openoffice-3.1.0.ebuild, -files/ooo_getline.diff:
