@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/when/when-1.1.16.ebuild,v 1.4 2009/05/27 16:43:13 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/when/when-1.1.16.ebuild,v 1.5 2009/05/30 16:08:03 nixnut Exp $
 
 inherit eutils prefix
 

@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/when
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/when/ChangeLog,v 1.33 2009/05/27 16:43:13 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/when/ChangeLog,v 1.34 2009/05/30 16:08:03 nixnut Exp $
+
+  30 May 2009; nixnut <nixnut@gentoo.org> when-1.1.16.ebuild:
+  ppc stable #271108
 
   27 May 2009; Ferris McCormick <fmccor@gentoo.org> when-1.1.16.ebuild:
   Sparc stable, Bug #271108.
