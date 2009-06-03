@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/redcloth-4.1.9.ebuild,v 1.1 2009/03/28 08:17:05 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/redcloth-4.1.9.ebuild,v 1.3 2009/06/02 16:26:47 armin76 Exp $
 
 inherit ruby gems
 
