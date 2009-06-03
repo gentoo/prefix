@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.92 2009/05/24 22:02:17 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.93 2009/06/01 00:00:46 ranger Exp $
+
+  31 May 2009; Brent Baude <ranger@gentoo.org> libusb-0.1.12-r5.ebuild:
+  Marking libusb-0.1.12-r5 ppc64 for bug 270023
 
   24 May 2009; Robin H. Johnson <robbat2@gentoo.org> libusb-0.1.11.ebuild,
   libusb-0.1.12.ebuild, libusb-0.1.12-r1.ebuild:

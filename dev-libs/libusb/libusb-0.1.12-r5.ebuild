@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/libusb-0.1.12-r5.ebuild,v 1.8 2009/05/24 18:12:34 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/libusb-0.1.12-r5.ebuild,v 1.9 2009/06/01 00:00:46 ranger Exp $
 
 inherit eutils libtool autotools toolchain-funcs
 
