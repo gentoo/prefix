@@ -1,6 +1,10 @@
 # ChangeLog for app-text/xmlstarlet
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlstarlet/ChangeLog,v 1.15 2007/12/26 07:54:47 drac Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlstarlet/ChangeLog,v 1.16 2009/06/02 09:57:09 flameeyes Exp $
+
+  02 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -xmlstarlet-1.0.1.ebuild:
+  Remove old version.
 
   26 Dec 2007; Samuli Suominen <drac@gentoo.org> xmlstarlet-1.0.1-r1.ebuild:
   amd64 stable wrt #202642
