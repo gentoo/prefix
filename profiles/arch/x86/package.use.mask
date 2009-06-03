@@ -34,4 +34,4 @@ dev-java/ibm-jdk-bin -alsa
 dev-java/ibm-jre-bin -alsa
 
 # Steve Dibb <beandog@gentoo.org> (29 Sept 2008)
-media-video/mplayer -cpudetection -custom-cpuopts -win32codecs -dxr3 -bindist -vdpau
+media-video/mplayer -cpudetection -custom-cpuopts -win32codecs -dxr3 -bindist -vdpau -nut

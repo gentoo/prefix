@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9855 2009/05/30 01:26:38 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9875 2009/06/03 01:13:07 ssuominen Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,38 @@
 
 #--- END OF EXAMPLES ---
 
+# Serkan Kaba <serkan@gentoo.org> (01 Jun 2009)
+# Last-rited Bug #272117
+# Hard depends on Java 1.4 (Bug #118291)
+dev-java/adaptx
+
+# Samuli Suominen <ssuominen@gentoo.org> (01 Jun 2009)
+# ARTS is obsolete, these ebuilds can't disable it.
+# Mask them for removal wrt #270575
+media-sound/creox
+media-sound/knob
+media-sound/yammi
+
+# Samuli Suominen <ssuominen@gentoo.org> (01 Jun 2009)
+# virtual/libffi needs to be keyworded before unmasking wrt #272046.
+x11-libs/gtk-server
+>=dev-libs/g-wrap-1.9.11
+>=dev-scheme/guile-gnome-platform-2.16.0
+>=gnustep-base/gnustep-base-1.18.0-r4
+
+# Torsten Veller <tove@gentoo.org> (31 May 2009)
+# IniConf.pm is going away, and will be replaced with
+# Config::IniFiles. Masked for removal.
+dev-perl/IniConf
+
+# Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org> (30 May 2009)
+# Development versions.
+=net-libs/gnutls-2.9*
+
+# Samuli Suominen <ssuominen@gentoo.org> (01 Jun 2009)
+# Masked for removal, bug 258919
+media-sound/kguitar
+
 # Jeremy Olexa <darkside@gentoo.org> (30 May 2009)
 # Masked for removal in 60 days, unmaintained. Binary package in /usr. bug
 # 240029
@@ -40,6 +72,22 @@ app-misc/cbtracker
 # Masked for removal in 60 days. Multiple bugs, doesn't build, version bump
 # pending, unmaintained. bug 265668
 sys-libs/libuser
+# These depend on libuser:
+app-admin/firstboot
+sys-apps/usermode
+# These depend on usermode:
+app-admin/authconfig
+app-admin/hwbrowser
+app-admin/system-config-date
+app-admin/system-config-display
+app-admin/system-config-httpd
+app-admin/system-config-keyboard
+app-admin/system-config-language
+app-admin/system-config-nfs
+app-admin/system-config-printer
+app-admin/system-config-samba
+app-admin/system-config-soundcard
+app-admin/system-config-users
 
 # Jeremy Olexa <darkside@gentoo.org> (30 May 2009)
 # Masked for removal in 60 days. Multiple bugs, upstream is dead, crashes with
@@ -84,7 +132,7 @@ virtual/perl-Encode
 perl-core/ExtUtils-MakeMaker
 virtual/perl-ExtUtils-MakeMaker
 
-# Federico Ferri <mescalinum@gentoo.org> (26 May 2008)
+# Federico Ferri <mescalinum@gentoo.org> (26 May 2009)
 # Deprecated cause depending on unmaintained dev-tcltk/otcl.
 # Everything being moved to 'abandonware' overlay.
 # Possible replacement: net-misc/gns3 (sunrise overlay)
@@ -93,7 +141,7 @@ virtual/perl-ExtUtils-MakeMaker
 net-analyzer/ns
 net-analyzer/nam
 
-# Federico Ferri <mescalinum@gentoo.org> (26 May 2008)
+# Federico Ferri <mescalinum@gentoo.org> (26 May 2009)
 # Unmaintained upstream.
 # Going for removal in ~30 days.
 # removal bug #271307
@@ -105,9 +153,10 @@ dev-tcltk/tclcl
 >=x11-libs/xcb-util-0.3.4
 =x11-wm/awesome-3.3*
 
-# Peter Alfredsen <loki_val@gentoo.org> (26 May 2009)
+# Peter Alfredsen <loki_val@gentoo.org> (01 June 2009)
 # Development version, Work-In-Progress
 =app-misc/tomboy-0.15*
+=media-sound/banshee-1.5*
 
 # Peter Volkov <pva@gentoo.org> (26 May 2009)
 # Force people to downgrade and use better version
@@ -134,10 +183,6 @@ dev-python/pycrash
 # Masked development/git sources
 =sys-kernel/openvz-sources-2.6.24*
 =sys-kernel/openvz-sources-2.6.27.9999
-
-# Diego E. Pettenò <flameeyes@gentoo.org> (17 May 2009)
-# Masked for testing (and it's beta version for now)
-=sys-devel/automake-1.11*
 
 # Serkan Kaba <serkan@gentoo.org> (17 May 2009)
 # Masked to allow smoother upgrade. Safe to remove after 1.0 goes stable
@@ -505,10 +550,6 @@ sys-apps/sreadahead
 # Breaks compilation of KDE4 packages - bug 263823
 =x11-proto/renderproto-0.9.3-r1
 
-# Steve Dibb <beandog@gentoo.org> (24 Mar 2009)
-# Live ebuild for testing / debugging
-~media-video/mplayer-9999
-
 # Marijn Schouten <hkBst@gentoo.org> (22 Mar 2009)
 # Masked for removal. Dead upstream, does not build anymore. Bug 152060.
 dev-scheme/guile-pg
@@ -670,11 +711,6 @@ app-misc/sdricoh_cs
 # Donnie Berkholz <dberkholz@gentoo.org> (12 Jan 2009)
 # Masked pending unmasking of guile-gnome-platform 2.16
 >=sci-chemistry/burrow-owl-1.4
-
-# Daniel Black <dragonheart@gentoo.org> (10 Jan 2009)
-# package masking to allow dependant packages to resolve
-# bug #253709
->=net-libs/gnutls-2.7.0
 
 # mask pending removal
 # Benedikt Böhm <hollow@gentoo.org> (10 Jan 2009)
@@ -858,14 +894,6 @@ net-irc/bitchx
 # User's who need to test these should unmask explicitly.
 =sys-fs/btrfs-9999
 =sys-fs/btrfs-progs-9999
-
-# Maintainer Needed <maintainer-needed@gentoo.org> (05 Jun 2008)
-# Masked for testing wrt #163724
-dev-libs/libffi
-x11-libs/gtk-server
-virtual/libffi
->=dev-libs/g-wrap-1.9.11
->=dev-scheme/guile-gnome-platform-2.16.0
 
 # Peter Alfredsen <loki_val@gentoo.org> (04 Jun 2008)
 # o Fails its own tests in horrendous ways (buuh!)
@@ -1268,15 +1296,6 @@ games-strategy/ufo2000
 # Please note that you need >=sys-apps/portage-2.1.2-r3 to be able to actually
 # use these versions by adding "**" for them in package.keywords.
 ~media-sound/amarok-1.4.9999
-
-# Diego Pettenò <flameeyes@gentoo.org> (25 Jan 2007)
-# Live Mercurial versions of ALSA packages.
-# These are needed for the people wanting to try newer kernel versions
-# when the support is broken in-kernel.
-# Please note that you need >=sys-apps/portage-2.1.2-r3 to be able to actually
-# use these versions by adding "**" for them in package.keywords.
-~media-sound/alsa-driver-9999
-~media-sound/alsa-headers-9999
 
 # Raúl Porcel <armin76@gentoo.org> (24 Jan 2007)
 # Mask cvs version of net-p2p/linuxdcpp

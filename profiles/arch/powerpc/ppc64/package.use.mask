@@ -1,3 +1,7 @@
+# Brent Baude <ranger@gentoo.org> (30 May 2009)
+# Masking prolog from dev-libs/ppl
+dev-libs/ppl	prolog
+
 # Brent Baude <ranger@gentoo.org> (05 May 2009)
 # Masking webkit from  libproxy due to TOC failure on webkit
 # and stupid 64bit toolchain.

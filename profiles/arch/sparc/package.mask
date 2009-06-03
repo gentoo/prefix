@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.mask,v 1.11 2009/02/06 16:44:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.mask,v 1.12 2009/06/01 17:13:12 fmccor Exp $
 
 # Raúl Porcel <armin76@gentoo.org> (06 Feb 2009)
 # mask these versions for a smooth upgrade of x11-libs/qt-4.4.2 wrt bug #248038.
@@ -22,9 +22,6 @@
 # gradm requires 64 bit support, which doesn't exist in this profile
 >sys-apps/gradm-2.0.1-r1
 
-# Gustavo Zacarias <gustavoz@gentoo.org>
-# To avoid odd toolchain mixups
-<dev-libs/libffi-3.4.3
 
 # Gustavo Zacarias <gustavoz@gentoo.org>
 # Broken, no way to test it, see bug #155887 and bug #186958

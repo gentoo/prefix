@@ -1,13 +1,54 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2711 2009/05/30 01:26:38 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2728 2009/06/03 01:13:07 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
 
-  01 Jun 2009; Fabian Groffen <grobian@gentoo.org> arch.list, profiles.desc:
-  I bootstrapped my first x64-macos instance, it's alive!
+  02 Jun 2009; Steve Dibb <beandog@gentoo.org> package.mask:
+  Remove mplayer, alsa-driver, alsa-headers live ebuilds from package.mask,
+  already removed keywords
+
+  02 Jun 2009; Bernard Cafarelli <voyageur@gentoo.org> package.mask:
+  Add new gnustep-base revision to virtual/libffi mask
+
+  01 Jun 2009; Peter Alfredsen <loki_val@gentoo.org> package.mask:
+  Add banshee-1.5* to WIP mask.
+
+  01 Jun 2009; Serkan Kaba <serkan@gentoo.org> package.mask:
+  Last-rited dev-java/adaptx
+
+  01 Jun 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
+  Add rdeps of sys-libs/libuser to masking notice.
+
+  01 Jun 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask creox, knob and yammi because they force arts wrt #270575.
+
+  01 Jun 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Unmask libffi and virtual wrt #163724
+
+  31 May 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask dev-perl/IniConf for removal
+
+  31 May 2009; Markus Meier <maekke@gentoo.org>
+  hardened/amd64/package.use.mask, hardened/linux/amd64/package.use.mask,
+  hardened/linux/x86/package.use.mask, hardened/x86/package.use.mask:
+  mask media-gfx/imagemagick[openmp] on hardened amd64/x86 profiles as it
+  requires >=sys-devel/gcc-4.3
+
+  31 May 2009; Mike Frysinger <vapier@gentoo.org> package.mask:
+  Automake-1.11 does not belong in p.mask.
+
+  30 May 2009; Steve Dibb <beandog@gentoo.org>
+  default-linux/amd64/package.use.mask, default-linux/x86/package.use.mask:
+  mask mplayer + libnut dep on all but x86/amd64
+
+  30 May 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask media-sound/kguitar for removal wrt #258919.
+
+  30 May 2009; Ben de Groot <yngwin@gentoo.org> package.mask:
+  Mask =sys-apps/hal-0.5.12_rc1-r5 as it breaks X with hal, bug 217837
 
   30 May 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   Add entries for treecleaner queue

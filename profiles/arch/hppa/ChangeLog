@@ -1,6 +1,13 @@
 # ChangeLog for Gentoo/hppa profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/ChangeLog,v 1.24 2009/05/12 14:53:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/hppa/ChangeLog,v 1.28 2009/06/02 18:45:22 jer Exp $
+
+  02 Jun 2009; Jeroen Roovers <jer@gentoo.org> +package.unmask:
+  Unmask sys-devel/gcc-4.4 for HPPA (bug #225917).
+
+  31 May 2009; Jeroen Roovers <jer@gentoo.org> package.use.mask:
+  Mask media-gfx/imagemagick[openmp] until we have a stable
+  sys-devel/gcc-4.3[openmp] (bug #225917).
 
   12 May 2009; Jeroen Roovers <jer@gentoo.org> package.use.mask:
   Mask dev-libs/ppl USE=prolog (bug #269556).

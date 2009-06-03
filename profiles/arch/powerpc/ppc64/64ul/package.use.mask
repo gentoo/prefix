@@ -1,3 +1,8 @@
+# Brent Baude <ranger@gentoo.org> (2 June 2009)
+# Masking lirc use 
+kde-base/kdeutils-meta lirc
+
+
 # Brent Baude <ranger@gentoo.org> (6  Feb 2009)
 # Masking solver/ocaml USE from kalzium to fix tree borkage
 
