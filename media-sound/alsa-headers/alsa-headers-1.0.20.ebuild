@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/alsa-headers-1.0.20.ebuild,v 1.1 2009/05/06 17:48:39 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/alsa-headers-1.0.20.ebuild,v 1.2 2009/06/02 17:15:06 beandog Exp $
 
 inherit eutils
 
@@ -18,6 +18,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
+RDEPEND=""
 
 RESTRICT="binchecks strip"
 
