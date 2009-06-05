@@ -10,7 +10,7 @@ SRC_URI="http://www.redellipse.net/code/downloads/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE="offensive elibc_glibc"
 
 DEPEND="app-text/recode"
@@ -42,6 +42,10 @@ src_unpack() {
 
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		sed -i -e 's:u_int:uint:g' util/strfile.h || die "sed strfile.h failed"
+	fi
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i -e 's/-DBSD_REGEX/-DPOSIX_REGEX/' Makefile || die "sed Makefile failed"
 	fi
 }
 
