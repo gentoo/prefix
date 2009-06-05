@@ -32,6 +32,9 @@
 
 #--- END OF EXAMPLES ---
 
+# Jeremy Olexa <darkside@gentoo.org> (05 Jun 2009)
+# Fails to build on multiple system types. bug 271424
+=dev-util/subversion-1.6.2
 
 # Fabian Groffen <grobian@gentoo.org> (05 Jun 2009)
 # {standard input}: Assembler messages:
