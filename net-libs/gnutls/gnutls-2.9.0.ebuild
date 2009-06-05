@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.9.0.ebuild,v 1.1 2009/05/28 17:33:30 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.9.0.ebuild,v 1.2 2009/06/01 10:18:16 arfrever Exp $
 
 EAPI="2"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnutls.org/"
 
 MINOR_VERSION="${PV#*.}"
 MINOR_VERSION="${MINOR_VERSION%.*}"
-if [[ $((MINOR_VERSION % 2)) == 0 ]] ; then
+if [[ $((MINOR_VERSION % 2)) == 0 ]]; then
 	#SRC_URI="ftp://ftp.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
 	SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
 else
@@ -23,7 +23,7 @@ unset MINOR_VERSION
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="bindist +cxx doc guile lzo nls zlib"
+IUSE="bindist +cxx doc examples guile lzo nls zlib"
 
 RDEPEND="dev-libs/libgpg-error
 	>=dev-libs/libgcrypt-1.4.0
@@ -46,14 +46,16 @@ pkg_setup() {
 }
 
 src_prepare() {
+	sed -e 's/imagesdir = $(infodir)/imagesdir = $(htmldir)/' -i doc/Makefile.am
+
 	epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
 
 	local dir
-	for dir in m4 lib/m4 libextra/m4 ; do
+	for dir in m4 lib/m4 libextra/m4; do
 		rm -f "${dir}/lt"* "${dir}/libtool.m4"
 	done
 	find . -name ltmain.sh -exec rm {} \;
-	for dir in . lib libextra ; do
+	for dir in . lib libextra; do
 		pushd "${dir}" > /dev/null
 		eautoreconf
 		popd > /dev/null
@@ -65,7 +67,7 @@ src_prepare() {
 src_configure() {
 	local myconf
 	use bindist && myconf="--without-lzo" || myconf="$(use_with lzo)"
-	econf  \
+	econf --htmldir="${EPREFIX}"/usr/share/doc/${P}/html \
 		$(use_enable cxx) \
 		$(use_enable doc gtk-doc) \
 		$(use_enable guile) \
@@ -79,8 +81,12 @@ src_install() {
 
 	dodoc AUTHORS ChangeLog NEWS README THANKS doc/TODO
 
-	if use doc ; then
-		dodoc doc/README.autoconf doc/tex/gnutls.ps
+	if use doc; then
+		dodoc doc/gnutls.{pdf,ps}
+		dohtml doc/gnutls.html
+	fi
+
+	if use examples; then
 		docinto examples
 		dodoc doc/examples/*.c
 	fi
