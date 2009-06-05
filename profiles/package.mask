@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9875 2009/06/03 01:13:07 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9887 2009/06/04 20:52:38 tampakrap Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,6 +31,19 @@
 
 #--- END OF EXAMPLES ---
 
+# Alexey Shvetsov <alexxy@gentoo.org> (04 Jun 2009)
+# Mask kde4 printing stuff
+>=kde-base/printer-applet-4.2.4
+>=kde-base/system-config-printer-kde-4.2.4
+
+# Steve Dibb <beandog@gentoo.org> (04 Jun 2009)
+# Drop hacked support for optional MIDI in ALSA
+# Keep masked until all reverse deps are fixed
+# See bug 272659 
+>=media-libs/alsa-lib-1.0.20-r1
+>=media-sound/alsa-utils-1.0.20-r1
+>=media-sound/alsa-tools-1.0.20-r1
+
 # Serkan Kaba <serkan@gentoo.org> (01 Jun 2009)
 # Last-rited Bug #272117
 # Hard depends on Java 1.4 (Bug #118291)
@@ -42,13 +55,6 @@ dev-java/adaptx
 media-sound/creox
 media-sound/knob
 media-sound/yammi
-
-# Samuli Suominen <ssuominen@gentoo.org> (01 Jun 2009)
-# virtual/libffi needs to be keyworded before unmasking wrt #272046.
-x11-libs/gtk-server
->=dev-libs/g-wrap-1.9.11
->=dev-scheme/guile-gnome-platform-2.16.0
->=gnustep-base/gnustep-base-1.18.0-r4
 
 # Torsten Veller <tove@gentoo.org> (31 May 2009)
 # IniConf.pm is going away, and will be replaced with
@@ -592,11 +598,6 @@ net-misc/dahdi-tools
 # Mask testing branch
 =x11-libs/fox-1.7*
 
-# Theo Chatzimichos <tampakrap@gentoo.org> (1 Mar 2009)
-# Mask Beta versions of KDevelop 4 and KDevplatform
->=dev-util/kdevelop-3.9.91
->=dev-util/kdevplatform-0.9.91
-
 # Jeffrey Gardner <je_fro@gentoo.org> (27 Feb 2009)
 # Masked while we switch to sci-chemistry/gchemutils
 # which now provides this package.
@@ -758,8 +759,8 @@ net-proxy/squirm
 >sys-process/audit-1.7.4
 
 # Jeroen Roovers <jer@gentoo.org> (5 Dec 2008)
-# Snapshots, alphas and betas of Opera may delete kittens
-=www-client/opera-10*
+# Snapshots and alphas of Opera may delete kittens
+=www-client/opera-10.00_pre43*
 
 # MATSUU Takuto <matsuu@gentoo.org> (19 Nov 2008)
 # Masked for bug #196340
@@ -1099,11 +1100,6 @@ sys-fs/redirfs
 dev-libs/liboobs
 >=app-admin/system-tools-backends-2
 >=app-admin/gnome-system-tools-2.20
-
-# Stefaan De Roeck <stefaan@gentoo.org> (24 Jan 2008)
-# mask cvs-pulled version as it may not be ready for public use
-# see bug #205829
->sys-libs/libraw1394-1.3.0
 
 # Michael Sterrett <mr_bones_@gentoo.org> (15 Jan 2008)
 # Security mask (bug #190835)

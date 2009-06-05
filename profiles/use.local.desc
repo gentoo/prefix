@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4515 2009/06/03 02:37:59 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4528 2009/06/04 16:47:43 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -226,6 +226,7 @@ app-emulation/libvirt:xen - Add support for app-emulation/xen based virtual mach
 app-emulation/mol:oldworld - Includes Macintosh's OldWorld support
 app-emulation/mol:pci - Experimental PCI proxy support
 app-emulation/mol:sheep - Support for the sheep net driver
+app-emulation/open-vm-tools:gtkmm - Enable gtkmm support
 app-emulation/open-vm-tools:unity - Enable host unity support
 app-emulation/pearpc:jit - Use the JITC-x86 CPU
 app-emulation/point2play:emerald - For people who are in the Transgaming Emerald Club
@@ -350,7 +351,9 @@ app-misc/gpsdrive:garmin - Adds specific support for Garmin GPS receivers (pre-2
 app-misc/gpsdrive:gdal - Include gdal and ogr support for format conversions.
 app-misc/gpsdrive:mapnik - Include mapnik support for custom map creation.
 app-misc/gpsdrive:scripts - Include some of the additional helper scripts.
+app-misc/gramps:mozembed - Use Mozilla-based rendering for geographical data view.
 app-misc/gramps:reports - All external software that is needed for graphical reports will be installed
+app-misc/gramps:webkit - Use Webkit-based rendering for geographical data view.
 app-misc/graphlcd-base:g15 - Add support for app-misc/g15daemon driver (e.g. Logitech G15 Keybord)
 app-misc/lcd-stuff:mpd - Add support for display of mpd controlled music (media-libs/libmpd)
 app-misc/lcd4linux:mpd - Add support for display of mpd controlled music (media-libs/libmpd)
@@ -419,6 +422,7 @@ app-office/lyx:docbook - Add support for docbook export
 app-office/lyx:dot - Add support for DOT import (media-gfx/graphviz) 
 app-office/lyx:html - Add support for HTML import
 app-office/lyx:monolithic-build - This should speed up compilation significantly when you have enough RAM (>600 MB)
+app-office/lyx:rcs - Add support for revision control via app-text/rcs
 app-office/lyx:rtf - Add support for RTF import/export packages
 app-office/mozilla-sunbird:moznopango - Disable pango during runtime
 app-office/openoffice:binfilter - Enable support for legacy StarOffice 5.x and earlier file formats
@@ -795,6 +799,7 @@ dev-php5/php-gtk:mozembed - Enable GtkMozembed support
 dev-php5/php-gtk:scintilla - Enable Scintilla support
 dev-python/PyQt4:X - Build the QtGui and QtDesigner modules
 dev-python/PyQt4:assistant - Build the QtHelp and QtAssistant modules
+dev-python/PyQt4:kde -  Select media-sound/phonon as phonon variant needed for kde 
 dev-python/PyQt4:opengl - Build the QtOpenGL module
 dev-python/PyQt4:phonon - Build the phonon module
 dev-python/PyQt4:qt3support - Enable the Qt3Support libraries for Qt4
@@ -846,6 +851,7 @@ dev-ruby/ruby-sdl:mixer - Enable media-libs/sdl-mixer support
 dev-ruby/ruby-sdl:sge - Enable sdl-sge support
 dev-ruby/rubygems:server - Install support for the rubygems server
 dev-ruby/sqlite3-ruby:swig - Use dev-lang/swig to generate bindings
+dev-scheme/bigloo:bee - Bigloo integrated development environment
 dev-scheme/gauche-gl:cg - Enable NVidia Cg binding
 dev-scheme/gauche-gtk:glgd - Enable GL graph draw
 dev-scheme/guile:debug-freelist - Include garbage collector freelist debugging code
@@ -916,7 +922,8 @@ dev-util/qt-creator:debugger - enable debugger plugin
 dev-util/qt-creator:designer - enable designer plugin
 dev-util/qt-creator:fakevim - enable vim-like key bindings plugin
 dev-util/qt-creator:git - enable git plugin
-dev-util/qt-creator:perforce - enable perforce software configuration manager plugin
+dev-util/qt-creator:kde -  Select media-sound/phonon as phonon variant needed for kde 
+dev-util/qt-creator:perforce -  enable perforce software configuration manager plugin 
 dev-util/qt-creator:subversion - enable subersion plugin
 dev-util/radare:gui -  Enable the graphical user interface of radare (broken) 
 dev-util/strace:aio - Enable libaio support
@@ -1441,7 +1448,6 @@ media-plugins/audacious-plugins:adplug - Build with AdPlug (Adlib sound card emu
 media-plugins/audacious-plugins:cdaudio - Enable cd audio playback support
 media-plugins/audacious-plugins:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
 media-plugins/audacious-plugins:icecast - Support for Icecast2 streaming
-media-plugins/audacious-plugins:mtp - Build with Media Transfer Protocol music upload support
 media-plugins/audacious-plugins:projectm - Build with ProjectM visualization
 media-plugins/audacious-plugins:scrobbler - Build with scrobbler/LastFM submission support
 media-plugins/audacious-plugins:sid - Build with SID (Commodore 64 Audio) support
@@ -1485,7 +1491,6 @@ media-sound/amarok:daap -  Enable the scripts for music sharing through DAAP. Th
 media-sound/amarok:ifp - Enable support for iRiver devices access through libifp
 media-sound/amarok:mp3tunes - Enable mp3tunes integration
 media-sound/amarok:mp4 -  Build the TagLib plugin for writing tags in Mp4 container files (m4a). Please note that by enabling this USE flag, the resulting package will not be redistributable, as it links to media-libs/libmp4v2, distributed under a GPL-incompatible license. 
-media-sound/amarok:mtp - Enable support for libMTP (Plays4Sure) devices access through libmtp
 media-sound/amarok:njb - Enable support for NJB (Creative) devices access through libnjb
 media-sound/amarok:python -  Install the Amarok scripts written in Python, depending on dev-python/PyQt. At the moment the only script installed by this flag is the webcontrol script. 
 media-sound/amarok:real -  Build the Helix engine for Amarok, linked against media-video/realplayer. This is an alternative engine to the xine one, which supports a different set of formats. Only available for x86 architecture as it uses the binary version of RealPlayer. Plase note that by enabling this USE flag, the resulting package will not be redistributable, as it links to the non-GPL compatible RealPlayer. 
@@ -1508,7 +1513,6 @@ media-sound/audacity:vamp - Enables vamp plugins support (Audio analysing plugin
 media-sound/banshee:boo - Use external Boo instead of the bundled one
 media-sound/banshee:daap - Build with Daap support
 media-sound/banshee:karma - Build with karma support
-media-sound/banshee:mtp - Build with Media Transfer Protocol support
 media-sound/banshee:podcast - Build with podcasting support
 media-sound/bmpx:sid - Build with SID (Commodore 64 Audio) support
 media-sound/cmus:mp4 - enable mp4 decoding
@@ -1520,7 +1524,6 @@ media-sound/decibel-audio-player:cdaudio - Adds support for CD audio playback an
 media-sound/dir2ogg:wma - Add support for wma files through mplayer
 media-sound/esound:static-libs - Compile static archives
 media-sound/exaile:libsexy - Enable libsexy support
-media-sound/exaile:mtp - Enable libmtp support
 media-sound/fapg:xspf - Enable support for saving XSPF playlists.
 media-sound/freewheeling:fluidsynth - compile with support for fluidsynth
 media-sound/gimmix:cover - Enable cover art fetching
@@ -1601,7 +1604,6 @@ media-sound/rezound:16bittmp - Use 16bit temporary files (default 32bit float), 
 media-sound/rezound:soundtouch - compile with support for soundtouch
 media-sound/rhythmbox:brasero - Enable CD burning via app-cdr/brasero rather than gnome-extra/nautilus-cd-burner
 media-sound/rhythmbox:daap - Enable support for local network music sharing via daap
-media-sound/rhythmbox:mtp - Enable support for MTP devices
 media-sound/rosegarden:dssi - Enable support for DSSI Soft Synth Interface
 media-sound/rubyripper:cli - Build command line interface rubyripper
 media-sound/rubyripper:normalize - Add support for normalizing audio file volume levels
@@ -1758,7 +1760,6 @@ media-video/mplayer:pvr - Enable Video4Linux2 MPEG PVR
 media-video/mplayer:radio - Enable V4L2 radio interface and support
 media-video/mplayer:rar - Enable Unique RAR File Library
 media-video/mplayer:real - Adds real audo/video support
-media-video/mplayer:realcodecs - External Real Player binary codec support (UNSUPPORTED)
 media-video/mplayer:rtc - Enables usage of the linux real time clock. The alternative is software emulation of rtc
 media-video/mplayer:schroedinger - Enable Dirac video support (an advanced royalty-free video compression format) via libschroedinger (high-speed implementation in C of the Dirac codec).
 media-video/mplayer:shm - Enable support for shm
@@ -1829,6 +1830,7 @@ media-video/vdr:mainmenuhooks - Allows to replace main menu entries by some spec
 media-video/vdr:menuorg - Enables support for the menuorg-plugin
 media-video/vdr:noepg - Adds code to selectively disable epg-reception for specific channels
 media-video/vdr:osdmaxitems - Support for text2skin
+media-video/vdr:parentalrating - Support Parental Rating
 media-video/vdr:pinplugin - Support for pin plugin
 media-video/vdr:rotor - Enable support for plugin vdr-rotor for dish-positioner.
 media-video/vdr:settime - set system time per script instead of via syscal
@@ -1866,7 +1868,6 @@ media-video/vlc:libgcrypt - Enables cryptography support via libgcrypt.
 media-video/vlc:libsysfs - Get user key from firewire connected iPod via libsysfs.
 media-video/vlc:libv4l2 - Enables Libv4l2 Video4Linux2 support (for conversion from various video formats to standard ones, needed to use v4l2 devices with strange formats).
 media-video/vlc:live - Enables LIVE.com support.
-media-video/vlc:mtp - Enables MTP devices support.
 media-video/vlc:optimisememory - Enable optimisation for memory rather than performance.
 media-video/vlc:pda - Builds a GTK+ interface suitable for PDA devices.
 media-video/vlc:pvr - Enables PVR cards access module.
@@ -2270,7 +2271,7 @@ net-misc/directvnc:mouse - Adds mouse support
 net-misc/drivel:rhythmbox - Enables support for currently playing song in rhythmbox
 net-misc/dropbear:bsdpty - Add support for legacy BSD pty's rather than dynamic UNIX pty's -- do not use this flag unless you are absolutely sure you actually want it
 net-misc/dropbear:multicall - Build all the programs as one little binary (to save space)
-net-misc/freenet6:radvd - Enable support for net-misc/radvd
+net-misc/gateway6:radvd - Enable support for net-misc/radvd
 net-misc/gwget:epiphany - Build epiphany extensions
 net-misc/hamachi:pentium - Add support for older Pentium based systems
 net-misc/htbinit:esfq - Add support for Enhanced Stochastic Fairness queueing discipline.
@@ -2966,6 +2967,7 @@ x11-libs/libqxt:web -  Enable web support using dev-libs/fcgi
 x11-libs/vte:nowheelscroll - Disable annoying mouse wheel is arrow up/down behaviour
 x11-libs/qt:immqt - Enable binary incompatible version of immodule for Qt
 x11-libs/qt:immqt-bc - Enable binary compatible version of immodule for Qt
+x11-libs/qt:kde - Select media-sound/phonon as phonon variant needed for kde
 x11-libs/qt:qt3support - Enable the Qt3Support libraries for Qt4
 x11-libs/qt-assistant:webkit -  Enable x11-libs/qt-webkit support, for more sophisticated online help display using webkit's HTML renderer. 
 x11-libs/qt-core:glib - Enable dev-libs/glib eventloop support
@@ -2975,8 +2977,10 @@ x11-libs/qt-gui:gtkstyle -  Build the Qt-GTK+ style, which integrates Qt4 apps w
 x11-libs/qt-gui:qt3support - Enable the Qt3Support libraries for Qt4. Note that this does not mean you can compile pure Qt3 programs with Qt4. 
 x11-libs/qt-gui:raster -  Use the alternative raster graphicssystem as default rendering engine 
 x11-libs/qt-opengl:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-qt3support:kde -  Select media-sound/phonon as phonon variant needed for kde 
 x11-libs/qt-qt3support:phonon -  Enable phonon configuration dialog in qtconfig 
 x11-libs/qt-sql:qt3support - Enable the Qt3Support libraries for Qt4
+x11-libs/qt-webkit:kde -  Select media-sound/phonon as phonon variant needed for kde 
 x11-libs/vte:glade - Provide integration with dev-util/glade.
 x11-libs/wxGTK:gnome -  Use gnome-base/libgnomeprintui for printing tasks. 
 x11-libs/wxGTK:gstreamer -  Enable the wxMediaCtrl class for playing audio and video through gstreamer. 

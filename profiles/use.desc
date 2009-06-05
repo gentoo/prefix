@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.415 2009/05/16 14:09:05 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.417 2009/06/04 10:57:11 scarabeus Exp $
 
 # Keep them sorted
 
@@ -144,10 +144,10 @@ gtk - Adds support for x11-libs/gtk+ (The GIMP Toolkit)
 gtkhtml - Adds support for gnome-extra/gtkhtml
 guile - Adds support for the guile Scheme interpreter
 hal - Enable Hardware Abstraction Layer (HAL) support
+handbook - Enable handbooks generation for KDE4.
 hardened - activate default security enhancements for toolchain (gcc, glibc, binutils)
 hddtemp - Enable monitoring of hdd temperature (app-admin/hddtemp)
 hdf5 - Adds support for the Hierarchical Data Format v5
-htmlhandbook - Enable HTML handbooks generation for KDE4.
 ibm - Add support for IBM ppc64 specific systems
 iconv - Enable support for the iconv character set conversion library
 icq - Enable ICQ IM protocol support
@@ -230,6 +230,7 @@ mplayer - Enable mplayer support for playback or encoding
 msn - Enable MSN Messenger IM protocol support
 msql - Adds support for the MSQL database server
 mssql - Adds support for Microsoft SQL Server database
+mtp - Enable support for Media Transfer Protocol
 mule - Adds multi-language support to XEmacs
 multilib - On 64bit systems, if you want to be able to compile 32bit and 64bit binaries
 musepack - Enable support for the musepack audio codec
