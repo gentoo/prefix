@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/gtk2-perl
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/gtk2-perl/ChangeLog,v 1.104 2009/02/15 08:33:27 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/gtk2-perl/ChangeLog,v 1.105 2009/06/03 15:01:04 tove Exp $
+
+  03 Jun 2009; Torsten Veller <tove@gentoo.org> -gtk2-perl-1.201.ebuild:
+  Cleanup
 
 *gtk2-perl-1.203 (15 Feb 2009)
 
