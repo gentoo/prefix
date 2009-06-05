@@ -6,5 +6,8 @@
     <flag name='phonon'>
       Enable phonon configuration dialog in qtconfig
     </flag>
+    <flag name='kde'>
+      Select <pkg>media-sound/phonon</pkg> as phonon variant needed for kde
+    </flag>
   </use>
 </pkgmetadata>
