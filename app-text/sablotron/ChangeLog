@@ -1,6 +1,9 @@
 # ChangeLog for app-text/sablotron
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sablotron/ChangeLog,v 1.59 2009/06/02 13:24:36 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/sablotron/ChangeLog,v 1.60 2009/06/03 20:16:47 maekke Exp $
+
+  03 Jun 2009; Markus Meier <maekke@gentoo.org> sablotron-1.0.3.ebuild:
+  amd64/x86 stable, bug #272244
 
   02 Jun 2009; Ferris McCormick <fmccor@gentoo.org> sablotron-1.0.3.ebuild:
   Sparc stable, Bug #272244.
