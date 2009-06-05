@@ -1,6 +1,20 @@
 # ChangeLog for dev-libs/xmlrpc-c
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.87 2009/05/17 14:08:49 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.91 2009/06/01 16:55:16 nixnut Exp $
+
+  01 Jun 2009; nixnut <nixnut@gentoo.org> xmlrpc-c-1.18.02.ebuild:
+  ppc stable #271986
+
+  31 May 2009; Markus Meier <maekke@gentoo.org> xmlrpc-c-1.18.02.ebuild:
+  amd64/x86 stable, bug #271986
+
+  31 May 2009; Brent Baude <ranger@gentoo.org> xmlrpc-c-1.18.02.ebuild:
+  Marking xmlrpc-c-1.18.02 ppc64 for bug 271986
+
+  31 May 2009; Peter Alfredsen <loki_val@gentoo.org>
+  xmlrpc-c-1.18.02.ebuild:
+  Set LC_ALL=C and LANG=C w.r.t. bug 255440. Use as seperator in sed to not
+  fail with legitimate CFLAGS.
 
   17 May 2009; Peter Alfredsen <loki_val@gentoo.org>
   -xmlrpc-c-1.14.07-r1.ebuild, -files/xmlrpc-c-1.14.07-abyss-disable.patch,
