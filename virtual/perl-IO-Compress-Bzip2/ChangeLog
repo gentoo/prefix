@@ -1,6 +1,12 @@
 # ChangeLog for virtual/perl-IO-Compress-Bzip2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO-Compress-Bzip2/ChangeLog,v 1.4 2009/05/05 14:08:10 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO-Compress-Bzip2/ChangeLog,v 1.5 2009/06/03 22:24:36 tove Exp $
+
+*perl-IO-Compress-Bzip2-2.020 (03 Jun 2009)
+
+  03 Jun 2009; Torsten Veller <tove@gentoo.org>
+  +perl-IO-Compress-Bzip2-2.020.ebuild:
+  Version bump
 
   05 May 2009; Torsten Veller <tove@gentoo.org>
   perl-IO-Compress-Bzip2-2.019.ebuild:
