@@ -23,3 +23,5 @@ move lxde-base/lxsession-lite lxde-base/lxsession
 move app-office/kmm_banking app-office/kmm_kbanking
 slotmove =x11-misc/basket-1.0.3.1 0 3.5
 slotmove =kde-misc/dolphin-0.8.2-r1 0 3.5
+move x11-themes/sylpheed-iconset x11-themes/claws-mail-themes
+move app-misc/screen-profiles app-misc/byobu
