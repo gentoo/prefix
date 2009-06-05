@@ -220,9 +220,6 @@ src_unpack() {
 
 	unpack ooo-build-${MY_PV}.tar.gz
 
-	# Prefix patch
-	epatch "${FILESDIR}/ooo-build-3.0.1.2-prefix.patch"
-
 }
 
 src_prepare() {
@@ -237,6 +234,9 @@ src_prepare() {
 	cp -f "${FILESDIR}/base64.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/buildfix-gcc44.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/solenv.workaround-for-the-kde-mess.diff" "${S}/patches/hotfixes" || die
+
+	# Prefix patch
+	epatch "${FILESDIR}/ooo-build-3.0.1.2-prefix.patch"
 
 	#Use flag checks
 	if use java ; then
@@ -320,6 +320,7 @@ src_configure() {
 	cd "${S}"
 	./configure --with-distro="Gentoo" \
 		--prefix="${EPREFIX}"/usr \
+		--sysconfdir="${EPREFIX}"/etc \
 		--with-arch="${ARCH}" \
 		--with-srcdir="${DISTDIR}" \
 		--with-lang="${LINGUAS_OOO}" \
