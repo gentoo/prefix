@@ -1,6 +1,20 @@
 # ChangeLog for app-doc/doxygen
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.157 2009/02/04 14:53:34 yngwin Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.161 2009/06/01 15:28:44 fmccor Exp $
+
+  01 Jun 2009; Ferris McCormick <fmccor@gentoo.org> doxygen-1.5.8.ebuild:
+  Sparc stable, Bug #263641, required for Bug #271815.
+
+  31 May 2009; Markus Meier <maekke@gentoo.org> doxygen-1.5.8.ebuild:
+  amd64/x86 stable, bug #271815
+
+  31 May 2009; nixnut <nixnut@gentoo.org> doxygen-1.5.8.ebuild:
+  ppc stable #271815
+
+  30 May 2009; Ulrich Mueller <ulm@gentoo.org> doxygen-1.4.7.ebuild,
+  doxygen-1.5.4.ebuild, doxygen-1.5.5.ebuild, doxygen-1.5.6.ebuild,
+  doxygen-1.5.7.1.ebuild, doxygen-1.5.8.ebuild:
+  Remove app-text/tetex from dependencies, bug 227443.
 
   04 Feb 2009; Ben de Groot <yngwin@gentoo.org> doxygen-1.5.8:
   Correct qt:4 dep to use split deps
@@ -28,7 +42,7 @@
   Updated latex depends for bugs 237960 and 241350 since the virtual does
   not seem to be working very well for people.  Added several deps for
   texlive; thanks to mephinet <mephinet@gmx.net> and <gengor@gentoo.org>
-  for helping to track down some of the needed depends (this latex/tetex 
+  for helping to track down some of the needed depends (this latex/tetex
   thing is painful).
 
   02 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
@@ -241,7 +255,7 @@
   +files/1.4.7/06_all_qtools.patch, +doxygen-1.4.7.ebuild:
   Version bump for bug #137283, need arch testing and graphviz answers (see
   bug #134575) before package cleanup can occur.  Filed bug #138937 on the
-  doxygen stablization issue.  Thanks to Adam Piatyszek for providing the 
+  doxygen stablization issue.  Thanks to Adam Piatyszek for providing the
   updated ebuild and patches.
 
   24 Jun 2006; Doug Goldstein <cardoe@gentoo.org> doxygen-1.4.2.ebuild,
@@ -395,7 +409,7 @@
   30 May 2005; Steve Arnold <nerdboy@gentoo.org>
   +files/doxygen-1.4.3-cp1251.patch, doxygen-1.4.2.ebuild,
   +doxygen-1.4.3.ebuild:
-  new version for bug 92789, patch for bug 85668, and stable bumps on 
+  new version for bug 92789, patch for bug 85668, and stable bumps on
   covered arches. Also added brute-force workaround for bug 89075.
 
   15 May 2005; Fernando J. Pereda <ferdy@gentoo.org> doxygen-1.4.1.ebuild:
@@ -669,11 +683,11 @@
 
   17 Apr 2002; Ryan Phillips <rphillips@gentoo.org> ChangeLog :
   Copied 1.2.13.1 ebuild over for 1.2.15 (#1786)
-  
+
 *doxygen-1.2.13.1 (1 Feb 2002)
 
   1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
-  
+
   Added initial ChangeLog which should be updated whenever the package is
   updated in any way. This changelog is targetted to users. This means that the
   comments should well explained and written in clean English. The details about
