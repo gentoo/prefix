@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.6-r2.ebuild,v 1.12 2009/04/26 19:31:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-2.0.ebuild,v 1.1 2009/06/04 09:37:59 vapier Exp $
 
 #
 # don't monkey with this ebuild unless contacting portage devs.
@@ -31,14 +31,6 @@ sandbox_death_notice() {
 	ewarn "FEATURES=-sandbox emerge sandbox"
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-disable-qa-static.patch
-	epatch "${FILESDIR}"/${P}-disable-pthread.patch
-	epatch "${FILESDIR}"/0001-libsandbox-handle-more-at-functions.patch
-}
-
 src_compile() {
 	filter-lfs-flags #90228
 
@@ -56,7 +48,6 @@ src_compile() {
 		emake || die
 	done
 	ABI=${OABI}
-	CHOST=${OCHOST}
 }
 
 src_test() {
@@ -74,7 +65,7 @@ src_install() {
 	for ABI in $(get_install_abis) ; do
 		cd "${WORKDIR}/build-${ABI}"
 		einfo "Installing sandbox for ABI=${ABI}..."
-		make DESTDIR="${D}" install || die "make install failed for ${ABI}"
+		emake DESTDIR="${D}" install || die "make install failed for ${ABI}"
 	done
 	ABI=${OABI}
 
