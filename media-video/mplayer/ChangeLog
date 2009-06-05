@@ -1,6 +1,62 @@
 # ChangeLog for media-video/mplayer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.633 2009/05/29 02:17:59 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.644 2009/06/04 16:40:43 beandog Exp $
+
+  04 Jun 2009; Steve Dibb <beandog@gentoo.org> metadata.xml:
+  Remove old realcodecs use flag
+
+  04 Jun 2009; Steve Dibb <beandog@gentoo.org>
+  mplayer-1.0_rc2_p28450.ebuild, mplayer-1.0_rc2_p20090226.ebuild,
+  mplayer-1.0_rc2_p20090322.ebuild, mplayer-1.0_rc2_p20090530.ebuild,
+  mplayer-9999.ebuild:
+  Install input.conf and menu.conf in the correct location
+
+  03 Jun 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc2_p20090322.ebuild, mplayer-1.0_rc2_p20090530.ebuild,
+  -files/mplayer-1.0_rc2_p20090322-fix-mp3lib-use-local-labels.patch,
+  +files/mplayer-1.0_rc2_p20090530-fix-mp3lib-use-local-labels-2.patch:
+  Modify fix-mp3lib-use-local-labels to use jump 0b and 1b instead of 0 and
+  1 wrt #271906, thanks to Luca Barbato. Remove the broken patch from old
+  version.
+
+  02 Jun 2009; Steve Dibb <beandog@gentoo.org> mplayer-9999.ebuild:
+  Fix skin SRC_URI; Display live ebuild einfo only on live ebuild
+
+  02 Jun 2009; Steve Dibb <beandog@gentoo.org>
+  mplayer-1.0_rc2_p28058-r1.ebuild, mplayer-1.0_rc2_p28288.ebuild,
+  mplayer-1.0_rc2_p28450.ebuild, mplayer-1.0_rc2_p20090226.ebuild,
+  mplayer-1.0_rc2_p20090322.ebuild, mplayer-1.0_rc2_p20090530.ebuild:
+  Update SRC_URI for Blue skin, bug 272249
+
+  01 Jun 2009; Ben de Groot <yngwin@gentoo.org>
+  mplayer-1.0_rc2_p20090530.ebuild:
+  Fix versioning (bug 263720) and drop false message about being an
+  unsupported live ebuild
+
+  31 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc2_p20090530.ebuild:
+  Samuli is not an happy developer when broken patches are introduced. Fix
+  MP3 playing, again.
+
+  31 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  mplayer-1.0_rc2_p20090530.ebuild:
+  Diego is not an happy developer when his patches are dropped. Fix build,
+  once again.
+
+  30 May 2009; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Update live ebuild. Reorder the DEPS to be alphabetic and more logicaly
+  separated. Update ebuild to work as snapshot version if properly renamed.
+  Minor whitespace updates. Use src_prepare function.
+
+*mplayer-1.0_rc2_p20090530 (30 May 2009)
+
+  30 May 2009; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0_rc2_p20090530.ebuild:
+  Snapshot bump; Backport ebuild changes from live ebuild; drop arts
+
+  30 May 2009; Steve Dibb <beandog@gentoo.org> mplayer-9999.ebuild,
+  metadata.xml:
+  Fix skin install, bug 271904; change gtk use flag to gmplayer
 
   29 May 2009; Steve Dibb <beandog@gentoo.org>
   mplayer-1.0_rc2_p28450.ebuild, mplayer-9999.ebuild, metadata.xml:

@@ -20,6 +20,7 @@
     <flag name="enca">Enables support for charset discovery and conversion</flag>
     <flag name="faac">Use external faac library for AAC encoding</flag>
     <flag name="faad">Use external faad library for AAC decoding</flag>
+	<flag name="gmplayer">Build gmplayer, a GTK+ MPlayer gui (UNSUPPORTED)</flag>
 	<flag name="gtk">Build gmplayer, a GTK+ MPlayer gui (UNSUPPORTED)</flag>
     <flag name="live">Enables live.com streaming media support</flag>
     <flag name="md5sum">Enables md5sum video output</flag>
@@ -35,7 +36,6 @@
     <flag name="radio">Enable V4L2 radio interface and support</flag>
     <flag name="rar">Enable Unique RAR File Library</flag>
     <flag name="real">Adds real audo/video support</flag>
-    <flag name="realcodecs">External Real Player binary codec support (UNSUPPORTED)</flag>
     <flag name="rtc">Enables usage of the linux real time clock. The alternative is software emulation of rtc</flag>
     <flag name="schroedinger">Enable Dirac video support (an advanced royalty-free video compression format) via libschroedinger (high-speed implementation in C of the Dirac codec).</flag>
     <flag name="shm">Enable support for shm</flag>
