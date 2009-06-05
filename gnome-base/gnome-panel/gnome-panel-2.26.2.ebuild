@@ -1,10 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.26.2.ebuild,v 1.1 2009/05/28 22:20:56 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.26.2.ebuild,v 1.2 2009/06/03 23:09:10 eva Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
-WANT_AUTOMAKE="1.10"
 
 inherit autotools eutils gnome2
 
@@ -93,7 +92,10 @@ src_prepare() {
 			-i gtk-doc.make || die "sed 2 failed"
 	fi
 
-	AT_M4DIR="m4" eautomake
+	# Make it libtool-1 compatible, bug #271652
+	rm -v m4/lt* m4/libtool.m4 || die "removing libtool macros failed"
+
+	AT_M4DIR="m4" eautoreconf
 }
 
 pkg_postinst() {
