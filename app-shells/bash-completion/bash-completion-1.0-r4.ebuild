@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-1.0-r2.ebuild,v 1.1 2009/04/12 04:25:40 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-1.0-r4.ebuild,v 1.1 2009/06/03 22:23:07 darkside Exp $
 
 EAPI="2"
 
@@ -22,12 +22,16 @@ RDEPEND="app-admin/eselect
 		>=app-shells/bash-2.05a
 		app-shells/zsh
 	)
-	sys-apps/miscfiles"
+	sys-apps/miscfiles
+	!<=games-misc/cowsay-3.03-r1"
 PDEPEND="app-shells/gentoo-bashcomp"
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.0-gentoo.patch"
 	epatch "${FILESDIR}/${PN}-1.0-bash4.patch"
+	# module-init-tools-3.8 changed locations
+	sed -i 's:/sbin/lsmod:/bin/lsmod:' bash_completion
+
 }
 
 src_install() {
