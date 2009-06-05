@@ -1,6 +1,12 @@
 # ChangeLog for app-emacs/cedet
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.44 2009/04/14 09:52:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.45 2009/06/03 16:18:02 fauli Exp $
+
+  03 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  -files/1.0_pre3-eieio-tests-gentoo.patch,
+  -files/1.0_pre4-semantic-build.patch, -files/60cedet-gentoo.el,
+  -cedet-1.0_pre4-r2.ebuild:
+  clean up
 
   14 Apr 2009; Raúl Porcel <armin76@gentoo.org> cedet-1.0_pre6.ebuild:
   x86 stable wrt #264792
