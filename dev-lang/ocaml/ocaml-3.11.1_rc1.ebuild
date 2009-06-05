@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.1_rc0.ebuild,v 1.1 2009/05/19 23:12:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.1_rc1.ebuild,v 1.1 2009/06/03 11:53:00 aballier Exp $
 
 EAPI="1"
 
@@ -9,7 +9,7 @@ inherit flag-o-matic eutils multilib versionator toolchain-funcs
 MY_P="${P/_/+}"
 DESCRIPTION="Fast modern type-inferring functional programming language descended from the ML family"
 HOMEPAGE="http://www.ocaml.org/"
-SRC_URI="http://caml.inria.fr/pub/distrib/ocaml-$( get_version_component_range 1-2)/${MY_P}.tar.gz"
+SRC_URI="ftp://ftp.inria.fr/INRIA/cristal/ocaml/ocaml-$( get_version_component_range 1-2)/${MY_P}.tar.gz"
 
 LICENSE="QPL-1.0 LGPL-2"
 SLOT="0"
@@ -25,7 +25,7 @@ RDEPEND="${DEPEND}"
 PDEPEND="emacs? ( app-emacs/ocaml-mode )
 	xemacs? ( app-xemacs/ocaml )"
 
-S="${WORKDIR}/${P/_/}"
+S="${WORKDIR}/${MY_P}"
 pkg_setup() {
 	# dev-lang/ocaml creates its own objects but calls gcc for linking, which will
 	# results in relocations if gcc wants to create a PIE executable
