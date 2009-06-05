@@ -1,6 +1,15 @@
 # ChangeLog for x11-themes/gtk-engines-nimbus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.19 2009/02/12 13:06:33 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.21 2009/06/01 11:53:44 maekke Exp $
+
+  01 Jun 2009; Markus Meier <maekke@gentoo.org>
+  gtk-engines-nimbus-0.1.2.ebuild:
+  amd64/x86 stable, bug #270824
+
+  31 May 2009; Samuli Suominen <ssuominen@gentoo.org>
+  gtk-engines-nimbus-0.1.2.ebuild:
+  Fix src_test because of missing file in POTFILES.skip and disable static
+  libs which doesn't make sense for engine.
 
 *gtk-engines-nimbus-0.1.2 (12 Feb 2009)
 
