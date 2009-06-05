@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/xvid
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.108 2009/05/29 19:29:28 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.112 2009/06/02 16:04:26 armin76 Exp $
+
+  02 Jun 2009; Raúl Porcel <armin76@gentoo.org> xvid-1.2.2-r1.ebuild:
+  alpha/arm/ia64/sparc stable wrt #271786
+
+  31 May 2009; Markus Meier <maekke@gentoo.org> xvid-1.2.2-r1.ebuild:
+  amd64/x86 stable, bug #271786
+
+  30 May 2009; Jeroen Roovers <jer@gentoo.org> xvid-1.2.2-r1.ebuild:
+  Stable for HPPA (bug #271786).
+
+  30 May 2009; Brent Baude <ranger@gentoo.org> xvid-1.2.2-r1.ebuild:
+  Marking xvid-1.2.2-r1 ppc64 and ppc for bug 271786
 
   29 May 2009; Samuli Suominen <ssuominen@gentoo.org> xvid-1.2.2-r1.ebuild:
   It seems xvid-1.2.2-no_execstacks.patch isn't doing everything properly,
