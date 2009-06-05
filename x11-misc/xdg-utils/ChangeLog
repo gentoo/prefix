@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xdg-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.51 2009/06/01 14:19:52 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.52 2009/06/03 13:50:06 ranger Exp $
+
+  03 Jun 2009; Brent Baude <ranger@gentoo.org> xdg-utils-1.0.2-r3.ebuild:
+  Marking xdg-utils-1.0.2-r3 ppc64 stable for bug 271889
 
   31 May 2009; Thomas Anderson <gentoofan23@gentoo.org>
   xdg-utils-1.0.2-r3.ebuild:
