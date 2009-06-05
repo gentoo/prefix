@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.64 2009/04/27 13:11:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.65 2009/06/04 13:18:05 ssuominen Exp $
+
+*pygobject-2.16.1-r1 (04 Jun 2009)
+
+  04 Jun 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +pygobject-2.16.1-r1.ebuild:
+  Use virtual/libffi wrt #255488.
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> pygobject-2.16.1:
   Stable for HPPA (bug #260063).
