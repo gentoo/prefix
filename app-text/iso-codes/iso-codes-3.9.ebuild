@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/iso-codes-3.8.ebuild,v 1.3 2009/06/04 17:30:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/iso-codes-3.9.ebuild,v 1.1 2009/06/03 22:28:09 eva Exp $
 
 EAPI=2
 

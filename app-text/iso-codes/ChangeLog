@@ -1,6 +1,17 @@
 # ChangeLog for app-text/iso-codes
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.68 2009/04/13 11:31:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.71 2009/06/04 17:30:11 armin76 Exp $
+
+  04 Jun 2009; Raúl Porcel <armin76@gentoo.org> iso-codes-3.8.ebuild:
+  alpha/arm/ia64/sh/x86 stable wrt #272502
+
+  03 Jun 2009; Ferris McCormick <fmccor@gentoo.org> iso-codes-3.8.ebuild:
+  Sparc stable, Bug #272502.
+
+*iso-codes-3.9 (03 Jun 2009)
+
+  03 Jun 2009; Gilles Dartiguelongue <eva@gentoo.org> +iso-codes-3.9.ebuild:
+  Version bump.
 
   13 Apr 2009; Raúl Porcel <armin76@gentoo.org> iso-codes-3.6.ebuild:
   arm/sh stable
