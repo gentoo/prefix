@@ -7,6 +7,8 @@
 		Qt</flag>
 	<flag name='immqt'>Enable binary incompatible version of immodule for
 		Qt</flag>
+	<flag name='kde'>Select <pkg>media-sound/phonon</pkg> as phonon variant
+		needed for kde</flag>
 	<flag name='qt3support'>Enable the Qt3Support libraries for Qt4</flag>
 </use>
 </pkgmetadata>
