@@ -522,9 +522,6 @@ src_configure() {
 		--confdir=${EPREFIX}/etc/mplayer \
 		--datadir=${EPREFIX}/usr/share/mplayer \
 		--libdir=${EPREFIX}/usr/$(get_libdir) \
-		--with-extraincdir=${EPREFIX}/usr/include \
-		--with-extralibdir=${EPREFIX}/usr/$(get_libdir),${EPREFIX}/$(get_libdir) \
-		$(use_enable aqua macosx) \
 		$(use_enable aqua macosx-finder) \
 		$(use_enable aqua macosx-bundle) \
 		$(use_enable aqua libdvdcss-internal) \
