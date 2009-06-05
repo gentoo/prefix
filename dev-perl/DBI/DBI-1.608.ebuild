@@ -10,7 +10,7 @@ inherit perl-module eutils
 DESCRIPTION="The Perl DBI Module"
 
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris"
 IUSE=""
 
 DEPEND=">=dev-perl/PlRPC-0.2
