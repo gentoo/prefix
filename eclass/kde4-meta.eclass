@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.21 2009/05/29 10:29:10 dagger Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.22 2009/06/04 09:29:54 scarabeus Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -31,16 +31,21 @@ case ${KDEBASE} in
 		;;
 esac
 
-# Add khelpcenter dependency when installing
-if [[ ${PN} != khelpcenter ]] && has doc ${IUSE//+} && use doc; then
+# remove this codeblock when 4.2.3 is dropped
+if [[ ${PV} = "4.2.3" ]]; then
+	[[ ${PN} != khelpcenter ]] && has doc ${IUSE//+} \
+		RDEPEND="${RDEPEND} doc? ( >=kde-base/khelpcenter-${PV}:${SLOT}[kdeprefix=] )"
+else
+# Add khelpcenter dependency when installing handbooks
+if [[ ${PN} != khelpcenter ]] && has handbook ${IUSE//+}; then
 	RDEPEND="${RDEPEND}
-		>=kde-base/khelpcenter-${PV}:${SLOT}[kdeprefix=]
+		handbook? ( >=kde-base/khelpcenter-${PV}:${SLOT}[kdeprefix=] )
 	"
 fi
-
+fi
 # Add dependencies that all packages in a certain module share.
 case ${KMNAME} in
-	kdebase|kdebase-apps|kdebase-workspace|kdebase-runtime|kdegraphic)
+	kdebase|kdebase-apps|kdebase-workspace|kdebase-runtime|kdegraphics)
 		DEPEND="${DEPEND}
 			>=kde-base/qimageblitz-0.0.4
 		"
@@ -66,7 +71,7 @@ case ${KMNAME} in
 			>=kde-base/kdepimlibs-${PV}:${SLOT}[kdeprefix=]
 		"
 		case ${PN} in
-			akregator|kaddressbook|kjots|kmail|kmobiletools|knode|knotes|korganizer|ktimetracker)
+			akregator|kaddressbook|kjots|kmail|knode|knotes|korganizer|ktimetracker)
 				IUSE="+kontact"
 				RDEPEND="${RDEPEND}
 					kontact? ( >=kde-base/kontactinterfaces-${PV}:${SLOT}[kdeprefix=] )
@@ -160,7 +165,7 @@ fi
 # @DESCRIPTION:
 # All subdirectories listed here will be extracted, compiled & installed.
 # $KMMODULE is always added to $KMEXTRA.
-# If the doc USE-flag is set, and if this directory exists,
+# If the handbook USE-flag is set, and if this directory exists,
 # then "doc/$KMMODULE" is added to $KMEXTRA. In other cases, this should be
 # handled in the ebuild.
 # If the documentation is in a different subdirectory, you should add it to KMEXTRA.
@@ -255,7 +260,7 @@ kde4-meta_src_extract() {
 	else
 		local abort tarball tarfile f extractlist moduleprefix postfix
 		case ${PV} in
-			4.2.85)
+			4.2.85|4.2.90)
 				# block for normally packed upstream unstable snapshots
 				KMTARPARAMS="${KMTARPARAMS} --bzip2" # bz2
 				postfix="bz2"
@@ -339,10 +344,17 @@ kde4-meta_create_extractlists() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# TODO change to KMEXTRA for more strict check
-	if has doc ${IUSE//+} && use doc && [[ -n ${KMMODULE} ]]; then
+	# remvove 4.2.3 check when dropped
+	if [[ ${PV} = "4.2.3" ]]; then
+		if has doc ${IUSE//+} && use doc && [[ -n ${KMMODULE} ]]; then
+			KMEXTRA_NONFATAL="${KMEXTRA_NONFATAL} doc/${KMMODULE##*/}"
+		fi
+	else
+	if has handbook ${IUSE//+} && use handbook && [[ -n ${KMMODULE} ]]; then
 		# We use the basename of $KMMODULE because $KMMODULE can contain
 		# the path to the module subdirectory.
 		KMEXTRA_NONFATAL="${KMEXTRA_NONFATAL} doc/${KMMODULE##*/}"
+	fi
 	fi
 
 	# Add some CMake-files to KMEXTRACTONLY.
@@ -711,10 +723,10 @@ kde4-meta_src_make_doc() {
 kde4-meta_pkg_postinst() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	if has doc ${IUSE//+} && ! use doc; then
+	if has handbook ${IUSE//+} && ! use handbook; then
 		echo
 		einfo "Application handbook for ${PN} has not been installed."
-		einfo "To install handbook, reemerge =${CATEGORY}/${P} with 'doc' USE flag."
+		einfo "To install handbook, reemerge =${CATEGORY}/${P} with 'handbook' USE flag."
 		echo
 	fi
 

@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.38 2009/05/28 09:47:52 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.40 2009/06/04 13:50:10 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -82,9 +82,15 @@ if [[ -n ${NEED_KDE} ]]; then
 	esac
 fi
 
+# @ECLASS-VARIABLE: QT_DEPEND
+# @DESCRIPTION:
+# Determine version of qt we enforce as minimal for the package. 4.4.0 4.5.1..
+# Currently defaults to 4.5.1
+QT_DEPEND="${QT_DEPEND:-4.5.1}"
+
 # OpenGL dependencies
 qtopengldepend="
-	x11-libs/qt-opengl:4
+	>=x11-libs/qt-opengl-${QT_DEPEND}:4
 "
 case ${OPENGL_REQUIRED} in
 	always)
@@ -102,7 +108,7 @@ unset qtopengldepend
 
 # WebKit dependencies
 qtwebkitdepend="
-	x11-libs/qt-webkit:4
+	>=x11-libs/qt-webkit-${QT_DEPEND}:4
 "
 case ${WEBKIT_REQUIRED} in
 	always)
@@ -157,7 +163,6 @@ fi # NEED_KDE != NONE block
 
 # Setup packages inheriting this eclass
 case ${KDEBASE} in
-
 	kde-base)
 		if [[ $BUILD_TYPE = live ]]; then
 			# Disable tests for live ebuilds
@@ -191,13 +196,11 @@ case ${KDEBASE} in
 		done
 		unset slot
 		;;
-
 	koffice)
 		SLOT="2"
 		_pv="-${KDE_MINIMAL}"
 		_pvn="${_pv}"
 		;;
-
 	*)
 		_pv="-${KDE_MINIMAL}"
 		_pvn="${_pv}"
@@ -211,13 +214,13 @@ kdecommondepend="
 	x11-libs/libXext
 	x11-libs/libXt
 	x11-libs/libXxf86vm
-	x11-libs/qt-core:4[qt3support,ssl]
-	x11-libs/qt-gui:4[accessibility,dbus]
-	x11-libs/qt-qt3support:4[accessibility]
-	x11-libs/qt-script:4
-	x11-libs/qt-sql:4[qt3support]
-	x11-libs/qt-svg:4
-	x11-libs/qt-test:4
+	>=x11-libs/qt-core-${QT_DEPEND}:4[qt3support,ssl]
+	>=x11-libs/qt-gui-${QT_DEPEND}:4[accessibility,dbus]
+	>=x11-libs/qt-qt3support-${QT_DEPEND}:4[accessibility]
+	>=x11-libs/qt-script-${QT_DEPEND}:4
+	>=x11-libs/qt-sql-${QT_DEPEND}:4[qt3support]
+	>=x11-libs/qt-svg-${QT_DEPEND}:4
+	>=x11-libs/qt-test-${QT_DEPEND}:4
 "
 if [[ ${PN} != kdelibs ]]; then
 	if [[ ${KDEBASE} = kde-base ]]; then
@@ -350,7 +353,7 @@ case ${BUILD_TYPE} in
 			case ${KDEBASE} in
 				kde-base)
 					case ${PV} in
-						4.2.85)
+						4.2.85|4.2.90)
 							# block for normally packed unstable releases
 							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 						4.2.9* | 4.2.8* | 4.2.7* | 4.2.6*)
@@ -423,7 +426,7 @@ kde4-base_pkg_setup() {
 			fi
 		done
 		unset slot
-		[[ -z KDEDIR ]] && die "Failed to determine KDEDIR!"
+		[[ -z ${KDEDIR} ]] && die "Failed to determine KDEDIR!"
 		PREFIX="${PREFIX:-${ROOT}usr}"
 	fi
 
@@ -610,6 +613,15 @@ kde4-base_pkg_postinst() {
 		einfo "WARNING! This is an experimental live ebuild of ${KMNAME:-${PN}}"
 		einfo "Use it at your own risk."
 		einfo "Do _NOT_ file bugs at bugs.gentoo.org because of this ebuild!"
+		echo
+	elif [[ ${BUILD_TYPE} != live ]] && [[ -z ${I_KNOW_WHAT_I_AM_DOING} ]] && has kdeprefix ${IUSE//+} && use kdeprefix; then
+		# warning about kdeprefix for non-live users
+		echo
+		ewarn "WARNING! You have kdeprefix useflag enabled."
+		ewarn "This setting is strongly discouraged and might lead to potential troubles"
+		ewarn "with KDE update strategies."
+		ewarn "You are using this setup at your own risk and kde team does not"
+		ewarn "take responsibilities for dead kittens."
 		echo
 	fi
 }
