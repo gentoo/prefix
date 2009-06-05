@@ -52,8 +52,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	unpack ${A}
-	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-4.2.2-disable_texi_generation.patch #194216
 	epatch "${FILESDIR}"/${PN}-4.2.3-app-defaults.patch #219323
 	epatch "${FILESDIR}"/${PN}-4.2.3-disable-texhash.patch #201871
