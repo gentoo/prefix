@@ -235,7 +235,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p20090530-fix-mp3lib-use-local-labels-2.patch
 
-	epatch "${FILESDIR}"/${PN}-1.0_rc2_p20090322-prefix.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p28058-nocona.patch
 	epatch "${FILESDIR}"/${PN}-20090226.28734-solaris.patch
 	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure version.sh || die
