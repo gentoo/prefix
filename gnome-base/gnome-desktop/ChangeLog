@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/gnome-desktop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.252 2009/05/28 04:38:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.253 2009/06/03 23:03:05 eva Exp $
+
+  03 Jun 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-desktop-2.24.3.ebuild, -gnome-desktop-2.26.1.ebuild,
+  gnome-desktop-2.26.2.ebuild:
+  Add preserve_old_lib to ease update pain, bug #263417. Clean up old
+  revisions.
 
   28 May 2009; Jeroen Roovers <jer@gentoo.org>
   gnome-desktop-2.24.3-r1.ebuild:
