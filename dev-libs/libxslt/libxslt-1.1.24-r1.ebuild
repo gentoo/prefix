@@ -56,8 +56,8 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${ED}" \
-		DOCS_DIR=/usr/share/doc/${PF}/python \
+	emake DESTDIR="${D}" \
+		DOCS_DIR="${EPREFIX}"/usr/share/doc/${PF}/python \
 		install || die "Installation failed"
 
 	dodoc AUTHORS ChangeLog Copyright FEATURES NEWS README TODO || die "dodoc failed"
