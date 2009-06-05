@@ -1,12 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/dog-1.7-r3.ebuild,v 1.6 2009/05/31 18:18:19 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/dog-1.7-r3.ebuild,v 1.8 2009/06/04 19:44:13 klausman Exp $
 
 inherit eutils toolchain-funcs
 
 DESCRIPTION="Dog is better than cat"
-HOMEPAGE="http://jl.photodex.com/dog/"
-SRC_URI="http://jl.photodex.com/dog/${P}.tar.gz"
+# the best HOMEPAGE we have.
+HOMEPAGE="http://packages.gentoo.org/package/sys-apps/dog"
+SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
