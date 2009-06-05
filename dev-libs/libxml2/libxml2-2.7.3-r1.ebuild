@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.3-r1.ebuild,v 1.1 2009/04/27 21:28:46 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.3-r1.ebuild,v 1.2 2009/05/31 17:37:14 eva Exp $
 
 inherit libtool flag-o-matic eutils python autotools prefix
 
@@ -67,6 +67,8 @@ src_compile() {
 	# --with-mem-debug causes unusual segmentation faults (bug #105120).
 
 	local myconf="--with-zlib=${EPREFIX}/usr \
+		--with-html-subdir=${PF}/html \
+		--docdir=${EPREFIX}/usr/share/doc/${PF} \
 		$(use_with debug run-debug)  \
 		$(use_with python)           \
 		$(use_with readline)         \
@@ -96,18 +98,29 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "Installation failed"
+	emake DESTDIR="${D}" \
+		EXAMPLES_DIR="${EPREFIX}"/usr/share/doc/${PF}/examples \
+		docsdir="${EPREFIX}"/usr/share/doc/${PF}/python \
+		exampledir=${EPREFIX}/usr/share/doc/${PF}/python/examples \
+		install || die "Installation failed"
 
 	dodoc AUTHORS ChangeLog Copyright NEWS README* TODO* || die "dodoc failed"
+	rm "${ED}"/usr/share/doc/${P}/Copyright
+	rm -rf "${ED}"/usr/share/doc/${P}
+
+	if ! use python; then
+		rm -rf "${ED}"/usr/share/doc/${PF}/python
+		rm -rf "${ED}"/usr/share/doc/${PN}-python-${PV}
+	fi
 
 	if ! use doc; then
 		rm -rf "${ED}"/usr/share/gtk-doc
-		rm -rf "${ED}"/usr/share/doc/${P}/html
+		rm -rf "${ED}"/usr/share/doc/${PF}/html
 	fi
 
 	if ! use examples; then
-		rm -rf "${ED}/usr/share/doc/${P}/examples"
-		rm -rf "${ED}/usr/share/doc/${PN}-python-${PV}/examples"
+		rm -rf "${ED}/usr/share/doc/${PF}/examples"
+		rm -rf "${ED}/usr/share/doc/${PF}/python/examples"
 	fi
 }
 
