@@ -32,6 +32,12 @@
 
 #--- END OF EXAMPLES ---
 
+
+# Fabian Groffen <grobian@gentoo.org> (05 Jun 2009)
+# {standard input}: Assembler messages:
+# {standard input}:70: Error: unbalanced parenthesis in operand 1.
+=media-video/mplayer-1.0_rc2_p20090530
+
 # Jeremy Olexa <darkside@gentoo.org> (02 Jun 2009)
 # If you have MacFuse or some other implementation of fuse installed, you can
 # probably use this by placing sys-fs/fuse in package.provided, bug 272210
