@@ -6,6 +6,7 @@
 # Fabian Groffen <grobian@gentoo.org> (16 May 2009)
 # MH_BUNDLE nightmare (trying to link it as a MH_DYLIB)
 =gnome-base/gconf-2.26.0
+=gnome-base/gconf-2.26.2
 
 # Fabian Groffen <grobian@gentoo.org> (02 Aug 2008)
 # Crappy code makes it bus error on Darwin, bug #233600

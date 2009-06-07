@@ -2,6 +2,10 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  07 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  darwin/macos/package.mask:
+  gnome-base/gconf-2.26.2 has the same linkage problem as 2.26.0
+
   05 Jun 2009; Jeremy Olexa <darkside@gentoo.org> package.mask:
   p.mask subversion-1.6.2, bug 271424
 
