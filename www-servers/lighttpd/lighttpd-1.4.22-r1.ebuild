@@ -101,7 +101,7 @@ src_prepare() {
 	sed -i -e 's|\(rst2html\)|\1.py|g' doc/Makefile.in || \
 		die "sed doc/Makefile.in failed"
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-1.4.20-interix.patch
 
 	eautoreconf || die
 }
