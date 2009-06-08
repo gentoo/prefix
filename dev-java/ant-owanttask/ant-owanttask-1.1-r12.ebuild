@@ -10,7 +10,7 @@ MY_P="owanttask-${PV}"
 SRC_URI="http://www.gentoo.org/~karltk/java/distfiles/${MY_P}-gentoo.tar.bz2"
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE=""
 COMMON_DEP="dev-java/xalan"
 DEPEND=">=virtual/jdk-1.4
