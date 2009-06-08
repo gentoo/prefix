@@ -1,0 +1,18 @@
+--- icu/source/icudefs.mk.in.weg	2009-06-08 16:38:33 +0200
++++ icu/source/icudefs.mk.in	2009-06-08 16:38:43 +0200
+@@ -173,13 +173,13 @@
+ 
+ ## If we can't use the shared libraries, use the static libraries
+ ifneq ($(ENABLE_SHARED),YES)
+-STATIC_PREFIX_WHEN_USED = s
++STATIC_PREFIX_WHEN_USED =
+ else
+ STATIC_PREFIX_WHEN_USED = 
+ endif
+ 
+ # Static library prefix and file extension
+-STATIC_PREFIX = s
++STATIC_PREFIX =
+ LIBSICU = $(LIBPREFIX)$(STATIC_PREFIX)$(ICUPREFIX)
+ A = a
+ SOBJ = $(SO)

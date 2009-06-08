@@ -68,6 +68,11 @@ src_unpack() {
 		epatch "${FILESDIR}"/${P}-winnt.patch
 	fi
 
+	# static libraries should be names the same as shared ones
+	# to allow -licu... to work always, regardless of -static
+	# presence.
+	epatch "${FILESDIR}"/${P}-static-names.patch
+
 	eautoreconf # for winnt
 }
 
