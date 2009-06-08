@@ -14,7 +14,7 @@ HOMEPAGE="http://code.google.com/p/${MY_PN}/"
 SRC_URI="http://${MY_PN}.googlecode.com/files/${MY_P}.tgz"
 LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-macos ~x64-solaris"
 IUSE=""
 
 DEPEND=">=virtual/jdk-1.5
