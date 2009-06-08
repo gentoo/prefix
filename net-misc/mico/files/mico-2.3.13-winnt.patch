@@ -1,0 +1,2219 @@
+diff -ru mico.orig/MakeVars.in mico/MakeVars.in
+--- mico.orig/MakeVars.in	2008-09-19 15:16:50 +0200
++++ mico/MakeVars.in	2008-09-19 14:52:24 +0200
+@@ -28,6 +28,15 @@
+ SHARED_INSTDIR	= @ABSSHRDDIR@
+ 
+ OSTYPE          = @OSTYPE@
++SUBOSTYPE		= @SUBOSTYPE@
++EXEEXT =
++
++ifeq ($(OSTYPE), windows)
++ifeq ($(SUBOSTYPE), parity)
++EXEEXT = .exe
++endif
++endif
++
+ # We need the compiler type, not just the os
+ HAVE_MINGW	= @HAVE_MINGW@
+ HAVE_CYGWIN	= @HAVE_CYGWIN@
+@@ -129,9 +138,9 @@
+ LATEX2HTML	= latex2html
+ FIG2DEV		= fig2dev
+ MKFAQ           = $(SRCDIR)/admin/mkfaq
+-IDL		= @IDL@
+-IDLGEN		= @IDL@
+-CCMGEN          = @CCMGEN@
++IDL		= @IDL@$(EXEEXT)
++IDLGEN		= @IDL@$(EXEEXT)
++CCMGEN          = @CCMGEN@$(EXEEXT)
+ MKDEPEND	= @MKDEPEND@
+ # on some Solaris systems strip does not support ELF binaries ...
+ IBINCMD         = $(SRCDIR)/admin/install-sh -c -m 755
+@@ -177,6 +186,7 @@
+ LDMICOCCM              = -lmicoccm$(VERSION)
+ 
+ ifeq ($(OSTYPE), windows)
++ifneq ($(SUBOSTYPE), parity)
+ ifeq ($(HAVE_SHARED), yes)
+ export PATH           := @LIBPATH@:$(PATH)
+ NODOTVERSION           = $(shell tr -d \. < $(SRCDIR)/VERSION)
+@@ -187,6 +197,7 @@
+ LIBMICOCOSS	       = libmicocoss$(VERSION).a
+ endif
+ endif
++endif
+ 
+ export PATH           := @CPPPATH@:$(PATH):.
+ 
+diff -ru mico.orig/auxdir/Makefile mico/auxdir/Makefile
+--- mico.orig/auxdir/Makefile	2008-09-19 15:16:50 +0200
++++ mico/auxdir/Makefile	2008-09-19 14:52:24 +0200
+@@ -127,6 +127,7 @@
+ 		-L../libs $(LDMICO)
+ 	$(IDIRCMD) ../libs
+ 	cd ../libs; rm -f $@; $(LN) ../auxdir/$@ .
++	test ! -f $@.dll || ( cd ../libs; rm -f $@.dll; $(LN) ../auxdir/$@.dll . )
+ 
+ libmicox$(VERSION).$(SOEXT): $(SHARED_X11_OBJS)
+ ifeq ($(HAVE_REPO), yes)
+@@ -137,6 +138,7 @@
+ 		$(PURE_LDFLAGS) -lXt -lX11 -L../libs $(LDMICO) $(PLATFORM_LIBS)
+ 	$(IDIRCMD) ../libs
+ 	cd ../libs; rm -f $@; $(LN) ../auxdir/$@ .
++	test ! -f $@.dll || ( cd ../libs; rm -f $@.dll; $(LN) ../auxdir/$@.dll . )
+ 
+ libmicoqt$(VERSION).$(SOEXT): $(SHARED_QT_OBJS)
+ ifeq ($(HAVE_REPO), yes)
+@@ -147,6 +149,7 @@
+ 		$(PURE_LDFLAGS) $(QT_LIBS) -L../libs $(LDMICO)
+ 	$(IDIRCMD) ../libs
+ 	cd ../libs; rm -f $@; $(LN) ../auxdir/$@ .
++	test ! -f $@.dll || ( cd ../libs; rm -f $@.dll; $(LN) ../auxdir/$@.dll . )
+ 
+ libmicogtk$(VERSION).$(SOEXT): $(SHARED_GTK_OBJS)
+ ifeq ($(HAVE_REPO), yes)
+@@ -157,6 +160,7 @@
+ 		$(PURE_LDFLAGS) $(GTK_LIBS) -L../libs $(LDMICO)
+ 	$(IDIRCMD) ../libs
+ 	cd ../libs; rm -f $@; $(LN) ../auxdir/$@ .
++	test ! -f $@.dll || ( cd ../libs; rm -f $@.dll; $(LN) ../auxdir/$@.dll . )
+ 
+ libmicotcl$(VERSION).$(SOEXT): $(SHARED_TCL_OBJS)
+ ifeq ($(HAVE_REPO), yes)
+@@ -167,6 +171,7 @@
+ 		$(PURE_LDFLAGS) $(TCL_LIBS) -L../libs $(LDMICO)
+ 	$(IDIRCMD) ../libs
+ 	cd ../libs; rm -f $@; $(LN) ../auxdir/$@ .
++	test ! -f $@.dll || ( cd ../libs; rm -f $@.dll; $(LN) ../auxdir/$@.dll . )
+ 
+ 
+ # static
+@@ -220,14 +225,14 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.ii *.ti *.objid *.moc
++	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.ii *.ti *.objid *.moc *.dll *.pdb *.exp
+ 	-$(RM) .depend TAGS core nohup.out
+ 	-$(RM) *.orig
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/lib
+ ifeq ($(HAVE_SHARED), yes)
+-	@for i in $(SHARED_LIBS); do $(ILIBCMD) $$i $(INSTDIR)/lib; done
++	@for i in $(SHARED_LIBS); do $(ILIBCMD) $$i $(INSTDIR)/lib; test ! -f $$i.dll || $(ILIBCMD) $$i.dll $(INSTDIR)/lib; done
+ endif
+ ifeq ($(HAVE_STATIC), yes)
+ 	@for i in $(STATIC_LIBS); do $(ILIBCMD) $$i $(INSTDIR)/lib; done
+diff -ru mico.orig/ccm/Makefile mico/ccm/Makefile
+--- mico.orig/ccm/Makefile	2008-09-19 15:16:50 +0200
++++ mico/ccm/Makefile	2008-09-19 14:52:24 +0200
+@@ -49,11 +49,13 @@
+ # mingw hack
+ 
+ ifeq ($(OSTYPE), windows)
++ifneq ($(SUBOSTYPE), parity)
+ ifeq ($(HAVE_SHARED), yes)
+ HAVE_SHARED := no
+ HAVE_STATIC := yes
+ endif
+ endif
++endif
+ 
+ # normal rules
+ 
+@@ -65,15 +67,15 @@
+ LIBMICOCCM := libmicoccm$(VERSION).$(SOEXT)
+ ifeq ($(HAVE_STATIC), yes)
+ prg: .depend libmicoccm$(VERSION).$(SOEXT) libmicoccm$(VERSION).a \
+-	mico-ccm componentserver mico-ccmd ccmload
++	mico-ccm$(EXEEXT) componentserver$(EXEEXT) mico-ccmd$(EXEEXT) ccmload$(EXEEXT)
+ else
+ prg: .depend libmicoccm$(VERSION).$(SOEXT) \
+-	mico-ccm componentserver mico-ccmd ccmload
++	mico-ccm$(EXEEXT) componentserver$(EXEEXT) mico-ccmd$(EXEEXT) ccmload$(EXEEXT)
+ endif
+ else
+ LIBMICOCCM := libmicoccm$(VERSION).a
+ prg: .depend libmicoccm$(VERSION).a \
+-	mico-ccm componentserver mico-ccmd ccmload
++	mico-ccm$(EXEEXT) componentserver$(EXEEXT) mico-ccmd$(EXEEXT) ccmload$(EXEEXT)
+ endif
+ else
+ all:
+@@ -81,17 +83,17 @@
+ prg:
+ endif
+ 
+-mico-ccm: ../idl/libidl.a ../orb/$(LIBMICO) ../ir/$(LIBMICOIR) $(LIBMICOCCM) mico-ccm.o
++mico-ccm$(EXEEXT): ../idl/libidl.a ../orb/$(LIBMICO) ../ir/$(LIBMICOIR) $(LIBMICOCCM) mico-ccm.o
+ 	$(CXX) -o $@ $(LDFLAGS) mico-ccm.o -L. $(LDMICOCCM) $(LDMICOIR) $(LDLIBS)
+ 	$(POSTLD) $@
+ 
+-componentserver: ../orb/$(LIBMICO) $(LIBMICOCCM) componentserver.o
++componentserver$(EXEEXT): ../orb/$(LIBMICO) $(LIBMICOCCM) componentserver.o
+ 	$(CXX) -o $@ $(LDFLAGS) componentserver.o -L. $(LDMICOCCM) $(LDLIBS)
+ 
+-mico-ccmd: ../orb/$(LIBMICO) $(LIBMICOCCM) mico-ccmd.o
++mico-ccmd$(EXEEXT): ../orb/$(LIBMICO) $(LIBMICOCCM) mico-ccmd.o
+ 	$(CXX) -o $@ $(LDFLAGS) mico-ccmd.o -L. $(LDMICOCCM) $(LDLIBS)
+ 
+-ccmload: ../orb/$(LIBMICO) $(LIBMICOCCM) ccmload.o
++ccmload$(EXEEXT): ../orb/$(LIBMICO) $(LIBMICOCCM) ccmload.o
+ 	$(CXX) -o $@ $(LDFLAGS) ccmload.o -L. $(LDMICOCCM) $(LDMICOCOSS) $(LDLIBS)
+ 
+ libmicoccm$(VERSION).$(SOEXT): $(SHARED_OBJS)
+@@ -105,6 +107,7 @@
+ 	$(LDSO) -o libmicoccm$(VERSION) $(SHARED_OBJS) -L../libs $(LDMICO) $(PLATFORM_LIBS)
+ 	$(IDIRCMD) ../libs
+ 	cd ../libs; $(RM) $@; $(LN) ../ccm/$@ .
++	test ! -f $@.dll || ( cd ../libs; rm -f $@.dll; $(LN) ../ccm/$@.dll . )
+ 
+ libmicoccm$(VERSION).a: $(STATIC_OBJS)
+ ifeq ($(HAVE_REPO), yes)
+@@ -121,22 +124,23 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) mico-ccmd ccmload componentserver mico-ccm libmicoccm*
+-	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.ii *.ti *.objid
++	-$(RM) mico-ccmd$(EXEEXT) ccmload$(EXEEXT) componentserver$(EXEEXT) mico-ccm$(EXEEXT) libmicoccm*
++	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.ii *.ti *.objid *.dll *.pdb *.exp
+ 	-$(RM) .depend TAGS core nohup.out
+ 
+ install: all
+ ifeq ($(USE_CCM), yes)
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) mico-ccm $(INSTDIR)/bin
+-	$(IBINCMD) componentserver $(INSTDIR)/bin
+-	$(IBINCMD) mico-ccmd $(INSTDIR)/bin
+-	$(IBINCMD) ccmload $(INSTDIR)/bin
++	$(IBINCMD) mico-ccm$(EXEEXT) $(INSTDIR)/bin
++	$(IBINCMD) componentserver$(EXEEXT) $(INSTDIR)/bin
++	$(IBINCMD) mico-ccmd$(EXEEXT) $(INSTDIR)/bin
++	$(IBINCMD) ccmload$(EXEEXT) $(INSTDIR)/bin
+ ifeq ($(HAVE_STATIC), yes)
+ 	$(ILIBCMD) libmicoccm$(VERSION).a $(INSTDIR)/lib
+ endif
+ ifeq ($(HAVE_SHARED), yes)
+ 	$(ILIBCMD) libmicoccm$(VERSION).$(SOEXT) $(INSTDIR)/lib
++	test -t libmicoccm$(VERSION).$(SOEXT).dll && $(ILIBCMD) libmicoccm$(VERSION).$(SOEXT).dll $(INSTDIR)/lib
+ endif
+ endif
+ 
+diff -ru mico.orig/configure mico/configure
+--- mico.orig/configure	2008-09-19 15:16:50 +0200
++++ mico/configure	2008-09-19 15:17:32 +0200
+@@ -118,6 +118,11 @@
+ ac_help="$ac_help
+   --with-x                use the X Window System"
+ 
++case `uname` in
++Interix) flip="flip -u" ;;
++*) flip="cat" ;;
++esac
++
+ # Initialize some variables set by options.
+ # The variables have the same names as the options, with
+ # dashes changed to underlines.
+@@ -1521,7 +1526,7 @@
+ #line 1522 "configure"
+ #include "confdefs.h"
+ 
+-main(){return(0);}
++int main(){return(0);}
+ EOF
+ if { (eval echo configure:1527: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext}; then
+   ac_cv_prog_cc_works=yes
+@@ -1932,16 +1937,16 @@
+ ac_link='${CXX-g++} -o conftest${ac_exeext} $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+ cross_compiling=$ac_cv_prog_cxx_cross
+ 
+-
+ echo $ac_n "checking OS Type""... $ac_c" 1>&6
+ echo "configure:1938: checking OS Type" >&5
+ gxxversion=`$CXX -v 2>&1`
+ case $gxxversion in
+-*mingw*special*)
++*mingw*special*|*parity*)
+ 	#
+ 	# This is the MinGW compiler in a Cygwin environment
+ 	#
+ 	OSTYPE=windows
++	case $gxxversion in *parity*) SUBOSTYPE=parity ;; esac
+ 	RMPROG="rm -f"
+ 	LNPROG="cp"
+ 	;;
+@@ -3651,6 +3656,9 @@
+     CFLAGS="$CFLAGS -h command -h new_for_init"
+     CXXFLAGS="$CXXFLAGS -h command -h new_for_init"
+     ;;
++  *-winnt*)
++  	LDCONFIG="echo ldconfig not run on windows"
++	;;
+   *)
+     echo
+     echo
+@@ -7916,7 +7924,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -7926,7 +7934,7 @@
+ EOF
+ if { (eval echo configure:7928: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_char=`cat conftestval`
++  ac_cv_sizeof_unsigned_char=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -7958,7 +7966,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -7968,7 +7976,7 @@
+ EOF
+ if { (eval echo configure:7970: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_int=`cat conftestval`
++  ac_cv_sizeof_int=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8000,7 +8008,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8010,7 +8018,7 @@
+ EOF
+ if { (eval echo configure:8012: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_int=`cat conftestval`
++  ac_cv_sizeof_unsigned_int=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8042,7 +8050,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8052,7 +8060,7 @@
+ EOF
+ if { (eval echo configure:8054: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long=`cat conftestval`
++  ac_cv_sizeof_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8084,7 +8092,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8094,7 +8102,7 @@
+ EOF
+ if { (eval echo configure:8096: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_long=`cat conftestval`
++  ac_cv_sizeof_unsigned_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8126,7 +8134,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8136,7 +8144,7 @@
+ EOF
+ if { (eval echo configure:8138: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long_long=`cat conftestval`
++  ac_cv_sizeof_long_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8168,7 +8176,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8178,7 +8186,7 @@
+ EOF
+ if { (eval echo configure:8180: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_long_long=`cat conftestval`
++  ac_cv_sizeof_unsigned_long_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8210,7 +8218,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8220,7 +8228,7 @@
+ EOF
+ if { (eval echo configure:8222: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_short=`cat conftestval`
++  ac_cv_sizeof_short=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8252,7 +8260,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8262,7 +8270,7 @@
+ EOF
+ if { (eval echo configure:8264: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_short=`cat conftestval`
++  ac_cv_sizeof_unsigned_short=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8294,7 +8302,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8304,7 +8312,7 @@
+ EOF
+ if { (eval echo configure:8306: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_float=`cat conftestval`
++  ac_cv_sizeof_float=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8336,7 +8344,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8346,7 +8354,7 @@
+ EOF
+ if { (eval echo configure:8348: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_double=`cat conftestval`
++  ac_cv_sizeof_double=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8378,7 +8386,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8388,7 +8396,7 @@
+ EOF
+ if { (eval echo configure:8390: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long_double=`cat conftestval`
++  ac_cv_sizeof_long_double=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8422,7 +8430,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8432,7 +8440,7 @@
+ EOF
+ if { (eval echo configure:8434: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_char=`cat conftestval`
++  ac_cv_sizeof_unsigned_char=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8464,7 +8472,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8474,7 +8482,7 @@
+ EOF
+ if { (eval echo configure:8476: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_int=`cat conftestval`
++  ac_cv_sizeof_int=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8506,7 +8514,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8516,7 +8524,7 @@
+ EOF
+ if { (eval echo configure:8518: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_int=`cat conftestval`
++  ac_cv_sizeof_unsigned_int=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8548,7 +8556,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8558,7 +8566,7 @@
+ EOF
+ if { (eval echo configure:8560: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long=`cat conftestval`
++  ac_cv_sizeof_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8590,7 +8598,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8600,7 +8608,7 @@
+ EOF
+ if { (eval echo configure:8602: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_long=`cat conftestval`
++  ac_cv_sizeof_unsigned_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8632,7 +8640,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8642,7 +8650,7 @@
+ EOF
+ if { (eval echo configure:8644: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long_long=`cat conftestval`
++  ac_cv_sizeof_long_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8674,7 +8682,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8684,7 +8692,7 @@
+ EOF
+ if { (eval echo configure:8686: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_long_long=`cat conftestval`
++  ac_cv_sizeof_unsigned_long_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8716,7 +8724,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8726,7 +8734,7 @@
+ EOF
+ if { (eval echo configure:8728: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_short=`cat conftestval`
++  ac_cv_sizeof_short=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8758,7 +8766,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8768,7 +8776,7 @@
+ EOF
+ if { (eval echo configure:8770: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_short=`cat conftestval`
++  ac_cv_sizeof_unsigned_short=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8800,7 +8808,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8810,7 +8818,7 @@
+ EOF
+ if { (eval echo configure:8812: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_float=`cat conftestval`
++  ac_cv_sizeof_float=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8842,7 +8850,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8852,7 +8860,7 @@
+ EOF
+ if { (eval echo configure:8854: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_double=`cat conftestval`
++  ac_cv_sizeof_double=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8884,7 +8892,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8894,7 +8902,7 @@
+ EOF
+ if { (eval echo configure:8896: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long_double=`cat conftestval`
++  ac_cv_sizeof_long_double=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8928,7 +8936,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8938,7 +8946,7 @@
+ EOF
+ if { (eval echo configure:8940: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_char=`cat conftestval`
++  ac_cv_sizeof_unsigned_char=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -8970,7 +8978,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -8980,7 +8988,7 @@
+ EOF
+ if { (eval echo configure:8982: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_int=`cat conftestval`
++  ac_cv_sizeof_int=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9012,7 +9020,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9022,7 +9030,7 @@
+ EOF
+ if { (eval echo configure:9024: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_int=`cat conftestval`
++  ac_cv_sizeof_unsigned_int=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9054,7 +9062,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9064,7 +9072,7 @@
+ EOF
+ if { (eval echo configure:9066: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long=`cat conftestval`
++  ac_cv_sizeof_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9096,7 +9104,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9106,7 +9114,7 @@
+ EOF
+ if { (eval echo configure:9108: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_long=`cat conftestval`
++  ac_cv_sizeof_unsigned_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9138,7 +9146,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9148,7 +9156,7 @@
+ EOF
+ if { (eval echo configure:9150: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long_long=`cat conftestval`
++  ac_cv_sizeof_long_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9180,7 +9188,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9190,7 +9198,7 @@
+ EOF
+ if { (eval echo configure:9192: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_long_long=`cat conftestval`
++  ac_cv_sizeof_unsigned_long_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9222,7 +9230,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9232,7 +9240,7 @@
+ EOF
+ if { (eval echo configure:9234: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_short=`cat conftestval`
++  ac_cv_sizeof_short=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9264,7 +9272,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9274,7 +9282,7 @@
+ EOF
+ if { (eval echo configure:9276: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_short=`cat conftestval`
++  ac_cv_sizeof_unsigned_short=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9306,7 +9314,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9316,7 +9324,7 @@
+ EOF
+ if { (eval echo configure:9318: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_float=`cat conftestval`
++  ac_cv_sizeof_float=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9348,7 +9356,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9358,7 +9366,7 @@
+ EOF
+ if { (eval echo configure:9360: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_double=`cat conftestval`
++  ac_cv_sizeof_double=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9390,7 +9398,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9400,7 +9408,7 @@
+ EOF
+ if { (eval echo configure:9402: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long_double=`cat conftestval`
++  ac_cv_sizeof_long_double=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9434,7 +9442,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9444,7 +9452,7 @@
+ EOF
+ if { (eval echo configure:9446: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_char=`cat conftestval`
++  ac_cv_sizeof_unsigned_char=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9476,7 +9484,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9486,7 +9494,7 @@
+ EOF
+ if { (eval echo configure:9488: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_int=`cat conftestval`
++  ac_cv_sizeof_int=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9518,7 +9526,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9528,7 +9536,7 @@
+ EOF
+ if { (eval echo configure:9530: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_int=`cat conftestval`
++  ac_cv_sizeof_unsigned_int=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9560,7 +9568,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9570,7 +9578,7 @@
+ EOF
+ if { (eval echo configure:9572: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long=`cat conftestval`
++  ac_cv_sizeof_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9602,7 +9610,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9612,7 +9620,7 @@
+ EOF
+ if { (eval echo configure:9614: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_long=`cat conftestval`
++  ac_cv_sizeof_unsigned_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9644,7 +9652,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9654,7 +9662,7 @@
+ EOF
+ if { (eval echo configure:9656: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long_long=`cat conftestval`
++  ac_cv_sizeof_long_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9686,7 +9694,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9696,7 +9704,7 @@
+ EOF
+ if { (eval echo configure:9698: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_long_long=`cat conftestval`
++  ac_cv_sizeof_unsigned_long_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9728,7 +9736,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9738,7 +9746,7 @@
+ EOF
+ if { (eval echo configure:9740: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_short=`cat conftestval`
++  ac_cv_sizeof_short=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9770,7 +9778,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9780,7 +9788,7 @@
+ EOF
+ if { (eval echo configure:9782: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_short=`cat conftestval`
++  ac_cv_sizeof_unsigned_short=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9812,7 +9820,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9822,7 +9830,7 @@
+ EOF
+ if { (eval echo configure:9824: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_float=`cat conftestval`
++  ac_cv_sizeof_float=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9854,7 +9862,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9864,7 +9872,7 @@
+ EOF
+ if { (eval echo configure:9866: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_double=`cat conftestval`
++  ac_cv_sizeof_double=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9896,7 +9904,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9906,7 +9914,7 @@
+ EOF
+ if { (eval echo configure:9908: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long_double=`cat conftestval`
++  ac_cv_sizeof_long_double=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9950,7 +9958,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -9960,7 +9968,7 @@
+ EOF
+ if { (eval echo configure:9962: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_char=`cat conftestval`
++  ac_cv_sizeof_unsigned_char=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -9992,7 +10000,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10002,7 +10010,7 @@
+ EOF
+ if { (eval echo configure:10004: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_int=`cat conftestval`
++  ac_cv_sizeof_int=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -10034,7 +10042,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10044,7 +10052,7 @@
+ EOF
+ if { (eval echo configure:10046: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_int=`cat conftestval`
++  ac_cv_sizeof_unsigned_int=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -10076,7 +10084,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10086,7 +10094,7 @@
+ EOF
+ if { (eval echo configure:10088: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long=`cat conftestval`
++  ac_cv_sizeof_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -10118,7 +10126,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10128,7 +10136,7 @@
+ EOF
+ if { (eval echo configure:10130: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_long=`cat conftestval`
++  ac_cv_sizeof_unsigned_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -10160,7 +10168,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10170,7 +10178,7 @@
+ EOF
+ if { (eval echo configure:10172: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long_long=`cat conftestval`
++  ac_cv_sizeof_long_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -10202,7 +10210,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10212,7 +10220,7 @@
+ EOF
+ if { (eval echo configure:10214: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_long_long=`cat conftestval`
++  ac_cv_sizeof_unsigned_long_long=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -10244,7 +10252,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10254,7 +10262,7 @@
+ EOF
+ if { (eval echo configure:10256: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_short=`cat conftestval`
++  ac_cv_sizeof_short=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -10286,7 +10294,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10296,7 +10304,7 @@
+ EOF
+ if { (eval echo configure:10298: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_unsigned_short=`cat conftestval`
++  ac_cv_sizeof_unsigned_short=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -10328,7 +10336,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10338,7 +10346,7 @@
+ EOF
+ if { (eval echo configure:10340: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_float=`cat conftestval`
++  ac_cv_sizeof_float=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -10370,7 +10378,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10380,7 +10388,7 @@
+ EOF
+ if { (eval echo configure:10382: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_double=`cat conftestval`
++  ac_cv_sizeof_double=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -10412,7 +10420,7 @@
+ #include <stdlib.h>
+ #endif
+ #include <stdio.h>
+-main()
++int main()
+ {
+   FILE *f=fopen("conftestval", "w");
+   if (!f) exit(1);
+@@ -10422,7 +10430,7 @@
+ EOF
+ if { (eval echo configure:10424: \"$ac_link\") 1>&5; (eval $ac_link) 2>&5; } && test -s conftest${ac_exeext} && (./conftest; exit) 2>/dev/null
+ then
+-  ac_cv_sizeof_long_double=`cat conftestval`
++  ac_cv_sizeof_long_double=`cat conftestval | $flip`
+ else
+   echo "configure: failed program was:" >&5
+   cat conftest.$ac_ext >&5
+@@ -11917,8 +11925,7 @@
+ #include <stdlib.h>
+ #endif
+ 
+-int
+-main()
++int main()
+ {
+ #define OPENSSL_THREAD_DEFINES
+ #undef THREADS
+@@ -12321,6 +12328,7 @@
+ s%@CXX@%$CXX%g
+ s%@CXXCPP@%$CXXCPP%g
+ s%@OSTYPE@%$OSTYPE%g
++s%@SUBOSTYPE@%$SUBOSTYPE%g
+ s%@RMPROG@%$RMPROG%g
+ s%@LNPROG@%$LNPROG%g
+ s%@EXTRA_LIBS@%$EXTRA_LIBS%g
+diff -ru mico.orig/configure.in mico/configure.in
+--- mico.orig/configure.in	2008-09-19 15:16:50 +0200
++++ mico/configure.in	2008-09-19 14:52:24 +0200
+@@ -375,11 +375,15 @@
+ AC_MSG_CHECKING(OS Type)
+ gxxversion=`$CXX -v 2>&1`
+ case $gxxversion in
+-*mingw*special*)
++*mingw*special*|*parity*)
+ 	#
+-	# This is the MinGW compiler in a Cygwin environment
++	# This is the MinGW compiler in a Cygwin environment,
++	# or the parity compiler in an interix environment
+ 	#
+ 	OSTYPE=windows
++	case $gxxversion in
++	*parity*) SUBOSTYPE=parity ;;
++	esac
+ 	RMPROG="rm -f"
+ 	LNPROG="cp"
+ 	;;
+@@ -389,8 +393,9 @@
+ 	LNPROG="ln -f -s"
+ 	;;
+ esac
+-AC_MSG_RESULT($OSTYPE)
++AC_MSG_RESULT([$OSTYPE ($SUBOSTYPE)])
+ AC_SUBST(OSTYPE)
++AC_SUBST(SUBOSTYPE)
+ AC_SUBST(RMPROG)
+ AC_SUBST(LNPROG)
+ 
+diff -ru mico.orig/coss/Makefile mico/coss/Makefile
+--- mico.orig/coss/Makefile	2008-09-19 15:16:50 +0200
++++ mico/coss/Makefile	2008-09-19 14:52:24 +0200
+@@ -193,12 +193,14 @@
+ # mingw hack
+ 
+ ifeq ($(OSTYPE), windows)
++ifneq ($(SUBOSTYPE), parity)
+ ifeq ($(HAVE_SHARED), yes)
+ HAVE_SHARED_EXCEPTS := no
+ HAVE_SHARED := no
+ HAVE_STATIC := yes
+ endif
+ endif
++endif
+ 
+ 
+ all: lib prg
+@@ -241,6 +243,7 @@
+ 		-L../libs $(LDMICO) $(PLATFORM_LIBS)
+ 	$(IDIRCMD) ../libs
+ 	cd ../libs; $(RM) $@; $(LN) ../coss/$@ .
++	test ! -f $@.dll || ( cd ../libs; rm -f $@.dll; $(LN) ../coss/$@.dll . )
+ endif
+ 
+ # static
+@@ -261,7 +264,7 @@
+ 
+ clean:
+ 	for i in $(CLEANDIRS); do $(MAKE) -C $$i clean || exit 1; done
+-	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.objid
++	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.objid *.dll *.pdb *.exp
+ 	-$(RM) .depend TAGS core nohup.out
+ 
+ idlcompile:
+@@ -274,6 +277,7 @@
+ ifneq ($(strip $(SUBDIRS)),)
+ ifeq ($(HAVE_SHARED_EXCEPTS), yes)
+ 	$(ILIBCMD) libmicocoss$(VERSION).$(SOEXT) $(INSTDIR)/lib
++	test ! -f libmicocoss$(VERSION).$(SOEXT).dll || $(ILIBCMD) libmicocoss$(VERSION).$(SOEXT).dll $(INSTDIR)/lib
+ ifeq ($(HAVE_STATIC), yes)
+ 	$(ILIBCMD) libmicocoss$(VERSION).a $(INSTDIR)/lib
+ endif
+diff -ru mico.orig/coss/events/Makefile mico/coss/events/Makefile
+--- mico.orig/coss/events/Makefile	2008-09-19 15:16:50 +0200
++++ mico/coss/events/Makefile	2008-09-19 14:52:24 +0200
+@@ -51,12 +51,12 @@
+ lib:
+ endif
+ 
+-prg: .depend eventd
++prg: .depend eventd$(EXEEXT)
+ 
+ idlcompile: CosEventComm.cc CosEventChannelAdmin.cc
+ 
+-eventd: $(SRV_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRV_OBJS) $(LDLIBS) -o eventd
++eventd$(EXEEXT): $(SRV_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRV_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ CosEventComm.h CosEventComm.cc: ../../include/coss/CosEventComm.idl $(IDL)
+@@ -74,7 +74,7 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) *.o *.a *~ *.rpo *.objid eventd
++	-$(RM) *.o *.a *~ *.rpo *.objid eventd$(EXEEXT)
+ 	-$(RM) .depend TAGS core nohup.out
+ 	-$(RM) CosEventChannelAdmin.h CosEventChannelAdmin.cc 
+ 	-$(RM) ../../include/coss/CosEventChannelAdmin.h
+@@ -83,7 +83,7 @@
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) eventd $(INSTDIR)/bin
++	$(IBINCMD) eventd$(EXEEXT) $(INSTDIR)/bin
+ 
+ ifeq (.depend, $(wildcard .depend))
+ include .depend
+diff -ru mico.orig/coss/externalization/Makefile mico/coss/externalization/Makefile
+--- mico.orig/coss/externalization/Makefile	2008-09-19 15:16:50 +0200
++++ mico/coss/externalization/Makefile	2008-09-19 14:52:24 +0200
+@@ -63,26 +63,26 @@
+ lib: .depend $(STATIC_OBJS)
+ endif
+ 
+-prg: .depend extnoded extcontainmentd extreferenced streamd extcriteriad
++prg: .depend extnoded$(EXEEXT) extcontainmentd$(EXEEXT) extreferenced$(EXEEXT) streamd$(EXEEXT) extcriteriad$(EXEEXT)
+ 
+-streamd: streamd.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) streamd.o $(LDLIBS) -o streamd
++streamd$(EXEEXT): streamd.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) streamd.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-extnoded: extnoded.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) extnoded.o $(LDLIBS) -o extnoded
++extnoded$(EXEEXT): extnoded.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) extnoded.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-extcriteriad: extcriteriad.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) extcriteriad.o $(LDLIBS) -o extcriteriad
++extcriteriad$(EXEEXT): extcriteriad.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) extcriteriad.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-extcontainmentd: extcontainmentd.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) extcontainmentd.o $(LDLIBS) -o extcontainmentd
++extcontainmentd$(EXEEXT): extcontainmentd.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) extcontainmentd.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-extreferenced: extreferenced.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) extreferenced.o $(LDLIBS) -o extreferenced
++extreferenced$(EXEEXT): extreferenced.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) extreferenced.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ idlcompile: CosExternalization.cc CosExternalizationContainment.cc CosExternalizationReference.cc
+@@ -109,7 +109,7 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) *.o *.a *~ *.rpo *.objid extnoded extcontainmentd extreferenced streamd extcriteriad
++	-$(RM) *.o *.a *~ *.rpo *.objid extnoded$(EXEEXT) extcontainmentd$(EXEEXT) extreferenced$(EXEEXT) streamd$(EXEEXT) extcriteriad$(EXEEXT)
+ 	-$(RM) .depend TAGS core nohup.out
+ 	-$(RM) CosExternalization.h CosExternalization.cc
+ 	-$(RM) ../../include/coss/CosExternalization.h
+@@ -120,15 +120,15 @@
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) streamd $(INSTDIR)/bin
++	$(IBINCMD) streamd$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) extnoded $(INSTDIR)/bin
++	$(IBINCMD) extnoded$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) extcontainmentd $(INSTDIR)/bin
++	$(IBINCMD) extcontainmentd$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) extreferenced $(INSTDIR)/bin
++	$(IBINCMD) extreferenced$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) extcriteriad $(INSTDIR)/bin
++	$(IBINCMD) extcriteriad$(EXEEXT) $(INSTDIR)/bin
+ 
+ 
+ ifeq (.depend, $(wildcard .depend))
+diff -ru mico.orig/coss/lifecycle/Makefile mico/coss/lifecycle/Makefile
+--- mico.orig/coss/lifecycle/Makefile	2008-09-19 15:16:50 +0200
++++ mico/coss/lifecycle/Makefile	2008-09-19 14:52:24 +0200
+@@ -71,34 +71,34 @@
+ lib: .depend $(STATIC_OBJS)
+ endif
+ 
+-prg: .depend lifenoded lifecontainmentd lifereferenced operationd lifecriteriad factoryfinderd genericfactory
++prg: .depend lifenoded$(EXEEXT) lifecontainmentd$(EXEEXT) lifereferenced$(EXEEXT) operationd$(EXEEXT) lifecriteriad$(EXEEXT) factoryfinderd$(EXEEXT) genericfactory$(EXEEXT)
+ 
+-operationd: operationd.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) operationd.o $(LDLIBS) -o operationd
++operationd$(EXEEXT): operationd.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) operationd.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-lifenoded: lifenoded.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) lifenoded.o $(LDLIBS) -o lifenoded
++lifenoded$(EXEEXT): lifenoded.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) lifenoded.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-lifecontainmentd: lifecontainmentd.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) lifecontainmentd.o $(LDLIBS) -o lifecontainmentd
++lifecontainmentd$(EXEEXT): lifecontainmentd.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) lifecontainmentd.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-lifereferenced: lifereferenced.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) lifereferenced.o  $(LDLIBS) -o lifereferenced
++lifereferenced$(EXEEXT): lifereferenced.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) lifereferenced.o  $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-lifecriteriad: lifecriteriad.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) lifecriteriad.o $(LDLIBS) -o lifecriteriad
++lifecriteriad$(EXEEXT): lifecriteriad.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) lifecriteriad.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-factoryfinderd: factoryfinderd.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) factoryfinderd.o $(LDLIBS) -o factoryfinderd
++factoryfinderd$(EXEEXT): factoryfinderd.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) factoryfinderd.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-genericfactory: genericfactory.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) genericfactory.o $(LDLIBS) -o genericfactory
++genericfactory$(EXEEXT): genericfactory.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) genericfactory.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ idlcompile: CosLifeCycle.cc CosCompoundLifeCycle.cc CosLifeCycleContainment.cc CosLifeCycleReference.cc
+@@ -131,7 +131,7 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) *.o *.a *~ *.rpo *.objid lifenoded lifecontainmentd lifereferenced operationd lifecriteriad factoryfinderd genericfactory
++	-$(RM) *.o *.a *~ *.rpo *.objid lifenoded$(EXEEXT) lifecontainmentd$(EXEEXT) lifereferenced$(EXEEXT) operationd$(EXEEXT) lifecriteriad$(EXEEXT) factoryfinderd$(EXEEXT) genericfactory$(EXEEXT)
+ 	-$(RM) .depend TAGS core nohup.out
+ 	-$(RM) CosLifeCycle.h CosLifeCycle.cc
+ 	-$(RM) ../../include/coss/CosLifeCycle.h
+@@ -144,13 +144,13 @@
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) operationd $(INSTDIR)/bin
++	$(IBINCMD) operationd$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) lifenoded $(INSTDIR)/bin
++	$(IBINCMD) lifenoded$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) lifecontainmentd $(INSTDIR)/bin
++	$(IBINCMD) lifecontainmentd$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) lifereferenced $(INSTDIR)/bin
++	$(IBINCMD) lifereferenced$(EXEEXT) $(INSTDIR)/bin
+ 
+ 
+ ifeq (.depend, $(wildcard .depend))
+diff -ru mico.orig/coss/naming/Makefile mico/coss/naming/Makefile
+--- mico.orig/coss/naming/Makefile	2008-09-19 15:16:50 +0200
++++ mico/coss/naming/Makefile	2008-09-19 14:52:24 +0200
+@@ -51,36 +51,36 @@
+ lib:
+ endif
+ 
+-prg: .depend nsd nsadmin
++prg: .depend nsd$(EXEEXT) nsadmin$(EXEEXT)
+ 
+ idlcompile: CosNaming.cc CosNaming_skel.cc
+ 
+-nsd: $(SRV_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRV_OBJS) $(LDLIBS) -o nsd
++nsd$(EXEEXT): $(SRV_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRV_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-nsadmin: $(CLNT_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CLNT_OBJS) $(ALLLIBS) -o nsadmin
++nsadmin$(EXEEXT): $(CLNT_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CLNT_OBJS) $(ALLLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ 
+ CosNaming.h CosNaming.cc CosNaming_skel.cc .NOTPARALLEL: ../../include/coss/CosNaming.idl $(IDL)
+-	$(IDL) $(IDLFLAGS) --c++-skel --name CosNaming \
++	$(IDL) $(IDLFLAGS) --c++-skel --name CosNaming --windows-dll cossnaming \
+ 		../../include/coss/CosNaming.idl
+ 	cp CosNaming.h ../../include/coss
+ 
+ # cleaning
+ 
+ clean:
+-	-$(RM) *.o *.a *~ *.rpo *.ii *.ti *.objid nsd nsadmin
++	-$(RM) *.o *.a *~ *.rpo *.ii *.ti *.objid nsd$(EXEEXT) nsadmin$(EXEEXT)
+ 	-$(RM) .depend TAGS core nohup.out
+ 	-$(RM) CosNaming.h CosNaming.cc ../../include/coss/CosNaming.h \
+ 		CosNaming_skel.cc
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) nsd $(INSTDIR)/bin
+-	$(IBINCMD) nsadmin $(INSTDIR)/bin
++	$(IBINCMD) nsd$(EXEEXT) $(INSTDIR)/bin
++	$(IBINCMD) nsadmin$(EXEEXT) $(INSTDIR)/bin
+ 
+ ifeq (.depend, $(wildcard .depend))
+ include .depend
+diff -ru mico.orig/coss/property/Makefile mico/coss/property/Makefile
+--- mico.orig/coss/property/Makefile	2008-09-19 15:16:50 +0200
++++ mico/coss/property/Makefile	2008-09-19 14:52:24 +0200
+@@ -52,12 +52,12 @@
+ lib:
+ endif
+ 
+-prg: .depend propertyd
++prg: .depend propertyd$(EXEEXT)
+ 
+ idlcompile: PropertyService.cc
+ 
+-propertyd: $(SRV_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRV_OBJS) $(LDLIBS) -o propertyd
++propertyd$(EXEEXT): $(SRV_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRV_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ PropertyService.h PropertyService.cc: ../../include/coss/PropertyService.idl $(IDL)
+@@ -72,11 +72,11 @@
+ 	-$(RM) *.o *.a *~ *.rpo *.objid
+ 	-$(RM) .depend TAGS core nohup.out
+ 	-$(RM) PropertyService.h PropertyService.cc ../../include/coss/PropertyService.h
+-	-$(RM) propertyd
++	-$(RM) propertyd$(EXEEXT)
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) propertyd $(INSTDIR)/bin
++	$(IBINCMD) propertyd$(EXEEXT) $(INSTDIR)/bin
+ 
+ ifeq (.depend, $(wildcard .depend))
+ include .depend
+diff -ru mico.orig/coss/relship/Makefile mico/coss/relship/Makefile
+--- mico.orig/coss/relship/Makefile	2008-09-19 15:16:50 +0200
++++ mico/coss/relship/Makefile	2008-09-19 14:52:24 +0200
+@@ -70,32 +70,32 @@
+ lib:
+ endif
+ 
+-prg: .depend traversald noded containmentd referenced randomd proxyd
++prg: .depend traversald$(EXEEXT) noded$(EXEEXT) containmentd$(EXEEXT) referenced$(EXEEXT) randomd$(EXEEXT) proxyd$(EXEEXT)
+ 
+ idlcompile: $(OMG_SRCS) $(EXT_SRCS)
+ 
+-traversald: traversald.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) traversald.o $(LDLIBS) -o traversald
++traversald$(EXEEXT): traversald.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) traversald.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-noded: noded.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) noded.o $(LDLIBS) -o noded
++noded$(EXEEXT): noded.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) noded.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-containmentd: containmentd.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) containmentd.o $(LDLIBS) -o containmentd
++containmentd$(EXEEXT): containmentd.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) containmentd.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-referenced: referenced.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) referenced.o $(LDLIBS) -o referenced
++referenced$(EXEEXT): referenced.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) referenced.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-randomd: randomd.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) randomd.o $(LDLIBS) -o randomd
++randomd$(EXEEXT): randomd.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) randomd.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-proxyd: proxyd.o ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) proxyd.o $(LDLIBS) -o proxyd
++proxyd$(EXEEXT): proxyd.o ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) proxyd.o $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ CosObjectIdentity.h CosObjectIdentity.cc: \
+@@ -150,7 +150,7 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) *.o *.a *~ *.rpo *.objid traversald noded containmentd referenced randomd proxyd
++	-$(RM) *.o *.a *~ *.rpo *.objid traversald$(EXEEXT) noded$(EXEEXT) containmentd$(EXEEXT) referenced$(EXEEXT) randomd$(EXEEXT) proxyd$(EXEEXT)
+ 	-$(RM) .depend TAGS core nohup.out
+ 	-$(RM) CosObjectIdentity.h CosObjectIdentity.cc
+ 	-$(RM) ../../include/coss/CosObjectIdentity.h
+@@ -171,17 +171,17 @@
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) traversald $(INSTDIR)/bin
++	$(IBINCMD) traversald$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) noded $(INSTDIR)/bin
++	$(IBINCMD) noded$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) containmentd $(INSTDIR)/bin
++	$(IBINCMD) containmentd$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) referenced $(INSTDIR)/bin
++	$(IBINCMD) referenced$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) randomd $(INSTDIR)/bin
++	$(IBINCMD) randomd$(EXEEXT) $(INSTDIR)/bin
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) proxyd $(INSTDIR)/bin
++	$(IBINCMD) proxyd$(EXEEXT) $(INSTDIR)/bin
+ 
+ 
+ ifeq (.depend, $(wildcard .depend))
+diff -ru mico.orig/coss/time/Makefile mico/coss/time/Makefile
+--- mico.orig/coss/time/Makefile	2008-09-19 15:16:50 +0200
++++ mico/coss/time/Makefile	2008-09-19 14:52:24 +0200
+@@ -50,12 +50,12 @@
+ lib:
+ endif
+ 
+-prg: .depend timed
++prg: .depend timed$(EXEEXT)
+ 
+ idlcompile: CosTime.cc
+ 
+-timed: $(SRV_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRV_OBJS) $(LDLIBS) -o timed
++timed$(EXEEXT): $(SRV_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRV_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ CosTime.h CosTime.cc: ../../include/coss/CosTime.idl $(IDL)
+@@ -74,14 +74,14 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) *.o *.a *~ *.rpo *.objid timed
++	-$(RM) *.o *.a *~ *.rpo *.objid timed$(EXEEXT)
+ 	-$(RM) .depend TAGS core nohup.out
+ 	-$(RM) CosTime.h CosTime.cc
+ 	-$(RM) ../../include/coss/CosTime.h
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) timed $(INSTDIR)/bin
++	$(IBINCMD) timed$(EXEEXT) $(INSTDIR)/bin
+ 
+ ifeq (.depend, $(wildcard .depend))
+ include .depend
+diff -ru mico.orig/coss/trader/Makefile mico/coss/trader/Makefile
+--- mico.orig/coss/trader/Makefile	2008-09-19 15:16:50 +0200
++++ mico/coss/trader/Makefile	2008-09-19 14:52:24 +0200
+@@ -62,12 +62,12 @@
+ lib:
+ endif
+ 
+-prg: .depend traderd
++prg: .depend traderd$(EXEEXT)
+ 
+ idlcompile: CosTrading.cc CosTrading_skel.cc CosTradingRepos.cc CosTradingRepos_skel.cc
+ 
+-traderd: $(SRV_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRV_OBJS) $(LDLIBS) -o traderd
++traderd$(EXEEXT): $(SRV_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SRV_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ 
+@@ -83,7 +83,7 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) *.o *.a *~ *.rpo *.objid traderd
++	-$(RM) *.o *.a *~ *.rpo *.objid traderd$(EXEEXT)
+ 	-$(RM) .depend TAGS core nohup.out
+ 	-$(RM) CosTrading.h CosTrading.cc CosTradingRepos.h CosTradingRepos.cc
+ 	-$(RM) ../../include/coss/CosTrading.h ../../include/coss/CosTradingRepos.h
+@@ -91,7 +91,7 @@
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) traderd $(INSTDIR)/bin
++	$(IBINCMD) traderd$(EXEEXT) $(INSTDIR)/bin
+ 
+ generate:
+ 	$(BISON) -d -t -v -o yacc.c yacc.yy
+diff -ru mico.orig/coss/wireless/Makefile mico/coss/wireless/Makefile
+--- mico.orig/coss/wireless/Makefile	2008-09-19 15:16:50 +0200
++++ mico/coss/wireless/Makefile	2008-09-19 14:52:24 +0200
+@@ -21,15 +21,15 @@
+ TARGETS =
+ 
+ ifeq ($(USE_WIRELESS_HOME), yes)
+-TARGETS := $(TARGETS) hla
++TARGETS := $(TARGETS) hla$(EXEEXT)
+ endif
+ 
+ ifeq ($(USE_WIRELESS_TERMINAL), yes)
+-TARGETS := $(TARGETS) tadmin tb
++TARGETS := $(TARGETS) tadmin$(EXEEXT) tb$(EXEEXT)
+ endif
+ 
+ ifeq ($(USE_WIRELESS_ACCESS), yes)
+-TARGETS := $(TARGETS) callback nadmin ab
++TARGETS := $(TARGETS) callback$(EXEEXT) nadmin$(EXEEXT) ab$(EXEEXT)
+ endif
+ 
+ LDLIBS    = $(LDMICOCOSS) $(LDMICO) $(CONFLIBS)
+@@ -65,28 +65,28 @@
+ 
+ idlcompile: MobileTerminal.cc GTP.cc MobileTerminalNotification.cc
+ 
+-hla: $(HLA_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(HLA_OBJS) $(LDLIBS) -o hla
++hla$(EXEEXT): $(HLA_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(HLA_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-tb: $(TB_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(TB_OBJS) $(LDLIBS) -o tb
++tb$(EXEEXT): $(TB_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(TB_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-ab: $(AB_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(AB_OBJS) $(LDLIBS) -o ab
++ab$(EXEEXT): $(AB_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(AB_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-callback: $(CB_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CB_OBJS) $(LDLIBS) -o callback
++callback$(EXEEXT): $(CB_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(CB_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-tadmin: $(TAD_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(TAD_OBJS) $(LDLIBS) -o tadmin
++tadmin$(EXEEXT): $(TAD_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(TAD_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-nadmin: $(NAD_OBJS) ../../orb/$(LIBMICO)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(NAD_OBJS) $(LDLIBS) -o nadmin
++nadmin$(EXEEXT): $(NAD_OBJS) ../../orb/$(LIBMICO)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(NAD_OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ MobileTerminal.cc MobileTerminal.h: \
+diff -ru mico.orig/cpp/Makefile mico/cpp/Makefile
+--- mico.orig/cpp/Makefile	2008-09-19 15:16:50 +0200
++++ mico/cpp/Makefile	2008-09-19 14:52:24 +0200
+@@ -40,24 +40,24 @@
+ 
+ all: lib prg
+ 
+-prg: .depend mico-cpp
++prg: .depend mico-cpp$(EXEEXT)
+ 
+ lib: .depend
+ 
+-mico-cpp: $(OBJS)
++mico-cpp$(EXEEXT): $(OBJS)
+ 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ # cleaning
+ 
+ clean:
+-	-$(RM) *.o *.a *~ *.rpo mico-cpp
++	-$(RM) *.o *.a *~ *.rpo mico-cpp$(EXEEXT)
+ 	-$(RM) .depend TAGS core nohup.out $(GENERATED)
+ 
+ 
+ install: all
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) mico-cpp $(INSTDIR)/bin
++	$(IBINCMD) mico-cpp$(EXEEXT) $(INSTDIR)/bin
+ 
+ install-cd: install
+ 
+diff -ru mico.orig/daemon/Makefile mico/daemon/Makefile
+--- mico.orig/daemon/Makefile	2008-09-19 15:16:50 +0200
++++ mico/daemon/Makefile	2008-09-19 14:52:24 +0200
+@@ -38,13 +38,13 @@
+ 
+ all: prg
+ 
+-prg: .depend micod imr
++prg: .depend micod$(EXEEXT) imr$(EXEEXT)
+ 
+-micod: $(MICODOBJS) ../orb/$(LIBMICO)
++micod$(EXEEXT): $(MICODOBJS) ../orb/$(LIBMICO)
+ 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(MICODOBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+-imr: $(IMRCLOBJS) ../orb/$(LIBMICO)
++imr$(EXEEXT): $(IMRCLOBJS) ../orb/$(LIBMICO)
+ 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(IMRCLOBJS) $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+@@ -75,15 +75,15 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) micod imr
+-	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.ii *.ti *.objid
++	-$(RM) micod$(EXEEXT) imr$(EXEEXT)
++	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.ii *.ti *.objid *.dll *.pdb *.exp
+ 	-$(RM) .depend TAGS core nohup.out
+ 
+ 
+ install: all
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) micod $(INSTDIR)/bin
+-	$(IBINCMD) imr $(INSTDIR)/bin
++	$(IBINCMD) micod$(EXEEXT) $(INSTDIR)/bin
++	$(IBINCMD) imr$(EXEEXT) $(INSTDIR)/bin
+ 
+ install-cd: install
+ 
+diff -ru mico.orig/idl/Makefile mico/idl/Makefile
+--- mico.orig/idl/Makefile	2008-09-19 15:16:50 +0200
++++ mico/idl/Makefile	2008-09-19 14:52:24 +0200
+@@ -56,7 +56,7 @@
+ 
+ all: lib prg
+ 
+-prg: .depend idl
++prg: .depend idl$(EXEEXT)
+ 
+ lib: .depend libidl.a $(OBJS)
+ 
+@@ -71,8 +71,8 @@
+ 	$(AR) $(ARFLAGS) $@ $(OBJS)
+ 	$(RANLIB) $@
+ 
+-idl: libidl.a main.o ../orb/$(LIBMICO) ../ir/$(LIBMICOIR) $(IR_OBJS)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) main.o $(IR_OBJS) $(LDLIBS) libidl.a -o idl
++idl$(EXEEXT): libidl.a main.o ../orb/$(LIBMICO) ../ir/$(LIBMICOIR) $(IR_OBJS)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) main.o $(IR_OBJS) $(LDLIBS) libidl.a -o $@
+ 	$(POSTLD) $@
+ 
+ main.o:
+@@ -80,14 +80,14 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) idl idl.install
+-	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.ii *.ti *.objid
++	-$(RM) idl$(EXEEXT) idl.install
++	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.ii *.ti *.objid *.dll *.pdb *.exp
+ 	-$(RM) .depend TAGS core nohup.out $(GENERATED)
+ 
+ 
+ install: all
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) idl $(INSTDIR)/bin
++	$(IBINCMD) idl$(EXEEXT) $(INSTDIR)/bin
+ 
+ install-cd: install
+ 
+diff -ru mico.orig/idl/params.cc mico/idl/params.cc
+--- mico.orig/idl/params.cc	2008-09-19 15:16:50 +0200
++++ mico/idl/params.cc	2008-09-19 14:52:24 +0200
+@@ -72,11 +72,13 @@
+   cpp = "mico-cpp";
+ #else // _WIN32
+   cpp = "mico-cpp.exe";
++#ifndef __PARITY__
+   char sz_path[256] = "";
+   GetModuleFileName(0, sz_path, 255);
+   string p(sz_path);
+   p.erase(p.find_last_of("\\") + 1, p.length());
+   cpp = "\"" + p + cpp + "\"";
++#endif
+ #endif // _WIN32
+ 
+   base_dir = "";
+diff -ru mico.orig/ir/Makefile mico/ir/Makefile
+--- mico.orig/ir/Makefile	2008-09-19 15:16:50 +0200
++++ mico/ir/Makefile	2008-09-19 14:52:24 +0200
+@@ -57,17 +57,19 @@
+ # mingw hack
+ 
+ ifeq ($(OSTYPE), windows)
++ifneq ($(SUBOSTYPE), parity)
+ ifeq ($(HAVE_SHARED), yes)
+ HAVE_SHARED := no
+ HAVE_STATIC := yes
+ endif
+ endif
++endif
+ 
+ # normal rules
+ 
+ all: lib prg
+ 
+-prg: ird
++prg: ird$(EXEEXT)
+ 
+ ifeq ($(HAVE_SHARED), yes)
+ ifeq ($(HAVE_STATIC), yes)
+@@ -79,8 +81,8 @@
+ lib: .depend libmicoir$(VERSION).a
+ endif
+ 
+-ird: main.o ../idl/libidl.a ../orb/$(LIBMICO) $(LIBMICOIR)
+-	$(CXX) $(CXXFLAGS) $(LDFLAGS) main.o -L. $(LDLIBS) ../idl/libidl.a -o ird
++ird$(EXEEXT): main.o ../idl/libidl.a ../orb/$(LIBMICO) $(LIBMICOIR)
++	$(CXX) $(CXXFLAGS) $(LDFLAGS) main.o -L. $(LDLIBS) ../idl/libidl.a -o $@
+ 	$(POSTLD) $@
+ 
+ libmicoir$(VERSION).$(SOEXT): $(SHARED_OBJS)
+@@ -96,6 +98,7 @@
+ 	$(LDSO) -o libmicoir$(VERSION) $(SHARED_OBJS) -L../libs $(LDMICO) $(PLATFORM_LIBS)
+ 	$(IDIRCMD) ../libs
+ 	cd ../libs; $(RM) $@; $(LN) ../ir/$@ .
++	test ! -f $@.dll || ( cd ../libs; $(RM) $@.dll; $(LN) ../ir/$@.dll . )
+ 
+ libmicoir$(VERSION).a: $(STATIC_OBJS)
+ ifeq ($(HAVE_REPO), yes)
+@@ -155,18 +158,19 @@
+ # cleaning
+ 
+ clean:
+-	-$(RM) libs libmicoir* ird
+-	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.ii *.ti *.objid
++	-$(RM) libs libmicoir* ird$(EXEEXT)
++	-$(RM) *.o *.o0 *.a *~ *.$(SOEXT) *.exe *.rpo *.ii *.ti *.objid *.dll *.pdb *.exp
+ 	-$(RM) .depend TAGS core nohup.out
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) ird $(INSTDIR)/bin
++	$(IBINCMD) ird$(EXEEXT) $(INSTDIR)/bin
+ ifeq ($(HAVE_STATIC), yes)
+ 	$(ILIBCMD) libmicoir$(VERSION).a $(INSTDIR)/lib
+ endif
+ ifeq ($(HAVE_SHARED), yes)
+ 	$(ILIBCMD) libmicoir$(VERSION).$(SOEXT) $(INSTDIR)/lib
++	test ! -f libmicoir$(VERSION).$(SOEXT).dll || $(ILIBCMD) libmicoir$(VERSION).$(SOEXT).dll $(INSTDIR)/lib
+ endif
+ 
+ install-cd: install
+diff -ru mico.orig/orb/Makefile mico/orb/Makefile
+--- mico.orig/orb/Makefile	2008-09-19 15:16:50 +0200
++++ mico/orb/Makefile	2008-09-19 14:52:24 +0200
+@@ -207,14 +207,13 @@
+ prg:
+ 
+ ifeq ($(OSTYPE), windows)
++ifneq ($(SUBOSTYPE), parity)
+ ifeq ($(HAVE_SHARED), yes)
+ lib: .depend libmico$(VERSION).a mico$(NODOTVERSION).dll
+ else
+ lib: .depend libmico$(VERSION).a
+ endif
+-
+ else
+-
+ ifeq ($(HAVE_SHARED), yes)
+ ifeq ($(HAVE_STATIC), yes)
+ lib: .depend libmico$(VERSION).$(SOEXT) libmico$(VERSION).a
+@@ -224,6 +223,20 @@
+ else
+ lib: .depend libmico$(VERSION).a
+ endif
++
++endif
++
++else
++
++ifeq ($(HAVE_SHARED), yes)
++ifeq ($(HAVE_STATIC), yes)
++lib: .depend libmico$(VERSION).$(SOEXT) libmico$(VERSION).a
++else
++lib: .depend libmico$(VERSION).$(SOEXT)
++endif
++else
++lib: .depend libmico$(VERSION).a
++endif
+ endif
+ 
+ $(EH_STATIC_OBJS):
+@@ -252,6 +265,10 @@
+ 	$(LDSO) -o libmico$(VERSION) $(SHARED_OBJS) $(PLATFORM_LIBS)
+ 	$(IDIRCMD) ../libs
+ 	cd ../libs; $(RM) $@; $(LN) ../orb/$@ .
++	if test -f $@.dll; then \
++		cd ../libs; $(RM) $@.dll; $(LN) ../orb/$@.dll .; \
++	fi
++
+ endif
+ 
+ # static
+@@ -412,7 +429,7 @@
+ 	$(RM) -r orig
+ 
+ clean:
+-	$(RM) *.rpo *.ii *.ti *.a *.o *~ *.$(SOEXT) *.exe .depend
++	$(RM) *.rpo *.ii *.ti *.a *.o *~ *.$(SOEXT) *.exe .depend *.dll *.pdb *.exp
+ 	(cd transport; $(RM) *.rpo *.ii *.ti *.a *.o *~ .depend)
+ 	(cd os-thread; $(RM) *.rpo *.ii *.ti *.a *.o *~ .depend)
+ 	(cd security; $(RM) *.rpo *.ii *.ti *.a *.o *~ .depend)
+@@ -425,6 +442,7 @@
+ endif
+ ifeq ($(HAVE_SHARED), yes)
+ 	$(ILIBCMD) libmico$(VERSION).$(SOEXT) $(INSTDIR)/lib
++	test ! -f libmico$(VERSION).$(SOEXT).dll || $(ILIBCMD) libmico$(VERSION).$(SOEXT).dll $(INSTDIR)/lib
+ endif
+ 
+ install-cd: install
+diff -ru mico.orig/orb/orb_all.cc mico/orb/orb_all.cc
+--- mico.orig/orb/orb_all.cc	2008-09-19 15:16:50 +0200
++++ mico/orb/orb_all.cc	2008-09-19 14:52:24 +0200
+@@ -26,7 +26,11 @@
+ #include "codeset.cc"
+ #include "queue.cc"
+ #include "static.cc"
++#ifndef _WIN32
+ #include "os-unix.cc"
++#else
++#include "os-windows.cc"
++#endif
+ #include "ssl.cc"
+ #include "current.cc"
+ #include "valuetype.cc"
+diff -ru mico.orig/tools/iordump/Makefile mico/tools/iordump/Makefile
+--- mico.orig/tools/iordump/Makefile	2008-09-19 15:16:50 +0200
++++ mico/tools/iordump/Makefile	2008-09-19 14:52:24 +0200
+@@ -34,15 +34,15 @@
+ 
+ # normal rules
+ 
+-all: .depend iordump
++all: .depend iordump$(EXEEXT)
+ 
+-iordump: $(OBJS) ../../orb/$(LIBMICO)
++iordump$(EXEEXT): $(OBJS) ../../orb/$(LIBMICO)
+ 	$(CXX) $(CXXFLAGS) $(LDFLAGS) -L../../idl $(OBJS) -lidl $(LDLIBS) -o $@
+ 	$(POSTLD) $@
+ 
+ install:
+ 	$(IDIRCMD) $(INSTDIR)/bin
+-	$(IBINCMD) iordump $(INSTDIR)/bin
++	$(IBINCMD) iordump$(EXEEXT) $(INSTDIR)/bin
+ 
+ # cleaning
+ 

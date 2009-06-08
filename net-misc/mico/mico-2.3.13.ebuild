@@ -10,7 +10,7 @@ SRC_URI="http://www.mico.org/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~x86-winnt"
 IUSE="gtk postgres qt3 ssl tcl threads X"
 
 # doesn't compile:
@@ -39,6 +39,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-gcc43.patch
 	epatch "${FILESDIR}"/${P}-pthread.patch
 	epatch "${FILESDIR}"/${P}-aix.patch
+
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
 
 	# cannot use big TOC (AIX only), gdb doesn't like it.
 	# This assumes that the compiler (or -wrapper) uses
@@ -73,6 +75,14 @@ src_compile() {
 	# moc is searched within PATH, not within QTDIR.
 	use qt3 && export MOC="${QTDIR}"/bin/moc
 
+	local winopts=
+	if [[ ${CHOST} == *-winnt* ]]; then 
+		# disabling static libs, since ar on interix takes nearly
+		# one hour per library, thanks to mico's monster objects.
+		winopts="${winopts} --disable-threads --disable-static --enable-final"
+		append-flags -D__STDC__
+	fi
+
 	# bluetooth and wireless both don't compile cleanly
 	econf \
 		--disable-mini-stl \
@@ -83,7 +93,8 @@ src_compile() {
 		--with-tcl=$(use tcl && echo /usr) \
 		$(use_with X x /usr) \
 		--with-bluetooth='' \
-		--disable-wireless
+		--disable-wireless \
+		${winopts}
 
 	emake || die "make failed"
 }
