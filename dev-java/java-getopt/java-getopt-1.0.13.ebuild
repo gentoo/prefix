@@ -14,7 +14,7 @@ SLOT="1"
 DEPEND=">=virtual/jdk-1.4
 	dev-java/ant-core"
 RDEPEND=">=virtual/jre-1.4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE="doc source"
 
 S=${WORKDIR}
