@@ -11,7 +11,7 @@ SRC_URI="ftp://ftp.tralfamadore.com/pub/java/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="1"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE="doc source"
 
 DEPEND=">=virtual/jdk-1.4
