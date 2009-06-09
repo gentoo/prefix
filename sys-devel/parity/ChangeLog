@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Jun 2009; Markus Duft <mduft@gentoo.org>
+  +files/parity-1.2.2-lib-search.patch:
+  fix library search which could choke on a directory with the same name as
+  the searched lib
+
   26 Jan 2009; Markus Duft <mduft@gentoo.org>
   files/parity-prefix-wrapper.sh:
   updated prefix wrapper script to handle library paths correctly
