@@ -1,0 +1,15 @@
+# ChangeLog for games-misc/fortune-mod-powerpuff
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod-powerpuff/ChangeLog,v 1.2 2006/07/19 19:55:45 flameeyes Exp $
+
+  19 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  fortune-mod-powerpuff-0.3.ebuild:
+  Add ~x86-fbsd keyword
+
+*fortune-mod-powerpuff-0.3 (20 Dec 2005)
+
+  20 Dec 2005; Chris Gianelloni <wolf31o2@gentoo.org> +metadata.xml,
+  +fortune-mod-powerpuff-0.3.ebuild:
+  Initial import. Ebuild by Peter Hyman <pete4abw@comcast.net>. Closing bug
+  #108377.
+
