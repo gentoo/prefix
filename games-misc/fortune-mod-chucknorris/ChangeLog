@@ -1,0 +1,19 @@
+# ChangeLog for games-misc/fortune-mod-chucknorris
+# Copyright 1999-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod-chucknorris/ChangeLog,v 1.3 2006/07/19 19:43:22 flameeyes Exp $
+
+  19 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  fortune-mod-chucknorris-0.1.ebuild:
+  Add ~x86-fbsd keyword
+
+  11 Feb 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  fortune-mod-chucknorris-0.1.ebuild:
+  Fixed HOMEPAGE and closing bug #122436.
+
+*fortune-mod-chucknorris-0.1 (11 Feb 2006)
+
+  11 Feb 2006; Chris Gianelloni <wolf31o2@gentoo.org>
+  +fortune-mod-chucknorris-0.1.ebuild:
+  Initial import. Ebuild by Paul Kessler <kessler@co.wabasha.mn.us>. Closing
+  bug #121342.
+
