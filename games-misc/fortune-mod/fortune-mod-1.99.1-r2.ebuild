@@ -10,7 +10,7 @@ SRC_URI="http://www.redellipse.net/code/downloads/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="offensive elibc_glibc"
 
 DEPEND="app-text/recode"
