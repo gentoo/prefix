@@ -1,6 +1,11 @@
 # ChangeLog for media-fonts/terminus-font
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/ChangeLog,v 1.68 2009/01/12 04:25:00 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/ChangeLog,v 1.69 2009/06/05 16:59:12 pva Exp $
+
+  05 Jun 2009; Peter Volkov <pva@gentoo.org> terminus-font-4.28.ebuild,
+  metadata.xml:
+  Raw USE flag renamed to raw-font-data as it had inconsistent usage with
+  global USE flag, bug #271918, thank Antti Mäkelä for report
 
   12 Jan 2009; Jeroen Roovers <jer@gentoo.org> terminus-font-4.28.ebuild:
   Stable for HPPA (bug #252648).

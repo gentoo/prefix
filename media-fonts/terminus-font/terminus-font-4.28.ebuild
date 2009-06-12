@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/terminus-font-4.28.ebuild,v 1.8 2009/01/12 04:25:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/terminus-font-4.28.ebuild,v 1.9 2009/06/05 16:59:12 pva Exp $
 
 EAPI=1
 
@@ -24,7 +24,7 @@ SRC_URI="http://www.is-vn.bg/hamster/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="a-like-o ru-dv +ru-g quote ru-i ru-k width bolddiag +psf raw +pcf"
+IUSE="a-like-o ru-dv +ru-g quote ru-i ru-k width bolddiag +psf raw-font-data +pcf"
 
 DEPEND="dev-lang/perl
 		sys-apps/gawk
@@ -79,7 +79,7 @@ src_compile() {
 		--x11dir="${EPREFIX}"/${FONTDIR}
 
 	if use psf; then emake psf txt || die; fi
-	if use raw; then emake raw || die; fi
+	if use raw-font-data; then emake raw || die; fi
 	if use pcf; then emake pcf || die; fi
 }
 
@@ -87,7 +87,7 @@ src_install() {
 	if use psf; then
 		emake DESTDIR="${D}" install-psf install-uni install-acm install-ref || die
 	fi
-	if use raw; then
+	if use raw-font-data; then
 		emake DESTDIR="${D}" install.raw || die
 	fi
 	if use pcf; then
