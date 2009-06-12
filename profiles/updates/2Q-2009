@@ -25,3 +25,22 @@ slotmove =x11-misc/basket-1.0.3.1 0 3.5
 slotmove =kde-misc/dolphin-0.8.2-r1 0 3.5
 move x11-themes/sylpheed-iconset x11-themes/claws-mail-themes
 move app-misc/screen-profiles app-misc/byobu
+move x11-misc/basket kde-misc/basket
+move media-sound/libspiff media-libs/libxspf
+slotmove media-sound/k3guitune 0 3.5
+move x11-misc/openclipart media-gfx/openclipart
+move net-misc/freenet6 net-misc/gateway6
+slotmove >=media-sound/amarok-2.0.0 2 4
+slotmove media-sound/musicman 0 3.5
+slotmove media-libs/taglib-extras 4 0
+slotmove dev-util/kdevplatform 1 4
+slotmove media-video/kaffeine 0 3.5
+move x11-misc/xinput x11-apps/xinput
+slotmove media-libs/xvid 1 0
+slotmove >=net-p2p/ktorrent-3.2.2 3 4
+slotmove app-admin/kiosktool 0 3.5
+slotmove app-admin/klogview 0 3.5
+slotmove app-antivirus/klamav 0 3.5
+slotmove app-backup/kbackup 0 3.5
+slotmove >=media-gfx/dikigam-0.10 0.10 4
+slotmove kde-misc/kdnssd-avahi 0 3.5

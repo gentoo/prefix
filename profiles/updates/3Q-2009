@@ -1,9 +1,0 @@
-move x11-misc/basket kde-misc/basket
-move media-sound/libspiff media-libs/libxspf
-slotmove media-sound/k3guitune 0 3.5
-move x11-misc/openclipart media-gfx/openclipart
-move net-misc/freenet6 net-misc/gateway6
-slotmove >=media-sound/amarok-2.0.0 2 4
-slotmove media-sound/musicman 0 3.5
-slotmove media-libs/taglib-extras 4 0
-slotmove dev-util/kdevplatform 1 4
