@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/jcommon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jcommon/ChangeLog,v 1.26 2009/05/11 19:42:32 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jcommon/ChangeLog,v 1.27 2009/06/12 00:42:21 fauli Exp $
+
+  12 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  jcommon-1.0.16.ebuild:
+  stable x86, bug 273774
 
 *jcommon-1.0.16 (11 May 2009)
 
