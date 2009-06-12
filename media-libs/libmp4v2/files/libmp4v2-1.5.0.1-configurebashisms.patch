@@ -1,0 +1,11 @@
+--- mpeg4ip-1.5.0.1/configure.in.old	2009-06-10 09:13:55 +0000
++++ mpeg4ip-1.5.0.1/configure.in	2009-06-10 09:15:45 +0000
+@@ -7,7 +7,7 @@
+    AC_MSG_ERROR([Please run bootstrap first])
+    exit -1
+ fi
+-rm -f config.h >&/dev/null
++rm -f config.h
+ touch config.h
+ dnl Detect the canonical host and target build environment
+ AC_CANONICAL_HOST

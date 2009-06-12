@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libmp4v2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/ChangeLog,v 1.45 2009/06/04 18:26:00 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/ChangeLog,v 1.46 2009/06/10 09:31:28 aballier Exp $
+
+  10 Jun 2009; Alexis Ballier <aballier@gentoo.org>
+  libmp4v2-1.5.0.1-r2.ebuild,
+  +files/libmp4v2-1.5.0.1-configurebashisms.patch:
+  fix build on bsd by removing a small useless bashism in configure
 
   04 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   libmp4v2-1.5.0.1-r2.ebuild:
