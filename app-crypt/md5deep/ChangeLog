@@ -1,6 +1,11 @@
 # ChangeLog for app-crypt/md5deep
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/md5deep/ChangeLog,v 1.49 2009/05/30 16:38:20 nixnut Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/md5deep/ChangeLog,v 1.50 2009/06/10 22:52:57 nyhm Exp $
+
+*md5deep-3.4 (10 Jun 2009)
+
+  10 Jun 2009; Tristan Heaven <nyhm@gentoo.org> +md5deep-3.4.ebuild:
+  Version bump
 
   30 May 2009; nixnut <nixnut@gentoo.org> md5deep-3.3.ebuild:
   ppc stable #271301
