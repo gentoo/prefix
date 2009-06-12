@@ -1,6 +1,11 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.161 2009/06/01 15:28:44 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.162 2009/06/08 04:33:04 nerdboy Exp $
+
+  08 Jun 2009; Steve Arnold <nerdboy@gentoo.org>
+  +files/doxygen-1.5.8-kdedocs.patch, doxygen-1.5.8.ebuild:
+  Updated with back-ported patch, courtesy of (thanks!) Martin von Gagern 
+  <Martin.vGagern@gmx.net>.
 
   01 Jun 2009; Ferris McCormick <fmccor@gentoo.org> doxygen-1.5.8.ebuild:
   Sparc stable, Bug #263641, required for Bug #271815.

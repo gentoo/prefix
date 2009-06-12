@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.8.ebuild,v 1.7 2009/06/01 15:28:44 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.8.ebuild,v 1.8 2009/06/08 04:33:04 nerdboy Exp $
 
 EAPI=1
 
@@ -54,7 +54,8 @@ src_unpack() {
 	# Consolidate patches, apply FreeBSD configure patch, codepage patch,
 	# qtools stuff, and patches for bugs 129142, 121770, and 129560.
 	epatch "${FILESDIR}/${PN}-1.5-legacy-patches.diff"
-	#epatch "${FILESDIR}/${P}-substitute.patch"
+	# backport fix for bug #266693
+	epatch "${FILESDIR}/${P}-kdedocs.patch"
 
 	# prefix search tools patch, plus OSX fixes
 	epatch "${FILESDIR}"/${PN}-1.5.6-prefix-misc-alt.patch
@@ -62,10 +63,6 @@ src_unpack() {
 
 	# remove internal libpng - see bug #210237
 	epatch "${FILESDIR}/${PN}-1.5-system-libpng.patch"
-
-	#if [ $(get_libdir) == "lib64" ] ; then
-	#	epatch "${FILESDIR}/${PN}-1.5-qtlibdir.patch"
-	#fi
 
 	# fix final DESTDIR issue
 	sed -i.orig -e "s:\$(INSTALL):\$(DESTDIR)/\$(INSTALL):g" \
