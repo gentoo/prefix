@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.74.ebuild,v 1.1 2009/05/28 16:34:27 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/asymptote/asymptote-1.76.ebuild,v 1.1 2009/06/07 12:16:24 grozin Exp $
 EAPI=2
 inherit eutils autotools elisp-common latex-package multilib python
 
@@ -53,7 +53,7 @@ src_configure() {
 	econf CPPFLAGS=-DHAVE_SYS_TYPES_H \
 		--disable-gc-debug \
 		$(use_enable boehm-gc gc system) \
-		$(use_with fftw) \
+		$(use_enable fftw) \
 		$(use_enable gsl) \
 		$(use_with sigsegv)
 }
