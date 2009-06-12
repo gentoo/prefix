@@ -1,6 +1,20 @@
 # ChangeLog for dev-libs/check
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.53 2009/04/29 11:33:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/check/ChangeLog,v 1.56 2009/06/09 15:40:25 gentoofan23 Exp $
+
+  09 Jun 2009; Thomas Anderson <gentoofan23@gentoo.org> metadata.xml:
+  Picking up maintainership.
+
+  09 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> check-0.9.6.ebuild,
+  +files/check-0.9.6-64bitsafe.patch:
+  Add a patch to avoid 64-bit unsafe code build.
+
+*check-0.9.6 (09 Jun 2009)
+
+  09 Jun 2009; Jeroen Roovers <jer@gentoo.org> +check-0.9.6.ebuild,
+  +files/check-0.9.6-AM_PATH_CHECK.patch:
+  Version bump thanks to Jason (bug #257780). Drop two accepted patches. Add
+  partial (apparently rejected) AM_PATH_CHECK patch.
 
   29 Apr 2009; Raúl Porcel <armin76@gentoo.org> check-0.9.5-r1.ebuild:
   m68k stable
