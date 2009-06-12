@@ -1,6 +1,9 @@
 # ChangeLog for x11-apps/xrdb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xrdb/ChangeLog,v 1.50 2009/05/20 13:50:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xrdb/ChangeLog,v 1.51 2009/06/05 17:08:22 tcunha Exp $
+
+  05 Jun 2009; Tiago Cunha <tcunha@gentoo.org> xrdb-1.0.5.ebuild:
+  stable sparc, bug 268581
 
   20 May 2009; Brent Baude <ranger@gentoo.org> xrdb-1.0.5.ebuild:
   Marking xrdb-1.0.5 ppc64 stable for bug 268581
