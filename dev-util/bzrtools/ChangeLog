@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/bzrtools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.57 2009/06/01 13:52:36 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/ChangeLog,v 1.58 2009/06/05 19:47:06 pva Exp $
+
+*bzrtools-1.15.0 (05 Jun 2009)
+
+  05 Jun 2009; Peter Volkov <pva@gentoo.org> +bzrtools-1.15.0.ebuild,
+  +files/bzrtools-1.15.0-test_fetch_ghosts.patch:
+  Version bump.
 
   01 Jun 2009; Markus Meier <maekke@gentoo.org> bzrtools-1.13.0.ebuild:
   amd64 stable, bug #271130
