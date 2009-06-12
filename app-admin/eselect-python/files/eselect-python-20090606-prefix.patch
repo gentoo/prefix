@@ -1,0 +1,10 @@
+--- python.eselect-20090606
++++ python.eselect-20090606
+@@ -7,6 +7,7 @@
+ SVN_DATE='$Date: 2009-06-06 17:03:14 +0000 (Sat, 06 Jun 2009) $'
+ VERSION=$(svn_date_to_version "${SVN_DATE}" )
+ 
++ROOT="${ROOT}@GENTOO_PORTAGE_EPREFIX@"
+ ENV_D_PATH="${ROOT%/}/etc/env.d"
+ INTERPRETER_PATH="${ROOT%/}/usr/bin/"
+ MAN_PATH="${ROOT%/}/usr/share/man/man1/"
