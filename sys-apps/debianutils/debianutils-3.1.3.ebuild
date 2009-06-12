@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-3.1.3.ebuild,v 1.1 2009/05/06 11:32:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-3.1.3.ebuild,v 1.3 2009/06/10 20:30:24 maekke Exp $
 
 inherit eutils flag-o-matic autotools
 
