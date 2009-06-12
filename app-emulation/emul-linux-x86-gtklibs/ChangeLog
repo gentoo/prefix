@@ -1,6 +1,18 @@
 # ChangeLog for app-emulation/emul-linux-x86-gtklibs
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.61 2008/11/11 18:43:58 kingtaco Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.62 2009/06/06 22:21:57 darkside Exp $
+
+  06 Jun 2009; Jeremy Olexa <darkside@gentoo.org>
+  -emul-linux-x86-gtklibs-2.3.ebuild, -emul-linux-x86-gtklibs-2.8.8.ebuild,
+  -emul-linux-x86-gtklibs-2.10.6.3.ebuild,
+  -emul-linux-x86-gtklibs-2.10.6.3-r3.ebuild,
+  -emul-linux-x86-gtklibs-10.0-r1.ebuild,
+  -emul-linux-x86-gtklibs-11.0.ebuild,
+  -emul-linux-x86-gtklibs-20071114.ebuild,
+  -emul-linux-x86-gtklibs-20071118.ebuild,
+  -emul-linux-x86-gtklibs-20071121.ebuild,
+  -emul-linux-x86-gtklibs-20071210.ebuild:
+  Remove vulnerable versions, bug 271705
 
 *emul-linux-x86-gtklibs-20081109 (10 Nov 2008)
 
