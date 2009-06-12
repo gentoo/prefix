@@ -1,6 +1,14 @@
 # ChangeLog for xfce-extra/xfce4-appfinder
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-appfinder/ChangeLog,v 1.77 2009/04/21 04:25:32 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-appfinder/ChangeLog,v 1.79 2009/06/10 07:42:23 fauli Exp $
+
+  10 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  xfce4-appfinder-4.6.1.ebuild:
+  stable x86, bug 265587
+
+  09 Jun 2009; Jeremy Olexa <darkside@gentoo.org>
+  xfce4-appfinder-4.6.1.ebuild:
+  amd64 stable, bug 265587
 
 *xfce4-appfinder-4.6.1 (21 Apr 2009)
 
