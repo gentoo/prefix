@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/emacs-updater
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/emacs-updater/ChangeLog,v 1.17 2009/04/14 11:45:26 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/emacs-updater/ChangeLog,v 1.18 2009/06/05 06:31:02 ulm Exp $
+
+*emacs-updater-1.5 (05 Jun 2009)
+
+  05 Jun 2009; Ulrich Mueller <ulm@gentoo.org> +emacs-updater-1.5.ebuild:
+  Version bump.
 
 *emacs-updater-1.4 (14 Apr 2009)
 
