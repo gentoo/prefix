@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/nose
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.28 2009/05/14 18:13:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/nose/ChangeLog,v 1.29 2009/06/09 16:01:10 armin76 Exp $
+
+  09 Jun 2009; Raúl Porcel <armin76@gentoo.org> nose-0.11.0.ebuild:
+  Add ~alpha
 
   14 May 2009; Jeroen Roovers <jer@gentoo.org> nose-0.11.0.ebuild:
   Marked ~hppa (bug #233554).
