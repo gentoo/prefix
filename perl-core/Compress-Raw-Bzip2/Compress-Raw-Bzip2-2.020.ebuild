@@ -10,7 +10,7 @@ inherit perl-module
 DESCRIPTION="Low-Level Interface to bzip2 compression library"
 
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-solaris ~x64-solaris ~sparc-solaris ~sparc64-solaris ~x86-macos ~ppc-macos ~amd64-linux ~ia64-linux ~x86-linux ~x86-freebsd"
 IUSE="test"
 
 RDEPEND="app-arch/bzip2"
