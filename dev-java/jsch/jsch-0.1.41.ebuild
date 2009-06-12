@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/jsch-0.1.41.ebuild,v 1.1 2009/05/03 19:48:11 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jsch/jsch-0.1.41.ebuild,v 1.3 2009/06/07 12:52:06 maekke Exp $
 
 EAPI="2"
 JAVA_PKG_IUSE="doc source examples"
