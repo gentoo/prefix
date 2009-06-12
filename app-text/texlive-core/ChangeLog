@@ -1,6 +1,15 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.103 2009/05/22 13:34:37 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.105 2009/06/10 13:49:17 alexxy Exp $
+
+  10 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org>
+  texlive-core-2008-r5.ebuild:
+  Add ~mips love
+
+  08 Jun 2009; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008-r5.ebuild:
+  Add patches for glibc 2.10 + gcc 4.4 combo (bug #271052 by Jussi Kosunen)
+  and implicit declarations (bug #264884, by OKUMURA N. Shin-ya).
 
   22 May 2009; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2008-r5.ebuild:
