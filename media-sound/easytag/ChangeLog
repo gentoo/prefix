@@ -1,17 +1,31 @@
 # ChangeLog for media-sound/easytag
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/ChangeLog,v 1.122 2008/11/24 18:22:53 ssuominen Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/ChangeLog,v 1.126 2009/06/10 20:11:35 maekke Exp $
 
-  24 Nov 2008; <ssuominen@gentoo.org> metadata.xml:
-  Re-assign to sound herd.
+  10 Jun 2009; Markus Meier <maekke@gentoo.org> easytag-2.1.6-r1.ebuild:
+  amd64/x86 stable, bug #272966
 
-  29 Jul 2008; Samuli Suominen <drac@gentoo.org> easytag-2.1.6.ebuild:
+  10 Jun 2009; Markus Meier <maekke@gentoo.org> easytag-2.1.6-r1.ebuild:
+  fix EAPI=2 usage
+
+  07 Jun 2009; Jeroen Roovers <jer@gentoo.org> easytag-2.1.6-r1.ebuild:
+  Stable for HPPA (bug #272966).
+
+*easytag-2.1.6-r1 (06 Jun 2009)
+
+  06 Jun 2009; Samuli Suominen <ssuominen@gentoo.org> -easytag-2.1.6.ebuild,
+  +easytag-2.1.6-r1.ebuild, +files/easytag-2.1.6-desktop_entry.patch:
+  Remove x-directory/normal from MimeType or else it replaces Nautilus as
+  default Places handler wrt #272198, thanks to Jeff Kowalczyk for
+  reporting.
+
+  29 Jul 2008; Samuli Suominen <ssuominen@gentoo.org> easytag-2.1.6.ebuild:
   Rev bump id3lib dep. to force recompilation, in order to fix bugs #233273
   and #233240
 
 *easytag-2.1.6 (28 Jul 2008)
 
-  28 Jul 2008; Samuli Suominen <drac@gentoo.org>
+  28 Jul 2008; Samuli Suominen <ssuominen@gentoo.org>
   -files/easytag-2.1.3-desktop-entry.patch, -easytag-2.1.3.ebuild,
   +easytag-2.1.6.ebuild:
   Version bump wrt #232752, thanks to ScytheMan <scytheman666 at gmail.com>
@@ -32,22 +46,22 @@
   29 Apr 2008; Brent Baude <ranger@gentoo.org> easytag-2.1.5.ebuild:
   stable ppc64, bug 219716
 
-  29 Apr 2008; Samuli Suominen <drac@gentoo.org> easytag-2.1.5.ebuild:
+  29 Apr 2008; Samuli Suominen <ssuominen@gentoo.org> easytag-2.1.5.ebuild:
   Force --enable-ogg when USE speex is selected wrt #211086, thanks to
   Vasileios P. Lourdas for reporting.
 
 *easytag-2.1.5 (27 Jan 2008)
 
-  27 Jan 2008; Samuli Suominen <drac@gentoo.org> -easytag-2.1.4.ebuild,
+  27 Jan 2008; Samuli Suominen <ssuominen@gentoo.org> -easytag-2.1.4.ebuild,
   +easytag-2.1.5.ebuild:
   Version bump.
 
 *easytag-2.1.4 (11 Dec 2007)
 
-  11 Dec 2007; Samuli Suominen <drac@gentoo.org> +easytag-2.1.4.ebuild:
+  11 Dec 2007; Samuli Suominen <ssuominen@gentoo.org> +easytag-2.1.4.ebuild:
   Version bump.
 
-  22 Nov 2007; Samuli Suominen <drac@gentoo.org>
+  22 Nov 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/easytag-2.1.3-desktop-entry.patch, easytag-2.1.3.ebuild:
   Update .desktop file to latest spec, and apply russian translation, thanks
   to Peter Volkov.
@@ -67,29 +81,29 @@
   17 Nov 2007; nixnut <nixnut@gentoo.org> easytag-2.1.3.ebuild:
   Stable on ppc wrt bug 199454
 
-  17 Nov 2007; Samuli Suominen <drac@gentoo.org> easytag-2.1.3.ebuild:
+  17 Nov 2007; Samuli Suominen <ssuominen@gentoo.org> easytag-2.1.3.ebuild:
   amd64 stable wrt #199454
 
 *easytag-2.1.3 (16 Oct 2007)
 
-  16 Oct 2007; Samuli Suominen <drac@gentoo.org> +easytag-2.1.3.ebuild:
+  16 Oct 2007; Samuli Suominen <ssuominen@gentoo.org> +easytag-2.1.3.ebuild:
   Version bump.
 
 *easytag-2.1.2 (12 Jul 2007)
 
-  12 Jul 2007; Samuli Suominen <drac@gentoo.org>
+  12 Jul 2007; Samuli Suominen <ssuominen@gentoo.org>
   -files/easytag-2.1.1-include.patch, -easytag-2.1.1.ebuild,
   +easytag-2.1.2.ebuild:
   Version bump.
 
-  08 Jul 2007; Samuli Suominen <drac@gentoo.org>
+  08 Jul 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/easytag-2.1.1-include.patch, easytag-2.1.1.ebuild:
   Fix implicit declaration of function Log_Print by including log.h in
   id3v24_tag.c.
 
 *easytag-2.1.1 (05 Jul 2007)
 
-  05 Jul 2007; Samuli Suominen <drac@gentoo.org>
+  05 Jul 2007; Samuli Suominen <ssuominen@gentoo.org>
   -files/easytag-2.1-strict-aliasing.patch, -easytag-2.1-r1.ebuild,
   +easytag-2.1.1.ebuild:
   Version bump.
@@ -100,20 +114,20 @@
 
 *easytag-2.1-r1 (08 May 2007)
 
-  08 May 2007; Samuli Suominen <drac@gentoo.org>
+  08 May 2007; Samuli Suominen <ssuominen@gentoo.org>
   +files/easytag-2.1-strict-aliasing.patch, -easytag-2.1.ebuild,
   +easytag-2.1-r1.ebuild:
   Fix strict aliasing rules.
 
 *easytag-2.1 (08 May 2007)
 
-  08 May 2007; Samuli Suominen <drac@gentoo.org> -easytag-2.0.2.ebuild,
+  08 May 2007; Samuli Suominen <ssuominen@gentoo.org> -easytag-2.0.2.ebuild,
   +easytag-2.1.ebuild:
   Version bump.
 
 *easytag-2.0.2 (02 May 2007)
 
-  02 May 2007; Samuli Suominen <drac@gentoo.org> -easytag-2.0.1.ebuild,
+  02 May 2007; Samuli Suominen <ssuominen@gentoo.org> -easytag-2.0.1.ebuild,
   +easytag-2.0.2.ebuild:
   Version bump.
 
@@ -125,7 +139,7 @@
 
 *easytag-2.0.1 (20 Apr 2007)
 
-  20 Apr 2007; Samuli Suominen <drac@gentoo.org> +easytag-2.0.1.ebuild:
+  20 Apr 2007; Samuli Suominen <ssuominen@gentoo.org> +easytag-2.0.1.ebuild:
   Version bump and add wavpack support. Thanks to Pietro Franchi in bug 175319.
 
   17 Apr 2007; Gustavo Zacarias <gustavoz@gentoo.org> easytag-2.0.ebuild:
@@ -145,7 +159,7 @@
 
 *easytag-2.0 (05 Mar 2007)
 
-  05 Mar 2007; Samuli Suominen <drac@gentoo.org>
+  05 Mar 2007; Samuli Suominen <ssuominen@gentoo.org>
   -files/easytag-ape-fix.patch, -easytag-1.99.11.ebuild,
   -easytag-1.99.12.ebuild, -easytag-1.99.13.ebuild, +easytag-2.0.ebuild:
   Version bump for bug 168617. Remove old ones.
