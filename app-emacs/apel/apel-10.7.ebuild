@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/apel/apel-10.7.ebuild,v 1.11 2007/07/03 09:13:50 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/apel/apel-10.7.ebuild,v 1.12 2009/06/06 15:58:03 ulm Exp $
 
 inherit elisp
 
@@ -41,6 +41,7 @@ src_install() {
 pkg_postinst() {
 	elisp-site-regen
 
-	elog "See the /usr/share/doc/${P}/README.en.gz for tips on how to customize this package"
+	elog "See the README.en file in /usr/share/doc/${PF} for tips"
+	elog "on how to customize this package."
 	elog "And you need to rebuild packages depending on ${PN}."
 }
