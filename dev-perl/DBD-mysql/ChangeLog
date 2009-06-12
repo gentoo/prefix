@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/DBD-mysql
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-mysql/ChangeLog,v 1.96 2009/01/03 21:35:24 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-mysql/ChangeLog,v 1.97 2009/06/10 01:47:15 robbat2 Exp $
+
+*DBD-mysql-4.01.1 (10 Jun 2009)
+
+  10 Jun 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +DBD-mysql-4.01.1.ebuild:
+  Version bump via perl-bump experimental tool.
 
   03 Jan 2009; Torsten Veller <tove@gentoo.org> +DBD-mysql-2.9007.ebuild:
   Add DBD-mysql-2.9007 again, because www-apps/bugzilla-2.20.6 depends on it
