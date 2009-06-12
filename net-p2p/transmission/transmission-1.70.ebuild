@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.60.ebuild,v 1.2 2009/05/05 11:52:36 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.70.ebuild,v 1.1 2009/06/06 10:21:53 ssuominen Exp $
 
 EAPI=2
-
 inherit autotools fdo-mime gnome2-utils qt4
 
 DESCRIPTION="A Fast, Easy and Free BitTorrent client"
@@ -15,8 +14,10 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="gtk libnotify qt4"
 
-RDEPEND=">=dev-libs/openssl-0.9.4
-	|| ( >=net-misc/curl-7.16.3[ssl] >=net-misc/curl-7.16.3[gnutls] )
+RDEPEND=">=dev-libs/libevent-1.4.11
+	>=dev-libs/openssl-0.9.4
+	|| ( >=net-misc/curl-7.16.3[ssl]
+		>=net-misc/curl-7.16.3[gnutls] )
 	gtk? ( >=dev-libs/glib-2.15.5:2
 		>=x11-libs/gtk+-2.6:2
 		>=dev-libs/dbus-glib-0.70
@@ -29,18 +30,15 @@ DEPEND="${RDEPEND}
 	sys-apps/sed"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.42-solaris-no-utility.patch
-	sed -i -e 's:-g -O3 -funroll-loops::g' configure.ac || die "sed failed"
+	sed -e 's:-g -O0::g' -e 's:-g -O3::g' -i configure.ac || die "sed failed"
 	eautoreconf
 }
 
 src_configure() {
-	local myconf="--disable-dependency-tracking --with-wx-config=no"
-
 	econf \
+		--disable-dependency-tracking \
 		$(use_enable gtk) \
-		$(use_enable libnotify) \
-		${myconf}
+		$(use_enable libnotify)
 
 	if use qt4; then
 		cd qt
@@ -62,7 +60,9 @@ src_install() {
 
 	dodoc AUTHORS NEWS
 	rm -f "${ED}"/usr/share/${PN}/web/LICENSE
-	doinitd "${FILESDIR}"/transmission-daemon
+
+	newinitd "${FILESDIR}"/${PN}-daemon.initd.1 ${PN}-daemon
+	newconfd "${FILESDIR}"/${PN}-daemon.confd.1 ${PN}-daemon
 
 	if use qt4; then
 		cd qt

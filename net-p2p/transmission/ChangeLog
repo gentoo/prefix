@@ -1,6 +1,14 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.82 2009/05/14 18:40:04 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.83 2009/06/06 10:21:53 ssuominen Exp $
+
+*transmission-1.70 (06 Jun 2009)
+
+  06 Jun 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +transmission-1.70.ebuild, +files/transmission-daemon.confd.1,
+  +files/transmission-daemon.initd.1:
+  Version bump. Use system libevent instead of bundled copy wrt #269082.
+  Update init.d and conf.d files wrt #269655.
 
   14 May 2009; Joseph Jezak <josejx@gentoo.org> transmission-1.61.ebuild:
   Marked ppc stable for bug #269605.
