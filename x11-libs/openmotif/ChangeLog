@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/openmotif
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.215 2009/04/16 07:28:21 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.217 2009/06/11 21:07:51 maekke Exp $
+
+  11 Jun 2009; Markus Meier <maekke@gentoo.org> openmotif-2.3.2.ebuild:
+  amd64 stable, bug #273064
+
+  08 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  openmotif-2.3.2.ebuild:
+  stable x86, bug 273064
 
   16 Apr 2009; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.2.ebuild:
   Add -j1 back to src_compile and src_install, fixes bug 266202.
