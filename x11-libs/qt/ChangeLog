@@ -1,6 +1,29 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.581 2009/06/03 21:46:47 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.584 2009/06/11 20:46:10 yngwin Exp $
+
+*qt-3.3.8b-r2 (11 Jun 2009)
+
+  11 Jun 2009; Ben de Groot <yngwin@gentoo.org>
+  -files/0081-format-string-fixes.diff,
+  -files/qt-3.3.4-0047-fix-kmenu-widget.diff,
+  -files/qt-3.3.4-gcc4-volatile.patch,
+  -files/qt-3.3.8-unicode-off-by-one.patch,
+  -files/0185-fix-format-strings.diff, -files/qt4/Assistant.desktop,
+  -files/qt-3.3.4-0051-qtoolbar_77047.patch, -files/qt-3.3.4-gcc4.patch,
+  -files/qt-3.3.4-immodule-focus.patch,
+  -files/qt-3.3.4-qclipboard-hack.patch,
+  -files/qt-4.2.3-hppa-ldcw-fix.patch, -files/qt4/Designer.desktop,
+  -files/qt-4.3.1-unicode-off-by-one.patch, -files/qt4/Linguist.desktop,
+  -files/utf8-bug-qt3.diff, +qt-3.3.8b-r2.ebuild:
+  Adding fix for pkgconfig issue in bug 185925. Removing no longer used
+  patches from FILESDIR.
+
+  06 Jun 2009; Markus Meier <maekke@gentoo.org> qt-4.5.1.ebuild:
+  amd64 stable, bug #266201
+
+  05 Jun 2009; Ben de Groot <yngwin@gentoo.org> qt-4.5.1.ebuild:
+  Specify !kde for qt-phonon dep
 
   03 Jun 2009; Ben de Groot <yngwin@gentoo.org> qt-4.5.1.ebuild,
   metadata.xml:
