@@ -39,6 +39,7 @@ emboss
 hardened
 jack
 lapack
+prolog
 
 # Stuff we don't want
 antlr

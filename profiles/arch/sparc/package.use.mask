@@ -1,7 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.22 2009/02/20 23:01:13 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/sparc/package.use.mask,v 1.23 2009/06/09 18:56:57 armin76 Exp $
 # Please add a proper entry, like a ChangeLog file, to the top, thanks.
+
+# Raúl Porcel <armin76@gentoo.org> (09 Jun 2009)
+# Needs qt-assistant
+dev-python/PyQt4 assistant
 
 # Ben de Groot <yngwin@gentoo.org> (20 Feb 2009)
 # needs kde4 keyworded

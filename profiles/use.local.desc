@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4528 2009/06/04 16:47:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4541 2009/06/10 20:27:42 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -199,7 +199,6 @@ app-emulation/basiliskII-jit:jit - Enables the jit compiler
 app-emulation/bochs:debugger - Enable the bochs debugger
 app-emulation/e-uae:capslib - Add CAPS library support
 app-emulation/e-uae:sdl-sound - Use media-libs/sdl-sound for audio output
-app-emulation/emul-linux-x86-qtlibs:immqt-bc - Enable binary compatible version of immodule for x11-libs/qt
 app-emulation/fuse:libdsk - Enable support for the floppy disk emulation library app-emulation/libdsk
 app-emulation/kvm:alsa - Enable alsa output for sound emulation
 app-emulation/kvm:esd - Enable esound output for sound emulation
@@ -357,6 +356,7 @@ app-misc/gramps:webkit - Use Webkit-based rendering for geographical data view.
 app-misc/graphlcd-base:g15 - Add support for app-misc/g15daemon driver (e.g. Logitech G15 Keybord)
 app-misc/lcd-stuff:mpd - Add support for display of mpd controlled music (media-libs/libmpd)
 app-misc/lcd4linux:mpd - Add support for display of mpd controlled music (media-libs/libmpd)
+app-misc/lcdproc:ftdi - Enable support for FTDI connections in some selected LCD_DEVICES (currently hd44780)
 app-misc/lcdproc:irman - Enable support for IRMan (media-libs/libirman)
 app-misc/lcdproc:nfs - Adds support for NFS file system
 app-misc/lcdproc:seamless-hbars - Try to avoid gaps in horizontal bars
@@ -403,6 +403,7 @@ app-office/dia:gnome-print - Gnome-Print support (gnome-base/libgnomeprint)
 app-office/gnucash:chipcard - Enable support for chipcard reading and processing.
 app-office/gnucash:hbci - Enable HBCI support, for connecting to some internet banks
 app-office/gnucash:quotes - Enable Online Stock Quote retrieval
+app-office/gnucash:webkit - Use net-libs/webkit-gtk for rendering rather than gnome-extra/gtkhtml
 app-office/gnumeric:gnome - Allow Gnumeric to use GNOME specific extensions.
 app-office/gnumeric:perl - Enable perl plugin loader.
 app-office/gnumeric:python - Enable python plugin loader.
@@ -479,6 +480,7 @@ app-text/evince:nautilus - Enable property page extension in gnome-base/nautilus
 app-text/evince:t1lib - Enable the Type-1 fonts for the built-in DVI viewer (media-libs/t1lib)
 app-text/hyperestraier:mecab - Enable app-text/mecab support for Estraier
 app-text/lcdf-typetools:kpathsea - Enable integration with kpathsea search library (TeX related)
+app-text/lodgeit:vim -  Install a vim plugin allowing to paste and download from within vim 
 app-text/namazu:kakasi - Enable kakasi support (dev-perl/Text-Kakasi)
 app-text/noweb:icon - Enable dev-lang/icon language support
 app-text/pdftk:nodrm - Decrypt a document with the user_pw even if it has an owner_pw set
@@ -884,7 +886,6 @@ dev-util/codeblocks:contrib - Build additional contrib components
 dev-util/ctags:ada - Enable Ada support
 dev-util/cvs:server - Enable server support
 dev-util/dialog:minimal - Disable library, install command-line program only
-dev-util/eric:idl - Enable omniorb support
 dev-util/gambas:corba - Enable CORBA 2 ORB (net-misc/omniORB)
 dev-util/gambas:smtp - Enable smtp support.
 dev-util/geany:vte - Enable Terminal support (x11-libs/vte)
@@ -1029,12 +1030,8 @@ games-strategy/ufo-ai:editor - Build map editor
 games-strategy/uqm:music - download and install music files (large)
 games-strategy/uqm:remix - download and install music remix files (large)
 games-strategy/uqm:voice - download and install voice files (large)
-games-strategy/wesnoth:editor - Enable compilation of map editor
-games-strategy/wesnoth:lite - Lite install
 games-strategy/wesnoth:server - Enable compilation of server
-games-strategy/wesnoth:smallgui - enable GUI reductions for resolutions down to 800x480 (eeePC, Nokia 8x0)
 games-strategy/wesnoth:tinygui - enable GUI reductions for resolutions down to 320x240 (PDAs)
-games-strategy/wesnoth:tools - Enable compilation of translation tools
 games-strategy/x2:bonusscripts - Add bonus scripts
 games-strategy/x2:dynamic - Use dynamic binaries instead of static
 games-strategy/x2:langpacks - Install additional language packs
@@ -1305,7 +1302,7 @@ media-fonts/terminus-font:bolddiag - Boldified diagonal parts of '4', 'k', 'x' a
 media-fonts/terminus-font:pcf - Intall Portable Compiled Font (PCF) (required for X11)
 media-fonts/terminus-font:psf - Install PC Screen Font (PSF) with unicode data (for linux console)
 media-fonts/terminus-font:quote - Changes view of quotes: symmetric ` and ' instead of asymmetric one (see homepage)
-media-fonts/terminus-font:raw - Install RAW font data which should be compatible with most UNIX systems (you don't need this on linux)
+media-fonts/terminus-font:raw-font-data - Install RAW font data which should be compatible with most UNIX systems (you don't need this on linux)
 media-fonts/terminus-font:ru-dv - Changes view of Russian letters 'de' and 've' (see homepage)
 media-fonts/terminus-font:ru-g - Changes view of Russian letter 'ge' (see homepage)
 media-fonts/terminus-font:ru-i - Changes view of Russian letter 'i' - not like Latin u, but like "mirrored" N (see homepage)
@@ -1716,7 +1713,6 @@ media-video/ffmpeg:schroedinger - Enable Dirac video support (an advanced royalt
 media-video/ffmpeg:ssse3 - faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)
 media-video/ffmpeg:vhook - Enables video hooking support.
 media-video/ffprobe:perl - Installs tools written in perl to produce plots based on video frame bitrate and size
-media-video/gnome-mplayer:nautilus - Support for gnome-base/nautilus
 media-video/gpac:amr - Adaptive Multi-Rate Audio support (commonly used in telephony)
 media-video/griffith:csv - Enable proper support for csv import (respectively auto-detection encoding of csv files)
 media-video/kino:gpac - Enable GPAC support when exporting to 3GPP format
@@ -2250,7 +2246,6 @@ net-mail/vpopmail:maildrop - Enables mail-filter/maildrop support in vdelivermai
 net-misc/aria2:ares - Enables support for asynchronous DNS using the c-ares library
 net-misc/aria2:bittorrent - Enables support for the bittorrent protocol
 net-misc/aria2:metalink - Enables support for metalink
-net-misc/asterisk:bri - Enable ISDN BRI support (bristuff)
 net-misc/asterisk:dahdi - Support Digium compatible hardware (formerly known as Zaptel).
 net-misc/asterisk:h323 - Build the H.323 channel driver bundled with Asterisk
 net-misc/asterisk:keepsrc - Install sources into /usr/src for custom patching
@@ -2347,6 +2342,7 @@ net-misc/vpnc:hybrid-auth - Enable hybrid authentication (certificates), only if
 net-misc/vpnc:resolvconf - Enable support for DNS managing framework net-dns/openresolv
 net-misc/wicd:ioctl - Installs additional python libraries to use as a backend. This will improve speed but is experimental.
 net-misc/wicd:ncurses - Installs a ncurses UI
+net-misc/wicd:pm-utils - Installs the pm-utils hooks for suspend/resume and requires sys-power/pm-utils
 net-misc/x2goserver:fuse - Use sys-fs/sshfs-fuse to allow shared folders
 net-misc/xsupplicant:eap-sim - Add support for EAP-SIM authentication algorithm
 net-misc/yaydl:soundextract - Extract the soundtracks of the downloaded videos
@@ -2514,7 +2510,13 @@ sci-chemistry/pymol:shaders - Build with Shaders support - good for high-end 3D 
 sci-chemistry/shelx:dosformat - Use CR/LF to end lines; useful in mixed Linux/Windows environments
 sci-electronics/geda-gschem:stroke - enable mouse gesture support
 sci-electronics/gerbv:unit-mm - Set default unit for coordinates in status bar to mm 
-sci-electronics/pcb:xrender - Add support for xrender (x11-libs/libXrender)
+sci-electronics/pcb:gif - GIF graphics export
+sci-electronics/pcb:jpeg - JPEG graphics export
+sci-electronics/pcb:nelma - NELMA file export
+sci-electronics/pcb:png - PNG graphics export
+sci-electronics/pcb:threads - Enable (posix) threads for GTK GUI
+sci-electronics/pcb:tk - Build tcl/tk graphical QFP footprint generator
+sci-electronics/pcb:xrender - Translucent PCB display for Motif/Lesstif GUI
 sci-geosciences/gmt:gmtfull - Full resolution bathymetry database
 sci-geosciences/gmt:gmthigh - Add high resolution bathymetry database
 sci-geosciences/gmt:gmtsuppl - Supplement functions for GMT
@@ -2800,6 +2802,7 @@ sys-freebsd/freebsd-usbin:nat - Enable Network Address Translation support daemo
 sys-freebsd/freebsd-usbin:netware -  Build libraries and tools to work with NetWare protocols (IPX and NCP). 
 sys-fs/aufs2:debug - Enable additional debugging support
 sys-fs/aufs2:hinotify - Enable hinotify support
+sys-fs/aufs2:ramfs - Enable initramfs/rootfs support
 sys-fs/cryptsetup:dynamic - Build cryptsetup dynamically
 sys-fs/ecryptfs-utils:gpg - Enable app-crypt/gnupg key module
 sys-fs/ecryptfs-utils:nss - Enable support for dev-libs/nss
@@ -2821,6 +2824,7 @@ sys-fs/owfs:httpd - Enable building the OWFS web server (owhttpd)
 sys-fs/owfs:parport - Enable support for the DS1410E parallel port adapter
 sys-fs/owfs:server - Enable building the OWFS server (owserver)
 sys-fs/quota:rpc - Enable quota interaction via RPC
+sys-fs/udev:devfs-compat - Install rules for devfs compatible device names
 sys-fs/unionfs:nfs - Adds support for NFS file system
 sys-kernel/gentoo-sources:ultra1 - Enable if you have a SUN Ultra 1 with a HME interface
 sys-kernel/linux-docs:html - Install HTML documenation
@@ -2991,6 +2995,7 @@ x11-misc/google-gadgets:soup - Enables XML HTTP request extension based on net-l
 x11-misc/google-gadgets:webkit - Enables browser element and script runtime based on net-libs/webkit-gtk
 x11-misc/notification-daemon-xfce:xfce - Enable integration in XFCE desktop
 x11-misc/slim:screenshot - Enable screenshot support (using media-gfx/imagemagick)
+x11-misc/tint2:examples - Install tint2rc examples
 x11-misc/vnc2swf:x11vnc - Install script that depends on x11vnc
 x11-misc/x11vnc:system-libvncserver - Build x11vnc against the system libvncserver (experimental)
 x11-misc/xfce4-notifyd:libsexy - Enable support for x11-libs/libsexy

@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/ia64 profile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.41 2009/05/22 14:57:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/ia64/ChangeLog,v 1.42 2009/06/07 14:17:15 armin76 Exp $
+
+  07 Jun 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
+  Use.mask prolog
 
   22 May 2009; Raúl Porcel <armin76@gentoo.org> use.mask:
   Add topal to use.mask wrt #267299
