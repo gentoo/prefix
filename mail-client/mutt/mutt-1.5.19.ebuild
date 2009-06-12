@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19.ebuild,v 1.5 2009/05/28 16:26:38 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19.ebuild,v 1.6 2009/06/09 07:18:04 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -80,6 +80,7 @@ src_unpack() {
 		for p in "${PATCHDIR}"/*.patch ; do
 			epatch "${p}"
 		done
+		epatch "${FILESDIR}"/${P}-libgnutls-test-15c662a95b91.patch
 	fi
 
 	if use sidebar ; then
