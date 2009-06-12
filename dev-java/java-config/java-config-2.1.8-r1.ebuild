@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.6-r1.ebuild,v 1.8 2009/02/13 18:41:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.8-r1.ebuild,v 1.1 2009/06/09 06:35:35 ali_bush Exp $
 
 inherit fdo-mime gnome2-utils distutils eutils prefix
 
@@ -21,8 +21,7 @@ PYTHON_MODNAME="java_config_2"
 
 src_unpack() {
 	distutils_src_unpack
-	epatch "${FILESDIR}/java-config-2.1.6-portage-import.patch"
-	epatch "${FILESDIR}"/${PN}-2.1.6-prefix.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 
 	eprefixify \
 		config/20java-config setup.py \
@@ -32,12 +31,20 @@ src_unpack() {
 		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py}
 }
 
+src_unpack() {
+	distutils_src_unpack
+
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-load_packages.patch"
+}
+
 src_install() {
 	distutils_src_install
 
 	local a=${ARCH}
 	case $a in
 		x86-freebsd)  a=x86-fbsd;; # as long as we don't push patch upstream
+		x64-freebsd)  a=x86-fbsd;; # as long as it isn't upstream
 		sparc64-solaris) a=sparc-solaris;; # as long as it isn't upstream
 		x64-solaris)  a=x86-solaris;; # as long as it isn't upstream
 		ppc*-aix)     a=${a%-aix};; # as long as ppc*-linux defaults to ibm-jdk-bin

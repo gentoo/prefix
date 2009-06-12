@@ -1,6 +1,18 @@
 # ChangeLog for dev-java/java-config
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.215 2009/05/23 11:04:39 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.217 2009/06/10 19:11:52 caster Exp $
+
+  10 Jun 2009; Vlastimil Babka <caster@gentoo.org>
+  -java-config-1.2.11-r1.ebuild, -java-config-2.1.4.ebuild,
+  -java-config-2.1.6-r1.ebuild:
+  Remove 1.2 (not really supported since ages) and old versions of 2.x
+
+*java-config-2.1.8-r1 (09 Jun 2009)
+
+  09 Jun 2009; Alistair Bush <ali_bush@gentoo.org>
+  +java-config-2.1.8-r1.ebuild,
+  +files/java-config-2.1.8-load_packages.patch:
+  Fix bug #273284
 
 *java-config-2.1.8 (23 May 2009)
 
