@@ -1,6 +1,10 @@
 # ChangeLog for app-shells/zsh-completion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.37 2009/06/01 00:16:37 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh-completion/ChangeLog,v 1.38 2009/06/08 22:02:28 jer Exp $
+
+  08 Jun 2009; Jeroen Roovers <jer@gentoo.org>
+  zsh-completion-20080310.ebuild:
+  Stable for HPPA (bug #271468).
 
   01 Jun 2009; Dawid Węgliński <cla@gentoo.org>
   zsh-completion-20080310.ebuild:
