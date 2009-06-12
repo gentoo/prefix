@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.18.1.ebuild,v 1.5 2009/06/11 15:23:52 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.18.1-r1.ebuild,v 1.2 2009/06/11 20:36:16 sbriesen Exp $
 
 inherit eutils multilib toolchain-funcs
 
@@ -11,15 +11,18 @@ SRC_URI="http://www.exiv2.org/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="doc nls zlib xmp examples unicode"
+IUSE="contrib doc examples nls unicode xmp zlib"
 IUSE_LINGUAS="de es fi fr pl ru sk"
 IUSE="${IUSE} $(printf 'linguas_%s ' ${IUSE_LINGUAS})"
 
-RDEPEND="zlib? ( sys-libs/zlib )
-	xmp? ( dev-libs/expat )
+RDEPEND="
+	virtual/libiconv
 	nls? ( virtual/libintl )
-	virtual/libiconv"
+	xmp? ( dev-libs/expat )
+	zlib? ( sys-libs/zlib )
+"
 DEPEND="${RDEPEND}
+	contrib? ( >=dev-libs/boost-1.37 )
 	doc? (
 		dev-lang/python
 		app-doc/doxygen
@@ -27,7 +30,8 @@ DEPEND="${RDEPEND}
 		dev-util/pkgconfig
 		media-gfx/graphviz
 	)
-	nls? ( sys-devel/gettext )"
+	nls? ( sys-devel/gettext )
+"
 
 src_unpack() {
 	unpack ${A}
@@ -44,6 +48,14 @@ src_unpack() {
 		echo ">>> Updating doxygen config"
 		doxygen 2>&1 >/dev/null -u config/Doxyfile
 	fi
+
+	if use contrib; then
+		# create build environment for contrib
+		ln -snf ../../src contrib/organize/exiv2
+		sed -i -e 's:/usr/local/include/.*:'"${EPREFIX}"'/usr/include:g' \
+			-e 's:/usr/local/lib/lib:-l:g' -e 's:-gcc..-mt-._..\.a::g' \
+			contrib/organize/boost.mk
+	fi
 }
 
 src_compile() {
@@ -55,12 +67,17 @@ src_compile() {
 		use amd64 && myconf="${myconf} --disable-visibility"
 	fi
 
-	econf ${myconf} || die "econf failed"
+	econf ${myconf}
 	# Needed for Solaris because /bin/sh is not a bash, bug #245647
-	if [[ ${CHOST} == *-solaris* ]]; then
-		sed -i -e "s:/bin/sh:${EPREFIX}/bin/sh:" src/Makefile || die "sed failed"
-	fi
+	sed -i -e "s:/bin/sh:${EPREFIX}/bin/sh:" src/Makefile || die "sed failed"
 	emake || die "emake failed"
+
+	if use contrib; then
+		emake -C contrib/organize \
+			LDFLAGS="\$(BOOST_LIBS) -L../../src -lexiv2 ${LDFLAGS}" \
+			CPPFLAGS="${CPPFLAGS} -I\$(BOOST_INC_DIR) -I. -DEXV_HAVE_STDINT_H" \
+		|| die "emake organize failed"
+	fi
 
 	if use doc; then
 		emake doc || die "emake doc failed"
@@ -69,6 +86,10 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
+
+	if use contrib; then
+		emake DESTDIR="${D}" -C contrib/organize install || die "emake install organize failed"
+	fi
 
 	dodoc README doc/{ChangeLog,cmd.txt}
 	use xmp && dodoc doc/{COPYING-XMPSDK,README-XMP,cmdxmp.txt}

@@ -1,6 +1,23 @@
 # ChangeLog for media-gfx/exiv2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/ChangeLog,v 1.69 2009/05/26 05:17:49 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/ChangeLog,v 1.73 2009/06/11 20:36:16 sbriesen Exp $
+
+  11 Jun 2009; Stefan Briesenick <sbriesen@gentoo.org>
+  exiv2-0.18.1-r1.ebuild:
+  restored LINGUAS handling
+
+  11 Jun 2009; Ferris McCormick <fmccor@gentoo.org> exiv2-0.18.1.ebuild:
+  Sparc stable, fast stable for Bug #273577.
+
+  11 Jun 2009; Christian Faulhammer <fauli@gentoo.org> exiv2-0.18.1.ebuild:
+  stable x86, bug 273577
+
+*exiv2-0.18.1-r1 (11 Jun 2009)
+
+  11 Jun 2009; Tomáš Chvátal <scarabeus@gentoo.org> exiv2-0.18.1.ebuild,
+  +exiv2-0.18.1-r1.ebuild:
+  Revision bump for stripping out the new boost dep, so package can be
+  fast-stabled. Per bug #273577.
 
   26 May 2009; Gordon Malm <gengor@gentoo.org> exiv2-0.18.ebuild,
   exiv2-0.18.1.ebuild:
