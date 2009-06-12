@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-publishers/texlive-publishers-2008.ebuild,v 1.10 2009/03/18 21:14:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-publishers/texlive-publishers-2008.ebuild,v 1.11 2009/06/10 14:23:48 alexxy Exp $
 
 TEXLIVE_MODULE_CONTENTS="ANUfinalexam IEEEconf IEEEtran aastex acmconf acmtrans active-conf afthesis aguplus aiaa ametsoc apa asaetr ascelike chem-journal classicthesis confproc ebsthesis economic elsevier euproposal gaceta gatech-thesis har2nat icsv ieeepes ijmart imac imtekda jhep jpsj kluwer lps mentis muthesis nature nddiss nih nostarch nrc philosophersimprint pracjourn procIAGssymp ptptex revtex siggraph spie stellenbosch sugconf thesis-titlepage-fhac thuthesis toptesi tugboat tugboat-plain uaclasses ucthesis uiucthesis umthesis umich-thesis uwthesis vancouver vxu york-thesis collection-publishers
 "
