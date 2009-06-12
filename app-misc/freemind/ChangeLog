@@ -1,6 +1,12 @@
 # ChangeLog for app-misc/freemind
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.46 2009/05/31 18:49:34 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.47 2009/06/05 14:34:29 caster Exp $
+
+*freemind-0.9.0_rc4-r1 (05 Jun 2009)
+
+  05 Jun 2009; Vlastimil Babka <caster@gentoo.org>
+  +freemind-0.9.0_rc4-r1.ebuild:
+  Revbump to use batik-1.7 and >=fop-0.95.
 
 *freemind-0.9.0_rc4 (31 May 2009)
 
