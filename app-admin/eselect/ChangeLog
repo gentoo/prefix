@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.102 2009/06/02 22:32:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.103 2009/06/06 18:05:22 ulm Exp $
+
+*eselect-1.1.1 (06 Jun 2009)
+
+  06 Jun 2009; Ulrich Mueller <ulm@gentoo.org> +eselect-1.1.1.ebuild:
+  Version bump. Remove paludis USE flag since it doesn't make much sense
+  without the corresponding dependency; use app-admin/eselect-package-manager
+  for selection of a package manager instead.
 
   02 Jun 2009; Ulrich Mueller <ulm@gentoo.org> eselect-1.1.ebuild,
   -eselect-1.1_rc2.ebuild, -eselect-1.1_rc3.ebuild:
