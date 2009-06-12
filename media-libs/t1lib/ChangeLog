@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/t1lib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.72 2009/05/28 16:07:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.73 2009/06/05 15:37:56 pva Exp $
+
+  05 Jun 2009; Peter Volkov <pva@gentoo.org> -t1lib-5.0.2.ebuild:
+  Removed vulnerable version, bug #271692, thank Robert Buchholz for report.
 
   28 May 2009; Jeroen Roovers <jer@gentoo.org> t1lib-5.0.2-r1.ebuild:
   Stable for HPPA (bug #193437).
