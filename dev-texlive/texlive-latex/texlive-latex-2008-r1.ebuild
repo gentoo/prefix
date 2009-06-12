@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latex/texlive-latex-2008-r1.ebuild,v 1.9 2009/03/18 21:16:19 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-latex/texlive-latex-2008-r1.ebuild,v 1.10 2009/06/10 14:18:23 alexxy Exp $
 
 TEXLIVE_MODULE_CONTENTS="ae amscls amsmath amsrefs babel babelbib carlisle colortbl fancyhdr geometry graphics hyperref latex latex-fonts latexconfig ltxmisc mfnfss natbib pdftex-def pslatex psnfss pspicture tools bin-latex luatex pdftex collection-latex
 "
