@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/libgdiplus-2.4.9999.ebuild,v 1.2 2009/05/05 23:35:21 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/libgdiplus-2.4.9999.ebuild,v 1.3 2009/06/09 21:17:39 loki_val Exp $
 
 EAPI=2
 
