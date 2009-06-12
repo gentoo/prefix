@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.20.1-r1.ebuild,v 1.1 2009/05/04 22:06:50 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.20.3.ebuild,v 1.1 2009/06/08 22:00:41 eva Exp $
 
 EAPI="2"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libc
@@ -21,6 +21,7 @@ RDEPEND="virtual/libc
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
 	>=sys-devel/gettext-0.11
+	x86-winnt? ( >=dev-util/gtk-doc-am-1.11 )
 	doc? (
 		>=dev-libs/libxslt-1.0
 		>=dev-util/gtk-doc-1.11
@@ -51,24 +52,19 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	# Fix GIO null unref, bug #260301
-	epatch "${FILESDIR}/${P}-gio-unref.patch"
-
-	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
 
 	# build glib with parity for native win32
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-2.18.3-winnt-lt2.patch
+	if [[ ${CHOST} == *-winnt* ]] ; then
+		epatch "${FILESDIR}"/${PN}-2.18.3-winnt-lt2.patch
+		# makes the iconv check more general, needed for winnt, but could
+		# be useful for others too, requires eautoreconf
+		epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
+		AT_M4DIR="m4macros" eautoreconf
+	fi
 
-	# makes the iconv check more general, needed for winnt, but could
-	# be usefull for others too.
-	epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
-
-	# freebsd: elibtoolize would suffice
-	# interix: need recent libtool
-	# doing eautoreconf needs gtk-doc.m4, hence dep on dev-util/gtk-doc-am
-	AT_M4DIR="m4macros" eautoreconf
+	elibtoolize
 }
 
 src_configure() {
@@ -128,5 +124,7 @@ src_install() {
 
 src_test() {
 	unset DBUS_SESSION_BUS_ADDRESS
+	export XDG_CONFIG_DIRS=/etc/xdg
+	export XDG_DATA_DIRS=/usr/local/share:/usr/share
 	emake check || die "tests failed"
 }

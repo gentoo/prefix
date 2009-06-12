@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.370 2009/05/18 21:37:06 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.371 2009/06/08 22:00:41 eva Exp $
+
+*glib-2.20.3 (08 Jun 2009)
+
+  08 Jun 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -glib-2.16.6-r1.ebuild, -glib-2.20.1.ebuild, -glib-2.20.1-r1.ebuild,
+  +glib-2.20.3.ebuild:
+  Bump to 2.20.3. Bug fixes and translation updates. Define XDG environment
+  variable for tests since they might not be present even when
+  xdg-utils-1.0.2-r3 is installed, bug #269155.
 
   18 May 2009; Gilles Dartiguelongue <eva@gentoo.org> glib-2.20.2.ebuild:
   Remove unused patch.
