@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/pv
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pv/ChangeLog,v 1.9 2009/02/21 10:34:16 angelos Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pv/ChangeLog,v 1.10 2009/06/05 16:03:56 jer Exp $
+
+  05 Jun 2009; Jeroen Roovers <jer@gentoo.org> pv-1.1.4.ebuild:
+  Stable for HPPA too.
 
   21 Feb 2009; Christoph Mende <angelos@gentoo.org> -pv-1.1.0.ebuild:
   Removed old
