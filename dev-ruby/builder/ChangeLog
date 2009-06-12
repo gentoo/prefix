@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/builder
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/builder/ChangeLog,v 1.30 2008/11/18 19:21:03 graaff Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/builder/ChangeLog,v 1.31 2009/06/07 17:39:44 armin76 Exp $
+
+  07 Jun 2009; Raúl Porcel <armin76@gentoo.org> builder-2.1.2.ebuild:
+  Add ~arm/~s390
 
   18 Nov 2008; Hans de Graaff <graaff@gentoo.org> -builder-2.1.1.ebuild:
   Remove old version
