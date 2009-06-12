@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.3.0-r1.ebuild,v 1.1 2009/04/27 19:31:44 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/consolekit-0.3.0-r1.ebuild,v 1.3 2009/06/11 23:00:00 eva Exp $
 
 EAPI=2
 
@@ -31,7 +31,7 @@ DEPEND="${RDEPEND}
 	dev-libs/libxslt
 	doc? ( app-text/xmlto )"
 
-S="${WORKDIR}/${MY_PN}-${MY_PV}"
+S=${WORKDIR}/${MY_PN}-${MY_PV}
 
 src_prepare() {
 	# Fix directory leaks, bug #258685
@@ -51,6 +51,8 @@ src_prepare() {
 
 	# Add SetIdleHint policy to handle new default deny on dbus
 	epatch "${FILESDIR}/${P}-allow-setidle.patch"
+
+	epatch "${FILESDIR}"/${P}-skip_xmlto_validation.patch
 
 	eautoreconf
 }
@@ -84,8 +86,8 @@ src_install() {
 	keepdir /var/run/ConsoleKit
 	keepdir /var/log/ConsoleKit
 
-	insinto /etc/X11/xinit/xinitrc.d/
-	doins "${FILESDIR}/90-consolekit" || die "doins failed"
+	exeinto /etc/X11/xinit/xinitrc.d/
+	doexe "${FILESDIR}/90-consolekit" || die "doexe failed"
 
 	exeinto /usr/$(get_libdir)/ConsoleKit/run-session.d/
 	doexe "${FILESDIR}/pam-foreground-compat.ck" || die "doexe failed"
@@ -97,8 +99,4 @@ pkg_postinst() {
 	ewarn "This can be done with /etc/init.d/consolekit restart"
 	ewarn "but make sure you do this and then restart your session"
 	ewarn "otherwise you will get access denied for certain actions"
-
-	ewarn
-	ewarn "You need to chmod +x /etc/X11/xinit/xinitrc.d/90-consolekit"
-	ewarn "to benefit of consolekit if you are not using gdm or pam integration."
 }
