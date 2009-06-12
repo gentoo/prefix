@@ -1,6 +1,15 @@
 # ChangeLog for app-text/iso-codes
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.71 2009/06/04 17:30:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.74 2009/06/11 19:51:39 maekke Exp $
+
+  11 Jun 2009; Markus Meier <maekke@gentoo.org> iso-codes-3.8.ebuild:
+  amd64 stable, bug #272502
+
+  11 Jun 2009; Jeroen Roovers <jer@gentoo.org> iso-codes-3.8.ebuild:
+  Stable for HPPA (bug #272502).
+
+  06 Jun 2009; nixnut <nixnut@gentoo.org> iso-codes-3.8.ebuild:
+  ppc stable #272502
 
   04 Jun 2009; Raúl Porcel <armin76@gentoo.org> iso-codes-3.8.ebuild:
   alpha/arm/ia64/sh/x86 stable wrt #272502
