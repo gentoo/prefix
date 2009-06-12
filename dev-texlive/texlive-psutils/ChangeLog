@@ -1,6 +1,10 @@
 # ChangeLog for dev-texlive/texlive-psutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-psutils/ChangeLog,v 1.27 2009/05/15 15:41:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-psutils/ChangeLog,v 1.28 2009/06/10 14:23:26 alexxy Exp $
+
+  10 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org>
+  texlive-psutils-2008.ebuild:
+  Add ~mips love
 
   15 May 2009; Alexis Ballier <aballier@gentoo.org>
   -texlive-psutils-2007.ebuild:
