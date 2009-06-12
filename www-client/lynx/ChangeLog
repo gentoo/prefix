@@ -1,6 +1,10 @@
 # ChangeLog for www-client/lynx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.75 2009/05/26 06:02:41 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.76 2009/06/05 15:43:51 loki_val Exp $
+
+  05 Jun 2009; Peter Alfredsen <loki_val@gentoo.org> -lynx-2.8.6-r3.ebuild,
+  -lynx-2.8.7_rc2.ebuild, metadata.xml:
+  Retiring, bug 220219.
 
 *lynx-2.8.7_rc4 (26 May 2009)
 
