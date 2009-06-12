@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/ruby-debug
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-debug/ChangeLog,v 1.5 2009/03/20 05:09:52 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-debug/ChangeLog,v 1.6 2009/06/05 18:15:09 graaff Exp $
+
+  05 Jun 2009; Hans de Graaff <graaff@gentoo.org> -ruby-debug-0.8.ebuild,
+  -ruby-debug-0.9.3.ebuild:
+  Remove old versions.
 
   20 Mar 2009; Joseph Jezak <josejx@gentoo.org> ruby-debug-0.10.3.ebuild:
   Marked ~ppc for bug #252815.
