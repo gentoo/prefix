@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/python-docs-2.4.4.ebuild,v 1.14 2009/05/22 22:39:24 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/python-docs-2.4.4-r1.ebuild,v 1.1 2009/06/06 18:48:21 arfrever Exp $
 
 DESCRIPTION="HTML documentation for Python"
-HOMEPAGE="http://www.python.org/doc/${PV}/"
+HOMEPAGE="http://www.python.org/doc/"
 SRC_URI="http://www.python.org/ftp/python/doc/${PV}/html-${PV}.tar.bz2
 http://www.python.org/ftp/python/doc/${PV}/info-${PV}.tar.bz2"
 
@@ -12,8 +12,8 @@ SLOT="2.4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
-DEPEND=""
-RDEPEND=""
+DEPEND=">=app-admin/eselect-python-20090606"
+RDEPEND="${DEPEND}"
 
 S=${WORKDIR}
 
@@ -31,14 +31,21 @@ src_install() {
 
 	insinto /usr/share/info
 	doins "${S}/info/"*
+
+	echo "PYTHONDOCS_${SLOT//./_}=\"${EPREFIX}/usr/share/doc/${PF}/html/lib\"" > "60python-docs-${SLOT}"
+	doenvd "60python-docs-${SLOT}"
 }
 
 pkg_postinst() {
-	echo "PYTHONDOCS=${EPREFIX}/usr/share/doc/${PF}/html/lib" > "${EROOT}etc/env.d/50python-docs"
+	eselect python update --ignore 3.0 --ignore 3.1
 }
 
 pkg_postrm() {
-	if ! has_version "<dev-python/python-docs-2.4" && ! has_version ">=dev-python/python-docs-2.5"; then
-		rm -f "${EROOT}etc/env.d/50python-docs"
+	eselect python update --ignore 3.0 --ignore 3.1
+
+	if ! has_version "<dev-python/python-docs-${SLOT}_alpha" && ! has_version ">=dev-python/python-docs-${SLOT%.*}.$((${SLOT#*.}+1))_alpha"; then
+		rm -f "${EROOT}etc/env.d/65python-docs"
 	fi
+
+	rm -f "${EROOT}etc/env.d/50python-docs"
 }
