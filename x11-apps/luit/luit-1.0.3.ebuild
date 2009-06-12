@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/luit/luit-1.0.3.ebuild,v 1.7 2009/05/20 13:50:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/luit/luit-1.0.3.ebuild,v 1.8 2009/06/05 17:22:21 tcunha Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
