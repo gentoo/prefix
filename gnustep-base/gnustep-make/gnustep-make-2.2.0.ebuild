@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.2.0.ebuild,v 1.1 2009/05/11 10:57:28 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-make/gnustep-make-2.2.0.ebuild,v 1.3 2009/06/11 21:29:42 maekke Exp $
 
 EAPI=2
 
