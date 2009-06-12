@@ -1,0 +1,28 @@
+# ChangeLog for perl-core/IO-Compress
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/perl-core/IO-Compress/ChangeLog,v 1.5 2009/06/03 22:31:10 tove Exp $
+
+*IO-Compress-2.020 (03 Jun 2009)
+
+  03 Jun 2009; Torsten Veller <tove@gentoo.org> +IO-Compress-2.020.ebuild:
+  Version bump
+
+  05 May 2009; Torsten Veller <tove@gentoo.org> IO-Compress-2.019.ebuild:
+  Add missing keywords (#268615)
+
+  05 May 2009; Jeroen Roovers <jer@gentoo.org> IO-Compress-2.019.ebuild:
+  Marked ~hppa (bug #268615).
+
+*IO-Compress-2.019 (04 May 2009)
+
+  04 May 2009; Torsten Veller <tove@gentoo.org> -IO-Compress-2.017.ebuild,
+  +IO-Compress-2.019.ebuild:
+  Version bump
+
+*IO-Compress-2.017 (25 Apr 2009)
+
+  25 Apr 2009; Torsten Veller <tove@gentoo.org> +metadata.xml,
+  +IO-Compress-2.017.ebuild:
+  Initial commit. IO-Compress replaces Compress-Zlib, IO-Compress-Zlib,
+  IO-Compress-Bzip2 and IO-Compress-Base
+
