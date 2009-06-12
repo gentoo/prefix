@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/snd
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/snd/ChangeLog,v 1.44 2008/08/13 08:59:41 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/snd/ChangeLog,v 1.45 2009/06/07 18:29:54 maekke Exp $
+
+  07 Jun 2009; Markus Meier <maekke@gentoo.org> snd-9.11.ebuild:
+  amd64/x86 stable, bug #272677
 
 *snd-9.11 (13 Aug 2008)
 
