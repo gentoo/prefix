@@ -5,7 +5,7 @@
  	{
  		cp = skipEverything (cp);
 -		if (!strncmp(cp, "def", 3) || !strncmp(cp, "class", 5))
-+		if (!strncmp(cp, "def", 4) || !strncmp(cp, "class", 6))
++		if (!strncmp(cp, "def ", 4) || !strncmp(cp, "class ", 6))
  		{
  			return cp;
  		}

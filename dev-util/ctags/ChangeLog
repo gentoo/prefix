@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/ctags
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.70 2009/01/01 20:39:15 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ChangeLog,v 1.71 2009/06/10 11:48:43 scarabeus Exp $
+
+  10 Jun 2009; Tomas Chvatal <scarabeus@gentoo.org>
+  files/ctags-5.7-python-vars-starting-with-def.patch:
+  Adjust ctags-5.7 python patch to actualy work. Per bug #208466.
 
   01 Jan 2009; Raúl Porcel <armin76@gentoo.org> ctags-5.7-r1.ebuild:
   Re-add ~s390
