@@ -1,8 +1,7 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/catdoc/catdoc-0.94.2-r1.ebuild,v 1.1 2008/10/05 21:33:25 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/catdoc/catdoc-0.94.2-r1.ebuild,v 1.2 2009/06/09 12:39:47 flameeyes Exp $
 
-WANT_AUTOCONF=2.1
 WANT_AUTOMAKE=none
 
 inherit autotools eutils
@@ -24,6 +23,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-flags.patch"
+	epatch "${FILESDIR}/${P}+autoconf-2.63.patch"
 	eautoconf
 }
 

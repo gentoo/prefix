@@ -1,6 +1,11 @@
 # ChangeLog for app-text/catdoc
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/catdoc/ChangeLog,v 1.23 2008/10/05 21:33:25 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/catdoc/ChangeLog,v 1.24 2009/06/09 12:39:47 flameeyes Exp $
+
+  09 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  catdoc-0.94.2-r1.ebuild, +files/catdoc-0.94.2+autoconf-2.63.patch:
+  Add a patch that fixes the previous broken syntax and allows rebuilding
+  autoconf with version 2.63.
 
 *catdoc-0.94.2-r1 (05 Oct 2008)
 
