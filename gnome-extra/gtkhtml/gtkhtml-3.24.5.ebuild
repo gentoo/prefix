@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/gtkhtml-3.24.5.ebuild,v 1.10 2009/04/28 11:01:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/gtkhtml-3.24.5.ebuild,v 1.11 2009/06/08 22:14:21 eva Exp $
 
-EAPI=1
+EAPI="1"
+WANT_AUTOMAKE="1.10"
 
 inherit autotools gnome2
 
@@ -32,6 +33,7 @@ RDEPEND=">=x11-libs/gtk+-2.12
 	net-libs/libsoup:2.4"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
+	gnome-base/gnome-common
 	>=dev-util/intltool-0.40.0
 	>=dev-util/pkgconfig-0.9"
 

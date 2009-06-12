@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/gtkhtml-3.26.2.ebuild,v 1.1 2009/05/18 21:23:25 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/gtkhtml-3.26.2.ebuild,v 1.2 2009/06/08 22:16:10 eva Exp $
 
-EAPI=1
+EAPI="1"
+GCONF_DEBUG="no"
 
 inherit gnome2
 
