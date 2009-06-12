@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-mathextra/texlive-mathextra-2008.ebuild,v 1.10 2009/03/18 21:10:07 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-mathextra/texlive-mathextra-2008.ebuild,v 1.11 2009/06/10 14:20:41 alexxy Exp $
 
 TEXLIVE_MODULE_CONTENTS="12many amstex boldtensors ccfonts commath concmath concrete eqnarray extarrows extpfeil faktor mathcomp mhequ nath proba statex2 stex stmaryrd susy synproof tablor tensor turnstile venn yhmath bin-amstex collection-mathextra
 "
