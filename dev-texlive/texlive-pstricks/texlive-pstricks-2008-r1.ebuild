@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pstricks/texlive-pstricks-2008-r1.ebuild,v 1.10 2009/03/18 21:17:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-pstricks/texlive-pstricks-2008-r1.ebuild,v 1.11 2009/06/10 14:23:00 alexxy Exp $
 
 TEXLIVE_MODULE_CONTENTS="auto-pst-pdf makeplot pdftricks pst-2dplot pst-3d pst-3dplot pst-asr pst-bar pst-barcode pst-blur pst-circ pst-coil pst-cox pst-dbicons pst-diffraction pst-eps pst-eucl pst-fill pst-fr3d pst-fractal pst-fun pst-func pst-geo pst-ghsb pst-gr3d pst-grad pst-infixplot pst-jtree pst-labo pst-lens pst-light3d pst-math pst-ob3d pst-optexp pst-optic pst-osci pst-pad pst-pdgr pst-poly pst-qtree pst-slpe pst-spectra pst-stru pst-solides3d pst-soroban pst-text pst-uml pst-vue3d pst2pdf pstricks pstricks-add uml collection-pstricks
 "
