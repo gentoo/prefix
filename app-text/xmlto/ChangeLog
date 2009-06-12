@@ -1,6 +1,10 @@
 # ChangeLog for app-text/xmlto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.49 2009/05/22 13:08:08 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.50 2009/06/10 13:56:22 flameeyes Exp $
+
+  10 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> xmlto-0.0.22.ebuild,
+  +files/xmlto-0.0.22-parallelmake.patch:
+  Add fix for parallel build, closes bug #273143.
 
   22 May 2009; Samuli Suominen <ssuominen@gentoo.org>
   files/xmlto-0.0.22-format_fo_passivetex_check.patch:
