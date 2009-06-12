@@ -1,0 +1,29 @@
+# ChangeLog for games-misc/fortune-mod-starwars
+# Copyright 2002-2006 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod-starwars/ChangeLog,v 1.8 2006/07/19 20:00:21 flameeyes Exp $
+
+  19 Jul 2006; Diego Pettenò <flameeyes@gentoo.org>
+  fortune-mod-starwars-0.1.ebuild:
+  Add ~x86-fbsd keyword
+
+  27 Aug 2005; Markus Rothe <corsair@gentoo.org>
+  fortune-mod-starwars-0.1.ebuild:
+  Stable on ppc64
+
+  31 Jul 2005; Markus Rothe <corsair@gentoo.org>
+  fortune-mod-starwars-0.1.ebuild:
+  Added ~ppc64 (bug #100217)
+
+  28 Dec 2004; Ciaran McCreesh <ciaranm@gentoo.org> :
+  Change encoding to UTF-8 for GLEP 31 compliance
+
+*fortune-mod-starwars-0.1 (12 Aug 2002)
+
+  26 Aug 2003; Joshua Kinard <kumba@gentoo.org> fortune-mod-starwars-0.1.ebuild:
+  Added ~mips & ~sparc to KEYWORDS
+
+  03 Nov 2002; Jon Nall <nall@gentoo.org> fortune-mod-starwars-0.1.ebuild :
+  changed PPC to ppc in KEYWORDS
+
+  12 Aug 2002; J. Alberto Suárez López <bass@gentoo.org> fortune-mod-starwars-0.1.ebuild :
+  First relase.
