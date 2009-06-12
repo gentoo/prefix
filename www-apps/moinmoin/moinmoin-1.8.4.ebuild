@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/moinmoin-1.7.1.ebuild,v 1.4 2008/08/04 16:42:10 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/moinmoin-1.8.4.ebuild,v 1.2 2009/06/12 00:49:44 fauli Exp $
 
 MY_PN="moin"
 PYTHON_MODNAME="MoinMoin"
@@ -31,7 +31,7 @@ src_install() {
 	webapp_src_preinst
 	distutils_src_install
 
-	dodoc README docs/CHANGES* docs/HACKS docs/README.migration
+	dodoc README docs/CHANGES* docs/README.migration
 	dohtml docs/INSTALL.html
 	rm -rf README docs/
 
