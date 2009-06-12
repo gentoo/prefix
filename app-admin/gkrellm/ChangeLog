@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/gkrellm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.175 2009/05/31 16:17:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gkrellm/ChangeLog,v 1.176 2009/06/08 10:49:46 jer Exp $
+
+  08 Jun 2009; Jeroen Roovers <jer@gentoo.org> gkrellm-2.3.2-r1.ebuild:
+  Stable for HPPA (bug #271674).
 
   31 May 2009; Raúl Porcel <armin76@gentoo.org> gkrellm-2.3.2-r1.ebuild:
   alpha/arm/ia64/sparc stable wrt #271674
