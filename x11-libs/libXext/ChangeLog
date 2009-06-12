@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libXext
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.53 2009/05/15 14:52:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.54 2009/06/07 21:59:39 remi Exp $
+
+*libXext-1.0.5 (07 Jun 2009)
+
+  07 Jun 2009; Rémi Cardona <remi@gentoo.org> +libXext-1.0.5.ebuild:
+  bump to 1.0.5
 
   15 May 2009; Raúl Porcel <armin76@gentoo.org> libXext-1.0.4.ebuild:
   arm/m68k/s390 stable
