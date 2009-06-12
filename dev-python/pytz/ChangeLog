@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pytz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.26 2009/05/21 14:46:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.27 2009/06/09 15:49:03 armin76 Exp $
+
+  09 Jun 2009; Raúl Porcel <armin76@gentoo.org> pytz-2008i.ebuild,
+  pytz-2009a.ebuild, pytz-2009g.ebuild:
+  Add ~alpha
 
   21 May 2009; Raúl Porcel <armin76@gentoo.org> pytz-2008i.ebuild,
   pytz-2009a.ebuild, pytz-2009g.ebuild:
