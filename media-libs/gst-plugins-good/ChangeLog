@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/gst-plugins-good
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.66 2009/05/23 03:35:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.68 2009/06/07 14:18:13 tester Exp $
+
+  07 Jun 2009; Olivier Crête <tester@gentoo.org>
+  -files/gst-plugins-good-0.10.15-CVE-2009-1932.patch,
+  -gst-plugins-good-0.10.14-r1.ebuild:
+  Remove patch from wrong split pkg
+
+*gst-plugins-good-0.10.14-r1 (06 Jun 2009)
+
+  06 Jun 2009; Olivier Crête <tester@gentoo.org>
+  +files/gst-plugins-good-0.10.15-CVE-2009-1932.patch,
+  +gst-plugins-good-0.10.14-r1.ebuild:
+  Add patch for pngdec bug, CVE-2009-1932, bug #272972
 
   23 May 2009; Jeroen Roovers <jer@gentoo.org>
   gst-plugins-good-0.10.14.ebuild:
