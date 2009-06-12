@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2009e.ebuild,v 1.3 2009/04/11 16:38:20 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2009i.ebuild,v 1.1 2009/06/08 20:56:53 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
@@ -15,7 +15,7 @@ SRC_URI="ftp://elsie.nci.nih.gov/pub/tzdata${data_ver}.tar.gz
 
 LICENSE="BSD public-domain"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE="nls elibc_FreeBSD elibc_glibc"
 
 RDEPEND="!<sys-libs/glibc-2.3.5"
@@ -31,7 +31,9 @@ src_unpack() {
 src_compile() {
 	local LDLIBS
 	tc-export CC
-	use elibc_FreeBSD && append-flags -DSTD_INSPIRED #138251
+	if use elibc_FreeBSD || use x86-macos ; then
+		append-flags -DSTD_INSPIRED #138251
+	fi
 	if use nls ; then
 		use elibc_glibc || LDLIBS="${LDLIBS} -lintl" #154181
 		export NLS=1
