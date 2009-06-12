@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.2.ebuild,v 1.8 2009/06/11 05:46:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.2-r10.ebuild,v 1.1 2009/06/09 09:48:10 arfrever Exp $
 
 EAPI="2"
 
@@ -15,7 +15,7 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 LICENSE="Subversion"
 SLOT="0"
 KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="apache2 berkdb ctypes-python debug doc +dso emacs extras gnome-keyring java nls perl python ruby sasl test vim-syntax +webdav-neon webdav-serf"
+IUSE="apache2 berkdb ctypes-python debug doc +dso emacs extras gnome-keyring java kde nls perl python ruby sasl test vim-syntax +webdav-neon webdav-serf"
 
 CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
 	>=dev-libs/apr-1.3:1
@@ -25,6 +25,7 @@ CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
 	berkdb? ( =sys-libs/db-4* )
 	emacs? ( virtual/emacs )
 	gnome-keyring? ( dev-libs/glib:2 sys-apps/dbus gnome-base/gnome-keyring )
+	kde? ( sys-apps/dbus x11-libs/qt-core x11-libs/qt-dbus x11-libs/qt-gui >=kde-base/kdelibs-4 )
 	ruby? ( >=dev-lang/ruby-1.8.2 )
 	sasl? ( dev-libs/cyrus-sasl )
 	webdav-neon? ( >=net-misc/neon-0.28 )
@@ -33,6 +34,7 @@ CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
 RDEPEND="${CDEPEND}
 	apache2? ( www-servers/apache[apache2_modules_dav] )
 	java? ( >=virtual/jre-1.5 )
+	kde? ( kde-base/kwalletd )
 	nls? ( virtual/libintl )
 	perl? ( dev-perl/URI )"
 
@@ -41,6 +43,7 @@ DEPEND="${CDEPEND}
 	doc? ( app-doc/doxygen )
 	gnome-keyring? ( dev-util/pkgconfig )
 	java? ( >=virtual/jdk-1.5 )
+	kde? ( dev-util/pkgconfig )
 	nls? ( sys-devel/gettext )
 	webdav-neon? ( dev-util/pkgconfig )"
 
@@ -53,6 +56,11 @@ S="${WORKDIR}/${P/_/-}"
 : ${SVN_REPOS_LOC:=${EPREFIX}/var/svn}
 
 pkg_setup() {
+	if use kde && ! use nls; then
+		eerror "Support for KWallet (KDE) requires Native Language Support (NLS)."
+		die "Enable \"nls\" USE flag"
+	fi
+
 	if use berkdb; then
 		einfo
 		if [[ -z "${SVN_BDB_VERSION}" ]]; then
@@ -262,6 +270,7 @@ src_configure() {
 		$(use_with gnome-keyring) \
 		$(use_enable java javahl) \
 		$(use_with java jdk "${JAVA_HOME}") \
+		$(use_with kde kwallet) \
 		$(use_enable nls) \
 		$(use_with sasl) \
 		$(use_with webdav-neon neon ${EPREFIX}/usr) \

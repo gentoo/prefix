@@ -1,6 +1,27 @@
 # ChangeLog for dev-util/subversion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.378 2009/05/26 17:02:05 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.383 2009/06/11 05:46:41 maekke Exp $
+
+  11 Jun 2009; Markus Meier <maekke@gentoo.org> subversion-1.6.2.ebuild:
+  amd64 stable, bug #273304
+
+  10 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  subversion-1.6.2.ebuild:
+  stable x86, bug 273304
+
+  09 Jun 2009; Jeroen Roovers <jer@gentoo.org> subversion-1.6.2.ebuild:
+  Stable for HPPA (bug #273304).
+
+  09 Jun 2009; Ferris McCormick <fmccor@gentoo.org> subversion-1.6.2.ebuild:
+  Add back ~sparc in preparation of Bug #273304 (sqlite-3.6.14.2 good again
+  for sparc).
+
+*subversion-1.6.2-r10 (09 Jun 2009)
+
+  09 Jun 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  subversion-1.6.2.ebuild, +subversion-1.6.2-r10.ebuild:
+  Copy 1.6.2 to 1.6.2-r10 without changes. Disable KDE support in 1.6.2 to
+  allow earlier stabilization.
 
   26 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   subversion-1.5.5.ebuild, subversion-1.5.6.ebuild, subversion-1.6.1.ebuild,
