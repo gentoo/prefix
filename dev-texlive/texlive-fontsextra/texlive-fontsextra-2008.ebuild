@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/texlive-fontsextra-2008.ebuild,v 1.10 2009/03/18 20:59:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-fontsextra/texlive-fontsextra-2008.ebuild,v 1.11 2009/06/10 14:04:35 alexxy Exp $
 
 TEXLIVE_MODULE_CONTENTS="Asana-Math accfonts albertus aleph allrunes antiqua antp antt apl ar archaic arev ascii astro atqolive augie auncial-new aurical barcodes bayer bbding bbm bbm-macros bbold belleek bera blacklettert1 boisik bookhands braille brushscr calligra carolmin-ps cherokee cirth clarendo cm-lgc cm-super cmastro cmbright cmll cmpica coronet courier-scaled cryst cyklop dancers dice dictsym dingbat doublestroke duerer duerer-latex ean ecc eco eiad elvish epigrafica epsdice esvect eulervm euxm feyn fge foekfont fonetika fourier fouriernc frcursive futhark garamond genealogy gfsartemisia gfsbodoni gfscomplutum gfsdidot gfsneohellenic gfssolomos gothic greenpoint groff grotesq hands hfbright hfoldsty ifsym initials iwona kixfont knuthotherfonts kpfonts kurier lettrgth lfb libertine linearA logic lxfonts ly1 marigold mathdesign mnsymbol nkarta oca ocherokee ogham oinuit optima osmanian pacioli pclnfss phaistos phonetic psafm punk sauter sauterfonts semaphor simpsons skull staves tapir tengwarscript tpslifonts trajan umrand umtypewriter univers universa wsuipa yfonts zefonts collection-fontsextra
 "
