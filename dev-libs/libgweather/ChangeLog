@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.34 2009/05/30 23:19:36 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.35 2009/06/11 17:44:17 klausman Exp $
+
+  11 Jun 2009; Tobias Klausmann <klausman@gentoo.org> ChangeLog:
+  Keyworded on alpha, bug #269298
 
   30 May 2009; Brent Baude <ranger@gentoo.org> libgweather-2.26.1.ebuild:
   Marking libgweather-2.26.1 ~ppc64 for bug 269298
