@@ -1,6 +1,16 @@
 # ChangeLog for app-text/poppler-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-utils/ChangeLog,v 1.5 2009/05/17 09:47:11 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-utils/ChangeLog,v 1.8 2009/06/11 21:39:42 maekke Exp $
+
+  11 Jun 2009; Markus Meier <maekke@gentoo.org> poppler-utils-0.10.7.ebuild:
+  amd64 stable, bug #272980
+
+  11 Jun 2009; Jeroen Roovers <jer@gentoo.org> poppler-utils-0.10.7.ebuild:
+  Stable for HPPA (bug #272980).
+
+  11 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  poppler-utils-0.10.7.ebuild:
+  stable x86, bug 272980
 
 *poppler-utils-0.10.7 (17 May 2009)
 
