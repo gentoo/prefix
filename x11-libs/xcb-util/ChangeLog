@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/xcb-util
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xcb-util/ChangeLog,v 1.29 2009/04/20 15:11:24 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xcb-util/ChangeLog,v 1.31 2009/06/10 23:41:29 matsuu Exp $
+
+  10 Jun 2009; MATSUU Takuto <matsuu@gentoo.org> xcb-util-0.3.5.ebuild:
+  Fixed dependency.
+
+*xcb-util-0.3.5 (07 Jun 2009)
+
+  07 Jun 2009; Rémi Cardona <remi@gentoo.org> +xcb-util-0.3.5.ebuild:
+  bump to 0.3.5
 
 *xcb-util-0.3.4 (20 Apr 2009)
 
