@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-phonon/qt-phonon-4.5.1.ebuild,v 1.5 2009/06/02 18:00:44 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-phonon/qt-phonon-4.5.1.ebuild,v 1.7 2009/06/08 22:41:08 jer Exp $
 
 EAPI=2
 inherit qt4-build
