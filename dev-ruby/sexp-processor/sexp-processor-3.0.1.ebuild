@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sexp-processor/sexp-processor-3.0.0.ebuild,v 1.1 2008/12/28 09:34:23 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sexp-processor/sexp-processor-3.0.1.ebuild,v 1.1 2009/06/09 06:08:18 graaff Exp $
 
 inherit gems
 
@@ -15,6 +15,6 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE=""
 
-DEPEND=">=dev-ruby/hoe-1.8.0"
+DEPEND=">=dev-ruby/hoe-1.8.2"
 
 USE_RUBY="ruby18 ruby19"
