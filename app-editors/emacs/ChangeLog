@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.318 2009/05/29 16:14:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.319 2009/06/11 13:06:30 ulm Exp $
+
+*emacs-21.4-r19 (11 Jun 2009)
+
+  11 Jun 2009; Ulrich Mueller <ulm@gentoo.org> +emacs-21.4-r19.ebuild:
+  Update for newer autoconf version, bug 273720.
 
   29 May 2009; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r6.ebuild,
   -files/emacs-22.1-Xaw3d-headers.patch, -files/emacs-22.2-sh.patch,
