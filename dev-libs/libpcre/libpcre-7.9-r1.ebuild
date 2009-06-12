@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.9-r1.ebuild,v 1.2 2009/05/18 21:51:16 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.9-r1.ebuild,v 1.9 2009/06/11 20:14:06 maekke Exp $
 
 EAPI=2
 
@@ -69,4 +69,11 @@ src_install() {
 	dodoc doc/*.txt AUTHORS
 	use doc && dohtml doc/html/*
 	find "${ED}" -type f -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
+}
+
+pkg_postinst() {
+	elog "This version of ${PN} has stopped installing .la files. This may"
+	elog "cause compilation failures in other packages. To fix this problem,"
+	elog "install dev-util/lafilefixer and run:"
+	elog "lafilefixer --justfixit"
 }
