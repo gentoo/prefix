@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-bibtexextra/texlive-bibtexextra-2008.ebuild,v 1.10 2009/03/18 20:59:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-bibtexextra/texlive-bibtexextra-2008.ebuild,v 1.11 2009/06/10 13:55:04 alexxy Exp $
 
 TEXLIVE_MODULE_CONTENTS="aichej apacite beebe bibarts bibhtml biblist bibtopic bibtopicprefix bibunits chicago compactbib custom-bib din1505 dk-bib doipubmed elsevier-bib fbs figbib footbib harvard harvmac ijqc inlinebib iopart-num jneurosci jurabib listbib multibib munich notes2bib perception rsc sort-by-letters splitbib urlbst collection-bibtexextra
 "
