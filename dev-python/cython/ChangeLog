@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/cython
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.16 2009/04/30 18:26:43 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.17 2009/06/07 22:29:10 arfrever Exp $
+
+*cython-0.11.2 (07 Jun 2009)
+
+  07 Jun 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +cython-0.11.2.ebuild:
+  Version bump (bug #272571).
 
   30 Apr 2009; Patrick Lauer <patrick@gentoo.org> +cython-0.9.6.12.ebuild:
   Restore a 0.9.6 version, we don't want to break ppc
