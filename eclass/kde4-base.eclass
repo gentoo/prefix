@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.40 2009/06/04 13:50:10 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.41 2009/06/05 09:48:46 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -426,8 +426,15 @@ kde4-base_pkg_setup() {
 			fi
 		done
 		unset slot
-		[[ -z ${KDEDIR} ]] && die "Failed to determine KDEDIR!"
-		PREFIX="${PREFIX:-${ROOT}usr}"
+
+		# Bail out if kdelibs required but not found
+		if [[ ${KDE_REQUIRED} = always ]] || { [[ ${KDE_REQUIRED} = optional ]] && use kde; }; then
+			[[ -z ${KDEDIR} ]] && die "Failed to determine KDEDIR!"
+		else
+			[[ -z ${KDEDIR} ]] && KDEDIR="${EROOT}usr"
+		fi
+
+		PREFIX="${PREFIX:-${EROOT}usr}"
 	fi
 
 	# Not needed anymore

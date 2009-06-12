@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.399 2009/05/24 16:57:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.400 2009/06/09 20:59:43 dirtyepic Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1103,9 +1103,12 @@ gcc_src_unpack() {
 	${ETYPE}_src_unpack || die "failed to ${ETYPE}_src_unpack"
 
 	# protoize don't build on FreeBSD, skip it
-	if ! is_crosscompile && ! use elibc_FreeBSD ; then
-		# enable protoize / unprotoize
-		sed -i -e '/^LANGUAGES =/s:$: proto:' "${S}"/gcc/Makefile.in
+	## removed in 4.5, bug #270558 --de.
+	if [[ ${GCCMAJOR}.${GCCMINOR} < 4.5 ]]; then
+		if ! is_crosscompile && ! use elibc_FreeBSD ; then
+			# enable protoize / unprotoize
+			sed -i -e '/^LANGUAGES =/s:$: proto:' "${S}"/gcc/Makefile.in
+		fi
 	fi
 
 	# we use our libtool on Darwin

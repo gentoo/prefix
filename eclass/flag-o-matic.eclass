@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.138 2009/05/26 07:18:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.139 2009/06/09 22:15:43 dirtyepic Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -43,7 +43,9 @@ setup-allowed-flags() {
 	ALLOWED_FLAGS="${ALLOWED_FLAGS} -fno-stack-protector -fno-stack-protector-all \
 		-fno-strict-aliasing -fno-bounds-checking -fstrict-overflow -fno-omit-frame-pointer"
 	ALLOWED_FLAGS="${ALLOWED_FLAGS} -mregparm -mno-app-regs -mapp-regs \
-		-mno-mmx -mno-sse -mno-sse2 -mno-sse3 -mno-3dnow \
+		-mno-mmx -mno-sse -mno-sse2 -mno-sse3 -mno-ssse3 -mno-sse4 -mno-sse4.1 \
+		-mno-sse4.2 -mno-avx -mno-aes -mno-pclmul -mno-sse4a -mno-3dnow \
+		-mno-popcnt -mno-abm \
 		-mips1 -mips2 -mips3 -mips4 -mips32 -mips64 -mips16 \
 		-msoft-float -mno-soft-float -mhard-float -mno-hard-float -mfpu \
 		-mieee -mieee-with-inexact -mschedule \

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.20 2008/11/06 19:02:41 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.21 2009/06/08 10:05:04 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -151,7 +151,7 @@ texlive-module_src_compile() {
 	for i in texmf/fmtutil/format*.cnf; do
 		if [ -f "${i}" ]; then
 			einfo "Building format ${i}"
-			TEXMFHOME="${S}/texmf:${S}/texmf-dist"\
+			TEXMFHOME="${S}/texmf:${S}/texmf-dist:${S}/texmf-var"\
 				fmtutil --cnffile "${i}" --fmtdir "${S}/texmf-var/web2c" --all\
 				|| die "failed to build format ${i}"
 		fi

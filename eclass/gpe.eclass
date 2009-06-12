@@ -1,6 +1,6 @@
 # Copyright 2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gpe.eclass,v 1.1 2009/02/28 14:07:58 miknix Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gpe.eclass,v 1.2 2009/06/05 22:53:46 miknix Exp $
 #
 # @ECLASS: gpe.eclass
 # @MAINTAINER: <gpe@gentoo.org>
@@ -66,7 +66,8 @@ gpe_src_unpack() {
 # Do not call, use gpe_src_unpack() instead.
 gpe_src_prepare() {
 	# let portage handle stripping.
-	for file in $(find . -name 'Makefile*') ; do
+	# sort is needed, see #272161 .
+	for file in $(find . -name 'Makefile*' | sort) ; do
 		sed -i  -e s/'install -s'/'install'/g \
 			-e s/'install -Ds'/'install -D'/g \
 			-e 's/$(INSTALL) -s/$(INSTALL) /g' \

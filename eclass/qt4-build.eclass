@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.37 2009/05/29 20:58:54 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.38 2009/06/06 22:43:27 hwoarang Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -425,16 +425,11 @@ standard_configure_options() {
 		*) die "$(tc-arch) is unsupported by this eclass. Please file a bug." ;;
 	esac
 
-	# Bug 261412 Qt configure detects archs by uname
-	case "$(tc-arch)" in
-		ppc) myconf="${myconf} -platform linux-g++-32";;
-	esac
-
 	# don't do this in Prefix, or we will end up with non-working stuff
 	# on ELF systems, non-Prefix uses ld.so.conf
 	use prefix || myconf="${myconf} -no-rpath"
 
-	myconf="${myconf} -stl -verbose -largefile -confirm-license
+	myconf="${myconf} -platform $(qt_mkspecs_dir) -stl -verbose -largefile -confirm-license
 		-prefix ${QTPREFIXDIR} -bindir ${QTBINDIR} -libdir ${QTLIBDIR}
 		-datadir ${QTDATADIR} -docdir ${QTDOCDIR} -headerdir ${QTHEADERDIR}
 		-plugindir ${QTPLUGINDIR} -sysconfdir ${QTSYSCONFDIR}

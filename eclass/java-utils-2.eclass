@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.128 2009/06/02 07:02:01 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.129 2009/06/07 08:22:42 ali_bush Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -874,6 +874,7 @@ java-pkg_jar-from() {
 	local destdir="."
 	local deep=""
 	local virtual=""
+	local record_jar=""
 
 	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="build"
 
@@ -918,7 +919,7 @@ java-pkg_jar-from() {
 			[[ -z "${build_only}" ]] && java-pkg_record-jar_ "${pkg}"
 		done
 		# setting this disables further record-jar_ calls later
-		build_only="build"
+		record_jar="true"
 	else
 		java-pkg_ensure-dep "${build_only}" "${target_pkg}"
 	fi
@@ -928,7 +929,7 @@ java-pkg_jar-from() {
 	if [[ -z "${build_only}" && -n "${virtual}" ]]; then
 		java-pkg_record-jar_ "${target_pkg}"
 		# setting this disables further record-jars_ calls later
-		build_only="build"
+		record_jar="true"
 	fi
 
 	pushd ${destdir} > /dev/null \
@@ -946,13 +947,25 @@ java-pkg_jar-from() {
 			[[ -f "${target_jar}" ]]  && rm "${target_jar}"
 			ln -snf "${jar}" \
 				|| die "Failed to make symlink from ${jar} to ${jar_name}"
-			[[ -z "${build_only}" ]] && java-pkg_record-jar_ "${target_pkg}" "${jar}"
-		# otherwise, if the current jar is the target jar, link it
+			if [[ -z "${record_jar}" ]]; then
+				if [[ -z "${build_only}" ]]; then
+					java-pkg_record-jar_ "${target_pkg}" "${jar}"
+				else
+					java-pkg_record-jar_ --build-only "${target_pkg}" "${jar}"
+				fi
+			fi
+			# otherwise, if the current jar is the target jar, link it
 		elif [[ "${jar_name}" == "${target_jar}" ]] ; then
 			[[ -f "${destjar}" ]]  && rm "${destjar}"
 			ln -snf "${jar}" "${destjar}" \
 				|| die "Failed to make symlink from ${jar} to ${destjar}"
-			[[ -z "${build_only}" ]] && java-pkg_record-jar_ "${target_pkg}" "${jar}"
+			if [[ -z "${record_jar}" ]]; then
+				if [[ -z "${build_only}" ]]; then
+					java-pkg_record-jar_ "${target_pkg}" "${jar}"
+				else
+					java-pkg_record-jar_ --build-only "${target_jar}" "${jar}"
+				fi
+			fi
 			popd > /dev/null
 			return 0
 		fi
@@ -1035,12 +1048,13 @@ java-pkg_getjars() {
 		java-pkg_ensure-dep "${build_only}" "${pkg}"
 	done
 
-	# Only record jars that aren't build-only
-	if [[ -z "${build_only}" ]]; then
-		for pkg in ${pkgs//,/ }; do
+	for pkg in ${pkgs//,/ }; do
+		if [[ -z "${build_only}" ]]; then
 			java-pkg_record-jar_ "${pkg}"
-		done
-	fi
+		else
+			java-pkg_record-jar_ --build-only "${pkg}"
+		fi
+	done
 
 	echo "${jars}"
 }
@@ -1071,6 +1085,7 @@ java-pkg_getjar() {
 
 	local build_only=""
 	local virtual=""
+	local record_jar=""
 
 	[[ "${EBUILD_PHASE}" == "test" ]] && build_only="build"
 
@@ -1106,8 +1121,12 @@ java-pkg_getjar() {
 	# Record the package(Virtual) as a dependency and then set build_only
 	# So that individual jars are not recorded.
 	if [[ -n "${virtual}" ]]; then
-		java-pkg_record-jar_ "${pkg}"
-		build_only="true"
+		if [[ -z "${build_only}" ]]; then
+			java-pkg_record-jar_ "${pkg}"
+		else
+			java-pkg_record-jar_ --build-only "${pkg}"
+		fi
+		record_jar="true"
 	fi
 
 	for jar in ${classpath//:/ }; do
@@ -1117,7 +1136,13 @@ java-pkg_getjar() {
 
 		if [[ "$(basename ${jar})" == "${target_jar}" ]] ; then
 			# Only record jars that aren't build-only
-			[[ -z "${build_only}" ]] && java-pkg_record-jar_ "${pkg}" "${jar}"
+			if [[ -z "${record_jar}" ]]; then
+				if [[ -z "${build_only}" ]]; then
+					java-pkg_record-jar_ "${pkg}" "${jar}"
+				else
+					java-pkg_record-jar_ --build-only "${pkg}" "${jar}"
+				fi
+			fi
 			echo "${jar}"
 			return 0
 		fi
@@ -2246,6 +2271,8 @@ java-pkg_do_write_() {
 			echo "DESCRIPTION=\"${DESCRIPTION}\""
 			echo "GENERATION=\"2\""
 			echo "SLOT=\"${SLOT}\""
+			echo "CATEGORY=\"${CATEGORY}\""
+			echo "PVR=\"${PVR}\""
 
 			[[ -n "${JAVA_PKG_CLASSPATH}" ]] && echo "CLASSPATH=\"${JAVA_PKG_CLASSPATH}\""
 			[[ -n "${JAVA_PKG_LIBRARY}" ]] && echo "LIBRARY_PATH=\"${JAVA_PKG_LIBRARY}\""
@@ -2255,6 +2282,8 @@ java-pkg_do_write_() {
 			[[ -f "${JAVA_PKG_OPTIONAL_DEPEND_FILE}" ]] \
 				&& echo "OPTIONAL_DEPEND=\"$(cat "${JAVA_PKG_OPTIONAL_DEPEND_FILE}" | uniq | tr '\n' ':')\""
 			echo "VM=\"$(echo ${RDEPEND} ${DEPEND} | sed -e 's/ /\n/g' | sed -n -e '/virtual\/\(jre\|jdk\)/ { p;q }')\"" # TODO cleanup !
+			[[ -f "${JAVA_PKG_BUILD_DEPEND_FILE}" ]] \
+				&& echo "BUILD_DEPEND=\"$(cat "${JAVA_PKG_BUILD_DEPEND_FILE}" | uniq | tr '\n' ':')\""
 		) > "${JAVA_PKG_ENV}"
 
 		# register target/source
@@ -2297,20 +2326,22 @@ java-pkg_do_write_() {
 #
 # Record an (optional) dependency to the package.env
 # @param --optional - record dependency as optional
+# @param --build - record dependency as build_only
 # @param $1 - package to record
 # @param $2 - (optional) jar of package to record
 # ------------------------------------------------------------------------------
 JAVA_PKG_DEPEND_FILE="${T}/java-pkg-depend"
 JAVA_PKG_OPTIONAL_DEPEND_FILE="${T}/java-pkg-optional-depend"
+JAVA_PKG_BUILD_DEPEND_FILE="${T}/java-pkg-build-depend"
 
 java-pkg_record-jar_() {
 	debug-print-function ${FUNCNAME} $*
 
 	local depend_file="${JAVA_PKG_DEPEND_FILE}"
-	if [[ "${1}" == "--optional" ]]; then
-		depend_file="${JAVA_PKG_OPTIONAL_DEPEND_FILE}"
-		shift
-	fi
+	case "${1}" in
+		"--optional") depend_file="${JAVA_PKG_OPTIONAL_DEPEND_FILE}"; shift;;
+		"--build-only") depend_file="${JAVA_PKG_BUILD_DEPEND_FILE}"; shift;;
+	esac
 
 	local pkg=${1} jar=${2} append
 	if [[ -z "${jar}" ]]; then
