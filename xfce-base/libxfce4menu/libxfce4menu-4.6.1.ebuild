@@ -1,9 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4menu/libxfce4menu-4.6.1.ebuild,v 1.2 2009/05/21 19:52:11 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4menu/libxfce4menu-4.6.1.ebuild,v 1.5 2009/06/10 07:28:33 fauli Exp $
 
 EAPI="1"
 
+RESTRICT="test"
 inherit xfce4
 
 xfce4_core
