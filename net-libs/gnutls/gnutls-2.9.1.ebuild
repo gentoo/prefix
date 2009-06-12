@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.9.0.ebuild,v 1.2 2009/06/01 10:18:16 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.9.1.ebuild,v 1.1 2009/06/09 09:34:29 arfrever Exp $
 
 EAPI="2"
 
@@ -9,15 +9,19 @@ inherit autotools libtool
 DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
 HOMEPAGE="http://www.gnutls.org/"
 
-MINOR_VERSION="${PV#*.}"
-MINOR_VERSION="${MINOR_VERSION%.*}"
-if [[ $((MINOR_VERSION % 2)) == 0 ]]; then
-	#SRC_URI="ftp://ftp.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
-	SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
+if [[ "${PV}" == *pre* ]]; then
+	SRC_URI="http://daily.josefsson.org/${P%.*}/${P%.*}-${PV#*pre}.tar.gz"
 else
-	SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.bz2"
+	MINOR_VERSION="${PV#*.}"
+	MINOR_VERSION="${MINOR_VERSION%.*}"
+	if [[ $((MINOR_VERSION % 2)) == 0 ]]; then
+		#SRC_URI="ftp://ftp.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
+		SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
+	else
+		SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.bz2"
+	fi
+	unset MINOR_VERSION
 fi
-unset MINOR_VERSION
 
 # GPL-3 for the gnutls-extras library and LGPL for the gnutls library.
 LICENSE="LGPL-2.1 GPL-3"
@@ -36,6 +40,8 @@ DEPEND="${RDEPEND}
 	sys-devel/libtool
 	doc? ( dev-util/gtk-doc )
 	nls? ( sys-devel/gettext )"
+
+S="${WORKDIR}/${P%_pre*}"
 
 pkg_setup() {
 	if use lzo && use bindist; then
