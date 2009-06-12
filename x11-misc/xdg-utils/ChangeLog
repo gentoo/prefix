@@ -1,6 +1,14 @@
 # ChangeLog for x11-misc/xdg-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.52 2009/06/03 13:50:06 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xdg-utils/ChangeLog,v 1.54 2009/06/07 17:26:14 gentoofan23 Exp $
+
+  07 Jun 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  xdg-utils-1.0.2-r3.ebuild:
+  Revert adding dependency on xmlto, configure.ac checks for it but it is
+  really unneeded.
+
+  06 Jun 2009; Markus Meier <maekke@gentoo.org> xdg-utils-1.0.2-r3.ebuild:
+  amd64/x86 stable, bug #271889
 
   03 Jun 2009; Brent Baude <ranger@gentoo.org> xdg-utils-1.0.2-r3.ebuild:
   Marking xdg-utils-1.0.2-r3 ppc64 stable for bug 271889
