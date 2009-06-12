@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libtorrent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.138 2009/03/06 00:11:38 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libtorrent/ChangeLog,v 1.139 2009/06/05 15:52:09 loki_val Exp $
+
+  05 Jun 2009; Peter Alfredsen <loki_val@gentoo.org> metadata.xml:
+  Retiring, bug 220219.
 
   06 Mar 2009; Jeroen Roovers <jer@gentoo.org> libtorrent-0.12.4.ebuild:
   Stable for HPPA (bug #255756).
