@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-editors/mlview/mlview-0.8-r1.ebuild,v 1.7 2008/09/13 12:56:12 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mlview/mlview-0.8-r1.ebuild,v 1.8 2009/06/09 13:19:12 flameeyes Exp $
 
 inherit eutils gnome2 flag-o-matic
 
@@ -26,7 +26,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.33
 	>=dev-util/pkgconfig-0.9"
 
-DOCS="ABOUT-NLS AUTHORS BRANCHES ChangeLog COPYRIGHT NEWS README"
+DOCS="AUTHORS BRANCHES ChangeLog COPYRIGHT NEWS README"
 
 pkg_setup() {
 	# see bug #179819

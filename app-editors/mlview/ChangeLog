@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/mlview
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-editors/mlview/ChangeLog,v 1.21 2008/09/14 20:43:42 dang Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mlview/ChangeLog,v 1.22 2009/06/09 13:19:12 flameeyes Exp $
+
+  09 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  mlview-0.8-r1.ebuild:
+  Avoid installing ABOUT-NLS file.
 
   14 Sep 2008; Daniel Gryniewicz <dang@gentoo.org> metadata.xml:
   Reassign to maintainer-needed; bug #179819
