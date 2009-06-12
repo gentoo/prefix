@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.1 2009/05/02 01:29:15 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.4 2009/06/10 09:08:34 aballier Exp $
 
-EAPI=1
+EAPI=2
 
 ESVN_REPO_URI="svn://svn.mplayerhq.hu/ffmpeg/trunk"
 
@@ -26,7 +26,7 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 		faac? ( media-libs/faac )
 		mp3? ( media-sound/lame )
 		vorbis? ( media-libs/libvorbis media-libs/libogg )
-		theora? ( media-libs/libtheora media-libs/libogg )
+		theora? ( media-libs/libtheora[encode] media-libs/libogg )
 		x264? ( >=media-libs/x264-0.0.20081006 )
 		xvid? ( >=media-libs/xvid-1.1.0 ) )
 	faad? ( >=media-libs/faad2-2.6.1 )
@@ -60,7 +60,7 @@ src_unpack() {
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
 }
 
-src_compile() {
+src_configure() {
 	local myconf="${EXTRA_ECONF}"
 
 	# enabled by default
@@ -190,7 +190,9 @@ src_compile() {
 		--arch=${CHOST%%-*} \
 		--cc="$(tc-getCC)" \
 		${myconf} || die "configure failed"
+}
 
+src_compile() {
 	emake version.h || die #252269
 	emake || die "make failed"
 }
@@ -202,15 +204,9 @@ src_install() {
 	dodoc doc/*
 }
 
-# Never die for now...
 src_test() {
-	for t in codectest libavtest seektest ; do
-		emake ${t} || ewarn "Some tests in ${t} failed"
+	for t in codectest lavftest seektest ; do
+		LD_LIBRARY_PATH="${S}/libpostproc:${S}/libswscale:${S}/libavcodec:${S}/libavdevice:${S}/libavfilter:${S}/libavformat:${S}/libavutil" \
+			emake ${t} || die "Some tests in ${t} failed"
 	done
-}
-
-pkg_postinst() {
-	ewarn "ffmpeg may have had ABI changes, if ffmpeg based programs"
-	ewarn "like xine-lib or vlc stop working as expected please"
-	ewarn "rebuild them."
 }

@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5-r1.ebuild,v 1.10 2009/05/21 19:02:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5-r1.ebuild,v 1.11 2009/06/10 08:51:35 aballier Exp $
 
-EAPI=1
+EAPI=2
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
@@ -31,7 +31,7 @@ RDEPEND="vhook? ( >=media-libs/imlib2-1.4.0 >=media-libs/freetype-2 )
 			)
 		)
 		vorbis? ( media-libs/libvorbis media-libs/libogg )
-		theora? ( media-libs/libtheora media-libs/libogg )
+		theora? ( media-libs/libtheora[encode] media-libs/libogg )
 		x264? ( >=media-libs/x264-0.0.20081006 )
 		xvid? ( >=media-libs/xvid-1.1.0 ) )
 	faad? ( >=media-libs/faad2-2.6.1 )
@@ -66,7 +66,7 @@ src_unpack() {
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
 }
 
-src_compile() {
+src_configure() {
 	local myconf="${EXTRA_ECONF}"
 
 	# enabled by default
@@ -197,7 +197,9 @@ src_compile() {
 		--arch=${CHOST%%-*} \
 		--cc="$(tc-getCC)" \
 		${myconf} || die "configure failed"
+}
 
+src_compile() {
 	emake version.h || die #252269
 	emake || die "make failed"
 }

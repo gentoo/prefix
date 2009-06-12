@@ -1,6 +1,17 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.290 2009/05/21 19:02:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.293 2009/06/10 09:08:34 aballier Exp $
+
+  10 Jun 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  remove useless warning, it must not be the user's duty to figure out abi
+  breaks
+
+  10 Jun 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  make tests work when upgrading, they should pass so make them also fatal
+
+  10 Jun 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-0.5-r1.ebuild,
+  ffmpeg-9999-r1.ebuild:
+  eapi2ify and depend on libtheora[encode] when needed, reported by remi
 
   21 May 2009; Brent Baude <ranger@gentoo.org> ffmpeg-0.5-r1.ebuild:
   Marking ffmpeg-0.5-r1 ppc64 stable for bug 266986
