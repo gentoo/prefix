@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/sdl-mixer
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-mixer/ChangeLog,v 1.60 2008/08/31 02:51:56 mr_bones_ Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-mixer/ChangeLog,v 1.61 2009/06/08 18:04:04 armin76 Exp $
+
+  08 Jun 2009; Raúl Porcel <armin76@gentoo.org> sdl-mixer-1.2.8.ebuild:
+  Add ~sh wrt #271076
 
   31 Aug 2008; Michael Sterrett <mr_bones_@gentoo.org>
   -files/sdl-mixer-1.2.7-build.patch,
