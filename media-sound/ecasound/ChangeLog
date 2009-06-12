@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/ecasound
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.55 2009/05/31 12:13:23 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.56 2009/06/09 18:52:02 armin76 Exp $
+
+  09 Jun 2009; Raúl Porcel <armin76@gentoo.org> ecasound-2.6.0.ebuild:
+  sparc stable wrt #271779
 
   31 May 2009; Markus Meier <maekke@gentoo.org> ecasound-2.6.0.ebuild:
   amd64/x86 stable, bug #271779
