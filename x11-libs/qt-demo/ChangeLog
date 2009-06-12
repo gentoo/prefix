@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-demo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.21 2009/06/03 22:32:18 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.22 2009/06/06 08:42:28 maekke Exp $
+
+  06 Jun 2009; Markus Meier <maekke@gentoo.org> qt-demo-4.5.1.ebuild:
+  amd64 stable, bug #266201
 
   03 Jun 2009; Ben de Groot <yngwin@gentoo.org> qt-demo-4.5.1.ebuild:
   Add kde useflag, for selecting media-sound/phonon
