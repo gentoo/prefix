@@ -1,6 +1,18 @@
 # ChangeLog for dev-util/bzr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.94 2009/06/01 13:51:50 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.96 2009/06/10 19:22:26 pva Exp $
+
+*bzr-1.15.1 (10 Jun 2009)
+
+  10 Jun 2009; Peter Volkov <pva@gentoo.org> -bzr-1.15.ebuild,
+  +bzr-1.15.1.ebuild:
+  Version bump, missed pyrex generated C files now back, bug #273328, thank
+  Andrew Cowie and Mark Lee.
+
+*bzr-1.15 (05 Jun 2009)
+
+  05 Jun 2009; Peter Volkov <pva@gentoo.org> +bzr-1.15.ebuild:
+  Version bump.
 
   01 Jun 2009; Markus Meier <maekke@gentoo.org> bzr-1.13.2.ebuild:
   amd64 stable, bug #271130
