@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.2.2-r1.ebuild,v 1.9 2009/06/02 16:04:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.2.2-r1.ebuild,v 1.12 2009/06/08 13:54:12 ssuominen Exp $
 
 EAPI=2
-inherit eutils multilib
+inherit multilib
 
 MY_PN=${PN}core
 MY_P=${MY_PN}-${PV}
@@ -13,13 +13,16 @@ HOMEPAGE="http://www.xvid.org"
 SRC_URI="http://downloads.xvid.org/downloads/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
-SLOT="1"
+SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="examples pic"
 
-NASM=">=dev-lang/nasm-2.04"
-DEPEND="x86? ( ${NASM} )
-	amd64? ( ${NASM} )
+NASM=">=dev-lang/nasm-2.05.01"
+YASM=">=dev-lang/yasm-0.8.0"
+
+DEPEND="amd64? ( !<dev-lang/yasm-0.8.0
+		|| ( ${YASM} ${NASM} ) )
+	x86? ( ${NASM} )
 	x86-fbsd? ( ${NASM} )"
 RDEPEND=""
 
