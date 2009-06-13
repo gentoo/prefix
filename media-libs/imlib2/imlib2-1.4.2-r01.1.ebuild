@@ -25,6 +25,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-CVE-2008-5187.patch #248057
+
+	epatch "${FILESDIR}"/${P}-darwin-bundle.patch #272426
 }
 
 src_compile() {
