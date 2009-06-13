@@ -21,21 +21,17 @@ PYTHON_MODNAME="java_config_2"
 
 src_unpack() {
 	distutils_src_unpack
-	epatch "${FILESDIR}"/${P}-prefix.patch
 
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-load_packages.patch"
+
+	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify \
 		config/20java-config setup.py \
 		src/{depend-java-query,gjl,java-config-2,launcher.bash,run-java-tool} \
 		src/eselect/java-{nsplugin,vm}.eselect \
 		src/profile.d/java-config-2.{,c}sh \
 		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py}
-}
-
-src_unpack() {
-	distutils_src_unpack
-
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-load_packages.patch"
 }
 
 src_install() {
