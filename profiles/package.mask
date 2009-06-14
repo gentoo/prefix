@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9910 2009/06/11 10:48:11 sbriesen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9922 2009/06/13 23:57:15 tampakrap Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -30,6 +30,77 @@
 ## app-misc/some-package
 
 #--- END OF EXAMPLES ---
+
+# Theo Chatzimichos <tampakrap@gentoo.org> (14 Jun 2009)
+# Masked for removal in 30 days. Old and dead by upstream.
+app-dicts/kannadic
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (12 Jun 2009)
+#  on behalf of QA Team
+#
+# Fails to fetch (git repository moved), unfixed since September 2008,
+# already masked since February 2009.
+#
+# Removal pending 13 July 2009
+dev-lang/rubinius
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (12 Jun 2009)
+#  on behalf of QA Team
+#
+# Fails to build with gcc 4.4, bitrotting package and not updated to
+# latest release (from 2005).
+#
+# Removal pending 13 August 2009
+dev-db/framerd
+
+# Torsten Veller <tove@gentoo.org> (13 Jun 2009)
+# Mask dev-perl/X10 (#245631 and #264664)
+# only masked www-misc/zoneminder depends on it
+dev-perl/X10
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (12 Jun 2009)
+#  on behalf of QA Team
+#
+# Fails to build with newer glibc versions, see bug #241008
+#
+# Removal pending 13 August 2009
+net-misc/wso2-wsf-c
+
+# Hans de Graaff <graaff@gentoo.org> (13 Jun 2009)
+# dev-ruby/freeride ships broken elf shared object files
+# that we cannot rebuild properly, see bug #251935
+dev-ruby/freeride
+
+# Markus Meier <maekke@gentoo.org> (13 Jun 2009)
+# mask pre releases of media-gfx/inkscape-0.47
+>=media-gfx/inkscape-0.47_pre0
+
+# Rémi Cardona <remi@gentoo.org> (10 Jun 2009)
+# see bug #260582 for xorg-server 1.6 issues
+# both are "unmaskable" when I write the upgrade guide
+>=x11-misc/xkeyboard-config-1.6
+>=x11-base/xorg-server-1.6.1
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (12 Jun 2009)
+#  on behalf of QA Team
+#
+# Multiple QA issues, see bug #273313
+#
+# Removal pending 12 August 2009
+net-p2p/ed2k_recovermet
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (12 Jun 2009)
+#  on behalf of QA Team
+#
+# Multiple QA issues, see bug #273872
+#
+# Removal pending 12 August 2009
+app-laptop/toshiba-utils
+
+# Tristan Heaven <nyhm@gentoo.org> (12 Jun 2009)
+# https://bugs.gentoo.org/show_bug.cgi?id=269516
+# Contains many vulnerable image libraries.
+media-libs/freeimage
 
 # Stefan Briesenick <sbriesen@gentoo.org> (11 Jun 2009)
 # media-gfx/digiKam 0.10.0-r1 crashes with SIGABRT with
@@ -331,17 +402,14 @@ app-doc/afsdoc
 =dev-libs/redland-1.0.9
 
 # Rémi Cardona <remi@gentoo.org> (29 Apr 2009)
-# packages currently in the x11 overlay which will soon be moved to portage
-# see bug #260582 for xorg-server 1.6.1 issues
+# All the following packages should be unmasked at the same time
 # see bug #174434 for xcb-related issues (not all are blocker)
->=x11-base/xorg-server-1.6.1
 >=x11-libs/libXext-1.0.5
 >=x11-libs/libX11-1.2
 >=x11-libs/libxcb-1.2
 >=x11-proto/xcb-proto-1.4
 >=x11-proto/xproto-7.0.15
 >=x11-proto/xextproto-7.0.5
-=x11-drivers/xf86-video-intel-2.7.0
 
 # Tomas Chvatal <scarabeus@gentoo.org> (27 Apr 2009)
 # Masked due to broken iniparser patch
@@ -402,15 +470,6 @@ app-benchmark/phoronix-test-suite
 # Should fix a number of bug: 143763, 200293, 261357, 265466.
 # It "mostly works with 2.3.* too". Is "mostly" good enough?
 =dev-perl/math-pari-2.010801-r1
-
-# Justin Bronder <jsbronder@gentoo.org> (17 Apr 2009)
-# Mask sys-cluster/mpich for removal. (#266565)
-# No release since 2005, multiple bugs, easily replaced with
-# openmpi, mpich2 or lam-mpi
-#
-# commented out since it still being used by sci-visualization/paraview-2.6.2
-# -- mr_bones@gentoo.org
-#sys-cluster/mpich
 
 # Lennart Kolmodin <kolmodin@gentoo.org> (17 Apr 2009)
 # Add patched dev-lang/ghc for testing.
@@ -604,10 +663,6 @@ x11-plugins/desklet-clock
 # Ben de Groot <yngwin@gentoo.org> (14 Feb 2009)
 # Masking because of build failures, bug 258961
 =x11-libs/qt-script-4.5.0_rc1-r1
-
-# Diego E. Pettenò <flameeyes@gentoo.org> (13 Feb 2009)
-# Masked because of bug 237887, fails to fetch (git repository moved).
-dev-lang/rubinius
 
 # René Nussbaumer <killerfox@gentoo.org> (10 Feb 2009)
 # I gave away maintainership a while ago nobody took it on. Prepare for remove.

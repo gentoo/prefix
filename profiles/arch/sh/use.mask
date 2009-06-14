@@ -72,7 +72,6 @@ gnomecd
 lapack
 cblas
 webkit
-paludis
 prolog
 timidity
 

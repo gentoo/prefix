@@ -1,10 +1,54 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2765 2009/06/10 19:24:21 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2778 2009/06/13 23:57:15 tampakrap Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  13 Jun 2009; Theo Chatzimichos <tampakrap@gentoo.org> package.mask:
+  Masked for removal in 30 days. Old and dead by upstream.
+
+  13 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Update mask for rubinius to point out removal pending.
+
+  13 Jun 2009; Justin Bronder <jsbronder@gentoo.org> package.mask:
+  Removing entry from package.mask as sys-cluster/mpich (and paraview-2.6.2)
+  have been removed.
+
+  13 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask framerd per bug #274018, and remember to add the removal pending
+  dates for the previous masks too.
+
+  13 Jun 2009; Torsten Veller <tove@gentoo.org> package.mask:
+  Mask dev-perl/X10 (#245631 and #264664)
+
+  13 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask wso2-wsf-c as per bug #241008.
+
+  13 Jun 2009; Hans de Graaff <graaff@gentoo.org> package.mask:
+  Mask dev-ruby/freeride for bug 251935
+
+  13 Jun 2009; Markus Meier <maekke@gentoo.org> package.mask:
+  mask pre releases of media-gfx/inkscape-0.47
+
+  13 Jun 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  xf86-video-intel-2.7.0 is no longer in portage, add xkeyboard-config-1.6
+  to the xorg-server 1.6 mask entry
+
+  13 Jun 2009; Fabian Groffen <grobian@gentoo.org> profiles.desc:
+  Add Prefix profiles to profiles.desc. They are commented out and only
+  enabled in the Prefix rsync tree.
+
+  12 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask ed2k_recovermet.
+
+  12 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask toshiba-utils per bug #273872.
+
+  12 Jun 2009; Tristan Heaven <nyhm@gentoo.org> base/package.use.mask,
+  package.mask:
+  Mask media-libs/freeimage, bug #269516
 
   10 Jun 2009; Peter Volkov <pva@gentoo.org> package.mask:
   Unmasking bzr-1.15* and dependent bzrtools.
