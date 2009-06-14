@@ -549,6 +549,26 @@ get_libname() {
 	fi
 }
 
+# @FUNCTION: get_modname
+# @USAGE:
+# @DESCRIPTION:
+# Returns modulename with proper suffix {.so,.bundle,etc} for the current
+# platform identified by CHOST.
+#
+# Example:
+#     libfoo$(get_modname)
+#     Returns: libfoo.so (ELF) || libfoo.bundle (MACH) || ...
+get_libname() {
+	local modname
+	local ver=$1
+	case ${CHOST} in
+		*-darwin*)                modname="bundle";;
+		*)                        modname="so";;
+	esac
+
+	echo ".${modname}"
+}
+
 # This is for the toolchain to setup profile variables when pulling in
 # a crosscompiler (and thus they aren't set in the profile)
 multilib_env() {
