@@ -52,12 +52,7 @@ src_install() {
 	rm -r "${ED}"/usr/share/cracklib
 
 	# move shared libs to /
-	dodir /$(get_libdir)
-	if [[ ${CHOST} != *-mint* ]]; then
-		mv "${ED}"/usr/$(get_libdir)/*$(get_libname)* "${ED}"/$(get_libdir)/ \
-			|| die "could not move shared"
-	fi
-	gen_usr_ldscript libcrack$(get_libname)
+	gen_usr_ldscript -a crack
 
 	insinto /usr/share/dict
 	doins dicts/cracklib-small || die "word dict"
