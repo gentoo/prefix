@@ -1,5 +1,10 @@
 # This file requires >=portage-2.1.1
 
+# Tristan Heaven <nyhm@gentoo.org> (12 Jun 2009)
+# media-libs/freeimage is masked for bug #269516
+dev-games/cegui freeimage
+dev-games/ogre freeimage
+
 # Mounir Lamouri <volkmar@gentoo.org> (21 Apr 2009)
 # masking jingle because it's using an old ortp version
 # which is blocking stabilization of new ones, bug 206047
