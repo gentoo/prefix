@@ -1,11 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.12.ebuild,v 1.3 2009/06/10 07:30:26 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.12.ebuild,v 1.5 2009/06/13 13:57:37 tcunha Exp $
 
 EAPI="1"
 
 MY_P="${P/t/T}"
-inherit xfce4
+inherit autotools xfce4
 
 XFCE_VERSION=4.6.1
 
@@ -33,8 +33,14 @@ DEPEND="${RDEPEND}
 	dev-util/intltool
 	doc? ( dev-libs/libxslt )"
 
+XFCE4_PATCHES="${FILESDIR}/${PN}-configure.in.patch"
+DOCS="AUTHORS ChangeLog HACKING NEWS README THANKS TODO"
+
 pkg_setup() {
 	XFCE_CONFIG+=" $(use_enable dbus) $(use_enable doc xsltproc)"
 }
 
-DOCS="AUTHORS ChangeLog HACKING NEWS README THANKS TODO"
+src_unpack() {
+	xfce4_src_unpack
+	AT_M4DIR="${EPREFIX}"/usr/share/xfce4/dev-tools/m4macros eautoreconf
+}

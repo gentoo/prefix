@@ -1,0 +1,44 @@
+# Add HAVE_DBUS to AM_CONDITIONAL (prevents automake from failing).
+# Do not append -Werror to CFLAGS if debugging support was enabled (ie
+# -enable-debug), and while there remove the Sun Studio specific check for
+# -errwarn.
+
+--- configure.in.orig	2009-06-11 19:49:23.580627864 +0100
++++ configure.in	2009-06-11 19:50:05.001816291 +0100
+@@ -107,6 +107,7 @@
+     AC_MSG_RESULT([no])
+   fi
+ fi
++AM_CONDITIONAL([HAVE_DBUS], [test "x$DBUS_FOUND" = "xyes"])
+ 
+ dnl **************************
+ dnl *** Check for xsltproc ***
+@@ -162,28 +163,6 @@
+   dnl Print the result
+   AC_MSG_RESULT([$enable_debug])
+ 
+-  dnl Check whether the compiler accepts the -Werror
+-  save_CFLAGS="$CFLAGS"
+-  CFLAGS="$CFLAGS -Werror"
+-  AC_MSG_CHECKING([whether $CC accepts -Werror])
+-  AC_COMPILE_IFELSE(AC_LANG_SOURCE([int x;]), [
+-    AC_MSG_RESULT([yes])
+-    PLATFORM_CFLAGS="$PLATFORM_CFLAGS -Werror"
+-  ], [
+-    AC_MSG_RESULT([no])
+-
+-		dnl Check whether the compiler accepts the -errwarn=%all
+-		CFLAGS="$save_CFLAGS -errwarn=%all"
+-		AC_MSG_CHECKING([whether $CC accepts -errwarn=%all])
+-		AC_COMPILE_IFELSE(AC_LANG_SOURCE([int x;]), [
+-			AC_MSG_RESULT([yes])
+-			PLATFORM_CFLAGS="$PLATFORM_CFLAGS -errwarn=%all"
+-		], [
+-			AC_MSG_RESULT([no])
+-		])
+-  ])
+-  CFLAGS="$save_CFLAGS"
+-
+   dnl Check whether the compiler accepts the -Wall
+   save_CFLAGS="$CFLAGS"
+   CFLAGS="$CFLAGS -Wall"
