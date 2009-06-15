@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/xfconf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfconf/ChangeLog,v 1.8 2009/06/10 07:21:06 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfconf/ChangeLog,v 1.9 2009/06/13 13:46:10 tcunha Exp $
+
+  13 Jun 2009; Tiago Cunha <tcunha@gentoo.org> xfconf-4.6.1.ebuild:
+  stable sparc, bug 265587
 
   10 Jun 2009; Christian Faulhammer <fauli@gentoo.org> xfconf-4.6.1.ebuild:
   stable x86, bug 265587
