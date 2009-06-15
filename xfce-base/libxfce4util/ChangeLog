@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/libxfce4util
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4util/ChangeLog,v 1.123 2009/06/10 07:16:35 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4util/ChangeLog,v 1.124 2009/06/13 13:43:27 tcunha Exp $
+
+  13 Jun 2009; Tiago Cunha <tcunha@gentoo.org> libxfce4util-4.6.1.ebuild:
+  stable sparc, bug 265587
 
   10 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
   libxfce4util-4.6.1.ebuild:
