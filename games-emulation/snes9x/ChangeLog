@@ -1,6 +1,10 @@
 # ChangeLog for games-emulation/snes9x
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/snes9x/ChangeLog,v 1.32 2009/06/05 07:13:58 tupone Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/snes9x/ChangeLog,v 1.33 2009/06/13 18:42:52 nyhm Exp $
+
+  13 Jun 2009; Tristan Heaven <nyhm@gentoo.org> snes9x-1.51.ebuild,
+  +files/snes9x-1.51-glibc2.10.patch:
+  Fix building with glibc-2.10, bug #273503
 
   05 Jun 2009; Alfredo Tupone <tupone@gentoo.org>
   +files/snes9x-1.43-gcc440.patch, snes9x-1.43-r2.ebuild:

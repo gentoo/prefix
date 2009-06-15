@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/snes9x/snes9x-1.51.ebuild,v 1.2 2008/02/09 06:22:47 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/snes9x/snes9x-1.51.ebuild,v 1.3 2009/06/13 18:42:52 nyhm Exp $
 
 # 3dfx support (glide) is disabled because it requires
 # glide-v2 while we only provide glide-v3 in portage
@@ -49,9 +49,10 @@ src_unpack() {
 		"${FILESDIR}"/${P}-build.patch \
 		"${FILESDIR}"/${P}-config.patch \
 		"${FILESDIR}"/${P}-opengl.patch \
-		"${FILESDIR}"/${P}-x11.patch
+		"${FILESDIR}"/${P}-x11.patch \
+		"${FILESDIR}"/${P}-glibc2.10.patch
 
-	eautoconf
+	eautoreconf
 }
 
 src_compile() {
@@ -94,7 +95,7 @@ src_compile() {
 		mv ${target} "${WORKDIR}"/mybins/
 		cd "${WORKDIR}"
 		rm -r "${S}"
-		src_unpack
+		src_unpack # FIXME
 	done
 }
 
