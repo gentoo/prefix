@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.101.ebuild,v 1.4 2009/06/10 07:27:09 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.101-r1.ebuild,v 1.2 2009/06/13 13:49:14 tcunha Exp $
 
 EAPI="1"
 
@@ -25,6 +25,8 @@ RDEPEND=">=dev-lang/perl-5.6
 DEPEND="${RDEPEND}
 	dev-util/intltool
 	doc? ( dev-util/gtk-doc )"
+
+XFCE4_PATCHES="${FILESDIR}/exo-0.3.101-iocharset.patch"
 
 pkg_setup() {
 	XFCE_CONFIG+=" $(use_enable doc gtk-doc) $(use_enable hal)

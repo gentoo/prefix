@@ -1,6 +1,17 @@
 # ChangeLog for xfce-extra/exo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.85 2009/06/10 07:27:09 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.87 2009/06/13 13:49:14 tcunha Exp $
+
+  13 Jun 2009; Tiago Cunha <tcunha@gentoo.org> exo-0.3.101-r1.ebuild:
+  stable sparc, bug 265587
+
+*exo-0.3.101-r1 (13 Jun 2009)
+
+  13 Jun 2009; Jeremy Olexa <darkside@gentoo.org>
+  +files/exo-0.3.101-iocharset.patch, -exo-0.3.101.ebuild,
+  +exo-0.3.101-r1.ebuild:
+  Add small patch to fix exo-mount on localized systems, patch from ALTLinux,
+  bug 271441
 
   10 Jun 2009; Christian Faulhammer <fauli@gentoo.org> exo-0.3.101.ebuild:
   stable x86, bug 265587
