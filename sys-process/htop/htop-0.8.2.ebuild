@@ -1,20 +1,20 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/htop-0.8.1-r1.ebuild,v 1.11 2009/06/13 12:40:41 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/htop-0.8.2.ebuild,v 1.1 2009/06/13 12:40:41 gentoofan23 Exp $
 
-EAPI=2
+EAPI="2"
+inherit eutils flag-o-matic multilib
 
-inherit autotools eutils flag-o-matic
-
-IUSE="debug unicode"
 DESCRIPTION="interactive process viewer"
 HOMEPAGE="http://htop.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+IUSE="debug"
 
-DEPEND="sys-libs/ncurses[unicode?]"
+DEPEND="sys-libs/ncurses[unicode]"
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
@@ -26,25 +26,27 @@ pkg_setup() {
 		eerror
 		die "htop needs /proc mounted"
 	fi
+
+	if ! has_version sys-process/lsof ; then
+		ewarn "To use lsof features in htop(what processes are accessing"
+		ewarn "what files), you must have sys-process/lsof installed."
+	fi
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-desktop-entry.patch
-	epatch "${FILESDIR}"/${P}-non-printable-char-filter.patch
-	epatch "${FILESDIR}"/${P}-no-plpa.patch
-
-	eautoreconf
+	epatch "${FILESDIR}"/${PN}-0.8.1-non-printable-char-filter.patch \
+		"${FILESDIR}"/${P}-illegaladdrcopy.patch
 }
 
 src_configure() {
 	useq debug && append-flags -O -ggdb -DDEBUG
 	econf \
 		--enable-taskstats \
-		$(use_enable unicode) \
-		|| die "configure failed"
+		--enable-unicode
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc README ChangeLog TODO || die
+	dodoc README ChangeLog TODO || die "documentation installation failed."
+	rmdir "${ED}"/usr/{include,$(get_libdir)} || die "Removing empty directory failed."
 }

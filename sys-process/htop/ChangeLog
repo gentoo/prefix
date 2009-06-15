@@ -1,6 +1,16 @@
 # ChangeLog for sys-process/htop
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/ChangeLog,v 1.74 2009/03/15 20:20:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/ChangeLog,v 1.75 2009/06/13 12:40:41 gentoofan23 Exp $
+
+*htop-0.8.2 (13 Jun 2009)
+
+  13 Jun 2009; Thomas Anderson <gentoofan23@gentoo.org>
+  +files/htop-0.8.2-illegaladdrcopy.patch, htop-0.8.1-r1.ebuild,
+  +htop-0.8.2.ebuild:
+  Version bump to 0.8.2, bug 273770; Thanks to Lars Wendler
+  (polynomial-c@gentoo.org) for the report and help on finding patches; Also
+  fixes bug #258112; Adds lsof support; Add a patch to fix crashes when
+  pressing keys 'a' or 'F6'; QA fix for implicit RDEPEND in 0.8.1-r1.
 
   15 Mar 2009; Raúl Porcel <armin76@gentoo.org> htop-0.8.1-r1.ebuild:
   alpha stable
