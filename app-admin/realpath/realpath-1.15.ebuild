@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/realpath-1.14-r1.ebuild,v 1.2 2009/06/13 09:37:26 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/realpath-1.15.ebuild,v 1.1 2009/06/13 09:37:26 ulm Exp $
 
 EAPI=2
 inherit eutils toolchain-funcs prefix
@@ -34,9 +34,9 @@ src_unpack() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-build.patch
-	epatch "${FILESDIR}"/${P}-no-po4a.patch
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.14-build.patch
+	epatch "${FILESDIR}"/${PN}-1.14-no-po4a.patch
+	epatch "${FILESDIR}"/${PN}-1.14-prefix.patch
 	eprefixify common.mk
 }
 

@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/realpath
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.41 2009/05/19 22:11:35 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.42 2009/06/13 09:37:26 ulm Exp $
+
+*realpath-1.15 (13 Jun 2009)
+
+  13 Jun 2009; Ulrich Mueller <ulm@gentoo.org> realpath-1.14-r1.ebuild,
+  +realpath-1.15.ebuild:
+  Version bump. Install translated man pages (extracted from deb file) with
+  USE=nls again, bug 269905.
 
 *realpath-1.14-r1 (19 May 2009)
 
