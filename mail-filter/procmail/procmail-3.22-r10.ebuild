@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/procmail-3.22-r10.ebuild,v 1.8 2009/02/16 16:55:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/procmail/procmail-3.22-r10.ebuild,v 1.9 2009/06/13 12:59:33 loki_val Exp $
 
 inherit eutils flag-o-matic toolchain-funcs prefix
 
@@ -55,6 +55,9 @@ src_unpack() {
 
 	# Fix for bug #200006
 	epatch "${FILESDIR}/${PN}-pipealloc.diff"
+
+	# Fix for bug #270551
+	epatch "${FILESDIR}/${PN}-3.22-glibc-2.10.patch"
 }
 
 src_compile() {
