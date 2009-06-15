@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgis/postgis-1.3.3.ebuild,v 1.4 2009/03/07 06:27:50 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgis/postgis-1.3.3.ebuild,v 1.5 2009/06/13 20:25:04 djay Exp $
 
-inherit autotools eutils versionator
+inherit eutils versionator
 
 KEYWORDS="~amd64-linux ~x86-linux"
 
@@ -144,8 +144,10 @@ pkg_config(){
 			psql -q -U ${myuser} ${mydb} -c \
 				"UPDATE pg_database SET datistemplate = TRUE
 				WHERE datname = '${mydb}';
-				GRANT ALL ON table spatial_ref_sys, geometry_columns TO PUBLIC;
-				VACUUM FREEZE;" || die "Unable to create ${mydb}"
+				GRANT ALL ON table spatial_ref_sys, geometry_columns TO PUBLIC;"\
+				|| die "Unable to create ${mydb}"
+			psql -q -U ${myuser} ${mydb} "VACUUM FREEZE;" || \
+				die "Unable to create ${mydb}"
 		fi
 	else
 		einfo
