@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20080521-r1.ebuild,v 1.1 2009/02/21 20:29:09 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20090613.ebuild,v 1.1 2009/06/13 02:30:30 darkside Exp $
 
-DESCRIPTION="Gentoo-specific bash command-line completions (emerge, ebuild, equery, etc)"
+DESCRIPTION="Gentoo-specific bash command-line completions (emerge, ebuild, equery, repoman, layman, etc)"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
@@ -15,8 +15,10 @@ RDEPEND="app-shells/bash-completion"
 
 src_install() {
 	insinto /usr/share/bash-completion
-	doins gentoo || die "doins failed"
-	dodoc AUTHORS ChangeLog NEWS TODO
+	doins gentoo 	|| die "failed to install gentoo module"
+	doins repoman 	|| die "failed to install repoman module"
+	doins layman 	|| die "failed to install layman module"
+	dodoc AUTHORS ChangeLog TODO
 }
 
 pkg_postinst() {
@@ -29,5 +31,6 @@ pkg_postinst() {
 	elog
 	elog "  eselect bashcomp enable --global gentoo"
 	elog
-	elog "to install system-wide."
+	elog "to install system-wide. (and/or repoman instead of gentoo if you use"
+	elog "repoman frequently)"
 }

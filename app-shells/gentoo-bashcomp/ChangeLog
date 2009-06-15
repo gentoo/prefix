@@ -1,6 +1,14 @@
 # ChangeLog for app-shells/gentoo-bashcomp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.28 2009/04/12 18:18:48 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.29 2009/06/13 02:30:30 darkside Exp $
+
+*gentoo-bashcomp-20090613 (13 Jun 2009)
+
+  13 Jun 2009; Jeremy Olexa <darkside@gentoo.org>
+  -gentoo-bashcomp-20050516.ebuild, -gentoo-bashcomp-20080521.ebuild,
+  -gentoo-bashcomp-20080521-r1.ebuild, +gentoo-bashcomp-20090613.ebuild:
+  Version bump. Includes support for rc-service (bug 227139), layman (bug
+  224273), fixes bugs 270560 & 267914
 
   12 Apr 2009; Brent Baude <ranger@gentoo.org>
   gentoo-bashcomp-20090222.ebuild:
