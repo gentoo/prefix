@@ -1,0 +1,12 @@
+# Copyright 2006-2008 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/hardened/linux/x86/package.mask,v 1.2 2008/08/27 18:34:02 jokey Exp $
+
+# Markus Ullmann <jokey@gentoo.org> (18 Apr 2007)
+# mask because of b0rkage with hardened compiler, works with vanilla compiler
+# see bug #174813
+app-emulation/virtualbox-ose
+
+# Christian Faulhammer <opfer@gentoo.org> (05 Dec 2006)
+# this version is badly broken on x86, see bug #153280
+~app-arch/rpm-4.4.7

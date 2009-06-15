@@ -1,0 +1,26 @@
+# Thomas Sachau <tommy@gentoo.org> (09 Mar 2009)
+# copy mask from arch/amd64
+# Mask dbus, hal, nas and scanner USE flags;
+# Bug 203680
+# Mask GnuTLS (not available as 32-bit library)
+app-emulation/wine dbus hal ldap nas scanner gnutls
+
+# cuda dont work on hardended
+sci-misc/boinc cuda
+
+# 2008/08/01 Jean-Noël Rivasseau <elvanor@gentoo.org>
+# Disabling gcj flag, no gcc-4.3.1 yet
+dev-java/eclipse-ecj gcj
+
+# 2007/03/17 - Petteri Räty <betelgeuse@gentoo.org>
+# (Proxying for Diego Pettenò <flameeyes@gmail.com>)
+# ASIHPI driver is supported on 64-bit systems for newer versions
+<media-sound/alsa-driver-1.0.14_rc3 alsa_cards_asihpi
+
+# missing the necessary linux-headers dep
+>=net-fs/netatalk-2.0.3-r3 xfs
+
+# Dawid Węgliński <cla@gentoo.org>
+# Mask amarok2 useflag for net-im/kadu
+# See bug #238487 for references
+net-im/kadu amarok2

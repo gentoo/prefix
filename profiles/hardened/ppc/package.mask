@@ -1,0 +1,106 @@
+# Copyright 2007 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/hardened/ppc/package.mask,v 1.18 2008/10/18 21:10:47 leio Exp $
+
+# needs >=sys-devel/gcc-4.2
+sys-libs/libfreevec
+
+# Raúl Porcel <armin76@gentoo.org> (14 Jul 2008)
+# Needs glibc-2.7
+>=sys-apps/iproute2-2.6.25.20080417
+
+# Wulf C. Krueger <philantrop@gentoo.org> (22 Sep 2007)
+# Needs OOo.
+app-text/bibus
+
+# needs masked gcc
+=sys-libs/glibc-2.5*
+=sys-libs/glibc-2.6*
+=sys-libs/glibc-2.7*
+=sys-libs/glibc-2.8*
+
+# Doug Goldstein <cardoe@gentoo.org> (22 Apr 2008)
+# >=sys-libs/glibc-2.5 is required for glibc-based installs
+sys-apps/openrc
+sys-apps/makedev
+>=sys-apps/baselayout-2.0.0
+# needs openrc
+>=media-sound/pulseaudio-0.9.11
+
+# Requires glibc 2.4 or better
+games-strategy/ufo-ai
+>=sys-apps/policycoreutils-1.34.1
+
+# Shouldn't be merging these SELinux packages on this profile
+# but this keeps repoman happy since they require >=glibc-2.4
+# ppc doesn't have the necessary glibc yet - mr_bones_ 20080318
+>=sys-libs/libselinux-1.30.29
+>=sys-libs/libsemanage-1.6.17
+>=sys-apps/policycoreutils-1.30.30
+>=sys-apps/checkpolicy-1.30.12
+dev-python/sepolgen
+sec-policy/selinux-acpi
+>=sec-policy/selinux-apache-20060101
+>=sec-policy/selinux-arpwatch-20060101
+>=sec-policy/selinux-asterisk-20060101
+>=sec-policy/selinux-audio-entropyd-20060101
+sec-policy/selinux-avahi
+>=sec-policy/selinux-base-policy-20060101
+>=sec-policy/selinux-bind-20060101
+sec-policy/selinux-bluez
+>=sec-policy/selinux-clamav-20060101
+>=sec-policy/selinux-clockspeed-20060101
+>=sec-policy/selinux-courier-imap-20060101
+sec-policy/selinux-cups
+>=sec-policy/selinux-cyrus-sasl-20060101
+>=sec-policy/selinux-daemontools-20060101
+>=sec-policy/selinux-dante-20060101
+sec-policy/selinux-dbus
+sec-policy/selinux-desktop
+>=sec-policy/selinux-dhcp-20060101
+>=sec-policy/selinux-distcc-20060101
+>=sec-policy/selinux-djbdns-20060101
+sec-policy/selinux-dnsmasq
+>=sec-policy/selinux-ftpd-20060101
+sec-policy/selinux-games
+>=sec-policy/selinux-gnupg-20060101
+>=sec-policy/selinux-gpm-20060101
+sec-policy/selinux-hal
+sec-policy/selinux-inetd
+>=sec-policy/selinux-ipsec-tools-20060101
+>=sec-policy/selinux-jabber-server-20060101
+>=sec-policy/selinux-kerberos-20060101
+>=sec-policy/selinux-logrotate-20060101
+sec-policy/selinux-lpd
+>=sec-policy/selinux-lvm-20060101
+>=sec-policy/selinux-mdadm-20060101
+sec-policy/selinux-munin
+>=sec-policy/selinux-mysql-20060101
+>=sec-policy/selinux-nfs-20060101
+>=sec-policy/selinux-ntop-20060101
+>=sec-policy/selinux-ntp-20060101
+>=sec-policy/selinux-openldap-20060101
+>=sec-policy/selinux-openvpn-20060101
+sec-policy/selinux-pcmcia
+>=sec-policy/selinux-portmap-20060101
+>=sec-policy/selinux-postfix-20060101
+>=sec-policy/selinux-postgresql-20060101
+sec-policy/selinux-ppp
+>=sec-policy/selinux-privoxy-20060101
+>=sec-policy/selinux-procmail-20060101
+>=sec-policy/selinux-publicfile-20060101
+sec-policy/selinux-pyzor
+>=sec-policy/selinux-qmail-20060101
+sec-policy/selinux-razor
+>=sec-policy/selinux-samba-20060101
+>=sec-policy/selinux-screen-20060101
+>=sec-policy/selinux-snmpd-20060101
+>=sec-policy/selinux-snort-20060101
+>=sec-policy/selinux-spamassassin-20060101
+>=sec-policy/selinux-squid-20060101
+>=sec-policy/selinux-stunnel-20060101
+>=sec-policy/selinux-sudo-20060101
+sec-policy/selinux-tcpd
+>=sec-policy/selinux-tftpd-20060101
+>=sec-policy/selinux-ucspi-tcp-20060101
+>=sec-policy/selinux-wireshark-20060101

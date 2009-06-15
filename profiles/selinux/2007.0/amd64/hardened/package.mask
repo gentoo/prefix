@@ -1,0 +1,20 @@
+# Copyright 2006 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/selinux/2007.0/amd64/hardened/package.mask,v 1.1 2007/06/17 20:42:02 pebenito Exp $
+
+# Mask off gcc-4 for all hardened arches until SSP is sorted out (i.e.
+# backport for gcc-4.0 and 4.0/4.1 rigged for SSP support in the C
+# library).  After that, may still need to be masked on x86 as some
+# PIC assembler that worked pre-4 fails post-4, e.g. bug #104966).
+# If you want to play with it, unmask in /etc/portage/package.unmask
+# but be prepared to rebuild anything you build with gcc-4, later.
+# 2006-01-11 kevquinn
+=sys-devel/gcc-4*
+
+# Mask off glibc-2.4 until the approach for SSP compatibilty is
+# resolved in a way that doesn't break running systems, and we
+# have a sensible upgrade path.  Advise having a static busybox
+# around if you try it in a live system.
+# 2006-03-13 kevquinn
+=sys-libs/glibc-2.4*
+

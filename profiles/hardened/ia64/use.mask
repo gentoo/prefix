@@ -1,0 +1,23 @@
+# Copyright 1999-2006 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/hardened/ia64/use.mask,v 1.3 2008/11/06 00:07:06 zmedico Exp $
+
+-3dnow
+-3dnowext
+-mmx
+-mmxext
+-sse
+-sse2
+-win32codecs
+-kqemu
+-x264
+
+# Copied from default-linux/x86 2006-04-02; bug #128490
+# Modular X: unmask for architectures on which they are available
+-input_devices_synaptics
+-input_devices_vmmouse
+-video_cards_fglrx
+-video_cards_vmware
+# Modular X: mask for architectures on which they aren't available
+video_cards_newport
+

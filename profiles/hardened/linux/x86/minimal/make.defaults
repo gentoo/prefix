@@ -1,0 +1,15 @@
+# Copyright 2007 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/hardened/linux/x86/minimal/make.defaults,v 1.1 2008/04/01 17:41:34 wolf31o2 Exp $
+
+# - TESTING PROFILE - TESTING PROFILE - 
+#  ------ USE AT YOUR OWN RISK ------
+
+USE="-* crypt hardened minimal multicall ncurses pic readline zlib"
+PORTDIR=/usr/portage
+PKGDIR=${PORTDIR}/packages/${ARCH}/
+
+CFLAGS="-Os -pipe"
+CXXFLAGS="${CFLAGS}"
+FEATURES="nodoc noinfo noman"
+

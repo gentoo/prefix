@@ -1,0 +1,9 @@
+# Copyright 1999-2004 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/hardened/linux/x86/use.mask,v 1.2 2009/03/19 03:07:25 gengor Exp $
+
+# nvidia-drivers are masked, this has to be too
+video_cards_nvidia
+nvidia
+vdpau
+

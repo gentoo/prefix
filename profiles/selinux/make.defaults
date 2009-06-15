@@ -1,0 +1,20 @@
+# Copyright 1999-2004 Gentoo Foundation.
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/selinux/make.defaults,v 1.4 2008/01/13 21:26:20 pebenito Exp $
+#
+# System-wide defaults for the Portage system
+# See portage(5) manpage
+#
+# Please avoid enabling things by default in here if possible. Understand any 
+# implications with core packages.  For example, if "java" is in USE and db 
+# has a conditional dependency on java (which it does,) then a JDK will be 
+# pulled in during *emerge system*!
+
+USE="-acl selinux"
+
+FEATURES="selinux sesandbox"
+POLICYDIR="/etc/security/selinux/src/policy"
+
+POLICY_TYPES="strict targeted"
+PORTAGE_FETCH_T="portage_fetch_t"
+PORTAGE_SANDBOX_T="portage_sandbox_t"
