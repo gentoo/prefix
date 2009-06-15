@@ -1,10 +1,31 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2778 2009/06/13 23:57:15 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2784 2009/06/14 19:20:00 dagger Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  14 Jun 2009; Robert Piasek <dagger@gentoo.org> package.mask:
+  Removed package.mask from networkmanager-0.7.1-r4 as I can't reproduce the
+  error.
+
+  14 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> package.mask:
+  KDE 4.2.3 was removed so no need to mask it anymore
+
+  14 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask net-fs/shfs for removal.
+
+  14 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> package.mask:
+  Mask KDE 4.2.3
+
+  14 Jun 2009; Fabian Groffen <grobian@gentoo.org> use.desc:
+  aqua and coreaudio USE-flags are masked in base, but were missing from
+  use.desc, causing repoman warnings for e.g. QT/KDE testers
+
+  14 Jun 2009; Fabian Groffen <grobian@gentoo.org> base/use.mask,
+  prefix/use.mask:
+  Move kernels and elibcs from the Prefix profiles to base
 
   13 Jun 2009; Theo Chatzimichos <tampakrap@gentoo.org> package.mask:
   Masked for removal in 30 days. Old and dead by upstream.
