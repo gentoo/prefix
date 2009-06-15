@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.4.ebuild,v 1.6 2009/05/03 18:38:47 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.4.ebuild,v 1.7 2009/06/12 23:10:32 arfrever Exp $
 
 inherit autotools eutils libtool versionator
 
@@ -45,6 +45,8 @@ src_unpack() {
 	done
 	sed -i -e "s/ALL_LINGUAS=.*/ALL_LINGUAS=\"${linguas}\"/g" configure.in
 	sed -i -e "s/socks5/socks/g" macros/neon.m4
+
+	epatch "${FILESDIR}/${P}-SOCK_CLOEXEC.patch"
 
 	AT_M4DIR="macros" eautoreconf
 }
