@@ -1,6 +1,11 @@
 # ChangeLog for www-apps/moinmoin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/ChangeLog,v 1.60 2009/06/12 00:49:44 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/ChangeLog,v 1.61 2009/06/12 13:12:20 chainsaw Exp $
+
+  12 Jun 2009; <chainsaw@gentoo.org> moinmoin-1.8.4.ebuild:
+  Marked stable on AMD64. Tested on a dual dual-core Opteron 2218 system
+  using Apache 2.2.11 and mod_fcgid 2.2. For security bugs #268565 and
+  #273858.
 
   12 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
   moinmoin-1.8.4.ebuild:
