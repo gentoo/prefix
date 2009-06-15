@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.12.ebuild,v 1.1 2009/06/11 16:46:11 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.12.ebuild,v 1.2 2009/06/12 16:02:29 mr_bones_ Exp $
 
 DESCRIPTION="Collection of developer scripts for Gentoo"
 HOMEPAGE="http://www.gentoo.org/proj/en/portage/tools/index.xml"
@@ -18,11 +18,4 @@ RDEPEND="${DEPEND}
 
 src_install() {
 	make DESTDIR="${D}/${EPREFIX}" install-gentoolkit-dev || die
-}
-
-pkg_postinst() {
-	ewarn "The gensync utility has been deprecated in favor of"
-	ewarn "app-portage/layman. It is still available in"
-	ewarn "${EROOT}usr/share/doc/${PF}/deprecated/ for use while"
-	ewarn "you migrate to layman."
 }
