@@ -558,7 +558,7 @@ get_libname() {
 # Example:
 #     libfoo$(get_modname)
 #     Returns: libfoo.so (ELF) || libfoo.bundle (MACH) || ...
-get_libname() {
+get_modname() {
 	local modname
 	local ver=$1
 	case ${CHOST} in
