@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/mousepad/mousepad-0.2.16.ebuild,v 1.4 2009/06/10 07:34:17 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mousepad/mousepad-0.2.16.ebuild,v 1.5 2009/06/13 13:52:08 tcunha Exp $
 
 inherit xfce4
 
