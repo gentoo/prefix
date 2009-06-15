@@ -1,0 +1,12 @@
+# Copyright 1999-2009 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License, v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/default/bsd/virtuals,v 1.1 2009/01/19 22:15:17 aballier Exp $
+
+# This file defines the virtuals that all Gentoo/*BSD need to modify respect
+# the base profile
+
+# KEEP THIS FILE SORTED ALPHABETICALLY OR RISK WRATH
+
+virtual/eject			sys-block/unieject
+virtual/linux-sources		sys-kernel/gentoo-sources
+virtual/utempter		sys-libs/libutempter
