@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-1.0-r4.ebuild,v 1.1 2009/06/03 22:23:07 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/bash-completion-1.0-r5.ebuild,v 1.1 2009/06/13 02:48:48 darkside Exp $
 
 EAPI="2"
 
@@ -31,6 +31,8 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.0-bash4.patch"
 	# module-init-tools-3.8 changed locations
 	sed -i 's:/sbin/lsmod:/bin/lsmod:' bash_completion
+	# Fixed in next release
+	epatch "${FILESDIR}/${PN}-1.0-shadow-compat.patch"
 
 }
 

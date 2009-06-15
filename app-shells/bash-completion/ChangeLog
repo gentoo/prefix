@@ -1,6 +1,13 @@
 # ChangeLog for app-shells/bash-completion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.181 2009/06/03 22:23:07 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash-completion/ChangeLog,v 1.182 2009/06/13 02:48:48 darkside Exp $
+
+*bash-completion-1.0-r5 (13 Jun 2009)
+
+  13 Jun 2009; Jeremy Olexa <darkside@gentoo.org>
+  +files/bash-completion-1.0-shadow-compat.patch,
+  -bash-completion-1.0-r4.ebuild, +bash-completion-1.0-r5.ebuild:
+  Add upstream patch for buggy chsh behavior, bug 271521
 
 *bash-completion-1.0-r4 (03 Jun 2009)
 
