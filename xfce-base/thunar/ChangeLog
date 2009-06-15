@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/thunar
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.71 2009/06/10 07:36:59 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/thunar/ChangeLog,v 1.72 2009/06/13 14:03:20 tcunha Exp $
+
+  13 Jun 2009; Tiago Cunha <tcunha@gentoo.org> thunar-1.0.1.ebuild:
+  stable sparc, bug 265587
 
   10 Jun 2009; Christian Faulhammer <fauli@gentoo.org> thunar-1.0.1.ebuild:
   stable x86, bug 265587
