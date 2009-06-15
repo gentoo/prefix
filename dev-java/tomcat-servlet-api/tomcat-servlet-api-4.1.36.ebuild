@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/tomcat-servlet-api-4.1.36.ebuild,v 1.5 2008/03/16 17:40:50 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/tomcat-servlet-api-4.1.36.ebuild,v 1.6 2009/06/13 17:21:32 betelgeuse Exp $
 
 JAVA_PKG_IUSE="doc source"
 
@@ -12,7 +12,7 @@ HOMEPAGE="http://tomcat.apache.org/"
 SRC_URI="mirror://apache/tomcat/tomcat-4/v${PV}/src/${MY_P}.tar.gz"
 DEPEND=">=virtual/jdk-1.4"
 RDEPEND=">=virtual/jre-1.4"
-LICENSE="Apache-1.1"
+LICENSE="Apache-2.0"
 SLOT="2.3"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""

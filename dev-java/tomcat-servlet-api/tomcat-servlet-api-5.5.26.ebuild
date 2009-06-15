@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/tomcat-servlet-api-5.5.26.ebuild,v 1.4 2008/05/12 10:56:22 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/tomcat-servlet-api-5.5.26.ebuild,v 1.5 2009/06/13 17:21:32 betelgeuse Exp $
 
 inherit eutils java-pkg-2 java-ant-2 java-osgi
 
@@ -9,7 +9,7 @@ DESCRIPTION="Tomcat's Servlet API 2.4/JSP API 2.0 implementation"
 HOMEPAGE="http://tomcat.apache.org/"
 SRC_URI="mirror://apache/tomcat/tomcat-5/v${PV/_/-}/src/${MY_P}.tar.gz"
 
-LICENSE="Apache-1.1"
+LICENSE="Apache-2.0"
 SLOT="2.4"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="doc java5 source"

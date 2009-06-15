@@ -1,6 +1,21 @@
 # ChangeLog for dev-java/tomcat-servlet-api
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/ChangeLog,v 1.58 2009/02/14 19:28:26 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/tomcat-servlet-api/ChangeLog,v 1.61 2009/06/13 17:21:32 betelgeuse Exp $
+
+  13 Jun 2009; Petteri Räty <betelgeuse@gentoo.org>
+  tomcat-servlet-api-4.1.36.ebuild, tomcat-servlet-api-5.5.26.ebuild,
+  tomcat-servlet-api-5.5.27.ebuild, tomcat-servlet-api-6.0.18.ebuild:
+  Fix LICENSE as it has been Apache-2.0 for quite a while now.
+
+*tomcat-servlet-api-6.0.20 (13 Jun 2009)
+
+  13 Jun 2009; Petteri Räty <betelgeuse@gentoo.org>
+  +tomcat-servlet-api-6.0.20.ebuild:
+  Version bump.
+
+  13 Jun 2009; Petteri Räty <betelgeuse@gentoo.org>
+  -tomcat-servlet-api-6.0.16.ebuild:
+  Remove old version.
 
   14 Feb 2009; Petteri Räty <betelgeuse@gentoo.org>
   tomcat-servlet-api-3.ebuild:
