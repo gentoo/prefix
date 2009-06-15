@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano-launcher/capistrano-launcher-1.ebuild,v 1.9 2008/06/21 13:27:01 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano-launcher/capistrano-launcher-1.ebuild,v 1.10 2009/06/13 09:20:17 graaff Exp $
 
 DESCRIPTION="Launcher script for capistrano"
 HOMEPAGE="http://capify.org/"
@@ -18,7 +18,7 @@ RDEPEND="!~dev-ruby/capistrano-1.99.1
 "
 
 src_install() {
-	dobin ${FILESDIR}/cap
+	dobin "${FILESDIR}"/cap
 }
 
 pkg_postinst() {
