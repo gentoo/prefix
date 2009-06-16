@@ -30,8 +30,9 @@ src_unpack() {
 	fi
 
 	sed -i -e 's/fop.sh/fop/' a2x
-
-	sed -i -e "s:^CONF_DIR =.*:CONF_DIR='${EPREFIX}/etc/asciidoc':" \
+	
+	# Prefix only
+	sed -i -e "s:^CONF_DIR=.*:CONF_DIR='${EPREFIX}/etc/asciidoc':" \
 		"${S}/asciidoc.py" || die
 }
 
