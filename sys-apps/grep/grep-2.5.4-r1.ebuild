@@ -36,12 +36,6 @@ src_configure() {
 		$(use_enable pcre perl-regexp) \
 		$(use !elibc_glibc || echo --without-included-regex) \
 		|| die "econf failed"
-
-	if [[ $(ld --version 2>&1 | head -n1) == *GNU* ]] ; then
-	use static || sed -i 's:-lpcre:-Wl,-Bstatic -lpcre -Wl,-Bdynamic:g' src/Makefile
-	fi
-
-	emake || die "emake failed"
 }
 
 src_install() {
