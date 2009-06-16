@@ -102,6 +102,7 @@ src_prepare() {
 		die "sed doc/Makefile.in failed"
 
 	epatch "${FILESDIR}"/${PN}-1.4.20-interix.patch
+	epatch "${FILESDIR}"/${PN}-darwin-bundle.patch
 
 	eautoreconf || die
 }
