@@ -29,8 +29,10 @@ for opt in "$@"; do
  esac
 done
 
-pfx_link=("-L${EPREFIX}/lib" "-L${EPREFIX}/usr/lib" "-Wl,-rpath,${EPREFIX}/lib" "-Wl,-rpath,${EPREFIX}/usr/lib")
-pfx_comp=("-I${EPREFIX}/include" "-I${EPREFIX}/usr/include")
+if test -n "${EPREFIX}"; then
+	pfx_link=("-L${EPREFIX}/lib" "-L${EPREFIX}/usr/lib" "-Wl,-rpath,${EPREFIX}/lib" "-Wl,-rpath,${EPREFIX}/usr/lib")
+	pfx_comp=("-I${EPREFIX}/include" "-I${EPREFIX}/usr/include")
+fi
 
 case "$mode" in
 link) 		exec "${compiler}" "${link_dirs[@]}" "${pfx_link[@]}" "${opts[@]}" ;;
