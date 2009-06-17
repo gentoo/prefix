@@ -16,7 +16,7 @@
 # Markus Duft <mduft@gentoo.org> (13 May 2009)
 # this dooms many things (must be some environment during install),
 # making installation fail.
-=dev-util/subversion-1.6.2
+=dev-util/subversion-1.6.2*
 
 # Markus Duft <mduft@gentoo.org> (12 Mar 2009)
 # this doesn't build at least on interix:
@@ -37,7 +37,7 @@
 # Fabian Groffen <grobian@gentoo.org> (21 Sep 2008)
 # Fails to link with
 # sshd.o(.text+0x203a):sshd.c: undefined reference to `_setgroups'
-=net-misc/openssh-5*
+#=net-misc/openssh-5*
 
 # Markus Duft <mduft@gentoo.org> (05 May 2008)
 # Does not build with the slang interface, and
