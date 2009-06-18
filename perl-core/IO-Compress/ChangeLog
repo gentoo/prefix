@@ -1,6 +1,12 @@
 # ChangeLog for perl-core/IO-Compress
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/IO-Compress/ChangeLog,v 1.5 2009/06/03 22:31:10 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/IO-Compress/ChangeLog,v 1.7 2009/06/14 16:12:34 jer Exp $
+
+  14 Jun 2009; Jeroen Roovers <jer@gentoo.org> IO-Compress-2.020.ebuild:
+  Stable for HPPA (bug #273141).
+
+  14 Jun 2009; Raúl Porcel <armin76@gentoo.org> IO-Compress-2.020.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc/x86 stable wrt #273141
 
 *IO-Compress-2.020 (03 Jun 2009)
 
