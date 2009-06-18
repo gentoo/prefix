@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-9.1.0.ebuild,v 1.2 2009/04/09 21:35:14 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-9.1.2.ebuild,v 1.1 2009/06/17 23:35:11 tgurr Exp $
 
 inherit eutils gnome2-utils nsplugins
 
@@ -8,7 +8,7 @@ DESCRIPTION="Adobe's PDF reader"
 HOMEPAGE="http://www.adobe.com/products/reader/"
 IUSE="cups ldap minimal nsplugin"
 
-SRC_HEAD="http://ardownload.adobe.com/pub/adobe/reader/unix/9.x/9.1"
+SRC_HEAD="http://ardownload.adobe.com/pub/adobe/reader/unix/9.x/${PV}"
 SRC_FOOT=".tar.bz2"
 
 # languages not available yet: it:ita es:esp pt:ptb sv:sve zh_CN:chs zh_TW:cht fi:suo nb:nor nl:nld ko:kor da:dan
