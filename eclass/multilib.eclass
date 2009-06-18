@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.73 2009/02/20 23:20:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/multilib.eclass,v 1.74 2009/06/14 11:40:14 grobian Exp $
 
 # @ECLASS: multilib.eclass
 # @MAINTAINER:
@@ -522,8 +522,8 @@ create_ml_includes-sym_for_dir() {
 # supplied version for the current platform identified by CHOST.
 #
 # Example:
-#     get_libname libfoo ${PV}
-#     Returns: libfoo.so.${PV} (ELF) || libfoo.${PV}.dylib (MACH) || ...
+#     get_libname ${PV}
+#     Returns: .so.${PV} (ELF) || .${PV}.dylib (MACH) || ...
 get_libname() {
 	local libname
 	local ver=$1

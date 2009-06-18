@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/virtualx.eclass,v 1.27 2007/10/28 12:05:34 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/virtualx.eclass,v 1.28 2009/06/15 05:37:51 ssuominen Exp $
 #
 # Author: Martin Schlemmer <azarah@gentoo.org>
 #
@@ -66,7 +66,7 @@ virtualmake() {
 				eerror ""
 				eerror "Unable to start Xvfb."
 				eerror ""
-				eerror "'/usr/X11R6/bin/Xvfb :${XDISPLAY} -screen 0 800x600x24' returns:"
+				eerror "'/usr/bin/Xvfb :${XDISPLAY} -screen 0 800x600x24' returns:"
 				eerror ""
 				${XVFB} :${XDISPLAY} -screen 0 800x600x24
 				eerror ""

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.28 2009/05/29 08:06:46 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.29 2009/06/17 22:39:01 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -130,8 +130,13 @@ _check_build_dir() {
 	#
 	# For installing binary doins "${CMAKE_BUILD_DIR}/${PN}"
 	if [[ -n "${CMAKE_IN_SOURCE_BUILD}" ]]; then
+		# we build in source dir
 		CMAKE_BUILD_DIR="${CMAKE_USE_DIR}"
+	elif [[ ${CMAKE_USE_DIR} = ${WORKDIR} ]]; then
+		# out of tree build, but with $S=$WORKDIR, see bug #273949 for reason.
+		CMAKE_BUILD_DIR="${CMAKE_USE_DIR}/build"
 	else
+		# regular out of tree build
 		[[ ${1} = init || -d ${CMAKE_USE_DIR}_build ]] && SUF="_build" || SUF=""
 		CMAKE_BUILD_DIR="${CMAKE_USE_DIR}${SUF}"
 
