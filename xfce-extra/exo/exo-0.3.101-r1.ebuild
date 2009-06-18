@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.101-r1.ebuild,v 1.2 2009/06/13 13:49:14 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/exo-0.3.101-r1.ebuild,v 1.3 2009/06/15 00:03:29 jer Exp $
 
 EAPI="1"
 
