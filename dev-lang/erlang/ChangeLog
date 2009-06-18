@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.163 2009/04/29 20:43:08 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.164 2009/06/15 21:03:59 fauli Exp $
+
+*erlang-13.2.1 (15 Jun 2009)
+
+  15 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  +erlang-13.2.1.ebuild:
+  version bump for bug 273714 by Holger Hoffstätte <holger DOT hoffstaette
+  AT googlemail DOT com>
 
   29 Apr 2009; Christian Faulhammer <fauli@gentoo.org>
   erlang-13.2-r1.ebuild:
