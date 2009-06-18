@@ -1,6 +1,20 @@
 # ChangeLog for sci-libs/gdal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.58 2009/04/28 05:33:37 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.60 2009/06/17 06:19:56 nerdboy Exp $
+
+  17 Jun 2009; Steve Arnold <nerdboy@gentoo.org>
+  -files/gdal-1.3.1-installpathfix.patch, -files/gdal-1.3.2-destdir.patch,
+  -files/gdal-1.3.2-gcc4-stl.patch, -files/gdal-1.3.2-ruby-install.patch,
+  -files/gdal-1.4.2-ruby-install.patch,
+  -files/gdal-1.5.0-python-install.patch, -files/gdal-1.5.1-max-min.patch,
+  -files/gdal-gcc4.patch:
+  Removed uneeded/stale patches.  Need I say more?
+
+  17 Jun 2009; Steve Arnold <nerdboy@gentoo.org> -gdal-1.3.1.ebuild,
+  -gdal-1.3.2.ebuild, -gdal-1.4.2.ebuild, -gdal-1.5.0-r1.ebuild,
+  -gdal-1.5.1.ebuild, gdal-1.5.2.ebuild:
+  Removed older versions (see bug #271137) and marked 1.5.2 stable for ppc
+  (which it should have been already, but I tested it on efika anyway).
 
   28 Apr 2009; Steve Arnold <nerdboy@gentoo.org>
   +files/gdal-1.6.0-ruby-make.patch:
