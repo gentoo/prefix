@@ -1,29 +1,29 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/tcpdump-3.9.8-r1.ebuild,v 1.7 2009/06/17 07:21:05 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/tcpdump-4.0.1_pre20090616.ebuild,v 1.2 2009/06/17 07:21:05 pva Exp $
 
+EAPI="2"
 inherit flag-o-matic toolchain-funcs eutils
 
 DESCRIPTION="A Tool for network monitoring and data acquisition"
 HOMEPAGE="http://www.tcpdump.org/"
-SRC_URI="http://www.tcpdump.org/release/${P}.tar.gz
-	http://www.jp.tcpdump.org/release/${P}.tar.gz"
+MY_P=${PN}-${PV/_pre/-}
+SRC_URI="mirror://gentoo/${MY_P}.tar.gz"
+S=${WORKDIR}/${MY_P}
+#	SRC_URI="http://www.tcpdump.org/release/${P}.tar.gz
+#		http://www.jp.tcpdump.org/release/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="chroot ssl ipv6 samba"
+IUSE="+chroot smi ssl ipv6 samba test"
 
-DEPEND="net-libs/libpcap
+RDEPEND="net-libs/libpcap
+	smi? ( net-libs/libsmi )
 	ssl? ( >=dev-libs/openssl-0.9.6m )"
-RDEPEND="${DEPEND}"
-
-group_user_check() {
-	einfo "Checking for tcpdump group ..."
-	enewgroup tcpdump
-	einfo "Checking for tcpdump user ..."
-	enewuser tcpdump -1 -1 -1 tcpdump
-}
+DEPEND="${RDEPEND}
+	test? ( app-arch/sharutils
+		dev-lang/perl )"
 
 pkg_setup() {
 	if use samba ; then
@@ -41,12 +41,17 @@ pkg_setup() {
 		ebeep 5
 		epause 5
 	fi
-	group_user_check
+	enewgroup tcpdump
+	enewuser tcpdump -1 -1 -1 tcpdump
 }
 
-src_compile() {
+#src_prepare() {
+# eautoreconf
+#}
+
+src_configure() {
 	# tcpdump needs some optymalization. see bug #108391
-	( ! is-flag -O? || is-flag -O0 ) && append-flags -O
+	( ! is-flag -O? || is-flag -O0 ) && append-flags -O2
 
 	replace-flags -O[3-9] -O2
 	filter-flags -finline-functions
@@ -59,32 +64,28 @@ src_compile() {
 		append-flags -fno-unit-at-a-time
 	fi
 
-	local myconf
-	if ! use ssl ; then
-		myconf="--without-crypto"
-	fi
-
-	if use chroot; then
-		myconf="${myconf} --with-chroot=/var/lib/tcpdump"
-	fi
-
 	econf --with-user=tcpdump \
+		$(use_with ssl crypto) \
+		$(use_with smi) \
 		$(use_enable ipv6) \
 		$(use_enable samba smb) \
-		${myconf} || die "configure failed"
+		$(use_enable chroot chroot /var/lib/tcpdump)
+}
 
+src_compile() {
 	make CCOPT="$CFLAGS" || die "make failed"
 }
 
-pkg_preinst() {
-	group_user_check
+src_test() {
+	sed '/^\(bgp_vpn_attrset\|ikev2four\|espudp1\|eapon1\)/d;' -i tests/TESTLIST
+	make check || die "tests failed"
 }
 
 src_install() {
-	dosbin tcpdump
-	doman tcpdump.1
-	dodoc *.awk
-	dodoc README FILES VERSION CHANGES CREDITS TODO
+	dosbin tcpdump || die
+	doman tcpdump.1 || die
+	dodoc *.awk || die
+	dodoc CHANGES CREDITS README || die
 
 	keepdir /var/lib/tcpdump
 	fperms 700 /var/lib/tcpdump

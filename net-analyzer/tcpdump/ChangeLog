@@ -1,6 +1,17 @@
 # ChangeLog for net-analyzer/tcpdump
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/ChangeLog,v 1.134 2009/02/20 18:57:18 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/tcpdump/ChangeLog,v 1.136 2009/06/17 07:21:05 pva Exp $
+
+  17 Jun 2009; Peter Volkov <pva@gentoo.org> tcpdump-3.9.8.ebuild,
+  tcpdump-3.9.8-r1.ebuild, tcpdump-4.0.0.ebuild,
+  tcpdump-4.0.1_pre20090616.ebuild:
+  Make repoman happy: RDEPEND.implicit and ebuild.minorsyn fixed.
+
+*tcpdump-4.0.1_pre20090616 (17 Jun 2009)
+
+  17 Jun 2009; Peter Volkov <pva@gentoo.org>
+  +tcpdump-4.0.1_pre20090616.ebuild:
+  Bump to recent git snapshot.
 
   20 Feb 2009; Raúl Porcel <armin76@gentoo.org> tcpdump-4.0.0.ebuild:
   Add ~arm/~s390/~sh wrt #247076
