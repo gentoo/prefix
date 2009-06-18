@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4548 2009/06/14 15:47:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4555 2009/06/17 23:47:41 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -549,8 +549,8 @@ dev-db/sqlite:threadsafe - Enable thread safe operation of sqlite
 dev-dotnet/libgdiplus:pango - Use pango instead of cairo to render text.
 dev-dotnet/nant:bootstrap - Bootstrap nant by using pre-built ndoc binaries.
 dev-dotnet/xsp:debug - Enable tracing messages (RECOMMENDED)
-dev-embedded/openocd:ft2232 - Enable support for USB chips via dev-embedded/libftd2xx
-dev-embedded/openocd:ftdi - Enable support for USB FTDI chips (dev-embedded/libftdi)
+dev-embedded/openocd:ftd2xx - Enable support for USB FTDI chips via dev-embedded/libftd2xx
+dev-embedded/openocd:ftdi - Enable support for USB FTDI chips via dev-embedded/libftdi
 dev-embedded/openocd:parport - Enable support for parport JTAG devices
 dev-embedded/openocd:presto - Enable support for AXIS PRESTO devices
 dev-embedded/ponyprog:epiphany - Enable support for www-client/epiphany 
@@ -919,6 +919,9 @@ dev-util/nsis:config-log - Enable the logging facility (useful in debugging inst
 dev-util/nsis:prebuilt-system - Use the pre-compiled System.dll from the release to workaround the System::Call issue under GCC
 dev-util/nvidia-cuda-sdk:emulation -  Build binaries for device emulation mode. These binaries will not require a CUDA-capable GPU to run. 
 dev-util/pbuilder:uml - Enable pbuilder user mode linux support
+dev-util/qct:bazaar -  Support for dev-util/bzr 
+dev-util/qct:mercurial -  Support for dev-util/mercurial 
+dev-util/qct:monotone -  Support for dev-util/monotone 
 dev-util/qt-creator:cmake - enable cmake project manager plugin
 dev-util/qt-creator:debugger - enable debugger plugin
 dev-util/qt-creator:designer - enable designer plugin
@@ -1040,6 +1043,7 @@ games-strategy/x2:modkit - Install the modkit
 gnome-base/gdm:consolekit - Allow proper handling of removable media according to who is actually present on the machine.
 gnome-base/gdm:dmx - Enables Distributed Multihead X (DMX) support
 gnome-base/gdm:remote - Enables support for secure remote connections
+gnome-base/gdm:xklavier - Use x11-libs/libxklavier for keyboard management
 gnome-base/gnome-control-center:sound - Enable sound event support with media-libs/libcanberra
 gnome-base/gnome-mount:nautilus - Enables the Nautilus plugin
 gnome-base/gnome-session:policykit - Enable sys-auth/policykit authentication support
@@ -1298,6 +1302,7 @@ mail-mta/ssmtp:md5sum - Enables MD5 summing for ssmtp
 media-fonts/culmus-ancient:fontforge - Use media-gfx/fontforge to build fonts from source
 media-fonts/dejavu:fontforge - Use media-gfx/fontforge to build fonts from source
 media-fonts/intlfonts:bdf - Installs BDF fonts in addition to PCF
+media-fonts/mplus-outline-fonts:ipafont - Generates new fonts merged with media-fonts/ja-ipafonts
 media-fonts/terminus-font:a-like-o - Changes view of letter 'a' - a looks like o (see homepage)
 media-fonts/terminus-font:bolddiag - Boldified diagonal parts of '4', 'k', 'x' and some other chars
 media-fonts/terminus-font:pcf - Intall Portable Compiled Font (PCF) (required for X11)
@@ -1396,6 +1401,7 @@ media-libs/libgphoto2:bonjour - Adds Bonjour/Zeroconf support.
 media-libs/libgpod:gtk - Enables ArtWorkDB support (including Photos and album covers)
 media-libs/libifp:module - Build kernel module for non-root usage
 media-libs/libmtp:static-libs - Compile static archives
+media-libs/libquicktime:schroedinger - Enable Dirac video support (an advanced royalty-free video compression format) via libschroedinger (high-speed implementation in C of the Dirac codec).
 media-libs/libsdl:audio - Control audio support (disable at your own risk)
 media-libs/libsdl:joystick - Control joystick support (disable at your own risk)
 media-libs/libsdl:video - Control video support (disable at your own risk)
@@ -1444,6 +1450,7 @@ media-libs/xine-lib:win32codecs -  Enable support for loading and using Windows 
 media-libs/xine-lib:xvmc -  Enable support for XVideo Motion Compensation (accelerated mpeg playback). 
 media-libs/xvid:pic - disable optimized assembly code that is not PIC friendly
 media-plugins/audacious-plugins:adplug - Build with AdPlug (Adlib sound card emulation) support
+media-plugins/audacious-plugins:bs2b - Enable Bauer Bauer stereophonic-to-binaural headphone filter
 media-plugins/audacious-plugins:cdaudio - Enable cd audio playback support
 media-plugins/audacious-plugins:chardet - Try to handle non-UTF8 chinese/japanese/korean ID3 tags
 media-plugins/audacious-plugins:icecast - Support for Icecast2 streaming

@@ -1,10 +1,72 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2784 2009/06/14 19:20:00 dagger Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2804 2009/06/17 23:16:58 eva Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  18 Jun 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
+  Remove gnome-base/libghttp per bug #244128
+
+  17 Jun 2009; Christian Faulhammer <fauli@gentoo.org> package.mask:
+  Mask release candidate of net-misc/tor
+
+  17 Jun 2009; <chainsaw@gentoo.org> package.mask:
+  Masking upstream-abandoned media-sound/ogg2mp3 software for removal in 1
+  month.
+
+  17 Jun 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Masked bzr-1.16_rc1 pre-release and dependent bzrtools packages.
+
+  17 Jun 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  net-misc/l7-filter masked for removal, bug 274341 and bug 254086.
+
+  17 Jun 2009; Peter Volkov <pva@gentoo.org> package.mask:
+  Unmasking wireshark - it's finally released.
+
+  17 Jun 2009; Alexis Ballier <aballier@gentoo.org> package.mask:
+  remove tl-langmanju mask, its gone
+
+  16 Jun 2009; <chainsaw@gentoo.org> package.mask:
+  Add Conspire to the atheme alpha/beta mask, move it up to the start where
+  it belongs.
+
+  16 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask kaspaliste for removal.
+
+  16 Jun 2009; <chainsaw@gentoo.org> package.mask:
+  Mask 2.1 alpha pre-releases of Audacious.
+
+  16 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask ddcxinfo-knoppix for removal.
+
+  16 Jun 2009; Jeroen Roovers <jer@gentoo.org> package.mask:
+  Include new post beta 1 =www-client/opera-10.00_pre4440 in mask.
+
+  16 Jun 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  drop x11-libs/vte package.mask entry, broken ebuild has been axed
+
+  16 Jun 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  add x11-libs/liboldX to package.mask
+
+  16 Jun 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  allow xorg-server 1.6 to roam free in ~arch, remove package.mask entry
+
+  16 Jun 2009; Rémi Cardona <remi@gentoo.org> package.mask:
+  drop treecleaned X packages from package.mask
+
+  15 Jun 2009; MATSUU Takuto <matsuu@gentoo.org> use.local.desc:
+  add ipafont USE flag for media-fonts/mplus-outline-fonts
+
+  15 Jun 2009; Alex Legler <a3li@gentoo.org> package.mask:
+  Removing ruby-config mask, the packages are gone. Bugs 251833 and 274108.
+
+  15 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> package.mask:
+  Mask yaffs-utils since it's currently not building and it's a live ebuild.
+
+  15 Jun 2009; Peter Volkov <pva@gentoo.org> updates/2Q-2009:
+  Moved slot for media-gfx/gwenview: 0 -> 3.5
 
   14 Jun 2009; Robert Piasek <dagger@gentoo.org> package.mask:
   Removed package.mask from networkmanager-0.7.1-r4 as I can't reproduce the

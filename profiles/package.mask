@@ -1,5 +1,5 @@
 ####################################################################
-# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9927 2009/06/14 19:20:00 dagger Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/package.mask,v 1.9945 2009/06/17 23:16:58 eva Exp $
 #
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -31,13 +31,64 @@
 
 #--- END OF EXAMPLES ---
 
+# Christian Faulhammer <fauli@gentoo.org> (13 Apr 2009)
+=net-misc/tor-0.2.1.5_rc
+
+# Tony Vroon <chainsaw@gentoo.org> (17 Jun 2009)
+# Dead homepage, upstream vows not to maintain it anymore. No sense packaging abandoned software.
+# Removal: July 17, 2009
+media-sound/ogg2mp3
+
+# Peter Volkov <pva@gentoo.org> (17 Jun 2009)
+# Masked pre-release candidate and dependant packages.
+=dev-util/bzr-1.16*
+=dev-util/bzrtools-1.16*
+
+# Peter Volkov <pva@gentoo.org> (17 Jun 2009)
+# Pending removal, use net-misc/l7-filter-userspace, bug #274341
+# http://archives.gentoo.org/gentoo-dev-announce/msg_0d7c089ea38747a1dedfb2019e02d5a2.xml
+net-misc/l7-filter
+
+# Tony Vroon <chainsaw@gentoo.org> (16 Jun 2009)
+# Alpha/beta releases, you are free to test but bugs go upstream.
+# http://jira.atheme.org/
+=media-sound/audacious-2.1_alpha*
+=media-plugins/audacious-plugins-2.1_alpha*
+=net-irc/conspire-1.0_beta*
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (16 Jun 2009)
+#  on behalf of QA Team
+#
+# Fails to build with gcc 4.2 and later.
+# See bug #273275
+#
+# Removal pending 16 August 2009
+app-text/kaspaliste
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (16 Jun 2009)
+#  on behalf of QA Team
+#
+# Fails to build with not even recent Linux headers.
+# See bug #248388
+#
+# Removal pending 16 August 2009
+sys-apps/ddcxinfo-knoppix
+
+# Rémi Cardona <remi@gentoo.org> (16 Jun 2009)
+# will be treecleaned in 30 days, it's just beyond useless
+x11-libs/liboldX
+
+# Diego E. Pettenò <flameeyes@gentoo.org> (15 Jun 2009)
+# Live ebuild, we cannot guarantee its working state
+~sys-fs/yaffs-utils-9999
+
 # Diego E. Pettenò <flameeyes@gentoo.org> (12 Jun 2009)
 #  on behalf of QA Team
 #
 # Multiple issue, external kernel module unmaintained since 2005.
 # See bug #274105
 #
-# Removal pending 14 July 2009
+# Removal pending 14 August 2009
 net-fs/shfs
 
 # Theo Chatzimichos <tampakrap@gentoo.org> (14 Jun 2009)
@@ -84,12 +135,6 @@ dev-ruby/freeride
 # mask pre releases of media-gfx/inkscape-0.47
 >=media-gfx/inkscape-0.47_pre0
 
-# Rémi Cardona <remi@gentoo.org> (10 Jun 2009)
-# see bug #260582 for xorg-server 1.6 issues
-# both are "unmaskable" when I write the upgrade guide
->=x11-misc/xkeyboard-config-1.6
->=x11-base/xorg-server-1.6.1
-
 # Diego E. Pettenò <flameeyes@gentoo.org> (12 Jun 2009)
 #  on behalf of QA Team
 #
@@ -125,10 +170,6 @@ media-libs/freeimage
 # * No support for auth backends other than PAM
 # * Many more...
 >=gnome-base/gdm-2.26
-
-# Rémi Cardona <remi@gentoo.org> (10 Jun 2009)
-# has useless soname bump, will be gone in a few days
-=x11-libs/vte-0.20.4
 
 # Torsten Veller <tove@gentoo.org> (10 Jun 2009)
 # Mask unstable releases. Read the warning!
@@ -314,22 +355,6 @@ dev-python/pycrash
 >=dev-util/nvidia-cuda-sdk-2.2
 >=dev-util/nvidia-cuda-toolkit-2.2
 
-# Alexis Ballier <aballier@gentoo.org> (15 May 2009)
-# Merged in dev-texlive/texlive-langmongolian-2008, use that instead
-# Masked for removal on 15 June 2009
-dev-texlive/texlive-langmanju
-
-# Alex Legler <a3li@gentoo.org> (15 May 2009)
-# Masked for removal wrt bug #251833. Due for removal in 30 days.
-# Use app-admin/eselect-ruby instead.
-dev-ruby/ruby-config
-=dev-lang/ruby-1.8.6_p114
-
-# Gilles Dartiguelongue <eva@gentoo.org> (15 May 2009)
-# Masked for removal wrt bug #244128. Old, rotten and
-# unused. Removal in 30 days.
-gnome-base/libghttp
-
 # Mike Pagano <mpagano@gentoo.org> (13 May 2009)
 # Masked for testing of ~ (tilde) unmasked packages
 >=app-portage/portpeek-1.8
@@ -368,25 +393,6 @@ dev-haskell/haskell-platform
 # Lennart Kolmodin <kolmodin@gentoo.org> (10 May 2009)
 # Mark ghc-6.10.3 for testing.
 ~dev-lang/ghc-6.10.3
-
-# Rémi Cardona <remi@gentoo.org> (09 May 2009)
-# Low-Bandwidth X and the X Proxy Management stuff has been declared
-# dead since last century. All of those will be gone in 30 days
-x11-apps/lbxproxy
-x11-apps/proxymngr
-x11-apps/xfindproxy
-x11-apps/xfwp
-x11-apps/xrx
-x11-proto/xproxymanagementprotocol
-
-# Rémi Cardona <remi@gentoo.org> (09 May 2009)
-# XPrint is dead, long live XPrint
-# nothing in portage uses those apps and libs anymore
-# will be removed in 30 days (see bug #264982 for rationale)
-x11-apps/xplsprinters
-x11-apps/xprehashprinterlist
-x11-libs/libXprintAppUtil
-x11-libs/libXprintUtil
 
 # Mark Loeser <halcy0n@gentoo.org> (6 May 2009)
 # Masked for testing
@@ -777,6 +783,7 @@ net-proxy/squirm
 # Jeroen Roovers <jer@gentoo.org> (5 Dec 2008)
 # Snapshots and alphas of Opera may delete kittens
 =www-client/opera-10.00_pre43*
+=www-client/opera-10.00_pre4440
 
 # MATSUU Takuto <matsuu@gentoo.org> (19 Nov 2008)
 # Masked for bug #196340
@@ -842,10 +849,6 @@ media-libs/realcodecs
 # Doug Goldstein <cardoe@gentoo.org> (17 Sep 2008)
 # under development
 gnome-extra/gnome-lirc-properties
-
-# Peter Volkov <pva@gentoo.org> (17 Sep 2008)
-# Development version, but yet nice :)
->=net-analyzer/wireshark-1.1
 
 # Michael Marineau <marineam@gentoo.org> (03 Sep 2008)
 # Unmaintained and out of date security wise,
