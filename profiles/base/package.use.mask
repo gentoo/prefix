@@ -1,5 +1,10 @@
 # This file requires >=portage-2.1.1
 
+# Thomas Anderson <gentoofan23@gentoo.org> (17 Jun 2009)
+# app-misc/iguanaIR is p.masked so lirc_devices_iguana
+# needs to get masked for app-misc/lirc.
+app-misc/lirc lirc_devices_iguana
+
 # Tristan Heaven <nyhm@gentoo.org> (12 Jun 2009)
 # media-libs/freeimage is masked for bug #269516
 dev-games/cegui freeimage

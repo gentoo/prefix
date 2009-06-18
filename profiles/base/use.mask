@@ -94,16 +94,31 @@ infopipe
 psyco
 
 # Mask ELIBC, KERNEL, and USERLAND flags that apply to specific profiles.
-elibc_FreeBSD
-elibc_NetBSD
-elibc_OpenBSD
+userland_BSD
+
+elibc_AIX
 elibc_Darwin
 elibc_DragonFly
+elibc_FreeBSD
+elibc_HPUX
+elibc_Interix
+elibc_IRIX
+elibc_mintlib
+elibc_NetBSD
+elibc_OpenBSD
+elibc_SunOS
 elibc_uclibc
+
+kernel_AIX
 kernel_Darwin
 kernel_FreeBSD
-userland_BSD
-userland_Darwin
+kernel_freemint
+kernel_HPUX
+kernel_Interix
+kernel_IRIX
+kernel_NetBSD
+kernel_OpenBSD
+kernel_SunOS
 
 # Diego Pettenò <flameeyes@gentoo.org> (6 Dec 2006)
 # Mask specific Apple drivers
