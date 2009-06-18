@@ -1,6 +1,14 @@
 # ChangeLog for virtual/perl-IO-Compress-Zlib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO-Compress-Zlib/ChangeLog,v 1.5 2009/06/03 22:20:02 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO-Compress-Zlib/ChangeLog,v 1.7 2009/06/14 16:17:22 jer Exp $
+
+  14 Jun 2009; Jeroen Roovers <jer@gentoo.org>
+  perl-IO-Compress-Zlib-2.020.ebuild:
+  Stable for HPPA (bug #273141).
+
+  14 Jun 2009; Raúl Porcel <armin76@gentoo.org>
+  perl-IO-Compress-Zlib-2.020.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc/x86 stable wrt #273141
 
 *perl-IO-Compress-Zlib-2.020 (03 Jun 2009)
 
