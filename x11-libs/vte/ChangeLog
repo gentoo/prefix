@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/vte
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.229 2009/06/10 07:22:19 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.230 2009/06/16 07:25:53 remi Exp $
+
+  16 Jun 2009; Rémi Cardona <remi@gentoo.org> -vte-0.20.2.ebuild,
+  -vte-0.20.4.ebuild:
+  drop broken (0.20.4) and older (0.20.2) ebuilds
 
 *vte-0.20.5 (10 Jun 2009)
 
