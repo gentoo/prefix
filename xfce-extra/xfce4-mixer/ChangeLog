@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-mixer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/ChangeLog,v 1.118 2009/06/13 14:11:24 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/ChangeLog,v 1.119 2009/06/15 00:21:27 jer Exp $
+
+  15 Jun 2009; Jeroen Roovers <jer@gentoo.org> xfce4-mixer-4.6.1.ebuild:
+  Stable for HPPA (bug #265587).
 
   13 Jun 2009; Tiago Cunha <tcunha@gentoo.org> xfce4-mixer-4.6.1.ebuild:
   stable sparc, bug 265587
