@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.225 2009/06/10 19:05:54 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.226 2009/06/16 19:20:46 ranger Exp $
+
+  16 Jun 2009; Brent Baude <ranger@gentoo.org> libpng-1.2.37.ebuild:
+  Marking libpng-1.2.37 ppc64 for bug 272970
 
   10 Jun 2009; Markus Meier <maekke@gentoo.org> libpng-1.2.37.ebuild:
   amd64 stable, bug #272970
