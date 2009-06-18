@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mp3gain/mp3gain-1.4.6-r3.ebuild,v 1.4 2009/06/10 19:25:09 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mp3gain/mp3gain-1.4.6-r3.ebuild,v 1.5 2009/06/16 18:20:15 klausman Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
