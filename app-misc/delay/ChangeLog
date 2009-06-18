@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/delay
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/delay/ChangeLog,v 1.16 2009/04/10 03:40:30 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/delay/ChangeLog,v 1.17 2009/06/16 18:05:05 klausman Exp $
+
+  16 Jun 2009; Tobias Klausmann <klausman@gentoo.org> delay-1.6.ebuild:
+  Keyworded on alpha, bug #272783
 
   10 Apr 2009; Jeremy Olexa <darkside@gentoo.org> delay-1.6.ebuild:
   QA: repect CC & use econf. Thanks to bob5972 and drizzt, bug 243630
