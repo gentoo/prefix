@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jibx/jibx-1.1.5-r1.ebuild,v 1.1 2009/05/13 23:30:39 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jibx/jibx-1.1.5-r1.ebuild,v 1.2 2009/06/17 13:01:04 fauli Exp $
 
 EAPI="2"
 JAVA_PKG_IUSE="doc source"
