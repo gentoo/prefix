@@ -1,8 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/media-sound/audacious/audacious-1.5.0.ebuild,v 1.1 2008/03/14 01:23:20 chainsaw Exp $
-
-inherit eutils
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-2.1_alpha1.ebuild,v 1.1 2009/06/16 14:00:43 chainsaw Exp $
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
@@ -14,30 +12,24 @@ SRC_URI="http://distfiles.atheme.org/${MY_P}.tgz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
-IUSE="altivec chardet nls libsamplerate sse2"
+IUSE="altivec chardet nls libsamplerate session sse2"
 
 RDEPEND=">=dev-libs/dbus-glib-0.60
-	libsamplerate? ( media-libs/libsamplerate )
-	>=dev-libs/libmcs-0.7.0
-	>=dev-libs/libmowgli-0.6.1
+	>=dev-libs/glib-2.16
+	>=dev-libs/libmcs-0.7.1-r2
+	>=dev-libs/libmowgli-0.7.0
 	dev-libs/libxml2
-	>=gnome-base/libglade-2.3.1
-	>=x11-libs/gtk+-2.10
-	>=dev-libs/glib-2.14"
+	>=x11-libs/cairo-1.2.6
+	>=x11-libs/gtk+-2.14
+	>=x11-libs/pango-1.8.0
+	libsamplerate? ( media-libs/libsamplerate )
+	session? ( x11-libs/libSM )"
 
 DEPEND="${RDEPEND}
-	!media-plugins/audacious-plugins-ugly
 	>=dev-util/pkgconfig-0.9.0
 	nls? ( dev-util/intltool )"
 
-PDEPEND=">=media-plugins/audacious-plugins-1.5.0"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}"/${P}-interix.patch
-}
+PDEPEND=">=media-plugins/audacious-plugins-2.1_alpha1"
 
 src_compile() {
 	# D-Bus is a mandatory dependency, remote control,
@@ -45,11 +37,15 @@ src_compile() {
 	# Building without D-Bus is *unsupported* and a USE-flag
 	# will not be added due to the bug reports that will result.
 	# Bugs #197894, #199069, #207330, #208606
+	# Disabling XSPF playlists would make startup *very* slow as
+	# all plugins will then have to re-probed each time.
 	econf \
 		--enable-dbus \
+		--enable-xspf \
 		$(use_enable altivec) \
 		$(use_enable chardet) \
 		$(use_enable nls) \
+		$(use_enable session sm) \
 		$(use_enable sse2) \
 		$(use_enable libsamplerate samplerate) \
 		|| die
@@ -66,9 +62,4 @@ src_install() {
 	doins "${WORKDIR}"/gentoo_ice/*
 	docinto gentoo_ice
 	dodoc "${WORKDIR}"/README
-}
-
-pkg_postinst() {
-	elog "Note that you need to recompile *all* third-party plugins for Audacious 1.5"
-	elog "Plugins compiled against 1.3 or 1.4 will not be loaded."
 }

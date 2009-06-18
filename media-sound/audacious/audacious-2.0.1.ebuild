@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-2.0.1.ebuild,v 1.1 2009/05/13 09:24:22 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-2.0.1.ebuild,v 1.3 2009/06/17 21:18:05 fauli Exp $
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
