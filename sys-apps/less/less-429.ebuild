@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-429.ebuild,v 1.4 2009/06/12 14:04:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-429.ebuild,v 1.6 2009/06/17 15:56:15 gentoofan23 Exp $
 
 inherit eutils
 
