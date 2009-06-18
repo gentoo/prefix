@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/flim
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.32 2009/05/16 20:09:55 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.33 2009/06/17 21:27:05 fauli Exp $
+
+  17 Jun 2009; Christian Faulhammer <fauli@gentoo.org> flim-1.14.9.ebuild:
+  stable x86, bug 274553
 
 *flim-1.14.9 (16 May 2009)
 
