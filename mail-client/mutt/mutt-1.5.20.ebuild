@@ -73,6 +73,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch # fix bdb detection
 	epatch "${FILESDIR}"/mutt-1.5.18-interix.patch
 	epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
+	# post-release hot-fixes
+	epatch "${FILESDIR}"/mutt-1.5.20-imap-port-invalid-d6f88fbf8387.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-header-weeding-f40de578e8ed.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-display-unsigned-pgp-7f37d0a57d83.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-unmailbox-segfault-25e46aad362b.patch
 
 	if ! use vanilla && ! use sidebar ; then
