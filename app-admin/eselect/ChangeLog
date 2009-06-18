@@ -1,6 +1,6 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.104 2009/06/12 19:51:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.105 2009/06/15 10:57:51 ulm Exp $
 
   12 Jun 2009; Ulrich Mueller <ulm@gentoo.org> -eselect-1.0.11-r2.ebuild,
   -files/eselect-1.0.11-parent-profiles.patch,
@@ -312,6 +312,8 @@
   03 Jul 2006; <malc@gentoo.org> files/digest-eselect-1.0,
   files/digest-eselect-1.0.2, Manifest:
   Fix broken digests - as reported in #gentoo-amd64
+
+*eselect-1.0.3 (03 Jul 2006)
 
   06 Jun 2006; Stephen Bennett <spb@gentoo.org> eselect-1.0.ebuild:
   Mips stable for bug #125630
