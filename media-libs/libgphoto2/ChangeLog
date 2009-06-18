@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libgphoto2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/ChangeLog,v 1.148 2009/05/16 08:55:25 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/ChangeLog,v 1.149 2009/06/17 22:19:45 eva Exp $
+
+*libgphoto2-2.4.6 (18 Jun 2009)
+
+  18 Jun 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +libgphoto2-2.4.6.ebuild:
+  Version bump. Enhancements to ptp2, canon and digigr8 drivers. Drop rpm
+  patch since it's now unneeded. Closes: #270677
 
 *libgphoto2-2.4.5 (16 May 2009)
 
