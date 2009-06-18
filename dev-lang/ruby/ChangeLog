@@ -1,6 +1,23 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.410 2009/06/11 14:47:47 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.414 2009/06/17 15:45:48 ranger Exp $
+
+  17 Jun 2009; Brent Baude <ranger@gentoo.org> ruby-1.8.6_p369.ebuild:
+  Marking ruby-1.8.6_p369 ppc64 for bug 273213
+
+  16 Jun 2009; Raúl Porcel <armin76@gentoo.org> ruby-1.8.6_p369.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #273213
+
+  16 Jun 2009; Alex Legler <a3li@gentoo.org> ruby-1.8.6_p368.ebuild,
+  ruby-1.8.6_p369.ebuild, -ruby-1.8.7_p160.ebuild:
+  Removing old version, minor cleanup
+
+  14 Jun 2009; Alex Legler <a3li@gentoo.org> -ruby-1.8.6_p114.ebuild,
+  -files/ruby-1.8.6-openssl.patch,
+  -files/ruby-1.8.6-shortname_constants.patch,
+  -files/ruby-1.8.6_p111-r13657.patch,
+  -files/ruby-1.8.6_p287-entity_expansion_limit.diff:
+  Removing vulnerable old Ruby version and stale patches, bug 274108.
 
   11 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
   ruby-1.8.6_p369.ebuild:
