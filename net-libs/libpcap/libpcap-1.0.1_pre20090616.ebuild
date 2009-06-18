@@ -1,13 +1,17 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-1.0.0-r1.ebuild,v 1.5 2009/05/12 10:09:41 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-1.0.1_pre20090616.ebuild,v 1.1 2009/06/17 07:14:24 pva Exp $
 
+EAPI=2
 inherit autotools eutils multilib toolchain-funcs
 
 DESCRIPTION="A system-independent library for user-level network packet capture"
 HOMEPAGE="http://www.tcpdump.org/"
-SRC_URI="http://www.tcpdump.org/release/${P}.tar.gz
-	http://www.jp.tcpdump.org/release/${P}.tar.gz"
+MY_P=${PN}-${PV/_pre/-}
+SRC_URI="mirror://gentoo/${MY_P}.tar.gz"
+S=${WORKDIR}/${MY_P}
+#	SRC_URI="http://www.tcpdump.org/release/${P}.tar.gz
+#		http://www.jp.tcpdump.org/release/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
@@ -20,28 +24,26 @@ DEPEND="${RDEPEND}
 	sys-devel/flex"
 PROVIDE="virtual/libpcap"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-cross-linux.patch"
-	epatch "${FILESDIR}/${P}-install-bindir.patch"
-	epatch "${FILESDIR}/${P}-install-headers.patch"
-	epatch "${FILESDIR}/${P}-optional-bluetooth.patch"
-	epatch "${FILESDIR}/${P}-LDFLAGS.patch"
+src_prepare() {
+	epatch "${FILESDIR}/${PN}-1.0.0-cross-linux.patch"
+	echo ${PV} > VERSION # Avoid CVS in version
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	econf $(use_enable ipv6) \
 		$(use_enable bluetooth)
+}
+
+src_compile() {
 	emake all shared || die "compile problem"
 }
 
 src_install() {
 	emake DESTDIR="${D}" install install-shared || die "emake install failed"
 
-	dosym libpcap$(get_libname ${PV:0:5}) /usr/$(get_libdir)/libpcap$(get_libname 1)
-	dosym libpcap$(get_libname ${PV:0:5}) /usr/$(get_libdir)/libpcap$(get_libname)
+	dosym libpcap$(get_libname ${PV}) /usr/$(get_libdir)/libpcap$(get_libname 1)
+	dosym libpcap$(get_libname ${PV}) /usr/$(get_libdir)/libpcap$(get_libname)
 
 	# We need this to build pppd on G/FBSD systems
 	if [[ "${USERLAND}" == "BSD" ]]; then
@@ -50,5 +52,5 @@ src_install() {
 	fi
 
 	# We are not installing README.{Win32,aix,hpux,tru64} (bug 183057)
-	dodoc CREDITS CHANGES VERSION TODO README{,.dag,.linux,.macosx,.septel}
+	dodoc CREDITS CHANGES VERSION TODO README{,.dag,.linux,.macosx,.septel} || die
 }

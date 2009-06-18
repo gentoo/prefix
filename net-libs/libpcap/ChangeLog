@@ -1,6 +1,14 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.119 2009/05/26 08:48:31 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.120 2009/06/17 07:14:24 pva Exp $
+
+*libpcap-1.0.1_pre20090616 (17 Jun 2009)
+
+  17 Jun 2009; Peter Volkov <pva@gentoo.org> -libpcap-1.0.0.ebuild,
+  -libpcap-1.0.0-r1.ebuild, +libpcap-1.0.1_pre20090616.ebuild:
+  Version bump up to latest git snapshot. Fixes too many bugs, e.g. now it
+  works with any interface, builds with -fPIC on FreeBSD (bug #262060, thank
+  Timothy Redaelli).
 
 *libpcap-1.0.0-r2 (26 May 2009)
 
