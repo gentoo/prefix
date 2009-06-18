@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/boost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.161 2009/05/28 17:42:51 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.162 2009/06/15 18:31:33 flameeyes Exp $
+
+  15 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  boost-1.37.0-r1.ebuild:
+  When compiling with gcc 4.4, append -fno-strict-aliasing to allow build,
+  see bug #252287. WARNING! This is just a workaround and not a fix, this
+  _will_ cause reduced optimisation of the library. A proper fix _is_
+  needed.
 
   28 May 2009; Fabian Groffen <grobian@gentoo.org>
   +files/boost-1.37.0-darwin-long-double.patch, boost-1.37.0-r1.ebuild:
