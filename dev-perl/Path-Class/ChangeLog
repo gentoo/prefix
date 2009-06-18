@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Path-Class
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Path-Class/ChangeLog,v 1.10 2008/11/22 11:47:45 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Path-Class/ChangeLog,v 1.11 2009/06/16 06:18:49 tove Exp $
+
+*Path-Class-0.17 (16 Jun 2009)
+
+  16 Jun 2009; Torsten Veller <tove@gentoo.org> +Path-Class-0.17.ebuild:
+  Version bump
 
   22 Nov 2008; Torsten Veller <tove@gentoo.org> Path-Class-0.16.ebuild:
   Remove Module-Build from RDEPEND. Fix LICENSE.
