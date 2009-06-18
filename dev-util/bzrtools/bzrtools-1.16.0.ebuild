@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.15.0.ebuild,v 1.2 2009/06/17 13:09:50 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.16.0.ebuild,v 1.1 2009/06/17 07:25:32 pva Exp $
 
 EAPI="2"
 
@@ -24,11 +24,6 @@ DOCS="AUTHORS CREDITS NEWS NEWS.Shelf README README.Shelf TODO TODO.heads TODO.S
 S=${WORKDIR}/${PN}
 
 PYTHON_MODNAME=bzrlib
-
-src_prepare() {
-	epatch "${FILESDIR}/${P}-test_fetch_ghosts.patch"
-	distutils_src_prepare
-}
 
 src_test() {
 	python_version
