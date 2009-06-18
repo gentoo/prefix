@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/easyedit
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/easyedit/ChangeLog,v 1.19 2009/03/09 11:25:05 hattya Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/easyedit/ChangeLog,v 1.20 2009/06/16 17:54:05 klausman Exp $
+
+  16 Jun 2009; Tobias Klausmann <klausman@gentoo.org> easyedit-1.4.7.ebuild:
+  Keyworded on alpha, bug #272774
 
   09 Mar 2009; Akinori Hattori <hattya@gentoo.org> easyedit-1.4.7.ebuild:
   set default target to curses.
