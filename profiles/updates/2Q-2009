@@ -59,3 +59,6 @@ slotmove net-analyzer/knetscan 0 3.5
 slotmove app-laptop/kthinkbat 0 3.5
 slotmove app-editors/kile 0 3.5
 slotmove app-editors/kxmleditor 0 3.5
+slotmove app-text/kding 0 3.5
+slotmove dev-db/knoda 0 3.5
+slotmove media-gfx/gwenview 0 3.5
