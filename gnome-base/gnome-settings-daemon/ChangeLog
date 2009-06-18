@@ -1,13 +1,27 @@
 # ChangeLog for gnome-base/gnome-settings-daemon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/ChangeLog,v 1.30 2009/05/10 23:01:36 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-settings-daemon/ChangeLog,v 1.32 2009/06/17 23:14:46 eva Exp $
+
+  18 Jun 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-settings-daemon-2.24.1-r1.ebuild,
+  gnome-settings-daemon-2.24.1-r2.ebuild:
+  Fix inverted dependency changes.
+
+*gnome-settings-daemon-2.24.1-r2 (14 May 2009)
+
+  14 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-settings-daemon-2.24.1-r1.ebuild,
+  +gnome-settings-daemon-2.24.1-r2.ebuild,
+  +files/gnome-settings-daemon-2.24.1-gnomedesktop-api.patch:
+  Add patch for gnome-desktop API compatibility, to ease upgrade, bug
+  #269366
 
 *gnome-settings-daemon-2.26.1-r1 (10 May 2009)
 
   10 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -gnome-settings-daemon-2.22.2.1.ebuild,
   +gnome-settings-daemon-2.26.1-r1.ebuild:
-  New version for GNOME 2.26. Pulseaudion support and lots of fixes. Clean
+  New version for GNOME 2.26. Pulseaudio support and lots of fixes. Clean
   up old revisions.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org>
