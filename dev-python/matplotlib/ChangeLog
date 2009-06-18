@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/matplotlib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.65 2009/05/30 09:07:05 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.66 2009/06/15 05:32:10 bicatali Exp $
+
+*matplotlib-0.98.5.3 (15 Jun 2009)
+
+  15 Jun 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  -matplotlib-0.98.5.2.ebuild, -matplotlib-0.98.5.2-r2.ebuild,
+  -matplotlib-0.98.5.2-r3.ebuild, +matplotlib-0.98.5.3.ebuild:
+  Version bumps with fixes for bug #266612 and bug #272147
 
   30 May 2009; Ulrich Mueller <ulm@gentoo.org>
   matplotlib-0.98.5.2-r2.ebuild, matplotlib-0.98.5.2-r3.ebuild:
