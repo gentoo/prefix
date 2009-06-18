@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/ecb
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/ecb/ChangeLog,v 1.39 2009/05/17 08:21:57 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/ecb/ChangeLog,v 1.40 2009/06/17 21:24:11 fauli Exp $
+
+  17 Jun 2009; Christian Faulhammer <fauli@gentoo.org> ecb-2.40.ebuild:
+  stable x86, bug 274551
 
 *ecb-2.40 (17 May 2009)
 

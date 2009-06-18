@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/ecb/ecb-2.40.ebuild,v 1.1 2009/05/17 08:21:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/ecb/ecb-2.40.ebuild,v 1.2 2009/06/17 21:24:11 fauli Exp $
 
 inherit elisp eutils
 
