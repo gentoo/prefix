@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/alsa-headers
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/ChangeLog,v 1.173 2009/06/11 05:30:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/ChangeLog,v 1.174 2009/06/16 17:37:51 klausman Exp $
+
+  16 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
+  alsa-headers-1.0.19.ebuild:
+  Stable on alpha, bug #272682
 
   11 Jun 2009; Jeroen Roovers <jer@gentoo.org> alsa-headers-1.0.19.ebuild:
   Stable for HPPA (bug #272682).
