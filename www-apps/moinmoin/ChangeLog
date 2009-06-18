@@ -1,6 +1,9 @@
 # ChangeLog for www-apps/moinmoin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/ChangeLog,v 1.61 2009/06/12 13:12:20 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/moinmoin/ChangeLog,v 1.62 2009/06/14 10:20:32 armin76 Exp $
+
+  14 Jun 2009; Raúl Porcel <armin76@gentoo.org> moinmoin-1.8.4.ebuild:
+  sparc stable wrt #268565
 
   12 Jun 2009; <chainsaw@gentoo.org> moinmoin-1.8.4.ebuild:
   Marked stable on AMD64. Tested on a dual dual-core Opteron 2218 system
