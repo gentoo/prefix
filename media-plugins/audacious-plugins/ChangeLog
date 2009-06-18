@@ -1,6 +1,42 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.113 2009/05/24 15:43:29 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.118 2009/06/17 21:21:56 fauli Exp $
+
+  17 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  audacious-plugins-2.0.1.ebuild:
+  stable x86, bug 274549
+
+*audacious-plugins-2.1_alpha1-r1 (17 Jun 2009)
+
+  17 Jun 2009; <chainsaw@gentoo.org>
+  +files/2.1_alpha1-timidity-conf-path.patch,
+  +audacious-plugins-2.1_alpha1-r1.ebuild:
+  Correct the Timidity configuration search path so it aligns with the
+  Timidity ebuild, patch by sir_tuam@web.de in bug #274123.
+
+  17 Jun 2009; <chainsaw@gentoo.org> -audacious-plugins-1.4.4.ebuild,
+  -audacious-plugins-1.4.5.ebuild, -audacious-plugins-1.5.0.ebuild,
+  -audacious-plugins-1.5.1.ebuild, -audacious-plugins-1.5.1-r1.ebuild,
+  -audacious-plugins-1.5.1-r2.ebuild:
+  Remove old ebuilds.
+
+  17 Jun 2009; <chainsaw@gentoo.org>
+  +files/2.0.1-icecast-flawed-vorbis-enum.patch,
+  audacious-plugins-2.0.1.ebuild:
+  Upstream patch from Matti Hamalainen <ccr@tnsp.org> allows unusual
+  USE-flag combination of icecast without vorbis, closes bug #274309 by
+  Diego E. 'Flameeyes' Pettenò <flameeyes@gentoo.org>. No revision bump,
+  just a build fix. Marking stable on AMD64 as there have been no
+  significant bugs reported for this package. Tested on a Core2 Duo with
+  Realtek ALC226 @ ICH9M HD-Audio.
+
+*audacious-plugins-2.1_alpha1 (16 Jun 2009)
+
+  16 Jun 2009; <chainsaw@gentoo.org> +audacious-plugins-2.1_alpha1.ebuild,
+  metadata.xml:
+  Masked new alpha release. Pay particular attention to the fully rewritten
+  ALSA output driver and the new BS2B headphone crossfade filter. Bugs go
+  upstream at http://jira.atheme.org/
 
   24 May 2009; Samuli Suominen <ssuominen@gentoo.org>
   audacious-plugins-2.0.1.ebuild:

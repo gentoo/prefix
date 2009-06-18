@@ -1,0 +1,11 @@
+--- a/src/timidity/xmms-timidity.c	2009-05-14 04:42:00.000000000 +0200
++++ b/src/timidity/xmms-timidity.c	2009-06-12 22:55:44.195726707 +0200
+@@ -94,7 +94,7 @@
+ 
+ 	if (! aud_cfg_db_get_string(db, "timidity", "config_file",
+                                 &xmmstimid_cfg.config_file))
+-        xmmstimid_cfg.config_file = g_strdup("/etc/timidity/timidity.cfg");
++        xmmstimid_cfg.config_file = g_strdup("/etc/timidity.cfg");
+ 
+ 	aud_cfg_db_get_int(db, "timidity", "samplerate", &xmmstimid_cfg.rate);
+ 	aud_cfg_db_get_int(db, "timidity", "bits", &xmmstimid_cfg.bits);

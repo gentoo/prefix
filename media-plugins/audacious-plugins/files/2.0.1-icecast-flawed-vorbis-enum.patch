@@ -1,0 +1,21 @@
+
+# HG changeset patch
+# User Matti Hamalainen <ccr@tnsp.org>
+# Date 1245161877 -10800
+# Node ID c41b5966778fce4eb9b15e0c5ee262c7ff1758fb
+# Parent  54c7d2087c8af9e01430a907675cb066f0b30b61
+Default to '0' instead of enum value VORBIS, which may not be defined if
+Vorbis support is not compiled in.
+
+--- a/src/icecast/icecast.c	Tue Jun 16 08:15:49 2009 -0500
++++ b/src/icecast/icecast.c	Tue Jun 16 17:17:57 2009 +0300
+@@ -52,7 +52,7 @@
+     streamformat_MAX
+ };
+ 
+-static gint streamformat = VORBIS;
++static gint streamformat = 0;
+ 
+ static unsigned int streamformat_shout[] =
+ {
+

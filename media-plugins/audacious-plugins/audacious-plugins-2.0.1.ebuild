@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.0.1.ebuild,v 1.2 2009/05/24 15:43:29 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.0.1.ebuild,v 1.4 2009/06/17 21:21:56 fauli Exp $
 
 inherit eutils flag-o-matic
 
@@ -59,11 +59,13 @@ mp3_warning() {
 	fi
 }
 
-src_compile() {
-	# This is masked in the portage tree, so I'll save you the
-	# popup. Be good, bugs go upstream and we like patches.
-	append-flags -DNOT_ALPHA_RELEASE
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${PV}-icecast-flawed-vorbis-enum.patch"
+}
 
+src_compile() {
 	mp3_warning
 
 	econf \
