@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/xfce4-dev-tools/xfce4-dev-tools-4.6.0.ebuild,v 1.4 2009/06/13 13:54:48 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/xfce4-dev-tools/xfce4-dev-tools-4.6.0.ebuild,v 1.5 2009/06/15 00:07:01 jer Exp $
 
 inherit xfce4
 
