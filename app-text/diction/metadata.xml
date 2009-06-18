@@ -3,12 +3,13 @@
 <pkgmetadata>
 	<herd>no-herd</herd>
 	<maintainer>
-		<email>jnrowe@ukfsn.org</email>
-		<name>James Rowe</name>
+		<email>jer@gentoo.org</email>
+		<name>Jeroen Roovers</name>
+		<description>Proxy maintainer for James</description>
 	</maintainer>
 	<maintainer>
-		<email>maintainer-needed@gentoo.org</email>
-		<description>Proxy maintainer for James</description>
+		<email>jnrowe@gmail.com</email>
+		<name>James Rowe</name>
 	</maintainer>
 	<longdescription lang="en">
 		GNU diction and style are free implementations of old standard unix
