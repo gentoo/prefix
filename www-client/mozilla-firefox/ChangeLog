@@ -1,6 +1,26 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.508 2009/06/13 11:11:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.513 2009/06/18 01:40:50 ranger Exp $
+
+  18 Jun 2009; Brent Baude <ranger@gentoo.org>
+  mozilla-firefox-3.0.11.ebuild:
+  Marking mozilla-firefox-3.0.11 ppc64 and ppc for bug 273918
+
+  16 Jun 2009; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.0.11.ebuild:
+  alpha/arm/ia64/sparc stable wrt #273918
+
+  16 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  mozilla-firefox-3.0.11.ebuild:
+  stable x86, security bug 273918
+
+  16 Jun 2009; Jeroen Roovers <jer@gentoo.org>
+  mozilla-firefox-3.0.11.ebuild:
+  Stable for HPPA (bug #273918).
+
+  15 Jun 2009; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.0.11.ebuild:
+  Fix iceweasel, bug #274186
 
 *mozilla-firefox-3.0.11 (13 Jun 2009)
 

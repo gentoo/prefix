@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.11.ebuild,v 1.1 2009/06/13 11:11:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.11.ebuild,v 1.6 2009/06/18 01:40:50 ranger Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -108,7 +108,9 @@ src_unpack() {
 	if use iceweasel; then
 		unpack iceweasel-icons-3.0.tar.bz2
 
-		cp -r iceweaselicons/browser mozilla/
+		cp -r iceweaselicons/browser/app/* mozilla/browser/branding/unofficial
+		cp iceweaselicons/browser/base/branding/icon48.png mozilla/browser/branding/unofficial/default48.png
+		cp -r iceweaselicons/browser/base/branding/* mozilla/browser/branding/unofficial/content
 	fi
 
 	linguas
@@ -131,8 +133,8 @@ src_prepare() {
 	epatch "${WORKDIR}"/patch
 
 	if use iceweasel; then
-		sed -i -e "s|Minefield|Iceweasel|" browser/locales/en-US/chrome/branding/brand.* \
-			browser/branding/nightly/configure.sh
+		sed -i -e "s|Gran Paradiso|Iceweasel|" browser/branding/unofficial/locales/en-US/brand.*
+		sed -i -e "s|GranParadiso|Iceweasel|" browser/branding/unofficial/configure.sh
 	fi
 
 	epatch "${FILESDIR}"/${PN}-3.0-solaris64.patch
@@ -183,9 +185,9 @@ src_configure() {
 		mozconfig_annotate '' --with-libxul-sdk="${EPREFIX}"/usr/$(get_libdir)/xulrunner-1.9
 	fi
 
-	if ! use bindist && ! use iceweasel; then
+	if ! use bindist && ! use iceweasel ; then
 		mozconfig_annotate '' --enable-official-branding
-	elif use bindist && ! use iceweasel; then
+	elif use bindist || use iceweasel ; then
 		mozconfig_annotate 'bindist' --with-branding=browser/branding/unofficial
 	fi
 
@@ -245,7 +247,7 @@ src_install() {
 
 	# Install icon and .desktop for menu entry
 	if use iceweasel; then
-		newicon "${S}"/browser/base/branding/icon48.png iceweasel-icon.png
+		newicon "${S}"/browser/branding/unofficial/default48.png iceweasel-icon.png
 		newmenu "${FILESDIR}"/icon/iceweasel.desktop \
 			mozilla-firefox-3.0.desktop
 	elif ! use bindist; then
