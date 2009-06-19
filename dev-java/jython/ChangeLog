@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/jython
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.62 2009/05/27 10:31:37 fauli Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.63 2009/06/18 10:51:11 ali_bush Exp $
+
+*jython-2.5.0 (18 Jun 2009)
+
+  18 Jun 2009; Alistair Bush <ali_bush@gentoo.org> +jython-2.5.0.ebuild,
+  +files/jython-2.5.0-build.patch:
+  Version Bump. New slot as seems to break at least one existing package.
+  Tests still do not work 
 
   27 May 2009; Christian Faulhammer <fauli@gentoo.org>
   jython-2.2.1-r1.ebuild:
