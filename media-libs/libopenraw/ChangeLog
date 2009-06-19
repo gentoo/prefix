@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libopenraw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.36 2009/06/05 19:43:39 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.37 2009/06/18 22:26:24 ssuominen Exp $
+
+  18 Jun 2009; Samuli Suominen <ssuominen@gentoo.org>
+  libopenraw-0.0.8.ebuild:
+  Raise boost depend to 1.35 wrt #236113, thanks to Tomasz Golinski for
+  reporting.
 
 *libopenraw-0.0.8 (05 Jun 2009)
 
