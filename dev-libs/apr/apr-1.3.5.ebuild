@@ -20,6 +20,8 @@ DEPEND="doc? ( app-doc/doxygen )"
 RDEPEND=""
 
 src_prepare() {
+	epatch "${FILESDIR}"/${PN}-1.2.11-mint.patch
+
 	AT_M4DIR="build" eautoreconf
 	elibtoolize
 
