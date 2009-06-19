@@ -1,6 +1,20 @@
 # ChangeLog for mail-client/mutt
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.129 2009/06/09 07:18:04 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.131 2009/06/18 13:42:32 grobian Exp $
+
+  18 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  files/mutt-1.5.19-mutt_ssl-3af7e8af1983-dc9ec900c657.patch:
+  Update patch to include parts that were non-local to the ssl-files.
+  Unfortunately the fix is non-straight-forward, and includes a lot of other
+  changesets, causing this to happen. Should fix bug #274603.
+
+*mutt-1.5.19-r1 (18 Jun 2009)
+
+  18 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  +files/mutt-1.5.19-mutt-gnutls-7d0583e0315d-0b13183e40e0.patch,
+  +files/mutt-1.5.19-mutt_ssl-3af7e8af1983-dc9ec900c657.patch,
+  -mutt-1.5.19.ebuild, +mutt-1.5.19-r1.ebuild:
+  Revision bump for CVE-2009-1390, add related patches
 
   09 Jun 2009; Fabian Groffen <grobian@gentoo.org>
   +files/mutt-1.5.19-libgnutls-test-15c662a95b91.patch, mutt-1.5.19.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19.ebuild,v 1.6 2009/06/09 07:18:04 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19-r1.ebuild,v 1.1 2009/06/18 09:20:37 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -64,11 +64,17 @@ DEPEND="${RDEPEND}
 PATCHDIR="${WORKDIR}"/${P}-gentoo-patches${PATCHSET_REV}
 
 src_unpack() {
-	unpack ${A//${SIDEBAR_PATCH_N}} && cd "${S}" || die "unpack failed"
+	unpack ${A//${SIDEBAR_PATCH_N}}
+	cd "${S}"
+
+	epatch "${FILESDIR}"/${P}-libgnutls-test-15c662a95b91.patch
+	# CVE-2009-1390 http://thread.gmane.org/gmane.comp.security.oss.general/1847
+	epatch "${FILESDIR}"/${P}-mutt_ssl-3af7e8af1983-dc9ec900c657.patch
+	epatch "${FILESDIR}"/${P}-mutt-gnutls-7d0583e0315d-0b13183e40e0.patch
 
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
-	epatch "${FILESDIR}"/mutt-1.5.13-prefix-mailcap.patch
+	use prefix && epatch "${FILESDIR}"/mutt-1.5.13-prefix-mailcap.patch
 
 	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch # fix bdb detection
 	epatch "${FILESDIR}"/mutt-1.5.18-interix.patch
