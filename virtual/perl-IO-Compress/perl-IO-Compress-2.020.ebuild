@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO-Compress/perl-IO-Compress-2.020.ebuild,v 1.3 2009/06/14 16:14:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO-Compress/perl-IO-Compress-2.020.ebuild,v 1.4 2009/06/19 00:21:09 ranger Exp $
 
 DESCRIPTION="Virtual for IO-Compress"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
