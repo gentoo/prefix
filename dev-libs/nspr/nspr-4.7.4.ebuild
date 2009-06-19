@@ -71,9 +71,12 @@ src_install () {
 		ln -s ${file}.${MINOR_VERSION} ${file}
 	done
 	elif [[ ${get_libname} == .dylib ]] ; then
+		local n=
 		for file in *.dylib ; do
-			mv ${file} ${file%.dylib}.${MINOR_VERSION}.dylib
-			ln -s ${file%.dylib}.${MINOR_VERSION}.dylib ${file}
+			n=${file%.dylib}.${MINOR_VERSION}.dylib
+			mv ${file} ${n}
+			ln -s ${n} ${file}
+			install_name_tool -id "${EPREFIX}/usr/lib/nspr/${n}" ${n} || die
 		done
 	fi
 	# cope with libraries being in /usr/lib/nspr
