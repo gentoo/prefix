@@ -1,10 +1,22 @@
 # ChangeLog for profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2804 2009/06/17 23:16:58 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/ChangeLog,v 1.2808 2009/06/18 16:54:49 ssuominen Exp $
 #
 # This ChangeLog should include records for all changes in profiles directory.
 # Only typo fixes which don't affect portage/repoman behaviour could be avoided
 # here. If in doubt put a record here!
+
+  18 Jun 2009; Samuli Suominen <ssuominen@gentoo.org> package.mask:
+  Mask plugins autoplaylist and serverstats because they are no longer
+  valid with gmpc 0.18.0. Mask net-im/ekg2 because it doesn't build with
+  stable glibc wrt #247994.
+
+  18 Jun 2009; <chainsaw@gentoo.org> package.mask:
+  Undo removal mask for media-sound/ogg2mp3, new maintainer stepped up.
+
+  18 Jun 2009; Alistair Bush <ali_bush@gentoo.org> package.mask:
+  Add jython-2.5.0 to package.mask as it will break other packages until
+  they are updated.
 
   18 Jun 2009; Gilles Dartiguelongue <eva@gentoo.org> package.mask:
   Remove gnome-base/libghttp per bug #244128

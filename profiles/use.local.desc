@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation.
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4555 2009/06/17 23:47:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.local.desc,v 1.4558 2009/06/18 21:47:53 robbat2 Exp $
 # This file contains descriptions of local USE flags, and the ebuilds which
 # contain them.
 # Keep it sorted (use "LC_ALL=C sort -t: -k1,1 -k2 | LC_ALL=C sort -s -t/ -k1,1")
@@ -718,6 +718,7 @@ dev-libs/cyrus-sasl:ntlm_unsupported_patch - Add NTLM net-fs/samba NOT supported
 dev-libs/cyrus-sasl:sample - Build sample client and server
 dev-libs/cyrus-sasl:srp - Enable SRP
 dev-libs/cyrus-sasl:urandom - Use /dev/urandom instead of /dev/random
+dev-libs/eggdbus:largefile - Support for large files
 dev-libs/fcgi:html - Install HTML documentation
 dev-libs/ferrisloki:stlport - Include support for dev-libs/STLport
 dev-libs/geoip:perl-geoipupdate - Install pure perl version of geoipupdate, with Proxy Server support via via the "http_proxy" environment variable and easy to customize.
@@ -2187,6 +2188,7 @@ net-libs/aqbanking:dtaus -  Enable dtaus backend
 net-libs/aqbanking:geldkarte -  Enable geldkarte backend 
 net-libs/aqbanking:hbci -  Enable support for HBCI 
 net-libs/aqbanking:yellownet -  Enable support for Yellownet 
+net-libs/clinkcc:mythtv - Enable MythTV support
 net-libs/courier-authlib:vpopmail - Enable vpopmail support
 net-libs/cvm:vpopmail - Enable vpopmail support
 net-libs/iax:snomhack - Use slower memset for SNOM phoneem
@@ -2837,6 +2839,7 @@ sys-fs/owfs:parport - Enable support for the DS1410E parallel port adapter
 sys-fs/owfs:server - Enable building the OWFS server (owserver)
 sys-fs/quota:rpc - Enable quota interaction via RPC
 sys-fs/udev:devfs-compat - Install rules for devfs compatible device names
+sys-fs/udev:extras - Compile udev-extras requiring external dependencies
 sys-fs/unionfs:nfs - Adds support for NFS file system
 sys-kernel/gentoo-sources:ultra1 - Enable if you have a SUN Ultra 1 with a HME interface
 sys-kernel/linux-docs:html - Install HTML documenation

@@ -1,6 +1,9 @@
 # ChangeLog for Gentoo/AMD64 profile directory
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.45 2009/06/06 22:16:10 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/ChangeLog,v 1.46 2009/06/18 21:58:47 cla Exp $
+
+  18 Jun 2009; Dawid Węgliński <cla@gentoo.org> package.use.mask:
+  Move mask from profiles/default/linux/amd64/package.use.mask (#273932)
 
   06 Jun 2009; Jeremy Olexa <darkside@gentoo.org> no-multilib/package.mask:
   remove media-video/dvdrip from no-multilib pmask based on a user report, bug

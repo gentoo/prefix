@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/package.use.mask,v 1.30 2009/05/30 22:06:53 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/profiles/arch/amd64/package.use.mask,v 1.31 2009/06/18 21:58:47 cla Exp $
 
 # When you add an entry to the top of this file, add your name, the date, and
 # an explanation of why something is getting masked. Please be extremely
@@ -17,6 +17,11 @@
 #
 
 #--- END OF EXAMPLES ---
+
+# Dawid Węgliński <cla@gentoo.org>                                       
+# Mask amarok2 useflag for net-im/kadu
+# See bug #238487 for references
+net-im/kadu amarok2
 
 # Samuli Suominen <ssuominen@gentoo.org> (10 May 2009)
 # Broken SSE2 detection for x86_64 wrt #262405
