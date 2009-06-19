@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.6.ebuild,v 1.1 2009/06/17 22:19:45 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.6.ebuild,v 1.2 2009/06/18 11:16:03 mrpouet Exp $
 
 # TODO
 # 1. Track upstream bug --disable-docs does not work.
@@ -8,7 +8,7 @@
 
 EAPI="2"
 
-inherit multilib
+inherit multilib eutils
 
 DESCRIPTION="Library that implements support for numerous digital cameras"
 HOMEPAGE="http://www.gphoto.org/"
