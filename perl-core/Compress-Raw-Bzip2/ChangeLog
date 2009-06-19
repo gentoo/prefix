@@ -1,6 +1,10 @@
 # ChangeLog for perl-core/Compress-Raw-Bzip2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Bzip2/ChangeLog,v 1.6 2009/06/14 16:08:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Bzip2/ChangeLog,v 1.7 2009/06/19 00:19:32 ranger Exp $
+
+  19 Jun 2009; Brent Baude <ranger@gentoo.org>
+  Compress-Raw-Bzip2-2.020.ebuild:
+  Marking Compress-Raw-Bzip2-2.020 ppc64 for bug 273141
 
   14 Jun 2009; Jeroen Roovers <jer@gentoo.org>
   Compress-Raw-Bzip2-2.020.ebuild:
