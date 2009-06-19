@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/gst-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.52 2009/06/08 08:39:31 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.53 2009/06/18 12:37:35 dagger Exp $
+
+  18 Jun 2009; Robert Piasek <dagger@gentoo.org> gst-python-0.10.13.ebuild,
+  gst-python-0.10.15-r1.ebuild:
+  Added keyword ~arm to gst-python
 
   08 Jun 2009; Alexis Ballier <aballier@gentoo.org>
   gst-python-0.10.15-r1.ebuild:
