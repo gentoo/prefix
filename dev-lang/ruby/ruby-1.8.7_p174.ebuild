@@ -1,26 +1,23 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p173.ebuild,v 1.1 2009/06/10 05:00:47 graaff Exp $
-
-#PATCHES APPLY, DOESN'T COMPILE THOUGH
-#ONIGURUMA="onigd2_5_9"
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p174.ebuild,v 1.1 2009/06/18 13:12:32 a3li Exp $
 
 inherit autotools eutils flag-o-matic multilib versionator
-
-SLOT=$(get_version_component_range 1-2)
-MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 
 MY_P="${PN}-$(replace_version_separator 3 '-')"
 S=${WORKDIR}/${MY_P}
 
+SLOT=$(get_version_component_range 1-2)
+MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
+
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2"
-#	cjk? ( http://www.geocities.jp/kosako3/oniguruma/archive/${ONIGURUMA}.tar.gz )"
+SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2
+		 http://dev.a3li.info/gentoo/distfiles/${PN}-patches-${PV}.tar.bz2"
 
 LICENSE="|| ( Ruby GPL-2 )"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs" #cjk
+IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
@@ -41,6 +38,8 @@ PROVIDE="virtual/ruby"
 pkg_setup() {
 	use tk || return
 
+	# Note for EAPI-2 lovers: We'd like to show that custom message.
+	# *If* you can make USE dependencies show that, too, feel free to migrate.
 	if (use threads && ! built_with_use dev-lang/tk threads) \
 		|| (! use threads && built_with_use dev-lang/tk threads) ; then
 		eerror
@@ -56,20 +55,10 @@ pkg_setup() {
 
 src_unpack() {
 	unpack ${A}
-
-#	if use cjk ; then
-#		einfo "Applying ${ONIGURUMA}"
-#		pushd "${WORKDIR}/oniguruma"
-#		econf --with-rubydir="${S}" || die "oniguruma econf failed"
-#		emake $MY_SUFFIX || die "oniguruma emake failed"
-#		popd
-#	fi
-
-	cd "${S}/ext/dl"
-	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
 	cd "${S}"
-	epatch "${FILESDIR}/${PN}-mkconfig.patch"
-	epatch "${FILESDIR}/${PN}${MY_SUFFIX}-mkmf-parallel-install.patch"
+
+	EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
+		epatch "${WORKDIR}/patches-${PV}"
 
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
@@ -146,7 +135,7 @@ src_install() {
 	unset RUBYOPT
 
 	LD_LIBRARY_PATH="${ED}/usr/$(get_libdir)"
-	RUBYLIB="${S}:${LD_LIBRARY_PATH}/ruby/${SLOT}"
+	RUBYLIB="${S}:${ED}/usr/$(get_libdir)/ruby/${SLOT}"
 	for d in $(find "${S}/ext" -type d) ; do
 		RUBYLIB="${RUBYLIB}:$d"
 	done
