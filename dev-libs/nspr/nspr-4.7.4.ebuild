@@ -65,10 +65,17 @@ src_install () {
 	emake DESTDIR="${D}" install || die "emake install failed"
 
 	cd "${ED}"/usr/$(get_libdir)/nspr
+	if [[ ${get_libname} == .so ]] ; then
 	for file in *.so; do
 		mv ${file} ${file}.${MINOR_VERSION}
 		ln -s ${file}.${MINOR_VERSION} ${file}
 	done
+	elif [[ ${get_libname} == .dylib ]] ; then
+		for file in *.dylib ; do
+			mv ${file} ${file%.dylib}.${MINOR_VERSION}.dylib
+			ln -s ${file%.dylib}.${MINOR_VERSION}.dylib ${file}
+		done
+	fi
 	# cope with libraries being in /usr/lib/nspr
 	dodir /etc/env.d
 	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/nspr" > "${ED}/etc/env.d/08nspr"
