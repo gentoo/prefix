@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/columnize
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/columnize/ChangeLog,v 1.4 2009/03/20 05:08:01 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/columnize/ChangeLog,v 1.5 2009/06/18 18:42:37 graaff Exp $
+
+  18 Jun 2009; Hans de Graaff <graaff@gentoo.org> -columnize-0.2.ebuild,
+  -columnize-0.2.1.ebuild:
+  Remove old versions.
 
   20 Mar 2009; Joseph Jezak <josejx@gentoo.org> columnize-0.3.0.ebuild:
   Marked ~ppc for bug #252815.
