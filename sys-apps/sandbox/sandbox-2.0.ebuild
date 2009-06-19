@@ -31,8 +31,17 @@ sandbox_death_notice() {
 	ewarn "FEATURES=-sandbox emerge sandbox"
 }
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-prefix.patch
+}
+
 src_compile() {
 	filter-lfs-flags #90228
+
+	# enable usage of absolute libpath in prefix
+	use prefix && append-flags -DGENTOO_PREFIX
 
 	local OABI=${ABI}
 	for ABI in $(get_install_abis) ; do
