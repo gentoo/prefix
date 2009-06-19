@@ -1,0 +1,11 @@
+--- Include/pyport.h.orig	2009-06-18 16:41:15 +0200
++++ Include/pyport.h	2009-06-18 16:43:18 +0200
+@@ -468,7 +468,7 @@
+ /* On QNX 6, struct termio must be declared by including sys/termio.h
+    if TCGETA, TCSETA, TCSETAW, or TCSETAF are used.  sys/termio.h must
+    be included before termios.h or it will generate an error. */
+-#ifdef HAVE_SYS_TERMIO_H
++#if defined(HAVE_SYS_TERMIO_H) && defined(__QNX__)
+ #include <sys/termio.h>
+ #endif
+ 

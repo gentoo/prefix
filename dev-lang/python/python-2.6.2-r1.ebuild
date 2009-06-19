@@ -117,6 +117,9 @@ src_prepare() {
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
 
+	# http://bugs.python.org/issue6308
+	epatch "${FILESDIR}"/${P}-termios-noqnx.patch
+
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
 	if [[ ${CHOST} == *-interix* ]] ; then
