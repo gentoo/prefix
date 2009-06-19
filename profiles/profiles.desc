@@ -49,24 +49,24 @@ ia64		default/linux/ia64/2008.0/developer		stable
 ia64		default/linux/ia64/2008.0/server		stable
 
 # M68K Profiles
-m68k		default-linux/m68k				dev
+#m68k		default-linux/m68k				dev
 m68k		default/linux/m68k/2008.0			dev
 m68k		default/linux/m68k/2008.0/desktop		dev
 m68k		default/linux/m68k/2008.0/developer		dev
 m68k		default/linux/m68k/2008.0/server		dev
 
 # MIPS Profiles
-mips		default-linux/mips/2007.1-dev/cobalt/o32	dev
-mips		default-linux/mips/2007.1-dev/generic-be/o32	dev
-mips		default-linux/mips/2007.1-dev/ip27/o32		dev
-mips		default-linux/mips/2007.1-dev/ip28/o32		dev
-mips		default-linux/mips/2007.1-dev/ip30/o32		dev
-mips		default-linux/mips/2007.1-dev/cobalt/n32	dev
-mips		default-linux/mips/2007.1-dev/generic-be/n32	dev
-mips		default-linux/mips/2007.1-dev/ip27/n32		dev
-mips		default-linux/mips/2007.1-dev/ip28/n32		dev
-mips		default-linux/mips/2007.1-dev/ip30/n32		dev
-mips		default-linux/mips/2007.1-dev/generic-be/n64	dev
+#mips		default-linux/mips/2007.1-dev/cobalt/o32	dev
+#mips		default-linux/mips/2007.1-dev/generic-be/o32	dev
+#mips		default-linux/mips/2007.1-dev/ip27/o32		dev
+#mips		default-linux/mips/2007.1-dev/ip28/o32		dev
+#mips		default-linux/mips/2007.1-dev/ip30/o32		dev
+#mips		default-linux/mips/2007.1-dev/cobalt/n32	dev
+#mips		default-linux/mips/2007.1-dev/generic-be/n32	dev
+#mips		default-linux/mips/2007.1-dev/ip27/n32		dev
+#mips		default-linux/mips/2007.1-dev/ip28/n32		dev
+#mips		default-linux/mips/2007.1-dev/ip30/n32		dev
+#mips		default-linux/mips/2007.1-dev/generic-be/n64	dev
 mips		default/linux/mips/2008.0			dev
 mips		default/linux/mips/2008.0/cobalt		dev
 mips		default/linux/mips/2008.0/cobalt/desktop	dev
@@ -136,9 +136,9 @@ x86		default/linux/x86/2008.0/server			stable
 # Gentoo/FreeBSD Profiles
 amd64-fbsd	default/bsd/fbsd/amd64/7.1			dev
 amd64-fbsd	default/bsd/fbsd/amd64/7.2			dev
-sparc-fbsd	default-bsd/fbsd/6.2/sparc			dev
+#sparc-fbsd	default-bsd/fbsd/6.2/sparc			dev
 sparc-fbsd	default/bsd/fbsd/sparc/7.2			dev
-x86-fbsd	default-bsd/fbsd/6.2/x86			dev
+#x86-fbsd	default-bsd/fbsd/6.2/x86			dev
 x86-fbsd	default/bsd/fbsd/x86/7.1			dev
 x86-fbsd	default/bsd/fbsd/x86/7.2			dev
 
