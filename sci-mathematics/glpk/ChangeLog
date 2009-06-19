@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/glpk
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.36 2009/05/17 13:15:33 nixnut Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/ChangeLog,v 1.37 2009/06/18 07:53:32 bicatali Exp $
+
+*glpk-4.38 (18 Jun 2009)
+
+  18 Jun 2009; Sébastien Fabbro <bicatali@gentoo.org> +glpk-4.38.ebuild:
+  Version bump
 
   17 May 2009; nixnut <nixnut@gentoo.org> glpk-4.35.ebuild:
   ppc stable #245707
