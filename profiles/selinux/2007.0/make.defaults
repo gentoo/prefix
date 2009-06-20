@@ -1,5 +1,0 @@
-USE="selinux"
-
-FEATURES="sesandbox sfperms loadpolicy"
-
-PORTAGE_T="portage_t.merge"

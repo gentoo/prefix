@@ -1,9 +1,0 @@
-# Copyright 1999-2009 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-# $Header: $
-
-# Jeremy Olexa <darkside@gentoo.org> (21 Nov 2008)
-# file-4.25 lacks a define for SIZE_MAX. This causes issues on ia64-hpux.
-# file-4.26 is fixed but masked globally in Prefix. Since this is non-trivial to
-# fix, masked on ia64-hpux.
-=sys-apps/file-4.25

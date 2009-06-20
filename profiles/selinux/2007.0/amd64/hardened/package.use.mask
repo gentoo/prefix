@@ -1,3 +1,0 @@
-# 2008/08/01 Jean-Noël Rivasseau <elvanor@gentoo.org>
-# Disabling gcj flag, no gcc-4.3.1 yet
-dev-java/eclipse-ecj gcj

@@ -1,2 +1,0 @@
-# Unmask the flag which corresponds to ARCH.
--ppc

@@ -1,8 +1,0 @@
-# Copyright 1999-2009 Gentoo Foundation
-# Distributed under the terms of the GNU General Public License v2
-# $Header: $
-
-# Jeremy Olexa <darkside@gentoo.org> (29 Dec 2008)
-# app-misc/pax-utils-0.1.19 works fine on linux (and it should because it is
-# globally masked for GNU-isms)
--~app-misc/pax-utils-0.1.19

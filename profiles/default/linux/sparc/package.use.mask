@@ -1,3 +1,0 @@
-# Steve Arnold <nerdboy@gentoo.org> (15 Oct 2008)
-# Needs newer java-config, yada yada...
-dev-util/astyle java
