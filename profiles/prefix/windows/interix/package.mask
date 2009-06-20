@@ -22,12 +22,6 @@
 # making installation fail.
 =dev-util/subversion-1.6.2*
 
-# Markus Duft <mduft@gentoo.org> (12 Mar 2009)
-# this doesn't build at least on interix:
-# libtool: link: cannot find the library `../../libltdl/libltdlc.la' 
-#   or unhandled argument `../../libltdl/libltdlc.la'
-=media-gfx/graphviz-2.22.0
-
 # Markus Duft <mduft@gentoo.org> (02 Feb 2009)
 # this does not work correctly, since there seems to be some
 # more non-trivial problems with dbus :*(
@@ -47,11 +41,6 @@
 # Does not build with the slang interface, and
 # somebody removed the use flag for ncurses (bug #220365)
 >=app-misc/mc-4.6.2_pre1
-
-# Markus Duft <mduft@gentoo.org> (05 May 2008)
-# Does not build on interix (lots of unresolved
-# symbols which should be local...).
-=app-antivirus/clamav-0.93*
 
 # Michael Haubenwallner <haubi@gentoo.org> (18 Mar 2008)
 # Interix patches not working yet (mduft)
