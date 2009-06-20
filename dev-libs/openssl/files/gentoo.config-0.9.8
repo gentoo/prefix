@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/files/gentoo.config-0.9.8,v 1.16 2007/04/01 11:03:52 vapier Exp $
@@ -31,7 +31,7 @@ if [[ $1 == "test" ]] ; then
 		"i686-apple-darwinX           |darwin-i386-cc" \
 		"i386-apple-darwinX           |darwin-i386-cc" \
 		"powerpc-apple-darwinX        |darwin-ppc-cc" \
-		"i586-pc-winnt                |parity" \
+		"i586-pc-winnt                |winnt-parity" \
 	;do
 		CHOST=${c/|*}
 		ret_want=${c/*|}
@@ -124,7 +124,7 @@ aix)
 	;;
 darwin)
 	case ${chost_machine} in
-		powerpc64)    machine=ppc64-cc; system=${system}64;;
+		powerpc64)    machine=ppc-cc; system=${system}64;;
 		powerpc)      machine=ppc-cc;;
 		i?86*)        machine=i386-cc;;
 		x86_64)       machine=x86_64-cc; system=${system}64;;
