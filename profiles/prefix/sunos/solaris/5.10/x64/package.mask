@@ -1,8 +1,3 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
-
-# Fabian Groffen <grobian@gentoo.org> (12 Jan 2008)
-# fails to compile:
-# zzipwrap.c:(.text+0x7e): undefined reference to `zzip_opendir_ext_io64'
-=dev-libs/zziplib-0.13.52

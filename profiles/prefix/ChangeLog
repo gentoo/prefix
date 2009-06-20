@@ -3,6 +3,11 @@
 # $Id$
 
   20 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  sunos/solaris/5.10/x64/package.mask, sunos/solaris/5.11/x64/package.mask,
+  sunos/solaris/package.mask:
+  clean up sunos/* masks
+
+  20 Jun 2009; Fabian Groffen <grobian@gentoo.org>
   windows/interix/3.5/package.mask, windows/interix/package.mask:
   clean up windows/* masks
 

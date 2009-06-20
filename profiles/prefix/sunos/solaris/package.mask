@@ -5,7 +5,6 @@
 
 # Fabian Groffen <grobian@gentoo.org> (17 Mar 2009)
 # segfaults during install, seems to suffer from race conditions, bug #270053
-=dev-lang/ruby-1.8.7_p160
 =dev-lang/ruby-1.8.6_p368
 
 # Fabian Groffen <grobian@gentoo.org> (14 Mar 2009)
@@ -17,10 +16,6 @@
 # Fails to compile, complaining about a missing target for gmon.o, maybe
 # related to http://gcc.gnu.org/ml/gcc-patches/2008-11/msg00990.html
 =sys-devel/gcc-4.3.3*
-
-# Fabian Groffen <grobian@gentoo.org> (16 Jan 2009)
-# I'm too lazy to try and fix the linkage error
-=media-video/mplayer-1.0_rc2_p28288
 
 # Fabian Groffen <grobian@gentoo.org> (16 Jan 2009)
 # makes packages fail to compile: libcharset.a is not a valid archive
