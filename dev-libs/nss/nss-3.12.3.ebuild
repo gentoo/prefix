@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/security/nss/releases/${RTM_NAME}
 
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="utils"
 
 S="${WORKDIR}/${P}"
@@ -55,8 +55,8 @@ src_compile() {
 	echo > "${T}"/test.c
 	$(tc-getCC) -c "${T}"/test.c -o "${T}"/test.o
 	case $(file "${T}"/test.o) in
-	*64-bit*) export USE_64=1;;
-	*32-bit*) ;;
+	*64-bit*|*ppc64*|*x86_64*) export USE_64=1;;
+	*32-bit*|*ppc*|*i386*) ;;
 	*) die "Failed to detect whether your arch is 64bits or 32bits, disable distcc if you're using it, please";;
 	esac
 
@@ -78,7 +78,7 @@ src_install () {
 	# put all *.a files in /usr/lib/nss (because some have conflicting names
 	# with existing libraries)
 	dodir /usr/$(get_libdir)/nss
-	cp -L */lib/*.so "${ED}"/usr/$(get_libdir)/nss || die "copying shared libs failed"
+	cp -L */lib/*$(get_libname) "${ED}"/usr/$(get_libdir)/nss || die "copying shared libs failed"
 	cp -L */lib/*.chk "${ED}"/usr/$(get_libdir)/nss || die "copying chk files failed"
 	cp -L */lib/*.a "${ED}"/usr/$(get_libdir)/nss || die "copying libs failed"
 
@@ -87,10 +87,20 @@ src_install () {
 	doins private/nss/*.h
 	doins public/nss/*.h
 	cd "${ED}"/usr/$(get_libdir)/nss
+	if [[ $(get_libname) == .so ]] ; then
 	for file in *.so; do
 		mv ${file} ${file}.${MINOR_VERSION}
 		ln -s ${file}.${MINOR_VERSION} ${file}
 	done
+	elif [[ $(get_libname) == .dylib ]] ; then
+		local n=
+		for file in *.dylib ; do
+			n=${file%.dylib}.${MINOR_VERSION}.dylib
+			mv ${file} ${n}
+			ln -s ${n} ${file}
+			install_name_tool -id "${EPREFIX}/usr/lib/nss/${n}" ${n} || die
+		done
+	fi
 
 	# coping with nss being in a different path. We move up priority to
 	# ensure that nss/nspr are used specifically before searching elsewhere.
