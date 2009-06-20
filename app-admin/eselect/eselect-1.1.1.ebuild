@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1.1.ebuild,v 1.1 2009/06/06 18:05:22 ulm Exp $
 
-inherit eutils prefix
+inherit eutils
 
 DESCRIPTION="Gentoo's multi-purpose configuration and management tool"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
@@ -42,9 +42,6 @@ src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README TODO doc/*.txt
 	use doc && dohtml *.html doc/*
-
-	# needed by news-tng module
-	keepdir /var/lib/gentoo/news
 
 	# needed by news-tng module
 	keepdir /var/lib/gentoo/news
