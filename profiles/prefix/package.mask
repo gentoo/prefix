@@ -87,11 +87,6 @@ net-wireless/aircrack-ng
 # to break, waiting for gentoo-x86 to resolve it in some way
 =sys-libs/readline-6*
 
-# Fabian Groffen <grobian@gentoo.org> (31 Jan 2009)
-# heiko_ and I are done with it, it doesn't compile on Darwin and
-# Solaris
-=media-video/ffmpeg-0.4.9_p20090121
-
 # Fabian Groffen <grobian@gentoo.org> (25 Jan 2009)
 # Some weird libtool breakage on Solaris and Darwin
 =dev-python/pygobject-2.16.0
@@ -99,10 +94,6 @@ net-wireless/aircrack-ng
 # Fabian Groffen <grobian@gentoo.org> (22 Jan 2009)
 # b0rkened on Darwin, Solaris and IRIX, bug #256022, bug #255742
 =sys-apps/groff-1.20.1-r1
-
-# Fabian Groffen <grobian@gentoo.org> (12 Jan 2009)
-# Prefix users are hardcore (at least I am...)
--=mail-client/mutt-1.5.19
 
 # Fabian Groffen <grobian@gentoo.org> (12 Jan 2009)
 # fsck-ing perl issue, bug #254029
@@ -115,10 +106,6 @@ net-wireless/aircrack-ng
 # Issues on Linux too, elevate mask to global, not solaris specific.
 ~sys-apps/findutils-4.5.3
 ~sys-apps/findutils-4.5.4
-
-# Fabian Groffen <grobian@gentoo.org> (22 Dec 2008)
-# Can't compile itself. On Solaris and Linux. (maybe others)
-=sys-devel/binutils-2.19.50.0.1
 
 # Fabian Groffen <grobian@gentoo.org> (03 Dec 2008)
 # contains GNU-isms that the no-GNU-man should fix himself, bug #249731
@@ -144,15 +131,6 @@ net-fs/openafs
 # symbol), makes me too worried about it, hence global mask.
 =sys-apps/file-4.26
 
-# Fabian Groffen <grobian@gentoo.org> (24 Aug 2008)
-# We don't have gdm, so we better have the security fix (even though
-# it's suspicious)
--=dev-libs/libxml2-2.6.32-r1
-
-# Fabian Groffen <grobian@gentoo.org> (17 Jul 2008)
-# This is a bump for Interix only
-=sys-devel/gcc-4.2.4-r00.1
-
 # Fabian Groffen <grobian@gentoo.org> (06 Jul 2008)
 # Needs to have bug #230981 sorted out (e2fsprogs dependency)
 ~x11-libs/libSM-1.1.0
@@ -162,20 +140,11 @@ net-fs/openafs
 # bail out (need to file a bug for this still)
 ~mail-mta/ssmtp-2.62
 
-# Fabian Groffen <grobian@gentoo.org> (13 Jun 2008)
-# Experimental of nature, because it's not yet in gentoo-x86
-=sys-devel/libperl-5.10.0
-=dev-lang/perl-5.10.0
-
 # Jeremy Olexa <darkside@gentoo.org> (16 May 2008)
 # distcc-config --install is rather 'interesting' in prefix and I am not 
 # convinced that it works correctly. Also, you will have to add CHOST=<...> to
 # your make.conf. bug #210268
 sys-devel/distcc
-
-# Fabian Groffen <grobian@gentoo.org> (05 May 2008)
-# tetex is old cruft that you shouldn't use, texlive is the way to go!
-app-text/tetex
 
 # Markus Duft <mduft@gentoo.org> (17 Apr 2008)
 # Breaks things like gettext and fastjar because it introduces some
@@ -210,11 +179,6 @@ sys-apps/bsd-man-pages
 # work in progress (in prefix)
 app-emacs/jde
 dev-java/kaffe
-
-# Elias Pipping <pipping@gentoo.org> (18 Aug 2007)
-# does not compile without USE=nls; --color is broken on single files
-# see bug #189311 for details
-=sys-apps/grep-2.5.3
 
 # Fabian Groffen <grobian@gentoo.org> (04 Apr 2007)
 # Don't use this, it is only provided for experimentation and as tool to
