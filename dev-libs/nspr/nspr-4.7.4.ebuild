@@ -10,7 +10,7 @@ SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v${PV}/src/${P}.tar
 
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="ipv6 debug"
 
 DEPEND=">=dev-db/sqlite-3.5"
@@ -65,12 +65,12 @@ src_install () {
 	emake DESTDIR="${D}" install || die "emake install failed"
 
 	cd "${ED}"/usr/$(get_libdir)/nspr
-	if [[ ${get_libname} == .so ]] ; then
+	if [[ $(get_libname) == .so ]] ; then
 	for file in *.so; do
 		mv ${file} ${file}.${MINOR_VERSION}
 		ln -s ${file}.${MINOR_VERSION} ${file}
 	done
-	elif [[ ${get_libname} == .dylib ]] ; then
+	elif [[ $(get_libname) == .dylib ]] ; then
 		local n=
 		for file in *.dylib ; do
 			n=${file%.dylib}.${MINOR_VERSION}.dylib
