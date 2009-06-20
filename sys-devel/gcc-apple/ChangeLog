@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*gcc-apple-4.2.1_p5574 (20 Jun 2009)
+*gcc-apple-4.0.1_p5493 (20 Jun 2009)
+
+  20 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  +gcc-apple-4.0.1_p5493.ebuild, +gcc-apple-4.2.1_p5574.ebuild:
+  Version bumps to Developer Tools 3.1.3 versions
+
   01 Jun 2009; Fabian Groffen <grobian@gentoo.org>
   gcc-apple-4.2.1_p5566-r2.ebuild,
   +files/gcc-apple-4.2.1_p5566-x86_64-defines.patch:
