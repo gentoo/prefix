@@ -2,13 +2,6 @@
 
 export PTREEDIR="$(pwd -P)"
 for d in \
-		profiles/base \
-		profiles/desc \
-		profiles/arch \
-		profiles/releases \
-		profiles/default \
-		profiles/updates \
-		profiles/features \
 		eclass \
 		licenses \
 		*-*/* virtual/* \
