@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.1_alpha2.ebuild,v 1.1 2009/06/09 16:55:43 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libtheora/libtheora-1.1_alpha2.ebuild,v 1.2 2009/06/21 03:37:29 ssuominen Exp $
 
 EAPI=2
 inherit autotools eutils flag-o-matic
@@ -15,7 +15,10 @@ KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc encode examples"
 
 RDEPEND="media-libs/libogg
-	encode? ( media-libs/libvorbis )"
+	encode? ( media-libs/libvorbis )
+	examples? ( media-libs/libpng
+		media-libs/libvorbis
+		media-libs/libsdl )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )
 	dev-util/pkgconfig"
@@ -32,32 +35,34 @@ src_configure() {
 	use x86 && filter-flags -fforce-addr -frename-registers #200549
 	use doc || export ac_cv_prog_HAVE_DOXYGEN="false"
 
-	# Don't build specs even with doc enabled, just a few people would need
-	# it and causes sandbox violations.
-	export ac_cv_prog_HAVE_PDFLATEX="false"
+	local myconf
+	use examples && myconf="--enable-encode"
 
-	local myconf=""
-	if use x86-macos && use encode; then
-		myconf="--disable-asm"
-	fi
+	# --disable-spec because LaTeX documentation has been prebuilt
 	econf \
 		--disable-dependency-tracking \
-		--disable-sdltest \
+		--disable-spec \
 		$(use_enable encode) \
-		--disable-examples
+		$(use_enable examples) \
+		${myconf}
 }
 
 src_install() {
 	emake DESTDIR="${D}" docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		install || die "emake install failed"
+
 	dodoc AUTHORS CHANGES README
 	prepalldocs
 
 	if use examples; then
-		rm examples/Makefile*
-		insinto /usr/share/doc/${PF}/examples
-		doins examples/*.[ch]
-	fi
+		if use doc; then
+			insinto /usr/share/doc/${PF}/examples
+			doins examples/*.[ch]
+		fi
 
-	dodoc README
+		dobin examples/.libs/png2theora || die "dobin failed"
+		for bin in dump_{psnr,video} {encoder,player}_example; do
+			newbin examples/.libs/${bin} theora_${bin} || die "newbin failed"
+		done
+	fi
 }
