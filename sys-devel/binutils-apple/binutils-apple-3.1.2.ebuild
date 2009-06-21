@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/binutils-apple-3.1.2.ebuild,v 1.1 2009/06/21 10:06:52 grobian Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -145,24 +145,26 @@ install_ld64() {
 }
 
 install_cctools() {
+	local ED=${ED-${D}}
+
 	cd "${S}"/${CCTOOLS}
 	emake install_all_but_headers \
 		EFITOOLS= \
 		COMMON_SUBDIRS='ar misc otool' \
 		DSTROOT=\"${D}\" \
-		BINDIR=\"${EPREFIX}\"/${BINPATH} \
-		LOCBINDIR=\"${EPREFIX}\"/${BINPATH} \
-		USRBINDIR=\"${EPREFIX}\"/${BINPATH} \
-		LOCLIBDIR=\"${EPREFIX}\"/${LIBPATH} \
-		MANDIR=\"${EPREFIX}\"/${DATAPATH}/man/
+		BINDIR=\"${EPREFIX}\"${BINPATH} \
+		LOCBINDIR=\"${EPREFIX}\"${BINPATH} \
+		USRBINDIR=\"${EPREFIX}\"${BINPATH} \
+		LOCLIBDIR=\"${EPREFIX}\"${LIBPATH} \
+		MANDIR=\"${EPREFIX}\"${DATAPATH}/man/
 	cd "${S}"/${CCTOOLS}/as
 	emake install \
 		BUILD_OBSOLETE_ARCH= \
 		DSTROOT=\"${D}\" \
-		USRBINDIR=\"${EPREFIX}\"/${BINPATH} \
-		LIBDIR=\"${EPREFIX}\"/${LIBPATH}
+		USRBINDIR=\"${EPREFIX}\"${BINPATH} \
+		LIBDIR=\"${EPREFIX}\"${LIBPATH}
 
-	cd "${ED}"/${BINPATH}
+	cd "${ED}"${BINPATH}
 	insinto ${DATAPATH}/man/man1
 	local skips manpage
 	# ar brings an up-to-date manpage with it

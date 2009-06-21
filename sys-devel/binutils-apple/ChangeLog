@@ -1,9 +1,11 @@
 # ChangeLog for sys-devel/binutils-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Id$
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/ChangeLog,v 1.1 2009/06/21 10:06:52 grobian Exp $
+
+*binutils-apple-3.1.2-r1 (01 Jun 2009)
 
   01 Jun 2009; Fabian Groffen <grobian@gentoo.org>
-  binutils-apple-3.1.2-r1.ebuild:
+  +binutils-apple-3.1.2-r1.ebuild:
   Version bump for 64-bits native testing purposes, not yet ready for
   prime-time
 
