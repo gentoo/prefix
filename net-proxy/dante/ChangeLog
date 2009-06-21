@@ -1,6 +1,9 @@
 # ChangeLog for net-proxy/dante
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/ChangeLog,v 1.52 2009/03/27 22:58:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/dante/ChangeLog,v 1.53 2009/06/20 12:13:20 mrness Exp $
+
+  20 Jun 2009; Alin Năstac <mrness@gentoo.org> -dante-1.1.19-r1.ebuild:
+  Remove obsolete revision (#260597).
 
   27 Mar 2009; Jeroen Roovers <jer@gentoo.org> dante-1.1.19-r4.ebuild:
   Stable for HPPA (bug #260597).
