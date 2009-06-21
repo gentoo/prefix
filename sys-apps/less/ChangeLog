@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.102 2009/06/17 15:56:15 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.103 2009/06/19 20:37:24 ranger Exp $
+
+  19 Jun 2009; Brent Baude <ranger@gentoo.org> less-429.ebuild:
+  stable ppc64, bug 273794
 
   17 Jun 2009; Thomas Anderson <gentoofan23@gentoo.org> less-429.ebuild:
   stable amd64, bug 273794
