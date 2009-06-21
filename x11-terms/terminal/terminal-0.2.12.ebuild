@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.12.ebuild,v 1.6 2009/06/15 00:09:29 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.12.ebuild,v 1.7 2009/06/20 07:35:35 angelos Exp $
 
 EAPI="1"
 
@@ -31,6 +31,7 @@ RDEPEND=">=dev-libs/glib-2.6:2
 	dbus? ( dev-libs/dbus-glib )"
 DEPEND="${RDEPEND}
 	dev-util/intltool
+	dev-util/xfce4-dev-tools
 	doc? ( dev-libs/libxslt )"
 
 XFCE4_PATCHES="${FILESDIR}/${PN}-configure.in.patch"
