@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/xproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.71 2009/05/23 17:40:58 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.72 2009/06/19 21:20:46 remi Exp $
+
+  19 Jun 2009; Rémi Cardona <remi@gentoo.org> -xproto-7.0.12.ebuild,
+  -xproto-7.0.13.ebuild:
+  drop old ebuilds
 
   23 May 2009; Rémi Cardona <remi@gentoo.org> xproto-7.0.15.ebuild:
   drop useless src_unpack
