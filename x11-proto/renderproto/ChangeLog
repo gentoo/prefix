@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/renderproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/ChangeLog,v 1.42 2009/05/15 14:28:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/ChangeLog,v 1.43 2009/06/19 13:57:14 remi Exp $
+
+  19 Jun 2009; Rémi Cardona <remi@gentoo.org> -renderproto-0.9.3-r1.ebuild:
+  remove p.masked version, old Xlib headers are unfixable, apps just have to
+  adapt
 
   15 May 2009; Raúl Porcel <armin76@gentoo.org> renderproto-0.9.3.ebuild:
   arm/s390 stable
