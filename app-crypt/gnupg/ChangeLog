@@ -1,6 +1,14 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.347 2009/05/16 07:48:15 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.348 2009/06/21 02:36:54 arfrever Exp $
+
+*gnupg-2.0.12 (21 Jun 2009)
+
+  21 Jun 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -gnupg-2.0.9.ebuild, -gnupg-2.0.9-r1.ebuild,
+  -files/gnupg-2.0.9-gcc-4.3.patch, -gnupg-2.0.10.ebuild,
+  +gnupg-2.0.12.ebuild, +files/gnupg-2.0.12-adns.patch:
+  Version bump. Fix automagic dependency on net-libs/adns (bug #265570).
 
   16 May 2009; Robin H. Johnson <robbat2@gentoo.org> gnupg-1.4.9.ebuild,
   gnupg-2.0.11.ebuild:

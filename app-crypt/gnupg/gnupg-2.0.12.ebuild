@@ -1,8 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.10.ebuild,v 1.4 2009/03/23 17:15:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.12.ebuild,v 1.1 2009/06/21 02:36:54 arfrever Exp $
 
-inherit flag-o-matic toolchain-funcs
+EAPI="2"
+
+inherit autotools eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="The GNU Privacy Guard, a GPL pgp replacement"
 HOMEPAGE="http://www.gnupg.org/"
@@ -10,18 +12,20 @@ SRC_URI="mirror://gnupg/gnupg/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="bzip2 caps doc ldap nls openct pcsc-lite static selinux smartcard"
+KEYWORDS="~x64-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
+IUSE="adns bzip2 caps doc ldap nls openct pcsc-lite static selinux smartcard"
 
 COMMON_DEPEND_LIBS="
 	>=dev-libs/pth-1.3.7
 	>=dev-libs/libgcrypt-1.4
 	>=dev-libs/libksba-1.0.2
-	>=dev-libs/libgpg-error-1.4
-	>=net-misc/curl-7.7.2
+	>=dev-libs/libgpg-error-1.7
+	>=net-misc/curl-7.10
+	adns? ( >=net-libs/adns-1.4 )
 	bzip2? ( app-arch/bzip2 )
 	pcsc-lite? ( >=sys-apps/pcsc-lite-1.3.0 )
 	openct? ( >=dev-libs/openct-0.5.0 )
+	smartcard? ( =virtual/libusb-0* )
 	ldap? ( net-nds/openldap )"
 COMMON_DEPEND_BINS="app-crypt/pinentry"
 
@@ -40,32 +44,41 @@ RDEPEND="!static? ( ${COMMON_DEPEND_LIBS} )
 	selinux? ( sec-policy/selinux-gnupg )
 	nls? ( virtual/libintl )"
 
-src_compile() {
+src_prepare() {
+	epatch "${FILESDIR}/${P}-adns.patch"
+	eautoreconf
+}
+
+src_configure() {
 	# 'USE=static' support was requested:
 	# gnupg1: bug #29299
 	# gnupg2: bug #159623
 	use static && append-ldflags -static
 
 	local myconf=
-	# symcryptrun does some non-portable stuff, which breaks on Solaris,
-	# disable for now, can't easily come up with a patch
-	[[ ${CHOST} != *-solaris* ]] \
-		&& myconf="${myconf} --enable-symcryptrun" \
-		|| myconf="${myconf} --disable-symcryptrun"
+# hope it's fixed in the meantime -- grobian@20090621
+#	# symcryptrun does some non-portable stuff, which breaks on Solaris,
+#	# disable for now, can't easily come up with a patch
+#	[[ ${CHOST} != *-solaris* ]] \
+#		&& myconf="${myconf} --enable-symcryptrun" \
+#		|| myconf="${myconf} --disable-symcryptrun"
 
 	econf \
 		--docdir="${EPREFIX}/usr/share/doc/${PF}" \
 		--enable-gpg \
 		--enable-gpgsm \
 		--enable-agent \
+		$(use_with adns) \
 		$(use_enable bzip2) \
 		$(use_enable smartcard scdaemon) \
 		$(use_enable nls) \
 		$(use_enable ldap) \
-		$(use_enable static) \
-		$(use_enable caps capabilities) \
+		$(use_with caps capabilities) \
 		CC_FOR_BUILD=$(tc-getBUILD_CC) \
 		${myconf}
+}
+
+src_compile() {
 	emake || die "emake failed"
 	if use doc; then
 		cd doc
@@ -78,6 +91,7 @@ src_install() {
 	dodoc ChangeLog NEWS README THANKS TODO VERSION
 
 	mv "${ED}/usr/share/gnupg"/help* "${ED}/usr/share/doc/${PF}"
+	ecompressdir "/usr/share/doc/${P}"
 
 	dosym gpg2 /usr/bin/gpg
 	dosym gpgv2 /usr/bin/gpgv
