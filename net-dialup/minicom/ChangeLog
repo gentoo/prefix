@@ -1,6 +1,13 @@
 # ChangeLog for net-dialup/minicom
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dialup/minicom/ChangeLog,v 1.68 2009/05/19 21:58:44 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dialup/minicom/ChangeLog,v 1.69 2009/06/20 10:36:57 mrness Exp $
+
+*minicom-2.3-r2 (20 Jun 2009)
+
+  20 Jun 2009; Alin Năstac <mrness@gentoo.org>
+  files/minicom-2.3-getline-rename.patch, -minicom-2.3-r1.ebuild,
+  +minicom-2.3-r2.ebuild:
+  Update getline-rename.patch (#270452). Migrate to EAPI 2.
 
   19 May 2009; Markus Ullmann <jokey@gentoo.org> minicom-2.3-r1.ebuild,
   +files/minicom-2.3-getline-rename.patch:

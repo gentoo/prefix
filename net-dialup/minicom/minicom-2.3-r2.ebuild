@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dialup/minicom/minicom-2.3-r1.ebuild,v 1.7 2009/05/19 21:58:44 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dialup/minicom/minicom-2.3-r2.ebuild,v 1.1 2009/06/20 10:36:57 mrness Exp $
+
+EAPI="2"
 
 inherit eutils
 
@@ -26,19 +28,17 @@ RDEPEND="${COMMON_DEPEND}
 MY_AVAILABLE_LINGUAS=" cs da de es fi fr hu ja nb pl pt_BR ro ru rw sv vi zh_TW"
 IUSE="${IUSE} ${MY_AVAILABLE_LINGUAS// / linguas_}"
 
-src_unpack() {
-	unpack ${A}
+src_prepare() {
 	epatch "${FILESDIR}"/${P}-gentoo-runscript.patch
 
 	#glibc name conflict
 	epatch "${FILESDIR}"/${P}-getline-rename.patch
 }
 
-src_compile() {
+src_configure() {
 	econf --sysconfdir="${EPREFIX}"/etc/${PN} \
 		$(use_enable nls) \
 		|| die "econf failed"
-	emake || die "emake failed"
 }
 
 src_install() {
