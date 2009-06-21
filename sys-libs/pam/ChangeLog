@@ -1,6 +1,23 @@
 # ChangeLog for sys-libs/pam
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.238 2009/03/27 17:08:40 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.241 2009/06/20 20:24:44 flameeyes Exp $
+
+  20 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> pam-1.0.4.ebuild,
+  pam-1.1.0.ebuild:
+  Shut up a few QA warnings.
+
+*pam-1.1.0 (20 Jun 2009)
+
+  20 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> +pam-1.1.0.ebuild,
+  +files/Linux-PAM-1.1.0-debug.patch:
+  Version bump to new release. Some of the interesting changes: the debug
+  USE flag is properly set up this time, we don't patch man regeneration any
+  longer (should be fixed upsteram), don't touch the modules' README files
+  until install phase, don't error out on pam_timestamp usage, this PAM
+  version fixes it. Also drop the update warnings on the split PAM modules.
+
+  20 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> -pam-1.0.1.ebuild:
+  Remove old version.
 
   27 Mar 2009; Raúl Porcel <armin76@gentoo.org> pam-1.0.4.ebuild:
   m68k stable, thanks to kolla for testing
