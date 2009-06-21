@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p6.ebuild,v 1.7 2009/03/29 19:51:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p6.ebuild,v 1.9 2009/06/20 23:12:04 robbat2 Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-${PV:0:3}/${MY_P}.tar
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~m68k-mint"
-IUSE="caps debug ipv6 openntpd parse-clocks selinux ssl zeroconf"
+IUSE="caps debug ipv6 openntpd parse-clocks selinux ssl vim-syntax zeroconf"
 
 DEPEND=">=sys-libs/ncurses-5.2
 	>=sys-libs/readline-4.1
@@ -22,6 +22,8 @@ DEPEND=">=sys-libs/ncurses-5.2
 	!openntpd? ( !net-misc/openntpd )
 	ssl? ( dev-libs/openssl )
 	selinux? ( sec-policy/selinux-ntp )"
+RDEPEND="${DEPEND}
+	vim-syntax? ( app-vim/ntp-syntax )"
 PDEPEND="openntpd? ( net-misc/openntpd )"
 
 S=${WORKDIR}/${MY_P}
@@ -53,6 +55,7 @@ src_unpack() {
 	# Needs to be ported ...
 	#epatch "${FILESDIR}"/4.2.0.20040617-hostname.patch
 	epatch "${FILESDIR}"/${PN}-4.2.4_p5-adjtimex.patch #254030
+	epatch "${FILESDIR}"/${PN}-4.2.4_p7-nano.patch #270483
 	append-cppflags -D_GNU_SOURCE #264109
 
 	sed -i \
