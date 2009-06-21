@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.16.0.ebuild,v 1.7 2009/06/16 18:22:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.16.0.ebuild,v 1.8 2009/06/19 22:06:46 ranger Exp $
 
 inherit multilib eutils
 
