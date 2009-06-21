@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Copyright 1999-2005 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/files/gentoo.config-0.9.8,v 1.16 2007/04/01 11:03:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/files/gentoo.config-0.9.8,v 1.17 2009/06/21 11:40:34 grobian Exp $
 #
 # Openssl doesn't play along nicely with cross-compiling 
 # like autotools based projects, so let's teach it new tricks.
@@ -52,12 +52,12 @@ fi
 
 # Detect the operating system
 case ${CHOST} in
-	*-linux*)    system="linux";;
-	*-freebsd*)  system="BSD";;
-	*-solaris*)  system="solaris";;
 	*-aix*)      system="aix";;
 	*-darwin*)   system="darwin";;
+	*-freebsd*)  system="BSD";;
 	*-hpux*)     system="hpux";;
+	*-linux*)    system="linux";;
+	*-solaris*)  system="solaris";;
 	*-winnt*)    system="winnt";;
 	*)           exit 0;;
 esac
@@ -111,14 +111,6 @@ BSD)
 		*)            machine=generic32;;
 	esac
 	;;
-solaris)
-	case ${chost_machine} in
-		i386)         machine=x86-${compiler} ;;
-		x86_64*)      machine=x86_64-${compiler}; system=${system}64;;
-		sparcv9*)     machine=sparcv9-${compiler}; system=${system}64;;
-		sparc*)       machine=sparcv8-${compiler};;
-	esac
-	;;
 aix)
 	machine=${compiler}
 	;;
@@ -135,8 +127,17 @@ hpux)
 		ia64)	machine=ia64-${compiler} ;;
 	esac
 	;;
+solaris)
+	case ${chost_machine} in
+		i386)         machine=x86-${compiler} ;;
+		x86_64*)      machine=x86_64-${compiler}; system=${system}64;;
+		sparcv9*)     machine=sparcv9-${compiler}; system=${system}64;;
+		sparc*)       machine=sparcv8-${compiler};;
+	esac
+	;;
 winnt)
-	machine=parity ;;
+	machine=parity
+	;;
 esac
 
 
