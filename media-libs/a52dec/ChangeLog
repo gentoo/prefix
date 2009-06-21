@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/a52dec
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/ChangeLog,v 1.59 2009/06/11 15:04:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/ChangeLog,v 1.60 2009/06/19 21:35:36 ranger Exp $
+
+  19 Jun 2009; Brent Baude <ranger@gentoo.org> a52dec-0.7.4-r6.ebuild:
+  stable ppc64, bug 272321
 
   11 Jun 2009; Raúl Porcel <armin76@gentoo.org> a52dec-0.7.4-r6.ebuild:
   arm/ia64/sh/sparc/x86 stable wrt #272321
