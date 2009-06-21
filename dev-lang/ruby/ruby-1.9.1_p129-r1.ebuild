@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1_p129-r1.ebuild,v 1.1 2009/05/27 16:40:13 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1_p129-r1.ebuild,v 1.2 2009/06/20 17:11:24 flameeyes Exp $
 
 EAPI=2
 
@@ -153,7 +153,7 @@ src_install() {
 	export GEM_HOME="${ED}/usr/$(get_libdir)/ruby${MY_SUFFIX}/gems/${RUBYVERSION}"
 	export GEM_PATH="${GEM_HOME}/"
 
-	LD_LIBRARY_PATH="${ED}/usr/$(get_libdir)"
+	LD_LIBRARY_PATH="${ED}/usr/$(get_libdir)${LD_LIBRARY_PATH+:}${LD_LIBRARY_PATH}"
 	RUBYLIB="${S}:${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}"
 	for d in $(find "${S}/ext" -type d) ; do
 		RUBYLIB="${RUBYLIB}:$d"
