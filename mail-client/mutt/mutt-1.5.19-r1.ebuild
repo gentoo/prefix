@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19-r1.ebuild,v 1.1 2009/06/18 09:20:37 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19-r1.ebuild,v 1.2 2009/06/19 08:05:39 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -81,7 +81,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
 	epatch "${FILESDIR}"/mutt-1.5.19-wcfuncs.patch
 
-	if ! use vanilla && ! use sidebar ; then
+	if use !vanilla && use !sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
 		for p in "${PATCHDIR}"/*.patch ; do
 			epatch "${p}"
@@ -181,7 +181,7 @@ src_compile() {
 		myconf="${myconf} --with-homespool=Maildir"
 	fi
 
-	if ! use vanilla; then
+	if use !vanilla && use !sidebar ; then
 		# rr.compressed patch
 		myconf="${myconf} --enable-compressed"
 

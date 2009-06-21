@@ -2,6 +2,7 @@ http://thread.gmane.org/gmane.comp.security.oss.general/1847
 http://bugs.gentoo.org/show_bug.cgi?id=274488
 
 whitespace-only hunks removed
+removed mutt_read_line change hunk, thanks Martin Jansa (bug #274603)
 
 Index: mutt_ssl_gnutls.c
 ===================================================================
@@ -28,13 +29,6 @@ Index: mutt_ssl_gnutls.c
 +  safe_fclose (&fd1);
  
    do {
-@@ -505,5 +514,5 @@
-     buf[0] = '\0';
-     tls_fingerprint (GNUTLS_DIG_MD5, buf, sizeof (buf), cert);
--    while ((linestr = mutt_read_line(linestr, &linestrsize, fp, &linenum)) != NULL)
-+    while ((linestr = mutt_read_line(linestr, &linestrsize, fp, &linenum, 0)) != NULL)
-     {
-       if(linestr[0] == '#' && linestr[1] == 'H')
 @@ -518,5 +527,5 @@
              regfree(&preg);
              FREE(&linestr);
