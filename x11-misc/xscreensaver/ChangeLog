@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.253 2009/05/02 10:33:48 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.254 2009/06/19 22:02:38 ranger Exp $
+
+  19 Jun 2009; Brent Baude <ranger@gentoo.org> xscreensaver-5.08-r2.ebuild:
+  stable ppc64, bug 274696
 
 *xscreensaver-5.08-r2 (02 May 2009)
 
