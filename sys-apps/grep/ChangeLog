@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/grep
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.89 2009/06/11 20:43:22 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.90 2009/06/19 20:26:44 ranger Exp $
+
+  19 Jun 2009; Brent Baude <ranger@gentoo.org> grep-2.5.4-r1.ebuild:
+  stable ppc64, bug 273037
 
   11 Jun 2009; Markus Meier <maekke@gentoo.org> grep-2.5.4-r1.ebuild:
   amd64 stable, bug #273037
