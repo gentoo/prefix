@@ -1,6 +1,6 @@
 # ChangeLog for sys-devel/gdb-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Id$
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb-apple/ChangeLog,v 1.1 2009/06/21 10:38:25 grobian Exp $
 
 *gdb-apple-966 (20 Jun 2009)
 

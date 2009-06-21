@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb-apple/gdb-apple-962.ebuild,v 1.1 2009/06/21 10:38:25 grobian Exp $
 
 inherit eutils flag-o-matic
 
@@ -44,8 +44,10 @@ src_compile() {
 }
 
 src_install() {
+	local ED=${ED-${D}}
+
 	emake DESTDIR="${D}" libdir=/nukeme includedir=/nukeme install || die
-	rm -r "$D"/nukeme || die
+	rm -r "${D}"/nukeme || die
 	rm -Rf "${ED}"/usr/${CHOST} || die
 	mv "${ED}"/usr/bin/gdb ${ED}/
 	rm -f "${ED}"/usr/bin/*
