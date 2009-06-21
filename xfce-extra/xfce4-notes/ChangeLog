@@ -1,6 +1,12 @@
 # ChangeLog for xfce-extra/xfce4-notes
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-notes/ChangeLog,v 1.66 2009/03/16 14:45:47 angelos Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-notes/ChangeLog,v 1.67 2009/06/19 16:14:20 ssuominen Exp $
+
+*xfce4-notes-1.7.0 (19 Jun 2009)
+
+  19 Jun 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +xfce4-notes-1.7.0.ebuild:
+  Version bump.
 
   16 Mar 2009; Christoph Mende <angelos@gentoo.org>
   xfce4-notes-1.6.4.ebuild:
