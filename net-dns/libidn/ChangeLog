@@ -1,6 +1,9 @@
 # ChangeLog for net-dns/libidn
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.103 2009/06/17 18:57:49 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.104 2009/06/19 20:40:47 ranger Exp $
+
+  19 Jun 2009; Brent Baude <ranger@gentoo.org> libidn-1.14.ebuild:
+  stable ppc64, bug 273431
 
   17 Jun 2009; Tobias Klausmann <klausman@gentoo.org> libidn-1.14.ebuild:
   Stable on alpha, bug #273431
