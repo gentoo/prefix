@@ -1,8 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/files/transmission-daemon.initd,v 1.1 2009/05/12 23:21:40 ssuominen Exp $
-
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/files/transmission-daemon.initd.2,v 1.1 2009/06/20 12:55:37 ssuominen Exp $
 
 # Read options from conf.d file, or set sensible defaults
 allowed=${allowed:-127.0.0.1}
@@ -25,7 +24,8 @@ rpc_bind_address=${rpc_bind_address:-}
 
 # Misc options
 pidfile=${pidfile:-/var/run/transmission.pid}
-runas_user=${runas_user:-root}
+logfile=${logfile:-}
+runas_user=${runas_user:-}
 
 
 # Convert settings into stuff that transmission-daemon can grok as arguments
@@ -86,15 +86,29 @@ fi
 
 rpc_bind_address_opt=""
 if [ -n "${rpc_bind_address}" ]; then
-	rpc_bind_address_opt="--rpc_bind-address ${rpc_bind_address}"
+	rpc_bind_address_opt="--rpc-bind-address ${rpc_bind_address}"
 fi
 
+# Note: works only on systems with sys-apps/openrc
+logfile_opt=""
+if [ -n "${logfile}" ]; then
+	logfile_opt="--stdout ${logfile} --stderr ${logfile}"
+fi
+
+# Note: works only on systems with sys-apps/openrc
+# This could be done in baselayout-1 with --chuid, but since
+#   openrc detection is vague at best (b.g.o #270646), just ignore it.
+runas_user_opt=""
+if [ -n "${runas_user}" ]; then
+	runas_user_opt="--user ${runas_user}"
+fi
 
 # Actual init script stuff below this line
 
+opts="start stop"
 description="Transmission is a fast, easy and free bittorrent client"
 description_start="Start transmission-daemon server and web interface"
-description_start="Stop transmission-daemon server and web interface"
+description_stop="Stop transmission-daemon server and web interface"
 
 depend() {
 	need net
@@ -103,7 +117,8 @@ depend() {
 start() {
 	ebegin "Starting transmission daemon"
 	start-stop-daemon --start --quiet --background --make-pidfile \
-		--pidfile ${pidfile} --user ${runas_user} --exec \
+		--pidfile ${pidfile} ${runas_user_opt} \
+		${logfile_opt} --exec \
 		/usr/bin/transmission-daemon -- --foreground ${allowed_opt} \
 		${blocklist_opt} ${watch_dir_opt} ${config_dir_opt} ${port_opt} \
 		${auth_opt} ${username_opt} ${password_opt} ${download_dir_opt} \
