@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.12 2009/06/07 16:00:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r1.ebuild,v 1.13 2009/06/19 22:42:51 ulm Exp $
 
 EAPI=2
 
@@ -14,7 +14,6 @@ if [ "${PV##*.}" = "9999" ]; then
 	ECVS_LOCALNAME="emacs"
 	inherit cvs
 	SRC_URI=""
-	FULL_VERSION=""
 	S="${WORKDIR}/${ECVS_LOCALNAME}"
 else
 	SRC_URI="mirror://gentoo/emacs-${PV}.tar.gz
@@ -81,7 +80,7 @@ EMACS_SUFFIX="emacs-${SLOT}"
 SITEFILE="20${PN}-${SLOT}-gentoo.el"
 
 src_prepare() {
-	if [ -z "${FULL_VERSION}" ]; then
+	if [ "${PV##*.}" = "9999" ]; then
 		FULL_VERSION=$(grep 'defconst[	 ]*emacs-version' lisp/version.el \
 			| sed -e 's/^[^"]*"\([^"]*\)".*$/\1/')
 		[ "${FULL_VERSION}" ] || die "Cannot determine current Emacs version"
