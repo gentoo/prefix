@@ -1,6 +1,11 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.101 2009/05/25 16:02:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.102 2009/06/21 04:12:58 tester Exp $
+
+*pidgin-2.5.7 (21 Jun 2009)
+
+  21 Jun 2009; Olivier Crête <tester@gentoo.org> +pidgin-2.5.7.ebuild:
+  Version bump
 
   25 May 2009; Brent Baude <ranger@gentoo.org> pidgin-2.5.6.ebuild:
   Marking pidgin-2.5.6 ppc64 and ppc for bug 270811
