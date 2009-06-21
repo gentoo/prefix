@@ -1,15 +1,17 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.1.ebuild,v 1.1 2009/06/15 22:53:03 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.1.ebuild,v 1.3 2009/06/20 16:12:58 aballier Exp $
 
 EAPI="1"
 
 inherit flag-o-matic eutils multilib versionator toolchain-funcs
 
+PATCHLEVEL="1"
 MY_P="${P/_/+}"
 DESCRIPTION="Fast modern type-inferring functional programming language descended from the ML family"
 HOMEPAGE="http://www.ocaml.org/"
-SRC_URI="ftp://ftp.inria.fr/INRIA/cristal/ocaml/ocaml-$( get_version_component_range 1-2)/${MY_P}.tar.gz"
+SRC_URI="ftp://ftp.inria.fr/INRIA/cristal/ocaml/ocaml-$( get_version_component_range 1-2)/${MY_P}.tar.gz
+	mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.bz2"
 
 LICENSE="QPL-1.0 LGPL-2"
 SLOT="0"
@@ -40,26 +42,12 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	# Fix the EXEC_STACK in ocaml compiled binaries (#153382)
-	epatch "${FILESDIR}"/${PN}-3.11.0_beta1-exec-stack-fixes.patch
-
-	# The configure script doesn't inherit previous defined variables,
-	# overwriting previous declarations of bytecccompopts, bytecclinkopts,
-	# nativecccompopts and nativecclinkopts. Reported upstream as issue 0004267.
-	epatch "${FILESDIR}"/${PN}-3.11.0_beta1-configure.patch
-
-	# ocaml has automagics on libX11 and gdbm
-	# http://caml.inria.fr/mantis/view.php?id=4278
-	epatch "${FILESDIR}/${PN}-3.10.0-automagic.patch"
-
-	# Respect LDFLAGS for ocamlyacc
-	epatch "${FILESDIR}"/${PN}-3.11.0_beta1-yaccldflags.patch
+	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 }
 
 src_compile() {
 	export LC_ALL=C
-	local myconf="--host ${CHOST}"
+	local myconf=""
 
 	# It doesn't compile on alpha without this LDFLAGS
 	use alpha && append-ldflags "-Wl,--no-relax"
@@ -74,6 +62,10 @@ src_compile() {
 		-bindir "${EPREFIX}"/usr/bin \
 		-libdir "${EPREFIX}"/usr/$(get_libdir)/ocaml \
 		-mandir "${EPREFIX}"/usr/share/man \
+		-host "${CHOST}" \
+		-cc "$(tc-getCC)" \
+		-as "$(tc-getAS)" \
+		-aspp "$(tc-getCC) -c" \
 		--with-pthread ${myconf} || die "configure failed!"
 
 	make world || die "make world failed!"
