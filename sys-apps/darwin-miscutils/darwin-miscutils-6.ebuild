@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/darwin-miscutils-6.ebuild,v 1.1 2009/06/21 13:31:36 grobian Exp $
 
 inherit toolchain-funcs eutils
 
@@ -101,6 +101,8 @@ src_compile() {
 }
 
 src_install() {
+	local ED=${ED-${D}}
+
 	mkdir -p "${ED}"/bin
 	mkdir -p "${ED}"/usr/bin
 
