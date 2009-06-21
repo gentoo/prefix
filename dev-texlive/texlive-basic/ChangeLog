@@ -1,6 +1,13 @@
 # ChangeLog for dev-texlive/texlive-basic
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-basic/ChangeLog,v 1.28 2009/06/18 12:40:10 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-basic/ChangeLog,v 1.29 2009/06/19 21:19:36 aballier Exp $
+
+*texlive-basic-2008-r1 (19 Jun 2009)
+
+  19 Jun 2009; Alexis Ballier <aballier@gentoo.org>
+  +texlive-basic-2008-r1.ebuild,
+  +files/texlive-basic-2008-luatex-0.40.patch:
+  Update luatex .ini files for compatibility with latest luatex versions.
 
   18 Jun 2009; Alexis Ballier <aballier@gentoo.org>
   -texlive-basic-2007.ebuild:
