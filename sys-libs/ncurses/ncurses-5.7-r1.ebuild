@@ -1,7 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.6-r2.ebuild,v 1.13 2009/06/20 13:22:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r1.ebuild,v 1.2 2009/06/20 15:42:22 vapier Exp $
 
+EAPI="1"
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 MY_PV=${PV:0:3}
@@ -9,15 +10,15 @@ PV_SNAP=${PV:4}
 MY_P=${PN}-${MY_PV}
 DESCRIPTION="console display library"
 HOMEPAGE="http://www.gnu.org/software/ncurses/ http://dickey.his.com/ncurses/"
-SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz
-	ftp://invisible-island.net/ncurses/${PV}/${P}-coverity.patch.gz"
+SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="5"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug doc gpm minimal nocxx profile trace unicode"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="ada +cxx debug doc gpm minimal profile trace unicode"
 
 DEPEND="gpm? ( sys-libs/gpm )"
+#	berkdb? ( sys-libs/db )"
 
 S=${WORKDIR}/${MY_P}
 
@@ -31,56 +32,41 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
-	epatch "${WORKDIR}"/${P}-coverity.patch
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
-	epatch "${FILESDIR}"/${PN}-5.6-build.patch #184700
-	epatch "${FILESDIR}"/${P}-darwin.patch
-	epatch "${FILESDIR}"/${PN}-5.6-mint.patch
+	epatch "${FILESDIR}"/${PN}-5.7-emacs.patch #270527
+
+	epatch "${FILESDIR}"/${PN}-5.7-mint.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
-	epatch "${FILESDIR}"/${P}-solaris2.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-5.6-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
-	epatch "${FILESDIR}"/${P}-libtool.patch # used on aix
+#	epatch "${FILESDIR}"/${PN}-5.6-libtool.patch # used on aix
+	epatch "${FILESDIR}"/${PN}-5.7-x64-freebsd.patch
 
 	# irix /bin/sh is no good
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && {
+	unset TERMINFO #115036
+	tc-export BUILD_CC
+	export BUILD_CPPFLAGS+=" -D_GNU_SOURCE" #214642
+
+	if [[ ${CHOST} == *-interix* ]] ; then
 		export ac_cv_func_poll=no
 		export ac_cv_header_poll_h=no
-	}
-
-	tc-export BUILD_CC
-
-	# Protect the user from themselves #115036
-	unset TERMINFO
-
-	local myconf=""
-	use nocxx && myconf="${myconf} --without-cxx --without-cxx-binding"
-	
-	[[ ${CHOST} != *-mint* ]] && myconf="${myconf} --with-shared"
-	[[ ${CHOST} == *-aix[5-9]* ]] && myconf="${myconf} --with-libtool"
-
-	# First we build the regular ncurses ...
-	mkdir "${WORKDIR}"/narrowc
-	cd "${WORKDIR}"/narrowc
-	do_compile ${myconf}
-
-	# Then we build the UTF-8 version
-	if use unicode ; then
-		mkdir "${WORKDIR}"/widec
-		cd "${WORKDIR}"/widec
-		do_compile ${myconf} --enable-widec --includedir="${EPREFIX}"/usr/include/ncursesw
 	fi
+
+	do_compile narrowc
+	use unicode && do_compile widec --enable-widec --includedir="${EPREFIX}"/usr/include/ncursesw
+
 }
 do_compile() {
 	ECONF_SOURCE=${S}
 
-	# We need the basic terminfo files in /etc, bug #37026.  We will
-	# add '--with-terminfo-dirs' and then populate /etc/terminfo in
-	# src_install() ...
+	mkdir "${WORKDIR}"/$1
+	cd "${WORKDIR}"/$1
+	shift
+
 	# The chtype/mmask-t settings below are to retain ABI compat
 	# with ncurses-5.4 so dont change em !
 	local conf_abi="
@@ -88,11 +74,27 @@ do_compile() {
 		--with-mmask-t=long \
 		--disable-ext-colors \
 		--disable-ext-mouse \
+		--without-pthread \
+		--without-reentrant \
 	"
+
+	local myconf=""
+	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-libtool"
+	[[ ${CHOST} == *-mint* ]] || myconf="--with-shared"
+
+	# We need the basic terminfo files in /etc, bug #37026.  We will
+	# add '--with-terminfo-dirs' and then populate /etc/terminfo in
+	# src_install() ...
+#		$(use_with berkdb hashed-db) \
 	econf \
 		--libdir="${EPREFIX}/usr/$(get_libdir)" \
 		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo" \
+		${myconf} \
+		--without-hashed-db \
 		--enable-overwrite \
+		$(use_with ada) \
+		$(use_with cxx) \
+		$(use_with cxx cxx-binding) \
 		$(use_with debug) \
 		$(use_with profile) \
 		$(use_with gpm) \
@@ -103,8 +105,7 @@ do_compile() {
 		--enable-const \
 		--enable-colorfgbg \
 		--enable-echo \
-		--without-ada \
-		--enable-warnings \
+		$(use_enable !ada warnings) \
 		$(use_with debug assertions) \
 		$(use_with !debug leaks) \
 		$(use_with debug expanded) \
@@ -124,6 +125,9 @@ do_compile() {
 	# But this only is true when building without libtool.
 	[[ ${CHOST} == *-aix* ]] ||
 	sed -i -e '/^libdir/s:/usr/lib\(64\|\)$:/lib\1:' ncurses/Makefile || die "nlibdir"
+
+	# for IRIX to get tests compiling
+	epatch "${FILESDIR}"/${PN}-5.7-irix.patch
 
 	# A little hack to fix parallel builds ... they break when
 	# generating sources so if we generate the sources first (in
@@ -159,34 +163,34 @@ src_install() {
 	fi
 	gen_usr_ldscript lib{,n}curses$(get_libname)
 	if use unicode ; then
-		[[ -f ${ED}/$(get_libdir)/libcursesw$(get_libname) ]] && \
-			gen_usr_ldscript libcursesw$(get_libname)
 		gen_usr_ldscript libncursesw$(get_libname)
 	fi
 
-	# We need the basic terminfo files in /etc, bug #37026
-	einfo "Installing basic terminfo files in /etc..."
-	for x in ansi console dumb linux rxvt screen sun vt{52,100,102,200,220} \
-			 xterm xterm-color xterm-xfree86
-	do
-		local termfile=$(find "${ED}"/usr/share/terminfo/ -name "${x}" 2>/dev/null)
-		local basedir=$(basename $(dirname "${termfile}"))
+#	if ! use berkdb ; then
+		# We need the basic terminfo files in /etc, bug #37026
+		einfo "Installing basic terminfo files in /etc..."
+		for x in ansi console dumb linux rxvt screen sun vt{52,100,102,200,220} \
+				 xterm xterm-color xterm-xfree86
+		do
+			local termfile=$(find "${ED}"/usr/share/terminfo/ -name "${x}" 2>/dev/null)
+			local basedir=$(basename $(dirname "${termfile}"))
 
-		if [[ -n ${termfile} ]] ; then
-			dodir /etc/terminfo/${basedir}
-			mv ${termfile} "${ED}"/etc/terminfo/${basedir}/
-			dosym ../../../../etc/terminfo/${basedir}/${x} \
-				/usr/share/terminfo/${basedir}/${x}
-		fi
-	done
+			if [[ -n ${termfile} ]] ; then
+				dodir /etc/terminfo/${basedir}
+				mv ${termfile} "${ED}"/etc/terminfo/${basedir}/
+				dosym ../../../../etc/terminfo/${basedir}/${x} \
+					/usr/share/terminfo/${basedir}/${x}
+			fi
+		done
 
-	# Build fails to create this ...
-	dosym ../share/terminfo /usr/$(get_libdir)/terminfo
+		# Build fails to create this ...
+		dosym ../share/terminfo /usr/$(get_libdir)/terminfo
+#	fi
 
 	echo "CONFIG_PROTECT_MASK=\"/etc/terminfo\"" > "${T}"/50ncurses
 	doenvd "${T}"/50ncurses
 
-	use minimal && rm -r "${ED}"/usr/share/terminfo
+	use minimal && rm -r "${ED}"/usr/share/terminfo*
 	# Because ncurses5-config --terminfo returns the directory we keep it
 	keepdir /usr/share/terminfo #245374
 
