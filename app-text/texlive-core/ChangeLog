@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.105 2009/06/10 13:49:17 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.106 2009/06/20 14:58:15 aballier Exp $
+
+  20 Jun 2009; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2007-r13.ebuild, -files/texmf-update:
+  remove old
 
   10 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org>
   texlive-core-2008-r5.ebuild:
