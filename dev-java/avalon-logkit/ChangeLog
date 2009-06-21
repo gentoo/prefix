@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/avalon-logkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/ChangeLog,v 1.65 2009/05/18 19:39:26 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/ChangeLog,v 1.66 2009/06/19 09:52:13 fauli Exp $
+
+  19 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  avalon-logkit-2.1-r3.ebuild:
+  stable x86, bug 274642
 
 *avalon-logkit-2.1-r3 (18 May 2009)
 *avalon-logkit-1.2-r4 (18 May 2009)
