@@ -1,6 +1,14 @@
 # ChangeLog for dev-tex/luatex
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.28 2009/05/23 09:50:55 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.30 2009/06/20 09:08:08 alexxy Exp $
+
+  20 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> luatex-0.40.5.ebuild:
+  Add ~mips keyword
+
+*luatex-0.40.5 (19 Jun 2009)
+
+  19 Jun 2009; Alexis Ballier <aballier@gentoo.org> +luatex-0.40.5.ebuild:
+  version bump
 
   23 May 2009; Alexis Ballier <aballier@gentoo.org> luatex-0.30.3.ebuild:
   Add a patch to build with glibc 2.10, getline redefinitions, by Constantin
