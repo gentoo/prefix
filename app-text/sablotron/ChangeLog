@@ -1,6 +1,13 @@
 # ChangeLog for app-text/sablotron
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sablotron/ChangeLog,v 1.64 2009/06/09 14:39:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/sablotron/ChangeLog,v 1.66 2009/06/20 11:47:10 flameeyes Exp $
+
+  20 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -sablotron-1.0.1.ebuild:
+  Remove old version (goodbye mips).
+
+  19 Jun 2009; Brent Baude <ranger@gentoo.org> sablotron-1.0.3.ebuild:
+  stable ppc64, bug 272244
 
   09 Jun 2009; Raúl Porcel <armin76@gentoo.org> sablotron-1.0.3.ebuild:
   arm/ia64/s390/sh stable wrt #272244
