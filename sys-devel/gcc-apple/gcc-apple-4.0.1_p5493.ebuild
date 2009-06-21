@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/gcc-apple-4.0.1_p5493.ebuild,v 1.1 2009/06/21 10:27:55 grobian Exp $
 
 ETYPE="gcc-compiler"
 
@@ -151,6 +151,8 @@ src_compile() {
 }
 
 src_install() {
+	local ED=${ED-${D}}
+
 	cd "${WORKDIR}"/build
 	# -jX doesn't work
 	emake -j1 DESTDIR="${D}" install || die
@@ -242,6 +244,8 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
+	local EROOT=${EROOT-${ROOT}}
+
 	# clean up the cruft left behind by cross-compilers
 	if is_crosscompile ; then
 		if [[ -z $(ls "${EROOT}"/etc/env.d/gcc/${CTARGET}* 2>/dev/null) ]] ; then

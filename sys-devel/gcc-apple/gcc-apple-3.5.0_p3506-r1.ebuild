@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/gcc-apple-3.5.0_p3506-r1.ebuild,v 1.1 2009/06/21 10:27:55 grobian Exp $
 
 inherit eutils
 
@@ -88,9 +88,7 @@ src_compile() {
 	myconf="${myconf} --enable-shared --enable-threads=posix"
 
 	# make clear we're in an offset
-	if [[ ${EPREFIX%/} != "" ]] ; then
-		myconf="${myconf} --with-local-prefix=${EPREFIX}/usr"
-	fi
+	use prefix && myconf="${myconf} --with-local-prefix=${EPREFIX}/usr"
 
 	# we don't use a GNU linker, so tell GCC where to find the linker stuff we
 	# want it to use
@@ -106,6 +104,8 @@ src_compile() {
 }
 
 src_install() {
+	local ED=${ED-${D}}
+
 	cd "${WORKDIR}"/build
 	make DESTDIR="${D}" install || die
 
