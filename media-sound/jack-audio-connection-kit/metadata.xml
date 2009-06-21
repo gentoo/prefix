@@ -5,7 +5,6 @@
   <use>
     <flag name="coreaudio">Build the CoreAudio driver on Mac OS X systems</flag>
     <flag name="cpudetection">Enables runtime cpudetection</flag>
-    <flag name="jack-tmpfs">Compile in a tmpf path</flag>
     <flag name="netjack">Build with support for Realtime Audio Transport over generic IP</flag>
   </use>
 </pkgmetadata>
