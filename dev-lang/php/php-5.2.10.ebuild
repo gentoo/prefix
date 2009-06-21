@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.9-r1.ebuild,v 1.2 2009/05/26 16:53:59 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.10.ebuild,v 1.1 2009/06/19 14:40:22 hoffie Exp $
 
 CGI_SAPI_USE="discard-path force-cgi-redirect"
 APACHE2_SAPI_USE="concurrentmodphp threads"
@@ -21,7 +21,7 @@ PHP_PACKAGE="1"
 
 # php patch settings, general
 PHP_PATCHSET_REV="${PR/r/}"
-SUHOSIN_PATCH="suhosin-patch-${PV}-0.9.7.patch.gz"
+SUHOSIN_PATCH="suhosin-patch-5.2.9-0.9.7.patch.gz"
 MULTILIB_PATCH="${MY_PHP_PV}/opt/multilib-search-path.patch"
 # php patch settings, ebuild specific
 FASTBUILD_PATCH="${MY_PHP_PV}/opt/fastbuild.patch"
