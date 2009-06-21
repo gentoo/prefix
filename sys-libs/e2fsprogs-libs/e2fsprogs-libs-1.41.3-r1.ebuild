@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.3-r1.ebuild,v 1.2 2009/05/29 23:26:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.3-r1.ebuild,v 1.3 2009/06/20 11:58:44 vapier Exp $
 
 EAPI="2"
 
@@ -19,6 +19,7 @@ RDEPEND="!sys-libs/com_err
 	!sys-libs/ss
 	!<sys-fs/e2fsprogs-1.41"
 DEPEND="nls? ( sys-devel/gettext )
+	dev-util/pkgconfig
 	sys-devel/bc"
 
 src_prepare() {

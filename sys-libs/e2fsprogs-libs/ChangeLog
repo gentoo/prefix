@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/e2fsprogs-libs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.25 2009/05/30 18:55:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.26 2009/06/20 11:58:44 vapier Exp $
+
+  20 Jun 2009; Mike Frysinger <vapier@gentoo.org>
+  e2fsprogs-libs-1.41.3-r1.ebuild, e2fsprogs-libs-1.41.6.ebuild:
+  Pull in pkg-config #273042 by Zhang, Hongjiu.
 
 *e2fsprogs-libs-1.41.6 (30 May 2009)
 
