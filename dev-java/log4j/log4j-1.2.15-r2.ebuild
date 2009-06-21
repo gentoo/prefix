@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.15-r2.ebuild,v 1.1 2009/05/18 19:53:47 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.15-r2.ebuild,v 1.2 2009/06/19 09:55:13 fauli Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc javamail jms jmx source"
