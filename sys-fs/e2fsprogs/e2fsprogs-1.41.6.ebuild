@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.6.ebuild,v 1.1 2009/05/30 18:57:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.6.ebuild,v 1.3 2009/06/20 12:00:41 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
-DESCRIPTION="Standard EXT2 and EXT3 filesystem utilities"
+DESCRIPTION="Standard EXT2/EXT3/EXT4 filesystem utilities"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
 SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
@@ -17,6 +17,7 @@ RDEPEND="~sys-libs/${PN}-libs-${PV}
 	nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
+	dev-util/pkgconfig
 	sys-apps/texinfo"
 
 pkg_setup() {
