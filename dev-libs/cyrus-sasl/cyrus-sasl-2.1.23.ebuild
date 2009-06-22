@@ -10,7 +10,7 @@ inherit eutils flag-o-matic multilib autotools pam java-pkg-opt-2
 ntlm_patch="${PN}-2.1.22-ntlm_impl-spnego.patch.gz"
 SASLAUTHD_CONF_VER="2.1.21"
 
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 
 DESCRIPTION="The Cyrus SASL (Simple Authentication and Security Layer)."
 HOMEPAGE="http://asg.web.cmu.edu/sasl/"
