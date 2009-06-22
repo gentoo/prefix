@@ -26,7 +26,7 @@ done
 
 LICENSE="DB"
 SLOT="4.2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-macos"
 IUSE="tcl java doc nocxx"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )

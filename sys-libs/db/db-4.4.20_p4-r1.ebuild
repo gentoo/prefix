@@ -26,7 +26,7 @@ done
 
 LICENSE="OracleDB"
 SLOT="4.4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="tcl java doc nocxx"
 
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )

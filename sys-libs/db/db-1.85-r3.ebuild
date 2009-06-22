@@ -13,7 +13,7 @@ SRC_URI="http://download.oracle.com/berkeley-db/db.${PV}.tar.gz
 
 LICENSE="DB"
 SLOT="1"
-KEYWORDS=""
+KEYWORDS="~x64-macos"
 IUSE=""
 
 DEPEND=""
