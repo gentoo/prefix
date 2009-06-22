@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/libssh2/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc64-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x64-macos ~sparc64-solaris"
 IUSE="libgcrypt zlib"
 
 DEPEND="!libgcrypt? ( dev-libs/openssl )
