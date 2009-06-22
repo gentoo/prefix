@@ -10,7 +10,7 @@ HOMEPAGE="http://www.trolltech.com/"
 
 LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 
 IUSE_INPUT_DEVICES="input_devices_wacom"
 IUSE="+accessibility cups +dbus debug +glib mng nas nis tiff +qt3support xinerama ${IUSE_INPUT_DEVICES}"
