@@ -13,7 +13,7 @@ SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gcc_os_35-$
 LICENSE="APSL-2 GPL-2"
 SLOT="35"
 
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x64-macos"
 
 IUSE="nls fortran objc nocxx"
 
