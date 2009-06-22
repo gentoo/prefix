@@ -11,7 +11,7 @@ HOMEPAGE="http://modplug-xmms.sourceforge.net/"
 LICENSE="GPL-2"
 SLOT="0"
 #-sparc: 1.0 - Bus Error on play
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-solaris"
 IUSE=""
 
 RDEPEND=""
