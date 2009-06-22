@@ -10,7 +10,7 @@ SRC_URI="http://www.lua.org/ftp/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86-linux ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-linux ~x64-macos ~x86-macos ~x86-solaris"
 IUSE="readline static"
 
 DEPEND="readline? ( sys-libs/readline )"
