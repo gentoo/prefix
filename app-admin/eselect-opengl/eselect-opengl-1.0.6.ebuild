@@ -20,7 +20,7 @@ SRC_URI="mirror://gentoo/glext.h-${GLEXT}.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-macos"
 IUSE=""
 EMULTILIB_PKG="true"
 
