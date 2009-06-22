@@ -11,7 +11,7 @@ SRC_URI="http://files.musepack.net/source/${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-macos ~x86-solaris"
 IUSE=""
 
 src_prepare() {
