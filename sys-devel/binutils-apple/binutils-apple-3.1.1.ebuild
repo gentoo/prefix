@@ -15,7 +15,7 @@ SRC_URI="http://www.gentoo.org/~grobian/distfiles/${LD64}.tar.gz
 	http://www.gentoo.org/~grobian/distfiles/${CCTOOLS}.tar.gz"
 
 LICENSE="APSL-2"
-KEYWORDS="~ppc-macos ~x86-macos"
+KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
 IUSE="test"
 SLOT="0"
 
