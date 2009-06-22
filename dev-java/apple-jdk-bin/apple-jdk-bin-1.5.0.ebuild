@@ -9,7 +9,7 @@ DESCRIPTION="Links to Apple's version of Sun's J2SE Development Kit"
 HOMEPAGE="http://java.sun.com/j2se/1.5.0/"
 SLOT="1.5"
 LICENSE="as-is"
-KEYWORDS="~ppc-macos ~x86-macos"
+KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
 
 JAVA_PROVIDE="jdbc-stdext"
 
