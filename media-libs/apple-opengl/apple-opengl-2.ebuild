@@ -5,7 +5,7 @@
 DESCRIPTION="Links to Apple's OpenGL Framework"
 HOMEPAGE="http://www.apple.com/"
 LICENSE="as-is"
-KEYWORDS="~ppc-macos ~x86-macos"
+KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
 SLOT=0
 IUSE="doc"
 
