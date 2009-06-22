@@ -9,7 +9,7 @@ inherit aspell-dict
 
 LICENSE="GPL-2"
 
-KEYWORDS="~amd64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-macos"
 
 FILENAME=aspell6-de-20030222-1
 
