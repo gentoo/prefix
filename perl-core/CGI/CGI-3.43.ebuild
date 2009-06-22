@@ -10,7 +10,7 @@ inherit perl-module
 DESCRIPTION="Simple Common Gateway Interface Class"
 
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 #DEPEND="dev-lang/perl"
