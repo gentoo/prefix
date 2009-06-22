@@ -11,7 +11,7 @@ SRC_URI="mirror://cpan/authors/id/${AUTHOR:0:1}/${AUTHOR:0:2}/${AUTHOR}/${P}.tar
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
 IUSE="kerberos"
 SRC_TEST="do"
 
