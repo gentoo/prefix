@@ -11,7 +11,7 @@ SRC_URI="http://www.cs.tu-berlin.de/~jutta/${PN}/${P}.tar.gz"
 
 LICENSE="gsm"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE=""
 
 S=${WORKDIR}/${PN}-"$(replace_version_separator 2 '-pl' )"
