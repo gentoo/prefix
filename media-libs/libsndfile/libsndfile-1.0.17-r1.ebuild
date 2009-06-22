@@ -11,7 +11,7 @@ SRC_URI="http://www.mega-nerd.com/libsndfile/${P}.tar.gz
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="sqlite flac alsa"
 
 RESTRICT="test"
