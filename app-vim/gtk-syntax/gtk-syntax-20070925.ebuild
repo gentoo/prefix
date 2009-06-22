@@ -8,5 +8,5 @@ DESCRIPTION="vim plugin: Syntax highlighting for GLib, Gtk+, Xlib, Gimp, Gnome
 and more"
 HOMEPAGE="http://www.vim.org/scripts/script.php?script_id=1000"
 LICENSE="as-is"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
 IUSE=""
