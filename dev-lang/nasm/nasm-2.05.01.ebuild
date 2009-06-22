@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/nasm/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-macos"
 IUSE="doc"
 
 DEPEND="dev-lang/perl
