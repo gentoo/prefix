@@ -62,6 +62,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.8.6-status-return-fix.patch
 	# ClearType-like patches applied by ArchLinux
 	use cleartype && epatch "${FILESDIR}"/cairo-1.2.4-lcd-cleartype-like.diff
+	
+	epatch "${FILESDIR}"/${PN}-1.8.6-darwin64.patch
 
 	# We need to run elibtoolize to ensure correct so versioning on FreeBSD
 	elibtoolize

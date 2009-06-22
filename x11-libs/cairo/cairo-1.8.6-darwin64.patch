@@ -1,0 +1,43 @@
+From 13b56c42bfdb9ad36f9b1bd22f83d7ef3a074ddc Mon Sep 17 00:00:00 2001
+From: Jeff Muizelaar <jmuizelaar@mozilla.com>
+Date: Thu, 11 Jun 2009 21:32:23 +0000
+Subject: Fix compilation on OS X when compiling for 64 bit
+
+OS X doesn't support ATSUI in 64 bit so don't include the cairo ATSUI
+API in that case.
+---
+diff --git a/src/cairo-quartz-font.c b/src/cairo-quartz-font.c
+index a800cb4..91c1654 100644
+--- a/src/cairo-quartz-font.c
++++ b/src/cairo-quartz-font.c
+@@ -749,7 +749,7 @@ _cairo_quartz_scaled_font_get_cg_font_ref (cairo_scaled_font_t *abstract_font)
+     return ffont->cgFont;
+ }
+ 
+-
++#ifndef __LP64__
+ /*
+  * compat with old ATSUI backend
+  */
+@@ -789,3 +789,4 @@ cairo_atsui_font_face_create_for_atsu_font_id (ATSUFontID font_id)
+ {
+     return cairo_quartz_font_face_create_for_atsu_font_id (font_id);
+ }
++#endif
+diff --git a/src/cairo-quartz.h b/src/cairo-quartz.h
+index 769b29f..bf89cd9 100644
+--- a/src/cairo-quartz.h
++++ b/src/cairo-quartz.h
+@@ -66,8 +66,10 @@ cairo_quartz_surface_get_cg_context (cairo_surface_t *surface);
+ cairo_public cairo_font_face_t *
+ cairo_quartz_font_face_create_for_cgfont (CGFontRef font);
+ 
++#ifndef __LP64__
+ cairo_public cairo_font_face_t *
+ cairo_quartz_font_face_create_for_atsu_font_id (ATSUFontID font_id);
++#endif
+ 
+ #endif /* CAIRO_HAS_QUARTZ_FONT */
+ 
+--
+cgit v0.8.2
