@@ -10,7 +10,7 @@ SRC_URI="http://download.savannah.nongnu.org/releases/openexr/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-macos ~x86-solaris"
 IUSE=""
 
 DEPEND="!<media-libs/openexr-1.5.0"
