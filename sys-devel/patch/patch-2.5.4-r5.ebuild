@@ -10,7 +10,7 @@ SRC_URI="mirror://gnu/patch/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~sparc-solaris ~sparc64-solaris"
+KEYWORDS="~x64-macos ~sparc-solaris ~sparc64-solaris"
 IUSE="build static"
 
 DEPEND="virtual/libc"
