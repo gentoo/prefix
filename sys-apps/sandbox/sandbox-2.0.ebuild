@@ -7,7 +7,7 @@
 # period.
 #
 
-inherit eutils flag-o-matic eutils toolchain-funcs multilib
+inherit eutils flag-o-matic eutils toolchain-funcs multilib prefix
 
 DESCRIPTION="sandbox'd LD_PRELOAD hack"
 HOMEPAGE="http://www.gentoo.org/"
@@ -35,6 +35,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify etc/sandbox.d/00default
 }
 
 src_compile() {

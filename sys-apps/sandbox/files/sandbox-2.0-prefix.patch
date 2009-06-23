@@ -24,3 +24,14 @@ index b64a5ac..1cf4832 100644
 +#endif
  	restore_errno();
  }
+--- a/etc/sandbox.d/00default.orig	2009-06-22 14:10:30.000000000 +0200
++++ a/etc/sandbox.d/00default	2009-06-22 14:11:41.000000000 +0200
+@@ -14,7 +14,7 @@
+ # Finally add current directory if interactive
+ SANDBOX_WRITE="${SANDBOX_WORKDIR}"
+ # Needed for configure tests
+-SANDBOX_WRITE="/usr/tmp/conftest:/usr/lib/conftest:/usr/lib32/conftest:/usr/lib64/conftest:/usr/tmp/cf:/usr/lib/cf:/usr/lib32/cf:/usr/lib64/cf"
++SANDBOX_WRITE="@GENTOO_PORTAGE_EPREFIX@/usr/tmp/conftest:@GENTOO_PORTAGE_EPREFIX@/usr/lib/conftest:@GENTOO_PORTAGE_EPREFIX@/usr/lib32/conftest:@GENTOO_PORTAGE_EPREFIX@/usr/lib64/conftest:@GENTOO_PORTAGE_EPREFIX@/usr/tmp/cf:@GENTOO_PORTAGE_EPREFIX@/usr/lib/cf:@GENTOO_PORTAGE_EPREFIX@/usr/lib32/cf:@GENTOO_PORTAGE_EPREFIX@/usr/lib64/cf"
+ 
+ # Usually writes in /home should not cause violations
+ SANDBOX_PREDICT="${HOME}"
