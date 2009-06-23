@@ -167,12 +167,11 @@ bootstrap_setup() {
 		i586-pc-winnt*)
 			profile="${PORTDIR}/profiles/prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
 			;;
-		hppa*-hp-hpux11*)
-			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa"
-			case "${CHOST}" in
-			hppa2.0n*) profile="${profile}/hppa2.0/32" ;;
-			hppa2.0w*) profile="${profile}/hppa2.0/64" ;;
-			esac
+		hppa64*-hp-hpux11*)
+			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa64"
+			;;
+		hppa2.0*-hp-hpux11*)
+			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa2.0"
 			;;
 		ia64-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
