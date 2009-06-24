@@ -11,7 +11,7 @@ SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/gdb-${PV}.t
 LICENSE="APSL-2 GPL-2"
 SLOT="0"
 
-KEYWORDS="~ppc-macos ~x86-macos"
+KEYWORDS="~ppc-macos ~x64-macos ~x86-macos"
 
 IUSE="nls"
 
@@ -29,6 +29,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-768-texinfo.patch
 	epatch "${FILESDIR}"/${PN}-768-darwin-arch.patch
 	epatch "${FILESDIR}"/${PN}-962-darwin8.patch
+	epatch "${FILESDIR}"/${PN}-962-darwin64.patch
+	epatch "${FILESDIR}"/${PN}-962-demangle.patch
 
 	# for FSF gcc / gcc-apple:42
 	sed -e 's/-Wno-long-double//' -i gdb/config/*/macosx.mh
