@@ -10,7 +10,7 @@ SRC_URI="mirror://gentoo/${PN}${PV/.}.tar.gz"
 
 LICENSE="Info-ZIP"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=""
@@ -30,6 +30,7 @@ src_unpack() {
 		-e 's:LF = :LF = $(LDFLAGS) :' \
 		-e 's:SL = :SL = $(LDFLAGS) :' \
 		-e 's:FL = :FL = $(LDFLAGS) :' \
+		-e 's:STRIP =.*$:STRIP = true:' \
 		unix/Makefile \
 		|| die "sed unix/Makefile failed"
 }
