@@ -10,7 +10,7 @@ HOMEPAGE="http://cxx.sourceforge.net"
 SRC_URI="mirror://sourceforge/cxx/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE="doc examples"
 
 PYTHON_MODNAME="CXX"
