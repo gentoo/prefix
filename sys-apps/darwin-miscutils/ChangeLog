@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/darwin-miscutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/ChangeLog,v 1.1 2009/06/21 13:31:36 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/ChangeLog,v 1.2 2009/06/24 09:24:37 grobian Exp $
+
+*darwin-miscutils-6-r1 (24 Jun 2009)
+
+  24 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  -darwin-miscutils-6.ebuild, +darwin-miscutils-6-r1.ebuild,
+  +files/darwin-miscutils-6-w64.patch:
+  Bump, fix Bus Error on 64-bits arches.
 
 *darwin-miscutils-6 (19 Jun 2008)
 
