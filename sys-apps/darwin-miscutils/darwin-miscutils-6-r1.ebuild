@@ -26,6 +26,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-5-w.patch
 	epatch "${FILESDIR}"/${PN}-5-stdlib.patch
+	epatch "${FILESDIR}"/${PN}-6-w64.patch
 	cd "${S}"/developer_cmds-${DEV_VER}
 	epatch "${FILESDIR}"/${PN}-5-error.patch
 }
