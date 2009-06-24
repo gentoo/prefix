@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gdb-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb-apple/ChangeLog,v 1.1 2009/06/21 10:38:25 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb-apple/ChangeLog,v 1.2 2009/06/24 09:40:20 grobian Exp $
+
+  24 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  +files/gdb-apple-962-darwin64.patch, +files/gdb-apple-962-demangle.patch,
+  gdb-apple-966.ebuild:
+  Add compile fix for x64-macos
 
 *gdb-apple-966 (20 Jun 2009)
 
