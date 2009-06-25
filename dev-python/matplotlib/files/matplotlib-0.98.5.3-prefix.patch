@@ -1,0 +1,46 @@
+--- setupext.py.orig	2009-06-25 15:32:50 +0200
++++ setupext.py	2009-06-25 15:46:37 +0200
+@@ -45,21 +45,20 @@
+ import re
+ import subprocess
+ 
+-basedir = {
+-    'win32'  : ['win32_static',],
+-    'linux2' : ['/usr/local', '/usr'],
+-    'linux'  : ['/usr/local', '/usr',],
+-    'cygwin' : ['/usr/local', '/usr',],
+-    'darwin' : ['/sw/lib/freetype2', '/sw/lib/freetype219', '/usr/local',
+-                '/usr', '/sw', '/usr/X11R6'],
+-    'freebsd4' : ['/usr/local', '/usr'],
+-    'freebsd5' : ['/usr/local', '/usr'],
+-    'freebsd6' : ['/usr/local', '/usr'],
+-    'sunos5' : [os.getenv('MPLIB_BASE') or '/usr/local',],
+-    'gnukfreebsd5' : ['/usr/local', '/usr'],
+-    'gnukfreebsd6' : ['/usr/local', '/usr'],
+-    'aix5' : ['/usr/local'],
+-}
++basedir = {
++    'win32'  : [],
++    'linux2' : [],
++    'linux'  : [],
++    'cygwin' : [],
++    'darwin' : [],
++    'freebsd4' : [],
++    'freebsd5' : [],
++    'freebsd6' : [],
++    'sunos5' : [],
++    'gnukfreebsd5' : [],
++    'gnukfreebsd6' : [],
++    'aix5' : [],
++}
+ 
+ import sys, os, stat
+ if sys.platform != 'win32':
+@@ -323,6 +309,7 @@
+ 
+     module.include_dirs.extend(incdirs)
+     module.include_dirs.append('.')
++    module.include_dirs.append(os.path.join(sys.prefix, 'include'))
+     module.library_dirs.extend(libdirs)
+ 
+ def getoutput(s):
