@@ -532,6 +532,7 @@ get_libname() {
 		*-darwin*)                libname="dylib";;
 		*-aix*)                   libname="a";;
 		*-mint*)                  libname="irrelevant";;
+		hppa*-hpux*)              libname="sl";;
 		*)                        libname="so";;
 	esac
 
