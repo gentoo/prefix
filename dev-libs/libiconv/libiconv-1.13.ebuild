@@ -27,7 +27,7 @@ src_unpack() {
 	#epatch "${FILESDIR}"/${PN}-1.10-link.patch
 
 	if [[ ${CHOST} == *-winnt* ]]; then
-		epatch "${FILESDIR}"/${PN}-1.12-winnt.patch
+		epatch "${FILESDIR}"/${P}-winnt.patch
 
 		find "${S}" -name 'libtool.m4' | xargs rm
 

@@ -1,0 +1,38 @@
+diff -ru libiconv-1.13.orig/include/iconv.h.build.in libiconv-1.13/include/iconv.h.build.in
+--- libiconv-1.13.orig/include/iconv.h.build.in	2009-06-17 13:47:52 +0200
++++ libiconv-1.13/include/iconv.h.build.in	2009-06-17 13:53:00 +0200
+@@ -25,6 +25,8 @@
+ 
+ #if @HAVE_VISIBILITY@ && BUILDING_LIBICONV
+ #define LIBICONV_DLL_EXPORTED __attribute__((__visibility__("default")))
++#elif !defined(BUILDING_LIBICONV) && defined(_WIN32)
++#define LIBICONV_DLL_EXPORTED __declspec(dllimport)
+ #else
+ #define LIBICONV_DLL_EXPORTED
+ #endif
+diff -ru libiconv-1.13.orig/srclib/Makefile.in libiconv-1.13/srclib/Makefile.in
+--- libiconv-1.13.orig/srclib/Makefile.in	2009-06-17 13:47:57 +0200
++++ libiconv-1.13/srclib/Makefile.in	2009-06-17 13:49:50 +0200
+@@ -83,7 +83,7 @@
+ 	$(top_srcdir)/srcm4/visibility.m4 $(top_srcdir)/srcm4/wchar.m4 \
+ 	$(top_srcdir)/srcm4/wchar_t.m4 $(top_srcdir)/srcm4/wint_t.m4 \
+ 	$(top_srcdir)/m4/cp.m4 $(top_srcdir)/m4/eilseq.m4 \
+-	$(top_srcdir)/m4/endian.m4 $(top_srcdir)/m4/libtool.m4 \
++	$(top_srcdir)/m4/endian.m4 \
+ 	$(top_srcdir)/m4/ln.m4 $(top_srcdir)/m4/ltoptions.m4 \
+ 	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+ 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/configure.ac
+diff -ru libiconv-1.13.orig/srcm4/include_next.m4 libiconv-1.13/srcm4/include_next.m4
+--- libiconv-1.13.orig/srcm4/include_next.m4	2009-06-17 13:47:58 +0200
++++ libiconv-1.13/srcm4/include_next.m4	2009-06-17 13:52:02 +0200
+@@ -153,8 +153,8 @@
+ 	    dnl so use subshell.
+ 	    AS_VAR_SET([gl_next_header],
+ 	      ['"'`(eval "$gl_absname_cpp conftest.$ac_ext") 2>&AS_MESSAGE_LOG_FD |
+-	       sed -n '\#/]m4_quote(m4_defn([gl_HEADER_NAME]))[#{
+-		 s#.*"\(.*/]m4_quote(m4_defn([gl_HEADER_NAME]))[\)".*#\1#
++	       sed -n '\#[/\\]]m4_quote(m4_defn([gl_HEADER_NAME]))[#{
++		 s#.*"\(.*[/\\]]m4_quote(m4_defn([gl_HEADER_NAME]))[\)".*#\1#
+ 		 s#^/[^/]#//&#
+ 		 p
+ 		 q
