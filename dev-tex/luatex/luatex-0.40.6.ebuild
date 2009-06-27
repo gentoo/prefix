@@ -1,16 +1,16 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.40.5.ebuild,v 1.2 2009/06/20 09:08:08 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.40.6.ebuild,v 1.1 2009/06/26 06:13:00 aballier Exp $
 
 EAPI="2"
 
 inherit libtool multilib eutils toolchain-funcs autotools
 
-PATCHLEVEL="11"
+PATCHLEVEL="12"
 
 DESCRIPTION="An extended version of pdfTeX using Lua as an embedded scripting language."
 HOMEPAGE="http://www.luatex.org/"
-SRC_URI="http://foundry.supelec.fr/gf/download/frsrelease/345/1287/${PN}-beta-${PV}.tar.bz2
+SRC_URI="http://foundry.supelec.fr/gf/download/frsrelease/348/1318/${PN}-beta-${PV}.tar.bz2
 	mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.bz2"
 
 LICENSE="GPL-2"
@@ -23,6 +23,7 @@ RDEPEND="dev-libs/zziplib
 	virtual/poppler
 	sys-libs/zlib"
 DEPEND="${RDEPEND}
+	>=sys-devel/libtool-2.2.6
 	dev-util/pkgconfig"
 
 S="${WORKDIR}/${PN}-beta-${PV}/source"
@@ -47,6 +48,7 @@ src_configure() {
 	# that don't have the same alphabetical order than ascii. Bug #244619
 	# So we set LC_ALL to C in order to avoid problems.
 	export LC_ALL=C
+	cd "${S}/texk/web2c"
 	econf \
 		--disable-cxx-runtime-hack \
 		--disable-afm2pl    \
@@ -100,6 +102,7 @@ src_configure() {
 	    --disable-web-progs \
 	    --disable-xdv2pdf	\
 	    --disable-xdvipdfmx \
+		--without-x			\
 	    --without-system-kpathsea	\
 	    --with-system-gd	\
 	    --with-system-libpng	\
@@ -109,10 +112,9 @@ src_configure() {
 		--with-system-xpdf \
 	    --disable-largefile \
 	    --disable-multiplatform \
-		--disable-shared \
-		--with-system-zlib \
-		--with-system-libpng
+		--disable-shared
 	for i in ${PRELIBS} ; do
+		einfo "Configuring $i"
 		local j=$(basename $i)_extraconf
 		local myconf
 		eval myconf=\${$j}
@@ -126,7 +128,7 @@ src_compile() {
 		cd "${S}/${i}"
 		emake || die "failed to build ${i}"
 	done
-	cd "${WORKDIR}/${PN}-beta-${PV}/source/texk"
+	cd "${WORKDIR}/${PN}-beta-${PV}/source/texk/web2c"
 	emake || die "failed to build luatex"
 }
 
@@ -134,10 +136,6 @@ src_install() {
 	cd "${WORKDIR}/${PN}-beta-${PV}/source/texk/web2c"
 	emake DESTDIR="${D}" bin_PROGRAMS="luatex" SUBDIRS="" nodist_man_MANS="" \
 		install || die
-
-	# Symlinks required by texlive
-	dosym luatex /usr/bin/texlua
-	dosym luatex /usr/bin/texluac
 
 	dodoc "${WORKDIR}/${PN}-beta-${PV}/README"
 	if use doc ; then

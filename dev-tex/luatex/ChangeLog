@@ -1,6 +1,25 @@
 # ChangeLog for dev-tex/luatex
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.30 2009/06/20 09:08:08 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.35 2009/06/26 06:13:00 aballier Exp $
+
+*luatex-0.40.6 (26 Jun 2009)
+
+  26 Jun 2009; Alexis Ballier <aballier@gentoo.org> -luatex-0.40.5.ebuild,
+  +luatex-0.40.6.ebuild:
+  version bump
+
+  25 Jun 2009; Alexis Ballier <aballier@gentoo.org> luatex-0.40.5.ebuild:
+  configure and build in the proper subdirs instead of leaving the build
+  system doing it itself, should fix bug #274802
+
+  24 Jun 2009; Alexis Ballier <aballier@gentoo.org> luatex-0.40.5.ebuild:
+  Add a patch to fix build dependencies in the makefiles, bug #274770
+
+  23 Jun 2009; Alexis Ballier <aballier@gentoo.org> luatex-0.40.5.ebuild:
+  Add --without-x to configure args, bug #274822 plus some minor cleanups
+
+  22 Jun 2009; Alexis Ballier <aballier@gentoo.org> luatex-0.40.5.ebuild:
+  it needs libtool 2.2.6
 
   20 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org> luatex-0.40.5.ebuild:
   Add ~mips keyword
