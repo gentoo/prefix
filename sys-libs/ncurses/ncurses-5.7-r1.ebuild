@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r1.ebuild,v 1.2 2009/06/20 15:42:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r1.ebuild,v 1.3 2009/06/24 19:42:12 flameeyes Exp $
 
 EAPI="1"
 inherit eutils flag-o-matic toolchain-funcs multilib
@@ -34,6 +34,7 @@ src_unpack() {
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
 	epatch "${FILESDIR}"/${PN}-5.7-emacs.patch #270527
+	epatch "${FILESDIR}"/${PN}-5.7-nongnu.patch
 
 	epatch "${FILESDIR}"/${PN}-5.7-mint.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch

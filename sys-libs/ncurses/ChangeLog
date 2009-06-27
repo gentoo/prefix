@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.162 2009/06/20 13:22:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.163 2009/06/24 19:42:12 flameeyes Exp $
+
+  24 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  ncurses-5.7-r1.ebuild, +files/ncurses-5.7-nongnu.patch:
+  Add a patch to fix on non-GNU systems, hopefully.
 
 *ncurses-5.7-r1 (20 Jun 2009)
 
