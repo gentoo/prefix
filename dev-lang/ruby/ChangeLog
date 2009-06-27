@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.416 2009/06/20 17:11:24 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.417 2009/06/21 14:17:24 ranger Exp $
+
+  21 Jun 2009; Brent Baude <ranger@gentoo.org> ruby-1.8.6_p369.ebuild:
+  Marking ruby-1.8.6_p369 ppc for bug 273213
 
   20 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   ruby-1.9.1_p129-r1.ebuild:
