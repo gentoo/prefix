@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libxkbfile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxkbfile/ChangeLog,v 1.47 2009/05/15 14:54:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxkbfile/ChangeLog,v 1.48 2009/06/23 21:22:40 klausman Exp $
+
+  23 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
+  libxkbfile-1.0.5.ebuild:
+  Stable on alpha for xorg-server-1.5/xorg-x11-7.4
 
   15 May 2009; Raúl Porcel <armin76@gentoo.org> libxkbfile-1.0.5.ebuild:
   arm/m68k/s390 stable
