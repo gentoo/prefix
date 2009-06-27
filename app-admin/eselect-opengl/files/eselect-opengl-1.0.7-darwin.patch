@@ -1,0 +1,28 @@
+--- opengl.eselect
++++ opengl.eselect
+@@ -70,14 +70,14 @@
+ 
+ 	pushd "${libdir}" &> /dev/null
+ 		# First remove old symlinks
+-		for file in libGL{,core}.{a,so,la} ; do
++		for file in libGL{,core}.{a,so,dylib,la} ; do
+ 			rm -f "${file}" || die -q "Failed to delete ${file}"
+ 		done
+ 
+ 		# Note that we don't do .so*, just .so on purpose.  The
+ 		# loader knows to look in the profile dir, and the
+ 		# linked just needs the .so
+-		for file in ${profile_libdir}/libGL{,core}.{so,a,la}; do
++		for file in ${profile_libdir}/libGL{,core}.{so,dylib,a,la}; do
+ 			if [[ "${PREFIX}" == "${DST_PREFIX}" ]] ; then
+ 				linkfile="${file//${libdir}\/}"
+ 			else
+@@ -148,7 +148,7 @@
+ 				mkdir -p "${DST_PREFIX}/${libdir}/${moduledir}/extensions" || die "Failed to create ${DST_PREFIX}/${libdir}/${moduledir}/extensions"
+ 				pushd "${DST_PREFIX}/${libdir}/${moduledir}/extensions" &> /dev/null
+ 					# First remove old symlinks
+-					for file in lib{wfb,glx,dri}.{a,so,la}; do
++					for file in lib{wfb,glx,dri}.{a,so,dylib,la}; do
+ 						rm -f "${file}" || die -q "Failed to delete ${DST_PREFIX}/${libdir}/${moduledir}/extensions/${file}"
+ 					done
+ 
