@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/gnu-classpath
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.86 2008/07/27 01:03:32 carlo Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.89 2009/06/25 20:27:11 caster Exp $
+
+  25 Jun 2009; Ben de Groot <yngwin@gentoo.org> -gnu-classpath-0.90.ebuild,
+  -gnu-classpath-0.92.ebuild, -gnu-classpath-0.93.ebuild,
+  -gnu-classpath-0.97.ebuild, gnu-classpath-0.97-r1.ebuild,
+  gnu-classpath-0.97.2.ebuild:
+  Drop old ebuilds which nothing depends on and which have illegal qt4 dep
+  (bug 217173). Simplify qt4 dep for remaining ebuilds.
 
   27 Jul 2008; Carsten Lohrke <carlo@gentoo.org>
   gnu-classpath-0.97-r1.ebuild, gnu-classpath-0.97.2.ebuild:

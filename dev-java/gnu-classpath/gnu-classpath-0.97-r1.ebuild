@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.97-r1.ebuild,v 1.8 2008/07/27 01:03:32 carlo Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.97-r1.ebuild,v 1.9 2009/06/25 19:12:24 yngwin Exp $
 
 EAPI=1
 
@@ -47,7 +47,7 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 				=www-client/mozilla-firefox-bin-2*
 			)
 		)
-		qt4? ( || ( x11-libs/qt-gui:4 =x11-libs/qt-4.3*:4 ) )
+		qt4? ( x11-libs/qt-gui:4 )
 		xml? ( >=dev-libs/libxml2-2.6.8 >=dev-libs/libxslt-1.1.11 )
 		gstreamer? (
 			>=media-libs/gstreamer-0.10.10
