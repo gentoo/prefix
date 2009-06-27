@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.6.21_p3-r1.ebuild,v 1.6 2009/02/24 16:16:43 kumba Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.7.25_p4.ebuild,v 1.1 2009/06/21 13:43:28 caleb Exp $
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
@@ -25,19 +25,20 @@ for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
 done
 
 LICENSE="OracleDB"
-SLOT="4.6"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="tcl java doc nocxx"
+SLOT="4.7"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="doc java nocxx tcl test"
 
+# the entire testsuite needs the TCL functionality
 DEPEND="tcl? ( >=dev-lang/tcl-8.4 )
-	java? ( >=virtual/jdk-1.4 )
+	test? ( >=dev-lang/tcl-8.4 )
+	java? ( >=virtual/jdk-1.5 )
 	|| ( sys-devel/binutils-apple
 		 sys-devel/native-cctools
 		 >=sys-devel/binutils-2.16.1
 	)"
 RDEPEND="tcl? ( dev-lang/tcl )
-	java? ( >=virtual/jre-1.4 )
-	x86-winnt? ( sys-libs/onc-rpc-nt )"
+	java? ( >=virtual/jre-1.5 )"
 
 src_unpack() {
 	unpack "${MY_P}".tar.gz
@@ -46,6 +47,7 @@ src_unpack() {
 	do
 		epatch "${DISTDIR}"/patch."${MY_PV}"."${i}"
 	done
+	epatch "${FILESDIR}"/"${PN}"-4.6-libtool.patch
 
 	epatch "${FILESDIR}"/${PN}-4.6-interix.patch
 
@@ -53,10 +55,7 @@ src_unpack() {
 
 	# need to upgrade local copy of libtool.m4
 	# for correct shared libs on aix (#213277).
-	local mylibtoolize=libtoolize
-	[[ ${CHOST} == *-darwin* ]] && mylibtoolize=glibtoolize
-	local mylt=$(type -P ${mylibtoolize})
-	cp -f "${mylt%/bin/${mylibtoolize}}"/share/aclocal/libtool.m4 aclocal/libtool.m4 \
+	cp -f "${EPREFIX}"/usr/share/aclocal/libtool.m4 aclocal/libtool.m4 \
 	|| die "cannot update libtool.ac from libtool.m4"
 
 	# need to upgrade ltmain.sh for AIX,
@@ -68,18 +67,13 @@ src_unpack() {
 		libtoolize --force --copy || die "libtoolize failed."
 	fi
 	# now let shipped script do the autoconf stuff, it really knows best.
-	#see below
+	#see code below
 	#sh ./s_config || die "Cannot execute ./s_config"
 
-	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-libtool.patch
-
 	# use the includes from the prefix
-	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-jni-check-prefix-first.patch
+	epatch "${FILESDIR}"/"${PN}"-4.6-jni-check-prefix-first.patch
 	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
 
-	cd "${WORKDIR}"/"${MY_P}"
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-4.6-winnt.patch
-	
 	# Include the SLOT for Java JAR files
 	# This supersedes the unused jarlocation patches.
 	sed -r -i \
@@ -113,31 +107,12 @@ src_compile() {
 		is-flagq -O[s123] || append-flags -O2
 	fi
 
-	local myconf=""
-
-	use amd64 && myconf="${myconf} --with-mutex=x86/gcc-assembly"
-
-	myconf="${myconf} $(use_enable !nocxx cxx)"
-
-	use tcl \
-		&& myconf="${myconf} --enable-tcl --with-tcl=${EPREFIX}/usr/$(get_libdir)" \
-		|| myconf="${myconf} --disable-tcl"
-
-	myconf="${myconf} $(use_enable java)"
-	if use java; then
-		myconf="${myconf} --with-java-prefix=${JAVA_HOME}"
-		# Can't get this working any other way, since it returns spaces, and
-		# bash doesn't seem to want to pass correctly in any way i try
-		local javaconf="-with-javac-flags=$(java-pkg_javac-args)"
-	fi
-
-	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
-
-	# the entire testsuite needs the TCL functionality
-	if use tcl && has test $FEATURES ; then
-		myconf="${myconf} --enable-test"
-	else
-		myconf="${myconf} --disable-test"
+	# use `set` here since the java opts will contain whitespace
+	set --
+	if use java ; then
+		set -- "$@" \
+			--with-java-prefix="${JAVA_HOME}" \
+			--with-javac-flags="$(java-pkg_javac-args)"
 	fi
 
 	# Add linker versions to the symbols. Easier to do, and safer than header file
@@ -146,39 +121,30 @@ src_compile() {
 		# we hopefully use a GNU binutils linker in this case
 		append-ldflags -Wl,--default-symver
 	fi
-	
-	if [[ ${CHOST} == *-winnt* ]]; then
-		# this one should really sound --enable-windows, but
-		# seems the db devs only support mingw ... doesn't enable
-		# anything too specific to mingw.
-		myconf="${myconf} --enable-mingw"
-		myconf="${myconf} --with-mutex=win32"
-	fi
 
-	cd "${S}" && ECONF_SOURCE="${S}"/../dist CC=$(tc-getCC) econf \
-		--prefix="${EPREFIX}"/usr \
-		--mandir="${EPREFIX}"/usr/share/man \
-		--infodir="${EPREFIX}"/usr/share/info \
-		--datadir="${EPREFIX}"/usr/share \
-		--sysconfdir="${EPREFIX}"/etc \
-		--localstatedir="${EPREFIX}"/var/lib \
-		--libdir="${EPREFIX}"/usr/"$(get_libdir)" \
+	tc-export CC CXX # would use CC=xlc_r on aix if not set
+
+	cd "${S}"
+	ECONF_SOURCE="${S}"/../dist \
+	STRIP="true" \
+	econf \
 		--enable-compat185 \
 		--enable-o_direct \
 		--without-uniquename \
 		--enable-rpc \
-		--host="${CHOST}" \
-		${myconf} "${javaconf}" || die "configure failed"
-
-	sed -e "s,\(^STRIP *=\).*,\1\"none\"," Makefile > Makefile.cpy \
-	    && mv Makefile.cpy Makefile
+		$(use amd64 && echo --with-mutex=x86/gcc-assembly) \
+		$(use_enable !nocxx cxx) \
+		$(use_enable java) \
+		$(use_enable tcl) \
+		"$(use tcl && echo --with-tcl=${EPREFIX}/usr/$(get_libdir))" \
+		$(use_enable test) \
+		"$@"
 
 	emake || die "make failed"
 }
 
 src_install() {
-
-	einstall libdir="${ED}/usr/$(get_libdir)" strip="none" || die
+	emake install DESTDIR="${D}" || die
 
 	db_src_install_usrbinslot
 
