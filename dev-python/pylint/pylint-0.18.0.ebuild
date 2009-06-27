@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pylint/pylint-0.18.0.ebuild,v 1.1 2009/06/19 14:40:07 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pylint/pylint-0.18.0.ebuild,v 1.2 2009/06/23 15:18:53 mr_bones_ Exp $
 
 EAPI="2"
 
@@ -48,7 +48,6 @@ src_test() {
 	PYTHONPATH="${lpath}" pytest -v || die "tests failed"
 	popd >/dev/null || die
 }
-
 
 src_install() {
 	distutils_src_install
