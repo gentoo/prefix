@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.2.ebuild,v 1.11 2009/06/22 21:57:03 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.3.ebuild,v 1.3 2009/06/26 11:35:43 aballier Exp $
 
 EAPI="2"
 
@@ -14,8 +14,8 @@ SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="apache2 berkdb ctypes-python debug doc +dso emacs extras gnome-keyring java nls perl python ruby sasl test vim-syntax +webdav-neon webdav-serf"
+KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="apache2 berkdb ctypes-python debug doc +dso emacs extras gnome-keyring java kde nls perl python ruby sasl test vim-syntax +webdav-neon webdav-serf"
 
 CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
 	>=dev-libs/apr-1.3:1
@@ -25,23 +25,32 @@ CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
 	berkdb? ( =sys-libs/db-4* )
 	emacs? ( virtual/emacs )
 	gnome-keyring? ( dev-libs/glib:2 sys-apps/dbus gnome-base/gnome-keyring )
+	kde? ( sys-apps/dbus x11-libs/qt-core x11-libs/qt-dbus x11-libs/qt-gui >=kde-base/kdelibs-4 )
 	ruby? ( >=dev-lang/ruby-1.8.2 )
 	sasl? ( dev-libs/cyrus-sasl )
 	webdav-neon? ( >=net-misc/neon-0.28 )
 	webdav-serf? ( >=net-libs/serf-0.3.0 )"
-
 RDEPEND="${CDEPEND}
 	apache2? ( www-servers/apache[apache2_modules_dav] )
 	java? ( >=virtual/jre-1.5 )
+	kde? ( kde-base/kwalletd )
 	nls? ( virtual/libintl )
 	perl? ( dev-perl/URI )"
-
+APACHE_TEST_DEPEND="|| (
+	=www-servers/apache-2.4*[apache2_modules_auth_basic,apache2_modules_authn_core,apache2_modules_authn_file,apache2_modules_authz_core,apache2_modules_authz_user,apache2_modules_dav,apache2_modules_log_config,apache2_modules_unixd]
+	=www-servers/apache-2.2*[apache2_modules_auth_basic,apache2_modules_authn_file,apache2_modules_dav,apache2_modules_log_config]
+	)"
 DEPEND="${CDEPEND}
 	ctypes-python? ( dev-python/ctypesgen )
 	doc? ( app-doc/doxygen )
 	gnome-keyring? ( dev-util/pkgconfig )
 	java? ( >=virtual/jdk-1.5 )
+	kde? ( dev-util/pkgconfig )
 	nls? ( sys-devel/gettext )
+	test? (
+		webdav-neon? ( ${APACHE_TEST_DEPEND} )
+		webdav-serf? ( ${APACHE_TEST_DEPEND} )
+	)
 	webdav-neon? ( dev-util/pkgconfig )"
 
 want_apache
@@ -53,6 +62,11 @@ S="${WORKDIR}/${P/_/-}"
 : ${SVN_REPOS_LOC:=${EPREFIX}/var/svn}
 
 pkg_setup() {
+	if use kde && ! use nls; then
+		eerror "Support for KWallet (KDE) requires Native Language Support (NLS)."
+		die "Enable \"nls\" USE flag"
+	fi
+
 	if use berkdb; then
 		einfo
 		if [[ -z "${SVN_BDB_VERSION}" ]]; then
@@ -92,18 +106,17 @@ pkg_setup() {
 
 	if use test; then
 		elog
-		elog "\e[31m************************************************************************************************\e[0m"
+		elog "\e[1;31m************************************************************************************************\e[0m"
 		elog
 		elog "NOTES ABOUT TESTS"
 		elog
 		elog "You can set the following variables to enable testing of some features and configure testing:"
 		if use webdav-neon || use webdav-serf; then
-			elog "  SVN_TEST_APACHE=1                     - Enable testing of mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf"
-			elog "                                          (See \"Testing of mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf\")"
+			elog "  SVN_TEST_APACHE_PORT=integer          - Set Apache port number (Default value: 62208)"
 		fi
-		elog "  SVN_TEST_SVNSERVE_PORT=integer        - Set svnserve port number (Default value: 3690)"
+		elog "  SVN_TEST_SVNSERVE_PORT=integer        - Set svnserve port number (Default value: 62209)"
 		elog "  SVN_TEST_FSFS_MEMCACHED=1             - Enable using of Memcached for FSFS repositories"
-		elog "  SVN_TEST_FSFS_MEMCACHED_PORT=integer  - Set Memcached port number (Default value: 11211)"
+		elog "  SVN_TEST_FSFS_MEMCACHED_PORT=integer  - Set Memcached port number (Default value: 62210)"
 		elog "  SVN_TEST_FSFS_SHARDING=integer        - Enable sharding of FSFS repositories and set default shard size for FSFS repositories"
 		elog "  SVN_TEST_FSFS_PACKING=1               - Enable packing of FSFS repositories"
 		elog "                                          (SVN_TEST_FSFS_PACKING requires SVN_TEST_FSFS_SHARDING)"
@@ -120,14 +133,18 @@ pkg_setup() {
 			elog "                                          (Testing of JavaHL library requires dev-java/junit:4)"
 		fi
 		elog
-		if ! use webdav-neon && ! use webdav-serf; then
-			elog "\e[31m************************************************************************************************\e[0m"
-			elog
-			epause 24
+		elog "\e[1;31m************************************************************************************************\e[0m"
+		elog
+		ebeep
+		epause 24
+
+		if ! use apache2 && { use webdav-neon || use webdav-serf; }; then
+			eerror "Testing of libsvn_ra_neon / libsvn_ra_serf requires support for Apache."
+			die "Enable \"apache2\" USE flag."
 		fi
 
-		if { use webdav-neon || use webdav-serf; } && [[ -n "${SVN_TEST_APACHE}" ]] && ! has_version "${CATEGORY}/${PN}[apache2]"; then
-			die "${CATEGORY}/${PN} must be installed with USE=\"apache2\""
+		if [[ -n "${SVN_TEST_APACHE_PORT}" ]] && ! ([[ "$((${SVN_TEST_APACHE_PORT}))" == "${SVN_TEST_APACHE_PORT}" ]]) &>/dev/null; then
+			die "Value of SVN_TEST_APACHE_PORT must be an integer"
 		fi
 
 		if [[ -n "${SVN_TEST_SVNSERVE_PORT}" ]] && ! ([[ "$((${SVN_TEST_SVNSERVE_PORT}))" == "${SVN_TEST_SVNSERVE_PORT}" ]]) &>/dev/null; then
@@ -157,55 +174,21 @@ pkg_setup() {
 		fi
 	fi
 
-	append-flags -fno-strict-aliasing
-
 	if use debug; then
 		append-cppflags -DSVN_DEBUG -DAP_DEBUG
 	fi
 }
 
-src_unpack() {
-	if use test && { use webdav-neon || use webdav-serf; }; then
-		create_apache_tests_configuration
-
-		elog
-		elog "Testing of mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf:"
-		elog " If you want to test mod_dav_svn, mod_authz_svn and libsvn_ra_neon / libsvn_ra_serf,"
-		elog " ensure that ${CATEGORY}/${PN} is installed with USE=\"apache2\","
-		elog " copy \"${T}/99_subversion_tests.conf\""
-		elog " to \"/etc/apache2/modules.d\" directory, add definitions of DAV, SVN, SVN_AUTHZ"
-		elog " and SVN_TESTS to APACHE2_OPTS variable in \"/etc/conf.d/apache2\" configuration file,"
-		elog " (re)start Apache and run \`SVN_TEST_APACHE=1 emerge ${CATEGORY}/${PN}\`."
-		elog
-		elog "\e[31m************************************************************************************************\e[0m"
-		elog
-
-		if [[ -z "${SVN_TEST_APACHE}" ]]; then
-			ebeep 6
-			epause 18
-		else
-			if [[ ! -f "${EPREFIX}/etc/apache2/modules.d/99_subversion_tests.conf" ]]; then
-				die "${EPREFIX}/etc/apache2/modules.d/99_subversion_tests.conf doesn't exist"
-			fi
-			if ! cmp -s "${T}/99_subversion_tests.conf" "${EPREFIX}/etc/apache2/modules.d/99_subversion_tests.conf"; then
-				die "${EPREFIX}/etc/apache2/modules.d/99_subversion_tests.conf mismatch"
-			fi
-
-			epause 24
-		fi
-	fi
-
-	unpack ${A}
-}
-
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.6.0-disable_linking_against_unneeded_libraries.patch"
-	epatch "${FILESDIR}/${P}-fix_undefined_references.patch"
-	epatch "${FILESDIR}/${P}-local_library_preloading.patch"
+	epatch "${FILESDIR}/${PN}-1.6.2-local_library_preloading.patch"
+	epatch "${FILESDIR}/${P}-apache-2.4.patch"
+	epatch "${FILESDIR}/${P}-kwallet_window.patch"
 	chmod +x build/transform_libtool_scripts.sh || die "chmod failed"
-	sed -i -e '1c\#!'"${EPREFIX}"'/bin/sh' build/transform_libtool_scripts.sh || die "/bin/sh is not POSIX shell!"
 
+	sed -i -e '1c\#!'"${EPREFIX}"'/bin/sh' build/transform_libtool_scripts.sh || die "/bin/sh is not POSIX shell!"
 	epatch "${FILESDIR}"/${PN}-1.5.4-interix.patch
+	epatch "${FILESDIR}"/${PN}-1.5.6-aix-dso.patch
 
 	if ! use test; then
 		sed -i \
@@ -263,6 +246,7 @@ src_configure() {
 		$(use_with gnome-keyring) \
 		$(use_enable java javahl) \
 		$(use_with java jdk "${JAVA_HOME}") \
+		$(use_with kde kwallet) \
 		$(use_enable nls) \
 		$(use_with sasl) \
 		$(use_with webdav-neon neon ${EPREFIX}/usr) \
@@ -352,52 +336,93 @@ src_compile() {
 }
 
 create_apache_tests_configuration() {
-cat << EOF > "${T}/99_subversion_tests.conf"
-<IfDefine SVN_TESTS>
-	User $(id -un)
-	Group $(id -gn)
+	get_loadmodule_directive() {
+		if [[ "$("${APACHE_BIN}" -l)" != *"mod_$1.c"* ]]; then
+			echo "LoadModule $1_module \"${APACHE_MODULESDIR}/mod_$1.so\""
+		fi
+	}
+	get_loadmodule_directives() {
+		if has_version "=www-servers/apache-2.4*"; then
+			get_loadmodule_directive auth_basic
+			get_loadmodule_directive authn_core
+			get_loadmodule_directive authn_file
+			get_loadmodule_directive authz_core
+			get_loadmodule_directive authz_user
+			get_loadmodule_directive dav
+			get_loadmodule_directive log_config
+			get_loadmodule_directive unixd
+		else
+			get_loadmodule_directive auth_basic
+			get_loadmodule_directive authn_file
+			get_loadmodule_directive dav
+			get_loadmodule_directive log_config
+		fi
+	}
 
-	<Location /svn-test-work/repositories>
-		DAV svn
-		SVNParentPath "${S}/subversion/tests/cmdline/svn-test-work/repositories"
-		AuthzSVNAccessFile "${S}/subversion/tests/cmdline/svn-test-work/authz"
-		AuthType Basic
-		AuthName "Subversion Repository"
-		AuthUserFile "${T}/apache-users"
-		Require valid-user
-	</Location>
+	mkdir -p "${T}/apache"
+	cat << EOF > "${T}/apache/apache.conf"
+$(get_loadmodule_directives)
+LoadModule dav_svn_module "${S}/subversion/mod_dav_svn/.libs/mod_dav_svn.so"
+LoadModule authz_svn_module "${S}/subversion/mod_authz_svn/.libs/mod_authz_svn.so"
 
-	<Location /svn-test-work/local_tmp/repos>
-		DAV svn
-		SVNPath "${S}/subversion/tests/cmdline/svn-test-work/local_tmp/repos"
-		AuthzSVNAccessFile "${S}/subversion/tests/cmdline/svn-test-work/authz"
-		AuthType Basic
-		AuthName "Subversion Repository"
-		AuthUserFile "${T}/apache-users"
-		Require valid-user
-	</Location>
-</IfDefine>
+User                $(id -un)
+Group               $(id -gn)
+Listen              localhost:${SVN_TEST_APACHE_PORT}
+ServerName          localhost
+ServerRoot          "${T}"
+DocumentRoot        "${T}"
+CoreDumpDirectory   "${T}"
+PidFile             "${T}/apache.pid"
+CustomLog           "${T}/apache/access_log" "%h %l %u %{%Y-%m-%dT%H:%M:%S}t \"%r\" %>s %b \"%{Referer}i\" \"%{User-Agent}i\""
+CustomLog           "${T}/apache/svn_log" "%{%Y-%m-%dT%H:%M:%S}t %u %{SVN-REPOS-NAME}e %{SVN-ACTION}e" env=SVN-ACTION
+ErrorLog            "${T}/apache/error_log"
+LogLevel            Debug
+MaxRequestsPerChild 0
+
+<Directory />
+	AllowOverride None
+</Directory>
+
+<Location /svn-test-work/repositories>
+	DAV svn
+	SVNParentPath "${S}/subversion/tests/cmdline/svn-test-work/repositories"
+	AuthzSVNAccessFile "${S}/subversion/tests/cmdline/svn-test-work/authz"
+	AuthType Basic
+	AuthName "Subversion Repository"
+	AuthUserFile "${T}/apache/users"
+	Require valid-user
+</Location>
+
+<Location /svn-test-work/local_tmp/repos>
+	DAV svn
+	SVNPath "${S}/subversion/tests/cmdline/svn-test-work/local_tmp/repos"
+	AuthzSVNAccessFile "${S}/subversion/tests/cmdline/svn-test-work/authz"
+	AuthType Basic
+	AuthName "Subversion Repository"
+	AuthUserFile "${T}/apache/users"
+	Require valid-user
+</Location>
 EOF
 
-cat << EOF > "${T}/apache-users"
+	cat << EOF > "${T}/apache/users"
 jrandom:xCGl35kV9oWCY
 jconstant:xCGl35kV9oWCY
 EOF
 }
 
-initialize_tests_environment() {
-	[[ "$1" == "local" ]] && base_url="file://${S}/subversion/tests/cmdline" http_library=""
-	[[ "$1" == "svn" ]] && base_url="svn://127.0.0.1" http_library=""
-	[[ "$1" == "neon" ]] && base_url="http://127.0.0.1" http_library="neon"
-	[[ "$1" == "serf" ]] && base_url="http://127.0.0.1" http_library="serf"
-
-	[[ "$1" == "svn" ]] && LC_ALL="C" subversion/svnserve/svnserve -dr "subversion/tests/cmdline" --listen-port "${SVN_TEST_SVNSERVE_PORT}" --pid-file "${T}/svnserve.pid"
-	[[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]] && memcached -dp "${SVN_TEST_FSFS_MEMCACHED_PORT}" -P "${T}/memcached.pid"
-}
-
-terminate_tests_environment() {
-	[[ "$1" == "svn" ]] && kill "$(<"${T}/svnserve.pid")"
-	[[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]] && kill "$(<"${T}/memcached.pid")"
+set_tests_variables() {
+	if [[ "$1" == "local" ]]; then
+		base_url="file://${S}/subversion/tests/cmdline"
+		http_library=""
+	fi
+	if [[ "$1" == "svn" ]]; then
+		base_url="svn://127.0.0.1:${SVN_TEST_SVNSERVE_PORT}"
+		http_library=""
+	fi
+	if [[ "$1" == "neon" || "$1" == "serf" ]]; then
+		base_url="http://127.0.0.1:${SVN_TEST_APACHE_PORT}"
+		http_library="$1"
+	fi
 }
 
 src_test() {
@@ -407,15 +432,38 @@ src_test() {
 	use berkdb && fs_types+=" bdb"
 
 	ra_types="local svn"
-	if [[ -n "${SVN_TEST_APACHE}" ]]; then
-		use webdav-neon && ra_types+=" neon"
-		use webdav-serf && ra_types+=" serf"
-	fi
+	use webdav-neon && ra_types+=" neon"
+	use webdav-serf && ra_types+=" serf"
 
-	[[ -z "${SVN_TEST_SVNSERVE_PORT}" ]] && SVN_TEST_SVNSERVE_PORT="3690"
+	termination() {
+		local die="$1" pid_file
+		if [[ -n "${die}" ]]; then
+			echo -e "\n\e[1;31mKilling of child processes...\e[0m\a" > /dev/tty
+		fi
+		for pid_file in svnserve.pid apache.pid memcached.pid; do
+			if [[ -f "${T}/${pid_file}" ]]; then
+				kill "$(<"${T}/${pid_file}")"
+			fi
+		done
+		if [[ -n "${die}" ]]; then
+			sleep 6
+			die "Termination"
+		fi
+	}
+
+	trap 'termination 1 &' SIGINT SIGTERM
+
+	SVN_TEST_SVNSERVE_PORT="${SVN_TEST_SVNSERVE_PORT:-62209}"
+	LC_ALL="C" subversion/svnserve/svnserve -dr "subversion/tests/cmdline" --listen-port "${SVN_TEST_SVNSERVE_PORT}" --log-file "${T}/svnserve.log" --pid-file "${T}/svnserve.pid"
+	if use webdav-neon || use webdav-serf; then
+		SVN_TEST_APACHE_PORT="${SVN_TEST_APACHE_PORT:-62208}"
+		create_apache_tests_configuration
+		"${APACHE_BIN}" -f "${T}/apache/apache.conf"
+	fi
 	if [[ -n "${SVN_TEST_FSFS_MEMCACHED}" ]]; then
-		[[ -z "${SVN_TEST_FSFS_MEMCACHED_PORT}" ]] && SVN_TEST_FSFS_MEMCACHED_PORT="11211"
+		SVN_TEST_FSFS_MEMCACHED_PORT="${SVN_TEST_FSFS_MEMCACHED_PORT:-62210}"
 		sed -e "/\[memcached-servers\]/akey = 127.0.0.1:${SVN_TEST_FSFS_MEMCACHED_PORT}" -i subversion/tests/tests.conf
+		memcached -dp "${SVN_TEST_FSFS_MEMCACHED_PORT}" -P "${T}/memcached.pid"
 	fi
 	if [[ -n "${SVN_TEST_FSFS_SHARDING}" ]]; then
 		options+=" FSFS_SHARDING=${SVN_TEST_FSFS_SHARDING}"
@@ -427,19 +475,22 @@ src_test() {
 #		options+=" ENABLE_SASL=1"
 #	fi
 
+	sleep 6
+
 	for ra_type in ${ra_types}; do
 		for fs_type in ${fs_types}; do
 			[[ "${ra_type}" == "local" && "${fs_type}" == "bdb" ]] && continue
 			einfo
 			einfo "\e[1;34mTesting of ra_${ra_type} + $(echo ${fs_type} | tr '[:lower:]' '[:upper:]')\e[0m"
 			einfo
-			initialize_tests_environment ${ra_type}
-			emake check FS_TYPE="${fs_type}" BASE_URL="${base_url}" HTTP_LIBRARY="${http_library}" CLEANUP="1" ${options} || failed_tests="1"
-			terminate_tests_environment ${ra_type}
+			set_tests_variables ${ra_type}
+			time emake check FS_TYPE="${fs_type}" BASE_URL="${base_url}" HTTP_LIBRARY="${http_library}" CLEANUP="1" ${options} || failed_tests="1"
 			mv tests.log tests-ra_${ra_type}-${fs_type}.log
 		done
 	done
 	unset base_url http_library
+	termination
+	trap - SIGINT SIGTERM
 
 	if [[ -n "${SVN_TEST_BINDINGS}" ]]; then
 		local swig_lingua swig_linguas
@@ -448,7 +499,7 @@ src_test() {
 			einfo
 			einfo "\e[1;34mTesting of Subversion Ctypes Python bindings\e[0m"
 			einfo
-			emake check-ctypes-python || failed_tests="1"
+			time emake check-ctypes-python || failed_tests="1"
 		fi
 
 		use perl && swig_linguas+=" pl"
@@ -463,14 +514,14 @@ src_test() {
 			einfo
 			einfo "\e[1;34mTesting of Subversion SWIG ${linguas[${swig_lingua}]} bindings\e[0m"
 			einfo
-			emake check-swig-${swig_lingua} || failed_tests="1"
+			time emake check-swig-${swig_lingua} || failed_tests="1"
 		done
 
 		if use java; then
 			einfo
 			einfo "\e[1;34mTesting of Subversion JavaHL library\e[0m"
 			einfo
-			emake check-javahl || failed_tests="1"
+			time emake check-javahl || failed_tests="1"
 		fi
 	fi
 
@@ -605,8 +656,8 @@ EOF
 		einfo
 
 		cat << EOF > 80subversion-extras
-PATH="${EPREFIX}"/usr/$(get_libdir)/subversion/bin
-ROOTPATH="${EPREFIX}"/usr/$(get_libdir)/subversion/bin
+PATH="${EPREFIX}/usr/$(get_libdir)/subversion/bin"
+ROOTPATH="${EPREFIX}/usr/$(get_libdir)/subversion/bin"
 EOF
 		doenvd 80subversion-extras
 
