@@ -1,6 +1,24 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.214 2009/05/16 08:51:18 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.218 2009/06/25 09:00:59 scarabeus Exp $
+
+  25 Jun 2009; Tomáš Chvátal <scarabeus@gentoo.org> -mesa-7.4.3.ebuild:
+  Remove broken version.
+
+*mesa-7.4.4 (24 Jun 2009)
+
+  24 Jun 2009; Rémi Cardona <remi@gentoo.org> +mesa-7.4.4.ebuild:
+  bump to 7.4.4, hopefully fixing severe Intel bugs (see bugs #274981 and
+  #275109)
+
+  23 Jun 2009; Tobias Klausmann <klausman@gentoo.org> mesa-7.4.2.ebuild:
+  Stable on alpha for xorg-server-1.5/xorg-x11-7.4
+
+*mesa-7.4.3 (21 Jun 2009)
+
+  21 Jun 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -mesa-7.4.1-r2.ebuild, +mesa-7.4.3.ebuild:
+  Version bump. Remove old.
 
   16 May 2009; Rémi Cardona <remi@gentoo.org> -mesa-7.3.ebuild,
   -mesa-7.4.ebuild, -mesa-7.4.1-r1.ebuild:
