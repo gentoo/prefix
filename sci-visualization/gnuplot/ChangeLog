@@ -1,6 +1,10 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.106 2009/06/20 16:39:24 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.107 2009/06/21 18:41:00 ulm Exp $
+
+  21 Jun 2009; Ulrich Mueller <ulm@gentoo.org> gnuplot-4.2.3-r2.ebuild,
+  gnuplot-4.2.4-r1.ebuild, gnuplot-4.2.5.ebuild, gnuplot-4.2.5-r1.ebuild:
+  Fix dependencies: the xemacs virtual is gone.
 
 *gnuplot-4.2.5-r1 (20 Jun 2009)
 

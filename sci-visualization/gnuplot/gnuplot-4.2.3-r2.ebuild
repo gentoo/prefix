@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.3-r2.ebuild,v 1.12 2009/04/01 20:26:54 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.3-r2.ebuild,v 1.13 2009/06/21 18:41:00 ulm Exp $
 
 inherit autotools elisp-common eutils multilib wxwidgets flag-o-matic
 
@@ -17,7 +17,7 @@ IUSE="doc emacs gd ggi latex pdf plotutils readline svga wxwindows X xemacs"
 RESTRICT="wxwindows? ( test )"
 
 RDEPEND="
-	xemacs? ( virtual/xemacs app-xemacs/texinfo app-xemacs/xemacs-base )
+	xemacs? ( app-editors/xemacs app-xemacs/texinfo app-xemacs/xemacs-base )
 	emacs? ( virtual/emacs !app-emacs/gnuplot-mode )
 	pdf? ( media-libs/pdflib )
 	ggi? ( media-libs/libggi )
