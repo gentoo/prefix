@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/xextproto-7.0.4.ebuild,v 1.9 2009/05/15 14:44:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/xextproto-7.0.4.ebuild,v 1.10 2009/06/23 19:21:32 klausman Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
