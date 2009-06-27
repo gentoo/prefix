@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc15.ebuild,v 1.2 2009/05/28 18:02:15 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc15.ebuild,v 1.5 2009/06/21 21:24:36 cedk Exp $
 
-inherit eutils multilib prefix
+inherit eutils multilib toolchain-funcs prefix
 
 DESCRIPTION="OpenVPN is a robust and highly flexible tunneling application compatible with many OSes."
 SRC_URI="http://openvpn.net/release/${P}.tar.gz"
@@ -31,6 +31,16 @@ pkg_setup() {
 			die "iproute2 support not available"
 		fi
 	fi
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	sed -i \
+		-e "s/gcc \${CC_FLAGS}/\${CC} \${CFLAGS} -Wall/" \
+		-e "s/-shared/-shared \${LDFLAGS}/" \
+		plugin/*/Makefile || die "sed failed"
 }
 
 src_compile() {
@@ -63,7 +73,7 @@ src_compile() {
 			[[ ${i} == "auth-pam" ]] && ! use pam && continue
 			einfo "Building ${i} plugin"
 			cd "${i}"
-			emake TARGET_DIR="${EPREFIX}"/usr/$(get_libdir)/${PN} || die "make failed"
+			emake CC=$(tc-getCC) TARGET_DIR="${EPREFIX}"/usr/$(get_libdir)/${PN} || die "make failed"
 			cd ..
 		done
 		cd ..
@@ -75,6 +85,8 @@ src_install() {
 
 	# install documentation
 	dodoc AUTHORS ChangeLog PORTS README
+	# remove empty dir
+	rmdir "${ED}/usr/share/doc/openvpn"
 
 	# Empty dir
 	dodir /etc/openvpn

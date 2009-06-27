@@ -1,6 +1,18 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.148 2009/06/11 05:26:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.152 2009/06/21 21:24:36 cedk Exp $
+
+  21 Jun 2009; Cédric Krier <cedk@gentoo.org> openvpn-2.1_rc15.ebuild:
+  Remove empty doc dir for bug #272994
+
+  21 Jun 2009; Cédric Krier <cedk@gentoo.org> openvpn-2.1_rc15.ebuild:
+  Add missing -Wall for plugin
+
+  21 Jun 2009; Cédric Krier <cedk@gentoo.org> openvpn-2.0.9.ebuild:
+  Add missing missing file for easy-rsa for bug #273586
+
+  21 Jun 2009; Cédric Krier <cedk@gentoo.org> openvpn-2.1_rc15.ebuild:
+  Fix CFLAGS and LDFLAGS in plugin for bug #263136
 
   11 Jun 2009; Jeroen Roovers <jer@gentoo.org> openvpn-2.0.9.ebuild:
   Stable for HPPA (bug #272546).
