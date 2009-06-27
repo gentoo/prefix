@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.79 2009/05/19 14:08:24 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.80 2009/06/24 12:23:17 klausman Exp $
+
+  24 Jun 2009; Tobias Klausmann <klausman@gentoo.org> libdrm-2.4.9.ebuild:
+  Stabilized for xorg-server-1.5/xorg-x11-7.4
 
   19 May 2009; Rémi Cardona <remi@gentoo.org> libdrm-2.4.11.ebuild:
   rebuild libdrm's autotools because of broken tarball generated on Debian
