@@ -1,6 +1,10 @@
 # ChangeLog for xfce-base/xfce4-settings
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-settings/ChangeLog,v 1.10 2009/06/15 00:19:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-settings/ChangeLog,v 1.11 2009/06/22 17:01:27 armin76 Exp $
+
+  22 Jun 2009; Raúl Porcel <armin76@gentoo.org>
+  xfce4-settings-4.6.1.ebuild:
+  arm/ia64 stable wrt #265587
 
   15 Jun 2009; Jeroen Roovers <jer@gentoo.org> xfce4-settings-4.6.1.ebuild:
   Stable for HPPA (bug #265587).
