@@ -1,6 +1,20 @@
 # ChangeLog for www-client/pybugz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.40 2009/05/01 23:13:52 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.44 2009/06/24 13:29:31 jer Exp $
+
+  24 Jun 2009; Jeroen Roovers <jer@gentoo.org> pybugz-0.7.4.ebuild:
+  Stable for HPPA (bug #275121).
+
+  24 Jun 2009; Raúl Porcel <armin76@gentoo.org> pybugz-0.7.4.ebuild:
+  alpha/arm/ia64/sparc stable wrt #275121
+
+  22 Jun 2009; William Hubbs <williamh@gentoo.org> pybugz-0.7.4.ebuild:
+  marked x86 stable
+
+*pybugz-0.8.0_rc1 (22 Jun 2009)
+
+  22 Jun 2009; William Hubbs <williamh@gentoo.org> +pybugz-0.8.0_rc1.ebuild:
+  version bump
 
 *pybugz-0.7.4 (01 May 2009)
 
