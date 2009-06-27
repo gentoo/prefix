@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/octave-3.0.3.ebuild,v 1.7 2009/05/30 08:41:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/octave-3.0.3.ebuild,v 1.8 2009/06/21 18:47:58 graaff Exp $
 
 inherit flag-o-matic fortran xemacs-elisp-common
 
@@ -23,7 +23,7 @@ RDEPEND="virtual/lapack
 	zlib? ( sys-libs/zlib )
 	hdf5? ( sci-libs/hdf5 )
 	curl? ( net-misc/curl )
-	xemacs? ( virtual/xemacs )
+	xemacs? ( app-editors/xemacs )
 	sparse? ( sci-libs/umfpack
 		sci-libs/colamd
 		sci-libs/camd

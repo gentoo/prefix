@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/octave
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/ChangeLog,v 1.68 2009/05/30 08:41:23 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/ChangeLog,v 1.69 2009/06/21 18:47:58 graaff Exp $
+
+  21 Jun 2009; Hans de Graaff <graaff@gentoo.org> octave-2.1.73-r2.ebuild,
+  octave-3.0.2.ebuild, octave-3.0.3.ebuild:
+  Rename virtual/xemacs -> app-editors/xemacs since the virtual has been
+  removed.
 
   30 May 2009; Ulrich Mueller <ulm@gentoo.org> octave-3.0.2.ebuild,
   octave-3.0.3.ebuild:
