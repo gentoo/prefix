@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p20090530.ebuild,v 1.9 2009/06/04 16:34:46 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc2_p20090530.ebuild,v 1.10 2009/06/21 19:02:38 beandog Exp $
 
 EAPI="2"
 
@@ -270,7 +270,7 @@ src_configure() {
 		--disable-apple-ir"
 	use nemesi || myconf="${myconf} --disable-nemesi"
 	use nut || myconf="${myconf} --disable-libnut"
-	use osdmenu || myconf="${myconf} --disable-menu"
+	use osdmenu && myconf="${myconf} --enable-menu"
 	use rar || myconf="${myconf} --disable-unrarexec"
 	use rtc || myconf="${myconf} --disable-rtc"
 	use samba || myconf="${myconf} --disable-smb"
