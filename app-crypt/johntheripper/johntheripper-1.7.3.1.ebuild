@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.3.1.ebuild,v 1.8 2009/05/07 10:26:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.3.1.ebuild,v 1.9 2009/06/23 00:03:52 rich0 Exp $
 
 EAPI=1
 inherit eutils flag-o-matic toolchain-funcs pax-utils
