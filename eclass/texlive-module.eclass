@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.21 2009/06/08 10:05:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.22 2009/06/21 10:34:44 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -55,15 +55,6 @@ IUSE=""
 
 # TeX Live 2007 was providing .zip files of CTAN packages. For 2008 they are now
 # .tar.lzma
-if [ -z "${PV##2007*}" ] ; then
-for i in ${TEXLIVE_MODULE_CONTENTS}; do
-	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.zip"
-done
-COMMON_DEPEND="${COMMON_DEPEND}
-	${TEXLIVE_MODULES_DEPS}"
-DEPEND="${COMMON_DEPEND}
-	app-arch/unzip"
-else
 for i in ${TEXLIVE_MODULE_CONTENTS}; do
 	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
 done
@@ -85,7 +76,6 @@ if [ -n "${TEXLIVE_MODULE_SRC_CONTENTS}" ] ; then
 		SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
 	done
 	SRC_URI="${SRC_URI} )"
-fi
 fi
 
 RDEPEND="${COMMON_DEPEND}"
@@ -159,17 +149,10 @@ texlive-module_src_compile() {
 
 	# Generate config files
 	# TeX Live 2007 was providing lists. For 2008 they are now tlpobj.
-	if [ -z "${PV##2007*}" ] ; then
-	for i in "${S}"/texmf/lists/*;
-	do
-		grep '^!' "${i}" | sed -e 's/^!//' | tr ' ' '@' |sort|uniq >> "${T}/jobs"
-	done
-	else
 	for i in "${S}"/tlpkg/tlpobj/*;
 	do
 		grep '^execute ' "${i}" | sed -e 's/^execute //' | tr ' ' '@' |sort|uniq >> "${T}/jobs"
 	done
-	fi
 
 	for i in $(<"${T}/jobs");
 	do
@@ -218,7 +201,7 @@ texlive-module_src_install() {
 
 	[ -d texmf ] && cp -pR texmf "${ED}/usr/share/"
 	[ -d texmf-dist ] && cp -pR texmf-dist "${ED}/usr/share/"
-	[ -n "${PV##2007*}" ] && [ -d tlpkg ] && use source && cp -pR tlpkg "${ED}/usr/share/"
+	[ -d tlpkg ] && use source && cp -pR tlpkg "${ED}/usr/share/"
 
 	insinto /var/lib/texmf
 	[ -d texmf-var ] && doins -r texmf-var/*

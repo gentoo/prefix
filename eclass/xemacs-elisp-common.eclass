@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xemacs-elisp-common.eclass,v 1.2 2007/09/25 18:27:12 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xemacs-elisp-common.eclass,v 1.3 2009/06/21 14:53:12 graaff Exp $
 #
 # Copyright 2007 Hans de Graaff <graaff@gentoo.org>
 #
@@ -26,7 +26,7 @@
 #
 # When relying on the xemacs USE flag, you need to add
 #
-#       xemacs? ( virtual/xemacs )
+#       xemacs? ( app-editors/xemacs )
 #
 # to your DEPEND/RDEPEND line and use the functions provided here to bring
 # the files to the correct locations.

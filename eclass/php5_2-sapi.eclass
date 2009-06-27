@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.23 2008/07/07 01:51:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.24 2009/06/21 23:09:02 hoffie Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -43,7 +43,7 @@ if [[ "${PHP_PACKAGE}" == 1 ]] ; then
 	S="${WORKDIR}/${MY_PHP_P}"
 fi
 
-IUSE="adabas bcmath berkdb birdstep bzip2 calendar cdb cjk crypt ctype curl curlwrappers db2 dbase dbmaker debug doc empress empress-bcs esoob exif frontbase fdftk filter firebird flatfile ftp gd gd-external gdbm gmp hash iconv imap inifile interbase iodbc ipv6 java-external json kerberos ldap ldap-sasl libedit mcve mhash msql mssql mysql mysqli ncurses nls oci8 oci8-instant-client odbc pcntl pcre pdo pic posix postgres qdbm readline reflection recode sapdb session sharedext sharedmem simplexml snmp soap sockets solid spell spl sqlite ssl suhosin sybase sybase-ct sysvipc tidy tokenizer truetype unicode wddx xml xmlreader xmlwriter xmlrpc xpm xsl yaz zip zip-external zlib"
+IUSE="adabas bcmath berkdb birdstep bzip2 calendar cdb cjk crypt ctype curl curlwrappers db2 dbase dbmaker debug doc empress empress-bcs esoob exif frontbase fdftk filter firebird flatfile ftp gd gd-external gdbm gmp hash iconv imap inifile interbase iodbc ipv6 java-external json kerberos ldap ldap-sasl libedit mcve mhash msql mssql mysql mysqli ncurses nls oci8 oci8-instant-client odbc pcntl pcre pdo pic posix postgres qdbm readline reflection recode sapdb session sharedext sharedmem simplexml snmp soap sockets solid spell spl sqlite ssl suhosin sybase sybase-ct sysvipc tidy tokenizer truetype unicode wddx xml xmlreader xmlwriter xmlrpc xpm xsl yaz zip zlib"
 
 # these USE flags should have the correct dependencies
 DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
@@ -133,9 +133,7 @@ PDEPEND="doc? ( app-doc/php-docs )
 		mcve? ( dev-php5/pecl-mcve )
 		pdo? ( !dev-php5/pecl-pdo )
 		suhosin? ( dev-php5/suhosin )
-		yaz? ( dev-php5/pecl-yaz )
-		zip? ( !dev-php5/pecl-zip )
-		zip-external? ( dev-php5/pecl-zip )"
+		yaz? ( dev-php5/pecl-yaz )"
 
 # ========================================================================
 # php.ini Support
@@ -204,7 +202,6 @@ php5_2-sapi_check_use_flags() {
 	phpconfutils_use_conflict "gd" "gd-external"
 	phpconfutils_use_conflict "oci8" "oci8-instant-client"
 	phpconfutils_use_conflict "oci8" "ldap-sasl"
-	phpconfutils_use_conflict "zip" "zip-external"
 	phpconfutils_use_conflict "qdbm" "gdbm"
 	phpconfutils_use_conflict "readline" "libedit"
 	phpconfutils_use_conflict "recode" "mysql" "imap" "yaz" "kolab"

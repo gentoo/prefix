@@ -1,13 +1,13 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xemacs-packages.eclass,v 1.14 2008/02/24 13:35:15 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xemacs-packages.eclass,v 1.15 2009/06/21 14:53:12 graaff Exp $
 #
 # xemacs-packages eclass inherited by all xemacs packages
 # $PKG_CAT need's to be set before inheriting xemacs-packages
 
 EXPORT_FUNCTIONS src_unpack src_compile src_install
 
-DEPEND="virtual/xemacs"
+DEPEND="app-editors/xemacs"
 
 [ -z "$HOMEPAGE" ]    && HOMEPAGE="http://xemacs.org/"
 [ -z "$LICENSE" ]     && LICENSE="GPL-2"
