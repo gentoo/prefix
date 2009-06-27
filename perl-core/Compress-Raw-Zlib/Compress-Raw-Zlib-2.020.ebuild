@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Zlib/Compress-Raw-Zlib-2.020.ebuild,v 1.5 2009/06/19 00:19:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Zlib/Compress-Raw-Zlib-2.020.ebuild,v 1.6 2009/06/22 20:48:03 tove Exp $
 
 EAPI=2
 
