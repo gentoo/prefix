@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/ntp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.148 2009/06/20 23:12:04 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.149 2009/06/22 13:39:06 vapier Exp $
+
+  22 Jun 2009; Mike Frysinger <vapier@gentoo.org> ntp-4.2.4_p7.ebuild:
+  Disable md5/elf with autoconf cache vars now rather than sed #274266 by
+  Fabio Erculiani.
 
   20 Jun 2009; Robin H. Johnson <robbat2@gentoo.org> +ntp-4.2.4_p6.ebuild:
   Re-add _p6 until bug 274863 is resolved, but add the MOD_NANO patch so it

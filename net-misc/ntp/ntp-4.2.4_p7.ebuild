@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p7.ebuild,v 1.7 2009/06/20 12:04:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p7.ebuild,v 1.8 2009/06/22 13:39:06 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
@@ -28,16 +28,6 @@ PDEPEND="openntpd? ( net-misc/openntpd )"
 
 S=${WORKDIR}/${MY_P}
 
-hax_bitkeeper() {
-	# the makefiles have support for bk ...
-	# basically we have to do this or bk will try to write
-	# to files in /opt/bitkeeper causing sandbox violations ;(
-	mkdir -p "${T}"/fakebin
-	echo "#!${EPREFIX}/bin/sh"$'\n'"exit 1" > "${T}"/fakebin/bk
-	chmod a+x "${T}"/fakebin/bk
-	export PATH="${T}/fakebin:${PATH}"
-}
-
 pkg_setup() {
 	enewgroup ntp 123
 	enewuser ntp 123 -1 /dev/null ntp
@@ -57,16 +47,12 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.2.4_p5-adjtimex.patch #254030
 	epatch "${FILESDIR}"/${PN}-4.2.4_p7-nano.patch #270483
 	append-cppflags -D_GNU_SOURCE #264109
-
-	sed -i \
-		-e 's:md5\.h:touch_not_my_md5:g' \
-		-e 's:-lelf:-la_doe_a_deer_a_female_deer:g' \
-		-e 's:-lmd5:-li_dont_want_no_stinkin_md5:g' \
-		configure || die "sed failed"
 }
 
 src_compile() {
-	hax_bitkeeper
+	# avoid libmd5/libelf
+	export ac_cv_search_MD5Init=no ac_cv_header_md_5=no
+	export ac_cv_lib_elf_nlist=no
 	# blah, no real configure options #176333
 	export ac_cv_header_dns_sd_h=$(use zeroconf && echo yes || echo no)
 	export ac_cv_lib_dns_sd_DNSServiceRegister=${ac_cv_header_dns_sd_h}
@@ -81,7 +67,6 @@ src_compile() {
 }
 
 src_install() {
-	hax_bitkeeper
 	emake install DESTDIR="${D}" || die "install failed"
 	# move ntpd/ntpdate to sbin #66671
 	dodir /usr/sbin
