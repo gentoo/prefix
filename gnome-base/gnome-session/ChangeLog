@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/gnome-session
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/ChangeLog,v 1.236 2009/05/23 14:54:11 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/ChangeLog,v 1.237 2009/06/26 20:49:45 aballier Exp $
+
+*gnome-session-2.26.1-r1 (26 Jun 2009)
+
+  26 Jun 2009; Alexis Ballier <aballier@gentoo.org>
+  +gnome-session-2.26.1-r1.ebuild,
+  +files/gnome-session-2.26.1-execinfo.patch:
+  Add build fix for bsd, check for execinfo and link to it if needed, bug
+  #275524, gnome bug #587088
 
   23 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -gnome-session-2.22.3.ebuild, gnome-session-2.26.1.ebuild:
