@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/raptor-1.4.18.ebuild,v 1.9 2009/05/22 15:42:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/raptor-1.4.18.ebuild,v 1.10 2009/06/22 13:04:45 aballier Exp $
 
 EAPI=2
-inherit eutils
+inherit eutils libtool
 
 DESCRIPTION="The RDF Parser Toolkit"
 HOMEPAGE="http://librdf.org/raptor"
@@ -25,6 +25,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epunt_cxx
+	elibtoolize # needed for .so versionning on bsd
 }
 
 src_configure() {
