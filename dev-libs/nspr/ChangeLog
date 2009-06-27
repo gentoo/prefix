@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/nspr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.122 2009/05/01 14:03:12 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.123 2009/06/24 17:47:24 nirbheek Exp $
+
+*nspr-4.8 (24 Jun 2009)
+
+  24 Jun 2009; <nirbheek@gentoo.org> +nspr-4.8.ebuild:
+  Add nspr-4.8, dependency of firefox 3.5rc*
 
   01 May 2009; Markus Meier <maekke@gentoo.org> nspr-4.7.4.ebuild:
   amd64 stable, bug #267234
