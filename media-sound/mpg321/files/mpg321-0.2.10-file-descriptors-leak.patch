@@ -1,6 +1,8 @@
-diff -uNr mpg321-0.2.10/mpg321.c mpg321-0.2.10-new/mpg321.c
---- mpg321-0.2.10/mpg321.c	Sat Mar 23 23:49:20 2002
-+++ mpg321-0.2.10-new/mpg321.c	Sat Nov 13 00:50:25 2004
+From upstream (Debian in this case), should be fixed in >= 0.2.10.6.
+
+diff -ur mpg321-0.2.10.orig/mpg321.c mpg321-0.2.10/mpg321.c
+--- mpg321-0.2.10.orig/mpg321.c	Sat Mar 23 23:49:20 2002
++++ mpg321-0.2.10/mpg321.c	Sat Nov 13 00:50:25 2004
 @@ -188,7 +188,7 @@
              
              else

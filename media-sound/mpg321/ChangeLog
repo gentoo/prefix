@@ -1,6 +1,23 @@
 # ChangeLog for media-sound/mpg321
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/ChangeLog,v 1.44 2008/07/15 19:50:51 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/ChangeLog,v 1.47 2009/06/22 04:45:13 jer Exp $
+
+  22 Jun 2009; Jeroen Roovers <jer@gentoo.org> mpg321-0.2.10-r4.ebuild:
+  Stable for HPPA too.
+
+  22 Jun 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mpg321-0.2.10.6.ebuild:
+  Disable USE symlink by default and mention it in postinst. Run eautoreconf
+  because it was running maintainer-mode and failed due to undefined
+  AC_TYPE_SOCKLEN_T, needed a AT_M4DIR's help.
+
+*mpg321-0.2.10.6 (21 Jun 2009)
+*mpg321-0.2.10-r4 (21 Jun 2009)
+
+  21 Jun 2009; Samuli Suominen <ssuominen@gentoo.org>
+  -mpg321-0.2.10-r3.ebuild, +mpg321-0.2.10-r4.ebuild,
+  +mpg321-0.2.10.6.ebuild:
+  Version bump. Handle mpg123 symlink inside CONTENTS.
 
   15 Jul 2008; Jeroen Roovers <jer@gentoo.org> mpg321-0.2.10-r3.ebuild:
   Marked ~hppa too.
