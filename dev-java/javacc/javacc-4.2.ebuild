@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javacc/javacc-4.2.ebuild,v 1.1 2009/04/28 11:42:03 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javacc/javacc-4.2.ebuild,v 1.2 2009/06/21 09:21:22 caster Exp $
 
 JAVA_PKG_IUSE="doc examples source test"
 EAPI="2"
@@ -16,16 +16,15 @@ IUSE=""
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 DEPEND=">=virtual/jdk-1.5
 	dev-java/junit:0
-	test? ( dev-java/ant-junit )"
+	test? (
+		>=virtual/jdk-1.5
+		dev-java/ant-junit
+	)
+	!test? ( >=virtual/jdk-1.4 )"
 RDEPEND=">=virtual/jre-1.4
 	dev-java/junit:0"
 
-#There are test cases that require >=1.5
-#currently the build system handles producing
-#the correct bytecode for the jar we are
-#wanting. So lets just let it do its
-#part.
-JAVA_PKG_BSFIX="off"
+# We don't want 1.5 bytecode just because of the testcase
 JAVA_PKG_WANT_TARGET="1.4"
 JAVA_PKG_WANT_SOURCE="1.4"
 
@@ -45,6 +44,8 @@ src_compile() {
 }
 
 src_test() {
+	# this testcase wants 1.5 and this seems the easiest way to do it
+	JAVA_PKG_WANT_SOURCE="1.5" JAVA_PKG_WANT_TARGET="1.5" java-ant_bsfix_one examples/JavaGrammars/1.5/build.xml
 	ANT_TASKS="ant-junit" _eant test
 }
 
