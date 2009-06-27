@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r2.ebuild,v 1.10 2009/05/18 09:04:18 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r2.ebuild,v 1.11 2009/06/23 18:20:35 vapier Exp $
 
 inherit eutils flag-o-matic multilib autotools pam
 
@@ -105,6 +105,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.7_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	[[ -n ${HPN_PATCH} ]] && use hpn && epatch "${DISTDIR}"/${HPN_PATCH}
 	epatch "${FILESDIR}"/${PN}-4.7p1-selinux.diff #191665
+	epatch "${FILESDIR}"/${P}-autoconf.patch
 
 	# in 5.2p1, the AES-CTR multithreaded variant is temporarily broken, and
 	# causes random hangs when combined with the -f switch of ssh.
