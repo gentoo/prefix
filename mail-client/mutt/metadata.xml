@@ -6,7 +6,6 @@
     <email>grobian@gentoo.org</email>
   </maintainer>
   <use>
-    <flag name="buffysize">Enable buffysize workaround, see bug #72422</flag>
     <flag name="gpgme">Enable support for <pkg>app-crypt/gpgme</pkg></flag>
     <flag name="pop">Enable support for pop</flag>
     <flag name="sidebar">Use the vanilla tree + sidebar patch</flag>
