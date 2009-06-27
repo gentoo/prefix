@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/hmmer/hmmer-3.0_alpha2.ebuild,v 1.1 2009/05/02 06:08:27 weaver Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/hmmer/hmmer-3.0_beta1.ebuild,v 1.1 2009/06/21 15:29:37 weaver Exp $
 
 EAPI="2"
 
-MY_P="hmmer-3.0a2"
+MY_P="hmmer-3.0b1"
 
 DESCRIPTION="Sequence analysis using profile hidden Markov models"
 HOMEPAGE="http://hmmer.janelia.org/"
@@ -15,16 +15,18 @@ SLOT="0"
 IUSE="sse mpi threads" # gsl
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 
+# NB: compile failure with mpi, disabling temporarily
 # gsl? ( sci-libs/gsl )
-DEPEND="mpi? ( virtual/mpi )"
+# mpi? ( virtual/mpi )
+DEPEND=""
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
 src_configure() {
 	econf $(use_enable sse) \
-		$(use_enable mpi) \
 		$(use_enable threads) || die
+#		$(use_enable mpi) \
 #		$(use_with gsl) || die
 }
 
