@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.290 2009/06/19 22:06:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.291 2009/06/26 12:50:00 darkside Exp $
+
+*eix-0.16.2 (26 Jun 2009)
+
+  26 Jun 2009; Jeremy Olexa <darkside@gentoo.org> -eix-0.15.7.ebuild,
+  +eix-0.16.2.ebuild:
+  Minor version bump, default to SAVE_WORLD=true and build system changes
 
   19 Jun 2009; Brent Baude <ranger@gentoo.org> eix-0.16.0.ebuild:
   stable ppc64, bug 273555
