@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-13.2.1.ebuild,v 1.1 2009/06/15 21:03:59 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-13.2.1.ebuild,v 1.2 2009/06/24 13:03:42 fauli Exp $
 
 EAPI=2
 WX_GTK_VER="2.8"
@@ -113,6 +113,7 @@ src_install() {
 		"${ERL_LIBDIR}/lib/erl_interface-${ERL_INTERFACE_VER}/bin/erl_call" \
 		/usr/bin/erl_call
 	dosym "${ERL_LIBDIR}/erts-${ERL_ERTS_VER}/bin/beam" /usr/bin/beam
+	use smp && dosym "${ERL_LIBDIR}/erts-${ERL_ERTS_VER}/bin/beam.smp" /usr/bin/beam.smp
 
 	## Remove ${D} from the following files
 	dosed "s:${D}::g" "${ERL_LIBDIR}/bin/erl"
