@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/pam-1.1.0.ebuild,v 1.2 2009/06/20 20:24:44 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/pam-1.1.0.ebuild,v 1.5 2009/06/21 16:50:28 flameeyes Exp $
 
 inherit libtool multilib eutils autotools pam toolchain-funcs flag-o-matic
 
@@ -10,7 +10,8 @@ MY_P="${MY_PN}-${PV}"
 HOMEPAGE="http://www.kernel.org/pub/linux/libs/pam/"
 DESCRIPTION="Linux-PAM (Pluggable Authentication Modules)"
 
-SRC_URI="mirror://kernel/linux/libs/pam/library/${MY_P}.tar.bz2"
+SRC_URI="mirror://kernel/linux/libs/pam/library/${MY_P}.tar.bz2
+	mirror://kernel/linux/libs/pam/documentation/${MY_P}-docs.tar.bz2"
 
 LICENSE="PAM"
 SLOT="0"
@@ -55,7 +56,7 @@ check_old_modules() {
 		eerror ""
 		eerror "Your current setup is using one or more of the following modules,"
 		eerror "that are not built or supported anymore:"
-		eerror "pam_pwdb, pam_timestamp, pam_console"
+		eerror "pam_pwdb, pam_console"
 		eerror "If you are in real need for these modules, please contact the maintainers"
 		eerror "of PAM through http://bugs.gentoo.org/ providing information about its"
 		eerror "use cases."
@@ -78,6 +79,9 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	# Avoid building xtests during "make all"; note that for what
+	# we're concerned xtests are not even executed, so we should
+	# probably use EXTRA_PROGRAMS.
 	epatch "${FILESDIR}/${MY_PN}-0.99.8.1-xtests.patch"
 
 	# Remove NIS dependencies, see bug #235431
@@ -85,6 +89,9 @@ src_unpack() {
 
 	# Fix building with debug USE flag enabled
 	epatch "${FILESDIR}/${MY_PN}-1.1.0-debug.patch"
+
+	# Fix building with nls USE flag disabled
+	epatch "${FILESDIR}/${MY_PN}-1.1.0-nonls.patch"
 
 	# Remove libtool-2 libtool macros, see bug 261167
 	rm m4/libtool.m4 m4/lt*.m4 || die "rm libtool macros failed."
