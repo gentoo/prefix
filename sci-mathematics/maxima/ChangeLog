@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/maxima
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.65 2009/05/30 06:46:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.66 2009/06/21 18:40:32 graaff Exp $
+
+  21 Jun 2009; Hans de Graaff <graaff@gentoo.org> maxima-5.14.0.ebuild,
+  maxima-5.17.1-r1.ebuild, maxima-5.18.1.ebuild:
+  Rename virtual/xemacs -> app-editors/xemacs because the virtual has been
+  removed.
 
   30 May 2009; Ulrich Mueller <ulm@gentoo.org> maxima-5.14.0.ebuild,
   maxima-5.17.1-r1.ebuild, maxima-5.18.1.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.17.1-r1.ebuild,v 1.3 2009/05/30 06:46:38 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.17.1-r1.ebuild,v 1.4 2009/06/21 18:40:32 graaff Exp $
 inherit eutils elisp-common
 
 DESCRIPTION="Free computer algebra environment based on Macsyma"
@@ -33,7 +33,7 @@ RDEPEND="X? ( x11-misc/xdg-utils
 	latex? ( virtual/latex-base )
 	emacs? ( virtual/emacs
 		latex? ( app-emacs/auctex ) )
-	xemacs? ( virtual/xemacs
+	xemacs? ( app-editors/xemacs
 		latex? ( app-emacs/auctex ) )"
 
 PDEPEND="emacs? ( app-emacs/imaxima )"
