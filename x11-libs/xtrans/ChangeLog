@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/xtrans
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xtrans/ChangeLog,v 1.63 2009/05/15 14:30:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xtrans/ChangeLog,v 1.64 2009/06/23 19:18:27 klausman Exp $
+
+  23 Jun 2009; Tobias Klausmann <klausman@gentoo.org> xtrans-1.2.3.ebuild:
+  Stable on alpha for xorg-server-1.5/xorg-x11-7.4
 
   15 May 2009; Raúl Porcel <armin76@gentoo.org> xtrans-1.2.3.ebuild:
   arm/m68k/s390 stable
