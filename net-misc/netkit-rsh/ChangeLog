@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/netkit-rsh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.65 2009/01/12 15:44:51 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.66 2009/06/21 17:31:02 flameeyes Exp $
+
+  21 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -netkit-rsh-0.17-r8.ebuild, -files/rexec.pamd-include,
+  -files/rlogin.pamd-include, files/rlogin.pamd-pambase,
+  -files/rsh.pamd-include, files/rsh.pamd-pambase:
+  Remove old version (drops ~x86-fbsd!), fix rhost_auth references (bug
+  #233242).
 
   12 Jan 2009; Guy Martin <gmsoft@gentoo.org> netkit-rsh-0.17-r9.ebuild:
   hppa stable, #250892
