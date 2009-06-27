@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/mkfontdir/mkfontdir-1.0.4.ebuild,v 1.8 2009/06/05 16:45:37 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/mkfontdir/mkfontdir-1.0.4.ebuild,v 1.9 2009/06/23 21:26:32 klausman Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
