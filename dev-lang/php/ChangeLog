@@ -1,6 +1,26 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.333 2009/06/19 14:40:22 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.339 2009/06/26 19:36:34 klausman Exp $
+
+  26 Jun 2009; Tobias Klausmann <klausman@gentoo.org> php-5.2.10.ebuild:
+  Stable on alpha, bug #274670
+
+  26 Jun 2009; Tobias Heinlein <keytoaster@gentoo.org> php-5.2.10.ebuild:
+  amd64 stable, security bug #274670
+
+  25 Jun 2009; Christian Faulhammer <fauli@gentoo.org> php-5.2.10.ebuild:
+  stable x86, security bug 274670
+
+  24 Jun 2009; Christian Hoffmann <hoffie@gentoo.org> metadata.xml:
+  restoring metadata.xml with zip-external description, somehow repoman
+  complains otherwise
+
+  23 Jun 2009; Jeroen Roovers <jer@gentoo.org> php-5.2.10.ebuild,
+  metadata.xml:
+  Stable for HPPA (bug #274670).
+
+  21 Jun 2009; Christian Hoffmann <hoffie@gentoo.org> metadata.xml:
+  removing traces of USE=zip-external
 
 *php-5.2.10 (19 Jun 2009)
 
