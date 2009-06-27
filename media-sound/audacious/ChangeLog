@@ -1,6 +1,22 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.165 2009/06/17 21:18:05 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.168 2009/06/26 18:09:23 chainsaw Exp $
+
+*audacious-2.1_beta1 (26 Jun 2009)
+
+  26 Jun 2009; <chainsaw@gentoo.org> +audacious-2.1_beta1.ebuild:
+  First beta for the 2.1 version; many more bug fixes and some GTK+
+  performance improvements. No longer masked, please test thoroughly. Bugs
+  still upstream please.
+
+*audacious-2.1_alpha2 (23 Jun 2009)
+
+  23 Jun 2009; <chainsaw@gentoo.org> +audacious-2.1_alpha2.ebuild:
+  Many bugfixes based on what people reported in the JIRA bug tracker at
+  http://jira.atheme.org/; have *you* reported one yet?
+
+  22 Jun 2009; <chainsaw@gentoo.org> audacious-2.0.1.ebuild:
+  Revert stable keywords as per the wishes of the reporters in bug #274659.
 
   17 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
   audacious-2.0.1.ebuild:

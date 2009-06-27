@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-2.0.1.ebuild,v 1.4 2009/06/22 21:03:57 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-2.1_beta1.ebuild,v 1.1 2009/06/26 18:09:23 chainsaw Exp $
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
@@ -29,7 +29,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9.0
 	nls? ( dev-util/intltool )"
 
-PDEPEND=">=media-plugins/audacious-plugins-2.0.0"
+PDEPEND=">=media-plugins/audacious-plugins-2.1_beta1"
 
 src_compile() {
 	# D-Bus is a mandatory dependency, remote control,
@@ -62,9 +62,4 @@ src_install() {
 	doins "${WORKDIR}"/gentoo_ice/*
 	docinto gentoo_ice
 	dodoc "${WORKDIR}"/README
-}
-
-pkg_postinst() {
-	elog "Note that you need to recompile *all* third-party plugins for Audacious 2.0"
-	elog "Plugins compiled against 1.X will not be loaded."
 }
