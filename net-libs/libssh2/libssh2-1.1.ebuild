@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh2/libssh2-1.1.ebuild,v 1.1 2009/04/18 15:25:55 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh2/libssh2-1.1.ebuild,v 1.2 2009/06/26 11:25:30 pva Exp $
 
 EAPI="2"
 
@@ -11,17 +11,17 @@ SRC_URI="mirror://sourceforge/libssh2/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x64-macos ~sparc64-solaris"
-IUSE="libgcrypt zlib"
+IUSE="gcrypt zlib"
 
-DEPEND="!libgcrypt? ( dev-libs/openssl )
-	libgcrypt? ( dev-libs/libgcrypt )
+DEPEND="!gcrypt? ( dev-libs/openssl )
+	gcrypt? ( dev-libs/libgcrypt )
 	zlib? ( sys-libs/zlib )"
 RDEPEND="${DEPEND}"
 
 src_configure() {
 	local myconf
 
-	if use libgcrypt ; then
+	if use gcrypt ; then
 		myconf="--with-libgcrypt"
 	else
 		myconf="--with-openssl"

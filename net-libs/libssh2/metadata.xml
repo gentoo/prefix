@@ -3,6 +3,6 @@
 <pkgmetadata>
   <herd>netmon</herd>
   <use>
-    <flag name="libgcrypt">Use libgcrypt for crypto</flag>
+    <flag name="gcrypt">Use <pkg>dev-libs/libgcrypt</pkg> for crypto</flag>
   </use>
 </pkgmetadata>
