@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/zziplib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.65 2009/05/26 20:44:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.67 2009/06/24 21:09:36 mr_bones_ Exp $
+
+  24 Jun 2009; Michael Sterrett <mr_bones_@gentoo.org>
+  zziplib-0.13.55.ebuild:
+  add back the python patch (bug #275247)
+
+*zziplib-0.13.55 (23 Jun 2009)
+
+  23 Jun 2009; Mike Frysinger <vapier@gentoo.org> +zziplib-0.13.55.ebuild:
+  Version bump.
 
   26 May 2009; Mike Frysinger <vapier@gentoo.org> zziplib-0.13.54.ebuild:
   Make sure we actually disable the targets which install useless lib
