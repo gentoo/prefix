@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.72.ebuild,v 1.1 2009/06/20 12:55:38 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.72.ebuild,v 1.2 2009/06/21 10:45:10 flameeyes Exp $
 
 # qt4 client is disabled because of upstream regression in bug
 # http://trac.transmissionbt.com/ticket/2169, but you can uncomment
@@ -30,6 +30,7 @@ RDEPEND=">=dev-libs/libevent-1.4.11
 		libnotify? ( >=x11-libs/libnotify-0.4.3 ) )"
 #	qt4? ( x11-libs/qt-gui:4 )
 DEPEND="${RDEPEND}
+	>=sys-devel/libtool-2.2
 	sys-devel/gettext
 	dev-util/intltool
 	dev-util/pkgconfig
