@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/pyopenssl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyopenssl/ChangeLog,v 1.25 2009/05/16 23:26:08 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyopenssl/ChangeLog,v 1.27 2009/06/22 06:24:36 jer Exp $
+
+  22 Jun 2009; Jeroen Roovers <jer@gentoo.org> pyopenssl-0.9.ebuild:
+  Stable for HPPA (bug #274897).
+
+  22 Jun 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pyopenssl-0.9.ebuild, +files/pyopenssl-0.9-tests.patch:
+  Fix tests (bug #275017).
 
 *pyopenssl-0.9 (16 May 2009)
 
