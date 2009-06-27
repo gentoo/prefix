@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.2.0-r1.ebuild,v 1.1 2009/03/10 21:18:03 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.2.0-r1.ebuild,v 1.2 2009/06/22 08:54:38 aballier Exp $
 
 inherit flag-o-matic autotools
 
@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="alsa amrnb amrwb ao debug encode ffmpeg flac id3tag ladspa mad libsamplerate ogg oss png sndfile wavpack"
 
-DEPEND="alsa? ( media-libs/alsa-lib )
+RDEPEND="alsa? ( media-libs/alsa-lib )
 	encode? ( media-sound/lame )
 	flac? ( media-libs/flac )
 	mad? ( media-libs/libmad )
@@ -29,6 +29,8 @@ DEPEND="alsa? ( media-libs/alsa-lib )
 	amrwb? ( media-libs/amrwb )
 	png? ( media-libs/libpng )
 	wavpack? ( media-sound/wavpack )"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig"
 
 src_unpack() {
 	unpack ${A}
