@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.78 2009/06/20 09:32:57 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.79 2009/06/23 19:17:41 klausman Exp $
+
+  23 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
+  inputproto-1.5.1.ebuild:
+  Stable on alpha for xorg-server-1.5/xorg-x11-7.4
 
 *inputproto-1.5.1 (20 Jun 2009)
 
