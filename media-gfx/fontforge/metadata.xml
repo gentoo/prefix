@@ -10,7 +10,7 @@
 </longdescription>
 <use>
 
-	<flag name="truetype-debugger">Enable enable truetype debugger in
+	<flag name="truetype-debugger">Enable truetype debugger in
 	fontforge</flag>
 
 	<flag name='type3'>Build in support for type3/svg fonts containing

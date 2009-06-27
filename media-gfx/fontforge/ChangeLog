@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/fontforge
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.107 2009/04/21 21:35:02 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.109 2009/06/23 23:19:21 ikelos Exp $
+
+  23 Jun 2009; Mike Auty <ikelos@gentoo.org> metadata.xml:
+  Fix typo in metadata.xml description of truetype-debugger. See bug 275228.
+
+*fontforge-20090622 (23 Jun 2009)
+
+  23 Jun 2009; Mike Frysinger <vapier@gentoo.org>
+  +fontforge-20090622.ebuild:
+  Version bump.
 
 *fontforge-20090408-r1 (21 Apr 2009)
 
