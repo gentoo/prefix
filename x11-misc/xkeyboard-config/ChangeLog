@@ -1,6 +1,27 @@
 # ChangeLog for x11-misc/xkeyboard-config
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.64 2009/06/13 11:23:39 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.69 2009/06/23 21:23:43 remi Exp $
+
+  23 Jun 2009; Rémi Cardona <remi@gentoo.org> xkeyboard-config-1.1.ebuild,
+  xkeyboard-config-1.5.ebuild, xkeyboard-config-1.6.ebuild:
+  add missing build-time gettext dep (fixes bug #221127)
+
+  23 Jun 2009; Rémi Cardona <remi@gentoo.org>
+  -xkeyboard-config-0.8-r1.ebuild, -xkeyboard-config-0.9.ebuild,
+  -xkeyboard-config-1.2.ebuild, -xkeyboard-config-1.3.ebuild,
+  -xkeyboard-config-1.4.ebuild, -files/add_missing_lsgt.patch:
+  drop old ebuilds (will drop 1.1 later)
+
+  23 Jun 2009; Rémi Cardona <remi@gentoo.org> xkeyboard-config-1.6.ebuild:
+  drop accidental stable alpha keyword on 1.6
+
+  23 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
+  xkeyboard-config-1.5.ebuild:
+  Stable on alpha. It's needed for xorg-server-1.5/xorg-x11-7.4
+
+  23 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
+  xkeyboard-config-1.6.ebuild:
+  Stable on alpha for xorg-server-1.5/xorg-x11-7.4
 
 *xkeyboard-config-1.6 (13 Jun 2009)
 

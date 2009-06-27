@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.6.ebuild,v 1.1 2009/06/13 11:23:39 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.6.ebuild,v 1.4 2009/06/23 21:23:43 remi Exp $
 
 inherit eutils
 
@@ -15,6 +15,7 @@ SLOT="0"
 IUSE=""
 RDEPEND=""
 DEPEND="${RDEPEND}
+	sys-devel/gettext
 	>=dev-util/intltool-0.30
 	dev-perl/XML-Parser
 	x11-apps/xkbcomp"
