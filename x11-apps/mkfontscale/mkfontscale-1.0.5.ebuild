@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/mkfontscale/mkfontscale-1.0.5.ebuild,v 1.9 2009/06/05 17:12:03 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/mkfontscale/mkfontscale-1.0.5.ebuild,v 1.10 2009/06/23 21:23:03 klausman Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
