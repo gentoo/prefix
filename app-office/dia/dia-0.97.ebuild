@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.97.ebuild,v 1.1 2009/05/18 20:57:43 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.97.ebuild,v 1.2 2009/06/21 11:53:44 mrpouet Exp $
+
+EAPI="2"
 
 inherit eutils gnome2 libtool autotools versionator python
 
@@ -68,6 +70,11 @@ src_prepare() {
 
 	# Fix compilation in a gnome environment, bug #159831
 	epatch "${FILESDIR}/${PN}-0.97.0-gnome-doc.patch"
+
+	# Fix compilation with USE="python", bug #271855
+	if use python; then
+		epatch "${FILESDIR}/${P}-acinclude-python-fixes.patch"
+	fi
 
 	# Skip man generation
 	if use doc; then
