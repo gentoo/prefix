@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.12.ebuild,v 1.7 2009/06/20 07:35:35 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.12.ebuild,v 1.8 2009/06/22 16:56:12 armin76 Exp $
 
 EAPI="1"
 
