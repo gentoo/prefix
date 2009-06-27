@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.218 2009/04/27 13:46:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.219 2009/06/24 13:45:12 cardoe Exp $
+
+  16 Jun 2009; Doug Goldstein <cardoe@gentoo.org> -cairo-1.4.12.ebuild,
+  -cairo-1.6.4.ebuild, -cairo-1.8.0.ebuild, -cairo-1.8.2.ebuild,
+  -cairo-1.8.4.ebuild, -cairo-1.8.6.ebuild, +cairo-1.8.8.ebuild:
+  cull old versions
+
+*cairo-1.8.8 (16 Jun 2009)
+
+  16 Jun 2009; Doug Goldstein <cardoe@gentoo.org> +cairo-1.8.8.ebuild:
+  version bump
 
   27 Apr 2009; Jeroen Roovers <jer@gentoo.org> cairo-1.8.6-r1:
   Stable for HPPA (bug #260063).
