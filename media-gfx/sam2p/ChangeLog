@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/sam2p
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.36 2009/03/18 19:19:09 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.37 2009/06/24 18:48:05 aballier Exp $
+
+*sam2p-0.46 (24 Jun 2009)
+
+  24 Jun 2009; Alexis Ballier <aballier@gentoo.org> +sam2p-0.46.ebuild:
+  version bump
 
   18 Mar 2009; Raúl Porcel <armin76@gentoo.org> sam2p-0.45-r1.ebuild:
   arm/s390/sh stable wrt #253551
