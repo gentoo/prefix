@@ -1,6 +1,20 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.344 2009/05/18 05:11:38 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.348 2009/06/26 21:21:39 keytoaster Exp $
+
+  26 Jun 2009; Tobias Heinlein <keytoaster@gentoo.org> git-1.6.3.3.ebuild:
+  amd64 stable, security bug ##273905
+
+  26 Jun 2009; Tobias Klausmann <klausman@gentoo.org> git-1.6.3.3.ebuild:
+  Stable on alpha, bug #273905
+
+  24 Jun 2009; Jeroen Roovers <jer@gentoo.org> git-1.6.3.3.ebuild:
+  Stable for HPPA (bug #273905).
+
+*git-1.6.3.3 (22 Jun 2009)
+
+  22 Jun 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.3.3.ebuild:
+  Version bump per bugs 274608 and 273905, has DoS fixes for gid-daemon.
 
 *git-1.6.3.1 (18 May 2009)
 
