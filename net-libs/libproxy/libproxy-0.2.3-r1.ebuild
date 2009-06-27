@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.2.3.ebuild,v 1.11 2009/05/20 19:17:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.2.3-r1.ebuild,v 1.2 2009/06/24 15:43:08 nirbheek Exp $
 
 EAPI="2"
 
@@ -26,7 +26,9 @@ RDEPEND="
 	networkmanager? ( net-misc/networkmanager )
 	python? ( >=dev-lang/python-2.5 )
 	webkit? ( net-libs/webkit-gtk )
-	xulrunner? ( >=net-libs/xulrunner-1.9 )
+	xulrunner? (
+		|| ( >=net-libs/xulrunner-1.9
+			 www-client/seamonkey ) )
 "
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.19"
@@ -41,8 +43,8 @@ src_prepare() {
 	# http://code.google.com/p/libproxy/issues/detail?id=25
 	epatch "${FILESDIR}/${P}-fix-as-needed-problem.patch"
 
-	# http://bugs.gentoo.org/show_bug.cgi?id=259178
-	epatch "${FILESDIR}/${P}-fix-libxul-cflags.patch"
+	# http://bugs.gentoo.org/show_bug.cgi?id=275127
+	epatch "${FILESDIR}/${P}-fix-mozjs-cflags.patch"
 
 	# Fix implicit declaration QA, bug #268546
 	epatch "${FILESDIR}/${P}-implicit-declaration.patch"

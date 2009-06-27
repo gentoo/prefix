@@ -1,6 +1,23 @@
 # ChangeLog for net-libs/libproxy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.12 2009/05/20 19:17:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.15 2009/06/25 20:53:37 mrpouet Exp $
+
+  25 Jun 2009; Romain Perier <mrpouet@gentoo.org>
+  files/libproxy-0.2.3-fix-mozjs-cflags.patch:
+  Fix bug #275318
+
+  24 Jun 2009; <nirbheek@gentoo.org> libproxy-0.2.3-r1.ebuild:
+  Re-add alpha stable, it was added as a mistake initially, but we're going
+  to need stable soon anyway. Re-add to reduce arch workload. (yes, possibly
+  bad, but blame armin76 if something breaks :p)
+
+*libproxy-0.2.3-r1 (24 Jun 2009)
+
+  24 Jun 2009; <nirbheek@gentoo.org> +libproxy-0.2.3-r1.ebuild,
+  -files/libproxy-0.2.3-fix-libxul-cflags.patch,
+  +files/libproxy-0.2.3-fix-mozjs-cflags.patch:
+  Fix bug 275127 -- fix mozjs detection to work cleaner, and with seamonkey
+  too
 
   20 May 2009; Brent Baude <ranger@gentoo.org> libproxy-0.2.3.ebuild:
   Marking libproxy-0.2.3 ~ppc64 for bug 268529
