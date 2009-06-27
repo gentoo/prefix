@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.0.1.ebuild,v 1.5 2009/06/22 21:04:59 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.1_beta1.ebuild,v 1.1 2009/06/26 18:10:05 chainsaw Exp $
 
 inherit eutils flag-o-matic
 
@@ -13,17 +13,18 @@ SRC_URI="http://distfiles.atheme.org/${MY_P}.tgz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
-IUSE="aqua adplug alsa cdaudio esd flac gnome icecast ipv6 jack lirc mp3 mtp musepack
+IUSE="aqua adplug alsa bs2b cdaudio esd flac gnome icecast ipv6 jack lirc mp3 mtp musepack
 nls oss projectm pulseaudio scrobbler sdl sid sndfile sse2 timidity tta vorbis wavpack wma"
 
 RDEPEND="app-arch/unzip
 	>=dev-libs/dbus-glib-0.60
 	dev-libs/libxml2
-	>=media-sound/audacious-2.0.1
+	>=media-sound/audacious-2.1_beta1
 	>=net-misc/neon-0.26.4
 	>=x11-libs/gtk+-2.14
 	adplug? ( >=dev-cpp/libbinio-1.4 )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
+	bs2b? ( media-libs/libbs2b )
 	cdaudio? ( >=media-libs/libcddb-1.2.1
 		>=dev-libs/libcdio-0.79-r1 )
 	esd? ( >=media-sound/esound-0.2.38-r1 )
@@ -40,7 +41,7 @@ RDEPEND="app-arch/unzip
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.3 )
 	scrobbler? ( net-misc/curl )
 	sdl? (	>=media-libs/libsdl-1.2.5 )
-	sid? ( media-libs/libsidplay )
+	sid? ( >=media-libs/libsidplay-2.1.1-r2 )
 	sndfile? ( >=media-libs/libsndfile-1.0.17-r1 )
 	timidity? ( media-sound/timidity++ )
 	tta? ( media-libs/libid3tag )
@@ -59,12 +60,6 @@ mp3_warning() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${PV}-icecast-flawed-vorbis-enum.patch"
-}
-
 src_compile() {
 	mp3_warning
 
@@ -77,10 +72,10 @@ src_compile() {
 		$(use_enable aqua coreaudio) \
 		$(use_enable aqua dockalbumart) \
 		--disable-projectm \
-		--disable-rootvis \
 		$(use_enable projectm projectm-1.0) \
 		$(use_enable alsa) \
 		$(use_enable alsa bluetooth) \
+		$(use_enable bs2b) \
 		$(use_enable cdaudio) \
 		$(use_enable esd) \
 		$(use_enable flac flacng) \

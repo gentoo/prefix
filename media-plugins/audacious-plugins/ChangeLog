@@ -1,6 +1,22 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.120 2009/06/18 11:57:04 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.123 2009/06/26 18:10:05 chainsaw Exp $
+
+*audacious-plugins-2.1_beta1 (26 Jun 2009)
+
+  26 Jun 2009; <chainsaw@gentoo.org> +audacious-plugins-2.1_beta1.ebuild:
+  First beta for the 2.1 version; many more bug fixes and some GTK+
+  performance improvements. No longer masked, please test thoroughly. Bugs
+  still upstream please.
+
+*audacious-plugins-2.1_alpha2 (23 Jun 2009)
+
+  23 Jun 2009; <chainsaw@gentoo.org> +audacious-plugins-2.1_alpha2.ebuild:
+  New alpha from upstream. I would carry the patch from alpha1-r1 over if it
+  didn't segfault the player so reproducably.
+
+  22 Jun 2009; <chainsaw@gentoo.org> audacious-plugins-2.0.1.ebuild:
+  Revert stable keywords as per the wishes of the reporters in bug #274659.
 
   18 Jun 2009; Samuli Suominen <ssuominen@gentoo.org>
   -audacious-plugins-2.1_alpha1.ebuild,
