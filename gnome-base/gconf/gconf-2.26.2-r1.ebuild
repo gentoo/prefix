@@ -57,6 +57,9 @@ src_prepare() {
 
 	# Fix intltoolize broken file, see upstream #577133
 	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
+
+	# Don't try to link against modules
+	epatch "${FILESDIR}"/${P}-darwin-cant-link-module.patch
 }
 
 # Can't run tests, missing script.
