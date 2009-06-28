@@ -39,10 +39,10 @@ pkg_setup() {
 src_unpack() {
 	PATCHES=(
 		"${FILESDIR}"/${PN}-1.1.4-aix-pthread.patch
-		"${FILESDIR}"/${PN}-1.1.5-winnt.patch
 		"${FILESDIR}"/${PN}-1.1.5-winnt-private.patch
 		"${FILESDIR}"/${PN}-1.1.5-solaris.patch
 	)
+#		"${FILESDIR}"/${PN}-1.1.5-winnt.patch #275731
 	x-modular_src_unpack
 }
 
