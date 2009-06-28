@@ -1,9 +1,9 @@
-#!/bin/bash
+#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
 
 # To use something besides `emerge` to install packages, set
 # XCB_REBUILDER_INSTALL to that binary.
 
-. /etc/init.d/functions.sh
+. "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh
 
 case ${1} in
 	'') ;;

@@ -7,7 +7,7 @@ EAPI="2"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular
+inherit x-modular prefix
 
 DESCRIPTION="X C-language Bindings library"
 HOMEPAGE="http://xcb.freedesktop.org/"
@@ -32,9 +32,14 @@ pkg_setup() {
 		--enable-xinput"
 }
 
+src_prepare() {
+	cp "${FILESDIR}"/xcb-rebuilder.sh "${T}"/ || die
+	eprefixify "${T}"/xcb-rebuilder.sh
+}
+
 src_install() {
 	x-modular_src_install
-	dobin "${FILESDIR}"/xcb-rebuilder.sh || die
+	dobin "${T}"/xcb-rebuilder.sh || die
 }
 
 pkg_postinst() {
