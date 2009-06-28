@@ -159,7 +159,6 @@ src_prepare() {
 	# Merged in 1.6.3 final 2009/05/07
 	#epatch "${FILESDIR}"/20090505-git-1.6.2.5-getopt-fixes.patch
 
-	epatch "${FILESDIR}"/${PN}-1.6.0.2-interix.patch
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.1.1-mint.patch
 
 	sed -i \
