@@ -1,3 +1,5 @@
+http://bugzilla.gnome.org/show_bug.cgi?id=587208
+
 /bin/sh ../libtool --tag=CC   --mode=link powerpc-apple-darwin8-gcc  -O3 -pipe -mcpu=G5 -mtune=G5 -Wall  -Wl,-dead_strip_dylibs -o xml-test xml-test.o -L/Library/Gentoo/usr/lib -lgmodule-2.0 -lORBit-2 -lgthread-2.0 -ldbus-glib-1 -ldbus-1 -lgobject-2.0 -lglib-2.0 -lintl -lxml2   ../gconf/libgconf-2.la libgconfbackend-oldxml.la 
 
 *** Warning: Linking the executable xml-test against the loadable module
