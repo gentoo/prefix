@@ -1,0 +1,92 @@
+http://bugs.gentoo.org/show_bug.cgi?id=275486
+
+--- lib/opencdk/new-packet.c
++++ lib/opencdk/new-packet.c
+@@ -380,6 +380,7 @@ cdk_error_t
+ _cdk_copy_userid (cdk_pkt_userid_t * dst, cdk_pkt_userid_t src)
+ {
+   cdk_pkt_userid_t u;
++  unsigned long tmp;
+ 
+   if (!dst || !src)
+     return CDK_Inv_Value;
+@@ -388,7 +389,9 @@ _cdk_copy_userid (cdk_pkt_userid_t * dst
+   u = cdk_calloc (1, sizeof *u + strlen (src->name) + 2);
+   if (!u)
+     return CDK_Out_Of_Core;
+-  u->name = (void*)u + sizeof(*u);
++  tmp = sizeof(*u);
++  tmp += (unsigned long)((void*)u);
++  u->name = (char *)tmp;
+ 
+   memcpy (u, src, sizeof *u);
+   memcpy (u->name, src->name, strlen (src->name));
+@@ -621,13 +624,16 @@ cdk_subpkt_t
+ cdk_subpkt_new (size_t size)
+ {
+   cdk_subpkt_t s;
++  unsigned long tmp;
+ 
+   if (!size)
+     return NULL;
+   s = cdk_calloc (1, sizeof *s + size + 2);
+   if (!s)
+     return NULL;
+-  s->d = (void*)s + sizeof(*s);
++  tmp = sizeof(*s);
++  tmp += (unsigned long)((void*)s);
++  s->d = (byte *)tmp;
+ 
+   return s;
+ }
+--- lib/opencdk/read-packet.c.dist	2009-06-18 16:55:13.609762520 +0100
++++ lib/opencdk/read-packet.c	2009-06-18 17:51:46.913773320 +0100
+@@ -817,6 +817,7 @@ read_literal (cdk_stream_t inp, size_t p
+   cdk_pkt_literal_t pt = *ret_pt;
+   size_t nread;
+   cdk_error_t rc;
++  unsigned long tmp;
+ 
+   if (!inp || !pt)
+     return CDK_Inv_Value;
+@@ -836,7 +837,9 @@ read_literal (cdk_stream_t inp, size_t p
+       *ret_pt = pt = cdk_realloc (pt, sizeof *pt + pt->namelen + 2);
+       if (!pt)
+ 	return CDK_Out_Of_Core;
+-      pt->name = (void*)pt + sizeof(*pt);
++      tmp = sizeof(*pt);
++      tmp += (unsigned long)((void*)pt);
++      pt->name = (char *)tmp;
+       rc = stream_read (inp, pt->name, pt->namelen, &nread);
+       if (rc)
+ 	return rc;
+@@ -944,6 +948,7 @@ cdk_pkt_read (cdk_stream_t inp, cdk_pack
+   int pkttype;
+   size_t pktlen = 0, pktsize = 0, is_partial = 0;
+   cdk_error_t rc;
++  unsigned long tmp;
+ 
+   if (!inp || !pkt)
+     return CDK_Inv_Value;
+@@ -998,7 +1003,9 @@ cdk_pkt_read (cdk_stream_t inp, cdk_pack
+ 				     + pkt->pktlen + 16 + 1);
+       if (!pkt->pkt.user_id)
+ 	return CDK_Out_Of_Core;
+-      pkt->pkt.user_id->name = (void*)pkt->pkt.user_id + sizeof(*pkt->pkt.user_id);
++      tmp = sizeof(*pkt->pkt.user_id);
++      tmp += (unsigned long)((void*)pkt->pkt.user_id);
++      pkt->pkt.user_id->name = (char *)tmp;
+ 
+       rc = read_attribute (inp, pktlen, pkt->pkt.user_id);
+       pkt->pkttype = CDK_PKT_ATTRIBUTE;
+@@ -1009,7 +1016,9 @@ cdk_pkt_read (cdk_stream_t inp, cdk_pack
+ 				     + pkt->pktlen + 1);
+       if (!pkt->pkt.user_id)
+ 	return CDK_Out_Of_Core;
+-      pkt->pkt.user_id->name = (void*)pkt->pkt.user_id + sizeof(*pkt->pkt.user_id);
++      tmp = sizeof(*pkt->pkt.user_id);
++      tmp += (unsigned long)((void*)pkt->pkt.user_id);
++      pkt->pkt.user_id->name = (char *)tmp;
+       rc = read_user_id (inp, pktlen, pkt->pkt.user_id);
+       break;
+ 

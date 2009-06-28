@@ -54,7 +54,9 @@ pkg_setup() {
 src_prepare() {
 	sed -e 's/imagesdir = $(infodir)/imagesdir = $(htmldir)/' -i doc/Makefile.am
 
-	epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
+	# src/serv.c 1st hunk fails
+	#epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
+	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${P}-irix.patch
 
 	local dir
 	for dir in m4 lib/m4 libextra/m4; do
@@ -72,6 +74,7 @@ src_prepare() {
 
 src_configure() {
 	local myconf
+	use cxx && [[ ${CHOST} == *-irix* ]] && export ac_cv_header_stdint_h=no
 	use bindist && myconf="--without-lzo" || myconf="$(use_with lzo)"
 	econf --htmldir="${EPREFIX}"/usr/share/doc/${P}/html \
 		$(use_enable cxx) \
