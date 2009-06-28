@@ -1,0 +1,36 @@
+http://bugs.gentoo.org/show_bug.cgi?id=275300
+
+--- src/cache/parse/parse.cc.dist	2009-06-24 16:58:22.432479920 +0100
++++ src/cache/parse/parse.cc	2009-06-24 16:59:58.804682560 +0100
+@@ -229,17 +229,17 @@ ParseCache::readPackage(Category &vec, c
+ 	else
+ 		pkg = vec.addPackage(pkg_name);
+ 
+-	for(vector<string>::const_iterator it = files.begin();
+-		it != files.end(); ++it) {
+-		string::size_type pos = ebuild_pos(*it);
++	for(vector<string>::const_iterator that = files.begin();
++		that != files.end(); ++that) {
++		string::size_type pos = ebuild_pos(*that);
+ 		if(pos == string::npos)
+ 			continue;
+ 
+ 		/* Check if we can split it */
+-		char *ver = ExplodeAtom::split_version(it->substr(0, pos).c_str());
++		char *ver = ExplodeAtom::split_version(that->substr(0, pos).c_str());
+ 		if(!ver) {
+ 			m_error_callback(eix::format(_("Can't split filename of ebuild %s/%s")) %
+-				directory_path % (*it));
++				directory_path % (*that));
+ 			continue;
+ 		}
+ 
+@@ -247,7 +247,7 @@ ParseCache::readPackage(Category &vec, c
+ 		Version *version = new Version(ver);
+ 		pkg->addVersionStart(version);
+ 
+-		string full_path = directory_path + '/' + (*it);
++		string full_path = directory_path + '/' + (*that);
+ 
+ 		/* For the latest version read/change corresponding data */
+ 		bool read_onetime_info = true;

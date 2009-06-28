@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-portage/eix/eix-0.16.2.ebuild,v 1.1 2009/06/26 12:50:00 darkside Exp $
 
-inherit multilib
+inherit multilib eutils
 
 DESCRIPTION="Search and query ebuilds, portage incl. local settings, ext.
 overlays, version changes, and more"
@@ -21,6 +21,13 @@ DEPEND="${RDEPEND}
 	app-arch/lzma-utils
 	doc? ( dev-python/docutils )
 	nls? ( sys-devel/gettext )"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+# in eix-0.16.3, hence drop in next release
+	epatch "${FILESDIR}"/${P}-irix.patch
+}
 
 src_compile() {
 	econf --with-bzip2 $(use_with sqlite) $(use_with doc rst) \
