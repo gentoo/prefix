@@ -23,9 +23,9 @@
  				ln -s "${linkfile}" || die -q "Failed to create ${libdir}/$(basename "${file}")"
 +				if [[ ${file} == *.so ]] ; then
 +					# copy soname target, needed for Prefix
-+					soname=$(scanelf -qBF '%S|%p' ${rootfile})
++					soname=$(scanelf -qBF '%S|%p' ${file})
 +					soname=${soname%|*}  # stupid scanelf must print filename
-+					ln -s "${rootfile%/*}/${soname}" || die -q "Failed to create ${libdir}/${soname}"
++					ln -s "${file%/*}/${soname}" || die -q "Failed to create ${libdir}/${soname}"
 +				fi
  			fi
  		done
