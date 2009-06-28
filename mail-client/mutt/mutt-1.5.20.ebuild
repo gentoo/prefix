@@ -1,14 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19.ebuild,v 1.6 2009/06/09 07:18:04 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20.ebuild,v 1.1 2009/06/28 10:44:22 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
-PATCHSET_REV=""
+PATCHSET_REV="-r1"
 
 # note: latest sidebar patches can be found here:
 # http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44
-SIDEBAR_PATCH_N="patch-1.5.19.sidebar.20090522.txt"
+SIDEBAR_PATCH_N="patch-1.5.20.sidebar.20090619.txt"
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
@@ -26,7 +26,7 @@ IUSE="berkdb crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop qdbm sasl
 sidebar smime smtp ssl vanilla"
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~amd64-linux ~ia64-linux ~x86-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 RDEPEND=">=sys-libs/ncurses-5.2
 	qdbm?    ( dev-db/qdbm )
 	!qdbm?   (
@@ -64,7 +64,8 @@ DEPEND="${RDEPEND}
 PATCHDIR="${WORKDIR}"/${P}-gentoo-patches${PATCHSET_REV}
 
 src_unpack() {
-	unpack ${A//${SIDEBAR_PATCH_N}} && cd "${S}" || die "unpack failed"
+	unpack ${A//${SIDEBAR_PATCH_N}}
+	cd "${S}"
 
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
@@ -81,7 +82,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.20-mbox-new-mail-bd59be56c6b0.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-mbox-unchanged-new-mail-9ae13dedb5ed.patch
 
-	if ! use vanilla && ! use sidebar ; then
+	if use !vanilla && use !sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
 		for p in "${PATCHDIR}"/*.patch ; do
 			epatch "${p}"
@@ -97,10 +98,12 @@ src_unpack() {
 	AT_M4DIR="m4" eautoreconf
 
 	# this should be done only when we're not root
-	sed -i \
-		-e 's/@DOTLOCK_GROUP@/'"`id -gn`"'/g' \
-		Makefile.in \
-		|| die "sed failed"
+	if [[ ${UID} != 0 ]] ; then
+		sed -i \
+			-e 's/@DOTLOCK_GROUP@/'"`id -gn`"'/g' \
+			Makefile.in \
+			|| die "sed failed"
+	fi
 }
 
 src_compile() {
@@ -169,18 +172,13 @@ src_compile() {
 		myconf="${myconf} --without-gnutls --without-ssl --without-sasl"
 	fi
 
-	# See Bug #11170
-	case ${ARCH} in
-		alpha|ppc) replace-flags "-O[3-9]" "-O2" ;;
-	esac
-
 	if use mbox; then
 		myconf="${myconf} --with-mailpath=${EPREFIX}/var/spool/mail"
 	else
 		myconf="${myconf} --with-homespool=Maildir"
 	fi
 
-	if ! use vanilla; then
+	if use !vanilla && use !sidebar ; then
 		# rr.compressed patch
 		myconf="${myconf} --enable-compressed"
 
@@ -194,6 +192,7 @@ src_compile() {
 }
 
 src_install() {
+	local ED=${ED-${D}}
 	make DESTDIR="${D}" install || die "install failed"
 	find "${ED}"/usr/share/doc -type f | grep -v "html\|manual" | xargs gzip
 	if use mbox; then

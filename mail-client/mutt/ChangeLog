@@ -1,6 +1,22 @@
 # ChangeLog for mail-client/mutt
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.134 2009/06/20 10:34:58 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.135 2009/06/28 10:44:22 grobian Exp $
+
+*mutt-1.5.20 (28 Jun 2009)
+
+  28 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  +files/mutt-1.5.13-prefix-mailcap.patch,
+  +files/mutt-1.5.18-bdb-prefix.patch, +files/mutt-1.5.18-interix.patch,
+  +files/mutt-1.5.18-solaris-ncurses-chars.patch, +mutt-1.5.20.ebuild,
+  +files/mutt-1.5.20-display-unsigned-pgp-7f37d0a57d83.patch,
+  +files/mutt-1.5.20-header-weeding-f40de578e8ed.patch,
+  +files/mutt-1.5.20-imap-port-invalid-d6f88fbf8387.patch,
+  +files/mutt-1.5.20-mbox-new-mail-bd59be56c6b0.patch,
+  +files/mutt-1.5.20-mbox-unchanged-new-mail-9ae13dedb5ed.patch,
+  +files/mutt-1.5.20-unmailbox-segfault-25e46aad362b.patch:
+  Version bump to 1.5.20, with a bunch of post release regression fixes from
+  upstream. The pgp_timeout patch has been dropped for this release, since
+  it no longer applies.
 
   20 Jun 2009; Fabian Groffen <grobian@gentoo.org> -mutt-1.5.13-r2.ebuild,
   -mutt-1.5.14.ebuild:
