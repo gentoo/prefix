@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20.ebuild,v 1.2 2009/06/29 09:04:52 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20.ebuild,v 1.3 2009/06/29 13:25:08 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -82,6 +82,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.20-mbox-new-mail-bd59be56c6b0.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-mbox-unchanged-new-mail-9ae13dedb5ed.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-imap-start-fatal-fe30f394cbe6.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-tab-subject-questionmark-298194c414f0.patch
 
 	if use !vanilla && use !sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
