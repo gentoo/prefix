@@ -1,6 +1,11 @@
 # ChangeLog for mail-client/mutt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.135 2009/06/28 10:44:22 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.136 2009/06/29 09:04:52 grobian Exp $
+
+  29 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  +files/mutt-1.5.20-imap-start-fatal-fe30f394cbe6.patch,
+  mutt-1.5.20.ebuild:
+  Add another upstream patch.  Solve a partial hang on IMAP connection errors.
 
 *mutt-1.5.20 (28 Jun 2009)
 
