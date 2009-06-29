@@ -29,6 +29,8 @@ src_prepare() {
 
 	sed -e 's:-O20::g' -e 's:-mfused-madd::g' -e 's:-mcpu=750::g' \
 		-i configure.ac || die "sed failed"
+	
+	sed -i s/-mv8// configure.ac || die "sed failed"
 
 	AT_M4DIR=m4 eautoreconf
 }
