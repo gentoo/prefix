@@ -16,7 +16,7 @@ IUSE=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
+	sed -i s/-mv8// configure.in || die "sed failed"
 	eautoreconf # need new libtool for interix
 	epunt_cxx
 }
