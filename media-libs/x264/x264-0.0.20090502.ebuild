@@ -33,7 +33,8 @@ src_unpack() {
 
 	# Solaris' /bin/sh doesn't grok the syntax in these files
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
-	sed -i s/-DPIC// configure || die "sed failed"
+	# for sparc-solaris
+	sed -i -e 's:-DPIC::g' configure || die
 }
 
 src_compile() {
