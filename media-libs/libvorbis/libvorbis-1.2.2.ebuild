@@ -27,11 +27,9 @@ S=${WORKDIR}/${MY_P}
 src_prepare() {
 	#use aotuv && epatch "${WORKDIR}"/${PN}-1.2.1_rc1-aotuv_beta5.7.patch
 
-	sed -e 's:-O20::g' -e 's:-mfused-madd::g' -e 's:-mcpu=750::g' \
+	sed -e 's:-O20::g' -e 's:-mfused-madd::g' -e 's:-mcpu=750::g' -e 's:-mv8::g' \
 		-i configure.ac || die "sed failed"
 	
-	sed -i s/-mv8// configure.ac || die "sed failed"
-
 	AT_M4DIR=m4 eautoreconf
 }
 
