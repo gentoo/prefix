@@ -1,14 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-opengl/qt-opengl-4.5.0.ebuild,v 1.2 2009/03/17 17:55:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-opengl/qt-opengl-4.5.2.ebuild,v 1.1 2009/06/27 19:19:21 yngwin Exp $
 
 EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The OpenGL module for the Qt toolkit"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="+qt3support"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
+IUSE="qt3support"
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=,qt3support=]
 	~x11-libs/qt-gui-${PV}[debug=,qt3support=]
