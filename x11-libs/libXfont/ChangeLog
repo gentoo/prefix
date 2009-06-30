@@ -1,8 +1,9 @@
 # ChangeLog for x11-libs/libXfont
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/ChangeLog,v 1.108 2009/06/26 17:06:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/ChangeLog,v 1.109 2009/06/27 10:46:25 armin76 Exp $
 
-  26 Jun 2009; Raúl Porcel <armin76@gentoo.org> ChangeLog:
+  27 Jun 2009; Raúl Porcel <armin76@gentoo.org> libXfont-1.3.4.ebuild,
+  libXfont-1.4.0.ebuild:
   Fix alpha keyword
 
   23 Jun 2009; Tobias Klausmann <klausman@gentoo.org> libXfont-1.4.0.ebuild:
