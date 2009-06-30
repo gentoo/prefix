@@ -1,13 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-dbus/qt-dbus-4.5.0.ebuild,v 1.2 2009/03/17 17:55:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-dbus/qt-dbus-4.5.2.ebuild,v 1.1 2009/06/27 19:17:33 yngwin Exp $
 
 EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The DBus module for the Qt toolkit"
 SLOT="4"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=]
@@ -29,6 +29,10 @@ include/QtDBus
 include/QtXml
 src/corelib
 src/xml"
+
+PATCHES=(
+	"${FILESDIR}/qt-4.5-nolibx11.diff"
+)
 
 src_configure() {
 	myconf="${myconf} -dbus-linked"
