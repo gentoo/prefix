@@ -34,6 +34,8 @@ sandbox_death_notice() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	# Remove setoptions for next release, (2.1?) - in trunk already
+	epatch "${FILESDIR}"/${P}-setoptions.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify etc/sandbox.d/00default
 }

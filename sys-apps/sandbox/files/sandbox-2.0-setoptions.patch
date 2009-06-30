@@ -1,0 +1,11 @@
+--- libsandbox/trace.c.old	2009-06-30 10:11:40.000000000 -0500
++++ libsandbox/trace.c	2009-06-30 10:11:58.000000000 -0500
+@@ -476,7 +476,7 @@
+ 	} else if (trace_pid) {
+ 		SB_DEBUG("parent waiting for child (pid=%i) to signal", trace_pid);
+ 		waitpid(trace_pid, NULL, 0);
+-#ifdef PTRACE_O_TRACESYSGOOD
++#if defined(PTRACE_SETOPTIONS) && defined(PTRACE_O_TRACESYSGOOD)
+ 		/* Not all kernel versions support this, so ignore return */
+ 		ptrace(PTRACE_SETOPTIONS, trace_pid, NULL, (void *)PTRACE_O_TRACESYSGOOD);
+ #endif
