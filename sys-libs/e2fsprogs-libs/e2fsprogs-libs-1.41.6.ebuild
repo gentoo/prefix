@@ -28,6 +28,9 @@ src_prepare() {
 	sed -i '/if test -z "$CC" ; then CC=cc; fi/d' configure
 
 	epatch "${FILESDIR}"/${PN}-1.41.1-darwin-makefile.patch
+	if [[ ${CHOST} == *-mint* ]]; then
+		sed -i -e 's/_SVID_SOURCE/_GNU_SOURCE/' lib/uuid/gen_uuid.c || die
+	fi
 }
 
 src_configure() {
@@ -35,8 +38,9 @@ src_configure() {
 	# building on other Gentoo/*BSD we prefer elf-naming scheme.
 	local libtype
 	case ${CHOST} in
-		*-darwin*) libtype=bsd;;
-		*)         libtype=elf;;
+		*-darwin*) libtype=--enable-bsd-shlibs  ;;
+		*-mint*)   libtype=                     ;;
+		*)         libtype=--enable-elf-shlibs  ;;
 	esac
 
 	# avoid a problem during parallel make, it bails because it creates the pic
@@ -45,7 +49,7 @@ src_configure() {
 
 	ac_cv_path_LDCONFIG=: \
 	econf \
-		--enable-${libtype}-shlibs \
+		${libtype} \
 		$(use_enable !elibc_uclibc tls) \
 		$(use_enable nls)
 }
