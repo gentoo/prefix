@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.417 2009/06/21 14:17:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.418 2009/06/28 21:31:34 a3li Exp $
+
+  28 Jun 2009; Alex Legler <a3li@gentoo.org> -ruby-1.8.6_p368.ebuild:
+  Removing vulnerable ebuild, bug 273213.
 
   21 Jun 2009; Brent Baude <ranger@gentoo.org> ruby-1.8.6_p369.ebuild:
   Marking ruby-1.8.6_p369 ppc for bug 273213
