@@ -1,14 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/qt-test-4.5.0.ebuild,v 1.2 2009/03/17 17:59:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/qt-test-4.5.2.ebuild,v 1.1 2009/06/27 19:23:05 yngwin Exp $
 
 EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The testing framework module for the Qt toolkit"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="+iconv"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
+IUSE="iconv"
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=]"
 RDEPEND="${DEPEND}"
@@ -18,6 +18,10 @@ QT4_EXTRACT_DIRECTORIES="${QT4_TARGET_DIRECTORIES}
 include/QtTest/
 include/QtCore/
 src/corelib/"
+
+PATCHES=(
+	"${FILESDIR}/qt-4.5-nolibx11.diff"
+)
 
 src_configure() {
 	myconf="${myconf} $(qt_use iconv) -no-xkb  -no-fontconfig -no-xrender -no-xrandr
