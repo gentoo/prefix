@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.152 2009/06/21 21:24:36 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.153 2009/06/28 13:31:35 ranger Exp $
+
+  28 Jun 2009; Brent Baude <ranger@gentoo.org> openvpn-2.0.9.ebuild:
+  Marking openvpn-2.0.9 ppc64 for bug 272546
 
   21 Jun 2009; Cédric Krier <cedk@gentoo.org> openvpn-2.1_rc15.ebuild:
   Remove empty doc dir for bug #272994
