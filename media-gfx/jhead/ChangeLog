@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/jhead
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/ChangeLog,v 1.108 2009/05/21 08:59:12 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/ChangeLog,v 1.109 2009/06/28 17:35:31 vanquirius Exp $
+
+*jhead-2.87 (28 Jun 2009)
+
+  28 Jun 2009; Marcelo Goes <vanquirius@gentoo.org>
+  +files/jhead-2.87-mkstemp.patch, +files/jhead-2.87-respect_flags.patch,
+  +jhead-2.87.ebuild:
+  2.87 version bump, patch to respect flags and change mktemp to mkstemp for
+  bug 275200. Thanks to Zeev Tarantov <zeev dot tarantov at gmail dot com>.
 
   21 May 2009; Markus Meier <maekke@gentoo.org> -jhead-2.84-r1.ebuild,
   -files/jhead-2.84-bug243238.patch:

@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.84-r1.ebuild,v 1.6 2008/12/01 15:51:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jhead/jhead-2.87.ebuild,v 1.1 2009/06/28 17:35:31 vanquirius Exp $
 
-inherit toolchain-funcs eutils
+inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Exif Jpeg camera setting parser and thumbnail remover"
 HOMEPAGE="http://www.sentex.net/~mwandel/jhead"
@@ -14,13 +14,15 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 src_unpack() {
+	# bug 275200 - respect flags and use mktemp instead of mkstemp
 	unpack ${A}
+
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-bug243238.patch
+	epatch "${FILESDIR}"/${PN}-${PV}-respect_flags.patch
+	epatch "${FILESDIR}"/${PN}-${PV}-mkstemp.patch
 }
 
 src_compile() {
-	tc-export CC
 	emake || die "emake failed."
 }
 
@@ -28,5 +30,5 @@ src_install() {
 	dobin ${PN} || die "dobin failed."
 	dodoc *.txt
 	dohtml *.html
-	doman ${PN}.1.gz
+	doman ${PN}.1
 }
