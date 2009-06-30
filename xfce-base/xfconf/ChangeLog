@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/xfconf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfconf/ChangeLog,v 1.11 2009/06/22 16:48:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfconf/ChangeLog,v 1.12 2009/06/28 13:16:46 ranger Exp $
+
+  28 Jun 2009; Brent Baude <ranger@gentoo.org> xfconf-4.6.1.ebuild:
+  Marking xfconf-4.6.1 ppc64 stable for bug 265587
 
   22 Jun 2009; Raúl Porcel <armin76@gentoo.org> xfconf-4.6.1.ebuild:
   arm/ia64/sh stable wrt #265587
