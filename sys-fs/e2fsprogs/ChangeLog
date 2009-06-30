@@ -1,6 +1,13 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.188 2009/06/20 11:59:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.189 2009/06/28 17:55:59 robbat2 Exp $
+
+*e2fsprogs-1.41.6-r1 (28 Jun 2009)
+
+  28 Jun 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +e2fsprogs-1.41.6-r1.ebuild:
+  The 1.41.6 release removed the blkid and findfs binaries as well, which
+  are still needed.
 
   20 Jun 2009; Mike Frysinger <vapier@gentoo.org>
   e2fsprogs-1.41.3-r1.ebuild, e2fsprogs-1.41.6.ebuild:
