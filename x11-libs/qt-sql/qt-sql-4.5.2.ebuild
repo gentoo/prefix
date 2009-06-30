@@ -1,21 +1,21 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.5.0.ebuild,v 1.3 2009/05/05 08:28:14 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.5.2.ebuild,v 1.1 2009/06/27 19:21:54 yngwin Exp $
 
 EAPI=2
 inherit qt4-build
 
 DESCRIPTION="The SQL module for the Qt toolkit"
 SLOT="4"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="firebird +iconv mysql odbc postgres +qt3support +sqlite"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
+IUSE="firebird iconv mysql odbc postgres qt3support +sqlite"
 
 DEPEND="~x11-libs/qt-core-${PV}[debug=,qt3support=]
 	firebird? ( dev-db/firebird )
-	sqlite? ( dev-db/sqlite:3 )
 	mysql? ( virtual/mysql )
+	odbc? ( dev-db/unixODBC )
 	postgres? ( virtual/postgresql-base )
-	odbc? ( dev-db/unixODBC )"
+	sqlite? ( dev-db/sqlite:3 )"
 RDEPEND="${DEPEND}"
 
 QT4_TARGET_DIRECTORIES="src/sql src/plugins/sqldrivers"
@@ -31,6 +31,10 @@ src/sql
 src/3rdparty
 src/tools"
 
+PATCHES=(
+	"${FILESDIR}/qt-4.5-nolibx11.diff"
+)
+
 pkg_setup() {
 	if ! (use firebird || use mysql || use odbc || use postgres || use sqlite); then
 		ewarn "You need to enable at least one SQL driver. Enable at least"
@@ -41,14 +45,10 @@ pkg_setup() {
 	qt4-build_pkg_setup
 }
 
-src_unpack() {
-	qt4-build_src_unpack
-}
-
 src_prepare() {
 	qt4-build_src_prepare
 	sed -e '/pg_config --libs/d' -i "${S}"/configure \
-		|| die 'Sed to fix postgresql usage in ./configure failed.'
+		|| die 'sed to fix postgresql usage in ./configure failed.'
 }
 
 src_configure() {
