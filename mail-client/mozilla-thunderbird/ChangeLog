@@ -1,6 +1,18 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.294 2009/06/25 15:36:53 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.297 2009/06/27 20:08:27 rich0 Exp $
+
+  27 Jun 2009; Richard Freeman <rich0@gentoo.org>
+  mozilla-thunderbird-2.0.0.22.ebuild:
+  amd64 stable - 273918
+
+  27 Jun 2009; Brent Baude <ranger@gentoo.org>
+  mozilla-thunderbird-2.0.0.22.ebuild:
+  Marking mozilla-thunderbird-2.0.0.22 ppc for bug 273918
+
+  27 Jun 2009; Brent Baude <ranger@gentoo.org>
+  mozilla-thunderbird-2.0.0.22.ebuild:
+  Marking mozilla-thunderbird-2.0.0.22 ppc64 for bug 273918
 
   25 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
   mozilla-thunderbird-2.0.0.22.ebuild:
