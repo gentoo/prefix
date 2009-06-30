@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/gnet
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.65 2008/11/22 12:16:12 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.66 2009/06/27 11:49:57 aballier Exp $
+
+  27 Jun 2009; Alexis Ballier <aballier@gentoo.org> gnet-2.0.8.ebuild:
+  keyword ~x86-fbsd thanks to Davide Italiano <dav_it@gentoo.org>, bug
+  #233617
 
   22 Nov 2008; Gilles Dartiguelongue <eva@gentoo.org>
   -files/gnet-2.0.7-amd64-fixes.patch, -gnet-2.0.7.ebuild,

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/gnet-2.0.8.ebuild,v 1.6 2008/08/09 14:23:45 coldwind Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/gnet-2.0.8.ebuild,v 1.7 2009/06/27 11:49:57 aballier Exp $
 
 inherit gnome2 eutils
 
