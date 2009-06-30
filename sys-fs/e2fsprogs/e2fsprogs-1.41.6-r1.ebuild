@@ -36,6 +36,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
 	epatch "${FILESDIR}"/${PN}-1.41.1-darwin-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.41.4-darwin-no-mntent.patch
+	epatch "${FILESDIR}"/${PN}-1.41-mint.patch
 	# blargh ... trick e2fsprogs into using e2fsprogs-libs
 	rm -rf doc
 	sed -i -r \
@@ -71,8 +72,9 @@ src_compile() {
 	# building on other Gentoo/*BSD we prefer elf-naming scheme.
 	local libtype
 	case ${CHOST} in
-		*-darwin*) libtype=bsd;;
-		*)         libtype=elf;;
+		*-darwin*) libtype=--enable-bsd-shlibs  ;;
+		*-mint*)   libtype=                     ;;
+		*)         libtype=--enable-elf-shlibs  ;;
 	esac
 
 	# On MacOSX 10.4 using the assembly built-in bitoperation functions causes
@@ -86,7 +88,7 @@ src_compile() {
 	econf \
 		--bindir="${EPREFIX}"/bin \
 		--sbindir="${EPREFIX}"/sbin \
-		--enable-${libtype}-shlibs \
+		${libtype} \
 		--with-ldopts="${LDFLAGS}" \
 		$(use_enable !elibc_uclibc tls) \
 		--without-included-gettext \
