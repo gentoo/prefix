@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/arj-3.10.22-r2.ebuild,v 1.7 2008/11/26 15:26:49 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/arj-3.10.22-r2.ebuild,v 1.8 2009/06/28 17:54:42 patrick Exp $
 
 inherit autotools eutils toolchain-funcs
 
@@ -23,6 +23,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${WORKDIR}"/${P/-/_}-${PATCH_LEVEL}.diff \
 		"${FILESDIR}"/${P}-implicit-declarations.patch
+	epatch "${FILESDIR}/${P}-glibc2.10.patch"
 
 	EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" \
 		epatch debian/patches
