@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libtasn1
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.87 2009/06/22 05:19:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.90 2009/06/28 13:33:45 ranger Exp $
+
+  28 Jun 2009; Brent Baude <ranger@gentoo.org> libtasn1-2.2.ebuild:
+  Marking libtasn1-2.2 ppc64 for bug 270578
+
+  28 Jun 2009; Markus Meier <maekke@gentoo.org> libtasn1-2.2.ebuild:
+  amd64/x86 stable, bug #270578
+
+  27 Jun 2009; Tobias Klausmann <klausman@gentoo.org> libtasn1-2.2.ebuild:
+  Stable on alpha, bug #270578
 
   22 Jun 2009; Jeroen Roovers <jer@gentoo.org> libtasn1-2.2.ebuild:
   Stable for HPPA (bug #270578).
