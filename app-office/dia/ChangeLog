@@ -1,6 +1,10 @@
 # ChangeLog for app-office/dia
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.111 2009/06/21 11:53:44 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.112 2009/06/27 10:26:45 mrpouet Exp $
+
+  27 Jun 2009; Romain Perier <mrpouet@gentoo.org> dia-0.97.ebuild:
+  Fix bug #275468 -- automake failure for doc/*/Makefile.am to a bad sed
+  expression which skiped an if block without skip the endif
 
   21 Jun 2009; <mrpouet@gentoo.org> dia-0.97.ebuild,
   +files/dia-0.97-acinclude-python-fixes.patch:

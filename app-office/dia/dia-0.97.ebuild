@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.97.ebuild,v 1.2 2009/06/21 11:53:44 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.97.ebuild,v 1.3 2009/06/27 10:26:45 mrpouet Exp $
 
 EAPI="2"
 
@@ -78,7 +78,7 @@ src_prepare() {
 
 	# Skip man generation
 	if use doc; then
-		sed -i -e '/if HAVE_DB2MAN/,/man_MANS/d' doc/*/Makefile.am \
+		sed -i -e '/if HAVE_DB2MAN/,/endif/d' doc/*/Makefile.am \
 			|| die "sed 2 failed"
 	fi
 
