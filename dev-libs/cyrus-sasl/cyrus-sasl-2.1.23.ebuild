@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23.ebuild,v 1.4 2009/06/26 19:44:19 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23.ebuild,v 1.7 2009/06/27 21:52:25 rich0 Exp $
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="1.7"
