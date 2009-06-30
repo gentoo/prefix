@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/timezone-data
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.187 2009/06/22 13:54:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.188 2009/06/27 21:59:57 rich0 Exp $
+
+  27 Jun 2009; Richard Freeman <rich0@gentoo.org>
+  timezone-data-2009g.ebuild:
+  amd64 stable - 274842
 
   22 Jun 2009; Raúl Porcel <armin76@gentoo.org> timezone-data-2009g.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc/x86 stable wrt #274842
