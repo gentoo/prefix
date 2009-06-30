@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.1.1-r1.ebuild,v 1.1 2009/05/26 16:53:38 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.1.1-r1.ebuild,v 1.2 2009/06/28 15:01:45 klausman Exp $
 
 EAPI=2
 inherit eutils
