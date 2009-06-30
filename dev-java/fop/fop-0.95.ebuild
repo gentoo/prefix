@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/fop/fop-0.95.ebuild,v 1.2 2009/05/21 18:00:30 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/fop/fop-0.95.ebuild,v 1.3 2009/06/28 13:48:16 maekke Exp $
 
 # TODO: if 'doc' use flag is used then should build also extra docs ('docs' ant target), currently it cannot
 #       be built as it needs forrest which we do not have
