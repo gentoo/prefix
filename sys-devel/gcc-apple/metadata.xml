@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-  <herd>apple</herd>
+  <herd>prefix</herd>
   <use>
     <flag name="multislot">Allow for SLOTs to include minor version (3.3.4
       instead of just 3.3)</flag>

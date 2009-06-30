@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/gcc-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/ChangeLog,v 1.5 2009/06/21 10:27:55 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/ChangeLog,v 1.6 2009/06/28 11:12:10 grobian Exp $
+
+  28 Jun 2009; Fabian Groffen <grobian@gentoo.org>
+  +gcc-apple-4.2.1_p5566-x86_64-defines.patch, +libstdc++-16.patch
+  +gcc-apple-4.2.1-inline-asm.patch, +gcc-apple-4.2.1-texinfo.patch,
+  +gcc-apple-4.2.1-dsymutil.patch,
+  +gcc-apple-4.2.1-prefix-search-dirs.patch,
+  +gcc-apple-4.0.1_p5465-default-altivec.patch,
+  +gcc-apple-4.2.1-gfortran.patch:
+  Add missing patches
 
 *gcc-apple-4.2.1_p5574 (20 Jun 2009)
 *gcc-apple-4.0.1_p5493 (20 Jun 2009)
