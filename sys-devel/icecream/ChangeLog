@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/icecream
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/ChangeLog,v 1.30 2009/03/07 11:46:44 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/ChangeLog,v 1.32 2009/06/28 17:10:21 jer Exp $
+
+  28 Jun 2009; Jeroen Roovers <jer@gentoo.org> icecream-0.9.4.ebuild:
+  Marked ~hppa too.
+
+*icecream-0.9.4 (28 Jun 2009)
+
+  28 Jun 2009; Patrick Lauer <patrick@gentoo.org> +icecream-0.9.4.ebuild:
+  Bump to 0.9.4, fixes #275246
 
 *icecream-0.9.3 (07 Mar 2009)
 
