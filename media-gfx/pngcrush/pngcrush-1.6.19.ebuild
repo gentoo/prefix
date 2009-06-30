@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngcrush/pngcrush-1.6.10.ebuild,v 1.4 2008/11/30 21:32:05 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngcrush/pngcrush-1.6.19.ebuild,v 1.1 2009/06/28 13:04:47 maekke Exp $
 
 inherit eutils toolchain-funcs
 
@@ -14,13 +14,13 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 DEPEND=">=media-libs/libpng-1.2.31"
+RDEPEND="${DEPEND}"
 
-S=${WORKDIR}/${P}-nolib
+S="${WORKDIR}/${P}-nolib"
 
 src_unpack() {
 	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-makefile_and_missing_definitions.patch
+	cp "${FILESDIR}"/Makefile "${S}" || die
 }
 
 src_compile() {
@@ -30,5 +30,5 @@ src_compile() {
 
 src_install() {
 	dobin ${PN} || die "dobin failed."
-	dodoc *.txt
+	dohtml ChangeLog.html
 }
