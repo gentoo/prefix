@@ -1,6 +1,66 @@
-# ChangeLog for xfce-extra/xfce4-dev-tools
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/xfce-extra/xfce4-dev-tools/ChangeLog,v 1.14 2007/05/27 06:37:49 kumba Exp $
+# ChangeLog for dev-util/xfce4-dev-tools
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/xfce4-dev-tools/ChangeLog,v 1.15 2009/06/28 13:19:34 ranger Exp $
+
+  28 Jun 2009; Brent Baude <ranger@gentoo.org> xfce4-dev-tools-4.6.0.ebuild:
+  Marking xfce4-dev-tools-4.6.0 ppc64 stable for bug 265587
+
+  22 Jun 2009; Raúl Porcel <armin76@gentoo.org>
+  xfce4-dev-tools-4.6.0.ebuild:
+  arm/ia64 stable wrt #265587
+
+  15 Jun 2009; Jeroen Roovers <jer@gentoo.org> xfce4-dev-tools-4.6.0.ebuild:
+  Stable for HPPA (bug #265587).
+
+  13 Jun 2009; Tiago Cunha <tcunha@gentoo.org> xfce4-dev-tools-4.6.0.ebuild:
+  stable sparc, bug 265587
+
+  10 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
+  xfce4-dev-tools-4.6.0.ebuild:
+  stable x86, bug 265587
+
+  09 Jun 2009; Jeremy Olexa <darkside@gentoo.org>
+  xfce4-dev-tools-4.6.0.ebuild:
+  amd64 stable, bug 265587
+
+  09 Jun 2009; Jeremy Olexa <darkside@gentoo.org>
+  xfce4-dev-tools-4.6.0.ebuild:
+  amd64 stable, bug 265587
+
+*xfce4-dev-tools-4.6.0 (10 Mar 2009)
+
+  10 Mar 2009; Christoph Mende <angelos@gentoo.org>
+  +xfce4-dev-tools-4.6.0.ebuild:
+  Xfce-4.6 bump
+
+  22 Dec 2008; Christoph Mende <angelos@gentoo.org>
+  -xfce4-dev-tools-4.4.0.ebuild:
+  Removed old
+
+  15 Dec 2008; Jeroen Roovers <jer@gentoo.org>
+  xfce4-dev-tools-4.4.0.1.ebuild:
+  Stable for HPPA (bug #249942).
+
+  13 Dec 2008; Raúl Porcel <armin76@gentoo.org>
+  xfce4-dev-tools-4.4.0.1.ebuild:
+  alpha/arm/ia64/sparc/x86 stable wrt #249942
+
+  08 Dec 2008; Brent Baude <ranger@gentoo.org>
+  xfce4-dev-tools-4.4.0.1.ebuild:
+  Marking xfce4-dev-tools-4.4.0.1 ppc64 stable for bug 249942
+
+  06 Dec 2008; Jeremy Olexa <darkside@gentoo.org>
+  xfce4-dev-tools-4.4.0.1.ebuild:
+  amd64 stable, bug 249942
+
+  06 Dec 2008; nixnut <nixnut@gentoo.org> xfce4-dev-tools-4.4.0.1.ebuild:
+  Stable on ppc wrt bug 249942
+
+*xfce4-dev-tools-4.4.0.1 (22 Jun 2008)
+
+  22 Jun 2008; Samuli Suominen <drac@gentoo.org>
+  +xfce4-dev-tools-4.4.0.ebuild, +xfce4-dev-tools-4.4.0.1.ebuild:
+  Move from xfce-extra. Version bump.
 
   27 May 2007; Joshua Kinard <kumba@gentoo.org>
   xfce4-dev-tools-4.4.0.ebuild:
