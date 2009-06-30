@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/parrot
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/ChangeLog,v 1.20 2008/04/29 21:13:11 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/ChangeLog,v 1.23 2009/06/27 17:20:10 patrick Exp $
+
+  27 Jun 2009; Patrick Lauer <patrick@gentoo.org> parrot-1.3.0.ebuild:
+  Fixing license, thanks to tove for noticing
+
+  27 Jun 2009; Patrick Lauer <patrick@gentoo.org> parrot-1.3.0.ebuild:
+  Adding accidentally dropped arches x86 and sparc back
+
+*parrot-1.3.0 (27 Jun 2009)
+
+  27 Jun 2009; Patrick Lauer <patrick@gentoo.org> +parrot-1.3.0.ebuild:
+  Bump to 1.3.0. Closes #247125
 
 *parrot-0.6.1 (29 Apr 2008)
 
