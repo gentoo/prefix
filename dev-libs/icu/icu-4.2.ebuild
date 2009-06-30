@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.2.ebuild,v 1.1 2009/05/12 15:22:41 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.2.ebuild,v 1.3 2009/06/28 16:57:03 klausman Exp $
 
 EAPI="2"
 
