@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/zziplib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.67 2009/06/24 21:09:36 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.68 2009/06/28 16:35:26 vapier Exp $
+
+*zziplib-0.13.56 (28 Jun 2009)
+
+  28 Jun 2009; Mike Frysinger <vapier@gentoo.org> +zziplib-0.13.56.ebuild:
+  Version bump.
 
   24 Jun 2009; Michael Sterrett <mr_bones_@gentoo.org>
   zziplib-0.13.55.ebuild:
