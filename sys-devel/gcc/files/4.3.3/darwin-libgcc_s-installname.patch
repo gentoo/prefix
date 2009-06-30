@@ -1,0 +1,18 @@
+An intermediate "install" to the build dir is used with slibdir=/
+causing install_names to be recorded for /libgcc_s.1.dylib, which are
+obviously wrong.  Avoid this from happening by hard-assigning
+shlib_slibdir with the correct value, such that even though the library
+is installed into the build dir (offsetted at /), it's install_name is
+still set to something which is correct afterwards.
+
+--- gcc-4.3.3/libgcc/Makefile.in
++++ gcc-4.3.3/libgcc/Makefile.in
+@@ -32,7 +32,7 @@
+ 
+ exec_prefix = @exec_prefix@
+ libdir = @libdir@
+-shlib_slibdir = @slibdir@
++shlib_slibdir = $(libdir)/gcc/$(host_noncanonical)/$(version)
+ 
+ SHELL = @SHELL@
+ 
