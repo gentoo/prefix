@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.26.1-r1.ebuild,v 1.1 2009/06/26 20:49:45 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.26.1-r1.ebuild,v 1.2 2009/06/28 11:22:58 aballier Exp $
 
 EAPI="2"
 
@@ -66,6 +66,8 @@ src_prepare() {
 	# Add "session saving" button back, upstream bug #575544
 	epatch "${WORKDIR}/${PN}-2.26.1-session-saving-button.patch"
 
+	# build fix for bsd, check for execinfo and link to it if needed
+	# bug #275524, gnome bug #587088
 	epatch "${FILESDIR}/${P}-execinfo.patch"
 	eautoreconf
 }
