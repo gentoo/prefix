@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/PadWalker
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PadWalker/ChangeLog,v 1.15 2009/05/02 10:56:41 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PadWalker/ChangeLog,v 1.16 2009/06/27 08:10:45 tove Exp $
+
+*PadWalker-1.9 (27 Jun 2009)
+
+  27 Jun 2009; Torsten Veller <tove@gentoo.org> +PadWalker-1.9.ebuild:
+  Version bump
 
   02 May 2009; Torsten Veller <tove@gentoo.org> -PadWalker-1.2.ebuild:
   Cleanup
