@@ -36,7 +36,7 @@ efetch() {
 			if [[ x$(type -t wget) == "xfile" ]] ; then
 				FETCH_COMMAND="wget"
 			elif [[ x$(type -t curl) == "xfile" ]] ; then
-				FETCH_COMMAND="curl -O"
+				FETCH_COMMAND="curl -L -O"
 			elif [[ x$(type -t fetch) == "xfile" ]] ; then
 				FETCH_COMMAND="fetch"
 			elif [[ x$(type -t ftp) == "xfile" ]] ; then
