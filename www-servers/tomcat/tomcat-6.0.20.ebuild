@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.20.ebuild,v 1.2 2009/06/25 14:22:00 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.20.ebuild,v 1.4 2009/06/27 19:24:59 a3li Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc examples source test"
