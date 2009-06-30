@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/libtool
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.141 2008/11/28 22:41:19 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.142 2009/06/28 16:37:48 vapier Exp $
+
+  28 Jun 2009; Mike Frysinger <vapier@gentoo.org> libtool-2.2.6a.ebuild:
+  Keep libtool from using /bin/sh even if it is bash so people can change on
+  the fly without needing to re-emerge libtool.
 
   28 Nov 2008; Ulrich Mueller <ulm@gentoo.org>
   +files/2.2.6a/libtool-2.2.6a-gnuinfo.patch, libtool-2.2.6a.ebuild:

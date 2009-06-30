@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.3 2008/11/28 22:41:19 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.4 2009/06/28 16:37:48 vapier Exp $
 
 LIBTOOLIZE="true" #225559
 inherit eutils autotools
@@ -43,6 +43,12 @@ src_unpack() {
 		cd ..
 		eautoreconf
 	fi
+
+	# the libtool script uses bash code in it and at configure time, tries
+	# to find a bash shell.  if /bin/sh is bash, it uses that.  this can
+	# cause problems for people who switch /bin/sh on the fly to other
+	# shells, so just force libtool to use /bin/bash all the time.
+	export CONFIG_SHELL="${EPREFIX}"/bin/bash
 }
 
 src_compile() {
