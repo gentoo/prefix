@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/exo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.89 2009/06/22 16:50:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/exo/ChangeLog,v 1.90 2009/06/28 13:17:36 ranger Exp $
+
+  28 Jun 2009; Brent Baude <ranger@gentoo.org> exo-0.3.101-r1.ebuild:
+  Marking exo-0.3.101-r1 ppc64 stable for bug 265587
 
   22 Jun 2009; Raúl Porcel <armin76@gentoo.org> exo-0.3.101-r1.ebuild:
   arm/ia64 stable wrt #265587
