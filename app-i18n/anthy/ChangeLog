@@ -1,6 +1,9 @@
 # ChangeLog for app-i18n/anthy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.121 2009/02/10 00:04:50 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.122 2009/06/28 17:13:23 klausman Exp $
+
+  28 Jun 2009; Tobias Klausmann <klausman@gentoo.org> anthy-9100h.ebuild:
+  Stable on alpha, bug #275687
 
 *anthy-9100h (10 Feb 2009)
 
