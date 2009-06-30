@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.11.ebuild,v 1.1 2009/05/15 08:16:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.11.ebuild,v 1.2 2009/06/28 17:00:57 klausman Exp $
 
 inherit libtool
 
