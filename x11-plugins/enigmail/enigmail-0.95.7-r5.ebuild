@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r5.ebuild,v 1.2 2009/06/25 15:41:07 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r5.ebuild,v 1.4 2009/06/27 20:05:14 rich0 Exp $
 
 WANT_AUTOCONF="2.1"
 
