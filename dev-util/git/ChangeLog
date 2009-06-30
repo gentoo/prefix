@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.348 2009/06/26 21:21:39 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.350 2009/06/27 13:29:55 ranger Exp $
+
+  27 Jun 2009; Brent Baude <ranger@gentoo.org> git-1.6.3.3.ebuild:
+  Marking git-1.6.3.3 ppc64 and ppc for bug 273905
+
+  27 Jun 2009; Christian Faulhammer <fauli@gentoo.org> git-1.6.3.3.ebuild:
+  stable x86, security bug 273905
 
   26 Jun 2009; Tobias Heinlein <keytoaster@gentoo.org> git-1.6.3.3.ebuild:
   amd64 stable, security bug ##273905
