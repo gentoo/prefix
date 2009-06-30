@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1.ebuild,v 1.2 2009/06/02 22:32:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1.2.ebuild,v 1.1 2009/06/27 08:57:29 ulm Exp $
 
-inherit eutils prefix
+inherit eutils
 
 DESCRIPTION="Gentoo's multi-purpose configuration and management tool"
 HOMEPAGE="http://www.gentoo.org/proj/en/eselect/"
@@ -11,7 +11,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc bash-completion paludis"
+IUSE="doc bash-completion"
 
 RDEPEND="sys-apps/sed
 	|| (
@@ -23,15 +23,20 @@ DEPEND="${RDEPEND}
 	doc? ( dev-python/docutils )"
 RDEPEND="${RDEPEND}
 	sys-apps/file
-	sys-libs/ncurses
-	!paludis? ( >=sys-apps/portage-2.1.6 )"
+	sys-libs/ncurses"
 
 # Commented out: only few users of eselect will edit its source
 #PDEPEND="emacs? ( app-emacs/gentoo-syntax )
 #	vim-syntax? ( app-vim/eselect-syntax )"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-1.1.1-prefix.patch
+}
+
 src_compile() {
-	econf --with-pm="$(usev paludis || echo portage)"
+	econf
 	emake || die "emake failed"
 
 	if use doc ; then
@@ -43,9 +48,6 @@ src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	dodoc AUTHORS ChangeLog NEWS README TODO doc/*.txt
 	use doc && dohtml *.html doc/*
-
-	# needed by news-tng module
-	keepdir /var/lib/gentoo/news
 
 	# needed by news-tng module
 	keepdir /var/lib/gentoo/news
@@ -63,13 +65,6 @@ pkg_postinst() {
 	# merging changes the group back to root
 	chgrp portage "${EROOT}/var/lib/gentoo/news" \
 		&& chmod g+w "${EROOT}/var/lib/gentoo/news"
-
-	# we cannot properly depend on paludis because of circular dependencies
-	if use paludis && ! has_version sys-apps/paludis; then
-		ewarn "You have emerged ${PN} with the \"paludis\" USE flag enabled,"
-		ewarn "but apparently Paludis is not installed on your system."
-		ewarn "Part of eselect's functionality may therefore be missing."
-	fi
 
 	if use bash-completion ; then
 		elog "In case you have not yet enabled command-line completion"
