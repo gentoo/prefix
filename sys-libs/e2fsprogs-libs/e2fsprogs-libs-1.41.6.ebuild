@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~m68k-mint"
 IUSE="nls"
 
 RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.6 ) )
