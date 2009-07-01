@@ -24,9 +24,9 @@ RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
 		>=app-shells/bash-3.2_p17
 		>=app-admin/eselect-news-20071201 )
-	!prefix? ( elibc_FreeBSD? ( sys-freebsd/freebsd-bin ) )
-	elibc_glibc? ( >=sys-apps/sandbox-1.2.17 !mips? ( >=sys-apps/sandbox-1.2.18.1-r2 ) )
-	elibc_uclibc? ( >=sys-apps/sandbox-1.2.17 !mips? ( >=sys-apps/sandbox-1.2.18.1-r2 ) )
+	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
+	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-1.6 ) )
+	elibc_uclibc? ( !prefix? ( >=sys-apps/sandbox-1.6 ) )
 	kernel_linux? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_SunOS? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.17 )
