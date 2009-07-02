@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-script
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/ChangeLog,v 1.37 2009/06/27 19:21:17 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/ChangeLog,v 1.38 2009/06/30 15:02:41 armin76 Exp $
+
+  30 Jun 2009; Raúl Porcel <armin76@gentoo.org> qt-script-4.5.1.ebuild:
+  ia64/sparc stable wrt #266201
 
 *qt-script-4.5.2 (27 Jun 2009)
 
