@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Socket6
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Socket6/ChangeLog,v 1.31 2009/03/13 13:09:55 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Socket6/ChangeLog,v 1.32 2009/06/29 23:35:59 jer Exp $
+
+  29 Jun 2009; Jeroen Roovers <jer@gentoo.org> Socket6-0.20.ebuild:
+  Stable for HPPA too.
 
   13 Mar 2009; Torsten Veller <tove@gentoo.org> -Socket6-0.17.ebuild,
   -Socket6-0.22.ebuild:
