@@ -1,6 +1,9 @@
 # ChangeLog for app-vim/fluxbox-syntax
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/fluxbox-syntax/ChangeLog,v 1.17 2009/03/16 12:55:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/fluxbox-syntax/ChangeLog,v 1.18 2009/07/01 14:58:06 armin76 Exp $
+
+  01 Jul 2009; Raúl Porcel <armin76@gentoo.org> fluxbox-syntax-1.5.ebuild:
+  arm stable
 
   16 Mar 2009; Raúl Porcel <armin76@gentoo.org> fluxbox-syntax-1.5.ebuild:
   Add ~arm
