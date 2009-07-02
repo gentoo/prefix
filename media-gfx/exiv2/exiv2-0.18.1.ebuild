@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.18.1.ebuild,v 1.8 2009/06/15 20:17:58 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.18.1.ebuild,v 1.9 2009/06/29 14:21:30 ranger Exp $
 
 inherit eutils multilib toolchain-funcs
 
