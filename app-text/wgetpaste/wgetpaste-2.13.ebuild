@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/wgetpaste-2.13.ebuild,v 1.1 2009/06/01 10:30:59 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/wgetpaste-2.13.ebuild,v 1.4 2009/07/01 16:46:50 jer Exp $
 
 DESCRIPTION="Command-line interface to various pastebins"
 HOMEPAGE="http://wgetpaste.zlin.dk/"
