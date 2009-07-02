@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.14.ebuild,v 1.7 2009/05/23 03:35:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.14.ebuild,v 1.8 2009/07/01 16:22:56 armin76 Exp $
 
 # order is important, gnome2 after gst-plugins
 inherit gst-plugins-good gst-plugins10 gnome2 eutils flag-o-matic libtool
