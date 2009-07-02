@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-2.0.0.22.ebuild,v 1.6 2009/06/27 20:08:27 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-2.0.0.22.ebuild,v 1.7 2009/06/29 18:39:26 armin76 Exp $
 
 WANT_AUTOCONF="2.1"
 
