@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/boost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.162 2009/06/15 18:31:33 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.163 2009/07/02 04:13:11 dirtyepic Exp $
+
+  02 Jul 2009; Ryan Hill <dirtyepic@gentoo.org> boost-1.35.0-r5.ebuild,
+  boost-1.36.0-r1.ebuild, boost-1.37.0-r1.ebuild:
+  Replace -fno-strict-aliasing workaround with -Wno-strict-aliasing, which
+  does the job and avoids the performance hit. Also apply to 1.35 and 1.36.
 
   15 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   boost-1.37.0-r1.ebuild:

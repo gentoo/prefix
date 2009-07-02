@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r5.ebuild,v 1.4 2009/05/15 10:42:27 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r5.ebuild,v 1.5 2009/07/02 04:13:11 dirtyepic Exp $
 
 EAPI=2
 
@@ -119,6 +119,9 @@ src_configure() {
 		compilerVersion=$(gcc-version)
 		compilerExecutable=$(tc-getCXX)
 	fi
+
+	# Huge number of strict-aliasing warnings cause a build failure w/ >= GCC 4.4 bug #252287
+	[[ $(gcc-version) > 4.3 ]] && append-flags -Wno-strict-aliasing
 
 	use mpi && mpi="using mpi ;"
 
