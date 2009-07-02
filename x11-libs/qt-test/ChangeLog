@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-test
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/ChangeLog,v 1.35 2009/06/27 19:23:05 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/ChangeLog,v 1.36 2009/06/30 15:10:29 armin76 Exp $
+
+  30 Jun 2009; Raúl Porcel <armin76@gentoo.org> qt-test-4.5.1.ebuild:
+  ia64/sparc stable wrt #266201
 
 *qt-test-4.5.2 (27 Jun 2009)
 
