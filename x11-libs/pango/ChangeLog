@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/pango
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.257 2009/05/27 17:26:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.258 2009/06/29 21:56:11 eva Exp $
+
+*pango-1.24.3 (29 Jun 2009)
+
+  29 Jun 2009; Gilles Dartiguelongue <eva@gentoo.org> -pango-1.22.4.ebuild,
+  -pango-1.22.4-r1.ebuild, -files/pango-1.22.4-special-chars-crash.patch,
+  -pango-1.24.1.ebuild, +pango-1.24.3.ebuild:
+  Version bump. Build fixes with newer automake, various bug fixes. Clean up
+  old revisions.
 
   27 May 2009; Raúl Porcel <armin76@gentoo.org> pango-1.24.2.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable wrt #268976
