@@ -1,6 +1,9 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.294 2009/06/20 13:50:58 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.295 2009/06/30 13:57:38 armin76 Exp $
+
+  30 Jun 2009; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.5-r1.ebuild:
+  arm/ia64/sparc stable
 
   20 Jun 2009; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.5-r1.ebuild:
   Stable for HPPA (bug #274666).
