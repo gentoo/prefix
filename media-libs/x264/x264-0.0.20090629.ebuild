@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/x264-0.0.20081218.ebuild,v 1.1 2008/12/19 13:38:45 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/x264-0.0.20090629.ebuild,v 1.1 2009/06/29 21:37:28 aballier Exp $
 
 EAPI=1
 inherit multilib eutils toolchain-funcs versionator
@@ -12,7 +12,7 @@ HOMEPAGE="http://www.videolan.org/developers/x264.html"
 SRC_URI="ftp://ftp.videolan.org/pub/videolan/x264/snapshots/${MY_P}.tar.bz2"
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug +threads"
 
 RDEPEND=""
@@ -29,10 +29,12 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-nostrip.patch"
-	epatch "${FILESDIR}/${PN}-onlylib-20080406.patch"
+	epatch "${FILESDIR}/${PN}-onlylib-20090408.patch"
 
 	# Solaris' /bin/sh doesn't grok the syntax in these files
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
+	# for sparc-solaris
+	sed -i -e 's:-DPIC::g' configure || die
 }
 
 src_compile() {
