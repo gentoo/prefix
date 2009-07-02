@@ -1,6 +1,9 @@
 # ChangeLog for java-virtuals/jaf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaf/ChangeLog,v 1.6 2009/05/23 11:28:57 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaf/ChangeLog,v 1.7 2009/07/01 09:20:44 fauli Exp $
+
+  01 Jul 2009; Christian Faulhammer <fauli@gentoo.org> jaf-1.1-r1.ebuild:
+  stable x86, bug 275184
 
 *jaf-1.1-r1 (23 May 2009)
 
