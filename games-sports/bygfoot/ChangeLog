@@ -1,6 +1,9 @@
 # ChangeLog for games-sports/bygfoot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-sports/bygfoot/ChangeLog,v 1.24 2009/04/14 09:52:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-sports/bygfoot/ChangeLog,v 1.25 2009/07/01 02:58:16 mr_bones_ Exp $
+
+  01 Jul 2009; Michael Sterrett <mr_bones_@gentoo.org> bygfoot-2.3.1.ebuild:
+  EAPI=2; tidy install image
 
   14 Apr 2009; Raúl Porcel <armin76@gentoo.org> bygfoot-2.3.1.ebuild:
   x86 stable wrt #265134

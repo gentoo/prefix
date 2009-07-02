@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-sports/bygfoot/bygfoot-2.3.1.ebuild,v 1.3 2009/04/14 09:52:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-sports/bygfoot/bygfoot-2.3.1.ebuild,v 1.4 2009/07/01 02:58:16 mr_bones_ Exp $
 
-EAPI=1
+EAPI=2
 inherit eutils games
 
 DESCRIPTION="GTK+2 Soccer Management Game"
@@ -21,9 +21,7 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	sys-devel/gettext"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	sed -i \
 		-e 's:$(gnulocaledir):/usr/share/locale:' \
 		-e '/PACKAGE_LOCALE_DIR/s:\$(prefix)/\$(DATADIRNAME):/usr/share:' \
@@ -35,16 +33,15 @@ src_unpack() {
 		|| die "sed failed"
 }
 
-src_compile() {
+src_configure() {
 	egamesconf \
 		--disable-dependency-tracking \
-		--disable-gstreamer \
-		|| die
-	emake || die "emake failed"
+		--disable-gstreamer
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
+	esvn_clean "${ED}"
 	dodoc AUTHORS ChangeLog README TODO UPDATE
 	newicon support_files/pixmaps/bygfoot_icon.png ${PN}.png
 	make_desktop_entry ${PN} Bygfoot
