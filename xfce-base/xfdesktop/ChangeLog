@@ -1,6 +1,10 @@
 # ChangeLog for xfce-base/xfdesktop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/ChangeLog,v 1.142 2009/06/28 13:26:19 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/ChangeLog,v 1.143 2009/06/30 19:21:52 klausman Exp $
+
+  30 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
+  xfdesktop-4.6.1.ebuild:
+  Stable on alpha, bug #265587
 
   28 Jun 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
   Marking xfdesktop-4.6.1 ppc64 stable for bug 265587
