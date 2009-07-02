@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/junit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.50 2009/05/23 11:14:17 serkan Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/junit/ChangeLog,v 1.51 2009/06/29 21:34:48 maekke Exp $
+
+  29 Jun 2009; Markus Meier <maekke@gentoo.org> junit-4.6.ebuild:
+  amd64/x86 stable, bug #275179
 
 *junit-4.6 (23 May 2009)
 
