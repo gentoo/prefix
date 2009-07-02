@@ -1,6 +1,10 @@
 # ChangeLog for xfce-extra/xfce4-mixer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/ChangeLog,v 1.121 2009/06/28 13:27:25 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-mixer/ChangeLog,v 1.122 2009/06/30 19:22:44 klausman Exp $
+
+  30 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
+  xfce4-mixer-4.6.1.ebuild:
+  Stable on alpha, bug #265587
 
   28 Jun 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
   Marking xfce4-mixer-4.6.1 ppc64 stable for bug 265587
