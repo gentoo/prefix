@@ -1,6 +1,23 @@
 # ChangeLog for sys-apps/sed
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.93 2009/05/29 19:41:36 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/ChangeLog,v 1.98 2009/06/30 21:27:17 fauli Exp $
+
+  30 Jun 2009; Christian Faulhammer <fauli@gentoo.org> sed-4.2.ebuild:
+  stable x86, bug 275875
+
+  30 Jun 2009; Jeroen Roovers <jer@gentoo.org> sed-4.2.ebuild:
+  Stable for HPPA (bug #275875).
+
+  30 Jun 2009; Tobias Klausmann <klausman@gentoo.org> sed-4.2.ebuild:
+  Stable on alpha, bug #275875
+
+  29 Jun 2009; Ferris McCormick <fmccor@gentoo.org> sed-4.2.ebuild:
+  Sparc stable, bug #275875.
+
+*sed-4.2.1 (29 Jun 2009)
+
+  29 Jun 2009; Mike Frysinger <vapier@gentoo.org> +sed-4.2.1.ebuild:
+  Version bump #275781 by Lars Wendler.
 
   29 May 2009; Diego E. Pettenò <flameeyes@gentoo.org> sed-4.2.ebuild:
   Replace sys-apps/acl dependency with virtual/acl, unbreaking
