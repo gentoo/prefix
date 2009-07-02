@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateManip/DateManip-5.54.ebuild,v 1.4 2008/11/18 14:40:17 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateManip/DateManip-5.54.ebuild,v 1.5 2009/06/29 23:37:46 jer Exp $
 
 inherit perl-module
 
