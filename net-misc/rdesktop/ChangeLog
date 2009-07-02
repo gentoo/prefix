@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/rdesktop
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.111 2008/05/21 14:13:19 voyageur Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.112 2009/06/30 09:43:15 voyageur Exp $
+
+*rdesktop-1.6.0-r2 (30 Jun 2009)
+
+  30 Jun 2009; Bernard Cafarelli <voyageur@gentoo.org>
+  +rdesktop-1.6.0-r2.ebuild, +files/rdesktop-1.6.0-sound_configure.patch:
+  Fix automagic dependency on libsamplerate, bug #275851. Also clean ebuild
+  a bit
 
 *rdesktop-1.6.0-r1 (21 May 2008)
 
