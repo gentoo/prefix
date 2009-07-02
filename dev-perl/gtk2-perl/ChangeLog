@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/gtk2-perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/gtk2-perl/ChangeLog,v 1.106 2009/06/07 18:31:17 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/gtk2-perl/ChangeLog,v 1.107 2009/06/29 20:02:43 jer Exp $
+
+  29 Jun 2009; Jeroen Roovers <jer@gentoo.org> gtk2-perl-1.202.ebuild:
+  Stable for HPPA too.
 
 *gtk2-perl-1.220 (07 Jun 2009)
 
