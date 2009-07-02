@@ -1,6 +1,12 @@
 # ChangeLog for dev-dotnet/libgdiplus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/ChangeLog,v 1.100 2009/06/22 22:44:41 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/libgdiplus/ChangeLog,v 1.101 2009/06/30 06:00:17 loki_val Exp $
+
+*libgdiplus-2.4.2 (30 Jun 2009)
+
+  30 Jun 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -libgdiplus-2.4.2_rc1.ebuild, +libgdiplus-2.4.2.ebuild:
+  Bump to 2.4.2
 
 *libgdiplus-2.4.2_rc1 (22 Jun 2009)
 
