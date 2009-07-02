@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-keyring
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.147 2009/05/14 07:39:36 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.148 2009/06/30 07:50:28 aballier Exp $
+
+  30 Jun 2009; Alexis Ballier <aballier@gentoo.org>
+  gnome-keyring-2.26.1-r1.ebuild, +files/gnome-keyring-2.26.1-dlopen.patch:
+  Add upstream fix for building on FreeBSD, bug #271359
 
 *gnome-keyring-2.26.1-r1 (14 May 2009)
 

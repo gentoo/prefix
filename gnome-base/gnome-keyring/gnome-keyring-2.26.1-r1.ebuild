@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.26.1-r1.ebuild,v 1.1 2009/05/14 07:39:36 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.26.1-r1.ebuild,v 1.2 2009/06/30 07:50:28 aballier Exp $
 
 EAPI="2"
 
-inherit gnome2 pam virtualx
+inherit gnome2 pam virtualx eutils autotools
 
 DESCRIPTION="Password and keyring managing daemon"
 HOMEPAGE="http://www.gnome.org/"
@@ -55,6 +55,14 @@ src_prepare() {
 	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
 
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-2.22.1-interix3.patch
+
+	# Detect where dlopen functions are rather than hardcoding -ldl
+	# Fixes build on BSD
+	# Bug #271359
+	# Gnome bug #584307
+	epatch "${FILESDIR}/${P}-dlopen.patch"
+	eautoreconf
+
 }
 
 src_test() {
