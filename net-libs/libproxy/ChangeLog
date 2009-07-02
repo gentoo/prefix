@@ -1,6 +1,21 @@
 # ChangeLog for net-libs/libproxy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.15 2009/06/25 20:53:37 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.18 2009/06/30 09:30:04 leio Exp $
+
+  29 Jun 2009; Mart Raudsepp <leio@gentoo.org>
+  -files/libproxy-0.2.3-fix-mozjs-cflags.patch:
+  Remove now redundant previously used mozjs patch
+
+*libproxy-0.2.3-r2 (29 Jun 2009)
+
+  29 Jun 2009; Mart Raudsepp <leio@gentoo.org> -libproxy-0.2.3-r1.ebuild,
+  +libproxy-0.2.3-r2.ebuild,
+  +files/libproxy-0.2.3-fix-automagic-mozjs.patch:
+  Fix automagic mozilla-js provider picking, so that with USE=xulrunner
+  xulrunner-1.9 is always picked, and with USE="seamonkey -xulrunner"
+  seamonkey-js is always picked. Depend on a xulrunner:1.9 that has its
+  mozilla-js pkgconfig file usable for us while building to fix bug 275318
+  once and for all
 
   25 Jun 2009; Romain Perier <mrpouet@gentoo.org>
   files/libproxy-0.2.3-fix-mozjs-cflags.patch:
