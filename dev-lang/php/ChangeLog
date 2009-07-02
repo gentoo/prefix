@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.340 2009/06/27 12:56:36 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.341 2009/06/30 13:33:13 armin76 Exp $
+
+  30 Jun 2009; Raúl Porcel <armin76@gentoo.org> php-5.2.10.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #274670
 
   27 Jun 2009; Brent Baude <ranger@gentoo.org> php-5.2.10.ebuild:
   Marking php-5.2.10 ppc64 and ppc for bug 274670
