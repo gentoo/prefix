@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/itext
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/itext/ChangeLog,v 1.85 2009/05/31 22:31:09 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/itext/ChangeLog,v 1.86 2009/06/29 21:32:58 maekke Exp $
+
+  29 Jun 2009; Markus Meier <maekke@gentoo.org> itext-2.1.5.ebuild:
+  amd64/x86 stable, bug #275176
 
   31 May 2009; Markus Meier <maekke@gentoo.org> itext-2.1.5.ebuild:
   add ~amd64, bug #270906
