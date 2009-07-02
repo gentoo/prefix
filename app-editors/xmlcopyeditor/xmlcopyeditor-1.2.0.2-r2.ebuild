@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/xmlcopyeditor-1.2.0.2-r2.ebuild,v 1.1 2009/04/29 18:58:32 yoswink Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/xmlcopyeditor/xmlcopyeditor-1.2.0.2-r2.ebuild,v 1.2 2009/07/01 06:18:08 dirtyepic Exp $
 
 EAPI="2"
 
@@ -36,6 +36,10 @@ src_unpack() {
 
 pkg_setup() {
 	check_wxuse X
+}
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-gcc44.patch
 }
 
 src_install() {
