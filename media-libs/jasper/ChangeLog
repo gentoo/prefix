@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/jasper
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/ChangeLog,v 1.53 2009/06/04 20:30:05 phosphan Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/ChangeLog,v 1.54 2009/06/30 14:32:27 armin76 Exp $
+
+  30 Jun 2009; Raúl Porcel <armin76@gentoo.org> jasper-1.900.1-r3.ebuild:
+  s390 stable
 
   04 Jun 2009; Patrick Kursawe <phosphan@gentoo.org>
   -files/jasper-overflow-fix.patch, -jasper-1.900.1-r1.ebuild,
