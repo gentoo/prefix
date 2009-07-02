@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.350 2009/06/27 13:29:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.351 2009/06/30 13:34:57 armin76 Exp $
+
+  30 Jun 2009; Raúl Porcel <armin76@gentoo.org> git-1.6.3.3.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #273905
 
   27 Jun 2009; Brent Baude <ranger@gentoo.org> git-1.6.3.3.ebuild:
   Marking git-1.6.3.3 ppc64 and ppc for bug 273905
