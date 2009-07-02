@@ -1,6 +1,29 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.213 2009/06/26 00:23:12 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.217 2009/06/30 19:45:28 nirbheek Exp $
+
+  30 Jun 2009; <nirbheek@gentoo.org> xulrunner-1.9.1.ebuild:
+  Add warning about possible issue with xpcom and nss
+
+  30 Jun 2009; <nirbheek@gentoo.org> xulrunner-1.9.1.ebuild:
+  <Mr_Bones_> nirbheek: net-libs/xulrunner-1.9.1: attr(rdepends) uses
+  unstated flags [ qt-experimental ] commented out of IUSE but used in the
+  deps
+
+*xulrunner-1.9.1 (30 Jun 2009)
+
+  30 Jun 2009; <nirbheek@gentoo.org> +xulrunner-1.9.1.ebuild:
+  Bump to 1.9.1, part of firefox-3.5
+
+*xulrunner-1.9.0.11-r1 (29 Jun 2009)
+
+  29 Jun 2009; <nirbheek@gentoo.org>
+  +files/066-fix-includedir-mozilla-js.patch, -xulrunner-1.9.0.11.ebuild,
+  +xulrunner-1.9.0.11-r1.ebuild:
+  Add patch to fix mozilla-js.pc to have the correct path. Changes no code,
+  unbreaks a lot of apps (like bug 275318), and will not break anything.
+  Straight to stable! Muahahaha. (arch teams don't really have anything to
+  do here)
 
   26 Jun 2009; Richard Freeman <rich0@gentoo.org> xulrunner-1.9.0.11.ebuild:
   amd64 stable - 273918
