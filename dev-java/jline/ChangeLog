@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jline
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jline/ChangeLog,v 1.19 2009/05/21 21:47:36 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jline/ChangeLog,v 1.20 2009/06/29 20:53:37 maekke Exp $
+
+  29 Jun 2009; Markus Meier <maekke@gentoo.org> jline-0.9.94.ebuild:
+  amd64/x86 stable, bug #274909
 
 *jline-0.9.94 (21 May 2009)
 
