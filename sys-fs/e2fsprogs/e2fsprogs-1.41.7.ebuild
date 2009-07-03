@@ -86,7 +86,7 @@ src_compile() {
 
 	ac_cv_path_LDCONFIG=: \
 	econf \
-		--with-root-prefix="${EPREFIX}" \
+		--with-root-prefix="${EPREFIX}"/ \
 		${libtype} \
 		--with-ldopts="${LDFLAGS}" \
 		$(use_enable !elibc_uclibc tls) \
