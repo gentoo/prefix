@@ -253,6 +253,7 @@ qt4-build_src_prepare() {
 				-e "s:-arch ppc::" \
 				-e "s:-arch x86_64::" \
 				-e "s:-arch ppc64::" \
+				-e 's:-arch $i::' \
 				-i "${S}"/configure || die "sed ${S}/configure failed"
 	fi
 
