@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Script
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Script/ChangeLog,v 1.7 2008/07/17 20:51:29 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Script/ChangeLog,v 1.8 2009/07/02 18:41:59 jer Exp $
+
+  02 Jul 2009; Jeroen Roovers <jer@gentoo.org> Test-Script-1.03.ebuild:
+  Stable for HPPA too.
 
   17 Jul 2008; Raúl Porcel <armin76@gentoo.org> Test-Script-1.03.ebuild:
   alpha/ia64/sparc/x86 stable
