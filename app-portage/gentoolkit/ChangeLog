@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.165 2009/07/02 03:25:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.166 2009/07/02 14:39:47 armin76 Exp $
+
+  02 Jul 2009; Raúl Porcel <armin76@gentoo.org> gentoolkit-0.2.4.5.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #268001
 
   02 Jul 2009; Jeroen Roovers <jer@gentoo.org> gentoolkit-0.2.4.5.ebuild:
   Stable for HPPA (bug #268001).
