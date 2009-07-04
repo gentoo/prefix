@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Clone/Clone-0.31.ebuild,v 1.2 2009/05/31 18:24:45 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Clone/Clone-0.31.ebuild,v 1.3 2009/07/02 19:24:12 jer Exp $
 
 MODULE_AUTHOR=RDF
 inherit perl-module
