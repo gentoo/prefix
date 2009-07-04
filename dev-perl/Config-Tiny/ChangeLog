@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Config-Tiny
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Config-Tiny/ChangeLog,v 1.66 2008/09/30 12:06:49 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Config-Tiny/ChangeLog,v 1.67 2009/07/02 19:22:16 jer Exp $
+
+  02 Jul 2009; Jeroen Roovers <jer@gentoo.org> Config-Tiny-2.12.ebuild:
+  Stable for HPPA too.
 
   30 Sep 2008; Torsten Veller <tove@gentoo.org> -Config-Tiny-2.04.ebuild,
   -Config-Tiny-2.08.ebuild, Config-Tiny-2.12.ebuild:
