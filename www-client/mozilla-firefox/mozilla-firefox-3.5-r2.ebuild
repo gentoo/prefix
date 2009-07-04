@@ -1,16 +1,16 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/Attic/mozilla-firefox-3.5.ebuild,v 1.1 2009/06/30 17:15:51 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5-r2.ebuild,v 1.1 2009/07/02 16:06:25 nirbheek Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib fdo-mime autotools mozextension
 
-LANGS="af ar as be bg bn-BD bn-IN ca cs cy da de el en-GB eo es-AR es-CL es-ES
-es-MX et eu fa fi fr fy-NL ga-IE gl gu-IN he hi-IN hr hu id is it ja ka kk kn ko
-ku lt lv mk ml mn mr nb-NO nl nn-NO oc or pa-IN pl pt-BR pt-PT rm ro ru si sk sl
-sq sr sv-SE ta-LK ta te th tr uk vi zh-CN zh-TW"
-NOSHORTLANGS="en-GB es-AR pt-BR zh-CN"
+LANGS="af ar as be bg bn-BD bn-IN ca cs cy da de el en en-GB en-US eo es-AR
+es-CL es-ES es-MX et eu fa fi fr fy-NL ga-IE gl gu-IN he hi-IN hr hu id is it ja
+ka kk kn ko ku lt lv mk ml mn mr nb-NO nl nn-NO oc or pa-IN pl pt-BR pt-PT rm ro
+ru si sk sl sq sr sv-SE ta-LK ta te th tr uk vi zh-CN zh-TW"
+NOSHORTLANGS="en-GB es-AR es-CL es-MX pt-BR zh-CN zh-TW"
 
 XUL_PV="1.9.1"
 MAJ_PV="${PV/_*/}" # Without the _rc and _beta stuff
@@ -290,6 +290,7 @@ src_install() {
 	cat <<EOF >"${ED}"/usr/bin/firefox
 #!${EPREFIX}/bin/sh
 export LD_LIBRARY_PATH="${EPREFIX}${MOZILLA_FIVE_HOME}"
+export LD_LIBRARY_PATH="${EPREFIX}${MOZILLA_FIVE_HOME}\${LD_LIBRARY_PATH+":\${LD_LIBRARY_PATH}"}"
 exec "${EPREFIX}${MOZILLA_FIVE_HOME}"/firefox "\$@"
 EOF
 
