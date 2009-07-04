@@ -1,6 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/hsetroot/hsetroot-1.0.2.ebuild,v 1.11 2009/05/17 17:50:54 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/hsetroot/hsetroot-1.0.2.ebuild,v 1.12 2009/07/02 20:49:32 idl0r Exp $
+
+EAPI="2"
+
+inherit autotools
 
 DESCRIPTION="Tool which allows you to compose wallpapers ('root pixmaps') for X"
 HOMEPAGE="http://thegraveyard.org/hsetroot.php"
@@ -12,14 +16,16 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 RDEPEND="x11-libs/libX11
-	x11-libs/libXext
-	>=media-libs/imlib2-1.0.6.2003"
+	>=media-libs/imlib2-1.0.6.2003[X]"
 DEPEND="${RDEPEND}
-	x11-proto/xproto
-	x11-libs/libX11
-	x11-libs/libXt"
+	x11-proto/xproto"
+
+src_prepare() {
+	# The pre-generated configure script contains unneeded deps
+	eautoreconf
+}
 
 src_install() {
 	emake install DESTDIR="${D}" || die
-	dodoc AUTHORS ChangeLog NEWS README
+	dodoc AUTHORS ChangeLog NEWS README || die
 }
