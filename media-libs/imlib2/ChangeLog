@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/imlib2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.91 2009/05/29 20:23:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/ChangeLog,v 1.92 2009/07/03 01:36:15 vapier Exp $
+
+  03 Jul 2009; Mike Frysinger <vapier@gentoo.org> imlib2-1.4.2-r1.ebuild:
+  Make sure bumpmap is linked with -lm #276285 by Christian Ruppert.
 
   29 May 2009; Mike Frysinger <vapier@gentoo.org>
   -files/imlib2-1.4.0-CVE-2008-2426.patch, -imlib2-1.4.1.ebuild,
