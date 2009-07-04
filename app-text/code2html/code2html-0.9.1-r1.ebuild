@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/code2html/code2html-0.9.1-r1.ebuild,v 1.3 2008/01/20 16:45:16 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/code2html/code2html-0.9.1-r1.ebuild,v 1.5 2009/07/03 00:47:51 jer Exp $
 
 inherit eutils prefix
 
@@ -39,6 +39,6 @@ src_unpack() {
 src_install () {
 	into /usr
 	dobin code2html
-	dodoc ChangeLog CREDITS LICENSE README
+	dodoc ChangeLog CREDITS README
 	doman code2html.1
 }
