@@ -82,7 +82,7 @@ fi
 # Sets up installation directories, PLATFORM, PATH, and LD_LIBRARY_PATH
 qt4-build_pkg_setup() {
 	# EAPI=2 ebuilds set use-deps, others need this:
-	if [[ ${EAPI} != 2 ]]; then
+	if [[ $EAPI != 2 ]]; then
 		# Make sure debug setting corresponds with qt-core (bug 258512)
 		if [[ $PN != "qt-core" ]]; then
 			use debug && QT4_BUILT_WITH_USE_CHECK="${QT4_BUILT_WITH_USE_CHECK}
@@ -178,7 +178,7 @@ qt4-build_src_unpack() {
 	fi
 
 	# Be backwards compatible for now
-	if [[ ${EAPI} != 2 ]]; then
+	if [[ $EAPI != 2 ]]; then
 		qt4-build_src_prepare
 	fi
 }
@@ -200,15 +200,23 @@ qt4-build_src_prepare() {
 	cd "${S}"
 
 	if use aqua; then
+		# provide a proper macx-g++-64
+		use x64-macos && ln -s macx-g++ mkspecs/$(qt_mkspecs_dir)
+
 		sed -e '/^CONFIG/s:app_bundle::' \
 			-e '/^CONFIG/s:plugin_no_soname:plugin_with_soname absolute_library_soname:' \
-			-i "${S}"/mkspecs/macx-g++/qmake.conf || die "sed failed"
+			-i "${S}"/mkspecs/$(qt_mkspecs_dir)/qmake.conf || die "sed failed"
 	fi
 
 	if [[ ${PN} != qt-core ]]; then
 		skip_qmake_build_patch
 		skip_project_generation_patch
 		symlink_binaries_to_buildtree
+	fi
+
+	if [[ ${CHOST} == *86*-apple-darwin* ]] ; then
+		# qmake bus errors with -O2 but -O3 works
+		replace-flags -O2 -O3
 	fi
 
 	# Bug 178652
@@ -247,14 +255,14 @@ qt4-build_src_prepare() {
 			-e "s:-arch\s\w*::g" \
 			-i "${S}"/mkspecs/common/mac-g++.conf || die "sed ${S}/mkspecs/common/mac-g++.conf failed"
 
-			# Fix configure's -arch settings that appear in qmake/Makefile
-			sed \
-				-e "s:-arch i386::" \
-				-e "s:-arch ppc::" \
-				-e "s:-arch x86_64::" \
-				-e "s:-arch ppc64::" \
-				-e 's:-arch $i::' \
-				-i "${S}"/configure || die "sed ${S}/configure failed"
+		# Fix configure's -arch settings that appear in qmake/Makefile
+		sed \
+			-e "s:-arch i386::" \
+			-e "s:-arch ppc::" \
+			-e "s:-arch x86_64::" \
+			-e "s:-arch ppc64::" \
+			-e 's:-arch $i::' \
+			-i "${S}"/configure || die "sed ${S}/configure failed"
 	fi
 
 	# this one is needed for all systems with a separate -liconv, apart from
@@ -269,12 +277,12 @@ qt4-build_src_prepare() {
 	# we need some patches for Solaris
 	sed -i \
 		-e '/^QMAKE_LFLAGS_THREAD/a\QMAKE_LFLAGS_DYNAMIC_LIST = -Wl,--dynamic-list,' \
-		"${S}"/mkspecs/solaris-g++/qmake.conf || die
+		"${S}"/mkspecs/$(qt_mkspecs_dir)/qmake.conf || die
 	# use GCC over SunStudio
 	sed -i -e '/PLATFORM=solaris-cc/s/cc/g++/' "${S}"/configure || die
 	# don't flirt with non-Prefix stuff, we're quite possessive
 	sed -i -e '/^QMAKE_\(LIB\|INC\)DIR\(_X11\|_OPENGL\|\)\t/s/=.*$/=/' \
-		"${S}"/mkspecs/solaris-g++/qmake.conf || die
+		"${S}"/mkspecs/$(qt_mkspecs_dir)/qmake.conf || die
 
 	base_src_prepare
 }
@@ -292,9 +300,9 @@ qt4-build_src_configure() {
 		myconf="${myconf} -liconv"
 
 	if use glib; then
-		#use -I from configure
+		# use -I from configure
 		myconf="${myconf} $(pkg-config --cflags glib-2.0)"
-		#use -L and -l from configure
+		# use -L and -l from configure
 		if use aqua; then
 			myconf="${myconf} $(pkg-config --libs glib-2.0 gthread-2.0)"
 		else
@@ -345,7 +353,7 @@ qt4-build_src_configure() {
 # @DESCRIPTION: Actual compile phase
 qt4-build_src_compile() {
 	# Be backwards compatible for now
-	if [[ ${EAPI} != 2 ]]; then
+	if [[ $EAPI != 2 ]]; then
 		qt4-build_src_configure
 	fi
 
@@ -736,7 +744,13 @@ qt_mkspecs_dir() {
 		*-netbsd*)
 			spec="netbsd" ;;
 		*-darwin*)
-			spec="darwin" ;;
+			if use aqua; then
+				# mac with carbon/cocoa
+				spec="macx"
+			else
+				# darwin/mac with x11
+				spec="darwin"
+			fi ;;
 		*-solaris*)
 			spec="solaris" ;;
 		*-linux-*|*-linux)
@@ -752,6 +766,16 @@ qt_mkspecs_dir() {
 		spec="${spec}-icc"
 	else
 		die "Unknown compiler ${CXX}."
+	fi
+
+	# Add -64 for 64bit profiles
+	if use x64-freebsd ||
+		use amd64-linux ||
+		use x64-macos ||
+		use x64-solaris ||
+		use sparcv9-solaris ;
+	then
+		spec="${spec}-64"
 	fi
 
 	echo "${spec}"
