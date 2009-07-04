@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20.ebuild,v 1.3 2009/06/29 13:25:08 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r1.ebuild,v 1.1 2009/07/02 08:44:33 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
-PATCHSET_REV="-r1"
+PATCHSET_REV="-r2"
 
 # note: latest sidebar patches can be found here:
 # http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44
@@ -83,6 +83,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.20-mbox-unchanged-new-mail-9ae13dedb5ed.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-imap-start-fatal-fe30f394cbe6.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-tab-subject-questionmark-298194c414f0.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-smtp-batch-mode-0a3de4d9a009-f6c6066a5925.patch
 
 	if use !vanilla && use !sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
