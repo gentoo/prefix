@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Error/Error-0.17.012.ebuild,v 1.4 2008/11/18 14:52:26 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Error/Error-0.17.012.ebuild,v 1.5 2009/07/02 19:33:02 jer Exp $
 
 inherit versionator perl-module
 
