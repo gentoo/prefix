@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/alsa-headers-1.0.19.ebuild,v 1.5 2009/06/16 17:37:51 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/alsa-headers/alsa-headers-1.0.19.ebuild,v 1.8 2009/07/02 19:14:12 maekke Exp $
 
 inherit eutils
 
