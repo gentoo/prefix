@@ -1,6 +1,17 @@
 # ChangeLog for app-admin/eselect-wxwidgets
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-wxwidgets/ChangeLog,v 1.35 2009/01/22 12:49:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-wxwidgets/ChangeLog,v 1.37 2009/07/02 19:45:47 grobian Exp $
+
+  02 Jul 2009; Fabian Groffen <grobian@gentoo.org> files/wx-config-1,
+  files/wxrc-1:
+  Add CVS Header to wxrc and wx-config to make my life easier
+
+*eselect-wxwidgets-1.0 (01 Jul 2009)
+
+  01 Jul 2009; Ryan Hill <dirtyepic@gentoo.org> +files/wx-config-1,
+  +files/wxrc-1, +eselect-wxwidgets-1.0.ebuild:
+  Version bump. Debashify wx-config and wxrc wrappers for compatibility with
+  cmake (bug #274675).
 
   22 Jan 2009; Raúl Porcel <armin76@gentoo.org>
   eselect-wxwidgets-0.8.ebuild:

@@ -1,0 +1,36 @@
+#!@GENTOO_PORTAGE_EPREFIX@/bin/sh -
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-wxwidgets/files/wxrc-1,v 1.2 2009/07/02 19:45:48 grobian Exp $
+#
+# /usr/bin/wxrc
+#
+#  a lame wxrc wrapper (bugs to wxwidgets@gentoo.org)
+
+_wxerror() {
+	echo "An error occurred while calling wxrc:"
+	echo
+	echo "    ${1}"
+	echo
+	echo "Please use \`eselect wxwidgets\` to select an available profile and try again."
+	exit 1
+}
+
+if [ -n "${WX_ECLASS_CONFIG}" ]; then
+	$(${WX_ECLASS_CONFIG} --utility=wxrc) "$@"
+	exit 0
+else
+	if [ -e "@GENTOO_PORTAGE_EPREFIX@"/var/lib/wxwidgets/current ]; then
+		source "@GENTOO_PORTAGE_EPREFIX@"/var/lib/wxwidgets/current
+	else
+		_wxerror "Cannot find the wxWidgets profile configuration ( @GENTOO_PORTAGE_EPREFIX@/var/lib/wxwidgets/current )"
+	fi
+
+	[ -z "${WXCONFIG}" -o "${WXCONFIG}" == none ] && _wxerror "No profile currently selected"
+
+	if [ -x "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/wx/config/${WXCONFIG} ]; then
+	   $("@GENTOO_PORTAGE_EPREFIX@"/usr/lib/wx/config/${WXCONFIG} --utility=wxrc) "$@"
+	else
+		_wxerror "Cannot find wxWidgets profile ( ${WXCONFIG} )"
+	fi
+	exit 0
+fi
+
