@@ -1,19 +1,19 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.2.ebuild,v 1.2 2009/03/09 20:50:49 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.3.ebuild,v 1.1 2009/07/02 20:09:24 nelchael Exp $
 
 inherit bash-completion elisp-common flag-o-matic eutils distutils prefix
 
 DESCRIPTION="Scalable distributed SCM"
-HOMEPAGE="http://www.selenic.com/mercurial/"
-SRC_URI="http://www.selenic.com/mercurial/release/${P}.tar.gz"
+HOMEPAGE="http://mercurial.selenic.com/"
+SRC_URI="http://mercurial.selenic.com/release/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="bugzilla emacs gpg test tk zsh-completion"
 
-CDEPEND=">=dev-lang/python-2.3"
+CDEPEND=">=dev-lang/python-2.4"
 RDEPEND="${CDEPEND}
 	bugzilla? ( dev-python/mysql-python )
 	gpg? ( app-crypt/gnupg )
@@ -80,7 +80,7 @@ src_test() {
 	local testdir="${T}/tests"
 	mkdir -p -m1777 "${testdir}" || die
 	cd "${S}/tests/"
-	rm -rf *svn*		# Subversion tests fail with 1.5
+	rm -rf *svn*				# Subversion tests fail with 1.5
 	rm -f test-archive			# Fails due to verbose tar output changes
 	rm -f test-convert-baz*		# GNU Arch baz
 	rm -f test-convert-cvs*		# CVS
@@ -88,7 +88,7 @@ src_test() {
 	rm -f test-convert-git*		# git
 	rm -f test-convert-mtn*		# monotone
 	rm -f test-convert-tla*		# GNU Arch tla
-	rm -f test-doctest*		# doctest always fails with python 2.5.x
+	rm -f test-doctest*			# doctest always fails with python 2.5.x
 	if ! has userpriv ${FEATURES}; then
 		einfo "Removing tests which require user privileges to succeed"
 		rm -f test-command-template	# Test is broken when run as root

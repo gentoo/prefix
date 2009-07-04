@@ -1,6 +1,11 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.98 2009/05/16 16:47:42 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.99 2009/07/02 20:09:24 nelchael Exp $
+
+*mercurial-1.3 (02 Jul 2009)
+
+  02 Jul 2009; Krzysiek Pawlik <nelchael@gentoo.org> +mercurial-1.3.ebuild:
+  Version bump.
 
   16 May 2009; Krzysiek Pawlik <nelchael@gentoo.org>
   -mercurial-1.0.2.ebuild, -mercurial-1.2.ebuild:
