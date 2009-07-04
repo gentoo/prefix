@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.ebuild,v 1.4 2009/06/30 19:45:28 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.ebuild,v 1.5 2009/07/02 06:17:02 nirbheek Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
@@ -73,6 +73,9 @@ src_prepare() {
 		xpcom/build/nsXPCOMPrivate.h \
 		xulrunner/installer/Makefile.in \
 		xulrunner/app/nsRegisterGREUnix.cpp
+
+	# bug 276018 upstreamed, remove in 1.9.2
+	epatch "${FILESDIR}/067-force-bundled-ply.patch"
 
 	# Same as in config/autoconf.mk.in
 	MOZLIBDIR="/usr/$(get_libdir)/${PN}-${MAJ_PV}"

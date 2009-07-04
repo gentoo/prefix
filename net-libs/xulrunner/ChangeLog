@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.217 2009/06/30 19:45:28 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.218 2009/07/02 06:17:02 nirbheek Exp $
+
+  02 Jul 2009; <nirbheek@gentoo.org> +files/067-force-bundled-ply.patch,
+  xulrunner-1.9.1.ebuild:
+  Fix building when dev-python/ply is installed, bug 276018
+  Patch thanks to Hector Martin
 
   30 Jun 2009; <nirbheek@gentoo.org> xulrunner-1.9.1.ebuild:
   Add warning about possible issue with xpcom and nss
