@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Test-Inline
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Inline/ChangeLog,v 1.62 2009/05/22 06:54:50 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Inline/ChangeLog,v 1.63 2009/07/02 18:43:30 jer Exp $
+
+  02 Jul 2009; Jeroen Roovers <jer@gentoo.org> Test-Inline-2.208.ebuild:
+  Stable for HPPA too.
 
 *Test-Inline-2.210 (22 May 2009)
 
