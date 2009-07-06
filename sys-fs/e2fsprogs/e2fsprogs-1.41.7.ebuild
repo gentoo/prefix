@@ -36,7 +36,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
 	epatch "${FILESDIR}"/${PN}-1.41.1-darwin-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.41.4-darwin-no-mntent.patch
-	epatch "${FILESDIR}"/${PN}-1.41-mint.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.41-mint.patch
 	# blargh ... trick e2fsprogs into using e2fsprogs-libs
 	rm -rf doc
 	sed -i -r \
