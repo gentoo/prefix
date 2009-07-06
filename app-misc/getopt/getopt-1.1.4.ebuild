@@ -23,18 +23,25 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${P}-libintl.patch"
 	epatch "${FILESDIR}/${P}-longrename.patch"
+
+	# hopefully this is portable enough
+	epatch "${FILESDIR}"/${P}-irix.patch
 }
 
 src_compile() {
 	local nogettext="1"
 	local libintl=""
+	local libcgetopt=1
 
 	if use nls; then
 		nogettext=0
 		has_version sys-libs/glibc || libintl="-lintl"
 	fi
 
+	[[ ${CHOST} == *-irix* ]] && libcgetopt=0
+
 	emake CC="$(tc-getCC)" prefix="${EPREFIX}/usr" \
+		LIBCGETOPT=${libcgetopt} \
 		WITHOUT_GETTEXT=${nogettext} LIBINTL=${libintl} \
 		CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}" || die "emake failed"
 }
