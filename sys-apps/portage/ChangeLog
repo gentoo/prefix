@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.13797 (07 Jul 2009)
+
+  07 Jul 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.13734.ebuild, +portage-2.2.00.13797.ebuild:
+  Replace last snapshot with a new one that has reverse order with --nodeps
+  fixed.
+
 *portage-2.2.00.13734 (01 Jul 2009)
 
   01 Jul 2009; Fabian Groffen <grobian@gentoo.org>

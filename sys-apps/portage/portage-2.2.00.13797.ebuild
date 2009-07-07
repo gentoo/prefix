@@ -153,7 +153,6 @@ src_install() {
 	exeinto ${portage_base}/pym/portage/tests
 	doexe  "${S}"/pym/portage/tests/runTests
 
-
 	if use linguas_pl; then
 		doman -i18n=pl "${S_PL}"/man/pl/*.[0-9]
 		doman -i18n=pl_PL.UTF-8 "${S_PL}"/man/pl_PL.UTF-8/*.[0-9]
