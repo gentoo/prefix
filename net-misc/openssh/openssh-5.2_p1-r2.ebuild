@@ -117,11 +117,9 @@ src_unpack() {
 
 	sed -i "s:-lcrypto:$(pkg-config --libs openssl):" configure{,.ac} || die
 
-# bug #238631
-#	epatch "${FILESDIR}"/${P}-interix.patch
-#	epatch "${FILESDIR}"/${PN}-5.1_p1-root-uid.patch
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-copyfile.patch
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-getpwuid.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	# Disable PATH reset, trust what portage gives us. bug 254615
 	sed -i -e 's:^PATH=/:#PATH=/:' configure || die
