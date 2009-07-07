@@ -64,8 +64,8 @@ src_configure() {
 		$(use_enable pam pam-module) \
 		$(use_enable policykit polkit) \
 		--with-pam-module-dir=/$(getpam_mod_dir) \
-		--with-dbus-services=/usr/share/dbus-1/services/ \
-		--localstatedir=/var
+		--with-dbus-services="${EPREFIX}"/usr/share/dbus-1/services/ \
+		--localstatedir="${EPREFIX}"/var
 }
 
 src_install() {
