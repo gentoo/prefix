@@ -11,7 +11,7 @@ SRC_URI="ftp://ftp.astron.com/pub/file/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 IUSE="python"
 
@@ -22,7 +22,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
 	epatch "${FILESDIR}"/${P}-localization.patch #258452
 	epatch "${FILESDIR}"/${P}-short-read.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-strtoull.patch
 	epatch "${FILESDIR}"/${P}-strtoull-limits.patch #263527
 
 	eautoreconf # required for interix, was elibtoolize

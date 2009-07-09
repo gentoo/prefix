@@ -20,12 +20,15 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
-	epatch "${FILESDIR}"/${PN}-5.00-interix.patch
-	epatch "${FILESDIR}"/${PN}-5.00-strtoull-limits.patch #263527
+	epatch "${FILESDIR}"/${PN}-5.00-strtoull.patch
 
 	[[ ${CHOST} == *-interix* ]] && eautoreconf # required for interix
 	elibtoolize
 	epunt_cxx
+
+	# avoid eautoreconf when adding check for strtoull #263527
+	sed -i 's/ strtoul / strtoul strtoull /' configure
+	sed -i '/#undef HAVE_STRTOUL$/a#undef HAVE_STRTOULL' config.h.in
 
 	# make sure python links against the current libmagic #54401
 	sed -i "/library_dirs/s:'\.\./src':'../src/.libs':" python/setup.py
