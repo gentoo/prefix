@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.3.ebuild,v 1.3 2009/06/26 11:35:43 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.3.ebuild,v 1.4 2009/07/06 19:14:54 arfrever Exp $
 
 EAPI="2"
 
@@ -41,6 +41,7 @@ APACHE_TEST_DEPEND="|| (
 	=www-servers/apache-2.2*[apache2_modules_auth_basic,apache2_modules_authn_file,apache2_modules_dav,apache2_modules_log_config]
 	)"
 DEPEND="${CDEPEND}
+	>=sys-apps/sandbox-1.6
 	ctypes-python? ( dev-python/ctypesgen )
 	doc? ( app-doc/doxygen )
 	gnome-keyring? ( dev-util/pkgconfig )
@@ -426,6 +427,10 @@ set_tests_variables() {
 }
 
 src_test() {
+	if ! use test; then
+		die "Invalid configuration"
+	fi
+
 	local fs_type fs_types ra_type ra_types options failed_tests
 
 	fs_types="fsfs"
@@ -434,6 +439,11 @@ src_test() {
 	ra_types="local svn"
 	use webdav-neon && ra_types+=" neon"
 	use webdav-serf && ra_types+=" serf"
+
+	local pid_file
+	for pid_file in svnserve.pid apache.pid memcached.pid; do
+		rm -f "${T}/${pid_file}"
+	done
 
 	termination() {
 		local die="$1" pid_file
@@ -485,7 +495,7 @@ src_test() {
 			einfo
 			set_tests_variables ${ra_type}
 			time emake check FS_TYPE="${fs_type}" BASE_URL="${base_url}" HTTP_LIBRARY="${http_library}" CLEANUP="1" ${options} || failed_tests="1"
-			mv tests.log tests-ra_${ra_type}-${fs_type}.log
+			mv tests.log "${T}/tests-ra_${ra_type}-${fs_type}.log"
 		done
 	done
 	unset base_url http_library

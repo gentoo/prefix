@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/subversion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.387 2009/06/26 11:35:43 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.389 2009/07/06 19:14:54 arfrever Exp $
+
+  06 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  subversion-1.6.2.ebuild, subversion-1.6.2-r10.ebuild,
+  subversion-1.6.3.ebuild:
+  Update dependency on sys-apps/sandbox (bug #271424). Backport some updates
+  from trunk ebuild.
+
+  03 Jul 2009; Brent Baude <ranger@gentoo.org> subversion-1.6.2.ebuild:
+  Marking subversion-1.6.2 ppc64 and ppc for bug 273304
 
   26 Jun 2009; Alexis Ballier <aballier@gentoo.org> subversion-1.6.3.ebuild:
   keyword ~x86-fbsd, bug #263337

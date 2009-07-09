@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.2-r10.ebuild,v 1.3 2009/06/22 21:57:03 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.2-r10.ebuild,v 1.4 2009/07/06 19:14:54 arfrever Exp $
 
 EAPI="2"
 
@@ -39,6 +39,7 @@ RDEPEND="${CDEPEND}
 	perl? ( dev-perl/URI )"
 
 DEPEND="${CDEPEND}
+	>=sys-apps/sandbox-1.6
 	ctypes-python? ( dev-python/ctypesgen )
 	doc? ( app-doc/doxygen )
 	gnome-keyring? ( dev-util/pkgconfig )
