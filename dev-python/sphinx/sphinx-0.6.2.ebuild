@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/sphinx-0.6.2.ebuild,v 1.1 2009/06/21 09:13:47 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/sphinx-0.6.2.ebuild,v 1.2 2009/07/05 21:05:58 aballier Exp $
 
 inherit distutils multilib
 
