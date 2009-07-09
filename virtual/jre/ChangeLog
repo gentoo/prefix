@@ -1,6 +1,9 @@
 # ChangeLog for virtual/jre
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/jre/ChangeLog,v 1.23 2008/05/22 07:48:34 corsair Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/jre/ChangeLog,v 1.24 2009/07/05 05:11:05 ali_bush Exp $
+
+  05 Jul 2009; Alistair Bush <ali_bush@gentoo.org> jre-1.6.0.ebuild:
+  Keyword ~x86-fbsd and add diablo-jre-bin
 
   22 May 2008; Markus Rothe <corsair@gentoo.org> jre-1.6.0.ebuild:
   Stable on ppc64
