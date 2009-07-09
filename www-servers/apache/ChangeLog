@@ -1,6 +1,39 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.104 2009/05/02 13:29:36 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.113 2009/07/08 20:31:45 maekke Exp $
+
+  08 Jul 2009; Markus Meier <maekke@gentoo.org> apache-2.2.11-r2.ebuild:
+  amd64 stable, bug #276589
+
+  08 Jul 2009; Brent Baude <ranger@gentoo.org> apache-2.2.11-r2.ebuild:
+  Marking apache-2.2.11-r2 ppc64 and ppc for bug 276589
+
+  07 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  apache-2.2.11-r2.ebuild:
+  stable x86, security bug 276589
+
+  07 Jul 2009; Jeroen Roovers <jer@gentoo.org> apache-2.2.11-r2.ebuild:
+  Stable for HPPA (bug #276589).
+
+*apache-2.2.11-r2 (07 Jul 2009)
+
+  07 Jul 2009; Benedikt Böhm <hollow@gentoo.org> +apache-2.2.11-r2.ebuild:
+  fix #276707, #276792
+
+  07 Jul 2009; Richard Freeman <rich0@gentoo.org> apache-2.2.11-r1.ebuild:
+  amd64 stable - 276589
+
+  06 Jul 2009; Brent Baude <ranger@gentoo.org> apache-2.2.11-r1.ebuild:
+  Marking apache-2.2.11-r1 ppc64 and ppc for bug 276589
+
+  06 Jul 2009; Jeroen Roovers <jer@gentoo.org> apache-2.2.11-r1.ebuild:
+  Stable for HPPA (bug #276589).
+
+*apache-2.2.11-r1 (05 Jul 2009)
+
+  05 Jul 2009; Benedikt Böhm <hollow@gentoo.org> -apache-2.2.9-r1.ebuild,
+  +apache-2.2.11-r1.ebuild:
+  fix #263588, #265547, #231913, #268154, #271470, #272951, #276426
 
   02 May 2009; Jeroen Roovers <jer@gentoo.org> apache-2.2.11.ebuild:
   Stable for HPPA (bug #265705).
