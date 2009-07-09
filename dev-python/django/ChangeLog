@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/django
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.33 2009/05/18 14:58:48 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/ChangeLog,v 1.34 2009/07/05 20:48:42 aballier Exp $
+
+  05 Jul 2009; Alexis Ballier <aballier@gentoo.org> django-1.0.2-r1.ebuild:
+  keyword ~x86-fbsd, bug #235323
 
   18 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   django-1.0.2-r1.ebuild:
