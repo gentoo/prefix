@@ -1,7 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/bsf/bsf-2.4.0-r1.ebuild,v 1.8 2008/09/27 11:48:06 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/bsf/bsf-2.4.0-r1.ebuild,v 1.9 2009/07/03 16:56:37 betelgeuse Exp $
 
+EAPI="1"
 JAVA_PKG_IUSE="doc examples source"
 inherit java-pkg-2 eutils java-ant-2
 
@@ -14,14 +15,12 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 # If you add new ones, add them to ant-apache-bsf too for use dependencies
 IUSE="javascript python tcl"
 
-COMMON_DEP="dev-java/commons-logging
-	dev-java/xalan
-	python? ( >=dev-java/jython-2.1-r5 )
-	javascript? ( =dev-java/rhino-1.6* )
-	tcl? ( dev-java/jacl )"
-# java-config for the register-optional-dependency
+COMMON_DEP="dev-java/commons-logging:0
+	dev-java/xalan:0
+	python? ( >=dev-java/jython-2.1-r5:0 )
+	javascript? ( dev-java/rhino:1.6 )
+	tcl? ( dev-java/jacl:0 )"
 RDEPEND=">=virtual/jre-1.4
-	>=dev-java/java-config-2.0.33-r1
 	${COMMON_DEP}"
 DEPEND=">=virtual/jdk-1.4
 	${COMMON_DEP}"
