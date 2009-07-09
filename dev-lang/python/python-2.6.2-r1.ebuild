@@ -127,6 +127,8 @@ src_prepare() {
 		# this one could be applied unconditionally, but to keep it
 		# clean, I do it together with the conditional one.
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
+		# some more modules fixed (_multiprocessing, dl)
+		epatch "${FILESDIR}"/${P}-interix-modules.patch
 	fi
 
 	eautoreconf
