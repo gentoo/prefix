@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.10 2009/05/11 10:58:42 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.11 2009/07/06 19:55:55 grobian Exp $
 
 inherit eutils flag-o-matic
 
@@ -139,7 +139,7 @@ egnustep_env() {
 
 # Make utilizing GNUstep Makefiles
 egnustep_make() {
-	if [[ -f ./[mM]akefile || -f ./GNUmakefile ]] ; then
+	if [[ -f ./Makefile || -f ./makefile || -f ./GNUmakefile ]] ; then
 		emake ${*} "${GS_ENV[@]}" all || die "package make failed"
 		return 0
 	fi

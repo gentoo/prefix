@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim-spell.eclass,v 1.6 2007/03/21 03:40:22 pioto Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim-spell.eclass,v 1.7 2009/07/07 18:54:05 arfrever Exp $
 
 #
 # Original Author: Ciaran McCreesh <ciaranm@gentoo.org>
@@ -84,9 +84,17 @@ vim-spell_src_install() {
 	insinto "${target}"
 
 	had_spell_file=
-	for f in *.spl *.sug ; do
-		doins "${f}"
-		had_spell_file="yes"
+	for f in *.spl ; do
+		if [[ -f "${f}" ]]; then
+			doins "${f}"
+			had_spell_file="yes"
+		fi
+	done
+
+	for f in *.sug ; do
+		if [[ -f "${f}" ]]; then
+			doins "${f}"
+		fi
 	done
 
 	for f in README* ; do

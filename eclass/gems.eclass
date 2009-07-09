@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.26 2009/05/23 12:22:06 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.27 2009/07/05 16:46:05 graaff Exp $
 
 # @ECLASS: gems.eclass
 # @MAINTAINER:
@@ -25,7 +25,7 @@ SRC_URI="mirror://rubyforge/gems/${P}.gem"
 IUSE="doc"
 
 DEPEND="
-	|| ( >=dev-ruby/rubygems-0.9.4 =dev-lang/ruby-1.9* )
+	|| ( >=dev-ruby/rubygems-1.3.1 =dev-lang/ruby-1.9* )
 	!<dev-ruby/rdoc-2
 "
 RDEPEND="${DEPEND}"
@@ -113,15 +113,9 @@ gems_src_install() {
 		# >=1.3.0 needs a path fix
 		local gte13=$(${EPREFIX}/usr/bin/${ruby_version} -rubygems -e 'puts Gem::RubyGemsVersion >= "1.3.0"')
 
-		if [[ "${gte13}" == "true" ]] ; then
-			"${EPREFIX}"/usr/bin/${ruby_version} "${EPREFIX}"/usr/bin/gem install ${GEM_SRC} \
+		"${EPREFIX}"/usr/bin/${ruby_version} "${EPREFIX}"/usr/bin/gem install ${GEM_SRC} \
 			--version ${PV} ${myconf} --local --install-dir "${ED}/${GEMSDIR}" \
 			--sandbox-fix --no-user-install || die "gem (>=1.3.0) install failed"
-		else
-			"${EPREFIX}"/usr/bin/${ruby_version} "${EPREFIX}"/usr/bin/gem install ${GEM_SRC} \
-			--version ${PV} ${myconf} --local --install-dir "${ED}/${GEMSDIR}" \
-			|| die "gem (<1.3.0) install failed"
-		fi
 
 		if [[ -d "${ED}/${GEMSDIR}/bin" ]] ; then
 			exeinto /usr/bin

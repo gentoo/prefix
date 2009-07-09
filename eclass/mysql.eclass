@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.109 2009/02/28 10:51:57 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.114 2009/07/06 19:06:03 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: MySQL Team <mysql-bugs@gentoo.org>
@@ -11,6 +11,26 @@ WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
 inherit eutils flag-o-matic gnuconfig autotools mysql_fx versionator
+
+case "${EAPI:-0}" in
+	2)
+		EXPORT_FUNCTIONS pkg_setup \
+					src_unpack src_prepare \
+					src_configure src_compile \
+					src_install \
+					pkg_preinst pkg_postinst \
+					pkg_config pkg_postrm
+		IUSE_DEFAULT_ON='+'
+		;;
+	*)
+		EXPORT_FUNCTIONS pkg_setup \
+					src_unpack \
+					src_compile \
+					src_install \
+					pkg_preinst pkg_postinst \
+					pkg_config pkg_postrm
+		;;
+esac
 
 # Shorten the path because the socket path length must be shorter than 107 chars
 # and we will run a mysql server during test phase
@@ -40,6 +60,16 @@ for vatom in 0 1 2 3 ; do
 done
 # strip leading "0" (otherwise it's considered an octal number by BASH)
 MYSQL_VERSION_ID=${MYSQL_VERSION_ID##"0"}
+
+# Community features are available in mysql-community
+# AND in the re-merged mysql-5.0.82 and newer
+if [ "${PN}" == "mysql-community" ]; then
+	MYSQL_COMMUNITY_FEATURES=1
+elif [ "${PV#5.0}" != "${PV}" ] && mysql_version_is_at_least "5.0.82"; then
+	MYSQL_COMMUNITY_FEATURES=1
+else
+	MYSQL_COMMUNITY_FEATURES=0
+fi
 
 # Be warned, *DEPEND are version-dependant
 # These are used for both runtime and compiletime
@@ -77,9 +107,9 @@ PDEPEND="${PDEPEND} =virtual/mysql-$(get_version_component_range 1-2 ${PV})"
 # Work out the default SERVER_URI correctly
 if [ -z "${SERVER_URI}" ]; then
 	# The community build is on the mirrors
-	if [ "${PN}" == "mysql-community" ]; then
+	if [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ]; then
 		SERVER_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/mysql-${PV//_/-}.tar.gz"
-	# The enterprise source is on the primary site only
+	# The (old) enterprise source is on the primary site only
 	elif [ "${PN}" == "mysql" ]; then
 		SERVER_URI="ftp://ftp.mysql.com/pub/mysql/src/mysql-${PV//_/-}.tar.gz"
 	fi
@@ -99,7 +129,7 @@ DESCRIPTION="A fast, multi-threaded, multi-user SQL database server."
 HOMEPAGE="http://www.mysql.com/"
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="big-tables debug embedded minimal perl selinux ssl static"
+IUSE="big-tables debug embedded minimal ${IUSE_DEFAULT_ON}perl selinux ssl static"
 
 mysql_version_is_at_least "4.1" \
 && IUSE="${IUSE} latin1"
@@ -119,8 +149,8 @@ mysql_version_is_at_least "5.1" \
 mysql_version_is_at_least "5.1.12" \
 && IUSE="${IUSE} pbxt"
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_preinst \
-				pkg_postinst pkg_config pkg_postrm
+[ "${MYSQL_COMMUNITY_FEATURES}" == "1" ] \
+&& IUSE="${IUSE} ${IUSE_DEFAULT_ON}community profiling"
 
 #
 # HELPER FUNCTIONS:
@@ -178,6 +208,20 @@ mysql_init_vars() {
 				PREVIOUS_DATADIR="no"
 			fi
 			export PREVIOUS_DATADIR
+		fi
+	else
+		if [[ ${EBUILD_PHASE} == "config" ]]; then
+			local new_MY_DATADIR
+			new_MY_DATADIR=`"my_print_defaults" mysqld 2>/dev/null \
+				| sed -ne '/datadir/s|^--datadir=||p' \
+				| tail -n1`
+
+			if [[ ( -n "${new_MY_DATADIR}" ) && ( "${new_MY_DATADIR}" != "${MY_DATADIR}" ) ]]; then
+				ewarn "MySQL MY_DATADIR has changed"
+				ewarn "from ${MY_DATADIR}"
+				ewarn "to ${new_MY_DATADIR}"
+				MY_DATADIR="${new_MY_DATADIR}"
+			fi
 		fi
 	fi
 
@@ -338,8 +382,13 @@ configure_40_41_50() {
 		fi
 	fi
 
-	if [ "${PN}" == "mysql-community" ]; then
-		myconf="${myconf} --enable-community-features"
+	if [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ]; then
+		myconf="${myconf} `use_enable community community-features`"
+		if use community; then
+			myconf="${myconf} `use_enable profiling`"
+		else
+			myconf="${myconf} --disable-profiling"
+		fi
 	fi
 
 	mysql_version_is_at_least "5.0.18" \
@@ -387,7 +436,7 @@ configure_51() {
 	myconf="${myconf} --with-plugins=${plugins}"
 }
 
-pbxt_src_compile() {
+pbxt_src_configure() {
 	mysql_init_vars
 
 	pushd "${WORKDIR}/pbxt-${PBXT_VERSION}" &>/dev/null
@@ -400,6 +449,13 @@ pbxt_src_compile() {
 	use debug && myconf="${myconf} --with-debug=full"
 	# TODO: is it safe/needed to use econf here ?
 	./configure ${myconf} || die "Problem configuring PBXT storage engine"
+}
+
+pbxt_src_compile() {
+	# Be backwards compatible for now
+	if [[ $EAPI != 2 ]]; then
+		pbxt_src_configure
+	fi
 	# TODO: is it safe/needed to use emake here ?
 	make || die "Problem making PBXT storage engine (${myconf})"
 
@@ -464,6 +520,14 @@ mysql_src_unpack() {
 	[[ "${MY_EXTRAS_VER}" == "live" ]] && S="${WORKDIR}/mysql-extras" git_src_unpack
 	
 	mv -f "${WORKDIR}/${MY_SOURCEDIR}" "${S}"
+
+	# Be backwards compatible for now
+	if [[ $EAPI != 2 ]]; then
+		mysql_src_prepare
+	fi
+}
+
+mysql_src_prepare() {
 	cd "${S}"
 
 	# Apply the patches for this MySQL version
@@ -534,7 +598,7 @@ mysql_src_unpack() {
 	fi
 }
 
-mysql_src_compile() {
+mysql_src_configure() {
 	# Make sure the vars are correctly initialized
 	mysql_init_vars
 
@@ -588,6 +652,17 @@ mysql_src_compile() {
 	find . -type f -name Makefile -print0 \
 	| xargs -0 -n100 sed -i \
 	-e 's|^pkglibdir *= *$(libdir)/mysql|pkglibdir = $(libdir)|;s|^pkgincludedir *= *$(includedir)/mysql|pkgincludedir = $(includedir)|'
+
+	if [[ $EAPI == 2 ]]; then
+		mysql_version_is_at_least "5.1.12" && use pbxt && pbxt_src_configure
+	fi
+}
+
+mysql_src_compile() {
+	# Be backwards compatible for now
+	if [[ $EAPI != 2 ]]; then
+		mysql_src_configure
+	fi
 
 	emake || die "emake failed"
 
@@ -754,6 +829,8 @@ mysql_pkg_postinst() {
 }
 
 mysql_pkg_config() {
+	local old_MY_DATADIR="${MY_DATADIR}"
+
 	# Make sure the vars are correctly initialized
 	mysql_init_vars
 
@@ -761,6 +838,30 @@ mysql_pkg_config() {
 
 	if built_with_use ${CATEGORY}/${PN} minimal ; then
 		die "Minimal builds do NOT include the MySQL server"
+	fi
+
+	if [[ ( -n "${MY_DATADIR}" ) && ( "${MY_DATADIR}" != "${old_MY_DATADIR}" ) ]]; then
+		local MY_DATADIR_s="$(strip_duplicate_slashes ${EROOT}/${MY_DATADIR})"
+		local old_MY_DATADIR_s="$(strip_duplicate_slashes ${EROOT}/${old_MY_DATADIR})"
+
+		if [[ -d "${old_MY_DATADIR_s}" ]]; then
+			if [[ -d "${MY_DATADIR_s}" ]]; then
+				ewarn "Both ${old_MY_DATADIR_s} and ${MY_DATADIR_s} exist"
+				ewarn "Attempting to use ${MY_DATADIR_s} and preserving ${old_MY_DATADIR_s}"
+			else
+				elog "Moving MY_DATADIR from ${old_MY_DATADIR_s} to ${MY_DATADIR_s}"
+				mv --strip-trailing-slashes -T "${old_MY_DATADIR_s}" "${MY_DATADIR_s}" \
+				|| die "Moving MY_DATADIR failed"
+			fi
+		else
+			ewarn "Previous MY_DATADIR (${old_MY_DATADIR_s}) does not exist"
+			if [[ -d "${MY_DATADIR_s}" ]]; then
+				ewarn "Attempting to use ${MY_DATADIR_s}"
+			else
+				eerror "New MY_DATADIR (${MY_DATADIR_s}) does not exist"
+				die "Configuration Failed!  Please reinstall ${CATEGORY}/${PN}"
+			fi			
+		fi
 	fi
 
 	local pwd1="a"

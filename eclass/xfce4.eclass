@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.29 2009/05/01 04:13:31 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.30 2009/07/08 15:23:53 darkside Exp $
 
 # @ECLASS: xfce4.eclass
 # @MAINTAINER:
@@ -111,7 +111,7 @@ xfce4_core() {
 	HOMEPAGE="http://www.xfce.org/"
 }
 
-# @FUNCTION: xfce4_single_male
+# @FUNCTION: xfce4_single_make
 # @DESCRIPTION:
 # Build with one job for broken parallel builds
 xfce4_single_make() {

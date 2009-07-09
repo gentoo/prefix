@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.59 2009/03/27 20:13:04 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.60 2009/07/04 18:39:33 robbat2 Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
@@ -520,6 +520,12 @@ check_extra_config() {
 		# if the user has no .config as there is nothing to do. Otherwise
 		# code later will cause a failure due to missing .config.
 		if ! linux_config_exists; then
+			ewarn "Unable to check for the following kernel config options due"
+			ewarn "to absence of any configured kernel sources:"
+			for config in ${CONFIG_CHECK}; do
+				ewarn " - ${config#\~}"
+			done
+			ewarn "You're on your own to make sure they are set if needed."
 			return 0
 		fi
 	else
