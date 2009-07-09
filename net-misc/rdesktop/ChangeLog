@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/rdesktop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.112 2009/06/30 09:43:15 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.113 2009/07/05 14:26:22 voyageur Exp $
+
+*rdesktop-1.6.0-r3 (05 Jul 2009)
+
+  05 Jul 2009; Bernard Cafarelli <voyageur@gentoo.org>
+  -rdesktop-1.6.0-r2.ebuild, +rdesktop-1.6.0-r3.ebuild,
+  +files/rdesktop-1.6.0-smartcard_configure.patch:
+  Fix autoconf logic on enabling pcsc-lite, bug #275972
 
 *rdesktop-1.6.0-r2 (30 Jun 2009)
 

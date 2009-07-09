@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.6.0-r2.ebuild,v 1.1 2009/06/30 09:43:15 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.6.0-r3.ebuild,v 1.1 2009/07/05 14:26:22 voyageur Exp $
 
 EAPI=2
 
@@ -39,6 +39,8 @@ src_prepare() {
 
 	# Automagic dependency on libsamplerate
 	epatch "${FILESDIR}"/${P}-sound_configure.patch
+	# Fix --enable-smartcard logic
+	epatch "${FILESDIR}"/${P}-smartcard_configure.patch
 	eautoreconf
 }
 
