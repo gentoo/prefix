@@ -1,6 +1,9 @@
 # ChangeLog for java-virtuals/stax-api
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/stax-api/ChangeLog,v 1.6 2009/07/02 20:28:04 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/stax-api/ChangeLog,v 1.7 2009/07/04 15:04:02 ranger Exp $
+
+  04 Jul 2009; Brent Baude <ranger@gentoo.org> stax-api-1-r1.ebuild:
+  Marking stax-api-1-r1 ppc64 for bug 275190
 
   02 Jul 2009; Markus Meier <maekke@gentoo.org> stax-api-1-r1.ebuild:
   amd64 stable, bug #274029
