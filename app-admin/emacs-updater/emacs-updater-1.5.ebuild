@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/emacs-updater/emacs-updater-1.5.ebuild,v 1.1 2009/06/05 06:31:02 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/emacs-updater/emacs-updater-1.5.ebuild,v 1.4 2009/07/06 14:46:51 armin76 Exp $
 
 DESCRIPTION="Rebuild Emacs packages"
 HOMEPAGE="http://www.gentoo.org/proj/en/lisp/emacs/"
