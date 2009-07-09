@@ -1,6 +1,26 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.295 2009/06/30 13:57:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.300 2009/07/08 21:55:40 ssuominen Exp $
+
+  08 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  ffmpeg-0.4.9_p20090201.ebuild, ffmpeg-0.5-r1.ebuild,
+  ffmpeg-9999-r1.ebuild:
+  Rename EXTRA_ECONF to EXTRA_FFMPEG_CONF because this package isn't using
+  econf and fails with --disable-dependency-tracking in it.
+
+  07 Jul 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  Drop libamr support, its been removed upstream
+
+  04 Jul 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  Reflect upstream changes for the way of disabling libavdevice in/outdevs
+
+  03 Jul 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  force a non free license only when needed, ie, when faac or amr is
+  requested
+
+  03 Jul 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild,
+  metadata.xml:
+  Add opencore-amr support, switch to GPL-3
 
   30 Jun 2009; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.5-r1.ebuild:
   arm/ia64/sparc stable

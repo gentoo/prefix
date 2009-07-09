@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.4 2009/06/10 09:08:34 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.9 2009/07/08 21:55:40 ssuominen Exp $
 
 EAPI=2
 
@@ -12,13 +12,14 @@ DESCRIPTION="Complete solution to record, convert and stream audio and video.
 Includes libavcodec. live svn"
 HOMEPAGE="http://ffmpeg.org/"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="+3dnow +3dnowext alsa altivec amr cpudetection custom-cflags debug dirac
+IUSE="+3dnow +3dnowext alsa altivec cpudetection custom-cflags debug dirac
 	  doc ieee1394 +encode faac faad gsm ipv6 jack +mmx +mmxext vorbis test
-	  theora threads x264 xvid network zlib sdl X mp3 oss schroedinger
-	  +hardcoded-tables bindist v4l v4l2 speex +ssse3 jpeg2k"
+	  theora threads x264 xvid network zlib sdl X mp3 opencore-amrnb
+	  opencore-amrwb oss schroedinger +hardcoded-tables bindist v4l v4l2
+	  speex +ssse3 jpeg2k"
 
 RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 	alsa? ( media-libs/alsa-lib )
@@ -36,11 +37,12 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 	dirac? ( media-video/dirac )
 	gsm? ( >=media-sound/gsm-1.0.12-r1 )
 	jpeg2k? ( >=media-libs/openjpeg-1.3-r2 )
+	opencore-amrnb? ( media-libs/opencore-amr )
+	opencore-amrwb? ( media-libs/opencore-amr )
 	schroedinger? ( media-libs/schroedinger )
 	speex? ( >=media-libs/speex-1.2_beta3 )
 	jack? ( media-sound/jack-audio-connection-kit )
-	X? ( x11-libs/libX11 x11-libs/libXext )
-	amr? ( media-libs/amrnb media-libs/amrwb )"
+	X? ( x11-libs/libX11 x11-libs/libXext )"
 
 DEPEND="${RDEPEND}
 	>=sys-devel/make-3.81
@@ -61,7 +63,7 @@ src_unpack() {
 }
 
 src_configure() {
-	local myconf="${EXTRA_ECONF}"
+	local myconf="${EXTRA_FFMPEG_CONF}"
 
 	# enabled by default
 	use debug || myconf="${myconf} --disable-debug"
@@ -91,13 +93,13 @@ src_configure() {
 
 	# libavdevice options
 	use ieee1394 && myconf="${myconf} --enable-libdc1394"
-	# Demuxers
+	# Indevs
 	for i in v4l v4l2 alsa oss jack ; do
-		use $i || myconf="${myconf} --disable-demuxer=$i"
+		use $i || myconf="${myconf} --disable-indev=$i"
 	done
-	# Muxers
+	# Outdevs
 	for i in alsa oss ; do
-		use $i || myconf="${myconf} --disable-muxer=$i"
+		use $i || myconf="${myconf} --disable-outdev=$i"
 	done
 	use X && myconf="${myconf} --enable-x11grab"
 
@@ -105,10 +107,9 @@ src_configure() {
 	use threads && myconf="${myconf} --enable-pthreads"
 
 	# Decoders
-	use faad && myconf="${myconf} --enable-libfaad"
-	use dirac && myconf="${myconf} --enable-libdirac"
-	use schroedinger && myconf="${myconf} --enable-libschroedinger"
-	use speex && myconf="${myconf} --enable-libspeex"
+	for i in faad dirac schroedinger speex opencore-amrnb opencore-amrwb ; do
+		use $i && myconf="${myconf} --enable-lib$i"
+	done
 	use jpeg2k && myconf="${myconf} --enable-libopenjpeg"
 	if use gsm; then
 		myconf="${myconf} --enable-libgsm"
@@ -117,14 +118,11 @@ src_configure() {
 	fi
 	if use bindist
 	then
-		use amr && ewarn "libamr is nonfree and cannot be distributed; disabling amr support."
 		use faac && ewarn "faac is nonfree and cannot be distributed; disabling
 		faac support."
 	else
-		use amr && myconf="${myconf} --enable-libamr-nb \
-									 --enable-libamr-wb"
 		use faac && myconf="${myconf} --enable-libfaac"
-		myconf="${myconf} --enable-nonfree"
+		{ use faac ; } && myconf="${myconf} --enable-nonfree"
 	fi
 
 	# CPU features
@@ -151,7 +149,7 @@ src_configure() {
 	done
 
 	# Mandatory configuration
-	myconf="${myconf} --enable-gpl --enable-postproc \
+	myconf="${myconf} --enable-gpl --enable-version3 --enable-postproc \
 			--enable-avfilter --enable-avfilter-lavf \
 			--disable-stripping"
 

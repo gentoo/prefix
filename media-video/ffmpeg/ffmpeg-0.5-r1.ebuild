@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5-r1.ebuild,v 1.13 2009/06/30 13:57:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5-r1.ebuild,v 1.14 2009/07/08 21:55:40 ssuominen Exp $
 
 EAPI=2
 
@@ -67,7 +67,7 @@ src_unpack() {
 }
 
 src_configure() {
-	local myconf="${EXTRA_ECONF}"
+	local myconf="${EXTRA_FFMPEG_CONF}"
 
 	# enabled by default
 	use debug || myconf="${myconf} --disable-debug"
