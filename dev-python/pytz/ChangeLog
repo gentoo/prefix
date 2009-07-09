@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/pytz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.30 2009/06/22 13:59:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.33 2009/07/05 20:58:29 aballier Exp $
+
+  05 Jul 2009; Alexis Ballier <aballier@gentoo.org> pytz-2009j.ebuild:
+  keyword ~x86-fbsd
+
+  05 Jul 2009; Markus Meier <maekke@gentoo.org> pytz-2009g.ebuild:
+  amd64 stable, bug #274178
+
+  04 Jul 2009; Brent Baude <ranger@gentoo.org> pytz-2009g.ebuild:
+  Marking pytz-2009g ppc64 for bug 274178
 
   22 Jun 2009; Raúl Porcel <armin76@gentoo.org> pytz-2009g.ebuild:
   alpha/arm/ia64/s390/sh/sparc/x86 stable wrt #274178
