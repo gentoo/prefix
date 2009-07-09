@@ -1,10 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.2.ebuild,v 1.3 2008/06/14 16:33:52 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.5.ebuild,v 1.1 2009/07/04 12:14:50 arfrever Exp $
 
-inherit autotools eutils libtool versionator
+EAPI="2"
 
-RESTRICT="test"
+inherit autotools libtool versionator
 
 DESCRIPTION="HTTP and WebDAV client library"
 HOMEPAGE="http://www.webdav.org/neon/"
@@ -12,12 +12,14 @@ SRC_URI="http://www.webdav.org/neon/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc expat gnutls kerberos nls pkcs11 socks5 ssl zlib"
 IUSE_LINGUAS="cs de fr ja nn pl ru tr zh_CN"
 for lingua in ${IUSE_LINGUAS}; do
-	IUSE="${IUSE} linguas_${lingua}"
+	IUSE+=" linguas_${lingua}"
 done
+unset lingua
+RESTRICT="test"
 
 RDEPEND="expat? ( dev-libs/expat )
 	!expat? ( dev-libs/libxml2 )
@@ -25,48 +27,47 @@ RDEPEND="expat? ( dev-libs/expat )
 		>=net-libs/gnutls-2.0
 		pkcs11? ( dev-libs/pakchois )
 	)
-	!gnutls? ( ssl? ( >=dev-libs/openssl-0.9.6f ) )
+	!gnutls? ( ssl? (
+		>=dev-libs/openssl-0.9.6f
+		pkcs11? ( dev-libs/pakchois )
+	) )
 	kerberos? ( virtual/krb5 )
 	nls? ( virtual/libintl )
 	socks5? ( net-proxy/dante )
 	zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	local lingua linguas
 	for lingua in ${IUSE_LINGUAS}; do
-		use linguas_${lingua} && linguas="${linguas} ${lingua}"
+		use linguas_${lingua} && linguas+=" ${lingua}"
 	done
 	sed -i -e "s/ALL_LINGUAS=.*/ALL_LINGUAS=\"${linguas}\"/g" configure.in
 	sed -i -e "s/socks5/socks/g" macros/neon.m4
 
 	AT_M4DIR="macros" eautoreconf
+
+	elibtoolize
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 
 	if has_version sys-libs/glibc; then
-		if built_with_use --missing true sys-libs/glibc nptlonly \
-			|| built_with_use --missing true sys-libs/glibc nptl; then
-			einfo "Enabling SSL library thread-safety using POSIX threads..."
-			myconf="${myconf} --enable-threadsafe-ssl=posix"
-		fi
+		einfo "Enabling SSL library thread-safety using POSIX threads..."
+		myconf+=" --enable-threadsafe-ssl=posix"
 	fi
 
 	if use expat; then
-		myconf="${myconf} --with-expat"
+		myconf+=" --with-expat"
 	else
-		myconf="${myconf} --with-libxml2"
+		myconf+=" --with-libxml2"
 	fi
 
 	if use gnutls; then
-		myconf="${myconf} --with-ssl=gnutls"
+		myconf+=" --with-ssl=gnutls"
 	elif use ssl; then
-		myconf="${myconf} --with-ssl=openssl"
+		myconf+=" --with-ssl=openssl"
 	fi
 
 	econf \
@@ -78,11 +79,6 @@ src_compile() {
 		$(use_with socks5 socks) \
 		$(use_with zlib) \
 		${myconf}
-	emake || die "emake failed"
-}
-
-src_test() {
-	emake check || die "Trying make check without success."
 }
 
 src_install() {
@@ -98,12 +94,12 @@ src_install() {
 
 pkg_postinst() {
 	ewarn "Neon has a policy of breaking API across minor versions, this means"
-	ewarn "that any package that links against neon may be broken after"
+	ewarn "that any package that links against Neon may be broken after"
 	ewarn "updating. They will remain broken until they are ported to the"
-	ewarn "new API. You can downgrade neon to the previous version by doing:"
+	ewarn "new API. You can downgrade Neon to the previous version by doing:"
 	ewarn
 	ewarn "  emerge --oneshot '<net-misc/neon-$(get_version_component_range 1-2 ${PV})'"
 	ewarn
-	ewarn "You may also have to downgrade any package that has already been"
-	ewarn "ported to the new API."
+	ewarn "You may also have to downgrade any package that has not been"
+	ewarn "ported to the new API yet."
 }
