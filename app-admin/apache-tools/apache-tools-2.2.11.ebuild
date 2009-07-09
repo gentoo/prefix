@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.11.ebuild,v 1.7 2009/05/02 13:28:29 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.11.ebuild,v 1.8 2009/07/05 16:07:10 hollow Exp $
 
 inherit flag-o-matic eutils
 
@@ -91,6 +91,7 @@ src_install () {
 
 	# make htpasswd accessible for non-root users
 	dosym /usr/sbin/htpasswd /usr/bin/htpasswd
+	dosym /usr/sbin/htdigest /usr/bin/htdigest
 
 	dodoc "${S}"/CHANGES
 }
