@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/libcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.93 2009/05/16 16:17:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.94 2009/07/03 11:23:18 idl0r Exp $
+
+  03 Jul 2009; Christian Ruppert <idl0r@gentoo.org>
+  files/2.16/0001-build-system-fixes.patch:
+  Add missing -lpam to 0001-build-system-fixes.patch due to link issues with
+  -Wl,--no-undefined.
 
 *libcap-2.16-r1 (16 May 2009)
 

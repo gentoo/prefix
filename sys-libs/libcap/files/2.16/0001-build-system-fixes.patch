@@ -124,7 +124,7 @@ index eae88ed..bef59d2 100644
  
  pam_cap.so: pam_cap.o
 -	$(LD) $(LDFLAGS) -o pam_cap.so $< $(LDLIBS)
-+	$(LD) $(CFLAGS) $(LDFLAGS) -o pam_cap.so $< $(LDLIBS)
++	$(LD) $(CFLAGS) $(LDFLAGS) -o pam_cap.so $< $(LDLIBS) -lpam
  
  pam_cap.o: pam_cap.c
 -	$(CC) $(CFLAGS) -c $< -o $@
