@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.9.0.ebuild,v 1.3 2009/07/07 19:47:58 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.9.1.ebuild,v 1.1 2009/07/07 19:47:58 bicatali Exp $
 
 EAPI=2
-inherit eutils fortran flag-o-matic bash-completion versionator
+inherit eutils flag-o-matic bash-completion versionator
 
 DESCRIPTION="Language and environment for statistical computing and graphics"
 HOMEPAGE="http://www.r-project.org/"
@@ -45,19 +45,10 @@ RDEPEND="${CDEPEND}
 R_HOME="${EPREFIX}"/usr/$(get_libdir)/${PN}
 
 pkg_setup() {
-	FORTRAN="gfortran ifc g77"
-	fortran_pkg_setup
-	export FFLAGS="${FFLAGS:--O2}"
-	[[ ${FORTRANC} = gfortran || ${FORTRANC} = if* ]] && \
-		export FCFLAGS="${FCFLAGS:-${FFLAGS}}"
 	filter-ldflags -Wl,-Bdirect -Bdirect
 }
 
 src_prepare() {
-
-	# fix empty loop for option -without-x (bug #268362)
-	epatch "${FILESDIR}"/${PN}-2.9.0-without-x.patch
-
 	# fix packages.html for doc (bug #205103)
 	# check in later versions if fixed
 	sed -i \
@@ -148,7 +139,6 @@ src_install() {
 		R_HOME=${R_HOME}
 	EOF
 	doenvd 99R || die "doenvd failed"
-
 	dobashcompletion "${WORKDIR}"/R.bash_completion
 }
 
