@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/jdk/jdk-1.6.0.ebuild,v 1.10 2008/12/24 22:28:21 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/jdk/jdk-1.6.0.ebuild,v 1.11 2009/07/05 05:10:29 ali_bush Exp $
 
 DESCRIPTION="Virtual for JDK"
 HOMEPAGE="http://java.sun.com/"
@@ -16,6 +16,7 @@ RDEPEND="|| (
 		dev-java/icedtea6-bin
 		=dev-java/sun-jdk-1.6.0*
 		=dev-java/ibm-jdk-bin-1.6.0*
+		=dev-java/diablo-jdk-1.6.0*
 		=dev-java/soylatte-jdk-bin-1.0*
 		=dev-java/apple-jdk-bin-1.6.0*
 		=dev-java/winjdk-bin-1.6.0*

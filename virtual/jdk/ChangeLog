@@ -1,6 +1,9 @@
 # ChangeLog for virtual/jdk
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/jdk/ChangeLog,v 1.22 2008/12/24 22:28:21 caster Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/jdk/ChangeLog,v 1.23 2009/07/05 05:10:29 ali_bush Exp $
+
+  05 Jul 2009; Alistair Bush <ali_bush@gentoo.org> jdk-1.6.0.ebuild:
+  Keyword ~x86-fbsd and add diablo-jdk
 
   24 Dec 2008; Vlastimil Babka <caster@gentoo.org> jdk-1.6.0.ebuild:
   Add icedtea6-bin as an alternative.
