@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/libnet/libnet-1.22.ebuild,v 1.5 2009/06/09 08:16:58 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/libnet/libnet-1.22.ebuild,v 1.6 2009/07/07 02:32:24 jer Exp $
 
 inherit eutils perl-module
 
