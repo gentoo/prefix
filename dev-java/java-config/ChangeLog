@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/java-config
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.219 2009/07/02 20:25:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.221 2009/07/06 14:25:02 armin76 Exp $
+
+  06 Jul 2009; Raúl Porcel <armin76@gentoo.org>
+  java-config-2.1.8-r1.ebuild:
+  alpha/arm/ia64 stable wrt #275178
+
+  04 Jul 2009; Brent Baude <ranger@gentoo.org> java-config-2.1.8-r1.ebuild:
+  Marking java-config-2.1.8-r1 ppc64 for bug 275184
 
   02 Jul 2009; Markus Meier <maekke@gentoo.org> java-config-2.1.8-r1.ebuild:
   amd64 stable, bug #275178
