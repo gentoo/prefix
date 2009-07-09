@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/joda-time
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/joda-time/ChangeLog,v 1.40 2009/03/09 22:42:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/joda-time/ChangeLog,v 1.41 2009/07/04 14:25:20 ranger Exp $
+
+  04 Jul 2009; Brent Baude <ranger@gentoo.org> joda-time-1.6.ebuild:
+  Marking joda-time-1.6 ppc64 for bug 261142
 
   09 Mar 2009; Markus Meier <maekke@gentoo.org> joda-time-1.6.ebuild:
   amd64/x86 stable, bug #261142
