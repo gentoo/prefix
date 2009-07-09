@@ -1,6 +1,9 @@
 # ChangeLog for virtual/poppler
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/poppler/ChangeLog,v 1.18 2009/06/19 22:17:14 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/poppler/ChangeLog,v 1.19 2009/07/06 13:08:07 ranger Exp $
+
+  06 Jul 2009; Brent Baude <ranger@gentoo.org> poppler-0.10.7.ebuild:
+  Marking poppler-0.10.7 ppc64 stable for bug 272980
 
 *poppler-0.11.1 (19 Jun 2009)
 
