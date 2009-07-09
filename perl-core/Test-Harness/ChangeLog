@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/Test-Harness
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/ChangeLog,v 1.43 2009/05/06 08:16:13 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Test-Harness/ChangeLog,v 1.44 2009/07/07 02:26:09 jer Exp $
+
+  07 Jul 2009; Jeroen Roovers <jer@gentoo.org> Test-Harness-3.10.ebuild:
+  Stable for HPPA too.
 
 *Test-Harness-3.17 (06 May 2009)
 
