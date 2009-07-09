@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.9.ebuild,v 1.7 2009/04/11 16:45:22 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.11-r1.ebuild,v 1.1 2009/07/06 20:36:07 jer Exp $
 
-inherit libtool
+inherit autotools
 
 MY_P="${P}-stable"
 
@@ -30,9 +30,10 @@ src_unpack() {
 	# don't waste time building tests/samples
 	sed -i \
 		-e 's|^\(SUBDIRS =.*\)sample test\(.*\)$|\1\2|' \
-		Makefile.in || die "sed Makefile.in failed"
+		-e 's/libevent_extra_la_LIBADD =/& libevent.la/' \
+		Makefile.am || die "sed Makefile.am failed"
 
-	elibtoolize
+	eautoreconf
 }
 
 src_test() {
