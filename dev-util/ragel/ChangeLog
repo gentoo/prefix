@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/ragel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ragel/ChangeLog,v 1.28 2009/05/30 08:26:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ragel/ChangeLog,v 1.29 2009/07/03 16:03:19 flameeyes Exp $
+
+  03 Jul 2009; Diego E. Pettenò <flameeyes@gentoo.org> -ragel-6.3.ebuild,
+  -ragel-6.4.ebuild, -files/ragel-6.4-solaris.patch:
+  Cleanup old versions.
 
   30 May 2009; Ulrich Mueller <ulm@gentoo.org> ragel-6.3.ebuild:
   Remove app-text/tetex from dependencies, bug 227443.
