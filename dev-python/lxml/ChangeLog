@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/lxml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.49 2009/06/08 00:38:56 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.50 2009/07/09 02:49:22 arfrever Exp $
+
+*lxml-2.2.2 (09 Jul 2009)
+
+  09 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -lxml-2.1.1.ebuild, -lxml-2.1.5.ebuild, lxml-2.2.1.ebuild,
+  +lxml-2.2.2.ebuild:
+  Version bump. Fix tests.
 
 *lxml-2.2.1 (07 Jun 2009)
 
