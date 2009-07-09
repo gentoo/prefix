@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/tic98
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/ChangeLog,v 1.13 2008/11/15 17:12:12 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/ChangeLog,v 1.14 2009/07/05 12:24:52 maekke Exp $
+
+  05 Jul 2009; Markus Meier <maekke@gentoo.org> tic98-1.01-r3.ebuild,
+  +files/tic98-1.01-glibc-2.10.patch:
+  fix building with glibc-2.10 wrt bug #273178, assign empty RDEPEND
 
   15 Nov 2008; Markus Meier <maekke@gentoo.org> -tic98-1.01-r2.ebuild:
   old

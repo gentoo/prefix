@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/tic98-1.01-r3.ebuild,v 1.4 2008/11/15 17:10:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tic98/tic98-1.01-r3.ebuild,v 1.5 2009/07/05 12:24:52 maekke Exp $
 
 inherit eutils
 
@@ -14,6 +14,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
+RDEPEND=""
 RESTRICT="test"
 
 S="${WORKDIR}/${PN}"
@@ -23,6 +24,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-macos.patch
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-gentoo.diff
+	epatch "${FILESDIR}"/${P}-glibc-2.10.patch
 
 	# respect CFLAGS and LDFLAGS
 	sed -i -e "s:CFLAGS= -O -Wall -Wno-unused:CFLAGS=${CFLAGS}:" \
