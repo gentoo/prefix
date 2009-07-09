@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/geoip
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/ChangeLog,v 1.104 2009/04/26 16:08:32 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/ChangeLog,v 1.105 2009/07/06 20:42:47 aballier Exp $
+
+  06 Jul 2009; Alexis Ballier <aballier@gentoo.org> geoip-1.4.6.ebuild:
+  keyword ~x86-fbsd, bug #262547
 
   26 Apr 2009; Raúl Porcel <armin76@gentoo.org> geoip-1.4.5.ebuild:
   arm/s390/sh stable
