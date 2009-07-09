@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p7.ebuild,v 1.8 2009/06/22 13:39:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p7.ebuild,v 1.9 2009/07/03 19:45:51 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
@@ -51,7 +51,7 @@ src_unpack() {
 
 src_compile() {
 	# avoid libmd5/libelf
-	export ac_cv_search_MD5Init=no ac_cv_header_md_5=no
+	export ac_cv_search_MD5Init=no ac_cv_header_md5_h=no
 	export ac_cv_lib_elf_nlist=no
 	# blah, no real configure options #176333
 	export ac_cv_header_dns_sd_h=$(use zeroconf && echo yes || echo no)

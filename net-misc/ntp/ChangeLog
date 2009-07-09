@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/ntp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.149 2009/06/22 13:39:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.150 2009/07/03 19:45:51 vapier Exp $
+
+  03 Jul 2009; Mike Frysinger <vapier@gentoo.org> ntp-4.2.4_p7.ebuild:
+  Fix typo in md5.h disabling pointed out by Naohiro Aota #275481.
 
   22 Jun 2009; Mike Frysinger <vapier@gentoo.org> ntp-4.2.4_p7.ebuild:
   Disable md5/elf with autoconf cache vars now rather than sed #274266 by
