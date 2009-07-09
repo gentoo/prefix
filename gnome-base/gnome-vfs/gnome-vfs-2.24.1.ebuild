@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.24.1.ebuild,v 1.1 2009/03/19 00:42:09 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.24.1.ebuild,v 1.3 2009/07/07 21:27:15 fauli Exp $
 
 inherit autotools eutils gnome2
 
