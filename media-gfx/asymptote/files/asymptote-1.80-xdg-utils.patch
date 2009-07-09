@@ -1,10 +1,10 @@
-Index: asymptote-1.77/settings.cc
+Index: asymptote-1.80/settings.cc
 ===================================================================
---- asymptote-1.77.orig/settings.cc
-+++ asymptote-1.77/settings.cc
+--- asymptote-1.80.orig/settings.cc
++++ asymptote-1.80/settings.cc
 @@ -81,15 +81,15 @@ const bool haveglut=false;
  bool msdos=false;
- const char *HOME="HOME";
+ string HOME="HOME";
  const char pathSeparator=':';
 -string defaultPSViewer="gv";
 +string defaultPSViewer="xdg-open";
