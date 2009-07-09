@@ -1,6 +1,9 @@
 # ChangeLog for virtual/perl-Storable
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Storable/ChangeLog,v 1.21 2009/05/19 05:17:05 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Storable/ChangeLog,v 1.22 2009/07/07 02:22:39 jer Exp $
+
+  07 Jul 2009; Jeroen Roovers <jer@gentoo.org> perl-Storable-2.18.ebuild:
+  Stable for HPPA too.
 
 *perl-Storable-2.20 (19 May 2009)
 
