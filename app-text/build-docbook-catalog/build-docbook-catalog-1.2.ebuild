@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/build-docbook-catalog-1.2.ebuild,v 1.16 2007/03/01 17:21:10 genstef Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/build-docbook-catalog/build-docbook-catalog-1.2.ebuild,v 1.18 2009/07/08 20:18:17 ssuominen Exp $
 
 inherit eutils prefix
 
@@ -13,8 +13,8 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
+RDEPEND="|| ( sys-apps/util-linux app-misc/getopt )"
 DEPEND=""
-RDEPEND=""
 
 S=${WORKDIR}
 
@@ -26,5 +26,6 @@ src_unpack() {
 }
 
 src_install() {
-	newbin ${P} ${PN} || die
+	keepdir /etc/xml
+	newbin ${P} ${PN} || die "newbin failed"
 }
