@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47_pre0.ebuild,v 1.5 2009/07/04 15:38:21 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47_pre1.ebuild,v 1.1 2009/07/04 15:38:21 maekke Exp $
 
 EAPI="2"
 
@@ -16,7 +16,7 @@ HOMEPAGE="http://www.inkscape.org/"
 SLOT="0"
 LICENSE="GPL-2 LGPL-2.1"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE="dia doc gnome inkjar jabber lcms mmx nls postscript spell wmf wpg"
+IUSE="dia gnome inkjar jabber lcms mmx nls postscript spell wmf wpg"
 RESTRICT="test"
 
 COMMON_DEPEND="
@@ -79,7 +79,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-solaris.patch
+	epatch "${FILESDIR}"/${PN}-0.46-solaris.patch
 
 	gnome2_src_prepare
 }
