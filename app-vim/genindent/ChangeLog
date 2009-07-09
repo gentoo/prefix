@@ -1,6 +1,9 @@
 # ChangeLog for app-vim/genindent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/genindent/ChangeLog,v 1.14 2009/04/04 16:06:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-vim/genindent/ChangeLog,v 1.15 2009/07/04 16:00:05 armin76 Exp $
+
+  04 Jul 2009; Raúl Porcel <armin76@gentoo.org> genindent-1.0.ebuild:
+  arm stable
 
   04 Apr 2009; Raúl Porcel <armin76@gentoo.org> genindent-1.0.ebuild:
   Add ~arm
