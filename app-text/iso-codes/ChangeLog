@@ -1,6 +1,9 @@
 # ChangeLog for app-text/iso-codes
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.74 2009/06/11 19:51:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.75 2009/07/04 18:33:08 ranger Exp $
+
+  04 Jul 2009; Brent Baude <ranger@gentoo.org> iso-codes-3.8.ebuild:
+  Marking iso-codes-3.8 ppc64 for bug 272502
 
   11 Jun 2009; Markus Meier <maekke@gentoo.org> iso-codes-3.8.ebuild:
   amd64 stable, bug #272502
