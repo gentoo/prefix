@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/file-roller
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/ChangeLog,v 1.257 2009/05/18 21:27:15 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/ChangeLog,v 1.258 2009/07/07 19:06:59 mrpouet Exp $
+
+*file-roller-2.26.3 (07 Jul 2009)
+
+  07 Jul 2009; Romain Perier <mrpouet@gentoo.org>
+  +file-roller-2.26.3.ebuild,
+  +files/file-roller-2.26.3-typedefs-header-typo.patch:
+  Version bump to 2.26.3, and fix compilation error due to missing header
+  for src/fr-enum-types.c
 
 *file-roller-2.26.2 (18 May 2009)
 
