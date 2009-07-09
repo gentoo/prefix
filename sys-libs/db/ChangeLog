@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.285 2009/06/21 13:43:28 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.286 2009/07/05 19:52:54 vapier Exp $
+
+  05 Jul 2009; Mike Frysinger <vapier@gentoo.org> db-4.7.25_p4.ebuild:
+  Add --with-mutex option for arm systems as suggested by thomasq #273906.
 
 *db-4.7.25_p4 (21 Jun 2009)
 
