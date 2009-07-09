@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/libedit-20090111.3.0.ebuild,v 1.1 2009/03/07 12:47:17 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/libedit-20090610.3.0.ebuild,v 1.3 2009/07/08 14:50:06 fauli Exp $
 
 inherit eutils toolchain-funcs versionator
 
@@ -28,7 +28,7 @@ src_unpack() {
 
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${MY_P}-weak_reference.patch
+	epatch "${FILESDIR}"/${PN}-20090111-3.0-weak_reference.patch
 }
 
 src_install() {

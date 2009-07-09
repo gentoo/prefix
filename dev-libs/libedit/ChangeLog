@@ -1,6 +1,21 @@
 # ChangeLog for dev-libs/libedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.26 2009/03/07 12:47:17 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.29 2009/07/08 14:50:06 fauli Exp $
+
+  08 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  libedit-20090610.3.0.ebuild:
+  not stable but ~x86
+
+  08 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  libedit-20090610.3.0.ebuild:
+  stable x86, bug 276652
+
+*libedit-20090610.3.0 (05 Jul 2009)
+
+  05 Jul 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -libedit-20061103.ebuild, -libedit-20061103-r1.ebuild,
+  -libedit-20090111.3.0.ebuild, +libedit-20090610.3.0.ebuild:
+  Version bump and remove some old ebuilds.
 
 *libedit-20090111.3.0 (07 Mar 2009)
 
