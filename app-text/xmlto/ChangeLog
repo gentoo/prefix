@@ -1,6 +1,15 @@
 # ChangeLog for app-text/xmlto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.50 2009/06/10 13:56:22 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.53 2009/07/08 19:48:27 ssuominen Exp $
+
+  08 Jul 2009; Samuli Suominen <ssuominen@gentoo.org> xmlto-0.0.22.ebuild:
+  xmlto needs sys-apps/which wrt #277092
+
+  08 Jul 2009; Christian Faulhammer <fauli@gentoo.org> xmlto-0.0.22.ebuild:
+  stable x86, bug 276677
+
+  08 Jul 2009; Jeroen Roovers <jer@gentoo.org> xmlto-0.0.22.ebuild:
+  Stable for HPPA (bug #276677).
 
   10 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> xmlto-0.0.22.ebuild,
   +files/xmlto-0.0.22-parallelmake.patch:

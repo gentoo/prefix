@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/xmlto-0.0.22.ebuild,v 1.3 2009/06/10 13:56:22 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/xmlto-0.0.22.ebuild,v 1.7 2009/07/08 19:50:45 ssuominen Exp $
 
 EAPI=2
 inherit eutils autotools
@@ -15,12 +15,13 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="latex"
 
 RDEPEND="app-shells/bash
+	|| ( sys-apps/which sys-freebsd/freebsd-ubin )
 	dev-libs/libxslt
 	>=app-text/docbook-xsl-stylesheets-1.62.0-r1
 	~app-text/docbook-xml-dtd-4.2
 	|| ( sys-apps/util-linux
 		app-misc/getopt )
-	|| ( || ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp )
+	|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp
 		sys-freebsd/freebsd-ubin )
 	latex? ( >=app-text/passivetex-1.25
 		>=dev-tex/xmltex-1.9-r2 )"
@@ -28,15 +29,14 @@ DEPEND="${RDEPEND}
 	sys-devel/flex"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-format_fo_passivetex_check.patch
-	epatch "${FILESDIR}"/${P}-parallelmake.patch
-
+	epatch "${FILESDIR}"/${P}-format_fo_passivetex_check.patch \
+		"${FILESDIR}"/${P}-parallelmake.patch
 	eautoreconf
 }
 
 src_configure() {
 	local myconf
-	has_version sys-apps/util-linux || myconf+="GETOPT=getopt-long"
+	has_version sys-apps/util-linux || myconf="--with-getopt=getopt-long"
 	econf --prefix="${EPREFIX}"/usr BASH=${EPREFIX}/bin/bash ${myconf}
 }
 
