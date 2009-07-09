@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.22-r1.ebuild,v 1.3 2009/07/07 12:08:05 bangert Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.23.ebuild,v 1.1 2009/07/07 12:08:05 bangert Exp $
 
 EAPI="2"
 
@@ -95,8 +95,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	EPATCH_SUFFIX="diff" EPATCH_OPTS="-l" epatch "${FILESDIR}/${PVR}" || \
-		die "Patching failed!"
 	# dev-python/docutils installs rst2html.py not rst2html
 	sed -i -e 's|\(rst2html\)|\1.py|g' doc/Makefile.am || \
 		die "sed doc/Makefile.am failed"
