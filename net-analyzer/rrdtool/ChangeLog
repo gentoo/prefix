@@ -1,6 +1,17 @@
 # ChangeLog for net-analyzer/rrdtool
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/ChangeLog,v 1.182 2009/06/01 19:58:42 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/ChangeLog,v 1.184 2009/07/08 14:47:05 fauli Exp $
+
+  08 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  rrdtool-1.2.30.ebuild, rrdtool-1.3.8.ebuild:
+  stable x86, bug 275588
+
+*rrdtool-1.3.8-r1 (08 Jul 2009)
+
+  08 Jul 2009; Peter Volkov <pva@gentoo.org>
+  +files/rrdtool-1.3.8-configure.ac.patch, +rrdtool-1.3.8-r1.ebuild:
+  Fixed bug #272767, thank Martin Mokrejš for report and Rafał for
+  investigation. A bit improved nls handling.
 
   01 Jun 2009; Peter Volkov <pva@gentoo.org> rrdtool-1.3.8.ebuild,
   metadata.xml:
