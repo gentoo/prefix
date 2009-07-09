@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.18-r3.ebuild,v 1.4 2009/03/18 22:36:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.20-r1.ebuild,v 1.1 2009/07/03 11:02:15 ali_bush Exp $
 
-EAPI=1
-JAVA_PKG_IUSE="doc source"
+EAPI=2
+JAVA_PKG_IUSE="doc examples source test"
 WANT_ANT_TASKS="ant-trax"
 
 inherit eutils java-pkg-2 java-ant-2
@@ -17,11 +17,10 @@ HOMEPAGE="http://tomcat.apache.org/"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 LICENSE="Apache-2.0"
 
-IUSE="examples test"
+IUSE=""
 
 COMMON_DEPEND="dev-java/eclipse-ecj:3.3
 	dev-java/ant-eclipse-ecj:3.3
-	>=dev-java/commons-daemon-1.0.1
 	>=dev-java/commons-dbcp-1.2.1
 	>=dev-java/commons-logging-1.1
 	>=dev-java/commons-pool-1.2
@@ -29,6 +28,7 @@ COMMON_DEPEND="dev-java/eclipse-ecj:3.3
 	examples? ( dev-java/jakarta-jstl )"
 
 RDEPEND=">=virtual/jre-1.5
+	>=dev-java/commons-daemon-1.0.1
 	dev-java/ant-core
 	${COMMON_DEPEND}"
 
@@ -42,47 +42,46 @@ TOMCAT_NAME="${PN}-${SLOT}"
 TOMCAT_HOME="/usr/share/${TOMCAT_NAME}"
 WEBAPPS_DIR="/var/lib/${TOMCAT_NAME}/webapps"
 
+# TODO: Fails to find PrettyPrint in with python 2.6 and xml-rewriter-3
+# Find out why so
+JAVA_ANT_CELEMENT_REWRITER="true"
+JAVA_ANT_REWRITE_CLASSPATH="true"
+
+EANT_NEEDS_TOOLS="true"
+EANT_GENTOO_CLASSPATH="tomcat-servlet-api-2.5,eclipse-ecj-3.3"
+
+EANT_BUILD_TARGET="build-only build-jasper-jdt"
+EANT_DOC_TARGET="build-docs"
+
+EANT_EXTRA_ARGS="-Dbase.path=${T} -Dversion=${PV} -Dversion.number=${PV}
+-Dcompile.debug=false -Djsp-api.jar=jsp-api.jar -Dservlet-api.jar=servlet-api.jar
+-Dant.jar=ant.jar"
+
 pkg_setup() {
 	java-pkg-2_pkg_setup
 	enewgroup tomcat 265
 	enewuser tomcat 265 -1 /dev/null tomcat
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+java_prepare() {
+	rm -v webapps/examples/WEB-INF/lib/*.jar || die
 
-	epatch "${FILESDIR}/${SLOT}/build-xml.patch"
-	epatch "${FILESDIR}/${SLOT}/examples-cal.patch"
-
-	cd webapps/examples/WEB-INF/lib/
-	rm -v *.jar
-}
-
-src_compile(){
-	# Fix for bug # 178980
+	# bug # 178980
 	if use amd64 && [[ "${GENTOO_VM}" = "sun-jdk-1.5" ]] ; then
-	        java-pkg_force-compiler ecj-3.3
+		java-pkg_force-compiler ecj-3.3
 	fi
 
-	local antflags="build-jasper-jdt deploy -Dbase.path=${T}"
-	antflags="${antflags} -Dcompile.debug=false"
 	if ! use doc; then
-		antflags="${antflags} -Dnobuild.docs=true"
+		EANT_EXTRA_ARGS+=" -Dnobuild.docs=true"
 	fi
-	antflags="${antflags} -Dant.jar=$(java-pkg_getjar ant-core ant.jar)"
-	antflags="${antflags} -Dcommons-daemon.jar=$(java-pkg_getjar commons-daemon commons-daemon.jar)"
-	antflags="${antflags} -Djdt.jar=$(java-pkg_getjar eclipse-ecj-3.3 ecj.jar)"
-	antflags="${antflags} -Djsp-api.jar=$(java-pkg_getjar tomcat-servlet-api-2.5 jsp-api.jar)"
-	antflags="${antflags} -Dservlet-api.jar=$(java-pkg_getjar tomcat-servlet-api-2.5 servlet-api.jar)"
-	antflags="${antflags} -Dversion=${PV} -Dversion.number=${PV}"
-	eant ${antflags}
+
+	EANT_EXTRA_ARGS+=" -Djdt.jar=$(java-pkg_getjar eclipse-ecj-3.3 ecj.jar)"
+	java-pkg_jarfrom --build-only ant-core ant.jar
 }
 
 src_install() {
-	cd "${S}/output/build/bin"
-	rm -f *.bat commons-daemon.jar
-	java-pkg_jar-from commons-daemon
+	cd "${S}/bin"
+	rm -f *.bat
 	chmod 755 *.sh
 
 	# register jars per bug #171496
@@ -133,6 +132,23 @@ src_install() {
 	cp -pR conf/* "${ED}"/etc/${TOMCAT_NAME} || die "failed to copy conf"
 	cp -pPR output/build/bin "${ED}"/usr/share/${TOMCAT_NAME} \
 		|| die "failed to copy"
+	# webapps get stored in /usr/share/${TOMCAT_NAME}/webapps
+	cd "${S}"/webapps || die
+	ebegin "Installing webapps to /usr/share/${TOMCAT_NAME}"
+
+	cp -pR ROOT "${ED}"/usr/share/${TOMCAT_NAME}/webapps || die
+	cp -pR host-manager "${ED}"/usr/share/${TOMCAT_NAME}/webapps || die
+	cp -pR manager "${ED}"/usr/share/${TOMCAT_NAME}/webapps || die
+	if use doc; then
+		cp -pR docs "${ED}"/usr/share/${TOMCAT_NAME}/webapps || die
+	fi
+	if use examples; then
+		cd "${S}"/webapps/examples/WEB-INF/lib
+		java-pkg_jar-from jakarta-jstl jstl.jar
+		java-pkg_jar-from jakarta-jstl standard.jar
+		cd "${S}"/webapps
+		cp -pR examples "${ED}"/usr/share/${TOMCAT_NAME}/webapps || die
+	fi
 
 	# replace catalina.policy with gentoo specific one bug #176701
 #	cp ${FILESDIR}/${SLOT}/catalina.policy "${ED}"/etc/${TOMCAT_NAME} \
@@ -141,32 +157,8 @@ src_install() {
 	cp "${T}"/tomcat6-deps/jdt/jasper-jdt.jar "${ED}"/usr/share/${TOMCAT_NAME}/lib \
 		|| die "failed to copy"
 
-	cd "${ED}/usr/share/${TOMCAT_NAME}/lib"
+	cd "${ED}/usr/share/${TOMCAT_NAME}/lib" || die
 	java-pkg_jar-from tomcat-servlet-api-2.5
-
-	cd "${S}"
-
-	# Copy over webapps, some controlled by use flags
-	cp -p RELEASE-NOTES webapps/ROOT/RELEASE-NOTES.txt
-	cp -pr webapps/ROOT "${ED}"${CATALINA_BASE}/webapps
-
-	use prefix \
-		&& diropts -m750 \
-		|| diropts -m750 -o tomcat -g tomcat
-	dodir ${TOMCAT_HOME}/webapps
-	cp -pr webapps/host-manager "${ED}"${TOMCAT_HOME}/webapps
-	cp -pr webapps/manager "${ED}"${TOMCAT_HOME}/webapps
-
-	if use doc; then
-		cp -pr output/build/webapps/docs "${ED}"${CATALINA_BASE}/webapps
-	fi
-	if use examples; then
-		cd output/build/webapps/examples/WEB-INF/lib
-		java-pkg_jar-from jakarta-jstl jstl.jar
-		java-pkg_jar-from jakarta-jstl standard.jar
-		cd "${S}"
-		cp -pPr output/build/webapps/examples "${ED}"${CATALINA_BASE}/webapps
-	fi
 
 	# symlink the directories to make CATALINA_BASE possible
 	dosym /etc/${TOMCAT_NAME} ${CATALINA_BASE}/conf
@@ -174,12 +166,12 @@ src_install() {
 	dosym /var/tmp/${TOMCAT_NAME} ${CATALINA_BASE}/temp
 	dosym /var/run/${TOMCAT_NAME} ${CATALINA_BASE}/work
 
-	# link the manager's context to the right position
-	dosym ${TOMCAT_HOME}/webapps/host-manager/META-INF/context.xml /etc/${TOMCAT_NAME}/Catalina/localhost/host-manager.xml
-	dosym ${TOMCAT_HOME}/webapps/manager/META-INF/context.xml /etc/${TOMCAT_NAME}/Catalina/localhost/manager.xml
-
 	dodoc  "${S}"/{RELEASE-NOTES,RUNNING.txt}
 	fperms 640 /etc/${TOMCAT_NAME}/tomcat-users.xml
+
+	#install *.sh scripts bug #278059
+	exeinto /usr/share/${TOMCAT_NAME}/bin
+	doexe "${S}"/bin/*.sh
 }
 
 pkg_postinst() {
@@ -187,6 +179,26 @@ pkg_postinst() {
 	# temp fix for bug #176097
 	use prefix || chown -fR tomcat:tomcat /etc/${TOMCAT_NAME}
 	ewarn "Owner ship changed to tomcat:tomcat. Temp hack/fix."
+
+	# bug #180519
+	if [[ -e "${EROOT}var/lib/${TOMCAT_NAME}/webapps/manager" ]] ; then
+		elog "The latest webapp has NOT been installed into"
+		elog "${EROOT}var/lib/${TOMCAT_NAME}/webapps/ because directory already exists"
+		elog "and we do not want to overwrite any files you have put there."
+		elog
+		elog "Installing latest webapp into"
+		elog "${EROOT}usr/share/${TOMCAT_NAME}/webapps instead"
+		elog
+		elog "Manager Symbolic Links NOT created."
+
+		else
+		einfo "Installing latest webroot to ${EROOT}/${WEBAPPS_DIR}"
+		cp -pR "${EROOT}"/usr/share/${TOMCAT_NAME}/webapps/* \
+			"${EROOT}""${WEBAPPS_DIR}"
+		# link the manager's context to the right position
+		dosym ${TOMCAT_HOME}/webapps/host-manager/META-INF/context.xml /etc/${TOMCAT_NAME}/Catalina/localhost/host-manager.xml
+		dosym ${TOMCAT_HOME}/webapps/manager/META-INF/context.xml /etc/${TOMCAT_NAME}/Catalina/localhost/manager.xml
+	fi
 
 	elog
 	elog " This ebuild implements a FHS compliant layout for tomcat"
@@ -196,13 +208,17 @@ pkg_postinst() {
 	ewarn "tomcat-dbcp.jar is not built at this time. Please fetch jar"
 	ewarn "from upstream binary if you need it. Gentoo Bug # 144276"
 	elog
+
 	ewarn "The manager webapps have known exploits, please refer to"
 	ewarn "http://cve.mitre.org/cgi-bin/cvename.cgi?name=2007-2450"
+
 	if use examples ; then
-		elog
+		ewarn
 		ewarn "The examples webapp has a known exploit, please refer to"
 		ewarn "http://cve.mitre.org/cgi-bin/cvename.cgi?name=2007-2449"
+		ewarn
 	fi
+
 	elog
 	elog " Please report any bugs to http://bugs.gentoo.org/"
 	elog
