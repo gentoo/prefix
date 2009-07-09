@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-2.1_alpha1.ebuild,v 1.1 2009/06/16 14:00:43 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/audacious-2.1.ebuild,v 1.1 2009/07/06 22:50:45 chainsaw Exp $
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
@@ -29,7 +29,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9.0
 	nls? ( dev-util/intltool )"
 
-PDEPEND=">=media-plugins/audacious-plugins-2.1_alpha1"
+PDEPEND=">=media-plugins/audacious-plugins-2.1"
 
 src_compile() {
 	# D-Bus is a mandatory dependency, remote control,
