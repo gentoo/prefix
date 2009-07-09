@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Test-Simple/perl-Test-Simple-0.80.ebuild,v 1.5 2009/07/07 02:28:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Test-Simple/perl-Test-Simple-0.92.ebuild,v 1.1 2009/07/04 06:03:52 tove Exp $
 
 DESCRIPTION="Virtual for Test-Simple"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
