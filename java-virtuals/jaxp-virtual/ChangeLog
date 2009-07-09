@@ -1,6 +1,12 @@
 # ChangeLog for java-virtuals/jaxp-virtual
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaxp-virtual/ChangeLog,v 1.4 2009/07/01 09:18:35 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/jaxp-virtual/ChangeLog,v 1.6 2009/07/05 20:41:00 maekke Exp $
+
+  05 Jul 2009; Markus Meier <maekke@gentoo.org> jaxp-virtual-1.4-r1.ebuild:
+  amd64 stable, bug #275186
+
+  04 Jul 2009; Brent Baude <ranger@gentoo.org> jaxp-virtual-1.4-r1.ebuild:
+  Marking jaxp-virtual-1.4-r1 ppc64 for bug 275186
 
   01 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
   jaxp-virtual-1.4-r1.ebuild:
