@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/mico/mico-2.3.13.ebuild,v 1.4 2009/04/16 20:25:03 haubi Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/mico/mico-2.3.13.ebuild,v 1.5 2009/07/07 08:00:06 haubi Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -39,6 +39,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-gcc43.patch
 	epatch "${FILESDIR}"/${P}-pthread.patch
 	epatch "${FILESDIR}"/${P}-aix.patch
+	epatch "${FILESDIR}"/${P}-hpux.patch
 
 	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
 
@@ -82,6 +83,9 @@ src_compile() {
 		winopts="${winopts} --disable-threads --disable-static --enable-final"
 		append-flags -D__STDC__
 	fi
+
+	# http://www.mico.org/pipermail/mico-devel/2009-April/010285.html
+	[[ ${CHOST} == *-hpux* ]] && append-cppflags -D_XOPEN_SOURCE_EXTENDED
 
 	# bluetooth and wireless both don't compile cleanly
 	econf \

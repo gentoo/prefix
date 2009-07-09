@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/mico
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/mico/ChangeLog,v 1.20 2009/04/16 20:25:03 haubi Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/mico/ChangeLog,v 1.21 2009/07/07 08:00:06 haubi Exp $
+
+  07 Jul 2009; Michael Haubenwallner <haubi@gentoo.org>
+  +files/mico-2.3.13-hpux.patch, mico-2.3.13.ebuild:
+  fixed hpux build
 
   16 Apr 2009; Michael Haubenwallner <haubi@gentoo.org>
   +files/mico-2.3.13-aix.patch, +files/mico-2.3.13-pthread.patch,
