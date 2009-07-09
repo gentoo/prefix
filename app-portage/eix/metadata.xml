@@ -13,6 +13,7 @@
 	<description>Proxy committer, CC bugs</description>
   </maintainer>
   <use>
+	<flag name="deprecated">Installs wrapper scripts for all the previous executable names that will soon be going away</flag>
 	<flag name="doc">Create description of the eix cache file additionally in html format</flag>
 	<flag name="nls">Support foreign language messages (experimental; currently only de)</flag>
 	<flag name="sqlite">Compile in support for portage's sqlite backend; to actually use it you need additional configuration of portage and eix</flag>
