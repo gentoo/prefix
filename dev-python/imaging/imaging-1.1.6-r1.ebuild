@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/imaging-1.1.6-r1.ebuild,v 1.2 2009/05/01 22:58:53 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/imaging-1.1.6-r1.ebuild,v 1.3 2009/07/03 09:57:58 idl0r Exp $
 
 EAPI=2
 inherit eutils distutils
@@ -31,6 +31,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-sane.patch
 	epatch "${FILESDIR}"/${P}-giftrans.patch
 	epatch "${FILESDIR}"/${P}-tiffendian.patch
+	epatch "${FILESDIR}/${P}-missing-math.patch"
 	sed -i \
 		-e "s:/usr/lib\":/usr/$(get_libdir)\":" \
 		-e "s:\"lib\":\"$(get_libdir)\":g" \

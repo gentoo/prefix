@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/imaging
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.40 2009/05/01 22:58:53 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.41 2009/07/03 09:57:58 idl0r Exp $
+
+  03 Jul 2009; Christian Ruppert <idl0r@gentoo.org> imaging-1.1.6-r1.ebuild,
+  +files/imaging-1.1.6-missing-math.patch:
+  Add missing -lm links.
 
   01 May 2009; Patrick Lauer <patrick@gentoo.org> imaging-1.1.6-r1.ebuild:
   Small fix for tests. Fixes #268126, thanks to Oliver Huber
