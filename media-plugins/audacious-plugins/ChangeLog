@@ -1,6 +1,19 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.123 2009/06/26 18:10:05 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.125 2009/07/06 22:50:52 chainsaw Exp $
+
+*audacious-plugins-2.1 (06 Jul 2009)
+
+  06 Jul 2009; <chainsaw@gentoo.org>
+  -audacious-plugins-2.1_alpha1-r1.ebuild,
+  -audacious-plugins-2.1_alpha2.ebuild, +audacious-plugins-2.1.ebuild:
+  Final release of 2.1; with thanks to all JIRA bug reporters. Deleting
+  alpha release ebuilds.
+
+  03 Jul 2009; Robin H. Johnson <robbat2@gentoo.org>
+  audacious-plugins-2.1_alpha1-r1.ebuild,
+  audacious-plugins-2.1_alpha2.ebuild, audacious-plugins-2.1_beta1.ebuild:
+  Re-add missing icecast support, ACKed by Chainsaw.
 
 *audacious-plugins-2.1_beta1 (26 Jun 2009)
 
