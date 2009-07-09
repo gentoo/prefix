@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libsoundtouch
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.28 2009/05/11 09:23:32 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.29 2009/07/06 09:02:03 ssuominen Exp $
+
+  06 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  libsoundtouch-1.4.0.ebuild:
+  Symlink soundtouch-1.4.pc to soundtouch-1.0.pc for testing since upstream
+  changed filename for unknown reason.
 
 *libsoundtouch-1.4.0 (11 May 2009)
 
