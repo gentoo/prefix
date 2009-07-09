@@ -1,6 +1,9 @@
 # ChangeLog for java-virtuals/javamail
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/java-virtuals/javamail/ChangeLog,v 1.10 2008/03/12 15:15:58 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/java-virtuals/javamail/ChangeLog,v 1.11 2009/07/05 21:27:19 aballier Exp $
+
+  05 Jul 2009; Alexis Ballier <aballier@gentoo.org> javamail-1.0-r1.ebuild:
+  keyword ~x86-fbsd
 
   12 Mar 2008; Raúl Porcel <armin76@gentoo.org> javamail-1.0-r1.ebuild:
   Add ~ia64 wrt #213006
