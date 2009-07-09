@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/pybugz-0.7.4.ebuild,v 1.5 2009/06/29 15:53:32 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/pybugz-0.7.4.ebuild,v 1.6 2009/07/03 13:45:59 ranger Exp $
 
 EAPI=2
 

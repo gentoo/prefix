@@ -1,6 +1,15 @@
 # ChangeLog for www-client/pybugz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.45 2009/06/29 15:53:32 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.47 2009/07/04 23:11:44 williamh Exp $
+
+*pybugz-0.8.0_rc2 (04 Jul 2009)
+
+  04 Jul 2009; William Hubbs <williamh@gentoo.org> -pybugz-0.8.0_rc1.ebuild,
+  +pybugz-0.8.0_rc2.ebuild:
+  new release candidate
+
+  03 Jul 2009; Brent Baude <ranger@gentoo.org> pybugz-0.7.4.ebuild:
+  Marking pybugz-0.7.4 ppc64 for bug 275121
 
   29 Jun 2009; Jeremy Olexa <darkside@gentoo.org> pybugz-0.7.4.ebuild:
   amd64 stable, bug 275121
