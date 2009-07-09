@@ -1,6 +1,14 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.120 2009/06/17 07:14:24 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.121 2009/07/08 13:29:06 pva Exp $
+
+*libpcap-1.0.1_pre20090708 (08 Jul 2009)
+
+  08 Jul 2009; Peter Volkov <pva@gentoo.org>
+  -libpcap-1.0.1_pre20090616.ebuild, +libpcap-1.0.1_pre20090708.ebuild,
+  +files/libpcap-1.0.1_pre20090708-libnl-automagic.patch, metadata.xml:
+  Version bump, fixes 100% cpu usage, bug #275257, thank Michael O'Brien for
+  report. Remove affected version.
 
 *libpcap-1.0.1_pre20090616 (17 Jun 2009)
 
