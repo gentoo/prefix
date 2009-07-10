@@ -47,7 +47,7 @@ src_unpack() {
 	if use qt4; then
 		local file
 		for file in qt4/*.moc; do
-			/usr/bin/moc ${file/.moc/.h} > ${file} || die "moc ${file} failed"
+			"${EPREFIX}"/usr/bin/moc ${file/.moc/.h} > ${file} || die "moc ${file} failed"
 		done
 	fi
 }
