@@ -23,11 +23,7 @@ DEPEND="gpm? ( sys-libs/gpm )"
 S=${WORKDIR}/${MY_P}
 
 src_unpack() {
-	# need libtool to build aix-style shared objects inside archive libs, but
-	# cannot depend on libtool, as this would create circular dependencies...
-	# And libtool-1.5.26 needs (a similar) patch for AIX (DESTDIR) as found in
-	# http://lists.gnu.org/archive/html/bug-libtool/2008-03/msg00124.html
-	[[ ${CHOST} == *-aix* ]] && ! type libtool >&/dev/null &&
+	need-libtool && ! type libtool >&/dev/null &&
 		die "Please make some working libtool available manually before emerging ncurses"
 	unpack ${A}
 	cd "${S}"
@@ -42,6 +38,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
 #	epatch "${FILESDIR}"/${PN}-5.6-libtool.patch # used on aix
 	epatch "${FILESDIR}"/${PN}-5.7-x64-freebsd.patch
+	epatch "${FILESDIR}"/${PN}-5.7-ldflags-with-libtool.patch
 
 	# irix /bin/sh is no good
 	find . -name "*.sh" | xargs sed -i -e '1c\#!/usr/bin/env sh'
@@ -80,8 +77,13 @@ do_compile() {
 	"
 
 	local myconf=""
-	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-libtool"
-	[[ ${CHOST} == *-mint* ]] || myconf="--with-shared"
+	if need-libtool; then
+		myconf="${myconf} --with-libtool"
+	elif [[ ${CHOST} == *-mint* ]]; then
+		:
+	else
+		myconf="--with-shared"
+	fi
 
 	# We need the basic terminfo files in /etc, bug #37026.  We will
 	# add '--with-terminfo-dirs' and then populate /etc/terminfo in
@@ -124,7 +126,7 @@ do_compile() {
 	# installing, because that will result in broken install_names for
 	# platforms that store pointers to the libs instead of directories.
 	# But this only is true when building without libtool.
-	[[ ${CHOST} == *-aix* ]] ||
+	need-libtool ||
 	sed -i -e '/^libdir/s:/usr/lib\(64\|\)$:/lib\1:' ncurses/Makefile || die "nlibdir"
 
 	# for IRIX to get tests compiling
@@ -149,7 +151,7 @@ src_install() {
 		emake DESTDIR="${D}" install || die "make widec install failed"
 	fi
 
-	if [[ ${CHOST} == *-aix* ]]; then
+	if need-libtool; then
 		# Move dynamic ncurses libraries into /lib
 		dodir /$(get_libdir)
 		local f
@@ -206,4 +208,13 @@ pkg_preinst() {
 
 pkg_postinst() {
 	use unicode || preserve_old_lib_notify /$(get_libdir)/libncursesw$(get_libname 5)
+}
+
+need-libtool() {
+	# need libtool to build aix-style shared objects inside archive libs, but
+	# cannot depend on libtool, as this would create circular dependencies...
+	# And libtool-1.5.26 needs (a similar) patch for AIX (DESTDIR) as found in
+	# http://lists.gnu.org/archive/html/bug-libtool/2008-03/msg00124.html
+	# Use libtool on hpux too to get some soname.
+	[[ ${CHOST} == *'-aix'* || ${CHOST} == *'-hpux'* ]]
 }

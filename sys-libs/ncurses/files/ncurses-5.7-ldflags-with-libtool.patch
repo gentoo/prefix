@@ -1,0 +1,22 @@
+--- mk-1st.awk.orig	2009-07-07 12:01:15.000000000 +0200
++++ mk-1st.awk	2009-07-07 12:02:40.000000000 +0200
+@@ -386,7 +386,7 @@
+ 				}
+ 				end_name = lib_name;
+ 				printf "../lib/%s : $(%s_OBJS)\n", lib_name, OBJS
+-				printf "\tcd ../lib && $(LIBTOOL_LINK) $(%s) -o %s $(%s_OBJS:$o=.lo) -rpath $(DESTDIR)$(libdir) -version-info $(NCURSES_MAJOR):$(NCURSES_MINOR) $(SHLIB_LIST)\n", compile, lib_name, OBJS
++				printf "\tcd ../lib && $(LIBTOOL_LINK) $(%s) -o %s $(%s_OBJS:$o=.lo) -rpath $(DESTDIR)$(libdir) -version-info $(NCURSES_MAJOR):$(NCURSES_MINOR) $(SHLIB_LIST) $(LDFLAGS)\n", compile, lib_name, OBJS
+ 				print  ""
+ 				print  "install \\"
+ 				print  "install.libs \\"
+--- c++/Makefile.in.orig	2007-04-28 17:29:12.000000000 +0200
++++ c++/Makefile.in	2009-07-07 16:56:15.000000000 +0200
+@@ -160,7 +160,7 @@
+ 	cd ../lib && $(LIBTOOL_LINK) $(CXX) $(CXXFLAGS) \
+ 		-o $(LIBNAME) $(LIB_OBJS:$o=.lo) \
+ 		-rpath $(INSTALL_PREFIX)$(libdir) \
+-		-version-info $(NCURSES_MAJOR):$(NCURSES_MINOR) $(SHLIB_LIST)
++		-version-info $(NCURSES_MAJOR):$(NCURSES_MINOR) $(LDFLAGS_LIBTOOL) $(SHLIB_LIST)
+ 
+ OBJS_DEMO = $(MODEL)/demo$o
+ 
