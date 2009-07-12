@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/easytag-2.1.6-r1.ebuild,v 1.8 2009/07/10 13:47:05 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/easytag-2.1.6-r2.ebuild,v 1.2 2009/07/10 13:47:05 ssuominen Exp $
 
 EAPI=2
 inherit eutils fdo-mime
@@ -19,8 +19,8 @@ RDEPEND=">=x11-libs/gtk+-2.12:2
 		media-libs/libid3tag )
 	flac? ( media-libs/flac
 		media-libs/libvorbis )
+	mp4? ( >=media-libs/libmp4v2-1.9.0 )
 	vorbis? ( media-libs/libvorbis )
-	mp4? ( <media-libs/libmp4v2-1.9.0 )
 	wavpack? ( media-sound/wavpack )
 	speex? ( media-libs/speex
 		media-libs/libvorbis )"
@@ -29,7 +29,8 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-desktop_entry.patch
+	epatch "${FILESDIR}"/${P}-desktop_entry.patch \
+		"${FILESDIR}"/${P}-new_libmp4v2.patch
 }
 
 src_configure() {
