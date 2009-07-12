@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.212 2009/06/04 16:49:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.214 2009/07/11 00:15:55 chainsaw Exp $
+
+  11 Jul 2009; <chainsaw@gentoo.org> netpbm-10.46.00.ebuild:
+  Marked stable on AMD64 for bug #277184; tested on a dual Opteron 2354.
+  Restores compatibility with recent glibc versions.
+
+  09 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  netpbm-10.46.00.ebuild:
+  stable x86, bug 277184
 
 *netpbm-10.26.62 (04 Jun 2009)
 
