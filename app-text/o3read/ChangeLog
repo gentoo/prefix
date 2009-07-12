@@ -1,6 +1,9 @@
 # ChangeLog for app-text/o3read
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/o3read/ChangeLog,v 1.15 2008/12/30 21:36:23 angelos Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/o3read/ChangeLog,v 1.16 2009/07/11 11:13:38 flameeyes Exp $
+
+  11 Jul 2009; Diego E. Pettenò <flameeyes@gentoo.org> o3read-0.0.4.ebuild:
+  Restrict testsuite; the lynx test is interactive.
 
   30 Dec 2008; Christoph Mende <angelos@gentoo.org> o3read-0.0.4.ebuild:
   QA: Respect CC (bug 243738), respect CFLAGS (bug 240139), fix test suite
