@@ -1,0 +1,55 @@
+http://bugs.gentoo.org/277485
+
+<alanh@fairlite.co.uk>: patch for FreeMiNT
+
+--- glib/gmain.c
++++ glib/gmain.c
+@@ -75,6 +75,10 @@
+ #include <sys/wait.h>
+ #endif
+ 
++#ifdef __MINT__
++#define SA_RESTART 0
++#endif
++
+ #include "galias.h"
+ 
+ /* Types */
+--- configure.in
++++ configure.in
+@@ -1838,8 +1838,8 @@
+     # One of them does for most gcc versions and some other platforms/compilers
+     # too and could be considered as the canonical way to go. 
+     case $host in
+-      *-*-cygwin*|*-*-darwin*)
+-         # skip cygwin and darwin -pthread or -pthreads test
++      *-*-cygwin*|*-*-darwin*|*-*-mint*)
++         # skip cygwin and darwin and mint -pthread or -pthreads test
+          ;;
+       xxx*-solaris*)
+         # These compiler/linker flags work with both Sun Studio and gcc
+--- configure
++++ configure
+@@ -37030,8 +37030,8 @@
+     # One of them does for most gcc versions and some other platforms/compilers
+     # too and could be considered as the canonical way to go.
+     case $host in
+-      *-*-cygwin*|*-*-darwin*)
+-         # skip cygwin and darwin -pthread or -pthreads test
++      *-*-cygwin*|*-*-darwin*|*-*-mint*)
++         # skip cygwin and darwin and mint -pthread or -pthreads test
+          ;;
+       xxx*-solaris*)
+         # These compiler/linker flags work with both Sun Studio and gcc
+--- glib/gtester.c
++++ glib/gtester.c
+@@ -26,6 +26,9 @@
+ #include <sys/wait.h>
+ #include <errno.h>
+ #include <signal.h>
++#ifdef __MINT__
++#define SA_RESTART 0
++#endif
+ 
+ /* the read buffer size in bytes */
+ #define READ_BUFFER_SIZE 4096
