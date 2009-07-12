@@ -1,11 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.28.ebuild,v 1.2 2009/07/10 19:42:29 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.28-r1.ebuild,v 1.2 2009/07/10 10:25:36 ssuominen Exp $
 
+EAPI=2
 inherit autotools eutils flag-o-matic
 
 DESCRIPTION="Free MPEG-4 audio codecs by AudioCoding.com"
-HOMEPAGE="http://www.audiocoding.com/"
+HOMEPAGE="http://www.audiocoding.com"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2"
@@ -13,14 +14,11 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
-RDEPEND="<media-libs/libmp4v2-1.9.0"
-DEPEND="${RDEPEND}
-	!<media-libs/faad2-2.0-r3"
+RDEPEND=">=media-libs/libmp4v2-1.9.0"
+DEPEND="${RDEPEND}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.26-external-libmp4v2.patch
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-external-libmp4v2.patch
 	eautoreconf
 	epunt_cxx
 
@@ -32,6 +30,8 @@ src_unpack() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc AUTHORS ChangeLog NEWS README TODO docs/libfaac.pdf
-	dohtml docs/*
+	dodoc AUTHORS ChangeLog NEWS README TODO
+	dohtml docs/*.html
+	insinto /usr/share/doc/${PF}/pdf
+	doins docs/libfaac.pdf
 }

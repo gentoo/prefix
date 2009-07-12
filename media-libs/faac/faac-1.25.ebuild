@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.25.ebuild,v 1.8 2008/11/30 11:08:27 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.25.ebuild,v 1.9 2009/07/10 19:42:29 ssuominen Exp $
 
 inherit libtool eutils autotools flag-o-matic
 
@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x86-solaris"
 IUSE=""
 RDEPEND=">=media-libs/libsndfile-1.0.0
-	media-libs/libmp4v2"
+	<media-libs/libmp4v2-1.9.0"
 DEPEND="${RDEPEND}
 	!<media-libs/faad2-2.0-r3"
 
