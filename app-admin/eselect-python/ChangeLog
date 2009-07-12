@@ -1,6 +1,14 @@
 # ChangeLog for app-admin/eselect-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.28 2009/07/08 14:23:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.30 2009/07/11 20:40:16 josejx Exp $
+
+  11 Jul 2009; Joseph Jezak <josejx@gentoo.org>
+  eselect-python-20090606.ebuild:
+  Marked ppc/ppc64 stable for bug #276590.
+
+  10 Jul 2009; Jeremy Olexa <darkside@gentoo.org>
+  eselect-python-20090606.ebuild:
+  amd64 stable, bug 276590
 
   08 Jul 2009; Raúl Porcel <armin76@gentoo.org>
   eselect-python-20090606.ebuild:
