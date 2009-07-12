@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.26.1.ebuild,v 1.3 2009/05/13 14:22:12 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-panel/gnome-panel-2.26.3.ebuild,v 1.1 2009/07/09 21:14:07 eva Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -8,18 +8,19 @@ GCONF_DEBUG="no"
 inherit autotools eutils gnome2
 
 MY_P="${PN}-2.24.2"
+MY_P_PO="${PN}-2.26.1"
 DESCRIPTION="The GNOME panel"
 HOMEPAGE="http://www.gnome.org/"
 SRC_URI="${SRC_URI}
 	mirror://gentoo/${MY_P}-logout+po.tar.bz2
-	mirror://gentoo/${P}-po.patch.bz2"
+	mirror://gentoo/${MY_P_PO}-po.patch.bz2"
 
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="doc eds networkmanager policykit"
 
-RDEPEND=">=gnome-base/gnome-desktop-2.24.0
+RDEPEND=">=gnome-base/gnome-desktop-2.26.0
 	>=x11-libs/pango-1.15.4
 	>=dev-libs/glib-2.18.0
 	>=x11-libs/gtk+-2.15.1
@@ -58,6 +59,7 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 pkg_setup() {
 	G2CONF="${G2CONF}
+		--disable-static
 		--disable-scrollkeeper
 		--disable-schemas-install
 		--with-in-process-applets=clock,notification-area,wncklet
@@ -71,7 +73,7 @@ src_prepare() {
 
 	# Allow logout/shutdown without gnome-session 2.24, bug #246170
 	epatch "${WORKDIR}/${MY_P}-logout.patch"
-	epatch "${WORKDIR}/${P}-po.patch"
+	epatch "${WORKDIR}/${MY_P_PO}-po.patch"
 	echo "gnome-panel/panel-logout.c" >> po/POTFILES.in
 
 	# Fixes build on BSD, bug #256859
@@ -91,7 +93,10 @@ src_prepare() {
 			-i gtk-doc.make || die "sed 2 failed"
 	fi
 
-	eautomake
+	# Make it libtool-1 compatible, bug #271652
+	rm -v m4/lt* m4/libtool.m4 || die "removing libtool macros failed"
+
+	AT_M4DIR="m4" eautoreconf
 }
 
 pkg_postinst() {
