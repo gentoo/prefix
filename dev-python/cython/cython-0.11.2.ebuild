@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/cython-0.11.2.ebuild,v 1.1 2009/06/07 22:29:10 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/cython-0.11.2.ebuild,v 1.4 2009/07/10 12:24:38 fmccor Exp $
 
 NEED_PYTHON="2.2"
 
