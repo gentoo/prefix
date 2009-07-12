@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pycairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.68 2009/07/09 03:24:42 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.69 2009/07/10 18:05:44 arfrever Exp $
+
+  10 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pycairo-1.8.6.ebuild:
+  Add "doc" USE flag (bug #276805).
 
 *pycairo-1.8.6 (09 Jul 2009)
 
