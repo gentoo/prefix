@@ -10,7 +10,7 @@ SRC_URI="http://samba.org/ftp/ccache/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 # Note: this version is designed to be auto-detected and used if
@@ -22,6 +22,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/ccache-2.4-profile.patch
 	epatch "${FILESDIR}"/ccache-2.4-respectflags.patch
 	epatch "${FILESDIR}"/ccache-2.4-utimes.patch
+	epatch "${FILESDIR}"/ccache-2.4-mint.patch
 	eautoconf
 }
 
