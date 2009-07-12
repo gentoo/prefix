@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5-r1.ebuild,v 1.14 2009/07/08 21:55:40 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5-r1.ebuild,v 1.15 2009/07/09 13:43:14 ssuominen Exp $
 
 EAPI=2
 
@@ -15,9 +15,15 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="+3dnow +3dnowext alsa altivec amr custom-cflags debug dirac doc ieee1394
-	  +encode faac faad gsm ipv6 +mmx +mmxext vorbis test theora threads x264
+	  +encode faac faad gsm ipv6 +mmx +mmxext vdpau vorbis test theora threads x264
 	  xvid network zlib sdl X mp3 oss schroedinger +hardcoded-tables bindist
 	  v4l v4l2 speex +ssse3 vhook jpeg2k"
+
+VIDEO_CARDS="nvidia"
+
+for x in ${VIDEO_CARDS}; do
+	IUSE="${IUSE} video_cards_${x}"
+done
 
 RDEPEND="vhook? ( >=media-libs/imlib2-1.4.0 >=media-libs/freetype-2 )
 	sdl? ( >=media-libs/libsdl-1.2.10 )
@@ -44,7 +50,10 @@ RDEPEND="vhook? ( >=media-libs/imlib2-1.4.0 >=media-libs/freetype-2 )
 	schroedinger? ( media-libs/schroedinger )
 	speex? ( >=media-libs/speex-1.2_beta3 )
 	X? ( x11-libs/libX11 x11-libs/libXext )
-	amr? ( media-libs/amrnb media-libs/amrwb )"
+	amr? ( media-libs/amrnb media-libs/amrwb )
+	video_cards_nvidia? (
+		vdpau? ( >=x11-drivers/nvidia-drivers-180.29 )
+	)"
 
 DEPEND="${RDEPEND}
 	>=sys-devel/make-3.81
@@ -128,6 +137,11 @@ src_configure() {
 		use amr && myconf="${myconf} --enable-libamr-nb \
 									 --enable-libamr-wb \
 									 --enable-nonfree"
+	fi
+
+	# This has changed since 0.5, please recheck for next version
+	if use video_cards_nvidia; then
+		use vdpau && myconf="${myconf} --enable-vdpau"
 	fi
 
 	# CPU features

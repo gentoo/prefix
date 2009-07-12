@@ -1,6 +1,11 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.300 2009/07/08 21:55:40 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.301 2009/07/09 13:43:14 ssuominen Exp $
+
+  09 Jul 2009; Samuli Suominen <ssuominen@gentoo.org> ffmpeg-0.5-r1.ebuild,
+  ffmpeg-9999-r1.ebuild:
+  USE vdpau with VIDEO_CARDS=nvidia wrt #262433, thanks to Bob Deblier for
+  reporting.
 
   08 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
   ffmpeg-0.4.9_p20090201.ebuild, ffmpeg-0.5-r1.ebuild,

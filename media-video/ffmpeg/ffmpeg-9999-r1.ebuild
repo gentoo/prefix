@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.9 2009/07/08 21:55:40 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.12 2009/07/09 14:41:18 ssuominen Exp $
 
 EAPI=2
 
@@ -19,7 +19,13 @@ IUSE="+3dnow +3dnowext alsa altivec cpudetection custom-cflags debug dirac
 	  doc ieee1394 +encode faac faad gsm ipv6 jack +mmx +mmxext vorbis test
 	  theora threads x264 xvid network zlib sdl X mp3 opencore-amrnb
 	  opencore-amrwb oss schroedinger +hardcoded-tables bindist v4l v4l2
-	  speex +ssse3 jpeg2k"
+	  speex +ssse3 jpeg2k vdpau"
+
+VIDEO_CARDS="nvidia"
+
+for x in ${VIDEO_CARDS}; do
+	IUSE="${IUSE} video_cards_${x}"
+done
 
 RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 	alsa? ( media-libs/alsa-lib )
@@ -42,7 +48,10 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 	schroedinger? ( media-libs/schroedinger )
 	speex? ( >=media-libs/speex-1.2_beta3 )
 	jack? ( media-sound/jack-audio-connection-kit )
-	X? ( x11-libs/libX11 x11-libs/libXext )"
+	X? ( x11-libs/libX11 x11-libs/libXext )
+	video_cards_nvidia? (
+		vdpau? ( >=x11-drivers/nvidia-drivers-180.29 )
+	)"
 
 DEPEND="${RDEPEND}
 	>=sys-devel/make-3.81
@@ -124,6 +133,13 @@ src_configure() {
 		use faac && myconf="${myconf} --enable-libfaac"
 		{ use faac ; } && myconf="${myconf} --enable-nonfree"
 	fi
+
+	#for i in h264_vdpau mpeg1_vdpau mpeg_vdpau vc1_vdpau wmv3_vdpau; do
+	#	use video_cards_nvidia || myconf="${myconf} --disable-decoder=$i"
+	#	use vdpau || myconf="${myconf} --disable-decoder=$i"
+	#done
+	use video_cards_nvidia || myconf="${myconf} --disable-vdpau"
+	use vdpau || myconf="${myconf} --disable-vdpau"
 
 	# CPU features
 	for i in mmx ssse3 altivec ; do
