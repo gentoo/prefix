@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0.ebuild,v 1.6 2009/05/31 15:35:26 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0.ebuild,v 1.7 2009/07/10 23:10:15 gengor Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI=2
@@ -295,14 +295,14 @@ src_configure() {
 	filter-flags "-funroll-loops"
 	filter-flags "-fprefetch-loop-arrays"
 	filter-flags "-fno-default-inline"
-	filter-flags "-fstack-protector"
-	filter-flags "-fstack-protector-all"
 	filter-flags "-ftracer"
 	filter-flags "-fforce-addr"
 
 	filter-flags "-O[s2-9]"
 
 	if [[ $(gcc-major-version) -lt 4 ]]; then
+		filter-flags "-fstack-protector"
+		filter-flags "-fstack-protector-all"
 		replace-flags "-fomit-frame-pointer" "-momit-leaf-frame-pointer"
 	fi
 
