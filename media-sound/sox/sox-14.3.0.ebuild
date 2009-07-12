@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.3.0.ebuild,v 1.1 2009/06/22 09:12:59 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.3.0.ebuild,v 1.2 2009/07/09 16:23:33 ssuominen Exp $
 
 inherit flag-o-matic
 
@@ -20,7 +20,7 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 	sndfile? ( media-libs/libsndfile )
 	ogg? ( media-libs/libvorbis	media-libs/libogg )
 	ao? ( media-libs/libao )
-	ffmpeg? ( media-video/ffmpeg )
+	ffmpeg? ( >=media-video/ffmpeg-0.5 )
 	ladspa? ( media-libs/ladspa-sdk )
 	>=media-sound/gsm-1.0.12-r1
 	id3tag? ( media-libs/libid3tag )
