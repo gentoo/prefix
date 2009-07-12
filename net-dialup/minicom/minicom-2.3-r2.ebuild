@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dialup/minicom/minicom-2.3-r2.ebuild,v 1.4 2009/07/04 12:51:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dialup/minicom/minicom-2.3-r2.ebuild,v 1.5 2009/07/11 20:35:53 josejx Exp $
 
 EAPI="2"
 
