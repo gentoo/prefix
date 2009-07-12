@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/pycurl
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/ChangeLog,v 1.51 2008/11/04 04:18:17 dragonheart Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/ChangeLog,v 1.54 2009/07/10 12:31:53 fmccor Exp $
+
+  10 Jul 2009; Ferris McCormick <fmccor@gentoo.org> pycurl-7.19.0.ebuild:
+  Sparc stable, Bug #277270.
+
+  10 Jul 2009; Christian Faulhammer <fauli@gentoo.org> pycurl-7.19.0.ebuild:
+  stable x86, bug 277270
+
+  10 Jul 2009; Jeroen Roovers <jer@gentoo.org> pycurl-7.19.0.ebuild:
+  Stable for HPPA (bug #277270).
 
 *pycurl-7.19.0 (04 Nov 2008)
 
