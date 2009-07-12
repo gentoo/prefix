@@ -1,6 +1,10 @@
 # ChangeLog for sys-cluster/lam-mpi
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.72 2009/03/02 20:26:34 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.73 2009/07/10 23:41:47 jsbronder Exp $
+
+  10 Jul 2009; Justin Bronder <jsbronder@gentoo.org>
+  lam-mpi-7.1.4-r1.ebuild:
+  Disable totalview, see #245439 and #276194
 
   02 Mar 2009; Brent Baude <ranger@gentoo.org> lam-mpi-7.1.4-r1.ebuild:
   Marking lam-mpi-7.1.4-r1 ppc64 for bug 245439
