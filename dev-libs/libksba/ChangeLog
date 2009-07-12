@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.99 2009/07/09 03:09:02 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.102 2009/07/11 00:58:34 chainsaw Exp $
+
+  11 Jul 2009; <chainsaw@gentoo.org> libksba-1.0.6.ebuild:
+  Marked stable on AMD64 for bug #277127; tested on a dual Opteron 2354.
+
+  10 Jul 2009; Jeroen Roovers <jer@gentoo.org> libksba-1.0.6.ebuild:
+  Stable for HPPA (bug #277127).
+
+  09 Jul 2009; Christian Faulhammer <fauli@gentoo.org> libksba-1.0.6.ebuild:
+  stable x86, bug 277127
 
 *libksba-1.0.7 (09 Jul 2009)
 
