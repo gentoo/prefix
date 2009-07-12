@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0-r1.ebuild,v 1.4 2009/05/21 14:10:21 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0-r1.ebuild,v 1.5 2009/07/10 11:35:46 ssuominen Exp $
 
 EAPI=2
 inherit eutils multilib
@@ -45,6 +45,12 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-new-ffmpeg.patch \
 		"${FILESDIR}"/${P}-symlink_attack.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
+
+	if use mp4 && has_version ">=media-libs/libmp4v2-1.9.0"; then
+		ebegin "Patching in libmp4v2 compability support"
+		sed -i -e 's:<mp4.h>:<mp4v2/mp4v2.h>:' mp4.c || die "sed failed"
+		eend $?
+	fi
 }
 
 src_configure() {
