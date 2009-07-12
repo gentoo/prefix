@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/wormux-0.8.2.ebuild,v 1.5 2009/02/04 03:14:25 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/wormux-0.8.4.ebuild,v 1.1 2009/07/09 05:18:10 mr_bones_ Exp $
 
 EAPI=2
 inherit autotools eutils games
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="debug nls unicode"
 
-RDEPEND="media-libs/libsdl
+RDEPEND="media-libs/libsdl[joystick,video]
 	media-libs/sdl-image[png]
 	media-libs/sdl-mixer[vorbis]
 	media-libs/sdl-ttf
@@ -30,13 +30,10 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	nls? ( sys-devel/gettext )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	sed -i \
 		-e "/AX_CFLAGS_WARN_ALL/d" \
 		-e "s/-Werror//g" \
-		-e "s/fribidi-config/pkg-config fribidi/g" \
 		configure.ac \
 		|| die "sed failed"
 	sed -i \
@@ -55,14 +52,13 @@ src_configure() {
 		--with-font-path=/usr/share/fonts/dejavu/DejaVuSans.ttf \
 		$(use_enable debug) \
 		$(use_enable nls) \
-		$(use_enable unicode fribidi) \
-		|| die "configuration failed"
+		$(use_enable unicode fribidi)
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog README TODO
-	newicon data/wormux.svg wormux.svg
+	doicon data/wormux.svg
 	make_desktop_entry wormux Wormux
 	prepgamesdirs
 }
