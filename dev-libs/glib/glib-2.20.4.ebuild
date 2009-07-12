@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.20.2.ebuild,v 1.2 2009/05/18 21:37:06 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.20.4.ebuild,v 1.1 2009/07/09 20:19:31 eva Exp $
 
 EAPI="2"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libc
@@ -54,6 +54,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
+	epatch "${FILESDIR}"/${PN}-2.20.3-mint.patch
 
 	# build glib with parity for native win32
 	if [[ ${CHOST} == *-winnt* ]] ; then
@@ -94,8 +95,8 @@ src_configure() {
 
 	local mythreads=posix
 
+	[[ ${CHOST} == *-mint* ]] && append-libs -lpthread
 	[[ ${CHOST} == *-winnt* ]] && mythreads=win32
-
 	# without this, AIX defines EEXIST and ENOTEMPTY to the same value
 	[[ ${CHOST} == *-aix* ]] && append-cppflags -D_LINUX_SOURCE_COMPAT
 
@@ -124,5 +125,7 @@ src_install() {
 
 src_test() {
 	unset DBUS_SESSION_BUS_ADDRESS
+	export XDG_CONFIG_DIRS=/etc/xdg
+	export XDG_DATA_DIRS=/usr/local/share:/usr/share
 	emake check || die "tests failed"
 }
