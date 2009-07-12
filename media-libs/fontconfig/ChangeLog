@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/fontconfig
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.132 2009/03/07 19:10:43 betelgeuse Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.133 2009/07/12 04:13:12 dirtyepic Exp $
+
+*fontconfig-2.7.0 (12 Jul 2009)
+
+  12 Jul 2009; Ryan Hill <dirtyepic@gentoo.org> +fontconfig-2.7.0.ebuild,
+  +files/fontconfig-2.7.0-latin-reorder.patch:
+  Version bump.
+
+  - Tweak order of preference for latin fonts (bug 130466)
+
+  - Don't overwrite user settings on every reinstall (bug 193476)
 
   07 Mar 2009; Petteri Räty <betelgeuse@gentoo.org>
   fontconfig-2.6.0-r2.ebuild:
