@@ -1,0 +1,19 @@
+--- tools/tiffgt.c.orig	2009-06-20 17:40:46.366090451 -0700
++++ tools/tiffgt.c	2009-06-20 17:48:04.042265738 -0700
+@@ -31,12 +31,12 @@
+ #include <string.h>
+ #include <unistd.h>
+ 
+-#if HAVE_APPLE_OPENGL_FRAMEWORK
+-# include <OpenGL/gl.h>
+-# include <GLUT/glut.h>
+-#else
++#ifdef HAVE_APPLE_OPENGL_FRAMEWORK
+ # include <GL/gl.h>
+ # include <GL/glut.h>
++#else
++# include <OpenGL/gl.h>
++# include <GLUT/glut.h>
+ #endif
+ 
+ #include "tiffio.h"
