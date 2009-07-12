@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r6.ebuild,v 1.1 2009/02/18 18:47:48 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r6.ebuild,v 1.2 2009/07/10 14:48:04 jer Exp $
 
 inherit eutils toolchain-funcs autotools flag-o-matic
 
