@@ -1,6 +1,9 @@
 # ChangeLog for sys-power/cpufrequtils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/ChangeLog,v 1.44 2009/06/07 17:43:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/ChangeLog,v 1.45 2009/07/11 23:37:21 josejx Exp $
+
+  11 Jul 2009; Joseph Jezak <josejx@gentoo.org> cpufrequtils-005-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #256599.
 
   07 Jun 2009; Raúl Porcel <armin76@gentoo.org> cpufrequtils-005-r1.ebuild:
   arm/sparc stable wrt #256599
