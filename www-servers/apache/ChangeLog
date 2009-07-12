@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.113 2009/07/08 20:31:45 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.114 2009/07/11 19:08:44 armin76 Exp $
+
+  11 Jul 2009; Raúl Porcel <armin76@gentoo.org> apache-2.2.11-r2.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #276589
 
   08 Jul 2009; Markus Meier <maekke@gentoo.org> apache-2.2.11-r2.ebuild:
   amd64 stable, bug #276589
