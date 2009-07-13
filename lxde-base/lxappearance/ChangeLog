@@ -1,6 +1,12 @@
 # ChangeLog for lxde-base/lxappearance
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/lxde-base/lxappearance/ChangeLog,v 1.1 2008/11/07 14:28:51 yngwin Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxappearance/ChangeLog,v 1.2 2009/07/13 03:35:09 vostorga Exp $
+
+*lxappearance-0.2.1 (13 Jul 2009)
+
+  13 Jul 2009; Víctor Ostorga <vostorga@gentoo.org>
+  +lxappearance-0.2.1.ebuild:
+  Version bump to 0.2.1
 
   07 Nov 2008; Ben de Groot <yngwin@gentoo.org> +metadata.xml,
   +lxappearance-0.2.ebuild:
