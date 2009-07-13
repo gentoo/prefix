@@ -1,13 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.72.ebuild,v 1.2 2009/06/21 10:45:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.72.ebuild,v 1.3 2009/07/12 16:12:46 ssuominen Exp $
 
-# qt4 client is disabled because of upstream regression in bug
-# http://trac.transmissionbt.com/ticket/2169, but you can uncomment
-# it here unless you don't provide a patch for the .pro file.
 EAPI=2
-inherit autotools fdo-mime gnome2-utils
-# qt4
+inherit autotools eutils fdo-mime gnome2-utils qt4
 
 DESCRIPTION="A Fast, Easy and Free BitTorrent client"
 HOMEPAGE="http://www.transmissionbt.com"
@@ -16,8 +12,7 @@ SRC_URI="http://download.${PN}bt.com/${PN}/files/${P}.tar.bz2"
 LICENSE="MIT GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="gtk libnotify"
-# qt4
+IUSE="gtk libnotify qt4"
 
 RDEPEND=">=dev-libs/libevent-1.4.11
 	<dev-libs/libevent-2
@@ -27,8 +22,8 @@ RDEPEND=">=dev-libs/libevent-1.4.11
 	gtk? ( >=dev-libs/glib-2.15.5:2
 		>=x11-libs/gtk+-2.6:2
 		>=dev-libs/dbus-glib-0.70
-		libnotify? ( >=x11-libs/libnotify-0.4.3 ) )"
-#	qt4? ( x11-libs/qt-gui:4 )
+		libnotify? ( >=x11-libs/libnotify-0.4.3 ) )
+	qt4? ( x11-libs/qt-gui:4 )"
 DEPEND="${RDEPEND}
 	>=sys-devel/libtool-2.2
 	sys-devel/gettext
@@ -38,6 +33,10 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	sed -e 's:-g -O0::g' -e 's:-g -O3::g' -i configure.ac || die "sed failed"
+	sed -e \
+		's:$${TRANSMISSION_TOP}/third-party/libevent/.libs/libevent.a:-levent:' \
+		-i qt/qtr.pro || die "sed failed"
+	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
 }
 
@@ -47,19 +46,19 @@ src_configure() {
 		$(use_enable gtk) \
 		$(use_enable libnotify)
 
-#	if use qt4; then
-#		cd qt
-#		eqmake4 qtr.pro
-#	fi
+	if use qt4; then
+		cd qt
+		eqmake4 qtr.pro
+	fi
 }
 
 src_compile() {
 	emake || die "emake failed"
 
-#	if use qt4; then
-#		cd qt
-#		emake || die "emake failed"
-#	fi
+	if use qt4; then
+		cd qt
+		emake || die "emake failed"
+	fi
 }
 
 src_install() {
@@ -71,10 +70,12 @@ src_install() {
 	newinitd "${FILESDIR}"/${PN}-daemon.initd.2 ${PN}-daemon
 	newconfd "${FILESDIR}"/${PN}-daemon.confd.1 ${PN}-daemon
 
-#	if use qt4; then
-#		cd qt
-#		emake INSTALL_ROOT="${D}/usr" install || die "emake install failed"
-#	fi
+	if use qt4; then
+		cd qt
+		emake INSTALL_ROOT="${ED}/usr" install || die "emake install failed"
+		make_desktop_entry qtr "Transmission Qt BitTorrent Client" ${PN} \
+			"Network;FileTransfer;P2P;Qt"
+	fi
 }
 
 pkg_preinst() {

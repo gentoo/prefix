@@ -1,6 +1,12 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.86 2009/06/21 10:46:17 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.87 2009/07/12 16:12:46 ssuominen Exp $
+
+  12 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  transmission-1.72.ebuild:
+  Run intltoolize because tarball was generated with broken 0.40.6 wrt
+  #276053. Restore Qt4 version wrt #275130 and execute make_desktop_entry
+  for it.
 
   21 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> ChangeLog:
   Force signing.
