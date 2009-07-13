@@ -1,0 +1,49 @@
+work around
+https://sourceforge.net/mailarchive/message.php?msg_name=COL101-W11F30F76083CF235699428E6B70%40phx.gbl
+https://sourceforge.net/tracker/index.php?func=detail&aid=1899047&group_id=97492&atid=618177
+
+implementation inspired by
+http://git.savannah.gnu.org/cgit/gnulib.git/tree/lib/realloc.c?id=118e62dd4c803a11197f7fa4bf33606e9de666fd
+http://git.savannah.gnu.org/cgit/gnulib.git/tree/lib/malloc.c?id=3ba9dca25043b6cb2ba35c63e3b55c7a1993bf8c
+
+--- main.c.orig	2009-07-13 16:11:22 +0200
++++ main.c	2009-07-13 16:20:04 +0200
+@@ -1855,3 +1855,38 @@
+ 		 backing_name, program_name, outfile_path, program_name);
+ 
+ }
++
++#if defined(realloc)
++#undef realloc
++void *rpl_realloc(void *p, size_t n)
++{
++    void *result;
++    if (n == 0 && p != NULL) {
++    	free(p);
++	p = NULL;
++    }
++    if (p == NULL) {
++    	result = malloc(n); /* might redirect to rpl_malloc */
++    } else {
++	result = realloc(p, (n > 0) ? n : 1);
++#if defined(ENOMEM)
++	if (result == NULL && errno != ENOMEM)
++	    errno = ENOMEM;
++#endif
++    }
++    return result;
++}
++#endif /* realloc */
++
++#if defined(malloc)
++#undef malloc
++void *rpl_malloc(size_t n)
++{
++    void *p = malloc((n > 0) ? n : 1);
++#if defined(ENOMEM)
++    if (p == NULL && errno != ENOMEM)
++        errno = ENOMEM;
++#endif
++    return p;
++}
++#endif /* malloc */

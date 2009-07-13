@@ -26,6 +26,7 @@ src_unpack() {
 	[[ ${CHOST} != *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.5.33-pic.patch
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.5.35-mint.patch
 	epatch "${FILESDIR}"/${PN}-2.5.35-gcc44.patch
+	epatch "${FILESDIR}"/${P}-rpl_alloc.patch
 	sed -i 's:^LDFLAGS:LOADLIBES:' tests/test-pthread/Makefile.in #262989
 }
 
