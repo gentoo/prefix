@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/cvsd-1.0.8.ebuild,v 1.4 2007/03/05 03:43:00 genone Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/cvsd-1.0.8.ebuild,v 1.5 2009/07/12 18:13:17 halcy0n Exp $
 
 inherit eutils
 
@@ -34,11 +34,12 @@ src_install() {
 	dosed 's:^Repos:# Repos:g' /etc/cvsd/cvsd.conf
 	keepdir /var/lib/cvsd
 
-	dodoc AUTHORS COPYING ChangeLog FAQ INSTALL NEWS README TODO
+	dodoc AUTHORS ChangeLog FAQ INSTALL NEWS README TODO
 
-	newinitd ${FILESDIR}/cvsd.rc6 ${PN}
+	newinitd "${FILESDIR}"/cvsd.rc6 ${PN}
 }
 
 pkg_postinst() {
-	elog "To configure cvsd please read /usr/share/doc/${PF}/README.gz"
+	elog "To configure cvsd please read the README in "
+	elog "/usr/share/doc/${PF}/"
 }

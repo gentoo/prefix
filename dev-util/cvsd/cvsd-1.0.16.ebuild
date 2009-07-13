@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/cvsd-1.0.16.ebuild,v 1.2 2009/04/24 13:52:20 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/cvsd-1.0.16.ebuild,v 1.3 2009/07/12 18:13:17 halcy0n Exp $
 
 inherit eutils
 
@@ -39,5 +39,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "To configure cvsd please read /usr/share/doc/${PF}/README.gz"
+	elog "To configure cvsd please read the README in "
+	elog "/usr/share/doc/${PF}/"
 }
