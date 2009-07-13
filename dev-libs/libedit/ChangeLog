@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.29 2009/07/08 14:50:06 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.30 2009/07/12 17:44:15 klausman Exp $
+
+  12 Jul 2009; Tobias Klausmann <klausman@gentoo.org>
+  libedit-20090610.3.0.ebuild:
+  Keyworded on alpha, bug #276652
 
   08 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
   libedit-20090610.3.0.ebuild:
