@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.24.0.ebuild,v 1.1 2009/07/05 10:11:54 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.24.0.ebuild,v 1.2 2009/07/12 19:34:50 ssuominen Exp $
 
 EAPI=2
-
 inherit eutils autotools multilib python
 
 DESCRIPTION="Open Source Graph Visualization Software"
@@ -13,7 +12,7 @@ SRC_URI="http://www.graphviz.org/pub/graphviz/ARCHIVE/${P}.tar.gz"
 LICENSE="CPL-1.0"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="cairo doc examples gtk java jpeg lasi nls perl png python ruby tcl"
+IUSE="cairo doc examples gtk java lasi nls perl python ruby tcl"
 
 # Requires ksh
 RESTRICT="test"
@@ -23,7 +22,7 @@ RDEPEND="
 	>=dev-libs/glib-2.11.1
 	>=media-libs/fontconfig-2.3.95
 	>=media-libs/freetype-2.1.10
-	>=media-libs/gd-2.0.28[png?,jpeg?]
+	>=media-libs/gd-2.0.28[png,jpeg]
 	>=media-libs/jpeg-6b
 	>=media-libs/libpng-1.2.10
 	virtual/libiconv
@@ -41,9 +40,8 @@ RDEPEND="
 	lasi?	( media-libs/lasi )
 	ruby?	( dev-lang/ruby )
 	tcl?	( >=dev-lang/tcl-8.3 )"
-
 DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.20
+	dev-util/pkgconfig
 	sys-devel/flex
 	java?	( dev-lang/swig )
 	nls?	( >=sys-devel/gettext-0.14.5 )
@@ -141,7 +139,8 @@ src_prepare() {
 }
 
 src_configure() {
-	local myconf
+	# libtool file collision, bug 276609
+	local myconf="--disable-ltdl-install"
 
 	# Core functionality:
 	# All of X, cairo-output, gtk need the pango+cairo functionality
