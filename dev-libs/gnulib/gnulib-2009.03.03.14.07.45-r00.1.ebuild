@@ -57,6 +57,9 @@ src_unpack() {
 		*-interix*)
 			requested_gnulib_modules="atoll getopt scandir setenv strcasestr strndup xvasprintf"
 			;;
+		*-irix*)
+			requested_gnulib_modules="getopt strcasestr strndup xvasprintf"
+			;;
 	esac
 
 	unpack ${A}
