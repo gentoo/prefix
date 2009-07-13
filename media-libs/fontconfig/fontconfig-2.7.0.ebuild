@@ -43,7 +43,7 @@ src_prepare() {
 	epunt_cxx										#74077
 
 	if [[ ${CHOST} == *-winnt* ]] ; then
-		epatch "${FILESDIR}"/${P}-winnt.patch
+		epatch "${FILESDIR}"/${PN}-2.6.0-winnt.patch
 		eautoreconf
 	fi
 
