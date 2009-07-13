@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.26.0.ebuild,v 1.1 2009/05/10 19:24:32 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.26.0.ebuild,v 1.2 2009/07/12 21:08:12 eva Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -36,6 +36,12 @@ pkg_setup() {
 src_prepare() {
 	# Fix linking to system's library, bug #265428
 	epatch "${FILESDIR}/${PN}-2.22.0-system-relink.patch"
+
+	# Fix silly upstream CFLAGS, bug #277291
+	sed "s/-Werror//g" -i capplet/Makefile.am capplet/Makefile.in \
+		libgnomekbd/Makefile.am libgnomekbd/Makefile.in \
+		test/Makefile.am test/Makefile.in \
+		configure.in configure || die "removing -Werror failed"
 
 	# Make it libtool-1 compatible
 	rm -v m4/lt* m4/libtool.m4 || die "removing libtool macros failed"
