@@ -15,7 +15,7 @@ SRC_URI="mirror://ubuntu/pool/main/u/${MY_PN}/${MY_PN}_${PV}.orig.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 RDEPEND=">=x11-libs/gtk+-2.8:2"
