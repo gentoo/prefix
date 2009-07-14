@@ -21,7 +21,7 @@ RDEPEND=""
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.2.11-mint.patch
-	[[ ${CHOST} == *-mips* ]] && epatch "${FILESDIR}"/${PN}-1.3.5-irix.patch
+	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${PN}-1.3.5-irix.patch
 
 	AT_M4DIR="build" eautoreconf
 	elibtoolize
