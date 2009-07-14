@@ -27,7 +27,18 @@ src_unpack() {
 	unpack ${A}
 
 	epatch "${FILESDIR}"/${P/-prefix/}-prefix.patch
-	use prefix-chaining && epatch "${FILESDIR}"/${P/-prefix/}-prefix-chaining.patch
+
+	if use prefix-chaining; then
+		epatch "${FILESDIR}"/${P/-prefix/}-prefix-chaining.patch
+		epatch "${FILESDIR}"/${P/-prefix/}-prefix-chaining-pkgconfig.patch
+
+		# need to set the PKG_CONFIG_PATH globally for this prefix, when
+		# chaining is enabled, since pkg-config may not be installed locally,
+		# but still .pc files should be found for all RDEPENDable prefixes in
+		# the chain.
+		echo "PKG_CONFIG_PATH=\"${EPREFIX}/usr/lib/pkgconfig:${EPREFIX}/usr/share/pkgconfig\"" >> "${S}"/etc/env.d/00basic
+	fi
+
 	cd "${S}"
 	eprefixify \
 		etc/env.d/00basic \

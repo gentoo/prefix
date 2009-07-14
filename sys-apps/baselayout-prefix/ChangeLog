@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  14 Jul 2009; Markus Duft <mduft@gentoo.org>
+  baselayout-prefix-1.12.5-r6.ebuild,
+  +files/baselayout-1.12.5-prefix-chaining-pkgconfig.patch:
+  fixed pkg-config issues with prefix-chaining
+
 *baselayout-prefix-1.12.5-r6 (26 Mar 2009)
 
   26 Mar 2009; <mduft@gentoo.org>
