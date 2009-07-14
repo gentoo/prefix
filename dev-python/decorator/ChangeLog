@@ -1,0 +1,29 @@
+# ChangeLog for dev-python/decorator
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/decorator/ChangeLog,v 1.5 2009/05/22 21:00:21 patrick Exp $
+
+  22 May 2009; Patrick Lauer <patrick@gentoo.org> decorator-2.3.2.ebuild:
+  SRC_URI fix for 2.3.2, fixes #269086
+
+*decorator-2.3.2 (26 Apr 2009)
+
+  26 Apr 2009; Patrick Lauer <patrick@gentoo.org> +decorator-2.3.2.ebuild:
+  Bump to 2.3.2, dep for bug #260168
+
+*decorator-3.0.1 (27 Mar 2009)
+
+  27 Mar 2009; Sébastien Fabbro <bicatali@gentoo.org> metadata.xml,
+  +decorator-3.0.1.ebuild:
+  Version bump (thanks Romain Perier for his ebuild, bug #260701) and
+  updated long description
+
+  25 May 2008; Santiago M. Mola <coldwind@gentoo.org>
+  decorator-2.2.0.ebuild:
+  add ~amd64 wrt bug #220011
+
+*decorator-2.2.0 (02 May 2008)
+
+  02 May 2008; Rob Cakebread <pythonhead@gentoo.org> +metadata.xml,
+  +decorator-2.2.0.ebuild:
+  Initial commit. Thanks Qiangning Hong <hongqn@gmail.com> bug #176640
+
