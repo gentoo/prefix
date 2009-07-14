@@ -10,9 +10,9 @@ EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
 source "${EPREFIX}/etc/init.d/functions.sh"
 
 if ! type -P qatom > /dev/null ; then
-	ewarn "This script *highly* suggests to use qatom, please emerge"
-	ewarn "app-portage/portage-utils to use this improved logic."
-	QATOM="false"
+	ewarn "This script requires the use of qatom, please emerge"
+	ewarn "app-portage/portage-utils to continue."
+	exit 1
 fi
 
 if [[ -z ${1} ]] ; then
@@ -53,20 +53,10 @@ return_greatest() {
 # Either use qatom or fall back to a non-qatom approach which may generate false
 # positive.
 return_greatest_wrapper() {
-	if [[ "${QATOM}" == "false" ]]; then
-		ewarn "Using outdated logic, might be broken."
-		ewarn "emerge app-portage/portage-utils"
-		ewarn
-		echo "$( wget -q "${RSURL}/${catpkg}" -O - | \
-		egrep "href=\"[^\"]+\.ebuild\"" -o | \
-		sed -e 's/^href="//' -e 's/"$//' | \
-		tail -n 1 )"
-	else
-		echo "$( return_greatest "$( \
-		wget -q "${RSURL}/${catpkg}" -O - | \
-		egrep "href=\"[^\"]+\.ebuild\"" -o | \
-		sed -e 's/^href="//' -e 's/"$//' )" )"
-	fi
+	echo "$( return_greatest "$( \
+	wget -q "${RSURL}/${catpkg}" -O - | \
+	egrep "href=\"[^\"]+\.ebuild\"" -o | \
+	sed -e 's/^href="//' -e 's/"$//' )" )"
 }
 
 # Mangle user input
