@@ -1,0 +1,76 @@
+# ChangeLog for dev-python/pyro
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyro/ChangeLog,v 1.17 2009/06/01 00:38:29 patrick Exp $
+
+*pyro-3.9.1 (01 Jun 2009)
+
+  01 Jun 2009; Patrick Lauer <patrick@gentoo.org> +pyro-3.9.1.ebuild:
+  Bump to 3.9.1, fixes #271202
+
+*pyro-3.9 (26 Apr 2009)
+
+  26 Apr 2009; Patrick Lauer <patrick@gentoo.org> +pyro-3.9.ebuild:
+  Bump to 3.9, fixes #267550
+
+*pyro-3.7 (05 Jun 2007)
+
+  05 Jun 2007; Lukasz Strzygowski <lucass@gentoo.org> -pyro-3.5.ebuild,
+  +pyro-3.7.ebuild:
+  Version bump. Removed old version.
+
+  04 Mar 2007; Lukasz Strzygowski <lucass@gentoo.org> pyro-3.4.ebuild,
+  pyro-3.5.ebuild:
+  Replaced einfo with elog in pkg_postinst. In 3.5: added doc/examples
+  use-flags, minor cleanup.
+
+  21 Feb 2007; Lukasz Strzygowski <lucass@gentoo.org> files/digest-pyro-3.4,
+  files/digest-pyro-3.5, Manifest:
+  Convert to Manifest2.
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> pyro-3.5.ebuild:
+  Mark 3.5 ~ia64
+
+*pyro-3.5 (02 Dec 2005)
+
+  02 Dec 2005; Alastair Tse <liquidx@gentoo.org>
+  -files/pyro-3.3-unattend.patch, -pyro-3.3.ebuild, -pyro-3.3-r1.ebuild,
+  +pyro-3.5.ebuild:
+  version bump (#113442)
+
+  18 Sep 2005; Simon Stelling <blubb@gentoo.org> pyro-3.4.ebuild:
+  stable on amd64
+
+  17 Sep 2005; Lukasz Strzygowski <lucass@gentoo.org> pyro-3.3-r1.ebuild,
+  pyro-3.4.ebuild:
+  Marked stable on x86.
+
+  07 Feb 2005; Fernando Serboncini <fserb@gentoo.org> pyro-3.3.ebuild:
+  stable on x86
+
+*pyro-3.4 (28 Jan 2005)
+
+  28 Jan 2005; Rob Cakebread <pythonhead@gentoo.org>
+  +files/pyro-3.4-unattend.patch, +pyro-3.4.ebuild:
+  Version bump.
+
+  18 Dec 2004; Simon Stelling <blubb@gentoo.org> pyro-3.3-r1.ebuild:
+  added ~amd64
+
+  17 Jul 2004; David Holm <dholm@gentoo.org> pyro-3.3-r1.ebuild:
+  Added to ~ppc.
+
+*pyro-3.3-r1 (07 Jul 2004)
+
+  07 Jul 2004; Alastair Tse <liquidx@gentoo.org> +pyro-3.3-r1.ebuild,
+  pyro-3.3.ebuild:
+  fix overwriting /usr/bin/esd temporarily be renaming esd to pyroesd. (#56096)
+
+  17 Feb 2004; <kloeri@gentoo.org> pyro-3.3.ebuild:
+  Add missing SLOT.
+
+*pyro-3.3 (16 Feb 2004)
+
+  16 Feb 2004; <kloeri@gentoo.org> pyro-3.3.ebuild,
+  files/pyro-3.3-unattend.patch:
+  Initial import.
+
