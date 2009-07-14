@@ -9,7 +9,7 @@ diff -ru baselayout-1.12.5.orig/etc/profile baselayout-1.12.5/etc/profile
 +	if [[ ${_ro_deps} == *RDEPEND* ]]; then
  		_ro_chained_path_vars="${_ro_chained_path_vars} PKG_CONFIG_PATH"
 +	else
-+		unset ${PKG_CONFIG_PATH}
++		unset PKG_CONFIG_PATH
 +	fi
  
  	for var in ${_ro_chained_path_vars}; do

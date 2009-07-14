@@ -3,6 +3,10 @@
 # $Id$
 
   14 Jul 2009; Markus Duft <mduft@gentoo.org>
+  files/baselayout-1.12.5-prefix-chaining-pkgconfig.patch:
+  fixed mistake in previous patch
+
+  14 Jul 2009; Markus Duft <mduft@gentoo.org>
   baselayout-prefix-1.12.5-r6.ebuild,
   +files/baselayout-1.12.5-prefix-chaining-pkgconfig.patch:
   fixed pkg-config issues with prefix-chaining
