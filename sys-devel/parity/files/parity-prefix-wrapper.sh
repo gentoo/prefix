@@ -35,7 +35,7 @@ if test -n "${EPREFIX}"; then
 fi
 
 case "$mode" in
-link) 		exec "${compiler}" "${link_dirs[@]}" "${pfx_link[@]}" "${opts[@]}" ;;
+link) 		exec "${compiler}" "${link_dirs[@]}" "${pfx_link[@]}" "${opts[@]}" "${pfx_comp[@]}" ;;
 compile)	exec "${compiler}" "${link_dirs[@]}" "${opts[@]}" "${pfx_comp[@]}" ;;
 version)	exec "${compiler}" "${orig_args[@]}" ;;
 *)			echo "cannot infer $0's mode from comamnd line arguments"; exit 1 ;;

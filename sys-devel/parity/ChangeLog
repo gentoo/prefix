@@ -2,6 +2,11 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Jul 2009; Markus Duft <mduft@gentoo.org>
+  files/parity-prefix-wrapper.sh:
+  fixed compiler wrapper to add include dirs also while linking. required if
+  doing compile and link in one step
+
   17 Jun 2009; Markus Duft <mduft@gentoo.org>
   files/parity-prefix-wrapper.sh:
   fixed parity wrapper script to work without EPREFIX set too
