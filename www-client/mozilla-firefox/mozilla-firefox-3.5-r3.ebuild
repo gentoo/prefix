@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5-r2.ebuild,v 1.1 2009/07/02 16:06:25 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5-r3.ebuild,v 1.1 2009/07/13 08:51:35 nirbheek Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -284,6 +284,11 @@ src_install() {
 			${PN}-${MAJ_PV}.desktop
 		sed -e "s/Bon Echo/Minefield/" \
 			-i "${ED}"/usr/share/applications/${PN}-${MAJ_PV}.desktop
+	fi
+
+	# Add StartupNotify=true bug 237317
+	if use startup-notification; then
+		echo "StartupNotify=true" >> "${ED}"/usr/share/applications/${PN}-${MAJ_PV}.desktop
 	fi
 
 	# Create /usr/bin/firefox
