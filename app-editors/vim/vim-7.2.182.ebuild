@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.2.182.ebuild,v 1.1 2009/05/18 19:25:36 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.2.182.ebuild,v 1.2 2009/07/14 23:38:30 fmccor Exp $
 
 inherit vim 
 
