@@ -1,0 +1,10 @@
+# ChangeLog for dev-python/pudb
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pudb/ChangeLog,v 1.1 2009/07/03 14:01:38 grozin Exp $
+
+*pudb-0.92.3 (03 Jul 2009)
+
+  03 Jul 2009; Andrey Grozin <grozin@gentoo.org> +pudb-0.92.3.ebuild,
+  +metadata.xml:
+  Initial import
+
