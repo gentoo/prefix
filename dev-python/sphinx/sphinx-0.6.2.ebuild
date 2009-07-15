@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/sphinx-0.6.2.ebuild,v 1.2 2009/07/05 21:05:58 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/sphinx-0.6.2.ebuild,v 1.3 2009/07/15 03:12:08 neurogeek Exp $
 
-inherit distutils multilib
+EAPI="2"
+inherit distutils
 
 MY_PN="Sphinx"
 MY_P="${MY_PN}-${PV}"
@@ -46,7 +47,7 @@ src_install() {
 }
 
 src_test() {
-	PYTHONPATH="./build/lib" "${python}" tests/run.py || die "Tests failed"
+	PYTHONPATH="./build/lib" nosetests || die "Tests failed"
 }
 
 pkg_postinst() {
