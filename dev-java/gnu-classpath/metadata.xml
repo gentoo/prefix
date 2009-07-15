@@ -5,5 +5,6 @@
   <use>
     <flag name="dssi">Enable the DSSI midi synthesizer provider</flag>
     <flag name="gconf">Enable the GConf based util.peers backend</flag>
+    <flag name="gjdoc">Build GNU Classpath's javadoc implementation. Formerly dev-java/gjdoc, now part of gnu-classpath upstream.</flag>
   </use>
 </pkgmetadata>
