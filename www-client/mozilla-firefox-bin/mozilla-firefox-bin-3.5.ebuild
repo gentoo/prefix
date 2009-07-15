@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.5.ebuild,v 1.1 2009/06/30 15:30:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.5.ebuild,v 1.2 2009/07/13 08:52:12 nirbheek Exp $
 EAPI="2"
 
 inherit eutils mozilla-launcher multilib mozextension prefix
@@ -105,6 +105,11 @@ src_install() {
 	# Install icon and .desktop for menu entry
 	newicon "${S}"/chrome/icons/default/default48.png ${PN}-icon.png
 	domenu "${FILESDIR}"/icon/${PN}.desktop
+
+	# Add StartupNotify=true bug 237317
+	if use startup-notification; then
+		echo "StartupNotify=true" >> "${ED}"/usr/share/applications/${PN}.desktop
+	fi
 
 	# Install firefox in /opt
 	local tmp_MOZILLA_FIVE_HOME	# hack for prefix env
