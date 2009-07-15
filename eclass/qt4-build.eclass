@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.41 2009/06/28 15:24:42 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.42 2009/07/13 19:55:30 hwoarang Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -92,22 +92,6 @@ qt4-build_pkg_setup() {
 		# Check USE requirements
 		qt4-build_check_use
 	fi
-	# Set up installation directories
-	QTBASEDIR=${EPREFIX}/usr/$(get_libdir)/qt4
-	QTPREFIXDIR=${EPREFIX}/usr
-	QTBINDIR=${EPREFIX}/usr/bin
-	QTLIBDIR=${EPREFIX}/usr/$(get_libdir)/qt4
-	QTPCDIR=${EPREFIX}/usr/$(get_libdir)/pkgconfig
-	QTDATADIR=${EPREFIX}/usr/share/qt4
-	QTDOCDIR=${EPREFIX}/usr/share/doc/qt-${PV}
-	QTHEADERDIR=${EPREFIX}/usr/include/qt4
-	QTPLUGINDIR=${QTLIBDIR}/plugins
-	QTSYSCONFDIR=${EPREFIX}/etc/qt4
-	QTTRANSDIR=${QTDATADIR}/translations
-	QTEXAMPLESDIR=${QTDATADIR}/examples
-	QTDEMOSDIR=${QTDATADIR}/demos
-
-	PLATFORM=$(qt_mkspecs_dir)
 
 	PATH="${S}/bin:${PATH}"
 	if [[ ${CHOST} != *-darwin* ]]; then
@@ -153,6 +137,7 @@ qt4-build_pkg_setup() {
 # @DESCRIPTION:
 # Unpacks the sources
 qt4-build_src_unpack() {
+	setqtenv
 	local target targets licenses
 	if version_is_at_least 4.5 ${PV} ; then
 		licenses="LICENSE.GPL3 LICENSE.LGPL"
@@ -197,6 +182,7 @@ qt4-build_src_unpack() {
 # Prepare the sources before the configure phase. Strip CFLAGS if necessary, and fix
 # source files in order to respect CFLAGS/CXXFLAGS/LDFLAGS specified on /etc/make.conf.
 qt4-build_src_prepare() {
+	setqtenv
 	cd "${S}"
 
 	if use aqua; then
@@ -291,7 +277,7 @@ qt4-build_src_prepare() {
 # @DESCRIPTION:
 # Default configure phase
 qt4-build_src_configure() {
-
+	setqtenv
 	myconf="$(standard_configure_options) ${myconf}"
 
 	# this one is needed for all systems with a separate -liconv, apart from
@@ -352,6 +338,7 @@ qt4-build_src_configure() {
 # @FUNCTION: qt4-build_src_compile
 # @DESCRIPTION: Actual compile phase
 qt4-build_src_compile() {
+	setqtenv
 	# Be backwards compatible for now
 	if [[ $EAPI != 2 ]]; then
 		qt4-build_src_configure
@@ -364,9 +351,33 @@ qt4-build_src_compile() {
 # @DESCRIPTION:
 # Perform the actual installation including some library fixes.
 qt4-build_src_install() {
+	setqtenv
 	install_directories "${QT4_TARGET_DIRECTORIES}"
 	install_qconfigs
 	fix_library_files
+}
+
+# @FUNCTION: setqtenv
+setqtenv() {
+	# Set up installation directories
+	QTBASEDIR=${EPREFIX}/usr/$(get_libdir)/qt4
+	QTPREFIXDIR=${EPREFIX}/usr
+	QTBINDIR=${EPREFIX}/usr/bin
+	QTLIBDIR=${EPREFIX}/usr/$(get_libdir)/qt4
+	QMAKE_LIBDIR_QT=${QTLIBDIR}
+	QTPCDIR=${EPREFIX}/usr/$(get_libdir)/pkgconfig
+	QTDATADIR=${EPREFIX}/usr/share/qt4
+	QTDOCDIR=${EPREFIX}/usr/share/doc/qt-${PV}
+	QTHEADERDIR=${EPREFIX}/usr/include/qt4
+	QTPLUGINDIR=${QTLIBDIR}/plugins
+	QTSYSCONFDIR=${EPREFIX}/etc/qt4
+	QTTRANSDIR=${QTDATADIR}/translations
+	QTEXAMPLESDIR=${QTDATADIR}/examples
+	QTDEMOSDIR=${QTDATADIR}/demos
+	QT_INSTALL_PREFIX=${EPREFIX}/usr/$(get_libdir)/qt4
+	PLATFORM=$(qt_mkspecs_dir)
+
+	unset QMAKESPEC
 }
 
 # @FUNCTION: standard_configure_options
@@ -443,6 +454,7 @@ build_directories() {
 	local dirs="$@"
 	for x in ${dirs}; do
 		cd "${S}"/${x}
+		sed -i -e "s:\$\$\[QT_INSTALL_LIBS\]:/usr/$(get_libdir)/qt4:g" $(find "${S}" -name '*.pr[io]') "${S}"/mkspecs/common/linux.conf || die
 		"${S}"/bin/qmake "LIBS+=-L${QTLIBDIR}" "CONFIG+=nostrip" || die "qmake failed"
 		emake || die "emake failed"
 	done
@@ -766,6 +778,9 @@ qt_mkspecs_dir() {
 		spec="${spec}-icc"
 	else
 		die "Unknown compiler ${CXX}."
+	fi
+	if [[ -n "${LIBDIR/lib}" ]]; then
+		spec="${spec}-${LIBDIR/lib}"
 	fi
 
 	# Add -64 for 64bit profiles
