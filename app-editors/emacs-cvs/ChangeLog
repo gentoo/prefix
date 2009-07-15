@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.252 2009/07/09 06:07:58 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.253 2009/07/14 07:36:31 ulm Exp $
+
+  14 Jul 2009; Ulrich Mueller <ulm@gentoo.org>
+  -files/emacs-23.0.92-sh.patch, -emacs-cvs-23.0.93.ebuild,
+  emacs-cvs-23.0.96.ebuild, emacs-cvs-23.0.9999-r2.ebuild,
+  emacs-cvs-23.1.9999.ebuild:
+  Bring postinst message in line with app-editors/emacs. Remove old.
 
 *emacs-cvs-23.0.96 (09 Jul 2009)
 

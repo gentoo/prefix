@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r2.ebuild,v 1.1 2009/06/21 17:00:33 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.0.9999-r2.ebuild,v 1.2 2009/07/14 07:36:31 ulm Exp $
 
 EAPI=2
 
@@ -308,7 +308,7 @@ pkg_postinst() {
 	echo
 	elog "You can set the version to be started by /usr/bin/emacs through"
 	elog "the Emacs eselect module, which also redirects man and info pages."
-	elog "You can therefore test emacs-cvs along with the stable release."
+	elog "Therefore, several Emacs versions can be installed at the same time."
 	elog "\"man emacs.eselect\" for details."
 }
 
