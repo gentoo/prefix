@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0-r1.ebuild,v 1.5 2009/07/10 11:35:46 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0-r1.ebuild,v 1.6 2009/07/13 21:36:33 ssuominen Exp $
 
 EAPI=2
 inherit eutils multilib
@@ -12,7 +12,7 @@ SRC_URI="http://mirror.greaterscope.net/cmus/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
-IUSE="aac alsa ao debug examples flac mad mikmod modplug mp3 mp4 musepack \
+IUSE="aac alsa ao debug examples flac mad mikmod modplug mp4 musepack \
 	oss pidgin unicode vorbis wavpack wma zsh-completion"
 
 DEPEND="sys-libs/ncurses[unicode?]
@@ -23,9 +23,7 @@ DEPEND="sys-libs/ncurses[unicode?]
 	mad? ( >=media-libs/libmad-0.14 )
 	mikmod? ( media-libs/libmikmod )
 	modplug? ( >=media-libs/libmodplug-0.7 )
-	mp3? ( >=media-libs/libmad-0.14 )
-	mp4? ( media-libs/libmp4v2
-		media-libs/faad2 )
+	mp4? ( media-libs/libmp4v2 )
 	musepack? ( >=media-libs/libmpcdec-1.2 )
 	vorbis? ( >=media-libs/libvorbis-1.0 )
 	wavpack? ( media-sound/wavpack )
@@ -64,7 +62,6 @@ src_configure() {
 	my_config flac CONFIG_FLAC
 	my_config mad CONFIG_MAD
 	my_config mikmod CONFIG_MIKMOD
-	my_config mp3 CONFIG_MAD
 	my_config mp4 CONFIG_MP4
 	my_config modplug CONFIG_MODPLUG
 	my_config musepack CONFIG_MPC
