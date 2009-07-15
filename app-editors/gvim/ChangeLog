@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/gvim
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.287 2009/05/18 19:28:34 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.288 2009/07/14 23:38:57 fmccor Exp $
+
+  14 Jul 2009; Ferris McCormick <fmccor@gentoo.org> gvim-7.2.182.ebuild:
+  Sparc stable, part of security bug #257007.
 
 *gvim-7.2.182 (18 May 2009)
 
