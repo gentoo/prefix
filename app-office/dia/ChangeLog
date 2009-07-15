@@ -1,6 +1,13 @@
 # ChangeLog for app-office/dia
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.112 2009/06/27 10:26:45 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.113 2009/07/14 22:41:36 eva Exp $
+
+*dia-0.97-r1 (14 Jul 2009)
+
+  14 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org> +dia-0.97-r1.ebuild,
+  +files/dia-0.97-automagic-libemf.patch, +files/dia-0.97-fix-bashism.patch:
+  Version bump. Fix inverted test to build documentation, bug #271047. Fix
+  bashism in configure.ac. Fix automagic libemf detection, bug #276148.
 
   27 Jun 2009; Romain Perier <mrpouet@gentoo.org> dia-0.97.ebuild:
   Fix bug #275468 -- automake failure for doc/*/Makefile.am to a bad sed
