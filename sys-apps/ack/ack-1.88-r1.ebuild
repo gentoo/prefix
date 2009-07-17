@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ack-1.88-r1.ebuild,v 1.1 2009/03/13 06:39:59 rajiv Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ack-1.88-r1.ebuild,v 1.2 2009/07/15 13:23:57 fauli Exp $
 
 inherit perl-module bash-completion
 
