@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-vfs/commons-vfs-1.0.ebuild,v 1.6 2009/04/27 00:12:31 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-vfs/commons-vfs-1.0.ebuild,v 1.7 2009/07/15 13:30:42 fauli Exp $
 
 JAVA_PKG_IUSE="doc source"
 
