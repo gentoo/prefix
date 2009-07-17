@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Inline/Test-Inline-2.210.ebuild,v 1.1 2009/05/22 06:54:50 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Inline/Test-Inline-2.211.ebuild,v 1.1 2009/07/15 18:43:54 tove Exp $
 
 EAPI=2
 
@@ -29,7 +29,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	test? (
 		dev-perl/Test-Script
-		>=dev-perl/Class-Autouse-1.15
+		>=dev-perl/Class-Autouse-1.29
 		>=dev-perl/Test-ClassAPI-1.02 )"
 
 SRC_TEST="do"
