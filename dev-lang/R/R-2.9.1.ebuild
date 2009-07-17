@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.9.1.ebuild,v 1.1 2009/07/07 19:47:58 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.9.1.ebuild,v 1.2 2009/07/16 06:14:11 bicatali Exp $
 
 EAPI=2
 inherit eutils flag-o-matic bash-completion versionator
@@ -61,6 +61,10 @@ src_prepare() {
 		-e "s:-DR_HOME='\"\$(rhome)\"':-DR_HOME='\"${R_HOME}\"':" \
 		src/unix/Makefile.in || die "sed unix Makefile failed"
 
+	# fix HTML links to manual (bug #273957)
+	sed -i -e 's:\.\./manual/:manual/:g' $(grep -Flr ../manual/ doc) \
+		|| die "sed for HTML links to manual failed"
+
 	use lapack && \
 		export LAPACK_LIBS="$(pkg-config --libs lapack)"
 
@@ -119,6 +123,7 @@ src_install() {
 	if use doc; then
 		emake DESTDIR="${D}" \
 			install-info install-pdf || die "emake install docs failed"
+		dosym /usr/share/doc/${PF}/manual /usr/share/doc/${PF}/html/manual
 	fi
 
 	# standalone math lib install (-j1 basically harmless)
