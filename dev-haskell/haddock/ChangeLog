@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/haddock
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.59 2009/05/06 20:55:17 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.60 2009/07/15 17:54:37 kolmodin Exp $
+
+  15 Jul 2009; Lennart Kolmodin <kolmodin@gentoo.org> haddock-2.4.2.ebuild:
+  Haddock 2.4.2 supports ghc-6.10.3 too, update DEPEND.
 
   06 May 2009; Lennart Kolmodin <kolmodin@gentoo.org>
   +files/haddock-2.4.2-Setup.hs, haddock-2.4.2.ebuild:
