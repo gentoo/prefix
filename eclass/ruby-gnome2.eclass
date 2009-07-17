@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-gnome2.eclass,v 1.13 2009/02/08 21:09:54 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-gnome2.eclass,v 1.15 2009/07/16 06:55:09 graaff Exp $
 #
 # This eclass simplifies installation of the various pieces of
 # ruby-gnome2 since they share a very common installation procedure.
@@ -16,27 +16,28 @@ EXPORT_FUNCTIONS src_compile src_install src_unpack
 IUSE=""
 
 subbinding=${PN#ruby-} ; subbinding=${subbinding%2}
-if [[ ${PV} == 0.5.0 ]]; then
-	S=${WORKDIR}/ruby-gnome2-${PV}/${subbinding}
-	SRC_URI="mirror://sourceforge/ruby-gnome2/ruby-gnome2-${PV}.tar.gz"
-else
-	S=${WORKDIR}/ruby-gnome2-all-${PV}/${subbinding}
-	SRC_URI="mirror://sourceforge/ruby-gnome2/ruby-gnome2-all-${PV}.tar.gz"
-fi
+S=${WORKDIR}/ruby-gnome2-all-${PV}/${subbinding}
+SRC_URI="mirror://sourceforge/ruby-gnome2/ruby-gnome2-all-${PV}.tar.gz"
 HOMEPAGE="http://ruby-gnome2.sourceforge.jp/"
 LICENSE="Ruby"
 SLOT="0"
 
-DEPEND="virtual/ruby"
-RDEPEND="virtual/ruby"
+# This eclass can currently only deal with a single ruby version, see
+# bug 278012. Since the code is know to work with Ruby 1.8 we
+# hard-code it to that version for now.
+
+DEPEND="=dev-lang/ruby-1.8*"
+RDEPEND="${DEPEND}"
+USE_RUBY="ruby18"
+RUBY="${EPREFIX}"/usr/bin/ruby18
 
 ruby-gnome2_src_unpack() {
-	if [ ! -x /bin/install -a -x /usr/bin/install ]; then
+	if [ ! -x "${EPREFIX}"/bin/install -a -x "${EPREFIX}"/usr/bin/install ]; then
 		cat <<END >"${T}"/mkmf.rb
 require 'mkmf'
 
 STDERR.puts 'patching mkmf'
-CONFIG['INSTALL'] = '/usr/bin/install'
+CONFIG['INSTALL'] = '${EPREFIX}/usr/bin/install'
 END
 		# save it because rubygems needs it (for unsetting RUBYOPT)
 		export GENTOO_RUBYOPT="-r${T}/mkmf.rb"
@@ -58,12 +59,12 @@ END
 }
 
 ruby-gnome2_src_compile() {
-	ruby extconf.rb || die "extconf.rb failed"
+	${RUBY} extconf.rb || die "extconf.rb failed"
 	emake CC=${CC:-gcc} CXX=${CXX:-g++} || die "emake failed"
 }
 
 ruby-gnome2_src_install() {
-	dodir $(ruby -r rbconfig -e 'print Config::CONFIG["sitearchdir"]')
+	dodir $(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitearchdir"]')
 	make DESTDIR="${D}" install || die "make install failed"
 	for doc in ../AUTHORS ../NEWS ChangeLog README; do
 		[ -s "$doc" ] && dodoc $doc

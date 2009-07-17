@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.93 2008/11/05 12:00:19 dsd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.94 2009/07/15 17:21:11 mpagano Exp $
 
 # Author(s): John Mylchreest <johnm@gentoo.org>,
 #            Stefan Schweizer <genstef@gentoo.org>
@@ -506,7 +506,7 @@ generate_modulesd() {
 		else
 			insinto /etc/modules.d
 		fi
-		newins ${module_config} ${currm_path//*\/}
+		newins ${module_config} ${currm_path//*\/}.conf
 
 		# and install any documentation we might have.
 		[[ -n ${module_docs} ]] && dodoc ${module_docs}
