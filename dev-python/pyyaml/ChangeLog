@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pyyaml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/ChangeLog,v 1.7 2009/05/14 18:13:53 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/ChangeLog,v 1.9 2009/07/16 19:12:51 gentoofan23 Exp $
+
+  16 Jul 2009; Thomas Anderson <gentoofan23@gentoo.org> pyyaml-3.08.ebuild:
+  stable amd64, bug 277972
+
+  15 Jul 2009; Christian Faulhammer <fauli@gentoo.org> pyyaml-3.08.ebuild:
+  stable x86, bug 277861
 
   14 May 2009; <solar@gentoo.org> pyyaml-3.08.ebuild:
   - keyword ~arm
