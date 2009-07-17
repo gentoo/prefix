@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.9.0.ebuild,v 1.4 2009/07/14 18:34:16 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.9.0.ebuild,v 1.6 2009/07/16 20:19:37 ssuominen Exp $
 
 EAPI=2
-inherit flag-o-matic
+inherit flag-o-matic libtool
 
 DESCRIPTION="Functions for accessing ISO-IEC:14496-1:2001 MPEG-4 standard"
 HOMEPAGE="http://code.google.com/p/mp4v2"
@@ -19,7 +19,13 @@ DEPEND="utils? ( sys-apps/help2man )
 	!media-video/mpeg4ip
 	sys-apps/sed"
 
+RESTRICT="test"
+
 S=${WORKDIR}/${P/lib}
+
+src_prepare() {
+	elibtoolize
+}
 
 src_configure() {
 	replace-flags -ggdb3 -ggdb2
