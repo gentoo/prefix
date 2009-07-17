@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.110 2009/07/09 18:20:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.111 2009/07/16 16:51:37 nixnut Exp $
+
+  16 Jul 2009; nixnut <nixnut@gentoo.org> eselect-1.1.1.ebuild:
+  ppc stable #277187
 
   09 Jul 2009; Jeroen Roovers <jer@gentoo.org> eselect-1.1.1.ebuild:
   Stable for HPPA (bug #277187).
