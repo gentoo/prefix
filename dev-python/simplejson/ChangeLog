@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/simplejson
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/simplejson/ChangeLog,v 1.13 2009/04/23 20:54:24 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/simplejson/ChangeLog,v 1.14 2009/07/15 12:58:44 fauli Exp $
+
+  15 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  simplejson-2.0.9.ebuild:
+  stable x86, bug 277333
 
   23 Apr 2009; Patrick Lauer <patrick@gentoo.org> simplejson-2.0.9:
   Fixing python dep for py 2.6, fixes #267179
