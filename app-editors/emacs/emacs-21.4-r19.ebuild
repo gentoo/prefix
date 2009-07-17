@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r19.ebuild,v 1.4 2009/07/11 19:11:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r19.ebuild,v 1.7 2009/07/16 17:03:34 ulm Exp $
 
 EAPI=2
 
@@ -15,7 +15,7 @@ SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
 LICENSE="GPL-2 FDL-1.1 BSD as-is X11"
 SLOT="21"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE="X Xaw3d leim motif nls sendmail"
+IUSE="X Xaw3d leim motif sendmail"
 
 DEPEND="sys-libs/ncurses
 	>=app-admin/eselect-emacs-1.2
@@ -73,7 +73,6 @@ src_configure() {
 	filter-flags "-march=*"
 
 	local myconf
-	use nls || myconf="${myconf} --disable-nls"
 	if use X ; then
 		myconf="${myconf}
 			--with-x
