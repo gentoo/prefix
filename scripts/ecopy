@@ -41,9 +41,11 @@ is_greater_atom() {
 # Takes input of a list of ebuild strings and uses is_greater_atom() to return
 # the greatest in the list.
 return_greatest() {
-    max="${catpkg#*\/}-0"
-    for i in $@; do
-        if is_greater_atom $max $i; then
+	# Append '-0_alpha' to the end of the name such that any version is greater
+	# than it. bug #278113
+	max="${catpkg#*\/}-0_alpha"
+	for i in $@; do
+		if is_greater_atom $max $i; then
 			max="${i}"
 		fi
 	done
