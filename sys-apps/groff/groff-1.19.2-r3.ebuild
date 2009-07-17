@@ -34,6 +34,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-man-unicode-dashes.patch #16108 #17580 #121502
 	epatch "${FILESDIR}"/${P}-parallel-make.patch
+	epatch "${FILESDIR}"/${P}-early-getopt-inclusion.patch #211507
 
 	# Make sure we can cross-compile this puppy
 	if tc-is-cross-compiler ; then
