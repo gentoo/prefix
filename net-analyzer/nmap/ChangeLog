@@ -1,6 +1,11 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.201 2009/06/27 09:03:51 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.202 2009/07/16 20:19:47 patrick Exp $
+
+*nmap-5.00 (16 Jul 2009)
+
+  16 Jul 2009; Patrick Lauer <patrick@gentoo.org> +nmap-5.00.ebuild:
+  Bump to 5.00
 
 *nmap-4.90_rc1 (27 Jun 2009)
 
