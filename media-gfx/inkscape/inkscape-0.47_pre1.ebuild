@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47_pre1.ebuild,v 1.1 2009/07/04 15:38:21 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47_pre1.ebuild,v 1.2 2009/07/15 15:57:27 ssuominen Exp $
 
-EAPI="2"
-
+EAPI=2
 inherit gnome2
 
 MY_P="${P/_/}"
@@ -24,7 +23,6 @@ COMMON_DEPEND="
 	dev-cpp/glibmm
 	>=dev-cpp/gtkmm-2.10.0
 	>=dev-libs/boehm-gc-6.4
-	dev-libs/boost
 	>=dev-libs/glib-2.6.5
 	>=dev-libs/libsigc++-2.0.12
 	>=dev-libs/libxml2-2.6.20
@@ -60,6 +58,7 @@ RDEPEND="
 	wmf? ( media-libs/libwmf )"
 
 DEPEND="${COMMON_DEPEND}
+	dev-libs/boost
 	sys-devel/gettext
 	dev-util/pkgconfig
 	x11-libs/libX11

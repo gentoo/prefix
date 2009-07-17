@@ -1,19 +1,19 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r5.ebuild,v 1.14 2009/06/01 12:25:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.46-r5.ebuild,v 1.15 2009/07/15 15:59:14 ssuominen Exp $
 
-EAPI="2"
-
-inherit gnome2 eutils autotools
+EAPI=2
+inherit eutils gnome2
 
 DESCRIPTION="A SVG based generic vector-drawing program"
 HOMEPAGE="http://www.inkscape.org/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
-SLOT="0"
 LICENSE="GPL-2 LGPL-2.1"
+SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="dia doc gnome inkjar jabber lcms mmx perl postscript spell wmf"
+
 RESTRICT="test"
 
 COMMON_DEPEND="
