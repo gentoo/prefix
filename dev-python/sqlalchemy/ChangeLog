@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/sqlalchemy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/ChangeLog,v 1.27 2009/04/23 12:51:05 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/ChangeLog,v 1.29 2009/07/16 23:32:21 neurogeek Exp $
+
+  16 Jul 2009; Jesus Rivero <neurogeek@gentoo.org> sqlalchemy-0.5.5.ebuild,
+  +files/sqlalchemy-0.5.5_tests.patch:
+  Fixed tests wrt bug #278030
+
+*sqlalchemy-0.5.5 (16 Jul 2009)
+
+  16 Jul 2009; Patrick Lauer <patrick@gentoo.org> +sqlalchemy-0.5.5.ebuild:
+  Bump to 0.5.5, closes #278030. Test fixups by <moonstruxx at gmx.de>
 
 *sqlalchemy-0.5.3 (23 Apr 2009)
 
