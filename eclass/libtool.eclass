@@ -200,10 +200,7 @@ elibtoolize() {
 	# It definitely is required for aix (to support DESTDIR),
 	# although it should help for others too...
 	[[ ${CHOST} == *"-aix"* ]] &&
-		elt_patches="${elt_patches} hardcode"
-
-	[[ ${CHOST} == *"-aix"* ]] &&
-		elt_patches="${elt_patches} aixrtl"
+		elt_patches="${elt_patches} hardcode aixrtl"
 
 	[[ ${CHOST} == *"-darwin"* ]] && \
 		elt_patches="${elt_patches} darwin-ltconf darwin-ltmain darwin-conf"
@@ -320,7 +317,7 @@ elibtoolize() {
 						ret=$?
 					fi
 					;;
-				"aixrtl" | "aix-hc-L")
+				"aixrtl")
 					ret=1
 					local subret=0
 					while [[ $subret -eq 0 ]]; do
