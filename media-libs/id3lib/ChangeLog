@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/id3lib
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/id3lib/ChangeLog,v 1.70 2008/07/29 15:04:05 yngwin Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/id3lib/ChangeLog,v 1.71 2009/07/16 19:18:11 ssuominen Exp $
+
+*id3lib-3.8.3-r8 (16 Jul 2009)
+
+  16 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +id3lib-3.8.3-r8.ebuild,
+  +files/id3lib-3.8.3-missing_nullpointer_check.patch:
+  Missing null check wrt #277845 by Thomas Eschenbacher.
 
 *id3lib-3.8.3-r7 (29 Jul 2008)
 

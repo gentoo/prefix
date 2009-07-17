@@ -1,14 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/id3lib/id3lib-3.8.3-r7.ebuild,v 1.1 2008/07/29 15:04:05 yngwin Exp $
-
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
+# $Header: /var/cvsroot/gentoo-x86/media-libs/id3lib/id3lib-3.8.3-r7.ebuild,v 1.2 2009/07/16 19:18:11 ssuominen Exp $
 
 inherit eutils autotools
 
-MY_P=${P/_/}
-S="${WORKDIR}"/${MY_P}
+MY_P=${P/_}
+S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="Id3 library for C/C++"
 HOMEPAGE="http://id3lib.sourceforge.net/"
