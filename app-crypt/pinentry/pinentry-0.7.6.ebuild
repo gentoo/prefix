@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.6.ebuild,v 1.2 2009/07/04 18:35:11 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.6.ebuild,v 1.3 2009/07/15 21:04:10 arfrever Exp $
 
 EAPI=1
 
@@ -30,10 +30,10 @@ RDEPEND="${DEPEND}"
 pkg_setup() {
 	use static && append-ldflags -static
 
-	if use static && ( use gtk || use qt3 )
+	if use static && { use gtk || use qt3 || use qt4; }
 	then
 		ewarn
-		ewarn "The static USE flag is only supported with the ncurses USE flags, disabling the gtk and qt3 USE flags."
+		ewarn "The static USE flag is only supported with the ncurses USE flags, disabling the gtk, qt3 and qt4 USE flags."
 		ewarn
 	fi
 }
@@ -55,12 +55,12 @@ src_unpack() {
 src_compile() {
 	local myconf=""
 
-	if ! ( use qt3 || use gtk || use ncurses )
+	if ! { use qt3 || use qt4 || use gtk || use ncurses; }
 	then
 		myconf="--enable-pinentry-curses --enable-fallback-curses"
 	elif use static
 	then
-		myconf="--enable-pinentry-curses --enable-fallback-curses --disable-pinentry-gtk2 --disable-pinentry-qt"
+		myconf="--enable-pinentry-curses --enable-fallback-curses --disable-pinentry-gtk2 --disable-pinentry-qt --disable-pinentry-qt4"
 	fi
 
 	# Issues finding qt on multilib systems
@@ -76,8 +76,7 @@ src_compile() {
 		$(use_enable ncurses fallback-curses) \
 		$(use_enable qt4 pinentry-qt4) \
 		$(use_with caps libcap) \
-		${myconf} \
-		|| die "econf failed"
+		${myconf}
 	emake || die "emake failed"
 }
 
