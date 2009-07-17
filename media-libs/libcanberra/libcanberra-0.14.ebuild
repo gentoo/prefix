@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.14.ebuild,v 1.1 2009/07/08 15:47:03 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.14.ebuild,v 1.2 2009/07/16 11:01:07 mrpouet Exp $
 
 EAPI=1
 
@@ -16,7 +16,7 @@ KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="alsa doc gstreamer +gtk oss pulseaudio"
 
 RDEPEND="media-libs/libvorbis
-	sys-devel/libtool
+	>=sys-devel/libtool-2.2
 	alsa? ( media-libs/alsa-lib )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.11 )
 	gstreamer? ( >=media-libs/gstreamer-0.10.15 )

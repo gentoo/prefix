@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.21 2009/07/08 15:47:03 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.22 2009/07/16 11:01:07 mrpouet Exp $
+
+  16 Jul 2009; Romain Perier <mrpouet@gentoo.org> libcanberra-0.14.ebuild:
+  Fix bug #277739. Moved sys-devel/libtool to >=sys-devel/libtool-2.2 into
+  RDEPEND due to missing API symbol which was added from libtool-2.2
 
 *libcanberra-0.14 (08 Jul 2009)
 
