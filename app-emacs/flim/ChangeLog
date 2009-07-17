@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/flim
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.36 2009/07/12 16:20:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/ChangeLog,v 1.37 2009/07/16 16:41:39 nixnut Exp $
+
+  16 Jul 2009; nixnut <nixnut@gentoo.org> ChangeLog:
+  ppc stable #274553
 
   12 Jul 2009; Raúl Porcel <armin76@gentoo.org> flim-1.14.9.ebuild:
   sparc stable wrt #274553
