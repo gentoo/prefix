@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.63 2009/07/07 21:32:13 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.65 2009/07/15 18:57:29 yngwin Exp $
+
+  15 Jul 2009; Ben de Groot <yngwin@gentoo.org> qt-gui-4.5.2-r1.ebuild:
+  Don't add useflag defaults that are in desktop profile, as was decided in
+  previous meeting
+
+  15 Jul 2009; Markos Chandras <hwoarang@gentoo.org> -qt-gui-4.5.2.ebuild,
+  qt-gui-4.5.2-r1.ebuild:
+  Enable dbus use flag by default. Drop old ebuild
 
 *qt-gui-4.5.2-r1 (07 Jul 2009)
 
