@@ -1,6 +1,14 @@
 # ChangeLog for dev-python/twisted
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.103 2009/01/08 23:30:39 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.104 2009/07/16 06:05:54 neurogeek Exp $
+
+*twisted-8.2.0-r1 (16 Jul 2009)
+
+  16 Jul 2009; Jesus Rivero <neurogeek@gentoo.org>
+  +files/twisted-8.2.0_deprecations.patch, +files/twisted-8.2.0_tests.patch,
+  +twisted-8.2.0-r1.ebuild:
+  Fixed test failures wrt bug #190433. Changed to EAPI 2. Added patches for
+  py26 deprecations
 
   08 Jan 2009; Patrick Lauer <patrick@gentoo.org> +twisted-1.2.0.ebuild:
   Undoing breakage
