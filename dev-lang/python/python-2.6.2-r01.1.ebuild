@@ -119,6 +119,8 @@ src_prepare() {
 
 	# http://bugs.python.org/issue6308
 	epatch "${FILESDIR}"/${P}-termios-noqnx.patch
+	# http://bugs.python.org/issue6163
+	epatch "${FILESDIR}"/${P}-hpuxgcc.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
