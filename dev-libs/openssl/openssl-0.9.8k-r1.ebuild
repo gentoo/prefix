@@ -78,6 +78,7 @@ src_unpack() {
 	[[ $(tc-arch) == *-aix     ]] ||
 	[[ $(tc-arch) == *-interix ]] ||
 	[[ $(tc-arch) == *-winnt*  ]] ||
+	[[ $(tc-arch) == *-hpux    ]] ||
 	[[ ${CHOST} == *-mint* ]] ||
 		append-flags -Wa,--noexecstack
 
