@@ -51,7 +51,7 @@ src_unpack() {
 		*-aix*)
 			requested_gnulib_modules="alphasort dirfd getopt scandir strcasestr strndup xvasprintf"
 			;;
-		ia64*-hpux*)
+		*-hpux*)
 			requested_gnulib_modules="atoll dirfd getopt setenv strcasestr strndup xvasprintf"
 			;;
 		*-interix*)
