@@ -128,8 +128,8 @@ src_install() {
 	# econf above (i.e. multilib) will screw up the default #276465
 	emake \
 		STRIP=: \
-		root_libdir="/$(get_libdir)" \
-		DESTDIR="${ED}" \
+		root_libdir="${EPREFIX}/$(get_libdir)" \
+		DESTDIR="${D}" \
 		install install-libs || die
 	dodoc README RELEASE-NOTES
 
