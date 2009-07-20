@@ -31,6 +31,7 @@ src_unpack() {
 	if use prefix-chaining; then
 		epatch "${FILESDIR}"/${P/-prefix/}-prefix-chaining.patch
 		epatch "${FILESDIR}"/${P/-prefix/}-prefix-chaining-pkgconfig.patch
+		epatch "${FILESDIR}"/${P/-prefix/}-prefix-chaining-recursion.patch
 
 		# need to set the PKG_CONFIG_PATH globally for this prefix, when
 		# chaining is enabled, since pkg-config may not be installed locally,
