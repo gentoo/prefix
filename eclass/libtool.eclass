@@ -205,8 +205,11 @@ elibtoolize() {
 	[[ ${CHOST} == *"-darwin"* ]] && \
 		elt_patches="${elt_patches} darwin-ltconf darwin-ltmain darwin-conf"
 
+	# Need help from binutils-config (>=toolchain-prefix-wrapper-0.3.1655)
+	# to create correct shared libraries and executables on hppa-hpux via
+	# libtool in combination with DESTDIR to avoid $D getting encoded.
 	[[ ${CHOST} == *"-hpux"* ]] && \
-		elt_patches="${elt_patches} hpux-conf hpux-ltmain"
+		elt_patches="${elt_patches} hpux-conf deplibs hc-flag-ld hardcode hardcode-relink relink-prog"
 
 	for x in ${my_dirlist} ; do
 		local tmp=$(echo "${x}" | sed -e "s|${WORKDIR}||")
@@ -317,7 +320,7 @@ elibtoolize() {
 						ret=$?
 					fi
 					;;
-				"aixrtl")
+				"aixrtl" | "hpux-conf")
 					ret=1
 					local subret=0
 					while [[ $subret -eq 0 ]]; do
@@ -335,16 +338,6 @@ elibtoolize() {
 							ret=0
 						fi
 					done
-					;;
-				"hpux-conf")
-					if [[ -e ${x}/configure ]] ; then
-						ELT_walk_patches "${x}/configure" "${y}"
-						ret=$?
-					# ltmain.sh and co might be in a subdirectory ...
-					elif [[ ! -e ${x}/configure && -e ${x}/../configure ]] ; then
-						ELT_walk_patches "${x}/../configure" "${y}"
-						ret=$?
-					fi
 					;;
 				"install-sh")
 					ELT_walk_patches "${x}/install-sh" "${y}"
