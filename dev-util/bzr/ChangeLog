@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/bzr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.102 2009/07/10 08:50:23 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.104 2009/07/20 21:37:41 fauli Exp $
+
+  20 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  -files/bzr-0.92-no-pyrex.patch, -bzr-1.9.ebuild, -bzr-1.10.ebuild,
+  -bzr-1.11.ebuild, -bzr-1.12.ebuild, -bzr-1.13.2.ebuild,
+  -bzr-1.14.1.ebuild:
+  clean up
+
+  17 Jul 2009; nixnut <nixnut@gentoo.org> bzr-1.15.1.ebuild:
+  ppc stable #274451
 
   10 Jul 2009; Peter Volkov <pva@gentoo.org> bzr-1.16.1.ebuild:
   Mask more tests, update info on old failures.
