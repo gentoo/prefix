@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/facets
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/facets/ChangeLog,v 1.24 2009/05/31 07:58:37 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/facets/ChangeLog,v 1.25 2009/07/17 08:18:54 graaff Exp $
+
+*facets-2.6.0 (17 Jul 2009)
+
+  17 Jul 2009; Hans de Graaff <graaff@gentoo.org> +facets-2.6.0.ebuild:
+  Version bump. This version removes some functionality. Please check
+  HISTORY.rdoc to see what got removed and file a bug if you need any of the
+  new packages.
 
   31 May 2009; Hans de Graaff <graaff@gentoo.org> -facets-1.0.3.ebuild:
   Remove old version.
