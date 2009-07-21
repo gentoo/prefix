@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/File-Slurp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Slurp/ChangeLog,v 1.42 2009/07/16 21:43:29 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/File-Slurp/ChangeLog,v 1.43 2009/07/19 18:10:46 nixnut Exp $
+
+  19 Jul 2009; nixnut <nixnut@gentoo.org> File-Slurp-9999.13.ebuild:
+  ppc stable #277860
 
   16 Jul 2009; Tiago Cunha <tcunha@gentoo.org> File-Slurp-9999.13.ebuild:
   stable amd64, bug 277860
