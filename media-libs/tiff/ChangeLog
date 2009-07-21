@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.128 2009/07/15 14:16:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.129 2009/07/19 16:13:53 nixnut Exp $
+
+  19 Jul 2009; nixnut <nixnut@gentoo.org> tiff-3.8.2-r8.ebuild:
+  ppc stable #276988
 
   15 Jul 2009; Raúl Porcel <armin76@gentoo.org> tiff-3.8.2-r8.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #276988
