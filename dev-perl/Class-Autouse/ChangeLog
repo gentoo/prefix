@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Class-Autouse
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Autouse/ChangeLog,v 1.59 2009/07/02 18:46:14 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Autouse/ChangeLog,v 1.60 2009/07/19 18:12:09 nixnut Exp $
+
+  19 Jul 2009; nixnut <nixnut@gentoo.org> Class-Autouse-1.29.ebuild:
+  ppc stable #278093
 
   02 Jul 2009; Jeroen Roovers <jer@gentoo.org> Class-Autouse-1.29.ebuild:
   Stable for HPPA too.
