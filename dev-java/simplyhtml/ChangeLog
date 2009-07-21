@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/simplyhtml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/ChangeLog,v 1.17 2009/07/04 15:09:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/simplyhtml/ChangeLog,v 1.18 2009/07/19 14:21:44 nixnut Exp $
+
+  19 Jul 2009; nixnut <nixnut@gentoo.org> simplyhtml-0.13.1.ebuild:
+  ppc stable #276029
 
   04 Jul 2009; Brent Baude <ranger@gentoo.org> simplyhtml-0.13.1.ebuild:
   Marking simplyhtml-0.13.1 ppc64 for bug 276029
