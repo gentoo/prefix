@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.712 2009/07/16 01:46:55 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.713 2009/07/20 18:45:10 jer Exp $
+
+  20 Jul 2009; Jeroen Roovers <jer@gentoo.org> gcc-4.4.0-r1.ebuild:
+  Mark gcc-4.4* -hppa (bug #272645 and some currently undocumented
+  problems).
 
 *gcc-4.4.0-r1 (16 Jul 2009)
 
