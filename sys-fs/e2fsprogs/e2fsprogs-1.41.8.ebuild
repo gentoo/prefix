@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.8.ebuild,v 1.2 2009/07/16 19:21:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.8.ebuild,v 1.4 2009/07/20 04:19:47 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
 LICENSE="GPL-2 BSD"
 SLOT="0"
-#KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
+
 IUSE="nls elibc_FreeBSD"
 
 RDEPEND="~sys-libs/${PN}-libs-${PV}
@@ -128,8 +128,15 @@ src_install() {
 		install install-libs || die
 	dodoc README RELEASE-NOTES
 
-	# deploy linker scripts rather than abs symlinks for cross-compiling
-	gen_usr_ldscript -a e2p ext2fs
+	# make sure symlinks are relative, not absolute, for cross-compiling
+	cd "${ED}"/usr/$(get_libdir)
+	local x l
+	for x in lib* ; do
+		l=$(readlink "${x}")
+		[[ ${l} == /* ]] || continue
+		rm -f "${x}"
+		ln -s "../..${l}" "${x}"
+	done
 
 	if use elibc_FreeBSD ; then
 		# Install helpers for us
@@ -137,13 +144,9 @@ src_install() {
 		dosbin "${S}"/fsck_ext2fs || die
 		doman "${FILESDIR}"/fsck_ext2fs.8
 
-		# these manpages are already provided by FreeBSD libc
-		# and filefrag is linux only
-		rm -f \
+		# filefrag is linux only
+		rm \
 			"${ED}"/usr/sbin/filefrag \
-			"${ED}"/usr/share/man/man8/filefrag.8 \
-			"${ED}"/usr/bin/uuidgen \
-			"${ED}"/usr/share/man/man3/{uuid,uuid_compare}.3 \
-			"${ED}"/usr/share/man/man1/uuidgen.1 || die
+			"${ED}"/usr/share/man/man8/filefrag.8 || die
 	fi
 }
