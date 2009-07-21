@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.59 2009/05/29 19:46:35 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.60 2009/07/20 17:53:46 aballier Exp $
+
+  20 Jul 2009; Alexis Ballier <aballier@gentoo.org>
+  libarchive-2.7.0-r1.ebuild:
+  Add missing openssl dep
 
   29 May 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   -libarchive-2.6.0.ebuild, -libarchive-2.6.1.ebuild,

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.0-r1.ebuild,v 1.2 2009/05/29 19:46:35 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.0-r1.ebuild,v 1.3 2009/07/20 17:53:46 aballier Exp $
 
 EAPI=1
 
@@ -21,6 +21,7 @@ COMPRESS_LIBS_DEPEND="lzma? ( app-arch/lzma-utils )
 		zlib? ( sys-libs/zlib )"
 
 RDEPEND="!dev-libs/libarchive
+	dev-libs/openssl
 	acl? ( virtual/acl )
 	xattr? ( kernel_linux? ( sys-apps/attr ) )
 	!static? ( ${COMPRESS_LIBS_DEPEND} )"
