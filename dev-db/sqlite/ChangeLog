@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.261 2009/07/11 00:50:56 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.262 2009/07/21 00:29:42 jer Exp $
+
+  21 Jul 2009; Jeroen Roovers <jer@gentoo.org> sqlite-3.6.14.2.ebuild:
+  Stable for HPPA (bug #275592).
 
   11 Jul 2009; <chainsaw@gentoo.org> sqlite-3.6.14.2.ebuild:
   Marked stable on AMD64 for bug #275592; tested on a dual Opteron 2354.
