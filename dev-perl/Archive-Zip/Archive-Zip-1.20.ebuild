@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/Archive-Zip-1.20.ebuild,v 1.10 2008/11/18 14:22:37 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Archive-Zip/Archive-Zip-1.20.ebuild,v 1.11 2009/07/19 17:32:10 tove Exp $
 
 inherit perl-module
 
@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
-DEPEND=">=virtual/perl-Compress-Zlib-1.14
+DEPEND=">=virtual/perl-IO-Compress-1.14
 	>=dev-perl/File-Which-0.05
 	>=virtual/perl-File-Spec-0.80
 	dev-lang/perl"
