@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.6.ebuild,v 1.2 2009/06/18 11:16:03 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.6.ebuild,v 1.3 2009/07/18 00:37:18 dang Exp $
 
 # TODO
 # 1. Track upstream bug --disable-docs does not work.
@@ -79,7 +79,7 @@ pkg_setup() {
 
 src_prepare() {
 	# Fix pkgconfig file when USE="-exif"
-	if use exif; then
+	if ! use exif; then
 		sed -i "s/, @REQUIREMENTS_FOR_LIBEXIF@//" libgphoto2.pc.in || die " libgphoto2.pc sed failed"
 	fi
 
