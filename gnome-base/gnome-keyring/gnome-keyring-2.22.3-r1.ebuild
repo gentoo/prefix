@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.22.3-r1.ebuild,v 1.12 2009/04/28 17:52:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.22.3-r1.ebuild,v 1.13 2009/07/20 20:19:53 eva Exp $
 
 inherit gnome2 eutils pam autotools
 
@@ -19,7 +19,7 @@ RDEPEND=">=dev-libs/glib-2.8
 	 hal? ( >=sys-apps/hal-0.5.7 )
 	 pam? ( virtual/pam )
 	 >=dev-libs/libgcrypt-1.2.2
-	 >=dev-libs/libtasn1-0.3.4"
+	 >=dev-libs/libtasn1-1"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
 	>=dev-util/intltool-0.35
