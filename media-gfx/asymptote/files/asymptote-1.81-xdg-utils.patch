@@ -1,10 +1,10 @@
-Index: asymptote-1.78/settings.cc
+Index: asymptote-1.81/settings.cc
 ===================================================================
---- asymptote-1.78.orig/settings.cc
-+++ asymptote-1.78/settings.cc
-@@ -83,15 +83,15 @@ const bool haveglut=false;
+--- asymptote-1.81.orig/settings.cc
++++ asymptote-1.81/settings.cc
+@@ -82,14 +82,14 @@ mode_t mask;
  bool msdos=false;
- const char *HOME="HOME";
+ string HOME="HOME";
  const char pathSeparator=':';
 -string defaultPSViewer="gv";
 +string defaultPSViewer="xdg-open";
@@ -15,9 +15,8 @@ Index: asymptote-1.78/settings.cc
 +string defaultPDFViewer="xdg-open";
  #endif  
  string defaultGhostscript="gs";
- string defaultPython;
 -string defaultDisplay="display";
 +string defaultDisplay="xdg-open";
+ string defaultAnimate="animate";
  string systemDir=ASYMPTOTE_SYSDIR;
  string docdir=ASYMPTOTE_DOCDIR;
- void queryRegistry() {}
