@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r1.ebuild,v 1.1 2009/07/02 08:44:33 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r2.ebuild,v 1.1 2009/07/20 20:09:35 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -22,7 +22,7 @@ SRC_URI="ftp://ftp.mutt.org/mutt/devel/${P}.tar.gz
 	sidebar? (
 		http://www.lunar-linux.org/~tchan/mutt/${SIDEBAR_PATCH_N}
 	)"
-IUSE="berkdb crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop qdbm sasl
+IUSE="berkdb crypt debug gdbm gnutls gpg idn imap mbox nls nntp pop qdbm sasl
 sidebar smime smtp ssl vanilla"
 SLOT="0"
 LICENSE="GPL-2"
@@ -49,7 +49,7 @@ RDEPEND=">=sys-libs/ncurses-5.2
 		sasl?    ( >=dev-libs/cyrus-sasl-2 )
 	)
 	idn?     ( net-dns/libidn )
-	gpgme?   ( >=app-crypt/gpgme-0.9.0 )
+	gpg?   ( >=app-crypt/gpgme-0.9.0 <app-crypt/gpgme-1.2.0 )
 	smime?   ( >=dev-libs/openssl-0.9.6 )
 	app-misc/mime-types"
 DEPEND="${RDEPEND}
@@ -82,8 +82,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.20-mbox-new-mail-bd59be56c6b0.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-mbox-unchanged-new-mail-9ae13dedb5ed.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-imap-start-fatal-fe30f394cbe6.patch
-	epatch "${FILESDIR}"/mutt-1.5.20-tab-subject-questionmark-298194c414f0.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-tab-subject-questionmark-298194c414f0-cff8e8ce4327.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-smtp-batch-mode-0a3de4d9a009-f6c6066a5925.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-leave-mailbox-no-new-mail-118b8fef8aae.patch
 
 	if use !vanilla && use !sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
@@ -112,7 +113,7 @@ src_unpack() {
 src_compile() {
 	declare myconf="
 		$(use_enable nls) \
-		$(use_enable gpgme) \
+		$(use_enable gpg gpgme) \
 		$(use_enable imap) \
 		$(use_enable pop) \
 		$(use_enable smtp) \
@@ -215,6 +216,17 @@ src_install() {
 	rm -f "${ED}"/usr/share/locale/locale.alias
 
 	dodoc BEWARE COPYRIGHT ChangeLog NEWS OPS* PATCHES README* TODO VERSION
+}
+
+pkg_setup() {
+	if ! use gpg &&
+		has_version ${CATEGORY}/${PN} &&
+		built_with_use ${CATEGORY}/${PN} gpgme ;
+	then
+		ewarn 'The "gpgme" USE-flag has been changed into "gpg".  You'
+		ewarn 'previously had "gpgme" set, and you most likely want to'
+		ewarn 'enable "gpg" instead, right now, to obtain equivalent behaviour.'
+	fi
 }
 
 pkg_postinst() {
