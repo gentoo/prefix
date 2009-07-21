@@ -1,6 +1,9 @@
 # ChangeLog for app-cdr/cdrkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.75 2009/07/05 13:13:54 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.76 2009/07/18 15:11:16 armin76 Exp $
+
+  18 Jul 2009; Raúl Porcel <armin76@gentoo.org> cdrkit-1.1.9-r1.ebuild:
+  ia64/s390/sparc stable wrt #274260
 
   05 Jul 2009; Markus Meier <maekke@gentoo.org> cdrkit-1.1.9-r1.ebuild:
   amd64 stable, bug #274260
