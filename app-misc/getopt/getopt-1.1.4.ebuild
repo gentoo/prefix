@@ -10,7 +10,7 @@ SRC_URI="http://software.frodo.looijaard.name/getopt/files/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls"
 
 RDEPEND="nls? ( virtual/libintl )"
