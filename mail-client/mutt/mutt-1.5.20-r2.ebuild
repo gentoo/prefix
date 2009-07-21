@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r2.ebuild,v 1.1 2009/07/20 20:09:35 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r2.ebuild,v 1.4 2009/07/21 17:31:28 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -49,7 +49,7 @@ RDEPEND=">=sys-libs/ncurses-5.2
 		sasl?    ( >=dev-libs/cyrus-sasl-2 )
 	)
 	idn?     ( net-dns/libidn )
-	gpg?   ( >=app-crypt/gpgme-0.9.0 <app-crypt/gpgme-1.2.0 )
+	gpg?   ( >=app-crypt/gpgme-0.9.0 )
 	smime?   ( >=dev-libs/openssl-0.9.6 )
 	app-misc/mime-types"
 DEPEND="${RDEPEND}
@@ -74,6 +74,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch # fix bdb detection
 	epatch "${FILESDIR}"/mutt-1.5.18-interix.patch
 	epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-gpgme-1.2.0.patch
 	# post-release hot-fixes
 	epatch "${FILESDIR}"/mutt-1.5.20-imap-port-invalid-d6f88fbf8387.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-header-weeding-f40de578e8ed.patch
@@ -85,6 +86,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.20-tab-subject-questionmark-298194c414f0-cff8e8ce4327.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-smtp-batch-mode-0a3de4d9a009-f6c6066a5925.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-leave-mailbox-no-new-mail-118b8fef8aae.patch
+
+	# patch version string for bug reports
+	sed -i -e 's/"Mutt %s (%s)"/"Mutt %s (%s, Gentoo '"${PVR}"')"/' \
+		muttlib.c || die "failed patching in Gentoo version"
 
 	if use !vanilla && use !sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
@@ -220,7 +225,7 @@ src_install() {
 
 pkg_setup() {
 	if ! use gpg &&
-		has_version ${CATEGORY}/${PN} &&
+		has_version "<${CATEGORY}/${PN}-1.5.20-r2" &&
 		built_with_use ${CATEGORY}/${PN} gpgme ;
 	then
 		ewarn 'The "gpgme" USE-flag has been changed into "gpg".  You'
