@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/lxml-2.2.1.ebuild,v 1.5 2009/07/10 12:27:20 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/lxml-2.2.1.ebuild,v 1.6 2009/07/17 18:19:43 nixnut Exp $
 
 EAPI="2"
 
