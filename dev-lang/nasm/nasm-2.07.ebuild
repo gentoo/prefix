@@ -1,12 +1,13 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.03.01.ebuild,v 1.2 2008/12/07 05:58:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.07.ebuild,v 1.1 2009/07/21 02:09:30 mr_bones_ Exp $
 
-inherit eutils toolchain-funcs flag-o-matic
+EAPI=2
+inherit autotools eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="groovy little assembler"
 HOMEPAGE="http://nasm.sourceforge.net/"
-SRC_URI="mirror://sourceforge/nasm/${P}.tar.bz2"
+SRC_URI="http://www.nasm.us/pub/nasm/releasebuilds/${PV/_}/${P/_}.tar.bz2"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
@@ -17,21 +18,14 @@ DEPEND="dev-lang/perl
 	doc? ( virtual/ghostscript sys-apps/texinfo )"
 RDEPEND=""
 
-src_unpack() {
-	unpack ${A}
-	if [ "$(gcc-major-version)" -eq "2" ] ; then
-		cd "${S}"
-		sed -i \
-			-e 's:-std=c99::g' \
-			configure \
-			|| die "sed failed"
-	fi
+S=${WORKDIR}/${P/_}
+
+src_configure() {
+	strip-flags
+	econf
 }
 
 src_compile() {
-	strip-flags
-	econf || die
-
 	emake all || die "emake failed"
 	emake rdf || die "emake failed"
 	if use doc ; then
