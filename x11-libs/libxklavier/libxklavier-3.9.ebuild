@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.9.ebuild,v 1.2 2009/05/05 16:14:52 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.9.ebuild,v 1.3 2009/07/20 20:53:16 ssuominen Exp $
 
 inherit eutils
 
@@ -56,5 +56,5 @@ pkg_postinst() {
 	ewarn "Please note that the soname of the library changed!"
 	ewarn "If you are upgrading from a version prior to 3.4 you need"
 	ewarn "to fix dynamic linking inconsistencies by executing:"
-	ewarn "revdep-rebuild -X --library libxklavier.so.11"
+	ewarn "revdep-rebuild --library libxklavier.so.11"
 }

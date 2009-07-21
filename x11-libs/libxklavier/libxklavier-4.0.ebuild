@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-3.8.ebuild,v 1.10 2009/07/20 20:53:16 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-4.0.ebuild,v 1.3 2009/07/20 21:05:52 ssuominen Exp $
 
 inherit autotools eutils
 
@@ -23,16 +23,13 @@ RDEPEND="x11-misc/xkeyboard-config
 	app-text/iso-codes"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	doc? ( >=dev-util/gtk-doc-1.4 )
-	dev-util/gtk-doc-am"
+	doc? ( >=dev-util/gtk-doc-1.4 )"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	# Fix tests in configure.in, bug #253773
-	epatch "${FILESDIR}/${P}-tests.patch"
-
+	epatch "${FILESDIR}"/${P}-tests.patch
+	rm -v m4/{libtool,lt*}.m4 || die "libtool compability failed"
 	eautoreconf
 }
 
@@ -47,6 +44,7 @@ src_compile() {
 	fi
 
 	econf \
+		--disable-static
 		--with-xkb-base="${EPREFIX}"${xkbbase} \
 		--with-xkb-bin-base="${EPREFIX}"/usr/bin \
 		$(use_enable doc gtk-doc)
@@ -56,16 +54,15 @@ src_compile() {
 
 src_install() {
 	emake install DESTDIR="${D}" || die "emake install failed"
+	dodoc AUTHORS CREDITS ChangeLog NEWS README || die "dodoc failed"
+}
 
-	insinto /usr/share/libxklavier
-	use sparc && doins "${FILESDIR}/sun.xml"
-
-	dodoc AUTHORS CREDITS ChangeLog NEWS README
+pkg_preinst() {
+	preserve_old_lib /usr/$(get_libdir)/libxklavier.so.12
+	preserve_old_lib /usr/$(get_libdir)/libxklavier.so.12.2.0
 }
 
 pkg_postinst() {
-	ewarn "Please note that the soname of the library changed!"
-	ewarn "If you are upgrading from a version prior to 3.4 you need"
-	ewarn "to fix dynamic linking inconsistencies by executing:"
-	ewarn "revdep-rebuild --library libxklavier.so.11"
+	preserve_old_lib_notify /usr/$(get_libdir)/libxklavier.so.12
+	preserve_old_lib_notify /usr/$(get_libdir)/libxklavier.so.12.2.0
 }
