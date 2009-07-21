@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/convert-ascii-armour/convert-ascii-armour-1.4.ebuild,v 1.22 2008/11/18 15:46:14 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/convert-ascii-armour/convert-ascii-armour-1.4.ebuild,v 1.23 2009/07/19 17:46:44 tove Exp $
 
 inherit perl-module
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
-DEPEND="virtual/perl-Compress-Zlib
+DEPEND="virtual/perl-IO-Compress
 	virtual/perl-Digest-MD5
 	virtual/perl-MIME-Base64
 	dev-lang/perl"
