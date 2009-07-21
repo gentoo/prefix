@@ -1,6 +1,11 @@
 # ChangeLog for app-text/sgml-common
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sgml-common/ChangeLog,v 1.51 2007/09/08 11:05:49 angelos Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/sgml-common/ChangeLog,v 1.52 2009/07/19 11:18:02 ssuominen Exp $
+
+  19 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  sgml-common-0.6.3-r5.ebuild, +files/sgml-common-0.6.3-man_MANS.patch:
+  Remove WANT_AUTOCONF and WANT_AUTOMAKE vars; patch Makefile.am to support
+  latest automake.
 
   08 Sep 2007; Christoph Mende <angelos@gentoo.org>
   sgml-common-0.6.3-r5.ebuild:
