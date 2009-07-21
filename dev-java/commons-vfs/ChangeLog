@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/commons-vfs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-vfs/ChangeLog,v 1.7 2009/07/15 13:30:42 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-vfs/ChangeLog,v 1.8 2009/07/19 14:22:56 nixnut Exp $
+
+  19 Jul 2009; nixnut <nixnut@gentoo.org> commons-vfs-1.0.ebuild:
+  ppc stable #277798
 
   15 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
   commons-vfs-1.0.ebuild:
