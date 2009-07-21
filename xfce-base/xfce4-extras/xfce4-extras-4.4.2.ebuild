@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-extras/xfce4-extras-4.4.2.ebuild,v 1.9 2009/02/09 19:53:11 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-extras/xfce4-extras-4.4.2.ebuild,v 1.11 2009/07/20 16:28:49 ssuominen Exp $
 
 DESCRIPTION="Meta ebuild for panel plugins and extra applications"
 HOMEPAGE="http://www.xfce.org"
@@ -11,7 +11,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="battery cpufreq hal gnome lm_sensors wifi"
 
-RDEPEND=">=xfce-extra/xfce4-time-out-0.1.1
+RDEPEND="xfce-extra/xfce4-xkb
+	>=xfce-extra/xfce4-time-out-0.1.1
 	>=xfce-extra/xfce4-clipman-0.8
 	>=xfce-extra/xfce4-datetime-0.5
 	>=xfce-extra/xfce4-dict-0.2.1
@@ -21,7 +22,6 @@ RDEPEND=">=xfce-extra/xfce4-time-out-0.1.1
 	>=xfce-extra/xfce4-screenshooter-1.0.0-r1
 	>=xfce-extra/xfce4-systemload-0.4.2
 	>=xfce-extra/xfce4-weather-0.6.2
-	>=xfce-extra/xfce4-xkb-0.4.3-r1
 	>=xfce-extra/xfce4-netload-0.4
 	>=xfce-extra/xfce4-fsguard-0.4
 	>=xfce-extra/xfce4-cpugraph-0.4
