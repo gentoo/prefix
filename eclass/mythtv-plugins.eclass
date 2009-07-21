@@ -1,12 +1,16 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.34 2009/01/13 23:16:10 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv-plugins.eclass,v 1.35 2009/07/19 04:18:58 cardoe Exp $
 #
-# Author: Doug Goldstein <cardoe@gentoo.org>
+# @ECLASS: mythtv-plugins.eclass
+# @AUTHOR: Doug Goldstein <cardoe@gentoo.org>
+# @MAINTAINER: Doug Goldstein <cardoe@gentoo.org>
+# @BLURB: Installs MythTV plugins along with patches from the release-${PV}-fixes branch
 #
-# Installs MythTV plugins along with patches from the release-${PV}-fixes branch
-#
-inherit mythtv multilib qt3 versionator subversion
+
+# NOTE: YOU MUST INHERIT EITHER qt3 or qt4 IN YOUR PLUGIN!
+
+inherit mythtv multilib versionator
 
 # Extra configure options to pass to econf
 MTVCONF=${MTVCONF:=""}
@@ -22,17 +26,8 @@ DEPEND="${DEPEND}
 		>=sys-apps/sed-4"
 fi
 
-S="${WORKDIR}/mythplugins-${MY_PV}"
-
 # bug 240325
 RESTRICT="strip"
-
-# hijacks the plugins checkout to be:
-# /usr/portage/distfiles/svn-src/mythplugins/mythplugins/mythvideo/
-# so that each of the plugins can share the same svn checkout
-# saving HD space and number of svn checkouts reqired
-# Great suggestion by Tom Clift <tom@clift.name>
-ESVN_PROJECT="mythplugins"
 
 mythtv-plugins_pkg_setup() {
 	# List of available plugins (needs to include ALL of them in the tarball)
@@ -50,14 +45,7 @@ mythtv-plugins_pkg_setup() {
 	fi
 }
 
-mythtv-plugins_src_unpack() {
-	subversion_src_unpack
-	mythtv-plugins_src_unpack_patch
-}
-
-mythtv-plugins_src_unpack_patch() {
-	cd "${S}"
-
+mythtv-plugins_src_prepare() {
 	sed -e 's!PREFIX = /usr/local!PREFIX = /usr!' \
 	-i 'settings.pro' || die "fixing PREFIX to /usr failed"
 
@@ -73,7 +61,7 @@ mythtv-plugins_src_unpack_patch() {
 	{} \;
 }
 
-mythtv-plugins_src_compile() {
+mythtv-plugins_src_configure() {
 	cd "${S}"
 
 	if use debug; then
@@ -101,9 +89,16 @@ mythtv-plugins_src_compile() {
 		die "Package ${PN} is unsupported"
 	fi
 
+	chmod +x configure
 	econf ${myconf} ${MTVCONF}
+}
 
-	${QTDIR}/bin/qmake QMAKE="${QTDIR}/bin/qmake" -o "Makefile" mythplugins.pro || die "qmake failed to run"
+mythtv-plugins_src_compile() {
+	if version_is_at_least "0.22" ; then
+		eqmake4 mythplugins.pro || die "eqmake4 failed"
+	else
+		eqmake3 mythplugins.pro || die "eqmake3 failed"
+	fi
 	emake || die "make failed to compile"
 }
 
@@ -120,4 +115,4 @@ mythtv-plugins_src_install() {
 	done
 }
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install
+EXPORT_FUNCTIONS pkg_setup src_prepare src_configure src_compile src_install

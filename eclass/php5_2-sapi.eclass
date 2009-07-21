@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.24 2009/06/21 23:09:02 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.25 2009/07/20 10:32:34 flameeyes Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -649,7 +649,7 @@ php5_2-sapi_src_install() {
 	addpredict /usr/share/snmp/mibs/.index
 
 	# Install PHP
-	make INSTALL_ROOT="${D}" install-build install-headers install-programs || die "make install failed"
+	emake -j1 INSTALL_ROOT="${D}" install-build install-headers install-programs || die "make install failed"
 
 	# Install missing header files
 	if use unicode || phpconfutils_usecheck unicode ; then

@@ -1,13 +1,14 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.13 2008/04/01 04:05:02 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.15 2009/07/19 04:12:59 cardoe Exp $
 #
 # @ECLASS: mythtv.eclass
+# @AUTHOR: Doug Goldstein <cardoe@gentoo.org>
 # @MAINTAINER: Doug Goldstein <cardoe@gentoo.org>
 # @BLURB: Downloads the MythTV source packages and any patches from the fixes branch
 #
 
-inherit eutils versionator subversion
+inherit versionator
 
 # Release version
 MY_PV="${PV%_*}"
@@ -37,8 +38,7 @@ case $REV_PREFIX in
 	          MYTHTV_REPO="branches/release-${FIXES_VER}-fixes/${MY_PN}";;
 esac
 
-ESVN_REPO_URI="http://svn.mythtv.org/svn/${MYTHTV_REPO}@${MYTHTV_REV}"
-
 HOMEPAGE="http://www.mythtv.org"
 LICENSE="GPL-2"
-SRC_URI=""
+SRC_URI="http://svn.mythtv.org/trac/changeset/${MYTHTV_REV}/${MYTHTV_REPO}?old_path=%2F&format=zip -> ${MY_PN}-${PV}.zip"
+S="${WORKDIR}/${MYTHTV_REPO}"
