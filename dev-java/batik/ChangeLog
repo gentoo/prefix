@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/batik
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/ChangeLog,v 1.60 2009/07/04 14:47:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/ChangeLog,v 1.61 2009/07/19 14:02:16 nixnut Exp $
+
+  19 Jul 2009; nixnut <nixnut@gentoo.org> batik-1.6-r4.ebuild,
+  batik-1.7-r2.ebuild:
+  ppc stable #274795
 
   04 Jul 2009; Brent Baude <ranger@gentoo.org> batik-1.7-r2.ebuild:
   Marking batik-1.7-r2 ppc64 for bug 274795
