@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.8.ebuild,v 1.1 2009/07/16 03:12:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.8.ebuild,v 1.3 2009/07/20 10:02:49 vapier Exp $
 
 EAPI=2
 
@@ -48,6 +48,8 @@ src_configure() {
 	mkdir ./lib/blkid/pic ./lib/et/pic ./lib/ss/pic ./lib/uuid/pic 
 
 	# we use blkid/uuid from util-linux now
+	ac_cv_lib_uuid_uuid_generate=yes \
+	ac_cv_lib_blkid_blkid_get_cache=yes \
 	ac_cv_path_LDCONFIG=: \
 	econf \
 		--disable-libblkid \
