@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.26.0.ebuild,v 1.2 2009/07/12 21:08:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/libgnomekbd-2.26.0.ebuild,v 1.3 2009/07/20 22:25:21 eva Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -42,6 +42,9 @@ src_prepare() {
 		libgnomekbd/Makefile.am libgnomekbd/Makefile.in \
 		test/Makefile.am test/Makefile.in \
 		configure.in configure || die "removing -Werror failed"
+
+	# Fix libxklavier-4 API changes, bug #278367
+	epatch "${FILESDIR}/${PN}-2.26.0-libxklavier4.patch"
 
 	# Make it libtool-1 compatible
 	rm -v m4/lt* m4/libtool.m4 || die "removing libtool macros failed"

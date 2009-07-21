@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/libgnomekbd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/ChangeLog,v 1.55 2009/07/12 21:08:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomekbd/ChangeLog,v 1.56 2009/07/20 22:25:21 eva Exp $
+
+  20 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  libgnomekbd-2.26.0.ebuild, +files/libgnomekbd-2.26.0-libxklavier4.patch:
+  Fix compilation with libxklavier-4, bug #278367
 
   12 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
   libgnomekbd-2.24.0.ebuild, libgnomekbd-2.26.0.ebuild:
