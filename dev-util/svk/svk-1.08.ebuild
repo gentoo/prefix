@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/svk/svk-1.08.ebuild,v 1.4 2008/11/18 16:04:43 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/svk/svk-1.08.ebuild,v 1.5 2009/07/19 17:49:13 tove Exp $
 
 inherit eutils perl-module bash-completion
 
@@ -48,7 +48,7 @@ DEPEND="
 	pager? ( dev-perl/IO-Pager )
 	>=dev-perl/SVN-Mirror-0.66
 	patch? (
-		virtual/perl-Compress-Zlib
+		virtual/perl-IO-Compress
 		dev-perl/FreezeThaw
 	)
 	crypt? ( app-crypt/gnupg )"
