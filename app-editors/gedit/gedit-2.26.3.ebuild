@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/gedit-2.26.1.ebuild,v 1.1 2009/05/05 11:37:41 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/gedit-2.26.3.ebuild,v 1.1 2009/07/19 09:39:21 eva Exp $
 
 GCONF_DEBUG="no"
 
@@ -65,9 +65,11 @@ src_unpack() {
 }
 
 pkg_postinst() {
+	gnome2_pkg_postinst
 	use python && python_mod_optimize /usr/$(get_libdir)/gedit-2/plugins
 }
 
 pkg_postrm() {
-	use python && python_mod_cleanup /usr/$(get_libdir)/gedit-2/plugins
+	gnome2_pkg_postrm
+	python_mod_cleanup /usr/$(get_libdir)/gedit-2/plugins
 }
