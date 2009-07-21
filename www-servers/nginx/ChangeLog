@@ -1,6 +1,15 @@
 # ChangeLog for www-servers/nginx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.219 2009/07/09 13:44:57 voxus Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.220 2009/07/19 14:56:33 cla Exp $
+
+*nginx-0.8.4-r1 (19 Jul 2009)
+
+  19 Jul 2009; Dawid Węgliński <cla@gentoo.org>
+  +files/nginx-secure-link-timeout.patch, metadata.xml,
+  +nginx-0.8.4-r1.ebuild:
+  Enable NginxHttpSecureLinkModule (bug #269810)
+  Enable ipv6 support in nginx (bug #274614).
+  Bug me for problems with those changes.
 
   09 Jul 2009; Konstantin V. Arkhipov <voxus@gentoo.org>
   -nginx-0.6.32.ebuild, nginx-0.6.38.ebuild, nginx-0.7.61.ebuild:
