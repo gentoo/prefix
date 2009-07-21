@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jcommon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jcommon/ChangeLog,v 1.28 2009/07/02 20:06:33 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jcommon/ChangeLog,v 1.29 2009/07/19 13:47:28 nixnut Exp $
+
+  19 Jul 2009; nixnut <nixnut@gentoo.org> jcommon-1.0.16.ebuild:
+  ppc stable #273774
 
   02 Jul 2009; Markus Meier <maekke@gentoo.org> jcommon-1.0.16.ebuild:
   amd64 stable, bug #273774
