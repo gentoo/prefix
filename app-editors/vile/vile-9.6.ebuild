@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/vile-9.6.ebuild,v 1.1 2008/03/08 14:44:55 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/vile-9.6.ebuild,v 1.2 2009/07/20 10:53:21 flameeyes Exp $
 
 inherit eutils flag-o-matic
 
@@ -30,7 +30,8 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "install failed"
+	# bug #278415
+	emake -j1 DESTDIR="${D}" install || die "install failed"
 	dodoc CHANGES* README* doc/*
 }
 

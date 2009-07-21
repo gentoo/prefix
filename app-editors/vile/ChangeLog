@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/vile
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/ChangeLog,v 1.32 2008/03/08 14:44:55 nelchael Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vile/ChangeLog,v 1.33 2009/07/20 10:53:21 flameeyes Exp $
+
+  20 Jul 2009; Diego E. Pettenò <flameeyes@gentoo.org> vile-9.6.ebuild:
+  Use emake -j1 for install.
 
 *vile-9.6 (08 Mar 2008)
 
