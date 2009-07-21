@@ -1,6 +1,10 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.468 2009/07/10 23:10:15 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.469 2009/07/19 17:29:08 tove Exp $
+
+  19 Jul 2009; Torsten Veller <tove@gentoo.org> openoffice-3.0.0.ebuild,
+  openoffice-3.0.1.ebuild, openoffice-3.1.0.ebuild:
+  IO-Compress provides Compress-Zlib and IO-Compress-Base
 
   10 Jul 2009; Gordon Malm <gengor@gentoo.org> openoffice-3.0.0.ebuild,
   openoffice-3.0.1.ebuild, openoffice-3.1.0.ebuild:
