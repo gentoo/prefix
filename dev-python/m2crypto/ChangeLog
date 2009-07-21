@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/m2crypto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.41 2009/06/19 20:32:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/m2crypto/ChangeLog,v 1.42 2009/07/17 18:11:10 nixnut Exp $
+
+  17 Jul 2009; nixnut <nixnut@gentoo.org> m2crypto-0.19.1.ebuild:
+  ppc stable #274179
 
   19 Jun 2009; Brent Baude <ranger@gentoo.org> m2crypto-0.19.1.ebuild:
   stable ppc64, bug 274179
