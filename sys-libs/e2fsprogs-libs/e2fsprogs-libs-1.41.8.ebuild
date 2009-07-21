@@ -27,7 +27,7 @@ src_prepare() {
 	# stupid configure script clobbers CC for us
 	sed -i '/if test -z "$CC" ; then CC=cc; fi/d' configure
 
-	epatch "${FILESDIR}"/${PN}-1.41.1-darwin-makefile.patch
+	#epatch "${FILESDIR}"/${PN}-1.41.1-darwin-makefile.patch
 	if [[ ${CHOST} == *-mint* ]]; then
 		sed -i -e 's/_SVID_SOURCE/_GNU_SOURCE/' lib/uuid/gen_uuid.c || die
 	fi
