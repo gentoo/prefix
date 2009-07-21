@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Bzip2/Compress-Raw-Bzip2-2.020.ebuild,v 1.5 2009/06/22 20:46:21 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Bzip2/Compress-Raw-Bzip2-2.020.ebuild,v 1.6 2009/07/19 16:59:12 nixnut Exp $
 
 EAPI=2
 
