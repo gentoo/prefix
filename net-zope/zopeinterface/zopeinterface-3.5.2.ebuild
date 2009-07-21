@@ -1,8 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/zopeinterface-3.5.1.ebuild,v 1.9 2009/07/19 18:52:27 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/zopeinterface-3.5.2.ebuild,v 1.1 2009/07/20 00:02:21 arfrever Exp $
 
-NEED_PYTHON=2.5
+EAPI="2"
+
+NEED_PYTHON="2.5"
 
 inherit distutils
 
@@ -21,7 +23,7 @@ RDEPEND=""
 DEPEND="dev-python/setuptools
 	!net-zope/zodb"
 
-S=${WORKDIR}/${MY_P}
+S="${WORKDIR}/${MY_P}"
 
 src_install() {
 	DOCS="CHANGES.txt README.txt src/zope/interface/*.txt"
