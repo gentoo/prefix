@@ -1,6 +1,13 @@
 # ChangeLog for gnome-extra/gtkhtml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.189 2009/06/08 22:16:10 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.190 2009/07/19 09:25:49 eva Exp $
+
+*gtkhtml-3.26.3 (19 Jul 2009)
+
+  19 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +gtkhtml-3.26.3.ebuild:
+  Version bump. Emit signal in HTML mode, change toolbar style, translation
+  updates.
 
   08 Jun 2009; Gilles Dartiguelongue <eva@gentoo.org> gtkhtml-3.26.2.ebuild:
   Set GCONF_DEBUG=no, bug #268745.
