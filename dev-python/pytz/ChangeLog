@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pytz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.33 2009/07/05 20:58:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.34 2009/07/17 18:09:39 nixnut Exp $
+
+  17 Jul 2009; nixnut <nixnut@gentoo.org> pytz-2009g.ebuild:
+  ppc stable #274178
 
   05 Jul 2009; Alexis Ballier <aballier@gentoo.org> pytz-2009j.ebuild:
   keyword ~x86-fbsd
