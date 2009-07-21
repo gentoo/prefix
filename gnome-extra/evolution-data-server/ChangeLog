@@ -1,6 +1,14 @@
 # ChangeLog for gnome-extra/evolution-data-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/ChangeLog,v 1.233 2009/05/31 13:23:27 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/ChangeLog,v 1.234 2009/07/20 21:50:54 eva Exp $
+
+*evolution-data-server-2.26.3 (20 Jul 2009)
+
+  20 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +evolution-data-server-2.26.3.ebuild,
+  +files/evolution-data-server-2.26.3-camel-vee-folder.patch:
+  Version bump. Use non-virtual dependency for kerberos4, bug #277218. Add
+  patch to fix camel search folder hang, bug #277864.
 
   31 May 2009; Brent Baude <ranger@gentoo.org>
   evolution-data-server-2.26.2.ebuild:
