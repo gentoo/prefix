@@ -1,6 +1,14 @@
 # ChangeLog for net-dns/bind-tools
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.129 2009/04/15 19:49:25 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.130 2009/07/19 18:40:15 idl0r Exp $
+
+*bind-tools-9.6.1 (19 Jul 2009)
+
+  19 Jul 2009; Christian Ruppert <idl0r@gentoo.org>
+  +bind-tools-9.6.1.ebuild:
+  Version bump to 9.6.1, bug 274494. Added ssl, xml and doc useflag. Fix
+  HOMEPAGE. append-flags -D_GNU_SOURCE is not needed anymore since it has
+  been fixed by upstream. Cleanup.
 
   15 Apr 2009; Markus Meier <maekke@gentoo.org> bind-tools-9.4.3_p2.ebuild:
   amd64 stable, bug #264301
