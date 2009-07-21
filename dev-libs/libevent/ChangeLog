@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libevent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/ChangeLog,v 1.122 2009/07/11 01:06:37 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/ChangeLog,v 1.123 2009/07/19 14:31:35 nixnut Exp $
+
+  19 Jul 2009; nixnut <nixnut@gentoo.org> libevent-1.4.11.ebuild:
+  ppc stable #275595
 
   11 Jul 2009; <chainsaw@gentoo.org> libevent-1.4.11.ebuild:
   Marked stable on AMD64 for bug #275595; tested on a dual Opteron 2354.
