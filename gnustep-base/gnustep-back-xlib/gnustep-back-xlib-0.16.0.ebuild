@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-xlib/gnustep-back-xlib-0.16.0.ebuild,v 1.3 2009/06/11 21:33:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-back-xlib/gnustep-back-xlib-0.16.0.ebuild,v 1.4 2009/07/19 13:21:45 nixnut Exp $
 
 inherit gnustep-base
 
