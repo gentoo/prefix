@@ -36,7 +36,7 @@ src_prepare() {
 
 src_configure() {
 	local myconf
-	has_version sys-apps/util-linux || myconf="--with-getopt=getopt-long"
+	has_version sys-apps/util-linux || myconf="GETOPT=getopt-long"
 	econf --prefix="${EPREFIX}"/usr BASH=${EPREFIX}/bin/bash ${myconf}
 }
 
