@@ -26,13 +26,17 @@ src_unpack() {
 	# don't have to deal with it for now.
 	#epatch "${FILESDIR}"/${PN}-1.10-link.patch
 
-	if [[ ${CHOST} == *-winnt* ]]; then
+	epatch "${FILESDIR}"/${P}-state-mint.patch
+
+	if [[ ${CHOST} == *-winnt* || ${CHOST} == *-mint* ]]; then
 		epatch "${FILESDIR}"/${P}-winnt.patch
 
 		find "${S}" -name 'libtool.m4' | xargs rm
 
 		AT_M4DIR="${S}/srcm4 ${S}/m4" eautoreconf # required for winnt support
 		cd "${S}"/libcharset
+		AT_M4DIR="${S}/srcm4 ${S}/m4" eautoreconf # required for winnt support
+		cd "${S}"/preload
 		AT_M4DIR="${S}/srcm4 ${S}/m4" eautoreconf # required for winnt support
 	else
 		# Make sure that libtool support is updated to link "the linux way" on
