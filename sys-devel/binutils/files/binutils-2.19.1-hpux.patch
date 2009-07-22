@@ -1,0 +1,22 @@
+http://sourceware.org/ml/binutils/2008-11/msg00310.html
+--- bfd/hpux-core.c.orig	2009-06-09 17:00:47.000000000 +0200
++++ bfd/hpux-core.c	2009-06-09 17:00:56.000000000 +0200
+@@ -66,7 +66,6 @@
+ #ifdef HPUX_CORE
+ #include <machine/reg.h>
+ #endif
+-#include <sys/user.h>		/* After a.out.h  */
+ #include <sys/file.h>
+ 
+ /* Kludge: There's no explicit mechanism provided by sys/core.h to
+--- opcodes/configure.orig	2009-06-10 15:55:06.000000000 +0200
++++ opcodes/configure	2009-06-10 15:55:31.000000000 +0200
+@@ -11757,7 +11757,7 @@
+     *)
+       case "$host_vendor" in
+         hp)
+-          SHARED_LIBADD="-Wl,`pwd`/../bfd/.libs/libbfd.sl"
++          SHARED_LIBADD="../bfd/libbfd.la"
+ 	  ;;
+ 	*)
+           SHARED_LIBADD="-Wl,`pwd`/../bfd/.libs/libbfd.so"

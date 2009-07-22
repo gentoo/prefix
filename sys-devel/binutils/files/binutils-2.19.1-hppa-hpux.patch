@@ -1,0 +1,444 @@
+--- ./bfd/configure.orig	2009-06-10 15:13:14.000000000 +0200
++++ ./bfd/configure	2009-06-10 15:14:58.000000000 +0200
+@@ -8373,20 +8373,20 @@
+ 
+     hpux10*)
+       if test "$GCC" = yes -a "$with_gnu_ld" = no; then
+-	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+       else
+-	archive_cmds='$LD -b +h $soname +b $install_libdir -o $lib $libobjs $deplibs $linker_flags'
++	archive_cmds='$LD -b +h $soname -o $lib $libobjs $deplibs $linker_flags'
++	hardcode_libdir_flag_spec_ld='+b $libdir'
+       fi
+       if test "$with_gnu_ld" = no; then
+ 	hardcode_libdir_flag_spec='${wl}+b ${wl}$libdir'
+-	hardcode_libdir_flag_spec_ld='+b $libdir'
+ 	hardcode_libdir_separator=:
+ 	hardcode_direct=yes
+ 	hardcode_direct_absolute=yes
+ 	export_dynamic_flag_spec='${wl}-E'
+ 	# hardcode_minus_L: Not really in the search PATH,
+ 	# but as the default location of the library.
+-	hardcode_minus_L=yes
++	hardcode_minus_L=no
+       fi
+       ;;
+ 
+@@ -8400,7 +8400,7 @@
+ 	  archive_cmds='$CC -shared ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       else
+@@ -8412,7 +8412,7 @@
+ 	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -b ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       fi
+@@ -8423,7 +8423,6 @@
+ 	case $host_cpu in
+ 	hppa*64*|ia64*)
+ 	  hardcode_direct=no
+-	  hardcode_shlibpath_var=no
+ 	  ;;
+ 	*)
+ 	  hardcode_direct=yes
+@@ -8432,7 +8431,7 @@
+ 
+ 	  # hardcode_minus_L: Not really in the search PATH,
+ 	  # but as the default location of the library.
+-	  hardcode_minus_L=yes
++	  hardcode_minus_L=no
+ 	  ;;
+ 	esac
+       fi
+@@ -9307,6 +9306,9 @@
+     ;;
+   *)
+     shrext_cmds='.sl'
++    case $host_os in hpux9*) ;;
++    *) hardcode_into_libs=yes ;;
++    esac
+     dynamic_linker="$host_os dld.sl"
+     shlibpath_var=SHLIB_PATH
+     shlibpath_overrides_runpath=no # +s is required to enable SHLIB_PATH
+--- ./gas/configure.orig	2009-06-10 11:10:54.000000000 +0200
++++ ./gas/configure	2009-06-10 11:38:05.000000000 +0200
+@@ -8202,20 +8202,20 @@
+ 
+     hpux10*)
+       if test "$GCC" = yes -a "$with_gnu_ld" = no; then
+-	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+       else
+-	archive_cmds='$LD -b +h $soname +b $install_libdir -o $lib $libobjs $deplibs $linker_flags'
++	archive_cmds='$LD -b +h $soname -o $lib $libobjs $deplibs $linker_flags'
++	hardcode_libdir_flag_spec_ld='+b $libdir'
+       fi
+       if test "$with_gnu_ld" = no; then
+ 	hardcode_libdir_flag_spec='${wl}+b ${wl}$libdir'
+-	hardcode_libdir_flag_spec_ld='+b $libdir'
+ 	hardcode_libdir_separator=:
+ 	hardcode_direct=yes
+ 	hardcode_direct_absolute=yes
+ 	export_dynamic_flag_spec='${wl}-E'
+ 	# hardcode_minus_L: Not really in the search PATH,
+ 	# but as the default location of the library.
+-	hardcode_minus_L=yes
++	hardcode_minus_L=no
+       fi
+       ;;
+ 
+@@ -8229,7 +8229,7 @@
+ 	  archive_cmds='$CC -shared ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       else
+@@ -8241,7 +8241,7 @@
+ 	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -b ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       fi
+@@ -8252,7 +8252,6 @@
+ 	case $host_cpu in
+ 	hppa*64*|ia64*)
+ 	  hardcode_direct=no
+-	  hardcode_shlibpath_var=no
+ 	  ;;
+ 	*)
+ 	  hardcode_direct=yes
+@@ -8261,7 +8260,7 @@
+ 
+ 	  # hardcode_minus_L: Not really in the search PATH,
+ 	  # but as the default location of the library.
+-	  hardcode_minus_L=yes
++	  hardcode_minus_L=no
+ 	  ;;
+ 	esac
+       fi
+@@ -9136,6 +9135,9 @@
+     ;;
+   *)
+     shrext_cmds='.sl'
++    case $host_os in hpux9*) ;;
++    *) hardcode_into_libs=yes ;;
++    esac
+     dynamic_linker="$host_os dld.sl"
+     shlibpath_var=SHLIB_PATH
+     shlibpath_overrides_runpath=no # +s is required to enable SHLIB_PATH
+--- ./opcodes/configure.orig	2009-06-10 11:10:54.000000000 +0200
++++ ./opcodes/configure	2009-06-10 11:39:06.000000000 +0200
+@@ -8369,12 +8369,12 @@
+ 
+     hpux10*)
+       if test "$GCC" = yes -a "$with_gnu_ld" = no; then
+-	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+       else
+-	archive_cmds='$LD -b +h $soname +b $install_libdir -o $lib $libobjs $deplibs $linker_flags'
++	archive_cmds='$LD -b +h $soname -o $lib $libobjs $deplibs $linker_flags'
++	hardcode_libdir_flag_spec='${wl}+b ${wl}$libdir'
+       fi
+       if test "$with_gnu_ld" = no; then
+-	hardcode_libdir_flag_spec='${wl}+b ${wl}$libdir'
+ 	hardcode_libdir_flag_spec_ld='+b $libdir'
+ 	hardcode_libdir_separator=:
+ 	hardcode_direct=yes
+@@ -8382,7 +8382,7 @@
+ 	export_dynamic_flag_spec='${wl}-E'
+ 	# hardcode_minus_L: Not really in the search PATH,
+ 	# but as the default location of the library.
+-	hardcode_minus_L=yes
++	hardcode_minus_L=no
+       fi
+       ;;
+ 
+@@ -8396,7 +8396,7 @@
+ 	  archive_cmds='$CC -shared ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       else
+@@ -8408,7 +8408,7 @@
+ 	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -b ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       fi
+@@ -8419,7 +8419,6 @@
+ 	case $host_cpu in
+ 	hppa*64*|ia64*)
+ 	  hardcode_direct=no
+-	  hardcode_shlibpath_var=no
+ 	  ;;
+ 	*)
+ 	  hardcode_direct=yes
+@@ -8428,7 +8427,7 @@
+ 
+ 	  # hardcode_minus_L: Not really in the search PATH,
+ 	  # but as the default location of the library.
+-	  hardcode_minus_L=yes
++	  hardcode_minus_L=no
+ 	  ;;
+ 	esac
+       fi
+@@ -9303,6 +9302,9 @@
+     ;;
+   *)
+     shrext_cmds='.sl'
++    case $host_os in hpux9*) ;;
++    *) hardcode_into_libs=yes ;;
++    esac
+     dynamic_linker="$host_os dld.sl"
+     shlibpath_var=SHLIB_PATH
+     shlibpath_overrides_runpath=no # +s is required to enable SHLIB_PATH
+--- ./ld/configure.orig	2009-06-10 11:10:54.000000000 +0200
++++ ./ld/configure	2009-06-10 11:40:23.000000000 +0200
+@@ -8493,20 +8493,20 @@
+ 
+     hpux10*)
+       if test "$GCC" = yes -a "$with_gnu_ld" = no; then
+-	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+       else
+-	archive_cmds='$LD -b +h $soname +b $install_libdir -o $lib $libobjs $deplibs $linker_flags'
++	archive_cmds='$LD -b +h $soname -o $lib $libobjs $deplibs $linker_flags'
++	hardcode_libdir_flag_spec_ld='+b $libdir'
+       fi
+       if test "$with_gnu_ld" = no; then
+ 	hardcode_libdir_flag_spec='${wl}+b ${wl}$libdir'
+-	hardcode_libdir_flag_spec_ld='+b $libdir'
+ 	hardcode_libdir_separator=:
+ 	hardcode_direct=yes
+ 	hardcode_direct_absolute=yes
+ 	export_dynamic_flag_spec='${wl}-E'
+ 	# hardcode_minus_L: Not really in the search PATH,
+ 	# but as the default location of the library.
+-	hardcode_minus_L=yes
++	hardcode_minus_L=no
+       fi
+       ;;
+ 
+@@ -8520,7 +8520,7 @@
+ 	  archive_cmds='$CC -shared ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       else
+@@ -8532,7 +8532,7 @@
+ 	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -b ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       fi
+@@ -8552,7 +8552,7 @@
+ 
+ 	  # hardcode_minus_L: Not really in the search PATH,
+ 	  # but as the default location of the library.
+-	  hardcode_minus_L=yes
++	  hardcode_minus_L=no
+ 	  ;;
+ 	esac
+       fi
+@@ -9427,6 +9427,9 @@
+     ;;
+   *)
+     shrext_cmds='.sl'
++    case $host_os in hpux9*) ;;
++    *) hardcode_into_libs=yes ;;
++    esac
+     dynamic_linker="$host_os dld.sl"
+     shlibpath_var=SHLIB_PATH
+     shlibpath_overrides_runpath=no # +s is required to enable SHLIB_PATH
+--- ./gprof/configure.orig	2009-06-10 11:10:54.000000000 +0200
++++ ./gprof/configure	2009-06-10 11:41:47.000000000 +0200
+@@ -8293,20 +8293,20 @@
+ 
+     hpux10*)
+       if test "$GCC" = yes -a "$with_gnu_ld" = no; then
+-	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+       else
+-	archive_cmds='$LD -b +h $soname +b $install_libdir -o $lib $libobjs $deplibs $linker_flags'
++	archive_cmds='$LD -b +h $soname -o $lib $libobjs $deplibs $linker_flags'
++	hardcode_libdir_flag_spec_ld='+b $libdir'
+       fi
+       if test "$with_gnu_ld" = no; then
+ 	hardcode_libdir_flag_spec='${wl}+b ${wl}$libdir'
+-	hardcode_libdir_flag_spec_ld='+b $libdir'
+ 	hardcode_libdir_separator=:
+ 	hardcode_direct=yes
+ 	hardcode_direct_absolute=yes
+ 	export_dynamic_flag_spec='${wl}-E'
+ 	# hardcode_minus_L: Not really in the search PATH,
+ 	# but as the default location of the library.
+-	hardcode_minus_L=yes
++	hardcode_minus_L=no
+       fi
+       ;;
+ 
+@@ -8320,7 +8320,7 @@
+ 	  archive_cmds='$CC -shared ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       else
+@@ -8332,7 +8332,7 @@
+ 	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -b ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       fi
+@@ -8343,7 +8343,6 @@
+ 	case $host_cpu in
+ 	hppa*64*|ia64*)
+ 	  hardcode_direct=no
+-	  hardcode_shlibpath_var=no
+ 	  ;;
+ 	*)
+ 	  hardcode_direct=yes
+@@ -8352,7 +8351,7 @@
+ 
+ 	  # hardcode_minus_L: Not really in the search PATH,
+ 	  # but as the default location of the library.
+-	  hardcode_minus_L=yes
++	  hardcode_minus_L=no
+ 	  ;;
+ 	esac
+       fi
+@@ -9227,6 +9226,9 @@
+     ;;
+   *)
+     shrext_cmds='.sl'
++    case $host_os in hpux9*) ;;
++    *) hardcode_into_libs=yes ;;
++    esac
+     dynamic_linker="$host_os dld.sl"
+     shlibpath_var=SHLIB_PATH
+     shlibpath_overrides_runpath=no # +s is required to enable SHLIB_PATH
+--- ./binutils/configure.orig	2009-06-10 11:10:54.000000000 +0200
++++ ./binutils/configure	2009-06-10 11:25:22.000000000 +0200
+@@ -8204,20 +8204,20 @@
+ 
+     hpux10*)
+       if test "$GCC" = yes -a "$with_gnu_ld" = no; then
+-	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+       else
+-	archive_cmds='$LD -b +h $soname +b $install_libdir -o $lib $libobjs $deplibs $linker_flags'
++	archive_cmds='$LD -b +h $soname -o $lib $libobjs $deplibs $linker_flags'
++	hardcode_libdir_flag_spec_ld='+b $libdir'
+       fi
+       if test "$with_gnu_ld" = no; then
+ 	hardcode_libdir_flag_spec='${wl}+b ${wl}$libdir'
+-	hardcode_libdir_flag_spec_ld='+b $libdir'
+ 	hardcode_libdir_separator=:
+ 	hardcode_direct=yes
+ 	hardcode_direct_absolute=yes
+ 	export_dynamic_flag_spec='${wl}-E'
+ 	# hardcode_minus_L: Not really in the search PATH,
+ 	# but as the default location of the library.
+-	hardcode_minus_L=yes
++	hardcode_minus_L=no
+       fi
+       ;;
+ 
+@@ -8231,7 +8231,7 @@
+ 	  archive_cmds='$CC -shared ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       else
+@@ -8243,7 +8243,7 @@
+ 	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  archive_cmds='$CC -b ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  archive_cmds='$CC -b ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       fi
+@@ -8254,7 +8254,6 @@
+ 	case $host_cpu in
+ 	hppa*64*|ia64*)
+ 	  hardcode_direct=no
+-	  hardcode_shlibpath_var=no
+ 	  ;;
+ 	*)
+ 	  hardcode_direct=yes
+@@ -8263,7 +8262,7 @@
+ 
+ 	  # hardcode_minus_L: Not really in the search PATH,
+ 	  # but as the default location of the library.
+-	  hardcode_minus_L=yes
++	  hardcode_minus_L=no
+ 	  ;;
+ 	esac
+       fi
+@@ -9138,6 +9137,9 @@
+     ;;
+   *)
+     shrext_cmds='.sl'
++    case $host_os in hpux9*) ;;
++    *) hardcode_into_libs=yes ;;
++    esac
+     dynamic_linker="$host_os dld.sl"
+     shlibpath_var=SHLIB_PATH
+     shlibpath_overrides_runpath=no # +s is required to enable SHLIB_PATH
+--- ./config.rpath.orig	2009-06-10 12:16:47.000000000 +0200
++++ ./config.rpath	2009-06-10 12:17:36.000000000 +0200
+@@ -320,7 +320,7 @@
+             hardcode_direct=no
+             # hardcode_minus_L: Not really in the search PATH,
+             # but as the default location of the library.
+-            hardcode_minus_L=yes
++            hardcode_minus_L=no
+             ;;
+           *)
+             hardcode_libdir_flag_spec='${wl}+b ${wl}$libdir'
+@@ -328,7 +328,7 @@
+             hardcode_direct=yes
+             # hardcode_minus_L: Not really in the search PATH,
+             # but as the default location of the library.
+-            hardcode_minus_L=yes
++            hardcode_minus_L=no
+             ;;
+         esac
+       fi

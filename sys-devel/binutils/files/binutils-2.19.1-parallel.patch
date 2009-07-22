@@ -1,0 +1,12 @@
+chew is built multiple times in parallel, which may result in:
+   mv chew.1234 chew: text file busy
+--- bfd/doc/Makefile.in.orig	2009-06-09 17:01:42.000000000 +0200
++++ bfd/doc/Makefile.in	2009-06-09 17:01:51.000000000 +0200
+@@ -12,6 +12,7 @@
+ # even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ # PARTICULAR PURPOSE.
+ 
++.NOTPARALLEL:
+ @SET_MAKE@
+ srcdir = @srcdir@
+ top_srcdir = @top_srcdir@
