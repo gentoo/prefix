@@ -1,0 +1,208 @@
+Backported to libtool-2.2.6 from
+http://lists.gnu.org/archive/html/libtool-patches/2009-07/msg00009.html
+
+diff -ru libtool-2.2.6.orig/libltdl/m4/libtool.m4 libtool-2.2.6/libltdl/m4/libtool.m4
+--- libtool-2.2.6.orig/libltdl/m4/libtool.m4	2008-09-05 13:54:41.000000000 +0200
++++ libtool-2.2.6/libltdl/m4/libtool.m4	2009-07-07 11:04:57.595069000 +0200
+@@ -2384,6 +2384,10 @@
+     shlibpath_overrides_runpath=no # +s is required to enable SHLIB_PATH
+     library_names_spec='${libname}${release}${shared_ext}$versuffix ${libname}${release}${shared_ext}$major $libname${shared_ext}'
+     soname_spec='${libname}${release}${shared_ext}$major'
++    case $host_os in
++    hpux9*) ;;
++    *) hardcode_into_libs=yes ;;
++    esac
+     ;;
+   esac
+   # HP-UX runs *really* slowly unless shared libraries are mode 555.
+@@ -4752,25 +4756,59 @@
+       ;;
+ 
+     hpux10*)
++      # gcc-3.0.1 does some post-link processing which breaks when the
++      # just created binary has a nonexistent 'dynamic dependency'.
++      AC_CACHE_CHECK([whether absolute path of internal name works with $CC],
++	[_LT_TAGVAR(lt_cv_cdp_works, $1)],
++	[_LT_TAGVAR(lt_cv_cdp_works, $1)=:
++	if test "$GCC" = yes; then
++	  save_LDFLAGS=$LDFLAGS
++	  LDFLAGS="$LDFLAGS -Wl,+cdp -Wl,/usr/lib:/nonexistent -Wl,+cdp -Wl,/lib:/nonexistent"
++	  AC_LINK_IFELSE([AC_LANG_PROGRAM([],[])],
++	    [], [_LT_TAGVAR(lt_cv_cdp_works, $1)=false])
++	  LDFLAGS="$save_LDFLAGS"
++	fi
++      ])
+       if test "$GCC" = yes -a "$with_gnu_ld" = no; then
+-	_LT_TAGVAR(archive_cmds, $1)='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	$_LT_TAGVAR(lt_cv_cdp_works, $1) &&
++	_LT_TAGVAR(archive_cmds, $1)='$CC -shared -fPIC`test $mode = relink && $ECHO " ${wl}+cdp ${wl}$inst_prefix_dir: ${wl}+h ${wl}" || $ECHO " ${wl}+h ${wl}$install_libdir/"`$soname -o $lib $libobjs $deplibs $compiler_flags~need_relink=yes' ||
++	_LT_TAGVAR(archive_cmds, $1)='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+       else
+-	_LT_TAGVAR(archive_cmds, $1)='$LD -b +h $soname +b $install_libdir -o $lib $libobjs $deplibs $linker_flags'
++	$_LT_TAGVAR(lt_cv_cdp_works, $1) &&
++	_LT_TAGVAR(archive_cmds, $1)='$LD -b`test $mode = relink && $ECHO " +cdp $inst_prefix_dir: +h " || $ECHO " +h $install_libdir/"`$soname -o $lib $libobjs $deplibs $linker_flags~need_relink=yes' ||
++	_LT_TAGVAR(archive_cmds, $1)='$LD -b +h $soname -o $lib $libobjs $deplibs $linker_flags'
++	_LT_TAGVAR(hardcode_libdir_flag_spec_ld, $1)='+b $libdir'
+       fi
+       if test "$with_gnu_ld" = no; then
+ 	_LT_TAGVAR(hardcode_libdir_flag_spec, $1)='${wl}+b ${wl}$libdir'
+-	_LT_TAGVAR(hardcode_libdir_flag_spec_ld, $1)='+b $libdir'
+ 	_LT_TAGVAR(hardcode_libdir_separator, $1)=:
+ 	_LT_TAGVAR(hardcode_direct, $1)=yes
+ 	_LT_TAGVAR(hardcode_direct_absolute, $1)=yes
+ 	_LT_TAGVAR(export_dynamic_flag_spec, $1)='${wl}-E'
+ 	# hardcode_minus_L: Not really in the search PATH,
+-	# but as the default location of the library.
++	# but as the default location of the library, when it does not
++	# have an absolute path in 'internal name' (the +h linker flag).
++	$_LT_TAGVAR(lt_cv_cdp_works, $1) ||
+ 	_LT_TAGVAR(hardcode_minus_L, $1)=yes
+       fi
+       ;;
+ 
+     hpux11*)
++      case $host_cpu in hppa*64* | ia64*) ;;
++      *)
++	AC_CACHE_CHECK([whether absolute path of internal name works with $CC],
++	  [_LT_TAGVAR(lt_cv_cdp_works, $1)],
++	  [_LT_TAGVAR(lt_cv_cdp_works, $1)=:
++	  if test "$GCC" = yes; then
++	    save_LDFLAGS=$LDFLAGS
++	    LDFLAGS="$LDFLAGS -Wl,+cdp -Wl,/usr/lib:/nonexistent -Wl,+cdp -Wl,/lib:/nonexistent"
++	    AC_LINK_IFELSE([AC_LANG_PROGRAM([],[])],
++	      [], [_LT_TAGVAR(lt_cv_cdp_works, $1)=false])
++	    LDFLAGS="$save_LDFLAGS"
++	  fi
++	])
++	;;
++      esac
+       if test "$GCC" = yes -a "$with_gnu_ld" = no; then
+ 	case $host_cpu in
+ 	hppa*64*)
+@@ -4780,7 +4818,9 @@
+ 	  _LT_TAGVAR(archive_cmds, $1)='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  _LT_TAGVAR(archive_cmds, $1)='$CC -shared -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  $_LT_TAGVAR(lt_cv_cdp_works, $1) &&
++	  _LT_TAGVAR(archive_cmds, $1)='$CC -shared -fPIC`test $mode = relink && $ECHO " ${wl}+cdp ${wl}$inst_prefix_dir: ${wl}+h ${wl}" || $ECHO " ${wl}+h ${wl}$install_libdir/"`$soname -o $lib $libobjs $deplibs $compiler_flags~need_relink=yes' ||
++	  _LT_TAGVAR(archive_cmds, $1)='$CC -shared -fPIC ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       else
+@@ -4792,7 +4832,9 @@
+ 	  _LT_TAGVAR(archive_cmds, $1)='$CC -b ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	*)
+-	  _LT_TAGVAR(archive_cmds, $1)='$CC -b ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $libobjs $deplibs $compiler_flags'
++	  $_LT_TAGVAR(lt_cv_cdp_works, $1) &&
++	  _LT_TAGVAR(archive_cmds, $1)='$CC -b`test $mode = relink && $ECHO " ${wl}+cdp ${wl}$inst_prefix_dir: ${wl}+h ${wl}" || $ECHO " ${wl}+h ${wl}$install_libdir/"`$soname -o $lib $libobjs $deplibs $compiler_flags~need_relink=yes' ||
++	  _LT_TAGVAR(archive_cmds, $1)='$CC -b ${wl}+h ${wl}$soname -o $lib $libobjs $deplibs $compiler_flags'
+ 	  ;;
+ 	esac
+       fi
+@@ -4811,7 +4853,9 @@
+ 	  _LT_TAGVAR(export_dynamic_flag_spec, $1)='${wl}-E'
+ 
+ 	  # hardcode_minus_L: Not really in the search PATH,
+-	  # but as the default location of the library.
++	  # but as the default location of the library, when it does not
++	  # have an absolute path in 'internal name' (the +h linker flag).
++	  $_LT_TAGVAR(lt_cv_cdp_works, $1) ||
+ 	  _LT_TAGVAR(hardcode_minus_L, $1)=yes
+ 	  ;;
+ 	esac
+@@ -5741,11 +5785,24 @@
+             _LT_TAGVAR(hardcode_shlibpath_var, $1)=no
+             ;;
+           *)
++	    AC_CACHE_CHECK([wheter absolute path of internal name works with $CC],
++	      [_LT_TAGVAR(lt_cv_cdp_works, $1)],
++	      [_LT_TAGVAR(lt_cv_cdp_works, $1)=:
++	      if test "$GCC" = yes; then
++		save_LDFLAGS=$LDFLAGS
++		LDFLAGS="$LDFLAGS -Wl,+cdp -Wl,/usr/lib:/nonexistent -Wl,+cdp -Wl,/lib:/nonexistent"
++		AC_LINK_IFELSE([AC_LANG_PROGRAM([],[])],
++		  [], [_LT_TAGVAR(lt_cv_cdp_works, $1)=false])
++		LDFLAGS="$save_LDFLAGS"
++	      fi
++	    ])
+             _LT_TAGVAR(hardcode_direct, $1)=yes
+             _LT_TAGVAR(hardcode_direct_absolute, $1)=yes
+-            _LT_TAGVAR(hardcode_minus_L, $1)=yes # Not in the search PATH,
+-					         # but as the default
+-					         # location of the library.
++            # hardcode_minus_L: Not really in the search PATH,
++            # but as the default location of the library, when it does not
++            # have an absolute path in 'internal name' (the +h linker flag).
++            $_LT_TAGVAR(lt_cv_cdp_works, $1) ||
++            _LT_TAGVAR(hardcode_minus_L, $1)=yes
+             ;;
+         esac
+ 
+@@ -5763,7 +5820,9 @@
+ 	        _LT_TAGVAR(archive_cmds, $1)='$CC -b ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags'
+ 	        ;;
+ 	      *)
+-	        _LT_TAGVAR(archive_cmds, $1)='$CC -b ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags'
++		$_LT_TAGVAR(lt_cv_cdp_works, $1) &&
++	        _LT_TAGVAR(archive_cmds, $1)='$CC -b`test $mode = relink && $ECHO " ${wl}+cdp ${wl}$inst_prefix_dir: ${wl}+h ${wl}" || $ECHO " ${wl}+h ${wl}$install_libdir/"`$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags~need_relink=yes' ||
++	        _LT_TAGVAR(archive_cmds, $1)='$CC -b ${wl}+h ${wl}$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags'
+ 	        ;;
+ 	    esac
+ 	    # Commands to make compiler produce verbose output that lists
+@@ -5787,7 +5846,9 @@
+ 	            _LT_TAGVAR(archive_cmds, $1)='$CC -shared -nostdlib -fPIC ${wl}+h ${wl}$soname ${wl}+nodefaultrpath -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags'
+ 	            ;;
+ 	          *)
+-	            _LT_TAGVAR(archive_cmds, $1)='$CC -shared -nostdlib -fPIC ${wl}+h ${wl}$soname ${wl}+b ${wl}$install_libdir -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags'
++	            $_LT_TAGVAR(lt_cv_cdp_works, $1) &&
++	            _LT_TAGVAR(archive_cmds, $1)='$CC -shared -nostdlib -fPIC`test $mode = relink && $ECHO " ${wl}+cdp ${wl}$inst_prefix_dir: ${wl}+h ${wl}" || $ECHO " ${wl}+h ${wl}$install_libdir/"`$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags~need_relink=yes' ||
++	            _LT_TAGVAR(archive_cmds, $1)='$CC -shared -nostdlib -fPIC ${wl}+h ${wl}$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags'
+ 	            ;;
+ 	        esac
+ 	      fi
+diff -ru libtool-2.2.6.orig/tests/demo-hardcode.test libtool-2.2.6/tests/demo-hardcode.test
+--- libtool-2.2.6.orig/tests/demo-hardcode.test	2008-05-10 20:59:39.000000000 +0200
++++ libtool-2.2.6/tests/demo-hardcode.test	2009-07-07 11:05:45.253621000 +0200
+@@ -39,6 +39,7 @@
+ 
+ # Extra tools we might need
+ : ${DUMPSTABS=dumpstabs}
++: ${CHATR=chatr}
+ 
+ # Suck in all the hardcode_* variable settings.
+ func_msg "Finding libtool.m4's guesses at hardcoding values"
+@@ -70,11 +71,31 @@
+   # Discover whether the objdir really was hardcoded.
+   hardcoded=no
+ 
++  # hppa-hpux (SOM) stores either the 'internal name' (+h), when it contains
++  # an absolute path, or the absolute location where the library was found
++  # at linktime in the the 'shared library list' of the resulting binary.
++  # When the type of such an entry is 'static', the runpath is ignored
++  # for that library. As this is unwanted, we treat this as hardcoded,
++  # even if it does not contain the objdir.
++  # For hppa64-hpux (ELF) and ia64-hpux (ELF), 'chatr' does not tell whether
++  # the shared library location is 'static' or 'dynamic', as the path
++  # component is not stored anyway when the library was found via '-L'.
++  # Additionally, aCC/cc store commandline and other information used to
++  # create object files into these (as 'ccom options', 'driver_command'),
++  # which may also lead to false positives when using 'cat'.
++  if { $CHATR $file ;} >/dev/null 2>&1; then
++    if $CHATR $file 2>/dev/null \
++       | $SED -e "s|^  *static  */|$objdir&|" \
++       | $FGREP "$objdir" >/dev/null 2>&1; then
++       hardcoded=yes
++     else
++       hardcoded=no
++     fi
+   # Solaris cc may store the command line in a debugging section,
+   # which leads to false positives.  Unfortunately, Solaris strip
+   # is not capable to remove the section (unlike GNU binutils strip).
+   # So we use dumpstabs if it seems to work.
+-  if { $DUMPSTABS -d $file; } >/dev/null 2>&1; then
++  elif { $DUMPSTABS -d $file; } >/dev/null 2>&1; then
+     if $DUMPSTABS -d $file 2>/dev/null | $FGREP "$objdir" >/dev/null 2>&1; then
+       hardcoded=yes
+     else
