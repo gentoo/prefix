@@ -32,15 +32,10 @@ kpathsea_extraconf="--disable-shared"
 
 src_prepare() {
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
+	# finalize internal zziplib removal
+	epatch "${FILESDIR}"/${P}-zzipinclude.patch
 	eautoreconf
 	elibtoolize
-	if [[ ${CHOST} == *-solaris* ]] ; then
-		# very stupid workaround for a totally wicked buildsystem
-		# we need -lresolv for hstrerror
-		cd "${S}"
-		sed -i -e '/^socketlibs = /s/^.*$/& -lresolv/' \
-			texk/web2c/Makefile.in || die
-	fi
 }
 
 src_configure() {
