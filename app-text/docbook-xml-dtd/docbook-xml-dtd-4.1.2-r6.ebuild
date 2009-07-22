@@ -11,7 +11,7 @@ SRC_URI="http://www.oasis-open.org/docbook/xml/${PV}/${MY_P}.zip"
 
 LICENSE="X11"
 SLOT="4.1.2"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris"
 IUSE=""
 
 DEPEND=">=app-arch/unzip-5.41
