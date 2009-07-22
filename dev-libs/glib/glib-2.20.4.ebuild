@@ -111,7 +111,8 @@ src_configure() {
 		  --enable-static           \
 		  --enable-regex            \
 		  --with-pcre=internal      \
-		  --with-threads=${mythreads}
+		  --with-threads=${mythreads} \
+		  --with-xml-catalog="${EPREFIX}"/etc/xml/catalog
 }
 
 src_install() {
