@@ -10,13 +10,14 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="
 	ppc-aix? ( dev-libs/gnulib )
 	x86-interix? ( dev-libs/gnulib )
 	ia64-hpux? ( dev-libs/gnulib )
+	hppa-hpux? ( dev-libs/gnulib )
 "
 
 src_unpack() {
@@ -30,13 +31,18 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.1.29-interix.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	epatch "${FILESDIR}"/${P}-hpux.patch
+
+	# gcc-4.2 has problems with "[restrict]" in c99,
+	# used in /usr/include/regex.h on hpux11.31.
+	[[ ${CHOST} == *-hpux11.31 ]] &&
+	sed -i -e 's/std=gnu99/std=gnu89/g' Makefile
 }
 
 src_compile() {
 	tc-export CC
 	# note: Solaris 10+ fails to compile with gnulib, due to static/nonstatic
 	# declaration of strcasecmp, it doesn't need gnulib
-	if [[ ${CHOST} == *-aix* || ${CHOST} == *-interix[35]* || ${CHOST} == ia64*-hpux* ]]; then
+	if [[ ${CHOST} == *-aix* || ${CHOST} == *-interix[35]* || ${CHOST} == *-hpux* ]]; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
 		# append-libs doesn't work, since the Makefile doesn't know LIBS, it seems
