@@ -26,7 +26,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 
 LICENSE="PSF-2.2"
 SLOT="2.6"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="berkdb build doc elibc_uclibc examples gdbm ipv6 ncurses readline sqlite ssl +threads tk ucs2 wininst +xml"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes,cjkcodecs}
@@ -272,7 +272,10 @@ src_test() {
 
 src_install() {
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${PYVER}/lib-dynload/
-	emake DESTDIR="${D}" altinstall maninstall || die "emake altinstall maninstall failed"
+	# do not make multiple targets in parallel when there are broken
+	# sharedmods (during bootstrap), would build them twice in parallel.
+	emake DESTDIR="${D}" altinstall || die "emake altinstall failed"
+	emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
 
 	mv "${ED}"/usr/bin/python${PYVER}-config "${ED}"/usr/bin/python-config-${PYVER}
 
