@@ -547,7 +547,7 @@ gen_usr_ldscript() {
 				[[ ${tlib} != ${lib} ]] &&
 				rm -f "${ED}"/${libdir}/${lib}
 			else
-				tlib=$(chatr "${ED}"/usr/${libdir}/${lib} | sed -n '/internal name:/{n;s/^ *//;p;q}')
+				tlib=$(chatr "${ED}"/${libdir}/${lib} | sed -n '/internal name:/{n;s/^ *//;p;q}')
 				[[ -z ${tlib} ]] && tlib=${lib}
 				tlib=${tlib##*/} # 'internal name' can have a path component
 			fi
