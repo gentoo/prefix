@@ -2,6 +2,17 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  22 Jul 2009; Fabian Groffen <grobian@gentoo.org>
+  -files/portage-2.2.00.13133-prefix-chaining.patch,
+  -files/portage-2.2.00.13243-prefix-chaining-path-noportage.patch,
+  -files/portage-2.2.00.13243-prefix-chaining-sync.patch,
+  -files/portage-2.2.00.13243-prefix-chaining-utils.patch,
+  -files/portage-2.2.00.13286-dest-fix.patch,
+  -files/portage-2.2.00.13369-interix-estale.patch,
+  -files/portage-2.2.00.13369-nodeps-order.patch,
+  -files/portage-2.2.00.13625-prefix-chaining.patch:
+  Drop stale patches
+
   22 Jul 2009; Markus Duft <mduft@gentoo.org> portage-2.2.00.13830.ebuild,
   +files/portage-2.2.00.13830-prefix-chaining.patch,
   +files/portage-2.2.00.13830-preserve-pecoff.patch:
