@@ -99,7 +99,7 @@ src_prepare() {
 	sed -i -e 's|\(rst2html\)|\1.py|g' doc/Makefile.am || \
 		die "sed doc/Makefile.am failed"
 
-	epatch "${FILESDIR}"/${PN}-1.4.20-interix.patch
+	#epatch "${FILESDIR}"/${PN}-1.4.20-interix.patch
 	epatch "${FILESDIR}"/${PN}-darwin-bundle.patch
 
 	eautoreconf || die
