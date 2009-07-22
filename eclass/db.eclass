@@ -25,10 +25,12 @@ db_fix_so () {
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*so.[23]' -exec rm \{} \;
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*.dylib' -exec rm \{} \;
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*.[23].dylib' -exec rm \{} \;
+	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*.sl' -exec rm \{} \;
+	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*.[23].sl' -exec rm \{} \;
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*a' -exec rm \{} \;
 
 	# now rebuild all the correct ones
-	for ext in so a dylib; do
+	for ext in so a dylib sl; do
 		for name in libdb libdb_cxx libdb_tcl libdb_java; do
 			target=`find . -maxdepth 1 -type f -name "${name}-*.${ext}" |sort -n |tail -n 1`
 			[ -n "${target}" ] || continue;
@@ -127,6 +129,8 @@ db_src_install_usrlibcleanup() {
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*so.[23]' -exec rm \{} \;
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*dylib' -exec rm \{} \;
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*[23].dylib' -exec rm \{} \;
+	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*sl' -exec rm \{} \;
+	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*[23].sl' -exec rm \{} \;
 	einfo "removing unversioned static archives"
 	find ${LIB} -maxdepth 1 -type l -name 'libdb[1._-]*a' -exec rm \{} \;
 
