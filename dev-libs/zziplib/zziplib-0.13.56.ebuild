@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/zziplib-0.13.56.ebuild,v 1.1 2009/06/28 16:35:26 vapier Exp $
 
 EAPI="2"
-inherit libtool eutils flag-o-matic
+inherit libtool eutils flag-o-matic autotools
 
 DESCRIPTION="Lightweight library used to easily extract data from files archived in a single zip file"
 HOMEPAGE="http://zziplib.sourceforge.net/"
@@ -28,6 +28,9 @@ src_prepare() {
 	sed -i -e '/^zzip-postinstall:/s|$|\ndisable-this:|' Makefile.in || die
 	sed -i -e '/^install-exec-local:/s|$|\ndisable-this:|' zzip/Makefile.in || die
 	elibtoolize
+
+	epatch "${FILESDIR}"/${P}-solaris64.patch
+	eautoreconf
 }
 
 src_configure() {
