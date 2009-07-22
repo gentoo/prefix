@@ -2,6 +2,12 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  22 Jul 2009; Markus Duft <mduft@gentoo.org> portage-2.2.00.13830.ebuild,
+  +files/portage-2.2.00.13830-prefix-chaining.patch,
+  +files/portage-2.2.00.13830-preserve-pecoff.patch:
+  updated prefix-chaining patch to match new split-up sources. added
+  preserve-libs support for winnt and interix - should go to svn soon.
+
 *portage-2.2.00.13830 (16 Jul 2009)
 
   16 Jul 2009; Fabian Groffen <grobian@gentoo.org>

@@ -75,7 +75,8 @@ src_unpack() {
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
-	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13625-prefix-chaining.patch
+	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13830-prefix-chaining.patch
+	epatch "${FILESDIR}"/${P}-preserve-pecoff.patch
 }
 
 src_compile() {

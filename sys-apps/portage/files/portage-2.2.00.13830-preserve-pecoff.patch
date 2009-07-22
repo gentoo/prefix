@@ -1,0 +1,489 @@
+diff -ruN prefix-portage-2.2.00.13830.orig/bin/Makefile.in prefix-portage-2.2.00.13830/bin/Makefile.in
+--- prefix-portage-2.2.00.13830.orig/bin/Makefile.in	2009-07-21 14:02:01 +0200
++++ prefix-portage-2.2.00.13830/bin/Makefile.in	2009-07-21 13:26:16 +0200
+@@ -33,7 +33,8 @@
+ 	etc-update \
+ 	fixpackages \
+ 	quickpkg \
+-	regenworld
++	regenworld \
++	readpecoff
+ 
+ list_sourcedir_dirs = \
+ 	( cd "$(srcdir)" && find . -name '.svn' -prune -o -type d -print )
+diff -ruN prefix-portage-2.2.00.13830.orig/bin/misc-functions.sh prefix-portage-2.2.00.13830/bin/misc-functions.sh
+--- prefix-portage-2.2.00.13830.orig/bin/misc-functions.sh	2009-07-21 14:02:01 +0200
++++ prefix-portage-2.2.00.13830/bin/misc-functions.sh	2009-07-21 13:26:16 +0200
+@@ -265,6 +265,129 @@
+ 		PORTAGE_QUIET=${tmp_quiet}
+ 	fi
+ 
++	local _pfx_scan="readpecoff ${CHOST}"
++
++	# this one uses readpecoff, which supports multiple prefix platforms!
++	# this is absolutely _not_ optimized for speed, and there may be plenty
++	# of possibilities by introducing one or the other cache!
++	if [[ ${CHOST} == *-interix* || ${CHOST} == *-winnt* ]] && ! hasq binchecks ${RESTRICT}; then
++		# copied and adapted from the above scanelf code.
++		local qa_var insecure_rpath=0 tmp_quiet=${PORTAGE_QUIET}
++		local f x
++
++		# display warnings when using stricter because we die afterwards
++		if has stricter ${FEATURES} ; then
++			unset PORTAGE_QUIET
++		fi
++
++		local _exec_find_opt="-executable"
++		[[ ${CHOST} == *-winnt* ]] && _exec_find_opt='-name *.dll -o -name *.exe'
++
++		# Make sure we disallow insecure RUNPATH/RPATH's
++		# Don't want paths that point to the tree where the package was built
++		# (older, broken libtools would do this).  Also check for null paths
++		# because the loader will search $PWD when it finds null paths.
++
++		f=$(
++			find "${ED}" -type f '(' ${_exec_find_opt} ')' -print0 | xargs -0 ${_pfx_scan} | \
++			while IFS=";" read arch obj soname rpath needed ; do \
++			echo "${rpath}" | grep -E "(${PORTAGE_BUILDDIR}|: |::|^:|^ )" > /dev/null 2>&1 \
++				&& echo "${obj}"; done;
++		)
++		# Reject set*id binaries with $ORIGIN in RPATH #260331
++		x=$(
++			find "${ED}" -type f '(' -perm -u+s -o -perm -g+s ')' -print0 | \
++			xargs -0 ${_pfx_scan} | while IFS=";" read arch obj soname rpath needed; do \
++			echo "${rpath}" | grep '$ORIGIN' > /dev/null 2>&1 && echo "${obj}"; done;
++		)
++		if [[ -n ${f}${x} ]] ; then
++			vecho -ne '\a\n'
++			eqawarn "QA Notice: The following files contain insecure RUNPATH's"
++			eqawarn " Please file a bug about this at http://bugs.gentoo.org/"
++			eqawarn " with the maintaining herd of the package."
++			eqawarn "${f}${f:+${x:+\n}}${x}"
++			vecho -ne '\a\n'
++			if [[ -n ${x} ]] || has stricter ${FEATURES} ; then
++				insecure_rpath=1
++			else
++				eqawarn "cannot automatically fix runpaths on interix platforms!"
++			fi
++		fi
++
++		rm -f "${PORTAGE_BUILDDIR}"/build-info/NEEDED
++		rm -f "${PORTAGE_BUILDDIR}"/build-info/NEEDED.PECOFF.1
++
++		# Save NEEDED information after removing self-contained providers
++		find "${ED}" -type f '(' ${_exec_find_opt} ')' -print0 | xargs -0 ${_pfx_scan} | { while IFS=';' read arch obj soname rpath needed; do
++			# need to strip image dir from object name.
++			obj="/${obj#${D}}"
++			if [ -z "${rpath}" -o -n "${rpath//*ORIGIN*}" ]; then
++				# object doesn't contain $ORIGIN in its runpath attribute
++				echo "${obj} ${needed}"	>> "${PORTAGE_BUILDDIR}"/build-info/NEEDED
++				echo "${arch};${obj};${soname};${rpath};${needed}" >> "${PORTAGE_BUILDDIR}"/build-info/NEEDED.PECOFF.1
++			else
++				dir=${obj%/*}
++				# replace $ORIGIN with the dirname of the current object for the lookup
++				opath=$(echo :${rpath}: | sed -e "s#.*:\(.*\)\$ORIGIN\(.*\):.*#\1${dir}\2#")
++				sneeded=$(echo ${needed} | tr , ' ')
++				rneeded=""
++				for lib in ${sneeded}; do
++					found=0
++					for path in ${opath//:/ }; do
++						[ -e "${ED}/${path}/${lib}" ] && found=1 && break
++					done
++					[ "${found}" -eq 0 ] && rneeded="${rneeded},${lib}"
++				done
++				rneeded=${rneeded:1}
++				if [ -n "${rneeded}" ]; then
++					echo "${obj} ${rneeded}" >> "${PORTAGE_BUILDDIR}"/build-info/NEEDED
++					echo "${arch};${obj};${soname};${rpath};${rneeded}" >> "${PORTAGE_BUILDDIR}"/build-info/NEEDED.PECOFF.1
++				fi
++			fi
++		done }
++		
++		if [[ ${insecure_rpath} -eq 1 ]] ; then
++			die "Aborting due to serious QA concerns with RUNPATH/RPATH"
++		elif [[ -n ${die_msg} ]] && has stricter ${FEATURES} ; then
++			die "Aborting due to QA concerns: ${die_msg}"
++		fi
++
++		local _so_ext='.so*'
++
++		case "${CHOST}" in
++		*-winnt*) _so_ext=".dll" ;; # no "*" intentionally!
++		esac
++
++		# Run some sanity checks on shared libraries
++		for d in "${ED}"lib* "${ED}"usr/lib* ; do
++			[[ -d "${d}" ]] || continue
++			f=$(find "${d}" -name "lib*${_so_ext}" -print0 | \
++				xargs -0 ${_pfx_scan} | while IFS=";" read arch obj soname rpath needed; \
++				do [[ -z "${soname}" ]] && echo "${obj}"; done)
++			if [[ -n ${f} ]] ; then
++				vecho -ne '\a\n'
++				eqawarn "QA Notice: The following shared libraries lack a SONAME"
++				eqawarn "${f}"
++				vecho -ne '\a\n'
++				sleep 1
++			fi
++
++			f=$(find "${d}" -name "lib*${_so_ext}" -print0 | \
++				xargs -0 ${_pfx_scan} | while IFS=";" read arch obj soname rpath needed; \
++				do [[ -z "${needed}" ]] && echo "${obj}"; done)
++			if [[ -n ${f} ]] ; then
++				vecho -ne '\a\n'
++				eqawarn "QA Notice: The following shared libraries lack NEEDED entries"
++				eqawarn "${f}"
++				vecho -ne '\a\n'
++				sleep 1
++			fi
++		done
++
++		PORTAGE_QUIET=${tmp_quiet}
++	fi
++
++
+ 	local unsafe_files=$(find "${ED}" -type f '(' -perm -2002 -o -perm -4002 ')')
+ 	if [[ -n ${unsafe_files} ]] ; then
+ 		eqawarn "QA Notice: Unsafe files detected (set*id and world writable)"
+diff -ruN prefix-portage-2.2.00.13830.orig/bin/readpecoff prefix-portage-2.2.00.13830/bin/readpecoff
+--- prefix-portage-2.2.00.13830.orig/bin/readpecoff	1970-01-01 01:00:00 +0100
++++ prefix-portage-2.2.00.13830/bin/readpecoff	2009-07-21 14:02:22 +0200
+@@ -0,0 +1,108 @@
++#!/bin/env bash
++
++###################################################################
++# This script does the following: for implemented platforms,      #
++# it echos for each given path a line with the following format:  #
++#                                                                 #
++#  <arch>;<obj>;<soname>;<rpath1:rpathN>;<needed1,neededN>        #
++#                                                                 #
++# arch may be any string, e.g. "PE32". obj is the full (!) path   #
++# to the file itself. soname, rpath and needed should be self     #
++# explaining - rpath is ":" separated, needed is "," separated.   #
++#                                                                 #
++# WARNING: Depends on beeing set CHOST to decide what to do!      #
++#                                                                 #
++# WARNING: The Script does _never_ fail! If required binaries     #
++#          are missing, or information gathering fails, the       #
++#          script will SILENTLY (!) exit, to not disturb the      #
++#          normal merging process.                                #
++#                                                                 #
++# WARNING: The _first_ argument needs to be a valid CHOST!!!      #
++#                                                                 #
++###################################################################
++
++
++# Interix: Uses native objdump, since thats the only facility that
++# knows about the native shared library information data.
++# objdump is there in all interix installations where the GNU SDK
++# is installed, which is a prerequisite for prefix anyway.
++
++scanbin_interix() {
++	local _itx_objdump="/opt/gcc.3.3/bin/objdump"
++	[[ -x ${_itx_objdump} ]] || _itx_objdump="/opt/gcc.4.2/bin/objdump"
++	[[ -x ${_itx_objdump} ]] || exit 0
++
++	# objdump is there, so now gather the information
++	_itx_full_info() {
++		local obj="$(cd "$(dirname "$1")"; pwd)/${1##*/}"
++		local so=
++		local rp=
++		local ne=
++
++		{ file -L "${obj}" | grep "PE" > /dev/null 2>&1; } || return
++
++		_itx_gather() {
++			${_itx_objdump} -p "$1" | while IFS= read line; do
++				[[ ${line} == *RPATH* || ${line} == *NEEDED* || ${line} == *SONAME* ]] || continue
++
++				eval "$(echo "${line}" | sed -e 's,[[:space:]]*\([A-Z]*\)[[:space:]]*\(.*\)$,key=\1;value="\2",g')"
++
++				case "${key}" in
++				RPATH) echo "rp=\"${value}\"" ;;
++				NEEDED) echo "test -n \"\${ne}\" && ne=\"\${ne},${value}\"; test -z \"\${ne}\" && ne=\"${value}\"" ;;
++				SONAME) echo "so=\"${value}\"" ;;
++				esac
++			done
++		}
++
++		eval "$(_itx_gather ${obj})"
++		echo "386;${obj};${so};${rp};${ne}"
++	}
++
++	for x in "$@"; do
++		_itx_full_info "${x}"
++	done
++
++	exit 0
++}
++
++
++# Native Windows: Uses the winnt compiler ("parity") to gather
++# information. parity is the only one knowing about the location
++# and format of the relevant data, and it is there always when
++# wanting to build native win32 executables.
++
++scanbin_winnt() {
++	local _winnt_inspector="$(type -P "parity.inspector")"
++	[[ -x ${_winnt_inspector} ]] || exit 0
++
++	_winnt_full_info () {
++		local obj="$(cd "$(dirname "$1")"; pwd)/${1##*/}"
++
++		{ file -L "${obj}" | grep "PE" > /dev/null 2>&1; } || exit 0
++
++		# parity.inspector in --raw mode has exactly the format we
++		# want - wonder, wonder, i implemented that switch :)
++
++		local info="$(${_winnt_inspector} --raw "${obj}")"
++		echo "386;${obj};${info}"
++	}
++
++	for x in "$@"; do
++		_winnt_full_info "${x}"
++	done
++}
++
++# CHOST is the first argument!
++_chost=$1
++
++# verify CHOST...
++[[ -z ${_chost} ]] && { echo "CHOST not set!!"; exit 1; }
++[[ ${_chost} == *-*-* ]] || { echo "invalid CHOST!!"; exit 1; }
++shift
++
++case "${_chost}" in 
++*-interix*) scanbin_interix "$@" ;;
++*-winnt*) scanbin_winnt "$@" ;;
++esac
++
+diff -ruN prefix-portage-2.2.00.13830.orig/pym/portage/dbapi/vartree.py prefix-portage-2.2.00.13830/pym/portage/dbapi/vartree.py
+--- prefix-portage-2.2.00.13830.orig/pym/portage/dbapi/vartree.py	2009-07-21 14:02:01 +0200
++++ prefix-portage-2.2.00.13830/pym/portage/dbapi/vartree.py	2009-07-21 13:26:16 +0200
+@@ -2,7 +2,7 @@
+ # Distributed under the terms of the GNU General Public License v2
+ # $Id: vartree.py 13825 2009-07-13 19:41:18Z grobian $
+ 
+-__all__ = ["PreservedLibsRegistry", "LinkageMap", "LinkageMapMachO",
++__all__ = ["PreservedLibsRegistry", "LinkageMap", "LinkageMapMachO", "LinkageMapPeCoff",
+ 	"vardbapi", "vartree", "dblink"] + \
+ 	["write_contents", "tar_contents"]
+ 
+@@ -24,7 +24,7 @@
+ 
+ from portage.const import CACHE_PATH, CONFIG_MEMORY_FILE, \
+ 	PORTAGE_PACKAGE_ATOM, PRIVATE_PATH, VDB_PATH, EPREFIX, EPREFIX_LSTRIP
+-from portage.data import portage_gid, portage_uid, secpass, ostype
++from portage.data import portage_gid, portage_uid, secpass
+ from portage.dbapi import dbapi
+ from portage.exception import CommandNotFound, \
+ 	InvalidData, InvalidPackageName, \
+@@ -1230,6 +1230,168 @@
+ 				rValue.update(consumer_objs)
+ 		return rValue
+ 
++class LinkageMapPeCoff(LinkageMap):
++
++	"""Models dynamic linker dependencies."""
++
++	# NEEDED.PECOFF.1 has effectively the _same_ format as NEEDED.ELF.2,
++	# but we keep up the relation "scanelf" -> "NEEDED.ELF", "readpecoff" ->
++	# "NEEDED.PECOFF", "scanmacho" -> "NEEDED.MACHO", etc. others will follow.
++	_needed_aux_key = "NEEDED.PECOFF.1"
++
++	class _ObjectKey(LinkageMap._ObjectKey):
++
++		"""Helper class used as _obj_properties keys for objects."""
++
++		def _generate_object_key(self, obj, root):
++			"""
++			Generate object key for a given object. This is different from the
++			Linux implementation, since some systems (e.g. interix) don't have
++			"inodes", thus the inode field is always zero, or a random value,
++			making it inappropriate for identifying a file... :)
++
++			@param object: path to a file
++			@type object: string (example: '/usr/bin/bar')
++			@rtype: 2-tuple of types (bool, string)
++			@return:
++				2-tuple of boolean indicating existance, and absolut path
++			"""
++			abs_path = os.path.join(root, obj.lstrip(os.sep))
++			try:
++				object_stat = os.stat(abs_path)
++			except OSError:
++				return (False, os.path.realpath(abs_path))
++			# On Interix, the inode field may always be zero, since the
++			# filesystem (NTFS) has no inodes ...
++			return (True, os.path.realpath(abs_path))
++
++		def file_exists(self):
++			"""
++			Determine if the file for this key exists on the filesystem.
++
++			@rtype: Boolean
++			@return:
++				1. True if the file exists.
++				2. False if the file does not exist or is a broken symlink.
++
++			"""
++			return self._key[0]
++
++	class _LibGraphNode(_ObjectKey):
++		__slots__ = ("alt_paths",)
++
++		def __init__(self, obj, root):
++			LinkageMapPeCoff._ObjectKey.__init__(self, obj, root)
++			self.alt_paths = set()
++
++		def __str__(self):
++			return str(sorted(self.alt_paths))
++
++	def rebuild(self, exclude_pkgs=None, include_file=None):
++		"""
++		Raises CommandNotFound if there are preserved libs
++		and the readpecoff binary is not available.
++		"""
++		root = self._root
++		root_len = len(root) - 1
++		self._clear_cache()
++		self._defpath.update(getlibpaths(self._root))
++		libs = self._libs
++		obj_key_cache = self._obj_key_cache
++		obj_properties = self._obj_properties
++
++		lines = []
++
++		# Data from include_file is processed first so that it
++		# overrides any data from previously installed files.
++		if include_file is not None:
++			lines += grabfile(include_file)
++
++		aux_keys = [self._needed_aux_key]
++		for cpv in self._dbapi.cpv_all():
++			if exclude_pkgs is not None and cpv in exclude_pkgs:
++				continue
++			lines += self._dbapi.aux_get(cpv, aux_keys)[0].split('\n')
++		# Cache NEEDED.* files avoid doing excessive IO for every rebuild.
++		self._dbapi.flush_cache()
++
++		# have to call readpecoff for preserved libs here as they aren't 
++		# registered in NEEDED.PECOFF.1 files
++		if self._dbapi.plib_registry and self._dbapi.plib_registry.getPreservedLibs():
++			args = ["readpecoff", self._dbapi.settings.get('CHOST')]
++			for items in self._dbapi.plib_registry.getPreservedLibs().values():
++				args.extend(os.path.join(root, x.lstrip("." + os.sep)) \
++					for x in items)
++			try:
++				proc = subprocess.Popen(args, stdout=subprocess.PIPE)
++			except EnvironmentError, e:
++				if e.errno != errno.ENOENT:
++					raise
++				raise CommandNotFound(args[0])
++			else:
++				for l in proc.stdout:
++					l = l.lstrip().rstrip()
++					if not l:
++						continue
++					lines.append(l)
++				proc.wait()
++
++		for l in lines:
++			l = l.rstrip("\n")
++			if not l:
++				continue
++			fields = l.split(";")
++			if len(fields) < 5:
++				writemsg_level(_("\nWrong number of fields " \
++					"in %s: %s\n\n") % (self._needed_aux_key, l),
++					level=logging.ERROR, noiselevel=-1)
++				continue
++			arch = fields[0]
++			obj = fields[1]
++			soname = fields[2]
++			path = set([normalize_path(x) \
++				for x in filter(None, fields[3].replace(
++				"${ORIGIN}", os.path.dirname(obj)).replace(
++				"$ORIGIN", os.path.dirname(obj)).split(":"))])
++			needed = filter(None, fields[4].split(","))
++
++			obj_key = self._obj_key(obj)
++			indexed = True
++			myprops = obj_properties.get(obj_key)
++			if myprops is None:
++				indexed = False
++				myprops = (arch, needed, path, soname, set())
++				obj_properties[obj_key] = myprops
++			# All object paths are added into the obj_properties tuple.
++			myprops[4].add(obj)
++
++			# Don't index the same file more that once since only one
++			# set of data can be correct and therefore mixing data
++			# may corrupt the index (include_file overrides previously
++			# installed).
++			if indexed:
++				continue
++
++			arch_map = libs.get(arch)
++			if arch_map is None:
++				arch_map = {}
++				libs[arch] = arch_map
++			if soname:
++				soname_map = arch_map.get(soname)
++				if soname_map is None:
++					soname_map = self._soname_map_class(
++						providers=set(), consumers=set())
++					arch_map[soname] = soname_map
++				soname_map.providers.add(obj_key)
++			for needed_soname in needed:
++				soname_map = arch_map.get(needed_soname)
++				if soname_map is None:
++					soname_map = self._soname_map_class(
++						providers=set(), consumers=set())
++					arch_map[needed_soname] = soname_map
++				soname_map.consumers.add(obj_key)
++
++
+ class vardbapi(dbapi):
+ 
+ 	_excluded_dirs = ["CVS", "lost+found"]
+@@ -1301,8 +1463,11 @@
+ 			# apparently this user isn't allowed to access PRIVATE_PATH
+ 			self.plib_registry = None
+ 
+-		if ostype == "Darwin":
++		if self.settings.get('CHOST').find('darwin') >= 0:
+ 			self.linkmap = LinkageMapMachO(self)
++		elif self.settings.get('CHOST').find('interix') >= 0 \
++				or self.settings.get('CHOST').find('winnt') >= 0:
++			self.linkmap = LinkageMapPeCoff(self)
+ 		else:
+ 			self.linkmap = LinkageMap(self)
+ 		self._owners = self._owners_db(self)
+@@ -3145,7 +3310,13 @@
+ 		def path_to_node(path):
+ 			node = path_node_map.get(path)
+ 			if node is None:
+-				node = LinkageMap._LibGraphNode(path, root)
++				if self.settings.get('CHOST').find('darwin') >= 0:
++					node = LinkageMapMachO._LibGraphNode(path, root)
++				elif self.settings.get('CHOST').find('interix') >= 0 \
++						or self.settings.get('CHOST').find('winnt') >= 0:
++					node = LinkageMapPeCoff._LibGraphNode(path, root)
++				else:
++					node = LinkageMap._LibGraphNode(path, root)
+ 				alt_path_node = lib_graph.get(node)
+ 				if alt_path_node is not None:
+ 					node = alt_path_node
+@@ -3287,8 +3458,11 @@
+ 		def path_to_node(path):
+ 			node = path_node_map.get(path)
+ 			if node is None:
+-				if ostype == "Darwin":
++				if self.settings.get('CHOST').find('darwin') >= 0:
+ 					node = LinkageMapMachO._LibGraphNode(path, root)
++				elif self.settings.get('CHOST').find('interix') >= 0 \
++						or self.settings.get('CHOST').find('winnt') >= 0:
++					node = LinkageMapPeCoff._LibGraphNode(path, root)
+ 				else:
+ 					node = LinkageMap._LibGraphNode(path, root)
+ 				alt_path_node = lib_graph.get(node)
