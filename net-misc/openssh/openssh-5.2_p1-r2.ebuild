@@ -153,7 +153,7 @@ src_compile() {
 	[[ ${CHOST} == *-solaris* || ${CHOST} == *-mint* ]] && \
 		myconf="${myconf} --without-stackprotect"
 	
-	if [[ ${CHOST} == *-winnt* ]]; then
+	if [[ ${CHOST} == *-interix* ]]; then
 		export ac_cv_func_poll=no
 		export ac_cv_header_poll_h=no
 	fi
