@@ -76,6 +76,9 @@ src_compile() {
 		myconf="${myconf} --enable-install-program=arch"
 		myconf="${myconf} --enable-no-install-program=groups,hostname,kill,su,uptime"
 	fi
+	# bug 278837
+	[[ ${CHOST} == *-aix6* ]] && export ac_cv_func_getppriv=no
+
 	econf \
 		${myconf} \
 		--enable-largefile \
