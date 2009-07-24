@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libprelude
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.65 2009/07/12 19:07:10 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.66 2009/07/21 14:34:38 chainsaw Exp $
+
+  21 Jul 2009; <chainsaw@gentoo.org> libprelude-0.9.22.ebuild:
+  Marked stable on AMD64 as requested by Arfrever Frehtes Taifersar Arahesis
+  <arfrever@gentoo.org> in bug #275702.
 
 *libprelude-0.9.24 (12 Jul 2009)
 
