@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r3.ebuild,v 1.9 2008/12/02 21:21:13 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/flac/flac-1.2.1-r3.ebuild,v 1.10 2009/07/23 08:24:03 ssuominen Exp $
 
 EAPI=1
 
@@ -8,7 +8,9 @@ inherit autotools eutils base
 
 DESCRIPTION="free lossless audio encoder and decoder"
 HOMEPAGE="http://flac.sourceforge.net"
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
+	http://dev.gentoo.org/~ssuominen/${P}-embedded-m4.tar.bz2
+	mirror://gentoo/${P}-embedded-m4.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
@@ -32,6 +34,7 @@ PATCHES=( "${FILESDIR}/${P}-asneeded.patch"
 src_unpack() {
 	base_src_unpack
 	cd "${S}"
+	cp "${WORKDIR}"/*.m4 m4 || die "cp failed"
 	AT_M4DIR="m4" eautoreconf
 }
 
