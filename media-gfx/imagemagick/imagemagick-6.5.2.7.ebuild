@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.2.7.ebuild,v 1.1 2009/05/24 18:06:32 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.2.7.ebuild,v 1.3 2009/07/23 03:47:24 gengor Exp $
 
-EAPI=2
+EAPI="2"
 
-inherit eutils multilib perl-app toolchain-funcs
+inherit eutils multilib perl-app toolchain-funcs versionator
 
 MY_PN=ImageMagick
 MY_P=${MY_PN}-${PV%.*}
@@ -56,7 +56,6 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 
 DEPEND="${RDEPEND}
 	>=sys-apps/sed-4
-	openmp? ( >=sys-devel/gcc-4.3.0[openmp] )
 	X? ( x11-proto/xextproto )"
 
 S="${WORKDIR}/${MY_P2}"
@@ -71,12 +70,12 @@ pkg_setup() {
 
 	if use corefonts && ! use truetype ; then
 		elog "corefonts USE-flag requires the truetype USE-flag to be set."
-		elog "disabling corefonts support for now"
+		elog "disabling corefonts support for now."
 	fi
 }
 
 src_prepare() {
-	# fix doc dir, bug 91911
+	# fix doc dir, bug #91911
 	sed -i -e \
 		's:DOCUMENTATION_PATH="${DATA_DIR}/doc/${DOCUMENTATION_RELATIVE_PATH}":DOCUMENTATION_PATH="${EPREFIX}/usr/share/doc/${PF}":g' \
 		"${S}"/configure || die
@@ -96,6 +95,19 @@ src_configure() {
 		myconf="${myconf} --with-rsvg"
 	else
 		myconf="${myconf} --without-rsvg"
+	fi
+
+	# openmp support only works with >=sys-devel/gcc-4.3, bug #223825
+	if use openmp && version_is_at_least 4.3 $(gcc-version) ; then
+		if built_with_use --missing false =sys-devel/gcc-$(gcc-fullversion)* openmp ; then
+			myconf="${myconf} --enable-openmp"
+		else
+			elog "disabling openmp support (requires >=sys-devel/gcc-4.3 with USE='openmp')"
+			myconf="${myconf} --disable-openmp"
+		fi
+	else
+		elog "disabling openmp support (requires >=sys-devel/gcc-4.3)"
+		myconf="${myconf} --disable-openmp"
 	fi
 
 	use truetype && myconf="${myconf} $(use_with corefonts windows-font-dir /usr/share/fonts/corefonts)"
@@ -123,7 +135,6 @@ src_configure() {
 		$(use_with jpeg2k jp2) \
 		$(use_with lcms) \
 		$(use_with openexr) \
-		$(use_enable openmp) \
 		$(use_with png) \
 		$(use_with svg rsvg) \
 		$(use_with tiff) \
