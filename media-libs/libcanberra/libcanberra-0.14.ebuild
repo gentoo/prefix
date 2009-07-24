@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.14.ebuild,v 1.4 2009/07/19 17:29:45 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.14.ebuild,v 1.5 2009/07/21 06:17:23 mrpouet Exp $
 
 EAPI="1"
 
@@ -31,7 +31,15 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	# Fix bug 277739, replace LT_PREREQ and LT_INIT by AC_LIBTOOL*
+	# macros (equivalent for earlier version), preserve backward
+	# compatibility with libtool-1
 	epatch "${FILESDIR}/${P}-backward-compatibility-libtool.patch"
+
+	# Fix bug 278354, Backport AM_GCONF_SOURCE_2 macro to m4/ dir
+	# in case where gconf isn't installed on the system
+	# (eautoconf could fail)
+	epatch "${FILESDIR}/${P}-am-gconf-source-2-m4.patch"
 
 	rm lt*    || die "clean-up ltmain.sh failed"
 	rm m4/lt* || die "clean-up lt scripts failed"

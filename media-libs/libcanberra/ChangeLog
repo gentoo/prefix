@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.24 2009/07/19 17:29:45 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.25 2009/07/21 06:17:23 mrpouet Exp $
+
+  21 Jul 2009; Romain Perier <mrpouet@gentoo.org> libcanberra-0.14.ebuild,
+  +files/libcanberra-0.14-am-gconf-source-2-m4.patch:
+  Fix bug #278354, backport gconf-2.m4 from aclocal system dir to m4/ source
+  directory, in case where gconf is not installed on the system
 
   20 Jul 2009; Romain Perier <mrpouet@gentoo.org> libcanberra-0.14.ebuild:
   Fix bug #278269, src_unpack() failed due to unnecessary quotes around rm
