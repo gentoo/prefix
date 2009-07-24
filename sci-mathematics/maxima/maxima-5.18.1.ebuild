@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.18.1.ebuild,v 1.3 2009/06/21 18:40:32 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.18.1.ebuild,v 1.4 2009/07/21 16:37:20 fauli Exp $
 EAPI=2
 inherit eutils elisp-common
 
