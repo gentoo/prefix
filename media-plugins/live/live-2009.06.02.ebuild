@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/live/live-2009.06.02.ebuild,v 1.2 2009/07/08 14:43:28 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/live/live-2009.06.02.ebuild,v 1.4 2009/07/23 14:33:02 armin76 Exp $
 
 inherit flag-o-matic eutils toolchain-funcs multilib
 
