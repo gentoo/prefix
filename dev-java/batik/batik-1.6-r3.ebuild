@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/batik-1.6-r3.ebuild,v 1.8 2008/01/20 22:27:27 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/batik-1.6-r3.ebuild,v 1.9 2009/07/23 13:14:44 ali_bush Exp $
 
 inherit java-pkg-2 java-ant-2 eutils
 
@@ -16,7 +16,7 @@ IUSE="doc python tcl"
 CDEPEND="=dev-java/rhino-1.5*
 	>=dev-java/xerces-2.7.1
 	=dev-java/xml-commons-external-1.3*
-	python? ( dev-java/jython )
+	python? ( || ( =dev-java/jython-2.2* =dev-java/jython-2.1* ) )
 	tcl? ( dev-java/jacl )"
 DEPEND="=virtual/jdk-1.4*
 	dev-java/ant-core

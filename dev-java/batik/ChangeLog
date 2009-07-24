@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/batik
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/ChangeLog,v 1.61 2009/07/19 14:02:16 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/ChangeLog,v 1.62 2009/07/23 13:14:44 ali_bush Exp $
+
+  23 Jul 2009; Alistair Bush <ali_bush@gentoo.org> batik-1.6-r3.ebuild:
+  Constrain jython dependency so it doesn't pulling 2.5 slot.
 
   19 Jul 2009; nixnut <nixnut@gentoo.org> batik-1.6-r4.ebuild,
   batik-1.7-r2.ebuild:
