@@ -31,6 +31,14 @@ src_unpack() {
 src_prepare() {
 	epatch "${FILESDIR}"/${PV}-darwin-sanitise.patch
 
+	# adds support for boosting with parity ...
+	epatch "${FILESDIR}"/${PV}-winnt.patch
+
+	# needed by multiple platforms - how can this work anywhere?
+	# the symptom is "${CHOST}-gcc: not found", however this
+	# can be caused by quoting of _arguments_ ... ?
+	epatch "${FILESDIR}"/${PV}-build_jam-quoting.patch
+
 	# Remove stripping option
 	cd "${S}/jam/src"
 	sed -i -e 's|-s\b||' \
