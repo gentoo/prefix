@@ -11,7 +11,6 @@
 		support</flag>
 	<flag name='bs2b'>Enable Bauer Bauer stereophonic-to-binaural
 		headphone filter</flag>
-	<flag name='cdaudio'>Enable cd audio playback support</flag>
 	<flag name='chardet'>Try to handle non-UTF8 chinese/japanese/korean ID3
 		tags</flag>
 	<flag name='icecast'>Support for Icecast2 streaming</flag>

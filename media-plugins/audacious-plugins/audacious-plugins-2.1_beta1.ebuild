@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.1_beta1.ebuild,v 1.2 2009/07/03 08:22:56 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.1_beta1.ebuild,v 1.3 2009/07/22 16:04:13 ssuominen Exp $
 
 inherit eutils flag-o-matic
 
@@ -13,7 +13,7 @@ SRC_URI="http://distfiles.atheme.org/${MY_P}.tgz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
-IUSE="aqua adplug alsa bs2b cdaudio esd flac gnome icecast ipv6 jack lirc mp3 mtp musepack
+IUSE="aqua adplug alsa bs2b cdda esd flac gnome icecast ipv6 jack lirc mp3 mtp musepack
 nls oss projectm pulseaudio scrobbler sdl sid sndfile sse2 timidity tta vorbis wavpack wma"
 
 RDEPEND="app-arch/unzip
@@ -25,7 +25,7 @@ RDEPEND="app-arch/unzip
 	adplug? ( >=dev-cpp/libbinio-1.4 )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
 	bs2b? ( media-libs/libbs2b )
-	cdaudio? ( >=media-libs/libcddb-1.2.1
+	cdda? ( >=media-libs/libcddb-1.2.1
 		>=dev-libs/libcdio-0.79-r1 )
 	esd? ( >=media-sound/esound-0.2.38-r1 )
 	flac? ( >=media-libs/libvorbis-1.0
@@ -77,7 +77,7 @@ src_compile() {
 		$(use_enable alsa) \
 		$(use_enable alsa bluetooth) \
 		$(use_enable bs2b) \
-		$(use_enable cdaudio) \
+		$(use_enable cdda cdaudio) \
 		$(use_enable esd) \
 		$(use_enable flac flacng) \
 		$(use_enable flac filewriter_flac) \

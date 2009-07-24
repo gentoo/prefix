@@ -1,6 +1,11 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.125 2009/07/06 22:50:52 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.126 2009/07/22 16:04:13 ssuominen Exp $
+
+  22 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  audacious-plugins-2.0.1.ebuild, audacious-plugins-2.1_beta1.ebuild,
+  audacious-plugins-2.1.ebuild:
+  Rename USE cdaudio to USE cdda.
 
 *audacious-plugins-2.1 (06 Jul 2009)
 
