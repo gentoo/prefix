@@ -1,21 +1,22 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r5.ebuild,v 1.6 2009/03/27 21:41:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.7.ebuild,v 1.1 2009/07/22 13:27:17 mueli Exp $
 
-inherit eutils flag-o-matic versionator autotools
+inherit eutils flag-o-matic versionator
 
-PATCHV="0.5"
+PATCHV="0.6"
 MY_P=${P/mit-}
 P_DIR=$(get_version_component_range 1-2)
 DESCRIPTION="MIT Kerberos V"
 HOMEPAGE="http://web.mit.edu/kerberos/www/"
 SRC_URI="http://web.mit.edu/kerberos/dist/krb5/${P_DIR}/${MY_P}-signed.tar
-	mirror://gentoo/${P}-patches-${PATCHV}.tar.bz2"
+http://dev.gentoo.org/~mueli/kerberos/${P}-patches-${PATCHV}.tar.bz2"
+#	mirror://gentoo/${P}-patches-${PATCHV}.tar.bz2"
 
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="krb4 doc"
+IUSE="doc"
 
 RDEPEND="!virtual/krb5
 	>=sys-libs/e2fsprogs-libs-1.41.0"
@@ -31,26 +32,14 @@ src_unpack() {
 	unpack ./${MY_P}.tar.gz
 	cd "${S}"
 	EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"
-
-	epatch "${FILESDIR}"/${P}-no-bindnow.patch
-
 	einfo "Regenerating configure scripts (be patient)"
-	local subdir
-	for subdir in $(find . -name configure.in \
-		| xargs grep -l 'AC_CONFIG_SUBDIRS' \
-		| sed 's@/configure\.in$@@'); do
-		ebegin "Regenerating configure script in ${subdir}"
-		cd "${S}"/${subdir}
-		eautoconf --force -I "${S}"
-		eend $?
-	done
+	./util/reconf --force
 }
 
 src_compile() {
-	# needed to work with sys-libs/e2fsprogs-libs <- should be removed!!
 	append-flags "-I${EPREFIX}/usr/include/et"
 	econf \
-		$(use_with krb4) \
+		--without-krb4 \
 		--enable-shared \
 		--with-system-et --with-system-ss \
 		--enable-dns-for-realm \
@@ -67,7 +56,7 @@ src_compile() {
 }
 
 src_test() {
-	einfo "Tests do not run in sandbox, have a lot of dependencies and are therefore completely disabled."
+	einfo "Tests do not run in sandbox, they need mit-krb5 to be already installed to test it."
 }
 
 src_install() {
@@ -102,8 +91,4 @@ src_install() {
 	insinto /etc
 	newins "${ED}/usr/share/doc/${PF}/examples/krb5.conf" krb5.conf.example
 	newins "${ED}/usr/share/doc/${PF}/examples/kdc.conf" kdc.conf.example
-}
-
-pkg_postinst() {
-	elog "See /usr/share/doc/${PF}/html/krb5-admin.html for documentation."
 }
