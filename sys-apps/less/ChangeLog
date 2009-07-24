@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.104 2009/07/15 18:48:38 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.105 2009/07/22 08:07:25 vapier Exp $
+
+*less-436 (22 Jul 2009)
+
+  22 Jul 2009; Mike Frysinger <vapier@gentoo.org> +less-436.ebuild:
+  Version bump #274053 by Klaus Kusche.
 
   15 Jul 2009; nixnut <nixnut@gentoo.org> less-429.ebuild:
   ppc stable #273794
