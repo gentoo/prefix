@@ -1,6 +1,10 @@
 # ChangeLog for app-text/lout
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lout/ChangeLog,v 1.22 2009/03/01 15:25:14 patrick Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/lout/ChangeLog,v 1.23 2009/07/23 23:02:13 vostorga Exp $
+
+  23 Jul 2009; Víctor Ostorga <vostorga@gentoo.org> lout-3.30.ebuild,
+  lout-3.31.ebuild, lout-3.38.ebuild:
+  Respecting CC variable, closes bug #243732
 
 *lout-3.38 (01 Mar 2009)
 
