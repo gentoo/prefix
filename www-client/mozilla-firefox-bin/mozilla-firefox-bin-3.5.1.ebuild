@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.5.1.ebuild,v 1.1 2009/07/20 13:36:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.5.1.ebuild,v 1.2 2009/07/22 09:37:11 nirbheek Exp $
 EAPI="2"
 
 inherit eutils mozilla-launcher multilib mozextension prefix
@@ -54,7 +54,7 @@ RDEPEND="dev-libs/dbus-glib
 		app-emulation/emul-linux-x86-compat
 	)"
 
-PDEPEND="restrict-javascript? ( x11-plugins/noscript )"
+PDEPEND="restrict-javascript? ( www-plugins/noscript )"
 
 S="${WORKDIR}/firefox"
 
