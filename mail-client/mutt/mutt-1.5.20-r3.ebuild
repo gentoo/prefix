@@ -1,14 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.19-r1.ebuild,v 1.2 2009/06/19 08:05:39 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r3.ebuild,v 1.1 2009/07/23 13:50:19 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
-PATCHSET_REV=""
+PATCHSET_REV="-r2"
 
 # note: latest sidebar patches can be found here:
 # http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44
-SIDEBAR_PATCH_N="patch-1.5.19.sidebar.20090522.txt"
+SIDEBAR_PATCH_N="patch-1.5.20.sidebar.20090619.txt"
 
 DESCRIPTION="a small but very powerful text-based mail client"
 HOMEPAGE="http://www.mutt.org"
@@ -22,11 +22,11 @@ SRC_URI="ftp://ftp.mutt.org/mutt/devel/${P}.tar.gz
 	sidebar? (
 		http://www.lunar-linux.org/~tchan/mutt/${SIDEBAR_PATCH_N}
 	)"
-IUSE="berkdb crypt debug gdbm gnutls gpgme idn imap mbox nls nntp pop qdbm sasl
+IUSE="berkdb crypt debug gdbm gnutls gpg idn imap mbox nls nntp pop qdbm sasl
 sidebar smime smtp ssl vanilla"
 SLOT="0"
 LICENSE="GPL-2"
-KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~amd64-linux ~ia64-linux ~x86-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 RDEPEND=">=sys-libs/ncurses-5.2
 	qdbm?    ( dev-db/qdbm )
 	!qdbm?   (
@@ -49,7 +49,7 @@ RDEPEND=">=sys-libs/ncurses-5.2
 		sasl?    ( >=dev-libs/cyrus-sasl-2 )
 	)
 	idn?     ( net-dns/libidn )
-	gpgme?   ( >=app-crypt/gpgme-0.9.0 )
+	gpg?   ( >=app-crypt/gpgme-0.9.0 )
 	smime?   ( >=dev-libs/openssl-0.9.6 )
 	app-misc/mime-types"
 DEPEND="${RDEPEND}
@@ -67,11 +67,6 @@ src_unpack() {
 	unpack ${A//${SIDEBAR_PATCH_N}}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-libgnutls-test-15c662a95b91.patch
-	# CVE-2009-1390 http://thread.gmane.org/gmane.comp.security.oss.general/1847
-	epatch "${FILESDIR}"/${P}-mutt_ssl-3af7e8af1983-dc9ec900c657.patch
-	epatch "${FILESDIR}"/${P}-mutt-gnutls-7d0583e0315d-0b13183e40e0.patch
-
 	# this patch is non-generic and only works because we use a sysconfdir
 	# different from the one used by the mailbase ebuild
 	use prefix && epatch "${FILESDIR}"/mutt-1.5.13-prefix-mailcap.patch
@@ -79,14 +74,31 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch # fix bdb detection
 	epatch "${FILESDIR}"/mutt-1.5.18-interix.patch
 	epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
-	epatch "${FILESDIR}"/mutt-1.5.19-wcfuncs.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-gpgme-1.2.0.patch
+	# post-release hot-fixes
+	epatch "${FILESDIR}"/mutt-1.5.20-imap-port-invalid-d6f88fbf8387.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-header-weeding-f40de578e8ed.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-display-unsigned-pgp-7f37d0a57d83.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-unmailbox-segfault-25e46aad362b.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-mbox-new-mail-bd59be56c6b0.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-mbox-unchanged-new-mail-9ae13dedb5ed.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-imap-start-fatal-fe30f394cbe6.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-tab-subject-questionmark-298194c414f0-cff8e8ce4327.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-smtp-batch-mode-0a3de4d9a009-f6c6066a5925.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-leave-mailbox-no-new-mail-118b8fef8aae.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-gpgme-keys-d41e043fa775.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-mhs-flags-leak-9f3053f75f27.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-hcache-restore-address-848f08512bf3.patch
+
+	# patch version string for bug reports
+	sed -i -e 's/"Mutt %s (%s)"/"Mutt %s (%s, Gentoo '"${PVR}"')"/' \
+		muttlib.c || die "failed patching in Gentoo version"
 
 	if use !vanilla && use !sidebar ; then
 		use nntp || rm "${PATCHDIR}"/06-nntp.patch
 		for p in "${PATCHDIR}"/*.patch ; do
 			epatch "${p}"
 		done
-		epatch "${FILESDIR}"/${P}-libgnutls-test-15c662a95b91.patch
 	fi
 
 	if use sidebar ; then
@@ -98,16 +110,18 @@ src_unpack() {
 	AT_M4DIR="m4" eautoreconf
 
 	# this should be done only when we're not root
-	sed -i \
-		-e 's/@DOTLOCK_GROUP@/'"`id -gn`"'/g' \
-		Makefile.in \
-		|| die "sed failed"
+	if [[ ${UID} != 0 ]] ; then
+		sed -i \
+			-e 's/@DOTLOCK_GROUP@/'"`id -gn`"'/g' \
+			Makefile.in \
+			|| die "sed failed"
+	fi
 }
 
 src_compile() {
 	declare myconf="
 		$(use_enable nls) \
-		$(use_enable gpgme) \
+		$(use_enable gpg gpgme) \
 		$(use_enable imap) \
 		$(use_enable pop) \
 		$(use_enable smtp) \
@@ -170,11 +184,6 @@ src_compile() {
 		myconf="${myconf} --without-gnutls --without-ssl --without-sasl"
 	fi
 
-	# See Bug #11170
-	case ${ARCH} in
-		alpha|ppc) replace-flags "-O[3-9]" "-O2" ;;
-	esac
-
 	if use mbox; then
 		myconf="${myconf} --with-mailpath=${EPREFIX}/var/spool/mail"
 	else
@@ -195,6 +204,7 @@ src_compile() {
 }
 
 src_install() {
+	local ED=${ED-${D}}
 	make DESTDIR="${D}" install || die "install failed"
 	find "${ED}"/usr/share/doc -type f | grep -v "html\|manual" | xargs gzip
 	if use mbox; then
@@ -214,6 +224,17 @@ src_install() {
 	rm -f "${ED}"/usr/share/locale/locale.alias
 
 	dodoc BEWARE COPYRIGHT ChangeLog NEWS OPS* PATCHES README* TODO VERSION
+}
+
+pkg_setup() {
+	if ! use gpg &&
+		has_version "<${CATEGORY}/${PN}-1.5.20-r2" &&
+		built_with_use ${CATEGORY}/${PN} gpgme ;
+	then
+		ewarn 'The "gpgme" USE-flag has been changed into "gpg".  You'
+		ewarn 'previously had "gpgme" set, and you most likely want to'
+		ewarn 'enable "gpg" instead, right now, to obtain equivalent behaviour.'
+	fi
 }
 
 pkg_postinst() {

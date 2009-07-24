@@ -1,6 +1,14 @@
 # ChangeLog for mail-client/mutt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.141 2009/07/21 17:31:28 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.142 2009/07/23 13:50:19 grobian Exp $
+
+*mutt-1.5.20-r3 (23 Jul 2009)
+
+  23 Jul 2009; Fabian Groffen <grobian@gentoo.org> -mutt-1.5.20-r2.ebuild,
+  +mutt-1.5.20-r3.ebuild, +files/mutt-1.5.20-gpgme-keys-d41e043fa775.patch,
+  +files/mutt-1.5.20-hcache-restore-address-848f08512bf3.patch,
+  +files/mutt-1.5.20-mhs-flags-leak-9f3053f75f27.patch:
+  Revision bump for some new fixes from upstream.
 
   21 Jul 2009; Fabian Groffen <grobian@gentoo.org> mutt-1.5.20-r2.ebuild,
   +files/mutt-1.5.20-gpgme-1.2.0.patch:
