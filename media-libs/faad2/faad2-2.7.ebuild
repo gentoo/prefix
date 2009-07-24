@@ -1,11 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/faad2-2.7.ebuild,v 1.1 2009/02/19 23:08:41 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/faad2-2.7.ebuild,v 1.5 2009/07/23 00:26:59 gengor Exp $
 
-inherit eutils libtool
+EAPI=2
+inherit autotools eutils
 
 DESCRIPTION="AAC audio decoding library"
-HOMEPAGE="http://www.audiocoding.com/"
+HOMEPAGE="http://www.audiocoding.com/faad2.html"
 SRC_URI="mirror://sourceforge/faac/${P}.tar.gz"
 
 LICENSE="GPL-2"
@@ -13,26 +14,18 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="digitalradio"
 
-RDEPEND=""
-DEPEND=""
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	elibtoolize
+src_prepare() {
+	sed -i -e 's:iquote :I:' libfaad/Makefile.am || die "sed failed"
+	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	econf \
-		$(use_with digitalradio drm)\
+		$(use_with digitalradio drm) \
 		--without-xmms
-
-	emake || die
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
-
+	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS README README.linux TODO
 }
