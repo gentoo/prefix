@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.112 2009/07/17 15:10:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.113 2009/07/21 15:14:41 chainsaw Exp $
+
+  21 Jul 2009; <chainsaw@gentoo.org> eselect-1.1.1.ebuild:
+  Marked stable on AMD64 as requested by Ulrich Müller <ulm@gentoo.org> in
+  bug #277187. Tested with the profile module.
 
   17 Jul 2009; Raúl Porcel <armin76@gentoo.org> eselect-1.1.1.ebuild:
   alpha/arm/ia64/m68k/s390/sh stable wrt #277187
