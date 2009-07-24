@@ -1,6 +1,15 @@
 # ChangeLog for app-emacs/emacs-w3m
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-w3m/ChangeLog,v 1.64 2009/07/16 18:06:31 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-w3m/ChangeLog,v 1.66 2009/07/22 19:37:02 fauli Exp $
+
+  22 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  -files/71emacs-w3m-gentoo.el, -emacs-w3m-1.4.4-r2.ebuild,
+  -emacs-w3m-1.4.4_p20080214.ebuild:
+  clean up
+
+  22 Jul 2009; Tobias Klausmann <klausman@gentoo.org>
+  emacs-w3m-1.4.4-r3.ebuild:
+  Stable on alpha, bug #276975
 
   16 Jul 2009; Tiago Cunha <tcunha@gentoo.org> emacs-w3m-1.4.4-r3.ebuild:
   stable amd64, bug 276975
