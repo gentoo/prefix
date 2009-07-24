@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.10.ebuild,v 1.7 2009/05/01 23:24:30 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.0.10.ebuild,v 1.8 2009/07/21 15:11:05 nirbheek Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -58,7 +58,7 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	java? ( >=dev-java/java-config-0.2.0 )"
 
-PDEPEND="restrict-javascript? ( x11-plugins/noscript )"
+PDEPEND="restrict-javascript? ( www-plugins/noscript )"
 
 S="${WORKDIR}/mozilla"
 
