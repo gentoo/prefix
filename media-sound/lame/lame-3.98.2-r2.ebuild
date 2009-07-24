@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/lame-3.98.2.ebuild,v 1.6 2008/11/14 12:25:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/lame-3.98.2-r2.ebuild,v 1.1 2009/07/22 19:03:13 ssuominen Exp $
 
 inherit flag-o-matic toolchain-funcs eutils autotools versionator
 
@@ -38,6 +38,12 @@ src_unpack() {
 
 	# Patch gtk stuff, otherwise eautoreconf dies
 	epatch "${FILESDIR}"/${PN}-3.98-gtk-path.patch
+
+	# Fix for ffmpeg-0.5, bug 265830
+	epatch "${FILESDIR}"/${PN}-3.98.2-ffmpeg-0.5.patch
+
+	# Read and write from std* when sndfile is used
+	epatch "${FILESDIR}"/${PN}-3.98.2-get_audio.patch
 
 	# It fails parallel make otherwise when enabling nasm...
 	mkdir "${S}/libmp3lame/i386/.libs" || die

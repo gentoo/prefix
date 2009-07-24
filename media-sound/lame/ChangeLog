@@ -1,6 +1,13 @@
 # ChangeLog for media-sound/lame
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.117 2009/06/25 17:30:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/lame/ChangeLog,v 1.118 2009/07/22 19:03:13 ssuominen Exp $
+
+*lame-3.98.2-r2 (22 Jul 2009)
+
+  22 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +lame-3.98.2-r2.ebuild, +files/lame-3.98.2-get_audio.patch:
+  Support stdin and stdout with sndfile wrt #274255, thanks to Naohiro Aota
+  and Jérôme Poulin.
 
   25 Jun 2009; Raúl Porcel <armin76@gentoo.org> lame-3.98.2-r1.ebuild:
   arm/ia64/sh/sparc stable
