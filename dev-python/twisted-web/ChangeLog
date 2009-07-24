@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/twisted-web
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.40 2009/01/09 17:54:49 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.41 2009/07/21 11:59:12 ssuominen Exp $
+
+  21 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  twisted-web-8.2.0.ebuild:
+  USE soap wrt #138038.
 
 *twisted-web-8.2.0 (09 Jan 2009)
 
