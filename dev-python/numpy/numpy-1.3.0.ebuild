@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.3.0.ebuild,v 1.5 2009/07/20 01:53:46 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.3.0.ebuild,v 1.6 2009/07/22 14:25:53 armin76 Exp $
 
 NEED_PYTHON=2.4
 EAPI=2
@@ -46,6 +46,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.1.0-f2py.patch
 
 	epatch "${FILESDIR}/${P}-parisc.patch" # bug 277438
+	epatch "${FILESDIR}/${P}-alpha.patch" # bug 277438
 
 	# Gentoo patch for ATLAS library names
 	sed -i \
