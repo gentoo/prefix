@@ -1,6 +1,10 @@
 # ChangeLog for app-i18n/anthy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.125 2009/07/21 00:48:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.126 2009/07/21 14:47:05 chainsaw Exp $
+
+  21 Jul 2009; <chainsaw@gentoo.org> anthy-9100h.ebuild:
+  Marked stable on AMD64 as requested by MATSUU Takuto <matsuu@gentoo.org>
+  in bug #275687.
 
   21 Jul 2009; Jeroen Roovers <jer@gentoo.org> anthy-9100h.ebuild:
   Stable for HPPA (bug #275687).
