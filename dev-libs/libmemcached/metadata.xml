@@ -10,4 +10,7 @@
 	(http://danga.com/memcached). It has been designed to be light on memory
 	usage, thread safe, and provide full access to server side methods.
 	</longdescription>
+<use>
+<flag name='hsieh'>Use Hsieh hash algorithm.</flag>
+</use>
 </pkgmetadata>

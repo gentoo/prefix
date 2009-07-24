@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libmemcached
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcached/ChangeLog,v 1.13 2009/07/06 09:43:58 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmemcached/ChangeLog,v 1.14 2009/07/22 17:32:33 robbat2 Exp $
+
+*libmemcached-0.31 (22 Jul 2009)
+
+  22 Jul 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +libmemcached-0.31.ebuild, metadata.xml:
+  Bug #277512: version bump.
 
 *libmemcached-0.30 (06 Jul 2009)
 
