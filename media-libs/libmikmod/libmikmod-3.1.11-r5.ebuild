@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmikmod/libmikmod-3.1.11-r5.ebuild,v 1.3 2009/01/17 00:26:39 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmikmod/libmikmod-3.1.11-r5.ebuild,v 1.4 2009/07/23 18:07:55 ssuominen Exp $
 
 inherit flag-o-matic eutils libtool autotools
 
@@ -14,9 +14,10 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="oss esd alsa"
 
-DEPEND=">=media-libs/audiofile-0.2.3
+RDEPEND=">=media-libs/audiofile-0.2.3
 	alsa? ( >=media-libs/alsa-lib-0.5.9 )
 	esd? ( >=media-sound/esound-0.2.19 )"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
