@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autogen
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.56 2009/07/19 22:14:09 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/ChangeLog,v 1.57 2009/07/23 14:50:52 armin76 Exp $
+
+  23 Jul 2009; Raúl Porcel <armin76@gentoo.org> autogen-5.9.7.ebuild:
+  arm/ia64/m68k/s390/sh stable wrt #274468
 
   19 Jul 2009; Tiago Cunha <tcunha@gentoo.org> autogen-5.9.7.ebuild:
   stable sparc, bug 274468
