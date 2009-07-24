@@ -1,6 +1,17 @@
 # ChangeLog for dev-util/subversion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.389 2009/07/06 19:14:54 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.391 2009/07/22 21:11:17 fauli Exp $
+
+  22 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  subversion-1.6.3.ebuild:
+  stable x86, bug 278623
+
+*subversion-1.6.3-r10 (22 Jul 2009)
+
+  22 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  subversion-1.6.3.ebuild, +subversion-1.6.3-r10.ebuild:
+  Copy 1.6.3 to 1.6.3-r10 without changes. Disable KDE support in 1.6.3 to
+  allow earlier stabilization.
 
   06 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   subversion-1.6.2.ebuild, subversion-1.6.2-r10.ebuild,
