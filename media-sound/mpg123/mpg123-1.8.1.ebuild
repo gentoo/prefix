@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.8.1.ebuild,v 1.1 2009/06/21 14:40:14 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.8.1.ebuild,v 1.4 2009/07/22 16:15:03 fauli Exp $
 
 EAPI=2
 
@@ -24,7 +24,6 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 	!media-sound/mpg321[symlink]"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
-PDEPEND="virtual/mpg123"
 
 pkg_setup() {
 	# Make sure there is no mpg123 symlink left
