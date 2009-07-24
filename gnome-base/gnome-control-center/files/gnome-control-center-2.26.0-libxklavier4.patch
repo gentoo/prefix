@@ -1,13 +1,12 @@
-From d6c2ab27173cdcab49f152fa190c5594b661f107 Mon Sep 17 00:00:00 2001
+From 69e112aa566f08a782cbb8544bde43eed029081c Mon Sep 17 00:00:00 2001
 From: Gilles Dartiguelongue <eva@gentoo.org>
 Date: Tue, 21 Jul 2009 00:30:10 +0200
 Subject: [PATCH] Add support for libxklavier-4
 
-Gentoo: https://bugs.gentoo.org/show_bug.cgi?id=278450
 ---
  capplets/keyboard/gnome-keyboard-properties-xkb.c |    4 ++++
- configure.in                                      |    2 ++
- 2 files changed, 6 insertions(+), 0 deletions(-)
+ configure.in                                      |    4 +++-
+ 2 files changed, 7 insertions(+), 1 deletions(-)
 
 diff --git a/capplets/keyboard/gnome-keyboard-properties-xkb.c b/capplets/keyboard/gnome-keyboard-properties-xkb.c
 index a0171ac..4cfe305 100644
@@ -26,18 +25,20 @@ index a0171ac..4cfe305 100644
  	gkbd_keyboard_config_init (&initial_config, xkb_gconf_client,
  				   engine);
 diff --git a/configure.in b/configure.in
-index 515f053..3f7eae2 100644
+index 515f053..b552d4f 100644
 --- a/configure.in
 +++ b/configure.in
-@@ -180,6 +180,8 @@ CAPPLET_LIBS="$CAPPLET_LIBS $XCURSOR_LIBS"
+@@ -180,7 +180,9 @@ CAPPLET_LIBS="$CAPPLET_LIBS $XCURSOR_LIBS"
  dnl ==============
  dnl gswitchit
  dnl ==============
-+PKG_CHECK_MODULES(LIBXKLAVIER, [libxklavier >= 4],
-+	[AC_DEFINE(HAVE_XKL_4, [1], [libxklavier-4 support])])
- PKG_CHECK_MODULES(LIBGNOMEKBD, [libgnomekbd >= 2.21.4.1 libxklavier >= 3.6])
+-PKG_CHECK_MODULES(LIBGNOMEKBD, [libgnomekbd >= 2.21.4.1 libxklavier >= 3.6])
++PKG_CHECK_MODULES(LIBGNOMEKBD, [libgnomekbd >= 2.21.4.1 libxklavier >= 4],
++	[AC_DEFINE(HAVE_XKL_4, [1], [libxklavier-4 support])],
++	[PKG_CHECK_MODULES(LIBGNOMEKBD, [libgnomekbd >= 2.21.4.1 libxklavier >= 3.6])])
  AC_SUBST(LIBGNOMEKBD_CFLAGS)
  AC_SUBST(LIBGNOMEKBD_LIBS)
+ 
 -- 
 1.6.3.3
 
