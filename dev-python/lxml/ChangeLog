@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/lxml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.54 2009/07/17 18:19:43 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.55 2009/07/23 15:12:46 armin76 Exp $
+
+  23 Jul 2009; Raúl Porcel <armin76@gentoo.org> lxml-2.2.1.ebuild:
+  ia64 stable wrt #277126
 
   17 Jul 2009; nixnut <nixnut@gentoo.org> lxml-2.2.1.ebuild:
   ppc stable #277126
