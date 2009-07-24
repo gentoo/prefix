@@ -1,6 +1,11 @@
 # ChangeLog for app-portage/gentoolkit-dev
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.71 2009/07/17 15:11:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.72 2009/07/22 14:48:32 chainsaw Exp $
+
+  22 Jul 2009; <chainsaw@gentoo.org> gentoolkit-dev-0.2.6.12.ebuild:
+  Marked stable AMD64 as requested by Christian Ruppert (idl0r)
+  <idl0r@gentoo.org> in bug #268715. Tested on a Core2 Duo system with GPG
+  signing active.
 
   17 Jul 2009; Raúl Porcel <armin76@gentoo.org>
   gentoolkit-dev-0.2.6.12.ebuild:
