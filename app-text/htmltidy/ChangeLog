@@ -1,6 +1,16 @@
 # ChangeLog for app-text/htmltidy
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/htmltidy/ChangeLog,v 1.44 2007/05/30 16:33:34 armin76 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/htmltidy/ChangeLog,v 1.45 2009/07/22 17:28:23 rbu Exp $
+
+*htmltidy-20090325 (22 Jul 2009)
+
+  22 Jul 2009; Robert Buchholz <rbu@gentoo.org>
+  +files/htmltidy-20090325-tidyrc.patch, htmltidy-4.8.6.ebuild,
+  htmltidy-5.10.26-r2.ebuild, +htmltidy-20090325.ebuild:
+  Version bump to latest CVS sources. Remove xml use flag and html2db as it was
+  never integrated upstream and does not compile due to usage of internal tidy
+  API. Enable /etc/tidyrc and ~/.tidyrc config paths and build autotools
+  properly, closes bugs 154834, 219450, 226437 and 278604.
 
   30 May 2007; Raúl Porcel <armin76@gentoo.org> htmltidy-5.10.26-r2.ebuild:
   alpha stable wrt #155327
