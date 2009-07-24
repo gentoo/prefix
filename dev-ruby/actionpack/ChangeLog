@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.111 2009/05/28 16:08:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.112 2009/07/22 06:48:37 graaff Exp $
+
+*actionpack-2.3.3 (22 Jul 2009)
+
+  22 Jul 2009; Hans de Graaff <graaff@gentoo.org> +actionpack-2.3.3.ebuild:
+  Version bump for Rails 2.33.3. Fix escaping of cookies in TestResponse.
 
   28 May 2009; Raúl Porcel <armin76@gentoo.org> actionpack-2.3.2.ebuild:
   ia64 stable wrt #270331
