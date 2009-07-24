@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/mc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.148 2009/05/28 17:45:05 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.149 2009/07/21 10:05:07 ssuominen Exp $
+
+  21 Jul 2009; Samuli Suominen <ssuominen@gentoo.org> mc-4.6.2_pre1.ebuild,
+  +files/mc-4.6.2_pre1-null.patch:
+  Don't crash when used as root wrt #250176.
 
   28 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   mc-4.6.2_pre1.ebuild:

@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.10 2009/05/28 17:45:05 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.11 2009/07/21 10:05:07 ssuominen Exp $
 
 EAPI=1
-
 inherit eutils toolchain-funcs
 
 MY_P=${P/_/-}
@@ -46,6 +45,8 @@ src_unpack() {
 		EPATCH_EXCLUDE="48_all_deb_utf8-slang2.patch 60_all_deb_recode.patch"
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patches
+
+	epatch "${FILESDIR}"/${P}-null.patch
 
 	# Prevent lazy bindings in cons.saver binary for bug #135009
 	sed -i -e "s:^\(cons_saver_LDADD = .*\):\1 -Wl,-z,now:" \
