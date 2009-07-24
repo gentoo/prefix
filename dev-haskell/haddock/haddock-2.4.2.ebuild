@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-2.4.2.ebuild,v 1.4 2009/07/15 17:54:37 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-2.4.2.ebuild,v 1.5 2009/07/23 06:21:39 kolmodin Exp $
 
 CABAL_FEATURES="bin lib"
 # don't enable profiling as the 'ghc' package is not built with profiling
@@ -28,8 +28,8 @@ IUSE="doc"
 # package. ghc-paths would like to be compiled with USE=doc, which pulls in
 # haddock, which requires ghc-paths, which pulls in haddock...
 
-# builds with ghc-6.10.2/3, but not .1
-RDEPEND="|| ( =dev-lang/ghc-6.10.2* =dev-lang/ghc-6.10.3* )"
+# doesn't build with ghc-6.10.1, but that has never been in portage
+RDEPEND="=dev-lang/ghc-6.10*"
 DEPEND="${RDEPEND}
 		>=dev-haskell/cabal-1.6
 		doc? (  ~app-text/docbook-xml-dtd-4.2
