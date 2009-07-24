@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.24.8-r1.ebuild,v 1.2 2009/05/19 15:41:56 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.24.8-r1.ebuild,v 1.3 2009/07/21 22:12:15 matsuu Exp $
 
 EAPI="2"
 inherit elisp-common eutils ruby
@@ -30,7 +30,7 @@ RDEPEND="${DEPEND}
 #	dev-ruby/diff-lcs
 #	dev-ruby/rails
 
-USE_RUBY="ruby18 ruby19"
+USE_RUBY="ruby18"
 
 SITEFILE="50${PN}-mode-gentoo.el"
 
