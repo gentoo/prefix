@@ -1,8 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.5.ebuild,v 1.2 2009/07/20 03:53:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.5.ebuild,v 1.3 2009/07/23 01:13:35 arfrever Exp $
 
-NEED_PYTHON=2.4
+EAPI="2"
+
+NEED_PYTHON="2.4"
 
 inherit distutils eutils multilib
 
@@ -24,10 +26,10 @@ EMP=${PN}-0.3.7
 
 GLEP_SRC=${WORKDIR}/glep-0.4-r1
 
-src_unpack() {
-	unpack ${A}
+src_prepare() {
+	epatch "${FILESDIR}/${P}-test_node_class_names-python-2.6.patch"
+
 	# simplified algorithm to select installing optparse and textwrap
-	cd "${S}"
 	epatch "${FILESDIR}"/${EMP}-extramodules.patch
 
 	sed -i \
@@ -67,7 +69,10 @@ install_txt_doc() {
 
 src_test() {
 	cd "${S}"/test
-	PYTHONPATH="${S}" ./alltests.py || die "alltests.py failed"
+	for abi in ${ABIS_PYTHON}; do
+		echo -e "\e[1;34mTesting of ${CATEGORY}/${PF} for Python \e[31m${abi}\e[34m...\e[0m"
+		PYTHON="$(get_PYTHON ${abi})" PYTHONPATH="${S}" ./alltests.py || die "alltests.py failed"
+	done
 }
 
 src_install() {
