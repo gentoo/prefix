@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.713 2009/07/20 18:45:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.715 2009/07/23 06:02:47 halcy0n Exp $
+
+  23 Jul 2009; Mark Loeser <halcy0n@gentoo.org> gcc-4.4.1.ebuild:
+  Bump uclibc patchset to fix a digest screwup
+
+*gcc-4.4.1 (23 Jul 2009)
+
+  23 Jul 2009; Mark Loeser <halcy0n@gentoo.org> +gcc-4.4.1.ebuild:
+  Version bump, and dropped archs I'm unsure if they work or not
 
   20 Jul 2009; Jeroen Roovers <jer@gentoo.org> gcc-4.4.0-r1.ebuild:
   Mark gcc-4.4* -hppa (bug #272645 and some currently undocumented
