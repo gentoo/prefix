@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.10.1-r1.ebuild,v 1.7 2009/07/23 14:55:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.10.1-r2.ebuild,v 1.1 2009/07/21 20:49:28 jokey Exp $
 
 EAPI=2
 
@@ -61,6 +61,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6.3-unicode-odbc.patch
 	epatch "${FILESDIR}"/${PN}-2.8.10-collision.patch
 	epatch "${FILESDIR}"/${PN}-2.8.7-mmedia.patch              # Bug #174874
+	epatch "${FILESDIR}"/${PN}-2.8.10.1-slot-bake-b0rkage.patch # hidden renames in src_install, wtf
 	# this version only:
 	epatch "${FILESDIR}"/${P}-CVE-2009-2369.patch              # Bug #277722
 
