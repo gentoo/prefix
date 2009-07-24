@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/e2fsprogs-libs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.29 2009/07/20 10:02:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.30 2009/07/22 14:02:55 aballier Exp $
+
+  22 Jul 2009; Alexis Ballier <aballier@gentoo.org>
+  e2fsprogs-libs-1.41.8.ebuild:
+  Keyword -x86-fbsd due to bug #278667
 
   20 Jul 2009; Mike Frysinger <vapier@gentoo.org>
   e2fsprogs-libs-1.41.8.ebuild:
