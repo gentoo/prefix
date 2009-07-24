@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.36 2009/07/19 17:34:06 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.37 2009/07/23 21:30:12 eva Exp $
+
+  23 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -libgweather-2.22.3.ebuild, libgweather-2.26.2.1.ebuild:
+  Make libgweather-2.26.2.1 libtool-1 compatible, bug #278516. Clean up old
+  revisions.
 
 *libgweather-2.26.2.1 (19 Jul 2009)
 
