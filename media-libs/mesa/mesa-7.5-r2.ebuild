@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.4.1-r2.ebuild,v 1.2 2009/05/09 00:04:11 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.5-r2.ebuild,v 1.4 2009/07/22 13:55:47 mr_bones_ Exp $
 
 EAPI=2
 
@@ -26,7 +26,7 @@ MY_SRC_P="${MY_PN}Lib-${PV/_/-}"
 DESCRIPTION="OpenGL-like graphic library for Linux"
 HOMEPAGE="http://mesa3d.sourceforge.net/"
 
-SRC_PATCHES="mirror://gentoo/${P}-gentoo-patches-02.tar.bz2"
+SRC_PATCHES="mirror://gentoo/${P}-gentoo-patches-01.tar.bz2"
 if [[ $PV = *_rc* ]]; then
 	SRC_URI="http://www.mesa3d.org/beta/${MY_SRC_P}.tar.gz
 		${SRC_PATCHES}"
@@ -39,7 +39,7 @@ fi
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 
 IUSE_VIDEO_CARDS="${IUSE_VIDEO_CARDS_UNSTABLE}
 	video_cards_intel
@@ -65,7 +65,7 @@ RDEPEND="!<=x11-base/xorg-x11-6.9
 	!<=x11-proto/xf86driproto-2.0.3
 	app-admin/eselect-opengl
 	dev-libs/expat
-	>=x11-libs/libdrm-2.4.6
+	>=x11-libs/libdrm-2.4.9
 	x11-libs/libICE
 	x11-libs/libX11[xcb?]
 	x11-libs/libXdamage
@@ -83,8 +83,8 @@ DEPEND="${RDEPEND}
 	>=x11-proto/glproto-1.4.8
 	x11-proto/inputproto
 	x11-proto/xextproto
-	x11-proto/xf86vidmodeproto
 	x11-proto/xf86driproto
+	x11-proto/xf86vidmodeproto
 "
 # glew depend on mesa and it is needed in runtime
 PDEPEND=">=media-libs/glew-1.5.1"
@@ -94,10 +94,6 @@ S="${WORKDIR}/${MY_P}"
 # Think about: ggi, svga, fbcon, no-X configs
 
 pkg_setup() {
-	if use debug; then
-		append-flags -g
-	fi
-
 	# gcc 4.2 has buggy ivopts
 	if [[ $(gcc-version) = "4.2" ]]; then
 		append-flags -fno-ivopts
@@ -175,12 +171,13 @@ src_configure() {
 				#$(use_enable video_cards_radeon gallium-radeon)
 				#$(use_enable video_cards_radeonhd gallium-radeon)"
 		fi
+	else
+		# we need to disable the gallium since they enable by default...
+		myconf="${myconf} --disable-gallium"
 	fi
 
 	# Deactivate assembly code for pic build
-	# Sparc assembly code is not working
 	myconf="${myconf} $(use_enable !pic asm)"
-	myconf="${myconf} $(use_enable !sparc asm)"
 
 	# --with-driver=dri|xlib|osmesa ; might get changed later to something
 	# else than dri
@@ -204,7 +201,7 @@ src_install() {
 	# Remove redundant headers
 	# GLUT thing
 	rm -f "${ED}"/usr/include/GL/glut*.h || die "Removing glut include failed."
-	# Glew headers
+	# Glew includes
 	rm -f "${ED}"/usr/include/GL/{glew,glxew,wglew}.h \
 		|| die "Removing glew includes failed."
 
@@ -246,7 +243,7 @@ src_install() {
 	sed -i \
 		-e 's:-ldl:'$(dlopen_lib)':g' \
 		"${ED}"/usr/$(get_libdir)/{libGLU.la,opengl/xorg-x11/lib/libGL.la} \
-		|| die "sed dlopen failed"
+			|| die "sed dlopen failed"
 }
 
 pkg_postinst() {

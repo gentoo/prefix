@@ -1,6 +1,46 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.218 2009/06/25 09:00:59 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.227 2009/07/22 10:32:59 remi Exp $
+
+  22 Jul 2009; Rémi Cardona <remi@gentoo.org> mesa-7.5-r2.ebuild:
+  use mirror://gentoo/ instead of gentooexperimental.org
+
+  22 Jul 2009; Tomáš Chvátal <scarabeus@gentoo.org> mesa-7.5-r2.ebuild:
+  Disable the gallium, it somewhere in the process changed to
+  enabled-by-default
+
+*mesa-7.5-r2 (22 Jul 2009)
+
+  22 Jul 2009; Tomáš Chvátal <scarabeus@gentoo.org> +mesa-7.5-r2.ebuild:
+  Revision bump for applied patches from upstream. Per bug #278630.
+
+  22 Jul 2009; Tomáš Chvátal <scarabeus@gentoo.org> files/lib/libGL.la,
+  files/lib/libGLU.la:
+  Update the .la files per bug #267580. Hopefully it will fix at least some
+  issues.
+
+  22 Jul 2009; Tomáš Chvátal <scarabeus@gentoo.org> -mesa-7.5.ebuild,
+  mesa-7.5-r1.ebuild:
+  Remove sparc asm checks. As per bug #237648. Reason in comment 13.
+
+  21 Jul 2009; Rémi Cardona <remi@gentoo.org> mesa-7.5-r1.ebuild:
+  it's not an ebuild's job to add -g to CFLAGS (backport from the x11
+  overlay)
+
+*mesa-7.5-r1 (21 Jul 2009)
+
+  21 Jul 2009; Tomáš Chvátal <scarabeus@gentoo.org> +mesa-7.5-r1.ebuild:
+  Whoops the .la files are supposed to be installed by 7.5. Revbump to force
+  others to update.
+
+  21 Jul 2009; Rémi Cardona <remi@gentoo.org> mesa-7.5.ebuild:
+  it's not an ebuild's job to add -g to CFLAGS (backport from the x11
+  overlay)
+
+*mesa-7.5 (21 Jul 2009)
+
+  21 Jul 2009; Tomáš Chvátal <scarabeus@gentoo.org> +mesa-7.5.ebuild:
+  Version bump for new development version of mesa.
 
   25 Jun 2009; Tomáš Chvátal <scarabeus@gentoo.org> -mesa-7.4.3.ebuild:
   Remove broken version.

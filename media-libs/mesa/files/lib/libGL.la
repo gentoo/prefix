@@ -14,7 +14,7 @@ library_names='libGL.so.1.2 libGL.so.1 libGL.so'
 old_library=''
 
 # Libraries that this one depends upon.
-dependency_libs=' -L/usr/${libdir} -lSM -lICE -lXmu -lXt -lXext -lXi -lX11 -ldl -lpthread        '
+dependency_libs='-lSM -lICE -lXmu -lXt -lXext -lXi -lX11 -ldl -lpthread'
 
 # Version information for libGL.
 current=3
