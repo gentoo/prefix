@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.214 2009/07/11 00:15:55 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.215 2009/07/22 19:29:15 klausman Exp $
+
+  22 Jul 2009; Tobias Klausmann <klausman@gentoo.org>
+  netpbm-10.46.00.ebuild:
+  Stable on alpha, bug #277184
 
   11 Jul 2009; <chainsaw@gentoo.org> netpbm-10.46.00.ebuild:
   Marked stable on AMD64 for bug #277184; tested on a dual Opteron 2354.
