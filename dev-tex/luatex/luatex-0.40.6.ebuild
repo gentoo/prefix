@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.40.6.ebuild,v 1.1 2009/06/26 06:13:00 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.40.6.ebuild,v 1.2 2009/07/22 14:22:37 aballier Exp $
 
 EAPI="2"
 
 inherit libtool multilib eutils toolchain-funcs autotools
 
-PATCHLEVEL="12"
+PATCHLEVEL="13"
 
 DESCRIPTION="An extended version of pdfTeX using Lua as an embedded scripting language."
 HOMEPAGE="http://www.luatex.org/"
@@ -32,8 +32,6 @@ kpathsea_extraconf="--disable-shared"
 
 src_prepare() {
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
-	# finalize internal zziplib removal
-	epatch "${FILESDIR}"/${P}-zzipinclude.patch
 	eautoreconf
 	elibtoolize
 }
