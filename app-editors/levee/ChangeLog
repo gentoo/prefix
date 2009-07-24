@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/levee
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/ChangeLog,v 1.16 2009/06/05 16:00:37 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/ChangeLog,v 1.17 2009/07/21 23:23:27 vostorga Exp $
+
+  21 Jul 2009; Víctor Ostorga <vostorga@gentoo.org> levee-3.5.ebuild,
+  +files/levee-3.5-glibc210.patch:
+  Adding patch to allow building with glibc 2.10, closes bug #273848
 
   05 Jun 2009; Peter Alfredsen <loki_val@gentoo.org> metadata.xml:
   Retiring, bug 220219.
