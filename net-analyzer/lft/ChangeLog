@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/lft
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/lft/ChangeLog,v 1.26 2009/01/24 01:03:24 jer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/lft/ChangeLog,v 1.27 2009/07/22 16:07:18 fauli Exp $
+
+  22 Jul 2009; Christian Faulhammer <fauli@gentoo.org> lft-3.0-r1.ebuild:
+  stable x86, bug 278527
 
 *lft-3.0-r1 (24 Jan 2009)
 
