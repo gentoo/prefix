@@ -1,7 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/genshi-0.5.1.ebuild,v 1.5 2008/11/16 17:46:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/genshi/genshi-0.5.1.ebuild,v 1.7 2009/07/22 00:56:50 neurogeek Exp $
 
+EAPI="2"
 NEED_PYTHON=2.3
 
 inherit distutils
@@ -18,8 +19,13 @@ IUSE="doc examples"
 
 DEPEND="dev-python/setuptools"
 RDEPEND="${DEPEND}"
+#It uses dev-python/setuptools as RDEPEND
 
 S="${WORKDIR}/${MY_P}"
+
+src_prepare(){
+	epatch "${FILESDIR}/${P}_test_fix.patch"
+}
 
 src_install() {
 	distutils_src_install
