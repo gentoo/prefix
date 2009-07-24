@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/evolution-data-server-2.26.3.ebuild,v 1.2 2009/07/22 21:21:52 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/evolution-data-server-2.24.5-r3.ebuild,v 1.2 2009/07/23 20:28:20 fauli Exp $
 
 EAPI="2"
 
@@ -15,7 +15,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc ipv6 kerberos gnome-keyring krb4 ldap ssl"
 
 RDEPEND=">=dev-libs/glib-2.16.1
-	>=x11-libs/gtk+-2.14
+	>=x11-libs/gtk+-2.10
 	>=gnome-base/orbit-2.9.8
 	>=gnome-base/libbonobo-2.20.3
 	>=gnome-base/gconf-2
@@ -23,8 +23,6 @@ RDEPEND=">=dev-libs/glib-2.16.1
 	>=gnome-base/libgnome-2
 	>=dev-libs/libxml2-2
 	>=net-libs/libsoup-2.4
-	>=dev-libs/libgweather-2.25.4
-	>=dev-libs/libical-0.43
 	gnome-keyring? ( >=gnome-base/gnome-keyring-2.20.1 )
 	>=dev-db/sqlite-3.5
 	ssl? (
@@ -55,7 +53,6 @@ pkg_setup() {
 		$(use_enable ssl smime)
 		$(use_enable ipv6)
 		$(use_enable gnome-keyring)
-		--with-weather
 		--with-libdb=/usr/$(get_libdir)"
 }
 
@@ -66,17 +63,23 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.2.0-gentoo_etc_services.patch
 
 	# Fix broken libdb build
-	epatch "${FILESDIR}"/${PN}-2.25.90-no-libdb.patch
+	epatch "${FILESDIR}"/${PN}-1.11.3-no-libdb.patch
 
 	# Rewind in camel-disco-diary to fix a crash
 	epatch "${FILESDIR}"/${PN}-1.8.0-camel-rewind.patch
 
 	# Fix building evo-exchange with --as-needed, upstream bug #342830
-	# and configure failing to detect kerberos5-libs with as-needed
-	epatch "${FILESDIR}"/${PN}-2.25.5-as-needed.patch
+	epatch "${FILESDIR}"/${PN}-2.23.6-as-needed.patch
 
-	# Fix hang while updating search folders, bug #277864, upstream bug #583507
-	epatch "${FILESDIR}/${PN}-2.26.3-camel-vee-folder.patch"
+	# Fix S/MIME verification.  Bug #258867
+	epatch "${FILESDIR}"/${P}-CVE-2009-0547.patch
+
+	# Fix S/MIME message display, bug #258867
+	epatch "${FILESDIR}"/${P}-fix-body.patch
+
+	# Fix NTLM SASL authentication. Bug #261203
+	epatch "${FILESDIR}"/${PN}-CVE-2009-0582.patch
+
 
 	if use doc; then
 		sed "/^TARGET_DIR/i \GTKDOC_REBASE=/usr/bin/gtkdoc-rebase" \

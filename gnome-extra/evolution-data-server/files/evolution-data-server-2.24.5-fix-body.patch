@@ -1,0 +1,34 @@
+From dcd2f9ebc6c66ab1c068764da3b528f8fbfeb8b5 Mon Sep 17 00:00:00 2001
+From: Milan Crha <mcrha@redhat.com>
+Date: Tue, 31 Mar 2009 11:54:36 +0000
+Subject: [PATCH] ** Fix for bug #564465
+
+2009-03-31  Milan Crha  <mcrha@redhat.com>
+
+	** Fix for bug #564465
+
+	* camel-smime-context.c: (sm_decrypt):
+	Pass correct body for signature verification.
+
+svn path=/trunk/; revision=10194
+---
+ camel/camel-smime-context.c |    3 ++-
+ 1 files changed, 2 insertions(+), 1 deletions(-)
+
+diff --git a/camel/camel-smime-context.c b/camel/camel-smime-context.c
+index 7470953..1913d6a 100644
+--- a/camel/camel-smime-context.c
++++ b/camel/camel-smime-context.c
+@@ -963,7 +963,8 @@ sm_decrypt(CamelCipherContext *context, CamelMimePart *ipart, CamelMimePart *opa
+ 	camel_data_wrapper_construct_from_stream((CamelDataWrapper *)opart, ostream);
+ 
+ 	if (NSS_CMSMessage_IsSigned(cmsg)) {
+-		valid = sm_verify_cmsg(context, cmsg, NULL, ex);
++		camel_stream_reset (ostream);
++		valid = sm_verify_cmsg (context, cmsg, ostream, ex);
+ 	} else {
+ 		valid = camel_cipher_validity_new();
+ 		valid->encrypt.description = g_strdup(_("Encrypted content"));
+-- 
+1.6.3.3
+
