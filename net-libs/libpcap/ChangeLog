@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.121 2009/07/08 13:29:06 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.122 2009/07/22 19:22:52 klausman Exp $
+
+  22 Jul 2009; Tobias Klausmann <klausman@gentoo.org>
+  libpcap-1.0.1_pre20090708.ebuild:
+  Keyworded on alpha, bug #277033
 
 *libpcap-1.0.1_pre20090708 (08 Jul 2009)
 
