@@ -12,8 +12,6 @@ applications not using gio to access the gvfs filesystems.
 <use>
 	<flag name='archive'>Enables support for accessing files in archives
 		transparently via <pkg>app-arch/libarchive</pkg></flag>
-	<flag name='cdda'>Enables Compact Disc Digital Audio (standard audio CDs)
-		support</flag>
 	<flag name='fuse'>Enables fuse mount points in $HOME/.gvfs for legacy
 		application access</flag>
 </use>
