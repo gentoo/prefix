@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/matplotlib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.66 2009/06/15 05:32:10 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/ChangeLog,v 1.67 2009/07/23 02:59:38 bicatali Exp $
+
+  23 Jul 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  -matplotlib-0.98.5.2.ebuild, matplotlib-0.98.5.3.ebuild, metadata.xml:
+  unset the DISPLAY, bug #278524, thanks to Pinky
 
 *matplotlib-0.98.5.3 (15 Jun 2009)
 

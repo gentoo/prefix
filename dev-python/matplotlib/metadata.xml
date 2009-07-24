@@ -2,7 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>python</herd>
-<herd>sci</herd>
 <longdescription lang="en">
   matplotlib is an interactive library for plotting and doing basic
   data analysis in python with a syntax similar to matlab. It provides a
