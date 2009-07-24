@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libvorbis
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/ChangeLog,v 1.118 2009/07/10 15:41:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/ChangeLog,v 1.119 2009/07/22 22:29:02 ssuominen Exp $
+
+  22 Jul 2009; Samuli Suominen <ssuominen@gentoo.org> libvorbis-1.2.3.ebuild:
+  Compile test/ only if "make check" is called. Compile examples/ only if
+  --enable-examples is passed wrt #226285.
 
 *libvorbis-1.2.3 (10 Jul 2009)
 

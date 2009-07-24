@@ -1,22 +1,19 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.3.ebuild,v 1.1 2009/07/10 15:41:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.3.ebuild,v 1.2 2009/07/22 22:16:59 ssuominen Exp $
 
 EAPI=2
+MY_P=${P/_}
 inherit autotools flag-o-matic eutils toolchain-funcs
 
-MY_P=${P/_/}
 DESCRIPTION="The Ogg Vorbis sound file format library with aoTuV patch"
 HOMEPAGE="http://xiph.org/vorbis"
 SRC_URI="http://downloads.xiph.org/releases/vorbis/${P}.tar.gz"
-#	aotuv? ( mirror://gentoo/${PN}-1.2.1_rc1-aotuv_beta5.7.patch.bz2
-#		http://dev.gentoo.org/~ssuominen/${PN}-1.2.1_rc1-aotuv_beta5.7.patch.bz2 )"
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc"
-# +aotuv:  seems it is merged
 
 RDEPEND="media-libs/libogg"
 DEPEND="${RDEPEND}
@@ -25,7 +22,7 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	#use aotuv && epatch "${WORKDIR}"/${PN}-1.2.1_rc1-aotuv_beta5.7.patch
+	epatch "${FILESDIR}"/${P}-optional_examples_and_tests.patch
 
 	sed -e 's:-O20::g' -e 's:-mfused-madd::g' -e 's:-mcpu=750::g' -e 's:-mv8::g' \
 		-i configure.ac || die "sed failed"
@@ -39,7 +36,6 @@ src_install() {
 	rm -rf "${ED}"/usr/share/doc/${PN}*
 
 	dodoc AUTHORS CHANGES README todo.txt
-	#use aotuv && dodoc aoTuV_README-1st.txt aoTuV_technical.txt
 
 	if use doc; then
 		docinto txt
