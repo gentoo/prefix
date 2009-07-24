@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pycurl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/ChangeLog,v 1.55 2009/07/17 18:20:57 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/ChangeLog,v 1.56 2009/07/23 01:36:01 darkside Exp $
+
+  23 Jul 2009; Jeremy Olexa <darkside@gentoo.org> pycurl-7.19.0.ebuild:
+  amd64 stable, bug 277270
 
   17 Jul 2009; nixnut <nixnut@gentoo.org> pycurl-7.19.0.ebuild:
   ppc stable #277270
