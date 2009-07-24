@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libnl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libnl/ChangeLog,v 1.35 2009/05/26 08:17:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libnl/ChangeLog,v 1.36 2009/07/22 19:22:01 klausman Exp $
+
+  22 Jul 2009; Tobias Klausmann <klausman@gentoo.org> libnl-1.1-r2.ebuild:
+  Keyworded on alpha, bug #277033
 
 *libnl-1.1-r2 (26 May 2009)
 
