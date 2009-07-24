@@ -25,10 +25,10 @@ RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	mpi? ( || ( >=sys-cluster/openmpi-1.3[cxx] =sys-cluster/openmpi-1.2*[-nocxx] ) )
 	sys-libs/zlib
 	python? ( virtual/python )
-	!!<=dev-libs/boost-1.35.0-r2
-	>=app-admin/eselect-boost-0.3"
+	!!<=dev-libs/boost-1.35.0-r2"
 DEPEND="${RDEPEND}
-	dev-util/boost-build:${SLOT}"
+	dev-util/boost-build:${SLOT}
+	>=app-admin/eselect-boost-0.3"
 
 S=${WORKDIR}/${MY_P}
 
@@ -81,7 +81,10 @@ src_prepare() {
 	# WARNING: this one changes the threading API default to win32,
 	# so keep this conditional. i found no other clean solution
 	# right now, so ...
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-1.37.0-winnt.patch
+	if [[ ${CHOST} == *-winnt* ]]; then
+		epatch "${FILESDIR}"/${PN}-1.35.0-winnt.patch
+		epatch "${FILESDIR}"/${P}-winnt.patch
+	fi
 
 	EPATCH_SOURCE="${WORKDIR}/patches"
 	EPATCH_SUFFIX="patch"
@@ -163,7 +166,9 @@ __EOF__
 
 	[[ ${CHOST} == *-winnt* ]] && OPTIONS="${OPTIONS} -sNO_BZIP2=1"
 
-	OPTIONS="${OPTIONS} --user-config=\"${S}/user-config.jam\" --boost-build=${EPREFIX}/usr/share/boost-build-${MAJOR_PV} --prefix=\"${ED}/usr\" --layout=versioned"
+	local boost_build=$(type -P ${BJAM})
+	boost_build=${boost_build%/*/*}/share/boost-build-${MAJOR_PV}
+	OPTIONS="${OPTIONS} --user-config=\"${S}/user-config.jam\" --boost-build=${boost_build} --prefix=\"${ED}/usr\" --layout=versioned"
 
 }
 

@@ -1,0 +1,48 @@
+diff -ru boost_1_39_0.orig/Jamroot boost_1_39_0/Jamroot
+--- boost_1_39_0.orig/Jamroot	2009-07-24 10:10:59 +0200
++++ boost_1_39_0/Jamroot	2009-07-24 12:05:47 +0200
+@@ -334,7 +334,7 @@
+             # suffix.
+             if $(type) = SHARED_LIB &&
+               ( ! ( [ $(property-set).get <target-os> ] in windows cygwin darwin aix ) &&
+-                ! ( [ $(property-set).get <toolset> ] in pgi ) )
++                ! ( [ $(property-set).get <toolset> ] in pgi parity ) )
+             {
+                 result = $(result).$(BOOST_VERSION)  ;
+             }
+@@ -357,7 +357,7 @@
+             # suffix.
+             if $(type) = SHARED_LIB &&
+               ( ! ( [ $(property-set).get <target-os> ] in windows cygwin darwin aix ) &&
+-                ! ( [ $(property-set).get <toolset> ] in pgi ) )
++                ! ( [ $(property-set).get <toolset> ] in pgi parity ) )
+             {
+                 result = $(result).$(BOOST_VERSION)  ;
+             }
+diff -ru boost_1_39_0.orig/libs/math/src/tr1/copysign.cpp boost_1_39_0/libs/math/src/tr1/copysign.cpp
+--- boost_1_39_0.orig/libs/math/src/tr1/copysign.cpp	2009-07-24 10:13:49 +0200
++++ boost_1_39_0/libs/math/src/tr1/copysign.cpp	2009-07-24 12:10:00 +0200
+@@ -8,7 +8,7 @@
+ #include <boost/math/special_functions/sign.hpp>
+ #include "c_policy.hpp"
+ 
+-#if !(defined(__HP_aCC) && (__HP_aCC >= 61400))
++#if !(defined(__HP_aCC) && (__HP_aCC >= 61400)) && !defined(__PARITY__)
+ 
+ extern "C" double BOOST_MATH_TR1_DECL copysign BOOST_PREVENT_MACRO_SUBSTITUTION(double x, double y)
+ {
+diff -ru boost_1_39_0.orig/libs/math/src/tr1/copysignl.cpp boost_1_39_0/libs/math/src/tr1/copysignl.cpp
+--- boost_1_39_0.orig/libs/math/src/tr1/copysignl.cpp	2009-07-24 10:13:49 +0200
++++ boost_1_39_0/libs/math/src/tr1/copysignl.cpp	2009-07-24 13:27:50 +0200
+@@ -8,7 +8,11 @@
+ #include <boost/math/special_functions/sign.hpp>
+ #include "c_policy.hpp"
+ 
++#if !defined(__PARITY__)
++
+ extern "C" long double BOOST_MATH_TR1_DECL copysignl BOOST_PREVENT_MACRO_SUBSTITUTION(long double x, long double y)
+ {
+    return boost::math::copysign BOOST_PREVENT_MACRO_SUBSTITUTION(x, y);
+ }
++
++#endif
