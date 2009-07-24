@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/mosml-2.01-r1.ebuild,v 1.2 2009/05/30 02:11:23 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/mosml-2.01-r1.ebuild,v 1.3 2009/07/23 23:14:32 vostorga Exp $
 
 inherit eutils
 
@@ -9,10 +9,12 @@ DESCRIPTION="Moscow ML - a lightweight implementation of Standard ML (SML)"
 SRC_URI="http://www.itu.dk/people/sestoft/mosml/mos201src.tar.gz"
 HOMEPAGE="http://www.itu.dk/people/sestoft/mosml.html"
 LICENSE="GPL-2"
-DEPEND=""
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 SLOT="0"
+
+DEPEND=""
+RDEPEND=""
 
 src_unpack() {
 	unpack ${A}
@@ -26,7 +28,7 @@ src_unpack() {
 }
 
 src_compile() {
-	emake MOSMLHOME="${EPREFIX}"/opt/mosml world || die
+	emake CC=$(tc-getCC) MOSMLHOME="${EPREFIX}"/opt/mosml world || die
 }
 
 src_install () {
