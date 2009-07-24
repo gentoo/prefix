@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/colordiff
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.74 2009/04/24 01:09:07 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.75 2009/07/24 02:42:07 tcunha Exp $
+
+  24 Jul 2009; Tiago Cunha <tcunha@gentoo.org> colordiff-1.0.9.ebuild:
+  stable amd64/sparc, bug 278835
 
   24 Apr 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
   Move to shell-tools herd, where I will monitor it there
