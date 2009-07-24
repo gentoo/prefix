@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.5.2.ebuild,v 1.1 2009/06/27 19:18:45 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.5.2-r2.ebuild,v 1.1 2009/07/23 20:44:16 yngwin Exp $
 
 EAPI=2
 inherit eutils qt4-build
@@ -84,6 +84,9 @@ src_prepare() {
 	# fixing hardcoded fonts, bug #252312
 	EPATCH_OPTS="--ignore-whitespace"
 	epatch "${FILESDIR}"/hardcoded_fonts.patch
+
+	# fix bug with messed up timestamps, bug 276527 (upstream patch)
+	epatch "${FILESDIR}"/${P}-x11-timestamp.patch
 }
 
 src_configure() {
@@ -170,4 +173,5 @@ pkg_postinst() {
 		ewarn 'make sure you have GTK configured to NOT use the GTK_Qt engine and'
 		ewarn 'export GTK2_RC_FILES="$HOME/.gtkrc-2.0" in your environment.'
 	fi
+	qt4-build_pkg_postinst
 }
