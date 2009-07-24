@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0.ebuild,v 1.9 2009/07/22 20:30:14 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0-r1.ebuild,v 1.1 2009/07/22 20:37:39 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI=2
@@ -71,9 +71,9 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	x11-libs/libXinerama
 	x11-libs/libXrandr
 	>=dev-lang/perl-5.0
+	>=dev-libs/glib-2.18
 	dbus? ( >=dev-libs/dbus-glib-0.71 )
 	gnome? ( >=x11-libs/gtk+-2.10
-		>=gnome-base/gnome-vfs-2.6
 		>=gnome-base/gconf-2.0
 		>=x11-libs/cairo-1.0.2 )
 	gtk? ( >=x11-libs/gtk+-2.10
@@ -83,9 +83,12 @@ COMMON_DEPEND="!app-office/openoffice-bin
 			>=media-libs/gst-plugins-base-0.10 )
 	kde? ( kde-base/kdelibs:3.5 )
 	java? ( >=dev-java/bsh-2.0_beta4
-		>=dev-db/hsqldb-1.8.0.9 )
+		>=dev-db/hsqldb-1.8.0.9
+		dev-java/lucene:2.3
+		dev-java/lucene-analyzers:2.3
+		dev-java/rhino:1.5 )
 	mono? ( || ( >dev-lang/mono-2.4-r1 <dev-lang/mono-2.4 ) )
-	nsplugin? ( || ( =net-libs/xulrunner-1.9.0* net-libs/xulrunner:1.8 =www-client/seamonkey-1* )
+	nsplugin? ( || ( net-libs/xulrunner:1.8 net-libs/xulrunner:1.9 =www-client/seamonkey-1* )
 		>=dev-libs/nspr-4.6.6
 		>=dev-libs/nss-3.11-r1 )
 	opengl? ( virtual/opengl
@@ -132,6 +135,7 @@ DEPEND="${COMMON_DEPEND}
 	>=net-misc/curl-7.12
 	sys-libs/zlib
 	sys-apps/coreutils
+	>=dev-libs/redland-1.0.8
 	pam? ( sys-libs/pam
 		sys-apps/shadow[pam] )
 	>=dev-lang/python-2.3.4[threads]
@@ -233,6 +237,7 @@ src_prepare() {
 	cp -f "${FILESDIR}/base64.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/buildfix-gcc44.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/solenv.workaround-for-the-kde-mess.diff" "${S}/patches/hotfixes" || die
+	cp -f "${FILESDIR}/xulrunner-1.9.1.diff" "${S}/patches/hotfixes" || die
 
 	# Prefix patch
 	epatch "${FILESDIR}/ooo-build-3.0.1.2-prefix.patch"
@@ -245,8 +250,13 @@ src_prepare() {
 		echo "--with-jvm-path=/usr/$(get_libdir)/" >> ${CONFFILE}
 		echo "--with-system-beanshell" >> ${CONFFILE}
 		echo "--with-system-hsqldb" >> ${CONFFILE}
+		echo "--with-system-lucene" >> ${CONFFILE}
+		echo "--with-system-rhino" >> ${CONFFILE}
 		echo "--with-beanshell-jar=$(java-pkg_getjar bsh bsh.jar)" >> ${CONFFILE}
 		echo "--with-hsqldb-jar=$(java-pkg_getjar hsqldb hsqldb.jar)" >> ${CONFFILE}
+		echo "--with-lucene-core-jar=$(java-pkg_getjar lucene-2.3 lucene-core.jar)" >> ${CONFFILE}
+		echo "--with-lucene-analyzers-jar=$(java-pkg_getjar lucene-analyzers-2.3 lucene-analyzers.jar)" >> ${CONFFILE}
+		echo "--with-rhino-jar=$(java-pkg_getjar rhino-1.5 js.jar)" >> ${CONFFILE}
 	fi
 
 	if use nsplugin ; then
@@ -262,7 +272,8 @@ src_prepare() {
 	echo $(use_enable dbus) >> ${CONFFILE}
 	echo $(use_enable eds evolution2) >> ${CONFFILE}
 	echo $(use_enable gnome gconf) >> ${CONFFILE}
-	echo $(use_enable gnome gnome-vfs) >> ${CONFFILE}
+	echo $(use_enable gnome gio) >> ${CONFFILE}
+	echo "--disable-gnome-vfs" >> ${CONFFILE}
 	echo $(use_enable gnome lockdown) >> ${CONFFILE}
 	echo $(use_enable gstreamer) >> ${CONFFILE}
 	echo $(use_enable gtk systray) >> ${CONFFILE}
@@ -282,6 +293,9 @@ src_prepare() {
 
 	# Use splash screen without Sun logo
 	echo "--with-intro-bitmaps=\\\"${S}/build/${MST}/ooo_custom_images/nologo/introabout/intro.bmp\\\"" >> ${CONFFILE}
+
+	# Upstream this
+	echo "--with-system-redland" >> ${CONFFILE}
 
 }
 
@@ -327,6 +341,7 @@ src_configure() {
 		--without-binsuffix \
 		--with-installed-ooo-dirname="openoffice" \
 		--with-tag="${MST}" \
+		--with-drink="True Blood" \
 		${GTKFLAG} \
 		$(use_enable mono) \
 		$(use_enable kde) \

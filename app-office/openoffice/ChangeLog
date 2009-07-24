@@ -1,6 +1,20 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.469 2009/07/19 17:29:08 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.471 2009/07/22 20:37:39 suka Exp $
+
+*openoffice-3.1.0-r1 (22 Jul 2009)
+
+  22 Jul 2009; Andreas Proschofsky <suka@gentoo.org>
+  +files/xulrunner-1.9.1.diff, +openoffice-3.1.0-r1.ebuild:
+  New revision for OOo 3.1.0 with a bunch of changes:
+
+  *) Supports xulrunner 1.9.1
+  *) Uses gio instead of gnome-vfs
+  *) uses more system libraries (lucene, redland, rhino)
+
+  22 Jul 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.0.0.ebuild, openoffice-3.0.1.ebuild, openoffice-3.1.0.ebuild:
+  Depend on xulrunner-1.9.0* for older releases
 
   19 Jul 2009; Torsten Veller <tove@gentoo.org> openoffice-3.0.0.ebuild,
   openoffice-3.0.1.ebuild, openoffice-3.1.0.ebuild:
