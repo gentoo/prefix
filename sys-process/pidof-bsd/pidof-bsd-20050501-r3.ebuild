@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~ppc-macos ~x64-macos ~x86-macos"
 IUSE=""
 
-DEPEND="sys-freebsd/freebsd-mk-defs"
+DEPEND="!prefix? ( sys-freebsd/freebsd-mk-defs )"
 RDEPEND="!sys-process/psmisc"
 
 S="${WORKDIR}/pidof"
