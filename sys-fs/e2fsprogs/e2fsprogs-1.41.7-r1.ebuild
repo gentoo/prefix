@@ -37,8 +37,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/0001-resize2fs-Fix-error-message-so-the-mountpoint-is-pri.patch #276352
 	epatch "${FILESDIR}"/${PN}-1.41.1-darwin-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.41.4-darwin-no-mntent.patch
-	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.41-mint.patch
-	epatch "${FILESDIR}"/${PN}-1.41.7-mint-blkid.patch
+	if [[ ${CHOST} == *-mint* ]] ; then
+		epatch "${FILESDIR}"/${PN}-1.41-mint.patch
+		# breaks others, bug #276055
+		epatch "${FILESDIR}"/${PN}-1.41.7-mint-blkid.patch
+	fi
 	# blargh ... trick e2fsprogs into using e2fsprogs-libs
 	rm -rf doc
 	sed -i -r \
