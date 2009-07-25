@@ -9,7 +9,7 @@ HOMEPAGE="http://net-ssh.rubyforge.org/gateway"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND=">=dev-ruby/net-ssh-2.0.0"
