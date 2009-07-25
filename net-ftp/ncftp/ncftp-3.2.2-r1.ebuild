@@ -30,8 +30,9 @@ src_unpack() {
 		-e 's:@STRIP@:true:' \
 		Makefile.in */Makefile.in || die
 }
+
 src_compile() {
-	LC_ALL="C" econf || die "econf failed"
+	LC_ALL="C" econf --disable-universal || die "econf failed"
 	emake || die "emake failed"
 }
 
