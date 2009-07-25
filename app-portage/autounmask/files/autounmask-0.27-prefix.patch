@@ -1,0 +1,15 @@
+read out portage group from Portage itself, not to get false root checks
+
+http://bugs.gentoo.org/show_bug.cgi?id=278478
+
+--- autounmask
++++ autounmask
+@@ -84,7 +84,7 @@
+ 	my @userGroups = split(' ',`groups`);
+ 	my $userPermCheck = 0;
+ 	foreach (@userGroups) {
+-		if ($_ eq 'portage') {
++		if ($_ eq `python -c 'from portage.const_autotool import portagegroup; print portagegroup'`) {
+ 			$userPermCheck = 1;
+ 			last;
+ 		}

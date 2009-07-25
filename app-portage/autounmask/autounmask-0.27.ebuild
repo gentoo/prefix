@@ -24,6 +24,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.26-prefix.patch
+	epatch "${FILESDIR}"/${PN}-0.27-prefix.patch
 	eprefixify autounmask
 }
 
