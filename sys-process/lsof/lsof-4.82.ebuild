@@ -55,6 +55,7 @@ src_compile() {
 	use static && append-ldflags -static
 
 	touch .neverInv
+	touch .neverCust
 	LINUX_HASSELINUX=$(yesno selinux) \
 	LSOF_CC=$(tc-getCC) \
 	LSOF_AR="$(ar)" \
