@@ -39,7 +39,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.41.4-darwin-no-mntent.patch
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/${PN}-1.41-mint.patch
-		# breaks others, bug #276055
 		epatch "${FILESDIR}"/${PN}-1.41.7-mint-blkid.patch
 	fi
 	# blargh ... trick e2fsprogs into using e2fsprogs-libs
@@ -60,6 +59,7 @@ src_unpack() {
 	# we want to build the blkid/findfs binaries, but not the libs
 	sed -i \
 		-e '/BLKID_CMT=/s:BLKID_CMT:LIBBLKID_CMT:g' \
+		-e '/LIBUUID=`$PKG_CONFIG/s/--libs /--libs-only-l /' \
 		configure || die "touching configure for blkid"
 	sed -i \
 		-e '/BLKID_LIB_SUBDIR/s:@BLKID_CMT@:@LIBBLKID_CMT@:g' \
@@ -108,7 +108,7 @@ src_compile() {
 		eerror "attachment to http://bugs.gentoo.org/show_bug.cgi?id=81096"
 		die "Preventing included intl cruft from building"
 	fi
-	# MKDIR pic is done too late
+	# MKDIR pic is done too late: -j1
 	emake -j1 COMPILE_ET=compile_et MK_CMDS=mk_cmds || die
 
 	# Build the FreeBSD helper
@@ -131,10 +131,17 @@ src_install() {
 	# econf above (i.e. multilib) will screw up the default #276465
 	emake \
 		STRIP=: \
-		root_libdir="${EPREFIX}/$(get_libdir)" \
+		root_libdir="${EPREFIX}/usr/$(get_libdir)" \
 		DESTDIR="${D}" \
 		install install-libs || die
 	dodoc README RELEASE-NOTES
+
+	# Move shared libraries to /lib/, install static libraries to
+	# /usr/lib/, 	 
+	# and install linker scripts to /usr/lib/. 	 
+	set -- "${ED}"/usr/$(get_libdir)/*.a 	 
+	set -- ${@/*\/lib} 	 
+	gen_usr_ldscript -a "${@/.a}" 	 
 
 	if use elibc_FreeBSD ; then
 		# Install helpers for us

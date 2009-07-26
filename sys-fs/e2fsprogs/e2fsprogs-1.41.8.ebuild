@@ -43,7 +43,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.41.4-darwin-no-mntent.patch
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/${PN}-1.41-mint.patch
-		# breaks others, bug #276055
 		epatch "${FILESDIR}"/${PN}-1.41.7-mint-blkid.patch
 	fi
 	# blargh ... trick e2fsprogs into using e2fsprogs-libs
@@ -126,20 +125,30 @@ src_install() {
 	# econf above (i.e. multilib) will screw up the default #276465
 	emake \
 		STRIP=: \
-		root_libdir="/$(get_libdir)" \
-		DESTDIR="${ED}" \
+		root_libdir="${EPREFIX}/usr/$(get_libdir)" \
+		DESTDIR="${D}" \
 		install install-libs || die
 	dodoc README RELEASE-NOTES
 
-	# make sure symlinks are relative, not absolute, for cross-compiling
-	cd "${ED}"/usr/$(get_libdir)
-	local x l
-	for x in lib* ; do
-		l=$(readlink "${x}")
-		[[ ${l} == /* ]] || continue
-		rm -f "${x}"
-		ln -s "../..${l}" "${x}"
-	done
+	# Move shared libraries to /lib/, install static libraries to
+	# /usr/lib/, 	 
+	# and install linker scripts to /usr/lib/. 	 
+	set -- "${ED}"/usr/$(get_libdir)/*.a 	 
+	set -- ${@/*\/lib} 	 
+	gen_usr_ldscript -a "${@/.a}" 	 
+
+	# For correct install_names (on Darwin) we can't do this with
+	# root_libdir=/lib and the code below, instead we need root_libdir=/usr/lib
+	# and gen_usr_ldscript that fixes install_names as the libs are moved
+	## make sure symlinks are relative, not absolute, for cross-compiling
+	#cd "${ED}"/usr/$(get_libdir)
+	#local x l
+	#for x in lib* ; do
+	#	l=$(readlink "${x}")
+	#	[[ ${l} == /* ]] || continue
+	#	rm -f "${x}"
+	#	ln -s "../..${l}" "${x}"
+	#done
 
 	if use elibc_FreeBSD ; then
 		# Install helpers for us
