@@ -94,7 +94,7 @@ src_compile() {
 }
 
 src_install() {
-	emake -j1 MANDIR="share/man" INS_BASE="${D}/usr/" INS_RBASE="${D}" install
+	emake -j1 MANDIR="share/man" INS_BASE="${ED}/usr/" INS_RBASE="${ED}" install
 
 	#These symlinks are for compat with cdrkit.
 	dosym schily /usr/include/scsilib
