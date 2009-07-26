@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
 LICENSE="GPL-2 BSD"
 SLOT="0"
-
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint"
 IUSE="nls elibc_FreeBSD"
 
 RDEPEND="~sys-libs/${PN}-libs-${PV}
