@@ -45,9 +45,9 @@ src_compile() {
 src_install() {
 	# UNSTABLE=true enables installation of buddy-ng, easside-ng, tkiptun-ng and wesside-ng
 	emake \
-		prefix="/usr" \
-		mandir="/usr/share/man/man1" \
-		DESTDIR="${ED}" \
+		prefix="${EPREFIX}/usr" \
+		mandir="${EPREFIX}/usr/share/man/man1" \
+		DESTDIR="${D}" \
 		sqlite=$(have_sqlite) \
 		UNSTABLE=true \
 		install \
