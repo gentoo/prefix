@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.18.0.ebuild,v 1.2 2009/06/24 23:02:51 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.18.0.ebuild,v 1.4 2009/07/24 14:41:47 ssuominen Exp $
 
-inherit autotools gnome2 python virtualx versionator
+inherit autotools gnome2 python virtualx
 
 DESCRIPTION="GLib's GObject library bindings for Python"
 HOMEPAGE="http://www.pygtk.org/"
@@ -10,7 +10,7 @@ HOMEPAGE="http://www.pygtk.org/"
 LICENSE="LGPL-2.1"
 SLOT="2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc examples libffi test"
+IUSE="doc examples libffi"
 
 RDEPEND=">=dev-lang/python-2.4.4-r5
 	>=dev-libs/glib-2.16
@@ -20,15 +20,12 @@ DEPEND="${RDEPEND}
 	doc? ( dev-libs/libxslt >=app-text/docbook-xsl-stylesheets-1.70.1 )
 	>=dev-util/pkgconfig-0.12.0"
 
-DOCS="AUTHORS ChangeLog ChangeLog.pre-$(get_version_component_range 1-2)
-NEWS README"
+DOCS="AUTHORS ChangeLog* NEWS README"
 
 pkg_setup() {
 	G2CONF="${G2CONF}
 		--disable-dependency-tracking
-		--enable-libtool-lock
 		$(use_enable doc docs)
-		$(use_enable test glibtest)
 		$(use_with libffi ffi)"
 }
 
@@ -38,14 +35,16 @@ src_unpack() {
 	# Fix FHS compliance, see upstream bug #535524
 	epatch "${FILESDIR}/${PN}-2.15.4-fix-codegen-location.patch"
 
+	epatch "${FILESDIR}"/${P}-make_check.patch
+
 	# needed to build on a libtool-1 system, bug #255542
 	rm m4/lt* m4/libtool.m4 ltmain.sh
-
-	eautoreconf
 
 	# disable pyc compiling
 	mv py-compile py-compile.orig
 	ln -s $(type -P true) py-compile
+
+	eautoreconf
 }
 
 src_test() {

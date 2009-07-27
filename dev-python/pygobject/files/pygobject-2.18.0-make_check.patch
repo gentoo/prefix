@@ -1,0 +1,30 @@
+diff -ur pygobject-2.18.0.orig/tests/Makefile.am pygobject-2.18.0/tests/Makefile.am
+--- pygobject-2.18.0.orig/tests/Makefile.am	2009-05-14 00:56:45.000000000 +0300
++++ pygobject-2.18.0/tests/Makefile.am	2009-07-24 18:35:13.000000000 +0300
+@@ -11,7 +11,7 @@
+ 	test-thread.h \
+ 	test-unknown.h
+ 
+-noinst_LTLIBRARIES = testhelper.la
++check_LTLIBRARIES = testhelper.la
+ linked_LIBS = testhelper.la
+ 
+ testhelper_la_LDFLAGS = -module -avoid-version
+@@ -47,6 +47,7 @@
+ 	   cp $(top_srcdir)/gobject/*.py $(top_builddir)/gobject; \
+ 	   cp $(top_srcdir)/gio/*.py $(top_builddir)/gio; \
+ 	fi
++	$(LN_S) .libs/testhelper.so testhelper.so
+ 	@$(PYTHON) $(srcdir)/runtests.py $(top_builddir) $(top_srcdir)
+ 	@if test "$(top_builddir)" != "$(top_srcdir)"; then \
+ 	   rm -f $(top_builddir)/glib/*.py; \
+@@ -58,8 +59,5 @@
+ 	@rm -fr $(top_builddir)/gio/*.pyc
+ 
+ 
+-all: $(LTLIBRARIES:.la=.so)
+ clean-local:
+-	rm -f $(LTLIBRARIES:.la=.so)
+-.la.so:
+-	$(LN_S) .libs/$@ $@ || true
++	rm -f .libs/testhelper.so
