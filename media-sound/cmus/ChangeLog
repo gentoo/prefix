@@ -1,6 +1,13 @@
 # ChangeLog for media-sound/cmus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.27 2009/07/13 21:36:33 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.28 2009/07/26 13:19:04 ssuominen Exp $
+
+*cmus-2.2.0-r2 (26 Jul 2009)
+
+  26 Jul 2009; Samuli Suominen <ssuominen@gentoo.org> +cmus-2.2.0-r2.ebuild,
+  +files/cmus-2.2.0-libmpcdecsv7.patch:
+  Use transition package media-libs/libmpcdecsv7 instead of
+  media-libs/libmpcdec for Musepack support.
 
   13 Jul 2009; Samuli Suominen <ssuominen@gentoo.org> cmus-2.2.0-r1.ebuild:
   Remove USE mp3 since we have USE mad which is correct.
