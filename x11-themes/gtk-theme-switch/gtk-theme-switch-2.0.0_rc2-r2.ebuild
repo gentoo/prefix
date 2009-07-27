@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-theme-switch/gtk-theme-switch-2.0.0_rc2-r2.ebuild,v 1.11 2008/04/20 15:29:14 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-theme-switch/gtk-theme-switch-2.0.0_rc2-r2.ebuild,v 1.12 2009/07/25 07:54:17 ssuominen Exp $
 
 inherit eutils toolchain-funcs
 
@@ -8,7 +8,7 @@ MY_P=${P/_/}
 
 DESCRIPTION="Application for easy change of GTK-Themes"
 HOMEPAGE="http://www.muhri.net/nav.php3?node=gts"
-SRC_URI="http://www.muhri.net/${MY_P}.tar.gz
+SRC_URI="mirror://gentoo/${MY_P}.tar.gz
 	mirror://gentoo/${MY_P}b.patch.gz"
 
 LICENSE="GPL-2"
