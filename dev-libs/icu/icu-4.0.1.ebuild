@@ -63,9 +63,14 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
 
 	if [[ ${CHOST} == *-winnt* ]]; then
-		epatch "${FILESDIR}"/${P}-winnt-basic.patch
-		epatch "${FILESDIR}"/${P}-winnt.patch
+		epatch "${FILESDIR}"/${PN}-3.8.1-winnt-basic.patch
+		epatch "${FILESDIR}"/${PN}-3.8.1-winnt.patch
 	fi
+
+	# static libraries should be names the same as shared ones
+	# to allow -licu... to work always, regardless of -static
+	# presence.
+	epatch "${FILESDIR}"/${PN}-3.8.1-static-names.patch
 
 	eautoreconf # for winnt
 }
