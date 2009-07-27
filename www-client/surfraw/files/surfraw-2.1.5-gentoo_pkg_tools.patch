@@ -5,8 +5,13 @@ Index: surfraw-2.1.5/surfraw-bash-completion.IN
 ===================================================================
 --- surfraw-2.1.5/surfraw-bash-completion.IN	{cset 8f95d483-869f-47ba-aba2-f0a12bb9dd07}
 +++ surfraw-2.1.5/surfraw-bash-completion.IN	{local clone}
-@@ -1,4 +1,20 @@
+@@ -1,4 +1,25 @@
  # -*- sh -*- bash programmable completion for Surfraw, v2.2
++
++# This is for people who wish to use surfraw completion, without
++# installing the bash-completion package.
++shopt -s extglob
++
 +_srpkgname()
 +{
 +	local pd
@@ -26,7 +31,7 @@ Index: surfraw-2.1.5/surfraw-bash-completion.IN
  _surfraw() 
  {       COMPREPLY=()
  	local cur=${COMP_WORDS[COMP_CWORD]}
-@@ -14,7 +30,7 @@ _surfraw() 
+@@ -14,7 +35,7 @@ _surfraw()
  	then    COMPREPLY=( $( compgen -W "$elvi" -- $cur ) )
  		# "sr go<tab>" for google
  	elif    [[ $prev == @(alioth|deb@(bugs|contents|packages|pts|sec)|freshmeat|fsfdir|sourceforge) ]]
