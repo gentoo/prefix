@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/gst-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.53 2009/06/18 12:37:35 dagger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.54 2009/07/25 08:59:48 ssuominen Exp $
+
+  25 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  gst-python-0.10.15-r1.ebuild:
+  Fix building with =libtool-1* wrt #270964, thanks to Mark Lee.
 
   18 Jun 2009; Robert Piasek <dagger@gentoo.org> gst-python-0.10.13.ebuild,
   gst-python-0.10.15-r1.ebuild:

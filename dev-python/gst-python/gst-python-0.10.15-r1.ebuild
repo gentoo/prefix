@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.15-r1.ebuild,v 1.4 2009/06/18 12:37:35 dagger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/gst-python-0.10.15-r1.ebuild,v 1.5 2009/07/25 08:59:48 ssuominen Exp $
 
 EAPI=2
 NEED_PYTHON=2.4
@@ -24,7 +24,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.10.9-lazy.patch
-	rm -f py-compile
+	rm -f py-compile ltmain.sh common/m4/{libtool,lt*}.m4 || die "rm -f failed"
 	ln -s $(type -P true) py-compile
 	AT_M4DIR="common/m4" eautoreconf
 }
