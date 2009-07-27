@@ -6,7 +6,7 @@ inherit eutils toolchain-funcs prefix
 
 DESCRIPTION="Utility to change the binutils version being used - prefix version"
 HOMEPAGE="http://www.gentoo.org/"
-W_VER="0.3.1658"
+W_VER="0.3.1659"
 SRC_URI="http://dev.gentoo.org/~haubi/distfiles/toolchain-prefix-wrapper-${W_VER}.tar.bz2"
 
 LICENSE="GPL-2"
