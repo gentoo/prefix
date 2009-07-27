@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.140 2009/07/22 07:12:17 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.141 2009/07/26 06:39:18 graaff Exp $
+
+  26 Jul 2009; Hans de Graaff <graaff@gentoo.org> rails-2.3.3.ebuild:
+  Drop ia64 keyword #279123.
 
 *rails-2.3.3 (22 Jul 2009)
 
