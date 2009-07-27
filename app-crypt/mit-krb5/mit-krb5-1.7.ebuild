@@ -30,6 +30,8 @@ PROVIDE="virtual/krb5"
 src_unpack() {
 	unpack ${A}
 	unpack ./${MY_P}.tar.gz
+	# don't introduce LAZY_LDFLAGS=-Wl,-z,now -- breaks e.g. Darwin compilation
+	[[ ${CHOST} == *-darwin* ]] && rm -f patch/*_all_lazyldflags.patch
 	cd "${S}"
 	EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"
 	einfo "Regenerating configure scripts (be patient)"
