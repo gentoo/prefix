@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.112 2009/07/22 06:48:37 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.113 2009/07/26 06:43:49 graaff Exp $
+
+  26 Jul 2009; Hans de Graaff <graaff@gentoo.org> actionpack-2.3.3.ebuild:
+  Add missing dependency on rack #278680. Drop ia64 keyword #279123.
+
+  23 Jul 2009; Hans de Graaff <graaff@gentoo.org> actionpack-2.3.3.ebuild:
+  Add missing dependency on dev-ruby/rack-1.0*
 
 *actionpack-2.3.3 (22 Jul 2009)
 
