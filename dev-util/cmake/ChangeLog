@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/cmake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.103 2009/07/17 19:08:42 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.105 2009/07/26 20:41:23 cryos Exp $
+
+  26 Jul 2009; Marcus D. Hanwell <cryos@gentoo.org> cmake-2.6.4.ebuild,
+  cmake-2.6.4-r1.ebuild:
+  Bumped to depend on >=dev-libs/xmlrpc-c-1.06.27[curl], fixes bug 276333.
+
+  24 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  files/cmake-FindPythonInterp.patch, files/cmake-FindPythonLibs.patch:
+  Support more Python versions.
 
 *cmake-2.6.4-r1 (17 Jul 2009)
 
