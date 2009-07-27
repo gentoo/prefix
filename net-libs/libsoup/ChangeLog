@@ -1,6 +1,23 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.190 2009/05/21 18:14:56 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.193 2009/07/27 04:43:00 dirtyepic Exp $
+
+*libsoup-2.26.3-r1 (27 Jul 2009)
+
+  27 Jul 2009; Ryan Hill <dirtyepic@gentoo.org> -libsoup-2.26.3.ebuild,
+  +libsoup-2.26.3-r1.ebuild:
+  Add missing eutils inherit for epatch.
+
+*libsoup-2.26.3 (26 Jul 2009)
+
+  26 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -libsoup-2.26.1.ebuild, +libsoup-2.26.3.ebuild,
+  +files/libsoup-2.26.3-gnutls-strict.patch:
+  Version bump. Bug fixes. Include patch for gnutls from distributor list.
+
+  26 Jul 2009; Ryan Hill <dirtyepic@gentoo.org> libsoup-2.2.105-r2.ebuild,
+  +files/libsoup-2.2.105-dprintf.patch:
+  Add patch from Fedora to fix building with glibc-2.10.
 
   21 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org> libsoup-2.26.2.ebuild:
   ~ppc and ~ppc64 were somehow dropped for 2.26.2, readding
