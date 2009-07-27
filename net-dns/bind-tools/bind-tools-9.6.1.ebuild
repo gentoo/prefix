@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.6.1.ebuild,v 1.1 2009/07/19 18:40:15 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.6.1.ebuild,v 1.3 2009/07/26 16:03:14 idl0r Exp $
 
-inherit eutils
+inherit eutils autotools
 
 MY_PN=${PN//-tools}
 MY_PV=${PV/_p1/-P1}
@@ -43,6 +43,11 @@ src_unpack() {
 	sed -i -e \
 		's:struct isc_socket {:#undef SO_BSDCOMPAT\n\nstruct isc_socket {:' \
 		lib/isc/unix/socket.c || die
+
+	# bug 278364 (workaround)
+	epatch "${FILESDIR}/${P}-parallel.patch"
+
+	eautoreconf
 }
 
 src_compile() {
