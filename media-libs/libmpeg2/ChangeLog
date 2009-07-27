@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/libmpeg2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpeg2/ChangeLog,v 1.71 2009/02/18 19:03:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmpeg2/ChangeLog,v 1.72 2009/07/24 22:33:34 ssuominen Exp $
+
+*libmpeg2-0.5.1-r1 (24 Jul 2009)
+
+  24 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +libmpeg2-0.5.1-r1.ebuild,
+  +files/libmpeg2-0.5.1-arm-private-symbols.patch,
+  +files/libmpeg2-0.5.1-global-symbol-test.patch:
+  Set visibility of global symbols used in ARM specific assembly file to
+  internal. Rewrite the public symbol check to verify the shared libraries,
+  to check for more things, and to avoid duplication; fixes make check on
+  ARM.
 
   18 Feb 2009; Raúl Porcel <armin76@gentoo.org> libmpeg2-0.5.1.ebuild:
   ia64/sh/sparc stable wrt #255151
