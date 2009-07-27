@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/dbus
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.234 2009/04/23 05:46:44 nirbheek Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.235 2009/07/26 11:13:49 eva Exp $
+
+  26 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/dbus-1.0.1-fixfilecreation.patch, -dbus-1.0.2-r2.ebuild,
+  -dbus-1.1.4.ebuild, -files/dbus-1.1.4-xdisplay_null.patch,
+  -dbus-1.1.20.ebuild, -files/dbus-1.1.20-fix-build.patch,
+  -dbus-1.2.1.ebuild, -dbus-1.2.3.ebuild:
+  Clean up old revisions, notably for security issues, bug #271769.
 
   23 Apr 2009; Nirbheek Chauhan <nirbheek@gentoo.org> dbus-1.2.12:
   Fix bug 267125 (murphy's law causes a two-character change before cvs
