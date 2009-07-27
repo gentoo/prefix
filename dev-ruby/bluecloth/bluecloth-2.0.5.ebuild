@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/bluecloth-2.0.3.ebuild,v 1.1 2009/06/24 05:31:41 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/bluecloth-2.0.5.ebuild,v 1.1 2009/07/26 06:02:41 graaff Exp $
 
 inherit ruby gems
 
