@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/autoconf-wrapper
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.64 2009/01/07 20:02:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.65 2009/07/27 04:15:07 vapier Exp $
+
+*autoconf-wrapper-7 (27 Jul 2009)
+
+  27 Jul 2009; Mike Frysinger <vapier@gentoo.org>
+  +autoconf-wrapper-7.ebuild, +files/ac-wrapper-7.sh:
+  Support autoconf-2.64.
 
   07 Jan 2009; Raúl Porcel <armin76@gentoo.org> autoconf-wrapper-6.ebuild:
   alpha/ia64 stable wrt #2475067
