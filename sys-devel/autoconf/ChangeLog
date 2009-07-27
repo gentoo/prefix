@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/autoconf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.131 2009/04/17 20:24:41 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/ChangeLog,v 1.133 2009/07/27 04:19:17 vapier Exp $
+
+*autoconf-2.64 (27 Jul 2009)
+
+  27 Jul 2009; Mike Frysinger <vapier@gentoo.org> +autoconf-2.64.ebuild:
+  Version bump.
+
+  27 Jul 2009; Mike Frysinger <vapier@gentoo.org> autoconf-2.63-r1.ebuild:
+  Stabilize for everyone (only change is sh-specific).
 
   17 Apr 2009; Zac Medico <zmedico@gentoo.org> autoconf-2.63b.ebuild:
   Fix SRC_URI since alpha/beta releases are not distributed on the usual

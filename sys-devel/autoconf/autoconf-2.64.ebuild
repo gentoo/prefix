@@ -1,25 +1,24 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.63b.ebuild,v 1.2 2009/04/17 20:24:41 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.64.ebuild,v 1.1 2009/07/27 04:19:17 vapier Exp $
 
 inherit eutils
 
 DESCRIPTION="Used to create autoconfiguration files"
 HOMEPAGE="http://www.gnu.org/software/autoconf/autoconf.html"
-# Alpha/beta releases are not distributed on the usual mirrors.
-#SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
-SRC_URI="ftp://alpha.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
+SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2
+	ftp://alpha.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2.5"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+#KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~sparc-fbsd ~x86 ~x86-fbsd"
 IUSE="emacs"
 
 DEPEND=">=sys-apps/texinfo-4.3
 	>=sys-devel/m4-1.4.6
 	dev-lang/perl"
 RDEPEND="${DEPEND}
-	>=sys-devel/autoconf-wrapper-6"
+	>=sys-devel/autoconf-wrapper-7"
 PDEPEND="emacs? ( app-emacs/autoconf-mode )"
 
 src_unpack() {
