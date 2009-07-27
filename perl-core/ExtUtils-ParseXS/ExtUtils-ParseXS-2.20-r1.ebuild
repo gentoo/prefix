@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/ExtUtils-ParseXS/ExtUtils-ParseXS-2.20.ebuild,v 1.1 2009/07/03 05:10:45 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/ExtUtils-ParseXS/ExtUtils-ParseXS-2.20-r1.ebuild,v 1.1 2009/07/25 21:20:48 halcy0n Exp $
 
 EAPI=2
 
@@ -19,3 +19,8 @@ DEPEND="${RDEPEND}
 	virtual/perl-Module-Build"
 
 SRC_TEST="do"
+
+PATCHES=(
+	"${FILESDIR}"/eu-pxs-newXS-const-file.patch
+)
+

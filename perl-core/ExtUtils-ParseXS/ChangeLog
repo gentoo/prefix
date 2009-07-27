@@ -1,6 +1,13 @@
 # ChangeLog for perl-core/ExtUtils-ParseXS
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/ExtUtils-ParseXS/ChangeLog,v 1.3 2009/07/03 05:10:45 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/ExtUtils-ParseXS/ChangeLog,v 1.4 2009/07/25 21:20:48 halcy0n Exp $
+
+*ExtUtils-ParseXS-2.20-r1 (25 Jul 2009)
+
+  25 Jul 2009; Mark Loeser <halcy0n@gentoo.org>
+  -ExtUtils-ParseXS-2.20.ebuild, +ExtUtils-ParseXS-2.20-r1.ebuild,
+  +files/eu-pxs-newXS-const-file.patch:
+  Revbump to fix header for gcc-4.4 issue; bug #278155
 
 *ExtUtils-ParseXS-2.20 (03 Jul 2009)
 
