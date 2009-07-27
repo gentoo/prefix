@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/tango-icon-theme
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/tango-icon-theme/ChangeLog,v 1.49 2009/06/01 11:53:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/tango-icon-theme/ChangeLog,v 1.50 2009/07/24 10:47:41 ssuominen Exp $
+
+  24 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  tango-icon-theme-0.8.90.ebuild:
+  Fix LICENSE to public-domain wrt #278634.
 
   01 Jun 2009; Raúl Porcel <armin76@gentoo.org>
   tango-icon-theme-0.8.90.ebuild:

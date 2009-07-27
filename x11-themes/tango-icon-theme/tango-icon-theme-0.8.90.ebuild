@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/tango-icon-theme/tango-icon-theme-0.8.90.ebuild,v 1.7 2009/06/01 11:53:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/tango-icon-theme/tango-icon-theme-0.8.90.ebuild,v 1.8 2009/07/24 10:47:41 ssuominen Exp $
 
 EAPI=2
 inherit gnome2-utils
@@ -9,7 +9,7 @@ DESCRIPTION="SVG and PNG icon theme from the Tango project"
 HOMEPAGE="http://tango.freedesktop.org"
 SRC_URI="http://tango.freedesktop.org/releases/${P}.tar.gz"
 
-LICENSE="CCPL-Attribution-ShareAlike-2.5"
+LICENSE="public-domain"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="png"
