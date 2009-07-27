@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-io/commons-io-1.4.ebuild,v 1.5 2008/03/11 20:58:12 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-io/commons-io-1.4.ebuild,v 1.6 2009/07/25 10:08:12 nelchael Exp $
 
 JAVA_PKG_IUSE="doc source"
 
@@ -35,7 +35,7 @@ src_unpack() {
 EANT_EXTRA_ARGS="-Duser.home=${T}"
 
 src_test() {
-	if has userpriv ${FEATURES}; then
+	if [[ ${EUID} -ne 0 ]]; then
 		ANT_OPTS="-Djava.io.tmpdir=${T} -Duser.home=${T}" \
 		ANT_TASKS="ant-junit" \
 			eant test \
