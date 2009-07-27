@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/darcs
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.102 2009/07/21 18:20:09 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.103 2009/07/25 13:19:17 kolmodin Exp $
+
+  25 Jul 2009; Lennart Kolmodin <kolmodin@gentoo.org> darcs-2.2.1.ebuild:
+  When building with USE=doc, make sure we have >=haddock-2.4.1.
+  See bug #278659, reported by Martin von Gagern <Martin.vGagern@gmx.net>.
 
 *darcs-2.2.1 (21 Jul 2009)
 

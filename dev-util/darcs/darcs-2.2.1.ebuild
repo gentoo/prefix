@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.2.1.ebuild,v 1.1 2009/07/21 18:20:09 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.2.1.ebuild,v 1.2 2009/07/25 13:19:17 kolmodin Exp $
 
 CABAL_FEATURES="bin lib haddock"
 inherit haskell-cabal eutils bash-completion
@@ -27,7 +27,8 @@ DEPEND=">=net-misc/curl-7.10.2
 	dev-haskell/network
 	dev-haskell/filepath
 	doc?  ( virtual/latex-base
-		>=dev-tex/latex2html-2002.2.1_pre20041025-r1 )"
+		>=dev-tex/latex2html-2002.2.1_pre20041025-r1
+		>=dev-haskell/haddock-2.4.1 )"
 
 RDEPEND=">=net-misc/curl-7.10.2
 	virtual/mta
