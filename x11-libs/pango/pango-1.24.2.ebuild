@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.24.2.ebuild,v 1.5 2009/05/27 17:17:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.24.2.ebuild,v 1.6 2009/07/24 17:20:26 dang Exp $
 
 EAPI="2"
 
@@ -27,7 +27,8 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9
 	doc? (
 		>=dev-util/gtk-doc-1
-		~app-text/docbook-xml-dtd-4.1.2 )
+		~app-text/docbook-xml-dtd-4.1.2
+		x11-libs/libXft )
 	X? ( x11-proto/xproto )"
 
 DOCS="AUTHORS ChangeLog* NEWS README THANKS"
