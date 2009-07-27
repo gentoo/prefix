@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/URI/URI-1.38.ebuild,v 1.6 2009/07/19 18:14:44 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/URI/URI-1.38.ebuild,v 1.7 2009/07/26 20:24:46 cryos Exp $
 
 EAPI=2
 
