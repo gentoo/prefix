@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/cython
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.24 2009/07/23 15:11:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cython/ChangeLog,v 1.25 2009/07/26 22:27:04 ranger Exp $
+
+  26 Jul 2009; Brent Baude <ranger@gentoo.org> cython-0.11.2.ebuild:
+  stable ppc64, bug 277124
 
   23 Jul 2009; Raúl Porcel <armin76@gentoo.org> cython-0.11.2.ebuild:
   ia64 stable wrt #277124
