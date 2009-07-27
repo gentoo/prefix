@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.402 2009/07/05 19:56:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.403 2009/07/26 20:09:59 halcy0n Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -513,7 +513,7 @@ want_minispecs() {
 		if [[ -n ${SPECS_VER} ]] ; then
 			return 0
 		else
-			die "For Hardend to work you need the minispecs files"
+			die "For Hardened to work you need the minispecs files"
 		fi
 	fi
 	return 1
@@ -2292,7 +2292,7 @@ do_gcc_PIE_patches() {
 		&& rm -f "${WORKDIR}"/piepatch/*/*-boundschecking-no.patch* \
 		|| rm -f "${WORKDIR}"/piepatch/*/*-boundschecking-yes.patch*
 
-	use vanilla && rm -f "${WORKDIR}"/piepatch/*/*uclibc*
+	use vanilla && return 0
 
 	if tc_version_is_at_least 4.3.2; then
 		guess_patch_type_in_dir "${WORKDIR}"/piepatch/

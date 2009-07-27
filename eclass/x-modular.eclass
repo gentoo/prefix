@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.109 2009/05/14 12:40:55 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.110 2009/07/24 13:32:44 pva Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -449,6 +449,8 @@ x-modular_src_install() {
 			install \
 			|| die
 	else
+		# FIXME: Drop after X fonts stop running fc-cache during install, bug #278221
+		[[ -n ${FONT} ]] && addpredict /var/cache/fontconfig
 		make \
 			DESTDIR="${D}" \
 			install \

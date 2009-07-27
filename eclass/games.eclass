@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.136 2009/04/05 03:38:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.138 2009/07/26 11:05:04 nyhm Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -14,8 +14,6 @@ case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst pkg_postinst ;;
 	2) EXPORT_FUNCTIONS pkg_setup src_configure src_compile pkg_preinst pkg_postinst ;;
 esac
-
-[[ -z ${GAME} ]] && GAME=${PN%%-*}
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
@@ -220,18 +218,4 @@ games_umod_unpack() {
 		|| die "uncompressing file ${umod}"
 	rm -f "${Ddir}"/System/{ucc-bin,{Manifest,Def{ault,User},User,UT200{3,4}}.ini,{Engine,Core,zlib,ogg,vorbis}.so,{Engine,Core}.int,ucc.log} &>/dev/null \
 		|| die "Removing temporary files"
-}
-
-# Link mods created by games-mods.eclass into the GAMES_PREFIX_OPT directories
-# so they can be found by binary versions of the games.
-games_link_mods() {
-	if [[ -e ${GAMES_DATADIR}/${GAME} ]] ; then
-		cd "${GAMES_DATADIR}/${GAME}"
-		while read mod ; do
-			if [[ ! -e ${Ddir}/${mod} ]] ; then
-				elog "Creating symlink for ${mod}"
-				dosym "${GAMES_DATADIR}"/${GAME}/${mod} "${dir}"/${mod} || die
-			fi
-		done < <(find . -type d -printf '%P\n' 2>/dev/null)
-	fi
 }
