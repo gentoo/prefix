@@ -25,10 +25,10 @@ RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	mpi? ( || ( >=sys-cluster/openmpi-1.3[cxx] =sys-cluster/openmpi-1.2*[-nocxx] ) )
 	sys-libs/zlib
 	python? ( virtual/python )
-	!!<=dev-libs/boost-1.35.0-r2"
+	!!<=dev-libs/boost-1.35.0-r2
+	!x86-winnt? ( >=app-admin/eselect-boost-0.3 )"
 DEPEND="${RDEPEND}
-	dev-util/boost-build:${SLOT}
-	>=app-admin/eselect-boost-0.3"
+	dev-util/boost-build:${SLOT}"
 
 S=${WORKDIR}/${MY_P}
 
@@ -398,6 +398,29 @@ src_install () {
 			fi
 		done
 	fi
+
+	# on winnt we don't have eselect-boost support (yet), so create
+	# symlinks/copies where required.
+	if [[ ${CHOST} == *-winnt* ]]; then
+		(
+			if use debug; then
+				. "${ED}/usr/share/boost-eselect/profiles/${SLOT}/debug"
+			else
+				. "${ED}/usr/share/boost-eselect/profiles/${SLOT}/default"
+			fi
+
+			test -z "${includes}" -o -z "${libs}" && die "oops. something went wrong - boost profile damaged!"
+			
+			dodir /usr/include
+			cp -r ${includes} "${ED}/usr/include/"
+
+			dodir /usr/$(get_libdir)
+			for f in ${libs}; do
+				linkname="${f#${EPREFIX}}"
+				dosym ${linkname} "${linkname/-${MAJOR_PV}}"
+			done
+		)
+	fi
 }
 
 src_test() {
@@ -446,9 +469,14 @@ __EOF__
 }
 
 pkg_postinst() {
-	use eselect && eselect boost update
-	if [ ! -h "${EROOT}/etc/eselect/boost/active" ] ; then
-		elog "No active boost version found. Calling eselect to select one..."
-		eselect boost update
+	# no eselect-boost on winnt. we simply override the slotting back 
+	# to the # "old" behaviour -> install files where they belong ;)
+	# (done above in src_install, so portage knows the files.)
+	if [[ ${CHOST} != *-winnt* ]]; then
+		use eselect && eselect boost update
+		if [ ! -h "${EROOT}/etc/eselect/boost/active" ] ; then
+			elog "No active boost version found. Calling eselect to select one..."
+			eselect boost update
+		fi
 	fi
 }
