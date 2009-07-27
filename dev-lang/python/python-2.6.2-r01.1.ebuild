@@ -103,10 +103,6 @@ src_prepare() {
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
-	# better use mutexes on aix5 instead of semaphores.
-#	epatch "${FILESDIR}"/${PN}-2.4.4-aix-semaphores.patch
-	# build shared library on aix
-#	epatch "${FILESDIR}"/${PN}-2.5.1-aix-ldshared.patch
 	# at least IRIX starts spitting out ugly errors, but we want to use Prefix
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
@@ -121,6 +117,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-termios-noqnx.patch
 	# http://bugs.python.org/issue6163
 	epatch "${FILESDIR}"/${P}-hpuxgcc.patch
+
+	# build shared library on aix #278845
+	epatch "${FILESDIR}"/${P}-aix-shared.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
