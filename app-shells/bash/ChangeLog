@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.218 2009/05/29 23:07:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.219 2009/07/25 05:43:04 vapier Exp $
+
+*bash-4.0_p28 (25 Jul 2009)
+
+  25 Jul 2009; Mike Frysinger <vapier@gentoo.org> +bash-4.0_p28.ebuild:
+  Version bump #278907 by Lars Wendler.
 
   29 May 2009; Mike Frysinger <vapier@gentoo.org> bash-4.0_p24.ebuild,
   +files/bash-4.0-parallel-build.patch:
