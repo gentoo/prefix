@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.97-r1.ebuild,v 1.1 2009/07/14 22:41:36 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.97-r1.ebuild,v 1.3 2009/07/26 20:46:46 ranger Exp $
 
 EAPI="2"
 
