@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/actionmailer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.106 2009/07/22 06:54:22 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.107 2009/07/26 06:40:36 graaff Exp $
+
+  26 Jul 2009; Hans de Graaff <graaff@gentoo.org> actionmailer-2.3.3.ebuild:
+  Drop ia64 keyword #279123.
 
 *actionmailer-2.3.3 (22 Jul 2009)
 
