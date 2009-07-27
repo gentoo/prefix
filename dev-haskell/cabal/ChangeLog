@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/cabal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/ChangeLog,v 1.47 2009/04/19 13:38:45 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/ChangeLog,v 1.48 2009/07/26 22:19:35 kolmodin Exp $
+
+  26 Jul 2009; Lennart Kolmodin <kolmodin@gentoo.org> cabal-1.6.0.3.ebuild:
+  CABAL_CORE_LIB_GHC_PV for GHC 6.10.3 and 6.10.4.
 
 *cabal-1.6.0.3 (19 Apr 2009)
 
