@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.13 2009/07/22 16:33:18 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.14 2009/07/25 10:44:12 aballier Exp $
 
 EAPI=2
 
@@ -170,7 +170,20 @@ src_configure() {
 			--disable-stripping"
 
 	# cross compile support
-	tc-is-cross-compiler && myconf="${myconf} --enable-cross-compile --arch=$(tc-arch-kernel) --cross-prefix=${CHOST}-"
+	if tc-is-cross-compiler ; then
+		myconf="${myconf} --enable-cross-compile --arch=$(tc-arch-kernel) --cross-prefix=${CHOST}-"
+		case ${CHOST} in
+			*freebsd*)
+				myconf="${myconf} --target-os=freebsd"
+				;;
+			mingw32*)
+				myconf="${myconf} --target-os=mingw32"
+				;;
+			*linux*)
+				myconf="${myconf} --target-os=linux"
+				;;
+		esac
+	fi
 
 	# Misc stuff
 	use hardcoded-tables && myconf="${myconf} --enable-hardcoded-tables"
