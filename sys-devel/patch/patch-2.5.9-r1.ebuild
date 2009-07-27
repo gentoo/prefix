@@ -12,7 +12,7 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="static"
 
 DEPEND=""
@@ -28,8 +28,16 @@ src_unpack() {
 src_compile() {
 	strip-flags
 	use kernel_linux && append-flags -DLINUX
-	# _XOPEN_SOURCE=500 on Solaris 11 results in "fseek: invalid argument"
-	[[ ${CHOST} != *-solaris2.11 ]] && append-flags -D_XOPEN_SOURCE=500
+	append-flags -D_XOPEN_SOURCE=500
+
+	# From the Solaris lfcompile(5) manpage:
+	# Applications wishing to access   fseeko()  and  ftello()  as
+	# well as the POSIX and X/Open specification-conforming inter-
+	# faces should define the macro _LARGEFILE_SOURCE to be 1  and
+	# set  whichever feature test macros are appropriate to obtain
+	# the desired environment (see standards(5)).
+	[[ ${CHOST} = *-solaris* ]] && append-flags -D_LARGEFILE_SOURCE=1
+
 	use static && append-ldflags -static
 
 	local myconf=""
