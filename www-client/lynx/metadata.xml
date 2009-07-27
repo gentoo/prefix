@@ -3,9 +3,10 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 	<maintainer>
-		<email>maintainer-needed@gentoo.org</email>
+		<email>wormo@gentoo.org</email>
 	</maintainer>
 	<use>
-		<flag name='openssl'>Use openssl for SSL support.</flag>
+		<flag name='openssl'>Use openssl library for HTTPS support.</flag>
+		<flag name='gnutls'>Use gnutls library for HTTPS support.</flag>
 	</use>
 </pkgmetadata>

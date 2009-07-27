@@ -1,6 +1,26 @@
 # ChangeLog for www-client/lynx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.77 2009/06/28 17:20:41 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.81 2009/07/26 23:07:42 wormo Exp $
+
+*lynx-2.8.7_p1 (26 Jul 2009)
+
+  26 Jul 2009; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  lynx-2.8.7_rc6.ebuild, +lynx-2.8.7_p1.ebuild:
+  Version bump to lynx 2.8.7rel.1
+
+  26 Jul 2009; Stephanie Lockwood-Childs <wormo@gentoo.org> metadata.xml,
+  -lynx-2.8.7_rc4.ebuild, lynx-2.8.7_rc6.ebuild:
+  Fix up toplevel makefile for parallel builds (bug #262972).
+  Give local descriptions for both openssl and gnutls flags.
+  Clean out older rc.
+
+  26 Jul 2009; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  +files/lynx-2.8.6-CVE-2008-4690.patch, lynx-2.8.6-r2.ebuild:
+  Apply patch for CVE-2008-4690 (bug #243058)
+
+  25 Jul 2009; Stephanie Lockwood-Childs <wormo@gentoo.org> metadata.xml,
+  lynx-2.8.6-r2.ebuild:
+  Add missing linguas, fix lynx.cfg path (thanks to Marco Paolone, bug #276725)
 
 *lynx-2.8.7_rc6 (28 Jun 2009)
 

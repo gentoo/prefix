@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r2.ebuild,v 1.14 2009/02/02 16:50:24 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r2.ebuild,v 1.16 2009/07/26 05:55:24 wormo Exp $
 
 inherit eutils
 
@@ -8,13 +8,13 @@ MY_P=${PN}${PV}
 S=${WORKDIR}/${MY_P//./-}
 
 DESCRIPTION="An excellent console-based web browser with ssl support"
-HOMEPAGE="http://lynx.browser.org/"
+HOMEPAGE="http://lynx.isc.org/"
 SRC_URI="ftp://lynx.isc.org/${MY_P}/${MY_P}rel.4.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bzip2 cjk ipv6 linguas_ja nls ssl unicode"
+IUSE="bzip2 cjk ipv6 nls ssl unicode"
 
 RDEPEND="sys-libs/ncurses
 	sys-libs/zlib
@@ -24,6 +24,11 @@ RDEPEND="sys-libs/ncurses
 
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
+
+LANGS="ca cs da de et fr hu it ja nl pt_BR ru rw sl sv tr uk vi zh_CN zh_TW"
+for X in ${LANGS} ; do
+	IUSE="${IUSE} linguas_${X}"
+done
 
 pkg_setup() {
 	if use unicode && ! built_with_use sys-libs/ncurses unicode; then
@@ -40,6 +45,12 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-darwin7.patch \
 		"${FILESDIR}"/${P}-mint.patch
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${P}-CVE-2008-4690.patch"
 }
 
 src_compile() {
@@ -72,7 +83,7 @@ src_install() {
 	make install DESTDIR="${D}" || die
 
 	dosed "s|^HELPFILE.*$|HELPFILE:file://localhost/usr/share/doc/${PF}/lynx_help/lynx_help_main.html|" \
-			/etc/lynx/lynx.cfg
+			/etc/lynx.cfg
 	dodoc CHANGES COPYHEADER PROBLEMS README
 	docinto docs
 	dodoc docs/*
