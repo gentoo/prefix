@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.1.ebuild,v 1.3 2009/07/26 20:56:25 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.1-r1.ebuild,v 1.2 2009/07/26 23:05:00 chainsaw Exp $
 
-inherit eutils flag-o-matic
+inherit autotools eutils flag-o-matic
 
 MY_P="${P/_/-}"
 S="${WORKDIR}/${MY_P}"
@@ -36,7 +36,7 @@ RDEPEND="app-arch/unzip
 	lirc? ( app-misc/lirc )
 	mp3? ( media-libs/libmad )
 	mtp? ( media-libs/libmtp )
-	musepack? ( media-libs/libmpcdec media-libs/taglib )
+	musepack? ( media-libs/libmpcdecsv7 media-libs/taglib )
 	projectm? ( >=media-libs/libprojectm-1.2.0
 		>=media-libs/libsdl-1.2.5 )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.3 )
@@ -59,6 +59,13 @@ mp3_warning() {
 	if ! useq mp3 ; then
 		ewarn "MP3 support is optional, you may want to enable the mp3 USE-flag"
 	fi
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}/${PV}-libmpcdecsv7.patch"
+	AT_M4DIR="m4" eautoreconf
 }
 
 src_compile() {
