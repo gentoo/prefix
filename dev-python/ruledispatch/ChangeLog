@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/ruledispatch
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ruledispatch/ChangeLog,v 1.5 2007/07/04 21:05:59 lucass Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ruledispatch/ChangeLog,v 1.6 2009/07/25 13:42:30 neurogeek Exp $
+
+*ruledispatch-0.5_pre2306-r1 (25 Jul 2009)
+
+  25 Jul 2009; Jesus Rivero <neurogeek@gentoo.org>
+  -ruledispatch-0.5_pre2306.ebuild, +ruledispatch-0.5_pre2306-r1.ebuild,
+  +files/ruledispatch_as_syntax_fix.patch:
+  Added patch to fix syntax error. Removed older version. Closes bug #264490
 
   04 Jul 2007; Lukasz Strzygowski <lucass@gentoo.org>
   -ruledispatch-0.5_pre2115.ebuild:
