@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.212 2009/05/04 14:05:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.213 2009/07/26 23:24:07 eva Exp $
+
+*pygtk-2.14.1-r1 (26 Jul 2009)
+
+  26 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +pygtk-2.14.1-r1.ebuild, +files/pygtk-2.14.1-fix-numpy-warning.patch,
+  +files/pygtk-2.14.1-gtktoggle.patch, +files/pygtk-2.14.1-ltihooks.patch,
+  +files/pygtk-2.14.1-numpy.patch:
+  Version bump. fix tests with python-2.6, bug #268315. Switch to numpy, bug
+  #185692. Fix GtkToggleButton bug with gtk+-2.16, bug #275449.
 
   04 May 2009; Jeroen Roovers <jer@gentoo.org> pygtk-2.14.1.ebuild:
   Stable for HPPA (bug #260063).
