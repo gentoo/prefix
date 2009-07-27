@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ack-1.88-r1.ebuild,v 1.2 2009/07/15 13:23:57 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ack-1.88-r1.ebuild,v 1.4 2009/07/26 19:13:27 tcunha Exp $
 
 inherit perl-module bash-completion
 
@@ -17,7 +17,7 @@ SRC_TEST=do
 
 DEPEND=">=dev-perl/File-Next-1.02
 	dev-lang/perl"
-RDEPEND=""
+RDEPEND="${DEPEND}"
 
 src_install() {
 	perl-module_src_install

@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/ack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ChangeLog,v 1.8 2009/07/15 13:23:57 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ChangeLog,v 1.10 2009/07/26 19:13:27 tcunha Exp $
+
+  26 Jul 2009; Tiago Cunha <tcunha@gentoo.org> ack-1.88-r1.ebuild:
+  stable amd64, bug 277477
+
+  26 Jul 2009; Rajiv Aaron Manglani <rajiv@gentoo.org> -ack-1.86.ebuild,
+  ack-1.88.ebuild, ack-1.88-r1.ebuild:
+  fix RDEPEND. cleanup.
 
   15 Jul 2009; Christian Faulhammer <fauli@gentoo.org> ack-1.88-r1.ebuild:
   stable x86, bug 277477
