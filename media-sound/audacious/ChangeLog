@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.169 2009/07/06 22:50:45 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.170 2009/07/26 20:54:01 chainsaw Exp $
+
+  26 Jul 2009; <chainsaw@gentoo.org> audacious-2.1.ebuild:
+  Marked stable on AMD64, tested on a dual Opteron 2435 system with a Xonar
+  D2X sound card.
 
 *audacious-2.1 (06 Jul 2009)
 
