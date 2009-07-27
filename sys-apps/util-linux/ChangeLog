@@ -1,6 +1,19 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.271 2009/07/16 03:13:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.274 2009/07/26 20:06:00 vapier Exp $
+
+  26 Jul 2009; Mike Frysinger <vapier@gentoo.org>
+  -util-linux-2.13.1.1.ebuild, util-linux-2.14.2.ebuild,
+  -util-linux-2.15.ebuild, -util-linux-2.15-r1.ebuild:
+  Add some workarounds for stable uClibc systems #249582 by Natanael Copa.
+
+  26 Jul 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.16.ebuild,
+  util-linux-9999.ebuild:
+  Add a call to autopoint #278941 by hangfire.
+
+  26 Jul 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.16.ebuild,
+  util-linux-9999.ebuild:
+  Update loop-aes patch #278382.
 
 *util-linux-2.16 (16 Jul 2009)
 

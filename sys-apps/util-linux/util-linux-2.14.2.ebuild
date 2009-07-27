@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.14.2.ebuild,v 1.10 2009/05/23 21:14:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.14.2.ebuild,v 1.12 2009/07/26 20:41:50 zmedico Exp $
 
 EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/util-linux-ng/util-linux-ng.git"
 inherit eutils autotools
@@ -47,7 +47,13 @@ src_unpack() {
 		use loop-aes && epatch "${WORKDIR}"/util-linux-ng-*.diff
 		eautoreconf
 	fi
-	use uclibc && sed -i -e s/versionsort/alphasort/g -e s/strverscmp.h/dirent.h/g mount/lomount.c
+	if use uclibc ; then
+		sed -i -e s/versionsort/alphasort/g -e s/strverscmp.h/dirent.h/g mount/lomount.c
+		sed -i -e 's/program_invocation_short_name/"scriptreplay"/' misc-utils/scriptreplay.c
+		sed -i -e 's/program_invocation_short_name/"setarch"/' sys-utils/setarch.c
+		sed -i -e 's/program_invocation_short_name/"ldattach"/' sys-utils/ldattach.c
+		sed -i -e 's:test = SYS_sched_getaffinity:LSDJFLSKDF = asdfasdf:' configure
+	fi
 	use prefix && sed -i -e 's/chgrp tty/#chgrp tty/' misc-utils/Makefile.in || die
 }
 
