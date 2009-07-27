@@ -1,6 +1,13 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.114 2009/07/11 19:08:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.115 2009/07/24 18:38:38 hollow Exp $
+
+*apache-2.2.11-r3 (24 Jul 2009)
+
+  24 Jul 2009; Benedikt Böhm <hollow@gentoo.org> -apache-2.2.10.ebuild,
+  -apache-2.2.11.ebuild, -apache-2.2.11-r1.ebuild, +apache-2.2.11-r3.ebuild,
+  metadata.xml:
+  add support for perusers dc branch; breaks old peruser configuration!
 
   11 Jul 2009; Raúl Porcel <armin76@gentoo.org> apache-2.2.11-r2.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable wrt #276589

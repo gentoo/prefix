@@ -1,9 +1,9 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.9-r1.ebuild,v 1.8 2008/11/05 00:41:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.11-r3.ebuild,v 1.1 2009/07/24 18:38:38 hollow Exp $
 
 # latest gentoo apache files
-GENTOO_PATCHSTAMP="20080829"
+GENTOO_PATCHSTAMP="20090724"
 GENTOO_DEVELOPER="hollow"
 
 # IUSE/USE_EXPAND magic
@@ -82,7 +82,7 @@ LICENSE="Apache-2.0 Apache-1.1"
 SLOT="2"
 # entirely new, based on eclass that probably needs fixin...
 KEYWORDS="~amd64-linux ~x64-macos ~x86-macos ~sparc64-solaris ~x64-solaris"
-IUSE="sni"
+IUSE="sni peruser_dc"
 
 DEPEND="${DEPEND}
 	apache2_modules_deflate? ( sys-libs/zlib )"
@@ -92,7 +92,15 @@ RDEPEND="${RDEPEND}
 
 src_unpack() {
 	if ! use sni ; then
-		EPATCH_EXCLUDE="04_all_mod_ssl_tls_sni.patch"
+		EPATCH_EXCLUDE="${EPATCH_EXCLUDE} 04_all_mod_ssl_tls_sni.patch"
+	fi
+
+	if use peruser_dc ; then
+		if ! use apache2_mpms_peruser ; then
+			die "USE=peruser_dc requires APACHE2_MPMS=peruser"
+		fi
+	else
+		EPATCH_EXCLUDE="${EPATCH_EXCLUDE} 22_all_peruser_0.3.0-dc3.patch"
 	fi
 
 	apache-2_src_unpack
