@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-2.24.0.1-r1.ebuild,v 1.3 2009/07/27 00:03:27 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-2.24.0.1-r10.ebuild,v 1.1 2009/07/27 00:03:27 eva Exp $
 
-EAPI=1
+EAPI="2"
 
-inherit eutils gnome2
+inherit autotools eutils gnome2
 
 DESCRIPTION="The gnome2 Desktop configuration tool"
 HOMEPAGE="http://www.gnome.org/"
@@ -28,7 +28,7 @@ RDEPEND="x11-libs/libXft
 	>=x11-wm/metacity-2.23.1
 	>=gnome-base/gnome-panel-2.0
 	>=gnome-base/libgnomekbd-2.21.4.1
-	>=gnome-base/gnome-desktop-2.26
+	>=gnome-base/gnome-desktop-2.23.90
 	>=gnome-base/gnome-menus-2.11.1
 	gnome-base/eel
 	gnome-base/gnome-settings-daemon
@@ -45,7 +45,7 @@ RDEPEND="x11-libs/libXft
 	eds? ( >=gnome-extra/evolution-data-server-1.7.90 )
 	hal? ( >=sys-apps/hal-0.5.6 )
 	sound? (
-		>=media-libs/libcanberra-0.4
+		>=media-libs/libcanberra-0.4[gtk]
 		x11-themes/sound-theme-freedesktop )
 
 	>=gnome-base/libbonobo-2
@@ -76,18 +76,12 @@ DEPEND="${RDEPEND}
 	dev-util/desktop-file-utils
 
 	app-text/scrollkeeper
+	gnome-base/gnome-common
 	>=app-text/gnome-doc-utils-0.10.1"
-# Needed for autoreconf
-#	gnome-base/gnome-common
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
 
 pkg_setup() {
-	if use sound && ! built_with_use media-libs/libcanberra gtk; then
-		eerror "You need to rebuild media-libs/libcanberra with gtk support."
-		die "Rebuild media-libs/libcanberra with USE='gtk'"
-	fi
-
 	G2CONF="${G2CONF}
 		--disable-update-mimedb
 		--enable-gstreamer=0.10
@@ -96,8 +90,8 @@ pkg_setup() {
 		$(use_with sound libcanberra)"
 }
 
-src_unpack() {
-	gnome2_src_unpack
+src_prepare() {
+	gnome2_src_prepare
 
 	# Fix compilation on fbsd, bug #256958
 	epatch "${FILESDIR}/${P}-fbsd.patch"
@@ -107,4 +101,16 @@ src_unpack() {
 
 	# Upstream patch for fixing capplet help buttons, bug #263168
 	epatch "${FILESDIR}/${P}-capplet-help.patch"
+
+	# Add missing libgnomeui check, bug #269383
+	epatch "${FILESDIR}/${P}-libgnomeui.patch"
+
+	# Add fixes for gnome-desktop-2.26 API changes, bug #269383
+	epatch "${FILESDIR}/${P}-gnome-desktop-api.patch"
+
+	# Fix build with libxklavier-4
+	epatch "${FILESDIR}/${PN}-2.26.0-libxklavier4.patch"
+
+	intltoolize --force --copy --automake || die "intltoolize failed"
+	eautoreconf
 }
