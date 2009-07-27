@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.102 2009/07/22 20:23:50 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.103 2009/07/26 12:05:52 griffon26 Exp $
+
+*valgrind-3.4.1-r1 (26 Jul 2009)
+
+  26 Jul 2009; Maurice van der Pot <griffon26@gentoo.org>
+  +valgrind-3.4.1-r1.ebuild, +files/valgrind-3.4.1-glibc-2.10.1.patch,
+  +files/valgrind-3.4.1-x86_64-ldso-strlen.patch:
+  Added -r1 with fix for bug #274771. Thanks to Nikos Chantziaras
+  <realnc@gmail.com> for the bug report and the reference to a patch.  
+  Also added mpi use flag to support debugging MPI programs (bug #258832).
 
   22 Jul 2009; Joseph Jezak <josejx@gentoo.org> valgrind-3.4.1.ebuild:
   Marked ppc stable for bug #278534.
