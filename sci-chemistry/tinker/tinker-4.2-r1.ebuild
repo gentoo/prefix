@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/tinker-4.2-r1.ebuild,v 1.4 2008/11/06 23:53:23 dberkholz Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/tinker-4.2-r1.ebuild,v 1.5 2009/07/26 16:11:44 grozin Exp $
 
 inherit fortran toolchain-funcs
 
@@ -14,7 +14,9 @@ LICENSE="Tinker"
 SLOT="0"
 KEYWORDS="~x86-linux"
 
-DEPEND="X? ( dev-java/sun-java3d-bin )"
+# file collision, bug #279018
+DEPEND="!dev-util/diffuse
+	X? ( dev-java/sun-java3d-bin )"
 S=${WORKDIR}/tinker/source
 
 src_compile() {

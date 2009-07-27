@@ -1,6 +1,9 @@
 # ChangeLog for sci-chemistry/tinker
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/ChangeLog,v 1.10 2008/11/06 23:53:23 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/ChangeLog,v 1.11 2009/07/26 16:11:44 grozin Exp $
+
+  26 Jul 2009; Andrey Grozin <grozin@gentoo.org> tinker-4.2-r1.ebuild:
+  Blocking dev-util/diffuse (file collision, bug #279018)
 
   06 Nov 2008; Donnie Berkholz <dberkholz@gentoo.org>; tinker-4.2-r1.ebuild:
   (#245504) This ebuild was wrongly updated for the blackdown removal, which
