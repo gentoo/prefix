@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/gnome-menus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.128 2009/05/10 18:51:37 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.129 2009/07/26 21:46:51 eva Exp $
+
+*gnome-menus-2.26.2 (26 Jul 2009)
+
+  26 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-menus-2.26.2.ebuild:
+  Version bump. Performance enhancements, translation updates.
+  Move applications.menu to a prefix, bug #256614.
 
   10 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
   gnome-menus-2.26.1.ebuild:
