@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.porcupine.org/pub/security/${MY_P}.tar.gz
 
 LICENSE="tcp_wrappers_license"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="ipv6"
 
 DEPEND=""
@@ -32,6 +32,8 @@ src_unpack() {
 	epatch ${PATCHDIR}/generic
 	epatch ${PATCHDIR}/${P}-shared.patch
 	use ipv6 && epatch ${PATCHDIR}/${P}-ipv6-1.14.diff
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
