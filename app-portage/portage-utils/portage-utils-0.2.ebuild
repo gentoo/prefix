@@ -18,6 +18,8 @@ DEPEND="
 	x86-interix? ( dev-libs/gnulib )
 	ia64-hpux? ( dev-libs/gnulib )
 	hppa-hpux? ( dev-libs/gnulib )
+	sparc-solaris? ( dev-libs/gnulib )
+	sparc64-solaris? ( dev-libs/gnulib )
 "
 
 src_unpack() {
@@ -42,11 +44,16 @@ src_compile() {
 	tc-export CC
 	# note: Solaris 10+ fails to compile with gnulib, due to static/nonstatic
 	# declaration of strcasecmp, it doesn't need gnulib
-	if [[ ${CHOST} == *-aix* || ${CHOST} == *-interix[35]* || ${CHOST} == *-hpux* ]]; then
+	if [[ ${CHOST} == *-aix* ||
+		  ${CHOST} == *-interix[35]* ||
+		  ${CHOST} == *-hpux* ||
+		  ${CHOST} == *-solaris2.9 ]]; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
 		# append-libs doesn't work, since the Makefile doesn't know LIBS, it seems
 		append-ldflags -lgnu
+		# gnulib provides strcasestr
+		sed -i -e 's/strcasestr/unused_strcasestr/' libq/compat.c
 	fi
 	emake EPREFIX="${EPREFIX}" || die
 }
