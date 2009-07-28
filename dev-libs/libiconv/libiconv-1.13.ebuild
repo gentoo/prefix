@@ -26,6 +26,7 @@ src_unpack() {
 	# don't have to deal with it for now.
 	#epatch "${FILESDIR}"/${PN}-1.10-link.patch
 
+	# REQUIRED for interix too, not only mint!
 	epatch "${FILESDIR}"/${P}-state-mint.patch
 
 	if [[ ${CHOST} == *-winnt* || ${CHOST} == *-mint* ]]; then
