@@ -19,6 +19,8 @@ src_install() {
 	exeinto /usr/$(get_libdir)/misc
 	newexe "${FILESDIR}"/ac-wrapper-${PV}.sh ac-wrapper.sh || die
 
+	sed -i -e 's,#!/bin/bash,#!/usr/bin/env bash,' "${ED}"/usr/lib/misc/ac-wrapper.sh
+
 	dodir /usr/bin
 	local x=
 	for x in auto{conf,header,m4te,reconf,scan,update} ifnames ; do
