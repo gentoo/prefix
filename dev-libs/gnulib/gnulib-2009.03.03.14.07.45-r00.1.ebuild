@@ -43,7 +43,7 @@ src_unpack() {
 			;;
 		*-solaris2.9)
 			# Don't remove dirfd!
-			requested_gnulib_modules="alphasort dirfd getopt scandir strcasestr stdint strndup xvasprintf"
+			requested_gnulib_modules="alphasort dirfd getopt scandir setenv strcasestr stdint strndup xvasprintf"
 			;;
 		*-solaris2.10|*-solaris2.11)
 			requested_gnulib_modules="dirfd getopt strcasestr strndup xvasprintf"
