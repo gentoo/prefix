@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r4.ebuild,v 1.1 2009/07/29 19:55:42 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r4.ebuild,v 1.2 2009/07/29 20:13:05 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -224,7 +224,11 @@ src_install() {
 	dosym /etc/mime.types /etc/${PN}/mime.types
 
 	# A man-page is always handy
-	use doc || doman doc/mutt.1
+	if use !doc; then
+		cp doc/mutt.man mutt.1
+		cp doc/muttbug.man flea.1
+		doman mutt.1 flea.1
+	fi
 
 	if use !prefix ; then
 		fowners root:mail /usr/bin/mutt_dotlock
