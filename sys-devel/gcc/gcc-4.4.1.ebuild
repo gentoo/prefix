@@ -86,7 +86,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.3.0/treelang-nomakeinfo.patch
 
 	# add support for 64-bits native target on Solaris
-	epatch "${FILESDIR}"/4.3.3/solarisx86_64.patch
+	#epatch "${FILESDIR}"/4.3.3/solarisx86_64.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/solaris-searchpath.patch
@@ -101,7 +101,7 @@ src_unpack() {
 	#doesn't apply
 #	epatch "${FILESDIR}"/4.2.2/interix-x86.patch.bz2
 	# gcc sources are polluted with old stuff for interix 3.5 not needed here
-	epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
+	#epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint1.patch
