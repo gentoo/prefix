@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r3.ebuild,v 1.1 2009/07/23 13:50:19 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r4.ebuild,v 1.1 2009/07/29 19:55:42 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
-PATCHSET_REV="-r2"
+PATCHSET_REV="-r3"
 
 # note: latest sidebar patches can be found here:
 # http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44
@@ -22,8 +22,7 @@ SRC_URI="ftp://ftp.mutt.org/mutt/devel/${P}.tar.gz
 	sidebar? (
 		http://www.lunar-linux.org/~tchan/mutt/${SIDEBAR_PATCH_N}
 	)"
-IUSE="berkdb crypt debug gdbm gnutls gpg idn imap mbox nls nntp pop qdbm sasl
-sidebar smime smtp ssl vanilla"
+IUSE="berkdb crypt debug doc gdbm gnutls gpg idn imap mbox nls nntp pop qdbm sasl sidebar smime smtp ssl vanilla"
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~amd64-linux ~ia64-linux ~x86-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
@@ -54,7 +53,7 @@ RDEPEND=">=sys-libs/ncurses-5.2
 	app-misc/mime-types"
 DEPEND="${RDEPEND}
 	net-mail/mailbase
-	!vanilla? (
+	doc? (
 		dev-libs/libxml2
 		dev-libs/libxslt
 		app-text/docbook-xsl-stylesheets
@@ -75,6 +74,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.18-interix.patch
 	epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-gpgme-1.2.0.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-hcache-uidvalidity-size-fix.patch
 	# post-release hot-fixes
 	epatch "${FILESDIR}"/mutt-1.5.20-imap-port-invalid-d6f88fbf8387.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-header-weeding-f40de578e8ed.patch
@@ -89,6 +89,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.20-gpgme-keys-d41e043fa775.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-mhs-flags-leak-9f3053f75f27.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-hcache-restore-address-848f08512bf3.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-ungroup-command-77ac8b5c2be6.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-propagate-mh_read_sequences-2fc9348684fe.patch
 
 	# patch version string for bug reports
 	sed -i -e 's/"Mutt %s (%s)"/"Mutt %s (%s, Gentoo '"${PVR}"')"/' \
@@ -109,12 +111,14 @@ src_unpack() {
 
 	AT_M4DIR="m4" eautoreconf
 
-	# this should be done only when we're not root
-	if [[ ${UID} != 0 ]] ; then
-		sed -i \
-			-e 's/@DOTLOCK_GROUP@/'"`id -gn`"'/g' \
-			Makefile.in \
-			|| die "sed failed"
+	# the configure script contains some "cleverness" whether or not to setgid
+	# the dotlock program, resulting in bugs like #278332
+	sed -i -e 's/@DOTLOCK_GROUP@//' \
+		Makefile.in || die "sed failed"
+	
+	# don't just build documentation (lengthy process, with big dependencies)
+	if use !doc ; then
+		sed -i -e '/SUBDIRS =/s/doc//' Makefile.in || die
 	fi
 }
 
@@ -219,9 +223,13 @@ src_install() {
 	rm "${ED}"/etc/${PN}/mime.types
 	dosym /etc/mime.types /etc/${PN}/mime.types
 
-	# charset.alias is installed by libiconv
-	rm -f "${ED}"/usr/lib/charset.alias
-	rm -f "${ED}"/usr/share/locale/locale.alias
+	# A man-page is always handy
+	use doc || doman doc/mutt.1
+
+	if use !prefix ; then
+		fowners root:mail /usr/bin/mutt_dotlock
+		fperms g+s /usr/bin/mutt_dotlock
+	fi
 
 	dodoc BEWARE COPYRIGHT ChangeLog NEWS OPS* PATCHES README* TODO VERSION
 }

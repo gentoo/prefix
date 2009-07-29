@@ -1,6 +1,17 @@
 # ChangeLog for mail-client/mutt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.142 2009/07/23 13:50:19 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.143 2009/07/29 19:55:42 grobian Exp $
+
+*mutt-1.5.20-r4 (29 Jul 2009)
+
+  29 Jul 2009; Fabian Groffen <grobian@gentoo.org> -mutt-1.5.20-r3.ebuild,
+  +mutt-1.5.20-r4.ebuild,
+  +files/mutt-1.5.20-hcache-uidvalidity-size-fix.patch,
+  +files/mutt-1.5.20-propagate-mh_read_sequences-2fc9348684fe.patch,
+  +files/mutt-1.5.20-ungroup-command-77ac8b5c2be6.patch:
+  Bump to -r4 having the latest patches plus sparc64 hcache fix. Possible
+  fix for bug #278332, introduction of USE=doc, so we don't have to build
+  documentation all the time (it's on the web anyway)
 
 *mutt-1.5.20-r3 (23 Jul 2009)
 

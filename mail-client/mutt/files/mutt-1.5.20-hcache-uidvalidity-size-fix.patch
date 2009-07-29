@@ -1,0 +1,78 @@
+http://dev.mutt.org/trac/attachment/ticket/3296/hcache-uidvalidity-size-fix.patch
+
+diff --git a/hcache.c b/hcache.c
+--- a/hcache.c
++++ b/hcache.c
+@@ -86,7 +86,7 @@
+ typedef union
+ {
+   struct timeval timeval;
+-  unsigned long uid_validity;
++  unsigned int uidvalidity;
+ } validate;
+ 
+ static void *
+@@ -589,7 +589,7 @@
+  * db_store */
+ static void *
+ mutt_hcache_dump(header_cache_t *h, HEADER * header, int *off,
+-		 unsigned long uid_validity)
++		 unsigned int uidvalidity)
+ {
+   unsigned char *d = NULL;
+   HEADER nh;
+@@ -598,8 +598,8 @@
+   *off = 0;
+   d = lazy_malloc(sizeof (validate));
+ 
+-  if (uid_validity)
+-    memcpy(d, &uid_validity, sizeof (unsigned long));
++  if (uidvalidity)
++    memcpy(d, &uidvalidity, sizeof (uidvalidity));
+   else
+   {
+     struct timeval now;
+@@ -758,7 +758,7 @@
+ 
+ int
+ mutt_hcache_store(header_cache_t *h, const char *filename, HEADER * header,
+-		  unsigned long uid_validity,
++		  unsigned int uidvalidity,
+ 		  size_t(*keylen) (const char *fn))
+ {
+   char* data;
+@@ -768,7 +768,7 @@
+   if (!h)
+     return -1;
+   
+-  data = mutt_hcache_dump(h, header, &dlen, uid_validity);
++  data = mutt_hcache_dump(h, header, &dlen, uidvalidity);
+   ret = mutt_hcache_store_raw (h, filename, data, dlen, keylen);
+   
+   FREE(&data);
+diff --git a/hcache.h b/hcache.h
+--- a/hcache.h
++++ b/hcache.h
+@@ -33,8 +33,9 @@
+ void *mutt_hcache_fetch(header_cache_t *h, const char *filename, size_t (*keylen)(const char *fn));
+ void *mutt_hcache_fetch_raw (header_cache_t *h, const char *filename,
+                              size_t (*keylen)(const char *fn));
++/* uidvalidity is an IMAP-specific unsigned 32 bit number */
+ int mutt_hcache_store(header_cache_t *h, const char *filename, HEADER *header,
+-                      unsigned long uid_validity, size_t (*keylen)(const char *fn));
++                      unsigned int uidvalidity, size_t (*keylen)(const char *fn));
+ int mutt_hcache_store_raw (header_cache_t *h, const char* filename, void* data,
+                            size_t dlen, size_t(*keylen) (const char* fn));
+ int mutt_hcache_delete(header_cache_t *h, const char *filename, size_t (*keylen)(const char *fn));
+diff --git a/imap/util.c b/imap/util.c
+--- a/imap/util.c
++++ b/imap/util.c
+@@ -129,6 +129,8 @@
+   {
+     if (*uv == idata->uid_validity)
+       h = mutt_hcache_restore ((unsigned char*)uv, NULL);
++    else
++      dprint (3, (debugfile, "hcache uidvalidity mismatch: %u", *uv));
+     FREE (&uv);
+   }
+ 
