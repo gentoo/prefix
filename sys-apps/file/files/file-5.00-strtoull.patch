@@ -1,10 +1,22 @@
-diff -ru file-5.00.orig/src/apprentice.c file-5.00/src/apprentice.c
---- file-5.00.orig/src/apprentice.c	2009-03-10 09:43:32 +0100
-+++ file-5.00/src/apprentice.c	2009-03-10 09:45:05 +0100
-@@ -50,6 +50,172 @@
+--- src/apprentice.c.orig	2009-07-28 11:15:10 +0200
++++ src/apprentice.c	2009-07-28 11:29:12 +0200
+@@ -50,6 +50,185 @@
  #endif
  #include <dirent.h>
  
++#if !defined(HAVE_STRTOULL) && defined(HAVE___STRTOULL)
++/* hpux11.11 does not have strtoull, but __strtoull */
++unsigned long long int
++strtoull (nptr, endptr, base)
++     const char *nptr;
++     char **endptr;
++     int base;
++{
++	return __strtoull(nptr, endptr, base);
++}
++#define HAVE_STRTOULL
++#endif
++
 +#ifndef HAVE_STRTOULL
 +
 +/* THIS IS TAKEN FROM BASH, SINCE INTERIX HAS NO OWN IMPLEMENTATION BY DEFAULT! */

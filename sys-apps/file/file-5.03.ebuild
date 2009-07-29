@@ -27,8 +27,8 @@ src_unpack() {
 	epunt_cxx
 
 	# avoid eautoreconf when adding check for strtoull #263527
-	sed -i 's/ strtoul / strtoul strtoull /' configure
-	sed -i '/#undef HAVE_STRTOUL$/a#undef HAVE_STRTOULL' config.h.in
+	sed -i 's/ strtoul / strtoul strtoull __strtoull /' configure
+	sed -i "/#undef HAVE_STRTOUL\$/a#undef HAVE_STRTOULL\n#undef HAVE___STRTOULL" config.h.in
 
 	# make sure python links against the current libmagic #54401
 	sed -i "/library_dirs/s:'\.\./src':'../src/.libs':" python/setup.py
