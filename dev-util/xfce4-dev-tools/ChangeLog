@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/xfce4-dev-tools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/xfce4-dev-tools/ChangeLog,v 1.16 2009/06/30 19:17:49 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/xfce4-dev-tools/ChangeLog,v 1.17 2009/07/27 17:37:23 nixnut Exp $
+
+  27 Jul 2009; nixnut <nixnut@gentoo.org> xfce4-dev-tools-4.6.0.ebuild:
+  ppc stable #265587
 
   30 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
   xfce4-dev-tools-4.6.0.ebuild:
