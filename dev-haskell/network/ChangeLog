@@ -1,6 +1,17 @@
 # ChangeLog for dev-haskell/network
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.36 2009/04/19 10:21:08 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.37 2009/07/27 19:00:13 kolmodin Exp $
+
+*network-2.2.1.4 (27 Jul 2009)
+
+  27 Jul 2009; Lennart Kolmodin <kolmodin@gentoo.org>
+  +network-2.2.1.4.ebuild:
+  Version bump.
+
+  27 Jul 2009; Lennart Kolmodin <kolmodin@gentoo.org>
+  +files/network-2.2.0.0-eat-configure-opts.patch, network-2.2.1.ebuild:
+  Make ./configure disregard unneeded flags --with-hc and --with-hc-pkg.
+  See bug #278545.
 
 *network-2.2.1 (19 Apr 2009)
 
