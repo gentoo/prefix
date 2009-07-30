@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/tiff
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.130 2009/07/26 12:42:52 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/ChangeLog,v 1.131 2009/07/27 22:00:17 maekke Exp $
+
+  27 Jul 2009; Markus Meier <maekke@gentoo.org> tiff-3.8.2-r8.ebuild:
+  amd64 stable, bug #276988
 
   26 Jul 2009; Brent Baude <ranger@gentoo.org> tiff-3.8.2-r8.ebuild:
   Marking tiff-3.8.2-r8 ppc64 for bug 276988
