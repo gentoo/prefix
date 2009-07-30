@@ -1,6 +1,5 @@
-diff -ur pygobject-2.18.0.orig/tests/Makefile.am pygobject-2.18.0/tests/Makefile.am
---- pygobject-2.18.0.orig/tests/Makefile.am	2009-05-14 00:56:45.000000000 +0300
-+++ pygobject-2.18.0/tests/Makefile.am	2009-07-24 18:35:13.000000000 +0300
+--- tests/Makefile.am
++++ tests/Makefile.am
 @@ -11,7 +11,7 @@
  	test-thread.h \
  	test-unknown.h
@@ -28,3 +27,31 @@ diff -ur pygobject-2.18.0.orig/tests/Makefile.am pygobject-2.18.0/tests/Makefile
 -.la.so:
 -	$(LN_S) .libs/$@ $@ || true
 +	rm -f .libs/testhelper.so
+--- tests/runtests.py
++++ tests/runtests.py
+@@ -6,6 +6,9 @@
+ 
+ import common
+ 
++# Some tests fail with translated messages.
++os.environ["LC_ALL"] = "C"
++
+ program = None
+ if len(sys.argv) == 3:
+     buildDir = sys.argv[1]
+--- tests/test_gio.py
++++ tests/test_gio.py
+@@ -386,9 +386,10 @@
+ 
+     def testQueryWritableNamespaces(self):
+         infolist = self.file.query_writable_namespaces()
+-        for info in infolist:
+-            if info.name == "xattr":
+-                self.assertEqual(info.type, gio.FILE_ATTRIBUTE_TYPE_STRING)
++        if infolist:
++            for info in infolist:
++                if info.name == "xattr":
++                    self.assertEqual(info.type, gio.FILE_ATTRIBUTE_TYPE_STRING)
+ 
+     def testSetAttribute(self):
+         self._f.write("testing attributes")

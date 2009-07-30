@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.18.0.ebuild,v 1.4 2009/07/24 14:41:47 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.18.0.ebuild,v 1.5 2009/07/27 20:41:43 arfrever Exp $
 
 inherit autotools gnome2 python virtualx
 
@@ -10,7 +10,7 @@ HOMEPAGE="http://www.pygtk.org/"
 LICENSE="LGPL-2.1"
 SLOT="2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc examples libffi"
+IUSE="doc examples libffi test"
 
 RDEPEND=">=dev-lang/python-2.4.4-r5
 	>=dev-libs/glib-2.16
@@ -18,6 +18,7 @@ RDEPEND=">=dev-lang/python-2.4.4-r5
 	libffi? ( virtual/libffi )"
 DEPEND="${RDEPEND}
 	doc? ( dev-libs/libxslt >=app-text/docbook-xsl-stylesheets-1.70.1 )
+	test? ( media-fonts/font-cursor-misc media-fonts/font-misc-misc )
 	>=dev-util/pkgconfig-0.12.0"
 
 DOCS="AUTHORS ChangeLog* NEWS README"
