@@ -1,6 +1,19 @@
 # ChangeLog for www-client/lynx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.81 2009/07/26 23:07:42 wormo Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.84 2009/07/29 21:14:56 maekke Exp $
+
+  29 Jul 2009; Markus Meier <maekke@gentoo.org> lynx-2.8.6-r4.ebuild:
+  amd64/x86 stable, bug #243058
+
+  28 Jul 2009; Jeroen Roovers <jer@gentoo.org> lynx-2.8.6-r4.ebuild:
+  Stable for HPPA (bug #243058).
+
+*lynx-2.8.6-r4 (28 Jul 2009)
+
+  28 Jul 2009; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  lynx-2.8.6-r2.ebuild, +lynx-2.8.6-r4.ebuild:
+  Move patch for CVE-2008-4690 to lynx-2.8.6-r4 so it can be tested by arch
+  teams before stabling
 
 *lynx-2.8.7_p1 (26 Jul 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r2.ebuild,v 1.17 2009/07/28 05:23:26 wormo Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.6-r4.ebuild,v 1.3 2009/07/29 21:14:56 maekke Exp $
 
 inherit eutils
 
@@ -43,8 +43,9 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-darwin7.patch \
-		"${FILESDIR}"/${P}-mint.patch
+	epatch "${FILESDIR}"/${P}-darwin7.patch
+	epatch "${FILESDIR}"/${P}-mint.patch
+	epatch "${FILESDIR}/${P}-CVE-2008-4690.patch"
 }
 
 src_compile() {
