@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/libtommath-0.41.ebuild,v 1.2 2009/03/30 16:28:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtommath/libtommath-0.41.ebuild,v 1.3 2009/07/28 21:53:31 vostorga Exp $
 
 inherit eutils multilib
 
@@ -20,6 +20,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-LDFLAGS.patch
+	epatch "${FILESDIR}"/${P}-CC.patch
+
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -i -e 's/libtool/glibtool/g' makefile.shared
 	use prefix && sed -i \
@@ -29,7 +31,7 @@ src_unpack() {
 }
 
 src_compile() {
-	emake -f makefile.shared IGNORE_SPEED=1 LIBPATH="${EPREFIX}/usr/$(get_libdir)" || die "emake failed"
+	emake CC=$(tc-getCC) -f makefile.shared IGNORE_SPEED=1 LIBPATH="${EPREFIX}/usr/$(get_libdir)" || die "emake failed"
 }
 
 src_install() {
