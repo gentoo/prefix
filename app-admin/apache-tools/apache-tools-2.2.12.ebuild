@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.10.ebuild,v 1.8 2009/07/05 16:07:10 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.12.ebuild,v 1.1 2009/07/29 08:10:21 hollow Exp $
 
 inherit flag-o-matic eutils
 
