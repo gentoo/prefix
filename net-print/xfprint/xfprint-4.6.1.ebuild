@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-print/xfprint/xfprint-4.6.1.ebuild,v 1.9 2009/06/30 19:18:13 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-print/xfprint/xfprint-4.6.1.ebuild,v 1.10 2009/07/27 17:38:29 nixnut Exp $
 
 EAPI=1
 inherit xfce4
