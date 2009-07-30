@@ -18,6 +18,7 @@
     <flag name="dvdnav">Use forked libdvdnav, navigate menus in GUIs</flag>
     <flag name="dxr3">Enable DXR3/H+ video output</flag>
     <flag name="enca">Enables support for charset discovery and conversion</flag>
+    <flag name="external-ffmpeg">Use shared FFmpeg libraries instead of static bundled ones. Discouraged by upstream.</flag>
     <flag name="faac">Use external faac library for AAC encoding</flag>
     <flag name="faad">Use external faad library for AAC decoding</flag>
 	<flag name="gmplayer">Build gmplayer, a GTK+ MPlayer gui (UNSUPPORTED)</flag>
