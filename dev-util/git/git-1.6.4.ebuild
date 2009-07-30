@@ -104,8 +104,13 @@ exportmakeopts() {
 
 	# broken assumptions, because of broken build system ...
 	myopts="${myopts} NO_FINK=YesPlease NO_DARWIN_PORTS=YesPlease"
-	[[ ${CHOST} == *-solaris* ]] &&
-		myopts="${myopts} INSTALL=install TAR=tar"
+	myopts="${myopts} INSTALL=install TAR=tar"
+	myopts="${myopts} SHELL_PATH=${EPREFIX}/bin/bash"
+	myopts="${myopts} SANE_TOOL_PATH="
+	myopts="${myopts} OLD_ICONV="
+	myopts="${myopts} NO_EXTERNAL_GREP="
+	# can't define this to null, since the entire makefile depends on it
+	sed -i -e '/\/usr\/local/s/BASIC_/#BASIC_/' Makefile
 	use !elibc_glibc && use iconv && myopts="${myopts} NEEDS_LIBICONV=YesPlease"
 
 	use iconv || myopts="${myopts} NO_ICONV=YesPlease"
