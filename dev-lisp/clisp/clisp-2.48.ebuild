@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.47.ebuild,v 1.2 2009/01/05 21:44:03 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.48.ebuild,v 1.2 2009/07/29 14:22:17 hkbst Exp $
+
+EAPI=2
 
 inherit flag-o-matic eutils toolchain-funcs multilib
 
@@ -9,20 +11,20 @@ HOMEPAGE="http://clisp.sourceforge.net/"
 SRC_URI="mirror://sourceforge/clisp/${P}.tar.bz2"
 LICENSE="GPL-2"
 
-# EAPI="1"
 SLOT="2"
 KEYWORDS="~x86-macos"
-IUSE="hyperspec X new-clx fastcgi gdbm gtk pari pcre postgres readline svm zlib"
+IUSE="hyperspec X new-clx dbus fastcgi gdbm gtk pari +pcre postgres +readline svm +unicode +zlib" #threads
 
 RDEPEND="virtual/libiconv
 		 >=dev-libs/libsigsegv-2.4
 		 >=dev-libs/ffcall-1.10
+		 dbus? ( sys-apps/dbus )
 		 fastcgi? ( dev-libs/fcgi )
 		 gdbm? ( sys-libs/gdbm )
 		 gtk? ( >=x11-libs/gtk+-2.10 >=gnome-base/libglade-2.6 )
 		 pari? ( >=sci-mathematics/pari-2.3.0 )
-		 postgres? ( >=virtual/postgresql-server-8.0 )
-		 readline? ( sys-libs/readline )
+		 postgres? ( >=virtual/postgresql-base-8.0 )
+		 readline? ( >=sys-libs/readline-5.0 )
 		 pcre? ( dev-libs/libpcre )
 		 svm? ( sci-libs/libsvm )
 		 zlib? ( sys-libs/zlib )
@@ -40,7 +42,7 @@ enable_modules() {
 	[[ $# = 0 ]] && die "${FUNCNAME[0]} must receive at least one argument"
 	for m in "$@" ; do
 		einfo "enabling module $m"
-		myconf="${myconf} --with-module=${m}"
+		myconf+=" --with-module=${m}"
 	done
 }
 
@@ -53,18 +55,15 @@ BUILDDIR="builddir"
 #  * matlab, netica: not in portage
 #  * oracle: can't install oracle-instantclient
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# More than -O1 breaks alpha/ia64
 	use alpha || use ia64 && sed -i -e 's/-O2//g' src/makemake.in
 }
 
-src_compile() {
+src_configure() {
 	# built-in features
 	local myconf="--with-ffcall --with-dynamic-modules"
-	use readline || myconf="${myconf} --with-noreadline"
+#	use threads && myconf+=" --with-threads=POSIX_THREADS"
 
 	# We need this to build on alpha/ia64
 	if use alpha || use ia64; then
@@ -90,6 +89,7 @@ src_compile() {
 # 		enable_modules berkley-db
 # 		CPPFLAGS="${CPPFLAGS} -I /usr/include/db4.5"
 # 	fi
+	use dbus && enable_modules dbus
 	use fastcgi && enable_modules fastcgi
 	use gdbm && enable_modules gdbm
 	use gtk && enable_modules gtk2
@@ -105,27 +105,36 @@ src_compile() {
 	fi
 
 
-	# configure chokes on --infodir option
-	./configure --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/usr/$(get_libdir) \
-		${myconf} --hyperspec="${CLHSROOT}" ${BUILDDIR} || die "./configure failed"
-	cd ${BUILDDIR}
-	sed -i 's,"vi","nano",g' config.lisp
+	# configure chokes on --sysconfdir option
+	local configure="./configure --prefix=${EPREFIX}/usr --libdir=${EPREFIX}/usr/$(get_libdir) \
+		$(use_with readline) $(use_with unicode) \
+		${myconf} --hyperspec=${CLHSROOT} ${BUILDDIR}"
+	einfo "${configure}"
+	${configure} || die "./configure failed"
+
+	sed -i 's,"vi","nano",g' "${BUILDDIR}"/config.lisp
+
 	IMPNOTES="file://${EROOT%/}/usr/share/doc/${PN}-${PVR}/html/impnotes.html"
-	sed -i "s,http://clisp.cons.org/impnotes/,${IMPNOTES},g" config.lisp
+	sed -i "s,http://clisp.cons.org/impnotes/,${IMPNOTES},g" "${BUILDDIR}"/config.lisp
+}
+
+src_compile() {
+	export VARTEXFONTS="${T}"/fonts
+	cd "${BUILDDIR}"
 	# parallel build fails
 	emake -j1 || die "emake failed"
 }
 
 src_install() {
-	pushd ${BUILDDIR}
+	pushd "${BUILDDIR}"
 	make DESTDIR="${D}" prefix="${EPREFIX}"/usr install-bin || die
 	doman clisp.1
-	dodoc SUMMARY README* NEWS MAGIC.add ANNOUNCE clisp.dvi clisp.html
+	dodoc SUMMARY README* NEWS MAGIC.add ANNOUNCE
 	chmod a+x "${ED}"/usr/$(get_libdir)/clisp-${PV/_*/}/clisp-link
-	# stripping them removes common symbols (defined but unitialised variables)
+	# stripping them removes common symbols (defined but uninitialised variables)
 	# which are then needed to build modules...
 	export STRIP_MASK="*/usr/$(get_libdir)/clisp-${PV}/*/*"
 	popd
-	dohtml doc/impnotes.{css,html} ${BUILDDIR}/clisp.html doc/clisp.png
-	dodoc ${BUILDDIR}/clisp.ps doc/{editors,CLOS-guide,LISP-tutorial}.txt
+	dohtml doc/impnotes.{css,html} doc/regexp.html doc/clisp.png
+	dodoc doc/{CLOS-guide,LISP-tutorial}.txt
 }
