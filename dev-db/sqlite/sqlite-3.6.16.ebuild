@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.16.ebuild,v 1.1 2009/06/27 21:31:00 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.16.ebuild,v 1.2 2009/07/27 22:08:43 arfrever Exp $
 
 EAPI="2"
 
@@ -23,22 +23,11 @@ RDEPEND="tcl? ( dev-lang/tcl )"
 DEPEND="${RDEPEND}
 	doc? ( app-arch/unzip )"
 
-pkg_setup() {
-	if has test ${FEATURES}; then
-		if ! has userpriv ${FEATURES}; then
-			ewarn "The userpriv feature must be enabled to run tests."
-			eerror "Testsuite will not be run."
-		fi
-		if ! use tcl; then
-			ewarn "You must enable the tcl use flag if you want to run the testsuite."
-			eerror "Testsuite will not be run."
-		fi
-	fi
-}
-
 src_prepare() {
 	# note: this sandbox fix is no longer needed with sandbox-1.3+
 	epatch "${FILESDIR}"/sandbox-fix2.patch
+
+	epatch "${FILESDIR}"/${P}-tkt3922.test.patch
 
 	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-3.6.11-interix.patch
@@ -67,10 +56,18 @@ src_compile() {
 }
 
 src_test() {
-	if has userpriv ${FEATURES}; then
+	if [[ "${EUID}" -ne "0" ]]; then
 		local test=test
 		use debug && test=fulltest
 		emake ${test} || die "some test(s) failed"
+	else
+		ewarn "The userpriv feature must be enabled to run tests."
+		eerror "Testsuite will not be run."
+	fi
+
+	if ! use tcl; then
+		ewarn "You must enable the tcl USE flag if you want to run the testsuite."
+		eerror "Testsuite will not be run."
 	fi
 }
 
