@@ -1,6 +1,23 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.207 2009/07/27 05:02:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.210 2009/07/29 05:05:15 jer Exp $
+
+  29 Jul 2009; Jeroen Roovers <jer@gentoo.org> lftp-3.99.5.ebuild,
+  +files/lftp-3.99.5-torrent_la.patch:
+  Make sure cmd-torrent.so gets linked properly (patch sent upstream).
+
+*lftp-3.99.5 (27 Jul 2009)
+
+  27 Jul 2009; Jeroen Roovers <jer@gentoo.org> -lftp-3.99.4.ebuild,
+  +lftp-3.99.5.ebuild:
+  Version bump. Apply pkgconfig patch here too.
+
+*lftp-3.7.15-r1 (27 Jul 2009)
+
+  27 Jul 2009; Jeroen Roovers <jer@gentoo.org> +lftp-3.7.15-r1.ebuild,
+  +files/lftp-gnutls.patch:
+  Patch to use pkgconfig instead of foo-config so that gnutls is found (bug
+  #278789).
 
 *lftp-3.99.4 (27 Jul 2009)
 
