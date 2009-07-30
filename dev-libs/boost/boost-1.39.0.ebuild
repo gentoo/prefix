@@ -412,14 +412,14 @@ src_install () {
 			test -z "${includes}" -o -z "${libs}" && die "oops. something went wrong - boost profile damaged!"
 			
 			dodir /usr/include
-			cp -r ${includes} "${ED}/usr/include/"
+			cp -r "${D}"${includes} "${ED}/usr/include/"
 
 			dodir /usr/$(get_libdir)
 			for f in ${libs}; do
 				linkname="${f#${EPREFIX}}"
 				dosym ${linkname} "${linkname/-${MAJOR_PV}}"
 			done
-		)
+		) || die
 	fi
 }
 
