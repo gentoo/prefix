@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/xfdesktop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/ChangeLog,v 1.143 2009/06/30 19:21:52 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/ChangeLog,v 1.144 2009/07/27 17:49:05 nixnut Exp $
+
+  27 Jul 2009; nixnut <nixnut@gentoo.org> xfdesktop-4.6.1.ebuild:
+  ppc stable #265587
 
   30 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
   xfdesktop-4.6.1.ebuild:
