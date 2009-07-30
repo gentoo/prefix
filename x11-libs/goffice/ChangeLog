@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/goffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/ChangeLog,v 1.61 2009/04/30 12:14:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/goffice/ChangeLog,v 1.62 2009/07/29 16:36:44 darkside Exp $
+
+  29 Jul 2009; Jeremy Olexa <darkside@gentoo.org> -goffice-0.2.1.ebuild:
+  Remove vulnerable version(s), bug 271708
 
   30 Apr 2009; Jeroen Roovers <jer@gentoo.org> goffice-0.6.6.ebuild:
   Stable for HPPA (bug #266715).
