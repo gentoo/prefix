@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.2.3.ebuild,v 1.1 2009/04/13 03:02:51 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.4.ebuild,v 1.1 2009/07/29 23:50:37 robbat2 Exp $
 
 EAPI=2
 
@@ -52,7 +52,7 @@ RDEPEND="${CDEPEND}
 			cvs? ( >=dev-util/cvsps-2.1 dev-perl/DBI dev-perl/DBD-SQLite )
 			subversion? ( dev-util/subversion[-dso] dev-perl/libwww-perl dev-perl/TermReadKey )
 			)
-	gtk?  ( >=dev-python/pygtk-2.8 )"
+	gtk?  ( >=dev-python/pygtk-2.8 dev-python/gtksourceview-python )"
 
 DEPEND="${CDEPEND}"
 
@@ -149,10 +149,17 @@ src_unpack() {
 		#cp "${FILESDIR}"/GIT-VERSION-GEN .
 	fi
 
-	epatch "${FILESDIR}"/20090305-git-1.6.2-noperl.patch
+}
 
-	epatch "${FILESDIR}"/${PN}-1.6.0.2-interix.patch
-	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.1.1-mint.patch
+src_prepare() {
+	# Noperl is being merged to upstream as of 2009/04/05
+	#epatch "${FILESDIR}"/20090305-git-1.6.2-noperl.patch
+
+	# GetOpt-Long v2.38 is strict
+	# Merged in 1.6.3 final 2009/05/07
+	#epatch "${FILESDIR}"/20090505-git-1.6.2.5-getopt-fixes.patch
+
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.3.3-mint.patch
 
 	sed -i \
 		-e 's:^\(CFLAGS =\).*$:\1 $(OPTCFLAGS) -Wall:' \
@@ -211,7 +218,7 @@ src_install() {
 		install || \
 		die "make install failed"
 
-	doman man?/* Documentation/*.[157]
+	doman man?/*.[157] Documentation/*.[157]
 
 	dodoc README Documentation/{SubmittingPatches,CodingGuidelines}
 	use doc && dodir /usr/share/doc/${PF}/html

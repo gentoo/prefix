@@ -1,6 +1,25 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.351 2009/06/30 13:34:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.353 2009/07/30 00:35:14 robbat2 Exp $
+
+  30 Jul 2009; Robin H. Johnson <robbat2@gentoo.org>
+  -files/20080626-git-1.5.6.1-noperl.patch,
+  -files/20081123-git-1.6.0.4-noperl-cvsserver.patch, -git-1.6.0.6.ebuild,
+  -git-1.6.1.ebuild, -git-1.6.1.1.ebuild,
+  -files/20090126-git-1.6.1.1-noperl.patch, -git-1.6.1.2.ebuild,
+  -git-1.6.1.3.ebuild, -git-1.6.2.ebuild, -git-1.6.2.2.ebuild,
+  -git-1.6.2.2-r1.ebuild, -git-1.6.2.3.ebuild, -git-1.6.2.5.ebuild,
+  -git-1.6.2.5-r1.ebuild, -files/20090505-git-1.6.2.5-getopt-fixes.patch,
+  -files/20090305-git-1.6.2-noperl.patch, -git-1.6.3.ebuild,
+  -files/vim-ftdetect-gitcommit.vim:
+  Trim old version.
+
+*git-1.6.4 (29 Jul 2009)
+*git-1.6.3.4 (29 Jul 2009)
+
+  29 Jul 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.3.4.ebuild,
+  +git-1.6.4.ebuild:
+  New upstream releases.
 
   30 Jun 2009; Raúl Porcel <armin76@gentoo.org> git-1.6.3.3.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #273905
