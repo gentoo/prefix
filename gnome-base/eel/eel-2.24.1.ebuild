@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.24.1.ebuild,v 1.11 2009/04/28 10:51:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/eel/eel-2.24.1.ebuild,v 1.12 2009/07/27 09:56:25 eva Exp $
 
 inherit virtualx gnome2
 
@@ -34,8 +34,9 @@ DEPEND="${RDEPEND}
 DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README THANKS TODO"
 
 src_test() {
-	if hasq userpriv $FEATURES; then
-		einfo "Not running tests without userpriv"
+	# replace FEATURES=userpriv, bug #278735
+	if [ ${EUID} -ne 0 ]; then
+		einfo "Not running as root, skipping tests."
 	else
 		addwrite "/root/.gnome2"
 		Xmake check || die "make check failed"
