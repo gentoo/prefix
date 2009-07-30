@@ -1,6 +1,12 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.211 2009/07/22 13:33:19 mueli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.212 2009/07/29 08:27:48 ssuominen Exp $
+
+*mit-krb5-1.7-r1 (29 Jul 2009)
+
+  29 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +mit-krb5-1.7-r1.ebuild:
+  Don't apply 0001_all_lazyldflags.patch which is same as bindnow-flags.
 
   22 Jul 2009; Michael Hammer <mueli@gentoo.org> -mit-krb5-1.6.3-r3.ebuild,
   -mit-krb5-1.6.3-r4.ebuild, -mit-krb5-1.6.3-r5.ebuild:
