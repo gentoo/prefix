@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.14 2007/12/13 04:44:39 dcoutts Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.15 2009/07/27 19:03:20 kolmodin Exp $
 #
 # Original authors: Andres Loeh <kosmikus@gentoo.org>
 #                   Duncan Coutts <dcoutts@gentoo.org>
@@ -283,7 +283,7 @@ haskell-cabal_pkg_setup() {
 		eerror "QA: Neither bin nor lib are in CABAL_FEATURES."
 	fi
 	if [[ -n "${CABAL_UNKNOWN}" ]]; then
-		ewarn "Unknown entry in CABAL_FEATURES: ${CABAL_UNKNONW}"
+		ewarn "Unknown entry in CABAL_FEATURES: ${CABAL_UNKNOWN}"
 	fi
 	if cabal-is-dummy-lib; then
 		einfo "${P} is included in ghc-${CABAL_CORE_LIB_GHC_PV}, nothing to install."
