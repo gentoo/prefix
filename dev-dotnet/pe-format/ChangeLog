@@ -1,6 +1,12 @@
 # ChangeLog for dev-dotnet/pe-format
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/pe-format/ChangeLog,v 1.11 2009/03/20 23:14:50 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/pe-format/ChangeLog,v 1.12 2009/07/28 10:43:54 flameeyes Exp $
+
+*pe-format-1 (28 Jul 2009)
+
+  28 Jul 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +files/pe-format.init-1, +pe-format-1.ebuild:
+  Add new version that properly executes after procfs have been mounted.
 
   20 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   pe-format-0.ebuild:
