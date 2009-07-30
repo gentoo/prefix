@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/xfconf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfconf/ChangeLog,v 1.13 2009/06/30 19:15:25 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfconf/ChangeLog,v 1.14 2009/07/27 17:30:09 nixnut Exp $
+
+  27 Jul 2009; nixnut <nixnut@gentoo.org> xfconf-4.6.1.ebuild:
+  ppc stable #265587
 
   30 Jun 2009; Tobias Klausmann <klausman@gentoo.org> xfconf-4.6.1.ebuild:
   Stable on alpha, bug #265587
