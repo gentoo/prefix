@@ -1,8 +1,8 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mailx-support/mailx-support-20060102-r1.ebuild,v 1.12 2007/07/25 18:06:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mailx-support/mailx-support-20060102-r1.ebuild,v 1.13 2009/07/27 19:27:06 ssuominen Exp $
 
-inherit eutils toolchain-funcs flag-o-matic
+inherit eutils toolchain-funcs
 
 DESCRIPTION="Provides lockspool utility"
 HOMEPAGE="http://www.openbsd.org/"
@@ -13,22 +13,21 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
-DEPEND=""
 RDEPEND=""
+DEPEND=""
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}/${P}-respect-ldflags.patch"
+	epatch "${FILESDIR}"/${P}-respect-ldflags.patch
+
 	ebegin "Allowing unprivileged install"
-	sed -i \
-		-e "s|-g 0 -o 0||g" \
-		Makefile
+	sed -i -e "s|-g 0 -o 0||g" Makefile
 	eend $?
 }
 
 src_compile() {
-	emake CC="$(tc-getCC)" BINDNOW_FLAGS="$(bindnow-flags)" || die "emake failed"
+	emake CC="$(tc-getCC)" BINDNOW_FLAGS="" || die "emake failed"
 }
 
 src_install() {
