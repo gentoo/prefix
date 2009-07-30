@@ -1,6 +1,16 @@
 # ChangeLog for gnome-base/gnome-light
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/ChangeLog,v 1.100 2009/05/31 18:30:29 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-light/ChangeLog,v 1.102 2009/07/27 08:44:35 eva Exp $
+
+  27 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-light-2.26.2.ebuild, gnome-light-2.26.3.ebuild:
+  Remove eel from RDEPEND since it is deprecated an unused in gnome 2.26.
+
+*gnome-light-2.26.3 (27 Jul 2009)
+
+  27 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-light-2.26.2.ebuild, +gnome-light-2.26.3.ebuild:
+  Version bump for GNOME 2.26.3.
 
 *gnome-light-2.26.2 (31 May 2009)
 
