@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0-r1.ebuild,v 1.1 2009/07/22 20:37:39 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.0-r1.ebuild,v 1.2 2009/07/27 09:06:16 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI=2
@@ -107,6 +107,7 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	>=dev-libs/icu-4.0
 	>=sys-libs/db-4.3
 	>=app-text/libwpd-0.8.8
+	>=dev-libs/redland-1.0.8
 	>=media-libs/vigra-1.4
 	>=virtual/poppler-0.8.0"
 
@@ -135,7 +136,6 @@ DEPEND="${COMMON_DEPEND}
 	>=net-misc/curl-7.12
 	sys-libs/zlib
 	sys-apps/coreutils
-	>=dev-libs/redland-1.0.8
 	pam? ( sys-libs/pam
 		sys-apps/shadow[pam] )
 	>=dev-lang/python-2.3.4[threads]
