@@ -1,0 +1,13 @@
+Don't ask on stdin for changing the value of HASXOPT_ROOT.
+
+--- Customize.orig	2009-07-28 11:59:23 +0200
++++ Customize	2009-07-28 12:58:41 +0200
+@@ -860,7 +860,7 @@
+     do
+       echo ""
+       echo $EO "Do you want to $HXR HASXOPT_ROOT (y|n) [n]? $EC"
+-      read ANS EXCESS
++      ANS= # read ANS EXCESS
+       if test "X$ANS" = "Xy" -o "X$ANS" = "XY"
+       then
+         HXRA=1

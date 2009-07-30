@@ -37,6 +37,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.78-answer-config.patch
 	epatch "${FILESDIR}"/${P}-config-solaris.patch
 	epatch "${FILESDIR}"/${PN}-4.80-solaris11.patch
+	epatch "${FILESDIR}"/${PN}-4.81-aix.patch #278831
 	if [[ ${CHOST} == *-solaris2.11 ]] ; then
 		mkdir -p ext/sys
 		# missing system header :(

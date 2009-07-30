@@ -25,6 +25,7 @@ src_unpack() {
 	cd ${MY_P}
 	unpack ./${MY_P}_src.tar
 	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-4.81-aix.patch #278831
 
 	sed -i \
 		-e '/LSOF_CFGF="-/s:=":="$LSOF_CFGF :' \
