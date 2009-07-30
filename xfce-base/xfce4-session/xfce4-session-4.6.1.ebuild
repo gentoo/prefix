@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-session/xfce4-session-4.6.1.ebuild,v 1.9 2009/06/30 19:21:02 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-session/xfce4-session-4.6.1.ebuild,v 1.10 2009/07/27 17:46:53 nixnut Exp $
 
 inherit xfce4
 
