@@ -1,6 +1,10 @@
 # ChangeLog for net-irc/ircii
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/ircii/ChangeLog,v 1.25 2007/03/19 22:20:09 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/ircii/ChangeLog,v 1.26 2009/07/28 02:11:25 flameeyes Exp $
+
+  28 Jul 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  ircii-20060725.ebuild:
+  Use emake -j1 for install.
 
   19 Mar 2007; Raúl Porcel <armin76@gentoo.org> -ircii-20040820.ebuild:
   old
