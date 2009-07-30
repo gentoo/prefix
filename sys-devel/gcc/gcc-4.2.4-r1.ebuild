@@ -109,6 +109,8 @@ src_unpack() {
 	# allow gcj compilation to succeed on platforms with libiconv
 	epatch "${FILESDIR}"/gcj-${PV}-iconvlink.patch
 
+	epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
+
 	use vanilla && return 0
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch

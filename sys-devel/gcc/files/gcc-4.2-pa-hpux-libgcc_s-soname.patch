@@ -1,0 +1,12 @@
+http://gcc.gnu.org/PR40913
+
+--- gcc/config/pa/t-hpux-shlib.orig	2009-07-30 11:06:20 +0200
++++ gcc/config/pa/t-hpux-shlib	2009-07-30 11:09:35 +0200
+@@ -8,6 +8,7 @@
+ SHLIB_SLIBDIR_QUAL = @shlib_slibdir_qual@
+ 
+ SHLIB_LINK = $(GCC_FOR_TARGET) $(LIBGCC2_CFLAGS) -shared  -nodefaultlibs \
++	-Wl,+h -Wl,$(SHLIB_SONAME) \
+ 	-o $(SHLIB_DIR)/$(SHLIB_NAME).tmp @multilib_flags@ $(SHLIB_OBJS) && \
+         rm -f $(SHLIB_DIR)/$(SHLIB_SONAME) && \
+ 	if [ -f $(SHLIB_DIR)/$(SHLIB_NAME) ]; then \

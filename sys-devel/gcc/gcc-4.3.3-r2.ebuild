@@ -111,6 +111,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
 
+	epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
+
 	use vanilla && return 0
 
 	sed -i 's/use_fixproto=yes/:/' gcc/config.gcc #PR33200
