@@ -1,6 +1,17 @@
 # ChangeLog for net-wireless/aircrack-ng
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/ChangeLog,v 1.46 2009/06/01 16:15:53 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/ChangeLog,v 1.48 2009/07/30 02:59:11 arfrever Exp $
+
+  30 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  aircrack-ng-1.0_rc4.ebuild:
+  Remove probably no longer needed, FreeBSD-specific code.
+
+*aircrack-ng-1.0_rc4 (29 Jul 2009)
+
+  29 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -aircrack-ng-1.0_rc1.ebuild, -aircrack-ng-1.0_rc2-r1.ebuild,
+  +aircrack-ng-1.0_rc4.ebuild, -files/sha-compile-fix-64bit.patch:
+  Version bump (bug #279609).
 
   01 Jun 2009; nixnut <nixnut@gentoo.org> aircrack-ng-1.0_rc3.ebuild:
   ppc stable #268024
