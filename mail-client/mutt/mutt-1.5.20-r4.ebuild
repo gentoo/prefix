@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r4.ebuild,v 1.2 2009/07/29 20:13:05 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r4.ebuild,v 1.3 2009/07/29 20:15:47 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -115,7 +115,7 @@ src_unpack() {
 	# the dotlock program, resulting in bugs like #278332
 	sed -i -e 's/@DOTLOCK_GROUP@//' \
 		Makefile.in || die "sed failed"
-	
+
 	# don't just build documentation (lengthy process, with big dependencies)
 	if use !doc ; then
 		sed -i -e '/SUBDIRS =/s/doc//' Makefile.in || die
