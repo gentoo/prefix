@@ -5,6 +5,10 @@
 
 export GDK_USE_XFT=1
 
+if [ -f /etc/xdg/menus/gnome-applications.menu ] ; then
+	export XDG_MENU_PREFIX=gnome-
+fi
+
 for errfile in "$HOME/.gnomerc-errors" "${TMPDIR-/tmp}/gnomerc-$USER" "/tmp/gnomerc-$USER"
 do
 	if ( cp /dev/null "$errfile" 2> /dev/null )
@@ -39,11 +43,6 @@ elif [ -x /etc/X11/gdm/gnomerc ]; then
 else
 	# as fallback in case the config is screwed
 	command=`which gnome-session`
-fi
-
-sshagent=`which ssh-agent`
-if [ -n "$sshagent" ] && [ -x "$sshagent" ] && [ -z "$SSH_AUTH_SOCK" ]; then
-    command="$sshagent -- $command"
 fi
 
 # merge in defaults

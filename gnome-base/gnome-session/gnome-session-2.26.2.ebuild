@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.26.1.ebuild,v 1.3 2009/05/23 14:54:11 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.26.2.ebuild,v 1.1 2009/07/27 10:29:07 eva Exp $
 
 EAPI="2"
 
@@ -9,14 +9,14 @@ inherit eutils gnome2
 DESCRIPTION="Gnome session manager"
 HOMEPAGE="http://www.gnome.org/"
 SRC_URI="${SRC_URI}
-	mirror://gentoo/${P}-gentoo-patches.tar.bz2
+	mirror://gentoo/${PN}-2.26.2-session-saving-button.patch.bz2
 	branding? ( mirror://gentoo/gentoo-splash.png )"
 
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 
-IUSE="branding doc ipv6 policykit"
+IUSE="branding doc ipv6 policykit elibc_FreeBSD"
 
 RDEPEND=">=dev-libs/glib-2.16
 	>=x11-libs/gtk+-2.11.1
@@ -25,6 +25,7 @@ RDEPEND=">=dev-libs/glib-2.16
 	>=gnome-base/gconf-2
 	>=x11-libs/startup-notification-0.9
 	policykit? ( >=gnome-extra/policykit-gnome-0.7 )
+	elibc_FreeBSD? ( dev-libs/libexecinfo )
 
 	x11-libs/libSM
 	x11-libs/libICE
@@ -60,10 +61,10 @@ src_prepare() {
 	use branding && epatch "${FILESDIR}/${PN}-2.17.90.1-gentoo-branding.patch"
 
 	# Fix shutdown/restart capability, upstream bug #549150
-	epatch "${WORKDIR}/${PN}-2.26.1-shutdown.patch"
+	epatch "${FILESDIR}/${PN}-2.26.2-shutdown.patch"
 
 	# Add "session saving" button back, upstream bug #575544
-	epatch "${WORKDIR}/${PN}-2.26.1-session-saving-button.patch"
+	epatch "${WORKDIR}/${PN}-2.26.2-session-saving-button.patch"
 }
 
 src_install() {
