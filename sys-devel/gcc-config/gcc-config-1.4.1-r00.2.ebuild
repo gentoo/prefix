@@ -24,6 +24,8 @@ S=${WORKDIR}
 src_unpack() {
 	cp "${FILESDIR}"/wrapper-${W_VER}.c "${S}"/wrapper.c || die
 	cp "${FILESDIR}"/${PN}-${PV}  "${S}/"${PN}-${PV} || die
+	epatch "${FILESDIR}"/${P}-mv-with-backup.patch
+	epatch "${FILESDIR}"/${P}-hppa-hpux.patch
 	eprefixify "${S}"/wrapper.c "${S}"/${PN}-${PV}
 }
 

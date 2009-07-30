@@ -1,0 +1,47 @@
+--- gcc-config-1.4.1
++++ gcc-config-1.4.1
+@@ -466,6 +466,44 @@
+ 				finish_runtime_dir_elf "$@" 
+ 			}
+ 			;;
++		hppa64*-hpux*)
++			LIBSUFFIX="sl"
++			do_single_runtime() {
++				do_single_runtime_elf "$@"
++			}
++			finish_runtime_dir() {
++				finish_runtime_dir_elf "$@" 
++			}
++			;;
++		hppa*-hpux*)
++			LIBSUFFIX="sl"
++			do_single_runtime() {
++				dumpargs do_single_runtime "$@"
++				local sourcedir=$1; shift
++				local libname=$1; shift
++				local targetdir=$1; shift
++				local finaldir=$1; shift
++
++				# when using some simple shell script wrappers (again :)),
++				# there may be no libs around!
++				if [[ -n $(ls "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* 2>/dev/null) ]]; then
++					cp -fpP "${sourcedir}"/lib${libname}.*${LIBSUFFIX}* "${targetdir}" || return 1
++					# gcc creates "libgcc_s.4" with symlink "libgcc_s.sl -> libgcc_s.4", and
++					# we patch it to also set the 'internal name' (=soname) (gcc-PR40913).
++					if [[ ${libname} == 'gcc_s' ]]; then
++						if [[ -n $(ls "${sourcedir}"/lib${libname}.[0-9] 2>/dev/null) ]]; then
++							cp -fpP "${sourcedir}"/lib${libname}.[0-9] "${targetdir}" || return 1
++						fi
++					fi
++					# we do not need the unversioned lib, as linking
++					# is done against the used gcc's private copy.
++					rm -f "${targetdir}"/lib${libname}.${LIBSUFFIX} || return 1
++				fi
++			}
++			finish_runtime_dir() {
++				finish_runtime_dir_elf "$@" 
++			}
++			;;
+ 		*)
+ 			LIBSUFFIX="so"
+ 			do_single_runtime() {

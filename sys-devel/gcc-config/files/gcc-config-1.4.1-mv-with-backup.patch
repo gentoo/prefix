@@ -1,0 +1,23 @@
+--- gcc-config-1.4.1
++++ gcc-config-1.4.1
+@@ -518,12 +527,18 @@
+ 			# going broken.
+ 			for f in "${sourcedir}"/*; do
+ 				[[ -e ${f} && -L ${f} ]] || continue
+-				mv -f "${f}" "${targetdir}"/${f##*/} || return 1
++				# use backups: hpux cannot overwrite sharedlibs in use: "Text file busy"
++				rm -f "${targetdir}"/${f##*/}*'~' >/dev/null 2>&1
++				mv -f --backup=numbered --suffix='~' "${f}" "${targetdir}"/${f##*/} || return 1
++				rm -f "${targetdir}"/${f##*/}*'~' >/dev/null 2>&1
+ 			done
+ 
+ 			for f in "${sourcedir}"/*; do
+ 				[[ -f "${f}" ]] || continue
+-				mv -f "${f}" "${targetdir}"/${f##*/} || return 1
++				# use backups: hpux cannot overwrite sharedlibs in use: "Text file busy"
++				rm -f "${targetdir}"/${f##*/}*'~' >/dev/null 2>&1
++				mv -f --backup=numbered --suffix='~' "${f}" "${targetdir}"/${f##*/} || return 1
++				rm -f "${targetdir}"/${f##*/}*'~' >/dev/null 2>&1
+ 			done
+ 			rmdir "${sourcedir}"
+ 		}
