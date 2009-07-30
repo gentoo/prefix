@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/boost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.164 2009/07/16 09:35:51 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.165 2009/07/29 15:42:38 darkside Exp $
+
+  29 Jul 2009; Jeremy Olexa <darkside@gentoo.org> boost-1.33.1-r1.ebuild:
+  Remove keywords from boost-1.33.1-r1.ebuild except ~x86-fbsd because it is
+  vulnerable, bug 271712
 
 *boost-1.39.0 (16 Jul 2009)
 
