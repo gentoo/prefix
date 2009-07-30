@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.6.1.ebuild,v 1.9 2009/07/16 04:00:34 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/xfce4-4.6.1.ebuild,v 1.10 2009/07/27 17:52:47 nixnut Exp $
 
 XFCE_VERSION=${PV}
 

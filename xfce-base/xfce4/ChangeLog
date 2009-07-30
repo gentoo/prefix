@@ -1,6 +1,9 @@
 # ChangeLog for xfce-base/xfce4
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/ChangeLog,v 1.143 2009/07/16 04:00:34 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4/ChangeLog,v 1.144 2009/07/27 17:52:47 nixnut Exp $
+
+  27 Jul 2009; nixnut <nixnut@gentoo.org> xfce4-4.6.1.ebuild:
+  ppc stable #265587
 
   16 Jul 2009; Jeremy Olexa <darkside@gentoo.org> xfce4-4.6.1.ebuild:
   Move thunar dep to be only installed if USE=-minimal, bug 277522
