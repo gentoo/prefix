@@ -1,6 +1,10 @@
 # ChangeLog for app-text/enscript
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/ChangeLog,v 1.56 2008/11/15 18:44:05 dertobi123 Exp $
+# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/enscript/ChangeLog,v 1.57 2009/07/29 15:47:11 darkside Exp $
+
+  29 Jul 2009; Jeremy Olexa <darkside@gentoo.org> -enscript-1.6.4-r2.ebuild,
+  -enscript-1.6.4-r3.ebuild:
+  Remove vulnerable version(s), bug 271757
 
   15 Nov 2008; Tobias Scherbaum <dertobi123@gentoo.org>
   enscript-1.6.4-r4.ebuild:
