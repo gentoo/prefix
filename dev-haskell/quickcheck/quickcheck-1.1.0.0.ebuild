@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/quickcheck/quickcheck-1.1.0.0.ebuild,v 1.5 2008/10/04 17:55:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/quickcheck/quickcheck-1.1.0.0.ebuild,v 1.6 2009/07/27 19:58:46 kolmodin Exp $
 
 CABAL_FEATURES="lib profile haddock"
 CABAL_MIN_VERSION=1.2
@@ -21,3 +21,5 @@ IUSE=""
 DEPEND=">=dev-lang/ghc-6.6"
 
 S="${WORKDIR}/${MY_P}"
+
+PATCHES=("${FILESDIR}/${P}-*")
