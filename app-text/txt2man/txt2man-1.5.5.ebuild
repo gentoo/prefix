@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2man/txt2man-1.5.5.ebuild,v 1.2 2008/05/25 10:54:51 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2man/txt2man-1.5.5.ebuild,v 1.3 2009/07/27 08:25:53 ssuominen Exp $
 
 DESCRIPTION="txt2man, src2man (C only) and bookman convert scripts for man pages."
 HOMEPAGE="http://mvertes.free.fr/"
