@@ -1,6 +1,17 @@
 # ChangeLog for dev-java/groovy
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.31 2009/03/29 16:40:07 betelgeuse Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.32 2009/07/28 14:35:16 elvanor Exp $
+
+*groovy-1.6.3 (28 Jul 2009)
+
+  28 Jul 2009; Jean-Noël Rivasseau <elvanor@gmail.com>
+  -files/build.xml-1.0_rc01, -files/build.xml-1.0,
+  -files/groovy-1.0-compiler-exit-code.patch,
+  -files/groovy-1.0_rc01-compiler-exit-code.patch, -groovy-1.5.4-r1.ebuild,
+  +groovy-1.6.3.ebuild, +files/groovy-build.patch,
+  -files/groovy-build.xml.patch:
+  Version bump to 1.6.3 (#235272), implemented partly doc USE flag,
+  restricted tests, removed old ebuilds.
 
   29 Mar 2009; Petteri Räty <betelgeuse@gentoo.org> -groovy-1.5.4.ebuild,
   groovy-1.5.4-r1.ebuild:
