@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/memcached
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.94 2009/07/26 12:40:22 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.95 2009/07/28 01:07:27 robbat2 Exp $
+
+*memcached-1.4.0-r1 (28 Jul 2009)
+
+  28 Jul 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +memcached-1.4.0-r1.ebuild,
+  +files/memcached-1.4.0-fix-as-needed-linking.patch:
+  Bug #278780: Any user that passes -DNDEBUG on their own is asking for
+  trouble with the testapp and -debug versions. Ensure that the object files
+  are seperated, and ignore the user for two of the binaries.
 
   26 Jul 2009; Brent Baude <ranger@gentoo.org> memcached-1.2.8.ebuild:
   Marking memcached-1.2.8 ppc64 for bug 268158
