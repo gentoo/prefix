@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/gedit-2.26.3.ebuild,v 1.1 2009/07/19 09:39:21 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/gedit-2.26.3.ebuild,v 1.2 2009/07/28 11:07:21 mrpouet Exp $
 
 GCONF_DEBUG="no"
 
@@ -62,6 +62,10 @@ src_unpack() {
 	# disable pyc compiling
 	mv "${S}"/py-compile "${S}"/py-compile.orig
 	ln -s $(type -P true) "${S}"/py-compile
+
+	# Fix intltoolize broken file, see upstream #577133
+	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
+		|| die "sed expression failed"
 }
 
 pkg_postinst() {

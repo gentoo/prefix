@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.275 2009/07/19 09:39:21 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.276 2009/07/28 11:07:21 mrpouet Exp $
+
+  28 Jul 2009; Romain Perier <mrpouet@gentoo.org> gedit-2.26.3.ebuild:
+  Fix intltoolize broken file po/Makefile.in.in, due to tarball generated
+  with a buggy version of intltoolize.
 
 *gedit-2.26.3 (19 Jul 2009)
 
