@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/sphinx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.21 2009/07/15 03:12:08 neurogeek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.22 2009/07/28 05:36:50 jer Exp $
+
+  28 Jul 2009; Jeroen Roovers <jer@gentoo.org> sphinx-0.6.1-r1.ebuild:
+  Stable for HPPA (bug #278978).
 
   15 Jul 2009; Jesus Rivero <neurogeek@gentoo.org> sphinx-0.6.2.ebuild:
   Fixed tests. Move to EAPI 2. Closes bug #262608
