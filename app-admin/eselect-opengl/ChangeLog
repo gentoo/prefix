@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-opengl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/ChangeLog,v 1.46 2009/06/24 08:12:26 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/ChangeLog,v 1.47 2009/07/28 15:16:03 jer Exp $
+
+  28 Jul 2009; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  x11-drivers -> x11.
 
   24 Jun 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   eselect-opengl-1.0.7.ebuild:
