@@ -46,7 +46,7 @@ src_test() {
 
 src_install() {
 	emake \
-		DESTDIR="${ED}" \
+		DESTDIR="${D}" \
 		install || die "make install failed"
 
 	local x
