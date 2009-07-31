@@ -41,6 +41,8 @@ src_configure() {
 
 	if use urandom; then
 		myconf+=" --with-devrandom=/dev/urandom"
+	elif (( ${CHOST#*-hpux11.} <= 11 )); then
+		: # no /dev/*random on hpux11.11 and before, $PN detects this.
 	else
 		myconf+=" --with-devrandom=/dev/random"
 	fi
