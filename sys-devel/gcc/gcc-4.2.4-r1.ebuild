@@ -110,6 +110,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/gcj-${PV}-iconvlink.patch
 
 	epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
+	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
 
 	use vanilla && return 0
 
