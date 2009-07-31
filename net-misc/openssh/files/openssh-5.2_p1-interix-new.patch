@@ -1,6 +1,6 @@
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-pam.c openssh-5.2p1/auth-pam.c
---- openssh-5.2p1.orig/auth-pam.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/auth-pam.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/auth-pam.c	2009-07-29 08:00:31 +0200
++++ openssh-5.2p1/auth-pam.c	2009-07-28 16:31:53 +0200
 @@ -265,7 +265,7 @@
  	if (setreuid(sshpam_authctxt->pw->pw_uid, -1) == -1)
  		fatal("%s: setreuid failed: %s", __func__, strerror(errno));
@@ -38,9 +38,9 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-pam.c openssh-5.2p1/auth-p
  		sshpam_password = badpw;
  
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-passwd.c openssh-5.2p1/auth-passwd.c
---- openssh-5.2p1.orig/auth-passwd.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/auth-passwd.c	2009-07-28 15:10:35 +0200
-@@ -53,6 +53,12 @@
+--- openssh-5.2p1.orig/auth-passwd.c	2009-07-29 08:00:31 +0200
++++ openssh-5.2p1/auth-passwd.c	2009-07-31 10:42:47 +0200
+@@ -53,6 +53,13 @@
  #include "hostfile.h"
  #include "auth.h"
  #include "auth-options.h"
@@ -49,11 +49,12 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-passwd.c openssh-5.2p1/aut
 +#ifdef __INTERIX
 +# include <interix/security.h>
 +extern char* InterixPwdToken;
++extern char* InterixLocalToken;
 +#endif
  
  extern Buffer loginmsg;
  extern ServerOptions options;
-@@ -87,7 +93,8 @@
+@@ -87,7 +94,8 @@
  #endif
  
  #ifndef HAVE_CYGWIN
@@ -63,7 +64,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-passwd.c openssh-5.2p1/aut
  		ok = 0;
  #endif
  	if (*password == '\0' && options.permit_empty_passwd == 0)
-@@ -111,6 +118,14 @@
+@@ -111,6 +119,14 @@
  		return ok;
  	}
  #endif
@@ -79,8 +80,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-passwd.c openssh-5.2p1/aut
  	if (options.use_pam)
  		return (sshpam_auth_passwd(authctxt, password) && ok);
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-rhosts.c openssh-5.2p1/auth-rhosts.c
---- openssh-5.2p1.orig/auth-rhosts.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/auth-rhosts.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/auth-rhosts.c	2009-07-29 08:00:31 +0200
++++ openssh-5.2p1/auth-rhosts.c	2009-07-28 16:31:53 +0200
 @@ -230,7 +230,7 @@
  		return 0;
  
@@ -109,8 +110,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-rhosts.c openssh-5.2p1/aut
  			logit("Rhosts authentication refused for %.100s: bad modes for %.200s",
  			    pw->pw_name, buf);
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-sia.c openssh-5.2p1/auth-sia.c
---- openssh-5.2p1.orig/auth-sia.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/auth-sia.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/auth-sia.c	2009-07-29 08:00:32 +0200
++++ openssh-5.2p1/auth-sia.c	2009-07-28 16:31:53 +0200
 @@ -160,7 +160,7 @@
  
  	sia_ses_release(&ent);
@@ -121,8 +122,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-sia.c openssh-5.2p1/auth-s
  }
  
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth.c openssh-5.2p1/auth.c
---- openssh-5.2p1.orig/auth.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/auth.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/auth.c	2009-07-29 08:00:32 +0200
++++ openssh-5.2p1/auth.c	2009-07-31 16:20:21 +0200
 @@ -378,7 +378,7 @@
  		user_hostfile = tilde_expand_filename(userfile, pw->pw_uid);
  		if (options.strict_modes &&
@@ -150,9 +151,36 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth.c openssh-5.2p1/auth.c
  		    (st.st_mode & 022) != 0) {
  			snprintf(err, errlen,
  			    "bad ownership or modes for directory %s", buf);
+@@ -526,6 +526,26 @@
+ 	    get_canonical_hostname(options.use_dns), get_remote_ipaddr());
+ 
+ 	pw = getpwnam(user);
++
++#ifdef __INTERIX
++	/* on windows, is there is no such user in the principal domain
++	 * (which is checked by default), we also have a look at the
++	 * local accounts by prefixing the username with the hostname
++	 */
++	if (pw == NULL) {
++		char tmp[MAXHOSTNAMELEN];
++		if(gethostname(tmp, MAXHOSTNAMELEN) == 0) {
++			strcat(tmp, "+");
++			strcat(tmp, user);
++
++			pw = getpwnam(tmp);
++
++			if(pw)
++				debug2("found local %s as fallback for principal domain", tmp);
++		}
++	}
++#endif
++
+ 	if (pw == NULL) {
+ 		logit("Invalid user %.100s from %.100s",
+ 		    user, get_remote_ipaddr());
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth1.c openssh-5.2p1/auth1.c
---- openssh-5.2p1.orig/auth1.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/auth1.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/auth1.c	2009-07-29 08:00:32 +0200
++++ openssh-5.2p1/auth1.c	2009-07-28 16:31:53 +0200
 @@ -40,6 +40,7 @@
  #endif
  #include "monitor_wrap.h"
@@ -180,8 +208,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth1.c openssh-5.2p1/auth1.c
  		packet_disconnect("Cannot change user when server not running as root.");
  #endif
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth2.c openssh-5.2p1/auth2.c
---- openssh-5.2p1.orig/auth2.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/auth2.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/auth2.c	2009-07-29 08:00:32 +0200
++++ openssh-5.2p1/auth2.c	2009-07-28 16:31:53 +0200
 @@ -46,6 +46,7 @@
  #include "key.h"
  #include "hostfile.h"
@@ -200,8 +228,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth2.c openssh-5.2p1/auth2.c
  		authenticated = 0;
  #ifdef SSH_AUDIT_EVENTS
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/configure.ac openssh-5.2p1/configure.ac
---- openssh-5.2p1.orig/configure.ac	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/configure.ac	2009-07-28 15:44:53 +0200
+--- openssh-5.2p1.orig/configure.ac	2009-07-29 08:00:33 +0200
++++ openssh-5.2p1/configure.ac	2009-07-28 16:31:53 +0200
 @@ -445,6 +445,25 @@
  		[Define if your platform needs to skip post auth
  		file descriptor passing])
@@ -229,8 +257,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/configure.ac openssh-5.2p1/conf
  	AC_DEFINE(IP_TOS_IS_BROKEN)
  	AC_DEFINE(SETEUID_BREAKS_SETUID)
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/defines.h openssh-5.2p1/defines.h
---- openssh-5.2p1.orig/defines.h	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/defines.h	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/defines.h	2009-07-29 08:00:33 +0200
++++ openssh-5.2p1/defines.h	2009-07-28 16:31:53 +0200
 @@ -725,7 +725,11 @@
  #endif
  
@@ -245,8 +273,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/defines.h openssh-5.2p1/defines
  # elif defined(DEF_IOV_MAX)
  #  define	IOV_MAX		DEF_IOV_MAX
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/hostfile.c openssh-5.2p1/hostfile.c
---- openssh-5.2p1.orig/hostfile.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/hostfile.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/hostfile.c	2009-07-29 08:00:33 +0200
++++ openssh-5.2p1/hostfile.c	2009-07-28 16:31:53 +0200
 @@ -45,7 +45,9 @@
  #include <openssl/hmac.h>
  #include <openssl/sha.h>
@@ -259,8 +287,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/hostfile.c openssh-5.2p1/hostfi
  #include <stdio.h>
  #include <stdlib.h>
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/loginrec.c openssh-5.2p1/loginrec.c
---- openssh-5.2p1.orig/loginrec.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/loginrec.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/loginrec.c	2009-07-29 08:00:33 +0200
++++ openssh-5.2p1/loginrec.c	2009-07-28 16:31:53 +0200
 @@ -175,6 +175,7 @@
  #include "canohost.h"
  #include "auth.h"
@@ -297,8 +325,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/loginrec.c openssh-5.2p1/loginr
  		    _PATH_BTMP);
  		goto out;
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/logintest.c openssh-5.2p1/logintest.c
---- openssh-5.2p1.orig/logintest.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/logintest.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/logintest.c	2009-07-29 08:00:34 +0200
++++ openssh-5.2p1/logintest.c	2009-07-28 16:31:53 +0200
 @@ -125,7 +125,7 @@
  	if (be_verbose)
  		dump_logininfo(li1, "li1");
@@ -309,8 +337,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/logintest.c openssh-5.2p1/login
  		return 1;
  	}
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/misc.h openssh-5.2p1/misc.h
---- openssh-5.2p1.orig/misc.h	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/misc.h	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/misc.h	2009-07-29 08:00:34 +0200
++++ openssh-5.2p1/misc.h	2009-07-28 16:31:53 +0200
 @@ -15,6 +15,18 @@
  #ifndef _MISC_H
  #define _MISC_H
@@ -331,8 +359,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/misc.h openssh-5.2p1/misc.h
  
  char	*chop(char *);
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/monitor.c openssh-5.2p1/monitor.c
---- openssh-5.2p1.orig/monitor.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/monitor.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/monitor.c	2009-07-29 08:00:34 +0200
++++ openssh-5.2p1/monitor.c	2009-07-28 16:31:53 +0200
 @@ -369,7 +369,7 @@
  			if (!(ent->flags & MON_AUTHDECIDE))
  				fatal("%s: unexpected authentication from %d",
@@ -343,8 +371,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/monitor.c openssh-5.2p1/monitor
  				authenticated = 0;
  #ifdef USE_PAM
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/mux.c openssh-5.2p1/mux.c
---- openssh-5.2p1.orig/mux.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/mux.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/mux.c	2009-07-29 08:00:35 +0200
++++ openssh-5.2p1/mux.c	2009-07-28 16:31:53 +0200
 @@ -246,7 +246,7 @@
  		close(client_fd);
  		return 0;
@@ -355,8 +383,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/mux.c openssh-5.2p1/mux.c
  		    (u_int) euid, (u_int) getuid());
  		close(client_fd);
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/openbsd-compat/bsd-misc.h openssh-5.2p1/openbsd-compat/bsd-misc.h
---- openssh-5.2p1.orig/openbsd-compat/bsd-misc.h	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/openbsd-compat/bsd-misc.h	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/openbsd-compat/bsd-misc.h	2009-07-29 08:00:35 +0200
++++ openssh-5.2p1/openbsd-compat/bsd-misc.h	2009-07-28 16:31:53 +0200
 @@ -68,12 +68,14 @@
  #endif /* HAVE_TRUNCATE */
  
@@ -373,8 +401,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/openbsd-compat/bsd-misc.h opens
  #endif
  
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/openbsd-compat/getrrsetbyname.c openssh-5.2p1/openbsd-compat/getrrsetbyname.c
---- openssh-5.2p1.orig/openbsd-compat/getrrsetbyname.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/openbsd-compat/getrrsetbyname.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/openbsd-compat/getrrsetbyname.c	2009-07-29 08:00:35 +0200
++++ openssh-5.2p1/openbsd-compat/getrrsetbyname.c	2009-07-28 16:31:53 +0200
 @@ -61,6 +61,10 @@
  extern int h_errno;
  #endif
@@ -428,8 +456,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/openbsd-compat/getrrsetbyname.c
 +
  #endif /* !defined(HAVE_GETRRSETBYNAME) */
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/openbsd-compat/getrrsetbyname.h openssh-5.2p1/openbsd-compat/getrrsetbyname.h
---- openssh-5.2p1.orig/openbsd-compat/getrrsetbyname.h	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/openbsd-compat/getrrsetbyname.h	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/openbsd-compat/getrrsetbyname.h	2009-07-29 08:00:35 +0200
++++ openssh-5.2p1/openbsd-compat/getrrsetbyname.h	2009-07-28 16:31:53 +0200
 @@ -54,9 +54,11 @@
  
  #include <sys/types.h>
@@ -445,8 +473,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/openbsd-compat/getrrsetbyname.h
  #ifndef HFIXEDSZ
  #define HFIXEDSZ 12
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/openbsd-compat/inet_ntop.c openssh-5.2p1/openbsd-compat/inet_ntop.c
---- openssh-5.2p1.orig/openbsd-compat/inet_ntop.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/openbsd-compat/inet_ntop.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/openbsd-compat/inet_ntop.c	2009-07-29 08:00:36 +0200
++++ openssh-5.2p1/openbsd-compat/inet_ntop.c	2009-07-28 16:31:53 +0200
 @@ -27,7 +27,9 @@
  #include <sys/socket.h>
  #include <netinet/in.h>
@@ -459,8 +487,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/openbsd-compat/inet_ntop.c open
  #include <errno.h>
  #include <stdio.h>
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/openbsd-compat/port-aix.c openssh-5.2p1/openbsd-compat/port-aix.c
---- openssh-5.2p1.orig/openbsd-compat/port-aix.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/openbsd-compat/port-aix.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/openbsd-compat/port-aix.c	2009-07-29 08:00:36 +0200
++++ openssh-5.2p1/openbsd-compat/port-aix.c	2009-07-28 16:31:53 +0200
 @@ -243,7 +243,7 @@
  	 * logins via ssh) or if running as non-root user (since
  	 * loginrestrictions will always fail due to insufficient privilege).
@@ -480,8 +508,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/openbsd-compat/port-aix.c opens
  
  	aix_setauthdb(user);
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/readconf.c openssh-5.2p1/readconf.c
---- openssh-5.2p1.orig/readconf.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/readconf.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/readconf.c	2009-07-29 08:00:36 +0200
++++ openssh-5.2p1/readconf.c	2009-07-28 16:31:53 +0200
 @@ -252,7 +252,7 @@
  	Forward *fwd;
  #ifndef NO_IPPORT_RESERVED_CONCEPT
@@ -501,8 +529,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/readconf.c openssh-5.2p1/readco
  			fatal("Bad owner or permissions on %s", filename);
  	}
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/serverloop.c openssh-5.2p1/serverloop.c
---- openssh-5.2p1.orig/serverloop.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/serverloop.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/serverloop.c	2009-07-29 08:00:36 +0200
++++ openssh-5.2p1/serverloop.c	2009-07-28 16:31:53 +0200
 @@ -1120,7 +1120,7 @@
  		    no_port_forwarding_flag ||
  		    (!want_reply && listen_port == 0)
@@ -513,9 +541,9 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/serverloop.c openssh-5.2p1/serv
  		    ) {
  			success = 0;
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session.c
---- openssh-5.2p1.orig/session.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/session.c	2009-07-28 15:36:38 +0200
-@@ -91,6 +91,12 @@
+--- openssh-5.2p1.orig/session.c	2009-07-29 08:00:36 +0200
++++ openssh-5.2p1/session.c	2009-07-31 10:43:51 +0200
+@@ -91,6 +91,28 @@
  #include "monitor_wrap.h"
  #include "sftp.h"
  
@@ -523,12 +551,28 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
 +# include <interix/env.h>
 +# include <interix/security.h>
 +char* InterixPwdToken = NULL;
++char* InterixLocalToken = NULL;
++
++#define INTERIX_PWD_WARNING \
++		fprintf(stderr,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n" \
++					   "@ WARNING: Due to limitations in the POSIX Subsystem and Win32  @\n" \
++					   "@     a Password is required to acquire a full authentication.  @\n" \
++					   "@     Without such an authentication token, certain things will @\n" \
++					   "@     only be available in a very limited way (Visual Studio's  @\n" \
++					   "@     link.exe can only link without debug information, network @\n" \
++					   "@     shares that require user authentication don't fully work, @\n" \
++					   "@     etc.). However if you don't require those things to work, @\n" \
++					   "@     you may be just fine without password (public-key, etc.). @\n" \
++					   "@ To obtain a full authentication you need to use password      @\n" \
++					   "@ authentication at the moment. To do so, remove your public    @\n" \
++					   "@ key from your ~/.ssh/authorized_keys[2] file(s).              @\n" \
++					   "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 +#endif
 +
  #if defined(KRB5) && defined(USE_AFS)
  #include <kafs.h>
  #endif
-@@ -380,7 +386,7 @@
+@@ -380,7 +402,7 @@
  				break;
  			}
  			debug("Received TCP/IP port forwarding request.");
@@ -537,7 +581,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  			    options.gateway_ports) < 0) {
  				debug("Port forwarding failed.");
  				break;
-@@ -1068,7 +1074,7 @@
+@@ -1068,7 +1090,7 @@
  	if (tmpenv == NULL)
  		return;
  
@@ -546,7 +590,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  		var = child_get_env(tmpenv, "SUPATH");
  	else
  		var = child_get_env(tmpenv, "PATH");
-@@ -1139,6 +1145,17 @@
+@@ -1139,6 +1161,17 @@
  	}
  #endif
  
@@ -564,7 +608,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  #ifdef GSSAPI
  	/* Allow any GSSAPI methods that we've used to alter
  	 * the childs environment as they see fit
-@@ -1177,7 +1194,7 @@
+@@ -1177,7 +1210,7 @@
  #  endif /* HAVE_ETC_DEFAULT_LOGIN */
  		if (path == NULL || *path == '\0') {
  			child_set_env(&env, &envsize, "PATH",
@@ -573,7 +617,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  				SUPERUSER_PATH : _PATH_STDPATH);
  		}
  # endif /* HAVE_CYGWIN */
-@@ -1379,11 +1396,11 @@
+@@ -1379,11 +1412,11 @@
  	char buf[1024];
  
  #ifdef HAVE_LOGIN_CAP
@@ -587,7 +631,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  		f = fopen(_PATH_NOLOGIN, "r");
  #endif
  	if (f) {
-@@ -1432,7 +1449,7 @@
+@@ -1432,7 +1465,7 @@
  		if (stat(component, &st) != 0)
  			fatal("%s: stat(\"%s\"): %s", __func__,
  			    component, strerror(errno));
@@ -596,7 +640,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  			fatal("bad ownership or modes for chroot "
  			    "directory %s\"%s\"", 
  			    cp == NULL ? "" : "component ", component);
-@@ -1465,7 +1482,7 @@
+@@ -1465,7 +1498,7 @@
  #endif
  
  #ifndef HAVE_CYGWIN
@@ -605,7 +649,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  #endif /* HAVE_CYGWIN */
  	{
  
-@@ -1500,11 +1517,13 @@
+@@ -1500,11 +1533,13 @@
  			perror("setgid");
  			exit(1);
  		}
@@ -619,7 +663,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  		endgrent();
  # ifdef USE_PAM
  		/*
-@@ -1546,8 +1565,27 @@
+@@ -1546,8 +1581,31 @@
  			exit(1);
  		}
  #else
@@ -629,6 +673,10 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
 +		if(InterixPwdToken) {
 +			debug2("re-setting user password");
 +			strcpy(pw->pw_passwd, InterixPwdToken);
++		}
++
++		if(InterixLocalToken) {
++			debug2("re-setting user to contain local token %s", InterixLocalToken);
 +		}
 +#endif
  		/* Permanently switch to the desired uid. */
@@ -647,24 +695,21 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  #endif
  	}
  
-@@ -1588,6 +1626,16 @@
+@@ -1588,6 +1646,13 @@
  launch_login(struct passwd *pw, const char *hostname)
  {
  	/* Launch login(1). */
 +	#ifdef __INTERIX
 +	/* -f only works if the user is already autheticated as the requested user */
 +	if (!InterixPwdToken)
-+		error("WARNING: no password available for user. Login will work, but"
-+			"certain things like network shares and using Visual Studio"
-+			"will be limited! To get a fully working environment you"
-+			"have to use password authentication!");
++		INTERIX_PWD_WARNING
 +	if (setuser(pw->pw_name, InterixPwdToken, SU_COMPLETE))
 +		fatal("setuser %.100s: %.100s", pw->pw_name, strerror(errno));
 +	#endif
  
  	execl(LOGIN_PROGRAM, "login", "-h", hostname,
  #ifdef xxxLOGIN_NEEDS_TERM
-@@ -2328,7 +2376,7 @@
+@@ -2328,7 +2393,7 @@
  		record_logout(s->pid, s->tty, s->pw->pw_name);
  
  	/* Release the pseudo-tty. */
@@ -674,8 +719,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  
  	/*
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/ssh-agent.c openssh-5.2p1/ssh-agent.c
---- openssh-5.2p1.orig/ssh-agent.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/ssh-agent.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/ssh-agent.c	2009-07-29 08:00:36 +0200
++++ openssh-5.2p1/ssh-agent.c	2009-07-28 16:31:53 +0200
 @@ -943,7 +943,7 @@
  					close(sock);
  					break;
@@ -686,8 +731,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/ssh-agent.c openssh-5.2p1/ssh-a
  					    "peer euid %u != uid %u",
  					    (u_int) euid, (u_int) getuid());
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/ssh.c openssh-5.2p1/ssh.c
---- openssh-5.2p1.orig/ssh.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/ssh.c	2009-07-28 15:18:21 +0200
+--- openssh-5.2p1.orig/ssh.c	2009-07-29 08:00:36 +0200
++++ openssh-5.2p1/ssh.c	2009-07-28 16:31:53 +0200
 @@ -705,7 +705,7 @@
  #ifdef HAVE_CYGWIN
  	    options.use_privileged_port,
@@ -707,8 +752,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/ssh.c openssh-5.2p1/ssh.c
  		permanently_set_uid(pw);
  	}
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/sshd.c openssh-5.2p1/sshd.c
---- openssh-5.2p1.orig/sshd.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/sshd.c	2009-07-28 15:23:55 +0200
+--- openssh-5.2p1.orig/sshd.c	2009-07-29 08:00:37 +0200
++++ openssh-5.2p1/sshd.c	2009-07-28 16:31:53 +0200
 @@ -234,7 +234,11 @@
  int startup_pipe;		/* in child */
  
@@ -783,8 +828,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/sshd.c openssh-5.2p1/sshd.c
  	if (rexec_flag) {
  		rexec_argv = xcalloc(rexec_argc + 2, sizeof(char *));
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/sshpty.c openssh-5.2p1/sshpty.c
---- openssh-5.2p1.orig/sshpty.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/sshpty.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/sshpty.c	2009-07-29 08:00:37 +0200
++++ openssh-5.2p1/sshpty.c	2009-07-28 16:31:53 +0200
 @@ -86,7 +86,7 @@
  pty_release(const char *tty)
  {
@@ -804,20 +849,34 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/sshpty.c openssh-5.2p1/sshpty.c
  				    tty, (u_int)pw->pw_uid, (u_int)gid,
  				    strerror(errno));
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap.c
---- openssh-5.2p1.orig/uidswap.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/uidswap.c	2009-07-28 15:22:28 +0200
-@@ -14,6 +14,10 @@
+--- openssh-5.2p1.orig/uidswap.c	2009-07-29 08:00:37 +0200
++++ openssh-5.2p1/uidswap.c	2009-07-31 16:27:57 +0200
+@@ -14,6 +14,24 @@
  
  #include "includes.h"
  
 +#ifdef __INTERIX
 +# include <interix/security.h>
++#define INTERIX_PWD_WARNING \
++		fprintf(stderr,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n" \
++					   "@ WARNING: Due to limitations in the POSIX Subsystem and Win32  @\n" \
++					   "@     a Password is required to acquire a full authentication.  @\n" \
++					   "@     Without such an authentication token, certain things will @\n" \
++					   "@     only be available in a very limited way (Visual Studio's  @\n" \
++					   "@     link.exe can only link without debug information, network @\n" \
++					   "@     shares that require user authentication don't fully work, @\n" \
++					   "@     etc.). However if you don't require those things to work, @\n" \
++					   "@     you may be just fine without password (public-key, etc.). @\n" \
++					   "@ To obtain a full authentication you need to use password      @\n" \
++					   "@ authentication at the moment. To do so, remove your public    @\n" \
++					   "@ key from your ~/.ssh/authorized_keys[2] file(s).              @\n" \
++					   "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
 +#endif
 +
  #include <sys/param.h>
  #include <errno.h>
  #include <pwd.h>
-@@ -26,6 +30,7 @@
+@@ -26,6 +44,7 @@
  #include "log.h"
  #include "uidswap.h"
  #include "xmalloc.h"
@@ -825,7 +884,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap
  
  /*
   * Note: all these functions must work in all of the following cases:
-@@ -66,13 +71,13 @@
+@@ -66,13 +85,13 @@
  	    (u_int)pw->pw_uid, (u_int)pw->pw_gid,
  	    (u_int)saved_euid, (u_int)saved_egid);
  #ifndef HAVE_CYGWIN
@@ -841,7 +900,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap
  		privileged = 0;
  		return;
  	}
-@@ -81,6 +86,7 @@
+@@ -81,6 +100,7 @@
  	privileged = 1;
  	temporarily_use_uid_effective = 1;
  
@@ -849,7 +908,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap
  	saved_egroupslen = getgroups(0, NULL);
  	if (saved_egroupslen < 0)
  		fatal("getgroups: %.100s", strerror(errno));
-@@ -116,6 +122,7 @@
+@@ -116,6 +136,7 @@
  	/* Set the effective uid to the given (unprivileged) uid. */
  	if (setgroups(user_groupslen, user_groups) < 0)
  		fatal("setgroups: %.100s", strerror(errno));
@@ -857,7 +916,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap
  #ifndef SAVED_IDS_WORK_WITH_SETEUID
  	/* Propagate the privileged gid to all of our gids. */
  	if (setgid(getegid()) < 0)
-@@ -153,7 +160,7 @@
+@@ -153,7 +174,7 @@
  		fatal("setuid %u: %.100s", (u_int)uid, strerror(errno));
  #endif
  
@@ -866,7 +925,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap
  	/* Try restoration of UID if changed (test clearing of saved uid) */
  	if (old_uid != uid &&
  	    (setuid(old_uid) != -1 || seteuid(old_uid) != -1))
-@@ -198,8 +205,10 @@
+@@ -198,8 +219,10 @@
  	setgid(getgid());
  #endif /* SAVED_IDS_WORK_WITH_SETEUID */
  
@@ -877,16 +936,18 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap
  	temporarily_use_uid_effective = 0;
  }
  
-@@ -220,6 +229,19 @@
+@@ -220,6 +243,21 @@
  	debug("permanently_set_uid: %u/%u", (u_int)pw->pw_uid,
  	    (u_int)pw->pw_gid);
  
 +#ifdef __INTERIX
++	if (pw->pw_change <= 172800) {
++		fprintf(stderr, "WARNING: Your password will expire soon. This will make remote\n"
++						"logins via ssh impossible without notice of the occured error!\n");
++	}
++
 +	if (strcmp(pw->pw_passwd, "*") == 0) {
-+		error("WARNING: no password available for user. Login will work, but"
-+			"certain things like network shares and using Visual Studio"
-+			"will be limited! To get a fully working environment you"
-+			"have to use password authentication!");
++		INTERIX_PWD_WARNING
 +		if (setuser(pw->pw_name, NULL, SU_COMPLETE))
 +			fatal("setuser %.100s: %.100s", pw->pw_name, strerror(errno));
 +	} else {
@@ -897,7 +958,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap
  #if defined(HAVE_SETRESGID) && !defined(BROKEN_SETRESGID)
  	if (setresgid(pw->pw_gid, pw->pw_gid, pw->pw_gid) < 0)
  		fatal("setresgid %u: %.100s", (u_int)pw->pw_gid, strerror(errno));
-@@ -257,10 +279,11 @@
+@@ -257,10 +295,11 @@
  	if (setuid(pw->pw_uid) < 0)
  		fatal("setuid %u: %.100s", (u_int)pw->pw_uid, strerror(errno));
  #endif
@@ -911,7 +972,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap
  	    (setgid(old_gid) != -1 || setegid(old_gid) != -1))
  		fatal("%s: was able to restore old [e]gid", __func__);
  #endif
-@@ -272,7 +295,7 @@
+@@ -272,7 +311,7 @@
  		    (u_int)pw->pw_gid);
  	}
  
@@ -921,8 +982,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap
  	if (old_uid != pw->pw_uid &&
  	    (setuid(old_uid) != -1 || seteuid(old_uid) != -1))
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uuencode.c openssh-5.2p1/uuencode.c
---- openssh-5.2p1.orig/uuencode.c	2009-07-28 15:37:39 +0200
-+++ openssh-5.2p1/uuencode.c	2009-07-28 14:11:43 +0200
+--- openssh-5.2p1.orig/uuencode.c	2009-07-29 08:00:37 +0200
++++ openssh-5.2p1/uuencode.c	2009-07-28 16:31:53 +0200
 @@ -27,7 +27,9 @@
  
  #include <sys/types.h>
