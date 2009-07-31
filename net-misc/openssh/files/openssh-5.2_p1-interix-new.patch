@@ -39,8 +39,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-pam.c openssh-5.2p1/auth-p
  
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-passwd.c openssh-5.2p1/auth-passwd.c
 --- openssh-5.2p1.orig/auth-passwd.c	2009-07-29 08:00:31 +0200
-+++ openssh-5.2p1/auth-passwd.c	2009-07-31 10:42:47 +0200
-@@ -53,6 +53,13 @@
++++ openssh-5.2p1/auth-passwd.c	2009-07-31 16:40:57 +0200
+@@ -53,6 +53,12 @@
  #include "hostfile.h"
  #include "auth.h"
  #include "auth-options.h"
@@ -49,12 +49,11 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-passwd.c openssh-5.2p1/aut
 +#ifdef __INTERIX
 +# include <interix/security.h>
 +extern char* InterixPwdToken;
-+extern char* InterixLocalToken;
 +#endif
  
  extern Buffer loginmsg;
  extern ServerOptions options;
-@@ -87,7 +94,8 @@
+@@ -87,7 +93,8 @@
  #endif
  
  #ifndef HAVE_CYGWIN
@@ -64,7 +63,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/auth-passwd.c openssh-5.2p1/aut
  		ok = 0;
  #endif
  	if (*password == '\0' && options.permit_empty_passwd == 0)
-@@ -111,6 +119,14 @@
+@@ -111,6 +118,14 @@
  		return ok;
  	}
  #endif
@@ -542,8 +541,8 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/serverloop.c openssh-5.2p1/serv
  			success = 0;
 diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session.c
 --- openssh-5.2p1.orig/session.c	2009-07-29 08:00:36 +0200
-+++ openssh-5.2p1/session.c	2009-07-31 10:43:51 +0200
-@@ -91,6 +91,28 @@
++++ openssh-5.2p1/session.c	2009-07-31 16:41:13 +0200
+@@ -91,6 +91,27 @@
  #include "monitor_wrap.h"
  #include "sftp.h"
  
@@ -551,7 +550,6 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
 +# include <interix/env.h>
 +# include <interix/security.h>
 +char* InterixPwdToken = NULL;
-+char* InterixLocalToken = NULL;
 +
 +#define INTERIX_PWD_WARNING \
 +		fprintf(stderr,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n" \
@@ -572,7 +570,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  #if defined(KRB5) && defined(USE_AFS)
  #include <kafs.h>
  #endif
-@@ -380,7 +402,7 @@
+@@ -380,7 +401,7 @@
  				break;
  			}
  			debug("Received TCP/IP port forwarding request.");
@@ -581,7 +579,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  			    options.gateway_ports) < 0) {
  				debug("Port forwarding failed.");
  				break;
-@@ -1068,7 +1090,7 @@
+@@ -1068,7 +1089,7 @@
  	if (tmpenv == NULL)
  		return;
  
@@ -590,7 +588,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  		var = child_get_env(tmpenv, "SUPATH");
  	else
  		var = child_get_env(tmpenv, "PATH");
-@@ -1139,6 +1161,17 @@
+@@ -1139,6 +1160,17 @@
  	}
  #endif
  
@@ -608,7 +606,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  #ifdef GSSAPI
  	/* Allow any GSSAPI methods that we've used to alter
  	 * the childs environment as they see fit
-@@ -1177,7 +1210,7 @@
+@@ -1177,7 +1209,7 @@
  #  endif /* HAVE_ETC_DEFAULT_LOGIN */
  		if (path == NULL || *path == '\0') {
  			child_set_env(&env, &envsize, "PATH",
@@ -617,7 +615,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  				SUPERUSER_PATH : _PATH_STDPATH);
  		}
  # endif /* HAVE_CYGWIN */
-@@ -1379,11 +1412,11 @@
+@@ -1379,11 +1411,11 @@
  	char buf[1024];
  
  #ifdef HAVE_LOGIN_CAP
@@ -631,7 +629,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  		f = fopen(_PATH_NOLOGIN, "r");
  #endif
  	if (f) {
-@@ -1432,7 +1465,7 @@
+@@ -1432,7 +1464,7 @@
  		if (stat(component, &st) != 0)
  			fatal("%s: stat(\"%s\"): %s", __func__,
  			    component, strerror(errno));
@@ -640,7 +638,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  			fatal("bad ownership or modes for chroot "
  			    "directory %s\"%s\"", 
  			    cp == NULL ? "" : "component ", component);
-@@ -1465,7 +1498,7 @@
+@@ -1465,7 +1497,7 @@
  #endif
  
  #ifndef HAVE_CYGWIN
@@ -649,7 +647,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  #endif /* HAVE_CYGWIN */
  	{
  
-@@ -1500,11 +1533,13 @@
+@@ -1500,11 +1532,13 @@
  			perror("setgid");
  			exit(1);
  		}
@@ -663,7 +661,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  		endgrent();
  # ifdef USE_PAM
  		/*
-@@ -1546,8 +1581,31 @@
+@@ -1546,8 +1580,27 @@
  			exit(1);
  		}
  #else
@@ -673,10 +671,6 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
 +		if(InterixPwdToken) {
 +			debug2("re-setting user password");
 +			strcpy(pw->pw_passwd, InterixPwdToken);
-+		}
-+
-+		if(InterixLocalToken) {
-+			debug2("re-setting user to contain local token %s", InterixLocalToken);
 +		}
 +#endif
  		/* Permanently switch to the desired uid. */
@@ -695,7 +689,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  #endif
  	}
  
-@@ -1588,6 +1646,13 @@
+@@ -1588,6 +1641,13 @@
  launch_login(struct passwd *pw, const char *hostname)
  {
  	/* Launch login(1). */
@@ -709,7 +703,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/session.c openssh-5.2p1/session
  
  	execl(LOGIN_PROGRAM, "login", "-h", hostname,
  #ifdef xxxLOGIN_NEEDS_TERM
-@@ -2328,7 +2393,7 @@
+@@ -2328,7 +2388,7 @@
  		record_logout(s->pid, s->tty, s->pw->pw_name);
  
  	/* Release the pseudo-tty. */
