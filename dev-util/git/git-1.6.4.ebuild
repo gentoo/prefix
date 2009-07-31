@@ -125,6 +125,7 @@ exportmakeopts() {
 		myopts="${myopts} NO_STRLCPY=YesPlease"
 		myopts="${myopts} NO_MEMMEM=YesPlease"
 		myopts="${myopts} NO_MKDTEMP=YesPlease"
+		myopts="${myopts} NO_MKSTEMPS=YesPlease"
 	fi
 	if [[ ${CHOST} == *-interix* ]] ; then
 		myopts="${myopts} NO_IPV6=YesPlease"
