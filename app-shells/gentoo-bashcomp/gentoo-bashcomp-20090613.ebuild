@@ -16,12 +16,12 @@ IUSE=""
 RDEPEND="app-shells/bash-completion"
 
 src_unpack() {
-    unpack "${A}"
-    cd "${S}"
-    
-    # make gentoo completion prefix compatible
-    epatch "${FILESDIR}/${P}-prefix.patch"
-    eprefixify gentoo
+	unpack "${A}"
+	cd "${S}"
+
+	# make gentoo completion prefix compatible
+	epatch "${FILESDIR}/${P}-prefix.patch"
+	eprefixify gentoo
 }
 
 src_install() {
