@@ -1,0 +1,11 @@
+# ChangeLog for app-portage/prefix-bootstrap
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*prefix-bootstrap-9999 (31 Jul 2009)
+
+  31 Jul 2009; Michael Haubenwallner <haubi@gentoo.org>
+  +prefix-bootstrap-9999.ebuild, +metadata.xml:
+  added app-portage/prefix-bootstrap (live svn ebuild) to bootstrap another
+  standalone Gentoo Prefix instance
+

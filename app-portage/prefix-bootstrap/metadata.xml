@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd></herd>
+	<maintainer>
+		<email>haubi@gentoo.org</email>
+		<name>Michael Haubenwallner</name>
+	</maintainer>
+	<longdescription lang="en">
+		Bootstrap another standalone Gentoo Prefix instance using a working
+		Gentoo Prefix instance.
+	</longdescription>
+</pkgmetadata>
+
