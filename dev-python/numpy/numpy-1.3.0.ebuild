@@ -47,6 +47,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}/${P}-parisc.patch" # bug 277438
 	epatch "${FILESDIR}/${P}-alpha.patch" # bug 277438
+	epatch "${FILESDIR}"/${P}-fenv-freebsd.patch # bug 279487
 
 	# Gentoo patch for ATLAS library names
 	sed -i \
