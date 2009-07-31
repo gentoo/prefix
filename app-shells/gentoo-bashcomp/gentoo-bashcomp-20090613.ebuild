@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20090613.ebuild,v 1.6 2009/07/23 14:47:10 armin76 Exp $
 
+inherit eutils prefix
+
 DESCRIPTION="Gentoo-specific bash command-line completions (emerge, ebuild, equery, repoman, layman, etc)"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
@@ -12,6 +14,15 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint"
 IUSE=""
 
 RDEPEND="app-shells/bash-completion"
+
+src_unpack() {
+    unpack "${A}"
+    cd "${S}"
+    
+    # make gentoo completion prefix compatible
+    epatch "${FILESDIR}/${P}-prefix.patch"
+    eprefixify gentoo
+}
 
 src_install() {
 	insinto /usr/share/bash-completion
