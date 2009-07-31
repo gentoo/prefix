@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r7.ebuild,v 1.2 2009/05/29 13:26:28 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r6.ebuild,v 1.5 2009/05/29 13:26:28 tove Exp $
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -40,13 +40,10 @@ RDEPEND="!m68k-mint? ( ~sys-devel/libperl-${PV} )
 	)"
 
 PDEPEND=">=app-admin/perl-cleaner-1.03
-	!build? (
-		>=perl-core/CPAN-1.77
-		>=perl-core/Encode-2.12
-		>=perl-core/ExtUtils-MakeMaker-6.30
-		>=perl-core/PodParser-1.32
-		>=perl-core/Test-Harness-2.56
-	)"
+		!build? (
+			>=perl-core/PodParser-1.32
+			>=perl-core/Test-Harness-2.56
+		)"
 
 pkg_setup() {
 	# I think this should rather be displayed if you *have* 'ithreads'
@@ -72,9 +69,6 @@ pkg_setup() {
 
 src_unpack() {
 	unpack ${A}
-
-	# MiNT patch
-	cd ${S}; epatch ${FILESDIR}/${P}-mint.patch
 
 	# Get -lpthread linked before -lc.  This is needed
 	# when using glibc >= 2.3, or else runtime signal
@@ -131,6 +125,7 @@ src_unpack() {
 	# filter it otherwise configure fails. See #125535.
 	epatch "${FILESDIR}"/perl-hppa-pa7200-configure.patch
 
+	epatch "${FILESDIR}"/${P}-mint.patch
 	epatch "${FILESDIR}"/${P}-aix.patch
 	epatch "${FILESDIR}"/${P}-hpux.patch
 	epatch "${FILESDIR}"/${P}-solaris-64bit.patch # may clash with native linker
@@ -195,7 +190,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-interix-misc.patch
 
 	# perl tries to link against gdbm if present, even without USE=gdbm
-	if ! use gdbm; then
+	if use !gdbm; then
 		sed -i '/^libswanted=/s/gdbm //' Configure
 	fi
 }
@@ -370,7 +365,8 @@ src_compile() {
 
 	src_configure
 
-	emake -j1 -f Makefile depend || die "Couldn't make depends"
+	# not in gx86, was this a fix once? -- grobian 20090731
+	#emake -j1 -f Makefile depend || die "Couldn't make depends"
 	emake -j1 || die "Unable to make"
 }
 
@@ -430,7 +426,6 @@ EOF
 	done
 
 	# A poor fix for the miniperl issues
-	fperms 0644 /usr/$(get_libdir)/perl5/${MY_PV}/ExtUtils/xsubpp
 	dosed 's:./miniperl:/usr/bin/perl:' /usr/$(get_libdir)/perl5/${MY_PV}/ExtUtils/xsubpp
 	fperms 0444 /usr/$(get_libdir)/perl5/${MY_PV}/ExtUtils/xsubpp
 	dosed 's:./miniperl:/usr/bin/perl:' /usr/bin/xsubpp
@@ -464,35 +459,25 @@ EOF
 	fi
 	cd `find "${ED}" -name Path.pm|sed -e 's/Path.pm//'`
 	# CAN patch in bug 79685
-	cd "${S}"
-	#epatch "${FILESDIR}"/${P}-CAN-2005-0448-rmtree.patch
+	#epatch "${FILESDIR}"/${P}-CAN-2005-0448-rmtree-2.patch
 
 	# Remove those items we PDPEND on
-	# - perl-core/CPAN
-	src_remove_dual_scripts cpan
-	# - perl-core/Encode
-	src_remove_dual_scripts enc2xs piconv
-	# - perl-core/ExtUtils-MakeMaker
-	src_remove_dual_scripts instmodsh
-	# - perl-core/PodParser
-	src_remove_dual_scripts pod2usage podchecker podselect
-	# - perl-core/Test-Harness
-	src_remove_dual_scripts prove
-
+	rm -f "${ED}"/usr/bin/pod2usage
+	rm -f "${ED}"/usr/bin/podchecker
+	rm -f "${ED}"/usr/bin/podselect
+	rm -f "${ED}"/usr/bin/prove
+	rm -f "${ED}"/usr/share/man/man1/pod2usage*
+	rm -f "${ED}"/usr/share/man/man1/podchecker*
+	rm -f "${ED}"/usr/share/man/man1/podselect*
+	rm -f "${ED}"/usr/share/man/man1/prove*
 	if use build ; then
 		src_remove_extra_files
 	fi
+
 }
 
-src_remove_dual_scripts() {
-	local i
-	for i in $@ ; do
-		rm -f "${ED}"/usr/bin/${i} \
-			"${ED}"/usr/share/man/man1/${i}.1 || die
-	done
-}
-
-src_remove_extra_files() {
+src_remove_extra_files()
+{
 	local prefix="./usr" # ./ is important
 	local bindir="${prefix}/bin"
 	local perlroot="${prefix}/$(get_libdir)/perl5" # perl installs per-arch dirs
@@ -709,7 +694,14 @@ pkg_postinst() {
 		cd /usr/include;
 		h2ph *
 		h2ph -r sys/* arpa/* netinet/* bits/* security/* asm/* gnu/* linux/* gentoo*
-		cd /usr/include/linux && h2ph *
+		if [[ -d /usr/include/linux ]] ; then
+		cd /usr/include/linux
+		h2ph *
+		fi
+		if use prefix ; then
+			cd "${EPREFIX}"/usr/include
+			h2ph *
+		fi
 	fi
 
 # This has been moved into a function because rumor has it that a future release
