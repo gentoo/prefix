@@ -93,6 +93,8 @@ src_prepare() {
 	epatch \
 		"${FILESDIR}/remove_toolset_from_targetname.patch"
 
+	epatch "${FILESDIR}"/${PN}-1.37.0-darwin-long-double.patch
+
 	# This enables building the boost.random library with /dev/urandom support
 	if [[ -e /dev/urandom ]] ; then
 		mkdir -p libs/random/build
