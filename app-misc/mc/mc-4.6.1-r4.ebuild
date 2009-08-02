@@ -1,7 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r4.ebuild,v 1.15 2008/09/14 02:04:27 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r4.ebuild,v 1.16 2009/07/31 16:46:45 ssuominen Exp $
 
+EAPI=1
 inherit flag-o-matic eutils
 
 U7Z_PV="4.29"
@@ -15,7 +16,7 @@ SRC_URI="http://www.ibiblio.org/pub/Linux/utils/file/managers/${PN}/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
-IUSE="7zip X gpm ncurses nls samba slang unicode"
+IUSE="7zip X gpm ncurses nls samba +slang unicode"
 
 RDEPEND="kernel_linux? ( >=sys-fs/e2fsprogs-1.19 )
 	ncurses? ( >=sys-libs/ncurses-5.2-r5 )
