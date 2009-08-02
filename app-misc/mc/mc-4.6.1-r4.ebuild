@@ -1,15 +1,15 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r4.ebuild,v 1.16 2009/07/31 16:46:45 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.1-r4.ebuild,v 1.18 2009/08/02 15:20:55 ssuominen Exp $
 
 EAPI=1
 inherit flag-o-matic eutils
 
 U7Z_PV="4.29"
 U7Z="u7z-${U7Z_PV}.tar.bz2"
-DESCRIPTION="GNU Midnight Commander cli-based file manager"
-HOMEPAGE="http://www.gnu.org/software/mc/"
-SRC_URI="http://www.ibiblio.org/pub/Linux/utils/file/managers/${PN}/${P}.tar.gz
+DESCRIPTION="GNU Midnight Commander is a text based file manager"
+HOMEPAGE="http://www.midnight-commander.org"
+SRC_URI="mirror://gentoo/${P}.tar.gz
 	mirror://gentoo/${P}-utf8-r2.patch.bz2
 	7zip? ( http://sgh-punk.narod.ru/files/u7z/${U7Z} )"
 

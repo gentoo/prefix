@@ -1,15 +1,15 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.11 2009/07/21 10:05:07 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.6.2_pre1.ebuild,v 1.13 2009/08/02 15:20:55 ssuominen Exp $
 
 EAPI=1
 inherit eutils toolchain-funcs
 
 MY_P=${P/_/-}
 
-DESCRIPTION="GNU Midnight Commander is a s-lang based file manager."
-HOMEPAGE="http://www.gnu.org/software/mc"
-SRC_URI="http://ftp.gnu.org/gnu/mc/${MY_P}.tar.gz
+DESCRIPTION="GNU Midnight Commander is a text based file manager"
+HOMEPAGE="http://www.midnight-commander.org"
+SRC_URI="mirror://gentoo/${MY_P}.tar.gz
 	mirror://gentoo/${MY_P}-patches-1.tbz2"
 
 LICENSE="GPL-2"
