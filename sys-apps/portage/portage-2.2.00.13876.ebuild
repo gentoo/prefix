@@ -9,7 +9,7 @@ inherit eutils multilib python
 DESCRIPTION="Prefix branch of the Portage Package Manager, used in Gentoo Prefix"
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
 IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
@@ -41,7 +41,7 @@ PDEPEND="
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # rsync-2.6.4 rdep is for the --filter option #167668
 
-SRC_ARCHIVES="http://dev.gentoo.org/~grobian/distfiles http://dev.gentoo.org/~zmedico/portage/archives"
+SRC_ARCHIVES="http://dev.gentoo.org/~zmedico/portage/archives http://dev.gentoo.org/~grobian/distfiles"
 
 prefix_src_archives() {
 	local x y
@@ -75,7 +75,9 @@ src_unpack() {
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
-	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13683-prefix-chaining.patch
+	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
+
+	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13830-prefix-chaining.patch
 }
 
 src_compile() {
@@ -152,7 +154,6 @@ src_install() {
 
 	exeinto ${portage_base}/pym/portage/tests
 	doexe  "${S}"/pym/portage/tests/runTests
-
 
 	if use linguas_pl; then
 		doman -i18n=pl "${S_PL}"/man/pl/*.[0-9]
