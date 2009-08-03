@@ -1,7 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.5.ebuild,v 1.2 2008/07/04 19:21:08 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.5.ebuild,v 1.3 2009/07/31 17:26:07 ssuominen Exp $
 
+EAPI=1
 inherit eutils autotools flag-o-matic
 
 DESCRIPTION="Scheme interpreter"
@@ -20,7 +21,7 @@ DEPEND=">=dev-libs/gmp-4.1 >=sys-devel/libtool-1.5.6 sys-devel/gettext"
 SLOT="12"
 MAJOR="1.8"
 
-IUSE="networking regex discouraged deprecated elisp nls debug-freelist debug-malloc debug threads"
+IUSE="networking +regex discouraged +deprecated elisp nls debug-freelist debug-malloc debug +threads"
 
 src_unpack() {
 	unpack ${A}; cd "${S}"
