@@ -1314,7 +1314,7 @@ gcc_do_configure() {
 	# reset EPREFIX to its realpath equivalent, as Portage resets EPREFIX
 	# between phases
 	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
-	if [[ ${EPREFIX} != ${realEPREFIX} ]] ; then
+	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]] ; then
 		export EPREFIX=${realEPREFIX}
 	fi
 
@@ -1785,7 +1785,7 @@ gcc-compiler_src_install() {
 	# Do the 'make install' from the build directory
 	cd "${WORKDIR}"/build
 	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
-	if [[ ${realEPREFIX} != ${EPREFIX} ]] ; then
+	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${realEPREFIX} != ${EPREFIX} ]] ; then
 		# compensate the changed prefix
 		S=${WORKDIR}/build \
 			emake -j1 DESTDIR="${D}"/nuke-me install || die
