@@ -1,6 +1,9 @@
 # ChangeLog for games-sports/bygfoot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-sports/bygfoot/ChangeLog,v 1.26 2009/07/11 04:05:21 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-sports/bygfoot/ChangeLog,v 1.27 2009/07/31 22:51:44 darkside Exp $
+
+  31 Jul 2009; Jeremy Olexa <darkside@gentoo.org> bygfoot-2.3.2.ebuild:
+  amd64 stable, bug 279532
 
 *bygfoot-2.3.2 (11 Jul 2009)
 
