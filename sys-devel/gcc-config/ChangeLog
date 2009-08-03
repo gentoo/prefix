@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.184 2009/05/20 17:43:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.185 2009/08/03 00:40:07 halcy0n Exp $
+
+  03 Aug 2009; Mark Loeser <halcy0n@gentoo.org> files/gcc-config-1.4.1:
+  Make --use-old work again, thanks to Brian Childs <brian AT rentec DOT
+  com>; bug #221109
 
   20 May 2009; Raúl Porcel <armin76@gentoo.org> gcc-config-1.4.1.ebuild:
   ia64 stable
