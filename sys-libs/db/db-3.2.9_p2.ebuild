@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-3.2.9_p2.ebuild,v 1.10 2008/10/26 12:27:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-3.2.9_p2.ebuild,v 1.11 2009/07/30 11:01:33 pauldv Exp $
 
 inherit eutils db
 
@@ -177,7 +177,7 @@ pkg_postrm () {
 }
 
 src_test() {
-	if has test $FEATURES; then
+	if use test; then
 		eerror "We'd love to be able to test, but the testsuite is broken in the 3.2.9 series"
 	fi
 }

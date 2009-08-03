@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.3.29_p1-r1.ebuild,v 1.11 2009/03/14 12:54:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.3.29_p1-r1.ebuild,v 1.12 2009/07/30 11:01:33 pauldv Exp $
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
@@ -105,7 +105,7 @@ src_compile() {
 	[[ -n ${CBUILD} ]] && myconf="${myconf} --build=${CBUILD}"
 
 	# the entire testsuite needs the TCL functionality
-	if use tcl && has test $FEATURES ; then
+	if use tcl && use test ; then
 		myconf="${myconf} --enable-test"
 	else
 		myconf="${myconf} --disable-test"

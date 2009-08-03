@@ -1,6 +1,14 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.286 2009/07/05 19:52:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.287 2009/07/30 11:01:33 pauldv Exp $
+
+  29 Jul 2009; Paul de Vrieze <pauldv@gentoo.org> db-3.2.9-r11.ebuild,
+  db-3.2.9_p2.ebuild, db-4.2.52_p4-r2.ebuild, db-4.2.52_p5.ebuild,
+  db-4.2.52_p5-r1.ebuild, db-4.3.29-r2.ebuild, db-4.3.29_p1.ebuild,
+  db-4.3.29_p1-r1.ebuild, db-4.4.20_p4.ebuild, db-4.4.20_p4-r1.ebuild,
+  db-4.5.20_p2.ebuild, db-4.5.20_p2-r1.ebuild, db-4.6.21_p4.ebuild:
+  Fix bug #278962 and don't use the FEATURES variable in the ebuild when
+  checking for the test feature.
 
   05 Jul 2009; Mike Frysinger <vapier@gentoo.org> db-4.7.25_p4.ebuild:
   Add --with-mutex option for arm systems as suggested by thomasq #273906.
