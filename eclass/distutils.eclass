@@ -90,81 +90,103 @@ distutils_src_install() {
 	# Mark the package to be rebuilt after a python upgrade.
 	python_need_rebuild
 
-	# need this for python-2.5 + setuptools in cases where
-	# a package uses distutils but does not install anything
-	# in site-packages. (eg. dev-java/java-config-2.x)
-	# - liquidx (14/08/2006)
-	pylibdir="$(${python} -c 'from distutils.sysconfig import get_python_lib; print get_python_lib()')"
-	# what comes out of python, includes our prefix, and the code below doesn't
-	# keep that in mind -- grobian
-	pylibdir=/${pylibdir#${EPREFIX}}
 	[ -n "${pylibdir}" ] && dodir "${pylibdir}"
 
-	if has_version ">=dev-lang/python-2.3"; then
-		${python} setup.py install --root="${D}" --no-compile "$@" || die
+	if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+		install_modules() {
+			# need this for python-2.5 + setuptools in cases where
+			# a package uses distutils but does not install anything
+			# in site-packages. (eg. dev-java/java-config-2.x)
+			# - liquidx (14/08/2006)
+			pylibdir="$("$(get_python)" -c 'from distutils.sysconfig import get_python_lib; print(get_python_lib())')"
+			# what comes out of python, includes our prefix, and the code below doesn't
+			# keep that in mind -- grobian
+			pylibdir=/${pylibdir#${EPREFIX}}
+			[[ -n "${pylibdir}" ]] && dodir "${pylibdir}"
+
+			echo "$(get_python)" setup.py build -b "build-${PYTHON_ABI}" install --root="${D}" --no-compile "$@"
+			"$(get_python)" setup.py build -b "build-${PYTHON_ABI}" install --root="${D}" --no-compile "$@"
+		}
+		python_execute_function install_modules "$@"
 	else
-		${python} setup.py install --root="${D}" "$@" || die
+		# need this for python-2.5 + setuptools in cases where
+		# a package uses distutils but does not install anything
+		# in site-packages. (eg. dev-java/java-config-2.x)
+		# - liquidx (14/08/2006)
+		pylibdir="$(${python} -c 'from distutils.sysconfig import get_python_lib; print(get_python_lib())')"
+		# what comes out of python, includes our prefix, and the code below doesn't
+		# keep that in mind -- grobian
+		pylibdir=/${pylibdir#${EPREFIX}}
+		[[ -n "${pylibdir}" ]] && dodir "${pylibdir}"
+
+		${python} setup.py install --root="${D}" --no-compile "$@" || die "python setup.py install failed"
 	fi
 
 	DDOCS="CHANGELOG KNOWN_BUGS MAINTAINERS PKG-INFO CONTRIBUTORS TODO NEWS"
 	DDOCS="${DDOCS} Change* MANIFEST* README* AUTHORS"
 
+	local doc
 	for doc in ${DDOCS}; do
-		[ -s "$doc" ] && dodoc $doc
+		[[ -s "$doc" ]] && dodoc $doc
 	done
 
-	[ -n "${DOCS}" ] && dodoc ${DOCS}
+	[[ -n "${DOCS}" ]] && dodoc ${DOCS}
 }
 
 # @FUNCTION: distutils_pkg_postrm
 # @DESCRIPTION:
 # Generic pyc/pyo cleanup script. This function is exported.
 distutils_pkg_postrm() {
-	local moddir pylibdir pymod
+	local pylibdir pymod
 	if [[ -z "${PYTHON_MODNAME}" ]]; then
 		for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
-			if [[ -d "${pylibdir}"/site-packages/${PN} ]]; then
-				PYTHON_MODNAME=${PN}
+			if [[ -d "${pylibdir}/site-packages/${PN}" ]]; then
+				PYTHON_MODNAME="${PN}"
 			fi
 		done
 	fi
 
-	if has_version ">=dev-lang/python-2.3"; then
-		ebegin "Performing Python Module Cleanup .."
-		if [[ -n "${PYTHON_MODNAME}" ]]; then
-			for pymod in ${PYTHON_MODNAME}; do
-				for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
-					if [[ -d "${pylibdir}"/site-packages/${pymod} ]]; then
-						python_mod_cleanup "${pylibdir#${EROOT}}"/site-packages/${pymod}
+	ebegin "Performing cleanup of Python modules..."
+	if [[ -n "${PYTHON_MODNAME}" ]]; then
+		for pymod in ${PYTHON_MODNAME}; do
+			for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
+				if [[ -d "${pylibdir}/site-packages/${pymod}" ]]; then
+					if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+						python_mod_cleanup "${pymod}"
+					else
+						python_mod_cleanup "${pylibdir#${EROOT}}/site-packages/${pymod}"
 					fi
-				done
+				fi
 			done
-		else
-			python_mod_cleanup
-		fi
-		eend 0
+		done
+	else
+		python_mod_cleanup
 	fi
+	eend 0
 }
 
 # @FUNCTION: distutils_pkg_postinst
 # @DESCRIPTION:
 # This is a generic optimization, you should override it if your package
-# installs things in another directory. This function is exported
+# installs modules in another directory. This function is exported.
 distutils_pkg_postinst() {
 	local pylibdir pymod
 	if [[ -z "${PYTHON_MODNAME}" ]]; then
 		for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
-			if [[ -d "${pylibdir}"/site-packages/${PN} ]]; then
-				PYTHON_MODNAME=${PN}
+			if [[ -d "${pylibdir}/site-packages/${PN}" ]]; then
+				PYTHON_MODNAME="${PN}"
 			fi
 		done
 	fi
 
-	if has_version ">=dev-lang/python-2.3"; then
+	if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+		for pymod in ${PYTHON_MODNAME}; do
+			python_mod_optimize "${pymod}"
+		done
+	else
 		python_version
 		for pymod in ${PYTHON_MODNAME}; do
-			python_mod_optimize \
-				/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}
+			python_mod_optimize "/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}"
 		done
 	fi
 }
