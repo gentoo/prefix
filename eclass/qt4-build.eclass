@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.42 2009/07/13 19:55:30 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.43 2009/07/31 22:18:31 tommy Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -333,6 +333,7 @@ qt4-build_src_configure() {
 
 	echo ./configure ${myconf}
 	./configure ${myconf} || die "./configure failed"
+	myconf=""
 }
 
 # @FUNCTION: qt4-build_src_compile

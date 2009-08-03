@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/selinux-policy-2.eclass,v 1.3 2007/07/07 16:21:07 kaiowas Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/selinux-policy-2.eclass,v 1.4 2009/08/02 02:58:25 pebenito Exp $
 
 # Eclass for installing SELinux policy, and optionally
 # reloading the reference-policy based modules
@@ -36,13 +36,13 @@ selinux-policy-2_src_unpack() {
 	done
 
 	for i in ${POLICY_TYPES}; do
-		mkdir ${S}/${i}
-		cp ${S}/refpolicy/doc/Makefile.example ${S}/${i}/Makefile
+		mkdir "${S}"/${i}
+		cp "${S}"/refpolicy/doc/Makefile.example "${S}"/${i}/Makefile
 
-		cp ${modfiles} ${S}/${i}
+		cp ${modfiles} "${S}"/${i}
 
 		if [ -n "${POLICY_PATCH}" ]; then
-			cd ${S}/${i}
+			cd "${S}"/${i}
 			epatch "${POLICY_PATCH}" || die "failed patch ${i}"
 		fi
 
@@ -53,7 +53,7 @@ selinux-policy-2_src_compile() {
 	[ -z "${POLICY_TYPES}" ] && local POLICY_TYPES="strict targeted"
 
 	for i in ${POLICY_TYPES}; do
-		make NAME=$i -C ${S}/${i} || die "${i} compile failed"
+		make NAME=$i -C "${S}"/${i} || die "${i} compile failed"
 	done
 }
 
@@ -65,7 +65,7 @@ selinux-policy-2_src_install() {
 		for j in ${MODS}; do
 			echo "Installing ${i} ${j} policy package"
 			insinto ${BASEDIR}/${i}
-			doins ${S}/${i}/${j}.pp
+			doins "${S}"/${i}/${j}.pp
 		done
 	done
 }

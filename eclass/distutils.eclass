@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.55 2009/02/18 14:43:31 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.57 2009/08/02 00:30:29 arfrever Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -52,7 +52,7 @@ distutils_src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	has ${EAPI:-0} 0 1 && distutils_src_prepare
+	has "${EAPI:-0}" 0 1 && distutils_src_prepare
 }
 
 # @FUNCTION: distutils_src_prepare
@@ -69,7 +69,15 @@ distutils_src_prepare() {
 # @DESCRIPTION:
 # The distutils src_compile function, this function is exported
 distutils_src_compile() {
-	${python} setup.py build "$@" || die "compilation failed"
+	if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+		build_modules() {
+			echo "$(get_python)" setup.py build -b "build-${PYTHON_ABI}" "$@"
+			"$(get_python)" setup.py build -b "build-${PYTHON_ABI}" "$@"
+		}
+		python_execute_function build_modules "$@"
+	else
+		${python} setup.py build "$@" || die "compilation failed"
+	fi
 }
 
 # @FUNCTION: distutils_src_install
@@ -175,4 +183,3 @@ distutils_python_version() {
 distutils_python_tkinter() {
 	python_tkinter_exists
 }
-

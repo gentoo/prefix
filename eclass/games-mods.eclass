@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-mods.eclass,v 1.17 2008/02/13 19:54:33 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-mods.eclass,v 1.18 2009/08/02 07:29:50 mr_bones_ Exp $
 
 # Variables to specify in an ebuild which uses this eclass:
 # GAME - (doom3, quake4 or ut2004, etc), unless ${PN} starts with e.g. "doom3-"
@@ -91,13 +91,11 @@ dir=${GAMES_DATADIR}/${GAME}
 Ddir=${D}/${dir}
 
 default_client() {
-	if use opengl || ! use dedicated
-	then
+	if use opengl || ! use dedicated ; then
 		# Use opengl by default
 		return 0
-	else
-		return 1
 	fi
+	return 1
 }
 
 games-mods_pkg_setup() {
@@ -105,28 +103,20 @@ games-mods_pkg_setup() {
 
 	games_pkg_setup
 
-	if has_version ${CATEGORY}/${GAME}
-	then
-		if use dedicated && ! built_with_use ${CATEGORY}/${GAME} dedicated
-		then
+	if has_version ${CATEGORY}/${GAME} ; then
+		if use dedicated && ! built_with_use ${CATEGORY}/${GAME} dedicated ; then
 			die "You must merge ${CATEGORY}/${GAME} with USE=dedicated!"
 		fi
-		if has_version ${CATEGORY}/${GAME}-bin
-		then
+		if has_version ${CATEGORY}/${GAME}-bin ; then
 			if use dedicated && \
-			! built_with_use ${CATEGORY}/${GAME}-bin dedicated
-			then
+			! built_with_use ${CATEGORY}/${GAME}-bin dedicated ; then
 				die "You must merge ${CATEGORY}/${GAME}-bin with USE=dedicated!"
 			fi
 		fi
-	elif has_version ${CATEGORY}/${GAME}-bin
-	then
-		if use dedicated && ! built_with_use ${CATEGORY}/${GAME}-bin dedicated
-		then
+	elif has_version ${CATEGORY}/${GAME}-bin ; then
+		if use dedicated && ! built_with_use ${CATEGORY}/${GAME}-bin dedicated ; then
 			die "You must merge ${CATEGORY}/${GAME}-bin with USE=dedicated!"
 		fi
-#	else
-#		die "${CATEGORY}/${GAME} not installed!"
 	fi
 }
 
@@ -158,8 +148,7 @@ games-mods_src_unpack() {
 		do
 			for ext in tar.bz2 tar.gz tbz2 tgz
 			do
-				if [[ -e "${name}.${ext}" ]]
-				then
+				if [[ -e "${name}.${ext}" ]] ; then
 					tar xf "${name}.${ext}" -C "${S}"/unpack \
 						|| die "uncompressing tarball"
 					# Remove the tarball after we unpack it
@@ -177,14 +166,11 @@ games-mods_src_install() {
 	INS_DIR=${dir}
 
 	# We check if we have a specific MOD_DIR listed
-	if [[ -n "${MOD_DIR}" ]]
-	then
+	if [[ -n "${MOD_DIR}" ]] ; then
 		# Am installing into a new subdirectory of the game
-		if [[ -d "${S}"/unpack/"${MOD_DIR}" ]]
-		then
+		if [[ -d "${S}"/unpack/"${MOD_DIR}" ]] ; then
 			INS_DIR=${dir}
-		elif [[ -d "${S}"/"${MOD_DIR}" ]]
-		then
+		elif [[ -d "${S}"/"${MOD_DIR}" ]] ; then
 			S=${WORKDIR}/${MOD_DIR}
 			INS_DIR=${dir}/${MOD_DIR}
 		fi
@@ -195,16 +181,13 @@ games-mods_src_install() {
 	# If we have a README, install it
 	for readme in README*
 	do
-		if [[ -e "${readme}" ]]
-		then
+		if [[ -s "${readme}" ]] ; then
 			dodoc "${readme}" || die "dodoc failed"
 		fi
 	done
 
-	if default_client
-	then
-		if [[ -n "${MOD_ICON}" ]]
-		then
+	if default_client ; then
+		if [[ -n "${MOD_ICON}" ]] ; then
 			# Install custom icon
 			MOD_ICON_EXT=${MOD_ICON##*.}
 			newicon "${MOD_ICON}" "${PN}.${MOD_ICON_EXT}"
@@ -222,18 +205,15 @@ games-mods_src_install() {
 		fi
 
 		# Set up command-line and desktop menu entries
-		if [[ -n "${MOD_BINS}" ]]
-		then
+		if [[ -n "${MOD_BINS}" ]] ; then
 			for binary in ${MOD_BINS}
 			do
-				if [[ -n "${MOD_DIR}" ]]
-				then
+				if [[ -n "${MOD_DIR}" ]] ; then
 					games_make_wrapper "${GAME_EXE}-${MOD_BINS}" \
 						"${GAME_EXE} ${SELECT_MOD}${MOD_DIR}" "${dir}" "${dir}"
 					make_desktop_entry "${GAME_EXE}-${MOD_BINS}" \
 						"${GAME_TITLE} - ${MOD_NAME}" "${MOD_ICON}"
-				elif [[ -e "${S}"/bin/"${binary}" ]]
-				then
+				elif [[ -e "${S}"/bin/"${binary}" ]] ; then
 					exeinto "${dir}"
 					newexe bin/${binary} ${GAME_EXE}-${binary} \
 						|| die "newexe failed"
@@ -242,16 +222,14 @@ games-mods_src_install() {
 					# We want our wrapper to use the libraries/starting
 					# directory of our game.  If the game is in
 					# GAMES_PREFIX_OPT, then we want to start there.
-					if [[ -d "${GAMES_PREFIX_OPT}"/${GAME} ]]
-					then
+					if [[ -d "${GAMES_PREFIX_OPT}"/${GAME} ]] ; then
 						GAME_DIR="${GAMES_PREFIX_OPT}/${GAME}"
 					else
 						GAME_DIR="${dir}"
 					fi
 					games_make_wrapper "${GAME_EXE}-${binary}" \
 						./"${GAME_EXE}-${binary}" "${GAME_DIR}" "${GAME_DIR}"
-					if [[ "${bin_name}" == "${binary}" ]]
-					then
+					if [[ "${bin_name}" == "${binary}" ]] ; then
 						bin_name=${MOD_NAME}
 					else
 						for tmp1 in ${bin_name}
@@ -270,10 +248,9 @@ games-mods_src_install() {
 					rm -f bin/${binary}
 				fi
 			done
-		# We don't want to leave the binary directory around
-		rm -rf bin
-		elif [[ -n "${MOD_DIR}" ]]
-		then
+			# We don't want to leave the binary directory around
+			rm -rf bin
+		elif [[ -n "${MOD_DIR}" ]] ; then
 			games_make_wrapper "${GAME_EXE}-${MOD_DIR}" \
 				"${GAME_EXE} ${SELECT_MOD}${MOD_DIR}" "${dir}" "${dir}"
 			make_desktop_entry "${GAME_EXE}-${MOD_DIR}" \
@@ -282,8 +259,7 @@ games-mods_src_install() {
 			# we only look for quake3 here.
 			case "${GAME_EXE}" in
 				"quake3")
-					if has_version games-fps/quake3-bin
-					then
+					if has_version games-fps/quake3-bin ; then
 						games_make_wrapper "${GAME_EXE}-bin-${MOD_DIR}" \
 							"${GAME_EXE}-bin ${SELECT_MOD}${MOD_DIR}" \
 							"${dir}" "${dir}"
@@ -297,16 +273,14 @@ games-mods_src_install() {
 	fi
 
 	# Copy our unpacked files, if it exists
-	if [[ -d "${S}"/unpack ]]
-	then
+	if [[ -d "${S}"/unpack ]] ; then
 		insinto "${INS_DIR}"
 		doins -r "${S}"/unpack/* || die "copying files"
 		rm -rf "${S}"/unpack
 	fi
 
 	# We expect anything not wanted to have been deleted by the ebuild
-	if [[ ! -z $(ls "${S}"/* 2> /dev/null) ]]
-	then
+	if [[ ! -z $(ls "${S}"/* 2> /dev/null) ]] ; then
 		insinto "${INS_DIR}"
 		doins -r * || die "doins -r failed"
 	fi
@@ -369,18 +343,15 @@ games-mods_src_install() {
 					cp -a "${D}"/"${INS_DIR}"/${i} \
 						${D}/"${GAMES_PREFIX_OPT}"/"${GAME}"/${i} || die
 			done
-		elif [[ ! -f "${GAMES_PREFIX_OPT}"/"${GAME}"/${mod} ]]
-		then
+		elif [[ ! -f "${GAMES_PREFIX_OPT}"/"${GAME}"/${mod} ]] ; then
 			elog "Creating symlink for ${mod}"
 			dosym "${INS_DIR}" "${GAMES_PREFIX_OPT}"/"${GAME}" || die
 		fi
 	fi
 
-	if use dedicated
-	then
+	if use dedicated ; then
 		dodir "${GAMES_STATEDIR}"
-		if [[ -e ${FILESDIR}/server.cfg ]]
-		then
+		if [[ -e ${FILESDIR}/server.cfg ]] ; then
 			insinto "${GAMES_SYSCONFDIR}"/${GAME}/${MOD_DIR}
 			doins "${FILESDIR}"/server.cfg || die "Copying server config"
 			case ${GAME} in
@@ -422,25 +393,21 @@ games-mods_src_install() {
 
 games-mods_pkg_postinst() {
 	games_pkg_postinst
-	if default_client
-	then
-		if [[ -n "${MOD_BINS}" ]]
-		then
+	if default_client ; then
+		if [[ -n "${MOD_BINS}" ]] ; then
 			for binary in ${MOD_BINS}
 			do
 				elog "To play this mod run:"
 				elog " ${GAME_EXE}-${binary}"
 				echo
 			done
-		elif [[ -n "${MOD_DIR}" ]]
-		then
+		elif [[ -n "${MOD_DIR}" ]] ; then
 			elog "To play this mod run:"
 			elog " ${GAME_EXE}-${MOD_DIR}"
 			echo
 		fi
 	fi
-	if use dedicated
-	then
+	if use dedicated ; then
 		elog "To launch a dedicated server run:"
 		elog " ${GAME_EXE}-${MOD_DIR}-ded"
 		echo
@@ -485,8 +452,7 @@ EOF
 }
 
 games-mods_make_conf.d() {
-	if [[ -e ${FILESDIR}/${GAME_EXE}-${MOD_DIR}.conf.d ]]
-	then
+	if [[ -e ${FILESDIR}/${GAME_EXE}-${MOD_DIR}.conf.d ]] ; then
 		cp "${FILESDIR}"/${GAME_EXE}-${MOD_DIR}.conf.d \
 			"${T}"/${GAME_EXE}-${MOD_DIR}-ded.conf.d
 		return 0
