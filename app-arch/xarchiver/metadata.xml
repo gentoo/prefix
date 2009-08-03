@@ -2,6 +2,5 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>xfce</herd>
-<longdescription>Archive manager for 7zip, arj, bzip2, gzip,
-	iso, rar, lha, deb, rpm, tar and zip formats.</longdescription>
+<longdescription>Archive manager for 7zip, arj, bzip2, gzip, iso, rar, lha, deb, rpm, tar and zip formats.</longdescription>
 </pkgmetadata>
