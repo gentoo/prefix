@@ -1,7 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.17.ebuild,v 1.3 2009/03/17 15:48:59 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/orbit-2.14.17.ebuild,v 1.4 2009/08/02 20:24:50 eva Exp $
 
+EAPI="2"
 GCONF_DEBUG="no"
 
 inherit gnome2 toolchain-funcs eutils autotools
@@ -40,6 +41,14 @@ src_unpack() {
 	fi
 
 	eautoreconf # required for winnt
+}
+
+src_prepare() {
+	gnome2_src_prepare
+
+	# Fix wrong process kill, bug #268142
+	sed "s:killall lt-timeout-server:killall timeout-server:" \
+		-i test/timeout.sh || die "sed failed"
 }
 
 src_compile() {
