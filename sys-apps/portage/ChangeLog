@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.13878 (03 Aug 2009)
+
+  03 Aug 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.13876.ebuild, +portage-2.2.00.13878.ebuild:
+  Replace broken version by new one, fixing bug #280189 (setsid script not
+  Prefix-aware), and the backtrace in comment 21 of bug #279550
+
 *portage-2.2.00.13876 (02 Aug 2009)
 
   02 Aug 2009; Fabian Groffen <grobian@gentoo.org>
