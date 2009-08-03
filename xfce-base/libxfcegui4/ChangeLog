@@ -1,6 +1,10 @@
 # ChangeLog for xfce-base/libxfcegui4
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/ChangeLog,v 1.136 2009/07/27 17:31:26 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfcegui4/ChangeLog,v 1.137 2009/08/01 20:50:49 ssuominen Exp $
+
+  01 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  libxfcegui4-4.6.1-r1.ebuild:
+  Use xfconf.eclass.
 
   27 Jul 2009; nixnut <nixnut@gentoo.org> libxfcegui4-4.6.1.ebuild:
   ppc stable #265587
