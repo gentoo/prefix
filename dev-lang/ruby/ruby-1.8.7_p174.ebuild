@@ -1,7 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p174.ebuild,v 1.1 2009/06/18 13:12:32 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p174.ebuild,v 1.2 2009/07/31 17:12:43 ssuominen Exp $
 
+EAPI=1
 inherit autotools eutils flag-o-matic multilib versionator
 
 MY_P="${PN}-$(replace_version_separator 3 '-')"
@@ -17,7 +18,7 @@ SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2
 
 LICENSE="|| ( Ruby GPL-2 )"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
+IUSE="+berkdb debug doc emacs examples +gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
 
 RDEPEND="
 	berkdb? ( sys-libs/db )

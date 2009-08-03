@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1_p129-r1.ebuild,v 1.2 2009/06/20 17:11:24 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1_p129-r1.ebuild,v 1.3 2009/07/31 17:12:43 ssuominen Exp $
 
 EAPI=2
 
@@ -24,7 +24,7 @@ SRC_URI="mirror://ruby/${MY_P}.tar.bz2"
 
 LICENSE="|| ( Ruby GPL-2 )"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl tk xemacs"
+IUSE="+berkdb debug doc emacs examples +gdbm ipv6 rubytests socks5 ssl tk xemacs"
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
