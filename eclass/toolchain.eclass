@@ -19,7 +19,7 @@ FEATURES=${FEATURES/multilib-strict/}
 toolchain_pkg_setup() {
 	# yuck, but how else to do it portable?
 	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
-	if [[ ${EPREFIX} != ${realEPREFIX} ]] ; then
+	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]] ; then
 		ewarn "Your \${EPREFIX} contains one or more symlinks.  GCC has a"
 		ewarn "bug which prevents it from working properly when there are"
 		ewarn "symlinks in your \${EPREFIX}."
