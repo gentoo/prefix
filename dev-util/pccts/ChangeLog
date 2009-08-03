@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/pccts
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pccts/ChangeLog,v 1.26 2009/01/20 22:21:56 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pccts/ChangeLog,v 1.27 2009/08/01 01:56:07 vostorga Exp $
+
+  01 Aug 2009; <vostorga@gentoo.org> pccts-1.33.33.ebuild:
+  Respecting CC variable, closes bug #244032
 
   20 Jan 2009; Alexis Ballier <aballier@gentoo.org> pccts-1.33.33.ebuild:
   keyword ~x86-fbsd

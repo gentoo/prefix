@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pccts/pccts-1.33.33.ebuild,v 1.21 2009/01/20 22:21:56 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pccts/pccts-1.33.33.ebuild,v 1.22 2009/08/01 01:56:07 vostorga Exp $
 
 inherit eutils
 
@@ -14,6 +14,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="app-arch/unzip"
+RDEPEND=""
 
 S=${WORKDIR}/${PN}
 
@@ -24,7 +25,7 @@ src_unpack() {
 }
 
 src_compile() {
-	emake COPT="${CFLAGS}" || die "compilation failed"
+	emake CC="$(tc-getCC)" COPT="${CFLAGS}" || die "compilation failed"
 }
 
 src_install() {
