@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.2.ebuild,v 1.14 2009/05/19 23:12:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.10.2.ebuild,v 1.16 2009/08/02 12:19:49 flameeyes Exp $
 
 EAPI="1"
 
@@ -85,17 +85,18 @@ src_compile() {
 		-mandir "${EPREFIX}"/usr/share/man \
 		--with-pthread ${myconf} || die "configure failed!"
 
-	make world || die "make world failed!"
+	# bug #279968
+	emake -j1 world || die "make world failed!"
 
 	# Native code generation can be disabled now
 	if use ocamlopt ; then
-		make opt || die "make opt failed!"
-		make opt.opt || die "make opt.opt failed!"
+		emake -j1 opt || die "make opt failed!"
+		emake -j1 opt.opt || die "make opt.opt failed!"
 	fi
 }
 
 src_install() {
-	make BINDIR="${ED}"/usr/bin \
+	emake -j1 BINDIR="${ED}"/usr/bin \
 		LIBDIR="${ED}"/usr/$(get_libdir)/ocaml \
 		MANDIR="${ED}"/usr/share/man \
 		install || die "make install failed!"
