@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.2.1.ebuild,v 1.2 2009/07/27 19:00:13 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/network-2.2.1.ebuild,v 1.3 2009/07/31 12:06:05 chainsaw Exp $
 
 CABAL_FEATURES="lib profile haddock"
 inherit base haskell-cabal autotools
