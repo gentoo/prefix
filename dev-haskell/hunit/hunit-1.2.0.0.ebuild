@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/hunit-1.2.0.0.ebuild,v 1.4 2008/10/03 23:46:30 fmccor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/hunit-1.2.0.0.ebuild,v 1.5 2009/07/30 20:50:29 kolmodin Exp $
 
 CABAL_FEATURES="lib profile haddock"
 inherit base haskell-cabal
@@ -18,8 +18,15 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 DEPEND=">=dev-lang/ghc-6.4"
+RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
+
+src_unpack() {
+	base_src_unpack
+
+	sed -e 's/base/base<4/' -i "${S}/${MY_PN}.cabal"
+}
 
 src_install () {
 	cabal_src_install
