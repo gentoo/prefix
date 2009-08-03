@@ -1,6 +1,28 @@
 # ChangeLog for app-text/docbook-xml-dtd
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/ChangeLog,v 1.63 2009/07/27 17:13:57 nixnut Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/ChangeLog,v 1.68 2009/08/03 03:46:10 jer Exp $
+
+  03 Aug 2009; Jeroen Roovers <jer@gentoo.org>
+  docbook-xml-dtd-4.2-r2.ebuild, docbook-xml-dtd-4.3-r1.ebuild,
+  docbook-xml-dtd-4.5.ebuild:
+  Stable for HPPA (bug #233157).
+
+  02 Aug 2009; Raúl Porcel <armin76@gentoo.org>
+  docbook-xml-dtd-4.2-r2.ebuild, docbook-xml-dtd-4.3-r1.ebuild,
+  docbook-xml-dtd-4.5.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #233157
+
+  31 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  docbook-xml-dtd-4.5.ebuild:
+  stable x86, bug 233157
+
+  31 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  docbook-xml-dtd-4.3-r1.ebuild:
+  stable x86, bug 233157
+
+  31 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  docbook-xml-dtd-4.2-r2.ebuild:
+  stable x86, bug 233157
 
   27 Jul 2009; nixnut <nixnut@gentoo.org> docbook-xml-dtd-4.5.ebuild:
   ppc stable #277843
