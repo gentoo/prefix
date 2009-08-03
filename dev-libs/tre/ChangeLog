@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/tre
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/tre/ChangeLog,v 1.38 2008/02/04 18:36:14 drac Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/tre/ChangeLog,v 1.39 2009/08/01 19:06:26 darkside Exp $
+
+  01 Aug 2009; Jeremy Olexa <darkside@gentoo.org> -tre-0.7.2.ebuild,
+  -tre-0.7.4.ebuild:
+  remove old
 
   04 Feb 2008; Samuli Suominen <drac@gentoo.org> tre-0.7.5.ebuild:
   amd64 stable wrt #208142
