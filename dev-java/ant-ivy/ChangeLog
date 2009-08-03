@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/ant-ivy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-ivy/ChangeLog,v 1.10 2009/06/13 12:56:41 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-ivy/ChangeLog,v 1.11 2009/08/02 10:20:10 maekke Exp $
+
+  02 Aug 2009; Markus Meier <maekke@gentoo.org> ant-ivy-2.0.0.ebuild:
+  amd64/x86 stable, bug #279726
 
 *ant-ivy-1.4.1 (13 Jun 2009)
 

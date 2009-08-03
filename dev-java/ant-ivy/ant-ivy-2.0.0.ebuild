@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-ivy/ant-ivy-2.0.0.ebuild,v 1.1 2009/05/10 15:26:26 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-ivy/ant-ivy-2.0.0.ebuild,v 1.2 2009/08/02 10:20:10 maekke Exp $
 
 EAPI="2"
 
