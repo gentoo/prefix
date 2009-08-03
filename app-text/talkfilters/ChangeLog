@@ -1,6 +1,9 @@
 # ChangeLog for app-text/talkfilters
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/talkfilters/ChangeLog,v 1.31 2008/10/27 19:09:02 jer Exp $
+# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/talkfilters/ChangeLog,v 1.32 2009/08/01 03:09:12 darkside Exp $
+
+  01 Aug 2009; Jeremy Olexa <darkside@gentoo.org> -talkfilters-2.3.7.ebuild:
+  remove old
 
   27 Oct 2008; Jeroen Roovers <jer@gentoo.org> talkfilters-2.3.8.ebuild:
   Stable for HPPA (bug #244254).
