@@ -1,6 +1,24 @@
 # ChangeLog for sys-auth/pam_ssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_ssh/ChangeLog,v 1.29 2009/07/29 21:16:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_ssh/ChangeLog,v 1.34 2009/08/02 15:16:43 ranger Exp $
+
+  02 Aug 2009; Brent Baude <ranger@gentoo.org> pam_ssh-1.97-r1.ebuild:
+  Marking pam_ssh-1.97-r1 ppc64 for bug 263579
+
+  02 Aug 2009; Jeroen Roovers <jer@gentoo.org> pam_ssh-1.97-r1.ebuild:
+  Stable for HPPA (bug #263579).
+
+  02 Aug 2009; Raúl Porcel <armin76@gentoo.org> pam_ssh-1.97-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #263579
+
+  02 Aug 2009; Markus Meier <maekke@gentoo.org> pam_ssh-1.97-r1.ebuild:
+  amd64/x86 stable, bug #263579
+
+*pam_ssh-1.97-r1 (01 Aug 2009)
+
+  01 Aug 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +pam_ssh-1.97-r1.ebuild, +files/pam_ssh-1.97-doublefree.patch:
+  Add patch to avoid doublefree, thanks to TGL in bug #279538.
 
   29 Jul 2009; Markus Meier <maekke@gentoo.org> pam_ssh-1.97.ebuild:
   amd64/x86 stable, bug #263579
