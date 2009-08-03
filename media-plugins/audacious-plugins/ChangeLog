@@ -1,6 +1,13 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.128 2009/07/26 23:05:00 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.130 2009/08/02 18:29:32 nixnut Exp $
+
+  02 Aug 2009; nixnut <nixnut@gentoo.org> audacious-plugins-2.1.ebuild:
+  ppc stable #279238
+
+  02 Aug 2009; Markus Meier <maekke@gentoo.org>
+  audacious-plugins-2.1.ebuild:
+  x86 stable, bug #279238
 
   26 Jul 2009; <chainsaw@gentoo.org> audacious-plugins-2.1-r1.ebuild:
   Running eautoreconf is advisable if one patches the configure system. Do
