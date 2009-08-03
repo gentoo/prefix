@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.8.ebuild,v 1.1 2009/06/24 17:47:24 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.8.ebuild,v 1.2 2009/08/02 19:23:31 darkside Exp $
 
 inherit eutils multilib toolchain-funcs versionator
 
@@ -61,7 +61,7 @@ src_compile() {
 }
 
 src_install () {
-	# Their build system is royally fucked, as usual
+	# Their build system is royally confusing, as usual
 	MINOR_VERSION=${MIN_PV} # Used for .so version
 	cd "${S}"/build
 	emake DESTDIR="${D}" install || die "emake install failed"

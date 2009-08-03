@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/nspr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.123 2009/06/24 17:47:24 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.124 2009/08/02 19:23:31 darkside Exp $
+
+  02 Aug 2009; Jeremy Olexa <darkside@gentoo.org> nspr-4.6.8.ebuild,
+  nspr-4.7.3.ebuild, nspr-4.7.4.ebuild, nspr-4.8.ebuild:
+  clean up non-acceptable language
 
 *nspr-4.8 (24 Jun 2009)
 

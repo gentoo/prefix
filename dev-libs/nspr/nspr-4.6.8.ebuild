@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.6.8.ebuild,v 1.12 2009/04/29 20:56:27 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.6.8.ebuild,v 1.13 2009/08/02 19:23:31 darkside Exp $
 
 inherit eutils multilib toolchain-funcs
 
@@ -50,7 +50,7 @@ src_compile() {
 }
 
 src_install () {
-	# Their build system is royally fucked, as usual
+	# Their build system is royally confusing, as usual
 	MINOR_VERSION=6
 	cd "${S}/build"
 	make install
