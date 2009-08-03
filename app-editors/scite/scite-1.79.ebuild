@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/scite-1.77.ebuild,v 1.1 2009/01/08 22:39:58 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/scite-1.79.ebuild,v 1.1 2009/08/02 23:27:22 nelchael Exp $
 
 inherit toolchain-funcs eutils
 
@@ -29,6 +29,7 @@ src_unpack() {
 		-e "s#^CXXFLAGS=#CXXFLAGS=${CXXFLAGS} #" \
 		-e "s#^\(CXXFLAGS=.*\)-Os#\1#" \
 		-e "s#^CC =\(.*\)#CC = $(tc-getCXX)#" \
+		-e "s#-Os##" \
 		|| die "error patching makefile"
 
 	cd "${S}"
@@ -40,6 +41,7 @@ src_unpack() {
 		-e "s#^CC =\(.*\)#CC = $(tc-getCXX)#" \
 		-e 's#${ED}##' \
 		-e 's#-g root#-g 0#' \
+		-e "s#-Os##" \
 		|| die "error patching makefile"
 	cd "${WORKDIR}"
 	epatch "${FILESDIR}/${P}-install.patch"
