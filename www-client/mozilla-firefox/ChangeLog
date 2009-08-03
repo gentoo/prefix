@@ -1,6 +1,25 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.522 2009/07/22 17:48:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.525 2009/08/02 18:55:46 darkside Exp $
+
+*mozilla-firefox-3.5.1-r2 (02 Aug 2009)
+
+  02 Aug 2009; Jeremy Olexa <darkside@gentoo.org>
+  -mozilla-firefox-3.5.1.ebuild, -mozilla-firefox-3.5.1-r1.ebuild,
+  +mozilla-firefox-3.5.1-r2.ebuild, +files/firefox-default-prefs.js:
+  bug fixes from mozilla overlay, proxy commit for mozilla team
+
+  02 Aug 2009; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  -mozilla-firefox-3.0.10.ebuild, mozilla-firefox-3.0.11.ebuild,
+  mozilla-firefox-3.0.12.ebuild:
+  Drop mozilla-firefox-3.0.10, force dep on xulrunner-1.9.0* for
+  mozilla-firefox-3.0.* (proxy commit for mozilla)
+
+*mozilla-firefox-3.5.1-r1 (31 Jul 2009)
+
+  31 Jul 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +mozilla-firefox-3.5.1-r1.ebuild:
+  Bump from mozilla overlay (to match changes in xulrunner-1.9.1.1)
 
 *mozilla-firefox-3.0.12 (22 Jul 2009)
 

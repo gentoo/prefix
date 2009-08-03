@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.1.ebuild,v 1.3 2009/07/22 05:40:32 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.1-r2.ebuild,v 1.1 2009/08/02 18:55:46 darkside Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -12,7 +12,7 @@ ka kk kn ko ku lt lv mk ml mn mr nb-NO nl nn-NO oc or pa-IN pl pt-BR pt-PT rm ro
 ru si sk sl sq sr sv-SE ta-LK ta te th tr uk vi zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR es-CL es-MX pt-BR zh-CN zh-TW"
 
-XUL_PV="1.9.1"
+XUL_PV="1.9.1.1"
 MAJ_PV="${PV/_*/}" # Without the _rc and _beta stuff
 DESKTOP_PV="3.5"
 MY_PV="${PV/_beta/b}" # Handle betas for SRC_URI
@@ -71,7 +71,7 @@ DEPEND="${RDEPEND}
 
 PDEPEND="restrict-javascript? ( >=www-plugins/noscript-1.8.7 )"
 
-S="${WORKDIR}/mozilla-${XUL_PV}"
+S="${WORKDIR}/mozilla-1.9.1"
 
 # Needed by src_compile() and src_install().
 # Would do in pkg_setup but that loses the export attribute, they
@@ -245,6 +245,8 @@ src_compile() {
 }
 
 src_install() {
+	MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
+
 	emake DESTDIR="${D}" install || die "emake install failed"
 	rm "${ED}"/usr/bin/firefox
 
@@ -252,18 +254,6 @@ src_install() {
 	for X in ${linguas}; do
 		[[ ${X} != "en" ]] && xpi_install "${WORKDIR}"/"${P}-${X}"
 	done
-
-	cp "${FILESDIR}"/gentoo-default-prefs.js \
-		"${ED}"${MOZILLA_FIVE_HOME}/defaults/preferences/all-gentoo.js
-
-	local LANG=${linguas%% *}
-	if [[ -n ${LANG} && ${LANG} != "en" ]]; then
-		elog "Setting default locale to ${LANG}"
-		dosed -e "s:general.useragent.locale\", \"en-US\":general.useragent.locale\", \"${LANG}\":" \
-			${MOZILLA_FIVE_HOME}/defaults/preferences/firefox.js \
-			${MOZILLA_FIVE_HOME}/defaults/preferences/firefox-l10n.js || \
-			die "sed failed to change locale"
-	fi
 
 	# Install icon and .desktop for menu entry
 	if use iceweasel; then
@@ -296,6 +286,10 @@ exec "${EPREFIX}${MOZILLA_FIVE_HOME}"/firefox "\$@"
 EOF
 
 	fperms 0755 /usr/bin/firefox
+
+	#Enable very specific settings not inherited from xulrunner
+	cp "${FILESDIR}"/firefox-default-prefs.js \
+		"${ED}/${MOZILLA_FIVE_HOME}/defaults/preferences/all-gentoo.js" || die "failed to cp xulrunner-default-prefs.js"
 
 	# Plugins dir
 	ln -s "${ED}"/usr/$(get_libdir)/{nsbrowser,mozilla-firefox}/plugins
