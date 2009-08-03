@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.261 2009/07/01 09:32:24 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.263 2009/08/02 13:10:36 maekke Exp $
+
+  02 Aug 2009; Markus Meier <maekke@gentoo.org> sun-jdk-1.5.0.19.ebuild:
+  amd64 stable, bug #278314
+
+  02 Aug 2009; Markus Meier <maekke@gentoo.org> sun-jdk-1.5.0.19.ebuild:
+  x86 stable, bug #278314
 
   01 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
   sun-jdk-1.6.0.14.ebuild:
