@@ -1,6 +1,16 @@
 # ChangeLog for app-text/acroread
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.130 2009/06/21 19:09:30 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/ChangeLog,v 1.132 2009/08/01 14:26:16 maekke Exp $
+
+  01 Aug 2009; Markus Meier <maekke@gentoo.org> acroread-9.1.3.ebuild:
+  amd64/x86 stable, bug #278813
+
+*acroread-9.1.3 (31 Jul 2009)
+
+  31 Jul 2009; Timo Gurr <tgurr@gentoo.org> -acroread-8.1.4.ebuild,
+  +acroread-9.1.3.ebuild:
+  Version bump, fixes 9.x only security issue (CVE-2009-1862), see bug
+  #278813. Remove old.
 
   21 Jun 2009; Tobias Heinlein <keytoaster@gentoo.org>
   acroread-8.1.6.ebuild, acroread-9.1.2.ebuild:
