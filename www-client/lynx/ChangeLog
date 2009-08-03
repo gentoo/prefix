@@ -1,6 +1,18 @@
 # ChangeLog for www-client/lynx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.84 2009/07/29 21:14:56 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.89 2009/08/02 15:13:15 ranger Exp $
+
+  02 Aug 2009; Brent Baude <ranger@gentoo.org> lynx-2.8.6-r4.ebuild:
+  Marking lynx-2.8.6-r4 ppc64 for bug 243058
+
+  02 Aug 2009; Raúl Porcel <armin76@gentoo.org> lynx-2.8.6-r4.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #243058
+
+  02 Aug 2009; Mounir Lamouri <volkmar@gentoo.org> lynx-2.8.6-r4.ebuild:
+  ppc stable, bug 243058
+
+  31 Jul 2009; Tiago Cunha <tcunha@gentoo.org> lynx-2.8.6-r4.ebuild:
+  stable sparc, security bug 243058
 
   29 Jul 2009; Markus Meier <maekke@gentoo.org> lynx-2.8.6-r4.ebuild:
   amd64/x86 stable, bug #243058
