@@ -1,25 +1,25 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4util/libxfce4util-4.6.1.ebuild,v 1.10 2009/07/27 17:28:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/libxfce4util/libxfce4util-4.6.1.ebuild,v 1.11 2009/08/01 20:12:19 ssuominen Exp $
 
-EAPI="1"
+EAPI=2
+inherit xfconf
 
-inherit xfce4
-
-xfce4_core
-
-DESCRIPTION="Basic utilities library"
+DESCRIPTION="Basic utility library for Xfce4"
 HOMEPAGE="http://www.xfce.org/projects/libraries"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
-LICENSE="LGPL-2"
-IUSE="debug doc"
 
-RDEPEND=">=dev-libs/glib-2.12"
+LICENSE="LGPL-2"
+SLOT="0"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
+IUSE="debug"
+
+RDEPEND=">=dev-libs/glib-2.12:2"
 DEPEND="${RDEPEND}
-	doc? ( dev-util/gtk-doc )"
+	dev-util/pkgconfig
+	sys-devel/gettext"
 
 pkg_setup() {
-	XFCE_CONFIG+=" $(use_enable doc gtk_doc)"
+	XFCONF="--disable-dependency-tracking
+		$(use_enable debug)"
+	DOCS="AUTHORS ChangeLog NEWS README THANKS TODO"
 }
-
-DOCS="AUTHORS ChangeLog NEWS README README.Kiosk THANKS TODO"
