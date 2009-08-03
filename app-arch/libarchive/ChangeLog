@@ -1,6 +1,14 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.60 2009/07/20 17:53:46 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.62 2009/07/31 15:49:30 chainsaw Exp $
+
+  31 Jul 2009; <chainsaw@gentoo.org> libarchive-2.7.0-r1.ebuild:
+  Marked stable on AMD64 as requested by Diego E. 'Flameeyes' Pettenò
+  <flameeyes@gentoo.org> in bug #270679. Compiled-tested on a Core2 Duo with
+  USE="bzip2 lzma zlib -acl -static -xattr".
+
+  30 Jul 2009; Jeroen Roovers <jer@gentoo.org> libarchive-2.7.0-r1.ebuild:
+  Stable for HPPA (bug #279679).
 
   20 Jul 2009; Alexis Ballier <aballier@gentoo.org>
   libarchive-2.7.0-r1.ebuild:
