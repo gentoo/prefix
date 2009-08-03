@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/dejagnu/dejagnu-1.4.4-r1.ebuild,v 1.12 2008/06/03 07:54:50 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/dejagnu/dejagnu-1.4.4-r1.ebuild,v 1.13 2009/08/01 11:46:07 flameeyes Exp $
 
 inherit eutils
 
@@ -31,7 +31,7 @@ src_test() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	emake -j1 install DESTDIR="${D}" || die
 	dodoc AUTHORS ChangeLog NEWS README TODO
 	use doc && dohtml -r doc/html/
 }
