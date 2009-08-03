@@ -1,6 +1,9 @@
 # ChangeLog for lxde-base/lxpanel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxpanel/ChangeLog,v 1.4 2009/05/24 22:55:07 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxpanel/ChangeLog,v 1.5 2009/07/30 18:32:38 volkmar Exp $
+
+  30 Jul 2009; Mounir Lamouri <volkmar@gentoo.org> lxpanel-0.4.1.ebuild:
+  Rekeywording for ppc. Bug 271148
 
 *lxpanel-0.4.1 (24 May 2009)
 
