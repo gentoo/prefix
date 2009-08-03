@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/autogen-5.9.7.ebuild,v 1.7 2009/07/23 14:50:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autogen/autogen-5.9.7.ebuild,v 1.8 2009/08/02 14:24:16 nixnut Exp $
 
 inherit eutils
 
