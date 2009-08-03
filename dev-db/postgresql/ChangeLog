@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/postgresql
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.380 2009/05/31 13:14:17 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.381 2009/08/02 13:47:44 maekke Exp $
+
+  02 Aug 2009; Markus Meier <maekke@gentoo.org> postgresql-8.1.11.ebuild:
+  amd64 stable, bug #268138
 
   31 May 2009; nixnut <nixnut@gentoo.org> postgresql-8.1.11.ebuild:
   ppc stable #268138
