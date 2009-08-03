@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r4.ebuild,v 1.3 2009/07/29 20:15:47 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r4.ebuild,v 1.4 2009/07/30 08:03:56 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -74,7 +74,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.18-interix.patch
 	epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-gpgme-1.2.0.patch
-	epatch "${FILESDIR}"/mutt-1.5.20-hcache-uidvalidity-size-fix.patch
 	# post-release hot-fixes
 	epatch "${FILESDIR}"/mutt-1.5.20-imap-port-invalid-d6f88fbf8387.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-header-weeding-f40de578e8ed.patch
@@ -91,6 +90,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.20-hcache-restore-address-848f08512bf3.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-ungroup-command-77ac8b5c2be6.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-propagate-mh_read_sequences-2fc9348684fe.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-hcache-uidvalidity-size-fix-a2a4286491b4.patch
 
 	# patch version string for bug reports
 	sed -i -e 's/"Mutt %s (%s)"/"Mutt %s (%s, Gentoo '"${PVR}"')"/' \
