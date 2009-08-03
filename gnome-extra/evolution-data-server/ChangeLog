@@ -1,6 +1,10 @@
 # ChangeLog for gnome-extra/evolution-data-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/ChangeLog,v 1.240 2009/07/29 21:32:45 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/evolution-data-server/ChangeLog,v 1.241 2009/08/02 10:48:57 armin76 Exp $
+
+  02 Aug 2009; Raúl Porcel <armin76@gentoo.org>
+  evolution-data-server-2.24.5-r3.ebuild:
+  alpha/arm/ia64/sparc stable wrt #258867
 
   29 Jul 2009; Markus Meier <maekke@gentoo.org>
   evolution-data-server-2.24.5-r3.ebuild:
