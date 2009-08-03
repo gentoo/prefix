@@ -1,17 +1,16 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfwm4/xfwm4-4.6.1.ebuild,v 1.9 2009/07/27 17:42:07 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfwm4/xfwm4-4.6.1.ebuild,v 1.10 2009/08/01 22:44:27 ssuominen Exp $
 
-EAPI="1"
+EAPI=2
+inherit xfconf
 
-inherit xfce4
-
-xfce4_core
-
-DESCRIPTION="Window manager"
+DESCRIPTION="Window manager for Xfce4"
 HOMEPAGE="http://www.xfce.org/projects/xfwm4/"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 
+LICENSE="GPL-2"
+SLOT="0"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="debug startup-notification xcomposite"
 
 RDEPEND=">=dev-libs/glib-2.10:2
@@ -25,19 +24,25 @@ RDEPEND=">=dev-libs/glib-2.10:2
 	x11-libs/libXpm
 	x11-libs/pango
 	>=x11-libs/libwnck-2.12
-	>=xfce-base/libxfce4util-${XFCE_VERSION}
-	>=xfce-base/libxfcegui4-${XFCE_VERSION}
-	>=xfce-base/xfconf-${XFCE_VERSION}
+	>=xfce-base/libxfce4util-4.6
+	>=xfce-base/libxfcegui4-4.6
+	>=xfce-base/xfconf-4.6
 	startup-notification? ( x11-libs/startup-notification )
 	xcomposite? ( x11-libs/libXcomposite
 		x11-libs/libXdamage
 		x11-libs/libXfixes )"
 DEPEND="${RDEPEND}
-	dev-util/intltool"
+	dev-util/intltool
+	dev-util/pkgconfig
+	sys-devel/gettext"
 
 pkg_setup() {
-	XFCE_CONFIG+=" --enable-xsync --enable-render --enable-randr
-	$(use_enable xcomposite compositor)"
+	XFCONF="--disable-dependency-tracking
+		$(use_enable startup-notification)
+		--enable-xsync
+		--enable-render
+		--enable-randr
+		$(use_enable xcomposite compositor)
+		$(use_enable debug)"
+	DOCS="AUTHORS ChangeLog COMPOSITOR NEWS README TODO"
 }
-
-DOCS="AUTHORS ChangeLog COMPOSITOR NEWS README TODO"
