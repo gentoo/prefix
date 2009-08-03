@@ -1,6 +1,13 @@
 # ChangeLog for app-portage/gentoolkit-dev
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.72 2009/07/22 14:48:32 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.73 2009/08/01 20:30:29 idl0r Exp $
+
+*gentoolkit-dev-9999 (01 Aug 2009)
+
+  01 Aug 2009; Christian Ruppert <idl0r@gentoo.org>
+  gentoolkit-dev-0.2.6.12.ebuild, +gentoolkit-dev-9999.ebuild:
+  Fix parallel-build for make test. Skip test if EUID == 0, bug 277932. Add
+  gentoolkit-dev-9999
 
   22 Jul 2009; <chainsaw@gentoo.org> gentoolkit-dev-0.2.6.12.ebuild:
   Marked stable AMD64 as requested by Christian Ruppert (idl0r)
