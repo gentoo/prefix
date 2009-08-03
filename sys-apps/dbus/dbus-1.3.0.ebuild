@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.2.1.ebuild,v 1.2 2008/10/06 00:55:51 steev Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.3.0.ebuild,v 1.1 2009/08/03 02:13:42 steev Exp $
 
-inherit eutils multilib flag-o-matic
+inherit eutils multilib flag-o-matic autotools
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
 HOMEPAGE="http://dbus.freedesktop.org/"
@@ -10,8 +10,8 @@ SRC_URI="http://dbus.freedesktop.org/releases/dbus/${P}.tar.gz"
 
 LICENSE="|| ( GPL-2 AFL-2.1 )"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris"
-IUSE="debug doc selinux X"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+IUSE="debug doc selinux test X"
 
 RDEPEND="X? ( x11-libs/libXt x11-libs/libX11 )
 	selinux? ( sys-libs/libselinux
@@ -26,11 +26,15 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.2.1-darwin.patch
 
-	epatch "${FILESDIR}"/${P}-interix.patch
-	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
-	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${P}-interix3.patch
+	# Tests were restricted because of this
+	sed -e 's/.*bus_dispatch_test.*/printf ("Disabled due to excess noise\\n");/' \
+		-e '/"dispatch"/d' -i "${S}/bus/test-main.c"
+
+	epatch "${FILESDIR}"/${PN}-1.2.3-darwin.patch
+	epatch "${FILESDIR}"/${PN}-1.2.1-interix.patch
+	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix5.patch
+	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix3.patch
 
 	eautoreconf
 }
@@ -70,6 +74,8 @@ src_compile() {
 		$(use_enable selinux libaudit)	\
 		$(use_enable debug verbose-mode) \
 		$(use_enable debug asserts) \
+		$(use_enable test tests) \
+		$(use_enable test asserts) \
 		--with-xml=expat \
 		--with-system-pid-file="${EPREFIX}"/var/run/dbus.pid \
 		--with-system-socket="${syssocket}" \
@@ -78,7 +84,6 @@ src_compile() {
 		--localstatedir="${EPREFIX}"/var \
 		$(use_enable doc doxygen-docs) \
 		--disable-xml-docs \
-		${myconf} \
 		|| die "econf failed"
 
 	# after the compile, it uses a selinuxfs interface to
@@ -98,11 +103,13 @@ src_install() {
 	# initscript
 	newinitd "${FILESDIR}"/dbus.init-1.0 dbus
 
-	# dbus X session script (#77504)
-	# turns out to only work for GDM. has been merged into other desktop
-	# (kdm and such scripts)
-	exeinto /etc/X11/xinit/xinitrc.d/
-	doexe "${FILESDIR}"/30-dbus
+	if use X ; then
+		# dbus X session script (#77504)
+		# turns out to only work for GDM. has been merged into other desktop
+		# (kdm and such scripts)
+		exeinto /etc/X11/xinit/xinitrc.d/
+		doexe "${FILESDIR}"/30-dbus
+	fi
 
 	# needs to exist for the system socket
 	keepdir /var/run/dbus
@@ -137,12 +144,19 @@ pkg_postinst() {
 	elog
 	ewarn "You MUST run 'revdep-rebuild' after emerging this package"
 	elog
-	ewarn "If you are currently running X with the hal useflag enabled"
-	ewarn "restarting the dbus service WILL restart X as well"
-	ebeep 5
-	elog
 	ewarn "You must restart D-Bus \`/etc/init.d/dbus restart\` to run"
-	ewarn "the new version of the daemon. For many people, this means"
-	ewarn "exiting X as well."
+	ewarn "the new version of the daemon."
 
+	if has_version x11-base/xorg-server && built_with_use x11-base/xorg-server hal; then
+		elog
+		ewarn "You are currently running X with the hal useflag enabled"
+		ewarn "restarting the dbus service WILL restart X as well"
+		ebeep 5
+	fi
+
+	if use test; then
+		elog
+		ewarn "You have unit tests enabled, this results in an insecure library"
+		ewarn "It is recommended that you reinstall *without* FEATURES=test"
+	fi
 }

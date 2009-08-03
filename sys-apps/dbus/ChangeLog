@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/dbus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.235 2009/07/26 11:13:49 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/ChangeLog,v 1.236 2009/08/03 02:13:42 steev Exp $
+
+*dbus-1.3.0 (03 Aug 2009)
+
+  03 Aug 2009; <steev@gentoo.org> +dbus-1.3.0.ebuild:
+  Add dbus 1.3.0.
 
   26 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -files/dbus-1.0.1-fixfilecreation.patch, -dbus-1.0.2-r2.ebuild,
