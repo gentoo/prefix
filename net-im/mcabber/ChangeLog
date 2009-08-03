@@ -1,6 +1,12 @@
 # ChangeLog for net-im/mcabber
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/mcabber/ChangeLog,v 1.41 2008/12/17 21:06:41 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-im/mcabber/ChangeLog,v 1.42 2009/07/30 11:47:41 wschlich Exp $
+
+*mcabber-0.9.9-r1 (30 Jul 2009)
+
+  30 Jul 2009; Wolfram Schlich <wschlich@gentoo.org>
+  +mcabber-0.9.9-r1.ebuild:
+  fix bugs #276512 and #277888
 
   17 Dec 2008; Markus Meier <maekke@gentoo.org> mcabber-0.9.9.ebuild:
   amd64/x86 stable, bug #251139
