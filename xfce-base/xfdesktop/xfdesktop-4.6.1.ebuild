@@ -1,19 +1,23 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.6.1.ebuild,v 1.9 2009/07/27 17:49:05 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.6.1.ebuild,v 1.10 2009/08/02 09:49:31 ssuominen Exp $
 
-EAPI="1"
+EAPI=2
+inherit xfconf
 
-inherit eutils xfce4
-
-xfce4_core
-
-DESCRIPTION="Desktop manager"
+DESCRIPTION="Desktop manager for Xfce4"
 HOMEPAGE="http://www.xfce.org/projects/xfdesktop"
+
+LICENSE="GPL-2"
+SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="debug doc +file-icons +menu-plugin"
 
 LINGUAS="be ca cs da de el es et eu fi fr he hu it ja ko nb_NO nl pa pl pt_BR ro ru sk sv tr uk vi zh_CN zh_TW"
+
+for X in ${LINGUAS}; do
+	IUSE="${IUSE} linguas_${X}"
+done
 
 RDEPEND="gnome-base/libglade
 	x11-libs/libX11
@@ -21,38 +25,35 @@ RDEPEND="gnome-base/libglade
 	>=x11-libs/libwnck-2.12
 	>=dev-libs/glib-2.10:2
 	>=x11-libs/gtk+-2.10:2
-	>=xfce-base/libxfce4util-${XFCE_VERSION}
-	>=xfce-base/libxfcegui4-${XFCE_VERSION}
-	>=xfce-base/libxfce4menu-${XFCE_VERSION}
-	>=xfce-base/xfconf-${XFCE_VERSION}
-	file-icons? ( >=xfce-base/thunar-0.9.92
-		>=xfce-extra/exo-0.3.100 dev-libs/dbus-glib )
-	menu-plugin? ( >=xfce-base/xfce4-panel-${XFCE_VERSION} )"
+	>=xfce-base/libxfce4util-4.6
+	>=xfce-base/libxfcegui4-4.6
+	>=xfce-base/libxfce4menu-4.6
+	>=xfce-base/xfconf-4.6
+	file-icons? ( >=xfce-base/thunar-1
+		>=xfce-extra/exo-0.3.100
+		dev-libs/dbus-glib )
+	menu-plugin? ( >=xfce-base/xfce4-panel-4.6 )"
 DEPEND="${RDEPEND}
 	dev-util/intltool
+	sys-devel/gettext
+	dev-util/pkgconfig
 	doc? ( dev-libs/libxslt )"
 
-for X in ${LINGUAS}; do
-	IUSE="${IUSE} linguas_${X}"
-done
-
-XFCE_LOCALIZED_CONFIGS="/etc/xdg/xfce4/desktop/xfce-registered-categories.xml
-	/etc/xdg/xfce4/desktop/menu.xml"
-
 pkg_setup() {
-	XFCE_CONFIG+=" $(use_enable doc xsltproc) $(use_enable menu-plugin panel-plugin)"
-
-	if use file-icons; then
-		XFCE_CONFIG+=" --enable-thunarx --enable-file-icons --enable-exo
-		--enable-desktop-icons"
-	else
-		XFCE_CONFIG+=" --disable-thunarx --disable-file-icons --disable-exo
-		--disable-desktop-icons"
-	fi
+	XFCE_LOCALIZED_CONFIGS="/etc/xdg/xfce4/desktop/menu.xml
+		/etc/xdg/xfce4/desktop/xfce-registered-categories.xml"
+	XFCONF="--disable-dependency-tracking
+		$(use_enable file-icons)
+		$(use_enable file-icons thunarx)
+		$(use_enable file-icons exo)
+		$(use_enable menu-plugin panel-plugin)
+		$(use_enable doc xsltproc)
+		$(use_enable debug)"
+	DOCS="AUTHORS ChangeLog NEWS TODO README"
 }
 
 src_install() {
-	xfce4_src_install
+	xfconf_src_install
 
 	local config lang
 	for config in ${XFCE_LOCALIZED_CONFIGS}; do
@@ -64,5 +65,3 @@ src_install() {
 		done
 	done
 }
-
-DOCS="AUTHORS ChangeLog NEWS TODO README"
