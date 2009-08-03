@@ -1,6 +1,15 @@
 # ChangeLog for media-plugins/live
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/live/ChangeLog,v 1.117 2009/07/23 14:33:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/live/ChangeLog,v 1.119 2009/08/01 16:14:52 beandog Exp $
+
+*live-2009.07.28 (01 Aug 2009)
+
+  01 Aug 2009; Steve Dibb <beandog@gentoo.org> +live-2009.07.28.ebuild:
+  Version bump
+
+  31 Jul 2009; <chainsaw@gentoo.org> live-2009.06.02.ebuild:
+  Marked stable on AMD64 as requested by Alexis Ballier
+  <aballier@gentoo.org>. Compile-tested on a dual hex-core Opteron system.
 
   23 Jul 2009; Raúl Porcel <armin76@gentoo.org> live-2009.06.02.ebuild:
   arm/ia64/sparc stable wrt #277009
