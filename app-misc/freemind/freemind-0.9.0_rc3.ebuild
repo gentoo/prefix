@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/freemind-0.9.0_rc3.ebuild,v 1.1 2009/03/28 11:17:59 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/freemind-0.9.0_rc3.ebuild,v 1.2 2009/07/30 07:38:55 elvanor Exp $
 
-EAPI=2
+EAPI="2"
 
 # will handle rewriting myself
 JAVA_PKG_BSFIX="off"
@@ -24,7 +24,7 @@ COMMON_DEP="dev-java/jgoodies-forms:0
 	>=dev-java/simplyhtml-0.12.5:0
 	dev-java/commons-lang:2.1
 	dev-java/javahelp:0
-	groovy? ( dev-java/groovy:1 )
+	groovy? ( dev-java/groovy )
 	latex? ( dev-java/hoteqn:0 )
 	pdf? ( dev-java/batik:1.6
 		>=dev-java/fop-0.93:0 )
@@ -67,7 +67,7 @@ java_prepare() {
 src_compile() {
 	local jibxlibs="$(java-pkg_getjars --build-only --with-dependencies xsd2jibx)"
 	local gcp="jgoodies-forms,jibx,commons-lang-2.1,javahelp,simplyhtml"
-	use groovy && gcp="${gcp},groovy-1"
+	use groovy && gcp="${gcp},groovy"
 	use latex && gcp="${gcp},hoteqn"
 	if use pdf || use svg ; then
 		gcp="${gcp},batik-1.6,fop"
