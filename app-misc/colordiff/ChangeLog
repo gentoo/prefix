@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/colordiff
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.76 2009/07/24 16:37:43 josejx Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/colordiff/ChangeLog,v 1.77 2009/08/02 10:28:37 armin76 Exp $
+
+  02 Aug 2009; Raúl Porcel <armin76@gentoo.org> colordiff-1.0.9.ebuild:
+  alpha/ia64/x86 stable wrt #278835
 
   24 Jul 2009; Joseph Jezak <josejx@gentoo.org> colordiff-1.0.9.ebuild:
   Marked ppc/ppc64 stable for bug #278835.
