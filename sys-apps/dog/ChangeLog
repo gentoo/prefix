@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/dog
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/ChangeLog,v 1.31 2009/06/04 19:44:13 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dog/ChangeLog,v 1.32 2009/08/01 19:10:16 darkside Exp $
+
+  01 Aug 2009; Jeremy Olexa <darkside@gentoo.org> -dog-1.7-r2.ebuild:
+  remove old
 
   04 Jun 2009; Tobias Klausmann <klausman@gentoo.org> dog-1.7-r3.ebuild:
   Stable on alpha, bug #269496
