@@ -290,37 +290,31 @@ games-mods_src_install() {
 	# into ${GAMES_PREFIX_OPT}/${GAME}/${MOD_DIR} for each game.  This should
 	# allow us to support both binary and source-based games easily.
 	if [[ -d "${GAMES_PREFIX_OPT}"/"${GAME}" ]] && \
-		[[ "${GAMES_PREFIX_OPT}" != "${GAMES_DATADIR}" ]]
-	then
+		[[ "${GAMES_PREFIX_OPT}" != "${GAMES_DATADIR}" ]] ; then
 		dodir "${GAMES_PREFIX_OPT}"/"${GAME}"
 		mod=$(echo "${INS_DIR}" | sed -e "s:${GAMES_DATADIR}/${GAME}::" -e "s:^/::" )
-		if [[ -z "${mod}" ]]
-		then
+		if [[ -z "${mod}" ]] ; then
 			# Our mod doesn't have its own directory.  We now traverse the
 			# directory structure and try to symlink everything to
 			# GAMES_PREFIX_OPT/GAME so it'll work.
-			directories=$(cd "${D}"/"${INS_DIR}";find . -maxdepth 1 -type d -printf '%P ')
+			directories=$(cd "${ED}"/"${INS_DIR}";find . -maxdepth 1 -type d -printf '%P ')
 			for i in ${directories}
 			do
-				if [[ -h "${GAMES_PREFIX_OPT}"/"${GAME}"/${i} ]]
-				then
+				if [[ -h "${GAMES_PREFIX_OPT}"/"${GAME}"/${i} ]] ; then
 					# Skip this directory, and just run a symlink
 					dosym "${INS_DIR}"/${i} \
 						"${GAMES_PREFIX_OPT}"/"${GAME}"/${i} || die
-				elif [[ -d "${GAMES_PREFIX_OPT}"/"${GAME}"/${i} ]]
-				then
+				elif [[ -d "${GAMES_PREFIX_OPT}"/"${GAME}"/${i} ]] ; then
 					dodir "${GAMES_PREFIX_OPT}"/"${GAME}"/${i}
-					cd "${D}"/"${INS_DIR}"/${i}
+					cd "${ED}"/"${INS_DIR}"/${i}
 					files="$(find . -type f -printf '%P ')"
 					for j in ${files}
 					do
-						if has_version ${CATEGORY}/${PN}
-						then
+						if has_version ${CATEGORY}/${PN} ; then
 							dosym "${INS_DIR}"/${i}/${j} \
 								"${GAMES_PREFIX_OPT}"/"${GAME}"/${i}/${j} \
 								|| die
-						elif [[ ! -e "${GAMES_PREFIX_OPT}"/"${GAME}"/${i}/${j} ]]
-						then
+						elif [[ ! -e "${GAMES_PREFIX_OPT}"/"${GAME}"/${i}/${j} ]] ; then
 							dosym "${INS_DIR}"/${i}/${j} \
 								"${GAMES_PREFIX_OPT}"/"${GAME}"/${i}/${j} \
 								|| die
