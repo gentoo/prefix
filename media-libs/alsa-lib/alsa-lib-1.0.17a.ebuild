@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.17a.ebuild,v 1.10 2009/03/31 09:31:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.17a.ebuild,v 1.11 2009/08/01 14:44:02 beandog Exp $
 
 inherit eutils libtool
 
@@ -14,7 +14,7 @@ SRC_URI="mirror://alsaproject/lib/${MY_P}.tar.bz2"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE="doc debug alisp midi python"
+IUSE="doc debug alisp python"
 
 RDEPEND="python? ( dev-lang/python )"
 DEPEND="${RDEPEND}
@@ -57,12 +57,12 @@ src_compile() {
 		--enable-static \
 		--enable-shared \
 		--disable-resmgr \
+		--enable-rawmidi \
+		--enable-seq \
+		--enable-aload \
 		$(use_with debug) \
 		$(use_enable alisp) \
 		$(use_enable python) \
-		$(use_enable midi rawmidi) \
-		$(use_enable midi seq) \
-		$(use_enable midi aload) \
 		--with-pcm-plugins="${ALSA_PCM_PLUGINS}" \
 		--disable-dependency-tracking \
 		${myconf} \

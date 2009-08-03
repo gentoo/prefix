@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/alsa-lib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.283 2009/07/02 19:15:15 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.284 2009/08/01 14:44:02 beandog Exp $
+
+  01 Aug 2009; Steve Dibb <beandog@gentoo.org> alsa-lib-1.0.17a.ebuild,
+  alsa-lib-1.0.19.ebuild, -alsa-lib-1.0.20.ebuild,
+  alsa-lib-1.0.20-r1.ebuild:
+  Drop midi use flag, bug 272659
 
   02 Jul 2009; Markus Meier <maekke@gentoo.org> alsa-lib-1.0.19.ebuild:
   amd64 stable, bug #272682

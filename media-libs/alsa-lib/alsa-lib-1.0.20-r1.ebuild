@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.20-r1.ebuild,v 1.1 2009/06/04 18:02:13 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.20-r1.ebuild,v 1.2 2009/08/01 14:44:02 beandog Exp $
 
 inherit eutils libtool
 
@@ -57,6 +57,9 @@ src_compile() {
 		--enable-static \
 		--enable-shared \
 		--disable-resmgr \
+		--enable-rawmidi \
+		--enable-seq \
+		--enable-aload \
 		$(use_with debug) \
 		$(use_enable alisp) \
 		$(use_enable python) \

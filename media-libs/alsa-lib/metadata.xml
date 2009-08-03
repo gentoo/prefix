@@ -7,6 +7,5 @@
   </maintainer>
   <use>
     <flag name="alisp">Enable support for ALISP (ALSA LISP) interpreter for advanced features.</flag>
-    <flag name="midi">Enables MIDI output support (both Hardware and Software)</flag>
   </use>
 </pkgmetadata>
