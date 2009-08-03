@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxterminal/lxterminal-0.1.5.ebuild,v 1.1 2009/05/24 23:13:11 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxterminal/lxterminal-0.1.5.ebuild,v 1.2 2009/07/30 21:31:08 volkmar Exp $
 
 EAPI=1
 
@@ -22,5 +22,5 @@ DDEPEND="${RDEPEND}
 
 src_install () {
 	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc AUTHORS ChangeLog README
+	dodoc AUTHORS ChangeLog README || die "dodoc failed"
 }

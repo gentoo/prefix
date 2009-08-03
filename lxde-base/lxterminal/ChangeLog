@@ -1,6 +1,9 @@
 # ChangeLog for lxde-base/lxterminal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxterminal/ChangeLog,v 1.3 2009/05/24 23:13:10 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxterminal/ChangeLog,v 1.4 2009/07/30 21:31:08 volkmar Exp $
+
+  30 Jul 2009; Mounir Lamouri <volkmar@gentoo.org> lxterminal-0.1.5.ebuild:
+  Keywording for ppc. Bug 271148
 
 *lxterminal-0.1.5 (24 May 2009)
 
