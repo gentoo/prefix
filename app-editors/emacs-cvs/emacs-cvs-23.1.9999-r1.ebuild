@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.1.9999.ebuild,v 1.2 2009/07/14 07:36:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.1.9999-r1.ebuild,v 1.1 2009/07/30 15:00:00 fauli Exp $
 
 EAPI=2
 
@@ -76,7 +76,7 @@ DEPEND="${RDEPEND}
 RDEPEND="${RDEPEND}
 	>=app-emacs/emacs-common-gentoo-1[X?]"
 
-EMACS_SUFFIX="emacs-${SLOT}"
+EMACS_SUFFIX="emacs-${SLOT}-cvs"
 SITEFILE="20${PN}-${SLOT}-gentoo.el"
 
 src_prepare() {
