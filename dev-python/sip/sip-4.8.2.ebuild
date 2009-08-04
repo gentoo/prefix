@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.8.2.ebuild,v 1.2 2009/08/01 23:31:41 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.8.2.ebuild,v 1.3 2009/08/04 02:50:25 arfrever Exp $
 
 EAPI="2"
 NEED_PYTHON="2.3"
@@ -29,7 +29,7 @@ src_prepare() {
 }
 
 src_configure() {
-	configure_package() {
+	configuration() {
 		local myconf="$(get_python) configure.py
 				--bindir=${EPREFIX}/usr/bin
 				--destdir=$(python_get_sitedir)
@@ -44,23 +44,17 @@ src_configure() {
 		echo ${myconf}
 		eval ${myconf}
 	}
-	python_execute_function -s configure_package
+	python_execute_function -s configuration
 }
 
 src_compile() {
-	build_package() {
-		emake
-	}
-	python_execute_function -s build_package
+	python_execute_function -d -s
 }
 
 src_install() {
 	python_need_rebuild
 
-	install_package() {
-		emake DESTDIR="${D}" install
-	}
-	python_execute_function -s install_package
+	python_execute_function -d -s
 
 	dodoc ChangeLog NEWS || die
 
