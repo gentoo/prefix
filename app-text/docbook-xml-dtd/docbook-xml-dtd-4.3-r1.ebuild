@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/docbook-xml-dtd-4.3-r1.ebuild,v 1.10 2009/08/03 03:46:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/docbook-xml-dtd-4.3-r1.ebuild,v 1.11 2009/08/03 06:20:42 ssuominen Exp $
 
 inherit sgml-catalog
 
@@ -14,6 +14,7 @@ SLOT="4.3"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
+RDEPEND=""
 DEPEND=">=app-arch/unzip-5.41
 	>=dev-libs/libxml2-2.4
 	>=app-text/docbook-xsl-stylesheets-1.65
@@ -27,7 +28,7 @@ sgml-catalog_cat_include "/etc/sgml/xml-docbook-${PV}.cat" \
 src_unpack() {
 	mkdir "${S}"
 	cd "${S}"
-	unpack "${A}"
+	unpack ${A}
 
 	# Prepend OVERRIDE directive
 	sed -i -e '1i\\OVERRIDE YES' docbook.cat
