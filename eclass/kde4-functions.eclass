@@ -1,6 +1,9 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.21 2009/06/04 09:29:54 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.22 2009/08/03 21:59:53 wired Exp $
+
+# Prefix compat:
+: ${EROOT:=${EROOT}}
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -12,7 +15,7 @@
 
 # @ECLASS-VARIABLE: EAPI
 # @DESCRIPTION:
-# By default kde4 eclasses wants eapi 2 which might be redefinable to newer
+# By default kde4 eclasses want EAPI 2 which might be redefinable to newer
 # versions.
 case ${EAPI} in
 	2) : ;;
@@ -39,7 +42,7 @@ fi
 # @DESCRIPTION:
 # The slots used by all KDE versions later than 4.0. The live KDE releases use
 # KDE_LIVE_SLOTS instead. Values should be ordered.
-KDE_SLOTS=( "kde-4" "4.1" "4.2" "4.3" )
+KDE_SLOTS=( "kde-4" "4.1" "4.2" "4.3" "4.4" )
 
 # @ECLASS-VARIABLE: KDE_LIVE_SLOTS
 # @DESCRIPTION:
@@ -53,7 +56,21 @@ KDE_LIVE_SLOTS=( "live" )
 buildsycoca() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	if [[ -z ${ROOT%%/} && -x ${KDEDIR}/bin/kbuildsycoca4 ]]; then
+	local KDE3DIR="${EROOT}usr/kde/3.5"
+	if [[ -z ${EROOT%%/} && -x "${KDE3DIR}"/bin/kbuildsycoca ]]; then
+		# Since KDE3 is aware of shortcuts in /usr, rebuild database
+		# for KDE3 as well.
+		touch "${KDE3DIR}"/share/services/ksycoca
+		chmod 644 "${KDE3DIR}"/share/services/ksycoca
+
+		ebegin "Running kbuildsycoca to build global database"
+		XDG_DATA_DIRS="${EROOT}usr/local/share:${KDE3DIR}/share:${EROOT}usr/share" \
+			DISPLAY="" \
+			"${KDE3DIR}"/bin/kbuildsycoca --global --noincremental &> /dev/null
+		eend $?
+	fi
+
+	if [[ -z ${EROOT%%/} && -x "${KDEDIR}"/bin/kbuildsycoca4 ]]; then
 		# Make sure tha cache file exists, writable by root and readable by
 		# others. Otherwise kbuildsycoca4 will fail.
 		touch "${KDEDIR}/share/kde4/services/ksycoca4"
@@ -70,12 +87,12 @@ buildsycoca() {
 		[[ ${KDEDIR} != "${EROOT}usr" ]] && KDEDIRS="${KDEDIR}/share:${KDEDIRS}"
 		XDG_DATA_DIRS="${EROOT}usr/local/share:${KDEDIRS}" \
 			DISPLAY="" DBUS_SESSION_BUS_ADDRESS="" \
-			${KDEDIR}/bin/kbuildsycoca4 --global --noincremental &> /dev/null
+			"${KDEDIR}"/bin/kbuildsycoca4 --global --noincremental &> /dev/null
 		eend $?
 	fi
 
 	# fix permission for some directories
-	for x in share/config share/kde4; do
+	for x in share/{config,kde4}; do
 		[[ ${KDEDIR} = ${EROOT}usr ]] && DIRS="${EROOT}usr" || DIRS="${EROOT}usr ${KDEDIR}"
 		for y in ${DIRS}; do
 			[[ -d "${y}/${x}" ]] || break # nothing to do if directory does not exist
@@ -97,8 +114,12 @@ buildsycoca() {
 # except those in cmake/.
 comment_all_add_subdirectory() {
 	find "$@" -name CMakeLists.txt -print0 | grep -vFzZ "./cmake" | \
-		xargs -0 sed -i -e '/add_subdirectory/s/^/#DONOTCOMPILE /' -e '/ADD_SUBDIRECTORY/s/^/#DONOTCOMPILE /' || \
-		die "${LINENO}: Initial sed died"
+		xargs -0 sed -i \
+			-e '/^[[:space:]]*add_subdirectory/s/^/#DONOTCOMPILE /' \
+			-e '/^[[:space:]]*ADD_SUBDIRECTORY/s/^/#DONOTCOMPILE /' \
+			-e '/^[[:space:]]*macro_optional_add_subdirectory/s/^/#DONOTCOMPILE /' \
+			-e '/^[[:space:]]*MACRO_OPTIONAL_ADD_SUBDIRECTORY/s/^/#DONOTCOMPILE /' \
+			|| die "${LINENO}: Initial sed died"
 }
 
 # @ECLASS-VARIABLE: KDE_LINGUAS
@@ -120,19 +141,22 @@ done
 # the package (see KDE_LINGUAS). By default, translations are found in "${S}"/po
 # but this default can be overridden by defining KDE_LINGUAS_DIR.
 enable_selected_linguas() {
-	local lingua sr_mess wp
+	debug-print-function ${FUNCNAME} "$@"
 
-	## This isn't working because it seems portage sets LINGUAS
-	## even if you don't have it in make.conf
-	## Im leaving the command that *should* work if LINGUAS was unset commented
+	local lingua linguas sr_mess wp
+
 	# if there is no linguas defined we enable everything
 	if ! $(env | grep -q "^LINGUAS="); then
 		return 0
 	fi
-	# [[ ! ${LINGUAS+set} = set ]] && LINGUAS="*"
-	# ebuild overridable linguas directory definition
-	KDE_LINGUAS_DIR=${KDE_LINGUAS_DIR:="${S}/po"}
-	cd "${KDE_LINGUAS_DIR}" || die "wrong linguas dir specified"
+
+	# @ECLASS-VARIABLE: KDE_LINGUAS_DIR
+	# @DESCRIPTION:
+	# Specified folder where application translations are located.
+	KDE_LINGUAS_DIR=${KDE_LINGUAS_DIR:="po"}
+	[[ -d  "${KDE_LINGUAS_DIR}" ]] || die "wrong linguas dir specified"
+	comment_all_add_subdirectory "${KDE_LINGUAS_DIR}"
+	pushd "${KDE_LINGUAS_DIR}" > /dev/null
 
 	# fix all various crazy sr@Latn variations
 	# this part is only ease for ebuilds, so there wont be any die when this
@@ -154,21 +178,74 @@ enable_selected_linguas() {
 			mv "${lingua}.po" "${lingua}.po.old"
 		fi
 	done
-	comment_all_add_subdirectory "${KDE_LINGUAS_DIR}"
+
 	for lingua in ${KDE_LINGUAS}; do
 		if use linguas_${lingua} ; then
-			ebegin "Enabling LANGUAGE: ${lingua}"
 			if [[ -d "${lingua}" ]]; then
+				linguas="${linguas} ${lingua}"
 				sed -e "/add_subdirectory([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
 					-e "/ADD_SUBDIRECTORY([[:space:]]*${lingua}[[:space:]]*)[[:space:]]*$/ s/^#DONOTCOMPILE //" \
 					-i CMakeLists.txt || die "Sed to uncomment linguas_${lingua} failed."
 			fi
 			if [[ -e "${lingua}.po.old" ]]; then
+				linguas="${linguas} ${lingua}"
 				mv "${lingua}.po.old" "${lingua}.po"
 			fi
-			eend $?
 		fi
 	done
+	[[ -n "${linguas}" ]] && einfo "Enabling languages: ${linguas}"
+
+	popd > /dev/null
+}
+
+# @FUNCTION: enable_selected_doc_linguas
+# @DESCRIPTION:
+# Enable only selected linguas enabled doc folders.
+enable_selected_doc_linguas() {
+	debug-print-function ${FUNCNAME} "$@"
+
+	# if there is no linguas defined we enable everything
+	if ! $(env | grep -q "^LINGUAS="); then
+		return 0
+	fi
+
+	# @ECLASS-VARIABLE: KDE_DOC_DIRS
+	# @DESCRIPTION:
+	# Variable specifying whitespace separated patterns for documentation locations.
+	# Default is "doc/%lingua"
+	KDE_DOC_DIRS=${KDE_DOC_DIRS:='doc/%lingua'}
+	local linguas
+	for pattern in ${KDE_DOC_DIRS}; do
+
+		local handbookdir=`dirname ${pattern}`
+		local translationdir=`basename ${pattern}`
+		# Do filename pattern supplied, treat as directory
+		[[ "${handbookdir}" = '.' ]] && handbookdir=${translationdir} && translationdir=
+		[[ -d "${handbookdir}" ]] || die 'wrong doc dir specified'
+
+		if ! use handbook; then
+			# Disable whole directory
+			sed -e "/add_subdirectory[[:space:]]*([[:space:]]*${handbookdir}[[:space:]]*)/s/^/#DONOTCOMPILE /" \
+				-e "/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${handbookdir}[[:space:]]*)/s/^/#DONOTCOMPILE /" \
+				-i CMakeLists.txt || die 'failed to comment out all handbooks'
+		else
+			# Disable subdirectories recursively
+			comment_all_add_subdirectory "${handbookdir}"
+			# Add requested translations
+			local lingua
+			for lingua in en ${KDE_LINGUAS}; do
+				if [[ ${lingua} = 'en' ]] || use linguas_${lingua}; then
+					if [[ -d "${handbookdir}/${translationdir//%lingua/${lingua}}" ]]; then
+						sed -e "/add_subdirectory[[:space:]]*([[:space:]]*${translationdir//%lingua/${lingua}}/s/^#DONOTCOMPILE //" \
+							-e "/ADD_SUBDIRECTORY[[:space:]]*([[:space:]]*${translationdir//%lingua/${lingua}}/s/^#DONOTCOMPILE //" \
+							-i "${handbookdir}"/CMakeLists.txt && ! has ${lingua} ${linguas} && linguas="${linguas} ${lingua}"
+					fi
+				fi
+			done
+		fi
+
+	done
+	[[ -n "${linguas}" ]] && einfo "Enabling handbook translations:${linguas}"
 }
 
 # @FUNCTION: get_build_type
