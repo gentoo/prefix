@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.5 2009/06/09 18:52:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.6 2009/08/01 06:24:06 ssuominen Exp $
 
 EAPI=2
 
@@ -19,7 +19,7 @@ RDEPEND="python? ( dev-lang/python )
 	jack? ( media-sound/jack-audio-connection-kit )
 	media-libs/ladspa-sdk
 	audiofile? ( media-libs/audiofile )
-	alsa? ( media-libs/alsa-lib[midi] )
+	alsa? ( media-libs/alsa-lib )
 	vorbis? ( media-libs/libvorbis )
 	libsamplerate? ( media-libs/libsamplerate )
 	mikmod? ( media-libs/libmikmod )
