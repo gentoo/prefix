@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.1-r2.ebuild,v 1.1 2009/08/02 18:55:46 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.1-r2.ebuild,v 1.2 2009/08/03 13:34:40 nirbheek Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -25,7 +25,7 @@ HOMEPAGE="http://www.mozilla.com/firefox"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="bindist iceweasel java mozdevelop restrict-javascript" # qt-experimental
+IUSE="+alsa bindist iceweasel java mozdevelop restrict-javascript" # qt-experimental
 
 REL_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases"
 SRC_URI="${REL_URI}/${MY_PV}/source/firefox-${MY_PV}-source.tar.bz2
@@ -61,8 +61,9 @@ RDEPEND="
 	>=dev-db/sqlite-3.6.7
 	>=app-text/hunspell-1.2
 
-	>=net-libs/xulrunner-${XUL_PV}[java=]
+	alsa? ( media-libs/alsa-lib )
 
+	>=net-libs/xulrunner-${XUL_PV}[java=]
 	>=x11-libs/cairo-1.8.8[X]
 	x11-libs/pango[X]"
 
@@ -197,6 +198,8 @@ src_configure() {
 	mozconfig_annotate '' --with-system-bz2
 	mozconfig_annotate '' --with-system-libxul
 	mozconfig_annotate '' --with-libxul-sdk="${EPREFIX}"/usr/$(get_libdir)/xulrunner-devel-${XUL_PV}
+	mozconfig_use_enable alsa ogg
+	mozconfig_use_enable alsa wave
 
 	# IUSE mozdevelop
 	mozconfig_use_enable mozdevelop jsd
