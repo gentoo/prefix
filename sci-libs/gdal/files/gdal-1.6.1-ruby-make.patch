@@ -1,5 +1,5 @@
---- swig/ruby/RubyMakefile.mk.orig	2009-04-20 18:43:31.107342741 -0700
-+++ swig/ruby/RubyMakefile.mk	2009-04-20 18:45:51.396591741 -0700
+--- swig/ruby/RubyMakefile.mk.orig	2009-08-01 18:54:22.260573234 -0700
++++ swig/ruby/RubyMakefile.mk	2009-08-01 18:59:11.208571244 -0700
 @@ -25,7 +25,9 @@
  INSTALL_DIR := $(RUBY_EXTENSIONS_DIR)/gdal
  
@@ -16,8 +16,9 @@
  	mkdir -p $(DESTDIR)$(INSTALL_DIR)
  
 -install: $(INSTALL_DIR)
+-	$(INSTALL) $(RUBY_MODULES) $(DESTDIR)$(INSTALL_DIR) 
 +install: $(INSTALL_DIR) $(RUBY_MODULES)
- 	$(INSTALL) $(RUBY_MODULES) $(DESTDIR)$(INSTALL_DIR) 
++	for f in $(RUBY_MODULES) ; do $(INSTALL) $$f $(DESTDIR)$(INSTALL_DIR) ; done
  
  $(RUBY_MODULES): %.so: %_wrap.o
  	$(LD) $(LDFLAGS) $(LIBS) $(GDAL_SLIB_LINK) $(RUBY_LIB) $< -o $@

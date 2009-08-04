@@ -1,12 +1,9 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.5.1.ebuild,v 1.2 2008/05/21 19:01:41 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.6.1.ebuild,v 1.1 2009/08/03 03:49:06 nerdboy Exp $
 
 WANT_AUTOCONF="2.5"
-inherit autotools distutils eutils perl-module toolchain-funcs
-
-IUSE="curl debug doc fits geos gif gml hdf hdf5 jpeg jpeg2k mysql netcdf \
-odbc png ogdi perl postgres python ruby sqlite threads"
+inherit autotools distutils eutils perl-module ruby toolchain-funcs
 
 DESCRIPTION="GDAL is a translator library for raster geospatial data formats (includes OGR support)"
 HOMEPAGE="http://www.gdal.org/"
@@ -17,6 +14,9 @@ LICENSE="MIT"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 # need to get these arches updated on several libs first
 #KEYWORDS="~alpha ~hppa"
+
+IUSE="curl debug doc ecwj2k fits geos gif gml hdf hdf5 jpeg jpeg2k mysql \
+netcdf odbc png ogdi perl postgres python ruby sqlite threads"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	>=media-libs/tiff-3.7.0
@@ -32,24 +32,30 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 	ruby? ( >=dev-lang/ruby-1.8.4.20060226 )
 	fits? ( sci-libs/cfitsio )
 	ogdi? ( sci-libs/ogdi )
-	gml? ( >=dev-libs/xerces-c-2.8.0 )
+	gml? ( >=dev-libs/xerces-c-3 )
 	hdf5? ( >=sci-libs/hdf5-1.6.4 )
 	postgres? ( virtual/postgresql-server )
 	|| (
 	    netcdf? ( sci-libs/netcdf )
 	    hdf? ( sci-libs/hdf )
 	)
-	jpeg2k? ( media-libs/jasper )
+	|| (
+	    jpeg2k? ( media-libs/jasper )
+	    ecwj2k? ( !media-libs/lcms
+		    sci-libs/libecwj2 )
+	)
 	mysql? ( virtual/mysql )
 	odbc?   ( dev-db/unixODBC )
 	geos?   ( >=sci-libs/geos-2.2.1 )
 	sqlite? ( >=dev-db/sqlite-3 )"
 
 DEPEND="${RDEPEND}
-	ruby? ( >=dev-lang/swig-1.3.28 )
+	perl? ( python? ( ruby? ( >=dev-lang/swig-1.3.28 ) ) )
 	doc? ( app-doc/doxygen )"
 
 AT_M4DIR="${S}/m4"
+USE_RUBY="ruby18"
+RUBY_OPTIONAL="yes"
 
 pkg_setup() {
 	if [ -n "${GDAL_CONFIGURE_OPTS}" ]; then
@@ -64,16 +70,18 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	eaclocal
-	eautoconf
+#	eaclocal
+#	eautoconf
+	eautoreconf
 
 	epatch "${FILESDIR}"/${PN}-1.4.2-datadir.patch \
 	    "${FILESDIR}"/${PN}-1.5.0-soname.patch \
-	    "${FILESDIR}"/${PN}-1.5.0-makefile.patch \
-	    "${FILESDIR}"/${P}-python-install.patch \
-	    "${FILESDIR}"/${P}-max-min.patch
+	    "${FILESDIR}"/${PN}-1.5.1-python-install.patch \
+	    "${FILESDIR}"/${PN}-1.6.0-swig-fix.patch \
+	    "${FILESDIR}"/${PN}-1.6.0-mysql_ogr_header.patch \
+	    "${FILESDIR}"/${P}-ruby-make.patch
 
-	if useq netcdf && useq hdf; then
+	if useq hdf; then
 	    einfo	"Checking if HDF4 is compiled with szip..."
 	    if built_with_use sci-libs/hdf szip ; then
 		einfo	"Found HDF4 compiled with szip. Nice."
@@ -81,6 +89,12 @@ src_unpack() {
 		ewarn 	"HDF4 (sci-libs/hdf) must be compiled with the szip USE flag!"
 		einfo 	"Please emerge hdf with szip USE flag and then emerge GDAL."
 		die 	"HDF4 not merged with szip use flag"
+	    fi
+
+	    if useq netcdf; then
+		ewarn "Netcdf and HDF4 are incompatible due to certain tools in"
+		ewarn "common; HDF5 is now the preferred choice for HDF data."
+		die "Please disable either the hdf or netcdf use flag."
 	    fi
 	fi
 }
@@ -124,7 +138,7 @@ src_compile() {
 	fi
 
 	# Fix doc path just in case
-	sed -i -e "s:@exec_prefix@/doc:${EPREFIX}/usr/share/doc/${PF}/html:g" \
+	sed -i -e "s:@exec_prefix@/doc:@exec_prefix@/share/doc/${PF}/html:g" \
 	    GDALmake.opt.in || die "sed gdalmake.opt failed"
 
 	econf ${pkg_conf} ${use_conf} || die "econf failed"
@@ -180,6 +194,8 @@ src_install() {
 	    insinto /usr/share/${PN}/samples
 	    doins swig/python/samples/*
 	fi
+
+	use perl && fixlocalpod
 }
 
 pkg_postinst() {
@@ -187,7 +203,7 @@ pkg_postinst() {
 	elog "If you need libgrass support, then you must rebuild gdal, after"
 	elog "installing the latest Grass, and set the following option:"
 	elog
-	elog "GDAL_CONFIGURE_OPTS=--with-grass=${GRASS_HOME} emerge gdal"
+	elog "GDAL_CONFIGURE_OPTS=--with-grass=\$GRASS_HOME emerge gdal"
 	elog
 	elog "GDAL is most useful with full graphics support enabled via various"
 	elog "USE flags: png, jpeg, gif, jpeg2k, etc. Also python, fits, ogdi,"
