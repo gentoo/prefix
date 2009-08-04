@@ -1,6 +1,10 @@
 # ChangeLog for xfce-base/xfce4-settings
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-settings/ChangeLog,v 1.15 2009/07/27 17:48:01 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-settings/ChangeLog,v 1.16 2009/08/01 22:24:07 ssuominen Exp $
+
+  01 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  xfce4-settings-4.6.1-r1.ebuild:
+  Use xfconf.eclass.
 
   27 Jul 2009; nixnut <nixnut@gentoo.org> xfce4-settings-4.6.1.ebuild:
   ppc stable #265587
