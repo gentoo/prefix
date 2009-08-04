@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxterminal/lxterminal-0.1.5.ebuild,v 1.3 2009/08/03 19:24:57 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxterminal/lxterminal-0.1.6.ebuild,v 1.1 2009/08/03 19:24:57 vostorga Exp $
 
 EAPI=1
 
@@ -18,9 +18,10 @@ RDEPEND="x11-libs/gtk+:2
 	x11-libs/vte"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	sys-devel/gettext"
+	sys-devel/gettext
+	>=dev-util/intltool-0.40.0"
 
 src_install () {
 	emake DESTDIR="${D}" install || die "emake install failed"
-	dodoc AUTHORS ChangeLog README || die "dodoc failed"
+	dodoc AUTHORS README || die "dodoc failed"
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/lxde-base/lxterminal/lxterminal-0.1.4.ebuild,v 1.1 2009/01/12 23:31:27 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxterminal/lxterminal-0.1.4.ebuild,v 1.2 2009/08/03 19:24:57 vostorga Exp $
 
 EAPI=1
 
@@ -16,7 +16,7 @@ IUSE=""
 RDEPEND="x11-libs/gtk+:2
 	dev-libs/glib:2
 	x11-libs/vte"
-DDEPEND="${RDEPEND}
+DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	sys-devel/gettext"
 
