@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.1.ebuild,v 1.2 2009/07/31 15:02:26 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.1-r2.ebuild,v 1.1 2009/08/02 18:48:04 darkside Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
@@ -21,7 +21,7 @@ SRC_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/${MY_PV}/s
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="1.9"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="debug python" # qt-experimental
+IUSE="debug python +alsa" # qt-experimental
 
 #	qt-experimental? (
 #		x11-libs/qt-gui
@@ -29,12 +29,11 @@ IUSE="debug python" # qt-experimental
 
 # nspr-4.8 due to BMO #499144
 RDEPEND="java? ( >=virtual/jre-1.4 )
-	python? ( >=dev-lang/python-2.3 )
-
+	python? ( >=dev-lang/python-2.3[threads] )
 	>=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12.3
 	>=dev-libs/nspr-4.8
-	kernel_linux? ( media-libs/alsa-lib )
+	alsa? ( media-libs/alsa-lib )
 	>=dev-db/sqlite-3.6.7
 	>=app-text/hunspell-1.2
 	>=media-libs/lcms-1.17
@@ -77,6 +76,7 @@ src_prepare() {
 	# Same as in config/autoconf.mk.in
 	MOZLIBDIR="/usr/$(get_libdir)/${PN}-${MAJ_PV}"
 	SDKDIR="/usr/$(get_libdir)/${PN}-devel-${MAJ_PV}/sdk"
+
 	# Gentoo install dirs
 	sed -e "s/@PV@/${MAJ_PV}/" -i "${S}/config/autoconf.mk.in" \
 		|| die "\${MAJ_PV} sed failed!"
@@ -91,6 +91,10 @@ src_prepare() {
 
 	cd js/src
 	eautoreconf
+
+	# Patch in support to reset all LANG variables to C
+	# Do NOT add to patchset as it must be applied after eautoreconf
+	epatch "${FILESDIR}/000_flex-configure-LANG.patch"
 }
 
 src_configure() {
@@ -157,6 +161,10 @@ src_configure() {
 	mozconfig_annotate '' --enable-xpctools
 	mozconfig_annotate '' --with-default-mozilla-five-home="${EPREFIX}${MOZLIBDIR}"
 
+	# Disable/Enable audio support based on USE
+	mozconfig_use_enable alsa ogg
+	mozconfig_use_enable alsa wave
+
 	#disable java
 	if ! use java ; then
 		mozconfig_annotate '-java' --disable-javaxpcom
@@ -186,6 +194,9 @@ src_configure() {
 	if [[ $(gcc-major-version) -lt 4 ]]; then
 		append-cxxflags -fno-stack-protector
 	fi
+
+	# Disable no-print-directory
+	MAKEOPTS=${MAKEOPTS/--no-print-directory/}
 
 	CPPFLAGS="${CPPFLAGS} -DARON_WAS_HERE" \
 	CC="$(tc-getCC)" CXX="$(tc-getCXX)" LD="$(tc-getLD)" \
@@ -218,7 +229,8 @@ src_install() {
 	echo "LDPATH=${MOZLIBDIR}" > "${ED}"/etc/env.d/08xulrunner || die "env.d failed"
 
 	# Add our defaults to xulrunner and out of firefox
-	cp "${FILESDIR}"/xulrunner-default-prefs.js "${ED}/${MOZLIBDIR}/defaults/pref/all-gentoo.js"
+	cp "${FILESDIR}"/xulrunner-default-prefs.js \
+		"${ED}/${MOZLIBDIR}/defaults/pref/all-gentoo.js" || die "failed to cp xulrunner-default-prefs.js"
 
 	if use java ; then
 		java-pkg_regjar "${ED}/${MOZLIBDIR}/javaxpcom.jar"
