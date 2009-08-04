@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.69 2009/07/27 20:41:43 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.70 2009/07/30 21:19:40 maekke Exp $
+
+  30 Jul 2009; Markus Meier <maekke@gentoo.org> pygobject-2.18.0.ebuild:
+  amd64/x86 stable, bug #277947
 
   27 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   pygobject-2.18.0.ebuild, files/pygobject-2.18.0-make_check.patch:
