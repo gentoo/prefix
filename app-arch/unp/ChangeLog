@@ -1,6 +1,12 @@
 # ChangeLog for app-arch/unp
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/ChangeLog,v 1.22 2009/01/12 12:32:59 hanno Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/ChangeLog,v 1.24 2009/08/03 15:31:45 ssuominen Exp $
+
+  03 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> unp-1.0.15-r1.ebuild:
+  Install manpage and ucat wrt #280067, Comment #2.
+
+  03 Aug 2009; Tiago Cunha <tcunha@gentoo.org> unp-1.0.15-r1.ebuild:
+  stable amd64, bug 280067
 
 *unp-1.0.15-r1 (12 Jan 2009)
 
