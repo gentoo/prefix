@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/pycurl-7.19.0.ebuild,v 1.7 2009/07/26 22:28:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/pycurl-7.19.0.ebuild,v 1.8 2009/07/31 14:17:31 arfrever Exp $
 
 inherit distutils
 
@@ -13,7 +13,8 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="examples"
 
-DEPEND=">=net-misc/curl-7.18.1"
+DEPEND=">=net-misc/curl-7.19.0"
+RDEPEND="${DEPEND}"
 
 PYTHON_MODNAME="curl"
 

@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pycurl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/ChangeLog,v 1.57 2009/07/26 22:28:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycurl/ChangeLog,v 1.58 2009/07/31 14:17:31 arfrever Exp $
+
+  31 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pycurl-7.19.0.ebuild:
+  Update dependency on net-misc/curl.
 
   26 Jul 2009; Brent Baude <ranger@gentoo.org> pycurl-7.19.0.ebuild:
   stable ppc64, bug 277270
