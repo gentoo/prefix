@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.98 2009/04/28 18:14:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.99 2009/08/01 19:33:12 darkside Exp $
+
+  01 Aug 2009; Jeremy Olexa <darkside@gentoo.org> -gamin-0.1.9.ebuild,
+  -gamin-0.1.9-r1.ebuild:
+  remove old
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gamin-0.1.10.ebuild:
   m68k stable
