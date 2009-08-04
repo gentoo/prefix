@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/numpy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.88 2009/07/28 04:33:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/ChangeLog,v 1.89 2009/08/02 14:29:52 nixnut Exp $
+
+  02 Aug 2009; nixnut <nixnut@gentoo.org> numpy-1.3.0.ebuild:
+  ppc stable #277354
 
   28 Jul 2009; Jeroen Roovers <jer@gentoo.org> numpy-1.3.0.ebuild:
   Stable for HPPA (bug #277354).
