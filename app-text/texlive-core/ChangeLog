@@ -1,6 +1,10 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.106 2009/06/20 14:58:15 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.107 2009/08/03 10:21:41 aballier Exp $
+
+  03 Aug 2009; Alexis Ballier <aballier@gentoo.org>
+  texlive-core-2008-r5.ebuild:
+  Add patch to fix building with autoconf 2.64, bug #279687
 
   20 Jun 2009; Alexis Ballier <aballier@gentoo.org>
   -texlive-core-2007-r13.ebuild, -files/texmf-update:
