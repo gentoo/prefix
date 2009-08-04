@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/ipython
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.62 2009/05/03 11:32:38 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.63 2009/08/01 12:18:05 bicatali Exp $
+
+  01 Aug 2009; Sébastien Fabbro <bicatali@gentoo.org> ipython-0.9.1.ebuild:
+  Changed wxwindows to wxwidgets use flag
 
   03 May 2009; Raúl Porcel <armin76@gentoo.org> ipython-0.9.1.ebuild:
   s390 stable
