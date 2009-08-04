@@ -2,4 +2,12 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>base-system</herd>
+<maintainer>
+	<email>darkside@gentoo.org</email>
+</maintainer>
+<maintainer>
+	<email>drobbins@funtoo.org</email>
+	<name>Daniel Robbins</name>
+	<description>Upstream contact, please CC on bugs</description>
+</maintainer>
 </pkgmetadata>

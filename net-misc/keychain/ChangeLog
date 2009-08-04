@@ -1,6 +1,18 @@
 # ChangeLog for net-misc/keychain
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/keychain/ChangeLog,v 1.72 2008/03/11 17:09:10 ricmm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/keychain/ChangeLog,v 1.75 2009/08/02 03:54:55 darkside Exp $
+
+  02 Aug 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  add drobbins to metadata per discussion with him
+
+*keychain-2.6.9 (02 Aug 2009)
+
+  02 Aug 2009; Jeremy Olexa <darkside@gentoo.org> -keychain-2.6.6.ebuild,
+  +keychain-2.6.9.ebuild:
+  version bump, bug fix release
+
+  02 Aug 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  add myself as maintainer as discussed with robbat2 of the base-system herd
 
   11 Mar 2008; <ricmm@gentoo.org> keychain-2.6.6.ebuild:
   Drop to ~mips due to unstable deps
