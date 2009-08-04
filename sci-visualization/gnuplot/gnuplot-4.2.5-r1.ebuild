@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.5-r1.ebuild,v 1.2 2009/06/21 18:41:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.5-r1.ebuild,v 1.3 2009/08/01 12:08:20 bicatali Exp $
 
 EAPI=2
 WX_GTK_VER="2.8"
@@ -17,8 +17,8 @@ SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz
 LICENSE="gnuplot"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="doc emacs gd ggi latex lua pdf plotutils readline svga wxwindows X xemacs"
-RESTRICT="wxwindows? ( test )"
+IUSE="doc emacs gd ggi latex lua pdf plotutils readline svga wxwidgets X xemacs"
+RESTRICT="wxwidgets? ( test )"
 
 RDEPEND="
 	xemacs? ( app-editors/xemacs app-xemacs/texinfo app-xemacs/xemacs-base )
@@ -36,7 +36,7 @@ RDEPEND="
 	svga? ( media-libs/svgalib )
 	readline? ( >=sys-libs/readline-4.2 )
 	plotutils? ( media-libs/plotutils )
-	wxwindows? ( =x11-libs/wxGTK-2.8*
+	wxwidgets? ( =x11-libs/wxGTK-2.8*
 		>=x11-libs/cairo-0.9
 		>=x11-libs/pango-1.10.3
 		>=x11-libs/gtk+-2.8 )"
@@ -48,7 +48,7 @@ E_SITEFILE="50${PN}-gentoo.el"
 TEXMF="${EPREFIX}/usr/share/texmf-site"
 
 pkg_setup() {
-	use wxwindows && wxwidgets_pkg_setup
+	use wxwidgets && wxwidgets_pkg_setup
 }
 
 src_prepare() {
@@ -82,7 +82,7 @@ src_configure() {
 	myconf="${myconf} $(use_with X x)"
 	myconf="${myconf} $(use_with svga linux-vga)"
 	myconf="${myconf} $(use_with gd)"
-	myconf="${myconf} $(use_enable wxwindows wxwidgets)"
+	myconf="${myconf} $(use_enable wxwidgets)"
 	myconf="${myconf} $(use_with plotutils plot "${EPREFIX}"/usr/$(get_libdir))"
 	myconf="${myconf} $(use_with pdf pdf "${EPREFIX}"/usr/$(get_libdir))"
 	myconf="${myconf} $(use_with lua)"
