@@ -141,6 +141,10 @@ src_compile() {
 			EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
 		;;
 	esac
+
+	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=25127
+	[[ ${CHOST} == powerpc*-darwin* ]] && filter-flags "-mcpu=*" "-mabi=*"
+
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
 	# so force it into our own bash.
@@ -158,7 +162,7 @@ src_install() {
 			# required for example by perl), we simply can reuse them.
 			# As libdl is in /usr/lib, we only need to copy dlfcn.h.
 			cp /opt/gcc.3.3/include/dlfcn.h "${ED}${INCLUDEPATH}" \
-			|| die "Cannot gain /opt/gcc.3.3/include/dlfcn.h"
+				|| die "Cannot copy /opt/gcc.3.3/include/dlfcn.h"
 		;;
 	esac
 }
