@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/imaxima
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/imaxima/ChangeLog,v 1.26 2009/07/21 16:34:48 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/imaxima/ChangeLog,v 1.27 2009/08/03 21:36:42 maekke Exp $
+
+  03 Aug 2009; Markus Meier <maekke@gentoo.org> imaxima-1.0.ebuild:
+  amd64 stable, bug #264649
 
   21 Jul 2009; Christian Faulhammer <fauli@gentoo.org> imaxima-1.0.ebuild:
   stable x86, bug 264649
