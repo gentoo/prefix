@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-1.0.3.ebuild,v 1.2 2009/08/03 05:10:34 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-1.1.ebuild,v 1.1 2009/08/04 03:19:59 arfrever Exp $
 
 EAPI="2"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit bash-completion distutils multilib versionator webapp
 
@@ -32,6 +33,8 @@ DEPEND="${RDEPEND}
 		( dev-python/pysqlite:2 <dev-lang/python-2.5 )
 	) )"
 
+RESTRICT_PYTHON_ABIS="3*"
+
 S="${WORKDIR}/${MY_P}"
 
 PYTHON_MODNAME="django"
@@ -49,14 +52,16 @@ src_compile() {
 }
 
 src_test() {
-	einfo "Running tests."
-	cat >> tests/settings.py << __EOF__
+	testing() {
+		cat >> tests/settings.py << __EOF__
 DATABASE_ENGINE='sqlite3'
 DATABASE_NAME='test.db'
 ROOT_URLCONF='tests/urls.py'
 SITE_ID=1
 __EOF__
-	PYTHONPATH="." ${python} tests/runtests.py --settings=settings -v1 || die "tests failed"
+		PYTHONPATH="build-${PYTHON_ABI}/lib" "$(get_python)" tests/runtests.py --settings=settings -v1
+	}
+	python_execute_function testing
 }
 
 src_install() {
