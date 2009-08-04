@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0_pre1.ebuild,v 1.5 2009/08/02 15:39:41 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0_pre1.ebuild,v 1.6 2009/08/03 11:00:26 ssuominen Exp $
 
 EAPI=2
 inherit eutils
@@ -33,7 +33,8 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-ebuild_syntax.patch
+	epatch "${FILESDIR}"/${P}-ebuild_syntax.patch \
+		"${FILESDIR}"/${P}-tbz2_filetype.patch
 }
 
 src_configure() {
