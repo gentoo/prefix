@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/duma
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.9 2009/04/01 00:47:27 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.10 2009/08/01 20:00:23 nerdboy Exp $
+
+*duma-2.5.15 (01 Aug 2009)
+
+  01 Aug 2009; Steve Arnold <nerdboy@gentoo.org> +duma-2.5.15.ebuild,
+  +files/duma-2.5.15-GNUmakefile.patch:
+  Updated to latest version using ebuild and patch contributed by 
+  ssuominen with one or two minor enhancements.  Closes bug #275011.
 
 *duma-2.5.14-r1 (01 Apr 2009)
 
