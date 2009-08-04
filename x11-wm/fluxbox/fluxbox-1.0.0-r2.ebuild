@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0.0-r2.ebuild,v 1.10 2009/06/24 05:13:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/fluxbox-1.0.0-r2.ebuild,v 1.11 2009/08/03 10:24:11 ssuominen Exp $
 
 EAPI=2
 inherit eutils
@@ -38,10 +38,7 @@ SLOT="0"
 LICENSE="MIT"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# We need to be able to include directories rather than just plain
 	# files in menu [include] items. This patch will allow us to do clever
 	# things with style ebuilds.
