@@ -20,6 +20,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.13-no-wchar-hack.patch # for Interix
+	epatch "${FILESDIR}"/${P}-interix.patch # for Interix
 }
 
 src_compile() {

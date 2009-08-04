@@ -1,0 +1,19 @@
+diff -ru popt-1.14.orig/popt.c popt-1.14/popt.c
+--- popt-1.14.orig/popt.c	2009-08-04 16:20:49 +0200
++++ popt-1.14/popt.c	2009-08-04 16:23:09 +0200
+@@ -1067,7 +1067,15 @@
+ 		    char *end = NULL;
+ 
+ 		    if (con->os->nextArg) {
++			#ifdef __INTERIX
++			/* interix only has strtol ... so long long not supported here! */
++			if(opt->arg == POPT_ARG_LONGLONG)
++				return POPT_ERROR_BADNUMBER;
++
++			aNUM = strtol(con->os->nextArg, &end, 0);
++			#else
+ 			aNUM = strtoll(con->os->nextArg, &end, 0);
++			#endif
+ 			if (!(end && *end == '\0'))
+ 			    return POPT_ERROR_BADNUMBER;
+ 		    }
