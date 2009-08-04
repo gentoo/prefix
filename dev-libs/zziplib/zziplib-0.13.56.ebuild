@@ -29,6 +29,7 @@ src_prepare() {
 	sed -i -e '/^install-exec-local:/s|$|\ndisable-this:|' zzip/Makefile.in || die
 	elibtoolize
 
+	# should be fixed in 0.13.57
 	epatch "${FILESDIR}"/${P}-solaris64.patch
 	eautoreconf
 }
