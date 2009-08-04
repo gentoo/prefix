@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pyrex
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyrex/ChangeLog,v 1.72 2009/04/20 01:09:21 gentoofan23 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyrex/ChangeLog,v 1.73 2009/08/02 00:31:55 arfrever Exp $
+
+*pyrex-0.9.8.5-r1 (02 Aug 2009)
+
+  02 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +pyrex-0.9.8.5-r1.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
   20 Apr 2009; Thomas Anderson <gentoofan23@gentoo.org>
   pyrex-0.9.8.5.ebuild:
