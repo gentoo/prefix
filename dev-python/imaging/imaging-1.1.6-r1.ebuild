@@ -1,8 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/imaging-1.1.6-r1.ebuild,v 1.3 2009/07/03 09:57:58 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/imaging-1.1.6-r1.ebuild,v 1.4 2009/08/01 23:04:44 arfrever Exp $
 
-EAPI=2
+EAPI="2"
+SUPPORT_PYTHON_ABIS="1"
+
 inherit eutils distutils
 
 MY_P=Imaging-${PV}
@@ -23,6 +25,8 @@ DEPEND="media-libs/jpeg
 	X? ( x11-misc/xdg-utils )"
 RDEPEND="${DEPEND}"
 
+RESTRICT_PYTHON_ABIS="3*"
+
 PYTHON_MODNAME=PIL
 S="${WORKDIR}/${MY_P}"
 
@@ -36,7 +40,7 @@ src_prepare() {
 		-e "s:/usr/lib\":/usr/$(get_libdir)\":" \
 		-e "s:\"lib\":\"$(get_libdir)\":g" \
 		setup.py || die "sed failed"
-	if ! use tk ; then
+	if ! use tk; then
 		# Make the test always fail
 		sed -i \
 			-e 's/import _tkinter/raise ImportError/' \
@@ -46,15 +50,17 @@ src_prepare() {
 
 src_compile() {
 	distutils_src_compile
-	if use scanner ; then
+	if use scanner; then
 		cd "${S}/Sane"
 		distutils_src_compile
 	fi
 }
 
 src_test() {
-	find . -name _imaging\*.so | xargs -r cp -v -p --target-directory=./PIL/
-	"${python}" selftest.py || die
+	tests() {
+		PYTHONPATH="$(ls -d build-${PYTHON_ABI}/lib.*)" "${python}" selftest.py
+	}
+	python_execute_function tests
 }
 
 src_install() {
@@ -63,7 +69,7 @@ src_install() {
 
 	use doc && dohtml Docs/*
 
-	if use scanner ; then
+	if use scanner; then
 		cd "${S}/Sane"
 		docinto sane
 		local DOCS="CHANGES sanedoc.txt"
@@ -71,16 +77,18 @@ src_install() {
 		cd "${S}"
 	fi
 
-	# install headers required by media-gfx/sketch
-	distutils_python_version
-	insinto /usr/include/python${PYVER}
-	doins libImaging/Imaging.h
-	doins libImaging/ImPlatform.h
+	# Install headers required by media-gfx/sketch.
+	install_headers() {
+		insinto "$(python_get_includedir)"
+		doins libImaging/Imaging.h
+		doins libImaging/ImPlatform.h
+	}
+	python_execute_function install_headers
 
-	if use examples ; then
+	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
 		doins Scripts/*
-		if use scanner ; then
+		if use scanner; then
 			insinto /usr/share/doc/${PF}/examples/sane
 			doins Sane/demo_*.py
 		fi
