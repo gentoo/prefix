@@ -18,13 +18,13 @@ SRC_URI="mirror://sourceforge/wxpython/${MY_P}.tar.bz2
 
 LICENSE="wxWinLL-3"
 SLOT="2.8"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux"
-IUSE="cairo opengl doc examples"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
+IUSE="aqua cairo opengl doc examples"
 
 RDEPEND="
 	>=x11-libs/wxGTK-${PV}:2.8[opengl?]
 	>=dev-lang/python-2.4
-	>=x11-libs/gtk+-2.4
+	>=x11-libs/gtk+-2.4[aqua?]
 	>=x11-libs/pango-1.2
 	>=dev-libs/glib-2.0
 	media-libs/libpng
@@ -67,7 +67,11 @@ src_configure() {
 		|| mypyconf="${mypyconf} BUILD_GLCANVAS=0"
 
 	mypyconf="${mypyconf} WX_CONFIG=${WX_CONFIG}"
-	mypyconf="${mypyconf} WXPORT=gtk2 UNICODE=1"
+	mypyconf="${mypyconf} UNICODE=1"
+
+	use aqua \
+		&& mypyconf="${mypyconf} WXPORT=mac" \
+		|| mypyconf="${mypyconf} WXPORT=gtk2"
 }
 
 src_compile() {
@@ -84,7 +88,11 @@ src_install() {
 		&& mypyconf="${mypyconf} BUILD_GLCANVAS=1" \
 		|| mypyconf="${mypyconf} BUILD_GLCANVAS=0"
 
-	mypyconf="${mypyconf} WXPORT=gtk2 UNICODE=1"
+	mypyconf="${mypyconf} UNICODE=1"
+
+	use aqua \
+		&& mypyconf="${mypyconf} WXPORT=mac" \
+		|| mypyconf="${mypyconf} WXPORT=gtk2"
 
 	python setup.py ${mypyconf} install --root="${D}" \
 		--install-purelib "${EPREFIX}"${site_pkgs} || die "setup.py install failed"
