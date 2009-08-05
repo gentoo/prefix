@@ -14,6 +14,17 @@ Add assemblyish files for x86_64 solaris
         _WARNINGS_CFLAGS=''
         _WARNINGS_CXXFLAGS=''
         if test "$OS_RELEASE" = "5.3"; then
+--- js/src/configure.in
++++ js/src/configure.in
+@@ -2339,7 +2339,7 @@
+         AC_LANG_RESTORE
+     else
+        ASFLAGS="$ASFLAGS -fPIC"
+-       DSO_LDOPTS='-G'
++       DSO_LDOPTS='-shared'
+        _WARNINGS_CFLAGS=''
+        _WARNINGS_CXXFLAGS=''
+        if test "$OS_RELEASE" = "5.3"; then
 --- xpcom/reflect/xptcall/src/md/unix/Makefile.in
 +++ xpcom/reflect/xptcall/src/md/unix/Makefile.in
 @@ -130,7 +130,11 @@
