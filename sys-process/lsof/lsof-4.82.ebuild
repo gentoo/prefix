@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.82.ebuild,v 1.2 2009/05/11 18:08:24 vapier Exp $
 
-inherit flag-o-matic toolchain-funcs
+inherit flag-o-matic toolchain-funcs eutils
 
 MY_P=${P/-/_}
 DESCRIPTION="Lists open files for running Unix processes"
@@ -33,6 +33,15 @@ src_unpack() {
 		-e "/^LSOF_CFGL=/s:\$:' \$(LDFLAGS)':" \
 		-e "/^LSOF_RANLIB/s:ranlib:$(tc-getRANLIB):" \
 		Configure
+
+	epatch "${FILESDIR}"/${P}-config-solaris.patch
+	epatch "${FILESDIR}"/${PN}-4.80-solaris11.patch
+	if [[ ${CHOST} == *-solaris2.11 ]] ; then
+		mkdir -p ext/sys
+		# missing system header :(
+		cp "${FILESDIR}"/solaris11-extdirent.h ext/sys/extdirent.h
+		( cd lib && ln -s ../ext )
+	fi
 }
 
 yesno() { use $1 && echo y || echo n ; }
