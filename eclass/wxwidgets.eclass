@@ -194,6 +194,8 @@ need-wxwidgets() {
 	# wxBase can be provided by both gtk2 and base installations
 	if built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* X; then
 		wxtoolkit="gtk2"
+	elif built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* aqua; then
+		wxtoolkit="mac"
 	else
 		wxtoolkit="base"
 	fi
@@ -254,8 +256,12 @@ check_wxuse() {
 		die "WX_GTK_VER missing"
 	fi
 
-	ebegin "Checking wxGTK-${WX_GTK_VER} for ${1} support"
-	if built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* "${1}"; then
+	# crude hack to avoid changing many calls
+	flag=$1
+	use aqua && [[ ${flag} == "X" ]] && flag="aqua"
+
+	ebegin "Checking wxGTK-${WX_GTK_VER} for ${flag} support"
+	if built_with_use =x11-libs/wxGTK-${WX_GTK_VER}* "${flag}"; then
 		eend 0
 	else
 		eend 1
@@ -263,7 +269,7 @@ check_wxuse() {
 		eerror "${FUNCNAME} - You have requested functionality that requires ${1} support to"
 		eerror "have been built into x11-libs/wxGTK."
 		eerror
-		eerror "Please re-merge =x11-libs/wxGTK-${WX_GTK_VER}* with the ${1} USE flag enabled."
+		eerror "Please re-merge =x11-libs/wxGTK-${WX_GTK_VER}* with the ${flag} USE flag enabled."
 		die "Missing USE flags."
 	fi
 }
