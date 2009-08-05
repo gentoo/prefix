@@ -12,7 +12,7 @@ SRC_URI="http://labix.org/download/python-dateutil/${P}.tar.gz"
 
 LICENSE="PSF-2.3"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x64-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE=""
 
 DOCS="NEWS README"
