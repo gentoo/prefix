@@ -17,7 +17,7 @@ BASE_P="${PN}-${BASE_PV}"
 SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
 
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="X doc debug gnome gstreamer odbc opengl pch sdl"
+IUSE="aqua X doc debug gnome gstreamer odbc opengl pch sdl"
 
 RDEPEND="
 	dev-libs/expat
@@ -36,6 +36,11 @@ RDEPEND="
 			>=gnome-base/gconf-2.0
 			>=media-libs/gstreamer-0.10 )
 		opengl? ( virtual/opengl )
+		)
+	aqua? (
+		>=x11-libs/gtk+-2.4[aqua]
+		media-libs/jpeg
+		media-libs/tiff
 		)"
 
 DEPEND="${RDEPEND}
@@ -110,9 +115,20 @@ src_configure() {
 			$(use_with opengl)
 			$(use_with gnome gnomeprint)
 			--without-gnomevfs"
+	
+	use aqua && \
+		myconf="${myconf}
+			--enable-graphics_ctx
+			--enable-gui
+			--with-libpng=sys
+			--with-libxpm=sys
+			--with-libjpeg=sys
+			--with-libtiff=sys
+			--with-mac=1"
+			# cocoa toolkit seems to be broken
 
 	# wxBase options
-	use X || \
+	use X || use aqua \
 		myconf="${myconf}
 			--disable-gui"
 
