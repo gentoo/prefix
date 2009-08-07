@@ -298,7 +298,7 @@ src_configure() {
 	tc-export CC AR CXX
 	STRIP=/bin/true \
 	econf \
-		--libexecdir=/usr/$(get_libdir)/openldap \
+		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/openldap \
 		${myconf}
 
 	if ! use minimal ; then
