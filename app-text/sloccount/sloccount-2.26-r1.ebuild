@@ -22,6 +22,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-libexec.patch
 	epatch "${FILESDIR}"/${P}-coreutils-tail-n-fix.patch
+	epatch "${FILESDIR}"/${PN}-2.26-prefix-libexec.patch
 
 	sed -i \
 		-e "/^CC/ { s/$/ ${CFLAGS}/g }" \
