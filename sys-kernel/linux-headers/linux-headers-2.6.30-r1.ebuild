@@ -42,7 +42,7 @@ src_install() {
 	find "${ED}" '(' -name '.install' -o -name '*.cmd' ')' -print0 | xargs -0 rm -f
 
 	# provided by libdrm (for now?)
-	rm -rf "${ED}"/$(kernel_header_destdir)/drm
+	rm -rf "${D}"/$(kernel_header_destdir)/drm
 }
 
 src_test() {
