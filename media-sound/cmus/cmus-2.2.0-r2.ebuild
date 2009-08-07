@@ -11,7 +11,7 @@ SRC_URI="http://mirror.greaterscope.net/cmus/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="aac alsa ao debug examples flac mad mikmod modplug mp4 musepack \
 	oss pidgin unicode vorbis wavpack wma zsh-completion"
 
