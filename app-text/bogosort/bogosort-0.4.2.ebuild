@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/bogosort/bogosort-0.4.2.ebuild,v 1.10 2009/07/03 01:04:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/bogosort/bogosort-0.4.2.ebuild,v 1.11 2009/08/06 11:32:16 ssuominen Exp $
 
 inherit libtool eutils toolchain-funcs
 
@@ -18,9 +18,9 @@ RDEPEND=""
 
 src_unpack() {
 	unpack ${A}
-
 	cd "${S}"
-	epatch "${FILESDIR}/xmalloc.patch"
+	epatch "${FILESDIR}"/xmalloc.patch
+	epatch "${FILESDIR}"/${P}-glibc-2.10.patch
 }
 
 src_compile() {
