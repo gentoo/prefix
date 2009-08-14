@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre6.ebuild,v 1.6 2009/04/14 09:52:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/cedet-1.0_pre6.ebuild,v 1.7 2009/08/10 19:51:01 ulm Exp $
 
 NEED_EMACS=22
 
@@ -22,6 +22,7 @@ RDEPEND="!app-emacs/semantic
 	!app-emacs/speedbar"
 
 S="${WORKDIR}/${MY_P}"
+ELISP_PATCHES="${P}-fix-eieio-comp.patch"
 SITEFILE="50${PN}-gentoo.el"
 
 src_compile() {

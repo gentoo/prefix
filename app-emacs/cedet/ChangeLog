@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/cedet
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.45 2009/06/03 16:18:02 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/cedet/ChangeLog,v 1.46 2009/08/10 19:51:01 ulm Exp $
+
+  10 Aug 2009; Ulrich Mueller <ulm@gentoo.org> cedet-1.0_pre6.ebuild,
+  +files/cedet-1.0_pre6-fix-eieio-comp.patch:
+  Fix byte-compilation of EIEIO with Emacs 23.1.50, bug 280984.
 
   03 Jun 2009; Christian Faulhammer <fauli@gentoo.org>
   -files/1.0_pre3-eieio-tests-gentoo.patch,

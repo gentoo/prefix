@@ -1,6 +1,3 @@
-
-;;; cedet site-lisp configuration
-
 (load "@SITELISP@/common/cedet" nil t)
 (add-to-list 'image-load-path "@SITEETC@/common/icons" t)
 (setq srecode-map-load-path
