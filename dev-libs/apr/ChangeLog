@@ -1,6 +1,42 @@
 # ChangeLog for dev-libs/apr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.131 2009/07/24 22:10:18 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.141 2009/08/11 23:28:55 jer Exp $
+
+  11 Aug 2009; Jeroen Roovers <jer@gentoo.org> apr-1.3.8.ebuild:
+  Stable for HPPA (bug #280514).
+
+  10 Aug 2009; Markus Meier <maekke@gentoo.org> apr-1.3.8.ebuild:
+  x86 stable, bug #280514
+
+  10 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  apr-1.3.8.ebuild, metadata.xml:
+  Rename "cloexec" USE flag to "older-kernels-compatibility" (bug #280648).
+
+  10 Aug 2009; Tobias Klausmann <klausman@gentoo.org> apr-1.3.8.ebuild:
+  Stable on alpha, bug #280514
+
+  10 Aug 2009; Tobias Klausmann <klausman@gentoo.org> ChangeLog:
+  Stable on alpha, bug #280514
+
+  10 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  apr-1.3.8.ebuild, metadata.xml:
+  Add "cloexec" USE flag (bug #280648).
+
+  07 Aug 2009; Christian Faulhammer <fauli@gentoo.org> apr-1.3.8.ebuild:
+  revert stable keyword for x86
+
+  06 Aug 2009; Markus Meier <maekke@gentoo.org> apr-1.3.8.ebuild:
+  x86 stable, bug #280514
+
+  06 Aug 2009; Alex Legler <a3li@gentoo.org> apr-1.3.8.ebuild:
+  amd64 stable, security bug 280514.
+
+*apr-1.3.8 (06 Aug 2009)
+
+  06 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -apr-1.2.11.ebuild, -apr-1.2.12.ebuild, -apr-1.3.0.ebuild,
+  -apr-1.3.2.ebuild, -apr-1.3.3.ebuild, +apr-1.3.8.ebuild:
+  Version bump.
 
 *apr-1.3.7 (24 Jul 2009)
 
