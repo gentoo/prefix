@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.3.0_rc1.ebuild,v 1.2 2009/05/28 13:52:33 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.3.1.ebuild,v 1.1 2009/08/07 20:40:51 ali_bush Exp $
 
 # Note:this pmasked in gentoo-x86/profiles.
 # Please remove both once a full release is available.
@@ -20,7 +20,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="bsf java6 ssl"
 
 CDEPEND=">=dev-java/bytelist-1.0.2:0
-	>=dev-java/constantine-0.5:0
+	>=dev-java/constantine-0.6:0
 	>=dev-java/jline-0.9.94:0
 	>=dev-java/joni-1.1.3:0
 	>=dev-java/jna-posix-1.0.1:0
@@ -31,7 +31,8 @@ CDEPEND=">=dev-java/bytelist-1.0.2:0
 	dev-java/jna:0
 	dev-java/joda-time:0
 	dev-util/jay:0[java]
-	!java6? ( dev-java/backport-util-concurrent )"
+	!java6? ( dev-java/backport-util-concurrent:0 )
+	dev-java/nailgun:0"
 
 RDEPEND="${CDEPEND}
 	!java6? ( =virtual/jre-1.5* )
@@ -61,7 +62,8 @@ GEMS=${RUBY_HOME}/gems
 
 JAVA_ANT_REWRITE_CLASSPATH="true"
 JAVA_ANT_IGNORE_SYSTEM_CLASSES="true"
-EANT_GENTOO_CLASSPATH="asm-3 bytelist constantine jay jcodings jffi-0.4 jline joda-time joni jna jna-posix jvyamlb"
+EANT_GENTOO_CLASSPATH="asm-3 bytelist constantine jay jcodings jffi-0.4 jline
+joda-time joni jna jna-posix jvyamlb,nailgun"
 EANT_NEEDS_TOOLS="true"
 
 pkg_setup() {
