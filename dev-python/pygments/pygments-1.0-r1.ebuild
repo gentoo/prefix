@@ -1,8 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/pygments-1.0.ebuild,v 1.13 2009/08/09 16:31:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/pygments-1.0-r1.ebuild,v 1.1 2009/08/10 22:36:00 arfrever Exp $
 
-NEED_PYTHON=2.3
+EAPI="2"
+
+NEED_PYTHON="2.3"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils
 
@@ -22,11 +25,13 @@ DEPEND="test? ( media-fonts/ttf-bitstream-vera
 		dev-python/nose	)"
 RDEPEND="dev-python/setuptools"
 
+RESTRICT_PYTHON_ABIS="3*"
+
 S="${WORKDIR}/${MY_P}"
 DOCS="CHANGES"
 
-src_unpack() {
-	distutils_src_unpack
+src_prepare() {
+	distutils_src_prepare
 
 	# Make lexer recognize ebuilds as bash input
 	sed -i \
@@ -35,21 +40,21 @@ src_unpack() {
 				${PN}/lexers/_mapping.py ${PN}/lexers/other.py ||\
 		die "sed failed."
 
-	#Our usual PYTHONPATH manipulation trick doesn't work, it will try to run
-	#tests on the installed version:
-	if use test ; then
-		sed -i \
-		-e "s/import pygments/sys.path.insert(0, '.');import pygments/" \
-		tests/run.py || \
-		die "sed failed"
+	# Our usual PYTHONPATH manipulation trick doesn't work, it will try to run
+	# tests on the installed version:
+	if use test; then
+		sed -e "s/import pygments/sys.path.insert(0, '.');import pygments/" -i tests/run.py || die "sed failed"
 	fi
+}
+
+src_test() {
+	testing() {
+		"$(PYTHON)" tests/run.py
+	}
+	python_execute_function testing
 }
 
 src_install(){
 	distutils_src_install
 	use doc && dohtml -r docs/build/
-}
-
-src_test() {
-	"${python}" tests/run.py || die "tests failed"
 }
