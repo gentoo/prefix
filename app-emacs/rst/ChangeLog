@@ -1,6 +1,12 @@
 # ChangeLog for app-emacs/rst
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/rst/ChangeLog,v 1.21 2009/03/29 21:06:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/rst/ChangeLog,v 1.23 2009/08/09 16:12:09 nixnut Exp $
+
+  09 Aug 2009; nixnut <nixnut@gentoo.org> rst-0.5.ebuild:
+  ppc stable #280830
+
+  08 Aug 2009; Christian Faulhammer <fauli@gentoo.org> rst-0.5.ebuild:
+  stable x86, bug 280830
 
 *rst-0.5 (29 Mar 2009)
 
