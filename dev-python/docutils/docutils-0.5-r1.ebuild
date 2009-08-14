@@ -1,10 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.5.ebuild,v 1.9 2009/08/12 00:50:00 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/docutils-0.5-r1.ebuild,v 1.1 2009/08/12 01:17:09 arfrever Exp $
 
 EAPI="2"
 
 NEED_PYTHON="2.4"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils eutils multilib
 
@@ -19,18 +20,21 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-sola
 IUSE="glep emacs"
 
 DEPEND="dev-python/setuptools"
+RDEPEND=""
 # Emacs support is in PDEPEND to avoid a dependency cycle (bug #183242)
 PDEPEND="emacs? ( >=app-emacs/rst-0.4 )"
 
-EMP=${PN}-0.3.7
+RESTRICT_PYTHON_ABIS="3*"
 
-GLEP_SRC=${WORKDIR}/glep-0.4-r1
+EMP="${PN}-0.3.7"
+
+GLEP_SRC="${WORKDIR}/glep-0.4-r1"
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-test_node_class_names-python-2.6.patch"
 
 	# simplified algorithm to select installing optparse and textwrap
-	epatch "${FILESDIR}"/${EMP}-extramodules.patch
+	epatch "${FILESDIR}/${EMP}-extramodules.patch"
 
 	sed -i \
 		-e 's/from distutils.core/from setuptools/' \
@@ -68,40 +72,54 @@ install_txt_doc() {
 }
 
 src_test() {
-	cd "${S}"/test
-	PYTHONPATH="${S}" ./alltests.py || die "alltests.py failed"
+	cd "${S}/test"
+
+	testing() {
+		PYTHONPATH="../build-${PYTHON_ABI}/lib" ./alltests.py
+	}
+	python_execute_function testing
 }
 
 src_install() {
 	DOCS="*.txt"
 	distutils_src_install
+
 	# Tools
 	cd "${S}"/tools
-	for tool in *.py
-	do
+	for tool in *.py; do
 		dobin ${tool}
 	done
+
 	# Docs
 	cd "${S}"
 	dohtml -r docs tools
-	# manually install the stylesheet file
+	# Manually install the stylesheet file
 	insinto /usr/share/doc/${PF}/html
 	doins docutils/writers/html4css1/html4css1.css
-	for doc in $(find docs tools -name '*.txt')
-	do
+	for doc in $(find docs tools -name '*.txt'); do
 		install_txt_doc $doc
 	done
 
 	# installing Gentoo GLEP tools. Uses versioned GLEP distribution
-	if use glep
-	then
-		distutils_python_version
+	if use glep; then
 		dobin ${GLEP_SRC}/glep.py || die "newbin failed"
-		insinto /usr/$(get_libdir)/python${PYVER}/site-packages/docutils/readers
-		newins ${GLEP_SRC}/glepread.py glep.py || die "newins reader failed"
-		insinto /usr/$(get_libdir)/python${PYVER}/site-packages/docutils/transforms
-		newins ${GLEP_SRC}/glepstrans.py gleps.py || die "newins transform failed"
-		insinto /usr/$(get_libdir)/python${PYVER}/site-packages/docutils/writers
-		doins -r ${GLEP_SRC}/glep_html || die "doins writer failed"
+
+		installation_of_glep_tools() {
+			insinto $(python_get_sitedir)/docutils/readers
+			newins ${GLEP_SRC}/glepread.py glep.py || die "newins reader failed"
+			insinto $(python_get_sitedir)/docutils/transforms
+			newins ${GLEP_SRC}/glepstrans.py gleps.py || die "newins transform failed"
+			insinto $(python_get_sitedir)/docutils/writers
+			doins -r ${GLEP_SRC}/glep_html || die "doins writer failed"
+		}
+		python_execute_function --action-message 'Installation of GLEP tools with Python ${PYTHON_ABI}...' installation_of_glep_tools
 	fi
+}
+
+pkg_postinst() {
+	python_mod_optimize docutils roman.py
+}
+
+pkg_postrm() {
+	python_mod_cleanup
 }
