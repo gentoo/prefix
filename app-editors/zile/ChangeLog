@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/zile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.93 2009/07/16 17:25:34 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.96 2009/08/11 17:26:32 tcunha Exp $
+
+  11 Aug 2009; Tiago Cunha <tcunha@gentoo.org> zile-2.3.9.ebuild:
+  stable amd64/sparc, bug 280695
+
+  09 Aug 2009; nixnut <nixnut@gentoo.org> zile-2.3.9.ebuild:
+  ppc stable #280695
+
+  08 Aug 2009; Christian Faulhammer <fauli@gentoo.org> zile-2.3.9.ebuild:
+  stable x86, bug 280695
 
   16 Jul 2009; Christian Faulhammer <fauli@gentoo.org> -zile-2.2.61.ebuild,
   -zile-2.3.4.ebuild:
