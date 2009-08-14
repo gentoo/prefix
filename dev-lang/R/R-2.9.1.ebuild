@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.9.1.ebuild,v 1.2 2009/07/16 06:14:11 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.9.1.ebuild,v 1.3 2009/08/07 17:18:52 bicatali Exp $
 
 EAPI=2
 inherit eutils flag-o-matic bash-completion versionator
@@ -72,6 +72,7 @@ src_prepare() {
 		export R_BROWSER="$(type -p xdg-open)"
 		export R_PDFVIEWER="$(type -p xdg-open)"
 	fi
+	export PERL5LIB="${S}/share/perl:${PERL5LIB:+:}${PERL5LIB}"
 }
 
 src_configure() {

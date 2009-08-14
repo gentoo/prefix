@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/R
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.155 2009/07/16 06:14:11 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.156 2009/08/07 17:18:52 bicatali Exp $
+
+  07 Aug 2009; Sébastien Fabbro <bicatali@gentoo.org> R-2.7.2.ebuild,
+  R-2.8.1.ebuild, -R-2.9.0.ebuild, -files/R-2.9.0-without-x.patch,
+  R-2.9.1.ebuild:
+  Fixed perl 5 path, thanks to Guenther Brunthaler, closing bug #278258
 
   16 Jul 2009; Sébastien Fabbro <bicatali@gentoo.org> R-2.9.1.ebuild:
   Added symlinking for docs, thanks to Martin von Gagern, closing bug
