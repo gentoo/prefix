@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ispell-3.3.02-r1.ebuild,v 1.1 2008/11/01 08:14:41 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ispell-3.3.02-r1.ebuild,v 1.2 2009/08/06 15:30:46 ssuominen Exp $
 
 inherit eutils multilib toolchain-funcs
 
@@ -10,18 +10,20 @@ HOMEPAGE="http://fmg-www.cs.ucla.edu/geoff/ispell.html"
 SRC_URI="http://fmg-www.cs.ucla.edu/geoff/tars/${P}.tar.gz
 		mirror://gentoo/${P}-gentoo-${PATCH_VER}.diff.bz2"
 
-SLOT="0"
 LICENSE="as-is"
+SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
-DEPEND="sys-apps/miscfiles
-		>=sys-libs/ncurses-5.2"
+RDEPEND="sys-apps/miscfiles
+	>=sys-libs/ncurses-5.2"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${WORKDIR}/${P}-gentoo-${PATCH_VER}.diff"
+	epatch "${WORKDIR}"/${P}-gentoo-${PATCH_VER}.diff
+	epatch "${FILESDIR}"/${P}-glibc-2.10.patch
 
 	sed -e "s:GENTOO_LIBDIR:$(get_libdir):" -i local.h || die
 	sed -e "s:\(^#define CC\).*:\1 \"$(tc-getCC)\":" -i local.h || die
