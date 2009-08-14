@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/pysqlite-2.5.5-r1.ebuild,v 1.1 2009/08/04 03:48:59 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pysqlite/pysqlite-2.5.5-r1.ebuild,v 1.2 2009/08/05 18:47:05 arfrever Exp $
 
 EAPI="2"
 
@@ -62,7 +62,7 @@ src_test() {
 	# Tests use this as a nonexistent file.
 	addpredict /foo/bar
 	testing() {
-		PYTHONPATH="$(ls -d ../build-${PYTHON_ABI}/lib.*)" "$(get_python)" -c \
+		PYTHONPATH="$(ls -d ../build-${PYTHON_ABI}/lib.*)" "$(PYTHON)" -c \
 			"from test import test;import sys;sys.exit(test())"
 	}
 	python_execute_function testing
