@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/python-memcached
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-memcached/ChangeLog,v 1.5 2009/07/12 17:13:46 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-memcached/ChangeLog,v 1.6 2009/08/08 00:50:25 arfrever Exp $
+
+  08 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-memcached-1.44.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
 *python-memcached-1.44 (12 Jul 2009)
 
