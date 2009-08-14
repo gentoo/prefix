@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.18.0.ebuild,v 1.6 2009/07/30 21:19:40 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.18.0.ebuild,v 1.8 2009/08/09 22:15:34 eva Exp $
 
 inherit autotools gnome2 python virtualx
 
@@ -36,7 +36,11 @@ src_unpack() {
 	# Fix FHS compliance, see upstream bug #535524
 	epatch "${FILESDIR}/${PN}-2.15.4-fix-codegen-location.patch"
 
+	# Do not build tests if unneeded, bug #226345
 	epatch "${FILESDIR}"/${P}-make_check.patch
+
+	# Do not install files twice, bug #279813
+	epatch "${FILESDIR}/${P}-automake111.patch"
 
 	# needed to build on a libtool-1 system, bug #255542
 	rm m4/lt* m4/libtool.m4 ltmain.sh
