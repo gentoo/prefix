@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.98.5.3.ebuild,v 1.3 2009/08/06 18:03:29 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/matplotlib/matplotlib-0.99.0.ebuild,v 1.1 2009/08/08 03:27:05 bicatali Exp $
 
 WX_GTK_VER=2.8
 EAPI=2
@@ -74,11 +74,11 @@ use_setup() {
 
 src_prepare() {
 	# patch from mandriva
-	epatch "${FILESDIR}"/${PN}-0.98.5.2-literal.patch
+	#epatch "${FILESDIR}"/${PN}-0.98.5.2-literal.patch
 	# avoid to launch xv while building examples docs
 	epatch "${FILESDIR}"/${PN}-0.98.5.2-no-xv.patch
 
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-0.98.5.3-prefix.patch
 
 	# create setup.cfg (see setup.cfg.template for any changes)
 	cat > setup.cfg <<-EOF
