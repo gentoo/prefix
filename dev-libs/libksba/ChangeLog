@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.104 2009/07/19 12:52:57 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.105 2009/08/08 18:12:00 jer Exp $
+
+  08 Aug 2009; Jeroen Roovers <jer@gentoo.org> libksba-1.0.7.ebuild:
+  Stable for HPPA (bug #280785).
 
   19 Jul 2009; nixnut <nixnut@gentoo.org> libksba-1.0.6.ebuild:
   ppc stable #277127
