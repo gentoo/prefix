@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r5.ebuild,v 1.5 2009/07/02 04:13:11 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.35.0-r5.ebuild,v 1.6 2009/08/07 05:47:41 dev-zero Exp $
 
 EAPI=2
 
@@ -27,7 +27,7 @@ RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	python? ( virtual/python )
 	>=app-admin/eselect-boost-0.3"
 DEPEND="${RDEPEND}
-	dev-util/boost-build:${SLOT}"
+	>=dev-util/boost-build-1.35.0-r2:${SLOT}"
 
 S=${WORKDIR}/${MY_P}
 
