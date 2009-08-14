@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pycairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.69 2009/07/10 18:05:44 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.70 2009/08/08 20:36:20 arfrever Exp $
+
+  08 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pycairo-1.8.6.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
   10 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   pycairo-1.8.6.ebuild:
