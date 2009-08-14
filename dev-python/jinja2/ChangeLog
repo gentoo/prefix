@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/jinja2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/ChangeLog,v 1.15 2009/07/28 05:36:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/ChangeLog,v 1.17 2009/08/10 20:43:38 arfrever Exp $
+
+  10 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  jinja2-2.1.1-r1.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
+
+  09 Aug 2009; Raúl Porcel <armin76@gentoo.org> jinja2-2.1.1.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #278978
 
   28 Jul 2009; Jeroen Roovers <jer@gentoo.org> jinja2-2.1.1.ebuild:
   Stable for HPPA (bug #278978).
