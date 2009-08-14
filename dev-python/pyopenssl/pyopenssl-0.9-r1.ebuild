@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyopenssl/pyopenssl-0.9-r1.ebuild,v 1.1 2009/08/02 05:47:26 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyopenssl/pyopenssl-0.9-r1.ebuild,v 1.2 2009/08/05 18:42:20 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -46,8 +46,8 @@ src_compile() {
 src_test() {
 	test_package() {
 		pushd test > /dev/null
-		PYTHONPATH="$(ls -d ../build-${PYTHON_ABI}/lib.*)" "$(get_python)" test_crypto.py || die "test_crypto.py failed"
-		PYTHONPATH="$(ls -d ../build-${PYTHON_ABI}/lib.*)" "$(get_python)" test_ssl.py || die "test_ssl.py failed"
+		PYTHONPATH="$(ls -d ../build-${PYTHON_ABI}/lib.*)" "$(PYTHON)" test_crypto.py || die "test_crypto.py failed"
+		PYTHONPATH="$(ls -d ../build-${PYTHON_ABI}/lib.*)" "$(PYTHON)" test_ssl.py || die "test_ssl.py failed"
 		popd > /dev/null
 	}
 	python_execute_function test_package
