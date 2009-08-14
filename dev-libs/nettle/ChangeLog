@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/nettle
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nettle/ChangeLog,v 1.25 2009/08/02 14:34:30 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nettle/ChangeLog,v 1.26 2009/08/05 21:12:02 maekke Exp $
+
+  05 Aug 2009; Markus Meier <maekke@gentoo.org> nettle-2.0.ebuild:
+  x86 stable, bug #279372
 
   02 Aug 2009; nixnut <nixnut@gentoo.org> nettle-2.0.ebuild:
   ppc stable #279372
