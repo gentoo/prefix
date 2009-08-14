@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/egenix-mx-base/egenix-mx-base-3.1.2.ebuild,v 1.1 2009/07/24 20:28:16 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/egenix-mx-base/egenix-mx-base-3.1.2.ebuild,v 1.2 2009/08/04 23:33:39 arfrever Exp $
 
 EAPI="2"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils flag-o-matic
 
@@ -17,6 +18,8 @@ IUSE=""
 
 DEPEND=""
 RDEPEND=""
+
+RESTRICT_PYTHON_ABIS="3*"
 
 PYTHON_MODNAME="mx"
 

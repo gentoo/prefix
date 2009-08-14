@@ -1,6 +1,14 @@
 # ChangeLog for dev-python/egenix-mx-base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/egenix-mx-base/ChangeLog,v 1.36 2009/07/24 20:28:16 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/egenix-mx-base/ChangeLog,v 1.38 2009/08/08 22:52:53 fauli Exp $
+
+  08 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  egenix-mx-base-3.1.1.ebuild:
+  stable x86, bug 280376
+
+  04 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  egenix-mx-base-3.1.2.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
 *egenix-mx-base-3.1.2 (24 Jul 2009)
 
