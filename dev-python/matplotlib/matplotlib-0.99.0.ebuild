@@ -115,8 +115,8 @@ src_prepare() {
 		|| die "sed setup.py for FHS failed"
 
 	sed -i \
-		-e "s:path =  get_data_path():path = '/etc/matplotlib':" \
-		-e "s:os.path.dirname(__file__):'/usr/share/${PN}':g"  \
+		-e "s:path =  get_data_path():path = '${EPREFIX}/etc/matplotlib':" \
+		-e "s:os.path.dirname(__file__):'${EPREFIX}/usr/share/${PN}':g"  \
 		lib/matplotlib/{__init__,config/cutils}.py \
 		|| die "sed init for FHS failed"
 
@@ -126,7 +126,8 @@ src_prepare() {
 		lib/matplotlib/mpl-data/fonts/{afm,pdfcorefonts} \
 		lib/matplotlib/mpl-data/fonts/ttf/{Vera*,cm*,*.TXT} \
 		|| die "removed internal copies failed"
-	ln -s /usr/share/python*/CXX . || die
+	# bug 281489
+	ln -s ${EPREFIX}/usr/share/python*/CXX . || die
 
 	# remove pyparsing only when upstream pyparsing included matplotlib
 	# fixes. See bug #260025
