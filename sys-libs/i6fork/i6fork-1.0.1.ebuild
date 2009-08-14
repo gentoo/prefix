@@ -4,6 +4,8 @@
 
 EAPI=2
 
+inherit eutils
+
 DESCRIPTION="i6fork provides a fixed fork version for interix 6"
 HOMEPAGE="http://dev.gentoo.org/~mduft/i6fork"
 SRC_URI="${HOMEPAGE}/${P}.tar.gz"
@@ -16,6 +18,10 @@ pkg_setup() {
 	if [[ ${CHOST} != *-interix6* ]]; then
 		die "only interix 6 is supported by i6fork. other versions don't require this!"
 	fi
+}
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-preload.patch
 }
 
 src_install() {

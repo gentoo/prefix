@@ -1,0 +1,59 @@
+diff -ru i6fork-1.0.1.orig/exec.c i6fork-1.0.1/exec.c
+--- i6fork-1.0.1.orig/exec.c	2009-08-14 02:38:48 -0700
++++ i6fork-1.0.1/exec.c	2009-08-14 08:23:42 -0700
+@@ -83,8 +83,8 @@
+ 	static int(*__execve)(const char *, char * const[], char * const[]) = NULL;
+ 	char * const * pe = e;
+ 	char ** ppe = NULL;
+-	char * preload_buffer;
+-	char const * preload_orig;
++	char * preload_buffer = NULL;
++	char const * preload_orig = NULL;
+ 	char const preload_tmp[] = "LD_PRELOAD=" I6_PRELOAD_LIBNAME;
+ 	int cnt = 0;
+ 	int alloced = 0;
+@@ -108,7 +108,8 @@
+ 				goto doit;
+ 			}
+ 
+-			DBG(stderr, "!!! %d => execve: preload-check failed (current %s)!\n", getpid(), *pe);
++			/* memorize LD_PRELOADs value, since it is required below! */
++			preload_orig = (strstr(*pe, "=") + 1);
+ 		}
+ 
+ 		++pe;
+@@ -116,7 +117,7 @@
+ 
+ 	DBG(stderr, "!!! %d => execve: re-adding preload of " I6_PRELOAD_LIBNAME "\n", getpid());
+ 
+-	ppe = malloc(sizeof(char const *) * cnt + 1);
++	ppe = malloc(sizeof(char const *) * cnt + 2);
+ 	alloced = 1;
+ 	pe = e;
+ 	cnt = 0;
+@@ -128,14 +129,13 @@
+ 		++pe;
+ 	}
+ 
+-	preload_orig = getenv("LD_PRELOAD");
+-
+ 	// treat zero length string as if unset
+ 	if(preload_orig && !preload_orig[0])
+ 		preload_orig = NULL;
+ 
+ 	preload_buffer = malloc((sizeof(char) * (preload_orig ? (strlen(preload_orig) + 1) : 0)) + sizeof(preload_tmp) + 1);
+ 	sprintf(preload_buffer, "%s%s%s", preload_tmp, preload_orig ? " " : "", preload_orig ? preload_orig : "");
++	DBG(stderr, "STATUS: setting: %s\n", preload_buffer);
+ 
+ 	ppe[cnt++] = preload_buffer;
+ 	ppe[cnt] = NULL;
+@@ -147,7 +147,8 @@
+ 	if(alloced)
+ 		free(ppe);
+ 	
+-	free(preload_buffer);
++	if(preload_buffer)
++		free(preload_buffer);
+ 
+ 	DBG(stderr, "LEAVE: execve (failed) (%d)\n", getpid());
+ 	return status;
