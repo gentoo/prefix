@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/anthy-9100h.ebuild,v 1.6 2009/07/21 14:47:05 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/anthy-9100h.ebuild,v 1.7 2009/08/09 12:35:26 nixnut Exp $
 
 inherit elisp-common eutils
 
