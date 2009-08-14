@@ -1,6 +1,13 @@
 # ChangeLog for app-emacs/emacs-common-gentoo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.15 2009/04/22 23:14:03 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.16 2009/08/09 07:27:13 ulm Exp $
+
+*emacs-common-gentoo-1.2 (08 Aug 2009)
+
+  08 Aug 2009; Ulrich Mueller <ulm@gentoo.org>
+  -emacs-common-gentoo-1.1.ebuild, +emacs-common-gentoo-1.2.ebuild,
+  metadata.xml:
+  Version bump. Emacs 23 style icons are default now.
 
 *emacs-common-gentoo-1.1 (23 Apr 2009)
 
