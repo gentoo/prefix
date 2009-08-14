@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Test-Deep
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Deep/ChangeLog,v 1.31 2009/05/16 08:24:45 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Deep/ChangeLog,v 1.32 2009/08/11 14:54:33 tove Exp $
+
+*Test-Deep-0.106 (11 Aug 2009)
+
+  11 Aug 2009; Torsten Veller <tove@gentoo.org> +Test-Deep-0.106.ebuild:
+  Version bump (#280942)
 
   16 May 2009; Alexis Ballier <aballier@gentoo.org> Test-Deep-0.104.ebuild:
   keyword ~x86-fbsd, bug #261707
