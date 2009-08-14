@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.216 2009/08/02 11:25:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.217 2009/08/09 14:05:43 nixnut Exp $
+
+  09 Aug 2009; nixnut <nixnut@gentoo.org> pygtk-2.14.1-r1.ebuild:
+  ppc stable #279391
 
   02 Aug 2009; Raúl Porcel <armin76@gentoo.org> pygtk-2.14.1-r1.ebuild:
   alpha/arm/ia64/sh/sparc stable wrt #279391
