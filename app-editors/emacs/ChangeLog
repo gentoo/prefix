@@ -1,6 +1,18 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.325 2009/07/21 23:28:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.328 2009/08/11 17:57:44 ulm Exp $
+
+  11 Aug 2009; Ulrich Mueller <ulm@gentoo.org> emacs-23.1.ebuild:
+  Use bzip2 compressed distfile in order to save some 20% of space.
+
+  08 Aug 2009; Christian Faulhammer <fauli@gentoo.org> emacs-23.1.ebuild:
+  add postinst message about needed rebuilds
+
+*emacs-23.1 (30 Jul 2009)
+
+  30 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  +files/emacs-23.0.94-handle-xz-suffix.patch, +emacs-23.1.ebuild:
+  Major version bump to 23, with only one little patch for xz support
 
   21 Jul 2009; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r19.ebuild:
   Stable for HPPA (bug #277194).
