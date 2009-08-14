@@ -1,6 +1,19 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.78 2009/05/26 06:05:25 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.80 2009/08/07 02:22:05 tgurr Exp $
+
+*ghostscript-gpl-8.70-r1 (07 Aug 2009)
+
+  07 Aug 2009; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-8.70.ebuild,
+  +ghostscript-gpl-8.70-r1.ebuild:
+  Revbump fixing QA problems regarding ldflags (bug #280404) and cjk (bug
+  #280515).
+
+*ghostscript-gpl-8.70 (04 Aug 2009)
+
+  04 Aug 2009; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-8.64-r2.ebuild,
+  +ghostscript-gpl-8.70.ebuild:
+  Version bump, also fixing bug #264780. Remove old.
 
   26 May 2009; Peter Volkov <pva@gentoo.org> ghostscript-gpl-8.64-r2.ebuild,
   ghostscript-gpl-8.64-r3.ebuild:
