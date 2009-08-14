@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-1.1.ebuild,v 1.1 2009/08/04 03:19:59 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/django/django-1.1.ebuild,v 1.2 2009/08/05 18:40:41 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -59,7 +59,7 @@ DATABASE_NAME='test.db'
 ROOT_URLCONF='tests/urls.py'
 SITE_ID=1
 __EOF__
-		PYTHONPATH="build-${PYTHON_ABI}/lib" "$(get_python)" tests/runtests.py --settings=settings -v1
+		PYTHONPATH="build-${PYTHON_ABI}/lib" "$(PYTHON)" tests/runtests.py --settings=settings -v1
 	}
 	python_execute_function testing
 }
