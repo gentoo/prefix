@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/elvis
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/ChangeLog,v 1.41 2008/03/11 11:24:56 nelchael Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/ChangeLog,v 1.42 2009/08/05 18:29:29 ssuominen Exp $
+
+  05 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> elvis-2.2.0-r3.ebuild,
+  +files/elvis-2.2.0-glibc-2.10.patch:
+  Fix building with GLIBC 2.10+ wrt #277559.
 
   11 Mar 2008; Krzysiek Pawlik <nelchael@gentoo.org> -elvis-2.2.0-r1.ebuild,
   -elvis-2.2.0-r2.ebuild, elvis-2.2.0-r3.ebuild:

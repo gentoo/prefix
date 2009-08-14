@@ -1,10 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/elvis-2.2.0-r3.ebuild,v 1.10 2008/03/11 11:24:56 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/elvis/elvis-2.2.0-r3.ebuild,v 1.11 2009/08/05 18:29:29 ssuominen Exp $
 
 inherit eutils versionator
 
-MY_PV="$(replace_version_separator 2 '_')"
+MY_PV=$(replace_version_separator 2 '_')
 
 DESCRIPTION="A vi/ex clone"
 HOMEPAGE="ftp://ftp.cs.pdx.edu/pub/elvis/"
@@ -23,13 +23,14 @@ DEPEND=">=sys-libs/ncurses-5.2
 		>=x11-libs/libXft-2.1.8.2 )
 	app-admin/eselect-vi"
 
-S="${WORKDIR}/${PN}-${MY_PV}"
+S=${WORKDIR}/${PN}-${MY_PV}
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}/ft2.3-symbol-collision-fix.patch"
+	epatch "${FILESDIR}"/ft2.3-symbol-collision-fix.patch \
+		"${FILESDIR}"/${P}-glibc-2.10.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
