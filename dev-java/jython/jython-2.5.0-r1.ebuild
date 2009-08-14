@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.5.0-r1.ebuild,v 1.1 2009/06/22 10:02:39 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.5.0-r1.ebuild,v 1.2 2009/08/06 08:22:17 ali_bush Exp $
 
 JAVA_PKG_IUSE="source doc examples oracle"
 #informix missing.  This is a jdbc driver, similar to oracle use flag
@@ -122,6 +122,7 @@ src_install() {
 
 	use doc && java-pkg_dojavadoc Doc/javadoc
 	use source && java-pkg_dosrc ../src
+	cd "${S}"
 	use examples && java-pkg_doexamples Demo/*
 }
 
