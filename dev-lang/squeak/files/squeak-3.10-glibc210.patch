@@ -1,0 +1,3422 @@
+diff -NrU5 Squeak-3.10-1.original/ChangeLog Squeak-3.10-1/ChangeLog
+--- Squeak-3.10-1.original/ChangeLog	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/ChangeLog	2009-08-09 19:41:41.000000000 -0600
+@@ -672,11 +672,11 @@
+ 
+ 	* platforms/unix/vm/sqGnu.h (PRIM_DISPATCH): Changes for global struct.
+ 	(GP_REG): Enable for PowerPC.
+ 
+ 	* platforms/unix/plugins/PseudoTTYPlugin/sqUnixPseudoTTYPlugin.c
+-	(ptyForkAndExec): Add diagnostic dprintf().
++	(ptyForkAndExec): Add diagnostic squeak_dprintf().
+ 
+ 	* platforms/unix/config/gnuify: Insert GP_REG for global struct in
+ 	interpret().  Recognise optional 'foo->' before primitiveIndex for
+ 	prim dispatch rewrite.
+ 
+@@ -1037,11 +1037,11 @@
+ 	Type of sizeIfFile is squeakFileOffsetType not int.  (Many thanks
+ 	to Alain Fischer for finding this.)
+ 
+ 2002-10-24  Ian Piumarta  <piumarta@emilia.inria.fr>
+ 
+-	* platforms/unix/vm/sqUnixExternalPrims.c: Fix several dprintf()s
++	* platforms/unix/vm/sqUnixExternalPrims.c: Fix several squeak_dprintf()s
+ 	that failed to specify the stream.
+ 	(ioFindExternalFunctionIn): If set, prepend VM_DLSYM_PREFIX to
+ 	lookupName.
+ 
+ 	* platforms/unix/config/configure.ac: On Darwin add
+diff -NrU5 Squeak-3.10-1.original/platforms/Cross/vm/sqNamedPrims.c Squeak-3.10-1/platforms/Cross/vm/sqNamedPrims.c
+--- Squeak-3.10-1.original/platforms/Cross/vm/sqNamedPrims.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/Cross/vm/sqNamedPrims.c	2009-08-09 19:41:37.000000000 -0600
+@@ -23,13 +23,13 @@
+ #include "sqNamedPrims.h"
+ 
+ #undef DEBUG
+ 
+ #ifdef DEBUG
+-#define dprintf(what) printf what
++#define squeak_dprintf(what) printf what
+ #else
+-#define dprintf(what)
++#define squeak_dprintf(what)
+ #endif
+ 
+ typedef struct ModuleEntry {
+ 	struct ModuleEntry *next;
+ 	void *handle;
+@@ -96,16 +96,16 @@
+ */
+ static void *findExternalFunctionIn(char *functionName, ModuleEntry *module)
+ {
+ 	void *result;
+ 
+-	dprintf(("Looking (externally) for %s in %s... ", functionName,module->name));
++ squeak_dprintf(("Looking (externally) for %s in %s... ", functionName,module->name));
+ 	if(module->handle)
+ 		result = ioFindExternalFunctionIn(functionName, module->handle);
+ 	else
+ 		result = NULL;
+-	dprintf(("%s\n", result ? "found" : "not found"));
++ squeak_dprintf(("%s\n", result ? "found" : "not found"));
+ 	return result;
+ }
+ 
+ /*
+ 	findInternalFunctionIn:
+@@ -117,11 +117,11 @@
+ {
+   char *function, *plugin;
+   int listIndex, index;
+   sqExport *exports;
+ 
+-  dprintf(("Looking (internally) for %s in %s ... ", functionName, (pluginName ? pluginName : "<intrinsic>")));
++  squeak_dprintf(("Looking (internally) for %s in %s ... ", functionName, (pluginName ? pluginName : "<intrinsic>")));
+ 
+   /* canonicalize functionName and pluginName to be NULL if not specified */
+   if(functionName && !functionName[0]) functionName = NULL;
+   if(pluginName && !pluginName[0]) pluginName = NULL;
+   for(listIndex=0;; listIndex++) {
+@@ -140,15 +140,15 @@
+       /* check for function name match */
+       if((functionName == NULL) != (function == NULL)) continue; /* one is missing */
+       if(function && strcmp(functionName, function)) continue; /* name mismatch */
+ 
+       /* match */
+-      dprintf(("found\n"));
++      squeak_dprintf(("found\n"));
+       return exports[index].primitiveAddress;
+     }
+   }
+-  dprintf(("not found\n"));
++  squeak_dprintf(("not found\n"));
+   return NULL;
+ 
+ }
+ 
+ 
+@@ -182,39 +182,39 @@
+ 
+ 	if(init0) {
+ 		/* Check the compiled name of the module */
+ 		moduleName = ((char* (*) (void))init0)();
+ 		if(!moduleName) {
+-			dprintf(("ERROR: getModuleName() returned NULL\n"));
++		 squeak_dprintf(("ERROR: getModuleName() returned NULL\n"));
+ 			return 0;
+ 		}
+ 		if(strncmp(moduleName, module->name, strlen(module->name)) != 0) {
+-			dprintf(("ERROR: getModuleName returned %s (expected: %s)\n", moduleName, module->name));
++		 squeak_dprintf(("ERROR: getModuleName returned %s (expected: %s)\n", moduleName, module->name));
+ 			return 0;
+ 		}
+ 	} else {
+ 		/* Note: older plugins may not export the compiled module name */
+-		dprintf(("WARNING: getModuleName() not found in %s\n", module->name));
++	 squeak_dprintf(("WARNING: getModuleName() not found in %s\n", module->name));
+ 	}
+ 	if(!init1) { 
+-		dprintf(("ERROR: setInterpreter() not found\n"));
++	 squeak_dprintf(("ERROR: setInterpreter() not found\n"));
+ 		return 0;
+ 	}
+ 	/* call setInterpreter */
+ 	okay = ((sqInt (*) (struct VirtualMachine*))init1)(sqGetInterpreterProxy());
+ 	if(!okay) {
+-		dprintf(("ERROR: setInterpreter() returned false\n"));
++	 squeak_dprintf(("ERROR: setInterpreter() returned false\n"));
+ 		return 0;
+ 	}
+ 	if(init2) {
+ 		okay = ((sqInt (*) (void)) init2)();
+ 		if(!okay) {
+-			dprintf(("ERROR: initialiseModule() returned false\n"));
++		 squeak_dprintf(("ERROR: initialiseModule() returned false\n"));
+ 			return 0;
+ 		}
+ 	}
+-	dprintf(("SUCCESS: Module %s is now initialized\n", module->name));
++ squeak_dprintf(("SUCCESS: Module %s is now initialized\n", module->name));
+ 	return 1;
+ }
+ 
+ /*
+ 	findAndLoadModule:
+@@ -229,11 +229,11 @@
+ static ModuleEntry *findAndLoadModule(char *pluginName, int ffiLoad)
+ {
+ 	void *handle;
+ 	ModuleEntry *module;
+ 
+-	dprintf(("Looking for plugin %s\n", (pluginName ? pluginName : "<intrinsic>")));
++ squeak_dprintf(("Looking for plugin %s\n", (pluginName ? pluginName : "<intrinsic>")));
+ 	/* Try to load the module externally */
+ 	handle = ioLoadModule(pluginName);
+ 	if(ffiLoad) {
+ 		/* When dealing with the FFI, don't attempt to mess around internally */
+ 		if(!handle) return NULL;
+@@ -294,11 +294,11 @@
+ 	ModuleEntry *module;
+ 
+ 	module = findOrLoadModule(pluginName, 0);
+ 	if(!module) {
+ 		/* no module */
+-		dprintf(("Failed to find %s (module %s was not loaded)\n", functionName, pluginName));
++	 squeak_dprintf(("Failed to find %s (module %s was not loaded)\n", functionName, pluginName));
+ 		return 0;
+ 	}
+ 	if(!functionName) {
+ 		/* only the module was requested but not any specific function */
+ 	  return (void *)1;
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/ChangeLog Squeak-3.10-1/platforms/unix/ChangeLog
+--- Squeak-3.10-1.original/platforms/unix/ChangeLog	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/ChangeLog	2009-08-09 19:41:40.000000000 -0600
+@@ -672,11 +672,11 @@
+ 
+ 	* platforms/unix/vm/sqGnu.h (PRIM_DISPATCH): Changes for global struct.
+ 	(GP_REG): Enable for PowerPC.
+ 
+ 	* platforms/unix/plugins/PseudoTTYPlugin/sqUnixPseudoTTYPlugin.c
+-	(ptyForkAndExec): Add diagnostic dprintf().
++	(ptyForkAndExec): Add diagnostic squeak_dprintf().
+ 
+ 	* platforms/unix/config/gnuify: Insert GP_REG for global struct in
+ 	interpret().  Recognise optional 'foo->' before primitiveIndex for
+ 	prim dispatch rewrite.
+ 
+@@ -1037,11 +1037,11 @@
+ 	Type of sizeIfFile is squeakFileOffsetType not int.  (Many thanks
+ 	to Alain Fischer for finding this.)
+ 
+ 2002-10-24  Ian Piumarta  <piumarta@emilia.inria.fr>
+ 
+-	* platforms/unix/vm/sqUnixExternalPrims.c: Fix several dprintf()s
++	* platforms/unix/vm/sqUnixExternalPrims.c: Fix several squeak_dprintf()s
+ 	that failed to specify the stream.
+ 	(ioFindExternalFunctionIn): If set, prepend VM_DLSYM_PREFIX to
+ 	lookupName.
+ 
+ 	* platforms/unix/config/configure.ac: On Darwin add
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/plugins/MIDIPlugin/sqUnixMIDIALSA.inc Squeak-3.10-1/platforms/unix/plugins/MIDIPlugin/sqUnixMIDIALSA.inc
+--- Squeak-3.10-1.original/platforms/unix/plugins/MIDIPlugin/sqUnixMIDIALSA.inc	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/plugins/MIDIPlugin/sqUnixMIDIALSA.inc	2009-08-09 19:41:40.000000000 -0600
+@@ -182,11 +182,11 @@
+    This implementation does not support event scheduling, so it
+    just returns the value of the Squeak millisecond clock.
+ */
+ int sqMIDIGetClock(void)
+ {
+-  dprintf("sqMIDIGetClock\n");
++  squeak_dprintf("sqMIDIGetClock\n");
+   success(false);
+   return 0;
+ }
+ 
+ /* Return the number of available MIDI interfaces, including both
+@@ -194,11 +194,11 @@
+    are numbered from 0 to N-1, where N is the number returned by this
+    primitive.
+ */
+ int sqMIDIGetPortCount(void)
+ {
+-  dprintf("sqMIDIGetPortCount\n");
++  squeak_dprintf("sqMIDIGetPortCount\n");
+   success(true);
+   return 1;
+ }
+ 
+ /* Return an integer indicating the directionality of the given
+@@ -242,11 +242,11 @@
+    platforms that use such adaptors (e.g., Macintosh).  Fail if there
+    is no port of the given number.
+ */
+ int sqMIDIOpenPort(int portNum, int readSemaIndex, int interfaceClockRate)
+ {
+-  dprintf("sqMIDIOpenPort(%d, %d, %d)\n", portNum, readSemaIndex, interfaceClockRate);
++  squeak_dprintf("sqMIDIOpenPort(%d, %d, %d)\n", portNum, readSemaIndex, interfaceClockRate);
+   int type= SND_SEQ_PORT_TYPE_APPLICATION;
+ 
+   switch (portNum)
+     {
+     case 0:
+@@ -404,11 +404,11 @@
+    than five bytes, since there must be enough room for the timestamp
+    plus at least one data byte.
+ */
+ int sqMIDIPortReadInto(int portNum, int count, int bufferPtr)
+ {
+-  dprintf("sqMIDIPortRead\n");
++  squeak_dprintf("sqMIDIPortRead\n");
+   success(false);
+   return 0;
+ }
+ 
+ /* bufferPtr is the address of the first byte of a Smalltalk ByteArray
+@@ -424,13 +424,13 @@
+     {
+       int i;
+       snd_seq_event_t ev;
+       unsigned char *bytePtr= (unsigned char *)bufferPtr;
+ 
+-      dprintf("Port %d Write:", portNum);
+-      for (i= 0;  i < count;  ++i) dprintf(" %d", (int)bytePtr[i]);
+-      dprintf(" at %d\n", time);
++      squeak_dprintf("Port %d Write:", portNum);
++      for (i= 0;  i < count;  ++i) squeak_dprintf(" %d", (int)bytePtr[i]);
++      squeak_dprintf(" at %d\n", time);
+       
+       snd_seq_ev_clear(&ev);
+       snd_seq_ev_set_source(&ev, out_port);
+       snd_seq_ev_set_subs(&ev);
+       snd_seq_ev_schedule_tick(&ev, queue, 0, time);
+@@ -481,11 +481,11 @@
+   return 0;
+ }
+ 
+ int midiShutdown(void)
+ {
+-  dprintf("midiShutdown\n");
++  squeak_dprintf("midiShutdown\n");
+   success(false);
+   return 0;
+ }
+ 
+ static void performMIDICmd(snd_seq_event_t *ev, int cmdByte, int arg1, int arg2)
+@@ -494,16 +494,16 @@
+   int ch=  cmdByte & 0x0F;
+ 
+   switch (cmd)
+     {
+     case 128:	/* note off */
+-      dprintf("Note off %d, %d\n", ch, arg1);
++      squeak_dprintf("Note off %d, %d\n", ch, arg1);
+       snd_seq_ev_set_noteoff(ev, ch, arg1, 0);
+       break;
+ 
+     case 144:	/* note on */
+-      dprintf("Note on %d, %d, %d\n", ch, arg1, arg2);
++      squeak_dprintf("Note on %d, %d, %d\n", ch, arg1, arg2);
+       snd_seq_ev_set_noteon(ev, ch, arg1, arg2);
+       break;
+ 
+     case 176:	/* control change */
+       {
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/plugins/PseudoTTYPlugin/sqUnixPseudoTTYPlugin.c Squeak-3.10-1/platforms/unix/plugins/PseudoTTYPlugin/sqUnixPseudoTTYPlugin.c
+--- Squeak-3.10-1.original/platforms/unix/plugins/PseudoTTYPlugin/sqUnixPseudoTTYPlugin.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/plugins/PseudoTTYPlugin/sqUnixPseudoTTYPlugin.c	2009-08-09 19:41:40.000000000 -0600
+@@ -67,13 +67,13 @@
+ #include <sys/ioctl.h>
+ 
+ #include "openpty.h"		/* hide the gory details ;) */
+ 
+ #if 0
+-# define dprintf(ARGS) printf ARGS
++# define squeak_dprintf(ARGS) printf ARGS
+ #else
+-# define dprintf(ARGS)
++# define squeak_dprintf(ARGS)
+ #endif
+ 
+ 
+ typedef struct Slave
+ {
+@@ -121,18 +121,18 @@
+     {
+       /* force any image server loop to exit */
+       /* close(zombie->pty->fd); */
+       zombie->pty->rd.status= -2;
+       signalSemaphoreWithIndex(zombie->pty->sema);
+-      dprintf(("closed pty for pid %d\n", pid));
++      squeak_dprintf(("closed pty for pid %d\n", pid));
+     }
+ }
+ 
+ 
+ int ptyInit(void)
+ {
+-  dprintf(("ptyInit: AsyncFileSession is %d\n", sqUnixAsyncFileSessionID));
++  squeak_dprintf(("ptyInit: AsyncFileSession is %d\n", sqUnixAsyncFileSessionID));
+   vm= sqGetInterpreterProxy();
+   slaves= 0;
+   prevchld= signal(SIGCHLD, sigchld);
+   if ((prevchld != SIG_DFL) && (prevchld != SIG_IGN))
+     {
+@@ -183,27 +183,27 @@
+ {
+   int ptm= -1, pts= -1;
+   char tty[32];
+   FilePtr fp= 0;
+ 
+-  dprintf(("ptyForkAndExec\n"));
++  squeak_dprintf(("ptyForkAndExec\n"));
+ 
+   /* Module init must succeed in loading the AsyncFile plugin */
+   if (sqUnixAsyncFileSessionID == 0)
+     {
+       vm->primitiveFail();
+       return 0;
+     }
+ 
+-  dprintf(("AsyncFileSession is %d\n", sqUnixAsyncFileSessionID));
++  squeak_dprintf(("AsyncFileSession is %d\n", sqUnixAsyncFileSessionID));
+ 
+   if (openpty(&ptm, &pts, tty, 0, 0) == -1)
+     {
+       perror("pty: openpty");
+       goto failDetached;
+     }
+-  dprintf(("pty: using %s (ptm %d pts %d)\n", tty, ptm, pts));
++  squeak_dprintf(("pty: using %s (ptm %d pts %d)\n", tty, ptm, pts));
+ 
+   if ((fp= asyncFileAttach(f, ptm, semaIndex)) == 0)
+     goto failDetached;
+ 
+   /* fork the child on the new pts (from now on we must detach on fail) */
+@@ -214,25 +214,25 @@
+     int      i= 0;
+     SlavePtr slave= 0;
+ 
+     memcpy((void *)cmd, (void *)cmdIndex, cmdLen);
+     cmd[cmdLen]= '\0';
+-    dprintf(("pty: command: %s\n", cmd));
++    squeak_dprintf(("pty: command: %s\n", cmd));
+     argv[0]= cmd;
+     for (i= 1;  i <= argLen;  ++i)
+       {
+ 	int argOop= ((int *)argIndex)[i - 1];
+ 	char *arg= 0;
+ 	int   len= 0;
+ 	if (!vm->isBytes(argOop)) goto fail;
+ 	len= vm->stSizeOf(argOop);
+-	dprintf(("pty: arg %d len %d\n", i, len));
++ squeak_dprintf(("pty: arg %d len %d\n", i, len));
+ 	arg= (char *)alloca(len + 1);
+ 	memcpy((void *)arg, (void *)vm->firstIndexableField(argOop), len);
+ 	arg[len]= '\0';
+ 	argv[i]= arg;
+-	dprintf(("pty: argv[%d]: %s\n", i, argv[i]));
++ squeak_dprintf(("pty: argv[%d]: %s\n", i, argv[i]));
+       }
+     argv[argLen+1]= 0;	/* argv terminator */
+ 
+     /* put slave on list in case of immediate exit in child */
+     slave= (SlavePtr)malloc(sizeof(SlaveRec));
+@@ -282,18 +282,18 @@
+ int ptyClose(AsyncFile *f)
+ {
+   SlavePtr slave= 0, prev= 0;
+   FilePtr  pty= (FilePtr)f->state;
+   validate(f);
+-  dprintf(("pty: close %d\n", pty->fd));
++  squeak_dprintf(("pty: close %d\n", pty->fd));
+   if (pty->fd >= 0)
+     {
+       for (prev= 0, slave= slaves;  slave;  prev= slave, slave= slave->next)
+ 	if (slave->pty == pty)
+ 	  {
+ 	    int pid= slave->pid;
+-	    dprintf(("killing pid %d connected to pts %d\n", pid, slave->pts));
++	    squeak_dprintf(("killing pid %d connected to pts %d\n", pid, slave->pts));
+ 	    /* terminate with increasing degrees of violence... */
+ 	    kill(pid, SIGTERM);
+ 	    usleep(200*1000);
+ 	    kill(pid, SIGKILL);
+ 	    /* delete from list */
+@@ -317,11 +317,11 @@
+ {
+ #if defined(TIOCSWINSZ)
+   struct winsize sz;
+   FilePtr pty= (FilePtr)f->state;
+   validate(f);
+-  dprintf(("pty %d size %d %d\n", pty->fd, cols, rows));
++  squeak_dprintf(("pty %d size %d %d\n", pty->fd, cols, rows));
+   sz.ws_col= cols;
+   sz.ws_row= rows;
+   sz.ws_xpixel= sz.ws_ypixel= 0;
+   if (ioctl(pty->fd, TIOCSWINSZ, &sz) == -1)
+     perror("pty: TIOCSWINSZ");
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/plugins/SqueakFFIPrims/ffi-test-main.c Squeak-3.10-1/platforms/unix/plugins/SqueakFFIPrims/ffi-test-main.c
+--- Squeak-3.10-1.original/platforms/unix/plugins/SqueakFFIPrims/ffi-test-main.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/plugins/SqueakFFIPrims/ffi-test-main.c	2009-08-09 19:41:40.000000000 -0600
+@@ -32,14 +32,14 @@
+ #include <float.h>
+ 
+ #include "sqFFI.h"
+ 
+ #if 0
+-# define dprintf(ARGS)	printf ARGS
++# define squeak_dprintf(ARGS)	printf ARGS
+ # define puts(ARG)	puts(ARG)
+ #else
+-# define dprintf(ARGS)
++# define squeak_dprintf(ARGS)
+ # define puts(ARG)
+ #endif
+ 
+ #if 1
+ # define long_double double
+@@ -76,18 +76,18 @@
+ static long long return_ll(long long ll)		{ return ll; }
+ 
+ static int floating(int a, float b, double c, long_double d, int e)
+ {
+   int i;
+-  dprintf(("%d %f %f %"Lf" %d\n", a, (double)b, c, d, e));
++  squeak_dprintf(("%d %f %f %"Lf" %d\n", a, (double)b, c, d, e));
+   i= (int)((float)a/b + ((float)c/(float)d));
+   return i;
+ }
+ 
+ static float many(float f1, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9, float f10, float f11, float f12, float f13, float f14, float f15)
+ {
+-  dprintf(("%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n",
++  squeak_dprintf(("%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n",
+ 	 (double)f1, (double)f2, (double)f3, (double)f4, (double)f5, 
+ 	 (double)f6, (double)f7, (double)f8, (double)f9, (double)f10,
+ 	 (double)f11, (double)f12, (double)f13, (double)f14, (double)f15));
+   return ((f1/f2+f3/f4+f5/f6+f7/f8+f9/f10+f11/f12+f13/f14) * f15);
+ }
+@@ -105,11 +105,11 @@
+   TYPE(UnsignedChar,4), TYPE(DoubleFloat,8), TYPE(UnsignedInt,4)
+ };
+ 
+ static test_structure_1 struct1(test_structure_1 ts)
+ {
+-  dprintf(("%d %f %d\n", ts.uc, ts.d, ts.ui));
++  squeak_dprintf(("%d %f %d\n", ts.uc, ts.d, ts.ui));
+   ts.uc++;  ts.d--;  ts.ui++;  return ts;
+ }
+ 
+ typedef struct { double d1;  double d2;} test_structure_2;
+ 
+@@ -154,11 +154,11 @@
+   TYPE(SignedChar,1), TYPE(SignedChar,1)
+ };
+ 
+ static test_structure_5 struct5(test_structure_5 ts1, test_structure_5 ts2)
+ {
+-  dprintf(("%d %d %d %d\n", ts1.c1, ts1.c2, ts2.c1, ts2.c2));
++  squeak_dprintf(("%d %d %d %d\n", ts1.c1, ts1.c2, ts2.c1, ts2.c2));
+   ts1.c1 += ts2.c1;  ts1.c2 -= ts2.c2; return ts1;
+ }
+ 
+ typedef struct { float f;  double d; } test_structure_6;
+ 
+@@ -234,11 +234,11 @@
+ 	ffiInitialize();
+ 	ffiPushSignedLongLong(ll % 0x100000000, ll / 0x100000000);
+ 	GO(FFITypeSignedLongLong, return_ll);
+ 	rll= ffiLongLongResultHigh() * 0x100000000LL + ffiLongLongResultLow();
+ 	ffiCleanup();
+-	dprintf(("%lld %lld\n", ll, rll));
++ squeak_dprintf(("%lld %lld\n", ll, rll));
+ 	CHECK(rll == ll);
+       }
+ 
+     for (ll= 55555555555000LL; ll < 55555555555100LL; ll++)
+       {
+@@ -275,18 +275,18 @@
+   puts("long double tests...");
+   {
+     float f= 3.14159;
+     long_double ld;
+ 
+-    dprintf(("%"Lf"\n", ldblit(f)));
++    squeak_dprintf(("%"Lf"\n", ldblit(f)));
+     ld= 666;
+     ffiInitialize();
+     ffiPushSingleFloat(f);
+     GO(FFITypeDoubleFloat, ldblit);
+     ld= ffiReturnFloatValue();
+     ffiCleanup();
+-    dprintf(("%"Lf", %"Lf", %"Lf", %"Lf"\n", ld, ldblit(f), ld - ldblit(f), (long_double)LDBL_EPSILON));
++    squeak_dprintf(("%"Lf", %"Lf", %"Lf", %"Lf"\n", ld, ldblit(f), ld - ldblit(f), (long_double)LDBL_EPSILON));
+     /* These are not always the same!! Check for a reasonable delta */
+     CHECK(ld - ldblit(f) < LDBL_EPSILON);
+   }
+   puts("float arg tests...");
+   {
+@@ -303,11 +303,11 @@
+     ffiPushDoubleFloat(d);
+     ffiPushDoubleFloat(ld);
+     ffiPushSignedInt(si2);
+     rint= GO(FFITypeSignedInt, floating);
+     ffiCleanup();
+-    dprintf(("%d vs %d\n", (int)rint, floating(si1, f, d, ld, si2)));
++    squeak_dprintf(("%d vs %d\n", (int)rint, floating(si1, f, d, ld, si2)));
+     CHECK(rint == floating(si1, f, d, ld, si2));
+   }
+   puts("double return tests...");
+   {
+     float f= 3.14159;
+@@ -393,28 +393,28 @@
+     CHECK(ffiCanReturn(SPEC(structure_1)));
+     ffiPushStructureOfLength((int)&ts1_arg, SPEC(structure_1));
+     GOS(structure_1, struct1);
+     ffiStoreStructure((int)&ts1_result, sizeof(ts1_result));
+     ffiCleanup();
+-    dprintf(("%d %g\n", ts1_result.ui, ts1_result.d));
++    squeak_dprintf(("%d %g\n", ts1_result.ui, ts1_result.d));
+     CHECK(ts1_result.ui == 556);
+     CHECK(ts1_result.d == 3.14159 - 1);
+   }
+   {
+     test_structure_2 ts2_arg, ts2_result;
+     ts2_arg.d1= 5.55;
+     ts2_arg.d2= 6.66;
+-    dprintf(("%g\n", ts2_result.d1));	/*xxx this is junk!*/
+-    dprintf(("%g\n", ts2_result.d2));
++    squeak_dprintf(("%g\n", ts2_result.d1));	/*xxx this is junk!*/
++    squeak_dprintf(("%g\n", ts2_result.d2));
+     ffiInitialize();
+     CHECK(ffiCanReturn(SPEC(structure_2)));
+     ffiPushStructureOfLength((int)&ts2_arg, SPEC(structure_2));
+     GOS(structure_2, struct2);
+     ffiStoreStructure((int)&ts2_result, sizeof(ts2_result));
+     ffiCleanup();
+-    dprintf(("%g\n", ts2_result.d1));
+-    dprintf(("%g\n", ts2_result.d2));
++    squeak_dprintf(("%g\n", ts2_result.d1));
++    squeak_dprintf(("%g\n", ts2_result.d2));
+     CHECK(ts2_result.d1 == 5.55 - 1);
+     CHECK(ts2_result.d2 == 6.66 - 1);
+   }
+   {
+     int compare_value;
+@@ -425,11 +425,11 @@
+     CHECK(ffiCanReturn(SPEC(structure_3)));
+     ffiPushStructureOfLength((int)&ts3_arg, SPEC(structure_3));
+     GOS(structure_3, struct3);
+     ffiStoreStructure((int)&ts3_result, sizeof(ts3_result));
+     ffiCleanup();
+-    dprintf(("%d %d\n", ts3_result.si, -(compare_value*2)));
++    squeak_dprintf(("%d %d\n", ts3_result.si, -(compare_value*2)));
+     CHECK(ts3_result.si == -(ts3_arg.si*2));
+   }
+   {
+     test_structure_4 ts4_arg, ts4_result;
+     ts4_arg.ui1= 2;
+@@ -459,91 +459,91 @@
+     ffiPushStructureOfLength((int)&ts5_arg1, SPEC(structure_5));
+     ffiPushStructureOfLength((int)&ts5_arg2, SPEC(structure_5));
+     GOS(structure_5, struct5);
+     ffiStoreStructure((int)&ts5_result, sizeof(ts5_result));
+     ffiCleanup();
+-    dprintf(("%d %d\n", ts5_result.c1, ts5_result.c2));
++    squeak_dprintf(("%d %d\n", ts5_result.c1, ts5_result.c2));
+     CHECK(ts5_result.c1 == 7 && ts5_result.c2 == 3);
+   }
+   {
+     test_structure_6 ts6_arg, ts6_result;
+     ts6_arg.f= 5.55f;
+     ts6_arg.d= 6.66;
+-    dprintf(("%g\n", ts6_arg.f));
+-    dprintf(("%g\n", ts6_arg.d));
++    squeak_dprintf(("%g\n", ts6_arg.f));
++    squeak_dprintf(("%g\n", ts6_arg.d));
+     ffiInitialize();
+     CHECK(ffiCanReturn(SPEC(structure_6)));
+     ffiPushStructureOfLength((int)&ts6_arg, SPEC(structure_6));
+     GOS(structure_6, struct6);
+     ffiStoreStructure((int)&ts6_result, sizeof(ts6_result));
+     ffiCleanup();
+-    dprintf(("%g\n", ts6_result.f));
+-    dprintf(("%g\n", ts6_result.d));
++    squeak_dprintf(("%g\n", ts6_result.f));
++    squeak_dprintf(("%g\n", ts6_result.d));
+     CHECK(ts6_result.f == 5.55f + 1);
+     CHECK(ts6_result.d == 6.66 + 1);
+   }
+   {
+     test_structure_7 ts7_arg, ts7_result;
+     ts7_arg.f1= 5.55f;
+     ts7_arg.f2= 55.5f;
+     ts7_arg.d= 6.66;
+-    dprintf(("%g\n", ts7_arg.f1));
+-    dprintf(("%g\n", ts7_arg.f2));
+-    dprintf(("%g\n", ts7_arg.d));
++    squeak_dprintf(("%g\n", ts7_arg.f1));
++    squeak_dprintf(("%g\n", ts7_arg.f2));
++    squeak_dprintf(("%g\n", ts7_arg.d));
+     ffiInitialize();
+     CHECK(ffiCanReturn(SPEC(structure_7)));
+     ffiPushStructureOfLength((int)&ts7_arg, SPEC(structure_7));
+     GOS(structure_7, struct7);
+     ffiStoreStructure((int)&ts7_result, sizeof(ts7_result));
+     ffiCleanup();
+-    dprintf(("%g\n", ts7_result.f1));
+-    dprintf(("%g\n", ts7_result.f2));
+-    dprintf(("%g\n", ts7_result.d));
++    squeak_dprintf(("%g\n", ts7_result.f1));
++    squeak_dprintf(("%g\n", ts7_result.f2));
++    squeak_dprintf(("%g\n", ts7_result.d));
+     CHECK(ts7_result.f1 == 5.55f + 1);
+     CHECK(ts7_result.f2 == 55.5f + 1);
+     CHECK(ts7_result.d == 6.66 + 1);
+   }
+   {
+     test_structure_8 ts8_arg, ts8_result;
+     ts8_arg.f1= 5.55f;
+     ts8_arg.f2= 55.5f;
+     ts8_arg.f3= -5.55f;
+     ts8_arg.f4= -55.5f;
+-    dprintf(("%g\n", ts8_arg.f1));
+-    dprintf(("%g\n", ts8_arg.f2));
+-    dprintf(("%g\n", ts8_arg.f3));
+-    dprintf(("%g\n", ts8_arg.f4));
++    squeak_dprintf(("%g\n", ts8_arg.f1));
++    squeak_dprintf(("%g\n", ts8_arg.f2));
++    squeak_dprintf(("%g\n", ts8_arg.f3));
++    squeak_dprintf(("%g\n", ts8_arg.f4));
+     ffiInitialize();
+     CHECK(ffiCanReturn(SPEC(structure_8)));
+     ffiPushStructureOfLength((int)&ts8_arg, SPEC(structure_8));
+     GOS(structure_8, struct8);
+     ffiStoreStructure((int)&ts8_result, sizeof(ts8_result));
+     ffiCleanup();
+-    dprintf(("%g\n", ts8_result.f1));
+-    dprintf(("%g\n", ts8_result.f2));
+-    dprintf(("%g\n", ts8_result.f3));
+-    dprintf(("%g\n", ts8_result.f4));
++    squeak_dprintf(("%g\n", ts8_result.f1));
++    squeak_dprintf(("%g\n", ts8_result.f2));
++    squeak_dprintf(("%g\n", ts8_result.f3));
++    squeak_dprintf(("%g\n", ts8_result.f4));
+     CHECK(ts8_result.f1 == 5.55f + 1);
+     CHECK(ts8_result.f2 == 55.5f + 1);
+     CHECK(ts8_result.f3 == -5.55f + 1);
+     CHECK(ts8_result.f4 == -55.5f + 1);
+   }
+   {
+     test_structure_9 ts9_arg, ts9_result;
+     ts9_arg.f= 5.55f;
+     ts9_arg.i= 5;
+-    dprintf(("%g\n", ts9_arg.f));
+-    dprintf(("%d\n", ts9_arg.i));
++    squeak_dprintf(("%g\n", ts9_arg.f));
++    squeak_dprintf(("%d\n", ts9_arg.i));
+ 
+     ffiInitialize();
+     CHECK(ffiCanReturn(SPEC(structure_9)));
+     ffiPushStructureOfLength((int)&ts9_arg, SPEC(structure_9));
+     GOS(structure_9, struct9);
+     ffiStoreStructure((int)&ts9_result, sizeof(ts9_result));
+     ffiCleanup();
+-    dprintf(("%g\n", ts9_result.f));
+-    dprintf(("%d\n", ts9_result.i));
++    squeak_dprintf(("%g\n", ts9_result.f));
++    squeak_dprintf(("%d\n", ts9_result.i));
+     CHECK(ts9_result.f == 5.55f + 1);
+     CHECK(ts9_result.i == 5 + 1);
+   }
+ }
+ 
+@@ -585,11 +585,11 @@
+ 
+   ffiInitialize(); F(65); F(65.0);
+   GO(FFITypeSingleFloat, ffiTestFloats);
+   d= ffiReturnFloatValue();
+   ffiCleanup();
+-  dprintf(("%f\n", d));
++  squeak_dprintf(("%f\n", d));
+   assert(d == 130.0, "single floats don't work");
+ 
+   ffiInitialize(); D(41.0L); D(1);
+   GO(FFITypeDoubleFloat, ffiTestDoubles);
+   d= ffiReturnFloatValue();
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/plugins/SqueakFFIPrims/ffi-test.c Squeak-3.10-1/platforms/unix/plugins/SqueakFFIPrims/ffi-test.c
+--- Squeak-3.10-1.original/platforms/unix/plugins/SqueakFFIPrims/ffi-test.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/plugins/SqueakFFIPrims/ffi-test.c	2009-08-09 19:41:40.000000000 -0600
+@@ -9,119 +9,119 @@
+ #if !defined(LONGLONG)
+ # define LONGLONG long long
+ #endif
+ 
+ #if 0
+-# define dprintf(ARGS) printf ARGS
++# define squeak_dprintf(ARGS) printf ARGS
+ #else
+-# define dprintf(ARGS)
++# define squeak_dprintf(ARGS)
+ #endif
+ 
+ #include "ffi-test.h"
+ 
+ 
+ char ffiTestChars(char c1, char c2, char c3, char c4)
+ {
+-  dprintf(("4 characters came in as\nc1 = %c (%x)\nc2 = %c (%x)\nc3 = %c (%x)\nc4 = %c (%x)\n", c1, c1, c2, c2, c3, c3, c4, c4));
++  squeak_dprintf(("4 characters came in as\nc1 = %c (%x)\nc2 = %c (%x)\nc3 = %c (%x)\nc4 = %c (%x)\n", c1, c1, c2, c2, c3, c3, c4, c4));
+   return 'C';
+ }
+ 
+ 
+ short ffiTestShorts(short c1, short c2, short c3, short c4)
+ {
+-  dprintf(("4 shorts came in as\ns1 = %d (%x)\ns2 = %d (%x)\ns3 = %d (%x)\ns4 = %d (%x)\n", c1, c1, c2, c2, c3, c3, c4, c4));
++  squeak_dprintf(("4 shorts came in as\ns1 = %d (%x)\ns2 = %d (%x)\ns3 = %d (%x)\ns4 = %d (%x)\n", c1, c1, c2, c2, c3, c3, c4, c4));
+   return -42;
+ }
+ 
+ 
+ int ffiTestInts(int c1, int c2, int c3, int c4)
+ {
+-  dprintf(("4 ints came in as\ni1 = %d (%x)\ni2 = %d (%x)\ni3 = %d (%x)\ni4 = %d (%x)\n", c1, c1, c2, c2, c3, c3, c4, c4));
++  squeak_dprintf(("4 ints came in as\ni1 = %d (%x)\ni2 = %d (%x)\ni3 = %d (%x)\ni4 = %d (%x)\n", c1, c1, c2, c2, c3, c3, c4, c4));
+   return 42;
+ }
+ 
+ 
+ int ffiTestInts8(int c1, int c2, int c3, int c4, int c5, int c6, int c7, int c8)
+ {
+-  dprintf(("4 ints came in as\ni1 = %d (%x)\ni2 = %d (%x)\ni3 = %d (%x)\ni4 = %d (%x)\ni5 = %d (%x)\ni6 = %d (%x)\ni7 = %d (%x)\ni8 = %d (%x)\n", c1, c1, c2, c2, c3, c3, c4, c4, c5, c5, c6, c6, c7, c7, c8, c8));
++  squeak_dprintf(("4 ints came in as\ni1 = %d (%x)\ni2 = %d (%x)\ni3 = %d (%x)\ni4 = %d (%x)\ni5 = %d (%x)\ni6 = %d (%x)\ni7 = %d (%x)\ni8 = %d (%x)\n", c1, c1, c2, c2, c3, c3, c4, c4, c5, c5, c6, c6, c7, c7, c8, c8));
+   return 42;
+ }
+ 
+ 
+ int ffiTestInts9(int c1, int c2, int c3, int c4, int c5, int c6, int c7, int c8, int c9)
+ {
+-  dprintf(("4 ints came in as\ni1 = %d (%x)\ni2 = %d (%x)\ni3 = %d (%x)\ni4 = %d (%x)\ni5 = %d (%x)\ni6 = %d (%x)\ni7 = %d (%x)\ni8 = %d (%x)\ni9 = %d (%x)\n", c1, c1, c2, c2, c3, c3, c4, c4, c5, c5, c6, c6, c7, c7, c8, c8, c9, c9));
++  squeak_dprintf(("4 ints came in as\ni1 = %d (%x)\ni2 = %d (%x)\ni3 = %d (%x)\ni4 = %d (%x)\ni5 = %d (%x)\ni6 = %d (%x)\ni7 = %d (%x)\ni8 = %d (%x)\ni9 = %d (%x)\n", c1, c1, c2, c2, c3, c3, c4, c4, c5, c5, c6, c6, c7, c7, c8, c8, c9, c9));
+   return 42;
+ }
+ 
+ 
+ float ffiTestFloats(float f1, float f2)
+ {
+-  dprintf(("The two floats are %f and %f\n", (double)f1, (double)f2));
++  squeak_dprintf(("The two floats are %f and %f\n", (double)f1, (double)f2));
+   return (float) (f1 + f2);
+ }
+ 
+ 
+ float ffiTestFloats7(float f1, float f2, float f3, float f4, float f5, float f6, float f7)
+ {
+-  dprintf(("The 7 floats are %f %f %f %f %f %f %f\n", (double)f1, (double)f2, (double)f3, (double)f4, (double)f5, (double)f6, (double)f7));
++  squeak_dprintf(("The 7 floats are %f %f %f %f %f %f %f\n", (double)f1, (double)f2, (double)f3, (double)f4, (double)f5, (double)f6, (double)f7));
+   return (float) (f1 + f2 + f3 + f4 + f5 + f6 + f7);
+ }
+ 
+ 
+ float ffiTestFloats13(float f1, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9, float f10, float f11, float f12, float f13)
+ {
+-  dprintf(("The 13 floats are %f %f %f %f %f %f %f %f %f %f %f %f %f\n", (double)f1, (double)f2, (double)f3, (double)f4, (double)f5, (double)f6, (double)f7, (double)f8, (double)f9, (double)f10, (double)f11, (double)f12, (double)f13));
++  squeak_dprintf(("The 13 floats are %f %f %f %f %f %f %f %f %f %f %f %f %f\n", (double)f1, (double)f2, (double)f3, (double)f4, (double)f5, (double)f6, (double)f7, (double)f8, (double)f9, (double)f10, (double)f11, (double)f12, (double)f13));
+   return (float) (f1 + f2 + f3 + f4 + f5 + f6 + f7 + f8 + f9 + f10 + f11 + f12 + f13);
+ }
+ 
+ 
+ float ffiTestFloats15(float f1, float f2, float f3, float f4, float f5, float f6, float f7, float f8, float f9, float f10, float f11, float f12, float f13, float f14, float f15)
+ {
+-  dprintf(("The 15 floats are %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n", (double)f1, (double)f2, (double)f3, (double)f4, (double)f5, (double)f6, (double)f7, (double)f8, (double)f9, (double)f10, (double)f11, (double)f12, (double)f13, (double)f14, (double)f15));
++  squeak_dprintf(("The 15 floats are %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n", (double)f1, (double)f2, (double)f3, (double)f4, (double)f5, (double)f6, (double)f7, (double)f8, (double)f9, (double)f10, (double)f11, (double)f12, (double)f13, (double)f14, (double)f15));
+   return (float) (f1 + f2 + f3 + f4 + f5 + f6 + f7 + f8 + f9 + f10 + f11 + f12 + f13 + f14 + f15);
+ }
+ 
+ 
+ double ffiTestDoubles(double d1, double d2)
+ {
+-  dprintf(("The two doubles are %f and %f\n", d1, d2));
++  squeak_dprintf(("The two doubles are %f and %f\n", d1, d2));
+   return d1+d2;
+ }
+ 
+ 
+ double ffiTestDoubles15(double f1, double f2, double f3, double f4, double f5, double f6, double f7, double f8, double f9, double f10, double f11, double f12, double f13, double f14, double f15)
+ {
+-  dprintf(("The 15 doubles are %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n", f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15));
++  squeak_dprintf(("The 15 doubles are %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n", f1, f2, f3, f4, f5, f6, f7, f8, f9, f10, f11, f12, f13, f14, f15));
+   return (double) (f1 + f2 + f3 + f4 + f5 + f6 + f7 + f8 + f9 + f10 + f11 + f12 + f13 + f14 + f15);
+ }
+ 
+ 
+ char *ffiPrintString(char *string)
+ {
+-  dprintf(("%s\n", string));
++  squeak_dprintf(("%s\n", string));
+   return string;
+ }
+ 
+ 
+ ffiTestPoint2 ffiTestStruct64(ffiTestPoint2 pt1, ffiTestPoint2 pt2)
+ {
+   ffiTestPoint2 result;
+-  dprintf(("pt1.x = %d\npt1.y = %d\npt2.x = %d\npt2.y = %d\n",
++  squeak_dprintf(("pt1.x = %d\npt1.y = %d\npt2.x = %d\npt2.y = %d\n",
+ 	 pt1.x, pt1.y, pt2.x, pt2.y));
+   result.x = pt1.x + pt2.x;
+   result.y = pt1.y + pt2.y;
+   return result;
+ }
+ 
+ 
+ ffiTestPoint4 ffiTestStructBig(ffiTestPoint4 pt1, ffiTestPoint4 pt2)
+ {
+   ffiTestPoint4 result;
+-  dprintf(("pt1.x = %d\npt1.y = %d\npt1.z = %d\npt1.w = %d\n",
++  squeak_dprintf(("pt1.x = %d\npt1.y = %d\npt1.z = %d\npt1.w = %d\n",
+ 	 pt1.x, pt1.y, pt1.z, pt1.w));
+-  dprintf(("pt2.x = %d\npt2.y = %d\npt2.z = %d\npt2.w = %d\n",
++  squeak_dprintf(("pt2.x = %d\npt2.y = %d\npt2.z = %d\npt2.w = %d\n",
+ 	 pt2.x, pt2.y, pt2.z, pt2.w));
+   result.x = pt1.x + pt2.x;
+   result.y = pt1.y + pt2.y;
+   result.z = pt1.z + pt2.z;
+   result.w = pt1.w + pt2.w;
+@@ -130,13 +130,13 @@
+ 
+ 
+ ffiTestPoint4 *ffiTestPointers(ffiTestPoint4 *pt1, ffiTestPoint4 *pt2)
+ {
+   ffiTestPoint4 *result;
+-  dprintf(("pt1.x = %d\npt1.y = %d\npt1.z = %d\npt1.w = %d\n",
++  squeak_dprintf(("pt1.x = %d\npt1.y = %d\npt1.z = %d\npt1.w = %d\n",
+ 	 pt1->x, pt1->y, pt1->z, pt1->w));
+-  dprintf(("pt2.x = %d\npt2.y = %d\npt2.z = %d\npt2.w = %d\n",
++  squeak_dprintf(("pt2.x = %d\npt2.y = %d\npt2.z = %d\npt2.w = %d\n",
+ 	 pt2->x, pt2->y, pt2->z, pt2->w));
+   result = (ffiTestPoint4*) malloc(sizeof(ffiTestPoint4));
+   result->x = pt1->x + pt2->x;
+   result->y = pt1->y + pt2->y;
+   result->z = pt1->z + pt2->z;
+@@ -145,11 +145,11 @@
+ }
+ 
+ 
+ LONGLONG ffiTestLongLong(LONGLONG i1, LONGLONG i2)
+ {
+-  dprintf(("longlong %lld %lld\n", i1, i2));
++  squeak_dprintf(("longlong %lld %lld\n", i1, i2));
+   return i1 + i2;
+ }
+ 
+ 
+ #endif /* !NO_FFI_TEST */
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/plugins/SqueakFFIPrims/ppc-darwin.c Squeak-3.10-1/platforms/unix/plugins/SqueakFFIPrims/ppc-darwin.c
+--- Squeak-3.10-1.original/platforms/unix/plugins/SqueakFFIPrims/ppc-darwin.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/plugins/SqueakFFIPrims/ppc-darwin.c	2009-08-09 19:41:40.000000000 -0600
+@@ -54,13 +54,13 @@
+ #ifndef LONGLONG
+ # define LONGLONG long long
+ #endif
+ 
+ #if 0
+-# define dprintf(ARGS)	printf ARGS; fflush(stdout)
++# define squeak_dprintf(ARGS)	printf ARGS; fflush(stdout)
+ #else
+-# define dprintf(ARGS)
++# define squeak_dprintf(ARGS)
+ #endif
+ 
+ extern struct VirtualMachine *interpreterProxy;
+ 
+ #if defined(FFI_TEST)
+@@ -110,11 +110,11 @@
+ extern int ffiCallAddressOf(void *addr, void *globals);
+ 
+ 
+ int ffiInitialize(void)
+ {
+-  dprintf(("ffiInitialize\n"));
++  squeak_dprintf(("ffiInitialize\n"));
+   stackIndex= gprCount= fprCount= 0;
+ #if 0
+   structCount= 0;
+ #endif
+   floatReturnValue= 0.0;
+@@ -130,18 +130,18 @@
+ 
+ 
+ int ffiAlloc(int byteSize)
+ {
+   int ptr= (int)malloc(byteSize);
+-  dprintf(("ffiAlloc(%d) => %08x\n", byteSize, ptr));
++  squeak_dprintf(("ffiAlloc(%d) => %08x\n", byteSize, ptr));
+   return ptr;
+ }
+ 
+ 
+ int ffiFree(int ptr)
+ {
+-  dprintf(("ffiFree(%08x)\n", ptr));
++  squeak_dprintf(("ffiFree(%08x)\n", ptr));
+   if (ptr) free((void *)ptr);
+   return 1;
+ }
+ 
+ 
+@@ -164,105 +164,105 @@
+ #define qalignGPR()	gprCount += (gprCount & 1)
+ 
+ 
+ int ffiPushSignedChar(int value)
+ { 
+-  dprintf(("ffiPushSignedChar %d\n", value));
++  squeak_dprintf(("ffiPushSignedChar %d\n", value));
+   pushGPR(value);
+   return 1;
+ }
+ 
+ 
+ int ffiPushUnsignedChar(int value) 
+ { 
+-  dprintf(("ffiPushUnsignedChar %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedChar %d\n", value));
+   pushGPR(value);
+   return 1;
+ }
+ 
+ 
+ int ffiPushSignedByte(int value) 
+ { 
+-  dprintf(("ffiPushSignedByte %d\n", value));
++  squeak_dprintf(("ffiPushSignedByte %d\n", value));
+   pushGPR(value);
+   return 1;
+ }
+ 
+ 
+ int ffiPushUnsignedByte(int value)
+ { 
+-  dprintf(("ffiPushUnsignedByte %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedByte %d\n", value));
+   pushGPR(value);
+   return 1;
+ }
+ 
+ 
+ int ffiPushSignedShort(int value)
+ { 
+-  dprintf(("ffiPushSignedShort %d\n", value));
++  squeak_dprintf(("ffiPushSignedShort %d\n", value));
+   pushGPR(value); 
+   return 1; 
+ }
+ 
+ 
+ int ffiPushUnsignedShort(int value) 
+ { 
+-  dprintf(("ffiPushUnsignedShort %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedShort %d\n", value));
+   pushGPR(value); 
+   return 1; 
+ }
+ 
+ 
+ int ffiPushSignedInt(int value) 
+ { 
+-  dprintf(("ffiPushSignedInt %d\n", value));
++  squeak_dprintf(("ffiPushSignedInt %d\n", value));
+   pushGPR(value); 
+   return 1; 
+ }
+ 
+ 
+ int ffiPushUnsignedInt(int value) 
+ { 
+-  dprintf(("ffiPushUnsignedInt %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedInt %d\n", value));
+   pushGPR(value);
+   return 1;
+ }
+ 
+ 
+ int ffiPushSignedLongLong(int low, int high)
+ {
+-  dprintf(("ffiPushSignedLongLong %d %d\n", low, high));
++  squeak_dprintf(("ffiPushSignedLongLong %d %d\n", low, high));
+   qalignGPR();
+   qalignStack();
+   pushGPR(high);
+   pushGPR(low);
+   return 1;
+ }
+ 
+ 
+ int ffiPushUnsignedLongLong(int low, int high)
+ { 
+-  dprintf(("ffiPushUnsignedLongLong %d %d\n", low, high));
++  squeak_dprintf(("ffiPushUnsignedLongLong %d %d\n", low, high));
+   qalignGPR();
+   qalignStack();
+   pushGPR(high);
+   pushGPR(low);
+   return 1;
+ }
+ 
+ 
+ int ffiPushPointer(int pointer)
+ {
+-  dprintf(("ffiPushPointer %08x\n", pointer));
++  squeak_dprintf(("ffiPushPointer %08x\n", pointer));
+   pushGPR(pointer);
+   return 1;
+ }
+ 
+ 
+ int ffiPushSingleFloat(double value)
+ {
+-  dprintf(("ffiPushSingleFloat %f\n", (float)value));
++  squeak_dprintf(("ffiPushSingleFloat %f\n", (float)value));
+   if (fprCount < FPR_MAX)
+     fprs[fprCount++]= value;
+   {
+     float floatValue= (float)value;
+     pushGPR(*(int *)&floatValue);
+@@ -271,11 +271,11 @@
+ }
+ 
+ 
+ int ffiPushDoubleFloat(double value)
+ {
+-  dprintf(("ffiPushDoubleFloat %f\n", (float)value));
++  squeak_dprintf(("ffiPushDoubleFloat %f\n", (float)value));
+   if (fprCount < FPR_MAX)
+     fprs[fprCount++]= value;
+   pushGPR(((int *)&value)[0]);
+   pushGPR(((int *)&value)[1]);
+   return 1;
+@@ -283,11 +283,11 @@
+ 
+ 
+ int ffiPushStringOfLength(int srcIndex, int length)
+ {
+   char *ptr;
+-  dprintf(("ffiPushStringOfLength %d\n", length));
++  squeak_dprintf(("ffiPushStringOfLength %d\n", length));
+   checkGPR();
+   ptr= (char *)malloc(length + 1);
+   if (!ptr)
+     return primitiveFail();
+   memcpy(ptr, (void *)srcIndex, length);
+@@ -310,11 +310,11 @@
+   int   argSize	= *structSpec & FFIStructSizeMask;
+   char *gprp	= (char *)&gprs[gprCount];
+ #define gprl	  (char *)&gprs[GPR_MAX]
+   int   gprSize	= min(argSize, gprl - gprp);
+ 
+-  dprintf(("ffiPush %08x Structure %p OfLength %d\n", pointer, structSpec, specSize));
++  squeak_dprintf(("ffiPush %08x Structure %p OfLength %d\n", pointer, structSpec, specSize));
+ 
+   if (gprSize < 4) gprp += (4 - gprSize);
+   if (argSize < 4) argp += (4 - gprSize);
+   if (argp + argSize > argl)
+     return primitiveFail();
+@@ -358,11 +358,11 @@
+ 
+ 
+ int ffiCanReturn(int *structSpec, int specSize)
+ {
+   int header= *structSpec;
+-  dprintf(("ffiCanReturn %p %d\n", structSpec, specSize));
++  squeak_dprintf(("ffiCanReturn %p %d\n", structSpec, specSize));
+   if (header & FFIFlagPointer)
+     return 1;
+   if (header & FFIFlagStructure)
+     {
+       /* structs are always returned as pointers to hidden structures */
+@@ -381,22 +381,22 @@
+ int    ffiLongLongResultHigh(void)	{ return ((int *)&longReturnValue)[0]; }
+ 
+ 
+ int ffiStoreStructure(int address, int structSize)
+ {
+-  dprintf(("ffiStoreStructure %08x %d\n", address, structSize));
++  squeak_dprintf(("ffiStoreStructure %08x %d\n", address, structSize));
+   memcpy((void *)address,
+ 	 structReturnValue ? (void *)structReturnValue : (void *)&longReturnValue,
+ 	 structSize);
+   return 1;
+ }
+ 
+ 
+ int ffiCleanup(void)
+ {
+   int i;
+-  dprintf(("ffiCleanup\n"));
++  squeak_dprintf(("ffiCleanup\n"));
+   for (i= 0;  i < stringCount;  ++i)
+     free(strings[i]);
+   stringCount= 0;
+   if (structReturnValue)
+     {
+@@ -407,26 +407,26 @@
+ }
+ 
+ 
+ int ffiCallAddressOfWithPointerReturn(int fn, int callType)
+ {
+-  dprintf(("ffiCallAddressOfWithPointerReturn %08x %d\n", fn, callType));
++  squeak_dprintf(("ffiCallAddressOfWithPointerReturn %08x %d\n", fn, callType));
+   return ffiCallAddressOf((void *)fn, (void *)&global);
+ }
+ 
+ 
+ int ffiCallAddressOfWithStructReturn(int fn, int callType, int* structSpec, int specSize)
+ {
+-  dprintf(("ffiCallAddressOfWithStructReturn %08x %d %p %d\n",
++  squeak_dprintf(("ffiCallAddressOfWithStructReturn %08x %d %p %d\n",
+ 	   fn, callType, structSpec, specSize));
+   return ffiCallAddressOf((void *)fn, (void *)&global);
+ }
+ 
+ 
+ int ffiCallAddressOfWithReturnType(int fn, int callType, int typeSpec)
+ {
+-  dprintf(("ffiCallAddressOfWithReturnType %08x %d %d\n", fn, callType, typeSpec));
++  squeak_dprintf(("ffiCallAddressOfWithReturnType %08x %d %d\n", fn, callType, typeSpec));
+   return ffiCallAddressOf((void *)fn, (void *)&global);
+ }
+ 
+ 
+ #if !defined(NO_FFI_TEST)
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/plugins/SqueakFFIPrims/ppc-sysv.c Squeak-3.10-1/platforms/unix/plugins/SqueakFFIPrims/ppc-sysv.c
+--- Squeak-3.10-1.original/platforms/unix/plugins/SqueakFFIPrims/ppc-sysv.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/plugins/SqueakFFIPrims/ppc-sysv.c	2009-08-09 19:41:40.000000000 -0600
+@@ -72,13 +72,13 @@
+ #ifndef LONGLONG
+ # define LONGLONG long long
+ #endif
+ 
+ #if 0
+-# define dprintf(ARGS)	printf ARGS
++# define squeak_dprintf(ARGS)	printf ARGS
+ #else
+-# define dprintf(ARGS)
++# define squeak_dprintf(ARGS)
+ #endif
+ 
+ #if defined(FFI_TEST)
+   static int primitiveFail(void) { puts("primitive fail"); exit(1); return 0; }
+ #else
+@@ -162,97 +162,97 @@
+ #define qalignGPR()	gprCount += (gprCount & 1)
+ 
+ 
+ int ffiPushSignedChar(int value)
+ { 
+-  dprintf(("ffiPushSignedChar %d\n", value));
++  squeak_dprintf(("ffiPushSignedChar %d\n", value));
+   pushGPR(value);
+   return 1;
+ }
+ 
+ 
+ int ffiPushUnsignedChar(int value) 
+ { 
+-  dprintf(("ffiPushUnsignedChar %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedChar %d\n", value));
+   pushGPR(value);
+   return 1;
+ }
+ 
+ 
+ int ffiPushSignedByte(int value) 
+ { 
+-  dprintf(("ffiPushSignedByte %d\n", value));
++  squeak_dprintf(("ffiPushSignedByte %d\n", value));
+   pushGPR(value);
+   return 1;
+ }
+ 
+ 
+ int ffiPushUnsignedByte(int value)
+ { 
+-  dprintf(("ffiPushUnsignedByte %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedByte %d\n", value));
+   pushGPR(value);
+   return 1;
+ }
+ 
+ 
+ int ffiPushSignedShort(int value)
+ { 
+-  dprintf(("ffiPushSignedShort %d\n", value));
++  squeak_dprintf(("ffiPushSignedShort %d\n", value));
+   pushGPR(value); 
+   return 1; 
+ }
+ 
+ 
+ int ffiPushUnsignedShort(int value) 
+ { 
+-  dprintf(("ffiPushUnsignedShort %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedShort %d\n", value));
+   pushGPR(value); 
+   return 1; 
+ }
+ 
+ 
+ int ffiPushSignedInt(int value) 
+ { 
+-  dprintf(("ffiPushSignedInt %d\n", value));
++  squeak_dprintf(("ffiPushSignedInt %d\n", value));
+   pushGPR(value); 
+   return 1; 
+ }
+ 
+ 
+ int ffiPushUnsignedInt(int value) 
+ { 
+-  dprintf(("ffiPushUnsignedInt %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedInt %d\n", value));
+   pushGPR(value);
+   return 1;
+ }
+ 
+ 
+ int ffiPushSignedLongLong(int low, int high)
+ {
+-  dprintf(("ffiPushSignedLongLong %d %d\n", low, high));
++  squeak_dprintf(("ffiPushSignedLongLong %d %d\n", low, high));
+   qalignGPR();
+   qalignStack();
+   pushGPR(high);
+   pushGPR(low);
+   return 1;
+ }
+ 
+ 
+ int ffiPushUnsignedLongLong(int low, int high)
+ { 
+-  dprintf(("ffiPushUnsignedLongLong %d %d\n", low, high));
++  squeak_dprintf(("ffiPushUnsignedLongLong %d %d\n", low, high));
+   qalignGPR();
+   qalignStack();
+   pushGPR(high);
+   pushGPR(low);
+   return 1;
+ }
+ 
+ 
+ int ffiPushPointer(int pointer)
+ {
+-  dprintf(("ffiPushPointer %d\n", pointer));
++  squeak_dprintf(("ffiPushPointer %d\n", pointer));
+   pushGPR(pointer);
+   return 1;
+ }
+ 
+ 
+@@ -263,11 +263,11 @@
+ #define dalignStack()	stackIndex += (stackIndex & 1)
+ 
+ 
+ int ffiPushSingleFloat(double value)
+ {
+-  dprintf(("ffiPushSingleFloat %f\n", (float)value));
++  squeak_dprintf(("ffiPushSingleFloat %f\n", (float)value));
+   if (fprCount < FPR_MAX)
+     ffiFPRs[fprCount++]= value;
+   else
+     {
+       float floatValue= (float)value;
+@@ -278,11 +278,11 @@
+ }
+ 
+ 
+ int ffiPushDoubleFloat(double value)
+ {
+-  dprintf(("ffiPushDoubleFloat %f\n", (float)value));
++  squeak_dprintf(("ffiPushDoubleFloat %f\n", (float)value));
+   if (fprCount < FPR_MAX)
+     ffiFPRs[fprCount++]= value;
+   else
+     {
+       dalignStack();
+@@ -296,11 +296,11 @@
+ 
+ 
+ int ffiPushStringOfLength(int srcIndex, int length)
+ {
+   char *ptr;
+-  dprintf(("ffiPushStringOfLength %d\n", length));
++  squeak_dprintf(("ffiPushStringOfLength %d\n", length));
+   checkGPR();
+   ptr= (char *)malloc(length + 1);
+   if (!ptr)
+     return primitiveFail();
+   memcpy(ptr, (void *)srcIndex, length);
+@@ -314,22 +314,22 @@
+ #define salign(size)					\
+   structCount= (structCount + (size) - 1) & ~(size)
+ 
+ #define pushStruct(type, value)				\
+ {							\
+-  dprintf(("  ++ "#type"\n"));				\
++  squeak_dprintf(("  ++ "#type"\n"));				\
+   if ((structCount + sizeof(type)) > sizeof(structs))	\
+     return primitiveFail();				\
+   *(type *)(structs + structCount)= value;		\
+   structCount += sizeof(type);				\
+ }
+ 
+ 
+ int ffiPushStructureOfLength(int pointer, int *structSpec, int specSize)
+ {
+   int size= *structSpec & FFIStructSizeMask;
+-  dprintf(("ffiPushStructureOfLength %d (%db)\n", specSize, size));
++  squeak_dprintf(("ffiPushStructureOfLength %d (%db)\n", specSize, size));
+   salign(16);
+   if (structCount + size > sizeof(structs))
+     return primitiveFail();
+   ffiPushPointer((int)(structs + structCount));
+   memcpy((void *)(structs + structCount), (void *)pointer, size);
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/plugins/SqueakFFIPrims/x86-sysv.c Squeak-3.10-1/platforms/unix/plugins/SqueakFFIPrims/x86-sysv.c
+--- Squeak-3.10-1.original/platforms/unix/plugins/SqueakFFIPrims/x86-sysv.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/plugins/SqueakFFIPrims/x86-sysv.c	2009-08-09 19:41:40.000000000 -0600
+@@ -43,13 +43,13 @@
+ #ifndef LONGLONG
+ # define LONGLONG long long
+ #endif
+ 
+ #if 0
+-# define dprintf(ARGS)printf ARGS
++# define squeak_dprintf(ARGS)printf ARGS
+ #else
+-# define dprintf(ARGS)
++# define squeak_dprintf(ARGS)
+ #endif
+ 
+ #if defined(FFI_TEST)
+   static int primitiveFail(void) { puts("primitive fail"); exit(1); return 0; }
+ #else
+@@ -130,112 +130,112 @@
+ }
+ 
+ 
+ int ffiPushSignedChar(int value)
+ { 
+-  dprintf(("ffiPushSignedChar %d\n", value));
++  squeak_dprintf(("ffiPushSignedChar %d\n", value));
+   pushInt(value);
+   return 1; 
+ }
+ 
+ int ffiPushUnsignedChar(int value)
+ { 
+-  dprintf(("ffiPushUnsignedChar %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedChar %d\n", value));
+   pushInt(value);
+   return 1; 
+ }
+ 
+ int ffiPushSignedByte(int value)
+ { 
+-  dprintf(("ffiPushSignedByte %d\n", value));
++  squeak_dprintf(("ffiPushSignedByte %d\n", value));
+   pushInt(value);
+   return 1; 
+ }
+ 
+ int ffiPushUnsignedByte(int value)
+ { 
+-  dprintf(("ffiPushUnsignedByte %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedByte %d\n", value));
+   pushInt(value);
+   return 1; 
+ }
+ 
+ int ffiPushSignedShort(int value)
+ { 
+-  dprintf(("ffiPushSignedShort %d\n", value));
++  squeak_dprintf(("ffiPushSignedShort %d\n", value));
+   pushInt(value);
+   return 1; 
+ }
+ 
+ int ffiPushUnsignedShort(int value)
+ { 
+-  dprintf(("ffiPushUnsignedShort %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedShort %d\n", value));
+   pushInt(value);
+   return 1; 
+ }
+ 
+ int ffiPushSignedInt(int value)
+ { 
+-  dprintf(("ffiPushSignedInt %d\n", value));
++  squeak_dprintf(("ffiPushSignedInt %d\n", value));
+   pushInt(value);
+   return 1; 
+ }
+ 
+ int ffiPushUnsignedInt(int value)
+ { 
+-  dprintf(("ffiPushUnsignedInt %d\n", value));
++  squeak_dprintf(("ffiPushUnsignedInt %d\n", value));
+   pushInt(value);
+   return 1; 
+ }
+ 
+ int ffiPushSignedLongLong(int low, int high)
+ { 
+-  dprintf(("ffiPushSignedLongLong %d %d\n", low, high));
++  squeak_dprintf(("ffiPushSignedLongLong %d %d\n", low, high));
+   pushInt(low);
+   pushInt(high);
+   return 1; 
+ }
+ 
+ int ffiPushUnsignedLongLong(int low, int high)
+ { 
+-  dprintf(("ffiPushUnsignedLongLong %d %d\n", low, high));
++  squeak_dprintf(("ffiPushUnsignedLongLong %d %d\n", low, high));
+   pushInt(low);
+   pushInt(high);
+   return 1; 
+ }
+ 
+ int ffiPushPointer(int pointer)
+ { 
+-  dprintf(("ffiPushPointer %d\n", pointer));
++  squeak_dprintf(("ffiPushPointer %d\n", pointer));
+   pushInt(pointer);
+   return 1; 
+ }
+ 
+ int ffiPushSingleFloat(double value)
+ { 
+   float f= (float)value;
+-  dprintf(("ffiPushSingleFloat %f\n", value));
++  squeak_dprintf(("ffiPushSingleFloat %f\n", value));
+   pushInt(*(int *)&f);
+   return 1; 
+ }
+ 
+ int ffiPushDoubleFloat(double value)
+ { 
+-  dprintf(("ffiPushDoubleFloat %f\n", value));
++  squeak_dprintf(("ffiPushDoubleFloat %f\n", value));
+   pushInt(((int *)&value)[0]);
+   pushInt(((int *)&value)[1]);
+   return 1; 
+ }
+ 
+ int ffiPushStringOfLength(int srcIndex, int length)
+ {
+   char *ptr;
+-  dprintf(("ffiPushStringOfLength %d\n", length));
++  squeak_dprintf(("ffiPushStringOfLength %d\n", length));
+   checkStack();
+   ptr= (char *)malloc(length + 1);
+   if (!ptr)
+     return primitiveFail();
+-  dprintf(("  ++ alloc string\n"));
++  squeak_dprintf(("  ++ alloc string\n"));
+   memcpy(ptr, (void *)srcIndex, length);
+   ptr[length]= '\0';
+   ffiTempStrings[ffiTempStringCount++]= ptr;
+   pushInt((int)ptr);
+   return 1;
+@@ -243,11 +243,11 @@
+ 
+ int ffiPushStructureOfLength(int pointer, int *structSpec, int specSize)
+ {
+   int lbs= *structSpec & FFIStructSizeMask;
+   int size= (lbs + sizeof(int) - 1) / sizeof(int);
+-  dprintf(("ffiPushStructureOfLength %d (%db %dw)\n", specSize, lbs, size));
++  squeak_dprintf(("ffiPushStructureOfLength %d (%db %dw)\n", specSize, lbs, size));
+   if (ffiStackIndex + size > FFI_MAX_STACK)
+     return primitiveFail();
+   memcpy((void *)(ffiStack + ffiStackIndex), (void *)pointer, lbs);
+   ffiStackIndex += size;
+   return 1;
+@@ -259,11 +259,11 @@
+ int	ffiLongLongResultHigh(void)	{ return ffiLongReturnValue; }
+ 
+ 
+ int ffiStoreStructure(int address, int structSize)
+ {
+-  dprintf(("ffiStoreStructure %d %d\n", address, structSize));
++  squeak_dprintf(("ffiStoreStructure %d %d\n", address, structSize));
+   memcpy((void *)address, (ffiStructReturnValue
+ 			   ? (void *)ffiStructReturnValue
+ 			   : (void *)&ffiIntReturnValue),
+ 	 structSize);
+   return 1;
+@@ -271,20 +271,20 @@
+ 
+ 
+ int ffiCleanup(void)
+ {
+   int i;
+-  dprintf(("ffiCleanup\n"));
++  squeak_dprintf(("ffiCleanup\n"));
+   for (i= 0;  i < ffiTempStringCount;  ++i)
+     {
+-      dprintf(("  ++ free string\n"));
++      squeak_dprintf(("  ++ free string\n"));
+       free(ffiTempStrings[i]);
+     }
+   ffiTempStringCount= 0;
+   if (ffiStructReturnValue)
+     {
+-      dprintf(("  ++ free struct\n"));
++      squeak_dprintf(("  ++ free struct\n"));
+       free(ffiStructReturnValue);
+       ffiStructReturnValue= 0;
+     }
+   return 1;
+ }
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm/debug.h Squeak-3.10-1/platforms/unix/vm/debug.h
+--- Squeak-3.10-1.original/platforms/unix/vm/debug.h	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm/debug.h	2009-08-09 19:41:41.000000000 -0600
+@@ -11,13 +11,13 @@
+   /* the thing to use here is a variadic macro, but Apple's gcc barfs on
+   ** them when running in precomp mode.  did they _really_ have to break
+   ** the preprocessor just to implement precomp?  good _grief_.
+   */
+   extern void __sq_dprintf(const char *fmt, ...);
+-# define dprintf(ARGS) __sq_dprintf ARGS
++# define squeak_dprintf(ARGS) __sq_dprintf ARGS
+ #else
+-# define dprintf(ARGS)	((void)0)
++# define squeak_dprintf(ARGS)	((void)0)
+ #endif
+ 
+ 
+ #undef assert
+ 
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm/dlfcn-dyld.c Squeak-3.10-1/platforms/unix/vm/dlfcn-dyld.c
+--- Squeak-3.10-1.original/platforms/unix/vm/dlfcn-dyld.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm/dlfcn-dyld.c	2009-08-09 19:41:41.000000000 -0600
+@@ -68,11 +68,11 @@
+   fprintf(stderr, "dyld: undefined symbol: %s\n", symbol);
+ }
+ 
+ static NSModule dlMultiple(NSSymbol s, NSModule oldModule, NSModule newModule)
+ {
+-  dprintf((stderr, "dyld: %s: %s previously defined in %s, new definition in %s\n",
++  squeak_dprintf((stderr, "dyld: %s: %s previously defined in %s, new definition in %s\n",
+ 	   NSNameOfSymbol(s), NSNameOfModule(oldModule), NSNameOfModule(newModule)));
+   return newModule;
+ }
+ 
+ static void dlLinkEdit(NSLinkEditErrors errorClass, int errorNumber,
+@@ -126,11 +126,11 @@
+     }
+ 
+   if (!handle)
+     dlSetError("could not load shared object: %s", path);
+ 
+-  dprintf((stderr, "dlopen: %s => %d\n", path, (int)handle));
++  squeak_dprintf((stderr, "dlopen: %s => %d\n", path, (int)handle));
+ 
+   return handle;
+ }
+ 
+ 
+@@ -139,21 +139,21 @@
+   char		_symbol[256];
+   NSSymbol	*nsSymbol= 0;
+ 
+   snprintf(_symbol, sizeof(_symbol), "_%s", symbol);
+ 
+-  dprintf((stderr, "dlsym: looking for %s (%s) in %d\n", symbol, _symbol, (int)handle));
++  squeak_dprintf((stderr, "dlsym: looking for %s (%s) in %d\n", symbol, _symbol, (int)handle));
+ 
+   if (!handle)
+     {
+-      dprintf((stderr, "dlsym: setting app context for this handle\n"));
++      squeak_dprintf((stderr, "dlsym: setting app context for this handle\n"));
+       handle= DL_APP_CONTEXT;
+     }
+ 
+   if (DL_APP_CONTEXT == handle)
+     {
+-      dprintf((stderr, "dlsym: looking in app context\n"));
++      squeak_dprintf((stderr, "dlsym: looking in app context\n"));
+       if (NSIsSymbolNameDefined(_symbol))
+ 	nsSymbol= NSLookupAndBindSymbol(_symbol);
+     }
+   else
+     {
+@@ -165,19 +165,19 @@
+ 	      nsSymbol= NSLookupSymbolInImage
+ 		((struct mach_header *)handle,
+ 		 _symbol,
+ 		 NSLOOKUPSYMBOLINIMAGE_OPTION_BIND
+ 		 /*| NSLOOKUPSYMBOLINIMAGE_OPTION_RETURN_ON_ERROR*/);
+-	      dprintf((stderr, "dlsym: bundle (image) lookup returned %p\n", nsSymbol));
++	      squeak_dprintf((stderr, "dlsym: bundle (image) lookup returned %p\n", nsSymbol));
+ 	    }
+ 	  else
+-	    dprintf((stderr, "dlsym: bundle (image) symbol not defined\n"));
++	    squeak_dprintf((stderr, "dlsym: bundle (image) symbol not defined\n"));
+ 	}
+       else
+ 	{
+ 	  nsSymbol= NSLookupSymbolInModule(handle, _symbol);
+-	  dprintf((stderr, "dlsym: dylib (module) lookup returned %p\n", nsSymbol));
++	  squeak_dprintf((stderr, "dlsym: dylib (module) lookup returned %p\n", nsSymbol));
+ 	}
+     }
+ 
+   if (!nsSymbol)
+     {
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm/sqUnixExternalPrims.c Squeak-3.10-1/platforms/unix/vm/sqUnixExternalPrims.c
+--- Squeak-3.10-1.original/platforms/unix/vm/sqUnixExternalPrims.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm/sqUnixExternalPrims.c	2009-08-09 19:41:41.000000000 -0600
+@@ -33,13 +33,13 @@
+ #define DEBUG 0
+  
+ #include "sq.h"		/* sqUnixConfig.h */
+ 
+ #if (DEBUG)
+-# define dprintf(ARGS) fprintf ARGS
++# define squeak_dprintf(ARGS) fprintf ARGS
+ #else
+-# define dprintf(ARGS)
++# define squeak_dprintf(ARGS)
+ #endif
+  
+ #if !defined(HAVE_LIBDL) && defined(HAVE_DYLD)
+ # include "dlfcn-dyld.c"
+ #endif
+@@ -132,14 +132,14 @@
+ 	char        libName[NAME_MAX + 32];	/* headroom for prefix/suffix */
+ 	struct stat buf;
+ 	int         err;
+ 	sprintf(libName, "%s%s%s%s", dirName, *prefix, moduleName, *suffix);
+ 	if ((!(err= stat(libName, &buf))) && S_ISDIR(buf.st_mode))
+-	  dprintf((stderr, "ignoring directory: %s\n", libName));
++	  squeak_dprintf((stderr, "ignoring directory: %s\n", libName));
+ 	else
+ 	  {
+-	    dprintf((stderr, "tryLoading %s\n", libName));
++	    squeak_dprintf((stderr, "tryLoading %s\n", libName));
+ 	    handle= dlopen(libName, RTLD_NOW | RTLD_GLOBAL);
+ 	    if (handle == 0)
+ 	      {
+ 		if ((!err) && !(sqIgnorePluginErrors))
+ 		  fprintf(stderr, "ioLoadModule(%s):\n  %s\n", libName, dlerror());
+@@ -163,20 +163,20 @@
+   void *handle= 0;
+ 
+   if (path)
+     {
+       char pbuf[MAXPATHLEN];
+-      dprintf((stderr, "try %s=%s\n", varName, path));
++      squeak_dprintf((stderr, "try %s=%s\n", varName, path));
+       strncpy(pbuf, path, sizeof(pbuf));
+       pbuf[sizeof(pbuf) - 1]= '\0';
+       for (path= strtok(pbuf, ":");
+ 	   path != 0;
+ 	   path= strtok(0, ":"))
+ 	{
+ 	  char buf[MAXPATHLEN];
+ 	  sprintf(buf, "%s/", path);
+-	  dprintf((stderr, "  path dir = %s\n", buf));
++	  squeak_dprintf((stderr, "  path dir = %s\n", buf));
+ 	  if ((handle= tryLoading(buf, pluginName)) != 0)
+ 	    break;
+ 	}
+     }
+   return handle;
+@@ -195,11 +195,11 @@
+       handle= dlopen(0, RTLD_NOW | RTLD_GLOBAL);
+       if (handle == 0)
+ 	fprintf(stderr, "ioLoadModule(<intrinsic>): %s\n", dlerror());
+       else
+ 	{
+-	  dprintf((stderr, "loaded: <intrinsic>\n"));
++	  squeak_dprintf((stderr, "loaded: <intrinsic>\n"));
+ 	  return handle;
+ 	}
+     }
+ 
+   if (squeakPlugins)
+@@ -216,11 +216,11 @@
+ 	      }
+ 	    else
+ 	      *out++= c;
+ 	  }
+ 	*out= '\0';
+-	dprintf((stderr, "ioLoadModule plugins = %s\n                path = %s\n",
++ squeak_dprintf((stderr, "ioLoadModule plugins = %s\n                path = %s\n",
+ 		 squeakPlugins, path));
+ 	if ((handle= tryLoading("", path)))
+ 	  return handle;
+ 	*out++= '/';
+ 	*out= '\0';
+@@ -308,11 +308,11 @@
+   sprintf(buf, "%s", lookupName);
+ #endif
+ 
+   fn= dlsym(moduleHandle, buf);
+ 
+-  dprintf((stderr, "ioFindExternalFunctionIn(%s, %d)\n",
++  squeak_dprintf((stderr, "ioFindExternalFunctionIn(%s, %d)\n",
+ 	   lookupName, moduleHandle));
+ 
+   if ((fn == 0) && (!sqIgnorePluginErrors)
+       && strcmp(lookupName, "initialiseModule")
+       && strcmp(lookupName, "shutdownModule")
+@@ -331,11 +331,11 @@
+ */
+ sqInt ioFreeModule(void *moduleHandle)
+ {
+   if (dlclose(moduleHandle))
+     {
+-      dprintf((stderr, "ioFreeModule(%d): %s\n", moduleHandle, dlerror()));
++      squeak_dprintf((stderr, "ioFreeModule(%d): %s\n", moduleHandle, dlerror()));
+       return 0;
+     }
+   return 1;
+ }
+ 
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm/sqUnixMemory.c Squeak-3.10-1/platforms/unix/vm/sqUnixMemory.c
+--- Squeak-3.10-1.original/platforms/unix/vm/sqUnixMemory.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm/sqUnixMemory.c	2009-08-09 19:41:41.000000000 -0600
+@@ -115,28 +115,28 @@
+       exit(1);
+     }
+   pageSize= getpagesize();
+   pageMask= ~(pageSize - 1);
+ 
+-  dprintf(("uxAllocateMemory: pageSize 0x%x (%d), mask 0x%x\n", pageSize, pageSize, pageMask));
++  squeak_dprintf(("uxAllocateMemory: pageSize 0x%x (%d), mask 0x%x\n", pageSize, pageSize, pageMask));
+ 
+ #if (!MAP_ANON)
+   if ((devZero= open("/dev/zero", O_RDWR)) < 0)
+     {
+       perror("uxAllocateMemory: /dev/zero");
+       return 0;
+     }
+ #endif
+ 
+-  dprintf(("uxAllocateMemory: /dev/zero descriptor %d\n", devZero));
+-  dprintf(("uxAllocateMemory: min heap %d, desired %d\n", minHeapSize, desiredHeapSize));
++  squeak_dprintf(("uxAllocateMemory: /dev/zero descriptor %d\n", devZero));
++  squeak_dprintf(("uxAllocateMemory: min heap %d, desired %d\n", minHeapSize, desiredHeapSize));
+ 
+   heapLimit= valign(max(desiredHeapSize, useMmap));
+ 
+   while ((!heap) && (heapLimit >= minHeapSize))
+     {
+-      dprintf(("uxAllocateMemory: mapping 0x%08x bytes (%d Mbytes)\n", heapLimit, heapLimit >> 20));
++      squeak_dprintf(("uxAllocateMemory: mapping 0x%08x bytes (%d Mbytes)\n", heapLimit, heapLimit >> 20));
+       if (MAP_FAILED == (heap= mmap(0, heapLimit, MAP_PROT, MAP_FLAGS, devZero, 0)))
+ 	{
+ 	  heap= 0;
+ 	  heapLimit= valign(heapLimit / 4 * 3);
+ 	}
+@@ -164,29 +164,29 @@
+ {
+   if (useMmap)
+     {
+       int newSize=  min(valign(oldLimit - heap + delta), heapLimit);
+       int newDelta= newSize - heapSize;
+-      dprintf(("uxGrowMemory: %p By: %d(%d) (%d -> %d)\n", oldLimit, newDelta, delta, heapSize, newSize));
++      squeak_dprintf(("uxGrowMemory: %p By: %d(%d) (%d -> %d)\n", oldLimit, newDelta, delta, heapSize, newSize));
+       assert(0 == (newDelta & ~pageMask));
+       assert(0 == (newSize  & ~pageMask));
+       assert(newDelta >= 0);
+       if (newDelta)
+ 	{
+-	  dprintf(("was: %p %p %p = 0x%x (%d) bytes\n", heap, heap + heapSize, heap + heapLimit, heapSize, heapSize));
++	  squeak_dprintf(("was: %p %p %p = 0x%x (%d) bytes\n", heap, heap + heapSize, heap + heapLimit, heapSize, heapSize));
+ 	  if (overallocateMemory)
+ 	    {
+ 	      char *base= heap + heapSize;
+-	      dprintf(("remap: %p + 0x%x (%d)\n", base, newDelta, newDelta));
++	      squeak_dprintf(("remap: %p + 0x%x (%d)\n", base, newDelta, newDelta));
+ 	      if (MAP_FAILED == mmap(base, newDelta, MAP_PROT, MAP_FLAGS | MAP_FIXED, devZero, heapSize))
+ 		{
+ 		  perror("mmap");
+ 		  return oldLimit;
+ 		}
+ 	    }
+ 	  heapSize += newDelta;
+-	  dprintf(("now: %p %p %p = 0x%x (%d) bytes\n", heap, heap + heapSize, heap + heapLimit, heapSize, heapSize));
++	  squeak_dprintf(("now: %p %p %p = 0x%x (%d) bytes\n", heap, heap + heapSize, heap + heapLimit, heapSize, heapSize));
+ 	  assert(0 == (heapSize  & ~pageMask));
+ 	}
+       return heap + heapSize;
+     }
+   return oldLimit;
+@@ -199,29 +199,29 @@
+ {
+   if (useMmap)
+     {
+       int newSize=  max(0, valign((char *)oldLimit - heap - delta));
+       int newDelta= heapSize - newSize;
+-      dprintf(("uxGrowMemory: %p By: %d(%d) (%d -> %d)\n", oldLimit, newDelta, delta, heapSize, newSize));
++      squeak_dprintf(("uxGrowMemory: %p By: %d(%d) (%d -> %d)\n", oldLimit, newDelta, delta, heapSize, newSize));
+       assert(0 == (newDelta & ~pageMask));
+       assert(0 == (newSize  & ~pageMask));
+       assert(newDelta >= 0);
+       if (newDelta)
+ 	{
+-	  dprintf(("was: %p %p %p = 0x%x (%d) bytes\n", heap, heap + heapSize, heap + heapLimit, heapSize, heapSize));
++	  squeak_dprintf(("was: %p %p %p = 0x%x (%d) bytes\n", heap, heap + heapSize, heap + heapLimit, heapSize, heapSize));
+ 	  if (overallocateMemory)
+ 	    {
+ 	      char *base= heap + heapSize - newDelta;
+-	      dprintf(("unmap: %p + 0x%x (%d)\n", base, newDelta, newDelta));
++	      squeak_dprintf(("unmap: %p + 0x%x (%d)\n", base, newDelta, newDelta));
+ 	      if (munmap(base, newDelta) < 0)
+ 		{
+ 		  perror("unmap");
+ 		  return oldLimit;
+ 		}
+ 	    }
+ 	  heapSize -= newDelta;
+-	  dprintf(("now: %p %p %p = 0x%x (%d) bytes\n", heap, heap + heapSize, heap + heapLimit, heapSize, heapSize));
++	  squeak_dprintf(("now: %p %p %p = 0x%x (%d) bytes\n", heap, heap + heapSize, heap + heapLimit, heapSize, heapSize));
+ 	  assert(0 == (heapSize  & ~pageMask));
+ 	}
+       return heap + heapSize;
+     }
+   return oldLimit;
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-display-Quartz/sqUnixQuartz.m Squeak-3.10-1/platforms/unix/vm-display-Quartz/sqUnixQuartz.m
+--- Squeak-3.10-1.original/platforms/unix/vm-display-Quartz/sqUnixQuartz.m	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-display-Quartz/sqUnixQuartz.m	2009-08-09 19:41:40.000000000 -0600
+@@ -354,11 +354,11 @@
+ 
+   NSAutoreleasePool *pool= [[NSAutoreleasePool alloc] init];
+   int opp=     depth / 8;
+   int success= 1;
+ 
+-  dprintf(("ioFormPrint %f %f\n", hScale, vScale));
++  squeak_dprintf(("ioFormPrint %f %f\n", hScale, vScale));
+   {
+     unsigned char    *planes[1]= { (unsigned char *)pointerForOop(bitsAddr) };
+     NSBitmapImageRep *bitmap= 	 0;
+     NSImage	     *image=  	 0;
+     NSImageView	     *view=   	 0;
+@@ -372,27 +372,27 @@
+ 	      hasAlpha:			NO
+ 	      isPlanar:			NO
+ 	      colorSpaceName:		NSCalibratedBlackColorSpace
+ 	      bytesPerRow:		width * opp
+ 	      bitsPerPixel:		depth];
+-    if (!bitmap) { dprintf(("bitmap fail\n")); success= 0; goto done; }
++    if (!bitmap) { squeak_dprintf(("bitmap fail\n")); success= 0; goto done; }
+     image= [NSImage alloc];
+     //[image setSize: NSMakeSize(width, height)];
+     [image addRepresentation: bitmap];
+-    if (!image) { dprintf(("image fail\n")); success= 0; goto done; }
++    if (!image) { squeak_dprintf(("image fail\n")); success= 0; goto done; }
+     view= [[NSImageView alloc] initWithFrame: NSMakeRect(0, 0, width, height)];
+     [view setImage: image];
+     {
+       NSPrintOperation *op=  [NSPrintOperation printOperationWithView: view];
+       [op setShowPanels: YES];
+-      dprintf(("launch print operation\n"));
++      squeak_dprintf(("launch print operation\n"));
+       [op runOperation];
+     }
+   }
+ 
+  done:
+-  dprintf(("ioFormPrint done.\n"));
++  squeak_dprintf(("ioFormPrint done.\n"));
+   [pool release];
+   return success;
+ }
+ 
+ 
+@@ -432,11 +432,11 @@
+     {
+     case 0: return RedButtonBit;
+     case 1: return (swapBtn ? YellowButtonBit : BlueButtonBit);
+     case 2: return (swapBtn ? BlueButtonBit   : YellowButtonBit);
+     }
+-  dprintf(("unknown mouse button %d\n", button));
++  squeak_dprintf(("unknown mouse button %d\n", button));
+   return RedButtonBit;
+ }
+ 
+ 
+ static unsigned int qz2sqKey(NSEvent *event)
+@@ -777,11 +777,11 @@
+ 
+ #if 0
+ 
+ static void setRects(int w, int h)
+ {
+-  dprintf(("setRects %d %d\n", w, h));
++  squeak_dprintf(("setRects %d %d\n", w, h));
+   topRect= NSMakeRect(0,0, w,h);
+   if (fullscreen)
+     {
+       titleRect=  NSMakeRect(0, dpyHeight, dpyWidth, 0);
+       resizeRect= NSMakeRect(dpyWidth, 0, 0, 0);
+@@ -822,11 +822,11 @@
+       NSRect winRect= [win frame];
+       winRect.origin= NSMakePoint(0, 0);	// window coordinates
+       topRect= [NSWindow contentRectForFrameRect: winRect styleMask: styleMask];
+       w= NSWidth(topRect);
+       h= NSHeight(topRect);
+-      dprintf(("updatePix w=%d h=%d\n", w, h));
++      squeak_dprintf(("updatePix w=%d h=%d\n", w, h));
+       setSavedWindowSize((w << 16) | h);			// assume this is atomic
+       if (fullscreen)
+ 	{
+ 	  titleRect=  NSMakeRect(0, dpyHeight, dpyWidth, 0);	// empty & offscreen
+ 	  resizeRect= NSMakeRect(dpyWidth, 0, 0, 0);		// empty & offscreen
+@@ -852,14 +852,14 @@
+       }
+       UnlockPortBits(port);
+     }
+   else
+     {
+-      dprintf(("updatePix: NO PORT!\n"));
++      squeak_dprintf(("updatePix: NO PORT!\n"));
+       pixBase= 0;
+     }
+-  dprintf(("pixBase %p, width %d, height %d, depth %d, pitch %d\n",
++  squeak_dprintf(("pixBase %p, width %d, height %d, depth %d, pitch %d\n",
+ 	   pixBase, pixWidth, pixHeight, pixDepth, pixPitch));
+   return pixBase;
+ }
+ 
+ 
+@@ -875,17 +875,17 @@
+       || (width != pixWidth) || (width < 1) || (height != pixHeight) || (height < 1) || (depth != pixDepth)
+       || ((!pixBase) && !updatePix())
+       || (displayChanged)
+       || (![view lockFocusIfCanDraw]))
+     {
+-      dprintf(("ioShowDisplay squashed: dpy %dx%dx%d pix %dx%dx%d\n",
++      squeak_dprintf(("ioShowDisplay squashed: dpy %dx%dx%d pix %dx%dx%d\n",
+ 	       (int)width, (int)height, (int)depth,
+ 	       (int)pixWidth, (int)pixHeight, (int)pixDepth));
+       return 0;
+     }
+ 
+-  dprintf(("ioShowDisplay %p %ldx%ldx%ld %ld,%ld-%ld,%ld\n",
++  squeak_dprintf(("ioShowDisplay %p %ldx%ldx%ld %ld,%ld-%ld,%ld\n",
+ 	   (void *)dispBitsIndex, width, height, depth,
+ 	   affectedL, affectedR, affectedT, affectedB));
+ 
+   lock(display);
+   affectedR= min(affectedR, min(width,  pixWidth ));
+@@ -975,11 +975,11 @@
+ static void *display_ioGetDisplay(void)
+ {
+   if (headless)
+     return 0;
+ 
+-  dprintf(("ioGetDisplay: WARNING: check the client to see it knows what it's doing\n"));
++  squeak_dprintf(("ioGetDisplay: WARNING: check the client to see it knows what it's doing\n"));
+   return dpy;
+ }
+ 
+ static void *display_ioGetWindow(void)
+ {
+@@ -1302,11 +1302,11 @@
+   dpyHeight  = [[dpyMode objectForKey: (id)kCGDisplayHeight] intValue];
+   dpyDepth   = [[dpyMode objectForKey: (id)kCGDisplayBitsPerPixel] intValue];
+   dpyPixels  = CGDisplayBaseAddress(dpy);
+   dpyPitch   = CGDisplayBytesPerRow(dpy);
+ 
+-  dprintf(("display is %dx%dx%d at %p pitch %d\n", dpyWidth, dpyHeight, dpyDepth, dpyPixels, dpyPitch));
++  squeak_dprintf(("display is %dx%dx%d at %p pitch %d\n", dpyWidth, dpyHeight, dpyDepth, dpyPixels, dpyPitch));
+ }
+ 
+ 
+ static void setUpWindow(int fs)
+ {
+@@ -1332,11 +1332,11 @@
+ 	    {
+ 	      w= 640;
+ 	      h= 480;
+ 	    }
+ 	}
+-      dprintf(("initial winSize %d %d\n", w, h));
++      squeak_dprintf(("initial winSize %d %d\n", w, h));
+       styleMask= (fs
+ 		  ? (NSBorderlessWindowMask)
+ 		  : (  NSTitledWindowMask
+ 		     | NSMiniaturizableWindowMask
+ 		     | NSResizableWindowMask));
+@@ -1348,11 +1348,11 @@
+ 	     defer:               NO];
+ 
+       contentRect= [[win contentView] frame];
+       w= NSWidth(contentRect);
+       h= NSHeight(contentRect);
+-      dprintf(("alloc winSize %d %d\n", w, h));
++      squeak_dprintf(("alloc winSize %d %d\n", w, h));
+       setSavedWindowSize((w << 16) | h);
+ 
+       view= [[SqueakView alloc] initWithFrame: contentRect];
+       [view setAutoresizingMask: (NSViewWidthSizable | NSViewHeightSizable)];
+ 
+@@ -1517,11 +1517,11 @@
+ static sqInt display_ioSetFullScreen(sqInt flag)
+ {
+   static sqInt originalWindowSize= 0;
+   SqueakWindow *old;
+ 
+-  dprintf(("ioSetFullScreen(%d)\n", flag));
++  squeak_dprintf(("ioSetFullScreen(%d)\n", flag));
+ 
+   if (headless || (fullscreen == flag))
+     return 0;	// nothing to do
+   old= win;
+   win= 0;  view= 0;  topView= 0;  pixBase= 0; pixWidth= 0; pixHeight= 0; pixPitch= 0;
+@@ -1540,11 +1540,11 @@
+ 
+ static sqInt display_ioSetFullScreen(sqInt flag)
+ {
+   static sqInt originalWindowSize= (800 << 16) | 600;
+ 
+-  dprintf(("ioSetFullScreen(%d)\n", flag));
++  squeak_dprintf(("ioSetFullScreen(%d)\n", flag));
+ 
+   if (headless || (fullscreen == flag) || glActive)
+     return 0;	// nothing to do
+ 
+   if (flag)	// switch to fullscreen
+@@ -1553,11 +1553,11 @@
+ #    ifdef FULLSCREEN_FADE
+       captureImage(0);
+       fadeOut(FULLSCREEN_FADE);
+ #    endif
+       if (CGDisplayNoErr != CGDisplayCapture(dpy))
+-	dprintf(("failed to capture display\n"));
++ squeak_dprintf(("failed to capture display\n"));
+       else
+ 	{
+ #        ifdef FULLSCREEN_FADE
+ 	  CGContextRef cgc;
+ 	  memset(dpyPixels, -1U, dpyPitch * dpyHeight);
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-display-Quartz/zzz/sqUnixQuartz.m Squeak-3.10-1/platforms/unix/vm-display-Quartz/zzz/sqUnixQuartz.m
+--- Squeak-3.10-1.original/platforms/unix/vm-display-Quartz/zzz/sqUnixQuartz.m	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-display-Quartz/zzz/sqUnixQuartz.m	2009-08-09 19:41:40.000000000 -0600
+@@ -297,11 +297,11 @@
+ 
+   NSAutoreleasePool *pool= [[NSAutoreleasePool alloc] init];
+   int opp=     depth / 8;
+   int success= 1;
+ 
+-  dprintf(("ioFormPrint %f %f\n", hScale, vScale));
++  squeak_dprintf(("ioFormPrint %f %f\n", hScale, vScale));
+   {
+     unsigned char    *planes[1]= { (char *)bitsAddr };
+     NSBitmapImageRep *bitmap= 	 0;
+     NSImage	     *image=  	 0;
+     NSImageView	     *view=   	 0;
+@@ -315,27 +315,27 @@
+ 	      hasAlpha:			NO
+ 	      isPlanar:			NO
+ 	      colorSpaceName:		NSCalibratedBlackColorSpace
+ 	      bytesPerRow:		width * opp
+ 	      bitsPerPixel:		depth];
+-    if (!bitmap) { dprintf(("bitmap fail\n")); success= 0; goto done; }
++    if (!bitmap) { squeak_dprintf(("bitmap fail\n")); success= 0; goto done; }
+     image= [NSImage alloc];
+     //[image setSize: NSMakeSize(width, height)];
+     [image addRepresentation: bitmap];
+-    if (!image) { dprintf(("image fail\n")); success= 0; goto done; }
++    if (!image) { squeak_dprintf(("image fail\n")); success= 0; goto done; }
+     view= [[NSImageView alloc] initWithFrame: NSMakeRect(0, 0, width, height)];
+     [view setImage: image];
+     {
+       NSPrintOperation *op=  [NSPrintOperation printOperationWithView: view];
+       [op setShowPanels: YES];
+-      dprintf(("launch print operation\n"));
++      squeak_dprintf(("launch print operation\n"));
+       [op runOperation];
+     }
+   }
+ 
+  done:
+-  dprintf(("ioFormPrint done.\n"));
++  squeak_dprintf(("ioFormPrint done.\n"));
+   [pool release];
+   return success;
+ }
+ 
+ 
+@@ -375,11 +375,11 @@
+     {
+     case 0: return RedButtonBit;
+     case 1: return (swapBtn ? YellowButtonBit : BlueButtonBit);
+     case 2: return (swapBtn ? BlueButtonBit   : YellowButtonBit);
+     }
+-  dprintf(("unknown mouse button %d\n", button));
++  squeak_dprintf(("unknown mouse button %d\n", button));
+ #endif
+   return RedButtonBit;
+ }
+ 
+ 
+@@ -794,11 +794,11 @@
+ 
+ #if 0
+ 
+ static void setRects(int w, int h)
+ {
+-  dprintf(("setRects %d %d\n", w, h));
++  squeak_dprintf(("setRects %d %d\n", w, h));
+   topRect= NSMakeRect(0,0, w,h);
+   if (fullscreen)
+     {
+       titleRect=  NSMakeRect(0, dpyHeight, dpyWidth, 0);
+       resizeRect= NSMakeRect(dpyWidth, 0, 0, 0);
+@@ -837,11 +837,11 @@
+     {
+       int w, h;
+       NSRect winRect= [win frame];
+       winRect.origin= NSMakePoint(0, 0);	// window coordinates
+       topRect= [NSWindow contentRectForFrameRect: winRect styleMask: styleMask];
+-      dprintf(("updatePix w=%d h=%d\n", (int)NSWidth(topRect), (int)NSHeight(topRect)));
++      squeak_dprintf(("updatePix w=%d h=%d\n", (int)NSWidth(topRect), (int)NSHeight(topRect)));
+       w= NSWidth(topRect);
+       h= NSHeight(topRect);
+       setSavedWindowSize((w << 16) | h);			// assume this is atomic
+       if (fullscreen)
+ 	{
+@@ -868,14 +868,14 @@
+       }
+       UnlockPortBits(port);
+     }
+   else
+     {
+-      dprintf(("updatePix: NO PORT!\n"));
++      squeak_dprintf(("updatePix: NO PORT!\n"));
+       pixBase= 0;
+     }
+-  dprintf(("pixBase %p, width %d, height %d, pitch %d\n", pixBase, pixWidth, pixHeight, pixPitch));
++  squeak_dprintf(("pixBase %p, width %d, height %d, pitch %d\n", pixBase, pixWidth, pixHeight, pixPitch));
+   return pixBase;
+ }
+ 
+ 
+ 
+@@ -980,11 +980,11 @@
+ static void *display_ioGetDisplay(void)
+ {
+   if (headless)
+     return 0;
+ 
+-  dprintf(("ioGetDisplay: WARNING: check the client to see it knows what it's doing\n"));
++  squeak_dprintf(("ioGetDisplay: WARNING: check the client to see it knows what it's doing\n"));
+   return dpy;
+ }
+ 
+ static void *display_ioGetWindow(void)
+ {
+@@ -1240,11 +1240,11 @@
+   dpyPixels  = CGDisplayBaseAddress(dpy);
+   dpyPitch   = CGDisplayBytesPerRow(dpy);
+ 
+   pixRegion  = NewRgn();
+ 
+-  dprintf(("display is %dx%dx%d at %p pitch %d\n",
++  squeak_dprintf(("display is %dx%dx%d at %p pitch %d\n",
+ 	   dpyWidth, dpyHeight, dpyDepth, dpyPixels, dpyPitch));
+ }
+ 
+ 
+ static void setUpWindow(int fs)
+@@ -1262,11 +1262,11 @@
+ 	{
+ 	  int winSize= getSavedWindowSize();
+ 	  w= winSize >> 16;
+ 	  h= winSize & 0xffff;
+ 	}
+-      dprintf(("initial winSize %d %d\n", w, h));
++      squeak_dprintf(("initial winSize %d %d\n", w, h));
+       styleMask= (fs
+ 		  ? (NSBorderlessWindowMask)
+ 		  : (  NSTitledWindowMask
+ 		     | NSMiniaturizableWindowMask
+ 		     | NSResizableWindowMask));
+@@ -1468,11 +1468,11 @@
+ #    ifdef FULLSCREEN_FADE
+       captureImage(0);
+       fadeOut(FULLSCREEN_FADE);
+ #    endif
+       if (CGDisplayNoErr != CGDisplayCapture(dpy))
+-	dprintf(("failed to capture display\n"));
++ squeak_dprintf(("failed to capture display\n"));
+       else
+ 	{
+ #        ifdef FULLSCREEN_FADE
+ 	  CGContextRef cgc;
+ 	  memset(dpyPixels, -1U, dpyPitch * dpyHeight);
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-display-X11/sqUnixXdnd.c Squeak-3.10-1/platforms/unix/vm-display-X11/sqUnixXdnd.c
+--- Squeak-3.10-1.original/platforms/unix/vm-display-X11/sqUnixXdnd.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-display-X11/sqUnixXdnd.c	2009-08-09 19:41:41.000000000 -0600
+@@ -131,13 +131,13 @@
+ 
+ #define xdndFinished_targetWindow(evt)		((evt)->data.l[0])
+ 
+ 
+ #if (DEBUG_XDND)
+-# define dprintf(ARGS) do { fprintf ARGS; } while (0)
++# define squeak_dprintf(ARGS) do { fprintf ARGS; } while (0)
+ #else
+-# define dprintf(ARGS) do { } while (0)
++# define squeak_dprintf(ARGS) do { } while (0)
+ #endif
+ 
+ void getMousePosition(void);
+ 
+ 
+@@ -210,11 +210,11 @@
+     }
+   else
+     {
+       strncpy(string, uri, len);
+     }
+-  dprintf((stderr, "uri2string: <%s>\n", string));
++  squeak_dprintf((stderr, "uri2string: <%s>\n", string));
+   return string;
+ }
+ 
+ 
+ /*** Handle DnD Output ***/
+@@ -526,11 +526,11 @@
+   xdndWillAccept= 0;
+   isUrlList= 0;
+ 
+   if (xdndEnter_hasThreeTypes(evt))
+     {
+-      dprintf((stderr, "  3 types\n"));
++      squeak_dprintf((stderr, "  3 types\n"));
+       updateInTypes((Atom *) xdndEnter_targets(evt), 3);
+     }
+   else
+     {
+       Atom type;
+@@ -548,19 +548,19 @@
+ 	  return;
+ 	}
+ 
+       updateInTypes((Atom *) data, count);
+       XFree(data);
+-      dprintf((stderr, "  %ld types\n", count));
++      squeak_dprintf((stderr, "  %ld types\n", count));
+     }
+ 
+   /* We only accept filenames (MIME type "text/uri-list"). */
+   {
+     int i;
+     for (i= 0;  xdndInTypes[i];  ++i)
+       {
+-	dprintf((stderr, "  type %d == %ld %s\n", i, xdndInTypes[i], XGetAtomName(stDisplay, xdndInTypes[i])));
++ squeak_dprintf((stderr, "  type %d == %ld %s\n", i, xdndInTypes[i], XGetAtomName(stDisplay, xdndInTypes[i])));
+ 	if (XdndTextUriList == xdndInTypes[i])
+ 	  {
+ 	    isUrlList= 1;
+ 	    xdndWillAccept= 1;
+ 	  }
+@@ -585,11 +585,11 @@
+   xdndStatus_setWantPosition(&evt, 0);
+   xdndStatus_action(&evt)= action;
+ 
+   XSendEvent(stDisplay, xdndSourceWindow, 0, 0, (XEvent *)&evt);
+ 
+-  dprintf((stderr, "sent status to %ld will accept %d data %ld action %ld %s\n",
++  squeak_dprintf((stderr, "sent status to %ld will accept %d data %ld action %ld %s\n",
+ 	   xdndSourceWindow, willAccept, evt.data.l[1], action, XGetAtomName(stDisplay, action)));
+ }
+ 
+ static void dndSendFinished(void)
+ {
+@@ -603,11 +603,11 @@
+     evt.format	     = 32;
+ 
+     xdndFinished_targetWindow(&evt)= DndWindow;
+     XSendEvent(stDisplay, xdndSourceWindow, 0, 0, (XEvent *)&evt);
+ 
+-    dprintf((stderr, "dndSendFinished target: 0x%lx source: 0x%lx\n", DndWindow, xdndSourceWindow));
++    squeak_dprintf((stderr, "dndSendFinished target: 0x%lx source: 0x%lx\n", DndWindow, xdndSourceWindow));
+ }
+ 
+ 
+ static enum XdndState dndInEnter(enum XdndState state, XClientMessageEvent *evt)
+ {
+@@ -617,89 +617,89 @@
+       return state;
+     }
+   xdndSourceWindow= xdndEnter_sourceWindow(evt);
+   dndGetTypeList(evt);
+ 
+-  dprintf((stderr, "dndEnter target: 0x%lx source: 0x%lx\n", evt->window, xdndSourceWindow));
++  squeak_dprintf((stderr, "dndEnter target: 0x%lx source: 0x%lx\n", evt->window, xdndSourceWindow));
+   return XdndStateEntered;
+ }
+ 
+ 
+ static enum XdndState dndInLeave(enum XdndState state)
+ {
+-  dprintf((stderr, "dndLeave\n"));
++  squeak_dprintf((stderr, "dndLeave\n"));
+   recordDragEvent(DragLeave, 1);
+   return XdndStateIdle;
+ }
+ 
+ 
+ static enum XdndState dndInPosition(enum XdndState state, XClientMessageEvent *evt)
+ {
+-  dprintf((stderr, "dndPosition\n"));
++  squeak_dprintf((stderr, "dndPosition\n"));
+ 
+   if (xdndSourceWindow != xdndPosition_sourceWindow(evt))
+     {
+-      dprintf((stderr, "dndPosition: wrong source window\n"));
++      squeak_dprintf((stderr, "dndPosition: wrong source window\n"));
+       return XdndStateIdle;
+     }
+ 
+   getMousePosition();
+ 
+   if ((state != XdndStateEntered) && (state != XdndStateEntered))
+     {
+-      dprintf((stderr, "dndPosition: wrong state\n"));
++      squeak_dprintf((stderr, "dndPosition: wrong state\n"));
+       return XdndStateIdle;
+     }
+   
+   if ((state == XdndStateEntered) && xdndWillAccept)
+     recordDragEvent(DragEnter, 1);
+   
+   if (xdndWillAccept)
+     {
+       Atom action= xdndPosition_action(evt);
+-      dprintf((stderr, "  action = %ld %s\n", action, XGetAtomName(stDisplay, action)));
++      squeak_dprintf((stderr, "  action = %ld %s\n", action, XGetAtomName(stDisplay, action)));
+       xdndWillAccept= (action == XdndActionMove) | (action == XdndActionCopy)
+ 	|             (action == XdndActionLink) | (action == XdndActionAsk);
+     }
+ 
+   if (xdndWillAccept)
+     {
+-      dprintf((stderr, "accepting\n"));
++      squeak_dprintf((stderr, "accepting\n"));
+       dndSendStatus(1, XdndActionCopy);
+       recordDragEvent(DragMove, 1);
+     }
+   else /* won't accept */
+     {
+-      dprintf((stderr, "not accepting\n"));
++      squeak_dprintf((stderr, "not accepting\n"));
+       dndSendStatus(0, XdndActionPrivate);
+     }
+   return XdndStateTracking;
+ }
+ 
+ 
+ enum XdndState dndInDrop(enum XdndState state, XClientMessageEvent *evt)
+ {
+-  dprintf((stderr, "dndDrop\n"));
++  squeak_dprintf((stderr, "dndDrop\n"));
+ 
+   /* If there is "text/url-list" in xdndInTypes, the selection is
+    * processed only in DropFilesEvent. But if none (file count == 0),
+    * the selection is handled ClipboardExtendedPlugin.
+    */
+   if (isUrlList == 0)
+     {
+-      dprintf((stderr, "dndDrop: no url list\n"));
++      squeak_dprintf((stderr, "dndDrop: no url list\n"));
+       recordDragEvent(DragDrop, 0);
+       return state;
+     }
+   dndInDestroyTypes();
+ 
+   if (xdndSourceWindow != xdndDrop_sourceWindow(evt))
+-    dprintf((stderr, "dndDrop: wrong source window\n"));
++    squeak_dprintf((stderr, "dndDrop: wrong source window\n"));
+   else if (xdndWillAccept)
+     {
+       Window owner;
+-      dprintf((stderr, "converting selection\n"));
++      squeak_dprintf((stderr, "converting selection\n"));
+       if (!(owner= XGetSelectionOwner(stDisplay, XdndSelection)))
+ 	fprintf(stderr, "dndDrop: XGetSelectionOwner failed\n");
+       else
+ 	XConvertSelection(stDisplay, XdndSelection, XdndTextUriList, XdndSelectionAtom, stWindow, xdndDrop_time(evt));
+       if (uxDropFileCount)
+@@ -712,11 +712,11 @@
+ 	  uxDropFileCount= 0;
+ 	  uxDropFileNames= 0;
+ 	}
+     }
+   else
+-    dprintf((stderr, "refusing selection -- finishing\n"));
++    squeak_dprintf((stderr, "refusing selection -- finishing\n"));
+ 
+   dndSendFinished();
+   recordDragEvent(DragLeave, 1);
+ 
+   return XdndStateIdle;
+@@ -741,11 +741,11 @@
+     {
+       char *tokens= (char *)data;
+       char *item= 0;
+       while ((item= strtok(tokens, "\n\r")))
+ 	{
+-	  dprintf((stderr, "got URI <%s>\n", item));
++	  squeak_dprintf((stderr, "got URI <%s>\n", item));
+ 	  if (!strncmp(item, "file:", 5))		/*** xxx BOGUS -- just while image is broken ***/
+ 	    {
+ 	      if (uxDropFileCount)
+ 		uxDropFileNames= (char **)xrealloc(uxDropFileNames, (uxDropFileCount + 1) * sizeof(char *));
+ 	      else
+@@ -754,22 +754,22 @@
+ 	    }
+ 	  tokens= 0;
+ 	}
+       if (uxDropFileCount)
+ 	recordDragEvent(DragDrop, uxDropFileCount);
+-      dprintf((stderr, "+++ DROP %d\n", uxDropFileCount));
++      squeak_dprintf((stderr, "+++ DROP %d\n", uxDropFileCount));
+     }
+   XFree(data);
+ }
+ 
+ 
+ static enum XdndState dndInSelectionNotify(enum XdndState state, XSelectionEvent *evt)
+ {
+   if (evt->property != XdndSelectionAtom) return state;
+ 
+   dndGetSelection(evt->requestor, evt->property);
+-  dprintf((stderr, "dndLeave\n"));
++  squeak_dprintf((stderr, "dndLeave\n"));
+   dndSendFinished();
+   recordDragEvent(DragLeave, 1);
+   return XdndStateIdle;
+ }
+ 
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDev.c Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDev.c
+--- Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDev.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDev.c	2009-08-09 19:41:41.000000000 -0600
+@@ -66,11 +66,11 @@
+ #if !defined(DEBUG)
+ # define DEBUG	0
+ #endif
+ 
+ 
+-static void dprintf(const char *fmt, ...)
++static void squeak_dprintf(const char *fmt, ...)
+ {
+ #if (DEBUG)
+   va_list ap;
+   va_start(ap, fmt);
+   vprintf(fmt, ap);
+@@ -147,11 +147,11 @@
+ }
+ 
+ 
+ static void enqueueKeyboardEvent(int key, int up, int modifiers)
+ {
+-  dprintf("KEY %3d %02x %c %s mod %02x\n",
++  squeak_dprintf("KEY %3d %02x %c %s mod %02x\n",
+ 	  key, key, ((key > 32) && (key < 127)) ? key : ' ',
+ 	  up ? "UP" : "DOWN", modifiers);
+ 
+   modifierState= modifiers;
+   if (up)
+@@ -188,11 +188,11 @@
+ {
+   fb_advanceCursor(fb, dx, dy);
+   buttonState= b;
+   mousePosition= fb->cursorPosition;
+   if (b)
+-    dprintf("mouse %02x at %4d,%4d mod %02x\n",
++    squeak_dprintf("mouse %02x at %4d,%4d mod %02x\n",
+ 	    b, mousePosition.x, mousePosition.y, modifierState);
+   recordMouseEvent();
+ }
+ 
+ static void openMouse(void)
+@@ -273,18 +273,18 @@
+ }
+ 
+ 
+ static sqInt display_ioHasDisplayDepth(sqInt i)
+ {
+-  dprintf("hasDisplayDepth %d (%d) => %d\n", i, fb_depth(fb), (i == fb_depth(fb)));
++  squeak_dprintf("hasDisplayDepth %d (%d) => %d\n", i, fb_depth(fb), (i == fb_depth(fb)));
+   return (i == fb_depth(fb));
+ }
+ 
+ 
+ static void openDisplay(void)
+ {
+-  dprintf("openDisplay\n");
++  squeak_dprintf("openDisplay\n");
+   openMouse();
+   openKeyboard();
+   openFramebuffer();
+   // init mouse after setting graf mode on tty avoids packets being
+   // snarfed by gpm
+@@ -292,11 +292,11 @@
+ }
+ 
+ 
+ static void closeDisplay(void)
+ {
+-  dprintf("closeDisplay\n");
++  squeak_dprintf("closeDisplay\n");
+   closeFramebuffer();
+   closeKeyboard();
+   closeMouse();
+ }
+ 
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevFramebuffer.c Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevFramebuffer.c
+--- Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevFramebuffer.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevFramebuffer.c	2009-08-09 19:41:41.000000000 -0600
+@@ -506,11 +506,11 @@
+   ioctl(self->fd, FBIOPAN_DISPLAY, &self->var);
+ 
+   self->size= fb_height(self) * self->fix.line_length;
+   self->pitch= self->fix.line_length / self->var.bits_per_pixel * 8;
+ 
+-  dprintf("%s: %dx%dx%d+%x+%x (%dx%d) %s, rgb %d+%d %d+%d %d+%d pitch %d(%d)\n", self->fbName,
++  squeak_dprintf("%s: %dx%dx%d+%x+%x (%dx%d) %s, rgb %d+%d %d+%d %d+%d pitch %d(%d)\n", self->fbName,
+ 	  self->var.xres, self->var.yres, self->var.bits_per_pixel, self->var.xoffset, self->var.yoffset,
+ 	  self->var.xres_virtual, self->var.yres_virtual,
+ 	  visualName(self),
+ 	  self->var.red  .offset, self->var.red  .length,
+ 	  self->var.green.offset, self->var.green.length,
+@@ -605,21 +605,21 @@
+ static void fb_initBuffer(_self)
+ {
+   assert(self->addr == 0);
+   self->addr= (char *)mmap(0, self->size, PROT_READ | PROT_WRITE, MAP_SHARED, self->fd, 0);
+   if (self->addr == (char *)MAP_FAILED) fatalError("mmap");
+-  dprintf("%s: mapped at %p + %ld\n", self->fbName, self->addr, self->size);
++  squeak_dprintf("%s: mapped at %p + %ld\n", self->fbName, self->addr, self->size);
+ }
+ 
+ 
+ static void fb_freeBuffer(_self)
+ {
+   if (self->addr)
+     {
+       munmap(self->addr, self->size);
+       self->addr= 0;
+-      dprintf("%s: unmapped\n", self->fbName);
++      squeak_dprintf("%s: unmapped\n", self->fbName);
+     }
+ }
+ 
+ 
+ static void fb_initGraphics(_self)
+@@ -672,11 +672,11 @@
+   if (self->fd < 0)
+     failPermissions("framebuffer");
+ 
+   self->kb= kb;
+ 
+-  dprintf("using: %s (%d)\n", self->fbName, self->fd);
++  squeak_dprintf("using: %s (%d)\n", self->fbName, self->fd);
+ 
+   fb_initVisual(self);
+   fb_initBuffer(self);
+   fb_initGraphics(self);
+   fb_initCursor(self);
+@@ -690,11 +690,11 @@
+   fb_freeGraphics(self);
+   fb_freeBuffer(self);
+   if (self->fd >= 0)
+     {
+       close(self->fd);
+-      dprintf("%s (%d) closed\n", self->fbName, self->fd);
++      squeak_dprintf("%s (%d) closed\n", self->fbName, self->fd);
+       self->fd= -1;
+     }
+   self->kb= 0;
+ }
+ 
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevKeyboard.c Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevKeyboard.c
+--- Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevKeyboard.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevKeyboard.c	2009-08-09 19:41:41.000000000 -0600
+@@ -72,11 +72,11 @@
+   modifierState= 0;
+   if (kstate & (1 << KG_SHIFT))	modifierState |= ShiftKeyBit;
+   if (kstate & (1 << KG_CTRL))	modifierState |= CtrlKeyBit;
+   if (kstate & (1 << KG_ALT))	modifierState |= CommandKeyBit;
+   if (kstate & (1 << KG_ALTGR))	modifierState |= OptionKeyBit;
+-  dprintf("state %02x mod %02x\n", kstate, modifierState);
++  squeak_dprintf("state %02x mod %02x\n", kstate, modifierState);
+ }
+ 
+ 
+ static void kb_chvt(_self, int vt)
+ {
+@@ -108,23 +108,23 @@
+   static int prev= 0;
+   unsigned short *keyMap= self->keyMaps[self->state];
+   int rep= (!up) && (prev == code);
+   prev= up ? 0 : code;
+ 
+-  dprintf("+++ code %d up %d prev %d rep %d map %p\n", code, up, prev, rep, keyMap);
++  squeak_dprintf("+++ code %d up %d prev %d rep %d map %p\n", code, up, prev, rep, keyMap);
+ 
+   if (keyMap)
+     {
+       int sym=  keyMap[code];
+       int type= KTYP(sym);
+-      dprintf("+++ sym %x (%02x) type %d\n", sym, sym & 255, type);
++      squeak_dprintf("+++ sym %x (%02x) type %d\n", sym, sym & 255, type);
+       sym &= 255;
+       if (type >= 0xf0)		// shiftable
+ 	type -= 0xf0;
+       if (KT_LETTER == type)	// lockable
+ 	type= KT_LATIN;
+-      dprintf("+++ type %d\n", type);
++      squeak_dprintf("+++ type %d\n", type);
+       switch (type)
+ 	{
+ 	case KT_LATIN:
+ 	case KT_META:
+ 	  kb_post(self, sym, up);
+@@ -163,11 +163,11 @@
+ 	    kb_chvt(self, sym + 1);
+ 	  break;
+ 
+ 	default:
+ 	  if (type > KT_SLOCK)
+-	    dprintf("ignoring unknown scancode %d.%d\n", type, sym);
++	    squeak_dprintf("ignoring unknown scancode %d.%d\n", type, sym);
+ 	  break;
+ 	}
+     }
+ }
+ 
+@@ -175,17 +175,17 @@
+ static void kb_noCallback(int k, int u, int s) {}
+ 
+ 
+ static int kb_handleEvents(_self)
+ {
+-  dprintf("+++ kb_handleEvents\n");
++  squeak_dprintf("+++ kb_handleEvents\n");
+   while (fdReadable(self->fd, 0))
+     {
+       unsigned char buf;
+       if (1 == read(self->fd, &buf, 1))
+ 	{
+-	  dprintf("+++ kb_translate %3d %02x + %d\n", buf & 127, buf & 127, (buf >> 7) & 1);
++	  squeak_dprintf("+++ kb_translate %3d %02x + %d\n", buf & 127, buf & 127, (buf >> 7) & 1);
+ 	  kb_translate(self, buf & 127, (buf >> 7) & 1);
+ 	}
+     }
+   return 0;
+ }
+@@ -332,11 +332,11 @@
+   if (self->fd >= 0)
+     {
+       ioctl(self->fd, KDSKBMODE, self->kbMode);
+       tcsetattr(self->fd, TCSANOW, &self->tcAttr);
+       close(self->fd);
+-      dprintf("%s (%d) closed\n", self->kbName, self->fd);
++      squeak_dprintf("%s (%d) closed\n", self->kbName, self->fd);
+       self->fd= -1;
+     }
+ }
+ 
+ 
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevKeymap.c Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevKeymap.c
+--- Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevKeymap.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevKeymap.c	2009-08-09 19:41:41.000000000 -0600
+@@ -154,11 +154,11 @@
+ 
+ static void kb_loadKernelKeyMap(_self)
+ {
+   int map;
+ 
+-  dprintf("loading kernel keymap\n");
++  squeak_dprintf("loading kernel keymap\n");
+ 
+   if (!(self->keyMaps= (unsigned short **)calloc(MAX_NR_KEYMAPS, sizeof(unsigned short *))))
+     outOfMemory();
+ 
+   for (map= 0;  map < MAX_NR_KEYMAPS;  ++map)
+@@ -184,20 +184,20 @@
+ 	    fatalError("KDGKBENT");
+ 	  self->keyMaps[map][key]= kb.kb_value;
+ 	}
+     }
+ 
+-  dprintf("kernel keymap loaded\n");
++  squeak_dprintf("kernel keymap loaded\n");
+ }
+ 
+ 
+ static void kb_initKeyMap(_self, char *mapfile)
+ {
+   if (!mapfile)
+     kb_loadKernelKeyMap(self);
+   else if ((kb_loadKeys(self, mapfile)))
+-    dprintf("using keymap '%s'\n", mapfile);
++    squeak_dprintf("using keymap '%s'\n", mapfile);
+   else
+     fatal("could not load keymap '%s'\n", mapfile);
+ }
+ 
+ 
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevMouse.c Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevMouse.c
+--- Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevMouse.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevMouse.c	2009-08-09 19:41:41.000000000 -0600
+@@ -90,11 +90,11 @@
+ #    if DEBUG_AN_AWFUL_LOT
+       {
+ 	int i= 0;
+ 	while (i < count)
+ 	  {
+-	    dprintf("<%02x\n", out[i]);
++	    squeak_dprintf("<%02x\n", out[i]);
+ 	    ++i;
+ 	  }
+       }
+ #    endif
+       self->bufSize -= count;
+@@ -198,11 +198,11 @@
+ 	  fprintf(stderr, "\n");
+ 	  exit(1);
+ 	}
+     }
+ 
+-  dprintf("using: %s (%d), %s\n", self->msName, self->fd, msProto);
++  squeak_dprintf("using: %s (%d), %s\n", self->msName, self->fd, msProto);
+ 
+   self->init= init;
+   self->handleEvents= handler;
+ 
+   return 1;
+@@ -212,11 +212,11 @@
+ static void ms_close(_self)
+ {
+   if (self->fd >= 0)
+     {
+       close(self->fd);
+-      dprintf("%s (%d) closed\n", self->msName, self->fd);
++      squeak_dprintf("%s (%d) closed\n", self->msName, self->fd);
+       self->fd= -1;
+     }
+ }
+ 
+ 
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevMouseADB.c Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevMouseADB.c
+--- Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevMouseADB.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevMouseADB.c	2009-08-09 19:41:41.000000000 -0600
+@@ -35,11 +35,11 @@
+  *   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  *   SOFTWARE.
+  */
+ 
+ 
+-static void ms_adb_init(_self) { dprintf("ADB init\n"); }
++static void ms_adb_init(_self) { squeak_dprintf("ADB init\n"); }
+ 
+ 
+ static void ms_adb_handleEvents(_self)
+ {
+   unsigned char cmd[3];
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevMousePS2.c Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevMousePS2.c
+--- Squeak-3.10-1.original/platforms/unix/vm-display-fbdev/sqUnixFBDevMousePS2.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-display-fbdev/sqUnixFBDevMousePS2.c	2009-08-09 19:41:41.000000000 -0600
+@@ -60,11 +60,11 @@
+ 
+ 
+ static void ms_ps2_flush(_self)
+ {
+   unsigned char buf[32];
+-  dprintf("%s: flush\n", self->msName);
++  squeak_dprintf("%s: flush\n", self->msName);
+   while (ms_read(self, buf, sizeof(buf), 1, PS2_FLUSH_DELAY))
+     ;
+ }
+ 
+ 
+@@ -104,19 +104,19 @@
+ 
+ static int ms_ps2_send(_self, unsigned char *command, int len)
+ {
+   unsigned char buf[1];
+   int i;
+-  dprintf("%s: send\n", self->msName);
++  squeak_dprintf("%s: send\n", self->msName);
+   for (i= 0;  i < len;  ++i)
+     {
+     resend:
+       write(self->fd, command + i, 1);
+-      dprintf(">%02x\n", command[i]);
++      squeak_dprintf(">%02x\n", command[i]);
+       if (1 != ms_read(self, buf, 1, 1, PS2_SEND_DELAY))
+ 	{
+-	  dprintf("%s: send failed\n", self->msName);
++	  squeak_dprintf("%s: send failed\n", self->msName);
+ 	  return 0;
+ 	}
+       switch (buf[0])
+ 	{
+ 	case PS2_OK:
+@@ -124,11 +124,11 @@
+ 	  break;
+ 	case PS2_ERROR:
+ 	  fprintf(stderr, "%s: error response in send\n", self->msName);
+ 	  return 0;
+ 	case PS2_RESEND:
+-	  dprintf("%s: resend\n", self->msName);
++	  squeak_dprintf("%s: resend\n", self->msName);
+ 	  goto resend;
+ 	default:
+ 	  fprintf(stderr, "%s: illegal response %02x in send\n", self->msName, buf[0]);
+ 	  break;
+ 	}
+@@ -138,63 +138,63 @@
+ 
+ 
+ static void ms_ps2_disable(_self)
+ {
+   unsigned char command[]= { PS2_DISABLE };
+-  dprintf("%s: disable\n", self->msName);
++  squeak_dprintf("%s: disable\n", self->msName);
+   write(self->fd, command, 1);
+-  dprintf(">%02x\n", command[0]);
++  squeak_dprintf(">%02x\n", command[0]);
+   while (1 == ms_read(self, command, 1, 1, PS2_DISABLE_DELAY))
+     if (PS2_OK == command[0])
+       break;
+ }
+ 
+ 
+ static int ms_ps2_enable(_self)
+ {
+   unsigned char command[]= { PS2_ENABLE };
+-  dprintf("%s: enable\n", self->msName);
++  squeak_dprintf("%s: enable\n", self->msName);
+   return ms_ps2_send(self, command, sizeof(command));
+ }
+ 
+ 
+ static int ms_ps2_reset(_self)
+ {
+   unsigned char command[]= { PS2_RESET }, buf[2];
+-  dprintf("%s: reset\n", self->msName);
++  squeak_dprintf("%s: reset\n", self->msName);
+   if (!ms_ps2_send(self, command, sizeof(command)))
+     return -1;
+   if (2 == ms_read(self, buf, 2, 2, PS2_RESET_DELAY))
+     {
+-      dprintf("%s: response %02x %02x\n", self->msName, buf[0], buf[1]);
++      squeak_dprintf("%s: response %02x %02x\n", self->msName, buf[0], buf[1]);
+       switch (buf[0])
+ 	{
+ 	case PS2_SELFTEST_OK:
+ 	  return buf[1];	// mouse device id
+ 	  break;
+ 	case PS2_ERROR:
+ 	  fprintf(stderr, "%s: self-test failed\n", self->msName);
+ 	  break;
+ 	default:
+-	  dprintf("%s: bad response\n", self->msName);
++	  squeak_dprintf("%s: bad response\n", self->msName);
+ 	  break;
+ 	}
+     }
+   /* /dev/input/mice emulation returns PS2_SELFTEST_OK where send()
+      expects PS2_OK, causing control to fall through to here.  we pick
+      up the mouse id immediately in the flush(), so the only harm done
+      is a misleading "reset failed" message while debugging.  */
+   ms_ps2_flush(self);
+-  dprintf("%s: reset failed\n", self->msName);
++  squeak_dprintf("%s: reset failed\n", self->msName);
+   return -1;
+ }
+ 
+ 
+ static void ms_ps2_init(_self)
+ {
+   int id;
+   ms_ps2_disable(self);
+   id= ms_ps2_reset(self);
+-  dprintf("%s: mouse id %02x\n", self->msName, id);
++  squeak_dprintf("%s: mouse id %02x\n", self->msName, id);
+   ms_ps2_enable(self);
+ }
+ 
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-sound-MacOSX/sqUnixSoundMacOSX.c Squeak-3.10-1/platforms/unix/vm-sound-MacOSX/sqUnixSoundMacOSX.c
+--- Squeak-3.10-1.original/platforms/unix/vm-sound-MacOSX/sqUnixSoundMacOSX.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-sound-MacOSX/sqUnixSoundMacOSX.c	2009-08-09 19:41:40.000000000 -0600
+@@ -82,22 +82,22 @@
+ 
+ #if (DEBUG)
+ 
+ static void dumpFormat(AudioStreamBasicDescription *fmt); // atend
+ 
+-static void dprintf(const char *fmt, ...)
++static void squeak_dprintf(const char *fmt, ...)
+ {
+   va_list ap;
+   va_start(ap, fmt);
+   vprintf(fmt, ap);
+   va_end(ap);
+ }
+ 
+ #else // !DEBUG
+ 
+ static inline void dumpFormat(AudioStreamBasicDescription *fmt) {}
+-static inline void dprintf(const char *fmt, ...) {}
++static inline void squeak_dprintf(const char *fmt, ...) {}
+ 
+ #endif // !DEBUG
+ 
+ static void eprintf(const char *fmt, ...)
+ {
+@@ -486,11 +486,11 @@
+       eprintf("out of memory");
+       return 0;
+     }
+   s->id=	id;
+   s->direction= dir;
+-  dprintf("stream %p[%d] created for device %ld\n", s, dir, id);
++  squeak_dprintf("stream %p[%d] created for device %ld\n", s, dir, id);
+ 
+   return s;
+ }
+ 
+ 
+@@ -498,11 +498,11 @@
+ //
+ static void Stream_delete(Stream *s)
+ {
+   assert(s && s->buffer);
+   Buffer_delete(s->buffer);
+-  dprintf("stream %p[%d] deleted\n", s, s->direction);
++  squeak_dprintf("stream %p[%d] deleted\n", s, s->direction);
+   free(s);
+ }
+ 
+ 
+ // setup conversion from Squeak to device frame format, or vice-versa.
+@@ -520,22 +520,22 @@
+ 					kAudioDevicePropertyStreamFormat,
+ 					&sz, &devFmt),
+ 		 "GetProperty", "StreamFormat"))
+     return 0;
+ 
+-  dprintf("stream %p[%d] device format:\n", s, s->direction);  dumpFormat(&devFmt);
++  squeak_dprintf("stream %p[%d] device format:\n", s, s->direction);  dumpFormat(&devFmt);
+ 
+   imgFmt.mSampleRate	   = sampleRate;
+   imgFmt.mFormatID	   = kAudioFormatLinearPCM;
+   imgFmt.mFormatFlags	   = kLinearPCMFormatFlagIsBigEndian | kLinearPCMFormatFlagIsSignedInteger;
+   imgFmt.mBytesPerPacket   = SqueakFrameSize / (3 - nChannels);
+   imgFmt.mFramesPerPacket  = 1;
+   imgFmt.mBytesPerFrame    = SqueakFrameSize / (3 - nChannels);
+   imgFmt.mChannelsPerFrame = nChannels;
+   imgFmt.mBitsPerChannel   = 16;
+ 
+-  dprintf("stream %p[%d] image format:\n", s, s->direction);  dumpFormat(&imgFmt);
++  squeak_dprintf("stream %p[%d] image format:\n", s, s->direction);  dumpFormat(&imgFmt);
+ 
+   if (s->direction) // input
+     {
+       if (checkError(AudioConverterNew(&devFmt, &imgFmt, &s->converter), "AudioConverter", "New"))
+ 	return 0;
+@@ -558,11 +558,11 @@
+ 
+   frameCount= max(frameCount, 512 * sampleRate / devFmt.mSampleRate);
+ 
+   s->buffer= Buffer_new((s->direction ? DeviceFrameSize : SqueakFrameSize) * nChannels * frameCount * 2);
+ 
+-  dprintf("stream %p[%d] sound buffer size %d/%d (%d)\n", s, s->direction, s->imgBufSize, s->buffer->size, frameCount);
++  squeak_dprintf("stream %p[%d] sound buffer size %d/%d (%d)\n", s, s->direction, s->imgBufSize, s->buffer->size, frameCount);
+ 
+   return 1;
+ }
+ 
+ 
+@@ -570,11 +570,11 @@
+ // 
+ static int Stream_startSema(Stream *s, int semaIndex)
+ {
+   AudioDeviceIOProc ioProc= s->direction ? ioProcInput : ioProcOutput;
+ 
+-  dprintf("stream %p[%d] startSema: %d\n", s, s->direction, semaIndex);
++  squeak_dprintf("stream %p[%d] startSema: %d\n", s, s->direction, semaIndex);
+   
+   s->semaphore= semaIndex;	// can be zero
+   if (checkError(AudioDeviceAddIOProc(s->id, ioProc, (void *)s),
+ 		 "Add", "ioProcOut"))
+     return 0;
+@@ -582,11 +582,11 @@
+ 		 "DeviceStart", "ioProcOut"))
+     {
+       AudioDeviceRemoveIOProc(s->id, ioProc);
+       return 0;
+     }
+-  dprintf("stream %p[%d] running\n", s, s->direction);
++  squeak_dprintf("stream %p[%d] running\n", s, s->direction);
+   return 1;
+ }
+ 
+ 
+ // stop the device attached to a stream.
+@@ -596,11 +596,11 @@
+   AudioDeviceIOProc ioProc= s->direction ? ioProcInput : ioProcOutput;
+   checkError(AudioDeviceStop(s->id, ioProc),
+ 	     "DeviceStop", s->direction ? "ioProcIn" : "ioProcOut");
+   checkError(AudioDeviceRemoveIOProc(s->id, ioProc),
+ 	     "Remove", s->direction ? "ioProcIn" : "ioProcOut");
+-  dprintf("stream %p[%d] stopped\n", s, s->direction);
++  squeak_dprintf("stream %p[%d] stopped\n", s, s->direction);
+   return 1;
+ }
+ 
+ 
+ /// 
+@@ -642,11 +642,11 @@
+ // 
+ static sqInt sound_InsertSamplesFromLeadTime(sqInt frameCount, sqInt srcBufPtr, sqInt framesOfLeadTime)
+ {
+   Stream *s= output;
+ 
+-  dprintf("snd_InsertSamples %d From %p LeadTime %d\n", frameCount, srcBufPtr, framesOfLeadTime);
++  squeak_dprintf("snd_InsertSamples %d From %p LeadTime %d\n", frameCount, srcBufPtr, framesOfLeadTime);
+ 
+   if (s)
+     {
+       // data already sent to the device is lost forever, although latency
+       // is only a few hundred frames (and is certainly much lower than the
+@@ -757,11 +757,11 @@
+ 
+ // shut down sound output.
+ // 
+ static sqInt sound_Stop(void)
+ {
+-  dprintf("snd_Stop\n");
++  squeak_dprintf("snd_Stop\n");
+   
+   if (output)
+     {
+       Stream_stop(output);
+       Stream_delete(output);
+@@ -775,11 +775,11 @@
+ // 
+ static sqInt sound_Start(sqInt frameCount, sqInt samplesPerSec, sqInt stereo, sqInt semaIndex)
+ {
+   Stream *s= 0;
+ 
+-  dprintf("snd_Start frames: %d samplesPerSec: %d stereo: %d semaIndex: %d\n",
++  squeak_dprintf("snd_Start frames: %d samplesPerSec: %d stereo: %d semaIndex: %d\n",
+ 	   frameCount, samplesPerSec, stereo, semaIndex);
+   
+   if (output)	// there might be a change of sample rate
+     sound_Stop();
+ 
+@@ -815,11 +815,11 @@
+ }
+ 
+ 
+ static sqInt sound_StopRecording(void)
+ {
+-  dprintf("snd_StopRecording\n");
++  squeak_dprintf("snd_StopRecording\n");
+ 
+   if (input)
+     {
+       Stream_stop(input);
+       Stream_delete(input);
+@@ -833,11 +833,11 @@
+ // 
+ static sqInt sound_StartRecording(sqInt samplesPerSec, sqInt stereo, sqInt semaIndex)
+ {
+   Stream *s= 0;
+ 
+-  dprintf("snd_StartRecording rate: %d stereo: %d semaIndex: %d\n",
++  squeak_dprintf("snd_StartRecording rate: %d stereo: %d semaIndex: %d\n",
+ 	   samplesPerSec, stereo, semaIndex);
+   
+   if (input)	// there might be a change of sample rate
+     sound_StopRecording();
+ 
+diff -NrU5 Squeak-3.10-1.original/platforms/unix/vm-sound-NAS/sqUnixSoundNAS.c Squeak-3.10-1/platforms/unix/vm-sound-NAS/sqUnixSoundNAS.c
+--- Squeak-3.10-1.original/platforms/unix/vm-sound-NAS/sqUnixSoundNAS.c	2009-08-09 19:41:28.000000000 -0600
++++ Squeak-3.10-1/platforms/unix/vm-sound-NAS/sqUnixSoundNAS.c	2009-08-09 19:41:40.000000000 -0600
+@@ -32,13 +32,13 @@
+ 
+ #include <audio/audiolib.h>
+ #include <assert.h>
+ 
+ #ifdef DEBUG
+-# define dprintf printf
++# define squeak_dprintf printf
+ #else
+-  static void dprintf(char *fmt, ...) {}
++  static void squeak_dprintf(char *fmt, ...) {}
+ #endif
+ 
+ 
+ #ifdef WORDS_BIGENDIAN
+ # define AU_FORMAT	AuFormatLinearSigned16MSB
+@@ -146,11 +146,11 @@
+   int bytesToPlay;
+   int framesToPlay;
+   char *buf;   /* buffer to play from; it may not be arrayIndex if a
+                   conversion is necessary */
+ 
+-  dprintf("PlaySamples(frameCount=%d, arrayIndex=%d, startIndex=%d\n",
++  squeak_dprintf("PlaySamples(frameCount=%d, arrayIndex=%d, startIndex=%d\n",
+ 	  frameCount, arrayIndex, startIndex);
+   
+   /* figure out how much to play */
+   bytesToPlay = frameCount * bytesPerPlayFrame();
+   if (bytesToPlay > bytesAvail)
+@@ -168,11 +168,11 @@
+   else
+     {
+       int i;
+       short *sbuf;  /* the buffer, as short's instead of char's */
+ 
+-      dprintf("converting\n");
++      squeak_dprintf("converting\n");
+       
+       buf= malloc(2 * frameCount);
+       if(buf == NULL)
+ 	{
+ 	  fprintf(stderr, "out of memory\n");
+@@ -186,11 +186,11 @@
+ 	  sbuf[i]= ((short *) (arrayIndex + 4*startIndex)) [2*i];
+ 	}
+     }
+       
+ 	
+-  dprintf("writing %d bytes (%d frames)\n", bytesToPlay, framesToPlay);
++  squeak_dprintf("writing %d bytes (%d frames)\n", bytesToPlay, framesToPlay);
+   AuWriteElement(server, flow, 0,
+ 		 bytesToPlay,
+ 		 buf,
+ 		 AuFalse,
+ 		 NULL);
+@@ -211,22 +211,22 @@
+ /* Process audio events from the NAS server.  The same routine is used
+    whether we are recording or playing back */
+ static void handleAudioEvents(int fd, void *data, int flags)
+ {
+   if(!server) {
+-    dprintf( "handleAudioEvents called while unconnected!\n");
++    squeak_dprintf( "handleAudioEvents called while unconnected!\n");
+     return;
+   }
+ 
+   /* read events once */
+   AuEventsQueued(server, AuEventsQueuedAfterReading);
+ 
+   /* then loop through the read queue */
+   while(AuEventsQueued(server, AuEventsQueuedAlready)) {
+     AuEvent event;
+     AuNextEvent(server, AuTrue, &event);
+-    dprintf("event of type %d\n", event.type);
++    squeak_dprintf("event of type %d\n", event.type);
+     
+     switch(event.type) {
+     case 0:
+       {
+ 	AuErrorEvent *errEvent = (AuErrorEvent *) &event;
+@@ -244,27 +244,27 @@
+       {
+ 	AuElementNotifyEvent *enEvent = (AuElementNotifyEvent *)&event;
+ 
+ 	switch(enEvent->kind) {
+ 	case AuElementNotifyKindLowWater:
+-	  dprintf("low water event\n");
++	  squeak_dprintf("low water event\n");
+ 	  bytesAvail += enEvent->num_bytes;
+ 	  break;
+ 	case AuElementNotifyKindHighWater:
+-	  dprintf("high water event\n");
++	  squeak_dprintf("high water event\n");
+ 	  bytesAvail += enEvent->num_bytes;
+ 	  break;
+ 	case AuElementNotifyKindState:
+-	  dprintf("state change (%d->%d)\n",
++	  squeak_dprintf("state change (%d->%d)\n",
+ 		  enEvent->prev_state,
+ 		  enEvent->cur_state);
+ 	  bytesAvail += enEvent->num_bytes;
+ 	  if(enEvent->cur_state == AuStatePause) {
+ 	       /* if the flow has stopped, then arrange for it to get started again */
+ 	       /* XXX there is probably a more intelligent place to do
+                   this, in case there is a real reason it has paused */
+-	       dprintf("unpausing\n");
++	       squeak_dprintf("unpausing\n");
+ 	       AuStartFlow(server, flow, NULL);
+ 	       AuFlush(server);
+ 	  }
+ 
+ 	  break;
+@@ -272,11 +272,11 @@
+       }
+     }
+   }
+ 
+   if(bytesAvail > 0) {
+-    dprintf("bytesAvail: %d\n", bytesAvail);
++    squeak_dprintf("bytesAvail: %d\n", bytesAvail);
+     signalSemaphoreWithIndex(semaIndex);
+   }
+ 
+   aioHandle(fd, handleAudioEvents, flags & AIO_RW);
+ }
+@@ -325,14 +325,14 @@
+ 			     a device output element */
+   AuDeviceID device;        /* ID of the device to play to */
+   
+ 
+   /* open the server */
+-  dprintf("opening server\n");
++  squeak_dprintf("opening server\n");
+   server = AuOpenServer(NULL, 0, NULL, 0, NULL, NULL);
+   if(server == NULL) {
+-    dprintf("failed to open audio server\n");
++    squeak_dprintf("failed to open audio server\n");
+     return false;
+   }
+ 
+   /* XXX should check the protocol version! */
+ 
+@@ -342,11 +342,11 @@
+   sampleRate= samplesPerSec;
+   
+   /* pick a device to play to */ 
+   device = choose_nas_device(server, samplesPerSec, stereo, 0);
+   if(device == AuNone) {
+-    dprintf("no available device on the server!\n");
++    squeak_dprintf("no available device on the server!\n");
+     AuCloseServer(server);
+     server = NULL;
+     return false;
+   }
+ 
+@@ -358,16 +358,16 @@
+   recording=0;
+   
+ 
+ 
+   /* create a flow to write on */
+-  dprintf("creating flow\n");
++  squeak_dprintf("creating flow\n");
+   flow = AuCreateFlow(server, NULL);
+ 
+ 
+   /* create client and device elements to play with */
+-  dprintf("creating elements(%d,%d)\n",
++  squeak_dprintf("creating elements(%d,%d)\n",
+ 	 frameCount, frameCount / 4);
+   AuMakeElementImportClient(&elements[0],
+ 			    samplesPerSec,
+ 			    AuFormatLinearSigned16LSB,  /* XXX this should be chosen based on the platform */
+ 			    stereo ? 2 : 1,
+@@ -388,11 +388,11 @@
+ 		AuTrue,
+ 		2, elements,
+ 		NULL);
+ 
+   /* start her up */
+-  dprintf("starting flow\n");
++  squeak_dprintf("starting flow\n");
+   AuStartFlow(server, flow, NULL);
+   AuFlush(server);
+   
+ 
+   /* initialize the space indication */
+@@ -420,18 +420,18 @@
+   AuElement elements[2];  /* elements for the NAS flow to assemble:
+    			        element 0 = physical input
+ 			        element 1 = client export */
+   AuDeviceID device;      /* physical device ID to use */
+   
+-  dprintf("StartRecording\n");
++  squeak_dprintf("StartRecording\n");
+   
+   sound_Stop();
+ 
+-  dprintf("opening server\n");
++  squeak_dprintf("opening server\n");
+   server = AuOpenServer(NULL, 0, NULL, 0, NULL, NULL);
+   if(server == NULL) {
+-    dprintf("failed to open audio server\n");
++    squeak_dprintf("failed to open audio server\n");
+     return false;
+   }
+ 
+   /* XXX check protocol version of the server */
+ 
+@@ -439,11 +439,11 @@
+   stereo= stereo0;
+   sampleRate= desiredSamplesPerSec;
+ 
+   device= choose_nas_device(server, desiredSamplesPerSec, stereo, 1);
+   if(device == AuNone) {
+-    dprintf("no available device on the server!\n");
++    squeak_dprintf("no available device on the server!\n");
+     AuCloseServer(server);
+     server = NULL;
+     return false;
+   }
+ 
+@@ -456,16 +456,16 @@
+ 
+ 
+   
+ 
+   /* create a flow to read from */
+-  dprintf("creating flow\n");
++  squeak_dprintf("creating flow\n");
+   flow = AuCreateFlow(server, NULL);
+ 
+ 
+   /* create client and device elements to record with */
+-  dprintf("creating elements\n");
++  squeak_dprintf("creating elements\n");
+ 
+   
+   AuMakeElementImportDevice(&elements[0],
+ 			    desiredSamplesPerSec,  /* XXX should use the actual sampling rate of device */
+ 			    device,
+@@ -489,11 +489,11 @@
+ 		AuTrue,
+ 		2, elements,
+ 		NULL);
+ 
+   /* start her up */
+-  dprintf("starting flow\n");
++  squeak_dprintf("starting flow\n");
+   AuStartFlow(server, flow, NULL);
+   AuFlush(server);
+   
+ 
+   /* initialize the space indication */
+@@ -526,11 +526,11 @@
+ {
+   int bytesToRead;
+   int sliceSize= (stereo ? 4 : 2);   /* a "slice" seems to be a "frame": one sample from each channel */
+   
+ 
+-  dprintf("RecordSamplesIntoAtLength(buf=%d, startSliceIndex=%d, bufferSizeInBytes=%d\n",
++  squeak_dprintf("RecordSamplesIntoAtLength(buf=%d, startSliceIndex=%d, bufferSizeInBytes=%d\n",
+ 	  buf, startSliceIndex, bufferSizeInBytes);
+   
+   
+   /* sanity checks */
+   if(server==NULL || !recording) {
+@@ -544,11 +544,11 @@
+   /* figure out how much to read */
+   bytesToRead= bufferSizeInBytes - (startSliceIndex * sliceSize);
+   if(bytesToRead > bytesAvail)
+     bytesToRead= bytesAvail;
+ 
+-  dprintf("reading %d bytes\n", bytesToRead);
++  squeak_dprintf("reading %d bytes\n", bytesToRead);
+   
+ 
+   /* read it */
+   AuReadElement(server,
+ 		flow,

@@ -1,6 +1,16 @@
 # ChangeLog for dev-lang/squeak
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/ChangeLog,v 1.27 2008/06/09 19:24:37 araujo Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/ChangeLog,v 1.29 2009/08/10 16:03:42 vostorga Exp $
+
+  10 Aug 2009; Víctor Ostorga <vostorga@gentoo.org>
+  -squeak-3.4.1-r2.ebuild, -squeak-3.7.7-r1.ebuild, -squeak-3.9.7.ebuild:
+  Cleaning out old, keeping latest ~ppc
+
+  10 Aug 2009; Víctor Ostorga <vostorga@gentoo.org> squeak-3.10.ebuild,
+  +files/squeak-3.10-glibc210.patch:
+  Respecting CC and LD variable , bug #243888
+  Fixing -Werror , bug #261147
+  Patch to build against glibc 2.10, bug #277934
 
   09 Jun 2008; Luis F. Araujo <araujo@gentoo.org> squeak-3.7.7-r1.ebuild,
   squeak-3.9.7.ebuild:
