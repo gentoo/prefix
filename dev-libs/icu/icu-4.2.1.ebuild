@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.2.1.ebuild,v 1.1 2009/07/03 21:49:04 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.2.1.ebuild,v 1.3 2009/08/13 00:01:23 arfrever Exp $
 
 EAPI="2"
 
@@ -46,6 +46,9 @@ src_prepare() {
 	for x in ARFLAGS CFLAGS CPPFLAGS CXXFLAGS FFLAGS LDFLAGS; do
 		sed -i -e "/^${x} =.*/s:@${x}@::" "config/Makefile.inc.in" || die "sed failed"
 	done
+
+	epatch "${FILESDIR}/${P}-pkgdata.patch"
+	epatch "${FILESDIR}/${P}-fix_misoptimizations.patch"
 
 	# for correct install_names
 	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
