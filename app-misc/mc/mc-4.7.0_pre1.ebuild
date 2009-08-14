@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0_pre1.ebuild,v 1.6 2009/08/03 11:00:26 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0_pre1.ebuild,v 1.7 2009/08/05 12:22:28 ssuominen Exp $
 
 EAPI=2
-inherit eutils
+inherit autotools eutils
 
 MY_P=${P/_/-}
 
@@ -18,6 +18,7 @@ IUSE="gpm nls samba +slang X"
 
 RDEPEND=">=dev-libs/glib-2.6:2
 	gpm? ( sys-libs/gpm )
+	kernel_linux? ( sys-fs/e2fsprogs )
 	samba? ( net-fs/samba )
 	slang? ( >=sys-libs/slang-2 )
 	!slang? ( sys-libs/ncurses )
@@ -34,7 +35,9 @@ S=${WORKDIR}/${MY_P}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-ebuild_syntax.patch \
-		"${FILESDIR}"/${P}-tbz2_filetype.patch
+		"${FILESDIR}"/${P}-tbz2_filetype.patch \
+		"${FILESDIR}"/${P}-undelfs_configure.patch
+	AT_NO_RECURSIVE="yes" eautoreconf
 }
 
 src_configure() {
@@ -45,6 +48,7 @@ src_configure() {
 	econf \
 		--disable-dependency-tracking \
 		--enable-vfs \
+		--enable-vfs-undelfs \
 		--enable-charset \
 		$(use_with X x) \
 		$(use_with samba) \
