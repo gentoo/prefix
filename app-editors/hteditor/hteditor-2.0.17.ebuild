@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/hteditor/hteditor-2.0.17.ebuild,v 1.1 2009/06/28 09:30:17 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/hteditor/hteditor-2.0.17.ebuild,v 1.2 2009/08/05 19:56:35 ssuominen Exp $
 
 MY_PV=${PV/_/}
 
@@ -22,8 +22,13 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/ht-${MY_PV}
 
+src_unpack() {
+	unpack ${A}
+	sed -i -e 's:-ggdb -g3 -O0:$CFLAGS:' "${S}"/configure || die "sed failed"
+}
+
 src_compile() {
-	econf --disable-release --enable-maintainer-mode $(use_enable X x11-textmode)
+	econf --disable-release $(use_enable X x11-textmode)
 	emake || die "emake failed."
 }
 
