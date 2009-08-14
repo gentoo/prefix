@@ -1,6 +1,18 @@
 # ChangeLog for app-emacs/wanderlust
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.71 2009/05/05 17:21:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.72 2009/08/10 14:58:46 ulm Exp $
+
+*wanderlust-2.14.0-r4 (10 Aug 2009)
+
+  10 Aug 2009; Ulrich Mueller <ulm@gentoo.org>
+  +files/50wanderlust-gentoo.el, +wanderlust-2.14.0-r4.ebuild,
+  +files/wanderlust-2.14.0-smtp-end-of-line.patch,
+  +files/wanderlust-2.14.0-texinfo-garbage.patch:
+  Don't bind smtp-end-of-line, for compatibility with latest version of flim;
+  patch from upstream, fixes bug 280248. Install non-lisp files under SITEETC.
+  Change install locations and site-init file name from "wl" to "wanderlust".
+  Install Japanese documentation and samples only with LINGUAS=ja. Fix garbage
+  characters in texinfo file that caused a failure when saving the info file.
 
   05 May 2009; Ulrich Mueller <ulm@gentoo.org> wanderlust-2.14.0-r3.ebuild,
   wanderlust-2.15.5_pre20070921.ebuild,
