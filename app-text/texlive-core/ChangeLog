@@ -1,6 +1,13 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.107 2009/08/03 10:21:41 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.108 2009/08/06 13:02:22 aballier Exp $
+
+*texlive-core-2008-r6 (06 Aug 2009)
+
+  06 Aug 2009; Alexis Ballier <aballier@gentoo.org>
+  +texlive-core-2008-r6.ebuild:
+  Add a patch so that xdvipdfmx doesnt try to free a non malloced pointer,
+  bug #276415
 
   03 Aug 2009; Alexis Ballier <aballier@gentoo.org>
   texlive-core-2008-r5.ebuild:
