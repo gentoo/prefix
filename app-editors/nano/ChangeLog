@@ -1,6 +1,17 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.228 2009/02/17 05:17:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.231 2009/08/13 15:26:06 tcunha Exp $
+
+  13 Aug 2009; Tiago Cunha <tcunha@gentoo.org> nano-2.1.9.ebuild:
+  stable sparc, bug 281269
+
+  13 Aug 2009; Dawid Węgliński <cla@gentoo.org> nano-2.1.9.ebuild:
+  Stable on amd64 (bug #281269)
+
+*nano-2.1.10 (13 Aug 2009)
+
+  13 Aug 2009; Mike Frysinger <vapier@gentoo.org> +nano-2.1.10.ebuild:
+  Version bump.
 
 *nano-2.1.9 (17 Feb 2009)
 
