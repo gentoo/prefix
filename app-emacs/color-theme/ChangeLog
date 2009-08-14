@@ -1,6 +1,14 @@
 # ChangeLog for app-emacs/color-theme
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/color-theme/ChangeLog,v 1.34 2008/12/19 09:51:40 ulm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/color-theme/ChangeLog,v 1.35 2009/08/10 10:06:26 ulm Exp $
+
+*color-theme-6.6.0-r1 (10 Aug 2009)
+
+  10 Aug 2009; Ulrich Mueller <ulm@gentoo.org>
+  +files/50color-theme-gentoo.el, +color-theme-6.6.0-r1.ebuild,
+  +files/color-theme-6.6.0-replace-in-string.patch:
+  Avoid name clash for function replace-in-string, fixes bug 280293.
+  Update HOMEPAGE and SRC_URI. Install documentation.
 
   19 Dec 2008; Ulrich Mueller <ulm@gentoo.org> color-theme-6.6.0.ebuild:
   Add postinst message about non-interactive usage, bug 73192.
