@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/redland-1.0.8.ebuild,v 1.15 2009/07/27 17:51:41 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/redland-1.0.8.ebuild,v 1.16 2009/08/12 17:28:46 ssuominen Exp $
 
 EAPI=2
 
@@ -16,7 +16,8 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="berkdb mysql postgres sqlite ssl threads xml"
 
 RDEPEND="mysql? ( virtual/mysql )
-	sqlite? ( =dev-db/sqlite-3* )
+	sqlite? ( =dev-db/sqlite-3*
+		<dev-db/sqlite-3.6.17 )
 	berkdb? ( sys-libs/db )
 	xml? ( dev-libs/libxml2 )
 	!xml? ( dev-libs/expat )
