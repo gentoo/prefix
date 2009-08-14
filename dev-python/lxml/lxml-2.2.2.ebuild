@@ -1,10 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/lxml-2.2.2.ebuild,v 1.1 2009/07/09 02:49:22 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/lxml-2.2.2.ebuild,v 1.2 2009/08/13 18:54:41 arfrever Exp $
 
 EAPI="2"
 
 NEED_PYTHON="2.3"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils flag-o-matic
 
@@ -22,9 +23,11 @@ DEPEND="${RDEPEND}
 	>=dev-python/cython-0.9.8
 	>=dev-python/setuptools-0.6_rc5"
 
+RESTRICT_PYTHON_ABIS="3*"
+
 pkg_setup() {
 	# Tests fail with some optimizations.
-	replace-flags -O[2-9]* -O1
+	replace-flags -O[2-9s]* -O1
 }
 
 src_prepare() {
@@ -35,7 +38,24 @@ src_prepare() {
 src_compile() {
 	local myconf
 	use threads || myconf+=" --without-threading"
-	${python} setup.py build ${myconf} || die "compilation failed"
+	distutils_src_compile ${myconf}
+}
+
+src_test() {
+	testing() {
+		local module
+		for module in lxml/etree lxml/objectify; do
+			ln -fs "../../$(ls -d build-${PYTHON_ABI}/lib.*)/${module}.so" "src/${module}.so" || die "ln -fs src/${module} failed"
+		done
+
+		einfo "Running test"
+		PYTHONPATH="$(ls -d build-${PYTHON_ABI}/lib.*)" "$(PYTHON)" test.py || die "test.py failed with Python ${PYTHON_ABI}"
+		einfo "Running selftest"
+		PYTHONPATH="$(ls -d build-${PYTHON_ABI}/lib.*)" "$(PYTHON)" selftest.py || die "selftest.py failed with Python ${PYTHON_ABI}"
+		einfo "Running selftest2"
+		PYTHONPATH="$(ls -d build-${PYTHON_ABI}/lib.*)" "$(PYTHON)" selftest2.py || die "selftest2.py failed with Python ${PYTHON_ABI}"
+	}
+	python_execute_function testing
 }
 
 src_install() {
@@ -52,16 +72,4 @@ src_install() {
 		insinto /usr/share/doc/${PF}/examples
 		doins -r samples/*
 	fi
-}
-
-src_test() {
-	distutils_python_version
-	python setup.py build_ext -i || die "building extensions for test use failed"
-	einfo "Running test"
-	"${python}" test.py || die "tests failed"
-	export PYTHONPATH="${PYTHONPATH}:${S}/src"
-	einfo "Running selftest"
-	"${python}" selftest.py || die "selftest failed"
-	einfo "Running selftest2"
-	"${python}" selftest2.py || die "selftest2 failed"
 }

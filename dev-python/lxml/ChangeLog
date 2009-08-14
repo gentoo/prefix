@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/lxml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.57 2009/07/31 12:33:35 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.58 2009/08/13 18:54:41 arfrever Exp $
+
+  12 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  lxml-2.2.2.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
   31 Jul 2009; <chainsaw@gentoo.org> lxml-2.2.1.ebuild:
   Marked stable on AMD64 as requested by Arfrever Frehtes Taifersar Arahesis
