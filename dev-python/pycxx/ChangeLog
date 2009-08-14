@@ -1,6 +1,17 @@
 # ChangeLog for dev-python/pycxx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycxx/ChangeLog,v 1.2 2009/02/15 21:20:08 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycxx/ChangeLog,v 1.4 2009/08/10 03:04:13 arfrever Exp $
+
+  10 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pycxx-6.1.0.ebuild:
+  Fix includes (bug #280732).
+
+*pycxx-6.1.0 (05 Aug 2009)
+
+  05 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +pycxx-6.1.0.ebuild, +files/pycxx-6.1.0-C_compatible_headers.patch,
+  +files/pycxx-6.1.0-python-3.patch, +files/pycxx-6.1.0-setup.py.patch:
+  Version bump. Set SUPPORT_PYTHON_ABIS.
 
 *pycxx-5.5.0 (15 Feb 2009)
 
