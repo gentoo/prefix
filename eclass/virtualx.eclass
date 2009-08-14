@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/virtualx.eclass,v 1.28 2009/06/15 05:37:51 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/virtualx.eclass,v 1.29 2009/08/10 15:44:37 remi Exp $
 #
 # Author: Martin Schlemmer <azarah@gentoo.org>
 #
@@ -55,7 +55,12 @@ virtualmake() {
 		#
 		# Sven Wegener <swegener@gentoo.org> - 22 Aug 2004
 		#
-		${XVFB} :${XDISPLAY} -screen 0 800x600x24 &>/dev/null &
+		# Use "-fp built-ins" because it's only part of the default font path
+		# for Xorg but not the other DDXs (Xvfb, Kdrive, etc). Temporarily fixes
+		# bug 278487 until xorg-server is properly patched
+		#
+		# Rémi Cardona <remi@gentoo.org> (10 Aug 2009)
+		${XVFB} :${XDISPLAY} -fp built-ins -screen 0 800x600x24 &>/dev/null &
 		sleep 2
 
 		local start=${XDISPLAY}
@@ -66,9 +71,9 @@ virtualmake() {
 				eerror ""
 				eerror "Unable to start Xvfb."
 				eerror ""
-				eerror "'/usr/bin/Xvfb :${XDISPLAY} -screen 0 800x600x24' returns:"
+				eerror "'/usr/bin/Xvfb :${XDISPLAY} -fp built-ins -screen 0 800x600x24' returns:"
 				eerror ""
-				${XVFB} :${XDISPLAY} -screen 0 800x600x24
+				${XVFB} :${XDISPLAY} -fp built-ins -screen 0 800x600x24
 				eerror ""
 				eerror "If possible, correct the above error and try your emerge again."
 				eerror ""
@@ -76,7 +81,7 @@ virtualmake() {
 			fi
 
 			XDISPLAY=$((${XDISPLAY}+1))
-			${XVFB} :${XDISPLAY} -screen 0 800x600x24 &>/dev/null &
+			${XVFB} :${XDISPLAY} -fp built-ins -screen 0 800x600x24 &>/dev/null &
 			sleep 2
 		done
 

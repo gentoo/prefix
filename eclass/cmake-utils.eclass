@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.29 2009/06/17 22:39:01 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.30 2009/08/08 20:08:02 arfrever Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -306,6 +306,7 @@ _EOF_
 	mkdir -p "${CMAKE_BUILD_DIR}"
 	pushd "${CMAKE_BUILD_DIR}" > /dev/null
 	debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: mycmakeargs is $cmakeargs"
+	echo cmake ${cmakeargs} "${CMAKE_USE_DIR}"
 	cmake ${cmakeargs} "${CMAKE_USE_DIR}" || die "cmake failed"
 
 	popd > /dev/null

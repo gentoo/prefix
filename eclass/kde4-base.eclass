@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.42 2009/08/03 21:59:53 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.43 2009/08/07 01:00:11 wired Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -21,6 +21,17 @@ if [[ ${BUILD_TYPE} = live ]]; then
 fi
 
 EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_configure src_compile src_test src_install pkg_postinst pkg_postrm
+
+case ${KDEBASE} in
+	kde-base)
+		HOMEPAGE="http://www.kde.org/"
+		LICENSE="GPL-2"
+		;;
+	koffice)
+		HOMEPAGE="http://www.koffice.org/"
+		LICENSE="GPL-2"
+		;;
+esac
 
 # @ECLASS-VARIABLE: OPENGL_REQUIRED
 # @DESCRIPTION:

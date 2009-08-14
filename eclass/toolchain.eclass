@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.403 2009/07/26 20:09:59 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.404 2009/08/13 18:15:13 halcy0n Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1236,6 +1236,12 @@ gcc-compiler-configure() {
 			if ! has ${ARCH} ${KEYWORDS} ; then
 				confgcc="${confgcc} --enable-cld"
 			fi
+		fi
+
+		# Stick the python scripts in their own slotted directory
+		# bug #279252
+		if tc_version_is_at_least "4.4" ; then
+			confgcc="${confgcc} --with-python-dir=${DATAPATH/$PREFIX/}/python"
 		fi
 	fi
 

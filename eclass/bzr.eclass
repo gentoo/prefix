@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/bzr.eclass,v 1.2 2009/07/08 09:47:38 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/bzr.eclass,v 1.3 2009/08/04 20:18:23 fauli Exp $
 #
 # @ECLASS: bzr.eclass
 # @MAINTAINER:
@@ -35,7 +35,8 @@ DEPEND=">=dev-util/bzr-1.5"
 # @ECLASS-VARIABLE: EBZR_STORE_DIR
 # @DESCRIPTION:
 # The directory to store all fetched Bazaar live sources.
-EBZR_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/bzr-src"
+[[ -z ${EBZR_STORE_DIR} ]] && \
+	EBZR_STORE_DIR="${PORTAGE_ACTUAL_DISTDIR-${DISTDIR}}/bzr-src"
 
 # @ECLASS-VARIABLE: EBZR_FETCH_CMD
 # @DESCRIPTION:
