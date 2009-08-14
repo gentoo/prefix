@@ -1,6 +1,16 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.264 2009/07/27 22:08:43 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.266 2009/08/12 17:03:43 arfrever Exp $
+
+  12 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  sqlite-3.6.17.ebuild, +files/sqlite-3.6.17-fix_installation.patch:
+  Don't rebuild SQLite in src_install().
+
+*sqlite-3.6.17 (10 Aug 2009)
+
+  10 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -sqlite-3.6.13.ebuild, -sqlite-3.6.15.ebuild, +sqlite-3.6.17.ebuild:
+  Version bump.
 
   27 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   sqlite-3.6.16.ebuild, +files/sqlite-3.6.16-tkt3922.test.patch:

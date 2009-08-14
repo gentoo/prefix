@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.14.1.ebuild,v 1.2 2009/05/22 15:40:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.17.ebuild,v 1.2 2009/08/12 17:03:43 arfrever Exp $
 
-EAPI=1
+EAPI="2"
 
 inherit eutils flag-o-matic multilib versionator
 
@@ -15,7 +15,7 @@ SRC_URI="http://www.sqlite.org/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="3"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug doc soundex tcl +threadsafe"
 RESTRICT="!tcl? ( test )"
 
@@ -23,24 +23,12 @@ RDEPEND="tcl? ( dev-lang/tcl )"
 DEPEND="${RDEPEND}
 	doc? ( app-arch/unzip )"
 
-pkg_setup() {
-	if has test ${FEATURES} ; then
-		if ! has userpriv ${FEATURES} ; then
-			ewarn "The userpriv feature must be enabled to run tests."
-			eerror "Testsuite will not be run."
-		fi
-		if ! use tcl ; then
-			ewarn "You must enable the tcl use flag if you want to run the testsuite."
-			eerror "Testsuite will not be run."
-		fi
-	fi
-}
+src_prepare() {
+	# note: this sandbox fix is no longer needed with sandbox-1.3+
+	epatch "${FILESDIR}/sandbox-fix2.patch"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}"/sandbox-fix2.patch
+	epatch "${FILESDIR}/${PN}-3.6.16-tkt3922.test.patch"
+	epatch "${FILESDIR}/${P}-fix_installation.patch"
 
 	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-3.6.11-interix.patch
@@ -48,7 +36,7 @@ src_unpack() {
 	epunt_cxx
 }
 
-src_compile() {
+src_configure() {
 	# Enable column metadata, bug #266651
 	append-cppflags -DSQLITE_ENABLE_COLUMN_METADATA
 
@@ -62,14 +50,25 @@ src_compile() {
 		$(use_enable tcl) \
 		$(use_enable tcl amalgamation) \
 		--with-readline-inc=-I"${EPREFIX}"/usr/include/readline
+}
+
+src_compile() {
 	emake TCLLIBDIR="${EPREFIX}/usr/$(get_libdir)/${P}" || die "emake failed"
 }
 
 src_test() {
-	if has userpriv ${FEATURES} ; then
+	if [[ "${EUID}" -ne "0" ]]; then
 		local test=test
 		use debug && test=fulltest
 		emake ${test} || die "some test(s) failed"
+	else
+		ewarn "The userpriv feature must be enabled to run tests."
+		eerror "Testsuite will not be run."
+	fi
+
+	if ! use tcl; then
+		ewarn "You must enable the tcl USE flag if you want to run the testsuite."
+		eerror "Testsuite will not be run."
 	fi
 }
 
@@ -80,11 +79,11 @@ src_install() {
 		install \
 		|| die "emake install failed"
 
-	doman sqlite3.1 || die
+	doman sqlite3.1 || die "doman sqlite3.1 failed"
 
-	if use doc ; then
+	if use doc; then
 		# Naming scheme changes randomly between - and _ in releases
 		# http://www.sqlite.org/cvstrac/tktview?tn=3523
-		dohtml -r "${WORKDIR}"/${PN}-${DOC_PV}-docs/* || die
+		dohtml -r "${WORKDIR}"/${PN}-${DOC_PV}-docs/* || die "dohtml failed"
 	fi
 }
