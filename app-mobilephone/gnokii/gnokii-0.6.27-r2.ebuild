@@ -15,7 +15,7 @@ IUSE="nls bluetooth ical irda sms postgres mysql usb X debug"
 
 RDEPEND="sys-apps/pcsc-lite
 	X? ( >=x11-libs/gtk+-2 )
-	bluetooth? ( || ( net-wireless/bluez >=net-wireless/bluez-libs-2.25 ) )
+	bluetooth? ( kernel_linux? ( || ( net-wireless/bluez >=net-wireless/bluez-libs-2.25 ) ) )
 	sms? (
 		!app-mobilephone/smstools
 		>=dev-libs/glib-2
