@@ -33,7 +33,7 @@ src_unpack() {
 	elibtoolize
 
 	# Ensure that the documentation actually finds the DTD it needs
-	docbookdtd="/usr/share/sgml/docbook/sgml-dtd-4.2/docbook.dtd"
+	docbookdtd="${EPREFIX}/usr/share/sgml/docbook/sgml-dtd-4.2/docbook.dtd"
 	sysid='"-//OASIS//DTD DocBook V4.2//EN"'
 	sed -r -i -e \
 		"s,(${sysid}) \[\$,\1 \"${docbookdtd}\" \[,g" \
