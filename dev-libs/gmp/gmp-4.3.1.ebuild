@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.3.1.ebuild,v 1.1 2009/05/23 23:23:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.3.1.ebuild,v 1.2 2009/08/16 00:37:46 vapier Exp $
 
-inherit flag-o-matic eutils libtool
+inherit flag-o-matic eutils libtool flag-o-matic
 
 DESCRIPTION="Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers"
 HOMEPAGE="http://gmplib.org/"
@@ -14,10 +14,7 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nocxx" #doc
 
-RDEPEND=""
-DEPEND=""
-
-src_unpack () {
+src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	[[ -d ${FILESDIR}/${PV} ]] && EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
@@ -57,6 +54,7 @@ src_compile() {
 		o32|n32)      export GMPABI=${ABI};;
 	esac
 
+	tc-export CC
 	econf \
 		--localstatedir="${EPREFIX}"/var/state/gmp \
 		--disable-mpfr \
