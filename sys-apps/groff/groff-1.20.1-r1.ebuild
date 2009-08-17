@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/groff-1.20.1-r1.ebuild,v 1.10 2009/03/14 14:37:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/groff-1.20.1-r1.ebuild,v 1.11 2009/08/16 04:38:31 mr_bones_ Exp $
 
 inherit eutils toolchain-funcs autotools
 
@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/groff/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="X linguas_ja"
+IUSE="examples X linguas_ja"
 
 DEPEND=">=sys-apps/texinfo-4.7-r1
 	X? (
@@ -29,6 +29,12 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.19.2-man-unicode-dashes.patch #16108 #17580 #121502
+
+	# put the docs in the Gentoo-specific spot
+	sed -i \
+		-e '/^docdir=/s/=.*/=@docdir@/' \
+		Makefile.in \
+		|| die "sed failed"
 
 	# Make sure we can cross-compile this puppy
 	if tc-is-cross-compiler ; then
@@ -63,6 +69,7 @@ src_compile() {
 #	tc-export CC CXX
 	econf \
 		--with-appresdir="${EPREFIX}"/usr/share/X11/app-defaults \
+		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		$(use_with X x) \
 		$(use linguas_ja && echo --enable-japanese)
 	emake || die
@@ -77,4 +84,8 @@ src_install() {
 
 	dodoc BUG-REPORT ChangeLog MORE.STUFF NEWS \
 		PROBLEMS PROJECTS README REVISION TODO VERSION
+
+	if ! use examples ; then
+		rm -rf "${ED}"/usr/share/doc/${PF}/examples
+	fi
 }

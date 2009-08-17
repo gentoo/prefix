@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/groff
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.101 2009/03/14 14:37:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.102 2009/08/16 04:38:31 mr_bones_ Exp $
+
+  16 Aug 2009; Michael Sterrett <mr_bones_@gentoo.org>
+  groff-1.20.1-r1.ebuild:
+  Fix docs install and add examples use flag to control the install of
+  the large number of example files (bug #281158)
 
   14 Mar 2009; Mike Frysinger <vapier@gentoo.org> groff-1.20.1-r1.ebuild:
   Add distro overlays to groff man page output #262163 by Roy Marples.
