@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.07.ebuild,v 1.1 2009/07/21 02:09:30 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.07.ebuild,v 1.2 2009/08/14 20:33:26 maekke Exp $
 
 EAPI=2
 inherit autotools eutils toolchain-funcs flag-o-matic
