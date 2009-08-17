@@ -1,6 +1,20 @@
 # ChangeLog for media-libs/gst-plugins-base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.100 2009/07/01 16:16:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.103 2009/08/15 03:25:57 tester Exp $
+
+*gst-plugins-base-0.10.24 (15 Aug 2009)
+
+  15 Aug 2009; Olivier Crête <tester@gentoo.org>
+  +gst-plugins-base-0.10.24.ebuild:
+  Version bump
+
+  15 Aug 2009; Olivier Crête <tester@gentoo.org>
+  gst-plugins-base-0.10.23.ebuild:
+  Stable on amd64, bug #280946
+
+  10 Aug 2009; Mart Raudsepp <leio@gentoo.org>
+  gst-plugins-base-0.10.22.ebuild, gst-plugins-base-0.10.23.ebuild:
+  QA: Fix glib and liboil minimum requirements
 
   01 Jul 2009; Raúl Porcel <armin76@gentoo.org>
   gst-plugins-base-0.10.22.ebuild:
