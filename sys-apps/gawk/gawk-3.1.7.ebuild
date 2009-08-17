@@ -1,52 +1,37 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.5-r5.ebuild,v 1.9 2007/12/11 10:19:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.7.ebuild,v 1.1 2009/08/15 23:53:29 vapier Exp $
 
 inherit eutils toolchain-funcs multilib
 
 DESCRIPTION="GNU awk pattern-matching language"
 HOMEPAGE="http://www.gnu.org/software/gawk/gawk.html"
-SRC_URI="mirror://gnu/gawk/${P}.tar.gz"
+SRC_URI="mirror://gnu/gawk/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="nls"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="libsigsegv nls"
 
-RDEPEND=""
+RDEPEND="libsigsegv? ( dev-libs/libsigsegv )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
 SFFS=${WORKDIR}/filefuncs
 
 src_unpack() {
-	unpack ${P}.tar.gz
+	unpack ${A}
 
 	# Copy filefuncs module's source over ...
 	cp -r "${FILESDIR}"/filefuncs "${SFFS}" || die "cp failed"
 
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-core.patch
-	epatch "${FILESDIR}"/${P}-gcc4.patch
-	epatch "${FILESDIR}"/${P}-autotools-crap.patch #139397
-	# Patches from Fedora
-	epatch "${FILESDIR}"/${PN}-3.1.3-getpgrp_void.patch
-	epatch "${FILESDIR}"/${P}-fieldwidths.patch #127163
-	epatch "${FILESDIR}"/${P}-binmode.patch
-	epatch "${FILESDIR}"/${P}-num2str.patch
-	epatch "${FILESDIR}"/${P}-internal.patch
-	epatch "${FILESDIR}"/${P}-numflags.patch
-	epatch "${FILESDIR}"/${P}-syntaxerror.patch
-	epatch "${FILESDIR}"/${P}-wconcat.patch
+	epatch "${FILESDIR}"/${PN}-3.1.6-gnuinfo.patch #249130
 
-	# ipv6 patch breaks interix build!
-	[[ ${CHOST} == *-interix* ]] || epatch "${FILESDIR}"/${P}-ipv6.patch
-
-	epatch "${FILESDIR}"/${P}-mbread.patch
-	epatch "${FILESDIR}"/${P}-freewstr2.patch #135931 #188740
 	# on solaris, we have stupid /usr/bin/awk, but gcc,
 	# which's preprocessor understands '\'-linebreaks
-	epatch "${FILESDIR}"/${P}-stupid-awk-clever-cc.patch
+	epatch "${FILESDIR}"/${PN}-3.1.5-stupid-awk-clever-cc.patch
+	epatch "${FILESDIR}"/${PN}-3.1.6-mint.patch
 }
 
 src_compile() {
@@ -56,18 +41,28 @@ src_compile() {
 		--bindir="${bindir}" \
 		--libexec='$(libdir)/misc' \
 		$(use_enable nls) \
+		$(use_enable libsigsegv) \
 		--enable-switch \
 		|| die
 	emake || die "emake failed"
 
+	if [[ $(get_libname) != .irrelevant ]] ; then
+
 	cd "${SFFS}"
 	emake CC=$(tc-getCC) LIBDIR="${EPREFIX}/$(get_libdir)" || die "filefuncs emake failed"
+
+	fi
 }
 
 src_install() {
 	emake install DESTDIR="${D}" || die "install failed"
+
+	if [[ $(get_libname) != .irrelevant ]] ; then
+
 	cd "${SFFS}"
 	emake LIBDIR="${EPREFIX}/$(get_libdir)" install || die "filefuncs install failed"
+
+	fi
 
 	dodir /usr/bin
 	# In some rare cases, (p)gawk gets installed as (p)gawk- and not
