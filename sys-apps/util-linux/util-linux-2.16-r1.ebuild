@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.16.ebuild,v 1.4 2009/07/26 16:58:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.16-r1.ebuild,v 1.1 2009/08/16 18:33:27 vapier Exp $
 
 EAPI="2"
 
@@ -44,6 +44,7 @@ src_prepare() {
 		autopoint --force
 		eautoreconf
 	else
+		epatch "${FILESDIR}"/0001-libblkid-fix-ext2-detection-on-systems-with-ext4-onl.patch #279054
 		use loop-aes && epatch "${WORKDIR}"/util-linux-ng-*.diff
 	fi
 	use uclibc && sed -i -e s/versionsort/alphasort/g -e s/strverscmp.h/dirent.h/g mount/lomount.c
