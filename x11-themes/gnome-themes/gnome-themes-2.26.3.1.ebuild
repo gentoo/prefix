@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/gnome-themes-2.26.3.1.ebuild,v 1.1 2009/07/06 22:06:18 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/gnome-themes-2.26.3.1.ebuild,v 1.2 2009/08/08 22:57:31 eva Exp $
 
 GCONF_DEBUG="no"
 
@@ -39,4 +39,13 @@ src_unpack() {
 
 	# Fix bashisms, bug #256337
 	epatch "${FILESDIR}/${PN}-2.24.3-bashism.patch"
+
+	# Do not build/install accessibility themes, bug #274515
+	if ! use accessibility; then
+		sed 's:HighContrast.*\\:\\:g' -i \
+			desktop-themes/Makefile.am desktop-themes/Makefile.in \
+			gtk-themes/Makefile.am gtk-themes/Makefile.in \
+			icon-themes/Makefile.am icon-themes/Makefile.in \
+			|| die "sed failed"
+	fi
 }
