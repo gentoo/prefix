@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.1_rc1-r2.ebuild,v 1.8 2009/06/13 14:08:37 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.1_rc1-r2.ebuild,v 1.9 2009/08/13 21:14:29 ssuominen Exp $
 
 EAPI=1
 inherit autotools flag-o-matic eutils toolchain-funcs
@@ -35,13 +35,6 @@ src_unpack() {
 }
 
 src_compile() {
-	# gcc-3.4 and k6 with -ftracer causes code generation problems #49472
-	if [[ "$(gcc-major-version)$(gcc-minor-version)" == "34" ]]; then
-		is-flag -march=k6* && filter-flags -ftracer
-		is-flag -mtune=k6* && filter-flags -ftracer
-		replace-flags -Os -O2
-	fi
-
 	econf
 	emake || die "emake failed."
 }
