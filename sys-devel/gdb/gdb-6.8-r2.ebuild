@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8-r2.ebuild,v 1.1 2009/03/12 03:16:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8-r2.ebuild,v 1.2 2009/08/16 00:48:42 vapier Exp $
 
 inherit flag-o-matic eutils
 
@@ -23,10 +23,11 @@ LICENSE="GPL-2 LGPL-2"
 	&& SLOT="${CTARGET}" \
 	|| SLOT="0"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="multitarget nls test vanilla"
+IUSE="expat multitarget nls test vanilla"
 
 RDEPEND=">=sys-libs/ncurses-5.2-r2
-	sys-libs/readline"
+	sys-libs/readline
+	expat? ( dev-libs/expat )"
 DEPEND="${RDEPEND}
 	app-arch/lzma-utils
 	test? ( dev-util/dejagnu )

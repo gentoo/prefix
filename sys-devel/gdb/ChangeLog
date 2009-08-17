@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.153 2009/03/12 04:31:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.155 2009/08/16 00:48:42 vapier Exp $
+
+  16 Aug 2009; Mike Frysinger <vapier@gentoo.org> gdb-6.8-r2.ebuild:
+  Add support for IUSE=expat #280391 by Maciej Mrozowski.
+
+*gdb-6.8.50.20090811.2.12 (16 Aug 2009)
+
+  16 Aug 2009; Mike Frysinger <vapier@gentoo.org>
+  +gdb-6.8.50.20090811.2.12.ebuild:
+  Version bump.
 
 *gdb-6.8.50.20090302.8.11 (12 Mar 2009)
 
