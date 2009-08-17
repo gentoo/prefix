@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.7.ebuild,v 1.2 2009/06/29 16:29:09 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.7.ebuild,v 1.3 2009/08/13 21:22:46 ssuominen Exp $
 
 EAPI=2
 
@@ -94,9 +94,6 @@ src_configure() {
 	# Stabilize things, for your own good
 	strip-flags
 	replace-flags -O? -O2
-
-	# -msse2 doesn't play nice on gcc 3.2
-	[[ "`gcc-version`" == "3.2" ]] && filter-flags -msse2
 
 	local myconf
 
