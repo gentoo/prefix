@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tclx/tclx-8.4-r1.ebuild,v 1.9 2007/06/02 15:48:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tclx/tclx-8.4-r1.ebuild,v 1.10 2009/08/05 20:10:09 mescalinum Exp $
 
 inherit eutils
 
@@ -18,6 +18,9 @@ DEPEND=">=dev-lang/tcl-8.4.6
 	tk? ( >=dev-lang/tk-8.4.6 )"
 
 S=${WORKDIR}/${PN}${PV}
+
+# tests broken, bug #279283
+RESTRICT="test"
 
 src_unpack() {
 	unpack ${A}
