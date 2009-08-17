@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.9.1.ebuild,v 1.3 2009/07/16 20:19:37 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmp4v2/libmp4v2-1.9.1.ebuild,v 1.5 2009/08/15 08:39:40 maekke Exp $
 
 EAPI=2
 inherit libtool
@@ -29,6 +29,7 @@ src_prepare() {
 
 src_configure() {
 	econf \
+		--disable-gch \
 		$(use_enable utils util) \
 		--disable-dependency-tracking
 }
