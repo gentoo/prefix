@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/XML-SAX-Writer
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-SAX-Writer/ChangeLog,v 1.32 2008/11/20 12:48:58 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-SAX-Writer/ChangeLog,v 1.33 2009/08/16 08:50:43 tove Exp $
+
+  16 Aug 2009; Torsten Veller <tove@gentoo.org> -files/Text-Iconv.patch:
+  Remove unused patch
 
 *XML-SAX-Writer-0.52 (20 Nov 2008)
 
