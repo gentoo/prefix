@@ -646,7 +646,23 @@ if [[ -z ${CHOST} ]]; then
 				esac
 				;;
 			Darwin)
-				CHOST="`uname -p`-apple-darwin`uname -r | cut -d'.' -f 1`"
+				rev="`uname -r | cut -d'.' -f 1`"
+				case $rev in
+					10)
+						# Snow Leopard defaults to a 64-bits toolchain
+						case `uname -p` in
+							i386)
+								CHOST="x86_64-apple-darwin$rev"
+							;;
+							powerpc)
+								CHOST="powerpc64-apple-darwin$rev"
+							;;
+						esac
+					;;
+					*)
+						CHOST="`uname -p`-apple-darwin$rev"
+					;;
+				esac
 				;;
 			SunOS)
 				case `uname -p` in
