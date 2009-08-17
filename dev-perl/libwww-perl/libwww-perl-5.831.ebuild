@@ -1,16 +1,17 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/libwww-perl-5.805.ebuild,v 1.18 2009/07/19 17:47:44 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/libwww-perl-5.831.ebuild,v 1.1 2009/08/15 13:16:43 tove Exp $
 
+EAPI=2
+
+MODULE_AUTHOR=GAAS
 inherit perl-module
 
 DESCRIPTION="A collection of Perl Modules for the WWW"
-SRC_URI="mirror://cpan/authors/id/G/GA/GAAS/${P}.tar.gz"
-HOMEPAGE="http://search.cpan.org/~gaas/${P}/"
-IUSE="ssl"
+
 SLOT="0"
-LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="ssl"
 
 DEPEND="virtual/perl-libnet
 	>=dev-perl/HTML-Parser-3.34
@@ -19,12 +20,8 @@ DEPEND="virtual/perl-libnet
 	dev-perl/HTML-Tree
 	>=virtual/perl-MIME-Base64-2.12
 	>=virtual/perl-IO-Compress-1.10
-	ssl? ( dev-perl/Crypt-SSLeay )
-	dev-lang/perl"
-
-src_compile() {
-	echo "y" | perl-module_src_compile
-}
+	ssl? ( dev-perl/Crypt-SSLeay )"
+RDEPEND="${DEPEND}"
 
 src_install() {
 	perl-module_src_install
