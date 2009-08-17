@@ -114,6 +114,9 @@ bootstrap_setup() {
 		x86_64-apple-darwin9)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/x64"
 			;;
+		x86_64-apple-darwin10)
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.6/x64"
+			;;
 		i*86-pc-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/x86"
 			;;
