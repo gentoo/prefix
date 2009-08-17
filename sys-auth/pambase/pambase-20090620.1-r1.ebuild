@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/pambase-20090620.1.ebuild,v 1.1 2009/06/20 21:01:37 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/pambase-20090620.1-r1.ebuild,v 1.1 2009/08/10 11:23:46 flameeyes Exp $
 
 EAPI=2
 
@@ -33,7 +33,7 @@ RDEPEND="
 	sha512? ( >=sys-libs/pam-1.0.1 )
 	!<sys-freebsd/freebsd-pam-modules-6.2-r1
 	!<sys-libs/pam-0.99.9.0-r1"
-DEPEND=""
+DEPEND="app-portage/portage-utils"
 
 src_compile() {
 	local implementation=
