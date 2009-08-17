@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.7_p1.ebuild,v 1.1 2009/07/26 23:07:42 wormo Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.7_p1.ebuild,v 1.2 2009/08/13 06:40:44 wormo Exp $
 
 EAPI=2
 
@@ -77,6 +77,9 @@ src_prepare() {
 	# making sure '+' comes after leading whitespace
 	sed -i -e '/$(MAKE_RECUR)/ s/\([[:blank:]]\)/\1+/' makefile.in || \
 	    die "failed to update makefile.in"
+
+	# fix configure for openssl compiled with kerberos (bug #267749)
+	epatch "${FILESDIR}/lynx-2.8.7-configure-openssl.patch"
 }
 
 src_configure() {
