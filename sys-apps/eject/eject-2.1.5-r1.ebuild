@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/eject/eject-2.1.5-r1.ebuild,v 1.11 2007/05/25 22:04:59 kloeri Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/eject/eject-2.1.5-r1.ebuild,v 1.12 2009/08/12 19:22:08 ssuominen Exp $
 
 inherit eutils
 
@@ -13,9 +13,6 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="nls"
-
-DEPEND="!virtual/eject"
-PROVIDE="virtual/eject"
 
 S=${WORKDIR}/${PN}
 
