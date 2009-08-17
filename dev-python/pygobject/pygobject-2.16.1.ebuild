@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.16.1.ebuild,v 1.8 2009/04/27 13:11:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.16.1.ebuild,v 1.9 2009/08/16 22:49:57 arfrever Exp $
 
-inherit autotools gnome2 python virtualx
+inherit alternatives autotools gnome2 python virtualx
 
 DESCRIPTION="GLib's GObject library bindings for Python"
 HOMEPAGE="http://www.pygtk.org/"

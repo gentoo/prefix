@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.72 2009/08/09 22:15:34 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.73 2009/08/16 22:49:57 arfrever Exp $
+
+  16 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pygobject-2.14.0.ebuild, pygobject-2.14.2.ebuild, pygobject-2.15.4.ebuild,
+  pygobject-2.16.0.ebuild, pygobject-2.16.1.ebuild,
+  pygobject-2.16.1-r1.ebuild, pygobject-2.18.0.ebuild:
+  Inherit alternatives.eclass (bug #281714).
 
   09 Aug 2009; Gilles Dartiguelongue <eva@gentoo.org>
   pygobject-2.18.0.ebuild, +files/pygobject-2.18.0-automake111.patch:
