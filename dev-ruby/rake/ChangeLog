@@ -1,6 +1,19 @@
 # ChangeLog for dev-ruby/rake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.75 2009/07/09 21:15:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.79 2009/08/14 20:59:58 maekke Exp $
+
+  14 Aug 2009; Markus Meier <maekke@gentoo.org> rake-0.8.7.ebuild:
+  amd64/x86 stable, bug #280851
+
+  09 Aug 2009; Jeroen Roovers <jer@gentoo.org> rake-0.8.7.ebuild:
+  Stable for HPPA (bug #280851).
+
+  09 Aug 2009; nixnut <nixnut@gentoo.org> rake-0.8.7.ebuild:
+  ppc stable #280851
+
+  09 Aug 2009; Hans de Graaff <graaff@gentoo.org> -rake-0.8.4.ebuild,
+  -rake-0.8.6.ebuild:
+  Remove old versions.
 
   09 Jul 2009; Jeroen Roovers <jer@gentoo.org> rake-0.8.3.ebuild:
   Stable for HPPA too.
