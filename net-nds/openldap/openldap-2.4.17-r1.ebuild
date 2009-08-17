@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.17-r1.ebuild,v 1.2 2009/07/29 00:21:10 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.17-r1.ebuild,v 1.3 2009/08/10 10:32:18 ssuominen Exp $
 
 EAPI=2
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator toolchain-funcs
@@ -175,6 +175,8 @@ src_prepare() {
 	# ensure correct SLAPI path by default
 	sed -i -e 's,\(#define LDAPI_SOCK\).*,\1 "'"${EPREFIX}"'/var/run/openldap/slapd.sock",' \
 		"${S}"/include/ldap_defaults.h
+
+	epatch "${FILESDIR}"/${P}-gcc44.patch
 
 	epatch \
 		"${FILESDIR}"/${PN}-2.2.14-perlthreadsfix.patch \
