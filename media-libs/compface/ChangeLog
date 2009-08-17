@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/compface
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/compface/ChangeLog,v 1.42 2007/08/29 17:11:41 phreak Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/compface/ChangeLog,v 1.45 2009/08/16 07:39:10 hattya Exp $
+
+  16 Aug 2009; Akinori Hattori <hattya@gentoo.org> -compface-1.4.ebuild,
+  -files/compface-1.4-destdir.diff, -files/compface-1.4-errno.diff:
+  cleaned out old ebuild(s).
+
+  16 Aug 2009; Akinori Hattori <hattya@gentoo.org> compface-1.5.2.ebuild:
+  cleanup.
 
   29 Aug 2007; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing bcowan from metadata due to his retirement (see #133108 for

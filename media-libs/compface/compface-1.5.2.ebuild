@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/compface/compface-1.5.2.ebuild,v 1.11 2007/07/08 16:46:43 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/compface/compface-1.5.2.ebuild,v 1.12 2009/08/16 07:27:42 hattya Exp $
 
 inherit eutils
 
@@ -21,7 +21,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-destdir.diff
 
-	sed -i -e '/strip/d' "${S}/Makefile.in"
+	sed -i -e '/strip/d' Makefile.in || die
+
 }
 
 src_install() {
