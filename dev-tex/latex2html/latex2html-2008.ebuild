@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/latex2html-2008.ebuild,v 1.7 2009/01/30 22:47:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/latex2html-2008.ebuild,v 1.8 2009/08/05 06:56:09 aballier Exp $
 
 inherit eutils multilib
 
@@ -19,6 +19,7 @@ DEPEND="virtual/ghostscript
 	dev-lang/perl
 	gif? ( media-libs/giflib )
 	png? ( media-libs/libpng )"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
