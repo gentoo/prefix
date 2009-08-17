@@ -1,13 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.6-r2.ebuild,v 1.12 2009/04/26 19:31:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-1.6-r2.ebuild,v 1.13 2009/08/13 10:49:15 vapier Exp $
 
 #
 # don't monkey with this ebuild unless contacting portage devs.
 # period.
 #
 
-inherit eutils flag-o-matic eutils toolchain-funcs multilib
+inherit eutils flag-o-matic toolchain-funcs multilib
 
 DESCRIPTION="sandbox'd LD_PRELOAD hack"
 HOMEPAGE="http://www.gentoo.org/"

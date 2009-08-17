@@ -1,6 +1,17 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.126 2009/06/04 09:37:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.127 2009/08/13 10:49:15 vapier Exp $
+
+  13 Aug 2009; Mike Frysinger <vapier@gentoo.org>
+  sandbox-1.2.18.1-r2.ebuild, sandbox-1.2.18.1-r3.ebuild,
+  sandbox-1.2.20_alpha2-r1.ebuild, sandbox-1.3.0.ebuild,
+  sandbox-1.3.1.ebuild, sandbox-1.3.2.ebuild, sandbox-1.3.3.ebuild,
+  sandbox-1.3.4.ebuild, sandbox-1.3.5.ebuild, sandbox-1.3.6.ebuild,
+  sandbox-1.3.7.ebuild, sandbox-1.3.8.ebuild, sandbox-1.3.9.ebuild,
+  sandbox-1.4.ebuild, sandbox-1.5.ebuild, sandbox-1.6.ebuild,
+  sandbox-1.6-r1.ebuild, sandbox-1.6-r2.ebuild, sandbox-1.7.ebuild,
+  sandbox-1.8.ebuild, sandbox-1.9.ebuild, sandbox-2.0.ebuild:
+  Drop duplicate eutils inherit #279607 by Justin Lecher.
 
 *sandbox-2.0 (04 Jun 2009)
 
