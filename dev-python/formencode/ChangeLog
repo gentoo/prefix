@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/formencode
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/formencode/ChangeLog,v 1.17 2009/04/26 09:06:50 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/formencode/ChangeLog,v 1.18 2009/08/16 23:30:42 arfrever Exp $
+
+*formencode-1.2.2 (16 Aug 2009)
+
+  16 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -formencode-1.0.1.ebuild, +formencode-1.2.2.ebuild:
+  Version bump (bug #280270). Set SUPPORT_PYTHON_ABIS.
 
 *formencode-1.2.1 (26 Apr 2009)
 
