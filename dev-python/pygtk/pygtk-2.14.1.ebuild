@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.14.1.ebuild,v 1.7 2009/05/04 14:05:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.14.1.ebuild,v 1.8 2009/08/16 22:44:19 arfrever Exp $
 
-inherit eutils flag-o-matic gnome.org python virtualx
+inherit alternatives eutils flag-o-matic gnome.org python virtualx
 
 DESCRIPTION="GTK+2 bindings for Python"
 HOMEPAGE="http://www.pygtk.org/"

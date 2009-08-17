@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1-r2.ebuild,v 1.10 2009/02/21 19:34:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/pygtk-2.12.1-r2.ebuild,v 1.11 2009/08/16 22:44:19 arfrever Exp $
 
-inherit autotools gnome.org python flag-o-matic eutils virtualx
+inherit alternatives autotools gnome.org python flag-o-matic eutils virtualx
 
 DESCRIPTION="GTK+2 bindings for Python"
 HOMEPAGE="http://www.pygtk.org/"
