@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.5-r1.ebuild,v 1.3 2009/08/01 12:08:20 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.5-r1.ebuild,v 1.4 2009/08/07 22:17:07 ulm Exp $
 
 EAPI=2
-WX_GTK_VER="2.8"
 
 inherit autotools elisp-common eutils multilib wxwidgets flag-o-matic
 
@@ -36,7 +35,7 @@ RDEPEND="
 	svga? ( media-libs/svgalib )
 	readline? ( >=sys-libs/readline-4.2 )
 	plotutils? ( media-libs/plotutils )
-	wxwidgets? ( =x11-libs/wxGTK-2.8*
+	wxwidgets? ( x11-libs/wxGTK:2.8[X]
 		>=x11-libs/cairo-0.9
 		>=x11-libs/pango-1.10.3
 		>=x11-libs/gtk+-2.8 )"
@@ -46,10 +45,6 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${MY_P}"
 E_SITEFILE="50${PN}-gentoo.el"
 TEXMF="${EPREFIX}/usr/share/texmf-site"
-
-pkg_setup() {
-	use wxwidgets && wxwidgets_pkg_setup
-}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-4.2.2-disable_texi_generation.patch #194216
@@ -75,6 +70,11 @@ src_configure() {
 	else
 		sed -i \
 			-e '/^SUBDIRS/ s/LaTeX//' share/LaTeX/Makefile.in || die
+	fi
+
+	if use wxwidgets; then
+		WX_GTK_VER="2.8"
+		need-wxwidgets unicode
 	fi
 
 	local myconf="--with-gihdir=${EPREFIX}/usr/share/${PN}/gih"

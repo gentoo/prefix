@@ -1,6 +1,11 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.112 2009/08/01 12:08:20 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.113 2009/08/07 22:17:07 ulm Exp $
+
+  07 Aug 2009; Ulrich Mueller <ulm@gentoo.org> gnuplot-4.2.5-r1.ebuild:
+  Move code related to wxwidgets.eclass back to src_configure (it had been
+  moved to global scope for 4.2.4-r1). Depend on wxGTK:2.8[X]. Thanks to
+  darkside and dirtyepic, bug 280112.
 
   01 Aug 2009; Sébastien Fabbro <bicatali@gentoo.org>
   gnuplot-4.2.3-r2.ebuild, gnuplot-4.2.4-r1.ebuild, gnuplot-4.2.5.ebuild,
