@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.4.1-r1.ebuild,v 1.1 2009/07/26 12:05:52 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.4.1-r1.ebuild,v 1.2 2009/08/08 18:20:17 griffon26 Exp $
 
 inherit autotools eutils flag-o-matic toolchain-funcs
 
@@ -43,6 +43,9 @@ src_unpack() {
 	# when optimisation is on (bug #234644).
 	epatch "${FILESDIR}/valgrind-3.3.1-local-labels.patch"
 
+	# More local labels (bug #260802, upstream revision 9539)
+	epatch "${FILESDIR}/valgrind-3.4.1-local-labels.patch"
+
 	# valgrind spits out many false positives on amd64 because of glibc-2.10's
 	# optimized strlen if there is no debug info for glibc (bug #274771). This
 	# patch adds a run-time error if debug info cannot be found.
@@ -51,6 +54,9 @@ src_unpack() {
 	# Fix up some suppressions that were not general enough for glibc versions
 	# with more than just a major and minor number.
 	epatch "${FILESDIR}/valgrind-3.4.1-glibc-2.10.1.patch"
+
+	# Respect LDFLAGS also for libmpiwrap.so (bug #279194)
+	epatch "${FILESDIR}/valgrind-3.4.1-respect-LDFLAGS.patch"
 
 	# Regenerate autotools files
 	eautoreconf
