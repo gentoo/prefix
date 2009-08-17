@@ -1,6 +1,6 @@
 # ChangeLog for perl-core/IO-Zlib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/IO-Zlib/ChangeLog,v 1.3 2009/07/15 18:30:28 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/IO-Zlib/ChangeLog,v 1.6 2009/08/10 13:30:55 tove Exp $
 
 *IO-Zlib-1.10 (15 Jul 2009)
 
