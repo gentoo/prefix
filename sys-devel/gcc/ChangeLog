@@ -1,6 +1,21 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.717 2009/07/24 20:23:38 dagger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.721 2009/08/16 14:49:32 armin76 Exp $
+
+  16 Aug 2009; Raúl Porcel <armin76@gentoo.org> gcc-4.4.1.ebuild:
+  Add ~ia64 wrt #278687
+
+  12 Aug 2009; Mark Loeser <halcy0n@gentoo.org> gcc-4.4.1.ebuild:
+  Keyword ~alpha
+
+  12 Aug 2009; Mark Loeser <halcy0n@gentoo.org> -gcc-4.4.0-r1.ebuild:
+  Remove gcc-4.4.0 from the tree. Some keywords are being dropped as they
+  were not, to my knowledge, actually tested yet
+
+*gcc-4.3.4 (08 Aug 2009)
+
+  08 Aug 2009; Mark Loeser <halcy0n@gentoo.org> +gcc-4.3.4.ebuild:
+  Version bump
 
   24 Jul 2009; Robert Piasek <dagger@gentoo.org> gcc-4.4.1.ebuild:
   Keyworded ~arm as per bug #278687
