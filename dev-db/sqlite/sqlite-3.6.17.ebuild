@@ -28,7 +28,10 @@ src_prepare() {
 	epatch "${FILESDIR}/sandbox-fix2.patch"
 
 	epatch "${FILESDIR}/${PN}-3.6.16-tkt3922.test.patch"
-	epatch "${FILESDIR}/${P}-fix_installation.patch"
+
+	# made this conditional, since it requires TCL!
+	use tcl && \
+		epatch "${FILESDIR}/${P}-fix_installation.patch"
 
 	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-3.6.11-interix.patch
