@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/rubyforge-1.0.3.ebuild,v 1.1 2009/03/05 10:38:44 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/rubyforge-1.0.3.ebuild,v 1.4 2009/08/14 21:01:42 maekke Exp $
 
 inherit gems
 
