@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.9.1.ebuild,v 1.1 2009/06/09 09:34:29 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.9.2.ebuild,v 1.1 2009/08/15 21:54:04 arfrever Exp $
 
 EAPI="2"
 
@@ -56,7 +56,7 @@ src_prepare() {
 
 	# src/serv.c 1st hunk fails
 	#epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
-	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${P}-irix.patch
+	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${PN}-2.9.1-irix.patch
 
 	local dir
 	for dir in m4 lib/m4 libextra/m4; do
