@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.113 2009/07/21 15:14:41 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.114 2009/08/16 11:12:08 ulm Exp $
+
+*eselect-1.1.3 (16 Aug 2009)
+
+  16 Aug 2009; Ulrich Mueller <ulm@gentoo.org> -eselect-1.0.10.ebuild,
+  -eselect-1.0.11-r1.ebuild,
+  -files/eselect-1.0.11-fix-paludis-command.patch, +eselect-1.1.3.ebuild:
+  Version bump. Remove old.
 
   21 Jul 2009; <chainsaw@gentoo.org> eselect-1.1.1.ebuild:
   Marked stable on AMD64 as requested by Ulrich Müller <ulm@gentoo.org> in
