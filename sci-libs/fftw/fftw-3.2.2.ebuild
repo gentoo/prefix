@@ -1,8 +1,9 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.2.ebuild,v 1.2 2008/11/27 10:39:28 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.2.2.ebuild,v 1.1 2009/08/09 04:48:24 bicatali Exp $
 
-inherit flag-o-matic eutils toolchain-funcs autotools fortran
+EAPI=2
+inherit flag-o-matic eutils toolchain-funcs autotools
 
 DESCRIPTION="Fast C library for the Discrete Fourier Transform"
 HOMEPAGE="http://www.fftw.org/"
@@ -22,6 +23,7 @@ pkg_setup() {
 	fi
 	if use openmp &&
 		[[ $(tc-getCC)$ == *gcc* ]] &&
+		[[ $(tc-getCC)$ != *apple* ]] &&
 		( [[ $(gcc-major-version)$(gcc-minor-version) -lt 42 ]] ||
 			! built_with_use sys-devel/gcc openmp )
 	then
@@ -32,78 +34,61 @@ pkg_setup() {
 		epause 5
 		FFTW_THREADS="--enable-threads --disable-openmp"
 	fi
-	FORTRAN="gfortran ifc g77"
-	use fortran && fortran_pkg_setup
+	FFTW_DIRS="single double longdouble"
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-openmp.patch
-	epatch "${FILESDIR}"/${P}-as-needed.patch
-	epatch "${FILESDIR}"/${P}-cppflags.patch
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-3.2.1-as-needed.patch
 
-	# fix info file
-	sed -e 's/Texinfo documentation system/Libraries/' \
-		-i doc/fftw3.info || die "failed to fix info file"
+	# fix info file for category directory
+	sed -i \
+		-e 's/Texinfo documentation system/Libraries/' \
+		doc/fftw3.info || die "failed to fix info file"
 
 	rm m4/lt* m4/libtool.m4
 
 	AT_M4DIR=m4 eautoreconf
-	cd "${WORKDIR}"
-	mv ${P} ${P}-single
-	cp -pPR ${P}-single ${P}-double
-	cp -pPR ${P}-single ${P}-longdouble
+	for x in ${FFTW_DIRS}; do
+		mkdir "${S}-${x}" || die
+	done
 }
 
-src_compile() {
+src_configure() {
 	# filter -Os according to docs
 	replace-flags -Os -O2
 
-	local myconfcommon="
-		--enable-shared
+	local myconfcommon="--enable-shared
 		$(use_enable fortran)
 		${FFTW_THREADS}"
 
-	local myconfsingle=""
-	local myconfdouble=""
-	local myconflongdouble=""
-
+	local myconfsingle="${myconfcommon} --enable-single"
+	local myconfdouble="${myconfcommon}"
+	local myconflongdouble="${myconfcommon} --enable-long-double"
 	if use sse2; then
 		myconfsingle="${myconfsingle} --enable-sse"
 		myconfdouble="${myconfdouble} --enable-sse2"
 	elif use sse; then
 		myconfsingle="${myconfsingle} --enable-sse"
 	fi
-	# altivec only helps floats, not doubles
+	# altivec only helps singles, not doubles
 	if use altivec; then
 		myconfsingle="${myconfsingle} --enable-altivec"
 	fi
 
-	cd "${S}-single"
-	econf \
-		--enable-float \
-		${myconfcommon} \
-		${myconfsingle} || \
-			die "econf single failed"
-	emake || die "emake single failed"
+	for x in ${FFTW_DIRS}; do
+		cd "${S}-${x}"
+		einfo "Configuring for ${x} precision"
+		local p=myconf${x}
+		ECONF_SOURCE="${S}" econf ${!p}
+	done
+}
 
-	# the only difference here is no --enable-float
-	cd "${S}-double"
-	econf \
-		${myconfcommon} \
-		${myconfdouble} || \
-		die "econf double failed"
-	emake || die "emake double failed"
-
-	# the only difference here is --enable-long-double
-	cd "${S}-longdouble"
-	econf \
-		--enable-long-double \
-		${myconfcommon} \
-		${myconflongdouble} || \
-		die "econf long double failed"
-	emake || die "emake long double failed"
+src_compile() {
+	for x in ${FFTW_DIRS}; do
+		cd "${S}-${x}"
+		einfo "Compiling for ${x} precision"
+		emake || die "emake for ${x} precision failed"
+	done
 }
 
 src_test () {
@@ -112,24 +97,23 @@ src_test () {
 	# Do not increase the number of threads, it will not help your performance
 	#local testbase="perl check.pl --nthreads=1 --estimate"
 	#		${testbase} -${p}d || die "Failure: $n"
-	for d in single double longdouble; do
-		cd "${S}-${d}"/tests
-		einfo "Testing ${PN}-${d}"
-		emake -j1 check || die "emake test failed"
+	for x in ${FFTW_DIRS}; do
+		cd "${S}-${x}/tests"
+		einfo "Testing ${x} precision"
+		emake -j1 check || die "emake test ${x} failed"
 	done
 }
 
 src_install () {
 	# all builds are installed in the same place
 	# libs have distinuguished names; include files, docs etc. identical.
-	for i in single double longdouble; do
-		cd "${S}-${i}"
-		emake DESTDIR="${D}" install || die "emake install for ${i} failed"
+	for x in ${FFTW_DIRS}; do
+		cd "${S}-${x}"
+		emake DESTDIR="${D}" install || die "emake install for ${x} failed"
 	done
 
-	# Install documentation.
-	cd "${S}-single"
-	dodoc AUTHORS ChangeLog NEWS README TODO COPYRIGHT CONVENTIONS || die
+	cd "${S}"
+	dodoc AUTHORS ChangeLog NEWS README TODO COPYRIGHT CONVENTIONS
 	if use doc; then
 		cd doc
 		insinto /usr/share/doc/${PF}

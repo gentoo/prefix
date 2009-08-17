@@ -1,6 +1,14 @@
 # ChangeLog for sci-libs/fftw
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.86 2009/05/01 12:07:57 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.87 2009/08/09 04:48:24 bicatali Exp $
+
+*fftw-3.2.2 (09 Aug 2009)
+
+  09 Aug 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  -fftw-2.1.5-r4.ebuild, -fftw-3.1.2.ebuild, -fftw-3.2.ebuild,
+  +fftw-3.2.2.ebuild, -files/fftw-3.2-as-needed.patch,
+  -files/fftw-3.2-cppflags.patch, -files/fftw-3.2-openmp.patch:
+  Version bump
 
   01 May 2009; Raúl Porcel <armin76@gentoo.org> fftw-2.1.5-r5.ebuild:
   Add ~arm/~s390 wrt #267990
