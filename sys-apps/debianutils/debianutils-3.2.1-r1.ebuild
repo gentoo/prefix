@@ -1,16 +1,16 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-2.29.ebuild,v 1.2 2008/08/08 13:00:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/debianutils/debianutils-3.2.1-r1.ebuild,v 1.1 2009/08/11 16:52:04 jer Exp $
 
 inherit eutils flag-o-matic autotools
 
 DESCRIPTION="A selection of tools from Debian"
-HOMEPAGE="http://packages.debian.org/unstable/utils/debianutils"
+HOMEPAGE="http://packages.qa.debian.org/d/debianutils.html"
 SRC_URI="mirror://debian/pool/main/d/${PN}/${PN}_${PV}.tar.gz"
 
 LICENSE="BSD GPL-2 SMAIL"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="kernel_linux static"
 
 PDEPEND="|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp sys-freebsd/freebsd-ubin )"
@@ -18,9 +18,7 @@ PDEPEND="|| ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp sys-freebsd/freebsd-u
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.28.2-no-bs-namespace.patch
-	epatch "${FILESDIR}"/${PN}-2.28.2-mkboot-quiet.patch
-	epatch "${FILESDIR}"/${PN}-2.16.2-palo.patch
+	epatch "${FILESDIR}"/${P}-no-bs-namespace.patch
 	epatch "${FILESDIR}"/${PN}-2.17.5-nongnu.patch
 }
 
@@ -41,12 +39,9 @@ src_install() {
 
 	into /usr
 	dosbin savelog || die "savelog failed"
-	if use kernel_linux ; then
-		dosbin mkboot || die "mkboot failed"
-	fi
 
 	doman tempfile.1 run-parts.8 savelog.8
-	use kernel_linux && doman installkernel.8 mkboot.8
+	use kernel_linux && doman installkernel.8
 	cd debian
 	dodoc changelog control
 }
