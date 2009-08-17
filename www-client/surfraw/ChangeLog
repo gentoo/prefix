@@ -1,6 +1,9 @@
 # ChangeLog for www-client/surfraw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/ChangeLog,v 1.44 2009/07/25 05:57:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/ChangeLog,v 1.45 2009/08/12 15:01:56 jer Exp $
+
+  12 Aug 2009; Jeroen Roovers <jer@gentoo.org> -surfraw-2.2.4.ebuild:
+  Remove old.
 
   25 Jul 2009; Jeroen Roovers <jer@gentoo.org>
   files/surfraw-2.1.5-gentoo_pkg_tools.patch:
