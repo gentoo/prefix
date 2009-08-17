@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/schroedinger
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.28 2009/05/15 09:14:55 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.29 2009/08/16 12:49:50 ssuominen Exp $
+
+*schroedinger-1.0.7-r1 (16 Aug 2009)
+
+  16 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +schroedinger-1.0.7-r1.ebuild,
+  +files/schroedinger-1.0.7-gst_adapter_masked_scan_uint32.patch:
+  Fix build failure with GStreamer 0.10.24 caused by a function name
+  conflict wrt #281660, thanks to Harris Landgarten for reporting.
 
   15 May 2009; Alexis Ballier <aballier@gentoo.org>
   schroedinger-1.0.7.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/schroedinger-1.0.7.ebuild,v 1.2 2009/05/15 09:14:55 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/schroedinger-1.0.7.ebuild,v 1.3 2009/08/16 12:52:20 ssuominen Exp $
 
 inherit libtool
 
@@ -14,8 +14,8 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos
 IUSE="gstreamer"
 
 RDEPEND=">=dev-libs/liboil-0.3.16
-	gstreamer? ( >=media-libs/gstreamer-0.10.19
-		>=media-libs/gst-plugins-base-0.10.19 )"
+	gstreamer? ( <media-libs/gstreamer-0.10.24
+		<media-libs/gst-plugins-base-0.10.24 )"
 # Doesn't seem to build as of 1.0.5
 #	opengl? ( virtual/opengl )"
 DEPEND="${RDEPEND}
