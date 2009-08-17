@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.231 2009/08/13 15:26:06 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.232 2009/08/14 14:04:18 armin76 Exp $
+
+  14 Aug 2009; Raúl Porcel <armin76@gentoo.org> nano-2.1.9.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/x86 stable wrt #281269
 
   13 Aug 2009; Tiago Cunha <tcunha@gentoo.org> nano-2.1.9.ebuild:
   stable sparc, bug 281269
