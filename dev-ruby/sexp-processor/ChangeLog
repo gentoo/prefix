@@ -1,6 +1,16 @@
 # ChangeLog for dev-ruby/sexp-processor
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sexp-processor/ChangeLog,v 1.3 2009/07/12 07:24:16 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sexp-processor/ChangeLog,v 1.5 2009/08/15 07:13:52 graaff Exp $
+
+  15 Aug 2009; Hans de Graaff <graaff@gentoo.org>
+  -sexp-processor-3.0.0.ebuild, -sexp-processor-3.0.1.ebuild:
+  Remove old versions.
+
+*sexp-processor-3.0.3 (15 Aug 2009)
+
+  15 Aug 2009; Hans de Graaff <graaff@gentoo.org>
+  +sexp-processor-3.0.3.ebuild:
+  Version bump with minor enhancement: Pulled #mass up from flog/flay.
 
 *sexp-processor-3.0.2 (12 Jul 2009)
 
