@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/zentest/zentest-4.0.0.ebuild,v 1.1 2009/03/06 12:16:10 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/zentest/zentest-4.1.4.ebuild,v 1.1 2009/08/08 11:38:23 graaff Exp $
 
 inherit gems
 
@@ -17,4 +17,9 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
 SLOT="0"
 IUSE=""
 
-DEPEND=">=dev-ruby/rubygems-1.3.0"
+USE_RUBY="ruby18"
+
+pkg_postinst() {
+	ewarn "Since 4.1.1 ZenTest no longer bundles support to run autotest Rails projects."
+	ewarn "Please install dev-ruby/autotest-rails to add Rails support to autotest."
+}
