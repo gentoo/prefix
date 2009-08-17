@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.15 2009/07/27 06:24:43 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.16 2009/08/04 09:18:52 ssuominen Exp $
 
 EAPI=2
 
@@ -17,8 +17,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="+3dnow +3dnowext alsa altivec cpudetection custom-cflags debug dirac
 	  doc ieee1394 +encode faac faad gsm ipv6 jack +mmx +mmxext vorbis test
-	  theora threads x264 xvid network zlib sdl X mp3 opencore-amrnb
-	  opencore-amrwb oss schroedinger +hardcoded-tables bindist v4l v4l2
+	  theora threads x264 xvid network zlib sdl X mp3 opencore-amr
+	  oss schroedinger +hardcoded-tables bindist v4l v4l2
 	  speex +ssse3 jpeg2k vdpau"
 
 VIDEO_CARDS="nvidia"
@@ -43,8 +43,7 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 	dirac? ( media-video/dirac )
 	gsm? ( >=media-sound/gsm-1.0.12-r1 )
 	jpeg2k? ( >=media-libs/openjpeg-1.3-r2 )
-	opencore-amrnb? ( media-libs/opencore-amr )
-	opencore-amrwb? ( media-libs/opencore-amr )
+	opencore-amr? ( media-libs/opencore-amr )
 	schroedinger? ( media-libs/schroedinger )
 	speex? ( >=media-libs/speex-1.2_beta3 )
 	jack? ( media-sound/jack-audio-connection-kit )
@@ -124,7 +123,9 @@ src_configure() {
 	use threads && myconf="${myconf} --enable-pthreads"
 
 	# Decoders
-	for i in faad dirac schroedinger speex opencore-amrnb opencore-amrwb ; do
+	use opencore-amr && myconf="${myconf} --enable-libopencore-amrwb
+		--enable-libopencore-amrnb"
+	for i in faad dirac schroedinger speex; do
 		use $i && myconf="${myconf} --enable-lib$i"
 	done
 	use jpeg2k && myconf="${myconf} --enable-libopenjpeg"
