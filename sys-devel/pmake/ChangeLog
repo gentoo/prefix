@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/pmake
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/ChangeLog,v 1.35 2008/09/25 08:46:15 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/pmake/ChangeLog,v 1.36 2009/08/10 09:24:31 aballier Exp $
+
+  10 Aug 2009; Alexis Ballier <aballier@gentoo.org>
+  -files/02_all_mktemp.patch, -pmake-1.45-r4.ebuild, -pmake-1.111.1.ebuild,
+  -files/skipdots.patch:
+  remove old
 
 *pmake-1.111.1-r1 (25 Sep 2008)
 
