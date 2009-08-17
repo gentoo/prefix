@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/python-docs-2.6.2-r1.ebuild,v 1.2 2009/07/30 23:25:45 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/python-docs-2.6.2-r1.ebuild,v 1.3 2009/08/16 08:20:49 fauli Exp $
 
 DESCRIPTION="HTML documentation for Python"
 HOMEPAGE="http://www.python.org/doc/"

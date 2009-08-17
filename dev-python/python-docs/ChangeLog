@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/python-docs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.121 2009/08/01 21:45:26 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.122 2009/08/16 08:20:49 fauli Exp $
+
+  16 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  python-docs-2.6.2-r1.ebuild:
+  stable x86, bug 277645
 
 *python-docs-3.1 (01 Aug 2009)
 
