@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/xgraph/xgraph-12.1-r2.ebuild,v 1.1 2009/02/01 12:50:16 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/xgraph/xgraph-12.1-r2.ebuild,v 1.2 2009/08/08 22:02:03 ssuominen Exp $
 
 EAPI=2
 inherit eutils autotools
@@ -21,6 +21,7 @@ RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch "${WORKDIR}"/${PN}_${PV}-${DEB_PR}.diff
+	epatch "${FILESDIR}"/${P}-glibc-2.10.patch
 	eautoreconf
 }
 

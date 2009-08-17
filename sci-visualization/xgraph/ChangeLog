@@ -1,6 +1,10 @@
 # ChangeLog for sci-visualization/xgraph
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/xgraph/ChangeLog,v 1.9 2009/02/01 12:50:16 bicatali Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/xgraph/ChangeLog,v 1.10 2009/08/08 22:02:03 ssuominen Exp $
+
+  08 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> xgraph-12.1-r2.ebuild,
+  +files/xgraph-12.1-glibc-2.10.patch:
+  Fix building with GLIBC 2.10+ wrt #277574.
 
 *xgraph-12.1-r2 (01 Feb 2009)
 
