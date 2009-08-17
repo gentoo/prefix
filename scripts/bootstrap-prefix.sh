@@ -453,11 +453,11 @@ bootstrap_gnu() {
 }
 
 bootstrap_python() {
-	PV=2.5.2
+	PV=2.6.2
 	A=python-${PV}-patched.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 
-	[[ ${CHOST} == *-interix* ]] && A=python-${PV}-interix.tar.bz2
+	[[ ${CHOST} == *-interix* ]] && A=python-2.5.2-interix.tar.bz2
 	# don't really want to put this on the mirror, since they are
 	# non-vanilla sources, bit specific for us
 	efetch ${DISTFILES_URL}/${A}
