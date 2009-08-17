@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-meta/gst-plugins-meta-0.10-r2.ebuild,v 1.10 2009/04/05 17:51:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-meta/gst-plugins-meta-0.10-r2.ebuild,v 1.11 2009/08/11 09:51:43 ssuominen Exp $
 
 DESCRIPTION="Meta ebuild to pull in gst plugins for apps"
 HOMEPAGE="http://www.gentoo.org"
@@ -14,8 +14,7 @@ RDEPEND="a52? ( >=media-plugins/gst-plugins-a52dec-0.10 )
 	alsa? ( >=media-plugins/gst-plugins-alsa-0.10 )
 	dvb? (
 		media-plugins/gst-plugins-dvb
-		>=media-libs/gst-plugins-bad-0.10.6
-		>=media-plugins/gst-plugins-fluendo-mpegdemux-0.10.15 )
+		>=media-libs/gst-plugins-bad-0.10.6 )
 	dvd? (
 		>=media-libs/gst-plugins-ugly-0.10
 		>=media-plugins/gst-plugins-a52dec-0.10
