@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/nspr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.125 2009/08/14 00:32:44 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.126 2009/08/17 04:21:37 jer Exp $
+
+  17 Aug 2009; Jeroen Roovers <jer@gentoo.org> nspr-4.8.ebuild:
+  Stable for HPPA (bug #280837).
 
   14 Aug 2009; Christian Faulhammer <fauli@gentoo.org> nspr-4.8.ebuild:
   stable x86, bug 280837
