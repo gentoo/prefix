@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.42 2009/05/15 14:37:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.43 2009/08/12 02:21:18 arfrever Exp $
+
+*pixman-0.15.20 (12 Aug 2009)
+
+  12 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +pixman-0.15.20.ebuild:
+  Version bump (bug #267437).
 
   15 May 2009; Raúl Porcel <armin76@gentoo.org> pixman-0.14.0-r1.ebuild:
   arm/s390 stable
