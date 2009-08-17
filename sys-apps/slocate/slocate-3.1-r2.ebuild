@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/slocate-3.1-r2.ebuild,v 1.1 2008/08/19 01:11:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/slocate-3.1-r2.ebuild,v 1.2 2009/08/15 23:47:26 vapier Exp $
 
-inherit flag-o-matic eutils prefix
+inherit flag-o-matic eutils toolchain-funcs prefix
 
 DESCRIPTION="Secure way to index and quickly search for files on your system (drop-in replacement for 'locate')"
 HOMEPAGE="http://slocate.trakker.ca/"
@@ -45,8 +45,8 @@ src_unpack() {
 
 src_compile() {
 	filter-lfs-flags
-	[[ ${CHOST} == *-linux-gnu ]] && append-flags "-DHAVE_STRNDUP"
-	emake -C src || die
+	CFLAGS="${CFLAGS} ${CPPFLAGS}" \
+	emake CC="$(tc-getCC)" -C src || die
 }
 
 src_install() {
