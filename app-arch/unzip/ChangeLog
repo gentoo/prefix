@@ -1,6 +1,17 @@
 # ChangeLog for app-arch/unzip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.58 2009/05/29 23:50:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.60 2009/08/16 18:15:45 vapier Exp $
+
+*unzip-6.0-r1 (16 Aug 2009)
+
+  16 Aug 2009; Mike Frysinger <vapier@gentoo.org> +unzip-6.0-r1.ebuild:
+  Add internal LFS flag to CPPFLAGS #281473 by Rafał Mużyło.
+
+*unzip-6.0 (14 Aug 2009)
+
+  14 Aug 2009; Mike Frysinger <vapier@gentoo.org> +unzip-6.0.ebuild,
+  +files/unzip-6.0-no-exec-stack.patch:
+  Version bump by Vladimir #280434.
 
   29 May 2009; Mike Frysinger <vapier@gentoo.org> -unzip-5.52-r1.ebuild:
   Punt old package vuln to GLSA 200804-06 #271725 by Robert Buchholz.
