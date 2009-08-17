@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Archive-Tar/Archive-Tar-1.40.ebuild,v 1.5 2009/07/19 18:01:46 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Archive-Tar/Archive-Tar-1.40.ebuild,v 1.6 2009/08/10 19:46:45 tove Exp $
 
 MODULE_AUTHOR=KANE
 inherit perl-module
@@ -15,7 +15,7 @@ IUSE=""
 DEPEND=">=virtual/perl-IO-Zlib-1.01
 	>=virtual/perl-IO-Compress-2.012
 	dev-perl/IO-String
-	perl-core/Package-Constants
+	virtual/perl-Package-Constants
 	dev-lang/perl"
 
 SRC_TEST="do"
