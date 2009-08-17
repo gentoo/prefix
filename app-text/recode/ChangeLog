@@ -1,6 +1,9 @@
 # ChangeLog for app-text/recode
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/recode/ChangeLog,v 1.67 2009/08/08 18:25:47 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/recode/ChangeLog,v 1.68 2009/08/14 14:22:00 armin76 Exp $
+
+  14 Aug 2009; Raúl Porcel <armin76@gentoo.org> recode-3.6_p15-r1.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #279935
 
   08 Aug 2009; Jeroen Roovers <jer@gentoo.org> recode-3.6_p15-r1.ebuild:
   Stable for HPPA (bug #279935).
