@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libglade
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.123 2009/03/18 23:59:37 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libglade/ChangeLog,v 1.124 2009/08/14 21:05:40 maekke Exp $
+
+  14 Aug 2009; Markus Meier <maekke@gentoo.org> libglade-2.6.4.ebuild:
+  amd64/x86 stable, bug #280814
 
 *libglade-2.6.4 (18 Mar 2009)
 

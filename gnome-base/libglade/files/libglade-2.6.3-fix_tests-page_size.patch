@@ -1,5 +1,5 @@
---- tests/test-libglade-gtk.glade.orig	2008-09-27 16:50:40.164242312 +0300
-+++ tests/test-libglade-gtk.glade	2008-09-27 16:50:43.460908927 +0300
+--- a/tests/test-libglade-gtk.glade	2008-09-27 16:50:40.164242312 +0300
++++ b/tests/test-libglade-gtk.glade	2008-09-27 16:50:43.460908927 +0300
 @@ -470,7 +470,7 @@
  	  <upper>100</upper>
  	  <step>1</step>
