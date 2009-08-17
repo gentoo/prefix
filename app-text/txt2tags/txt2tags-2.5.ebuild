@@ -1,8 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/txt2tags-2.5.ebuild,v 1.2 2009/07/27 06:39:56 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/txt2tags/txt2tags-2.5.ebuild,v 1.3 2009/08/15 21:58:22 betelgeuse Exp $
 
-inherit eutils elisp-common
+EAPI="2"
+PYTHON_USE_WITH="tk"
+PYTHON_USE_WITH_OPT="tk"
+
+inherit eutils elisp-common python
 
 DESCRIPTION="A tool for generating marked up documents (HTML, SGML, ...) from a plain text file with markup"
 HOMEPAGE="http://txt2tags.sourceforge.net/"
@@ -18,19 +22,6 @@ DEPEND="virtual/python
 	emacs? ( virtual/emacs )"
 
 SITEFILE="51${PN}-gentoo.el"
-
-pkg_setup() {
-	# need to test if the tk support in python is working
-	if use tk; then
-		if ! built_with_use dev-lang/python tk; then
-			eerror "You have requested tk, but your build of Python"
-			eerror "doesn't support import _tkinter. You may need to"
-			eerror "remerge dev-lang/python, or build ${P}"
-			eerror "with USE=\"-tk\""
-			die "rebuild python with USE=tk"
-		fi
-	fi
-}
 
 src_compile() {
 	if use emacs; then
