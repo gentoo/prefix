@@ -1,6 +1,30 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.227 2009/08/02 18:48:04 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.232 2009/08/17 01:06:45 jer Exp $
+
+  17 Aug 2009; Jeroen Roovers <jer@gentoo.org> xulrunner-1.9.0.13.ebuild:
+  Stable for HPPA (bug #280393).
+
+*xulrunner-1.9.0.13 (15 Aug 2009)
+
+  15 Aug 2009; Raúl Porcel <armin76@gentoo.org> -xulrunner-1.9.0.12.ebuild,
+  +xulrunner-1.9.0.13.ebuild:
+  Version bump
+
+*xulrunner-1.9.1.2-r1 (11 Aug 2009)
+
+  11 Aug 2009; Gordon Malm <gengor@gentoo.org> +xulrunner-1.9.1.2-r1.ebuild:
+  Revision bump - proxy for Anarchy, bug #278698.
+
+  09 Aug 2009; Gordon Malm <gengor@gentoo.org> xulrunner-1.9.1.2.ebuild:
+  Sync with overlay, disable jemalloc on hardened, adjust SSP filtering. Bug
+  #278698.
+
+*xulrunner-1.9.1.2 (05 Aug 2009)
+
+  05 Aug 2009; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  -xulrunner-1.9.1.1-r2.ebuild, +xulrunner-1.9.1.2.ebuild:
+  Version bump for security fixes (proxy commit for mozilla team)
 
 *xulrunner-1.9.1.1-r2 (02 Aug 2009)
 
