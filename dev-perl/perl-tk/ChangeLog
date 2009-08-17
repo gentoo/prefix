@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/perl-tk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/ChangeLog,v 1.61 2009/06/11 18:21:43 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/perl-tk/ChangeLog,v 1.62 2009/08/16 08:26:18 tove Exp $
+
+  16 Aug 2009; Torsten Veller <tove@gentoo.org>
+  -files/perl-tk-800.025-dirtarget.patch:
+  Remove unused patch
 
   11 Jun 2009; Alex Legler <a3li@gentoo.org> -perl-tk-804.028-r1.ebuild:
   Removing vulnerable ebuild, bug 271789.
