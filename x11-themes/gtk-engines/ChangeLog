@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.143 2009/05/18 21:30:32 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.144 2009/08/08 23:13:27 eva Exp $
+
+  08 Aug 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gtk-engines-2.18.1.ebuild, gtk-engines-2.18.2.ebuild:
+  Fix locale installation. Add GCONF_DEBUG, bug #268746.
 
 *gtk-engines-2.18.2 (18 May 2009)
 

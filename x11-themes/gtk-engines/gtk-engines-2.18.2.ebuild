@@ -1,6 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.18.2.ebuild,v 1.1 2009/05/18 21:30:32 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.18.2.ebuild,v 1.2 2009/08/08 23:13:27 eva Exp $
+
+EAPI="2"
+GCONF_DEBUG="no"
 
 inherit gnome2 autotools
 
@@ -27,4 +30,11 @@ pkg_setup() {
 src_unpack() {
 	gnome2_src_unpack
 	eautoreconf # need new libtool for interix
+}
+
+src_prepare() {
+	gnome2_src_prepare
+
+	# Fix intltoolize broken file, see upstream #577133
+	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
 }
