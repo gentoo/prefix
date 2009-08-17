@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r1.ebuild,v 1.11 2009/05/18 09:04:18 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r1.ebuild,v 1.12 2009/08/13 06:30:33 vapier Exp $
 
 inherit eutils flag-o-matic multilib autotools pam
 
@@ -224,7 +224,7 @@ pkg_postinst() {
 	chmod u+x "${EROOT}"/etc/skel/.ssh >& /dev/null
 
 	ewarn "Remember to merge your config files in /etc/ssh/ and then"
-	ewarn "restart sshd: '/etc/init.d/sshd restart'."
+	ewarn "reload sshd: '/etc/init.d/sshd reload'."
 	if use pam ; then
 		echo
 		ewarn "Please be aware users need a valid shell in /etc/passwd"

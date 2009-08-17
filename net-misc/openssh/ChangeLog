@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.355 2009/07/19 05:55:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.357 2009/08/13 06:30:33 vapier Exp $
+
+  13 Aug 2009; Mike Frysinger <vapier@gentoo.org> openssh-5.0_p1-r2.ebuild,
+  openssh-5.1_p1-r2.ebuild, openssh-5.1_p1-r3.ebuild,
+  openssh-5.2_p1-r1.ebuild, openssh-5.2_p1-r2.ebuild:
+  Suggest people reload the sshd server rather than restart it.
+
+  12 Aug 2009; Christian Ruppert <idl0r@gentoo.org> files/sshd.rc6:
+  Removed "-b 1024" to use ServerKeyBits option instead.
 
   19 Jul 2009; Mike Frysinger <vapier@gentoo.org> files/sshd.rc6:
   Add checkconfig to reload() #277007 by Michał Górny.
