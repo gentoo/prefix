@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/mosml-2.01-r1.ebuild,v 1.3 2009/07/23 23:14:32 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mosml/mosml-2.01-r1.ebuild,v 1.4 2009/08/17 01:41:25 vostorga Exp $
 
 inherit eutils
 
@@ -28,7 +28,8 @@ src_unpack() {
 }
 
 src_compile() {
-	emake CC=$(tc-getCC) MOSMLHOME="${EPREFIX}"/opt/mosml world || die
+	emake CC=$(tc-getCC) CPP="$(tc-getCPP) -P -traditional -Dunix -Umsdos" \
+		MOSMLHOME="${EPREFIX}"/opt/mosml world || die
 }
 
 src_install () {
