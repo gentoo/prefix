@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/hoe-2.3.2.ebuild,v 1.1 2009/07/10 05:56:02 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/hoe-2.3.2.ebuild,v 1.4 2009/08/14 21:03:13 maekke Exp $
 
 inherit gems
 

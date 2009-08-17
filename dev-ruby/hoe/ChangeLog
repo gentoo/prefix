@@ -1,6 +1,25 @@
 # ChangeLog for dev-ruby/hoe
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.52 2009/07/10 05:56:02 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/hoe/ChangeLog,v 1.57 2009/08/14 21:03:13 maekke Exp $
+
+  14 Aug 2009; Markus Meier <maekke@gentoo.org> hoe-2.3.2.ebuild:
+  amd64/x86 stable, bug #280851
+
+  09 Aug 2009; Jeroen Roovers <jer@gentoo.org> hoe-2.3.2.ebuild,
+  hoe-2.3.3.ebuild:
+  Marked ~hppa too.
+
+  09 Aug 2009; nixnut <nixnut@gentoo.org> hoe-2.3.2.ebuild:
+  ppc stable #280851
+
+  09 Aug 2009; Hans de Graaff <graaff@gentoo.org> -hoe-1.8.3.ebuild,
+  -hoe-1.11.0.ebuild, -hoe-1.12.2.ebuild:
+  Remove old versions.
+
+*hoe-2.3.3 (09 Aug 2009)
+
+  09 Aug 2009; Hans de Graaff <graaff@gentoo.org> +hoe-2.3.3.ebuild:
+  Version bump with minor enhancements.
 
 *hoe-2.3.2 (10 Jul 2009)
 
