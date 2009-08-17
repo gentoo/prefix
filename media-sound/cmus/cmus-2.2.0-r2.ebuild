@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0-r2.ebuild,v 1.1 2009/07/26 13:19:04 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0-r2.ebuild,v 1.3 2009/08/16 09:04:37 fauli Exp $
 
 EAPI=2
 inherit eutils multilib
@@ -23,7 +23,7 @@ DEPEND="sys-libs/ncurses[unicode?]
 	mad? ( >=media-libs/libmad-0.14 )
 	mikmod? ( media-libs/libmikmod )
 	modplug? ( >=media-libs/libmodplug-0.7 )
-	mp4? ( media-libs/libmp4v2 )
+	mp4? ( >=media-libs/libmp4v2-1.9 )
 	musepack? ( media-libs/libmpcdecsv7 )
 	vorbis? ( >=media-libs/libvorbis-1.0 )
 	wavpack? ( media-sound/wavpack )
@@ -45,11 +45,7 @@ src_prepare() {
 		"${FILESDIR}"/${P}-libmpcdecsv7.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 
-	if use mp4 && has_version ">=media-libs/libmp4v2-1.9.0"; then
-		ebegin "Patching in libmp4v2 compability support"
-		sed -i -e 's:<mp4.h>:<mp4v2/mp4v2.h>:' mp4.c || die "sed failed"
-		eend $?
-	fi
+	sed -i -e 's:<mp4.h>:<mp4v2/mp4v2.h>:' mp4.c || die "sed failed"
 }
 
 src_configure() {
