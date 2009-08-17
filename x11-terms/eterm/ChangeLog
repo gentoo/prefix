@@ -1,6 +1,11 @@
 # ChangeLog for x11-terms/eterm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/eterm/ChangeLog,v 1.72 2009/05/11 08:40:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/eterm/ChangeLog,v 1.73 2009/08/16 20:21:57 nerdboy Exp $
+
+  16 Aug 2009; Steve Arnold <nerdboy@gentoo.org> eterm-0.9.5.ebuild,
+  eterm-9999.ebuild:
+  Added dependency for default font (fixes bug #279928).  Required for
+  default Eterm theme.
 
   11 May 2009; Mike Frysinger <vapier@gentoo.org> eterm-0.9.5.ebuild,
   eterm-9999.ebuild:

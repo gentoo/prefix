@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/eterm/eterm-9999.ebuild,v 1.17 2009/05/11 08:40:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/eterm/eterm-9999.ebuild,v 1.18 2009/08/16 20:21:57 nerdboy Exp $
 
 EAPI="2"
 inherit eutils autotools
@@ -36,6 +36,7 @@ RDEPEND="x11-libs/libX11
 	x11-proto/xproto
 	>=x11-libs/libast-0.6.1
 	media-libs/imlib2[X]
+	media-fonts/font-misc-misc
 	escreen? ( app-misc/screen )"
 DEPEND="${RDEPEND}"
 
