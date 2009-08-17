@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.5.2.ebuild,v 1.1 2009/06/27 19:16:58 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/qt-core-4.5.2.ebuild,v 1.2 2009/08/11 23:09:12 wired Exp $
 
 EAPI=2
 inherit qt4-build
@@ -168,6 +168,7 @@ src_install() {
 
 	emake INSTALL_ROOT="${D}" install_translations || die "emake install_translations failed"
 
+	setqtenv
 	fix_library_files
 
 	# List all the multilib libdirs
