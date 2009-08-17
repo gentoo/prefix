@@ -3,6 +3,10 @@
 <pkgmetadata>
 	<herd>graphics</herd>
 	<use>
+		<flag name='autotrace'>
+			use <pkg>media-gfx/autotrace</pkg> to convert bitmaps into vector
+			graphics
+		</flag>
 		<flag name='corefonts'>
 			pull in <pkg>media-fonts/corefonts</pkg>, which is required for some
 			commands
@@ -15,6 +19,9 @@
 		</flag>
 		<flag name='hdri'>
 			enable High Dynamic Range Images formats
+		</flag>
+		<flag name='lqr'>
+			enable experimental liquid rescale support
 		</flag>
 		<flag name='q32'>
 			set quantum depth to 32

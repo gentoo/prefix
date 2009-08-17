@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.1.0.ebuild,v 1.11 2009/07/23 03:47:24 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.4.10.ebuild,v 1.1 2009/08/15 11:58:26 maekke Exp $
 
 EAPI="2"
 
@@ -15,14 +15,20 @@ HOMEPAGE="http://www.imagemagick.org/"
 SRC_URI="mirror://imagemagick/${MY_P2}.tar.bz2
 		 mirror://imagemagick/legacy/${MY_P2}.tar.bz2"
 
+# perl tests fail with userpriv
+RESTRICT="perl? ( userpriv )"
 LICENSE="imagemagick"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="bzip2 +corefonts djvu doc fontconfig fpx graphviz gs hdri jbig jpeg jpeg2k
-	lcms nocxx openexr openmp perl png q8 q32 raw svg tiff truetype X wmf xml zlib"
+IUSE="autotrace bzip2 +corefonts djvu doc fftw fontconfig fpx graphviz gs hdri
+	jbig jpeg jpeg2k lcms lqr nocxx openexr openmp perl png q8 q32 raw svg tiff
+	truetype X wmf xml zlib"
 
-RDEPEND="bzip2? ( app-arch/bzip2 )
+RDEPEND="
+	autotrace? ( >=media-gfx/autotrace-0.31.1 )
+	bzip2? ( app-arch/bzip2 )
 	djvu? ( app-text/djvu )
+	fftw? ( sci-libs/fftw )
 	fontconfig? ( media-libs/fontconfig )
 	fpx? ( media-libs/libfpx )
 	graphviz? ( >=media-gfx/graphviz-2.6 )
@@ -31,6 +37,7 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 	jpeg? ( >=media-libs/jpeg-6b )
 	jpeg2k? ( media-libs/jasper )
 	lcms? ( >=media-libs/lcms-1.06 )
+	lqr? ( >=media-libs/liblqr-0.1.0 )
 	openexr? ( media-libs/openexr )
 	perl? ( >=dev-lang/perl-5.8.6-r6 !=dev-lang/perl-5.8.7 )
 	png? ( media-libs/libpng )
@@ -121,8 +128,10 @@ src_configure() {
 		--with-gs-font-dir="${EPREFIX}"/usr/share/fonts/default/ghostscript \
 		$(use_enable hdri) \
 		$(use_with !nocxx magick-plus-plus) \
+		$(use_with autotrace) \
 		$(use_with bzip2 bzlib) \
 		$(use_with djvu) \
+		$(use_with fftw) \
 		$(use_with fontconfig) \
 		$(use_with fpx) \
 		$(use_with gs dps) \
@@ -144,8 +153,9 @@ src_configure() {
 }
 
 src_test() {
-	# make check only works after make install,
-	# --> only run if this version is already installed
+	einfo "please note that the tests will only be run when the installed"
+	einfo "version and current emerging version are the same"
+
 	if has_version ~${CATEGORY}/${P} ; then
 		emake -j1 check || die "make check failed"
 	fi
