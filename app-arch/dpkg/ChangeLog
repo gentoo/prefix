@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/dpkg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.99 2009/08/13 21:51:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.100 2009/08/15 14:22:30 jer Exp $
+
+  15 Aug 2009; Jeroen Roovers <jer@gentoo.org> dpkg-1.15.2.ebuild,
+  dpkg-1.15.3.ebuild, dpkg-1.15.3.1.ebuild:
+  Do not check for selinux at all, ever (bug #278169 comment #14).
 
   13 Aug 2009; Jeroen Roovers <jer@gentoo.org>
   -files/dpkg-1.14.12-nls.patch, -files/dpkg-1.14.16.6-check-PATH.patch,

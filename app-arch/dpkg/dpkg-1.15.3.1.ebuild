@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.15.3.1.ebuild,v 1.2 2009/08/13 21:51:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.15.3.1.ebuild,v 1.3 2009/08/15 14:22:30 jer Exp $
 
 inherit eutils multilib autotools
 
@@ -40,6 +40,7 @@ src_compile() {
 		$(use_with bzip2 bz2lib) \
 		$(use_enable nls) \
 		$(use_with zlib) \
+		--without-selinux \
 		--without-start-stop-daemon \
 		|| die
 	emake || die
