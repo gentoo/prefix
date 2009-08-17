@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/ftjam
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ftjam/ChangeLog,v 1.12 2008/08/03 08:35:40 dirtyepic Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ftjam/ChangeLog,v 1.13 2009/08/13 04:40:31 dirtyepic Exp $
+
+*ftjam-2.5.3_rc2-r1 (13 Aug 2009)
+
+  13 Aug 2009; Ryan Hill <dirtyepic@gentoo.org> +ftjam-2.5.3_rc2-r1.ebuild,
+  +files/ftjam-2.5.3-debug-commandline.patch,
+  +files/ftjam-2.5.3-false-flags.patch:
+  Revision bump. Respect CC (bug #244002), CFLAGS (bug #240276), and LDFLAGS
+  (bug #281210) for the jam part of the build.
 
   03 Aug 2008; Ryan Hill <dirtyepic@gentoo.org>
   +files/ftjam-2.5.3-i-hate-yacc.patch, ftjam-2.5.3_rc2.ebuild:
