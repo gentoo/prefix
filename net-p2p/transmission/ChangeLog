@@ -1,6 +1,16 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.87 2009/07/12 16:12:46 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.89 2009/08/13 06:51:56 ssuominen Exp $
+
+  13 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  transmission-1.73.ebuild, metadata.xml:
+  USE dht wrt #278393, thanks to Jeroen Roovers and Mark A. Rada.
+
+*transmission-1.73 (13 Aug 2009)
+
+  13 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +transmission-1.73.ebuild:
+  Version bump.
 
   12 Jul 2009; Samuli Suominen <ssuominen@gentoo.org>
   transmission-1.72.ebuild:
