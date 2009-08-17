@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/mcabber/mcabber-0.9.9-r1.ebuild,v 1.1 2009/07/30 11:47:41 wschlich Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/mcabber/mcabber-0.9.9-r1.ebuild,v 1.2 2009/08/08 22:02:12 arfrever Exp $
 
 inherit flag-o-matic
 
@@ -31,7 +31,7 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 src_compile() {
-	use crypt && x86 && append-flags -D_FILE_OFFSET_BITS=64 # bug #277888
+	use crypt && append-flags -D_FILE_OFFSET_BITS=64 # bug #277888
 	econf \
 		$(use_enable crypt gpgme) \
 		$(use_enable otr) \
