@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/supybot-0.83.4.1.ebuild,v 1.1 2009/06/28 21:09:50 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/supybot-0.83.4.1.ebuild,v 1.2 2009/08/05 21:19:00 maekke Exp $
 
 NEED_PYTHON=2.3
 

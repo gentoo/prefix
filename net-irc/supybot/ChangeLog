@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/supybot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/ChangeLog,v 1.29 2009/06/28 21:09:50 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/supybot/ChangeLog,v 1.30 2009/08/05 21:19:00 maekke Exp $
+
+  05 Aug 2009; Markus Meier <maekke@gentoo.org> supybot-0.83.4.1.ebuild:
+  x86 stable, bug #279404
 
 *supybot-0.83.4.1 (28 Jun 2009)
 
