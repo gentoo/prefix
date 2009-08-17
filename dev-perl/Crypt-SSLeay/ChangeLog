@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Crypt-SSLeay
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-SSLeay/ChangeLog,v 1.65 2009/03/26 12:26:32 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-SSLeay/ChangeLog,v 1.66 2009/08/16 09:35:23 tove Exp $
+
+  16 Aug 2009; Torsten Veller <tove@gentoo.org> -files/rt-15241.patch:
+  Remove unused patch
 
   26 Mar 2009; Raúl Porcel <armin76@gentoo.org> Crypt-SSLeay-0.57.ebuild:
   m68k love, thanks to kolla for testing
