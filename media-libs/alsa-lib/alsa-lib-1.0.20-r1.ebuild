@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.20-r1.ebuild,v 1.2 2009/08/01 14:44:02 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.20-r1.ebuild,v 1.6 2009/08/17 05:02:38 jer Exp $
 
 inherit eutils libtool
 
