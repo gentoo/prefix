@@ -30,7 +30,7 @@ pkg_setup() {
 }
 
 src_unpack() {
-	PATCHES="${FILESDIR}"/${PN}-1.0.5-winnt.patch
+	#PATCHES="${FILESDIR}"/${PN}-1.0.5-winnt.patch
 
 	x-modular_src_unpack
 }
