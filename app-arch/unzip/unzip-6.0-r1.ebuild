@@ -50,7 +50,7 @@ src_compile() {
 		i?86*-dragonfly*)    TARGET=freebsd ;; # mislabelled bsd with x86 asm
 		*bsd* | *dragonfly*) TARGET=bsd ;;
 		*-darwin*)           TARGET=macosx ;;
-		*-solaris*)          TARGET=solaris ;;
+		*-solaris*)          TARGET=generic ;;
 		mips-sgi-irix*)      TARGET=sgi ;;
 		*-interix*)          TARGET=gcc; append-flags "-DUNIX" ;;
 		*-aix*)              TARGET=gcc ;;
