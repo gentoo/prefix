@@ -1,0 +1,25 @@
+The framework build of Python on the Mac provides a pythonw for doing
+graphical applications.
+
+--- python.eselect-20090606
++++ python.eselect-20090606
+@@ -27,7 +27,7 @@
+ # Try to remove python and python.1 symlinks
+ remove_symlinks() {
+ 	local symlink symlink_target symlink_target_found
+-	rm -f "${INTERPRETER_PATH}"{idle,pydoc,python,python-config} &>/dev/null && \
++	rm -f "${INTERPRETER_PATH}"{idle,pydoc,python,pythonw,python-config} &>/dev/null && \
+ 	rm -f "${MAN_PATH}"python.1{,.gz,.bz2,.lzma} &>/dev/null
+ 	for symlink in "${INTERPRETER_PATH}python"?; do
+ 		[[ ! -L "${symlink}" ]] && continue
+@@ -86,6 +86,10 @@
+ 		if [[ -f "${target/python/2to3-}" ]]; then
+ 			ln -nfs "${target/python/2to3-}" 2to3
+ 		fi
++		# for Mac framework builds
++		if [[ -f "${target/python/pythonw}" ]] ; then
++			ln -nfs "${target/python/pythonw}" pythonw
++		fi
+ 
+ 		popd 1>/dev/null
+ 	else

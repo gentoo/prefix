@@ -6,7 +6,7 @@ inherit eutils prefix
 
 DESCRIPTION="Manages multiple Python versions"
 HOMEPAGE="http://www.gentoo.org"
-SRC_URI="mirror://gentoo/python.eselect-${PVR}.bz2"
+SRC_URI="mirror://gentoo/python.eselect-${PV}.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -18,11 +18,12 @@ RDEPEND=">=app-admin/eselect-1.0.2"
 src_unpack() {
 	unpack ${A}
 	cd "${WORKDIR}"
+	epatch "${FILESDIR}"/${P}-mac.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
-	eprefixify "${WORKDIR}"/python.eselect-${PVR}
+	eprefixify "${WORKDIR}"/python.eselect-${PV}
 }
 
 src_install() {
 	insinto /usr/share/eselect/modules
-	newins "${WORKDIR}/python.eselect-${PVR}" python.eselect || die "newins python.eselect failed"
+	newins "${WORKDIR}/python.eselect-${PV}" python.eselect || die "newins python.eselect failed"
 }
