@@ -1,6 +1,27 @@
 # ChangeLog for app-mobilephone/gnokii
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/ChangeLog,v 1.94 2009/06/16 15:21:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/ChangeLog,v 1.97 2009/08/16 10:09:49 mrness Exp $
+
+*gnokii-9999 (16 Aug 2009)
+*gnokii-0.6.27-r4 (16 Aug 2009)
+
+  16 Aug 2009; Alin Năstac <mrness@gentoo.org>
+  +files/gnokii-9999-icon.patch, +files/gnokii-9999-translations.patch,
+  -gnokii-0.6.27-r3.ebuild, +gnokii-0.6.27-r4.ebuild, +gnokii-9999.ebuild:
+  Add git version and migrate to EAPI 2 (#281596).
+
+*gnokii-0.6.27-r3 (15 Aug 2009)
+
+  15 Aug 2009; Alin Năstac <mrness@gentoo.org>
+  -files/gnokii-0.6.26-qa-fixes.patch, +files/gnokii-0.6.27-TP-PI.patch,
+  -gnokii-0.6.26-r2.ebuild, +gnokii-0.6.27-r3.ebuild:
+  Drop ppc64 keyword (#234787). Fix bug in status report reading (#278715).
+
+  15 Aug 2009; Alin Năstac <mrness@gentoo.org>
+  -files/gnokii-0.6.22-locale.patch, -files/gnokii-0.6.22-xmandir.patch,
+  -gnokii-0.6.22-r2.ebuild, gnokii-0.6.26-r2.ebuild,
+  gnokii-0.6.27-r2.ebuild:
+  Add smstools blocker dependency atom (#277301).
 
   16 Jun 2009; Jeroen Roovers <jer@gentoo.org> gnokii-0.6.27-r2.ebuild:
   Stable for HPPA (bug #234787).

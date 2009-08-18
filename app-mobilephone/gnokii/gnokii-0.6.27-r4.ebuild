@@ -1,16 +1,25 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/gnokii-0.6.27-r2.ebuild,v 1.10 2009/08/15 09:08:39 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/gnokii-0.6.27-r4.ebuild,v 1.1 2009/08/16 10:09:49 mrness Exp $
+
+EAPI=2
 
 inherit eutils linux-info autotools
 
 DESCRIPTION="user space driver and tools for use with mobile phones"
 HOMEPAGE="http://www.gnokii.org/"
-SRC_URI="http://www.gnokii.org/download/${PN}/${P}.tar.bz2"
+if [ "$PV" != "9999" ]; then
+	SRC_URI="http://www.gnokii.org/download/${PN}/${P}.tar.bz2"
+	KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
+else
+	SRC_URI=""
+	KEYWORDS=""
+	EGIT_REPO_URI="git://git.savannah.nongnu.org/gnokii.git"
+	inherit git
+fi
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="nls bluetooth ical irda sms postgres mysql usb X debug"
 
 RDEPEND="!app-mobilephone/smstools
@@ -37,19 +46,22 @@ CONFIG_CHECK="UNIX98_PTYS"
 MY_AVAILABLE_LINGUAS=" cs de et fi fr it nl pl pt sk sl sv zh_CN"
 IUSE="${IUSE} ${MY_AVAILABLE_LINGUAS// / linguas_}"
 
-src_unpack() {
-	unpack ${A}
-
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-icon.patch
-	epatch "${FILESDIR}"/${P}-disable-database.patch
-
-	epatch "${FILESDIR}"/${P}-darwin.patch
+src_prepare() {
+	if [ "$PV" != "9999" ]; then
+	    epatch "${FILESDIR}"/${P}-icon.patch
+	    epatch "${FILESDIR}"/${P}-disable-database.patch
+	    epatch "${FILESDIR}"/${P}-TP-PI.patch
+		epatch "${FILESDIR}"/${P}-darwin.patch
+	else
+	    epatch "${FILESDIR}"/${P}-icon.patch
+	    epatch "${FILESDIR}"/${P}-translations.patch
+	    intltoolize --force --copy --automake || die "intltoolize error"
+	fi
 
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	strip-linguas ${MY_AVAILABLE_LINGUAS}
 
 	local config_xdebug="--disable-xdebug"
@@ -72,8 +84,6 @@ src_compile() {
 		--disable-unix98test \
 		--enable-libpcsclite \
 		|| die "configure failed"
-
-	emake || die "make failed"
 }
 
 src_install() {
@@ -105,4 +115,10 @@ pkg_postinst() {
 	elog "Make sure the user that runs gnokii has read/write access to the device"
 	elog "which your phone is connected to."
 	elog "The simple way of doing that is to add your user to the uucp group."
+	if [ "$PV" == "9999" ]; then
+	    elog "This is the GIT version of ${PN}. It is experimental but may have important bug fixes."
+	    elog "You can keep track of the most recent commits at:"
+	    elog "    http://git.savannah.gnu.org/cgit/gnokii.git/"
+	    elog "Whenever there is a change you are interested in, you can re-emerge ${P}."
+	fi
 }
