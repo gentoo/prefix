@@ -10,7 +10,7 @@ DESCRIPTION="user space driver and tools for use with mobile phones"
 HOMEPAGE="http://www.gnokii.org/"
 if [ "$PV" != "9999" ]; then
 	SRC_URI="http://www.gnokii.org/download/${PN}/${P}.tar.bz2"
-	KEYWORDS="~amd64 ~hppa ~ppc ~ppc64 ~sparc ~x86"
+	KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 else
 	SRC_URI=""
 	KEYWORDS=""
