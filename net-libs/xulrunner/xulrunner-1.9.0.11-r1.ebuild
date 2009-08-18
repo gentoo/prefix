@@ -53,7 +53,7 @@ src_prepare() {
 	epatch "${WORKDIR}"/patch
 
 	epatch "${FILESDIR}"/${PN}-1.9-no_sunstudio.patch # breaks sunstudio
-	epatch "${FILESDIR}"/${PN}-1.9-solaris64.patch
+#	epatch "${FILESDIR}"/${PN}-1.9-solaris64.patch
 	epatch "${FILESDIR}"/${PN}-1.9_beta5-prefix.patch
 	eprefixify \
 		extensions/java/xpcom/interfaces/org/mozilla/xpcom/Mozilla.java \
