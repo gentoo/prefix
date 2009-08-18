@@ -1,0 +1,72 @@
+- don't mess with arch flags
+- use our own libtool
+- avoid rm complaining it has nothing to remove (xargs -r GNU extension)
+
+--- configure.in
++++ configure.in
+@@ -1547,11 +1547,6 @@
+ case $ac_sys_system/$ac_sys_release in
+   Darwin/@<:@01567@:>@\..*) 
+     LIBTOOL_CRUFT="-framework System -lcc_dynamic"
+-    if test "${enable_universalsdk}"; then
+-	    :
+-    else
+-	LIBTOOL_CRUFT="${LIBTOOL_CRUFT} -arch_only `arch`"
+-    fi
+     LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -install_name $(PYTHONFRAMEWORKINSTALLDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+     LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -compatibility_version $(VERSION) -current_version $(VERSION)';;
+   Darwin/*)
+@@ -1557,7 +1557,7 @@
+         else 
+             LIBTOOL_CRUFT=""
+     fi
+-    LIBTOOL_CRUFT=$LIBTOOL_CRUFT" -lSystem -lSystemStubs -arch_only `arch`"
++    LIBTOOL_CRUFT=$LIBTOOL_CRUFT" -lSystem -lSystemStubs"
+     LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -install_name $(PYTHONFRAMEWORKINSTALLDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+     LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -compatibility_version $(VERSION) -current_version $(VERSION)';;
+ esac
+--- configure
++++ configure
+@@ -13186,11 +13186,6 @@
+ case $ac_sys_system/$ac_sys_release in
+   Darwin/[01567]\..*)
+     LIBTOOL_CRUFT="-framework System -lcc_dynamic"
+-    if test "${enable_universalsdk}"; then
+-	    :
+-    else
+-	LIBTOOL_CRUFT="${LIBTOOL_CRUFT} -arch_only `arch`"
+-    fi
+     LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -install_name $(PYTHONFRAMEWORKINSTALLDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+     LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -compatibility_version $(VERSION) -current_version $(VERSION)';;
+   Darwin/*)
+@@ -13196,7 +13196,7 @@
+         else
+             LIBTOOL_CRUFT=""
+     fi
+-    LIBTOOL_CRUFT=$LIBTOOL_CRUFT" -lSystem -lSystemStubs -arch_only `arch`"
++    LIBTOOL_CRUFT=$LIBTOOL_CRUFT" -lSystem -lSystemStubs"
+     LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -install_name $(PYTHONFRAMEWORKINSTALLDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
+     LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -compatibility_version $(VERSION) -current_version $(VERSION)';;
+ esac
+--- Makefile.pre.in
++++ Makefile.pre.in
+@@ -442,7 +442,7 @@
+ 			-compatibility_version $(VERSION) \
+ 			-current_version $(VERSION); \
+         else \
+-		/usr/bin/libtool -o $(LDLIBRARY) -dynamic $(OTHER_LIBTOOL_OPT) $(LIBRARY) \
++		libtool -o $(LDLIBRARY) -dynamic $(OTHER_LIBTOOL_OPT) $(LIBRARY) \
+ 			@LIBTOOL_CRUFT@ ;\
+ 	fi
+ 	$(INSTALL) -d -m $(DIRMODE)  \
+--- Mac/PythonLauncher/Makefile.in
++++ Mac/PythonLauncher/Makefile.in
+@@ -55,7 +55,7 @@
+ 		--resource=$(srcdir)/factorySettings.plist \
+ 		--plist Info.plist \
+ 		build
+-	find "Python Launcher.app" -name '.svn' -print0 | xargs -0 rm -r
++	find "Python Launcher.app" -name '.svn' -print0 | xargs -r -0 rm -r
+ 		
+ 
+ FileSettings.o: $(srcdir)/FileSettings.m

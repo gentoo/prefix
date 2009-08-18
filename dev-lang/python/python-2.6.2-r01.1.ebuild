@@ -27,7 +27,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="2.6"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb build doc elibc_uclibc examples gdbm ipv6 ncurses readline sqlite ssl +threads tk ucs2 wininst +xml"
+IUSE="aqua berkdb build doc elibc_uclibc examples gdbm ipv6 ncurses readline sqlite ssl +threads tk ucs2 wininst +xml"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes,cjkcodecs}
 #       do not conflict with the ones in python proper. - liquidx
@@ -82,21 +82,25 @@ src_prepare() {
 		rm Lib/distutils/command/wininst-*.exe
 	fi
 
+	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
+
 	# build static for mint
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${P}-mint.patch
 
 	# python defaults to using .so files, however they are bundles
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
-	# python doesn't build a libpython2.6.dylib by itself...
-	epatch "${FILESDIR}"/${PN}-2.6-darwin-libpython2.6.patch
-	# and to build this lib, we need -fno-common, which python doesn't use, and
-	# to have _NSGetEnviron being used, which by default it isn't...
+	# need this to have _NSGetEnviron being used, which by default isn't...
 	[[ ${CHOST} == *-darwin* ]] && \
-		append-flags -fno-common -DWITH_NEXT_FRAMEWORK
-
-	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
-
+		append-flags -DWITH_NEXT_FRAMEWORK
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
+	# for Mac weenies
+	epatch "${FILESDIR}"/${P}-mac.patch
+	epatch "${FILESDIR}"/${P}-mac-just-prefix.patch
+	sed -i -e "s:@@APPLICATIONS_DIR@@:${EPREFIX}/Applications:g" \
+		Mac/Makefile.in \
+		Mac/IDLE/Makefile.in \
+		Mac/Tools/Doc/setup.py \
+		Mac/PythonLauncher/Makefile.in
 
 	# on hpux, use gcc to link if used to compile
 #	epatch "${FILESDIR}"/${PN}-2.5.1-hpux-ldshared.patch
@@ -217,9 +221,15 @@ src_configure() {
 
 	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
 
+	# we need this to get pythonw, the GUI version of python
+	# --enable-framework and --enable-shared are mutually exclusive:
+	# http://bugs.python.org/issue5809
+	use aqua \
+		&& myconf="${myconf} --enable-framework=${EPREFIX}/usr/lib" \
+		|| myconf="${myconf} --enable-shared"
+
 	econf \
 		--with-fpectl \
-		--enable-shared \
 		$(use_enable ipv6) \
 		$(use_with threads) \
 		--infodir='${prefix}'/share/info \
@@ -273,7 +283,72 @@ src_install() {
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${PYVER}/lib-dynload/
 	# do not make multiple targets in parallel when there are broken
 	# sharedmods (during bootstrap), would build them twice in parallel.
-	emake DESTDIR="${D}" altinstall || die "emake altinstall failed"
+	if use aqua ; then
+		emake -j1 CC=$(tc-getCC) DESTDIR="${D}" frameworkinstall || die "emake frameworkinstall failed"
+		# don't install the "Current" symlinks, will always conflict
+		local fwdir="${EPREFIX}"/usr/lib/Python.framework
+		for sym in Headers Resources Python Versions/Current ; do
+			rm "${D}${fwdir}"/${sym} || die "missing symlink ${fwdir}/${sym}?"
+		done
+		# basically we don't like the framework stuff at all, so just add some
+		# symlinks to make our life easier
+		mkdir -p "${ED}"/usr/share/man/man1
+		ln -s "${fwdir}"/Versions/${PYVER}/share/man/man1/python.1 \
+			"${ED}"/usr/share/man/man1/
+		mkdir -p "${ED}"/usr/bin
+		ln -s "${fwdir}"/Versions/${PYVER}/bin/2to3 \
+			"${ED}"/usr/bin/
+		mkdir -p "${ED}"/usr/include
+		ln -s "${fwdir}"/Versions/${PYVER}/include/python${PYVER} \
+			"${ED}"/usr/include/
+		mkdir -p "${ED}"/usr/lib/python${PYVER}
+		# can't symlink the entire dir, because a real dir already exists on
+		# upgrade (site-packages)
+		for f in "${D}${fwdir}"/Versions/${PYVER}/lib/python${PYVER}/* ; do
+			ln -s "${f#${D}}" "${ED}"/usr/lib/python${PYVER}/
+		done
+		# avoid framework incompatability, degrade to a normal UNIX lib
+		mkdir -p "${ED}"/usr/$(get_libdir)
+		cp "${D}${fwdir}"/Versions/${PYVER}/Python \
+			"${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
+		chmod u+w "${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
+		install_name_tool \
+			-id "${EPREFIX}"/usr/$(get_libdir)/libpython${PYVER}.dylib \
+			"${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
+		chmod u-w "${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
+		cp "${S}"/libpython${PYVER}.a \
+			"${ED}"/usr/$(get_libdir)/
+		sed -i -e '/^LINKFORSHARED=/s/_PyMac_Error.*$/PyMac_Error/' \
+			"${D}${fwdir}"/Versions/${PYVER}/lib/python${PYVER}/config/Makefile
+		# remove unversioned files (that are not made versioned below)
+		for f in python python-config pythonw ; do
+			rm -f "${ED}"/usr/bin/${f}
+		done
+		rm -f "${ED}"/usr/bin/smtpd${PYVER}.py
+		# add missing version.plist file
+		mkdir -p "${D}${fwdir}"/Resources
+		cat > "${D}${fwdir}"/Resources/version.plist << EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BuildVersion</key>
+	<string>1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>${PV}</string>
+	<key>CFBundleVersion</key>
+	<string>${PV}</string>
+	<key>ProjectName</key>
+	<string>Python</string>
+	<key>SourceVersion</key>
+	<string>${PV}</string>
+</dict>
+</plist>
+EOF
+	else
+		emake DESTDIR="${D}" altinstall || die "emake altinstall failed"
+	fi
 	emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
 
 	mv "${ED}"/usr/bin/python${PYVER}-config "${ED}"/usr/bin/python-config-${PYVER}
