@@ -30,7 +30,7 @@ pkg_setup() {
 
 src_unpack() {
 	PATCHES=(
-		"${FILESDIR}"/${PN}-1.0.5-darwin.patch
+		#"${FILESDIR}"/${PN}-1.0.5-darwin.patch
 	)
 
 	if [[ ${CHOST} == *-winnt* ]]; then
