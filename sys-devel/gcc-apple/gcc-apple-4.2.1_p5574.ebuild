@@ -107,6 +107,11 @@ src_unpack() {
 
 	cd "${WORKDIR}"/libstdcxx-${LIBSTDCXX_APPLE_VERSION}/libstdcxx
 	epatch "${FILESDIR}"/libstdc++-${LIBSTDCXX_APPLE_VERSION}.patch
+	
+	# until this is tested not to break on earlier versions, apply it
+	# conditionally
+	[[ ${CHOST} == *-darwin10 ]] && \
+		epatch "${FILESDIR}"/${PN}-4.2.1_p5574-darwin10.patch
 }
 
 src_compile() {

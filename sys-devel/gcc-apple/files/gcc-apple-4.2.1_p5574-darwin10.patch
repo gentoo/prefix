@@ -1,0 +1,26 @@
+On Snow Leopard the perl script fails because the object files aren't
+placed in some .libs dir, it seems as if no libtool is used here at all,
+so fix it by not looking in .libs dir
+
+--- libstdcxx-16/libstdcxx/libstdc++-v3/src/Makefile.am
++++ libstdcxx-16/libstdcxx/libstdc++-v3/src/Makefile.am
+@@ -53,7 +53,7 @@
+ 		$(libstdc___la_OBJECTS) $(libstdc___la_LIBADD)
+ 	perl ${glibcxx_srcdir}/scripts/make_exports.pl \
+ 	  libstdc++-symbol.ver \
+-	  $(libstdc___la_OBJECTS:%.lo=.libs/%.o) \
++	  $(libstdc___la_OBJECTS:%.lo=%.o) \
+ 	 `echo $(libstdc___la_LIBADD) | \
+ 	    sed 's,/\([^/.]*\)\.la,/.libs/\1.a,g'` \
+ 	 > $@ || (rm -f $@ ; exit 1)
+--- libstdcxx-16/libstdcxx/libstdc++-v3/src/Makefile.in
++++ libstdcxx-16/libstdcxx/libstdc++-v3/src/Makefile.in
+@@ -689,7 +689,7 @@
+ @ENABLE_SYMVERS_DARWIN_EXPORT_TRUE@@ENABLE_SYMVERS_GNU_FALSE@		$(libstdc___la_OBJECTS) $(libstdc___la_LIBADD)
+ @ENABLE_SYMVERS_DARWIN_EXPORT_TRUE@@ENABLE_SYMVERS_GNU_FALSE@	perl ${glibcxx_srcdir}/scripts/make_exports.pl \
+ @ENABLE_SYMVERS_DARWIN_EXPORT_TRUE@@ENABLE_SYMVERS_GNU_FALSE@	  libstdc++-symbol.ver \
+-@ENABLE_SYMVERS_DARWIN_EXPORT_TRUE@@ENABLE_SYMVERS_GNU_FALSE@	  $(libstdc___la_OBJECTS:%.lo=.libs/%.o) \
++@ENABLE_SYMVERS_DARWIN_EXPORT_TRUE@@ENABLE_SYMVERS_GNU_FALSE@	  $(libstdc___la_OBJECTS:%.lo=%.o) \
+ @ENABLE_SYMVERS_DARWIN_EXPORT_TRUE@@ENABLE_SYMVERS_GNU_FALSE@	 `echo $(libstdc___la_LIBADD) | \
+ @ENABLE_SYMVERS_DARWIN_EXPORT_TRUE@@ENABLE_SYMVERS_GNU_FALSE@	    sed 's,/\([^/.]*\)\.la,/.libs/\1.a,g'` \
+ @ENABLE_SYMVERS_DARWIN_EXPORT_TRUE@@ENABLE_SYMVERS_GNU_FALSE@	 > $@ || (rm -f $@ ; exit 1)
