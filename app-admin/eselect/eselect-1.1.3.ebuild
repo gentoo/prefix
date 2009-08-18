@@ -29,12 +29,6 @@ RDEPEND="${RDEPEND}
 #PDEPEND="emacs? ( app-emacs/gentoo-syntax )
 #	vim-syntax? ( app-vim/eselect-syntax )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.1.1-prefix.patch
-}
-
 src_compile() {
 	econf
 	emake || die "emake failed"
