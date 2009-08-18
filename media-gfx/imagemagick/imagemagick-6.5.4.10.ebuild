@@ -115,7 +115,7 @@ src_configure() {
 		myconf="${myconf} --disable-openmp"
 	fi
 
-	use truetype && myconf="${myconf} $(use_with corefonts windows-font-dir /usr/share/fonts/corefonts)"
+	use truetype && myconf="${myconf} $(use_with corefonts windows-font-dir	"${EPREFIX}"/usr/share/fonts/corefonts)"
 
 	econf \
 		${myconf} \
