@@ -1,6 +1,16 @@
 # ChangeLog for net-misc/wget
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.101 2008/08/16 15:39:06 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.104 2009/08/18 22:09:21 fauli Exp $
+
+  18 Aug 2009; Christian Faulhammer <fauli@gentoo.org> wget-1.11.4.ebuild:
+  stable x86, bug 281876
+
+  18 Aug 2009; Jeroen Roovers <jer@gentoo.org> wget-1.11.3.ebuild:
+  Stable for HPPA (bug #281876).
+
+  18 Aug 2009; Mike Frysinger <vapier@gentoo.org> wget-1.11.1.ebuild,
+  wget-1.11.3.ebuild, wget-1.11.4.ebuild:
+  Drop USE=socks5 since it no longer exists #281866 by jackieku.
 
 *wget-1.11.4 (16 Aug 2008)
 
