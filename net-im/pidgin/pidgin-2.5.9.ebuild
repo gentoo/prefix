@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.7.ebuild,v 1.3 2009/08/13 21:22:46 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.9.ebuild,v 1.2 2009/08/18 22:31:37 fauli Exp $
 
 EAPI=2
 
-inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2
+inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 autotools
 
 DESCRIPTION="GTK Instant Messenger client"
 HOMEPAGE="http://pidgin.im/"
@@ -12,8 +12,8 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="bonjour dbus debug doc eds gadu gnutls +gstreamer meanwhile"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+IUSE="aqua bonjour dbus debug doc eds gadu gnutls +gstreamer meanwhile"
 IUSE="${IUSE} networkmanager nls perl silc tcl tk spell qq gadu"
 IUSE="${IUSE} +gtk sasl ncurses groupwise prediction zephyr" # mono"
 
@@ -84,10 +84,8 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.5.4-icq.patch
-
-	# Fix intltoolize broken file, see upstream #577133
-	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i "${S}/po/Makefile.in.in" || die "sed failed"
+	epatch "${FILESDIR}"/${PN}-2.5.8-gtkdocklet-quartz.patch
+	eautoreconf
 }
 
 src_configure() {
@@ -145,6 +143,10 @@ src_configure() {
 		$(use_enable gtk startup-notification) \
 		$(use_enable gtk screensaver) \
 		$(use_enable gtk sm) \
+		$(use_enable aqua gtkstatusicon) \
+		$(use_enable !aqua gestures) \
+		$(use_enable !aqua startup-notification) \
+		$(use_with !aqua x) \
 		$(use_enable tcl) \
 		$(use_enable spell gtkspell) \
 		$(use_enable tk) \
