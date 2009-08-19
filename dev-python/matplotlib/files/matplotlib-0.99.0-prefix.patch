@@ -1,0 +1,42 @@
+--- setupext.py
++++ setupext.py
+@@ -46,19 +46,18 @@
+ import subprocess
+ 
+ basedir = {
+-    'win32'  : ['win32_static',],
+-    'linux2' : ['/usr/local', '/usr'],
+-    'linux'  : ['/usr/local', '/usr',],
+-    'cygwin' : ['/usr/local', '/usr',],
+-    'darwin' : ['/sw/lib/freetype2', '/sw/lib/freetype219', '/usr/local',
+-                '/usr', '/sw'],
+-    'freebsd4' : ['/usr/local', '/usr'],
+-    'freebsd5' : ['/usr/local', '/usr'],
+-    'freebsd6' : ['/usr/local', '/usr'],
+-    'sunos5' : [os.getenv('MPLIB_BASE') or '/usr/local',],
+-    'gnukfreebsd5' : ['/usr/local', '/usr'],
+-    'gnukfreebsd6' : ['/usr/local', '/usr'],
+-    'aix5' : ['/usr/local'],
++    'win32'  : [],
++    'linux2' : [],
++    'linux'  : [],
++    'cygwin' : [],
++    'darwin' : [],
++    'freebsd4' : [],
++    'freebsd5' : [],
++    'freebsd6' : [],
++    'sunos5' : [],
++    'gnukfreebsd5' : [],
++    'gnukfreebsd6' : [],
++    'aix5' : [],
+ }
+ 
+ import sys, os, stat
+@@ -321,6 +320,7 @@
+ 
+     module.include_dirs.extend(incdirs)
+     module.include_dirs.append('.')
++    module.include_dirs.append(os.path.join(sys.prefix, 'include'))
+     module.library_dirs.extend(libdirs)
+ 
+ def getoutput(s):
