@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.3.ebuild,v 1.8 2009/08/16 11:16:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libvorbis/libvorbis-1.2.3.ebuild,v 1.9 2009/08/18 17:27:43 ssuominen Exp $
 
 EAPI=2
 MY_P=${P/_}
 inherit autotools flag-o-matic eutils toolchain-funcs
 
-DESCRIPTION="The Ogg Vorbis sound file format library with aoTuV patch"
+DESCRIPTION="The Ogg Vorbis sound file format library"
 HOMEPAGE="http://xiph.org/vorbis"
 SRC_URI="http://downloads.xiph.org/releases/vorbis/${P}.tar.gz"
 
