@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.267 2009/08/11 05:53:13 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.268 2009/08/18 10:07:54 caster Exp $
+
+*sun-jdk-1.6.0.16 (18 Aug 2009)
+
+  18 Aug 2009; Vlastimil Babka <caster@gentoo.org> -sun-jdk-1.5.0.19.ebuild,
+  -sun-jdk-1.6.0.13.ebuild, -sun-jdk-1.6.0.14.ebuild,
+  +sun-jdk-1.6.0.16.ebuild:
+  Version bump, fixes JDWP threadid problems. Remove old.
 
   11 Aug 2009; Markus Meier <maekke@gentoo.org> sun-jdk-1.5.0.20.ebuild,
   sun-jdk-1.6.0.15.ebuild:
