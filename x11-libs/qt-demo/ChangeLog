@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-demo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.24 2009/07/04 19:04:11 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.25 2009/08/18 12:54:31 jer Exp $
+
+  18 Aug 2009; Jeroen Roovers <jer@gentoo.org> qt-demo-4.5.1.ebuild:
+  Stable for HPPA too.
 
   04 Jul 2009; Markos Chandras <hwoarang@gentoo.org> qt-demo-4.5.2.ebuild:
   Remove qt-qt3support dependency ( bug # 276131 )
