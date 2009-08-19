@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.30-r1.ebuild,v 1.1 2009/07/25 18:29:30 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-kernel/linux-headers/linux-headers-2.6.30-r1.ebuild,v 1.2 2009/08/17 20:38:37 vapier Exp $
 
 ETYPE="headers"
 H_SUPPORTEDARCH="alpha amd64 arm cris hppa m68k mips ia64 ppc ppc64 s390 sh sparc x86"
@@ -13,7 +13,7 @@ SRC_URI="mirror://gentoo/gentoo-headers-base-${PV}.tar.lzma"
 
 KEYWORDS="~amd64-linux ~x86-linux"
 
-DEPEND="app-arch/lzma-utils"
+DEPEND="|| ( app-arch/xz-utils app-arch/lzma-utils )"
 RDEPEND=""
 
 S=${WORKDIR}/gentoo-headers-base-${PV}
