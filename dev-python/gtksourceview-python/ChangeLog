@@ -1,0 +1,86 @@
+# ChangeLog for dev-python/gtksourceview-python
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gtksourceview-python/ChangeLog,v 1.18 2009/05/10 21:41:55 eva Exp $
+
+*gtksourceview-python-2.26.0 (10 May 2009)
+
+  10 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gtksourceview-python-2.22.0.ebuild, -gtksourceview-python-2.24.0.ebuild,
+  +gtksourceview-python-2.26.0.ebuild:
+  New version for GNOME 2.26. Clean up old revisions.
+
+  28 Apr 2009; Raúl Porcel <armin76@gentoo.org>
+  gtksourceview-python-2.24.1.ebuild:
+  arm/sh stable
+
+  27 Apr 2009; Jeroen Roovers <jer@gentoo.org> gtksourceview-python-2.24.1:
+  Stable for HPPA (bug #260063).
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org>
+  gtksourceview-python-2.24.1.ebuild:
+  Stable on sparc, bug #260063
+
+  03 Apr 2009; Joseph Jezak <josejx@gentoo.org>
+  gtksourceview-python-2.24.1.ebuild:
+  Marked ppc/ppc64 stable for bug #262744.
+
+  27 Mar 2009; Jeroen Roovers <jer@gentoo.org>
+  gtksourceview-python-2.22.0.ebuild:
+  Stable for HPPA (bug #258040).
+
+  18 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  gtksourceview-python-2.24.1.ebuild:
+  alpha/ia64 stable wrt #260063
+
+  17 Mar 2009; Raúl Porcel <armin76@gentoo.org>
+  gtksourceview-python-2.22.0.ebuild:
+  ia64/sparc stable wrt #258040
+
+  15 Mar 2009; Markus Meier <maekke@gentoo.org>
+  gtksourceview-python-2.24.1.ebuild:
+  x86 stable, bug #260063
+
+  11 Mar 2009; Daniel Gryniewicz <dang@gentoo.org>
+  gtksourceview-python-2.24.1.ebuild:
+  Marked stable on amd64
+
+  08 Mar 2009; Markus Meier <maekke@gentoo.org>
+  gtksourceview-python-2.22.0.ebuild:
+  amd64/x86 stable, bug #258040
+
+  05 Mar 2009; Brent Baude <ranger@gentoo.org>
+  gtksourceview-python-2.22.0.ebuild:
+  Marking gtksourceview-python-2.22.0 ppc stable for bug 258040
+
+  03 Mar 2009; Brent Baude <ranger@gentoo.org>
+  gtksourceview-python-2.22.0.ebuild:
+  Marking gtksourceview-python-2.22.0 ppc64 stable for bug 258040
+
+  14 Feb 2009; Tobias Klausmann <klausman@gentoo.org>
+  gtksourceview-python-2.22.0.ebuild:
+  Stable on alpha, bug #258040
+
+*gtksourceview-python-2.24.1 (08 Jan 2009)
+
+  08 Jan 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +gtksourceview-python-2.24.1.ebuild:
+  Bump to 2.24.1.
+
+*gtksourceview-python-2.24.0 (19 Oct 2008)
+
+  19 Oct 2008; Gilles Dartiguelongue <eva@gentoo.org>
+  +gtksourceview-python-2.24.0.ebuild:
+  New version for GNOME 2.24.
+
+  19 Sep 2008; Arun Raghavan <ford_prefect@gentoo.org>
+  gtksourceview-python-2.22.0.ebuild:
+  Fix description to clarify which version of gtksourceview these bindings
+  are for
+
+*gtksourceview-python-2.22.0 (14 Sep 2008)
+
+  14 Sep 2008; Arun Raghavan <ford_prefect@gentoo.org> +metadata.xml,
+  +gtksourceview-python-2.22.0.ebuild:
+  Initial import of split gnome-python-desktop. This package installs
+  bindings for the gtksourceview library.
+
