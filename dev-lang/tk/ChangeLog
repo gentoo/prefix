@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.122 2009/05/07 19:08:18 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.123 2009/08/18 07:42:20 fauli Exp $
+
+  18 Aug 2009; Christian Faulhammer <fauli@gentoo.org> tk-8.5.7.ebuild:
+  stable x86, bug 280845
 
   07 May 2009; Tobias Klausmann <klausman@gentoo.org> tk-8.4.18-r1.ebuild:
   Stable on alpha, bug #268174
