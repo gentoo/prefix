@@ -1,5 +1,7 @@
---- configure.in.orig	2004-01-15 13:18:24.000000000 -0800
-+++ configure.in	2004-01-15 13:18:27.000000000 -0800
+Fix include path for newer PostgreSQL versions
+
+--- configure.in
++++ configure.in
 @@ -674,7 +674,9 @@
       LIB_PGSQL_DIR=$LIB_PGSQL
       LIB_PGSQL="$LIB_PGSQL -lpq"

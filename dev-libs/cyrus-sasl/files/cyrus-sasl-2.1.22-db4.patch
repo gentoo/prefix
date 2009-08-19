@@ -1,5 +1,9 @@
---- cyrus-sasl-2.1.22/cmulocal/berkdb.m4.orig	2007-10-02 10:10:07.000000000 -0700
-+++ cyrus-sasl-2.1.22/cmulocal/berkdb.m4	2007-10-02 10:28:14.000000000 -0700
+support new db versions
+
+http://bugs.gentoo.org/192753
+
+--- cyrus-sasl-2.1.22/cmulocal/berkdb.m4
++++ cyrus-sasl-2.1.22/cmulocal/berkdb.m4
 @@ -213,7 +213,7 @@
  	fi
  

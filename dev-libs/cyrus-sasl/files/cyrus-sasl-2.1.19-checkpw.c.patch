@@ -1,6 +1,9 @@
-diff -ur ../cyrus-sasl-2.1.19.orig/lib/Makefile.in ./lib/Makefile.in
---- ../cyrus-sasl-2.1.19.orig/lib/Makefile.in	2004-07-02 21:40:15.000000000 +0200
-+++ ./lib/Makefile.in	2004-09-07 13:21:22.746680576 +0200
+Support for crypted passwords
+
+http://bugs.gentoo.org/45181
+
+--- cyrus-sasl-2.1.19/lib/Makefile.in
++++ cyrus-sasl-2.1.19/lib/Makefile.in
 @@ -120,7 +120,7 @@
  JAVA_TRUE = @JAVA_TRUE@
  LDFLAGS = @LDFLAGS@
@@ -10,9 +13,8 @@ diff -ur ../cyrus-sasl-2.1.19.orig/lib/Makefile.in ./lib/Makefile.in
  LIBTOOL = @LIBTOOL@
  LIB_CRYPT = @LIB_CRYPT@
  LIB_DES = @LIB_DES@
-diff -ur ../cyrus-sasl-2.1.19.orig/lib/checkpw.c ./lib/checkpw.c
---- ../cyrus-sasl-2.1.19.orig/lib/checkpw.c	2004-03-17 14:58:13.000000000 +0100
-+++ ./lib/checkpw.c	2004-09-07 13:21:12.645916147 +0200
+--- cyrus-sasl-2.1.19/lib/checkpw.c
++++ cyrus-sasl-2.1.19/lib/checkpw.c
 @@ -94,6 +94,23 @@
  # endif
  #endif
