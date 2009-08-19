@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2
+inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 autotools
 
 DESCRIPTION="GTK Instant Messenger client"
 HOMEPAGE="http://pidgin.im/"
@@ -12,8 +12,8 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="bonjour dbus debug doc eds gadu gnutls +gstreamer meanwhile"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+IUSE="aqua bonjour dbus debug doc eds gadu gnutls +gstreamer meanwhile"
 IUSE="${IUSE} networkmanager nls perl silc tcl tk spell qq gadu"
 IUSE="${IUSE} +gtk sasl ncurses groupwise prediction zephyr" # mono"
 
@@ -83,6 +83,11 @@ pkg_setup() {
 	fi
 }
 
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-gtkdocklet-quartz.patch
+	eautoreconf
+}
+
 src_configure() {
 	# Stabilize things, for your own good
 	strip-flags
@@ -138,6 +143,10 @@ src_configure() {
 		$(use_enable gtk startup-notification) \
 		$(use_enable gtk screensaver) \
 		$(use_enable gtk sm) \
+		$(use_enable aqua gtkstatusicon) \
+		$(use_enable !aqua gestures) \
+		$(use_enable !aqua startup-notification) \
+		$(use_with !aqua x) \
 		$(use_enable tcl) \
 		$(use_enable spell gtkspell) \
 		$(use_enable tk) \
