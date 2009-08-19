@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0_pre1.ebuild,v 1.7 2009/08/05 12:22:28 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0_pre1.ebuild,v 1.8 2009/08/17 14:06:00 ssuominen Exp $
 
 EAPI=2
 inherit autotools eutils
@@ -28,6 +28,7 @@ RDEPEND=">=dev-libs/glib-2.6:2
 		x11-libs/libXdmcp
 		x11-libs/libSM )"
 DEPEND="${RDEPEND}
+	>=sys-devel/libtool-2
 	dev-util/pkgconfig
 	nls? ( sys-devel/gettext )"
 
