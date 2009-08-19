@@ -1,8 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/clustalw-1.83-r2.ebuild,v 1.4 2009/08/18 17:24:32 weaver Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/clustalw-1.83-r3.ebuild,v 1.1 2009/08/18 15:41:51 weaver Exp $
 
-inherit toolchain-funcs
+EAPI="2"
+
+inherit base toolchain-funcs
 
 DESCRIPTION="General purpose multiple alignment program for DNA and proteins"
 HOMEPAGE="http://www.embl-heidelberg.de/~seqanal/"
@@ -15,17 +17,15 @@ IUSE=""
 
 S="${WORKDIR}"/${PN}${PV}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	sed -i -e "s/CC	= cc/CC	= $(tc-getCC)/" \
-		-e "s/CFLAGS  = -c -O/CFLAGS  = -c ${CFLAGS}/" \
-		-e "s/LFLAGS	= -O -lm/LFLAGS	= -lm ${CFLAGS}/" makefile || die
-	sed -i -e "s%clustalw_help%/usr/share/doc/${PF}/clustalw_help%" clustalw.c || die
-}
+PATCHES=(
+	"${FILESDIR}"/${PV}-as-needed.patch
+)
 
-src_compile() {
-	emake || die
+src_prepare() {
+	base_src_prepare
+	sed -i -e "s/CC	= cc/CC	= $(tc-getCC)/" \
+		makefile || die
+	sed -i -e "s%clustalw_help%/usr/share/doc/${PF}/clustalw_help%" clustalw.c || die
 }
 
 src_install() {
