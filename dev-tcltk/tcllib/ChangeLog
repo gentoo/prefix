@@ -1,6 +1,9 @@
 # ChangeLog for dev-tcltk/tcllib
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/ChangeLog,v 1.25 2009/05/10 15:23:15 mescalinum Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/ChangeLog,v 1.26 2009/08/18 07:07:04 fauli Exp $
+
+  18 Aug 2009; Christian Faulhammer <fauli@gentoo.org> tcllib-1.11.1.ebuild:
+  stable x86, bug 281398
 
 *tcllib-1.11.1 (10 May 2009)
 
