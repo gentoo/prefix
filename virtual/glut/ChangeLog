@@ -1,0 +1,27 @@
+# ChangeLog for virtual/glut
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/glut/ChangeLog,v 1.7 2008/01/25 19:40:00 grobian Exp $
+
+  25 Jan 2008; Fabian Groffen <grobian@gentoo.org> glut-1.0.ebuild:
+  Dropped ppc-macos keyword, see you in prefix
+
+  23 Aug 2006; Sven Wegener <swegener@gentoo.org> glut-1.0.ebuild:
+  Virtual packages have no build-time dependencies.
+
+  17 Jul 2006; Fabian Groffen <grobian@gentoo.org> glut-1.0.ebuild:
+  Marked ~ppc-macos (bug #139735)
+
+  06 Jul 2006; Diego Pettenò <flameeyes@gentoo.org> glut-1.0.ebuild:
+  Add ~x86-fbsd keyword.
+
+  13 May 2006; Donnie Berkholz <spyderous@gentoo.org>; glut-1.0.ebuild:
+  Switch default provider to freeglut from glut. freeglut isn't stable on mips
+  or sh, or keyworded in x86-fbsd, so they will continue to fall back to glut
+  until they stabilize/keyword freeglut.
+
+*glut-1.0 (13 May 2006)
+
+  13 May 2006; Donnie Berkholz <spyderous@gentoo.org>; +metadata.xml,
+  +glut-1.0.ebuild:
+  Add another X11 new-style virtual, for the OpenGL utility toolkit.
+
