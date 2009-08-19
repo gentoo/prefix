@@ -1,6 +1,49 @@
 # ChangeLog for app-admin/eselect-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.30 2009/07/11 20:40:16 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.38 2009/08/17 10:33:40 aballier Exp $
+
+  17 Aug 2009; Alexis Ballier <aballier@gentoo.org>
+  eselect-python-20090814.ebuild:
+  restore fbsd keywords now that its fine
+
+*eselect-python-20090814 (14 Aug 2009)
+
+  14 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -eselect-python-20080521.ebuild, -eselect-python-20080925.ebuild,
+  -eselect-python-20090801.ebuild, -eselect-python-20090804.ebuild,
+  +eselect-python-20090814.ebuild:
+  Version bump.
+
+  13 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  eselect-python-20090804.ebuild:
+  Run `eselect python update` when no version of app-admin/eselect-python
+  was earlier installed (bug #281247).
+
+  05 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  eselect-python-20090804.ebuild:
+  Append -fno-PIC -fno-PIE to avoid problems with hardened compiler.
+
+*eselect-python-20090804 (04 Aug 2009)
+
+  04 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +eselect-python-20090804.ebuild:
+  Version bump (bug #279915).
+
+  03 Aug 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  eselect-python-20090801.ebuild:
+  FreeBSD doesn't like having as interpreter of a script another script,
+  unkeywording until fixed.
+
+  01 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  eselect-python-20090801.ebuild:
+  Use '/bin/bash' for wrapper scripts (bug #279875).
+
+*eselect-python-20090801 (01 Aug 2009)
+
+  01 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +eselect-python-20090801.ebuild:
+  Version bump. Make 'python' and 'python-config' scripts instead of
+  symlinks. Support .xz-compressed man pages (bug #276106).
 
   11 Jul 2009; Joseph Jezak <josejx@gentoo.org>
   eselect-python-20090606.ebuild:
