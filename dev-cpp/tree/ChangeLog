@@ -1,0 +1,19 @@
+# ChangeLog for dev-cpp/tree
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/tree/ChangeLog,v 1.3 2009/06/26 22:16:43 bicatali Exp $
+
+*tree-2.65 (26 Jun 2009)
+
+  26 Jun 2009; Sébastien Fabbro <bicatali@gentoo.org> +tree-2.65.ebuild:
+  Version bump
+
+  15 Apr 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/tree-2.62-test.patch, tree-2.62.ebuild:
+  Update test from upstream, closing bug #265430
+
+*tree-2.62 (07 Apr 2009)
+
+  07 Apr 2009; Sébastien Fabbro <bicatali@gentoo.org> +metadata.xml,
+  +tree-2.62.ebuild:
+  Initial import
+
