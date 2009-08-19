@@ -5,7 +5,7 @@
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular toolchain-funcs versionator
+inherit x-modular toolchain-funcs versionator eutils
 
 DESCRIPTION="Low-level pixel manipulation routines"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
@@ -51,6 +51,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/pixman-0.12.0-sse.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	eautoreconf
 	elibtoolize
