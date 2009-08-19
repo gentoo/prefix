@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8-r2.ebuild,v 1.2 2009/08/16 00:48:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8-r2.ebuild,v 1.3 2009/08/17 20:25:37 vapier Exp $
 
 inherit flag-o-matic eutils
 
@@ -52,6 +52,7 @@ src_compile() {
 		$(has_version '=sys-libs/readline-5*' && echo --with-system-readline) \
 		$(use_enable nls) \
 		$(use multitarget && echo --enable-targets=all) \
+		$(use_with expat) \
 		|| die
 	emake || die
 }
