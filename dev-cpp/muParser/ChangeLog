@@ -1,0 +1,44 @@
+# ChangeLog for dev-cpp/muParser
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/muParser/ChangeLog,v 1.10 2009/04/06 14:26:47 ranger Exp $
+
+  06 Apr 2009; Brent Baude <ranger@gentoo.org> muParser-1.30.ebuild:
+  Marking muParser-1.30 ~ppc for bug 215830
+
+*muParser-1.30 (09 Mar 2009)
+
+  09 Mar 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/muParser-1.30-build.patch, +muParser-1.30.ebuild:
+  Version bump
+
+  17 May 2008; Sébastien Fabbro <bicatali@gentoo.org> muParser-1.28.ebuild:
+  Fixed syntax error in RDEPEND
+
+  26 Apr 2008; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/muParser-1.28-gcc43.patch, metadata.xml, -muParser-1.25.ebuild,
+  muParser-1.28.ebuild:
+  Added gcc-4.3 patch, cleaning.
+
+  15 Mar 2008; Markus Rothe <corsair@gentoo.org> muParser-1.28.ebuild:
+  Added ~ppc64
+
+*muParser-1.28 (16 Aug 2007)
+
+  16 Aug 2007; Sébastien Fabbro <bicatali@gentoo.org>
+  +files/muParser-1.28-destdir.patch, metadata.xml, +muParser-1.28.ebuild:
+  Version bump. sci team taking over maintainership, closing bug #187434.
+
+  03 Nov 2006; Caleb Tennis <caleb@gentoo.org> muParser-1.25.ebuild:
+  Use new muParser build from gentooscience overlay, per bug #153851
+
+  23 Feb 2006; Caleb Tennis <caleb@gentoo.org> muParser-1.25.ebuild:
+  Change license to MIT from GPL-2
+
+  13 Feb 2006; Caleb Tennis <caleb@gentoo.org> muParser-1.25.ebuild:
+  Force MAKEOPTS to -j1 so parallel make doesn't fail (bug #122389)
+
+*muParser-1.25 (10 Feb 2006)
+
+  10 Feb 2006; Caleb Tennis <caleb@gentoo.org> +metadata.xml,
+  +muParser-1.25.ebuild:
+  Initial import
