@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.11-r1.ebuild,v 1.1 2009/07/06 20:36:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libevent/libevent-1.4.11-r1.ebuild,v 1.2 2009/08/18 17:06:18 jer Exp $
 
 inherit autotools
 
