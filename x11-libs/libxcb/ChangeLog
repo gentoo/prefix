@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libxcb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/ChangeLog,v 1.32 2009/08/06 10:18:27 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/ChangeLog,v 1.34 2009/08/18 16:58:22 ssuominen Exp $
+
+  18 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> libxcb-1.4.ebuild:
+  Fix unrecognized options: --disable-xselinux.
+
+  18 Aug 2009; Rémi Cardona <remi@gentoo.org> files/xcb-rebuilder.sh:
+  don't try to rebuild broken packages, just list them
 
 *libxcb-1.4 (06 Aug 2009)
 

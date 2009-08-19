@@ -58,6 +58,7 @@ for pkg in ${XCB_PACKAGES}; do
 	echo "  ${pkg}"
 done
 
-ebegin "Rebuilding broken packages"
-${XCB_REBUILDER_INSTALL:-emerge -1} ${XCB_PACKAGES}
-eend $?
+#
+#ebegin "Rebuilding broken packages"
+#${XCB_REBUILDER_INSTALL:-emerge -1} ${XCB_PACKAGES}
+#eend $?

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/libxcb-1.4.ebuild,v 1.1 2009/08/06 10:18:27 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/libxcb-1.4.ebuild,v 1.2 2009/08/18 16:58:22 ssuominen Exp $
 
 EAPI="2"
 
@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}
 
 pkg_setup() {
 	CONFIGURE_OPTIONS="$(use_enable doc build-docs)
-		$(use_enable selinux xselinux)
+		$(use_enable selinux)
 		--enable-xinput"
 }
 
