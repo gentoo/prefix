@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-13.2.1.ebuild,v 1.2 2009/06/24 13:03:42 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-13.2.1.ebuild,v 1.3 2009/08/17 19:49:56 fauli Exp $
 
 EAPI=2
 WX_GTK_VER="2.8"
@@ -52,10 +52,13 @@ pkg_setup() {
 
 src_prepare() {
 	use odbc || sed -i 's: odbc : :' lib/Makefile
+
 	if ! use wxwindows; then
 		sed -i 's: wx : :' lib/Makefile
 		rm -rf lib/wx
 	fi
+
+	epatch "${FILESDIR}"/${PN}-13.1-LDFLAGS.patch # bug 263129
 
 	if use hipe; then
 		ewarn
