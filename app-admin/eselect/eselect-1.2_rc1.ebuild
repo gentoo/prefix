@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1.3.ebuild,v 1.1 2009/08/16 11:12:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.2_rc1.ebuild,v 1.1 2009/08/19 19:27:02 ulm Exp $
 
 inherit eutils
 
@@ -21,7 +21,8 @@ RDEPEND="sys-apps/sed
 	)"
 DEPEND="${RDEPEND}
 	doc? ( dev-python/docutils )"
-RDEPEND="${RDEPEND}
+RDEPEND="!app-admin/eselect-news
+	${RDEPEND}
 	sys-apps/file
 	sys-libs/ncurses"
 
