@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/ipython
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.63 2009/08/01 12:18:05 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.65 2009/08/18 16:47:06 bicatali Exp $
+
+  18 Aug 2009; Sébastien Fabbro <bicatali@gentoo.org> ipython-0.9.1.ebuild,
+  ipython-0.10.ebuild:
+  Now installs doc and examples properly, fixing bug #280279
+
+*ipython-0.10 (17 Aug 2009)
+
+  17 Aug 2009; Patrick Lauer <patrick@gentoo.org> +ipython-0.10.ebuild:
+  Bump to 0.10, fixes #281032
 
   01 Aug 2009; Sébastien Fabbro <bicatali@gentoo.org> ipython-0.9.1.ebuild:
   Changed wxwindows to wxwidgets use flag

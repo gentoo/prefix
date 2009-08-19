@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-0.9.1.ebuild,v 1.11 2009/08/18 16:47:06 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-0.10.ebuild,v 1.2 2009/08/18 16:47:06 bicatali Exp $
 
 NEED_PYTHON=2.4
-
-inherit distutils elisp-common
+EAPI=2
+inherit eutils distutils elisp-common
 
 DESCRIPTION="An advanced interactive shell for Python."
 HOMEPAGE="http://ipython.scipy.org/"
@@ -30,10 +30,8 @@ DEPEND="${CDEPEND}
 PYTHON_MODNAME="IPython"
 SITEFILE="62ipython-gentoo.el"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-globalpath.patch
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-0.9.1-globalpath.patch
 	sed -i \
 		-e "s:share/doc/ipython:share/doc/${PF}:" \
 		setupbase.py || die "sed failed"
@@ -74,7 +72,6 @@ src_test() {
 src_install() {
 	DOCS="docs/source/changes.txt"
 	distutils_src_install
-
 	if use emacs ; then
 		pushd docs/emacs
 		elisp-install ${PN} ${PN}.el* || die "elisp-install failed"
