@@ -1,6 +1,6 @@
 # ChangeLog for sys-libs/e2fsprogs-libs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.32 2009/08/15 08:54:17 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.33 2009/08/17 20:24:00 vapier Exp $
 
   15 Aug 2009; Alexis Ballier <aballier@gentoo.org>
   e2fsprogs-libs-1.41.8.ebuild:
@@ -9,7 +9,7 @@
 
   13 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
   e2fsprogs-libs-1.41.8.ebuild:
-  Set VARTEXFONTS=${T}/fonts wrt #281390 to avoid LaTeX sandbox violation.
+  Export VARTEXFONTS=${T}/fonts wrt #281390 to avoid LaTeX sandbox violation.
 
   22 Jul 2009; Alexis Ballier <aballier@gentoo.org>
   e2fsprogs-libs-1.41.8.ebuild:
