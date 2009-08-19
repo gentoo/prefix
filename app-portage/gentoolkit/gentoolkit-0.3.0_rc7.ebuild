@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.3.0_rc7.ebuild,v 1.1 2009/06/19 17:10:15 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.3.0_rc7.ebuild,v 1.2 2009/08/18 18:41:17 rbu Exp $
 
 EAPI=2
 
@@ -83,4 +83,9 @@ pkg_postinst() {
 	ewarn "and the gentoolkit library.  Because of this, the documentation is"
 	ewarn "out of date.  Please check http://bugs.gentoo.org/269071 when"
 	ewarn "filing bugs to see if your issue is being addressed."
+	ewarn
+	ewarn "glsa-check since gentoolkit 0.3 has modified some output,"
+	ewarn "options and default behavior. The list of injected GLSAs"
+	ewarn "has moved to /var/lib/portage/glsa_injected, please"
+	ewarn "run 'glsa-check -p affected' before copying the existing checkfile."
 }
