@@ -1,6 +1,13 @@
 # ChangeLog for media-fonts/encodings
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/encodings/ChangeLog,v 1.36 2008/01/31 03:34:33 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/encodings/ChangeLog,v 1.37 2009/08/18 21:59:15 dirtyepic Exp $
+
+*encodings-1.0.2-r1 (18 Aug 2009)
+
+  18 Aug 2009; Ryan Hill <dirtyepic@gentoo.org> +encodings-1.0.2-r1.ebuild:
+  Don't list uncompressed encodings in encodings.dir as they are not
+  installed.
+  Bug #199816 and patch by Emil Georgiev.
 
   31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
   -files/configurable-encodingsdir.patch, -encodings-1.0.0.ebuild:
