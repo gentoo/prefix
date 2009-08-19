@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/hunit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.33 2009/07/31 15:53:38 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.34 2009/08/18 22:11:53 fauli Exp $
+
+  18 Aug 2009; Christian Faulhammer <fauli@gentoo.org> hunit-1.2.0.3.ebuild:
+  stable x86, bug 279736
 
   31 Jul 2009; <chainsaw@gentoo.org> hunit-1.2.0.3.ebuild:
   Marked stable on AMD64 as requested by Lennart Kolmodin
