@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/tcl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.107 2009/08/10 16:31:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.108 2009/08/18 07:39:57 fauli Exp $
+
+  18 Aug 2009; Christian Faulhammer <fauli@gentoo.org> tcl-8.5.7.ebuild:
+  stable x86, bug 280845
 
   10 Aug 2009; Jeroen Roovers <jer@gentoo.org> tcl-8.5.7.ebuild:
   Move conditional append-cflags out of global scope.
