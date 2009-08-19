@@ -25,8 +25,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# IRIX needs an extra cast
 	epatch "${FILESDIR}"/${PN}-4.3.2-irix.patch
+	epatch "${FILESDIR}"/${P}-solaris.patch # should go on next version
 
 	# interix does not have any means of retrieving a list of
 	# mounted filesystems.
