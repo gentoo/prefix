@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.131 2009/08/19 00:43:29 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.132 2009/08/19 22:26:05 fauli Exp $
+
+  19 Aug 2009; Christian Faulhammer <fauli@gentoo.org> neon-0.28.6.ebuild:
+  stable x86, security bug 281950
 
   19 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   neon-0.28.6.ebuild:

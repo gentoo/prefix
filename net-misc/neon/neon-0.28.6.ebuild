@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.6.ebuild,v 1.2 2009/08/19 00:43:29 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.6.ebuild,v 1.3 2009/08/19 22:26:05 fauli Exp $
 
 EAPI="2"
 
