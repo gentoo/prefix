@@ -699,6 +699,9 @@ check_zlibinflate() {
 # Force a get_version() call when inherited from linux-mod.eclass and then check if the kernel is configured
 # to support the options specified in CONFIG_CHECK (if not null)
 linux-info_pkg_setup() {
+	# don't unnecessarily die on non-Linux systems
+	[[ ${CHOST} != *-linux-gnu ]] && return
+
 	get_version || die "Unable to calculate Linux Kernel version"
 
 	if kernel_is 2 4; then
