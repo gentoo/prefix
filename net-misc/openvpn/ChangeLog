@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.156 2009/08/05 16:20:41 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.157 2009/08/19 17:00:01 jer Exp $
+
+  19 Aug 2009; Jeroen Roovers <jer@gentoo.org> openvpn-2.1_rc15.ebuild:
+  Stable for HPPA (bug #280072).
 
   05 Aug 2009; <chainsaw@gentoo.org> openvpn-2.1_rc15.ebuild:
   Marked stable on AMD64 as requested by Cédric Krier <cedk@gentoo.org> in
