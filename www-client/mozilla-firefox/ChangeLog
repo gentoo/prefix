@@ -1,6 +1,14 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.532 2009/08/17 01:07:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.533 2009/08/19 22:31:51 volkmar Exp $
+
+  19 Aug 2009; Mounir Lamouri <volkmar@gentoo.org>
+  mozilla-firefox-3.0.13.ebuild, mozilla-firefox-3.5.2-r1.ebuild:
+  Stable for ppc. Bug 280393
+
+  18 Aug 2009; Mounir Lamouri <volkmar@gentoo.org>
+  mozilla-firefox-3.0.13.ebuild:
+  Stable for ppc. Bug 280393
 
   17 Aug 2009; Jeroen Roovers <jer@gentoo.org>
   mozilla-firefox-3.0.13.ebuild:
