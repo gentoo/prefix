@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/gamin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.99 2009/08/01 19:33:12 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gamin/ChangeLog,v 1.100 2009/08/20 03:31:58 darkside Exp $
+
+  20 Aug 2009; Jeremy Olexa <darkside@gentoo.org>
+  -files/gamin-0.1.9-compile-warnings.patch,
+  -files/gamin-0.1.9-freebsd.patch, -files/gamin-0.1.9-user-cflags.patch:
+  remove unused patches
 
   01 Aug 2009; Jeremy Olexa <darkside@gentoo.org> -gamin-0.1.9.ebuild,
   -gamin-0.1.9-r1.ebuild:
