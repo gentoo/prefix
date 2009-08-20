@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/zoo
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/ChangeLog,v 1.44 2008/07/13 06:33:53 josejx Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/zoo/ChangeLog,v 1.45 2009/08/20 03:54:32 darkside Exp $
+
+  20 Aug 2009; Jeremy Olexa <darkside@gentoo.org>
+  -files/zoo-security-fix.patch:
+  remove unused patches
 
   13 Jul 2008; Joseph Jezak <josejx@gentoo.org> zoo-2.10-r4.ebuild:
   Marked ppc stable for bug #231077.
