@@ -39,5 +39,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	python_mod_cleanup "${EPREFIX}"/usr/$(get_libdir)/${P}
+	python_mod_cleanup /usr/$(get_libdir)/${P}
 }
