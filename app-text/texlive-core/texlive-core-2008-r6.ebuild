@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008-r6.ebuild,v 1.1 2009/08/06 13:02:22 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008-r6.ebuild,v 1.2 2009/08/19 08:09:24 aballier Exp $
 
 EAPI=1
 
@@ -78,7 +78,7 @@ COMMON_DEPEND="${MODULAR_X_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	sys-apps/ed
 	sys-devel/flex
-	app-arch/lzma-utils"
+	|| ( app-arch/xz-utils app-arch/lzma-utils )"
 
 RDEPEND="${COMMON_DEPEND}
 	tk? ( dev-perl/perl-tk )"
