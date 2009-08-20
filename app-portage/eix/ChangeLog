@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.294 2009/07/19 14:36:52 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.295 2009/08/20 03:25:34 darkside Exp $
+
+  20 Aug 2009; Jeremy Olexa <darkside@gentoo.org>
+  -files/eix-0.13.3-numeric-compare.patch:
+  remove unused patch
 
   19 Jul 2009; nixnut <nixnut@gentoo.org> eix-0.16.0.ebuild:
   ppc stable #273555
