@@ -7,14 +7,14 @@ EAPI="2"
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular prefix
+inherit x-modular prefix eutils
 
 DESCRIPTION="X C-language Bindings library"
 HOMEPAGE="http://xcb.freedesktop.org/"
 SRC_URI="http://xcb.freedesktop.org/dist/${P}.tar.bz2"
 LICENSE="X11"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc selinux"
 
 RDEPEND="x11-libs/libXau
@@ -33,6 +33,8 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	cp "${FILESDIR}"/xcb-rebuilder.sh "${T}"/ || die
 	eprefixify "${T}"/xcb-rebuilder.sh
 }
