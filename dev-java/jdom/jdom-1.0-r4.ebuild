@@ -1,13 +1,13 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom/jdom-1.0-r4.ebuild,v 1.8 2008/04/08 16:02:18 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jdom/jdom-1.0-r4.ebuild,v 1.9 2009/08/19 08:27:24 elvanor Exp $
 
 JAVA_PKG_IUSE="doc examples source"
 
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Java API to manipulate XML data"
-SRC_URI="http://www.jdom.org/dist/source/${P}.tar.gz"
+SRC_URI="http://www.jdom.org/dist/source/archive/${P}.tar.gz"
 HOMEPAGE="http://www.jdom.org"
 LICENSE="JDOM"
 SLOT="${PV}"
