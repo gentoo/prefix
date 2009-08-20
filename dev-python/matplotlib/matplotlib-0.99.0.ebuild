@@ -79,6 +79,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.98.5.2-no-xv.patch
 
 	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${P}-freebsd7+.patch
 
 	# create setup.cfg (see setup.cfg.template for any changes)
 	cat > setup.cfg <<-EOF
