@@ -1,6 +1,6 @@
-diff -ru /opt/gentoo/var/tmp/portage/x11-libs/libxcb-1.4/work/libxcb-1.4.orig/src/xcb_util.c /opt/gentoo/var/tmp/portage/x11-libs/libxcb-1.4/work/libxcb-1.4/src/xcb_util.c
---- /opt/gentoo/var/tmp/portage/x11-libs/libxcb-1.4/work/libxcb-1.4.orig/src/xcb_util.c	2009-08-21 05:27:29 -0700
-+++ /opt/gentoo/var/tmp/portage/x11-libs/libxcb-1.4/work/libxcb-1.4/src/xcb_util.c	2009-08-21 05:28:12 -0700
+diff -ru libxcb-1.4.orig/src/xcb_util.c libxcb-1.4/src/xcb_util.c
+--- libxcb-1.4.orig/src/xcb_util.c	2009-08-21 05:27:29 -0700
++++ libxcb-1.4/src/xcb_util.c	2009-08-21 05:28:12 -0700
 @@ -246,7 +246,7 @@
      hints.ai_socktype = SOCK_STREAM;
  #endif
