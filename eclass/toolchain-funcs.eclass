@@ -563,31 +563,6 @@ gen_usr_ldscript() {
 			ln -snf "../../${libdir}/${tlib}" "${tlib}"
 			popd >/dev/null
 			;;
-		hppa*-hpux*) # PA-RISC 32bit (SOM) only, others (ELF) match *64*-hpux* above.
-			if ${auto} ; then
-				tlib=$(chatr "${ED}"/usr/${libdir}/${lib} | sed -n '/internal name:/{n;s/^ *//;p;q}')
-				[[ -z ${tlib} ]] && tlib=${lib}
-				tlib=${tlib##*/} # 'internal name' can have a path component
-				mv "${ED}"/usr/${libdir}/${lib}* "${ED}"/${libdir}/ || die
-				# some SONAMEs are funky: they encode a version before the .so
-				if [[ ${tlib} != ${lib}* ]] ; then
-					mv "${ED}"/usr/${libdir}/${tlib}* "${ED}"/${libdir}/ || die
-				fi
-				[[ ${tlib} != ${lib} ]] &&
-				rm -f "${ED}"/${libdir}/${lib}
-			else
-				tlib=$(chatr "${ED}"/${libdir}/${lib} | sed -n '/internal name:/{n;s/^ *//;p;q}')
-				[[ -z ${tlib} ]] && tlib=${lib}
-				tlib=${tlib##*/} # 'internal name' can have a path component
-			fi
-			pushd "${ED}"/usr/${libdir} >/dev/null
-			ln -snf "../../${libdir}/${tlib}" "${lib}"
-			# need the internal name in usr/lib too, to be available at runtime
-			# when linked with /path/to/lib.sl (hardcode_direct_absolute=yes)
-			[[ ${tlib} != ${lib} ]] &&
-			ln -snf "../../${libdir}/${tlib}" "${tlib}"
-			popd >/dev/null
-			;;
 		*)
 			if ${auto} ; then
 				tlib=$(scanelf -qF'%S#F' "${ED}"/usr/${libdir}/${lib})
