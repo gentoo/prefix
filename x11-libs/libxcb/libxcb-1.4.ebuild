@@ -34,6 +34,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-interix-ipv6.patch
 
 	cp "${FILESDIR}"/xcb-rebuilder.sh "${T}"/ || die
 	eprefixify "${T}"/xcb-rebuilder.sh
