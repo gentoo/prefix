@@ -42,6 +42,7 @@ src_unpack() {
 		"${FILESDIR}"/${PN}-1.1.5-winnt-private.patch
 		"${FILESDIR}"/${PN}-1.1.5-solaris.patch
 		"${FILESDIR}"/${P}-interix.patch
+		"${FILESDIR}"/${P}-interix3-inttypes.patch
 	)
 #		"${FILESDIR}"/${PN}-1.1.5-winnt.patch #275731
 	x-modular_src_unpack
