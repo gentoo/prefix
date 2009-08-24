@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/gst-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.56 2009/08/15 03:31:25 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/gst-python/ChangeLog,v 1.58 2009/08/23 10:25:19 nixnut Exp $
+
+  23 Aug 2009; nixnut <nixnut@gentoo.org> gst-python-0.10.15-r1.ebuild:
+  ppc stable #280946
+
+  21 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  gst-python-0.10.15-r1.ebuild:
+  stable x86, bug 280946
 
 *gst-python-0.10.16 (15 Aug 2009)
 
