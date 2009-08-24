@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/freeglut
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/ChangeLog,v 1.53 2008/08/08 16:22:08 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/ChangeLog,v 1.55 2009/08/21 08:39:08 scarabeus Exp $
+
+*freeglut-2.6.0_rc1 (21 Aug 2009)
+
+  21 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +freeglut-2.6.0_rc1.ebuild:
+  Version bump.
+
+*freeglut-2.4.0-r2 (21 Aug 2009)
+
+  21 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +freeglut-2.4.0-r2.ebuild:
+  Fix croscompilation per bug #267584.
 
   08 Aug 2008; Alexis Ballier <aballier@gentoo.org>
   +files/freeglut-2.4.0-bsd-usb-joystick.patch, freeglut-2.4.0-r1.ebuild:
