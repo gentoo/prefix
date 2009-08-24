@@ -25,7 +25,14 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${P}-fix_bug_1990430.patch"
 
-	elibtoolize
+	# this eautoreconf is required _at least_ by all interix and winnt
+	# platforms to add shared library support.
+	local mylibtoolize=libtoolize
+	[[ ${CHOST} == *-darwin* ]] && mylibtoolize=glibtoolize
+	local mylt=$(type -P ${mylibtoolize})
+	cp "${mylt%/bin/${mylibtoolize}}"/share/aclocal/libtool.m4 conftools/libtool.m4
+	AT_M4DIR="conftools" eautoreconf
+
 	epunt_cxx
 }
 
