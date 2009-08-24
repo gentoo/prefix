@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-sgml-dtd/docbook-sgml-dtd-4.1-r3.ebuild,v 1.6 2007/07/12 09:12:08 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-sgml-dtd/docbook-sgml-dtd-4.1-r3.ebuild,v 1.7 2009/08/23 16:02:38 flameeyes Exp $
 
 inherit sgml-catalog eutils
 
