@@ -1,0 +1,14 @@
+jpeg-7 compability
+
+diff -ur netpbm-10.46.00.orig/converter/ppm/ppmtompeg/jpeg.c netpbm-10.46.00/converter/ppm/ppmtompeg/jpeg.c
+--- netpbm-10.46.00.orig/converter/ppm/ppmtompeg/jpeg.c	2006-10-02 06:42:10.000000000 +0300
++++ netpbm-10.46.00/converter/ppm/ppmtompeg/jpeg.c	2009-08-22 15:41:56.000000000 +0300
+@@ -470,7 +470,7 @@
+ #ifdef JPEG4
+     buffer_height = 8;  /* could be 2, 4,8 rows high */
+ #else
+-    buffer_height = cinfo.max_v_samp_factor * cinfo.min_DCT_scaled_size;
++    buffer_height = cinfo.max_v_samp_factor * cinfo.min_DCT_v_scaled_size;
+ #endif
+   
+     for(cp=0,compptr = cinfo.comp_info;cp<cinfo.num_components;

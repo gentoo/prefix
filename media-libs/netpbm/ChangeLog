@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.217 2009/08/09 12:53:43 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.218 2009/08/22 12:56:52 ssuominen Exp $
+
+*netpbm-10.46.00-r1 (22 Aug 2009)
+
+  22 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +netpbm-10.46.00-r1.ebuild,
+  +files/netpbm-10.46.00-min_DCT_v_scaled_size.patch:
+  Fix building with media-libs/jpeg-7.
 
   09 Aug 2009; nixnut <nixnut@gentoo.org> netpbm-10.46.00.ebuild:
   ppc stable #277184
