@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/gem_plugin
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/gem_plugin/ChangeLog,v 1.17 2008/01/22 10:13:35 welp Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/gem_plugin/ChangeLog,v 1.18 2009/08/23 07:39:00 graaff Exp $
+
+  23 Aug 2009; Hans de Graaff <graaff@gentoo.org> -gem_plugin-0.2.2.ebuild:
+  Remove old version.
 
   22 Jan 2008; Peter Weller <welp@gentoo.org> gem_plugin-0.2.3.ebuild:
   Stable on amd64; bug 204321
