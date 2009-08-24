@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.357 2009/08/13 06:30:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.358 2009/08/23 10:37:47 vapier Exp $
+
+*openssh-5.2_p1-r3 (23 Aug 2009)
+
+  23 Aug 2009; Mike Frysinger <vapier@gentoo.org> +openssh-5.2_p1-r3.ebuild,
+  +files/openssh-5.2_p1-gsskex-fix.patch,
+  +files/openssh-5.2_p1-x509-hpn-glue.patch:
+  Update x509 patch, update gsskex patch #279488 by Harald Barth, and update
+  x509/hpn glue #270508 by BedOS_Gui.
 
   13 Aug 2009; Mike Frysinger <vapier@gentoo.org> openssh-5.0_p1-r2.ebuild,
   openssh-5.1_p1-r2.ebuild, openssh-5.1_p1-r3.ebuild,
