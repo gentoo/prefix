@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/urwid
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/urwid/ChangeLog,v 1.27 2009/07/15 13:03:08 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/urwid/ChangeLog,v 1.28 2009/08/23 00:22:17 darkside Exp $
+
+  23 Aug 2009; Jeremy Olexa <darkside@gentoo.org> urwid-0.9.8.4.ebuild:
+  amd64 stable, tested on stable host using ~arch wicd for months. bug
+  277356
 
   15 Jul 2009; Christian Faulhammer <fauli@gentoo.org> urwid-0.9.8.4.ebuild:
   stable x86, bug 277356
