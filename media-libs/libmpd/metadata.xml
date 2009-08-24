@@ -3,8 +3,8 @@
 <pkgmetadata>
 <herd>sound</herd>
 <maintainer>
-	<email>angelos@gentoo.org</email>
-	<name>Christoph Mende</name>
+  <email>angelos@gentoo.org</email>
+  <name>Christoph Mende</name>
 </maintainer>
 <longdescription>A library handling connection to a MPD server.</longdescription>
 </pkgmetadata>
