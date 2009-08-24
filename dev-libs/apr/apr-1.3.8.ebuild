@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.8.ebuild,v 1.10 2009/08/14 13:51:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.8.ebuild,v 1.11 2009/08/23 08:22:22 nixnut Exp $
 
 EAPI="2"
 
