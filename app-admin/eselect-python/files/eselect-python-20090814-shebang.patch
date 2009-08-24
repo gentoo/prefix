@@ -1,0 +1,12 @@
+diff -ru eselect-python-20090814.orig/python.eselect eselect-python-20090814/python.eselect
+--- eselect-python-20090814.orig/python.eselect	2009-08-24 09:59:33 +0200
++++ eselect-python-20090814/python.eselect	2009-08-24 10:00:05 +0200
+@@ -34,7 +34,7 @@
+ set_python_config() {
+ 	local script="${INTERPRETER_PATH}python-config" target="${1}"
+ 	cat << EOF > "${script}"
+-#!/bin/bash
++#!/usr/bin/env bash
+ # Gentoo python-config wrapper script
+ 
+ [[ "\${EPYTHON}" =~ (/|^python\$) ]] && EPYTHON="${target/-config-/}"

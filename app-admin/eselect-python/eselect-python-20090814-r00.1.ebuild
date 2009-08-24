@@ -25,6 +25,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-mac.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${P}-shebang.patch
 	eprefixify python.eselect python-wrapper.c
 }
 
