@@ -1,13 +1,13 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/docbook-xml-simple-dtd-4.1.2.4-r2.ebuild,v 1.18 2008/01/25 19:29:13 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/docbook-xml-simple-dtd-4.1.2.4-r2.ebuild,v 1.19 2009/08/23 15:52:47 flameeyes Exp $
 
 inherit sgml-catalog
 
 MY_P="sdb4124"
 DESCRIPTION="Docbook DTD for XML"
 HOMEPAGE="http://www.oasis-open.org/docbook/"
-SRC_URI="http://www.nwalsh.com/docbook/simple/${PV}/${MY_P}.zip"
+SRC_URI="mirror://gentoo/${MY_P}.zip"
 
 LICENSE="X11"
 SLOT="0"
