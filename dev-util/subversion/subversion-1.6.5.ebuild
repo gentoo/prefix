@@ -196,6 +196,14 @@ src_prepare() {
 			-e "s/\(BUILD_RULES=.*\) test\(.*\)/\1\2/g" configure.ac
 	fi
 
+	# the interix loader for some reason crashes if those LD_PRELOADs
+	# are set in the libtool wrappers. so this most probably means,
+	# that the uninstalled svn binaries won't be executable on interix.
+	# since this is not the normal case, simply leave it out, installed
+	# will work either way.
+	[[ ${CHOST} == *-interix* ]] && \
+		epatch "${FILESDIR}"/${P}-interix.patch
+
 	eautoconf
 	elibtoolize
 }

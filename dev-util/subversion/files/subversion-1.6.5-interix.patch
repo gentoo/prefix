@@ -1,0 +1,45 @@
+diff -ru subversion-1.6.5.orig/build/transform_libtool_scripts.sh subversion-1.6.5/build/transform_libtool_scripts.sh
+--- subversion-1.6.5.orig/build/transform_libtool_scripts.sh	2009-08-24 16:11:05 +0200
++++ subversion-1.6.5/build/transform_libtool_scripts.sh	2009-08-24 16:22:51 +0200
+@@ -79,22 +79,22 @@
+   mv -f "$3.new" "$3"
+ }
+ 
+-current_directory="$(pwd)"
+-for libtool_script in $executables $tests; do
+-  eval "libtool_script_path=\$${libtool_script}_path"
+-  if [ -f "$libtool_script_path" ]; then
+-    if { grep LD_LIBRARY_PATH "$libtool_script_path" && ! grep LD_PRELOAD "$libtool_script_path"; } > /dev/null; then
+-      echo "Transforming $libtool_script_path"
+-      libtool_script_dependencies="$(eval echo "\$$libtool_script")"
+-      for libtool_script_dependency in $libtool_script_dependencies; do
+-        libtool_script_library="$current_directory/subversion/libsvn_$libtool_script_dependency/.libs/libsvn_$libtool_script_dependency-1.so"
+-        [ -f "$libtool_script_library" ] && libtool_script_libraries="$libtool_script_libraries $libtool_script_library"
+-      done
+-      libtool_script_libraries="${libtool_script_libraries# *}"
+-      # Append definitions of LD_PRELOAD to libtool scripts
+-      sed_append 4 "LD_PRELOAD=\"$libtool_script_libraries\"" "$libtool_script_path"
+-      sed_append 5 "export LD_PRELOAD" "$libtool_script_path"
+-      chmod +x "$libtool_script_path"
+-    fi
+-  fi
+-done
++#current_directory="$(pwd)"
++#for libtool_script in $executables $tests; do
++#  eval "libtool_script_path=\$${libtool_script}_path"
++#  if [ -f "$libtool_script_path" ]; then
++#    if { grep LD_LIBRARY_PATH "$libtool_script_path" && ! grep LD_PRELOAD "$libtool_script_path"; } > /dev/null; then
++#      echo "Transforming $libtool_script_path"
++#      libtool_script_dependencies="$(eval echo "\$$libtool_script")"
++#      for libtool_script_dependency in $libtool_script_dependencies; do
++#        libtool_script_library="$current_directory/subversion/libsvn_$libtool_script_dependency/.libs/libsvn_$libtool_script_dependency-1.so"
++#        [ -f "$libtool_script_library" ] && libtool_script_libraries="$libtool_script_libraries $libtool_script_library"
++#      done
++#      libtool_script_libraries="${libtool_script_libraries# *}"
++#      # Append definitions of LD_PRELOAD to libtool scripts
++#      sed_append 4 "LD_PRELOAD=\"$libtool_script_libraries\"" "$libtool_script_path"
++#      sed_append 5 "export LD_PRELOAD" "$libtool_script_path"
++#      chmod +x "$libtool_script_path"
++#    fi
++#  fi
++#done
