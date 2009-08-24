@@ -49,6 +49,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 	epatch "${FILESDIR}"/${PN}-7.4-hppa-hpux.patch
 
+	# interix has no setgroups, so this won't work.
+	epatch "${FILESDIR}"/${P}-interix-setgroups.patch
+
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.

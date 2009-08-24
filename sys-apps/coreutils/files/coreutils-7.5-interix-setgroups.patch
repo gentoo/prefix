@@ -1,0 +1,15 @@
+diff -ru -x '*.Po' -x '*.Plo' coreutils-7.5.orig/src/chroot.c coreutils-7.5/src/chroot.c
+--- coreutils-7.5.orig/src/chroot.c	2009-08-24 16:15:21 +0200
++++ coreutils-7.5/src/chroot.c	2009-08-24 16:17:18 +0200
+@@ -103,7 +103,11 @@
+ 
+   if (ret == 0)
+     {
++	  #ifndef __INTERIX
+       ret = setgroups (n_gids, gids);
++	  #else
++	  ret = -1;
++	  #endif
+       if (ret)
+         error (0, errno, _("failed to set additional groups"));
+     }
