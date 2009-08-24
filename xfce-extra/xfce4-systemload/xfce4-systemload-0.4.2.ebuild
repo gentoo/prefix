@@ -1,15 +1,23 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-systemload/xfce4-systemload-0.4.2.ebuild,v 1.19 2008/09/21 19:00:19 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-systemload/xfce4-systemload-0.4.2.ebuild,v 1.21 2009/08/23 21:40:53 ssuominen Exp $
 
 inherit autotools eutils xfce44
 
 xfce44
 
 DESCRIPTION="System load monitor panel plugin"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+HOMEPAGE="http://www.xfce.org/"
 
-DEPEND="dev-util/xfce4-dev-tools
+LICENSE="GPL-2"
+SLOT="0"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+IUSE=""
+
+RDEPEND="xfce-base/xfce4-panel"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig
+	dev-util/xfce4-dev-tools
 	dev-util/intltool"
 
 src_unpack() {
