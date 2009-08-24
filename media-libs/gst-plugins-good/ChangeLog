@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/gst-plugins-good
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.69 2009/07/01 16:22:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.70 2009/08/21 11:08:46 leio Exp $
+
+*gst-plugins-good-0.10.15 (21 Aug 2009)
+
+  21 Aug 2009; Mart Raudsepp <leio@gentoo.org>
+  +files/gst-plugins-good-0.10.15-fix-tests.patch,
+  +gst-plugins-good-0.10.15.ebuild:
+  Version bump. Plugins of good quality moved here from gst-plugins-bad:
+  flv, deinterlace2 (also renamed to deinterlace), y4menc. Improvements in
+  seeking (of MKV/AVI/WAV), RTSP and RTP. Many other bug fixes and
+  improvements.
 
   01 Jul 2009; Raúl Porcel <armin76@gentoo.org>
   gst-plugins-good-0.10.14.ebuild:
