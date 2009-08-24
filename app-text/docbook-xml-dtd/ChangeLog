@@ -1,6 +1,11 @@
 # ChangeLog for app-text/docbook-xml-dtd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/ChangeLog,v 1.69 2009/08/09 16:16:16 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/ChangeLog,v 1.70 2009/08/23 16:04:34 flameeyes Exp $
+
+  23 Aug 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  docbook-xml-dtd-4.1.2-r6.ebuild, docbook-xml-dtd-4.2-r1.ebuild,
+  docbook-xml-dtd-4.3.ebuild, docbook-xml-dtd-4.4-r1.ebuild:
+  Drop to ~mips (for docbook cleanup).
 
   09 Aug 2009; nixnut <nixnut@gentoo.org> docbook-xml-dtd-4.2-r2.ebuild,
   docbook-xml-dtd-4.3-r1.ebuild:
