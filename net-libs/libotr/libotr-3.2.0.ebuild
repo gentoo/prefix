@@ -1,8 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libotr/libotr-3.2.0.ebuild,v 1.4 2009/04/11 17:15:39 armin76 Exp $
-
-inherit flag-o-matic eutils
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libotr/libotr-3.2.0.ebuild,v 1.6 2009/08/22 15:52:50 halcy0n Exp $
 
 DESCRIPTION="(OTR) Messaging allows you to have private conversations over instant messaging"
 HOMEPAGE="http://www.cypherpunks.ca/otr/"
@@ -15,14 +13,6 @@ IUSE=""
 
 DEPEND="dev-libs/libgpg-error
 	>=dev-libs/libgcrypt-1.2.0"
-
-src_compile() {
-	strip-flags
-	replace-flags -O? -O2
-
-	econf || die "econf failed"
-	emake -j1 || die "Make failed"
-}
 
 src_install() {
 	make install DESTDIR="${D}" || die "Install failed"
