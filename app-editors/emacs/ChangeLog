@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.328 2009/08/11 17:57:44 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.329 2009/08/20 07:41:41 ulm Exp $
+
+  20 Aug 2009; Ulrich Mueller <ulm@gentoo.org> emacs-23.1.ebuild:
+  Be more conservative when rearranging the INFOPATH in the site-init file,
+  in order to respect any local directories. Fixes bug 281979.
 
   11 Aug 2009; Ulrich Mueller <ulm@gentoo.org> emacs-23.1.ebuild:
   Use bzip2 compressed distfile in order to save some 20% of space.
