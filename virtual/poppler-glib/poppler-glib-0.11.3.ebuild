@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/poppler-glib/poppler-glib-0.11.1.ebuild,v 1.1 2009/06/19 22:17:37 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/poppler-glib/poppler-glib-0.11.3.ebuild,v 1.1 2009/08/22 21:33:07 loki_val Exp $
 
 EAPI=2
 
