@@ -6,6 +6,7 @@
   <email>ssuominen@gentoo.org</email>
 </maintainer>
 <use>
-  <flag name='7zip'>Add support for 7zip archives</flag>
+  <flag name="7zip">Add support for 7zip archives</flag>
+  <flag name="chdir">Change to latest working directory at exit</flag>
 </use>
 </pkgmetadata>

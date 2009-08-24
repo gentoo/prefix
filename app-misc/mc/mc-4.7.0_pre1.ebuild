@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0_pre1.ebuild,v 1.8 2009/08/17 14:06:00 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0_pre1.ebuild,v 1.11 2009/08/23 01:06:08 darkside Exp $
 
 EAPI=2
 inherit autotools eutils
@@ -14,7 +14,7 @@ SRC_URI="http://www.midnight-commander.org/downloads/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
-IUSE="gpm nls samba +slang X"
+IUSE="chdir gpm nls samba +slang X"
 
 RDEPEND=">=dev-libs/glib-2.6:2
 	gpm? ( sys-libs/gpm )
@@ -28,13 +28,13 @@ RDEPEND=">=dev-libs/glib-2.6:2
 		x11-libs/libXdmcp
 		x11-libs/libSM )"
 DEPEND="${RDEPEND}
-	>=sys-devel/libtool-2
 	dev-util/pkgconfig
 	nls? ( sys-devel/gettext )"
 
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
+	rm -f m4/{libtool,lt*}.m4 || die "libtool fix failed"
 	epatch "${FILESDIR}"/${P}-ebuild_syntax.patch \
 		"${FILESDIR}"/${P}-tbz2_filetype.patch \
 		"${FILESDIR}"/${P}-undelfs_configure.patch
@@ -49,7 +49,7 @@ src_configure() {
 	econf \
 		--disable-dependency-tracking \
 		--enable-vfs \
-		--enable-vfs-undelfs \
+		$(use_enable kernel_linux vfs-undelfs) \
 		--enable-charset \
 		$(use_with X x) \
 		$(use_with samba) \
@@ -63,4 +63,9 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS NEWS README
+
+	if use chdir; then
+		insinto /etc/profile.d
+		doins "${FILESDIR}"/mc-chdir.sh
+	fi
 }
