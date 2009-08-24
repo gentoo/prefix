@@ -1,6 +1,24 @@
 # ChangeLog for media-libs/jpeg
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.70 2008/08/16 15:49:20 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.75 2009/08/23 18:08:42 ssuominen Exp $
+
+  23 Aug 2009; Mike Frysinger <vapier@gentoo.org> jpeg-7.ebuild,
+  +files/Makefile.extra, +files/Makefile.in.extra:
+  Move from custom jpeg extras to Debian extras since ours is just a copy.
+
+  23 Aug 2009; Mike Frysinger <vapier@gentoo.org> jpeg-7.ebuild:
+  Hook the extra subdir into the normal jpeg dir so we can re-use the
+  configure environment and thus simplify the rest of the ebuild. Drop
+  external libtool dep since jpeg bundles its own sane version.
+
+  22 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> jpeg-7.ebuild,
+  +files/jpeg-7-maxmem_sysconf.patch:
+  Port maxmem sysconf() patch from jpeg-6b patchset.
+
+*jpeg-7 (22 Aug 2009)
+
+  22 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> +jpeg-7.ebuild:
+  Version bump.
 
   16 Aug 2008; Markus Meier <maekke@gentoo.org> -jpeg-6b-r7.ebuild:
   old
