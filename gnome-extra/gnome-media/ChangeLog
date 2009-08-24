@@ -1,6 +1,15 @@
 # ChangeLog for gnome-extra/gnome-media
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.197 2009/07/23 22:43:01 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.199 2009/08/23 21:48:12 eva Exp $
+
+  23 Aug 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-media-2.26.0.ebuild:
+  Add sound-theme-freedesktop as suggested in bug #279603.
+
+  20 Aug 2009; Romain Perier <mrpouet@gentoo.org>
+  gnome-media-2.26.0.ebuild:
+  Fix bug #281611, pulseaudio dependency needs to be built within glib USE
+  flag
 
   23 Jul 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -files/gnome-media-2.18.0-noesd.patch, -gnome-media-2.20.1.ebuild,
