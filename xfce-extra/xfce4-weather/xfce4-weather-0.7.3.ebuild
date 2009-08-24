@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-weather/xfce4-weather-0.7.3.ebuild,v 1.2 2009/08/05 23:03:26 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-weather/xfce4-weather-0.7.3.ebuild,v 1.3 2009/08/23 16:47:30 ssuominen Exp $
 
 EINTLTOOLIZE="yes"
 EAUTORECONF="yes"
