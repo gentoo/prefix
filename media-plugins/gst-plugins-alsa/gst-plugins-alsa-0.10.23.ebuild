@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-alsa/gst-plugins-alsa-0.10.23.ebuild,v 1.2 2009/08/15 02:22:48 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-alsa/gst-plugins-alsa-0.10.23.ebuild,v 1.4 2009/08/23 10:10:52 nixnut Exp $
 
 inherit gst-plugins-base
 
