@@ -196,14 +196,6 @@ src_prepare() {
 			-e "s/\(BUILD_RULES=.*\) test\(.*\)/\1\2/g" configure.ac
 	fi
 
-	# the interix loader for some reason crashes if those LD_PRELOADs
-	# are set in the libtool wrappers. so this most probably means,
-	# that the uninstalled svn binaries won't be executable on interix.
-	# since this is not the normal case, simply leave it out, installed
-	# will work either way.
-	[[ ${CHOST} == *-interix* ]] && \
-		epatch "${FILESDIR}"/${P}-interix.patch
-
 	eautoconf
 	elibtoolize
 }
@@ -243,6 +235,10 @@ src_configure() {
 			# avoid recording immediate path to sharedlibs into executables
 			append-ldflags -Wl,-bnoipath
 		;;
+		*-interix*)
+			# loader crashes on the LD_PRELOADs...
+			myconf="${myconf} --disable-local-library-preloading"
+		;;
 	esac
 
 	econf --libdir="${EPREFIX}/usr/$(get_libdir)" \
@@ -259,7 +255,6 @@ src_configure() {
 		$(use_with sasl) \
 		$(use_with webdav-neon neon ${EPREFIX}/usr) \
 		$(use_with webdav-serf serf ${EPREFIX}/usr) \
-		${myconf} \
 		--with-apr="${EPREFIX}"/usr/bin/apr-1-config \
 		--with-apr-util="${EPREFIX}"/usr/bin/apu-1-config \
 		--disable-experimental-libtool \
@@ -267,7 +262,8 @@ src_configure() {
 		--enable-local-library-preloading \
 		--disable-mod-activation \
 		--disable-neon-version-check \
-		--with-sqlite="${EPREFIX}"/usr
+		--with-sqlite="${EPREFIX}"/usr \
+		${myconf}
 }
 
 src_compile() {
