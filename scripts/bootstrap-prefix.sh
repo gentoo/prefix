@@ -510,7 +510,7 @@ bootstrap_python() {
 	einfo "Installing ${A%-*}"
 	$MAKE -k altinstall || echo "??? Python failed to install *sigh* continuing anyway"
 	cd "${ROOT}"/usr/bin
-	ln -sf python2.5 python
+	ln -sf python${PV%.*} python
 
 	einfo "${A%-*} bootstrapped"
 }
