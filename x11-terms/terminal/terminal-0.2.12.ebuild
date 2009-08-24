@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.12.ebuild,v 1.11 2009/07/27 17:39:39 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.2.12.ebuild,v 1.12 2009/08/23 17:52:42 ssuominen Exp $
 
-EAPI="1"
+EAPI=1
 
 MY_P="${P/t/T}"
 inherit autotools xfce4
@@ -26,7 +26,7 @@ RDEPEND=">=dev-libs/glib-2.6:2
 	x11-libs/libXft
 	x11-libs/libXrender
 	>=x11-libs/vte-0.11.11
-	>=xfce-extra/exo-0.3.4
+	>=xfce-base/exo-0.3.4
 	startup-notification? ( x11-libs/startup-notification )
 	dbus? ( dev-libs/dbus-glib )"
 DEPEND="${RDEPEND}
@@ -38,7 +38,7 @@ XFCE4_PATCHES="${FILESDIR}/${PN}-configure.in.patch"
 DOCS="AUTHORS ChangeLog HACKING NEWS README THANKS TODO"
 
 pkg_setup() {
-	XFCE_CONFIG+=" $(use_enable dbus) $(use_enable doc xsltproc)"
+	XFCE_CONFIG="$(use_enable dbus) $(use_enable doc xsltproc)"
 }
 
 src_unpack() {

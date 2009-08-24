@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.4.0.ebuild,v 1.1 2009/08/02 17:31:00 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.4.0.ebuild,v 1.2 2009/08/23 17:52:42 ssuominen Exp $
 
 EAPI="2"
 inherit xfconf
@@ -25,7 +25,7 @@ RDEPEND=">=dev-libs/glib-2.6:2
 	x11-libs/libXft
 	x11-libs/libXrender
 	x11-libs/vte
-	>=xfce-extra/exo-0.3.4
+	>=xfce-base/exo-0.3.4
 	x11-libs/startup-notification
 	dbus? ( dev-libs/dbus-glib )"
 DEPEND="${RDEPEND}
