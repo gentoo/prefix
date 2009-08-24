@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.8.ebuild,v 1.9 2009/08/21 21:45:22 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.6.1.ebuild,v 1.5 2009/08/22 15:38:35 tester Exp $
 
 EAPI=2
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="aqua bonjour dbus debug doc eds gadu gnutls +gstreamer meanwhile"
+IUSE="aqua bonjour dbus debug doc eds gadu gnutls +gstreamer idn meanwhile"
 IUSE="${IUSE} networkmanager nls perl silc tcl tk spell qq gadu"
 IUSE="${IUSE} +gtk sasl ncurses groupwise prediction zephyr" # mono"
 
@@ -25,13 +25,16 @@ RDEPEND="
 		>=dev-lang/python-2.4 )
 	gtk? (
 		spell? ( >=app-text/gtkspell-2.0.2 )
-		>=x11-libs/gtk+-2.0
+		>=x11-libs/gtk+-2.4
 		>=x11-libs/startup-notification-0.5
 		x11-libs/libXScrnSaver
 		eds? ( gnome-extra/evolution-data-server ) 	)
 	>=dev-libs/glib-2.0
 	gstreamer? ( =media-libs/gstreamer-0.10*
-		=media-libs/gst-plugins-good-0.10* )
+		=media-libs/gst-plugins-good-0.10*
+		>=net-libs/farsight2-0.0.14
+		media-plugins/gst-plugins-meta
+		media-plugins/gst-plugins-gconf )
 	perl? ( >=dev-lang/perl-5.8.2-r1 )
 	gadu?  ( net-libs/libgadu[-ssl] )
 	gnutls? ( net-libs/gnutls )
@@ -42,10 +45,11 @@ RDEPEND="
 	tcl? ( dev-lang/tcl )
 	tk? ( dev-lang/tk )
 	sasl? ( >=dev-libs/cyrus-sasl-2 )
-	dev-libs/libxml2
+	>=dev-libs/libxml2-2.6.18
 	networkmanager? ( net-misc/networkmanager )
 	prediction? ( =dev-db/sqlite-3* )
-	ncurses? ( sys-libs/ncurses[unicode] )"
+	ncurses? ( sys-libs/ncurses[unicode] )
+	idn? ( net-dns/libidn )"
 	# Mono support crashes pidgin
 	#mono? ( dev-lang/mono )"
 
@@ -85,8 +89,12 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-gtkdocklet-quartz.patch
+	epatch "${FILESDIR}"/${PN}-2.5.8-gtkdocklet-quartz.patch
 	eautoreconf
+}
+
+src_prepare() {
+	intltoolize --automake --copy --force
 }
 
 src_configure() {
@@ -156,12 +164,14 @@ src_configure() {
 		$(use_enable meanwhile) \
 		$(use_enable eds gevolution) \
 		$(use_enable gstreamer) \
+		$(use_enable gstreamer vv) \
 		$(use_enable sasl cyrus-sasl ) \
 		$(use_enable doc doxygen) \
 		$(use_enable prediction cap) \
 		$(use_enable networkmanager nm) \
 		$(use_with zephyr krb4) \
 		$(use_enable bonjour avahi) \
+		$(use_enable idn) \
 		"--with-dynamic-prpls=${DYNAMIC_PRPLS}" \
 		--disable-mono \
 		--x-includes="${EPREFIX}/usr/include/X11" \

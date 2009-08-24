@@ -1,6 +1,33 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.114 2009/08/19 16:12:32 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.122 2009/08/23 08:35:05 nixnut Exp $
+
+  23 Aug 2009; nixnut <nixnut@gentoo.org> pidgin-2.5.9.ebuild:
+  ppc stable #281545
+
+  22 Aug 2009; Olivier Crête <tester@gentoo.org> pidgin-2.6.1.ebuild:
+  Replace intltool files, bug #282282
+
+  22 Aug 2009; Olivier Crête <tester@gentoo.org> pidgin-2.6.1.ebuild:
+  Add idn and properly enable vv with the gstreamer use flag
+
+  22 Aug 2009; Olivier Crête <tester@gentoo.org> pidgin-2.6.1.ebuild:
+  Also require gst-plugins-meta to get sinks and sources
+
+  22 Aug 2009; Olivier Crête <tester@gentoo.org> pidgin-2.6.1.ebuild:
+  Add gst-plugins-gconf dep for the src/sinks
+
+*pidgin-2.6.1 (22 Aug 2009)
+
+  22 Aug 2009; Olivier Crête <tester@gentoo.org> +pidgin-2.6.1.ebuild:
+  New version, with vv support!
+
+  21 Aug 2009; Alex Legler <a3li@gentoo.org> pidgin-2.5.9.ebuild:
+  amd64 stable, security bug #281545
+
+  21 Aug 2009; Olivier Crête <tester@gentoo.org> pidgin-2.5.8.ebuild,
+  pidgin-2.5.9.ebuild:
+  Added intltool build time dependency, bug #236761
 
   19 Aug 2009; Jeroen Roovers <jer@gentoo.org> pidgin-2.5.9.ebuild:
   Stable for HPPA (bug #281545).
