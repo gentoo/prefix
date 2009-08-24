@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/squeak-3.10.ebuild,v 1.2 2009/08/10 15:45:28 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/squeak-3.10.ebuild,v 1.3 2009/08/24 04:29:07 vostorga Exp $
 
 inherit base fixheadtails eutils toolchain-funcs
 
@@ -8,7 +8,8 @@ MY_PV="${PV}-1"
 
 DESCRIPTION="Highly-portable Smalltalk-80 implementation"
 HOMEPAGE="http://www.squeak.org/"
-SRC_URI="http://ftp.squeak.org/${PV}/unix-linux/Squeak-${MY_PV}.src.tar.gz  "
+SRC_URI="http://ftp.squeak.org/${PV}/unix-linux/Squeak-${MY_PV}.src.tar.gz
+		mirror://gentoo/${P}-glibc210.patch.bz2"
 LICENSE="Apple"
 SLOT="0"
 KEYWORDS="~ppc-macos"
@@ -23,15 +24,15 @@ S="${WORKDIR}/Squeak-${MY_PV}"
 
 src_unpack() {
 	base_src_unpack
-	epatch "${FILESDIR}"/${PN}-3.9.7-no-cflag-injection.patch
 	cd "${S}"
 	ht_fix_all
 	einfo "Patch for inisqueak"
 	sed -i s/\${MAJOR}/39/ "${S}/platforms/unix/config/inisqueak.in"
 	# ht_fix_all doesn't catch this because there's no number
 	sed -i -e 's/tail +/tail -n +/' platforms/unix/config/inisqueak.in
-	epatch "${FILESDIR}"/${P}-glibc210.patch
 	sed -i s/-Werror// "${S}/platforms/unix/vm-display-fbdev/Makefile.in"
+	cd "${WORKDIR}"
+	epatch ${P}-glibc210.patch
 }
 
 src_compile() {
