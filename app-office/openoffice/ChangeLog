@@ -1,6 +1,11 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.475 2009/08/05 16:07:25 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.476 2009/08/20 10:30:25 scarabeus Exp $
+
+  20 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  openoffice-3.1.1_beta2.ebuild:
+  Add new WANT_CMAKE check for kde4 stuff so we dont inherit cmake-utils
+  without purpose.
 
 *openoffice-3.1.1_beta2 (05 Aug 2009)
 

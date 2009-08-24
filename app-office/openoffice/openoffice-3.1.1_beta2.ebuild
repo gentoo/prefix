@@ -1,10 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1_beta2.ebuild,v 1.1 2009/08/05 16:07:25 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1_beta2.ebuild,v 1.2 2009/08/20 10:30:25 scarabeus Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI="2"
 KDE_REQUIRED="optional"
+WANT_CMAKE="false"
 
 inherit bash-completion check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde4-base mono multilib toolchain-funcs
 
