@@ -3,10 +3,10 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-<email>maintainer-needed@gentoo.org</email>
+  <email>maintainer-needed@gentoo.org</email>
 </maintainer>
 <use>
-<flag name='file'>add magic file support</flag>
-<flag name='neon'>include support for neon</flag>
+  <flag name='magic'>Add magic file support (<pkg>sys-apps/file</pkg>)</flag>
+  <flag name='neon'>Include support for <pkg>net-misc/neon</pkg></flag>
 </use>
 </pkgmetadata>
