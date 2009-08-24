@@ -14,7 +14,7 @@ PROVIDE="virtual/portage"
 SLOT="0"
 IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
 
-python_dep=">=dev-lang/python-2.4"
+python_dep=">=dev-lang/python-2.4 <dev-lang/python-3.0"
 
 DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
@@ -23,7 +23,7 @@ DEPEND="${python_dep}
 RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
 		>=app-shells/bash-3.2_p17
-		>=app-admin/eselect-news-20071201 )
+		|| ( >=app-admin/eselect-1.1 >=app-admin/eselect-news-20071201 ) )
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-1.6 ) )
 	elibc_uclibc? ( !prefix? ( >=sys-apps/sandbox-1.6 ) )
@@ -41,7 +41,7 @@ PDEPEND="
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # rsync-2.6.4 rdep is for the --filter option #167668
 
-SRC_ARCHIVES="http://dev.gentoo.org/~grobian/distfiles http://dev.gentoo.org/~zmedico/portage/archives"
+SRC_ARCHIVES="http://dev.gentoo.org/~zmedico/portage/archives http://dev.gentoo.org/~grobian/distfiles"
 
 prefix_src_archives() {
 	local x y
@@ -75,8 +75,9 @@ src_unpack() {
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
 	fi
 
+	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
+
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13830-prefix-chaining.patch
-	epatch "${FILESDIR}"/${P}-preserve-pecoff.patch
 }
 
 src_compile() {
