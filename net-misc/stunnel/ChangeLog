@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/stunnel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.103 2009/08/09 09:20:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.104 2009/08/23 01:34:35 ramereth Exp $
+
+*stunnel-4.27-r1 (22 Aug 2009)
+
+  22 Aug 2009; Lance Albertson <ramereth@gentoo.org>
+  +stunnel-4.27-r1.ebuild, +files/stunnel.initd:
+  Clean up & fix init script to fix #107484. Additionally, add multiple
+  stunnel instance support to fix #102179. Most of the init script ideas 
+  were modeled from the ubuntu stunnel4 script.
 
   09 Aug 2009; Ulrich Mueller <ulm@gentoo.org> +stunnel-3.26.ebuild,
   -files/stunnel-4.21-setuid.patch:
