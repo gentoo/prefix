@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.7.1.ebuild,v 1.1 2009/08/16 21:38:44 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.7.1-r1.ebuild,v 1.1 2009/08/23 22:48:21 dirtyepic Exp $
 
 EAPI="2"
 
@@ -113,6 +113,10 @@ src_install() {
 	# <azarah@gentoo.org> (11 Dec 2002)
 	echo 'CONFIG_PROTECT_MASK="/etc/fonts/fonts.conf"' > "${T}"/37fontconfig
 	doenvd "${T}"/37fontconfig
+
+	# As of fontconfig 2.7, everything sticks their noses in here.
+	dodir /etc/sandbox.d
+	echo 'SANDBOX_PREDICT="/var/cache/fontconfig"' > "${ED}"/etc/sandbox.d/37fontconfig
 }
 
 pkg_preinst() {
