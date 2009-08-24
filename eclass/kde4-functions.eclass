@@ -1,9 +1,11 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.22 2009/08/03 21:59:53 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.23 2009/08/20 09:18:01 scarabeus Exp $
 
 # Prefix compat:
 : ${EROOT:=${EROOT}}
+# Append missing trailing slash character
+[[ ${EROOT} = */ ]] || EROOT+="/"
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -351,4 +353,41 @@ load_library_dependencies() {
 			die "Failed to include library dependencies for ${pn}"
 	done
 	eend $?
+}
+
+# @FUNCTION: block_other_slots
+# @DESCRIPTION:
+# Create blocks for the current package in other slots when
+# installed with USE=-kdeprefix
+block_other_slots() {
+	local slot
+
+	debug-print-function ${FUNCNAME} "$@"
+
+	for slot in ${KDE_SLOTS[@]} ${KDE_LIVE_SLOTS[@]}; do
+		# Block non kdeprefix ${PN} on other slots
+		if [[ ${SLOT} != ${slot} ]]; then
+			echo "!kdeprefix? ( !kde-base/${PN}:${slot}[-kdeprefix] )"
+		fi
+	done
+}
+
+# @FUNCTION: add_blocker
+# @DESCRIPTION:
+# Create correct RDEPEND value for blocking correct package.
+# Usefull for file-collision blocks.
+# Parameters are package and version to block.
+# add_blocker kde-base/kdelibs 4.2.4
+add_blocker() {
+	local slot
+
+	debug-print-function ${FUNCNAME} "$@"
+
+	[[ ${1} = "" || ${2} = "" ]] && die "Missing parameter"
+	for slot in ${KDE_SLOTS[@]} ${KDE_LIVE_SLOTS[@]}; do
+		# on -kdeprefix we block every slot
+		RDEPEND+=" !kdeprefix? ( !<=${1}-${2}:${slot}[-kdeprefix] )"
+	done
+	# on kdeprefix we block only our slot
+	RDEPEND+=" kdeprefix? ( !<=${1}-${2}:${SLOT}[kdeprefix] )"
 }

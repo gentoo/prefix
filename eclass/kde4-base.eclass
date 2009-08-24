@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.43 2009/08/07 01:00:11 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.44 2009/08/20 09:18:01 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -13,14 +13,29 @@
 # NOTE: KDE 4 ebuilds by default define EAPI="2", this can be redefined but
 # eclass will fail with version older than 2.
 
-inherit base cmake-utils eutils kde4-functions
+# @ECLASS-VARIABLE: WANT_CMAKE
+# @DESCRIPTION:
+# Specify if cmake-utils eclass is required. Defaults to true. Please note that
+# if the variable is set otherwise src_configure/compile/install calls in ebuild
+# must be overrided (can't use the eclass ones).
+WANT_CMAKE="${WANT_CMAKE:-true}"
+if [[ ${WANT_CMAKE} = true ]]; then
+	exports="src_configure src_compile src_test src_install"
+	cmake_eclass="cmake-utils"
+else
+	exports=""
+	cmake_eclass=""
+fi
+
+inherit base ${cmake_eclass} eutils kde4-functions
 
 get_build_type
 if [[ ${BUILD_TYPE} = live ]]; then
 	inherit subversion
 fi
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare src_configure src_compile src_test src_install pkg_postinst pkg_postrm
+
+EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare ${exports} pkg_postinst pkg_postrm
 
 case ${KDEBASE} in
 	kde-base)
@@ -116,9 +131,19 @@ esac
 unset qtopengldepend
 
 # WebKit dependencies
+case ${KDE_REQUIRED} in
+	always)
+		qtwebkitusedeps="[kde]"
+		;;
+	optional)
+		qtwebkitusedeps="[kde?]"
+		;;
+	*) ;;
+esac
 qtwebkitdepend="
-	>=x11-libs/qt-webkit-${QT_DEPEND}:4
+	>=x11-libs/qt-webkit-${QT_DEPEND}:4${qtwebkitusedeps}
 "
+unset qtwebkitusedeps
 case ${WEBKIT_REQUIRED} in
 	always)
 		COMMONDEPEND+=" ${qtwebkitdepend}"
@@ -173,13 +198,7 @@ case ${KDEBASE} in
 		_pvn="-${PV}"
 
 		# Block installation of other SLOTS unless kdeprefix
-		for slot in ${KDE_SLOTS[@]} ${KDE_LIVE_SLOTS[@]}; do
-			# Block non kdeprefix ${PN} on other slots
-			if [[ ${SLOT} != ${slot} ]]; then
-				RDEPEND+=" !kdeprefix? ( !kde-base/${PN}:${slot}[-kdeprefix] )"
-			fi
-		done
-		unset slot
+		RDEPEND+=" $(block_other_slots)"
 		;;
 	koffice)
 		SLOT="2"
@@ -198,7 +217,7 @@ kdecommondepend="
 	dev-lang/perl
 	>=x11-libs/qt-core-${QT_DEPEND}:4[qt3support,ssl]
 	>=x11-libs/qt-gui-${QT_DEPEND}:4[accessibility,dbus]
-	>=x11-libs/qt-qt3support-${QT_DEPEND}:4[accessibility]
+	>=x11-libs/qt-qt3support-${QT_DEPEND}:4[accessibility,kde]
 	>=x11-libs/qt-script-${QT_DEPEND}:4
 	>=x11-libs/qt-sql-${QT_DEPEND}:4[qt3support]
 	>=x11-libs/qt-svg-${QT_DEPEND}:4
@@ -453,7 +472,7 @@ kde4-base_src_unpack() {
 	fi
 }
 
-# @FUNCTION: kde4-base_src_compile
+# @FUNCTION: kde4-base_src_prepare
 # @DESCRIPTION:
 # General pre-configure and pre-compile function for KDE4 applications.
 # It also handles translations if KDE_LINGUAS is defined. See KDE_LINGUAS and
@@ -468,9 +487,10 @@ kde4-base_src_prepare() {
 	fi
 
 	# Enable/disable handbooks for kde4-base packages
-	# kde-l10n inherits kde-base but is metpackage, so no check for doc
+	# kde-l10n inherits kde4-base but is metpackage, so no check for doc
+	# kdelibs inherits kde4-base but handle installing the handbook itself
 	if ! has kde4-meta ${INHERITED}; then
-		has handbook ${IUSE//+} && [[ ${PN} != kde-l10n ]] && enable_selected_doc_linguas
+		has handbook ${IUSE//+} && [[ ${PN} != kde-l10n ]] && [[ ${PN} != kdelibs ]] && enable_selected_doc_linguas
 	fi
 
 	[[ ${BUILD_TYPE} = live ]] && subversion_src_prepare
@@ -603,7 +623,7 @@ kde4-base_src_make_doc() {
 	if [[ -n ${KDEBASE} ]] && [[ -d "${ED}${ROOT}usr/share/doc/${PF}" ]]; then
 		# work around bug #97196
 		dodir /usr/share/doc/KDE4 && \
-			mv "${ED}${ROOT}usr/share/doc/${PF}" "${ED}${ROOT}usr/share/doc/KDE4/" || \
+			mv -f "${ED}${EROOT}usr/share/doc/${PF}" "${ED}${EROOT}usr/share/doc/KDE4/" || \
 			die "Failed to move docs to KDE4/."
 	fi
 }
