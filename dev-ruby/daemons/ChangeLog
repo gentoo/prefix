@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/daemons
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.36 2008/10/09 09:56:01 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.38 2009/08/23 20:27:08 a3li Exp $
+
+  23 Aug 2009; Alex Legler <a3li@gentoo.org> +daemons-0.4.2.ebuild:
+  Readding 0.4.2 to staisfy a dependency ba dev-ruby/nitro
+
+  22 Aug 2009; Hans de Graaff <graaff@gentoo.org> -daemons-0.4.2.ebuild:
+  Remove old version.
 
   09 Oct 2008; Raúl Porcel <armin76@gentoo.org> daemons-1.0.10.ebuild:
   ia64 stable wrt #240375
