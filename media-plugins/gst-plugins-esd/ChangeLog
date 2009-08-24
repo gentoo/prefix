@@ -1,6 +1,13 @@
 # ChangeLog for media-plugins/gst-plugins-esd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-esd/ChangeLog,v 1.124 2009/08/05 04:38:35 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-esd/ChangeLog,v 1.125 2009/08/21 11:47:08 leio Exp $
+
+*gst-plugins-esd-0.10.15 (21 Aug 2009)
+
+  21 Aug 2009; Mart Raudsepp <leio@gentoo.org> metadata.xml,
+  gst-plugins-esd-0.10.14.ebuild, +gst-plugins-esd-0.10.15.ebuild:
+  Version bump - has no functional changes. Add short/long description for
+  the package.
 
   05 Aug 2009; Mart Raudsepp <leio@gentoo.org>
   -gst-plugins-esd-0.10.6.ebuild, -gst-plugins-esd-0.10.8.ebuild,
