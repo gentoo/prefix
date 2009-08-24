@@ -1,9 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.24 2008/12/14 10:43:30 grobian Exp $
-
-WANT_AUTOCONF=latest
-WANT_AUTOMAKE=latest
+# $Header: /var/cvsroot/gentoo-x86/media-libs/aalib/aalib-1.4_rc5.ebuild,v 1.25 2009/08/21 20:16:38 ssuominen Exp $
 
 inherit eutils libtool toolchain-funcs autotools
 
@@ -21,7 +18,6 @@ IUSE="X slang gpm"
 
 RDEPEND="X? ( x11-libs/libX11 )
 	slang? ( >=sys-libs/slang-1.4.2 )"
-
 DEPEND="${RDEPEND}
 	>=sys-libs/ncurses-5.1
 	X? ( x11-proto/xproto )
@@ -56,6 +52,6 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 	dodoc ANNOUNCE AUTHORS ChangeLog NEWS README*
 }
