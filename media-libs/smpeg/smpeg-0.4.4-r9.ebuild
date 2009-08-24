@@ -1,9 +1,7 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/smpeg/smpeg-0.4.4-r9.ebuild,v 1.10 2007/08/25 03:04:15 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/smpeg/smpeg-0.4.4-r9.ebuild,v 1.11 2009/08/21 20:18:22 ssuominen Exp $
 
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
 inherit eutils toolchain-funcs autotools flag-o-matic
 
 DESCRIPTION="SDL MPEG Player Library"
