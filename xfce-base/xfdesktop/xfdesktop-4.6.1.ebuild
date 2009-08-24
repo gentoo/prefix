@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.6.1.ebuild,v 1.10 2009/08/02 09:49:31 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.6.1.ebuild,v 1.12 2009/08/23 19:27:43 ssuominen Exp $
 
 EAPI=2
 inherit xfconf
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.xfce.org/projects/xfdesktop"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="debug doc +file-icons +menu-plugin"
+IUSE="debug doc +menu-plugin thunar"
 
 LINGUAS="be ca cs da de el es et eu fi fr he hu it ja ko nb_NO nl pa pl pt_BR ro ru sk sv tr uk vi zh_CN zh_TW"
 
@@ -29,8 +29,8 @@ RDEPEND="gnome-base/libglade
 	>=xfce-base/libxfcegui4-4.6
 	>=xfce-base/libxfce4menu-4.6
 	>=xfce-base/xfconf-4.6
-	file-icons? ( >=xfce-base/thunar-1
-		>=xfce-extra/exo-0.3.100
+	thunar? ( >=xfce-base/thunar-1
+		>=xfce-base/exo-0.3.100
 		dev-libs/dbus-glib )
 	menu-plugin? ( >=xfce-base/xfce4-panel-4.6 )"
 DEPEND="${RDEPEND}
@@ -43,9 +43,9 @@ pkg_setup() {
 	XFCE_LOCALIZED_CONFIGS="/etc/xdg/xfce4/desktop/menu.xml
 		/etc/xdg/xfce4/desktop/xfce-registered-categories.xml"
 	XFCONF="--disable-dependency-tracking
-		$(use_enable file-icons)
-		$(use_enable file-icons thunarx)
-		$(use_enable file-icons exo)
+		$(use_enable thunar file-icons)
+		$(use_enable thunar thunarx)
+		$(use_enable thunar exo)
 		$(use_enable menu-plugin panel-plugin)
 		$(use_enable doc xsltproc)
 		$(use_enable debug)"

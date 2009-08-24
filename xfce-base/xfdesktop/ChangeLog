@@ -1,6 +1,15 @@
 # ChangeLog for xfce-base/xfdesktop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/ChangeLog,v 1.145 2009/08/02 09:49:31 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/ChangeLog,v 1.147 2009/08/23 19:27:43 ssuominen Exp $
+
+  23 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  xfdesktop-4.6.1.ebuild, metadata.xml:
+  Rename USE file-icons to USE thunar (enabled by default in desktop
+  profiles).
+
+  23 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  xfdesktop-4.6.1.ebuild:
+  Don't enable file-icons by default.
 
   02 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
   xfdesktop-4.6.1.ebuild:

@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>xfce</herd>
-<use>
-	<flag name='file-icons'>Build support for application launchers using
-		<pkg>xfce-base/thunar</pkg> and libexo</flag>
-	<flag name='menu-plugin'>Build Menu plug-in for panel</flag>
-</use>
+  <herd>xfce</herd>
+  <use>
+    <flag name='thunar'>Build support for application launchers using <pkg>xfce-base/thunar</pkg></flag>
+    <flag name='menu-plugin'>Build Menu plug-in for panel</flag>
+  </use>
 </pkgmetadata>
