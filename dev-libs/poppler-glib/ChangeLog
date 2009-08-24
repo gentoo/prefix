@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/poppler-glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler-glib/ChangeLog,v 1.14 2009/08/09 11:55:00 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler-glib/ChangeLog,v 1.15 2009/08/22 21:31:02 loki_val Exp $
+
+*poppler-glib-0.11.3 (22 Aug 2009)
+
+  22 Aug 2009; Peter Alfredsen <loki_val@gentoo.org>
+  -poppler-glib-0.11.1.ebuild, +poppler-glib-0.11.3.ebuild:
+  Bump for 0.12 RC1
 
   09 Aug 2009; nixnut <nixnut@gentoo.org> poppler-glib-0.10.7.ebuild:
   ppc stable #272980
