@@ -6,7 +6,7 @@
 		<email>wormo@gentoo.org</email>
 	</maintainer>
 	<use>
-		<flag name='openssl'>Use openssl library for HTTPS support.</flag>
-		<flag name='gnutls'>Use gnutls library for HTTPS support.</flag>
+		<flag name='ssl'>Enable HTTPS support.</flag>
+		<flag name='gnutls'>Use gnutls library for HTTPS support (openssl is the default library for HTTPS support).</flag>
 	</use>
 </pkgmetadata>

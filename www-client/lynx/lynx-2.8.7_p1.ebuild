@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.7_p1.ebuild,v 1.2 2009/08/13 06:40:44 wormo Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.7_p1.ebuild,v 1.4 2009/08/23 06:56:25 wormo Exp $
 
 EAPI=2
 
@@ -33,13 +33,13 @@ SRC_URI="http://lynx.isc.org/current/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bzip2 cjk gnutls ipv6 nls openssl unicode"
+IUSE="bzip2 cjk gnutls ipv6 nls ssl unicode"
 
 RDEPEND="sys-libs/ncurses[unicode?]
 	sys-libs/zlib
 	nls? ( virtual/libintl )
-	openssl? ( >=dev-libs/openssl-0.9.8 )
-	!openssl? (
+	ssl? (
+		!gnutls? ( >=dev-libs/openssl-0.9.8 )
 		gnutls? ( >=net-libs/gnutls-2.6.4 )
 	)
 	bzip2? ( app-arch/bzip2 )"
@@ -51,17 +51,9 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${PN}$(replace_all_version_separators - $(get_version_component_range 1-3))"
 
 pkg_setup() {
-	if use openssl
+	if ! use ssl
 	then
-		if use gnutls
-		then
-			elog "Both openssl and gnutls use-flags specified. Openssl will be used."
-		fi
-	else
-		if ! use gnutls
-		then
-			elog "No SSL library selected, you will not be able to access secure websites."
-		fi
+		elog "SSL support disabled; you will not be able to access secure websites."
 	fi
 }
 
@@ -83,6 +75,26 @@ src_prepare() {
 }
 
 src_configure() {
+	local myargs
+
+	if use ssl
+	then
+		# --with-gnutls and --with-ssl are alternatives,
+		# the latter enabling openssl support so it should be
+		# _not_ be used if gnutls ssl implementation is desired
+		if use gnutls
+		then
+			myargs="$myargs --with-gnutls" # ssl implementation = gnutls
+		else
+			myargs="$myargs --with-ssl"    # ssl implementation = openssl
+		fi
+	fi
+
+	if use unicode
+	then
+		myargs="$myargs --with-screen=ncursesw"
+	fi
+
 	econf \
 		--enable-cgi-links \
 		--enable-persistent-cookies \
@@ -98,10 +110,8 @@ src_configure() {
 		$(use_enable ipv6) \
 		$(use_enable cjk) \
 		$(use_enable unicode japanese-utf8) \
-		$(use_with openssl ssl) \
-		$(use_with gnutls) \
 		$(use_with bzip2 bzlib) \
-		$(use unicode && printf '%s' '--with-screen=ncursesw')
+		$myargs
 }
 
 src_install() {
