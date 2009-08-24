@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-panel/xfce4-panel-4.6.1.ebuild,v 1.11 2009/08/01 22:54:01 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-panel/xfce4-panel-4.6.1.ebuild,v 1.12 2009/08/23 17:45:33 ssuominen Exp $
 
 EAPI=2
 inherit xfconf
@@ -21,7 +21,7 @@ RDEPEND=">=dev-libs/glib-2.8:2
 	>=x11-libs/libwnck-2.12
 	>=xfce-base/libxfce4util-4.6
 	>=xfce-base/libxfcegui4-4.6
-	>=xfce-extra/exo-0.3.100
+	>=xfce-base/exo-0.3.100
 	startup-notification? ( x11-libs/startup-notification )"
 DEPEND="${RDEPEND}
 	dev-util/intltool
