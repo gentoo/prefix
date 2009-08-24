@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.255 2009/07/30 15:00:00 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.256 2009/08/20 07:40:30 ulm Exp $
+
+  20 Aug 2009; Ulrich Mueller <ulm@gentoo.org>
+  emacs-cvs-23.1.9999-r1.ebuild:
+  Be more conservative when rearranging the INFOPATH in the site-init file,
+  in order to respect any local directories. Fixes bug 281979.
 
 *emacs-cvs-23.1.9999-r1 (30 Jul 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.1.9999-r1.ebuild,v 1.1 2009/07/30 15:00:00 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/emacs-cvs-23.1.9999-r1.ebuild,v 1.2 2009/08/20 07:40:30 ulm Exp $
 
 EAPI=2
 
@@ -267,11 +267,15 @@ src_install () {
 	X  ${c}(setq find-function-C-source-directory
 	X  ${c}      "${EPREFIX}/usr/share/emacs/${FULL_VERSION}/src")
 	X  (let ((path (getenv "INFOPATH"))
-	X	(dir "${EPREFIX}/usr/share/info/${EMACS_SUFFIX}"))
+	X	(dir "${EPREFIX}/usr/share/info/${EMACS_SUFFIX}")
+	X	(re "\\\\\`${EPREFIX}/usr/share/info\\\\>"))
 	X    (and path
-	X	 ;; move Emacs Info dir to beginning of list
-	X	 (setq Info-directory-list
-	X	       (cons dir (delete dir (split-string path ":" t)))))))
+	X	 ;; move Emacs Info dir before anything else in /usr/share/info
+	X	 (let* ((p (cons nil (split-string path ":" t))) (q p))
+	X	   (while (and (cdr q) (not (string-match re (cadr q))))
+	X	     (setq q (cdr q)))
+	X	   (setcdr q (cons dir (delete dir (cdr q))))
+	X	   (setq Info-directory-list (prune-directory-list (cdr p)))))))
 	EOF
 	elisp-site-file-install "${SITEFILE}" || die
 
@@ -310,6 +314,10 @@ pkg_postinst() {
 	elog "the Emacs eselect module, which also redirects man and info pages."
 	elog "Therefore, several Emacs versions can be installed at the same time."
 	elog "\"man emacs.eselect\" for details."
+	echo
+	elog "If you upgrade from a previous major version of Emacs, then it is"
+	elog "strongly recommended that you use app-admin/emacs-updater to rebuild"
+	elog "all byte-compiled elisp files of the installed Emacs packages."
 }
 
 pkg_postrm() {
