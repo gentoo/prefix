@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/rake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.79 2009/08/14 20:59:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.80 2009/08/22 20:24:08 graaff Exp $
+
+*rake-0.8.7-r1 (22 Aug 2009)
+
+  22 Aug 2009; Hans de Graaff <graaff@gentoo.org> +rake-0.8.7-r1.ebuild,
+  +files/rake.bash-completion:
+  Add Debian's bash-completion as reported by Gian in #270044.
 
   14 Aug 2009; Markus Meier <maekke@gentoo.org> rake-0.8.7.ebuild:
   amd64/x86 stable, bug #280851
