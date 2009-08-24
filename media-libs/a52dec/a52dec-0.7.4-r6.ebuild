@@ -1,11 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/a52dec-0.7.4-r6.ebuild,v 1.9 2009/06/19 21:35:36 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/a52dec/a52dec-0.7.4-r6.ebuild,v 1.11 2009/08/21 20:11:46 ssuominen Exp $
 
-WANT_AUTOCONF=latest
-WANT_AUTOMAKE=latest
-
-inherit eutils flag-o-matic libtool autotools
+EAPI=2
+inherit autotools eutils flag-o-matic
 
 DESCRIPTION="library for decoding ATSC A/52 streams used in DVD"
 HOMEPAGE="http://liba52.sourceforge.net/"
@@ -19,26 +17,25 @@ IUSE="oss djbfft"
 RDEPEND="djbfft? ( sci-libs/djbfft )"
 DEPEND="${RDEPEND}"
 
-src_unpack() {
-	unpack ${A}
-
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-build.patch"
-	epatch "${FILESDIR}/${P}-freebsd.patch"
-	epatch "${FILESDIR}/${P}-tests-optional.patch"
-
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-build.patch \
+		"${FILESDIR}"/${P}-freebsd.patch \
+		"${FILESDIR}"/${P}-tests-optional.patch
 	eautoreconf
 	epunt_cxx
 }
 
-src_compile() {
+src_configure() {
 	filter-flags -fprefetch-loop-arrays
 
 	local myconf="--enable-shared"
 	use oss || myconf="${myconf} --disable-oss"
 	econf \
 		$(use_enable djbfft) \
-		${myconf} || die
+		${myconf}
+}
+
+src_compile() {
 	emake CFLAGS="${CFLAGS}" || die "emake failed"
 }
 
@@ -48,7 +45,8 @@ src_test() {
 }
 
 src_install() {
-	make DESTDIR="${D}" docdir=/usr/share/doc/${PF}/html install || die
+	emake DESTDIR="${ED}" docdir=/usr/share/doc/${PF}/html \
+		install || die "emake install failed"
 
 	insinto /usr/include/a52dec
 	doins "${S}"/liba52/a52_internal.h
