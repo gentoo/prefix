@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/fetchmail-6.3.11-r1.ebuild,v 1.2 2009/08/19 11:25:24 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/fetchmail-6.3.11-r1.ebuild,v 1.3 2009/08/23 20:17:34 tove Exp $
 
 EAPI=2
 
@@ -90,7 +90,7 @@ src_install() {
 
 pkg_postinst() {
 	python_version
-	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages
+	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/fetchmailconf.py
 
 	if ! python -c "import Tkinter" >/dev/null 2>&1
 	then

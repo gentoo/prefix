@@ -1,6 +1,9 @@
 # ChangeLog for net-mail/fetchmail
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.168 2009/08/19 11:29:47 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.169 2009/08/23 20:17:34 tove Exp $
+
+  23 Aug 2009; Torsten Veller <tove@gentoo.org> fetchmail-6.3.11-r1.ebuild:
+  Add full path to python_mod_optimize.
 
   19 Aug 2009; Torsten Veller <tove@gentoo.org> -fetchmail-6.3.8-r1.ebuild,
   -files/fetchmail-6.3.8-null-msg-pointer.patch,
