@@ -1,9 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/libdvdread-0.9.7.ebuild,v 1.17 2008/01/29 21:43:22 grobian Exp $
-
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/libdvdread-0.9.7.ebuild,v 1.18 2009/08/21 20:22:48 ssuominen Exp $
 
 inherit eutils libtool autotools
 
@@ -16,7 +13,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND=">=media-libs/libdvdcss-1.1.1"
+RDEPEND=">=media-libs/libdvdcss-1.1.1"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
