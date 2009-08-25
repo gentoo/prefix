@@ -935,7 +935,7 @@ diff -ru -x '*.o' -x config.h openssh-5.2p1.orig/uidswap.c openssh-5.2p1/uidswap
  	    (u_int)pw->pw_gid);
  
 +#ifdef __INTERIX
-+	if ((pw->pw_expire - time(NULL)) <= 172800) {
++	if (pw->pw_expire != 0 && ((pw->pw_expire - time(NULL)) <= 172800)) {
 +		fprintf(stderr, "WARNING: Your password will expire soon. This will make remote\n"
 +						"logins via ssh impossible without notice of the occured error!\n");
 +	}
