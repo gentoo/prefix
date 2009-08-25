@@ -90,8 +90,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.0-mint.patch
 	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
 
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-4.0-interix.patch
+	if [[ ${CHOST} == *-interix* ]]; then
+		epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
+		epatch "${FILESDIR}"/${PN}-4.0-interix.patch
+		epatch "${FILESDIR}"/${PN}-4.0-interix-access.patch
+	fi
 
 	# modify the bashrc file for prefix
 	cp "${FILESDIR}"/bashrc "${T}"
