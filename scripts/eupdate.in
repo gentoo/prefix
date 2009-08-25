@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Copyright Gentoo Foundation 2006-2008
+# Copyright Gentoo Foundation 2006-2009
 
+# <zuxez@cs.tu-berlin.de> -- 2009-08-11
+# allow to use web-based viewcvs instead of anonymous CVS access
 # <grobian@gentoo.org> -- 2008-06-17
 # switch to fully sourcing ebuilds (and their eclasses) in fetch_files
 # such that we catch more cases in which patches can be referenced
@@ -61,8 +63,12 @@
 # Prefix Tree Directory
 [[ -z $PTREEDIR ]] && PTREEDIR="`cd ${EPREFIX}/usr/portage && pwd -P`"
 # How to reach the CVS server for retrieving revision diffs, devs can
-# use their ssh access for most uptodate tree
+# use their ssh access for the most up-to-date tree.  You can use the
+# anonymous CVS (:pserver:anonymous@anoncvs.gentoo.org:/var/cvsroot) or
+# HTTP-based webcvs (http://sources.gentoo.org/viewcvs.py).  We default
+# to the first since it should be less stressful for the server.
 [[ -z $CVSROOT ]] && CVSROOT=':pserver:anonymous@anoncvs.gentoo.org:/var/cvsroot'
+
 # Don't touch this.  You really don't want to.
 CVSMODULE='gentoo-x86'
 # Voodoo to figure out what package you're currently messing with
@@ -358,12 +364,19 @@ cross_diff() {
 	# checkout both original versions and make the diffs,
 	# ignoring keywords
 	tmp="tmp.${package##*.}"
-	cvs -Q -d"${CVSROOT}" \
-		checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$mypte \
-		> /var/tmp/$mypte-$ptecv.$tmp
-	cvs -Q -d"${CVSROOT}" \
-		checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
-		> /var/tmp/$mte-$mtecv.$tmp
+	if [[ ${CVSROOT} == "http://"* ]] ; then
+		wget -q -O /var/tmp/$mypte-$ptecv.$tmp \
+			"${CVSROOT}/${CVSMODULE}/${EPACKAGE}/$mypte?rev=$ptecv"
+		wget -q -O /var/tmp/$mte-$mtecv.$tmp \
+			"${CVSROOT}/${CVSMODULE}/${EPACKAGE}/$mte?rev=$mtecv"
+	else
+		cvs -Q -d"${CVSROOT}" \
+			checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$mypte \
+			> /var/tmp/$mypte-$ptecv.$tmp
+		cvs -Q -d"${CVSROOT}" \
+			checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$mte \
+			> /var/tmp/$mte-$mtecv.$tmp
+	fi
 	# create the new file to patch against
 	cp $pte $mte
 	# Sanitise the $Header line, because it may differ being in the
@@ -402,12 +415,19 @@ revision_diff() {
 		# checkout both original versions and make the diffs,
 		# ignoring keywords
 		local tmp="tmp.${package##*.}"
-		cvs -Q -d"${CVSROOT}" \
-			checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$package \
-			> /var/tmp/$package-$ptecv.$tmp
-		cvs -Q -d"${CVSROOT}" \
-			checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$package \
-			> /var/tmp/$package-$mtecv.$tmp
+		if [[ ${CVSROOT} == "http://"* ]] ; then
+			wget -q -O /var/tmp/$package-$ptecv.$tmp \
+				"${CVSROOT}/${CVSMODULE}/${EPACKAGE}/$package?rev=$ptecv"
+			wget -q -O /var/tmp/$package-$mtecv.$tmp \
+				"${CVSROOT}/${CVSMODULE}/${EPACKAGE}/$package?rev=$mtecv"
+		else
+			cvs -Q -d"${CVSROOT}" \
+				checkout -r$ptecv -p ${CVSMODULE}/${EPACKAGE}/$package \
+				> /var/tmp/$package-$ptecv.$tmp
+			cvs -Q -d"${CVSROOT}" \
+				checkout -r$mtecv -p ${CVSMODULE}/${EPACKAGE}/$package \
+				> /var/tmp/$package-$mtecv.$tmp
+		fi
 		# make KEYWORDS void in the diff
 		[[ ${package##*.} == "ebuild" ]] && sed -i \
 			-e 's|^KEYWORDS=.*$|'"$(egrep '^KEYWORDS=' $pfile | head -n1)"'|' \
