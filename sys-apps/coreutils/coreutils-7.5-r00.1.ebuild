@@ -52,6 +52,9 @@ src_unpack() {
 	# interix has no setgroups, so this won't work.
 	epatch "${FILESDIR}"/${P}-interix-setgroups.patch
 
+	# thank god not all things are as **** up as interix' security...
+	epatch "${FILESDIR}"/${P}-interix-security.patch
+
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.
