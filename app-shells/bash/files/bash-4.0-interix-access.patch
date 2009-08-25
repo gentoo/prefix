@@ -1,4 +1,4 @@
-diff -ru bash-4.0.orig/findcmd.c bash-4.0/findcmd.c
+diff -ru -x '*.Po' -x '*.Plo' bash-4.0.orig/findcmd.c bash-4.0/findcmd.c
 --- bash-4.0.orig/findcmd.c	2009-08-25 10:57:38 +0200
 +++ bash-4.0/findcmd.c	2009-08-25 11:12:37 +0200
 @@ -111,7 +111,7 @@
@@ -10,7 +10,7 @@ diff -ru bash-4.0.orig/findcmd.c bash-4.0/findcmd.c
      {
        r |= FS_READABLE;
        if (finfo.st_mode & S_IXUGO)
-diff -ru bash-4.0.orig/lib/readline/complete.c bash-4.0/lib/readline/complete.c
+diff -ru -x '*.Po' -x '*.Plo' bash-4.0.orig/lib/readline/complete.c bash-4.0/lib/readline/complete.c
 --- bash-4.0.orig/lib/readline/complete.c	2009-08-25 10:57:39 +0200
 +++ bash-4.0/lib/readline/complete.c	2009-08-25 11:35:09 +0200
 @@ -52,6 +52,10 @@
@@ -33,9 +33,9 @@ diff -ru bash-4.0.orig/lib/readline/complete.c bash-4.0/lib/readline/complete.c
  	character = '*';
      }
    return (character);
-diff -ru bash-4.0.orig/lib/sh/eaccess.c bash-4.0/lib/sh/eaccess.c
+diff -ru -x '*.Po' -x '*.Plo' bash-4.0.orig/lib/sh/eaccess.c bash-4.0/lib/sh/eaccess.c
 --- bash-4.0.orig/lib/sh/eaccess.c	2009-08-25 10:57:40 +0200
-+++ bash-4.0/lib/sh/eaccess.c	2009-08-25 11:25:52 +0200
++++ bash-4.0/lib/sh/eaccess.c	2009-08-25 16:34:38 +0200
 @@ -141,7 +141,7 @@
    if (sh_stat (path, &st) < 0)
      return (-1);
@@ -45,6 +45,15 @@ diff -ru bash-4.0.orig/lib/sh/eaccess.c bash-4.0/lib/sh/eaccess.c
      {
        /* Root can read or write any file. */
        if ((mode & X_OK) == 0)
+@@ -203,7 +203,7 @@
+ 
+ #if defined (HAVE_EACCESS)		/* FreeBSD */
+   return (eaccess (path, mode));
+-#elif defined (EFF_ONLY_OK)		/* SVR4(?), SVR4.2 */
++#elif defined (EFF_ONLY_OK) && !defined(__INTERIX)	/* SVR4(?), SVR4.2 */
+   return access (path, mode|EFF_ONLY_OK);
+ #else
+   if (mode == F_OK)
 @@ -214,8 +214,13 @@
      return (sh_euidaccess (path, mode));
  #  endif
@@ -59,7 +68,7 @@ diff -ru bash-4.0.orig/lib/sh/eaccess.c bash-4.0/lib/sh/eaccess.c
  
    return (sh_stataccess (path, mode));
  #endif
-diff -ru bash-4.0.orig/parse.y bash-4.0/parse.y
+diff -ru -x '*.Po' -x '*.Plo' bash-4.0.orig/parse.y bash-4.0/parse.y
 --- bash-4.0.orig/parse.y	2009-08-25 10:57:41 +0200
 +++ bash-4.0/parse.y	2009-08-25 11:27:04 +0200
 @@ -4990,9 +4990,9 @@
@@ -74,7 +83,7 @@ diff -ru bash-4.0.orig/parse.y bash-4.0/parse.y
  	      *t = '\0';
  	      goto add_string;
  
-diff -ru bash-4.0.orig/shell.h bash-4.0/shell.h
+diff -ru -x '*.Po' -x '*.Plo' bash-4.0.orig/shell.h bash-4.0/shell.h
 --- bash-4.0.orig/shell.h	2009-08-25 10:57:42 +0200
 +++ bash-4.0/shell.h	2009-08-25 11:11:39 +0200
 @@ -41,6 +41,14 @@
