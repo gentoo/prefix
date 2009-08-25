@@ -12,17 +12,19 @@ diff -ru bash-4.0.orig/findcmd.c bash-4.0/findcmd.c
        if (finfo.st_mode & S_IXUGO)
 diff -ru bash-4.0.orig/lib/readline/complete.c bash-4.0/lib/readline/complete.c
 --- bash-4.0.orig/lib/readline/complete.c	2009-08-25 10:57:39 +0200
-+++ bash-4.0/lib/readline/complete.c	2009-08-25 11:30:29 +0200
-@@ -52,6 +52,8 @@
++++ bash-4.0/lib/readline/complete.c	2009-08-25 11:35:09 +0200
+@@ -52,6 +52,10 @@
  #include <pwd.h>
  #endif
  
-+#include "externs.h"
++/* can't include externs.h here - so directly define this one. this
++ * is required to fix interix access() which behaves totally stupid */
++extern int sh_eaccess(char*,int);
 +
  #include "posixdir.h"
  #include "posixstat.h"
  
-@@ -554,7 +556,7 @@
+@@ -554,7 +558,7 @@
  #endif
    else if (S_ISREG (finfo.st_mode))
      {
