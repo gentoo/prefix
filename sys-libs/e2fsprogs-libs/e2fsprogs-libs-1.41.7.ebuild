@@ -33,6 +33,7 @@ src_prepare() {
 	fi
 
 	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-interix6-net.patch
 }
 
 src_configure() {
