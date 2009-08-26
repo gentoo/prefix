@@ -76,6 +76,7 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
+	epatch "${FILESDIR}"/${P}-imports.patch #282581
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14153-prefix-chaining.patch
 }
