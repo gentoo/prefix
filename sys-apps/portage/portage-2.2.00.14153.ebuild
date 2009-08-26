@@ -77,7 +77,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
 
-	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13830-prefix-chaining.patch
+	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14153-prefix-chaining.patch
 }
 
 src_compile() {
@@ -201,7 +201,7 @@ pkg_postinst() {
 			[[ -z ${didwork} ]] \
 				&& didwork=yes \
 				|| didwork=already
-		elif [[ ${CHOST} != *-darwin* && ! -f ${cpv}.ELF.2 ]] ; then
+		elif [[ ${CHOST} != *-darwin* && ${CHOST} != *-interix* && ! -f ${cpv}.ELF.2 ]] ; then
 			while read line; do
 				filename=${line% *}
 				needed=${line#* }
