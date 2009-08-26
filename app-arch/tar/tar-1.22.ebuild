@@ -30,6 +30,10 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-1.21-revert-pipe.patch #252680
 
+	# on interix, tar wrongly detects that directories change while
+	# reading them.
+	epatch "${FILESDIR}"/${P}-interix-dirs.patch
+
 	if ! use userland_GNU ; then
 		sed -i \
 			-e 's:/backup\.sh:/gbackup.sh:' \
