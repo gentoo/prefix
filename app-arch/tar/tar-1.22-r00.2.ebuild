@@ -30,9 +30,11 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-1.21-revert-pipe.patch #252680
 
-	# on interix, tar wrongly detects that directories change while
-	# reading them.
-	epatch "${FILESDIR}"/${P}-interix-dirs.patch
+	# somehow, on interix 6, tar detects changing files/dirs
+	# all the time, although nothing is happening on the fs.
+	# probably a bug in stat()...
+	[[ ${CHOST} == *-interix6* ]] && \
+		epatch "${FILESDIR}"/${P}-interix-change.patch
 
 	if ! use userland_GNU ; then
 		sed -i \
