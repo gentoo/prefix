@@ -14,7 +14,7 @@ PROVIDE="virtual/portage"
 SLOT="0"
 IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
 
-python_dep=">=dev-lang/python-2.4 <dev-lang/python-3.0"
+python_dep=">=dev-lang/python-2.5 <dev-lang/python-3.0"
 
 DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
@@ -76,16 +76,14 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
-	epatch "${FILESDIR}"/${P}-imports.patch #282581
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14153-prefix-chaining.patch
 }
 
 src_compile() {
 	local defaultpath="/usr/bin:/bin"
-	local rootuser=$(python -c 'from portage.const import rootuser; print	rootuser')
 	# lazy check, but works for now
-	if [[ ${rootuser} == "root" ]] ; then
+	if [[ ${PORTAGE_ROOT_USER:-} == "root" ]] ; then
 		# we need this for e.g. mtree on FreeBSD (and Darwin) which is in
 		# /usr/sbin
 		defaultpath="${defaultpath}:/usr/sbin:/sbin"
@@ -93,7 +91,7 @@ src_compile() {
 	econf \
 		--with-portage-user="${PORTAGE_USER:-portage}" \
 		--with-portage-group="${PORTAGE_GROUP:-portage}" \
-		--with-root-user="${rootuser}" \
+		--with-root-user="${PORTAGE_ROOT_USER:-root}" \
 		--with-offset-prefix="${EPREFIX}" \
 		--with-default-path="${defaultpath}" \
 		|| die "econf failed"

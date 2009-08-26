@@ -2,6 +2,15 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.14160 (26 Aug 2009)
+
+  26 Aug 2009; Fabian Groffen <grobian@gentoo.org>
+  -files/portage-2.2.00.13683-prefix-chaining.patch,
+  -portage-2.2.00.14153-r1.ebuild,
+  -files/portage-2.2.00.14153-imports.patch, +portage-2.2.00.14160.ebuild:
+  Version bump with appropriate fixes for dispatch-conf (replaces imports
+  patch)
+
 *portage-2.2.00.14153-r1 (26 Aug 2009)
 
   26 Aug 2009; Markus Duft <mduft@gentoo.org> -portage-2.2.00.14153.ebuild,
