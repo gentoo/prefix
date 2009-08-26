@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~m68k-mint"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~m68k-mint"
 IUSE="nls"
 
 RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.6 ) )
@@ -31,6 +31,8 @@ src_prepare() {
 	if [[ ${CHOST} == *-mint* ]]; then
 		sed -i -e 's/_SVID_SOURCE/_GNU_SOURCE/' lib/uuid/gen_uuid.c || die
 	fi
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_configure() {
