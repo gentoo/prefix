@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-digest-base/perl-digest-base-1.16.ebuild,v 1.1 2009/06/10 13:35:37 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-digest-base/perl-digest-base-1.16.ebuild,v 1.2 2009/08/25 10:56:59 tove Exp $
 
 DESCRIPTION="Virtual for digest-base"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
@@ -12,4 +12,4 @@ KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos
 IUSE=""
 
 DEPEND=""
-RDEPEND="~perl-core/digest-base-${PV}"
+RDEPEND="|| ( ~dev-lang/perl-5.10.1 ~perl-core/digest-base-${PV} )"
