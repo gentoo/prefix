@@ -1,6 +1,13 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.113 2009/08/07 22:17:07 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.115 2009/08/25 14:58:37 fauli Exp $
+
+  25 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  gnuplot-4.2.5-r1.ebuild:
+  stable x86, bug 282642
+
+  25 Aug 2009; Ulrich Mueller <ulm@gentoo.org> gnuplot-4.2.5-r1.ebuild:
+  Avoid sandbox violation with USE=doc.
 
   07 Aug 2009; Ulrich Mueller <ulm@gentoo.org> gnuplot-4.2.5-r1.ebuild:
   Move code related to wxwidgets.eclass back to src_configure (it had been
