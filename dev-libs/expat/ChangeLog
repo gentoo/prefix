@@ -1,6 +1,23 @@
 # ChangeLog for dev-libs/expat
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.84 2009/08/23 09:04:43 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/expat/ChangeLog,v 1.89 2009/08/25 16:24:47 armin76 Exp $
+
+  25 Aug 2009; Raúl Porcel <armin76@gentoo.org> expat-2.0.1-r2.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #280615
+
+  25 Aug 2009; Tobias Klausmann <klausman@gentoo.org> expat-2.0.1-r2.ebuild:
+  Stable on alpha, bug #280615
+
+  25 Aug 2009; <chainsaw@gentoo.org> expat-2.0.1-r2.ebuild:
+  Marked stable on AMD64 as requested by Robert Buchholz <rbu@gentoo.org> in
+  security bug #280615. Tested on a Core2 Duo: 100%: Checks: 50, Failed: 0
+
+  25 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  expat-2.0.1-r2.ebuild:
+  stable x86, security bug 280615
+
+  24 Aug 2009; Brent Baude <ranger@gentoo.org> expat-2.0.1-r2.ebuild:
+  Marking expat-2.0.1-r2 ppc64 for bug 280615
 
   23 Aug 2009; nixnut <nixnut@gentoo.org> expat-2.0.1-r2.ebuild:
   ppc stable #280615
