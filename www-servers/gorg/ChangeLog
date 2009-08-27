@@ -1,6 +1,13 @@
 # ChangeLog for www-servers/gorg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/ChangeLog,v 1.20 2009/06/13 07:40:06 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/ChangeLog,v 1.21 2009/08/24 16:43:06 ramereth Exp $
+
+*gorg-0.6.3-r3 (24 Aug 2009)
+
+  24 Aug 2009; Lance Albertson <ramereth@gentoo.org> +gorg-0.6.3-r3.ebuild:
+  Add www-server/mod_fcgid dep if both apache2 & fastcgi use flags are
+  enabled.
+  Fixes bug #251177
 
   13 Jun 2009; Hans de Graaff <graaff@gentoo.org> -gorg-0.5.ebuild,
   -gorg-0.6.3.ebuild, -gorg-0.6.3-r1.ebuild:
