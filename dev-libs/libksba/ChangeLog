@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libksba
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.106 2009/08/14 20:44:13 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/ChangeLog,v 1.107 2009/08/25 17:17:15 armin76 Exp $
+
+  25 Aug 2009; Raúl Porcel <armin76@gentoo.org> libksba-1.0.7.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable stable wrt #280785
 
   14 Aug 2009; Markus Meier <maekke@gentoo.org> libksba-1.0.7.ebuild:
   amd64/x86 stable, bug #280785
