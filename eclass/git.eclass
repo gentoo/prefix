@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.27 2009/05/14 13:52:08 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.28 2009/08/24 21:48:58 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -75,8 +75,12 @@ EGIT_DIFFSTAT_CMD="git --no-pager diff --stat"
 #   git+ssh://
 #   rsync://
 #   ssh://
-: ${EGIT_REPO_URI:=}
-
+eval X="\$${PN//-/_}_LIVE_REPO"
+if [[ ${X} = "" ]]; then
+	EGIT_REPO_URI=${EGIT_REPO_URI:=}
+else
+	EGIT_REPO_URI="${X}"
+fi
 # @ECLASS-VARIABLE: EGIT_PROJECT
 # @DESCRIPTION:
 # Project name of your ebuild.
@@ -109,12 +113,22 @@ EGIT_OFFLINE="${EGIT_OFFLINE:-${ESCM_OFFLINE}}"
 # @ECLASS-VARIABLE: EGIT_BRANCH
 # @DESCRIPTION:
 # git eclass can fetch any branch in git_fetch().
-: ${EGIT_BRANCH:=master}
+eval X="\$${PN//-/_}_LIVE_BRANCH"
+if [[ ${X} = "" ]]; then
+	EGIT_BRANCH=${EGIT_BRANCH:=master}
+else
+	EGIT_BRANCH="${X}"
+fi
 
 # @ECLASS-VARIABLE: EGIT_TREE
 # @DESCRIPTION:
 # git eclass can checkout any tree (commit).
-: ${EGIT_TREE:=${EGIT_BRANCH}}
+eval X="\$${PN//-/_}_LIVE_TREE"
+if [[ ${X} = "" ]]; then
+	: ${EGIT_TREE:=${EGIT_BRANCH}}
+else
+	EGIT_TREE="${X}"
+fi
 
 # @ECLASS-VARIABLE: EGIT_REPACK
 # @DESCRIPTION:
@@ -218,6 +232,7 @@ git_fetch() {
 
 		oldsha1=$(git rev-parse ${EGIT_BRANCH})
 
+		${elogcmd} ${EGIT_UPDATE_CMD} ${EGIT_OPTIONS} origin ${EGIT_BRANCH}:${EGIT_BRANCH}
 		${EGIT_UPDATE_CMD} ${EGIT_OPTIONS} origin ${EGIT_BRANCH}:${EGIT_BRANCH} \
 			|| die "${EGIT}: can't update from ${EGIT_REPO_URI}."
 
@@ -229,6 +244,16 @@ git_fetch() {
 			${elogcmd} "   to commit:		${cursha1}"
 		else
 			${elogcmd} "   at the commit: 		${cursha1}"
+			# @ECLASS_VARIABLE: LIVE_FAIL_FETCH_IF_REPO_NOT_UPDATED
+			# @DESCRIPTION:
+			# If this variable is set to TRUE in make.conf or somewhere in
+			# enviroment the package will fail if there is no update, thus in
+			# combination with --keep-going it would lead in not-updating
+			# pakcages that are up-to-date.
+			# TODO: this can lead to issues if more projects/packages use same repo
+			[[ ${LIVE_FAIL_FETCH_IF_REPO_NOT_UPDATED} = true ]] && \
+				debug-print "${FUNCNAME}: Repository \"${EGIT_REPO_URI}\" is up-to-date. Skipping." && \
+				die "${EGIT}: Repository \"${EGIT_REPO_URI}\" is up-to-date. Skipping."
 		fi
 		${EGIT_DIFFSTAT_CMD} ${oldsha1}..${EGIT_BRANCH}
 	fi
@@ -260,6 +285,10 @@ git_fetch() {
 	fi
 	debug-print "git checkout -b ${branchname} ${src}"
 	git checkout -b ${branchname} ${src} 2>&1 > /dev/null
+	debug-print "git submodule init"
+	git submodule init 2>&1 > /dev/null
+	debug-print "git submodule update"
+	git submodule update 2>&1 > /dev/null
 	popd > /dev/null
 
 	unset branchname src

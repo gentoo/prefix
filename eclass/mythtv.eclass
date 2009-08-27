@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.16 2009/08/04 20:55:02 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.17 2009/08/25 16:51:21 gentoofan23 Exp $
 #
 # @ECLASS: mythtv.eclass
 # @AUTHOR: Doug Goldstein <cardoe@gentoo.org>
@@ -41,4 +41,4 @@ esac
 HOMEPAGE="http://www.mythtv.org"
 LICENSE="GPL-2"
 SRC_URI="http://svn.mythtv.org/trac/changeset/${MYTHTV_REV}/${MYTHTV_REPO}?old_path=%2F&format=zip -> ${MY_PN}-${PV}.zip"
-[[ ${PN} == mythtv ]] || S="${WORKDIR}/${MYTHTV_REPO}"
+S="${WORKDIR}/${MYTHTV_REPO}"

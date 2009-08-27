@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.41 2009/03/29 20:27:19 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.42 2009/08/25 12:53:55 ulm Exp $
 #
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -50,7 +50,7 @@
 # reserved for internal use.  "50${PN}-gentoo.el" is a reasonable choice
 # in most cases.
 
-inherit elisp-common eutils versionator
+inherit elisp-common eutils
 
 case "${EAPI:-0}" in
 	0|1) EXPORT_FUNCTIONS src_{unpack,compile,install} \
@@ -66,8 +66,8 @@ IUSE=""
 elisp_pkg_setup() {
 	local need_emacs=${NEED_EMACS:-21}
 	local have_emacs=$(elisp-emacs-version)
-	if ! version_is_at_least "${need_emacs}" "${have_emacs}"; then
-		eerror "This package needs at least Emacs ${need_emacs}."
+	if [ "${have_emacs%%.*}" -lt "${need_emacs%%.*}" ]; then
+		eerror "This package needs at least Emacs ${need_emacs%%.*}."
 		eerror "Use \"eselect emacs\" to select the active version."
 		die "Emacs version ${have_emacs} is too low."
 	fi
