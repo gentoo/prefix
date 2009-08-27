@@ -1,6 +1,9 @@
 # ChangeLog for virtual/perl-IO
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO/ChangeLog,v 1.14 2009/05/14 10:08:05 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO/ChangeLog,v 1.15 2009/08/25 10:56:52 tove Exp $
+
+  25 Aug 2009; Torsten Veller <tove@gentoo.org> perl-IO-1.25.ebuild:
+  Add support for perl-5.10.1
 
 *perl-IO-1.25 (14 May 2009)
 
