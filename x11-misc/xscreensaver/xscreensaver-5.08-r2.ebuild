@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.08-r2.ebuild,v 1.7 2009/07/19 15:24:52 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.08-r2.ebuild,v 1.8 2009/08/25 11:57:23 ssuominen Exp $
 
 EAPI=2
 inherit autotools eutils flag-o-matic multilib pam
@@ -51,7 +51,9 @@ src_prepare() {
 		"${FILESDIR}"/${PV}/03_all_glforrestfire.patch \
 		"${FILESDIR}"/${P}-phosphor-segv.patch \
 		"${FILESDIR}"/${P}-po-recreate.patch \
-		"${FILESDIR}"/${P}-randr12.patch
+		"${FILESDIR}"/${P}-randr12.patch \
+		"${FILESDIR}"/${P}-X-XFCE.patch
+
 	epatch "${FILESDIR}"/${PN}-5.05-interix.patch
 	eautoconf
 }
