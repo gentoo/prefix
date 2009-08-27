@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/easytag
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/ChangeLog,v 1.133 2009/08/15 08:44:35 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/ChangeLog,v 1.134 2009/08/25 12:53:37 jer Exp $
+
+  25 Aug 2009; Jeroen Roovers <jer@gentoo.org> easytag-2.1.6-r2.ebuild:
+  Stable for HPPA (bug #280793).
 
   15 Aug 2009; Markus Meier <maekke@gentoo.org> easytag-2.1.6-r2.ebuild:
   amd64/x86 stable, bug #280793
