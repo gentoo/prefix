@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/eselect-python-20090606.ebuild,v 1.7 2009/07/11 20:40:16 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/eselect-python-20090606.ebuild,v 1.8 2009/08/25 17:31:16 arfrever Exp $
 
 inherit eutils prefix
 
@@ -21,6 +21,12 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-mac.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify "${WORKDIR}"/python.eselect-${PV}
+}
+
+pkg_setup() {
+	if has_version ">=app-admin/eselect-python-20090804"; then
+		die "Downgrade of app-admin/eselect-python is not supported"
+	fi
 }
 
 src_install() {
