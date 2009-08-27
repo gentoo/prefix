@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/httpup/httpup-0.3.2.ebuild,v 1.3 2008/06/20 14:07:12 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/httpup/httpup-0.3.2.ebuild,v 1.4 2009/08/25 19:54:09 vostorga Exp $
 
-inherit eutils
+inherit eutils toolchain-funcs
 
 DESCRIPTION="synchronisation tool for http file repositories"
 HOMEPAGE="http://clc.berlios.de/projects/httpup/"
@@ -14,6 +14,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND="net-misc/curl"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
@@ -23,6 +24,11 @@ src_unpack() {
 		-e 's:g++:$(CXX) $(CFLAGS) $(LDFLAGS):' \
 		Makefile
 	epatch "${FILESDIR}"/${P}-gcc43.patch
+	epatch "${FILESDIR}"/${P}-gcc44.patch
+}
+
+src_compile() {
+	emake CXX="$(tc-getCXX)" || die "make failed"
 }
 
 src_install() {

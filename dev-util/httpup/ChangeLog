@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/httpup
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/httpup/ChangeLog,v 1.5 2008/06/20 14:07:12 loki_val Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/httpup/ChangeLog,v 1.6 2009/08/25 19:54:09 vostorga Exp $
+
+  25 Aug 2009; Víctor Ostorga <vostorga@gentoo.org> httpup-0.3.2.ebuild,
+  +files/httpup-0.3.2-gcc44.patch:
+  Fixing build against gcc 4.4 #282676 , Respecting CXX variable
 
   20 Jun 2008; Peter Alfredsen <loki_val@gentoo.org>
   +files/httpup-0.3.2-gcc43.patch, httpup-0.3.2.ebuild:
