@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO-Zlib/perl-IO-Zlib-1.09.ebuild,v 1.4 2009/07/07 02:25:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-IO-Zlib/perl-IO-Zlib-1.09.ebuild,v 1.5 2009/08/25 10:56:53 tove Exp $
 
 DESCRIPTION="IO:: style interface to Compress::Zlib"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
@@ -13,4 +13,4 @@ KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-mac
 IUSE=""
 DEPEND=""
 
-RDEPEND="~perl-core/IO-Zlib-${PV}"
+RDEPEND="|| ( ~dev-lang/perl-5.10.1 ~perl-core/IO-Zlib-${PV} )"
