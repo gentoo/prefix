@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/Filter
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Filter/ChangeLog,v 1.28 2009/08/16 10:22:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Filter/ChangeLog,v 1.29 2009/08/26 01:21:39 jer Exp $
+
+  26 Aug 2009; Jeroen Roovers <jer@gentoo.org> Filter-1.37.ebuild:
+  Stable for HPPA (bug #280427).
 
   16 Aug 2009; Raúl Porcel <armin76@gentoo.org> Filter-1.37.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable wrt #280427
