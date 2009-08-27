@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/apr-util
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.141 2009/08/23 08:23:40 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.142 2009/08/24 14:54:20 ranger Exp $
+
+  24 Aug 2009; Brent Baude <ranger@gentoo.org> apr-util-1.3.9.ebuild:
+  Marking apr-util-1.3.9 ppc64 for bug 280514
 
   23 Aug 2009; nixnut <nixnut@gentoo.org> apr-util-1.3.9.ebuild:
   ppc stable #280514
