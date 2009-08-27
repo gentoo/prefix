@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/curl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.145 2009/08/23 09:02:45 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.147 2009/08/25 15:41:01 klausman Exp $
+
+  25 Aug 2009; Tobias Klausmann <klausman@gentoo.org> curl-7.19.6.ebuild:
+  Stable on alpha, bug #281515
+
+  25 Aug 2009; Christian Faulhammer <fauli@gentoo.org> curl-7.19.6.ebuild:
+  stable x86, security bug 281515
 
   23 Aug 2009; nixnut <nixnut@gentoo.org> curl-7.19.6.ebuild:
   ppc stable #281515
