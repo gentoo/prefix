@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.232 2009/08/14 14:04:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.233 2009/08/25 13:03:54 jer Exp $
+
+  25 Aug 2009; Jeroen Roovers <jer@gentoo.org> nano-2.1.9.ebuild:
+  Stable for HPPA (bug #281269).
 
   14 Aug 2009; Raúl Porcel <armin76@gentoo.org> nano-2.1.9.ebuild:
   alpha/arm/ia64/m68k/s390/sh/x86 stable wrt #281269
