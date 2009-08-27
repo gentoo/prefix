@@ -3,7 +3,6 @@
 <pkgmetadata>
 <herd>python</herd>
 <use>
-	<flag name='mxdatetime'>choose MX DateTime support instead of built-in
-	datetime</flag>
+	<flag name='mxdatetime'>Enable support for MX DateTime and use it instead of Python's built-in datetime module</flag>
 </use>
 </pkgmetadata>
