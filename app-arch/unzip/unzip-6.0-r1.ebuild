@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/unzip-6.0-r1.ebuild,v 1.1 2009/08/16 18:15:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/unzip-6.0-r1.ebuild,v 1.2 2009/08/24 06:30:50 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
@@ -61,7 +61,6 @@ src_compile() {
 	[[ ${CHOST} == *linux* ]] && append-cppflags -DNO_LCHMOD
 	use bzip2 && append-cppflags -DUSE_BZIP2
 	use unicode && append-cppflags -DUNICODE_SUPPORT -DUNICODE_WCHAR -DUTF8_MAYBE_NATIVE
-	append-lfs-flags #104315
 	append-cppflags -DLARGE_FILE_SUPPORT #281473
 
 	emake \
