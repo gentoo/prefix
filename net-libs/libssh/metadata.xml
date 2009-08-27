@@ -9,5 +9,6 @@
   <flag name='sftp'>Build with SFTP support</flag>
   <flag name='ssh1'>Build with SSH1 support</flag>
   <flag name='server'>Build with SSH server support</flag>
+  <flag name='static-libs'>Build static libs</flag>
 </use>
 </pkgmetadata>
