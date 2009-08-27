@@ -1,8 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/astng/astng-0.19.0.ebuild,v 1.1 2009/06/19 13:08:17 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/astng/astng-0.19.0.ebuild,v 1.2 2009/08/25 14:51:27 arfrever Exp $
 
-inherit python distutils
+EAPI="2"
+SUPPORT_PYTHON_ABIS="1"
+
+inherit distutils
 
 DESCRIPTION="Abstract Syntax Tree New Generation for logilab packages"
 HOMEPAGE="http://www.logilab.org/projects/astng/"
@@ -17,38 +20,45 @@ RDEPEND=">=dev-python/logilab-common-0.39.0"
 DEPEND="${RDEPEND}
 	test? ( >=dev-python/egenix-mx-base-3.0.0 )"
 
+RESTRICT_PYTHON_ABIS="3*"
+
 PYTHON_MODNAME="logilab"
 
 S="${WORKDIR}/logilab-${P}"
 
 src_test() {
-	local sdir="${T}/test/$(python_get_sitedir)"
+	testing() {
+		local sdir="${T}/test/$(python_get_sitedir)"
 
-	# This is a hack to make tests work without installing to the live
-	# filesystem. We copy part of the logilab site-packages to a temporary
-	# dir, install there, and run from there.
-	mkdir -p "${sdir}/logilab" || die
-	cp -r "$(python_get_sitedir)/logilab/common" "${sdir}/logilab" \
-		|| die "copying logilab-common failed!"
+		# This is a hack to make tests work without installing to the live
+		# filesystem. We copy part of the logilab site-packages to a temporary
+		# dir, install there, and run from there.
+		mkdir -p "${sdir}/logilab" || die
+		cp -r "$(python_get_sitedir)/logilab/common" "${sdir}/logilab" || die "copying logilab-common failed!"
 
-	${python} setup.py install --root="${T}/test" || die "test copy failed"
+		"$(PYTHON)" setup.py install --root="${T}/test" || die "test copy failed"
 
-	# Pytest picks up tests relative to the current dir, so cd in.
-	pushd "${sdir}/logilab/astng" >/dev/null || die
-	PYTHONPATH="${sdir}" pytest -v || die "tests failed"
-	popd >/dev/null
+		# Pytest picks up tests relative to the current dir, so cd in.
+		pushd "${sdir}/logilab/astng" > /dev/null || die
+		PYTHONPATH="${sdir}" pytest -v || die "tests failed"
+		popd > /dev/null
+	}
+	python_execute_function testing
 }
 
 src_install() {
-	local sdir="${ED}/$(python_get_sitedir)/logilab"
-
 	distutils_src_install
 
-	# we need to remove this file because it collides with the one
-	# from logilab-common (which we depend on).
-	# Bug 111970 and bug 223025
-	rm "${sdir}/__init__.py" || die
+	deletion_of_unneeded_files() {
+		local sdir="${ED}/$(python_get_sitedir)/logilab"
 
-	# Remove unittests since they're just needed during build-time
-	rm -rf "${sdir}/astng/test" || die
+		# we need to remove this file because it collides with the one
+		# from logilab-common (which we depend on).
+		# Bug 111970 and bug 223025
+		rm "${sdir}/__init__.py" || die
+
+		# Remove unittests since they're just needed during build-time
+		rm -rf "${sdir}/astng/test" || die
+	}
+	python_execute_function --action-message 'Deletion of unneeded files with Python ${PYTHON_ABI}' deletion_of_unneeded_files
 }
