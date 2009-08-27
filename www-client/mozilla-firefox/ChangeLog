@@ -1,6 +1,18 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.536 2009/08/21 07:54:04 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.539 2009/08/25 14:14:55 armin76 Exp $
+
+  25 Aug 2009; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.5.2.ebuild, mozilla-firefox-3.5.2-r1.ebuild:
+  Mark -sparc as it fails to compile
+
+  25 Aug 2009; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.0.13.ebuild:
+  alpha/arm/ia64/sparc stable wrt #279380
+
+  24 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  mozilla-firefox-3.0.13.ebuild:
+  stable x86, security bug 282179
 
   21 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
   mozilla-firefox-3.5.2-r1.ebuild:
