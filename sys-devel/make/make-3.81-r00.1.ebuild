@@ -35,7 +35,26 @@ src_unpack() {
 }
 
 src_compile() {
+	local myconf=
 	use static && append-ldflags -static
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		# on interix, many others don't know large files (coreutils...),
+		# so no need for make to build that code.
+		myconf="${myconf} --disable-largefile"
+
+		# job-server does more harm than it helps. building with multiple
+		# jobs is still possible, but only local in one dir (which is the
+		# case with autotools anyway)
+		myconf="${myconf} --disable-job-server"
+
+		# on windows, the file system is case insensitive, so this would be
+		# correct, BUT: the APIs provided by SUA talk to the NT kernel, and
+		# there, objects are case sensitive, which makes the filesystem from
+		# a programmers POV case sensitive... :/
+		# myconf="${myconf} --enable-case-insensitive-file-system"
+	fi
+
 	econf \
 		$(use_enable nls) \
 		--program-prefix=g \
