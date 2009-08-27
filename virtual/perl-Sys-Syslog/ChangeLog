@@ -1,6 +1,9 @@
 # ChangeLog for virtual/perl-Sys-Syslog
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/ChangeLog,v 1.31 2009/03/27 17:52:29 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Sys-Syslog/ChangeLog,v 1.32 2009/08/25 10:57:00 tove Exp $
+
+  25 Aug 2009; Torsten Veller <tove@gentoo.org> perl-Sys-Syslog-0.27.ebuild:
+  Add support for perl-5.10.1
 
   27 Mar 2009; Brent Baude <ranger@gentoo.org> perl-Sys-Syslog-0.27.ebuild:
   Marking perl-Sys-Syslog-0.27 ppc for bug 262899
