@@ -1,12 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60_p20071202044231-r1.ebuild,v 1.12 2009/08/24 17:10:40 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60_p20090728014017.ebuild,v 1.1 2009/08/24 08:43:22 vapier Exp $
 
 inherit flag-o-matic toolchain-funcs eutils
 
+PATCH_VER="1"
 DESCRIPTION="Standard Linux networking tools"
 HOMEPAGE="http://net-tools.berlios.de/"
-SRC_URI="mirror://gentoo/${P}.tar.lzma"
+SRC_URI="mirror://gentoo/${P}.tar.lzma
+	mirror://gentoo/${P}-patches-${PATCH_VER}.tar.lzma"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -24,7 +26,13 @@ maint_pkg_create() {
 	local pv="${PV/_p*}_p${stamp}"
 	local p="${PN}-${pv}"
 	git archive --prefix="${p}/" master | lzma > "${T}"/${p}.tar.lzma
-	du -b "${T}"/${p}.tar.lzma
+
+	local patches="${p}-patches-${PATCH_VER}"
+	mkdir "${T}"/${patches}
+	git format-patch -o "${T}"/${patches} master..gentoo > /dev/null
+	tar cf - -C "${T}" ${patches} | lzma > "${T}"/${patches}.tar.lzma
+
+	du -b "${T}"/*.tar.lzma
 }
 
 pkg_setup() { [[ -n ${VAPIER_LOVES_YOU} ]] && maint_pkg_create ; }
@@ -42,7 +50,7 @@ set_opt() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}/
+	EPATCH_SUFFIX="patch" EPATCH_FORCE="yes" epatch "${WORKDIR}"/${P}-patches-${PATCH_VER}
 
 	set_opt I18N use nls
 	set_opt HAVE_HWIB has_version '>=sys-kernel/linux-headers-2.6'
