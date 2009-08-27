@@ -10,7 +10,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-3 LGPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="acl doc emacs nls nocxx openmp"
 
 DEPEND="virtual/libiconv
@@ -47,6 +47,16 @@ src_unpack() {
 		export gl_cv_func_working_acl_get_file=no
 		sed -i -e 's:use_acl=1:use_acl=0:' gettext-tools/configure
 	fi
+
+	# we need this for FreeMiNT, bug #277285
+	sed -i -e 's/LDADD = /LDADD = @LIBMULTITHREAD@ /' \
+		gettext-runtime/src/Makefile.am \
+		gettext-runtime/src/Makefile.in \
+		gettext-tools/src/Makefile.am \
+		gettext-tools/src/Makefile.in \
+		gettext-tools/tests/Makefile.am \
+		gettext-tools/tests/Makefile.in \
+		|| die "FreeMiNT sed fix failed"
 
 	if [[ ${CHOST} == *-winnt* ]]; then
 		epatch "${FILESDIR}"/${P}-winnt.patch
