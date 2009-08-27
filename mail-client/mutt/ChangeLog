@@ -1,6 +1,13 @@
 # ChangeLog for mail-client/mutt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.144 2009/07/30 08:03:56 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.146 2009/08/25 20:06:58 fauli Exp $
+
+  25 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  mutt-1.5.20-r4.ebuild:
+  stable x86, bug 275703
+
+  25 Aug 2009; Tobias Klausmann <klausman@gentoo.org> mutt-1.5.19-r1.ebuild:
+  Stable on alpha, bug #275703
 
   30 Jul 2009; Fabian Groffen <grobian@gentoo.org> mutt-1.5.20-r4.ebuild,
   -files/mutt-1.5.20-hcache-uidvalidity-size-fix.patch,
