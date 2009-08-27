@@ -1,6 +1,9 @@
 # ChangeLog for virtual/perl-net-ping
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-net-ping/ChangeLog,v 1.7 2009/06/09 06:03:38 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-net-ping/ChangeLog,v 1.8 2009/08/25 10:56:43 tove Exp $
+
+  25 Aug 2009; Torsten Veller <tove@gentoo.org> perl-net-ping-2.36.ebuild:
+  Add support for perl-5.10.1
 
 *perl-net-ping-2.36 (09 Jun 2009)
 
