@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>xfce</herd>
-<use>
-  <flag name="zimagez">Optional support to host screenshots on ZimageZ, a free
-	  online image service</flag>
-</use>
+  <herd>xfce</herd>
+  <use>
+    <flag name="zimagez">Optional support to host screenshots on ZimageZ, a free online image service</flag>
+  </use>
 </pkgmetadata>

@@ -1,25 +1,30 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/xfce4-screenshooter-1.6.0.ebuild,v 1.3 2009/08/23 21:29:52 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/xfce4-screenshooter-1.6.0.ebuild,v 1.5 2009/08/26 03:47:05 darkside Exp $
 
-EAPI=1
-inherit xfce4
-
-xfce4_gzipped
-xfce4_goodies
+EAPI=2
+inherit xfconf
 
 DESCRIPTION="Xfce4 screenshooter application and panel plugin"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="zimagez"
+HOMEPAGE="http://goodies.xfce.org/projects/applications/xfce4-screenshooter"
+SRC_URI="http://goodies.xfce.org/releases/${PN}/${P}.tar.gz"
 
-RDEPEND="xfce-base/xfce4-panel
-	zimagez? ( dev-libs/xmlrpc-c
-		net-misc/curl )"
+LICENSE="GPL-2"
+SLOT="0"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+IUSE="debug zimagez"
+
+RDEPEND=">=x11-libs/gtk+-2.12:2
+	>=dev-libs/glib-2.16:2
+	>=xfce-base/xfce4-panel-4.4
+	>=xfce-base/libxfce4util-4.4
+	>=xfce-base/libxfcegui4-4.4
+	zimagez? ( dev-libs/xmlrpc-c net-misc/curl )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 pkg_setup() {
-	XFCE_CONFIG="$(use_enable zimagez curl)
-		$(use_enable zimagez xmlrpc-c)"
+	XFCONF="--disable-dependency-tracking
+		$(use_enable debug)"
 	DOCS="AUTHORS ChangeLog NEWS README TODO"
 }
