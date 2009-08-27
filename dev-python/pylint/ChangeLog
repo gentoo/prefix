@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pylint
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pylint/ChangeLog,v 1.48 2009/06/19 14:40:07 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pylint/ChangeLog,v 1.49 2009/08/25 15:53:35 arfrever Exp $
+
+  25 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pylint-0.18.0.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
 *pylint-0.18.0 (19 Jun 2009)
 
