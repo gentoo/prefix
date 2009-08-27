@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dietlibc/dietlibc-0.33_pre20090721.ebuild,v 1.1 2009/08/10 10:21:40 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dietlibc/dietlibc-0.33_pre20090721.ebuild,v 1.2 2009/08/24 15:42:30 hollow Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -31,7 +31,7 @@ pkg_setup() {
 	# Makefile does not append CFLAGS
 	append-flags -nostdinc -W -Wall -Wextra -Wchar-subscripts \
 		-Wmissing-prototypes -Wmissing-declarations -Wno-switch \
-		-Wno-unused -Wredundant-decls
+		-Wno-unused -Wredundant-decls -nopie
 }
 
 src_compile() {
