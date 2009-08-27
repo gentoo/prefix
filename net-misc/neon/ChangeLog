@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.134 2009/08/23 08:33:08 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.136 2009/08/25 13:38:02 armin76 Exp $
+
+  25 Aug 2009; Raúl Porcel <armin76@gentoo.org> neon-0.28.6.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #281950
+
+  24 Aug 2009; Brent Baude <ranger@gentoo.org> neon-0.28.6.ebuild:
+  Marking neon-0.28.6 ppc64 for bug 281950
 
   23 Aug 2009; nixnut <nixnut@gentoo.org> neon-0.28.6.ebuild:
   ppc stable #281950
