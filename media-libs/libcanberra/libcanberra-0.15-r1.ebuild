@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.15.ebuild,v 1.1 2009/08/23 22:12:51 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.15-r1.ebuild,v 1.1 2009/08/24 13:27:31 eva Exp $
 
 EAPI="1"
 
@@ -51,7 +51,7 @@ src_unpack() {
 
 src_compile() {
 	econf --disable-static \
-		--docdir=/usr/share/doc/${PF}
+		--docdir=/usr/share/doc/${PF} \
 		$(use_enable alsa) \
 		$(use_enable gstreamer) \
 		$(use_enable gtk) \
