@@ -1,20 +1,28 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-taskmanager/xfce4-taskmanager-0.4.1.ebuild,v 1.8 2009/08/23 16:55:38 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-taskmanager/xfce4-taskmanager-0.4.1.ebuild,v 1.9 2009/08/25 09:00:58 ssuominen Exp $
 
-inherit xfce44
-
-xfce44
+EAPI=2
+inherit xfconf
 
 DESCRIPTION="Task Manager"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 HOMEPAGE="http://goodies.xfce.org/projects/applications/xfce4-taskmanager"
-SRC_URI="http://goodies.xfce.org/releases/${PN}/${P}${COMPRESS}"
-IUSE=""
+SRC_URI="mirror://xfce/src/apps/${PN}/0.4/${P}.tar.bz2"
 
-RDEPEND=">=xfce-base/libxfcegui4-4.4
+LICENSE="GPL-2"
+SLOT="0"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+IUSE="debug"
+
+RDEPEND=">=x11-libs/gtk+-2.2:2
+	>=xfce-base/libxfcegui4-4.4
 	>=xfce-base/libxfce4util-4.4"
 DEPEND="${RDEPEND}
+	dev-util/pkgconfig
 	dev-util/intltool"
 
-DOCS="AUTHORS ChangeLog NEWS README THANKS TODO"
+pkg_setup() {
+	DOCS="AUTHORS ChangeLog NEWS README THANKS TODO"
+	XFCONF="--disable-dependency-tracking
+		$(use_enable debug)"
+}
