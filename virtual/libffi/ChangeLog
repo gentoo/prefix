@@ -1,0 +1,42 @@
+# ChangeLog for virtual/libffi
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/virtual/libffi/ChangeLog,v 1.13 2009/07/22 18:50:17 klausman Exp $
+
+  22 Jul 2009; Tobias Klausmann <klausman@gentoo.org> libffi-0.ebuild:
+  Stable on alpha, bug #272675
+
+  19 Jul 2009; nixnut <nixnut@gentoo.org> libffi-0.ebuild:
+  ppc stable #272673
+
+  18 Jul 2009; Jeroen Roovers <jer@gentoo.org> libffi-0.ebuild:
+  Stable for HPPA (bug #272675).
+
+  11 Jun 2009; Markus Meier <maekke@gentoo.org> libffi-0.ebuild:
+  amd64 stable, bug #272675
+
+  10 Jun 2009; Christian Faulhammer <fauli@gentoo.org> libffi-0.ebuild:
+  stable x86, bug 272675
+
+  05 Jun 2009; Ferris McCormick <fmccor@gentoo.org> libffi-0.ebuild:
+  Sparc stable, part of Bug #272675.
+
+  04 Jun 2009; Samuli Suominen <ssuominen@gentoo.org> libffi-0.ebuild:
+  Keyword ~ppc/~ppc64 wrt #272046, thanks to Luca Barbato for testing.
+
+  03 Jun 2009; Raúl Porcel <armin76@gentoo.org> libffi-0.ebuild:
+  Add ~arm/~ia64/~s390/~sh wrt #272046
+
+  03 Jun 2009; Samuli Suominen <ssuominen@gentoo.org> libffi-0.ebuild:
+  Keyword ~alpha wrt #272046, thanks to Tobias Klausmann for testing.
+
+  02 Jun 2009; Jeroen Roovers <jer@gentoo.org> libffi-0.ebuild:
+  Marked ~hppa (bug #272046).
+
+  01 Jun 2009; Ferris McCormick <fmccor@gentoo.org> libffi-0.ebuild:
+  Add sparc for testing, part of Bug #272046.
+
+*libffi-0 (03 Jul 2008)
+
+  03 Jul 2008; Marijn Schouten <hkBst@gentoo.org> +libffi-0.ebuild:
+  Initial entry, for bug 163724.
+
