@@ -1,0 +1,42 @@
+# ChangeLog for dev-ruby/rack
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/ChangeLog,v 1.9 2009/08/24 18:18:20 graaff Exp $
+
+  24 Aug 2009; Hans de Graaff <graaff@gentoo.org> -rack-0.9.1.ebuild:
+  Remove old version.
+
+  16 Aug 2009; Raúl Porcel <armin76@gentoo.org> rack-0.9.1.ebuild,
+  rack-1.0.0.ebuild:
+  Add ~ia64 wrt #279123
+
+  23 Jul 2009; Hans de Graaff <graaff@gentoo.org> rack-1.0.0.ebuild:
+  Add ruby19 to USE_RUBY. Fixes #278680.
+
+  10 May 2009; Hans de Graaff <graaff@gentoo.org> -rack-0.2.0.ebuild,
+  -rack-0.4.0.ebuild:
+  Remove old versions.
+
+*rack-1.0.0 (10 May 2009)
+
+  10 May 2009; Hans de Graaff <graaff@gentoo.org> +rack-1.0.0.ebuild:
+  Version bump. Not fully backward compatible in order to also support ruby 1.9
+
+  12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> rack-0.9.1.ebuild:
+  Add ~sparc keyword, bug #262706
+
+*rack-0.9.1 (01 Mar 2009)
+
+  01 Mar 2009; Alex Legler <a3li@gentoo.org> +rack-0.9.1.ebuild:
+  Version bump. rack-0.9.1 is not Ruby 1.9 compatbile.
+
+*rack-0.4.0 (20 Oct 2008)
+
+  20 Oct 2008; Hans de Graaff <graaff@gentoo.org> rack-0.2.0.ebuild,
+  +rack-0.4.0.ebuild:
+  Version bump. Works only with ruby 1.8.
+
+  16 Jun 2008; Robin H. Johnson <robbat2@gentoo.org> +ChangeLog,
+  +rack-0.2.0.ebuild:
+  Initial commit. Ebuild by Robin H. Johnson <robbat2@gentoo.org>.
+  Dependancy of www-servers/thin.
+
