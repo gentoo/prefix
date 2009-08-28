@@ -1,0 +1,15 @@
+# ChangeLog for dev-ruby/ruby_parser
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby_parser/ChangeLog,v 1.2 2009/08/21 05:57:25 graaff Exp $
+
+*ruby_parser-2.0.4 (21 Aug 2009)
+
+  21 Aug 2009; Hans de Graaff <graaff@gentoo.org> +ruby_parser-2.0.4.ebuild:
+  Version bump with bug fixes.
+
+*ruby_parser-2.0.3 (06 Aug 2009)
+
+  06 Aug 2009; Hans de Graaff <graaff@gentoo.org> +ruby_parser-2.0.3.ebuild,
+  +metadata.xml:
+  Initial import. New dependency for dev-ruby/ruby2ruby.
+
