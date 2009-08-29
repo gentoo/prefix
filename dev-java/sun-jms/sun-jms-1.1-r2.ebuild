@@ -11,7 +11,7 @@ HOMEPAGE="http://java.sun.com/products/jms/"
 SRC_URI="${At}"
 LICENSE="sun-bcla-jms"
 SLOT=0
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc"
 RDEPEND=">=virtual/jre-1.3"
 DEPEND="app-arch/unzip
