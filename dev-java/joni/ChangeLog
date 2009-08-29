@@ -1,0 +1,10 @@
+# ChangeLog for dev-java/joni
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/joni/ChangeLog,v 1.1 2009/05/23 07:43:13 caster Exp $
+
+*joni-1.1.3 (22 May 2009)
+
+  22 May 2009; Vlastimil Babka <caster@gentoo.org> +joni-1.1.3.ebuild,
+  +metadata.xml:
+  New package, jruby dependency. Ebuild provided by chewi in java-overlay.
+
