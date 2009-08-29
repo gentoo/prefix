@@ -1,0 +1,16 @@
+# ChangeLog for dev-java/jna-posix
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jna-posix/ChangeLog,v 1.2 2009/05/27 06:43:38 ali_bush Exp $
+
+*jna-posix-1.0.1 (27 May 2009)
+
+  27 May 2009; Alistair Bush <ali_bush@gentoo.org> +jna-posix-1.0.1.ebuild:
+  Version Bump.
+
+*jna-posix-1.0 (22 May 2009)
+
+  22 May 2009; Vlastimil Babka <caster@gentoo.org> +jna-posix-1.0.ebuild,
+  +metadata.xml:
+  New package, jruby dependency, bug #268435. Ebuild provided by chewi in
+  java-overlay.
+
