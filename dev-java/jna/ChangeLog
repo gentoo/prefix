@@ -1,0 +1,17 @@
+# ChangeLog for dev-java/jna
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jna/ChangeLog,v 1.2 2009/06/03 20:50:04 caster Exp $
+
+*jna-3.0.3-r1 (03 Jun 2009)
+
+  03 Jun 2009; Vlastimil Babka <caster@gentoo.org> +jna-3.0.3-r1.ebuild,
+  +files/makefile-flags.patch:
+  Revbump to switch to virtual/libffi, bug #272054.
+
+*jna-3.0.3 (22 May 2009)
+
+  22 May 2009; Vlastimil Babka <caster@gentoo.org> +jna-3.0.3.ebuild,
+  +metadata.xml:
+  New package, jruby dependency, bug #244785. Ebuild provided by serkan and
+  chewi in java-overlay.
+
