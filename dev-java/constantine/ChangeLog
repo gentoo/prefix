@@ -1,0 +1,15 @@
+# ChangeLog for dev-java/constantine
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/constantine/ChangeLog,v 1.2 2009/08/07 14:23:25 ali_bush Exp $
+
+*constantine-0.6 (07 Aug 2009)
+
+  07 Aug 2009; Alistair Bush <ali_bush@gentoo.org> +constantine-0.6.ebuild:
+  Version Bump
+
+*constantine-0.5 (22 May 2009)
+
+  22 May 2009; Vlastimil Babka <caster@gentoo.org> +constantine-0.5.ebuild,
+  +metadata.xml:
+  New package, jruby dependency. Ebuild provided by chewi in java-overlay.
+
