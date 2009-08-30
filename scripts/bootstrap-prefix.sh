@@ -657,6 +657,10 @@ if [[ -z ${CHOST} ]]; then
 							powerpc)
 								CHOST="powerpc64-apple-darwin$rev"
 							;;
+							*)
+								# but not on the iPhone (arm)
+								CHOST="`uname -p`-apple-darwin$rev"
+							;;
 						esac
 					;;
 					*)
