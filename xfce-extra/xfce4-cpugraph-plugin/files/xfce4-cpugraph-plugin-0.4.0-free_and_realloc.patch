@@ -1,0 +1,11 @@
+diff -ur xfce4-cpugraph-plugin-0.4.0.orig/panel-plugin/cpu.c xfce4-cpugraph-plugin-0.4.0/panel-plugin/cpu.c
+--- xfce4-cpugraph-plugin-0.4.0.orig/panel-plugin/cpu.c	2007-11-22 07:18:32.000000000 +0200
++++ xfce4-cpugraph-plugin-0.4.0/panel-plugin/cpu.c	2009-08-25 15:12:14.000000000 +0300
+@@ -27,6 +27,7 @@
+ #include "settings.h"
+ #include "cpu_os.h"
+ 
++#include <stdlib.h>
+ 
+ static GtkTooltips *tooltips = NULL;
+ 
