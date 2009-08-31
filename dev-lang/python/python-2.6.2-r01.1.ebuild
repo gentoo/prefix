@@ -100,7 +100,10 @@ src_prepare() {
 		Mac/Makefile.in \
 		Mac/IDLE/Makefile.in \
 		Mac/Tools/Doc/setup.py \
-		Mac/PythonLauncher/Makefile.in
+		Mac/PythonLauncher/Makefile.in || die
+	sed -i -e '/-DPREFIX=/s:$(prefix):${EPREFIX}:' \
+		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):${EPREFIX}:' \
+		Makefile.pre.in || die
 
 	# on hpux, use gcc to link if used to compile
 #	epatch "${FILESDIR}"/${PN}-2.5.1-hpux-ldshared.patch
@@ -301,12 +304,14 @@ src_install() {
 		mkdir -p "${ED}"/usr/include
 		ln -s "${fwdir}"/Versions/${PYVER}/include/python${PYVER} \
 			"${ED}"/usr/include/
-		mkdir -p "${ED}"/usr/lib/python${PYVER}
 		# can't symlink the entire dir, because a real dir already exists on
-		# upgrade (site-packages)
-		for f in "${D}${fwdir}"/Versions/${PYVER}/lib/python${PYVER}/* ; do
-			ln -s "${f#${D}}" "${ED}"/usr/lib/python${PYVER}/
-		done
+		# upgrade (site-packages), however since we h4x0rzed python to actually
+		# look into the UNIX-style dir, we just switch them around.
+		mkdir -p "${ED}"/usr/lib
+		mv "${D}${fwdir}"/Versions/${PYVER}/lib/python${PYVER} \
+			"${ED}"/usr/lib/python${PYVER}
+		ln -s "${EPREFIX}"/usr/lib/python${PYVER} \
+			"${D}${fwdir}"/Versions/${PYVER}/lib/
 		# avoid framework incompatability, degrade to a normal UNIX lib
 		mkdir -p "${ED}"/usr/$(get_libdir)
 		cp "${D}${fwdir}"/Versions/${PYVER}/Python \
