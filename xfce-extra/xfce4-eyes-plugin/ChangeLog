@@ -1,0 +1,11 @@
+# ChangeLog for xfce-extra/xfce4-eyes-plugin
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-eyes-plugin/ChangeLog,v 1.1 2009/08/25 08:43:52 ssuominen Exp $
+
+*xfce4-eyes-plugin-4.4.0 (25 Aug 2009)
+
+  25 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +xfce4-eyes-plugin-4.4.0.ebuild,
+  +files/xfce4-eyes-plugin-4.4.0-libtool.patch:
+  Rename xfce4-eyes to xfce4-eyes-plugin.
+
