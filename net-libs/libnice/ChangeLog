@@ -1,0 +1,19 @@
+# ChangeLog for net-libs/libnice
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libnice/ChangeLog,v 1.3 2009/08/04 21:12:20 tester Exp $
+
+*libnice-0.0.9 (04 Aug 2009)
+
+  04 Aug 2009; Olivier Crête <tester@gentoo.org> +libnice-0.0.9.ebuild,
+  metadata.xml:
+  Version bump
+
+  15 May 2009; Tobias Klausmann <klausman@gentoo.org> libnice-0.0.6.ebuild:
+  Keyworded on alpha, bug #269314
+
+*libnice-0.0.6 (10 May 2009)
+
+  10 May 2009; Arun Raghavan <ford_prefect@gentoo.org>
+  +libnice-0.0.6.ebuild, +metadata.xml:
+  Initial commit
+
