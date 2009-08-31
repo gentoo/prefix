@@ -82,7 +82,7 @@ xfconf_src_prepare() {
 	fi
 
 	if [[ "${EAUTORECONF}" == "yes" ]]; then
-		AT_M4DIR="/usr/share/xfce4/dev-tools/m4macros" eautoreconf
+		AT_M4DIR="${EPREFIX}/usr/share/xfce4/dev-tools/m4macros" eautoreconf
 	else
 		elibtoolize
 	fi
