@@ -1,0 +1,34 @@
+# ChangeLog for xfce-extra/xfce4-places-plugin
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-places-plugin/ChangeLog,v 1.7 2009/08/30 16:07:51 nixnut Exp $
+
+  30 Aug 2009; nixnut <nixnut@gentoo.org> xfce4-places-plugin-1.2.0.ebuild:
+  ppc stable #282652
+
+  29 Aug 2009; Raúl Porcel <armin76@gentoo.org>
+  xfce4-places-plugin-1.2.0.ebuild:
+  alpha/arm/ia64/sparc stable wrt #282652
+
+  26 Aug 2009; Jeroen Roovers <jer@gentoo.org>
+  xfce4-places-plugin-1.2.0.ebuild:
+  Stable for HPPA (bug #282652).
+
+  26 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  xfce4-places-plugin-1.2.0.ebuild:
+  stable x86, bug 282652
+
+  26 Aug 2009; Jeremy Olexa <darkside@gentoo.org>
+  xfce4-places-plugin-1.2.0.ebuild:
+  amd64 stable, bug 282652
+
+  26 Aug 2009; Jeremy Olexa <darkside@gentoo.org>
+  xfce4-places-plugin-1.2.0.ebuild:
+  useful HOMEPAGE
+
+*xfce4-places-plugin-1.2.0 (25 Aug 2009)
+*xfce4-places-plugin-1.1.0 (25 Aug 2009)
+
+  25 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +xfce4-places-plugin-1.1.0.ebuild, +xfce4-places-plugin-1.2.0.ebuild:
+  Rename xfce4-places to xfce4-places-plugin.
+
