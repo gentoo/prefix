@@ -86,7 +86,7 @@ src_compile() {
 	# tend not to update that often, as long as we are a separate ebuild
 	# we can assume when unset, it's time for some older trick
 	if [[ -z ${PORTAGE_ROOT_USER} ]] ; then
-		PORTAGE_ROOT_USER=$(python -c 'from portage.const import rootuser; print	rootuser')
+		PORTAGE_ROOT_USER=$(python -c 'from portage.const import rootuser; print rootuser')
 	fi
 	# lazy check, but works for now
 	if [[ ${PORTAGE_ROOT_USER} == "root" ]] ; then
