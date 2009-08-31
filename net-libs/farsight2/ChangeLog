@@ -1,0 +1,37 @@
+# ChangeLog for net-libs/farsight2
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/ChangeLog,v 1.8 2009/08/22 02:42:38 tester Exp $
+
+*farsight2-0.0.14 (22 Aug 2009)
+
+  22 Aug 2009; Olivier Crête <tester@gentoo.org> -farsight2-0.0.9.ebuild,
+  -farsight2-0.0.10.ebuild, +farsight2-0.0.14.ebuild:
+  Version bump, remove old
+
+  15 Jun 2009; Olivier Crête <tester@gentoo.org> farsight2-0.0.10.ebuild:
+  Add some codecs to make the tests runnable
+
+  10 Jun 2009; Olivier Crête <tester@gentoo.org> farsight2-0.0.10.ebuild:
+  Bump the dependency to gst-plugins-base 0.10.23, bug #271582
+
+*farsight2-0.0.10 (20 May 2009)
+
+  20 May 2009; Olivier Crête <tester@gentoo.org> +farsight2-0.0.10.ebuild:
+  Version bump
+
+  15 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  farsight2-0.0.9.ebuild:
+  Keyworded on alpha, bug #269314
+
+  14 May 2009; Olivier Crête <tester@gentoo.org> farsight2-0.0.9.ebuild:
+  virtualx not required for tests
+
+  13 May 2009; Olivier Crête <tester@gentoo.org> farsight2-0.0.9.ebuild:
+  Remove gst-plugins-farsight dep, its not required
+
+*farsight2-0.0.9 (10 May 2009)
+
+  10 May 2009; Arun Raghavan <ford_prefect@gentoo.org>
+  +farsight2-0.0.9.ebuild, +metadata.xml:
+  Initial commit
+
