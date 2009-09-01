@@ -1,0 +1,14 @@
+# ChangeLog for lxde-base/menu-cache
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/menu-cache/ChangeLog,v 1.2 2009/07/30 18:27:44 volkmar Exp $
+
+  30 Jul 2009; Mounir Lamouri <volkmar@gentoo.org> menu-cache-0.2.5.ebuild:
+  Keywording for ppc. Bug 271148
+
+*menu-cache-0.2.5 (24 May 2009)
+
+  24 May 2009; Ben de Groot <yngwin@gentoo.org> +menu-cache-0.2.5.ebuild,
+  +metadata.xml:
+  Initial commit. This is a gnome-menus replacement for LXDE, for caching
+  the applications menu.
+
