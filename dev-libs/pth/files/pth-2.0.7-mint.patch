@@ -103,3 +103,37 @@ diff -ur pth-2.0.7/pth_mctx.c pth-2.0.7-mint/pth_mctx.c
      return TRUE;
  }
  
+diff -ur pth-2.0.7/pthread.c pth-2.0.7-mint/pthread.c
+--- pth-2.0.7/pthread.c	Thu Jun  8 17:54:02 2006
++++ pth-2.0.7-mint/pthread.c	Tue Mar 18 20:39:34 2008
+@@ -308,7 +308,7 @@
+     return OK;
+ }
+ 
+-int __pthread_detach(pthread_t thread)
++int pthread_detach(pthread_t thread)
+ {
+     pth_attr_t na;
+ 
+diff -ur pth-2.0.7/pthread.h.in pth-2.0.7-mint/pthread.h.in
+--- pth-2.0.7/pthread.h.in	Thu Jun  8 17:54:02 2006
++++ pth-2.0.7-mint/pthread.h.in	Tue Mar 18 20:39:34 2008
+@@ -345,8 +345,7 @@
+ 
+ /* thread routines */
+ extern int       pthread_create(pthread_t *, const pthread_attr_t *, void *(*)(void *), void *);
+-extern int       __pthread_detach(pthread_t);
+-#define          pthread_detach(t) __pthread_detach(t)
++extern int       pthread_detach(pthread_t);
+ extern pthread_t pthread_self(void);
+ extern int       pthread_equal(pthread_t, pthread_t);
+ extern int       pthread_yield_np(void);
+@@ -556,8 +555,6 @@
+ #define pthread_mutexattr_default  NULL
+ #define pthread_once_init          PTHREAD_ONCE_INIT
+ 
+-#define pthread_detach(thread)  __pthread_detach(*(thread))
+-
+ #define pthread_attr_init       pthread_attr_create
+ #define pthread_attr_delete     pthread_attr_destroy
+ #define pthread_keycreate       pthread_key_create

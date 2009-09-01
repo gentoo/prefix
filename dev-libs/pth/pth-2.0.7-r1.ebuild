@@ -10,7 +10,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x64-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug"
 
 DEPEND=""
@@ -21,7 +21,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.0.5-parallelfix.patch
 	epatch "${FILESDIR}"/${PN}-2.0.6-ldflags.patch
 	epatch "${FILESDIR}"/${PN}-2.0.6-sigstack.patch
-	epatch "${FILESDIR}/${PN}-2.0.7-mint.patch"
+	epatch "${FILESDIR}"/${PN}-2.0.7-mint.patch
 	epatch "${FILESDIR}"/${P}-libs.patch
 
 	ht_fix_file aclocal.m4 configure
