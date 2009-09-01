@@ -455,10 +455,10 @@ python_need_rebuild() {
 # Run without arguments, returns the Python include directory.
 python_get_includedir() {
 	if [[ -n "${PYTHON_ABI}" ]]; then
-		echo "${EPREFIX}/usr/include/python${PYTHON_ABI}"
+		echo "/usr/include/python${PYTHON_ABI}"
 	else
 		python_version
-		echo "${EPREFIX}/usr/include/python${PYVER}"
+		echo "/usr/include/python${PYVER}"
 	fi
 }
 
