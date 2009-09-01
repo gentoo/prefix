@@ -1,0 +1,30 @@
+--- libiberty/configure.old	2009-08-31 10:01:38.000000000 +0000
++++ libiberty/configure	2009-08-31 10:01:29.000000000 +0000
+@@ -4104,6 +4104,7 @@
+ if [ "${shared}" = "yes" ]; then
+   case "${host}" in
+     *-*-cygwin*)	;;
++    *-*-mint*)		;;
+     alpha*-*-linux*)	PICFLAG=-fPIC ;;
+     arm*-*-*)		PICFLAG=-fPIC ;;
+     hppa*-*-*)		PICFLAG=-fPIC ;;
+--- libiberty/configure.ac.old	2009-08-31 10:02:12.000000000 +0000
++++ libiberty/configure.ac	2009-08-30 19:10:10.000000000 +0000
+@@ -201,6 +201,7 @@
+ if [[ "${shared}" = "yes" ]]; then
+   case "${host}" in
+     *-*-cygwin*)	;;
++    *-*-mint*)		;;
+     alpha*-*-linux*)	PICFLAG=-fPIC ;;
+     arm*-*-*)		PICFLAG=-fPIC ;;
+     hppa*-*-*)		PICFLAG=-fPIC ;;
+--- gcc/Makefile.in.old	2009-08-31 10:03:27.000000000 +0000
++++ gcc/Makefile.in	2009-08-30 19:10:11.000000000 +0000
+@@ -1653,6 +1653,7 @@
+ cc1$(exeext): $(C_OBJS) cc1-checksum.o $(BACKEND) $(LIBDEPS)
+ 	$(CC) $(ALL_CFLAGS) $(LDFLAGS) -o $@ $(C_OBJS) cc1-checksum.o \
+ 	  $(BACKEND) $(LIBS) $(BACKENDLIBS)
++	stack -S 3 $@
+ 
+ #
+ # Build libgcc.a.

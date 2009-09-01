@@ -104,8 +104,9 @@ src_unpack() {
 	#epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
 
 	if [[ ${CHOST} == *-mint* ]] ; then
-		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint1.patch
-		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint2.patch
+		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint1.patch
+		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint2.patch
+		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint3.patch
 		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
 	fi
 
