@@ -1,0 +1,34 @@
+# ChangeLog for dev-python/py-gnupg
+# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/py-gnupg/ChangeLog,v 1.10 2007/03/18 11:25:48 blubb Exp $
+
+  18 Mar 2007; Simon Stelling <blubb@gentoo.org> py-gnupg-0.3.2.ebuild:
+  stable on amd64; bug 170008
+
+  06 Nov 2006; Piotr Jaroszyński <peper@gentoo.org> py-gnupg-0.3.2.ebuild:
+  Add ~amd64 wrt bug #154184.
+
+  12 Jul 2006; Aron Griffis <agriffis@gentoo.org> py-gnupg-0.3.2.ebuild:
+  Mark 0.3.2 stable on ia64
+
+  01 Apr 2006; Aron Griffis <agriffis@gentoo.org> py-gnupg-0.3.2.ebuild:
+  Mark 0.3.2 ~ia64
+
+  30 Oct 2005; Jason Wever <weeve@gentoo.org> py-gnupg-0.3.2.ebuild:
+  Stable on SPARC.
+
+  01 May 2005; Michael Hanselmann <hansmi@gentoo.org> py-gnupg-0.3.2.ebuild:
+  Stable on ppc.
+
+  29 Mar 2005; Joseph Jezak <josejx@gentoo.org> py-gnupg-0.3.2.ebuild:
+  Marked ~ppc for bug #86473.
+
+  31 Oct 2004; Jason Wever <weeve@gentoo.org> py-gnupg-0.3.2.ebuild:
+  Added ~sparc keyword.
+
+*py-gnupg-0.3.2 (17 Sep 2003)
+
+  17 Sep 2003; Alastair Tse <liquidx@gentoo.org> py-gnupg-0.3.2.ebuild:
+  initial commit. thanks to Derek Greentree <derek@leftwise.com> and Rob
+  Cakebread <robc@myrealbox.com>
+
