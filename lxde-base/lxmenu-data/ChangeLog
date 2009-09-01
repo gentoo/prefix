@@ -1,0 +1,29 @@
+# ChangeLog for lxde-base/lxmenu-data
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxmenu-data/ChangeLog,v 1.5 2009/08/03 19:31:03 vostorga Exp $
+
+  03 Aug 2009; Víctor Ostorga <vostorga@gentoo.org>
+  lxmenu-data-0.1.1.ebuild:
+  Dropping DEPEND on dev-lang/perl because dev-util/intltool already depends
+  on it
+
+*lxmenu-data-0.1.1 (03 Aug 2009)
+
+  03 Aug 2009; Víctor Ostorga <vostorga@gentoo.org>
+  +lxmenu-data-0.1.1.ebuild:
+  Version bump to 0.1.1
+
+  30 Jul 2009; Mounir Lamouri <volkmar@gentoo.org> lxmenu-data-0.1.ebuild:
+  Keywording for ppc. Bug 271148
+
+  09 Jul 2009; Victor Ostorga <vostorga@gentoo.org> lxmenu-data-0.1.ebuild:
+  Adding newline at end of file POTFILES.in bug #276658
+
+*lxmenu-data-0.1 (24 May 2009)
+
+  24 May 2009; Ben de Groot <yngwin@gentoo.org> +lxmenu-data-0.1.ebuild,
+  +metadata.xml:
+  Initial commit. This package provides files for building the LXDE
+  applications menu in compliance with freedesktop.org specs. Needed by
+  lxpanel and lxlauncher.
+
