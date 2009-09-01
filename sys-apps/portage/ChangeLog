@@ -2,6 +2,12 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.14178 (01 Sep 2009)
+
+  01 Sep 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.13849.ebuild, +portage-2.2.00.14178.ebuild:
+  Bump, small unicode fixes
+
   27 Aug 2009; Fabian Groffen <grobian@gentoo.org>
   portage-2.2.00.14160.ebuild:
   Add back old style way to retrieve rootuser, for those who don't have an

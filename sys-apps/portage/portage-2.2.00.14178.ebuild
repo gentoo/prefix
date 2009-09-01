@@ -14,7 +14,7 @@ PROVIDE="virtual/portage"
 SLOT="0"
 IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
 
-python_dep=">=dev-lang/python-2.4"
+python_dep=">=dev-lang/python-2.5 <dev-lang/python-3.0"
 
 DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
@@ -23,7 +23,7 @@ DEPEND="${python_dep}
 RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
 		>=app-shells/bash-3.2_p17
-		>=app-admin/eselect-news-20071201 )
+		|| ( >=app-admin/eselect-1.1 >=app-admin/eselect-news-20071201 ) )
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
 	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-1.6 ) )
 	elibc_uclibc? ( !prefix? ( >=sys-apps/sandbox-1.6 ) )
@@ -77,14 +77,19 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
 
-	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.13830-prefix-chaining.patch
+	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14153-prefix-chaining.patch
 }
 
 src_compile() {
 	local defaultpath="/usr/bin:/bin"
-	local rootuser=$(python -c 'from portage.const import rootuser; print	rootuser')
+	# ok, we can't rely on PORTAGE_ROOT_USER being there yet, as people
+	# tend not to update that often, as long as we are a separate ebuild
+	# we can assume when unset, it's time for some older trick
+	if [[ -z ${PORTAGE_ROOT_USER} ]] ; then
+		PORTAGE_ROOT_USER=$(python -c 'from portage.const import rootuser; print rootuser')
+	fi
 	# lazy check, but works for now
-	if [[ ${rootuser} == "root" ]] ; then
+	if [[ ${PORTAGE_ROOT_USER} == "root" ]] ; then
 		# we need this for e.g. mtree on FreeBSD (and Darwin) which is in
 		# /usr/sbin
 		defaultpath="${defaultpath}:/usr/sbin:/sbin"
@@ -92,7 +97,7 @@ src_compile() {
 	econf \
 		--with-portage-user="${PORTAGE_USER:-portage}" \
 		--with-portage-group="${PORTAGE_GROUP:-portage}" \
-		--with-root-user="${rootuser}" \
+		--with-root-user="${PORTAGE_ROOT_USER}" \
 		--with-offset-prefix="${EPREFIX}" \
 		--with-default-path="${defaultpath}" \
 		|| die "econf failed"
@@ -201,7 +206,7 @@ pkg_postinst() {
 			[[ -z ${didwork} ]] \
 				&& didwork=yes \
 				|| didwork=already
-		elif [[ ${CHOST} != *-darwin* && ! -f ${cpv}.ELF.2 ]] ; then
+		elif [[ ${CHOST} != *-darwin* && ${CHOST} != *-interix* && ! -f ${cpv}.ELF.2 ]] ; then
 			while read line; do
 				filename=${line% *}
 				needed=${line#* }
