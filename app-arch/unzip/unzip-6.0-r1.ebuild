@@ -24,6 +24,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-no-exec-stack.patch
+	epatch "${FILESDIR}"/${P}-irix.patch
 	sed -i \
 		-e '/^CFLAGS/d' \
 		-e '/CFLAGS/s:-O[0-9]\?:$(CFLAGS) $(CPPFLAGS):' \
@@ -37,6 +38,7 @@ src_unpack() {
 		-e 's:FL = :FL = $(LDFLAGS) :' \
 		-e "/^#L_BZ2/s:^$(use bzip2 && echo .)::" \
 		-e 's:STRIP =.*$:STRIP = true:' \
+		-e "s!CF = \$(CFLAGS) \$(CF_NOOPT)!CF = \$(CFLAGS) \$(CF_NOOPT) \$(CPPFLAGS)!" \
 		unix/Makefile \
 		|| die "sed unix/Makefile failed"
 }
@@ -49,9 +51,9 @@ src_compile() {
 		i?86*-*bsd* | \
 		i?86*-dragonfly*)    TARGET=freebsd ;; # mislabelled bsd with x86 asm
 		*bsd* | *dragonfly*) TARGET=bsd ;;
-		*-darwin*)           TARGET=macosx ;;
+		*-darwin*)           TARGET=macosx; append-cppflags "-DNO_LCHMOD" ;;
 		*-solaris*)          TARGET=generic ;;
-		mips-sgi-irix*)      TARGET=sgi ;;
+		mips-sgi-irix*)      TARGET=sgi; append-cppflags "-DNO_LCHMOD" ;;
 		*-interix*)          TARGET=gcc; append-flags "-DUNIX" ;;
 		*-aix*)              TARGET=gcc ;;
 		*-mint*)             TARGET=generic ;;
