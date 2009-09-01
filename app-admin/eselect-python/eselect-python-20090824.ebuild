@@ -27,6 +27,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-20090814-mac.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${P}-nognu.patch
 	eprefixify python.eselect python-wrapper.c
 }
 
