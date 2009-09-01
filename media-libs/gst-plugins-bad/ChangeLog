@@ -1,0 +1,147 @@
+# ChangeLog for media-libs/gst-plugins-bad
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-bad/ChangeLog,v 1.33 2009/08/21 11:07:35 leio Exp $
+
+*gst-plugins-bad-0.10.13 (21 Aug 2009)
+
+  21 Aug 2009; Mart Raudsepp <leio@gentoo.org>
+  +gst-plugins-bad-0.10.13.ebuild:
+  Version bump. Many improvements for MPEG-TS, RTP, QT/mp4, MXF (also has a
+  muxer now). New plugins: shapewipe filter, MS-ADPCM decoder, hdvparse (for
+  HDV cameras), fpsdisplaysink (debugutilsbad) and ID3 tagging. Adds PGS
+  (BluRay) subtitle support. flv, deinterlace2 and y4menc have moved to
+  gst-plugins-good (which signifies them as being of good quality), be sure
+  to upgrade to gst-plugins-good-0.10.15 to not lose FLV support. Many other
+  bug fixes and improvements.
+
+  01 Jul 2009; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-bad-0.10.11.ebuild:
+  sparc stable wrt #266986
+
+  21 May 2009; Brent Baude <ranger@gentoo.org>
+  gst-plugins-bad-0.10.11.ebuild:
+  Marking gst-plugins-bad-0.10.11 ppc64 stable for bug 266986
+
+  21 May 2009; Brent Baude <ranger@gentoo.org>
+  gst-plugins-bad-0.10.11.ebuild:
+  Marking gst-plugins-bad-0.10.11 ppc stable for bug 266986
+
+  16 May 2009; Mounir Lamouri <volkmar@gentoo.org> metadata.xml:
+  Use global gsm USE flag instead of local one.
+
+  14 May 2009; Markus Meier <maekke@gentoo.org>
+  gst-plugins-bad-0.10.11.ebuild:
+  amd64 stable, bug #266986
+
+  12 May 2009; Christian Faulhammer <fauli@gentoo.org>
+  gst-plugins-bad-0.10.11.ebuild:
+  stable x86, bug 266986
+
+  03 May 2009; Tobias Klausmann <klausman@gentoo.org>
+  gst-plugins-bad-0.10.11.ebuild:
+  Stable on alpha, bug #266986
+
+*gst-plugins-bad-0.10.11 (30 Mar 2009)
+
+  30 Mar 2009; Olivier Crête <tester@gentoo.org>
+  +gst-plugins-bad-0.10.11.ebuild:
+  Version bump
+
+*gst-plugins-bad-0.10.9 (05 Dec 2008)
+
+  05 Dec 2008; Samuli Suominen <ssuominen@gentoo.org>
+  +gst-plugins-bad-0.10.9.ebuild:
+  Version bump.
+
+  08 Aug 2008; Markus Meier <maekke@gentoo.org>
+  gst-plugins-bad-0.10.7.ebuild:
+  x86 stable, bug #232054
+
+  07 Aug 2008; Tobias Klausmann <klausman@gentoo.org> ChangeLog:
+  Stable on alpha, bug #232054
+
+  31 Jul 2008; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-bad-0.10.7.ebuild:
+  sparc stable wrt #232054
+
+  01 Aug 2008; Brent Baude <ranger@gentoo.org>
+  gst-plugins-bad-0.10.7.ebuild:
+  Marking gst-plugins-bad-0.10.7 ppc64 stable for bug 232054
+
+  30 Jul 2008; Brent Baude <ranger@gentoo.org>
+  gst-plugins-bad-0.10.7.ebuild:
+  Marking gst-plugins-bad-0.10.7 ppc stable for bug 232054
+
+  26 Jul 2008; Olivier Crête <tester@gentoo.org>
+  gst-plugins-bad-0.10.7.ebuild:
+  Stable on amd64, bug #232054
+
+*gst-plugins-bad-0.10.7 (29 Jun 2008)
+
+  29 Jun 2008; Samuli Suominen <drac@gentoo.org>
+  -gst-plugins-bad-0.10.6.ebuild, +gst-plugins-bad-0.10.7.ebuild:
+  Version bump.
+
+  18 Apr 2008; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-bad-0.10.6.ebuild:
+  Add ~sparc
+
+*gst-plugins-bad-0.10.6 (21 Feb 2008)
+
+  21 Feb 2008; Zaheer Abbas Merali <zaheerm@gentoo.org> 
+  +gst-plugins-bad-0.10.6.ebuild:
+  version bump
+
+  22 Dec 2007; Tobias Scherbaum <dertobi123@gentoo.org>
+  gst-plugins-bad-0.10.5.ebuild:
+  ppc stable, bug #202174
+
+  13 Dec 2007; Christian Faulhammer <opfer@gentoo.org>
+  gst-plugins-bad-0.10.5.ebuild:
+  x86 stable
+
+  13 Dec 2007; Samuli Suominen <drac@gentoo.org>
+  gst-plugins-bad-0.10.5.ebuild:
+  amd64 stable
+
+*gst-plugins-bad-0.10.5 (29 Aug 2007)
+
+  29 Aug 2007; Samuli Suominen <drac@gentoo.org>
+  +gst-plugins-bad-0.10.5.ebuild:
+  Version bump.
+
+  22 Feb 2007; Piotr Jaroszyński <peper@gentoo.org> ChangeLog:
+  Transition to Manifest2.
+
+*gst-plugins-bad-0.10.4 (25 Jan 2007)
+
+  25 Jan 2007; Jim Ramsay <lack@gentoo.org> +gst-plugins-bad-0.10.4.ebuild:
+  Version bump - gst-plugins-bad-0.10.4 is released
+
+*gst-plugins-bad-0.10.3 (10 May 2006)
+
+  10 May 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  +gst-plugins-bad-0.10.3.ebuild:
+  version bump
+
+  04 May 2006; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  gst-plugins-bad-0.10.1.ebuild:
+  mark ~ppc (Bug #130382)
+
+  13 Apr 2006; Thomas Cort <tcort@gentoo.org> gst-plugins-bad-0.10.1.ebuild:
+  Added ~alpha keyword.
+
+  06 Apr 2006; Zaheer Abbas Merali <zaheerm@gentoo.org>
+  gst-plugins-bad-0.10.1.ebuild:
+  fix deps
+
+  12 Mar 2006; Luis Medinas <metalgod@gentoo.org>
+  gst-plugins-bad-0.10.1.ebuild:
+  Added ~amd64 keyword.
+
+*gst-plugins-bad-0.10.0 (21 Jan 2006)
+
+  21 Jan 2006; Saleem Abdulrasool <compnerd@gentoo.org>
+  +gst-plugins-bad-0.10.0.ebuild:
+  Initial import
+
