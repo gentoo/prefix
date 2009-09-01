@@ -218,7 +218,13 @@ src_install() {
 	dosym "${MOZLIBDIR}/xulrunner" "/usr/bin/xulrunner-${MAJ_PV}" || die
 
 	# Install python modules
-	dosym "${MOZLIBDIR}/python/xpcom" "/$(python_get_sitedir)/xpcom" || die
+	if use prefix; then
+		local WORKAROUND="$(python_get_sitedir)"
+		WORKAROUND="${WORKAROUND#${EPREFIX}}"
+		dosym "${MOZLIBDIR}/python/xpcom" "/${WORKAROUND}/xpcom" || die
+	else
+		dosym "${MOZLIBDIR}/python/xpcom" "/$(python_get_sitedir)/xpcom" || die
+	fi
 
 	# env.d file for ld search path
 	dodir /etc/env.d
