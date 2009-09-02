@@ -1,6 +1,20 @@
 # ChangeLog for dev-util/bzr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.105 2009/08/18 11:04:15 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.108 2009/08/27 14:31:39 fauli Exp $
+
+*bzr-2.0_rc1 (27 Aug 2009)
+
+  27 Aug 2009; Christian Faulhammer <fauli@gentoo.org> +bzr-2.0_rc1.ebuild:
+  bump to release candidate
+
+  27 Aug 2009; Christian Faulhammer <fauli@gentoo.org> -bzr-1.16.1.ebuild,
+  -bzr-1.17.ebuild:
+  clean up
+
+*bzr-1.18 (27 Aug 2009)
+
+  27 Aug 2009; Christian Faulhammer <fauli@gentoo.org> +bzr-1.18.ebuild:
+  version bump
 
 *bzr-1.17 (18 Aug 2009)
 
