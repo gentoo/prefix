@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/duma
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.10 2009/08/01 20:00:23 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.11 2009/08/30 21:44:23 nerdboy Exp $
+
+  30 Aug 2009; Steve Arnold <nerdboy@gentoo.org> duma-2.5.13.ebuild:
+  Back-ported several build and QA fixes from 2.5.15 (closes bug 279118).
 
 *duma-2.5.15 (01 Aug 2009)
 
