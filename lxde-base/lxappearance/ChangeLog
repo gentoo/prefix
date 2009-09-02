@@ -1,6 +1,11 @@
 # ChangeLog for lxde-base/lxappearance
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxappearance/ChangeLog,v 1.3 2009/07/13 17:52:15 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxappearance/ChangeLog,v 1.4 2009/08/27 14:33:39 vostorga Exp $
+
+  27 Aug 2009; Víctor Ostorga <vostorga@gentoo.org>
+  lxappearance-0.2.1.ebuild:
+  Adding DEPEND on dev-util/intltool, patch thanks to Nathan Zachary
+  <NathanZachary@gentoo.org> bug #277651
 
   13 Jul 2009; <vostorga@gentoo.org>
   +files/lxappearance-0.2.1-intltool.patch, lxappearance-0.2.1.ebuild:
