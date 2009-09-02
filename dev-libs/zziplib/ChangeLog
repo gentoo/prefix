@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/zziplib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.68 2009/06/28 16:35:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/zziplib/ChangeLog,v 1.69 2009/08/27 10:38:48 alexxy Exp $
+
+  27 Aug 2009; Alexey Shvetsov <alexxy@gentoo.org> zziplib-0.13.56.ebuild:
+  Add ~mips keyword
 
 *zziplib-0.13.56 (28 Jun 2009)
 
