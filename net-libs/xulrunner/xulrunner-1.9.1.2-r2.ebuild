@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.2-r1.ebuild,v 1.6 2009/08/25 13:55:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.2-r2.ebuild,v 1.1 2009/08/30 14:50:18 anarchy Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
@@ -28,13 +28,13 @@ IUSE="+alsa debug python" # qt-experimental
 #		x11-libs/qt-core )
 
 # nspr-4.8 due to BMO #499144
+# Disable sqlite temporarily  	>=dev-db/sqlite-3.6.7
 RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=dev-lang/python-2.3[threads]
 	>=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12.3
 	>=dev-libs/nspr-4.8
 	alsa? ( media-libs/alsa-lib )
-	>=dev-db/sqlite-3.6.7
 	>=app-text/hunspell-1.2
 	>=media-libs/lcms-1.17
 
@@ -140,7 +140,7 @@ src_configure() {
 	# Use system libraries
 	mozconfig_annotate '' --enable-system-cairo
 	mozconfig_annotate '' --enable-system-hunspell
-	mozconfig_annotate '' --enable-system-sqlite
+	# mozconfig_annotate '' --enable-system-sqlite
 	mozconfig_annotate '' --with-system-nspr
 	mozconfig_annotate '' --with-system-nss
 	mozconfig_annotate '' --enable-system-lcms
