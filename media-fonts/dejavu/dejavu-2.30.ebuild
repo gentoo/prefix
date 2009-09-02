@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.27.ebuild,v 1.2 2008/12/07 11:32:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/dejavu/dejavu-2.30.ebuild,v 1.1 2009/08/30 02:46:07 dirtyepic Exp $
 
 EAPI=1
 
@@ -30,7 +30,7 @@ else
 fi
 
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 
 IUSE="fontforge"
 DEPEND="fontforge? ( x11-apps/mkfontscale
@@ -50,10 +50,13 @@ else
 	FONT_S=${S}/ttf
 fi
 
-FONT_CONF=( 	"${S}/fontconfig/20-unhint-small-dejavu.conf"
-		"${S}/fontconfig/20-unhint-small-dejavu-experimental.conf"
-		"${S}/fontconfig/57-dejavu.conf"
-		"${S}/fontconfig/61-dejavu-experimental.conf" )
+FONT_CONF=(
+		"${S}"/fontconfig/20-unhint-small-dejavu-sans-mono.conf
+		"${S}"/fontconfig/20-unhint-small-dejavu-sans.conf
+		"${S}"/fontconfig/20-unhint-small-dejavu-serif.conf
+		"${S}"/fontconfig/57-dejavu-sans-mono.conf
+		"${S}"/fontconfig/57-dejavu-sans.conf
+		"${S}"/fontconfig/57-dejavu-serif.conf )
 
 FONT_SUFFIX="ttf"
 DOCS="AUTHORS NEWS README status.txt langcover.txt unicover.txt"
