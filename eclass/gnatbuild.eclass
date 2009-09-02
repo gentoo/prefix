@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.47 2009/04/25 10:46:01 george Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnatbuild.eclass,v 1.48 2009/08/30 09:09:09 george Exp $
 #
 # Author: George Shapovalov <george@gentoo.org>
 # Belongs to: ada herd <ada@gentoo.org>
@@ -436,9 +436,9 @@ gnatbuild_src_compile() {
 		export LDFLAGS="-L${GNATLIB}"
 
 		# additional vars from gnuada and elsewhere
-		export LD_RUN_PATH="${LIBPATH}"
+		#export LD_RUN_PATH="${LIBPATH}"
 		export LIBRARY_PATH="${GNATLIB}"
-		export LD_LIBRARY_PATH="${GNATLIB}"
+		#export LD_LIBRARY_PATH="${GNATLIB}"
 #		export COMPILER_PATH="${GNATBOOT}/bin/"
 
 		export ADA_OBJECTS_PATH="${GNATLIB}/adalib"

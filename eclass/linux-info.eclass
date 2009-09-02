@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.60 2009/07/04 18:39:33 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.61 2009/08/30 22:37:06 robbat2 Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
@@ -145,7 +145,9 @@ qeerror() { qout eerror "${@}" ; }
 # @USAGE: variable configfile
 # @RETURN: the value of the variable
 # @DESCRIPTION:
-# It detects the value of the variable defined in the file configfile
+# It detects the value of the variable defined in the file configfile. This is
+# done by including the configfile, and printing the variable with Make.
+# It WILL break if your makefile has missing dependencies!
 getfilevar() {
 local	ERROR basefname basedname myARCH="${ARCH}"
 	ERROR=0
@@ -167,6 +169,36 @@ local	ERROR basefname basedname myARCH="${ARCH}"
 			make -C "${basedname}" M="${S}" ${BUILD_FIXES} -s -f - 2>/dev/null
 
 		ARCH=${myARCH}
+	fi
+}
+
+# @FUNCTION: getfilevar_noexec
+# @USAGE: variable configfile
+# @RETURN: the value of the variable
+# @DESCRIPTION:
+# It detects the value of the variable defined in the file configfile.
+# This is done with sed matching an expression only. If the variable is defined,
+# you will run into problems. See getfilevar for those cases.
+getfilevar_noexec() {
+local	ERROR basefname basedname myARCH="${ARCH}"
+	ERROR=0
+
+	[ -z "${1}" ] && ERROR=1
+	[ ! -f "${2}" ] && ERROR=1
+
+	if [ "${ERROR}" = 1 ]
+	then
+		echo -e "\n"
+		eerror "getfilevar_noexec requires 2 variables, with the second a valid file."
+		eerror "   getfilevar_noexec <VARIABLE> <CONFIGFILE>"
+	else
+		sed -n \
+		-e "/^[[:space:]]*${1}[[:space:]]*=[[:space:]]*\(.*\)\$/{ 
+			s,^[^=]*[[:space:]]*=[[:space:]]*,,g ;
+			s,[[:space:]]*\$,,g ;
+			p
+		}" \
+		"${2}"
 	fi
 }
 
@@ -201,7 +233,7 @@ require_configured_kernel() {
 linux_chkconfig_present() {
 local	RESULT
 	require_configured_kernel
-	RESULT="$(getfilevar CONFIG_${1} ${KV_OUT_DIR}/.config)"
+	RESULT="$(getfilevar_noexec CONFIG_${1} ${KV_OUT_DIR}/.config)"
 	[ "${RESULT}" = "m" -o "${RESULT}" = "y" ] && return 0 || return 1
 }
 
@@ -213,7 +245,7 @@ local	RESULT
 linux_chkconfig_module() {
 local	RESULT
 	require_configured_kernel
-	RESULT="$(getfilevar CONFIG_${1} ${KV_OUT_DIR}/.config)"
+	RESULT="$(getfilevar_noexec CONFIG_${1} ${KV_OUT_DIR}/.config)"
 	[ "${RESULT}" = "m" ] && return 0 || return 1
 }
 
@@ -225,7 +257,7 @@ local	RESULT
 linux_chkconfig_builtin() {
 local	RESULT
 	require_configured_kernel
-	RESULT="$(getfilevar CONFIG_${1} ${KV_OUT_DIR}/.config)"
+	RESULT="$(getfilevar_noexec CONFIG_${1} ${KV_OUT_DIR}/.config)"
 	[ "${RESULT}" = "y" ] && return 0 || return 1
 }
 
@@ -236,7 +268,7 @@ local	RESULT
 # It prints the CONFIG_<option> value of the current kernel .config (it requires a configured kernel).
 linux_chkconfig_string() {
 	require_configured_kernel
-	getfilevar "CONFIG_${1}" "${KV_OUT_DIR}/.config"
+	getfilevar_noexec "CONFIG_${1}" "${KV_OUT_DIR}/.config"
 }
 
 # Versioning Functions
@@ -289,7 +321,7 @@ kernel_is() {
 		  *) die "Error in kernel-2_kernel_is(): Too many parameters.";;
 		esac
 	done
-
+	
 	[ ${test} ${operator} ${value} ] && return 0 || return 1
 }
 
@@ -365,16 +397,16 @@ get_version() {
 	OUTPUT_DIR="${OUTPUT_DIR:-${KBUILD_OUTPUT}}"
 
 	# And if we didn't pass it, we can take a nosey in the Makefile
-	kbuild_output="$(getfilevar KBUILD_OUTPUT ${KV_DIR}/Makefile)"
+	kbuild_output="$(getfilevar_noexec KBUILD_OUTPUT ${KV_DIR}/Makefile)"
 	OUTPUT_DIR="${OUTPUT_DIR:-${kbuild_output}}"
 
 	# And contrary to existing functions I feel we shouldn't trust the
 	# directory name to find version information as this seems insane.
 	# so we parse ${KV_DIR}/Makefile
-	KV_MAJOR="$(getfilevar VERSION ${KV_DIR}/Makefile)"
-	KV_MINOR="$(getfilevar PATCHLEVEL ${KV_DIR}/Makefile)"
-	KV_PATCH="$(getfilevar SUBLEVEL ${KV_DIR}/Makefile)"
-	KV_EXTRA="$(getfilevar EXTRAVERSION ${KV_DIR}/Makefile)"
+	KV_MAJOR="$(getfilevar_noexec VERSION ${KV_DIR}/Makefile)"
+	KV_MINOR="$(getfilevar_noexec PATCHLEVEL ${KV_DIR}/Makefile)"
+	KV_PATCH="$(getfilevar_noexec SUBLEVEL ${KV_DIR}/Makefile)"
+	KV_EXTRA="$(getfilevar_noexec EXTRAVERSION ${KV_DIR}/Makefile)"
 
 	if [ -z "${KV_MAJOR}" -o -z "${KV_MINOR}" -o -z "${KV_PATCH}" ]
 	then
@@ -641,12 +673,12 @@ check_zlibinflate() {
 	einfo "Determining the usability of ZLIB_INFLATE support in your kernel"
 
 	ebegin "checking ZLIB_INFLATE"
-	getfilevar_isbuiltin CONFIG_ZLIB_INFLATE ${KV_DIR}/.config
+	linux_chkconfig_builtin CONFIG_ZLIB_INFLATE
 	eend $?
 	[ "$?" != 0 ] && die
 
 	ebegin "checking ZLIB_DEFLATE"
-	getfilevar_isbuiltin CONFIG_ZLIB_DEFLATE ${KV_DIR}/.config
+	linux_chkconfig_builtin CONFIG_ZLIB_DEFLATE
 	eend $?
 	[ "$?" != 0 ] && die
 

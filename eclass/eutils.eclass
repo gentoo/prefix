@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.317 2009/03/01 08:06:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.318 2009/08/26 21:47:56 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -348,6 +348,25 @@ epatch() {
 	then
 		einfo "Done with patching"
 	fi
+}
+epatch_user() {
+	[[ $# -ne 0 ]] && die "epatch_user takes no options"
+
+	# don't clobber any EPATCH vars that the parent might want
+	local EPATCH_SOURCE check base=${PORTAGE_CONFIGROOT}/etc/portage/patches
+	for check in {${CATEGORY}/${PF},${CATEGORY}/${P},${CATEGORY}/${PN}}; do
+		EPATCH_SOURCE=${base}/${CTARGET}/${check}
+		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${CHOST}/${check}
+		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${check}
+		if [[ -d ${EPATCH_SOURCE} ]] ; then
+			EPATCH_SOURCE=${EPATCH_SOURCE} \
+			EPATCH_SUFFIX="patch" \
+			EPATCH_FORCE="yes" \
+			EPATCH_MULTI_MSG="Applying user patches from ${EPATCH_SOURCE} ..." \
+			epatch
+			break
+		fi
+	done
 }
 
 # @FUNCTION: emktemp

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-virtuals-2.eclass,v 1.5 2009/02/05 00:32:39 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-virtuals-2.eclass,v 1.6 2009/08/27 21:49:04 ali_bush Exp $
 
 # Original Author: Alistair John Bush <ali_bush@gentoo.org>
 # Purpose: 	To provide a default (and only) src_install function
@@ -39,5 +39,6 @@ java-virtuals-2_do_write() {
 		if [[ -n "${JAVA_VIRTUAL_VM_CLASSPATH}" ]]; then
 			echo "VM_CLASSPATH=\"${JAVA_VIRTUAL_VM_CLASSPATH}\""
 		fi
+		echo "MULTI_PROVIDER=\"${JAVA_VIRTUAL_MULTI=FALSE}\""
 	} > "${JAVA_PKG_VIRTUAL_PROVIDER}"
 }

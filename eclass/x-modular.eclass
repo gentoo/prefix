@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.111 2009/08/22 20:12:42 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.112 2009/08/27 15:16:09 scarabeus Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -359,7 +359,7 @@ x-modular_font_configure() {
 	if [[ -n "${FONT}" ]]; then
 		# Might be worth adding an option to configure your desired font
 		# and exclude all others. Also, should this USE be nls or minimal?
-		if ! use nls; then
+		if has nls ${IUSE//+} && ! use nls; then
 			FONT_OPTIONS="${FONT_OPTIONS}
 				--disable-iso8859-2
 				--disable-iso8859-3

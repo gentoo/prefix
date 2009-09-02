@@ -1,10 +1,10 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.26 2008/11/26 06:49:34 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.27 2009/08/29 00:34:42 dirtyepic Exp $
 
 # @ECLASS:			wxwidgets.eclass
 # @MAINTAINER:
-#  wxwindows@gentoo.org
+#  wxwidgets@gentoo.org
 # @BLURB:			Manages build configuration for wxGTK-using packages.
 # @DESCRIPTION:
 #  The wxGTK libraries come in several different possible configurations

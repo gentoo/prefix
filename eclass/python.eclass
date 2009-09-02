@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.65 2009/08/15 23:32:58 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.69 2009/08/31 23:58:28 arfrever Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -9,7 +9,7 @@
 # original author: Alastair Tse <liquidx@gentoo.org>
 # @BLURB: A Utility Eclass that should be inherited by anything that deals with Python or Python modules.
 # @DESCRIPTION:
-# Some useful functions for dealing with python.
+# Some useful functions for dealing with Python.
 
 inherit multilib
 
@@ -21,6 +21,7 @@ else
 	PYTHON_ATOM="dev-lang/python"
 fi
 
+DEPEND="${DEPEND} >=app-shells/bash-3.2"
 if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
 	DEPEND="${DEPEND} >=app-admin/eselect-python-20090804"
 fi
@@ -112,39 +113,67 @@ PYTHON() {
 # @DESCRIPTION:
 # Make sure PYTHON_ABIS variable has valid value.
 validate_PYTHON_ABIS() {
+	# Ensure that some functions cannot be accidentally successfully used in EAPI <= 2 without setting SUPPORT_PYTHON_ABIS variable.
+	if has "${EAPI:-0}" 0 1 2 && [[ -z "${SUPPORT_PYTHON_ABIS}" ]]; then
+		die "${FUNCNAME}() cannot be used in this EAPI without setting SUPPORT_PYTHON_ABIS variable"
+	fi
+
 	# Ensure that /usr/bin/python and /usr/bin/python-config are valid.
 	if [[ "$(readlink "${EPREFIX}"/usr/bin/python)" != "python-wrapper" ]]; then
-		die "${EPREFIX}/usr/bin/python isn't valid symlink"
+		die "'${EPREFIX}/usr/bin/python' isn't valid symlink"
 	fi
 	if [[ "$(<"${EPREFIX}"/usr/bin/python-config)" != *"Gentoo python-config wrapper script"* ]]; then
-		die "${EPREFIX}/usr/bin/python-config isn't valid script"
+		die "'${EPREFIX}/usr/bin/python-config' isn't valid script"
 	fi
 
 	# USE_${ABI_TYPE^^} and RESTRICT_${ABI_TYPE^^}_ABIS variables hopefully will be included in EAPI >= 4.
 	if [[ -z "${PYTHON_ABIS}" ]] && has "${EAPI:-0}" 0 1 2 3; then
 		local ABI support_ABI supported_PYTHON_ABIS= restricted_ABI
 		PYTHON_ABI_SUPPORTED_VALUES="2.4 2.5 2.6 2.7 3.0 3.1 3.2"
-		for ABI in ${USE_PYTHON}; do
-			if ! has "${ABI}" ${PYTHON_ABI_SUPPORTED_VALUES}; then
-				ewarn "Ignoring unsupported Python ABI '${ABI}'"
-				continue
+
+		if [[ "$(declare -p USE_PYTHON 2>/dev/null)" == "declare -x USE_PYTHON="* ]]; then
+			if [[ -z "${USE_PYTHON}" ]]; then
+				die "USE_PYTHON variable is empty"
 			fi
-			support_ABI="1"
+
+			for ABI in ${USE_PYTHON}; do
+				if ! has "${ABI}" ${PYTHON_ABI_SUPPORTED_VALUES}; then
+					die "USE_PYTHON variable contains invalid value '${ABI}'"
+				fi
+				support_ABI="1"
+				for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
+					if python -c "from fnmatch import fnmatch; exit(not fnmatch('${ABI}', '${restricted_ABI}'))"; then
+						support_ABI="0"
+						break
+					fi
+				done
+				[[ "${support_ABI}" == "1" ]] && supported_PYTHON_ABIS+=" ${ABI}"
+			done
+			export PYTHON_ABIS="${supported_PYTHON_ABIS# }"
+
+			if [[ -z "${PYTHON_ABIS//[${IFS}]/}" ]]; then
+				die "USE_PYTHON variable doesn't enable any Python version supported by ${CATEGORY}/${PF}"
+			fi
+		else
+			local restricted_ABI
+			python_version
+
 			for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
-				if python -c "from fnmatch import fnmatch; exit(not fnmatch('${ABI}', '${restricted_ABI}'))"; then
-					support_ABI="0"
-					break
+				if python -c "from fnmatch import fnmatch; exit(not fnmatch('${PYVER}', '${restricted_ABI}'))"; then
+					die "Active Python version isn't supported by ${CATEGORY}/${PF}"
 				fi
 			done
-			[[ "${support_ABI}" == "1" ]] && supported_PYTHON_ABIS+=" ${ABI}"
-		done
-		export PYTHON_ABIS="${supported_PYTHON_ABIS# }"
+			export PYTHON_ABIS="${PYVER}"
+		fi
 	fi
 
-	if [[ -z "${PYTHON_ABIS//[${IFS}]/}" ]]; then
-		python_version
-		export PYTHON_ABIS="${PYVER}"
-	fi
+	# Ensure that EPYTHON variable is respected.
+	local PYTHON_ABI
+	for PYTHON_ABI in ${PYTHON_ABIS}; do
+		if [[ "$(EPYTHON="$(PYTHON)" python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')" != "${PYTHON_ABI}" ]]; then
+			die "'python' doesn't respect EPYTHON variable"
+		fi
+	done
 }
 
 # @FUNCTION: python_copy_sources
@@ -178,7 +207,7 @@ python_copy_sources() {
 python_set_build_dir_symlink() {
 	local dir="$1"
 
-	[[ -z "${PYTHON_ABIS}" ]] && die "PYTHON_ABIS variable not set"
+	[[ -z "${PYTHON_ABI}" ]] && die "PYTHON_ABI variable not set"
 	[[ -z "${dir}" ]] && dir="build"
 
 	# Don't delete preexistent directories.
@@ -217,7 +246,7 @@ python_execute_function() {
 				separate_build_dirs="1"
 				;;
 			-*)
-				die "${FUNCNAME}(): Unrecognized option $1"
+				die "${FUNCNAME}(): Unrecognized option '$1'"
 				;;
 			*)
 				break
@@ -232,12 +261,16 @@ python_execute_function() {
 		fi
 		function="$1"
 		shift
+
+		if [[ -z "$(type -t "${function}")" ]]; then
+			die "${FUNCNAME}(): '${function}' function isn't defined"
+		fi
 	else
 		if [[ "$#" -ne "0" ]]; then
-			die "${FUNCNAME}(): --default-function option and function name cannot be specified simultaneously"
+			die "${FUNCNAME}(): '--default-function' option and function name cannot be specified simultaneously"
 		fi
 		if has "${EAPI:-0}" 0 1; then
-			die "${FUNCNAME}(): --default-function option cannot be used in this EAPI"
+			die "${FUNCNAME}(): '--default-function' option cannot be used in this EAPI"
 		fi
 
 		if [[ "${EBUILD_PHASE}" == "configure" ]]; then
@@ -309,20 +342,33 @@ python_execute_function() {
 			fi
 			echo " ${GREEN}*${NORMAL} ${BLUE}${action_message}${NORMAL}"
 		fi
+
 		if [[ "${separate_build_dirs}" == "1" ]]; then
 			export BUILDDIR="${S}-${PYTHON_ABI}"
 			pushd "${BUILDDIR}" > /dev/null || die "pushd failed"
 		else
 			export BUILDDIR="${S}"
 		fi
-		if ! EPYTHON="$(PYTHON)" "${function}" "$@"; then
+
+		if ! has "${EAPI}" 0 1 2 && has "${PYTHON_ABI}" ${FAILURE_TOLERANT_PYTHON_ABIS}; then
+			EPYTHON="$(PYTHON)" nonfatal "${function}" "$@"
+		else
+			EPYTHON="$(PYTHON)" "${function}" "$@"
+		fi
+
+		if [[ "$?" != "0" ]]; then
 			if [[ -n "${failure_message_template}" ]]; then
 				failure_message="$(eval echo -n "${failure_message_template}")"
 			else
 				failure_message="${action} failed with Python ${PYTHON_ABI} in ${function}() function"
 			fi
-			if [[ "${nonfatal}" == "1" ]] || has "${PYTHON_ABI}" ${FAILURE_TOLERANT_PYTHON_ABIS}; then
-				local ABI enabled_PYTHON_ABIS
+
+			if [[ "${nonfatal}" == "1" ]]; then
+				if [[ "${quiet}" == "0" ]]; then
+					ewarn "${RED}${failure_message}${NORMAL}"
+				fi
+			elif has "${PYTHON_ABI}" ${FAILURE_TOLERANT_PYTHON_ABIS}; then
+				local ABI enabled_PYTHON_ABIS=
 				for ABI in ${PYTHON_ABIS}; do
 					[[ "${ABI}" != "${PYTHON_ABI}" ]] && enabled_PYTHON_ABIS+=" ${ABI}"
 				done
@@ -330,10 +376,14 @@ python_execute_function() {
 				if [[ "${quiet}" == "0" ]]; then
 					ewarn "${RED}${failure_message}${NORMAL}"
 				fi
+				if [[ -z "${PYTHON_ABIS}" ]]; then
+					die "${function}() function failed with all enabled versions of Python"
+				fi
 			else
 				die "${failure_message}"
 			fi
 		fi
+
 		if [[ "${separate_build_dirs}" == "1" ]]; then
 			popd > /dev/null || die "popd failed"
 		fi
@@ -366,7 +416,7 @@ python_execute_function() {
 # @DESCRIPTION:
 # Makes sure PYTHON_USE_WITH or PYTHON_USE_WITH_OR listed use flags
 # are respected. Only exported if one of those variables is set.
-if ! has ${EAPI:-0} 0 1 && [[ -n ${PYTHON_USE_WITH} || -n ${PYTHON_USE_WITH_OR} ]]; then
+if ! has "${EAPI:-0}" 0 1 && [[ -n ${PYTHON_USE_WITH} || -n ${PYTHON_USE_WITH_OR} ]]; then
 	python_pkg_setup_fail() {
 		eerror "${1}"
 		die "${1}"
@@ -418,26 +468,38 @@ if ! has ${EAPI:-0} 0 1 && [[ -n ${PYTHON_USE_WITH} || -n ${PYTHON_USE_WITH_OR} 
 	RDEPEND="${PYTHON_USE_WITH_ATOM}"
 fi
 
+# @ECLASS-VARIABLE: PYTHON_DEFINE_DEFAULT_FUNCTIONS
+# @DESCRIPTION:
+# Set this to define default functions for the following ebuild phases:
+# src_prepare, src_configure, src_compile, src_test, src_install.
+if ! has "${EAPI:-0}" 0 1 && [[ -n "${PYTHON_DEFINE_DEFAULT_FUNCTIONS}" ]]; then
+	python_src_prepare() {
+		python_copy_sources
+	}
+
+	for python_default_function in src_configure src_compile src_test src_install; do
+		eval "python_${python_default_function}() { python_execute_function -d -s; }"
+	done
+	unset python_default_function
+
+	EXPORT_FUNCTIONS src_prepare src_configure src_compile src_test src_install
+fi
+
 # @FUNCTION: python_disable_pyc
 # @DESCRIPTION:
-# Tells python not to automatically recompile modules to .pyc/.pyo
+# Tell Python not to automatically recompile modules to .pyc/.pyo
 # even if the timestamps/version stamps don't match. This is done
 # to protect sandbox.
-#
-# note:   supported by >=dev-lang/python-2.2.3-r3 only.
-#
 python_disable_pyc() {
-	export PYTHONDONTWRITEBYTECODE=1 # For 2.6 and above
-	export PYTHON_DONTCOMPILE=1 # For 2.5 and below
+	export PYTHONDONTWRITEBYTECODE="1"
 }
 
 # @FUNCTION: python_enable_pyc
 # @DESCRIPTION:
-# Tells python to automatically recompile modules to .pyc/.pyo if the
-# timestamps/version stamps change
+# Tell Python to automatically recompile modules to .pyc/.pyo if the
+# timestamps/version stamps have changed.
 python_enable_pyc() {
 	unset PYTHONDONTWRITEBYTECODE
-	unset PYTHON_DONTCOMPILE
 }
 
 python_disable_pyc

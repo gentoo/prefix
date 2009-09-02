@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.27 2009/04/17 22:50:41 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.28 2009/08/27 21:49:04 ali_bush Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -22,8 +22,9 @@ RDEPEND="
 
 export WANT_JAVA_CONFIG=2
 
-JAVA_VM_CONFIG_DIR=/usr/share/java-config-2/vm
-JAVA_VM_DIR=/usr/lib/jvm
+JAVA_VM_CONFIG_DIR="/usr/share/java-config-2/vm"
+JAVA_VM_DIR="/usr/lib/jvm"
+JAVA_VM_BUILD_ONLY="${JAVA_VM_BUILD_ONLY:-FALSE}"
 
 EXPORT_FUNCTIONS pkg_setup pkg_postinst pkg_prerm pkg_postrm
 
@@ -144,7 +145,10 @@ set_java_env() {
 		< ${source_env_file} \
 		> ${env_file} || die "sed failed"
 
-	echo "VMHANDLE=\"${VMHANDLE}\"" >> ${env_file}
+	(
+		echo "VMHANDLE=\"${VMHANDLE}\""
+		echo "BUILD_ONLY=\"${JAVA_VM_BUILD_ONLY}\"" 
+	) >> ${env_file}
 
 	[[ -n ${JAVA_PROVIDE} ]] && echo "PROVIDES=\"${JAVA_PROVIDE}\"" >> ${env_file}
 

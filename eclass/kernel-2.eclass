@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.218 2009/02/23 05:51:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.219 2009/08/28 16:28:13 mpagano Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -818,6 +818,19 @@ unipatch() {
 	for i in $(find ${x} -type d | sort -n); do
 		KPATCH_DIR="${KPATCH_DIR} ${i}"
 	done
+
+	# do not apply fbcondecor patch to sparc/sparc64 as it breaks boot
+	# bug #272676
+	if [[ "$(tc-arch)" = "sparc" || "$(tc-arch)" = "sparc64" ]]; then 
+		if [[ ${KV_MAJOR}.${KV_MINOR}.${KV_PATCH} > 2.6.28 ]]; then
+			UNIPATCH_DROP="${UNIPATCH_DROP} *_fbcondecor-0.9.6.patch"
+			echo
+			ewarn "fbcondecor currently prevents sparc/sparc64 from booting"
+			ewarn "for kernel versions >= 2.6.29. Removing fbcondecor patch."
+			ewarn "See https://bugs.gentoo.org/show_bug.cgi?id=272676 for details"
+			echo
+		fi
+	fi
 
 	#so now lets get rid of the patchno's we want to exclude
 	UNIPATCH_DROP="${UNIPATCH_EXCLUDE} ${UNIPATCH_DROP}"
