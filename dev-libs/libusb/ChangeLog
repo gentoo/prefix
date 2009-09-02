@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.93 2009/06/01 00:00:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.95 2009/08/30 23:26:54 robbat2 Exp $
+
+*libusb-1.0.3 (30 Aug 2009)
+
+  30 Aug 2009; Robin H. Johnson <robbat2@gentoo.org> +libusb-1.0.3.ebuild:
+  Version bump, bug #283252.
+
+*libusb-1.0.2 (27 Aug 2009)
+
+  27 Aug 2009; Robin H. Johnson <robbat2@gentoo.org> +libusb-1.0.2.ebuild:
+  Bug #282156: version bump, has endian fixes.
 
   31 May 2009; Brent Baude <ranger@gentoo.org> libusb-0.1.12-r5.ebuild:
   Marking libusb-0.1.12-r5 ppc64 for bug 270023
