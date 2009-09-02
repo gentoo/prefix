@@ -1,6 +1,15 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.123 2009/08/25 13:30:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.125 2009/08/31 16:09:30 tester Exp $
+
+*pidgin-2.5.9-r1 (31 Aug 2009)
+
+  31 Aug 2009; Olivier Crête <tester@gentoo.org> -pidgin-2.5.8.ebuild,
+  +pidgin-2.5.9-r1.ebuild, +files/pidgin-2.5.9-xmpp-old-ssl.patch:
+  Fix security bug #283324, importing patch from 2.6.1. Remove old version
+
+  30 Aug 2009; Brent Baude <ranger@gentoo.org> pidgin-2.5.9.ebuild:
+  Marking pidgin-2.5.9 ppc64 for bug 281545
 
   25 Aug 2009; Raúl Porcel <armin76@gentoo.org> pidgin-2.5.9.ebuild:
   alpha/ia64/sparc stable wrt #281545

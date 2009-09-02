@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.9.ebuild,v 1.8 2009/08/30 23:33:15 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.9-r1.ebuild,v 1.1 2009/08/31 16:09:30 tester Exp $
 
 EAPI=2
 
@@ -87,6 +87,10 @@ pkg_setup() {
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.5.8-gtkdocklet-quartz.patch
 	eautoreconf
+}
+
+src_prepare() {
+	epatch "${FILESDIR}/pidgin-2.5.9-xmpp-old-ssl.patch"
 }
 
 src_configure() {
