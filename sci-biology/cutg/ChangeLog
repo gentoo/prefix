@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/cutg
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/cutg/ChangeLog,v 1.50 2008/08/27 14:52:03 ribosome Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/cutg/ChangeLog,v 1.51 2009/08/31 21:13:02 ribosome Exp $
+
+  31 Aug 2009; Olivier Fisette <ribosome@gentoo.org> cutg-160.ebuild:
+  Stabilised on x86 and amd64.
 
 *cutg-160 (27 Aug 2008)
 

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/cutg/cutg-160.ebuild,v 1.1 2008/08/27 14:52:03 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/cutg/cutg-160.ebuild,v 1.2 2009/08/31 21:13:02 ribosome Exp $
 
 DESCRIPTION="Codon usage tables calculated from GenBank"
 LICENSE="public-domain"
@@ -14,6 +14,7 @@ IUSE="emboss minimal"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 
 DEPEND="emboss? ( sci-biology/emboss )"
+RDEPEND="${DEPEND}"
 
 src_compile() {
 	if use emboss; then
