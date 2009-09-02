@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-webkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.49 2009/08/25 18:15:02 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.50 2009/08/31 14:15:24 armin76 Exp $
+
+  31 Aug 2009; Raúl Porcel <armin76@gentoo.org> qt-webkit-4.5.1.ebuild:
+  alpha/arm/ia64 stable wrt #281821
 
   25 Aug 2009; Tobias Klausmann <klausman@gentoo.org>
   qt-webkit-4.4.2-r2.ebuild:
