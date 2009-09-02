@@ -1,19 +1,19 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.4.0.ebuild,v 1.2 2009/08/23 17:52:42 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.4.0.ebuild,v 1.9 2009/08/30 16:20:34 nixnut Exp $
 
-EAPI="2"
+EAPI=2
+MY_P=${P/t/T}
 inherit xfconf
 
-MY_P=${P/t/T}
-
+DESCRIPTION="Terminal for Xfce desktop environment, based on vte library."
 HOMEPAGE="http://www.xfce.org/projects/terminal"
-SRC_URI="mirror://xfce/src/apps/terminal/0.4/Terminal-0.4.0.tar.bz2 -> terminal-0.4.0.tar.bz2"
+SRC_URI="mirror://xfce/src/apps/${PN}/0.4/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris"
-IUSE="dbus debug doc nls"
+IUSE="dbus debug doc"
 
 RDEPEND=">=dev-libs/glib-2.6:2
 	media-libs/fontconfig
@@ -37,10 +37,9 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}
 
 pkg_setup() {
-	XFCONF="--disable-dependency-tracking $(use_enable dbus)
+	XFCONF="--disable-dependency-tracking
+		$(use_enable dbus)
 		$(use_enable debug)
-		$(use_enable doc xsltproc)
-		$(use_enable nls)"
-
+		$(use_enable doc xsltproc)"
 	DOCS="AUTHORS ChangeLog HACKING NEWS README THANKS TODO"
 }
