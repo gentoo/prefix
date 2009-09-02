@@ -79,7 +79,7 @@ diff -ru -x '*.Po' -x '*.Plo' libxcb-1.4.orig/src/xcb_util.c libxcb-1.4/src/xcb_
 +	{
 +		struct hostent* _h;
 +		struct sockaddr_in _s;
-+		char ** _c;
++		struct in_addr ** _c;
 +		int on = 1;
 +
 +		if((_h = gethostbyname(host)) == NULL)
@@ -91,7 +91,7 @@ diff -ru -x '*.Po' -x '*.Plo' libxcb-1.4.orig/src/xcb_util.c libxcb-1.4/src/xcb_
 +		while(*_c) {
 +			_s.sin_family = AF_INET;
 +			_s.sin_port = htons(port);
-+			inet_aton(*_c, &_s.sin_addr);
++			_s.sin_addr = *(*_c);
 +
 +			fd = socket(_s.sin_family, SOCK_STREAM, 0);
 +
