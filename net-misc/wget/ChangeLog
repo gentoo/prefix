@@ -1,6 +1,20 @@
 # ChangeLog for net-misc/wget
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.104 2009/08/18 22:09:21 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.108 2009/08/31 16:23:20 chainsaw Exp $
+
+  31 Aug 2009; <chainsaw@gentoo.org> wget-1.11.4.ebuild:
+  Marked stable on AMD64 as requested by Mike "SpanKY" Friesinger in bug
+  #281876. Tested as portage fetcher for emerge -fe world with empty DISTDIR
+  on a dual Opteron 2435 system.
+
+  31 Aug 2009; Brent Baude <ranger@gentoo.org> wget-1.11.4.ebuild:
+  stable ppc64, bug 281876
+
+  30 Aug 2009; Tobias Klausmann <klausman@gentoo.org> wget-1.11.4.ebuild:
+  Stable on alpha, bug #281876
+
+  29 Aug 2009; nixnut <nixnut@gentoo.org> wget-1.11.4.ebuild:
+  ppc stable #281876
 
   18 Aug 2009; Christian Faulhammer <fauli@gentoo.org> wget-1.11.4.ebuild:
   stable x86, bug 281876
