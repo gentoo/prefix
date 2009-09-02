@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.271 2009/08/23 09:33:30 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.272 2009/08/30 23:18:00 ranger Exp $
+
+  30 Aug 2009; Brent Baude <ranger@gentoo.org> libxml2-2.7.3-r2.ebuild:
+  Marking libxml2-2.7.3-r2 ppc64 for bug 280617
 
   23 Aug 2009; nixnut <nixnut@gentoo.org> libxml2-2.7.3-r2.ebuild:
   ppc stable #280617
