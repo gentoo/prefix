@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/ntp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.150 2009/07/03 19:45:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.151 2009/08/28 21:24:01 betelgeuse Exp $
+
+  28 Aug 2009; Petteri Räty <betelgeuse@gentoo.org> ntp-4.2.4_p6.ebuild,
+  ntp-4.2.4_p7.ebuild:
+  Migrate to EAPI 2 in order to get rid of built_with_use.
 
   03 Jul 2009; Mike Frysinger <vapier@gentoo.org> ntp-4.2.4_p7.ebuild:
   Fix typo in md5.h disabling pointed out by Naohiro Aota #275481.
@@ -565,7 +569,7 @@
   Closes bug #1882 and allows compilation
   Update ebuild for lintool compliance
   
-*ntp-4.1.72-r1 (24 March 2002)
+*ntp-4.1.72-r1 (24 Mar 2002)
   
   24 March 2002; M.Schlemmer <azarah@gentoo.org> :
 

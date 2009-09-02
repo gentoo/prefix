@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p7.ebuild,v 1.9 2009/07/03 19:45:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p7.ebuild,v 1.10 2009/08/28 21:24:01 betelgeuse Exp $
+
+EAPI="2"
 
 inherit eutils toolchain-funcs flag-o-matic
 
@@ -18,7 +20,7 @@ IUSE="caps debug ipv6 openntpd parse-clocks selinux ssl vim-syntax zeroconf"
 DEPEND=">=sys-libs/ncurses-5.2
 	>=sys-libs/readline-4.1
 	kernel_linux? ( caps? ( sys-libs/libcap ) )
-	zeroconf? ( || ( net-dns/avahi net-misc/mDNSResponder ) )
+	zeroconf? ( || ( net-dns/avahi[mdnsresponder-compat] net-misc/mDNSResponder ) )
 	!openntpd? ( !net-misc/openntpd )
 	ssl? ( dev-libs/openssl )
 	selinux? ( sec-policy/selinux-ntp )"
@@ -31,17 +33,9 @@ S=${WORKDIR}/${MY_P}
 pkg_setup() {
 	enewgroup ntp 123
 	enewuser ntp 123 -1 /dev/null ntp
-
-	if use zeroconf && has_version net-dns/avahi && ! built_with_use net-dns/avahi mdnsresponder-compat ; then
-		eerror "You need to recompile net-dns/avahi with mdnsresponder-compat USE flag"
-		die "net-dns/avahi is missing required mdnsresponder-compat support"
-	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# Needs to be ported ...
 	#epatch "${FILESDIR}"/4.2.0.20040617-hostname.patch
 	epatch "${FILESDIR}"/${PN}-4.2.4_p5-adjtimex.patch #254030
@@ -49,7 +43,7 @@ src_unpack() {
 	append-cppflags -D_GNU_SOURCE #264109
 }
 
-src_compile() {
+src_configure() {
 	# avoid libmd5/libelf
 	export ac_cv_search_MD5Init=no ac_cv_header_md5_h=no
 	export ac_cv_lib_elf_nlist=no
@@ -63,7 +57,6 @@ src_compile() {
 		$(use_enable debug debugging) \
 		$(use_with ssl crypto) \
 		|| die
-	emake || die
 }
 
 src_install() {
