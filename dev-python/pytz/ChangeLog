@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/pytz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.39 2009/08/09 13:43:08 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pytz/ChangeLog,v 1.40 2009/08/29 19:27:57 arfrever Exp $
+
+*pytz-2009l (29 Aug 2009)
+
+  29 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -pytz-2008i.ebuild, -files/pytz-2008i-zoneinfo.patch, -pytz-2009a.ebuild,
+  -pytz-2009g.ebuild, +pytz-2009l.ebuild:
+  Version bump. Set SUPPORT_PYTHON_ABIS.
 
   09 Aug 2009; nixnut <nixnut@gentoo.org> pytz-2009j.ebuild:
   ppc stable #278583
