@@ -1,6 +1,27 @@
 # ChangeLog for net-irc/quassel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.52 2009/05/30 12:21:08 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.54 2009/08/26 18:06:01 scarabeus Exp $
+
+*quassel-0.4.3-r50 (26 Aug 2009)
+
+  26 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org> quassel-0.4.3.ebuild,
+  +quassel-0.4.3-r50.ebuild:
+  Add 0.4.3-r50 which has kde4 optional support and adjust 0.4.3 to not
+  depend on kde4 so it could be stabilised.
+
+*quassel-0.5_rc1 (26 Aug 2009)
+
+  26 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +quassel-0.5_rc1.ebuild:
+  Add first rc version of upcoming 0.5 series.
+
+*quassel-0.4.3 (26 Aug 2009)
+
+  26 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -quassel-0.4.0-r1.ebuild, -quassel-0.4.0-r2.ebuild,
+  -files/quassel-0.4.0-no-webkit.patch, -quassel-0.4.2.ebuild,
+  +quassel-0.4.3.ebuild:
+  Version bump. Remove old.
 
   30 May 2009; Pielmeier Daniel <billie@gentoo.org> metadata.xml:
   Update email in metadata
