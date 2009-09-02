@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.136 2009/08/25 13:38:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.138 2009/08/28 21:27:20 betelgeuse Exp $
+
+  28 Aug 2009; Petteri Räty <betelgeuse@gentoo.org> -neon-0.28.4.ebuild,
+  -neon-0.28.5.ebuild:
+  Remove old security vulnerable versions that also used built_with_use.
+
+  27 Aug 2009; Alex Legler <a3li@gentoo.org> neon-0.28.6.ebuild:
+  amd64 stable, security bug 281950
 
   25 Aug 2009; Raúl Porcel <armin76@gentoo.org> neon-0.28.6.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable wrt #281950
