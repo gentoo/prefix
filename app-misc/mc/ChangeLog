@@ -1,6 +1,26 @@
 # ChangeLog for app-misc/mc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.159 2009/08/23 01:06:08 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.164 2009/08/29 19:43:11 nixnut Exp $
+
+  29 Aug 2009; nixnut <nixnut@gentoo.org> mc-4.7.0_pre1.ebuild:
+  ppc stable #281667
+
+  29 Aug 2009; Tobias Klausmann <klausman@gentoo.org> mc-4.7.0_pre1.ebuild:
+  Stable on alpha, bug #281667
+
+  29 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> mc-4.7.0_pre2.ebuild,
+  metadata.xml:
+  USE edit to enable/disable mcedit application wrt #283113. Don't enable slang
+  by default anymore because libncursesw.so works.
+
+*mc-4.7.0_pre2 (29 Aug 2009)
+
+  29 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> +mc-4.7.0_pre2.ebuild:
+  Version bump.
+
+  26 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> mc-4.7.0_pre1.ebuild:
+  Missing use_enable for USE nls wrt #282791, thanks to Arseny Solokha for
+  reporting.
 
   23 Aug 2009; Jeremy Olexa <darkside@gentoo.org> mc-4.7.0_pre1.ebuild:
   amd64 stable, early stable due to usability issues. bug 281667.

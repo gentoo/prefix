@@ -8,5 +8,6 @@
 <use>
   <flag name="7zip">Add support for 7zip archives</flag>
   <flag name="chdir">Change to latest working directory at exit</flag>
+  <flag name="edit">Build mcedit application</flag>
 </use>
 </pkgmetadata>
