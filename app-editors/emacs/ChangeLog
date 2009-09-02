@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.329 2009/08/20 07:41:41 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.331 2009/08/31 18:17:58 fauli Exp $
+
+  31 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  -emacs-21.4-r18.ebuild:
+  clean up
+
+  31 Aug 2009; Brent Baude <ranger@gentoo.org> emacs-21.4-r19.ebuild:
+  stable ppc64, bug 277194
 
   20 Aug 2009; Ulrich Mueller <ulm@gentoo.org> emacs-23.1.ebuild:
   Be more conservative when rearranging the INFOPATH in the site-init file,
