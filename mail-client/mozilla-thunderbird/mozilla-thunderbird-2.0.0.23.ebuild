@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-2.0.0.21.ebuild,v 1.7 2009/05/01 23:59:26 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-2.0.0.23.ebuild,v 1.1 2009/08/26 13:33:49 armin76 Exp $
 
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-2 mozilla-launcher makeedit multilib mozextension autotools
 
-PATCH="${P}-patches-0.1"
+PATCH="${PN}-2.0.0.21-patches-0.1"
 LANGS="af be bg ca cs da de el en-GB en-US es-AR es-ES eu fi fr ga-IE he hu it ja ko lt mk nb-NO nl nn-NO pa-IN pl pt-BR pt-PT ru sk sl sv-SE tr uk zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR pt-BR zh-TW"
 
@@ -47,7 +47,7 @@ RDEPEND=">=www-client/mozilla-launcher-1.56
 	>=dev-libs/nss-3.11.5
 	>=dev-libs/nspr-4.6.5-r1"
 
-PDEPEND="crypt? ( >=x11-plugins/enigmail-0.95.7-r4 )
+PDEPEND="crypt? ( >=x11-plugins/enigmail-0.95.7-r5 )
 		replytolist? ( x11-plugins/replytolist )"
 
 S="${WORKDIR}/mozilla"
