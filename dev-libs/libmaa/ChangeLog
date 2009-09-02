@@ -1,0 +1,54 @@
+# ChangeLog for dev-libs/libmaa
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libmaa/ChangeLog,v 1.15 2009/06/13 14:01:22 armin76 Exp $
+
+  13 Jun 2009; Raúl Porcel <armin76@gentoo.org> libmaa-1.1.1.ebuild:
+  ia64/sparc stable wrt #271122
+
+  04 Jun 2009; Tobias Klausmann <klausman@gentoo.org> libmaa-1.1.1.ebuild:
+  Stable on alpha, bug #271122
+
+  31 May 2009; Markus Meier <maekke@gentoo.org> libmaa-1.1.1.ebuild:
+  amd64 stable, bug #271122
+
+  31 May 2009; Brent Baude <ranger@gentoo.org> libmaa-1.1.1.ebuild:
+  Marking libmaa-1.1.1 ppc64 for bug 271122
+
+  30 May 2009; nixnut <nixnut@gentoo.org> libmaa-1.1.1.ebuild:
+  ppc stable #271122
+
+  27 May 2009; Christian Faulhammer <fauli@gentoo.org> libmaa-1.1.1.ebuild:
+  stable x86, bug 271122
+
+  18 Mar 2009; Joseph Jezak <josejx@gentoo.org> libmaa-1.1.1.ebuild:
+  Marked ~ppc for bug #250390.
+
+  15 Mar 2009; Brent Baude <ranger@gentoo.org> libmaa-1.1.1.ebuild:
+  Marking libmaa-1.1.1 ~ppc64 for bug 250390
+
+*libmaa-1.1.1 (01 Mar 2009)
+
+  01 Mar 2009; Peter Volkov <pva@gentoo.org> +libmaa-1.1.1.ebuild:
+  Version bump.
+
+  22 Dec 2008; Raúl Porcel <armin76@gentoo.org> libmaa-1.1.0.ebuild:
+  Add ~ia64 wrt #250390
+
+  16 Dec 2008; Peter Volkov <pva@gentoo.org> libmaa-1.1.0.ebuild:
+  ~mips keyworded for dictd, bug #245413, bug #250390
+
+  16 Dec 2008; Ferris McCormick <fmccor@gentoo.org> libmaa-1.1.0.ebuild:
+  Add ~sparc keyword for Bug #250390 --- all tests pass.
+
+  16 Dec 2008; Jeroen Roovers <jer@gentoo.org> libmaa-1.1.0.ebuild:
+  Marked ~hppa (bug #250390).
+
+  15 Dec 2008; Tobias Klausmann <klausman@gentoo.org> libmaa-1.1.0.ebuild:
+  Keyworded on alpha, bug #250390
+
+*libmaa-1.1.0 (09 Dec 2008)
+
+  09 Dec 2008; Peter Volkov <pva@gentoo.org>
+  +files/libmaa-1.1.0-LDFLAGS.patch, +metadata.xml, +libmaa-1.1.0.ebuild:
+  Initial import. Previously this library was part of <=dictd-1.10.11.
+
