@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/configobj
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/configobj/ChangeLog,v 1.8 2009/07/04 15:43:46 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/configobj/ChangeLog,v 1.10 2009/08/31 23:55:36 arfrever Exp $
+
+  31 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  configobj-4.6.0.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
 *configobj-4.6.0 (04 Jul 2009)
 
