@@ -1,6 +1,19 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.144 2009/08/08 23:13:27 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.146 2009/08/31 20:16:07 mrpouet Exp $
+
+  31 Aug 2009; Romain Perier <mrpouet@gentoo.org>
+  gtk-engines-2.18.2-r1.ebuild:
+  Add a call to intltoolize before eautoreconf, in order to avoid conflicts
+  with old intltool macros and recent intltool versions
+
+*gtk-engines-2.18.2-r1 (31 Aug 2009)
+
+  31 Aug 2009; Romain Perier <mrpouet@gentoo.org>
+  +gtk-engines-2.18.2-r1.ebuild, +files/gtk-engines-2.18.2-system-lua.patch:
+  Fix bug #255773, use liblua system library instead of embedded version,
+  patch import from upstream bug #593674, thanks to Ihar Hrachyshka
+  <ihar.hrachyshka@gmail.com> for his work
 
   08 Aug 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -gtk-engines-2.18.1.ebuild, gtk-engines-2.18.2.ebuild:
