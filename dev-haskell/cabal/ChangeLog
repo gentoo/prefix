@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/cabal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/ChangeLog,v 1.49 2009/07/31 16:06:58 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/cabal/ChangeLog,v 1.50 2009/08/28 15:58:28 klausman Exp $
+
+  28 Aug 2009; Tobias Klausmann <klausman@gentoo.org> cabal-1.6.0.3.ebuild:
+  Stable on alpha, bug #279739
 
   31 Jul 2009; <chainsaw@gentoo.org> cabal-1.6.0.3.ebuild:
   Marked stable on AMD64 as requested by Lennart Kolmodin
