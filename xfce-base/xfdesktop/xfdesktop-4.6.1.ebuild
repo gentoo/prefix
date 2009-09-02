@@ -1,17 +1,19 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.6.1.ebuild,v 1.12 2009/08/23 19:27:43 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.6.1.ebuild,v 1.13 2009/08/26 07:06:28 ssuominen Exp $
 
 EAPI=2
 inherit xfconf
 
 DESCRIPTION="Desktop manager for Xfce4"
 HOMEPAGE="http://www.xfce.org/projects/xfdesktop"
+SRC_URI="mirror://xfce/src/xfce/${PN}/4.6/${P}.tar.bz2
+	branding? ( http://www.gentoo.org/images/backgrounds/gentoo-minimal-1280x1024.jpg )"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="debug doc +menu-plugin thunar"
+IUSE="+branding debug doc +menu-plugin thunar"
 
 LINGUAS="be ca cs da de el es et eu fi fr he hu it ja ko nb_NO nl pa pl pt_BR ro ru sk sv tr uk vi zh_CN zh_TW"
 
@@ -29,6 +31,7 @@ RDEPEND="gnome-base/libglade
 	>=xfce-base/libxfcegui4-4.6
 	>=xfce-base/libxfce4menu-4.6
 	>=xfce-base/xfconf-4.6
+	branding? ( >=x11-libs/gtk+-2.10:2[jpeg] )
 	thunar? ( >=xfce-base/thunar-1
 		>=xfce-base/exo-0.3.100
 		dev-libs/dbus-glib )
@@ -52,8 +55,21 @@ pkg_setup() {
 	DOCS="AUTHORS ChangeLog NEWS TODO README"
 }
 
+src_prepare() {
+	if use branding; then
+		sed -i -e "s:xfce-stripes.png:gentoo-minimal-1280x1024.jpg:" \
+			common/xfdesktop-common.h || die "sed failed"
+	fi
+	xfconf_src_prepare
+}
+
 src_install() {
 	xfconf_src_install
+
+	if use branding; then
+		insinto /usr/share/xfce4/backdrops
+		doins "${DISTDIR}"/gentoo-minimal-1280x1024.jpg || die "doins failed"
+	fi
 
 	local config lang
 	for config in ${XFCE_LOCALIZED_CONFIGS}; do
