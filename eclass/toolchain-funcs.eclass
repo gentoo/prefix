@@ -495,10 +495,9 @@ gen_usr_ldscript() {
 			# libdir=/lib because that messes up libtool files.
 			# Make sure we don't lose the specific version, so just modify the
 			# existing install_name
-			chmod o+w "${ED}"/${libdir}/${tlib} # Portage will reset permissions
 			install_name_tool \
 				-id "${EPREFIX}"/${libdir}/${tlib} \
-				"${ED}"/${libdir}/${tlib} || die "install_name_tool failed"
+				"${ED}"/${libdir}/${tlib}
 			# Now as we don't use GNU binutils and our linker doesn't
 			# understand linker scripts, just create a symlink.
 			pushd "${ED}/usr/${libdir}" > /dev/null
