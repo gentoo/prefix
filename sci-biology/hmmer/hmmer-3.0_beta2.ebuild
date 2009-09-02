@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/hmmer/hmmer-3.0_beta1.ebuild,v 1.1 2009/06/21 15:29:37 weaver Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/hmmer/hmmer-3.0_beta2.ebuild,v 1.1 2009/08/30 19:04:50 weaver Exp $
 
 EAPI="2"
 
-MY_P="hmmer-3.0b1"
+MY_P="hmmer-3.0b2"
 
 DESCRIPTION="Sequence analysis using profile hidden Markov models"
 HOMEPAGE="http://hmmer.janelia.org/"
@@ -28,6 +28,10 @@ src_configure() {
 		$(use_enable threads) || die
 #		$(use_enable mpi) \
 #		$(use_with gsl) || die
+}
+
+src_compile() {
+	emake -j1 || die
 }
 
 src_install() {

@@ -1,6 +1,11 @@
 # ChangeLog for sci-biology/hmmer
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/hmmer/ChangeLog,v 1.25 2009/06/21 15:29:37 weaver Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/hmmer/ChangeLog,v 1.26 2009/08/30 19:04:50 weaver Exp $
+
+*hmmer-3.0_beta2 (30 Aug 2009)
+
+  30 Aug 2009; Andrey Kislyuk <weaver@gentoo.org> +hmmer-3.0_beta2.ebuild:
+  Bump and add parallel make workaround, bug 282813
 
 *hmmer-3.0_beta1 (21 Jun 2009)
 
