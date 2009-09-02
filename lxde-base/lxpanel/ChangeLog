@@ -1,6 +1,11 @@
 # ChangeLog for lxde-base/lxpanel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxpanel/ChangeLog,v 1.8 2009/08/11 15:14:44 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxpanel/ChangeLog,v 1.9 2009/08/29 13:47:15 vostorga Exp $
+
+  29 Aug 2009; Víctor Ostorga <vostorga@gentoo.org> lxpanel-0.5.3.ebuild,
+  +files/lxpanel-0.5.3-battery.patch:
+  Fixing segfault when battery applet is enabled but battery removed , bug
+  #281093
 
 *lxpanel-0.5.3 (11 Aug 2009)
 
