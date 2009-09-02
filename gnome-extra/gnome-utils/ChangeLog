@@ -1,6 +1,10 @@
 # ChangeLog for gnome-extra/gnome-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/ChangeLog,v 1.177 2009/05/11 23:13:37 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/ChangeLog,v 1.178 2009/08/31 20:26:28 eva Exp $
+
+  31 Aug 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-utils-2.26.0.ebuild:
+  Move e2fsprogs behing USE=hal, bug #253851.
 
 *gnome-utils-2.26.0 (11 May 2009)
 

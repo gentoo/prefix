@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/gnome-utils-2.26.0.ebuild,v 1.1 2009/05/11 23:13:37 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-utils/gnome-utils-2.26.0.ebuild,v 1.2 2009/08/31 20:26:28 eva Exp $
 
 EAPI="2"
 
@@ -14,6 +14,8 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="doc hal ipv6 test"
 
+# gnome-search-tool is the only part needing gnome-vfs
+# gfloppy is the only part needing hal + e2fsprogs
 RDEPEND=">=dev-libs/glib-2.16.0
 	>=x11-libs/gtk+-2.14
 	>=gnome-base/gnome-desktop-2.9.91
@@ -24,8 +26,9 @@ RDEPEND=">=dev-libs/glib-2.16.0
 	>=gnome-base/gnome-panel-2.13.4
 	>=gnome-base/libgtop-2.12
 	>=gnome-base/gconf-2
-	sys-fs/e2fsprogs
-	hal? ( >=sys-apps/hal-0.5 )
+	hal? (
+		>=sys-apps/hal-0.5
+		sys-fs/e2fsprogs )
 	x11-libs/libXext"
 
 DEPEND="${RDEPEND}
