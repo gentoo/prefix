@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.6.ebuild,v 1.6 2009/08/31 18:02:03 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.7.ebuild,v 1.2 2009/08/31 12:43:54 mrpouet Exp $
 
 # TODO
 # 1. Track upstream bug --disable-docs does not work.
@@ -49,8 +49,7 @@ RDEPEND="virtual/libusb:0
 	exif? ( >=media-libs/libexif-0.5.9 )
 	hal? (
 		>=sys-apps/hal-0.5
-		>=sys-apps/dbus-1 )
-	sys-devel/libtool"
+		>=sys-apps/dbus-1 )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	sys-devel/flex
@@ -108,7 +107,7 @@ src_configure() {
 		$(use_with bonjour) \
 		$(use_with hal) \
 		$(use_enable nls) \
-		$(use_with exif libexif) \
+		$(use_with exif libexif auto) \
 		--with-drivers=${cameras} \
 		--with-doc-dir="${EPREFIX}"/usr/share/doc/${PF} \
 		--with-html-dir="${EPREFIX}"/usr/share/doc/${PF}/html \

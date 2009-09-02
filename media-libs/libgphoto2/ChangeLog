@@ -1,6 +1,30 @@
 # ChangeLog for media-libs/libgphoto2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/ChangeLog,v 1.151 2009/07/18 00:37:18 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/ChangeLog,v 1.156 2009/08/31 18:02:03 ranger Exp $
+
+  31 Aug 2009; Brent Baude <ranger@gentoo.org> libgphoto2-2.4.6.ebuild:
+  Marking libgphoto2-2.4.6 ppc64 for bug 282849
+
+  31 Aug 2009; Romain Perier <mrpouet@gentoo.org>
+  libgphoto2-2.4.7.ebuild:
+  Fix bug #283282, replace $(use_with exif libexif) by $(use_with exif
+  libexif auto) which assigns a value to --with-libexif (yes as default) and
+  force the configure to autodetect libexif using pkg-config module instead
+  of considere this value as $prefix, problem due to ugly GP_CHECK_LIBRARY
+  m4 macro
+
+  30 Aug 2009; Tobias Klausmann <klausman@gentoo.org>
+  libgphoto2-2.4.6.ebuild:
+  Stable on alpha, bug #282849
+
+  30 Aug 2009; nixnut <nixnut@gentoo.org> libgphoto2-2.4.6.ebuild:
+  ppc stable #282849
+
+*libgphoto2-2.4.7 (30 Aug 2009)
+
+  30 Aug 2009; Romain Perier <mrpouet@gentoo.org>
+  +libgphoto2-2.4.7.ebuild:
+  Version bump. 5 new cameras IDs, translation updates, bugfixes, bug #283133
 
   18 Jul 2009; Daniel Gryniewicz <dang@gentoo.org> libgphoto2-2.4.6.ebuild:
   Fix -exif sed. bug #275568
