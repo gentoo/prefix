@@ -1,6 +1,28 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.165 2009/07/12 14:14:03 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.169 2009/08/27 13:55:46 armin76 Exp $
+
+  27 Aug 2009; Raúl Porcel <armin76@gentoo.org> doxygen-1.5.8-r1.ebuild:
+  arm/ia64/sh/s390 stable wrt #263641
+
+  27 Aug 2009; Steve Arnold <nerdboy@gentoo.org> doxygen-1.5.4.ebuild,
+  doxygen-1.5.8-r1.ebuild, doxygen-1.5.9.ebuild, doxygen-1.6.0.ebuild:
+  Update missing latex font deps (closes bug 274673).
+
+*doxygen-1.5.9 (25 Aug 2009)
+
+  25 Aug 2009; Steve Arnold <nerdboy@gentoo.org> +doxygen-1.5.9.ebuild:
+  Adding version 1.5.9 until some issues are worked out.  This fixes some
+  problems with 1.5.8, and 1.6.0 is masked for time being.  Fixes bug
+  #275753.
+
+*doxygen-1.6.0 (25 Aug 2009)
+
+  25 Aug 2009; Steve Arnold <nerdboy@gentoo.org>
+  +files/doxygen-1.5-dot-eps.patch, +doxygen-1.6.0.ebuild:
+  Updated to latest upstream release (see bug #269961) and there is 
+  already one reported failure (see bug #282598) which has been reported 
+  upstream (http://bugzilla.gnome.org/show_bug.cgi?id=592975).
 
   12 Jul 2009; Tobias Klausmann <klausman@gentoo.org>
   doxygen-1.5.8-r1.ebuild:
