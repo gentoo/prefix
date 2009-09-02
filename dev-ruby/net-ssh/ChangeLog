@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/net-ssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/ChangeLog,v 1.50 2009/08/20 06:35:29 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/ChangeLog,v 1.51 2009/08/29 07:58:57 graaff Exp $
+
+*net-ssh-2.0.14 (29 Aug 2009)
+
+  29 Aug 2009; Hans de Graaff <graaff@gentoo.org> +net-ssh-2.0.14.ebuild:
+  Version bump.
+
+  * Fix for IO#select threading bug in Ruby 1.8 (LH-1) [Daniel Azuma]
+  * Fix for "uninitialized constant OpenSSL::Digest::MD5" exception in
+    Net::SFTP [DL Redden]
 
 *net-ssh-2.0.13 (20 Aug 2009)
 
