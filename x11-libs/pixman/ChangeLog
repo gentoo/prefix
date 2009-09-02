@@ -1,6 +1,21 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.43 2009/08/12 02:21:18 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.45 2009/09/01 18:39:20 jer Exp $
+
+  01 Sep 2009; Jeroen Roovers <jer@gentoo.org> pixman-0.12.0.ebuild:
+  Stable for HPPA (scarabeus).
+
+*pixman-0.16.0 (01 Sep 2009)
+
+  01 Sep 2009; Tomáš Chvátal <scarabeus@gentoo.org> -pixman-0.9.6.ebuild,
+  -files/pixman-0.11.4-memleak.patch, -pixman-0.11.6.ebuild,
+  -pixman-0.11.8.ebuild, -files/pixman-0.11.8-sse.patch,
+  -files/pixman-0.11.8-sse2-intrinsics-check.patch, -pixman-0.14.0.ebuild,
+  -pixman-0.15.20.ebuild, +pixman-0.16.0.ebuild:
+  Version bump, remove old unstable. Keep 3 stable version branches .10 .12
+  and .14.
+  0.16 is new stable branch. Has few fixes over 0.15.20. Moreover it has
+  some performance gains and losses in comparsion to 0.14.
 
 *pixman-0.15.20 (12 Aug 2009)
 

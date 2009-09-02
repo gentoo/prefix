@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/pixman-0.15.20.ebuild,v 1.1 2009/08/12 02:21:18 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/pixman-0.16.0.ebuild,v 1.1 2009/09/01 18:21:08 scarabeus Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
@@ -51,7 +51,6 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/pixman-0.12.0-sse.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
 
 	eautoreconf
 	elibtoolize
