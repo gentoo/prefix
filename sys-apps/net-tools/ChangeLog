@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/net-tools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.87 2009/08/24 17:10:40 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/ChangeLog,v 1.88 2009/08/26 20:40:33 vapier Exp $
+
+*net-tools-1.60_p20090728014017-r1 (26 Aug 2009)
+
+  26 Aug 2009; Mike Frysinger <vapier@gentoo.org>
+  -net-tools-1.60_p20090728014017.ebuild,
+  +net-tools-1.60_p20090728014017-r1.ebuild:
+  Fix typo in netstat udp display #282794 by Ambroz Bizjak.
 
   24 Aug 2009; Michael Sterrett <mr_bones_@gentoo.org>
   net-tools-1.60_p20071202044231-r1.ebuild:
