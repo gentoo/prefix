@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/psycopg-2.0.11.ebuild,v 1.5 2009/08/09 13:23:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/psycopg/psycopg-2.0.11.ebuild,v 1.6 2009/08/26 12:51:10 klausman Exp $
 
 NEED_PYTHON="2.4"
 
