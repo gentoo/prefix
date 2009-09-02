@@ -40,6 +40,12 @@ src_prepare() {
 	eprefixify "${T}"/xcb-rebuilder.sh
 }
 
+src_configure() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+
+	default_src_configure || die
+}
+
 src_install() {
 	x-modular_src_install
 	dobin "${T}"/xcb-rebuilder.sh || die
