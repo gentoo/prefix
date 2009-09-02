@@ -1,6 +1,9 @@
 # ChangeLog for www-client/pybugz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.51 2009/08/15 23:41:44 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.52 2009/08/29 00:20:17 williamh Exp $
+
+  29 Aug 2009; William Hubbs <williamh@gentoo.org> metadata.xml:
+  new global use flag 'zsh-completion'.
 
   15 Aug 2009; William Hubbs <williamh@gentoo.org> pybugz-0.8.0_rc3.ebuild:
   fixed bash completion support
