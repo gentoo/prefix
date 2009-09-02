@@ -79,7 +79,8 @@ src_install() {
 
 	# Install headers required by media-gfx/sketch.
 	install_headers() {
-		insinto "$(python_get_includedir)"
+		local incs=$(python_get_includedir)
+		insinto "${incs#${EPREFIX}}"
 		doins libImaging/Imaging.h
 		doins libImaging/ImPlatform.h
 	}
