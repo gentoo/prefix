@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/unp-1.0.15-r1.ebuild,v 1.3 2009/08/03 15:31:45 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unp/unp-1.0.15-r1.ebuild,v 1.4 2009/08/27 12:46:37 fauli Exp $
 
 inherit eutils
 
