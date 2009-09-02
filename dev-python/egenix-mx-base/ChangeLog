@@ -1,6 +1,20 @@
 # ChangeLog for dev-python/egenix-mx-base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/egenix-mx-base/ChangeLog,v 1.39 2009/08/22 18:26:59 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/egenix-mx-base/ChangeLog,v 1.43 2009/08/29 18:36:13 nixnut Exp $
+
+  29 Aug 2009; nixnut <nixnut@gentoo.org> egenix-mx-base-3.1.1.ebuild:
+  ppc stable #280376
+
+  28 Aug 2009; Raúl Porcel <armin76@gentoo.org>
+  egenix-mx-base-3.1.1.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #280376
+
+  26 Aug 2009; Jeroen Roovers <jer@gentoo.org> egenix-mx-base-3.1.1.ebuild:
+  Stable for HPPA (bug #280376).
+
+  26 Aug 2009; Tobias Klausmann <klausman@gentoo.org>
+  egenix-mx-base-3.1.1.ebuild:
+  Stable on alpha, bug #280376
 
   22 Aug 2009; Jeremy Olexa <darkside@gentoo.org>
   egenix-mx-base-3.1.1.ebuild:
