@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.136 2009/08/23 22:52:51 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.137 2009/09/01 02:39:36 dirtyepic Exp $
+
+*fontconfig-2.7.2 (01 Sep 2009)
+
+  01 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> +fontconfig-2.7.2.ebuild:
+  Version bump.
 
   23 Aug 2009; Ryan Hill <dirtyepic@gentoo.org> -fontconfig-2.7.0.ebuild,
   -files/fontconfig-2.7.0-latin-reorder.patch, -fontconfig-2.7.1.ebuild:
