@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/alsa-lib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.288 2009/08/17 05:02:38 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.290 2009/08/31 15:34:20 chainsaw Exp $
+
+*alsa-lib-1.0.21 (31 Aug 2009)
+
+  31 Aug 2009; <chainsaw@gentoo.org> +alsa-lib-1.0.21.ebuild:
+  Version bump, removes several deprecated functions. Besides that, mostly
+  bug fixes and new drivers.
+
+  28 Aug 2009; Tobias Klausmann <klausman@gentoo.org>
+  alsa-lib-1.0.20-r1.ebuild:
+  Stable on alpha, bug #280464
 
   17 Aug 2009; Jeroen Roovers <jer@gentoo.org> alsa-lib-1.0.20-r1.ebuild:
   Stable for HPPA (bug #280464).
