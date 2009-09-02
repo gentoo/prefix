@@ -1,6 +1,11 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.169 2009/08/18 18:41:17 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.170 2009/08/28 20:44:41 fuzzyray Exp $
+
+  28 Aug 2009; Paul Varner <fuzzyray@gentoo.org>
+  -files/gentoolkit-0.2.3-r1-equery.patch, -gentoolkit-0.2.4_pre8.ebuild,
+  -gentoolkit-0.2.4.2-r1.ebuild, -files/equery-0.2.4.2_use_expanded.patch:
+  Remove no longer needed versions.
 
   18 Aug 2009; Robert Buchholz <rbu@gentoo.org> gentoolkit-0.3.0_rc7.ebuild:
   Update postinst message with changes to glsa-check
