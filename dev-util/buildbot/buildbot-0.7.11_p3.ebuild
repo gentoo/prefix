@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.7.11_p3.ebuild,v 1.1 2009/08/24 21:27:25 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.7.11_p3.ebuild,v 1.6 2009/08/30 23:44:31 ranger Exp $
 
 EAPI=1
 NEED_PYTHON="2.4"
