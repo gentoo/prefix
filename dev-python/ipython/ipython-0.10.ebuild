@@ -1,9 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-0.10.ebuild,v 1.2 2009/08/18 16:47:06 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-0.10.ebuild,v 1.3 2009/08/30 00:08:20 arfrever Exp $
 
-NEED_PYTHON=2.4
-EAPI=2
+EAPI="2"
+
+NEED_PYTHON="2.4"
+SUPPORT_PYTHON_ABIS="1"
+
 inherit eutils distutils elisp-common
 
 DESCRIPTION="An advanced interactive shell for Python."
@@ -26,6 +29,8 @@ RDEPEND="${CDEPEND}
 	gnuplot? ( dev-python/gnuplot-py )"
 DEPEND="${CDEPEND}
 	test? ( dev-python/nose )"
+
+RESTRICT_PYTHON_ABIS="3*"
 
 PYTHON_MODNAME="IPython"
 SITEFILE="62ipython-gentoo.el"
@@ -50,29 +55,29 @@ src_prepare() {
 
 src_compile() {
 	distutils_src_compile
-	if use emacs ; then
+	if use emacs; then
 		elisp-compile docs/emacs/ipython.el || die "elisp-compile failed"
 	fi
 }
 
 src_test() {
-	"${python}" setup.py \
-		install --home="${WORKDIR}/test" > /dev/null \
-		|| die "fake install for testing failed"
-	cd "${WORKDIR}"/test
-	# first initialize .ipython stuff
-	PATH="${WORKDIR}/test/bin:${PATH}" \
-		PYTHONPATH="${WORKDIR}/test/lib/python" ipython > /dev/null <<-EOF
+	testing() {
+		"$(PYTHON)" setup.py build -b "build-${PYTHON_ABI}" install --home="${WORKDIR}/test-${PYTHON_ABI}" > /dev/null || die "Installation of tests failed with Python ${PYTHON_ABI}"
+		pushd "${WORKDIR}/test-${PYTHON_ABI}" > /dev/null || die
+		# First initialize .ipython stuff.
+		PATH="${WORKDIR}/test-${PYTHON_ABI}/bin:${PATH}" PYTHONPATH="${WORKDIR}/test-${PYTHON_ABI}/lib/python" ipython > /dev/null <<-EOF
 		EOF
-	# test ( -v for more verbosity)
-	PATH="${WORKDIR}/test/bin:${PATH}" \
-		PYTHONPATH="${WORKDIR}/test/lib/python" iptest || die "test failed"
+		# Test (-v for more verbosity).
+		PATH="${WORKDIR}/test-${PYTHON_ABI}/bin:${PATH}" PYTHONPATH="${WORKDIR}/test-${PYTHON_ABI}/lib/python" iptest
+		popd > /dev/null || die
+	}
+	python_execute_function testing
 }
 
 src_install() {
 	DOCS="docs/source/changes.txt"
 	distutils_src_install
-	if use emacs ; then
+	if use emacs; then
 		pushd docs/emacs
 		elisp-install ${PN} ${PN}.el* || die "elisp-install failed"
 		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
