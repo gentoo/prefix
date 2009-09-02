@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxlauncher/lxlauncher-0.2.1.ebuild,v 1.1 2009/07/19 04:21:34 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxlauncher/lxlauncher-0.2.1.ebuild,v 1.2 2009/08/27 14:53:20 vostorga Exp $
 
 EAPI="1"
 
@@ -21,6 +21,7 @@ RDEPEND="dev-libs/glib:2
 	x11-libs/startup-notification"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
+	dev-util/intltool
 	sys-devel/gettext
 	lxde-base/menu-cache
 	!lxde-base/lxlauncher-gmenu"
