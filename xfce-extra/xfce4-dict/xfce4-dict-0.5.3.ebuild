@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/xfce4-dict-0.5.3.ebuild,v 1.4 2009/08/26 03:53:13 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/xfce4-dict-0.5.3.ebuild,v 1.8 2009/08/30 16:16:13 nixnut Exp $
 
 EAPI=2
 inherit xfconf
