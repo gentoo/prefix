@@ -515,7 +515,7 @@ gtk-sharp-module_src_configure() {
 gtk-sharp-module_src_compile() {
 	rm -f "${S}"/Makefile* &> /dev/null
 	cd "${S}/${GTK_SHARP_MODULE_DIR}"
-	emake CSC=/usr/bin/gmcs || die "emake failed"
+	emake CSC="${EPREFIX}"/usr/bin/gmcs || die "emake failed"
 }
 
 # @FUNCTION: gtk-sharp-module_src_install
