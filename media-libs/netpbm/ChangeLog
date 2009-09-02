@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.218 2009/08/22 12:56:52 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.220 2009/08/28 15:03:40 vapier Exp $
+
+  28 Aug 2009; Mike Frysinger <vapier@gentoo.org> netpbm-10.46.00.ebuild,
+  netpbm-10.46.00-r1.ebuild:
+  Work around a bug in bash-3 parser and heredocs #282902.
+
+  27 Aug 2009; Mike Frysinger <vapier@gentoo.org> netpbm-10.46.00.ebuild,
+  netpbm-10.46.00-r1.ebuild:
+  Add sanity check for /dev/stdin reading #279549.
 
 *netpbm-10.46.00-r1 (22 Aug 2009)
 

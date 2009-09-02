@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.46.00-r1.ebuild,v 1.1 2009/08/22 12:56:52 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.46.00-r1.ebuild,v 1.3 2009/08/28 15:03:40 vapier Exp $
 
 inherit toolchain-funcs eutils multilib prefix
 
@@ -140,6 +140,9 @@ src_unpack() {
 	X11LIB = $(netpbm_config X X11)
 	X11HDR_DIR =
 	EOF
+	# cannot chain the die with the heredoc above as bash-3
+	# has a parser bug in that setup #282902
+	[ $? -eq 0 ] || die "writing config.mk failed"
 
 	[[ ${CHOST} == *-interix3* ]] && echo "INTTYPES_H = <stdint.h>" >> Makefile.config
 }
