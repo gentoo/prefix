@@ -1,6 +1,23 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.131 2009/08/17 19:58:30 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.135 2009/08/31 22:37:13 chainsaw Exp $
+
+  31 Aug 2009; <chainsaw@gentoo.org> audacious-plugins-2.1-r1.ebuild:
+  Marked stable on AMD64 as requested by Samuli Suominen
+  <ssuominen@gentoo.org> in bug #279238. Tested using a file recognised as
+  [ffmusepack7] afm: ffmpeg (Musepack sv7 audio codec) by mplayer on a dual
+  Opteron 2435 system.
+
+  31 Aug 2009; Brent Baude <ranger@gentoo.org>
+  audacious-plugins-2.1-r1.ebuild:
+  Marking audacious-plugins-2.1-r1 ppc64 for bug 279238
+
+  29 Aug 2009; nixnut <nixnut@gentoo.org> audacious-plugins-2.1-r1.ebuild:
+  ppc stable #279238
+
+  28 Aug 2009; Tobias Klausmann <klausman@gentoo.org>
+  audacious-plugins-2.1-r1.ebuild:
+  Stable on alpha, bug #279238
 
   17 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
   audacious-plugins-2.1-r1.ebuild:
