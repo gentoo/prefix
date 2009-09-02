@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/decorator
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/decorator/ChangeLog,v 1.6 2009/08/04 23:50:40 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/decorator/ChangeLog,v 1.7 2009/08/29 20:36:14 arfrever Exp $
+
+*decorator-3.1.2 (29 Aug 2009)
+
+  29 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -decorator-2.2.0.ebuild, -decorator-2.3.2.ebuild, +decorator-3.1.2.ebuild:
+  Version bump.
 
   04 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   decorator-3.0.1.ebuild:
