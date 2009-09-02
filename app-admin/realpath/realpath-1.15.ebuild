@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/realpath-1.15.ebuild,v 1.5 2009/08/09 15:16:43 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/realpath-1.15.ebuild,v 1.6 2009/08/31 19:28:01 ranger Exp $
 
 EAPI=2
 inherit eutils toolchain-funcs prefix
