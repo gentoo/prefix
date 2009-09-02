@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.1.5.ebuild,v 1.1 2008/01/18 12:50:22 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/slib/slib-3.2.2.ebuild,v 1.1 2009/08/31 13:14:02 hkbst Exp $
 
 inherit versionator eutils
 
@@ -8,7 +8,7 @@ inherit versionator eutils
 trarr="0abcdefghi"
 MY_PV="$(get_version_component_range 1)${trarr:$(get_version_component_range 2):1}$(get_version_component_range 3)"
 
-MY_P=${PN}${MY_PV}
+MY_P=${PN}-${MY_PV}
 S=${WORKDIR}/${PN}
 DESCRIPTION="library providing functions for Scheme implementations"
 SRC_URI="http://swiss.csail.mit.edu/ftpdir/scm/${MY_P}.zip"
@@ -32,14 +32,12 @@ src_unpack() {
 
 #	cp Makefile Makefile.old
 
-	sed "s_prefix = /usr/local/_prefix = ${ED}/usr/_" -i Makefile
+	sed "s:prefix = /usr/local/:prefix = ${ED}/usr/:" -i Makefile
 	sed 's:libdir = $(exec_prefix)lib/:libdir = $(exec_prefix)share/:' -i Makefile
-	sed 's_mandir = $(prefix)man/_mandir = $(prefix)/share/man/_' -i Makefile
-	sed 's_infodir = $(prefix)info/_infodir = $(prefix)share/info/_' -i Makefile
+	sed 's:man1dir = $(prefix)man/:man1dir = $(prefix)/share/man/:' -i Makefile
+	sed 's:infodir = $(prefix)info/:infodir = $(prefix)share/info/:' -i Makefile
 
 	sed 's:echo SCHEME_LIBRARY_PATH=$(libslibdir)  >> $(bindir)slib:echo SCHEME_LIBRARY_PATH='"${EPREFIX}"'/usr/share/slib/ >> $(bindir)slib:' -i Makefile
-
-#	sed 's_mkdir_mkdir -p_g' -i Makefile
 
 #	diff -u Makefile.old Makefile
 
@@ -56,16 +54,6 @@ src_install() {
 
 	dodoc ANNOUNCE ChangeLog FAQ README
 	dodir /usr/share/gambit/
-	more_install
-}
-
-# maybe also do "make infoz"
-_src_install() {
-	insinto ${INSTALL_DIR} #don't install directly into guile dir
-	doins *.scm
-	doins *.init
-	dodoc ANNOUNCE ChangeLog FAQ README
-	doinfo slib.info
 	more_install
 }
 
@@ -101,10 +89,11 @@ make_installers()
 	PROGRAM="(require 'new-catalog) (slib:report-version)"
 
 	bigloo_install_command="bigloo -s -eval \"(begin "$(make_load_expression bigloo)" ${PROGRAM} (exit))\""
-	drscheme_install_command="mzscheme -vme \"(begin $(make_load_expression DrScheme) ${PROGRAM})\""
+	drscheme_install_command="mzscheme -vme \"(begin $(make_load_expression mzscheme) ${PROGRAM})\""
 	elk_install_command="echo \"$(make_load_expression elk) ${PROGRAM}\" | elk -l -"
 	gambit_install_command="gambit-interpreter -e \"$(make_load_expression gambit) ${PROGRAM}\""
-	guile_install_command="guile -c \"$(make_load_expression guile) ${PROGRAM}\""
+#	guile_install_command="guile -c \"$(make_load_expression guile) ${PROGRAM}\""
+	guile_install_command="guile -c \"(use-modules (ice-9 slib)) ${PROGRAM}\""
 	#variable names may not contain hyphens (-)
 	mitscheme_install_command="echo \"(set! load/suppress-loading-message? #t) $(make_load_expression mitscheme) ${PROGRAM}\" | mit-scheme --batch-mode"
 	echo ${mitscheme_install_command}
