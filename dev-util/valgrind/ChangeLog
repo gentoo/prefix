@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.104 2009/08/08 18:20:17 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.105 2009/08/31 18:09:37 ranger Exp $
+
+  31 Aug 2009; Brent Baude <ranger@gentoo.org> valgrind-3.4.1.ebuild:
+  Marking valgrind-3.4.1 ppc64 for bug 278534
 
   08 Aug 2009; Maurice van der Pot <griffon26@gentoo.org>
   valgrind-3.4.1-r1.ebuild, +files/valgrind-3.4.1-local-labels.patch,
