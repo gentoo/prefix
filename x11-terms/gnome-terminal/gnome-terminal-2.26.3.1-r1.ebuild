@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.26.3.1.ebuild,v 1.1 2009/07/09 22:46:37 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.26.3.1-r1.ebuild,v 1.1 2009/08/28 16:27:47 mrpouet Exp $
 
 inherit eutils gnome2
 
@@ -38,6 +38,10 @@ src_unpack() {
 
 	# Use login shell by default (#12900)
 	epatch "${FILESDIR}"/${PN}-2.22.0-default_shell.patch
+
+	# If we're logged in root on the first tab, don't open a new tab
+	# in user on /, fix bug #269318, import from upstream bug #565328.
+	epatch "${FILESDIR}"/${P}-cwd-on-new-tab.patch
 
 	# patch gnome terminal to report as GNOME rather than xterm
 	# This needs to resolve a few bugs (#120294,)
