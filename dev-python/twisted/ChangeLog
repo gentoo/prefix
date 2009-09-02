@@ -1,6 +1,14 @@
 # ChangeLog for dev-python/twisted
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.104 2009/07/16 06:05:54 neurogeek Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.105 2009/08/28 17:34:53 arfrever Exp $
+
+*twisted-8.2.0-r2 (28 Aug 2009)
+
+  28 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -twisted-8.2.0-r1.ebuild, +twisted-8.2.0-r2.ebuild,
+  -files/twisted-8.2.0_deprecations.patch, files/twisted-8.2.0_tests.patch:
+  Set SUPPORT_PYTHON_ABIS. Disable broken tests (bug #181470 and bug
+  #190433). Remove broken patch (bug #268737).
 
 *twisted-8.2.0-r1 (16 Jul 2009)
 
