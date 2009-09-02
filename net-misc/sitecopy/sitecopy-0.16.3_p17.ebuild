@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/sitecopy-0.16.3_p17.ebuild,v 1.3 2008/06/30 20:40:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/sitecopy-0.16.3_p17.ebuild,v 1.4 2009/08/28 21:40:24 betelgeuse Exp $
+
+EAPI="2"
 
 inherit eutils autotools
 
@@ -18,38 +20,18 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 LICENSE="GPL-2"
 SLOT="0"
 DEPEND="rsh? ( net-misc/netkit-rsh )
-	>=net-misc/neon-0.24.6"
+	>=net-misc/neon-0.24.6[zlib?,ssl?,expat?]
+	xml? ( >=net-misc/neon-0.24.6[-expat] )"
 
 S="${WORKDIR}"/${MY_P/_/-}
 
-pkg_setup() {
-	if use zlib ; then
-		built_with_use net-misc/neon zlib || die "neon needs zlib support"
-	fi
-
-	if use ssl ; then
-		built_with_use net-misc/neon ssl || die "neon needs ssl support"
-		myconf="${myconf} --with-ssl=openssl"
-	fi
-
-	if use expat ; then
-		built_with_use net-misc/neon expat || die "neon needs expat support"
-	fi
-
-	if use xml ; then
-		built_with_use net-misc/neon expat && die "neon needs expat support disabled for
-		libxml2 support to be enabled"
-	fi
-}
-
-src_unpack() {
-	unpack ${A}
-
+src_prepare() {
+	cd "${WORKDIR}" || die
 	# Debian patches
 	epatch ${MY_P}-${DEB_PL}.diff
 	epatch "${S}"/debian/patches/*.dpatch
 
-	cd "${S}"
+	cd "${S}" || die
 
 	# Make it work with neon .29
 	epatch "${FILESDIR}"/${PV}-neon-29.patch
@@ -62,8 +44,9 @@ src_unpack() {
 	eautomake
 }
 
-src_compile() {
-	econf ${myconf} \
+src_configure() {
+	econf \
+			$(use_with ssl ssl openssl) \
 			$(use_enable webdav) \
 			$(use_enable nls) \
 			$(use_enable rsh) \
@@ -71,8 +54,6 @@ src_compile() {
 			$(use_with xml libxml2 ) \
 			--with-neon \
 			|| die "econf failed"
-
-	emake || die "emake failed"
 }
 
 src_install() {

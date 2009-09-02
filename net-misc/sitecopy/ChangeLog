@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/sitecopy
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/ChangeLog,v 1.50 2008/06/30 20:40:11 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/sitecopy/ChangeLog,v 1.51 2009/08/28 21:40:24 betelgeuse Exp $
+
+  28 Aug 2009; Petteri Räty <betelgeuse@gentoo.org>
+  sitecopy-0.16.3_p17.ebuild:
+  Migrate to EAPI 2 in order to get rid of built_with_use.
 
   30 Jun 2008; Raúl Porcel <armin76@gentoo.org>
   -files/0.16.3-neon-28.patch, -sitecopy-0.16.3.ebuild,
