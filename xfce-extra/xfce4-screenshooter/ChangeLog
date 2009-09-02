@@ -1,6 +1,21 @@
 # ChangeLog for xfce-extra/xfce4-screenshooter
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/ChangeLog,v 1.57 2009/08/26 03:47:05 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-screenshooter/ChangeLog,v 1.61 2009/08/30 16:13:32 nixnut Exp $
+
+  30 Aug 2009; nixnut <nixnut@gentoo.org> xfce4-screenshooter-1.6.0.ebuild:
+  ppc stable #282678
+
+  29 Aug 2009; Raúl Porcel <armin76@gentoo.org>
+  xfce4-screenshooter-1.6.0.ebuild:
+  alpha/arm/ia64/sparc stable wrt #282678
+
+  26 Aug 2009; Jeroen Roovers <jer@gentoo.org>
+  xfce4-screenshooter-1.6.0.ebuild:
+  Stable for HPPA (bug #282678).
+
+  26 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  xfce4-screenshooter-1.6.0.ebuild:
+  stable x86, bug 282678
 
   26 Aug 2009; Jeremy Olexa <darkside@gentoo.org>
   xfce4-screenshooter-1.6.0.ebuild:
