@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.5.ebuild,v 1.12 2009/05/29 19:59:09 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/rsync-3.0.5.ebuild,v 1.13 2009/08/27 08:51:28 vapier Exp $
 
 inherit eutils flag-o-matic prefix
 
@@ -24,25 +24,12 @@ S=${WORKDIR}/${P/_/}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch_user
 
 	cp "${FILESDIR}"/rsyncd.* "${T}"/
 	cd "${T}"
 	epatch "${FILESDIR}"/rsync-files-prefix.patch
 	eprefixify rsyncd.*
-
-	local check base=${PORTAGE_CONFIGROOT}/etc/portage/patches
-	for check in {${CATEGORY}/${PF},${CATEGORY}/${P},${CATEGORY}/${PN}}; do
-		EPATCH_SOURCE=${base}/${CTARGET}/${check}
-		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${CHOST}/${check}
-		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${check}
-		if [[ -d ${EPATCH_SOURCE} ]] ; then
-			EPATCH_SUFFIX="patch"
-			EPATCH_FORCE="yes" \
-			EPATCH_MULTI_MSG="Applying user patches from ${EPATCH_SOURCE} ..." \
-			epatch
-			break
-		fi
-	done
 }
 
 src_compile() {
