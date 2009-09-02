@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.2-r1.ebuild,v 1.6 2009/08/25 14:14:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.2-r2.ebuild,v 1.1 2009/08/30 14:59:52 anarchy Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -58,7 +58,6 @@ RDEPEND="
 	>=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12.2
 	>=dev-libs/nspr-4.7.3
-	>=dev-db/sqlite-3.6.7
 	>=app-text/hunspell-1.2
 	alsa? ( media-libs/alsa-lib )
 	>=net-libs/xulrunner-${XUL_PV}[java=]
@@ -189,7 +188,7 @@ src_configure() {
 	# Use system libraries
 	mozconfig_annotate '' --enable-system-cairo
 	mozconfig_annotate '' --enable-system-hunspell
-	mozconfig_annotate '' --enable-system-sqlite
+	# mozconfig_annotate '' --enable-system-sqlite
 	mozconfig_annotate '' --with-system-nspr
 	mozconfig_annotate '' --with-system-nss
 	mozconfig_annotate '' --enable-system-lcms

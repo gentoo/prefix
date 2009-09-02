@@ -1,6 +1,25 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.539 2009/08/25 14:14:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.542 2009/08/30 23:47:57 ranger Exp $
+
+  30 Aug 2009; Brent Baude <ranger@gentoo.org>
+  mozilla-firefox-3.0.13.ebuild:
+  Marking mozilla-firefox-3.0.13 ppc64 for bug 282179
+
+  30 Aug 2009; Jory A. Pratt <anarchy@gentoo.org>
+  -mozilla-firefox-3.5.2.ebuild, -mozilla-firefox-3.5.2-r1.ebuild,
+  +mozilla-firefox-3.5.2-r2.ebuild:
+  remove unsupported 3.5.x ebuilds
+
+*mozilla-firefox-3.5.2-r2 (30 Aug 2009)
+
+  30 Aug 2009; Jory A. Pratt <anarchy@gentoo.org>
+  -mozilla-firefox-3.5.2-r1.ebuild, +mozilla-firefox-3.5.2-r2.ebuild:
+  drop system sqlite support in 3.5.x until segv fixed.
+
+  26 Aug 2009; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.0.13.ebuild:
+  3.0.13 needs nss-3.12.3
 
   25 Aug 2009; Raúl Porcel <armin76@gentoo.org>
   mozilla-firefox-3.5.2.ebuild, mozilla-firefox-3.5.2-r1.ebuild:
