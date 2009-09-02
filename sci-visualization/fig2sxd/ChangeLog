@@ -1,6 +1,18 @@
 # ChangeLog for sci-visualization/fig2sxd
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/fig2sxd/ChangeLog,v 1.6 2008/08/21 15:07:24 markusle Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/fig2sxd/ChangeLog,v 1.8 2009/09/01 02:40:29 markusle Exp $
+
+  01 Sep 2009; Markus Dittrich <markusle@gentoo.org> -fig2sxd-0.17.ebuild:
+  Removed old ebuild.
+
+*fig2sxd-0.20 (01 Sep 2009)
+
+  01 Sep 2009; Markus Dittrich <markusle@gentoo.org> +fig2sxd-0.20.ebuild,
+  +files/fig2sxd-0.20-ldflags.patch, +files/fig2sxd-0.20-phony-check.patch,
+  metadata.xml:
+  Version bump. Also added patches for respecting LDFLAGS and making
+  sure check is a phony target since it is not intended as a test file.
+  Added myself as a maintainer.
 
 *fig2sxd-0.18 (21 Aug 2008)
 
