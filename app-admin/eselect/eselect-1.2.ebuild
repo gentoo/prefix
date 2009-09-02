@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.2_rc1.ebuild,v 1.1 2009/08/19 19:27:02 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.2.ebuild,v 1.1 2009/08/27 11:52:13 ulm Exp $
 
 inherit eutils
 
@@ -44,7 +44,7 @@ src_install() {
 	dodoc AUTHORS ChangeLog NEWS README TODO doc/*.txt
 	use doc && dohtml *.html doc/*
 
-	# needed by news-tng module
+	# needed by news module
 	keepdir /var/lib/gentoo/news
 
 	# we don't use bash-completion.eclass since eselect
