@@ -1,6 +1,18 @@
 # ChangeLog for app-text/docbook-xsl-stylesheets
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xsl-stylesheets/ChangeLog,v 1.91 2009/07/21 12:57:06 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xsl-stylesheets/ChangeLog,v 1.94 2009/08/30 16:49:09 nixnut Exp $
+
+  30 Aug 2009; nixnut <nixnut@gentoo.org>
+  docbook-xsl-stylesheets-1.75.2.ebuild:
+  ppc stable #282302
+
+  30 Aug 2009; Tobias Klausmann <klausman@gentoo.org>
+  docbook-xsl-stylesheets-1.75.2.ebuild:
+  Stable on alpha, bug #282302
+
+  28 Aug 2009; Jeroen Roovers <jer@gentoo.org>
+  docbook-xsl-stylesheets-1.75.2.ebuild:
+  Stable for HPPA (bug #282302).
 
 *docbook-xsl-stylesheets-1.75.2 (21 Jul 2009)
 
