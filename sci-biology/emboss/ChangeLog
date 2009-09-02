@@ -1,6 +1,10 @@
 # ChangeLog for sci-biology/emboss
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/ChangeLog,v 1.49 2008/08/27 21:59:28 ribosome Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/emboss/ChangeLog,v 1.50 2009/08/31 21:41:26 ribosome Exp $
+
+  31 Aug 2009; Olivier Fisette <ribosome@gentoo.org> emboss-4.0.0.ebuild,
+  emboss-6.0.1.ebuild:
+  Q.A. fixes, including better dependency on ClustalW.
 
   27 Aug 2008; Olivier Fisette <ribosome@gentoo.org> -emboss-5.0.0.ebuild:
   Pruning version that will never be stabilised.
