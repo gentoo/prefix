@@ -1,6 +1,15 @@
 # ChangeLog for dev-tcltk/tcllib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/ChangeLog,v 1.26 2009/08/18 07:07:04 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tcllib/ChangeLog,v 1.29 2009/08/29 19:12:52 nixnut Exp $
+
+  29 Aug 2009; nixnut <nixnut@gentoo.org> tcllib-1.11.1.ebuild:
+  ppc stable #281398
+
+  29 Aug 2009; Tobias Klausmann <klausman@gentoo.org> tcllib-1.11.1.ebuild:
+  Stable on alpha, bug #281398
+
+  27 Aug 2009; Jeroen Roovers <jer@gentoo.org> tcllib-1.11.1.ebuild:
+  Stable for HPPA (bug #281398).
 
   18 Aug 2009; Christian Faulhammer <fauli@gentoo.org> tcllib-1.11.1.ebuild:
   stable x86, bug 281398
