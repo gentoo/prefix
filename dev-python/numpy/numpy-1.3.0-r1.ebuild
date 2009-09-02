@@ -1,10 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.3.0.ebuild,v 1.12 2009/08/29 19:07:57 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numpy/numpy-1.3.0-r1.ebuild,v 1.2 2009/08/29 19:07:57 arfrever Exp $
 
-NEED_PYTHON=2.4
-EAPI=2
-inherit eutils distutils flag-o-matic toolchain-funcs
+EAPI="2"
+
+NEED_PYTHON="2.4"
+SUPPORT_PYTHON_ABIS="1"
+
+inherit distutils eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Fast array and numerical python library"
 SRC_URI="mirror://sourceforge/numpy/${P}.tar.gz"
@@ -21,17 +24,19 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x86-solaris"
 LICENSE="BSD"
 
-# whatever LDFLAGS set will break linking
-# see progress in http://projects.scipy.org/scipy/numpy/ticket/573
-if [[ ${CHOST} != *-darwin* ]] ; then
-if [ -n "${LDFLAGS}" ]; then
-	append-ldflags -shared
-else
-	LDFLAGS="-shared"
-fi
-fi
+RESTRICT_PYTHON_ABIS="3*"
 
 pkg_setup() {
+	# whatever LDFLAGS set will break linking
+	# see progress in http://projects.scipy.org/scipy/numpy/ticket/573
+	if [[ ${CHOST} != *-darwin* ]] ; then
+	if [ -n "${LDFLAGS}" ]; then
+		append-ldflags -shared
+	else
+		LDFLAGS="-shared"
+	fi
+	fi
+
 	# only one fortran to link with:
 	# linking with cblas and lapack library will force
 	# autodetecting and linking to all available fortran compilers
@@ -100,15 +105,16 @@ src_compile() {
 }
 
 src_test() {
-	"${python}" setup.py ${NUMPY_FCONFIG} install \
-		--home="${S}"/test \
-		--no-compile \
-		|| die "install test failed"
-	pushd "${S}"/test/lib*
-	PYTHONPATH=python "${python}" -c "import numpy; numpy.test()" 2>&1 | tee test.log
-	grep -q '^ERROR' test.log && die "test failed"
-	popd
-	rm -rf test
+	testing() {
+		"$(PYTHON)" setup.py ${NUMPY_FCONFIG} build -b "build-${PYTHON_ABI}" install \
+			--home="${S}/test-${PYTHON_ABI}" --no-compile || die "install test failed"
+		pushd "${S}/test-${PYTHON_ABI}/"lib* > /dev/null
+		PYTHONPATH=python "$(PYTHON)" -c "import numpy; numpy.test()" 2>&1 | tee test.log
+		grep -q '^ERROR' test.log && die "test failed"
+		popd > /dev/null
+		rm -fr test-${PYTHON_ABI}
+	}
+	python_execute_function testing
 }
 
 src_install() {
