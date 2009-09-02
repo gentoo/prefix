@@ -1,6 +1,14 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.122 2009/07/22 19:22:52 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.123 2009/08/29 21:06:50 robbat2 Exp $
+
+*libpcap-1.0.1_pre20090812 (29 Aug 2009)
+
+  29 Aug 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +libpcap-1.0.1_pre20090812.ebuild,
+  +files/libpcap-1.0.1_pre20090812-poll-cpu-usage.patch:
+  Bump to newer snapshot, and include poll() CPU usage fix from Ubuntu.
+  Massively drops CPU usage for live captures again.
 
   22 Jul 2009; Tobias Klausmann <klausman@gentoo.org>
   libpcap-1.0.1_pre20090708.ebuild:
