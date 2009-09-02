@@ -105,11 +105,12 @@ src_install() {
 		dobin ${GLEP_SRC}/glep.py || die "newbin failed"
 
 		installation_of_glep_tools() {
-			insinto $(python_get_sitedir)/docutils/readers
+			local sitedir=$(python_get_sitedir)
+			insinto ${sitedir#${EPREFIX}}/docutils/readers
 			newins ${GLEP_SRC}/glepread.py glep.py || die "newins reader failed"
-			insinto $(python_get_sitedir)/docutils/transforms
+			insinto ${sitedir#${EPREFIX}}/docutils/transforms
 			newins ${GLEP_SRC}/glepstrans.py gleps.py || die "newins transform failed"
-			insinto $(python_get_sitedir)/docutils/writers
+			insinto ${sitedir#${EPREFIX}}/docutils/writers
 			doins -r ${GLEP_SRC}/glep_html || die "doins writer failed"
 		}
 		python_execute_function --action-message 'Installation of GLEP tools with Python ${PYTHON_ABI}...' installation_of_glep_tools
