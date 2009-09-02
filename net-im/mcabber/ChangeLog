@@ -1,6 +1,9 @@
 # ChangeLog for net-im/mcabber
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/mcabber/ChangeLog,v 1.43 2009/08/25 10:40:23 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/mcabber/ChangeLog,v 1.44 2009/08/29 19:46:23 nixnut Exp $
+
+  29 Aug 2009; nixnut <nixnut@gentoo.org> mcabber-0.9.9-r1.ebuild:
+  ppc stable #281836
 
   25 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
   mcabber-0.9.9-r1.ebuild:
