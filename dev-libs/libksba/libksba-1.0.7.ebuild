@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.7.ebuild,v 1.4 2009/08/25 17:17:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libksba/libksba-1.0.7.ebuild,v 1.6 2009/08/31 00:51:09 ranger Exp $
 
 DESCRIPTION="makes X.509 certificates and CMS easily accessible to applications"
 HOMEPAGE="http://www.gnupg.org/related_software/libksba"
