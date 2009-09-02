@@ -1,6 +1,20 @@
 # ChangeLog for mail-client/mutt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.146 2009/08/25 20:06:58 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.151 2009/08/31 01:16:43 ranger Exp $
+
+  31 Aug 2009; Brent Baude <ranger@gentoo.org> mutt-1.5.20-r4.ebuild:
+  Marking mutt-1.5.20-r4 ppc64 for bug 275703
+
+  27 Aug 2009; Fabian Groffen <grobian@gentoo.org> mutt-1.5.20-r4.ebuild:
+  Avoid compilation errors when ncurses is not built with unicode (wide
+  character) support, bug #282834
+
+  27 Aug 2009; Thomas Anderson <tanderson@gentoo.org>
+  mutt-1.5.20-r4.ebuild:
+  stable amd64, bug 275703
+
+  26 Aug 2009; Tobias Klausmann <klausman@gentoo.org> mutt-1.5.20-r4.ebuild:
+  Stable on alpha, bug #275703
 
   25 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
   mutt-1.5.20-r4.ebuild:

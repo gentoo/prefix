@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r4.ebuild,v 1.5 2009/08/25 20:06:58 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r4.ebuild,v 1.9 2009/08/31 01:16:43 ranger Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -72,7 +72,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/mutt-1.5.18-bdb-prefix.patch # fix bdb detection
 	epatch "${FILESDIR}"/mutt-1.5.18-interix.patch
-	epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
+	built_with_use sys-libs/ncurses unicode && \
+		epatch "${FILESDIR}"/mutt-1.5.18-solaris-ncurses-chars.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-gpgme-1.2.0.patch
 	# post-release hot-fixes
 	epatch "${FILESDIR}"/mutt-1.5.20-imap-port-invalid-d6f88fbf8387.patch
