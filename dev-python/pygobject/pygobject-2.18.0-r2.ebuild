@@ -1,6 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.18.0.ebuild,v 1.11 2009/08/26 12:45:10 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/pygobject-2.18.0-r2.ebuild,v 1.1 2009/08/28 17:15:30 arfrever Exp $
+
+EAPI="2"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit alternatives autotools gnome2 python virtualx
 
@@ -21,6 +24,8 @@ DEPEND="${RDEPEND}
 	test? ( media-fonts/font-cursor-misc media-fonts/font-misc-misc )
 	>=dev-util/pkgconfig-0.12.0"
 
+RESTRICT_PYTHON_ABIS="3*"
+
 DOCS="AUTHORS ChangeLog* NEWS README"
 
 pkg_setup() {
@@ -30,8 +35,8 @@ pkg_setup() {
 		$(use_with libffi ffi)"
 }
 
-src_unpack() {
-	gnome2_src_unpack
+src_prepare() {
+	gnome2_src_prepare
 
 	# Fix FHS compliance, see upstream bug #535524
 	epatch "${FILESDIR}/${PN}-2.15.4-fix-codegen-location.patch"
@@ -42,6 +47,9 @@ src_unpack() {
 	# Do not install files twice, bug #279813
 	epatch "${FILESDIR}/${P}-automake111.patch"
 
+	# Support installation for multiple Python versions
+	epatch "${FILESDIR}/${P}-support_multiple_python_versions.patch"
+
 	# needed to build on a libtool-1 system, bug #255542
 	rm m4/lt* m4/libtool.m4 ltmain.sh
 
@@ -50,26 +58,44 @@ src_unpack() {
 	ln -s $(type -P true) py-compile
 
 	eautoreconf
+
+	python_copy_sources
+}
+
+src_configure() {
+	python_execute_function -s gnome2_src_configure
+}
+
+src_compile() {
+	python_execute_function -d -s
 }
 
 src_test() {
 	unset DBUS_SESSION_BUS_ADDRESS
-	Xemake check || die "tests failed"
+
+	testing() {
+		if has ${PYTHON_ABI} 2.4 2.5; then
+			einfo "Skipping tests with Python ${PYTHON_ABI}. dev-python/pycairo supports only Python >=2.6."
+			return 0
+		fi
+
+		Xemake check
+	}
+	python_execute_function -s testing
 }
 
 src_install() {
-	gnome2_src_install
+	installation() {
+		gnome2_src_install
+		mv "${D}$(python_get_sitedir)/pygtk.py" "${D}$(python_get_sitedir)/pygtk.py-2.0"
+		mv "${D}$(python_get_sitedir)/pygtk.pth" "${D}$(python_get_sitedir)/pygtk.pth-2.0"
+	}
+	python_execute_function -s installation
 
 	if use examples; then
 		insinto /usr/share/doc/${P}
 		doins -r examples
 	fi
-
-	python_version
-	mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py \
-		"${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py-2.0
-	mv "${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth \
-		"${ED}"/usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth-2.0
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		# our python expects a bundle
@@ -81,15 +107,23 @@ src_install() {
 }
 
 pkg_postinst() {
-	python_version
-	python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages/gtk-2.0
-	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py pygtk.py-[0-9].[0-9]
-	alternatives_auto_makesym /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.pth pygtk.pth-[0-9].[0-9]
-	python_mod_compile /usr/$(get_libdir)/python${PYVER}/site-packages/pygtk.py
 	python_need_rebuild
+
+	create_symlinks() {
+		alternatives_auto_makesym $(python_get_sitedir)/pygtk.py pygtk.py-[0-9].[0-9]
+		alternatives_auto_makesym $(python_get_sitedir)/pygtk.pth pygtk.pth-[0-9].[0-9]
+	}
+	python_execute_function create_symlinks
+
+	python_mod_optimize gtk-2.0 pygtk.py
 }
 
 pkg_postrm() {
-	python_version
 	python_mod_cleanup
+
+	create_symlinks() {
+		alternatives_auto_makesym $(python_get_sitedir)/pygtk.py pygtk.py-[0-9].[0-9]
+		alternatives_auto_makesym $(python_get_sitedir)/pygtk.pth pygtk.pth-[0-9].[0-9]
+	}
+	python_execute_function create_symlinks
 }

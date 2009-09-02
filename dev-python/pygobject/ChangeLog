@@ -1,6 +1,25 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.74 2009/08/19 16:30:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.77 2009/08/28 17:15:30 arfrever Exp $
+
+*pygobject-2.18.0-r2 (28 Aug 2009)
+
+  28 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -pygobject-2.18.0-r1.ebuild, +pygobject-2.18.0-r2.ebuild,
+  files/pygobject-2.18.0-support_multiple_python_versions.patch:
+  Modify pygobject-codegen-2.0 to support multiple Python versions instead
+  of renaming it.
+
+*pygobject-2.18.0-r1 (27 Aug 2009)
+
+  27 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +pygobject-2.18.0-r1.ebuild,
+  +files/pygobject-2.18.0-support_multiple_python_versions.patch:
+  Set SUPPORT_PYTHON_ABIS (bug #282857).
+
+  26 Aug 2009; Tobias Klausmann <klausman@gentoo.org>
+  pygobject-2.18.0.ebuild:
+  Stable on alpha, bug #277947
 
   19 Aug 2009; Jeroen Roovers <jer@gentoo.org> pygobject-2.18.0.ebuild:
   Stable for HPPA (bug #277947).
