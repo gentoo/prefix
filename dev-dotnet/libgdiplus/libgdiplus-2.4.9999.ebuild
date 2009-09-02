@@ -16,7 +16,7 @@ SRC_URI=""
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS=""
 IUSE="pango"
 
 RDEPEND=">=dev-libs/glib-2.16
