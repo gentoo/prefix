@@ -1,6 +1,17 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.227 2009/07/22 10:32:59 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.229 2009/08/26 17:33:33 scarabeus Exp $
+
+  26 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org> mesa-7.3-r1.ebuild:
+  Stabilise 7.3-r1 on alpha which should be the target (not the 7.4.2). They
+  are mostly 1:1.
+
+*mesa-7.5-r3 (26 Aug 2009)
+
+  26 Aug 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/7.4-fix-parallel-make.patch, -mesa-7.4.2.ebuild,
+  -mesa-7.5-r1.ebuild, +mesa-7.5-r3.ebuild:
+  Revbump with all patches from upstream availible up to now. Remove old.
 
   22 Jul 2009; Rémi Cardona <remi@gentoo.org> mesa-7.5-r2.ebuild:
   use mirror://gentoo/ instead of gentooexperimental.org
