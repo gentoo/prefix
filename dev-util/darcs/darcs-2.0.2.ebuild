@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.0.2.ebuild,v 1.7 2008/10/18 18:05:50 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/darcs-2.0.2.ebuild,v 1.8 2009/08/30 09:55:34 kolmodin Exp $
 
-inherit base autotools eutils
+inherit base autotools eutils ghc-package
 
 DESCRIPTION="David's Advanced Revision Control System is yet another replacement for CVS"
 HOMEPAGE="http://darcs.net"
@@ -23,6 +23,7 @@ DEPEND=">=net-misc/curl-7.10.2
 	dev-haskell/parsec
 	dev-haskell/regex-compat
 	sys-apps/diffutils
+	sys-libs/zlib
 	doc?  ( virtual/latex-base
 		>=dev-tex/latex2html-2002.2.1_pre20041025-r1 )"
 
@@ -44,6 +45,7 @@ pkg_setup() {
 src_unpack() {
 	base_src_unpack
 
+	epatch "${FILESDIR}/${PN}-2.0.2-add-dummy-base-dependency.diff"
 	cd "${S}/tools"
 	epatch "${FILESDIR}/${PN}-1.0.9-bashcomp.patch"
 
@@ -51,7 +53,16 @@ src_unpack() {
 	# of the low level ghc/gcc interaction gubbins.
 	use ia64 && sed -i 's/-funfolding-use-threshold20//' "${S}/GNUmakefile"
 
+	sed -i 's/-Werror//' "${S}/GNUmakefile"
+
+	#emulate: CABAL_CONFIGURE_FLAGS="--constraint=base<4"
+	# ghc-6.4: base-1; ghc-6.6.1: base-2; ghc-6.8: base-3; ghc-6.10: base-3, base-4
+	base_version="$($(ghc-getghcpkg) list --simple-output | tr " " "\n" | egrep '^base-[1-3]')"
+	sed -i "s@, base ,@, $base_version ,@" "${S}/aclocal.m4"
+	sed -i "s@-package base @-package $base_version @" "${S}/autoconf.mk.in"
+
 	cd "${S}"
+	sed -i 's/-Werror//' "${S}/aclocal.m4"
 	# Since we've patched the build system:
 	eautoreconf
 }

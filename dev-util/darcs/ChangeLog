@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/darcs
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.103 2009/07/25 13:19:17 kolmodin Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/darcs/ChangeLog,v 1.104 2009/08/30 09:55:34 kolmodin Exp $
+
+  30 Aug 2009; Lennart Kolmodin <kolmodin@gentoo.org> darcs-2.0.2.ebuild:
+  Fix build system so that it builds with ghc 6.10, as this is the latest
+  stable package and thus is the default to users running stable systems.
+  Patch by Sergei Trofimovich <slyfox@inbox.ru>.
+  Also add sys-libs/zlib as dep, to fix bug #282661.
 
   25 Jul 2009; Lennart Kolmodin <kolmodin@gentoo.org> darcs-2.2.1.ebuild:
   When building with USE=doc, make sure we have >=haddock-2.4.1.
