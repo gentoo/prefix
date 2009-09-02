@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/virtualenv
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/virtualenv/ChangeLog,v 1.10 2009/05/03 16:18:01 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/virtualenv/ChangeLog,v 1.11 2009/08/29 03:31:21 arfrever Exp $
+
+  29 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  virtualenv-1.3.3.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
 *virtualenv-1.3.3 (03 May 2009)
 

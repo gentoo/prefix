@@ -1,8 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/virtualenv/virtualenv-1.3.3.ebuild,v 1.1 2009/05/03 16:18:01 pythonhead Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/virtualenv/virtualenv-1.3.3.ebuild,v 1.2 2009/08/29 03:31:21 arfrever Exp $
+
+EAPI="2"
 
 NEED_PYTHON="2.3"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils
 
@@ -13,12 +16,22 @@ LICENSE="MIT"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 SLOT="0"
 IUSE=""
+
 RDEPEND=">=dev-python/setuptools-0.6_rc8"
 DEPEND="${RDEPEND}"
+
+RESTRICT_PYTHON_ABIS="3*"
+
 DOCS="docs/index.txt"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	rm support-files/ez_setup.py
+src_prepare() {
+	rm -f support-files/ez_setup.py
+}
+
+pkg_postinst() {
+	python_mod_optimize rebuild-script.py refresh-support-files.py virtualenv.py
+}
+
+pkg_postrm() {
+	python_mod_cleanup
 }
