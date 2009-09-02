@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.94 2009/09/02 09:00:08 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.95 2009/09/02 20:08:31 grobian Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -496,13 +496,13 @@ gen_usr_ldscript() {
 			# Make sure we don't lose the specific version, so just modify the
 			# existing install_name
 			if [[ ! -w "${ED}/${libdir}/${tlib}" ]] ; then
-				fperms u+w "${libdir}/${tlib}" # needed to write to it
+				chmod u+w "${ED}${libdir}/${tlib}" # needed to write to it
 				local nowrite=yes
 			fi
 			install_name_tool \
 				-id "${EPREFIX}"/${libdir}/${tlib} \
 				"${ED}"/${libdir}/${tlib} || die "install_name_tool failed"
-			[[ -n ${nowrite} ]] && fperms u-w "${libdir}/${tlib}"
+			[[ -n ${nowrite} ]] && chmod u-w "${ED}${libdir}/${tlib}"
 			# Now as we don't use GNU binutils and our linker doesn't
 			# understand linker scripts, just create a symlink.
 			pushd "${ED}/usr/${libdir}" > /dev/null
