@@ -1,6 +1,9 @@
 # ChangeLog for app-office/abiword
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.209 2009/03/15 01:00:27 eva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.210 2009/08/28 14:20:28 betelgeuse Exp $
+
+  28 Aug 2009; Petteri Räty <betelgeuse@gentoo.org> abiword-2.6.8.ebuild:
+  Migrate to EAPI 2 in order to nuke built_with_use.
 
 *abiword-2.6.8 (15 Mar 2009)
 
@@ -740,7 +743,7 @@
   Compile against the new aspell.  Thanks to dom the abiword project lead
   (dom on #abiword at irc.gnome.org).
 
-*abiword-1.0.2 (??)
+*abiword-1.0.2 (06 Aug 2002)
 
   06 Aug 2002; Mark Guertin <gerk@gentoo.org> :
   Added ppc to keywords, please when doing revision bumps make
@@ -815,7 +818,7 @@
 
   Fix DEPEND for 'spell' USE var.
 
-*abiword-0.99.3 (21 March 2002)
+*abiword-0.99.3 (21 Mar 2002)
 
 *abiword-0.99.2 (25 Feb 2002)
 

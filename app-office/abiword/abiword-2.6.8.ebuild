@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/abiword-2.6.8.ebuild,v 1.1 2009/03/15 01:00:27 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/abiword-2.6.8.ebuild,v 1.2 2009/08/28 14:20:28 betelgeuse Exp $
 
-EAPI=1
+EAPI="2"
 
 inherit alternatives eutils gnome2 versionator
 
@@ -19,12 +19,13 @@ IUSE="debug gnome spell xml"
 
 # FIXME: gsf could probably be conditional
 
+# Pango version so it always has X use flag
 RDEPEND="dev-libs/popt
 	sys-libs/zlib
 	>=dev-libs/glib-2
 	>=x11-libs/gtk+-2.6
 	x11-libs/libXft
-	>=x11-libs/pango-1.2
+	>=x11-libs/pango-1.24.2[X]
 	>=gnome-base/libglade-2
 	>=gnome-base/libgnomeprint-2.2
 	>=gnome-base/libgnomeprintui-2.2
@@ -50,11 +51,6 @@ DEPEND="${RDEPEND}
 # FIXME: --enable-libabiword fails to compile
 
 pkg_setup() {
-	if ! built_with_use --missing true x11-libs/pango X; then
-		eerror "You must rebuild x11-libs/pango with USE='X'"
-		die "You must rebuild x11-libs/pango with USE='X'"
-	fi
-
 	G2CONF="${G2CONF}
 		$(use_enable debug)
 		$(use_enable debug symbols)
