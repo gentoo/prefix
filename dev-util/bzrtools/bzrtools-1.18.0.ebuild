@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.17.0.ebuild,v 1.1 2009/08/18 11:19:10 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzrtools/bzrtools-1.18.0.ebuild,v 1.1 2009/08/27 14:26:14 fauli Exp $
 
 EAPI="2"
 
@@ -18,6 +18,8 @@ IUSE=""
 
 DEPEND="=dev-util/bzr-$(get_version_component_range 1-2)*"
 RDEPEND="${DEPEND}"
+
+RESTRICT="test"
 
 DOCS="AUTHORS CREDITS NEWS NEWS.Shelf README README.Shelf TODO TODO.heads TODO.Shelf"
 
