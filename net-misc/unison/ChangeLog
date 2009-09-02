@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/unison
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.59 2008/12/04 18:48:33 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.60 2009/08/28 21:59:21 betelgeuse Exp $
+
+  28 Aug 2009; Petteri Räty <betelgeuse@gentoo.org>
+  unison-2.27.57-r1.ebuild:
+  Migrate to EAPI 2 in order to remove built_with_use usage.
 
   04 Dec 2008; Jeremy Olexa <darkside@gentoo.org> unison-2.13.16-r1.ebuild,
   unison-2.27.57-r1.ebuild:
@@ -101,6 +105,8 @@
   Adding fix for bug #115376, need a font installed with modular-x.
 
 *unison-2.12.0-r1 (21 Sep 2005)
+*unison-2.13.16 (21 Sep 2005)
+*unison-2.17.1 (21 Sep 2005)
 
   21 Sep 2005; Matthieu Sozeau <mattam@gentoo.org> +unison-2.12.0-r1.ebuild,
   -unison-2.12.0.ebuild, -unison-2.13.0.ebuild, +unison-2.13.16.ebuild,
@@ -132,6 +138,7 @@
   unison-2.13.0.ebuild:
   Make thread support configurable, minor fixes (doc flag, wrong cd).
 
+*unison-2.12.0 (12 Jul 2005)
 *unison-2.13.0 (12 Jul 2005)
 
   12 Jul 2005; Matthieu Sozeau <mattam@gentoo.org>
@@ -223,7 +230,7 @@
 
   06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
  
-*unison-2.9.1 (17 July 2002)
+*unison-2.9.1 (17 Jul 2002)
 
   17 July 2002; George Shapovalov <george@gentoo.org> unison-2.9.1.ebuild, files/digest-unison-2.9.1, ChangeLog :
 

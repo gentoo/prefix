@@ -1,8 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/unison-2.27.57-r1.ebuild,v 1.11 2008/12/04 18:48:33 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/unison-2.27.57-r1.ebuild,v 1.12 2009/08/28 21:59:21 betelgeuse Exp $
 
-EAPI=1
+EAPI="2"
 
 inherit eutils versionator
 
@@ -14,7 +14,8 @@ LICENSE="GPL-2"
 SLOT="$(get_version_component_range 1-2 ${PV})"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 
-DEPEND=">=dev-lang/ocaml-3.04
+# ocaml version so we are sure it has ocamlopt use flag
+DEPEND=">=dev-lang/ocaml-3.10.2[ocamlopt?]
 	gtk? ( >=dev-ml/lablgtk-2.2 )"
 
 RDEPEND="gtk? ( >=dev-ml/lablgtk-2.2
@@ -28,18 +29,7 @@ SRC_URI="http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}.t
 doc? ( http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}-manual.pdf
 	http://www.cis.upenn.edu/~bcpierce/unison/download/releases/${P}/${P}-manual.html )"
 
-pkg_setup() {
-	if use ocamlopt && ! built_with_use --missing true dev-lang/ocaml ocamlopt; then
-		eerror "In order to build ${PN} with native code support from ocaml"
-		eerror "You first need to have a native code ocaml compiler."
-		eerror "You need to install dev-lang/ocaml with ocamlopt useflag on."
-		die "Please install ocaml with ocamlopt useflag"
-	fi
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}/${P}-as-needed.patch"
 }
 
