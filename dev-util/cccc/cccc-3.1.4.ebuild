@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cccc/cccc-3.1.4.ebuild,v 1.2 2006/06/30 10:42:50 tchiwam Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cccc/cccc-3.1.4.ebuild,v 1.4 2009/08/31 16:42:31 vostorga Exp $
 
 inherit eutils toolchain-funcs
 
@@ -14,21 +14,28 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 DEPEND=""
+RDEPEND=""
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	sed -i -e "/^CFLAGS/s|=|+=|" pccts/antlr/makefile
+	sed -i -e "/^CFLAGS/s|=|+=|" pccts/dlg/makefile
+	sed -i -e "/^CFLAGS/s|=|+=|" \
+			-e "/^LDFLAGS/s|=|+=|" cccc/posixgcc.mak
+
 	epatch "${FILESDIR}"/${P}-darwin-ld.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
 }
 
 src_compile() {
-	make CCC=$(tc-getCXX) LD=$(tc-getCXX) pccts cccc || die
+	emake CCC=$(tc-getCXX) LD=$(tc-getCXX) pccts || die "pccts failed"
+	emake CCC=$(tc-getCXX) LD=$(tc-getCXX) cccc || die "cccc failed"
 }
 
 src_install() {
 	dodoc readme.txt changes.txt
 	cd install
 	dodir /usr
-	make -f install.mak INSTDIR="${ED}"/usr/bin || die
+	emake -f install.mak INSTDIR="${ED}"/usr/bin || die "install failed"
 }
