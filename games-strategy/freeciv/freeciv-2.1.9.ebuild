@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/freeciv-2.1.9.ebuild,v 1.7 2009/06/02 17:21:06 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/freeciv-2.1.9.ebuild,v 1.8 2009/08/28 11:18:25 nyhm Exp $
 
-inherit eutils games
+inherit eutils gnome2-utils games
 
 DESCRIPTION="multiplayer strategy game (Civilization Clone)"
 HOMEPAGE="http://www.freeciv.org/"
@@ -182,4 +182,18 @@ src_install() {
 	dodoc ChangeLog NEWS doc/{BUGS,CodingStyle,HACKING,HOWTOPLAY,README*,TODO}
 
 	prepgamesdirs
+}
+
+pkg_preinst() {
+	games_pkg_preinst
+	gnome2_icon_savelist
+}
+
+pkg_postinst() {
+	games_pkg_postinst
+	gnome2_icon_cache_update
+}
+
+pkg_postrm() {
+	gnome2_icon_cache_update
 }
