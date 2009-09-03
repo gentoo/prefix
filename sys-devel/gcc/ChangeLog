@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.721 2009/08/16 14:49:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.722 2009/09/02 17:06:36 halcy0n Exp $
+
+  02 Sep 2009; Mark Loeser <halcy0n@gentoo.org> gcc-4.3.2-r4.ebuild:
+  Bump patchset to include SH fix
 
   16 Aug 2009; Raúl Porcel <armin76@gentoo.org> gcc-4.4.1.ebuild:
   Add ~ia64 wrt #278687
