@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libnice/libnice-0.0.9.ebuild,v 1.1 2009/08/04 21:12:20 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libnice/libnice-0.0.9.ebuild,v 1.2 2009/09/01 13:26:56 jer Exp $
 
 EAPI="2"
 
