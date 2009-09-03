@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/werkzeug/werkzeug-0.5.1.ebuild,v 1.1 2009/07/25 08:59:56 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/werkzeug/werkzeug-0.5.1.ebuild,v 1.2 2009/09/01 07:34:37 patrick Exp $
 
 NEED_PYTHON="2.4"
 
@@ -18,6 +18,7 @@ IUSE="test"
 
 RDEPEND=""
 DEPEND=">=dev-python/setuptools-0.6_rc5
+	app-arch/unzip
 	test? ( dev-python/py
 		dev-python/lxml
 		dev-python/nose
