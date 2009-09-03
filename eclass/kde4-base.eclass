@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.44 2009/08/20 09:18:01 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.45 2009/09/01 09:32:08 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -88,7 +88,7 @@ fi
 # @ECLASS-VARIABLE: KDE_MINIMAL
 # @DESCRIPTION:
 # This variable is used when KDE_REQUIRED is set, to specify required KDE minimal
-# version for apps to work. Currently defaults to 4.2
+# version for apps to work. Currently defaults to 4.3
 # One may override this variable to raise version requirements.
 # For possible values look at KDE_SLOTS and KDE_LIVE_SLOTS variables.
 # Note that it is fixed to ${SLOT} for kde-base packages.
@@ -193,6 +193,7 @@ case ${KDEBASE} in
 			9999*) SLOT="live" ;; # regular live
 			*) die "Unsupported ${PV}" ;;
 		esac
+		KDE_MINIMAL="${SLOT}"
 		_kdedir="${SLOT}"
 		_pv="-${PV}:${SLOT}"
 		_pvn="-${PV}"
@@ -229,15 +230,25 @@ kdecommondepend="
 	)
 "
 if [[ ${PN} != kdelibs ]]; then
+	[[ ${PN} != libknotificationitem ]] && slot_is_at_least 4.3 ${KDE_MINIMAL} && local libknotificationitem_required=1
 	if [[ ${KDEBASE} = kde-base ]]; then
 		kdecommondepend+="
 			kdeprefix? ( >=kde-base/kdelibs${_pv}[kdeprefix] )
 			!kdeprefix? ( >=kde-base/kdelibs${_pvn}[-kdeprefix] )
 		"
+		[[ -n ${libknotificationitem_required} ]] && \
+			kdecommondepend+="
+				kdeprefix? ( >=kde-base/libknotificationitem${_pv}[kdeprefix] )
+				!kdeprefix? ( >=kde-base/libknotificationitem${_pvn}[-kdeprefix] )
+			"
 	else
 		kdecommondepend+="
 			>=kde-base/kdelibs${_pv}
 		"
+		[[ -n ${libknotificationitem_required} ]] && \
+			kdecommondepend+="
+				>=kde-base/libknotificationitem${_pv}
+			"
 	fi
 fi
 unset _pv _pvn
@@ -538,7 +549,8 @@ kde4-base_src_configure() {
 	# Shadow existing /usr installations
 	unset KDEDIRS
 
-	if [[ ${KDEDIR} != "${ROOT}usr" ]]; then
+	# Handle kdeprefix-ed KDE
+	if [[ ${KDEDIR} != "${EROOT}usr" ]]; then
 		# Override some environment variables - only when kdeprefix is different,
 		# to not break ccache/distcc
 		PATH="${KDEDIR}/bin:${PATH}"
@@ -546,13 +558,14 @@ kde4-base_src_configure() {
 
 		# Append full RPATH
 		cmakeargs+=" -DCMAKE_SKIP_RPATH=OFF"
-	fi
 
-	if has kdeprefix ${IUSE//+} && use kdeprefix; then
-		# Set cmake prefixes to allow buildsystem to localize valid KDE installation
+		# Set cmake prefixes to allow buildsystem to locate valid KDE installation
 		# when more are present
 		cmakeargs+=" -DCMAKE_SYSTEM_PREFIX_PATH=${KDEDIR}"
-	else
+	fi
+
+	# Handle kdeprefix in application itself
+	if ! has kdeprefix ${IUSE//+} || ! use kdeprefix; then
 		# If prefix is /usr, sysconf needs to be /etc, not /usr/etc
 		cmakeargs+=" -DSYSCONF_INSTALL_DIR=${EROOT}etc"
 	fi
