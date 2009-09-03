@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/babl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/ChangeLog,v 1.14 2009/07/06 21:56:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/ChangeLog,v 1.15 2009/09/01 08:50:02 patrick Exp $
+
+*babl-0.1.0 (01 Sep 2009)
+
+  01 Sep 2009; Patrick Lauer <patrick@gentoo.org> +babl-0.1.0.ebuild,
+  +files/babl-0.1.0-build-fixes.patch:
+  Bump to 0.1.0, fixes half of #281264
 
   06 Jul 2009; Jeroen Roovers <jer@gentoo.org> babl-0.0.22.ebuild:
   Stable for HPPA (bug #258344).
