@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/xarchiver-0.5.2.ebuild,v 1.8 2009/02/09 19:35:01 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xarchiver/xarchiver-0.5.2.ebuild,v 1.9 2009/09/03 02:16:46 darkside Exp $
 
 EAPI=1
 
@@ -52,7 +52,7 @@ pkg_postinst() {
 	elog "lzop - app-arch/lzop"
 	elog "rar - app-arch/unrar app-arch/rar"
 	elog "zip - app-arch/unzip app-arch/zip"
-	elog "Make sure to install xfce-extra/thunar-archive plug-in."
+	elog "Make sure to install xfce-extra/thunar-archive-plugin."
 }
 
 pkg_postrm() {
