@@ -1,6 +1,17 @@
 # ChangeLog for sci-biology/prints
-# Copyright 2000-2006 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/prints/ChangeLog,v 1.19 2006/11/02 20:21:23 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/prints/ChangeLog,v 1.22 2009/09/01 20:57:02 ribosome Exp $
+
+  01 Sep 2009; Olivier Fisette <ribosome@gentoo.org> metadata.xml:
+  Giving up maintainership of this package.
+
+  01 Sep 2009; Olivier Fisette <ribosome@gentoo.org> prints-38.0.ebuild:
+  Q.A.: Explicit dependencies.
+
+*prints-39.0 (01 Sep 2009)
+
+  01 Sep 2009; Olivier Fisette <ribosome@gentoo.org> +prints-39.0.ebuild:
+  New upstream version.
 
   02 Nov 2006; Fabian Groffen <grobian@gentoo.org> prints-38.0.ebuild:
   Dropped ppc-macos, see you in prefix.
