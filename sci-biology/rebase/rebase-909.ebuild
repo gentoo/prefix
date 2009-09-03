@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/rebase-905.ebuild,v 1.3 2009/09/01 18:17:52 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/rebase/rebase-909.ebuild,v 1.1 2009/09/01 19:16:18 ribosome Exp $
 
 DESCRIPTION="A restriction enzyme database"
 LICENSE="public-domain"
@@ -30,7 +30,7 @@ src_compile() {
 src_install() {
 	if ! use minimal; then
 		insinto /usr/share/${PN}
-		doins withrefm.${PV} proto.${PV} gcg.${PV} || die \
+		doins withrefm.${PV} proto.${PV} || die \
 				"Failed to install raw database."
 	fi
 	newdoc REBASE.DOC README || die "Failed to install documentation."
