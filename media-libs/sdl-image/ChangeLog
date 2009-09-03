@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/sdl-image
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.51 2009/04/30 15:12:37 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.52 2009/09/02 10:34:48 nyhm Exp $
+
+  02 Sep 2009; Tristan Heaven <nyhm@gentoo.org> sdl-image-1.2.7.ebuild:
+  Don't control support for pnm with the png USE flag
 
   30 Apr 2009; Michael Sterrett <mr_bones_@gentoo.org>
   -files/sdl-image-1.2.6-DOS.patch, -sdl-image-1.2.6-r1.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/sdl-image-1.2.7.ebuild,v 1.8 2009/04/30 12:27:38 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/sdl-image-1.2.7.ebuild,v 1.9 2009/09/02 10:34:48 nyhm Exp $
 
 MY_P="${P/sdl-/SDL_}"
 DESCRIPTION="image file loading library"
@@ -27,13 +27,14 @@ src_compile() {
 		$(use_enable jpeg jpg) \
 		$(use_enable tiff tif) \
 		$(use_enable png) \
-		$(use_enable png pnm) \
 		--enable-bmp \
 		--enable-lbm \
 		--enable-pcx \
+		--enable-pnm \
 		--enable-tga \
 		--enable-xcf \
 		--enable-xpm \
+		--enable-xv \
 		|| die
 	emake || die "emake failed"
 }
