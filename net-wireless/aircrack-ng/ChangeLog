@@ -1,6 +1,10 @@
 # ChangeLog for net-wireless/aircrack-ng
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/ChangeLog,v 1.50 2009/08/30 16:33:12 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/ChangeLog,v 1.51 2009/09/02 13:49:12 tester Exp $
+
+  02 Sep 2009; Olivier Crête <tester@gentoo.org>
+  aircrack-ng-1.0_rc4.ebuild:
+  Stable on amd64, bug #283062
 
   30 Aug 2009; nixnut <nixnut@gentoo.org> aircrack-ng-1.0_rc4.ebuild:
   ppc stable #283062
