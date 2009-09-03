@@ -1,6 +1,10 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.135 2009/08/31 22:37:13 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.136 2009/09/02 15:44:23 jer Exp $
+
+  02 Sep 2009; Jeroen Roovers <jer@gentoo.org>
+  audacious-plugins-2.1-r1.ebuild:
+  Stable for HPPA (bug #279238).
 
   31 Aug 2009; <chainsaw@gentoo.org> audacious-plugins-2.1-r1.ebuild:
   Marked stable on AMD64 as requested by Samuli Suominen
