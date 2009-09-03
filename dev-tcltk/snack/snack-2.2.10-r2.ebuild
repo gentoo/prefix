@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/snack/snack-2.2.10-r2.ebuild,v 1.2 2009/05/27 14:23:27 mescalinum Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/snack/snack-2.2.10-r2.ebuild,v 1.4 2009/09/01 14:49:06 fauli Exp $
 
 inherit eutils multilib
 
