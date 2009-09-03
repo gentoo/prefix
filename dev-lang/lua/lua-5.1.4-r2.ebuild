@@ -12,7 +12,7 @@ SRC_URI="http://www.lua.org/ftp/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x64-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 IUSE="+deprecated readline static"
 
 DEPEND="readline? ( sys-libs/readline )"
@@ -77,6 +77,8 @@ src_compile() {
 		mycflags="${mycflags} -DLUA_USE_MACOSX"
 	elif [[ ${CHOST} == *-winnt* ]]; then
 		: # nothing for now...
+	elif [[ ${CHOST} == *-interix* ]]; then
+		: # nothing here too...
 	else # building for standard linux (and bsd too)
 		mycflags="${mycflags} -DLUA_USE_LINUX"
 	fi
