@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/ruby2ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby2ruby/ChangeLog,v 1.9 2009/08/15 07:15:54 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby2ruby/ChangeLog,v 1.10 2009/09/02 07:43:59 fauli Exp $
+
+  02 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  ruby2ruby-1.2.4.ebuild:
+  keyword ~x86, bug 280631
 
 *ruby2ruby-1.2.4 (15 Aug 2009)
 
