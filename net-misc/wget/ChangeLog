@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/wget
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.108 2009/08/31 16:23:20 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.109 2009/09/01 13:40:29 armin76 Exp $
+
+  01 Sep 2009; Raúl Porcel <armin76@gentoo.org> wget-1.11.4.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #281876
 
   31 Aug 2009; <chainsaw@gentoo.org> wget-1.11.4.ebuild:
   Marked stable on AMD64 as requested by Mike "SpanKY" Friesinger in bug
