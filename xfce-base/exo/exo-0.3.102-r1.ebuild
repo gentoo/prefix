@@ -40,6 +40,12 @@ src_prepare() {
 	rm py-compile
 	touch py-compile
 	chmod +x py-compile
+
+	epatch "${FILESDIR}"/${PN}-0.3.4-interix.patch
+	if [[ ${CHOST} == *-interix* ]] ; then
+		# configure detects getmntent, which is false!
+		export ac_cv_func_getmntent=no
+	fi
 }
 
 pkg_postinst() {
