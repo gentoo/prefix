@@ -1,6 +1,11 @@
 # ChangeLog for sys-process/htop
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/ChangeLog,v 1.75 2009/06/13 12:40:41 gentoofan23 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/ChangeLog,v 1.76 2009/09/01 08:04:14 patrick Exp $
+
+*htop-0.8.3 (01 Sep 2009)
+
+  01 Sep 2009; Patrick Lauer <patrick@gentoo.org> +htop-0.8.3.ebuild:
+  Bump to 0.8.3, fixes #282523
 
 *htop-0.8.2 (13 Jun 2009)
 
