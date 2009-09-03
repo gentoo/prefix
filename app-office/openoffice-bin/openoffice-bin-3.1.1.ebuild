@@ -1,40 +1,42 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.0.1.ebuild,v 1.1 2009/02/04 09:15:26 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.1.1.ebuild,v 1.1 2009/09/02 19:40:14 suka Exp $
 
 inherit eutils fdo-mime rpm multilib prefix
 
 IUSE="gnome java kde"
 
-BUILDID="9379"
-BUILDID2="9376"
-UREVER="1.4.1"
+BUILDID="9420"
+BUILDID2="9420"
+UREVER="1.5.1"
 MY_PV="${PV}rc2"
-MY_PV2="${MY_PV}_20090112"
+MY_PV2="${MY_PV}_20090820"
 MY_PV3="${PV}-${BUILDID}"
-BASIS="ooobasis3.0"
-MST="OOO300_m15"
+BASIS="ooobasis3.1"
+MST="OOO310_m19"
 
-#if [ "${ARCH}" = "amd64" ] ; then
-#	OOARCH="x86_64"
-#	PACKED="${MST}_native_packed-1"
-#	PACKED2="${MST}_native_packed-1"
-#else
+if [ "${ARCH}" = "amd64" ] ; then
+	OOARCH="x86_64"
+	PACKED="${MST}_native_packed-2"
+	PACKED2="${MST}_native_packed-2"
+else
 	OOARCH="i586"
 	PACKED="${MST}_native_packed-1"
 	PACKED2="${MST}_native_packed-1"
-#fi
+fi
 
 S="${WORKDIR}/${PACKED}_en-US.${BUILDID}/RPMS"
 DESCRIPTION="OpenOffice productivity suite"
 
-SRC_URI="x86? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxIntel_install_en-US.tar.gz )"
+SRC_URI="x86? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxIntel_install_en-US.tar.gz )
+	amd64? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxX86-64_install_wJRE_en-US.tar.gz  )"
 
-LANGS="af ar as_IN be_BY bg br bs ca cs da de dz el en en_GB en_ZA es et fi fr ga gl gu he hi_IN hr hu it ja ka kk km ko ku lt mk ml_IN mn mr_IN nb ne nl nn nr ns or_IN pa_IN pl pt pt_BR ru rw sh sk sl sr ss st sv sw_TZ ta te_IN tg th ti_ER tr ts uk ur_IN ve vi xh zh_CN zh_TW zu"
+LANGS="af ar as_IN be_BY bg bn br brx bs ca cs cy de dgo dz el en en_GB en_ZA eo es et eu fa fi fr ga gl gu gu_IN he hi_IN hr hu id it ka kk km kn_IN ko kok ks ku lt mai mk ml_IN mn mni mr_IN my nb ne nl nn nr ns oc or_IN pa_IN pl pt pt_BR ru rw sa_IN sat sd sh sk sl sr ss st sv sw_TZ ta ta_IN te_IN tg th ti_ER tn tr ts uk ur_IN uz ve vi xh zh_CN zh_TW zu"
 
 for X in ${LANGS} ; do
 	[[ ${X} != "en" ]] && SRC_URI="${SRC_URI} linguas_${X}? (
-		x86? ( mirror://openoffice-extended/${MY_PV}/OOo_${MY_PV2}_LinuxIntel_langpack_${X/_/-}.tar.gz ) )"
+		x86? ( mirror://openoffice-extended/${MY_PV}/OOo_${MY_PV2}_LinuxIntel_langpack_${X/_/-}.tar.gz )
+		amd64? ( mirror://openoffice-extended/${MY_PV}/OOo_${MY_PV2}_LinuxX86-64_langpack_${X/_/-}.tar.gz ) )"
 	IUSE="${IUSE} linguas_${X}"
 done
 
@@ -62,10 +64,11 @@ DEPEND="${RDEPEND}
 PROVIDE="virtual/ooo"
 RESTRICT="strip"
 
-QA_EXECSTACK="usr/$(get_libdir)/openoffice/basis3.0/program/*"
-QA_TEXTRELS="usr/$(get_libdir)/openoffice/basis3.0/program/libvclplug_genli.so \
-	usr/$(get_libdir)/openoffice/basis3.0/program/python-core-2.3.4/lib/lib-dynload/_curses_panel.so \
-	usr/$(get_libdir)/openoffice/basis3.0/program/python-core-2.3.4/lib/lib-dynload/_curses.so \
+QA_EXECSTACK="usr/$(get_libdir)/openoffice/basis3.1/program/*
+	usr/$(get_libdir)/openoffice/ure/lib/*"
+QA_TEXTRELS="usr/$(get_libdir)/openoffice/basis3.1/program/libvclplug_genli.so \
+	usr/$(get_libdir)/openoffice/basis3.1/program/python-core-2.3.4/lib/lib-dynload/_curses_panel.so \
+	usr/$(get_libdir)/openoffice/basis3.1/program/python-core-2.3.4/lib/lib-dynload/_curses.so \
 	usr/$(get_libdir)/openoffice/ure/lib/*"
 
 src_unpack() {
@@ -76,7 +79,7 @@ src_unpack() {
 	sed -i 's:/usr:@GENTOO_PORTAGE_EPREFIX@/usr:g' "${T}"/{50-openoffice-bin,wrapper.in} || die
 	eprefixify "${T}"/{50-openoffice-bin,wrapper.in}
 
-	for i in base binfilter calc core01 core02 core03 core04 core05 core06 core07 draw graphicfilter images impress math ooofonts ooolinguistic pyuno testtool writer xsltfilter ; do
+	for i in base binfilter calc core01 core02 core03 core04 core05 core06 core07 draw graphicfilter images impress math ooofonts oooimprovement ooolinguistic pyuno testtool writer xsltfilter ; do
 		rpm_unpack "${S}/${BASIS}-${i}-${MY_PV3}.${OOARCH}.rpm"
 	done
 
@@ -87,7 +90,7 @@ src_unpack() {
 	rpm_unpack "${S}/openoffice.org3-${MY_PV3}.${OOARCH}.rpm"
 	rpm_unpack "${S}/openoffice.org-ure-${UREVER}-${BUILDID}.${OOARCH}.rpm"
 
-	rpm_unpack "${S}/desktop-integration/openoffice.org3.0-freedesktop-menus-3.0-${BUILDID2}.noarch.rpm"
+	rpm_unpack "${S}/desktop-integration/openoffice.org3.1-freedesktop-menus-3.1-${BUILDID2}.noarch.rpm"
 
 	use gnome && rpm_unpack "${S}/${BASIS}-gnome-integration-${MY_PV3}.${OOARCH}.rpm"
 	use kde && rpm_unpack "${S}/${BASIS}-kde-integration-${MY_PV3}.${OOARCH}.rpm"
@@ -157,7 +160,7 @@ src_install () {
 	dosym ${INSTDIR}/program/soffice /usr/bin/soffice
 
 	rm -f "${ED}${INSTDIR}/basis-link" || die
-	dosym ${INSTDIR}/basis3.0 ${INSTDIR}/basis-link
+	dosym ${INSTDIR}/basis3.1 ${INSTDIR}/basis-link
 
 	# Change user install dir
 	sed -i -e "s/.openoffice.org\/3/.ooo3/g" "${ED}${INSTDIR}/program/bootstraprc" || die
@@ -186,12 +189,5 @@ pkg_postinst() {
 	elog " ${EPREFIX}/usr/$(get_libdir)/openoffice/share/extension/install "
 	elog " Other dictionaries can be found at Suns extension site. "
 	elog
-
-	ewarn " Please note that this release of OpenOffice.org uses a "
-	ewarn " new user install dir. As a result you will have to redo "
-	ewarn " your settings. Alternatively you might copy the old one "
-	ewarn " over from ~/.ooo-2.0 to ~/.ooo3, but be warned that this "
-	ewarn " might break stuff. "
-	ewarn
 
 }
