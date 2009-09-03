@@ -74,7 +74,8 @@ src_install() {
 	# dev-python/pycairo-1.8.8 doesn't install __init__.py automatically.
 	# http://lists.cairographics.org/archives/cairo/2009-August/018044.html
 	installation() {
-		insinto "$(python_get_sitedir)/cairo"
+		local pysite="$(python_get_sitedir)/cairo"
+		insinto "${pysite#${EPREFIX}}"
 		doins src/__init__.py
 	}
 	python_execute_function -q installation
