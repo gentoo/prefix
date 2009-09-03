@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/scite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/ChangeLog,v 1.86 2009/08/02 23:27:22 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/ChangeLog,v 1.87 2009/09/01 10:26:07 patrick Exp $
+
+*scite-2.00 (01 Sep 2009)
+
+  01 Sep 2009; Patrick Lauer <patrick@gentoo.org> +scite-2.00.ebuild:
+  Bump to 2.00, fixes #281298
 
 *scite-1.79 (02 Aug 2009)
 
