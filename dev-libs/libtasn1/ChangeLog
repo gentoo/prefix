@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libtasn1
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.95 2009/08/31 00:52:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.96 2009/09/01 14:08:51 tcunha Exp $
+
+  01 Sep 2009; Tiago Cunha <tcunha@gentoo.org> libtasn1-2.3.ebuild:
+  stable sparc, bug 283086
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> libtasn1-2.3.ebuild:
   stable ppc64, bug 283086
