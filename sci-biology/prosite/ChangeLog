@@ -1,6 +1,21 @@
 # ChangeLog for sci-biology/prosite
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/prosite/ChangeLog,v 1.101 2008/08/27 14:57:17 ribosome Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/prosite/ChangeLog,v 1.105 2009/09/01 21:02:21 ribosome Exp $
+
+  01 Sep 2009; Olivier Fisette <ribosome@gentoo.org> metadata.xml:
+  Giving up maintainership of this package.
+
+  01 Sep 2009; Olivier Fisette <ribosome@gentoo.org> -prosite-20.16.ebuild,
+  -prosite-20.17.ebuild:
+  Pruning old versions.
+
+  01 Sep 2009; Olivier Fisette <ribosome@gentoo.org> prosite-20.36.ebuild:
+  Stabilised on amd64 and x86.
+
+*prosite-20.52 (01 Sep 2009)
+
+  01 Sep 2009; Olivier Fisette <ribosome@gentoo.org> +prosite-20.52.ebuild:
+  New upstream version.
 
 *prosite-20.36 (27 Aug 2008)
 
