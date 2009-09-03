@@ -1,6 +1,15 @@
 # ChangeLog for dev-lang/squeak
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/ChangeLog,v 1.30 2009/08/24 04:29:07 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/squeak/ChangeLog,v 1.31 2009/09/01 10:14:04 patrick Exp $
+
+*squeak-3.10.5 (01 Sep 2009)
+
+  01 Sep 2009; Patrick Lauer <patrick@gentoo.org>
+  +files/squeak-vm-sugar-3.10.3-sugar-squeak-dprintf.patch,
+  +squeak-3.10.5.ebuild, +files/squeak-dprintf.patch,
+  +files/squeak-inisqueak.patch:
+  Bump to 3.10.5. Patches by manny15. Closes #275748 and adds ~amd64
+  keyword.
 
   24 Aug 2009; Víctor Ostorga <vostorga@gentoo.org> squeak-3.10.ebuild,
   -files/squeak-3.10-glibc210.patch:
