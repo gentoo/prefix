@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/mc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.164 2009/08/29 19:43:11 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.165 2009/09/01 14:43:46 jer Exp $
+
+  01 Sep 2009; Jeroen Roovers <jer@gentoo.org> mc-4.7.0_pre1.ebuild:
+  Stable for HPPA (bug #281667).
 
   29 Aug 2009; nixnut <nixnut@gentoo.org> mc-4.7.0_pre1.ebuild:
   ppc stable #281667
