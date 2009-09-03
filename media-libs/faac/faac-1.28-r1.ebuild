@@ -19,6 +19,7 @@ DEPEND="${RDEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-external-libmp4v2.patch
+	epatch "${FILESDIR}"/${P}-solaris.patch
 	eautoreconf
 	epunt_cxx
 
