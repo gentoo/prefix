@@ -1,14 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/darwin-miscutils-6-r1.ebuild,v 1.2 2009/09/04 20:11:25 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/darwin-miscutils-7.ebuild,v 1.1 2009/09/04 20:11:25 grobian Exp $
 
 inherit toolchain-funcs eutils
 
-MISC_VER=23
-SHELL_VER=118
-DEV_VER=49
+MISC_VER=27
+SHELL_VER=149
+DEV_VER=52.1
 
-DESCRIPTION="Miscellaneous commands used on Darwin/Mac OS X systems, Leopard"
+DESCRIPTION="Miscellaneous commands used on Darwin/Mac OS X systems, Snow Leopard"
 HOMEPAGE="http://www.opensource.apple.com/"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/misc_cmds-${MISC_VER}.tar.gz
 	http://www.opensource.apple.com/darwinsource/tarballs/other/shell_cmds-${SHELL_VER}.tar.gz
@@ -21,32 +21,26 @@ IUSE=""
 
 S=${WORKDIR}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-5-w.patch
-	epatch "${FILESDIR}"/${PN}-5-stdlib.patch
-	epatch "${FILESDIR}"/${PN}-6-w64.patch
-	cd "${S}"/developer_cmds-${DEV_VER}
-	epatch "${FILESDIR}"/${PN}-5-error.patch
-}
-
 src_compile() {
+	local flags=(
+		${CFLAGS}
+		-I.
+		-D__FBSDID=__RCSID
+		-Wsystem-headers
+		${LDFLAGS}
+	)
+
 	local TS=${S}/misc_cmds-${MISC_VER}
 	# tsort is provided by coreutils
 	for t in leave units calendar; do
 		cd "${TS}/${t}"
 		echo "in ${TS}/${t}:"
-		echo "$(tc-getCC) -o ${t}" *.c
-		$(tc-getCC) -o ${t} *.c || die "failed to compile $t"
+		echo "$(tc-getCC) ${flags[@]} -o ${t}" *.c
+		$(tc-getCC) ${flags[@]} -o ${t} *.c || die "failed to compile $t"
 	done
 	# compile cal separately
 	cd "${TS}/ncal"
 	echo "in ${TS}/ncal:"
-	local flags
-	flags[0]=-I.
-	flags[1]=-D__FBSDID=__RCSID
-	flags[2]=-Wsystem-headers
 	echo "$(tc-getCC) ${flags[@]} -c calendar.c"
 	$(tc-getCC) ${flags[@]} -c calendar.c || die "failed to compile cal"
 	echo "$(tc-getCC) ${flags[@]} -c easter.c"
@@ -63,27 +57,24 @@ src_compile() {
 		lastcomm renice shlock time whereis;
 	do
 		echo "in ${TS}/${t}:"
-		echo "$(tc-getCC) -o ${t} ${t}.c"
+		echo "$(tc-getCC) ${flags[@]} -o ${t} ${t}.c"
 		cd "${TS}/${t}"
-		$(tc-getCC) -o ${t} ${t}.c || die "failed to compile $t"
+		$(tc-getCC) ${flags[@]} -o ${t} ${t}.c || die "failed to compile $t"
 	done
 	# script and killall need additonal flags
 	for t in \
 		killall script
 	do
 		echo "in ${TS}/${t}:"
-		echo "$(tc-getCC) -D__FBSDID=__RCSID -o ${t} ${t}.c"
+		echo "$(tc-getCC) ${flags[@]} -o ${t} ${t}.c"
 		cd "${TS}/${t}"
-		$(tc-getCC) -D__FBSDID=__RCSID -o ${t} ${t}.c || die "failed to compile $t"
+		$(tc-getCC) ${flags[@]} -o ${t} ${t}.c || die "failed to compile $t"
 	done
-	cd "${TS}/su"
-	echo "in ${TS}/su:"
-	echo "$(tc-getCC) -lpam -o su su.c"
-	$(tc-getCC) -lpam -o su su.c || die "failed to compile su"
 	cd "${TS}/w"
+	sed -i -e '/#include <libutil.h>/d' w.c || die
 	echo "in ${TS}/w:"
-	echo "$(tc-getCC) -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c"
-	$(tc-getCC) -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c \
+	echo "$(tc-getCC) ${flags[@]} -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c"
+	$(tc-getCC) ${flags[@]} -DHAVE_UTMPX=1 -lresolv -o w w.c pr_time.c proc_compare.c \
 		|| die "failed to compile w"
 
 	TS=${S}/developer_cmds-${DEV_VER}
@@ -95,14 +86,13 @@ src_compile() {
 	for t in asa error hexdump unifdef what ; do
 		echo "in ${TS}/${t}:"
 		cd "${TS}/${t}"
-		sed -i -e '/^__FBSDID/d' *.c
-		echo "$(tc-getCC) -o ${t}" *.c
-		$(tc-getCC) -o ${t} *.c || die "failed to compile $t"
+		echo "$(tc-getCC) ${flags[@]} -o ${t}" *.c
+		$(tc-getCC) ${flags[@]} -o ${t} *.c || die "failed to compile $t"
 	done
 }
 
 src_install() {
-	local ED=${ED-${D}}
+	[[ -z ${ED} ]] && local ED=${D}
 
 	mkdir -p "${ED}"/bin
 	mkdir -p "${ED}"/usr/bin

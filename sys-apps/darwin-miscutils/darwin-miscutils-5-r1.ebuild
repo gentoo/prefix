@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/darwin-miscutils-5-r1.ebuild,v 1.1 2009/06/21 13:31:36 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/darwin-miscutils-5-r1.ebuild,v 1.2 2009/09/04 20:11:25 grobian Exp $
 
 inherit toolchain-funcs eutils
 
@@ -8,7 +8,7 @@ MISC_VER=23
 SHELL_VER=118
 DEV_VER=48
 
-DESCRIPTION="Miscellaneous commands used on Darwin/Mac OS X systems"
+DESCRIPTION="Miscellaneous commands used on Darwin/Mac OS X systems, Leopard"
 HOMEPAGE="http://www.opensource.apple.com/"
 SRC_URI="http://www.opensource.apple.com/darwinsource/tarballs/other/misc_cmds-${MISC_VER}.tar.gz
 	http://www.opensource.apple.com/darwinsource/tarballs/other/shell_cmds-${SHELL_VER}.tar.gz
