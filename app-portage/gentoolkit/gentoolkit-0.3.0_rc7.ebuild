@@ -14,8 +14,7 @@ LICENSE="GPL-2"
 SLOT="0"
 IUSE=""
 
-# totally prefix unready, needs full patching
-#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 DEPEND="sys-apps/portage
 	dev-lang/python[xml]
@@ -25,9 +24,9 @@ DEPEND="sys-apps/portage
 RDEPEND="${DEPEND}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.2.4.1-revdep-prefix.patch
-	epatch "${FILESDIR}"/${PN}-0.2.4.1-eclean-prefix.patch
-	# revdep-rebuild got a rewrite, none of our patches still works :(
+	epatch "${FILESDIR}"/${PN}-0.3.0_rc7-revdep-prefix.patch
+	epatch "${FILESDIR}"/${PN}-0.3.0_rc7-eclean-prefix.patch
+	epatch "${FILESDIR}"/${PN}-0.3.0_rc7-setup-prefix.patch
 
 	ebegin "Adjusting to prefix (sloppyly)"
 	find . -mindepth 2 -type f | grep -v Makefile | xargs sed -i \
@@ -38,7 +37,7 @@ src_prepare() {
 		-e "s|^#!/bin/bash|#!${EPREFIX}/bin/bash|g" \
 		-e "s|=/etc|=${EPREFIX}/etc|g"
 	eend $?
-	eprefixify src/revdep-rebuild/{99,}revdep-rebuild
+	eprefixify data/revdep-rebuild/99revdep-rebuild bin/revdep-rebuild bin/eclean setup.py
 }
 
 src_install() {
