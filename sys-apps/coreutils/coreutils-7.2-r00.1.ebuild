@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.2.ebuild,v 1.6 2009/08/16 18:37:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.2.ebuild,v 1.7 2009/09/03 19:53:42 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -79,7 +79,7 @@ src_compile() {
 	econf \
 		${myconf} \
 		--enable-largefile \
-		$(use_enable caps libcap) \
+		$(use caps || echo --disable-libcap) \
 		$(use_enable nls) \
 		$(use_enable acl) \
 		$(use_enable xattr) \
