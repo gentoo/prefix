@@ -1,8 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyro/pyro-3.9.1.ebuild,v 1.1 2009/06/01 00:38:29 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyro/pyro-3.9.1.ebuild,v 1.2 2009/09/04 05:10:49 arfrever Exp $
 
-inherit distutils eutils
+EAPI="2"
+SUPPORT_PYTHON_ABIS="1"
+
+inherit distutils
 
 MY_P="Pyro-${PV}"
 DESCRIPTION="advanced and powerful Distributed Object Technology system written entirely in Python"
@@ -14,7 +17,13 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="doc examples"
 
+DEPEND=""
+RDEPEND=""
+RESTRICT_PYTHON_ABIS="3*"
+
 S="${WORKDIR}/${MY_P}"
+
+PYTHON_MODNAME="Pyro"
 
 src_install() {
 	distutils_src_install
