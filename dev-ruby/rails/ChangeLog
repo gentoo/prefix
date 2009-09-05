@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.142 2009/08/16 14:31:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.143 2009/09/04 06:30:17 graaff Exp $
+
+*rails-2.3.4 (04 Sep 2009)
+
+  04 Sep 2009; Hans de Graaff <graaff@gentoo.org> +rails-2.3.4.ebuild:
+  Version bump: fix security issues reported in #283396.
 
   16 Aug 2009; Raúl Porcel <armin76@gentoo.org> rails-2.3.3.ebuild:
   Add ~ia64 wrt #279123
