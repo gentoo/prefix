@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gcc-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/ChangeLog,v 1.6 2009/06/28 11:12:10 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/ChangeLog,v 1.7 2009/09/05 16:46:34 grobian Exp $
+
+*gcc-apple-4.2.1_p5646 (05 Sep 2009)
+
+  05 Sep 2009; Fabian Groffen <grobian@gentoo.org>
+  +gcc-apple-4.2.1_p5646.ebuild:
+  Bump to version from Snow Leopard/Developer Tools 3.2, still masked as
+  fortran support is broken
 
   28 Jun 2009; Fabian Groffen <grobian@gentoo.org>
   +gcc-apple-4.2.1_p5566-x86_64-defines.patch, +libstdc++-16.patch
