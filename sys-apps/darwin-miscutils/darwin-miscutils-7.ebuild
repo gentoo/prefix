@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/darwin-miscutils-7.ebuild,v 1.1 2009/09/04 20:11:25 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/darwin-miscutils-7.ebuild,v 1.2 2009/09/04 20:16:47 grobian Exp $
 
 inherit toolchain-funcs eutils
 
@@ -111,7 +111,7 @@ src_install() {
 	TS=${S}/shell_cmds-${SHELL_VER}
 	for t in \
 		alias apply getopt jot killall lastcomm \
-		renice script shlock su time w whereis;
+		renice script shlock time w whereis;
 	do
 		cp "${TS}/${t}/${t}" "${ED}"/usr/bin/
 		[[ -f "${TS}/${t}/${t}.1" ]] && doman "${TS}/${t}/${t}.1"
