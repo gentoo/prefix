@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r3.ebuild,v 1.9 2009/07/19 09:30:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r3.ebuild,v 1.15 2009/08/30 21:34:13 arfrever Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -9,7 +9,7 @@
 
 EAPI="1"
 
-inherit autotools eutils flag-o-matic libtool multilib python toolchain-funcs versionator
+inherit autotools eutils flag-o-matic libtool multilib pax-utils python toolchain-funcs versionator
 
 # We need this so that we don't depends on python.eclass
 PYVER_MAJOR=$(get_major_version)
@@ -19,17 +19,19 @@ PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
 
+PATCHSET_REVISION="2"
+
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
 SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
-	mirror://gentoo/python-gentoo-patches-${PV}-r1.tar.bz2"
+	mirror://gentoo/python-gentoo-patches-${PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
 
 LICENSE="PSF-2.2"
 SLOT="2.5"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="berkdb build doc elibc_uclibc examples gdbm ipv6 ncurses readline sqlite ssl +threads tk ucs2 wininst +xml"
 
-# NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes,cjkcodecs}
+# NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes}
 #       do not conflict with the ones in python proper. - liquidx
 
 DEPEND=">=app-admin/eselect-python-20080925
@@ -44,7 +46,7 @@ DEPEND=">=app-admin/eselect-python-20080925
 			gdbm? ( sys-libs/gdbm )
 			ssl? ( dev-libs/openssl )
 			doc? ( dev-python/python-docs:${SLOT} )
-			xml? ( dev-libs/expat )
+			xml? ( >=dev-libs/expat-2 )
 	)"
 RDEPEND="${DEPEND}"
 PDEPEND="${DEPEND} app-admin/python-updater"
@@ -56,8 +58,8 @@ src_unpack() {
 	cd "${S}"
 
 	if tc-is-cross-compiler; then
-		epatch "${FILESDIR}"/python-2.4.4-test-cross.patch \
-			"${FILESDIR}"/python-2.5-cross-printf.patch
+		epatch "${FILESDIR}/python-2.4.4-test-cross.patch"
+		epatch "${FILESDIR}/python-2.5-cross-printf.patch"
 	else
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
@@ -125,31 +127,33 @@ src_unpack() {
 src_configure() {
 	# Disable extraneous modules with extra dependencies.
 	if use build; then
-		export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter _sqlite3"
-		export PYTHON_DISABLE_SSL=1
+		export PYTHON_DISABLE_MODULES="dbm bsddb gdbm _curses _curses_panel readline _sqlite3 _tkinter pyexpat"
+		export PYTHON_DISABLE_SSL="1"
 	else
-		# dbm module can link to berkdb or gdbm
-		# Defaults to gdbm when both are enabled, #204343
+		# dbm module can be linked against berkdb or gdbm.
+		# Defaults to gdbm when both are enabled, #204343.
 		local disable
-		use berkdb   || use gdbm || disable="${disable} dbm"
-		use berkdb   || disable="${disable} bsddb"
-		use xml      || disable="${disable} pyexpat"
-		use gdbm     || disable="${disable} gdbm"
-		use ncurses  || disable="${disable} _curses _curses_panel"
-		use readline || disable="${disable} readline"
-		use sqlite   || disable="${disable} _sqlite3"
-		use ssl      || export PYTHON_DISABLE_SSL=1
-		use tk       || disable="${disable} _tkinter"
+		use berkdb   || use gdbm || disable+=" dbm"
+		use berkdb   || disable+=" bsddb"
+		use gdbm     || disable+=" gdbm"
+		use ncurses  || disable+=" _curses _curses_panel"
+		use readline || disable+=" readline"
+		use sqlite   || disable+=" _sqlite3"
+		use ssl      || export PYTHON_DISABLE_SSL="1"
+		use tk       || disable+=" _tkinter"
+		use xml      || disable+=" pyexpat"
 		export PYTHON_DISABLE_MODULES="${disable}"
+
+		if ! use xml; then
+			ewarn "You have configured Python without XML support."
+			ewarn "This is NOT a recommended configuration as you"
+			ewarn "may face problems parsing any XML documents."
+		fi
 	fi
 
-	if ! use xml; then
-		ewarn "You have configured Python without XML support."
-		ewarn "This is NOT a recommended configuration as you"
-		ewarn "may face problems parsing any XML documents."
+	if [[ -n "${PYTHON_DISABLE_MODULES}" ]]; then
+		einfo "Disabled modules: ${PYTHON_DISABLE_MODULES}"
 	fi
-
-	einfo "Disabled modules: $PYTHON_DISABLE_MODULES"
 
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
@@ -169,10 +173,10 @@ src_configure() {
 
 	[[ "${ARCH}" == "alpha" ]] && append-flags -fPIC
 
-	# http://bugs.gentoo.org/show_bug.cgi?id=50309
+	# https://bugs.gentoo.org/show_bug.cgi?id=50309
 	if is-flag -O3; then
-	   is-flag -fstack-protector-all && replace-flags -O3 -O2
-	   use hardened && replace-flags -O3 -O2
+		is-flag -fstack-protector-all && replace-flags -O3 -O2
+		use hardened && replace-flags -O3 -O2
 	fi
 
 	if tc-is-cross-compiler; then
@@ -238,9 +242,8 @@ src_test() {
 	# (See bug #67970)
 	local skip_tests="distutils global mimetools minidom mmap posix pyexpat sax strptime subprocess syntax tcl time urllib urllib2 webbrowser xml_etree"
 
-	# test_pow fails on alpha.
-	# http://bugs.python.org/issue756093
-	[[ ${ARCH} == "alpha" ]] && skip_tests="${skip_tests} pow"
+	# test_ctypes fails with PAX kernel (bug #234498).
+	host-is-pax && skip_tests+=" ctypes"
 
 	for test in ${skip_tests}; do
 		mv "${S}"/Lib/test/test_${test}.py "${T}"
@@ -254,7 +257,7 @@ src_test() {
 		mv "${T}"/test_${test}.py "${S}"/Lib/test/test_${test}.py
 	done
 
-	elog "Portage skipped the following tests which aren't able to run from emerge:"
+	elog "The following tests have been skipped:"
 	for test in ${skip_tests}; do
 		elog "test_${test}.py"
 	done
@@ -268,24 +271,25 @@ src_install() {
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${PYVER}/lib-dynload/
 	emake DESTDIR="${D}" altinstall maninstall || die "emake altinstall maninstall failed"
 
-	mv "${ED}"/usr/bin/python${PYVER}-config "${ED}"/usr/bin/python-config-${PYVER}
+	mv "${ED}usr/bin/python${PYVER}-config" "${ED}usr/bin/python-config-${PYVER}"
 
-	# Fix slotted collisions
-	mv "${ED}"/usr/bin/pydoc "${ED}"/usr/bin/pydoc${PYVER}
-	mv "${ED}"/usr/bin/idle "${ED}"/usr/bin/idle${PYVER}
-	mv "${ED}"/usr/share/man/man1/python.1 "${ED}"/usr/share/man/man1/python${PYVER}.1
-	rm -f "${ED}"/usr/bin/smtpd.py
+	# Fix collisions between different slots of Python.
+	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${PYVER}"
+	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${PYVER}"
+	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${PYVER}.1"
+	rm -f "${ED}usr/bin/smtpd.py"
 
 	# Fix the OPT variable so that it doesn't have any flags listed in it.
 	# Prevents the problem with compiling things with conflicting flags later.
 	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}usr/$(get_libdir)/python${PYVER}/config/Makefile"
 
 	if use build ; then
-		rm -fr "${ED}"/usr/$(get_libdir)/python${PYVER}/{test,encodings,email,lib-tk,bsddb/test}
+		rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb,email,encodings,lib-tk,sqlite3,test}
 	else
-		use elibc_uclibc && rm -fr "${ED}"/usr/$(get_libdir)/python${PYVER}/{test,bsddb/test}
-		use berkdb || rm -fr "${ED}"/usr/$(get_libdir)/python${PYVER}/bsddb
-		use tk || rm -fr "${ED}"/usr/$(get_libdir)/python${PYVER}/lib-tk
+		use elibc_uclibc && rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb/test,test}
+		use berkdb || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb,test/test_bsddb*}
+		use sqlite || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{sqlite3,test/test_sqlite*}
+		use tk || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/lib-tk"
 	fi
 
 	prep_ml_includes usr/include/python${PYVER}
@@ -299,16 +303,34 @@ src_install() {
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
 }
 
-pkg_postrm() {
-	eselect python update --ignore 3.0 --ignore 3.1
-
-	python_mod_cleanup /usr/lib/python${PYVER}
-	[[ "$(get_libdir)" != "lib" ]] && python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
+pkg_preinst() {
+	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version ">=${CATEGORY}/${PN}-${SLOT}_alpha"; then
+		python_updater_warning="1"
+	fi
 }
 
 pkg_postinst() {
-	eselect python update --ignore 3.0 --ignore 3.1
+	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2
 
 	python_mod_optimize -x "(site-packages|test)" /usr/lib/python${PYVER}
 	[[ "$(get_libdir)" != "lib" ]] && python_mod_optimize -x "(site-packages|test)" /usr/$(get_libdir)/python${PYVER}
+
+	if [[ "${python_updater_warning}" == "1" ]]; then
+		ewarn
+		ewarn "\e[1;31m************************************************************************\e[0m"
+		ewarn
+		ewarn "You have just upgraded from an older version of Python."
+		ewarn "You should run 'python-updater' to rebuild Python modules."
+		ewarn
+		ewarn "\e[1;31m************************************************************************\e[0m"
+		ewarn
+		ebeep 12
+	fi
+}
+
+pkg_postrm() {
+	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2
+
+	python_mod_cleanup /usr/lib/python${PYVER}
+	[[ "$(get_libdir)" != "lib" ]] && python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
 }

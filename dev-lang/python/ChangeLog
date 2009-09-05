@@ -1,6 +1,71 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.394 2009/07/19 09:30:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.410 2009/09/01 02:46:07 arfrever Exp $
+
+  01 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.6.2-r1.ebuild:
+  Fix building on arm OABI (bug #266703).
+
+  30 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.4.6.ebuild, python-2.5.4-r3.ebuild, python-2.6.2-r1.ebuild,
+  python-3.1.1.ebuild:
+  Reenable test_math.py and test_pow.py on alpha (bug #282786).
+
+  28 Aug 2009; Raúl Porcel <armin76@gentoo.org> python-2.6.2-r1.ebuild:
+  arm/m68k stable wrt #277645
+
+  26 Aug 2009; Tobias Klausmann <klausman@gentoo.org>
+  python-2.6.2-r1.ebuild:
+  Stable on alpha, bug #277645
+
+  26 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.6.2-r1.ebuild, python-3.1.1.ebuild:
+  Skip test_math.py on alpha (bug #282786).
+
+  25 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.6.2-r1.ebuild, python-3.1.1.ebuild:
+  Fix building of Python 2.6.2-r1 with USE=-threads (bug #282518). Fix
+  building with USE=build or USE=-xml (bug #282259). Small updates.
+
+  21 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.5.4-r3.ebuild, python-2.6.2-r1.ebuild, python-3.1.1.ebuild:
+  Add missing dependency on >=dev-libs/expat-2 and non-zero exit status of
+  setup.py when building of extensions has failed (bug #281968).
+
+*python-3.1.1 (17 Aug 2009)
+
+  17 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-3.1.1.ebuild:
+  Version bump. Don't install sqlite3 and _sqlite3 modules with USE="-sqlite"
+  (bug #236466).
+
+  16 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  python-2.6.2-r1.ebuild:
+  stable x86, bug 277645
+
+  04 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-3.1.ebuild:
+  Fix building with sys-libs/db headers containing non-UTF-8 characters (bug
+  #280001).
+
+  02 Aug 2009; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  Be more verbose about the 'threads' USE flag.
+
+*python-3.1 (01 Aug 2009)
+
+  01 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-3.1.ebuild:
+  Version bump (bug #250186).
+
+  01 Aug 2009; Zac Medico <zmedico@gentoo.org> python-2.6.2-r1.ebuild:
+  Bug #248081 - Fix tests not to assume that stdin is a tty.
+
+  31 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.5.4-r3.ebuild, python-2.6.2-r1.ebuild:
+  Skip test_ctypes on systems with PAX (bug #234498).
+
+  30 Jul 2009; Jeremy Olexa <darkside@gentoo.org> python-2.6.2-r1.ebuild:
+  amd64 stable, bug 277645
 
   19 Jul 2009; Raúl Porcel <armin76@gentoo.org> python-2.5.4-r3.ebuild:
   arm/ia64/m68k/s390/sh/sparc stable wrt #275311
