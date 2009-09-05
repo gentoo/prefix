@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/binutils-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/ChangeLog,v 1.1 2009/06/21 10:06:52 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/ChangeLog,v 1.2 2009/09/05 17:22:41 grobian Exp $
+
+*binutils-apple-3.2 (05 Sep 2009)
+
+  05 Sep 2009; Fabian Groffen <grobian@gentoo.org>
+  +binutils-apple-3.2.ebuild, +files/binutils-apple-3.2-ld64-Makefile:
+  Bump to version from Snow Leopard/Developer Tools 3.2, highly broken,
+  hence masked
 
 *binutils-apple-3.1.2-r1 (01 Jun 2009)
 
