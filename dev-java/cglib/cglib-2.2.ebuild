@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.2_beta1-r1.ebuild,v 1.3 2009/09/03 15:43:38 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.2.ebuild,v 1.1 2009/09/03 15:43:38 elvanor Exp $
 
 EAPI="2"
-JAVA_PKG_IUSE="doc examples source"
+JAVA_PKG_IUSE="test doc examples source"
 
 inherit eutils java-pkg-2 java-ant-2
 
@@ -13,19 +13,21 @@ HOMEPAGE="http://cglib.sourceforge.net"
 LICENSE="Apache-2.0"
 SLOT="2.2"
 KEYWORDS="~amd64-linux ~x86-linux"
-COMMON_DEP="dev-java/asm:2.2
+COMMON_DEP="dev-java/asm:3
 	>=dev-java/ant-core-1.7.0"
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
 DEPEND=">=virtual/jdk-1.4
 	app-arch/unzip
+	test? ( dev-java/junit )
 	${COMMON_DEP}"
 IUSE=""
 
 S=${WORKDIR}
 
 src_prepare() {
-	epatch "${FILESDIR}/2.2-beta-nojarjar.patch"
+	epatch "${FILESDIR}/${P}-build.patch"
+	cp "${FILESDIR}/words.txt" "${S}/src/test/net/sf/cglib/util/"
 }
 
 src_unpack() {
@@ -33,15 +35,18 @@ src_unpack() {
 
 	cd "${S}/lib"
 	rm -v *.jar || die
-	java-pkg_jar-from asm-2.2 asm.jar
-	java-pkg_jar-from asm-2.2 asm-util.jar
-	java-pkg_jar-from asm-2.2 asm-commons.jar
+	java-pkg_jar-from asm-3 asm.jar
+	java-pkg_jar-from asm-3 asm-util.jar
+	java-pkg_jar-from asm-3 asm-commons.jar
 	java-pkg_jar-from ant-core ant.jar
 }
 
-# Fail giving a NullPointerException
-RESTRICT="test"
 EANT_TEST_JUNIT_INTO="lib"
+EANT_TEST_EXTRA_ARGS="-DdebugLocation=${T}/debug"
+
+src_test() {
+	java-pkg-2_src_test
+}
 
 src_install() {
 	java-pkg_newjar dist/${P}.jar ${PN}.jar
