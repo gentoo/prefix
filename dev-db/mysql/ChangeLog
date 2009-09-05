@@ -1,6 +1,11 @@
 # ChangeLog for dev-db/mysql
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.488 2009/07/06 19:08:59 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.489 2009/09/04 10:48:36 robbat2 Exp $
+
+*mysql-5.0.84 (04 Sep 2009)
+
+  04 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> +mysql-5.0.84.ebuild:
+  Version bump. 5.0.85 will follow when that Percona patchset is available.
 
 *mysql-5.0.83 (06 Jul 2009)
 
