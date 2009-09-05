@@ -1,6 +1,13 @@
 # ChangeLog for xfce-extra/xfce4-clipman-plugin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-clipman-plugin/ChangeLog,v 1.7 2009/08/30 16:06:32 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-clipman-plugin/ChangeLog,v 1.8 2009/09/03 14:32:50 darkside Exp $
+
+*xfce4-clipman-plugin-1.1.0 (03 Sep 2009)
+
+  03 Sep 2009; Jeremy Olexa <darkside@gentoo.org>
+  +xfce4-clipman-plugin-1.1.0.ebuild:
+  Version bump. Feature set includes a new daemon and fixes bugs
+  http://releases.xfce.org/feeds/project/xfce4-clipman-plugin
 
   30 Aug 2009; nixnut <nixnut@gentoo.org> xfce4-clipman-plugin-1.0.2.ebuild:
   ppc stable #282650
