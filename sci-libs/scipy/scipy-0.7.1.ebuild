@@ -1,11 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/scipy/scipy-0.7.1.ebuild,v 1.2 2009/07/22 22:30:54 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/scipy/scipy-0.7.1.ebuild,v 1.3 2009/09/04 21:31:22 arfrever Exp $
 
-EAPI=2
-NEED_PYTHON=2.4
+EAPI="2"
+NEED_PYTHON="2.4"
+SUPPORT_PYTHON_ABIS="1"
 
-inherit eutils distutils toolchain-funcs flag-o-matic
+inherit eutils distutils flag-o-matic toolchain-funcs
 
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 DESCRIPTION="Scientific algorithms library for Python"
@@ -13,7 +14,8 @@ HOMEPAGE="http://www.scipy.org/"
 LICENSE="BSD"
 
 SLOT="0"
-IUSE="test umfpack"
+IUSE="umfpack"
+#IUSE="test umfpack"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
 CDEPEND=">=dev-python/numpy-1.2
@@ -23,11 +25,13 @@ CDEPEND=">=dev-python/numpy-1.2
 
 DEPEND="${CDEPEND}
 	dev-util/pkgconfig
-	test? ( dev-python/nose )
 	umfpack? ( dev-lang/swig )"
+#	test? ( dev-python/nose )
 
 RDEPEND="${CDEPEND}
 	dev-python/imaging"
+
+RESTRICT_PYTHON_ABIS="3.*"
 
 # buggy tests
 RESTRICT="test"
@@ -85,15 +89,16 @@ src_compile() {
 }
 
 src_test() {
-	"${python}" setup.py install \
-		--home="${S}"/test \
-		--no-compile \
-		${SCIPY_FCONFIG} || die "install test failed"
-	pushd "${S}"/test/lib*/python
-	PYTHONPATH=. "${python}" -c "import scipy; scipy.test('full')" 2>&1 | tee test.log
-	grep -q ^ERROR test.log && die "test failed"
-	popd
-	rm -rf test
+	testing() {
+		"$(PYTHON)" setup.py build -b "build-${PYTHON_ABI}" install \
+			--home="${S}/test-${PYTHON_ABI}" --no-compile ${SCIPY_FCONFIG} || die "install test failed"
+		pushd "${S}/test-${PYTHON_ABI}/"lib*/python > /dev/null
+		PYTHONPATH=. "${python}" -c "import scipy; scipy.test('full')" 2>&1 | tee test.log
+		grep -q ^ERROR test.log && die "test failed"
+		popd > /dev/null
+		rm -fr test-${PYTHON_ABI}
+	}
+	python_execute_function testing
 }
 
 src_install() {
@@ -101,6 +106,8 @@ src_install() {
 }
 
 pkg_postinst() {
+	distutils_pkg_postinst
+
 	elog "You might want to set the variable SCIPY_PIL_IMAGE_VIEWER"
 	elog "to your prefered image viewer if you don't like the default one. Ex:"
 	elog "\t echo \"export SCIPY_PIL_IMAGE_VIEWER=display\" >> ~/.bashrc"
