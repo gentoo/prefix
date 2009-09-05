@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/webpy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/webpy/ChangeLog,v 1.9 2009/04/10 10:27:26 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/webpy/ChangeLog,v 1.10 2009/09/04 15:09:48 patrick Exp $
+
+*webpy-0.32 (04 Sep 2009)
+
+  04 Sep 2009; Patrick Lauer <patrick@gentoo.org> -webpy-0.30.ebuild,
+  +webpy-0.32.ebuild:
+  Bump to 0.32. Remove 0.30.
 
   10 Apr 2009; Guy Martin <gmsoft@gentoo.org> webpy-0.31.ebuild:
   Added ~hppa to KEYWORDS.
