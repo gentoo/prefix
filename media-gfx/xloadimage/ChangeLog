@@ -1,6 +1,17 @@
 # ChangeLog for media-gfx/xloadimage
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/ChangeLog,v 1.42 2008/11/17 21:12:46 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/ChangeLog,v 1.44 2009/09/04 12:40:30 ssuominen Exp $
+
+  04 Sep 2009; Samuli Suominen <ssuominen@gentoo.org>
+  xloadimage-4.1-r10.ebuild, +files/xloadimage-4.1-ldflags_and_exit.patch:
+  Include stdlib.h for exit(3) and respect LDFLAGS when building uufilter
+  binary.
+
+*xloadimage-4.1-r10 (04 Sep 2009)
+
+  04 Sep 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +xloadimage-4.1-r10.ebuild:
+  Stop using internal ecompress function.
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
   files/xloadimage-4.1-unaligned-access.patch:
