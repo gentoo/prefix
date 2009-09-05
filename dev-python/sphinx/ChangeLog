@@ -1,6 +1,15 @@
 # ChangeLog for dev-python/sphinx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.24 2009/08/12 02:03:49 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.26 2009/09/04 15:56:37 patrick Exp $
+
+  04 Sep 2009; Patrick Lauer <patrick@gentoo.org> -sphinx-0.6.2.ebuild:
+  Remove old
+
+*sphinx-0.6.3 (03 Sep 2009)
+
+  03 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -sphinx-0.6.1.ebuild, +sphinx-0.6.3.ebuild:
+  Version bump.
 
   12 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   sphinx-0.6.2.ebuild:
