@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.4.0.ebuild,v 1.9 2009/08/30 16:20:34 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/terminal/terminal-0.4.0.ebuild,v 1.10 2009/09/04 21:13:44 billie Exp $
 
 EAPI=2
 MY_P=${P/t/T}
@@ -32,9 +32,17 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	dev-util/intltool
 	sys-devel/gettext
-	doc? ( dev-libs/libxslt )"
+	doc? ( dev-libs/libxslt )
+	dev-util/xfce4-dev-tools"
 
 S=${WORKDIR}/${MY_P}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	intltoolize --force --copy --automake || die "intltoolize failed"
+	AT_M4DIR="${EPREFIX}/usr/share/xfce4/dev-tools/m4macros" eautoreconf
+}
 
 pkg_setup() {
 	XFCONF="--disable-dependency-tracking
