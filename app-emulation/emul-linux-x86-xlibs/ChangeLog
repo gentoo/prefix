@@ -1,6 +1,10 @@
 # ChangeLog for app-emulation/emul-linux-x86-xlibs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/ChangeLog,v 1.79 2009/07/21 22:41:45 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/ChangeLog,v 1.80 2009/09/04 20:50:42 remi Exp $
+
+  04 Sep 2009; Rémi Cardona <remi@gentoo.org>
+  -emul-linux-x86-xlibs-7.0-r8.ebuild:
+  remove 7.0-r8 with Jeremy's permission (fixes bug #282981)
 
   21 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   emul-linux-x86-xlibs-20081109.ebuild:
