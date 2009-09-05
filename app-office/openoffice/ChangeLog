@@ -1,6 +1,24 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.477 2009/09/02 19:07:22 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.481 2009/09/04 12:23:32 suka Exp $
+
+  04 Sep 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  Add hungarian template pack, bug #272159
+
+  04 Sep 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  Try to fix one more KDE build problem, bug #283618
+
+  03 Sep 2009; Andreas Proschofsky <suka@gentoo.org>
+  files/gentoo-3.1.1.diff:
+  Fix qt4-detection, see bug #280344
+
+  02 Sep 2009; Andreas Proschofsky <suka@gentoo.org>
+  -files/buildfix-mono-2-2.diff, -openoffice-3.0.1.ebuild,
+  -files/gentoo-3.0.1.diff, -openoffice-3.1.0.ebuild,
+  openoffice-3.1.0-r1.ebuild, -files/gentoo-3.1.0.diff:
+  Some cleanup work
 
 *openoffice-3.1.1 (02 Sep 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.1 2009/09/02 19:07:22 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.4 2009/09/04 12:23:32 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI="2"
@@ -45,7 +45,8 @@ SRC_URI="${DEVPATH}-artwork.tar.bz2
 		http://extensions.services.openoffice.org/files/295/1/Sun_ODF_Template_Pack_de.oxt
 		http://extensions.services.openoffice.org/files/299/0/Sun_ODF_Template_Pack_it.oxt
 		http://extensions.services.openoffice.org/files/297/0/Sun_ODF_Template_Pack_fr.oxt
-		http://extensions.services.openoffice.org/files/301/1/Sun_ODF_Template_Pack_es.oxt )
+		http://extensions.services.openoffice.org/files/301/1/Sun_ODF_Template_Pack_es.oxt
+		ftp://ftp.devall.hu/kami/go-oo//Sun_ODF_Template_Pack_hu.oxt )
 	http://download.go-oo.org/${PATCHLEVEL}/ooo-build-${MY_PV}.tar.gz
 	odk? ( java? ( http://tools.openoffice.org/unowinreg_prebuild/680/unowinreg.dll ) )
 	http://download.go-oo.org/SRC680/extras-3.tar.bz2
@@ -303,6 +304,8 @@ src_prepare() {
 }
 
 src_configure() {
+
+	use kde && export KDEDIR="${KDEDIR}"
 
 	# Use multiprocessing by default now, it gets tested by upstream
 	export JOBS=$(echo "${MAKEOPTS}" | sed -e "s/.*-j\([0-9]\+\).*/\1/")
