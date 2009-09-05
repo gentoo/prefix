@@ -1,6 +1,15 @@
 # ChangeLog for app-crypt/johntheripper
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.97 2009/06/23 00:03:52 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.98 2009/09/03 12:36:47 patrick Exp $
+
+*johntheripper-1.7.3.1-r1 (03 Sep 2009)
+
+  03 Sep 2009; Patrick Lauer <patrick@gentoo.org>
+  +johntheripper-1.7.3.1-r1.ebuild,
+  +files/johntheripper-1.7.3.1-all-5-stackdef.S.patch,
+  +files/johntheripper-1.7.3.1-cflags.patch,
+  files/johntheripper-1.7.3.1-stackdef.S.patch:
+  Small set of fixes, thanks to RB. Closes #277811
 
   23 Jun 2009; Richard Freeman <rich0@gentoo.org>
   johntheripper-1.7.3.1.ebuild:
