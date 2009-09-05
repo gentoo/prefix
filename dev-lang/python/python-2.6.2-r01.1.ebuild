@@ -121,6 +121,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
+	# don't try to build antique stuff
+	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
 
 	# http://bugs.python.org/issue6308
 	epatch "${FILESDIR}"/${P}-termios-noqnx.patch
