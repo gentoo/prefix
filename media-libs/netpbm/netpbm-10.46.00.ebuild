@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.46.00.ebuild,v 1.10 2009/08/28 15:03:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.46.00.ebuild,v 1.11 2009/09/05 00:32:58 ranger Exp $
 
 inherit toolchain-funcs eutils multilib prefix
 
