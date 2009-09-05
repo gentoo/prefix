@@ -9,6 +9,10 @@
 	<maintainer>
 		<email>patrick@gentoo.org</email>
 	</maintainer>
+	<maintainer>
+		<email>sputnick@quassel-irc.org</email>
+		<description>Upstream author, please CC on bugs</description>
+	</maintainer>
 	<use>
 		<flag name="monolithic">
 			Build Standalone client with integrated core, no external

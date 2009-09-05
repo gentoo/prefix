@@ -1,6 +1,13 @@
 # ChangeLog for net-irc/quassel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.54 2009/08/26 18:06:01 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.56 2009/09/04 20:42:23 billie Exp $
+
+  04 Sep 2009; Pielmeier Daniel <billie@gentoo.org> metadata.xml:
+  Add upstream author to metadata.
+
+  04 Sep 2009; Pielmeier Daniel <billie@gentoo.org> -quassel-0.4.1.ebuild,
+  quassel-0.5_rc1.ebuild, +files/quassel-0.5_rc1-identity.cpp.patch:
+  Fix building with USE="-ssl" bug #283303. Remove old.
 
 *quassel-0.4.3-r50 (26 Aug 2009)
 
