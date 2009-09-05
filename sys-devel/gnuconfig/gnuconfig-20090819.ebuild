@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/gnuconfig-20090203.ebuild,v 1.2 2009/09/05 00:27:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/gnuconfig-20090819.ebuild,v 1.1 2009/09/05 00:28:35 vapier Exp $
 
 inherit eutils
 if [[ ${PV} == "99999999" ]] ; then
@@ -42,7 +42,6 @@ src_unpack() {
 		unpack ${A}
 	fi
 	epatch "${WORKDIR}"/*.patch
-	sed -i '/i386-pc-solaris2.6/d' testsuite/config-guess.data
 	use elibc_uclibc && sed -i 's:linux-gnu:linux-uclibc:' testsuite/config-guess.data #180637
 }
 

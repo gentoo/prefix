@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gnuconfig
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.38 2009/03/09 21:32:35 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gnuconfig/ChangeLog,v 1.39 2009/09/05 00:28:35 vapier Exp $
+
+*gnuconfig-20090819 (05 Sep 2009)
+
+  05 Sep 2009; Mike Frysinger <vapier@gentoo.org>
+  files/99999999/0001-add-uClibc-guess-support.patch,
+  files/99999999/0002-add-ps2-targets-to-config.sub.patch,
+  +files/99999999/disable-broken-tests.patch, +gnuconfig-20090819.ebuild:
+  Version bump.
 
 *gnuconfig-20090203 (09 Mar 2009)
 
