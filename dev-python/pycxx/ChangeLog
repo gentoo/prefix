@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pycxx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycxx/ChangeLog,v 1.4 2009/08/10 03:04:13 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycxx/ChangeLog,v 1.5 2009/09/04 20:46:01 patrick Exp $
+
+  04 Sep 2009; Patrick Lauer <patrick@gentoo.org> -pycxx-5.4.2.ebuild,
+  -pycxx-5.5.0.ebuild:
+  Remove old
 
   10 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   pycxx-6.1.0.ebuild:
