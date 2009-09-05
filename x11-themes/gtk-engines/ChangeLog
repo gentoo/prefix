@@ -1,6 +1,11 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.146 2009/08/31 20:16:07 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.147 2009/09/03 10:46:19 mrpouet Exp $
+
+  03 Sep 2009; Romain Perier <mrpouet@gentoo.org>
+  gtk-engines-2.18.2-r1.ebuild, files/gtk-engines-2.18.2-system-lua.patch:
+  Add lua USE-flag per bug #283407, Fix the patch which did not work with
+  --enable-animation --disable-lua --without-system-lua.
 
   31 Aug 2009; Romain Perier <mrpouet@gentoo.org>
   gtk-engines-2.18.2-r1.ebuild:

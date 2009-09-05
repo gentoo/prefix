@@ -1,23 +1,26 @@
-From 7508e8941bc664df0e7b8c952d82d901f9a95c75 Mon Sep 17 00:00:00 2001
-From: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
-Date: Mon, 31 Aug 2009 16:09:55 +0300
-Subject: [PATCH] Added configure option to use system liblua for Lua engine.
+From 832010dc4c679a35103d2add5c7e6a28bf5f8b07 Mon Sep 17 00:00:00 2001
+From: Romain Perier <mrpouet@gentoo.org>
+Date: Thu, 3 Sep 2009 12:35:15 +0200
+Subject: [PATCH] Add configure option to use lua system library instead of embedded version
 
-Signed-off-by: Ihar Hrachyshka <ihar.hrachyshka@gmail.com>
+Fixed version: Replaced $enableval by $withval in AC_ARG_WITH(system-lua...),
+otherwises it was impossible to exec the configure script correctly with the following options:
+--enable-animation --disable-lua --without-system-lua, because LUA was checked anyway.
+
 ---
  configure.ac            |   10 ++++
  engines/lua/Makefile.am |  118 +++++++++++++++++++++++++----------------------
  2 files changed, 73 insertions(+), 55 deletions(-)
 
 diff --git a/configure.ac b/configure.ac
-index df673ed..3c3ce2a 100644
+index df673ed..6273675 100644
 --- a/configure.ac
 +++ b/configure.ac
 @@ -45,6 +45,9 @@ AC_ARG_ENABLE(paranoia, 	[  --enable-paranoia       use wall, werror, ansi, peda
  AC_ARG_ENABLE(deprecated,	[  --disable-deprecated    disable deprecated functions in gtk et al],	[deprecated=$enableval],		[deprecated="no"])
  
  AC_ARG_ENABLE(schemas,		[  --disable-schema        disable engine schemas],	[schemas=$enableval],	[schemas="yes"])
-+AC_ARG_WITH(system-lua,	[  --with-system-lua        link with system Lua library], 		[system_lua=$enableval], 	[system_lua="no"])
++AC_ARG_WITH(system-lua,	[  --with-system-lua        link with system Lua library], [system_lua=$withval], [system_lua="no"])
 +
 +AM_CONDITIONAL([SYSTEM_LUA], [test x$system_lua = xtrue])
  
@@ -179,5 +182,5 @@ index 736154d..6243e5a 100644
  -include $(top_srcdir)/git.mk
  
 -- 
-1.6.3.3
+1.6.4.2
 
