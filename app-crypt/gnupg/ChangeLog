@@ -1,6 +1,18 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.348 2009/06/21 02:36:54 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.350 2009/09/04 17:59:48 arfrever Exp $
+
+*gnupg-2.0.13 (04 Sep 2009)
+
+  04 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnupg-2.0.13.ebuild:
+  Version bump.
+
+*gnupg-1.4.10 (03 Sep 2009)
+
+  03 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gnupg-1.4.10.ebuild:
+  Version bump.
 
 *gnupg-2.0.12 (21 Jun 2009)
 
