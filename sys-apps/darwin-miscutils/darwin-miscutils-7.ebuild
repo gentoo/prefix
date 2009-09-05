@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/darwin-miscutils-7.ebuild,v 1.2 2009/09/04 20:16:47 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/darwin-miscutils/darwin-miscutils-7.ebuild,v 1.3 2009/09/05 14:40:29 grobian Exp $
 
 inherit toolchain-funcs eutils
 
@@ -27,6 +27,8 @@ src_compile() {
 		-I.
 		-D__FBSDID=__RCSID
 		-Wsystem-headers
+		-Du_int=uint32_t
+		-include stdint.h
 		${LDFLAGS}
 	)
 
