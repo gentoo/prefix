@@ -1,6 +1,9 @@
 # ChangeLog for net-im/mcabber
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/mcabber/ChangeLog,v 1.44 2009/08/29 19:46:23 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/mcabber/ChangeLog,v 1.45 2009/09/05 00:09:43 ranger Exp $
+
+  05 Sep 2009; Brent Baude <ranger@gentoo.org> mcabber-0.9.9-r1.ebuild:
+  Marking mcabber-0.9.9-r1 ppc64 for bug 281836
 
   29 Aug 2009; nixnut <nixnut@gentoo.org> mcabber-0.9.9-r1.ebuild:
   ppc stable #281836
