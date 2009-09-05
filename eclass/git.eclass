@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.28 2009/08/24 21:48:58 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.29 2009/09/04 08:00:23 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -75,7 +75,7 @@ EGIT_DIFFSTAT_CMD="git --no-pager diff --stat"
 #   git+ssh://
 #   rsync://
 #   ssh://
-eval X="\$${PN//-/_}_LIVE_REPO"
+eval X="\$${PN//[-+]/_}_LIVE_REPO"
 if [[ ${X} = "" ]]; then
 	EGIT_REPO_URI=${EGIT_REPO_URI:=}
 else
@@ -113,7 +113,7 @@ EGIT_OFFLINE="${EGIT_OFFLINE:-${ESCM_OFFLINE}}"
 # @ECLASS-VARIABLE: EGIT_BRANCH
 # @DESCRIPTION:
 # git eclass can fetch any branch in git_fetch().
-eval X="\$${PN//-/_}_LIVE_BRANCH"
+eval X="\$${PN//[-+]/_}_LIVE_BRANCH"
 if [[ ${X} = "" ]]; then
 	EGIT_BRANCH=${EGIT_BRANCH:=master}
 else
@@ -123,7 +123,7 @@ fi
 # @ECLASS-VARIABLE: EGIT_TREE
 # @DESCRIPTION:
 # git eclass can checkout any tree (commit).
-eval X="\$${PN//-/_}_LIVE_TREE"
+eval X="\$${PN//[-+]/_}_LIVE_TREE"
 if [[ ${X} = "" ]]; then
 	: ${EGIT_TREE:=${EGIT_BRANCH}}
 else
