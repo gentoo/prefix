@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libev
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libev/ChangeLog,v 1.16 2009/08/19 16:38:41 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libev/ChangeLog,v 1.17 2009/09/03 13:41:15 matsuu Exp $
+
+*libev-3.80-r1 (03 Sep 2009)
+
+  03 Sep 2009; MATSUU Takuto <matsuu@gentoo.org> +libev-3.80-r1.ebuild:
+  Fixed dependency, bug #283558.
 
 *libev-3.80 (19 Aug 2009)
 
