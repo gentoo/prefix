@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <herd>gnome</herd>
+  <use>
+    <flag name="coverage">enable code coverage support</flag>
+    <flag name="pango">Use pango as fontbackend instead of freetype</flag>
+    <flag name="soup">Use SOUP as backend instead of curl</flag>
+    <flag name="xslt">enable support for XSLT</flag>
+  </use>
+</pkgmetadata>

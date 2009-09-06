@@ -1,0 +1,310 @@
+# ChangeLog for net-libs/webkit-gtk
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/ChangeLog,v 1.45 2009/09/03 22:14:44 mrpouet Exp $
+
+  03 Sep 2009; Romain Perier <mrpouet@gentoo.org>
+  metadata.xml:
+  Drop jokey from maintainers (after have been authorized by himself).
+
+  27 Jul 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  webkit-gtk-1.1.10.ebuild:
+  Add missing flex dependency.
+
+  21 Jul 2009; Markus Ullmann <jokey@gentoo.org>
+  -webkit-gtk-0_p46126.ebuild, +webkit-gtk-0_p46193.ebuild:
+  Version bump
+
+*webkit-gtk-0_p46193 (21 Jul 2009)
+
+  21 Jul 2009; Markus Ullmann <jokey@gentoo.org>
+  -webkit-gtk-0_p46126.ebuild, +webkit-gtk-0_p46193.ebuild:
+  Once done, right start over with a new snapshot
+
+  21 Jul 2009; Markus Ullmann <jokey@gentoo.org> webkit-gtk-0_p46126.ebuild,
+  +files/webkit-gtk-0_p46126-wx-parallel-make.patch:
+  Parallel make option and fix a nasty compile bug
+
+  21 Jul 2009; Markus Ullmann <jokey@gentoo.org> webkit-gtk-0_p46126.ebuild:
+  Fix Quoting
+
+*webkit-gtk-0_p46126 (21 Jul 2009)
+
+  21 Jul 2009; Markus Ullmann <jokey@gentoo.org>
+  +webkit-gtk-0_p46126.ebuild, +files/webkit-gtk-0_p46126-cxxmissing.patch,
+  +files/webkit-gtk-0_p46126-wxslot-gentoo.patch:
+  Add webkit nightly with wx support
+
+  30 Jun 2009; Mart Raudsepp <leio@gentoo.org> -webkit-gtk-0_p40220.ebuild:
+  Remove security vulnerable revision
+
+  28 Jun 2009; Markus Meier <maekke@gentoo.org>
+  webkit-gtk-0_p40220-r1.ebuild:
+  amd64/x86 stable, bug #271861
+
+  27 Jun 2009; Brent Baude <ranger@gentoo.org>
+  webkit-gtk-0_p40220-r1.ebuild:
+  Marking webkit-gtk-0_p40220-r1 ppc for bug 271861
+
+  27 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
+  webkit-gtk-0_p40220-r1.ebuild:
+  Stable on alpha, bug #271861
+
+*webkit-gtk-0_p40220-r1 (27 Jun 2009)
+
+  27 Jun 2009; <nirbheek@gentoo.org> +webkit-gtk-0_p40220-r1.ebuild,
+  +files/webkit-gtk-CVE-2009-0945.patch:
+  Fix bug 271861 (Array indexing vulnerability (CVE-2009-0945))
+
+*webkit-gtk-1.1.10 (19 Jun 2009)
+
+  19 Jun 2009; <mrpouet@gentoo.org> +webkit-gtk-1.1.10.ebuild:
+  Bump to 1.1.10, bug #274445, thanks to Priit Laes <amd@store20.com>
+
+  03 Jun 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  webkit-gtk-1.1.8.ebuild:
+  Fix bug 272236 -- libtool-1 problems
+
+  01 Jun 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  webkit-gtk-1.1.8.ebuild:
+  Maintainer mode still gets invoked even when configure is older than
+  configure.ac -- do an eautoreconf to update everything.
+
+  01 Jun 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  webkit-gtk-1.1.8.ebuild:
+  Reverse order of files to be sedded, fixes bug 271941
+
+  30 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -webkit-gtk-0_p42162.ebuild,
+  -files/webkit-gtk-0_p42162-gcc44-aliasing.patch:
+  Clean up old versions
+
+*webkit-gtk-1.1.8 (30 May 2009)
+
+  30 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +webkit-gtk-1.1.8.ebuild:
+  Bump to 1.1.8, also fix bug 259061
+
+  24 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  webkit-gtk-1.1.7.ebuild:
+  Oops. src_configure isn't a default phase in EAPI=1. => EAPI=2
+
+  23 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  webkit-gtk-1.1.7.ebuild:
+  Don't make pango default. It's experimental, buggy, and incomplete.
+  Upstream does not recommend it.
+
+*webkit-gtk-1.1.7 (23 May 2009)
+
+  23 May 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +webkit-gtk-1.1.7.ebuild, metadata.xml:
+  Bump to 1.1.7 (from gnome overlay). Lots of new features, libsoup support,
+  gnome-keyring support, etc. Add gnome as herd.
+
+  15 May 2009; Alexis Ballier <aballier@gentoo.org>
+  webkit-gtk-0_p40220.ebuild, webkit-gtk-0_p42162.ebuild:
+  keyword ~x86-fbsd
+
+  07 May 2009; Peter Alfredsen <loki_val@gentoo.org>
+  webkit-gtk-0_p40220.ebuild, webkit-gtk-0_p42162.ebuild,
+  +files/webkit-gtk-0_p40220-gcc44-aliasing.patch,
+  +files/webkit-gtk-0_p42162-gcc44-aliasing.patch:
+  Fix strict aliasing bug with gcc-4.4, bug 265579. Those letters really are
+  huge. dirtyepic++ for backporting.
+
+*webkit-gtk-0_p42162 (05 Apr 2009)
+
+  05 Apr 2009; Markus Ullmann <jokey@gentoo.org>
+  +webkit-gtk-0_p42162.ebuild:
+  Version bump
+
+  20 Mar 2009; Markus Meier <maekke@gentoo.org> webkit-gtk-0_p40220.ebuild:
+  amd64/x86 stable, bug #246816
+
+  20 Mar 2009; Raúl Porcel <armin76@gentoo.org> webkit-gtk-0_p40220.ebuild:
+  This revision doesn't work on ia64/sparc
+
+  19 Mar 2009; Tobias Klausmann <klausman@gentoo.org>
+  webkit-gtk-0_p40220.ebuild:
+  Fixed forgotten inherit (flag-o-matic for append-ldflags)
+
+  19 Mar 2009; Brent Baude <ranger@gentoo.org> webkit-gtk-0_p40220.ebuild:
+  Marking webkit-gtk-0_p40220 ppc for bug 246816
+
+  11 Mar 2009; Tobias Klausmann <klausman@gentoo.org>
+  webkit-gtk-0_p40220.ebuild:
+  Stable on alpha, bug #246816
+
+  31 Jan 2009; <jokey@gentoo.org> webkit-gtk-0_p40220.ebuild:
+  Dropping gnome-vfs dependency wrt bug #256456 and drop old
+
+*webkit-gtk-0_p40220 (25 Jan 2009)
+
+  25 Jan 2009; <jokey@gentoo.org> +webkit-gtk-0_p40220.ebuild:
+  Version bump to fix outstanding bugs
+
+*webkit-gtk-0_p37894 (26 Oct 2008)
+
+  26 Oct 2008; Markus Ullmann <jokey@gentoo.org>
+  +webkit-gtk-0_p37894.ebuild:
+  Version bump
+
+*webkit-gtk-0_p36403 (14 Sep 2008)
+
+  14 Sep 2008; Markus Ullmann <jokey@gentoo.org>
+  -webkit-gtk-0_p35913.ebuild, +webkit-gtk-0_p36403.ebuild:
+  Version bump
+
+  06 Sep 2008; Markus Ullmann <jokey@gentoo.org> ChangeLog:
+  Port from dev overlay
+
+*webkit-gtk-0_p36113 (06 Sep 2008)
+
+  06 Sep 2008; Markus Ullmann <jokey@gentoo.org>
+  -webkit-gtk-0_p35024.ebuild, -webkit-gtk-0_p35417.ebuild,
+  -webkit-gtk-0_p36013.ebuild, +webkit-gtk-0_p36113.ebuild:
+  Version bump
+
+*webkit-gtk-0_p36013 (01 Sep 2008)
+
+  01 Sep 2008; Markus Ullmann <jokey@gentoo.org>
+  +webkit-gtk-0_p36013.ebuild:
+  Version bump
+
+*webkit-gtk-0_p35913 (25 Aug 2008)
+
+  25 Aug 2008; Markus Ullmann <jokey@gentoo.org>
+  -webkit-gtk-0_p34753.ebuild, +webkit-gtk-0_p35913.ebuild:
+  Version bump and fix dependency for bug #235560 thanks to Jan Kuemmel for
+  testing and reporting
+
+  31 Jul 2008; Raúl Porcel <armin76@gentoo.org> webkit-gtk-0_p35417.ebuild:
+  Add ~alpha/~ia64/-sparc
+
+  30 Jul 2008; Markus Ullmann <jokey@gentoo.org> webkit-gtk-0_p35417.ebuild:
+  drop hildon from IUSE
+
+*webkit-gtk-0_p35417 (30 Jul 2008)
+
+  30 Jul 2008; Markus Ullmann <jokey@gentoo.org>
+  -webkit-gtk-0_p34382.ebuild, -webkit-gtk-0_p34469.ebuild,
+  +webkit-gtk-0_p35417.ebuild:
+  Version bump, drop hildon use flag as there's no ebuild for that framework
+  yet, bug #229021 for reference. Thanks to Brian Johnson
+
+*webkit-gtk-0_p35024 (06 Jul 2008)
+
+  06 Jul 2008; Hanno Boeck <hanno@gentoo.org> +webkit-gtk-0_p35024.ebuild:
+  Version bump.
+
+*webkit-gtk-0_p34753 (25 Jun 2008)
+
+  25 Jun 2008; Markus Ullmann <jokey@gentoo.org>
+  +webkit-gtk-0_p34753.ebuild:
+  Version bump
+
+  11 Jun 2008; Markus Ullmann <jokey@gentoo.org> ChangeLog:
+  Fix Header
+
+*webkit-gtk-0_p34469 (11 Jun 2008)
+
+  11 Jun 2008; Markus Ullmann <jokey@gentoo.org>
+  +webkit-gtk-0_p34469.ebuild:
+  Version bump with fixed ebuild, thanks to Joonas Henriksson in bug #225551
+
+*webkit-gtk-0_p34382 (08 Jun 2008)
+
+  08 Jun 2008; Markus Ullmann <jokey@gentoo.org> +metadata.xml,
+  +webkit-gtk-0_p34382.ebuild:
+  Rename to webkit-gtk as per consent on gentoo-dev irc channel
+
+  08 Jun 2008; Markus Ullmann <jokey@gentoo.org> webkitgtk-34382.ebuild:
+  actually add the improved ebuild
+
+*webkitgtk-34382 (08 Jun 2008)
+
+  08 Jun 2008; Markus Ullmann <jokey@gentoo.org> +metadata.xml,
+  +webkitgtk-34382.ebuild:
+  Initial import from sunrise overlay
+
+  07 Jun 2008; Markus Ullmann <jokey@gentoo.org> -webkitgtk-34192.ebuild,
+  +webkitgtk-34382.ebuild:
+  Version bump
+
+  06 Jun 2008; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  -webkitgtk-33431.ebuild:
+  Drop old version
+
+  29 May 2008; Markus Ullmann <jokey@gentoo.org> +webkitgtk-34192.ebuild:
+  Version bump
+
+  16 May 2008; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  -webkitgtk-31787.ebuild:
+  Drop old version
+
+  14 May 2008; Markus Ullmann <jokey@gentoo.org> +webkitgtk-33431.ebuild:
+  Version bump
+
+  11 Apr 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com>
+  -webkitgtk-31623.ebuild, +webkitgtk-31787.ebuild:
+  Version bump. USE svg only enable svg-experimental
+
+  05 Apr 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com>
+  webkitgtk-31623.ebuild:
+  Bug 190347. Add ~ppc keyword.
+
+  05 Apr 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com>
+  -webkitgtk-31535.ebuild, +webkitgtk-31623.ebuild:
+  Bump version. Add SVG options for getting Acid3 to 100%
+
+  03 Apr 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com>
+  -webkitgtk-31370.ebuild, webkitgtk-31535.ebuild:
+  Fix SVG compilation
+
+  02 Apr 2008; Markus Ullmann <jokey@gentoo.org> +webkitgtk-31535.ebuild:
+  Version bump
+
+  27 Mar 2008; Markus Ullmann <jokey@gentoo.org> -webkitgtk-31275.ebuild,
+  +webkitgtk-31370.ebuild:
+  Version bump per hanno's request
+
+  25 Mar 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com>
+  -webkitgtk-31224.ebuild:
+  Removed old r31224.
+
+  25 Mar 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com> ++:
+  Bug 190347. Updated ebuild for nightly build r31275
+
+  22 Mar 2008; Tiziano Müller <dev-zero@gentoo.org>
+  -webkitgtk-30468.ebuild, +webkitgtk-31224.ebuild:
+  Version bump.
+
+  23 Feb 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com> 
+  webkitgtk-30468.ebuild, -webkitgtk-30267.ebuild:
+  Bug 190347. New ebuild for WebKit r30468 nightly build.
+
+  15 Feb 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com> 
+  +webkitgtk-30267.ebuild, -webkitgtk-29487.ebuild:
+  New ebuild for new nightly build
+
+  18 Jan 2008; (Tommy[D]) tommy100@gmx.de webkitgtk-29487.ebuild:
+  Reorder KEYWORDS
+
+  16 Jan 2008; (Tommy[D]) tommy100@gmx.de -webkitgtk-29438.ebuild:
+  Drop old one
+
+  15 Jan 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com>
+  +webkitgtk-29487.ebuild:
+  New EBuild. Remove automake --add-missing since bug 205606
+
+  13 Jan 2008; Jakub Moc <jakub@gentoo.org> -webkitgtk-29336.ebuild,
+  webkitgtk-29438.ebuild:
+  Nuke old and add a comment on bad autotools usage
+
+  13 Jan 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com>
+  +webkitgtk-29438.ebuild:
+  New EBuild for r29438 nightly build
+
+  09 Jan 2008; Luca Bruno (Lethalman) <lethalman88@gmail.com> +metadata.xml,
+  +webkitgtk-29336.ebuild:
+  New EBuild for bug 190347 thanks to Joonas, Dale, genstef and helch
+
