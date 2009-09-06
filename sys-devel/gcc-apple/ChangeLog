@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gcc-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/ChangeLog,v 1.7 2009/09/05 16:46:34 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/ChangeLog,v 1.8 2009/09/06 09:36:37 grobian Exp $
+
+  06 Sep 2009; Fabian Groffen <grobian@gentoo.org>
+  files/gcc-apple-4.2.1-gfortran.patch:
+  Trim fortran patch such that it at least applies to the latest ebuild. The
+  removed part is for the build_gcc script that we don't use anyway.
 
 *gcc-apple-4.2.1_p5646 (05 Sep 2009)
 

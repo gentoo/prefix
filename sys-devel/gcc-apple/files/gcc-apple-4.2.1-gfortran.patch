@@ -1,89 +1,3 @@
-diff -Nru gcc_42-5564/build_gcc gcc_42-5564.mod/build_gcc
---- gcc_42-5564/build_gcc	2008-04-15 20:25:12.000000000 -0400
-+++ gcc_42-5564.mod/build_gcc	2008-08-29 17:25:03.000000000 -0400
-@@ -112,7 +112,7 @@
- CONFIGFLAGS="--disable-checking --enable-werror \
-   --prefix=$DEST_ROOT \
-   --mandir=\${prefix}/share/man \
--  --enable-languages=c,objc,c++,obj-c++ \
-+  --enable-languages=c,objc,c++,obj-c++,fortran \
-   --program-transform-name=/^[cg][^.-]*$/s/$/-$MAJ_VERS/ \
-   --with-gxx-include-dir=\${prefix}/include/c++/$LIBSTDCXX_VERSION \
-   --with-slibdir=/usr/lib \
-@@ -326,6 +326,8 @@
-     $DIR/dst-*-$t$DEST_ROOT/bin/$t-apple-darwin$DARWIN_VERS-gcc-$VERS || exit 1
-   lipo -output .$DEST_ROOT/bin/$t-apple-darwin$DARWIN_VERS-g++-$VERS -create \
-     $DIR/dst-*-$t$DEST_ROOT/bin/$t-apple-darwin$DARWIN_VERS-g++* || exit 1
-+  lipo -output .$DEST_ROOT/bin/$t-apple-darwin$DARWIN_VERS-gfortran-$VERS -create \
-+    $DIR/dst-*-$t$DEST_ROOT/bin/$t-apple-darwin$DARWIN_VERS-gfortran* || exit 1
- done
- 
- # lib
-@@ -348,16 +350,22 @@
- 		.$DEST_ROOT/lib/gcc/$t-apple-darwin$DARWIN_VERS/$VERS/ || exit 1
- 	    cp -p $DIR/dst-$h-$t$DEST_ROOT/lib/libgomp.spec \
- 		.$DEST_ROOT/lib/gcc/$t-apple-darwin$DARWIN_VERS/$VERS/ || exit 1
-+	    cp -p $DIR/dst-$h-$t$DEST_ROOT/lib/libgfortran.a \
-+		.$DEST_ROOT/lib/gcc/$t-apple-darwin$DARWIN_VERS/$VERS/ || exit 1
- 	    if [ $h = 'powerpc' ] ; then
- 		cp -p $DIR/dst-$h-$t$DEST_ROOT/lib/ppc64/libgomp.a \
- 		    .$DEST_ROOT/lib/gcc/$t-apple-darwin$DARWIN_VERS/$VERS/ppc64/ || exit 1
- 		cp -p $DIR/dst-$h-$t$DEST_ROOT/lib/ppc64/libgomp.spec \
- 		    .$DEST_ROOT/lib/gcc/$t-apple-darwin$DARWIN_VERS/$VERS/ppc64/ || exit 1
-+		cp -p $DIR/dst-$h-$t$DEST_ROOT/lib/ppc64/libgfortran.a \
-+		    .$DEST_ROOT/lib/gcc/$t-apple-darwin$DARWIN_VERS/$VERS/ppc64/ || exit 1
- 	    elif [ $h = 'i686' ] ; then
- 		cp -p $DIR/dst-$h-$t$DEST_ROOT/lib/x86_64/libgomp.a \
- 		    .$DEST_ROOT/lib/gcc/$t-apple-darwin$DARWIN_VERS/$VERS/x86_64/ || exit 1
- 		cp -p $DIR/dst-$h-$t$DEST_ROOT/lib/x86_64/libgomp.spec \
- 		    .$DEST_ROOT/lib/gcc/$t-apple-darwin$DARWIN_VERS/$VERS/x86_64/ || exit 1
-+		cp -p $DIR/dst-$h-$t$DEST_ROOT/lib/x86_64/libgfortran.a \
-+		    .$DEST_ROOT/lib/gcc/$t-apple-darwin$DARWIN_VERS/$VERS/x86_64/ || exit 1
- 	    fi
- 	fi
-     done
-@@ -432,6 +440,16 @@
- 	-L$DIR/dst-$BUILD-$h$DEST_ROOT/$h-apple-darwin$DARWIN_VERS/lib/                    \
-         -L$DIR/obj-$h-$BUILD/libiberty/                                        \
- 	-o $DEST_DIR/$DEST_ROOT/bin/tmp-$h-g++-$MAJ_VERS || exit 1
-+
-+    $DEST_DIR$DEST_ROOT/bin/$h-apple-darwin$DARWIN_VERS-gcc-$VERS                          \
-+	$ORIG_SRC_DIR/driverdriver.c                               \
-+	-DPDN="\"-apple-darwin$DARWIN_VERS-gfortran-$VERS\""                                    \
-+	-DIL="\"$DEST_ROOT/bin/\"" -I  $ORIG_SRC_DIR/include                   \
-+	-I  $ORIG_SRC_DIR/gcc -I  $ORIG_SRC_DIR/gcc/config                     \
-+	-liberty -L$DIR/dst-$BUILD-$h$DEST_ROOT/lib/                           \
-+	-L$DIR/dst-$BUILD-$h$DEST_ROOT/$h-apple-darwin$DARWIN_VERS/lib/                    \
-+        -L$DIR/obj-$h-$BUILD/libiberty/                                        \
-+	-o $DEST_DIR/$DEST_ROOT/bin/tmp-$h-gfortran-$MAJ_VERS || exit 1
- done
- 
- lipo -output $DEST_DIR/$DEST_ROOT/bin/gcc-$MAJ_VERS -create \
-@@ -440,10 +458,14 @@
- lipo -output $DEST_DIR/$DEST_ROOT/bin/g++-$MAJ_VERS -create \
-   $DEST_DIR/$DEST_ROOT/bin/tmp-*-g++-$MAJ_VERS || exit 1
- 
-+lipo -output $DEST_DIR/$DEST_ROOT/bin/gfortran-$MAJ_VERS -create \
-+  $DEST_DIR/$DEST_ROOT/bin/tmp-*-gfortran-$MAJ_VERS || exit 1
-+
- ln -f $DEST_DIR/$DEST_ROOT/bin/g++-$MAJ_VERS $DEST_DIR/$DEST_ROOT/bin/c++-$MAJ_VERS || exit 1
- 
- rm $DEST_DIR/$DEST_ROOT/bin/tmp-*-gcc-$MAJ_VERS || exit 1
- rm $DEST_DIR/$DEST_ROOT/bin/tmp-*-g++-$MAJ_VERS || exit 1
-+rm $DEST_DIR/$DEST_ROOT/bin/tmp-*-gfortran-$MAJ_VERS || exit 1
- 
- # Remove extraneous stuff
- rm -rf $DEST_DIR/$DEST_ROOT/lib/gcc/*/*/include/c++
-@@ -472,7 +494,7 @@
- ########################################
- # Remove debugging information from DEST_DIR.
- 
--find $DEST_DIR -perm -0111 \! -name fixinc.sh \
-+find $DEST_DIR -perm -0111 \! -name fixinc.sh \! -name libgfortran\* \
-     \! -name mkheaders \! -name libstdc++.dylib -type f -print \
-   | xargs strip || exit 1
- find $DEST_DIR -name \*.a -print | xargs strip -SX || exit 1
-diff -Nru gcc_42-5564/gcc/fortran/Make-lang.in gcc_42-5564.mod/gcc/fortran/Make-lang.in
 --- gcc_42-5564/gcc/fortran/Make-lang.in	2008-04-01 17:26:19.000000000 -0400
 +++ gcc_42-5564.mod/gcc/fortran/Make-lang.in	2008-08-29 17:25:03.000000000 -0400
 @@ -73,7 +73,7 @@
@@ -104,7 +18,6 @@ diff -Nru gcc_42-5564/gcc/fortran/Make-lang.in gcc_42-5564.mod/gcc/fortran/Make-
  
  gt-fortran-trans.h    : s-gtype; @true
  #
-diff -Nru gcc_42-5564/gcc/fortran/fake.c gcc_42-5564.mod/gcc/fortran/fake.c
 --- gcc_42-5564/gcc/fortran/fake.c	1969-12-31 19:00:00.000000000 -0500
 +++ gcc_42-5564.mod/gcc/fortran/fake.c	2008-08-29 17:42:58.000000000 -0400
 @@ -0,0 +1,27 @@
