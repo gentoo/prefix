@@ -9,7 +9,7 @@ HOMEPAGE="http://www.freespiders.org/projects/libcroco/"
 
 LICENSE="LGPL-2"
 SLOT="0.6"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/glib-2
