@@ -1,6 +1,22 @@
 # ChangeLog for mail-client/mutt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.151 2009/08/31 01:16:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.153 2009/09/07 19:12:25 grobian Exp $
+
+*mutt-1.5.20-r5 (07 Sep 2009)
+
+  07 Sep 2009; Fabian Groffen <grobian@gentoo.org> +mutt-1.5.20-r5.ebuild,
+  +files/mutt-1.5.20-fix-mh-parsing-14bb498c6a1c.patch,
+  +files/mutt-1.5.20-next-invalid-pattern-crash-6a08a5244d60.patch,
+  +files/mutt-1.5.20-search-pattern-crash-053ef7bbaa72.patch:
+  Bump, three more regression patches fixing a block when opening an MH
+  folder, a segfault on certain search patterns and a segfault after 'next'
+  when the previous search pattern was invalid
+
+  07 Sep 2009; Fabian Groffen <grobian@gentoo.org> -mutt-1.5.15-r2.ebuild,
+  -files/mutt-1.5.15-parallel-make.patch, -mutt-1.5.20-r1.ebuild,
+  -files/mutt-1.5.20-tab-subject-questionmark-298194c414f0.patch,
+  -files/slang.patch:
+  Drop old versions
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> mutt-1.5.20-r4.ebuild:
   Marking mutt-1.5.20-r4 ppc64 for bug 275703
