@@ -123,6 +123,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
 	# don't try to build antique stuff
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
+	# this fails to compile on OpenSolaris at least, do we need it?
+	epatch "${FILESDIR}"/${PN}-2.6.2-no-sunaudiodev.patch
 
 	# http://bugs.python.org/issue6308
 	epatch "${FILESDIR}"/${P}-termios-noqnx.patch
