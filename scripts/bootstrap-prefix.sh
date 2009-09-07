@@ -114,6 +114,9 @@ bootstrap_setup() {
 		x86_64-apple-darwin9)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/x64"
 			;;
+		i*86-apple-darwin10)
+			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.6/x86"
+			;;
 		x86_64-apple-darwin10)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.6/x64"
 			;;
@@ -647,26 +650,7 @@ if [[ -z ${CHOST} ]]; then
 				;;
 			Darwin)
 				rev="`uname -r | cut -d'.' -f 1`"
-				case $rev in
-					10)
-						# Snow Leopard defaults to a 64-bits toolchain
-						case `uname -p` in
-							i386)
-								CHOST="x86_64-apple-darwin$rev"
-							;;
-							powerpc)
-								CHOST="powerpc64-apple-darwin$rev"
-							;;
-							*)
-								# but not on the iPhone (arm)
-								CHOST="`uname -p`-apple-darwin$rev"
-							;;
-						esac
-					;;
-					*)
-						CHOST="`uname -p`-apple-darwin$rev"
-					;;
-				esac
+				CHOST="`uname -p`-apple-darwin$rev"
 				;;
 			SunOS)
 				case `uname -p` in
