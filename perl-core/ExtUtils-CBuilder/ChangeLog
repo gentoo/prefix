@@ -1,6 +1,10 @@
 # ChangeLog for perl-core/ExtUtils-CBuilder
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/ExtUtils-CBuilder/ChangeLog,v 1.9 2009/09/02 07:28:19 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/ExtUtils-CBuilder/ChangeLog,v 1.10 2009/09/06 08:32:12 maekke Exp $
+
+  06 Sep 2009; Markus Meier <maekke@gentoo.org>
+  ExtUtils-CBuilder-0.26.03.ebuild:
+  amd64 stable, bug #280501
 
   02 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
   ExtUtils-CBuilder-0.26.03.ebuild:
