@@ -24,7 +24,7 @@ PHPCONFUTILS_MISSING_DEPS="adabas birdstep db2 dbmaker empress empress-bcs esoob
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-inherit db-use flag-o-matic autotools toolchain-funcs libtool eutils phpconfutils php-common-r1
+inherit db-use flag-o-matic autotools toolchain-funcs libtool eutils phpconfutils php-common-r1 multilib
 
 # @ECLASS-VARIABLE: MY_PHP_P
 # @DESCRIPTION:
@@ -295,8 +295,8 @@ php5_2-sapi_install_ini() {
 
 	# Install any extensions built as shared objects
 	if use sharedext ; then
-		for x in `ls "${D}/${PHPEXTDIR}/"*.so | sort` ; do
-			inifilename=${x/.so/.ini}
+		for x in `ls "${D}/${PHPEXTDIR}/"*$(get_modname) | sort` ; do
+			inifilename=${x/$(get_modname)/.ini}
 			inifilename=`basename ${inifilename}`
 			echo "extension=`basename ${x}`" >> "${D}/${PHP_EXT_INI_DIR}/${inifilename}"
 			dosym "${PHP_EXT_INI_DIR#${EPREFIX}}/${inifilename}" "${PHP_EXT_INI_DIR_ACTIVE#${EPREFIX}}/${inifilename}"
@@ -678,9 +678,9 @@ php5_2-sapi_src_install() {
 
 	# And install the modules to it
 	if use sharedext ; then
-		for x in `ls "${S}/modules/"*.so | sort` ; do
+		for x in `ls "${S}/modules/"*$(get_modname) | sort` ; do
 			module=`basename ${x}`
-			modulename=${module/.so/}
+			modulename=${module/$(get_modname)/}
 			insinto "${PHPEXTDIR#${EPREFIX}}"
 			einfo "Installing PHP ${modulename} extension"
 			doins "modules/${module}"
