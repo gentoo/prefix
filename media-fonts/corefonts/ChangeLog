@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/corefonts
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/ChangeLog,v 1.31 2009/05/25 02:32:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/corefonts/ChangeLog,v 1.32 2009/09/07 01:21:29 dirtyepic Exp $
+
+  07 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> -corefonts-1-r2.ebuild:
+  Remove old.
 
   25 May 2009; Jeroen Roovers <jer@gentoo.org> corefonts-1-r4.ebuild:
   Fix quoting issue.
