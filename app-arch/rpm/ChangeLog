@@ -1,6 +1,17 @@
 # ChangeLog for app-arch/rpm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.102 2009/08/21 13:18:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.104 2009/09/06 19:27:42 idl0r Exp $
+
+  06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  -files/rpm-4.0.4-gentoo-uclibc.patch, -files/rpm-4.0.4-sandbox.patch,
+  rpm-4.4.6-r6.ebuild, rpm-4.4.7-r1.ebuild, rpm-4.4.7-r2.ebuild,
+  rpm-4.4.7-r4.ebuild, -files/rpm-4.4.7-config.rpath.patch:
+  Remove unused patches. Fix repoman complains.
+
+  05 Sep 2009; Torsten Veller <tove@gentoo.org> rpm-4.4.6-r6.ebuild,
+  rpm-4.4.7-r1.ebuild, rpm-4.4.7-r2.ebuild, rpm-4.4.7-r4.ebuild,
+  rpm-5.0.0.ebuild, rpm-5.0.3.ebuild, rpm-5.1.6.ebuild:
+  Add INSTALLDIRS=vendor to install perl modules to vendor_perl (#280728)
 
   21 Aug 2009; Ulrich Mueller <ulm@gentoo.org> rpm-5.0.0.ebuild,
   rpm-5.0.3.ebuild, rpm-5.1.6.ebuild, metadata.xml:

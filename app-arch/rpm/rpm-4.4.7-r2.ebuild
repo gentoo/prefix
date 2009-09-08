@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r2.ebuild,v 1.2 2007/02/12 19:44:53 sanchan Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r2.ebuild,v 1.4 2009/09/06 19:27:42 idl0r Exp $
 
 inherit eutils autotools distutils perl-module flag-o-matic
 
@@ -74,7 +74,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake DESTDIR="${D}" INSTALLDIRS=vendor install || die "emake install failed"
 
 	mv "${ED}"/bin/rpm "${ED}"/usr/bin
 	rmdir "${ED}"/bin
@@ -91,12 +91,12 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [[ -f ${EROOT}/var/lib/rpm/Packages ]] ; then
+	if [[ -f "${EROOT}"/var/lib/rpm/Packages ]] ; then
 		einfo "RPM database found... Rebuilding database (may take a while)..."
-		"${EROOT}"/usr/bin/rpm --rebuilddb --root=${ROOT}
+		"${EROOT}"/usr/bin/rpm --rebuilddb --root="${ROOT}"
 	else
 		einfo "No RPM database found... Creating database..."
-		"${EROOT}"/usr/bin/rpm --initdb --root=${ROOT}
+		"${EROOT}"/usr/bin/rpm --initdb --root="${ROOT}"
 	fi
 
 	distutils_pkg_postinst
