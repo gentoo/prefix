@@ -1,5 +1,7 @@
---- qsize.c.orig	2009-03-31 14:46:38 +0200
-+++ qsize.c	2009-03-31 14:46:56 +0200
+committed in 0.3+
+
+--- qsize.c
++++ qsize.c
 @@ -44,6 +44,10 @@
  # define S_BLKSIZE S_BLOCK_SIZE
  #endif
@@ -18,8 +20,8 @@
  	} while (0)
  
 -#else /* __sun__ */
-+#elif defined(__hpux__)
-+  /* must not include both dir.h and dirent.h on hpux11.11 */
++#elif defined(__hpux__) || defined(__MINT__)
++  /* must not include both dir.h and dirent.h on hpux11.11 & FreeMiNT */
 +#else
  # include <sys/dir.h>
  #endif

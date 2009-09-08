@@ -1,0 +1,20 @@
+committed in 0.3+
+
+--- main.c
++++ main.c
+@@ -29,7 +29,6 @@
+ #include <libgen.h>
+ #include <limits.h>
+ #include <assert.h>
+-#include <dlfcn.h>
+ #include "main.h"
+ 
+ /* prototypes and such */
+@@ -46,7 +45,6 @@
+ int lookup_applet_idx(const char *);
+ 
+ /* variables to control runtime behavior */
+-void *dlhandle = NULL;
+ char *module_name = NULL;
+ char *modpath = NULL;
+ char exact = 0;
