@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.221 2009/08/29 03:10:28 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.222 2009/09/06 20:57:05 ranger Exp $
+
+  06 Sep 2009; Brent Baude <ranger@gentoo.org> pygtk-2.14.1-r1.ebuild:
+  Marking pygtk-2.14.1-r1 ppc64 for bug 279391
 
 *pygtk-2.16.0 (29 Aug 2009)
 
