@@ -19,7 +19,7 @@
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-inherit php-ext-base-r1 flag-o-matic autotools depend.php
+inherit php-ext-base-r1 flag-o-matic autotools depend.php multilib
 
 EXPORT_FUNCTIONS src_unpack src_compile src_install
 
@@ -89,7 +89,7 @@ php-ext-source-r1_src_compile() {
 	# First compile run: the default one
 	econf ${my_conf} || die "Unable to configure code to compile"
 	emake || die "Unable to make code"
-	mv -f "modules/${PHP_EXT_NAME}.so" "${WORKDIR}/${PHP_EXT_NAME}-default.so" || die "Unable to move extension"
+	mv -f "modules/${PHP_EXT_NAME}$(get_modname)" "${WORKDIR}/${PHP_EXT_NAME}-default$(get_modname)" || die "Unable to move extension"
 
 	# Concurrent PHP Apache2 modules support
 	if has_concurrentmodphp ; then
@@ -101,7 +101,7 @@ php-ext-source-r1_src_compile() {
 		sed -e "s|-Wl,--version-script=${EROOT}/var/lib/php-pkg/${PHP_PKG}/php${PHP_VERSION}-ldvs|-Wl,--version-script=${EROOT}/var/lib/php-pkg/${PHP_PKG}/php${PHP_VERSION}-ldvs -Wl,--allow-shlib-undefined -L/usr/$(get_libdir)/apache2/modules/ -lphp${PHP_VERSION}|g" -i Makefile
 		append-ldflags "-Wl,--allow-shlib-undefined -L/usr/$(get_libdir)/apache2/modules/ -lphp${PHP_VERSION}"
 		emake || die "Unable to make versioned code"
-		mv -f "modules/${PHP_EXT_NAME}.so" "${WORKDIR}/${PHP_EXT_NAME}-versioned.so" || die "Unable to move versioned extension"
+		mv -f "modules/${PHP_EXT_NAME}$(get_modname)" "${WORKDIR}/${PHP_EXT_NAME}-versioned$(get_modname)" || die "Unable to move versioned extension"
 	fi
 }
 
@@ -118,13 +118,13 @@ php-ext-source-r1_src_install() {
 	addpredict /usr/share/snmp/mibs/.index
 
 	# Let's put the default module away
-	insinto "${EXT_DIR}"
-	newins "${WORKDIR}/${PHP_EXT_NAME}-default.so" "${PHP_EXT_NAME}.so" || die "Unable to install extension"
+	insinto "${EXT_DIR#${EPREFIX}}"
+	newins "${WORKDIR}/${PHP_EXT_NAME}-default$(get_modname)" "${PHP_EXT_NAME}$(get_modname)" || die "Unable to install extension"
 
 	# And now the versioned one, if it exists
 	if has_concurrentmodphp ; then
-		insinto "${EXT_DIR}-versioned"
-		newins "${WORKDIR}/${PHP_EXT_NAME}-versioned.so" "${PHP_EXT_NAME}.so" || die "Unable to install extension"
+		insinto "${EXT_DIR#${EPREFIX}}-versioned"
+		newins "${WORKDIR}/${PHP_EXT_NAME}-versioned$(get_modname)" "${PHP_EXT_NAME}$(get_modname)" || die "Unable to install extension"
 	fi
 
 	for doc in ${DOCS} ; do
