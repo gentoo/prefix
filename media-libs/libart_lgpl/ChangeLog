@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libart_lgpl
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/ChangeLog,v 1.62 2008/03/22 03:59:04 dang Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/ChangeLog,v 1.63 2009/09/07 22:07:33 eva Exp $
+
+  07 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -libart_lgpl-2.3.19-r1.ebuild:
+  Clean up old revision.
 
   22 Mar 2008; Daniel Gryniewicz <dang@gentoo.org>
   libart_lgpl-2.3.20.ebuild:
