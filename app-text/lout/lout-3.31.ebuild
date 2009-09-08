@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lout/lout-3.31.ebuild,v 1.3 2009/07/23 23:02:13 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lout/lout-3.31.ebuild,v 1.4 2009/09/06 18:36:26 idl0r Exp $
 
 inherit toolchain-funcs
 
@@ -54,13 +54,13 @@ src_install() {
 
 	mkdir -p ${bindir} ${docdir} ${mandir}
 
-	make BINDIR=${bindir} \
+	emake BINDIR=${bindir} \
 		LIBDIR=${libdir} \
 		DOCDIR=${docdir} \
 		MANDIR=${mandir} \
 		install installdoc installman || die "make install failed"
 
-	lout -x -s ${ED}/usr/share/lout/include/init || die "lout init failed"
+	lout -x -s "${ED}"/usr/share/lout/include/init || die "lout init failed"
 
 	mv ${docdir}/README{,.docs}
 	dodoc README READMEPDF blurb blurb.short whatsnew
