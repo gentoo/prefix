@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/quassel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.56 2009/09/04 20:42:23 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.57 2009/09/05 21:34:35 maekke Exp $
+
+  05 Sep 2009; Markus Meier <maekke@gentoo.org> quassel-0.4.3.ebuild:
+  amd64/x86 stable, bug #249488
 
   04 Sep 2009; Pielmeier Daniel <billie@gentoo.org> metadata.xml:
   Add upstream author to metadata.
