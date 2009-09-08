@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/eselect-emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.78 2009/06/11 20:24:26 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/ChangeLog,v 1.80 2009/09/07 10:28:44 fauli Exp $
+
+  07 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  -eselect-emacs-1.8.ebuild, -eselect-emacs-1.9.ebuild:
+  clean up
+
+  06 Sep 2009; Brent Baude <ranger@gentoo.org> eselect-emacs-1.10.ebuild:
+  Marking eselect-emacs-1.10 ppc64 for bug 272989
 
   11 Jun 2009; Markus Meier <maekke@gentoo.org> eselect-emacs-1.10.ebuild:
   amd64 stable, bug #272989
