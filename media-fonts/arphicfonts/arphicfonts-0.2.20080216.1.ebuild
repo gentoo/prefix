@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/arphicfonts/arphicfonts-0.2.20080216.1.ebuild,v 1.2 2008/05/31 04:51:56 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/arphicfonts/arphicfonts-0.2.20080216.1.ebuild,v 1.4 2009/09/07 21:20:06 dirtyepic Exp $
 
 inherit font
 
@@ -69,27 +69,4 @@ src_install() {
 	done
 	cd "${S}"
 	font_src_install
-}
-
-pkg_postinst() {
-	font_pkg_postinst
-	if use X
-	then
-		elog 'This package supplies fontconfig configuration files'
-		elog 'which may produce output preferable to the default.'
-		elog 'These are the files supplied:'
-		elog '	25-ttf-arphic-ukai-render.conf'
-		elog '	35-ttf-arphic-ukai-aliases.conf'
-		elog '	41-ttf-arphic-ukai.conf'
-		elog '	75-ttf-arphic-ukai-select.conf'
-		elog '	90-ttf-arphic-ukai-embolden.conf'
-		elog '	25-ttf-arphic-uming-bitmaps.conf'
-		elog '	25-ttf-arphic-uming-render.conf'
-		elog '	35-ttf-arphic-uming-aliases.conf'
-		elog '	41-ttf-arphic-uming.conf'
-		elog '	64-ttf-arphic-uming.conf'
-		elog '	90-ttf-arphic-uming-embolden.conf'
-		elog 'To enable one of them, do (for example):'
-		elog '	eselect fontconfig 90-ttf-arphic-uming-embolden.conf enable'
-	fi
 }

@@ -1,6 +1,17 @@
 # ChangeLog for media-fonts/arphicfonts
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/arphicfonts/ChangeLog,v 1.46 2008/05/30 17:37:11 loki_val Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/arphicfonts/ChangeLog,v 1.49 2009/09/07 21:20:06 dirtyepic Exp $
+
+  07 Sep 2009; Ryan Hill <dirtyepic@gentoo.org>
+  arphicfonts-0.2.20080216.1.ebuild:
+  Don't override pkg_postinst.
+
+  07 Sep 2009; Brent Baude <ranger@gentoo.org>
+  arphicfonts-0.2.20080216.1.ebuild:
+  Marking arphicfonts-0.2.20080216.1 ppc64 for bug 283909
+
+  07 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> -arphicfonts-0.1-r2.ebuild:
+  Remove old.
 
   30 May 2008; Peter Alfredsen <loki_val@gentoo.org> ChangeLog:
   Version bump. Closes bug 220303.
