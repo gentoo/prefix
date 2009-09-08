@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/wxpython
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.124 2009/08/30 17:09:43 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.125 2009/09/06 20:22:16 idl0r Exp $
+
+  06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  -files/wxpython-2.8.7-wxversion-scripts.patch,
+  -files/wxpython-2.8.8.1-musthaveapp.patch, -files/wxpy-config.py:
+  Remove unused patches.
 
   30 Aug 2009; Ryan Hill <dirtyepic@gentoo.org> wxpython-2.8.10.1.ebuild:
   Revert usage of += operators. They're a bash-3.1 feature and PMS is stuck
