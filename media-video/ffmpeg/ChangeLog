@@ -1,6 +1,28 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.305 2009/08/04 09:18:52 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.310 2009/09/07 08:52:08 aballier Exp $
+
+  07 Sep 2009; Alexis Ballier <aballier@gentoo.org>
+  ffmpeg-0.5_p19787.ebuild, ffmpeg-9999-r1.ebuild:
+  disable tests without USE=encode, they fail if it is not enabled
+
+  07 Sep 2009; Alexis Ballier <aballier@gentoo.org>
+  ffmpeg-0.5_p19787.ebuild:
+  drop keywords for arches that dont have opencore-amr keyworded
+
+*ffmpeg-0.5_p19787 (06 Sep 2009)
+
+  06 Sep 2009; Alexis Ballier <aballier@gentoo.org>
+  +ffmpeg-0.5_p19787.ebuild:
+  Add today's ffmpeg svn snapshot.
+
+  06 Sep 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  Use ffmpeg.org svn repo and add PV conditionals so that we can make
+  snapshots by simply copying -9999
+
+  06 Sep 2009; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  Correctly detect cpu by upstream checks when march=native is used, bug
+  #273421
 
   04 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> ffmpeg-9999-r1.ebuild,
   metadata.xml:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.19 2009/09/07 08:52:08 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5_p19787.ebuild,v 1.3 2009/09/07 08:52:08 aballier Exp $
 
 EAPI=2
 SCM=""
@@ -76,6 +76,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-solaris.patch
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-apple.patch
+	[[ ${CHOST} == *-freebsd7* ]] && \
+		epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-freebsd7.patch
 	# /bin/sh on at least Solaris can't cope very will with these scripts
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
 }
