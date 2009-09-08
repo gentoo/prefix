@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/ksh
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.38 2008/11/10 23:30:03 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.39 2009/09/06 19:05:41 idl0r Exp $
+
+  06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  -files/ksh-93.20030724-libs.diff, ksh-93.20071105.ebuild,
+  ksh-93.20081104.ebuild, -files/ksh-build-problems.diff:
+  Remove unused patches. Fix repoman complains.
 
 *ksh-93.20081104 (10 Nov 2008)
 
