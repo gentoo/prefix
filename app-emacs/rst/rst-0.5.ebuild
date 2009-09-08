@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/rst/rst-0.5.ebuild,v 1.6 2009/08/31 18:08:56 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/rst/rst-0.5.ebuild,v 1.7 2009/09/06 08:48:06 maekke Exp $
 
 inherit elisp
 
