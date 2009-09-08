@@ -11,6 +11,10 @@
 # @DESCRIPTION:
 # Some useful functions for dealing with Python.
 
+# Prefix note:
+# have python_get* return WITHOUT EPREFIX, since they should be relative to
+# EROOT, and sometimes are used with helpers
+
 inherit multilib
 
 if [[ -n "${NEED_PYTHON}" ]] ; then
@@ -517,10 +521,10 @@ python_need_rebuild() {
 # Run without arguments, returns the Python include directory.
 python_get_includedir() {
 	if [[ -n "${PYTHON_ABI}" ]]; then
-		echo "${EPREFIX}/usr/include/python${PYTHON_ABI}"
+		echo "/usr/include/python${PYTHON_ABI}"
 	else
 		python_version
-		echo "${EPREFIX}/usr/include/python${PYVER}"
+		echo "/usr/include/python${PYVER}"
 	fi
 }
 
@@ -529,10 +533,10 @@ python_get_includedir() {
 # Run without arguments, returns the Python library directory.
 python_get_libdir() {
 	if [[ -n "${PYTHON_ABI}" ]]; then
-		echo "${EPREFIX}/usr/$(get_libdir)/python${PYTHON_ABI}"
+		echo "/usr/$(get_libdir)/python${PYTHON_ABI}"
 	else
 		python_version
-		echo "${EPREFIX}/usr/$(get_libdir)/python${PYVER}"
+		echo "/usr/$(get_libdir)/python${PYVER}"
 	fi
 }
 
