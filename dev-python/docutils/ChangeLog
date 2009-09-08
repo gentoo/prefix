@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/docutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.91 2009/08/12 01:17:09 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.92 2009/09/06 22:56:44 idl0r Exp $
+
+  06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  -files/50docutils-0.4-gentoo.el:
+  Remove unused patch.
 
 *docutils-0.5-r1 (12 Aug 2009)
 
