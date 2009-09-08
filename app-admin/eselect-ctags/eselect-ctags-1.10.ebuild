@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ctags/eselect-ctags-1.10.ebuild,v 1.6 2009/06/11 20:23:36 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ctags/eselect-ctags-1.10.ebuild,v 1.7 2009/09/06 16:35:45 ranger Exp $
 
 inherit eutils
 
