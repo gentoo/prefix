@@ -19,7 +19,7 @@ DEPEND="${RDEPEND}
 	!app-cdr/cdrtools
 	hfs? ( sys-apps/file )"
 
-PATCHES=( "${FILESDIR}/${P}-glibc-2.10.patch" )
+PATCHES=( "${FILESDIR}/${P}-glibc-2.10.patch" "${FILESDIR}"/${P}-darwin.patch )
 
 pkg_setup() {
 	# this might break others (Solaris), since it removes -lrt from the

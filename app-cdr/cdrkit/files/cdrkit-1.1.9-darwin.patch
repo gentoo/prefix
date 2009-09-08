@@ -1,0 +1,20 @@
+--- /var/folders/Pd/Pdnfrt7lFNuAynJB73STUk+++TI/-Tmp-/tmp.MkCvNI67IS	2009-09-06 14:11:35 -0400
++++ a/include/AddScgBits.cmake	2009-09-06 14:12:21 -0400
+@@ -57,9 +57,13 @@
+ SET(CMAKE_REQUIRED_LIBRARIES )
+    CHECK_C_SOURCE_COMPILES("${TESTSRC}" LIBC_SCHED)
+ 
+-IF(NOT LIBC_SCHED)
+-   LIST(APPEND EXTRA_LIBS -lrt)
+-   #MESSAGE("Using librt for realtime functions")
+-ENDIF(NOT LIBC_SCHED)
++IF(APPLE)
++   LIST(APPEND EXTRA_LIBS -pthread "-framework CoreFoundation" "-framework IOKit")
++ELSE(APPLE)
++   IF(NOT LIBC_SCHED)
++      LIST(APPEND EXTRA_LIBS -lrt)
++      #MESSAGE("Using librt for realtime functions")
++   ENDIF(NOT LIBC_SCHED)
++ENDIF(APPLE)
+ 
+ ENDIF(NOT GUARD_SCGCONFIG)
