@@ -11,7 +11,7 @@ SRC_URI="http://herrie.info/distfiles/${P}.tar.bz2"
 
 LICENSE="BSD-2 GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="ao alsa pulseaudio oss http modplug mp3 sndfile vorbis xspf unicode nls coreaudio"
 
 APP_LINGUAS="ca da de es fi ga nl pl pt_BR ru sv tr vi zh_CN"
