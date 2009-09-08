@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/nss
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.151 2009/08/30 23:41:31 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.152 2009/09/05 20:39:37 keytoaster Exp $
+
+  05 Sep 2009; Tobias Heinlein <keytoaster@gentoo.org> nss-3.12.3-r1.ebuild:
+  amd64 stable wrt bug #280839
 
   30 Aug 2009; Brent Baude <ranger@gentoo.org> nss-3.12.3-r1.ebuild:
   Marking nss-3.12.3-r1 ppc64 for bug 280839
