@@ -1,6 +1,11 @@
 # ChangeLog for sci-biology/ncbi-tools
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.70 2009/09/04 18:12:02 weaver Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.71 2009/09/06 04:56:06 darkside Exp $
+
+  06 Sep 2009; Jeremy Olexa <darkside@gentoo.org>
+  ncbi-tools-20090301.ebuild:
+  amd64 stable, bug 283678. As requested, compile tested only due to
+  complexity
 
 *ncbi-tools-20090809 (04 Sep 2009)
 
