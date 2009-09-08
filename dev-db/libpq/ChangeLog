@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/libpq
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.154 2009/08/02 13:45:52 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.155 2009/09/07 13:44:48 armin76 Exp $
+
+  07 Sep 2009; Raúl Porcel <armin76@gentoo.org> libpq-8.1.11.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #268138
 
   02 Aug 2009; Markus Meier <maekke@gentoo.org> libpq-8.1.11.ebuild:
   amd64 stable, bug #268138
