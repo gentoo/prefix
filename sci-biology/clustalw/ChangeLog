@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/clustalw
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/ChangeLog,v 1.19 2009/08/18 17:24:32 weaver Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/ChangeLog,v 1.20 2009/09/06 05:01:43 darkside Exp $
+
+  06 Sep 2009; Jeremy Olexa <darkside@gentoo.org> clustalw-2.0.11.ebuild:
+  amd64 stable, bug 282109
 
   18 Aug 2009; Andrey Kislyuk <weaver@gentoo.org> clustalw-1.83-r2.ebuild:
   Fix Manifest
