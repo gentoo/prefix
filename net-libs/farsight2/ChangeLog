@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/farsight2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/ChangeLog,v 1.9 2009/09/01 13:32:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/ChangeLog,v 1.10 2009/09/07 05:36:14 tester Exp $
+
+*farsight2-0.0.15 (07 Sep 2009)
+
+  07 Sep 2009; Olivier Crête <tester@gentoo.org> +farsight2-0.0.15.ebuild:
+  Version bump, enable msn plugin
 
   01 Sep 2009; Jeroen Roovers <jer@gentoo.org> farsight2-0.0.14.ebuild:
   Marked ~hppa (bug #282989).
