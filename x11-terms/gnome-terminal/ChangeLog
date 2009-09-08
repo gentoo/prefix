@@ -1,6 +1,11 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.199 2009/08/28 16:27:47 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.200 2009/09/06 12:57:38 eva Exp $
+
+  06 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-terminal-2.26.1.ebuild, gnome-terminal-2.26.2.ebuild,
+  gnome-terminal-2.26.3.1-r1.ebuild:
+  Add libgnome to RDEPEND, bug #274638.
 
 *gnome-terminal-2.26.3.1-r1 (28 Aug 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.26.3.1-r1.ebuild,v 1.1 2009/08/28 16:27:47 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.26.3.1-r1.ebuild,v 1.2 2009/09/06 12:57:38 eva Exp $
 
 inherit eutils gnome2
 
@@ -12,13 +12,15 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
+# libgnome needed for some schema, bug #274638
 RDEPEND=">=dev-libs/glib-2.16.0
 	>=x11-libs/gtk+-2.14.0
 	>=gnome-base/gconf-2.14
 	>=x11-libs/startup-notification-0.8
 	>=x11-libs/vte-0.20.0
 	>=dev-libs/dbus-glib-0.6
-	x11-libs/libSM"
+	x11-libs/libSM
+	gnome-base/libgnome"
 DEPEND="${RDEPEND}
 	  sys-devel/gettext
 	>=dev-util/intltool-0.40
