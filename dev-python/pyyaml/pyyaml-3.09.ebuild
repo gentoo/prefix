@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/pyyaml-3.09.ebuild,v 1.1 2009/09/04 17:56:09 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyyaml/pyyaml-3.09.ebuild,v 1.2 2009/09/05 16:39:21 arfrever Exp $
 
 EAPI="2"
 
@@ -26,6 +26,10 @@ RDEPEND="libyaml? ( dev-libs/libyaml )"
 S="${WORKDIR}/${MY_P}"
 
 PYTHON_MODNAME="yaml"
+
+pkg_setup() {
+	DISTUTILS_GLOBAL_OPTIONS=($(use_with libyaml))
+}
 
 src_install() {
 	distutils_src_install
