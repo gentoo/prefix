@@ -1,6 +1,9 @@
 # ChangeLog for www-client/lynx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.95 2009/08/31 01:04:16 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.96 2009/09/06 17:15:15 maekke Exp $
+
+  06 Sep 2009; Markus Meier <maekke@gentoo.org> lynx-2.8.7_p1.ebuild:
+  amd64/x86 stable, bug #283035
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> lynx-2.8.7_p1.ebuild:
   Marking lynx-2.8.7_p1 ppc64 for bug 283035
