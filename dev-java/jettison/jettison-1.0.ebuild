@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jettison/jettison-1.0.ebuild,v 1.6 2009/08/02 10:21:35 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jettison/jettison-1.0.ebuild,v 1.7 2009/09/06 20:08:09 ranger Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc source"
