@@ -48,6 +48,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
 	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 	epatch "${FILESDIR}"/${PN}-7.4-hppa-hpux.patch
+	epatch "${FILESDIR}"/${PN}-7.5-wctype-mint.patch
 
 	# interix has no setgroups, so this won't work.
 	epatch "${FILESDIR}"/${P}-interix-setgroups.patch
