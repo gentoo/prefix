@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.34 2009/08/01 13:44:59 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.35 2009/09/06 15:15:50 ranger Exp $
+
+  06 Sep 2009; Brent Baude <ranger@gentoo.org> libedit-20090722.3.0.ebuild:
+  Marking libedit-20090722.3.0 ~ppc64 for bug 276652
 
   01 Aug 2009; Mounir Lamouri <volkmar@gentoo.org>
   libedit-20090722.3.0.ebuild:
