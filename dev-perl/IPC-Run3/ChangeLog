@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/IPC-Run3
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IPC-Run3/ChangeLog,v 1.33 2009/07/02 18:40:23 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IPC-Run3/ChangeLog,v 1.34 2009/09/07 08:58:24 tove Exp $
+
+  07 Sep 2009; Torsten Veller <tove@gentoo.org> -IPC-Run3-0.042.ebuild:
+  Cleanup
 
   02 Jul 2009; Jeroen Roovers <jer@gentoo.org> IPC-Run3-0.038.ebuild:
   Stable for HPPA too.
