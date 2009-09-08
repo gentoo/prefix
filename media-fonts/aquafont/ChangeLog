@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/aquafont
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquafont/ChangeLog,v 1.25 2009/02/22 13:17:25 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquafont/ChangeLog,v 1.26 2009/09/07 17:54:29 ranger Exp $
+
+  07 Sep 2009; Brent Baude <ranger@gentoo.org> aquafont-2.7-r4.ebuild:
+  Marking aquafont-2.7-r4 ppc64 for bug 283907
 
 *aquafont-2.7-r4 (22 Feb 2009)
 
