@@ -1,6 +1,13 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.272 2009/08/31 17:14:12 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.274 2009/09/07 22:08:35 arfrever Exp $
+
+  08 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  sqlite-3.6.17.ebuild:
+  Add "readline" USE flag (bug #282225).
+
+  05 Sep 2009; Markus Meier <maekke@gentoo.org> sqlite-3.6.16.ebuild:
+  amd64 stable, bug #279398
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> sqlite-3.6.16.ebuild:
   Marking sqlite-3.6.16 ppc64 for bug 279398
