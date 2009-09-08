@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.94 2009/07/15 17:21:11 mpagano Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-mod.eclass,v 1.95 2009/09/06 23:16:37 robbat2 Exp $
 
 # Author(s): John Mylchreest <johnm@gentoo.org>,
 #            Stefan Schweizer <genstef@gentoo.org>
@@ -138,7 +138,8 @@ SLOT="0"
 DESCRIPTION="Based on the $ECLASS eclass"
 RDEPEND="kernel_linux? ( virtual/modutils )"
 DEPEND="${RDEPEND}
-	sys-apps/sed"
+	sys-apps/sed
+	kernel_linux? ( virtual/linux-sources )"
 
 # eclass utilities
 # ----------------------------------

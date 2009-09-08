@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.84 2009/08/26 21:47:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.85 2009/09/06 16:58:09 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -154,6 +154,10 @@ tc-binutils_apply_patches() {
 				|| eerror "Please file a bug about this"
 			eend $?
 		done
+	fi
+	# fix conflicts with newer glibc #272594
+	if [[ -e libiberty/testsuite/test-demangle.c ]] ; then
+		sed -i 's:\<getline\>:get_line:g' libiberty/testsuite/test-demangle.c
 	fi
 
 	# Fix po Makefile generators

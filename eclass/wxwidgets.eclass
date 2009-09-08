@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.27 2009/08/29 00:34:42 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/wxwidgets.eclass,v 1.28 2009/09/07 00:29:47 dirtyepic Exp $
 
 # @ECLASS:			wxwidgets.eclass
 # @MAINTAINER:
@@ -40,7 +40,13 @@
 
 inherit eutils multilib
 
-EXPORT_FUNCTIONS pkg_setup
+case "${EAPI:-0}" in
+	0|1)
+		EXPORT_FUNCTIONS pkg_setup
+		;;
+	*)
+		;;
+esac
 
 # We do this globally so ebuilds can get sane defaults just by inheriting.  They
 # can be overridden with need-wxwidgets later if need be.
@@ -57,12 +63,11 @@ if [[ -z ${WX_CONFIG} ]]; then
 			for wxdebug in release debug; do
 				wxconf="${wxtoolkit}-${wxchar}-${wxdebug}-${WX_GTK_VER}"
 				if [[ -f "${EPREFIX}"/usr/$(get_libdir)/wx/config/${wxconf} ]]; then
-					[[ $wxtoolkit == "base" ]] && WXBASE_DIE=1 # see wxwidgets_pkg_setup
+					[[ ${wxtoolkit} == "base" ]] && WXBASE_DIE=1 # see wxwidgets_pkg_setup
 				else
 					continue
 				fi
 				WX_CONFIG="${EPREFIX}/usr/$(get_libdir)/wx/config/${wxconf}"
-				# TODO: needed for the wx-config wrapper
 				WX_ECLASS_CONFIG="${WX_CONFIG}"
 				break
 			done
@@ -84,7 +89,7 @@ fi
 #  If you do need to build against the wxBase libraries, you'll have to use
 #  need-wxwidgets to do so.
 #
-#  Note that with an EAPI 2 ebuild you can just DEPEND on x11-libs/wxGTK:2.8[X]
+#  Note that with an EAPI 2 ebuild you should just DEPEND on x11-libs/wxGTK:2.8[X]
 #  and ignore all this nonsense.
 
 wxwidgets_pkg_setup() {

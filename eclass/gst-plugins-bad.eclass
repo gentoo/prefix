@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.19 2009/08/05 23:27:59 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.20 2009/09/07 04:58:22 tester Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -19,8 +19,9 @@
 my_gst_plugins_bad="opengl x alsa amrwb bz2 cdaudio directfb dts divx faac
 faad gsm gst_v4l2 ivorbis jack ladspa libmms mpeg2enc musepack musicbrainz
 mythtv nas neon timidity wildmidi sdl sdltest sndfile soundtouch spc swfdec
-theoradec x264 xvid dvb wavpack quicktime dc1394 metadata fbdev soup dirac mplex
-ofa oss4 apexsink celt dvdnav jp2k twolame assrender mimic modplug vcd"
+theoradec x264 xvid dvb wavpack quicktime dc1394 metadata fbdev soup dirac
+mplex ofa oss4 apexsink celt dvdnav jp2k twolame assrender mimic modplug vcd
+schro lv2 gme vdpau"
 
 #qtdemux spped tta
 
@@ -51,7 +52,13 @@ gst-plugins-bad_src_unpack() {
 
 	unpack ${A}
 
-#	gst-plugins10_find_plugin_dir
+	# Link with the syswide installed gst-libs if needed
+	gst-plugins10_find_plugin_dir
+	sed -e "s:\$(top_builddir)/gst-libs/gst/interfaces/libgstphotography:${EROOT}/usr/$(get_libdir)/libgstphotography:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/signalprocessor/libgstsignalprocessor:${EROOT}/usr/$(get_libdir)/libgstsignalprocessor:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/video/libgstbasevideo:${EROOT}/usr/$(get_libdir)/libgstbasevideo:" \
+		-i Makefile.in
+	
 #	cd ${S}
 
 	# Remove generation of any other Makefiles except the plugin's Makefile

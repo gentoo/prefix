@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-ugly.eclass,v 1.14 2009/05/16 22:08:09 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-ugly.eclass,v 1.15 2009/09/07 04:58:22 tester Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -26,7 +26,7 @@ MY_P=${MY_PN}-${PV}
 # All relevant configure options for gst-plugins
 # need a better way to extract these
 # gst-plugins-base 0.9
-my_gst_plugins_ugly="a52dec amrnb cdio dvdread dvdnav lame id3tag mad mpeg2dec sidplay twolame"
+my_gst_plugins_ugly="a52dec amrnb cdio dvdread dvdnav lame id3tag mad mpeg2dec sidplay twolame x264"
 
 #SRC_URI="mirror://gnome/sources/gst-plugins/${PV_MAJ_MIN}/${MY_P}.tar.bz2"
 SRC_URI="http://gstreamer.freedesktop.org/src/gst-plugins-ugly/${MY_P}.tar.bz2"

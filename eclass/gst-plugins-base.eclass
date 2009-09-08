@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.12 2009/05/16 22:08:09 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.13 2009/09/07 02:12:31 tester Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -41,8 +41,9 @@ S=${WORKDIR}/${MY_P}
 # added to remove circular deps
 # 6/2/2006 - zaheerm
 if [ "${PN}" != "${MY_PN}" ]; then
-RDEPEND="=media-libs/gst-plugins-base-0.10*"
+RDEPEND=">=media-libs/gst-plugins-base-${PV}"
 DEPEND="${RDEPEND}
+	~media-libs/gst-plugins-base-${PV}
 	>=sys-apps/sed-4
 	dev-util/pkgconfig"
 RESTRICT=test

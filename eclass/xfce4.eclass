@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.30 2009/07/08 15:23:53 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.31 2009/09/07 18:20:47 angelos Exp $
 
 # @ECLASS: xfce4.eclass
 # @MAINTAINER:
@@ -52,9 +52,8 @@ xfce4_gzipped() {
 
 # @FUNCTION: xfce4_plugin
 # @DESCRIPTION:
-# Append -plugin to the package name
 xfce4_plugin() {
-	MY_PN="${MY_PN:-${PN}}-plugin"
+	MY_PN="${MY_PN:-${PN}}"
 	MY_P="${MY_PN}-${MY_PV:-${PV}}"
 	S="${WORKDIR}/${MY_P}"
 }

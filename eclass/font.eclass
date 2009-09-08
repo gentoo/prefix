@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.44 2009/02/08 18:22:39 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.45 2009/09/07 21:07:11 dirtyepic Exp $
 
 # @ECLASS: font.eclass
 # @MAINTAINER:
@@ -10,6 +10,9 @@
 # @BLURB: Eclass to make font installation uniform
 
 inherit eutils
+
+
+EXPORT_FUNCTIONS pkg_setup src_install pkg_postinst pkg_postrm
 
 #
 # Variable declarations
@@ -150,6 +153,23 @@ font_pkg_postinst() {
 	find "${EROOT}"usr/share/fonts/ -type f '!' -perm 0644 -print0 \
 		| xargs -0 chmod -v 0644 2>/dev/null
 
+	if [[ -n ${FONT_CONF[@]} ]]; then
+		if has_version '>=media-libs/fontconfig-2.4'; then
+			local conffile
+			echo
+			elog "The following fontconfig configuration files have been installed:"
+			elog
+			for conffile in "${FONT_CONF[@]}"; do
+				if [[ -e ${EROOT}etc/fonts/conf.avail/$(basename ${conffile}) ]]; then
+					elog "  $(basename ${conffile})"
+				fi
+			done
+			elog
+			elog "Use \`eselect fontconfig\` to enable/disable them."
+			echo
+		fi
+	fi
+	
 	if has_version '>=media-libs/fontconfig-2.4'; then
 		if [[ ${ROOT} == "/" ]]; then
 			ebegin "Updating global fontcache"
@@ -176,4 +196,3 @@ font_pkg_postrm() {
 	fi
 }
 
-EXPORT_FUNCTIONS src_install pkg_setup pkg_postinst pkg_postrm
