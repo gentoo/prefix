@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.9.0.ebuild,v 1.1 2009/09/02 10:57:50 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.9.0.ebuild,v 1.2 2009/09/06 17:03:43 ssuominen Exp $
 
 EAPI=2
 
@@ -19,8 +19,7 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 	nas? ( media-libs/nas )
 	portaudio? ( media-libs/portaudio )
 	pulseaudio? ( media-sound/pulseaudio )
-	sdl? ( media-libs/libsdl )
-	!media-sound/mpg321[symlink]"
+	sdl? ( media-libs/libsdl )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
