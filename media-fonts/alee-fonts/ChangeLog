@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/alee-fonts
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/alee-fonts/ChangeLog,v 1.41 2009/06/24 13:45:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/alee-fonts/ChangeLog,v 1.42 2009/09/07 00:39:52 dirtyepic Exp $
+
+  07 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> -alee-fonts-8.3.ebuild,
+  -alee-fonts-11.4.ebuild:
+  Remove old.
 
   24 Jun 2009; Raúl Porcel <armin76@gentoo.org> alee-fonts-12.ebuild:
   arm/ia64/s390/sh stable wrt #271132
