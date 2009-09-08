@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/urwid
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/urwid/ChangeLog,v 1.29 2009/09/04 15:21:14 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/urwid/ChangeLog,v 1.30 2009/09/06 20:33:55 idl0r Exp $
+
+  06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  -files/urwid-0.9.6-nosetuptools.diff:
+  Remove unused patch.
 
   04 Sep 2009; Patrick Lauer <patrick@gentoo.org> -urwid-0.9.7.1.ebuild,
   -urwid-0.9.8.1.ebuild, -urwid-0.9.8.3.ebuild:
