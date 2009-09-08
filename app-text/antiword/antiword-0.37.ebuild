@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/antiword/antiword-0.37.ebuild,v 1.11 2008/12/30 20:57:48 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/antiword/antiword-0.37.ebuild,v 1.12 2009/09/06 18:43:16 idl0r Exp $
 
 inherit eutils toolchain-funcs
 
@@ -41,6 +41,6 @@ src_install() {
 
 	cd Docs
 	doman antiword.1
-	dodoc COPYING ChangeLog Exmh Emacs FAQ History Netscape \
+	dodoc ChangeLog Exmh Emacs FAQ History Netscape \
 	QandA ReadMe Mozilla Mutt
 }
