@@ -47,8 +47,6 @@ src_unpack() {
 
 	cd "${S}"
 	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
-	# missing patch for 'support/shlib-install' in p12 (netbsd, aix5, interix).
-#	epatch "${FILESDIR}"/${PN}-5.2_p12-shlib-install.patch
 
 	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
 	epatch "${FILESDIR}"/${PN}-6.0-rlfe-build.patch #151174
@@ -57,12 +55,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
-#	epatch "${FILESDIR}"/${PN}-5.2-rlfe-irix.patch #209595
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
-#	epatch "${FILESDIR}"/${PN}-5.2-aixdll.patch
 	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
-#	epatch "${FILESDIR}"/${PN}-5.2-solaris-fPIC.patch
 
 	# force ncurses linking #71420
 	sed -i -e 's:^SHLIB_LIBS=:SHLIB_LIBS=-lncurses:' support/shobj-conf || die "sed"
@@ -73,7 +68,7 @@ src_unpack() {
 
 	# the bundled rlfe had its configure.in updated, but no one actually
 	# ran autoconf to have the configure file updated
-	ln -s ../.. examples/rlfe/readline
+	ln -s ../../shlib examples/rlfe/readline
 	cd examples/rlfe
 	eautoconf
 }
@@ -86,6 +81,12 @@ src_compile() {
 
 	if ! tc-is-cross-compiler ; then
 		cd examples/rlfe
+		# need these symlinks at least on IRIX and Solaris,
+		# e.g. Linux and Darwin seem to be fine without #283644
+		pushd readline > /dev/null
+		ln -s libreadline$(get_libname ${PV%%.*}) libreadline$(get_libname)
+		ln -s libhistory$(get_libname ${PV%%.*}) libhistory$(get_libname)
+		popd > /dev/null
 		append-ldflags -Lreadline
 		econf || die
 		emake || die "make rlfe failed"
