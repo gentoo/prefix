@@ -1,6 +1,11 @@
 # ChangeLog for app-portage/portage-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.102 2009/04/06 01:58:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.103 2009/09/05 16:50:00 solar Exp $
+
+*portage-utils-0.2.1 (05 Sep 2009)
+
+  05 Sep 2009; <solar@gentoo.org> +portage-utils-0.2.1.ebuild:
+  - ver bump to fix bug 263892
 
   06 Apr 2009; Mike Frysinger <vapier@gentoo.org> portage-utils-0.2.ebuild:
   Make sure we use [ rather than [[ in the makefile.
