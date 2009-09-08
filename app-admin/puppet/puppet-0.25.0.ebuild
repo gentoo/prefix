@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.25.0_rc1.ebuild,v 1.1 2009/08/25 23:11:31 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.25.0.ebuild,v 1.1 2009/09/06 23:00:10 matsuu Exp $
 
 EAPI="2"
 inherit elisp-common eutils ruby
@@ -59,11 +59,11 @@ src_install() {
 	# bug #237071
 	#
 	#doinitd conf/gentoo/init.d/puppetmaster
-	newinitd "${FILESDIR}"/puppetmaster.init puppetmaster
+	newinitd "${FILESDIR}"/puppetmaster-0.25.init puppetmaster
 	#doconfd conf/gentoo/conf.d/puppetmaster
 	newconfd "${FILESDIR}"/puppetmaster.confd puppetmaster
 	#doinitd conf/gentoo/init.d/puppet
-	newinitd "${FILESDIR}"/puppet.init puppet
+	newinitd "${FILESDIR}"/puppet-0.25.init puppet
 	doconfd conf/gentoo/conf.d/puppet
 
 	# Initial configuration files
