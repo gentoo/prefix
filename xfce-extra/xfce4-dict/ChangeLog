@@ -1,6 +1,9 @@
 # ChangeLog for xfce-extra/xfce4-dict
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/ChangeLog,v 1.40 2009/08/30 16:16:13 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-extra/xfce4-dict/ChangeLog,v 1.41 2009/09/05 15:34:31 ranger Exp $
+
+  05 Sep 2009; Brent Baude <ranger@gentoo.org> xfce4-dict-0.5.3.ebuild:
+  Marking xfce4-dict-0.5.3 ppc64 for bug 282691
 
   30 Aug 2009; nixnut <nixnut@gentoo.org> xfce4-dict-0.5.3.ebuild:
   ppc stable #282691
