@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/lxml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.58 2009/08/13 18:54:41 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/lxml/ChangeLog,v 1.59 2009/09/06 22:47:21 idl0r Exp $
+
+  06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  -files/lxml-1.0-distutils.diff, -files/lxml-2.1.5_unicode_test.patch:
+  Remove unused patch.
 
   12 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   lxml-2.2.2.ebuild:
