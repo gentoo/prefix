@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/baekmuk-fonts
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/baekmuk-fonts/ChangeLog,v 1.41 2008/01/15 17:20:24 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/baekmuk-fonts/ChangeLog,v 1.42 2009/09/07 01:20:02 dirtyepic Exp $
+
+  07 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> -baekmuk-fonts-2.2.ebuild:
+  Remove old.
 
   15 Jan 2008; Fabian Groffen <grobian@gentoo.org> baekmuk-fonts-2.2.ebuild,
   baekmuk-fonts-2.2-r2.ebuild:
