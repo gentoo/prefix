@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/pbzip2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.73 2009/08/09 18:13:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pbzip2/ChangeLog,v 1.74 2009/09/05 18:30:49 agaffney Exp $
+
+*pbzip2-1.0.5-r2 (05 Sep 2009)
+
+  05 Sep 2009; Andrew Gaffney <agaffney@gentoo.org> +pbzip2-1.0.5-r2.ebuild:
+  Revbump app-arch/pbzip2 to apply patch from bug #277539 for USE=symlink
 
   09 Aug 2009; Jeroen Roovers <jer@gentoo.org> -pbzip2-1.0.5.ebuild:
   Remove old.
