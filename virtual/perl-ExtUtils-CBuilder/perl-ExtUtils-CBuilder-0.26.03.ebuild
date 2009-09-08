@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-ExtUtils-CBuilder/perl-ExtUtils-CBuilder-0.26.03.ebuild,v 1.2 2009/09/02 07:30:07 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-ExtUtils-CBuilder/perl-ExtUtils-CBuilder-0.26.03.ebuild,v 1.3 2009/09/06 08:33:10 maekke Exp $
 
 DESCRIPTION="Compile and link C code for Perl modules"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
