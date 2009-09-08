@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gqmpeg/gqmpeg-0.91.1.ebuild,v 1.7 2008/05/17 09:23:59 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gqmpeg/gqmpeg-0.91.1.ebuild,v 1.8 2009/09/06 17:54:16 ssuominen Exp $
 
 DESCRIPTION="front end to various audio players, including mpg123"
 HOMEPAGE="http://gqmpeg.sourceforge.net"
@@ -13,7 +13,7 @@ IUSE="nls"
 
 RDEPEND=">=x11-libs/gtk+-2.2
 	media-sound/vorbis-tools
-	virtual/mpg123"
+	media-sound/mpg123"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	nls? ( sys-devel/gettext )"
