@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/twisted
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.105 2009/08/28 17:34:53 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.106 2009/09/06 21:11:31 idl0r Exp $
+
+  06 Sep 2009; Christian Ruppert <idl0r@gentoo.org> twisted-1.2.0.ebuild,
+  twisted-1.3.0.ebuild, -files/twisted-2.0.1-echo-less.patch,
+  -files/twisted-2.1.0-trial-tests.patch,
+  -files/twisted-2.1.0-trial-tests2.patch, twisted-8.1.0.ebuild,
+  twisted-8.2.0.ebuild:
+  Remove unused patch. Fix repoman complains.
 
 *twisted-8.2.0-r2 (28 Aug 2009)
 
