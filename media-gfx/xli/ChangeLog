@@ -1,6 +1,17 @@
 # ChangeLog for media-gfx/xli
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xli/ChangeLog,v 1.42 2008/04/21 17:34:38 phreak Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xli/ChangeLog,v 1.43 2009/09/05 22:11:45 robbat2 Exp $
+
+  05 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> +xli-1.17.0-r4.ebuild,
+  +files/xli-1.17.0-fix-scale-zoom.patch:
+  Fix bug 282979: Broken -zoom in jpeg-7, so that we can stop restricting
+  the jpeg-6 version.
+
+*xli-1.17.0-r4 (05 Sep 2009)
+
+  05 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> +xli-1.17.0-r4.ebuild:
+  Xli works fine with media-libs/jpeg-7, revbump to remove it from being a
+  blocker on anybodies systems for the upgrade.
 
   21 Apr 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Fix up metadata.xml. If there's no maintainer for the package, the metadata
