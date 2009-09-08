@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/alsa-lib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.290 2009/08/31 15:34:20 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.291 2009/09/05 18:52:06 ranger Exp $
+
+  05 Sep 2009; Brent Baude <ranger@gentoo.org> alsa-lib-1.0.20-r1.ebuild:
+  Marking alsa-lib-1.0.20-r1 ppc64 stable for bug 280464
 
 *alsa-lib-1.0.21 (31 Aug 2009)
 
