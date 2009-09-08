@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.275 2009/08/16 18:33:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.276 2009/09/07 13:41:14 vapier Exp $
+
+*util-linux-2.16.1 (07 Sep 2009)
+
+  07 Sep 2009; Mike Frysinger <vapier@gentoo.org> +util-linux-2.16.1.ebuild:
+  Version bump.
 
 *util-linux-2.16-r1 (16 Aug 2009)
 
