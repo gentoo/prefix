@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/aquapfont
 # Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquapfont/ChangeLog,v 1.28 2009/02/22 13:21:29 lu_zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquapfont/ChangeLog,v 1.29 2009/09/07 17:54:59 ranger Exp $
+
+  07 Sep 2009; Brent Baude <ranger@gentoo.org> aquapfont-2.6-r1.ebuild:
+  Marking aquapfont-2.6-r1 ppc64 for bug 283907
 
 *aquapfont-2.6-r1 (22 Feb 2009)
 
