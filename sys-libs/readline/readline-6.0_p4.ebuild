@@ -55,6 +55,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-aix-eff_uid.patch
 	epatch "${FILESDIR}"/${PN}-5.2-rlfe-hpux.patch
+	epatch "${FILESDIR}"/${PN}-6.0-rlfe-solaris.patch
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
@@ -68,7 +69,7 @@ src_unpack() {
 
 	# the bundled rlfe had its configure.in updated, but no one actually
 	# ran autoconf to have the configure file updated
-	ln -s ../../shlib examples/rlfe/readline
+	ln -s ../.. examples/rlfe/readline
 	cd examples/rlfe
 	eautoconf
 }
@@ -81,12 +82,6 @@ src_compile() {
 
 	if ! tc-is-cross-compiler ; then
 		cd examples/rlfe
-		# need these symlinks at least on IRIX and Solaris,
-		# e.g. Linux and Darwin seem to be fine without #283644
-		pushd readline > /dev/null
-		ln -s libreadline$(get_libname ${PV%%.*}) libreadline$(get_libname)
-		ln -s libhistory$(get_libname ${PV%%.*}) libhistory$(get_libname)
-		popd > /dev/null
 		append-ldflags -Lreadline
 		econf || die
 		emake || die "make rlfe failed"

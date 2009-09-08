@@ -1,0 +1,17 @@
+<grobian@gentoo.org>:
+* Panic is just used, but never defined or included (at least not on Solaris)
+
+--- examples/rlfe/pty.c
++++ examples/rlfe/pty.c
+@@ -54,6 +54,11 @@
+ # include <sys/sysmacros.h>
+ #endif /* sgi */
+ 
++#ifndef Panic
++# include <string.h>
++# define Panic(X, Y) fprintf(stderr, "%s: %s", Y, strerror(X))
++#endif
++
+ #include "extern.h"
+ 
+ /*
