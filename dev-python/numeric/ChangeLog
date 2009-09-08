@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/numeric
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/ChangeLog,v 1.46 2009/04/13 11:38:12 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/numeric/ChangeLog,v 1.47 2009/09/06 22:40:48 idl0r Exp $
+
+  06 Sep 2009; Christian Ruppert <idl0r@gentoo.org> numeric-23.7.ebuild,
+  -files/numeric-24.2-lapack.patch:
+  Remove unused patch. Fix repoman complains.
 
   13 Apr 2009; Raúl Porcel <armin76@gentoo.org> numeric-24.2-r6.ebuild:
   Add ~arm/~sh
