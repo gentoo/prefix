@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r1.ebuild,v 1.14 2009/09/05 17:22:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r1.ebuild,v 1.13 2009/09/01 02:46:07 arfrever Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -143,6 +143,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
 		# some more modules fixed (_multiprocessing, dl)
 		epatch "${FILESDIR}"/${P}-interix-modules.patch
+		epatch "${FILESDIR}"/${P}-interix-nis.patch
 	fi
 
 	# Don't silence output of setup.py.
