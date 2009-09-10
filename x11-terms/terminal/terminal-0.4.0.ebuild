@@ -39,6 +39,10 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}
 
 pkg_setup() {
+	PATCHES=(
+		"${FILESDIR}"/${P}-interix-fs-case.patch
+	)
+
 	XFCONF="--disable-dependency-tracking
 		$(use_enable dbus)
 		$(use_enable debug)
