@@ -26,9 +26,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# Fix tests related to us having flac built in a split package
-	epatch "${FILESDIR}/${P}-fix-tests.patch"
-
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-0.10.8-interix3.patch
 
 	# Required for FreeBSD sane .so versioning
