@@ -91,6 +91,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
 	# define _ALL_SOURCE by default on Interix
 	epatch "${FILESDIR}"/${P}-interix-all-source.patch
+	# support for the $@#$% dir structure on 64bit SUA
+	epatch "${FILESDIR}"/${P}-interix-x64-support.patch
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/gcc-4.2.3-mint.patch
