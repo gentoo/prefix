@@ -250,7 +250,7 @@ aggregated patches
 +    	i386) 
 +    		MACOSX_DEFAULT_ARCH="i386" 
 +    		;;
-+    	ppc) 
++    	ppc|"Power Macintosh") 
 +    		MACOSX_DEFAULT_ARCH="ppc" 
 +    		;;
 +    	*)
@@ -262,7 +262,7 @@ aggregated patches
 +    	i386) 
 +    		MACOSX_DEFAULT_ARCH="x86_64" 
 +    		;;
-+    	ppc) 
++    	ppc|"Power Macintosh") 
 +    		MACOSX_DEFAULT_ARCH="ppc64" 
 +    		;;
 +    	*)
