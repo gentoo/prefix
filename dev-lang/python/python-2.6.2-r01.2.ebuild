@@ -105,8 +105,8 @@ src_prepare() {
 		Mac/IDLE/Makefile.in \
 		Mac/Tools/Doc/setup.py \
 		Mac/PythonLauncher/Makefile.in || die
-	sed -i -e '/-DPREFIX=/s:$(prefix):${EPREFIX}:' \
-		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):${EPREFIX}:' \
+	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}"':' \
+		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}"':' \
 		Makefile.pre.in || die
 
 	# on hpux, use gcc to link if used to compile
