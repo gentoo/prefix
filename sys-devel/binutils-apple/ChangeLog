@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/binutils-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/ChangeLog,v 1.3 2009/09/12 13:03:29 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/ChangeLog,v 1.4 2009/09/12 14:17:48 grobian Exp $
+
+  12 Sep 2009; Fabian Groffen <grobian@gentoo.org>
+  -binutils-apple-3.1.2-r1.ebuild, binutils-apple-3.2.ebuild:
+  Removed binutils-apple-3.1.2-r1. It was using my own LP64 patch + LP64
+  sed-foo that actually wasn't quite right but allowed us to fix many
+  64-bits related bugs to packages (preparing for Snow Leopard). Apple
+  provides a working LP64 version in 3.2 which everyone should use now
+  instead.
 
   12 Sep 2009; Fabian Groffen <grobian@gentoo.org>
   binutils-apple-3.2.ebuild, +files/binutils-apple-3.2-armv7-defines.patch:

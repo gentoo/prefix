@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/binutils-apple-3.2.ebuild,v 1.2 2009/09/12 13:03:29 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/binutils-apple-3.2.ebuild,v 1.3 2009/09/12 14:17:48 grobian Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -115,7 +115,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.1.1-no-headers.patch
 	epatch "${FILESDIR}"/${PN}-3.1.1-no-oss-dir.patch
 	epatch "${FILESDIR}"/${P}-armv7-defines.patch
-#	epatch "${WORKDIR}"/LP64/cctools/*.patch
 
 	cd "${S}"/${LD64}
 	epatch "${FILESDIR}"/${PN}-3.1.1-testsuite.patch
@@ -129,22 +128,6 @@ src_unpack() {
 		-e 's/^OFLAG =.*$/OFLAG =/' \
 		-e 's/install -c -s/install/g'
 	eend $?
-#	ebegin "patching for LP64 mode"
-#	ebegin "  replacing SWAP_LONG() with SWAP_INT()"
-#	find . -name "*.c" -print0 | xargs -0 sed \
-#		-i \
-#		-e 's/SWAP_LONG((long)/SWAP_INT((int)/g' \
-#		-e 's/SWAP_LONG(/SWAP_INT(/g'
-#	eend $?
-#	ebegin "  replacing sizeof(long) with sizeof(int)"
-#	find . -name "*.c" -print0 | xargs -0 sed \
-#		-i \
-#		-e 's/sizeof(long)/sizeof(int)/g' \
-#		-e 's/sizeof(unsigned long)/sizeof(unsigned int)/g' \
-#		&& sed -i \
-#		-e '/long long \*/!s/long \*/int */g' \
-#		${CCTOOLS}/misc/{strip,lipo}.*
-#	eend $?
 
 	# -pg is used and the two are incompatible
 	filter-flags -fomit-frame-pointer
