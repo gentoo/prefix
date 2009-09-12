@@ -97,6 +97,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
 	# for Mac weenies
 	epatch "${FILESDIR}"/${P}-mac.patch
+	epatch "${FILESDIR}"/${P}-mac-64bits.patch
 	epatch "${FILESDIR}"/${P}-mac-just-prefix.patch
 	sed -i -e "s:@@APPLICATIONS_DIR@@:${EPREFIX}/Applications:g" \
 		Mac/Makefile.in \
