@@ -85,6 +85,7 @@ src_prepare() {
 	fi
 
 	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
+	epatch "${FILESDIR}"/${P}-readline-prefix.patch
 
 	# build static for mint
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${P}-mint.patch
