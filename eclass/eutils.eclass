@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.318 2009/08/26 21:47:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.319 2009/09/12 14:37:51 grobian Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -417,7 +417,17 @@ emktemp() {
 # and pw (FreeBSD) used in enewuser()/enewgroup()
 egetent() {
 	case ${CHOST} in
-	*-darwin9)
+	*-darwin[678])
+		case "$2" in
+		*[!0-9]*) # Non numeric
+			nidump $1 . | awk -F":" "{ if (\$1 ~ /^$2$/) {print \$0;exit;} }"
+			;;
+		*)	# Numeric
+			nidump $1 . | awk -F":" "{ if (\$3 == $2) {print \$0;exit;} }"
+			;;
+		esac
+		;;
+	*-darwin*)
 		local mytype=$1
 		[[ "passwd" == $mytype ]] && mytype="Users"
 		[[ "group" == $mytype ]] && mytype="Groups"
@@ -429,16 +439,6 @@ egetent() {
 			local mykey="UniqueID"
 			[[ $mytype == "Groups" ]] && mykey="PrimaryGroupID"
 			dscl . -search /$mytype $mykey $2 2>/dev/null
-			;;
-		esac
-		;;
-	*-darwin*)
-		case "$2" in
-		*[!0-9]*) # Non numeric
-			nidump $1 . | awk -F":" "{ if (\$1 ~ /^$2$/) {print \$0;exit;} }"
-			;;
-		*)	# Numeric
-			nidump $1 . | awk -F":" "{ if (\$3 == $2) {print \$0;exit;} }"
 			;;
 		esac
 		;;
