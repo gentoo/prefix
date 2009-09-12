@@ -25,7 +25,7 @@ to do lots of ugly work or to resort to host libs
 -                readline_extra_link_args = ('-Wl,-search_paths_first',)
 -            else:
 -                readline_extra_link_args = ()
-+			readline_extra_link_args = ()
++            readline_extra_link_args = ()
  
              readline_libs = ['readline']
              if self.compiler.find_library_file(lib_dirs,
