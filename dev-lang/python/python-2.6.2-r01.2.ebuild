@@ -305,7 +305,7 @@ src_install() {
 		emake -j1 CC=$(tc-getCC) DESTDIR="${D}" frameworkinstall || die "emake frameworkinstall failed"
 		emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
 		# don't install the "Current" symlinks, will always conflict
-		local fwdir="${EPREFIX}"/usr/lib/Python.framework
+		local fwdir="${EPREFIX}"/usr/$(get_libdir)/Python.framework
 		for sym in Headers Resources Python Versions/Current ; do
 			rm "${D}${fwdir}"/${sym} || die "missing symlink ${fwdir}/${sym}?"
 		done
@@ -313,37 +313,39 @@ src_install() {
 		# stuff around or add some symlinks to make our life easier
 		mkdir -p "${ED}"/usr
 		mv "${D}${fwdir}"/Versions/${PYVER}/share \
-			"${ED}"/usr/
+			"${ED}"/usr/ || die "can't move share"
 		mkdir -p "${ED}"/usr/bin
 		pushd "${ED}"/usr/bin > /dev/null
-		ln -s ../lib/Python.framework/Versions/${PYVER}/bin/2to3
+		ln -s ../lib/Python.framework/Versions/${PYVER}/bin/2to3 || die
 		popd > /dev/null
 		mkdir -p "${ED}"/usr/include
-		pushd "${ED}"/usr/include > /dev/null
-		ln -s ../lib/Python.framework/Versions/${PYVER}/include/python${PYVER}
+		mv "${D}${fwdir}"/Versions/${PYVER}/include/python${PYVER} \
+			"${ED}"/usr/include/ || die "can't move include"
+		pushd "${D}${fwdir}"/Versions/${PYVER}/include > /dev/null
+		ln -s ../../../../../include/python${PYVER} || die
 		popd > /dev/null
 		# can't symlink the entire dir, because a real dir already exists on
 		# upgrade (site-packages), however since we h4x0rzed python to actually
 		# look into the UNIX-style dir, we just switch them around.
-		mkdir -p "${ED}"/usr/lib
+		mkdir -p "${ED}"/usr/$(get_libdir)
 		mv "${D}${fwdir}"/Versions/${PYVER}/lib/python${PYVER} \
-			"${ED}"/usr/lib/python${PYVER}
+			"${ED}"/usr/lib/python${PYVER} || die "can't move python${PYVER}"
 		pushd "${D}${fwdir}"/Versions/${PYVER}/lib > /dev/null
-		ln -s ../../../../lib/python${PYVER}
+		ln -s ../../../../python${PYVER} || die
 		popd > /dev/null
 		# avoid framework incompatability, degrade to a normal UNIX lib
 		mkdir -p "${ED}"/usr/$(get_libdir)
 		cp "${D}${fwdir}"/Versions/${PYVER}/Python \
-			"${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
+			"${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib || die
 		chmod u+w "${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
 		install_name_tool \
 			-id "${EPREFIX}"/usr/$(get_libdir)/libpython${PYVER}.dylib \
 			"${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
 		chmod u-w "${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
 		cp "${S}"/libpython${PYVER}.a \
-			"${ED}"/usr/$(get_libdir)/
+			"${ED}"/usr/$(get_libdir)/ || die
 		sed -i -e '/^LINKFORSHARED=/s/_PyMac_Error.*$/PyMac_Error/' \
-			"${D}${fwdir}"/Versions/${PYVER}/lib/python${PYVER}/config/Makefile
+			"${ED}"/usr/lib/python${PYVER}/config/Makefile || die
 		# remove unversioned files (that are not made versioned below)
 		for f in python python-config pythonw ; do
 			rm -f "${ED}"/usr/bin/${f}
