@@ -1,6 +1,14 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.200 2009/09/06 12:57:38 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.201 2009/09/11 15:52:36 nirbheek Exp $
+
+*gnome-terminal-2.26.3.1-r2 (11 Sep 2009)
+
+  11 Sep 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -gnome-terminal-2.26.3.1-r1.ebuild, +gnome-terminal-2.26.3.1-r2.ebuild,
+  +files/gnome-terminal-2.26.3.1-partial-fix-dbus-error.patch:
+  Partial Fix for bug 268846 -- gnome-terminal errors out when no
+  dbus-daemon is running. Upstream not interested in a complete fix.
 
   06 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -gnome-terminal-2.26.1.ebuild, gnome-terminal-2.26.2.ebuild,
