@@ -1,6 +1,10 @@
 # ChangeLog for sys-auth/pambase
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.70 2009/08/10 11:23:46 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.71 2009/09/08 09:42:30 flameeyes Exp $
+
+  08 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -pambase-20090515.ebuild:
+  Remove old version.
 
 *pambase-20090620.1-r1 (10 Aug 2009)
 
