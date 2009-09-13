@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/linkers-and-loaders/linkers-and-loaders-1.ebuild,v 1.3 2009/03/18 18:01:14 ricmm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/linkers-and-loaders/linkers-and-loaders-1.ebuild,v 1.4 2009/09/10 15:52:33 ssuominen Exp $
 
 DESCRIPTION="the Linkers and Loaders book"
 HOMEPAGE="http://linker.iecc.com/"
@@ -13,7 +13,7 @@ IUSE="doc"
 RESTRICT="mirror"
 
 RDEPEND=""
-DEPEND="app-arch/lzma-utils"
+DEPEND="|| ( app-arch/xz-utils app-arch/lzma-utils )"
 
 S=${WORKDIR}
 
