@@ -1,6 +1,10 @@
 # ChangeLog for gnome-extra/gtkhtml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.192 2009/08/18 16:41:48 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.193 2009/09/12 21:39:57 eva Exp $
+
+  12 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gtkhtml-3.12.3.ebuild, -files/gtkhtml-3.12.3-allow-deprecated.patch:
+  Clean up deprecated gtkhtml:3.8 after taking care of bug #280961.
 
   18 Aug 2009; Michael Sterrett <mr_bones_@gentoo.org>
   +gtkhtml-3.12.3.ebuild, +files/gtkhtml-3.12.3-allow-deprecated.patch:
