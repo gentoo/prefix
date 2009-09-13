@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/whois
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.128 2009/06/25 22:28:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.129 2009/09/12 08:46:12 patrick Exp $
+
+*whois-4.7.36 (12 Sep 2009)
+
+  12 Sep 2009; Patrick Lauer <patrick@gentoo.org> +whois-4.7.36.ebuild:
+  Bump
 
 *whois-4.7.34 (25 Jun 2009)
 
