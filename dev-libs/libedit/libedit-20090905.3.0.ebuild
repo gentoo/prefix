@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/libedit-20090610.3.0.ebuild,v 1.5 2009/07/21 01:36:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/libedit-20090905.3.0.ebuild,v 1.1 2009/09/08 05:58:05 flameeyes Exp $
 
 inherit eutils toolchain-funcs versionator
 
