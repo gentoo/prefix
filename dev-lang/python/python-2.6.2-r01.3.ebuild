@@ -325,7 +325,6 @@ src_install() {
 
 		# rebuild python executable to be the non-pythonw (python wrapper)
 		# version so we don't get framework crap
-		rm python || die
 		$(tc-getCC) "${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib \
 			-o "${ED}"/usr/bin/python${PYVER} \
 			Modules/python.o || die
@@ -343,6 +342,7 @@ src_install() {
 		# remove unversioned files (that are not made versioned below)
 		pushd "${ED}"/usr/bin > /dev/null
 		rm -f python python-config python${PYVER}-config
+		# python${PYVER} was created above
 		for f in pythonw smtpd${PYVER}.py pydoc idle ; do
 			rm -f ${f} ${f}${PYVER}
 		done
