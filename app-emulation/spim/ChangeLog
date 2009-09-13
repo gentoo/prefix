@@ -1,6 +1,10 @@
 # ChangeLog for app-emulation/spim
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/ChangeLog,v 1.47 2009/03/24 03:02:16 ricmm Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/ChangeLog,v 1.48 2009/09/12 03:50:48 vostorga Exp $
+
+  12 Sep 2009; Víctor Ostorga <vostorga@gentoo.org>
+  -files/spim-7.2.1-font.patch:
+  Cleaning out unused patch
 
 *spim-7.4 (24 Mar 2009)
 
