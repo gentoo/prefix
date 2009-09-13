@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Class-MethodMaker
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/ChangeLog,v 1.59 2009/06/29 23:13:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-MethodMaker/ChangeLog,v 1.60 2009/09/10 08:23:49 fauli Exp $
+
+  10 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  Class-MethodMaker-2.15.ebuild:
+  x86 stable, bug 283969
 
   29 Jun 2009; Jeroen Roovers <jer@gentoo.org>
   Class-MethodMaker-2.12.ebuild:
