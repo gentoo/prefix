@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.1.10.ebuild,v 1.2 2009/07/27 20:21:53 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.1.10.ebuild,v 1.3 2009/09/12 22:42:02 eva Exp $
 
 EAPI="2"
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.webkitgtk.org/${MY_P}.tar.gz"
 
 LICENSE="LGPL-2 LGPL-2.1 BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-freebsd"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 # geoclue
 IUSE="coverage debug doc gnome-keyring +gstreamer pango"
 
@@ -45,6 +45,7 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext
 	dev-util/gperf
 	dev-util/pkgconfig
+	dev-util/gtk-doc-am
 	doc? ( >=dev-util/gtk-doc-1.10 )"
 
 S="${WORKDIR}/${MY_P}"
@@ -88,4 +89,12 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die "Install failed"
 	dodoc WebKit/gtk/{NEWS,ChangeLog} || die "dodoc failed"
+}
+
+pkg_postinst() {
+	if use gstreamer; then
+	    ewarn
+	    ewarn "If ${PN} doesn't play some video format, please check your"
+	    ewarn "USE flags on media-plugins/gst-plugins-meta"
+	fi
 }
