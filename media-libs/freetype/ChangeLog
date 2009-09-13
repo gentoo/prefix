@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.238 2009/08/30 05:46:22 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.239 2009/09/12 21:45:49 dirtyepic Exp $
+
+  12 Sep 2009; Ryan Hill <dirtyepic@gentoo.org>
+  -freetype-1.4_pre20080316-r1.ebuild, -freetype-2.3.7.ebuild,
+  -freetype-2.3.7-r1.ebuild, -files/freetype-2.3.7-b.g.o-247104.patch,
+  -files/freetype-2.3.7-b.g.o-253029.patch,
+  -files/freetype-2.3.7-fix-incorrect-scaling.patch,
+  -files/freetype-2.3.7-no-segfault-on-load_mac_face.patch,
+  -freetype-2.3.8.ebuild, -files/config.mk:
+  Remove old
 
   30 Aug 2009; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
   Fix description of fontforge USE flag.
