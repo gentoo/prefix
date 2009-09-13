@@ -1,6 +1,13 @@
 # ChangeLog for net-irc/quassel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.57 2009/09/05 21:34:35 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.59 2009/09/12 03:06:23 vostorga Exp $
+
+  12 Sep 2009; Víctor Ostorga <vostorga@gentoo.org>
+  -files/quasselcore.conf, -files/quasselcore.init:
+  Cleaning out unused files
+
+  11 Sep 2009; Tomáš Chvátal <scarabeus@gentoo.org> quassel-9999.ebuild:
+  Add fi to linguas.
 
   05 Sep 2009; Markus Meier <maekke@gentoo.org> quassel-0.4.3.ebuild:
   amd64/x86 stable, bug #249488

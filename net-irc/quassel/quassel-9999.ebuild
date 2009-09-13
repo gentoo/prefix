@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/quassel-9999.ebuild,v 1.22 2009/04/27 20:34:51 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/quassel-9999.ebuild,v 1.23 2009/09/11 08:15:36 scarabeus Exp $
 
 EAPI="2"
 
@@ -17,7 +17,7 @@ KEYWORDS="~amd64-linux"
 SLOT="0"
 IUSE="dbus debug kde monolithic +oxygen phonon postgres +server +ssl webkit +X"
 
-LANGS="cs da de fr hu it nb_NO ru sl tr"
+LANGS="cs da de fi fr hu it nb_NO ru sl tr"
 for l in ${LANGS}; do
 	IUSE="${IUSE} linguas_${l}"
 done
