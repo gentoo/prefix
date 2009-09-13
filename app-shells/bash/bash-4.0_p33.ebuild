@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p10-r1.ebuild,v 1.2 2009/03/23 18:34:21 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p33.ebuild,v 1.1 2009/09/10 00:23:58 vapier Exp $
 
 EAPI=1
 
@@ -36,14 +36,15 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="afs bashlogger examples +net nls plugins vanilla"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="afs bashlogger examples i6fork +net nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2
 	nls? ( virtual/libintl )"
 RDEPEND="${DEPEND}
 	!<sys-apps/portage-2.1.5
-	!<sys-apps/paludis-0.26.0_alpha5"
+	!<sys-apps/paludis-0.26.0_alpha5
+	i6fork? ( sys-libs/i6fork )"
 
 S=${WORKDIR}/${MY_P}
 
@@ -66,11 +67,11 @@ src_unpack() {
 	cd ../..
 
 	if ! use vanilla ; then
+		sed -i '1i#define NEED_FPURGE_DECL' execute_cmd.c # needs fpurge() decl
 		epatch "${FILESDIR}"/${PN}-3.2-parallel-build.patch #189671
 		epatch "${FILESDIR}"/${PN}-4.0-ldflags-for-build.patch #211947
-		epatch "${FILESDIR}"/${PN}-4.0-amp-case-segv.patch
-		epatch "${FILESDIR}"/${PN}-4.0-bar-and-piping.patch
 		epatch "${FILESDIR}"/${PN}-4.0-negative-return.patch
+		epatch "${FILESDIR}"/${PN}-4.0-parallel-build.patch #267613
 		# Log bash commands to syslog #91327
 		if use bashlogger ; then
 			ewarn "The logging patch should ONLY be used in restricted (i.e. honeypot) envs."
@@ -79,6 +80,7 @@ src_unpack() {
 			epause
 			epatch "${FILESDIR}"/${PN}-3.1-bash-logger.patch
 		fi
+		sed -i '/\.o: .*shell\.h/s:$: pathnames.h:' Makefile.in #267613
 	fi
 
 	# this adds additional prefixes
@@ -86,9 +88,14 @@ src_unpack() {
 	eprefixify pathnames.h.in
 
 	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
+	epatch "${FILESDIR}"/${PN}-4.0-mint.patch
+	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
 
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
-	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-3.2-mint.patch
+	if [[ ${CHOST} == *-interix* ]]; then
+		epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
+		epatch "${FILESDIR}"/${PN}-4.0-interix.patch
+		epatch "${FILESDIR}"/${PN}-4.0-interix-access.patch
+	fi
 
 	# modify the bashrc file for prefix
 	cp "${FILESDIR}"/bashrc "${T}"
@@ -154,6 +161,14 @@ src_compile() {
 		export ac_cv_header_inttypes_h=no
 		export gt_cv_header_inttypes_h=no
 		export jm_ac_cv_header_inttypes_h=no
+
+		# argh... something doomed this test on windows ... ???
+		export bash_cv_type_intmax_t=yes
+		export bash_cv_type_uintmax_t=yes
+	fi
+
+	if use i6fork; then
+		append-libs -li6fork
 	fi
 
 	econf \
