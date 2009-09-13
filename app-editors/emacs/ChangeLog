@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.331 2009/08/31 18:17:58 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.332 2009/09/10 06:48:39 ulm Exp $
+
+  10 Sep 2009; Ulrich Mueller <ulm@gentoo.org> emacs-22.3-r2.ebuild:
+  Backport INFOPATH patch from bug 281979 to the stable ebuild.
 
   31 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
   -emacs-21.4-r18.ebuild:
