@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/ack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ChangeLog,v 1.10 2009/07/26 19:13:27 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ChangeLog,v 1.11 2009/09/08 20:59:00 patrick Exp $
+
+*ack-1.90 (08 Sep 2009)
+
+  08 Sep 2009; Patrick Lauer <patrick@gentoo.org> +ack-1.90.ebuild:
+  Bump to 1.90, fixes #284183
 
   26 Jul 2009; Tiago Cunha <tcunha@gentoo.org> ack-1.88-r1.ebuild:
   stable amd64, bug 277477
