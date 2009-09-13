@@ -22,10 +22,12 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${P}-prefix.patch
+	ebegin "Adjusting to prefix"
 	sed -i \
 		-e "s:@GENTOO_PORTAGE_EPREFIX@:${EPREFIX}:g" \
 		-e "s:@GENTOO_PORTAGE_LIBSUFFIX@:$(get_libname):g" \
 		"${PN}" || die "eprefixify failed"
+	eend $?
 }
 
 src_install()
