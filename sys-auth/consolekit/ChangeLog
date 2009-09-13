@@ -1,6 +1,14 @@
 # ChangeLog for sys-auth/consolekit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.48 2009/06/11 23:00:00 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.49 2009/09/12 19:46:18 nirbheek Exp $
+
+*consolekit-0.3.0-r2 (12 Sep 2009)
+
+  12 Sep 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  files/consolekit-0.1.rc, -consolekit-0.3.0-r1.ebuild,
+  +consolekit-0.3.0-r2.ebuild:
+  Use the (correct) pid file to control ConsoleKit start/stop. Also, do a
+  blank -r2 bump so users get the new init script.
 
   12 Jun 2009; Gilles Dartiguelongue <eva@gentoo.org>
   consolekit-0.3.0-r1.ebuild:
