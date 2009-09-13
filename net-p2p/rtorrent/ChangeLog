@@ -1,6 +1,11 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.138 2009/07/28 21:52:33 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.139 2009/09/10 17:56:41 patrick Exp $
+
+*rtorrent-0.8.5 (10 Sep 2009)
+
+  10 Sep 2009; Patrick Lauer <patrick@gentoo.org> +rtorrent-0.8.5.ebuild:
+  Bump to 0.8.5, fixes other half of #278660. Thanks to Shark for testing.
 
   28 Jul 2009; Robin H. Johnson <robbat2@gentoo.org> files/rtorrentd.init:
   Bug #262046: If used with a non-local NSS source, we need to start after
