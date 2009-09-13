@@ -1,6 +1,10 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.128 2009/06/06 22:06:08 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.129 2009/09/12 03:25:59 vostorga Exp $
+
+  12 Sep 2009; Víctor Ostorga <vostorga@gentoo.org>
+  -files/scrolling-one-line.patch:
+  Cleaning out unused patch
 
   06 Jun 2009; Peter Alfredsen <loki_val@gentoo.org>
   rxvt-unicode-9.06.ebuild, +files/rxvt-unicode-9.06-glibc-2.10.patch:
