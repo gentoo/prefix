@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/teco/teco-1.00-r3.ebuild,v 1.7 2007/10/10 07:22:43 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/teco/teco-1.00-r3.ebuild,v 1.8 2009/09/11 11:20:43 flameeyes Exp $
 
 inherit toolchain-funcs flag-o-matic
 
@@ -18,7 +18,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="doc"
 
 RDEPEND="sys-libs/ncurses"
-DEPEND="${DEPEND}"
+DEPEND="${RDEPEND}"
 
 S=${WORKDIR}
 
