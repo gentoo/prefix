@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/oscache/oscache-2.0.2-r3.ebuild,v 1.1 2009/05/18 19:41:19 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/oscache/oscache-2.0.2-r3.ebuild,v 1.2 2009/09/11 22:16:49 maekke Exp $
 
 EAPI="2"
 JAVA_PKG_IUSE="doc"
