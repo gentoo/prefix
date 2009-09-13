@@ -1,6 +1,33 @@
 # ChangeLog for dev-db/postgresql-base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.19 2009/05/28 15:12:07 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.23 2009/09/09 22:57:31 patrick Exp $
+
+*postgresql-base-8.0.22 (09 Sep 2009)
+
+  09 Sep 2009; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-8.0.22.ebuild:
+  Bump to 8.0.22
+
+*postgresql-base-8.2.14 (09 Sep 2009)
+*postgresql-base-8.1.18 (09 Sep 2009)
+
+  09 Sep 2009; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-8.1.18.ebuild, +postgresql-base-8.2.14.ebuild:
+  Bump to 8.1.18 and 8.2.14
+
+*postgresql-base-8.4.1 (09 Sep 2009)
+*postgresql-base-8.3.8 (09 Sep 2009)
+
+  09 Sep 2009; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-8.3.8.ebuild, +postgresql-base-8.4.1.ebuild:
+  Bump to 8.4.1 and 8.3.8
+
+*postgresql-base-8.4.0 (09 Sep 2009)
+
+  09 Sep 2009; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-8.4.0.ebuild, +files/postgresql-8.4-base.patch,
+  +files/postgresql-8.4-common.patch:
+  Bump to 8.4.0. Fixes #276125
 
   28 May 2009; Christian Faulhammer <fauli@gentoo.org>
   postgresql-base-8.1.11.ebuild:
