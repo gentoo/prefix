@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.13.ebuild,v 1.1 2009/08/28 14:25:29 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.13.ebuild,v 1.3 2009/09/08 12:00:56 ssuominen Exp $
 
 EAPI=2
 inherit eutils flag-o-matic multilib toolchain-funcs versionator
@@ -17,7 +17,7 @@ IUSE=""
 S=${WORKDIR}/${PN}-"$(replace_version_separator 2 '-pl' )"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.0.12-shared.patch \
+	epatch "${FILESDIR}"/${P}-shared.patch \
 		"${FILESDIR}"/${PN}-1.0.12-memcpy.patch \
 		"${FILESDIR}"/${PN}-1.0.12-64bit.patch
 	[[ ${CHOST} == *-darwin* ]] && epatch "${FILESDIR}"/${PN}-1.0.12-darwin.patch
