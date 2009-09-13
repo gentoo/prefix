@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/netkit-rsh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.66 2009/06/21 17:31:02 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/ChangeLog,v 1.67 2009/09/10 15:37:23 ssuominen Exp $
+
+  10 Sep 2009; Samuli Suominen <ssuominen@gentoo.org>
+  netkit-rsh-0.17-r9.ebuild:
+  Fix xz-utils vs. lzma-utils deps.
 
   21 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   -netkit-rsh-0.17-r8.ebuild, -files/rexec.pamd-include,

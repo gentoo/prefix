@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/netkit-rsh-0.17-r9.ebuild,v 1.18 2009/01/12 15:44:51 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/netkit-rsh/netkit-rsh-0.17-r9.ebuild,v 1.19 2009/09/10 15:37:23 ssuominen Exp $
 
 inherit eutils pam toolchain-funcs
 
@@ -19,7 +19,7 @@ IUSE="pam"
 RDEPEND=">=sys-libs/ncurses-5.2
 	pam? ( >=sys-auth/pambase-20080219.1 )"
 DEPEND="${RDEPEND}
-	app-arch/lzma-utils"
+	|| ( app-arch/xz-utils app-arch/lzma-utils )"
 
 src_unpack() {
 	unpack ${A}
