@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/libxcb-1.4.ebuild,v 1.2 2009/08/18 16:58:22 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/libxcb-1.4.ebuild,v 1.3 2009/09/11 18:01:53 remi Exp $
 
 EAPI="2"
 
@@ -51,11 +51,26 @@ src_install() {
 	dobin "${T}"/xcb-rebuilder.sh || die
 }
 
+pkg_preinst() {
+	x-modular_pkg_preinst
+	preserve_old_lib /usr/$(get_libdir)/libxcb-xlib.so.0.0.0
+}
+
 pkg_postinst() {
 	x-modular_pkg_postinst
+	preserve_old_lib_notify /usr/$(get_libdir)/libxcb-xlib.so.0.0.0
 
-	ewarn "libxcb-1.2 removed libxcb-xlib.so. Run xcb-rebuilder.sh to rebuild"
-	ewarn "packages that broke. revdep-rebuild may also work."
-	ebeep 5
-	epause 5
+	if [[ -e /usr/$(get_libdir)/libxcb-xlib.so.0.0.0 ]]; then
+		ewarn "libxcb-xlib.so is no longer shipped by ${PN} but was kept on your system"
+		ewarn
+		ewarn "While your system will still work, emerging new packages or updates"
+		ewarn "will likely fail. You can fix broken libtool .la files by running :"
+		ewarn
+		ewarn "  ${FILESDIR}/xcb-rebuilder.sh"
+		ewarn
+		ewarn "To completely get rid of libxcb-xlib.so references, please read :"
+		ewarn "http://www.gentoo.org/proj/en/desktop/x/x11/libxcb-1.4-upgrade-guide.xml"
+		ebeep 5
+		epause 5
+	fi
 }
