@@ -10,6 +10,7 @@ start() {
 		eerror "You need to configure twistd in /etc/conf.d/twistd."
 		return 1
 	fi
+	export PYTHONPATH
 	ebegin "Starting twistd"
 	start-stop-daemon --start --quiet --pidfile /var/run/twistd.pid \
 		--exec /usr/bin/twistd -- --pidfile /var/run/twistd.pid \
