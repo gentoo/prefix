@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pudb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pudb/ChangeLog,v 1.1 2009/07/03 14:01:38 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pudb/ChangeLog,v 1.2 2009/09/12 22:43:18 arfrever Exp $
+
+*pudb-0.92.12 (13 Sep 2009)
+
+  13 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +pudb-0.92.12.ebuild:
+  Version bump. Set SUPPORT_PYTHON_ABIS.
 
 *pudb-0.92.3 (03 Jul 2009)
 
