@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Data-UUID
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Data-UUID/ChangeLog,v 1.41 2009/09/07 09:18:03 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Data-UUID/ChangeLog,v 1.42 2009/09/10 08:22:12 fauli Exp $
+
+  10 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  Data-UUID-1.202.ebuild:
+  x86 stable, bug 283969
 
   07 Sep 2009; Torsten Veller <tove@gentoo.org> -Data-UUID-1.201.ebuild:
   Cleanup
