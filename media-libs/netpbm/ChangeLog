@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.222 2009/09/07 14:25:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.223 2009/09/10 15:48:22 ssuominen Exp $
+
+  10 Sep 2009; Samuli Suominen <ssuominen@gentoo.org>
+  netpbm-10.44.00-r1.ebuild, netpbm-10.46.00.ebuild,
+  netpbm-10.46.00-r1.ebuild:
+  Fix xz-utils vs. lzma-utils deps.
 
   07 Sep 2009; Raúl Porcel <armin76@gentoo.org> netpbm-10.46.00.ebuild:
   ia64/sparc stable wrt #277184

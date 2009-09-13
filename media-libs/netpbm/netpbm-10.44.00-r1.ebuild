@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.44.00-r1.ebuild,v 1.8 2009/05/05 02:09:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.44.00-r1.ebuild,v 1.9 2009/09/10 15:48:22 ssuominen Exp $
 
 inherit flag-o-matic toolchain-funcs eutils multilib prefix
 
@@ -25,7 +25,7 @@ RDEPEND="jpeg? ( >=media-libs/jpeg-6b )
 	jbig? ( media-libs/jbigkit )
 	rle? ( media-libs/urt )"
 DEPEND="${RDEPEND}
-	app-arch/lzma-utils"
+	|| ( app-arch/xz-utils app-arch/lzma-utils )"
 
 maint_pkg_create() {
 	local base="/usr/local/src"
