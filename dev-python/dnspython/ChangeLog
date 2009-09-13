@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/dnspython
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/dnspython/ChangeLog,v 1.45 2009/09/07 19:34:27 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/dnspython/ChangeLog,v 1.46 2009/09/08 20:14:30 arfrever Exp $
+
+  08 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  dnspython-1.7.1.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
 *dnspython-1.7.1 (07 Sep 2009)
 
