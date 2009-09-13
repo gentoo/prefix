@@ -1,11 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/enca-1.9-r1.ebuild,v 1.13 2009/09/11 17:25:26 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/enca-1.10.ebuild,v 1.2 2009/09/12 17:02:57 arfrever Exp $
+
+EAPI="2"
 
 inherit toolchain-funcs
+
 DESCRIPTION="ENCA detects the character coding of a file and converts it if desired"
 HOMEPAGE="http://gitorious.org/enca"
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI="http://dl.cihar.com/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -15,18 +18,22 @@ IUSE="doc"
 DEPEND=">=app-text/recode-3.6_p15"
 RDEPEND="${DEPEND}"
 
-src_compile() {
+src_configure() {
 	econf \
 		--with-librecode="${EPREFIX}"/usr \
 		--enable-external \
-		$(use_enable doc gtk-doc) \
-		|| die "configure failed"
+		$(use_enable doc gtk-doc)
+}
+
+src_compile() {
 	if tc-is-cross-compiler; then
-		( cd "${S}"/tools && $(tc-getBUILD_CC) -o make_hash make_hash.c ) || die "native make_hash failed"
+		pushd tools > /dev/null
+		$(tc-getBUILD_CC) -o make_hash make_hash.c || die "native make_hash failed"
+		popd > /dev/null
 	fi
-	emake || die "make failed"
+	emake || die "emake failed"
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die "emake install failed"
 }
