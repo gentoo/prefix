@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/XML-Twig
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Twig/ChangeLog,v 1.59 2009/07/02 20:33:23 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/XML-Twig/ChangeLog,v 1.61 2009/09/11 16:21:54 armin76 Exp $
+
+  11 Sep 2009; Raúl Porcel <armin76@gentoo.org> XML-Twig-3.32.ebuild:
+  alpha/ia64/sparc stable wrt #283743
+
+  10 Sep 2009; Christian Faulhammer <fauli@gentoo.org> XML-Twig-3.32.ebuild:
+  stable x86, bug 283743
 
   02 Jul 2009; Jeroen Roovers <jer@gentoo.org> XML-Twig-3.29.ebuild,
   XML-Twig-3.32.ebuild:
