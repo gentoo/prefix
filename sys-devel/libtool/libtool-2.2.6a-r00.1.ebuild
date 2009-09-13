@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.4 2009/06/28 16:37:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.5 2009/09/08 17:51:21 vapier Exp $
 
 LIBTOOLIZE="true" #225559
 inherit eutils autotools
@@ -18,7 +18,7 @@ RDEPEND="sys-devel/gnuconfig
 	>=sys-devel/autoconf-2.60
 	>=sys-devel/automake-1.10.1"
 DEPEND="${RDEPEND}
-	app-arch/lzma-utils
+	|| ( app-arch/xz-utils app-arch/lzma-utils )
 	sys-apps/help2man"
 
 S=${WORKDIR}/${P%a}
