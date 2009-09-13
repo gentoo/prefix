@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/schroedinger
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.29 2009/08/16 12:49:50 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.30 2009/09/10 09:41:49 aballier Exp $
+
+*schroedinger-1.0.7-r2 (10 Sep 2009)
+
+  10 Sep 2009; Alexis Ballier <aballier@gentoo.org>
+  +schroedinger-1.0.7-r2.ebuild,
+  +files/schroedinger-1.0.7-gst_adapter_get_buffer.patch:
+  Add a patch by Randall Wald <rdwald@gmail.com>, bug #284071, to include
+  the correct headers so that we get the required function declarations.
 
 *schroedinger-1.0.7-r1 (16 Aug 2009)
 
