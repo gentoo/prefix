@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.12.ebuild,v 1.10 2009/03/17 10:12:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.12.ebuild,v 1.11 2009/09/08 17:49:43 vapier Exp $
 
 inherit eutils
 
@@ -14,7 +14,7 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux
 IUSE="examples"
 
 # remember: cannot dep on autoconf since it needs us
-DEPEND="app-arch/lzma-utils"
+DEPEND="|| ( app-arch/xz-utils app-arch/lzma-utils )"
 RDEPEND=""
 
 src_unpack() {
