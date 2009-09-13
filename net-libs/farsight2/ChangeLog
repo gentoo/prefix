@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/farsight2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/ChangeLog,v 1.10 2009/09/07 05:36:14 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/ChangeLog,v 1.12 2009/09/11 22:00:25 volkmar Exp $
+
+  11 Sep 2009; Mounir Lamouri <volkmar@gentoo.org> farsight2-0.0.15.ebuild:
+  Keywording for ppc. Bug 282263
+
+  11 Sep 2009; Olivier Crête <tester@gentoo.org> farsight2-0.0.14.ebuild,
+  farsight2-0.0.15.ebuild:
+  Depend on a version of gst-plugins-good/bad that has gstrtpbin
 
 *farsight2-0.0.15 (07 Sep 2009)
 

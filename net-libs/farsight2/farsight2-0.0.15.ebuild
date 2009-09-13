@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/farsight2-0.0.15.ebuild,v 1.1 2009/09/07 05:36:14 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/farsight2-0.0.15.ebuild,v 1.3 2009/09/11 22:00:25 volkmar Exp $
 
 EAPI="2"
 
@@ -25,6 +25,8 @@ COMMONDEPEND=">=media-libs/gstreamer-0.10.23
 RDEPEND="${COMMONDEPEND}
 	>=media-libs/gst-plugins-good-0.10.11
 	>=media-libs/gst-plugins-bad-0.10.13
+	|| ( >=media-libs/gst-plugins-good-0.10.16
+		<media-libs/gst-plugins-bad-0.10.14 )
 	msn? ( >=media-plugins/gst-plugins-mimic-0.10.14 )"
 
 DEPEND="${COMMONDEPEND}
