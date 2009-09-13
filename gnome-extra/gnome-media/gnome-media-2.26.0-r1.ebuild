@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/gnome-media-2.26.0.ebuild,v 1.5 2009/08/23 21:48:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/gnome-media-2.26.0-r1.ebuild,v 1.1 2009/09/12 11:38:18 nirbheek Exp $
 
 EAPI="2"
 
@@ -73,6 +73,10 @@ src_prepare() {
 	if use gnomecd; then
 		epatch "${FILESDIR}/${P}-missing-cddbslave-cflags.patch"
 	fi
+
+	# Half-fix bug 274819 -- applet does not work when PA restarts (not needed with 2.28)
+	epatch "${FILESDIR}/${P}-connection-failed-pulseaudio.patch"
+
 	# Fix automagic canberra support
 	epatch "${FILESDIR}/${P}-automagic-canberra.patch"
 	eautoreconf

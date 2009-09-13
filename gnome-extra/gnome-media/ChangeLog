@@ -1,6 +1,14 @@
 # ChangeLog for gnome-extra/gnome-media
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.199 2009/08/23 21:48:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.200 2009/09/12 11:38:18 nirbheek Exp $
+
+*gnome-media-2.26.0-r1 (12 Sep 2009)
+
+  12 Sep 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -gnome-media-2.26.0.ebuild, +gnome-media-2.26.0-r1.ebuild,
+  +files/gnome-media-2.26.0-connection-failed-pulseaudio.patch:
+  First half of fix for bug 274819 (second half will go to
+  gnome-settings-daemon) -- restarting pulseaudio breaks volume applet
 
   23 Aug 2009; Gilles Dartiguelongue <eva@gentoo.org>
   gnome-media-2.26.0.ebuild:
