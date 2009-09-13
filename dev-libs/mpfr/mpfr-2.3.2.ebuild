@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.3.2.ebuild,v 1.10 2009/02/27 14:46:52 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.3.2.ebuild,v 1.11 2009/09/10 16:00:57 ssuominen Exp $
 
 # NOTE: we cannot depend on autotools here starting with gcc-4.3.x
 inherit eutils
@@ -19,7 +19,7 @@ IUSE=""
 
 RDEPEND=">=dev-libs/gmp-4.1.4-r2"
 DEPEND="${RDEPEND}
-	app-arch/lzma-utils"
+	|| ( app-arch/xz-utils app-arch/lzma-utils )"
 
 S=${WORKDIR}/${MY_P}
 
