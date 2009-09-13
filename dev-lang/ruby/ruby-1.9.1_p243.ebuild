@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1_p129-r1.ebuild,v 1.3 2009/07/31 17:12:43 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1_p243.ebuild,v 1.1 2009/09/09 14:47:04 a3li Exp $
 
 EAPI=2
 
 inherit autotools eutils flag-o-matic multilib versionator
 
-# Add p0 patchlevel
+# Add patchlevel
 MY_P="${P/_/-}"
 
 # 1.9.1.0 -> 1.9
@@ -20,11 +20,12 @@ MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/${MY_P}.tar.bz2"
+SRC_URI="mirror://ruby/${MY_P}.tar.bz2
+		http://dev.a3li.info/gentoo/distfiles/${PN}-patches-${PVR}.tar.bz2"
 
 LICENSE="|| ( Ruby GPL-2 )"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="+berkdb debug doc emacs examples +gdbm ipv6 rubytests socks5 ssl tk xemacs"
+IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl tk xemacs"
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
@@ -32,7 +33,7 @@ RDEPEND="
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk[threads] )
-	>=app-admin/eselect-ruby-20080921
+	>=app-admin/eselect-ruby-20090909
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!<dev-ruby/rdoc-2
 	!dev-ruby/rexml"
@@ -56,19 +57,11 @@ pkg_setup() {
 src_prepare() {
 	cd "${S}"
 
-	# Patch wrt bug #238061
-	epatch "${FILESDIR}/ruby19-rubygems-proxy.patch"
-	# Patch for rubygems to find installed gems outside of the sandbox
-	epatch "${FILESDIR}/ruby19-rubygems-gentoo.patch"
-
-	epatch "${FILESDIR}/${PN}${MY_SUFFIX}-mkmf-parallel-install.patch"
-
 	epatch "${FILESDIR}/${PN}-1.9.1-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.9.1-prefix.patch"
 
-	epatch "${FILESDIR}"/${P}-gfbsd7.patch
-	epatch "${FILESDIR}"/${P}-no-undefined-ext.patch
-	epatch "${FILESDIR}"/${P}-parallelmake.patch
+	EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
+	epatch "${WORKDIR}/patches-${PVR}"
 
 	# Strip rake
 	rm "bin/rake"
@@ -105,10 +98,13 @@ src_configure() {
 		append-flags "-DGC_MALLOC_LIMIT=${RUBY_GC_MALLOC_LIMIT}"
 	fi
 
+	# ipv6 hack, bug 168939. Needs --enable-ipv6.
+	use ipv6 || myconf="--with-lookup-order-hack=INET"
+
 	econf --program-suffix=${MY_SUFFIX} --enable-shared --enable-pthread \
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
-		$(use_enable ipv6) \
+		--enable-ipv6 \
 		$(use_enable debug) \
 		$(use_with berkdb dbm) \
 		$(use_with gdbm) \
@@ -188,7 +184,7 @@ src_install() {
 		cp -pPR test "${ED}/usr/share/${PN}-${RUBYVERSION}"
 	fi
 
-	insinto /usr/$(get_libdir)/ruby${MY_SUFFIX}/site_ruby/
+	insinto /usr/$(get_libdir)/ruby${MY_SUFFIX}/vendor_ruby/${RUBYVERSION}/
 	newins "${FILESDIR}/auto_gem.rb" auto_gem.rb
 }
 
@@ -204,7 +200,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
-		eselect ruby set ruby${MY_SUFFIX}
-	fi
+	eselect ruby cleanup
 }

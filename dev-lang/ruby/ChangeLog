@@ -1,6 +1,18 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.420 2009/08/20 09:09:50 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.421 2009/09/09 14:47:04 a3li Exp $
+
+*ruby-1.9.1_p243 (09 Sep 2009)
+
+  09 Sep 2009; Alex Legler <a3li@gentoo.org> -ruby-1.9.1_p129.ebuild,
+  -ruby-1.9.1_p129-r1.ebuild, +ruby-1.9.1_p243.ebuild,
+  -files/ruby-1.9.1_p129-gfbsd7.patch, -files/ruby19-rubygems-gentoo.patch,
+  -files/ruby-1.9.1_p129-no-undefined-ext.patch,
+  -files/ruby19-rubygems-proxy.patch,
+  -files/ruby-1.9.1_p129-parallelmake.patch,
+  -files/ruby19-mkmf-parallel-install.patch:
+  Version bump. Fixing bugs 278899 by Daniel Robbins, 279825, 277210 and
+  168939. Cleaning up old patches.
 
 *ruby-1.8.6_p383 (20 Aug 2009)
 
