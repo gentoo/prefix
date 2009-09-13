@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.45 2009/09/07 21:07:11 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.46 2009/09/13 04:47:34 dirtyepic Exp $
 
 # @ECLASS: font.eclass
 # @MAINTAINER:
@@ -21,7 +21,7 @@ EXPORT_FUNCTIONS pkg_setup src_install pkg_postinst pkg_postrm
 # @ECLASS-VARIABLE: FONT_SUFFIX
 # @DESCRIPTION:
 # Space delimited list of font suffixes to install
-FONT_SUFFIX=""
+FONT_SUFFIX=${FONT_SUFFIX:-}
 
 # @ECLASS-VARIABLE: FONT_S
 # @DESCRIPTION:
@@ -31,12 +31,12 @@ FONT_S=${S}
 # @ECLASS-VARIABLE: FONT_PN
 # @DESCRIPTION:
 # Last part of $FONTDIR
-FONT_PN=${PN}
+FONT_PN=${FONT_PN:-${PN}}
 
 # @ECLASS-VARIABLE: FONTDIR
 # @DESCRIPTION:
 # This is where the fonts are installed
-FONTDIR=/usr/share/fonts/${FONT_PN}
+FONTDIR=${FONTDIR:-/usr/share/fonts/${FONT_PN}}
 
 # @ECLASS-VARIABLE: FONT_CONF
 # @DESCRIPTION:
@@ -46,7 +46,7 @@ FONT_CONF=( "" )
 # @ECLASS-VARIABLE: DOCS
 # @DESCRIPTION:
 # Docs to install
-DOCS=""
+DOCS=${DOCS:-}
 
 IUSE="X"
 
@@ -195,4 +195,3 @@ font_pkg_postrm() {
 		fi
 	fi
 }
-

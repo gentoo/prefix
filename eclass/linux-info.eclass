@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.70 2009/09/06 23:41:42 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.71 2009/09/08 12:34:21 robbat2 Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
@@ -511,7 +511,7 @@ get_version() {
 	KV_OUT_DIR="${KV_OUT_DIR:-${KV_DIR}}"
 
 	KV_LOCAL="${KV_LOCAL}$(get_localversion ${KV_DIR})"
-	if linux_config_exists; then
+	if linux_config_src_exists; then
 		KV_LOCAL="${KV_LOCAL}$(linux_chkconfig_string LOCALVERSION)"
 		KV_LOCAL="${KV_LOCAL//\"/}"
 

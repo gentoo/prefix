@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.15 2009/07/27 19:03:20 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.16 2009/09/09 18:40:11 kolmodin Exp $
 #
 # Original authors: Andres Loeh <kosmikus@gentoo.org>
 #                   Duncan Coutts <dcoutts@gentoo.org>
@@ -26,6 +26,9 @@
 #   bootstrap  --  only used for the cabal package itself
 #   bin        --  the package installs binaries
 #   lib        --  the package installs libraries
+#   nocabaldep --  don't add dependency on cabal.
+#					only used for packages that _must_ not pull the dependency
+#					on cabal, but still use this eclass (e.g. haskell-updater).
 #
 # Dependencies on other cabal packages have to be specified
 # correctly.
@@ -45,15 +48,16 @@ inherit ghc-package multilib
 
 for feature in ${CABAL_FEATURES}; do
 	case ${feature} in
-		haddock)   CABAL_USE_HADDOCK=yes;;
-		alex)      CABAL_USE_ALEX=yes;;
-		happy)     CABAL_USE_HAPPY=yes;;
-		c2hs)      CABAL_USE_C2HS=yes;;
-		cpphs)     CABAL_USE_CPPHS=yes;;
-		profile)   CABAL_USE_PROFILE=yes;;
-		bootstrap) CABAL_BOOTSTRAP=yes;;
-		bin)       CABAL_HAS_BINARIES=yes;;
-		lib)       CABAL_HAS_LIBRARIES=yes;;
+		haddock)    CABAL_USE_HADDOCK=yes;;
+		alex)       CABAL_USE_ALEX=yes;;
+		happy)      CABAL_USE_HAPPY=yes;;
+		c2hs)       CABAL_USE_C2HS=yes;;
+		cpphs)      CABAL_USE_CPPHS=yes;;
+		profile)    CABAL_USE_PROFILE=yes;;
+		bootstrap)  CABAL_BOOTSTRAP=yes;;
+		bin)        CABAL_HAS_BINARIES=yes;;
+		lib)        CABAL_HAS_LIBRARIES=yes;;
+		nocabaldep) CABAL_FROM_GHC=yes;;
 		*) CABAL_UNKNOWN="${CABAL_UNKNOWN} ${feature}";;
 	esac
 done
@@ -92,7 +96,7 @@ fi
 if [[ -z ${CABAL_MIN_VERSION} ]]; then
 	CABAL_MIN_VERSION=1.1.4
 fi
-if [[ -z "${CABAL_BOOTSTRAP}" ]]; then
+if [[ -z "${CABAL_BOOTSTRAP}" && -z "${CABAL_FROM_GHC}" ]]; then
 	DEPEND="${DEPEND} >=dev-haskell/cabal-${CABAL_MIN_VERSION}"
 fi
 
@@ -273,10 +277,10 @@ cabal-is-dummy-lib() {
 # the currently active ghc (we cannot guarantee this with portage)
 haskell-cabal_pkg_setup() {
 	ghc-package_pkg_setup
-	if [[ -z "${CABAL_BOOTSTRAP}" ]] && ! ghc-sanecabal "${CABAL_MIN_VERSION}"; then
+	if [[ -z "${CABAL_BOOTSTRAP}" && -z "${CABAL_FROM_GHC}" ]] && ! ghc-sanecabal "${CABAL_MIN_VERSION}"; then
 		eerror "The package dev-haskell/cabal is not correctly installed for"
 		eerror "the currently active version of ghc ($(ghc-version)). Please"
-		eerror "run ghc-updater or re-emerge dev-haskell/cabal."
+		eerror "run ghc-updater or haskell-updater or re-build dev-haskell/cabal."
 		die "cabal is not correctly installed"
 	fi
 	if [[ -z "${CABAL_HAS_BINARIES}" ]] && [[ -z "${CABAL_HAS_LIBRARIES}" ]]; then
@@ -302,6 +306,7 @@ cabal_src_compile() {
 		fi
 	fi
 }
+
 haskell-cabal_src_compile() {
 	cabal_src_compile
 }

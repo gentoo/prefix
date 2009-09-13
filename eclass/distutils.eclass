@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.61 2009/09/07 02:34:10 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.64 2009/09/11 20:03:51 arfrever Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -24,8 +24,10 @@ case "${EAPI:-0}" in
 		;;
 esac
 
-DEPEND="virtual/python"
-RDEPEND="${DEPEND}"
+if [[ -z "${DISTUTILS_DISABLE_PYTHON_DEPENDENCY}" ]]; then
+	DEPEND="virtual/python"
+	RDEPEND="${DEPEND}"
+fi
 python="python"
 
 # @ECLASS-VARIABLE: DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES
@@ -64,10 +66,10 @@ distutils_src_prepare() {
 
 	# Delete ez_setup files to prevent packages from installing
 	# setuptools on their own.
-	local ez_setup_py_existence
-	[[ -f ez_setup.py ]] && ez_setup_py_existence="1"
+	local ez_setup_existence
+	[[ -d ez_setup || -f ez_setup.py ]] && ez_setup_existence="1"
 	rm -fr ez_setup*
-	if [[ "${ez_setup_py_existence}" == "1" ]]; then
+	if [[ "${ez_setup_existence}" == "1" ]]; then
 		echo "def use_setuptools(*args, **kwargs): pass" > ez_setup.py
 	fi
 
@@ -168,48 +170,20 @@ distutils_src_install() {
 		${python} setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" install --root="${D}" --no-compile "$@" || die "Installation failed"
 	fi
 
-	DDOCS="CHANGELOG KNOWN_BUGS MAINTAINERS PKG-INFO CONTRIBUTORS TODO NEWS"
-	DDOCS="${DDOCS} Change* MANIFEST* README* AUTHORS"
+	if [[ -e "${ED}usr/local" ]]; then
+		die "Illegal installation into /usr/local"
+	fi
+
+	local default_docs
+	default_docs="AUTHORS Change* CHANGELOG CONTRIBUTORS KNOWN_BUGS MAINTAINERS MANIFEST* NEWS PKG-INFO README* TODO"
 
 	local doc
-	for doc in ${DDOCS}; do
-		[[ -s "$doc" ]] && dodoc $doc
+	for doc in ${default_docs}; do
+		[[ -s "${doc}" ]] && dodoc "${doc}"
 	done
 
-	[[ -n "${DOCS}" ]] && dodoc ${DOCS}
-}
-
-# @FUNCTION: distutils_pkg_postrm
-# @DESCRIPTION:
-# Generic pyc/pyo cleanup script. This function is exported.
-distutils_pkg_postrm() {
-	if [[ "${EBUILD_PHASE}" != "postrm" ]]; then
-		die "${FUNCNAME}() can be used only in pkg_postrm() phase"
-	fi
-
-	local pylibdir pymod
-	if [[ -z "${PYTHON_MODNAME}" ]]; then
-		for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
-			if [[ -d "${pylibdir}/site-packages/${PN}" ]]; then
-				PYTHON_MODNAME="${PN}"
-			fi
-		done
-	fi
-
-	if [[ -n "${PYTHON_MODNAME}" ]]; then
-		for pymod in ${PYTHON_MODNAME}; do
-			for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
-				if [[ -d "${pylibdir}/site-packages/${pymod}" ]]; then
-					if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-						python_mod_cleanup "${pymod}"
-					else
-						python_mod_cleanup "${pylibdir#${EROOT}}/site-packages/${pymod}"
-					fi
-				fi
-			done
-		done
-	else
-		python_mod_cleanup
+	if [[ -n "${DOCS}" ]]; then
+		dodoc ${DOCS} || die "dodoc failed"
 	fi
 }
 
@@ -236,10 +210,43 @@ distutils_pkg_postinst() {
 			python_mod_optimize "${pymod}"
 		done
 	else
-		python_version
 		for pymod in ${PYTHON_MODNAME}; do
-			python_mod_optimize "/usr/$(get_libdir)/python${PYVER}/site-packages/${pymod}"
+			python_mod_optimize "$(python_get_sitedir)/${pymod}"
 		done
+	fi
+}
+
+# @FUNCTION: distutils_pkg_postrm
+# @DESCRIPTION:
+# Generic pyc/pyo cleanup script. This function is exported.
+distutils_pkg_postrm() {
+	if [[ "${EBUILD_PHASE}" != "postrm" ]]; then
+		die "${FUNCNAME}() can be used only in pkg_postrm() phase"
+	fi
+
+	local pylibdir pymod
+	if [[ -z "${PYTHON_MODNAME}" ]]; then
+		for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
+			if [[ -d "${pylibdir}/site-packages/${PN}" ]]; then
+				PYTHON_MODNAME="${PN}"
+			fi
+		done
+	fi
+
+	if [[ -n "${PYTHON_MODNAME}" ]]; then
+		for pymod in ${PYTHON_MODNAME}; do
+			if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+				python_mod_cleanup "${pymod}"
+			else
+				for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
+					if [[ -d "${pylibdir}/site-packages/${pymod}" ]]; then
+						python_mod_cleanup "${pylibdir#${EROOT}}/site-packages/${pymod}"
+					fi
+				done
+			fi
+		done
+	else
+		python_mod_cleanup
 	fi
 }
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.114 2009/07/06 19:06:03 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.115 2009/09/08 05:28:03 robbat2 Exp $
 
 # Author: Francesco Riosa (Retired) <vivo@gentoo.org>
 # Maintainer: MySQL Team <mysql-bugs@gentoo.org>
@@ -633,6 +633,9 @@ mysql_src_configure() {
 	mysql_version_is_at_least "5.0" \
 	&& CXXFLAGS="${CXXFLAGS} -fno-implicit-templates"
 	export CXXFLAGS
+
+	# bug #283926, with GCC4.4, this is required to get correct behavior.
+	append-flags -fno-strict-aliasing
 
 	econf \
 		--libexecdir="${EPREFIX}"/usr/sbin \
