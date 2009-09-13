@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/buildbot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.49 2009/09/05 14:29:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.50 2009/09/11 19:31:31 maekke Exp $
+
+  11 Sep 2009; Markus Meier <maekke@gentoo.org> buildbot-0.7.11_p3.ebuild:
+  amd64 stable, bug #282855
 
   05 Sep 2009; Raúl Porcel <armin76@gentoo.org> buildbot-0.7.11_p3.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #282855
