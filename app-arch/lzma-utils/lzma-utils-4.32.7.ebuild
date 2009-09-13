@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.7.ebuild,v 1.7 2008/10/27 22:29:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/lzma-utils/lzma-utils-4.32.7.ebuild,v 1.8 2009/09/10 21:05:33 ssuominen Exp $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
@@ -19,7 +19,9 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 IUSE="nocxx"
 
 RDEPEND="!app-arch/lzma
+	!app-arch/xz-utils
 	!<app-arch/p7zip-4.57"
+DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
