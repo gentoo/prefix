@@ -1,6 +1,11 @@
 # ChangeLog for sci-biology/phylip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/ChangeLog,v 1.36 2009/09/01 19:20:56 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/ChangeLog,v 1.37 2009/09/11 02:02:25 weaver Exp $
+
+*phylip-3.69 (10 Sep 2009)
+
+  10 Sep 2009; Andrey Kislyuk <weaver@gentoo.org> +phylip-3.69.ebuild:
+  Version bump
 
   01 Sep 2009; Olivier Fisette <ribosome@gentoo.org> -phylip-3.65-r1.ebuild,
   -phylip-3.66.ebuild:
