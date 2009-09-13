@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.12.ebuild,v 1.1 2008/05/05 04:24:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/texinfo/texinfo-4.12.ebuild,v 1.2 2009/09/08 17:50:31 vapier Exp $
 
 inherit flag-o-matic
 
@@ -17,7 +17,7 @@ RDEPEND="!=app-text/tetex-2*
 	>=sys-libs/ncurses-5.2-r2
 	nls? ( virtual/libintl )"
 DEPEND="${RDEPEND}
-	app-arch/lzma-utils
+	|| ( app-arch/xz-utils app-arch/lzma-utils )
 	nls? ( sys-devel/gettext )
 	sys-apps/help2man"
 
