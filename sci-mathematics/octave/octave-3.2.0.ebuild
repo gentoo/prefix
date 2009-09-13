@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/octave-3.2.0.ebuild,v 1.5 2009/07/11 16:28:28 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/octave-3.2.0.ebuild,v 1.6 2009/09/09 02:59:39 markusle Exp $
 
 EAPI="2"
 inherit flag-o-matic fortran xemacs-elisp-common
@@ -46,6 +46,7 @@ FORTRAN="gfortran ifc g77 f2c"
 src_prepare() {
 	epatch "${FILESDIR}"/${P}_parallel_make.patch
 	epatch "${FILESDIR}"/${P}_as_needed.patch
+	epatch "${FILESDIR}"/${P}-dlmwrite.patch
 }
 
 src_configure() {
