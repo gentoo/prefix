@@ -1,6 +1,21 @@
 # ChangeLog for app-office/texmacs
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/ChangeLog,v 1.70 2009/04/19 13:19:20 grozin Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/ChangeLog,v 1.73 2009/09/07 21:10:43 maekke Exp $
+
+  07 Sep 2009; Markus Meier <maekke@gentoo.org> texmacs-1.0.7.2.ebuild:
+  amd64/x86 stable, bug #283028
+
+  07 Sep 2009; Tobias Klausmann <klausman@gentoo.org>
+  texmacs-1.0.7.2.ebuild:
+  Stable on alpha, bug #283028
+
+*texmacs-1.0.7.2-r1 (07 Sep 2009)
+
+  07 Sep 2009; Andrey Grozin <grozin@gentoo.org> texmacs-1.0.7.2.ebuild,
+  +texmacs-1.0.7.2-r1.ebuild:
+  texmacs-1.0.7.2 now does not contain the USE flag qt4, and should be
+  stabilized soon; texmacs-1.0.7.2-r1 does contain this flag, and should
+  remain ~arch
 
 *texmacs-1.0.7.2 (19 Apr 2009)
 
