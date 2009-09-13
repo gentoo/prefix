@@ -1,6 +1,22 @@
 # ChangeLog for app-portage/gentoolkit-dev
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.73 2009/08/01 20:30:29 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.76 2009/09/12 13:38:13 idl0r Exp $
+
+*gentoolkit-dev-0.2.6.13_rc2 (12 Sep 2009)
+
+  12 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  -gentoolkit-dev-0.2.6.13_rc1.ebuild, +gentoolkit-dev-0.2.6.13_rc2.ebuild:
+  Version bump, remove old.
+
+  09 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  gentoolkit-dev-9999.ebuild:
+  Add xml use-dep for python.
+
+*gentoolkit-dev-0.2.6.13_rc1 (09 Sep 2009)
+
+  09 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  +gentoolkit-dev-0.2.6.13_rc1.ebuild:
+  Version bump.
 
 *gentoolkit-dev-9999 (01 Aug 2009)
 
