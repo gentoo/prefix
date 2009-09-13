@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/yelp-2.26.0.ebuild,v 1.2 2009/05/31 18:54:43 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/yelp/yelp-2.26.0.ebuild,v 1.3 2009/09/10 20:43:14 eva Exp $
 
 EAPI=1
 
@@ -31,7 +31,9 @@ RDEPEND=">=gnome-base/gconf-2
 	net-libs/xulrunner:1.9
 	sys-libs/zlib
 	app-arch/bzip2
-	lzma? ( app-arch/lzma-utils )
+	lzma? ( || (
+		app-arch/xz-utils
+		app-arch/lzma-utils ) )
 	>=app-text/rarian-0.7
 	>=app-text/scrollkeeper-9999"
 DEPEND="${RDEPEND}
