@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.0.1-r1.ebuild,v 1.1 2009/08/07 05:37:03 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/xerces-c-3.0.1-r1.ebuild,v 1.2 2009/09/10 10:51:38 patrick Exp $
 
 EAPI=2
 
@@ -36,6 +36,7 @@ src_prepare() {
 		src/xercesc/util/MsgLoaders/MsgCatalog/Makefile.in || die "sed failed"
 
 	epatch "${FILESDIR}/${P}-CVE-2009-2625.patch"
+	epatch "${FILESDIR}/${P}-libicu.patch"
 }
 
 src_configure() {
