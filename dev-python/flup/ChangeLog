@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/flup
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/flup/ChangeLog,v 1.7 2009/09/07 19:35:59 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/flup/ChangeLog,v 1.8 2009/09/08 20:18:50 arfrever Exp $
+
+  08 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  flup-1.0.2.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
 *flup-1.0.2 (07 Sep 2009)
 
