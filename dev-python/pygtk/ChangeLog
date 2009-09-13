@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pygtk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.222 2009/09/06 20:57:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygtk/ChangeLog,v 1.223 2009/09/09 18:31:08 ford_prefect Exp $
+
+*pygtk-2.16.0-r1 (09 Sep 2009)
+
+  09 Sep 2009; Arun Raghavan <ford_prefect@gentoo.org>
+  +pygtk-2.16.0-r1.ebuild, +files/pygtk-2.16.0-gdkcolor-fix.patch:
+  Fix crash in gdk.color_from_hsv. (Bug #283093)
 
   06 Sep 2009; Brent Baude <ranger@gentoo.org> pygtk-2.14.1-r1.ebuild:
   Marking pygtk-2.14.1-r1 ppc64 for bug 279391
