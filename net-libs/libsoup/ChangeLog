@@ -1,6 +1,14 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.193 2009/07/27 04:43:00 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.194 2009/09/11 18:03:22 nirbheek Exp $
+
+*libsoup-2.26.3-r2 (11 Sep 2009)
+
+  11 Sep 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -libsoup-2.26.3-r1.ebuild, +libsoup-2.26.3-r2.ebuild,
+  +files/libsoup-2.26.3-fix-build-without-gnome-with-doc.patch:
+  Fix bug 268592 via an unavoidably ugly conditional patch. Adapted from
+  patch attached to upstream bug
 
 *libsoup-2.26.3-r1 (27 Jul 2009)
 

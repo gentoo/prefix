@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.26.3-r1.ebuild,v 1.1 2009/07/27 04:43:00 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.26.3-r2.ebuild,v 1.1 2009/09/11 18:03:22 nirbheek Exp $
 
 EAPI="2"
 
-inherit eutils gnome2
+inherit autotools eutils gnome2
 
 DESCRIPTION="An HTTP library implementation in C"
 HOMEPAGE="http://www.gnome.org/"
@@ -48,6 +48,13 @@ src_prepare() {
 	# Fix test to follow POSIX (for x86-fbsd)
 	# No patch to prevent having to eautoreconf
 	sed -e 's/\(test.*\)==/\1=/g' -i configure.in configure || die "sed failed"
+
+	# Patch *must* be applied conditionally (see patch for details)
+	if ! use gnome && use doc; then
+		# Fix bug 268592 (build fails !gnome && doc)
+		epatch "${FILESDIR}/${P}-fix-build-without-gnome-with-doc.patch"
+		eautoreconf
+	fi
 
 	# should not do any harm on other platforms, but who knows!
 	# WARNING: libsoup may misbehave on interix3 regarding timeouts
