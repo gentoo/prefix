@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r1.ebuild,v 1.14 2009/09/05 17:22:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r1.ebuild,v 1.13 2009/09/01 02:46:07 arfrever Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -95,6 +95,8 @@ src_prepare() {
 	# need this to have _NSGetEnviron being used, which by default isn't...
 	[[ ${CHOST} == *-darwin* ]] && \
 		append-flags -DWITH_NEXT_FRAMEWORK
+	# but don't want framework path resulution stuff
+	epatch "${FILESDIR}"/${P}-darwin-no-framework-lookup.patch
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
 	# for Mac weenies
 	epatch "${FILESDIR}"/${P}-mac.patch
@@ -303,37 +305,12 @@ src_install() {
 	# do not make multiple targets in parallel when there are broken
 	# sharedmods (during bootstrap), would build them twice in parallel.
 	if use aqua ; then
-		emake -j1 CC=$(tc-getCC) DESTDIR="${D}" frameworkinstall || die "emake frameworkinstall failed"
-		emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
-		# don't install the "Current" symlinks, will always conflict
 		local fwdir="${EPREFIX}"/usr/$(get_libdir)/Python.framework
-		for sym in Headers Resources Python Versions/Current ; do
-			rm "${D}${fwdir}"/${sym} || die "missing symlink ${fwdir}/${sym}?"
-		done
-		# basically we don't like the framework stuff at all, so just move
-		# stuff around or add some symlinks to make our life easier
-		mkdir -p "${ED}"/usr
-		mv "${D}${fwdir}"/Versions/${PYVER}/share \
-			"${ED}"/usr/ || die "can't move share"
-		mkdir -p "${ED}"/usr/bin
-		pushd "${ED}"/usr/bin > /dev/null
-		ln -s ../lib/Python.framework/Versions/${PYVER}/bin/2to3 || die
-		popd > /dev/null
-		mkdir -p "${ED}"/usr/include
-		mv "${D}${fwdir}"/Versions/${PYVER}/include/python${PYVER} \
-			"${ED}"/usr/include/ || die "can't move include"
-		pushd "${D}${fwdir}"/Versions/${PYVER}/include > /dev/null
-		ln -s ../../../../../include/python${PYVER} || die
-		popd > /dev/null
-		# can't symlink the entire dir, because a real dir already exists on
-		# upgrade (site-packages), however since we h4x0rzed python to actually
-		# look into the UNIX-style dir, we just switch them around.
-		mkdir -p "${ED}"/usr/$(get_libdir)
-		mv "${D}${fwdir}"/Versions/${PYVER}/lib/python${PYVER} \
-			"${ED}"/usr/lib/python${PYVER} || die "can't move python${PYVER}"
-		pushd "${D}${fwdir}"/Versions/${PYVER}/lib > /dev/null
-		ln -s ../../../../python${PYVER} || die
-		popd > /dev/null
+
+		# let the makefiles do their thing
+		emake -j1 CC=$(tc-getCC) DESTDIR="${D}" STRIPFLAG= frameworkinstall || die "emake frameworkinstall failed"
+		emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
+
 		# avoid framework incompatability, degrade to a normal UNIX lib
 		mkdir -p "${ED}"/usr/$(get_libdir)
 		cp "${D}${fwdir}"/Versions/${PYVER}/Python \
@@ -345,13 +322,67 @@ src_install() {
 		chmod u-w "${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
 		cp "${S}"/libpython${PYVER}.a \
 			"${ED}"/usr/$(get_libdir)/ || die
+
+		# rebuild python executable to be the non-pythonw (python wrapper)
+		# version so we don't get framework crap
+		rm python || die
+		$(tc-getCC) "${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib \
+			-o "${ED}"/usr/bin/python${PYVER} \
+			Modules/python.o || die
+
+		# don't install the "Current" symlinks, will always conflict
+		for sym in Headers Resources Python Versions/Current ; do
+			rm "${D}${fwdir}"/${sym} || die "missing symlink ${fwdir}/${sym}?"
+		done
+
+		# basically we don't like the framework stuff at all, so just move
+		# stuff around or add some symlinks to make our life easier
+		mkdir -p "${ED}"/usr
+		mv "${D}${fwdir}"/Versions/${PYVER}/share \
+			"${ED}"/usr/ || die "can't move share"
+		# remove unversioned files (that are not made versioned below)
+		pushd "${ED}"/usr/bin > /dev/null
+		rm -f python python-config python${PYVER}-config
+		for f in pythonw smtpd${PYVER}.py pydoc idle ; do
+			rm -f ${f} ${f}${PYVER}
+		done
+
+		# pythonw needs to remain in the framework (that's the whole
+		# reason we go through this framework hassle)
+		ln -s ../lib/Python.framework/Versions/${PYVER}/bin/pythonw2.6 || die
+
+		# copy the scripts to we can fix their shebangs
+		for f in 2to3 pydoc${PYVER} idle${PYVER} python${PYVER}-config ; do
+			cp "${D}${fwdir}"/Versions/${PYVER}/bin/${f} . || die
+			sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python'"${PYVER}" \
+				${f} || die
+		done
+		# "fix" to have below collision fix not to bail
+		mv pydoc${PYVER} pydoc || die
+		mv idle${PYVER} idle || die
+		popd > /dev/null
+
+		# get includes just UNIX style
+		mkdir -p "${ED}"/usr/include
+		mv "${D}${fwdir}"/Versions/${PYVER}/include/python${PYVER} \
+			"${ED}"/usr/include/ || die "can't move include"
+		pushd "${D}${fwdir}"/Versions/${PYVER}/include > /dev/null
+		ln -s ../../../../../include/python${PYVER} || die
+		popd > /dev/null
+
+		# same for libs
+		# can't symlink the entire dir, because a real dir already exists on
+		# upgrade (site-packages), however since we h4x0rzed python to actually
+		# look into the UNIX-style dir, we just switch them around.
+		mkdir -p "${ED}"/usr/$(get_libdir)
+		mv "${D}${fwdir}"/Versions/${PYVER}/lib/python${PYVER} \
+			"${ED}"/usr/lib/python${PYVER} || die "can't move python${PYVER}"
+		pushd "${D}${fwdir}"/Versions/${PYVER}/lib > /dev/null
+		ln -s ../../../../python${PYVER} || die
+		popd > /dev/null
 		sed -i -e '/^LINKFORSHARED=/s/_PyMac_Error.*$/PyMac_Error/' \
 			"${ED}"/usr/lib/python${PYVER}/config/Makefile || die
-		# remove unversioned files (that are not made versioned below)
-		for f in python python-config pythonw ; do
-			rm -f "${ED}"/usr/bin/${f}
-		done
-		rm -f "${ED}"/usr/bin/smtpd${PYVER}.py
+
 		# add missing version.plist file
 		mkdir -p "${D}${fwdir}"/Resources
 		cat > "${D}${fwdir}"/Resources/version.plist << EOF
