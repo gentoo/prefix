@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/WWW-Mechanize
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.61 2009/09/07 07:51:36 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/WWW-Mechanize/ChangeLog,v 1.62 2009/09/10 07:54:09 fauli Exp $
+
+  10 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  WWW-Mechanize-1.60.ebuild:
+  x86 stable, bug 283969
 
   07 Sep 2009; Torsten Veller <tove@gentoo.org> -WWW-Mechanize-1.54.ebuild,
   -WWW-Mechanize-1.56.ebuild, -WWW-Mechanize-1.58.ebuild:
