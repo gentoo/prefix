@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/feedparser
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/feedparser/ChangeLog,v 1.15 2008/05/11 16:45:55 corsair Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/feedparser/ChangeLog,v 1.16 2009/09/10 03:12:45 arfrever Exp $
+
+  10 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  feedparser-4.1.ebuild:
+  Fix dependencies (bug #265936).
 
   11 May 2008; Markus Rothe <corsair@gentoo.org> feedparser-4.1.ebuild:
   Stable on ppc64; bug #221147
