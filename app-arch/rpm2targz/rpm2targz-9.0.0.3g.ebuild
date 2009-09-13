@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0.0.3g.ebuild,v 1.6 2009/04/29 12:04:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/rpm2targz-9.0.0.3g.ebuild,v 1.7 2009/09/10 15:56:20 ssuominen Exp $
 
 inherit toolchain-funcs eutils
 
@@ -17,7 +17,7 @@ IUSE="userland_GNU"
 #       so we don't explicitly set it as a dependency.
 RDEPEND="app-arch/cpio"
 DEPEND="${DEPEND}
-	app-arch/lzma-utils"
+	|| ( app-arch/xz-utils app-arch/lzma-utils )"
 
 src_unpack() {
 	unpack ${A}
