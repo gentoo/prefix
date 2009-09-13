@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.4.10.ebuild,v 1.4 2009/09/06 23:52:14 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.4.10.ebuild,v 1.5 2009/09/11 20:58:42 gengor Exp $
 
 EAPI="2"
 
@@ -104,7 +104,7 @@ src_configure() {
 
 	# openmp support only works with >=sys-devel/gcc-4.3, bug #223825
 	if use openmp && version_is_at_least 4.3 $(gcc-version) ; then
-		if built_with_use --missing false =sys-devel/gcc-$(gcc-fullversion)* openmp ; then
+		if built_with_use --missing false =sys-devel/gcc-$(gcc-version)* openmp ; then
 			myconf="${myconf} --enable-openmp"
 		else
 			elog "disabling openmp support (requires >=sys-devel/gcc-4.3 with USE='openmp')"

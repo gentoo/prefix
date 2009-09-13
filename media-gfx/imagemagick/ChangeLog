@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.363 2009/09/06 23:52:14 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.364 2009/09/11 20:58:42 gengor Exp $
+
+  11 Sep 2009; Gordon Malm <gengor@gentoo.org> imagemagick-6.5.2.9.ebuild,
+  imagemagick-6.5.4.10.ebuild:
+  Make GCC openmp check not fail on rc GCCs, bug #281665.
 
   06 Sep 2009; Brent Baude <ranger@gentoo.org> imagemagick-6.5.4.10.ebuild:
   Marking imagemagick-6.5.4.10 ~ppc64 for bug 281573
