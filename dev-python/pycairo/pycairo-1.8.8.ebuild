@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/pycairo-1.8.8.ebuild,v 1.1 2009/08/29 01:13:12 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/pycairo-1.8.8.ebuild,v 1.2 2009/09/10 03:24:17 arfrever Exp $
 
 EAPI="2"
 
@@ -16,9 +16,9 @@ SRC_URI="http://cairographics.org/releases/${P}.tar.gz"
 LICENSE="|| ( LGPL-2.1 MPL-1.1 )"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc examples"
+IUSE="doc examples +svg"
 
-RDEPEND=">=x11-libs/cairo-1.8.8"
+RDEPEND=">=x11-libs/cairo-1.8.8[svg=]"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? ( dev-python/sphinx )"

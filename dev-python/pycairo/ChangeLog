@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pycairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.71 2009/08/29 01:13:12 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.72 2009/09/10 03:24:17 arfrever Exp $
+
+  10 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pycairo-1.8.8.ebuild:
+  Add "svg" USE flag (bug #269682).
 
 *pycairo-1.8.8 (29 Aug 2009)
 
