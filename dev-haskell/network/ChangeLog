@@ -1,6 +1,9 @@
 # ChangeLog for dev-haskell/network
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.40 2009/08/26 14:35:49 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/network/ChangeLog,v 1.41 2009/09/12 17:25:40 armin76 Exp $
+
+  12 Sep 2009; Raúl Porcel <armin76@gentoo.org> network-2.2.1.ebuild:
+  ia64/sparc stable wrt #278545
 
   26 Aug 2009; Tobias Klausmann <klausman@gentoo.org> network-2.2.1.ebuild:
   Stable on alpha, bug #278545
