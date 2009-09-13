@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/beautifulsoup
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/beautifulsoup/ChangeLog,v 1.20 2009/09/07 19:12:39 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/beautifulsoup/ChangeLog,v 1.21 2009/09/08 19:57:04 arfrever Exp $
+
+  08 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  beautifulsoup-3.1.0.1.ebuild, +files/beautifulsoup-3.1.0.1-python-3.patch:
+  Add patch for compatibility with Python 3 (upstream patches don't apply
+  cleanly). Set SUPPORT_PYTHON_ABIS.
 
 *beautifulsoup-3.1.0.1 (07 Sep 2009)
 
