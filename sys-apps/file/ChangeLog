@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/file
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.169 2009/05/06 23:36:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.171 2009/09/12 01:14:24 rich0 Exp $
+
+  12 Sep 2009; Richard Freeman <rich0@gentoo.org> file-5.03.ebuild:
+  amd64 stable - 284347
+
+  09 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  file-5.03.ebuild:
+  Fix dependency on virtual/python (bug #230634).
 
 *file-5.03 (06 May 2009)
 
