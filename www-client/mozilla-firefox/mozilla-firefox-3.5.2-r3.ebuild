@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.2-r2.ebuild,v 1.1 2009/08/30 14:59:52 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.2-r3.ebuild,v 1.1 2009/09/09 17:15:32 volkmar Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -67,7 +67,7 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-PDEPEND="restrict-javascript? ( >=www-plugins/noscript-1.8.7 )"
+PDEPEND="restrict-javascript? ( >=www-plugins/noscript-1.9.6.6 )"
 
 S="${WORKDIR}/mozilla-1.9.1"
 

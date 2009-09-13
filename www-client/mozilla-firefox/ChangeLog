@@ -1,6 +1,37 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.544 2009/09/05 20:58:15 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.550 2009/09/11 20:35:51 maekke Exp $
+
+  11 Sep 2009; Markus Meier <maekke@gentoo.org>
+  mozilla-firefox-3.0.14.ebuild:
+  amd64 stable, bug #284439
+
+  11 Sep 2009; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.0.14.ebuild:
+  alpha/arm/ia64/sparc stable wrt #284439
+
+*mozilla-firefox-3.5.3 (11 Sep 2009)
+
+  11 Sep 2009; Jory A. Pratt <anarchy@gentoo.org>
+  +mozilla-firefox-3.5.3.ebuild:
+  Security bump
+
+  10 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  mozilla-firefox-3.0.14.ebuild:
+  stable x86, security bug 284439
+
+*mozilla-firefox-3.0.14 (10 Sep 2009)
+
+  10 Sep 2009; Raúl Porcel <armin76@gentoo.org>
+  +mozilla-firefox-3.0.14.ebuild:
+  Version bump
+
+*mozilla-firefox-3.5.2-r3 (09 Sep 2009)
+
+  09 Sep 2009; Mounir Lamouri <volkmar@gentoo.org>
+  -mozilla-firefox-3.5.2-r2.ebuild, +mozilla-firefox-3.5.2-r3.ebuild:
+  PDEPEND on >=www-plugins/noscript-1.9.6.6. Fix bug 282462
+  Non-maintainer commit with agreement of Anarchy.
 
   05 Sep 2009; Tobias Heinlein <keytoaster@gentoo.org>
   mozilla-firefox-3.0.13.ebuild:
