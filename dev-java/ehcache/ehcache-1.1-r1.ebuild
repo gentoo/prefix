@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ehcache/ehcache-1.1-r1.ebuild,v 1.1 2006/09/08 04:02:51 nichoj Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ehcache/ehcache-1.1-r1.ebuild,v 1.2 2009/09/11 22:19:07 maekke Exp $
 
 inherit java-pkg-2 java-ant-2
 

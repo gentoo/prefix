@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/ehcache
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ehcache/ChangeLog,v 1.9 2007/04/22 01:35:12 ali_bush Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ehcache/ChangeLog,v 1.10 2009/09/11 22:19:07 maekke Exp $
+
+  11 Sep 2009; Markus Meier <maekke@gentoo.org> ehcache-1.1-r1.ebuild:
+  amd64/x86 stable, bug #284320
 
   22 Apr 2007; Alistair John Bush <ali_bush@gentoo.org>
   ehcache-1.2.4-r2.ebuild:
