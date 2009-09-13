@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Zlib/Compress-Raw-Zlib-2.021.ebuild,v 1.1 2009/08/31 08:14:15 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Zlib/Compress-Raw-Zlib-2.021.ebuild,v 1.2 2009/09/12 05:50:50 tove Exp $
 
 EAPI=2
 
@@ -25,7 +25,7 @@ src_prepare() {
 	cat <<-EOF > "${S}/config.in"
 		BUILD_ZLIB = False
 		INCLUDE = /usr/include
-		LIB = /usr/${get_libdir}
+		LIB = /usr/$(get_libdir)
 
 		OLD_ZLIB = False
 		GZIP_OS_CODE = AUTO_DETECT
