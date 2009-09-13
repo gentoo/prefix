@@ -21,6 +21,12 @@ IUSE=""
 
 S=${WORKDIR}
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"/shell_cmds-${SHELL_VER}
+	epatch "${FILESDIR}"/${PN}-6-w64.patch
+}
+
 src_compile() {
 	local flags=(
 		${CFLAGS}
