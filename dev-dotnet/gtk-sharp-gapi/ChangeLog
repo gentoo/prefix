@@ -1,6 +1,10 @@
 # ChangeLog for dev-dotnet/gtk-sharp-gapi
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp-gapi/ChangeLog,v 1.10 2009/05/28 20:51:28 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp-gapi/ChangeLog,v 1.11 2009/09/11 21:22:36 maekke Exp $
+
+  11 Sep 2009; Markus Meier <maekke@gentoo.org>
+  gtk-sharp-gapi-2.12.9.ebuild:
+  amd64/x86 stable, bug #283739
 
 *gtk-sharp-gapi-2.12.9 (28 May 2009)
 
