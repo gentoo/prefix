@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.07.ebuild,v 1.2 2009/08/14 20:33:26 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.07.ebuild,v 1.3 2009/09/12 19:31:03 mr_bones_ Exp $
 
 EAPI=2
 inherit autotools eutils toolchain-funcs flag-o-matic
@@ -26,18 +26,15 @@ src_configure() {
 }
 
 src_compile() {
-	emake all || die "emake failed"
-	emake rdf || die "emake failed"
+	emake nasmlib.o || die
+	emake all || die
 	if use doc ; then
-		emake doc || die "emake failed"
+		emake doc || die
 	fi
 }
 
 src_install() {
-	dobin nasm ndisasm rdoff/{ldrdf,rdf2bin,rdf2ihx,rdfdump,rdflib,rdx} \
-		|| die "dobin failed"
-	dosym /usr/bin/rdf2bin /usr/bin/rdf2com
-	doman nasm.1 ndisasm.1
+	emake INSTALLROOT="${D}" install install_rdf || die
 	dodoc AUTHORS CHANGES ChangeLog README TODO
 	if use doc ; then
 		doinfo doc/info/*

@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/nasm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/ChangeLog,v 1.59 2009/08/14 20:35:55 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/ChangeLog,v 1.60 2009/09/12 19:31:03 mr_bones_ Exp $
+
+  12 Sep 2009; Michael Sterrett <mr_bones_@gentoo.org> nasm-2.07.ebuild:
+  work around parallel-build issues and use the upstream makefiles for more
+  (bug #284535)
 
   14 Aug 2009; Michael Sterrett <mr_bones_@gentoo.org> -nasm-2.04.ebuild,
   -nasm-2.05.01.ebuild:
