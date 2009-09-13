@@ -1,6 +1,14 @@
 # ChangeLog for media-fonts/arphicfonts
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/arphicfonts/ChangeLog,v 1.49 2009/09/07 21:20:06 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/arphicfonts/ChangeLog,v 1.51 2009/09/12 09:30:52 armin76 Exp $
+
+  12 Sep 2009; Raúl Porcel <armin76@gentoo.org>
+  arphicfonts-0.2.20080216.1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #283909
+
+  11 Sep 2009; Markus Meier <maekke@gentoo.org>
+  arphicfonts-0.2.20080216.1.ebuild:
+  amd64/x86 stable, bug #283909
 
   07 Sep 2009; Ryan Hill <dirtyepic@gentoo.org>
   arphicfonts-0.2.20080216.1.ebuild:
