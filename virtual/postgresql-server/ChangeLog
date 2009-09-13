@@ -1,6 +1,12 @@
 # ChangeLog for virtual/postgresql-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/postgresql-server/ChangeLog,v 1.7 2009/08/02 13:51:22 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/postgresql-server/ChangeLog,v 1.8 2009/09/09 21:42:38 patrick Exp $
+
+*postgresql-server-8.4 (09 Sep 2009)
+
+  09 Sep 2009; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-8.4.ebuild:
+  Bump to 8.4.0. Fixes #276125
 
   02 Aug 2009; Markus Meier <maekke@gentoo.org>
   postgresql-server-8.1.ebuild:
