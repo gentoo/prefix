@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/beecrypt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/beecrypt/ChangeLog,v 1.61 2009/05/30 09:21:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/beecrypt/ChangeLog,v 1.62 2009/09/12 02:05:35 vostorga Exp $
+
+  12 Sep 2009; Víctor Ostorga <vostorga@gentoo.org> -files/beecrypt-4.1.2-athlon.patch,
+  -files/beecrypt-4.1.2-custom-cflags.patch:
+  Cleaning out unused patches
 
   30 May 2009; Ulrich Mueller <ulm@gentoo.org> beecrypt-4.1.2-r2.ebuild:
   Remove app-text/tetex from dependencies, bug 227443.
