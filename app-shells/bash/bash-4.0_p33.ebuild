@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p33.ebuild,v 1.1 2009/09/10 00:23:58 vapier Exp $
 
-EAPI=1
+EAPI="1"
 
 inherit eutils flag-o-matic toolchain-funcs multilib prefix
 
