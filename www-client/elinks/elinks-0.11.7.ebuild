@@ -36,6 +36,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
+	cd "${WORKDIR}" # bug #284818
 	epatch "${FILESDIR}"/${PN}-0.10.4.conf-syscharset.diff
 	mv "${PN}-0.10.4.conf" "${PN}.conf"
 	if ! use ftp ; then
