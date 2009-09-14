@@ -98,6 +98,13 @@ src_prepare() {
 	else
 		export {ATLAS,PTATLAS,BLAS,LAPACK,MKL}=None
 	fi
+
+	# fix invalid and unprefixed shebangs
+	sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python' \
+		numpy/distutils/conv_template.py \
+		numpy/distutils/from_template.py \
+		numpy/distutils/system_info.py \
+		numpy/ma/bench.py
 }
 
 src_compile() {
