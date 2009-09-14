@@ -26,6 +26,8 @@ src_unpack() {
 	unpack ${A}
 	epatch "${FILESDIR}"/${PN}-2008h-makefile.patch
 	tc-is-cross-compiler && cp -pR "${S}" "${S}"-native
+
+	sed -i -e '1c\#!'"${EPREFIX}"'/bin/bash' tzselect.ksh || die
 }
 
 src_compile() {
@@ -43,6 +45,7 @@ src_compile() {
 	# Makefile uses LBLIBS for the libs (which defaults to LDFLAGS)
 	# But it also uses LFLAGS where it expects the real LDFLAGS
 	emake \
+		DESTDIR="${EPREFIX}" \
 		LDLIBS="${LDLIBS}" \
 		|| die "emake failed"
 	if tc-is-cross-compiler ; then
