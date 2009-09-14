@@ -35,6 +35,11 @@ src_prepare() {
 	sed -e "s/additional_tests/_&/" -i setuptools/tests/__init__.py || die "sed setuptools/tests/__init__.py failed"
 	epatch "${FILESDIR}/distribute-${PV}-provide_setuptools.patch"
 	epatch "${FILESDIR}/distribute-${PV}-USER_SITE.patch"
+
+	# invalid shebang "python" and unprefixed shebang
+	sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python' \
+		setuptools/command/easy_install.py \
+		setuptools/tests/test_resources.py
 }
 
 src_test() {
