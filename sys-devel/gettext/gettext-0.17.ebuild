@@ -61,6 +61,10 @@ src_unpack() {
 	if [[ ${CHOST} == *-winnt* ]]; then
 		epatch "${FILESDIR}"/${P}-winnt.patch
 		epatch "${FILESDIR}"/${P}-winnt-vs9.patch
+		# avoid file locking problems by finishing a pipe read, so that
+		# processes don't get SIGPIPE - somehow the windows compiler has
+		# problems with this ;)
+		epatch "${FILESDIR}"/${P}-winnt-pipe.patch
 
 		cp -f "$(dirname "$(type -P libtoolize)")"/../share/aclocal/libtool.m4 "${S}"/m4/libtool.m4
 		eautoreconf # required for winnt
