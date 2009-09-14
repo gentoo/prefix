@@ -18,6 +18,17 @@ RDEPEND="${DEPEND}
 	sys-apps/portage
 	dev-lang/perl"
 
+src_prepare() {
+	# prefixify shebangs
+	sed -i -e '1s:^#! \?:#!'"${EPREFIX}"':' \
+		src/ebump/ebump \
+		src/echangelog/echangelog \
+		src/ekeyword/ekeyword \
+		src/eshowkw/eshowkw \
+		src/eviewcvs/eviewcvs \
+		src/imlate/imlate
+}
+
 src_test() {
 	# echangelog test is not able to run as root
 	# the EUID check may not work for everybody
