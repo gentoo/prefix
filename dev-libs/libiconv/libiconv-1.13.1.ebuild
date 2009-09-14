@@ -32,7 +32,7 @@ src_unpack() {
 #	epatch "${FILESDIR}"/${PN}-1.13-state-mint.patch
 
 	if [[ ${CHOST} == *-winnt* || ${CHOST} == *-mint* ]]; then
-		epatch "${FILESDIR}"/${PN}-1.13-winnt.patch
+		epatch "${FILESDIR}"/${P}-winnt.patch
 
 		find "${S}" -name 'libtool.m4' | xargs rm
 
