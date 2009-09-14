@@ -178,6 +178,7 @@ src_configure() {
 		use ssl      || export PYTHON_DISABLE_SSL="1"
 		use tk       || disable+=" _tkinter"
 		use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
+		use x64-macos && disable+=" Nav" # Carbon
 		export PYTHON_DISABLE_MODULES="${disable}"
 
 		if ! use xml; then
