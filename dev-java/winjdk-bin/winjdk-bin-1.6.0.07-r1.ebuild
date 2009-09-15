@@ -1,4 +1,4 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.07-r1.ebuild,v 1.1 2008/09/09 14:00:30 betelgeuse Exp $
 
@@ -80,4 +80,12 @@ EOF
 	echo "JAVAC=javac" >> "${T}"/98winjdk.env
 
 	doenvd "${T}"/98winjdk.env
+}
+
+pre_pkg_preinst() {
+	# remove the jre/bin/java symlink again, which has been created by
+	# profile.bashrc. this causes problems with java when trying to execute
+	# itself from this dir (because it omits .exe and cannot execute a link from
+	# native windows ... )
+	rm -f "${ED}"/usr/jre/bin/java
 }
