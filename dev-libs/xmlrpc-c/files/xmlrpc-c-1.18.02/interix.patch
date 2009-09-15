@@ -1,0 +1,71 @@
+diff -ru xmlrpc-c-1.18.02.orig/include/xmlrpc-c/inttypes.h xmlrpc-c-1.18.02/include/xmlrpc-c/inttypes.h
+--- xmlrpc-c-1.18.02.orig/include/xmlrpc-c/inttypes.h	2009-09-15 11:01:45 +0200
++++ xmlrpc-c-1.18.02/include/xmlrpc-c/inttypes.h	2009-09-15 11:00:25 +0200
+@@ -9,6 +9,9 @@
+ 
+ #else
+ #include <inttypes.h>
++#ifdef __INTERIX
++#  include <stdint.h>
++#endif
+ 
+ typedef uint16_t xmlrpc_uint16_t;
+ typedef uint32_t xmlrpc_uint32_t;
+diff -ru xmlrpc-c-1.18.02.orig/lib/util/include/int.h xmlrpc-c-1.18.02/lib/util/include/int.h
+--- xmlrpc-c-1.18.02.orig/lib/util/include/int.h	2009-09-15 11:01:45 +0200
++++ xmlrpc-c-1.18.02/lib/util/include/int.h	2009-09-15 11:00:25 +0200
+@@ -49,6 +49,11 @@
+ #define LL(x) x ## i64
+ #define ULL(x) x ## u64
+ 
++#elif defined(__INTERIX)
++#  include <stdint.h>
++#  define PRId64 "I64d"
++#  define PRIu64 "I64u"
++
+ #else
+   /* Not Microsoft compiler */
+   #include <inttypes.h>
+diff -ru xmlrpc-c-1.18.02.orig/lib/util/string_parser.c xmlrpc-c-1.18.02/lib/util/string_parser.c
+--- xmlrpc-c-1.18.02.orig/lib/util/string_parser.c	2009-09-15 11:01:13 +0200
++++ xmlrpc-c-1.18.02/lib/util/string_parser.c	2009-09-15 11:04:10 +0200
+@@ -12,6 +12,11 @@
+ 
+ #include "string_parser.h"
+ 
++#ifdef __INTERIX
++# define strtoll strtoq
++# define strtoull strtouq
++#endif
++
+ static const char *
+ strippedSubstring(const char * const string) {
+ 
+diff -ru xmlrpc-c-1.18.02.orig/src/parse_value.c xmlrpc-c-1.18.02/src/parse_value.c
+--- xmlrpc-c-1.18.02.orig/src/parse_value.c	2009-09-15 11:01:13 +0200
++++ xmlrpc-c-1.18.02/src/parse_value.c	2009-09-15 11:03:36 +0200
+@@ -18,7 +18,9 @@
+ 
+ #include "parse_value.h"
+ 
+-
++#ifdef __INTERIX
++# define strtoll strtoq
++#endif
+ 
+ static void
+ setParseFault(xmlrpc_env * const envP,
+diff -ru xmlrpc-c-1.18.02.orig/tools/xmlrpc_pstream/xmlrpc_pstream.cpp xmlrpc-c-1.18.02/tools/xmlrpc_pstream/xmlrpc_pstream.cpp
+--- xmlrpc-c-1.18.02.orig/tools/xmlrpc_pstream/xmlrpc_pstream.cpp	2009-09-15 11:01:13 +0200
++++ xmlrpc-c-1.18.02/tools/xmlrpc_pstream/xmlrpc_pstream.cpp	2009-09-15 11:03:46 +0200
+@@ -26,6 +26,10 @@
+ #include <xmlrpc-c/client.hpp>
+ #include <xmlrpc-c/client_transport.hpp>
+ 
++#ifdef __INTERIX
++# define strtoll strtoq
++#endif
++
+ using namespace std;
+ using namespace xmlrpc_c;
+ 
