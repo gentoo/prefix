@@ -1,0 +1,25 @@
+# ChangeLog for app-arch/xz-utils
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.4 2009/08/28 07:40:25 vapier Exp $
+
+*xz-utils-4.999.9_beta (28 Aug 2009)
+
+  28 Aug 2009; Mike Frysinger <vapier@gentoo.org>
+  +xz-utils-4.999.9_beta.ebuild:
+  Version bump.
+
+*xz-utils-4.999.8_beta (05 Jul 2009)
+
+  05 Jul 2009; Mike Frysinger <vapier@gentoo.org>
+  +xz-utils-4.999.8_beta.ebuild:
+  Add ebuild for latest release #273732 by Sebastian Mingramm.
+
+  05 Jul 2009; Mike Frysinger <vapier@gentoo.org> xz-utils-9999.ebuild:
+  Pull in gettext/cvs when building autotools #272880 by David Watzke.
+
+*xz-utils-9999 (07 Feb 2009)
+
+  07 Feb 2009; Mike Frysinger <vapier@gentoo.org> +metadata.xml,
+  +xz-utils-9999.ebuild:
+  Initial ebuild by me.
+
