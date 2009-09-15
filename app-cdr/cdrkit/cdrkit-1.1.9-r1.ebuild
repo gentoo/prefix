@@ -24,7 +24,7 @@ PATCHES=( "${FILESDIR}/${P}-glibc-2.10.patch" "${FILESDIR}"/${P}-darwin.patch )
 pkg_setup() {
 	# this might break others (Solaris), since it removes -lrt from the
 	# link line.
-	[[ ${CHOST} == *-interix* ]] && PATCHES=( "${PATCHES[@]}" "${FILESDIR}"/${PN}-1.1.7-interix.patch )
+	[[ ${CHOST} == *-interix* ]] && PATCHES=( "${PATCHES[@]}" "${FILESDIR}"/${P}-interix.patch )
 	[[ ${CHOST} == *-interix3* ]] && PATCHES=( "${PATCHES[@]}" "${FILESDIR}"/${PN}-1.1.8-interix3.patch )
 }
 
