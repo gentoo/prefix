@@ -13,7 +13,7 @@ if [[ ${PV} == "9999" ]] ; then
 else
 	MY_P="${PN/-utils}-${PV/_}"
 	SRC_URI="http://tukaani.org/xz/${MY_P}.tar.gz"
-	KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-freebsd"
+	KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 	S=${WORKDIR}/${MY_P}
 	EXTRA_DEPEND=
 fi
