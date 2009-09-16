@@ -330,16 +330,11 @@ src_install() {
 			-o "${ED}"/usr/bin/python${PYVER} \
 			Modules/python.o || die
 
-		# don't install the "Current" symlinks, will always conflict
-		for sym in Headers Resources Python Versions/Current ; do
-			rm "${D}${fwdir}"/${sym} || die "missing symlink ${fwdir}/${sym}?"
-		done
+		# don't install the "Current" symlink, will always conflict
+		rm "${D}${fwdir}"/Versions/Current || die
+		# update whatever points to it, eselect-python sets them
+		rm "${D}${fwdir}"/{Headers,Python,Resources} || die
 
-		# basically we don't like the framework stuff at all, so just move
-		# stuff around or add some symlinks to make our life easier
-		mkdir -p "${ED}"/usr
-		mv "${D}${fwdir}"/Versions/${PYVER}/share \
-			"${ED}"/usr/ || die "can't move share"
 		# remove unversioned files (that are not made versioned below)
 		pushd "${ED}"/usr/bin > /dev/null
 		rm -f python python-config python${PYVER}-config
@@ -347,11 +342,9 @@ src_install() {
 		for f in pythonw smtpd${PYVER}.py pydoc idle ; do
 			rm -f ${f} ${f}${PYVER}
 		done
-
 		# pythonw needs to remain in the framework (that's the whole
 		# reason we go through this framework hassle)
 		ln -s ../lib/Python.framework/Versions/${PYVER}/bin/pythonw2.6 || die
-
 		# copy the scripts to we can fix their shebangs
 		for f in 2to3 pydoc${PYVER} idle${PYVER} python${PYVER}-config ; do
 			cp "${D}${fwdir}"/Versions/${PYVER}/bin/${f} . || die
@@ -363,6 +356,11 @@ src_install() {
 		mv idle${PYVER} idle || die
 		popd > /dev/null
 
+		# basically we don't like the framework stuff at all, so just move
+		# stuff around or add some symlinks to make our life easier
+		mkdir -p "${ED}"/usr
+		mv "${D}${fwdir}"/Versions/${PYVER}/share \
+			"${ED}"/usr/ || die "can't move share"
 		# get includes just UNIX style
 		mkdir -p "${ED}"/usr/include
 		mv "${D}${fwdir}"/Versions/${PYVER}/include/python${PYVER} \
@@ -372,21 +370,31 @@ src_install() {
 		popd > /dev/null
 
 		# same for libs
-		# can't symlink the entire dir, because a real dir already exists on
-		# upgrade (site-packages), however since we h4x0rzed python to actually
-		# look into the UNIX-style dir, we just switch them around.
+		# NOTE: can't symlink the entire dir, because a real dir already exists
+		# on upgrade (site-packages), however since we h4x0rzed python to
+		# actually look into the UNIX-style dir, we just switch them around.
 		mkdir -p "${ED}"/usr/$(get_libdir)
 		mv "${D}${fwdir}"/Versions/${PYVER}/lib/python${PYVER} \
-			"${ED}"/usr/lib/python${PYVER} || die "can't move python${PYVER}"
+			"${ED}"/usr/lib/ || die "can't move python${PYVER}"
 		pushd "${D}${fwdir}"/Versions/${PYVER}/lib > /dev/null
 		ln -s ../../../../python${PYVER} || die
 		popd > /dev/null
-		sed -i -e '/^LINKFORSHARED=/s/_PyMac_Error.*$/PyMac_Error/' \
+
+		# fix up Makefile
+		sed -i \
+			-e '/^LINKFORSHARED=/s/_PyMac_Error.*$/PyMac_Error/' \
+			-e '/^LDFLAGS=/s/=.*$/=/' \
+			-e '/^prefix=/s:=.*$:= '"${EPREFIX}"'/usr:' \
+			-e '/^PYTHONFRAMEWORK=/s/=.*$/=/' \
+			-e '/^PYTHONFRAMEWORKDIR=/s/=.*$/= no-framework/' \
+			-e '/^PYTHONFRAMEWORKPREFIX=/s/=.*$/=/' \
+			-e '/^PYTHONFRAMEWORKINSTALLDIR=/s/=.*$/=/' \
+			-e '/^LDLIBRARY=/s:=.*$:libpython$(VERSION).dylib:' \
 			"${ED}"/usr/lib/python${PYVER}/config/Makefile || die
 
 		# add missing version.plist file
-		mkdir -p "${D}${fwdir}"/Resources
-		cat > "${D}${fwdir}"/Resources/version.plist << EOF
+		mkdir -p "${D}${fwdir}"/Versions/${PYVER}/Resources
+		cat > "${D}${fwdir}"/Versions/${PYVER}/Resources/version.plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
 "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -452,6 +460,10 @@ EOF
 
 	# Installs empty directory.
 	rmdir "${ED}usr/$(get_libdir)/${PN}${PYVER}/lib-old"
+
+	# fix invalid shebang /usr/local/bin/python
+	sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python' \
+		"${ED}"/usr/$(get_libdir)/python${PYVER}/cgi.py
 }
 
 pkg_preinst() {
