@@ -1,16 +1,17 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.3.ebuild,v 1.1 2009/09/11 12:51:12 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.3.ebuild,v 1.3 2009/09/15 02:15:25 anarchy Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
-inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-pkg-opt-2 python autotools prefix
+inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib
+java-pkg-opt-2 python autotools prefix
 
 MY_PV="${PV/_beta/b}" # Handle betas
 MY_PV="${PV/_/}" # Handle rc1, rc2 etc
 MY_PV="${MY_PV/1.9.1.3/3.5.3}"
-MAJ_PV="${PV/_*/}"
+MAJ_PV="1.9.1" # from mozilla-* branch name
 PATCH="${PN}-1.9.1.2-patches-0.3"
 
 DESCRIPTION="Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications"
@@ -37,15 +38,15 @@ RDEPEND="java? ( >=virtual/jre-1.4 )
 	alsa? ( media-libs/alsa-lib )
 	>=app-text/hunspell-1.2
 	>=media-libs/lcms-1.17
-
 	>=x11-libs/cairo-1.8.8[X]
-	x11-libs/pango[X]"
+	x11-libs/pango[X]
+	x11-libs/libXt"
 
 DEPEND="java? ( >=virtual/jdk-1.4 )
 	${RDEPEND}
 	dev-util/pkgconfig"
 
-S="${WORKDIR}/mozilla-1.9.1"
+S="${WORKDIR}/mozilla-${MAJ_PV}"
 
 # Needed by src_compile() and src_install().
 # Would do in pkg_setup but that loses the export attribute, they
@@ -59,7 +60,6 @@ pkg_setup() {
 
 src_prepare() {
 	# Apply our patches
-	cd "${S}" || die "cd failed"
 	EPATCH_SUFFIX="patch" \
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"
@@ -98,8 +98,6 @@ src_prepare() {
 }
 
 src_configure() {
-	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}-1.9"
-
 	####################################
 	#
 	# mozconfig, CFLAGS and CXXFLAGS setup
@@ -192,10 +190,6 @@ src_configure() {
 	#
 	####################################
 
-	if [[ $(gcc-major-version) -lt 4 ]]; then
-		append-cxxflags -fno-stack-protector
-	fi
-
 	# Disable no-print-directory
 	MAKEOPTS=${MAKEOPTS/--no-print-directory/}
 
@@ -218,13 +212,7 @@ src_install() {
 	dosym "${MOZLIBDIR}/xulrunner" "/usr/bin/xulrunner-${MAJ_PV}" || die
 
 	# Install python modules
-	if use prefix; then
-		local WORKAROUND="$(python_get_sitedir)"
-		WORKAROUND="${WORKAROUND#${EPREFIX}}"
-		dosym "${MOZLIBDIR}/python/xpcom" "/${WORKAROUND}/xpcom" || die
-	else
-		dosym "${MOZLIBDIR}/python/xpcom" "/$(python_get_sitedir)/xpcom" || die
-	fi
+	dosym "${MOZLIBDIR}/python/xpcom" "/$(python_get_sitedir)/xpcom" || die
 
 	# env.d file for ld search path
 	dodir /etc/env.d
