@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.3.ebuild,v 1.1 2009/09/11 12:52:38 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.3.ebuild,v 1.2 2009/09/13 11:58:22 nirbheek Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -13,6 +13,7 @@ ru si sk sl sq sr sv-SE ta-LK ta te th tr uk vi zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR es-CL es-MX pt-BR zh-CN zh-TW"
 
 XUL_PV="1.9.1.3"
+MAJ_XUL_PV="1.9.1"
 MAJ_PV="${PV/_*/}" # Without the _rc and _beta stuff
 DESKTOP_PV="3.5"
 MY_PV="${PV/_beta/b}" # Handle betas for SRC_URI
@@ -22,7 +23,7 @@ PATCH="${PN}-3.5.2-patches-0.1"
 DESCRIPTION="Firefox Web Browser"
 HOMEPAGE="http://www.mozilla.com/firefox"
 
-KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 IUSE="+alsa bindist iceweasel java mozdevelop restrict-javascript" # qt-experimental
@@ -129,7 +130,6 @@ src_unpack() {
 
 src_prepare() {
 	# Apply our patches
-	cd "${S}" || die "cd failed"
 	EPATCH_SUFFIX="patch" \
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"
@@ -138,9 +138,6 @@ src_prepare() {
 		sed -i -e "s:Minefield:Iceweasel:" browser/locales/en-US/chrome/branding/brand.* \
 			browser/branding/nightly/configure.sh || die "iceweasel sed failed!"
 	fi
-
-# still necessary? grobian@2009-07-02
-#	epatch "${FILESDIR}"/${PN}-3.0-solaris64.patch
 
 	eautoreconf
 
@@ -194,7 +191,7 @@ src_configure() {
 	mozconfig_annotate '' --enable-system-lcms
 	mozconfig_annotate '' --with-system-bz2
 	mozconfig_annotate '' --with-system-libxul
-	mozconfig_annotate '' --with-libxul-sdk="${EPREFIX}"/usr/$(get_libdir)/xulrunner-devel-${XUL_PV}
+	mozconfig_annotate '' --with-libxul-sdk="${EPREFIX}"/usr/$(get_libdir)/xulrunner-devel-${MAJ_XUL_PV}
 
 	# IUSE mozdevelop
 	mozconfig_use_enable mozdevelop jsd
@@ -281,7 +278,6 @@ src_install() {
 	# Create /usr/bin/firefox
 	cat <<EOF >"${ED}"/usr/bin/firefox
 #!${EPREFIX}/bin/sh
-export LD_LIBRARY_PATH="${EPREFIX}${MOZILLA_FIVE_HOME}"
 export LD_LIBRARY_PATH="${EPREFIX}${MOZILLA_FIVE_HOME}\${LD_LIBRARY_PATH+":\${LD_LIBRARY_PATH}"}"
 exec "${EPREFIX}${MOZILLA_FIVE_HOME}"/firefox "\$@"
 EOF
@@ -302,11 +298,6 @@ pkg_postinst() {
 	ewarn "All the packages built against ${PN} won't compile,"
 	ewarn "any package that fails to build warrants a bug report."
 	elog
-
-	if use xulrunner; then
-		ln -s /usr/$(get_libdir)/xulrunner-1.9/defaults/autoconfig \
-			${MOZILLA_FIVE_HOME}/defaults/autoconfig
-	fi
 
 	# Update mimedb for the new .desktop file
 	fdo-mime_desktop_database_update
