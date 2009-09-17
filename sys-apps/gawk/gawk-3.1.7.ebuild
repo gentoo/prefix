@@ -49,7 +49,7 @@ src_compile() {
 	if [[ $(get_libname) != .irrelevant ]] ; then
 
 	cd "${SFFS}"
-	emake CC=$(tc-getCC) LIBDIR="${EPREFIX}/$(get_libdir)" || die "filefuncs emake failed"
+	emake CC="$(tc-getCC)" LIBDIR="${EPREFIX}/$(get_libdir)" || die "filefuncs emake failed"
 
 	fi
 }
