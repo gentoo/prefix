@@ -16,11 +16,11 @@ IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libc
 	virtual/libiconv
+	>=sys-devel/gettext-0.11
 	xattr? ( sys-apps/attr )
 	fam? ( virtual/fam )"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
-	>=sys-devel/gettext-0.11
 	x86-winnt? ( >=dev-util/gtk-doc-am-1.11 )
 	doc? (
 		>=dev-libs/libxslt-1.0
