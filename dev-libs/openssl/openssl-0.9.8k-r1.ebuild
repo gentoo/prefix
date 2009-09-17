@@ -42,11 +42,10 @@ src_unpack() {
 	sed -i -e '/DIRS/ s/ fips / /g' Makefile{,.org} \
 		|| die "Removing fips from openssl failed."
 
+	epatch "${FILESDIR}"/${PN}-0.9.8k-cc-mxx.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-mint.patch
-	#epatch "${FILESDIR}"/${PN}-0.9.8g-interix-3.5.patch
-	#epatch "${FILESDIR}"/${PN}-0.9.8g-aixdll.patch
 	if [[ ${CHOST} == *-interix* ]] ; then
 		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
 	fi
