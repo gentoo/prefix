@@ -115,6 +115,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-copyfile.patch
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-getpwuid.patch
+	epatch "${FILESDIR}"/${PN}-5.2_p1-darwin10.patch
 	epatch "${FILESDIR}"/${P}-interix-new.patch
 	epatch "${FILESDIR}"/${P}-interix-warning.patch
 	# resolves problems with openssh startup on interix >= 6 through init
