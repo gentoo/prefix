@@ -309,7 +309,7 @@ src_install() {
 		local fwdir="${EPREFIX}"/usr/$(get_libdir)/Python.framework
 
 		# let the makefiles do their thing
-		emake -j1 CC=$(tc-getCC) DESTDIR="${D}" STRIPFLAG= frameworkinstall || die "emake frameworkinstall failed"
+		emake -j1 CC="$(tc-getCC)" DESTDIR="${D}" STRIPFLAG= frameworkinstall || die "emake frameworkinstall failed"
 		emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
 
 		# avoid framework incompatability, degrade to a normal UNIX lib
