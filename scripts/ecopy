@@ -6,12 +6,19 @@
 
 RSURL=${RSURL:-"http://tinderbox.dev.gentoo.org/portage"}
 EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
+WGET_CMD="wget --no-verbose --no-glob --no-clobber"
 
 source "${EPREFIX}/etc/init.d/functions.sh"
 
 if ! type -P qatom > /dev/null ; then
 	ewarn "This script requires the use of qatom, please emerge"
 	ewarn "app-portage/portage-utils to continue."
+	exit 1
+fi
+
+if ! type -P wget > /dev/null ; then
+	ewarn "This script requires the use of wget."
+	ewarn "It is not in your PATH."
 	exit 1
 fi
 
@@ -91,9 +98,9 @@ fi
 # $catpkg dir already exists. It is assumed that they are already there.
 if [[ ! -d ${catpkg} ]]; then 
 	mkdir -p "${catpkg}" && cd "$catpkg"
-	wget -nv --no-glob "${RSURL}/$catpkg/ChangeLog"
-	wget -nv --no-glob "${RSURL}/$catpkg/metadata.xml"
-	wget -nv --no-glob "${RSURL}/$catpkg/Manifest"
+	${WGET_CMD} "${RSURL}/$catpkg/ChangeLog"
+	${WGET_CMD} "${RSURL}/$catpkg/metadata.xml"
+	${WGET_CMD} "${RSURL}/$catpkg/Manifest"
 else
 	einfo
 	einfo "It appears that $catpkg already exists. I will continue but"
@@ -109,7 +116,7 @@ PN="${P%-*}"
 PV="${P/${PN}-}"
 
 # Get the ebuild
-wget -nv --no-glob "${RSURL}/${catpkg}/${ebuild}"
+${WGET_CMD} "${RSURL}/${catpkg}/${ebuild}"
 
 source ${ebuild} 2> /dev/null #get rid of "inherit: command not found" message.
 
@@ -117,7 +124,7 @@ source ${ebuild} 2> /dev/null #get rid of "inherit: command not found" message.
 # assumption.
 for i in $(eval echo $(grep FILESDIR $ebuild | sed -e 's:.*FILESDIR[}"]*/::' -e 's:"::g' -e "s:'::" -e "s:#.*::" -e "s: .*::")); do
 	mkdir -p "files"
-	wget -nv --no-glob -P "files" "${RSURL}/$catpkg/files/$i"
+	${WGET_CMD} -P "files" "${RSURL}/$catpkg/files/$i"
 done
 
 # Set explicit PATHs for scripts in the prefix tree so they don't need to be
