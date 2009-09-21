@@ -1,30 +1,31 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-3.99.14.ebuild,v 1.1 2009/08/21 15:10:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-4.0.1.ebuild,v 1.1 2009/09/18 14:21:10 jer Exp $
 
 EAPI="2"
 
 inherit eutils autotools libtool
 
-DESCRIPTION="A sophisticated ftp/sftp/http/https client and file transfer program"
+DESCRIPTION="A sophisticated ftp/sftp/http/https/torrent client and file transfer program"
 HOMEPAGE="http://lftp.yar.ru/"
-SRC_URI="ftp://ftp.yar.ru/lftp/devel/${P}.tar.gz"
+SRC_URI="http://ftp.yars.free.net/pub/source/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="ssl gnutls socks5 nls"
 
-RDEPEND=">=sys-libs/ncurses-5.1
-		socks5? (
-			>=net-proxy/dante-1.1.12
-			virtual/pam )
-		ssl? (
-			gnutls? ( >=net-libs/gnutls-1.2.3 )
-			!gnutls? ( >=dev-libs/openssl-0.9.6 )
-		)
-		virtual/libc
-		>=sys-libs/readline-5.1"
+RDEPEND="
+	>=sys-libs/ncurses-5.1
+	socks5? (
+		>=net-proxy/dante-1.1.12
+		virtual/pam )
+	ssl? (
+		gnutls? ( >=net-libs/gnutls-1.2.3 )
+		!gnutls? ( >=dev-libs/openssl-0.9.6 )
+	)
+	>=sys-libs/readline-5.1
+"
 
 DEPEND="
 	${RDEPEND}

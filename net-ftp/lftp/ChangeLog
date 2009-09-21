@@ -1,6 +1,43 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.218 2009/08/21 15:10:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.230 2009/09/20 19:31:10 nixnut Exp $
+
+  20 Sep 2009; nixnut <nixnut@gentoo.org> lftp-3.7.15-r1.ebuild:
+  ppc stable #279426
+
+  19 Sep 2009; Markus Meier <maekke@gentoo.org> lftp-3.7.15-r1.ebuild:
+  arm stable, bug #279426
+
+  18 Sep 2009; Jeroen Roovers <jer@gentoo.org> -lftp-4.0.0.ebuild:
+  Remove old.
+
+*lftp-4.0.1 (18 Sep 2009)
+
+  18 Sep 2009; Jeroen Roovers <jer@gentoo.org> +lftp-4.0.1.ebuild:
+  Version bump.
+
+  16 Sep 2009; Jeroen Roovers <jer@gentoo.org> lftp-4.0.0.ebuild:
+  Change description to match new capability.
+
+  16 Sep 2009; Olivier Crête <tester@gentoo.org> lftp-3.7.15-r1.ebuild:
+  Stable on amd64, bug #279426
+
+  15 Sep 2009; Jeroen Roovers <jer@gentoo.org> lftp-3.7.15-r1.ebuild:
+  Stable for HPPA (bug #279426).
+
+  15 Sep 2009; Jeroen Roovers <jer@gentoo.org> -lftp-3.7.15.ebuild,
+  -lftp-3.99.9.ebuild, -lftp-3.99.10.ebuild, -lftp-3.99.12.ebuild,
+  -lftp-3.99.13.ebuild, -lftp-3.99.14.ebuild:
+  Remove old.
+
+*lftp-4.0.0 (15 Sep 2009)
+
+  15 Sep 2009; Jeroen Roovers <jer@gentoo.org> +lftp-4.0.0.ebuild:
+  Version bump.
+
+  14 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  lftp-3.7.15-r1.ebuild:
+  stable x86, bug 279426
 
 *lftp-3.99.14 (21 Aug 2009)
 
