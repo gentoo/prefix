@@ -1,6 +1,21 @@
 # ChangeLog for dev-python/jinja2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/ChangeLog,v 1.17 2009/08/10 20:43:38 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/ChangeLog,v 1.20 2009/09/17 20:57:29 volkmar Exp $
+
+  17 Sep 2009; Mounir Lamouri <volkmar@gentoo.org> jinja2-2.2.1.ebuild:
+  Keywording for ppc. Bug 263948
+
+*jinja2-2.2.1 (15 Sep 2009)
+
+  15 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -jinja2-2.2.ebuild, +jinja2-2.2.1.ebuild:
+  Version bump. Build C extensions (bug #284968).
+
+*jinja2-2.2 (13 Sep 2009)
+
+  13 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -jinja2-2.0.ebuild, -jinja2-2.1.ebuild, +jinja2-2.2.ebuild:
+  Version bump.
 
   10 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   jinja2-2.1.1-r1.ebuild:
