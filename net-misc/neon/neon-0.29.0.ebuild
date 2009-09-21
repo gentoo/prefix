@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.28.5.ebuild,v 1.4 2009/08/09 18:58:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/neon-0.29.0.ebuild,v 1.1 2009/09/14 03:37:11 arfrever Exp $
 
 EAPI="2"
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.webdav.org/neon/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc expat gnutls kerberos nls pkcs11 socks5 ssl zlib"
+IUSE="doc expat gnutls kerberos libproxy nls pkcs11 ssl zlib"
 IUSE_LINGUAS="cs de fr ja nn pl ru tr zh_CN"
 for lingua in ${IUSE_LINGUAS}; do
 	IUSE+=" linguas_${lingua}"
@@ -32,8 +32,8 @@ RDEPEND="expat? ( dev-libs/expat )
 		pkcs11? ( dev-libs/pakchois )
 	) )
 	kerberos? ( virtual/krb5 )
+	libproxy? ( net-libs/libproxy )
 	nls? ( virtual/libintl )
-	socks5? ( net-proxy/dante )
 	zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}"
 
@@ -43,7 +43,6 @@ src_prepare() {
 		use linguas_${lingua} && linguas+=" ${lingua}"
 	done
 	sed -i -e "s/ALL_LINGUAS=.*/ALL_LINGUAS=\"${linguas}\"/g" configure.in
-	sed -i -e "s/socks5/socks/g" macros/neon.m4
 
 	AT_M4DIR="macros" eautoreconf
 
@@ -65,7 +64,7 @@ src_configure() {
 	fi
 
 	if use gnutls; then
-		myconf+=" --with-ssl=gnutls"
+		myconf+=" --with-ssl=gnutls --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt"
 	elif use ssl; then
 		myconf+=" --with-ssl=openssl"
 	fi
@@ -74,9 +73,9 @@ src_configure() {
 		--enable-static \
 		--enable-shared \
 		$(use_with kerberos gssapi) \
+		$(use_with libproxy) \
 		$(use_enable nls) \
 		$(use_with pkcs11 pakchois) \
-		$(use_with socks5 socks) \
 		$(use_with zlib) \
 		${myconf}
 }
