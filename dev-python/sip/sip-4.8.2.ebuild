@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.8.2.ebuild,v 1.4 2009/08/05 18:50:11 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.8.2.ebuild,v 1.5 2009/09/16 17:14:30 fauli Exp $
 
 EAPI="2"
 NEED_PYTHON="2.3"
