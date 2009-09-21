@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.137 2009/09/01 02:39:36 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.138 2009/09/15 05:46:30 dirtyepic Exp $
+
+*fontconfig-2.7.3 (15 Sep 2009)
+
+  15 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> +fontconfig-2.7.3.ebuild:
+  Version bump. Minor fixes to fc-scan and orthographies.
 
 *fontconfig-2.7.2 (01 Sep 2009)
 
