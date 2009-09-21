@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXext
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.56 2009/06/24 08:07:48 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.57 2009/09/14 11:34:25 scarabeus Exp $
+
+  14 Sep 2009; Tomáš Chvátal <scarabeus@gentoo.org> libXext-1.0.5.ebuild:
+  Adjust deps to reflect exactly configure.ac. Per bug #284756.
 
   24 Jun 2009; Tomáš Chvátal <scarabeus@gentoo.org> libXext-1.0.5.ebuild:
   Add missing dep on >=libxcb-1.2.
