@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.3.29_p1-r1.ebuild,v 1.12 2009/07/30 11:01:33 pauldv Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.3.29_p1-r1.ebuild,v 1.14 2009/09/20 19:52:44 robbat2 Exp $
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
@@ -49,6 +49,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/"${PN}"-"${SLOT}"-listen-to-java-options.patch
 
 	epatch "${FILESDIR}"/"${PN}"-4.3.27-fix-dep-link.patch
+
+	sed -e "/^DB_RELEASE_DATE=/s/%B %e, %Y/%Y-%m-%d/" -i dist/RELEASE
 
 	# Include the SLOT for Java JAR files
 	# This supersedes the unused jarlocation patches.
@@ -147,6 +149,8 @@ src_install() {
 	db_src_install_usrlibcleanup
 
 	dodir /usr/sbin
+	# This file is not always built, and no longer exists as of db-4.8
+	[[ -f "${ED}"/usr/bin/berkeley_db_svc ]] && \
 	mv "${ED}"/usr/bin/berkeley_db_svc "${ED}"/usr/sbin/berkeley_db"${SLOT/./}"_svc
 
 	if use java; then

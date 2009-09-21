@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.7.25_p4.ebuild,v 1.2 2009/07/05 19:52:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.7.25_p4.ebuild,v 1.6 2009/09/20 19:52:44 robbat2 Exp $
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
@@ -74,6 +74,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/"${PN}"-4.6-jni-check-prefix-first.patch
 	epatch "${FILESDIR}"/"${PN}"-4.3-listen-to-java-options.patch
 
+	sed -e "/^DB_RELEASE_DATE=/s/%B %e, %Y/%Y-%m-%d/" -i dist/RELEASE
+
 	# Include the SLOT for Java JAR files
 	# This supersedes the unused jarlocation patches.
 	sed -r -i \
@@ -101,6 +103,8 @@ src_unpack() {
 }
 
 src_compile() {
+	local myconf=''
+
 	# compilation with -O0 fails on amd64, see bug #171231
 	if use amd64; then
 		replace-flags -O0 -O2
@@ -124,6 +128,14 @@ src_compile() {
 
 	tc-export CC CXX # would use CC=xlc_r on aix if not set
 
+	# Bug #270851: test needs TCL support
+	if use tcl || use test ; then
+		myconf="${myconf} --enable-tcl"
+		myconf="${myconf} --with-tcl=${EPREFIX}/usr/$(get_libdir)"
+	else
+		myconf="${myconf} --disable-tcl"
+	fi
+
 	cd "${S}"
 	ECONF_SOURCE="${S}"/../dist \
 	STRIP="true" \
@@ -136,8 +148,7 @@ src_compile() {
 		$(use amd64 && echo --with-mutex=x86/gcc-assembly) \
 		$(use_enable !nocxx cxx) \
 		$(use_enable java) \
-		$(use_enable tcl) \
-		"$(use tcl && echo --with-tcl=${EPREFIX}/usr/$(get_libdir))" \
+		${myconf} \
 		$(use_enable test) \
 		"$@"
 
@@ -156,6 +167,8 @@ src_install() {
 	db_src_install_usrlibcleanup
 
 	dodir /usr/sbin
+	# This file is not always built, and no longer exists as of db-4.8
+	[[ -f "${ED}"/usr/bin/berkeley_db_svc ]] && \
 	mv "${ED}"/usr/bin/berkeley_db_svc "${ED}"/usr/sbin/berkeley_db"${SLOT/./}"_svc
 
 	if use java; then

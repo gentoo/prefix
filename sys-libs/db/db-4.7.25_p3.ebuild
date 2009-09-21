@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.7.25_p3.ebuild,v 1.1 2009/03/21 12:23:59 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.7.25_p3.ebuild,v 1.2 2009/09/20 19:52:44 robbat2 Exp $
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
@@ -155,6 +155,8 @@ src_install() {
 	db_src_install_usrlibcleanup
 
 	dodir /usr/sbin
+	# This file is not always built, and no longer exists as of db-4.8
+	[[ -f "${ED}"/usr/bin/berkeley_db_svc ]] && \
 	mv "${ED}"/usr/bin/berkeley_db_svc "${ED}"/usr/sbin/berkeley_db"${SLOT/./}"_svc
 
 	if use java; then

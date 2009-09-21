@@ -1,6 +1,36 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.287 2009/07/30 11:01:33 pauldv Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.292 2009/09/20 19:52:44 robbat2 Exp $
+
+  20 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> db-4.2.52_p4-r2.ebuild,
+  db-4.2.52_p5.ebuild, db-4.2.52_p5-r1.ebuild, db-4.3.29-r2.ebuild,
+  db-4.3.29_p1.ebuild, db-4.3.29_p1-r1.ebuild, db-4.4.20_p4.ebuild,
+  db-4.4.20_p4-r1.ebuild, db-4.5.20_p2.ebuild, db-4.5.20_p2-r1.ebuild,
+  db-4.6.21_p4.ebuild, db-4.7.25_p3.ebuild, db-4.7.25_p4.ebuild,
+  db-4.8.24.ebuild:
+  berkeley_db_svc is not always built, and might be going away permanently
+  in db-4.8 series, but I suspect it might come back too, so just don't try
+  to rename it if it doesn't exist. Thanks to Sebastian Luettich
+  <selu@mediman.org>.
+
+  19 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> db-4.8.24.ebuild,
+  +files/db-4.8.24-java-manifest-location.patch:
+  Bug #285516: Build fix for java compile.
+
+*db-4.8.24 (18 Sep 2009)
+
+  18 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +db-4.8.24.ebuild, +files/db-4.8-libtool.patch:
+  Version bump (bug #285320).
+
+  15 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  db-4.2.52_p5-r1.ebuild, db-4.3.29_p1-r1.ebuild, db-4.4.20_p4-r1.ebuild,
+  db-4.5.20_p2-r1.ebuild, db-4.6.21_p4.ebuild, db-4.7.25_p4.ebuild:
+  Use more standard date format in DB_VERSION_STRING.
+
+  13 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> db-4.7.25_p4.ebuild:
+  Bug #270851: with FEATURES=test USE=-tcl, we need to include Tcl anyway so
+  that the testsuite works.
 
   29 Jul 2009; Paul de Vrieze <pauldv@gentoo.org> db-3.2.9-r11.ebuild,
   db-3.2.9_p2.ebuild, db-4.2.52_p4-r2.ebuild, db-4.2.52_p5.ebuild,
