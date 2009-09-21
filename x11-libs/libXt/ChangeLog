@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libXt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.53 2009/08/06 10:49:07 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.54 2009/09/19 22:00:29 remi Exp $
+
+  19 Sep 2009; Rémi Cardona <remi@gentoo.org> libXt-1.0.6.ebuild:
+  require newer version of util-macros, add missing libICE dep (fixes bug
+  #283097)
 
 *libXt-1.0.6 (06 Aug 2009)
 

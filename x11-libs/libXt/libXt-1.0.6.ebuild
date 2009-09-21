@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.6.ebuild,v 1.1 2009/08/06 10:49:07 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.6.ebuild,v 1.2 2009/09/19 22:00:29 remi Exp $
 
 # Must be before x-modular eclass is inherited
 SNAPSHOT="yes"
@@ -13,10 +13,13 @@ IUSE=""
 
 RDEPEND="x11-libs/libX11
 	x11-libs/libSM
+	x11-libs/libICE
 	x11-proto/xproto
 	x11-proto/kbproto"
 DEPEND="${RDEPEND}"
 
+# patch is in git master and macros are only needed if SNAPSHOT is set to "yes"
+DEPEND="${DEPEND} >=x11-misc/util-macros-1.2"
 PATCHES=("${FILESDIR}/libXt-1.0.6-cross.patch")
 
 pkg_setup() {
