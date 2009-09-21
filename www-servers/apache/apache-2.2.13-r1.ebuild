@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.12.ebuild,v 1.1 2009/07/29 08:13:35 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.13-r1.ebuild,v 1.1 2009/09/20 08:37:34 hollow Exp $
 
 # latest gentoo apache files
-GENTOO_PATCHSTAMP="20090729"
+GENTOO_PATCHSTAMP="20090920"
 GENTOO_DEVELOPER="hollow"
 
 # IUSE/USE_EXPAND magic
@@ -90,7 +90,7 @@ DEPEND="${DEPEND}
 RDEPEND="${RDEPEND}
 	apache2_modules_mime? ( app-misc/mime-types )"
 
-src_unpack() {
+src_prepare() {
 	if use peruser_dc ; then
 		if ! use apache2_mpms_peruser ; then
 			die "USE=peruser_dc requires APACHE2_MPMS=peruser"
@@ -99,5 +99,5 @@ src_unpack() {
 		EPATCH_EXCLUDE="${EPATCH_EXCLUDE} 22_all_peruser_0.3.0-dc3.patch"
 	fi
 
-	apache-2_src_unpack
+	apache-2_src_prepare
 }

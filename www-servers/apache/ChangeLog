@@ -1,6 +1,13 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.117 2009/08/26 08:15:30 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.118 2009/09/20 08:37:34 hollow Exp $
+
+*apache-2.2.13-r1 (20 Sep 2009)
+
+  20 Sep 2009; Benedikt Böhm <hollow@gentoo.org> apache-2.2.11-r2.ebuild,
+  -apache-2.2.11-r3.ebuild, -apache-2.2.12.ebuild, apache-2.2.13.ebuild,
+  +apache-2.2.13-r1.ebuild:
+  fix #285449, #277297 and #277298; convert to EAPI2
 
 *apache-2.2.13 (26 Aug 2009)
 

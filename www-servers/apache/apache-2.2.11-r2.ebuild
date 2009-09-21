@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.11-r2.ebuild,v 1.6 2009/07/11 19:08:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.11-r2.ebuild,v 1.7 2009/09/20 08:37:34 hollow Exp $
 
 # latest gentoo apache files
 GENTOO_PATCHSTAMP="20090707"
@@ -90,12 +90,12 @@ DEPEND="${DEPEND}
 RDEPEND="${RDEPEND}
 	apache2_modules_mime? ( app-misc/mime-types )"
 
-src_unpack() {
+src_prepare() {
 	if ! use sni ; then
 		EPATCH_EXCLUDE="04_all_mod_ssl_tls_sni.patch"
 	fi
 
-	apache-2_src_unpack
+	apache-2_src_prepare
 }
 
 pkg_preinst() {
