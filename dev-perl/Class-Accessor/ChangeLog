@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Class-Accessor
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Accessor/ChangeLog,v 1.55 2009/07/13 17:48:18 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Accessor/ChangeLog,v 1.56 2009/09/17 17:30:59 tove Exp $
+
+*Class-Accessor-0.34 (17 Sep 2009)
+
+  17 Sep 2009; Torsten Veller <tove@gentoo.org> +Class-Accessor-0.34.ebuild:
+  Version bump
 
   13 Jul 2009; Joseph Jezak <josejx@gentoo.org> Class-Accessor-0.33.ebuild:
   Marked ~ppc for bug #268651.
