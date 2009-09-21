@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/sdl-image
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.52 2009/09/02 10:34:48 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.53 2009/09/20 11:11:10 nyhm Exp $
+
+*sdl-image-1.2.7-r1 (20 Sep 2009)
+
+  20 Sep 2009; Tristan Heaven <nyhm@gentoo.org> +sdl-image-1.2.7-r1.ebuild:
+  New revision to force a rebuild with jpeg-7 that revdep-rebuild won't
+  catch (thanks to Sirko Schroeder for reporting)
 
   02 Sep 2009; Tristan Heaven <nyhm@gentoo.org> sdl-image-1.2.7.ebuild:
   Don't control support for pnm with the png USE flag
