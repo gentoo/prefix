@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.170 2009/08/02 12:19:49 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.171 2009/09/19 09:36:28 aballier Exp $
+
+  19 Sep 2009; Alexis Ballier <aballier@gentoo.org> ocaml-3.11.1.ebuild:
+  Filter fomit-frame-pointer, ocaml builds some programs with -pg which
+  causes build failures with fomit-frame-pointer, bug #270920
 
   02 Aug 2009; Diego E. Pettenò <flameeyes@gentoo.org> ocaml-3.10.2.ebuild:
   Use serial make everywhere until fixed.
