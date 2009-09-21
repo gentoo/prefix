@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/diffstat-1.48.ebuild,v 1.1 2009/08/13 11:47:40 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/diffstat-1.48.ebuild,v 1.4 2009/09/19 15:12:10 armin76 Exp $
 
 DESCRIPTION="Display a histogram of diff changes"
 HOMEPAGE="http://invisible-island.net/diffstat/diffstat.html"
