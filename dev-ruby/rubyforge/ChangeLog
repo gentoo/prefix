@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/rubyforge
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.46 2009/09/05 15:18:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.47 2009/09/19 06:58:42 graaff Exp $
+
+*rubyforge-1.0.5 (19 Sep 2009)
+
+  19 Sep 2009; Hans de Graaff <graaff@gentoo.org> +rubyforge-1.0.5.ebuild:
+  Version bump with minor bug fixes.
 
   05 Sep 2009; Brent Baude <ranger@gentoo.org> rubyforge-1.0.3.ebuild:
   Marking rubyforge-1.0.3 ppc64 stable for bug 280851
