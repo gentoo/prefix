@@ -1,6 +1,9 @@
 # ChangeLog for dev-cpp/gtkmm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.158 2009/05/10 22:17:51 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.159 2009/09/20 22:15:20 tester Exp $
+
+  20 Sep 2009; Olivier Crête <tester@gentoo.org> gtkmm-2.16.0.ebuild:
+  Stable on amd64, bug #285586
 
 *gtkmm-2.16.0 (10 May 2009)
 
