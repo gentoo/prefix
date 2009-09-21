@@ -1,6 +1,16 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.136 2009/09/02 15:44:23 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.138 2009/09/16 19:08:03 chainsaw Exp $
+
+  16 Sep 2009; <chainsaw@gentoo.org> audacious-plugins-2.2_alpha1.ebuild:
+  Properly remove references to WMA & PulseAudio plugins, which are no
+  longer present in the 2.2 version.
+
+*audacious-plugins-2.2_alpha1 (15 Sep 2009)
+
+  15 Sep 2009; <chainsaw@gentoo.org> +audacious-plugins-2.2_alpha1.ebuild:
+  Version bump to (masked) alpha. This now supports using FFMPEG audio
+  decoders, bringing you support for quite a few additional formats.
 
   02 Sep 2009; Jeroen Roovers <jer@gentoo.org>
   audacious-plugins-2.1-r1.ebuild:
