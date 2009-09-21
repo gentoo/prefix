@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.175 2009/09/02 15:41:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.176 2009/09/15 23:16:18 chainsaw Exp $
+
+*audacious-2.2_alpha1 (15 Sep 2009)
+
+  15 Sep 2009; <chainsaw@gentoo.org> +audacious-2.2_alpha1.ebuild:
+  Version bump to (masked) alpha release, includes fixes that close bug
+  #282637 by Sergey S. Starikoff.
 
   02 Sep 2009; Jeroen Roovers <jer@gentoo.org> audacious-2.1.ebuild:
   Stable for HPPA (bug #279238).
