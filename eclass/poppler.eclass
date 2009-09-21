@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/poppler.eclass,v 1.4 2009/05/03 20:03:10 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/poppler.eclass,v 1.5 2009/09/16 12:58:13 loki_val Exp $
 
 # @ECLASS: poppler.eclass
 # @MAINTAINER:
@@ -21,6 +21,7 @@ RDEPEND="
 	"
 DEPEND="
 	dev-util/pkgconfig
+	userland_GNU? ( >=sys-apps/findutils-4.4.0 )
 	"
 
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-gnome2.eclass,v 1.15 2009/07/16 06:55:09 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-gnome2.eclass,v 1.16 2009/09/13 12:30:44 flameeyes Exp $
 #
 # This eclass simplifies installation of the various pieces of
 # ruby-gnome2 since they share a very common installation procedure.
@@ -10,6 +10,8 @@
 
 # Variables:
 # PATCHES	Space delimited list of patch files.
+
+inherit multilib
 
 EXPORT_FUNCTIONS src_compile src_install src_unpack
 
@@ -64,7 +66,9 @@ ruby-gnome2_src_compile() {
 }
 
 ruby-gnome2_src_install() {
-	dodir $(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitearchdir"]')
+	# Create the directories, or the package will create them as files.
+	dodir $(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitearchdir"]') /usr/$(get_libdir)/pkgconfig
+
 	make DESTDIR="${D}" install || die "make install failed"
 	for doc in ../AUTHORS ../NEWS ChangeLog README; do
 		[ -s "$doc" ] && dodoc $doc

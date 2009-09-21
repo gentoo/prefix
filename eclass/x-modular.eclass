@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.112 2009/08/27 15:16:09 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.113 2009/09/19 21:19:29 remi Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -105,8 +105,9 @@ fi
 SLOT="0"
 
 # Set the license for the package. This can be overridden by setting
-# LICENSE after the inherit.
-LICENSE=${PN}
+# LICENSE after the inherit. Nearly all FreeDesktop-hosted X packages
+# are under the MIT license. (This is what Red Hat does in their rpms)
+LICENSE="MIT"
 
 # Set up shared dependencies
 if [[ -n "${SNAPSHOT}" ]]; then

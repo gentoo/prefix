@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ssl-cert.eclass,v 1.16 2008/04/14 06:37:44 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ssl-cert.eclass,v 1.17 2009/09/16 20:11:17 mrness Exp $
 #
 # @ECLASS: ssl-cert.eclass
 # @MAINTAINER:
@@ -235,7 +235,7 @@ install_cert() {
 	done
 
 	# Resulting status
-	if [ ! ${count} ] ; then
+	if [ ${count} = 0 ] ; then
 		eerror "No certificates were generated"
 		return 1
 	elif [ ${count} != ${#} ] ; then

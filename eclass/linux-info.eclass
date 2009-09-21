@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.71 2009/09/08 12:34:21 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.72 2009/09/13 20:44:11 robbat2 Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
@@ -638,11 +638,13 @@ check_extra_config() {
 		fi
 	done
 
+	# TODO: After we enable the new code for /proc/config.gz, we need to
+	# change this back to linux_config_exists.
 	if [[ ${config_required} == 0 ]]; then
 		# In the case where we don't require a .config, we can now bail out
 		# if the user has no .config as there is nothing to do. Otherwise
 		# code later will cause a failure due to missing .config.
-		if ! linux_config_exists; then
+		if ! linux_config_src_exists; then
 			ewarn "Unable to check for the following kernel config options due"
 			ewarn "to absence of any configured kernel sources or compiled"
 			ewarn "config:"

@@ -1,12 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.72 2009/09/11 19:55:05 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.73 2009/09/18 17:50:08 arfrever Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
 # python@gentoo.org
-#
-# original author: Alastair Tse <liquidx@gentoo.org>
 # @BLURB: A Utility Eclass that should be inherited by anything that deals with Python or Python modules.
 # @DESCRIPTION:
 # Some useful functions for dealing with Python.
@@ -255,7 +253,7 @@ python_set_build_dir_symlink() {
 # Execute specified function for each value of PYTHON_ABIS, optionally passing additional
 # arguments. The specified function can use PYTHON_ABI and BUILDDIR variables.
 python_execute_function() {
-	local action action_message action_message_template= default_function="0" failure_message failure_message_template= function nonfatal="0" previous_directory_stack_length PYTHON_ABI quiet="0" separate_build_dirs="0"
+	local action action_message action_message_template= default_function="0" failure_message failure_message_template= function nonfatal="0" previous_directory previous_directory_stack previous_directory_stack_length PYTHON_ABI quiet="0" separate_build_dirs="0"
 
 	while (($#)); do
 		case "$1" in
@@ -387,7 +385,9 @@ python_execute_function() {
 			export BUILDDIR="${S}"
 		fi
 
-		previous_directory_stack_length="${#DIRSTACK[@]}"
+		previous_directory="$(pwd)"
+		previous_directory_stack="$(dirs -p)"
+		previous_directory_stack_length="$(dirs -p | wc -l)"
 
 		if ! has "${EAPI}" 0 1 2 && has "${PYTHON_ABI}" ${FAILURE_TOLERANT_PYTHON_ABIS}; then
 			EPYTHON="$(PYTHON)" nonfatal "${function}" "$@"
@@ -425,13 +425,26 @@ python_execute_function() {
 			fi
 		fi
 
-		if [[ "${#DIRSTACK[@]}" -lt "${previous_directory_stack_length}" ]]; then
+		# Ensure that directory stack hasn't been decreased.
+		if [[ "$(dirs -p | wc -l)" -lt "${previous_directory_stack_length}" ]]; then
 			die "Directory stack decreased illegally"
 		fi
 
-		while [[ "${#DIRSTACK[@]}" -gt "${previous_directory_stack_length}" ]]; do
+		# Avoid side effects of earlier returning from the specified function.
+		while [[ "$(dirs -p | wc -l)" -gt "${previous_directory_stack_length}" ]]; do
 			popd > /dev/null || die "popd failed"
 		done
+
+		# Ensure that the bottom part of directory stack hasn't been changed. Restore
+		# previous directory (from before running of the specified function) before
+		# comparison of directory stacks to avoid mismatch of directory stacks after
+		# potential using of 'cd' to change current directory. Restoration of previous
+		# directory allows to safely use 'cd' to change current directory in the
+		# specified function without changing it back to original directory.
+		cd "${previous_directory}"
+		if [[ "$(dirs -p)" != "${previous_directory_stack}" ]]; then
+			die "Directory stack changed illegally"
+		fi
 
 		if [[ "${separate_build_dirs}" == "1" ]]; then
 			popd > /dev/null || die "popd failed"
