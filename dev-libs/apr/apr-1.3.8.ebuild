@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.8.ebuild,v 1.12 2009/08/24 14:51:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.8.ebuild,v 1.13 2009/09/20 08:53:34 hollow Exp $
 
 EAPI="2"
 
@@ -88,10 +88,10 @@ src_configure() {
 }
 
 src_compile() {
-	emake || die "emake failed"
+	emake -j1 || die "emake failed"
 
 	if use doc; then
-		emake dox || die "emake dox failed"
+		emake -j1 dox || die "emake dox failed"
 	fi
 }
 
