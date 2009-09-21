@@ -1,6 +1,9 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.72 2009/08/30 19:52:39 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.73 2009/09/19 14:07:54 maekke Exp $
+
+  19 Sep 2009; Markus Meier <maekke@gentoo.org> guile-1.8.5-r1.ebuild:
+  arm stable, bug #245701
 
   30 Aug 2009; Tobias Klausmann <klausman@gentoo.org> guile-1.8.6.ebuild:
   Stable on alpha, bug #245701
