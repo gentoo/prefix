@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/freeglut
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/ChangeLog,v 1.55 2009/08/21 08:39:08 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/ChangeLog,v 1.56 2009/09/20 14:47:33 aballier Exp $
+
+  20 Sep 2009; Alexis Ballier <aballier@gentoo.org>
+  freeglut-2.6.0_rc1.ebuild, +files/freeglut-2.6.0_rc1-bsd_joystick.patch:
+  Restore still needed bsd fix and add a new one due to recent changes,
+  submitted upstream
 
 *freeglut-2.6.0_rc1 (21 Aug 2009)
 

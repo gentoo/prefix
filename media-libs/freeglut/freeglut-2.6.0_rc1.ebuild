@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/freeglut-2.6.0_rc1.ebuild,v 1.2 2009/08/21 08:41:11 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/freeglut-2.6.0_rc1.ebuild,v 1.3 2009/09/20 14:47:32 aballier Exp $
 
 EAPI="2"
 
@@ -23,6 +23,8 @@ DEPEND="${RDEPEND}"
 S="${WORKDIR}/${P/_*/}"
 
 src_prepare() {
+	epatch "${FILESDIR}/${P}-bsd_joystick.patch"
+	epatch "${FILESDIR}/${PN}-2.4.0-bsd-usb-joystick.patch"
 	# Needed for sane .so versionning on bsd, please don't drop
 	elibtoolize
 }
