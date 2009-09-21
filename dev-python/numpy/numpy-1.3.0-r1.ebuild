@@ -21,7 +21,7 @@ DEPEND="${RDEPEND}
 
 IUSE="lapack test"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 LICENSE="BSD"
 
 RESTRICT_PYTHON_ABIS="3*"
