@@ -14,7 +14,7 @@ HOMEPAGE="http://xcb.freedesktop.org/"
 SRC_URI="http://xcb.freedesktop.org/dist/${P}.tar.bz2"
 LICENSE="X11"
 
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc selinux"
 
 RDEPEND="x11-libs/libXau
