@@ -1,6 +1,10 @@
 # ChangeLog for dev-tex/svninfo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/svninfo/ChangeLog,v 1.34 2009/08/05 06:59:15 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/svninfo/ChangeLog,v 1.35 2009/09/17 19:58:07 aballier Exp $
+
+  17 Sep 2009; Alexis Ballier <aballier@gentoo.org> svninfo-0.7.3-r1.ebuild:
+  Fix typo in description, by Dmitry Ivankov <divanorama@gmail.com>, bug
+  #285323
 
   05 Aug 2009; Alexis Ballier <aballier@gentoo.org> -svninfo-0.6.ebuild,
   -svninfo-0.7.3.ebuild:
