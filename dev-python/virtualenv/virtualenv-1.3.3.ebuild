@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/virtualenv/virtualenv-1.3.3.ebuild,v 1.2 2009/08/29 03:31:21 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/virtualenv/virtualenv-1.3.3.ebuild,v 1.4 2009/09/18 23:12:15 maekke Exp $
 
 EAPI="2"
 
