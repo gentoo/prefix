@@ -1,6 +1,18 @@
 # ChangeLog for dev-perl/Net-DNS
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/ChangeLog,v 1.133 2009/05/02 11:05:38 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/ChangeLog,v 1.137 2009/09/19 17:56:04 armin76 Exp $
+
+  19 Sep 2009; Raúl Porcel <armin76@gentoo.org> Net-DNS-0.65.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #282326
+
+  19 Sep 2009; nixnut <nixnut@gentoo.org> Net-DNS-0.65.ebuild:
+  ppc stable #282326
+
+  19 Sep 2009; Markus Meier <maekke@gentoo.org> Net-DNS-0.65.ebuild:
+  amd64/x86 stable, bug #282326
+
+  19 Sep 2009; Torsten Veller <tove@gentoo.org> Net-DNS-0.65.ebuild:
+  Don't run IPv6 tests if USE=-ipv6
 
   02 May 2009; Torsten Veller <tove@gentoo.org> -Net-DNS-0.61.ebuild,
   -Net-DNS-0.64.ebuild:
