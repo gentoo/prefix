@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.14.0-r4.ebuild,v 1.1 2009/08/10 14:58:46 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/wanderlust-2.14.0-r5.ebuild,v 1.2 2009/09/20 21:50:42 maekke Exp $
 
 inherit elisp eutils
 
@@ -25,7 +25,7 @@ RDEPEND="!app-emacs/wanderlust-cvs
 	${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
-SITEFILE="50wanderlust-gentoo.el"
+SITEFILE="50${PN}-gentoo.el"
 
 src_unpack() {
 	unpack ${MY_P}.tar.gz
@@ -49,18 +49,18 @@ src_compile() {
 src_install() {
 	emake \
 		LISPDIR="${ED}${SITELISP}" \
-		PIXMAPDIR="${ED}${SITEETC}/${PN}/icons" \
+		PIXMAPDIR="${ED}${SITEETC}/wl/icons" \
 		install || die "emake install failed"
 
-	elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
+	elisp-site-file-install "${FILESDIR}/${SITEFILE}" wl || die
 
-	insinto "${SITEETC}/${PN}/samples/en"
+	insinto "${SITEETC}/wl/samples/en"
 	doins samples/en/*
 	doinfo doc/wl*.info
 	dodoc BUGS ChangeLog INSTALL NEWS README
 
 	if use linguas_ja; then
-		insinto "${SITEETC}/${PN}/samples/ja"
+		insinto "${SITEETC}/wl/samples/ja"
 		doins samples/ja/*
 		dodoc BUGS.ja INSTALL.ja NEWS.ja README.ja
 	fi
