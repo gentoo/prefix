@@ -1,6 +1,22 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.332 2009/09/10 06:48:39 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.337 2009/09/20 16:07:24 tcunha Exp $
+
+  20 Sep 2009; Tiago Cunha <tcunha@gentoo.org> emacs-23.1.ebuild:
+  stable sparc, bug 285063
+
+  18 Sep 2009; Jeroen Roovers <jer@gentoo.org> emacs-23.1.ebuild:
+  Stable for HPPA (bug #285063).
+
+  16 Sep 2009; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r6.ebuild:
+  Support 32 bit build on amd64. Add ~amd64 keyword, bug 166839.
+
+  15 Sep 2009; Christian Faulhammer <fauli@gentoo.org> emacs-23.1.ebuild:
+  x86 stable, bug 285063
+
+  15 Sep 2009; Romain Perier <mrpouet@gentoo.org>
+  emacs-23.1.ebuild:
+  Stable for amd64 per bug #285063.
 
   10 Sep 2009; Ulrich Mueller <ulm@gentoo.org> emacs-22.3-r2.ebuild:
   Backport INFOPATH patch from bug 281979 to the stable ebuild.
