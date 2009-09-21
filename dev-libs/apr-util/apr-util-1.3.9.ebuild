@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.9.ebuild,v 1.10 2009/08/24 14:54:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.9.ebuild,v 1.11 2009/09/20 09:48:31 arfrever Exp $
 
 EAPI="2"
 
@@ -8,7 +8,7 @@ EAPI="2"
 #APR_PV=${PV}
 APR_PV="1.3.8"
 
-inherit db-use libtool multilib
+inherit autotools db-use eutils libtool multilib
 
 DESCRIPTION="Apache Portable Runtime Utility Library"
 HOMEPAGE="http://apr.apache.org/"
@@ -35,6 +35,9 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
 src_prepare() {
+	epatch "${FILESDIR}/${P}-support_berkeley_db-4.8.patch"
+	eautoreconf
+
 	elibtoolize
 }
 
