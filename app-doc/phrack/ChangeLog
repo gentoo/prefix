@@ -1,11 +1,6 @@
 # ChangeLog for app-doc/phrack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/phrack/ChangeLog,v 1.16 2009/06/27 08:00:13 patrick Exp $
-
-*phrack-66 (27 Jun 2009)
-
-  27 Jun 2009; Patrick Lauer <patrick@gentoo.org> +phrack-66.ebuild:
-  Bump to 66, fixes #275554
+# $Header: /var/cvsroot/gentoo-x86/app-doc/phrack/ChangeLog,v 1.17 2009/09/19 14:09:36 vapier Exp $
 
 *phrack-* (11 Feb 2003)
 
