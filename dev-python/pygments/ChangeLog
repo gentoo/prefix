@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/pygments
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/ChangeLog,v 1.37 2009/09/12 21:49:10 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygments/ChangeLog,v 1.38 2009/09/15 20:21:58 arfrever Exp $
+
+*pygments-1.1.1 (15 Sep 2009)
+
+  15 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -pygments-1.0-r1.ebuild, -pygments-1.1.ebuild, +pygments-1.1.1.ebuild:
+  Version bump.
 
 *pygments-1.1 (12 Sep 2009)
 
