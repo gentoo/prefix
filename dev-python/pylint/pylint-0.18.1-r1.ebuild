@@ -1,11 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pylint/pylint-0.18.1.ebuild,v 1.2 2009/09/04 22:59:31 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pylint/pylint-0.18.1-r1.ebuild,v 1.1 2009/09/20 17:58:01 neurogeek Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
 
-inherit eutils distutils python
+inherit distutils
 
 DESCRIPTION="a tool to check if a Python module satisfies a coding standard"
 HOMEPAGE="http://www.logilab.org/projects/pylint/"
@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.logilab.org/pub/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
-IUSE="doc examples html test tk"
+IUSE="doc examples test tk"
 
 DEPEND=">=dev-python/logilab-common-0.38
 	>=dev-python/astng-0.19.0"
@@ -24,7 +24,6 @@ RESTRICT_PYTHON_ABIS="3.*"
 
 src_prepare() {
 	distutils_src_prepare
-
 	epatch "${FILESDIR}/${P}-utils.py.patch"
 }
 
@@ -66,10 +65,6 @@ src_install() {
 
 	if use doc; then
 		dodoc doc/*.txt || die "dodoc failed"
-	fi
-
-	if use html; then
-		dohtml doc/*.html || die "dohtml failed"
 	fi
 
 	if use examples; then
