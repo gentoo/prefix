@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.14277 (21 Sep 2009)
+
+  21 Sep 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.14160.ebuild, +portage-2.2.00.14277.ebuild:
+  Bump, add QA check for shebangs, bug #282539. You may see messages about
+  fixed shebangs from now on.
+
 *portage-2.2.00.14200 (14 Sep 2009)
 
   14 Sep 2009; Fabian Groffen <grobian@gentoo.org>
