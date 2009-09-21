@@ -1,6 +1,11 @@
 # ChangeLog for x11-proto/videoproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/videoproto/ChangeLog,v 1.27 2009/05/05 15:27:49 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/videoproto/ChangeLog,v 1.28 2009/09/19 10:55:43 remi Exp $
+
+*videoproto-2.3.0 (19 Sep 2009)
+
+  19 Sep 2009; Rémi Cardona <remi@gentoo.org> +videoproto-2.3.0.ebuild:
+  bump to 2.3.0
 
   05 May 2009; Christian Faulhammer <fauli@gentoo.org>
   videoproto-2.2.2.ebuild:
