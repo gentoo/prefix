@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.72.ebuild,v 1.5 2009/09/16 03:02:40 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.75.ebuild,v 1.1 2009/09/19 12:53:24 patrick Exp $
 
 EAPI=2
 inherit autotools eutils fdo-mime gnome2-utils qt4
@@ -12,7 +12,7 @@ SRC_URI="http://download.${PN}bt.com/${PN}/files/${P}.tar.bz2"
 LICENSE="MIT GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="gtk libnotify qt4"
+IUSE="+dht gtk libnotify qt4"
 
 RDEPEND=">=dev-libs/libevent-1.4.11
 	<dev-libs/libevent-2
@@ -36,13 +36,13 @@ src_prepare() {
 	sed -e \
 		's:$${TRANSMISSION_TOP}/third-party/libevent/.libs/libevent.a:-levent:' \
 		-i qt/qtr.pro || die "sed failed"
-	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
 }
 
 src_configure() {
 	econf \
 		--disable-dependency-tracking \
+		$(use_enable dht) \
 		$(use_enable gtk) \
 		$(use_enable libnotify)
 
