@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/libsoup
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.194 2009/09/11 18:03:22 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/ChangeLog,v 1.195 2009/09/13 10:31:06 mrpouet Exp $
+
+*libsoup-2.26.3-r3 (13 Sep 2009)
+
+  13 Sep 2009; Romain Perier <mrpouet@gentoo.org>
+  +libsoup-2.26.3-r3.ebuild:
+  Fix circular dep by creating and moving libsoup-gnome-2.26.3 into PDEPEND,
+  per bug #269747.
 
 *libsoup-2.26.3-r2 (11 Sep 2009)
 
