@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/gegl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.27 2009/09/01 08:52:21 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gegl/ChangeLog,v 1.28 2009/09/18 01:45:39 patrick Exp $
+
+*gegl-0.1.0-r1 (18 Sep 2009)
+
+  18 Sep 2009; Patrick Lauer <patrick@gentoo.org> +gegl-0.1.0-r1.ebuild,
+  +files/gegl-0.1.0-GLIB_CFLAGS.patch:
+  Fixing build failure, fixes #283444. Thanks to Alexandre Rostovtsev for
+  the upstream patch and modified ebuild.
 
 *gegl-0.1.0 (01 Sep 2009)
 
