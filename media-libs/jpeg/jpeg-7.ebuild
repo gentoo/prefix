@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-7.ebuild,v 1.7 2009/08/23 14:33:07 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-7.ebuild,v 1.8 2009/09/20 12:08:47 aballier Exp $
 
 EAPI="2"
 
@@ -24,7 +24,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${WORKDIR}"/${DEB}.diff
-	cp "${FILESDIR}"/Makefile.extra debian/extra/Makefile
 	cp "${FILESDIR}"/Makefile.in.extra debian/extra/Makefile.in
 }
 
@@ -32,7 +31,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-maxmem_sysconf.patch
 	elibtoolize
 	# hook the Debian extra dir into the normal jpeg build env
-	sed -i '/all:/s:$:\n\t$(MAKE) -C debian/extra $@:' Makefile.in
+	sed -i '/all:/s:$:\n\t./config.status --file debian/extra/Makefile\n\t$(MAKE) -C debian/extra $@:' Makefile.in
 }
 
 src_configure() {

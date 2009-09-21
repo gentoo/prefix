@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/jpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.75 2009/08/23 18:08:42 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.76 2009/09/20 12:08:47 aballier Exp $
+
+  20 Sep 2009; Alexis Ballier <aballier@gentoo.org> jpeg-7.ebuild,
+  -files/Makefile.extra:
+  Fix hooking of debian/extra/ build so that relative paths are handled
+  correctly, fixes an install failure on bsd
 
   23 Aug 2009; Mike Frysinger <vapier@gentoo.org> jpeg-7.ebuild,
   +files/Makefile.extra, +files/Makefile.in.extra:
