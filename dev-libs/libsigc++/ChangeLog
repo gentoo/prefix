@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/libsigc++
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.143 2009/02/27 14:32:32 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libsigc++/ChangeLog,v 1.145 2009/09/14 21:24:54 eva Exp $
+
+  14 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  libsigc++-2.2.4.2.ebuild:
+  Remove commented out code and move econf to src_configure.
+
+*libsigc++-2.2.4.2 (14 Sep 2009)
+
+  14 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -libsigc++-2.2.2.ebuild, +libsigc++-2.2.4.2.ebuild:
+  Version bump. Updated documentation & support for devhelp.
 
   27 Feb 2009; Brent Baude <ranger@gentoo.org> libsigc++-2.2.3.ebuild:
   stable ppc64, bug 255844
