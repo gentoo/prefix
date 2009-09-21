@@ -1,6 +1,13 @@
 # ChangeLog for app-portage/gentoolkit-dev
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.76 2009/09/12 13:38:13 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.77 2009/09/14 15:09:01 idl0r Exp $
+
+  14 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
+  -gentoolkit-dev-0.2.6.2.ebuild,
+  -files/gentoolkit-dev-0.2.6.2-Makefile.patch,
+  -gentoolkit-dev-0.2.6.10.ebuild, -gentoolkit-dev-0.2.6.11-r2.ebuild,
+  -files/echangelog.patch:
+  Cleanup.
 
 *gentoolkit-dev-0.2.6.13_rc2 (12 Sep 2009)
 
