@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/pangomm/pangomm-2.24.0.ebuild,v 1.1 2009/05/10 22:18:50 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/pangomm/pangomm-2.24.0.ebuild,v 1.2 2009/09/20 22:12:40 tester Exp $
 
 EAPI=1
 
