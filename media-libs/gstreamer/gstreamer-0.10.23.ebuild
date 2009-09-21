@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.23.ebuild,v 1.7 2009/08/31 00:31:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.23.ebuild,v 1.8 2009/09/15 01:57:00 jer Exp $
 
 EAPI=2
 
