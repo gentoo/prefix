@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/farsight2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/ChangeLog,v 1.12 2009/09/11 22:00:25 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/ChangeLog,v 1.13 2009/09/19 19:04:20 tester Exp $
+
+  19 Sep 2009; Olivier Crête <tester@gentoo.org> farsight2-0.0.15.ebuild:
+  Disabled tests when the msn flag is not there
 
   11 Sep 2009; Mounir Lamouri <volkmar@gentoo.org> farsight2-0.0.15.ebuild:
   Keywording for ppc. Bug 282263
