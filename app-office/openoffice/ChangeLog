@@ -1,6 +1,10 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.482 2009/09/08 18:18:45 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.483 2009/09/20 13:49:28 suka Exp $
+
+  20 Sep 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild, files/gentoo-3.1.1.diff, +files/dbfix.diff:
+  Fix build with sys-libs/db-4.8, bug #285544
 
   08 Sep 2009; Andreas Proschofsky <suka@gentoo.org>
   openoffice-3.1.1.ebuild, +files/boost-undefined-references.diff:

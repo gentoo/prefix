@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.5 2009/09/08 18:18:45 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.6 2009/09/20 13:49:28 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI="2"
@@ -243,6 +243,7 @@ src_prepare() {
 	cp -f "${FILESDIR}/base64.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/xulrunner-1.9.1.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/boost-undefined-references.diff" "${S}/patches/hotfixes" || die
+	cp -f "${FILESDIR}/dbfix.diff" "${S}/patches/hotfixes" || die
 
 	# Prefix patch
 	epatch "${FILESDIR}/ooo-build-3.0.1.2-prefix.patch"
