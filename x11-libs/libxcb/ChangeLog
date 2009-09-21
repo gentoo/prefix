@@ -1,6 +1,17 @@
 # ChangeLog for x11-libs/libxcb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/ChangeLog,v 1.36 2009/09/11 18:01:53 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/ChangeLog,v 1.39 2009/09/17 06:14:10 remi Exp $
+
+  17 Sep 2009; Rémi Cardona <remi@gentoo.org> libxcb-1.4-r1.ebuild:
+  remove the call to preserve_old_lib_notify, it's confusing
+
+  17 Sep 2009; Rémi Cardona <remi@gentoo.org> -libxcb-1.4.ebuild:
+  drop old ebuilds
+
+*libxcb-1.4-r1 (14 Sep 2009)
+
+  14 Sep 2009; Rémi Cardona <remi@gentoo.org> +libxcb-1.4-r1.ebuild:
+  respect ${ROOT}, fixes bug #284950
 
   11 Sep 2009; Rémi Cardona <remi@gentoo.org> libxcb-1.4.ebuild:
   add preserve_old_lib to libxcb 1.4 and add a link to a proper upgrade
