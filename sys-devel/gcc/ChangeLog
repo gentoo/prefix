@@ -1,6 +1,19 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.722 2009/09/02 17:06:36 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.726 2009/09/20 05:26:19 dirtyepic Exp $
+
+  20 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> gcc-4.4.1.ebuild:
+  Touch up dependencies.
+
+  20 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> gcc-4.3.2-r3.ebuild,
+  gcc-4.3.2-r4.ebuild, gcc-4.3.3-r2.ebuild, gcc-4.3.4.ebuild:
+  Fix license in 4.3 too.
+
+  20 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> gcc-4.4.1.ebuild:
+  Fix LGPL license version.
+
+  19 Sep 2009; Alexis Ballier <aballier@gentoo.org> gcc-4.4.1.ebuild:
+  keyword ~x86-fbsd
 
   02 Sep 2009; Mark Loeser <halcy0n@gentoo.org> gcc-4.3.2-r4.ebuild:
   Bump patchset to include SH fix
