@@ -1,6 +1,11 @@
 # ChangeLog for x11-proto/xf86driproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86driproto/ChangeLog,v 1.32 2009/06/23 19:18:50 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86driproto/ChangeLog,v 1.33 2009/09/19 13:37:13 remi Exp $
+
+*xf86driproto-2.1.0 (19 Sep 2009)
+
+  19 Sep 2009; Rémi Cardona <remi@gentoo.org> +xf86driproto-2.1.0.ebuild:
+  bump to 2.1.0
 
   23 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
   xf86driproto-2.0.4.ebuild:
