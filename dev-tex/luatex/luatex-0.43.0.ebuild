@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.43.0.ebuild,v 1.1 2009/08/27 08:47:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.43.0.ebuild,v 1.2 2009/09/15 07:17:29 aballier Exp $
 
 EAPI="2"
 
 inherit libtool multilib eutils toolchain-funcs autotools
 
-PATCHLEVEL="14"
+PATCHLEVEL="15"
 
 DESCRIPTION="An extended version of pdfTeX using Lua as an embedded scripting language."
 HOMEPAGE="http://www.luatex.org/"

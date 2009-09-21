@@ -1,6 +1,14 @@
 # ChangeLog for dev-tex/luatex
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.37 2009/08/27 08:47:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.39 2009/09/15 07:17:29 aballier Exp $
+
+  15 Sep 2009; Alexis Ballier <aballier@gentoo.org> luatex-0.43.0.ebuild:
+  Fix build with autoconf 2.64, bug #282900
+
+  14 Sep 2009; Peter Alfredsen <loki_val@gentoo.org> luatex-0.30.3.ebuild,
+  luatex-0.40.6.ebuild:
+  Make poppler dependency explicit,
+  http://forums.gentoo.org/viewtopic.php?p=5971327
 
 *luatex-0.43.0 (27 Aug 2009)
 
