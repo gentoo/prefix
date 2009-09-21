@@ -1,6 +1,12 @@
 # ChangeLog for app-emacs/rst
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/rst/ChangeLog,v 1.28 2009/09/07 10:03:52 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/rst/ChangeLog,v 1.29 2009/09/20 18:52:00 ulm Exp $
+
+*rst-0.5-r1 (20 Sep 2009)
+
+  20 Sep 2009; Ulrich Mueller <ulm@gentoo.org> +files/50rst-gentoo.el,
+  +rst-0.5-r1.ebuild:
+  Suppress package for Emacs 23, where rst-mode is already defined.
 
   07 Sep 2009; Christian Faulhammer <fauli@gentoo.org> -rst-0.4-r1.ebuild,
   -files/rst-0.4-lazy-lock-mode-fix.patch:
