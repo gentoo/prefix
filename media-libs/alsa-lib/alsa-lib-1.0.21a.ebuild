@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.20-r1.ebuild,v 1.9 2009/09/19 13:48:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.21a.ebuild,v 1.1 2009/09/13 21:53:54 loki_val Exp $
 
 inherit eutils libtool
 
@@ -18,7 +18,7 @@ IUSE="doc debug alisp python"
 
 RDEPEND="python? ( dev-lang/python )"
 DEPEND="${RDEPEND}
-	>=media-sound/alsa-headers-${PV}
+	>=media-sound/alsa-headers-${PV%[[:lower:]]}
 	doc? ( >=app-doc/doxygen-1.2.6 )"
 
 IUSE_PCM_PLUGIN="copy linear route mulaw alaw adpcm rate plug multi shm file
@@ -85,12 +85,6 @@ src_install() {
 }
 
 pkg_postinst() {
-	ewarn "Starting from alsa 1.0.11_rc3 the configuration for dmix is changed."
-	ewarn "Leaving around old asound.conf or ~/.asoundrc might make all apps"
-	ewarn "using ALSA output crash."
-	ewarn "Note that dmix output is enabled by default on the 'default' device"
-	ewarn "since ALSA 1.0.9."
-	elog ""
 	elog "Please try in-kernel ALSA drivers instead of the alsa-drivers ebuild."
 	elog "If alsa-drivers works for you where a *recent* kernel does not, we want "
 	elog "to know about this. Our e-mail address is alsa-bugs@gentoo.org"
