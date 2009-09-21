@@ -22,6 +22,5 @@
     <flag name="irc">Add support for status delivery through an ircbot.</flag>
     <flag name="mail">Add support for watching a maildir for commits.</flag>
     <flag name="manhole">Add support for manhole (debug over ssh)</flag>
-    <flag name="web">Add a web interface ("waterfall" page).</flag>
   </use>
 </pkgmetadata>

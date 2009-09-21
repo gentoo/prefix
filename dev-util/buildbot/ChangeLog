@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/buildbot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.50 2009/09/11 19:31:31 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.51 2009/09/13 14:30:56 arfrever Exp $
+
+  13 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -buildbot-0.7.5.ebuild, -buildbot-0.7.6.ebuild, -buildbot-0.7.7-r1.ebuild,
+  -buildbot-0.7.9-r1.ebuild, -buildbot-0.7.9-r2.ebuild,
+  -buildbot-0.7.10_p1.ebuild, -files/buildbot.initd:
+  Delete older, vulnerable ebuilds.
 
   11 Sep 2009; Markus Meier <maekke@gentoo.org> buildbot-0.7.11_p3.ebuild:
   amd64 stable, bug #282855
