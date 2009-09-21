@@ -1,6 +1,22 @@
 # ChangeLog for dev-python/pycairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.72 2009/09/10 03:24:17 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.76 2009/09/19 13:50:04 arfrever Exp $
+
+  19 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pycairo-1.8.8.ebuild, +files/pycairo-1.8.8-svg_check.patch:
+  Improve dependencies (bug #269682).
+
+  17 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pycairo-1.8.8.ebuild:
+  Update dependency on dev-python/sphinx. Fix tests.
+
+  16 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pycairo-1.8.8.ebuild, +files/pycairo-1.8.8-pkgconfig_dir.patch:
+  Install pycairo.pc in correct directory (bug #283360).
+
+  14 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pycairo-1.8.8.ebuild:
+  Don't enable "svg" USE flag by IUSE (bug #284833).
 
   10 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   pycairo-1.8.8.ebuild:
