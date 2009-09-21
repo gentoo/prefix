@@ -1,6 +1,11 @@
 # ChangeLog for x11-proto/damageproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/damageproto/ChangeLog,v 1.35 2009/05/05 15:01:59 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/damageproto/ChangeLog,v 1.36 2009/09/19 08:13:50 remi Exp $
+
+*damageproto-1.2.0 (19 Sep 2009)
+
+  19 Sep 2009; Rémi Cardona <remi@gentoo.org> +damageproto-1.2.0.ebuild:
+  bump to 1.2.0
 
   05 May 2009; Christian Faulhammer <fauli@gentoo.org>
   damageproto-1.1.0.ebuild:
