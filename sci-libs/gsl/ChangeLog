@@ -1,6 +1,24 @@
 # ChangeLog for sci-libs/gsl
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.57 2009/04/23 13:23:11 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/ChangeLog,v 1.60 2009/09/20 18:55:32 alexxy Exp $
+
+  20 Sep 2009; Alexey Shvetsov <alexxy@gentoo.org>
+  files/gsl-1.13-cblas-vars.patch:
+  Fix patch. Thanks to Livid
+
+*gsl-1.13-r1 (20 Sep 2009)
+
+  20 Sep 2009; Alexey Shvetsov <alexxy@gentoo.org> +gsl-1.13-r1.ebuild,
+  +files/gsl-1.13-cblas-vars.patch:
+  Fix bug #285468. Thanks to Livid
+
+*gsl-1.13 (17 Sep 2009)
+
+  17 Sep 2009; Sébastien Fabbro <bicatali@gentoo.org> -gsl-1.9.ebuild,
+  -gsl-1.11.ebuild, +gsl-1.13.ebuild, +files/gsl-1.13-cblas.patch,
+  -files/gsl-cblas.patch:
+  Version bump, removed old. Note gsl-1.9-r1 is kept for GPL-2 compat until
+  we close bug #199451
 
   23 Apr 2009; Raúl Porcel <armin76@gentoo.org> gsl-1.12.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #265339
