@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/rack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/ChangeLog,v 1.9 2009/08/24 18:18:20 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/ChangeLog,v 1.12 2009/09/20 19:11:04 nixnut Exp $
+
+  20 Sep 2009; nixnut <nixnut@gentoo.org> rack-1.0.0.ebuild:
+  ppc stable #283396
+
+  19 Sep 2009; Raúl Porcel <armin76@gentoo.org> rack-1.0.0.ebuild:
+  ia64/sparc stable wrt #283396
+
+  14 Sep 2009; Markus Meier <maekke@gentoo.org> rack-1.0.0.ebuild:
+  amd64/x86 stable, bug #283396
 
   24 Aug 2009; Hans de Graaff <graaff@gentoo.org> -rack-0.9.1.ebuild:
   Remove old version.
