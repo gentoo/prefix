@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/docutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.93 2009/09/12 21:20:39 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.94 2009/09/20 19:01:24 ulm Exp $
+
+  20 Sep 2009; Ulrich Mueller <ulm@gentoo.org> docutils-0.5.ebuild,
+  docutils-0.5-r1.ebuild:
+  Emacs 23 includes rst-mode now, change PDEPEND accordingly.
 
   12 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   -files/50docutils-gentoo.el, -docutils-0.3.7.ebuild,
