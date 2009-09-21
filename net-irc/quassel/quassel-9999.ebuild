@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/quassel-9999.ebuild,v 1.23 2009/09/11 08:15:36 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/quassel-9999.ebuild,v 1.24 2009/09/16 22:28:42 billie Exp $
 
 EAPI="2"
 
@@ -76,6 +76,7 @@ src_configure() {
 		$(cmake-utils_use_with dbus DBUS)
 		$(cmake-utils_use_with ssl OPENSSL)
 		$(cmake-utils_use_with oxygen OXYGEN)
+		-DWITH_LIBINDICATE=OFF
 		-DEMBED_DATA=OFF
 		-DLINGUAS=${my_langs}
 		"

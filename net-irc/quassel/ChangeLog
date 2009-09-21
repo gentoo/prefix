@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/quassel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.59 2009/09/12 03:06:23 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.60 2009/09/16 22:28:42 billie Exp $
+
+  16 Sep 2009; Pielmeier Daniel <billie@gentoo.org> quassel-9999.ebuild:
+  Disable libindicate-qt until it is in the tree.
 
   12 Sep 2009; Víctor Ostorga <vostorga@gentoo.org>
   -files/quasselcore.conf, -files/quasselcore.init:
