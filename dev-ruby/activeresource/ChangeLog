@@ -1,6 +1,16 @@
 # ChangeLog for dev-ruby/activeresource
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/ChangeLog,v 1.37 2009/09/04 06:12:25 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/ChangeLog,v 1.40 2009/09/20 19:07:47 nixnut Exp $
+
+  20 Sep 2009; nixnut <nixnut@gentoo.org> activeresource-2.3.4.ebuild:
+  ppc stable #283396
+
+  19 Sep 2009; Raúl Porcel <armin76@gentoo.org>
+  activeresource-2.3.4.ebuild:
+  ia64/sparc stable wrt #283396
+
+  14 Sep 2009; Markus Meier <maekke@gentoo.org> activeresource-2.3.4.ebuild:
+  amd64/x86 stable, bug #283396
 
 *activeresource-2.3.4 (04 Sep 2009)
 
