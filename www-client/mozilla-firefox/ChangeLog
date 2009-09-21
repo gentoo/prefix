@@ -1,6 +1,23 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.550 2009/09/11 20:35:51 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.554 2009/09/15 17:25:41 josejx Exp $
+
+  15 Sep 2009; Joseph Jezak <josejx@gentoo.org>
+  mozilla-firefox-3.0.14.ebuild:
+  Marked ppc stable.
+
+  13 Sep 2009; Jeroen Roovers <jer@gentoo.org>
+  mozilla-firefox-3.0.14.ebuild:
+  Stable for HPPA (bug #284439).
+
+  13 Sep 2009; Brent Baude <ranger@gentoo.org>
+  mozilla-firefox-3.0.14.ebuild:
+  Marking mozilla-firefox-3.0.14 ppc64 for bug 284439
+
+  13 Sep 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  mozilla-firefox-3.5.3.ebuild:
+  Don't change the MOZLIBDIR with every minor release, keep it the same as
+  the mozilla branch name (seems to break devhelp-0.21* too)
 
   11 Sep 2009; Markus Meier <maekke@gentoo.org>
   mozilla-firefox-3.0.14.ebuild:
