@@ -1,6 +1,11 @@
 # ChangeLog for sci-libs/proj
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/proj/ChangeLog,v 1.13 2008/09/11 02:26:15 djay Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/proj/ChangeLog,v 1.14 2009/09/14 13:16:26 patrick Exp $
+
+  14 Sep 2009; Patrick Lauer <patrick@gentoo.org> proj-4.6.1.ebuild,
+  +files/proj-4.6.1-test.patch:
+  Fixing test failure, closes #284828. Thanks to Kacper Kowalik for
+  extracting the patch from upstream.
 
 *proj-4.6.1 (11 Sep 2008)
 

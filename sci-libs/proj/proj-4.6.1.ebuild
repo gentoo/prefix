@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/proj/proj-4.6.1.ebuild,v 1.1 2008/09/11 02:26:15 djay Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/proj/proj-4.6.1.ebuild,v 1.2 2009/09/14 13:16:26 patrick Exp $
 
 inherit eutils
 
@@ -22,6 +22,7 @@ src_unpack() {
 	cd "${S}"/nad
 	mv README README.NAD
 	unpack ${PN}-datumgrid-1.4.zip || die
+	epatch "${FILESDIR}/${P}-test.patch"
 }
 
 src_install() {
