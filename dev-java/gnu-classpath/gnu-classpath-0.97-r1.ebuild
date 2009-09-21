@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.97-r1.ebuild,v 1.9 2009/06/25 19:12:24 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.97-r1.ebuild,v 1.10 2009/09/18 16:23:22 tove Exp $
 
 EAPI=1
 
@@ -65,7 +65,7 @@ DEPEND="app-arch/zip
 			x11-proto/xextproto
 			x11-proto/xproto
 		)
-		${REPEND}"
+		${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
