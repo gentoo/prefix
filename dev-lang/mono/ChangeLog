@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/mono
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.179 2009/09/02 14:47:00 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.180 2009/09/19 15:12:13 maekke Exp $
+
+  19 Sep 2009; Markus Meier <maekke@gentoo.org> mono-2.4.2.3.ebuild:
+  amd64/x86 stable, bug #284306
 
   02 Sep 2009; Peter Alfredsen <loki_val@gentoo.org> -mono-2.2-r5.ebuild,
   -mono-2.2.9999.ebuild, -mono-2.4.2.ebuild:
