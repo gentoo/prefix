@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.240 2009/08/09 13:05:16 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.241 2009/09/15 01:08:27 dirtyepic Exp $
+
+  15 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> -wxGTK-2.6.4.0-r4.ebuild,
+  -wxGTK-2.8.9.1-r3.ebuild, -wxGTK-2.8.9.2-r1.ebuild,
+  -wxGTK-2.8.10.1.ebuild:
+  Remove old.
 
   09 Aug 2009; nixnut <nixnut@gentoo.org> wxGTK-2.6.4.0-r5.ebuild:
   ppc stable #277722
