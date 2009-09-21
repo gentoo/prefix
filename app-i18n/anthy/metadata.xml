@@ -13,7 +13,4 @@
   <pkg>app-i18n/uim</pkg> (XIM, GTK+ immodule) and <pkg>virtual/emacs</pkg>
   (to enable Anthy support for emacs, build this package with emacs USE flag).
 </longdescription>
-<use>
-  <flag name='ucs4'>Enable ucs4 support</flag>
-</use>
 </pkgmetadata>

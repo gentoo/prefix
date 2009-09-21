@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/anthy-9100h.ebuild,v 1.7 2009/08/09 12:35:26 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/anthy-9100h.ebuild,v 1.8 2009/09/17 16:32:12 matsuu Exp $
 
 inherit elisp-common eutils
 
@@ -10,7 +10,7 @@ DESCRIPTION="Anthy -- free and secure Japanese input system"
 HOMEPAGE="http://anthy.sourceforge.jp/"
 SRC_URI="mirror://sourceforge.jp/anthy/37536/${P}.tar.gz"
 
-LICENSE="GPL-2"
+LICENSE="GPL-2 LGPL-2.1"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 SLOT="0"
 
