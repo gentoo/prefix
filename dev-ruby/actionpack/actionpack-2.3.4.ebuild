@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/actionpack-2.3.4.ebuild,v 1.1 2009/09/04 06:16:11 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/actionpack-2.3.4.ebuild,v 1.4 2009/09/20 19:12:20 nixnut Exp $
 
 inherit ruby gems
 USE_RUBY="ruby18 ruby19"
