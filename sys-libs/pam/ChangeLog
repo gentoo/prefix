@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/pam
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.244 2009/06/21 16:50:28 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.246 2009/09/16 17:58:28 fauli Exp $
+
+  16 Sep 2009; Christian Faulhammer <fauli@gentoo.org> pam-1.1.0.ebuild:
+  stable x86, bug 284087
+
+  14 Sep 2009; Tom Gall <tgall@gentoo.org> pam-1.1.0.ebuild:
+  stable on ppc64, bug #284087
 
   21 Jun 2009; Diego E. Pettenò <flameeyes@gentoo.org> pam-1.1.0.ebuild:
   Use a different alternative to avoid applying the disable-regenerate-man
