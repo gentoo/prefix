@@ -1,6 +1,11 @@
 # ChangeLog for x11-proto/xextproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/ChangeLog,v 1.40 2009/06/23 19:21:32 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xextproto/ChangeLog,v 1.41 2009/09/19 11:49:56 remi Exp $
+
+*xextproto-7.1.1 (19 Sep 2009)
+
+  19 Sep 2009; Rémi Cardona <remi@gentoo.org> +xextproto-7.1.1.ebuild:
+  bump to 7.1.1
 
   23 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
   xextproto-7.0.4.ebuild:
