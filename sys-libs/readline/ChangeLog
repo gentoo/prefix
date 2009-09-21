@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/readline
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.134 2009/09/09 20:30:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.136 2009/09/19 15:55:40 nixnut Exp $
+
+  19 Sep 2009; nixnut <nixnut@gentoo.org> readline-6.0_p3.ebuild:
+  ppc stable #283155
+
+  13 Sep 2009; Markus Meier <maekke@gentoo.org> readline-6.0_p3.ebuild:
+  arm stable, bug #283155
 
   09 Sep 2009; Markus Meier <maekke@gentoo.org> readline-6.0_p3.ebuild:
   amd64/x86 stable, bug #283155
