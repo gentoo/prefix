@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.92 2009/08/31 21:52:49 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.93 2009/09/14 21:32:09 eva Exp $
+
+*gmime-2.4.9 (14 Sep 2009)
+
+  14 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org> +gmime-2.4.9.ebuild:
+  Version bump. Fix mono target generation.
 
 *gmime-2.4.8 (31 Aug 2009)
 
