@@ -1,6 +1,20 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.250 2009/09/11 20:34:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.254 2009/09/15 02:15:25 anarchy Exp $
+
+  15 Sep 2009; Jory A. Pratt <anarchy@gentoo.org> xulrunner-1.9.1.3.ebuild:
+  Fix dep on libXt, bug #284842. Thanks Matt Whitlock for reporting
+
+  13 Sep 2009; Jeroen Roovers <jer@gentoo.org> xulrunner-1.9.0.14.ebuild:
+  Stable for HPPA (bug #284439).
+
+  13 Sep 2009; Brent Baude <ranger@gentoo.org> xulrunner-1.9.0.14.ebuild:
+  Marking xulrunner-1.9.0.14 ppc64 for bug 284439
+
+  13 Sep 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  xulrunner-1.9.1.3.ebuild:
+  Don't change the MOZLIBDIR with every minor release, keep it the same as
+  the mozilla branch name (seems to break devhelp-0.21* too)
 
   11 Sep 2009; Markus Meier <maekke@gentoo.org> xulrunner-1.9.0.14.ebuild:
   amd64 stable, bug #284439
