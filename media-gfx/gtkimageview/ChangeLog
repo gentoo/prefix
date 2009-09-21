@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gtkimageview
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gtkimageview/ChangeLog,v 1.8 2009/07/04 12:26:25 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gtkimageview/ChangeLog,v 1.9 2009/09/19 11:57:02 maekke Exp $
+
+  19 Sep 2009; Markus Meier <maekke@gentoo.org> gtkimageview-1.6.4.ebuild:
+  add ~arm, bug #272088
 
   04 Jul 2009; Brent Baude <ranger@gentoo.org> gtkimageview-1.6.4.ebuild:
   Marking gtkimageview-1.6.4 ~ppc64 for bug 272088
