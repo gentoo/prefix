@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/intltool
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.125 2009/08/23 16:56:15 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/intltool/ChangeLog,v 1.126 2009/09/16 21:32:59 eva Exp $
+
+  16 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -intltool-0.40.6.ebuild:
+  Clean up broken/masked revision.
 
 *intltool-0.40.6-r1 (23 Aug 2009)
 
