@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.106 2009/09/12 01:07:21 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.109 2009/09/19 16:03:47 nixnut Exp $
+
+  19 Sep 2009; nixnut <nixnut@gentoo.org> less-436.ebuild:
+  ppc stable #284566
+
+  15 Sep 2009; Jeroen Roovers <jer@gentoo.org> less-436.ebuild:
+  Stable for HPPA (bug #284566).
+
+  13 Sep 2009; Markus Meier <maekke@gentoo.org> less-436.ebuild:
+  arm/x86 stable, bug #284566
 
   12 Sep 2009; Richard Freeman <rich0@gentoo.org> less-436.ebuild:
   amd64 stable - 284566
