@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-session/xfce4-session-4.6.1.ebuild,v 1.11 2009/08/02 08:18:38 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-session/xfce4-session-4.6.1.ebuild,v 1.13 2009/09/13 13:46:44 darkside Exp $
 
 EAPI=2
 inherit flag-o-matic xfconf
@@ -23,7 +23,6 @@ RDEPEND="gnome-base/libglade
 	>=xfce-base/libxfcegui4-4.6
 	>=xfce-base/xfconf-4.6
 	>=xfce-base/xfce-utils-4.6
-	games-misc/fortune-mod
 	gnome? ( gnome-base/gconf )
 	gnome-keyring? ( gnome-base/gnome-keyring )"
 DEPEND="${RDEPEND}
@@ -44,4 +43,10 @@ pkg_setup() {
 src_configure() {
 	use profile && filter-flags -fomit-frame-pointer
 	xfconf_src_configure
+}
+
+pkg_postinst() {
+	xfconf_pkg_postinst
+	elog "If you would like to see fortunes with xfce4-tips, then install
+	games-misc/fortune-mod"
 }
