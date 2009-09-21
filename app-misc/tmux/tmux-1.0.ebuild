@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/tmux-0.8.ebuild,v 1.5 2009/06/24 20:33:09 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/tmux-1.0.ebuild,v 1.1 2009/09/20 23:21:10 tcunha Exp $
 
 inherit toolchain-funcs
 
@@ -19,7 +19,9 @@ RDEPEND="vim-syntax? ( || (
 			app-editors/vim ) )"
 
 src_compile() {
-	emake CC="$(tc-getCC)" DEBUG="" FDEBUG="" || die "emake failed"
+	# The configure script isn't created by GNU autotools.
+	./configure || die "configure failed"
+	emake CC="$(tc-getCC)" || die "emake failed"
 }
 
 src_install() {
@@ -27,7 +29,7 @@ src_install() {
 
 	dodoc CHANGES FAQ NOTES TODO || die "dodoc failed"
 	docinto examples
-	dodoc examples/*.conf || die "dodoc examples failed"
+	dodoc examples/*.{conf,sh} || die "dodoc examples failed"
 
 	doman tmux.1 || die "doman failed"
 
@@ -40,17 +42,7 @@ src_install() {
 	fi
 }
 
-pkg_preinst() {
-	has_version "<${CATEGORY}/${PN}-0.6"
-	PREVIOUS_LESS_THAN_0_6=$?
-}
-
 pkg_postinst() {
-	if [[ ${PREVIOUS_LESS_THAN_0_6} -eq 0 ]]; then
-		ewarn "The 0.6 release changed some commands and options"
-		ewarn "(such as: mode-keys, remain-by-default, set, setw, and"
-		ewarn "utf8-default), thus it will break current configurations. For"
-		ewarn "more information, please refer to the files located in"
-		ewarn "/usr/share/doc/${PF}."
-	fi
+	elog "If you want to use tmux as your login shell, don't forget to add"
+	elog "it to the list of valid shells in the /etc/shells file."
 }
