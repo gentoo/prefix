@@ -1,6 +1,12 @@
 # ChangeLog for www-client/lynx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.97 2009/09/11 20:53:03 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.99 2009/09/15 13:45:10 jer Exp $
+
+  15 Sep 2009; Jeroen Roovers <jer@gentoo.org> lynx-2.8.7_p1.ebuild:
+  Stable for HPPA (bug #283035).
+
+  14 Sep 2009; Raúl Porcel <armin76@gentoo.org> lynx-2.8.7_p1.ebuild:
+  arm/ia64/m68k/s390/sh stable wrt #283035
 
   11 Sep 2009; Tiago Cunha <tcunha@gentoo.org> lynx-2.8.7_p1.ebuild:
   stable sparc, bug 283035
