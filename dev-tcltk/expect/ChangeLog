@@ -1,6 +1,9 @@
 # ChangeLog for dev-tcltk/expect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/ChangeLog,v 1.61 2009/08/31 00:47:45 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/expect/ChangeLog,v 1.62 2009/09/13 16:00:56 armin76 Exp $
+
+  13 Sep 2009; Raúl Porcel <armin76@gentoo.org> expect-5.43.0.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #281420
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> expect-5.43.0.ebuild:
   Marking expect-5.43.0 ppc64 for bug 281420
