@@ -1,6 +1,19 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.27 2009/08/24 13:27:31 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.29 2009/09/13 18:25:37 flameeyes Exp $
+
+*libcanberra-0.17 (13 Sep 2009)
+
+  13 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -libcanberra-0.16.ebuild, +libcanberra-0.17.ebuild:
+  Bump to 0.17 directly, thanks to Samuli Suominen in bug #284798.
+
+*libcanberra-0.16 (13 Sep 2009)
+
+  13 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +libcanberra-0.16.ebuild:
+  Version bump; thanks to Rafał Mużyło in bug #284785 for letting me
+  notice.
 
 *libcanberra-0.15-r1 (24 Aug 2009)
 
