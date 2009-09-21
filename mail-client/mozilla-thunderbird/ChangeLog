@@ -1,6 +1,10 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.303 2009/09/12 16:22:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.304 2009/09/20 18:36:04 volkmar Exp $
+
+  20 Sep 2009; Mounir Lamouri <volkmar@gentoo.org>
+  mozilla-thunderbird-2.0.0.23.ebuild:
+  Stable on ppc. Bug 282549
 
   12 Sep 2009; Brent Baude <ranger@gentoo.org>
   mozilla-thunderbird-2.0.0.23.ebuild:
