@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/gentoo-syntax
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/ChangeLog,v 1.48 2009/08/31 18:12:29 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/ChangeLog,v 1.49 2009/09/18 16:21:47 ulm Exp $
+
+  18 Sep 2009; Ulrich Mueller <ulm@gentoo.org>
+  files/50gentoo-syntax-gentoo.el:
+  Recognise eblit files.
 
   31 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
   -files/51gentoo-syntax-gentoo.el, -gentoo-syntax-1.11.ebuild:
