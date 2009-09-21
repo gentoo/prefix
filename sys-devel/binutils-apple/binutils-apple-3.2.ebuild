@@ -1,12 +1,13 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/binutils-apple-3.2.ebuild,v 1.3 2009/09/12 14:17:48 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/binutils-apple-3.2.ebuild,v 1.4 2009/09/14 14:42:51 grobian Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
 RESTRICT="test" # the test suite will test what's installed.
 
 # LD64=ld64-95.2.12 # can't compile this one, missing libunwind/* includes
+# http://lists.apple.com/archives/Darwin-dev/2009/Sep/msg00025.html
 LD64=ld64-85.2.1 # from 3.1.2
 CCTOOLS=cctools-750
 LP64PATCHES=binutils-apple-LP64-patches-1

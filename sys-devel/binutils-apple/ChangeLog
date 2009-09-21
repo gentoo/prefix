@@ -1,6 +1,6 @@
 # ChangeLog for sys-devel/binutils-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/ChangeLog,v 1.4 2009/09/12 14:17:48 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-apple/ChangeLog,v 1.5 2009/09/14 14:42:51 grobian Exp $
 
   12 Sep 2009; Fabian Groffen <grobian@gentoo.org>
   -binutils-apple-3.1.2-r1.ebuild, binutils-apple-3.2.ebuild:
@@ -15,6 +15,7 @@
   Since we cannot build ld64, but *can* build new cctools, build the ld64
   from 3.1.2 with the new cctools. Hopefully the new cctools fixes problems
   with Snow Leopard host provided objects and 64-bits awareness
+  http://lists.apple.com/archives/Darwin-dev/2009/Sep/msg00025.html
 
 *binutils-apple-3.2 (05 Sep 2009)
 
