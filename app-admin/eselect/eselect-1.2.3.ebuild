@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.1.1.ebuild,v 1.8 2009/08/31 15:51:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.2.3.ebuild,v 1.1 2009/09/20 21:10:18 ulm Exp $
 
 inherit eutils
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc bash-completion"
 
 RDEPEND="sys-apps/sed
@@ -21,19 +21,14 @@ RDEPEND="sys-apps/sed
 	)"
 DEPEND="${RDEPEND}
 	doc? ( dev-python/docutils )"
-RDEPEND="${RDEPEND}
+RDEPEND="!app-admin/eselect-news
+	${RDEPEND}
 	sys-apps/file
 	sys-libs/ncurses"
 
 # Commented out: only few users of eselect will edit its source
 #PDEPEND="emacs? ( app-emacs/gentoo-syntax )
 #	vim-syntax? ( app-vim/eselect-syntax )"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-prefix.patch
-}
 
 src_compile() {
 	econf
@@ -49,7 +44,7 @@ src_install() {
 	dodoc AUTHORS ChangeLog NEWS README TODO doc/*.txt
 	use doc && dohtml *.html doc/*
 
-	# needed by news-tng module
+	# needed by news module
 	keepdir /var/lib/gentoo/news
 
 	# we don't use bash-completion.eclass since eselect

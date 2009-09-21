@@ -1,6 +1,24 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.124 2009/09/11 16:36:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.128 2009/09/20 21:10:18 ulm Exp $
+
+*eselect-1.2.3 (20 Sep 2009)
+
+  20 Sep 2009; Ulrich Mueller <ulm@gentoo.org> -eselect-1.2.2.ebuild,
+  +eselect-1.2.3.ebuild:
+  Version bump, fixes bug 285762. Remove intermediate version.
+
+*eselect-1.2.2 (19 Sep 2009)
+
+  19 Sep 2009; Ulrich Mueller <ulm@gentoo.org> +eselect-1.2.2.ebuild:
+  Version bump.
+
+  15 Sep 2009; Ulrich Mueller <ulm@gentoo.org> -eselect-1.1.1.ebuild,
+  -eselect-1.2.ebuild:
+  Remove old.
+
+  15 Sep 2009; Jeroen Roovers <jer@gentoo.org> eselect-1.1.3.ebuild:
+  Stable for HPPA (bug #283079).
 
   11 Sep 2009; Raúl Porcel <armin76@gentoo.org> eselect-1.1.3.ebuild:
   arm/ia64/m68k/s390/sh/sparc stable wrt #283079
