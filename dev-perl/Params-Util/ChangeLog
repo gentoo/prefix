@@ -1,6 +1,15 @@
 # ChangeLog for dev-perl/Params-Util
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Params-Util/ChangeLog,v 1.66 2009/09/10 08:00:16 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Params-Util/ChangeLog,v 1.69 2009/09/19 16:35:07 nixnut Exp $
+
+  19 Sep 2009; nixnut <nixnut@gentoo.org> Params-Util-1.00.ebuild:
+  ppc stable #283969
+
+  18 Sep 2009; Torsten Veller <tove@gentoo.org> Params-Util-1.00.ebuild:
+  Stable on amd64 (#283969)
+
+  17 Sep 2009; Jeroen Roovers <jer@gentoo.org> Params-Util-1.00.ebuild:
+  Stable for HPPA (bug #283969).
 
   10 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
   Params-Util-1.00.ebuild:
