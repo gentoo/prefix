@@ -1,6 +1,22 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.423 2009/09/06 14:39:44 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.427 2009/09/20 23:08:01 leio Exp $
+
+  20 Sep 2009; Mart Raudsepp <leio@gentoo.org>
+  +files/gtk+-2.16.6-fix-pltcheck-test.patch, gtk+-2.16.6.ebuild:
+  Fix tests, bug 285698
+
+  20 Sep 2009; Mart Raudsepp <leio@gentoo.org> -gtk+-2.16.1.ebuild,
+  -gtk+-2.16.5.ebuild, -gtk+-2.16.5-r1.ebuild:
+  Remove old
+
+  19 Sep 2009; Olivier Crête <tester@gentoo.org> gtk+-2.16.6.ebuild:
+  Stable on amd64, bug #285586
+
+*gtk+-2.16.6 (19 Sep 2009)
+
+  19 Sep 2009; Mart Raudsepp <leio@gentoo.org> +gtk+-2.16.6.ebuild:
+  Version bump. Various safe bug fixes
 
 *gtk+-2.16.5-r1 (06 Sep 2009)
 
