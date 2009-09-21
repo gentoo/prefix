@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/chardet/chardet-1.0.1.ebuild,v 1.3 2009/09/13 02:55:26 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/chardet/chardet-1.0.1.ebuild,v 1.5 2009/09/18 23:20:05 maekke Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
