@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-2.3.4.ebuild,v 1.1 2009/09/04 06:30:17 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/rails-2.3.4.ebuild,v 1.5 2009/09/20 19:17:24 nixnut Exp $
 
 inherit ruby gems
 USE_RUBY="ruby18 ruby19"
@@ -24,7 +24,7 @@ DEPEND=">=dev-lang/ruby-1.8.6
 
 RDEPEND="${DEPEND}
 	fastcgi? ( >=dev-ruby/ruby-fcgi-0.8.6 )
-	>=dev-ruby/rubygems-1.3.1"
+	>=dev-ruby/rubygems-1.3.2"
 
 src_install() {
 	gems_src_install
