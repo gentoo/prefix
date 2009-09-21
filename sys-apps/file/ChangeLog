@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/file
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.171 2009/09/12 01:14:24 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.175 2009/09/19 15:58:57 nixnut Exp $
+
+  19 Sep 2009; nixnut <nixnut@gentoo.org> file-5.03.ebuild:
+  ppc stable #284347
+
+  15 Sep 2009; Jeroen Roovers <jer@gentoo.org> file-5.03.ebuild:
+  Stable for HPPA (bug #284347).
+
+  14 Sep 2009; Tom Gall <tgall@gentoo.org> file-5.03.ebuild:
+  ppc64 stable, bug #284347
+
+  13 Sep 2009; Markus Meier <maekke@gentoo.org> file-5.03.ebuild:
+  arm/x86 stable, bug #284347
 
   12 Sep 2009; Richard Freeman <rich0@gentoo.org> file-5.03.ebuild:
   amd64 stable - 284347
