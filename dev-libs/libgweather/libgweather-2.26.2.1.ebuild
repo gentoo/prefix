@@ -1,11 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.26.2.1.ebuild,v 1.4 2009/07/25 03:19:11 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.26.2.1.ebuild,v 1.5 2009/09/19 19:04:45 mrpouet Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
 
-inherit autotools gnome2
+inherit autotools gnome2 eutils
 
 DESCRIPTION="Library to access weather information from online services"
 HOMEPAGE="http://www.gnome.org/"
@@ -51,6 +51,9 @@ src_prepare() {
 		sed "/^TARGET_DIR/i \GTKDOC_REBASE=/$(type -P true)" \
 			-i gtk-doc.make || die "sed 2 failed"
 	fi
+
+	# Fix automagic python support, bug #285595
+	epatch "${FILESDIR}/${P}-automagic-python.patch"
 
 	# Make it libtool-1 compatible, bug #278516
 	rm -v m4/lt* m4/libtool.m4 || die "removing libtool macros failed"
