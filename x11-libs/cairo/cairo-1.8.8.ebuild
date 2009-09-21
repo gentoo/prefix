@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.8.ebuild,v 1.5 2009/08/21 07:31:00 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/cairo-1.8.8.ebuild,v 1.7 2009/09/18 15:09:19 mrpouet Exp $
 
 EAPI=2
 

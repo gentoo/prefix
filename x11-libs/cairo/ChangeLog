@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.223 2009/08/21 07:31:00 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.225 2009/09/18 15:09:19 mrpouet Exp $
+
+  18 Sep 2009; Romain Perier <mrpouet@gentoo.org>
+  cairo-1.8.8.ebuild:
+  Stable for amd64 per bug #285154.
+
+  18 Sep 2009; Jeroen Roovers <jer@gentoo.org> cairo-1.8.8.ebuild:
+  Stable for HPPA (bug #285154).
 
   21 Aug 2009; Christian Faulhammer <fauli@gentoo.org> cairo-1.8.8.ebuild:
   revert all stable keywords
