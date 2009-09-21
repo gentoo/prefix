@@ -1,6 +1,25 @@
 # ChangeLog for www-servers/nginx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.224 2009/09/06 19:45:39 voxus Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.227 2009/09/18 19:22:29 keytoaster Exp $
+
+  18 Sep 2009; Tobias Heinlein <keytoaster@gentoo.org> nginx-0.5.38.ebuild,
+  nginx-0.6.39.ebuild, nginx-0.7.62.ebuild:
+  amd64 stable, security bug #285162
+
+  16 Sep 2009; Christian Faulhammer <fauli@gentoo.org> nginx-0.5.38.ebuild,
+  nginx-0.6.39.ebuild, nginx-0.7.62.ebuild:
+  stable x86
+
+*nginx-0.8.15 (14 Sep 2009)
+*nginx-0.7.62 (14 Sep 2009)
+*nginx-0.6.39 (14 Sep 2009)
+*nginx-0.5.38 (14 Sep 2009)
+
+  14 Sep 2009; Konstantin V. Arkhipov <voxus@gentoo.org>
+  -nginx-0.1.45.ebuild, -nginx-0.2.6.ebuild, -nginx-0.3.61.ebuild,
+  -nginx-0.4.14.ebuild, +nginx-0.5.38.ebuild, +nginx-0.6.39.ebuild,
+  +nginx-0.7.62.ebuild, +nginx-0.8.15.ebuild:
+  Version bump, wrt bug #283802. Unsupported versions are dropped.
 
 *nginx-0.8.13 (06 Sep 2009)
 
