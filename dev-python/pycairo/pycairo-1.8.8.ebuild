@@ -66,7 +66,7 @@ src_test() {
 }
 
 src_install() {
-	PKGCONFIG_DIR="/usr/$(get_libdir)/pkgconfig" distutils_src_install
+	PKGCONFIG_DIR="${EPREFIX}/usr/$(get_libdir)/pkgconfig" distutils_src_install
 
 	if use doc; then
 		dohtml -r doc/.build/html/ || die "dohtml -r doc/.build/html/ failed"
