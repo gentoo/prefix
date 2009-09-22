@@ -505,8 +505,7 @@ src_install() {
 
 pkg_preinst() {
 	# keep old libs if any
-	preserve_old_lib
-	usr/$(get_libdir)/{liblber,libldap,libldap_r}-2.3$(get_libname 0)
+	preserve_old_lib usr/$(get_libdir)/{liblber,libldap,libldap_r}-2.3$(get_libname 0)
 }
 
 pkg_postinst() {
@@ -537,6 +536,5 @@ pkg_postinst() {
 	elog "An example file for tuning BDB backends with openldap is"
 	elog "DB_CONFIG.fast.example in /usr/share/doc/${PF}/"
 
-	preserve_old_lib_notify
-	usr/$(get_libdir)/{liblber,libldap,libldap_r}-2.3$(get_libname 0)
+	preserve_old_lib_notify usr/$(get_libdir)/{liblber,libldap,libldap_r}-2.3$(get_libname 0)
 }
