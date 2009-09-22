@@ -5,7 +5,9 @@
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit x-modular
+EAPI="2"
+
+inherit x-modular eutils
 
 DESCRIPTION="display a message or query in a window (X-based /bin/echo)"
 
@@ -15,4 +17,6 @@ IUSE=""
 RDEPEND="x11-libs/libXaw"
 DEPEND="${RDEPEND}"
 
-CONFIGURE_OPTIONS="--disable-xprint"
+PATCHES=(
+	"${FILESDIR}/${P}-xprint.patch"
+)
