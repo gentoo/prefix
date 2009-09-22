@@ -2,6 +2,8 @@ http://bugs.python.org/issue6802
 
 aggregated patches
 
+updated to support GNU arch's output
+
 
 --- python/branches/release26-maint/Lib/plat-mac/aepack.py	2009/09/06 10:35:38	74680
 +++ python/branches/release26-maint/Lib/plat-mac/aepack.py	2009/09/06 10:54:28	74681
@@ -247,7 +249,7 @@ aggregated patches
 +    
 +    if test "${ac_osx_32bit}" = "yes"; then
 +    	case `arch` in
-+    	i386) 
++    	i386|x86_64) 
 +    		MACOSX_DEFAULT_ARCH="i386" 
 +    		;;
 +    	ppc|"Power Macintosh") 
@@ -259,7 +261,7 @@ aggregated patches
 +    	esac
 +    else
 +    	case `arch` in
-+    	i386) 
++    	i386|x86_64) 
 +    		MACOSX_DEFAULT_ARCH="x86_64" 
 +    		;;
 +    	ppc|"Power Macintosh") 
