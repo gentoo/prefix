@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r5.ebuild,v 1.1 2009/09/07 19:12:25 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/mutt-1.5.20-r6.ebuild,v 1.1 2009/09/21 11:00:45 grobian Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -95,6 +95,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/mutt-1.5.20-fix-mh-parsing-14bb498c6a1c.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-search-pattern-crash-053ef7bbaa72.patch
 	epatch "${FILESDIR}"/mutt-1.5.20-next-invalid-pattern-crash-6a08a5244d60.patch
+	epatch "${FILESDIR}"/mutt-1.5.20-dont-reveal-bbc.patch
 
 	# patch version string for bug reports
 	sed -i -e 's/"Mutt %s (%s)"/"Mutt %s (%s, Gentoo '"${PVR}"')"/' \
