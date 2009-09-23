@@ -43,6 +43,19 @@ src_unpack() {
 		cd "${S}"
 		sed -i 's:-static::' $(find -name Makefile.in)
 	fi
+
+	epatch "${FILESDIR}"/${P}-interix.patch
+}
+
+src_compile() {
+	local myconf=
+
+	# contains a reference to _GLOBAL_OFFSET_TABLE_, which does not exist
+	# when building with interix GCC (all code is PIC here).
+	[[ ${CHOST} == *-interix* ]] && myconf="${myconf} --disable-assembler"
+
+	econf ${myconf} || die econf failed
+	emake || die emake failed
 }
 
 src_install() {
