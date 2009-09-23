@@ -45,7 +45,7 @@ src_test() {
 }
 
 src_install() {
-	emake DESTDIR="${ED}" docdir=/usr/share/doc/${PF}/html \
+	emake DESTDIR="${D}" docdir="${D}"/usr/share/doc/${PF}/html \
 		install || die "emake install failed"
 
 	insinto /usr/include/a52dec
