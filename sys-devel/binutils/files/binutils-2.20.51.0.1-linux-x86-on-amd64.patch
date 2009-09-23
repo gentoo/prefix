@@ -1,0 +1,13 @@
+allow building plain x86-linux-ld for x86_64-linux host
+with 32bit in /lib32 and 64bit in /lib.
+--- ld/emulparams/elf_i386.sh.orig	2009-09-17 15:22:55.485863095 +0200
++++ ld/emulparams/elf_i386.sh	2009-09-17 15:23:57.944566323 +0200
+@@ -17,7 +17,7 @@
+ # In Gentoo, we install 32bit libs into /lib32 in an
+ # ABI setup with amd64/x86
+ case "$target" in
+-  x86_64*-linux*)
++  x86_64*-linux*|i[34567]86*-linux*)
+     case "$EMULATION_NAME" in
+       *i386*) LIBPATH_SUFFIX=32  ;;
+     esac

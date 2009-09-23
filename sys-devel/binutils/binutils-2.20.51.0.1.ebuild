@@ -11,6 +11,7 @@ KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~m68k-mint ~sparc-so
 src_unpack() {
 	toolchain-binutils_src_unpack
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-linux-x86-on-amd64.patch
 	#epatch "${FILESDIR}"/binutils-2.19.51.0.9-mint.patch
 	#epatch "${FILESDIR}"/binutils-2.19.50.0.1-mint.patch
 }
