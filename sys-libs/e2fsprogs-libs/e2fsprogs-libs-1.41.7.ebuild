@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~m68k-mint"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~m68k-mint ~x86-winnt"
 IUSE="nls"
 
 RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.6 ) )
@@ -34,6 +34,11 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${P}-interix6-net.patch
+
+	# conditional, since this hard-disables the blkid and ss libs.
+	# disabling blkid via configure is not possible, since it then looks
+	# for an external blkid, which does not exist (of course on windows..)
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
 }
 
 src_configure() {
