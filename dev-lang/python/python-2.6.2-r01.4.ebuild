@@ -85,6 +85,7 @@ src_prepare() {
 	fi
 
 	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
+	use prefix && epatch "${FILESDIR}"/${P}-use-first-bsddb-found.patch
 	epatch "${FILESDIR}"/${P}-readline-prefix.patch
 
 	# build static for mint
