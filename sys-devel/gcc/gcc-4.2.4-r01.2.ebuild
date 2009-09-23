@@ -172,5 +172,26 @@ src_install() {
 		cp "${FILESDIR}"/interix-3.5-stdint.h "${ED}${INCLUDEPATH}/stdint.h" \
 		|| die "Cannot install stdint.h for interix3"
 	fi
+
+	# create a small profile.d script, unsetting some of the bad
+	# environment variables that the sustem could set from the outside.
+	# (GCC_SPECS, GCC_EXEC_PREFIX, CPATH, LIBRARY_PATH, LD_LIBRARY_PATH,
+	#  C_INCLUDE_PATH, CPLUS_INCLUDE_PATH, LIBPATH, SHLIB_PATH, LIB, INCLUDE,
+	#  LD_LIBRARY_PATH_32, LD_LIBRARY_PATH_64).
+	# Maybe there is a better location for doing this ...? Feel free to move
+	# it there if you want to.
+
+	cat > "${T}"/00-gcc-paths.sh <<- _EOF
+		#!/bin/env bash
+		# GCC specific variables
+		unset GCC_SPECS GCC_EXEC_PREFIX
+		# include path variables
+		unset CPATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH INCLUDE
+		# library path variables
+		unset LIBRARY_PATH LD_LIBRARY_PATH LIBPATH SHLIB_PATH LIB LD_LIBRARY_PATH_32 LD_LIBRARY_PATH_64
+	_EOF
+
+	insinto /etc/profile.d
+	doins "${T}"/00-gcc-paths.sh
 }
 
