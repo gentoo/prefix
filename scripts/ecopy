@@ -8,7 +8,7 @@ RSURL=${RSURL:-"http://tinderbox.dev.gentoo.org/portage"}
 EPREFIX=${EPREFIX:-$(portageq envvar EPREFIX)}
 WGET_CMD="wget --no-verbose --no-glob --no-clobber"
 
-source "${EPREFIX}/etc/init.d/functions.sh"
+source "${EPREFIX}/sbin/functions.sh"
 
 if ! type -P qatom > /dev/null ; then
 	ewarn "This script requires the use of qatom, please emerge"
