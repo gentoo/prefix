@@ -10,7 +10,7 @@ SRC_URI="mirror://cpan/authors/id/P/PE/PETDANCE/${P}.tar.gz"
 
 LICENSE="|| ( Artistic GPL-1 GPL-2 GPL-3 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 SRC_TEST=do
