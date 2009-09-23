@@ -90,6 +90,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
 	epatch "${FILESDIR}"/${PN}-4.0-mint.patch
 	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
+	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
 
 	if [[ ${CHOST} == *-interix* ]]; then
 		epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
