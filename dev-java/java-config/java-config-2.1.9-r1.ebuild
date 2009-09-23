@@ -23,6 +23,7 @@ src_unpack() {
 	distutils_src_unpack
 
 	cd "${S}"
+	epatch "${FILESDIR}/${P}.patch"
 
 	epatch "${FILESDIR}"/${PN}-2.1.8-prefix.patch
 	eprefixify \
@@ -31,13 +32,6 @@ src_unpack() {
 		src/eselect/java-{nsplugin,vm}.eselect \
 		src/profile.d/java-config-2.{,c}sh \
 		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py}
-}
-
-src_unpack() {
-	distutils_src_unpack
-
-	cd "${S}"
-	epatch "${FILESDIR}/${P}.patch"
 }
 
 src_install() {
