@@ -11,7 +11,7 @@ DESCRIPTION="File::Next is an iterator-based module for finding files"
 
 LICENSE="|| ( Artistic-2 GPL-1 GPL-2 GPL-3 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="test"
 
 RDEPEND="virtual/perl-File-Spec
