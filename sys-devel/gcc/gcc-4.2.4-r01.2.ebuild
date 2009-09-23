@@ -114,6 +114,10 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
 	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
 
+	# try /usr/lib32 in 32bit profile on x86_64-linux (needs --enable-multilib)
+	# but this does make sense in prefix only.
+	use prefix && epatch "${FILESDIR}"/${P}-linux-x86-on-amd64.patch
+
 	use vanilla && return 0
 
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
@@ -122,7 +126,7 @@ src_unpack() {
 }
 
 src_compile() {
-	case ${CTARGET} in
+	case ${CTARGET}:" ${USE} " in
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
 			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld --with-gnu-as"
@@ -142,6 +146,19 @@ src_compile() {
 			# disable usage of poll() on interix, since poll() only
 			# works on the /proc filesystem (.......)
 			export glibcxx_cv_POLL=no
+		;;
+		i[34567]86-*-linux*:*" prefix "*)
+			# to allow the linux-x86-on-amd64.patch become useful, we need
+			# to enable multilib, even if there is just one multilib option.
+			EXTRA_ECONF="${EXTRA_ECONF} --enable-multilib"
+			if [[ ${CBUILD:-${CHOST}} == "${CHOST}" ]]; then
+				# we might be on x86_64-linux, but don't do cross-compile, so
+				# tell the host-compiler to really create 32bits (for stage1)
+				# (real x86-linux-gcc also accept -m32).
+				tc-export CC CXX
+				CC="${CC} -m32"
+				CXX="${CC} -m32"
+			fi
 		;;
 	esac
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at

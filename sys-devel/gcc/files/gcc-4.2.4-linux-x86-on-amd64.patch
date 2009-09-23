@@ -1,0 +1,35 @@
+--- gcc/config.gcc.orig	2009-09-16 10:52:48.894638029 +0200
++++ gcc/config.gcc	2009-09-16 11:02:39.614869035 +0200
+@@ -1106,7 +1106,7 @@
+ 	i[34567]86-*-knetbsd*-gnu) tm_file="${tm_file} knetbsd-gnu.h i386/knetbsd-gnu.h" ;;
+ 	i[34567]86-*-kfreebsd*-gnu) tm_file="${tm_file} kfreebsd-gnu.h i386/kfreebsd-gnu.h" ;;
+ 	esac
+-	tmake_file="${tmake_file} i386/t-crtstuff i386/t-crtfm t-dfprules"
++	tmake_file="${tmake_file} i386/t-linux32 i386/t-crtstuff i386/t-crtfm t-dfprules"
+ 	;;
+ x86_64-*-linux* | x86_64-*-kfreebsd*-gnu | x86_64-*-knetbsd*-gnu)
+ 	tm_file="${tm_file} i386/unix.h i386/att.h dbxelf.h elfos.h svr4.h linux.h \
+--- gcc/config/i386/linux.h.orig	2009-09-16 11:01:17.404568317 +0200
++++ gcc/config/i386/linux.h	2009-09-16 11:01:23.176573079 +0200
+@@ -122,6 +122,8 @@
+   "%{ffast-math|funsafe-math-optimizations:crtfastmath.o%s} \
+    %{shared|pie:crtendS.o%s;:crtend.o%s} crtn.o%s"
+ 
++#define MULTILIB_DEFAULTS { "m32" }
++
+ /* A C statement (sans semicolon) to output to the stdio stream
+    FILE the assembler definition of uninitialized global DECL named
+    NAME whose size is SIZE bytes and alignment is ALIGN bytes.
+--- /dev/null	2009-09-10 15:59:29.820003140 +0200
++++ gcc/config/i386/t-linux32	2009-09-16 11:02:34.118502434 +0200
+@@ -0,0 +1,10 @@
++# On Debian, Ubuntu and other derivative distributions, the 32bit libraries
++# are found in /lib32 and /usr/lib32, /lib64 and /usr/lib64 are symlinks to
++# /lib and /usr/lib, while other distributions install libraries into /lib64
++# and /usr/lib64.  The LSB does not enforce the use of /lib64 and /usr/lib64,
++# it doesn't tell anything about the 32bit libraries on those systems.  Set
++# MULTILIB_OSDIRNAMES according to what is found on the target.
++
++MULTILIB_OPTIONS = m32
++MULTILIB_DIRNAMES = .
++MULTILIB_OSDIRNAMES = $(if $(wildcard $(shell echo $(SYSTEM_HEADER_DIR))/../../usr/lib32),../lib32,)
