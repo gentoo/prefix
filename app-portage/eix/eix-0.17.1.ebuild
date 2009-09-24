@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit multilib
+inherit multilib eutils
 
 DESCRIPTION="Search and query ebuilds, portage incl. local settings, ext. overlays, version changes, and more"
 HOMEPAGE="http://eix.sourceforge.net"
@@ -32,6 +32,11 @@ src_unpack() {
 		test -s "${s}" || die "${s} does not exist"
 		xz -dc -- "${s}" | tar xof - || die "Unpacking ${s} failed"
 	done
+}
+
+src_prepare() {
+	[[ ${CHOST} == *-interix3* ]] &&
+		epatch "${FILESDIR}"/${P}-interix3.patch
 }
 
 src_configure() {

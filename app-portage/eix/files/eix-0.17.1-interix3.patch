@@ -1,0 +1,17 @@
+--- src/database/package_reader.h       2009-09-03 11:06:31 +0300
++++ src/database/package_reader.h       2009-09-24 16:30:20 +0300
+@@ -20,6 +20,14 @@
+ #include <iostream>
+ #include <memory>
+
++
++//fix for systems without fseeko and ftello
++#ifndef HAVE_FSEEKO
++#define fseeko fseek
++#define ftello ftell
++#endif
++
++
+ class PortageSettings;
+
+ /// Forward-iterate for packages stored in the cachefile.
