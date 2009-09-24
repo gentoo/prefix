@@ -38,6 +38,7 @@ src_configure() {
 	econf $(use_with bzip2) $(use_with sqlite) $(use_with doc rst) \
 		$(use_enable nls) $(use_enable tools separate-tools) \
 		--with-ebuild-sh-default="/usr/$(get_libdir)/portage/bin/ebuild.sh" \
+		--with-eprefix-default="${EPREFIX}"
 		--with-portage-rootpath="${ROOTPATH}" \
 		$(use_enable deprecated obsolete-reminder)
 }
