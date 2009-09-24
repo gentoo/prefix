@@ -8,7 +8,7 @@ inherit twisted versionator
 
 DESCRIPTION="A Twisted Mail library, server and client"
 
-KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
 
 DEPEND="=dev-python/twisted-$(get_version_component_range 1-2)*
 	>=dev-python/twisted-names-0.2.0"
