@@ -38,9 +38,12 @@ src_unpack() {
 	if [[ ${CHOST} == *-winnt* ]]; then 
 		epatch "${FILESDIR}"/${PN}-2.14.16-winnt.patch
 		epatch "${FILESDIR}"/${PN}-2.14.17-winnt.patch
-	fi
 
-	eautoreconf # required for winnt
+		# avoid needing dev-util/gtk-doc for eautoreconf only
+		use doc || : > gtk-doc.make
+		use doc || sed -i -e 's,GTK_DOC_CHECK,#&,' configure.in
+		eautoreconf
+	fi
 }
 
 src_prepare() {
