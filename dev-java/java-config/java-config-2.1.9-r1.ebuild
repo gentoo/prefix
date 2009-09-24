@@ -25,13 +25,14 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${P}.patch"
 
-	epatch "${FILESDIR}"/${PN}-2.1.8-prefix.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify \
 		config/20java-config setup.py \
 		src/{depend-java-query,gjl,java-config-2,launcher.bash,run-java-tool} \
 		src/eselect/java-{nsplugin,vm}.eselect \
 		src/profile.d/java-config-2.{,c}sh \
-		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py}
+		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py} \
+		man/java-config-2.1
 }
 
 src_install() {
