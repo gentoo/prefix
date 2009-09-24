@@ -15,7 +15,7 @@ HOMEPAGE="http://buildbot.net/"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
 IUSE="doc irc mail manhole test"
 
 CDEPEND=">=dev-python/twisted-2.0.1"
