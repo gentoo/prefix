@@ -36,6 +36,7 @@ export LANG=C
 
 PATCHES=(
 	"${FILESDIR}/${P}/dumpvalue.patch"
+	"${FILESDIR}/${P}/cpp-compile.patch"
 	"${FILESDIR}/${P}/cpp-depends.patch"
 	"${FILESDIR}/${P}/dump-symlinks.patch"
 	"${FILESDIR}/${P}/libtool.patch"
