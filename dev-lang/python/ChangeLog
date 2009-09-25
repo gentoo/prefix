@@ -1,6 +1,33 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.412 2009/09/06 21:12:15 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.418 2009/09/23 15:29:49 arfrever Exp $
+
+  23 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.4.6.ebuild, python-2.5.4-r3.ebuild, python-2.6.2-r2.ebuild:
+  Fix handling of USE="-berkdb".
+
+  23 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.4.6.ebuild, python-2.5.4-r3.ebuild, python-2.6.2-r2.ebuild,
+  python-3.1.1-r1.ebuild:
+  Add dependency on app-misc/mime-types which is used by mimetypes module.
+  Reported by Dirkjan Ochtman.
+
+*python-3.1.1-r1 (22 Sep 2009)
+*python-2.6.2-r2 (22 Sep 2009)
+
+  22 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.6.2-r2.ebuild, +python-3.1.1-r1.ebuild:
+  Use external libffi on some architectures (bug #209673).
+
+  22 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.4.6.ebuild, python-2.5.4-r3.ebuild, python-2.6.2-r1.ebuild:
+  Restrict sys-libs/db dependencies and add warnings (bug #285553).
+
+  21 Sep 2009; Tom Gall <tgall@gentoo.org> python-2.6.2-r1.ebuild:
+  stable for ppc64, bug #277645
+
+  17 Sep 2009; Jeroen Roovers <jer@gentoo.org> python-2.6.2-r1.ebuild:
+  Stable for HPPA (bug #277645).
 
   06 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   -files/python-config-2.4, -python-3.1.ebuild:

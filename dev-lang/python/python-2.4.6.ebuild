@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.13 2009/08/30 21:34:13 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.16 2009/09/23 15:29:49 arfrever Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -11,7 +11,7 @@ EAPI="1"
 
 inherit autotools eutils flag-o-matic multilib python toolchain-funcs versionator prefix
 
-# We need this so that we don't depends on python.eclass
+# We need this so that we don't depend on python.eclass.
 PYVER_MAJOR=$(get_major_version)
 PYVER_MINOR=$(get_version_component_range 2)
 PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
@@ -29,28 +29,44 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="2.4"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb bootstrap build +cxx doc elibc_uclibc examples gdbm ipv6 ncurses readline ssl +threads tk ucs2 wininst +xml"
+IUSE="-berkdb bootstrap build +cxx doc elibc_uclibc examples gdbm ipv6 ncurses readline ssl +threads tk ucs2 wininst +xml"
 
-# Can't be compiled against db-4.5 Bug #179377
 DEPEND=">=app-admin/eselect-python-20080925
 		>=sys-libs/zlib-1.1.3
 		!build? (
-			tk? ( >=dev-lang/tk-8.0 )
-			ncurses? ( >=sys-libs/ncurses-5.2 readline? ( >=sys-libs/readline-4.1 ) )
-			berkdb? ( || ( sys-libs/db:4.4  sys-libs/db:4.3 ) )
-			gdbm? ( sys-libs/gdbm )
-			ssl? ( dev-libs/openssl )
+			berkdb? ( || (
+				sys-libs/db:4.4
+				sys-libs/db:4.3
+				sys-libs/db:4.2
+			) )
 			doc? ( dev-python/python-docs:${SLOT} )
+			gdbm? ( sys-libs/gdbm )
+			ncurses? (
+				>=sys-libs/ncurses-5.2
+				readline? ( >=sys-libs/readline-4.1 )
+			)
+			ssl? ( dev-libs/openssl )
+			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( dev-libs/expat )
 		)"
 
 # NOTE: changed RDEPEND to PDEPEND to resolve bug 88777. - kloeri
 # NOTE: added blocker to enforce correct merge order for bug 88777. - zmedico
 
-RDEPEND="${DEPEND} build? ( !dev-python/pycrypto )"
+RDEPEND="${DEPEND} build? ( !dev-python/pycrypto )
+		app-misc/mime-types"
 PDEPEND="${DEPEND} app-admin/python-updater"
 
 PROVIDE="virtual/python"
+
+pkg_setup() {
+	if use berkdb; then
+		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
+		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
+		ewarn "module provided by dev-python/bsddb3 which supports both Python 2 and Python 3."
+		ebeep 6
+	fi
+}
 
 src_unpack() {
 	unpack ${A}
@@ -122,7 +138,7 @@ src_configure() {
 		# Defaults to gdbm when both are enabled, #204343.
 		local disable
 		use berkdb   || use gdbm || disable+=" dbm"
-		use berkdb   || disable+=" bsddb"
+		use berkdb   || disable+=" _bsddb"
 		use gdbm     || disable+=" gdbm"
 		use ncurses  || disable+=" _curses _curses_panel"
 		use readline || disable+=" readline"
@@ -265,12 +281,13 @@ src_install() {
 	# Prevents the problem with compiling things with conflicting flags later.
 	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}usr/$(get_libdir)/python${PYVER}/config/Makefile"
 
+	# Python 2.4 partially doesn't respect $(get_libdir).
 	if use build; then
-		rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb,email,encodings,lib-tk,test}
+		rm -fr "${ED}"usr/lib*/python${PYVER}/{bsddb,email,encodings,lib-tk,test}
 	else
-		use elibc_uclibc && rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb/test,test}
-		use berkdb || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb,test/test_bsddb*}
-		use tk || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/lib-tk"
+		use elibc_uclibc && rm -fr "${ED}"usr/lib*/python${PYVER}/{bsddb/test,test}
+		use berkdb || rm -fr "${ED}"usr/lib*/python${PYVER}/{bsddb,test/test_bsddb*}
+		use tk || rm -fr "${ED}"usr/lib*/python${PYVER}/lib-tk
 	fi
 
 	prep_ml_includes usr/include/python${PYVER}

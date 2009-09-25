@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r1.ebuild,v 1.17 2009/09/22 13:39:28 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r2.ebuild,v 1.4 2009/09/24 14:31:26 arfrever Exp $
 
 # NOTE about python-portage interactions :
 # - Do not add a pkg_setup() check for a certain version of portage
@@ -19,7 +19,7 @@ PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
 
-PATCHSET_REVISION="4"
+PATCHSET_REVISION="5"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -34,7 +34,7 @@ IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 ncurses readline sq
 # NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes}
 #       do not conflict with the ones in python proper. - liquidx
 
-DEPEND=">=app-admin/eselect-python-20080925
+RDEPEND=">=app-admin/eselect-python-20080925
 		>=sys-libs/zlib-1.1.3
 		!build? (
 			berkdb? ( || (
@@ -55,9 +55,12 @@ DEPEND=">=app-admin/eselect-python-20080925
 			ssl? ( dev-libs/openssl )
 			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
-		)"
-RDEPEND="${DEPEND}"
-PDEPEND="${DEPEND} app-admin/python-updater"
+		)
+		!m68k? ( !mips? ( !sparc-fbsd? ( virtual/libffi ) ) )"
+DEPEND="${RDEPEND}
+		!m68k? ( !mips? ( !sparc-fbsd? ( dev-util/pkgconfig ) ) )"
+PDEPEND="${RDEPEND} app-admin/python-updater"
+RDEPEND+=" !build? ( app-misc/mime-types )"
 
 PROVIDE="virtual/python"
 
@@ -189,7 +192,7 @@ src_configure() {
 		# Defaults to gdbm when both are enabled, #204343.
 		local disable
 		use berkdb   || use gdbm || disable+=" dbm"
-		use berkdb   || disable+=" bsddb"
+		use berkdb   || disable+=" _bsddb"
 		use gdbm     || disable+=" gdbm"
 		use ncurses  || disable+=" _curses _curses_panel"
 		use readline || disable+=" readline"
@@ -219,8 +222,8 @@ src_configure() {
 	# doing. Enabling UCS2 support will break your existing python
 	# modules
 	use ucs2 \
-		&& myconf="${myconf} --enable-unicode=ucs2" \
-		|| myconf="${myconf} --enable-unicode=ucs4"
+		&& myconf+=" --enable-unicode=ucs2" \
+		|| myconf+=" --enable-unicode=ucs4"
 
 	filter-flags -malign-double
 
@@ -270,6 +273,10 @@ src_configure() {
 	use aqua \
 		&& myconf="${myconf} --enable-framework=${EPREFIX}/usr/lib" \
 		|| myconf="${myconf} --enable-shared"
+
+	if ! use m68k && ! use mips && ! use sparc-fbsd; then
+		myconf+=" --with-system-ffi"
+	fi
 
 	econf \
 		--with-fpectl \

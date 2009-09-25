@@ -1,15 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r1.ebuild,v 1.17 2009/09/22 13:39:28 arfrever Exp $
-
-# NOTE about python-portage interactions :
-# - Do not add a pkg_setup() check for a certain version of portage
-#   in dev-lang/python. It _WILL_ stop people installing from
-#   Gentoo 1.4 images.
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.3 2009/09/24 14:31:26 arfrever Exp $
 
 EAPI="2"
 
-inherit autotools eutils flag-o-matic libtool multilib pax-utils python toolchain-funcs versionator
+inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs versionator
 
 # We need this so that we don't depend on python.eclass.
 PYVER_MAJOR=$(get_major_version)
@@ -19,7 +14,7 @@ PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
 
-PATCHSET_REVISION="4"
+PATCHSET_REVISION="2"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -27,55 +22,32 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 	mirror://gentoo/python-gentoo-patches-${PV}$([[ "${PATCHSET_REVISION}" != "0" ]] && echo "-r${PATCHSET_REVISION}").tar.bz2"
 
 LICENSE="PSF-2.2"
-SLOT="2.6"
+SLOT="3.1"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 ncurses readline sqlite ssl +threads tk ucs2 wininst +xml"
+IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 ncurses readline sqlite ssl +threads tk ucs2 wininst +xml"
 
-# NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes}
-#       do not conflict with the ones in python proper. - liquidx
-
-DEPEND=">=app-admin/eselect-python-20080925
+RDEPEND=">=app-admin/eselect-python-20080925
 		>=sys-libs/zlib-1.1.3
 		!build? (
-			berkdb? ( || (
-				sys-libs/db:4.7
-				sys-libs/db:4.6
-				sys-libs/db:4.5
-				sys-libs/db:4.4
-				sys-libs/db:4.3
-				sys-libs/db:4.2
-			) )
-			doc? ( dev-python/python-docs:${SLOT} )
-			gdbm? ( sys-libs/gdbm )
-			ncurses? (
-				>=sys-libs/ncurses-5.2
-				readline? ( >=sys-libs/readline-4.1 )
-			)
 			sqlite? ( >=dev-db/sqlite-3 )
-			ssl? ( dev-libs/openssl )
 			tk? ( >=dev-lang/tk-8.0 )
+			ncurses? ( >=sys-libs/ncurses-5.2
+						readline? ( >=sys-libs/readline-4.1 ) )
+			gdbm? ( sys-libs/gdbm )
+			ssl? ( dev-libs/openssl )
+			doc? ( dev-python/python-docs:${SLOT} )
 			xml? ( >=dev-libs/expat-2 )
-		)"
-RDEPEND="${DEPEND}"
-PDEPEND="${DEPEND} app-admin/python-updater"
+		)
+		!m68k? ( !mips? ( !sparc-fbsd? ( virtual/libffi ) ) )"
+DEPEND="${RDEPEND}
+		!m68k? ( !mips? ( !sparc-fbsd? ( dev-util/pkgconfig ) ) )"
+PDEPEND="${RDEPEND} app-admin/python-updater"
+RDEPEND+=" !build? ( app-misc/mime-types )"
 
 PROVIDE="virtual/python"
 
-pkg_setup() {
-	if use berkdb; then
-		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
-		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
-		ewarn "module provided by dev-python/bsddb3 which supports both Python 2 and Python 3."
-		ebeep 6
-	fi
-}
-
 src_prepare() {
-	if tc-is-cross-compiler; then
-		epatch "${FILESDIR}/python-2.5-cross-printf.patch"
-		epatch "${FILESDIR}/python-2.6-chflags-cross.patch"
-		epatch "${FILESDIR}/python-2.6-test-cross.patch"
-	else
+	if ! tc-is-cross-compiler; then
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
 
@@ -182,14 +154,10 @@ src_prepare() {
 src_configure() {
 	# Disable extraneous modules with extra dependencies.
 	if use build; then
-		export PYTHON_DISABLE_MODULES="dbm bsddb gdbm _curses _curses_panel readline _sqlite3 _tkinter _elementtree pyexpat"
+		export PYTHON_DISABLE_MODULES="gdbm _curses _curses_panel readline _sqlite3 _tkinter _elementtree pyexpat"
 		export PYTHON_DISABLE_SSL="1"
 	else
-		# dbm module can be linked against berkdb or gdbm.
-		# Defaults to gdbm when both are enabled, #204343.
 		local disable
-		use berkdb   || use gdbm || disable+=" dbm"
-		use berkdb   || disable+=" bsddb"
 		use gdbm     || disable+=" gdbm"
 		use ncurses  || disable+=" _curses _curses_panel"
 		use readline || disable+=" readline"
@@ -215,13 +183,6 @@ src_configure() {
 
 	local myconf
 
-	# Super-secret switch. Don't use this unless you know what you're
-	# doing. Enabling UCS2 support will break your existing python
-	# modules
-	use ucs2 \
-		&& myconf="${myconf} --enable-unicode=ucs2" \
-		|| myconf="${myconf} --enable-unicode=ucs4"
-
 	filter-flags -malign-double
 
 	[[ "${ARCH}" == "alpha" ]] && append-flags -fPIC
@@ -245,13 +206,19 @@ src_configure() {
 			Makefile.pre.in || die "sed failed"
 	fi
 
-	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
+	# Export CXX so it ends up in /usr/lib/python3.X/config/Makefile.
 	tc-export CXX
 
-	# Set LDFLAGS so we link modules with -lpython2.6 correctly.
-	# Needed on FreeBSD unless Python 2.6 is already installed.
+	# Set LDFLAGS so we link modules with -lpython3.1 correctly.
+	# Needed on FreeBSD unless Python 3.1 is already installed.
 	# Please query BSD team before removing this!
 	append-ldflags "-L."
+
+	local dbmliborder
+	if use gdbm; then
+		dbmliborder+=":gdbm"
+	fi
+	dbmliborder="${dbmliborder#:}"
 
 	# python defaults to use 'cc_r' on aix
 	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-gcc=$(tc-getCC)"
@@ -271,13 +238,19 @@ src_configure() {
 		&& myconf="${myconf} --enable-framework=${EPREFIX}/usr/lib" \
 		|| myconf="${myconf} --enable-shared"
 
+	if ! use m68k && ! use mips && ! use sparc-fbsd; then
+		myconf+=" --with-system-ffi"
+	fi
+
 	econf \
 		--with-fpectl \
 		$(use_enable ipv6) \
 		$(use_with threads) \
+		$(use_with !ucs2 wide-unicode) \
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
 		--with-libc='' \
+		--with-dbmliborder=${dbmliborder} \
 		${myconf}
 }
 
@@ -294,7 +267,11 @@ src_test() {
 
 	# Skip all tests that fail during emerge but pass without emerge:
 	# (See bug #67970)
-	local skip_tests="distutils global httpservers mimetools minidom mmap posix pyexpat sax strptime subprocess syntax tcl time urllib urllib2 xml_etree"
+	local skip_tests="distutils"
+
+	# test_debuglevel from test_telnetlib.py fails sometimes with
+	# socket.error: [Errno 104] Connection reset by peer
+	skip_tests+=" telnetlib"
 
 	# test_ctypes fails with PAX kernel (bug #234498).
 	host-is-pax && skip_tests+=" ctypes"
@@ -329,7 +306,6 @@ src_install() {
 
 		# let the makefiles do their thing
 		emake -j1 CC="$(tc-getCC)" DESTDIR="${D}" STRIPFLAG= frameworkinstall || die "emake frameworkinstall failed"
-		emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
 
 		# avoid framework incompatability, degrade to a normal UNIX lib
 		mkdir -p "${ED}"/usr/$(get_libdir)
@@ -434,15 +410,14 @@ src_install() {
 EOF
 	else
 		emake DESTDIR="${D}" altinstall || die "emake altinstall failed"
-		emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
 	fi
 
 	mv "${ED}usr/bin/python${PYVER}-config" "${ED}usr/bin/python-config-${PYVER}"
 
 	# Fix collisions between different slots of Python.
 	mv "${ED}usr/bin/2to3" "${ED}usr/bin/2to3-${PYVER}"
-	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${PYVER}"
-	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${PYVER}"
+	mv "${ED}usr/bin/pydoc3" "${ED}usr/bin/pydoc${PYVER}"
+	mv "${ED}usr/bin/idle3" "${ED}usr/bin/idle${PYVER}"
 	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${PYVER}.1"
 	rm -f "${ED}usr/bin/smtpd.py"
 
@@ -457,12 +432,11 @@ EOF
 		 /usr/include/python${PYVER}/pyconfig.h
 
 	if use build; then
-		rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb,email,encodings,lib-tk,sqlite3,test}
+		rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{email,encodings,sqlite3,test,tkinter}
 	else
-		use elibc_uclibc && rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb/test,test}
-		use berkdb || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb,test/test_bsddb*}
+		use elibc_uclibc && rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/test"
 		use sqlite || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{sqlite3,test/test_sqlite*}
-		use tk || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/lib-tk"
+		use tk || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{tkinter,test/test_tk*}
 	fi
 
 	use threads || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/multiprocessing"
@@ -476,38 +450,25 @@ EOF
 
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
-
-	# Installs empty directory.
-	rmdir "${ED}usr/$(get_libdir)/${PN}${PYVER}/lib-old"
-
-	# fix invalid shebang /usr/local/bin/python
-	sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python' \
-		"${ED}"/usr/$(get_libdir)/python${PYVER}/cgi.py
-}
-
-pkg_preinst() {
-	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version ">=${CATEGORY}/${PN}-${SLOT}_alpha"; then
-		python_updater_warning="1"
-	fi
 }
 
 pkg_postinst() {
-	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2
+	# Update symlink temporarily for byte-compiling.
+	eselect python update
 
 	python_mod_optimize -x "(site-packages|test)" /usr/lib/python${PYVER}
 	[[ "$(get_libdir)" != "lib" ]] && python_mod_optimize -x "(site-packages|test)" /usr/$(get_libdir)/python${PYVER}
 
-	if [[ "${python_updater_warning}" == "1" ]]; then
-		ewarn
-		ewarn "\e[1;31m************************************************************************\e[0m"
-		ewarn
-		ewarn "You have just upgraded from an older version of Python."
-		ewarn "You should run 'python-updater' to rebuild Python modules."
-		ewarn
-		ewarn "\e[1;31m************************************************************************\e[0m"
-		ewarn
-		ebeep 12
-	fi
+	# Update symlink back to old version.
+	# Remove this after testing is done.
+	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2
+
+	ewarn
+	ewarn "WARNING!"
+	ewarn "Many Python modules haven't been ported yet to Python 3.*."
+	ewarn "Python 3 hasn't been activated and Python wrapper is still configured to use Python 2."
+	ewarn
+	ebeep
 }
 
 pkg_postrm() {
