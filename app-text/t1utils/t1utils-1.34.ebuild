@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/t1utils/t1utils-1.34.ebuild,v 1.12 2009/05/22 14:38:23 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/t1utils/t1utils-1.34.ebuild,v 1.13 2009/09/23 16:39:21 patrick Exp $
 
 inherit eutils
 
@@ -13,7 +13,7 @@ KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-maco
 SLOT="0"
 LICENSE="BSD"
 
-DEPEND="virtual/libc"
+DEPEND=""
 RDEPEND="${DEPEND}
 	!<media-libs/freetype-1.4_pre20080316"
 
