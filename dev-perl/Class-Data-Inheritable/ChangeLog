@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Class-Data-Inheritable
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Data-Inheritable/ChangeLog,v 1.35 2009/07/22 04:12:16 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Data-Inheritable/ChangeLog,v 1.36 2009/09/21 18:39:38 tgall Exp $
+
+  21 Sep 2009; Tom Gall <tgall@gentoo.org> 
+  Class-Data-Inheritable-0.08.ebuild:
+  stable on ppc64, bug #278094
 
   22 Jul 2009; Jeremy Olexa <darkside@gentoo.org>
   Class-Data-Inheritable-0.08.ebuild:
