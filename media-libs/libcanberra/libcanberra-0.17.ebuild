@@ -51,7 +51,7 @@ src_unpack() {
 
 src_compile() {
 	econf --disable-static \
-		--docdir=/usr/share/doc/${PF} \
+		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		$(use_enable alsa) \
 		$(use_enable gstreamer) \
 		$(use_enable gtk) \
