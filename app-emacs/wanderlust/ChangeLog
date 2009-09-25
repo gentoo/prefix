@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/wanderlust
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.76 2009/09/20 21:50:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.77 2009/09/22 14:03:28 armin76 Exp $
+
+  22 Sep 2009; Raúl Porcel <armin76@gentoo.org>
+  wanderlust-2.14.0-r5.ebuild:
+  alpha/sparc stable wrt #285071
 
   20 Sep 2009; Markus Meier <maekke@gentoo.org> wanderlust-2.14.0-r5.ebuild:
   amd64/x86 stable, bug #285071
