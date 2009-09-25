@@ -1,6 +1,22 @@
 # ChangeLog for x11-libs/pango
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.263 2009/07/24 17:20:26 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.267 2009/09/22 11:12:33 maekke Exp $
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> pango-1.24.5-r1.ebuild:
+  x86 stable, bug #285586
+
+  19 Sep 2009; Olivier Crête <tester@gentoo.org> pango-1.24.5-r1.ebuild:
+  Stable on amd64, bug #285586
+
+  19 Sep 2009; Patrick Lauer <patrick@gentoo.org> pango-1.24.5-r1.ebuild:
+  Fixing test deps so they don't implode
+
+*pango-1.24.5-r1 (19 Sep 2009)
+
+  19 Sep 2009; Mart Raudsepp <leio@gentoo.org> +pango-1.24.5-r1.ebuild:
+  Remove tests workaround, unnecessary since 1.24.2. Tweak short description
+  to match upstream DOAP one. Tweak dependencies, including removal of
+  gracious cairo-svg dependency
 
   24 Jul 2009; Daniel Gryniewicz <dang@gentoo.org> pango-1.24.2.ebuild:
   pango needs libXft for testing; bug #277489
