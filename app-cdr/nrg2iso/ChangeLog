@@ -1,6 +1,9 @@
 # ChangeLog for app-cdr/nrg2iso
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-cdr/nrg2iso/ChangeLog,v 1.18 2007/04/28 06:36:45 corsair Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/nrg2iso/ChangeLog,v 1.19 2009/09/23 15:15:41 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> nrg2iso-0.4-r1.ebuild:
+  Remove virtual/libc
 
   28 Apr 2007; Markus Rothe <corsair@gentoo.org> nrg2iso-0.4-r1.ebuild:
   Added ~ppc64
