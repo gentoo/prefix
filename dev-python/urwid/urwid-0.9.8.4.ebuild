@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/urwid/urwid-0.9.8.4.ebuild,v 1.4 2009/08/23 00:22:17 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/urwid/urwid-0.9.8.4.ebuild,v 1.5 2009/09/23 17:53:44 arfrever Exp $
 
-NEED_PYTHON=2.2
+EAPI="2"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils
 
@@ -17,9 +18,13 @@ IUSE="examples"
 
 DEPEND="dev-python/setuptools"
 RDEPEND=""
+RESTRICT_PYTHON_ABIS="3.*"
 
 src_test() {
-	"${python}" test_urwid.py || die "unit tests failed"
+	testing() {
+		"$(PYTHON)" test_urwid.py
+	}
+	python_execute_function testing
 }
 
 src_install() {
