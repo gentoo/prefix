@@ -12,7 +12,7 @@ DESCRIPTION="Tag - Module for reading tags of mp3 files"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 SRC_TEST="do"
