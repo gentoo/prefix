@@ -31,6 +31,11 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.2-hpux.patch
 	epatch "${FILESDIR}"/${PN}-0.2-mint.patch
 
+	# interix3 has no inttypes.h. the newer versions do have it,
+	# and we want to use it there - thus conditional.
+	[[ ${CHOST} == *-interix3* ]] &&
+		epatch "${FILESDIR}"/${P}-interix3-inttypes.patch
+
 	# gcc-4.2 has problems with "[restrict]" in c99,
 	# used in /usr/include/regex.h on hpux11.31.
 	[[ ${CHOST} == *-hpux11.31 ]] &&
