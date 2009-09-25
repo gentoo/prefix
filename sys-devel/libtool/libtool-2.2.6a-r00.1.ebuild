@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.5 2009/09/08 17:51:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.15 2009/09/20 19:29:59 nixnut Exp $
 
 LIBTOOLIZE="true" #225559
-inherit eutils autotools
+inherit eutils autotools flag-o-matic multilib
 
 DESCRIPTION="A shared library tool for developers"
 HOMEPAGE="http://www.gnu.org/software/libtool/"
@@ -12,7 +12,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.lzma"
 LICENSE="GPL-2"
 SLOT="1.5"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="vanilla"
+IUSE="vanilla test"
 
 RDEPEND="sys-devel/gnuconfig
 	>=sys-devel/autoconf-2.60
@@ -23,10 +23,21 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/${P%a}
 
+pkg_setup() {
+	if use test && ! has_version '>sys-devel/binutils-2.19.51'; then
+		einfo "Disabling --as-needed, since you got older binutils and you asked"
+		einfo "to run tests. With the stricter (older) --as-needed behaviour"
+		einfo "you'd be seeing a test failure in test #63; this has been fixed"
+		einfo "in the newer version of binutils."
+		append-ldflags -Wl,--no-as-needed
+	fi
+}
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PV}/${P}-gnuinfo.patch #249168
+	epatch "${FILESDIR}"/${PV}/${P}-tests-locale.patch #249168
 
 	if ! use vanilla ; then
 		[[ ${CHOST} == *-winnt* || ${CHOST} == *-interix* ]] &&
@@ -40,9 +51,9 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PV}/${P}-darwin-module-bundle.patch
 		epatch "${FILESDIR}"/${PV}/${P}-darwin-use-linux-version.patch
 		cd ..
-		eautoreconf
+		AT_NOELIBTOOLIZE=yes eautoreconf
 		cd ..
-		eautoreconf
+		AT_NOELIBTOOLIZE=yes eautoreconf
 	fi
 
 	# the libtool script uses bash code in it and at configure time, tries
@@ -75,4 +86,12 @@ src_install() {
 	for x in $(find "${ED}" -name config.guess -o -name config.sub) ; do
 		rm -f "${x}" ; ln -sf "${EPREFIX}"/usr/share/gnuconfig/${x##*/} "${x}"
 	done
+}
+
+pkg_preinst() {
+	preserve_old_lib /usr/$(get_libdir)/libltdl$(get_libname 3)
+}
+
+pkg_postinst() {
+	preserve_old_lib_notify /usr/$(get_libdir)/libltdl$(get_libname 3)
 }
