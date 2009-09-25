@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/xfce4-dev-tools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/xfce4-dev-tools/ChangeLog,v 1.18 2009/08/19 14:17:22 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/xfce4-dev-tools/ChangeLog,v 1.19 2009/09/21 15:12:33 darkside Exp $
+
+*xfce4-dev-tools-4.7.2 (21 Sep 2009)
+
+  21 Sep 2009; Jeremy Olexa <darkside@gentoo.org>
+  +xfce4-dev-tools-4.7.2.ebuild:
+  Version bump, supports new macros :
+  http://releases.xfce.org/feeds/project/xfce4-dev-tools
 
 *xfce4-dev-tools-4.7.0 (19 Aug 2009)
 
