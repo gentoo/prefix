@@ -1,6 +1,9 @@
 # ChangeLog for app-text/sgrep
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sgrep/ChangeLog,v 1.8 2008/01/11 21:41:14 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/sgrep/ChangeLog,v 1.9 2009/09/23 16:38:56 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> sgrep-1.92a.ebuild:
+  Remove virtual/libc
 
   11 Jan 2008; Fabian Groffen <grobian@gentoo.org> sgrep-1.92a.ebuild:
   Dropped ppc-macos keyword, see you in prefix
