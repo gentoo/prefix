@@ -1,6 +1,9 @@
 # ChangeLog for app-text/agrep
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/agrep/ChangeLog,v 1.21 2009/04/13 02:29:06 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/agrep/ChangeLog,v 1.22 2009/09/23 16:30:38 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> agrep-2.04.ebuild:
+  Remove virtual/libc
 
   13 Apr 2009; Jeremy Olexa <darkside@gentoo.org> agrep-2.04.ebuild:
   QA: respect CC, bug 243714
