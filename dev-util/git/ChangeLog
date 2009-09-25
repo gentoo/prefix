@@ -1,6 +1,40 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.355 2009/08/30 08:44:36 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.361 2009/09/18 10:13:30 robbat2 Exp $
+
+*git-1.6.4.4 (18 Sep 2009)
+
+  18 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.4.4.ebuild:
+  Bug #285418: Version bump
+
+  16 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.3.1.ebuild,
+  git-1.6.3.3.ebuild, git-1.6.3.4.ebuild, git-1.6.4.ebuild,
+  git-1.6.4.1.ebuild, git-1.6.4.2.ebuild, git-1.6.4.3.ebuild,
+  git-1.6.5_rc1.ebuild, git-9999.ebuild:
+  Bug #283732: Perl module should be installed to vendor_perl instead of
+  site_perl.
+
+  16 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.3.1.ebuild,
+  git-1.6.3.3.ebuild, git-1.6.3.4.ebuild, git-1.6.4.ebuild,
+  git-1.6.4.1.ebuild, git-1.6.4.2.ebuild, git-1.6.4.3.ebuild,
+  git-1.6.5_rc1.ebuild:
+  Bug #278738: Do not use FEATURES.
+
+  16 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.3.1.ebuild,
+  git-1.6.3.3.ebuild, git-1.6.3.4.ebuild, git-1.6.4.ebuild,
+  git-1.6.4.1.ebuild, git-1.6.4.2.ebuild, git-1.6.4.3.ebuild,
+  git-1.6.5_rc1.ebuild, git-9999.ebuild:
+  Bug #267853: Update deps for gtksourceviewer with newer GNOME.
+
+*git-1.6.5_rc1 (13 Sep 2009)
+
+  13 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.5_rc1.ebuild:
+  Version bump
+
+*git-1.6.4.3 (13 Sep 2009)
+
+  13 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.4.3.ebuild:
+  Version bump
 
 *git-1.6.4.2 (30 Aug 2009)
 

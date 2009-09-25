@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.3.1.ebuild,v 1.5 2009/09/16 03:42:14 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.5_rc1.ebuild,v 1.5 2009/09/16 03:42:14 robbat2 Exp $
 
 EAPI=2
 
@@ -108,8 +108,13 @@ exportmakeopts() {
 
 	# broken assumptions, because of broken build system ...
 	myopts="${myopts} NO_FINK=YesPlease NO_DARWIN_PORTS=YesPlease"
-	[[ ${CHOST} == *-solaris* ]] &&
-		myopts="${myopts} INSTALL=install TAR=tar"
+	myopts="${myopts} INSTALL=install TAR=tar"
+	myopts="${myopts} SHELL_PATH=${EPREFIX}/bin/bash"
+	myopts="${myopts} SANE_TOOL_PATH="
+	myopts="${myopts} OLD_ICONV="
+	myopts="${myopts} NO_EXTERNAL_GREP="
+	# can't define this to null, since the entire makefile depends on it
+	sed -i -e '/\/usr\/local/s/BASIC_/#BASIC_/' Makefile
 	use !elibc_glibc && use iconv && myopts="${myopts} NEEDS_LIBICONV=YesPlease"
 
 	use iconv \
@@ -130,6 +135,7 @@ exportmakeopts() {
 		myopts="${myopts} NO_STRLCPY=YesPlease"
 		myopts="${myopts} NO_MEMMEM=YesPlease"
 		myopts="${myopts} NO_MKDTEMP=YesPlease"
+		myopts="${myopts} NO_MKSTEMPS=YesPlease"
 	fi
 	if [[ ${CHOST} == *-interix* ]] ; then
 		myopts="${myopts} NO_IPV6=YesPlease"
@@ -169,8 +175,7 @@ src_prepare() {
 	# Merged in 1.6.3 final 2009/05/07
 	#epatch "${FILESDIR}"/20090505-git-1.6.2.5-getopt-fixes.patch
 
-	epatch "${FILESDIR}"/${PN}-1.6.0.2-interix.patch
-	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.1.1-mint.patch
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.3.3-mint.patch
 
 	sed -i \
 		-e 's:^\(CFLAGS =\).*$:\1 $(OPTCFLAGS) -Wall:' \
