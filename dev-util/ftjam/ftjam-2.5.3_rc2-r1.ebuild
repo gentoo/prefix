@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ftjam/ftjam-2.5.3_rc2-r1.ebuild,v 1.1 2009/08/13 04:40:31 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ftjam/ftjam-2.5.3_rc2-r1.ebuild,v 1.2 2009/09/22 07:13:52 maekke Exp $
 
 inherit eutils toolchain-funcs versionator
 
