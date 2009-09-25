@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/cvsd-1.0.8.ebuild,v 1.5 2009/07/12 18:13:17 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cvsd/cvsd-1.0.8.ebuild,v 1.6 2009/09/23 17:42:58 patrick Exp $
 
 inherit eutils
 
@@ -13,8 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="tcpd"
 
-DEPEND="virtual/libc
-	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )"
+DEPEND="tcpd? ( >=sys-apps/tcp-wrappers-7.6 )"
 RDEPEND="${DEPEND}
 	>=dev-lang/perl-5.8.0
 	>=dev-util/cvs-1.11.6"
