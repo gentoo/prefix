@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/huc
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/huc/ChangeLog,v 1.12 2008/10/06 12:47:47 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/huc/ChangeLog,v 1.13 2009/09/23 17:44:55 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> huc-0.1.ebuild:
+  Remove virtual/libc
 
   06 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> huc-0.1.ebuild:
   Ignore the makefile and build manually, respects LDFLAGS and does not
