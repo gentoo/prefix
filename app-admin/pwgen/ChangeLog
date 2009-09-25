@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/pwgen
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/ChangeLog,v 1.50 2008/09/13 17:35:31 solar Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/pwgen/ChangeLog,v 1.51 2009/09/23 15:01:54 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> pwgen-2.04.ebuild,
+  pwgen-2.05.ebuild, pwgen-2.06.ebuild:
+  Remove virtual/libc
 
   13 Sep 2008; <solar@gentoo.org> pwgen-2.06.ebuild:
   - make cross compile aware and keyword for ~arm
