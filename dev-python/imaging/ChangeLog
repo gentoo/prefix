@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/imaging
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.43 2009/08/01 23:04:44 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/imaging/ChangeLog,v 1.44 2009/09/22 22:00:48 maekke Exp $
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> imaging-1.1.6-r1.ebuild:
+  add ~arm
 
   01 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   imaging-1.1.6-r1.ebuild:
