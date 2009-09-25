@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pycairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.76 2009/09/19 13:50:04 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycairo/ChangeLog,v 1.77 2009/09/22 11:33:10 maekke Exp $
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> pycairo-1.8.8.ebuild:
+  amd64/x86 stable, bug #285115
 
   19 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   pycairo-1.8.8.ebuild, +files/pycairo-1.8.8-svg_check.patch:
