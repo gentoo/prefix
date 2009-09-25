@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/cook/cook-1.0.2-r1.ebuild,v 1.9 2009/05/13 17:22:49 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/cook/cook-1.0.2-r1.ebuild,v 1.10 2009/09/23 16:31:22 patrick Exp $
 
 inherit toolchain-funcs
 
@@ -11,7 +11,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE=""
-DEPEND="virtual/libc"
+DEPEND=""
 
 src_compile() {
 	cd ${S}
