@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/pygobject
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.79 2009/09/07 14:01:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pygobject/ChangeLog,v 1.80 2009/09/22 04:40:05 tgall Exp $
+
+  21 Sep 2009; Tom Gall <tgall@gentoo.org> pygobject-2.18.0.ebuild:
+  stable on ppc64, bug #277947
 
   07 Sep 2009; Raúl Porcel <armin76@gentoo.org> pygobject-2.18.0.ebuild:
   arm/ia64/s390/sh/sparc stable
