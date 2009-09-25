@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.7.ebuild,v 1.1 2009/09/12 14:29:38 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.7.ebuild,v 1.2 2009/09/15 16:12:57 spock Exp $
 
 EAPI="2"
 
@@ -36,7 +36,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
-	cd "${WORKDIR}" # bug #284818
+	cd "${WORKDIR}"
 	epatch "${FILESDIR}"/${PN}-0.10.4.conf-syscharset.diff
 	mv "${PN}-0.10.4.conf" "${PN}.conf"
 	if ! use ftp ; then
