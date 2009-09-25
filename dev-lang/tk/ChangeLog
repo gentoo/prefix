@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.127 2009/08/31 00:54:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.128 2009/09/22 14:52:21 maekke Exp $
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> tk-8.5.7.ebuild:
+  amd64 stable, bug #280845
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> tk-8.5.7.ebuild:
   Marking tk-8.5.7 ppc64 for bug 280845
