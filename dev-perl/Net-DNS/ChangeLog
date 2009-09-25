@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Net-DNS
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/ChangeLog,v 1.137 2009/09/19 17:56:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-DNS/ChangeLog,v 1.138 2009/09/22 20:25:37 jer Exp $
+
+  22 Sep 2009; Jeroen Roovers <jer@gentoo.org> Net-DNS-0.65.ebuild:
+  Stable for HPPA (bug #282326).
 
   19 Sep 2009; Raúl Porcel <armin76@gentoo.org> Net-DNS-0.65.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #282326
