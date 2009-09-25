@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/jinja2-2.2.1.ebuild,v 1.3 2009/09/17 20:57:29 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/jinja2-2.2.1.ebuild,v 1.6 2009/09/23 14:37:24 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -20,8 +20,7 @@ IUSE="doc examples i18n test"
 
 CDEPEND="dev-python/setuptools"
 DEPEND="${CDEPEND}
-	doc? ( >=dev-python/docutils-0.4
-		   >=dev-python/sphinx-0.3 )
+	doc? ( >=dev-python/sphinx-0.6 )
 	test? ( dev-python/nose )"
 RDEPEND="${CDEPEND}
 	i18n? ( >=dev-python/Babel-0.9.3 )"

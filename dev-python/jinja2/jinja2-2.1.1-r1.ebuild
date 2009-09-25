@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/jinja2-2.1.1-r1.ebuild,v 1.2 2009/08/10 20:43:38 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/jinja2/jinja2-2.1.1-r1.ebuild,v 1.5 2009/09/24 08:44:57 fauli Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
