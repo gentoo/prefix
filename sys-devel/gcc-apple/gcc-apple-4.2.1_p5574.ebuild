@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/gcc-apple-4.2.1_p5574.ebuild,v 1.2 2009/09/25 15:26:09 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/gcc-apple-4.2.1_p5574.ebuild,v 1.4 2009/09/25 20:34:17 grobian Exp $
 
 ETYPE="gcc-compiler"
 
@@ -110,11 +110,6 @@ src_unpack() {
 	# copy lt-stuff that has been fixed for darwin10 in gcc but not
 	# libstdcxx
 	cp "${S}"/lt* . || die "failed to update libstdcxx' lt-files"
-	
-	# until this is tested not to break on earlier versions, apply it
-	# conditionally
-	[[ ${CHOST} == *-darwin10 ]] && \
-		epatch "${FILESDIR}"/${PN}-4.2.1_p5574-darwin10.patch
 }
 
 src_compile() {

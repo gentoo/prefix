@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gcc-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/ChangeLog,v 1.9 2009/09/25 15:26:09 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/ChangeLog,v 1.10 2009/09/25 20:34:17 grobian Exp $
+
+  25 Sep 2009; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-4.2.1_p5574.ebuild, -files/gcc-apple-4.2.1_p5574-darwin10.patch:
+  With updated libtool stuff, we no longer need the hacky workaround on
+  Darwin10, thanks rrrachel for testing
 
   25 Sep 2009; Fabian Groffen <grobian@gentoo.org>
   gcc-apple-4.2.1_p5574.ebuild:
