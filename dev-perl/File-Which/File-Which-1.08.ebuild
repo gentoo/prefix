@@ -10,7 +10,7 @@ inherit perl-module
 DESCRIPTION="Perl module implementing 'which' internally"
 
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="test"
 
 RDEPEND=""
