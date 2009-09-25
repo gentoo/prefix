@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ferite/ferite-1.0.2.ebuild,v 1.11 2008/10/29 11:23:14 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ferite/ferite-1.0.2.ebuild,v 1.12 2009/09/23 16:50:17 patrick Exp $
 
 inherit multilib
 
@@ -8,8 +8,7 @@ DESCRIPTION="A clean, lightweight, object oriented scripting language"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 HOMEPAGE="http://www.ferite.org/"
 
-DEPEND="virtual/libc
-	>=dev-libs/libpcre-5
+DEPEND=">=dev-libs/libpcre-5
 	dev-libs/libxml2"
 
 SLOT="1"
