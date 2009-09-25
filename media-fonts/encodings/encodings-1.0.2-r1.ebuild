@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/encodings/encodings-1.0.2-r1.ebuild,v 1.1 2009/08/18 21:59:15 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/encodings/encodings-1.0.2-r1.ebuild,v 1.3 2009/09/23 18:18:40 armin76 Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
