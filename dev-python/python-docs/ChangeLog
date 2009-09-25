@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/python-docs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.127 2009/09/17 18:14:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.128 2009/09/22 02:42:58 tgall Exp $
+
+  21 Sep 2009; Tom Gall <tgall@gentoo.org> python-docs-2.6.2-r1.ebuild:
+  stable on ppc64 bug #277645
 
   17 Sep 2009; Jeroen Roovers <jer@gentoo.org> python-docs-2.6.2-r1.ebuild:
   Stable for HPPA (bug #277645).
