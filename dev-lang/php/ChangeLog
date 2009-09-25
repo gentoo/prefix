@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.342 2009/07/05 23:26:08 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.343 2009/09/24 23:36:54 cla Exp $
+
+*php-5.2.10-r2 (24 Sep 2009)
+
+  24 Sep 2009; Dawid Węgliński <cla@gentoo.org> +php-5.2.10-r2.ebuild,
+  +files/php-5.2.10-pdo_dblib.patch:
+  Add quick fix for bug #279576 and remove tests/lang/bug45392.phpt which is
+  not included in 5.2.10
 
 *php-5.2.10-r1 (05 Jul 2009)
 
