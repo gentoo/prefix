@@ -1,6 +1,10 @@
 # ChangeLog for mail-mta/esmtp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/esmtp/ChangeLog,v 1.20 2009/03/24 09:18:05 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/esmtp/ChangeLog,v 1.21 2009/09/23 18:05:37 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> esmtp-0.5.0-r1.ebuild,
+  esmtp-0.6.0.ebuild:
+  Remove virtual/libc
 
 *esmtp-1.0 (24 Mar 2009)
 
