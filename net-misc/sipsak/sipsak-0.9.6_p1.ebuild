@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/sipsak/sipsak-0.9.6_p1.ebuild,v 1.5 2008/02/03 15:53:37 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/sipsak/sipsak-0.9.6_p1.ebuild,v 1.6 2009/09/23 19:44:49 patrick Exp $
 
 IUSE="gnutls"
 
@@ -16,8 +16,8 @@ RDEPEND="gnutls? ( net-libs/gnutls )
 		net-dns/c-ares"
 #         ares? ( net-dns/c-ares )"
 
-DEPEND="${RDEPEND}
-		virtual/libc"
+DEPEND="${RDEPEND}"
+
 S=${WORKDIR}/${P/_p1/}
 
 src_compile() {
