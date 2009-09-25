@@ -1,0 +1,66 @@
+# ChangeLog for dev-perl/Audio-FLAC-Header
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Audio-FLAC-Header/ChangeLog,v 1.14 2008/12/30 15:50:57 tove Exp $
+
+  30 Dec 2008; Torsten Veller <tove@gentoo.org>
+  -Audio-FLAC-Header-2.1.ebuild, -Audio-FLAC-Header-2.2.ebuild:
+  Cleanup
+
+*Audio-FLAC-Header-2.3 (21 Nov 2008)
+
+  21 Nov 2008; Torsten Veller <tove@gentoo.org>
+  +Audio-FLAC-Header-2.3.ebuild:
+  Version bump
+
+*Audio-FLAC-Header-2.2 (07 Sep 2008)
+
+  07 Sep 2008; Torsten Veller <tove@gentoo.org>
+  +Audio-FLAC-Header-2.2.ebuild:
+  Version bump
+
+*Audio-FLAC-Header-2.1 (26 May 2008)
+
+  26 May 2008; Samuli Suominen <drac@gentoo.org>
+  -Audio-FLAC-Header-1.4.ebuild, +Audio-FLAC-Header-2.1.ebuild:
+  Version bump.
+
+  19 Jul 2007; Joseph Jezak <josejx@gentoo.org>
+  Audio-FLAC-Header-1.4.ebuild, Audio-FLAC-Header-1.7.ebuild:
+  Marked ~ppc for bug #184772.
+
+  11 Jul 2007; Markus Rothe <corsair@gentoo.org>
+  Audio-FLAC-Header-1.7.ebuild:
+  Added ~ppc64; bug #184772
+
+  06 Jul 2007; Christian Faulhammer <opfer@gentoo.org>
+  Audio-FLAC-Header-1.7.ebuild:
+  keyworded ~x86, bug 184387
+
+  08 Apr 2007; Michael Cummings <mcummings@gentoo.org>
+  Audio-FLAC-Header-1.7.ebuild:
+  Marking amd64 stable
+
+*Audio-FLAC-Header-1.7 (07 Jan 2007)
+
+  07 Jan 2007; Michael Cummings <mcummings@gentoo.org>
+  +Audio-FLAC-Header-1.7.ebuild:
+  Version bump
+
+  10 Sep 2006; Michael Cummings <mcummings@gentoo.org>
+  Audio-FLAC-Header-1.4.ebuild:
+  Marking stable amd64
+
+  06 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Audio-FLAC-Header-1.4.ebuild:
+  Marking amd64 stable
+
+  04 Aug 2006; Michael Cummings <mcummings@gentoo.org>
+  Audio-FLAC-Header-1.4.ebuild:
+  Adding perl dep; fixed DEPEND
+
+*Audio-FLAC-Header-1.4 (25 Jun 2006)
+
+  25 Jun 2006; Michael Cummings <mcummings@gentoo.org> +metadata.xml,
+  +Audio-FLAC-Header-1.4.ebuild:
+  Bug 103940. Original version of this ebuild submitted by Paul Marks.
+
