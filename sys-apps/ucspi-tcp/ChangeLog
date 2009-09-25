@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/ucspi-tcp
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ucspi-tcp/ChangeLog,v 1.63 2008/11/17 22:50:43 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ucspi-tcp/ChangeLog,v 1.64 2009/09/23 20:28:13 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> ucspi-tcp-0.88-r14.ebuild:
+  Remove virtual/libc
 
   17 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org>
   files/0.88-errno.patch:
