@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/ChangeLog,v 1.8 2009/09/06 09:36:37 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-apple/ChangeLog,v 1.9 2009/09/25 15:26:09 grobian Exp $
+
+  25 Sep 2009; Fabian Groffen <grobian@gentoo.org>
+  gcc-apple-4.2.1_p5574.ebuild:
+  Merge back Snow Leopard fixes from Prefix Tree
 
   06 Sep 2009; Fabian Groffen <grobian@gentoo.org>
   files/gcc-apple-4.2.1-gfortran.patch:
