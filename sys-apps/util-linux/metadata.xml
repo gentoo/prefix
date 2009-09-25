@@ -4,5 +4,6 @@
 <herd>base-system</herd>
 <use>
 	<flag name='loop-aes'>include support for Loop AES encryption</flag>
+	<flag name='perl'>install the chkdupexe helper script</flag>
 </use>
 </pkgmetadata>

@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.276 2009/09/07 13:41:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.277 2009/09/23 17:04:01 vapier Exp $
+
+  23 Sep 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.16.1.ebuild,
+  util-linux-9999.ebuild, metadata.xml:
+  Add USE=perl to control the perl chkdupexe script #284093 by Diego E.
+  Pettenò.
 
 *util-linux-2.16.1 (07 Sep 2009)
 
