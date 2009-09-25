@@ -1,23 +1,35 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5-r1.ebuild,v 1.16 2009/09/15 07:24:27 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5_p19928.ebuild,v 1.3 2009/09/24 14:26:34 armin76 Exp $
 
 EAPI=2
+SCM=""
+if [ "${PV#9999}" != "${PV}" ] ; then
+	SCM=subversion
+	ESVN_REPO_URI="svn://svn.ffmpeg.org/ffmpeg/trunk"
+fi
 
-inherit eutils flag-o-matic multilib toolchain-funcs
+inherit eutils flag-o-matic multilib toolchain-funcs ${SCM}
 
-DESCRIPTION="Complete solution to record, convert and stream audio and video.
-Includes libavcodec."
+DESCRIPTION="Complete solution to record, convert and stream audio and video. Includes libavcodec."
 HOMEPAGE="http://ffmpeg.org/"
-SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2"
+if [ "${PV#9999}" != "${PV}" ] ; then
+	SRC_URI=""
+elif [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
+	SRC_URI="mirror://gentoo/${P}.tar.bz2"
+else # Release
+	SRC_URI="http://ffmpeg.org/releases/${P}.tar.bz2"
+fi
+FFMPEG_REVISION="${PV#*_p}"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="+3dnow +3dnowext alsa altivec amr custom-cflags debug dirac doc ieee1394
-	  +encode faac faad gsm ipv6 +mmx +mmxext vdpau vorbis test theora threads x264
-	  xvid network zlib sdl X mp3 oss schroedinger +hardcoded-tables bindist
-	  v4l v4l2 speex +ssse3 vhook jpeg2k"
+IUSE="+3dnow +3dnowext alsa altivec cpudetection custom-cflags debug dirac
+	  doc ieee1394 +encode faac faad gsm ipv6 jack +mmx +mmxext vorbis test
+	  theora threads x264 xvid network zlib sdl X mp3 opencore-amr
+	  oss schroedinger +hardcoded-tables bindist v4l v4l2
+	  speex +ssse3 jpeg2k vdpau"
 
 VIDEO_CARDS="nvidia"
 
@@ -25,20 +37,14 @@ for x in ${VIDEO_CARDS}; do
 	IUSE="${IUSE} video_cards_${x}"
 done
 
-RDEPEND="vhook? ( >=media-libs/imlib2-1.4.0 >=media-libs/freetype-2 )
-	sdl? ( >=media-libs/libsdl-1.2.10 )
+RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 	alsa? ( media-libs/alsa-lib )
 	encode? (
 		faac? ( media-libs/faac )
-		mp3? (
-			|| (
-				>=media-sound/lame-3.98.2-r1
-				<media-sound/lame-3.98
-			)
-		)
+		mp3? ( media-sound/lame )
 		vorbis? ( media-libs/libvorbis media-libs/libogg )
 		theora? ( media-libs/libtheora[encode] media-libs/libogg )
-		x264? ( >=media-libs/x264-0.0.20081006 <=media-libs/x264-0.0.20090629 )
+		x264? ( >=media-libs/x264-0.0.20081006 )
 		xvid? ( >=media-libs/xvid-1.1.0 ) )
 	faad? ( >=media-libs/faad2-2.6.1 )
 	zlib? ( sys-libs/zlib )
@@ -47,10 +53,11 @@ RDEPEND="vhook? ( >=media-libs/imlib2-1.4.0 >=media-libs/freetype-2 )
 	dirac? ( media-video/dirac )
 	gsm? ( >=media-sound/gsm-1.0.12-r1 )
 	jpeg2k? ( >=media-libs/openjpeg-1.3-r2 )
+	opencore-amr? ( media-libs/opencore-amr )
 	schroedinger? ( media-libs/schroedinger )
 	speex? ( >=media-libs/speex-1.2_beta3 )
+	jack? ( media-sound/jack-audio-connection-kit )
 	X? ( x11-libs/libX11 x11-libs/libXext )
-	amr? ( media-libs/amrnb media-libs/amrwb )
 	video_cards_nvidia? (
 		vdpau? ( >=x11-drivers/nvidia-drivers-180.29 )
 	)"
@@ -75,6 +82,16 @@ src_unpack() {
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
 }
 
+src_prepare() {
+	if [[ ${PV} = *9999* ]]; then
+		# Set SVN version manually
+		subversion_wc_info
+		sed -i s/UNKNOWN/SVN-r${ESVN_WC_REVISION}/ "${S}/version.sh"
+	elif [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
+		sed -i s/UNKNOWN/SVN-r${FFMPEG_REVISION}/ "${S}/version.sh"
+	fi
+}
+
 src_configure() {
 	local myconf="${EXTRA_FFMPEG_CONF}"
 
@@ -90,11 +107,11 @@ src_configure() {
 	fi
 
 	use custom-cflags && myconf="${myconf} --disable-optimizations"
+	use cpudetection && myconf="${myconf} --enable-runtime-cpudetect"
 
 	# enabled by default
 	if use encode
 	then
-		use faac && myconf="${myconf} --enable-libfaac"
 		use mp3 && myconf="${myconf} --enable-libmp3lame"
 		use vorbis && myconf="${myconf} --enable-libvorbis"
 		use theora && myconf="${myconf} --enable-libtheora"
@@ -106,13 +123,13 @@ src_configure() {
 
 	# libavdevice options
 	use ieee1394 && myconf="${myconf} --enable-libdc1394"
-	# Demuxers
-	for i in v4l v4l2 alsa oss ; do
-		use $i || myconf="${myconf} --disable-demuxer=$i"
+	# Indevs
+	for i in v4l v4l2 alsa oss jack ; do
+		use $i || myconf="${myconf} --disable-indev=$i"
 	done
-	# Muxers
+	# Outdevs
 	for i in alsa oss ; do
-		use $i || myconf="${myconf} --disable-muxer=$i"
+		use $i || myconf="${myconf} --disable-outdev=$i"
 	done
 	use X && myconf="${myconf} --enable-x11grab"
 
@@ -120,10 +137,11 @@ src_configure() {
 	use threads && myconf="${myconf} --enable-pthreads"
 
 	# Decoders
-	use faad && myconf="${myconf} --enable-libfaad"
-	use dirac && myconf="${myconf} --enable-libdirac"
-	use schroedinger && myconf="${myconf} --enable-libschroedinger"
-	use speex && myconf="${myconf} --enable-libspeex"
+	use opencore-amr && myconf="${myconf} --enable-libopencore-amrwb
+		--enable-libopencore-amrnb"
+	for i in faad dirac schroedinger speex; do
+		use $i && myconf="${myconf} --enable-lib$i"
+	done
 	use jpeg2k && myconf="${myconf} --enable-libopenjpeg"
 	if use gsm; then
 		myconf="${myconf} --enable-libgsm"
@@ -132,17 +150,19 @@ src_configure() {
 	fi
 	if use bindist
 	then
-		use amr && ewarn "libamr is nonfree and cannot be distributed; disabling amr support."
+		use faac && ewarn "faac is nonfree and cannot be distributed; disabling
+		faac support."
 	else
-		use amr && myconf="${myconf} --enable-libamr-nb \
-									 --enable-libamr-wb \
-									 --enable-nonfree"
+		use faac && myconf="${myconf} --enable-libfaac"
+		{ use faac ; } && myconf="${myconf} --enable-nonfree"
 	fi
 
-	# This has changed since 0.5, please recheck for next version
-	if use video_cards_nvidia; then
-		use vdpau && myconf="${myconf} --enable-vdpau"
-	fi
+	#for i in h264_vdpau mpeg1_vdpau mpeg_vdpau vc1_vdpau wmv3_vdpau; do
+	#	use video_cards_nvidia || myconf="${myconf} --disable-decoder=$i"
+	#	use vdpau || myconf="${myconf} --disable-decoder=$i"
+	#done
+	use video_cards_nvidia || myconf="${myconf} --disable-vdpau"
+	use vdpau || myconf="${myconf} --disable-vdpau"
 
 	# CPU features
 	for i in mmx ssse3 altivec ; do
@@ -163,21 +183,31 @@ src_configure() {
 	# If they contain an unknown CPU it will not hurt since ffmpeg's configure
 	# will just ignore it.
 	for i in $(get-flag march) $(get-flag mcpu) $(get-flag mtune) ; do
+		[ "${i}" = "native" ] && i="host" # bug #273421
 		myconf="${myconf} --cpu=$i"
 		break
 	done
 
-	# video hooking support. replaced by libavfilter, probably needs to be
-	# dropped at some point.
-	use vhook || myconf="${myconf} --disable-vhook"
-
 	# Mandatory configuration
-	myconf="${myconf} --enable-gpl --enable-postproc \
+	myconf="${myconf} --enable-gpl --enable-version3 --enable-postproc \
 			--enable-avfilter --enable-avfilter-lavf \
-			--enable-swscale --disable-stripping"
+			--disable-stripping"
 
 	# cross compile support
-	tc-is-cross-compiler && myconf="${myconf} --enable-cross-compile --arch=$(tc-arch-kernel)"
+	if tc-is-cross-compiler ; then
+		myconf="${myconf} --enable-cross-compile --arch=$(tc-arch-kernel) --cross-prefix=${CHOST}-"
+		case ${CHOST} in
+			*freebsd*)
+				myconf="${myconf} --target-os=freebsd"
+				;;
+			mingw32*)
+				myconf="${myconf} --target-os=mingw32"
+				;;
+			*linux*)
+				myconf="${myconf} --target-os=linux"
+				;;
+		esac
+	fi
 
 	# Misc stuff
 	use hardcoded-tables && myconf="${myconf} --enable-hardcoded-tables"
@@ -225,9 +255,13 @@ src_install() {
 	dodoc doc/*
 }
 
-# Never die for now...
 src_test() {
-	for t in codectest libavtest seektest ; do
-		emake ${t} || ewarn "Some tests in ${t} failed"
-	done
+	if use encode ; then
+		for t in codectest lavftest seektest ; do
+			LD_LIBRARY_PATH="${S}/libpostproc:${S}/libswscale:${S}/libavcodec:${S}/libavdevice:${S}/libavfilter:${S}/libavformat:${S}/libavutil" \
+				emake ${t} || die "Some tests in ${t} failed"
+		done
+	else
+		ewarn "Tests fail without USE=encode, skipping"
+	fi
 }
