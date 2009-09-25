@@ -54,10 +54,6 @@ pkg_setup() {
 src_prepare() {
 	sed -e 's/imagesdir = $(infodir)/imagesdir = $(htmldir)/' -i doc/Makefile.am
 
-	# src/serv.c 1st hunk fails
-	#epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
-	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${PN}-2.9.1-irix.patch
-
 	local dir
 	for dir in m4 lib/m4 libextra/m4; do
 		rm -f "${dir}/lt"* "${dir}/libtool.m4"
