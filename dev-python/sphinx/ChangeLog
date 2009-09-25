@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/sphinx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.28 2009/09/19 11:12:09 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.30 2009/09/21 18:51:56 tgall Exp $
+
+  21 Sep 2009; Tom Gall <tgall@gentoo.org> sphinx-0.6.1-r1.ebuild,
+  sphinx-0.6.3.ebuild:
+  keyword for ppc64
 
   19 Sep 2009; Markus Meier <maekke@gentoo.org> sphinx-0.6.1-r1.ebuild:
   amd64/x86 stable, bug #285307
