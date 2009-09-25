@@ -1,6 +1,15 @@
 # ChangeLog for app-portage/mirrorselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/mirrorselect/ChangeLog,v 1.74 2009/08/04 02:27:43 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/mirrorselect/ChangeLog,v 1.77 2009/09/22 15:32:33 jer Exp $
+
+  22 Sep 2009; Jeroen Roovers <jer@gentoo.org> mirrorselect-1.4.2.ebuild:
+  Stable for HPPA (bug #284590).
+
+  19 Sep 2009; Raúl Porcel <armin76@gentoo.org> mirrorselect-1.4.2.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #284590
+
+  19 Sep 2009; Markus Meier <maekke@gentoo.org> mirrorselect-1.4.2.ebuild:
+  amd64/arm/x86 stable, bug #284590
 
   04 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   mirrorselect-2.0.0.ebuild:
