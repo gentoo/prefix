@@ -66,6 +66,12 @@ src_prepare() {
 			-e '/^USE_LIBTOOL/s/=/= yes/' \
 			"${S}"/config.mk.in || die "404. File not found while sedding"
 	fi
+
+	# fix install_name issue
+	[[ ${CHOST} == *-darwin* ]] && \
+		sed -i "s|-flat_namespace \$(SHLIB_CLIB)|\0 -install_name ${EPREFIX}/usr/$(get_libdir)/\$@|" \
+		"${S}"/config.mk.in || die "patching darwin install_name failed"
+
 }
 
 src_configure() {
