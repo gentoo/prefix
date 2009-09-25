@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/gforth-0.7.0.ebuild,v 1.5 2009/05/02 17:05:23 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gforth/gforth-0.7.0.ebuild,v 1.6 2009/09/23 16:50:41 patrick Exp $
 
 inherit elisp-common eutils toolchain-funcs flag-o-matic
 
@@ -13,8 +13,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-linux ~ppc-macos"
 IUSE="emacs"
 
-DEPEND="virtual/libc
-	dev-libs/ffcall
+DEPEND="dev-libs/ffcall
 	emacs? ( virtual/emacs )"
 
 RDEPEND="${DEPEND}"
