@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit toolchain-funcs
+inherit toolchain-funcs eutils
 
 DESCRIPTION="e2fsprogs libraries (common error and subsystem)"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
@@ -29,7 +29,7 @@ src_prepare() {
 	# stupid configure script clobbers CC for us
 	sed -i '/if test -z "$CC" ; then CC=cc; fi/d' configure
 
-	#epatch "${FILESDIR}"/${PN}-1.41.1-darwin-makefile.patch
+	epatch "${FILESDIR}"/${P}-irix.patch
 	if [[ ${CHOST} == *-mint* ]]; then
 		sed -i -e 's/_SVID_SOURCE/_GNU_SOURCE/' lib/uuid/gen_uuid.c || die
 	fi
