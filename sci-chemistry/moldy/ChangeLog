@@ -1,6 +1,9 @@
 # ChangeLog for sci-chemistry/moldy
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/moldy/ChangeLog,v 1.14 2008/06/09 10:30:12 markusle Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/moldy/ChangeLog,v 1.15 2009/09/23 19:55:35 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> moldy-2.16e.ebuild:
+  Remove virtual/libc
 
   09 Jun 2008; Markus Dittrich <markusle@gentoo.org> moldy-2.16e.ebuild:
   Switched virtual/tetex -> virtual/latex-base and added amd64 keyword (see
