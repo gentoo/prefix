@@ -59,6 +59,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
+	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${PN}-6.0-rlfe-irix.patch
 
 	# force ncurses linking #71420
 	sed -i -e 's:^SHLIB_LIBS=:SHLIB_LIBS=-lncurses:' support/shobj-conf || die "sed"

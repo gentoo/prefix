@@ -1,0 +1,16 @@
+dirty hack to get the IRIX linker to a) see the just built libraries
+soon enough, and b) perform static linking, see bug #283644
+
+--- examples/rlfe/Makefile.in.orig	2009-09-25 17:48:11 +0200
++++ examples/rlfe/Makefile.in	2009-09-25 17:48:58 +0200
+@@ -24,8 +24,8 @@
+ CFLAGS = @CFLAGS@
+ CPPFLAGS = @CPPFLAGS@
+ #LDFLAGS = -L$(READLINE_DIR)
+-LDFLAGS = @LDFLAGS@
+-LIBS = -lreadline -lhistory @LIBS@
++LDFLAGS = -Lreadline @LDFLAGS@
++LIBS = -B static -lreadline -lhistory -B dynamic @LIBS@
+ 
+ CPP=@CPP@
+ CPP_DEPEND=$(CC) -MM
