@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.26.3.ebuild,v 1.1 2009/07/19 18:34:02 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/gnome-keyring-2.26.3.ebuild,v 1.3 2009/09/13 21:42:01 eva Exp $
 
 EAPI="2"
 
-inherit gnome2 pam virtualx eutils
+inherit gnome2 pam virtualx eutils autotools
 
 DESCRIPTION="Password and keyring managing daemon"
 HOMEPAGE="http://www.gnome.org/"
@@ -28,6 +28,7 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext
 	>=dev-util/intltool-0.35
 	>=dev-util/pkgconfig-0.9
+	dev-util/gtk-doc-am
 	doc? ( >=dev-util/gtk-doc-1.9 )"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO keyring-intro.txt"
@@ -47,14 +48,21 @@ pkg_setup() {
 src_prepare() {
 	gnome2_src_prepare
 
+	# remove extra assert to let doc build and tests pass, bug #267957
+	# taken from upstream bug #553164.
+	epatch "${FILESDIR}/${P}-assert.patch"
+
 	# Remove silly CFLAGS
 	sed 's:CFLAGS="$CFLAGS -Werror:CFLAGS="$CFLAGS:' \
-		-i configure.in configure || die "sed failed"
+		-i configure.in || die "sed failed"
 
-	# Fix intltoolize broken file, see upstream #577133
-	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
+	# Fix parallel make test failure, bug #272450
+	epatch "${FILESDIR}"/${P}-parallel-tests.patch
 
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-2.22.1-interix3.patch
+
+	intltoolize --force --copy --automake || die "intltoolize failed"
+	eautoreconf
 }
 
 src_test() {
