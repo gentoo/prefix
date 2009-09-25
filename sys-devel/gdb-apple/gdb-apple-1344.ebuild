@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb-apple/gdb-apple-1344.ebuild,v 1.1 2009/09/24 18:50:27 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb-apple/gdb-apple-1344.ebuild,v 1.2 2009/09/25 11:52:08 grobian Exp $
 
 inherit eutils flag-o-matic
 
@@ -27,6 +27,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-768-texinfo.patch
+	[[ ${CHOST} == *-darwin8 ]] && epatch "${FILESDIR}"/${PN}-1344-darwin8.patch
 
 	# for FSF gcc / gcc-apple:42
 	sed -e 's/-Wno-long-double//' -i gdb/config/*/macosx.mh

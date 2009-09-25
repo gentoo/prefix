@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gdb-apple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb-apple/ChangeLog,v 1.3 2009/09/24 18:50:27 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb-apple/ChangeLog,v 1.4 2009/09/25 11:52:08 grobian Exp $
+
+  25 Sep 2009; Fabian Groffen <grobian@gentoo.org> gdb-apple-1344.ebuild,
+  +files/gdb-apple-1344-darwin8.patch:
+  Add patch for Tiger (OSX 10.4)
 
 *gdb-apple-1344 (24 Sep 2009)
 
