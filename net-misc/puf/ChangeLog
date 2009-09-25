@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/puf
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/puf/ChangeLog,v 1.7 2009/02/05 13:29:11 drizzt Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/puf/ChangeLog,v 1.8 2009/09/23 19:43:10 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> puf-0.93.2a.ebuild:
+  Remove virtual/libc
 
   05 Feb 2009; Timothy Redaelli <drizzt@gentoo.org> puf-1.0.0.ebuild:
   Add ~amd64 keyword
