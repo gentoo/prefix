@@ -1,0 +1,22 @@
+# $Id$
+
+# This file is used for rsync generation on the master rsync mirror. Once a
+# directory is moved to gentoo-x86 repository and it should be included in the
+# rync checkout, then add an entry here. You can add a subdirectory or the whole
+# category. You need to remove the directory from svn once it is checked into
+# CVS (gentoo-x86)
+#
+# Examples:
+# profiles
+# xfce-base/xfce4-meta
+# xfce-extra
+#
+# Keep this file sorted alphabetically. This file will additionally be used to
+# monitor our progress and see what we have left to "move over"
+
+licenses
+mail-client/mutt
+profiles
+sys-devel/binutils-apple
+sys-devel/gcc-apple
+sys-devel/gdb-apple
