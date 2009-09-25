@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6.1.ebuild,v 1.1 2009/09/10 01:20:13 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6.1-r1.ebuild,v 1.1 2009/09/13 20:19:41 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -24,6 +24,12 @@ S="${WORKDIR}/distribute-${PV}"
 
 DOCS="README.txt docs/easy_install.txt docs/pkg_resources.txt docs/setuptools.txt"
 
+pkg_setup() {
+	if has_version "=${CATEGORY}/${PN}-0.6.1"; then
+		rm -fr "${EROOT}"usr/lib*/python*/site-packages/{,._cfg????_}setuptools-0.6c9-*egg-info
+	fi
+}
+
 src_prepare() {
 	distutils_src_prepare
 
@@ -36,10 +42,7 @@ src_prepare() {
 	epatch "${FILESDIR}/distribute-${PV}-provide_setuptools.patch"
 	epatch "${FILESDIR}/distribute-${PV}-USER_SITE.patch"
 
-	# invalid shebang "python" and unprefixed shebang
-	sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python' \
-		setuptools/command/easy_install.py \
-		setuptools/tests/test_resources.py
+	sed -e "s/0\.6c9/0.6.1/" -i distribute_setup.py docs/{easy_install.txt,pkg_resources.txt,setuptools.txt} || die "Fixing of versions failed"
 }
 
 src_test() {
