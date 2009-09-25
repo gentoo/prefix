@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cssc/cssc-1.0.1.ebuild,v 1.4 2008/04/18 22:05:05 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cssc/cssc-1.0.1.ebuild,v 1.5 2009/09/23 17:41:43 patrick Exp $
 
 DESCRIPTION="CSSC is the GNU Project's replacement for SCCS"
 SRC_URI="mirror://sourceforge/cssc/CSSC-${PV}.tar.gz"
@@ -12,7 +12,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 RESTRICT="test"
 
-DEPEND="virtual/libc"
+DEPEND=""
 
 src_compile() {
 	econf --enable-binary || die
