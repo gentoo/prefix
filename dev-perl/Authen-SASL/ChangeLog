@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Authen-SASL
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Authen-SASL/ChangeLog,v 1.61 2009/09/18 23:00:10 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Authen-SASL/ChangeLog,v 1.62 2009/09/21 18:26:02 tgall Exp $
+
+  21 Sep 2009; Tom Gall <tgall@gentoo.org> Authen-SASL-2.12.ebuild:
+  stable on ppc64, bug #278088
 
   18 Sep 2009; Markus Meier <maekke@gentoo.org> Authen-SASL-2.12.ebuild:
   arm stable, bug #278088
