@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.9.4.ebuild,v 1.1 2009/09/03 19:43:54 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.9.6.ebuild,v 1.1 2009/09/22 16:09:48 arfrever Exp $
 
 EAPI="2"
 
@@ -53,10 +53,6 @@ pkg_setup() {
 
 src_prepare() {
 	sed -e 's/imagesdir = $(infodir)/imagesdir = $(htmldir)/' -i doc/Makefile.am
-
-	# src/serv.c 1st hunk fails
-	#epatch "${FILESDIR}"/${PN}-2.5.3-interix.patch
-	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${PN}-2.9.1-irix.patch
 
 	local dir
 	for dir in m4 lib/m4 libextra/m4; do
