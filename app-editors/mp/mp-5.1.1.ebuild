@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/mp/mp-5.1.1.ebuild,v 1.1 2008/12/31 05:29:06 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mp/mp-5.1.1.ebuild,v 1.2 2009/09/23 15:23:22 patrick Exp $
 
 inherit eutils
 
@@ -13,19 +13,17 @@ SLOT="0"
 KEYWORDS="~x86-interix ~ppc-macos ~sparc-solaris ~x86-solaris"
 IUSE="gtk ncurses nls pcre iconv"
 
-RDEPEND="virtual/libc
-		!dev-util/rej
-		ncurses? ( sys-libs/ncurses )
-		gtk? ( >=x11-libs/gtk+-2 >=x11-libs/pango-1.8.0 )
-		!gtk? ( sys-libs/ncurses )
-		nls? ( sys-devel/gettext )
-		pcre? ( dev-libs/libpcre )
-		iconv? ( virtual/libiconv )
-		app-text/grutatxt"
+RDEPEND="ncurses? ( sys-libs/ncurses )
+	gtk? ( >=x11-libs/gtk+-2 >=x11-libs/pango-1.8.0 )
+	!gtk? ( sys-libs/ncurses )
+	nls? ( sys-devel/gettext )
+	pcre? ( dev-libs/libpcre )
+	iconv? ( virtual/libiconv )
+	app-text/grutatxt"
 DEPEND="${RDEPEND}
-		app-text/grutatxt
-		dev-util/pkgconfig
-		dev-lang/perl"
+	app-text/grutatxt
+	dev-util/pkgconfig
+	dev-lang/perl"
 
 src_compile() {
 	local myconf="--prefix=${EPREFIX}/usr --without-win32"
