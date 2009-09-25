@@ -1,6 +1,10 @@
 # ChangeLog for app-emulation/emul-linux-x86-compat
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/ChangeLog,v 1.31 2009/05/10 18:32:57 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/ChangeLog,v 1.32 2009/09/23 15:32:55 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org>
+  emul-linux-x86-compat-1.0-r1.ebuild:
+  Remove virtual/libc
 
   10 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   emul-linux-x86-compat-20071125-r1.ebuild,
