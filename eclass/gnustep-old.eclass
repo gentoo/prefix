@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-old.eclass,v 1.11 2007/12/08 20:28:43 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-old.eclass,v 1.12 2009/09/23 21:23:56 patrick Exp $
 
 # THIS ECLASS IS DEPRECATED. PLEASE DO NOT USE IT.
 
@@ -8,9 +8,8 @@ DESCRIPTION="Based on the gnustep eclass."
 
 DEPEND="gnustep-base/gnustep-make
 	gnustep-base/gnustep-base
-	sys-devel/gcc
-	virtual/libc"
-RDEPEND="virtual/libc"
+	sys-devel/gcc"
+RDEPEND=""
 
 getsourcedir() {
 	if [ ! -d "${S}" ] ; then

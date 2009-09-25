@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfconf.eclass,v 1.2 2009/08/02 10:35:53 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfconf.eclass,v 1.3 2009/09/21 17:43:08 ssuominen Exp $
 
 # @ECLASS: xfconf.eclass
 # @MAINTAINER:
@@ -54,13 +54,13 @@ DEPEND="${_xfce4_intltool}
 unset _xfce4_intltool
 unset _xfce4_m4
 
-EXPF="src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm"
+XFCONF_EXPF="src_unpack src_compile src_install pkg_preinst pkg_postinst pkg_postrm"
 case ${EAPI:-0} in
-	2) EXPF="${EXPF} src_prepare src_configure" ;;
+	2) XFCONF_EXPF="${XFCONF_EXPF} src_prepare src_configure" ;;
 	1|0) ;;
 	*) die "Unknown EAPI." ;;
 esac
-EXPORT_FUNCTIONS ${EXPF}
+EXPORT_FUNCTIONS ${XFCONF_EXPF}
 
 # @FUNCTION: xfconf_src_unpack
 # @DESCRIPTION:
@@ -68,7 +68,7 @@ EXPORT_FUNCTIONS ${EXPF}
 xfconf_src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	has src_prepare ${EXPF} || xfconf_src_prepare
+	has src_prepare ${XFCONF_EXPF} || xfconf_src_prepare
 }
 
 # @FUNCTION: xfconf_src_prepare
@@ -99,7 +99,7 @@ xfconf_src_configure() {
 # @DESCRIPTION:
 # Run econf with opts in XFCONF variable
 xfconf_src_compile() {
-	has src_configure ${EXPF} || xfconf_src_configure
+	has src_configure ${XFCONF_EXPF} || xfconf_src_configure
 	emake || die "emake failed"
 }
 

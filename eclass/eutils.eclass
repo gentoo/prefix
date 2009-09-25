@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.319 2009/09/12 14:37:51 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.320 2009/09/24 02:49:32 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -959,7 +959,6 @@ make_desktop_entry() {
 
 	cat <<-EOF > "${desktop}"
 	[Desktop Entry]
-	Version=1.0
 	Name=${name}
 	Type=Application
 	Comment=${DESCRIPTION}

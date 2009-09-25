@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/bzr.eclass,v 1.3 2009/08/04 20:18:23 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/bzr.eclass,v 1.5 2009/09/24 08:11:45 fauli Exp $
 #
 # @ECLASS: bzr.eclass
 # @MAINTAINER:
@@ -114,6 +114,12 @@ EBZR_REVISION="${EBZR_REVISION:-}"
 # default: ${PN}
 EBZR_CACHE_DIR="${EBZR_CACHE_DIR:-${PN}}"
 
+# @ECLASS-VARIABLE: EBZR_OFFLINE
+# @DESCRIPTION:
+# Set this variable to a non-empty value to disable the automatic updating of
+# a bzr source tree. This is intended to be set outside the ebuild by users.
+EBZR_OFFLINE="${EBZR_OFFLINE:-${ESCM_OFFLINE}}"
+
 # @FUNCTION: bzr_initial_fetch
 # @DESCRIPTION:
 # Retrieves the source code from a repository for the first time, via
@@ -136,14 +142,19 @@ bzr_initial_fetch() {
 bzr_update() {
 	local repository="${1}";
 
-	# update branch
-	einfo "bzr update start -->"
-	einfo "   repository: ${repository}"
+	if [[ -n "${EBZR_OFFLINE}" ]]; then
+		einfo "skipping bzr update -->"
+		einfo "   repository: ${repository}"
+	else
+		# update branch
+		einfo "bzr update start -->"
+		einfo "   repository: ${repository}"
 
-	pushd "${EBZR_BRANCH_DIR}" > /dev/null
-	${EBZR_UPDATE_CMD} ${EBZR_OPTIONS} \
-		|| die "${EBZR}: can't update from ${repository}."
-	popd > /dev/null
+		pushd "${EBZR_BRANCH_DIR}" > /dev/null
+		${EBZR_UPDATE_CMD} ${EBZR_OPTIONS} \
+			|| die "${EBZR}: can't update from ${repository}."
+		popd > /dev/null
+	fi
 }
 
 
