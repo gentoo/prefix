@@ -1,6 +1,22 @@
 # ChangeLog for app-portage/eix
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.302 2009/09/01 16:29:24 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eix/ChangeLog,v 1.305 2009/09/20 03:07:00 darkside Exp $
+
+*eix-0.18.0 (20 Sep 2009)
+
+  20 Sep 2009; Jeremy Olexa <darkside@gentoo.org> -eix-0.15.4.ebuild,
+  -eix-0.16.0.ebuild, -files/eix-0.16.0-glibc-2.10.patch,
+  -eix-0.16.1.ebuild, -eix-0.16.2.ebuild, +eix-0.18.0.ebuild, metadata.xml:
+  Version bump, much for flexible 'format' language - xml output if desired
+
+  12 Sep 2009; Raúl Porcel <armin76@gentoo.org> eix-0.17.0.ebuild:
+  arm/ia64/s390/sh stable wrt #282379
+
+*eix-0.17.1 (08 Sep 2009)
+
+  08 Sep 2009; Jeremy Olexa <darkside@gentoo.org> +eix-0.17.1.ebuild,
+  metadata.xml:
+  Version bump, misc bug fixes and USE=bzip2 support
 
   01 Sep 2009; Tiago Cunha <tcunha@gentoo.org> eix-0.17.0.ebuild:
   stable sparc, bug 282379
