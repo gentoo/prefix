@@ -1,6 +1,9 @@
 # ChangeLog for sys-auth/consolekit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.52 2009/09/19 09:26:52 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.53 2009/09/22 20:01:55 jer Exp $
+
+  22 Sep 2009; Jeroen Roovers <jer@gentoo.org> consolekit-0.3.0-r2.ebuild:
+  Stable for HPPA (bug #278181).
 
   19 Sep 2009; Romain Perier <mrpouet@gentoo.org>
   consolekit-0.3.0-r2.ebuild:
