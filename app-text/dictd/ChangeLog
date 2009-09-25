@@ -1,6 +1,15 @@
 # ChangeLog for app-text/dictd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.73 2009/06/13 14:07:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.76 2009/09/23 18:20:47 armin76 Exp $
+
+  23 Sep 2009; Raúl Porcel <armin76@gentoo.org> dictd-1.11.1-r1.ebuild:
+  alpha/ia64/sparc stable wrt #281204
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> dictd-1.9.14.ebuild:
+  Remove virtual/libc
+
+  21 Sep 2009; Markus Meier <maekke@gentoo.org> dictd-1.11.1-r1.ebuild:
+  amd64/x86 stable, bug #281204
 
   13 Jun 2009; Raúl Porcel <armin76@gentoo.org> dictd-1.11.1.ebuild:
   ia64/sparc stable wrt #271122
