@@ -1,6 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/pyxml-0.8.4-r2.ebuild,v 1.9 2009/07/26 22:30:48 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pyxml/pyxml-0.8.4-r2.ebuild,v 1.10 2009/09/23 17:47:04 arfrever Exp $
+
+EAPI="2"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils
 
@@ -16,12 +19,17 @@ KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~s
 IUSE="doc examples"
 
 DEPEND=">=dev-libs/expat-1.95.6"
+RDEPEND="${DEPEND}"
+RESTRICT_PYTHON_ABIS="3.*"
 
-S=${WORKDIR}/${MY_P}
+S="${WORKDIR}/${MY_P}"
 
-src_unpack(){
-	distutils_src_unpack
-	epatch "${FILESDIR}"/${P}-python-2.6.patch
+DOCS="ANNOUNCE CREDITS doc/*.txt"
+PYTHON_MODNAME="_xmlplus"
+
+src_prepare(){
+	distutils_src_prepare
+	epatch "${FILESDIR}/${P}-python-2.6.patch"
 }
 
 src_compile() {
@@ -36,9 +44,15 @@ src_compile() {
 	# use the already-installed shared copy of libexpat
 	distutils_src_compile --with-libexpat="${EPREFIX}"/usr ${myconf}
 }
+src_test() {
+	cd test
+	testing() {
+		PYTHONPATH="$(ls -d ../build-${PYTHON_ABI}/lib.*)" "$(PYTHON)" regrtest.py
+	}
+	python_execute_function testing
+}
 
 src_install() {
-	DOCS="ANNOUNCE CREDITS doc/*.txt"
 	distutils_src_install
 
 	doman doc/man/*
@@ -47,14 +61,4 @@ src_install() {
 		insinto /usr/share/doc/${PF} && doins doc/*.tex
 	fi
 	use examples && cp -r demo "${ED}"/usr/share/doc/${PF}
-}
-
-pkg_postinst(){
-	python_mod_optimize "$(python_get_sitedir)/_xmlplus"
-}
-
-src_test() {
-	cd test
-	PYTHONPATH="$(ls -d ../build/lib.*)" "${python}" regrtest.py \
-		|| die "tests failed"
 }
