@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.107 2009/09/20 07:42:21 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.108 2009/09/22 11:06:18 maekke Exp $
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> gtk-doc-1.11.ebuild:
+  x86 stable, bug #285586
 
   20 Sep 2009; Mart Raudsepp <leio@gentoo.org>
   files/gtk-doc-1.11-tests-fixes.patch:
