@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.225 2009/09/18 15:09:19 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.226 2009/09/22 11:28:55 maekke Exp $
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> cairo-1.8.8.ebuild:
+  x86 stable, bug #285154
 
   18 Sep 2009; Romain Perier <mrpouet@gentoo.org>
   cairo-1.8.8.ebuild:
