@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/libwww-perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/ChangeLog,v 1.115 2009/09/19 16:29:21 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/ChangeLog,v 1.116 2009/09/22 06:38:49 tove Exp $
+
+*libwww-perl-5.832 (22 Sep 2009)
+
+  22 Sep 2009; Torsten Veller <tove@gentoo.org> +libwww-perl-5.832.ebuild:
+  Version bump
 
   19 Sep 2009; nixnut <nixnut@gentoo.org> libwww-perl-5.831.ebuild:
   ppc stable #283969
