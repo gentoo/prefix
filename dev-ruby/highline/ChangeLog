@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/highline
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/ChangeLog,v 1.22 2009/09/06 17:34:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/ChangeLog,v 1.23 2009/09/22 17:30:13 a3li Exp $
+
+  22 Sep 2009; Alex Legler <a3li@gentoo.org> highline-1.5.1.ebuild:
+  1.5.1 works with ruby 1.9
 
   06 Sep 2009; Raúl Porcel <armin76@gentoo.org> highline-1.5.1.ebuild:
   ia64 stable wrt #282356
