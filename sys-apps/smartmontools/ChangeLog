@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/smartmontools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.82 2009/08/26 23:08:15 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.83 2009/09/23 03:19:34 robbat2 Exp $
+
+*smartmontools-9999 (23 Sep 2009)
+
+  23 Sep 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +smartmontools-9999.ebuild:
+  Add a live version for testing upstream changes on new hardware.
 
 *smartmontools-5.38-r1 (26 Aug 2009)
 
