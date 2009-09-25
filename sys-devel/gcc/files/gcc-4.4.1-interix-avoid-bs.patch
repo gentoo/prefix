@@ -1,0 +1,51 @@
+diff -ru gcc-4.4.1.orig/configure gcc-4.4.1/configure
+--- gcc-4.4.1.orig/configure	2009-09-24 11:16:58 +0200
++++ gcc-4.4.1/configure	2009-09-24 13:39:50 +0200
+@@ -2849,6 +2849,9 @@
+     host_makefile_frag="config/mh-mingw"
+     ;;
+   *-interix*)
++	# We definitely don't want cc on interix, since this uses the native
++	# Visual Studio tools, and doesn't work if those are missing.
++	tentative_cc=gcc
+     host_makefile_frag="config/mh-interix"
+     ;;
+   vax-*-ultrix2*)
+@@ -5733,6 +5736,9 @@
+   *-*-linux* | *-*-gnu* | *-*-k*bsd*-gnu | *-*-kopensolaris*-gnu)
+     target_makefile_frag="config/mt-gnu"
+     ;;
++  *-*-interix*)
++    target_makefile_frag="config/mt-interix"
++    ;;
+   *-*-aix4.[3456789]* | *-*-aix[56789].*)
+     # nm and ar from AIX 4.3 and above require -X32_64 flag to all ar and nm
+     # commands to handle both 32-bit and 64-bit objects.  These flags are
+diff -ru gcc-4.4.1.orig/libmudflap/configure gcc-4.4.1/libmudflap/configure
+--- gcc-4.4.1.orig/libmudflap/configure	2009-09-24 11:18:59 +0200
++++ gcc-4.4.1/libmudflap/configure	2009-09-24 13:41:15 +0200
+@@ -12669,7 +12669,7 @@
+   echo $ECHO_N "(cached) $ECHO_C" >&6
+ else
+ 
+-for name in _start __start unknown; do
++for name in _start __start _mainCRTStartup unknown; do
+   cat >conftest.$ac_ext <<_ACEOF
+ /* confdefs.h.  */
+ _ACEOF
+diff -ru gcc-4.4.1.orig/libstdc++-v3/configure gcc-4.4.1/libstdc++-v3/configure
+--- gcc-4.4.1.orig/libstdc++-v3/configure	2009-09-24 11:19:00 +0200
++++ gcc-4.4.1/libstdc++-v3/configure	2009-09-24 13:43:08 +0200
+@@ -15034,6 +15034,12 @@
+   fi
+   if test x"$ac_fdsections" = x"yes"; then
+     SECTION_FLAGS='-ffunction-sections -fdata-sections'
++
++	# don't user function sections on interix - the resulting lib is not usable
++	# for some reason...
++	case "${target}" in
++	*-*-interix*)  SECTION_FLAGS='' ;;
++	esac
+   fi
+   echo "$as_me:$LINENO: result: $ac_fdsections" >&5
+ echo "${ECHO_T}$ac_fdsections" >&6

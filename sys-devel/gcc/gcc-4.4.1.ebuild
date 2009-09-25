@@ -97,11 +97,10 @@ src_unpack() {
 		eprefixify "${S}"/gcc/gcc.c
 	fi
 
-	# interix patch from http://gcc.gnu.org/bugzilla/show_bug.cgi?id=15212
-	#doesn't apply
-#	epatch "${FILESDIR}"/4.2.2/interix-x86.patch.bz2
-	# gcc sources are polluted with old stuff for interix 3.5 not needed here
-	#epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
+	# interix patches - all from 4.2.4 updated and combined
+	epatch "${FILESDIR}"/${P}-interix.patch
+	# and this one to avoid the need of a re-bootstrap.
+	epatch "${FILESDIR}"/${P}-interix-avoid-bs.patch
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint1.patch
@@ -145,6 +144,21 @@ src_compile() {
 			# defined symbols, so disable nls
 			EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
 		;;
+		*-interix*)
+			# disable usage of poll() on interix, since poll() only
+			# works on the /proc filesystem (.......)
+			export glibcxx_cv_POLL=no
+
+			# if using the old system as, gcc's configure script fails
+			# to detect that as cannot handle .lcomm with alignment.
+			# on interix, it is rather easy to detect the as, since there
+			# is only _one_ build of it with a fixed date in the version
+			# header...
+			if as --version | grep 20021111 > /dev/null 2>&1; then
+				einfo "preventing gcc from detecting .lcomm alignment option in interix system as."
+				export gcc_cv_as_lcomm_with_alignment=no
+			fi
+		;;
 		i[34567]86-*-linux*:*" prefix "*)
 			# to allow the linux-x86-on-amd64.patch become useful, we need
 			# to enable multilib, even if there is just one multilib option.
@@ -168,15 +182,45 @@ src_compile() {
 src_install() {
 	toolchain_src_install
 
-	case ${CTARGET} in
-		*-interix*)
-			# interix delivers libdl and dlfcn.h with gcc-3.3.
-			# Since those parts are perfectly usable by this gcc (and
-			# required for example by perl), we simply can reuse them.
-			# As libdl is in /usr/lib, we only need to copy dlfcn.h.
-			cp /opt/gcc.3.3/include/dlfcn.h "${ED}${INCLUDEPATH}" \
-			|| die "Cannot gain /opt/gcc.3.3/include/dlfcn.h"
-		;;
-	esac
+	if [[ ${CTARGET} == *-interix* ]] && ! is_crosscompile; then
+		# interix delivers libdl and dlfcn.h with gcc-3.3.
+		# Since those parts are perfectly usable by this gcc (and
+		# required for example by perl), we simply can reuse them.
+		# As libdl is in /usr/lib, we only need to copy dlfcn.h.
+		# When cross compiling for interix once, ensure that sysroot
+		# contains dlfcn.h.
+		cp /opt/gcc.3.3/include/dlfcn.h "${ED}${INCLUDEPATH}" \
+		|| die "Cannot gain /opt/gcc.3.3/include/dlfcn.h"
+	fi
+
+	if [[ ${CTARGET} == *-interix3* ]]; then
+		# interix 3.5 has no stdint.h and no inttypes.h. This breaks
+		# so many packages, that i just install interix 5.2's stdint.h
+		# which should be ok.
+		cp "${FILESDIR}"/interix-3.5-stdint.h "${ED}${INCLUDEPATH}/stdint.h" \
+		|| die "Cannot install stdint.h for interix3"
+	fi
+
+	# create a small profile.d script, unsetting some of the bad
+	# environment variables that the sustem could set from the outside.
+	# (GCC_SPECS, GCC_EXEC_PREFIX, CPATH, LIBRARY_PATH, LD_LIBRARY_PATH,
+	#  C_INCLUDE_PATH, CPLUS_INCLUDE_PATH, LIBPATH, SHLIB_PATH, LIB, INCLUDE,
+	#  LD_LIBRARY_PATH_32, LD_LIBRARY_PATH_64).
+	# Maybe there is a better location for doing this ...? Feel free to move
+	# it there if you want to.
+
+	cat > "${T}"/00-gcc-paths.sh <<- _EOF
+		#!/bin/env bash
+		# GCC specific variables
+		unset GCC_SPECS GCC_EXEC_PREFIX
+		# include path variables
+		unset CPATH C_INCLUDE_PATH CPLUS_INCLUDE_PATH INCLUDE
+		# library path variables
+		unset LIBRARY_PATH LD_LIBRARY_PATH LIBPATH SHLIB_PATH LIB LD_LIBRARY_PATH_32 LD_LIBRARY_PATH_64
+	_EOF
+
+	insinto /etc/profile.d
+	doins "${T}"/00-gcc-paths.sh
+
 }
 
