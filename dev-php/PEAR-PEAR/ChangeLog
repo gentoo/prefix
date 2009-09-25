@@ -1,6 +1,15 @@
 # ChangeLog for dev-php/PEAR-PEAR
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/ChangeLog,v 1.106 2008/03/17 12:48:51 jokey Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/ChangeLog,v 1.107 2009/09/23 02:41:50 beandog Exp $
+
+*PEAR-PEAR-1.8.1 (23 Sep 2009)
+
+  23 Sep 2009; Steve Dibb <beandog@gentoo.org> PEAR-PEAR-1.6.1.ebuild,
+  PEAR-PEAR-1.6.2-r1.ebuild, PEAR-PEAR-1.7.1.ebuild,
+  +PEAR-PEAR-1.8.1.ebuild:
+  Version bump, bug 250268; New install system using split ebuilds,
+  PEAR-PEAR is only that on package now, dev-php/pear will pull in necessary
+  deps individually
 
 *PEAR-PEAR-1.7.1 (17 Mar 2008)
 

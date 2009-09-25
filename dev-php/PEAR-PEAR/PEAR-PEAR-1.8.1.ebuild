@@ -1,37 +1,24 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.7.1.ebuild,v 1.3 2009/09/23 02:41:50 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.8.1.ebuild,v 1.1 2009/09/23 02:41:50 beandog Exp $
 
 inherit depend.php
 
-ARCHIVE_TAR="1.3.2"
-CONSOLE_GETOPT="1.2.3"
-STRUCTURES_GRAPH="1.0.2"
-XML_RPC="1.5.1"
 PEAR="${PV}"
 
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 
-DESCRIPTION="PEAR Base System (PEAR, Archive_Tar, Console_Getopt, Structures_Graph, XML_RPC)."
-HOMEPAGE="http://pear.php.net/"
-SRC_URI="http://pear.php.net/get/Archive_Tar-${ARCHIVE_TAR}.tgz
-		http://pear.php.net/get/Console_Getopt-${CONSOLE_GETOPT}.tgz
-		http://pear.php.net/get/Structures_Graph-${STRUCTURES_GRAPH}.tgz
-		http://pear.php.net/get/XML_RPC-${XML_RPC}.tgz
-		http://pear.php.net/get/PEAR-${PEAR}.tgz"
-LICENSE="LGPL-2.1 PHP-2.02 PHP-3 PHP-3.01 MIT"
+DESCRIPTION="PEAR Base System"
+HOMEPAGE="http://pear.php.net/package/PEAR"
+SRC_URI="http://pear.php.net/get/PEAR-${PEAR}.tgz"
+LICENSE="MIT"
 SLOT="0"
 IUSE=""
 
-DEPEND="dev-lang/php
-	!dev-php/pear
-	!dev-php/PEAR-Archive_Tar
-	!dev-php/PEAR-Console_Getopt
-	!dev-php/PEAR-Structures_Graph
-	!dev-php/PEAR-XML_RPC"
-RDEPEND="${DEPEND}"
+DEPEND="dev-lang/php"
+PDEPEND="dev-php/pear"
 
-S=${WORKDIR}
+S="${WORKDIR}"
 
 pkg_setup() {
 	has_php
@@ -69,35 +56,13 @@ src_install() {
 	insinto /usr/share/php
 	doins -r PEAR/
 	doins -r OS/
-	doins PEAR.php System.php
+	doins PEAR.php PEAR5.php System.php
 	doins scripts/pearcmd.php
 	doins scripts/peclcmd.php
 
 	newbin scripts/pear.sh pear
 	newbin scripts/peardev.sh peardev
 	newbin scripts/pecl.sh pecl
-
-	# install Archive_Tar package
-	cd "${S}"/Archive_Tar-${ARCHIVE_TAR}
-	insinto /usr/share/php
-	doins -r Archive/
-
-	# install Console_Getopt package.
-	cd "${S}"/Console_Getopt-${CONSOLE_GETOPT}
-	insinto /usr/share/php
-	doins -r Console/
-
-	# install Structures_Graph package
-	cd "${S}"/Structures_Graph-${STRUCTURES_GRAPH}
-	insinto /usr/share/php
-	doins -r Structures/
-
-	# install XML_RPC package
-	cd "${S}"/XML_RPC-${XML_RPC}
-	insinto /usr/share/php/XML
-	doins RPC.php
-	insinto /usr/share/php/XML/RPC
-	doins Dump.php Server.php
 
 	# adjust some scripts for current version
 	for i in pearcmd.php peclcmd.php ; do
@@ -139,18 +104,4 @@ src_install() {
 
 pkg_preinst() {
 	rm -f "${EROOT}/etc/pear.conf"
-}
-
-pkg_postinst() {
-	pear clear-cache
-
-	# Update PEAR/PECL channels as needed, add new ones to the list if needed
-	local pearchans="pear.php.net pecl.php.net components.ez.no pear.phpdb.org pear.phing.info
-			pear.symfony-project.com pear.phpunit.de pear.php-baustelle.de pear.zeronotice.org
-			pear.phpontrax.com pear.agavi.org"
-
-	for chan in ${pearchans} ; do
-		pear channel-discover ${chan}
-		pear channel-update ${chan}
-	done
 }
