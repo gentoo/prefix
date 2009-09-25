@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/rats/rats-2.1-r2.ebuild,v 1.7 2008/02/20 19:27:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/rats/rats-2.1-r2.ebuild,v 1.8 2009/09/23 17:47:08 patrick Exp $
 
 inherit eutils
 
@@ -11,8 +11,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
-DEPEND="dev-libs/expat
-		virtual/libc"
+DEPEND="dev-libs/expat"
 
 src_unpack() {
 	unpack ${A}

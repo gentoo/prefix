@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/rats
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/rats/ChangeLog,v 1.19 2008/02/20 19:27:56 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/rats/ChangeLog,v 1.20 2009/09/23 17:47:08 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> rats-2.1.ebuild,
+  rats-2.1-r1.ebuild, rats-2.1-r2.ebuild:
+  Remove virtual/libc
 
   20 Feb 2008; Raúl Porcel <armin76@gentoo.org> rats-2.1-r2.ebuild:
   sparc stable wrt #210248
