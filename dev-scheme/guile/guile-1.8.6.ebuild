@@ -29,7 +29,7 @@ IUSE="networking +regex discouraged +deprecated elisp emacs nls debug-freelist d
 src_unpack() {
 	unpack ${A}; cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-1.8.4-interix.patch
+	epatch "${FILESDIR}"/${PN}-1.8.6-interix.patch
 
 	sed "s_sleep 999_sleep 1_" -i test-suite/tests/popen.test
 
