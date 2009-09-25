@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/cutils-1.6-r2.ebuild,v 1.7 2008/11/20 01:09:42 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/cutils-1.6-r2.ebuild,v 1.8 2009/09/23 17:42:34 patrick Exp $
 
 inherit eutils toolchain-funcs
 
@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
-RDEPEND="virtual/libc"
+RDEPEND=""
 DEPEND="${RDEPEND}
 	>=sys-apps/sed-4"
 

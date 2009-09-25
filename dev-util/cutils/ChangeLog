@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cutils
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/ChangeLog,v 1.25 2008/11/24 23:23:51 tcunha Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cutils/ChangeLog,v 1.26 2009/09/23 17:42:34 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> cutils-1.6-r2.ebuild:
+  Remove virtual/libc
 
   24 Nov 2008; Tiago Cunha <tcunha@gentoo.org> +files/cutils-infopage.patch,
   cutils-1.6-r3.ebuild:
