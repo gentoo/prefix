@@ -20,7 +20,11 @@ DEPEND="${RDEPEND}"
 
 # patch is in git master and macros are only needed if SNAPSHOT is set to "yes"
 DEPEND="${DEPEND} >=x11-misc/util-macros-1.2"
-PATCHES=("${FILESDIR}/libXt-1.0.6-cross.patch")
+PATCHES=(
+	"${FILESDIR}/libXt-1.0.6-cross.patch"
+	"${FILESDIR}/libXt-1.0.6-winnt.patch"
+	"${FILESDIR}/libXt-1.0.6-winnt-asm.patch"
+)
 
 pkg_setup() {
 	# No such function yet
@@ -30,12 +34,6 @@ pkg_setup() {
 	filter-flags -Wl,-Bdirect
 	filter-ldflags -Bdirect
 	filter-ldflags -Wl,-Bdirect
-}
-
-src_unpack() {
-	#PATCHES="${FILESDIR}"/${PN}-1.0.5-winnt.patch
-
-	x-modular_src_unpack
 }
 
 src_compile() {
