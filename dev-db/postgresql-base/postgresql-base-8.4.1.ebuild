@@ -54,7 +54,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}/postgresql-${SLOT}-common.patch" \
-		"${FILESDIR}/postgresql-${SLOT}-base.patch"
+		"${FILESDIR}/postgresql-${SLOT}-base.patch" \
 		"${FILESDIR}/postgresql-8.3-prefix.patch"
 	
 	eprefixify "${S}/src/include/pg_config_manual.h"
