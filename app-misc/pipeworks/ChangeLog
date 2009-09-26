@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/pipeworks
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/pipeworks/ChangeLog,v 1.10 2009/01/03 12:51:50 angelos Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/pipeworks/ChangeLog,v 1.11 2009/09/23 16:06:42 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> pipeworks-0.4.ebuild:
+  Remove virtual/libc
 
   03 Jan 2009; Christoph Mende <angelos@gentoo.org> pipeworks-0.4.ebuild:
   QA: Respect CC (bug 243664), respect CFLAGS (bug 240081)
