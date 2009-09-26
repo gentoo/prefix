@@ -21,7 +21,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-check.patch
 
 	epatch "${FILESDIR}"/${PN}-1.13-no-wchar-hack.patch # for Interix
-	epatch "${FILESDIR}"/${PN}-1.14-interix.patch # for Interix
+	#epatch "${FILESDIR}"/${PN}-1.14-interix.patch # for Interix
 }
 
 src_configure() {
