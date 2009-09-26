@@ -48,13 +48,13 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
 	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 	epatch "${FILESDIR}"/${PN}-7.4-hppa-hpux.patch
-	epatch "${FILESDIR}"/${PN}-7.5-wctype-mint.patch
 
 	# interix has no setgroups, so this won't work.
 	epatch "${FILESDIR}"/${PN}-7.5-interix-setgroups.patch
 
 	# thank god not all things are as **** up as interix' security...
-	epatch "${FILESDIR}"/${PN}-7.5-interix-security.patch
+#http://bugs.gentoo.org/show_bug.cgi?id=286459
+#	epatch "${FILESDIR}"/${PN}-7.5-interix-security.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
