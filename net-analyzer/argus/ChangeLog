@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/argus
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus/ChangeLog,v 1.17 2008/11/21 12:45:05 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/argus/ChangeLog,v 1.18 2009/09/23 18:17:00 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> argus-2.0.5.ebuild,
+  argus-2.0.6.ebuild:
+  Remove virtual/libc
 
   21 Nov 2008; Diego E. Pettenò <flameeyes@gentoo.org> argus-2.0.6.ebuild:
   Die when dolib or newsbin fail since the make process always return
