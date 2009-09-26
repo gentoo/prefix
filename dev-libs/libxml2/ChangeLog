@@ -1,6 +1,20 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.272 2009/08/30 23:18:00 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.274 2009/09/16 08:05:17 mrpouet Exp $
+
+*libxml2-2.7.4-r1 (16 Sep 2009)
+
+  16 Sep 2009; Romain Perier <mrpouet@gentoo.org>
+  +libxml2-2.7.4-r1.ebuild, +files/libxml2-2.7.4-parser-grow.patch:
+  Fix inkscape extension loader problem per bug #285125, patch import from
+  upstream bug #595128, thanks to Andreas Proteus
+  <proteuss@sdf.lonestar.org> for tests.
+
+*libxml2-2.7.4 (13 Sep 2009)
+
+  13 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org> -libxml2-2.7.3.ebuild,
+  -libxml2-2.7.3-r1.ebuild, +libxml2-2.7.4.ebuild:
+  Version bump, bug #284726.
 
   30 Aug 2009; Brent Baude <ranger@gentoo.org> libxml2-2.7.3-r2.ebuild:
   Marking libxml2-2.7.3-r2 ppc64 for bug 280617

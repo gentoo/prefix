@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.3-r1.ebuild,v 1.2 2009/05/31 17:37:14 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.4-r1.ebuild,v 1.1 2009/09/16 08:05:17 mrpouet Exp $
+
+EAPI="2"
 
 inherit libtool flag-o-matic eutils python autotools prefix
 
@@ -24,7 +26,7 @@ SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz
 		${XSTS_HOME}/${XSTS_NAME_2}/${XSTS_TARBALL_2} )"
 
 RDEPEND="sys-libs/zlib
-	python?   ( dev-lang/python )
+	python? ( dev-lang/python )
 	readline? ( sys-libs/readline )"
 
 DEPEND="${RDEPEND}
@@ -50,13 +52,16 @@ src_unpack() {
 
 	eautoreconf # required for winnt
 
-	# Fix macro conflict with wxGTK, bug #266653
-	epatch "${FILESDIR}/${P}-printf-rename.patch"
+	# Fix inkscape extension loader problem, bug #285125,
+	# patch import from upstream bug #595128.
+	epatch "${FILESDIR}"/${P}-parser-grow.patch
+}
 
+src_prepare() {
 	epunt_cxx
 }
 
-src_compile() {
+src_configure() {
 	# USE zlib support breaks gnome2
 	# (libgnomeprint for instance fails to compile with
 	# fresh install, and existing) - <azarah@gentoo.org> (22 Dec 2002).
@@ -73,7 +78,8 @@ src_compile() {
 		$(use_with python)           \
 		$(use_with readline)         \
 		$(use_with readline history) \
-		$(use_enable ipv6)"
+		$(use_enable ipv6) \
+		PYTHON_SITE_PACKAGES=$(python_get_sitedir)"
 
 	# Please do not remove, as else we get references to PORTAGE_TMPDIR
 	# in /usr/lib/python?.?/site-packages/libxml2mod.la among things.
@@ -83,18 +89,6 @@ src_compile() {
 	filter-flags -fprefetch-loop-arrays -funroll-loops
 
 	econf $myconf
-
-	# Patching the Makefiles to respect get_libdir
-	# Fixes BUG #86766, please keep this.
-	# Danny van Dyk <kugelfang@gentoo.org> 2005/03/26
-	for x in $(find "${S}" -name "Makefile") ; do
-		sed \
-			-e "s|^\(PYTHON_SITE_PACKAGES\ =\ ${EPREFIX}\/usr\/\).*\(\/python.*\)|\1$(get_libdir)\2|g" \
-			-i ${x} \
-			|| die "sed failed"
-	done
-
-	emake || die "Compilation failed"
 }
 
 src_install() {
@@ -104,9 +98,8 @@ src_install() {
 		exampledir=${EPREFIX}/usr/share/doc/${PF}/python/examples \
 		install || die "Installation failed"
 
+	rm "${ED}"/usr/share/doc/${P}/{AUTHORS,ChangeLog,Copyright,NEWS,README*,TODO*}
 	dodoc AUTHORS ChangeLog Copyright NEWS README* TODO* || die "dodoc failed"
-	rm "${ED}"/usr/share/doc/${P}/Copyright
-	rm -rf "${ED}"/usr/share/doc/${P}
 
 	if ! use python; then
 		rm -rf "${ED}"/usr/share/doc/${PF}/python
