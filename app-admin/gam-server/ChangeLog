@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/gam-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/ChangeLog,v 1.8 2009/04/28 18:15:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/ChangeLog,v 1.9 2009/09/25 10:50:13 flameeyes Exp $
+
+  25 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -files/gamin-0.1.9-freebsd.patch, gam-server-0.1.10.ebuild:
+  Move the freebsd patch to the mirrors.
 
   28 Apr 2009; Raúl Porcel <armin76@gentoo.org> gam-server-0.1.10.ebuild:
   m68k stable

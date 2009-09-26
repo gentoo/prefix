@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/gam-server-0.1.10.ebuild,v 1.8 2009/04/28 18:15:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/gam-server/gam-server-0.1.10.ebuild,v 1.9 2009/09/25 10:50:13 flameeyes Exp $
 
 inherit autotools eutils flag-o-matic libtool python
 
@@ -9,7 +9,8 @@ MY_P=${MY_PN}-${PV}
 
 DESCRIPTION="Library providing the FAM File Alteration Monitor API"
 HOMEPAGE="http://www.gnome.org/~veillard/gamin/"
-SRC_URI="http://www.gnome.org/~veillard/${MY_PN}/sources/${MY_P}.tar.gz"
+SRC_URI="http://www.gnome.org/~veillard/${MY_PN}/sources/${MY_P}.tar.gz
+	mirror://gentoo/${MY_PN}-0.1.9-freebsd.patch.bz2"
 
 LICENSE="LGPL-2"
 SLOT="0"
@@ -32,7 +33,7 @@ src_unpack() {
 
 	# Fix compile warnings; bug #188923
 	[[ ${CHOST} != *-solaris* ]] && \
-	epatch "${FILESDIR}/${MY_PN}-0.1.9-freebsd.patch"
+	epatch "${DISTDIR}/${MY_PN}-0.1.9-freebsd.patch.bz2"
 
 	# Fix file-collision due to shared library, upstream bug #530635
 	epatch "${FILESDIR}/${P}-noinst-lib.patch"
