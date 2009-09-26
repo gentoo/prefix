@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/libpq
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.155 2009/09/07 13:44:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.156 2009/09/23 16:34:16 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> libpq-7.4.19.ebuild:
+  Remove virtual/libc
 
   07 Sep 2009; Raúl Porcel <armin76@gentoo.org> libpq-8.1.11.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #268138
