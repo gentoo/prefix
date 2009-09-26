@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-6.8.ebuild,v 1.9 2008/05/17 04:27:48 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boehm-gc/boehm-gc-6.8.ebuild,v 1.10 2009/09/23 17:16:29 patrick Exp $
 
 inherit eutils
 
@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="nocxx threads"
 
-RDEPEND="virtual/libc"
+RDEPEND=""
 
 DEPEND="${RDEPEND}
 	>=sys-apps/sed-4"
