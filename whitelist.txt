@@ -20,3 +20,4 @@ profiles
 sys-devel/binutils-apple
 sys-devel/gcc-apple
 sys-devel/gdb-apple
+sys-process/unixtop
