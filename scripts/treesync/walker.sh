@@ -3,7 +3,6 @@
 export PTREEDIR="$(pwd -P)"
 for d in \
 		eclass \
-		licenses \
 		*-*/* virtual/* \
 ; do
 	pushd ${d} > /dev/null
