@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.3 2009/09/24 14:31:26 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.4 2009/09/25 17:20:04 zmedico Exp $
 
 EAPI="2"
 
@@ -432,7 +432,7 @@ EOF
 		 /usr/include/python${PYVER}/pyconfig.h
 
 	if use build; then
-		rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{email,encodings,sqlite3,test,tkinter}
+		rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{email,sqlite3,test,tkinter}
 	else
 		use elibc_uclibc && rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/test"
 		use sqlite || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{sqlite3,test/test_sqlite*}
