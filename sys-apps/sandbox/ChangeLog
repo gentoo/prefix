@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.128 2009/08/25 12:37:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.129 2009/09/25 13:19:23 tommy Exp $
+
+  25 Sep 2009; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  sandbox-2.1.ebuild:
+  Add multilib useflag for multilib building with ok from vapier
 
 *sandbox-2.1 (25 Aug 2009)
 
