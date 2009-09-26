@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-3.7.15-r1.ebuild,v 1.6 2009/09/20 19:31:10 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-3.7.15-r1.ebuild,v 1.7 2009/09/23 18:36:50 patrick Exp $
 
 EAPI="2"
 
@@ -23,7 +23,6 @@ RDEPEND=">=sys-libs/ncurses-5.1
 			gnutls? ( >=net-libs/gnutls-1.2.3 )
 			!gnutls? ( >=dev-libs/openssl-0.9.6 )
 		)
-		virtual/libc
 		>=sys-libs/readline-5.1"
 
 DEPEND="

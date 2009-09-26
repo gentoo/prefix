@@ -1,40 +1,45 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-3.7.14.ebuild,v 1.8 2009/09/23 18:36:50 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-4.0.2.ebuild,v 1.1 2009/09/24 10:17:20 jer Exp $
 
-inherit eutils libtool
+EAPI="2"
 
-DESCRIPTION="A sophisticated ftp/sftp/http/https client and file transfer program"
+inherit eutils autotools libtool
+
+DESCRIPTION="A sophisticated ftp/sftp/http/https/torrent client and file transfer program"
 HOMEPAGE="http://lftp.yar.ru/"
-SRC_URI="http://ftp.yars.free.net/pub/source/lftp/${P}.tar.bz2"
+SRC_URI="http://ftp.yars.free.net/pub/source/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="ssl gnutls socks5 nls"
 
-RDEPEND=">=sys-libs/ncurses-5.1
-		socks5? (
-			>=net-proxy/dante-1.1.12
-			virtual/pam )
-		ssl? (
-			gnutls? ( >=net-libs/gnutls-1.2.3 )
-			!gnutls? ( >=dev-libs/openssl-0.9.6 )
-		)
-		>=sys-libs/readline-5.1"
+RDEPEND="
+	>=sys-libs/ncurses-5.1
+	socks5? (
+		>=net-proxy/dante-1.1.12
+		virtual/pam )
+	ssl? (
+		gnutls? ( >=net-libs/gnutls-1.2.3 )
+		!gnutls? ( >=dev-libs/openssl-0.9.6 )
+	)
+	>=sys-libs/readline-5.1
+"
 
-DEPEND="${RDEPEND}
+DEPEND="
+	${RDEPEND}
 	nls? ( sys-devel/gettext )
-	dev-lang/perl"
+	dev-lang/perl
+	=sys-devel/libtool-2*
+"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${P}-darwin-bundle.patch
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-3.7.14-darwin-bundle.patch
 	elibtoolize # for Darwin bundles
 }
 
-src_compile() {
+src_configure() {
 	local myconf="$(use_enable nls) --enable-packager-mode"
 
 	if use ssl && use gnutls ; then
@@ -52,8 +57,6 @@ src_compile() {
 		--sysconfdir="${EPREFIX}"/etc/lftp \
 		--with-modules \
 		${myconf} || die "econf failed"
-
-	emake || die "compile problem"
 }
 
 src_install() {

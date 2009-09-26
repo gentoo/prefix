@@ -1,6 +1,15 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.230 2009/09/20 19:31:10 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.232 2009/09/24 10:17:20 jer Exp $
+
+*lftp-4.0.2 (24 Sep 2009)
+
+  24 Sep 2009; Jeroen Roovers <jer@gentoo.org> +lftp-4.0.2.ebuild:
+  Version bump.
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> lftp-3.7.14.ebuild,
+  lftp-3.7.15-r1.ebuild:
+  Remove virtual/libc
 
   20 Sep 2009; nixnut <nixnut@gentoo.org> lftp-3.7.15-r1.ebuild:
   ppc stable #279426
