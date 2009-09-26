@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.118 2009/09/20 19:12:20 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.119 2009/09/25 18:22:36 ranger Exp $
+
+  25 Sep 2009; Brent Baude <ranger@gentoo.org> actionpack-2.3.4.ebuild:
+  Marking actionpack-2.3.4 ppc64 stable for bug 283396
 
   20 Sep 2009; nixnut <nixnut@gentoo.org> actionpack-2.3.4.ebuild:
   ppc stable #283396
