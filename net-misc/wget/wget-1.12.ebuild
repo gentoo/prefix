@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.11-r1.ebuild,v 1.1 2008/02/16 22:12:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/wget-1.12.ebuild,v 1.2 2009/09/23 19:55:16 vapier Exp $
 
 inherit eutils flag-o-matic
 
@@ -10,20 +10,26 @@ SRC_URI="mirror://gnu/wget/${P}.tar.bz2"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug ipv6 nls socks5 ssl static"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="debug idn ipv6 nls ntlm ssl static"
 
-RDEPEND="ssl? ( >=dev-libs/openssl-0.9.6b )
-	socks5? ( net-proxy/dante )"
+RDEPEND="idn? ( net-dns/libidn )
+	ssl? ( >=dev-libs/openssl-0.9.6b )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
+
+pkg_setup() {
+	if ! use ssl && use ntlm ; then
+		elog "USE=ntlm requires USE=ssl, so disabling ntlm support due to USE=-ssl"
+	fi
+}
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-no-solaris-md5.patch
-	epatch "${FILESDIR}"/${P}-linking.patch
-	epatch "${FILESDIR}"/${P}-progress-bar-assert.patch #208484
+	epatch "${FILESDIR}"/${PN}-1.12-linking.patch
+	epatch "${FILESDIR}"/${PN}-1.11-no-solaris-md5.patch
+	epatch "${FILESDIR}"/${PN}-1.11.1-interix3.patch
 }
 
 src_compile() {
@@ -32,11 +38,13 @@ src_compile() {
 
 	use static && append-ldflags -static
 	econf \
+		--disable-rpath \
 		$(use_with ssl) $(use_enable ssl opie) $(use_enable ssl digest) \
+		$(use_enable idn iri) \
 		$(use_enable ipv6) \
 		$(use_enable nls) \
+		$(use ssl && use_enable ntlm) \
 		$(use_enable debug) \
-		$(use_with socks5 socks) \
 		|| die
 	emake || die
 }
