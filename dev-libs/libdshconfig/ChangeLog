@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libdshconfig
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libdshconfig/ChangeLog,v 1.14 2008/05/12 16:17:09 maekke Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libdshconfig/ChangeLog,v 1.15 2009/09/23 17:21:58 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org>
+  libdshconfig-0.20.11.ebuild, libdshconfig-0.20.12.ebuild:
+  Remove virtual/libc
 
   12 May 2008; Markus Meier <maekke@gentoo.org> libdshconfig-0.20.12.ebuild:
   amd64 stable, bug #217599
