@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/clustalw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/ChangeLog,v 1.20 2009/09/06 05:01:43 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/clustalw/ChangeLog,v 1.21 2009/09/22 11:37:55 maekke Exp $
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> clustalw-2.0.11.ebuild:
+  x86 stable, bug #282109
 
   06 Sep 2009; Jeremy Olexa <darkside@gentoo.org> clustalw-2.0.11.ebuild:
   amd64 stable, bug 282109
