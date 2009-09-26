@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.147 2009/09/20 19:17:24 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.148 2009/09/25 18:20:04 ranger Exp $
+
+  25 Sep 2009; Brent Baude <ranger@gentoo.org> rails-2.3.4.ebuild:
+  Marking rails-2.3.4 ppc64 stable for bug 283396
 
   20 Sep 2009; nixnut <nixnut@gentoo.org> rails-2.3.4.ebuild:
   ppc stable #283396
