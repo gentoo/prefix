@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.8.ebuild,v 1.5 2009/08/19 22:22:04 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.8.ebuild,v 1.8 2009/09/23 17:06:18 armin76 Exp $
 
 inherit eutils multilib toolchain-funcs versionator
 
@@ -47,14 +47,11 @@ src_compile() {
 		*) die "Failed to detect whether your arch is 64bits or 32bits, disable distcc if you're using it, please";;
 	esac
 
-	if use ipv6; then
-		myconf="${myconf} --enable-ipv6"
-	fi
-
 	myconf="${myconf} --libdir=${EPREFIX}/usr/$(get_libdir)/nspr \
-		--enable-system-sqlite"
+		--enable-system-sqlite 	--with-mozilla --with-pthreads"
 
 	ECONF_SOURCE="../mozilla/nsprpub" CC=$(tc-getCC) CXX=$(tc-getCPP) econf \
+		$(use_enable ipv6) \
 		$(use_enable debug) \
 		${myconf} || die "econf failed"
 	make CC="$(tc-getCC)" CXX="$(tc-getCXX)" || die
