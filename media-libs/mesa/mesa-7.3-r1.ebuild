@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.3-r1.ebuild,v 1.10 2009/08/26 17:33:33 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.3-r1.ebuild,v 1.11 2009/09/21 10:41:36 scarabeus Exp $
 
 GIT=$([[ ${PV} = 9999* ]] && echo "git")
 EGIT_REPO_URI="git://anongit.freedesktop.org/mesa/mesa"
@@ -41,7 +41,6 @@ IUSE_VIDEO_CARDS="
 	video_cards_via"
 IUSE="${IUSE_VIDEO_CARDS}
 	debug
-	doc
 	pic
 	motif
 	nptl
@@ -59,7 +58,6 @@ RDEPEND="app-admin/eselect-opengl
 	>=x11-libs/libdrm-2.4.3
 	x11-libs/libICE
 	motif? ( x11-libs/openmotif )
-	doc? ( app-doc/opengl-manpages )
 	!<=x11-base/xorg-x11-6.9"
 DEPEND="${RDEPEND}
 	!<=x11-proto/xf86driproto-2.0.3

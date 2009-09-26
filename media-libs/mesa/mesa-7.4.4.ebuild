@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.4.4.ebuild,v 1.1 2009/06/24 17:43:44 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.4.4.ebuild,v 1.2 2009/09/21 10:41:36 scarabeus Exp $
 
 EAPI=2
 
@@ -57,7 +57,7 @@ IUSE_VIDEO_CARDS="${IUSE_VIDEO_CARDS_UNSTABLE}
 	video_cards_trident
 	video_cards_via"
 IUSE="${IUSE_VIDEO_CARDS} ${IUSE_UNSTABLE}
-	debug doc motif nptl pic xcb kernel_FreeBSD"
+	debug motif nptl pic xcb kernel_FreeBSD"
 
 # keep correct libdrm and dri2proto dep
 # keep blocks in rdepend for binpkg
@@ -74,7 +74,6 @@ RDEPEND="!<=x11-base/xorg-x11-6.9
 	x11-libs/libXmu
 	x11-libs/libXxf86vm
 	motif? ( x11-libs/openmotif )
-	doc? ( app-doc/opengl-manpages )
 "
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
