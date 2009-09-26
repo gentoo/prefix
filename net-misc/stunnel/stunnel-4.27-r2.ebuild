@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.27.ebuild,v 1.1 2009/04/30 21:45:38 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.27-r2.ebuild,v 1.1 2009/09/24 18:36:42 ramereth Exp $
 
 inherit autotools ssl-cert eutils
 
@@ -57,7 +57,7 @@ src_install() {
 
 	insinto /etc/stunnel
 	doins "${FILESDIR}"/stunnel.conf
-	newinitd "${FILESDIR}"/stunnel.rc6 stunnel
+	newinitd "${FILESDIR}"/stunnel.initd stunnel
 
 	keepdir /var/run/stunnel
 	fowners stunnel:stunnel /var/run/stunnel
@@ -70,13 +70,7 @@ pkg_postinst() {
 		chmod 0640 "${EROOT}"/etc/stunnel/stunnel.{crt,csr,key,pem}
 	fi
 
-	if [ ! -z "$(grep /etc/stunnel/stunnel.pid \
-		"${EROOT}"/etc/stunnel/stunnel.conf )" ] ; then
-
-		ewarn "As of stunnel-4.09, the pid file will be located in /var/run/stunnel."
-		ewarn "Please stop stunnel, etc-update, and start stunnel back up to ensure"
-		ewarn "the update takes place"
-		ewarn
-		ewarn "The new location will be /var/run/stunnel/stunnel.pid"
-	fi
+	einfo "If you want to run multiple instances of stunnel, create a new config"
+	einfo "file ending with .conf in /etc/stunnel/. **Make sure** you change "
+	einfo "\'pid= \' with a unique filename."
 }

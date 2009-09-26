@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/stunnel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.104 2009/08/23 01:34:35 ramereth Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.106 2009/09/24 20:30:31 tove Exp $
+
+*stunnel-4.27-r2 (24 Sep 2009)
+
+  24 Sep 2009; Lance Albertson <ramereth@gentoo.org> -stunnel-4.27.ebuild,
+  stunnel-4.27-r1.ebuild, +stunnel-4.27-r2.ebuild, files/stunnel.initd:
+  Fix init script, stablize x86/amd64, fix header
 
 *stunnel-4.27-r1 (22 Aug 2009)
 

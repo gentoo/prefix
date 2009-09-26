@@ -62,7 +62,7 @@ stop() {
 }
 
 restart() {
-    stop
+    svc_stop
     sleep 1
-    start
+    svc_start
 }
