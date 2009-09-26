@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/schroedinger
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.30 2009/09/10 09:41:49 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.32 2009/09/22 07:44:36 maekke Exp $
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> schroedinger-1.0.7.ebuild:
+  amd64 stable, bug #285370
+
+  22 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  schroedinger-1.0.7.ebuild:
+  stable x86, security bug 285370
 
 *schroedinger-1.0.7-r2 (10 Sep 2009)
 
