@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.8.ebuild,v 1.16 2009/09/07 13:58:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.8.ebuild,v 1.17 2009/09/23 19:15:35 aballier Exp $
 
 EAPI=2
-inherit eutils
+inherit eutils autotools
 
 DESCRIPTION="a portable, high level programming interface to various calling conventions."
 HOMEPAGE="http://sourceware.org/libffi"
@@ -17,6 +17,11 @@ IUSE="debug static-libs test"
 RDEPEND=""
 DEPEND="!<dev-libs/g-wrap-1.9.11
 	test? ( dev-util/dejagnu )"
+
+src_prepare() {
+	epatch "${FILESDIR}/${P}-fbsd.patch"
+	eautoreconf
+}
 
 src_configure() {
 	econf \
