@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/which
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/which/ChangeLog,v 1.36 2009/09/19 15:57:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/which/ChangeLog,v 1.37 2009/09/25 14:40:57 ranger Exp $
+
+  25 Sep 2009; Brent Baude <ranger@gentoo.org> which-2.20.ebuild:
+  Marking which-2.20 ppc64 for bug 283975
 
   19 Sep 2009; nixnut <nixnut@gentoo.org> which-2.20.ebuild:
   ppc stable #283975
