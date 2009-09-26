@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/babl-0.0.22.ebuild,v 1.12 2009/07/06 21:56:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/babl-0.0.22.ebuild,v 1.13 2009/09/23 15:22:47 ssuominen Exp $
 
 inherit eutils autotools
 
@@ -12,8 +12,6 @@ LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="sse mmx"
-
-DEPEND="virtual/libc"
 
 src_unpack() {
 	unpack ${A}
