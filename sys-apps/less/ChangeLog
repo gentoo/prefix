@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.110 2009/09/22 16:34:38 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.111 2009/09/25 14:42:56 ranger Exp $
+
+  25 Sep 2009; Brent Baude <ranger@gentoo.org> less-436.ebuild:
+  Marking less-436 ppc64 for bug 284566
 
   22 Sep 2009; Tiago Cunha <tcunha@gentoo.org> less-436.ebuild:
   stable sparc, bug 284566
