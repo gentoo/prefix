@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.2.2.ebuild,v 1.1 2009/08/09 04:48:24 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/fftw-3.2.2.ebuild,v 1.3 2009/09/22 18:37:26 jer Exp $
 
 EAPI=2
 inherit flag-o-matic eutils toolchain-funcs autotools
