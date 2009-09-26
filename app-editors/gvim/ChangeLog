@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/gvim
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.295 2009/07/26 12:33:28 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.296 2009/09/25 14:31:30 lack Exp $
+
+  24 Sep 2009; Jim Ramsay <lack@gentoo.org> gvim-7.2.238.ebuild,
+  +files/gvim.desktop-r2:
+  Fix .desktop file and dependency list for bug #249366 and #285106,
+  respectively
 
   26 Jul 2009; Brent Baude <ranger@gentoo.org> gvim-7.2.182.ebuild:
   Marking gvim-7.2.182 ppc64 for bug 257007

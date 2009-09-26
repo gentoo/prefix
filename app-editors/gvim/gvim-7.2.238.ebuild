@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.2.238.ebuild,v 1.1 2009/07/22 14:13:15 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/gvim-7.2.238.ebuild,v 1.2 2009/09/25 14:31:30 lack Exp $
 
 inherit vim autotools
 
@@ -8,7 +8,7 @@ VIM_VERSION="7.2"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
 GVIMRC_FILE_SUFFIX="-r1"
-GVIM_DESKTOP_SUFFIX="-r1"
+GVIM_DESKTOP_SUFFIX="-r2"
 PREFIX_VER="5"
 
 SRC_URI="ftp://ftp.vim.org/pub/vim/unstable/unix/vim-${VIM_VERSION}.tar.bz2
@@ -22,7 +22,7 @@ S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="GUI version of the Vim text editor"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="gnome gtk motif nextaw carbon"
-DEPEND="${DEPEND}
+RDEPEND="${DEPEND}
 	~app-editors/vim-core-${PV}
 	!aqua? (
 		x11-libs/libXext
@@ -43,7 +43,12 @@ DEPEND="${DEPEND}
 			)
 		)
 	)"
-RDEPEND="${DEPEND}"
+DEPEND="${RDEPEND}
+	!aqua? (
+		gtk? (
+			dev-util/pkgconfig
+		)
+	)"
 
 src_unpack() {
 	vim_src_unpack || die "vim_src_unpack failed"
