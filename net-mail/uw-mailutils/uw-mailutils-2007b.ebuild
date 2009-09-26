@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2007b.ebuild,v 1.8 2008/09/20 10:02:50 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/uw-mailutils/uw-mailutils-2007b.ebuild,v 1.9 2009/09/23 19:15:01 patrick Exp $
 
 inherit eutils flag-o-matic
 
@@ -16,8 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
-DEPEND="virtual/libc
-	!<mail-client/pine-4.64-r1"
+DEPEND="!<mail-client/pine-4.64-r1"
 RDEPEND="${DEPEND}
 	!<net-mail/uw-imap-${PV}"
 
