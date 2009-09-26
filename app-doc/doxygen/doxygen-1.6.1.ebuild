@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.6.0.ebuild,v 1.2 2009/08/27 07:16:43 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.6.1.ebuild,v 1.1 2009/09/25 18:32:10 nerdboy Exp $
 
-EAPI=1
+EAPI=2
 
 inherit eutils flag-o-matic toolchain-funcs qt4 fdo-mime
 
@@ -34,16 +34,13 @@ DEPEND=">=sys-apps/sed-4
 
 EPATCH_SUFFIX="patch"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# use CFLAGS, CXXFLAGS, LDFLAGS
 	sed -i.orig -e 's:^\(TMAKE_CFLAGS_RELEASE\t*\)= .*$:\1= $(ECFLAGS):' \
 		-e 's:^\(TMAKE_CXXFLAGS_RELEASE\t*\)= .*$:\1= $(ECXXFLAGS):' \
 		-e 's:^\(TMAKE_LFLAGS_RELEASE\s*\)=.*$:\1= $(ELDFLAGS):' \
 		tmake/lib/{{linux,freebsd,netbsd,openbsd,solaris}-g++,macosx-c++}/tmake.conf \
-		|| die "sed failed"
+		|| die "sed 1 failed"
 
 	# Ensure we link to -liconv
 	if use elibc_FreeBSD; then
@@ -61,7 +58,7 @@ src_unpack() {
 
 	# fix final DESTDIR issue
 	sed -i.orig -e "s:\$(INSTALL):\$(DESTDIR)/\$(INSTALL):g" \
-		addon/doxywizard/Makefile.in || die "sed failed"
+		addon/doxywizard/Makefile.in || die "sed 2 failed"
 
 	if is-flagq "-O3" ; then
 		echo
@@ -75,7 +72,7 @@ src_unpack() {
 	fi
 }
 
-src_compile() {
+src_configure() {
 	export ECFLAGS="${CFLAGS}" ECXXFLAGS="${CXXFLAGS}" ELDFLAGS="${LDFLAGS}"
 	# set ./configure options (prefix, Qt based wizard, docdir)
 
@@ -103,8 +100,9 @@ src_compile() {
 	else
 		./configure ${my_conf} || die 'configure failed'
 	fi
+}
 
-	# and compile
+src_compile() {
 	emake all || die 'emake failed'
 
 	# generate html and pdf (if tetex in use) documents.

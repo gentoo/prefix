@@ -1,6 +1,13 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.169 2009/08/27 13:55:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.170 2009/09/25 18:32:10 nerdboy Exp $
+
+*doxygen-1.6.1 (25 Sep 2009)
+
+  25 Sep 2009; Steve Arnold <nerdboy@gentoo.org> -doxygen-1.6.0.ebuild,
+  +doxygen-1.6.1.ebuild:
+  Updated to current release; fixes eigen borkage plus a few other issues 
+  (closes bugs 282598 and 283780).
 
   27 Aug 2009; Raúl Porcel <armin76@gentoo.org> doxygen-1.5.8-r1.ebuild:
   arm/ia64/sh/s390 stable wrt #263641
