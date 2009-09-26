@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libgamin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.23 2009/06/30 17:50:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.24 2009/09/25 10:51:18 flameeyes Exp $
+
+  25 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -files/gamin-0.1.9-freebsd.patch, libgamin-0.1.10-r1.ebuild,
+  libgamin-0.1.10-r2.ebuild:
+  Move the freebsd patch to the mirrors.
 
   30 Jun 2009; Jeroen Roovers <jer@gentoo.org> libgamin-0.1.10-r2.ebuild:
   Stable for HPPA too.
