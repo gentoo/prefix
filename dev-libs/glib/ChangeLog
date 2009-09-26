@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.374 2009/09/19 19:11:00 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.376 2009/09/23 17:19:54 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> glib-2.18.4-r1.ebuild,
+  glib-2.18.4-r2.ebuild, glib-2.20.5.ebuild:
+  Remove virtual/libc
+
+  22 Sep 2009; Markus Meier <maekke@gentoo.org> glib-2.20.5.ebuild:
+  x86 stable, bug #285586
 
   19 Sep 2009; Olivier Crête <tester@gentoo.org> glib-2.20.5.ebuild:
   Stable on amd64, bug #285586

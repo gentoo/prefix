@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.18.4-r1.ebuild,v 1.9 2009/04/27 13:07:11 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.18.4-r1.ebuild,v 1.10 2009/09/23 17:19:54 patrick Exp $
 
 inherit gnome.org libtool eutils flag-o-matic multilib autotools
 
@@ -12,18 +12,18 @@ SLOT="2"
 KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc fam hardened selinux xattr"
 
-RDEPEND="virtual/libc
-		 virtual/libiconv
-		>=sys-devel/gettext-0.11
-		 xattr? ( sys-apps/attr )
-		 fam? ( virtual/fam )"
-DEPEND=">=dev-util/pkgconfig-0.16
-		doc?	(
-					>=dev-libs/libxslt-1.0
-					>=dev-util/gtk-doc-1.8
-					~app-text/docbook-xml-dtd-4.1.2
-				)
-		dev-util/gtk-doc-am"
+RDEPEND="virtual/libiconv
+	xattr? ( sys-apps/attr )
+	fam? ( virtual/fam )"
+DEPEND="${RDEPEND}
+	>=dev-util/pkgconfig-0.16
+	>=sys-devel/gettext-0.11
+	doc?	(
+		>=dev-libs/libxslt-1.0
+		>=dev-util/gtk-doc-1.8
+		~app-text/docbook-xml-dtd-4.1.2
+		)
+	dev-util/gtk-doc-am"
 
 src_unpack() {
 	unpack ${A}
