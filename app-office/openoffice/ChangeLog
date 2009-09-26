@@ -1,6 +1,21 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.483 2009/09/20 13:49:28 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.486 2009/09/24 08:27:55 suka Exp $
+
+  24 Sep 2009; Andreas Proschofsky <suka@gentoo.org>
+  -files/kde4-configure2.diff, -files/xulrunner-1.9.1.diff,
+  openoffice-3.1.1.ebuild:
+  Raise patchset to ooo-build 3.1.1.2, bunch of smaller fixes. Also remove 
+  upstreamed patches
+
+  24 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  stable x86, security bug 283370
+
+  22 Sep 2009; Andreas Proschofsky <suka@gentoo.org>
+  files/gentoo-3.1.1.diff, -files/dbfix.diff, +files/kde4-configure2.diff,
+  openoffice-3.1.1.ebuild:
+  Trying to fix KDE4 build problems, once again, see bug #283618
 
   20 Sep 2009; Andreas Proschofsky <suka@gentoo.org>
   openoffice-3.1.1.ebuild, files/gentoo-3.1.1.diff, +files/dbfix.diff:
