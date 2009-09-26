@@ -1,6 +1,15 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.147 2009/09/03 10:46:19 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.148 2009/09/23 09:23:09 mrpouet Exp $
+
+*gtk-engines-2.18.3 (23 Sep 2009)
+
+  23 Sep 2009; Romain Perier <mrpouet@gentoo.org>
+  +gtk-engines-2.18.3.ebuild,
+  +files/gtk-engines-2.18.3-fix-system-lua-check.patch:
+  Version bump per bug #285944, includes natively the system-lua patch,
+  translations updates, import patch from upstream bug #594014 in order to
+  fix a typo for system lua check (AM_CONDITIONNAL).
 
   03 Sep 2009; Romain Perier <mrpouet@gentoo.org>
   gtk-engines-2.18.2-r1.ebuild, files/gtk-engines-2.18.2-system-lua.patch:
