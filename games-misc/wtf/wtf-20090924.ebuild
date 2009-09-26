@@ -1,28 +1,30 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/wtf-20071004.ebuild,v 1.8 2007/12/11 16:52:21 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/wtf/wtf-20090924.ebuild,v 1.1 2009/09/24 04:08:42 darkside Exp $
 
 inherit eutils prefix
 
 DESCRIPTION="translates acronyms for you"
-HOMEPAGE="http://www.mu.org/~mux/wtf/"
-SRC_URI="http://www.mu.org/~mux/wtf/${P}.tar.gz"
+HOMEPAGE="http://netbsd.org/"
+SRC_URI="http://dev.gentooexperimental.org/~darkside/distfiles/${PN}/${P}.tar.bz2"
 
-LICENSE="public-domain"
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND="!games-misc/bsd-games"
-RDEPEND="${DEPEND}
-	sys-apps/grep"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-20050505-updates.patch
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-20071004-prefix.patch
 	eprefixify wtf
+}
+
+src_compile() {
+	:
 }
 
 src_install() {
@@ -30,4 +32,5 @@ src_install() {
 	doman wtf.6
 	insinto /usr/share/misc
 	doins acronyms* || die "doins failed"
+	dodoc README
 }
