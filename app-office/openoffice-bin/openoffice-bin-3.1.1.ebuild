@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.1.1.ebuild,v 1.1 2009/09/02 19:40:14 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.1.1.ebuild,v 1.2 2009/09/23 14:19:59 fauli Exp $
 
 inherit eutils fdo-mime rpm multilib prefix
 
