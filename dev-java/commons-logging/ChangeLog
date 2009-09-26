@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/commons-logging
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/ChangeLog,v 1.65 2008/03/25 19:48:39 betelgeuse Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/ChangeLog,v 1.66 2009/09/24 22:46:50 betelgeuse Exp $
+
+  24 Sep 2009; Petteri Räty <betelgeuse@gentoo.org>
+  commons-logging-1.1.1.ebuild:
+  Move test dependencies out of RDEPEND. Fixes bug #286318.
 
   25 Mar 2008; Petteri Räty <betelgeuse@gentoo.org>
   -commons-logging-1.1-r5.ebuild, -commons-logging-1.1-r6.ebuild:

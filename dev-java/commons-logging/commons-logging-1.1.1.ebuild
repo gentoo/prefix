@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/commons-logging-1.1.1.ebuild,v 1.6 2008/03/16 17:44:04 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-logging/commons-logging-1.1.1.ebuild,v 1.7 2009/09/24 22:46:50 betelgeuse Exp $
 
 EAPI=1
 JAVA_PKG_IUSE="doc source test"
@@ -20,14 +20,14 @@ COMMON_DEP="
 	avalon-logkit? ( dev-java/avalon-logkit:1.2 )
 	log4j? ( dev-java/log4j:0 )
 	servletapi? ( java-virtuals/servlet-api:2.3 )
-	avalon-framework? ( dev-java/avalon-framework:4.2 )
-	test? ( dev-java/ant-junit:0 )"
+	avalon-framework? ( dev-java/avalon-framework:4.2 )"
 # ATTENTION: Add this when log4j-1.3 is out
 #	=dev-java/log4j-1.3*
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
 DEPEND=">=virtual/jdk-1.4
-	${COMMON_DEP}"
+	${COMMON_DEP}
+	test? ( dev-java/ant-junit:0 )"
 
 S="${WORKDIR}/${P}-src/"
 
