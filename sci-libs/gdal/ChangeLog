@@ -1,6 +1,15 @@
 # ChangeLog for sci-libs/gdal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.63 2009/08/08 17:25:02 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.65 2009/09/19 06:18:46 nerdboy Exp $
+
+*gdal-1.6.2 (19 Sep 2009)
+
+  19 Sep 2009; Steve Arnold <nerdboy@gentoo.org> +gdal-1.6.2.ebuild:
+  Updated to current upstream stable release. Fixes bug 285310, however
+  needs the latest libtiff which is not yet stable.
+
+  18 Sep 2009; Petteri Räty <betelgeuse@gentoo.org> gdal-1.6.1.ebuild:
+  Migrate to EAPI 2 in order to remove built_with_use usage.
 
   08 Aug 2009; Hanno Boeck <hanno@gentoo.org> gdal-1.6.1.ebuild:
   Don't apply mysql_ogr_header patch, already upstream-applied, fixes

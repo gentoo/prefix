@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.6.1.ebuild,v 1.3 2009/09/18 18:48:22 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.6.2.ebuild,v 1.1 2009/09/19 06:18:46 nerdboy Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.5"
@@ -20,7 +20,7 @@ IUSE="curl debug doc ecwj2k fits geos gif gml hdf hdf5 jpeg jpeg2k mysql \
 netcdf odbc png ogdi perl postgres python ruby sqlite threads"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
-	>=media-libs/tiff-3.7.0
+	>=media-libs/tiff-3.9.1
 	sci-libs/libgeotiff
 	dev-libs/expat
 	curl? ( net-misc/curl )
@@ -38,7 +38,7 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 	postgres? ( virtual/postgresql-server )
 	|| (
 	    netcdf? ( sci-libs/netcdf )
-	    hdf? ( sci-libs/hdf[szip] )
+	    hdf? ( sci-libs/hdf )
 	)
 	|| (
 	    jpeg2k? ( media-libs/jasper )
@@ -75,7 +75,7 @@ src_prepare() {
 	    "${FILESDIR}"/${PN}-1.5.0-soname.patch \
 	    "${FILESDIR}"/${PN}-1.5.1-python-install.patch \
 	    "${FILESDIR}"/${PN}-1.6.0-swig-fix.patch \
-	    "${FILESDIR}"/${P}-ruby-make.patch
+	    "${FILESDIR}"/${PN}-1.6.1-ruby-make.patch
 
 	if useq hdf && useq netcdf; then
 		ewarn "Netcdf and HDF4 are incompatible due to certain tools in"
@@ -167,7 +167,7 @@ src_install() {
 	emake DESTDIR="${D}" install \
 	    || die "make install failed"
 
-	dodoc Doxyfile HOWTO-RELEASE NEWS || die
+	dodoc Doxyfile HOWTO-RELEASE NEWS
 
 	if useq doc ; then
 	    dohtml html/* || die "install html failed"
