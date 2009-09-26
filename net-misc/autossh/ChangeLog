@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/autossh
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/autossh/ChangeLog,v 1.23 2008/09/06 01:28:55 gentoofan23 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/autossh/ChangeLog,v 1.24 2009/09/23 19:34:19 patrick Exp $
+
+  23 Sep 2009; Patrick Lauer <patrick@gentoo.org> autossh-1.2g.ebuild:
+  Remove virtual/libc
 
 *autossh-1.4b (06 Sep 2008)
 
