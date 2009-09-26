@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-7.ebuild,v 1.8 2009/09/20 12:08:47 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/jpeg-7.ebuild,v 1.9 2009/09/23 04:27:08 vapier Exp $
 
 EAPI="2"
 
@@ -8,7 +8,7 @@ DEB_PV="7-1"
 DEB_PN="libjpeg${PV}"
 DEB="${DEB_PN}_${DEB_PV}"
 
-inherit eutils libtool
+inherit eutils libtool multilib
 
 DESCRIPTION="Library to load, handle and manipulate images in the JPEG format"
 HOMEPAGE="http://jpegclub.org/ http://www.ijg.org/"
@@ -45,4 +45,12 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die
 	dodoc change.log example.c README *.txt
+}
+
+pkg_preinst() {
+	has_version media-libs/jpeg-compat || preserve_old_lib /usr/$(get_libdir)/libjpeg.so.62
+}
+
+pkg_postinst() {
+	has_version media-libs/jpeg-compat || preserve_old_lib_notify /usr/$(get_libdir)/libjpeg.so.62
 }
