@@ -14,10 +14,16 @@
 # Keep this file sorted alphabetically. This file will additionally be used to
 # monitor our progress and see what we have left to "move over"
 
+# do NOT mess with these, without these the tree is rendered useless
 licenses
-mail-client/mutt
 profiles
+
+# regular packages (do NOT put portage in here!)
+mail-client/mutt
 sys-devel/binutils-apple
 sys-devel/gcc-apple
 sys-devel/gdb-apple
 sys-process/unixtop
+
+# entire categories
+
