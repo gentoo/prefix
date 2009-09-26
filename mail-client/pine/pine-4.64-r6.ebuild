@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r6.ebuild,v 1.5 2007/08/06 13:32:17 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/pine-4.64-r6.ebuild,v 1.6 2009/09/23 17:55:03 patrick Exp $
 
 inherit eutils
 
@@ -24,8 +24,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="ssl ldap kerberos largeterminal pam passfile debug"
 
-DEPEND="virtual/libc
-	>=sys-apps/sed-4
+DEPEND=">=sys-apps/sed-4
 	>=sys-libs/ncurses-5.1
 	pam? ( virtual/pam )
 	ssl? ( dev-libs/openssl )
