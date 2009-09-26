@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/faac
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.77 2009/08/31 19:34:57 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/ChangeLog,v 1.78 2009/09/21 21:35:09 maekke Exp $
+
+  21 Sep 2009; Markus Meier <maekke@gentoo.org> faac-1.28-r1.ebuild:
+  arm stable, bug #280791
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> faac-1.28-r1.ebuild:
   stable ppc64, bug 280791

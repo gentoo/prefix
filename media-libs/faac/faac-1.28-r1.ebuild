@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.28-r1.ebuild,v 1.7 2009/08/31 19:34:57 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faac/faac-1.28-r1.ebuild,v 1.8 2009/09/21 21:35:09 maekke Exp $
 
 EAPI=2
 inherit autotools eutils flag-o-matic
