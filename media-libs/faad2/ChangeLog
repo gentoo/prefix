@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/faad2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/ChangeLog,v 1.127 2009/08/31 19:22:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/ChangeLog,v 1.128 2009/09/21 21:37:45 maekke Exp $
+
+  21 Sep 2009; Markus Meier <maekke@gentoo.org> faad2-2.7.ebuild:
+  arm stable, bug #278483
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> faad2-2.7.ebuild:
   stable ppc64, bug 278483
