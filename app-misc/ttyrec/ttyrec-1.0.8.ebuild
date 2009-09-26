@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ttyrec/ttyrec-1.0.8.ebuild,v 1.1 2008/02/09 01:04:47 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ttyrec/ttyrec-1.0.8.ebuild,v 1.2 2009/09/23 16:08:00 patrick Exp $
 
 inherit flag-o-matic toolchain-funcs
 
@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
-DEPEND="virtual/libc"
+DEPEND=""
 
 src_compile() {
 	# Bug 106530.
