@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.109 2009/09/20 19:16:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.110 2009/09/25 18:20:35 ranger Exp $
+
+  25 Sep 2009; Brent Baude <ranger@gentoo.org> activerecord-2.3.4.ebuild:
+  Marking activerecord-2.3.4 ppc64 stable for bug 283396
 
   20 Sep 2009; nixnut <nixnut@gentoo.org> activerecord-2.3.4.ebuild:
   ppc stable #283396
