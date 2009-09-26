@@ -1,6 +1,13 @@
 # ChangeLog for mail-client/mutt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.156 2009/09/15 23:49:30 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mutt/ChangeLog,v 1.157 2009/09/21 11:00:45 grobian Exp $
+
+*mutt-1.5.20-r6 (21 Sep 2009)
+
+  21 Sep 2009; Fabian Groffen <grobian@gentoo.org> -mutt-1.5.20-r5.ebuild,
+  +mutt-1.5.20-r6.ebuild, +files/mutt-1.5.20-dont-reveal-bbc.patch:
+  Add patch from Debian to fix upstream ticket 3337: mutt disclosing bcc
+  header to mta
 
   15 Sep 2009; Joseph Jezak <josejx@gentoo.org> mutt-1.5.20-r4.ebuild:
   Marked ppc stable for bug #275703.
