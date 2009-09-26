@@ -1,6 +1,9 @@
 # ChangeLog for gnustep-base/gnustep-base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.88 2009/07/19 13:17:36 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-base/ChangeLog,v 1.89 2009/09/22 02:18:13 tgall Exp $
+
+  21 Sep 2009; Tom Gall <tgall@gentoo.org> gnustep-base-1.18.0-r4.ebuild:
+  keyword ~ppc64
 
   19 Jul 2009; nixnut <nixnut@gentoo.org> gnustep-base-1.18.0-r4.ebuild:
   ppc stable #272673
