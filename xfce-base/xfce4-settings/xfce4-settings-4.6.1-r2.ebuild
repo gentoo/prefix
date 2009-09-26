@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-settings/xfce4-settings-4.6.1-r1.ebuild,v 1.3 2009/08/23 17:45:19 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-settings/xfce4-settings-4.6.1-r2.ebuild,v 1.1 2009/09/23 10:12:32 ssuominen Exp $
 
 EAPI=2
 inherit xfconf
@@ -47,5 +47,7 @@ pkg_setup() {
 		$(use_enable sound sound-settings)
 		$(use_enable debug)"
 	DOCS="AUTHORS ChangeLog NEWS TODO"
-	PATCHES=( "${FILESDIR}/${P}-libxklavier.patch" )
+	PATCHES=( "${FILESDIR}/${P}-libxklavier.patch"
+		"${FILESDIR}/${P}-fix-timeout-startup.patch"
+		"${FILESDIR}/${P}-fix-keyrepeat-typo.patch" )
 }

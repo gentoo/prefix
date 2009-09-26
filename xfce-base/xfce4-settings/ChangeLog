@@ -1,6 +1,15 @@
 # ChangeLog for xfce-base/xfce4-settings
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-settings/ChangeLog,v 1.17 2009/08/23 15:37:19 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfce4-settings/ChangeLog,v 1.18 2009/09/23 10:12:32 ssuominen Exp $
+
+*xfce4-settings-4.6.1-r2 (23 Sep 2009)
+
+  23 Sep 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +xfce4-settings-4.6.1-r2.ebuild,
+  +files/xfce4-settings-4.6.1-fix-keyrepeat-typo.patch,
+  +files/xfce4-settings-4.6.1-fix-timeout-startup.patch:
+  Fix slow session loading wrt #285100, thanks to Peter Volkov for
+  reporting. Fix typo in KeyRepeat code wrt Debian #527238.
 
   23 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
   xfce4-settings-4.6.1.ebuild:
