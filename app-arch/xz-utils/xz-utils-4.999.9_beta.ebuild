@@ -45,6 +45,7 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
 src_compile() {
