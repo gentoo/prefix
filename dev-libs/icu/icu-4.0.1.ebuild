@@ -76,6 +76,33 @@ src_prepare() {
 }
 
 src_configure() {
+	if [[ ${CHOST} == *-irix* ]]; then
+		if [[ -n "${LD_LIBRARYN32_PATH}" || -n "${LD_LIBRARY64_PATH}" ]]; then
+			case "${ABI:-$DEFAULT_ABI}" in
+				mips32)
+					if [[ -z "${LD_LIBRARY_PATH}" ]]; then
+						LD_LIBRARY_PATH="${LD_LIBRARYN32_PATH}"
+					else
+						LD_LIBRARY_PATH="${LD_LIBRARYN32_PATH}:${LD_LIBRARY_PATH}"
+					fi
+					;;
+				mips64)
+					if [[ -z "${LD_LIBRARY_PATH}" ]]; then
+						LD_LIBRARY_PATH="${LD_LIBRARY64_PATH}"
+					else
+						LD_LIBRARY_PATH="${LD_LIBRARY64_PATH}:${LD_LIBRARY_PATH}"
+					fi
+					;;
+				mipso32|*)
+					:
+					;;
+			esac
+		fi
+		export LD_LIBRARY_PATH
+		unset  LD_LIBRARYN32_PATH
+		unset  LD_LIBRARY64_PATH
+	fi
+
 	econf \
 		--enable-static \
 		$(use_enable debug) \
