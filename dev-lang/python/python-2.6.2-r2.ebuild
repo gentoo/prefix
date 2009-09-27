@@ -56,9 +56,9 @@ RDEPEND=">=app-admin/eselect-python-20080925
 			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
 		)
-		!m68k? !m68k-mint? ( ( !mips? ( !sparc-fbsd? ( virtual/libffi ) ) ) )"
+		!m68k? ( !m68k-mint? ( !mips? ( !sparc-fbsd? ( virtual/libffi ) ) ) )"
 DEPEND="${RDEPEND}
-		!m68k? !m68k-mint? ( ( !mips? ( !sparc-fbsd? ( dev-util/pkgconfig ) ) ) )"
+		!m68k? ( !m68k-mint? ( !mips? ( !sparc-fbsd? ( dev-util/pkgconfig ) ) ) )"
 PDEPEND="${RDEPEND} app-admin/python-updater"
 RDEPEND+=" !build? ( app-misc/mime-types )"
 
