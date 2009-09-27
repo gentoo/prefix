@@ -78,7 +78,7 @@ src_prepare() {
 	# avoid to launch xv while building examples docs
 	epatch "${FILESDIR}"/${PN}-0.98.5.2-no-xv.patch
 
-	epatch "${FILESDIR}"/${PN}-0.99.0-prefix.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 	epatch "${FILESDIR}"/${PN}-0.99.0-freebsd7+.patch
 
 	# create setup.cfg (see setup.cfg.template for any changes)
