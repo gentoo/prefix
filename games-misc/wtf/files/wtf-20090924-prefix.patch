@@ -1,0 +1,17 @@
+--- wtf.orig	2009-09-27 10:46:12 +0200
++++ wtf	2009-09-27 10:46:57 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
+ #
+ #	$NetBSD: wtf,v 1.15 2007/08/06 21:14:36 hubertf Exp $
+ #
+@@ -12,7 +12,7 @@
+ 	exit 1
+ }
+ 
+-acronyms=${ACRONYMDB:-`ls /usr/share/misc/acronyms* 2>/dev/null`}
++acronyms=${ACRONYMDB:-`ls "@GENTOO_PORTAGE_EPREFIX@"/usr/share/misc/acronyms* 2>/dev/null`}
+ 
+ if [ "$acronyms" = "" ]; then
+ 	echo "$PROGNAME: acronyms database not found!" >&2

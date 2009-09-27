@@ -19,7 +19,7 @@ RDEPEND="${DEPEND}"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-20071004-prefix.patch
+	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify wtf
 }
 
