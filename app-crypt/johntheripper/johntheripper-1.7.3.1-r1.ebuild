@@ -89,7 +89,7 @@ src_unpack() {
 		epatch "${WORKDIR}"/${MY_P}-${JUMBO}.diff
 		PATCHLIST="${PATCHLIST} ${JUMBO}-stackdef.S"
 	fi
-	PATCHLIST="${PATCHLIST} cflags mkdir-sandbox prefix"
+	PATCHLIST="${PATCHLIST} cflags mkdir-sandbox"
 
 	cd "${S}/src"
 	for p in ${PATCHLIST}; do
@@ -112,7 +112,7 @@ src_compile() {
 	use mpi && CPP=mpicxx CC=mpicc AS=mpicc LD=mpicc
 	emake -C src/\
 		CPP=${CPP} CC=${CC} AS=${AS} LD=${LD} \
-		CFLAGS="-c -Wall ${CFLAGS} -DJOHN_SYSTEMWIDE=1 -DJOHN_SYSTEMWIDE_HOME=\\\"\\\\\\\"${EPREFIX}/etc/john\\\\\\\"\\\" -DJOHN_SYSTEMWIDE_EXEC=\\\"\\\\\\\"${EPREFIX}/usr/libexec/john\\\\\\\"\\\" -DCFG_FULL_NAME=\\\"\\\\\\\"${EPREFIX}/etc/john/john.conf\\\\\\\"\\\" -DCFG_ALT_NAME=\\\"\\\\\\\"${EPREFIX}/etc/john/john.ini\\\\\\\"\\\"" \
+		CFLAGS="-c -Wall ${CFLAGS} -DJOHN_SYSTEMWIDE=1 -DJOHN_SYSTEMWIDE_HOME=\\\"\\\\\\\"${EPREFIX}/etc/john\\\\\\\"\\\" -DJOHN_SYSTEMWIDE_EXEC=\\\"\\\\\\\"${EPREFIX}/usr/libexec/john\\\\\\\"\\\"" \
 		LDFLAGS="${LDFLAGS}" \
 		OPT_NORMAL="" \
 		$(get_target) \
