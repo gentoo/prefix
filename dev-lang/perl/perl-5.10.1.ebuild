@@ -24,8 +24,7 @@ HOMEPAGE="http://www.perl.org/"
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS=""
-#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="berkdb build debug doc gdbm ithreads"
 
 COMMON_DEPEND="berkdb? ( sys-libs/db )
@@ -92,6 +91,8 @@ src_prepare() {
 	# pod/perltoc.pod fails
 	ln -s ${LIBPERL} libperl$(get_libname ${SHORT_PV})
 	ln -s ${LIBPERL} libperl$(get_libname )
+
+	epatch "${FILESDIR}"/${P}-prefix-soname.patch  # complements 0005
 
 	#epatch "${FILESDIR}"/${P}-mint.patch
 	#epatch "${FILESDIR}"/${P}-aix.patch
@@ -297,13 +298,13 @@ src_install() {
 	fi
 	make DESTDIR="${D}" ${installtarget} || die "Unable to make ${installtarget}"
 
-	rm "${ED}"/usr/bin/perl
+	rm -f "${ED}"/usr/bin/perl
 	ln -s perl${MY_PV} "${ED}"/usr/bin/perl
 
 	dolib.so "${ED}"/${coredir}/${LIBPERL} || die
 	dosym ${LIBPERL} /usr/$(get_libdir)/libperl$(get_libname ${SHORT_PV}) || die
 	dosym ${LIBPERL} /usr/$(get_libdir)/libperl$(get_libname) || die
-	rm "${ED}"/${coredir}/${LIBPERL}
+	rm -f "${ED}"/${coredir}/${LIBPERL}
 	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/${LIBPERL}
 	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname ${SHORT_PV})
 	dosym ../../../../../$(get_libdir)/${LIBPERL} ${coredir}/libperl$(get_libname)
@@ -382,7 +383,7 @@ pkg_postinst() {
 		for DIR in ${INC} ; do
 			if [[ -d "${EROOT}/${DIR}" ]] ; then
 				for file in $(find "${EROOT}/${DIR}" -name "*.ph" -type f ) ; do
-					rm "${EROOT}/${file}"
+					rm -f "${EROOT}/${file}"
 					einfo "<< ${file}"
 				done
 			fi
