@@ -10,7 +10,7 @@ SRC_URI="http://software.frodo.looijaard.name/getopt/files/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls"
 
 RDEPEND="nls? ( virtual/libintl )"
@@ -39,6 +39,7 @@ src_compile() {
 	fi
 
 	[[ ${CHOST} == *-irix* ]] && libcgetopt=0
+	[[ ${CHOST} == *-interix* ]] && libcgetopt=0
 
 	emake CC="$(tc-getCC)" prefix="${EPREFIX}/usr" \
 		LIBCGETOPT=${libcgetopt} \
