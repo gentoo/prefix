@@ -54,6 +54,7 @@ src_compile() {
 		*-darwin*)           TARGET=macosx; append-cppflags "-DNO_LCHMOD" ;;
 		*-solaris*)          TARGET=generic ;;
 		mips-sgi-irix*)      TARGET=sgi; append-cppflags "-DNO_LCHMOD" ;;
+		*-interix3*)         TARGET=gcc; append-flags "-DUNIX"; append-cppflags "-DNO_LCHMOD" ;;
 		*-interix*)          TARGET=gcc; append-flags "-DUNIX" ;;
 		*-aix*)              TARGET=gcc ;;
 		*-mint*)             TARGET=generic ;;
