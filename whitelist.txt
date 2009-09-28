@@ -20,6 +20,7 @@ profiles
 
 # regular packages (do NOT put portage in here!)
 mail-client/mutt
+net-misc/mico
 sys-devel/binutils-apple
 sys-devel/gcc-apple
 sys-devel/gdb-apple
