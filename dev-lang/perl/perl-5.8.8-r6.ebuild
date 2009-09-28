@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r6.ebuild,v 1.5 2009/05/29 13:26:28 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r6.ebuild,v 1.6 2009/09/28 15:58:28 tove Exp $
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -157,15 +157,8 @@ src_unpack() {
 
 	# Newer linux-headers don't include asm/page.h. Fix this.
 	# Patch from bug 168312, thanks Peter!
-	# Cannot test for '>sys-kernel/linux-headers-2.6.20' in prefix,
-	# so try to compile snippet in question instead.
-	cat > "${T}"/test-asm-page.c <<-EOF
-		#ifdef __linux__
-		#include <asm/page.h>
-		#endif
-	EOF
-	$(tc-getCC) -o "${T}"/test-asm-page.o -c "${T}"/test-asm-page.c >& /dev/null \
-	|| epatch "${FILESDIR}"/${P}-asm-page-h-compile-failure.patch
+	echo "#include <asm/page.h>" | $(tc-getCPP) > /dev/null 2>&1 || \
+		epatch "${FILESDIR}"/${P}-asm-page-h-compile-failure.patch
 
 	# Also add the directory prefix of the current file when the quote syntax is
 	# used; 'require' will only look in @INC, not the current directory.

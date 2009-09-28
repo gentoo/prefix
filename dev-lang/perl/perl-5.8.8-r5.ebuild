@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r5.ebuild,v 1.12 2009/04/26 11:19:57 bluebird Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r5.ebuild,v 1.13 2009/09/28 15:58:28 tove Exp $
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -159,15 +159,8 @@ src_unpack() {
 
 	# Newer linux-headers don't include asm/page.h. Fix this.
 	# Patch from bug 168312, thanks Peter!
-	# Cannot test for '>sys-kernel/linux-headers-2.6.20' in prefix,
-	# so try to compile snippet in question instead.
-	cat > "${T}"/test-asm-page.c <<-EOF
-		#ifdef __linux__
-		#include <asm/page.h>
-		#endif
-	EOF
-	$(tc-getCC) -o "${T}"/test-asm-page.o -c "${T}"/test-asm-page.c >& /dev/null \
-	|| epatch "${FILESDIR}"/${P}-asm-page-h-compile-failure.patch
+	echo "#include <asm/page.h>" | $(tc-getCPP) > /dev/null 2>&1 || \
+		epatch "${FILESDIR}"/${P}-asm-page-h-compile-failure.patch
 
 	# perlcc fix patch - bug #181229
 	epatch "${FILESDIR}"/${P}-perlcc.patch

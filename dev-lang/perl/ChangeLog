@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.283 2009/07/30 05:58:29 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.285 2009/09/28 15:58:28 tove Exp $
+
+  28 Sep 2009; Torsten Veller <tove@gentoo.org> perl-5.8.8-r5.ebuild,
+  perl-5.8.8-r6.ebuild, perl-5.10.1.ebuild:
+  Bump perl-5.10.1 patchset.
+  Fix asm/page.h failure. Thanks to Alon Bar-Lev and Diego Pettenò.
+  (#259923, #286656, #249827, #265268)
+
+*perl-5.10.1 (27 Sep 2009)
+
+  27 Sep 2009; Torsten Veller <tove@gentoo.org> +perl-5.10.1.ebuild:
+  Version bump
 
   30 Jul 2009; Torsten Veller <tove@gentoo.org> -perl-5.8.8-r7.ebuild:
   Remove 5.8.8-r7 again
