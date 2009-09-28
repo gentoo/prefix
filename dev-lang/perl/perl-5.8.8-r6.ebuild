@@ -182,6 +182,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-CVE-2008-1927.patch
 
 	epatch "${FILESDIR}"/${P}-CAN-2005-0448-rmtree-2.patch
+	epatch "${FILESDIR}"/${P}-CAN-2005-0448-rmtree-2-no-dirfd.patch #269430
 	epatch "${FILESDIR}"/${P}-fix_file_path_chdir.patch
 
 	# on interix, $firstmakefile may not be 'makefile', since the
