@@ -13,7 +13,7 @@ SRC_URI="mirror://gentoo/pax-utils-${PV}.tar.bz2
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~ia64-hpux ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="caps"
 #RESTRICT="mirror"
 
@@ -22,11 +22,18 @@ DEPEND="caps? ( sys-libs/libcap )
 	sparc64-solaris? ( dev-libs/gnulib )
 	x86-solaris? ( dev-libs/gnulib )
 	x64-solaris? ( dev-libs/gnulib )
+	ia64-hpux? ( dev-libs/gnulib )
 "
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-0.1.18-hpux.patch
+}
 
 src_compile() {
 	local libs
-	if [[ ${CHOST} == *-solaris* ]]; then
+	if [[ ${CHOST} == *-solaris* || ${CHOST} == *-hpux* ]]; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
 		libs="-lgnu"
