@@ -1,5 +1,7 @@
 IRIX patch by Stuart Shelton
 
+Added configure check for alloca.h to enable the guards for bug #286943
+
 http://bugs.gentoo.org/show_bug.cgi?id=266494
 
 --- setup.py.orig	2009-06-19 19:36:59.000000000 +0200
@@ -68,6 +70,17 @@ http://bugs.gentoo.org/show_bug.cgi?id=266494
  #if defined(PYCC_VACPP)
  extern int mkdir(char *);
  #else
+--- configure.in.orig	2009-09-29 18:03:23 +0200
++++ configure.in	2009-09-29 18:06:45 +0200
+@@ -1264,7 +1264,7 @@
+ # checks for header files
+ AC_HEADER_STDC
+ AC_CHECK_HEADERS(asm/types.h conio.h curses.h direct.h dlfcn.h errno.h \
+-fcntl.h grp.h \
++fcntl.h grp.h alloca.h \
+ ieeefp.h io.h langinfo.h libintl.h ncurses.h poll.h process.h pthread.h \
+ shadow.h signal.h stdint.h stropts.h termios.h thread.h \
+ unistd.h utime.h \
 --- Modules/_ctypes/_ctypes.c.orig	2009-04-05 23:48:06.000000000 +0200
 +++ Modules/_ctypes/_ctypes.c	2009-06-19 19:52:42.000000000 +0200
 @@ -111,11 +111,11 @@ bytes(cdata)
@@ -94,9 +107,9 @@ http://bugs.gentoo.org/show_bug.cgi?id=266494
 -#include "ctypes_dlfcn.h"
 +# include "ctypes_dlfcn.h"
  #endif
-+/* #ifdef HAVE_ALLOCA_H */
++#ifdef HAVE_ALLOCA_H
 +#include <alloca.h>
-+/* #endif */
++#endif
  #include "ctypes.h"
  
  PyObject *PyExc_ArgError;
@@ -128,9 +141,9 @@ http://bugs.gentoo.org/show_bug.cgi?id=266494
  #include <malloc.h>
  #endif
  
-+/* #ifdef HAVE_ALLOCA_H */
++#ifdef HAVE_ALLOCA_H
 +#include <alloca.h>
-+/* #endif */
++#endif
 +
  #include <ffi.h>
  #include "ctypes.h"
@@ -221,9 +234,9 @@ http://bugs.gentoo.org/show_bug.cgi?id=266494
  #include <windows.h>
  #include <malloc.h>
  #endif
-+/* #ifdef HAVE_ALLOCA_H */
++#ifdef HAVE_ALLOCA_H
 +#include <alloca.h>
-+/* #endif */
++#endif
  #include "ctypes.h"
  
  /******************************************************************/
