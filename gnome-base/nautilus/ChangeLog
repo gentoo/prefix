@@ -1,6 +1,19 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.316 2009/05/30 23:41:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.317 2009/09/28 13:09:56 mrpouet Exp $
+
+*nautilus-2.26.4 (28 Sep 2009)
+*nautilus-2.26.3-r1 (28 Sep 2009)
+
+  28 Sep 2009; Romain Perier <mrpouet@gentoo.org>
+  +nautilus-2.26.3-r1.ebuild,
+  +files/nautilus-2.26.3-file-management-properties-ui-dup-id.patch,
+  +files/nautilus-2.26.3-thumbnail-zoom-level.patch,
+  +nautilus-2.26.4.ebuild:
+  Version bump, which includes fix for duplicates id in
+  nautilus-file-management-properties (bug #286312). Apply this fix to
+  2.26.3, import patch from upstream (see distributor ML) which fixes
+  massive memory consumption by Nautilus for larger zoom levels.
 
   30 May 2009; Brent Baude <ranger@gentoo.org> nautilus-2.26.3.ebuild:
   Marking nautilus-2.26.3 ~ppc64 for bug 269309
