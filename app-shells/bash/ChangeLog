@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.225 2009/09/19 15:52:00 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.226 2009/09/26 13:07:58 ranger Exp $
+
+  26 Sep 2009; Brent Baude <ranger@gentoo.org> bash-4.0_p28.ebuild:
+  Marking bash-4.0_p28 ppc64 for bug 270008
 
   19 Sep 2009; nixnut <nixnut@gentoo.org> bash-4.0_p28.ebuild:
   ppc stable #270008
