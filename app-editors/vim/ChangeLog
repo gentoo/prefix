@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/vim
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.332 2009/07/26 12:28:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.333 2009/09/27 15:35:52 lack Exp $
+
+*vim-7.2.264 (27 Sep 2009)
+
+  27 Sep 2009; Jim Ramsay <lack@gentoo.org> +vim-7.2.264.ebuild:
+  Version bump, plus fix for bug #285502
 
   26 Jul 2009; Brent Baude <ranger@gentoo.org> vim-7.2.182.ebuild:
   Marking vim-7.2.182 ppc64 for bug 257007
