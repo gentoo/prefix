@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/tcl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.113 2009/09/22 14:50:29 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.114 2009/09/27 21:17:57 maekke Exp $
+
+  27 Sep 2009; Markus Meier <maekke@gentoo.org> tcl-8.5.7.ebuild:
+  arm stable, bug #280845
 
   22 Sep 2009; Markus Meier <maekke@gentoo.org> tcl-8.5.7.ebuild:
   amd64 stable, bug #280845
