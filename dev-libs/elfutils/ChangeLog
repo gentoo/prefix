@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/elfutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/ChangeLog,v 1.124 2009/03/15 11:29:33 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/ChangeLog,v 1.125 2009/09/26 21:53:40 dirtyepic Exp $
+
+*elfutils-0.143 (26 Sep 2009)
+
+  26 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> +elfutils-0.143.ebuild,
+  metadata.xml:
+  Version bump, bug #278144 by Conrad Kostecki.
 
 *elfutils-0.140 (15 Mar 2009)
 
