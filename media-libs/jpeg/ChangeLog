@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/jpeg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.77 2009/09/23 04:27:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jpeg/ChangeLog,v 1.79 2009/09/27 19:53:06 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> jpeg-7.ebuild:
+  ppc stable #285598
+
+  27 Sep 2009; Brent Baude <ranger@gentoo.org> jpeg-7.ebuild:
+  Marking jpeg-7 ppc64 for bug 285598
 
   23 Sep 2009; Mike Frysinger <vapier@gentoo.org> jpeg-7.ebuild:
   Add preserve_old_lib handling for libjpeg.so.62 if needed #285598.
