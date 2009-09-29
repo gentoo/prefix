@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/TimeDate/Attic/TimeDate-1.18.ebuild,v 1.1 2009/09/25 13:24:13 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/TimeDate/TimeDate-1.19.ebuild,v 1.1 2009/09/26 07:46:49 tove Exp $
 
 EAPI=2
 
