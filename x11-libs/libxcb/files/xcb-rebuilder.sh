@@ -58,6 +58,10 @@ for pkg in ${XCB_PACKAGES}; do
 	echo "  ${pkg}"
 done
 
+echo
+ewarn "Please read the libxcb upgrade guide for further instructions"
+ewarn "http://www.gentoo.org/proj/en/desktop/x/x11/libxcb-1.4-upgrade-guide.xml"
+
 #
 #ebegin "Rebuilding broken packages"
 #${XCB_REBUILDER_INSTALL:-emerge -1} ${XCB_PACKAGES}

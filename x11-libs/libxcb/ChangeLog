@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libxcb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/ChangeLog,v 1.39 2009/09/17 06:14:10 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/ChangeLog,v 1.40 2009/09/28 13:13:20 remi Exp $
+
+  28 Sep 2009; Rémi Cardona <remi@gentoo.org> files/xcb-rebuilder.sh:
+  add upgrade guide URL at the end of xcb-rebuilder.sh
 
   17 Sep 2009; Rémi Cardona <remi@gentoo.org> libxcb-1.4-r1.ebuild:
   remove the call to preserve_old_lib_notify, it's confusing
