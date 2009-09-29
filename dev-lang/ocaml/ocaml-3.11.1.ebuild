@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.1.ebuild,v 1.5 2009/09/19 20:53:18 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.1.ebuild,v 1.6 2009/09/27 15:15:56 aballier Exp $
 
 EAPI="1"
 
@@ -52,6 +52,8 @@ src_compile() {
 	# Causes build failures because it builds some programs with -pg,
 	# bug #270920
 	filter-flags -fomit-frame-pointer
+	# Bug #285993
+	filter-mfpmath sse
 
 	# It doesn't compile on alpha without this LDFLAGS
 	use alpha && append-ldflags "-Wl,--no-relax"
