@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/xz-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.4 2009/08/28 07:40:25 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.5 2009/09/26 16:49:19 vapier Exp $
+
+  26 Sep 2009; Mike Frysinger <vapier@gentoo.org>
+  xz-utils-4.999.9_beta.ebuild, xz-utils-9999.ebuild, metadata.xml:
+  Add support for USE="nls static-libs threads" by Toffanin #286203 and
+  require libtool-2 #286068 by Nicolas Cornu.
 
 *xz-utils-4.999.9_beta (28 Aug 2009)
 
