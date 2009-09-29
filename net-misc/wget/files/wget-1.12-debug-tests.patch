@@ -1,0 +1,52 @@
+Skip tests that require USE=debug when building with USE=-debug
+
+http://bugs.gentoo.org/286173
+
+--- a/tests/Test-E-k-K.px
++++ b/tests/Test-E-k-K.px
+@@ -3,6 +3,7 @@
+ use strict;
+ use warnings;
+ 
++use WgetFeature qw(debug);
+ use HTTPTest;
+ 
+ 
+--- a/tests/Test-cookies-401.px
++++ b/tests/Test-cookies-401.px
+@@ -3,6 +3,7 @@
+ use strict;
+ use warnings;
+ 
++use WgetFeature qw(debug);
+ use HTTPTest;
+ 
+ 
+--- a/tests/Test-ftp-bad-list.px
++++ b/tests/Test-ftp-bad-list.px
+@@ -3,6 +3,7 @@
+ use strict;
+ use warnings;
+ 
++use WgetFeature qw(debug);
+ use FTPTest;
+ 
+ 
+--- a/tests/Test-proxy-auth-basic.px
++++ b/tests/Test-proxy-auth-basic.px
+@@ -3,6 +3,7 @@
+ use strict;
+ use warnings;
+ 
++use WgetFeature qw(debug);
+ use HTTPTest;
+ 
+ 
+--- a/tests/WgetFeature.cfg
++++ b/tests/WgetFeature.cfg
+@@ -1,4 +1,5 @@
+ %skip_messages = (
++    debug => "Not running test: Wget under test doesn't support debug.",
+     https => "Not running test: Wget under test doesn't support HTTPS.",
+     iri   => "Not running test: Wget under test doesn't support IDN/IRI.",
+ );
