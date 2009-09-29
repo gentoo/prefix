@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/duma-2.5.15.ebuild,v 1.1 2009/08/01 20:00:23 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/duma-2.5.15.ebuild,v 1.2 2009/09/26 09:32:17 flameeyes Exp $
 
 EAPI=2
 inherit eutils flag-o-matic multilib toolchain-funcs versionator prefix
@@ -9,7 +9,8 @@ MY_P=${PN}_$(replace_all_version_separators '_')
 
 DESCRIPTION="DUMA (Detect Unintended Memory Access) is a memory debugging library"
 HOMEPAGE="http://duma.sourceforge.net"
-SRC_URI="mirror://sourceforge/duma/${MY_P}.tar.gz"
+SRC_URI="mirror://sourceforge/duma/${MY_P}.tar.gz
+	mirror://gentoo/${P}-GNUmakefile.patch.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -22,7 +23,7 @@ DEPEND="${RDEPEND}"
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-GNUmakefile.patch
+	epatch "${DISTDIR}"/${P}-GNUmakefile.patch.bz2
 	epatch "${FILESDIR}"/${PN}-2.5.13-prefix.patch
 	sed -i -e "s:lib\(/libduma.dylib\):$(get_libdir)\1:" duma.sh || die
 	eprefixify duma.sh
@@ -35,19 +36,19 @@ src_compile() {
 	tc-export AR CC CXX LD RANLIB
 
 	case "${CHOST}" in
-	    *-linux-gnu)
+		*-linux-gnu)
 			OS=linux;;
-	    *-solaris*)
+		*-solaris*)
 			OS=solaris;;
-	    *-darwin*)
+		*-darwin*)
 			OS=osx;;
-	    *-freebsd*)
+		*-freebsd*)
 			OS=freebsd;;
-	    *-netbsd*)
+		*-netbsd*)
 			OS=netbsd;;
-	    *-cygwin*)
+		*-cygwin*)
 			OS=cygwin;;
-	    **-irix**)
+		**-irix**)
 			OS=irix;;
 	esac
 	export OS="${OS}"
@@ -78,8 +79,8 @@ src_install(){
 	dodoc CHANGELOG TODO GNUmakefile
 
 	if use examples; then
-	    insinto /usr/share/doc/${PF}/examples
-	    doins example[1-6].cpp example_makes/ex6/Makefile || die "doins failed"
+		insinto /usr/share/doc/${PF}/examples
+		doins example[1-6].cpp example_makes/ex6/Makefile || die "doins failed"
 	fi
 }
 
