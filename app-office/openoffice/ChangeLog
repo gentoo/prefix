@@ -1,6 +1,10 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.486 2009/09/24 08:27:55 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.487 2009/09/26 14:10:22 keytoaster Exp $
+
+  26 Sep 2009; Tobias Heinlein <keytoaster@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  amd64 stable, security bug #283370
 
   24 Sep 2009; Andreas Proschofsky <suka@gentoo.org>
   -files/kde4-configure2.diff, -files/xulrunner-1.9.1.diff,
