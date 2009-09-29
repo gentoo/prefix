@@ -1,6 +1,9 @@
 # ChangeLog for app-office/texmacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/ChangeLog,v 1.73 2009/09/07 21:10:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/ChangeLog,v 1.74 2009/09/27 15:59:40 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> texmacs-1.0.7.2.ebuild:
+  ppc stable #283028
 
   07 Sep 2009; Markus Meier <maekke@gentoo.org> texmacs-1.0.7.2.ebuild:
   amd64/x86 stable, bug #283028
