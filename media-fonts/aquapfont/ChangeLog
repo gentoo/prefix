@@ -1,6 +1,23 @@
 # ChangeLog for media-fonts/aquapfont
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquapfont/ChangeLog,v 1.31 2009/09/12 09:28:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquapfont/ChangeLog,v 1.35 2009/09/27 15:02:49 volkmar Exp $
+
+  27 Sep 2009; Mounir Lamouri <volkmar@gentoo.org> aquapfont-2.6-r2.ebuild:
+  Stable for ppc. Bug 286489
+
+  27 Sep 2009; Markus Meier <maekke@gentoo.org> aquapfont-2.6-r2.ebuild:
+  amd64/x86 stable, bug #286489
+
+  26 Sep 2009; Brent Baude <ranger@gentoo.org> aquapfont-2.6-r2.ebuild:
+  Marking aquapfont-2.6-r2 ppc64 for bug 286489
+
+*aquapfont-2.6-r2 (26 Sep 2009)
+
+  26 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +files/60-aquapfont-r1.conf, -aquapfont-2.5-r1.ebuild,
+  +aquapfont-2.6-r2.ebuild:
+  Fix the installed fontconfig file; 2.6-r1 installed the mikachan file
+  instead of its own.
 
   12 Sep 2009; Raúl Porcel <armin76@gentoo.org> aquapfont-2.6-r1.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable wrt #283907
