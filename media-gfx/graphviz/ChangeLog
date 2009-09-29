@@ -1,6 +1,12 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.201 2009/09/15 22:19:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.202 2009/09/27 14:26:28 maekke Exp $
+
+*graphviz-2.24.0-r2 (27 Sep 2009)
+
+  27 Sep 2009; Markus Meier <maekke@gentoo.org> -graphviz-2.24.0-r1.ebuild,
+  +graphviz-2.24.0-r2.ebuild:
+  revision bump: disable automagic dep on media-libs/devil wrt bug #285750
 
 *graphviz-2.24.0-r1 (15 Sep 2009)
 
