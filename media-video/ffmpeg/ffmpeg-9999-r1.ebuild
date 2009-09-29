@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.20 2009/09/23 21:34:38 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.21 2009/09/28 22:49:59 aballier Exp $
 
 EAPI=2
 SCM=""
@@ -28,7 +28,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris 
 IUSE="+3dnow +3dnowext alsa altivec cpudetection custom-cflags debug dirac
 	  doc ieee1394 +encode faac faad gsm ipv6 jack +mmx +mmxext vorbis test
 	  theora threads x264 xvid network zlib sdl X mp3 opencore-amr
-	  oss schroedinger +hardcoded-tables bindist v4l v4l2
+	  oss pic schroedinger +hardcoded-tables bindist v4l v4l2
 	  speex +ssse3 jpeg2k vdpau"
 
 VIDEO_CARDS="nvidia"
@@ -174,6 +174,9 @@ src_configure() {
 	if gcc-specs-pie ; then
 		myconf="${myconf} --disable-mmx --disable-mmx2"
 	fi
+
+	# Option to force building pic
+	use pic && myconf="${myconf} --enable-pic"
 
 	# Try to get cpu type based on CFLAGS.
 	# Bug #172723
