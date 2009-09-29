@@ -1,6 +1,13 @@
 # ChangeLog for sys-auth/pambase
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.74 2009/09/22 20:03:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/ChangeLog,v 1.76 2009/09/27 16:44:46 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> pambase-20090620.1-r1.ebuild:
+  ppc stable #284088
+
+  26 Sep 2009; Romain Perier <mrpouet@gentoo.org>
+  pambase-20090620.1-r1.ebuild:
+  Stable for amd64 per bug #284088.
 
   22 Sep 2009; Jeroen Roovers <jer@gentoo.org> pambase-20090620.1-r1.ebuild:
   Stable for HPPA (bug #284088).
