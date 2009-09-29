@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.128 2009/09/22 14:52:21 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.129 2009/09/27 21:19:10 maekke Exp $
+
+  27 Sep 2009; Markus Meier <maekke@gentoo.org> tk-8.5.7.ebuild:
+  arm stable, bug #280845
 
   22 Sep 2009; Markus Meier <maekke@gentoo.org> tk-8.5.7.ebuild:
   amd64 stable, bug #280845
