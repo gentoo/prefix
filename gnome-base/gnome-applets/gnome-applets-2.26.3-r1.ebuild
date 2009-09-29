@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.26.3.ebuild,v 1.2 2009/09/27 15:36:44 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.26.3-r1.ebuild,v 1.1 2009/09/27 15:36:44 nirbheek Exp $
 
 inherit autotools eutils gnome2 python
 
@@ -10,7 +10,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="GPL-2 FDL-1.1 LGPL-2"
 SLOT="2"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
-IUSE="acpi apm doc gnome gstreamer hal ipv6 policykit"
+IUSE="acpi apm doc gnome gstreamer hal ipv6 networkmanager policykit"
 
 # TODO: configure says python stuff is optional
 # my secret script says cpufrequtils might be needed in RDEPEND
@@ -50,6 +50,7 @@ RDEPEND=">=x11-libs/gtk+-2.13
 		|| (
 			>=media-plugins/gst-plugins-alsa-0.10.14
 			>=media-plugins/gst-plugins-oss-0.10.14 ) )
+	networkmanager? ( >=net-misc/networkmanager-0.7.0 )
 	policykit? (
 		>=sys-auth/policykit-0.7
 		>=gnome-extra/policykit-gnome-0.7 )"
@@ -90,16 +91,14 @@ src_unpack() {
 }
 
 pkg_setup() {
-	# networkmanager-0.7 is not going stable.
-	# For networkmanager support, see -r1
 	G2CONF="${G2CONF}
 		--disable-scrollkeeper
 		--disable-schemas-install
 		--enable-flags
-		--disable-networkmanager
 		$(use_enable gstreamer mixer-applet)
 		$(use_with hal)
 		$(use_enable ipv6)
+		$(use_enable networkmanager)
 		$(use_enable policykit polkit)"
 
 	if ! use ppc && ! use apm && ! use acpi; then
