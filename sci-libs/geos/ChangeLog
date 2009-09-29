@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/geos
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.36 2009/09/25 22:28:26 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.37 2009/09/27 14:36:12 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> geos-3.1.1.ebuild:
+  ppc stable #279359
 
   25 Sep 2009; Brent Baude <ranger@gentoo.org> geos-3.1.1.ebuild:
   Marking geos-3.1.1 ppc64 for bug 279359
