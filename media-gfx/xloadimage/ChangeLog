@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/xloadimage
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/ChangeLog,v 1.48 2009/09/22 02:34:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/ChangeLog,v 1.49 2009/09/27 16:12:39 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> xloadimage-4.1-r10.ebuild:
+  ppc stable #283648
 
   22 Sep 2009; Jeroen Roovers <jer@gentoo.org> xloadimage-4.1-r10.ebuild:
   Stable for HPPA (bug #283648).
