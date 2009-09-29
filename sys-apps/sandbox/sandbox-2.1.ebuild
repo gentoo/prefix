@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-2.1.ebuild,v 1.3 2009/09/25 13:19:23 tommy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/sandbox-2.1.ebuild,v 1.4 2009/09/27 05:38:54 vapier Exp $
 
 #
 # don't monkey with this ebuild unless contacting portage devs.
@@ -38,7 +38,7 @@ src_unpack() {
 	eprefixify etc/sandbox.d/00default
 }
 
-sb_get_install_abis() { use multilib && get_install_abis || echo $ABI ; }
+sb_get_install_abis() { use multilib && get_install_abis || echo ${ABI:-default} ; }
 
 src_compile() {
 	filter-lfs-flags #90228
