@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/sip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/ChangeLog,v 1.142 2009/09/22 22:04:21 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/ChangeLog,v 1.143 2009/09/27 18:21:03 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> sip-4.8.2.ebuild:
+  ppc stable #284707
 
   22 Sep 2009; Markus Meier <maekke@gentoo.org> sip-4.8.2.ebuild:
   add ~arm
