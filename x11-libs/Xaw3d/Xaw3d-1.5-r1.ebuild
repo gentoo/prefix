@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/Xaw3d/Xaw3d-1.5-r1.ebuild,v 1.36 2009/05/05 07:34:46 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/Xaw3d/Xaw3d-1.5-r1.ebuild,v 1.37 2009/09/26 21:50:25 vostorga Exp $
 
 # Ok, hopefully this will resolv the problem with the version of libXaw3d that
 # gets created.
@@ -70,7 +70,8 @@ src_compile() {
 	make includes || die
 	make depend || die
 	local extld=
-	emake CDEBUGFLAGS="${CFLAGS}" CC="$(tc-getCC)" || die
+	emake CDEBUGFLAGS="${CFLAGS}" CC="$(tc-getCC)" \
+		SHLIBGLOBALSFLAGS="${LDFLAGS}" || die
 }
 
 src_install() {

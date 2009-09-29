@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/Xaw3d
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/Xaw3d/ChangeLog,v 1.26 2007/02/10 14:57:09 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/Xaw3d/ChangeLog,v 1.27 2009/09/26 21:50:25 vostorga Exp $
+
+  26 Sep 2009; Víctor Ostorga <vostorga@gentoo.org> Xaw3d-1.5-r1.ebuild:
+  Respecting LDFLAGS , bug 209744
 
   10 Feb 2007; Fabian Groffen <grobian@gentoo.org> Xaw3d-1.5-r1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
