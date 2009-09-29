@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.0_p4.ebuild,v 1.1 2009/08/29 21:10:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.0_p4.ebuild,v 1.2 2009/09/27 06:32:29 vapier Exp $
 
 inherit autotools eutils multilib toolchain-funcs flag-o-matic
 
@@ -59,7 +59,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
-	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${PN}-6.0-rlfe-irix.patch
 
 	# force ncurses linking #71420
 	sed -i -e 's:^SHLIB_LIBS=:SHLIB_LIBS=-lncurses:' support/shobj-conf || die "sed"
@@ -70,7 +69,6 @@ src_unpack() {
 
 	# the bundled rlfe had its configure.in updated, but no one actually
 	# ran autoconf to have the configure file updated
-	ln -s ../.. examples/rlfe/readline
 	cd examples/rlfe
 	eautoconf
 }
@@ -82,10 +80,16 @@ src_compile() {
 	emake || die
 
 	if ! tc-is-cross-compiler ; then
+		# code is full of AC_TRY_RUN()
 		cd examples/rlfe
-		append-ldflags -Lreadline
+		append-ldflags -L.
+		local l
+		for l in readline history ; do
+			ln -s ../../shlib/lib${l}*$(get_libname)* lib${l}$(get_libname)
+			ln -sf ../../lib${l}.a lib${l}.a
+		done
 		econf || die
-		emake || die "make rlfe failed"
+		emake || die
 	fi
 }
 
