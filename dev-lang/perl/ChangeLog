@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.285 2009/09/28 15:58:28 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.286 2009/09/28 20:29:27 tove Exp $
+
+  28 Sep 2009; Torsten Veller <tove@gentoo.org> perl-5.10.1.ebuild:
+  Bump perl patchset. Fixes bugs #286840, #286841
 
   28 Sep 2009; Torsten Veller <tove@gentoo.org> perl-5.8.8-r5.ebuild,
   perl-5.8.8-r6.ebuild, perl-5.10.1.ebuild:
