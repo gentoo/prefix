@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.279 2009/09/25 14:35:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.280 2009/09/27 17:10:48 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> sqlite-3.6.17.ebuild:
+  ppc stable #284340
 
   25 Sep 2009; Brent Baude <ranger@gentoo.org> sqlite-3.6.17.ebuild:
   Marking sqlite-3.6.17 ppc64 for bug 284340
