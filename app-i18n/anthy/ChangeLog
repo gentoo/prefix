@@ -1,6 +1,9 @@
 # ChangeLog for app-i18n/anthy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.128 2009/09/17 16:32:11 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/anthy/ChangeLog,v 1.129 2009/09/27 12:29:39 ranger Exp $
+
+  27 Sep 2009; Brent Baude <ranger@gentoo.org> anthy-9100h.ebuild:
+  Marking anthy-9100h ppc64 for bug 277353
 
   17 Sep 2009; MATSUU Takuto <matsuu@gentoo.org> -anthy-7500b.ebuild,
   -anthy-7900.ebuild, anthy-9100d.ebuild, -anthy-9100e.ebuild,
