@@ -1,6 +1,11 @@
 # ChangeLog for x11-proto/xproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.72 2009/06/19 21:20:46 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.73 2009/09/28 10:03:38 remi Exp $
+
+*xproto-7.0.16 (28 Sep 2009)
+
+  28 Sep 2009; Rémi Cardona <remi@gentoo.org> +xproto-7.0.16.ebuild:
+  bump to 7.0.16, sync with x11 overlay
 
   19 Jun 2009; Rémi Cardona <remi@gentoo.org> -xproto-7.0.12.ebuild,
   -xproto-7.0.13.ebuild:
