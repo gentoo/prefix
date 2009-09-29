@@ -1,6 +1,32 @@
 # ChangeLog for net-libs/webkit-gtk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/ChangeLog,v 1.46 2009/09/12 22:42:02 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/ChangeLog,v 1.51 2009/09/28 19:43:08 klausman Exp $
+
+  28 Sep 2009; Tobias Klausmann <klausman@gentoo.org>
+  webkit-gtk-1.1.10.ebuild:
+  Stable on alpha, bug #271865
+
+  28 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  webkit-gtk-1.1.10.ebuild:
+  stable x86, security bug 271865
+
+  28 Sep 2009; Olivier Crête <tester@gentoo.org> webkit-gtk-1.1.10.ebuild:
+  amd64 stable, bug #271865
+
+  28 Sep 2009; Mart Raudsepp <leio@gentoo.org>
+  +files/webkit-gtk-1.1.10-reduce-gnome-keyring-req.patch,
+  webkit-gtk-1.1.10.ebuild:
+  Reduce the gnome-keyring requirement to be able to stabilize the security
+  fixes in this version earlier. Tweak some other dependencies to be more
+  correct, also fixing bug 277463
+
+  27 Sep 2009; Mart Raudsepp <leio@gentoo.org>
+  -files/webkit-gtk-0_p46126-cxxmissing.patch,
+  -files/webkit-gtk-0_p46126-wx-parallel-make.patch,
+  -files/webkit-gtk-0_p46126-wxslot-gentoo.patch,
+  -webkit-gtk-0_p46193.ebuild:
+  Remove p.masked snapshot that tries to support wxWebKit. When this is
+  re-introduced eventually, it will have to be a proper separate package
 
   12 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org>
   webkit-gtk-0_p40220-r1.ebuild, webkit-gtk-0_p46193.ebuild,

@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.1.10.ebuild,v 1.3 2009/09/12 22:42:02 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.1.10.ebuild,v 1.8 2009/09/28 19:43:08 klausman Exp $
 
 EAPI="2"
 
-inherit autotools
+inherit autotools eutils virtualx
 
 MY_P="webkit-${PV}"
 DESCRIPTION="Open source web browser engine"
@@ -26,15 +26,16 @@ RDEPEND="
 	x11-libs/cairo
 
 	>=x11-libs/gtk+-2.10
+	>=gnome-base/gail-1.8
 	>=dev-libs/icu-3.8.1-r1
 	>=net-libs/libsoup-2.25.90
 	>=dev-db/sqlite-3
 	>=app-text/enchant-0.22
 
-	gnome-keyring? ( >=gnome-base/gnome-keyring-2.26.0 )
+	gnome-keyring? ( >=gnome-base/gnome-keyring-2.22.3-r2 )
 	gstreamer? (
 		media-libs/gstreamer:0.10
-		media-libs/gst-plugins-base:0.10 )
+		>=media-libs/gst-plugins-base-0.10.11:0.10 )
 	pango? ( x11-libs/pango )
 	!pango? (
 		media-libs/freetype:2
@@ -55,6 +56,13 @@ src_prepare() {
 	rm -v autotools/lt* autotools/libtool.m4 || die "removing libtool macros failed"
 	# Don't force -O2
 	sed -i 's/-O2//g' "${S}"/configure.ac || die "sed failed"
+
+	# Reduce the gnome-keyring requirement from 2.26 to 2.22.3:
+	# Upstream requires so new version only because earlier versions didn't install headers
+	# that can be included from C++ code. We now have fixes to the headers in our
+	# gnome-keyring-2.22.3-r2, so we can work with just that if we reduce req in configure.
+	epatch "${FILESDIR}/${P}-reduce-gnome-keyring-req.patch"
+
 	# Prevent maintainer mode from being triggered during make
 	AT_M4DIR=autotools eautoreconf
 }
@@ -84,6 +92,10 @@ src_configure() {
 	fi
 
 	econf ${myconf}
+}
+
+src_test() {
+	Xemake -j1 check
 }
 
 src_install() {
