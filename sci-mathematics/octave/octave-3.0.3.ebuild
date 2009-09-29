@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/octave-3.0.3.ebuild,v 1.8 2009/06/21 18:47:58 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/octave-3.0.3.ebuild,v 1.9 2009/09/27 13:42:00 nixnut Exp $
 
 inherit flag-o-matic fortran xemacs-elisp-common
 
