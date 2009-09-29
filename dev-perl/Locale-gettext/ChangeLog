@@ -1,6 +1,13 @@
 # ChangeLog for dev-perl/Locale-gettext
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/ChangeLog,v 1.33 2007/01/08 19:07:44 mcummings Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/ChangeLog,v 1.34 2009/09/26 15:00:26 tove Exp $
+
+*Locale-gettext-1.05-r1 (26 Sep 2009)
+
+  26 Sep 2009; Torsten Veller <tove@gentoo.org>
+  +Locale-gettext-1.05-r1.ebuild,
+  +files/compatibility-with-POSIX-module.diff:
+  Locale::Gettext re-exports the LC_* constants coming from POSIX (#237378)
 
   08 Jan 2007; Michael Cummings <mcummings@gentoo.org>
   Locale-gettext-1.05.ebuild:
