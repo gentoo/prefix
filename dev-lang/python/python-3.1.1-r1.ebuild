@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.4 2009/09/25 17:20:04 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.6 2009/09/27 18:33:37 arfrever Exp $
 
 EAPI="2"
 
@@ -24,25 +24,28 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="3.1"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 ncurses readline sqlite ssl +threads tk ucs2 wininst +xml"
+IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite ssl +threads tk ucs2 wininst +xml"
 
-RDEPEND=">=app-admin/eselect-python-20080925
+RDEPEND=">=app-admin/eselect-python-20090606
 		>=sys-libs/zlib-1.1.3
 		!build? (
-			sqlite? ( >=dev-db/sqlite-3 )
-			tk? ( >=dev-lang/tk-8.0 )
-			ncurses? ( >=sys-libs/ncurses-5.2
-						readline? ( >=sys-libs/readline-4.1 ) )
-			gdbm? ( sys-libs/gdbm )
-			ssl? ( dev-libs/openssl )
 			doc? ( dev-python/python-docs:${SLOT} )
+			gdbm? ( sys-libs/gdbm )
+			ncurses? (
+				>=sys-libs/ncurses-5.2
+				readline? ( >=sys-libs/readline-4.1 )
+			)
+			sqlite? ( >=dev-db/sqlite-3 )
+			ssl? ( dev-libs/openssl )
+			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
 		)
 		!m68k? ( !m68k-mint? ( !mips? ( !sparc-fbsd? ( virtual/libffi ) ) ) )"
 DEPEND="${RDEPEND}
 		!m68k? ( !m68k-mint? ( !mips? ( !sparc-fbsd? ( dev-util/pkgconfig ) ) ) )"
-PDEPEND="${RDEPEND} app-admin/python-updater"
 RDEPEND+=" !build? ( app-misc/mime-types )"
+PDEPEND="app-admin/python-updater
+		=dev-lang/python-2*"
 
 PROVIDE="virtual/python"
 
@@ -271,6 +274,7 @@ src_test() {
 
 	# test_debuglevel from test_telnetlib.py fails sometimes with
 	# socket.error: [Errno 104] Connection reset by peer
+	# http://bugs.python.org/issue6748
 	skip_tests+=" telnetlib"
 
 	# test_ctypes fails with PAX kernel (bug #234498).
@@ -452,27 +456,56 @@ EOF
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
 }
 
+pkg_preinst() {
+	if has_version "<${CATEGORY}/${PN}-${SLOT}" && ! has_version ">=${CATEGORY}/${PN}-${SLOT}_alpha"; then
+		# Delete this check after global switching to Python 3.
+		if [[ "$(eselect python show)" == "python3."* ]]; then
+			python_updater_warning="1"
+		fi
+	fi
+}
+
+eselect_python_update() {
+	local ignored_python_slots
+	[[ "$(eselect python show)" == "python2."* ]] && ignored_python_slots="--ignore 3.0 --ignore 3.1 --ignore 3.2"
+
+	# Create python3 symlink.
+	eselect python update > /dev/null
+
+	eselect python update ${ignored_python_slots}
+}
+
 pkg_postinst() {
-	# Update symlink temporarily for byte-compiling.
-	eselect python update
+	eselect_python_update
 
 	python_mod_optimize -x "(site-packages|test)" /usr/lib/python${PYVER}
 	[[ "$(get_libdir)" != "lib" ]] && python_mod_optimize -x "(site-packages|test)" /usr/$(get_libdir)/python${PYVER}
 
-	# Update symlink back to old version.
-	# Remove this after testing is done.
-	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2
+	if [[ "$(eselect python show)" == "python2."* ]]; then
+		ewarn
+		ewarn "WARNING!"
+		ewarn "Many Python modules haven't been ported yet to Python 3.*."
+		ewarn "Python 3 hasn't been activated and Python wrapper is still configured to use Python 2."
+		ewarn "You can manually activate Python ${SLOT} using \`eselect python set python${SLOT}\`."
+		ewarn
+		ebeep 6
+	fi
 
-	ewarn
-	ewarn "WARNING!"
-	ewarn "Many Python modules haven't been ported yet to Python 3.*."
-	ewarn "Python 3 hasn't been activated and Python wrapper is still configured to use Python 2."
-	ewarn
-	ebeep
+	if [[ "${python_updater_warning}" == "1" ]]; then
+		ewarn
+		ewarn "\e[1;31m************************************************************************\e[0m"
+		ewarn
+		ewarn "You have just upgraded from an older version of Python."
+		ewarn "You should run 'python-updater \${options}' to rebuild Python modules."
+		ewarn
+		ewarn "\e[1;31m************************************************************************\e[0m"
+		ewarn
+		ebeep 12
+	fi
 }
 
 pkg_postrm() {
-	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2
+	eselect_python_update
 
 	python_mod_cleanup /usr/lib/python${PYVER}
 	[[ "$(get_libdir)" != "lib" ]] && python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
