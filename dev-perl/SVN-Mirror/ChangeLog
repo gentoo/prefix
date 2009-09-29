@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/SVN-Mirror
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/SVN-Mirror/ChangeLog,v 1.43 2008/09/13 08:23:53 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/SVN-Mirror/ChangeLog,v 1.44 2009/09/28 17:00:12 betelgeuse Exp $
+
+  28 Sep 2009; Petteri Räty <betelgeuse@gentoo.org> SVN-Mirror-0.75.ebuild:
+  Migrate to EAPI 2 in order to nuke built_with_use.
 
 *SVN-Mirror-0.75 (13 Sep 2008)
 
