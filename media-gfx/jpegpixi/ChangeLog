@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/jpegpixi
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpegpixi/ChangeLog,v 1.11 2008/03/12 09:38:18 phreak Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpegpixi/ChangeLog,v 1.12 2009/09/27 14:01:02 maekke Exp $
+
+  27 Sep 2009; Markus Meier <maekke@gentoo.org> jpegpixi-1.1.1.ebuild:
+  assign RDEPEND
 
   12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Eldad Zack (eldad, #53978) from metadata.xml.
