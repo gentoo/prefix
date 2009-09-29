@@ -1,6 +1,9 @@
 # ChangeLog for app-text/xmlto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.58 2009/08/09 12:47:12 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xmlto/ChangeLog,v 1.59 2009/09/26 14:39:29 ranger Exp $
+
+  26 Sep 2009; Brent Baude <ranger@gentoo.org> xmlto-0.0.22.ebuild:
+  Marking xmlto-0.0.22 ppc64 for bug 276677
 
   09 Aug 2009; nixnut <nixnut@gentoo.org> xmlto-0.0.22.ebuild:
   ppc stable #276677
