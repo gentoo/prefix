@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/mc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.167 2009/09/22 11:28:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.168 2009/09/26 13:38:17 ranger Exp $
+
+  26 Sep 2009; Brent Baude <ranger@gentoo.org> mc-4.7.0_pre1.ebuild:
+  Marking mc-4.7.0_pre1 ppc64 for bug 281667
 
   22 Sep 2009; Markus Meier <maekke@gentoo.org> mc-4.7.0_pre1.ebuild:
   x86 stable, bug #281667
