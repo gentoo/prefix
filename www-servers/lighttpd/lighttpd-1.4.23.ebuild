@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.23.ebuild,v 1.2 2009/09/23 16:17:15 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.23.ebuild,v 1.6 2009/09/27 19:44:16 nixnut Exp $
 
 EAPI="2"
 
@@ -132,6 +132,14 @@ src_compile() {
 		einfo "Building HTML documentation"
 		cd doc
 		emake html || die "failed to build HTML documentation"
+	fi
+}
+
+src_test() {
+	if [[ ${EUID} -eq 0 ]]; then
+		default_src_test
+	else
+		ewarn "test skipped, please re-run as root if you wish to test ${PN}"
 	fi
 }
 
