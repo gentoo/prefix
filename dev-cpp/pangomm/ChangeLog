@@ -1,6 +1,9 @@
 # ChangeLog for dev-cpp/pangomm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/pangomm/ChangeLog,v 1.7 2009/09/25 17:00:53 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/pangomm/ChangeLog,v 1.8 2009/09/27 15:30:41 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> pangomm-2.24.0.ebuild:
+  ppc stable #285586
 
   25 Sep 2009; Brent Baude <ranger@gentoo.org> pangomm-2.24.0.ebuild:
   Marking pangomm-2.24.0 ppc64 stable for bug 285586
