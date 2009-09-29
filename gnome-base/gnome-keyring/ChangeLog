@@ -1,6 +1,25 @@
 # ChangeLog for gnome-base/gnome-keyring
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.152 2009/09/13 21:42:01 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.156 2009/09/28 18:12:09 klausman Exp $
+
+  28 Sep 2009; Tobias Klausmann <klausman@gentoo.org>
+  gnome-keyring-2.22.3-r2.ebuild:
+  Stable on alpha, bug #271865
+
+  28 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
+  gnome-keyring-2.22.3-r2.ebuild:
+  stable x86, security bug 271865
+
+  28 Sep 2009; Olivier Crête <tester@gentoo.org>
+  gnome-keyring-2.22.3-r2.ebuild:
+  amd64 stable, bug #271865
+
+*gnome-keyring-2.22.3-r2 (27 Sep 2009)
+
+  27 Sep 2009; Mart Raudsepp <leio@gentoo.org>
+  +files/gnome-keyring-2.22.3-headers-fix-for-cxx.patch,
+  +gnome-keyring-2.22.3-r2.ebuild:
+  Fix public headers to work with C++ code in the 2.22 series too
 
   13 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org>
   gnome-keyring-2.26.3.ebuild, +files/gnome-keyring-2.26.3-assert.patch:
