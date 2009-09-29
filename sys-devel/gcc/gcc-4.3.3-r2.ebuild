@@ -76,8 +76,7 @@ src_unpack() {
 	gcc_src_unpack
 
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
-	#doesn't apply
-#	epatch "${FILESDIR}"/4.2.2/targettools-checks.patch
+	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
 
 	# http://bugs.gentoo.org/show_bug.cgi?id=201490
 	epatch "${FILESDIR}"/4.2.2/gentoo-fixincludes.patch
@@ -109,6 +108,9 @@ src_unpack() {
 		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
 	fi
 
+	# Always behave as if -pthread were passed on AIX (#266548)
+	epatch "${FILESDIR}"/4.3.3/aix-force-pthread.patch
+
 	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
 
 	epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
@@ -133,6 +135,9 @@ src_compile() {
 			# AIX doesn't use GNU binutils, because it doesn't produce usable
 			# code
 			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
+			# The linker finding libs isn't enough, collect2 also has to:
+			EXTRA_ECONF="${EXTRA_ECONF} --with-mpfr=${EPREFIX}/usr"
+			EXTRA_ECONF="${EXTRA_ECONF} --with-gmp=${EPREFIX}/usr"
 			append-ldflags -Wl,-bbigtoc,-bmaxdata:0x10000000 # bug#194635
 		;;
 		*-darwin7)
