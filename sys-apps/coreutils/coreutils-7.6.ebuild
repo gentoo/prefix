@@ -52,6 +52,9 @@ src_unpack() {
 	# interix has no setgroups, so this won't work.
 	epatch "${FILESDIR}"/${PN}-7.5-interix-setgroups.patch
 
+	# http://www.mail-archive.com/bug-coreutils@gnu.org/msg17827.html
+	epatch "${FILESDIR}"/${P}-rpl_mkstemp.patch
+
 	# thank god not all things are as **** up as interix' security...
 #http://bugs.gentoo.org/show_bug.cgi?id=286459
 #	epatch "${FILESDIR}"/${PN}-7.5-interix-security.patch
