@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.167 2009/08/17 19:52:21 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.168 2009/09/27 18:13:33 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> erlang-13.2.1.ebuild:
+  ppc stable #284691
 
   17 Aug 2009; Christian Faulhammer <fauli@gentoo.org> -erlang-13.2.ebuild,
   -erlang-13.2-r1.ebuild, -files/erlang-13.2-eunit_fix.patch:
