@@ -157,6 +157,8 @@ src_prepare() {
 	# build shared library on aix #278845
 	epatch "${FILESDIR}"/${P}-aix-shared.patch
 
+	epatch "${FILESDIR}"/${P}-missing-SEM_FAILED.patch # hpux before 11.31
+
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
 	if [[ ${CHOST} == *-interix* ]] ; then
