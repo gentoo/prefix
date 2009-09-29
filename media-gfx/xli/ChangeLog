@@ -1,6 +1,12 @@
 # ChangeLog for media-gfx/xli
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xli/ChangeLog,v 1.43 2009/09/05 22:11:45 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xli/ChangeLog,v 1.45 2009/09/27 19:55:17 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> xli-1.17.0-r4.ebuild:
+  ppc stable #285599
+
+  27 Sep 2009; Brent Baude <ranger@gentoo.org> xli-1.17.0-r4.ebuild:
+  Marking xli-1.17.0-r4 ppc64 for bug 285599
 
   05 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> +xli-1.17.0-r4.ebuild,
   +files/xli-1.17.0-fix-scale-zoom.patch:
