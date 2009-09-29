@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/inkscape
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.123 2009/09/13 14:14:25 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.124 2009/09/27 20:01:27 maekke Exp $
+
+*inkscape-0.47_pre3 (27 Sep 2009)
+
+  27 Sep 2009; Markus Meier <maekke@gentoo.org> +inkscape-0.47_pre3.ebuild:
+  version bump
 
 *inkscape-0.47_pre2 (13 Sep 2009)
 
