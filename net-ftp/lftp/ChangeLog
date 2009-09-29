@@ -1,6 +1,9 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.232 2009/09/24 10:17:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.233 2009/09/27 12:27:53 ranger Exp $
+
+  27 Sep 2009; Brent Baude <ranger@gentoo.org> lftp-3.7.15-r1.ebuild:
+  Marking lftp-3.7.15-r1 ppc64 for bug 279426
 
 *lftp-4.0.2 (24 Sep 2009)
 
