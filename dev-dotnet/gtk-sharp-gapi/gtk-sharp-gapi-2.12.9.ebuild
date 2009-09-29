@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp-gapi/gtk-sharp-gapi-2.12.9.ebuild,v 1.2 2009/09/11 21:22:36 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-dotnet/gtk-sharp-gapi/gtk-sharp-gapi-2.12.9.ebuild,v 1.3 2009/09/27 16:29:40 nixnut Exp $
 
 EAPI=2
 
