@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/libtool
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.152 2009/09/20 19:29:59 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.154 2009/09/28 22:30:49 vapier Exp $
+
+*libtool-1.5.26-r1 (28 Sep 2009)
+
+  28 Sep 2009; Mike Frysinger <vapier@gentoo.org> +libtool-1.5.26-r1.ebuild:
+  Add ebuild to install just the old ABI lib.
+
+  27 Sep 2009; Brent Baude <ranger@gentoo.org> libtool-2.2.6a.ebuild:
+  Marking libtool-2.2.6a ppc64 for bug 257399
 
   20 Sep 2009; nixnut <nixnut@gentoo.org> libtool-2.2.6a.ebuild:
   ppc stable #257399
