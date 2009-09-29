@@ -2,7 +2,8 @@
 # Copyright Gentoo Foundation 2006-2007
 
 # <grobian@gentoo.org> -- 2009-09-29
-# warn when no KEYWORDS line is found
+# warn when no KEYWORDS line is found, allow KEYWORDS to be preceded by
+# whitespace
 # <grobian@gentoo.org> -- 2006-09-22
 # ecleankw weeds out all keywords in $KEYWORDS of an ebuild that are not
 # in $my_keywords.  Next to that, it currently drops all left over
@@ -34,12 +35,12 @@ fi
 for f in $files ; do
 	echo -n "Processing $f ... "
 	newkw=""
-	if [[ $(egrep "^KEYWORDS=" "$f" | wc -l) != 1 ]] ; then
+	if [[ $(egrep "^[ 	]KEYWORDS=" "$f" | wc -l) != 1 ]] ; then
 		echo "ABORTED"
 		echo "ERROR: $f has no or multiple KEYWORDS= lines, leaving ebuild untouched"
 		continue
 	fi
-	eval $(egrep "^KEYWORDS=" "$f")
+	eval $(egrep "^[ 	]KEYWORDS=" "$f")
 	for kw in $KEYWORDS ; do
 		for mkw in $my_keywords ; do
 			kw=${kw/-fbsd/-freebsd}
@@ -52,7 +53,7 @@ for f in $files ; do
 		done
 	done
 	sed -i \
-		-e "s|^KEYWORDS=.*$|KEYWORDS=\"${newkw:1}\"|" \
+		-e "s|^\([ \t]*\)KEYWORDS=.*$|\1KEYWORDS=\"${newkw:1}\"|" \
 		"$f"
 	echo "${newkw:1}"
 done
