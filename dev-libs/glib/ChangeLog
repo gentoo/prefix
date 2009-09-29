@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.377 2009/09/25 16:57:28 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.378 2009/09/27 15:18:44 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> glib-2.20.5.ebuild:
+  ppc stable #285586
 
   25 Sep 2009; Brent Baude <ranger@gentoo.org> glib-2.20.5.ebuild:
   Marking glib-2.20.5 ppc64 stable for bug 285586
