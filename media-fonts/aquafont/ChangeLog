@@ -1,6 +1,9 @@
 # ChangeLog for media-fonts/aquafont
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquafont/ChangeLog,v 1.28 2009/09/12 09:24:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/aquafont/ChangeLog,v 1.29 2009/09/27 09:26:12 volkmar Exp $
+
+  27 Sep 2009; Mounir Lamouri <volkmar@gentoo.org> aquafont-2.7-r4.ebuild:
+  Stable for ppc. Fix bug 283907
 
   12 Sep 2009; Raúl Porcel <armin76@gentoo.org> aquafont-2.7-r4.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable wrt #283907
