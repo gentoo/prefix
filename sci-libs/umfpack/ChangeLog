@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/umfpack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/umfpack/ChangeLog,v 1.13 2009/04/20 19:41:04 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/umfpack/ChangeLog,v 1.14 2009/09/27 13:38:44 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> umfpack-5.2.0.ebuild:
+  ppc stable #245707
 
   20 Apr 2009; Markus Meier <maekke@gentoo.org> umfpack-5.2.0:
   x86 stable, bug #245707
