@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.109 2009/09/25 16:56:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.110 2009/09/27 15:17:05 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> gtk-doc-1.11.ebuild:
+  ppc stable #285586
 
   25 Sep 2009; Brent Baude <ranger@gentoo.org> gtk-doc-1.11.ebuild:
   Marking gtk-doc-1.11 ppc64 stable for bug 285586
