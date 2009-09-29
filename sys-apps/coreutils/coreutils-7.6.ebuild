@@ -46,6 +46,7 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
+	epatch "${FILESDIR}"/${P}-tempname.patch # can be dropped next release
 	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 	epatch "${FILESDIR}"/${PN}-7.4-hppa-hpux.patch
 
