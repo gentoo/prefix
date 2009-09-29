@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/gtk+
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.429 2009/09/25 16:59:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/ChangeLog,v 1.430 2009/09/27 15:24:04 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> gtk+-2.16.6.ebuild:
+  ppc stable #285586
 
   25 Sep 2009; Brent Baude <ranger@gentoo.org> gtk+-2.16.6.ebuild:
   Marking gtk+-2.16.6 ppc64 stable for bug 285586
