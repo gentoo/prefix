@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
+	<maintainer>
+		<email>dickey@radix.net</email>
+		<name>Thomas Dickey</name>
+	</maintainer>
+	<maintainer>
+		<email>ssuominen@gentoo.org</email>
+		<name>Samuli Suominen</name>
+	</maintainer>
 	<herd>x11</herd>
 	<longdescription lang="en">
 		Default terminal for X-windows servers.
