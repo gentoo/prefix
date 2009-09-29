@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/python-docs-2.4.4-r1.ebuild,v 1.3 2009/08/24 01:54:57 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/python-docs-2.4.4-r1.ebuild,v 1.4 2009/09/27 18:39:53 arfrever Exp $
 
 DESCRIPTION="HTML documentation for Python"
 HOMEPAGE="http://www.python.org/doc/"
@@ -36,12 +36,22 @@ src_install() {
 	doenvd "60python-docs-${SLOT}"
 }
 
+eselect_python_update() {
+	local ignored_python_slots
+	[[ "$(eselect python show)" == "python2."* ]] && ignored_python_slots="--ignore 3.0 --ignore 3.1 --ignore 3.2"
+
+	# Create python2 symlink.
+	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2 > /dev/null
+
+	eselect python update ${ignored_python_slots}
+}
+
 pkg_postinst() {
-	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2
+	eselect_python_update
 }
 
 pkg_postrm() {
-	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2
+	eselect_python_update
 
 	if ! has_version "<dev-python/python-docs-${SLOT}_alpha" && ! has_version ">=dev-python/python-docs-${SLOT%.*}.$((${SLOT#*.}+1))_alpha"; then
 		rm -f "${EROOT}etc/env.d/65python-docs"
