@@ -1,6 +1,11 @@
 # ChangeLog for net-libs/libssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/ChangeLog,v 1.13 2009/08/26 02:34:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/ChangeLog,v 1.14 2009/09/29 00:57:46 jer Exp $
+
+*libssh-0.3.4 (29 Sep 2009)
+
+  29 Sep 2009; Jeroen Roovers <jer@gentoo.org> +libssh-0.3.4.ebuild:
+  Version bump thanks to Thomas Beinicke (bug #286860).
 
 *libssh-0.3.3 (26 Aug 2009)
 
