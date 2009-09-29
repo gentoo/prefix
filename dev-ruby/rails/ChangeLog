@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.148 2009/09/25 18:20:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.149 2009/09/26 19:47:35 graaff Exp $
+
+  26 Sep 2009; Hans de Graaff <graaff@gentoo.org> -rails-2.3.2.ebuild,
+  -rails-2.3.3.ebuild:
+  Remove insecure versions, bug 283396.
+
+  26 Sep 2009; Hans de Graaff <graaff@gentoo.org> ChangeLog:
+  Remove insecure versions, bug 283396.
 
   25 Sep 2009; Brent Baude <ranger@gentoo.org> rails-2.3.4.ebuild:
   Marking rails-2.3.4 ppc64 stable for bug 283396
