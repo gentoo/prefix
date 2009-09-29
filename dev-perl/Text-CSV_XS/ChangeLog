@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Text-CSV_XS
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CSV_XS/ChangeLog,v 1.53 2009/09/19 16:32:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Text-CSV_XS/ChangeLog,v 1.54 2009/09/27 15:04:04 ranger Exp $
+
+  27 Sep 2009; Brent Baude <ranger@gentoo.org> Text-CSV_XS-0.67.ebuild:
+  Marking Text-CSV_XS-0.67 ppc64 stable for bug 283969
 
   19 Sep 2009; nixnut <nixnut@gentoo.org> Text-CSV_XS-0.67.ebuild:
   ppc stable #283969
