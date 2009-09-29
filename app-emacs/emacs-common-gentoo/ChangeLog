@@ -1,6 +1,13 @@
 # ChangeLog for app-emacs/emacs-common-gentoo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.20 2009/09/20 16:04:14 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.22 2009/09/27 19:14:39 nixnut Exp $
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> emacs-common-gentoo-1.2.ebuild:
+  ppc stable #285063
+
+  26 Sep 2009; Brent Baude <ranger@gentoo.org>
+  emacs-common-gentoo-1.2.ebuild:
+  Marking emacs-common-gentoo-1.2 ppc64 for bug 285063
 
   20 Sep 2009; Tiago Cunha <tcunha@gentoo.org>
   emacs-common-gentoo-1.2.ebuild:
