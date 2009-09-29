@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.6.1-r1.ebuild,v 1.1 2009/09/23 11:09:56 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/xfce-base/xfdesktop/xfdesktop-4.6.1-r1.ebuild,v 1.2 2009/09/27 16:14:18 ssuominen Exp $
 
 EAPI=2
 EAUTORECONF=yes
@@ -54,7 +54,8 @@ pkg_setup() {
 		$(use_enable doc xsltproc)
 		$(use_enable debug)"
 	DOCS="AUTHORS ChangeLog NEWS TODO README"
-	PATCHES=( "${FILESDIR}/${P}-automagic.patch" )
+	PATCHES=( "${FILESDIR}/${P}-automagic.patch"
+		"${FILESDIR}/${P}-assert.patch" )
 }
 
 src_prepare() {
