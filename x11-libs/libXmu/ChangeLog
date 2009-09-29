@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libXmu
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXmu/ChangeLog,v 1.50 2009/06/23 21:22:17 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXmu/ChangeLog,v 1.51 2009/09/28 14:07:43 remi Exp $
+
+*libXmu-1.0.5 (28 Sep 2009)
+
+  28 Sep 2009; Rémi Cardona <remi@gentoo.org> +libXmu-1.0.5.ebuild:
+  bump to 1.0.5
 
   23 Jun 2009; Tobias Klausmann <klausman@gentoo.org> libXmu-1.0.4.ebuild:
   Stable on alpha for xorg-server-1.5/xorg-x11-7.4
