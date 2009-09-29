@@ -29,7 +29,6 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.12-linking.patch
 	epatch "${FILESDIR}"/${PN}-1.12-no-solaris-md5.patch
-	epatch "${FILESDIR}"/${PN}-1.11.1-interix3.patch
 }
 
 src_compile() {
