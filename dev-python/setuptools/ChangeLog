@@ -1,6 +1,35 @@
 # ChangeLog for dev-python/setuptools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.60 2009/09/18 23:02:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.65 2009/09/28 21:26:09 arfrever Exp $
+
+*setuptools-0.6.3-r1 (28 Sep 2009)
+
+  28 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -setuptools-0.6.1-r1.ebuild, -files/distribute-0.6.1-USER_SITE.patch,
+  -files/distribute-0.6.1-provide_setuptools.patch,
+  -setuptools-0.6.2.ebuild,
+  -files/distribute-0.6.2-provide_setuptools.patch,
+  -setuptools-0.6.3.ebuild, +setuptools-0.6.3-r1.ebuild:
+  Don't use no longer needed patch.
+
+*setuptools-0.6.3 (27 Sep 2009)
+
+  27 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +setuptools-0.6.3.ebuild:
+  Version bump.
+
+  27 Sep 2009; nixnut <nixnut@gentoo.org> setuptools-0.6-r1.ebuild:
+  ppc stable #284972
+
+*setuptools-0.6.2 (26 Sep 2009)
+
+  26 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +setuptools-0.6.2.ebuild,
+  +files/distribute-0.6.2-provide_setuptools.patch:
+  Version bump.
+
+  26 Sep 2009; Brent Baude <ranger@gentoo.org> setuptools-0.6-r1.ebuild:
+  Marking setuptools-0.6-r1 ppc64 for bug 284972
 
   18 Sep 2009; Markus Meier <maekke@gentoo.org> setuptools-0.6-r1.ebuild:
   amd64/arm stable, bug #284972
