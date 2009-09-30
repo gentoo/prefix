@@ -1,6 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/flawfinder/flawfinder-1.27.ebuild,v 1.2 2009/01/25 23:21:01 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/flawfinder/flawfinder-1.27-r1.ebuild,v 1.1 2009/09/29 12:11:59 rbu Exp $
+
+EAPI=2
+inherit eutils
 
 DESCRIPTION="Examines C/C++ source code for security flaws"
 HOMEPAGE="http://www.dwheeler.com/flawfinder/"
@@ -13,6 +16,10 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="dev-lang/python"
+
+src_prepare() {
+	epatch "${FILESDIR}"/flawfinder-1.27-whitespace-traceback.patch
+}
 
 src_install() {
 	dobin ${PN}

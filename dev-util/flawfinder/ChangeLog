@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/flawfinder
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/flawfinder/ChangeLog,v 1.12 2009/01/25 23:21:01 angelos Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/flawfinder/ChangeLog,v 1.13 2009/09/29 12:11:59 rbu Exp $
+
+*flawfinder-1.27-r1 (29 Sep 2009)
+
+  29 Sep 2009; Robert Buchholz <rbu@gentoo.org> -flawfinder-1.27.ebuild,
+  +flawfinder-1.27-r1.ebuild,
+  +files/flawfinder-1.27-whitespace-traceback.patch:
+  Fix IndexError that occurs when there is whitespace at the end of the file
 
   25 Jan 2009; Christoph Mende <angelos@gentoo.org>
   -files/flawfinder-1.26-linenumbers.patch, -flawfinder-1.23.ebuild,
