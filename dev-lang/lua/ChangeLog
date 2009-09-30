@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/lua
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.134 2009/07/10 22:50:21 mabi Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.135 2009/09/29 08:04:20 ulm Exp $
+
+  29 Sep 2009; Ulrich Mueller <ulm@gentoo.org> lua-5.1.4-r2.ebuild:
+  Depend on app-emacs/lua-mode with USE=emacs, fixes bug 263249. Explicitly
+  assign RDEPEND to make RepoMan happy.
 
 *lua-5.1.4-r2 (10 Jul 2009)
 
