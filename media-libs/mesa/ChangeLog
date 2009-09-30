@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.232 2009/09/21 10:41:36 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.233 2009/09/29 17:14:35 scarabeus Exp $
+
+*mesa-7.5.2 (29 Sep 2009)
+
+  29 Sep 2009; Tomáš Chvátal <scarabeus@gentoo.org> -mesa-7.5-r2.ebuild,
+  -mesa-7.5-r3.ebuild, +mesa-7.5.2.ebuild:
+  Version bump. Remove old.
 
   21 Sep 2009; Tomáš Chvátal <scarabeus@gentoo.org> mesa-7.1.ebuild,
   mesa-7.2.ebuild, mesa-7.3-r1.ebuild, mesa-7.4.4.ebuild,
