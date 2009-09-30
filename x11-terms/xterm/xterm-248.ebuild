@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-248.ebuild,v 1.3 2009/09/24 08:32:06 ssuominen Exp $
 
 EAPI=2
-inherit multilib
+inherit multilib eutils
 
 DESCRIPTION="Terminal Emulator for X Windows"
 HOMEPAGE="http://dickey.his.com/xterm/"
@@ -32,12 +32,8 @@ pkg_setup() {
 	DEFAULTS_DIR="${EPREFIX}"/usr/share/X11/app-defaults
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# modifications needed to run on interix
-	epatch "${FILESDIR}"/${PN}-232-interix.patch
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_configure() {
