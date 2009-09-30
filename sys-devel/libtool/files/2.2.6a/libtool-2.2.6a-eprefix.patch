@@ -1,0 +1,12 @@
+diff -ru libtool-2.2.6.orig/libltdl/m4/libtool.m4 libtool-2.2.6/libltdl/m4/libtool.m4
+--- libtool-2.2.6.orig/libltdl/m4/libtool.m4	2009-09-30 14:32:11 +0200
++++ libtool-2.2.6/libltdl/m4/libtool.m4	2009-09-30 14:46:07 +0200
+@@ -2120,7 +2120,7 @@
+   if (lt_foo != "") { lt_freq[[lt_foo]]++; }
+   if (lt_freq[[lt_foo]] == 1) { print lt_foo; }
+ }'`
+-  sys_lib_search_path_spec=`$ECHO $lt_search_path_spec`
++  sys_lib_search_path_spec="@GENTOO_PORTAGE_EPREFIX@/lib @GENTOO_PORTAGE_EPREFIX@/usr/lib `$ECHO $lt_search_path_spec`"
+ else
+   sys_lib_search_path_spec="/lib /usr/lib /usr/local/lib"
+ fi])

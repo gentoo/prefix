@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.16 2009/09/27 00:56:04 ranger Exp $
 
 LIBTOOLIZE="true" #225559
-inherit eutils autotools flag-o-matic multilib
+inherit eutils autotools flag-o-matic multilib prefix
 
 DESCRIPTION="A shared library tool for developers"
 HOMEPAGE="http://www.gnu.org/software/libtool/"
@@ -44,6 +44,15 @@ src_unpack() {
 			epatch "${FILESDIR}"/${PV}/${P}-winnt.patch
 		epatch "${FILESDIR}"/${PV}/${P}-mint.patch
 		epatch "${FILESDIR}"/${PV}/${P}-hppa-hpux.patch
+
+		# seems that libtool has to know about EPREFIX a little bit better,
+		# since it fails to find prefix paths to search libs from, resulting in
+		# some packages building static only, since libtool is fooled into
+		# thinking that libraries are unavailable (argh...). This could also be
+		# fixed by making the gcc wrapper return the correct result for
+		# -print-search-dirs (doesn't include prefix dirs ...).
+		epatch "${FILESDIR}"/${PV}/${P}-eprefix.patch
+		eprefixify libltdl/m4/libtool.m4
 
 		epunt_cxx
 		cd libltdl/m4
