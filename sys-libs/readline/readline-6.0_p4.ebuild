@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.0_p4.ebuild,v 1.2 2009/09/27 06:32:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.0_p4.ebuild,v 1.3 2009/09/30 03:04:28 vapier Exp $
 
 inherit autotools eutils multilib toolchain-funcs flag-o-matic
 
@@ -69,6 +69,7 @@ src_unpack() {
 
 	# the bundled rlfe had its configure.in updated, but no one actually
 	# ran autoconf to have the configure file updated
+	ln -s ../.. examples/rlfe/readline # for headers
 	cd examples/rlfe
 	eautoconf
 }
