@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/timezone-data
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.197 2009/09/08 17:36:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.198 2009/09/30 03:34:50 vapier Exp $
+
+*timezone-data-2009n (30 Sep 2009)
+
+  30 Sep 2009; Mike Frysinger <vapier@gentoo.org>
+  +timezone-data-2009n.ebuild:
+  Version bump #286778 by Rodrigo Severo.
 
 *timezone-data-2009m (08 Sep 2009)
 
