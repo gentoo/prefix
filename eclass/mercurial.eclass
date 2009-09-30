@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mercurial.eclass,v 1.6 2009/03/11 18:56:28 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mercurial.eclass,v 1.7 2009/09/29 21:51:33 nelchael Exp $
 
 # @ECLASS: mercurial.eclass
 # @MAINTAINER:
@@ -45,6 +45,13 @@ DEPEND="dev-util/mercurial"
 # Command used to update repository.
 [[ -z "${EHG_PULL_CMD}" ]] && EHG_PULL_CMD="hg pull --quiet"
 
+# @ECLASS-VARIABLE: EHG_OFFLINE
+# @DESCRIPTION:
+# Set this variable to a non-empty value to disable the automatic updating of
+# a mercurial source tree. This is intended to be set outside the ebuild by
+# users.
+EHG_OFFLINE="${EHG_OFFLINE:-${ESCM_OFFLINE}}"
+
 # @FUNCTION: mercurial_fetch
 # @USAGE: [repository_uri] [module]
 # @DESCRIPTION:
@@ -88,7 +95,7 @@ function mercurial_fetch {
 			die "failed to clone ${EHG_REPO_URI}"
 		}
 		cd "${module}"
-	else
+	elif [[ -z "${EHG_OFFLINE}" ]]; then
 		einfo "Updating ${hg_src_dir}/${EHG_PROJECT}/${module} from ${EHG_REPO_URI}"
 		cd "${module}" || die "failed to cd to ${module}"
 		${EHG_PULL_CMD} || die "update failed"
