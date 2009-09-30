@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/cocom
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cocom/ChangeLog,v 1.9 2009/09/01 18:34:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cocom/ChangeLog,v 1.10 2009/09/29 09:19:20 maekke Exp $
+
+  29 Sep 2009; Markus Meier <maekke@gentoo.org> cocom-0.996.ebuild,
+  cocom-0.996-r1.ebuild:
+  block media-gfx/hugin due to a file collision wrt bug #280241
 
   01 Sep 2009; Jeroen Roovers <jer@gentoo.org> -cocom-0.995.ebuild,
   -files/cocom-0.995-gcc4.patch, cocom-0.996.ebuild, cocom-0.996-r1.ebuild:

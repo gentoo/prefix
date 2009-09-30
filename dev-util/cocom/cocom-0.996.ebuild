@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cocom/cocom-0.996.ebuild,v 1.2 2009/09/01 18:34:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cocom/cocom-0.996.ebuild,v 1.3 2009/09/29 09:19:20 maekke Exp $
 
 inherit autotools
 
@@ -12,6 +12,8 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
+RDEPEND="!media-gfx/hugin"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
