@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Log-Log4perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Log-Log4perl/ChangeLog,v 1.54 2009/09/18 18:27:43 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Log-Log4perl/ChangeLog,v 1.55 2009/09/29 08:22:50 tove Exp $
+
+*Log-Log4perl-1.25 (29 Sep 2009)
+
+  29 Sep 2009; Torsten Veller <tove@gentoo.org> +Log-Log4perl-1.25.ebuild:
+  Version bump
 
   18 Sep 2009; Torsten Veller <tove@gentoo.org> Log-Log4perl-1.24.ebuild:
   Stable on amd64 (#283969)
