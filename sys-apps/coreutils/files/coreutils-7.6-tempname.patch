@@ -1,6 +1,16 @@
 grabbed from upstream, so should no longer be necessary for next release
 
 http://bugs.gentoo.org/show_bug.cgi?id=286760
+http://www.mail-archive.com/bug-coreutils@gnu.org/msg17827.html
+
+From: Jim Meyering <meyer...@redhat.com>
+Date: Fri, 18 Sep 2009 23:05:59 +0200
+Subject: [PATCH] mktemp: adapt to new, 3-argument gen_tempname_len
+
+* src/mktemp.c (mkstemp_len, mkdtemp_len): Update callers of
+gen_tempname_len.
+* gl/lib/tempname.c, gl/lib/tempname.h: Rebase against recently
+API-modified copy of tempname module in gnulib.
 
 diff --git a/lib/tempname.c b/lib/tempname.c
 index 0171516..84679bc 100644
