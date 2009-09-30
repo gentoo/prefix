@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/liboil
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.77 2009/09/22 07:42:19 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.78 2009/09/29 17:18:39 klausman Exp $
+
+  29 Sep 2009; Tobias Klausmann <klausman@gentoo.org> liboil-0.3.16.ebuild:
+  Stable on alpha, bug #285370
 
   22 Sep 2009; Markus Meier <maekke@gentoo.org> liboil-0.3.16.ebuild:
   amd64 stable, bug #285370
