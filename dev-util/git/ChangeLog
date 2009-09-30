@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.361 2009/09/18 10:13:30 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.362 2009/09/29 20:05:22 robbat2 Exp $
+
+*git-1.6.5_rc2 (29 Sep 2009)
+
+  29 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.5_rc2.ebuild,
+  git-9999.ebuild, metadata.xml:
+  Version bump again. Also handle bug #285238 to use the new SHA1
+  implementation by default (and add other IUSE defaults too).
 
 *git-1.6.4.4 (18 Sep 2009)
 
