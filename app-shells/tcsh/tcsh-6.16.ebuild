@@ -4,30 +4,28 @@
 
 inherit eutils flag-o-matic autotools prefix
 
-CONFVER="1.10"
+CONFVER="1.8"
 
 MY_P="${P}.00"
 DESCRIPTION="Enhanced version of the Berkeley C shell (csh)"
 HOMEPAGE="http://www.tcsh.org/"
 SRC_URI="ftp://ftp.astron.com/pub/tcsh/${MY_P}.tar.gz
-	mirror://gentoo/tcsh-config-prefix-${CONFVER}.tar.bz2
-	http://www.gentoo.org/~grobian/distfiles/tcsh-config-prefix-${CONFVER}.tar.bz2"
+	http://www.gentoo.org/~grobian/distfiles/tcsh-gentoo-patches-r${CONFVER}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-
+KEYWORDS="alpha amd64 arm hppa ia64 ~m68k ~mips ppc ppc64 s390 sh sparc x86 ~x86-fbsd ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="perl catalogs"
 RESTRICT="test"
 
 # we need gettext because we run autoconf
 DEPEND=">=sys-libs/ncurses-5.1
 	sys-devel/gettext
-	perl? ( dev-lang/perl )
-	!app-shells/csh" # bug #119703
+	perl? ( dev-lang/perl )"
 RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}
+CONFDIR=${WORKDIR}/tcsh-gentoo-patches-r${CONFVER}
 
 src_unpack() {
 	unpack ${A}
@@ -48,7 +46,17 @@ src_unpack() {
 	echo "#undef ECHO_STYLE" >> config_f.h
 	echo "#define ECHO_STYLE      BOTH_ECHO" >> config_f.h
 
-	eprefixify "${WORKDIR}"/tcsh-config/*
+	eprefixify "${CONFDIR}"/*
+	# activate the right default PATH
+	if [[ -z ${EPREFIX} ]] ; then
+		sed -i \
+			-e 's/^#MAIN//' -e '/^#PREFIX/d' \
+			"${CONFDIR}"/csh.login || die
+	else
+		sed -i \
+			-e 's/^#PREFIX//' -e '/^#MAIN/d' \
+			"${CONFDIR}"/csh.login || die
+	fi
 }
 
 src_compile() {
@@ -59,7 +67,7 @@ src_compile() {
 	append-flags -D_PATH_USRBIN="'"'"${EPREFIX}/usr/bin"'"'"
 	append-flags -D_PATH_BIN="'"'"${EPREFIX}/bin"'"'"
 
-	econf --prefix="${EPREFIX}" || die "econf failed"
+	econf --prefix="${EPREFIX:-/}" || die "econf failed"
 	emake || die "compile problem"
 }
 
@@ -73,8 +81,8 @@ src_install() {
 
 	insinto /etc
 	doins \
-		"${WORKDIR}"/tcsh-config/csh.cshrc \
-		"${WORKDIR}"/tcsh-config/csh.login
+		"${CONFDIR}"/csh.cshrc \
+		"${CONFDIR}"/csh.login
 
 	dodoc FAQ Fixes NewThings Ported README WishList Y2K
 
