@@ -47,6 +47,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-2.7.1-catalog_path.patch
 	epatch "${FILESDIR}"/${PN}-2.7.2-winnt.patch
+	epatch "${FILESDIR}"/${P}-ld-version-script-check.patch # needs eautoreconf
 
 	eprefixify catalog.c xmlcatalog.c runtest.c xmllint.c
 
