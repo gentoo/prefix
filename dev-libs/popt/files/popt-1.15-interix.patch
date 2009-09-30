@@ -1,0 +1,17 @@
+--- popt.c	2009-04-12 21:14:38 +0300
++++ popt.c	2009-09-29 17:51:19 +0300
+@@ -958,7 +958,14 @@ static int poptSaveArg(poptContext con, 
+ 	unsigned int argInfo = poptArgInfo(con, opt);
+ 
+ 	if (con->os->nextArg) {
++#ifdef __INTERIX
++/* interix only has strtol ... so long long not supported here! */
++	    if(opt->arg == POPT_ARG_LONGLONG)
++	 	   return POPT_ERROR_BADNUMBER;
++	    aNUM = strtol(con->os->nextArg, &end, 0);
++#else
+ 	    aNUM = strtoll(con->os->nextArg, &end, 0);
++#endif
+ 	    if (!(end && *end == '\0'))
+ 		return POPT_ERROR_BADNUMBER;
+ 	}
