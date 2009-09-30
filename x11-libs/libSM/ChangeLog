@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libSM
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.69 2009/08/14 09:14:57 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.70 2009/09/30 09:58:54 haubi Exp $
+
+  30 Sep 2009; Michael Haubenwallner <haubi@gentoo.org> libSM-1.1.1.ebuild,
+  metadata.xml:
+  add local IUSE=+uuid (with eapi 2 bump) for bug#230981
 
   14 Aug 2009; Rémi Cardona <remi@gentoo.org> libSM-1.1.1.ebuild:
   up libICE dep to 1.0.5 (fixes bug #281360)
