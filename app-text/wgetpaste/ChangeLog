@@ -1,6 +1,11 @@
 # ChangeLog for app-text/wgetpaste
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.95 2009/08/28 16:45:32 williamh Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/wgetpaste/ChangeLog,v 1.96 2009/09/29 23:51:37 patrick Exp $
+
+*wgetpaste-2.14 (29 Sep 2009)
+
+  29 Sep 2009; Patrick Lauer <patrick@gentoo.org> +wgetpaste-2.14.ebuild:
+  Bump as requested by upstream. License change.
 
   28 Aug 2009; William Hubbs <williamh@gentoo.org> metadata.xml:
   Made zsh-completion a global use flag
