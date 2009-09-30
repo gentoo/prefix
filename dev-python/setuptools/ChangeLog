@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/setuptools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.65 2009/09/28 21:26:09 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.66 2009/09/29 18:42:53 arfrever Exp $
+
+*setuptools-0.6.3-r2 (29 Sep 2009)
+
+  29 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -setuptools-0.6.3-r1.ebuild, +setuptools-0.6.3-r2.ebuild:
+  Ensure that <dev-python/setuptools-0.6.3-r2 isn't installed before
+  installation of newer versions (bug #286895).
 
 *setuptools-0.6.3-r1 (28 Sep 2009)
 

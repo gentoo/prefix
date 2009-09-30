@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6.3-r1.ebuild,v 1.1 2009/09/28 21:26:09 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6.3-r2.ebuild,v 1.2 2009/09/29 18:58:44 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -17,7 +17,7 @@ KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos
 IUSE=""
 
 # Avoid silent errors during upgrade from older versions.
-DEPEND="!!<=dev-python/setuptools-0.6.3"
+DEPEND="!!<dev-python/setuptools-0.6.3-r2"
 RDEPEND=""
 
 S="${WORKDIR}/distribute-${PV}"
@@ -25,7 +25,13 @@ S="${WORKDIR}/distribute-${PV}"
 DOCS="README.txt docs/easy_install.txt docs/pkg_resources.txt docs/setuptools.txt"
 
 pkg_setup() {
-	rm -fr "${EROOT}"usr/lib*/python*/site-packages/{,._cfg????_}setuptools-0.6c9-*egg-info
+	# Older versions of Portage don't support !! dependencies correctly (bug #270953).
+	if has_version "<dev-python/setuptools-0.6.3-r2"; then
+		die "<dev-python/setuptools-0.6.3-r2 must be uninstalled before installation of newer versions to avoid silent errors"
+	fi
+
+	# Delete unneeded files which cause problems. These files were created by some older, broken versions.
+	rm -fr "${EROOT}"usr/lib*/python*/site-packages/{,._cfg????_}setuptools-*egg-info || die "Deletion of broken files failed"
 }
 
 src_prepare() {
