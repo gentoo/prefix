@@ -13,4 +13,4 @@ IUSE=""
 RDEPEND=""
 DEPEND="${RDEPEND}"
 
-PATCHES=( "${FILESDIR}"/${PN}-7.0.13-winnt.patch )
+PATCHES=( "${FILESDIR}"/${P}-winnt.patch )
