@@ -10,7 +10,7 @@ inherit perl-module eutils
 DESCRIPTION="Self Contained RDBMS in a DBI Driver"
 
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~x64-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE=""
 
 DEPEND=">=dev-perl/DBI-1.57
