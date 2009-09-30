@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/libXcursor
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcursor/ChangeLog,v 1.59 2009/04/16 02:14:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcursor/ChangeLog,v 1.61 2009/09/29 09:50:30 remi Exp $
+
+*libXcursor-1.1.10 (29 Sep 2009)
+
+  29 Sep 2009; Rémi Cardona <remi@gentoo.org> +libXcursor-1.1.10.ebuild:
+  bump to 1.1.10, sync with x11 overlay
+
+  29 Sep 2009; Rémi Cardona <remi@gentoo.org> -libXcursor-1.1.8.ebuild:
+  drop old ebuilds
 
   16 Apr 2009; Jeroen Roovers <jer@gentoo.org> libXcursor-1.1.9.ebuild:
   Stable for HPPA (bug #251832).
