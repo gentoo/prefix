@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/man
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.152 2009/03/17 09:50:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.154 2009/09/29 11:45:01 flameeyes Exp $
+
+  29 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org> man-1.6f-r3.ebuild:
+  Fix package name.
+
+  29 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org> man-1.6f-r3.ebuild:
+  Add alternative dependency over heirloom-doctools; add a warning if it's
+  installed because it's not automatically switched for.
 
   17 Mar 2009; Raúl Porcel <armin76@gentoo.org> man-1.6f-r3.ebuild:
   m68k stable wrt #258767, thanks to kolla for testing
