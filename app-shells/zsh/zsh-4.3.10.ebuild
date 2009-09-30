@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.10.ebuild,v 1.1 2009/06/03 06:28:42 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/zsh-4.3.10.ebuild,v 1.2 2009/09/29 11:05:04 flameeyes Exp $
 
 # doc package for -dev version exists?
 doc_available=true
@@ -44,7 +44,7 @@ RDEPEND=">=sys-libs/ncurses-5.1
 	caps? ( sys-libs/libcap )
 	pcre? ( >=dev-libs/libpcre-3.9 )
 	gdbm? ( sys-libs/gdbm )"
-DEPEND="sys-apps/groff
+DEPEND="|| ( sys-apps/groff app-doc/heirloom-doctools )
 	${RDEPEND}"
 
 src_unpack() {

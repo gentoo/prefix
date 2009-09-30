@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/zsh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.145 2009/06/03 06:28:42 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/zsh/ChangeLog,v 1.146 2009/09/29 11:05:04 flameeyes Exp $
+
+  29 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org> zsh-4.3.10.ebuild:
+  Allow using heirloom-doctools instead of groff.
 
 *zsh-4.3.10 (03 Jun 2009)
 
