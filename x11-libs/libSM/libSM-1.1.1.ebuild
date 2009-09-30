@@ -19,7 +19,9 @@ RDEPEND=">=x11-libs/libICE-1.0.5
 	x11-proto/xproto
 	uuid? (
 	  !elibc_FreeBSD? (
+	  !elibc_SunOS? (
 		|| ( >=sys-apps/util-linux-2.16 <sys-libs/e2fsprogs-libs-1.41.8 )
+	  )
 	  )
 	)"
 DEPEND="${RDEPEND}"
@@ -28,4 +30,12 @@ pkg_setup() {
 	CONFIGURE_OPTIONS="$(use_enable ipv6) $(use_with uuid libuuid)"
 	# do not use uuid even if available in libc (like on FreeBSD)
 	use uuid || export ac_cv_func_uuid_create=no
+	if use uuid &&
+	   [[ ${CHOST} == *-solaris* ]] &&
+	   [[ ! -d ${EROOT}/usr/include/uuid ]] &&
+	   [[ -d ${ROOT}/usr/include/uuid ]]
+	then
+		export LIBUUID_CFLAGS="-I${ROOT}/usr/include/uuid"
+		export LIBUUID_LIBS="-luuid"
+	fi
 }
