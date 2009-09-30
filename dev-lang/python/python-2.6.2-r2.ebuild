@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r2.ebuild,v 1.7 2009/09/28 14:27:53 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r2.ebuild,v 1.8 2009/09/29 20:02:56 arfrever Exp $
 
 EAPI="2"
 
@@ -69,6 +69,9 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# Ensure that internal copy of libffi isn't used.
+	rm -fr Modules/_ctypes/libffi*
+
 	if tc-is-cross-compiler; then
 		epatch "${FILESDIR}/python-2.5-cross-printf.patch"
 		epatch "${FILESDIR}/python-2.6-chflags-cross.patch"

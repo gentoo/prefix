@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.6 2009/09/27 18:33:37 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.7 2009/09/29 20:02:56 arfrever Exp $
 
 EAPI="2"
 
@@ -50,6 +50,9 @@ PDEPEND="app-admin/python-updater
 PROVIDE="virtual/python"
 
 src_prepare() {
+	# Ensure that internal copy of libffi isn't used.
+	rm -fr Modules/_ctypes/libffi*
+
 	if ! tc-is-cross-compiler; then
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
