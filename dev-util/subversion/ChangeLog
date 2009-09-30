@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/subversion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.407 2009/09/27 21:16:25 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.408 2009/09/29 09:22:21 maekke Exp $
+
+  29 Sep 2009; Markus Meier <maekke@gentoo.org> subversion-1.6.5.ebuild:
+  arm stable, bug #286002
 
   27 Sep 2009; Markus Meier <maekke@gentoo.org> subversion-1.6.5.ebuild:
   amd64/x86 stable, bug #286002
