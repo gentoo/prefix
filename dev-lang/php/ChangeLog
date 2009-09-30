@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.343 2009/09/24 23:36:54 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.344 2009/09/29 16:37:04 hoffie Exp $
+
+*php-5.2.11 (29 Sep 2009)
+
+  29 Sep 2009; Christian Hoffmann <hoffie@gentoo.org> +php-5.2.11.ebuild:
+  version bump per bug 285434 (security)
 
 *php-5.2.10-r2 (24 Sep 2009)
 
