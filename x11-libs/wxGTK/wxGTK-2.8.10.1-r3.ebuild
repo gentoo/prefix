@@ -74,6 +74,10 @@ src_prepare() {
 
 	eprefixify "${S}"/configure.in
 
+	# Upstream issue, see Gentoo bug 271421
+	einfo "Copying missing get-version.sh to ${S}/src/expat/conftools/"
+	cp -a "${FILESDIR}"/get-version.sh "${S}/src/expat/conftools/"
+
 	AT_M4DIR="${S}/build/aclocal" eautoreconf
 	eautoconf -B "build/autoconf_prepend-include"
 }
