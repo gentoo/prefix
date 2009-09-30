@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.45 2009/09/01 18:39:20 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.46 2009/09/29 10:49:01 remi Exp $
+
+*pixman-0.16.2 (29 Sep 2009)
+
+  29 Sep 2009; Rémi Cardona <remi@gentoo.org> +pixman-0.16.2.ebuild:
+  bump to 0.16.2, sync with x11 overlay
 
   01 Sep 2009; Jeroen Roovers <jer@gentoo.org> pixman-0.12.0.ebuild:
   Stable for HPPA (scarabeus).
