@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.268 2009/08/18 10:07:54 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.269 2009/09/29 15:51:45 caster Exp $
+
+*sun-jdk-1.5.0.21 (29 Sep 2009)
+
+  29 Sep 2009; Vlastimil Babka <caster@gentoo.org> +sun-jdk-1.5.0.21.ebuild:
+  Version bump.
 
 *sun-jdk-1.6.0.16 (18 Aug 2009)
 
