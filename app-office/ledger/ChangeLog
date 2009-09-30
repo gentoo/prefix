@@ -1,6 +1,12 @@
 # ChangeLog for app-office/ledger
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/ledger/ChangeLog,v 1.12 2009/09/06 19:17:45 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/ledger/ChangeLog,v 1.13 2009/09/29 18:28:32 vostorga Exp $
+
+*ledger-2.6.2 (29 Sep 2009)
+
+  29 Sep 2009; Víctor Ostorga <vostorga@gentoo.org> +ledger-2.6.2.ebuild:
+  Version bump to 2.6.2 patch thanks to Tim Harder <radhermit@gmail.com> bug
+  286831
 
   06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
   -files/50ledger-mode-gentoo.el, ledger-2.5-r2.ebuild, ledger-2.6.1.ebuild:
