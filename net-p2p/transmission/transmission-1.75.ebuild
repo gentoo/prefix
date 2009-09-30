@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.75.ebuild,v 1.1 2009/09/19 12:53:24 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.75.ebuild,v 1.3 2009/09/29 08:45:04 ssuominen Exp $
 
 EAPI=2
 inherit autotools eutils fdo-mime gnome2-utils qt4
@@ -20,7 +20,7 @@ RDEPEND=">=dev-libs/libevent-1.4.11
 	|| ( >=net-misc/curl-7.16.3[ssl]
 		>=net-misc/curl-7.16.3[gnutls] )
 	gtk? ( >=dev-libs/glib-2.15.5:2
-		>=x11-libs/gtk+-2.6:2
+		>=x11-libs/gtk+-2.12:2
 		>=dev-libs/dbus-glib-0.70
 		libnotify? ( >=x11-libs/libnotify-0.4.3 ) )
 	qt4? ( x11-libs/qt-gui:4 )"
@@ -75,6 +75,7 @@ src_install() {
 		emake INSTALL_ROOT="${ED}/usr" install || die "emake install failed"
 		make_desktop_entry qtr "Transmission Qt BitTorrent Client" ${PN} \
 			"Network;FileTransfer;P2P;Qt"
+		use gtk || doicon qt/icons/transmission.png
 	fi
 }
 

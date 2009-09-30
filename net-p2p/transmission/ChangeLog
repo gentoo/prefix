@@ -1,6 +1,16 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.94 2009/09/27 14:43:43 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.96 2009/09/29 08:45:04 ssuominen Exp $
+
+  29 Sep 2009; Samuli Suominen <ssuominen@gentoo.org>
+  transmission-1.75.ebuild:
+  Install transmission.png even if USE gtk isn't enabled wrt #282136, thanks
+  to Jouni Rinne for reporting.
+
+  29 Sep 2009; Samuli Suominen <ssuominen@gentoo.org>
+  transmission-1.72.ebuild, transmission-1.75.ebuild:
+  Change x11-libs/gtk+ depend to 2.12 wrt #286586, thanks to Robin ESTEVE
+  for reporting.
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> transmission-1.72.ebuild:
   ppc stable #280584
