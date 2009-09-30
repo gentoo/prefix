@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/redland-1.0.9-r1.ebuild,v 1.5 2009/09/27 17:28:50 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/redland-1.0.9-r1.ebuild,v 1.6 2009/09/29 19:00:04 ssuominen Exp $
 
 EAPI=2
 inherit autotools eutils libtool
@@ -27,6 +27,9 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	dev-util/gtk-doc-am
 	>=sys-devel/libtool-2"
+
+# Please, remove this RESTRICT from next version. See bug #285110.
+RESTRICT="test"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-ldflags.patch \
