@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libICE
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libICE/ChangeLog,v 1.52 2009/05/08 22:33:10 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libICE/ChangeLog,v 1.53 2009/09/29 10:18:16 remi Exp $
+
+*libICE-1.0.6 (29 Sep 2009)
+
+  29 Sep 2009; Rémi Cardona <remi@gentoo.org> +libICE-1.0.6.ebuild:
+  bump to 1.0.6
 
 *libICE-1.0.5 (08 May 2009)
 
