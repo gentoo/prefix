@@ -19,6 +19,7 @@ licenses
 profiles
 
 # regular packages (do NOT put portage in here!)
+app-portage/eix
 app-shells/tcsh
 mail-client/mutt
 net-misc/mico
