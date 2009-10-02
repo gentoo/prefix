@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/jasper-1.900.1-r3.ebuild,v 1.9 2009/06/30 14:32:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/jasper/jasper-1.900.1-r3.ebuild,v 1.10 2009/09/30 09:46:20 ssuominen Exp $
 
 inherit libtool eutils
 
@@ -21,7 +21,6 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
 	epatch "${WORKDIR}"/${P}-fixes-20081208.patch
 
 	elibtoolize
@@ -37,13 +36,6 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die
 	dodoc NEWS README doc/*
-}
-
-pkg_postinst() {
-	elog
-	elog "Be noted that API has been changed, and you need to run"
-	elog "revdep-rebuild from gentoolkit to correct deps."
-	elog
 }
