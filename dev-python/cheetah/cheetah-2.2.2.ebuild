@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/cheetah-2.2.2.ebuild,v 1.1 2009/09/16 04:45:27 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/cheetah/cheetah-2.2.2.ebuild,v 1.2 2009/10/01 20:13:37 klausman Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
