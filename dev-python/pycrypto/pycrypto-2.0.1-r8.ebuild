@@ -1,10 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/pycrypto-2.0.1-r8.ebuild,v 1.8 2009/04/08 18:42:18 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/pycrypto-2.0.1-r8.ebuild,v 1.9 2009/10/02 01:08:28 arfrever Exp $
 
-EAPI=1
-NEED_PYTHON=2.5
-inherit distutils toolchain-funcs flag-o-matic
+EAPI="2"
+NEED_PYTHON="2.5"
+SUPPORT_PYTHON_ABIS="1"
+
+inherit distutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Python Cryptography Toolkit"
 HOMEPAGE="http://www.amk.ca/python/code/crypto.html"
@@ -15,14 +17,14 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="bindist gmp test"
 
-RDEPEND="virtual/python
-	gmp? ( dev-libs/gmp )"
+RDEPEND="gmp? ( dev-libs/gmp )"
 DEPEND="${RDEPEND}
 	test? ( =dev-python/sancho-0.11-r1 )"
+RESTRICT_PYTHON_ABIS="3.*"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+DOCS="ACKS ChangeLog PKG-INFO README TODO Doc/pycrypt.tex"
+
+src_prepare() {
 	use bindist && epatch "${FILESDIR}"/${P}-bindist.patch
 	epatch "${FILESDIR}"/${P}-sha256.patch
 	epatch "${FILESDIR}"/${P}-sha256-2.patch
@@ -48,15 +50,13 @@ src_compile() {
 }
 
 src_test() {
-	export PYTHONPATH=$(ls -d "${S}"/build/lib.*/)
-	python ./test.py || die "test failed"
-	if use test ; then
-		local x
+	testing() {
+		PYTHONPATH="$(ls -d build-${PYTHON_ABI}/lib.*)" "$(PYTHON)" test.py || die "test failed with Python ${PYTHON_ABI}"
 		cd test
-		for x in test_*.py ; do
-			python ${x} || die "${x} failed"
+		local test
+		for test in test_*.py; do
+			PYTHONPATH="$(ls -d ../build-${PYTHON_ABI}/lib.*)" "$(PYTHON)" "${test}" || die "${test} failed with Python ${PYTHON_ABI}"
 		done
-	fi
+	}
+	python_execute_function testing
 }
-
-DOCS="ACKS ChangeLog PKG-INFO README TODO Doc/pycrypt.tex"

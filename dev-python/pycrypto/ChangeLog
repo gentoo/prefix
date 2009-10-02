@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pycrypto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.73 2009/09/06 21:59:16 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pycrypto/ChangeLog,v 1.74 2009/10/02 01:08:28 arfrever Exp $
+
+  02 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pycrypto-2.0.1-r8.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
   06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
   -files/pycrypto-2.0.1-ia64.patch:
