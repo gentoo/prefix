@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-mods.eclass,v 1.18 2009/08/02 07:29:50 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-mods.eclass,v 1.30 2009/10/02 04:56:24 nyhm Exp $
 
 # Variables to specify in an ebuild which uses this eclass:
 # GAME - (doom3, quake4 or ut2004, etc), unless ${PN} starts with e.g. "doom3-"
@@ -10,62 +10,75 @@
 # MOD_ICON - Custom icon for the mod, instead of the default
 # MOD_NAME - Creates a command-line wrapper and desktop icon for the mod
 # MOD_TBZ2 - File to extract within the Makeself archive
+# MOD_NO_DED - Set this non-empty if the mod doesn't have a server
 
 inherit eutils games
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_install pkg_postinst
+EXPORT_FUNCTIONS src_unpack src_install pkg_postinst
 
 [[ -z ${GAME} ]] && GAME=${PN%%-*}
 
 # Set our default title, icon, and cli options
-case "${GAME}" in
-	"doom3")
-		GAME_TITLE="Doom III"
-		DEFAULT_MOD_ICON="doom3.png"
+case ${GAME} in
+	doom3)
+		GAME_PKGS="games-fps/doom3"
+		GAME_TITLE="Doom 3"
+		DEFAULT_MOD_ICON="doom3"
 		SELECT_MOD="+set fs_game "
 		GAME_EXE="doom3"
 		DED_EXE="doom3-ded"
 		DED_OPTIONS="+set dedicated 1 +exec server.cfg"
+		DED_CFG_DIR=".doom3"
 		;;
-	"enemy-territory")
+	enemy-territory)
+		GAME_PKGS="games-fps/enemy-territory"
 		GAME_TITLE="Enemy Territory"
-		DEFAULT_MOD_ICON="ET.xpm"
+		DEFAULT_MOD_ICON="ET"
 		SELECT_MOD="+set fs_game "
 		GAME_EXE="et"
 		DED_EXE="et-ded"
 		DED_OPTIONS="+set dedicated 1 +exec server.cfg"
+		DED_CFG_DIR=".etwolf"
 		;;
-	"quake3")
+	quake3)
+		GAME_PKGS="games-fps/quake3 games-fps/quake3-bin"
 		GAME_TITLE="Quake III"
-		DEFAULT_MOD_ICON="quake3.xpm"
+		DEFAULT_MOD_ICON="quake3"
 		SELECT_MOD="+set fs_game "
 		GAME_EXE="quake3"
 		DED_EXE="quake3-ded"
 		DED_OPTIONS="+set dedicated 1 +exec server.cfg"
+		DED_CFG_DIR=".q3a"
 		;;
-	"quake4")
-		GAME_TITLE="Quake IV"
-		DEFAULT_MOD_ICON="quake4.bmp"
+	quake4)
+		GAME_PKGS="games-fps/quake4-bin"
+		GAME_TITLE="Quake 4"
+		DEFAULT_MOD_ICON="/usr/share/pixmaps/quake4.bmp"
 		SELECT_MOD="+set fs_game "
 		GAME_EXE="quake4"
 		DED_EXE="quake4-ded"
 		DED_OPTIONS="+set dedicated 1 +exec server.cfg"
+		DED_CFG_DIR=".quake4"
 		;;
-	"ut2003")
+	ut2003)
+		GAME_PKGS="games-fps/ut2003"
 		GAME_TITLE="UT2003"
-		DEFAULT_MOD_ICON="ut2003.xpm"
+		DEFAULT_MOD_ICON="ut2003"
 		SELECT_MOD="-mod="
 		GAME_EXE="ut2003"
 		DED_EXE="ucc"
 		DED_OPTIONS=""
+		DED_CFG_DIR=""
 		;;
-	"ut2004")
+	ut2004)
+		GAME_PKGS="games-fps/ut2004"
 		GAME_TITLE="UT2004"
-		DEFAULT_MOD_ICON="ut2004.xpm"
+		DEFAULT_MOD_ICON="ut2004"
 		SELECT_MOD="-mod="
 		GAME_EXE="ut2004"
 		DED_EXE="ucc"
 		DED_OPTIONS=""
+		DED_CFG_DIR=""
 		;;
 	*)
 		eerror "This game is either not supported or you must set the GAME"
@@ -74,56 +87,59 @@ case "${GAME}" in
 		;;
 esac
 
+games-mods_get_rdepend() {
+	[[ $# -lt 1 ]] && die "${FUNCNAME}: need args"
+	[[ $# -gt 1 ]] && echo -n "|| ( "
+
+	case ${EAPI:-0} in
+		0|1) echo -n $@ ;;
+		2)
+			local pkg
+			for pkg in $@ ; do
+				if [[ -z ${MOD_NO_DED} ]] ; then
+					echo -n " ${pkg}[dedicated=,opengl=]"
+				else
+					echo -n " ${pkg}[opengl]"
+				fi
+			done
+			;;
+	esac
+
+	[[ $# -gt 1 ]] && echo -n " )"
+}
+
 DESCRIPTION="${GAME_TITLE} ${MOD_NAME} - ${MOD_DESC}"
 
 SLOT="0"
-LICENSE="freedist"
-KEYWORDS="-* amd64 x86"
-IUSE="dedicated opengl"
 RESTRICT="mirror strip"
 
 DEPEND="app-arch/unzip"
-#RDEPEND="${CATEGORY}/${GAME}"
+RDEPEND="$(games-mods_get_rdepend ${GAME_PKGS})"
 
 S=${WORKDIR}
 
 dir=${GAMES_DATADIR}/${GAME}
-Ddir=${D}/${dir}
 
-default_client() {
+games-mods_use_opengl() {
+	[[ -n ${MOD_NO_DED} ]] && return 0
+
 	if use opengl || ! use dedicated ; then
 		# Use opengl by default
 		return 0
 	fi
+
 	return 1
 }
 
-games-mods_pkg_setup() {
-	[[ -z "${MOD_NAME}" ]] && die "what is the name of this mod?"
+games-mods_use_dedicated() {
+	[[ -n ${MOD_NO_DED} ]] && return 1
 
-	games_pkg_setup
-
-	if has_version ${CATEGORY}/${GAME} ; then
-		if use dedicated && ! built_with_use ${CATEGORY}/${GAME} dedicated ; then
-			die "You must merge ${CATEGORY}/${GAME} with USE=dedicated!"
-		fi
-		if has_version ${CATEGORY}/${GAME}-bin ; then
-			if use dedicated && \
-			! built_with_use ${CATEGORY}/${GAME}-bin dedicated ; then
-				die "You must merge ${CATEGORY}/${GAME}-bin with USE=dedicated!"
-			fi
-		fi
-	elif has_version ${CATEGORY}/${GAME}-bin ; then
-		if use dedicated && ! built_with_use ${CATEGORY}/${GAME}-bin dedicated ; then
-			die "You must merge ${CATEGORY}/${GAME}-bin with USE=dedicated!"
-		fi
-	fi
+	use dedicated && return 0 || return 1
 }
 
 games-mods_src_unpack() {
 	# The first thing we do here is determine exactly what we're dealing with
-	for src_uri in ${A}
-	do
+	for src_uri in ${A} ; do
 		URI_SUFFIX="${src_uri##*.}"
 		case ${URI_SUFFIX##*.} in
 			bin|run)
@@ -141,13 +157,10 @@ games-mods_src_unpack() {
 	done
 
 	# This code should only be executed for Makeself archives
-	for tarball in ${MOD_TBZ2}
-	do
+	for tarball in ${MOD_TBZ2} ; do
 		mkdir -p "${S}"/unpack
-		for name in "${tarball}_${PV}-english" "${tarball}_${PV}" "${tarball}"
-		do
-			for ext in tar.bz2 tar.gz tbz2 tgz
-			do
+		for name in "${tarball}_${PV}-english" "${tarball}_${PV}" "${tarball}" ; do
+			for ext in tar.bz2 tar.gz tbz2 tgz ; do
 				if [[ -e "${name}.${ext}" ]] ; then
 					tar xf "${name}.${ext}" -C "${S}"/unpack \
 						|| die "uncompressing tarball"
@@ -179,14 +192,13 @@ games-mods_src_install() {
 	cd "${S}"
 
 	# If we have a README, install it
-	for readme in README*
-	do
+	for readme in README* ; do
 		if [[ -s "${readme}" ]] ; then
 			dodoc "${readme}" || die "dodoc failed"
 		fi
 	done
 
-	if default_client ; then
+	if games-mods_use_opengl ; then
 		if [[ -n "${MOD_ICON}" ]] ; then
 			# Install custom icon
 			MOD_ICON_EXT=${MOD_ICON##*.}
@@ -196,7 +208,7 @@ games-mods_src_install() {
 					MOD_ICON=/usr/share/pixmaps/${PN}.${MOD_ICON_EXT}
 					;;
 				*)
-					MOD_ICON=${PN}.${MOD_ICON_EXT}
+					MOD_ICON=${PN}
 					;;
 			esac
 		else
@@ -206,8 +218,7 @@ games-mods_src_install() {
 
 		# Set up command-line and desktop menu entries
 		if [[ -n "${MOD_BINS}" ]] ; then
-			for binary in ${MOD_BINS}
-			do
+			for binary in ${MOD_BINS} ; do
 				if [[ -n "${MOD_DIR}" ]] ; then
 					games_make_wrapper "${GAME_EXE}-${MOD_BINS}" \
 						"${GAME_EXE} ${SELECT_MOD}${MOD_DIR}" "${dir}" "${dir}"
@@ -232,8 +243,7 @@ games-mods_src_install() {
 					if [[ "${bin_name}" == "${binary}" ]] ; then
 						bin_name=${MOD_NAME}
 					else
-						for tmp1 in ${bin_name}
-						do
+						for tmp1 in ${bin_name} ; do
 							tmp2=$(echo ${tmp1} | cut -b1 | tr [[:lower:]] \
 								[[:upper:]])
 							tmp3=$(echo ${tmp1} | cut -b2-)
@@ -298,8 +308,7 @@ games-mods_src_install() {
 			# directory structure and try to symlink everything to
 			# GAMES_PREFIX_OPT/GAME so it'll work.
 			directories=$(cd "${ED}"/"${INS_DIR}";find . -maxdepth 1 -type d -printf '%P ')
-			for i in ${directories}
-			do
+			for i in ${directories} ; do
 				if [[ -h "${GAMES_PREFIX_OPT}"/"${GAME}"/${i} ]] ; then
 					# Skip this directory, and just run a symlink
 					dosym "${INS_DIR}"/${i} \
@@ -308,8 +317,7 @@ games-mods_src_install() {
 					dodir "${GAMES_PREFIX_OPT}"/"${GAME}"/${i}
 					cd "${ED}"/"${INS_DIR}"/${i}
 					files="$(find . -type f -printf '%P ')"
-					for j in ${files}
-					do
+					for j in ${files} ; do
 						if has_version ${CATEGORY}/${PN} ; then
 							dosym "${INS_DIR}"/${i}/${j} \
 								"${GAMES_PREFIX_OPT}"/"${GAME}"/${i}/${j} \
@@ -327,8 +335,7 @@ games-mods_src_install() {
 				fi
 			done
 			files=$(cd "${D}"/"${INS_DIR}";find . -maxdepth 1 -type f -printf '%P ')
-			for i in ${files}
-			do
+			for i in ${files} ; do
 				# Why don´t we use symlinks? Because these use ./$bin when
 				# they run and that doesn't work if the binary is in
 				# GAMES_PREFIX_OPT but the mod is in GAMES_DATADIR.
@@ -343,43 +350,19 @@ games-mods_src_install() {
 		fi
 	fi
 
-	if use dedicated ; then
-		dodir "${GAMES_STATEDIR}"
-		if [[ -e ${FILESDIR}/server.cfg ]] ; then
+	if games-mods_use_dedicated ; then
+		if [[ -f ${FILESDIR}/server.cfg ]] ; then
 			insinto "${GAMES_SYSCONFDIR}"/${GAME}/${MOD_DIR}
 			doins "${FILESDIR}"/server.cfg || die "Copying server config"
-			case ${GAME} in
-				doom3)
-					dodir "${GAMES_PREFIX}"/.doom3/${MOD_DIR}
-					dosym "${GAMES_SYSCONFDIR}"/${GAME}/${MOD_DIR}/server.cfg \
-						"${GAMES_PREFIX}"/.doom3/${MOD_DIR}
-					;;
-				enemy-territory)
-					dodir "${GAMES_PREFIX}"/.etwolf/${MOD_DIR}
-					dosym "${GAMES_SYSCONFDIR}"/${GAME}/${MOD_DIR}/server.cfg \
-						"${GAMES_PREFIX}"/.etwolf/${MOD_DIR}
-					;;
-				quake3)
-					dodir "${GAMES_PREFIX}"/.q3a/${MOD_DIR}
-					dosym "${GAMES_SYSCONFDIR}"/${GAME}/${MOD_DIR}/server.cfg \
-						"${GAMES_PREFIX}"/.q3a/${MOD_DIR}
-					;;
-				quake4)
-					dodir "${GAMES_PREFIX}"/.quake4/${MOD_DIR}
-					dosym "${GAMES_SYSCONFDIR}"/${GAME}/${MOD_DIR}/server.cfg \
-						"${GAMES_PREFIX}"/.quake4/${MOD_DIR}
-					;;
-			esac
+			dodir "${GAMES_PREFIX}"/${DED_CFG_DIR}/${MOD_DIR}
+			dosym "${GAMES_SYSCONFDIR}"/${GAME}/${MOD_DIR}/server.cfg \
+				"${GAMES_PREFIX}"/${DED_CFG_DIR}/${MOD_DIR}/server.cfg
 		fi
-		games-mods_make_ded_exec
-		newgamesbin "${T}"/${GAME_EXE}-${MOD_DIR}-ded.bin \
-			${GAME_EXE}-${MOD_DIR}-ded || die "dedicated"
-		games-mods_make_init.d
-		newinitd "${T}"/${GAME_EXE}-${MOD_DIR}-ded.init.d \
-			${GAME_EXE}-${MOD_DIR}-ded || die "init.d"
-		games-mods_make_conf.d
-		newconfd "${T}"/${GAME_EXE}-${MOD_DIR}-ded.conf.d \
-			${GAME_EXE}-${MOD_DIR}-ded || die "conf.d"
+		games_make_wrapper \
+			${GAME_EXE}-${MOD_DIR}-ded \
+			"${DED_EXE} ${SELECT_MOD}${MOD_DIR} ${DED_OPTIONS}" 
+		games-mods_make_initd
+		games-mods_make_confd
 	fi
 
 	prepgamesdirs
@@ -387,10 +370,9 @@ games-mods_src_install() {
 
 games-mods_pkg_postinst() {
 	games_pkg_postinst
-	if default_client ; then
+	if games-mods_use_opengl ; then
 		if [[ -n "${MOD_BINS}" ]] ; then
-			for binary in ${MOD_BINS}
-			do
+			for binary in ${MOD_BINS} ; do
 				elog "To play this mod run:"
 				elog " ${GAME_EXE}-${binary}"
 				echo
@@ -401,7 +383,7 @@ games-mods_pkg_postinst() {
 			echo
 		fi
 	fi
-	if use dedicated ; then
+	if games-mods_use_dedicated ; then
 		elog "To launch a dedicated server run:"
 		elog " ${GAME_EXE}-${MOD_DIR}-ded"
 		echo
@@ -411,51 +393,41 @@ games-mods_pkg_postinst() {
 	fi
 }
 
-games-mods_make_ded_exec() {
-	cat <<-EOF > "${T}"/${GAME_EXE}-${MOD_DIR}-ded.bin
-	#!/bin/sh
-	${GAMES_BINDIR}/${DED_EXE} ${SELECT_MOD}${MOD_DIR} ${DED_OPTIONS} \${@}
-	EOF
-}
-
-games-mods_make_init.d() {
-	cat <<EOF > "${T}"/${GAME_EXE}-${MOD_DIR}-ded.init.d
+games-mods_make_initd() {
+	cat <<EOF > "${T}"/${GAME_EXE}-${MOD_DIR}-ded
 #!/sbin/runscript
-$(<${PORTDIR}/header.txt)
+$(head -n 2 ${PORTDIR}/header.txt)
+# Generated by games-mods.eclass
 
 depend() {
 	need net
 }
 
 start() {
-	ebegin "Starting ${GAME_TITLE} - ${MOD_NAME} dedicated server"
+	ebegin "Starting ${GAME_TITLE} ${MOD_NAME} dedicated server"
 	start-stop-daemon --start --quiet --background --chuid \\
-		${GAMES_USER_DED}:games --env HOME="${GAMES_PREFIX}" --exec \\
-		${GAMES_BINDIR}/${GAME_EXE}-${MOD_DIR}-ded \\
-		\${${GAME_EXE}_${MOD_DIR}_OPTS}
+		${GAMES_USER_DED}:${GAMES_GROUP} --env HOME="${GAMES_PREFIX}" --exec \\
+		${GAMES_BINDIR}/${GAME_EXE}-${MOD_DIR}-ded -- \\
+		\${${GAME_EXE}_${MOD_DIR}_opts}
 	eend \$?
 }
 
 stop() {
-	ebegin "Stopping ${GAME_TITLE} - ${MOD_NAME} dedicated server"
+	ebegin "Stopping ${GAME_TITLE} ${MOD_NAME} dedicated server"
 	start-stop-daemon --stop --quiet --exec \\
 		${GAMES_BINDIR}/${GAME_EXE}-${MOD_DIR}-ded
 	eend \$?
 }
 EOF
+
+	doinitd "${T}"/${GAME_EXE}-${MOD_DIR}-ded || die "doinitd failed"
 }
 
-games-mods_make_conf.d() {
-	if [[ -e ${FILESDIR}/${GAME_EXE}-${MOD_DIR}.conf.d ]] ; then
-		cp "${FILESDIR}"/${GAME_EXE}-${MOD_DIR}.conf.d \
-			"${T}"/${GAME_EXE}-${MOD_DIR}-ded.conf.d
-		return 0
-	fi
-cat <<-EOF > "${T}"/${GAME_EXE}-${MOD_DIR}-ded.conf.d
-	$(<${PORTDIR}/header.txt)
-
+games-mods_make_confd() {
+	cat <<-EOF > "${T}"/${GAME_EXE}-${MOD_DIR}-ded
 	# Any extra options you want to pass to the dedicated server
-	# ${GAME_EXE}_${MOD_DIR}_OPTS="+set com_hunkmegs 64 +set com_zonemegs 32"
-
+	${GAME_EXE}_${MOD_DIR}_opts=""
 	EOF
+
+	doconfd "${T}"/${GAME_EXE}-${MOD_DIR}-ded || die "doconfd failed"
 }

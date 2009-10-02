@@ -1,6 +1,8 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.31 2009/09/07 18:20:47 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/xfce4.eclass,v 1.32 2009/09/30 09:22:36 ssuominen Exp $
+
+# OBSOLETE ECLASS. Unused and doesn't work. Delete soon as allowed.
 
 # @ECLASS: xfce4.eclass
 # @MAINTAINER:
