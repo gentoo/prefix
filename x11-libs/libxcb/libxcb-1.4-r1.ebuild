@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/libxcb-1.4-r1.ebuild,v 1.2 2009/09/17 06:14:10 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxcb/libxcb-1.4-r1.ebuild,v 1.3 2009/09/30 20:05:31 ssuominen Exp $
 
 EAPI="2"
 
