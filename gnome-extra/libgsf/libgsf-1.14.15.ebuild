@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.15.ebuild,v 1.1 2009/06/29 22:55:54 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.15.ebuild,v 1.2 2009/10/02 04:22:47 leio Exp $
 
 inherit eutils gnome2 python multilib
 
@@ -55,8 +55,6 @@ pkg_preinst() {
 	gnome2_pkg_preinst
 	preserve_old_lib /usr/$(get_libdir)/libgsf-1.so.1
 	preserve_old_lib /usr/$(get_libdir)/libgsf-gnome-1.so.1
-	preserve_old_lib /usr/$(get_libdir)/libgsf-1.so.113
-	preserve_old_lib /usr/$(get_libdir)/libgsf-gnome-1.so.113
 }
 
 pkg_postinst() {
@@ -68,8 +66,6 @@ pkg_postinst() {
 
 	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-1.so.1
 	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-gnome-1.so.1
-	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-1.so.113
-	preserve_old_lib_notify /usr/$(get_libdir)/libgsf-gnome-1.so.113
 }
 
 pkg_postrm() {
