@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/dri2proto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/dri2proto/ChangeLog,v 1.17 2009/06/23 19:25:49 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/dri2proto/ChangeLog,v 1.18 2009/09/30 19:40:05 ssuominen Exp $
+
+  30 Sep 2009; Samuli Suominen <ssuominen@gentoo.org> dri2proto-2.1.ebuild:
+  amd64 stable wrt #282290
 
   23 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
   dri2proto-1.99.3.ebuild:
