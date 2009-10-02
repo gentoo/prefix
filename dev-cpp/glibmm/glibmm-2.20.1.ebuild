@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.20.1.ebuild,v 1.5 2009/09/27 15:29:20 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.20.1.ebuild,v 1.6 2009/09/30 17:05:49 jer Exp $
 
 inherit gnome2
 
