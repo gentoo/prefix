@@ -13,20 +13,28 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE=""
+IUSE="gnulib"
 
 RDEPEND=">=app-admin/eselect-1.0.2"
 DEPEND="${RDEPEND}
+	gnulib? ( dev-libs/gnulib )
 	sys-devel/autoconf"
 
 pkg_setup() {
 	append-flags -fno-PIC -fno-PIE
+	if use gnulib; then
+		# solaris2.9 does not have scandir yet
+		append-flags -I"${EPREFIX}/usr/$(get_libdir)/gnulib/include"
+		append-ldflags -L"${EPREFIX}/usr/$(get_libdir)/gnulib/$(get_libdir)"
+		append-libs -lgnu
+	fi
 }
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-20090814-mac.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	epatch "${FILESDIR}"/${P}-nognu.patch
+	epatch "${FILESDIR}"/${P}-link-libs.patch
 	eprefixify python.eselect python-wrapper.c
 	epatch "${FILESDIR}/${P}-old-glibc.patch"
 	./autogen.sh || die "autogen.sh failed"
