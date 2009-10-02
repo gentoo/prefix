@@ -21,6 +21,7 @@ profiles
 # regular packages (do NOT put portage in here!)
 app-portage/eix
 app-shells/tcsh
+dev-util/uncrustify
 mail-client/mutt
 net-misc/mico
 sys-devel/binutils-apple
