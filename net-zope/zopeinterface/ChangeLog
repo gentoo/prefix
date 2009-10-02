@@ -1,6 +1,10 @@
 # ChangeLog for net-zope/zopeinterface
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/ChangeLog,v 1.45 2009/09/27 19:11:26 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/ChangeLog,v 1.46 2009/10/01 17:33:39 klausman Exp $
+
+  01 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
+  zopeinterface-3.5.2.ebuild:
+  Stable on alpha, bug #284992
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> zopeinterface-3.5.2.ebuild:
   ppc stable #284992
