@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.26.3.ebuild,v 1.1 2009/07/11 08:57:17 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/gnome-desktop-2.26.3.ebuild,v 1.2 2009/10/02 03:33:31 leio Exp $
 
 inherit eutils gnome2
 
@@ -45,13 +45,11 @@ pkg_setup() {
 pkg_preinst() {
 	gnome2_pkg_preinst
 	preserve_old_lib /usr/$(get_libdir)/libgnome-desktop-2.so.7
-	preserve_old_lib /usr/$(get_libdir)/libgnome-desktop-2.so.7.2.6
 }
 
 pkg_postinst() {
 	gnome2_pkg_postinst
 	preserve_old_lib_notify /usr/$(get_libdir)/libgnome-desktop-2.so.7
-	preserve_old_lib_notify /usr/$(get_libdir)/libgnome-desktop-2.so.7.2.6
 	ewarn
 	ewarn "If you are upgrading from <gnome-base/gnome-desktop-2.25, please"
 	ewarn "make sure you run revdep-rebuild at the end of the upgrade."
