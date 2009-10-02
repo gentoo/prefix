@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/paste
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/paste/ChangeLog,v 1.5 2009/04/26 09:15:43 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/paste/ChangeLog,v 1.6 2009/10/01 01:55:21 arfrever Exp $
+
+  01 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  paste-1.7.2.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
 *paste-1.7.2 (26 Apr 2009)
 
