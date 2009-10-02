@@ -1,6 +1,9 @@
 # ChangeLog for virtual/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/emacs/ChangeLog,v 1.33 2009/09/27 20:21:00 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/emacs/ChangeLog,v 1.34 2009/10/01 18:28:25 klausman Exp $
+
+  01 Oct 2009; Tobias Klausmann <klausman@gentoo.org> emacs-23.ebuild:
+  Stable on alpha, bug #285063
 
   27 Sep 2009; Ulrich Mueller <ulm@gentoo.org> emacs-21.ebuild,
   emacs-22.ebuild, emacs-23.ebuild:
