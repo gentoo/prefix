@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.128 2009/09/20 21:10:18 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/ChangeLog,v 1.129 2009/10/01 22:47:48 cla Exp $
+
+  01 Oct 2009; Dawid Węgliński <cla@gentoo.org> eselect-1.2.3.ebuild:
+  Stable on amd64 (bug #287135)
 
 *eselect-1.2.3 (20 Sep 2009)
 
