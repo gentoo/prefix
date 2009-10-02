@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.271 2009/09/28 06:28:25 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.272 2009/09/30 19:35:09 ssuominen Exp $
+
+  30 Sep 2009; Samuli Suominen <ssuominen@gentoo.org> xterm-243.ebuild:
+  amd64 stable wrt #282290
 
   28 Sep 2009; Rémi Cardona <remi@gentoo.org> metadata.xml:
   add maintainers to metadata.xml
