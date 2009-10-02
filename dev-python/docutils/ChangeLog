@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/docutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.94 2009/09/20 19:01:24 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/docutils/ChangeLog,v 1.95 2009/10/01 22:47:22 arfrever Exp $
+
+*docutils-0.6_pre6148 (02 Oct 2009)
+
+  01 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +docutils-0.6_pre6148.ebuild, +files/docutils-0.6-extra_modules.patch:
+  Version bump.
 
   20 Sep 2009; Ulrich Mueller <ulm@gentoo.org> docutils-0.5.ebuild,
   docutils-0.5-r1.ebuild:
