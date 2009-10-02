@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/wxpython
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.128 2009/09/27 19:08:23 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/ChangeLog,v 1.129 2009/10/01 18:15:44 klausman Exp $
+
+  01 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
+  wxpython-2.8.10.1.ebuild:
+  Stable on alpha, bug #284996
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> wxpython-2.8.10.1.ebuild:
   ppc stable #284996
