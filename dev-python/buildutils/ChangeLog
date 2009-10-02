@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/buildutils
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/buildutils/ChangeLog,v 1.5 2008/04/05 14:51:48 hawking Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/buildutils/ChangeLog,v 1.6 2009/10/01 23:00:10 arfrever Exp $
+
+  01 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  buildutils-0.3.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
 *buildutils-0.3 (05 Apr 2008)
 
