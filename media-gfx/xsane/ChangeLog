@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/xsane
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/ChangeLog,v 1.80 2009/06/23 22:22:24 phosphan Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/ChangeLog,v 1.81 2009/10/01 19:39:46 phosphan Exp $
+
+  01 Oct 2009; Patrick Kursawe <phosphan@gentoo.org> xsane-0.996.ebuild:
+  Removing duplicate desktop file (bug #286503).
 
   23 Jun 2009; Patrick Kursawe <phosphan@gentoo.org>
   +files/MissingCapsFlag.patch, xsane-0.996.ebuild:

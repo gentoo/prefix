@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/xsane-0.996.ebuild,v 1.8 2009/06/23 22:22:24 phosphan Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/xsane-0.996.ebuild,v 1.9 2009/10/01 19:39:46 phosphan Exp $
 
 inherit eutils
 
@@ -72,7 +72,6 @@ src_install() {
 		dosym /usr/bin/xsane "${plugindir#${EPREFIX}}"
 	fi
 	newicon src/xsane-48x48.png ${PN}.png
-	make_desktop_entry xsane "X-Sane" ${PN}
 }
 
 pkg_postinst() {
