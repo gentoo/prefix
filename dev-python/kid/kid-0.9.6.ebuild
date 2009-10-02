@@ -1,8 +1,11 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/kid/kid-0.9.6.ebuild,v 1.1 2007/07/17 07:35:25 lucass Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/kid/kid-0.9.6.ebuild,v 1.2 2009/10/01 23:12:25 arfrever Exp $
 
-NEED_PYTHON=2.3
+EAPI="2"
+
+NEED_PYTHON="2.5"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils
 
@@ -15,25 +18,26 @@ LICENSE="MIT"
 SLOT="0"
 IUSE="doc examples"
 
-RDEPEND="|| ( >=dev-lang/python-2.5 dev-python/elementtree )"
-DEPEND="${RDEPEND}
-	>=dev-python/setuptools-0.6_rc6
+RDEPEND=""
+DEPEND=">=dev-python/setuptools-0.6_rc6
 	doc? ( dev-python/docutils )"
+RESTRICT_PYTHON_ABIS="2.4 3.*"
 
-src_test() {
-	# We have to move the build folder out of the way to make the tests work
-	mv build build.bak
-	PYTHONPATH="." "${python}" run_tests.py -x || die "tests failed"
-	mv build.bak build
-}
+DOCS="HISTORY RELEASING"
 
 src_compile() {
 	distutils_src_compile
 	use doc && emake -C doc
 }
 
+src_test() {
+	testing() {
+		PYTHONPATH="." "$(PYTHON)" run_tests.py -x
+	}
+	python_execute_function testing
+}
+
 src_install() {
-	DOCS="HISTORY RELEASING"
 	distutils_src_install
 
 	dobin bin/*
@@ -41,12 +45,8 @@ src_install() {
 	dodoc doc/*.txt
 	use doc && dohtml doc/*.{html,css}
 
-	if use examples ; then
+	if use examples; then
 		insinto /usr/share/doc/${PF}
 		doins -r examples
 	fi
-}
-
-pkg_postinst() {
-	elog "Installing dev-python/celementtree may enhance performance."
 }
