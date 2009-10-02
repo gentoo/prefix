@@ -62,11 +62,11 @@ DEPEND="${RDEPEND}
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	amd64? ( multilib? ( gcj? ( app-emulation/emul-linux-x86-xlibs ) ) )
-	!kernel_Darwin? ( !kernel_AIX? (
+	kernel_linux? (
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94
-	) )"
+	)"
 PDEPEND=">=sys-devel/gcc-config-1.4"
 if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )"
@@ -85,7 +85,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/4.3.0/treelang-nomakeinfo.patch
 
 	# add support for 64-bits native target on Solaris
-	#epatch "${FILESDIR}"/4.3.3/solarisx86_64.patch
+	epatch "${FILESDIR}"/4.4.0/gcc-4.4.1-solaris-x86_64.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/solaris-searchpath.patch
