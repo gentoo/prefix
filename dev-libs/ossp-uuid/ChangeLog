@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/ossp-uuid
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.14 2009/09/27 14:55:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.15 2009/10/01 20:54:25 klausman Exp $
+
+  01 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
+  ossp-uuid-1.6.2.ebuild:
+  Stable on alpha, bug #285475
 
   27 Sep 2009; Brent Baude <ranger@gentoo.org> ossp-uuid-1.6.2.ebuild:
   Marking ossp-uuid-1.6.2 ppc64 for bug 285475
