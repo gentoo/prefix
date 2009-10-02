@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.362 2009/09/29 20:05:22 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.365 2009/10/01 12:29:36 jer Exp $
+
+  01 Oct 2009; Jeroen Roovers <jer@gentoo.org> git-1.6.4.4.ebuild:
+  Stable for HPPA (bug #287031).
+
+  30 Sep 2009; Dawid Węgliński <cla@gentoo.org> git-1.6.4.4.ebuild:
+  Stable on amd64 (bu #287031)
+
+  30 Sep 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.5_rc2.ebuild:
+  No git-svn by default.
 
 *git-1.6.5_rc2 (29 Sep 2009)
 
