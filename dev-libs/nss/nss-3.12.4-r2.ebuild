@@ -46,7 +46,7 @@ src_unpack() {
 	# Ensure we stay multilib aware
 	sed -i -e "s:gentoo:$(get_libdir):" "${S}"/mozilla/security/nss/config/Makefile
 
-	epatch "${FILESDIR}"/${PN}-3.12-solaris-gcc.patch  # breaks non-gnu tools
+	epatch "${FILESDIR}"/${PN}-3.12.4-solaris-gcc.patch  # breaks non-gnu tools
 }
 
 src_compile() {
