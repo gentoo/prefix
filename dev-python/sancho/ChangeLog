@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/sancho
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sancho/ChangeLog,v 1.34 2009/09/08 03:42:49 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sancho/ChangeLog,v 1.35 2009/10/02 01:03:39 arfrever Exp $
+
+  02 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -sancho-0.11.ebuild, sancho-0.11-r1.ebuild, -sancho-2.1.ebuild,
+  -sancho-2.1-r1.ebuild:
+  Backport some changes to older slot. Delete older ebuilds.
 
 *sancho-2.4 (08 Sep 2009)
 
