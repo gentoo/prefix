@@ -23,6 +23,7 @@ app-portage/eix
 app-shells/tcsh
 dev-util/uncrustify
 mail-client/mutt
+media-gfx/asymptote
 net-misc/mico
 sys-devel/binutils-apple
 sys-devel/gcc-apple
