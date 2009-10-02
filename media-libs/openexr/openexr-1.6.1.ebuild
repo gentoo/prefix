@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openexr/openexr-1.6.1.ebuild,v 1.12 2009/02/28 16:59:42 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openexr/openexr-1.6.1.ebuild,v 1.13 2009/09/30 09:39:29 ssuominen Exp $
 
 inherit libtool eutils
 
@@ -59,13 +59,5 @@ src_install () {
 pkg_postinst() {
 	elog "OpenEXR was divided into IlmBase, OpenEXR, and OpenEXR_Viewers."
 	elog "Viewers are available in OpenEXR_Viewers package."
-	elog "If you want them, run:"
-	elog
-	elog "emerge media-gfx/openexr_viewers"
-	elog
-
-	ewarn "OpenEXR may have had ABI changes."
-	ewarn "Please run revdep-rebuild"
-	ewarn "to rebuild programs using it"
-	ewarn "(like KDELibs, KRita, ImageMagick, etc.)."
+	elog "If you want them, run: emerge media-gfx/openexr_viewers"
 }
