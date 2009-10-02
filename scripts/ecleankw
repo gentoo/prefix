@@ -35,12 +35,12 @@ fi
 for f in $files ; do
 	echo -n "Processing $f ... "
 	newkw=""
-	if [[ $(egrep "^[ 	]KEYWORDS=" "$f" | wc -l) != 1 ]] ; then
+	if [[ $(egrep "^[ 	]*KEYWORDS=" "$f" | wc -l) != 1 ]] ; then
 		echo "ABORTED"
 		echo "ERROR: $f has no or multiple KEYWORDS= lines, leaving ebuild untouched"
 		continue
 	fi
-	eval $(egrep "^[ 	]KEYWORDS=" "$f")
+	eval $(egrep "^[ 	]*KEYWORDS=" "$f")
 	for kw in $KEYWORDS ; do
 		for mkw in $my_keywords ; do
 			kw=${kw/-fbsd/-freebsd}
