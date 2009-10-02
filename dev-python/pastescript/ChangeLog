@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/pastescript
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/pastescript/ChangeLog,v 1.6 2009/04/26 09:53:29 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/pastescript/ChangeLog,v 1.7 2009/10/01 02:33:40 arfrever Exp $
+
+  01 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  pastescript-1.7.3.ebuild:
+  Set SUPPORT_PYTHON_ABIS. Delete "test" USE flag.
 
 *pastescript-1.7.3 (26 Apr 2009)
 
