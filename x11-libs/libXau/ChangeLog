@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXau
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXau/ChangeLog,v 1.62 2009/09/19 17:34:52 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXau/ChangeLog,v 1.63 2009/09/30 19:56:40 ssuominen Exp $
+
+  30 Sep 2009; Samuli Suominen <ssuominen@gentoo.org> libXau-1.0.5.ebuild:
+  amd64 stable wrt #282290
 
 *libXau-1.0.5 (19 Sep 2009)
 
