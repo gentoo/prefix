@@ -1,12 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.4-r2.ebuild,v 1.1 2009/07/28 16:30:34 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/Attic/cmake-2.8.0_rc1.ebuild,v 1.2 2009/10/01 18:10:14 arfrever Exp $
 
 EAPI=2
 
 inherit elisp-common toolchain-funcs eutils versionator flag-o-matic cmake-utils
 
-MY_PV="${PV/rc/RC-}"
 MY_P="${PN}-$(replace_version_separator 3 - ${MY_PV})"
 
 DESCRIPTION="Cross platform Make"
@@ -16,7 +15,7 @@ SRC_URI="http://www.cmake.org/files/v$(get_version_component_range 1-2)/${MY_P}.
 LICENSE="CMake"
 KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
-IUSE="emacs python3 qt4 vim-syntax"
+IUSE="emacs qt4 vim-syntax"
 
 DEPEND="
 	>=net-misc/curl-7.16.4
@@ -45,7 +44,6 @@ PATCHES=(
 	"${FILESDIR}/${PN}-FindJNI.patch"
 	"${FILESDIR}/${PN}-FindPythonLibs.patch"
 	"${FILESDIR}/${PN}-FindPythonInterp.patch"
-	"${FILESDIR}/${P}-FindBoost.patch"
 	"${FILESDIR}"/${PN}-2.6.1-no_host_paths.patch
 	"${FILESDIR}"/${PN}-2.6.0-interix.patch
 	"${FILESDIR}"/${PN}-2.6.3-solaris-jni-support.patch
@@ -55,20 +53,6 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.6.3-fix_broken_lfs_on_aix.patch
 	"${FILESDIR}"/${PN}-2.6.3-curl-include.patch
 )
-
-pkg_setup() {
-	if use python3; then
-		ewarn "Support for Python 3 is experimental."
-		ewarn "Please include patches in bug reports!"
-		ebeep 6
-	fi
-}
-
-src_prepare() {
-	base_src_prepare
-
-	use python3 && epatch "${FILESDIR}/${PN}-python-3.patch"
-}
 
 src_configure() {
 	local qt_arg par_arg
