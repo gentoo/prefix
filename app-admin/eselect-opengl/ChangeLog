@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-opengl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/ChangeLog,v 1.50 2009/09/24 06:10:34 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/ChangeLog,v 1.51 2009/09/30 20:09:37 ssuominen Exp $
+
+  30 Sep 2009; Samuli Suominen <ssuominen@gentoo.org>
+  eselect-opengl-1.0.8-r1.ebuild:
+  amd64 stable wrt #282290
 
   24 Sep 2009; Rémi Cardona <remi@gentoo.org>
   eselect-opengl-1.0.8-r1.ebuild:
