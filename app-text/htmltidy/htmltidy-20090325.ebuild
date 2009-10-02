@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/htmltidy/htmltidy-20090325.ebuild,v 1.1 2009/07/22 17:28:23 rbu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/htmltidy/htmltidy-20090325.ebuild,v 1.2 2009/10/01 20:15:00 beandog Exp $
 
 EAPI=2
 inherit eutils autotools
