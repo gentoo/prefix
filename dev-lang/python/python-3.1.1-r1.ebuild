@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.7 2009/09/29 20:02:56 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.9 2009/10/02 04:46:17 arfrever Exp $
 
 EAPI="2"
 
@@ -28,6 +28,7 @@ IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite s
 
 RDEPEND=">=app-admin/eselect-python-20090606
 		>=sys-libs/zlib-1.1.3
+		virtual/libffi
 		!build? (
 			doc? ( dev-python/python-docs:${SLOT} )
 			gdbm? ( sys-libs/gdbm )
@@ -39,10 +40,9 @@ RDEPEND=">=app-admin/eselect-python-20090606
 			ssl? ( dev-libs/openssl )
 			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
-		)
-		!m68k? ( !m68k-mint? ( !mips? ( !sparc-fbsd? ( virtual/libffi ) ) ) )"
+		)"
 DEPEND="${RDEPEND}
-		!m68k? ( !m68k-mint? ( !mips? ( !sparc-fbsd? ( dev-util/pkgconfig ) ) ) )"
+		dev-util/pkgconfig"
 RDEPEND+=" !build? ( app-misc/mime-types )"
 PDEPEND="app-admin/python-updater
 		=dev-lang/python-2*"
@@ -187,8 +187,6 @@ src_configure() {
 
 	export OPT="${CFLAGS}"
 
-	local myconf
-
 	filter-flags -malign-double
 
 	[[ "${ARCH}" == "alpha" ]] && append-flags -fPIC
@@ -244,10 +242,6 @@ src_configure() {
 		&& myconf="${myconf} --enable-framework=${EPREFIX}/usr/lib" \
 		|| myconf="${myconf} --enable-shared"
 
-	if ! use m68k && ! use mips && ! use sparc-fbsd; then
-		myconf+=" --with-system-ffi"
-	fi
-
 	econf \
 		--with-fpectl \
 		$(use_enable ipv6) \
@@ -257,7 +251,7 @@ src_configure() {
 		--mandir='${prefix}'/share/man \
 		--with-libc='' \
 		--with-dbmliborder=${dbmliborder} \
-		${myconf}
+		--with-system-ffi
 }
 
 src_test() {
