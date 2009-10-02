@@ -140,7 +140,7 @@ src_prepare() {
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
 	# make it compile on IRIX as well
-	epatch "${FILESDIR}"/${P}-irix.patch
+	epatch "${FILESDIR}"/${P}-irix-noffi.patch
 	# and generate a libpython2.6.so
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
