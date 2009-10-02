@@ -31,6 +31,7 @@ RDEPEND="${python_dep}
 	kernel_SunOS? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18 )
+	kernel_HPUX? ( !hppa-hpux? ( >=app-misc/pax-utils-0.1.19 ) )
 	selinux? ( >=dev-python/python-selinux-2.16 )"
 PDEPEND="
 	!build? (
