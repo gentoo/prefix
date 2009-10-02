@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/faad2-2.6.1-r2.ebuild,v 1.9 2008/11/05 04:10:23 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/faad2/faad2-2.6.1-r2.ebuild,v 1.10 2009/09/30 09:44:49 ssuominen Exp $
 
 inherit eutils autotools
 
@@ -16,7 +16,7 @@ IUSE="digitalradio"
 RDEPEND=""
 DEPEND=""
 
-S="${WORKDIR}/${PN}"
+S=${WORKDIR}/${PN}
 
 src_unpack() {
 	unpack ${A}
@@ -32,23 +32,12 @@ src_unpack() {
 
 src_compile() {
 	econf \
-		$(use_with digitalradio drm)\
-		--without-xmms \
-		|| die "econf failed"
-
+		$(use_with digitalradio drm) \
+		--without-xmms
 	emake || die
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die
-
 	dodoc AUTHORS ChangeLog NEWS README README.linux TODO
-}
-
-pkg_postinst() {
-	elog "Please note that from ${PN}-2.0* to ${P}, ABI has changed"
-	elog "So if you are upgrading from those versions, you need to rebuild"
-	elog "all the packages linked against ${PN}."
-	elog "You can use revdep-rebuild from app-portage/gentoolkit if you are"
-	elog "using portage or reconcilio if you are using paludis, or ..."
 }
