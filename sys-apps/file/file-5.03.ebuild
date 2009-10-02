@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.03.ebuild,v 1.7 2009/09/19 15:58:57 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.03.ebuild,v 1.8 2009/09/30 17:13:28 klausman Exp $
 
 DISTUTILS_DISABLE_PYTHON_DEPENDENCY="1"
 
