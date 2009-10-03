@@ -103,7 +103,7 @@ src_install() {
 		|| mypyconf="${mypyconf} WXPORT=gtk2"
 
 	installation() {
-		"$(PYTHON)" setup.py ${mypyconf} install --root="${D}" --install-purelib $(python_get_sitedir)
+		"$(PYTHON)" setup.py ${mypyconf} install --root="${D}" --install-purelib "${EPREFIX}"$(python_get_sitedir)
 	}
 	python_execute_function -s installation
 
@@ -112,7 +112,7 @@ src_install() {
 		mv "${file}" "${file}-${SLOT}"
 	done
 	rename_files() {
-		for file in "${D}$(python_get_sitedir)/"wx{version.*,.pth}; do
+		for file in "${ED}$(python_get_sitedir)/"wx{version.*,.pth}; do
 			mv "${file}" "${file}-${SLOT}"
 		done
 	}
