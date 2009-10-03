@@ -85,12 +85,13 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}/pidgin-2.5.9-xmpp-old-ssl.patch"
+
 	epatch "${FILESDIR}"/${PN}-2.5.8-gtkdocklet-quartz.patch
 	eautoreconf
-}
-
-src_prepare() {
-	epatch "${FILESDIR}/pidgin-2.5.9-xmpp-old-ssl.patch"
+	sed \
+		-e "s:/usr/include/ncursesw /usr/include:${EPREFIX}/usr/include/ncursesw ${EPREFIX}/usr/include:g" \
+		-i configure || die "sed failed"
 }
 
 src_configure() {
