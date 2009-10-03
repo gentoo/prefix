@@ -86,12 +86,10 @@ src_unpack() {
 	#epatch "${FILESDIR}"/${PN}-10.42.0-interix.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-darwin.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-solaris.patch
+	epatch "${FILESDIR}"/${PN}-10.48.00-solaris.patch
 	epatch "${FILESDIR}"/netpbm-prefix.patch
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
 		editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
-
-	# Solaris needs c99 with jpeg2k, bug #244797
-	use jpeg2k && append-flags -std=c99
 
 	# avoid ugly depend.mk warnings
 	touch $(find . -name Makefile | sed s:Makefile:depend.mk:g)
@@ -143,7 +141,6 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-darwin* ]] && append-flags -fno-common
 	# Solaris doesn't have vasprintf, libiberty does have it, for gethostbyname
 	# we need -lnsl, for connect -lsocket
 	[[ ${CHOST} == *-solaris* ]] && extlibs="-liberty -lnsl -lsocket"

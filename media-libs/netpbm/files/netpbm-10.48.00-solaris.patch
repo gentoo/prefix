@@ -1,0 +1,22 @@
+--- converter/other/jpeg2000/jpeg2ktopam.corig	2009-10-03 21:08:53.219016926 +0200
++++ converter/other/jpeg2000/jpeg2ktopam.c	2009-10-03 21:09:31.086672516 +0200
+@@ -9,8 +9,6 @@
+ *****************************************************************************/
+ 
+ #define _BSD_SOURCE 1      /* Make sure strdup() is in string.h */
+-/* Make sure strdup() is in string.h and int_fast32_t is in inttypes.h */
+-#define _XOPEN_SOURCE 600
+ #include <string.h>
+ 
+ #include "pm_c_util.h"
+--- converter/other/jpeg2000/pamtojpeg2k.c.orig	2009-10-03 21:10:15.221677740 +0200
++++ converter/other/jpeg2000/pamtojpeg2k.c	2009-10-03 21:10:25.271260072 +0200
+@@ -9,8 +9,6 @@
+ *****************************************************************************/
+ 
+ #define _BSD_SOURCE 1    /* Make sure strdup() is in string.h */
+-/* Make sure strdup() is in string.h and int_fast32_t is in inttypes.h */
+-#define _XOPEN_SOURCE 600
+ #include <string.h>
+ 
+ #include "pm_c_util.h"
