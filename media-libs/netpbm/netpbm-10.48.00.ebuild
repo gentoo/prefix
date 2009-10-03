@@ -83,7 +83,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/netpbm-10.31-build.patch
 
-	epatch "${FILESDIR}"/${PN}-10.42.0-interix.patch
+	#epatch "${FILESDIR}"/${PN}-10.42.0-interix.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-darwin.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-solaris.patch
 	epatch "${FILESDIR}"/netpbm-prefix.patch
