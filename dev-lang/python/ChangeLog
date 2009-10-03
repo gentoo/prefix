@@ -1,6 +1,18 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.422 2009/10/02 04:46:17 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.424 2009/10/03 17:09:20 grobian Exp $
+
+  03 Oct 2009; Fabian Groffen <grobian@gentoo.org> python-2.4.6.ebuild,
+  python-2.5.4-r3.ebuild, python-2.6.2-r2.ebuild, python-2.6.3.ebuild,
+  python-3.1.1-r1.ebuild:
+  Python's _locale module needs libintl, which on non-Linux is in gettext,
+  depend on virtual/libintl for that case
+
+*python-2.6.3 (02 Oct 2009)
+
+  02 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.6.3.ebuild:
+  Version bump.
 
   02 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   python-2.6.2-r2.ebuild, python-3.1.1-r1.ebuild:

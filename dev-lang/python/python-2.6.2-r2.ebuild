@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r2.ebuild,v 1.10 2009/10/02 04:46:17 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.2-r2.ebuild,v 1.11 2009/10/03 17:09:20 grobian Exp $
 
 EAPI="2"
 
@@ -31,6 +31,7 @@ IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline 
 
 RDEPEND=">=app-admin/eselect-python-20090606
 		>=sys-libs/zlib-1.1.3
+		virtual/libintl
 		virtual/libffi
 		!build? (
 			berkdb? ( || (
