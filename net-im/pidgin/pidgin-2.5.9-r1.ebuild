@@ -87,6 +87,7 @@ pkg_setup() {
 src_prepare() {
 	epatch "${FILESDIR}/pidgin-2.5.9-xmpp-old-ssl.patch"
 
+	epatch "${FILESDIR}"/${P}-irix.patch
 	epatch "${FILESDIR}"/${PN}-2.5.8-gtkdocklet-quartz.patch
 	eautoreconf
 	sed \
