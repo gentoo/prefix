@@ -72,7 +72,6 @@ return_greatest_wrapper() {
 if [[ ${1:0:1} == "=" ]] ; then # Check to see if the first char is an "="
 	ebuildgrep="${1#*\/}.ebuild"
 	catpkg="${1#=}"       # Strip the leading "="
-	catpkg="${catpkg%-r[0-9]*}" # Strip revision
 	catpkg="${catpkg%-[0-9]*}" # Strip the trailing verion numbers
 	# Grab the index from the current $RSURL and parse it for the list
 	# of ebuilds.  Grab the specified version that the user entered.
