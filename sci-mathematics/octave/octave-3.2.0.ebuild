@@ -51,7 +51,7 @@ src_prepare() {
 
 src_configure() {
 	econf \
-		--localstatedir=/var/state/octave \
+		--localstatedir="${EPREFIX}"/var/state/octave \
 		--enable-shared \
 		--without-arpack \
 		--with-blas="$(pkg-config --libs blas)" \
@@ -97,6 +97,6 @@ src_install() {
 		cd ..
 	fi
 
-	echo "LDPATH=/usr/$(get_libdir)/octave-${PV}" > 99octave
+	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/octave-${PV}" > 99octave
 	doenvd 99octave || die
 }
