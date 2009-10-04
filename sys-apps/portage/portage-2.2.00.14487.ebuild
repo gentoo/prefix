@@ -31,7 +31,6 @@ RDEPEND="${python_dep}
 	kernel_SunOS? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18 )
-	kernel_HPUX? ( !hppa-hpux? ( >=app-misc/pax-utils-0.1.19 ) )
 	selinux? ( >=dev-python/python-selinux-2.16 )"
 PDEPEND="
 	!build? (
@@ -78,7 +77,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
 
-	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14277-prefix-chaining.patch
+	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14200-prefix-chaining.patch
 }
 
 src_compile() {
