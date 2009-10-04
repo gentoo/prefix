@@ -78,7 +78,8 @@ src_configure() {
 		--libdir="${EPREFIX}"/usr/$(get_libdir) \
 		--sysdatadir="${EPREFIX}"/usr/share/doc/${PF} \
 		--mandir="${EPREFIX}"/usr/share/man/man1 \
-		--with-readline \
+		--with-readline="${EPREFIX}"/usr \
+		--with-ncurses-lib="${EPREFIX}"/usr/lib \
 		$(use_with gmp) \
 		|| die "./Configure failed"
 }
