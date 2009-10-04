@@ -24,7 +24,8 @@ RDEPEND="
 	"
 
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	dev-util/pkgconfig
+	virtual/libiconv"
 
 S=${WORKDIR}/${P}-poppler
 
@@ -36,6 +37,8 @@ pkg_setup() {
 	# the build output readable by removing it.
 	einfo "Suppressing warning overload with -Wno-write-strings"
 	append-cxxflags -Wno-write-strings
+	# Makefile doesn't use LIBS
+	[[ ${CHOST} != *-linux-gnu ]] && append-ldflags -liconv
 }
 
 src_prepare() {
@@ -44,6 +47,7 @@ src_prepare() {
 	epatch
 	use nodrm && epatch "${PATCHDIR}/xpdf-3.02-poppler-nodrm.patch"
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${P}-endian-check-runtime.patch
 }
 
 src_configure() {
