@@ -56,6 +56,7 @@ src_prepare() {
 	    #epatch "${FILESDIR}"/${PN}-0.6.27-disable-database.patch
 	    #epatch "${FILESDIR}"/${PN}-0.6.27-TP-PI.patch
 		:
+		epatch "${FILESDIR}"/${P}-darwin-getopt.patch
 	else
 	    epatch "${FILESDIR}"/${P}-icon.patch
 	    epatch "${FILESDIR}"/${P}-translations.patch
