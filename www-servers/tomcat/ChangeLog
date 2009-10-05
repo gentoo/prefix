@@ -1,6 +1,11 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.219 2009/07/03 11:14:25 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.220 2009/10/03 23:17:39 caster Exp $
+
+*tomcat-5.5.27-r4 (03 Oct 2009)
+
+  03 Oct 2009; Vlastimil Babka <caster@gentoo.org> +tomcat-5.5.27-r4.ebuild:
+  Revbump to remove java5 useflag, and default to java5.
 
   03 Jul 2009; Alistair Bush <ali_bush@gentoo.org> -tomcat-6.0.18-r3.ebuild:
   Remove revision with security problems. see #272566
