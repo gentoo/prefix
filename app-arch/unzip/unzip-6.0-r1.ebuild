@@ -12,7 +12,7 @@ SRC_URI="mirror://sourceforge/infozip/${MY_P}.tar.gz"
 
 LICENSE="Info-ZIP"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="bzip2 unicode"
 
 DEPEND="bzip2? ( app-arch/bzip2 )"
@@ -57,6 +57,7 @@ src_compile() {
 		*-interix3*)         TARGET=gcc; append-flags "-DUNIX"; append-cppflags "-DNO_LCHMOD" ;;
 		*-interix*)          TARGET=gcc; append-flags "-DUNIX" ;;
 		*-aix*)              TARGET=gcc ;;
+		*-hpux*)             TARGET=gcc ;;
 		*-mint*)             TARGET=generic ;;
 		*) die "Unknown target, you suck" ;;
 	esac
