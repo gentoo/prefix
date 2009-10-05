@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXv
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXv/ChangeLog,v 1.48 2009/06/23 21:25:22 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXv/ChangeLog,v 1.49 2009/10/03 12:08:49 scarabeus Exp $
+
+*libXv-1.0.5 (03 Oct 2009)
+
+  03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org> -libXv-1.0.3.ebuild,
+  +libXv-1.0.5.ebuild:
+  Version bump.
 
   23 Jun 2009; Tobias Klausmann <klausman@gentoo.org> libXv-1.0.4.ebuild:
   Stable on alpha for xorg-server-1.5/xorg-x11-7.4
