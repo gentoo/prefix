@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/recordproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/recordproto/ChangeLog,v 1.28 2009/09/19 08:55:23 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/recordproto/ChangeLog,v 1.29 2009/10/03 15:52:06 scarabeus Exp $
+
+*recordproto-1.14 (03 Oct 2009)
+
+  03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -recordproto-1.13.99.1.ebuild, +recordproto-1.14.ebuild:
+  Version bump for xorg-server 1.7. Remove old.
 
 *recordproto-1.13.99.1 (19 Sep 2009)
 
