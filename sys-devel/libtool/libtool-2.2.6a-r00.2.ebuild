@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.17 2009/09/29 17:12:42 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.18 2009/10/04 14:20:36 ssuominen Exp $
 
 LIBTOOLIZE="true" #225559
 inherit eutils autotools flag-o-matic multilib prefix
@@ -29,7 +29,7 @@ pkg_setup() {
 		einfo "to run tests. With the stricter (older) --as-needed behaviour"
 		einfo "you'd be seeing a test failure in test #63; this has been fixed"
 		einfo "in the newer version of binutils."
-		append-ldflags -Wl,--no-as-needed
+		append-ldflags $(no-as-needed)
 	fi
 }
 
