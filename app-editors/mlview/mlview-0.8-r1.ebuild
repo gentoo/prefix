@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/mlview/mlview-0.8-r1.ebuild,v 1.8 2009/06/09 13:19:12 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/mlview/mlview-0.8-r1.ebuild,v 1.9 2009/10/04 14:39:35 ssuominen Exp $
 
 inherit eutils gnome2 flag-o-matic
 
@@ -30,7 +30,7 @@ DOCS="AUTHORS BRANCHES ChangeLog COPYRIGHT NEWS README"
 
 pkg_setup() {
 	# see bug #179819
-	[[ ${CHOST} != *-interix* ]] && append-ldflags -Wl,--no-as-needed
+	append-ldflags $(no-as-needed)
 }
 
 src_unpack() {
