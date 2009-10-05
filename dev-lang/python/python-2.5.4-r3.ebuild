@@ -123,6 +123,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
 	epatch "${FILESDIR}"/${P}-irix.patch
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
+	epatch "${FILESDIR}"/${PN}-2.5.4-disable-sunaudiodev-bsddb185.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
