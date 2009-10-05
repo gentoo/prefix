@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/lighttpd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.206 2009/09/27 19:44:16 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.207 2009/10/03 18:53:27 klausman Exp $
+
+  03 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
+  lighttpd-1.4.23.ebuild:
+  Stable on alpha, bug #286134
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> lighttpd-1.4.23.ebuild:
   ppc stable #286134

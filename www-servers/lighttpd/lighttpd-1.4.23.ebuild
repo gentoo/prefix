@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.23.ebuild,v 1.6 2009/09/27 19:44:16 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.23.ebuild,v 1.7 2009/10/03 18:53:27 klausman Exp $
 
 EAPI="2"
 
