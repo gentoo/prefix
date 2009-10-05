@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/bigreqsproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/bigreqsproto/ChangeLog,v 1.29 2009/05/05 14:59:08 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/bigreqsproto/ChangeLog,v 1.30 2009/10/03 15:40:15 scarabeus Exp $
+
+*bigreqsproto-1.1.0 (03 Oct 2009)
+
+  03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +bigreqsproto-1.1.0.ebuild:
+  Version bump for xorg-server 1.7.
 
   05 May 2009; Christian Faulhammer <fauli@gentoo.org>
   bigreqsproto-1.0.2.ebuild:
