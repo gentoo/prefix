@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<herd>toolchain</herd>
-	<maintainer>
-		<email>ssuominen@gentoo.org</email>
-		<name>Samili Suominen</name>
-	</maintainer>
-	<use>
-		<flag name='static-libs'>Compile static archives</flag>
-	</use>
+  <herd>toolchain</herd>
+  <maintainer>
+    <email>ssuominen@gentoo.org</email>
+    <name>Samili Suominen</name>
+  </maintainer>
 </pkgmetadata>
