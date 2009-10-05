@@ -1,6 +1,11 @@
 # ChangeLog for x11-apps/appres
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/appres/ChangeLog,v 1.36 2009/05/05 07:24:07 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/appres/ChangeLog,v 1.37 2009/10/03 11:01:54 scarabeus Exp $
+
+*appres-1.0.2 (03 Oct 2009)
+
+  03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org> +appres-1.0.2.ebuild:
+  Version bump.
 
   05 May 2009; Christian Faulhammer <fauli@gentoo.org> appres-1.0.1.ebuild:
   add empty IUSE entry to silence repoman
