@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libprelude
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.67 2009/08/09 12:38:46 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.68 2009/10/03 19:36:19 halcy0n Exp $
+
+  02 Oct 2009; Mark Loeser <halcy0n@gentoo.org> libprelude-0.9.24.ebuild,
+  metadata.xml:
+  Add easy-bindings USE flag; bug #286970
 
   09 Aug 2009; nixnut <nixnut@gentoo.org> libprelude-0.9.22.ebuild:
   ppc stable #275702
