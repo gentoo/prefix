@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/xf86dgaproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86dgaproto/ChangeLog,v 1.39 2009/09/19 13:01:48 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86dgaproto/ChangeLog,v 1.40 2009/10/02 15:16:38 scarabeus Exp $
+
+*xf86dgaproto-2.1 (02 Oct 2009)
+
+  02 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -xf86dgaproto-2.0.99.1.ebuild, +xf86dgaproto-2.1.ebuild:
+  Bump packages for xorg-server-1.7.
 
 *xf86dgaproto-2.0.99.1 (19 Sep 2009)
 
