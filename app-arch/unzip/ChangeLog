@@ -1,6 +1,18 @@
 # ChangeLog for app-arch/unzip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.60 2009/08/16 18:15:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.64 2009/10/03 15:29:41 ranger Exp $
+
+  03 Oct 2009; Brent Baude <ranger@gentoo.org> unzip-6.0-r1.ebuild:
+  Marking unzip-6.0-r1 ppc64 for bug 287368
+
+  03 Oct 2009; Markus Meier <maekke@gentoo.org> unzip-6.0-r1.ebuild:
+  add ~arm, bug #287368
+
+  03 Oct 2009; Markus Meier <maekke@gentoo.org> unzip-6.0-r1.ebuild:
+  amd64/x86 stable, bug #287368
+
+  03 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> unzip-6.0-r1.ebuild:
+  Stable for ppc, bug 287368
 
 *unzip-6.0-r1 (16 Aug 2009)
 
