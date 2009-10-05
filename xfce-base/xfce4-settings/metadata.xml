@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-<herd>xfce</herd>
-<use>
-	<flag name='sound'>Enable sound event support with <pkg>media-libs/libcanberra</pkg></flag>
-	<flag name='keyboard'>Enable Keyboard layout selection with <pkg>x11-libs/libxklavier</pkg></flag>
-</use>
-</pkgmetadata>
