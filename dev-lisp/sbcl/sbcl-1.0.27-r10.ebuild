@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.27-r10.ebuild,v 1.4 2009/09/30 22:10:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.27-r10.ebuild,v 1.5 2009/10/04 14:54:36 ssuominen Exp $
 
 EAPI=2
 
@@ -122,7 +122,7 @@ src_configure() {
 src_compile() {
 	local bindir="${WORKDIR}"/sbcl-binary
 
-	append-ldflags -Wl,--no-as-needed # see Bug #132992
+	append-ldflags $(no-as-needed) # see Bug #132992
 
 	# clear the environment to get rid of non-ASCII strings, see bug 174702
 	# set HOME for paludis

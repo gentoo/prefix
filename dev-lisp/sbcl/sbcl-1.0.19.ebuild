@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.19.ebuild,v 1.7 2009/03/20 15:42:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.19.ebuild,v 1.8 2009/10/04 14:54:36 ssuominen Exp $
 
 inherit eutils flag-o-matic
 
@@ -132,7 +132,7 @@ src_unpack() {
 src_compile() {
 	local bindir="${WORKDIR}"/sbcl-binary
 
-	append-ldflags -Wl,--no-as-needed # see Bug #132992
+	append-ldflags $(no-as-needed) # see Bug #132992
 
 	# clear the environment to get rid of non-ASCII strings, see bug 174702
 	# set HOME for paludis
