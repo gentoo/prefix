@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/openvpn
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.161 2009/09/26 13:13:54 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/ChangeLog,v 1.162 2009/10/04 20:40:33 maekke Exp $
+
+  04 Oct 2009; Markus Meier <maekke@gentoo.org> openvpn-2.1_rc15.ebuild:
+  arm stable, bug #280072
 
   26 Sep 2009; Brent Baude <ranger@gentoo.org> openvpn-2.1_rc15.ebuild:
   Marking openvpn-2.1_rc15 ppc64 for bug 280072
