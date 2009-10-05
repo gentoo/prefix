@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/freemind
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.48 2009/07/30 07:38:55 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.49 2009/10/03 20:28:28 caster Exp $
+
+  03 Oct 2009; Vlastimil Babka <caster@gentoo.org>
+  -freemind-0.9.0_rc3.ebuild, -freemind-0.9.0_rc4.ebuild:
+  Remove old.
 
   30 Jul 2009; Jean-Noël Rivasseau <elvanor@gentoo.org>
   freemind-0.9.0_rc3.ebuild, freemind-0.9.0_rc4.ebuild,
