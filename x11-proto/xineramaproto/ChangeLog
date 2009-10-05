@@ -1,6 +1,16 @@
 # ChangeLog for x11-proto/xineramaproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xineramaproto/ChangeLog,v 1.31 2009/09/19 16:16:56 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xineramaproto/ChangeLog,v 1.33 2009/10/03 16:01:25 scarabeus Exp $
+
+  03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  xineramaproto-1.2.ebuild:
+  Dep cleanup.
+
+*xineramaproto-1.2 (02 Oct 2009)
+
+  02 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -xineramaproto-1.1.99.1.ebuild, +xineramaproto-1.2.ebuild:
+  Bump packages for xorg-server-1.7.
 
 *xineramaproto-1.1.99.1 (19 Sep 2009)
 
