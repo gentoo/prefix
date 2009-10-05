@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/scrnsaverproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/scrnsaverproto/ChangeLog,v 1.26 2009/09/19 09:32:20 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/scrnsaverproto/ChangeLog,v 1.27 2009/10/03 15:54:11 scarabeus Exp $
+
+  03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  scrnsaverproto-1.2.0.ebuild:
+  Dep cleanup.
 
 *scrnsaverproto-1.2.0 (19 Sep 2009)
 
