@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/apache-tools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.61 2009/08/26 08:08:20 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.62 2009/10/04 14:38:18 ssuominen Exp $
+
+  04 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  apache-tools-2.2.11.ebuild, apache-tools-2.2.12.ebuild,
+  apache-tools-2.2.13.ebuild:
+  Replace -Wl,--no-as-needed with function from flag-o-matic eclass.
 
 *apache-tools-2.2.13 (26 Aug 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.13.ebuild,v 1.1 2009/08/26 08:08:20 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/apache-tools-2.2.13.ebuild,v 1.2 2009/10/04 14:38:18 ssuominen Exp $
 
 inherit flag-o-matic eutils
 
@@ -41,11 +41,7 @@ src_compile() {
 
 	# Instead of filtering --as-needed (bug #128505), append --no-as-needed
 	# Thanks to Harald van Dijk
-	case ${CHOST} in
-		*-linux-gnu|*-solaris*|*-freebsd*)
-			append-ldflags -Wl,--no-as-needed
-		;;
-	esac
+	append-ldflags $(no-as-needed)
 
 	if use ssl ; then
 		myconf="${myconf} --with-ssl=${EPREFIX}/usr --enable-ssl"
