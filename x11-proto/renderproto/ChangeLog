@@ -1,6 +1,13 @@
 # ChangeLog for x11-proto/renderproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/ChangeLog,v 1.44 2009/06/23 19:19:13 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/ChangeLog,v 1.45 2009/10/03 12:33:16 scarabeus Exp $
+
+*renderproto-0.11 (03 Oct 2009)
+
+  03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/0.9.3-fix-render-h-compilation.patch, -renderproto-0.9.2.ebuild,
+  +renderproto-0.11.ebuild:
+  Version bump. Remove old.
 
   23 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
   renderproto-0.9.3.ebuild:
