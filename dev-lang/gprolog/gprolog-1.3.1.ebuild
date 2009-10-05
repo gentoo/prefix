@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.1.ebuild,v 1.1 2009/02/12 05:53:26 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.1.ebuild,v 1.2 2009/10/03 20:31:49 keri Exp $
 
 inherit eutils flag-o-matic
 
@@ -26,6 +26,7 @@ src_unpack() {
 src_compile() {
 	CFLAGS_MACHINE="`get-flag -march` `get-flag -mcpu` `get-flag -mtune`"
 
+	append-flags -fno-strict-aliasing
 	use debug && append-flags -DDEBUG
 
 	econf \
