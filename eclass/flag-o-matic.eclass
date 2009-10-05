@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.144 2009/08/16 00:16:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.145 2009/10/04 10:00:53 ssuominen Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -747,6 +747,14 @@ bindnow-flags() {
 	die "Stop using bindnow-flags."
 }
 
+# @FUNCTION: no-as-needed
+# @RETURN: Flag to disable asneeded behavior for use with append-ldflags.
+no-as-needed() {
+	case $($(tc-getLD) -v 2>&1 </dev/null) in
+		*GNU*) # GNU ld
+		echo "-Wl,--no-as-needed" ;;
+	esac
+}
 
 # Some tests for when we screw with things and want to make
 # sure we didn't break anything

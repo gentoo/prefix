@@ -1,12 +1,13 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.44 2009/08/11 14:44:16 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.47 2009/10/03 19:29:04 ayoy Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
 # Ben de Groot <yngwin@gentoo.org>,
 # Markos Chandras <hwoarang@gentoo.org>,
 # Caleb Tennis <caleb@gentoo.org>
+# Alex Alexander <wired@gentoo.org>
 # @BLURB: Eclass for Qt4 split ebuilds.
 # @DESCRIPTION:
 # This eclass contains various functions that are used when building Qt4
@@ -62,8 +63,11 @@ MY_P="qt-${MY_GE}-${SRCTYPE}-${MY_PV}"
 S=${WORKDIR}/${MY_P}
 
 HOMEPAGE="http://qt.nokia.com/"
-SRC_URI=" aqua? ( http://download.qt.nokia.com/qt/source/qt-mac-${SRCTYPE}-${MY_PV}.tar.bz2 )
-	!aqua? ( http://download.qt.nokia.com/qt/source/qt-x11-${SRCTYPE}-${MY_PV}.tar.bz2 )"
+SRC_URI=" aqua? ( http://get.qt.nokia.com/qt/source/qt-mac-${SRCTYPE}-${MY_PV}.tar.bz2 )
+	!aqua? ( http://get.qt.nokia.com/qt/source/qt-x11-${SRCTYPE}-${MY_PV}.tar.bz2 )"
+if version_is_at_least 4.5.3 ${PV} ; then
+	SRC_URI="${SRC_URI/bz2/gz}"
+fi
 
 case "${PV}" in
 	4.4.?)
@@ -138,7 +142,7 @@ qt4-build_pkg_setup() {
 # Unpacks the sources
 qt4-build_src_unpack() {
 	setqtenv
-	local target targets licenses
+	local target targets licenses tar_pkg tar_args
 	if version_is_at_least 4.5 ${PV} ; then
 		licenses="LICENSE.GPL3 LICENSE.LGPL"
 	else
@@ -150,8 +154,15 @@ qt4-build_src_unpack() {
 			targets="${targets} ${MY_P}/${target}"
 	done
 
-	echo tar xjpf "${DISTDIR}"/${MY_P}.tar.bz2 ${targets}
-	tar xjpf "${DISTDIR}"/${MY_P}.tar.bz2 ${targets}
+	tar_pkg=${MY_P}.tar.bz2
+	tar_args="xjpf"
+	if version_is_at_least 4.5.3 ${PV} ; then
+		tar_pkg=${tar_pkg/bz2/gz}
+		tar_args="xzpf"
+	fi
+
+	echo tar ${tar_args} "${DISTDIR}"/${tar_pkg} ${targets}
+	tar ${tar_args} "${DISTDIR}"/${tar_pkg} ${targets}
 
 	if [[ ${CHOST} != *-darwin* ]]; then
 		case "${PV}" in
@@ -437,9 +448,9 @@ standard_configure_options() {
 		$([[ ${PN} == qt-xmlpatterns ]] || echo -no-exceptions)
 		-reduce-relocations -nomake examples -nomake demos"
 
-	# Make eclass 4.5.{1,2} ready
+	# Make eclass 4.5.x ready
 	case "${MY_PV}" in
-		4.5.1 | 4.5.2)
+		4.5.?)
 			myconf="${myconf} -opensource"
 			;;
 	esac
@@ -457,7 +468,9 @@ build_directories() {
 		cd "${S}"/${x}
 		sed -i -e "s:\$\$\[QT_INSTALL_LIBS\]:${EPREFIX}/usr/$(get_libdir)/qt4:g" $(find "${S}" -name '*.pr[io]') "${S}"/mkspecs/common/linux.conf || die
 		"${S}"/bin/qmake "LIBS+=-L${QTLIBDIR}" "CONFIG+=nostrip" || die "qmake failed"
-		emake || die "emake failed"
+		emake CC="@echo compiling \$< && $(tc-getCC)" \
+			CXX="@echo compiling \$< && $(tc-getCXX)" \
+			LINK="@echo linking \$@ && $(tc-getCXX)" || die "emake failed"
 	done
 }
 

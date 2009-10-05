@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.18 2009/09/20 08:37:23 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.19 2009/10/04 15:00:45 ssuominen Exp $
 
 EAPI="2"
 
@@ -477,12 +477,7 @@ apache-2_src_prepare() {
 apache-2_src_configure() {
 	# Instead of filtering --as-needed (bug #128505), append --no-as-needed
 	# Thanks to Harald van Dijk
-	# ... but only on platforms that use a GNU linker, you tools!
-	case ${CHOST} in
-		*-solaris* | *-*bsd* | *-linux-gnu)
-			append-ldflags -Wl,--no-as-needed
-		;;
-	esac
+	append-ldflags $(no-as-needed)
 
 	# peruser MPM debugging with -X is nearly impossible
 	if has peruser ${IUSE_MPMS} && use apache2_mpms_peruser ; then

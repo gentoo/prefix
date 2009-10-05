@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.76 2009/08/04 11:50:23 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.77 2009/10/03 08:31:29 a3li Exp $
 #
 # @ECLASS: ruby.eclass
 # @MAINTAINER:
@@ -258,26 +258,8 @@ prepall() {
 				src_install || die "src_install failed"
 			done
 		elif [ "${USE_RUBY}" == "any" ] ; then
-			ewarn
-			ewarn "DEPRECATION NOTICE"
-			ewarn "USE_RUBY=\"any\" is deprecated. Please use explicit versions instead."
-			ewarn "Support will be removed on April 1st, 2009."
-			ewarn "For questions, please contact ruby@gentoo.org."
-			ewarn
-
-			siteruby=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitelibdir"]')
-			# in case no directories found in siteruby
-			local shopts=$-
-			set -o noglob # so that bash doen't expand "*"
-
-			for x in "${ED}"/${siteruby}/* ; do
-				mv $x "${ED}"/${siteruby}/..
-			done
-			if [[ -d ${ED}${siteruby} ]] ; then
-				rmdir --ignore-fail-on-non-empty "${ED}"/${siteruby}
-			fi
-
-			set +o noglob; set -$shopts # reset old shell opts
+			eerror "USE_RUBY=\"any\" is no longer supported. Please use explicit versions instead."
+			die "USE_RUBY=\"any\" is no longer supported."
 		fi
 	fi
 

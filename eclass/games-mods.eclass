@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games-mods.eclass,v 1.30 2009/10/02 04:56:24 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games-mods.eclass,v 1.31 2009/10/04 14:13:59 nyhm Exp $
 
 # Variables to specify in an ebuild which uses this eclass:
 # GAME - (doom3, quake4 or ut2004, etc), unless ${PN} starts with e.g. "doom3-"
@@ -10,7 +10,6 @@
 # MOD_ICON - Custom icon for the mod, instead of the default
 # MOD_NAME - Creates a command-line wrapper and desktop icon for the mod
 # MOD_TBZ2 - File to extract within the Makeself archive
-# MOD_NO_DED - Set this non-empty if the mod doesn't have a server
 
 inherit eutils games
 
@@ -96,10 +95,10 @@ games-mods_get_rdepend() {
 		2)
 			local pkg
 			for pkg in $@ ; do
-				if [[ -z ${MOD_NO_DED} ]] ; then
-					echo -n " ${pkg}[dedicated=,opengl=]"
+				if [[ -z ${MOD_BINS} && -z ${MOD_DIR} ]] ; then
+					echo -n " ${pkg}"
 				else
-					echo -n " ${pkg}[opengl]"
+					echo -n " ${pkg}[dedicated=,opengl=]"
 				fi
 			done
 			;;
@@ -121,7 +120,7 @@ S=${WORKDIR}
 dir=${GAMES_DATADIR}/${GAME}
 
 games-mods_use_opengl() {
-	[[ -n ${MOD_NO_DED} ]] && return 0
+	[[ -z ${MOD_BINS} && -z ${MOD_DIR} ]] && return 1
 
 	if use opengl || ! use dedicated ; then
 		# Use opengl by default
@@ -132,7 +131,7 @@ games-mods_use_opengl() {
 }
 
 games-mods_use_dedicated() {
-	[[ -n ${MOD_NO_DED} ]] && return 1
+	[[ -z ${MOD_BINS} && -z ${MOD_DIR} ]] && return 1
 
 	use dedicated && return 0 || return 1
 }

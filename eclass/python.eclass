@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.74 2009/10/02 02:02:24 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.76 2009/10/02 23:09:08 arfrever Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -114,7 +114,7 @@ PYTHON() {
 
 # @FUNCTION: validate_PYTHON_ABIS
 # @DESCRIPTION:
-# Make sure PYTHON_ABIS variable has valid value.
+# Ensure that PYTHON_ABIS variable has valid value.
 validate_PYTHON_ABIS() {
 	# Ensure that some functions cannot be accidentally successfully used in EAPI <= 2 without setting SUPPORT_PYTHON_ABIS variable.
 	if has "${EAPI:-0}" 0 1 2 && [[ -z "${SUPPORT_PYTHON_ABIS}" ]]; then
@@ -131,10 +131,14 @@ validate_PYTHON_ABIS() {
 
 	# USE_${ABI_TYPE^^} and RESTRICT_${ABI_TYPE^^}_ABIS variables hopefully will be included in EAPI >= 4.
 	if [[ "$(declare -p PYTHON_ABIS 2> /dev/null)" != "declare -x PYTHON_ABIS="* ]] && has "${EAPI:-0}" 0 1 2 3; then
-		local ABI restricted_ABI support_ABI supported_PYTHON_ABIS=
+		local ABI python2_supported_versions python3_supported_versions restricted_ABI support_ABI supported_PYTHON_ABIS=
 		PYTHON_ABI_SUPPORTED_VALUES="2.4 2.5 2.6 2.7 3.0 3.1 3.2"
+		python2_supported_versions="2.4 2.5 2.6 2.7"
+		python3_supported_versions="3.0 3.1 3.2"
 
 		if [[ "$(declare -p USE_PYTHON 2> /dev/null)" == "declare -x USE_PYTHON="* ]]; then
+			local python2_enabled="0" python3_enabled="0"
+
 			if [[ -z "${USE_PYTHON}" ]]; then
 				die "USE_PYTHON variable is empty"
 			fi
@@ -143,6 +147,14 @@ validate_PYTHON_ABIS() {
 				if ! has "${ABI}" ${PYTHON_ABI_SUPPORTED_VALUES}; then
 					die "USE_PYTHON variable contains invalid value '${ABI}'"
 				fi
+
+				if has "${ABI}" ${python2_supported_versions}; then
+					python2_enabled="1"
+				fi
+				if has "${ABI}" ${python3_supported_versions}; then
+					python3_enabled="1"
+				fi
+
 				support_ABI="1"
 				for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
 					if python -c "from fnmatch import fnmatch; exit(not fnmatch('${ABI}', '${restricted_ABI}'))"; then
@@ -157,8 +169,17 @@ validate_PYTHON_ABIS() {
 			if [[ -z "${PYTHON_ABIS//[${IFS}]/}" ]]; then
 				die "USE_PYTHON variable doesn't enable any version of Python supported by ${CATEGORY}/${PF}"
 			fi
+
+			if [[ "${python2_enabled}" == "0" ]]; then
+				ewarn "USE_PYTHON variable doesn't enable any version of Python 2. This configuration is unsupported."
+			fi
+			if [[ "${python3_enabled}" == "0" ]]; then
+				ewarn "USE_PYTHON variable doesn't enable any version of Python 3. This configuration is unsupported."
+			fi
 		else
-			local ABI python2_version= python2_supported_versions python3_version= python3_supported_versions restricted_ABI support_python_major_version
+			local python_version python2_version= python3_version= support_python_major_version
+
+			python_version="$("${EPREFIX}"/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
 
 			if has_version "=dev-lang/python-2*"; then
 				if [[ "$(readlink "${EPREFIX}"/usr/bin/python2)" != "python2."* ]]; then
@@ -166,7 +187,6 @@ validate_PYTHON_ABIS() {
 				fi
 
 				python2_version="$("${EPREFIX}"/usr/bin/python2 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
-				python2_supported_versions="2.4 2.5 2.6 2.7"
 
 				for ABI in ${python2_supported_versions}; do
 					support_python_major_version="1"
@@ -194,7 +214,6 @@ validate_PYTHON_ABIS() {
 				fi
 
 				python3_version="$("${EPREFIX}"/usr/bin/python3 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
-				python3_supported_versions="3.0 3.1 3.2"
 
 				for ABI in ${python3_supported_versions}; do
 					support_python_major_version="1"
@@ -214,6 +233,12 @@ validate_PYTHON_ABIS() {
 				else
 					python3_version=""
 				fi
+			fi
+
+			if ! has "${python_version}" "${python2_version}" "${python3_version}"; then
+				eerror "Python wrapper is configured incorrectly or /usr/bin/python2 or /usr/bin/python3 symlink"
+				eerror "is set incorrectly. Use \`eselect python\` to fix configuration."
+				die "Incorrect configuration of Python"
 			fi
 
 			PYTHON_ABIS="${python2_version} ${python3_version}"
@@ -546,6 +571,13 @@ if ! has "${EAPI:-0}" 0 1 && [[ -n ${PYTHON_USE_WITH} || -n ${PYTHON_USE_WITH_OR
 				pyatom="dev-lang/python:${PYVER}"
 			fi
 
+			# Workaround for older versions of Portage.
+			# has_version() calls portageq which is implemented in Python.
+			if has_version "=dev-lang/python-2*"; then
+				local EPYTHON
+				export EPYTHON="$(readlink "${EPREFIX}"/usr/bin/python2)"
+			fi
+
 			for use in ${PYTHON_USE_WITH}; do
 				if ! has_version "${pyatom}[${use}]"; then
 					python_pkg_setup_fail "Please rebuild ${pyatom} with the following USE flags enabled: ${PYTHON_USE_WITH}"
@@ -776,7 +808,7 @@ python_mod_optimize() {
 					ewarn "${FUNCNAME}: Ignoring compile option $1"
 					;;
 				*)
-					if [[ "$1" =~ ^/usr/lib(32|64)?/python[[:digit:]]+\.[[:digit:]]+ ]]; then
+					if [[ "$1" =~ ^"${EPREFIX}"/usr/lib(32|64)?/python[[:digit:]]+\.[[:digit:]]+ ]]; then
 						die "${FUNCNAME} doesn't support absolute paths of directories/files in site-packages directories"
 					elif [[ "$1" =~ ^/ ]]; then
 						if [[ -d "${root}/$1" ]]; then
@@ -936,7 +968,7 @@ python_mod_cleanup() {
 	if (($#)); then
 		if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
 			while (($#)); do
-				if [[ "$1" =~ ^/usr/lib(32|64)?/python[[:digit:]]+\.[[:digit:]]+ ]]; then
+				if [[ "$1" =~ ^"${EPREFIX}"/usr/lib(32|64)?/python[[:digit:]]+\.[[:digit:]]+ ]]; then
 					die "${FUNCNAME} doesn't support absolute paths of directories/files in site-packages directories"
 				elif [[ "$1" =~ ^/ ]]; then
 					SEARCH_PATH+=("${root}/${1#/}")
