@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/Probe-Perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Probe-Perl/ChangeLog,v 1.3 2009/09/24 18:12:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Probe-Perl/ChangeLog,v 1.5 2009/10/03 04:21:08 josejx Exp $
+
+  03 Oct 2009; Joseph Jezak <josejx@gentoo.org> Probe-Perl-0.01.ebuild:
+  Marked ~ppc64.
+
+  03 Oct 2009; Joseph Jezak <josejx@gentoo.org> Probe-Perl-0.01.ebuild:
+  Marked ~ppc for bug #285057.
 
   24 Sep 2009; Raúl Porcel <armin76@gentoo.org> Probe-Perl-0.01.ebuild:
   Add ~alpha/~arm/~ia64/~s390/~sh/~sparc wrt #285057
