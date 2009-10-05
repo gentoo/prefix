@@ -1,6 +1,16 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.277 2009/09/23 17:04:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.279 2009/10/03 15:23:27 ranger Exp $
+
+  03 Oct 2009; Brent Baude <ranger@gentoo.org> util-linux-2.16.1.ebuild:
+  Marking util-2.16.1 ppc64 for 284744
+
+  03 Oct 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking util-linux-2.16.1 ppc64 for bug 284744
+
+  03 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
+  util-linux-2.16.1.ebuild:
+  Stable on alpha, bug #284744
 
   23 Sep 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.16.1.ebuild,
   util-linux-9999.ebuild, metadata.xml:
