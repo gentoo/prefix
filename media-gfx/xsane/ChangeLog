@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/xsane
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/ChangeLog,v 1.81 2009/10/01 19:39:46 phosphan Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/ChangeLog,v 1.82 2009/10/03 07:46:16 phosphan Exp $
+
+*xsane-0.997 (03 Oct 2009)
+
+  03 Oct 2009; Patrick Kursawe <phosphan@gentoo.org> +xsane-0.997.ebuild:
+  Version bump, see bug #287360
 
   01 Oct 2009; Patrick Kursawe <phosphan@gentoo.org> xsane-0.996.ebuild:
   Removing duplicate desktop file (bug #286503).
