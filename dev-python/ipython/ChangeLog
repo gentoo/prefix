@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/ipython
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.66 2009/08/30 00:08:20 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ChangeLog,v 1.68 2009/10/04 19:57:28 arfrever Exp $
+
+  04 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  ipython-0.9.1.ebuild, ipython-0.10.ebuild:
+  net-zope/zopeinterface renamed to net-zope/zope-interface.
+
+  03 Oct 2009; Markus Meier <maekke@gentoo.org> ipython-0.10.ebuild:
+  amd64/x86 stable, bug #286859
 
   29 Aug 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   ipython-0.10.ebuild:

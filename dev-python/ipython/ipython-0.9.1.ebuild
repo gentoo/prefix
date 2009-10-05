@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-0.9.1.ebuild,v 1.11 2009/08/18 16:47:06 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/ipython/ipython-0.9.1.ebuild,v 1.12 2009/10/04 19:57:28 arfrever Exp $
 
 NEED_PYTHON=2.4
 
@@ -19,7 +19,7 @@ CDEPEND="dev-python/pexpect
 	wxwidgets? ( dev-python/wxpython )
 	readline? ( sys-libs/readline )
 	emacs? ( app-emacs/python-mode virtual/emacs )
-	smp? (  net-zope/zopeinterface
+	smp? (  net-zope/zope-interface
 			dev-python/foolscap
 			dev-python/pyopenssl )"
 RDEPEND="${CDEPEND}
