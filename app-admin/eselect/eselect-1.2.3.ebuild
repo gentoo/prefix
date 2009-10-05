@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.2.3.ebuild,v 1.2 2009/10/01 22:47:48 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect/eselect-1.2.3.ebuild,v 1.5 2009/10/03 22:25:56 fauli Exp $
 
 inherit eutils
 
