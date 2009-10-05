@@ -1,6 +1,24 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.487 2009/09/26 14:10:22 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.491 2009/10/04 12:44:06 suka Exp $
+
+  04 Oct 2009; Andreas Proschofsky <suka@gentoo.org>
+  -files/buildfix-gcc44.diff, -openoffice-3.1.0-r1.ebuild,
+  -files/hunspell-one-dir-nocrash.diff,
+  -files/solenv.workaround-for-the-kde-mess.diff:
+  Further security related cleanup
+
+  04 Oct 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  Re-add ~sparc as kde4 is masked now
+
+  04 Oct 2009; Andreas Proschofsky <suka@gentoo.org>
+  -openoffice-3.0.0.ebuild, -files/gentoo-3.0.0.diff,
+  -files/fixsandbox.diff, -files/nojavanostax.diff:
+  Clean out old, security vulnerable version
+
+  04 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> openoffice-3.1.1.ebuild:
+  Stable for ppc, bug 283370
 
   26 Sep 2009; Tobias Heinlein <keytoaster@gentoo.org>
   openoffice-3.1.1.ebuild:
