@@ -1,6 +1,14 @@
 # ChangeLog for dev-db/hsqldb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.50 2009/05/29 14:37:16 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.52 2009/10/03 17:17:54 betelgeuse Exp $
+
+  03 Oct 2009; Petteri Räty <betelgeuse@gentoo.org>
+  -files/server.properties-r1, -files/sqltool.rc-r1:
+  Cleanup duplicate files from files directory. Fixes bug #286379.
+
+  03 Oct 2009; Petteri Räty <betelgeuse@gentoo.org>
+  -hsqldb-1.8.0.9-r1.ebuild:
+  Remove old version.
 
   29 May 2009; Petteri Räty <betelgeuse@gentoo.org>
   -hsqldb-1.7.3.1-r3.ebuild:
