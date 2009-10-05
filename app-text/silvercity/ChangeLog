@@ -1,6 +1,10 @@
 # ChangeLog for app-text/silvercity
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/silvercity/ChangeLog,v 1.24 2008/05/28 19:23:25 phreak Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/silvercity/ChangeLog,v 1.25 2009/10/03 05:09:11 arfrever Exp $
+
+  03 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  silvercity-0.9.7.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
   28 May 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Julien Allanos (dju) from metadata.xml (as per #87168).
