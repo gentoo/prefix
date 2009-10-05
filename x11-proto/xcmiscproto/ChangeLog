@@ -1,6 +1,10 @@
 # ChangeLog for x11-proto/xcmiscproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcmiscproto/ChangeLog,v 1.29 2009/09/19 11:17:41 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcmiscproto/ChangeLog,v 1.30 2009/10/03 15:55:23 scarabeus Exp $
+
+  03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  xcmiscproto-1.2.0.ebuild:
+  Dep cleanup.
 
 *xcmiscproto-1.2.0 (19 Sep 2009)
 
