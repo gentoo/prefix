@@ -24,6 +24,7 @@ app-shells/tcsh
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
+net-analyzer/linkchecker
 net-misc/mico
 sys-devel/binutils-apple
 sys-devel/gcc-apple
