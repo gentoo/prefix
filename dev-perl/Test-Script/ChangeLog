@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Test-Script
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Script/ChangeLog,v 1.13 2009/09/24 18:20:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-Script/ChangeLog,v 1.14 2009/10/03 05:25:59 josejx Exp $
+
+  03 Oct 2009; Joseph Jezak <josejx@gentoo.org> Test-Script-1.05.ebuild,
+  Test-Script-1.06.ebuild:
+  Marked ~ppc for bug #285057.
 
   24 Sep 2009; Raúl Porcel <armin76@gentoo.org> Test-Script-1.06.ebuild:
   Add ~alpha/~arm/~ia64/~s390/~sh/~sparc wrt #285057
