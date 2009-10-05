@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-4.0.ebuild,v 1.3 2009/07/20 21:05:52 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-4.0.ebuild,v 1.4 2009/10/05 02:10:23 leio Exp $
 
 inherit autotools eutils
 
@@ -59,10 +59,8 @@ src_install() {
 
 pkg_preinst() {
 	preserve_old_lib /usr/$(get_libdir)/libxklavier.so.12
-	preserve_old_lib /usr/$(get_libdir)/libxklavier.so.12.2.0
 }
 
 pkg_postinst() {
 	preserve_old_lib_notify /usr/$(get_libdir)/libxklavier.so.12
-	preserve_old_lib_notify /usr/$(get_libdir)/libxklavier.so.12.2.0
 }
