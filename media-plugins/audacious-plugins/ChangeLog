@@ -1,6 +1,11 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.138 2009/09/16 19:08:03 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.139 2009/10/04 21:50:34 chainsaw Exp $
+
+*audacious-plugins-2.2_alpha2 (04 Oct 2009)
+
+  04 Oct 2009; <chainsaw@gentoo.org> +audacious-plugins-2.2_alpha2.ebuild:
+  New alpha release, still masked. Bugs upstream please.
 
   16 Sep 2009; <chainsaw@gentoo.org> audacious-plugins-2.2_alpha1.ebuild:
   Properly remove references to WMA & PulseAudio plugins, which are no
