@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/gtk-doc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.111 2009/09/30 17:03:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.112 2009/10/03 13:02:23 klausman Exp $
+
+  03 Oct 2009; Tobias Klausmann <klausman@gentoo.org> gtk-doc-1.11.ebuild:
+  Stable on alpha, bug #285586
 
   30 Sep 2009; Jeroen Roovers <jer@gentoo.org> gtk-doc-1.11.ebuild:
   Stable for HPPA (bug #285586).
