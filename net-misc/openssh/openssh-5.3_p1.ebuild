@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r3.ebuild,v 1.4 2009/10/03 16:25:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.3_p1.ebuild,v 1.1 2009/10/03 07:41:38 vapier Exp $
 
 inherit eutils flag-o-matic multilib autotools pam
 
@@ -8,16 +8,14 @@ inherit eutils flag-o-matic multilib autotools pam
 # and _p? releases.
 PARCH=${P/_/}
 
-HPN_PATCH="${PARCH}-hpn13v6.diff.gz"
-LDAP_PATCH="${PARCH/openssh/openssh-lpk}-0.3.11.patch.gz"
-PKCS11_PATCH="${PARCH/p1}pkcs11-0.26.tar.bz2"
+#HPN_PATCH="${PARCH}-hpn13v6.diff.gz"
+#LDAP_PATCH="${PARCH/openssh/openssh-lpk}-0.3.11.patch.gz"
+PKCS11_PATCH="${PARCH/3p1/2}pkcs11-0.26.tar.bz2"
 X509_VER="6.2.1" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
-# HPN appears twice as sometimes Gentoo has a custom version of it.
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
-	http://www.sxw.org.uk/computing/patches/openssh-5.2p1-gsskex-all-20090726.patch
 	${HPN_PATCH:+hpn? ( http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )}
 	${LDAP_PATCH:+ldap? ( mirror://gentoo/${LDAP_PATCH} )}
 	${PKCS11_PATCH:+pkcs11? ( http://alon.barlev.googlepages.com/${PKCS11_PATCH} )}
@@ -85,7 +83,7 @@ src_unpack() {
 		EPATCH_OPTS="-p1" epatch "${WORKDIR}"/*pkcs11*/{1,2,4}*
 		use X509 && EPATCH_OPTS="-R" epatch "${WORKDIR}"/*pkcs11*/1000_all_log.patch
 	fi
-	use X509 && epatch "${DISTDIR}"/${X509_PATCH} "${FILESDIR}"/${P}-x509-hpn-glue.patch
+	use X509 && epatch "${DISTDIR}"/${X509_PATCH} "${FILESDIR}"/${PN}-5.2_p1-x509-hpn-glue.patch
 	use smartcard && epatch "${FILESDIR}"/openssh-3.9_p1-opensc.patch
 	if ! use X509 ; then
 		if [[ -n ${LDAP_PATCH} ]] && use ldap ; then
@@ -93,15 +91,15 @@ src_unpack() {
 			epatch "${DISTDIR}"/${LDAP_PATCH}
 			epatch "${FILESDIR}"/${PN}-5.2p1-ldap-stdargs.diff #266654
 		fi
-		epatch "${DISTDIR}"/openssh-5.2p1-gsskex-all-20090726.patch #115553 #216932 #279488
-		epatch "${FILESDIR}"/${P}-gsskex-fix.patch
+		#epatch "${DISTDIR}"/openssh-5.2p1-gsskex-all-20090726.patch #115553 #216932 #279488
+		#epatch "${FILESDIR}"/${P}-gsskex-fix.patch
 	else
 		use ldap && ewarn "Sorry, X509 and ldap don't get along, disabling ldap"
 	fi
-	#epatch "${FILESDIR}"/${PN}-4.7_p1-GSSAPI-dns.patch #165444 integrated into gsskex
+	epatch "${FILESDIR}"/${PN}-4.7_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	[[ -n ${HPN_PATCH} ]] && use hpn && epatch "${DISTDIR}"/${HPN_PATCH}
 	epatch "${FILESDIR}"/${PN}-4.7p1-selinux.diff #191665
-	epatch "${FILESDIR}"/${P}-autoconf.patch
+	epatch "${FILESDIR}"/${PN}-5.2_p1-autoconf.patch
 
 	# in 5.2p1, the AES-CTR multithreaded variant is temporarily broken, and
 	# causes random hangs when combined with the -f switch of ssh.
