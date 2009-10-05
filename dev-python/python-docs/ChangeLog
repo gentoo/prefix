@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/python-docs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.129 2009/09/27 14:28:56 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/python-docs/ChangeLog,v 1.130 2009/10/04 18:21:41 arfrever Exp $
+
+*python-docs-2.6.3 (04 Oct 2009)
+
+  04 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-docs-2.6.3.ebuild:
+  Version bump.
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> python-docs-2.6.2-r1.ebuild:
   ppc stable #277645
