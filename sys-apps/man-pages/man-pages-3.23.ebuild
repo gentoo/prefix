@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.20.ebuild,v 1.2 2009/04/27 04:45:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.23.ebuild,v 1.1 2009/10/03 07:06:41 vapier Exp $
 
 GENTOO_PATCH=2
 
@@ -13,8 +13,8 @@ SRC_URI="mirror://kernel/linux/docs/manpages/Archive/${P}.tar.bz2
 LICENSE="freedist"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
-IUSE="nls linguas_cs linguas_da linguas_de linguas_es linguas_fr linguas_it
-	linguas_ja linguas_nl linguas_pl linguas_ro linguas_ru linguas_zh_CN"
+IUSE_LINGUAS=" cs da de es fr it ja nl pl ro ru zh_CN"
+IUSE="nls ${IUSE_LINGUAS// / linguas_}"
 RESTRICT="binchecks"
 
 RDEPEND="virtual/man"
