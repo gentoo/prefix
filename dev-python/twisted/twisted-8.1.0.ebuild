@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.1.0.ebuild,v 1.10 2009/09/06 21:11:31 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.1.0.ebuild,v 1.11 2009/10/04 20:01:14 arfrever Exp $
 
 inherit eutils distutils versionator
 
@@ -16,7 +16,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-sola
 IUSE="gtk serial crypt"
 
 DEPEND=">=dev-lang/python-2.3
-	>=net-zope/zopeinterface-3.0.1
+	>=net-zope/zope-interface-3.0.1
 	serial? ( dev-python/pyserial )
 	crypt? ( >=dev-python/pyopenssl-0.5.1 )
 	gtk? ( >=dev-python/pygtk-1.99 )

@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/twisted
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.107 2009/09/10 03:36:00 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.108 2009/10/04 20:01:14 arfrever Exp $
+
+  04 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  twisted-8.1.0.ebuild, twisted-8.2.0-r2.ebuild:
+  net-zope/zopeinterface renamed to net-zope/zope-interface.
 
   10 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   files/twistd.init:
