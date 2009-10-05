@@ -41,7 +41,7 @@ src_unpack() {
 		*-freebsd*)
 			requested_gnulib_modules="mathl strndup"
 			;;
-		*-solaris2.9)
+		*-solaris2.8|*-solaris2.9)
 			# Don't remove dirfd!
 			requested_gnulib_modules="alphasort dirfd getopt scandir setenv strcasestr stdint strndup xvasprintf"
 			;;
