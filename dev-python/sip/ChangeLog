@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/sip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/ChangeLog,v 1.143 2009/09/27 18:21:03 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/ChangeLog,v 1.144 2009/10/02 22:03:11 arfrever Exp $
+
+*sip-4.8.2-r1 (02 Oct 2009)
+
+  02 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +sip-4.8.2-r1.ebuild, +files/sip-4.8.2-python-3.patch:
+  Add new revision to ensure that dev-python/sip is installed by default for
+  Python 2 and Python 3. Fix compatibility with Python 3.
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> sip-4.8.2.ebuild:
   ppc stable #284707
