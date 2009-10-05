@@ -1,6 +1,12 @@
 # ChangeLog for app-emulation/emul-linux-x86-compat
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/ChangeLog,v 1.32 2009/09/23 15:32:55 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-compat/ChangeLog,v 1.33 2009/10/04 17:39:46 kingtaco Exp $
+
+*emul-linux-x86-compat-20091004_rc1 (04 Oct 2009)
+
+  04 Oct 2009; Mike Doty <kingtaco@gentoo.org>
+  +emul-linux-x86-compat-20091004_rc1.ebuild:
+  new emul rc
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org>
   emul-linux-x86-compat-1.0-r1.ebuild:
