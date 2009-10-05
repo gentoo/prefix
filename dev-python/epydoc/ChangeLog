@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/epydoc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.46 2009/07/31 11:51:45 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/epydoc/ChangeLog,v 1.47 2009/10/03 05:33:08 arfrever Exp $
+
+  03 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  epydoc-2.1-r2.ebuild, epydoc-3.0.1.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
   31 Jul 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   epydoc-3.0.1.ebuild:
