@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXrender
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrender/ChangeLog,v 1.57 2009/06/23 19:23:05 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrender/ChangeLog,v 1.58 2009/10/03 12:04:51 scarabeus Exp $
+
+*libXrender-0.9.5 (03 Oct 2009)
+
+  03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libXrender-0.9.2.ebuild, +libXrender-0.9.5.ebuild:
+  Version bump. Remove old.
 
   23 Jun 2009; Tobias Klausmann <klausman@gentoo.org>
   libXrender-0.9.4.ebuild:
