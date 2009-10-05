@@ -1,8 +1,7 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.8.ebuild,v 1.18 2009/09/28 15:48:57 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.8.ebuild,v 1.20 2009/10/03 16:38:24 ssuominen Exp $
 
-EAPI=2
 inherit autotools eutils
 
 DESCRIPTION="a portable, high level programming interface to various calling conventions."
@@ -18,17 +17,21 @@ RDEPEND=""
 DEPEND="!<dev-libs/g-wrap-1.9.11
 	test? ( dev-util/dejagnu )"
 
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-fbsd.patch
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-fbsd.patch \
+		"${FILESDIR}"/${P}-autoconf-2.64.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 	eautoreconf
 }
 
-src_configure() {
+src_compile() {
 	econf \
 		--disable-dependency-tracking \
 		$(use_enable static-libs static) \
 		$(use_enable debug)
+	emake || die
 }
 
 src_install() {
@@ -37,9 +40,5 @@ src_install() {
 }
 
 pkg_postinst() {
-	if has_version sys-devel/gcc[libffi]; then
-		ewarn "Please unset USE flag libffi in sys-devel/gcc. There is no"
-		ewarn "file collision but your package might link to wrong library."
-		ebeep
-	fi
+	ewarn "If you have sys-devel/gcc built with USE libffi, unset it immediately."
 }
