@@ -1,6 +1,14 @@
 # ChangeLog for net-ftp/filezilla
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/ChangeLog,v 1.53 2009/08/24 09:18:02 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/ChangeLog,v 1.54 2009/10/04 23:52:44 voyageur Exp $
+
+*filezilla-3.2.8 (04 Oct 2009)
+
+  04 Oct 2009; Bernard Cafarelli <voyageur@gentoo.org>
+  +filezilla-3.2.8.ebuild:
+  Version bump, remember last used search conditions, display link overlay
+  on icons of links, simplify default file exists action dialogs, bugfixes
+  and minor changes
 
 *filezilla-3.2.7.1 (24 Aug 2009)
 
