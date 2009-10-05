@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/eselect-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.48 2009/09/20 13:08:22 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.49 2009/10/04 01:56:58 arfrever Exp $
+
+  04 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  eselect-python-20090824.ebuild:
+  Use EAPI="1" to allow upgrades using older versions of Portage not
+  supporting EAPI="2".
 
   20 Sep 2009; Mounir Lamouri <volkmar@gentoo.org>
   eselect-python-20090824.ebuild:
