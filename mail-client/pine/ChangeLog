@@ -1,6 +1,9 @@
 # ChangeLog for mail-client/pine
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/ChangeLog,v 1.105 2009/09/27 19:46:01 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/pine/ChangeLog,v 1.106 2009/10/03 18:58:02 klausman Exp $
+
+  03 Oct 2009; Tobias Klausmann <klausman@gentoo.org> pine-4.64-r7.ebuild:
+  Stable on alpha, bug #286137
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> pine-4.64-r7.ebuild:
   ppc stable #286137
