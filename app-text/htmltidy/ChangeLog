@@ -1,6 +1,10 @@
 # ChangeLog for app-text/htmltidy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/htmltidy/ChangeLog,v 1.47 2009/10/01 20:15:00 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/htmltidy/ChangeLog,v 1.48 2009/10/04 20:10:20 klausman Exp $
+
+  04 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
+  htmltidy-20090325.ebuild:
+  Stable on alpha, bug #286918
 
   01 Oct 2009; Steve Dibb <beandog@gentoo.org> htmltidy-20090325.ebuild:
   amd64 stable, bug 286918
