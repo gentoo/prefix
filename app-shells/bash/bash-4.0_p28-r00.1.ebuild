@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p28.ebuild,v 1.7 2009/09/26 13:07:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p28.ebuild,v 1.9 2009/10/03 16:49:27 maekke Exp $
 
 EAPI=1
 
