@@ -1,6 +1,12 @@
 # ChangeLog for app-text/xdvik
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.63 2009/02/08 11:07:00 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.64 2009/10/03 09:32:30 aballier Exp $
+
+*xdvik-22.84.16 (03 Oct 2009)
+
+  03 Oct 2009; Alexis Ballier <aballier@gentoo.org> +xdvik-22.84.16.ebuild,
+  +files/xdvik-22.84.16-open-mode.patch:
+  version bump, drop cjk patches they cause more harm than good
 
 *xdvik-22.84.14-r1 (08 Feb 2009)
 
