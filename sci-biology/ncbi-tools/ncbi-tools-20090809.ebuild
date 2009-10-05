@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20090809.ebuild,v 1.1 2009/09/04 18:12:02 weaver Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ncbi-tools-20090809.ebuild,v 1.2 2009/10/03 03:44:33 weaver Exp $
 
 EAPI="2"
 
 inherit flag-o-matic toolchain-funcs eutils
 
-DESCRIPTION="Development toolkit and applications for computational biology"
+DESCRIPTION="Development toolkit and applications for computational biology, including NCBI BLAST"
 LICENSE="public-domain"
 HOMEPAGE="http://www.ncbi.nlm.nih.gov/"
 SRC_URI="ftp://ftp.ncbi.nlm.nih.gov/toolbox/ncbi_tools/old/${PV}/ncbi.tar.gz -> ${P}.tar.gz"
