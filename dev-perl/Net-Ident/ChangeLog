@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Net-Ident
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-Ident/ChangeLog,v 1.14 2007/01/19 14:51:45 mcummings Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Net-Ident/ChangeLog,v 1.15 2009/10/03 04:14:56 josejx Exp $
+
+  03 Oct 2009; Joseph Jezak <josejx@gentoo.org> Net-Ident-1.20.ebuild:
+  Marked ppc stable for bug #285170.
 
   19 Jan 2007; Michael Cummings <mcummings@gentoo.org>
   Net-Ident-1.20.ebuild:
