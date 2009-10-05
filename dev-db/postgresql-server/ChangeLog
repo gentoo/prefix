@@ -1,6 +1,22 @@
 # ChangeLog for dev-db/postgresql-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.24 2009/10/01 20:55:34 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.26 2009/10/03 17:49:42 patrick Exp $
+
+  03 Oct 2009; Patrick Lauer <patrick@gentoo.org>
+  -postgresql-server-7.4.19.ebuild, -postgresql-server-7.4.21.ebuild,
+  -postgresql-server-8.0.15.ebuild, -postgresql-server-8.0.17.ebuild,
+  -postgresql-server-8.1.11.ebuild, -postgresql-server-8.1.13.ebuild,
+  -postgresql-server-8.2.9.ebuild, -postgresql-server-8.2.10.ebuild,
+  -postgresql-server-8.2.11.ebuild, -postgresql-server-8.3.5.ebuild,
+  -postgresql-server-8.3.7.ebuild, -postgresql-server-8.4.0.ebuild:
+  Remove old
+
+*postgresql-server-7.4.26 (03 Oct 2009)
+
+  03 Oct 2009; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-7.4.26.ebuild, +files/postgresql-7.4.26-autoconf.patch:
+  Bump to 7.4.26, fixes other half of #286700. Thanks to Aaron W. Swenson
+  for testing and patching.
 
   01 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
   postgresql-server-8.4.1.ebuild:
