@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.2.2.ebuild,v 1.2 2009/03/07 16:01:00 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/bittorrent/bittorrent-5.2.2.ebuild,v 1.3 2009/10/04 20:08:32 arfrever Exp $
 
 EAPI=2
 WX_GTK_VER="2.6"
@@ -25,7 +25,7 @@ RDEPEND=">=dev-lang/python-2.4.4-r14[threads]
 	>=dev-python/pycrypto-2.0
 	>=dev-python/twisted-2
 	dev-python/twisted-web
-	net-zope/zopeinterface"
+	net-zope/zope-interface"
 DEPEND="${RDEPEND}
 	app-arch/gzip
 	>=sys-apps/sed-4.0.5
