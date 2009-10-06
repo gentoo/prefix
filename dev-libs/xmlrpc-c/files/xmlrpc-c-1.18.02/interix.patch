@@ -69,3 +69,25 @@ diff -ru xmlrpc-c-1.18.02.orig/tools/xmlrpc_pstream/xmlrpc_pstream.cpp xmlrpc-c-
  using namespace std;
  using namespace xmlrpc_c;
  
+diff -ru xmlrpc-c-1.18.02.orig/config.mk.in xmlrpc-c-1.18.02/config.mk.in
+--- xmlrpc-c-1.18.02.orig/config.mk.in	2009-10-06 15:47:20 +0200
++++ xmlrpc-c-1.18.02/config.mk.in	2009-10-06 15:49:13 +0200
+@@ -259,6 +259,18 @@
+   NEED_WL_RPATH=yes
+ endif
+ 
++ifeq ($(findstring interix,$(HOST_OS)),interix)
++  SHARED_LIB_TYPE = unix
++  SHLIB_SUFFIX = so
++  MUST_BUILD_SHLIB = Y
++  MUST_BUILD_SHLIBLE = Y
++  shlibfn = $(1:%=%.$(SHLIB_SUFFIX).$(MAJ).$(MIN))
++  shliblefn = $(1:%=%.$(SHLIB_SUFFIX))
++  CFLAGS_SHLIB =
++  LDFLAGS_SHLIB = -shared -Wl,-soname,$(SONAME) $(SHLIB_CLIB)
++  NEED_WL_RPATH=yes
++endif
++
+ ifeq ($(HOST_OS),dragonfly)
+   SHARED_LIB_TYPE = unix
+   MUST_BUILD_SHLIB = Y
