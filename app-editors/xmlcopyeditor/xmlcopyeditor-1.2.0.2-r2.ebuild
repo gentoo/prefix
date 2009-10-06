@@ -16,7 +16,7 @@ SRC_URI="mirror://sourceforge/xml-copy-editor/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
-IUSE="guidexml"
+IUSE="aqua guidexml"
 
 DEPEND=">=dev-libs/libxml2-2.7.3-r1 \
 		dev-libs/libxslt  \
