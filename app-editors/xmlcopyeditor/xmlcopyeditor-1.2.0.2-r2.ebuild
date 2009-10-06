@@ -24,7 +24,7 @@ DEPEND=">=dev-libs/libxml2-2.7.3-r1 \
 		dev-libs/boost    \
 		dev-libs/libpcre  \
 		app-text/aspell   \
-		!aqua? ( x11-libs/wxGTK:2.8[X] ) \
+		!aqua? ( x11-libs/wxGTK:2.8[X] )
 		aqua? ( x11-libs/wxGTK:2.8[aqua] )"
 
 RDEPEND=${DEPEND}
