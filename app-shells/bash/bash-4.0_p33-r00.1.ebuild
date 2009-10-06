@@ -96,6 +96,7 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
 		epatch "${FILESDIR}"/${PN}-4.0-interix.patch
 		epatch "${FILESDIR}"/${PN}-4.0-interix-access.patch
+		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
 	fi
 
 	# modify the bashrc file for prefix
