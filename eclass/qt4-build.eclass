@@ -66,7 +66,7 @@ HOMEPAGE="http://qt.nokia.com/"
 SRC_URI=" aqua? ( http://get.qt.nokia.com/qt/source/qt-mac-${SRCTYPE}-${MY_PV}.tar.bz2 )
 	!aqua? ( http://get.qt.nokia.com/qt/source/qt-x11-${SRCTYPE}-${MY_PV}.tar.bz2 )"
 if version_is_at_least 4.5.3 ${PV} ; then
-	SRC_URI="${SRC_URI/bz2/gz}"
+	SRC_URI="${SRC_URI//bz2/gz}"
 fi
 
 case "${PV}" in
