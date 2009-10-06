@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils multilib base
+inherit eutils multilib base flag-o-matic
 
 DESCRIPTION="A lightweigt RPC library based on XML and HTTP"
 SRC_URI="mirror://gentoo/${PN}/${P}.tar.bz2"
@@ -68,9 +68,10 @@ src_prepare() {
 	fi
 
 	# fix install_name issue
-	[[ ${CHOST} == *-darwin* ]] && \
+	if [[ ${CHOST} == *-darwin* ]]; then
 		sed -i "s|-flat_namespace \$(SHLIB_CLIB)|\0 -install_name ${EPREFIX}/usr/$(get_libdir)/\$@|" \
 		"${S}"/config.mk.in || die "patching darwin install_name failed"
+	fi
 
 }
 
