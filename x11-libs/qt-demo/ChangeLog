@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/qt-demo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.25 2009/08/18 12:54:31 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.26 2009/10/04 10:19:59 wired Exp $
+
+*qt-demo-4.5.3 (04 Oct 2009)
+
+  04 Oct 2009; Alex Alexander <wired@gentoo.org> +qt-demo-4.5.3.ebuild:
+  version bump
 
   18 Aug 2009; Jeroen Roovers <jer@gentoo.org> qt-demo-4.5.1.ebuild:
   Stable for HPPA too.
