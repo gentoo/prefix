@@ -12,7 +12,7 @@ SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="gnome kde networkmanager python seamonkey webkit xulrunner"
 
 RDEPEND="
