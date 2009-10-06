@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/qt-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.58 2009/08/11 23:09:12 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.59 2009/10/04 10:26:33 wired Exp $
+
+*qt-core-4.5.3-r1 (04 Oct 2009)
+
+  04 Oct 2009; Alex Alexander <wired@gentoo.org> +qt-core-4.5.3-r1.ebuild:
+  version bump
 
   11 Aug 2009; Alex Alexander <wired@gentoo.org> qt-core-4.5.2.ebuild:
   added setqtenv in src_install, thanks to Tommy
