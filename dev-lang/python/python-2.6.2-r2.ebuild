@@ -32,7 +32,7 @@ IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline 
 RDEPEND=">=app-admin/eselect-python-20090606
 		>=sys-libs/zlib-1.1.3
 		virtual/libintl
-		virtual/libffi
+		!m68k-mint? ( virtual/libffi )
 		!build? (
 			berkdb? ( || (
 				sys-libs/db:4.7
