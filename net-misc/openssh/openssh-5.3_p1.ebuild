@@ -113,10 +113,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-copyfile.patch
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-getpwuid.patch
-#	epatch "${FILESDIR}"/${P}-interix-new.patch
-#	epatch "${FILESDIR}"/${P}-interix-warning.patch
-	# resolves problems with openssh startup on interix >= 6 through init
-#	epatch "${FILESDIR}"/${P}-interix-init.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 
 	# Disable PATH reset, trust what portage gives us. bug 254615
 	sed -i -e 's:^PATH=/:#PATH=/:' configure || die
