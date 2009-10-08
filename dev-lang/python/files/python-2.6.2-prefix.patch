@@ -1,0 +1,17 @@
+Make sure the library search path finds prefix libs.
+
+--- setup.py
++++ setup.py
+@@ -378,10 +378,11 @@
+         # if a file is found in one of those directories, it can
+         # be assumed that no additional -I,-L directives are needed.
+         lib_dirs = self.compiler.library_dirs + [
++            sys.prefix + '/lib',
+             '/lib64', '/usr/lib64',
+             '/lib', '/usr/lib',
+             ]
+-        inc_dirs = self.compiler.include_dirs + ['/usr/include']
++        inc_dirs = self.compiler.include_dirs + [sys.prefix + '/include', '/usr/include']
+         exts = []
+         missing = []
+ 

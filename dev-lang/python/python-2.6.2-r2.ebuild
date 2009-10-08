@@ -106,6 +106,7 @@ src_prepare() {
 
 	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
 	use prefix && epatch "${FILESDIR}"/${P}-use-first-bsddb-found.patch
+	use prefix && epatch "${FILESDIR}"/${P}-prefix.patch
 	epatch "${FILESDIR}"/${P}-readline-prefix.patch
 
 	# build static for mint
@@ -116,9 +117,10 @@ src_prepare() {
 	# need this to have _NSGetEnviron being used, which by default isn't...
 	[[ ${CHOST} == *-darwin* ]] && \
 		append-flags -DWITH_NEXT_FRAMEWORK
-	# but don't want framework path resulution stuff
+	# but don't want framework path resolution stuff
 	epatch "${FILESDIR}"/${P}-darwin-no-framework-lookup.patch
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
+	epatch "${FILESDIR}"/${PN}-2.6.2-no-special-darwin-libffi.patch
 	# for Mac weenies
 	epatch "${FILESDIR}"/${P}-mac.patch
 	epatch "${FILESDIR}"/${P}-mac-64bits.patch
@@ -128,12 +130,9 @@ src_prepare() {
 		Mac/IDLE/Makefile.in \
 		Mac/Tools/Doc/setup.py \
 		Mac/PythonLauncher/Makefile.in || die
-	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}"':' \
-		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}"':' \
+	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}/usr"':' \
+		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}/usr"':' \
 		Makefile.pre.in || die
-
-	# on hpux, use gcc to link if used to compile
-#	epatch "${FILESDIR}"/${PN}-2.5.1-hpux-ldshared.patch
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
@@ -262,6 +261,9 @@ src_configure() {
 	# we need this to get pythonw, the GUI version of python
 	# --enable-framework and --enable-shared are mutually exclusive:
 	# http://bugs.python.org/issue5809
+	# notice that for a framework build we also need to use ucs2 because OSX
+	# uses that internally too:
+	# http://bugs.python.org/issue763708
 	use aqua \
 		&& myconf="${myconf} --enable-framework=${EPREFIX}/usr/lib" \
 		|| myconf="${myconf} --enable-shared"
@@ -270,7 +272,7 @@ src_configure() {
 		--with-fpectl \
 		$(use_enable ipv6) \
 		$(use_with threads) \
-		$(use ucs2 && echo "--enable-unicode=ucs2" || echo "--enable-unicode=ucs4") \
+		$( (use ucs2 || use aqua) && echo "--enable-unicode=ucs2" || echo "--enable-unicode=ucs4") \
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
 		--with-libc='' \
