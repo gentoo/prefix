@@ -36,4 +36,5 @@ x11-terms/terminal
 
 # entire categories
 xfce-base
+xfce-extra
 
