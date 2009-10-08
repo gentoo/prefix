@@ -22,9 +22,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.2.25-interix.patch
 
-#	eautoreconf # required for winnt
-	# So we get sane .so versioning on FreeBSD
-	elibtoolize
+	# required for interix, winnt
+	eautoreconf
 }
 
 src_install() {
