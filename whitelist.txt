@@ -22,6 +22,7 @@ profiles
 app-portage/eix
 app-shells/tcsh
 dev-python/markdown
+dev-python/pysvn
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
