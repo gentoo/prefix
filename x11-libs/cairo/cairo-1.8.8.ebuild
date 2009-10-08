@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils flag-o-matic libtool
+inherit eutils flag-o-matic autotools
 
 DESCRIPTION="A vector graphics library with cross-device output support"
 HOMEPAGE="http://cairographics.org/"
@@ -54,8 +54,11 @@ src_prepare() {
 	# ClearType-like patches applied by ArchLinux
 	use cleartype && epatch "${FILESDIR}"/cairo-1.2.4-lcd-cleartype-like.diff
 
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	# We need to run elibtoolize to ensure correct so versioning on FreeBSD
-	elibtoolize
+	# upgraded to an eautoreconf for the above interix patch.
+	eautoreconf
 }
 
 src_configure() {
