@@ -19,6 +19,7 @@ licenses
 profiles
 
 # regular packages (do NOT put portage in here!)
+app-admin/eselect
 app-portage/eix
 app-shells/tcsh
 dev-python/markdown
