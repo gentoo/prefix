@@ -11,7 +11,7 @@ HOMEPAGE="http://ronald.bitfreak.net/gnome-media.php"
 
 LICENSE="LGPL-2 GPL-2 FDL-1.1"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="+sound esd gnomecd ipv6 pulseaudio"
 
 RDEPEND=">=dev-libs/glib-2.18.2:2
