@@ -1,0 +1,18 @@
+https://bugs.freedesktop.org/show_bug.cgi?id=24088
+http://bugs.gentoo.org/show_bug.cgi?id=288051
+
+--- libopenraw-0.0.8.orig/testsuite/testsuite.cpp	2009-10-07 14:47:25.383436721 +0200
++++ libopenraw-0.0.8/testsuite/testsuite.cpp	2009-10-07 14:49:28.252760114 +0200
+@@ -853,7 +853,12 @@
+             break;
+         case 'd':
+             if(optarg[0] != '/') {
++#ifdef _GNU_SOURCE
+                 char * dir = get_current_dir_name();
++#else
++		char * dir = (char *) malloc(PATH_MAX * sizeof(char));
++		getcwd(dir, PATH_MAX);
++#endif
+                 download_dir = dir;
+                 download_dir += '/';
+                 download_dir += optarg;

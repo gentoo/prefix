@@ -4,6 +4,8 @@
 
 EAPI=2
 
+inherit eutils
+
 DESCRIPTION="Decoding library for RAW image formats"
 HOMEPAGE="http://libopenraw.freedesktop.org"
 SRC_URI="http://${PN}.freedesktop.org/download/${P}.tar.gz"
@@ -20,6 +22,11 @@ RDEPEND=">=dev-libs/boost-1.35
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	test? ( net-misc/curl )"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-ljpegdcompressor.patch
+	epatch "${FILESDIR}"/${P}-testsuite.patch
+}
 
 src_configure() {
 	econf \
