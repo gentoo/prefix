@@ -9,7 +9,7 @@ HOMEPAGE="http://www.pygtk.org/"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 RDEPEND=">=dev-lang/python-2.4
