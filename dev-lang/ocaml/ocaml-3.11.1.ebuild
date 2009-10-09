@@ -43,6 +43,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
+	epatch "${FILESDIR}"/${P}-doc-utf8.patch
 }
 
 src_compile() {
