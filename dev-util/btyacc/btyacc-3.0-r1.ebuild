@@ -22,6 +22,8 @@ src_prepare() {
 	cp -av Makefile{,.orig}
 	epatch "${FILESDIR}/${P}-includes.patch"
 	epatch "${FILESDIR}/${P}-makefile.patch"
+	# Darwin doesn't do static binaries
+	[[ ${CHOST} == *-darwin* ]] && sed -i -e 's/-static//' Makefile
 }
 
 src_compile() {
