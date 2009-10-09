@@ -5,7 +5,7 @@
 inherit gst-plugins-good
 
 DESCRIPTION="GStreamer plugin to output sound to esound"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 DEPEND=">=media-sound/esound-0.2.12
