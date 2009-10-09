@@ -8,7 +8,7 @@ SRC_URI="http://people.freedesktop.org/~mccann/dist/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2 CCPL-Attribution-3.0 CCPL-Attribution-ShareAlike-2.0"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 RDEPEND=""
