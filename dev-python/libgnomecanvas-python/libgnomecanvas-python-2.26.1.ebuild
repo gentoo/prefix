@@ -10,7 +10,7 @@ inherit gnome-python-common
 DESCRIPTION="Python bindings for the Gnome Canvas library"
 LICENSE="LGPL-2.1"
 SLOT="2"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="examples"
 
 RDEPEND=">=gnome-base/libgnomecanvas-2.8.0
