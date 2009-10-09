@@ -5,7 +5,7 @@
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
 
-inherit python prefix
+inherit eutils python prefix
 
 DESCRIPTION="Tool to help select distfiles mirrors for Gentoo"
 HOMEPAGE="http://www.gentoo.org/"
@@ -23,8 +23,8 @@ RDEPEND="dev-lang/python[xml]
 RESTRICT_PYTHON_ABIS="3*"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.4.1-prefix.patch
-	eprefixify mirrorselect
+	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify main.py
 }
 
 src_install() {
