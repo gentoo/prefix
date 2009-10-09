@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/libical-0.43.ebuild,v 1.8 2009/06/09 16:19:12 armin76 Exp $
 
+inherit eutils
+
 DESCRIPTION="a implementation of basic iCAL protocols from citadel, previously known as aurore."
 HOMEPAGE="http://www.citadel.org"
 SRC_URI="http://easyinstall.citadel.org/${P}.tar.gz"
@@ -9,8 +11,14 @@ RESTRICT="test"
 
 LICENSE="|| ( MPL-1.1 LGPL-2 )"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE=""
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-solaris.patch
+}
 
 src_compile() {
 	# Fix 66377
