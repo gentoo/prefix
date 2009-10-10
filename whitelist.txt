@@ -40,7 +40,7 @@ dev-python/decorator
 dev-python/decoratortools
 dev-python/django
 dev-python/dnspython
-dev-python/docutil
+dev-python/docutils
 dev-python/egenix-mx-base
 dev-python/elementtree
 dev-python/epydoc
