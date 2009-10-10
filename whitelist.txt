@@ -22,6 +22,7 @@ profiles
 app-admin/eselect
 app-portage/eix
 app-shells/tcsh
+dev-python/astng
 dev-python/markdown
 dev-python/pysvn
 dev-util/uncrustify
