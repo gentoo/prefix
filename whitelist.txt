@@ -36,6 +36,11 @@ dev-python/coverage
 dev-python/cython
 dev-python/markdown
 dev-python/pysvn
+dev-python/decorator
+dev-python/decoratortools
+dev-python/django
+dev-python/dnspython
+dev-python/docutil
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote

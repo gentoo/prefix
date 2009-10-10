@@ -1,8 +1,0 @@
---- tools/rst2s5.py~	2007-10-14 11:05:14 +0200
-+++ tools/rst2s5.py	2007-10-14 11:05:22 +0200
-@@ -1,4 +1,4 @@
--#!/usr/bin/python
-+#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/python
- 
- # Author: Chris Liechti
- # Contact: cliechti@gmx.net
