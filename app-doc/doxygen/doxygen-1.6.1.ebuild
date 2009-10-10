@@ -54,7 +54,6 @@ src_prepare() {
 
 	# prefix search tools patch, plus OSX fixes
 	epatch "${FILESDIR}"/${PN}-1.5.6-prefix-misc-alt.patch
-	epatch "${FILESDIR}"/${PN}-1.5.7-prefix-libiconv.patch
 
 	# fix final DESTDIR issue
 	sed -i.orig -e "s:\$(INSTALL):\$(DESTDIR)/\$(INSTALL):g" \
