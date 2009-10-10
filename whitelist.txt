@@ -59,6 +59,7 @@ dev-python/gst-python
 dev-python/gtksourceview-python
 dev-python/imaging
 dev-python/ipython
+dev-python/jinja2
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
