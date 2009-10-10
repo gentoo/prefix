@@ -57,6 +57,8 @@ dev-python/gnome-python-desktop-base
 dev-python/gnome-vfs-python
 dev-python/gst-python
 dev-python/gtksourceview-python
+dev-python/imaging
+dev-python/ipython
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
