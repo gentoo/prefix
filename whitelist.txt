@@ -75,6 +75,9 @@ dev-python/mechanize
 dev-python/medusa
 dev-python/mocker
 dev-python/mysql-python
+dev-python/nose
+dev-python/numeric
+dev-python/numpy
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
