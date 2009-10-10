@@ -4,7 +4,7 @@
 
 NEED_PYTHON=2.3
 
-inherit distutils eutils
+inherit distutils
 
 MY_P="MySQL-python-${PV/_rc/c}"
 DESCRIPTION="MySQL Module for python"
@@ -22,9 +22,3 @@ DEPEND="${RDEPEND}
 
 S="${WORKDIR}/${MY_P}"
 DOCS="HISTORY doc/FAQ.txt doc/MySQLdb.txt"
-
-src_unpack() {
-	distutils_src_unpack
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.2.2-darwin.patch
-}
