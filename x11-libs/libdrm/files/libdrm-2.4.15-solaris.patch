@@ -1,0 +1,33 @@
+http://bugs.gentoo.org/show_bug.cgi?id=288064
+
+--- libdrm/nouveau/nouveau_bo.c
++++ libdrm/nouveau/nouveau_bo.c
+@@ -31,6 +31,12 @@
+ #include <sys/mman.h>
+ #include <sys/ioctl.h>
+ 
++/* On solaris unistd.h and stropts.h are needed for ioctl */
++#ifdef __sun
++#include <unistd.h>
++#include <stropts.h>
++#endif
++
+ #include "nouveau_private.h"
+ 
+ int
+--- libdrm/radeon/radeon_bo_gem.c
++++ libdrm/radeon/radeon_bo_gem.c
+@@ -39,6 +39,13 @@
+ #include <sys/mman.h>
+ #include <sys/ioctl.h>
+ #include <errno.h>
++
++/* On solaris unistd.h and stropts.h are needed for ioctl */
++#ifdef __sun
++#include <unistd.h>
++#include <stropts.h>
++#endif
++
+ #include "xf86drm.h"
+ #include "drm.h"
+ #include "radeon_drm.h"

@@ -28,6 +28,7 @@ CONFIGURE_OPTIONS="--enable-udev --enable-nouveau-experimental-api --enable-rade
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.4.5-solaris.patch
+	"${FILESDIR}"/${PN}-2.4.15-solaris.patch
 )
 
 # FIXME, we should try to see how we can fit the --enable-udev configure flag
