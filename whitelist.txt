@@ -62,6 +62,12 @@ dev-python/ipython
 dev-python/jinja2
 dev-python/kid
 dev-python/kiwi
+dev-python/libbonobo-python
+dev-python/libgnome-python
+dev-python/libgnomecanvas-python
+dev-python/libgnomeprint-python
+dev-python/logilab-common
+dev-python/lxml
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
