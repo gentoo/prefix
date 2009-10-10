@@ -34,7 +34,6 @@ dev-python/clientform
 dev-python/configobj
 dev-python/coverage
 dev-python/cython
-dev-python/markdown
 dev-python/pysvn
 dev-python/decorator
 dev-python/decoratortools
@@ -68,6 +67,14 @@ dev-python/libgnomecanvas-python
 dev-python/libgnomeprint-python
 dev-python/logilab-common
 dev-python/lxml
+dev-python/m2crypto
+dev-python/mako
+dev-python/markdown
+dev-python/matplotlib
+dev-python/mechanize
+dev-python/medusa
+dev-python/mocker
+dev-python/mysql-python
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
