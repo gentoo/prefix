@@ -41,6 +41,10 @@ dev-python/decoratortools
 dev-python/django
 dev-python/dnspython
 dev-python/docutil
+dev-python/egenix-mx-base
+dev-python/elementtree
+dev-python/epydoc
+dev-python/eyeD3
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
