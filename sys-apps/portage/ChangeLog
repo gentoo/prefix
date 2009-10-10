@@ -2,6 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.14555 (10 Oct 2009)
+
+  10 Oct 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.14183.ebuild, +portage-2.2.00.14555.ebuild, metadata.xml:
+  Bump, openpty is now only tried on FreeBSD and Linux, possible fix for bug
+  #285720 (backslashes in groupname), fix for bug #288025 (unconditional
+  statvfs usage)
+
 *portage-2.2.00.14487 (04 Oct 2009)
 
   04 Oct 2009; Fabian Groffen <grobian@gentoo.org>
