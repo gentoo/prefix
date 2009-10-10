@@ -47,6 +47,12 @@ src_unpack() {
 	sed -i -e "s:gentoo:$(get_libdir):" "${S}"/mozilla/security/nss/config/Makefile
 
 	epatch "${FILESDIR}"/${PN}-3.12.4-solaris-gcc.patch  # breaks non-gnu tools
+	# dirty hack
+	cd "${S}"/mozilla/security/nss
+	sed -i -e "/CRYPTOLIB/s:\$(SOFTOKEN_LIB_DIR):../freebl/\$(OBJDIR):" \
+		lib/ssl/config.mk || die
+	sed -i -e "/CRYPTOLIB/s:\$(SOFTOKEN_LIB_DIR):../../lib/freebl/\$(OBJDIR):" \
+		cmd/platlibs.mk || die
 }
 
 src_compile() {
