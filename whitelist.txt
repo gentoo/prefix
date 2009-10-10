@@ -45,6 +45,10 @@ dev-python/egenix-mx-base
 dev-python/elementtree
 dev-python/epydoc
 dev-python/eyeD3
+dev-python/feedparser
+dev-python/flup
+dev-python/formencode
+dev-python/fpconst
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
