@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="mirror://gentoo/${P}.tbz2"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 RDEPEND="app-admin/eselect
