@@ -103,6 +103,10 @@ src_unpack() {
 		sed -i -e "s:/usr/ccs/bin/::" crypto/bn/Makefile || die "sed failed"
 	fi
 
+	if use gmp && [[ ${CHOST} == *-apple-darwin* ]] ; then
+		append-ldflags -lgmp
+	fi
+
 	./config --test-sanity || die "I AM NOT SANE"
 }
 
