@@ -121,6 +121,7 @@ mail-client/mutt
 media-gfx/asymptote
 net-analyzer/linkchecker
 net-libs/libsoup-gnome
+net-mail/getmail
 net-misc/mico
 sys-devel/binutils-apple
 sys-devel/gcc-apple
