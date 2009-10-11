@@ -231,6 +231,10 @@ src_configure() {
 	# Gentoo Linux ppc64 has powerpc64-* CHOST, but configure doesn't get that
 	[[ ${arch} == powerpc64 ]] && arch=ppc64
 
+	# http://lists.mplayerhq.hu/pipermail/mplayer-dev-eng/2009-July/061865.html
+	[[ ${CHOST} == *-solaris* ]] &&
+		append-flags -Wa,--divide
+
 	cd "${S}"
 	./configure \
 		--prefix="${EPREFIX}"/usr \
