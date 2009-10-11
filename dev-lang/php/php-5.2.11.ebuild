@@ -106,6 +106,8 @@ pkg_setup() {
 			die "Please rebuild dev-libs/libpcre with USE=unicode"
 	fi
 
+	[[ ${CHOST} == *-apple-darwin10 ]] && append-libs -lresolv
+
 	depend.apache_pkg_setup
 	php5_2-sapi_pkg_setup
 }
