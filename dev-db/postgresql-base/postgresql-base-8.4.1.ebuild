@@ -7,9 +7,9 @@ EAPI=1
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="none"
 
-inherit eutils multilib toolchain-funcs versionator autotools prefix
+inherit eutils multilib toolchain-funcs versionator autotools prefix flag-o-matic
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
 
 DESCRIPTION="PostgreSQL libraries and clients"
 HOMEPAGE="http://www.postgresql.org/"
@@ -69,6 +69,7 @@ src_unpack() {
 }
 
 src_compile() {
+	[[ ${CHOST} != *-linux-gnu ]] && append-libs -lintl
 	econf --prefix="${EPREFIX}"/usr/$(get_libdir)/postgresql-${SLOT} \
 		--datadir="${EPREFIX}"/usr/share/postgresql-${SLOT} \
 		--docdir="${EPREFIX}"/usr/share/doc/postgresql-${SLOT} \
