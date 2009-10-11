@@ -1,0 +1,10 @@
+--- ./get/getx11/x11_stuff.c.orig	2009-10-11 20:20:14.116946936 +0200
++++ ./get/getx11/x11_stuff.c	2009-10-11 20:21:01.336545002 +0200
+@@ -42,6 +42,7 @@
+ #ifdef X_SHARED_MEMORY
+ #include <sys/errno.h>
+ #endif
++#include <errno.h>
+ 
+ #include "circle.bitmap"
+ #include "circle_mask.bitmap"

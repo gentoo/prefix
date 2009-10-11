@@ -10,7 +10,7 @@ SRC_URI="ftp://ftp.iastate.edu/pub/utah-raster/${P}.tar.Z"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="gif gs tiff X"
 
 DEPEND="X? ( x11-libs/libXext
@@ -36,6 +36,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-tempfile.patch
 	epatch "${FILESDIR}"/${P}-build-fixes.patch
 	epatch "${FILESDIR}/${P}-make.patch"
+
+	epatch "${FILESDIR}"/${P}-solaris.patch
 
 	# punt bogus manpage #109511
 	rm -f man/man1/template.1
