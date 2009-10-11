@@ -1,6 +1,15 @@
-# ChangeLog for net-zope/zopeinterface
+# ChangeLog for net-zope/zope-interface
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zopeinterface/ChangeLog,v 1.46 2009/10/01 17:33:39 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-interface/ChangeLog,v 1.3 2009/10/06 19:31:14 arfrever Exp $
+
+  05 Oct 2009; Raúl Porcel <armin76@gentoo.org>
+  zope-interface-3.5.2.ebuild:
+  ia64/s390/sh/sparc stable wrt #284992
+
+  04 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -zopeinterface-3.5.1.ebuild, -zopeinterface-3.5.2.ebuild,
+  +zope-interface-3.5.1.ebuild, +zope-interface-3.5.2.ebuild:
+  net-zope/zopeinterface renamed to net-zope/zope-interface.
 
   01 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
   zopeinterface-3.5.2.ebuild:
