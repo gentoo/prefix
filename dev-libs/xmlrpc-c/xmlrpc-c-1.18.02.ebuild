@@ -60,8 +60,8 @@ src_prepare() {
 			"${S}"/common.mk || die "404. File not found while sedding"
 	fi
 
-	# shipped shared library support is broken for aix: use libtool instead
-	if [[ ${CHOST} == *-aix* ]]; then
+	# shipped shared library support is broken for aix,hpux: use libtool instead
+	if [[ ${CHOST} == *-aix* || ${CHOST} == *-hpux* ]]; then
 		sed -i \
 			-e '/^USE_LIBTOOL/s/=/= yes/' \
 			"${S}"/config.mk.in || die "404. File not found while sedding"
