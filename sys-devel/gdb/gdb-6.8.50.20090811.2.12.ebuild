@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8.50.20090811.2.12.ebuild,v 1.2 2009/09/08 17:50:05 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-6.8.50.20090811.2.12.ebuild,v 1.3 2009/10/10 21:34:30 vapier Exp $
 
 inherit flag-o-matic eutils
 
@@ -74,7 +74,7 @@ src_compile() {
 	strip-unsupported-flags
 	econf \
 		--disable-werror \
-		$(has_version '=sys-libs/readline-5*' && echo --with-system-readline) \
+		$(has_version '=sys-libs/readline-5*:0' && echo --with-system-readline) \
 		$(use_enable nls) \
 		$(use multitarget && echo --enable-targets=all) \
 		$(use_with expat) \
