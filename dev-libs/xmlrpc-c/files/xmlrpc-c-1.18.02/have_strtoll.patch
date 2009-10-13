@@ -1,3 +1,6 @@
+Check for strtoll/strtoull replacements (HP-UX, Interix).
+https://sourceforge.net/tracker/?func=detail&aid=2877784&group_id=16847&atid=316847
+
 --- configure.in.orig	2009-10-12 11:33:29 +0200
 +++ configure.in	2009-10-12 11:33:46 +0200
 @@ -363,7 +363,7 @@
