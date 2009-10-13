@@ -42,6 +42,8 @@ PATCHES=(
 	"${FILESDIR}/${P}/libtool.patch"
 	"${FILESDIR}/${P}/solaris.patch"
 	"${FILESDIR}/${P}/interix.patch"
+	"${FILESDIR}/${P}/have_sys_select_h.patch" # hpux11.11
+	"${FILESDIR}/${P}/have_strtoll.patch" # hpux11.11, interix
 	)
 
 src_prepare() {
