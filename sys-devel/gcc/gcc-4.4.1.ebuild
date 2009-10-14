@@ -96,10 +96,15 @@ src_unpack() {
 		eprefixify "${S}"/gcc/gcc.c
 	fi
 
+	# --- The following patches still cause failure for other
+	# platforms. Since gcc-4.4 is still masked on interix, and
+	# i have no time ATM to fix things, i for now just commented
+	# them out.
+
 	# interix patches - all from 4.2.4 updated and combined
-	epatch "${FILESDIR}"/${P}-interix.patch
+	#epatch "${FILESDIR}"/${P}-interix.patch
 	# and this one to avoid the need of a re-bootstrap.
-	epatch "${FILESDIR}"/${P}-interix-avoid-bs.patch
+	#epatch "${FILESDIR}"/${P}-interix-avoid-bs.patch
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint1.patch
