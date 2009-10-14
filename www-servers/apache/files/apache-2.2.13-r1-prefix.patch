@@ -25,6 +25,13 @@
 +Include @GENTOO_PORTAGE_EPREFIX@/etc/apache2/vhosts.d/*.conf
  
  # vim: ts=4 filetype=apache
+--- scripts/apache2ctl
++++ scripts/apache2ctl
+@@ -1,2 +1,2 @@
+-#!/bin/sh
+-exec /etc/init.d/apache2 "$@"
++#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
++exec @GENTOO_PORTAGE_EPREFIX@/etc/init.d/apache2 "$@"
 --- scripts/gentestcrt.sh
 +++ scripts/gentestcrt.sh
 @@ -1,4 +1,4 @@
@@ -382,10 +389,10 @@
  	Order allow,deny
 --- conf/modules.d/00_apache_manual.conf
 +++ conf/modules.d/00_apache_manual.conf
-@@ -6,9 +6,9 @@
- <IfModule alias_module>
- <IfModule setenvif_module>
- <IfModule negotiation_module>
+@@ -3,9 +3,9 @@
+ # The documentation is always available at
+ #  http://httpd.apache.org/docs/2.2/
+ <IfDefine MANUAL>
 -AliasMatch ^/manual(?:/(?:de|en|es|fr|ja|ko|pt-br))?(/.*)?$ "/usr/share/doc/apache-VERSION/manual$1"
 +AliasMatch ^/manual(?:/(?:de|en|es|fr|ja|ko|pt-br))?(/.*)?$ "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/apache-VERSION/manual$1"
  
@@ -394,17 +401,18 @@
  	Options Indexes
  	AllowOverride None
  	Order allow,deny
+
 --- conf/modules.d/00_error_documents.conf
 +++ conf/modules.d/00_error_documents.conf
-@@ -27,9 +27,9 @@
- <IfModule mime_module>
- <IfModule negotiation_module>
+@@ -23,9 +23,9 @@
+ # of the setting of ServerSignature.
+
+ <IfDefine ERRORDOCS>
+-Alias /error/ "/usr/share/apache2/error/"
++Alias /error/ "@GENTOO_PORTAGE_EPREFIX@/usr/share/apache2/error/"
  
--Alias /error/ "/var/www/localhost/error/"
-+Alias /error/ "@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/error/"
- 
--<Directory "/var/www/localhost/error">
-+<Directory "@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/error">
+-<Directory "/usr/share/apache2/error">
++<Directory "@GENTOO_PORTAGE_EPREFIX@/usr/share/apache2/error">
  	AllowOverride None
  	Options IncludesNoExec
  	AddOutputFilter Includes html
@@ -467,7 +475,7 @@
  # installed httpd.  Use "/usr/sbin/apache2 -l" to find out the
 --- conf/modules.d/40_mod_ssl.conf
 +++ conf/modules.d/40_mod_ssl.conf
-@@ -52,13 +52,13 @@
+@@ -51,7 +51,7 @@
  # Configure the SSL Session Cache: First the mechanism  to use and second the
  # expiring timeout (in seconds).
  #SSLSessionCache		dbm:/var/run/ssl_scache
@@ -480,51 +488,29 @@
  # internally for inter-process synchronization.
 -SSLMutex  file:/var/run/ssl_mutex
 +SSLMutex  file:@GENTOO_PORTAGE_EPREFIX@/var/run/ssl_mutex
- </IfModule>
  </IfDefine>
  
 --- conf/modules.d/45_mod_dav.conf
 +++ conf/modules.d/45_mod_dav.conf
-@@ -1,16 +1,16 @@
+@@ -1,5 +1,5 @@
  <IfDefine DAV>
- <IfModule dav_module>
- <IfModule dav_fs_module>
 -DavLockDB "/var/lib/dav/lockdb"
 +DavLockDB "@GENTOO_PORTAGE_EPREFIX@/var/lib/dav/lockdb"
  
- # The following example gives DAV write access to a directory called
- # "uploads" under the ServerRoot directory.
- <IfModule alias_module>
- <IfModule auth_digest_module>
- <IfModule authn_file_module>
--Alias /uploads "/var/www/uploads"
-+Alias /uploads "@GENTOO_PORTAGE_EPREFIX@/var/www/uploads"
- 
--<Directory "/var/www/uploads">
-+<Directory "@GENTOO_PORTAGE_EPREFIX@/var/www/uploads">
- 	Dav On
- 
- 	AuthType Digest
-@@ -18,7 +18,7 @@
- 
- 	# You can use the htdigest program to create the password database:
- 	#   htdigest -c "/var/www/.htpasswd-dav" DAV-upload admin
--	AuthUserFile "/var/www/.htpasswd-dav"
-+	AuthUserFile "@GENTOO_PORTAGE_EPREFIX@/var/www/.htpasswd-dav"
- 
- 	# Allow access from any host
- 	Order allow,deny
---- conf/modules.d/00_mod_autoindex.conf	2009-03-03 20:22:18 +0100
-+++ conf/modules.d/00_mod_autoindex.conf	2009-03-03 20:24:06 +0100
+ # The following directives disable redirects on non-GET requests for
+ # a directory that does not include the trailing slash.  This fixes a
+
+--- conf/modules.d/00_mod_autoindex.conf
++++ conf/modules.d/00_mod_autoindex.conf
 @@ -2,9 +2,9 @@
  <IfModule alias_module>
  # We include the /icons/ alias for FancyIndexed directory listings.  If
  # you do not use FancyIndexing, you may comment this out.
--Alias /icons/ "/var/www/localhost/icons/"
-+Alias /icons/ "@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/icons/"
+-Alias /icons/ "/usr/share/apache2/icons/"
++Alias /icons/ "@GENTOO_PORTAGE_EPREFIX@/usr/share/apache2/icons/"
  
--<Directory "/var/www/localhost/icons">
-+<Directory "@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/icons">
+-<Directory "/usr/share/apache2/icons">
++<Directory "@GENTOO_PORTAGE_EPREFIX@/usr/share/apache2/icons">
  	Options Indexes MultiViews
  	AllowOverride None
  	Order allow,deny
