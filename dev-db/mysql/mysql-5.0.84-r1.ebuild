@@ -2,7 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.84-r1.ebuild,v 1.5 2009/10/10 23:31:28 robbat2 Exp $
 
-
 MY_EXTRAS_VER="20090908-1245Z"
 EAPI=2
 
