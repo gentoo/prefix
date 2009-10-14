@@ -73,9 +73,6 @@ diff -ur Python-2.6.2/Modules/Setup.dist Python-2.6.2-mint/Modules/Setup.dist
 -#strop stropmodule.c		# String manipulations
 -#_functools _functoolsmodule.c	# Tools for working with functions and callable objects
 -#_elementtree -I$(srcdir)/Modules/expat -DHAVE_EXPAT_CONFIG_H -DUSE_PYEXPAT_CAPI _elementtree.c	# elementtree accelerator
--#_pickle _pickle.c	# pickle accelerator
--#datetime datetimemodule.c	# date/time type
--#_bisect _bisectmodule.c	# Bisection algorithms
 +array arraymodule.c	# array objects
 +cmath cmathmodule.c # -lm # complex math library functions
 +math mathmodule.c # -lm # math library functions, e.g. sin()
@@ -90,7 +87,9 @@ diff -ur Python-2.6.2/Modules/Setup.dist Python-2.6.2-mint/Modules/Setup.dist
 +strop stropmodule.c		# String manipulations
 +_functools _functoolsmodule.c	# Tools for working with functions and callable objects
 +_elementtree -I$(srcdir)/Modules/expat -DHAVE_EXPAT_CONFIG_H -DUSE_PYEXPAT_CAPI _elementtree.c	# elementtree accelerator
-+#_pickle _pickle.c	# pickle accelerator
+ #_pickle _pickle.c	# pickle accelerator
+-#datetime datetimemodule.c	# date/time type
+-#_bisect _bisectmodule.c	# Bisection algorithms
 +datetime datetimemodule.c	# date/time type
 +_bisect _bisectmodule.c	# Bisection algorithms
  
@@ -99,7 +98,7 @@ diff -ur Python-2.6.2/Modules/Setup.dist Python-2.6.2-mint/Modules/Setup.dist
  
  # access to ISO C locale support
  #_locale _localemodule.c  # -lintl
-@@ -195,19 +195,19 @@
+@@ -195,41 +195,41 @@
  # (If you have a really backward UNIX, select and socket may not be
  # supported...)
  
@@ -125,7 +124,16 @@ diff -ur Python-2.6.2/Modules/Setup.dist Python-2.6.2-mint/Modules/Setup.dist
  
  # Socket module helper for SSL support; you must comment out the other
  # socket line above, and possibly edit the SSL variable:
-@@ -221,15 +221,15 @@
+ #SSL=/usr/local/ssl
+-#_ssl _ssl.c \
+-#	-DUSE_SSL -I$(SSL)/include -I$(SSL)/include/openssl \
+-#	-L$(SSL)/lib -lssl -lcrypto
++_ssl _ssl.c \
++	-DUSE_SSL \
++	-lssl -lcrypto -lz
+ 
+ # The crypt module is now disabled by default because it breaks builds
+ # on many systems (where -lcrypt is needed), e.g. Linux (I believe).
  #
  # First, look at Setup.config; configure may have set this for you.
  
