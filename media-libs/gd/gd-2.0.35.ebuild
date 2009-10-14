@@ -22,7 +22,10 @@ DEPEND="fontconfig? ( media-libs/fontconfig )
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	eautoreconf # need new libtool for interix
+	# need new libtool for interix
+	[[ ${CHOST} == *-interix* ]] \
+		&& eautoreconf \
+		|| eautoconf
 	find . -type f -print0 | xargs -0 touch -r configure
 
 	epatch "${FILESDIR}"/${PN}-prefix.patch
