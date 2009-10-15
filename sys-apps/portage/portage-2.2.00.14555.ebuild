@@ -14,7 +14,7 @@ PROVIDE="virtual/portage"
 SLOT="0"
 IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
 
-python_dep=">=dev-lang/python-2.5 <dev-lang/python-3.0"
+python_dep=">=dev-lang/python-2.6 <dev-lang/python-3.0"
 
 DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
@@ -37,7 +37,7 @@ PDEPEND="
 	!build? (
 		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
-		|| ( >=dev-lang/python-2.5 >=dev-python/pycrypto-2.0.1-r6 )
+		|| ( >=dev-lang/python-2.6 >=dev-python/pycrypto-2.0.1-r6 )
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # rsync-2.6.4 rdep is for the --filter option #167668
