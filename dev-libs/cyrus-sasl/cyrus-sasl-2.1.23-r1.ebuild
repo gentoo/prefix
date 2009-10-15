@@ -14,7 +14,7 @@ SRC_URI="ftp://ftp.andrew.cmu.edu/pub/cyrus-mail/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x86-solaris"
 IUSE="authdaemond berkdb crypt gdbm kerberos ldap mysql ntlm_unsupported_patch pam postgres sample sqlite srp ssl urandom"
 
 RDEPEND="authdaemond? ( || ( >=net-mail/courier-imap-3.0.7 >=mail-mta/courier-0.46 ) )
@@ -82,7 +82,13 @@ src_unpack() {
 src_compile() {
 	# Fix QA issues.
 	append-flags -fno-strict-aliasing
-	append-cppflags -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED -D_BSD_SOURCE -DLDAP_DEPRECATED
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# getpassphrase is defined in /usr/include/stdlib.h
+		append-cppflags -DHAVE_GETPASSPHRASE
+	else
+		# this horrendously breaks things on Solaris
+		append-cppflags -D_XOPEN_SOURCE -D_XOPEN_SOURCE_EXTENDED -D_BSD_SOURCE -DLDAP_DEPRECATED
+	fi
 
 	# Java support.
 	use java && export JAVAC="${JAVAC} ${JAVACFLAGS}"
