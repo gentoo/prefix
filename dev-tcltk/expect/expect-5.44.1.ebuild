@@ -28,7 +28,7 @@ src_unpack() {
 
 	# fix install_name on darwin
 	[[ ${CHOST} == *-darwin* ]] && \
-		epatch "${FILESDIR}"/${PN}-5.43.0-darwin.patch
+		epatch "${FILESDIR}"/${P}-darwin.patch
 
 	sed -i "s#/usr/local/bin#${EPREFIX}/usr/bin#" expect.man
 	sed -i "s#/usr/local/bin#${EPREFIX}/usr/bin#" expectk.man
