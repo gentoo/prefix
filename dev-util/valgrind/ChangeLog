@@ -1,6 +1,16 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.105 2009/08/31 18:09:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.106 2009/10/14 18:50:59 griffon26 Exp $
+
+*valgrind-3.5.0 (14 Oct 2009)
+
+  14 Oct 2009; Maurice van der Pot <griffon26@gentoo.org>
+  valgrind-3.4.1.ebuild, +valgrind-3.5.0.ebuild,
+  +files/valgrind-3.5.0-respect-LDFLAGS.patch:
+  Undid stabilization of valgrind-3.4.1 for ppc64. It was stabilized despite
+  Joe Jezak's comment that it shouldn't be (bug #278534 comment 3) and Joe
+  agreed it should be undone.
+  Added valgrind-3.5.0 as requested in bug #282607.
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> valgrind-3.4.1.ebuild:
   Marking valgrind-3.4.1 ppc64 for bug 278534

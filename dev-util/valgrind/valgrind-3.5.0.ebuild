@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.4.1.ebuild,v 1.6 2009/10/14 18:50:59 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.5.0.ebuild,v 1.1 2009/10/14 18:50:59 griffon26 Exp $
 
 inherit autotools eutils flag-o-matic toolchain-funcs
 
@@ -11,9 +11,11 @@ SRC_URI="http://www.valgrind.org/downloads/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
-IUSE=""
+IUSE="mpi"
 
-RDEPEND="!dev-util/callgrind"
+DEPEND="mpi? ( virtual/mpi )"
+RDEPEND="${DEPEND}
+	!dev-util/callgrind"
 
 src_unpack() {
 	unpack ${A}
@@ -24,8 +26,8 @@ src_unpack() {
 	sed -i -e 's:^CFLAGS="-Wno-long-long":CFLAGS="$CFLAGS -Wno-long-long":' configure.in
 
 	# undefined references to __guard and __stack_smash_handler in VEX (bug #114347)
-	einfo "Changing Makefile.flags.am to disable SSP"
-	sed -i -e 's:^AM_CFLAGS_BASE = :AM_CFLAGS_BASE = -fno-stack-protector :' Makefile.flags.am
+	einfo "Changing Makefile.all.am to disable SSP"
+	sed -i -e 's:^AM_CFLAGS_BASE = :AM_CFLAGS_BASE = -fno-stack-protector :' Makefile.all.am
 
 	# Correct hard coded doc location
 	sed -i -e "s:doc/valgrind:doc/${P}:" docs/Makefile.am
@@ -37,9 +39,12 @@ src_unpack() {
 		epatch "${FILESDIR}/valgrind-3.3.0-only64bit.patch"
 	fi
 
-	# Use local labels in inline asm to prevent 'symbol already defined' errors
-	# when optimisation is on (bug #234644).
-	epatch "${FILESDIR}/valgrind-3.3.1-local-labels.patch"
+	# Fix up some suppressions that were not general enough for glibc versions
+	# with more than just a major and minor number.
+	epatch "${FILESDIR}/valgrind-3.4.1-glibc-2.10.1.patch"
+
+	# Respect LDFLAGS also for libmpiwrap.so (bug #279194)
+	epatch "${FILESDIR}/valgrind-3.5.0-respect-LDFLAGS.patch"
 
 	# Regenerate autotools files
 	eautoreconf
@@ -70,19 +75,25 @@ src_compile() {
 		! has_multilib_profile && myconf="${myconf} --enable-only64bit"
 	fi
 
-	econf ${myconf} --without-mpicc || die "Configure failed!"
+	# Don't use mpicc unless the user asked for it (bug #258832)
+	if ! use mpi; then
+		myconf="${myconf} --without-mpicc"
+	fi
+
+	econf ${myconf} || die "Configure failed!"
 	emake || die "Make failed!"
 }
 
 src_install() {
 	make DESTDIR="${D}" install || die "Install failed!"
-	dodoc ACKNOWLEDGEMENTS AUTHORS FAQ.txt NEWS README*
+	dodoc AUTHORS FAQ.txt NEWS README*
 }
 
 pkg_postinst() {
-	if use ppc || use ppc64 ; then
-		ewarn "Valgrind will not work on ppc or ppc64 if glibc does not have"
-		ewarn "debug symbols (see https://bugs.gentoo.org/show_bug.cgi?id=214065)"
+	if use ppc || use ppc64 || use amd64 ; then
+		ewarn "Valgrind will not work on ppc, ppc64 or amd64 if glibc does not have"
+		ewarn "debug symbols (see https://bugs.gentoo.org/show_bug.cgi?id=214065"
+		ewarn "and http://bugs.gentoo.org/show_bug.cgi?id=274771)."
 		ewarn "To fix this you can add splitdebug to FEATURES in make.conf and"
 		ewarn "remerge glibc."
 	fi
