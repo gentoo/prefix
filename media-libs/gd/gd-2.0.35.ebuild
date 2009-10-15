@@ -17,7 +17,8 @@ DEPEND="fontconfig? ( media-libs/fontconfig )
 	jpeg? ( >=media-libs/jpeg-6b )
 	png? ( >=media-libs/libpng-1.2.5 sys-libs/zlib )
 	truetype? ( >=media-libs/freetype-2.1.5 )
-	xpm? ( x11-libs/libXpm x11-libs/libXt )"
+	xpm? ( x11-libs/libXpm x11-libs/libXt )
+	x86-interix? ( sys-devel/gettext )"
 
 src_unpack() {
 	unpack ${A}
