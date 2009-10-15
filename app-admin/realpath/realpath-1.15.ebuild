@@ -42,7 +42,7 @@ src_prepare() {
 
 src_compile() {
 	tc-export CC
-	use !elibc_glibc && use nls && export LIBS="-lintl"
+	use !elibc_glibc && export LIBS="-lintl"
 	emake VERSION="${PV}" SUBDIRS="src man $(use nls && echo po)" \
 		|| die "emake failed"
 }
