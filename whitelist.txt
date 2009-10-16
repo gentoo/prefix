@@ -117,6 +117,8 @@ dev-python/python-memcached
 dev-python/pytz
 dev-python/pyxml
 dev-python/pyyaml
+dev-util/confix
+dev-util/confix-wrapper
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
