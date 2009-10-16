@@ -446,7 +446,13 @@ standard_configure_options() {
 		-translationdir ${QTTRANSDIR} -examplesdir ${QTEXAMPLESDIR}
 		-demosdir ${QTDEMOSDIR} -silent -fast
 		$([[ ${PN} == qt-xmlpatterns ]] || echo -no-exceptions)
-		-reduce-relocations -nomake examples -nomake demos"
+		$([[ ${CHOST} != *-solaris* ]] && echo -reduce-relocations) -nomake examples -nomake demos"
+
+	# note about -reduce-relocations:
+	# That flag seems to introduce major breakage to applications,
+	# mostly to be seen as a core dump with the message "QPixmap: Must
+	# construct a QApplication before a QPaintDevice" on Solaris
+	#   -- Daniel Vergien
 
 	# Make eclass 4.5.x ready
 	case "${MY_PV}" in
