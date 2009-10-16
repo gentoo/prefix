@@ -13,7 +13,7 @@ SRC_URI="http://pypi.python.org/packages/source/d/distribute/distribute-${PV}.ta
 
 LICENSE="PSF-2.2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 # Avoid silent errors during upgrade from older versions.
