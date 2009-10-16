@@ -8,7 +8,7 @@ inherit twisted versionator
 
 DESCRIPTION="A Twisted DNS implementation"
 
-KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 DEPEND="=dev-python/twisted-$(get_version_component_range 1-2)*"
 
