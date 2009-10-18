@@ -1,6 +1,17 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.729 2009/10/01 13:51:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.732 2009/10/17 21:37:32 halcy0n Exp $
+
+*gcc-4.4.2 (17 Oct 2009)
+
+  17 Oct 2009; Mark Loeser <halcy0n@gentoo.org> +gcc-4.4.2.ebuild:
+  Version bump
+
+  16 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> gcc-4.3.4.ebuild:
+  amd64 stable wrt #288621
+
+  16 Oct 2009; Christian Faulhammer <fauli@gentoo.org> gcc-4.3.4.ebuild:
+  stable x86, bug 288621
 
   01 Oct 2009; Raúl Porcel <armin76@gentoo.org> gcc-4.3.2-r4.ebuild:
   s390/sh stable wrt #264121
