@@ -96,6 +96,9 @@ src_unpack() {
 		eprefixify "${S}"/gcc/gcc.c
 	fi
 
+	# make it have correct install_names on Darwin
+	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
+
 	# --- The following patches still cause failure for other
 	# platforms. Since gcc-4.4 is still masked on interix, and
 	# i have no time ATM to fix things, i for now just commented
