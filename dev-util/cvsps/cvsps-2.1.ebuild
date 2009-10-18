@@ -23,7 +23,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-build.patch
 	epatch "${FILESDIR}"/${P}-solaris.patch
-	[[ ${CHOST} == *-solaris* ]] && append-libs -lsocket
+	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lsocket # libs doesn't work
 }
 
 src_install() {
