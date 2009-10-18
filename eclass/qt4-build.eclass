@@ -260,14 +260,26 @@ qt4-build_src_prepare() {
 			-e "s:-arch\s\w*::g" \
 			-i "${S}"/mkspecs/common/mac-g++.conf || die "sed ${S}/mkspecs/common/mac-g++.conf failed"
 
-		# Fix configure's -arch settings that appear in qmake/Makefile
+		# Fix configure's -arch settings that appear in qmake/Makefile and also
+		# fix arch handling (automagically duplicates our -arch arg and breaks
+		# pch). Additionally disable Xarch support.
 		sed \
 			-e "s:-arch i386::" \
 			-e "s:-arch ppc::" \
 			-e "s:-arch x86_64::" \
 			-e "s:-arch ppc64::" \
-			-e 's:-arch $i::' \
-			-i "${S}"/configure || die "sed ${S}/configure failed"
+			-e "s:-arch \$i::" \
+			-e "/if \[ ! -z \"\$NATIVE_64_ARCH\" \]; then/,/fi/ d" \
+			-e "s:CFG_MAC_XARCH=yes:CFG_MAC_XARCH=no:g" \
+			-e "s:-Xarch_x86_64::g" \
+			-e "s:-Xarch_ppc64::g" \
+			-i "${S}"/configure "${S}"/mkspecs/common/mac-g++.conf || die "sed ${S}/configure failed"
+
+		# On Snow Leopard don't fall back to 10.5 deployment target.
+		[[ ${CHOST} == *-apple-darwin10 ]] && \
+			sed -e "s:QMakeVar set QMAKE_MACOSX_DEPLOYMENT_TARGET.*:QMakeVar set QMAKE_MACOSX_DEPLOYMENT_TARGET 10.6:g" \
+				-e "s:-mmacosx-version-min=10.[0-9]:-mmacosx-version-min=10.6:g" \
+				-i "${S}"/configure "${S}"/mkspecs/common/mac-g++.conf || die "sed ${S}/configure failed"
 	fi
 
 	# this one is needed for all systems with a separate -liconv, apart from
@@ -305,16 +317,12 @@ qt4-build_src_configure() {
 		myconf="${myconf} -liconv"
 
 	if use glib; then
-		# use -I from configure
-		myconf="${myconf} $(pkg-config --cflags glib-2.0)"
-		# use -L and -l from configure
-		if use aqua; then
-			myconf="${myconf} $(pkg-config --libs glib-2.0 gthread-2.0)"
-		else
-			# avoid the -pthread argument
-			myconf="${myconf} $(pkg-config --libs glib-2.0)"
-		fi
-
+		local glibflags=""
+		# use -I, -L and -l from configure 
+		glibflags="$(pkg-config --cflags --libs glib-2.0 gthread-2.0)"
+		# avoid the -pthread argument
+		myconf="${myconf} ${glibflags//-pthread}"
+		unset glibflags
 	fi
 
 	# freetype2 include dir is non-standard, thus include it on configure
@@ -324,25 +332,25 @@ qt4-build_src_configure() {
 	fi
 
 	case "${PV}" in
-		4.5.*)
+		4.4.*)
+			;;
+		4.?.*)
 			if use aqua ; then
-				# on leopard use the new cocoa code (broken, as the eclass and
-				# me are not coping well with the framework stuff)
-				if [[ ${CHOST} == xxdisablexx-*-darwin9 ]] ; then
-					# needs framework! no qt3support!
-					myconf="${myconf} -cocoa -framework -no-qt3support"
+				# On (snow) leopard use the new (frameworked) cocoa code.
+				if [[ $(uname -r | cut -d . -f 1) -ge 9 ]] ; then
+					myconf="${myconf} -cocoa -framework"
 
-					# for module compilation we need the source's headers, not
-					# the installed ones
-					if [[ ${PN} != qt-demo ]]; then
-						myconf="${myconf} -I${S}/include"
+					# We are crazy and build cocoa + qt3support :-)
+					if use qt3support; then
+						sed -e "/case \"\$PLATFORM,\$CFG_MAC_COCOA\" in/,/;;/ s|CFG_QT3SUPPORT=\"no\"|CFG_QT3SUPPORT=\"yes\"|" \
+							-i "${S}/configure"
 					fi
 
-					myconf="${myconf} -F${QTLIBDIR}"
+					# We need the source's headers, not the installed ones.
+					myconf="${myconf} -I${S}/include"
 
-					# move this into the unpack function
-					echo "CONFIG+=app_bundle" >> "${S}"/mkspecs/macx-g++/qmake.conf || \
-						die "echo app_bundle failed"
+					# Add hint for the framework location.
+					myconf="${myconf} -F${QTLIBDIR}"
 				fi
 			fi
 			;;
@@ -367,6 +375,32 @@ qt4-build_src_compile() {
 	build_directories "${QT4_TARGET_DIRECTORIES}"
 }
 
+# @FUNCTION: fix_includes
+# @DESCRIPTION:
+# For MacOSX we need to add some symlinks when frameworks are
+# being used, to avoid complications with some more or less stupid packages.
+fix_includes() {
+	if use aqua && [[ $(uname -r | cut -d . -f 1) -ge 9 ]] ; then
+		# Some packages tend to include <Qt/...>
+		dodir "${QTHEADERDIR#${EPREFIX}}"/Qt
+
+		# Fake normal headers when frameworks are installed... eases life later on
+		local dest f
+		for frw in "${D}${QTLIBDIR}"/*.framework; do
+			[[ -e "${frw}"/Headers ]] || continue
+			f=$(basename ${frw})
+			dest="${QTHEADERDIR#${EPREFIX}}"/${f%.framework}
+			dosym "${QTLIBDIR#${EPREFIX}}"/${f}/Headers "${dest}"
+
+			# Link normal headers as well.
+			for hdr in "${D}/${QTLIBDIR}/${f}"/Headers/*; do
+				h=$(basename ${hdr})
+				dosym "${QTLIBDIR#${EPREFIX}}"/${f}/Headers/${h} "${QTHEADERDIR#${EPREFIX}}"/Qt/${h}
+			done
+		done
+	fi
+}
+
 # @FUNCTION: qt4-build_src_install
 # @DESCRIPTION:
 # Perform the actual installation including some library fixes.
@@ -375,6 +409,7 @@ qt4-build_src_install() {
 	install_directories "${QT4_TARGET_DIRECTORIES}"
 	install_qconfigs
 	fix_library_files
+	fix_includes
 }
 
 # @FUNCTION: setqtenv
@@ -475,8 +510,7 @@ standard_configure_options() {
 		-translationdir ${QTTRANSDIR} -examplesdir ${QTEXAMPLESDIR}
 		-demosdir ${QTDEMOSDIR} -silent -fast
 		${exceptions}
-		${relocations}
-		-nomake examples -nomake demos"
+		${relocations} -nomake examples -nomake demos"
 
 	# Make eclass >= 4.5.x ready
 	case "${MY_PV}" in
@@ -496,7 +530,7 @@ build_directories() {
 	local dirs="$@"
 	for x in ${dirs}; do
 		cd "${S}"/${x}
-		sed -i -e "s:\$\$\[QT_INSTALL_LIBS\]:${EPREFIX}/usr/$(get_libdir)/qt4:g" $(find "${S}" -name '*.pr[io]') "${S}"/mkspecs/common/linux.conf || die
+		sed -i -e "s:\$\$\[QT_INSTALL_LIBS\]:${EPREFIX}/usr/$(get_libdir)/qt4:g" $(find "${S}" -name '*.pr[io]') "${S}"/mkspecs/common/*.conf || die
 		"${S}"/bin/qmake "LIBS+=-L${QTLIBDIR}" "CONFIG+=nostrip" || die "qmake failed"
 		emake CC="@echo compiling \$< && $(tc-getCC)" \
 			CXX="@echo compiling \$< && $(tc-getCXX)" \
