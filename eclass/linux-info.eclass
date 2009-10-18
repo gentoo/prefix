@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.72 2009/09/13 20:44:11 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.73 2009/10/11 11:48:33 maekke Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
@@ -382,7 +382,7 @@ kernel_is() {
 		  *) die "Error in kernel-2_kernel_is(): Too many parameters.";;
 		esac
 	done
-	
+
 	[ ${test} ${operator} ${value} ] && return 0 || return 1
 }
 
@@ -566,10 +566,10 @@ get_running_version() {
 # This attempts to find the version of the sources, and otherwise falls back to
 # the version of the running kernel.
 linux-info_get_any_version() {
-	get_version 
+	get_version
 	if [[ $? -ne 0 ]]; then
 		ewarn "Unable to calculate Linux Kernel version for build, attempting to use running version"
-		get_running_version 
+		get_running_version
 	fi
 }
 

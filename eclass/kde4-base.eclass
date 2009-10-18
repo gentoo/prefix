@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.45 2009/09/01 09:32:08 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.46 2009/10/06 18:02:12 alexxy Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -92,7 +92,7 @@ fi
 # One may override this variable to raise version requirements.
 # For possible values look at KDE_SLOTS and KDE_LIVE_SLOTS variables.
 # Note that it is fixed to ${SLOT} for kde-base packages.
-KDE_MINIMAL="${KDE_MINIMAL:-4.2}"
+KDE_MINIMAL="${KDE_MINIMAL:-4.3}"
 
 # Fallback behaviour (for now)
 # TODO Remove when tree is clean
@@ -187,11 +187,19 @@ case ${KDEBASE} in
 		# Determine SLOT from PVs
 		case ${PV} in
 			*.9999*) SLOT="${PV/.9999*/}" ;; # stable live
-			4.4* | 4.3.9* | 4.3.8* | 4.3.7* | 4.3.6*) SLOT="4.4" ;;
-			4.3* | 4.2.9* | 4.2.8* | 4.2.7* | 4.2.6*) SLOT="4.3" ;;
-			4.2* | 4.1.9* | 4.1.8* | 4.1.7* | 4.1.6*) SLOT="4.2" ;;
+			4.4* | 4.3.[6-9]*) SLOT="4.4" ;;
+			4.3*) SLOT="4.3" ;;
+			4.2*) SLOT="4.2" ;;
 			9999*) SLOT="live" ;; # regular live
 			*) die "Unsupported ${PV}" ;;
+		esac
+		# This code is to prevent portage from searching GENTOO_MIRRORS for
+		# packages that will never be mirrored. (As they only will ever be in
+		# the overlay).
+		case ${PV} in
+			*9999* | 4.?.[6-9]?)
+				RESTRICT+=" mirror"
+				;;
 		esac
 		KDE_MINIMAL="${SLOT}"
 		_kdedir="${SLOT}"
@@ -230,8 +238,9 @@ kdecommondepend="
 	)
 "
 if [[ ${PN} != kdelibs ]]; then
-	[[ ${PN} != libknotificationitem ]] && slot_is_at_least 4.3 ${KDE_MINIMAL} && local libknotificationitem_required=1
 	if [[ ${KDEBASE} = kde-base ]]; then
+		# libknotificationitem only when SLOT is 4.3
+		[[ ${PN} != libknotificationitem ]] && [[ ${SLOT} = 4.3 ]] && local libknotificationitem_required=1
 		kdecommondepend+="
 			kdeprefix? ( >=kde-base/kdelibs${_pv}[kdeprefix] )
 			!kdeprefix? ( >=kde-base/kdelibs${_pvn}[-kdeprefix] )
@@ -245,10 +254,6 @@ if [[ ${PN} != kdelibs ]]; then
 		kdecommondepend+="
 			>=kde-base/kdelibs${_pv}
 		"
-		[[ -n ${libknotificationitem_required} ]] && \
-			kdecommondepend+="
-				>=kde-base/libknotificationitem${_pv}
-			"
 	fi
 fi
 unset _pv _pvn
@@ -372,29 +377,19 @@ case ${BUILD_TYPE} in
 			case ${KDEBASE} in
 				kde-base)
 					case ${PV} in
-						4.3.85 | 4.3.90 | 4.3.95 | 4.3.96)
-							# block for normally packed unstable releases
-						 	SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
-						4.3.9* | 4.3.8* | 4.3.7* | 4.3.6*)
-							SRC_URI="http://dev.gentooexperimental.org/~alexxy/kde/${PV}/${_kmname_pv}.tar.lzma" ;;
-						4.2.85 | 4.2.90 | 4.2.95 | 4.2.96 | 4.2.98)
+						4.3.85 | 4.3.9[0568])
 							# block for normally packed unstable releases
 							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
-						4.2.9* | 4.2.8* | 4.2.7* | 4.2.6*)
+						4.3.[6-9]*)
 							SRC_URI="http://dev.gentooexperimental.org/~alexxy/kde/${PV}/${_kmname_pv}.tar.lzma" ;;
-						4.1.9* | 4.1.8* | 4.1.7* | 4.1.6* | 4.0.9* | 4.0.8*)
-							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 						*)	SRC_URI="mirror://kde/stable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 					esac
 					;;
 				koffice)
 					case ${PV} in
-						1.9*)
-							SRC_URI="mirror://kde/unstable/${_kmname_pv}/src/${_kmname_pv}.tar.bz2"
-							;;
+						2.0.[6-9]*) SRC_URI="mirror://kde/unstable/${_kmname_pv}/src/${_kmname_pv}.tar.bz2" ;;
 						*) SRC_URI="mirror://kde/stable/${_kmname_pv}/src/${_kmname_pv}.tar.bz2" ;;
 					esac
-				;;
 			esac
 			fi
 			unset _kmname _kmname_pv
@@ -636,8 +631,9 @@ kde4-base_src_make_doc() {
 	if [[ -n ${KDEBASE} ]] && [[ -d "${ED}${ROOT}usr/share/doc/${PF}" ]]; then
 		# work around bug #97196
 		dodir /usr/share/doc/KDE4 && \
-			mv -f "${ED}${EROOT}usr/share/doc/${PF}" "${ED}${EROOT}usr/share/doc/KDE4/" || \
+			cp -r "${ED}${EROOT}usr/share/doc/${PF}" "${ED}${EROOT}usr/share/doc/KDE4/" || \
 			die "Failed to move docs to KDE4/."
+			rm -rf "${ED}${EROOT}usr/share/doc/${PF}"
 	fi
 }
 

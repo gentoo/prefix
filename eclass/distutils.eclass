@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.64 2009/09/11 20:03:51 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.65 2009/10/11 13:38:12 arfrever Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -206,9 +206,7 @@ distutils_pkg_postinst() {
 	fi
 
 	if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-		for pymod in ${PYTHON_MODNAME}; do
-			python_mod_optimize "${pymod}"
-		done
+		python_mod_optimize ${PYTHON_MODNAME}
 	else
 		for pymod in ${PYTHON_MODNAME}; do
 			python_mod_optimize "$(python_get_sitedir)/${pymod}"
@@ -234,17 +232,17 @@ distutils_pkg_postrm() {
 	fi
 
 	if [[ -n "${PYTHON_MODNAME}" ]]; then
-		for pymod in ${PYTHON_MODNAME}; do
-			if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-				python_mod_cleanup "${pymod}"
-			else
+		if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+			python_mod_cleanup ${PYTHON_MODNAME}
+		else
+			for pymod in ${PYTHON_MODNAME}; do
 				for pylibdir in "${EROOT}"/usr/$(get_libdir)/python*; do
 					if [[ -d "${pylibdir}/site-packages/${pymod}" ]]; then
 						python_mod_cleanup "${pylibdir#${EROOT}}/site-packages/${pymod}"
 					fi
 				done
-			fi
-		done
+			done
+		fi
 	else
 		python_mod_cleanup
 	fi

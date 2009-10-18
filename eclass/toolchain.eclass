@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.407 2009/09/08 02:48:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.409 2009/10/18 07:24:58 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -94,10 +94,12 @@ if [[ ${GCC_PV} != ${GCC_PV/_pre/-} ]] ; then
 	PRERELEASE=${GCC_PV/_pre/-}
 fi
 # make _alpha and _beta ebuilds automatically use a snapshot
-if [[ ${GCC_PV} != ${GCC_PV/_alpha/} ]] ; then
+if [[ ${GCC_PV} == *_alpha* ]] ; then
 	SNAPSHOT=${GCC_BRANCH_VER}-${GCC_PV##*_alpha}
-elif [[ ${GCC_PV} != ${GCC_PV/_beta/} ]] ; then
+elif [[ ${GCC_PV} == *_beta* ]] ; then
 	SNAPSHOT=${GCC_BRANCH_VER}-${GCC_PV##*_beta}
+elif [[ ${GCC_PV} == *_rc* ]] ; then
+	SNAPSHOT=${GCC_PV%_rc*}-RC-${GCC_PV##*_rc}
 fi
 export GCC_FILESDIR=${GCC_FILESDIR:-${FILESDIR}}
 
@@ -2548,7 +2550,7 @@ disable_multilib_libjava() {
 fix_libtool_libdir_paths() {
 	pushd "${ED}" >/dev/null
 
-	pushd "${1}" >/dev/null
+	pushd "./${1}" >/dev/null
 	local dir="${PWD#${ED}}"
 	local allarchives=$(echo *.la)
 	allarchives="\(${allarchives// /\\|}\)"

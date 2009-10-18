@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.20 2009/09/07 04:58:22 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.21 2009/10/11 11:46:01 maekke Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -58,7 +58,7 @@ gst-plugins-bad_src_unpack() {
 		-e "s:\$(top_builddir)/gst-libs/gst/signalprocessor/libgstsignalprocessor:${EROOT}/usr/$(get_libdir)/libgstsignalprocessor:" \
 		-e "s:\$(top_builddir)/gst-libs/gst/video/libgstbasevideo:${EROOT}/usr/$(get_libdir)/libgstbasevideo:" \
 		-i Makefile.in
-	
+
 #	cd ${S}
 
 	# Remove generation of any other Makefiles except the plugin's Makefile

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.25 2009/08/20 09:18:01 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-meta.eclass,v 1.26 2009/10/06 18:02:12 alexxy Exp $
 #
 # @ECLASS: kde4-meta.eclass
 # @MAINTAINER:
@@ -41,7 +41,9 @@ case ${KMNAME} in
 		case ${PN} in
 			akregator|kaddressbook|kjots|kmail|knode|knotes|korganizer|ktimetracker)
 				IUSE+=" +kontact"
-				RDEPEND+=" kontact? ( >=kde-base/kontactinterfaces-${PV}:${SLOT}[kdeprefix=] )"
+				if ! slot_is_at_least 4.4 ${SLOT} || [[ ${SLOT} == 4.4 && ${PV} < 4.3.68 ]]; then
+					RDEPEND+=" kontact? ( >=kde-base/kontactinterfaces-${PV}:${SLOT}[kdeprefix=] )"
+				fi
 				;;
 		esac
 		;;
@@ -217,12 +219,12 @@ kde4-meta_src_extract() {
 	else
 		local abort tarball tarfile f extractlist moduleprefix postfix
 		case ${PV} in
-			4.3.85 | 4.3.90 | 4.3.95 | 4.3.96 | 4.3.98 | 4.2.85 | 4.2.90 | 4.2.95 | 4.2.96 | 4.2.98)
+			4.3.85 | 4.3.9[0568])
 				# block for normally packed upstream unstable snapshots
 				KMTARPARAMS+=" --bzip2" # bz2
 				postfix="bz2"
 				;;
-			4.2.9* | 4.2.8* | 4.2.7* | 4.2.6* | 4.3.9* | 4.3.8* | 4.3.7* | 4.3.6*)
+			4.3.[6-9]*)
 				KMTARPARAMS+=" --lzma" # lzma
 				postfix="lzma"
 				;;
@@ -358,8 +360,10 @@ kde4-meta_create_extractlists() {
 			if has kontact ${IUSE//+} && use kontact; then
 				KMEXTRA+="
 					kontact/plugins/${PLUGINNAME:-${PN}}/"
-				KMEXTRACTONLY+="
-					kontactinterfaces/"
+				if ! slot_is_at_least 4.4 ${SLOT} || [[ ${SLOT} == 4.4 && ${PV} < 4.3.68 ]]; then
+					KMEXTRACTONLY+="
+						kontactinterfaces/"
+				fi
 			fi
 			;;
 		kdeutils)
@@ -392,11 +396,10 @@ kde4-meta_create_extractlists() {
 			# No need for unpack since 4.2.86
 			# Remove when 4.2 is wiped out from the tree
 			case ${PV} in
-				4.1*|4.2.0|4.2.1|4.2.2|4.2.3|4.2.4|4.2.85)
+				4.2.[0-4])
 					KMCOMPILEONLY+="
 						cmake/modules/"
 					;;
-				*) ;;
 			esac
 			;;
 		kdebase-runtime|kdebase-workspace|kdeedu|kdegames|kdegraphics)
@@ -608,18 +611,9 @@ kde4-meta_change_cmakelists() {
 				sed -i -e '/install(.*FindKOfficeLibs.cmake/,/)/ d' \
 					"${S}"/cmake/modules/CMakeLists.txt || \
 					die "${LINENO}: sed died in collision prevention section"
-				case ${PV} in
-					2.0.*)
-						sed -i -n -e '1h;1!H;${g;s/install(.\+config-openexr.h.\+)//;p}' \
-							"${S}"/CMakeLists.txt || \
-							die "${LINENO}: sed died in collision prevention section"
-						;;
-					*)
-						sed -i -e '/install(.\+config-openexr\.h.\+)/d' \
-							"${S}"//CMakeLists.txt || \
-							die "${LINENO}: sed died in collision prevention section"
-						;;
-				esac
+				sed -i -e '/install(.\+config-openexr\.h.\+)/d' \
+					"${S}"//CMakeLists.txt || \
+					die "${LINENO}: sed died in collision prevention section"
 			fi
 	esac
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.69 2009/03/24 21:10:13 zzam Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vdr-plugin.eclass,v 1.71 2009/10/11 11:49:05 maekke Exp $
 #
 # Author:
 #   Matthias Schwarzott <zzam@gentoo.org>
@@ -11,8 +11,9 @@
 #   eclass to create ebuilds for vdr plugins
 #
 
-# Example ebuild (vdr-femon):
+# Example ebuild (basic version without patching):
 #
+#	EAPI="2"
 #	inherit vdr-plugin
 #	IUSE=""
 #	SLOT="0"
@@ -21,9 +22,16 @@
 #	SRC_URI="http://www.saunalahti.fi/~rahrenbe/vdr/femon/files/${P}.tgz"
 #	LICENSE="GPL-2"
 #	KEYWORDS="~x86"
-#	DEPEND=">=media-video/vdr-1.3.27"
+#	DEPEND=">=media-video/vdr-1.6.0"
 #
 #
+
+# For patching you should modify src_prepare phase:
+#
+#	src_prepare() {
+#		epatch "${FILESDIR}"/${P}-xxx.patch
+#		vdr-plugin_src_prepare
+#	}
 
 # Installation of a config file for the plugin
 #
@@ -165,7 +173,7 @@ create_header_checksum_file()
 
 fix_vdr_libsi_include()
 {
-	einfo "Fixing include of libsi-headers"
+	#einfo "Fixing include of libsi-headers"
 	local f
 	for f; do
 		sed -i "${f}" \
@@ -195,7 +203,6 @@ vdr_patchmakefile() {
 	#   Set VDRINCDIR=/usr/include
 	#   Change $(VDRDIR)/include to $(VDRINCDIR)
 
-	ebegin "  Setting paths"
 	sed -i Makefile \
 		-e "s:^VDRDIR.*$:VDRDIR = ${VDR_INCLUDE_DIR}:" \
 		-e "/^VDRDIR/a VDRINCDIR = ${VDR_INCLUDE_DIR%/vdr}" \
@@ -203,7 +210,6 @@ vdr_patchmakefile() {
 		\
 		-e 's:-I$(DVBDIR)/include::' \
 		-e 's:-I$(DVBDIR)::'
-	eend 0
 
 	# maybe needed for multiproto:
 	#sed -i Makefile \
@@ -229,7 +235,7 @@ vdr_patchmakefile() {
 	sed -i Makefile \
 		-e '/@.*strip/d' \
 		-e '/strip \$(LIBDIR)\/\$@/d' \
-		-e '/@.*\$(STRIP)/d'
+		-e 's/STRIP.*=.*$/STRIP = true/'
 
 	# Use a file instead of a variable as single-stepping via ebuild
 	# destroys environment.
@@ -295,20 +301,20 @@ vdr_i18n_convert_to_gettext() {
 }
 
 vdr_i18n_disable_gettext() {
-	ebegin "Disabling gettext support in plugin"
+	#einfo "Disabling gettext support in plugin"
+
 	# Remove i18n Target if using older vdr
 	sed -i Makefile \
 		-e '/^all:/s/ i18n//'
-	eend 0
 }
 
 vdr_i18n() {
 	if vdr_has_gettext; then
-		einfo "VDR has gettext support"
+		#einfo "VDR has gettext support"
 		if plugin_has_gettext; then
-			einfo "Plugin has gettext support, fine"
+			#einfo "Plugin has gettext support, fine"
 			if [[ ${NO_GETTEXT_HACK} == "1" ]]; then
-				ewarn "Please remove left over NO_GETTEXT_HACK."
+				ewarn "Please remove unneeded NO_GETTEXT_HACK from ebuild."
 			fi
 		else
 			vdr_i18n_convert_to_gettext
@@ -319,7 +325,7 @@ vdr_i18n() {
 			fi
 		fi
 	else
-		einfo "VDR has no gettext support"
+		#einfo "VDR has no gettext support"
 		if plugin_has_gettext; then
 			vdr_i18n_disable_gettext
 		fi
@@ -404,7 +410,7 @@ vdr-plugin_pkg_setup() {
 		fi
 		return
 	fi
-	
+
 	VDRVERSION=$(awk -F'"' '/define VDRVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
 	APIVERSION=$(awk -F'"' '/define APIVERSION/ {print $2}' "${VDR_INCLUDE_DIR}"/config.h)
 	[[ -z ${APIVERSION} ]] && APIVERSION="${VDRVERSION}"

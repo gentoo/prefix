@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.17 2009/08/25 16:51:21 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mythtv.eclass,v 1.18 2009/10/16 04:26:15 cardoe Exp $
 #
 # @ECLASS: mythtv.eclass
 # @AUTHOR: Doug Goldstein <cardoe@gentoo.org>
@@ -23,17 +23,17 @@ esac
 
 # _pre is from SVN trunk while _p and _beta are from SVN ${MY_PV}-fixes
 # TODO: probably ought to do something smart if the regex doesn't match anything
-[[ "${PV}" =~ (_beta|_pre|_p|_alpha)([0-9]+) ]] || {
-	eerror "Invalid version requested (_alpha|_beta|_pre|_p) only"
+[[ "${PV}" =~ (_alpha|_beta|_pre|_rc|_p)([0-9]+) ]] || {
+	eerror "Invalid version requested (_alpha|_beta|_pre|_rc|_p) only"
 	exit 1
 }
 
-REV_PREFIX="${BASH_REMATCH[1]}" # _beta, _pre, or _p
+REV_PREFIX="${BASH_REMATCH[1]}" # _alpha, _beta, _pre, _rc, or _p
 MYTHTV_REV="${BASH_REMATCH[2]}" # revision number
 
 case $REV_PREFIX in
 	_pre|_alpha) MYTHTV_REPO="trunk/${MY_PN}";;
-	_p|_beta) VER_COMP=( $(get_version_components ${MY_PV}) )
+	_p|_beta|_rc) VER_COMP=( $(get_version_components ${MY_PV}) )
 	          FIXES_VER="${VER_COMP[0]}-${VER_COMP[1]}"
 	          MYTHTV_REPO="branches/release-${FIXES_VER}-fixes/${MY_PN}";;
 esac

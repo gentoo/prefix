@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.76 2009/10/02 23:09:08 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.77 2009/10/11 13:34:23 arfrever Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -15,7 +15,7 @@
 
 inherit multilib
 
-if [[ -n "${NEED_PYTHON}" ]] ; then
+if [[ -n "${NEED_PYTHON}" ]]; then
 	PYTHON_ATOM=">=dev-lang/python-${NEED_PYTHON}"
 	DEPEND="${PYTHON_ATOM}"
 	RDEPEND="${DEPEND}"
@@ -112,6 +112,9 @@ PYTHON() {
 	fi
 }
 
+unset PYTHON_ABIS
+unset PYTHON_ABIS_SANITY_CHECKS
+
 # @FUNCTION: validate_PYTHON_ABIS
 # @DESCRIPTION:
 # Ensure that PYTHON_ABIS variable has valid value.
@@ -157,7 +160,7 @@ validate_PYTHON_ABIS() {
 
 				support_ABI="1"
 				for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
-					if python -c "from fnmatch import fnmatch; exit(not fnmatch('${ABI}', '${restricted_ABI}'))"; then
+					if [[ "${ABI}" == ${restricted_ABI} ]]; then
 						support_ABI="0"
 						break
 					fi
@@ -191,7 +194,7 @@ validate_PYTHON_ABIS() {
 				for ABI in ${python2_supported_versions}; do
 					support_python_major_version="1"
 					for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
-						if python -c "from fnmatch import fnmatch; exit(not fnmatch('${ABI}', '${restricted_ABI}'))"; then
+						if [[ "${ABI}" == ${restricted_ABI} ]]; then
 							support_python_major_version="0"
 						fi
 					done
@@ -199,7 +202,7 @@ validate_PYTHON_ABIS() {
 				done
 				if [[ "${support_python_major_version}" == "1" ]]; then
 					for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
-						if python -c "from fnmatch import fnmatch; exit(not fnmatch('${python2_version}', '${restricted_ABI}'))"; then
+						if [[ "${python2_version}" == ${restricted_ABI} ]]; then
 							die "Active version of Python 2 isn't supported by ${CATEGORY}/${PF}"
 						fi
 					done
@@ -218,7 +221,7 @@ validate_PYTHON_ABIS() {
 				for ABI in ${python3_supported_versions}; do
 					support_python_major_version="1"
 					for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
-						if python -c "from fnmatch import fnmatch; exit(not fnmatch('${ABI}', '${restricted_ABI}'))"; then
+						if [[ "${ABI}" == ${restricted_ABI} ]]; then
 							support_python_major_version="0"
 						fi
 					done
@@ -226,7 +229,7 @@ validate_PYTHON_ABIS() {
 				done
 				if [[ "${support_python_major_version}" == "1" ]]; then
 					for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
-						if python -c "from fnmatch import fnmatch; exit(not fnmatch('${python3_version}', '${restricted_ABI}'))"; then
+						if [[ "${python3_version}" == ${restricted_ABI} ]]; then
 							die "Active version of Python 3 isn't supported by ${CATEGORY}/${PF}"
 						fi
 					done
@@ -247,18 +250,21 @@ validate_PYTHON_ABIS() {
 		fi
 	fi
 
-	local PYTHON_ABI
-	for PYTHON_ABI in ${PYTHON_ABIS}; do
-		# Ensure that appropriate Python version is installed.
-		if ! has_version "dev-lang/python:${PYTHON_ABI}"; then
-			die "dev-lang/python:${PYTHON_ABI} isn't installed"
-		fi
+	if [[ "$(declare -p PYTHON_ABIS_SANITY_CHECKS 2> /dev/null)" != "declare -- PYTHON_ABIS_SANITY_CHECKS="* ]]; then
+		local PYTHON_ABI
+		for PYTHON_ABI in ${PYTHON_ABIS}; do
+			# Ensure that appropriate Python version is installed.
+			if ! has_version "dev-lang/python:${PYTHON_ABI}"; then
+				die "dev-lang/python:${PYTHON_ABI} isn't installed"
+			fi
 
-		# Ensure that EPYTHON variable is respected.
-		if [[ "$(EPYTHON="$(PYTHON)" python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')" != "${PYTHON_ABI}" ]]; then
-			die "'python' doesn't respect EPYTHON variable"
-		fi
-	done
+			# Ensure that EPYTHON variable is respected.
+			if [[ "$(EPYTHON="$(PYTHON)" python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')" != "${PYTHON_ABI}" ]]; then
+				die "'python' doesn't respect EPYTHON variable"
+			fi
+		done
+		PYTHON_ABIS_SANITY_CHECKS="1"
+	fi
 }
 
 # @FUNCTION: python_copy_sources
@@ -532,6 +538,78 @@ python_execute_function() {
 	fi
 }
 
+# @FUNCTION: python_convert_shebangs
+# @USAGE: [-q|--quiet] [-r|--recursive] [-x|--only-executables] [--] <Python_version> <file|directory> [files|directories]
+# @DESCRIPTION:
+# Convert shebangs in specified files. Directories can be specified only with --recursive option.
+python_convert_shebangs() {
+	local argument file files=() only_executables="0" python_version quiet="0" recursive="0"
+
+	while (($#)); do
+		case "$1" in
+			-r|--recursive)
+				recursive="1"
+				;;
+			-q|--quiet)
+				quiet="1"
+				;;
+			-x|--only-executables)
+				only_executables="1"
+				;;
+			--)
+				break
+				;;
+			-*)
+				die "${FUNCNAME}(): Unrecognized option '$1'"
+				;;
+			*)
+				break
+				;;
+		esac
+		shift
+	done
+
+	if [[ "$#" -eq 0 ]]; then
+		die "${FUNCNAME}(): Missing Python version and files or directories"
+	elif [[ "$#" -eq 1 ]]; then
+		die "${FUNCNAME}(): Missing files or directories"
+	fi
+
+	python_version="$1"
+	shift
+
+	for argument in "$@"; do
+		if [[ ! -e "${argument}" ]]; then
+			die "${FUNCNAME}(): '${argument}' doesn't exist"
+		elif [[ -f "${argument}" ]]; then
+			files+=("${argument}")
+		elif [[ -d "${argument}" ]]; then
+			if [[ "${recursive}" == "1" ]]; then
+				if [[ "${only_executables}" == "1" ]]; then
+					files+=($(find "${argument}" -perm /111 -type f))
+				else
+					files+=($(find "${argument}" -type f))
+				fi
+			else
+				die "${FUNCNAME}(): '${argument}' isn't a regular file"
+			fi
+		else
+			die "${FUNCNAME}(): '${argument}' isn't a regular file or a directory"
+		fi
+	done
+
+	for file in "${files[@]}"; do
+		[[ "${only_executables}" == "1" && ! -x "${file}" ]] && continue
+
+		if [[ "$(head -n1 "${file}")" =~ ^'#!'.*python ]]; then
+			[[ "${quiet}" == "0" ]] && einfo "Converting shebang in '${file}'"
+			sed -e "1s/python\([[:digit:]]\+\(\.[[:digit:]]\+\)\?\)\?/python${python_version}/" -i "${file}" || die "Conversion of shebang in '${file}' failed"
+
+			# Delete potential whitespace after "#!".
+			sed -e '1s/\(^#!\)[[:space:]]*/\1/' -i "${file}" || die "sed '${file}' failed"
+		fi
+	done
+}
 
 # @ECLASS-VARIABLE: PYTHON_USE_WITH
 # @DESCRIPTION:
@@ -569,13 +647,6 @@ if ! has "${EAPI:-0}" 0 1 && [[ -n ${PYTHON_USE_WITH} || -n ${PYTHON_USE_WITH_OR
 			else
 				python_version
 				pyatom="dev-lang/python:${PYVER}"
-			fi
-
-			# Workaround for older versions of Portage.
-			# has_version() calls portageq which is implemented in Python.
-			if has_version "=dev-lang/python-2*"; then
-				local EPYTHON
-				export EPYTHON="$(readlink "${EPREFIX}"/usr/bin/python2)"
 			fi
 
 			for use in ${PYTHON_USE_WITH}; do

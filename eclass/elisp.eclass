@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.42 2009/08/25 12:53:55 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp.eclass,v 1.43 2009/10/08 10:50:35 ulm Exp $
 #
 # Copyright 2002-2003 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -33,11 +33,6 @@
 # variable before inheriting elisp.eclass.  Set it to the major version
 # your package uses and the dependency will be adjusted.
 
-# @ECLASS-VARIABLE: DOCS
-# @DESCRIPTION:
-# DOCS="blah.txt ChangeLog" is automatically used to install the given
-# files by dodoc in src_install().
-
 # @ECLASS-VARIABLE: ELISP_PATCHES
 # @DESCRIPTION:
 # Any patches to apply after unpacking the sources. Patches are searched
@@ -49,6 +44,16 @@
 # pattern "[1-8][0-9]*-gentoo.el"; numbers below 10 and above 89 are
 # reserved for internal use.  "50${PN}-gentoo.el" is a reasonable choice
 # in most cases.
+
+# @ECLASS-VARIABLE: ELISP_TEXINFO
+# @DESCRIPTION:
+# Space separated list of Texinfo sources. Respective GNU Info files
+# will be generated in src_compile() and installed in src_install().
+
+# @ECLASS-VARIABLE: DOCS
+# @DESCRIPTION:
+# DOCS="blah.txt ChangeLog" is automatically used to install the given
+# files by dodoc in src_install().
 
 inherit elisp-common eutils
 
@@ -105,12 +110,19 @@ elisp_src_configure() { :; }
 
 elisp_src_compile() {
 	elisp-compile *.el || die
+	if [ -n "${ELISP_TEXINFO}" ]; then
+		makeinfo ${ELISP_TEXINFO} || die
+	fi
 }
 
 elisp_src_install() {
 	elisp-install ${PN} *.el *.elc || die
 	if [ -n "${SITEFILE}" ]; then
 		elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
+	fi
+	if [ -n "${ELISP_TEXINFO}" ]; then
+		set -- ${ELISP_TEXINFO}
+		doinfo ${@/%.*/.info*} || die
 	fi
 	if [ -n "${DOCS}" ]; then
 		dodoc ${DOCS} || die

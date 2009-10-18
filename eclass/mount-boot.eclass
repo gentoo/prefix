@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.16 2009/02/27 01:53:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mount-boot.eclass,v 1.17 2009/10/09 20:57:08 vapier Exp $
 #
 # This eclass is really only useful for bootloaders.
 #
@@ -10,14 +10,14 @@
 #
 # MAINTAINER: base-system@gentoo.org
 
-EXPORT_FUNCTIONS pkg_preinst
+EXPORT_FUNCTIONS pkg_preinst pkg_prerm
 
 mount-boot_mount_boot_partition() {
 	if [[ -n ${DONT_MOUNT_BOOT} ]] ; then
 		return
 	else
 		elog
-		elog "To avoid automounting and autoinstalling with /boot,"
+		elog "To avoid automounting and auto(un)installing with /boot,"
 		elog "just export the DONT_MOUNT_BOOT variable."
 		elog
 	fi
@@ -71,4 +71,10 @@ mount-boot_mount_boot_partition() {
 
 mount-boot_pkg_preinst() {
 	mount-boot_mount_boot_partition
+}
+
+mount-boot_pkg_prerm() {
+	touch "${EROOT}"/boot/.keep 2>/dev/null
+	mount-boot_mount_boot_partition
+	touch "${EROOT}"/boot/.keep 2>/dev/null
 }

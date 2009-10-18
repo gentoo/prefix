@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.30 2009/08/08 20:08:02 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.31 2009/10/16 12:24:09 ssuominen Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -244,6 +244,8 @@ Install path: ${CMAKE_INSTALL_PREFIX}\n")' >> CMakeLists.txt
 # General function for configuring with cmake. Default behaviour is to start an
 # out-of-source build.
 cmake-utils_src_configure() {
+	export XDG_CONFIG_HOME="${T}"
+
 	debug-print-function ${FUNCNAME} "$@"
 
 	_check_build_dir init

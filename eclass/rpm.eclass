@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/rpm.eclass,v 1.17 2009/10/03 08:56:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/rpm.eclass,v 1.19 2009/10/05 06:14:36 vapier Exp $
 
 # @ECLASS: rpm.eclass
 # @MAINTAINER:
@@ -16,10 +16,19 @@ DEPEND=">=app-arch/rpm2targz-9.0.0.3g"
 # @DESCRIPTION:
 # Unpack the contents of the specified rpms like the unpack() function.
 rpm_unpack() {
+	[[ $# -eq 0 ]] && set -- ${A}
 	local a
 	for a in "$@" ; do
 		echo ">>> Unpacking ${a} to ${PWD}"
-		[[ ${a} != ./* ]] && a="${DISTDIR}/${a}"
+		if [[ ${a} == ./* ]] ; then
+			: nothing to do -- path is local
+		elif [[ ${a} == ${DISTDIR}/* ]] ; then
+			ewarn 'QA: do not use ${DISTDIR} with rpm_unpack -- it is added for you'
+		elif [[ ${a} == /* ]] ; then
+			ewarn 'QA: do not use full paths with rpm_unpack -- use ./ paths instead'
+		else
+			a="${DISTDIR}/${a}"
+		fi
 		rpm2tar -O "${a}" | tar xf - || die "failure unpacking ${a}"
 	done
 }
@@ -32,6 +41,7 @@ rpm_unpack() {
 # unpack isn't perfect in that it simply unpacks all archives in the working
 # directory (with the assumption that there weren't any to start with).
 srcrpm_unpack() {
+	[[ $# -eq 0 ]] && set -- ${A}
 	rpm_unpack "$@"
 
 	# no .src.rpm files, then nothing to do

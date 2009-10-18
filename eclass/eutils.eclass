@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.320 2009/09/24 02:49:32 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.321 2009/10/18 07:52:23 grobian Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -655,12 +655,14 @@ enewuser() {
 
 	*)
 		if [[ -z $@ ]] ; then
-			useradd ${opts} ${euser} \
+			useradd ${opts} \
 				-c "added by portage for ${PN}" \
+				${euser} \
 				|| die "enewuser failed"
 		else
 			einfo " - Extra: $@"
-			useradd ${opts} ${euser} "$@" \
+			useradd ${opts} "$@" \
+				${euser} \
 				|| die "enewuser failed"
 		fi
 		;;

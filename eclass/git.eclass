@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.29 2009/09/04 08:00:23 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.30 2009/10/11 11:40:53 maekke Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -263,7 +263,7 @@ git_fetch() {
 		git gc $(${EGIT_PRUNE} && echo '--prune')
 		eend $?
 	fi
-	
+
 	# export the git version
 	export EGIT_VERSION="${cursha1}"
 
@@ -275,7 +275,7 @@ git_fetch() {
 	unset GIT_DIR
 	debug-print "git clone -l -s -n \"${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}\" \"${S}\""
 	git clone -l -s -n "${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}" "${S}"
-	
+
 	# set correct branch and the tree ebuild specified
 	pushd "${S}" > /dev/null
 	local branchname=branch-${EGIT_BRANCH} src=origin/${EGIT_BRANCH}
@@ -373,7 +373,7 @@ git_src_unpack() {
 # src_prepare function for git stuff. Patches, bootstrap...
 git_src_prepare() {
 	debug-print-function ${FUNCNAME} "$@"
-	
+
 	git_apply_patches
 	git_bootstrap
 }

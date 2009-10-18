@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.28 2009/08/27 21:49:04 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.29 2009/10/11 11:46:59 maekke Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -147,7 +147,7 @@ set_java_env() {
 
 	(
 		echo "VMHANDLE=\"${VMHANDLE}\""
-		echo "BUILD_ONLY=\"${JAVA_VM_BUILD_ONLY}\"" 
+		echo "BUILD_ONLY=\"${JAVA_VM_BUILD_ONLY}\""
 	) >> ${env_file}
 
 	[[ -n ${JAVA_PROVIDE} ]] && echo "PROVIDES=\"${JAVA_PROVIDE}\"" >> ${env_file}
