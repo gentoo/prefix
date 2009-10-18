@@ -37,7 +37,7 @@ src_unpack() {
 				-e '/^COMPILE_OPTS /s/$/ -DSOLARIS/' \
 				-e '/^LIBS_FOR_CONSOLE_APPLICATION /s/$/ -lsocket -lnsl/' \
 				live-static/config.gentoo \
-				live-shared/config.gentoo-so \
+				live-shared/config.gentoo-so-r1 \
 				|| die
 		;;
 		*-darwin*)
