@@ -46,6 +46,10 @@ src_unpack() {
 	# Ensure we stay multilib aware
 	sed -i -e "s:gentoo:$(get_libdir):" "${S}"/mozilla/security/nss/config/Makefile
 
+	# Fix pkgconfig file for Prefix
+	sed -i -e "/^PREFIX =/s:= /usr:= ${EPREFIX}/usr:" \
+		"${S}"/mozilla/security/nss/config/Makefile
+
 	epatch "${FILESDIR}"/${PN}-3.12.4-solaris-gcc.patch  # breaks non-gnu tools
 	# dirty hack
 	cd "${S}"/mozilla/security/nss
