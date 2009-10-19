@@ -5,7 +5,7 @@
  # In some cases, openpty can be slow when it fails. Therefore,
  # stop trying to use it after the first failure.
 -if platform.system() in ["SunOS", "Darwin"]:
-+if platform.system() in ["SunOS", "Darwin", "AIX"]:
++if platform.system() in ["SunOS", "Darwin", "AIX", "FreeBSD"]:
  	# disable the use of openpty on Solaris as it seems Python's openpty
  	# implementation doesn't play nice on Solaris with Portage's
  	# behaviour causing hangs/deadlocks.
