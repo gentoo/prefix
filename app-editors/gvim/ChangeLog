@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/gvim
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.297 2009/09/27 15:40:12 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.299 2009/10/17 18:41:31 lack Exp $
+
+  17 Oct 2009; Jim Ramsay <lack@gentoo.org> gvim-7.2.264.ebuild:
+  Remove unneeded gentoo-specific patch tarball
+
+  17 Oct 2009; Jim Ramsay <lack@gentoo.org> -gvim-7.2.ebuild,
+  -gvim-7.2.108.ebuild, -gvim-7.2.238.ebuild, gvim-7.2.264.ebuild:
+  Version cleanup and [R]DEPEND moved into vim.eclass
 
 *gvim-7.2.264 (27 Sep 2009)
 
