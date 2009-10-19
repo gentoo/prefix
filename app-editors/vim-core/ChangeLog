@@ -1,6 +1,17 @@
 # ChangeLog for app-editors/vim-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.314 2009/09/27 15:33:09 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.316 2009/10/17 18:36:21 lack Exp $
+
+*vim-core-7.2.264-r1 (17 Oct 2009)
+
+  17 Oct 2009; Jim Ramsay <lack@gentoo.org> -vim-core-7.2.264.ebuild,
+  +vim-core-7.2.264-r1.ebuild:
+  Revbump vim-core-7.2.264 to add tar.lzma and tar.xz support (Bug #286712)
+
+  17 Oct 2009; Jim Ramsay <lack@gentoo.org> -vim-core-7.2.ebuild,
+  -vim-core-7.2.108.ebuild, -vim-core-7.2.238.ebuild,
+  vim-core-7.2.264.ebuild:
+  Version cleanup and PDEPEND moved into vim.eclass
 
 *vim-core-7.2.264 (27 Sep 2009)
 
