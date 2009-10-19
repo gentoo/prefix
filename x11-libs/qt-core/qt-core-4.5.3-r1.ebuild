@@ -173,7 +173,7 @@ src_install() {
 	# use freshly built libraries
 	LD_LIBRARY_PATH="${S}/lib" "${S}"/bin/lrelease translations/*.ts \
 		|| die "generating translations failed"
-	insinto ${QTTRANSDIR}
+	insinto ${QTTRANSDIR#${EPREFIX}}
 	doins translations/*.qm || die "doins translations failed"
 
 	setqtenv
