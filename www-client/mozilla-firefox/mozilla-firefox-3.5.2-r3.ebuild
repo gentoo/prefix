@@ -139,8 +139,7 @@ src_prepare() {
 			browser/branding/nightly/configure.sh || die "iceweasel sed failed!"
 	fi
 
-# still necessary? grobian@2009-07-02
-#	epatch "${FILESDIR}"/${PN}-3.0-solaris64.patch
+	epatch "${FILESDIR}"/${PN}-3.0-solaris64.patch
 
 	eautoreconf
 
