@@ -2,9 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.2.264.ebuild,v 1.3 2009/10/17 18:38:50 lack Exp $
 
-
 EAPI=2
-inherit vim 
+inherit vim
 
 VIM_VERSION="7.2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
@@ -39,4 +38,3 @@ src_compile() {
 	fi
 	vim_src_compile || die "vim_src_compile failed"
 }
-
