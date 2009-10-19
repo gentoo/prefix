@@ -1,6 +1,11 @@
-# ChangeLog for app-admin/realpath
+# ChangeLog for app-misc/realpath
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/realpath/ChangeLog,v 1.47 2009/08/31 19:28:01 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/realpath/ChangeLog,v 1.1 2009/10/13 16:58:23 ulm Exp $
+
+  13 Oct 2009; Ulrich Mueller <ulm@gentoo.org>
+  +files/realpath-1.14-build.patch, +files/realpath-1.14-no-po4a.patch,
+  +realpath-1.15.ebuild, +metadata.xml:
+  Package moved from app-admin to app-misc category, bug 273968. Remove old.
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> realpath-1.15.ebuild:
   stable ppc64, bug 279841
