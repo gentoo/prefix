@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/aircrack-ng-1.0.ebuild,v 1.2 2009/09/11 14:10:56 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/aircrack-ng-1.0.ebuild,v 1.4 2009/10/15 14:30:20 maekke Exp $
 
 EAPI="2"
 
-inherit versionator eutils toolchain-funcs
+inherit eutils flag-o-matic toolchain-funcs versionator
 
 MY_PV=$(replace_version_separator 2 '-')
 
@@ -20,12 +20,17 @@ IUSE="+sqlite kernel_linux kernel_FreeBSD"
 DEPEND="dev-libs/openssl
 	sqlite? ( >=dev-db/sqlite-3.4 )"
 RDEPEND="${DEPEND}
-	kernel_linux? ( net-wireless/iw )"
+	kernel_linux? ( net-wireless/iw net-wireless/wireless-tools )"
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 have_sqlite() {
 	use sqlite && echo "true" || echo "false"
+}
+
+pkg_setup() {
+	# aircrack-ng fails to build with -fPIE.
+	filter-flags -fPIE
 }
 
 src_prepare() {

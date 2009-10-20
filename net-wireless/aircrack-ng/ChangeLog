@@ -1,6 +1,14 @@
 # ChangeLog for net-wireless/aircrack-ng
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/ChangeLog,v 1.53 2009/09/22 13:54:56 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/aircrack-ng/ChangeLog,v 1.55 2009/10/15 14:30:20 maekke Exp $
+
+  15 Oct 2009; Markus Meier <maekke@gentoo.org> aircrack-ng-1.0.ebuild:
+  amd64/arm/x86 stable, bug #288613
+
+  11 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  aircrack-ng-1.0.ebuild:
+  Filter -fPIE (bug #285703). Add dependency on net-wireless/wireless-tools
+  (bug #285727).
 
   22 Sep 2009; Markus Meier <maekke@gentoo.org> aircrack-ng-1.0_rc4.ebuild:
   x86 stable, bug #283062
