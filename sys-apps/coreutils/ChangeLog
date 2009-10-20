@@ -1,6 +1,30 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.268 2009/10/03 17:06:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.274 2009/10/18 05:52:32 vapier Exp $
+
+*coreutils-7.5-r1 (18 Oct 2009)
+
+  18 Oct 2009; Mike Frysinger <vapier@gentoo.org> +coreutils-7.5-r1.ebuild:
+  Add fix from newer versions for cp/mv problems on older kernels #289134 by
+  Allen Brooker.
+
+  12 Oct 2009; Mike Frysinger <vapier@gentoo.org> coreutils-7.5.ebuild,
+  coreutils-7.6.ebuild:
+  Inform people to reload their LS_COLOR env settings #288693 by Dirkjan
+  Ochtman.
+
+  10 Oct 2009; Raúl Porcel <armin76@gentoo.org> coreutils-7.5.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #287219
+
+  09 Oct 2009; Mike Frysinger <vapier@gentoo.org> coreutils-7.6.ebuild:
+  Add patch from upstream for mktemp build failures on some systems #288183
+  by Alexey Charkov.
+
+  07 Oct 2009; nixnut <nixnut@gentoo.org> coreutils-7.5.ebuild:
+  ppc stable #287219
+
+  05 Oct 2009; Markus Meier <maekke@gentoo.org> coreutils-7.5.ebuild:
+  amd64/arm/x86 stable, bug #287219
 
   03 Oct 2009; Raúl Porcel <armin76@gentoo.org> coreutils-7.4.ebuild:
   ia64/m68k/s390/sh/sparc stable wrt #281699

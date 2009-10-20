@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.5.ebuild,v 1.2 2009/09/03 19:53:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.5.ebuild,v 1.6 2009/10/12 18:38:59 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -168,7 +168,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	ewarn "Make sure you run 'hash -r' in your active shells"
+	ewarn "Make sure you run 'hash -r' in your active shells."
+	ewarn "You should also re-source your shell settings for LS_COLORS"
+	ewarn "  changes, such as: source /etc/profile"
 
 	# /bin/dircolors sometimes sticks around #224823
 	if [ -e "${EROOT}/usr/bin/dircolors" ] && [ -e "${EROOT}/bin/dircolors" ] ; then

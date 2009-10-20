@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.6.ebuild,v 1.3 2009/10/12 18:38:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.5-r1.ebuild,v 1.1 2009/10/18 05:52:32 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -46,16 +46,15 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
-	epatch "${FILESDIR}"/${P}-tempname.patch # can be dropped next release
 	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 	epatch "${FILESDIR}"/${PN}-7.4-hppa-hpux.patch
+	epatch "${FILESDIR}"/${PN}-7.5-wctype-mint.patch
 
 	# interix has no setgroups, so this won't work.
-	epatch "${FILESDIR}"/${PN}-7.5-interix-setgroups.patch
+	epatch "${FILESDIR}"/${P}-interix-setgroups.patch
 
 	# thank god not all things are as **** up as interix' security...
-#http://bugs.gentoo.org/show_bug.cgi?id=286459
-#	epatch "${FILESDIR}"/${PN}-7.5-interix-security.patch
+	epatch "${FILESDIR}"/${P}-interix-security.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
