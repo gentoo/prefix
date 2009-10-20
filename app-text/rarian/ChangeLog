@@ -1,6 +1,13 @@
 # ChangeLog for app-text/rarian
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.40 2009/03/02 18:46:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.41 2009/10/07 15:54:33 leio Exp $
+
+  07 Oct 2009; Mart Raudsepp <leio@gentoo.org>
+  -files/rarian-0.6.0-posix-getopt.patch,
+  -files/rarian-0.6.0-reg-return.patch,
+  -files/rarian-0.8.0-info-segfault.patch, -rarian-0.6.0-r1.ebuild,
+  -rarian-0.8.0-r1.ebuild:
+  Remove old
 
   02 Mar 2009; Raúl Porcel <armin76@gentoo.org> rarian-0.8.1.ebuild:
   arm/s390/sh stable
