@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/xca/xca-0.7.0.ebuild,v 1.1 2009/10/03 20:11:18 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/xca/xca-0.7.0.ebuild,v 1.2 2009/10/18 17:54:26 ssuominen Exp $
 
 EAPI="2"
 
@@ -27,7 +27,8 @@ DEPEND="${RDEPEND}
 # 2. doc hacks.
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-0.6.4-build.patch"
+	epatch "${FILESDIR}"/${PN}-0.6.4-build.patch \
+		"${FILESDIR}"/${P}-gcc44.patch
 	sed -e 's/$(LD) $(LDFLAGS)/$(LD) $(RAW_LDFLAGS)/' -i Makefile Rules.mak || die "sed failed"
 }
 
