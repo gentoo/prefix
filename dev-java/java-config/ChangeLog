@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/java-config
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.224 2009/09/15 22:46:29 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.225 2009/10/18 22:36:25 fauli Exp $
+
+  18 Oct 2009; Christian Faulhammer <fauli@gentoo.org>
+  java-config-2.1.9-r1.ebuild:
+  stable x86, bug 289174
 
 *java-config-2.1.9-r1 (15 Sep 2009)
 
