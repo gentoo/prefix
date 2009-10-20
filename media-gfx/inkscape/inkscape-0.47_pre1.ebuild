@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47_pre1.ebuild,v 1.2 2009/07/15 15:57:27 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47_pre1.ebuild,v 1.3 2009/10/05 20:27:25 volkmar Exp $
 
 EAPI=2
 inherit gnome2

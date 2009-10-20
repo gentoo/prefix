@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47_pre2.ebuild,v 1.2 2009/10/05 20:27:25 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47_pre4.ebuild,v 1.1 2009/10/17 15:35:56 maekke Exp $
 
 EAPI=2
 inherit gnome2
@@ -15,7 +15,7 @@ HOMEPAGE="http://www.inkscape.org/"
 SLOT="0"
 LICENSE="GPL-2 LGPL-2.1"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE="dia gnome inkjar jabber lcms mmx nls postscript spell wmf wpg"
+IUSE="dia gnome inkjar lcms mmx nls postscript spell wmf wpg"
 RESTRICT="test"
 
 COMMON_DEPEND="
@@ -70,7 +70,6 @@ pkg_setup() {
 	G2CONF="${G2CONF} --with-xft"
 	G2CONF="${G2CONF} $(use_with gnome gnome-vfs)"
 	G2CONF="${G2CONF} $(use_with inkjar)"
-	G2CONF="${G2CONF} $(use_enable jabber inkboard)"
 	G2CONF="${G2CONF} $(use_enable lcms)"
 	G2CONF="${G2CONF} $(use_enable mmx)"
 	G2CONF="${G2CONF} $(use_enable nls)"
