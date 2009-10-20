@@ -1,6 +1,29 @@
 # ChangeLog for net-misc/wget
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.113 2009/09/26 18:07:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.120 2009/10/18 14:26:26 ranger Exp $
+
+  18 Oct 2009; Brent Baude <ranger@gentoo.org> wget-1.12.ebuild:
+  Marking wget-1.12 ppc64 for bug 286058
+
+  15 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> wget-1.12.ebuild:
+  Stabilizing for ppc, bug 286058
+
+  14 Oct 2009; Mike Frysinger <vapier@gentoo.org>
+  files/wget-1.12-debug-tests.patch:
+  Update debug test patch to cover USE=idn #288156 by Paolo Pedroni and info
+  from Kent Fredric.
+
+  07 Oct 2009; Markus Meier <maekke@gentoo.org> wget-1.12.ebuild:
+  amd64 stable, bug #286058
+
+  07 Oct 2009; Raúl Porcel <armin76@gentoo.org> wget-1.12.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #286058
+
+  06 Oct 2009; Jeroen Roovers <jer@gentoo.org> wget-1.12.ebuild:
+  Stable for HPPA (bug #286058).
+
+  06 Oct 2009; Christian Faulhammer <fauli@gentoo.org> wget-1.12.ebuild:
+  stable x86, security bug 286058
 
   26 Sep 2009; Mike Frysinger <vapier@gentoo.org> wget-1.12.ebuild,
   +files/wget-1.12-debug-tests.patch:
