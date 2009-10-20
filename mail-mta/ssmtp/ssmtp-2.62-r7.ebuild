@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r3.ebuild,v 1.8 2008/11/09 12:18:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ssmtp-2.62-r7.ebuild,v 1.2 2009/10/18 23:56:22 mr_bones_ Exp $
 
 inherit eutils toolchain-funcs autotools flag-o-matic
 
@@ -15,6 +15,7 @@ IUSE="ssl ipv6 md5sum maxsysuid"
 
 DEPEND="ssl? ( dev-libs/openssl )"
 RDEPEND="${DEPEND}
+	net-mail/mailbase
 	!net-mail/mailwrapper
 	!virtual/mta"
 PROVIDE="virtual/mta"
@@ -35,8 +36,14 @@ src_unpack() {
 		epatch "${FILESDIR}"/${P}-maxsysuid-conf.patch
 	fi
 
+	#
+	epatch "${FILESDIR}/${P}-from_format_fix.patch"
+
 	# CVE-2008-3962
-	epatch "${FILESDIR}/CVE-2008-3962.patch"
+	epatch "${FILESDIR}/CVE-2008-3962-r2.patch"
+
+	# Fix AuthPass parsing (bug #238724)
+	epatch "${FILESDIR}/${P}-authpass.patch"
 
 	epatch "${FILESDIR}"/ssmtp-2.61-darwin7.patch
 	epatch "${FILESDIR}"/ssmtp-2.62-strndup.patch
@@ -65,7 +72,7 @@ src_install() {
 	dosbin ssmtp || die
 	fperms 755 /usr/sbin/ssmtp
 
-	doman ssmtp.8
+	doman ssmtp.8 ssmtp.conf.5
 	dodoc INSTALL README TLS CHANGELOG_OLD
 	newdoc ssmtp.lsm DESC
 
@@ -74,39 +81,29 @@ src_install() {
 
 	local conffile="${ED}etc/ssmtp/ssmtp.conf"
 
-	mv "${conffile}" "${conffile}.orig"
-
 	# Sorry about the weird indentation, I couldn't figure out a cleverer way
 	# to do this without having horribly >80 char lines.
-	sed -e "s:^hostname=:\n# Gentoo bug #47562\\
+	sed -i -e "s:^hostname=:\n# Gentoo bug #47562\\
 # Commenting the following line will force ssmtp to figure\\
 # out the hostname itself.\n\\
 # hostname=:" \
-		"${conffile}.orig" > "${conffile}" \
-		|| die "sed failed"
+		"${conffile}" || die "sed failed"
 
-	rm "${conffile}.orig" || die "Failed to remove temporary created copy of ssmtp.conf"
+	# Comment rewriteDomain (bug #243364)
+	sed -i -e "s:^rewriteDomain=:#rewriteDomain=:" ${conffile}
 
-	# Set restrictive perms on ssmtp.conf as per #187841
+	# Set restrictive perms on ssmtp.conf as per #187841, #239197
 	# Protect the ssmtp configfile from being readable by regular users as it
-	# may contain login/password data to auth against a the mailhub used, add
-	# users to the ssmtp group to enable them to use ssmtp.
+	# may contain login/password data to auth against a the mailhub used.
 	fowners root:ssmtp /etc/ssmtp/ssmtp.conf
 	fperms 640 /etc/ssmtp/ssmtp.conf
 
 	fowners root:ssmtp /usr/sbin/ssmtp
-	fperms 750 /usr/sbin/ssmtp
+	fperms 2711 /usr/sbin/ssmtp
 
 	dosym /usr/sbin/ssmtp /usr/lib/sendmail
 	dosym /usr/sbin/ssmtp /usr/bin/sendmail
 	dosym /usr/sbin/ssmtp /usr/sbin/sendmail
 	dosym /usr/sbin/ssmtp /usr/bin/mailq
 	dosym /usr/sbin/ssmtp /usr/bin/newaliases
-}
-
-pkg_postinst() {
-	elog "Starting with =mail-mta/ssmtp-2.62 all users who should be able"
-	elog "to send mails using ssmtp must be added to the ssmtp group."
-	elog
-	elog "See bug #187841 for reference."
 }

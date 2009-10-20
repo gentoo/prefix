@@ -1,6 +1,13 @@
 # ChangeLog for mail-mta/ssmtp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.85 2009/07/27 22:06:00 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-mta/ssmtp/ChangeLog,v 1.86 2009/10/17 17:37:59 dertobi123 Exp $
+
+*ssmtp-2.62-r7 (17 Oct 2009)
+
+  17 Oct 2009; Tobias Scherbaum <dertobi123@gentoo.org>
+  -ssmtp-2.62-r4.ebuild, +ssmtp-2.62-r7.ebuild,
+  +files/ssmtp-2.62-from_format_fix.patch:
+  Cleanup, fix from Header when no gecos is available (#282907)
 
   27 Jul 2009; Markus Meier <maekke@gentoo.org> ssmtp-2.62-r6.ebuild:
   amd64 stable, bug #259472
