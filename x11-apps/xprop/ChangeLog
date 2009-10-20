@@ -1,6 +1,21 @@
 # ChangeLog for x11-apps/xprop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xprop/ChangeLog,v 1.40 2009/06/23 20:53:50 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xprop/ChangeLog,v 1.44 2009/10/14 21:50:28 remi Exp $
+
+  14 Oct 2009; Rémi Cardona <remi@gentoo.org> xprop-1.1.0.ebuild:
+  fix deps and indent
+
+*xprop-1.1.0 (14 Oct 2009)
+
+  14 Oct 2009; Rémi Cardona <remi@gentoo.org> -xprop-1.0.2.ebuild,
+  +xprop-1.1.0.ebuild:
+  drop 1.0.2, bump to 1.1.0
+
+  11 Oct 2009; nixnut <nixnut@gentoo.org> ChangeLog:
+  ppc stable #282290
+
+  09 Oct 2009; Markus Meier <maekke@gentoo.org> xprop-1.0.4.ebuild:
+  arm stable, bug #282290
 
   23 Jun 2009; Tobias Klausmann <klausman@gentoo.org> xprop-1.0.4.ebuild:
   Stable on alpha for xorg-server-1.5/xorg-x11-7.4
