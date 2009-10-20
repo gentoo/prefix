@@ -1,6 +1,11 @@
 # ChangeLog for app-emacs/ess
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ChangeLog,v 1.46 2009/06/03 17:00:44 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ChangeLog,v 1.47 2009/10/15 16:38:35 ulm Exp $
+
+*ess-5.5 (15 Oct 2009)
+
+  15 Oct 2009; Ulrich Mueller <ulm@gentoo.org> +ess-5.5.ebuild:
+  Version bump, bug 289190.
 
   03 Jun 2009; Christian Faulhammer <fauli@gentoo.org> -ess-5.3.10.ebuild:
   clean up

@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ess-5.3.10.ebuild,v 1.2 2008/12/30 23:30:37 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ess-5.5.ebuild,v 1.1 2009/10/15 16:38:35 ulm Exp $
 
 inherit elisp
 
@@ -24,13 +24,6 @@ src_compile() {
 }
 
 src_install() {
-	# Install all elisp sources; the Makefile installs only part of them.
-	# This has to go before emake install, see bug 205156 comment 3.
-	elisp-install ${PN} lisp/ess*.el || die
-
-	# make install fails to create some directories
-	dodir /usr/share/doc/${PF}/{html,refcard}
-
 	emake PREFIX="${ED}/usr" \
 		INFODIR="${ED}/usr/share/info" \
 		LISPDIR="${ED}${SITELISP}/ess" \
@@ -40,7 +33,8 @@ src_install() {
 	elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
 
 	# Most documentation is installed by the package's build system
-	dodoc ChangeLog doc/{NEWS,TODO,ess-intro.pdf} || die "dodoc failed"
+	rm -f "${ED}${SITELISP}/ess/lisp/ChangeLog"
+	dodoc ChangeLog *NEWS doc/{TODO,ess-intro.pdf} || die "dodoc failed"
 	newdoc lisp/ChangeLog ChangeLog-lisp || die "newdoc failed"
 	prepalldocs
 }
