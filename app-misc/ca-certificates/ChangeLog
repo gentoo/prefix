@@ -1,6 +1,14 @@
 # ChangeLog for app-misc/ca-certificates
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.38 2009/10/04 17:06:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.40 2009/10/09 02:13:09 rich0 Exp $
+
+  09 Oct 2009; Richard Freeman <rich0@gentoo.org>
+  ca-certificates-20090709.ebuild:
+  amd64 stable - 287409
+
+  06 Oct 2009; Jeroen Roovers <jer@gentoo.org>
+  ca-certificates-20090709.ebuild:
+  Stable for HPPA (bug #287409).
 
   04 Oct 2009; Raúl Porcel <armin76@gentoo.org>
   ca-certificates-20090709.ebuild:
