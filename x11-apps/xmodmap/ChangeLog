@@ -1,6 +1,11 @@
 # ChangeLog for x11-apps/xmodmap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmodmap/ChangeLog,v 1.46 2009/05/20 13:41:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xmodmap/ChangeLog,v 1.47 2009/10/06 15:01:40 remi Exp $
+
+*xmodmap-1.0.4 (06 Oct 2009)
+
+  06 Oct 2009; Rémi Cardona <remi@gentoo.org> +xmodmap-1.0.4.ebuild:
+  bump to 1.0.4
 
   20 May 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
   Marking xmodmap-1.0.3 ppc stable for bug 268581
