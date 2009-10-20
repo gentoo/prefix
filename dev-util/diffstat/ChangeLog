@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/diffstat
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.86 2009/09/27 18:38:43 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/diffstat/ChangeLog,v 1.88 2009/10/07 11:46:03 tcunha Exp $
+
+*diffstat-1.50 (07 Oct 2009)
+
+  07 Oct 2009; Tiago Cunha <tcunha@gentoo.org> +diffstat-1.50.ebuild:
+  Version bump.
+
+  05 Oct 2009; Tiago Cunha <tcunha@gentoo.org> -diffstat-1.47.ebuild:
+  Remove old.
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> diffstat-1.48.ebuild:
   ppc stable #284835
