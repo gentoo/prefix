@@ -1,6 +1,10 @@
 # ChangeLog for app-dicts/aspell-de
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-dicts/aspell-de/ChangeLog,v 1.19 2007/11/03 22:03:00 uberlord Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/aspell-de/ChangeLog,v 1.20 2009/10/18 20:13:20 halcy0n Exp $
+
+  18 Oct 2009; Mark Loeser <halcy0n@gentoo.org> aspell-de-0.50.2.ebuild,
+  aspell-de-0.60_pre20030222.ebuild:
+  QA fixes; IUSE is not defined
 
   03 Nov 2007; Roy Marples <uberlord@gentoo.org>
   aspell-de-0.60_pre20030222.ebuild:
