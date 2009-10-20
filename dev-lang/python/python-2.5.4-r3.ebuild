@@ -1,14 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r3.ebuild,v 1.23 2009/10/03 17:46:55 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r3.ebuild,v 1.25 2009/10/17 05:09:30 arfrever Exp $
 
 EAPI="1"
 
 inherit autotools eutils flag-o-matic libtool multilib pax-utils python toolchain-funcs versionator
 
 # We need this so that we don't depend on python.eclass.
-PYVER_MAJOR=$(get_major_version)
-PYVER_MINOR=$(get_version_component_range 2)
+PYVER_MAJOR="$(get_major_version)"
+PYVER_MINOR="$(get_version_component_range 2)"
 PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 
 MY_P="Python-${PV}"
@@ -262,7 +262,7 @@ src_test() {
 	host-is-pax && skip_tests+=" ctypes"
 
 	for test in ${skip_tests}; do
-		mv "${S}"/Lib/test/test_${test}.py "${T}"
+		mv "${S}/Lib/test/test_${test}.py" "${T}"
 	done
 
 	# Redirect stdin from /dev/tty as a workaround for bug #248081.
@@ -270,7 +270,7 @@ src_test() {
 	EXTRATESTOPTS="-w" make test < /dev/tty || die "make test failed"
 
 	for test in ${skip_tests}; do
-		mv "${T}"/test_${test}.py "${S}"/Lib/test/test_${test}.py
+		mv "${T}/test_${test}.py" "${S}/Lib/test/test_${test}.py"
 	done
 
 	elog "The following tests have been skipped:"
@@ -312,7 +312,7 @@ src_install() {
 
 	if use examples ; then
 		insinto /usr/share/doc/${PF}/examples
-		doins -r "${S}"/Tools || die "doins failed"
+		doins -r "${S}/Tools" || die "doins failed"
 	fi
 
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
@@ -338,8 +338,7 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -x "(site-packages|test)" /usr/lib/python${PYVER}
-	[[ "$(get_libdir)" != "lib" ]] && python_mod_optimize -x "(site-packages|test)" /usr/$(get_libdir)/python${PYVER}
+	python_mod_optimize -x "(site-packages|test)" /usr/$(get_libdir)/python${PYVER}
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn
@@ -357,6 +356,5 @@ pkg_postinst() {
 pkg_postrm() {
 	eselect_python_update
 
-	python_mod_cleanup /usr/lib/python${PYVER}
-	[[ "$(get_libdir)" != "lib" ]] && python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
+	python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
 }

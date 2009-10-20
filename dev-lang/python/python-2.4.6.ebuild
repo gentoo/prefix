@@ -1,14 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.21 2009/10/03 17:46:55 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.22 2009/10/17 05:03:53 arfrever Exp $
 
 EAPI="1"
 
 inherit autotools eutils flag-o-matic multilib python toolchain-funcs versionator prefix
 
 # We need this so that we don't depend on python.eclass.
-PYVER_MAJOR=$(get_major_version)
-PYVER_MINOR=$(get_version_component_range 2)
+PYVER_MAJOR="$(get_major_version)"
+PYVER_MINOR="$(get_version_component_range 2)"
 PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 
 MY_P="Python-${PV}"
@@ -56,6 +56,10 @@ pkg_setup() {
 		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
 		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
 		ewarn "module provided by dev-python/bsddb3 which supports both Python 2 and Python 3."
+	fi
+
+	if ! has_version "=dev-lang/python-3*"; then
+		elog "It is highly recommended to additionally install Python 3, but without configuring Python wrapper to use Python 3."
 	fi
 }
 
@@ -229,14 +233,14 @@ src_test() {
 	local skip_tests="cookielib distutils global hotshot mimetools minidom mmap posix sax strptime subprocess syntax tcl time urllib urllib2"
 
 	for test in ${skip_tests}; do
-		mv "${S}"/Lib/test/test_${test}.py "${T}"
+		mv "${S}/Lib/test/test_${test}.py" "${T}"
 	done
 
 	# Rerun failed tests in verbose mode (regrtest -w).
 	EXTRATESTOPTS="-w" make test || die "make test failed"
 
 	for test in ${skip_tests}; do
-		mv "${T}"/test_${test}.py "${S}"/Lib/test/test_${test}.py
+		mv "${T}/test_${test}.py" "${S}/Lib/test/test_${test}.py"
 	done
 
 	elog "The following tests have been skipped:"
@@ -250,7 +254,6 @@ src_test() {
 }
 
 src_install() {
-	dodir /usr
 	emake DESTDIR="${D}" altinstall maninstall || die "emake altinstall maninstall failed"
 
 	# Install our own custom python-config
@@ -285,7 +288,7 @@ src_install() {
 
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
-		doins -r "${S}"/Tools || die "doins failed"
+		doins -r "${S}/Tools" || die "doins failed"
 	fi
 
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}

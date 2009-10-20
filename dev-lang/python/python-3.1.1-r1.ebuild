@@ -1,14 +1,14 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.11 2009/10/03 17:39:25 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.14 2009/10/17 05:09:30 arfrever Exp $
 
 EAPI="2"
 
 inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs versionator
 
 # We need this so that we don't depend on python.eclass.
-PYVER_MAJOR=$(get_major_version)
-PYVER_MINOR=$(get_version_component_range 2)
+PYVER_MAJOR="$(get_major_version)"
+PYVER_MINOR="$(get_version_component_range 2)"
 PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 
 MY_P="Python-${PV}"
@@ -51,7 +51,8 @@ PDEPEND="app-admin/python-updater
 PROVIDE="virtual/python"
 
 src_prepare() {
-	# Ensure that internal copy of libffi isn't used.
+	# Ensure that internal copies of expat and libffi aren't used.
+	rm -fr Modules/expat
 	rm -fr Modules/_ctypes/libffi*
 
 	if ! tc-is-cross-compiler; then
@@ -149,7 +150,7 @@ src_prepare() {
 	fi
 
 	# Don't silence output of setup.py.
-	sed -e '/setup\.py -q build/d' -i Makefile.pre.in
+	sed -e "/setup\.py -q build/d" -i Makefile.pre.in
 
 	# Fix OtherFileTests.testStdin() not to assume
 	# that stdin is a tty for bug #248081.
@@ -279,14 +280,14 @@ src_test() {
 	host-is-pax && skip_tests+=" ctypes"
 
 	for test in ${skip_tests}; do
-		mv "${S}"/Lib/test/test_${test}.py "${T}"
+		mv "${S}/Lib/test/test_${test}.py" "${T}"
 	done
 
 	# Rerun failed tests in verbose mode (regrtest -w).
 	EXTRATESTOPTS="-w" make test || die "make test failed"
 
 	for test in ${skip_tests}; do
-		mv "${T}"/test_${test}.py "${S}"/Lib/test/test_${test}.py
+		mv "${T}/test_${test}.py" "${S}/Lib/test/test_${test}.py"
 	done
 
 	elog "The following tests have been skipped:"
@@ -447,7 +448,7 @@ EOF
 
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
-		doins -r "${S}"/Tools || die "doins failed"
+		doins -r "${S}/Tools" || die "doins failed"
 	fi
 
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
@@ -476,8 +477,7 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -x "(site-packages|test)" /usr/lib/python${PYVER}
-	[[ "$(get_libdir)" != "lib" ]] && python_mod_optimize -x "(site-packages|test)" /usr/$(get_libdir)/python${PYVER}
+	python_mod_optimize -x "(site-packages|test)" /usr/$(get_libdir)/python${PYVER}
 
 	if [[ "$(eselect python show)" == "python2."* ]]; then
 		ewarn
@@ -507,6 +507,5 @@ pkg_postinst() {
 pkg_postrm() {
 	eselect_python_update
 
-	python_mod_cleanup /usr/lib/python${PYVER}
-	[[ "$(get_libdir)" != "lib" ]] && python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
+	python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
 }
