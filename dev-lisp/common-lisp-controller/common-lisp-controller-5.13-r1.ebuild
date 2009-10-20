@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/common-lisp-controller/common-lisp-controller-5.13-r1.ebuild,v 1.5 2009/01/10 15:32:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/common-lisp-controller/common-lisp-controller-5.13-r1.ebuild,v 1.6 2009/10/13 16:58:24 ulm Exp $
 
 inherit eutils prefix
 
@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
-DEPEND="app-admin/realpath
+DEPEND="app-misc/realpath
 	>=dev-lisp/cl-asdf-1.84
 	dev-lang/perl"
 
@@ -33,7 +33,7 @@ src_unpack() {
 		register-common-lisp-source \
 		unregister-common-lisp-implementation \
 		unregister-common-lisp-source
-	cd ${S}/man
+	cd "${S}/man"
 	ln -s clc-{,un}register-user-package.1
 	for i in unregister-common-lisp-implementation {,un}register-common-lisp-source; do
 		ln -s register-common-lisp-implementation.8 ${i}.8
@@ -55,8 +55,8 @@ src_install() {
 	doins common-lisp-controller.lisp post-sysdef-install.lisp
 	doman man/*.[138]
 	insinto /etc
-	doins ${FILESDIR}/${PV}/lisp-config.lisp
-	dodoc ${FILESDIR}/README.Gentoo
+	doins "${FILESDIR}/${PV}/lisp-config.lisp"
+	dodoc "${FILESDIR}/README.Gentoo"
 	dodoc DESIGN.txt debian/changelog
 }
 
