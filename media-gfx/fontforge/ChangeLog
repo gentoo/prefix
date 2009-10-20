@@ -1,6 +1,25 @@
 # ChangeLog for media-gfx/fontforge
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.109 2009/06/23 23:19:21 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.114 2009/10/15 13:51:56 maekke Exp $
+
+  15 Oct 2009; Markus Meier <maekke@gentoo.org> fontforge-20090622.ebuild:
+  amd64/x86 stable, bug #288261
+
+  12 Oct 2009; Jeroen Roovers <jer@gentoo.org> fontforge-20090622.ebuild:
+  Stable for HPPA (bug #288261).
+
+  11 Oct 2009; nixnut <nixnut@gentoo.org> fontforge-20090622.ebuild:
+  ppc stable #288261
+
+  10 Oct 2009; Ryan Hill <dirtyepic@gentoo.org> fontforge-20090923.ebuild,
+  +files/fontforge-20090923-configure.patch:
+  Build fix for bug #288444 by Mikael Magnusson.
+
+*fontforge-20090923 (09 Oct 2009)
+
+  09 Oct 2009; Peter Volkov <pva@gentoo.org> -fontforge-20090224.ebuild,
+  -fontforge-20090408-r1.ebuild, +fontforge-20090923.ebuild:
+  Version bump. Remove unused.
 
   23 Jun 2009; Mike Auty <ikelos@gentoo.org> metadata.xml:
   Fix typo in metadata.xml description of truetype-debugger. See bug 275228.

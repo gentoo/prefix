@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20090224.ebuild,v 1.1 2009/02/25 21:43:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/fontforge-20090923.ebuild,v 1.2 2009/10/10 17:54:36 dirtyepic Exp $
 
 # Some notes for maintainers this package:
 # 1. README-unix: freetype headers are required to make use of truetype debugger
@@ -14,19 +14,21 @@
 # libraries fontforge thinks with use $ fontforge --library-status
 
 EAPI=2
-inherit eutils fdo-mime
 
+inherit autotools eutils fdo-mime
+
+HTDOCSV="20090914"
 CIDMAPV="20090121"
 DESCRIPTION="postscript font editor and converter"
 HOMEPAGE="http://fontforge.sourceforge.net/"
 SRC_URI="mirror://sourceforge/fontforge/${PN}_full-${PV}.tar.bz2
-	doc? ( mirror://sourceforge/fontforge/fontforge_htdocs-${PV}.tar.bz2 )
+	doc? ( mirror://sourceforge/fontforge/fontforge_htdocs-${HTDOCSV}.tar.bz2 )
 	cjk? ( mirror://gentoo/cidmaps-${CIDMAPV}.tgz )"	# http://fontforge.sf.net/cidmaps.tgz
 
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="cjk doc gif debug jpeg nls pasteafter png +python tiff tilepath truetype truetype-debugger type3 svg unicode +X"
+IUSE="cjk cairo doc gif debug jpeg nls pasteafter png +python tiff tilepath truetype truetype-debugger pango type3 svg unicode +X"
 
 RDEPEND="gif? ( >=media-libs/giflib-4.1.0-r1 )
 	jpeg? ( >=media-libs/jpeg-6b-r2 )
@@ -37,6 +39,8 @@ RDEPEND="gif? ( >=media-libs/giflib-4.1.0-r1 )
 	truetype-debugger? ( >=media-libs/freetype-2.3.8[fontforge,-bindist] )
 	svg? ( >=dev-libs/libxml2-2.6.7 )
 	unicode? ( >=media-libs/libuninameslist-030713 )
+	cairo? ( >=x11-libs/cairo-1.6.4[X] )
+	pango? ( >=x11-libs/pango-1.20.3[X] )
 	x11-libs/libXi
 	x11-proto/inputproto
 	!media-gfx/pfaedit"
@@ -49,17 +53,18 @@ src_unpack() {
 	if use doc; then
 		mkdir html
 		cd html
-		unpack fontforge_htdocs-${PV}.tar.bz2
+		unpack fontforge_htdocs-${HTDOCSV}.tar.bz2
 	fi
-	cd "${S}"
-	epatch "${FILESDIR}/fontforge-desktop.patch"
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/fontforge-desktop.patch
+	epatch "${FILESDIR}"/${P}-configure.patch
 	if use doc; then
-		cd "${WORKDIR}/html/"
+		cd "${WORKDIR}"/html/
 		chmod -x *.html
 	fi
+	eautoconf
 }
 
 src_configure() {
@@ -74,7 +79,9 @@ src_configure() {
 		$(use_with X x) \
 		$(use_enable cjk gb12345) \
 		$(use_enable tilepath) \
-		$(use_enable debug debug-raw-points)
+		$(use_enable debug debug-raw-points) \
+		$(use_with pango) \
+		$(use_with cairo)
 }
 
 src_install() {
