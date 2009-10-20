@@ -1,6 +1,14 @@
 # ChangeLog for dev-java/cglib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/ChangeLog,v 1.43 2009/09/03 15:43:38 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/ChangeLog,v 1.45 2009/10/15 08:12:16 maekke Exp $
+
+  15 Oct 2009; Markus Meier <maekke@gentoo.org> cglib-2.2.ebuild:
+  amd64/x86 stable, bug #284316
+
+  11 Oct 2009; Vlastimil Babka <caster@gentoo.org>
+  -files/2.2-beta-nojarjar.patch, -cglib-2.2_beta1.ebuild,
+  -cglib-2.2_beta1-r1.ebuild:
+  Remove old betas.
 
 *cglib-2.2 (03 Sep 2009)
 
