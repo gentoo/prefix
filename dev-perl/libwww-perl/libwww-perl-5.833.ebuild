@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/libwww-perl-5.832.ebuild,v 1.1 2009/09/22 06:38:49 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/libwww-perl/libwww-perl-5.833.ebuild,v 1.1 2009/10/07 17:43:23 tove Exp $
 
 EAPI=2
 
