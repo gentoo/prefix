@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.17 2009/09/09 14:11:20 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.18 2009/10/12 23:09:22 jer Exp $
+
+  12 Oct 2009; Jeroen Roovers <jer@gentoo.org> eselect-ruby-20090909.ebuild:
+  Stable for HPPA (bug #288699).
 
 *eselect-ruby-20090909 (09 Sep 2009)
 
