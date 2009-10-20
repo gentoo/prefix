@@ -1,6 +1,23 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.234 2009/09/29 17:29:15 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.238 2009/10/13 19:04:02 jer Exp $
+
+  13 Oct 2009; Jeroen Roovers <jer@gentoo.org> -lftp-3.7.14.ebuild:
+  Remove old.
+
+  13 Oct 2009; Raúl Porcel <armin76@gentoo.org> lftp-3.7.15-r1.ebuild:
+  ia64/s390/sparc stable wrt #279426
+
+*lftp-4.0.2.91-r1 (13 Oct 2009)
+
+  13 Oct 2009; Jeroen Roovers <jer@gentoo.org> +lftp-4.0.2.91-r1.ebuild,
+  +files/lftp-4.0.2.91-lafile.patch:
+  Do not install .la files.
+
+*lftp-4.0.2.91 (12 Oct 2009)
+
+  12 Oct 2009; Jeroen Roovers <jer@gentoo.org> +lftp-4.0.2.91.ebuild:
+  Version bump.
 
   29 Sep 2009; Tobias Klausmann <klausman@gentoo.org> lftp-3.7.15-r1.ebuild:
   Stable on alpha, bug #279426
