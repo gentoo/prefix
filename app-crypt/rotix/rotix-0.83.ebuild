@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/rotix/rotix-0.83.ebuild,v 1.12 2007/03/21 21:51:45 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/rotix/rotix-0.83.ebuild,v 1.13 2009/10/14 00:58:35 halcy0n Exp $
 
 inherit eutils flag-o-matic
 
@@ -17,8 +17,8 @@ RDEPEND="nls? ( sys-devel/gettext )"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${PV}-respect-CFLAGS-and-dont-strip.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/${PV}-respect-CFLAGS-and-dont-strip.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
@@ -31,5 +31,5 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR=${D} install || die
+	emake DESTDIR="${D}" install || die
 }
