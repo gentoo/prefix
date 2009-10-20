@@ -1,6 +1,28 @@
 # ChangeLog for dev-python/setuptools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.69 2009/10/03 11:07:09 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.74 2009/10/18 19:31:26 jer Exp $
+
+  18 Oct 2009; Jeroen Roovers <jer@gentoo.org> setuptools-0.6.4.ebuild:
+  Stable for HPPA (bug #289312).
+
+  16 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  setuptools-0.6.6.ebuild:
+  Don't try to 2to3 some files (bug #289026).
+
+*setuptools-0.6.6 (16 Oct 2009)
+
+  16 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +setuptools-0.6.6.ebuild:
+  Version bump.
+
+*setuptools-0.6.4 (11 Oct 2009)
+
+  11 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -setuptools-0.6_rc9.ebuild, +setuptools-0.6.4.ebuild:
+  Version bump.
+
+  06 Oct 2009; Raúl Porcel <armin76@gentoo.org> setuptools-0.6-r1.ebuild:
+  ia64/s390/sh/sparc stable wrt #284972
 
   03 Oct 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   +setuptools-0.6.3-r2.ebuild:
