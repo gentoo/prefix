@@ -1,6 +1,16 @@
 # ChangeLog for dev-ruby/actionwebservice
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionwebservice/ChangeLog,v 1.72 2008/07/13 09:07:36 graaff Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionwebservice/ChangeLog,v 1.73 2009/10/12 22:13:40 flameeyes Exp $
+
+*actionwebservice-2.3.4 (12 Oct 2009)
+*actionwebservice-2.3.3 (12 Oct 2009)
+*actionwebservice-2.3.2 (12 Oct 2009)
+
+  12 Oct 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +actionwebservice-2.3.2.ebuild, +actionwebservice-2.3.3.ebuild,
+  +actionwebservice-2.3.4.ebuild:
+  Add newer versions of actionwebservice… both datanoise and two versions
+  of dougbarth (since the versions are strangely used up to now).
 
   13 Jul 2008; Hans de Graaff <graaff@gentoo.org>
   -actionwebservice-1.1.6.ebuild:
