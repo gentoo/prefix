@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/cabextract-1.2-r1.ebuild,v 1.7 2009/05/30 16:54:58 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/cabextract-1.2-r1.ebuild,v 1.8 2009/10/12 09:53:01 pva Exp $
+
+inherit autotools
 
 inherit flag-o-matic
 
@@ -26,6 +28,12 @@ src_compile() {
 
 	econf || die "econf failed"
 	emake || die "emake failed"
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	eautoreconf # fixes bug #271592
 }
 
 src_install() {
