@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.59-r7.ebuild,v 1.15 2008/06/21 06:27:48 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.59-r7.ebuild,v 1.16 2009/10/18 07:14:53 vapier Exp $
 
 inherit eutils
 
@@ -29,6 +29,9 @@ src_compile() {
 		&& export EMACS=emacs \
 		|| export EMACS=no
 	econf --program-suffix="-${PV}" || die
+	# econf updates config.{sub,guess} which forces the manpages
+	# to be regenerated which we dont want to do #146621
+	touch man/*.1
 	# We want to transform the binaries, not the manpages
 	sed -i "/^program_transform_name/s:-${PV}::" man/Makefile
 	emake || die
