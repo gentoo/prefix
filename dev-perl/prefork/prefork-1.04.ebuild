@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/prefork/prefork-1.04.ebuild,v 1.5 2009/09/19 16:24:57 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/prefork/prefork-1.04.ebuild,v 1.7 2009/10/18 15:49:41 klausman Exp $
 
 EAPI=2
 
