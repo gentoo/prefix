@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/nano
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.239 2009/10/04 21:28:09 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/ChangeLog,v 1.240 2009/10/12 20:16:30 jer Exp $
+
+  12 Oct 2009; Jeroen Roovers <jer@gentoo.org> nano-2.1.10.ebuild:
+  Stable for HPPA (bug #287407).
 
   04 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> nano-2.1.10.ebuild:
   Stable for ppc, bug 287407
