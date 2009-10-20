@@ -145,6 +145,8 @@ exportmakeopts() {
 		myopts="${myopts} NO_STRTOULL=YesPlease"
 		myopts="${myopts} NO_INET_NTOP=YesPlease"
 		myopts="${myopts} NO_INET_PTON=YesPlease"
+		myopts="${myopts} NO_NSEC=YesPlease"
+		myopts="${myopts} NO_MKSTEMPS=YesPlease"
 	fi
 
 	export MY_MAKEOPTS="${myopts}"
@@ -189,6 +191,8 @@ src_prepare() {
 	# Fix docbook2texi command
 	sed -i 's/DOCBOOK2X_TEXI=docbook2x-texi/DOCBOOK2X_TEXI=docbook2texi.pl/' \
 		Documentation/Makefile || die "sed failed"
+	
+	epatch "${FILESDIR}"/${PN}-1.6.5-interix.patch
 }
 
 git_emake() {
