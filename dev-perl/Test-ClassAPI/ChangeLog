@@ -1,6 +1,13 @@
 # ChangeLog for dev-perl/Test-ClassAPI
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-ClassAPI/ChangeLog,v 1.35 2009/09/19 16:36:10 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Test-ClassAPI/ChangeLog,v 1.37 2009/10/18 16:00:50 klausman Exp $
+
+  18 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
+  Test-ClassAPI-1.06.ebuild:
+  Stable on alpha, bug #283969
+
+  07 Oct 2009; Tiago Cunha <tcunha@gentoo.org> Test-ClassAPI-1.06.ebuild:
+  stable sparc, bug 283969
 
   19 Sep 2009; nixnut <nixnut@gentoo.org> Test-ClassAPI-1.06.ebuild:
   ppc stable #283969
