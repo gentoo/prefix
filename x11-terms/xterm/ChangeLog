@@ -1,6 +1,21 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.272 2009/09/30 19:35:09 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.277 2009/10/11 11:15:07 nixnut Exp $
+
+  11 Oct 2009; nixnut <nixnut@gentoo.org> xterm-243.ebuild:
+  ppc stable #282290
+
+  09 Oct 2009; Markus Meier <maekke@gentoo.org> xterm-243.ebuild:
+  arm stable, bug #282290
+
+  05 Oct 2009; Christian Faulhammer <fauli@gentoo.org> xterm-243.ebuild:
+  x86 stable, bug 282290
+
+*xterm-249 (03 Oct 2009)
+
+  03 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> +xterm-249.ebuild:
+  Version bump. RDEPEND media-fonts/font-misc-misc for default Fixed font to
+  avoid printed warning.
 
   30 Sep 2009; Samuli Suominen <ssuominen@gentoo.org> xterm-243.ebuild:
   amd64 stable wrt #282290
@@ -61,7 +76,8 @@
   ppc stable, bug #253155
 
   22 Jan 2009; Petteri Räty <betelgeuse@gentoo.org> xterm-239.ebuild:
-  Add back ROOT until xterm build system is fixed to behave properly.
+  Add back ROOT until xterm build system is fixed to behave properly,
+  bug 286299.
 
   21 Jan 2009; Markus Meier <maekke@gentoo.org> xterm-239.ebuild:
   amd64 stable, bug #253155

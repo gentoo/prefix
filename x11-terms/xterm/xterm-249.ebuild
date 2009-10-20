@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-248.ebuild,v 1.3 2009/09/24 08:32:06 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-249.ebuild,v 1.1 2009/10/03 11:55:10 ssuominen Exp $
 
 EAPI=2
 inherit multilib eutils
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="toolbar truetype unicode Xaw3d"
 
-RDEPEND="x11-libs/libX11
+COMMON_DEPEND="x11-libs/libX11
 	x11-libs/libXrender
 	x11-libs/libXt
 	x11-libs/libXmu
@@ -25,7 +25,9 @@ RDEPEND="x11-libs/libX11
 	unicode? ( x11-apps/luit )
 	Xaw3d? ( x11-libs/Xaw3d )
 	kernel_linux? ( sys-libs/libutempter )"
-DEPEND="${RDEPEND}
+RDEPEND="${COMMON_DEPEND}
+	media-fonts/font-misc-misc"
+DEPEND="${COMMON_DEPEND}
 	x11-proto/xproto"
 
 pkg_setup() {
@@ -42,7 +44,7 @@ src_configure() {
 
 	econf \
 		--libdir="${EPREFIX}"/etc \
-		--x-libraries="${EPREFIX}"/usr/$(get_libdir) \
+		--x-libraries="${EROOT}usr/$(get_libdir)" \
 		--disable-full-tgetent \
 		--with-app-defaults=${DEFAULTS_DIR} \
 		--disable-setuid \
@@ -79,14 +81,4 @@ src_install() {
 
 	# restore the navy blue
 	sed -i -e "s:blue2$:blue:" "${ED}"${DEFAULTS_DIR}/XTerm-color
-
-	# Fix for bug #91453 at Thomas Dickey's suggestion:
-	echo "*allowWindowOps: 	false" >> "${D}"/${DEFAULTS_DIR}/XTerm
-	echo "*allowWindowOps: 	false" >> "${D}"/${DEFAULTS_DIR}/UXTerm
-}
-
-pkg_postinst() {
-	elog "bracketed paste mode requires the allowWindowOps resource to be true"
-	elog "which is false by default for security reasons (see bug #91453)."
-	elog "To be able to use it add 'allowWindowOps: true' to your resources"
 }
