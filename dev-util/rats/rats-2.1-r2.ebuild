@@ -1,22 +1,24 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/rats/rats-2.1-r2.ebuild,v 1.8 2009/09/23 17:47:08 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/rats/rats-2.1-r2.ebuild,v 1.9 2009/10/12 08:27:32 ssuominen Exp $
 
 inherit eutils
 
 DESCRIPTION="RATS - Rough Auditing Tool for Security"
 HOMEPAGE="http://www.fortifysoftware.com/security-resources/rats.jsp"
 SRC_URI="http://www.fortifysoftware.com/servlet/downloads/public/${P}.tar.gz"
+
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
+
 DEPEND="dev-libs/expat"
 
 src_unpack() {
 	unpack ${A}
-	epatch ${FILESDIR}/${P}-add-getopt-trailing-null.patch
-	epatch ${FILESDIR}/${P}-fix-null-pointers.patch
+	epatch "${FILESDIR}"/${P}-add-getopt-trailing-null.patch
+	epatch "${FILESDIR}"/${P}-fix-null-pointers.patch
 }
 
 src_compile() {
