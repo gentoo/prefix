@@ -6,9 +6,6 @@
 (add-to-list 'auto-mode-alist
 	     '("\\.\\(ebuild\\|eclass\\|eblit\\)\\'" . ebuild-mode))
 (add-to-list 'auto-mode-alist '("\\.eselect\\'" . eselect-mode))
-(add-to-list 'auto-mode-alist
-	     '("/[0-9]\\{4\\}-[01][0-9]-[0-3][0-9]-.+\\.[a-z]\\{2\\}\\.txt\\'"
-	       . gentoo-newsitem-mode))
 (add-to-list 'interpreter-mode-alist '("runscript" . sh-mode))
 (modify-coding-system-alist 'file "\\.\\(ebuild\\|eclass\\)\\'" 'utf-8)
 
