@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gconf-editor/gconf-editor-2.26.0.ebuild,v 1.1 2009/05/11 22:23:55 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gconf-editor/gconf-editor-2.26.0.ebuild,v 1.3 2009/10/16 22:24:00 maekke Exp $
 
 EAPI="2"
 
