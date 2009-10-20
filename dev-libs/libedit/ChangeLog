@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.38 2009/09/24 20:03:55 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.39 2009/10/05 15:58:17 armin76 Exp $
+
+  05 Oct 2009; Raúl Porcel <armin76@gentoo.org>
+  libedit-20090923.3.0.ebuild:
+  Add ~arm/~ia64/~m68k/~s390/~sh/~sparc wrt #276652
 
 *libedit-20090923.3.0 (24 Sep 2009)
 
