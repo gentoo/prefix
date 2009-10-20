@@ -1,6 +1,10 @@
 # ChangeLog for app-dicts/aspell-en
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/aspell-en/ChangeLog,v 1.24 2007/11/03 22:04:18 uberlord Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/aspell-en/ChangeLog,v 1.25 2009/10/18 20:15:25 halcy0n Exp $
+
+  18 Oct 2009; Mark Loeser <halcy0n@gentoo.org> aspell-en-0.51.0.ebuild,
+  aspell-en-0.51.1.ebuild:
+  QA fixes; IUSE is not defined
 
   03 Nov 2007; Roy Marples <uberlord@gentoo.org> ChangeLog:
   Keyworded ~sparc-fbsd and ~x86-fbsd
