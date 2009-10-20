@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/geos
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.37 2009/09/27 14:36:12 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.38 2009/10/11 16:28:18 armin76 Exp $
+
+  11 Oct 2009; Raúl Porcel <armin76@gentoo.org> geos-3.1.1.ebuild:
+  sparc stable wrt #279359
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> geos-3.1.1.ebuild:
   ppc stable #279359
