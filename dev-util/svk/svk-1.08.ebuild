@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/svk/svk-1.08.ebuild,v 1.5 2009/07/19 17:49:13 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/svk/svk-1.08.ebuild,v 1.6 2009/10/12 08:20:40 ssuominen Exp $
 
 inherit eutils perl-module bash-completion
 
@@ -64,7 +64,7 @@ pkg_setup() {
 
 src_unpack() {
 	unpack ${A}
-	epatch ${FILESDIR}/svk-1.08-xxdiff.patch
+	epatch "${FILESDIR}"/svk-1.08-xxdiff.patch
 }
 
 src_install() {
