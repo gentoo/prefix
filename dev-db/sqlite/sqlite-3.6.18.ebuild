@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.18.ebuild,v 1.2 2009/09/18 11:34:58 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.18.ebuild,v 1.3 2009/10/17 01:37:23 arfrever Exp $
 
 EAPI="2"
 
@@ -39,7 +39,9 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-3.6.16-tkt3922.test.patch"
+	if use icu; then
+		rm -f test/like.test
+	fi
 
 	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-3.6.11-interix.patch
