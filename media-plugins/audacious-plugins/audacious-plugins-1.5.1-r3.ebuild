@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.1-r3.ebuild,v 1.9 2009/05/11 16:46:15 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.1-r3.ebuild,v 1.10 2009/10/15 10:17:12 ssuominen Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -13,7 +13,7 @@ SRC_URI="http://distfiles.atheme.org/${MY_P}.tgz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
-IUSE="aac adplug alsa arts chardet esd flac gnome jack lirc modplug mp3 mtp musepack nls oss pulseaudio scrobbler sdl sid sndfile sse2 timidity tta vorbis wavpack wma"
+IUSE="aac adplug alsa arts chardet esd flac gnome jack lirc modplug mp3 mtp nls oss pulseaudio scrobbler sdl sid sndfile sse2 timidity tta vorbis wavpack wma"
 
 RDEPEND="app-arch/unzip
 	>=dev-libs/libcdio-0.79-r1
@@ -34,7 +34,6 @@ RDEPEND="app-arch/unzip
 	lirc? ( app-misc/lirc )
 	mp3? ( media-libs/libmad )
 	mtp? ( media-libs/libmtp )
-	musepack? ( media-libs/libmpcdec media-libs/taglib )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.3 )
 	scrobbler? ( net-misc/curl )
 	sdl? (	>=media-libs/libsdl-1.2.5 )
@@ -95,7 +94,7 @@ src_compile() {
 		$(use_enable lirc) \
 		$(use_enable mp3) \
 		$(use_enable modplug) \
-		$(use_enable musepack) \
+		--disable-musepack \
 		$(use_enable mtp mtp_up) \
 		$(use_enable nls) \
 		$(use_enable oss) \
