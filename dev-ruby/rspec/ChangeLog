@@ -1,6 +1,21 @@
 # ChangeLog for dev-ruby/rspec
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.48 2009/07/17 08:12:57 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rspec/ChangeLog,v 1.52 2009/10/18 17:58:25 nixnut Exp $
+
+  18 Oct 2009; nixnut <nixnut@gentoo.org> rspec-1.2.8.ebuild:
+  ppc stable #287849
+
+  15 Oct 2009; Markus Meier <maekke@gentoo.org> rspec-1.2.8.ebuild:
+  amd64/x86 stable, bug #287849
+
+*rspec-1.2.9 (06 Oct 2009)
+
+  06 Oct 2009; Hans de Graaff <graaff@gentoo.org> +rspec-1.2.9.ebuild:
+  Version bump.
+
+  06 Oct 2009; Hans de Graaff <graaff@gentoo.org> -rspec-1.1.12.ebuild,
+  -rspec-1.2.6.ebuild, -rspec-1.2.7.ebuild:
+  Remove old versions.
 
 *rspec-1.2.8 (17 Jul 2009)
 
