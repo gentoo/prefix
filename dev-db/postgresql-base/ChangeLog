@@ -1,6 +1,17 @@
 # ChangeLog for dev-db/postgresql-base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.27 2009/10/03 17:48:49 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.29 2009/10/13 15:18:58 jer Exp $
+
+  13 Oct 2009; Jeroen Roovers <jer@gentoo.org> postgresql-base-8.4.1.ebuild:
+  Stable for HPPA (bug #285475).
+
+  11 Oct 2009; Patrick Lauer <patrick@gentoo.org>
+  postgresql-base-7.3.21.ebuild, postgresql-base-7.4.26.ebuild,
+  postgresql-base-8.0.22.ebuild, postgresql-base-8.1.11.ebuild,
+  postgresql-base-8.1.18.ebuild, postgresql-base-8.2.14.ebuild,
+  postgresql-base-8.3.8.ebuild, postgresql-base-8.4.1.ebuild:
+  Adding virtual/libintl to make non-linux platforms happy. Thanks to
+  grobian for noticing.
 
   03 Oct 2009; Patrick Lauer <patrick@gentoo.org>
   -postgresql-base-7.4.19.ebuild, -postgresql-base-7.4.21-r1.ebuild,
