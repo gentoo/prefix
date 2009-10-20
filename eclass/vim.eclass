@@ -149,64 +149,6 @@ else
 	fi
 fi
 
-# vim7 has some extra options. mzscheme support has been added. netbeans now has
-# its own USE flag, but it's only available under gvim. We have a few new GUI
-# toolkits, and we can also install a vimpager (this is in vim6 as well, but the
-# ebuilds don't handle it).
-if [[ $(get_major_version ) -ge 7 ]] ; then
-	# mzscheme support is currently broken. bug #91970
-	#if [[ ${MY_PN} != "vim-core" ]] ; then
-	#	IUSE="${IUSE} mzscheme"
-	#	DEPEND="${DEPEND}
-	#		mzscheme? ( dev-scheme/mzscheme )"
-	#	RDEPEND="${RDEPEND}
-	#		mzscheme? ( dev-scheme/mzscheme )"
-	#fi
-	if [[ ${MY_PN} == gvim ]] ; then
-		IUSE="${IUSE} netbeans aqua nextaw"
-		# Vim implements netbeans external editor protocol when netbeans is
-		# enabled and doesn't necessarily need dev-util/netbeans.
-		# bug 184065
-		# DEPEND="${DEPEND}   netbeans? ( dev-util/netbeans )"
-		# RDEPEND="${RDEPEND} netbeans? ( dev-util/netbeans )"
-	fi
-	if [[ ${MY_PN} == vim ]] ; then
-		IUSE="${IUSE} vim-pager"
-	fi
-
-	# app-vim blocks
-	if [[ ${MY_PN} != "vim-core" ]] ; then
-		# align: bug 79982
-		RDEPEND="${RDEPEND}
-			!<app-vim/align-30-r1
-			!app-vim/vimspell
-			!<app-vim/vimbuddy-0.9.1-r1
-			!<app-vim/autoalign-11
-			!<app-vim/supertab-0.41"
-	fi
-fi
-
-# eselect-vi support
-if version_is_at_least 7.0.109 ; then
-	DEPEND="${DEPEND} >=app-admin/eselect-vi-1.1"
-	RDEPEND="${RDEPEND} >=app-admin/eselect-vi-1.1"
-fi
-
-HOMEPAGE="http://www.vim.org/"
-SLOT="0"
-LICENSE="vim"
-
-# ctags dependancy allows help tags to be rebuilt properly, along
-# with detection of exuberant-ctags by configure.
-DEPEND="${DEPEND}
-	>=sys-apps/sed-4
-	sys-devel/autoconf
-	dev-util/ctags
-	>=sys-libs/ncurses-5.2-r2"
-RDEPEND="${RDEPEND}
-	dev-util/ctags
-	>=sys-libs/ncurses-5.2-r2"
-
 apply_vim_patches() {
 	local p
 	cd "${S}" || die "cd ${S} failed"
