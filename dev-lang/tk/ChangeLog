@@ -1,6 +1,14 @@
 # ChangeLog for dev-lang/tk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.129 2009/09/27 21:19:10 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/ChangeLog,v 1.131 2009/10/07 15:33:02 armin76 Exp $
+
+  07 Oct 2009; Raúl Porcel <armin76@gentoo.org> tk-8.5.7.ebuild:
+  ia64/s390/sh/sparc stable wrt #280845
+
+*tk-8.5.7-r1 (06 Oct 2009)
+
+  06 Oct 2009; Federico Ferri <mescalinum@gentoo.org> +tk-8.5.7-r1.ebuild:
+  normalize $S path, bug #280766 (pkgcore)
 
   27 Sep 2009; Markus Meier <maekke@gentoo.org> tk-8.5.7.ebuild:
   arm stable, bug #280845

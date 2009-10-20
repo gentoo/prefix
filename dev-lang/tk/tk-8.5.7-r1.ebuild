@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.5.7.ebuild,v 1.9 2009/10/07 15:33:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tk/tk-8.5.7-r1.ebuild,v 1.1 2009/10/06 19:25:35 mescalinum Exp $
 
 WANT_AUTOCONF=latest
 WANT_AUTOMAKE=latest
@@ -80,13 +80,16 @@ src_install() {
 	cd "${S}"/unix
 	S= emake DESTDIR="${D}" install || die
 
+	# normalize $S path, bug #280766 (pkgcore)
+	local nS="$(cd "${S}"; pwd)"
+
 	# fix the tkConfig.sh to eliminate refs to the build directory
 	local mylibdir=$(get_libdir) ; mylibdir=${mylibdir//\/}
 	sed -i \
-		-e "s,^\(TK_BUILD_LIB_SPEC='-L\)${S}/unix,\1${EPREFIX}/usr/${mylibdir}," \
-		-e "s,^\(TK_SRC_DIR='\)${S}',\1${EPREFIX}/usr/${mylibdir}/tk${v1}/include'," \
-		-e "s,^\(TK_BUILD_STUB_LIB_SPEC='-L\)${S}/unix,\1${EPREFIX}/usr/${mylibdir}," \
-		-e "s,^\(TK_BUILD_STUB_LIB_PATH='\)${S}/unix,\1${EPREFIX}/usr/${mylibdir}," \
+		-e "s,^\(TK_BUILD_LIB_SPEC='-L\)${nS}/unix,\1${EPREFIX}/usr/${mylibdir}," \
+		-e "s,^\(TK_SRC_DIR='\)${nS}',\1${EPREFIX}/usr/${mylibdir}/tk${v1}/include'," \
+		-e "s,^\(TK_BUILD_STUB_LIB_SPEC='-L\)${nS}/unix,\1${EPREFIX}/usr/${mylibdir}," \
+		-e "s,^\(TK_BUILD_STUB_LIB_PATH='\)${nS}/unix,\1${EPREFIX}/usr/${mylibdir}," \
 		"${ED}"/usr/${mylibdir}/tkConfig.sh || die
 	[[ ${CHOST} != *-darwin* ]] && sed -i \
 		-e "s,^\(TK_CC_SEARCH_FLAGS='.*\)',\1:${EPREFIX}/usr/${mylibdir}'," \
