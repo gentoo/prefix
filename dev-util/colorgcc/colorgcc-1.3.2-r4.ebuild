@@ -1,8 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/colorgcc/colorgcc-1.3.2-r4.ebuild,v 1.16 2009/09/06 05:34:09 darkside Exp $
-
-IUSE=""
+# $Header: /var/cvsroot/gentoo-x86/dev-util/colorgcc/colorgcc-1.3.2-r4.ebuild,v 1.17 2009/10/12 16:41:31 ssuominen Exp $
 
 inherit eutils
 
@@ -13,23 +11,21 @@ SRC_URI="mirror://gentoo/${P}.tar.gz"
 SLOT="0"
 LICENSE="GPL-2"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
+IUSE=""
 
 DEPEND="dev-lang/perl"
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
-	epatch ${FILESDIR}/${P}-gentoo-one.patch
-	epatch ${FILESDIR}/${P}-gentoo-two.patch
+	cd "${S}"
+	epatch "${FILESDIR}"/${P}-gentoo-one.patch \
+		"${FILESDIR}"/${P}-gentoo-two.patch
 }
 
-src_compile() {
-	echo ">>> Nothing to compile"
-}
+src_compile() { :; }
 
 src_install() {
-	exeinto /usr/bin
-	doexe colorgcc
+	dobin colorgcc
 	dodir /etc/colorgcc /usr/lib/colorgcc/bin
 	insinto /etc/colorgcc
 	doins colorgccrc
@@ -41,7 +37,7 @@ src_install() {
 		fi
 	done
 
-	dodoc COPYING CREDITS ChangeLog INSTALL
+	dodoc CREDITS ChangeLog
 }
 
 pkg_postinst() {
@@ -61,5 +57,5 @@ pkg_postinst() {
 	echo
 	# portage won't delete the old symlinks for users that are upgrading
 	# because the old symlinks still point to /usr/bin/colorgcc which exists...
-	[ -d ${EROOT}/usr/bin/wrappers ] && rm -fr ${EROOT}/usr/bin/wrappers
+	[ -d "${EROOT}"/usr/bin/wrappers ] && rm -fr "${EROOT}"/usr/bin/wrappers
 }
