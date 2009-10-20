@@ -1,6 +1,13 @@
 # ChangeLog for media-gfx/fondu
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fondu/ChangeLog,v 1.5 2007/02/09 07:50:19 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fondu/ChangeLog,v 1.6 2009/10/09 11:11:55 pva Exp $
+
+*fondu-20060102 (09 Oct 2009)
+
+  09 Oct 2009; Peter Volkov <pva@gentoo.org> +fondu-20060102.ebuild,
+  +files/fondu-20060102-build-fix.patch:
+  Version bump. Respect CFLAGS, LDFLAGS, bug #240796, thank Diego E.
+  'Flameeyes' Pettenò for report. ~amd64 keyworded.
 
   09 Feb 2007; Diego Pettenò <flameeyes@gentoo.org> ChangeLog:
   Regenerate digest in Manifest2 format.
