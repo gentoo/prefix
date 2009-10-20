@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r1.ebuild,v 1.1 2009/08/17 10:17:15 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r1.ebuild,v 1.2 2009/10/17 12:01:25 betelgeuse Exp $
 
 inherit eutils flag-o-matic multilib autotools pam java-pkg-opt-2
 
@@ -20,7 +20,6 @@ IUSE="authdaemond berkdb crypt gdbm kerberos ldap mysql ntlm_unsupported_patch p
 RDEPEND="authdaemond? ( || ( >=net-mail/courier-imap-3.0.7 >=mail-mta/courier-0.46 ) )
 	berkdb? ( >=sys-libs/db-3.2 )
 	gdbm? ( >=sys-libs/gdbm-1.8.0 )
-	java? ( >=virtual/jre-1.4 )
 	kerberos? ( virtual/krb5 )
 	ldap? ( >=net-nds/openldap-2.0.25 )
 	mysql? ( virtual/mysql )
@@ -31,6 +30,7 @@ RDEPEND="authdaemond? ( || ( >=net-mail/courier-imap-3.0.7 >=mail-mta/courier-0.
 	ssl? ( >=dev-libs/openssl-0.9.6d )"
 DEPEND="${RDEPEND}
 	java? ( >=virtual/jdk-1.4 )"
+RDEPEND="${RDEPEND} java? ( >=virtual/jre-1.4 )"
 
 pkg_setup() {
 	if use gdbm && use berkdb ; then
