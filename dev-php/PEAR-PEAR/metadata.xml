@@ -2,4 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>php</herd>
+	<maintainer>
+		<email>beandog@gentoo.org</email>
+		<name>Steve Dibb</name>
+	</maintainer>
 </pkgmetadata>
