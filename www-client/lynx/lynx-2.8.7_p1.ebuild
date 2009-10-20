@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.7_p1.ebuild,v 1.11 2009/09/15 13:45:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.7_p1.ebuild,v 1.13 2009/10/05 17:31:20 mr_bones_ Exp $
 
 EAPI=2
 
@@ -72,6 +72,9 @@ src_prepare() {
 
 	# fix configure for openssl compiled with kerberos (bug #267749)
 	epatch "${FILESDIR}/lynx-2.8.7-configure-openssl.patch"
+
+	# missing include of locale.h when compiled with -O0 (bug #286198)
+	epatch "${FILESDIR}/lynx-2.8.7-include-locale.patch"
 }
 
 src_configure() {

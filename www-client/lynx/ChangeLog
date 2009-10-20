@@ -1,6 +1,11 @@
 # ChangeLog for www-client/lynx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.99 2009/09/15 13:45:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.100 2009/10/05 06:47:54 wormo Exp $
+
+  05 Oct 2009; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  +files/lynx-2.8.7-include-locale.patch, lynx-2.8.7_p1.ebuild:
+  header cleanup patch: locale.h should be explicitly included
+  to get LC_ALL definition (bug #286198)
 
   15 Sep 2009; Jeroen Roovers <jer@gentoo.org> lynx-2.8.7_p1.ebuild:
   Stable for HPPA (bug #283035).
