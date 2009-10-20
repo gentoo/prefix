@@ -1,6 +1,10 @@
 # ChangeLog for app-dicts/ipadic
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-dicts/ipadic/ChangeLog,v 1.16 2007/08/25 16:35:54 beandog Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-dicts/ipadic/ChangeLog,v 1.17 2009/10/17 22:57:36 halcy0n Exp $
+
+  17 Oct 2009; Mark Loeser <halcy0n@gentoo.org> ipadic-2.6.1.ebuild,
+  ipadic-2.6.3.ebuild, ipadic-2.7.0.ebuild:
+  QA fixes; unquoted variables
 
   25 Aug 2007; Steve Dibb <beandog@gentoo.org> ipadic-2.7.0.ebuild:
   amd64 stable
