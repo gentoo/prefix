@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/DBI
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/ChangeLog,v 1.118 2009/09/27 11:11:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/ChangeLog,v 1.120 2009/10/18 17:05:48 nixnut Exp $
+
+  18 Oct 2009; nixnut <nixnut@gentoo.org> DBI-1.609.ebuild:
+  ppc stable #289461
+
+  18 Oct 2009; Dawid Węgliński <cla@gentoo.org> DBI-1.609.ebuild:
+  Stable on amd64 (bug #289461)
 
   27 Sep 2009; Markus Meier <maekke@gentoo.org> DBI-1.609.ebuild:
   arm stable, bug #276768
