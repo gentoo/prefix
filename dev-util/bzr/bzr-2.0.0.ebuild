@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-2.0.0.ebuild,v 1.2 2009/09/29 23:48:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-2.0.0.ebuild,v 1.3 2009/10/06 17:30:34 pva Exp $
 
 EAPI=1
 
@@ -105,16 +105,11 @@ src_test() {
 	export LC_ALL=C
 	# Define tests which are known to fail below.
 	local skip_tests="("
-	# https://bugs.launchpad.net/bzr/+bug/306264
-	skip_tests+="test_http.SmartHTTPTunnellingTest*|"
-	skip_tests+="test_http.TestWallServer.test_http_*|"
-	skip_tests+="blackbox.test_too_much.SFTPTestsRelative.test_*|"
-	# !!! FIXED in 1.17 https://bugs.launchpad.net/bzr/+bug/383920
-	skip_tests+="test_transport_implementations.TransportTests.test_get*|"
+	# Not reproducible in current dev version, so check and drop with version
+	# bump
+	skip_tests+="bzrlib.tests.test_osutils.TestWalkDirs|"
 	# https://bugs.launchpad.net/bzr/+bug/392127
-	skip_tests+="test_http.*|"
-	#https://bugs.launchpad.net/bzr/+bug/341648
-	skip_tests+="test_osutils.TestWalkDirs.test_walkdirs_os_error"
+	skip_tests+="test_http.*"
 	skip_tests+=")"
 	# Some tests expect the usual pyc compiling behaviour.
 	python_enable_pyc
