@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/unlzx
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unlzx/ChangeLog,v 1.18 2008/10/23 02:44:51 flameeyes Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unlzx/ChangeLog,v 1.19 2009/10/12 17:03:20 halcy0n Exp $
+
+  12 Oct 2009; Mark Loeser <halcy0n@gentoo.org> unlzx-1.1.ebuild:
+  QA fixes; unquoted variables
 
   23 Oct 2008; Diego Pettenò <flameeyes@gentoo.org> unlzx-1.1.ebuild:
   Respect LDFLAGS, respect CC.

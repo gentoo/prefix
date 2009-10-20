@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unlzx/unlzx-1.1.ebuild,v 1.26 2008/10/23 02:44:51 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unlzx/unlzx-1.1.ebuild,v 1.27 2009/10/12 17:03:20 halcy0n Exp $
 
 inherit toolchain-funcs
 
@@ -14,9 +14,9 @@ IUSE=""
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
 
 src_unpack() {
-	mkdir ${S}
-	gzip -dc ${DISTDIR}/${PN}.c.gz > ${S}/unlzx.c
-	cp ${DISTDIR}/${PN}.c.gz.readme  ${S}/${PN}.c.gz.readme
+	mkdir "${S}"
+	gzip -dc "${DISTDIR}"/${PN}.c.gz > "${S}"/unlzx.c
+	cp "${DISTDIR}"/${PN}.c.gz.readme  "${S}"/${PN}.c.gz.readme
 }
 
 src_compile() {
