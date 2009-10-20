@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/ruby_parser
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby_parser/ChangeLog,v 1.3 2009/09/02 07:42:14 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby_parser/ChangeLog,v 1.4 2009/10/05 20:54:44 volkmar Exp $
+
+  05 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> ruby_parser-2.0.4.ebuild:
+  Keywording for ppc, bug 280631
 
   02 Sep 2009; Christian Faulhammer <fauli@gentoo.org>
   ruby_parser-2.0.4.ebuild:
