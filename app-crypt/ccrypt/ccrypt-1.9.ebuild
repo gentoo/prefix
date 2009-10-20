@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/ccrypt/ccrypt-1.9.ebuild,v 1.2 2009/10/03 09:41:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/ccrypt/ccrypt-1.9.ebuild,v 1.3 2009/10/07 16:40:01 nixnut Exp $
 
 DESCRIPTION="Encryption and decryption"
 HOMEPAGE="http://ccrypt.sourceforge.net"
