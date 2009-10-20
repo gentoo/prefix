@@ -1,6 +1,11 @@
 # ChangeLog for media-plugins/gst-plugins-musepack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-musepack/ChangeLog,v 1.62 2009/09/07 05:15:42 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-musepack/ChangeLog,v 1.63 2009/10/17 10:10:29 ssuominen Exp $
+
+  17 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  gst-plugins-musepack-0.10.11.ebuild, gst-plugins-musepack-0.10.14.ebuild:
+  Remove libmpcdec (SV7) support. Replaced by musepack-tools (SV7 and SV8)
+  support.
 
 *gst-plugins-musepack-0.10.14 (07 Sep 2009)
 
