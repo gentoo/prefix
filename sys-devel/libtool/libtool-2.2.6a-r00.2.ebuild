@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.18 2009/10/04 14:20:36 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.20 2009/10/13 17:25:27 armin76 Exp $
 
 LIBTOOLIZE="true" #225559
 inherit eutils autotools flag-o-matic multilib prefix
