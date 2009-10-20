@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.8-r1.ebuild,v 1.2 2009/07/09 15:15:13 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.8-r1.ebuild,v 1.3 2009/10/18 07:19:23 vapier Exp $
 
 EAPI=2
 
@@ -39,6 +39,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/rrdtool-1.3.8-configure.ac.patch"
+	sed -i '/PERLLD/s:same as PERLCC:same-as-PERLCC:' configure.ac #281694
 	mkdir m4
 	eautoreconf
 }
