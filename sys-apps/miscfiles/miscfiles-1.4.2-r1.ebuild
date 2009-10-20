@@ -1,12 +1,16 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/miscfiles-1.4.2.ebuild,v 1.8 2009/10/17 21:23:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/miscfiles-1.4.2-r1.ebuild,v 1.3 2009/10/17 22:43:08 ulm Exp $
 
 inherit eutils
 
+UNI_PV=5.2.0
 DESCRIPTION="Miscellaneous files"
 HOMEPAGE="http://www.gnu.org/directory/miscfiles.html"
-SRC_URI="mirror://gnu/miscfiles/${P}.tar.gz"
+# updated unicode data file from:
+# http://www.unicode.org/Public/${UNI_PV}/ucd/UnicodeData.txt
+SRC_URI="mirror://gnu/miscfiles/${P}.tar.gz
+	mirror://gentoo/UnicodeData-${UNI_PV}.txt.bz2"
 
 LICENSE="GPL-2 unicode"
 SLOT="0"
@@ -16,12 +20,13 @@ IUSE="minimal"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	mv "${WORKDIR}"/UnicodeData-${UNI_PV}.txt unicode || die
 	epatch "${FILESDIR}"/miscfiles-1.3-Makefile.diff
 }
 
 src_install() {
 	emake install prefix="${ED}/usr" || die
-	dodoc GNU* NEWS ORIGIN README dict-README
+	dodoc NEWS ORIGIN README dict-README
 	rm -f "${ED}"/usr/share/dict/README
 
 	if use minimal ; then

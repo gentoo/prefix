@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/miscfiles
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/ChangeLog,v 1.23 2009/04/27 05:38:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/ChangeLog,v 1.25 2009/10/17 22:43:08 ulm Exp $
+
+*miscfiles-1.4.2-r1 (17 Oct 2009)
+
+  17 Oct 2009; Ulrich Mueller <ulm@gentoo.org> miscfiles-1.4.2.ebuild,
+  +miscfiles-1.4.2-r1.ebuild:
+  Update unicode file from unicode.org, add unicode to LICENSE, bug 257352.
+  Don't install GNU-manifesto twice.
 
   27 Apr 2009; Mike Frysinger <vapier@gentoo.org> miscfiles-1.4.2:
   Check for create-cracklib-dict in PATH before trying to run it #265932 by
