@@ -3,12 +3,8 @@
 <pkgmetadata>
 <herd>vim</herd>
 <longdescription lang="en">
-  VIM 7 plugin useful for manipulating files controlled by CVS, SVN and
-  SVK within VIM, including committing changes and performings diffs using
-  the vimdiff system.
+	VIM 7 plugin useful for manipulating files controlled by CVS, SVN, SVK, git,
+	bzr, and hg within VIM, including committing changes and performing diffs
+	using the vimdiff system.
 </longdescription>
-<use>
-  <flag name='git'>Enable support for <pkg>dev-util/git</pkg></flag>
-  <flag name='svk'>Enable support for <pkg>dev-util/svk</pkg></flag>
-</use>
 </pkgmetadata>
