@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.2-r1.ebuild,v 1.10 2009/03/14 15:38:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/Attic/cmake-2.6.2-r1.ebuild,v 1.11 2009/10/05 19:48:01 ayoy Exp $
 
 EAPI=2
 
@@ -23,9 +23,8 @@ DEPEND=">=net-misc/curl-7.16.4
 	>=dev-libs/libxml2-2.6.28
 	>=dev-libs/xmlrpc-c-1.06.09[curl]
 	emacs? ( virtual/emacs )
-	qt4? ( || ( ( x11-libs/qt-core:4
-			x11-libs/qt-gui:4 )
-		>=x11-libs/qt-4.3:4 ) )
+	qt4? ( x11-libs/qt-core:4
+		x11-libs/qt-gui:4 )
 	vim-syntax? ( || (
 		app-editors/vim
 		app-editors/gvim ) )

@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/cmake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.109 2009/10/02 16:20:44 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.111 2009/10/10 20:21:02 cryos Exp $
+
+*cmake-2.8.0_rc3 (10 Oct 2009)
+
+  10 Oct 2009; Marcus D. Hanwell <cryos@gentoo.org> -cmake-2.8.0_rc2.ebuild,
+  +cmake-2.8.0_rc3.ebuild:
+  Version bump, new rc.
+
+  05 Oct 2009; Dominik Kapusta <ayoy@gentoo.org> cmake-2.6.2-r1.ebuild:
+  Removed alternative dependency on Qt metapackage
 
 *cmake-2.8.0_rc2 (02 Oct 2009)
 
