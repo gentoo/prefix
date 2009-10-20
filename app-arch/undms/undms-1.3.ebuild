@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/undms/undms-1.3.ebuild,v 1.5 2008/08/23 18:18:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/undms/undms-1.3.ebuild,v 1.6 2009/10/12 17:02:12 halcy0n Exp $
 
 inherit eutils
 
@@ -15,9 +15,9 @@ IUSE=""
 DEPEND="app-arch/ncompress"
 
 src_unpack() {
-	mkdir ${S}
-	uncompress -dc ${DISTDIR}/${P}.c.Z > ${S}/undms.c
-	cp ${DISTDIR}/${P}.c.Z.readme  ${S}/${P}.c.Z.readme
+	mkdir "${S}"
+	uncompress -dc "${DISTDIR}"/${P}.c.Z > "${S}"/undms.c
+	cp "${DISTDIR}"/${P}.c.Z.readme  "${S}"/${P}.c.Z.readme
 }
 
 src_compile() {
