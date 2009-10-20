@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/eselect-oodict
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-admin/eselect-oodict/ChangeLog,v 1.25 2008/03/12 10:51:52 phreak Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-oodict/ChangeLog,v 1.26 2009/10/11 23:24:18 halcy0n Exp $
+
+  11 Oct 2009; Mark Loeser <halcy0n@gentoo.org>
+  eselect-oodict-20060621.ebuild, eselect-oodict-20060706.ebuild,
+  eselect-oodict-20060806.ebuild, eselect-oodict-20061117.ebuild:
+  QA fixes; unquoted variables
 
   12 Mar 2008; Christian Heim <phreak@gentoo.org> metadata.xml:
   Removing Kevin Quinn (kevquinn, #93689) from metadata.xml.
