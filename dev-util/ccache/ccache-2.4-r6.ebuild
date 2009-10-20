@@ -1,8 +1,7 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r6.ebuild,v 1.16 2008/01/12 21:09:48 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ccache/ccache-2.4-r6.ebuild,v 1.17 2009/10/12 19:20:30 ssuominen Exp $
 
-WANT_AUTOCONF="latest"
 inherit eutils autotools
 
 DESCRIPTION="fast compiler cache"
