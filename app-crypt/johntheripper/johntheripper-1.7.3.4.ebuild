@@ -1,44 +1,47 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.3.1-r1.ebuild,v 1.4 2009/10/11 20:16:56 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.3.4.ebuild,v 1.1 2009/10/03 22:54:22 arfrever Exp $
 
-EAPI=1
+EAPI="2"
+
 inherit eutils flag-o-matic toolchain-funcs pax-utils
 
-JUMBO='all-5'
-MPI='mpi10'
+MY_PN="john"
+MY_P="${MY_PN}-${PV}"
 
-MY_PN="${PN/theripper/}"
-MY_P="${MY_PN/theripper/}-${PV}"
-S="${WORKDIR}/${MY_P}"
+JUMBO="jumbo-1"
+#MPI="mpi10"
 
 DESCRIPTION="fast password cracker"
 HOMEPAGE="http://www.openwall.com/john/"
 
 SRC_URI="http://www.openwall.com/john/g/${MY_P}.tar.gz
-	!minimal? ( ftp://ftp.openwall.com/john/contrib/${MY_P}-${JUMBO}.diff.gz )
-	mpi? ( ftp://ftp.openwall.com/john/contrib/mpi/2009-bindshell/${MY_P}-${MPI}.patch.gz )"
+	!minimal? ( ftp://ftp.openwall.com/john/contrib/${MY_P}-${JUMBO}.diff.gz )"
+#	mpi? ( ftp://ftp.openwall.com/john/contrib/mpi/2009-bindshell/${MY_P}-${MPI}.patch.gz )
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="mmx altivec sse2 custom-cflags -minimal -mpi"
+IUSE="altivec custom-cflags -minimal mmx sse2"
+#IUSE="altivec custom-cflags -minimal mmx -mpi sse2"
 
 # Seems a bit fussy with other MPI implementations.
-RDEPEND="!minimal? ( >=dev-libs/openssl-0.9.7 )
-	mpi? ( sys-cluster/openmpi )"
+RDEPEND="!minimal? ( >=dev-libs/openssl-0.9.7 )"
+#	mpi? ( sys-cluster/openmpi )
 DEPEND="${RDEPEND}"
 
+S="${WORKDIR}/${MY_P}"
+
 get_target() {
-	if use x86 ; then
-		if use sse2 ; then
+	if use x86; then
+		if use sse2; then
 			echo "linux-x86-sse2"
-		elif use mmx ; then
+		elif use mmx; then
 			echo "linux-x86-mmx"
 		else
 			echo "linux-x86-any"
 		fi
-	elif use alpha ; then
+	elif use alpha; then
 		echo "linux-alpha"
 	elif use sparc; then
 		echo "linux-sparc"
@@ -78,25 +81,21 @@ get_target() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	PATCHLIST="stackdef.S"
-	if use mpi ; then
-		epatch "${WORKDIR}"/${MY_P}-${MPI}.patch
+src_prepare() {
+#	if use mpi; then
+#		epatch "${WORKDIR}/${MY_P}-${MPI}.patch"
+#	fi
+	if ! use minimal; then
+		epatch "${WORKDIR}/${MY_P}-${JUMBO}.diff"
 	fi
-	if ! use minimal ; then
-		epatch "${WORKDIR}"/${MY_P}-${JUMBO}.diff
-		PATCHLIST="${PATCHLIST} ${JUMBO}-stackdef.S"
-	fi
-	PATCHLIST="${PATCHLIST} cflags mkdir-sandbox"
+	local PATCHLIST="${PATCHLIST} cflags mkdir-sandbox"
 
-	cd "${S}/src"
+	cd src
 	for p in ${PATCHLIST}; do
-		epatch "${FILESDIR}/${P}-${p}.patch"
+		epatch "${FILESDIR}/${PN}-1.7.3.1-${p}.patch"
 	done
 
-	if ! use minimal ; then
+	if ! use minimal; then
 		sed -e "s/LDFLAGS  *=  */override LDFLAGS += /" -e "/LDFLAGS/s/-s//" \
 			-e "/LDFLAGS/s/-L[^ ]*//g" -e "/CFLAGS/s/-[IL][^ ]*//g" \
 			-i Makefile || die "sed Makefile failed"
@@ -109,22 +108,21 @@ src_compile() {
 	append-ldflags -nopie
 
 	CPP=$(tc-getCXX) CC=$(tc-getCC) AS=$(tc-getCC) LD=$(tc-getCC)
-	use mpi && CPP=mpicxx CC=mpicc AS=mpicc LD=mpicc
+#	use mpi && CPP=mpicxx CC=mpicc AS=mpicc LD=mpicc
 	emake -C src/\
 		CPP=${CPP} CC=${CC} AS=${AS} LD=${LD} \
 		CFLAGS="-c -Wall ${CFLAGS} -DJOHN_SYSTEMWIDE=1 -DJOHN_SYSTEMWIDE_HOME=\\\"\\\\\\\"${EPREFIX}/etc/john\\\\\\\"\\\" -DJOHN_SYSTEMWIDE_EXEC=\\\"\\\\\\\"${EPREFIX}/usr/libexec/john\\\\\\\"\\\"" \
 		LDFLAGS="${LDFLAGS}" \
 		OPT_NORMAL="" \
-		$(get_target) \
-		|| die "emake failed"
+		$(get_target) || die "emake failed"
 }
 
 src_test() {
-	cd "${S}/run"
-	if  [ -f ${EROOT}/etc/john/john.conf -o -f ${EROOT}/etc/john/john.ini ]; then
+	cd run
+	if [[ -f "${EPREFIX}/etc/john/john.conf" || -f "${EPREFIX}/etc/john/john.ini" ]]; then
 		# This requires that MPI is actually 100% online on your system, which might not
 		# be the case, depending on which MPI implementation you are using.
-		#if use mpi ; then
+		#if use mpi; then
 		#	mpirun -np 2 ./john --test || die 'self test failed'
 		#else
 
@@ -146,7 +144,7 @@ src_install() {
 	dosym john /usr/sbin/unshadow
 
 	# jumbo-patch additions
-	if ! use minimal ; then
+	if ! use minimal; then
 		dosym john /usr/sbin/undrop
 		dosbin run/calc_stat
 		dosbin run/genmkvpwd
