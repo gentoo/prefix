@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-2.26.0.ebuild,v 1.4 2009/07/20 22:48:29 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-2.26.0.ebuild,v 1.6 2009/10/17 00:00:40 maekke Exp $
 
 EAPI="2"
 
