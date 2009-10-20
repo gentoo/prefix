@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unadf/unadf-0.7.9b.ebuild,v 1.9 2007/04/11 00:15:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unadf/unadf-0.7.9b.ebuild,v 1.10 2009/10/12 16:56:39 halcy0n Exp $
 
 inherit eutils
 
@@ -16,16 +16,16 @@ DEPEND="app-arch/unzip
 RDEPEND=""
 
 src_unpack() {
-	mkdir ${S}
-	cd ${S}
-	unzip ${DISTDIR}/adflib.zip
-	epatch ${FILESDIR}/no.in_path.patch
+	mkdir "${S}"
+	cd "${S}"
+	unzip "${DISTDIR}"/adflib.zip
+	epatch "${FILESDIR}"/no.in_path.patch
 }
 
 src_compile() {
-	cd ${S}/Lib && make depend || die "make failed"
-	cd ${S}/Demo && make depend || die "make failed"
-	cd ${S} && emake lib demo || die "emake failed"
+	cd "${S}"/Lib && make depend || die "make failed"
+	cd "${S}"/Demo && make depend || die "make failed"
+	cd "${S}" && emake lib demo || die "emake failed"
 }
 
 src_install() {
