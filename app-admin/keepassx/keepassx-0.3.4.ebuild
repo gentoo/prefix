@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/keepassx/keepassx-0.3.4.ebuild,v 1.4 2009/02/01 19:20:51 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/keepassx/keepassx-0.3.4.ebuild,v 1.5 2009/10/05 18:48:31 ayoy Exp $
 
 EAPI=2
 
@@ -14,10 +14,9 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="debug"
-DEPEND="|| ( ( x11-libs/qt-core:4[qt3support]
-			x11-libs/qt-gui:4[qt3support]
-			x11-libs/qt-xmlpatterns:4 )
-		( =x11-libs/qt-4.3*:4[png,qt3support,zlib] ) )"
+DEPEND="x11-libs/qt-core:4[qt3support]
+	x11-libs/qt-gui:4[qt3support]
+	x11-libs/qt-xmlpatterns:4"
 RDEPEND="${DEPEND}"
 
 src_configure() {
