@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/redland-1.0.9-r1.ebuild,v 1.6 2009/09/29 19:00:04 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/redland-1.0.9-r1.ebuild,v 1.7 2009/10/13 17:53:53 armin76 Exp $
 
 EAPI=2
 inherit autotools eutils libtool
