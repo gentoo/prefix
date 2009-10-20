@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha64.ebuild,v 1.1 2009/09/04 16:22:05 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha66.ebuild,v 1.1 2009/10/13 19:26:08 billie Exp $
 
 EAPI=2
 
@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}"
 S=${WORKDIR}/${PN}-2.01.01
 
 src_prepare() {
-	#"Adjust paths. Upstream is clearly on drugs, hardcoding paths into .c files.
+	# Adjusting hardcoded paths.
 	sed -i -e 's:opt/schily:usr:' \
 		$(grep -l --include='*.1' --include='*.8' -r 'opt/schily' .) \
 		$(grep -l --include='*.c' --include='*.h' -r 'opt/schily' .) \
@@ -33,22 +33,22 @@ src_prepare() {
 		$(grep -l -r 'INSDIR.\+doc' .) \
 		|| die "404 on doc sed"
 
-	# Upstream should be hanged from the yardarm, possibly keelhauled for
-	# not respecting libdir.
+	# Respect libdir.
 	sed -i -e "s:\(^INSDIR=\t\t\)lib:\1$(get_libdir):" \
 		$(grep -l -r '^INSDIR.\+lib\(/siconv\)\?$' .) \
 		|| die "404 on multilib-sed"
 
-	# See previous comment s/libdir/--disable-static/
+	# See previous comment s/libdir/--disable-static/.
 	sed -i -e 's:include\t\t.*rules.lib::' \
 		$(grep -l -r '^include.\+rules\.lib' .) \
 		|| die "404 on rules sed"
-	#Remove profiled make files (wtf?)
+
+	# Remove profiled make files.
 	rm -f $(find . -name '*_p.mk') || die "rm failed"
 
 	epatch "${FILESDIR}"/${PN}-2.01.01_alpha50-asneeded.patch
 
-	#Schily make setup
+	# Schily make setup.
 	cd "${S}"/DEFAULTS
 	local MYARCH="linux"
 	[[ ${CHOST} == *-darwin* ]] && MYARCH="mac-os10"
@@ -57,11 +57,20 @@ src_prepare() {
 	sed -i "s:/usr/src/linux/include::g" Defaults.${MYARCH} || die "sed linux-include failed"
 	sed -i "/RUNPATH/ c\RUNPATH= " Defaults.${MYARCH} || die "sed RUNPATH failed"
 
-	# For dynamic linking:
-	sed -i "s:static:dynamic:" Defaults.${MYARCH} || die "sed static-remove failed"
-
-	# lame symlinks that all point to the same thing
+	# Create additional symlinks needed for some archs.
 	cd "${S}"/RULES
+
+	# Respect CC/CXX variables
+	local tcCC=$(tc-getCC)
+	local tcCXX=$(tc-getCXX)
+	sed -i -e "/cc-config.sh/s/\$(C_ARCH:%64=%) \$(CCOM_DEF)/${tcCC} ${tcCC}/" \
+		rules1.top || die "sed rules1.top failed"
+	sed -i -e "/^\(CC\|DYNLD\|LDCC\|MKDEP\)/s/gcc/${tcCC}/" \
+		-e "/^\(CC++\|DYNLDC++\|LDCC++\|MKC++DEP\)/s/g++/${tcCXX}/" \
+		cc-gcc.rul || die "sed cc-gcc.rul failed"
+	sed -i -e "s/^#CONFFLAGS +=\t-cc=\$(XCC_COM)$/CONFFLAGS +=\t-cc=${tcCC}/g" \
+		rules.cnf || die "sed rules.cnf failed"
+
 	local t
 	for t in ppc64 sh4 s390x ; do
 		ln -s i586-linux-cc.rul ${t}-linux-cc.rul || die
@@ -88,17 +97,18 @@ src_compile() {
 		CFLAGS="${CFLAGS} -DNO_ACL"
 		ACL=""
 	fi
-	#If not built with -j1, "sometimes" cdda2wav will not be built. Nasty bug.
+	# If not built with -j1, "sometimes" cdda2wav will not be built. Bug?
 	emake -j1 CC="$(tc-getCC) -D__attribute_const__=const" COPTX="${CFLAGS}" \
 		LIB_ACL_TEST="${ACL}" CPPOPTX="${CPPFLAGS}" LDOPTX="${LDFLAGS}" \
 		GMAKE_NOWARN="true" || die "emake failed"
 }
 
 src_install() {
+	# If not built with -j1, "sometimes" manpages are not installed. Bug?
 	emake -j1 MANDIR="share/man" INS_BASE="${ED}/usr/" INS_RBASE="${ED}" \
-		GMAKE_NOWARN="true" install
+		LINKMODE="dynamic" GMAKE_NOWARN="true" install
 
-	#These symlinks are for compat with cdrkit.
+	# These symlinks are for compat with cdrkit.
 	dosym schily /usr/include/scsilib
 	dosym ../scg /usr/include/schily/scg
 
@@ -107,7 +117,6 @@ src_install() {
 	cd "${S}"/cdda2wav
 	docinto cdda2wav
 	dodoc FAQ Frontends HOWTOUSE TODO || die "dodoc cdda2wav"
-
 }
 
 pkg_postinst() {
@@ -119,10 +128,5 @@ pkg_postinst() {
 		einfo
 		einfo "DVD burners: (probably) ./cdrecord dev=IODVDServices"
 		einfo
-	else
-	echo
-	einfo "The command line option 'dev=/dev/hdX' (X is the name of your drive)"
-	einfo "should be used for IDE CD writers.  And make sure that the permissions"
-	einfo "on this device are set properly and your user is in the correct group."
 	fi
 }

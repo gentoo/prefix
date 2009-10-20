@@ -1,6 +1,13 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.235 2009/09/16 18:22:07 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.236 2009/10/13 19:26:08 billie Exp $
+
+*cdrtools-2.01.01_alpha66 (13 Oct 2009)
+
+  13 Oct 2009; Pielmeier Daniel <billie@gentoo.org>
+  -cdrtools-2.01.01_alpha64.ebuild, +cdrtools-2.01.01_alpha66.ebuild:
+  Version bump. Fixes bug #243528. Use LINKMODE switch to force dynamic
+  linking to save one sed line. Remove old.
 
 *cdrtools-2.01.01_alpha65 (16 Sep 2009)
 
