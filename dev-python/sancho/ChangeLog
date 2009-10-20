@@ -1,6 +1,12 @@
 # ChangeLog for dev-python/sancho
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sancho/ChangeLog,v 1.35 2009/10/02 01:03:39 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sancho/ChangeLog,v 1.37 2009/10/16 13:47:32 jer Exp $
+
+  16 Oct 2009; Jeroen Roovers <jer@gentoo.org> sancho-2.4.ebuild:
+  Stable for HPPA (bug #288563).
+
+  15 Oct 2009; Markus Meier <maekke@gentoo.org> sancho-2.4.ebuild:
+  amd64/x86 stable, bug #288563
 
   02 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   -sancho-0.11.ebuild, sancho-0.11-r1.ebuild, -sancho-2.1.ebuild,
