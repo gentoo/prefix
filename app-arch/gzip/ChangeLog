@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/gzip
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/ChangeLog,v 1.100 2008/03/29 12:29:42 coldwind Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/gzip/ChangeLog,v 1.101 2009/10/06 21:20:14 vapier Exp $
+
+*gzip-1.3.13 (06 Oct 2009)
+
+  06 Oct 2009; Mike Frysinger <vapier@gentoo.org> +gzip-1.3.13.ebuild:
+  Version bump.
 
   29 Mar 2008; Santiago M. Mola <coldwind@gentoo.org> gzip-1.3.12-r1.ebuild:
   amd64 stable wrt bug #214963
