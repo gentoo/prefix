@@ -1,6 +1,9 @@
 # ChangeLog for games-emulation/gngb
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/gngb/ChangeLog,v 1.9 2007/10/31 23:46:39 tupone Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/gngb/ChangeLog,v 1.10 2009/10/14 19:48:58 mr_bones_ Exp $
+
+  14 Oct 2009; Michael Sterrett <mr_bones_@gentoo.org> gngb-20060309.ebuild:
+  EAPI=2
 
 *gngb-20060309 (31 Oct 2007)
 

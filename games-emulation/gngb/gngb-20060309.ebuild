@@ -1,7 +1,8 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/gngb/gngb-20060309.ebuild,v 1.1 2007/10/31 23:46:39 tupone Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/gngb/gngb-20060309.ebuild,v 1.2 2009/10/14 19:48:58 mr_bones_ Exp $
 
+EAPI=2
 inherit eutils games
 
 DESCRIPTION="Gameboy / Gameboy Color emulator"
@@ -18,13 +19,12 @@ DEPEND="media-libs/libsdl
 	app-arch/bzip2
 	opengl? ( virtual/opengl )"
 
-src_compile() {
-	egamesconf $(use_with opengl gl) || die
-	emake || die "emake failed"
+src_configure() {
+	egamesconf $(use_with opengl gl)
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS README TODO
 	prepgamesdirs
 }
