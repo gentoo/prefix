@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/cairomm-1.4.4.ebuild,v 1.9 2008/09/30 01:42:25 dang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/cairomm/cairomm-1.4.4.ebuild,v 1.10 2009/10/12 20:08:39 eva Exp $
 
 inherit eutils
 
@@ -18,7 +18,7 @@ DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	cd "${S}"
 
 	if ! use examples; then
