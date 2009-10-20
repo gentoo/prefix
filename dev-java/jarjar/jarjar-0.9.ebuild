@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jarjar/jarjar-0.9.ebuild,v 1.13 2008/09/10 18:17:52 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jarjar/jarjar-0.9.ebuild,v 1.14 2009/10/06 18:55:44 caster Exp $
 
 JAVA_PKG_IUSE="doc source test"
 
@@ -30,7 +30,11 @@ src_unpack() {
 	cd "${S}"
 	rm -v src/main/com/tonicsystems/jarjar/JarJarMojo.java || die
 	rm -vr src/main/gnu || die
+
 	epatch "${FILESDIR}/0.9-system-jars.patch"
+	# bug #191378
+	epatch "${FILESDIR}/0.9-bootclasspath.patch"
+
 	cd "${S}/lib"
 	rm -v *.jar || die
 	java-pkg_jar-from asm-2

@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/jarjar
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jarjar/ChangeLog,v 1.26 2008/09/10 18:17:52 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jarjar/ChangeLog,v 1.27 2009/10/06 18:55:44 caster Exp $
+
+  06 Oct 2009; Vlastimil Babka <caster@gentoo.org>
+  +files/0.9-bootclasspath.patch, jarjar-0.9.ebuild,
+  -files/asm-2.0_alpha-buildfile.patch:
+  Fix building with ecj, bug #191378.
 
   10 Sep 2008; Brent Baude <ranger@gentoo.org> jarjar-0.9.ebuild:
   Marking jarjar-0.9 ppc64 stable for dep to bug 235747
