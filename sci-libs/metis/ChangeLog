@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/metis
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/metis/ChangeLog,v 1.16 2009/06/28 19:55:29 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/metis/ChangeLog,v 1.17 2009/10/12 20:04:31 jer Exp $
+
+  12 Oct 2009; Jeroen Roovers <jer@gentoo.org> metis-4.0.1-r1.ebuild:
+  Stable for HPPA (bug #245707).
 
   28 Jun 2009; Sébastien Fabbro <bicatali@gentoo.org>
   metis-4.0.1-r1.ebuild, +files/metis-4.0.1-gcc44.patch:
