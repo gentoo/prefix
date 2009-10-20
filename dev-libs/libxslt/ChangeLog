@@ -1,6 +1,20 @@
 # ChangeLog for dev-libs/libxslt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.190 2009/05/31 23:10:10 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.196 2009/10/08 11:42:49 ssuominen Exp $
+
+  08 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> libxslt-1.1.26.ebuild:
+  Because libgcrypt is missing pkg-config file, fixing cross-compile here
+  wrt #267503, thanks to Andrei Slavoiu.
+
+  07 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> libxslt-1.1.26.ebuild,
+  +files/libxslt-1.1.26-undefined.patch:
+  Fix linking with -Wl,--no-undefined wrt #246748 by Christian Ruppert.
+
+*libxslt-1.1.26 (07 Oct 2009)
+
+  07 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +libxslt-1.1.26.ebuild, +files/libxslt.m4-libxslt-1.1.26.patch:
+  Version bump.
 
   31 May 2009; Gilles Dartiguelongue <eva@gentoo.org>
   libxslt-1.1.24-r1.ebuild:
