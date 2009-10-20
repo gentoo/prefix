@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.6-r2.ebuild,v 1.4 2008/03/26 18:43:41 hawking Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ctags/ctags-5.6-r2.ebuild,v 1.5 2009/10/12 16:44:40 ssuominen Exp $
 
 inherit eutils
 
@@ -24,7 +24,7 @@ src_unpack() {
 
 	# enabling Ada support
 	if use ada; then
-		cp ${WORKDIR}/ctags-ada-mode-4.3.3/ada.c "${S}"
+		cp "${WORKDIR}"/ctags-ada-mode-4.3.3/ada.c "${S}"
 		epatch "${FILESDIR}/${PN}-ada.patch"
 	fi
 }
