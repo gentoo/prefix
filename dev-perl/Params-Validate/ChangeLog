@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Params-Validate
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Params-Validate/ChangeLog,v 1.68 2009/09/28 11:07:49 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Params-Validate/ChangeLog,v 1.69 2009/10/12 11:38:28 tove Exp $
+
+  12 Oct 2009; Torsten Veller <tove@gentoo.org>
+  -Params-Validate-0.91.ebuild:
+  Cleanup
 
   28 Sep 2009; Torsten Veller <tove@gentoo.org> Params-Validate-0.92.ebuild:
   Remove dohtml
