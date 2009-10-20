@@ -1,17 +1,23 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc15.ebuild,v 1.13 2009/10/10 14:47:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1_rc20.ebuild,v 1.2 2009/10/10 23:48:18 cedk Exp $
 
-inherit eutils multilib toolchain-funcs prefix
+inherit eutils multilib toolchain-funcs autotools prefix
 
 DESCRIPTION="OpenVPN is a robust and highly flexible tunneling application compatible with many OSes."
-SRC_URI="http://openvpn.net/release/${P}.tar.gz"
+SRC_URI="http://openvpn.net/release/${P}.tar.gz
+		ipv6? (
+			http://cloud.github.com/downloads/jjo/openvpn-ipv6/openvpn-2.1_rc20-ipv6-0.4.9.patch.gz
+		)
+		eurephia? (
+			mirror://sourceforge/eurephia/${P}_eurephia.patch
+		)"
 HOMEPAGE="http://openvpn.net/"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="examples iproute2 minimal pam passwordsave selinux ssl static pkcs11 threads userland_BSD"
+IUSE="eurephia examples iproute2 ipv6 minimal pam passwordsave selinux ssl static pkcs11 threads userland_BSD"
 
 DEPEND=">=dev-libs/lzo-1.07
 	kernel_linux? (
@@ -37,10 +43,15 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}/${PN}-2.1_rc13-peercred.patch"
+	epatch "${FILESDIR}"/openvpn-2.1_rc20-pkcs11.patch
+	use ipv6 && epatch "${WORKDIR}"/openvpn-2.1_rc20-ipv6-0.4.9.patch
+	use eurephia && epatch "${DISTDIR}/${P}_eurephia.patch"
 	sed -i \
 		-e "s/gcc \${CC_FLAGS}/\${CC} \${CFLAGS} -Wall/" \
 		-e "s/-shared/-shared \${LDFLAGS}/" \
 		plugin/*/Makefile || die "sed failed"
+	eautoreconf
 }
 
 src_compile() {
@@ -53,7 +64,6 @@ src_compile() {
 		myconf="$(use_enable pkcs11)"
 	fi
 
-	epatch "${FILESDIR}/${PN}-2.1_rc13-peercred.patch"
 	econf ${myconf} \
 		$(use_enable passwordsave password-save) \
 		$(use_enable ssl) \
@@ -161,5 +171,19 @@ pkg_postinst() {
 	if ! use minimal ; then
 		einfo ""
 		einfo "plugins have been installed into /usr/$(get_libdir)/${PN}"
+	fi
+
+	if use ipv6 ; then
+		einfo ""
+		einfo "This build contains IPv6-Patch from JuanJo Ciarlante."
+		einfo "For more information please visit:"
+		einfo "http://github.com/jjo/openvpn-ipv6"
+	fi
+
+	if use eurephia ; then
+		einfo ""
+		einfo "This build contains eurephia patch."
+		einfo "For more information please visit:"
+		einfo "http://www.eurephia.net/"
 	fi
 }

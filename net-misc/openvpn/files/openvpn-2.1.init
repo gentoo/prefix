@@ -79,7 +79,7 @@ start() {
 	if [ "${DETECT_CLIENT:-yes}" = "yes" ] && \
 	grep -q "^[ \t]*remote[ \t].*" "${VPNCONF}" ; then
 		reenter="yes"
-		args="${args} --nobind --up-delay --up-restart"
+		args="${args} --up-delay --up-restart"
 		args="${args} --script-security 2"
 		args="${args} --up /etc/openvpn/up.sh"
 		args="${args} --down-pre --down /etc/openvpn/down.sh"
