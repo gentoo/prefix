@@ -1,6 +1,11 @@
 # ChangeLog for app-text/poppler-bindings
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.138 2009/04/22 11:11:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.139 2009/10/05 19:31:16 ayoy Exp $
+
+  05 Oct 2009; Dominik Kapusta <ayoy@gentoo.org>
+  poppler-bindings-0.8.7.ebuild, poppler-bindings-0.10.4.ebuild,
+  poppler-bindings-0.10.5.ebuild, poppler-bindings-0.10.5-r1.ebuild:
+  Removed alternative dependency on Qt metapackage
 
   22 Apr 2009; Raúl Porcel <armin76@gentoo.org>
   poppler-bindings-0.10.5-r1.ebuild:

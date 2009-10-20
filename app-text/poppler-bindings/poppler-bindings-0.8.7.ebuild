@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.7.ebuild,v 1.17 2009/04/01 14:42:45 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/poppler-bindings-0.8.7.ebuild,v 1.18 2009/10/05 19:31:16 ayoy Exp $
 
 EAPI=1
 
@@ -36,13 +36,9 @@ RDEPEND="
 	)
 	qt3? ( >=x11-libs/qt-3.3:3 )
 	qt4? (
-		|| (
-			( x11-libs/qt-core:4
-			  x11-libs/qt-gui:4
-			  x11-libs/qt-test:4 )
-
-			=x11-libs/qt-4.3*
-		)
+		x11-libs/qt-core:4
+		x11-libs/qt-gui:4
+		x11-libs/qt-test:4
 	)
 	!dev-libs/poppler-qt3
 	!dev-libs/poppler-qt4
