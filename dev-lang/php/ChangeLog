@@ -1,6 +1,28 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.344 2009/09/29 16:37:04 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.350 2009/10/18 14:33:47 ranger Exp $
+
+  18 Oct 2009; Brent Baude <ranger@gentoo.org> php-5.2.11.ebuild:
+  Marking php-5.2.11 ppc64 for bug 285434
+
+  09 Oct 2009; Christian Hoffmann <hoffie@gentoo.org> php-5.2.11.ebuild:
+  adding dependency on recent enough suhosin per bug 276583
+
+  07 Oct 2009; <chainsaw@gentoo.org> php-5.2.11.ebuild:
+  Marked stable on AMD64 as requested by Bernd Marienfeldt in security bug
+  #285434. Tested with USE="apache2 berkdb bzip2 calendar cgi cli crypt
+  ctype curl gd iconv imap ipv6 mhash mysql ncurses nls pcre pic posix
+  readline session snmp spl ssl threads tokenizer truetype unicode xml
+  xmlrpc zlib" serving www.linx.net on hardened AMD64 non-multilib system.
+
+  07 Oct 2009; Raúl Porcel <armin76@gentoo.org> php-5.2.11.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #285434
+
+  07 Oct 2009; Jeroen Roovers <jer@gentoo.org> php-5.2.11.ebuild:
+  Stable for HPPA (bug #285434).
+
+  06 Oct 2009; Christian Faulhammer <fauli@gentoo.org> php-5.2.11.ebuild:
+  stable x86, security bug 285434
 
 *php-5.2.11 (29 Sep 2009)
 

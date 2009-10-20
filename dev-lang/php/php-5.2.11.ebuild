@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.11.ebuild,v 1.1 2009/09/29 16:37:04 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.11.ebuild,v 1.7 2009/10/18 14:33:47 ranger Exp $
 
 CGI_SAPI_USE="discard-path force-cgi-redirect"
 APACHE2_SAPI_USE="concurrentmodphp threads"
@@ -42,7 +42,8 @@ DEPEND="app-admin/php-toolkit
 	imap? ( >=virtual/imap-c-client-2006k )
 	pcre? ( >=dev-libs/libpcre-7.8 )
 	xml? ( >=dev-libs/libxml2-2.7.2-r2 )
-	xmlrpc? ( >=dev-libs/libxml2-2.7.2-r2 virtual/libiconv )"
+	xmlrpc? ( >=dev-libs/libxml2-2.7.2-r2 virtual/libiconv )
+	suhosin? ( >=dev-php5/suhosin-0.9.29 )"
 
 RDEPEND="${DEPEND}"
 if [[ -n "${KOLAB_PATCH}" ]] ; then
