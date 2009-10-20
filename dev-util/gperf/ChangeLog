@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/gperf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.41 2009/09/11 21:34:45 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/ChangeLog,v 1.43 2009/10/13 23:09:57 jer Exp $
+
+  13 Oct 2009; Jeroen Roovers <jer@gentoo.org> gperf-3.0.4.ebuild:
+  Stable for HPPA (bug #288572).
+
+  11 Oct 2009; Romain Perier <mrpouet@gentoo.org>
+  gperf-3.0.4.ebuild:
+  Stable for amd64 per bug #288572.
 
 *gperf-3.0.4 (11 Sep 2009)
 
