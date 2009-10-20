@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.7.ebuild,v 1.7 2009/08/09 16:11:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.7.ebuild,v 1.8 2009/10/17 19:22:40 arfrever Exp $
 
 inherit eutils multilib
 
@@ -15,7 +15,7 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="!<dev-lang/python-2.3.6-r2
-	|| ( >=sys-apps/portage-2.1.2 sys-apps/pkgcore sys-apps/paludis )"
+	>=sys-apps/portage-2.1.2"
 
 src_unpack() {
 	unpack ${A}
