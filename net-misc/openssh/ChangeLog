@@ -1,6 +1,29 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.362 2009/10/03 16:25:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.367 2009/10/11 20:21:40 nixnut Exp $
+
+  11 Oct 2009; nixnut <nixnut@gentoo.org> openssh-5.2_p1-r3.ebuild:
+  ppc stable #287292
+
+  11 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
+  openssh-5.2_p1-r3.ebuild:
+  Stable on alpha, bug #287292
+
+  11 Oct 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openssh-5.3_p1-r1.ebuild, +files/openssh-5.3_p1-pkcs11-hpn-glue.patch:
+  Bug #288498: Now we need a glue patch for pkcs11 and HPN together. Really
+  some of these patchsets need to go to upstream.
+
+*openssh-5.3_p1-r1 (10 Oct 2009)
+
+  10 Oct 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +openssh-5.3_p1-r1.ebuild:
+  Ported the HPN and LPK patches to 5.3p1, mailed upstream as well.
+
+  07 Oct 2009; Mike Frysinger <vapier@gentoo.org> openssh-5.2_p1-r2.ebuild,
+  openssh-5.2_p1-r3.ebuild, openssh-5.3_p1.ebuild:
+  Fix static_use_with handling when there is one option #287292 by Jaak
+  Ristioja.
 
   03 Oct 2009; Jeroen Roovers <jer@gentoo.org> openssh-5.2_p1-r3.ebuild:
   Stable for HPPA (bug #287292).
