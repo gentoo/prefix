@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/tre
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/tre/ChangeLog,v 1.39 2009/08/01 19:06:26 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/tre/ChangeLog,v 1.41 2009/10/17 07:53:51 maekke Exp $
+
+  17 Oct 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  remove static-libs description as it is global now
+
+*tre-0.8.0 (16 Oct 2009)
+
+  16 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> +tre-0.8.0.ebuild:
+  Version bump wrt #289305, thanks to Daniel Black for reporting.
 
   01 Aug 2009; Jeremy Olexa <darkside@gentoo.org> -tre-0.7.2.ebuild,
   -tre-0.7.4.ebuild:
