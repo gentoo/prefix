@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6_p15.ebuild,v 1.10 2009/03/19 16:10:21 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6_p16.ebuild,v 1.1 2009/10/18 06:05:54 vapier Exp $
 
 inherit autotools eutils libtool toolchain-funcs flag-o-matic
 
@@ -15,17 +15,19 @@ SRC_URI="mirror://gnu/${PN}/${MY_P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="nls"
 
 DEPEND="nls? ( sys-devel/gettext )"
-RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	epatch "${FILESDIR}/${MY_P}-gettextfix.diff" #239372
+	epatch "${FILESDIR}"/${MY_P}-as-if.patch #283029
 	epatch "${WORKDIR}"/${PN}_${MY_PV}-${DEB_PATCH}.diff
 	sed -i '1i#include <stdlib.h>' src/argmatch.c || die
 
@@ -50,7 +52,7 @@ src_compile() {
 	[[ ${CHOST} == *-solaris* ]] && append-libs "-lintl"
 	# --without-included-gettext means we always use system headers
 	# and library
-	econf --without-included-gettext $(use_enable nls) || die "econf failed"
+	econf --without-included-gettext $(use_enable nls)
 	emake || die "emake failed"
 }
 
