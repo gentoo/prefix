@@ -1,6 +1,15 @@
 # ChangeLog for sci-libs/fftw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.93 2009/10/03 17:22:31 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/fftw/ChangeLog,v 1.95 2009/10/15 17:11:21 bicatali Exp $
+
+  15 Oct 2009; Sébastien Fabbro <bicatali@gentoo.org> fftw-2.1.5-r5.ebuild,
+  -files/fftw-3.1.2-as-needed.patch, -files/fftw-3.1.2-configure.ac.patch,
+  -files/fftw-3.1.2-openmp.patch, -fftw-3.1.3.ebuild, -fftw-3.2.1.ebuild,
+  fftw-3.2.2.ebuild:
+  Removed old and filter as-needed when building with Intel compilers
+
+  11 Oct 2009; Raúl Porcel <armin76@gentoo.org> fftw-3.2.2.ebuild:
+  ia64/sparc stable wrt #285806
 
   03 Oct 2009; Tobias Klausmann <klausman@gentoo.org> fftw-3.2.2.ebuild:
   Stable on alpha, bug #285693
