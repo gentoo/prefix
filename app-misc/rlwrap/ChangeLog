@@ -1,6 +1,14 @@
 # ChangeLog for app-misc/rlwrap
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/rlwrap/ChangeLog,v 1.17 2008/03/27 10:01:44 hkbst Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/rlwrap/ChangeLog,v 1.19 2009/10/09 20:46:38 maekke Exp $
+
+  09 Oct 2009; Markus Meier <maekke@gentoo.org> rlwrap-0.30.ebuild:
+  amd64/x86 stable, bug #287393
+
+*rlwrap-0.32 (09 Oct 2009)
+
+  09 Oct 2009; Marijn Schouten <hkBst@gentoo.org> +rlwrap-0.32.ebuild:
+  bump
 
   27 Mar 2008; Marijn Schouten <hkBst@gentoo.org> -rlwrap-0.16.ebuild,
   -rlwrap-0.18.ebuild, +rlwrap-0.30.ebuild:
