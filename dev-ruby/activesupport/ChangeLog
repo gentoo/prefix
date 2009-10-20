@@ -1,6 +1,21 @@
 # ChangeLog for dev-ruby/activesupport
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.98 2009/10/04 12:48:20 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.103 2009/10/18 17:46:20 a3li Exp $
+
+  18 Oct 2009; Alex Legler <a3li@gentoo.org> -activesupport-2.2.2.ebuild:
+  removing vulnerable ebuild, bug 283396
+
+  18 Oct 2009; nixnut <nixnut@gentoo.org> activesupport-2.2.3.ebuild:
+  ppc stable #283396
+
+  18 Oct 2009; Brent Baude <ranger@gentoo.org> activesupport-2.2.3.ebuild:
+  Marking activesupport-2.2.3 ppc64 stable for bug 283396
+
+  08 Oct 2009; Raúl Porcel <armin76@gentoo.org> activesupport-2.2.3.ebuild:
+  ia64/sparc stable wrt #283396
+
+  07 Oct 2009; Markus Meier <maekke@gentoo.org> activesupport-2.2.3.ebuild:
+  amd64 stable, bug #283396
 
   04 Oct 2009; Christian Faulhammer <fauli@gentoo.org>
   activesupport-2.2.3.ebuild:
