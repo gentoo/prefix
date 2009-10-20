@@ -1,6 +1,12 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.148 2009/09/23 09:23:09 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.150 2009/10/16 21:48:44 maekke Exp $
+
+  16 Oct 2009; Markus Meier <maekke@gentoo.org> gtk-engines-2.18.3.ebuild:
+  x86 stable, bug #281427
+
+  08 Oct 2009; Olivier Crête <tester@gentoo.org> gtk-engines-2.18.3.ebuild:
+  Stable on amd64, bug #281427
 
 *gtk-engines-2.18.3 (23 Sep 2009)
 
