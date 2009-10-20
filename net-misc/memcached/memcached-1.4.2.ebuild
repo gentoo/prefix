@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/memcached-1.4.1.ebuild,v 1.7 2009/10/07 16:29:22 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/memcached-1.4.2.ebuild,v 1.3 2009/10/12 19:52:57 mr_bones_ Exp $
 
 EAPI=2
 inherit eutils autotools flag-o-matic
@@ -15,7 +15,7 @@ SRC_URI="http://memcached.googlecode.com/files/${MY_P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
-IUSE="test slabs-reassign debug"
+IUSE="test slabs-reassign debug" # hugetlbfs later
 
 RDEPEND=">=dev-libs/libevent-1.4
 		 dev-lang/perl"
@@ -26,11 +26,18 @@ S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.2.2-fbsd.patch"
-	epatch "${FILESDIR}/${PN}-1.3.3-gcc4-slab-fixup.patch"
+	# Handled different upstream
+	#epatch "${FILESDIR}/${PN}-1.3.3-gcc4-slab-fixup.patch"
 	epatch "${FILESDIR}/${PN}-1.4.0-fix-as-needed-linking.patch"
 	sed -i -e 's,-Werror,,g' configure.ac || die "sed failed"
 	eautoreconf
 	use slabs-reassign && append-flags -DALLOW_SLABS_REASSIGN
+}
+
+src_configure() {
+	econf --disable-docs
+	# The xml2rfc tool to build the additional docs requires TCL :-(
+	# `use_enable doc docs`
 }
 
 src_compile() {
@@ -48,7 +55,7 @@ src_install() {
 	dobin scripts/memcached-tool
 	use debug && dobin memcached-debug
 
-	dodoc AUTHORS ChangeLog NEWS README TODO doc/{CONTRIBUTORS,*.txt}
+	dodoc AUTHORS ChangeLog NEWS README doc/{CONTRIBUTORS,*.txt}
 
 	newconfd "${FILESDIR}"/1.3.3/conf memcached
 	newinitd "${FILESDIR}"/1.3.3/init memcached
