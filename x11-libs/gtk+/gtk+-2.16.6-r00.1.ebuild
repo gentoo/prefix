@@ -97,6 +97,9 @@ src_prepare() {
 	# Fix pltcheck.sh test, bug 285698
 	epatch "${FILESDIR}/${P}-fix-pltcheck-test.patch"
 
+	# Fix segfault in gdk-pixbuf-query-loaders on at least Solaris
+	epatch "${FILESDIR}"/${P}-gdk-pixbuf-null-licence-crash.patch
+
 	# -O3 and company cause random crashes in applications. Bug #133469
 	replace-flags -O3 -O2
 	strip-flags
