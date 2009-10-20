@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/ppmd/ppmd-9.1_p14.ebuild,v 1.5 2008/03/17 02:29:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/ppmd/ppmd-9.1_p14.ebuild,v 1.6 2009/10/12 16:46:02 halcy0n Exp $
 
 inherit eutils flag-o-matic
 
@@ -8,7 +8,7 @@ PATCHV="${P##*_p}"
 MY_P="${P%%_*}"
 MY_P="${MY_P/-/_}"
 MY_S=${PN}-i1
-S=${WORKDIR}/${MY_S}
+S="${WORKDIR}"/${MY_S}
 DESCRIPTION="PPM based compressor -- better behaved than bzip2"
 HOMEPAGE="http://http.us.debian.org/debian/pool/main/p/ppmd/"
 SRC_URI="http://http.us.debian.org/debian/pool/main/p/ppmd/${MY_P}.orig.tar.gz
@@ -28,7 +28,7 @@ RDEPEND=""
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
 	epatch "${WORKDIR}/${MY_P}-${PATCHV}.diff"
 	epatch "${S}/${MY_P/_/-}/debian/patches"/*.patch
 	mv "${S}/b/Makefile" "${S}" || die "no makefile found"
