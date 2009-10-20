@@ -1,6 +1,9 @@
 # ChangeLog for app-text/dictd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.78 2009/09/27 14:47:28 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.79 2009/10/17 07:46:23 maekke Exp $
+
+  17 Oct 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  remove dbi description as it is global now
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> dictd-1.11.1-r1.ebuild:
   ppc stable #281204
