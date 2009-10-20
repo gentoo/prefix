@@ -1,6 +1,15 @@
 # ChangeLog for dev-perl/DBD-Pg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/ChangeLog,v 1.68 2009/09/29 17:57:42 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/ChangeLog,v 1.71 2009/10/16 14:21:00 jer Exp $
+
+  16 Oct 2009; Jeroen Roovers <jer@gentoo.org> DBD-Pg-2.15.1.ebuild:
+  Stable for HPPA (bug #276768).
+
+  07 Oct 2009; nixnut <nixnut@gentoo.org> DBD-Pg-2.15.1.ebuild:
+  ppc stable #276768
+
+  05 Oct 2009; Raúl Porcel <armin76@gentoo.org> DBD-Pg-2.15.1.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #276768
 
   29 Sep 2009; Tobias Klausmann <klausman@gentoo.org> DBD-Pg-2.15.1.ebuild:
   Stable on alpha, bug #276768

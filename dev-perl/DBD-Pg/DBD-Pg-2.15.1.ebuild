@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/DBD-Pg-2.15.1.ebuild,v 1.4 2009/09/29 17:57:42 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBD-Pg/DBD-Pg-2.15.1.ebuild,v 1.7 2009/10/16 14:21:00 jer Exp $
 
 MODULE_AUTHOR=TURNSTEP
 inherit perl-module eutils
