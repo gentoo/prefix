@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/ccolamd/ccolamd-2.7.1.ebuild,v 1.11 2009/05/17 13:09:12 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/ccolamd/ccolamd-2.7.1.ebuild,v 1.12 2009/10/12 20:03:02 jer Exp $
 
 inherit autotools eutils
 
