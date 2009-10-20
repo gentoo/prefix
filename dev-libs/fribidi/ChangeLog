@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/fribidi
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fribidi/ChangeLog,v 1.36 2009/09/23 17:19:23 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fribidi/ChangeLog,v 1.37 2009/10/12 16:36:38 armin76 Exp $
+
+  12 Oct 2009; Raúl Porcel <armin76@gentoo.org> fribidi-0.10.4.ebuild,
+  fribidi-0.10.7.ebuild:
+  sh stable
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org> fribidi-0.10.4.ebuild:
   Remove virtual/libc
