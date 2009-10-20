@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/videoproto/videoproto-2.3.0.ebuild,v 1.2 2009/09/30 19:46:18 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/videoproto/videoproto-2.3.0.ebuild,v 1.5 2009/10/11 10:48:43 nixnut Exp $
 
 inherit x-modular
 
