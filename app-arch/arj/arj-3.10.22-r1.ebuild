@@ -1,8 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/arj-3.10.22-r1.ebuild,v 1.10 2009/09/23 15:09:53 patrick Exp $
-
-WANT_AUTOCONF="latest"
+# $Header: /var/cvsroot/gentoo-x86/app-arch/arj/arj-3.10.22-r1.ebuild,v 1.11 2009/10/12 16:38:22 halcy0n Exp $
 
 inherit eutils toolchain-funcs autotools
 
