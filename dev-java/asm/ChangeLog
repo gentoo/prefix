@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/asm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/ChangeLog,v 1.61 2009/09/06 20:09:57 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/asm/ChangeLog,v 1.62 2009/10/15 15:05:10 volkmar Exp $
+
+  15 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> asm-2.2.3-r1.ebuild:
+  Stabilizing for ppc, bug 279870
 
   06 Sep 2009; Brent Baude <ranger@gentoo.org> asm-2.2.3-r1.ebuild:
   Marking asm-2.2.3-r1 ppc64 for bug 279870
