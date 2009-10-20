@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/camd/camd-2.2.0.ebuild,v 1.11 2009/05/17 13:07:48 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/camd/camd-2.2.0.ebuild,v 1.12 2009/10/12 20:02:23 jer Exp $
 
 inherit autotools eutils
 
@@ -18,7 +18,7 @@ DEPEND="sci-libs/ufconfig"
 S="${WORKDIR}/${MY_PN}"
 
 src_unpack() {
-	unpack "${A}"
+	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-autotools.patch
 	eautoreconf
