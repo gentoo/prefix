@@ -1,6 +1,11 @@
 # ChangeLog for x11-apps/xclock
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xclock/ChangeLog,v 1.41 2009/04/22 00:41:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xclock/ChangeLog,v 1.42 2009/10/03 11:31:35 scarabeus Exp $
+
+*xclock-1.0.4 (03 Oct 2009)
+
+  03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org> +xclock-1.0.4.ebuild:
+  Version bump.
 
   22 Apr 2009; Brent Baude <ranger@gentoo.org> xclock-1.0.3-r1.ebuild:
   Marking xclock-1.0.3-r1 ppc64 stable for bug 264982
