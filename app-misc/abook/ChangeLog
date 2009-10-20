@@ -1,6 +1,12 @@
 # ChangeLog for app-misc/abook
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/abook/ChangeLog,v 1.48 2007/07/21 21:08:54 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/abook/ChangeLog,v 1.49 2009/10/17 18:22:32 tove Exp $
+
+*abook-0.5.6-r1 (17 Oct 2009)
+
+  17 Oct 2009; Torsten Veller <tove@gentoo.org> +abook-0.5.6-r1.ebuild,
+  +files/0.5.6-01_editor.patch:
+  Patch to fix a segfault bug in editor (#287113). Thanks Arseny Solokha.
 
   21 Jul 2007; Fabian Groffen <grobian@gentoo.org> abook-0.5.6.ebuild:
   Dropped ppc-macos keyword, see you in prefix
