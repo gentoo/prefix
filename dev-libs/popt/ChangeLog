@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/popt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.70 2009/10/03 21:42:55 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.72 2009/10/16 13:50:30 ssuominen Exp $
+
+  16 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> metadata.xml:
+  Change from maintainer-needed to base-system (net-misc/rsync is
+  base-system).
+
+  16 Oct 2009; Jeroen Roovers <jer@gentoo.org> popt-1.14.ebuild:
+  Stable for HPPA (bug #286199).
 
   03 Oct 2009; Tiago Cunha <tcunha@gentoo.org> popt-1.14.ebuild:
   stable sparc, bug 286199
