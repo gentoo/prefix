@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/groovy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.33 2009/08/07 07:23:29 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.34 2009/10/15 13:58:32 elvanor Exp $
+
+*groovy-1.6.5 (15 Oct 2009)
+
+  15 Oct 2009; Jean-Noël Rivasseau <elvanor@gentoo.org>
+  +groovy-1.6.5.ebuild:
+  Version bump to 1.6.5.
 
   07 Aug 2009; Zac Medico <zmedico@gentoo.org> groovy-1.6.3.ebuild:
   Block older versions of groovy since they defined SLOT=1 and have file
