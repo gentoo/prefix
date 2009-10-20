@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Log-Log4perl/Log-Log4perl-1.24.ebuild,v 1.3 2009/09/18 18:27:43 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Log-Log4perl/Log-Log4perl-1.24.ebuild,v 1.4 2009/10/07 23:07:33 tcunha Exp $
 
 EAPI=2
 
