@@ -34,7 +34,4 @@
 		exist above libffi that handles type conversions for values passed
 		between the two languages.
 	</longdescription>
-	<use>
-		<flag name='static-libs'>Compile static archives</flag>
-	</use>
 </pkgmetadata>

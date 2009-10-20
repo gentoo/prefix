@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.8.ebuild,v 1.22 2009/10/14 10:03:48 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.9_rc1.ebuild,v 1.3 2009/10/14 10:03:48 ssuominen Exp $
 
 inherit autotools eutils
 
 DESCRIPTION="a portable, high level programming interface to various calling conventions."
 HOMEPAGE="http://sourceware.org/libffi"
-SRC_URI="ftp://sourceware.org/pub/${PN}/${P}.tar.gz"
+SRC_URI="ftp://sources.redhat.com/pub/${PN}/${P/_}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -17,12 +17,13 @@ RDEPEND=""
 DEPEND="!<dev-libs/g-wrap-1.9.11
 	test? ( dev-util/dejagnu )"
 
+S=${WORKDIR}/${P/_}
+
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-fbsd.patch \
-		"${FILESDIR}"/${P}-autoconf-2.64.patch
-	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${PN}-3.0.8-autoconf-2.64.patch
+	epatch "${FILESDIR}"/${PN}-3.0.8-interix.patch
 	eautoreconf
 }
 
@@ -36,5 +37,5 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die
-	dodoc ChangeLog* README TODO
+	dodoc ChangeLog* README
 }
