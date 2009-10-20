@@ -1,6 +1,13 @@
 # ChangeLog for media-gfx/tgif
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/ChangeLog,v 1.12 2009/03/13 22:52:01 bangert Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/ChangeLog,v 1.13 2009/10/05 21:14:37 vostorga Exp $
+
+*tgif-4.1.45-r1 (05 Oct 2009)
+
+  05 Oct 2009; Víctor Ostorga <vostorga@gentoo.org> +tgif-4.1.45-r1.ebuild,
+  +files/tgif-4.1.45-sym.patch:
+  Fixing instantiation files not copied into target directory, patch thanks
+  to Jiri Tyr <jiri.tyr@e-learning.tul.cz> bug 270387, respecting LDFLAGS
 
   13 Mar 2009; Thilo Bangert <bangert@gentoo.org> tgif-4.1.45.ebuild:
   add dep on netpbm - bug #259729
