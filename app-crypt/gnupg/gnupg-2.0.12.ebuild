@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.12.ebuild,v 1.1 2009/06/21 02:36:54 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.12.ebuild,v 1.2 2009/10/12 02:50:44 robbat2 Exp $
 
 EAPI="2"
 
@@ -110,4 +110,10 @@ pkg_postinst() {
 	elog "media-gfx/xloadimage, media-gfx/xli or any other viewer"
 	elog "Remember to use photo-viewer option in configuration file to activate"
 	elog "the right viewer"
+
+	ewarn "Please remember to restart gpg-agent if this if the agent"
+	ewarn "you are currently using. If you are unsure of the gpg "
+	ewarn "agent you are using please run \'killall gpg-agent\',"
+	ewarn "and to start a fresh daemon just run \'gpg-agent --daemon\'."
+
 }

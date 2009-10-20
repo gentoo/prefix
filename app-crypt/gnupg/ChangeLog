@@ -1,6 +1,21 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.352 2009/10/05 04:03:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.356 2009/10/18 17:46:30 nixnut Exp $
+
+  18 Oct 2009; nixnut <nixnut@gentoo.org> gnupg-1.4.10.ebuild:
+  ppc stable #287436
+
+  12 Oct 2009; Robin H. Johnson <robbat2@gentoo.org> gnupg-2.0.12.ebuild,
+  gnupg-2.0.13.ebuild:
+  Add warning to restart your agent per request from Anarchy. Using a new
+  gpg binary with an old agent will lead to failures complaining about
+  GETINFO being an unsupported command.
+
+  11 Oct 2009; Tobias Klausmann <klausman@gentoo.org> gnupg-1.4.10.ebuild:
+  Stable on alpha, bug #287436
+
+  05 Oct 2009; Markus Meier <maekke@gentoo.org> gnupg-1.4.10.ebuild:
+  amd64/x86 stable, bug #287436
 
   05 Oct 2009; Jeroen Roovers <jer@gentoo.org> gnupg-1.4.10.ebuild:
   Stable for HPPA (bug #287436).
