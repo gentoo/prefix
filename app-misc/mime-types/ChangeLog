@@ -1,6 +1,12 @@
 # ChangeLog for app-misc/mime-types
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mime-types/ChangeLog,v 1.67 2009/09/17 09:28:34 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mime-types/ChangeLog,v 1.68 2009/10/15 20:07:46 djc Exp $
+
+*mime-types-8 (15 Oct 2009)
+
+  15 Oct 2009; <djc@gentoo.org> +mime-types-8.ebuild:
+  Update mime.types from recent Debian and Apache versions (#190802,
+  #274143).
 
   17 Sep 2009; <djc@gentoo.org> metadata.xml:
   Add myself as a maintainer.
