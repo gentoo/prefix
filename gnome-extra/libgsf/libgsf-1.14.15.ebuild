@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.15.ebuild,v 1.2 2009/10/02 04:22:47 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.15.ebuild,v 1.4 2009/10/16 23:16:22 maekke Exp $
 
 inherit eutils gnome2 python multilib
 

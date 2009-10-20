@@ -1,6 +1,12 @@
 # ChangeLog for gnome-extra/libgsf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.140 2009/10/02 04:22:46 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.142 2009/10/16 23:16:22 maekke Exp $
+
+  16 Oct 2009; Markus Meier <maekke@gentoo.org> libgsf-1.14.15.ebuild:
+  x86 stable, bug #281427
+
+  08 Oct 2009; Olivier Crête <tester@gentoo.org> libgsf-1.14.15.ebuild:
+  Stable on amd64, bug #281427
 
   02 Oct 2009; Mart Raudsepp <leio@gentoo.org> -libgsf-1.14.12.ebuild,
   -libgsf-1.14.13.ebuild, -libgsf-1.14.14.ebuild, libgsf-1.14.15.ebuild:
