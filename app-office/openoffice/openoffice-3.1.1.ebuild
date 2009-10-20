@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.12 2009/10/04 12:38:36 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.13 2009/10/17 19:21:12 zmedico Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI="2"
@@ -91,7 +91,7 @@ COMMON_DEPEND="!app-office/openoffice-bin
 		dev-java/lucene-analyzers:2.3
 		dev-java/rhino:1.5 )
 	mono? ( || ( >dev-lang/mono-2.4-r1 <dev-lang/mono-2.4 ) )
-	nsplugin? ( || ( net-libs/xulrunner:1.8 net-libs/xulrunner:1.9 =www-client/seamonkey-1* )
+	nsplugin? ( || ( net-libs/xulrunner:1.9 net-libs/xulrunner:1.8 =www-client/seamonkey-1* )
 		>=dev-libs/nspr-4.6.6
 		>=dev-libs/nss-3.11-r1 )
 	opengl? ( virtual/opengl

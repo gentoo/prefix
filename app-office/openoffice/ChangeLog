@@ -1,6 +1,9 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.491 2009/10/04 12:44:06 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.492 2009/10/17 19:21:12 zmedico Exp $
+
+  17 Oct 2009; Zac Medico <zmedico@gentoo.org> openoffice-3.1.1.ebuild:
+  Prefer newer xulrunner:1.9 over xulrunner:1.8.
 
   04 Oct 2009; Andreas Proschofsky <suka@gentoo.org>
   -files/buildfix-gcc44.diff, -openoffice-3.1.0-r1.ebuild,
