@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.24.0-r2.ebuild,v 1.2 2009/10/03 18:22:18 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.24.0-r2.ebuild,v 1.5 2009/10/15 11:40:39 maekke Exp $
 
 EAPI=2
 inherit eutils autotools multilib python
