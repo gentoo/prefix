@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-1.0.0-r2.ebuild,v 1.6 2009/10/01 16:12:51 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/libpcap-1.0.0-r2.ebuild,v 1.9 2009/10/12 09:03:00 jer Exp $
 
 inherit autotools eutils multilib toolchain-funcs
 
