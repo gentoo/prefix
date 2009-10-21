@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/powertop-1.11.ebuild,v 1.2 2009/04/04 02:39:04 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/powertop-1.11.ebuild,v 1.3 2009/10/16 18:47:42 bangert Exp $
 
 inherit toolchain-funcs eutils
 
@@ -13,7 +13,8 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="unicode"
 
-DEPEND="sys-libs/ncurses"
+DEPEND="sys-libs/ncurses
+	sys-devel/gettext"
 RDEPEND="${DEPEND}"
 
 src_unpack() {

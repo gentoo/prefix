@@ -1,6 +1,10 @@
 # ChangeLog for sys-power/powertop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/ChangeLog,v 1.25 2009/04/04 02:39:04 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/powertop/ChangeLog,v 1.26 2009/10/16 18:47:42 bangert Exp $
+
+  16 Oct 2009; Thilo Bangert <bangert@gentoo.org> powertop-1.9.ebuild,
+  powertop-1.11.ebuild:
+  add missing dep on gettext
 
   04 Apr 2009; Gordon Malm <gengor@gentoo.org> powertop-1.7.ebuild,
   powertop-1.8.ebuild, powertop-1.9.ebuild, -powertop-1.10.ebuild,
