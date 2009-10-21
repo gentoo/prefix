@@ -23,6 +23,7 @@ app-admin/eselect
 app-portage/eix
 app-shells/bash-completion
 app-shells/tcsh
+dev-db/tokyocabinet
 dev-python/astng
 dev-python/beautifulsoup
 dev-python/buildutils
