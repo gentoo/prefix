@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/cairo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.229 2009/10/01 18:12:41 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/cairo/ChangeLog,v 1.230 2009/10/09 18:42:39 armin76 Exp $
+
+  09 Oct 2009; Raúl Porcel <armin76@gentoo.org> cairo-1.8.8.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #285154
 
   01 Oct 2009; Tobias Klausmann <klausman@gentoo.org> cairo-1.8.8.ebuild:
   Stable on alpha, bug #285154
