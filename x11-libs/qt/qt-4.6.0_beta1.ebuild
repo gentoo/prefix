@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.5.2.ebuild,v 1.4 2009/10/11 17:31:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/qt-4.6.0_beta1.ebuild,v 1.2 2009/10/16 19:43:50 wired Exp $
 
 EAPI=2
 DESCRIPTION="The Qt toolkit is a comprehensive C++ application development framework"
@@ -25,6 +25,7 @@ RDEPEND="~x11-libs/qt-core-${PV}
 	qt3support? ( ~x11-libs/qt-qt3support-${PV} )
 	~x11-libs/qt-webkit-${PV}
 	~x11-libs/qt-test-${PV}
+	~x11-libs/qt-multimedia-${PV}
 	~x11-libs/qt-assistant-${PV}"
 
 pkg_postinst() {
