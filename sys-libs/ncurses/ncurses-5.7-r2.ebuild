@@ -1,7 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7.ebuild,v 1.5 2009/04/29 22:17:49 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r2.ebuild,v 1.1 2009/10/11 07:30:28 vapier Exp $
 
+EAPI="1"
 inherit eutils flag-o-matic toolchain-funcs multilib
 
 MY_PV=${PV:0:3}
@@ -14,7 +15,7 @@ SRC_URI="mirror://gnu/ncurses/${MY_P}.tar.gz"
 LICENSE="MIT"
 SLOT="5"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="ada debug doc gpm minimal nocxx profile trace unicode"
+IUSE="ada +cxx debug doc gpm minimal profile trace unicode"
 
 DEPEND="gpm? ( sys-libs/gpm )"
 #	berkdb? ( sys-libs/db )"
@@ -28,6 +29,10 @@ src_unpack() {
 	cd "${S}"
 	[[ -n ${PV_SNAP} ]] && epatch "${WORKDIR}"/${MY_P}-${PV_SNAP}-patch.sh
 	epatch "${FILESDIR}"/${PN}-5.6-gfbsd.patch
+	epatch "${FILESDIR}"/${PN}-5.7-emacs.patch #270527
+	epatch "${FILESDIR}"/${PN}-5.7-nongnu.patch
+	epatch "${FILESDIR}"/${P}-hashdb-open.patch #245370
+
 	epatch "${FILESDIR}"/${PN}-5.7-mint.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
 	epatch "${FILESDIR}"/${PN}-5.6-interix.patch
@@ -41,39 +46,39 @@ src_unpack() {
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && {
+	unset TERMINFO #115036
+	tc-export BUILD_CC
+	export BUILD_CPPFLAGS+=" -D_GNU_SOURCE" #214642
+
+	if [[ ${CHOST} == *-interix* ]] ; then
 		export ac_cv_func_poll=no
 		export ac_cv_header_poll_h=no
-	}
-
-	tc-export BUILD_CC
-
-	# Protect the user from themselves #115036
-	unset TERMINFO
-
-	local myconf=""
-	use nocxx && myconf="${myconf} --without-cxx --without-cxx-binding"
-	use ada || myconf="${myconf} --without-ada"
-	
-	need-libtool && myconf="${myconf} --with-libtool"
-
-	# First we build the regular ncurses ...
-	mkdir "${WORKDIR}"/narrowc
-	cd "${WORKDIR}"/narrowc
-	do_compile ${myconf}
-
-	# Then we build the UTF-8 version
-	if use unicode ; then
-		mkdir "${WORKDIR}"/widec
-		cd "${WORKDIR}"/widec
-		do_compile ${myconf} --enable-widec --includedir="${EPREFIX}"/usr/include/ncursesw
 	fi
+
+	# when cross-compiling, we need to build up our own tic
+	# because people often don't keep matching host/target
+	# ncurses versions #249363
+	if tc-is-cross-compiler ; then
+		make_flags="-C progs tic"
+		CHOST=${CBUILD} \
+		CFLAGS=${BUILD_CFLAGS} \
+		CXXFLAGS=${BUILD_CXXFLAGS} \
+		CPPFLAGS=${BUILD_CPPFLAGS} \
+		LDFLAGS="${BUILD_LDFLAGS} -static" \
+		do_compile cross --without-shared
+	fi
+
+	make_flags=""
+	do_compile narrowc
+	use unicode && do_compile widec --enable-widec --includedir="${EPREFIX}"/usr/include/ncursesw
+
 }
 do_compile() {
 	ECONF_SOURCE=${S}
-	local myconf
 
-	[[ ${CHOST} == *-mint* ]] || myconf="--with-shared"
+	mkdir "${WORKDIR}"/$1
+	cd "${WORKDIR}"/$1
+	shift
 
 	# The chtype/mmask-t settings below are to retain ABI compat
 	# with ncurses-5.4 so dont change em !
@@ -85,6 +90,16 @@ do_compile() {
 		--without-pthread \
 		--without-reentrant \
 	"
+
+	local myconf=""
+	if need-libtool; then
+		myconf="${myconf} --with-libtool"
+	elif [[ ${CHOST} == *-mint* ]]; then
+		:
+	else
+		myconf="--with-shared"
+	fi
+
 	# We need the basic terminfo files in /etc, bug #37026.  We will
 	# add '--with-terminfo-dirs' and then populate /etc/terminfo in
 	# src_install() ...
@@ -95,6 +110,9 @@ do_compile() {
 		${myconf} \
 		--without-hashed-db \
 		--enable-overwrite \
+		$(use_with ada) \
+		$(use_with cxx) \
+		$(use_with cxx cxx-binding) \
 		$(use_with debug) \
 		$(use_with profile) \
 		$(use_with gpm) \
@@ -135,10 +153,13 @@ do_compile() {
 	# in parallel.  This is not really a perf hit since the source
 	# generation is quite small.  -vapier
 	emake -j1 sources || die "make sources failed"
-	emake || die "make failed"
+	emake ${make_flags} || die "make ${make_flags} failed"
 }
 
 src_install() {
+	# use the cross-compiled tic (if need be) #249363
+	export PATH=${WORKDIR}/cross/progs:${PATH}
+
 	# install unicode version second so that the binaries in /usr/bin
 	# support both wide and narrow
 	cd "${WORKDIR}"/narrowc
