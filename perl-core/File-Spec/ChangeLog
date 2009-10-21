@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/File-Spec
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Spec/ChangeLog,v 1.59 2009/05/11 10:46:37 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Spec/ChangeLog,v 1.60 2009/10/18 14:45:40 ranger Exp $
+
+  18 Oct 2009; Brent Baude <ranger@gentoo.org> File-Spec-3.27.01.ebuild:
+  Marking File-Spec-3.27.01 ppc64 for bug 285592
 
 *File-Spec-3.30 (11 May 2009)
 
