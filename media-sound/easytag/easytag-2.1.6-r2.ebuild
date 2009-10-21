@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/easytag-2.1.6-r2.ebuild,v 1.7 2009/08/31 19:37:07 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/easytag-2.1.6-r2.ebuild,v 1.8 2009/10/10 16:05:03 armin76 Exp $
 
 EAPI=2
 inherit eutils fdo-mime
