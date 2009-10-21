@@ -1,6 +1,24 @@
 # ChangeLog for x11-libs/qt-dbus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-dbus/ChangeLog,v 1.36 2009/10/04 10:24:04 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-dbus/ChangeLog,v 1.41 2009/10/16 19:53:44 wired Exp $
+
+  16 Oct 2009; Alex Alexander <wired@gentoo.org> qt-dbus-4.6.0_beta1.ebuild:
+  added keywords: ~alpha ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86-fbsd
+
+*qt-dbus-4.6.0_beta1 (16 Oct 2009)
+
+  16 Oct 2009; Alex Alexander <wired@gentoo.org>
+  +qt-dbus-4.6.0_beta1.ebuild:
+  added version 4.6.0_beta1
+
+  11 Oct 2009; Raúl Porcel <armin76@gentoo.org> qt-dbus-4.5.2.ebuild:
+  alpha/ia64/sparc stable wrt #286653
+
+  09 Oct 2009; Markus Meier <maekke@gentoo.org> qt-dbus-4.5.2.ebuild:
+  amd64/arm/x86 stable, bug #286653
+
+  07 Oct 2009; nixnut <nixnut@gentoo.org> qt-dbus-4.5.2.ebuild:
+  ppc stable #286653
 
 *qt-dbus-4.5.3 (04 Oct 2009)
 
