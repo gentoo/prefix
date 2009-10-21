@@ -44,7 +44,7 @@ index 6e63a5b..32cb5ea 100644
 +AR ?= ar
 +RANLIB ?= ranlib
 +CFLAGS ?= -O2
-+BUILD_CFLAGS ?= $(CFLAGS)
++BUILD_CFLAGS ?= -O2 -pipe
 +WARNINGS=-Wall -Wwrite-strings \
          -Wpointer-arith -Wcast-qual -Wcast-align \
          -Wstrict-prototypes -Wmissing-prototypes \

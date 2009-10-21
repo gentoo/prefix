@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/libcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.95 2009/08/31 00:20:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.96 2009/10/11 01:30:12 vapier Exp $
+
+  11 Oct 2009; Mike Frysinger <vapier@gentoo.org>
+  files/2.16/0001-build-system-fixes.patch:
+  Dont default BUILD_CFLAGS to CFLAGS #272479 by Markus Rathgeb.
 
 *libcap-2.17 (31 Aug 2009)
 
