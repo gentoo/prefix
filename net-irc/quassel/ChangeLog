@@ -1,6 +1,19 @@
 # ChangeLog for net-irc/quassel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.62 2009/10/02 18:57:29 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.65 2009/10/15 12:08:33 scarabeus Exp $
+
+  15 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -quassel-0.5_rc2.ebuild, quassel-0.5.0.ebuild:
+  Drop old. Update linguas in 0.5.
+
+*quassel-0.5.0 (14 Oct 2009)
+
+  14 Oct 2009; Patrick Lauer <patrick@gentoo.org> +quassel-0.5.0.ebuild:
+  Bump to 0.5.0, makes upstream happy
+
+  12 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> quassel-0.5_rc2.ebuild:
+  Keywording for ppc, bug 272760
+  Tested by Christian Schmitt.
 
   02 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   quassel-0.5_rc2.ebuild, -files/quassel-0.5_rc1-identity.cpp.patch:
