@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/virtual/postgresql-base/postgresql-base-8.2.ebuild,v 1.1 2008/04/15 09:41:07 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/postgresql-base/postgresql-base-8.2.ebuild,v 1.2 2009/10/11 09:00:42 patrick Exp $
 
 EAPI=1
 
@@ -13,4 +13,4 @@ SLOT="${PV}"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE=""
 
-RDEPEND="|| ( =dev-db/libpq-${PV}* dev-db/postgresql-base:${SLOT} )"
+RDEPEND="|| ( dev-db/postgresql-base:${SLOT} =dev-db/libpq-${PV}* )"
