@@ -3,7 +3,4 @@
 <pkgmetadata>
 	<herd>gnome</herd>
 	<herd>sound</herd>
-	<use>
-		<flag name='static-libs'>Compile static archives</flag>
-	</use>
 </pkgmetadata>
