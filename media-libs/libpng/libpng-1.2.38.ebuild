@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.38.ebuild,v 1.8 2009/09/30 16:48:40 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.38.ebuild,v 1.9 2009/10/08 17:42:59 armin76 Exp $
 
 inherit autotools multilib eutils
 
