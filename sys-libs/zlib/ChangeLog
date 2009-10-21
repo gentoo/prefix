@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/zlib
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.70 2008/05/02 04:13:33 vapier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.71 2009/10/10 17:01:04 vapier Exp $
+
+  10 Oct 2009; Mike Frysinger <vapier@gentoo.org> zlib-1.2.3-r1.ebuild,
+  +files/zlib-1.2.3-mingw-implib.patch:
+  Improve zlib build & install for mingw #288212 by spadix.
 
   02 May 2008; Mike Frysinger <vapier@gentoo.org>
   +files/zlib-1.2.3-build.patch, zlib-1.2.3-r1.ebuild:
