@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/libXft
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXft/ChangeLog,v 1.53 2009/06/23 21:24:58 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXft/ChangeLog,v 1.55 2009/10/12 00:07:57 remi Exp $
+
+*libXft-2.1.14 (12 Oct 2009)
+
+  12 Oct 2009; Rémi Cardona <remi@gentoo.org> +libXft-2.1.14.ebuild:
+  bump to 2.1.14, sync with overlay
+
+  11 Oct 2009; Rémi Cardona <remi@gentoo.org> -libXft-2.1.12.ebuild:
+  drop old ebuilds
 
   23 Jun 2009; Tobias Klausmann <klausman@gentoo.org> libXft-2.1.13.ebuild:
   Stable on alpha for xorg-server-1.5/xorg-x11-7.4
