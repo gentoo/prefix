@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.177 2009/10/04 21:50:17 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.178 2009/10/14 21:52:52 chainsaw Exp $
+
+  14 Oct 2009; <chainsaw@gentoo.org> -audacious-1.5.1.ebuild,
+  -audacious-2.0.1.ebuild, -audacious-2.1_beta1.ebuild,
+  -audacious-2.2_alpha1.ebuild:
+  Spring cleaning. One more arch keyword and 1.5.1-r1 can go too.
 
 *audacious-2.2_alpha2 (04 Oct 2009)
 
