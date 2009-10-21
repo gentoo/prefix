@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.24.5-r1.ebuild,v 1.8 2009/10/03 13:05:02 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.24.5-r1.ebuild,v 1.9 2009/10/08 21:51:20 maekke Exp $
 
 EAPI="2"
 GCONF_DEBUG="yes"
