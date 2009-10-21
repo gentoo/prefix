@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-1.9.563.ebuild,v 1.1 2009/09/27 17:03:52 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-1.9.563.ebuild,v 1.2 2009/10/15 08:18:07 maekke Exp $
 
 EAPI=2
 inherit cmake-utils
