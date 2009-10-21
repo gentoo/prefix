@@ -1,13 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.6.ebuild,v 1.6 2009/10/11 11:04:55 nixnut Exp $
-
-# Must be before x-modular eclass is inherited
-SNAPSHOT="yes"
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.7.ebuild,v 1.1 2009/10/14 12:29:33 remi Exp $
 
 inherit x-modular flag-o-matic
 
 DESCRIPTION="X.Org Xt library"
+
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE=""
 
@@ -18,8 +16,6 @@ RDEPEND="x11-libs/libX11
 	x11-proto/kbproto"
 DEPEND="${RDEPEND}"
 
-# patch is in git master and macros are only needed if SNAPSHOT is set to "yes"
-DEPEND="${DEPEND} >=x11-misc/util-macros-1.2"
 PATCHES=(
 	"${FILESDIR}/libXt-1.0.6-cross.patch"
 	"${FILESDIR}/libXt-1.0.6-winnt.patch"

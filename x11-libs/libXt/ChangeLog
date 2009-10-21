@@ -1,6 +1,20 @@
 # ChangeLog for x11-libs/libXt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.55 2009/09/30 20:02:02 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.59 2009/10/14 12:29:33 remi Exp $
+
+*libXt-1.0.7 (14 Oct 2009)
+
+  14 Oct 2009; Rémi Cardona <remi@gentoo.org> +libXt-1.0.7.ebuild:
+  bump to 1.0.7, sync with overlay
+
+  11 Oct 2009; nixnut <nixnut@gentoo.org> libXt-1.0.6.ebuild:
+  ppc stable #282290
+
+  09 Oct 2009; Markus Meier <maekke@gentoo.org> libXt-1.0.6.ebuild:
+  arm stable, bug #282290
+
+  05 Oct 2009; Christian Faulhammer <fauli@gentoo.org> libXt-1.0.6.ebuild:
+  x86 stable, bug 282290
 
   30 Sep 2009; Samuli Suominen <ssuominen@gentoo.org> libXt-1.0.6.ebuild:
   amd64 stable wrt #282290
