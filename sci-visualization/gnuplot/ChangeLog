@@ -1,6 +1,14 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.122 2009/10/02 00:27:47 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.124 2009/10/16 13:50:15 fauli Exp $
+
+  16 Oct 2009; Christian Faulhammer <fauli@gentoo.org> gnuplot-4.2.6.ebuild:
+  stable x86, bug 288967
+
+  13 Oct 2009; Ulrich Mueller <ulm@gentoo.org> gnuplot-4.2.6.ebuild,
+  metadata.xml:
+  Enable gd USE flag by default. Add description for the gd flag to metadata.
+  Requested by Jeremy Olexa <darkside@gentoo.org>.
 
   02 Oct 2009; Ulrich Mueller <ulm@gentoo.org>
   -files/gnuplot-4.2.0-libggi.patch, -gnuplot-4.2.3-r2.ebuild,

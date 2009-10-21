@@ -5,4 +5,8 @@
 <maintainer>
   <email>ulm@gentoo.org</email>
 </maintainer>
+<use>
+  <flag name='gd'>Add support for <pkg>media-libs/gd</pkg>.
+    Needed for GIF, JPEG, and PNG image output.</flag>
+</use>
 </pkgmetadata>
