@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/libffi/libffi-0.ebuild,v 1.19 2009/10/03 16:32:13 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/libffi/libffi-0.ebuild,v 1.20 2009/10/05 19:21:52 ssuominen Exp $
 
 DESCRIPTION="Virtual for dev-libs/libffi"
 HOMEPAGE="http://www.gentoo.org"
