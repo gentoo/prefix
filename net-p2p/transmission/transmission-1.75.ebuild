@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.75.ebuild,v 1.3 2009/09/29 08:45:04 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.75.ebuild,v 1.4 2009/10/18 19:32:42 ssuominen Exp $
 
 EAPI=2
 inherit autotools eutils fdo-mime gnome2-utils qt4
@@ -27,7 +27,7 @@ RDEPEND=">=dev-libs/libevent-1.4.11
 DEPEND="${RDEPEND}
 	>=sys-devel/libtool-2.2
 	sys-devel/gettext
-	dev-util/intltool
+	>=dev-util/intltool-0.40
 	dev-util/pkgconfig
 	sys-apps/sed"
 
