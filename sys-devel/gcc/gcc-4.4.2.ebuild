@@ -124,6 +124,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
 	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
 
+	# libgcc's Makefiles reuses $T, work around that :(
+	epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-T-namespace.patch
+
 	# try /usr/lib31 in 32bit profile on x86_64-linux (needs --enable-multilib),
 	# but this does make sense in prefix only.
 	use prefix && epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
