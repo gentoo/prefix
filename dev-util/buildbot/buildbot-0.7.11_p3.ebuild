@@ -15,7 +15,7 @@ HOMEPAGE="http://buildbot.net/"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris"
 IUSE="doc irc mail manhole test"
 
 CDEPEND=">=dev-python/twisted-2.0.1"
