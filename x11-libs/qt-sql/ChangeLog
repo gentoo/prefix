@@ -1,6 +1,23 @@
 # ChangeLog for x11-libs/qt-sql
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.49 2009/10/04 10:21:28 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/ChangeLog,v 1.54 2009/10/16 19:51:28 wired Exp $
+
+  16 Oct 2009; Alex Alexander <wired@gentoo.org> qt-sql-4.6.0_beta1.ebuild:
+  added keywords: ~alpha ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86-fbsd
+
+*qt-sql-4.6.0_beta1 (16 Oct 2009)
+
+  16 Oct 2009; Alex Alexander <wired@gentoo.org> +qt-sql-4.6.0_beta1.ebuild:
+  added version 4.6.0_beta1
+
+  11 Oct 2009; Raúl Porcel <armin76@gentoo.org> qt-sql-4.5.2.ebuild:
+  alpha/ia64/sparc stable wrt #286653
+
+  09 Oct 2009; Markus Meier <maekke@gentoo.org> qt-sql-4.5.2.ebuild:
+  amd64/arm/x86 stable, bug #286653
+
+  07 Oct 2009; nixnut <nixnut@gentoo.org> qt-sql-4.5.2.ebuild:
+  ppc stable #286653
 
 *qt-sql-4.5.3 (04 Oct 2009)
 
