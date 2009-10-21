@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.4.ebuild,v 1.6 2009/10/09 19:59:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.5.ebuild,v 1.1 2009/10/11 22:28:17 robbat2 Exp $
 
 EAPI=2
 
@@ -18,22 +18,23 @@ if [ "$PV" != "9999" ]; then
 	SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 			mirror://kernel/software/scm/git/${PN}-manpages-${DOC_VER}.tar.bz2
 			doc? ( mirror://kernel/software/scm/git/${PN}-htmldocs-${DOC_VER}.tar.bz2 )"
+	KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
 else
 	SRC_URI=""
 	EGIT_BRANCH="master"
 	EGIT_REPO_URI="git://git.kernel.org/pub/scm/git/git.git"
 	# EGIT_REPO_URI="http://www.kernel.org/pub/scm/git/git.git"
+	KEYWORDS=""
 fi
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd cvs subversion"
+IUSE="+blksha1 +curl cgi +doc emacs gtk iconv +perl ppcsha1 tk +threads +webdav xinetd cvs subversion"
 
 # Common to both DEPEND and RDEPEND
 CDEPEND="
 	!app-misc/git
-	dev-libs/openssl
+	!blksha1? ( dev-libs/openssl )
 	sys-libs/zlib
 	app-arch/cpio
 	perl?   ( dev-lang/perl )
@@ -94,8 +95,8 @@ pkg_setup() {
 exportmakeopts() {
 	local myopts="lib=$(get_libdir)"
 
-	if use mozsha1 ; then
-		myopts="${myopts} MOZILLA_SHA1=YesPlease"
+	if use blksha1 ; then
+		myopts="${myopts} BLK_SHA1=YesPlease"
 	elif use ppcsha1 ; then
 		myopts="${myopts} PPC_SHA1=YesPlease"
 	fi
@@ -145,7 +146,13 @@ exportmakeopts() {
 		myopts="${myopts} NO_STRTOULL=YesPlease"
 		myopts="${myopts} NO_INET_NTOP=YesPlease"
 		myopts="${myopts} NO_INET_PTON=YesPlease"
+		myopts="${myopts} NO_NSEC=YesPlease"
+		myopts="${myopts} NO_MKSTEMPS=YesPlease"
 	fi
+
+	has_version '>=app-text/asciidoc-8.0' \
+		&& myopts="${myopts} ASCIIDOC8=YesPlease"
+	myopts="${myopts} ASCIIDOC_NO_ROFF=YesPlease"
 
 	export MY_MAKEOPTS="${myopts}"
 }
@@ -189,6 +196,8 @@ src_prepare() {
 	# Fix docbook2texi command
 	sed -i 's/DOCBOOK2X_TEXI=docbook2x-texi/DOCBOOK2X_TEXI=docbook2texi.pl/' \
 		Documentation/Makefile || die "sed failed"
+	
+	epatch "${FILESDIR}"/${PN}-1.6.5-interix.patch
 }
 
 git_emake() {
@@ -222,10 +231,14 @@ src_compile() {
 			|| die "emake gitweb/gitweb.cgi failed"
 	fi
 
-	if [[ "$PV" == "9999" ]] && use doc; then
-		cd Documentation
-		git_emake man info html \
-			|| die "emake man html info failed"
+	cd "${S}"/Documentation
+	if [[ "$PV" == "9999" ]] ; then
+		git_emake man \
+			|| die "emake man failed"
+		if use doc ; then
+			git_emake info html \
+				|| die "emake info html failed"
+		fi
 	fi
 }
 
@@ -244,6 +257,8 @@ src_install() {
 		use doc && dohtml -p ${d} Documentation${d}*.html
 	done
 	docinto /
+	# Upstream does not ship this pre-built :-(
+	[[ "$PV" == "9999" ]] && use doc && doinfo Documentation/{git,gitman}.info
 
 	dobashcompletion contrib/completion/git-completion.bash ${PN}
 

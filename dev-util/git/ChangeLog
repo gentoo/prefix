@@ -1,6 +1,35 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.366 2009/10/02 17:11:01 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.372 2009/10/18 02:02:09 robbat2 Exp $
+
+*git-1.6.5.1 (18 Oct 2009)
+
+  18 Oct 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.5.1.ebuild:
+  Version bump
+
+  12 Oct 2009; Raúl Porcel <armin76@gentoo.org> git-1.6.4.4.ebuild:
+  ia64/s390/sh/sparc stable wrt #287031
+
+*git-1.6.5 (11 Oct 2009)
+
+  11 Oct 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.5.ebuild,
+  git-9999.ebuild:
+  Version bump. Bug #287101: fix manpage formatting. Bug #287104: build
+  manpages as needed.
+
+  11 Oct 2009; Tobias Klausmann <klausman@gentoo.org> git-1.6.4.4.ebuild:
+  Stable on alpha, bug #287031
+
+  09 Oct 2009; Markus Meier <maekke@gentoo.org> git-1.6.4.4.ebuild:
+  arm/x86 stable, bug #287031
+
+  09 Oct 2009; Markus Meier <maekke@gentoo.org> git-1.6.3.1.ebuild,
+  git-1.6.3.3.ebuild, git-1.6.3.4.ebuild, git-1.6.4.ebuild,
+  git-1.6.4.1.ebuild, git-1.6.4.2.ebuild, git-1.6.4.3.ebuild,
+  git-1.6.4.4.ebuild, git-1.6.5_rc1.ebuild, git-1.6.5_rc2.ebuild,
+  git-9999.ebuild:
+  fix dev-util/cvs detection in src_test due to built_with_use change for
+  non-existant package
 
   02 Oct 2009; Joseph Jezak <josejx@gentoo.org> git-1.6.4.4.ebuild:
   Marked ppc/ppc64 stable for bug #287031.
