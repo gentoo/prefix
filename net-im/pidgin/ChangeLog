@@ -1,6 +1,20 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.134 2009/09/26 19:07:32 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.138 2009/10/19 01:02:20 fauli Exp $
+
+  19 Oct 2009; Christian Faulhammer <fauli@gentoo.org> pidgin-2.6.3.ebuild:
+  stable x86, bug 289298
+
+  18 Oct 2009; Jeroen Roovers <jer@gentoo.org> pidgin-2.6.3.ebuild:
+  Stable for HPPA (bug #289298).
+
+  18 Oct 2009; Tobias Klausmann <klausman@gentoo.org> pidgin-2.6.3.ebuild:
+  Stable on alpha, bug #289298
+
+*pidgin-2.6.3 (16 Oct 2009)
+
+  16 Oct 2009; Olivier Crête <tester@gentoo.org> +pidgin-2.6.3.ebuild:
+  Version bump, bug #289298
 
   24 Sep 2009; Mounir Lamouri <volkmar@gentoo.org> pidgin-2.5.9-r1.ebuild:
   Stable for ppc. Bug 283324
