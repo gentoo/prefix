@@ -1,6 +1,25 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.239 2009/09/12 21:45:49 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.242 2009/10/10 19:24:40 pva Exp $
+
+*freetype-2.3.11 (10 Oct 2009)
+
+  10 Oct 2009; Peter Volkov <pva@gentoo.org> -freetype-2.3.10-r1.ebuild,
+  -files/freetype-2.3.10-nprops-truncation.patch, +freetype-2.3.11.ebuild:
+  Version bump and dropped identical freetype-2.3.10-r1.
+
+*freetype-2.3.10-r1 (10 Oct 2009)
+
+  10 Oct 2009; Peter Volkov <pva@gentoo.org> -freetype-2.3.10.ebuild,
+  +freetype-2.3.10-r1.ebuild,
+  +files/freetype-2.3.10-nprops-truncation.patch:
+  Fixed PCF fonts regression, bug #288256, thank Martin von Gagern for
+  bisecting and other guys for report.
+
+*freetype-2.3.10 (08 Oct 2009)
+
+  08 Oct 2009; Peter Volkov <pva@gentoo.org> +freetype-2.3.10.ebuild:
+  Version bump.
 
   12 Sep 2009; Ryan Hill <dirtyepic@gentoo.org>
   -freetype-1.4_pre20080316-r1.ebuild, -freetype-2.3.7.ebuild,

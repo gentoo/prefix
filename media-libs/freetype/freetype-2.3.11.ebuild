@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.7.ebuild,v 1.8 2008/08/20 17:26:51 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.11.ebuild,v 1.1 2009/10/10 19:24:40 pva Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -12,12 +12,13 @@ SRC_URI="mirror://sourceforge/freetype/${P/_/}.tar.bz2
 
 LICENSE="FTL GPL-2"
 SLOT="2"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="X bindist debug doc utils"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+IUSE="X bindist debug doc utils fontforge"
 
-DEPEND="X?	( x11-libs/libX11
-			  x11-libs/libXau
-			  x11-libs/libXdmcp )"
+DEPEND="sys-libs/zlib
+	X?	( x11-libs/libX11
+		  x11-libs/libXau
+		  x11-libs/libXdmcp )"
 
 # We also need a recent fontconfig version to prevent segfaults. #166029
 # July 3 2007 dirtyepic
@@ -78,7 +79,7 @@ src_compile() {
 	append-flags -fno-strict-aliasing
 
 	type -P gmake &> /dev/null && export GNUMAKE=gmake
-	econf || die "econf failed"
+	econf
 	emake || die "emake failed"
 
 	if use utils; then
@@ -102,12 +103,18 @@ src_install() {
 				"${ED}"/usr/bin
 		done
 	fi
+	# Probably fontforge needs less but this way makes things simplier...
+	if use fontforge; then
+		einfo "Installing internal headers required for fontforge"
+		find src/truetype include/freetype/internal -name '*.h' | \
+		while read header; do
+			mkdir -p "${ED}/usr/include/freetype2/internal4fontforge/$(dirname ${header})"
+			cp ${header} "${ED}/usr/include/freetype2/internal4fontforge/$(dirname ${header})"
+		done
+	fi
 }
 
 pkg_postinst() {
-	echo
-	ewarn "After upgrading to freetype-2.3.5, it is necessary to rebuild"
-	ewarn "libXfont to avoid build errors in some packages."
 	echo
 	elog "The utilities and demos previously bundled with freetype are now"
 	elog "optional.  Enable the utils USE flag if you would like them"
