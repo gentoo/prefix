@@ -121,7 +121,6 @@ src_unpack() {
 	sed -i -e 's:-DG_DISABLE_DEPRECATED:$(NULL):g' \
 		programs/Makefile.am programs/Makefile.in
 
-	epatch "${FILESDIR}"/${PN}-2.22.0-inotify-glibc2.4.patch
 	epatch "${FILESDIR}"/${PN}-2.22.0-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.22.0-interix6.patch
 	# this patch would break other interix versions where this is fixed.
