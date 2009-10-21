@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.130 2009/10/05 02:10:23 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.132 2009/10/16 22:08:03 maekke Exp $
+
+  16 Oct 2009; Markus Meier <maekke@gentoo.org> libxklavier-4.0.ebuild:
+  x86 stable, bug #281427
+
+  08 Oct 2009; Olivier Crête <tester@gentoo.org> libxklavier-4.0.ebuild:
+  Stable on amd64, bug #281427
 
   05 Oct 2009; Mart Raudsepp <leio@gentoo.org> libxklavier-4.0.ebuild:
   QA: Remove excessive preserve_old_lib on symlink target that is not
