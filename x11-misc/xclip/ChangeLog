@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xclip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xclip/ChangeLog,v 1.32 2009/10/03 13:32:03 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xclip/ChangeLog,v 1.33 2009/10/18 12:41:05 ssuominen Exp $
+
+  18 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> xclip-0.12.ebuild:
+  amd64 stable wrt #289200
 
 *xclip-0.12 (03 Oct 2009)
 
