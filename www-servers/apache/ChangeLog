@@ -1,6 +1,16 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.118 2009/09/20 08:37:34 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.120 2009/10/08 17:58:27 hollow Exp $
+
+*apache-2.2.14-r1 (08 Oct 2009)
+
+  08 Oct 2009; Benedikt Böhm <hollow@gentoo.org> +apache-2.2.14-r1.ebuild:
+  update peruser patch to 0.4.0b1
+
+*apache-2.2.14 (06 Oct 2009)
+
+  06 Oct 2009; Benedikt Böhm <hollow@gentoo.org> +apache-2.2.14.ebuild:
+  version bump wrt #283729
 
 *apache-2.2.13-r1 (20 Sep 2009)
 
