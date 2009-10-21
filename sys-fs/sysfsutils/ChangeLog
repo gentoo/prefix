@@ -1,6 +1,9 @@
 # ChangeLog for sys-fs/sysfsutils
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/sysfsutils/ChangeLog,v 1.48 2007/12/16 12:34:09 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/sysfsutils/ChangeLog,v 1.49 2009/10/11 18:02:08 vapier Exp $
+
+  11 Oct 2009; Mike Frysinger <vapier@gentoo.org> sysfsutils-2.1.0.ebuild:
+  Use epunt_cxx #288544 by Michał Masłowski and gen_usr_ldscript -a.
 
   16 Dec 2007; Raúl Porcel <armin76@gentoo.org> sysfsutils-2.1.0.ebuild:
   alpha/ia64/sparc stable wrt #202080
