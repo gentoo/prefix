@@ -1,0 +1,32 @@
+http://article.gmane.org/gmane.comp.gnu.gzip.bugs/262/
+
+diff -ur gzip-1.3.13/lib/getopt.in.h gzip-1.3.13-new/lib/getopt.in.h
+--- gzip-1.3.13/lib/getopt.in.h	2009-09-30 13:05:19 +0200
++++ gzip-1.3.13-new/lib/getopt.in.h	2009-10-21 15:53:09 +0200
+@@ -22,9 +22,13 @@
+ @PRAGMA_SYSTEM_HEADER@
+ #endif
+ 
+-/* The include_next requires a split double-inclusion guard.  */
++/* The include_next requires a split double-inclusion guard.  We must
++   also inform the replacement unistd.h to not recursively use
++   <getopt.h>; our definitions will be present soon enough.  */
+ #if @HAVE_GETOPT_H@
++# define _GL_SYSTEM_GETOPT
+ # @INCLUDE_NEXT@ @NEXT_GETOPT_H@
++# undef _GL_SYSTEM_GETOPT
+ #endif
+ 
+ #ifndef _GL_GETOPT_H
+diff -ur gzip-1.3.13/lib/unistd.in.h gzip-1.3.13-new/lib/unistd.in.h
+--- gzip-1.3.13/lib/unistd.in.h	2009-09-30 12:54:20 +0200
++++ gzip-1.3.13-new/lib/unistd.in.h	2009-10-21 15:53:28 +0200
+@@ -51,7 +51,7 @@
+ #endif
+ 
+ /* Get getopt(), optarg, optind, opterr, optopt.  */
+-#if @GNULIB_UNISTD_H_GETOPT@
++#if @GNULIB_UNISTD_H_GETOPT@ && !defined _GL_SYSTEM_GETOPT
+ # include <getopt.h>
+ #endif
+ 

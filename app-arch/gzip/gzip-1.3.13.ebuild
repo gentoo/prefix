@@ -27,6 +27,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.3.8-install-symlinks.patch
 
 	epatch "${FILESDIR}"/${PN}-1.3.12-mint.patch
+	epatch "${FILESDIR}"/${PN}-1.3.13-darwin.patch
 	epatch "${FILESDIR}"/${PN}-1.3.12-prefix.patch
 	eprefixify \
 		g{unzip,zexe}.in \
