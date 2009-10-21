@@ -1,9 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/libXfont-1.4.0.ebuild,v 1.8 2009/10/11 10:56:14 nixnut Exp $
-
-# Must be before x-modular eclass is inherited
-# SNAPSHOT="yes"
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/libXfont-1.4.1.ebuild,v 1.1 2009/10/11 23:53:57 remi Exp $
 
 inherit x-modular flag-o-matic
 
@@ -21,13 +18,10 @@ RDEPEND="x11-libs/xtrans
 	app-arch/bzip2"
 DEPEND="${RDEPEND}"
 
-#PATCHES=(
-#	"${FILESDIR}"/${PN}-1.3.4-winnt.patch
-#)
-
 pkg_setup() {
 	CONFIGURE_OPTIONS="$(use_enable ipv6)
 		--with-bzip2
+		--disable-devel-docs
 		--with-encodingsdir=${EPREFIX}/usr/share/fonts/encodings"
 
 	# No such function yet
