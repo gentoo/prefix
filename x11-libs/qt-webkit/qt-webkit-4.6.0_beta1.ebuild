@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/qt-webkit-4.5.2-r1.ebuild,v 1.4 2009/10/11 17:14:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/qt-webkit-4.6.0_beta1.ebuild,v 1.2 2009/10/16 19:51:55 wired Exp $
 
 EAPI="2"
-inherit qt4-build flag-o-matic
+inherit qt4-build
 
 DESCRIPTION="The Webkit module for the Qt toolkit"
 SLOT="4"
@@ -26,14 +26,13 @@ QCONFIG_DEFINE="QT_WEBKIT"
 
 src_prepare() {
 	[[ $(tc-arch) == "ppc64" ]] && append-flags -mminimal-toc #241900
+	if use sparc; then
+		epatch "${FILESDIR}"/sparc-qt-webkit-sigbus.patch
+	fi
 	qt4-build_src_prepare
-	# Security patch from upstream, bug 281821
-	epatch "${FILESDIR}"/webkit-CVE-2009-1725.patch
 }
 
 src_configure() {
-	# This fixes relocation overflows on alpha
-	use alpha && append-ldflags "-Wl,--no-relax"
 	myconf="${myconf} -webkit"
 	qt4-build_src_configure
 }

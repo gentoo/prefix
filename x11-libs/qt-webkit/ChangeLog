@@ -1,6 +1,25 @@
 # ChangeLog for x11-libs/qt-webkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.52 2009/10/04 10:21:59 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.57 2009/10/16 19:51:55 wired Exp $
+
+  16 Oct 2009; Alex Alexander <wired@gentoo.org>
+  qt-webkit-4.6.0_beta1.ebuild:
+  added keywords: ~alpha ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 -sparc ~x86-fbsd
+
+*qt-webkit-4.6.0_beta1 (16 Oct 2009)
+
+  16 Oct 2009; Alex Alexander <wired@gentoo.org>
+  +qt-webkit-4.6.0_beta1.ebuild, +files/sparc-qt-webkit-sigbus.patch:
+  added version 4.6.0_beta1
+
+  11 Oct 2009; Raúl Porcel <armin76@gentoo.org> qt-webkit-4.5.2-r1.ebuild:
+  alpha/ia64 stable wrt #286653
+
+  09 Oct 2009; Markus Meier <maekke@gentoo.org> qt-webkit-4.5.2-r1.ebuild:
+  amd64/arm/x86 stable, bug #286653
+
+  07 Oct 2009; nixnut <nixnut@gentoo.org> qt-webkit-4.5.2-r1.ebuild:
+  ppc stable #286653
 
 *qt-webkit-4.5.3 (04 Oct 2009)
 
