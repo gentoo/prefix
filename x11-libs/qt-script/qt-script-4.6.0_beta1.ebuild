@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/qt-script-4.5.2.ebuild,v 1.4 2009/10/11 17:03:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/qt-script-4.6.0_beta1.ebuild,v 1.2 2009/10/16 19:51:01 wired Exp $
 
 EAPI=2
 inherit qt4-build
@@ -18,14 +18,12 @@ QT4_EXTRACT_DIRECTORIES="${QT4_TARGET_DIRECTORIES}
 include/Qt/
 include/QtCore/
 include/QtScript/
-src/corelib/"
-
-PATCHES=(
-	"${FILESDIR}/qt-4.5-nolibx11.diff"
-)
+src/corelib/
+src/3rdparty/javascriptcore/
+"
 
 src_configure() {
-	myconf="${myconf} $(qt_use iconv) -no-xkb  -no-fontconfig -no-xrender -no-xrandr
+	myconf="${myconf} $(qt_use iconv) -script -no-xkb  -no-fontconfig -no-xrender -no-xrandr
 		-no-xfixes -no-xcursor -no-xinerama -no-xshape -no-sm -no-opengl
 		-no-nas-sound -no-dbus -no-cups -no-nis -no-gif -no-libpng
 		-no-libmng -no-libjpeg -no-openssl -system-zlib -no-webkit -no-phonon
