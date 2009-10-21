@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libXfixes
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfixes/ChangeLog,v 1.45 2008/01/31 04:23:06 dberkholz Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfixes/ChangeLog,v 1.46 2009/10/11 23:27:10 remi Exp $
+
+*libXfixes-4.0.4 (11 Oct 2009)
+
+  11 Oct 2009; Rémi Cardona <remi@gentoo.org> +libXfixes-4.0.4.ebuild:
+  bump to 4.0.4, sync with overlay
 
   31 Jan 2008; Donnie Berkholz <dberkholz@gentoo.org>;
   -libXfixes-4.0.1.ebuild:
