@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/schroedinger-1.0.5.ebuild,v 1.18 2009/08/16 12:52:20 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/schroedinger-1.0.5.ebuild,v 1.19 2009/10/05 10:56:10 ssuominen Exp $
 
 DESCRIPTION="C-based libraries and GStreamer plugins for the Dirac video codec"
 HOMEPAGE="http://www.diracvideo.org"
@@ -16,6 +16,7 @@ RDEPEND=">=dev-libs/liboil-0.3.15
 # Doesn't seem to build as of 1.0.5
 #	opengl? ( virtual/opengl )"
 DEPEND="${RDEPEND}
+	!media-plugins/gst-plugins-schroedinger
 	dev-util/pkgconfig"
 
 src_compile() {

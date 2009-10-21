@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/schroedinger-1.0.7.ebuild,v 1.7 2009/10/02 22:25:56 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/schroedinger-1.0.7.ebuild,v 1.9 2009/10/18 19:04:03 armin76 Exp $
 
 inherit libtool
 
@@ -19,6 +19,7 @@ RDEPEND=">=dev-libs/liboil-0.3.16
 # Doesn't seem to build as of 1.0.5
 #	opengl? ( virtual/opengl )"
 DEPEND="${RDEPEND}
+	!media-plugins/gst-plugins-schroedinger
 	dev-util/pkgconfig"
 
 src_unpack() {
