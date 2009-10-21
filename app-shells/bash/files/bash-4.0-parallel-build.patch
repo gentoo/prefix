@@ -18,3 +18,20 @@ patch by Peter Alfredsen
  test.o: general.h xmalloc.h bashtypes.h variables.h arrayfunc.h conftypes.h array.h hashlib.h
  test.o: quit.h ${BASHINCDIR}/maxpath.h unwind_prot.h dispose_cmd.h
  test.o: make_cmd.h subst.h sig.h pathnames.h externs.h test.h
+
+http://bugs.gentoo.org/284633
+
+and another ...
+
+--- bash-4.0/lib/sh/Makefile.in
++++ bash-4.0/lib/sh/Makefile.in
+@@ -136,6 +136,9 @@
+ ${BUILD_DIR}/version.h: ${BUILD_DIR}/config.h ${BUILD_DIR}/Makefile Makefile
+ 	-( cd ${BUILD_DIR} && ${MAKE} ${MFLAGS} version.h )
+ 
++${BUILD_DIR}/pathnames.h: ${BUILD_DIR}/config.h ${BUILD_DIR}/Makefile Makefile
++	-( cd ${BUILD_DIR} && ${MAKE} ${MFLAGS} pathnames.h )
++
+ # rules for losing makes, like SunOS
+ casemod.o: casemod.c
+ clktck.o: clktck.c

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p33.ebuild,v 1.1 2009/09/10 00:23:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p33.ebuild,v 1.2 2009/10/09 21:32:10 vapier Exp $
 
 EAPI="1"
 
@@ -177,7 +177,8 @@ src_compile() {
 		$(use_with afs) \
 		$(use_enable net net-redirections) \
 		--disable-profiling \
-		--without-gnu-malloc \
+		$(use_enable mem-scramble) \
+		$(use_with mem-scramble bash-malloc) \
 		${myconf} || die
 	emake || die "make failed"
 
