@@ -1,6 +1,11 @@
 # ChangeLog for www-servers/gorg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/ChangeLog,v 1.21 2009/08/24 16:43:06 ramereth Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/ChangeLog,v 1.22 2009/10/17 15:39:49 a3li Exp $
+
+*gorg-0.6.4 (17 Oct 2009)
+
+  17 Oct 2009; Alex Legler <a3li@gentoo.org> +gorg-0.6.4.ebuild:
+  Version bump, fixes caching, bug 289391
 
 *gorg-0.6.3-r3 (24 Aug 2009)
 
