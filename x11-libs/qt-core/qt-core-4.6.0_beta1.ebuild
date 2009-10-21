@@ -166,6 +166,9 @@ src_install() {
 	fi
 
 	# use freshly built libraries
+	[[ -d "${S}"/lib/QtCore.framework ]] \
+		&& local DYLD_FPATH=$(echo "${S}/lib/"*.framework | tr ' ' ':')
+	DYLD_LIBRARY_PATH="${S}/lib:${DYLD_FPATH}" \
 	LD_LIBRARY_PATH="${S}/lib" "${S}"/bin/lrelease translations/*.ts \
 		|| die "generating translations faied"
 	insinto ${QTTRANSDIR#${EPREFIX}}
@@ -189,10 +192,19 @@ src_install() {
 	mv "${D}"/${QTDATADIR}/mkspecs/qconfig.pri "${D}${QTDATADIR}"/mkspecs/gentoo \
 		|| die "Failed to move qconfig.pri"
 
+	# Framework hacking
+	if use aqua && [[ ${CHOST#*-darwin} -ge 9 ]] ; then
+		#TODO do this better
+		sed -i -e '2a#include <QtCore/Gentoo/gentoo-qconfig.h>\n' \
+				"${D}${QTLIBDIR}"/QtCore.framework/Headers/qconfig.h \
+			|| die "sed for qconfig.h failed."
+		dosym "${QTHEADERDIR#${EPREFIX}}"/Gentoo "${QTLIBDIR#${EPREFIX}}"/QtCore.framework/Headers/Gentoo
+	else
 	sed -i -e '2a#include <Gentoo/gentoo-qconfig.h>\n' \
 			"${D}${QTHEADERDIR}"/QtCore/qconfig.h \
 			"${D}${QTHEADERDIR}"/Qt/qconfig.h \
 		|| die "sed for qconfig.h failed"
+	fi
 
 	if use glib; then
 		QCONFIG_DEFINE="$(use glib && echo QT_GLIB)
@@ -207,4 +219,7 @@ qatomic_windowsce.h,\
 qt_windows.h}
 
 	keepdir "${QTSYSCONFDIR#${EPREFIX}}"
+
+	# Framework magic
+	fix_includes
 }
