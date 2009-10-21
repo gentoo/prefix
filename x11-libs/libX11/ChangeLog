@@ -1,6 +1,27 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.117 2009/10/03 15:08:02 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.122 2009/10/18 20:09:18 remi Exp $
+
+*libX11-1.3.1 (18 Oct 2009)
+
+  18 Oct 2009; Rémi Cardona <remi@gentoo.org> +libX11-1.3.1.ebuild:
+  bump to 1.3.1, sync with overlay
+
+  18 Oct 2009; Rémi Cardona <remi@gentoo.org> -libX11-1.1.2-r1.ebuild,
+  -files/libX11-1.1.2-XGetMotionEvents-order-fix.patch,
+  -files/libX11-1.1.2-XimGetWindowEventmask-fix.patch, -libX11-1.1.3.ebuild,
+  -libX11-1.1.3-r1.ebuild, -files/libX11-1.1.3-xcb-locking.patch,
+  -libX11-1.1.4.ebuild, -libX11-1.2.1.ebuild:
+  drop old ebuilds
+
+  11 Oct 2009; nixnut <nixnut@gentoo.org> libX11-1.2.2.ebuild:
+  ppc stable #282290
+
+  09 Oct 2009; Markus Meier <maekke@gentoo.org> libX11-1.2.2.ebuild:
+  arm stable, bug #282290
+
+  05 Oct 2009; Christian Faulhammer <fauli@gentoo.org> libX11-1.2.2.ebuild:
+  x86 stable, bug 282290
 
 *libX11-1.3 (03 Oct 2009)
 
