@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/taglib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/ChangeLog,v 1.70 2009/10/02 00:40:21 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/ChangeLog,v 1.71 2009/10/17 07:57:58 maekke Exp $
+
+  17 Oct 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
+  remove static-libs description as it is global now
 
 *taglib-1.6 (02 Oct 2009)
 
