@@ -34,8 +34,9 @@ src_prepare() {
 	# Solaris' /bin/sh doesn't grok the syntax in these files
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
 	# for sparc-solaris
-	[[ ${CHOST} == sparc*-solaris* ]] \
-		&& sed -i -e 's:-DPIC::g' configure || die
+	if [[ ${CHOST} == sparc*-solaris* ]] ; then
+		sed -i -e 's:-DPIC::g' configure || die
+	fi
 	# for OSX
 	sed -i -e "s|-arch x86_64||g" configure || die
 }
