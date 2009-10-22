@@ -22,6 +22,7 @@ S=${WORKDIR}/${PN}-${MY_PV}
 src_prepare() {
 	sed -e 's:^CFLAGS =:CFLAGS +=:' \
 		-e 's:$(CFLAGS) -o:$(CFLAGS) $(LDFLAGS) -o:' \
+		-e 's:wilprefix:prefix:' \
 		-i Makefile.in || die "failed to sed"
 	epatch "${FILESDIR}/${P}-build-fix.patch"
 }
