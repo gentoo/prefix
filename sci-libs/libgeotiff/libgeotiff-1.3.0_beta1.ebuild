@@ -26,17 +26,6 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/${MY_S}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.2.4-soname.patch
-	epatch "${FILESDIR}"/${PN}-1.2.4-darwin-installname.patch
-	case ${CHOST} in
-		*-linux-gnu|*-solaris*|*-interix*) append-ldflags -Wl,-O0 ;;
-	esac
-	eautoconf
-}
-
 src_configure() {
 	local my_conf=""
 
