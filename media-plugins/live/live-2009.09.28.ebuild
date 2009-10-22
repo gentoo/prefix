@@ -53,7 +53,7 @@ src_unpack() {
 				-e '/^LINK /s/$/ /' \
 				-e '/^LIBRARY_LINK /s/=.*$/= $(CXX) -o /' \
 				-e '/^LIBRARY_LINK_OPTS /s:-shared.*$:-undefined suppress -flat_namespace -dynamiclib -install_name '"${EPREFIX}/usr/$(get_libdir)/"'$@:' \
-				live-shared/config.gentoo-so \
+				live-shared/config.gentoo-so-r1 \
 				|| die shared
 		;;
 	esac
