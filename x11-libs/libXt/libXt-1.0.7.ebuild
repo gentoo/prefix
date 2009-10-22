@@ -16,6 +16,7 @@ RDEPEND="x11-libs/libX11
 	x11-proto/kbproto"
 DEPEND="${RDEPEND}"
 
+# no longer apply
 PATCHES=(
 	"${FILESDIR}/libXt-1.0.6-winnt.patch"
 	"${FILESDIR}/libXt-1.0.6-winnt-asm.patch"
