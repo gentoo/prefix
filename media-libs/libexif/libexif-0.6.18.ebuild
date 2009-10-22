@@ -26,6 +26,8 @@ src_prepare() {
 }
 
 src_configure() {
+	# Solaris /bin/sh no like
+	export CONFIG_SHELL="${EPREFIX}"/bin/bash
 	econf \
 		--disable-dependency-tracking \
 		$(use_enable nls) \
