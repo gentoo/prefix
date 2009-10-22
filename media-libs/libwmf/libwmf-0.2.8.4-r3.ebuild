@@ -90,7 +90,7 @@ src_install() {
 set_gtk_confdir() {
 	# An arch specific config directory is used on multilib systems
 	has_multilib_profile && GTK2_CONFDIR="${EROOT}etc/gtk-2.0/${CHOST}"
-	GTK2_CONFDIR="${GTK2_CONFDIR:-/etc/gtk-2.0}"
+	GTK2_CONFDIR="${GTK2_CONFDIR:-${EPREFIX}/etc/gtk-2.0}"
 }
 
 pkg_postinst() {
