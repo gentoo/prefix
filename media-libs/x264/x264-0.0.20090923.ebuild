@@ -35,6 +35,8 @@ src_prepare() {
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
 	# for sparc-solaris
 	sed -i -e 's:-DPIC::g' configure || die
+	# for OSX
+	sed -i -e "s|-arch x86_64||g" configure || die
 }
 
 src_configure() {
