@@ -9,7 +9,7 @@ inherit x-modular
 
 DESCRIPTION="X.Org font aliases"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
