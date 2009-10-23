@@ -72,6 +72,10 @@ src_unpack() {
 		fi
 	fi
 
+	# required eautoreconf to get patched libtool on _all_ platforms,
+	# for the library search to function propperly.
+	cd builds/unix
+	eautoreconf
 	epunt_cxx
 }
 
