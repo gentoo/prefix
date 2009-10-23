@@ -69,7 +69,7 @@ src_unpack() {
 	# to find a bash shell.  if /bin/sh is bash, it uses that.  this can
 	# cause problems for people who switch /bin/sh on the fly to other
 	# shells, so just force libtool to use /bin/bash all the time.
-	export CONFIG_SHELL="${EPREFIX}"/bin/bash
+	export CONFIG_SHELL="$(type -P bash)"
 }
 
 src_compile() {
