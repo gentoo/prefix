@@ -55,7 +55,7 @@ src_compile() {
 		*-solaris*)          TARGET=generic ;;
 		mips-sgi-irix*)      TARGET=sgi; append-cppflags "-DNO_LCHMOD" ;;
 		*-interix3*)         TARGET=gcc; append-flags "-DUNIX"; append-cppflags "-DNO_LCHMOD" ;;
-		*-interix*)          TARGET=gcc; append-flags "-DUNIX" ;;
+		*-interix*)          TARGET=gcc; append-flags "-DUNIX -DNO_LCHMOD" ;;
 		*-aix*)              TARGET=gcc; append-cppflags "-DNO_LCHMOD"; append-ldflags "-Wl,-blibpath:${EPREFIX}/usr/$(get_libdir)" ;;
 		*-hpux*)             TARGET=gcc; append-ldflags "-Wl,+b,${EPREFIX}/usr/$(get_libdir)" ;;
 		*-mint*)             TARGET=generic ;;
