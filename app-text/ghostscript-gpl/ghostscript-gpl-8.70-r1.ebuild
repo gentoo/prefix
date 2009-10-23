@@ -135,7 +135,7 @@ src_compile() {
 		--disable-compile-inits \
 		--enable-dynamic \
 		--enable-fontconfig \
-		--with-drivers=ALL \
+		--with-drivers=all \
 		--with-ijs \
 		--with-jbig2dec \
 		--with-libpaper
