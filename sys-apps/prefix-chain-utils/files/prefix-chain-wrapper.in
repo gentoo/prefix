@@ -15,6 +15,7 @@ for opt in "$@"; do
   	case "${opt}" in
 	-v)			mode=version ;;
 	-c|-E|-S)	mode=compile ;;
+	-print-search-dirs) mode=dirs ;;
 	esac
   	opts=("${opts[@]}" "${opt}")
 	;;
@@ -48,6 +49,15 @@ case "$mode" in
 link) 		exec "$(basename $0)" "${link_dirs[@]}" "${pfx_link[@]}" "${opts[@]}" ;;
 compile)	exec "$(basename $0)" "${link_dirs[@]}" "${opts[@]}" "${pfx_comp[@]}" ;;
 version)	exec "$(basename $0)" "${orig_args[@]}" ;;
+dirs)
+	"$(basename $0)" "${orig_args[@]}" | while read line; do
+		if [[ "${line}" == "libraries: ="* ]]; then
+			echo "libraries: =${prefix}/usr/lib:${prefix}/lib:${line#"libraries: ="}"
+		else
+			echo "${line}"
+		fi
+	done
+	;;
 *)			echo "cannot infer $0's mode from comamnd line arguments"; exit 1 ;;
 esac
 
