@@ -61,6 +61,7 @@ src_prepare() {
 		# makes the iconv check more general, needed for winnt, but could
 		# be useful for others too, requires eautoreconf
 		epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
+		epatch "${FILESDIR}"/${P}-winnt-exeext.patch
 		AT_M4DIR="m4macros" eautoreconf
 	fi
 

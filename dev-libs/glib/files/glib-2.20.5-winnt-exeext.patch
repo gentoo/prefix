@@ -1,0 +1,36 @@
+diff -ru glib-2.20.5.orig/gio/Makefile.am glib-2.20.5/gio/Makefile.am
+--- glib-2.20.5.orig/gio/Makefile.am	2009-10-23 12:00:31 +0200
++++ glib-2.20.5/gio/Makefile.am	2009-10-23 12:01:14 +0200
+@@ -62,7 +62,7 @@
+ if CROSS_COMPILING
+   glib_genmarshal=$(GLIB_GENMARSHAL)
+ else
+-  glib_genmarshal=../gobject/glib-genmarshal
++  glib_genmarshal=../gobject/glib-genmarshal$(EXEEXT)
+ endif
+ 
+ gio-marshal.h: gio-marshal.list
+diff -ru glib-2.20.5.orig/gobject/Makefile.am glib-2.20.5/gobject/Makefile.am
+--- glib-2.20.5.orig/gobject/Makefile.am	2009-10-23 12:00:31 +0200
++++ glib-2.20.5/gobject/Makefile.am	2009-10-23 12:01:41 +0200
+@@ -169,7 +169,7 @@
+ if CROSS_COMPILING
+   glib_genmarshal=$(GLIB_GENMARSHAL)
+ else
+-  glib_genmarshal=./glib-genmarshal
++  glib_genmarshal=./glib-genmarshal$(EXEEXT)
+ endif
+ 
+ gmarshal.h: stamp-gmarshal.h
+diff -ru glib-2.20.5.orig/tests/gobject/Makefile.am glib-2.20.5/tests/gobject/Makefile.am
+--- glib-2.20.5.orig/tests/gobject/Makefile.am	2009-10-23 12:00:32 +0200
++++ glib-2.20.5/tests/gobject/Makefile.am	2009-10-23 12:01:56 +0200
+@@ -25,7 +25,7 @@
+ if CROSS_COMPILING
+   glib_genmarshal=$(GLIB_GENMARSHAL)
+ else
+-  glib_genmarshal=$(top_builddir)/gobject/glib-genmarshal
++  glib_genmarshal=$(top_builddir)/gobject/glib-genmarshal$(EXEEXT)
+ endif
+ 
+ testmarshal.h: stamp-testmarshal.h
