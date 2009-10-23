@@ -23,6 +23,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/libxslt.m4-${P}.patch \
 		"${FILESDIR}"/${PN}-1.1.23-parallel-install.patch \
 		"${FILESDIR}"/${P}-undefined.patch
+	epatch "${FILESDIR}"/${P}-versionscript-solaris.patch
 	eautoreconf # also needed for new libtool on Interix
 	epunt_cxx
 	elibtoolize
