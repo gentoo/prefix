@@ -149,6 +149,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
 	# this fails to compile on OpenSolaris at least, do we need it?
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-sunaudiodev.patch
+	# 64-bits Solaris 8-10 have a missing libcrypt symlink
+	epatch "${FILESDIR}"/${PN}-2.6.2-solaris64-crypt.patch
 
 	# http://bugs.python.org/issue6308
 	epatch "${FILESDIR}"/${P}-termios-noqnx.patch

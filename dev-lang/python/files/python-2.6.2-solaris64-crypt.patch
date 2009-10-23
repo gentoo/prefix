@@ -1,0 +1,22 @@
+--- setup.py.orig	2009-10-23 14:34:41.323751638 +0200
++++ setup.py	2009-10-23 14:37:39.813845738 +0200
+@@ -608,11 +608,17 @@
+ 
+         if platform not in ['mac']:
+             # crypt module.
++			libs = []
++
++			if platform in ['sunos5']:
++				# http://bugs.python.org/issue1471934
++				# if normal libcrypt symlink is available, the general
++				# check below overwrites this hack for Solaris 8-10/64
++				if self.compiler.find_library_file(lib_dirs, 'crypt_i'):
++					libs = ['crypt_i']
+ 
+             if self.compiler.find_library_file(lib_dirs, 'crypt'):
+                 libs = ['crypt']
+-            else:
+-                libs = []
+             exts.append( Extension('crypt', ['cryptmodule.c'], libraries=libs) )
+         else:
+             missing.append('crypt')
