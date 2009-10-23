@@ -56,7 +56,8 @@ src_unpack() {
 
 	# need to upgrade local copy of libtool.m4
 	# for correct shared libs on aix (#213277).
-	cp -f "${EPREFIX}"/usr/share/aclocal/libtool.m4 aclocal/libtool.m4 \
+	local _ltpath="$(dirname "$(dirname "$(type -P libtoolize)")")"
+	cp -f "${_ltpath}"/share/aclocal/libtool.m4 aclocal/libtool.m4 \
 	|| die "cannot update libtool.ac from libtool.m4"
 
 	# need to upgrade ltmain.sh for AIX,
