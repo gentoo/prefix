@@ -1,0 +1,546 @@
+--- conf/httpd.conf
++++ conf/httpd.conf
+@@ -36,7 +36,7 @@
+ # ServerRoot at a non-local disk, be sure to point the LockFile directive
+ # at a local disk.  If you wish to share the same ServerRoot for multiple
+ # httpd daemons, you will need to change at least LockFile and PidFile.
+-ServerRoot "/usr/lib/apache2"
++ServerRoot "@GENTOO_PORTAGE_EPREFIX@/usr/lib/apache2"
+ 
+ # Dynamic Shared Object (DSO) Support
+ #
+@@ -77,13 +77,13 @@
+ # To know which flag to add to APACHE2_OPTS, look at the first line of the
+ # the file, which will usually be an <IfDefine OPTION> where OPTION is the
+ # flag to use.
+-Include /etc/apache2/modules.d/*.conf
++Include @GENTOO_PORTAGE_EPREFIX@/etc/apache2/modules.d/*.conf
+ 
+ # Virtual-host support
+ #
+ # Gentoo has made using virtual-hosts easy. In /etc/apache2/vhosts.d/ we
+ # include a default vhost (enabled by adding -D DEFAULT_VHOST to
+ # APACHE2_OPTS in /etc/conf.d/apache2).
+-Include /etc/apache2/vhosts.d/*.conf
++Include @GENTOO_PORTAGE_EPREFIX@/etc/apache2/vhosts.d/*.conf
+ 
+ # vim: ts=4 filetype=apache
+--- scripts/apache2ctl
++++ scripts/apache2ctl
+@@ -1,2 +1,2 @@
+-#!/bin/sh
+-exec /etc/init.d/apache2 "$@"
++#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
++exec @GENTOO_PORTAGE_EPREFIX@/etc/init.d/apache2 "$@"
+--- scripts/gentestcrt.sh
++++ scripts/gentestcrt.sh
+@@ -1,4 +1,4 @@
+-#!/bin/sh
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ ##
+ ##  gentestcrt -- Create self-signed test certificate
+ ##  (C) 2001 Jean-Michel Dault <jmdault@mandrakesoft.com> and Mandrakesoft
+@@ -6,7 +6,7 @@
+ ##
+ 
+ #   external tools
+-openssl="/usr/bin/openssl"
++openssl="@GENTOO_PORTAGE_EPREFIX@/usr/bin/openssl"
+ 
+ #   some optional terminal sequences
+ case $TERM in
+@@ -28,9 +28,8 @@
+ #   (do not use /dev/random here, because this device 
+ #   doesn't work as expected on all platforms)
+ randfiles=''
+-for file in /var/log/messages /var/adm/messages \
+-            /kernel /vmunix /vmlinuz \
+-            /etc/hosts /etc/resolv.conf; do
++for file in @GENTOO_PORTAGE_EPREFIX@/var/log/messages @GENTOO_PORTAGE_EPREFIX@/var/adm/messages \
++            @GENTOO_PORTAGE_EPREFIX@/etc/hosts @GENTOO_PORTAGE_EPREFIX@/etc/resolv.conf; do
+     if [ -f $file ]; then
+         if [ ".$randfiles" = . ]; then
+             randfiles="$file"
+--- docs/ip-based-vhost.conf.example
++++ docs/ip-based-vhost.conf.example
+@@ -41,10 +41,10 @@
+ 	# Note that if you put the directory anywhere other then under /var/www
+ 	# you may run into problems with suexec and cgi scripts.
+ 	#
+-	DocumentRoot "/var/www/example.com/htdocs"
++	DocumentRoot "@GENTOO_PORTAGE_EPREFIX@/var/www/example.com/htdocs"
+ 
+ 	# This should match the DocumentRoot above
+-	<Directory "/var/www/example.com/htdocs">
++	<Directory "@GENTOO_PORTAGE_EPREFIX@/var/www/example.com/htdocs">
+ 
+ 		# Some sane defaults - see httpd.conf for details
+ 		Options Indexes FollowSymLinks
+@@ -105,7 +105,7 @@
+ 	#</Directory>
+ 
+ 	# Create a logfile for this vhost
+-	CustomLog /var/log/apache2/example.com.log combined
++	CustomLog @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/example.com.log combined
+ </VirtualHost>
+ 
+ # vim: ts=4 filetype=apache
+--- docs/name-based-vhost.conf.example
++++ docs/name-based-vhost.conf.example
+@@ -62,10 +62,10 @@
+ 	# Note that if you put the directory anywhere other then under /var/www
+ 	# you may run into problems with suexec and cgi scripts.
+ 	#
+-	DocumentRoot "/var/www/example.com/htdocs"
++	DocumentRoot "@GENTOO_PORTAGE_EPREFIX@/var/www/example.com/htdocs"
+ 
+ 	# This should match the DocumentRoot above
+-	<Directory "/var/www/example.com/htdocs">
++	<Directory "@GENTOO_PORTAGE_EPREFIX@/var/www/example.com/htdocs">
+ 		# Some sane defaults - see httpd.conf for details
+ 		Options Indexes FollowSymLinks
+ 		AllowOverride None
+@@ -124,7 +124,7 @@
+ 	#</Directory>
+ 	
+ 	# Create a logfile for this vhost
+-	CustomLog /var/log/apache2/example.com.log combined
++	CustomLog @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/example.com.log combined
+ </VirtualHost>
+ 
+ # vim: ts=4 filetype=apache
+--- docs/ssl-vhost.conf.example
++++ docs/ssl-vhost.conf.example
+@@ -32,10 +32,10 @@
+ 	# Note that if you put the directory anywhere other then under /var/www
+ 	# you may run into problems with suexec and cgi scripts.
+ 	#
+-	DocumentRoot "/var/www/example.com/htdocs-secure"
++	DocumentRoot "@GENTOO_PORTAGE_EPREFIX@/var/www/example.com/htdocs-secure"
+ 
+ 	# This should match the DocumentRoot above
+-	<Directory "/var/www/example.com/htdocs-secure">
++	<Directory "@GENTOO_PORTAGE_EPREFIX@/var/www/example.com/htdocs-secure">
+ 		# Some sane defaults - see httpd.conf for details
+ 		Options Indexes FollowSymLinks
+ 		AllowOverride None
+@@ -96,14 +96,14 @@
+ 	#</Directory>
+ 
+ 	# Create a logfile for this vhost
+-	CustomLog /var/log/apache2/example.com.ssl_log combined
++	CustomLog @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/example.com.ssl_log combined
+ 	
+ 	# Turn on SSL
+ 	SSLEngine on
+ 
+ 	# You will need a seperate key and certificate for every vhost
+-	SSLCertificateFile /etc/apache2/ssl/example.com.crt
+-	SSLCertificateKeyFile /etc/apache2/ssl/example.com.key
++	SSLCertificateFile @GENTOO_PORTAGE_EPREFIX@/etc/apache2/ssl/example.com.crt
++	SSLCertificateKeyFile @GENTOO_PORTAGE_EPREFIX@/etc/apache2/ssl/example.com.key
+ </VirtualHost>
+ 
+ # If you want to force SSL for a virtualhost, you can uncomment this section
+--- patches/config.layout
++++ patches/config.layout
+@@ -1,23 +1,23 @@
+ <Layout Gentoo>
+-	prefix:          /usr
+-	exec_prefix:     /usr
+-	bindir:          /usr/bin
+-	sbindir:         /usr/sbin
+-	libdir:          /usr/lib
+-	libexecdir:      /usr/lib/apache2/modules
+-	mandir:          /usr/share/man
+-	includedir:      /usr/include/apache2
+-	installbuilddir: /usr/lib/apache2/build
+-	datadir:         /var/www/localhost
+-	errordir:        /var/www/localhost/error
+-	iconsdir:        /var/www/localhost/icons
+-	htdocsdir:       /var/www/localhost/htdocs
+-	cgidir:          /var/www/localhost/cgi-bin
+-	manualdir:       /usr/share/doc/version/manual
+-	sysconfdir:      /etc/apache2
+-	localstatedir:   /var
+-	runtimedir:      /var/run
+-	logfiledir:      /var/log/apache2
+-	proxycachedir:   /var/cache/apache2
++	prefix:          @GENTOO_PORTAGE_EPREFIX@/usr
++	exec_prefix:     @GENTOO_PORTAGE_EPREFIX@/usr
++	bindir:          @GENTOO_PORTAGE_EPREFIX@/usr/bin
++	sbindir:         @GENTOO_PORTAGE_EPREFIX@/usr/sbin
++	libdir:          @GENTOO_PORTAGE_EPREFIX@/usr/lib
++	libexecdir:      @GENTOO_PORTAGE_EPREFIX@/usr/lib/apache2/modules
++	mandir:          @GENTOO_PORTAGE_EPREFIX@/usr/share/man
++	includedir:      @GENTOO_PORTAGE_EPREFIX@/usr/include/apache2
++	installbuilddir: @GENTOO_PORTAGE_EPREFIX@/usr/lib/apache2/build
++	datadir:         @GENTOO_PORTAGE_EPREFIX@/var/www/localhost
++	errordir:        @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/error
++	iconsdir:        @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/icons
++	htdocsdir:       @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs
++	cgidir:          @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/cgi-bin
++	manualdir:       @GENTOO_PORTAGE_EPREFIX@/usr/share/doc/version/manual
++	sysconfdir:      @GENTOO_PORTAGE_EPREFIX@/etc/apache2
++	localstatedir:   @GENTOO_PORTAGE_EPREFIX@/var
++	runtimedir:      @GENTOO_PORTAGE_EPREFIX@/var/run
++	logfiledir:      @GENTOO_PORTAGE_EPREFIX@/var/log/apache2
++	proxycachedir:   @GENTOO_PORTAGE_EPREFIX@/var/cache/apache2
+ </Layout>
+ 
+--- scripts/apache2-logrotate
++++ scripts/apache2-logrotate
+@@ -1,11 +1,11 @@
+ # Apache2 logrotate snipet for Gentoo Linux
+ # Contributes by Chuck Short
+ #
+-/var/log/apache2/*log {
++@GENTOO_PORTAGE_EPREFIX@/var/log/apache2/*log {
+   missingok
+   notifempty
+   sharedscripts
+   postrotate
+-  /etc/init.d/apache2 reload > /dev/null 2>&1 || true
++  @GENTOO_PORTAGE_EPREFIX@/etc/init.d/apache2 reload > /dev/null 2>&1 || true
+   endscript
+ }
+--- init/apache2.confd
++++ init/apache2.confd
+@@ -2,7 +2,7 @@
+
+ # When you install a module it is easy to activate or deactivate the modules
+ # and other features of apache using the APACHE2_OPTS line. Every module should
+-# install a configuration in /etc/apache2/modules.d. In that file will have an
++# install a configuration in @GENTOO_PORTAGE_EPREFIX@/etc/apache2/modules.d. In that file will have an
+ # <IfDefine NNN> directive where NNN is the option to enable that module.
+ #
+ # Here are the options available in the default configuration:
+@@ -28,7 +28,7 @@
+ # will not listen for incomming connections on the approriate port.
+ #
+ #  DEFAULT_VHOST      Enables name-based virtual hosts, with the default
+-#                     virtual host being in /var/www/localhost/htdocs
++#                     virtual host being in @GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs
+ #  SSL_DEFAULT_VHOST  Enables default vhost for SSL (you should enable this
+ #                     when you enable SSL)
+ #
+@@ -41,22 +41,22 @@
+ # YOU HAVE BEEN WARNED.
+
+ # PID file
+-#PIDFILE=/var/run/apache2.pid
++#PIDFILE=@GENTOO_PORTAGE_EPREFIX@/var/run/apache2.pid
+
+ # timeout for startup/shutdown checks
+ #TIMEOUT=10
+
+ # ServerRoot setting
+-#SERVERROOT=/usr/lib/apache2
++#SERVERROOT=@GENTOO_PORTAGE_EPREFIX@/usr/lib/apache2
+
+ # Configuration file location
+ # - If this does NOT start with a '/', then it is treated relative to
+ # $SERVERROOT by Apache
+-#CONFIGFILE=/etc/apache2/httpd.conf
++#CONFIGFILE=@GENTOO_PORTAGE_EPREFIX@/etc/apache2/httpd.conf
+
+ # Location to log startup errors to
+ # They are normally dumped to your terminal.
+-#STARTUPERRORLOG="/var/log/apache2/startuperror.log"
++#STARTUPERRORLOG="@GENTOO_PORTAGE_EPREFIX@/var/log/apache2/startuperror.log"
+
+ # A command that outputs a formatted text version of the HTML at the URL
+ # of the command line. Designed for lynx, however other programs may work.
+--- init/apache2.initd
++++ init/apache2.initd
+@@ -1,4 +1,4 @@
+-#!/sbin/runscript
++#!@GENTOO_PORTAGE_EPREFIX@/sbin/runscript
+ # Copyright 1999-2007 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+
+@@ -20,13 +20,13 @@
+	PIDFILE="${PIDFILE:-@GENTOO_PORTAGE_EPREFIX@/var/run/apache2.pid}"
+	TIMEOUT=${TIMEOUT:-10}
+
+-	SERVERROOT="${SERVERROOT:-/usr/lib/apache2}"
++	SERVERROOT="${SERVERROOT:-@GENTOO_PORTAGE_EPREFIX@/usr/lib/apache2}"
+	if [ ! -d ${SERVERROOT} ]; then
+		eerror "SERVERROOT does not exist: ${SERVERROOT}"
+		return 1
+	fi
+
+-	CONFIGFILE="${CONFIGFILE:-/etc/apache2/httpd.conf}"
++	CONFIGFILE="${CONFIGFILE:-@GENTOO_PORTAGE_EPREFIX@/etc/apache2/httpd.conf}"
+	[ "${CONFIGFILE#/}" = "${CONFIGFILE}" ] && CONFIGFILE="${SERVERROOT}/${CONFIGFILE}"
+	if [ ! -r "${CONFIGFILE}" ]; then
+		eerror "Unable to read configuration file: ${CONFIGFILE}"
+@@ -37,7 +37,7 @@
+	APACHE2_OPTS="${APACHE2_OPTS} -f ${CONFIGFILE}"
+	[ -n "${STARTUPERRORLOG}" ] && APACHE2_OPTS="${APACHE2_OPTS} -E ${STARTUPERRORLOG}"
+
+-	APACHE2="/usr/sbin/apache2"
++	APACHE2="@GENTOO_PORTAGE_EPREFIX@/usr/sbin/apache2"
+ }
+
+ checkconfig() {
+@@ -56,7 +56,7 @@
+ start() {
+	checkconfig || return 1
+
+-	[ -f /var/log/apache2/ssl_scache ] && rm /var/log/apache2/ssl_scache
++	[ -f @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/ssl_scache ] && rm @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/ssl_scache
+
+	ebegin "Starting apache2"
+	${APACHE2} ${APACHE2_OPTS} -k start
+--- conf/vhosts.d/00_default_ssl_vhost.conf
++++ conf/vhosts.d/00_default_ssl_vhost.conf
+@@ -10,11 +10,11 @@
+ 
+ <VirtualHost _default_:443>
+ 	ServerName localhost
+-	Include /etc/apache2/vhosts.d/default_vhost.include
+-	ErrorLog /var/log/apache2/ssl_error_log
++	Include @GENTOO_PORTAGE_EPREFIX@/etc/apache2/vhosts.d/default_vhost.include
++	ErrorLog @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/ssl_error_log
+ 
+ 	<IfModule log_config_module>
+-		TransferLog /var/log/apache2/ssl_access_log
++		TransferLog @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/ssl_access_log
+ 	</IfModule>
+ 
+ 	## SSL Engine Switch:
+@@ -32,14 +32,14 @@
+ 	# kill -HUP will prompt again. Keep in mind that if you have both an RSA
+ 	# and a DSA certificate you can configure both in parallel (to also allow
+ 	# the use of DSA ciphers, etc.)
+-	SSLCertificateFile /etc/ssl/apache2/server.crt
++	SSLCertificateFile @GENTOO_PORTAGE_EPREFIX@/etc/ssl/apache2/server.crt
+ 
+ 	## Server Private Key:
+ 	# If the key is not combined with the certificate, use this directive to
+ 	# point at the key file. Keep in mind that if you've both a RSA and a DSA
+ 	# private key you can configure both in parallel (to also allow the use of
+ 	# DSA ciphers, etc.)
+-	SSLCertificateKeyFile /etc/ssl/apache2/server.key
++	SSLCertificateKeyFile @GENTOO_PORTAGE_EPREFIX@/etc/ssl/apache2/server.key
+ 
+ 	## Server Certificate Chain:
+ 	# Point SSLCertificateChainFile at a file containing the concatenation of 
+@@ -47,7 +47,7 @@
+ 	# server certificate. Alternatively the referenced file can be the same as
+ 	# SSLCertificateFile when the CA certificates are directly appended to the
+ 	# server certificate for convinience.
+-	#SSLCertificateChainFile /etc/ssl/apache2/ca.crt
++	#SSLCertificateChainFile @GENTOO_PORTAGE_EPREFIX@/etc/ssl/apache2/ca.crt
+ 
+ 	## Certificate Authority (CA):
+ 	# Set the CA certificate verification path where to find CA certificates
+@@ -56,8 +56,8 @@
+ 	# Note: Inside SSLCACertificatePath you need hash symlinks to point to the
+ 	# certificate files. Use the provided Makefile to update the hash symlinks
+ 	# after changes.
+-	#SSLCACertificatePath /etc/ssl/apache2/ssl.crt
+-	#SSLCACertificateFile /etc/ssl/apache2/ca-bundle.crt
++	#SSLCACertificatePath @GENTOO_PORTAGE_EPREFIX@/etc/ssl/apache2/ssl.crt
++	#SSLCACertificateFile @GENTOO_PORTAGE_EPREFIX@/etc/ssl/apache2/ca-bundle.crt
+ 
+ 	## Certificate Revocation Lists (CRL):
+ 	# Set the CA revocation path where to find CA CRLs for client authentication
+@@ -66,8 +66,8 @@
+ 	# Note: Inside SSLCARevocationPath you need hash symlinks to point to the
+ 	# certificate files. Use the provided Makefile to update the hash symlinks
+ 	# after changes.
+-	#SSLCARevocationPath /etc/ssl/apache2/ssl.crl
+-	#SSLCARevocationFile /etc/ssl/apache2/ca-bundle.crl
++	#SSLCARevocationPath @GENTOO_PORTAGE_EPREFIX@/etc/ssl/apache2/ssl.crl
++	#SSLCARevocationFile @GENTOO_PORTAGE_EPREFIX@/etc/ssl/apache2/ca-bundle.crl
+ 
+ 	## Client Authentication (Type):
+ 	# Client certificate verification type and depth. Types are none, optional,
+@@ -128,7 +128,7 @@
+ 		SSLOptions +StdEnvVars
+ 	</FilesMatch>
+ 
+-	<Directory "/var/www/localhost/cgi-bin">
++	<Directory "@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/cgi-bin">
+ 		SSLOptions +StdEnvVars
+ 	</Directory>
+ 
+@@ -168,7 +168,7 @@
+ 	# The home of a custom SSL log file. Use this when you want a compact 
+ 	# non-error SSL logfile on a virtual host basis.
+ 	<IfModule log_config_module>
+-		CustomLog /var/log/apache2/ssl_request_log \
++		CustomLog @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/ssl_request_log \
+ 			"%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
+ 	</IfModule>
+ </VirtualHost>
+--- conf/vhosts.d/00_default_vhost.conf
++++ conf/vhosts.d/00_default_vhost.conf
+@@ -37,7 +37,7 @@
+ # the default.
+ <VirtualHost *:80>
+	ServerName localhost
+-	Include /etc/apache2/vhosts.d/default_vhost.include
++	Include @GENTOO_PORTAGE_EPREFIX@/etc/apache2/vhosts.d/default_vhost.include
+ 
+ 	<IfModule mpm_peruser_module>
+ 		ServerEnvironment apache apache
+--- conf/vhosts.d/default_vhost.include
++++ conf/vhosts.d/default_vhost.include
+@@ -9,10 +9,10 @@
+ #
+ # If you change this to something that isn't under /var/www then suexec
+ # will no longer work.
+-DocumentRoot "/var/www/localhost/htdocs"
++DocumentRoot "@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs"
+ 
+ # This should be changed to whatever you set DocumentRoot to.
+-<Directory "/var/www/localhost/htdocs">
++<Directory "@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs">
+ 	# Possible values for the Options directive are "None", "All",
+ 	# or any combination of:
+ 	#   Indexes Includes FollowSymLinks SymLinksifOwnerMatch ExecCGI MultiViews
+@@ -58,12 +58,12 @@
+ 	# run by the server when requested rather than as documents sent to the
+ 	# client.  The same rules about trailing "/" apply to ScriptAlias
+ 	# directives as to Alias.
+-	ScriptAlias /cgi-bin/ "/var/www/localhost/cgi-bin/"
++	ScriptAlias /cgi-bin/ "@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/cgi-bin/"
+ </IfModule>
+ 
+ # "/var/www/localhost/cgi-bin" should be changed to whatever your ScriptAliased
+ # CGI directory exists, if you have that configured.
+-<Directory "/var/www/localhost/cgi-bin">
++<Directory "@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/cgi-bin">
+ 	AllowOverride None
+ 	Options None
+ 	Order allow,deny
+--- conf/modules.d/00_apache_manual.conf
++++ conf/modules.d/00_apache_manual.conf
+@@ -3,9 +3,9 @@
+ # The documentation is always available at
+ #  http://httpd.apache.org/docs/2.2/
+ <IfDefine MANUAL>
+-AliasMatch ^/manual(?:/(?:de|en|es|fr|ja|ko|pt-br))?(/.*)?$ "/usr/share/doc/apache-VERSION/manual$1"
++AliasMatch ^/manual(?:/(?:de|en|es|fr|ja|ko|pt-br))?(/.*)?$ "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/apache-VERSION/manual$1"
+ 
+-<Directory "/usr/share/doc/apache-VERSION/manual">
++<Directory "@GENTOO_PORTAGE_EPREFIX@/usr/share/doc/apache-VERSION/manual">
+ 	Options Indexes
+ 	AllowOverride None
+ 	Order allow,deny
+
+--- conf/modules.d/00_error_documents.conf
++++ conf/modules.d/00_error_documents.conf
+@@ -23,9 +23,9 @@
+ # of the setting of ServerSignature.
+
+ <IfDefine ERRORDOCS>
+-Alias /error/ "/usr/share/apache2/error/"
++Alias /error/ "@GENTOO_PORTAGE_EPREFIX@/usr/share/apache2/error/"
+ 
+-<Directory "/usr/share/apache2/error">
++<Directory "@GENTOO_PORTAGE_EPREFIX@/usr/share/apache2/error">
+ 	AllowOverride None
+ 	Options IncludesNoExec
+ 	AddOutputFilter Includes html
+--- conf/modules.d/00_default_settings.conf
++++ conf/modules.d/00_default_settings.conf
+@@ -67,7 +67,7 @@
+ # container, error messages relating to that virtual host will be
+ # logged here.  If you *do* define an error logfile for a <VirtualHost>
+ # container, that host's errors will be logged there and not here.
+-ErrorLog /var/log/apache2/error_log
++ErrorLog @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/error_log
+
+ # LogLevel: Control the number of messages logged to the error_log.
+ # Possible values include: debug, info, notice, warn, error, crit,
+--- conf/modules.d/00_mod_log_config.conf
++++ conf/modules.d/00_mod_log_config.conf
+@@ -20,7 +20,7 @@
+ # container, they will be logged here.  Contrariwise, if you *do*
+ # define per-<VirtualHost> access logfiles, transactions will be
+ # logged therein and *not* in this file.
+-CustomLog /var/log/apache2/access_log common
++CustomLog @GENTOO_PORTAGE_EPREFIX@/var/log/apache2/access_log common
+ 
+ # If you would like to have agent and referer logfiles,
+ # uncomment the following directives.
+--- conf/modules.d/00_mod_mime.conf
++++ conf/modules.d/00_mod_mime.conf
+@@ -10,7 +10,7 @@
+ <IfModule mime_module>
+ # TypesConfig points to the file containing the list of mappings from
+ # filename extension to MIME-type.
+-TypesConfig /etc/mime.types
++TypesConfig @GENTOO_PORTAGE_EPREFIX@/etc/mime.types
+ 
+ # AddType allows you to add to or override the MIME configuration
+ # file specified in TypesConfig for specific file types.
+@@ -49,7 +49,7 @@
+ # The mod_mime_magic module allows the server to use various hints from the
+ # contents of the file itself to determine its type.  The MIMEMagicFile
+ # directive tells the module where the hint definitions are located.
+-MIMEMagicFile /etc/apache2/magic
++MIMEMagicFile @GENTOO_PORTAGE_EPREFIX@/etc/apache2/magic
+ </IfModule>
+ 
+ # vim: ts=4 filetype=apache
+--- conf/modules.d/00_mpm.conf
++++ conf/modules.d/00_mpm.conf
+@@ -4,10 +4,10 @@
+ # identification number when it starts.
+ #
+ # DO NOT CHANGE UNLESS YOU KNOW WHAT YOU ARE DOING
+-PidFile /var/run/apache2.pid
++PidFile @GENTOO_PORTAGE_EPREFIX@/var/run/apache2.pid
+
+ # The accept serialization lock file MUST BE STORED ON A LOCAL DISK.
+-#LockFile /var/run/apache2.lock
++#LockFile @GENTOO_PORTAGE_EPREFIX@/var/run/apache2.lock
+
+ # Only one of the below sections will be relevant on your
+ # installed httpd.  Use "/usr/sbin/apache2 -l" to find out the
+--- conf/modules.d/40_mod_ssl.conf
++++ conf/modules.d/40_mod_ssl.conf
+@@ -51,7 +51,7 @@
+ # Configure the SSL Session Cache: First the mechanism  to use and second the
+ # expiring timeout (in seconds).
+ #SSLSessionCache		dbm:/var/run/ssl_scache
+-SSLSessionCache			shmcb:/var/run/ssl_scache(512000)
++SSLSessionCache			shmcb:@GENTOO_PORTAGE_EPREFIX@/var/run/ssl_scache(512000)
+ SSLSessionCacheTimeout  300
+ 
+ ## Semaphore:
+ # Configure the path to the mutual exclusion semaphore the SSL engine uses
+ # internally for inter-process synchronization.
+-SSLMutex  file:/var/run/ssl_mutex
++SSLMutex  file:@GENTOO_PORTAGE_EPREFIX@/var/run/ssl_mutex
+ </IfDefine>
+ 
+--- conf/modules.d/45_mod_dav.conf
++++ conf/modules.d/45_mod_dav.conf
+@@ -1,5 +1,5 @@
+ <IfDefine DAV>
+-DavLockDB "/var/lib/dav/lockdb"
++DavLockDB "@GENTOO_PORTAGE_EPREFIX@/var/lib/dav/lockdb"
+ 
+ # The following directives disable redirects on non-GET requests for
+ # a directory that does not include the trailing slash.  This fixes a
+
+--- conf/modules.d/00_mod_autoindex.conf
++++ conf/modules.d/00_mod_autoindex.conf
+@@ -2,9 +2,9 @@
+ <IfModule alias_module>
+ # We include the /icons/ alias for FancyIndexed directory listings.  If
+ # you do not use FancyIndexing, you may comment this out.
+-Alias /icons/ "/usr/share/apache2/icons/"
++Alias /icons/ "@GENTOO_PORTAGE_EPREFIX@/usr/share/apache2/icons/"
+ 
+-<Directory "/usr/share/apache2/icons">
++<Directory "@GENTOO_PORTAGE_EPREFIX@/usr/share/apache2/icons">
+ 	Options Indexes MultiViews
+ 	AllowOverride None
+ 	Order allow,deny
