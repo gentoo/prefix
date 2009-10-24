@@ -31,4 +31,5 @@ pkg_setup() {
 			$(use_enable abiword abiword-output)
 			$(use_enable png libpng)
 			"
+	PATCHES=( "${FILESDIR}"/poppler-0.12.1-stdbool-darwin.patch )
 }
