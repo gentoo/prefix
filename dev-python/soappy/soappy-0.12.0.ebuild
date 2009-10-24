@@ -11,7 +11,7 @@ DESCRIPTION="SOAP implementation for Python"
 HOMEPAGE="http://pywebsvcs.sourceforge.net/"
 SRC_URI="mirror://sourceforge/pywebsvcs/${MY_P}.tar.gz"
 
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 SLOT="0"
 LICENSE="BSD"
 IUSE="examples ssl"
