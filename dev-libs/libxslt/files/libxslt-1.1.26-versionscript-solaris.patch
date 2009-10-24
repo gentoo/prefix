@@ -5,6 +5,8 @@ b) don't unconditionally set linker flags to Sun-style ld (probably this
 this patch allows to compile libxslt to compile on Solaris with GNU ld
 configured GCC
 
+https://bugzilla.gnome.org/show_bug.cgi?id=599396
+
 --- configure.in
 +++ configure.in
 @@ -128,9 +128,9 @@
