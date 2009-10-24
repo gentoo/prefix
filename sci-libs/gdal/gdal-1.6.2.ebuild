@@ -69,8 +69,9 @@ pkg_setup() {
 }
 
 src_prepare() {
-	eaclocal
-	eautoconf
+#	eaclocal
+#	eautoconf
+	eautoreconf # remove libtool-2.1a thing, causes version mismatch
 
 	epatch "${FILESDIR}"/${PN}-1.4.2-datadir.patch \
 	    "${FILESDIR}"/${PN}-1.5.0-soname.patch \
