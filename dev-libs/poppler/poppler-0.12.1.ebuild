@@ -41,6 +41,7 @@ pkg_setup() {
 			--disable-poppler-qt4
 			--disable-cairo-output"
 	POPPLER_PKGCONFIG=( "poppler-splash.pc" "poppler.pc" )
+	PATCHES=( "${FILESDIR}"/${P}-stdbool-darwin.patch )
 }
 
 src_compile() {
