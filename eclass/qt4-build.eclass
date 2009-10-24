@@ -276,10 +276,11 @@ qt4-build_src_prepare() {
 			-i "${S}"/configure "${S}"/mkspecs/common/mac-g++.conf || die "sed ${S}/configure failed"
 
 		# On Snow Leopard don't fall back to 10.5 deployment target.
-		[[ ${CHOST} == *-apple-darwin10 ]] && \
+		if [[ ${CHOST} == *-apple-darwin10 ]] ; then
 			sed -e "s:QMakeVar set QMAKE_MACOSX_DEPLOYMENT_TARGET.*:QMakeVar set QMAKE_MACOSX_DEPLOYMENT_TARGET 10.6:g" \
 				-e "s:-mmacosx-version-min=10.[0-9]:-mmacosx-version-min=10.6:g" \
 				-i "${S}"/configure "${S}"/mkspecs/common/mac-g++.conf || die "sed ${S}/configure failed"
+		fi
 	fi
 
 	# this one is needed for all systems with a separate -liconv, apart from
