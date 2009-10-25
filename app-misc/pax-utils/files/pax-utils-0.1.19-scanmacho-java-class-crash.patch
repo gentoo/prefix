@@ -1,0 +1,90 @@
+A little protection against invalid files.  This needs more work to be 
+fully defensive.  For now we just check if we can read the fat_headers 
+and mach_headers, which is enough to get around the problem of Java 
+bytecode objects sharing the same magic with FAT files.
+
+Thanks Heiko Przybyl for noticing and the initial patch
+
+committed upstream >0.1.19
+
+Index: paxmacho.c
+===================================================================
+RCS file: /var/cvsroot/gentoo-projects/pax-utils/paxmacho.c,v
+retrieving revision 1.14
+retrieving revision 1.15
+diff -u -r1.14 -r1.15
+--- paxmacho.c	30 Dec 2008 13:27:09 -0000	1.14
++++ paxmacho.c	25 Oct 2009 20:30:49 -0000	1.15
+@@ -176,7 +176,8 @@
+ /* Determines the type of this object, and sets the right 32-bit or
+  * 64-bits pointer.  The ismach64 flag is filled in appropriately.  The
+  * return of this function is the read magic value, or 0 when the file
+- * is not recognised. */
++ * is not recognised.
++ * Note: the input addr must be enough to map on struct mach_header! */
+ inline static uint32_t read_mach_header(fatobj *fobj, void *addr)
+ {
+ 	struct mach_header *mhdr = (struct mach_header*)addr;
+@@ -235,10 +236,6 @@
+ 			return NULL;
+ 	}
+ 
+-	/* make sure we have enough bytes to scan */
+-	if (len <= sizeof(struct fat_header))
+-		return NULL;
+-
+ 	data = (char*)mmap(0, len, PROT_READ, MAP_PRIVATE, fd, 0);
+ 	if (data == (char*)MAP_FAILED) {
+ 		warn("mmap on '%s' of %llu bytes failed :(",
+@@ -271,6 +268,10 @@
+ 	ret->data = buffer;
+ 	ret->swapped = 0;
+ 
++	/* make sure we have enough bytes to scan */
++	if (ret->len <= sizeof(struct fat_header))
++		return NULL;
++
+ 	fhdr = (struct fat_header*)ret->data;
+ 	/* Check what kind of file this is.  Unfortunately we don't have
+ 	 * configure, so we don't know if we're on big or little endian, so
+@@ -282,6 +283,7 @@
+ 		fatobj *fobj = ret;
+ 		struct fat_arch *farch;
+ 		char *dptr = ret->data + sizeof(struct fat_header);
++		uint32_t bufleft = ret->len - sizeof(struct fat_header);
+ 		char swapped = 0;
+ 		uint32_t narchs = fhdr->nfat_arch;
+ 		uint32_t offset;
+@@ -293,10 +295,17 @@
+ 			narchs = bswap_32(narchs);
+ 		}
+ 
++		/* can we read the headers at all?
++		 * beware of corrupt files and Java bytecode which shares
++		 * the same magic with us :( */
++		if (sizeof(struct fat_arch) * narchs > bufleft)
++			return NULL;
++
+ 		for (i = 1; i <= narchs; i++) {
+ 			farch = (struct fat_arch*)dptr;
+ 			offset = swapped ? bswap_32(farch->offset) : farch->offset;
+-			if (read_mach_header(fobj, ret->data + offset) == 0)
++			if (offset + sizeof(struct mach_header) >= bufleft ||
++					read_mach_header(fobj, ret->data + offset) == 0)
+ 				return(NULL);
+ 			if (i < narchs) {
+ 				fobj = fobj->next = malloc(sizeof(fatobj));
+@@ -309,10 +318,12 @@
+ 				fobj->next = NULL;
+ 			}
+ 			dptr += sizeof(struct fat_arch);
++			bufleft -= sizeof(struct fat_arch);
+ 		}
+ 	} else {
+ 		/* simple Mach-O file, treat as single arch FAT file */
+-		if (read_mach_header(ret, ret->data) == 0)
++		if (ret->len < sizeof(struct mach_header) ||
++				read_mach_header(ret, ret->data) == 0)
+ 			return(NULL);
+ 		ret->next = NULL;
+ 	}

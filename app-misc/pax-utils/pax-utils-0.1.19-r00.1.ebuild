@@ -28,7 +28,9 @@ DEPEND="caps? ( sys-libs/libcap )
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-0.1.19-no-strndup.patch
 	epatch "${FILESDIR}"/${PN}-0.1.18-hpux.patch
+	epatch "${FILESDIR}"/${PN}-0.1.19-scanmacho-java-class-crash.patch
 }
 
 src_compile() {
