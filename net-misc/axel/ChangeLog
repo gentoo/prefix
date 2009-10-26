@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/axel
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.47 2009/02/07 10:28:35 drizzt Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.48 2009/10/25 20:19:14 tove Exp $
+
+  25 Oct 2009; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove drizzt from metadata.xml (#149111)
 
 *axel-2.3-r1 (07 Feb 2009)
 
