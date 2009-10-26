@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/bsdsfv
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdsfv/ChangeLog,v 1.28 2008/01/26 18:42:10 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bsdsfv/ChangeLog,v 1.29 2009/10/25 20:14:18 tove Exp $
+
+  25 Oct 2009; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove drizzt from metadata.xml (#149111)
 
   26 Jan 2008; Fabian Groffen <grobian@gentoo.org> bsdsfv-1.18-r1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
