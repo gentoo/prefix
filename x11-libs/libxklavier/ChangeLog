@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.132 2009/10/16 22:08:03 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.133 2009/10/24 16:18:48 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> libxklavier-4.0.ebuild:
+  ppc stable #281427
 
   16 Oct 2009; Markus Meier <maekke@gentoo.org> libxklavier-4.0.ebuild:
   x86 stable, bug #281427
