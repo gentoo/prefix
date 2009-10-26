@@ -1,6 +1,12 @@
 # ChangeLog for app-i18n/enca
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.43 2009/10/16 13:32:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.45 2009/10/24 14:42:49 klausman Exp $
+
+  24 Oct 2009; Tobias Klausmann <klausman@gentoo.org> enca-1.10.ebuild:
+  Stable on alpha, bug #288568
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> enca-1.10.ebuild:
+  ppc stable #288568
 
   16 Oct 2009; Jeroen Roovers <jer@gentoo.org> enca-1.10.ebuild:
   Stable for HPPA (bug #288568).
