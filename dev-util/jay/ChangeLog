@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/jay
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/jay/ChangeLog,v 1.4 2009/09/19 15:22:09 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/jay/ChangeLog,v 1.5 2009/10/25 21:26:13 volkmar Exp $
+
+  25 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> jay-1.1.1-r2.ebuild:
+  Keywording for ppc, bug 270910
 
   19 Sep 2009; Markus Meier <maekke@gentoo.org> jay-1.1.1-r2.ebuild:
   amd64/x86 stable, bug #284304
