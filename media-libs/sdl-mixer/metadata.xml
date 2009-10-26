@@ -2,4 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>games</herd>
+<use>
+ <flag name='midi'>basic support for MIDI files</flag>
+ <flag name='wav'>support WAVE files</flag>
+</use>
 </pkgmetadata>
