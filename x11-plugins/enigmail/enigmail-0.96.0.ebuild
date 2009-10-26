@@ -1,16 +1,17 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.95.7-r4.ebuild,v 1.6 2009/03/22 15:28:20 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.96.0.ebuild,v 1.2 2009/10/25 17:58:42 anarchy Exp $
 
+EAPI="2"
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils nsplugins mozcoreconf mozextension makeedit multilib autotools
 
 LANGS="ar de el es-ES nb-NO pt-BR zh-CN"
-NOSHORTLANGS="ca-AD cs-CZ es-ES fi-FI fr-FR hu-HU it-IT ja-JP ko-KR nb-NO pl-PL pt-PT ro-RO ru-RU sk-SK sl-SI sv-SE tr-TR zh-TW"
+NOSHORTLANGS="ca-AD es-ES fi-FI fr-FR hu-HU it-IT ja-JP ko-KR nb-NO pl-PL pt-PT ru-RU sl-SI sv-SE tr-TR zh-TW"
 
 EMVER=${PV}
-TBVER="2.0.0.21"
+TBVER="2.0.0.23"
 TBPATCH="2.0.0.21-patches-0.1"
 
 DESCRIPTION="GnuPG encryption plugin for thunderbird."
@@ -25,13 +26,13 @@ LICENSE="MPL-1.1 GPL-2"
 IUSE=""
 
 for X in ${LANGS} ; do
-	SRC_URI="${SRC_URI} linguas_${X/-/_}? ( http://dev.gentooexperimental.org/~armin76/dist/${P}-xpi/${P}-${X}.xpi )"
+	SRC_URI="${SRC_URI} linguas_${X/-/_}? ( http://dev.gentoo.org/~anarchy/dist/${P}-xpi/${P}-${X}.xpi )"
 	IUSE="${IUSE} linguas_${X/-/_}"
 done
 # ( mirror://gentoo/${PN}-${X}-0.9x.xpi )"
 
 for X in ${NOSHORTLANGS} ; do
-	SRC_URI="${SRC_URI} linguas_${X%%-*}? ( http://dev.gentooexperimental.org/~armin76/dist/${P}-xpi/${P}-${X}.xpi )"
+	SRC_URI="${SRC_URI} linguas_${X%%-*}? ( http://dev.gentoo.org/~anarchy/dist/${P}-xpi/${P}-${X}.xpi )"
 	IUSE="${IUSE} linguas_${X%%-*}"
 done
 #( mirror://gentoo/${PN}-${X}-0.9x.xpi )"
@@ -39,7 +40,17 @@ done
 DEPEND=">=mail-client/mozilla-thunderbird-${TBVER}
 	!>=mail-client/mozilla-thunderbird-3"
 RDEPEND="${DEPEND}
-	>=app-crypt/gnupg-1.4
+	|| (
+		(
+			>=app-crypt/gnupg-2.0
+			|| (
+				app-crypt/pinentry[gtk]
+				app-crypt/pinentry[qt4]
+				app-crypt/pinentry[qt3]
+			)
+		)
+		=app-crypt/gnupg-1.4*
+	)
 	>=www-client/mozilla-launcher-1.56"
 
 S="${WORKDIR}/mozilla"
@@ -77,14 +88,6 @@ linguas() {
 	done
 }
 
-pkg_setup() {
-	if has_version '>=app-crypt/gnupg-2.0.1-r2'; then
-		if ! built_with_use -o app-crypt/pinentry gtk qt3; then
-			die "You must build app-crypt/pinentry with GTK or QT3 support"
-		fi
-	fi
-}
-
 src_unpack() {
 	unpack thunderbird-${TBVER}-source.tar.bz2 mozilla-thunderbird-${TBPATCH}.tar.bz2 || die "unpack failed"
 
@@ -92,7 +95,9 @@ src_unpack() {
 	for X in ${linguas}; do
 		[[ ${X} != en ]] && xpi_unpack ${P}-${X}.xpi
 	done
+}
 
+src_prepare() {
 	# Apply our patches
 	cd "${S}" || die "cd failed"
 	EPATCH_SUFFIX="patch" \
@@ -118,7 +123,7 @@ src_unpack() {
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/mozilla-thunderbird"
 
 	####################################
@@ -160,7 +165,9 @@ src_compile() {
 	# This removes extraneous CFLAGS from the Makefiles to reduce RAM
 	# requirements while compiling
 	edit_makefiles
+}
 
+src_compile() {
 	# Only build the parts necessary to support building enigmail
 	emake -j1 export || die "make export failed"
 	emake -C modules/libreg || die "make modules/libreg failed"
