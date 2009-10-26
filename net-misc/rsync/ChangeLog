@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/rsync
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.195 2009/08/31 00:34:56 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rsync/ChangeLog,v 1.196 2009/10/20 08:33:14 vapier Exp $
+
+  20 Oct 2009; Mike Frysinger <vapier@gentoo.org> rsync-3.0.6.ebuild:
+  Drop USE=xinetd and just always install the conf file.
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> rsync-3.0.6.ebuild:
   stable ppc64, bug 282880
