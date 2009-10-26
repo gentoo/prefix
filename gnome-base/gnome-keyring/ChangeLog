@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gnome-keyring
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.159 2009/10/16 22:42:22 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-keyring/ChangeLog,v 1.160 2009/10/24 16:29:00 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> gnome-keyring-2.26.3.ebuild:
+  ppc stable #281427
 
   16 Oct 2009; Markus Meier <maekke@gentoo.org> gnome-keyring-2.26.3.ebuild:
   x86 stable, bug #281427
