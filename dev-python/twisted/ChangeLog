@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/twisted
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.108 2009/10/04 20:01:14 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.109 2009/10/24 14:36:50 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> twisted-8.2.0-r2.ebuild:
+  ppc stable #289680
 
   04 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   twisted-8.1.0.ebuild, twisted-8.2.0-r2.ebuild:
