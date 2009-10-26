@@ -1,6 +1,10 @@
 # ChangeLog for virtual/postgresql-base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/postgresql-base/ChangeLog,v 1.16 2009/10/14 00:36:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/postgresql-base/ChangeLog,v 1.17 2009/10/24 12:26:26 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> postgresql-base-8.2.ebuild,
+  postgresql-base-8.3.ebuild, postgresql-base-8.4.ebuild:
+  ppc stable #285475
 
   14 Oct 2009; Jeroen Roovers <jer@gentoo.org> postgresql-base-8.1.ebuild:
   Stable for HPPA (bug #268138).
