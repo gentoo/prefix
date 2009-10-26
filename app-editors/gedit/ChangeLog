@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.278 2009/10/16 23:31:30 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.279 2009/10/24 16:32:36 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> gedit-2.26.3.ebuild:
+  ppc stable #281427
 
   16 Oct 2009; Markus Meier <maekke@gentoo.org> gedit-2.26.3.ebuild:
   x86 stable, bug #281427
