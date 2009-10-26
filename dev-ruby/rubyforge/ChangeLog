@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/rubyforge
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.47 2009/09/19 06:58:42 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.48 2009/10/23 15:06:11 graaff Exp $
+
+  23 Oct 2009; Hans de Graaff <graaff@gentoo.org> -rubyforge-1.0.1.ebuild,
+  -rubyforge-1.0.4.ebuild:
+  Remove old versions.
 
 *rubyforge-1.0.5 (19 Sep 2009)
 
