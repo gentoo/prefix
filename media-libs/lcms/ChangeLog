@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/lcms
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.104 2009/04/18 17:08:52 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.105 2009/10/19 19:17:53 aballier Exp $
+
+  19 Oct 2009; Alexis Ballier <aballier@gentoo.org> lcms-1.18-r1.ebuild:
+  keyword ~sparc-fbsd
 
   18 Apr 2009; Raúl Porcel <armin76@gentoo.org> lcms-1.18-r1.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #264604
