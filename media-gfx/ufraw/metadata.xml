@@ -4,7 +4,10 @@
 	<herd>graphics</herd>
 	<use>
 		<flag name='contrast'>
-			enable the experimental contrast setting option
+			enable contrast setting option
+		</flag>
+		<flag name='hotpixels'>
+			enable hot pixel elimination
 		</flag>
 		<flag name='lensfun'>
 			enable the lensfun lens-correction library

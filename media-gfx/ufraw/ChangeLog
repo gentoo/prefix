@@ -1,6 +1,18 @@
 # ChangeLog for media-gfx/ufraw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ChangeLog,v 1.64 2009/10/05 22:01:30 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ChangeLog,v 1.67 2009/10/22 21:09:52 maekke Exp $
+
+  22 Oct 2009; Markus Meier <maekke@gentoo.org> ufraw-0.16.ebuild:
+  fix building with -gtk and fix die message, pointed out by spatz
+
+  19 Oct 2009; Markus Meier <maekke@gentoo.org> ufraw-0.16.ebuild:
+  upstream renamed 0.16-1 tarball back to 0.16
+
+*ufraw-0.16 (19 Oct 2009)
+
+  19 Oct 2009; Markus Meier <maekke@gentoo.org> +ufraw-0.16.ebuild,
+  metadata.xml:
+  version bump, bug #289281
 
   05 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> ufraw-0.15-r2.ebuild:
   Re-Keywording for ppc, bug 272088
