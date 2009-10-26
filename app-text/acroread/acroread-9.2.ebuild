@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-9.1.2.ebuild,v 1.3 2009/06/21 19:09:30 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-9.2.ebuild,v 1.3 2009/10/24 15:24:42 fauli Exp $
 
 inherit eutils gnome2-utils nsplugins
 
