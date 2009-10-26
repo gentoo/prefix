@@ -1,6 +1,9 @@
 # ChangeLog for games-emulation/zsnes
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/zsnes/ChangeLog,v 1.44 2009/04/14 09:42:56 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/zsnes/ChangeLog,v 1.45 2009/10/25 20:19:57 tove Exp $
+
+  25 Oct 2009; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove drizzt from metadata.xml (#149111)
 
   14 Apr 2009; Raúl Porcel <armin76@gentoo.org> zsnes-1.51-r2.ebuild:
   x86 stable wrt #264211

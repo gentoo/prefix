@@ -2,9 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>games</herd>
-  <maintainer restrict="&gt;=games-emulation/zsnes-1.5.0">
-    <email>drizzt@gentoo.org</email>
-    <name>Timothy Redaelli</name>
-    <description>Please assign bugs to games@gentoo.org and CC me.</description>
-  </maintainer>
 </pkgmetadata>
