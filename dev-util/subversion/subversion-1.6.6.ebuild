@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.3-r10.ebuild,v 1.1 2009/07/22 00:28:19 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.6.ebuild,v 1.1 2009/10/24 15:02:21 arfrever Exp $
 
 EAPI="2"
 
@@ -182,14 +182,16 @@ pkg_setup() {
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.6.0-disable_linking_against_unneeded_libraries.patch"
 	epatch "${FILESDIR}/${PN}-1.6.2-local_library_preloading.patch"
-	epatch "${FILESDIR}/${P}-apache-2.4.patch"
-	epatch "${FILESDIR}/${P}-kwallet_window.patch"
+	epatch "${FILESDIR}/${PN}-1.6.3-kwallet_window.patch"
 	chmod +x build/transform_libtool_scripts.sh || die "chmod failed"
 
 	sed -i -e '1c\#!'"${EPREFIX}"'/bin/sh' build/transform_libtool_scripts.sh || die "/bin/sh is not POSIX shell!"
 	epatch "${FILESDIR}"/${PN}-1.5.4-interix.patch
 	epatch "${FILESDIR}"/${PN}-1.5.6-aix-dso.patch
 	epatch "${FILESDIR}"/${PN}-1.6.3-hpux-dso.patch
+
+	# Delete this in >=1.6.7.
+	sed -e '5581a"\\n"' -e '5595a"\\n"' -e '5615a"\\n"' -e'5629a"\\n"' -i subversion/po/pl.po || die "sed failed"
 
 	if ! use test; then
 		sed -i \
@@ -236,6 +238,10 @@ src_configure() {
 			# avoid recording immediate path to sharedlibs into executables
 			append-ldflags -Wl,-bnoipath
 		;;
+		*-interix*)
+			# loader crashes on the LD_PRELOADs...
+			myconf="${myconf} --disable-local-library-preloading"
+		;;
 	esac
 
 	econf --libdir="${EPREFIX}/usr/$(get_libdir)" \
@@ -252,7 +258,6 @@ src_configure() {
 		$(use_with sasl) \
 		$(use_with webdav-neon neon ${EPREFIX}/usr) \
 		$(use_with webdav-serf serf ${EPREFIX}/usr) \
-		${myconf} \
 		--with-apr="${EPREFIX}"/usr/bin/apr-1-config \
 		--with-apr-util="${EPREFIX}"/usr/bin/apu-1-config \
 		--disable-experimental-libtool \
@@ -260,7 +265,8 @@ src_configure() {
 		--enable-local-library-preloading \
 		--disable-mod-activation \
 		--disable-neon-version-check \
-		--with-sqlite="${EPREFIX}"/usr
+		--with-sqlite="${EPREFIX}"/usr \
+		${myconf}
 }
 
 src_compile() {
@@ -280,7 +286,7 @@ src_compile() {
 		einfo
 		einfo "Building of Subversion SWIG Python bindings"
 		einfo
-		emake swig_pydir="${EPREFIX}/$(python_get_sitedir)/libsvn" swig_pydir_extra="${EPREFIX}/$(python_get_sitedir)/svn" swig-py \
+		emake swig_pydir="${EPREFIX}$(python_get_sitedir)/libsvn" swig_pydir_extra="${EPREFIX}$(python_get_sitedir)/svn" swig-py \
 			|| die "Building of Subversion SWIG Python bindings failed"
 	fi
 
@@ -560,7 +566,7 @@ src_install() {
 		einfo
 		einfo "Installation of Subversion SWIG Python bindings"
 		einfo
-		emake -j1 DESTDIR="${D}" swig_pydir="${EPREFIX}/$(python_get_sitedir)/libsvn" swig_pydir_extra="${EPREFIX}/$(python_get_sitedir)/svn" install-swig-py \
+		emake -j1 DESTDIR="${D}" swig_pydir="${EPREFIX}$(python_get_sitedir)/libsvn" swig_pydir_extra="${EPREFIX}$(python_get_sitedir)/svn" install-swig-py \
 			|| die "Installation of Subversion SWIG Python bindings failed"
 	fi
 
@@ -721,7 +727,7 @@ pkg_postinst() {
 	use perl && perl-module_pkg_postinst
 
 	if use ctypes-python; then
-		python_mod_compile "$(python_get_sitedir)/csvn/"{.,core,ext}/*.py
+		python_mod_optimize "$(python_get_sitedir)/csvn"
 	fi
 
 	elog "Subversion Server Notes"
@@ -804,7 +810,7 @@ pkg_postrm() {
 	use perl && perl-module_pkg_postrm
 
 	if use ctypes-python; then
-		python_mod_cleanup
+		python_mod_cleanup "$(python_get_sitedir)/csvn"
 	fi
 }
 
