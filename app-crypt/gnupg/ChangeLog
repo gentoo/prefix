@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/gnupg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.356 2009/10/18 17:46:30 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/ChangeLog,v 1.357 2009/10/21 15:10:52 maekke Exp $
+
+  21 Oct 2009; Markus Meier <maekke@gentoo.org> gnupg-1.4.10.ebuild:
+  arm stable, bug #287436
 
   18 Oct 2009; nixnut <nixnut@gentoo.org> gnupg-1.4.10.ebuild:
   ppc stable #287436
