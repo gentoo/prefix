@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/activesupport
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.103 2009/10/18 17:46:20 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.104 2009/10/22 08:29:58 a3li Exp $
+
+  22 Oct 2009; Alex Legler <a3li@gentoo.org> -activesupport-1.4.4.ebuild,
+  -activesupport-2.0.5.ebuild, -activesupport-2.1.2.ebuild:
+  Removing three old versions
 
   18 Oct 2009; Alex Legler <a3li@gentoo.org> -activesupport-2.2.2.ebuild:
   removing vulnerable ebuild, bug 283396
