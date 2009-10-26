@@ -1,6 +1,15 @@
 # ChangeLog for app-admin/eselect-boost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.8 2009/05/20 18:04:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.11 2009/10/25 11:57:58 maekke Exp $
+
+  25 Oct 2009; Markus Meier <maekke@gentoo.org> eselect-boost-0.3.ebuild:
+  amd64/x86 stable, bug #284686
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> eselect-boost-0.3.ebuild:
+  ppc stable #284686
+
+  23 Oct 2009; Jeroen Roovers <jer@gentoo.org> eselect-boost-0.3.ebuild:
+  Stable for HPPA (bug #288723).
 
   20 May 2009; Raúl Porcel <armin76@gentoo.org> eselect-boost-0.2.ebuild,
   eselect-boost-0.3.ebuild:
