@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/synergy/synergy-1.3.1.ebuild,v 1.13 2009/05/15 08:00:10 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/synergy/synergy-1.3.1.ebuild,v 1.14 2009/10/23 20:47:16 darkside Exp $
 
 inherit eutils autotools
 
@@ -36,8 +36,10 @@ src_unpack() {
 }
 
 src_compile() {
+	# debug causes an assertion error in switchInDirection()
 	econf --sysconfdir="${EPREFIX}"/etc \
-		--disable-dependency-tracking || die
+		--disable-dependency-tracking \
+		--disable-debug
 	emake || die
 }
 
