@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/libssh
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/ChangeLog,v 1.15 2009/10/17 07:59:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh/ChangeLog,v 1.17 2009/10/24 12:43:58 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> libssh-0.3.4.ebuild:
+  ppc stable #286860
+
+  19 Oct 2009; Markus Meier <maekke@gentoo.org> libssh-0.3.4.ebuild:
+  x86 stable, bug #286860
 
   17 Oct 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
   remove static-libs description as it is global now
