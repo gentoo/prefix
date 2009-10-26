@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/libcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.96 2009/10/11 01:30:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.98 2009/10/24 14:59:35 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> libcap-2.17.ebuild:
+  ppc stable #290045
+
+  23 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> libcap-2.17.ebuild:
+  amd64 stable wrt #290045
 
   11 Oct 2009; Mike Frysinger <vapier@gentoo.org>
   files/2.16/0001-build-system-fixes.patch:
