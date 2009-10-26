@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.15.4.ebuild,v 1.1 2009/09/07 13:31:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.15.4.ebuild,v 1.2 2009/10/21 06:12:07 jer Exp $
 
 inherit eutils multilib autotools
 
@@ -20,7 +20,7 @@ RDEPEND=">=dev-lang/perl-5.6.0
 	bzip2? ( app-arch/bzip2 )"
 DEPEND="${RDEPEND}
 	nls? ( app-text/po4a )
-	test? ( dev-perl/Test-Pod )"
+	test? ( dev-perl/Test-Pod dev-perl/IO-String )"
 
 src_unpack() {
 	unpack ${A}
