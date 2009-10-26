@@ -1,8 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-8.3.7.ebuild,v 1.1 2009/04/09 22:36:34 caleb Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-8.4.1-r1.ebuild,v 1.2 2009/10/24 12:25:40 nixnut Exp $
 
 EAPI=1
+
+# weird test failures.
+RESTRICT="test"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="none"
@@ -53,7 +56,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}/postgresql-${SLOT}-common.patch" \
 		"${FILESDIR}/postgresql-${SLOT}-server.patch" \
-		"${FILESDIR}/postgresql-${SLOT}-prefix.patch"
+		"${FILESDIR}/postgresql-8.3-prefix.patch"
 
 	eprefixify "${S}/src/include/pg_config_manual.h"
 
@@ -81,15 +84,13 @@ src_compile() {
 		$(use_with uuid ossp-uuid) \
 		--with-system-tzdata="/usr/share/zoneinfo" \
 		--with-includes="/usr/include/postgresql-${SLOT}/" \
+		--with-libraries="/usr/$(get_libdir)/postgresql-${SLOT}/$(get_libdir)" \
 		"$(built_with_use ~dev-db/postgresql-base-${PV} nls && use_enable nls nls "$(wanted_languages)")" \
 		|| die "configure failed"
 
-	for bd in . contrib $(use xml && echo contrib/xml2); do
+	for bd in .  contrib $(use xml && echo contrib/xml2); do
 		PATH="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin:${PATH}" \
-			emake -C $bd -j1 LD="$(tc-getLD) $(get_abi_LDFLAGS)" \
-				PGXS=$(${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin/pg_config --pgxs) \
-				PGXS_IN_SERVER=1 PGXS_WITH_SERVER="${S}/src/backend/postgres" \
-				NO_PGXS=0 USE_PGXS=1 docdir="${EPREFIX}"/usr/share/doc/${PF} || die "emake in $bd failed"
+			emake -C $bd -j1 LD="$(tc-getLD) $(get_abi_LDFLAGS)" || die "emake in $bd failed"
 	done
 }
 
@@ -102,13 +103,10 @@ src_install() {
 
 	for bd in . contrib $(use xml && echo contrib/xml2) ; do
 		PATH="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin:${PATH}" \
-			emake install -C $bd -j1 DESTDIR="${D}" \
-				PGXS_IN_SERVER=1 PGXS_WITH_SERVER="${S}/src/backend/postgres" \
-				PGXS=$(${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin/pg_config --pgxs) \
-				NO_PGXS=0 USE_PGXS=1 docdir="${EPREFIX}"/usr/share/doc/${PF} || die "emake install in $bd failed"
+			emake install -C $bd -j1 DESTDIR="${D}" || die "emake install in $bd failed"
 	done
 
-	rm -rf "${ED}/usr/share/postgresql-${SLOT}/man/man7/" "${ED}/usr/share/doc/${PF}/html"
+	rm -rf "${ED}/usr/share/postgresql-${SLOT}/man/man7/" "${ED}/usr/share/doc/postgresql-${SLOT}/html"
 	rm "${ED}"/usr/share/postgresql-${SLOT}/man/man1/{clusterdb,create{db,lang,user},drop{db,lang,user},ecpg,pg_{config,dump,dumpall,restore},psql,reindexdb,vacuumdb}.1
 
 	dodoc README HISTORY doc/{README.*,TODO,bug.template}
@@ -240,9 +238,7 @@ pkg_config() {
 src_test() {
 	einfo ">>> Test phase [check]: ${CATEGORY}/${PF}"
 	PATH="/usr/$(get_libdir)/postgresql-${SLOT}/bin:${PATH}" \
-		emake -j1 check \
-			PGXS=$(/usr/$(get_libdir)/postgresql-${SLOT}/bin/pg_config --pgxs) \
-			NO_PGXS=0 USE_PGXS=1 SLOT=${SLOT} || die "Make check failed. See above for details."
+		emake -j1 check  || die "Make check failed. See above for details."
 
 	einfo "Yes, there are other tests which could be run."
 	einfo "... and no, we don't plan to add/support them."

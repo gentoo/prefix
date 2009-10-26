@@ -1,6 +1,26 @@
 # ChangeLog for dev-db/postgresql-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.29 2009/10/14 04:42:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.33 2009/10/24 12:30:47 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> postgresql-server-8.2.14.ebuild:
+  ppc stable #285475
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> postgresql-server-7.4.26.ebuild,
+  postgresql-server-8.0.22.ebuild, postgresql-server-8.3.8.ebuild,
+  postgresql-server-8.4.1-r1.ebuild:
+  ppc stable #285475
+
+*postgresql-server-8.4.1-r1 (22 Oct 2009)
+
+  22 Oct 2009; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-8.4.1-r1.ebuild:
+  Fixing DB paths for initdb, thanks to Stephan Feder and the other nice
+  people in bug #284437
+
+  22 Oct 2009; Patrick Lauer <patrick@gentoo.org>
+  postgresql-server-7.4.26.ebuild, +files/postgresql-7.4-com_err.patch:
+  Fixing for USE=kerberos, thanks to Jeroen Roovers for the patch. fixes
+  #288895
 
   14 Oct 2009; Jeroen Roovers <jer@gentoo.org>
   postgresql-server-7.4.26.ebuild:
