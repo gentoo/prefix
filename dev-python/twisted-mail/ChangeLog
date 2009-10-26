@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/twisted-mail
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-mail/ChangeLog,v 1.35 2009/09/06 20:42:55 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-mail/ChangeLog,v 1.36 2009/10/25 20:56:46 arfrever Exp $
+
+  25 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  twisted-mail-8.2.0.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
   06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
   -files/twisted-mail-0.2.0-tests-2.2-compat.patch,
