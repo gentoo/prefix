@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.19.ebuild,v 1.1 2009/10/17 01:45:27 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.19.ebuild,v 1.2 2009/10/24 14:48:40 arfrever Exp $
 
 EAPI="2"
 
@@ -45,6 +45,8 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-3.6.11-interix.patch
+
+	epatch "${FILESDIR}/${P}-icu.test.patch"
 
 	epunt_cxx
 }
