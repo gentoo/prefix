@@ -1,6 +1,11 @@
 # ChangeLog for virtual/postgresql-server
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/postgresql-server/ChangeLog,v 1.10 2009/10/13 15:25:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/postgresql-server/ChangeLog,v 1.11 2009/10/24 12:31:11 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> postgresql-server-8.1.ebuild,
+  postgresql-server-8.2.ebuild, postgresql-server-8.3.ebuild,
+  postgresql-server-8.4.ebuild:
+  ppc stable #285475
 
   13 Oct 2009; Jeroen Roovers <jer@gentoo.org> postgresql-server-8.4.ebuild:
   Stable for HPPA (bug #285475).
