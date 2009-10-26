@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.156 2009/10/18 17:39:21 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.157 2009/10/22 08:05:19 a3li Exp $
+
+  22 Oct 2009; Alex Legler <a3li@gentoo.org> -rails-1.2.6-r1.ebuild,
+  -rails-2.0.5-r1.ebuild, -rails-2.1.2-r1.ebuild:
+  Removing three old versions
 
   18 Oct 2009; Alex Legler <a3li@gentoo.org> -rails-2.2.2-r1.ebuild:
   removing vulnerable ebuild, bug 283396
