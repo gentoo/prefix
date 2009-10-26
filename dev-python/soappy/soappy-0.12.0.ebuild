@@ -1,6 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/soappy/soappy-0.12.0.ebuild,v 1.11 2009/03/14 17:41:34 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/soappy/soappy-0.12.0.ebuild,v 1.12 2009/10/25 19:53:53 arfrever Exp $
+
+EAPI="2"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils
 
@@ -19,14 +22,16 @@ IUSE="examples ssl"
 DEPEND=">=dev-python/fpconst-0.7.1
 		dev-python/pyxml"
 RDEPEND="${DEPEND}
-	ssl? ( dev-python/m2crypto )"
+		ssl? ( dev-python/m2crypto )"
+RESTRICT_PYTHON_ABIS="3.*"
 
-S=${WORKDIR}/${MY_P}
-PYTHON_MODNAME=${MY_PN}
+S="${WORKDIR}/${MY_P}"
+
+PYTHON_MODNAME="${MY_PN}"
 DOCS="RELEASE_INFO"
 
 pkg_setup() {
-	if use ssl && ! built_with_use dev-lang/python ssl ; then
+	if use ssl && ! has_version dev-lang/python[ssl]; then
 		ewarn "The 'ssl' USE-flag is enabled, but dev-lang/python is"
 		ewarn "not compiled with it. You'll only get server-side SSL support."
 		ewarn "Just emerge dev-lang/python afterwards with the ssl USE-flag to"
@@ -34,18 +39,15 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	epatch "${FILESDIR}/${P}-python-2.5-compat.patch"
 }
 
 src_install() {
 	distutils_src_install
 	dodoc docs/*
-	if use examples ; then
+	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
-		doins -r contrib bid tools validate
+		doins -r bid contrib tools validate
 	fi
 }

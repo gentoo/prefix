@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/soappy
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/soappy/ChangeLog,v 1.26 2009/03/14 17:41:34 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-python/soappy/ChangeLog,v 1.27 2009/10/25 19:53:53 arfrever Exp $
+
+  25 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  soappy-0.12.0.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
   14 Mar 2009; Raúl Porcel <armin76@gentoo.org> soappy-0.12.0.ebuild:
   Add ~arm/~s390/~sh wrt #172818
