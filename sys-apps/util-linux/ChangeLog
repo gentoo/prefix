@@ -1,6 +1,16 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.279 2009/10/03 15:23:27 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.282 2009/10/21 08:19:54 jer Exp $
+
+  21 Oct 2009; Jeroen Roovers <jer@gentoo.org> util-linux-2.16.1.ebuild:
+  Stable for HPPA (bug #284744).
+
+  15 Oct 2009; Joseph Jezak <josejx@gentoo.org> util-linux-2.16.1.ebuild:
+  Reverting ppc64 stable mark until e2fsprogs can go stable too.
+
+  05 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  util-linux-2.16.1.ebuild:
+  Update loop-aes patch wrt #284744 by Romain Perier.
 
   03 Oct 2009; Brent Baude <ranger@gentoo.org> util-linux-2.16.1.ebuild:
   Marking util-2.16.1 ppc64 for 284744
