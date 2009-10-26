@@ -1,6 +1,10 @@
 # ChangeLog for app-text/poppler-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-utils/ChangeLog,v 1.16 2009/10/18 14:07:41 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-utils/ChangeLog,v 1.17 2009/10/19 19:35:30 aballier Exp $
+
+  19 Oct 2009; Alexis Ballier <aballier@gentoo.org>
+  poppler-utils-0.12.1.ebuild:
+  keyword ~sparc-fbsd
 
 *poppler-utils-0.12.1 (18 Oct 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-utils/poppler-utils-0.12.1.ebuild,v 1.1 2009/10/18 14:07:41 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-utils/poppler-utils-0.12.1.ebuild,v 1.2 2009/10/19 19:35:30 aballier Exp $
 
 EAPI=2
 
