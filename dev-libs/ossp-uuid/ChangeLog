@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/ossp-uuid
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.16 2009/10/13 15:23:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.17 2009/10/24 12:24:53 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> ossp-uuid-1.6.2.ebuild:
+  ppc stable #285475
 
   13 Oct 2009; Jeroen Roovers <jer@gentoo.org> ossp-uuid-1.6.2.ebuild:
   Stable for HPPA (bug #285475).
