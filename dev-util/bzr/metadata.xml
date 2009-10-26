@@ -2,14 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>python</herd>
-  <maintainer>
-    <email>pva@gentoo.org</email>
-    <name>Peter Volkov</name>
-  </maintainer>
-  <maintainer>
-    <email>fauli@gentoo.org</email>
-    <name>Christian Faulhammer</name>
-  </maintainer>
+  <herd>bazaar</herd>
   <longdescription lang="en">
     Bazaar (``bzr``) is a decentralized revision control system, designed to be
     easy for developers and end users alike.  Bazaar is part of the GNU project
