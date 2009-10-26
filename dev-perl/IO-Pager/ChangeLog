@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/IO-Pager
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Pager/ChangeLog,v 1.16 2009/09/18 19:43:07 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/IO-Pager/ChangeLog,v 1.17 2009/10/24 11:54:20 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> IO-Pager-0.06.ebuild:
+  ppc stable #284544
 
   18 Sep 2009; Alexis Ballier <aballier@gentoo.org> IO-Pager-0.06.ebuild:
   keyword ~ppc64, working fine on a PowerMac 970
