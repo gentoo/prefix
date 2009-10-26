@@ -1,6 +1,9 @@
 # ChangeLog for gnome-extra/gtkhtml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.195 2009/10/16 22:16:02 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.196 2009/10/24 16:50:57 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> gtkhtml-3.26.3.ebuild:
+  ppc stable #281427
 
   16 Oct 2009; Markus Meier <maekke@gentoo.org> gtkhtml-3.26.3.ebuild:
   x86 stable, bug #281427
