@@ -1,6 +1,9 @@
 # ChangeLog for sys-auth/pam_passwdqc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_passwdqc/ChangeLog,v 1.25 2009/09/30 16:46:30 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_passwdqc/ChangeLog,v 1.26 2009/10/20 12:25:05 maekke Exp $
+
+  20 Oct 2009; Markus Meier <maekke@gentoo.org> pam_passwdqc-1.0.5.ebuild:
+  arm stable, bug #284091
 
   30 Sep 2009; Tobias Klausmann <klausman@gentoo.org>
   pam_passwdqc-1.0.5.ebuild:
