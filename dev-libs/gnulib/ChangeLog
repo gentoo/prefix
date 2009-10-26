@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/gnulib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gnulib/ChangeLog,v 1.9 2009/03/26 14:24:48 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gnulib/ChangeLog,v 1.10 2009/10/25 20:18:09 tove Exp $
+
+  25 Oct 2009; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove drizzt from metadata.xml (#149111)
 
   26 Mar 2009; Timothy Redaelli <drizzt@gentoo.org>
   gnulib-2009.03.03.14.07.45.ebuild:
