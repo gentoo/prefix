@@ -1,6 +1,3 @@
-
-;;; ruby-mode site-lisp configuration
-
 (add-to-list 'load-path "@SITELISP@")
 
 (autoload 'ruby-mode "ruby-mode" "Major mode to edit ruby files." t)
