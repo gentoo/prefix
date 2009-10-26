@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/fakeroot/fakeroot-1.12.4.ebuild,v 1.1 2009/06/25 22:32:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/fakeroot/fakeroot-1.12.4.ebuild,v 1.4 2009/10/24 18:16:07 klausman Exp $
 
 DESCRIPTION="Run commands in an environment faking root privileges"
 HOMEPAGE="http://packages.qa.debian.org/f/fakeroot.html"
@@ -15,6 +15,6 @@ RDEPEND=""
 DEPEND="test? ( app-arch/sharutils )"
 
 src_install() {
-	emake DESTDIR="${D}" install || die "install problem"
+	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS BUGS ChangeLog DEBUG NEWS README*
 }
