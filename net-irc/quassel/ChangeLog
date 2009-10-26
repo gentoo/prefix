@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/quassel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.65 2009/10/15 12:08:33 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.66 2009/10/25 22:43:50 scarabeus Exp $
+
+  25 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org> quassel-9999.ebuild:
+  Simplify oxygen useflag to be dependant on kde instead of its own.
 
   15 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   -quassel-0.5_rc2.ebuild, quassel-0.5.0.ebuild:

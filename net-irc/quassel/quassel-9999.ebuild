@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/quassel-9999.ebuild,v 1.24 2009/09/16 22:28:42 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/quassel-9999.ebuild,v 1.25 2009/10/25 22:43:50 scarabeus Exp $
 
 EAPI="2"
 
@@ -15,7 +15,7 @@ HOMEPAGE="http://quassel-irc.org/"
 LICENSE="GPL-3"
 KEYWORDS="~amd64-linux"
 SLOT="0"
-IUSE="dbus debug kde monolithic +oxygen phonon postgres +server +ssl webkit +X"
+IUSE="dbus debug kde monolithic phonon postgres +server +ssl webkit +X"
 
 LANGS="cs da de fi fr hu it nb_NO ru sl tr"
 for l in ${LANGS}; do
@@ -29,7 +29,7 @@ RDEPEND="
 		postgres? ( x11-libs/qt-sql:4[postgres] >=virtual/postgresql-base-8.3 )
 		x11-libs/qt-script:4
 		x11-libs/qt-gui:4
-		kde? ( >=kde-base/kdelibs-4.1 )
+		kde? ( >=kde-base/kdelibs-4.3 )
 		phonon? ( || ( media-sound/phonon x11-libs/qt-phonon ) )
 		webkit? ( x11-libs/qt-webkit:4 )
 	)
@@ -75,7 +75,7 @@ src_configure() {
 		$(cmake-utils_use_with kde KDE)
 		$(cmake-utils_use_with dbus DBUS)
 		$(cmake-utils_use_with ssl OPENSSL)
-		$(cmake-utils_use_with oxygen OXYGEN)
+		$(cmake-utils_use_with !kde OXYGEN)
 		-DWITH_LIBINDICATE=OFF
 		-DEMBED_DATA=OFF
 		-DLINGUAS=${my_langs}
