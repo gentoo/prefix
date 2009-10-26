@@ -1,6 +1,9 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.75.ebuild,v 1.1 2008/11/16 14:40:13 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.75.ebuild,v 1.6 2009/10/24 18:40:16 klausman Exp $
+
+EAPI="2"
+inherit eutils autotools
 
 DESCRIPTION="My TraceRoute. Excellent network diagnostic tool."
 HOMEPAGE="http://www.bitwizard.nl/mtr/"
@@ -17,14 +20,17 @@ RDEPEND="sys-libs/ncurses
 DEPEND="${RDEPEND}
 	gtk? ( dev-util/pkgconfig )"
 
-# I've kept gtk-2.0.m4 in SRC_URI but you'll have to mv it before autoreconf
-# mv "${WORKDIR}"/gtk-2.0-for-mtr.m4 gtk-2.0.m4 #222909
-src_compile() {
+src_prepare() {
+	epatch "${FILESDIR}/${P}--Wno-pointer-sign.patch"
+	# Keep this comment and following move, even incase ebuild does not needs
+	# it: kept gtk-2.0.m4 in SRC_URI but you'll have to mv it before autoreconf
+	mv "${WORKDIR}"/gtk-2.0-for-mtr.m4 gtk-2.0.m4 #222909
+	AT_M4DIR="." eautoreconf
+}
+src_configure() {
 	econf \
 		$(use_with gtk) \
 		$(use_enable ipv6)
-
-	emake || die "emake failed"
 }
 
 src_install() {

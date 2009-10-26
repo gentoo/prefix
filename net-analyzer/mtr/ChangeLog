@@ -1,6 +1,23 @@
 # ChangeLog for net-analyzer/mtr
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.82 2008/11/16 14:40:13 pva Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.87 2009/10/24 18:40:16 klausman Exp $
+
+  24 Oct 2009; Tobias Klausmann <klausman@gentoo.org> mtr-0.75.ebuild:
+  Stable on alpha, bug #290113
+
+  24 Oct 2009; Peter Volkov <pva@gentoo.org> mtr-0.75.ebuild:
+  Fixed build without gtk+ installed, bug 290367, thank Christian Ruppert
+  for report.
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> mtr-0.75.ebuild:
+  ppc stable #290113
+
+  23 Oct 2009; Richard Freeman <rich0@gentoo.org> mtr-0.75.ebuild:
+  amd64 stable - 290113
+
+  22 Oct 2009; Peter Volkov <pva@gentoo.org> mtr-0.75.ebuild,
+  +files/mtr-0.75--Wno-pointer-sign.patch:
+  Fixed build issue with gcc-3.4.6, bug #248800, thank barthek for report.
 
 *mtr-0.75 (16 Nov 2008)
 
