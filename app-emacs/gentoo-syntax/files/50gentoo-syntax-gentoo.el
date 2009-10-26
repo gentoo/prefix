@@ -2,6 +2,8 @@
 (autoload 'ebuild-mode "gentoo-syntax"
   "Major mode for Portage .ebuild and .eclass files." t)
 (autoload 'eselect-mode "gentoo-syntax" "Major mode for .eselect files." t)
+(autoload 'gentoo-newsitem-mode "gentoo-syntax"
+  "Major mode for Gentoo GLEP 42 news items." t)
 
 (add-to-list 'auto-mode-alist
 	     '("\\.\\(ebuild\\|eclass\\|eblit\\)\\'" . ebuild-mode))

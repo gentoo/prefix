@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/Attic/gentoo-syntax-1.15.ebuild,v 1.1 2009/10/08 17:47:43 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/gentoo-syntax/gentoo-syntax-1.15-r1.ebuild,v 1.1 2009/10/19 06:54:32 ulm Exp $
 
 inherit elisp
 
