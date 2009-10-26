@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.39 2009/10/05 15:58:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.40 2009/10/20 18:11:12 aballier Exp $
+
+  20 Oct 2009; Alexis Ballier <aballier@gentoo.org>
+  libedit-20090923.3.0.ebuild:
+  keyword ~sparc-fbsd
 
   05 Oct 2009; Raúl Porcel <armin76@gentoo.org>
   libedit-20090923.3.0.ebuild:
