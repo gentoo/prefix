@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/fish
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/ChangeLog,v 1.38 2009/02/10 16:40:15 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/ChangeLog,v 1.39 2009/10/23 15:40:54 vostorga Exp $
+
+  23 Oct 2009; Víctor Ostorga <vostorga@gentoo.org> fish-1.23.0.ebuild:
+  Adding die to emake install
 
   10 Feb 2009; Christian Faulhammer <fauli@gentoo.org> -fish-1.21.8.ebuild,
   -fish-1.21.12.ebuild, -fish-1.22.1.ebuild, -fish-1.22.2.ebuild,

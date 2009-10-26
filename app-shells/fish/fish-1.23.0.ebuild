@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/fish-1.23.0.ebuild,v 1.3 2009/02/09 22:18:05 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/fish-1.23.0.ebuild,v 1.4 2009/10/23 15:40:54 vostorga Exp $
 
 inherit eutils autotools
 
@@ -40,7 +40,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install
+	emake DESTDIR="${D}" install || die "make install failed"
 }
 
 pkg_postinst() {
