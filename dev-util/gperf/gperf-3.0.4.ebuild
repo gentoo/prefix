@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/gperf-3.0.4.ebuild,v 1.3 2009/10/13 23:09:57 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gperf/gperf-3.0.4.ebuild,v 1.5 2009/10/24 13:25:33 nixnut Exp $
 
 DESCRIPTION="A perfect hash function generator"
 HOMEPAGE="http://www.gnu.org/software/gperf/gperf.html"
