@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano13/libpano13-2.9.14.ebuild,v 1.1 2009/05/29 05:31:50 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpano13/libpano13-2.9.14.ebuild,v 1.3 2009/10/25 12:01:03 maekke Exp $
 
 inherit eutils versionator java-pkg-opt-2
 
