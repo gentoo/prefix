@@ -1,6 +1,35 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.129 2009/09/12 03:25:59 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.135 2009/10/25 22:32:49 jer Exp $
+
+  25 Oct 2009; Jeroen Roovers <jer@gentoo.org> rxvt-unicode-9.05-r3.ebuild:
+  bugs.g.o -> bug #. Quote FILESDIR.
+
+*rxvt-unicode-9.06-r2 (25 Oct 2009)
+
+  25 Oct 2009; Jeroen Roovers <jer@gentoo.org> +rxvt-unicode-9.06-r2.ebuild:
+  Revision bump to include patch again (bug #237271), clean up a bit, move
+  to EAPI="2".
+
+  25 Oct 2009; Jeroen Roovers <jer@gentoo.org> -rxvt-unicode-9.02-r1.ebuild,
+  -files/rxvt-unicode-9.02-CVE-2008-1142-DISPLAY.patch:
+  Remove old.
+
+  25 Oct 2009; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Become maintainer.
+
+  25 Oct 2009; Víctor Ostorga <vostorga@gentoo.org>
+  rxvt-unicode-9.06-r1.ebuild, +files/rxvt-unicode-9.06-popups-hangs.patch:
+  Fixing hanging of popup menu due Sync mode in Xorg , patch thanks to Slava
+  Gorbunov <slava@fizlesh.org.ru> bug 263638
+
+*rxvt-unicode-9.06-r1 (25 Oct 2009)
+
+  25 Oct 2009; Víctor Ostorga <vostorga@gentoo.org>
+  +rxvt-unicode-9.06-r1.ebuild,
+  +files/rxvt-unicode-9.06-no-urgency-if-focused.diff:
+  Fixing home page bug 290472 , Fixing urgency hint, patch thanks to Jan
+  Hruban <hrubi13@gmail.com> bug #274129 
 
   12 Sep 2009; Víctor Ostorga <vostorga@gentoo.org>
   -files/scrolling-one-line.patch:
