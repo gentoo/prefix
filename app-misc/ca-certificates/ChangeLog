@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/ca-certificates
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.40 2009/10/09 02:13:09 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/ca-certificates/ChangeLog,v 1.41 2009/10/21 21:08:59 volkmar Exp $
+
+  16 Oct 2009; Mounir Lamouri <volkmar@gentoo.org>
+  ca-certificates-20090709.ebuild:
+  Stabilizing for ppc, bug 287409
 
   09 Oct 2009; Richard Freeman <rich0@gentoo.org>
   ca-certificates-20090709.ebuild:
