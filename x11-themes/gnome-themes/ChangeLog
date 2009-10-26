@@ -1,6 +1,9 @@
 # ChangeLog for x11-themes/gnome-themes
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/ChangeLog,v 1.215 2009/10/16 21:52:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/ChangeLog,v 1.216 2009/10/24 16:34:25 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> gnome-themes-2.26.3.1.ebuild:
+  ppc stable #281427
 
   16 Oct 2009; Markus Meier <maekke@gentoo.org>
   gnome-themes-2.26.3.1.ebuild:
