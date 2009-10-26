@@ -12,16 +12,33 @@
   <use>
     <flag name="static">
       Build bsdtar and bsdcpio as static archives, removing
-      dependencies over the enabled compression libraries (lzmadec,
-      libbz2, zlib).
+      dependencies over the enabled compression libraries (lzma,
+      lzmadec, libbz2, zlib).
+    </flag>
+    <flag name="zlib">
+      Allow accessing gzip-compressed archives through
+      <pkg>sys-libs/zlib</pkg>. This only affects libarchive's native
+      support: bsdtar will keep using gunzip as a filter if that's not
+      built-in. It's also needed for supporting extraction of ZIP
+      files.
     </flag>
     <flag name="bzip2">
       Allow accessing bzip2-compressed archives through libbz2 (which
-      comes with bzip2).
+      comes with <pkg>app-arch/bzip2</pkg>). This only affects
+      libarchive's native support: bsdtar will keep using bunzip2 as a
+      filter if that's not built-in.
     </flag>
-    <flag name="lzma">
+    <flag name="lzma" restrict="&lt;app-arch/libarchive-2.7.1">
       Allow accessing lzma-compressed archives through the lzmadec
-      library.
+      library (<pkg>app-arch/lzma-utils</pkg>). This only affects
+      libarchive's native support: bsdtar will keep using unlzma as a
+      filter if that's not built-in.
+    </flag>
+    <flag name="lzma" restrict="&gt;=app-arch/libarchive-2.7.1">
+      Allow accessing lzma-compressed archives through the lzma
+      library (<pkg>app-arch/xz-utils</pkg>). This only affects
+      libarchive's native support: bsdtar will keep using unlzma as a
+      filter if that's not built-in.
     </flag>
   </use>
 </pkgmetadata>

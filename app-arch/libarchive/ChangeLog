@@ -1,6 +1,16 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.67 2009/09/09 13:04:32 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.68 2009/10/25 19:37:08 flameeyes Exp $
+
+*libarchive-2.7.1-r1 (25 Oct 2009)
+
+  25 Oct 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +libarchive-2.7.1-r1.ebuild, metadata.xml:
+  Bump revision adding a static-libs USE flag to disable libarchive.a build;
+  also remove .la file when disabling static libraries (thanks to Mauro
+  Toffanin for this). Extend the metadata USE documentation to explain that
+  the various USE flags don't stop bsdtar from calling the decompressor
+  command as a filter.
 
 *libarchive-2.7.1 (09 Sep 2009)
 
