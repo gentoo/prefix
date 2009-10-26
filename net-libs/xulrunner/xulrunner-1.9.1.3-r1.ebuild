@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.2-r2.ebuild,v 1.1 2009/08/30 14:50:18 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.3-r1.ebuild,v 1.3 2009/10/25 20:09:21 ssuominen Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
@@ -9,43 +9,43 @@ inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-p
 
 MY_PV="${PV/_beta/b}" # Handle betas
 MY_PV="${PV/_/}" # Handle rc1, rc2 etc
-MY_PV="${MY_PV/1.9.1.2/3.5.2}"
-MAJ_PV="${PV/_*/}"
-PATCH="${PN}-${MAJ_PV}-patches-0.3"
+MY_PV="${MY_PV/1.9.1.3/3.5.3}"
+MAJ_PV="1.9.1" # from mozilla-* branch name
+PATCH="${PN}-1.9.1.2-patches-0.3"
 
 DESCRIPTION="Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications"
 HOMEPAGE="http://developer.mozilla.org/en/docs/XULRunner"
-SRC_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/${MY_PV}/source/firefox-${MY_PV}-source.tar.bz2
+SRC_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/${MY_PV}/source/firefox-${MY_PV}.source.tar.bz2
 	http://dev.gentoo.org/~anarchy/dist/${PATCH}.tar.bz2"
 
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="1.9"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="+alsa debug python" # qt-experimental
+IUSE="+alsa debug python sqlite" # qt-experimental
 
 #	qt-experimental? (
 #		x11-libs/qt-gui
 #		x11-libs/qt-core )
 
 # nspr-4.8 due to BMO #499144
-# Disable sqlite temporarily  	>=dev-db/sqlite-3.6.7
 RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=dev-lang/python-2.3[threads]
 	>=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12.3
 	>=dev-libs/nspr-4.8
+	sqlite? ( >=dev-db/sqlite-3.6.10 )
 	alsa? ( media-libs/alsa-lib )
 	>=app-text/hunspell-1.2
 	>=media-libs/lcms-1.17
-
 	>=x11-libs/cairo-1.8.8[X]
-	x11-libs/pango[X]"
+	x11-libs/pango[X]
+	x11-libs/libXt"
 
 DEPEND="java? ( >=virtual/jdk-1.4 )
 	${RDEPEND}
 	dev-util/pkgconfig"
 
-S="${WORKDIR}/mozilla-1.9.1"
+S="${WORKDIR}/mozilla-${MAJ_PV}"
 
 # Needed by src_compile() and src_install().
 # Would do in pkg_setup but that loses the export attribute, they
@@ -55,11 +55,19 @@ export MOZILLA_OFFICIAL=1
 
 pkg_setup() {
 	java-pkg-opt-2_pkg_setup
+
+	if use sqlite ; then
+		elog "You are enabling system sqlite. Do not file a bug with gentoo if you have"
+		elog "issues that arise from enabling system sqlite. All bugs will be considered"
+		elog "invalid. All patches are welcomed to fix any issues that might be found with"
+		elog "system sqlite. If you are starting with a fresh profile you can enable sqlite"
+		elog "without any major issues."
+		epause 10
+	fi
 }
 
 src_prepare() {
 	# Apply our patches
-	cd "${S}" || die "cd failed"
 	EPATCH_SUFFIX="patch" \
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"
@@ -72,6 +80,10 @@ src_prepare() {
 		xpcom/build/nsXPCOMPrivate.h \
 		xulrunner/installer/Makefile.in \
 		xulrunner/app/nsRegisterGREUnix.cpp
+	
+	# fix double symbols due to double -ljemalloc
+	sed -i -e '/^LIBS += $(JEMALLOC_LIBS)/s/^/#/' \
+		xulrunner/stub/Makefile.in || die
 
 	# Same as in config/autoconf.mk.in
 	MOZLIBDIR="/usr/$(get_libdir)/${PN}-${MAJ_PV}"
@@ -98,8 +110,6 @@ src_prepare() {
 }
 
 src_configure() {
-	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}-1.9"
-
 	####################################
 	#
 	# mozconfig, CFLAGS and CXXFLAGS setup
@@ -140,11 +150,16 @@ src_configure() {
 	# Use system libraries
 	mozconfig_annotate '' --enable-system-cairo
 	mozconfig_annotate '' --enable-system-hunspell
-	# mozconfig_annotate '' --enable-system-sqlite
-	mozconfig_annotate '' --with-system-nspr
-	mozconfig_annotate '' --with-system-nss
+	mozconfig_annotate '' --with-system-nspr --with-nspr-prefix="${EPREFIX}"/usr
+	mozconfig_annotate '' --with-system-nss --with-nss-prefix="${EPREFIX}"/usr
 	mozconfig_annotate '' --enable-system-lcms
 	mozconfig_annotate '' --with-system-bz2
+
+	if use sqlite ; then
+		mozconfig_annotate 'sqlite' --enable-system-sqlite
+	else
+		mozconfig_annotate '-sqlite' --disable-system-sqlite
+	fi
 
 	# IUSE qt-experimental
 #	if use qt-experimental ; then
@@ -192,10 +207,6 @@ src_configure() {
 	#
 	####################################
 
-	if [[ $(gcc-major-version) -lt 4 ]]; then
-		append-cxxflags -fno-stack-protector
-	fi
-
 	# Disable no-print-directory
 	MAKEOPTS=${MAKEOPTS/--no-print-directory/}
 
@@ -218,13 +229,7 @@ src_install() {
 	dosym "${MOZLIBDIR}/xulrunner" "/usr/bin/xulrunner-${MAJ_PV}" || die
 
 	# Install python modules
-	if use prefix; then
-		local WORKAROUND="$(python_get_sitedir)"
-		WORKAROUND="${WORKAROUND#${EPREFIX}}"
-		dosym "${MOZLIBDIR}/python/xpcom" "/${WORKAROUND}/xpcom" || die
-	else
-		dosym "${MOZLIBDIR}/python/xpcom" "/$(python_get_sitedir)/xpcom" || die
-	fi
+	dosym "${MOZLIBDIR}/python/xpcom" "/$(python_get_sitedir)/xpcom" || die
 
 	# env.d file for ld search path
 	dodir /etc/env.d
@@ -258,6 +263,10 @@ pkg_postinst() {
 	einfo "All prefs can be overridden by the user. The preferences are to make"
 	einfo "use of xulrunner out of the box on an average system without the user"
 	einfo "having to go through and enable the basics."
+
+	einfo
+	ewarn "Please remember to rebuild your browser(s) after update to prevent an xpcom error."
+	ewarn "This bump is needed in order to bring iceat to the tree to replace iceweasel useflag."
 }
 
 pkg_postrm() {

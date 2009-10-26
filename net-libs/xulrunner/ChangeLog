@@ -1,6 +1,25 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.254 2009/09/15 02:15:25 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.258 2009/10/25 20:09:21 ssuominen Exp $
+
+  25 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  -xulrunner-1.9.1.2-r2.ebuild, xulrunner-1.9.1.3-r1.ebuild:
+  Mark correct version stable for amd64.
+
+  25 Oct 2009; Jory A. Pratt <anarchy@gentoo.org>
+  +xulrunner-1.9.1.2-r2.ebuild:
+  revert removal of xulrunner-1.9.1.2-r2
+
+*xulrunner-1.9.1.3-r1 (25 Oct 2009)
+
+  25 Oct 2009; Jory A. Pratt <anarchy@gentoo.org>
+  -xulrunner-1.9.1.2-r2.ebuild, +xulrunner-1.9.1.3-r1.ebuild:
+  update xulrunner-1.9.1.3 to support disabling sqlite, also allows icecat
+  to be introduced to the tree.
+
+  19 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  xulrunner-1.9.1.2-r2.ebuild:
+  amd64 stable wrt #280393
 
   15 Sep 2009; Jory A. Pratt <anarchy@gentoo.org> xulrunner-1.9.1.3.ebuild:
   Fix dep on libXt, bug #284842. Thanks Matt Whitlock for reporting
