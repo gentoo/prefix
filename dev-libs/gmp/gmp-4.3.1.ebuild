@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.3.1.ebuild,v 1.5 2009/10/16 13:35:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.3.1.ebuild,v 1.6 2009/10/24 12:59:35 nixnut Exp $
 
 inherit flag-o-matic eutils libtool flag-o-matic
 

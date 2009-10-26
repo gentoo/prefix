@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.118 2009/10/16 13:35:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.119 2009/10/24 12:59:35 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> gmp-4.3.1.ebuild:
+  ppc stable #287519
 
   16 Oct 2009; Jeroen Roovers <jer@gentoo.org> gmp-4.3.1.ebuild:
   Stable for HPPA (bug #287519).
