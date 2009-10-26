@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/libsdl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.160 2009/04/21 20:19:50 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.162 2009/10/22 16:28:06 mr_bones_ Exp $
+
+  22 Oct 2009; Michael Sterrett <mr_bones_@gentoo.org> libsdl-1.2.14.ebuild:
+  arts is deprecated
+
+*libsdl-1.2.14 (21 Oct 2009)
+
+  21 Oct 2009; Mike Frysinger <vapier@gentoo.org> +libsdl-1.2.14.ebuild:
+  Version bump.
 
   21 Apr 2009; Michael Sterrett <mr_bones_@gentoo.org> metadata.xml:
   remove negative assertion in the use flag description (bug #266292)
