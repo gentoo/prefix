@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xclip/xclip-0.12.ebuild,v 1.2 2009/10/18 12:41:05 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xclip/xclip-0.12.ebuild,v 1.4 2009/10/24 16:25:59 klausman Exp $
 
 DESCRIPTION="Command-line utility to read data from standard in and place it in an X selection"
 HOMEPAGE="http://sourceforge.net/projects/xclip/"
