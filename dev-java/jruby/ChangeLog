@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/jruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.41 2009/09/19 01:19:26 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.42 2009/10/25 21:51:27 volkmar Exp $
+
+  25 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> jruby-1.2.0-r1.ebuild,
+  jruby-1.3.1.ebuild:
+  Re-Keyworded for ppc, bug 270910
 
   19 Sep 2009; Alistair Bush <ali_bush@gentoo.org> jruby-1.3.1.ebuild:
   Restrict tests as they are unstable see #282439.
