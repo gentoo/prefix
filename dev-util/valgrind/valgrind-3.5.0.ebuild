@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.5.0.ebuild,v 1.1 2009/10/14 18:50:59 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.5.0.ebuild,v 1.2 2009/10/23 19:17:39 griffon26 Exp $
 
 inherit autotools eutils flag-o-matic toolchain-funcs
 
@@ -32,19 +32,15 @@ src_unpack() {
 	# Correct hard coded doc location
 	sed -i -e "s:doc/valgrind:doc/${P}:" docs/Makefile.am
 
-	# Remove defaulting to ppc32-linux on ppc64 without multilib
-	# "valgrind: failed to start tool 'memcheck' for platform 'ppc32-linux':
-	#  No such file or directory"
-	if use ppc64 && ! has_multilib_profile; then
-		epatch "${FILESDIR}/valgrind-3.3.0-only64bit.patch"
-	fi
-
 	# Fix up some suppressions that were not general enough for glibc versions
 	# with more than just a major and minor number.
 	epatch "${FILESDIR}/valgrind-3.4.1-glibc-2.10.1.patch"
 
 	# Respect LDFLAGS also for libmpiwrap.so (bug #279194)
 	epatch "${FILESDIR}/valgrind-3.5.0-respect-LDFLAGS.patch"
+
+	# Yet more local labels, this time for ppc32 & ppc64
+	epatch "${FILESDIR}/valgrind-3.5.0-local-labels.patch"
 
 	# Regenerate autotools files
 	eautoreconf
