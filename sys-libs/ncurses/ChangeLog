@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.165 2009/10/11 07:30:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.166 2009/10/22 12:30:58 vapier Exp $
+
+  22 Oct 2009; Mike Frysinger <vapier@gentoo.org> ncurses-5.7-r2.ebuild,
+  +files/ncurses-5.7-tic-cross-detection.patch:
+  Fix up ncurses tic script to better detect cross-compiling #288881 by
+  Sergiy Borodych.
 
 *ncurses-5.7-r2 (11 Oct 2009)
 
