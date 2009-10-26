@@ -1,6 +1,18 @@
 # ChangeLog for app-text/htmltidy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/htmltidy/ChangeLog,v 1.48 2009/10/04 20:10:20 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/htmltidy/ChangeLog,v 1.52 2009/10/24 12:45:32 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> htmltidy-20090325.ebuild:
+  ppc stable #286918
+
+  21 Oct 2009; Markus Meier <maekke@gentoo.org> htmltidy-20090325.ebuild:
+  x86 stable, bug #286918
+
+  21 Oct 2009; Jeroen Roovers <jer@gentoo.org> htmltidy-20090325.ebuild:
+  Stable for HPPA (bug #286918).
+
+  21 Oct 2009; Markus Meier <maekke@gentoo.org> htmltidy-20090325.ebuild:
+  arm stable, bug #286918
 
   04 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
   htmltidy-20090325.ebuild:
