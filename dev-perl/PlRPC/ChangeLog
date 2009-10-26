@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/PlRPC
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/PlRPC/ChangeLog,v 1.46 2009/05/02 10:52:51 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/PlRPC/ChangeLog,v 1.47 2009/10/22 12:55:17 tove Exp $
+
+  22 Oct 2009; Torsten Veller <tove@gentoo.org> PlRPC-0.2020-r1.ebuild:
+  PATCHES is now an array
 
   02 May 2009; Torsten Veller <tove@gentoo.org> -PlRPC-0.2018.ebuild,
   -PlRPC-0.2019.ebuild:
