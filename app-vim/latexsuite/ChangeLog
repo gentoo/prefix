@@ -1,6 +1,9 @@
 # ChangeLog for app-vim/latexsuite
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-vim/latexsuite/ChangeLog,v 1.32 2008/09/14 07:43:24 opfer Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-vim/latexsuite/ChangeLog,v 1.34 2009/10/20 15:40:10 vostorga Exp $
+
+  20 Oct 2009; Víctor Ostorga <vostorga@gentoo.org> metadata.xml:
+  Updating email address of James Noble, who is co-maintainer
 
   14 Sep 2008; Christian Faulhammer <opfer@gentoo.org>
   -latexsuite-1.5.20060124.ebuild:
