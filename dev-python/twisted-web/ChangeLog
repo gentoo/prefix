@@ -1,6 +1,10 @@
 # ChangeLog for dev-python/twisted-web
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.42 2009/09/06 20:37:21 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/ChangeLog,v 1.43 2009/10/25 20:12:50 arfrever Exp $
+
+  25 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  twisted-web-8.2.0.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
   06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
   -files/twisted-web-0.5.0-tests-2.2-compat.patch:
