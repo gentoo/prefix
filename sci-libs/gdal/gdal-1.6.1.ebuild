@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.6.1.ebuild,v 1.6 2009/10/18 23:06:27 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/gdal-1.6.1.ebuild,v 1.7 2009/10/24 12:29:26 nixnut Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.5"

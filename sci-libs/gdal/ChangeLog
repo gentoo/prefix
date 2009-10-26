@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/gdal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.68 2009/10/18 23:06:27 nerdboy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.69 2009/10/24 12:29:26 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> gdal-1.6.1.ebuild:
+  ppc stable #285489
 
   18 Oct 2009; Steve Arnold <nerdboy@gentoo.org> gdal-1.6.0-r1.ebuild,
   gdal-1.6.1.ebuild, gdal-1.6.2.ebuild:
