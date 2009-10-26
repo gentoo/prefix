@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.35.0-r2.ebuild,v 1.4 2009/04/04 14:21:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.35.0-r2.ebuild,v 1.8 2009/10/25 11:57:14 maekke Exp $
 
 EAPI=2
 
@@ -24,7 +24,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/boost_${MY_PV}/tools"
 
 src_unpack() {
-	tar xjpf "${DISTDIR}/${A}" boost_${MY_PV}/tools/{jam,build/v2}
+	tar xjpf "${DISTDIR}/${A}" boost_${MY_PV}/tools/{jam,build/v2} || die
 }
 
 src_prepare() {

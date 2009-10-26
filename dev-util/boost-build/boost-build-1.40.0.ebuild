@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.39.0.ebuild,v 1.2 2009/10/24 09:20:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.40.0.ebuild,v 1.2 2009/10/24 09:20:57 vapier Exp $
 
 EAPI=2
 
@@ -29,15 +29,16 @@ src_unpack() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PV}-darwin-sanitise.patch
+	epatch "${FILESDIR}"/1.39.0-darwin-sanitise.patch
 
 	# adds support for boosting with parity ...
-	epatch "${FILESDIR}"/${PV}-winnt.patch
+#fails
+#	epatch "${FILESDIR}"/1.39.0-winnt.patch
 
 	# needed by multiple platforms - how can this work anywhere?
 	# the symptom is "${CHOST}-gcc: not found", however this
 	# can be caused by quoting of _arguments_ ... ?
-	epatch "${FILESDIR}"/${PV}-build_jam-quoting.patch
+	epatch "${FILESDIR}"/1.39.0-build_jam-quoting.patch
 
 	# Remove stripping option
 	cd "${S}/jam/src"
