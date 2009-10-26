@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/itext
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/itext/ChangeLog,v 1.87 2009/07/04 14:34:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/itext/ChangeLog,v 1.88 2009/10/25 11:52:16 volkmar Exp $
+
+  25 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> itext-2.1.5.ebuild:
+  Re-Keyworded for ppc, bug 270906
 
   04 Jul 2009; Brent Baude <ranger@gentoo.org> itext-2.1.5.ebuild:
   Marking itext-2.1.5 ~ppc64 for bug 270906
