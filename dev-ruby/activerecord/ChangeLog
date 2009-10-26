@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/activerecord
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.118 2009/10/18 17:42:14 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.119 2009/10/22 08:08:07 a3li Exp $
+
+  22 Oct 2009; Alex Legler <a3li@gentoo.org> -activerecord-1.15.6.ebuild,
+  -activerecord-2.0.5.ebuild, -activerecord-2.1.2.ebuild:
+  Removing three old versions
 
   18 Oct 2009; Alex Legler <a3li@gentoo.org> -activerecord-2.2.2.ebuild:
   removing vulnerable ebuild, bug 283396
