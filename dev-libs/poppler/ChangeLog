@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/poppler
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler/ChangeLog,v 1.16 2009/10/18 14:08:27 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler/ChangeLog,v 1.17 2009/10/19 19:19:42 aballier Exp $
+
+  19 Oct 2009; Alexis Ballier <aballier@gentoo.org> poppler-0.12.1.ebuild:
+  keyword ~sparc-fbsd
 
 *poppler-0.12.1 (18 Oct 2009)
 
