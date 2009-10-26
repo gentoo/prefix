@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/nautilus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.320 2009/10/18 16:41:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.321 2009/10/24 16:52:22 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> nautilus-2.26.4.ebuild:
+  ppc stable #281427
 
   18 Oct 2009; nixnut <nixnut@gentoo.org> nautilus-2.26.4.ebuild:
   ~ppc'd
