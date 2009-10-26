@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/constantine
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/constantine/ChangeLog,v 1.2 2009/08/07 14:23:25 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/constantine/ChangeLog,v 1.3 2009/10/25 21:32:59 volkmar Exp $
+
+  25 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> constantine-0.6.ebuild:
+  Keywording for ppc, bug 270910
 
 *constantine-0.6 (07 Aug 2009)
 
