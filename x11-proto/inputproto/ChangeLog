@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.85 2009/10/11 10:49:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.86 2009/10/24 15:35:38 remi Exp $
+
+  24 Oct 2009; Rémi Cardona <remi@gentoo.org> inputproto-2.0.ebuild:
+  drop dep on util-macros, sync with overlay
 
   11 Oct 2009; nixnut <nixnut@gentoo.org> inputproto-1.5.1.ebuild:
   ppc stable #282290
