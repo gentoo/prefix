@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.9-r1.ebuild,v 1.11 2009/09/11 20:42:14 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.9-r1.ebuild,v 1.12 2009/10/21 08:56:24 loki_val Exp $
 
 EAPI=2
 
@@ -24,7 +24,8 @@ IUSE="bzip2 +cxx doc unicode zlib static-libs"
 RDEPEND="bzip2? ( app-arch/bzip2 )
 	zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	dev-util/pkgconfig
+	userland_GNU? ( >=sys-apps/findutils-4.4.0 )"
 
 S=${WORKDIR}/${MY_P}
 

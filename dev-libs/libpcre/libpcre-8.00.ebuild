@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-7.8-r2.ebuild,v 1.2 2009/05/18 21:51:16 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/libpcre-8.00.ebuild,v 1.3 2009/10/21 08:56:24 loki_val Exp $
 
 EAPI=2
 
-inherit libtool eutils toolchain-funcs autotools
+inherit libtool eutils toolchain-funcs
 
 DESCRIPTION="Perl-compatible regular expression library"
 HOMEPAGE="http://www.pcre.org/"
@@ -19,20 +19,19 @@ fi
 LICENSE="BSD"
 SLOT="3"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="bzip2 +cxx doc unicode zlib static-libs"
+IUSE="bzip2 +cxx unicode zlib static-libs"
 
-DEPEND="dev-util/pkgconfig"
-RDEPEND=""
+RDEPEND="bzip2? ( app-arch/bzip2 )
+	zlib? ( sys-libs/zlib )"
+DEPEND="${RDEPEND}
+	dev-util/pkgconfig
+	userland_GNU? ( >=sys-apps/findutils-4.4.0 )"
 
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
 	sed -i -e "s:libdir=@libdir@:libdir=/$(get_libdir):" libpcre.pc.in || die "Fixing libpcre pkgconfig files failed"
 	sed -i -e "s:-lpcre ::" libpcrecpp.pc.in || die "Fixing libpcrecpp pkgconfig files failed"
-	echo "Requires: libpcre = @PACKAGE_VERSION@" >> libpcrecpp.pc.in
-	epatch "${FILESDIR}"/libpcre-7.9-pkg-config.patch
-	eautoreconf
-	elibtoolize
 }
 
 src_configure() {
@@ -59,15 +58,17 @@ src_configure() {
 		--htmldir="${EPREFIX}"/usr/share/doc/${PF}/html \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		|| die "econf failed"
-	emake all || die "emake failed"
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
-
 	gen_usr_ldscript -a pcre
-
-	dodoc doc/*.txt AUTHORS
-	use doc && dohtml doc/html/*
 	find "${ED}" -type f -name '*.la' -exec rm -rf '{}' '+' || die "la removal failed"
+}
+
+pkg_postinst() {
+	elog "This version of ${PN} has stopped installing .la files. This may"
+	elog "cause compilation failures in other packages. To fix this problem,"
+	elog "install dev-util/lafilefixer and run:"
+	elog "lafilefixer --justfixit"
 }

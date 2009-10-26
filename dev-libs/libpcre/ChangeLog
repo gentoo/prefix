@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/libpcre
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.160 2009/10/17 07:53:03 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libpcre/ChangeLog,v 1.163 2009/10/21 08:56:24 loki_val Exp $
+
+  21 Oct 2009; Peter Alfredsen <loki_val@gentoo.org> -libpcre-7.8.ebuild,
+  -libpcre-7.8-r2.ebuild, libpcre-7.9-r1.ebuild, libpcre-8.00.ebuild:
+  Fix bug 278370. Remove old.
+
+  20 Oct 2009; Peter Alfredsen <loki_val@gentoo.org> libpcre-8.00.ebuild:
+  Re-add keywords.
+
+*libpcre-8.00 (19 Oct 2009)
+
+  19 Oct 2009; Peter Alfredsen <loki_val@gentoo.org> +libpcre-8.00.ebuild:
+  Add 8.00. No keywords until I have tested it doesn't break stuff randomly.
 
   17 Oct 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
   remove static-libs description as it is global now
