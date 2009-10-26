@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/tmux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/ChangeLog,v 1.23 2009/09/20 23:21:10 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/ChangeLog,v 1.24 2009/10/24 15:00:43 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> tmux-1.0.ebuild:
+  ppc stable #290079
 
 *tmux-1.0 (20 Sep 2009)
 
