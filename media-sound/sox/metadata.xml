@@ -3,8 +3,6 @@
 <pkgmetadata>
   <herd>sound</herd>
   <use>
-    <flag name="amrnb">Enables Adaptive Multi-Rate Audio support (Narrow Band)</flag>
-    <flag name="amrwb">Enables Adaptive Multi-Rate Audio support (Wide Band)</flag>
     <flag name="id3tag">Enables ID3 tagging with id3tag library</flag>
   </use>
 </pkgmetadata>

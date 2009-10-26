@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.2.0.ebuild,v 1.8 2009/06/22 08:54:38 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/sox/sox-14.2.0.ebuild,v 1.9 2009/10/20 16:18:02 ssuominen Exp $
 
 inherit flag-o-matic autotools
 
@@ -11,7 +11,7 @@ SRC_URI="mirror://sourceforge/sox/${P}.tar.gz"
 LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="alsa amrnb amrwb ao debug encode ffmpeg flac id3tag ladspa mad libsamplerate ogg oss png sndfile wavpack"
+IUSE="alsa ao debug encode ffmpeg flac id3tag ladspa mad libsamplerate ogg oss png sndfile wavpack"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )
 	encode? ( media-sound/lame )
@@ -25,8 +25,6 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 	ladspa? ( media-libs/ladspa-sdk )
 	>=media-sound/gsm-1.0.12-r1
 	id3tag? ( media-libs/libid3tag )
-	amrnb? ( media-libs/amrnb )
-	amrwb? ( media-libs/amrwb )
 	png? ( media-libs/libpng )
 	wavpack? ( media-sound/wavpack )"
 DEPEND="${RDEPEND}
@@ -56,8 +54,8 @@ src_compile () {
 		$(use_with ffmpeg) \
 		$(use_with ladspa) \
 		$(use_with id3tag) \
-		$(use_with amrwb amr-wb) \
-		$(use_with amrnb amr-nb) \
+		--without-amr-wb \
+		--without-amr-nb \
 		$(use_with png) \
 		$(use_with wavpack) \
 		--with-distro="Gentoo" \
