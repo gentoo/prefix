@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.39.0.ebuild,v 1.3 2009/08/07 05:47:41 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.39.0.ebuild,v 1.6 2009/10/21 16:57:23 djc Exp $
 
 EAPI="2"
 
@@ -16,9 +16,9 @@ HOMEPAGE="http://www.boost.org/"
 SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2
 	mirror://gentoo/boost-patches-${PATCHSET_VERSION}.tbz2
 	http://www.gentoo.org/~dev-zero/distfiles/boost-patches-${PATCHSET_VERSION}.tbz2"
-LICENSE="freedist Boost-1.0"
+LICENSE="Boost-1.0"
 SLOT="$(get_version_component_range 1-2)"
-IUSE="debug doc +eselect expat icu mpi python tools"
+IUSE="debug doc +eselect expat icu mpi python test tools"
 
 RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	expat? ( dev-libs/expat )
@@ -52,7 +52,7 @@ _add_line() {
 }
 
 pkg_setup() {
-	if has test ${FEATURES} ; then
+	if use test ; then
 		CHECKREQS_DISK_BUILD="1024"
 		check_reqs
 

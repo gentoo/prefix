@@ -1,6 +1,42 @@
 # ChangeLog for dev-libs/boost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.166 2009/08/07 05:47:41 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.174 2009/10/25 11:58:54 maekke Exp $
+
+  25 Oct 2009; Markus Meier <maekke@gentoo.org> boost-1.35.0-r5.ebuild:
+  amd64/x86 stable, bug #284686
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> boost-1.35.0-r5.ebuild:
+  ppc stable #284686
+
+  23 Oct 2009; Jeroen Roovers <jer@gentoo.org> boost-1.35.0-r5.ebuild:
+  Stable for HPPA (bug #288723).
+
+  21 Oct 2009; Dirkjan Ochtman <djc@gentoo.org> boost-1.33.1-r1.ebuild,
+  boost-1.34.1-r2.ebuild, boost-1.35.0-r1.ebuild, boost-1.35.0-r2.ebuild,
+  boost-1.35.0-r3.ebuild, boost-1.35.0-r5.ebuild, boost-1.36.0-r1.ebuild,
+  boost-1.37.0-r1.ebuild, boost-1.39.0.ebuild, boost-1.40.0.ebuild:
+  Add test to IUSE after previous change.
+
+  21 Oct 2009; Dirkjan Ochtman <djc@gentoo.org> boost-1.33.1-r1.ebuild,
+  boost-1.34.1-r2.ebuild, boost-1.35.0-r1.ebuild, boost-1.35.0-r2.ebuild,
+  boost-1.35.0-r3.ebuild, boost-1.35.0-r5.ebuild, boost-1.36.0-r1.ebuild,
+  boost-1.37.0-r1.ebuild, boost-1.39.0.ebuild, boost-1.40.0.ebuild:
+  Use test use flag instead of checking FEATURES, #278753.
+
+  21 Oct 2009; Dirkjan Ochtman <djc@gentoo.org> boost-1.33.1-r1.ebuild,
+  boost-1.34.1-r2.ebuild, boost-1.35.0-r1.ebuild, boost-1.35.0-r2.ebuild,
+  boost-1.35.0-r3.ebuild, boost-1.35.0-r5.ebuild, boost-1.36.0-r1.ebuild,
+  boost-1.37.0-r1.ebuild, boost-1.39.0.ebuild, boost-1.40.0.ebuild:
+  Reset license to Boost-1.0, #215129 (compliant with the Boost site).
+
+  21 Oct 2009; Dirkjan Ochtman <djc@gentoo.org> boost-1.40.0.ebuild:
+  Re-add dropped keywords (1.39 -> 1.40), sorry about that.
+
+*boost-1.40.0 (21 Oct 2009)
+
+  21 Oct 2009; Dirkjan Ochtman <djc@gentoo.org> +boost-1.40.0.ebuild,
+  +files/remove-toolset-1.40.0.patch, metadata.xml:
+  Add pmasked boost-1.40 for some testing (add myself to maintainers).
 
   07 Aug 2009; Tiziano Müller <dev-zero@gentoo.org> boost-1.35.0-r5.ebuild,
   boost-1.39.0.ebuild:

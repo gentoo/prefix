@@ -1,24 +1,21 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.37.0-r1.ebuild,v 1.12 2009/10/21 16:57:23 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.40.0.ebuild,v 1.5 2009/10/21 16:57:23 djc Exp $
 
 EAPI="2"
 
 inherit python flag-o-matic multilib toolchain-funcs versionator check-reqs
 
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
-
 MY_P=${PN}_$(replace_all_version_separators _)
-PATCHSET_VERSION="${PV}-1"
 
 DESCRIPTION="Boost Libraries for C++"
 HOMEPAGE="http://www.boost.org/"
-SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2
-	mirror://gentoo/boost-patches-${PATCHSET_VERSION}.tbz2
-	http://www.gentoo.org/~dev-zero/distfiles/boost-patches-${PATCHSET_VERSION}.tbz2"
+SRC_URI="mirror://sourceforge/boost/${MY_P}.tar.bz2"
 LICENSE="Boost-1.0"
-SLOT="1.37"
+SLOT="$(get_version_component_range 1-2)"
 IUSE="debug doc +eselect expat icu mpi python test tools"
+
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
 
 RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	expat? ( dev-libs/expat )
@@ -26,15 +23,11 @@ RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	sys-libs/zlib
 	python? ( virtual/python )
 	!!<=dev-libs/boost-1.35.0-r2
-	>=app-admin/eselect-boost-0.3"
+	!x86-winnt? ( >=app-admin/eselect-boost-0.3 )"
 DEPEND="${RDEPEND}
 	dev-util/boost-build:${SLOT}"
 
 S=${WORKDIR}/${MY_P}
-
-# Maintainer Information
-# ToDo:
-# - write a patch to support /dev/urandom on FreeBSD and OSX (see below)
 
 MAJOR_PV=$(replace_all_version_separators _ ${SLOT})
 BJAM="bjam-${MAJOR_PV}"
@@ -85,23 +78,22 @@ src_prepare() {
 	# WARNING: this one changes the threading API default to win32,
 	# so keep this conditional. i found no other clean solution
 	# right now, so ...
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
+	if [[ ${CHOST} == *-winnt* ]]; then
+		epatch "${FILESDIR}"/${PN}-1.35.0-winnt.patch
+		epatch "${FILESDIR}"/${P}-winnt.patch
+	fi
 
-	EPATCH_SOURCE="${WORKDIR}/patches"
-	EPATCH_SUFFIX="patch"
-	epatch
+	epatch "${FILESDIR}"/${PN}-1.37.0-darwin-long-double.patch
 
-	epatch \
-		"${FILESDIR}/remove_toolset_from_targetname.patch" \
-		"${FILESDIR}/buildid-fix.patch" \
-		"${FILESDIR}"/${P}-darwin-long-double.patch
+	epatch "${FILESDIR}/remove-toolset-${PV}.patch"
 
 	# This enables building the boost.random library with /dev/urandom support
 	if [[ -e /dev/urandom ]] ; then
 		mkdir -p libs/random/build
 		cp "${FILESDIR}/random-Jamfile" libs/random/build/Jamfile.v2
 		# yeah, we WANT it to work on non-Linux too
-		sed -i -e 's/#ifdef __linux__/#if 1/' libs/random/random_device.cpp || die
+		sed -i -e 's/#if defined(__linux__) || defined (__FreeBSD__)/#if 1/' \
+			libs/random/random_device.cpp || die
 	fi
 }
 
@@ -169,9 +161,15 @@ __EOF__
 	use mpi || OPTIONS="${OPTIONS} --without-mpi"
 	use python || OPTIONS="${OPTIONS} --without-python"
 
+	if use sparc || use mips || use hppa ; then
+		OPTIONS="${OPTIONS} --disable-long-double"
+	fi
+
 	[[ ${CHOST} == *-winnt* ]] && OPTIONS="${OPTIONS} -sNO_BZIP2=1"
 
-	OPTIONS="${OPTIONS} --user-config=\"${S}/user-config.jam\" --boost-build=${EPREFIX}/usr/share/boost-build-${MAJOR_PV} --prefix=\"${ED}/usr\" --layout=versioned"
+	local boost_build=$(type -P ${BJAM})
+	boost_build=${boost_build%/*/*}/share/boost-build-${MAJOR_PV}
+	OPTIONS="${OPTIONS} --user-config=\"${S}/user-config.jam\" --boost-build=${boost_build} --prefix=\"${ED}/usr\" --layout=versioned"
 
 }
 
@@ -185,17 +183,15 @@ src_compile() {
 	export BOOST_ROOT="${S}"
 
 	local mythreading="single,multi"
-	local myruntime="shared,static"
 
 	if [[ ${CHOST} == *-winnt* ]]; then
 		mythreading="multi"
-		myruntime="shared"
 	fi
 
 	${BJAM} ${NUMJOBS} -q \
 		gentoorelease \
 		${OPTIONS} \
-		threading=${mythreading} link=shared,static runtime-link=${myruntime} \
+		threading=${mythreading} link=shared,static runtime-link=shared \
 		|| die "building boost failed"
 
 	# ... and do the whole thing one more time to get the debug libs
@@ -203,7 +199,7 @@ src_compile() {
 		${BJAM} ${NUMJOBS} -q \
 			gentoodebug \
 			${OPTIONS} \
-			threading=single,multi link=shared,static runtime-link=shared,static \
+			threading=single,multi link=shared,static runtime-link=shared \
 			--buildid=debug \
 			|| die "building boost failed"
 	fi
@@ -225,17 +221,15 @@ src_install () {
 	export BOOST_ROOT="${S}"
 
 	local mythreading="single,multi"
-	local myruntime="shared,static"
 
 	if [[ ${CHOST} == *-winnt* ]]; then
 		mythreading="multi"
-		myruntime="shared"
 	fi
 
 	${BJAM} -q \
 		gentoorelease \
 		${OPTIONS} \
-		threading=${mythreading} link=shared,static runtime-link=${myruntime} \
+		threading=${mythreading} link=shared,static runtime-link=shared \
 		--includedir="${ED}/usr/include" \
 		--libdir="${ED}/usr/$(get_libdir)" \
 		install || die "install failed for options '${OPTIONS}'"
@@ -244,7 +238,7 @@ src_install () {
 		${BJAM} -q \
 			gentoodebug \
 			${OPTIONS} \
-			threading=single,multi link=shared,static runtime-link=shared,static \
+			threading=single,multi link=shared,static runtime-link=shared \
 			--includedir="${ED}/usr/include" \
 			--libdir="${ED}/usr/$(get_libdir)" \
 			--buildid=debug \
@@ -405,6 +399,29 @@ src_install () {
 			fi
 		done
 	fi
+
+	# on winnt we don't have eselect-boost support (yet), so create
+	# symlinks/copies where required.
+	if [[ ${CHOST} == *-winnt* ]]; then
+		(
+			if use debug; then
+				. "${ED}/usr/share/boost-eselect/profiles/${SLOT}/debug"
+			else
+				. "${ED}/usr/share/boost-eselect/profiles/${SLOT}/default"
+			fi
+
+			test -z "${includes}" -o -z "${libs}" && die "oops. something went wrong - boost profile damaged!"
+			
+			dodir /usr/include
+			cp -r "${D}"${includes} "${ED}/usr/include/"
+
+			dodir /usr/$(get_libdir)
+			for f in ${libs}; do
+				linkname="${f#${EPREFIX}}"
+				dosym ${linkname} "${linkname/-${MAJOR_PV}}"
+			done
+		) || die
+	fi
 }
 
 src_test() {
@@ -453,9 +470,14 @@ __EOF__
 }
 
 pkg_postinst() {
-	use eselect && eselect boost update
-	if [ ! -h "${EROOT}/etc/eselect/boost/active" ] ; then
-		elog "No active boost version found. Calling eselect to select one..."
-		eselect boost update
+	# no eselect-boost on winnt. we simply override the slotting back 
+	# to the # "old" behaviour -> install files where they belong ;)
+	# (done above in src_install, so portage knows the files.)
+	if [[ ${CHOST} != *-winnt* ]]; then
+		use eselect && eselect boost update
+		if [ ! -h "${EROOT}/etc/eselect/boost/active" ] ; then
+			elog "No active boost version found. Calling eselect to select one..."
+			eselect boost update
+		fi
 	fi
 }
