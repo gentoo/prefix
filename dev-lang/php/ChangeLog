@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.350 2009/10/18 14:33:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.351 2009/10/19 09:12:38 volkmar Exp $
+
+  19 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> php-5.2.11.ebuild:
+  Stabilizing for ppc, bug 285434 (also fixing bug 278064)
 
   18 Oct 2009; Brent Baude <ranger@gentoo.org> php-5.2.11.ebuild:
   Marking php-5.2.11 ppc64 for bug 285434

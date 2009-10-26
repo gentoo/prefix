@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.11.ebuild,v 1.7 2009/10/18 14:33:47 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.11.ebuild,v 1.8 2009/10/19 09:12:38 volkmar Exp $
 
 CGI_SAPI_USE="discard-path force-cgi-redirect"
 APACHE2_SAPI_USE="concurrentmodphp threads"
