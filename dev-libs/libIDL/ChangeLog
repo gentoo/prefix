@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.112 2009/10/16 21:35:51 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.113 2009/10/24 16:21:31 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> libIDL-0.8.13.ebuild:
+  ppc stable #281427
 
   16 Oct 2009; Markus Meier <maekke@gentoo.org> libIDL-0.8.13.ebuild:
   x86 stable, bug #281427
