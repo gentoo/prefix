@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.127 2009/10/18 17:45:51 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.128 2009/10/22 15:14:31 a3li Exp $
+
+  22 Oct 2009; Alex Legler <a3li@gentoo.org> -actionpack-1.13.6.ebuild,
+  -actionpack-2.0.5.ebuild, -actionpack-2.1.2-r1.ebuild:
+  removing old ebuilds
 
   18 Oct 2009; Alex Legler <a3li@gentoo.org> -actionpack-2.2.2.ebuild:
   removing vulnerable ebuild, bug 283396
