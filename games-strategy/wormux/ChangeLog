@@ -1,6 +1,11 @@
 # ChangeLog for games-strategy/wormux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/ChangeLog,v 1.33 2009/09/16 21:43:51 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/ChangeLog,v 1.34 2009/10/21 18:08:39 chainsaw Exp $
+
+  21 Oct 2009; <chainsaw@gentoo.org> wormux-0.8.5.ebuild:
+  Marked stable on AMD64 as requested by Michael "Mr. Bones." Sterrett in
+  bug #289425. Tested by Victor "VQuicksilver" Enríquez on a Core 2 Duo
+  system with both single player and multiplayer LAN on a couple of maps.
 
 *wormux-0.8.5 (16 Sep 2009)
 
