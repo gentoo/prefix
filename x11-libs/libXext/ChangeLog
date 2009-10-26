@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXext
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.63 2009/10/11 11:04:32 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/ChangeLog,v 1.64 2009/10/25 20:32:42 scarabeus Exp $
+
+*libXext-1.1.1 (25 Oct 2009)
+
+  25 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org> -libXext-1.1.ebuild,
+  +libXext-1.1.1.ebuild:
+  Version bump. Adjust the deps to the content of configure.ac exactly.
 
   11 Oct 2009; nixnut <nixnut@gentoo.org> libXext-1.0.5.ebuild:
   ppc stable #282290
