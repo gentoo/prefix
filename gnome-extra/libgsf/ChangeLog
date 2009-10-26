@@ -1,6 +1,16 @@
 # ChangeLog for gnome-extra/libgsf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.142 2009/10/16 23:16:22 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.144 2009/10/24 16:31:42 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> libgsf-1.14.15.ebuild:
+  ppc stable #281427
+
+*libgsf-1.14.16 (19 Oct 2009)
+
+  19 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org +libgsf-1.14.16.ebuild,
+  metadata.xml:
+  Version bump. Move to EAPI=2, make gconf non-optional, gtk+ flag for gdk
+  support in thumbnailer.
 
   16 Oct 2009; Markus Meier <maekke@gentoo.org> libgsf-1.14.15.ebuild:
   x86 stable, bug #281427
