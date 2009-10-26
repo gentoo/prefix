@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/cdk
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/ChangeLog,v 1.54 2009/02/02 18:49:36 drizzt Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/ChangeLog,v 1.55 2009/10/25 20:17:29 tove Exp $
+
+  25 Oct 2009; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove drizzt from metadata.xml (#149111)
 
   02 Feb 2009; <drizzt@gentoo.org> -cdk-4.9.10.20020430.ebuild,
   -cdk-4.9.10.20020809.ebuild, -cdk-4.9.10.20020809-r1.ebuild,
