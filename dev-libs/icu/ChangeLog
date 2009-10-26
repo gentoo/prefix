@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/icu
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.98 2009/08/31 17:22:51 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.99 2009/10/24 02:14:39 arfrever Exp $
+
+  24 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  icu-4.2.1.ebuild,
+  +files/icu-4.2.1-pkgdata-build_data_without_assembly.patch:
+  Fix building on arm, hppa, ia64, s390, sh and sparc (bug #275769).
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> icu-4.2.1.ebuild:
   Marking icu-4.2.1 ppc64 for bug 281267
