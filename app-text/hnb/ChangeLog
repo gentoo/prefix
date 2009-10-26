@@ -1,6 +1,18 @@
 # ChangeLog for app-text/hnb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/hnb/ChangeLog,v 1.19 2009/07/23 22:31:07 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/hnb/ChangeLog,v 1.22 2009/10/23 12:47:18 jer Exp $
+
+  23 Oct 2009; Jeroen Roovers <jer@gentoo.org> hnb-1.9.18-r1.ebuild,
+  +files/hnb-1.9.18-include.patch:
+  Apply the include patch too (bug #240132) thanks to Espen Hustad, remove the
+  NULL define, remove patching hack from ebuild.
+
+*hnb-1.9.18-r1 (23 Oct 2009)
+
+  23 Oct 2009; Jeroen Roovers <jer@gentoo.org> +hnb-1.9.18-r1.ebuild,
+  +files/hnb-1.9.18-flags.patch:
+  Respect CFLAGS, LDFLAGS (bug #240132), build parallel, separate CFLAGS and
+  CPPFLAGS.
 
   23 Jul 2009; Víctor Ostorga <vostorga@gentoo.org> hnb-1.9.17.ebuild,
   hnb-1.9.18.ebuild:
