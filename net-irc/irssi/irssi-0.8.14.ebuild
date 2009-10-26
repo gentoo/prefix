@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.14.ebuild,v 1.1 2009/07/28 20:42:33 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.14.ebuild,v 1.4 2009/10/25 11:54:19 maekke Exp $
 
 inherit perl-module
 
