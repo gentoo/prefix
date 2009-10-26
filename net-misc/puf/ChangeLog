@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/puf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/puf/ChangeLog,v 1.8 2009/09/23 19:43:10 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/puf/ChangeLog,v 1.9 2009/10/25 20:18:52 tove Exp $
+
+  25 Oct 2009; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove drizzt from metadata.xml (#149111)
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org> puf-0.93.2a.ebuild:
   Remove virtual/libc
