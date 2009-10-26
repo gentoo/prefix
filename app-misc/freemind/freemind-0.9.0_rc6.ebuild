@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/freemind-0.9.0_rc3.ebuild,v 1.2 2009/07/30 07:38:55 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/freemind-0.9.0_rc6.ebuild,v 1.1 2009/10/25 10:22:48 caster Exp $
 
 EAPI="2"
 
@@ -21,15 +21,15 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc groovy latex pdf svg"
 COMMON_DEP="dev-java/jgoodies-forms:0
 	dev-java/jibx:0
-	>=dev-java/simplyhtml-0.12.5:0
+	>=dev-java/simplyhtml-0.13.1:0
 	dev-java/commons-lang:2.1
 	dev-java/javahelp:0
 	groovy? ( dev-java/groovy )
 	latex? ( dev-java/hoteqn:0 )
-	pdf? ( dev-java/batik:1.6
-		>=dev-java/fop-0.93:0 )
-	svg? ( dev-java/batik:1.6
-		>=dev-java/fop-0.93:0 )"
+	pdf? ( dev-java/batik:1.7
+		>=dev-java/fop-0.95:0 )
+	svg? ( dev-java/batik:1.7
+		>=dev-java/fop-0.95:0 )"
 DEPEND=">=virtual/jdk-1.4
 	dev-java/xsd2jibx:0
 	app-arch/unzip
@@ -70,7 +70,8 @@ src_compile() {
 	use groovy && gcp="${gcp},groovy"
 	use latex && gcp="${gcp},hoteqn"
 	if use pdf || use svg ; then
-		gcp="${gcp},batik-1.6,fop"
+		# there is both direct batik usage and through fop
+		gcp="${gcp},batik-1.7,fop"
 	fi
 	local gcp="$(java-pkg_getjars --with-dependencies ${gcp}):lib/bindings.jar"
 	local jarblibs=""
