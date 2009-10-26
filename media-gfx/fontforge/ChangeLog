@@ -1,6 +1,14 @@
 # ChangeLog for media-gfx/fontforge
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.114 2009/10/15 13:51:56 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fontforge/ChangeLog,v 1.116 2009/10/22 20:55:50 klausman Exp $
+
+  22 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
+  fontforge-20090622.ebuild:
+  Stable on alpha, bug #288261
+
+  20 Oct 2009; Peter Volkov <pva@gentoo.org> fontforge-20090923.ebuild:
+  Fixed build issue with USE=doc, thank Andrew Savchenko for report in bug
+  #289166
 
   15 Oct 2009; Markus Meier <maekke@gentoo.org> fontforge-20090622.ebuild:
   amd64/x86 stable, bug #288261
