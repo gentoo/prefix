@@ -1,6 +1,22 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.372 2009/10/18 02:02:09 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.375 2009/10/23 18:16:26 robbat2 Exp $
+
+  23 Oct 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.5_rc2.ebuild,
+  git-1.6.5.ebuild, git-1.6.5.1.ebuild, git-1.6.5.1-r1.ebuild,
+  git-9999.ebuild:
+  USE-default on doc was unpopular, and got even more so with USE=doc now
+  bringing in dependencies. Turn off the default.
+
+*git-1.6.5.1-r1 (22 Oct 2009)
+
+  22 Oct 2009; Sebastian Pipping <sping@gentoo.org> +git-1.6.5.1-r1.ebuild,
+  git-9999.ebuild:
+  Build and install info pages (bug 287112), add dependency on texinfo, drop
+  keywords: alpha arm ia64 ppc64
+
+  22 Oct 2009; Tobias Klausmann <klausman@gentoo.org> git-1.6.4.4.ebuild:
+  Added two more test sets to the black list for UID-0 testing
 
 *git-1.6.5.1 (18 Oct 2009)
 
