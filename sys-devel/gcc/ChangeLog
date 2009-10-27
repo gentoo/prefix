@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.732 2009/10/17 21:37:32 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.734 2009/10/24 13:29:06 nixnut Exp $
+
+  24 Oct 2009; nixnut <nixnut@gentoo.org> gcc-4.3.4.ebuild:
+  ppc stable #288621
+
+  19 Oct 2009; Alexey Shvetsov <alexxy@gentoo.org> gcc-4.4.1.ebuild,
+  gcc-4.4.2.ebuild:
+  Add ~mips keywords to gcc-4.4.{1,2}
 
 *gcc-4.4.2 (17 Oct 2009)
 
