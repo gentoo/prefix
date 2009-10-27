@@ -21,7 +21,7 @@ RDEPEND="${DEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2_pre090920-prefix.patch
+	epatch "${FILESDIR}"/${PN}-2_pre090924-prefix.patch
 	eprefixify perl-cleaner
 }
 
