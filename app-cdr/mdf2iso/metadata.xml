@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
-<pkgmetadata>
-<herd>media-optical</herd>
-<longdescription>A very simple utility to convert an Alcohol 120% bin image to the standard ISO-9660 format.</longdescription>
-</pkgmetadata>
