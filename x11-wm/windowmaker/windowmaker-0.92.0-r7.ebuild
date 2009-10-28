@@ -49,22 +49,38 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PV}/${P}-math_h.patch
 	epatch "${FILESDIR}"/${PV}/${P}-gettext.patch
 
+	# Patches from upstream HG
+	epatch "${FILESDIR}"/${PV}/${P}-composite-non-24bit-depth.patch
+	epatch "${FILESDIR}"/${PV}/${P}-mouse-window-focus.patch
+	epatch "${FILESDIR}"/${PV}/${P}-maximise-borderless-too-small.patch
+	epatch "${FILESDIR}"/${PV}/${P}-xinerama-switchpanel-corruption.patch
+	epatch "${FILESDIR}"/${PV}/${P}-dialog-history.patch
+	epatch "${FILESDIR}"/${PV}/${P}-single-click-dockapp-start.patch
+	epatch "${FILESDIR}"/${PV}/${P}-no-pop-empty-array.patch
+	epatch "${FILESDIR}"/${PV}/${P}-empty-command-fatal-error.patch
+	epatch "${FILESDIR}"/${PV}/${P}-findfile-overflow.patch
+	epatch "${FILESDIR}"/${PV}/${P}-pointer-integer-warn-fix.patch
+	epatch "${FILESDIR}"/${PV}/${P}-workspace-change-crash.patch
+	epatch "${FILESDIR}"/${PV}/${P}-app-icon-fix.patch
+	epatch "${FILESDIR}"/${PV}/${P}-xchangeproperty-64bits-fix.patch
+
 	# Patches from altlinux
 	epatch "${psd}"/WindowMaker-0.91.0-alt-session.patch
 	epatch "${psd}"/WindowMaker-0.91.0-alt-restartscrpt.patch
 	epatch "${psd}"/WindowMaker-0.91.0-alt-menutrans.patch
 	epatch "${psd}"/WindowMaker-0.91.0-alt-titlebar.patch
-	epatch "${psd}"/WindowMaker-0.91.0-alt-clipnotext.patch
+	#epatch "${psd}"/WindowMaker-0.91.0-alt-clipnotext.patch
+	epatch "${FILESDIR}"/${PV}/${P}-no-clip-title.patch
 	epatch "${psd}"/WindowMaker-0.91.0-alt-mmx.patch
-	epatch "${psd}"/WindowMaker-0.80.2-cvs-alt-textfield.patch
 	epatch "${psd}"/WindowMaker-0.91.0-alt-focus.patch
 
 	# New features (cool!)
-	epatch "${FILESDIR}"/${PV/0.92/0.91}/singleclick-shadeormaxopts-0.9x.patch2
+	#epatch "${FILESDIR}"/${PV/0.92/0.91}/singleclick-shadeormaxopts-0.9x.patch2
+	epatch "${FILESDIR}"/${PV}/${P}-doubleclick-maximise.patch
 	epatch "${psd}"/WindowMaker-0.91.0-alt-dockhotkeys.patch
 	epatch "${psd}"/WindowMaker-0.91.0-alt-vlaad-trance.patch
 	epatch "${psd}"/WindowMaker-0.91.0-alt-vlaad-newbuttons.patch
-	epatch "${psd}"/WindowMaker-0.91.0-alt-adialog.patch
+	#epatch "${psd}"/WindowMaker-0.91.0-alt-adialog.patch
 	epatch "${psd}"/WindowMaker-0.91.0-hmepas-minimizeall.patch
 	epatch "${psd}"/WindowMaker-0.91.0-hmepas-swmenu_rclick.patch
 	epatch "${psd}"/WindowMaker-0.91.0-sga-moving-add.patch
