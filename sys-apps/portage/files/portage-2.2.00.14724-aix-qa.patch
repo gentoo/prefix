@@ -1,0 +1,11 @@
+--- bin/misc-functions.sh.orig	2009-10-21 16:30:08 +0200
++++ bin/misc-functions.sh	2009-10-21 16:30:35 +0200
+@@ -616,7 +616,7 @@
+ 	# on AIX, "dynamic libs" have extention .a, so don't get false
+ 	# positives
+ 	[[ ${CHOST} == *-aix* ]] \
+-		&& f=$(ls "${ED}"lib*/*.la 2>/dev/null) \
++		&& f=$(ls "${ED}"lib*/*.la 2>/dev/null || true) \
+ 		|| f=$(ls "${ED}"lib*/*.{a,la} 2>/dev/null)
+ 	if [[ -n ${f} ]] ; then
+ 		vecho -ne '\a\n'

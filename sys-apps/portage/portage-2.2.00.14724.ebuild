@@ -32,6 +32,7 @@ RDEPEND="${python_dep}
 	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18 )
 	kernel_HPUX? ( !hppa-hpux? ( >=app-misc/pax-utils-0.1.19 ) )
+	kernel_AIX? ( >=sys-apps/aix-miscutils-0.1.1634 )
 	selinux? ( >=dev-python/python-selinux-2.16 )"
 PDEPEND="
 	!build? (
@@ -77,6 +78,9 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
+
+	epatch "${FILESDIR}"/${P}-aix-qa.patch
+	epatch "${FILESDIR}"/${P}-aix-preservelibs.patch
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14487-prefix-chaining.patch
 }
