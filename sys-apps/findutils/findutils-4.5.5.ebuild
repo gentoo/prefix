@@ -27,6 +27,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.3.2-irix.patch
 	epatch "${FILESDIR}"/${P}-solaris.patch # should go on next version
+	epatch "${FILESDIR}"/${P}-aix.patch
 
 	# interix does not have any means of retrieving a list of
 	# mounted filesystems.
