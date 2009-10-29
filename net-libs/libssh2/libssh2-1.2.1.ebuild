@@ -4,6 +4,8 @@
 
 EAPI="2"
 
+inherit eutils
+
 DESCRIPTION="Library implementing the SSH2 protocol"
 HOMEPAGE="http://www.libssh2.org/"
 SRC_URI="mirror://sourceforge/libssh2/${P}.tar.gz"
@@ -17,6 +19,10 @@ DEPEND="!gcrypt? ( dev-libs/openssl )
 	gcrypt? ( dev-libs/libgcrypt )
 	zlib? ( sys-libs/zlib )"
 RDEPEND="${DEPEND}"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-irix.patch
+}
 
 src_configure() {
 	local myconf
