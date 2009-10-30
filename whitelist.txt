@@ -132,6 +132,7 @@ sys-devel/gcc-apple
 sys-devel/gdb-apple
 sys-process/unixtop
 x11-terms/terminal
+x11-wm/windowmaker
 
 # entire categories
 xfce-base
