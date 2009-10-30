@@ -2,6 +2,14 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  30 Oct 2009; Michael Haubenwallner <haubi@gentoo.org>
+  portage-2.2.00.14724.ebuild,
+  -files/portage-2.2.00.14724-aix-finetuning.patch,
+  portage-2.2.00.14746.ebuild,
+  +files/portage-2.2.00.14746-aix-finetuning.patch:
+  added fine tuning/fixes for preserve-libs feature for AIX for 14746,
+  dropped from 14724
+
 *portage-2.2.00.14746 (30 Oct 2009)
 
   30 Oct 2009; Fabian Groffen <grobian@gentoo.org>

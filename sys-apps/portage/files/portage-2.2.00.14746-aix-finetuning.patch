@@ -58,3 +58,14 @@ Some finetuning for the preserve-libs feature on AIX.
  				insecure_rpath=1
  			fi
  		fi
+--- pym/portage/dbapi/vartree.py.orig	2009-10-30 22:39:13.957455749 +0100
++++ pym/portage/dbapi/vartree.py	2009-10-30 22:39:17.947318507 +0100
+@@ -1798,7 +1798,7 @@
+ 			self.linkmap = LinkageMapMachO(self)
+ 		elif chost.find('interix') >= 0 or chost.find('winnt') >= 0:
+ 			self.linkmap = LinkageMapPeCoff(self)
+-		elif chost.find('aix'):
++		elif chost.find('aix') >= 0:
+ 			self.linkmap = LinkageMapXCoff(self)
+ 		else:
+ 			self.linkmap = LinkageMap(self)

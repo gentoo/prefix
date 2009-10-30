@@ -80,8 +80,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
 
 	epatch "${FILESDIR}"/${P}-aix-qa.patch
-	epatch "${FILESDIR}"/${P}-aix-preservelibs.patch
-	epatch "${FILESDIR}"/${P}-aix-finetuning.patch
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14487-prefix-chaining.patch
 }
