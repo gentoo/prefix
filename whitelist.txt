@@ -124,6 +124,7 @@ dev-util/confix-wrapper
 dev-util/uncrustify
 mail-client/mutt
 media-gfx/asymptote
+media-video/mpeg-tools
 net-analyzer/linkchecker
 net-libs/libsoup-gnome
 net-mail/getmail
