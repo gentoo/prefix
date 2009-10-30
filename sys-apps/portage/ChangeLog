@@ -2,6 +2,15 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.14748 (30 Oct 2009)
+
+  30 Oct 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.14746.ebuild,
+  -files/portage-2.2.00.14746-aix-finetuning.patch,
+  +portage-2.2.00.14748.ebuild:
+  Replace 2.2.00.14746 with 2.2.00.14748 that includes the additional fixes
+  for AIX, and fixes accidential aix QA code being run on ELF platforms
+
   30 Oct 2009; Michael Haubenwallner <haubi@gentoo.org>
   -portage-2.2.00.14724.ebuild,
   -files/portage-2.2.00.14724-aix-preservelibs.patch,
