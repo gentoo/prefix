@@ -1,6 +1,156 @@
 # ChangeLog for media-video/mplayer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.654 2009/07/27 06:56:35 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.685 2009/10/27 13:59:32 ssuominen Exp $
+
+  27 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild:
+  If no -O flag is specified, append-flags -O2 (to gain -fomit-frame-pointer
+  by gcc) wrt #288918
+
+*mplayer-1.0_rc4_p20091026-r1 (27 Oct 2009)
+
+  27 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +mplayer-1.0_rc4_p20091026-r1.ebuild, metadata.xml:
+  Fix missing media-libs/libbs2b depend wrt #287993, thanks to Sebastian
+  Pipping for reporting. Also, missing media-sound/toolame handling.
+
+*mplayer-1.0_rc4_p20091026 (26 Oct 2009)
+
+  26 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +mplayer-1.0_rc4_p20091026.ebuild:
+  Version bump.
+
+  11 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc2_p20090322.ebuild:
+  Remove amrnb, amrwb support wrt #252140. Remove arts support wrt #270575.
+  Remove libmpcdec support wrt #279069.
+
+  25 Sep 2009; Mounir Lamouri <volkmar@gentoo.org>
+  mplayer-1.0_rc4_p20090919-r2.ebuild:
+  Keywording for ppc. Bug 280281
+
+*mplayer-1.0_rc4_p20090919-r2 (25 Sep 2009)
+
+  25 Sep 2009; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0_rc4_p20090919-r2.ebuild:
+  Only use replace-flags on gcc-4.4+; fix svn revision; less strict on sdl
+  use flag
+
+  24 Sep 2009; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0_rc2_p20090731-r1.ebuild, mplayer-1.0_rc4_p20090919-r1.ebuild:
+  Re-add ~ia64 wrt #280281
+
+  22 Sep 2009; Jeremy Olexa <darkside@gentoo.org>
+  mplayer-1.0_rc4_p20090919-r1.ebuild:
+  Fix configure call, just a typo in the ebuild. bug 285894
+
+*mplayer-1.0_rc4_p20090919-r1 (19 Sep 2009)
+
+  19 Sep 2009; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0_rc4_p20090919-r1.ebuild:
+  Snapshot version bump; Wrap all X dependencies under X use flag, bug
+  222627 (thanks to William Hubbs for major patch); Drop vesa support, bug
+  283246; Drop custom-cflags due to gcc-4 bug, filter flags, bug 269975
+
+  31 Aug 2009; Brent Baude <ranger@gentoo.org>
+  mplayer-1.0_rc2_p20090731-r1.ebuild:
+  Marking mplayer-1.0_rc2_p20090731-r1 ~ppc64 for bug 280281
+
+  28 Aug 2009; Tobias Klausmann <klausman@gentoo.org>
+  mplayer-1.0_rc2_p20090731-r1.ebuild:
+  Keyworded on alpha, bug #280281
+
+  19 Aug 2009; Christian Faulhammer <fauli@gentoo.org>
+  mplayer-1.0_rc2_p20090731-r1.ebuild:
+  add ~x86, bug 280281
+
+  09 Aug 2009; nixnut <nixnut@gentoo.org> mplayer-1.0_rc2_p20090731.ebuild:
+  ppc stable #279342
+
+  08 Aug 2009; Brent Baude <ranger@gentoo.org>
+  mplayer-1.0_rc2_p20090731.ebuild:
+  Marking mplayer-1.0_rc2_p20090731 ppc64 for bug 279342
+
+  04 Aug 2009; Jeroen Roovers <jer@gentoo.org>
+  mplayer-1.0_rc2_p20090731-r1.ebuild:
+  Marked ~hppa (bug #280281).
+
+*mplayer-1.0_rc2_p20090731-r1 (04 Aug 2009)
+
+  04 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +mplayer-1.0_rc2_p20090731-r1.ebuild, metadata.xml:
+  Raise x264 depend wrt #240347. Fix automagic opencore-amr depend wrt
+  #279995.
+
+  03 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc2_p20090731.ebuild:
+  Pull in dejavu or ttf-bitstream-vera with USE ass wrt #263185.
+
+  03 Aug 2009; Markus Meier <maekke@gentoo.org>
+  mplayer-1.0_rc2_p20090731.ebuild:
+  x86 stable, bug #279342
+
+  03 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc2_p20090731.ebuild:
+  Remove USE nemesi since it's not in tree anymore wrt #274807.
+
+  03 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc2_p20090322.ebuild, mplayer-1.0_rc2_p20090530.ebuild,
+  mplayer-1.0_rc2_p20090731.ebuild:
+  Upload svgalib_helper again to mirrors wrt #279883.
+
+  03 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc2_p20090731.ebuild,
+  +files/mplayer-1.0_rc2_p20090731-linguas.patch:
+  Fix LINGUAS handling wrt #280129.
+
+  03 Aug 2009; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  Use tr instead of sed for creating the linguas list, this fixes a build
+  issue when LINGUAS contains more than two languages.
+
+  03 Aug 2009; Jeroen Roovers <jer@gentoo.org>
+  mplayer-1.0_rc2_p20090731.ebuild:
+  Stable for HPPA (bug #279342).
+
+  02 Aug 2009; <chainsaw@gentoo.org> mplayer-1.0_rc2_p20090731.ebuild:
+  Marked stable on AMD64 for security bug #279342 filed by Alex Legler
+  <a3li@gentoo.org>. Tested with fullscreen XV playback of XviD content on a
+  Radeon X600, dual hex-core Opteron system with USE="3dnow 3dnowext X a52
+  aac aalib alsa ass cddb cdio cdparanoia dirac dts dv dvd dvdnav enca
+  encode faac faad fbcon ftp gif iconv ipv6 jpeg libcaca live lzo mad md5sum
+  mmx mmxext mng mp2 mp3 nemesi network opengl osdmenu png pnm pulseaudio
+  quicktime rar real rtc schroedinger sdl shm speex sse sse2 ssse3 theora
+  tremor truetype unicode v4l2 vorbis x264 xinerama xv xvid xvmc (-altivec)
+  -bidi -bindist -bl -cpudetection -custom-cflags -custom-cpuopts -debug
+  -dga -directfb -doc -dvb -dxr3 -esd -ggi -gmplayer -jack -joystick -ladspa
+  -lirc -nas -nut -openal -oss -pvr -radio -samba (-svga) -teletext -tga
+  -v4l -vdpau (-vidix) (-win32codecs) -xanim -xscreensaver -zoran".
+
+  01 Aug 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  mplayer-1.0_rc2_p20090731.ebuild:
+  Restore the local labels patch. Sigh.
+
+  31 Jul 2009; <chainsaw@gentoo.org> mplayer-1.0_rc2_p20090530.ebuild:
+  Marked stable on AMD64 as requested by Samuli Suominen
+  <ssuominen@gentoo.org> in bug #279826. Tested using full-screen XV
+  playback of XViD content on a Radeon X600; USE="3dnow 3dnowext X a52 aac
+  aalib alsa amrnb amrwb ass cddb cdio cdparanoia dirac dts dv dvd dvdnav
+  enca encode faac faad fbcon ftp gif iconv ipv6 jpeg libcaca live lzo mad
+  md5sum mmx mmxext mng mp2 mp3 nemesi network opengl osdmenu png pnm
+  pulseaudio quicktime rar rtc schroedinger sdl shm speex sse sse2 ssse3
+  theora tremor truetype unicode v4l2 vorbis x264 xinerama xv xvid xvmc
+  (-altivec) -bidi -bindist -bl -cpudetection -custom-cflags -custom-cpuopts
+  -debug -dga -directfb -doc -dvb -dxr3 -esd -ggi -gmplayer -jack -joystick
+  -ladspa -lirc -nas -nut -openal -oss -pvr -radio (-real) -samba (-svga)
+  -teletext -tga -v4l -vdpau (-vidix) (-win32codecs) -xanim -xscreensaver
+  -zoran".
+
+*mplayer-1.0_rc2_p20090731 (31 Jul 2009)
+
+  31 Jul 2009; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0_rc2_p20090731.ebuild, mplayer-9999.ebuild:
+  Snapshot bump, add --language* options to check for correct LINGUAS
+  variable to use for messages, documentation
 
   27 Jul 2009; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild,
   metadata.xml:
