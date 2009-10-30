@@ -3,6 +3,12 @@
 # $Id$
 
   30 Oct 2009; Michael Haubenwallner <haubi@gentoo.org>
+  -portage-2.2.00.14724.ebuild,
+  -files/portage-2.2.00.14724-aix-preservelibs.patch,
+  -files/portage-2.2.00.14724-aix-qa.patch:
+  dropped
+
+  30 Oct 2009; Michael Haubenwallner <haubi@gentoo.org>
   portage-2.2.00.14724.ebuild,
   -files/portage-2.2.00.14724-aix-finetuning.patch,
   portage-2.2.00.14746.ebuild,
