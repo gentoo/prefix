@@ -2,6 +2,15 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.14748-r1 (31 Oct 2009)
+
+  31 Oct 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.14748.ebuild, +portage-2.2.00.14748-r1.ebuild,
+  +files/portage-2.2.00.14748-fix-crash-on-new-cat-install.patch:
+  Add fix for bug #291271, Portage crashing on installing new categories,
+  separate patch because I expect this not going to be the final patch, so
+  at least fix the problem for now
+
 *portage-2.2.00.14748 (30 Oct 2009)
 
   30 Oct 2009; Fabian Groffen <grobian@gentoo.org>
