@@ -20,6 +20,7 @@ DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
 	epydoc? ( >=dev-python/epydoc-2.0 )"
+# the debugedit blocker is for bug #289967
 RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
 		>=app-shells/bash-3.2_p17
@@ -33,7 +34,8 @@ RDEPEND="${python_dep}
 	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18 )
 	kernel_HPUX? ( !hppa-hpux? ( >=app-misc/pax-utils-0.1.19 ) )
 	kernel_AIX? ( >=sys-apps/aix-miscutils-0.1.1634 )
-	selinux? ( >=dev-python/python-selinux-2.16 )"
+	selinux? ( >=dev-python/python-selinux-2.16 )
+	!>=dev-util/debugedit-4.4.6-r2"
 PDEPEND="
 	!build? (
 		>=net-misc/rsync-2.6.4
@@ -78,7 +80,6 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
-	epatch "${FILESDIR}"/${P}-fix-crash-on-new-cat-install.patch
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14487-prefix-chaining.patch
 }
