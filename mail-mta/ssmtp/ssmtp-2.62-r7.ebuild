@@ -47,6 +47,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/ssmtp-2.61-darwin7.patch
 	epatch "${FILESDIR}"/ssmtp-2.62-strndup.patch
+	epatch "${FILESDIR}"/ssmtp-2.62-darwin-crypto.patch
 	eautoreconf
 
 	# Respect LDFLAGS (bug #152197)
@@ -56,7 +57,6 @@ src_unpack() {
 src_compile() {
 	tc-export CC LD
 
-	[[ ${CHOST} == *-darwin* ]] && append-ldflags -undefined dynamic_lookup
 	econf \
 		--sysconfdir="${EPREFIX}"/etc/ssmtp \
 		$(use_enable ssl) \
