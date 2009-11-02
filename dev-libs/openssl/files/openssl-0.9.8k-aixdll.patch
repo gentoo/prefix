@@ -1,0 +1,46 @@
+--- Makefile.shared.orig	2009-11-02 16:31:28 +0100
++++ Makefile.shared	2009-11-02 17:03:31 +0100
+@@ -506,10 +506,16 @@
+ 	OBJECT_MODE=$${OBJECT_MODE:-32}; export OBJECT_MODE; \
+ 	SHLIB=lib$(LIBNAME).so; \
+ 	SHLIB_SUFFIX=; \
+-	ALLSYMSFLAGS='-bnogc'; \
++	ALLSYMSFLAGS=''; \
+ 	NOALLSYMSFLAGS=''; \
+-	SHAREDFLAGS='$(CFLAGS) $(SHARED_LDFLAGS) -Wl,-bexpall,-bnolibpath,-bM:SRE'; \
+-	$(LINK_SO_A_VIA_O)
++	SHAREDFLAGS='$(CFLAGS) $(SHARED_LDFLAGS) -shared -Wl,-G,-bexpall,-bnolibpath,-bernotok'; \
++	INHIBIT_SYMLINKS=yes; \
++	set dummy $(AR); $$2 t lib$(LIBNAME).a | grep $$SHLIB$$SHLIB_SOVER$$SHLIB_SUFFIX >/dev/null || { \
++		$(LINK_SO_A_UNPACKED); \
++		mv -f lib$(LIBNAME).a lib$(LIBNAME).sa; \
++	}; \
++	rm -f lib$(LIBNAME).a; \
++	$(AR) lib$(LIBNAME).a $$SHLIB$$SHLIB_SOVER$$SHLIB_SUFFIX;
+ link_app.aix:
+ 	LDFLAGS="$(CFLAGS) -Wl,-brtl,-blibpath:$(LIBRPATH):$${LIBPATH:-/usr/lib:/lib}"; \
+ 	$(LINK_APP)
+@@ -535,10 +541,11 @@
+ 
+ # Targets to build symbolic links when needed
+ symlink.gnu symlink.solaris symlink.svr3 symlink.svr5 symlink.irix \
+-symlink.aix symlink.reliantunix:
++symlink.reliantunix:
+ 	@ $(CALC_VERSIONS); \
+ 	SHLIB=lib$(LIBNAME).so; \
+ 	$(SYMLINK_SO)
++symlink.aix:
+ symlink.darwin:
+ 	@ $(CALC_VERSIONS); \
+ 	SHLIB=lib$(LIBNAME); \
+--- Makefile.org.orig	2009-11-02 16:37:36 +0100
++++ Makefile.org	2009-11-02 16:38:19 +0100
+@@ -638,7 +638,7 @@
+ 			mv -f $(INSTALL_PREFIX)$(INSTALLTOP)/lib/$$i.new $(INSTALL_PREFIX)$(INSTALLTOP)/lib/$$i ); \
+ 		fi; \
+ 	done;
+-	@set -e; if [ -n "$(SHARED_LIBS)" ]; then \
++	@set -e; if [ -n "$(SHARED_LIBS)" -a "$(SHLIB_TARGET)" != "aix-shared" ]; then \
+ 		tmp="$(SHARED_LIBS)"; \
+ 		for i in $${tmp:-x}; \
+ 		do \
