@@ -1,0 +1,52 @@
+http://git.savannah.gnu.org/cgit/gnulib.git/commit/?id=298d8b4a29e66da0b046b64b822f97d1c8fef74b
+
+From 298d8b4a29e66da0b046b64b822f97d1c8fef74b Mon Sep 17 00:00:00 2001
+From: Michael Haubenwallner <michael.haubenwallner@salomon.at>
+Date: Fri, 30 Oct 2009 23:00:03 +0000
+Subject: stat: fix compilation on AIX
+
+AC_SYS_LARGEFILE turns on large-file support, but in that mode, AIX
+provides only struct stat64, and not struct stat.
+
+* lib/sys_stat.in.h (stat): Work with fact that large files on AIX
+only see struct stat64.
+
+Signed-off-by: Eric Blake <ebb9@byu.net>
+---
+#diff --git a/ChangeLog b/ChangeLog
+#index c146bcb..6cb34dc 100644
+#--- a/ChangeLog
+#+++ b/ChangeLog
+#@@ -1,3 +1,9 @@
+#+2009-10-30  Michael Haubenwallner  <michael.haubenwallner@salomon.at>
+#+
+#+	stat: fix compilation on AIX
+#+	* lib/sys_stat.in.h (stat): Work with fact that large files on AIX
+#+	only see struct stat64.
+#+
+# 2009-10-30  Eric Blake  <ebb9@byu.net>
+# 
+# 	exclude: make more robust
+diff --git a/lib/sys_stat.in.h b/lib/sys_stat.in.h
+index e7cb5ee..1e46da8 100644
+--- a/lib/sys_stat.in.h
++++ b/lib/sys_stat.in.h
+@@ -456,7 +456,15 @@ int mknodat (int fd, char const *file, mode_t mode, dev_t dev);
+    struct stat.  This means that rpl_stat will not be used if the user
+    does (stat)(a,b).  Oh well.  */
+ #  undef stat
+-#  define stat(name, st) rpl_stat (name, st)
++#  ifdef _LARGE_FILES
++    /* With _LARGE_FILES defined, AIX (only) defines stat to stat64,
++       so we have to replace stat64() instead of stat(). */
++#   define stat stat64
++#   undef stat64
++#   define stat64(name, st) rpl_stat (name, st)
++#  else /* !_LARGE_FILES */
++#   define stat(name, st) rpl_stat (name, st)
++#  endif /* !_LARGE_FILES */
+ extern int stat (const char *name, struct stat *buf);
+ # endif
+ #elif defined GNULIB_POSIXCHECK
+--
+cgit v0.8.2.1

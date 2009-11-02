@@ -29,6 +29,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.3.12-mint.patch
 	epatch "${FILESDIR}"/${PN}-1.3.13-darwin.patch
 	epatch "${FILESDIR}"/${PN}-1.3.12-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.3.13-gl-stat-aix-largefiles.patch
 	eprefixify \
 		g{unzip,zexe}.in \
 		z{cat,cmp,diff,egrep,fgrep,force,grep,less,more,new}.in
