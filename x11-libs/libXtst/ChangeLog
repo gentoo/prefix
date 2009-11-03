@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXtst
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.51 2009/10/05 17:41:36 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXtst/ChangeLog,v 1.52 2009/10/26 09:45:58 remi Exp $
+
+  26 Oct 2009; Rémi Cardona <remi@gentoo.org> libXtst-1.1.0.ebuild:
+  sync with overlay, update deps (fixes bug #288702)
 
   05 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   -libXtst-1.0.2.ebuild:
