@@ -1,6 +1,16 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.144 2009/10/24 16:15:56 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.146 2009/10/29 22:53:44 eva Exp $
+
+*gnome-doc-utils-0.18.0 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-doc-utils-0.18.0.ebuild:
+  New version for GNOME 2.28.
+
+  26 Oct 2009; Raúl Porcel <armin76@gentoo.org>
+  gnome-doc-utils-0.14.2.ebuild:
+  s390 stable
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> gnome-doc-utils-0.16.1.ebuild:
   ppc stable #281427
