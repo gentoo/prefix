@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.8.ebuild,v 1.1 2009/05/29 22:48:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/procps-3.2.8.ebuild,v 1.8 2009/10/31 14:17:56 ranger Exp $
 
 inherit flag-o-matic eutils toolchain-funcs multilib
 
