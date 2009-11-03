@@ -1,11 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.18.2-r1.ebuild,v 1.3 2009/09/03 10:46:19 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/gtk-engines-2.18.4.ebuild,v 1.1 2009/10/29 22:41:00 eva Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
 
-inherit autotools eutils gnome2
+inherit gnome2
 
 DESCRIPTION="GTK+2 standard engines and themes"
 HOMEPAGE="http://www.gtk.org/"
@@ -26,14 +26,4 @@ DOCS="AUTHORS ChangeLog NEWS README"
 pkg_setup() {
 	G2CONF="${G2CONF} --enable-animation $(use_enable lua) $(use_with lua system-lua)"
 	use accessibility || G2CONF="${G2CONF} --disable-hc"
-}
-src_prepare() {
-	gnome2_src_prepare
-
-	# Don't use liblua embedded version, use system lib instead
-	# fix bug #255773, import from upstream bug #593674, FIXED VERSION
-	# (patch commented out)
-	epatch "${FILESDIR}"/${P}-system-lua.patch
-	intltoolize --automake --copy --force || die "intltoolize failed"
-	eautoreconf
 }

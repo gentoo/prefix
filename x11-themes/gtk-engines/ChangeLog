@@ -1,6 +1,12 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.152 2009/10/25 21:31:45 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.153 2009/10/29 22:41:00 eva Exp $
+
+*gtk-engines-2.18.4 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +gtk-engines-2.18.4.ebuild:
+  New version for GNOME 2.28.
 
   25 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -gtk-engines-2.18.2.ebuild, -gtk-engines-2.18.2-r1.ebuild,
