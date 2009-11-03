@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/offlineimap/offlineimap-6.2.0.ebuild,v 1.1 2009/08/25 21:46:44 gregkh Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/offlineimap/offlineimap-6.2.0.ebuild,v 1.2 2009/11/02 21:30:43 maekke Exp $
 
 EAPI=2
 
