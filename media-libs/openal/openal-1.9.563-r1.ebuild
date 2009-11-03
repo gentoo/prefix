@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-1.9.563.ebuild,v 1.7 2009/10/31 14:39:01 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-1.9.563-r1.ebuild,v 1.1 2009/10/27 18:11:17 ssuominen Exp $
 
 EAPI=2
 inherit cmake-utils
@@ -23,6 +23,7 @@ DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 DOCS="alsoftrc.sample"
+PATCHES=( "${FILESDIR}/${P}-oss.patch" )
 
 src_configure() {
 	local mycmakeargs="$(cmake-utils_use alsa ALSA)
