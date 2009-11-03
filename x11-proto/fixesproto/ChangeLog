@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/fixesproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/fixesproto/ChangeLog,v 1.27 2009/10/11 21:08:47 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/fixesproto/ChangeLog,v 1.28 2009/10/26 10:29:09 remi Exp $
+
+  26 Oct 2009; Rémi Cardona <remi@gentoo.org> fixesproto-4.1.1.ebuild:
+  sync with overlay, update deps
 
 *fixesproto-4.1.1 (11 Oct 2009)
 
