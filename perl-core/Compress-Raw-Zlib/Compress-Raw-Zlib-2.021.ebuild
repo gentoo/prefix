@@ -10,7 +10,7 @@ inherit multilib perl-module
 DESCRIPTION="Low-Level Interface to zlib compression library"
 
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="test"
 
 RDEPEND=">=sys-libs/zlib-1.2.2.1"
@@ -24,8 +24,8 @@ src_prepare() {
 
 	cat <<-EOF > "${S}/config.in"
 		BUILD_ZLIB = False
-		INCLUDE = /usr/include
-		LIB = /usr/$(get_libdir)
+		INCLUDE = ${EPREFIX}/usr/include
+		LIB = ${EPREFIX}/usr/$(get_libdir)
 
 		OLD_ZLIB = False
 		GZIP_OS_CODE = AUTO_DETECT
