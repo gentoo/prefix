@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/libXfont-1.4.0.ebuild,v 1.8 2009/10/11 10:56:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/libXfont-1.4.0.ebuild,v 1.9 2009/10/26 21:01:19 jer Exp $
 
 # Must be before x-modular eclass is inherited
 # SNAPSHOT="yes"
