@@ -1,12 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.6.3-r1.ebuild,v 1.3 2009/04/13 00:43:01 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.8.0_rc4.ebuild,v 1.1 2009/11/03 03:34:51 cryos Exp $
 
 EAPI=2
 
 inherit elisp-common toolchain-funcs eutils versionator flag-o-matic cmake-utils
 
-MY_PV="${PV/rc/RC-}"
 MY_P="${PN}-$(replace_version_separator 3 - ${MY_PV})"
 
 DESCRIPTION="Cross platform Make"
@@ -14,7 +13,7 @@ HOMEPAGE="http://www.cmake.org/"
 SRC_URI="http://www.cmake.org/files/v$(get_version_component_range 1-2)/${MY_P}.tar.gz"
 
 LICENSE="CMake"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 IUSE="emacs qt4 vim-syntax"
 
@@ -22,7 +21,7 @@ DEPEND="
 	>=net-misc/curl-7.16.4
 	>=dev-libs/expat-2.0.1
 	>=dev-libs/libxml2-2.6.28
-	>=dev-libs/xmlrpc-c-1.06.09[curl]
+	>=dev-libs/xmlrpc-c-1.06.27[curl]
 	emacs? ( virtual/emacs )
 	qt4? ( x11-libs/qt-gui:4 )
 	vim-syntax? (
@@ -42,13 +41,12 @@ S="${WORKDIR}/${MY_P}"
 CMAKE_IN_SOURCE_BUILD=1
 
 PATCHES=(
-	"${FILESDIR}/${PN}-FindJNI.patch"
 	"${FILESDIR}/${PN}-FindPythonLibs.patch"
 	"${FILESDIR}/${PN}-FindPythonInterp.patch"
 	"${FILESDIR}"/${PN}-2.6.1-no_host_paths.patch
 	"${FILESDIR}"/${PN}-2.6.0-interix.patch
 	"${FILESDIR}"/${PN}-2.6.3-solaris-jni-support.patch
-	"${FILESDIR}"/${PN}-2.6.3-more-no_host_paths.patch
+	"${FILESDIR}"/${PN}-2.6.4-more-no_host_paths.patch
 	"${FILESDIR}"/${PN}-2.6.3-darwin-bundle.patch
 	"${FILESDIR}"/${PN}-2.6.3-no-duplicates-in-rpath.patch
 	"${FILESDIR}"/${PN}-2.6.3-fix_broken_lfs_on_aix.patch
@@ -58,11 +56,27 @@ PATCHES=(
 src_configure() {
 	local qt_arg par_arg
 
+	# Add gcc libs to the default link paths
+	sed -i \
+		-e "s|@GENTOO_PORTAGE_GCCLIBDIR@|${EPREFIX}/usr/${CHOST}/lib|g" \
+		-e "s|@GENTOO_PORTAGE_EPREFIX@|${EPREFIX}|g" \
+		Modules/Platform/{UnixPaths,Darwin}.cmake  || die "sed failed"
+
 	if [[ "$(gcc-major-version)" -eq "3" ]] ; then
 		append-flags "-fno-stack-protector"
 	fi
 
-	if ! has_version ">=dev-util/cmake-2.6.1" ; then
+	bootstrap=0
+	has_version ">=dev-util/cmake-2.6.1" || bootstrap=1
+	if [[ ${bootstrap} = 0 ]]; then
+		# Required version of CMake found, now test if it works
+		cmake --version &> /dev/null
+		if ! [[ $? = 0 ]]; then
+			bootstrap=1
+		fi
+	fi
+
+	if [[ ${bootstrap} = 1 ]]; then
 		tc-export CC CXX LD
 
 		if use qt4; then
@@ -110,6 +124,8 @@ src_compile() {
 }
 
 src_test() {
+	einfo "Please note that test \"58 - SimpleInstall-Stage2\" might fail."
+	einfo "If any package installs with cmake, it means test failed but cmake work."
 	emake test
 }
 

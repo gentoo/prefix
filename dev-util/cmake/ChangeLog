@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/cmake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.112 2009/10/19 20:29:13 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.114 2009/11/03 03:34:50 cryos Exp $
+
+*cmake-2.8.0_rc4 (03 Nov 2009)
+
+  03 Nov 2009; Marcus D. Hanwell <cryos@gentoo.org> -cmake-2.8.0_rc3.ebuild,
+  +cmake-2.8.0_rc4.ebuild:
+  Version bump, new rc. Dropped JNI patch - no longer applies.
+
+  02 Nov 2009; Markus Meier <maekke@gentoo.org> cmake-2.6.4-r3.ebuild:
+  amd64/x86 stable, bug #290723
 
   19 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   -cmake-2.6.2-r1.ebuild, -cmake-2.6.3-r1.ebuild:
