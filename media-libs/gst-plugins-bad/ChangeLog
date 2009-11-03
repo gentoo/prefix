@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/gst-plugins-bad
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-bad/ChangeLog,v 1.40 2009/10/24 18:14:34 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-bad/ChangeLog,v 1.41 2009/10/27 16:39:03 aballier Exp $
+
+  27 Oct 2009; Alexis Ballier <aballier@gentoo.org>
+  gst-plugins-bad-0.10.14.ebuild:
+  keyword ~x86-fbsd
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> gst-plugins-bad-0.10.13.ebuild:
   ppc stable #289298
