@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/ufed
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.70 2009/06/18 17:16:19 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.71 2009/10/27 21:15:20 truedfx Exp $
+
+*ufed-0.40.1 (27 Oct 2009)
+
+  27 Oct 2009; Harald van Dĳk <truedfx@gentoo.org> +ufed-0.40.1.ebuild:
+  Don't show profile flags as enabled with USE=-* (bug #290568 by Stefan
+  Oswald); new tarball with all patches to date applied
 
 *ufed-0.40-r11 (18 Jun 2009)
 
