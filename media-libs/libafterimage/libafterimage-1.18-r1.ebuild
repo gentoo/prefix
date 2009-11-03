@@ -1,7 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/libafterimage-1.18-r1.ebuild,v 1.7 2009/03/25 19:02:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libafterimage/libafterimage-1.18-r1.ebuild,v 1.8 2009/10/28 21:29:04 bicatali Exp $
 
+EAPI=2
 inherit eutils
 
 MY_PN="libAfterImage"
@@ -25,13 +26,12 @@ RDEPEND="media-libs/freetype
 	tiff? ( media-libs/tiff )"
 
 DEPEND="${RDEPEND}
+	x11-proto/xextproto
 	!x11-wm/afterstep"
 
 S="${WORKDIR}/${MY_PN}-${PV}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	# fix some ldconfig problem in makefile.in
 	epatch "${FILESDIR}"/${PN}-makefile.in.patch
 	# fix lib paths in afterimage-config
@@ -47,7 +47,7 @@ src_unpack() {
 		configure || die "sed failed"
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		$(use_enable nls i18n) \
 		$(use_enable mmx mmx-optimization) \
@@ -62,10 +62,7 @@ src_compile() {
 		--without-builtin-gif \
 		--without-builtin-ungif \
 		--without-builtin-zlib \
-		--without-afterbase \
-		|| die "econf failed"
-
-	emake || die "emake failed"
+		--without-afterbase
 }
 
 src_install() {
