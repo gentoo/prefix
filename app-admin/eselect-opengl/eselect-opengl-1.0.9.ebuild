@@ -38,8 +38,6 @@ src_unpack() {
 
 	mv opengl.eselect-${PV} opengl.eselect
 
-	epatch "${FILESDIR}"/${PN}-1.0.8-darwin.patch
-	epatch "${FILESDIR}"/${PN}-1.0.7-soname-copy-for-prefix.patch
 	sed -i -e "/^\(ENV_FILE=\|PREFIX=\|DST_PREFIX=\)/s:ROOT}:ROOT}${EPREFIX}:" \
 		opengl.eselect || die
 }
