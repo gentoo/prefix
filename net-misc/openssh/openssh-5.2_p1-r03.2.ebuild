@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r3.ebuild,v 1.7 2009/10/11 20:21:40 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r3.ebuild,v 1.8 2009/10/27 18:31:50 armin76 Exp $
 
 inherit eutils flag-o-matic multilib autotools pam
 
