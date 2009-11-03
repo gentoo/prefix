@@ -1,6 +1,11 @@
 # ChangeLog for net-analyzer/rrdtool
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/ChangeLog,v 1.192 2009/10/18 07:19:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/ChangeLog,v 1.193 2009/10/26 13:50:27 pva Exp $
+
+*rrdtool-1.3.9 (26 Oct 2009)
+
+  26 Oct 2009; Peter Volkov <pva@gentoo.org> +rrdtool-1.3.9.ebuild:
+  Version bump, bug #290363, thank Opportunist for report.
 
   18 Oct 2009; Mike Frysinger <vapier@gentoo.org> rrdtool-1.3.8-r1.ebuild:
   Workaround autoconf-2.64 errors with nested [] #281694.
