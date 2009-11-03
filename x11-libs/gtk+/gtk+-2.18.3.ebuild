@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.16.6.ebuild,v 1.10 2009/10/26 18:12:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtk+/gtk+-2.18.3.ebuild,v 1.2 2009/10/31 13:49:52 nirbheek Exp $
 
 EAPI="2"
 
@@ -15,6 +15,7 @@ KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 IUSE="aqua cups debug doc jpeg jpeg2k tiff test vim-syntax xinerama"
 
 # FIXME: configure says >=xrandr-1.2.99 but remi tells me it's broken
+# NOTE: cairo[svg] dep is due to bug 291283 (not patched to avoid eautoreconf)
 RDEPEND="X? (
 		x11-libs/libXrender
 		x11-libs/libX11
@@ -26,13 +27,13 @@ RDEPEND="X? (
 		x11-libs/libXfixes
 		x11-libs/libXcomposite
 		x11-libs/libXdamage
-		>=x11-libs/cairo-1.6[X]
+		>=x11-libs/cairo-1.6[X,svg]
 	)
 	aqua? (
-		>=x11-libs/cairo-1.6[aqua]
+		>=x11-libs/cairo-1.6[aqua,svg]
 	)
 	xinerama? ( x11-libs/libXinerama )
-	>=dev-libs/glib-2.19.7
+	>=dev-libs/glib-2.21.3
 	>=x11-libs/pango-1.20
 	>=dev-libs/atk-1.13
 	media-libs/fontconfig
@@ -93,12 +94,6 @@ src_prepare() {
 	# Fix blured images when using jpeg7 in gdk-pixbuf, upstream
 	# bug #588740, gentoo bug #282744.
 	epatch "${FILESDIR}/${PN}-2.16.5-jpeg-backward-compatibility.patch"
-
-	# Fix pltcheck.sh test, bug 285698
-	epatch "${FILESDIR}/${P}-fix-pltcheck-test.patch"
-
-	# Fix segfault in gdk-pixbuf-query-loaders on at least Solaris
-	epatch "${FILESDIR}"/${P}-gdk-pixbuf-null-licence-crash.patch
 
 	# -O3 and company cause random crashes in applications. Bug #133469
 	replace-flags -O3 -O2
