@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-interface/zope-interface-3.5.2.ebuild,v 1.4 2009/10/14 00:42:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-interface/zope-interface-3.5.2.ebuild,v 1.5 2009/11/02 19:50:14 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -20,7 +20,7 @@ IUSE=""
 
 RDEPEND=""
 DEPEND="dev-python/setuptools
-	!net-zope/zodb"
+	!<net-zope/zodb-3.9.0"
 RESTRICT_PYTHON_ABIS="3.*"
 
 S="${WORKDIR}/${MY_P}"
