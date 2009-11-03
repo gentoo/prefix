@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.9_rc1.ebuild,v 1.3 2009/10/14 10:03:48 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.9_rc3.ebuild,v 1.1 2009/10/30 12:57:10 ssuominen Exp $
 
-inherit autotools eutils
+inherit libtool
 
 DESCRIPTION="a portable, high level programming interface to various calling conventions."
 HOMEPAGE="http://sourceware.org/libffi"
@@ -14,17 +14,15 @@ KEYWORDS="~ppc-aix ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~
 IUSE="debug static-libs test"
 
 RDEPEND=""
-DEPEND="!<dev-libs/g-wrap-1.9.11
-	test? ( dev-util/dejagnu )"
+DEPEND="test? ( dev-util/dejagnu )"
 
 S=${WORKDIR}/${P/_}
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-3.0.8-autoconf-2.64.patch
 	epatch "${FILESDIR}"/${PN}-3.0.8-interix.patch
-	eautoreconf
+	elibtoolize
 }
 
 src_compile() {
