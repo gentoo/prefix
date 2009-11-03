@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/xf86dgaproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86dgaproto/ChangeLog,v 1.40 2009/10/02 15:16:38 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86dgaproto/ChangeLog,v 1.41 2009/10/26 12:20:25 remi Exp $
+
+  26 Oct 2009; Rémi Cardona <remi@gentoo.org> xf86dgaproto-2.1.ebuild:
+  sync with overlay, add blocker, fixes bug #288619
 
 *xf86dgaproto-2.1 (02 Oct 2009)
 
