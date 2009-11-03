@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/taglib-1.6.ebuild,v 1.1 2009/10/02 00:40:21 jmbsvicetto Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/taglib-1.6.ebuild,v 1.3 2009/10/29 12:28:43 fauli Exp $
 
-EAPI="2"
-
+EAPI=2
 inherit base
 
 DESCRIPTION="A library for reading and editing audio meta data"
