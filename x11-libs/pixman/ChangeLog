@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.50 2009/10/11 10:52:27 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.51 2009/10/26 21:04:39 jer Exp $
+
+  26 Oct 2009; Jeroen Roovers <jer@gentoo.org> pixman-0.16.0.ebuild:
+  Stable for HPPA (bug #282290).
 
   11 Oct 2009; nixnut <nixnut@gentoo.org> pixman-0.16.0.ebuild:
   ppc stable #282290
