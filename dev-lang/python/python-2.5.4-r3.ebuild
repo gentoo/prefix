@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r3.ebuild,v 1.25 2009/10/17 05:09:30 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r3.ebuild,v 1.26 2009/10/30 11:45:28 arfrever Exp $
 
 EAPI="1"
 
@@ -177,15 +177,6 @@ src_configure() {
 
 	export OPT="${CFLAGS}"
 
-	local myconf
-
-	# Super-secret switch. Don't use this unless you know what you're
-	# doing. Enabling UCS2 support will break your existing python
-	# modules
-	use ucs2 \
-		&& myconf+=" --enable-unicode=ucs2" \
-		|| myconf+=" --enable-unicode=ucs4"
-
 	filter-flags -malign-double
 
 	[[ "${ARCH}" == "alpha" ]] && append-flags -fPIC
@@ -229,10 +220,10 @@ src_configure() {
 		--enable-shared \
 		$(use_enable ipv6) \
 		$(use_with threads) \
+		$(use ucs2 && echo "--enable-unicode=ucs2" || echo "--enable-unicode=ucs4") \
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
-		--with-libc='' \
-		${myconf}
+		--with-libc=''
 }
 
 src_compile() {
@@ -327,13 +318,13 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local ignored_python_slots
-	[[ "$(eselect python show)" == "python2."* ]] && ignored_python_slots="--ignore 3.0 --ignore 3.1 --ignore 3.2"
+	local ignored_python_slots_options=
+	[[ "$(eselect python show)" == "python2."* ]] && ignored_python_slots_options="--ignore 3.0 --ignore 3.1 --ignore 3.2"
 
 	# Create python2 symlink.
 	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2 > /dev/null
 
-	eselect python update ${ignored_python_slots}
+	eselect python update ${ignored_python_slots_options}
 }
 
 pkg_postinst() {

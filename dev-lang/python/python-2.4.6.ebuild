@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.22 2009/10/17 05:03:53 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.23 2009/10/30 11:45:28 arfrever Exp $
 
 EAPI="1"
 
@@ -161,13 +161,6 @@ src_configure() {
 		myconf="--with-cxx=no"
 	fi
 
-	# Super-secret switch. Don't use this unless you know what you're
-	# doing. Enabling UCS2 support will break your existing python
-	# modules
-	use ucs2 \
-		&& myconf+=" --enable-unicode=ucs2" \
-		|| myconf+=" --enable-unicode=ucs4"
-
 	filter-flags -malign-double
 
 	[[ "${ARCH}" == "alpha" ]] && append-flags -fPIC
@@ -199,6 +192,7 @@ src_configure() {
 		--enable-shared \
 		$(use_enable ipv6) \
 		$(use_with threads) \
+		$(use ucs2 && echo "--enable-unicode=ucs2" || echo "--enable-unicode=ucs4") \
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
 		--with-libc='' \
@@ -302,20 +296,20 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local ignored_python_slots
-	[[ "$(eselect python show)" == "python2."* ]] && ignored_python_slots="--ignore 3.0 --ignore 3.1 --ignore 3.2"
+	local ignored_python_slots_options=
+	[[ "$(eselect python show)" == "python2."* ]] && ignored_python_slots_options="--ignore 3.0 --ignore 3.1 --ignore 3.2"
 
 	# Create python2 symlink.
 	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2 > /dev/null
 
-	eselect python update ${ignored_python_slots}
+	eselect python update ${ignored_python_slots_options}
 }
 
 pkg_postinst() {
 	eselect_python_update
 
+	# Python 2.4 partially doesn't respect $(get_libdir).
 	python_mod_optimize -x "(site-packages|test)" /usr/lib/python${PYVER}
-	[[ "$(get_libdir)" != "lib" ]] && python_mod_optimize -x "(site-packages|test)" /usr/$(get_libdir)/python${PYVER}
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn
@@ -333,6 +327,6 @@ pkg_postinst() {
 pkg_postrm() {
 	eselect_python_update
 
+	# Python 2.4 partially doesn't respect $(get_libdir).
 	python_mod_cleanup /usr/lib/python${PYVER}
-	[[ "$(get_libdir)" != "lib" ]] && python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
 }
