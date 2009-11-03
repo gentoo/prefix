@@ -1,6 +1,21 @@
 # ChangeLog for x11-libs/qt-test
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/ChangeLog,v 1.42 2009/10/16 19:54:37 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-test/ChangeLog,v 1.46 2009/10/31 13:55:58 maekke Exp $
+
+  31 Oct 2009; Markus Meier <maekke@gentoo.org> qt-test-4.5.3-r1.ebuild:
+  amd64 stable, bug #290922
+
+  31 Oct 2009; Markus Meier <maekke@gentoo.org> qt-test-4.5.3-r1.ebuild:
+  x86 stable, bug #290922
+
+*qt-test-4.5.3-r1 (29 Oct 2009)
+
+  29 Oct 2009; Dominik Kapusta <ayoy@gentoo.org> +qt-test-4.5.3-r1.ebuild,
+  +files/qt-4.5.3-glib-event-loop.patch:
+  Adding a patch to fix regression in event loop
+
+  29 Oct 2009; Christian Faulhammer <fauli@gentoo.org> qt-test-4.5.3.ebuild:
+  stable x86, bug 290922
 
   16 Oct 2009; Alex Alexander <wired@gentoo.org> qt-test-4.6.0_beta1.ebuild:
   added keywords: ~alpha ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~sparc ~x86-fbsd
