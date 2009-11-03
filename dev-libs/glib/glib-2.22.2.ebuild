@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.18.4-r2.ebuild,v 1.2 2009/09/23 17:19:54 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.22.2.ebuild,v 1.2 2009/11/02 00:12:23 eva Exp $
 
 EAPI="2"
 
@@ -11,18 +11,19 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libiconv
+	>=sys-devel/gettext-0.11
 	xattr? ( sys-apps/attr )
 	fam? ( virtual/fam )"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
-	>=sys-devel/gettext-0.11
+	x86-winnt? ( >=dev-util/gtk-doc-am-1.11 )
 	doc? (
 		>=dev-libs/libxslt-1.0
-		>=dev-util/gtk-doc-1.8
+		>=dev-util/gtk-doc-1.11
 		~app-text/docbook-xml-dtd-4.1.2 )"
 
 src_prepare() {
@@ -50,32 +51,21 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	# Fix g_base64 overruns. bug #249214
-	epatch "${FILESDIR}"/glib2-CVE-2008-4316.patch
-
-	# Fix compilation with gcc 4.4, bug #264686
-	epatch "${FILESDIR}/${P}-gcc44.patch"
-
-	# Fix GIO null unref, bug #260301
-	epatch "${FILESDIR}/${PN}-2.20.1-gio-unref.patch"
-
-	epatch "${FILESDIR}"/${PN}-2.16.1-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
-	epatch "${FILESDIR}"/${PN}-2.18.2-interix.patch
-	epatch "${FILESDIR}"/${P}-irix.patch
-	epatch "${FILESDIR}"/${P}-compile-warning-sol64.patch
+	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
+	epatch "${FILESDIR}"/${PN}-2.20.3-mint.patch
 
 	# build glib with parity for native win32
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-2.18.3-winnt-lt2.patch
+	if [[ ${CHOST} == *-winnt* ]] ; then
+		epatch "${FILESDIR}"/${PN}-2.18.3-winnt-lt2.patch
+		# makes the iconv check more general, needed for winnt, but could
+		# be useful for others too, requires eautoreconf
+		epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
+		epatch "${FILESDIR}"/${PN}-2.20.5-winnt-exeext.patch
+		AT_M4DIR="m4macros" eautoreconf
+	fi
 
-	# makes the iconv check more general, needed for winnt, but could
-	# be usefull for others too.
-	epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
-
-	# freebsd: elibtoolize would suffice
-	# interix: need recent libtool
-	# doing eautoreconf needs gtk-doc.m4, hence dep on dev-util/gtk-doc-am
-	AT_M4DIR="m4macros" eautoreconf
+	elibtoolize
 }
 
 src_configure() {
@@ -105,8 +95,8 @@ src_configure() {
 
 	local mythreads=posix
 
+	[[ ${CHOST} == *-mint* ]] && append-libs -lpthread
 	[[ ${CHOST} == *-winnt* ]] && mythreads=win32
-
 	# without this, AIX defines EEXIST and ENOTEMPTY to the same value
 	[[ ${CHOST} == *-aix* ]] && append-cppflags -D_LINUX_SOURCE_COMPAT
 
@@ -121,7 +111,8 @@ src_configure() {
 		  --enable-static           \
 		  --enable-regex            \
 		  --with-pcre=internal      \
-		  --with-threads=${mythreads}
+		  --with-threads=${mythreads} \
+		  --with-xml-catalog="${EPREFIX}"/etc/xml/catalog
 }
 
 src_install() {
@@ -131,4 +122,12 @@ src_install() {
 	rm -f "${ED}/usr/lib/charset.alias"
 
 	dodoc AUTHORS ChangeLog* NEWS* README || die "dodoc failed"
+}
+
+src_test() {
+	unset DBUS_SESSION_BUS_ADDRESS
+	export XDG_CONFIG_DIRS="${EPREFIX}"/etc/xdg
+	export XDG_DATA_DIRS="${EPREFIX}"/usr/local/share:"${EPREFIX}"/usr/share
+	export XDG_DATA_HOME="${T}"
+	emake check || die "tests failed"
 }

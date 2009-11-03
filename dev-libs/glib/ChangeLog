@@ -1,6 +1,21 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.381 2009/10/08 21:50:06 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.384 2009/11/02 00:12:23 eva Exp $
+
+  02 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org> glib-2.22.2.ebuild:
+  Remove virtual/libc again.
+
+*glib-2.22.2 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -files/glib-2.18.1-gdesktopappinfo-memleak-fix.patch,
+  -glib-2.18.4-r1.ebuild, -glib-2.18.4-r2.ebuild,
+  -files/glib-2.18.4-gcc44.patch, -files/glib-2.20.1-gio-unref.patch,
+  +glib-2.22.2.ebuild:
+  New version for GNOME 2.28. Clean up old revisions.
+
+  26 Oct 2009; Raúl Porcel <armin76@gentoo.org> glib-2.20.5.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #285586
 
   08 Oct 2009; Markus Meier <maekke@gentoo.org> glib-2.20.5.ebuild:
   arm stable, bug #285586
