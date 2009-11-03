@@ -1,6 +1,25 @@
 # ChangeLog for gnome-base/gnome-session
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/ChangeLog,v 1.241 2009/10/24 16:40:56 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/ChangeLog,v 1.243 2009/10/29 23:46:26 eva Exp $
+
+*gnome-session-2.28.0 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-session-2.24.3.ebuild, -gnome-session-2.26.1-r1.ebuild,
+  +files/gnome-session-2.27.91-gentoo-branding.patch,
+  +gnome-session-2.28.0.ebuild,
+  +files/gnome-session-2.28.0-do-not-keep-zombie-clients.patch,
+  +files/gnome-session-2.28.0-xsmp-stop-throw-error.patch, metadata.xml:
+  New version for GNOME 2.28. Clean up old revision.
+
+*gnome-session-2.26.2-r1 (29 Oct 2009)
+
+  29 Oct 2009; Romain Perier <mrpouet@gentoo.org>
+  +gnome-session-2.26.2-r1.ebuild,
+  +files/gnome-session-2.26.2-xsmp-stop-throw-error.patch:
+  Fix bug #271023, Do not crash when xsmp->priv->conn is NULL for a given
+  GsmXsmpClient, when SMS connection dies. Import from 2.28 dev cycle, new
+  revision.
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> gnome-session-2.26.2.ebuild:
   ppc stable #281427
