@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/zile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.103 2009/09/23 17:02:29 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/zile/ChangeLog,v 1.105 2009/10/29 09:52:40 ulm Exp $
+
+*zile-2.3.13 (29 Oct 2009)
+
+  29 Oct 2009; Ulrich Mueller <ulm@gentoo.org> -zile-2.3.11.ebuild,
+  +zile-2.3.13.ebuild:
+  Version bump. Remove old.
 
 *zile-2.3.12 (23 Sep 2009)
 
@@ -387,6 +393,7 @@
 
 *zile-1.7_alpha6 (21 Oct 2002)
 
-  21 Oct 2002; Sascha Schwabbauer <cybersystem@gentoo.org> zile-1.7_alpha6.ebuild files/digest-zile-1.7_alpha6 ChangeLog :
-
-  Initial version in portage now, thanks to: stephen@theboulets.net (Stephen Boulet) in bug #7886
+  21 Oct 2002; Sascha Schwabbauer <cybersystem@gentoo.org>
+  zile-1.7_alpha6.ebuild, files/digest-zile-1.7_alpha6, ChangeLog:
+  Initial version in portage now, thanks to:
+  stephen@theboulets.net (Stephen Boulet) in bug #7886
