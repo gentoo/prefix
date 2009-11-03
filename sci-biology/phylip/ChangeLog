@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/phylip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/ChangeLog,v 1.37 2009/09/11 02:02:25 weaver Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/phylip/ChangeLog,v 1.38 2009/10/31 17:59:07 maekke Exp $
+
+  31 Oct 2009; Markus Meier <maekke@gentoo.org> phylip-3.69.ebuild:
+  amd64/x86 stable, bug #290939
 
 *phylip-3.69 (10 Sep 2009)
 
