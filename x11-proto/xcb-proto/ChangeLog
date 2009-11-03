@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/xcb-proto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcb-proto/ChangeLog,v 1.32 2009/10/11 10:50:54 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcb-proto/ChangeLog,v 1.33 2009/10/26 20:45:29 jer Exp $
+
+  26 Oct 2009; Jeroen Roovers <jer@gentoo.org> xcb-proto-1.5.ebuild:
+  Stable for HPPA (bug #282290).
 
   11 Oct 2009; nixnut <nixnut@gentoo.org> xcb-proto-1.5.ebuild:
   ppc stable #282290
