@@ -1,6 +1,16 @@
 # ChangeLog for net-wireless/iw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/iw/ChangeLog,v 1.17 2009/09/11 13:30:54 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/iw/ChangeLog,v 1.19 2009/11/01 18:07:06 tester Exp $
+
+  01 Nov 2009; Olivier Crête <tester@gentoo.org> iw-0.9.16.ebuild:
+  Stable on amd64, bug #284607
+
+*iw-0.9.17 (01 Nov 2009)
+
+  01 Nov 2009; Robert Buchholz <rbu@gentoo.org> -iw-0.9.12.ebuild,
+  -iw-0.9.13.ebuild, -iw-0.9.14.ebuild, -iw-0.9.15.ebuild,
+  +iw-0.9.17.ebuild:
+  Version bump, bug #287320
 
 *iw-0.9.16 (11 Sep 2009)
 
