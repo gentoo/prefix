@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/tmux-1.0.ebuild,v 1.2 2009/10/24 15:00:43 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/tmux-1.0.ebuild,v 1.4 2009/10/30 22:57:26 tcunha Exp $
 
 inherit toolchain-funcs
 
