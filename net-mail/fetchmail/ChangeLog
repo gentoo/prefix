@@ -1,6 +1,17 @@
 # ChangeLog for net-mail/fetchmail
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.173 2009/09/27 15:12:16 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.175 2009/10/30 10:16:51 tove Exp $
+
+  30 Oct 2009; Torsten Veller <tove@gentoo.org> fetchmail-6.3.13.ebuild:
+  Run --with-ssl before --with-kerberos. Kerberos requires ssl. Heimdal is
+  not really usable as long as openssl doesn't support it (#245934)
+
+*fetchmail-6.3.13 (30 Oct 2009)
+
+  30 Oct 2009; Torsten Veller <tove@gentoo.org> -fetchmail-6.3.11.ebuild,
+  +fetchmail-6.3.13.ebuild:
+  Version bump (#288578). Adds heimdal support (#185652, #231400). Drops
+  Kerberos V4 support. Cleanup
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> fetchmail-6.3.11-r1.ebuild:
   ppc stable #282015
