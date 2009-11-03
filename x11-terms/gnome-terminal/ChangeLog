@@ -1,6 +1,12 @@
 # ChangeLog for x11-terms/gnome-terminal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.204 2009/10/24 16:46:50 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/ChangeLog,v 1.205 2009/10/29 22:47:17 eva Exp $
+
+*gnome-terminal-2.28.1 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -gnome-terminal-2.26.2.ebuild, +gnome-terminal-2.28.1.ebuild:
+  New version for GNOME 2.28. Clean up old revision.
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> gnome-terminal-2.26.3.1-r2.ebuild:
   ppc stable #281427

@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.26.2.ebuild,v 1.2 2009/09/06 12:57:38 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/gnome-terminal/gnome-terminal-2.28.1.ebuild,v 1.1 2009/10/29 22:47:17 eva Exp $
+
+GCONF_DEBUG="no"
 
 inherit eutils gnome2
 
@@ -12,12 +14,12 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
 IUSE=""
 
-# libgnome needed for some schema, bug #274638
+# libgnome needed for some monospace font schema, bug #274638
 RDEPEND=">=dev-libs/glib-2.16.0
 	>=x11-libs/gtk+-2.14.0
 	>=gnome-base/gconf-2.14
 	>=x11-libs/startup-notification-0.8
-	>=x11-libs/vte-0.20.0
+	>=x11-libs/vte-0.22.0
 	>=dev-libs/dbus-glib-0.6
 	x11-libs/libSM
 	gnome-base/libgnome"
@@ -29,11 +31,6 @@ DEPEND="${RDEPEND}
 	>=app-text/scrollkeeper-0.3.11"
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README"
-
-pkg_setup() {
-	G2CONF="${G2CONF}
-		--with-smclient-backend"
-}
 
 src_unpack() {
 	gnome2_src_unpack
