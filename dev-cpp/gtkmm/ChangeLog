@@ -1,6 +1,15 @@
 # ChangeLog for dev-cpp/gtkmm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.166 2009/10/08 21:57:18 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/gtkmm/ChangeLog,v 1.168 2009/10/29 22:51:24 eva Exp $
+
+*gtkmm-2.18.2 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org> -gtkmm-2.12.1.ebuild,
+  -gtkmm-2.12.7.ebuild, -gtkmm-2.14.3.ebuild, +gtkmm-2.18.2.ebuild:
+  New version for GNOME 2.28. Clean up old revisions.
+
+  26 Oct 2009; Raúl Porcel <armin76@gentoo.org> gtkmm-2.16.0.ebuild:
+  ia64/sh/sparc stable wrt #285586
 
   08 Oct 2009; Markus Meier <maekke@gentoo.org> gtkmm-2.16.0.ebuild:
   arm stable, bug #285586
