@@ -1,6 +1,22 @@
 # ChangeLog for x11-libs/qt-opengl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-opengl/ChangeLog,v 1.43 2009/10/16 19:53:18 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-opengl/ChangeLog,v 1.47 2009/10/31 13:51:27 maekke Exp $
+
+  31 Oct 2009; Markus Meier <maekke@gentoo.org> qt-opengl-4.5.3-r1.ebuild:
+  amd64 stable, bug #290922
+
+  31 Oct 2009; Markus Meier <maekke@gentoo.org> qt-opengl-4.5.3-r1.ebuild:
+  x86 stable, bug #290922
+
+*qt-opengl-4.5.3-r1 (29 Oct 2009)
+
+  29 Oct 2009; Dominik Kapusta <ayoy@gentoo.org> +qt-opengl-4.5.3-r1.ebuild,
+  +files/qt-4.5.3-glib-event-loop.patch:
+  Adding a patch to fix regression in event loop
+
+  29 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  qt-opengl-4.5.3.ebuild:
+  Stable on x86. Fixing broken depgraph.
 
   16 Oct 2009; Alex Alexander <wired@gentoo.org>
   qt-opengl-4.6.0_beta1.ebuild:

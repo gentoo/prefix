@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-opengl/qt-opengl-4.5.3.ebuild,v 1.2 2009/10/29 15:14:26 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-opengl/qt-opengl-4.5.3-r1.ebuild,v 1.3 2009/10/31 13:51:27 maekke Exp $
 
 EAPI=2
 inherit qt4-build
@@ -32,6 +32,10 @@ src/3rdparty"
 
 QCONFIG_ADD="opengl"
 QCONFIG_DEFINE="QT_OPENGL"
+
+PATCHES=(
+	"${FILESDIR}/qt-${PV}-glib-event-loop.patch"
+)
 
 src_configure() {
 	myconf="${myconf} -opengl
