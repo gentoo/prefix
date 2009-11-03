@@ -1,6 +1,12 @@
 # ChangeLog for www-servers/lighttpd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.209 2009/10/21 08:03:53 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.210 2009/10/29 22:12:12 bangert Exp $
+
+*lighttpd-1.4.24 (29 Oct 2009)
+
+  29 Oct 2009; Thilo Bangert <bangert@gentoo.org> +lighttpd-1.4.24.ebuild,
+  +files/lighttpd-1.4.24-mod_magnet-fix-pairs.patch:
+  version bump
 
   21 Oct 2009; Jeroen Roovers <jer@gentoo.org> lighttpd-1.4.23.ebuild:
   Stable for HPPA (bug #286134).
