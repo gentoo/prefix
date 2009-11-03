@@ -1,10 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.26.3-r1.ebuild,v 1.1 2009/09/28 13:09:56 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.28.1.ebuild,v 1.1 2009/10/29 22:08:07 eva Exp $
 
-EAPI=2
+EAPI="2"
+GCONF_DEBUG="no"
 
-inherit gnome2 eutils virtualx
+inherit eutils gnome2 virtualx
 
 DESCRIPTION="A file manager for the GNOME desktop"
 HOMEPAGE="http://www.gnome.org/projects/nautilus/"
@@ -12,10 +13,11 @@ HOMEPAGE="http://www.gnome.org/projects/nautilus/"
 LICENSE="GPL-2 LGPL-2 FDL-1.1"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux"
-IUSE="beagle doc gnome tracker xmp"
+IUSE="beagle doc gnome xmp" # tracker
 
-# not adding gnome-base/gail because it is in gtk+
-RDEPEND=">=dev-libs/glib-2.19.0
+# not adding gnome-base/gail because it is in >=gtk+-2.13
+# to be bumped: tracker? ( >=app-misc/tracker-0.7 )
+RDEPEND=">=dev-libs/glib-2.21.3
 	>=gnome-base/gnome-desktop-2.25.5
 	>=x11-libs/pango-1.1.2
 	>=x11-libs/gtk+-2.16.0
@@ -30,7 +32,6 @@ RDEPEND=">=dev-libs/glib-2.19.0
 	beagle? ( || (
 		dev-libs/libbeagle
 		=app-misc/beagle-0.2* ) )
-	tracker? ( >=app-misc/tracker-0.6.4 )
 	xmp? ( >=media-libs/exempi-2 )"
 
 DEPEND="${RDEPEND}
@@ -38,9 +39,10 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext
 	>=dev-util/pkgconfig-0.9
 	>=dev-util/intltool-0.40.1
-	doc? ( >=dev-util/gtk-doc-1.4 )
-	gnome-base/gnome-common
-	dev-util/gtk-doc-am"
+	doc? ( >=dev-util/gtk-doc-1.4 )"
+# For eautoreconf
+#	gnome-base/gnome-common
+#	dev-util/gtk-doc-am"
 
 PDEPEND="gnome? ( >=x11-themes/gnome-icon-theme-1.1.91 )"
 
@@ -67,24 +69,29 @@ src_prepare() {
 			-i gtk-doc.make || die "sed 2 failed"
 	fi
 
-	# gtk-doc-am and gnome-common needed for this
-
 	# Fix intltoolize broken file, see upstream #577133
-	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
+	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
+		|| die "sed 3 failed"
+
+	# Remove crazy CFLAGS
+	sed 's:-DG.*DISABLE_DEPRECATED::g' -i configure.in configure \
+		|| die "sed 4 failed"
 
 	# Fix nautilus flipping-out with --no-desktop -- bug 266398
-	epatch "${FILESDIR}/${PN}-2.26.2-change-reg-desktop-file-with-no-desktop.patch"
-	# Fix crash due to duplicate id in .ui file, bug #286312
-	epatch "${FILESDIR}/${P}-file-management-properties-ui-dup-id.patch"
-	# Fix massive memory consumption by Nautilus for larger zoom levels.
-	# Import from upstream, see distributor mailing lists.
-	epatch "${FILESDIR}/${P}-thumbnail-zoom-level.patch"
+	epatch "${FILESDIR}/${PN}-2.27.4-change-reg-desktop-file-with-no-desktop.patch"
 }
 
 src_test() {
 	addwrite "/root/.gnome2_private"
 	unset SESSION_MANAGER
+	unset ORBIT_SOCKETDIR
+	unset DBUS_SESSION_BUS_ADDRESS
 	Xemake check || die "Test phase failed"
+}
+
+src_install() {
+	gnome2_src_install
+	find "${ED}" -name "*.la" -delete || die "remove of la files failed"
 }
 
 pkg_postinst() {

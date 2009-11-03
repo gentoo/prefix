@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.24.2-r3.ebuild,v 1.7 2009/05/21 19:50:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.24.2-r3.ebuild,v 1.8 2009/10/28 22:06:30 eva Exp $
 
 EAPI=2
 
@@ -70,6 +70,8 @@ src_prepare() {
 src_test() {
 	addwrite "/root/.gnome2_private"
 	unset SESSION_MANAGER
+	unset ORBIT_SOCKETDIR
+	unset DBUS_SESSION_BUS_ADDRESS
 	Xemake check || die "Test phase failed"
 }
 
