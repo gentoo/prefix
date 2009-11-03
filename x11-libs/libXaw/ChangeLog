@@ -1,6 +1,14 @@
 # ChangeLog for x11-libs/libXaw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/ChangeLog,v 1.65 2009/10/19 18:16:23 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/ChangeLog,v 1.67 2009/10/26 20:58:00 jer Exp $
+
+  26 Oct 2009; Jeroen Roovers <jer@gentoo.org> libXaw-1.0.6.ebuild:
+  Stable for HPPA (bug #282290).
+
+  26 Oct 2009; Fabian Groffen <grobian@gentoo.org> libXaw-1.0.4.ebuild,
+  libXaw-1.0.5.ebuild, libXaw-1.0.6.ebuild, libXaw-1.0.7.ebuild:
+  Add back flag-o-matic inherit for filter-flags calls, proxy commit for
+  scarabeus
 
 *libXaw-1.0.7 (19 Oct 2009)
 
