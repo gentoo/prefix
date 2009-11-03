@@ -1,6 +1,14 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.135 2009/10/12 20:23:37 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.137 2009/10/29 22:47:23 eva Exp $
+
+*glibmm-2.22.1 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org> +glibmm-2.22.1.ebuild:
+  New version for GNOME 2.28.
+
+  26 Oct 2009; Raúl Porcel <armin76@gentoo.org> glibmm-2.20.1.ebuild:
+  ia64/sh/sparc stable wrt #285586
 
   12 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org -glibmm-2.16.1.ebuild,
   -glibmm-2.18.1.ebuild, -glibmm-2.20.0.ebuild:

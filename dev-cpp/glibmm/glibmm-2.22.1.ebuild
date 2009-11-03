@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.20.0.ebuild,v 1.1 2009/05/10 22:15:53 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.22.1.ebuild,v 1.1 2009/10/29 22:47:23 eva Exp $
 
 inherit gnome2
 
@@ -13,7 +13,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc examples test"
 
 RDEPEND=">=dev-libs/libsigc++-2.2
-	>=dev-libs/glib-2.19.8"
+	>=dev-libs/glib-2.21.1"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? ( app-doc/doxygen )"
