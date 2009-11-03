@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/gtksourceview
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.163 2009/10/24 16:20:37 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.166 2009/10/29 22:55:09 eva Exp $
+
+*gtksourceview-2.8.1 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org> files/2.0/gentoo.lang,
+  +gtksourceview-2.8.1.ebuild:
+  New version for GNOME 2.28.
+
+  28 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org> files/2.0/gentoo.lang,
+  -gtksourceview-2.6.1.ebuild, files/gentoo.lang:
+  Clean up old revision and update gentoo lang file, bug #275110.
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> gtksourceview-2.6.2.ebuild:
   ppc stable #281427

@@ -45,7 +45,7 @@
 	</pattern-item>
 
 	<pattern-item _name="Portage commands" style="Data Type">
-		<regex>\b(e(begin|end|conf|install|make|warn|infon?|error|patch)|die|use(_(with|enable))?|inherit|has|(has|best)_version|unpack|(do|new)(ins|s?bin|doc|lib(|\.so|\.a)|man|info|exe|initd|confd|envd|pam|menu|icon)|do(python|sed|dir|hard|sym|html|jar|mo)|keepdir|prepall(|docs|info|man|strip)|prep(info|lib|lib\.(so|a)|man|strip)|(|doc|ins|exe)into|f(owners|perms)|(exe|ins|dir)opts)\b</regex>
+		<regex>\b(e(begin|end|conf|install|make|warn|infon?|error|patch|log|javac|ant)|die|use(_(with|enable))?|inherit|has|(has|best)_version|unpack|(do|new)(ins|s?bin|doc|lib(|\.so|\.a)|man|info|exe|initd|confd|envd|pam|menu|icon)|do(python|sed|dir|hard|sym|html|jar|mo)|keepdir|prepall(|docs|info|man|strip)|prep(info|lib|lib\.(so|a)|man|strip)|(|doc|ins|exe)into|f(owners|perms)|(exe|ins|dir)opts)\b</regex>
 	</pattern-item>
 
 	<pattern-item _name="Portage functions" style="Function">
