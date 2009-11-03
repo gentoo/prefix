@@ -1,6 +1,22 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.592 2009/10/16 19:43:50 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.596 2009/11/02 16:01:31 tampakrap Exp $
+
+  02 Nov 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +files/qt-ulibc.patch:
+  Restore removed patch
+
+  02 Nov 2009; Jonathan Callen <abcd@gentoo.org>
+  -files/0037-dnd-timestamp-fix.patch,
+  -files/qt-3.3.8-mysql-unload-crash.diff, -files/qsslsocket-fix.patch,
+  -files/qt-ulibc.patch:
+  Drop unneeded patches
+
+  31 Oct 2009; Markus Meier <maekke@gentoo.org> qt-4.5.3.ebuild:
+  amd64 stable, bug #290922
+
+  29 Oct 2009; Christian Faulhammer <fauli@gentoo.org> qt-4.5.3.ebuild:
+  stable x86, bug 290922
 
   16 Oct 2009; Alex Alexander <wired@gentoo.org> qt-4.6.0_beta1.ebuild:
   removed all keywords except ~amd64 and ~x86 for now
