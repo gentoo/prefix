@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.14.ebuild,v 1.2 2009/10/22 16:28:06 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.14.ebuild,v 1.3 2009/10/26 17:05:59 mr_bones_ Exp $
 
 EAPI=2
 inherit flag-o-matic toolchain-funcs eutils libtool
@@ -16,11 +16,10 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 # if you disable the audio, video, joystick use flags or turn on the custom-cflags use flag
 # in USE and something breaks, you pick up the pieces.  Be prepared for
 # bug reports to be marked INVALID.
-IUSE="oss alsa esd nas X dga xv xinerama fbcon directfb ggi svga aalib opengl libcaca +audio +video +joystick custom-cflags pulseaudio"
+IUSE="oss alsa nas X dga xv xinerama fbcon directfb ggi svga aalib opengl libcaca +audio +video +joystick custom-cflags pulseaudio"
 
 RDEPEND="audio? ( >=media-libs/audiofile-0.1.9 )
 	alsa? ( media-libs/alsa-lib )
-	esd? ( >=media-sound/esound-0.2.19 )
 	nas? (
 		media-libs/nas
 		x11-libs/libXt
@@ -118,6 +117,7 @@ src_configure() {
 	econf \
 		--enable-rpath \
 		--disable-arts \
+		--disable-esd \
 		--enable-events \
 		--enable-cdrom \
 		--enable-threads \
@@ -126,7 +126,6 @@ src_configure() {
 		--enable-cpuinfo \
 		$(use_enable oss) \
 		$(use_enable alsa) \
-		$(use_enable esd) \
 		$(use_enable pulseaudio) \
 		$(use_enable nas) \
 		$(use_enable X video-x11) \
