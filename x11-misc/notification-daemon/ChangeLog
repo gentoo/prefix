@@ -1,6 +1,10 @@
 # ChangeLog for x11-misc/notification-daemon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.68 2009/10/17 14:06:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/notification-daemon/ChangeLog,v 1.69 2009/10/27 12:02:53 jer Exp $
+
+  27 Oct 2009; Jeroen Roovers <jer@gentoo.org>
+  notification-daemon-0.4.0-r1.ebuild:
+  Stable for HPPA (bug #278447).
 
   17 Oct 2009; Raúl Porcel <armin76@gentoo.org>
   notification-daemon-0.4.0-r1.ebuild:
