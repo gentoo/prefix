@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.170 2009/08/28 20:44:41 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.171 2009/10/28 20:54:14 idl0r Exp $
+
+  28 Oct 2009; Christian Ruppert <idl0r@gentoo.org> gentoolkit-9999.ebuild:
+  Add app-misc/realpath dependency wrt r696.
 
   28 Aug 2009; Paul Varner <fuzzyray@gentoo.org>
   -files/gentoolkit-0.2.3-r1-equery.patch, -gentoolkit-0.2.4_pre8.ebuild,
