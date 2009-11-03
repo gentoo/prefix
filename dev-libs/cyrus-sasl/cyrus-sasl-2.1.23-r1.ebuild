@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r1.ebuild,v 1.2 2009/10/17 12:01:25 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r1.ebuild,v 1.5 2009/11/01 15:38:59 nixnut Exp $
 
 inherit eutils flag-o-matic multilib autotools pam java-pkg-opt-2
 
