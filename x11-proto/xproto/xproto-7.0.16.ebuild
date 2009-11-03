@@ -13,4 +13,7 @@ IUSE=""
 RDEPEND=""
 DEPEND="${RDEPEND}"
 
-PATCHES=( "${FILESDIR}"/${P}-winnt.patch )
+pkg_setup() {
+	[[ ${CHOST} == *-winnt* ]] &&
+		PATCHES=( "${FILESDIR}"/${P}-winnt.patch )
+}
