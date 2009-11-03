@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.290 2009/10/22 06:46:17 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.292 2009/10/27 17:20:11 volkmar Exp $
+
+  27 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> perl-5.10.1.ebuild:
+  Keywording for ppc, bug 288028
+
+  27 Oct 2009; Torsten Veller <tove@gentoo.org> perl-5.10.1.ebuild:
+  Fix RT69973: disable non-unicode case insensitive trie matching (#290194)
 
   22 Oct 2009; Torsten Veller <tove@gentoo.org> perl-5.10.1.ebuild:
   Fix warning: Rebuild packages linking libperl.so after toggling use flags
