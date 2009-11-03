@@ -1,0 +1,21 @@
+diff -NurdB gedit-2.26.3/plugins/externaltools/tools/tools.ui gedit-2.26.3.patched/plugins/externaltools/tools/tools.ui
+--- gedit-2.26.3/plugins/externaltools/tools/tools.ui	2009-07-03 03:54:58.000000000 +1000
++++ gedit-2.26.3.patched/plugins/externaltools/tools/tools.ui	2009-10-18 20:03:25.737001974 +1100
+@@ -331,7 +331,7 @@
+                             <property name="model">model_output</property>
+                             <property name="visible">True</property>
+                             <child>
+-                              <object class="GtkCellRendererText" id="input_renderer"/>
++                              <object class="GtkCellRendererText" id="input_renderer2"/>
+                               <attributes>
+                                 <attribute name="text">0</attribute>
+                               </attributes>
+@@ -351,7 +351,7 @@
+                             <property name="model">model_input</property>
+                             <property name="visible">True</property>
+                             <child>
+-                              <object class="GtkCellRendererText" id="input_renderer"/>
++                              <object class="GtkCellRendererText" id="input_renderer3"/>
+                               <attributes>
+                                 <attribute name="text">0</attribute>
+                               </attributes>

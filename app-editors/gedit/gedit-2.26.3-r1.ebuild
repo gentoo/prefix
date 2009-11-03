@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/gedit-2.26.2.ebuild,v 1.1 2009/05/17 21:45:24 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/gedit-2.26.3-r1.ebuild,v 1.1 2009/10/28 23:15:34 eva Exp $
 
 GCONF_DEBUG="no"
 
-inherit gnome2 python
+inherit eutils gnome2 python
 
 DESCRIPTION="A text editor for the GNOME desktop"
 HOMEPAGE="http://www.gnome.org/"
@@ -62,6 +62,14 @@ src_unpack() {
 	# disable pyc compiling
 	mv "${S}"/py-compile "${S}"/py-compile.orig
 	ln -s $(type -P true) "${S}"/py-compile
+
+	# Fix intltoolize broken file, see upstream #577133
+	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
+		|| die "sed expression failed"
+
+	# Fix object labels that makes the configuration dialog not shown,
+	# bug #207457
+	epatch "${FILESDIR}/${P}-external_tools_config.patch"
 }
 
 pkg_postinst() {
