@@ -1,6 +1,12 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.127 2009/10/24 17:49:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.129 2009/11/02 20:39:42 ken69267 Exp $
+
+  02 Nov 2009; Kenneth Prugh <ken69267@gentoo.org> gnuplot-4.2.6.ebuild:
+  amd64 stable, bug #288967
+
+  27 Oct 2009; Jeroen Roovers <jer@gentoo.org> gnuplot-4.2.6.ebuild:
+  Stable for HPPA (bug #288967).
 
   24 Oct 2009; Ulrich Mueller <ulm@gentoo.org> -gnuplot-4.2.4-r1.ebuild:
   Remove old ebuild still using built_with_use, tracker bug 261562.
