@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.42 2009/10/24 16:50:02 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.43 2009/10/29 22:31:01 eva Exp $
+
+*libgweather-2.28.0 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -libgweather-2.26.1.ebuild, +libgweather-2.28.0.ebuild:
+  New version for GNOME 2.28. Clean up old revision.
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> libgweather-2.26.2.1.ebuild:
   ppc stable #281427
