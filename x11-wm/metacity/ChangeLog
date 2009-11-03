@@ -1,6 +1,13 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.237 2009/10/24 16:30:20 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.238 2009/10/29 22:41:43 eva Exp $
+
+*metacity-2.28.0 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -metacity-2.26.0.ebuild, +metacity-2.28.0.ebuild,
+  +files/metacity-2.28.0-restartstylehint-when-replace.patch:
+  New version for GNOME 2.28. Clean up old revisions.
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> metacity-2.26.0-r1.ebuild:
   ppc stable #281427

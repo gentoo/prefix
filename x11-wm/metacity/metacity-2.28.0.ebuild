@@ -1,8 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.26.0.ebuild,v 1.1 2009/05/04 22:46:39 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.28.0.ebuild,v 1.1 2009/10/29 22:41:43 eva Exp $
 
 EAPI="2"
+# debug only changes CFLAGS
+GCONF_DEBUG="no"
 
 inherit eutils gnome2
 
@@ -14,6 +16,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="test xinerama"
 
+# XXX: libgtop is automagic, hard-enabled instead
 RDEPEND=">=x11-libs/gtk+-2.10
 	>=x11-libs/pango-1.2[X]
 	>=gnome-base/gconf-2
@@ -30,6 +33,8 @@ RDEPEND=">=x11-libs/gtk+-2.10
 	x11-libs/libXrandr
 	x11-libs/libSM
 	x11-libs/libICE
+	media-libs/libcanberra[gtk]
+	gnome-base/libgtop
 	gnome-extra/zenity
 	!x11-misc/expocity"
 DEPEND="${RDEPEND}
@@ -62,6 +67,15 @@ src_prepare() {
 	# still necessary? (OpenSolaris) -- grobian 06-05-2008
 	#epatch "${FILESDIR}"/${PN}-2.23.21-remove-xopen-source-posix.patch
 
+	# Fix intltoolize broken file, see upstream #577133
+	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
+		|| die "sed failed"
+
 	# Remove stupid CFLAGS, bug #259179
 	sed "s:-Werror::g" -i configure.in configure || die "sed failed"
+	# Should set RestartStyleHint to RestartIfRunning when replaced,
+	# this fix a strange issue with gnome-session (100% of the CPU,
+	# and try to restart metacity infinitively when compiz is started)
+	# patch import from upstream bug #588119.
+	epatch "${FILESDIR}/${P}-restartstylehint-when-replace.patch"
 }
