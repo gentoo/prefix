@@ -1,5 +1,7 @@
 http://bugs.gentoo.org/149583
 
+http://rt.openssl.org/Ticket/Display.html?id=2085
+
 --- util/domd
 +++ util/domd
 @@ -14,7 +14,7 @@

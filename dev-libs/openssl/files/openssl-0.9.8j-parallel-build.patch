@@ -1,6 +1,7 @@
-diff -uNr openssl-0.9.8j.ORIG/Makefile.org openssl-0.9.8j/Makefile.org
---- openssl-0.9.8j.ORIG/Makefile.org	2009-01-07 18:06:31.000000000 +0000
-+++ openssl-0.9.8j/Makefile.org	2009-01-07 18:08:38.000000000 +0000
+http://rt.openssl.org/Ticket/Display.html?id=2084
+
+--- openssl-0.9.8j/Makefile.org
++++ openssl-0.9.8j/Makefile.org
 @@ -333,15 +333,15 @@
  		dir=crypto; target=all; $(BUILD_ONE_CMD)
  build_fips:

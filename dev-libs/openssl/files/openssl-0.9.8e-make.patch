@@ -3,6 +3,8 @@ of the host `make` and whatever $MAKE is set to when recursing
 
 http://bugs.gentoo.org/146316
 
+http://rt.openssl.org/Ticket/Display.html?id=2080
+
 --- openssl-0.9.8e/Configure
 +++ openssl-0.9.8e/Configure
 @@ -931,6 +931,7 @@
