@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libdca
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdca/ChangeLog,v 1.25 2009/10/12 17:01:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdca/ChangeLog,v 1.26 2009/10/31 14:37:31 ranger Exp $
+
+  31 Oct 2009; Brent Baude <ranger@gentoo.org> libdca-0.0.5-r2.ebuild:
+  Marking libdca-0.0.5-r2 ppc64 for bug 284712
 
   12 Oct 2009; Raúl Porcel <armin76@gentoo.org> libdca-0.0.5-r2.ebuild:
   ia64/sh/sparc stable wrt #284712
