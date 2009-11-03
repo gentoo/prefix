@@ -1,6 +1,13 @@
 # ChangeLog for net-dns/libidn
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.113 2009/10/07 17:14:33 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.115 2009/10/31 17:18:45 jer Exp $
+
+  31 Oct 2009; Jeroen Roovers <jer@gentoo.org> -libidn-1.13.ebuild,
+  -libidn-1.14.ebuild:
+  Remove old.
+
+  31 Oct 2009; Brent Baude <ranger@gentoo.org> libidn-1.15.ebuild:
+  Marking libidn-1.15 ppc64 for bug 283653
 
   07 Oct 2009; nixnut <nixnut@gentoo.org> libidn-1.15.ebuild:
   ppc stable #283653
