@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.237 2009/10/11 11:13:58 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.238 2009/10/26 20:24:06 jer Exp $
+
+  26 Oct 2009; Jeroen Roovers <jer@gentoo.org> mesa-7.5.1.ebuild:
+  Stable for HPPA (bug #282290).
 
   11 Oct 2009; nixnut <nixnut@gentoo.org> mesa-7.5.1.ebuild:
   ppc stable #282290
