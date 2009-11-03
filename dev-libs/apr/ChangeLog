@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/apr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.146 2009/09/24 16:19:59 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.149 2009/11/01 16:28:36 nixnut Exp $
+
+  01 Nov 2009; nixnut <nixnut@gentoo.org> apr-1.3.9.ebuild:
+  ppc stable #290319
+
+  30 Oct 2009; Markus Meier <maekke@gentoo.org> apr-1.3.9.ebuild:
+  amd64/x86 stable, bug #290319
+
+  26 Oct 2009; Jeroen Roovers <jer@gentoo.org> apr-1.3.9.ebuild:
+  Stable for HPPA (bug #290319).
 
 *apr-1.3.9 (24 Sep 2009)
 
