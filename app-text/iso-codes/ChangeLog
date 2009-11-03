@@ -1,6 +1,15 @@
 # ChangeLog for app-text/iso-codes
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.76 2009/08/31 21:17:45 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/ChangeLog,v 1.78 2009/11/02 21:46:47 maekke Exp $
+
+  02 Nov 2009; Markus Meier <maekke@gentoo.org> iso-codes-3.10.ebuild:
+  amd64/x86 stable, bug #291467
+
+*iso-codes-3.11.1 (01 Nov 2009)
+
+  01 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org> -iso-codes-3.9.ebuild,
+  +iso-codes-3.11.1.ebuild:
+  Version bump. Translation updates.
 
 *iso-codes-3.10 (31 Aug 2009)
 

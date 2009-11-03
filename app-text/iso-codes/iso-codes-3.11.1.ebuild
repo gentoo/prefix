@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/iso-codes-3.9.ebuild,v 1.1 2009/06/03 22:28:09 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/iso-codes/iso-codes-3.11.1.ebuild,v 1.1 2009/11/01 19:39:31 eva Exp $
 
 EAPI=2
 
@@ -22,5 +22,5 @@ DEPEND="sys-devel/gettext
 src_install() {
 	emake DESTDIR="${D}" install || die "Installation failed"
 
-	dodoc ChangeLog README TODO
+	dodoc ChangeLog README TODO || die "dodoc failed"
 }
