@@ -1,7 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.26.1.ebuild,v 1.2 2009/05/05 20:24:35 ford_prefect Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.28.1.ebuild,v 1.1 2009/10/29 20:57:11 eva Exp $
 
+EAPI="2"
 GCONF_DEBUG="no"
 
 inherit eutils gnome2
@@ -15,20 +16,21 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="nautilus"
 
 RDEPEND=">=dev-libs/glib-2.16.0
-	>=x11-libs/gtk+-2.13
-	>=gnome-base/gconf-2.6
-	nautilus? ( >=gnome-base/nautilus-2.22.2 )"
+	>=x11-libs/gtk+-2.16
+	gnome-base/gconf
+	nautilus? ( gnome-base/nautilus )"
 DEPEND="${RDEPEND}
 	gnome-base/gnome-common
 	sys-devel/gettext
-	>=dev-util/intltool-0.35
-	>=dev-util/pkgconfig-0.19
-	>=app-text/gnome-doc-utils-0.3.2"
+	dev-util/intltool
+	dev-util/pkgconfig
+	app-text/gnome-doc-utils"
 
 DOCS="AUTHORS ChangeLog HACKING MAINTAINERS NEWS README TODO"
 
 pkg_setup() {
 	G2CONF="${G2CONF}
+		--disable-dependency-tracking
 		--disable-scrollkeeper
 		--disable-run-in-place
 		--disable-static"
@@ -38,8 +40,8 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	gnome2_src_unpack
+src_prepare() {
+	gnome2_src_prepare
 
 	# Use absolute path to GNU tar since star doesn't have the same
 	# options. On Gentoo, star is /usr/bin/tar, GNU tar is /bin/tar
@@ -50,7 +52,8 @@ src_unpack() {
 		-i src/fr-command-rpm.c || die "sed failed"
 
 	# Fix intltoolize broken file, see upstream #577133 and #579464
-	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
+	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
+		|| die "sed failed"
 }
 
 src_install() {
