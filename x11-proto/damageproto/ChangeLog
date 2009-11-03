@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/damageproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/damageproto/ChangeLog,v 1.40 2009/10/11 10:52:49 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/damageproto/ChangeLog,v 1.41 2009/10/26 20:41:56 jer Exp $
+
+  26 Oct 2009; Jeroen Roovers <jer@gentoo.org> damageproto-1.2.0.ebuild:
+  Stable for HPPA (bug #282290).
 
   11 Oct 2009; nixnut <nixnut@gentoo.org> damageproto-1.2.0.ebuild:
   ppc stable #282290
