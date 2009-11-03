@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/pigz/pigz-2.1.4.ebuild,v 1.3 2009/04/14 09:39:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/pigz/pigz-2.1.5.ebuild,v 1.2 2009/11/02 17:58:48 vostorga Exp $
 
 inherit eutils toolchain-funcs
 
@@ -11,10 +11,11 @@ SRC_URI="http://www.zlib.net/pigz/${P}.tar.gz"
 LICENSE="PIGZ"
 SLOT="0"
 KEYWORDS="~amd64-linux ~sparc64-solaris"
-IUSE=""
+IUSE="test"
 
-DEPEND="sys-libs/zlib"
-RDEPEND=${DEPEND}
+RDEPEND="sys-libs/zlib"
+DEPEND="${RDEPEND}
+	test? ( app-arch/ncompress )"
 
 src_unpack() {
 	unpack ${A}

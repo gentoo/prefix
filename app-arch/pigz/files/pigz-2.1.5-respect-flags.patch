@@ -1,0 +1,14 @@
+diff -U5 pigz-2.1.5.original/Makefile pigz-2.1.5/Makefile
+--- pigz-2.1.5.original/Makefile	2009-10-27 22:41:31.000000000 -0600
++++ pigz-2.1.5/Makefile	2009-10-27 22:42:45.000000000 -0600
+@@ -1,9 +1,7 @@
+-CFLAGS=-O2
+-
+ pigz: pigz.o yarn.o
+-	cc -o pigz pigz.o yarn.o -lpthread -lz
++	$(CC) $(LDFLAGS) -o pigz pigz.o yarn.o -lpthread -lz
+ 	ln -f pigz unpigz
+ 
+ pigz.o: pigz.c yarn.h
+ 
+ yarn.o: yarn.c yarn.h
