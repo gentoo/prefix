@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-249.ebuild,v 1.1 2009/10/03 11:55:10 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/xterm-250.ebuild,v 1.1 2009/10/26 10:52:47 ssuominen Exp $
 
 EAPI=2
 inherit multilib eutils
