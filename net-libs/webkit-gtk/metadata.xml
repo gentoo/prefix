@@ -6,6 +6,7 @@
     <flag name="coverage">enable code coverage support</flag>
     <flag name="pango">Use pango as fontbackend instead of freetype</flag>
     <flag name="soup">Use SOUP as backend instead of curl</flag>
+	<flag name="websockets">enable full duplex single socket communication</flag>
     <flag name="xslt">enable support for XSLT</flag>
   </use>
 </pkgmetadata>
