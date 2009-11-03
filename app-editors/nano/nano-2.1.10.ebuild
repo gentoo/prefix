@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.10.ebuild,v 1.7 2009/10/19 21:49:50 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.10.ebuild,v 1.8 2009/10/31 14:42:29 ranger Exp $
 
 EAPI=2
 inherit eutils

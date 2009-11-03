@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.9.ebuild,v 1.7 2009/08/31 00:59:06 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.11.ebuild,v 1.1 2009/11/02 22:58:23 vapier Exp $
 
 EAPI=2
 inherit eutils
@@ -31,6 +31,7 @@ src_unpack() {
 		unpack ${A}
 	fi
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-proto.patch
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi
@@ -62,7 +63,7 @@ src_install() {
 	emake DESTDIR="${D}" install || die
 
 	dodoc ChangeLog README doc/nanorc.sample AUTHORS BUGS NEWS TODO
-	dohtml *.html
+	dohtml doc/faq.html
 	insinto /etc
 	newins doc/nanorc.sample nanorc
 
