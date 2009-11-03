@@ -1,6 +1,11 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.98 2009/10/24 14:31:42 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.99 2009/10/26 11:58:23 patrick Exp $
+
+*transmission-1.76 (26 Oct 2009)
+
+  26 Oct 2009; Patrick Lauer <patrick@gentoo.org> +transmission-1.76.ebuild:
+  Bump, closes #290496
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> transmission-1.75.ebuild:
   ppc stable #289629
