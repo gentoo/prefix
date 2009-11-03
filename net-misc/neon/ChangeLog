@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.141 2009/10/24 14:06:11 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.144 2009/10/31 14:09:27 ranger Exp $
+
+  31 Oct 2009; Brent Baude <ranger@gentoo.org> neon-0.29.0.ebuild:
+  Marking neon-0.29.0 ppc64 for bug 289419
+
+  29 Oct 2009; Markus Meier <maekke@gentoo.org> neon-0.29.0.ebuild:
+  amd64/x86 stable, bug #289419
+
+  27 Oct 2009; Tobias Klausmann <klausman@gentoo.org> neon-0.29.0.ebuild:
+  Stable on alpha, bug #289419
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> neon-0.29.0.ebuild:
   ppc stable #289419
