@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.8.4.ebuild,v 1.1 2009/09/18 14:41:02 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.8.4.ebuild,v 1.3 2009/10/28 22:00:06 fauli Exp $
 
 EAPI="2"
 
