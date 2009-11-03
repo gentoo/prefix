@@ -7,6 +7,6 @@
 CK_LAUNCH_SESSION=/usr/bin/ck-launch-session
 
 if [ -z "$XDG_SESSION_COOKIE" ] && [ -x "$CK_LAUNCH_SESSION" ]; then
-	STARTUP="$CK_LAUNCH_SESSION $STARTUP"
+	command="$CK_LAUNCH_SESSION $command"
 fi
 

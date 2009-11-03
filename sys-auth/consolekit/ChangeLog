@@ -1,6 +1,19 @@
 # ChangeLog for sys-auth/consolekit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.56 2009/10/03 09:48:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/consolekit/ChangeLog,v 1.58 2009/10/29 23:33:46 eva Exp $
+
+*consolekit-0.4.1 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org> files/90-consolekit,
+  -consolekit-0.2.3.ebuild, -files/consolekit-0.2.3-freebsd.patch,
+  -consolekit-0.2.10.ebuild, -consolekit-0.2.10-r1.ebuild,
+  -consolekit-0.3.0.ebuild, +files/consolekit-0.4.0-multilib.patch,
+  +files/consolekit-0.4.0-polkit-automagic.patch, +consolekit-0.4.1.ebuild,
+  +files/consolekit-0.4.1-shutdown-reboot-without-policies.patch:
+  New version for GNOME 2.28. Clean up old revision. Fix xinitrc script.
+
+  28 Oct 2009; Raúl Porcel <armin76@gentoo.org> consolekit-0.3.0-r2.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #278181
 
   03 Oct 2009; Markus Meier <maekke@gentoo.org> consolekit-0.3.0-r2.ebuild:
   arm stable, bug #278181
