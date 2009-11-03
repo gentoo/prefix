@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.5.ebuild,v 1.1 2009/09/10 17:56:41 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.5.ebuild,v 1.2 2009/10/27 18:11:22 patrick Exp $
 
 inherit base eutils toolchain-funcs flag-o-matic
 
@@ -22,6 +22,8 @@ RDEPEND="${COMMON_DEPEND}
 	daemon? ( app-misc/screen )"
 DEPEND="${COMMON_DEPEND}
 	dev-util/pkgconfig"
+
+PATCHES=( "${FILESDIR}/${PN}-0.8.2-gcc34.patch" )
 
 src_compile() {
 	replace-flags -Os -O2
