@@ -1,6 +1,15 @@
 # ChangeLog for net-misc/axel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.48 2009/10/25 20:19:14 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/axel/ChangeLog,v 1.50 2009/10/28 09:25:12 ssuominen Exp $
+
+  28 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> axel-2.3-r1.ebuild,
+  axel-2.4.ebuild:
+  Remove KDE3 support.
+
+*axel-2.4 (27 Oct 2009)
+
+  27 Oct 2009; Víctor Ostorga <vostorga@gentoo.org> +axel-2.4.ebuild:
+  Version bump to 2.4 , bug #267732
 
   25 Oct 2009; Torsten Veller <tove@gentoo.org> metadata.xml:
   Remove drizzt from metadata.xml (#149111)

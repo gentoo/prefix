@@ -3,6 +3,13 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-  <email>maintainer-needed@gentoo.org</email>
+	<email>chiiph@gmail.com</email>
+	<name>Tomas Touceda</name>
+	<description>Maintainer of ebuilds, assign bugs</description>
+</maintainer>
+<maintainer>
+	<email>tommy@gentoo.org</email>
+	<name>Thomas Sachau</name>
+	<description>Proxy committer, CC bugs</description>
 </maintainer>
 </pkgmetadata>
