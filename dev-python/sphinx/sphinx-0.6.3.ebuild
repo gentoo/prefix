@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/sphinx-0.6.3.ebuild,v 1.7 2009/10/18 18:04:32 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/sphinx-0.6.3.ebuild,v 1.9 2009/10/30 20:42:41 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -11,7 +11,7 @@ MY_PN="Sphinx"
 MY_P="${MY_PN}-${PV}"
 
 DESCRIPTION="Tool to create documentation for Python projects"
-HOMEPAGE="http://sphinx.pocoo.org/"
+HOMEPAGE="http://sphinx.pocoo.org/ http://pypi.python.org/pypi/Sphinx"
 SRC_URI="http://pypi.python.org/packages/source/${MY_PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
 LICENSE="BSD"
 SLOT="0"
