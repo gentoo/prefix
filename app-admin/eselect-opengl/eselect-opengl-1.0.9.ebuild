@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/eselect-opengl-1.0.8-r1.ebuild,v 1.7 2009/10/26 19:13:50 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/eselect-opengl-1.0.9.ebuild,v 1.1 2009/10/30 20:50:17 scarabeus Exp $
 
 inherit multilib eutils
 
@@ -11,8 +11,8 @@ HOMEPAGE="http://www.gentoo.org/"
 # http://www.opengl.org/registry/api/glext.h
 # http://www.opengl.org/registry/api/glxext.h
 
-GLEXT="55"
-GLXEXT="24"
+GLEXT="56"
+GLXEXT="25"
 
 #MIRROR="mirror://gentoo/"
 MIRROR="http://dev.gentooexperimental.org/~scarabeus/"
@@ -74,6 +74,14 @@ pkg_postinst() {
 	if [[ -n "${impl}"  && "${impl}" != '(none)' ]] ; then
 		eselect opengl set "${impl}"
 	fi
+
+	# info about removal of .la file
+	elog "eselect-opengl strips the libGL.la file."
+	elog "This file was broken by design and thus removed."
+	elog "For fixing all sort of configure issues please run:"
+	elog "  lafilefixer --justfixit"
+	elog "or run revdep-rebuild."
+	elog "(lafilefixer package can be found as dev-util/lafilefixer)"
 }
 
 src_install() {
