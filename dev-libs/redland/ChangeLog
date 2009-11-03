@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/redland
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/ChangeLog,v 1.56 2009/10/13 17:53:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/ChangeLog,v 1.57 2009/10/31 14:38:00 ranger Exp $
+
+  31 Oct 2009; Brent Baude <ranger@gentoo.org> redland-1.0.9-r1.ebuild:
+  Marking redland-1.0.9-r1 ppc64 for bug 285110
 
   13 Oct 2009; Raúl Porcel <armin76@gentoo.org> redland-1.0.9-r1.ebuild:
   ia64/sparc stable wrt #285110
