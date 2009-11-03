@@ -1,6 +1,12 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.166 2009/10/22 12:30:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.167 2009/10/28 12:18:12 wired Exp $
+
+*ncurses-5.7-r3 (28 Oct 2009)
+
+  28 Oct 2009; Alex Alexander <wired@gentoo.org> +ncurses-5.7-r3.ebuild,
+  +files/ncurses-5.7-rxvt-unicode.patch:
+  added rxvt-unicode terminfo generation wrt bug #192083
 
   22 Oct 2009; Mike Frysinger <vapier@gentoo.org> ncurses-5.7-r2.ebuild,
   +files/ncurses-5.7-tic-cross-detection.patch:
