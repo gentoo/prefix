@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.4-r1.ebuild,v 1.5 2009/10/25 22:25:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.4-r1.ebuild,v 1.6 2009/10/29 15:51:34 maekke Exp $
 
 EAPI=2
 inherit elisp-common eutils flag-o-matic
