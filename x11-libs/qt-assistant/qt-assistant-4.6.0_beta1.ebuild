@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/qt-assistant-4.6.0_beta1.ebuild,v 1.2 2009/10/16 19:52:21 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-assistant/qt-assistant-4.6.0_beta1.ebuild,v 1.3 2009/10/31 11:53:14 ayoy Exp $
 
 EAPI=2
 inherit qt4-build
@@ -45,10 +45,11 @@ src_configure() {
 }
 
 src_compile() {
+	# help libQtHelp find freshly built libQtCLucene (bug #289811)
+	export LD_LIBRARY_PATH="${S}/lib" DYLD_LIBRARY_PATH="${S}/lib"
 	qt4-build_src_compile
 	# ugly hack to build docs
 	cd "${S}"
-	export LD_LIBRARY_PATH="${S}/lib"
 	qmake "LIBS+=-L${QTLIBDIR}" "CONFIG+=nostrip" projects.pro || die "qmake projects faied"
 	emake qch_docs || die "emake docs failed"
 }
