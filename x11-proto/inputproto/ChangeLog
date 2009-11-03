@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.86 2009/10/24 15:35:38 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.87 2009/10/26 20:43:08 jer Exp $
+
+  26 Oct 2009; Jeroen Roovers <jer@gentoo.org> inputproto-1.5.1.ebuild:
+  Stable for HPPA (bug #282290).
 
   24 Oct 2009; Rémi Cardona <remi@gentoo.org> inputproto-2.0.ebuild:
   drop dep on util-macros, sync with overlay
