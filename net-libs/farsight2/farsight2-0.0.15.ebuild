@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/farsight2-0.0.15.ebuild,v 1.4 2009/09/19 19:04:20 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/farsight2/farsight2-0.0.15.ebuild,v 1.5 2009/10/26 21:16:09 klausman Exp $
 
 EAPI="2"
 
