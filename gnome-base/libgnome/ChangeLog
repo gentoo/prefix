@@ -1,6 +1,16 @@
 # ChangeLog for gnome-base/libgnome
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.179 2009/10/24 16:44:36 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.181 2009/10/29 21:31:42 eva Exp $
+
+*libgnome-2.28.0 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +libgnome-2.28.0.ebuild, +files/libgnome-2.28.0-menus-have-icons.patch:
+  New version for GNOME 2.28.
+
+  26 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  libgnome-2.26.0.ebuild:
+  Depend on gvfs[gnome] otherwise gnome-open does nothing, bug #288794.
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> libgnome-2.26.0.ebuild:
   ppc stable #281427

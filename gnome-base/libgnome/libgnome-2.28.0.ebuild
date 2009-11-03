@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/libgnome-2.26.0.ebuild,v 1.6 2009/10/26 22:56:05 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/libgnome-2.28.0.ebuild,v 1.1 2009/10/29 21:31:42 eva Exp $
 
 EAPI="2"
 
@@ -31,7 +31,7 @@ DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.17
 	doc? ( >=dev-util/gtk-doc-1 )"
 
-PDEPEND="gnome-base/gvfs[gnome]"
+PDEPEND="gnome-base/gvfs"
 
 DOCS="AUTHORS ChangeLog NEWS README"
 
@@ -42,7 +42,10 @@ pkg_setup() {
 src_prepare() {
 	gnome2_src_prepare
 
-	use branding && epatch "${FILESDIR}"/${P}-branding.patch
+	# Make sure menus have icons. People don't like change
+	epatch "${FILESDIR}/${PN}-2.28.0-menus-have-icons.patch"
+
+	use branding && epatch "${FILESDIR}"/${PN}-2.26.0-branding.patch
 }
 
 src_install() {
