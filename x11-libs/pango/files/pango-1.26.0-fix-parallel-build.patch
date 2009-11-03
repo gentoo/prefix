@@ -1,0 +1,27 @@
+Avoid parallel build issues.
+
+The pango-view.1 manpage requires the pango-view binary because help2man
+needs to execute it.  Instead of calling make as one of the commands,
+however, the executable should simply be declared as a dependency.  This
+avoids two make jobs building the same target at the same time, which may
+otherwise lead to failing builds or even broken applications.
+
+2009-10-30 Martin von Gagern
+
+References:
+http://bugs.gentoo.org/287825
+Upstream bug:
+https://bugzilla.gnome.org/show_bug.cgi?id=600207
+---
+--- pango-view/Makefile.am
++++ pango-view/Makefile.am
+@@ -88,8 +88,7 @@ MAINTAINERCLEANFILES = pango-view.1
+ 
+ dist_man_MANS = pango-view.1
+ 
+-$(srcdir)/pango-view.1: ../configure.in $(pango_view_SOURCES)
+-	$(MAKE) $(AM_MAKEFLAGS) pango-view$(EXEEXT)
++$(srcdir)/pango-view.1: ../configure.in $(pango_view_SOURCES) pango-view$(EXEEXT)
+ 	$(AM_V_GEN) $(top_builddir)/missing --run \
+ 	   help2man --no-info --section=1 \
+ 		    --help-option="--help-all" --output="$@.tmp" \

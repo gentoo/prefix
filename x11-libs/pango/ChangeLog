@@ -1,6 +1,23 @@
 # ChangeLog for x11-libs/pango
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.273 2009/10/08 21:51:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.277 2009/11/01 12:53:20 eva Exp $
+
+  01 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org> pango-1.26.0.ebuild:
+  Add missing gtk-doc-am to DEPEND, bug #291119.
+
+  31 Oct 2009; Nirbheek Chauhan <nirbheek@gentoo.org> pango-1.26.0.ebuild,
+  +files/pango-1.26.0-fix-parallel-build.patch:
+  Fix parallel build with patch by Martin von Gagern from bug 287825
+
+*pango-1.26.0 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org> -pango-1.24.2.ebuild,
+  +pango-1.26.0.ebuild, +files/pango-1.26.0-introspection-automagic.patch,
+  +files/pango-1.26.0-lib64.patch:
+  New version for GNOME 2.28. Clean up old revisions.
+
+  26 Oct 2009; Raúl Porcel <armin76@gentoo.org> pango-1.24.5-r1.ebuild:
+  ia64/s390/sh/sparc stable wrt #285586
 
   08 Oct 2009; Markus Meier <maekke@gentoo.org> pango-1.24.5-r1.ebuild:
   arm stable, bug #285586
