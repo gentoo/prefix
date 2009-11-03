@@ -14,6 +14,8 @@ applications not using gio to access the gvfs filesystems.
 		transparently via <pkg>app-arch/libarchive</pkg></flag>
 	<flag name='fuse'>Enables fuse mount points in $HOME/.gvfs for legacy
 		application access</flag>
+	<flag name="gdu">Enable <pkg>sys-apps/gnome-disk-utility</pkg> integration</flag>
+	<flag name="udev">Enable udev base replacement code for cdda feature</flag>
 </use>
 </pkgmetadata>
 

@@ -1,8 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.2.2.ebuild,v 1.6 2009/05/30 14:04:31 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.4.1.ebuild,v 1.2 2009/10/30 00:35:57 eva Exp $
 
 EAPI="2"
+GCONF_DEBUG="no"
 
 inherit autotools bash-completion gnome2 eutils flag-o-matic
 
@@ -11,14 +12,15 @@ HOMEPAGE="http://www.gnome.org"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="archive avahi bluetooth cdda doc fuse gnome gnome-keyring gphoto2 hal samba"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+IUSE="archive avahi bluetooth cdda doc fuse gdu gnome gnome-keyring gphoto2 hal samba +udev"
 
-RDEPEND=">=dev-libs/glib-2.19
+RDEPEND=">=dev-libs/glib-2.21.2
 	>=sys-apps/dbus-1.0
 	>=net-libs/libsoup-2.25.1[gnome]
 	dev-libs/libxml2
 	net-misc/openssh
+	>=sys-fs/udev-138
 	archive? ( app-arch/libarchive )
 	avahi? ( >=net-dns/avahi-0.6 )
 	bluetooth? (
@@ -53,8 +55,10 @@ pkg_setup() {
 		$(use_enable bluetooth obexftp)
 		$(use_enable cdda)
 		$(use_enable fuse)
+		$(use_enable gdu)
 		$(use_enable gnome gconf)
 		$(use_enable gphoto2)
+		$(use_enable udev gudev)
 		$(use_enable hal)
 		$(use_enable gnome-keyring keyring)
 		$(use_enable samba)"
@@ -64,11 +68,17 @@ src_prepare() {
 	gnome2_src_prepare
 
 	# Conditional patching purely to avoid eautoreconf
-	use gphoto2 && epatch "${FILESDIR}/${P}-gphoto2-stricter-checks.patch"
-	use archive && epatch "${FILESDIR}/${P}-expose-archive-backend.patch"
+	use gphoto2 && epatch "${FILESDIR}/${PN}-1.2.2-gphoto2-stricter-checks.patch"
+
+	if use archive; then
+		epatch "${FILESDIR}/${PN}-1.2.2-expose-archive-backend.patch"
+		echo "mount-archive.desktop.in" >> po/POTFILES.in
+		echo "mount-archive.desktop.in.in" >> po/POTFILES.in
+	fi
+
 	use gphoto2 || use archive && eautoreconf
 
-	epatch "${FILESDIR}"/${PN}-0.2.3-interix.patch
+	#epatch "${FILESDIR}"/${PN}-0.2.3-interix.patch
 	# There is no mkdtemp on Solaris libc. Using the same code as on Interix	
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		sed -i -e 's:mkdtemp:mktemp:g' daemon/gvfsbackendburn.c
@@ -85,4 +95,6 @@ src_install() {
 pkg_postinst() {
 	gnome2_pkg_postinst
 	use bash-completion && bash-completion_pkg_postinst
+
+	ewarn "In order to use the new gvfs services, please reload dbus configuration"
 }
