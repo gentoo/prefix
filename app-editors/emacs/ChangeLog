@@ -1,6 +1,12 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.341 2009/10/12 16:34:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.342 2009/10/28 19:38:52 ulm Exp $
+
+*emacs-23.1-r1 (28 Oct 2009)
+
+  28 Oct 2009; Ulrich Mueller <ulm@gentoo.org> +emacs-23.1-r1.ebuild,
+  +files/emacs-23.1-backspace.patch:
+  Fix swapped backspace and delete keys when started as daemon, bug 289709.
 
   12 Oct 2009; Raúl Porcel <armin76@gentoo.org> emacs-23.1.ebuild:
   ia64/s390/sh stable wrt #285063
