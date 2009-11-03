@@ -1,6 +1,23 @@
 # ChangeLog for gnome-base/gnome-desktop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.258 2009/10/24 16:38:13 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.261 2009/11/01 10:09:04 nirbheek Exp $
+
+  01 Nov 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  gnome-desktop-2.28.1-r1.ebuild:
+  Fix bug 290156 -- remove libgnome-python dependency
+
+*gnome-desktop-2.28.1-r1 (31 Oct 2009)
+
+  31 Oct 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -gnome-desktop-2.28.1.ebuild, +gnome-desktop-2.28.1-r1.ebuild:
+  Fix bug 291047 -- this is what happens when you do a preserved_old_lib
+  without a major soname change.
+
+*gnome-desktop-2.28.1 (29 Oct 2009)
+
+  29 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-desktop-2.28.1.ebuild:
+  New version for GNOME 2.28.
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> gnome-desktop-2.26.3.ebuild:
   ppc stable #281427
