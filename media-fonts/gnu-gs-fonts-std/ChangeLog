@@ -1,6 +1,10 @@
 # ChangeLog for media-fonts/gnu-gs-fonts-std
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/gnu-gs-fonts-std/ChangeLog,v 1.12 2007/07/12 10:09:18 uberlord Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/gnu-gs-fonts-std/ChangeLog,v 1.13 2009/10/27 21:19:16 bangert Exp $
+
+  27 Oct 2009; Thilo Bangert <bangert@gentoo.org>
+  gnu-gs-fonts-std-8.11.ebuild:
+  fix license to GPL-2 (bug #227755)
 
   12 Jul 2007; Roy Marples <uberlord@gentoo.org>
   gnu-gs-fonts-std-8.11.ebuild:
