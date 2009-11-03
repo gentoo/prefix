@@ -1,6 +1,14 @@
 # ChangeLog for net-irc/quassel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.66 2009/10/25 22:43:50 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.68 2009/10/30 00:17:28 scarabeus Exp $
+
+  30 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org> quassel-9999.ebuild,
+  metadata.xml:
+  Use our brand new added libindicate-qt.
+
+  28 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org> quassel-9999.ebuild,
+  metadata.xml:
+  Update live ebuild. Also i should add myself to maintainers. :]
 
   25 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org> quassel-9999.ebuild:
   Simplify oxygen useflag to be dependant on kde instead of its own.
