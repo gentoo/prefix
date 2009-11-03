@@ -155,7 +155,7 @@ src_compile() {
 		$(use_ssl zlib) \
 		--prefix="${EPREFIX}"/usr \
 		--openssldir="${EPREFIX}"/etc/ssl \
-		shared threads \
+		shared threads ${confopts} \
 		|| die "Configure failed"
 
 	if [[ ${CHOST} == i?86*-*-linux* || ${CHOST} == i?86*-*-freebsd* ]]; then
