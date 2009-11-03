@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.1.ebuild,v 1.11 2009/10/19 10:47:22 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.1.ebuild,v 1.12 2009/10/26 22:03:29 vapier Exp $
 
 PATCH_VER="1.0"
 UCLIBC_VER="1.1"
@@ -59,6 +59,7 @@ DEPEND="${RDEPEND}
 	test? ( >=dev-util/dejagnu-1.4.4 >=sys-devel/autogen-5.5.4 )
 	>=sys-apps/texinfo-4.8
 	>=sys-devel/bison-1.875
+	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
 	amd64? ( multilib? ( gcj? ( app-emulation/emul-linux-x86-xlibs ) ) )
