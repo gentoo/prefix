@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/qt-phonon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-phonon/ChangeLog,v 1.41 2009/10/16 19:55:29 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-phonon/ChangeLog,v 1.43 2009/10/31 13:52:10 maekke Exp $
+
+  31 Oct 2009; Markus Meier <maekke@gentoo.org> qt-phonon-4.5.3.ebuild:
+  amd64 stable, bug #290922
+
+  30 Oct 2009; Dror Levin <spatz@gentoo.org> qt-phonon-4.5.3.ebuild,
+  qt-phonon-4.6.0_beta1.ebuild:
+  Fix dep on x11-libs/qt-dbus, bug 291170.
 
   16 Oct 2009; Alex Alexander <wired@gentoo.org>
   qt-phonon-4.6.0_beta1.ebuild:

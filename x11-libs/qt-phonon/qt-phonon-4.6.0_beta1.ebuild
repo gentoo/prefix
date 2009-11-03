@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-phonon/qt-phonon-4.6.0_beta1.ebuild,v 1.2 2009/10/16 19:55:29 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-phonon/qt-phonon-4.6.0_beta1.ebuild,v 1.3 2009/10/30 13:42:50 spatz Exp $
 
 EAPI=2
 inherit qt4-build
@@ -17,7 +17,7 @@ DEPEND="~x11-libs/qt-gui-${PV}[debug=,glib,qt3support]
 	!media-sound/phonon
 	media-libs/gstreamer
 	media-libs/gst-plugins-base
-	dbus? ( =x11-libs/qt-dbus-${PV}[debug=] )"
+	dbus? ( ~x11-libs/qt-dbus-${PV}[debug=] )"
 RDEPEND="${DEPEND}"
 
 QT4_TARGET_DIRECTORIES="
