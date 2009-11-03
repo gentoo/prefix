@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Parser/HTML-Parser-3.62.ebuild,v 1.10 2009/10/28 17:51:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/HTML-Parser/HTML-Parser-3.64.ebuild,v 1.1 2009/10/27 08:40:11 tove Exp $
 
 EAPI=2
 
