@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libogg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libogg/ChangeLog,v 1.61 2009/10/22 20:39:29 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libogg/ChangeLog,v 1.62 2009/10/31 14:39:16 ranger Exp $
+
+  31 Oct 2009; Brent Baude <ranger@gentoo.org> libogg-1.1.4.ebuild:
+  Marking libogg-1.1.4 ppc64 for bug 288042
 
   22 Oct 2009; Tobias Klausmann <klausman@gentoo.org> libogg-1.1.4.ebuild:
   Stable on alpha, bug #288042
