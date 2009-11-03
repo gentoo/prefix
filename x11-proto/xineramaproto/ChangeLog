@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/xineramaproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xineramaproto/ChangeLog,v 1.33 2009/10/03 16:01:25 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xineramaproto/ChangeLog,v 1.34 2009/10/26 12:30:32 remi Exp $
+
+  26 Oct 2009; Rémi Cardona <remi@gentoo.org> xineramaproto-1.2.ebuild:
+  sync with overlay, update deps
 
   03 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   xineramaproto-1.2.ebuild:
