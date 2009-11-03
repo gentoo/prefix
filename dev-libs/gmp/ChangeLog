@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.119 2009/10/24 12:59:35 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.122 2009/10/31 14:41:46 ranger Exp $
+
+  31 Oct 2009; Brent Baude <ranger@gentoo.org> gmp-4.3.1.ebuild:
+  Marking gmp-4.3.1 ppc64 for bug 287519
+
+  31 Oct 2009; Raúl Porcel <armin76@gentoo.org> gmp-4.3.1.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #287519
+
+  30 Oct 2009; Markus Meier <maekke@gentoo.org> gmp-4.3.1.ebuild:
+  arm stable, bug #287519
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> gmp-4.3.1.ebuild:
   ppc stable #287519
