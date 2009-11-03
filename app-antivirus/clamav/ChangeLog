@@ -1,6 +1,13 @@
 # ChangeLog for app-antivirus/clamav
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.341 2009/10/17 17:21:18 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/ChangeLog,v 1.342 2009/10/29 17:47:32 dertobi123 Exp $
+
+*clamav-0.95.3 (29 Oct 2009)
+
+  29 Oct 2009; Tobias Scherbaum <dertobi123@gentoo.org>
+  -clamav-0.95.2-r1.ebuild, -files/clamav-0.95.2-fno-strict-aliasing.patch,
+  +clamav-0.95.3.ebuild:
+  Version bump, #291041
 
 *clamav-0.95.2-r1 (17 Oct 2009)
 

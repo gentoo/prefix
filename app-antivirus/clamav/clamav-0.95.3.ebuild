@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.95.2-r1.ebuild,v 1.1 2009/10/17 17:21:19 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.95.3.ebuild,v 1.1 2009/10/29 17:47:32 dertobi123 Exp $
 
 EAPI=2
 
@@ -45,7 +45,6 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-0.95.1-nls.patch"
-	epatch "${FILESDIR}/${P}-fno-strict-aliasing.patch"
 	epatch "${FILESDIR}"/${PN}-0.92.1-interix.patch
 	epatch "${FILESDIR}"/${PN}-0.93-prefix.patch
 	eprefixify "${S}"/configure.in
