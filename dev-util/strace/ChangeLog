@@ -1,6 +1,14 @@
 # ChangeLog for dev-util/strace
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/ChangeLog,v 1.132 2009/05/30 00:17:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/ChangeLog,v 1.134 2009/10/28 13:59:07 jer Exp $
+
+  28 Oct 2009; Jeroen Roovers <jer@gentoo.org> strace-4.5.19.ebuild:
+  Stable for HPPA (bug #250631).
+
+*strace-4.5.19 (27 Oct 2009)
+
+  27 Oct 2009; Mike Frysinger <vapier@gentoo.org> +strace-4.5.19.ebuild:
+  Version bump.
 
   30 May 2009; Mike Frysinger <vapier@gentoo.org> strace-4.5.18.ebuild,
   +files/strace-4.5.18-arm-cache.patch:
