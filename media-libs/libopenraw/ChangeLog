@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libopenraw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.41 2009/10/24 15:32:46 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libopenraw/ChangeLog,v 1.42 2009/10/31 14:28:37 ranger Exp $
+
+  31 Oct 2009; Brent Baude <ranger@gentoo.org> libopenraw-0.0.8.ebuild:
+  Marking libopenraw-0.0.8 ppc64 for bug 288723
 
   24 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
   libopenraw-0.0.8.ebuild:
