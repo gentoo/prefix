@@ -1,6 +1,9 @@
 # ChangeLog for net-analyzer/mtr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.87 2009/10/24 18:40:16 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.88 2009/10/27 09:19:14 jer Exp $
+
+  27 Oct 2009; Jeroen Roovers <jer@gentoo.org> mtr-0.75.ebuild:
+  Stable for HPPA (bug #290113).
 
   24 Oct 2009; Tobias Klausmann <klausman@gentoo.org> mtr-0.75.ebuild:
   Stable on alpha, bug #290113
