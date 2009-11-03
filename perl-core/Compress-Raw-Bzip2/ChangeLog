@@ -1,6 +1,11 @@
 # ChangeLog for perl-core/Compress-Raw-Bzip2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Bzip2/ChangeLog,v 1.11 2009/08/31 08:13:41 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Bzip2/ChangeLog,v 1.12 2009/10/30 15:47:05 haubi Exp $
+
+  30 Oct 2009; Michael Haubenwallner <haubi@gentoo.org>
+  Compress-Raw-Bzip2-2.020.ebuild, Compress-Raw-Bzip2-2.021.ebuild:
+  set BZIP2_INCLUDE to '.' instead of '' to avoid using first argument of
+  CCFLAGS as include path.
 
 *Compress-Raw-Bzip2-2.021 (31 Aug 2009)
 

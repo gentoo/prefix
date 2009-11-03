@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Bzip2/Compress-Raw-Bzip2-2.021.ebuild,v 1.1 2009/08/31 08:13:41 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Compress-Raw-Bzip2/Compress-Raw-Bzip2-2.021.ebuild,v 1.2 2009/10/30 15:47:05 haubi Exp $
 
 EAPI=2
 
@@ -20,6 +20,6 @@ DEPEND="${RDEPEND}
 SRC_TEST=do
 
 src_configure(){
-	BUILD_BZIP2=0 BZIP2_INCLUDE= BZIP2_LIB= \
+	BUILD_BZIP2=0 BZIP2_INCLUDE=. BZIP2_LIB= \
 		perl-module_src_configure
 }
