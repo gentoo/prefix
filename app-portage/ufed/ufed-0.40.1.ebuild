@@ -21,8 +21,8 @@ RDEPEND="${DEPEND}
 	dev-lang/perl"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.40-prefix.patch
-	eprefixify Portage.pm ufed-curses-help.c ufed.pl
+	epatch "${FILESDIR}"/${PN}-0.40.1-prefix.patch
+	eprefixify Portage.pm ufed-curses-help.c ufed.pl.in
 }
 
 src_configure() {
