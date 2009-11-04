@@ -125,9 +125,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6.2-darwin-no-framework-lookup.patch
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-special-darwin-libffi.patch
+	epatch "${FILESDIR}"/${PN}-2.6.4-gnu-arch-darwin.patch
 	# for Mac weenies
 	epatch "${FILESDIR}"/${PN}-2.6.2-mac.patch
-	epatch "${FILESDIR}"/${PN}-2.6.2-mac-64bits.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-mac-just-prefix.patch
 	sed -i -e "s:@@APPLICATIONS_DIR@@:${EPREFIX}/Applications:g" \
 		Mac/Makefile.in \
@@ -144,7 +144,7 @@ src_prepare() {
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
 	# make it compile on IRIX as well
-	epatch "${FILESDIR}"/${PN}-2.6.2-irix-noffi.patch
+	epatch "${FILESDIR}"/${PN}-2.6.4-irix-noffi.patch
 	# and generate a libpython2.6.so
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
