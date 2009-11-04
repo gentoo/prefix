@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.10.4.ebuild,v 1.2 2009/07/22 20:18:32 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.10.4.ebuild,v 1.4 2009/09/16 06:50:28 kolmodin Exp $
 
 # Brief explanation of the bootstrap logic:
 #
@@ -28,7 +28,7 @@
 # re-emerge ghc (or ghc-bin). People using vanilla gcc can switch between
 # gcc-3.x and 4.x with no problems.
 
-inherit base autotools bash-completion eutils flag-o-matic toolchain-funcs ghc-package versionator prefix
+inherit base autotools bash-completion eutils flag-o-matic toolchain-funcs ghc-package versionator
 
 DESCRIPTION="The Glasgow Haskell Compiler"
 HOMEPAGE="http://www.haskell.org/ghc/"
@@ -42,6 +42,8 @@ arch_binaries=""
 
 arch_binaries="$arch_binaries x86?   ( http://code.haskell.org/~ivanm/ghc-bin-${PV}-x86.tbz2 )"
 arch_binaries="$arch_binaries amd64? ( http://haskell.org/~kolmodin/ghc-bin-${PV}-amd64.tbz2 )"
+arch_binaries="$arch_binaries sparc? ( http://haskell.org/~duncan/ghc/ghc-bin-${PV}-sparc.tbz2 )"
+arch_binaries="$arch_binaries ppc64? ( http://code.haskell.org/~slyfox/ghc-ppc64/ghc-bin-${PV}-ppc64.tbz2 )"
 
 #arch_binaries="$arch_binaries alpha?   ( mirror://gentoo/ghc-bin-${PV}-alpha.tbz2 )"
 #arch_binaries="$arch_binaries amd64?   ( mirror://gentoo/ghc-bin-${PV}-amd64.tbz2 )"
@@ -49,16 +51,18 @@ arch_binaries="$arch_binaries amd64? ( http://haskell.org/~kolmodin/ghc-bin-${PV
 #arch_binaries="$arch_binaries ia64?    ( mirror://gentoo/ghc-bin-${PV}-ia64.tbz2 )"
 #arch_binaries="$arch_binaries sparc?   ( mirror://gentoo/ghc-bin-${PV}-sparc.tbz2 )"
 #arch_binaries="$arch_binaries x86? ( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )"
-#	ppc-macos? ( http://dev.gentooexperimental.org/~grobian/distfiles/ghc-bin-${PV}-ppc-macos.tbz2 )
-#	x86-macos? ( http://dev.gentooexperimental.org/~grobian/distfiles/ghc-bin-${PV}-x86-macos.tbz2 )"
+
+arch_binaries="$arch_binaries x86-macos? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-i386-apple-darwin.tar.bz2 )"
+arch_binaries="$arch_binaries ppc-macos? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-powerpc-apple-darwin.tar.bz2 )"
+arch_binaries="$arch_binaries x86-solaris? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-i386-unknown-solaris2.tar.bz2 )"
+arch_binaries="$arch_binaries sparc-solaris? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-sparc-sun-solaris2.tar.bz2 )"
 
 SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${P}-src.tar.bz2 )
 	!ghcbootstrap? ( $arch_binaries )"
 
 LICENSE="BSD"
 SLOT="0"
-#KEYWORDS="~ppc-macos ~x86-macos"
-KEYWORDS=""
+KEYWORDS="~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="binary doc ghcbootstrap"
 
 RDEPEND="
@@ -66,9 +70,10 @@ RDEPEND="
 	!kernel_Darwin? ( >=sys-devel/gcc-2.95.3 )
 	kernel_linux? ( >=sys-devel/binutils-2.17 )
 	kernel_SunOS? ( >=sys-devel/binutils-2.17 )
-	kernel_SunOS? ( app-admin/chrpath )
 	>=dev-lang/perl-5.6.1
-	>=dev-libs/gmp-4.1"
+	>=dev-libs/gmp-4.1
+	!<dev-haskell/haddock-2.4.2"
+# earlier versions than 2.4.2 of haddock only works with older ghc releases
 
 DEPEND="${RDEPEND}
 	ghcbootstrap? (	doc? (	~app-text/docbook-xml-dtd-4.2
@@ -128,10 +133,17 @@ ghc_setup_cflags() {
 	gcc-specs-pie && append-ghc-cflags compile link	-nopie
 	gcc-specs-ssp && append-ghc-cflags compile		-fno-stack-protector
 
+	# prevent from failind building unregisterised ghc:
+	# http://www.mail-archive.com/debian-bugs-dist@lists.debian.org/msg171602.html
+	use ppc64 && append-ghc-cflags compile -mminimal-toc
+
 	# We also add -Wa,--noexecstack to get ghc to generate .o files with
 	# non-exectable stack. This it a hack until ghc does it itself properly.
-	[[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] && \
-		append-ghc-cflags assemble "-Wa,--noexecstack"
+	case $($(tc-getAS) -v 2>&1 </dev/null) in
+		*"GNU Binutils"*) # GNU ld
+			append-ghc-cflags assemble "-Wa,--noexecstack"
+		;;
+	esac
 }
 
 pkg_setup() {
@@ -150,7 +162,11 @@ src_unpack() {
 	# Create the ${S} dir if we're using the binary version
 	use binary && mkdir "${S}"
 
-	base_src_unpack
+	ONLYA=${A}
+	[[ ${CHOST} != *-linux-gnu ]] && ONLYA=${P}-src.tar.bz2
+	#base_src_unpack
+	unpack ${ONLYA}
+	cd "${S}"  # base_src_unpack moves to ${S}
 	ghc_setup_cflags
 
 	if use binary; then
@@ -159,18 +175,7 @@ src_unpack() {
 		mv "${WORKDIR}/usr" "${S}"
 	else
 		if ! use ghcbootstrap; then
-			# fix install_names on darwin
-			cd "${WORKDIR}/usr" || die "binary corrupt -- usr dir missing"
-			if [[ ${CHOST} == *-darwin* ]]; then
-				for fixme_file in lib/ghc-${PV}/ghc-{${PV},pkg.bin}; do
-					for fixme_lib in {/lib/lib{gcc_s.1,readline.5.2,ncurses},/usr/lib/libgmp.3}.dylib; do
-						install_name_tool \
-							-change ${fixme_lib} "${EPREFIX}"${fixme_lib} \
-							${fixme_file}
-					done
-				done
-			fi
-
+			if [[ ${CHOST} == *-linux-gnu ]] ; then
 			# Relocate from /usr to ${WORKDIR}/usr
 			sed -i -e "s|/usr|${WORKDIR}/usr|g" \
 				"${WORKDIR}/usr/bin/ghc-${PV}" \
@@ -179,6 +184,52 @@ src_unpack() {
 				"${WORKDIR}/usr/bin/hsc2hs" \
 				"${WORKDIR}"/usr/lib*/${P}/package.conf \
 				|| die "Relocating ghc from /usr to workdir failed"
+			else
+				mkdir "${WORKDIR}"/ghc-bin-installer || die
+				pushd "${WORKDIR}"/ghc-bin-installer > /dev/null || die
+				use sparc-solaris && unpack ghc-${PV}-sparc-sun-solaris2.tar.bz2
+				use x86-solaris && unpack ghc-${PV}-i386-unknown-solaris2.tar.bz2
+				use ppc-macos && unpack ghc-${PV}-powerpc-apple-darwin.tar.bz2
+				use x86-macos && unpack ghc-${PV}-i386-apple-darwin.tar.bz2
+
+				# it is autoconf, but we really don't want to give it too
+				# much arguments, in fact we do the make in-place anyway
+				pushd "${P}" > /dev/null || die
+				./configure --prefix="${WORKDIR}"/usr || die
+				make install || die
+				popd > /dev/null
+				popd > /dev/null
+				# fix the binaries so they run, on Solaris we need an
+				# LD_LIBRARY_PATH which has our prefix libdirs, on Darwin we
+				# need to replace the frameworks with our libs from the prefix
+				pushd "${WORKDIR}"/usr > /dev/null || die
+				if [[ ${CHOST} == *-solaris* ]] ; then
+					export LD_LIBRARY_PATH="${EPREFIX}/$(get_libdir):${EPREFIX}/usr/$(get_libdir):${LD_LIBRARY_PATH}"
+				elif [[ ${CHOST} == *-darwin* ]] ; then
+					local readline_framework
+					if [[ ${CHOST} == powerpc-*-darwin* ]]; then
+						readline_framework=GNUreadline.framework/GNUreadline
+					else
+						readline_framework=GNUreadline.framework/Versions/A/GNUreadline
+					fi
+					for binary in lib/*-apple-darwin/ghc-{${PV},pkg.bin}; do
+						install_name_tool -change \
+							${readline_framework} \
+							"${EPREFIX}"/lib/libreadline.dylib \
+							${binary} || die
+						install_name_tool -change \
+							GMP.framework/Versions/A/GMP \
+							"${EPREFIX}"/usr/lib/libgmp.dylib \
+							${binary} || die
+					done
+					# we don't do frameworks!
+					sed -i \
+						-e 's/\(frameworks = \)\["GMP"\]/\1[]/g' \
+						-e 's/\(extraLibraries = \)\["m"\]/\1["m","gmp"]/g' \
+						lib/*-apple-darwin/package.conf || die
+				fi
+				popd > /dev/null
+			fi
 		fi
 
 		# Hack to prevent haddock being installed, remove when ./configure
@@ -186,15 +237,19 @@ src_unpack() {
 		sed -i -e 's/DO_NOT_INSTALL =/DO_NOT_INSTALL = haddock/' \
 			"${S}/utils/Makefile"
 
+		# Highly useful when you need to pass your HC opts to bootstrap libs
+		# Currently it is needed for ppc64 to build with broken compiler
+		epatch "${FILESDIR}/ghc-6.10.4-propagate-hc-options-to-all-libraries.patch"
+
+		# see ghc_setup_cflags()
+		use ppc64 && epatch "${FILESDIR}/ghc-6.10.4-ppc64-always-minimal-toc.patch"
+
 		# as we have changed the build system with the readline patch
-#		eautoreconf
+# see below		eautoreconf
 	fi
 
-	# Make configure find docbook-xsl-stylesheets in prefix
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-6.8.2-prefix.patch
-	eprefixify configure.ac
-
+	# Make configure find docbook-xsl-stylesheets from Prefix
+	sed -i -e '/^FP_DIR_DOCBOOK_XSL/s:\[.*\]:['"${EPREFIX}"'/usr/share/sgml/docbook/xsl-stylesheets/]:' configure.ac || die
 	eautoreconf
 }
 
@@ -210,8 +265,11 @@ src_compile() {
 
 		# We also need to use the GHC_CFLAGS flags when building ghc itself
 		echo "SRC_HC_OPTS+=${GHC_CFLAGS}" >> mk/build.mk
-		[[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* ]] && \
+		case $($(tc-getAS) -v 2>&1 </dev/null) in
+			*"GNU Binutils"*) # GNU ld
 			echo "SRC_CC_OPTS+=${CFLAGS} -Wa,--noexecstack" >> mk/build.mk
+			;;
+		esac
 
 		# We can't depend on haddock except when bootstrapping when we
 		# must build docs and include them into the binary .tbz2 package
@@ -220,6 +278,7 @@ src_compile() {
 			echo HADDOCK_DOCS=YES >> mk/build.mk
 		else
 			echo XMLDocWays="" >> mk/build.mk
+			echo HADDOCK_DOCS=NO >> mk/build.mk
 		fi
 
 		# circumvent a very strange bug that seems related with ghc producing
@@ -229,7 +288,8 @@ src_compile() {
 
 		# GHC build system knows to build unregisterised on alpha and hppa,
 		# but we have to tell it to build unregisterised on some arches
-		if use alpha || use hppa || use ia64 || use ppc64 || use sparc; then
+		# ppc64: EvilMangler currently does not understand some TOCs
+		if use alpha || use hppa || use ppc64; then
 			echo "GhcUnregisterised=YES" >> mk/build.mk
 			echo "GhcWithInterpreter=NO" >> mk/build.mk
 			echo "GhcWithNativeCodeGen=NO" >> mk/build.mk
@@ -237,9 +297,10 @@ src_compile() {
 			echo "GhcRTSWays := debug" >> mk/build.mk
 			echo "GhcNotThreaded=YES" >> mk/build.mk
 		fi
-
-		# http://www.opensubscriber.com/message/glasgow-haskell-users@haskell.org/8628193.html
-		#[[ ${CHOST} == *-darwin* ]] && echo "EXTRA_AR_ARGS=-s" >> mk/build.mk
+		# Have "ld -r --relax" problem with split-objs on sparc:
+		if use sparc; then
+			echo "SplitObjs=NO" >> mk/build.mk
+		fi
 
 		# Get ghc from the unpacked binary .tbz2
 		# except when bootstrapping we just pick ghc up off the path
