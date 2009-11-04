@@ -57,15 +57,15 @@ src_unpack() {
 }
 
 src_compile() {
-	local makeopts="
-		CC=$(tc-getCC)
-		AR=$(tc-getAR)
-		RANLIB=$(tc-getRANLIB)
-	"
+	local makeopts=(
+		"CC=$(tc-getCC)"
+		"AR=$(tc-getAR)"
+		"RANLIB=$(tc-getRANLIB)"
+	)
 	local checkopts=
 	case "${CHOST}" in
 		*-darwin*)
-			emake ${makeopts} PREFIX="${EPREFIX}"/usr -f Makefile-libbz2_dylib || die "Make failed libbz2"
+			emake "${makeopts[@]}" PREFIX="${EPREFIX}"/usr -f Makefile-libbz2_dylib || die "Make failed libbz2"
 		;;
 		*-mint*)
 			# do nothing, no shared libraries
@@ -74,15 +74,15 @@ src_compile() {
 		*-aix*)
 			# AIX has shared object libbz2.so.1 inside libbz2.a.
 			# We build libbz2.a here to avoid static-only libbz2.a below.
-			emake ${makeopts} SOLDFLAGS=-shared -f Makefile-libbz2_so all-aix || die "Make failed libbz2"
+			emake "${makeopts[@]}" SOLDFLAGS=-shared -f Makefile-libbz2_so all-aix || die "Make failed libbz2"
 			checkopts="TESTENV=LIBPATH=."
 		;;
 		*)
-			emake ${makeopts} -f Makefile-libbz2_so all || die "Make failed libbz2"
+			emake "${makeopts[@]}" -f Makefile-libbz2_so all || die "Make failed libbz2"
 		;;
 	esac
 	use static && append-flags -static
-	emake LDFLAGS="${LDFLAGS}" ${makeopts} all || die "Make failed"
+	emake LDFLAGS="${LDFLAGS}" "${makeopts[@]}" all || die "Make failed"
 }
 
 src_install() {
