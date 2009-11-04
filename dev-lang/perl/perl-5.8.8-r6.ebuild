@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r6.ebuild,v 1.6 2009/09/28 15:58:28 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r6.ebuild,v 1.7 2009/11/04 12:39:15 haubi Exp $
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -177,6 +177,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-CAN-2005-0448-rmtree-2.patch
 	epatch "${FILESDIR}"/${P}-CAN-2005-0448-rmtree-2-no-dirfd.patch #269430
 	epatch "${FILESDIR}"/${P}-fix_file_path_chdir.patch
+
+	# Respect CFLAGS even for linking when done with compiler
+	epatch "${FILESDIR}"/${P}-ccld-cflags.patch
 
 	# on interix, $firstmakefile may not be 'makefile', since the
 	# filesystem may be case insensitive, and perl will wrongly
