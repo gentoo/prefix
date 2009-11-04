@@ -77,6 +77,11 @@ src_prepare() {
 	# Fix parallel build, bug 287825
 	epatch "${FILESDIR}/${PN}-1.26.0-fix-parallel-build.patch"
 
+	if [[ ${CHOST} == *-darwin8 ]] ; then
+		# http://old.nabble.com/-MacPorts---21656:-pango-1.26-%2Bquartz-doesn%27t-compile-on-tiger-td25636749.html
+		EPATCH_OPTS=-R epatch "${FILESDIR}"/${P}-atsui-coretext.patch
+	fi
+
 	eautoreconf
 	elibtoolize # for Darwin bundles
 }
