@@ -88,7 +88,10 @@ src_prepare() {
 	# stupidos hardcoding GNU specifics
 	case $($(tc-getAS) -v 2>&1 </dev/null) in
 		*"GNU Binutils"*) # GNU ld
-			EPATCH_EXCLUDE=07_all_ctypes-execstack.patch
+			:
+		;;
+		*)
+			EPATCH_EXCLUDE=07_all_ctypes_execstack.patch
 		;;
 	esac
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
