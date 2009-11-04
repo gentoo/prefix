@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/libperl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.145 2009/10/27 17:14:33 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.146 2009/11/04 12:37:54 haubi Exp $
+
+  04 Nov 2009; Michael Haubenwallner <haubi@gentoo.org>
+  libperl-5.8.8-r2.ebuild, +files/libperl-5.8.8-ccld-cflags.patch:
+  Respect CFLAGS even for linking when done with compiler
 
   27 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> libperl-5.10.1.ebuild:
   Keywording for ppc, bug 288028

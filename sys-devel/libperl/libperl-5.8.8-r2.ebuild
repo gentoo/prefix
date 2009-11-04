@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r2.ebuild,v 1.11 2009/05/02 13:19:14 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.8.8-r2.ebuild,v 1.12 2009/11/04 12:37:54 haubi Exp $
 
 # The basic theory based on comments from Daniel Robbins <drobbins@gentoo.org>.
 #
@@ -169,6 +169,9 @@ src_unpack() {
 
 	# patch to fix bug #219203
 	epatch "${FILESDIR}"/${P}-CVE-2008-1927.patch
+
+	# Respect CFLAGS even for linking when done with compiler
+	epatch "${FILESDIR}"/${P}-ccld-cflags.patch
 
 	# Respect LDFLAGS
 	sed -e 's/$(SHRPLDFLAGS)/& $(LDFLAGS)/' -i Makefile.SH
