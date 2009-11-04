@@ -21,6 +21,13 @@ RDEPEND="|| ( >=sys-apps/portage-2.1.6
 			  sys-apps/pkgcore
 			  sys-apps/paludis )"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	sed -i -e '/pkgDBDir/s:"/:"'"${EPREFIX}"'/:' \
+		Distribution/Gentoo/Packages.hs || die
+}
+
 src_compile() {
 	CABAL_CONFIGURE_FLAGS="--bindir=${EPREFIX}/usr/sbin"
 
