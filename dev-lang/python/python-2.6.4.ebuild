@@ -86,8 +86,11 @@ src_prepare() {
 	fi
 
 	# stupidos hardcoding GNU specifics
-	[[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* || ${CHOST} == *bsd* ]] || \
-		EPATCH_EXCLUDE=21_all_ctypes-execstack.patch
+	case $($(tc-getAS) -v 2>&1 </dev/null) in
+		*"GNU Binutils"*) # GNU ld
+			EPATCH_EXCLUDE=07_all_ctypes-execstack.patch
+		;;
+	esac
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
