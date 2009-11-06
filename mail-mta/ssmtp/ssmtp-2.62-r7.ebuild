@@ -48,6 +48,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/ssmtp-2.61-darwin7.patch
 	epatch "${FILESDIR}"/ssmtp-2.62-strndup.patch
 	epatch "${FILESDIR}"/ssmtp-2.62-darwin-crypto.patch
+	epatch "${FILESDIR}"/ssmtp-2.62-solaris-basename-conflict.patch
 	eautoreconf
 
 	# Respect LDFLAGS (bug #152197)
