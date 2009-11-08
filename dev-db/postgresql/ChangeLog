@@ -1,6 +1,16 @@
 # ChangeLog for dev-db/postgresql
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.384 2009/10/14 00:35:33 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql/ChangeLog,v 1.385 2009/11/05 21:34:49 patrick Exp $
+
+*postgresql-8.2.14 (05 Nov 2009)
+*postgresql-8.1.18 (05 Nov 2009)
+*postgresql-8.0.22 (05 Nov 2009)
+*postgresql-7.4.26 (05 Nov 2009)
+
+  05 Nov 2009; Patrick Lauer <patrick@gentoo.org> +postgresql-7.4.26.ebuild,
+  +postgresql-8.0.22.ebuild, +postgresql-8.1.18.ebuild,
+  +postgresql-8.2.14.ebuild:
+  Bump for #284274
 
   14 Oct 2009; Jeroen Roovers <jer@gentoo.org> postgresql-8.1.11.ebuild:
   Stable for HPPA (bug #268138).
