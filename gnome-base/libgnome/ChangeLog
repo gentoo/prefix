@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/libgnome
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.181 2009/10/29 21:31:42 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnome/ChangeLog,v 1.182 2009/11/05 19:47:58 maekke Exp $
+
+  05 Nov 2009; Markus Meier <maekke@gentoo.org> libgnome-2.26.0.ebuild:
+  arm stable, bug #281427
 
 *libgnome-2.28.0 (29 Oct 2009)
 
