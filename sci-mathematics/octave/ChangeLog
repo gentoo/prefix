@@ -1,6 +1,14 @@
 # ChangeLog for sci-mathematics/octave
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/ChangeLog,v 1.77 2009/10/12 20:06:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/ChangeLog,v 1.79 2009/11/04 11:26:39 markusle Exp $
+
+*octave-3.2.3 (04 Nov 2009)
+
+  04 Nov 2009; Markus Dittrich <markusle@gentoo.org> +octave-3.2.3.ebuild:
+  Version bump (fixes #291560).
+
+  04 Nov 2009; Markus Dittrich <markusle@gentoo.org> octave-3.2.0.ebuild:
+  Added arpack to list of sparse matrix dependencies (#277171).
 
   12 Oct 2009; Jeroen Roovers <jer@gentoo.org> octave-3.0.3.ebuild:
   Stable for HPPA (bug #245707).
