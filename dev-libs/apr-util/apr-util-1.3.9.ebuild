@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.9.ebuild,v 1.11 2009/09/20 09:48:31 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.9.ebuild,v 1.12 2009/11/04 12:12:05 arfrever Exp $
 
 EAPI="2"
 
@@ -85,7 +85,7 @@ src_install() {
 	dodoc CHANGES NOTICE README
 
 	if use doc; then
-		dohtml docs/dox/html/* || die "dohtml failed"
+		dohtml -r docs/dox/html/* || die "dohtml failed"
 	fi
 
 	# This file is only used on AIX systems, which Gentoo is not,
