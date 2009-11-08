@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/icu4j
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/ChangeLog,v 1.32 2009/11/03 08:21:18 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icu4j/ChangeLog,v 1.33 2009/11/07 11:01:06 caster Exp $
+
+  07 Nov 2009; Vlastimil Babka <caster@gentoo.org> -icu4j-4.0.ebuild,
+  -icu4j-4.0.1.ebuild:
+  Remove old.
 
 *icu4j-4.0.1.1 (03 Nov 2009)
 
