@@ -1,6 +1,20 @@
 # ChangeLog for dev-java/eclipse-ecj
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/eclipse-ecj/ChangeLog,v 1.57 2009/09/05 18:57:16 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/eclipse-ecj/ChangeLog,v 1.59 2009/11/04 19:05:35 caster Exp $
+
+*eclipse-ecj-3.5.1 (04 Nov 2009)
+
+  04 Nov 2009; Vlastimil Babka <caster@gentoo.org>
+  +eclipse-ecj-3.5.1.ebuild, metadata.xml:
+  Version bump. Fixes bug #277998. Instead of java6 flag, it builds most
+  using 1.4 bytecode and only 1.6 specific parts with 1.6 bytecode, as
+  upstream does. Adds local USE flag 'ant' enabled by default, which pulls
+  the Ant adapter in PDEPEND.
+
+  04 Nov 2009; Vlastimil Babka <caster@gentoo.org>
+  -eclipse-ecj-3.2.2.ebuild, -files/ecj-3.3, -eclipse-ecj-3.3.0-r2.ebuild,
+  -eclipse-ecj-3.4-r3.ebuild:
+  Remove old.
 
   05 Sep 2009; Brent Baude <ranger@gentoo.org> eclipse-ecj-3.3.0-r3.ebuild:
   Marking eclipse-ecj-3.3.0-r3 ppc64 for bug 249521
