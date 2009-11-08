@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.3.0-r1.ebuild,v 1.1 2009/11/01 22:47:10 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.3.0-r1.ebuild,v 1.2 2009/11/05 00:06:52 eva Exp $
 
 EAPI="2"
 
@@ -73,8 +73,6 @@ src_configure() {
 	my_conf="$(use_with X x)
 		$(use_enable debug verbose-mode)
 		$(use_enable debug asserts)
-		$(use_enable doc doxygen-docs)
-		$(use_enable doc xml-docs)
 		$(use_enable kernel_linux inotify)
 		$(use_enable kernel_FreeBSD kqueue)
 		$(use_enable kernel_Darwin kqueue)
@@ -90,7 +88,9 @@ src_configure() {
 	mkdir "${BD}"
 	cd "${BD}"
 	einfo "Running configure in ${BD}"
-	ECONF_SOURCE="${S}" econf ${my_conf}
+	ECONF_SOURCE="${S}" econf ${my_conf} \
+		$(use_enable doc doxygen-docs) \
+		$(use_enable doc xml-docs)
 
 	if use test; then
 		mkdir "${TBD}"
@@ -113,15 +113,15 @@ src_compile() {
 	einfo "Running make in ${BD}"
 	emake || die "make failed"
 
+	if use doc; then
+		einfo "Building API documentation..."
+		doxygen || die "doxygen failed"
+	fi
+
 	if use test; then
 		cd "${TBD}"
 		einfo "Running make in ${TBD}"
 		emake || die "make failed"
-	fi
-
-	if use doc; then
-		einfo "Building API documentation..."
-		doxygen || die "doxygen failed"
 	fi
 }
 
