@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libgcrypt
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.124 2009/04/05 05:39:48 arfrever Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.125 2009/11/07 18:18:38 arfrever Exp $
+
+  07 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libgcrypt-1.4.4.ebuild:
+  Disable C++ checks (bug #288334).
 
   05 Apr 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   libgcrypt-1.4.4.ebuild:

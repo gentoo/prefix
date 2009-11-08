@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.4.ebuild,v 1.9 2009/04/05 05:39:48 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.4.ebuild,v 1.10 2009/11/07 18:18:38 arfrever Exp $
+
+EAPI="2"
 
 inherit eutils flag-o-matic toolchain-funcs autotools
 
@@ -36,14 +38,17 @@ pkg_setup() {
 	[[ $(tc-arch) == x86 && $(gcc-version) == 4.1 ]] && replace-flags -O3 -O2
 }
 
-src_compile() {
+src_prepare() {
+	epunt_cxx
+}
+
+src_configure() {
 	# --disable-padlock-support for bug #201917
 	econf \
 		--disable-padlock-support \
 		--disable-dependency-tracking \
 		--with-pic \
 		--enable-noexecstack
-	emake || die "emake failed"
 }
 
 src_install() {
