@@ -1,6 +1,9 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.238 2009/10/29 22:41:43 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.239 2009/11/05 20:02:39 maekke Exp $
+
+  05 Nov 2009; Markus Meier <maekke@gentoo.org> metacity-2.26.0-r1.ebuild:
+  arm stable, bug #281427
 
 *metacity-2.28.0 (29 Oct 2009)
 
