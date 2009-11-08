@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.297 2009/10/01 20:27:01 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.298 2009/11/04 11:17:50 maekke Exp $
+
+  04 Nov 2009; Markus Meier <maekke@gentoo.org> db-4.7.25_p4.ebuild:
+  arm stable, bug #285324
 
   01 Oct 2009; Tobias Klausmann <klausman@gentoo.org> db-4.7.25_p4.ebuild:
   Stable on alpha, bug #285324
