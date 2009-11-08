@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_passwdqc/pam_passwdqc-1.0.5.ebuild,v 1.15 2009/10/20 12:25:05 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pam_passwdqc/pam_passwdqc-1.0.5.ebuild,v 1.16 2009/11/03 17:50:11 armin76 Exp $
 
 inherit pam eutils toolchain-funcs
 
