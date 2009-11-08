@@ -1,6 +1,9 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.208 2009/10/31 14:38:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.209 2009/11/03 17:54:59 armin76 Exp $
+
+  03 Nov 2009; Raúl Porcel <armin76@gentoo.org> mpg123-1.9.0.ebuild:
+  ia64/sparc stable wrt #287239
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> mpg123-1.9.0.ebuild:
   Marking mpg123-1.9.0 ppc64 for bug 287239
