@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/autoconf-wrapper
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.65 2009/07/27 04:15:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf-wrapper/ChangeLog,v 1.66 2009/11/05 16:39:40 vapier Exp $
+
+  05 Nov 2009; Mike Frysinger <vapier@gentoo.org> autoconf-wrapper-7.ebuild:
+  Stabilize for everyone.
 
 *autoconf-wrapper-7 (27 Jul 2009)
 
