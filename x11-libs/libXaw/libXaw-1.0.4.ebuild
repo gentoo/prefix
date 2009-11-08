@@ -1,11 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/libXaw-1.0.4.ebuild,v 1.9 2009/05/04 17:03:40 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXaw/libXaw-1.0.4.ebuild,v 1.10 2009/10/26 19:32:45 grobian Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
 
-inherit eutils x-modular autotools
+inherit x-modular flag-o-matic autotools
 
 DESCRIPTION="X.Org Xaw library"
 
