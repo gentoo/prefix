@@ -1,6 +1,13 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.120 2009/10/08 17:58:27 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.122 2009/11/04 15:46:40 maekke Exp $
+
+  04 Nov 2009; Markus Meier <maekke@gentoo.org> apache-2.2.14-r1.ebuild:
+  amd64/arm/x86 stable, bug #291810
+
+  04 Nov 2009; Benedikt Böhm <hollow@gentoo.org> -apache-2.2.13.ebuild,
+  -apache-2.2.13-r1.ebuild, -apache-2.2.14.ebuild:
+  remove old versions
 
 *apache-2.2.14-r1 (08 Oct 2009)
 
