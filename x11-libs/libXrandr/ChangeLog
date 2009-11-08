@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXrandr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrandr/ChangeLog,v 1.65 2009/10/26 20:37:52 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXrandr/ChangeLog,v 1.66 2009/11/05 08:56:29 remi Exp $
+
+  05 Nov 2009; Rémi Cardona <remi@gentoo.org> libXrandr-1.3.0.ebuild:
+  sync with overlay, xextproto is needed at build time
 
   26 Oct 2009; Jeroen Roovers <jer@gentoo.org> libXrandr-1.3.0.ebuild:
   Stable for HPPA (bug #282290).
