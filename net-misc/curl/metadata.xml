@@ -8,6 +8,8 @@
   <use>
     <flag name="ares">Enabled c-ares dns support</flag>
     <flag name="libssh2">Enabled SSH urls in curl using libssh2</flag>
+    <flag name="openssl">Use openssl as the crypto engine</flag>
+    <flag name="gnutls">Use gnutls as the crypto engine</flag>
     <flag name="nss">Use NSS as the crypto engine</flag>
   </use>
 </pkgmetadata>
