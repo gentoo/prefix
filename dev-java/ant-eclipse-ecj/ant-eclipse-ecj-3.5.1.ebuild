@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ant-eclipse-ecj-3.5.1.ebuild,v 1.1 2009/11/04 19:06:07 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ant-eclipse-ecj-3.5.1.ebuild,v 1.2 2009/11/06 15:26:14 elvanor Exp $
 
 inherit java-pkg-2
 
@@ -21,8 +21,7 @@ RDEPEND=">=virtual/jre-1.4
 	>=dev-java/ant-core-1.7"
 DEPEND="${RDEPEND}
 	app-arch/unzip
-	>=virtual/jdk-1.4
-	sys-apps/findutils"
+	>=virtual/jdk-1.4"
 
 src_unpack() {
 	unpack ${A}
