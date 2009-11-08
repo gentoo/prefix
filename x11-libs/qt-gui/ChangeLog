@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.75 2009/10/31 13:50:40 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.76 2009/11/05 11:31:20 maekke Exp $
+
+  05 Nov 2009; Markus Meier <maekke@gentoo.org> qt-gui-4.5.3-r2.ebuild:
+  x86 stable, bug #290922
 
   31 Oct 2009; Markus Meier <maekke@gentoo.org> qt-gui-4.5.3-r2.ebuild:
   amd64 stable, bug #290922
