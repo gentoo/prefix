@@ -1,8 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgpg-error/libgpg-error-1.7.ebuild,v 1.8 2009/05/22 14:33:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgpg-error/libgpg-error-1.7.ebuild,v 1.9 2009/11/07 18:25:51 arfrever Exp $
 
-inherit libtool autotools eutils
+EAPI="2"
+
+inherit eutils libtool autotools
 
 DESCRIPTION="Contains error handling functions used by GnuPG software"
 HOMEPAGE="http://www.gnupg.org/related_software/libgpg-error"
@@ -16,15 +18,16 @@ IUSE="nls"
 RDEPEND="nls? ( virtual/libintl )"
 DEPEND="nls? ( sys-devel/gettext )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	eautoreconf # need new libtool for interix
+src_prepare() {
+	epunt_cxx
+	# for BSD?
+	elibtoolize
+
+	[[ ${CHOST} == *-interix* ]] && eautoreconf # need new libtool for interix
 }
 
-src_compile() {
+src_configure() {
 	econf $(use_enable nls)
-	emake || die "emake failed"
 }
 
 src_install() {
