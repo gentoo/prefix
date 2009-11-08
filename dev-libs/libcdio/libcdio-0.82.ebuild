@@ -25,6 +25,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}"/${P}-solaris.patch
+
 	eautomake
 	elibtoolize
 }
