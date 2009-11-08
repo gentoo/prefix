@@ -1,6 +1,17 @@
 # ChangeLog for net-misc/aria2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.46 2009/10/11 09:15:38 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.49 2009/11/04 11:25:59 maekke Exp $
+
+  04 Nov 2009; Markus Meier <maekke@gentoo.org> aria2-1.6.3.ebuild:
+  amd64 stable, bug #288291
+
+  03 Nov 2009; Christian Faulhammer <fauli@gentoo.org> aria2-1.6.3.ebuild:
+  stable x86, security bug 288291
+
+*aria2-1.6.3 (03 Nov 2009)
+
+  03 Nov 2009; Tiziano Müller <dev-zero@gentoo.org> +aria2-1.6.3.ebuild:
+  Version bump.
 
 *aria2-1.6.2 (11 Oct 2009)
 
