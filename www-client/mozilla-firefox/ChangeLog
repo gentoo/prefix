@@ -1,6 +1,14 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.564 2009/10/30 18:11:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.566 2009/11/04 14:16:29 anarchy Exp $
+
+  04 Nov 2009; Jory A. Pratt <anarchy@gentoo.org>
+  mozilla-firefox-3.5.4.ebuild:
+  apply patch in topsrc dir bug #291797
+
+  04 Nov 2009; Thomas Anderson <tanderson@gentoo.org>
+  mozilla-firefox-3.5.4.ebuild:
+  stable amd64, as requested by Anarchy.
 
   30 Oct 2009; Jeroen Roovers <jer@gentoo.org> mozilla-firefox-3.5.4.ebuild:
   Stable for HPPA (bug #290892).
