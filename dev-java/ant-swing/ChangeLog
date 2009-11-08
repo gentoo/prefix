@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/ant-swing
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-swing/ChangeLog,v 1.16 2009/05/15 22:25:44 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-swing/ChangeLog,v 1.17 2009/11/03 20:57:23 caster Exp $
+
+  03 Nov 2009; Vlastimil Babka <caster@gentoo.org> ant-swing-1.7.1.ebuild:
+  Fix DESCRIPTION, bug #289126.
 
   15 May 2009; Vlastimil Babka <caster@gentoo.org> -ant-swing-1.7.0.ebuild:
   Removing ant 1.7.0, bug #261563.
