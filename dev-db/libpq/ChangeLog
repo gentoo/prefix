@@ -1,6 +1,17 @@
 # ChangeLog for dev-db/libpq
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.157 2009/10/14 00:35:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/libpq/ChangeLog,v 1.158 2009/11/05 21:33:58 patrick Exp $
+
+*libpq-8.2.14 (05 Nov 2009)
+*libpq-8.1.18 (05 Nov 2009)
+*libpq-8.0.22 (05 Nov 2009)
+*libpq-7.4.26 (05 Nov 2009)
+
+  05 Nov 2009; Patrick Lauer <patrick@gentoo.org> +libpq-7.4.26.ebuild,
+  +files/libpq-7.4.26-gentoo.patch, +libpq-8.0.22.ebuild,
+  +libpq-8.1.18.ebuild, +libpq-8.2.14.ebuild,
+  +files/libpq-8.2.14-gentoo.patch:
+  Bump for #284274
 
   14 Oct 2009; Jeroen Roovers <jer@gentoo.org> libpq-8.1.11.ebuild:
   Stable for HPPA (bug #268138).
