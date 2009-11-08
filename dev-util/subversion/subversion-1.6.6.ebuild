@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.6.ebuild,v 1.1 2009/10/24 15:02:21 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.6.ebuild,v 1.2 2009/11/04 12:04:23 arfrever Exp $
 
 EAPI="2"
 
@@ -695,7 +695,7 @@ EOF
 		einfo
 		einfo "Installation of Subversion HTML documentation"
 		einfo
-		dohtml doc/doxygen/html/* || die "Installation of Subversion HTML documentation failed"
+		dohtml -r doc/doxygen/html/* || die "Installation of Subversion HTML documentation failed"
 
 		insinto /usr/share/doc/${PF}
 		doins -r notes
