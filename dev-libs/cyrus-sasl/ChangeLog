@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/cyrus-sasl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.208 2009/11/01 15:38:59 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.209 2009/11/03 14:46:02 jer Exp $
+
+  03 Nov 2009; Jeroen Roovers <jer@gentoo.org> cyrus-sasl-2.1.23-r1.ebuild:
+  Stable for HPPA (bug #289481).
 
   01 Nov 2009; nixnut <nixnut@gentoo.org> cyrus-sasl-2.1.23-r1.ebuild:
   ppc stable #289481
