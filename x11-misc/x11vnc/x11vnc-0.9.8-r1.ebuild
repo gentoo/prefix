@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.8.ebuild,v 1.2 2009/11/06 22:06:57 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/x11vnc-0.9.8-r1.ebuild,v 1.1 2009/11/06 21:54:33 swegener Exp $
 
 EAPI="2"
 
@@ -15,7 +15,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="+jpeg +zlib threads ssl crypt v4l xinerama avahi system-libvncserver"
 
-RDEPEND="system-libvncserver? ( <net-libs/libvncserver-0.9.7 )
+RDEPEND="system-libvncserver? ( >=net-libs/libvncserver-0.9.7[threads=] )
 	zlib? ( sys-libs/zlib )
 	jpeg? (	media-libs/jpeg )
 	ssl? ( dev-libs/openssl )
@@ -38,6 +38,8 @@ DEPEND="${RDEPEND}
 	x11-proto/xextproto"
 
 src_prepare() {
+	epatch "${FILESDIR}/${P}-xshm-header-fix.patch"
+
 	epatch "${FILESDIR}"/${PN}-0.9.3-interix.patch
 }
 
@@ -50,11 +52,6 @@ pkg_setup() {
 }
 
 src_configure() {
-	local myconf=""
-
-	# we need to force threads on, because our system libvncserver gets build with thread support
-	use system-libvncserver && myconf="--with-pthread"
-
 	econf \
 		$(use_with system-libvncserver) \
 		$(use_with avahi) \
@@ -66,7 +63,6 @@ src_configure() {
 		$(use_with jpeg) \
 		$(use_with zlib) \
 		$(use_with threads pthread) \
-		${myconf} \
 		|| die "econf failed"
 }
 

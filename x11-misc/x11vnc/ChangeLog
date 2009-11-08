@@ -1,6 +1,18 @@
 # ChangeLog for x11-misc/x11vnc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.70 2009/08/13 17:49:56 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.72 2009/11/06 22:06:57 swegener Exp $
+
+  06 Nov 2009; Sven Wegener <swegener@gentoo.org> x11vnc-0.9.6.ebuild,
+  x11vnc-0.9.7.ebuild, x11vnc-0.9.8.ebuild:
+  Update libvncserver dependency on the one having threads always enabled.
+
+*x11vnc-0.9.8-r1 (06 Nov 2009)
+
+  06 Nov 2009; Sven Wegener <swegener@gentoo.org> +x11vnc-0.9.8-r1.ebuild,
+  +files/x11vnc-0.9.8-xshm-header-fix.patch:
+  Revision bump. Depend on new system libvncserver supporting the threads
+  USE flags. Fix missing xshm includes, bug #290827 by Wolfgang Draxinger
+  and Fabiano.
 
 *x11vnc-0.9.8 (13 Aug 2009)
 
