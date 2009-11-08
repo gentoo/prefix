@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/tgif-4.1.45-r1.ebuild,v 1.1 2009/10/05 21:14:37 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/tgif-4.1.45-r1.ebuild,v 1.2 2009/11/07 00:37:02 ssuominen Exp $
 
 inherit eutils toolchain-funcs
 
@@ -13,13 +13,12 @@ SRC_URI="ftp://bourbon.usc.edu/pub/${PN}/${MY_P}.tar.gz"
 LICENSE="QPL-1.0"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="kde"
+IUSE=""
 
 DEPEND="x11-libs/libX11
 	x11-proto/xproto"
 RDEPEND="${DEPEND}
-	media-libs/netpbm
-	kde? ( || ( =kde-base/kdeprint-3.5* =kde-base/kdebase-3.5* ) )"
+	media-libs/netpbm"
 
 S=${WORKDIR}/${MY_P}
 
@@ -28,7 +27,6 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-gentoo.patch"
 	epatch "${FILESDIR}/${P}-sym.patch"
-	use kde && epatch "${FILESDIR}/${P}-kprinter.patch"
 	sed -i \
 		-e '/^INSTPGMFLAGS/d' \
 		-e 's/#prtgif /prtgif #/' \

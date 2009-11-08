@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/tgif
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/ChangeLog,v 1.13 2009/10/05 21:14:37 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/tgif/ChangeLog,v 1.14 2009/11/07 00:37:02 ssuominen Exp $
+
+  07 Nov 2009; Samuli Suominen <ssuominen@gentoo.org> tgif-4.1.45-r1.ebuild:
+  Remove kde-base/kdeprint:3.5 support.
 
 *tgif-4.1.45-r1 (05 Oct 2009)
 
