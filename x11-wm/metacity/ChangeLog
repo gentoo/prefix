@@ -1,6 +1,12 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.239 2009/11/05 20:02:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.240 2009/11/06 15:43:38 mrpouet Exp $
+
+  06 Nov 2009; Romain Perier <mrpouet@gentoo.org>
+  metacity-2.28.0.ebuild,
+  +files/metacity-2.28.0-sys-wait-header.patch:
+  Fix bug #292009, build fails on FreeBSD, include sys/wait.h instead of
+  wait.h as described in POSIX specs, many thanks to aballier.
 
   05 Nov 2009; Markus Meier <maekke@gentoo.org> metacity-2.26.0-r1.ebuild:
   arm stable, bug #281427

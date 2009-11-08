@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.28.0.ebuild,v 1.1 2009/10/29 22:41:43 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.28.0.ebuild,v 1.2 2009/11/06 15:43:38 mrpouet Exp $
 
 EAPI="2"
 # debug only changes CFLAGS
@@ -78,4 +78,8 @@ src_prepare() {
 	# and try to restart metacity infinitively when compiz is started)
 	# patch import from upstream bug #588119.
 	epatch "${FILESDIR}/${P}-restartstylehint-when-replace.patch"
+
+	# Use sys/wait.h header instead of wait.h as described in posix specs,
+	# bug 292009
+	epatch "${FILESDIR}/${P}-sys-wait-header.patch"
 }
