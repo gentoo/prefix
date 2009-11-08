@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8k-r1.ebuild,v 1.5 2009/11/05 17:15:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8l.ebuild,v 1.2 2009/11/05 20:08:49 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -39,6 +39,7 @@ src_unpack() {
 	#epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-sslv3-no-tlsext.patch
 	#epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
+	epatch "${FILESDIR}"/${PN}-0.9.8l-CVE-2009-137{7,8,9}.patch #270305
 	sed -i -e '/DIRS/ s/ fips / /g' Makefile{,.org} \
 		|| die "Removing fips from openssl failed."
 
@@ -46,7 +47,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-mint.patch
-	epatch "${FILESDIR}"/${P}-aixdll.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8k-aixdll.patch
 	if [[ ${CHOST} == *-interix* ]] ; then
 		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
 	fi

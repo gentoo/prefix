@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.295 2009/11/01 16:39:15 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.297 2009/11/05 20:08:49 vapier Exp $
+
+  05 Nov 2009; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8l.ebuild,
+  +files/openssl-0.9.8l-CVE-2009-1377.patch,
+  +files/openssl-0.9.8l-CVE-2009-1378.patch,
+  +files/openssl-0.9.8l-CVE-2009-1379.patch:
+  Add some patches from upstream #270305.
+
+*openssl-0.9.8l (05 Nov 2009)
+
+  05 Nov 2009; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8l.ebuild:
+  Version bump.
 
   01 Nov 2009; nixnut <nixnut@gentoo.org> openssl-0.9.8k-r1.ebuild:
   ppc stable #290545
