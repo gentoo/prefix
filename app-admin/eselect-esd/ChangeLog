@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/eselect-esd
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-esd/ChangeLog,v 1.19 2007/05/10 08:00:17 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-esd/ChangeLog,v 1.20 2009/11/06 20:58:33 ulm Exp $
+
+*eselect-esd-20091106 (06 Nov 2009)
+
+  06 Nov 2009; Ulrich Mueller <ulm@gentoo.org> +eselect-esd-20091106.ebuild:
+  Version bump, bug 292102.
 
   10 May 2007; Fabian Groffen <grobian@gentoo.org>
   eselect-esd-20060719.ebuild:
