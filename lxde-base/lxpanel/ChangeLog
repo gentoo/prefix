@@ -1,6 +1,11 @@
 # ChangeLog for lxde-base/lxpanel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxpanel/ChangeLog,v 1.9 2009/08/29 13:47:15 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxpanel/ChangeLog,v 1.10 2009/11/05 17:36:25 vostorga Exp $
+
+  05 Nov 2009; Víctor Ostorga <vostorga@gentoo.org>
+  -lxpanel-0.3.8.1.ebuild, -lxpanel-0.4.1.ebuild, -lxpanel-0.5.1.ebuild,
+  -lxpanel-0.5.2.ebuild, -files/lxpanel-sandbox.patch:
+  Cleaning out old ebuilds
 
   29 Aug 2009; Víctor Ostorga <vostorga@gentoo.org> lxpanel-0.5.3.ebuild,
   +files/lxpanel-0.5.3-battery.patch:
