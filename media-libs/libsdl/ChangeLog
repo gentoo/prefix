@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libsdl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.163 2009/10/26 17:05:59 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.164 2009/11/06 16:25:16 vapier Exp $
+
+  06 Nov 2009; Mike Frysinger <vapier@gentoo.org> libsdl-1.2.14.ebuild,
+  metadata.xml:
+  Add USE=ps3 to control the PS3 video driver #290450 by Laurent G.
 
   26 Oct 2009; Michael Sterrett <mr_bones_@gentoo.org> libsdl-1.2.14.ebuild:
   esd is deprecated as well

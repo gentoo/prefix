@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.14.ebuild,v 1.3 2009/10/26 17:05:59 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/libsdl-1.2.14.ebuild,v 1.4 2009/11/06 16:25:16 vapier Exp $
 
 EAPI=2
 inherit flag-o-matic toolchain-funcs eutils libtool
@@ -16,7 +16,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 # if you disable the audio, video, joystick use flags or turn on the custom-cflags use flag
 # in USE and something breaks, you pick up the pieces.  Be prepared for
 # bug reports to be marked INVALID.
-IUSE="oss alsa nas X dga xv xinerama fbcon directfb ggi svga aalib opengl libcaca +audio +video +joystick custom-cflags pulseaudio"
+IUSE="oss alsa nas X dga xv xinerama fbcon directfb ggi svga aalib opengl libcaca +audio +video +joystick custom-cflags pulseaudio ps3"
 
 RDEPEND="audio? ( >=media-libs/audiofile-0.1.9 )
 	alsa? ( media-libs/alsa-lib )
@@ -38,6 +38,7 @@ RDEPEND="audio? ( >=media-libs/audiofile-0.1.9 )
 	aalib? ( media-libs/aalib )
 	libcaca? ( >=media-libs/libcaca-0.9-r1 )
 	opengl? ( virtual/opengl virtual/glu )
+	ppc64? ( ps3? ( sys-libs/libspe2 ) )
 	pulseaudio? ( media-sound/pulseaudio )"
 DEPEND="${RDEPEND}
 	nas? (
@@ -140,6 +141,7 @@ src_configure() {
 		$(use_enable aalib video-aalib) \
 		$(use_enable libcaca video-caca) \
 		$(use_enable opengl video-opengl) \
+		$(use_enable ps3 video-ps3) \
 		$(use_with X x) \
 		--disable-video-x11-xme \
 		${myconf}
