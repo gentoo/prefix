@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/groovy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.34 2009/10/15 13:58:32 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.35 2009/11/04 16:08:26 maekke Exp $
+
+  04 Nov 2009; Markus Meier <maekke@gentoo.org> groovy-1.6.5.ebuild:
+  amd64/x86 stable, bug #279873
 
 *groovy-1.6.5 (15 Oct 2009)
 
