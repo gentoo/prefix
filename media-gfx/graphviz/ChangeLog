@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.207 2009/10/31 14:31:07 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.208 2009/11/04 18:18:51 armin76 Exp $
+
+  04 Nov 2009; Raúl Porcel <armin76@gentoo.org> graphviz-2.24.0-r2.ebuild:
+  ia64/s390/sh/sparc stable wrt #284689
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> graphviz-2.24.0-r2.ebuild:
   Marking graphviz-2.24.0-r2 ppc64 for bug 284689
