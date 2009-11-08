@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/apache-tools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.63 2009/10/06 12:43:35 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.65 2009/11/04 15:45:13 maekke Exp $
+
+  04 Nov 2009; Markus Meier <maekke@gentoo.org> apache-tools-2.2.14.ebuild:
+  amd64/arm/x86 stable, bug #291810
+
+  04 Nov 2009; Benedikt Böhm <hollow@gentoo.org>
+  -apache-tools-2.2.12.ebuild, -apache-tools-2.2.13.ebuild:
+  remove old versions
 
 *apache-tools-2.2.14 (06 Oct 2009)
 
