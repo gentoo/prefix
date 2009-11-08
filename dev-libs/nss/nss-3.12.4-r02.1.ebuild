@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.4-r2.ebuild,v 1.1 2009/09/24 23:35:09 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.4-r2.ebuild,v 1.2 2009/11/06 13:29:36 anarchy Exp $
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
@@ -80,7 +80,6 @@ src_compile() {
 	export NSS_ENABLE_ECC=1
 	export XCFLAGS="${CFLAGS}"
 	export FREEBL_NO_DEPEND=1
-	export NSS_ENABLE_ECC=1
 
 	cd "${S}"/mozilla/security/coreconf
 	emake -j1 CC="$(tc-getCC)" || die "coreconf make failed"
