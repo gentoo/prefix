@@ -1,8 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/avalon-logkit-2.1-r2.ebuild,v 1.8 2008/05/11 16:14:39 corsair Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/avalon-logkit-2.1-r4.ebuild,v 1.2 2009/11/07 11:21:27 caster Exp $
 
+EAPI=2
 JAVA_PKG_IUSE="doc source test"
+
 inherit java-pkg-2 java-ant-2
 
 DESCRIPTION="Easy-to-use Java logging toolkit"
@@ -16,26 +18,22 @@ IUSE=""
 
 COMMON_DEP="
 	dev-java/log4j
-	dev-java/sun-jms
+	java-virtuals/jms
 	java-virtuals/javamail
 	=dev-java/servletapi-2.4*"
 
 RDEPEND=">=virtual/jre-1.4
 	${COMMON_DEP}"
 # Doesn't like 1.6 changes to JDBC
-DEPEND="|| (
-		=virtual/jdk-1.5*
-		=virtual/jdk-1.4*
-	)
+DEPEND=">=virtual/jdk-1.4
 	test? (
 		=dev-java/junit-3*
 		dev-java/ant-junit
 	)
 	${COMMON_DEP}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+java_prepare() {
+	epatch "${FILESDIR}/${PN}-1.2.2-java6.patch"
 
 	java-ant_ignore-system-classes
 
@@ -45,7 +43,7 @@ src_unpack() {
 	mkdir -p target/lib || die
 	cd target/lib || die
 	java-pkg_jar-from servletapi-2.4
-	java-pkg_jar-from sun-jms
+	java-pkg_jar-from jms
 	java-pkg_jar-from --virtual javamail
 	java-pkg_jar-from log4j
 	java-pkg_filter-compiler jikes

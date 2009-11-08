@@ -1,6 +1,24 @@
 # ChangeLog for dev-java/avalon-logkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/ChangeLog,v 1.70 2009/07/19 13:59:29 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/ChangeLog,v 1.73 2009/11/07 11:21:27 caster Exp $
+
+  07 Nov 2009; Vlastimil Babka <caster@gentoo.org>
+  avalon-logkit-1.2.2.ebuild, avalon-logkit-2.1-r4.ebuild:
+  Use java_prepare.
+
+*avalon-logkit-2.1-r4 (06 Nov 2009)
+
+  06 Nov 2009; Vlastimil Babka <caster@gentoo.org>
+  -avalon-logkit-2.1-r2.ebuild, +avalon-logkit-2.1-r4.ebuild:
+  Revbump with patch to allow compiling with java6.
+
+*avalon-logkit-1.2.2 (06 Nov 2009)
+
+  06 Nov 2009; Vlastimil Babka <caster@gentoo.org>
+  +avalon-logkit-1.2.2.ebuild, +files/avalon-logkit-1.2.2-java6.patch:
+  Version bump, thanks to Marat Radchenko <marat@slonopotamus.org> in bug
+  #176116 and java-experimental overlay. Added patch to allow compiling with
+  java6.
 
   19 Jul 2009; nixnut <nixnut@gentoo.org> avalon-logkit-1.2-r4.ebuild,
   avalon-logkit-2.1-r3.ebuild:
