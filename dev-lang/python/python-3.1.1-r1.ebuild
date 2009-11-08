@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.16 2009/10/30 11:45:28 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.17 2009/11/07 23:17:35 arfrever Exp $
 
 EAPI="2"
 
@@ -14,7 +14,7 @@ PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
 
-PATCHSET_REVISION="2"
+PATCHSET_REVISION="3"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -148,9 +148,6 @@ src_prepare() {
 		epatch "${FILESDIR}"/${P}-interix-modules.patch
 		epatch "${FILESDIR}"/${P}-interix-nis.patch
 	fi
-
-	# Don't silence output of setup.py.
-	sed -e "/setup\.py -q build/d" -i Makefile.pre.in
 
 	# Fix OtherFileTests.testStdin() not to assume
 	# that stdin is a tty for bug #248081.
