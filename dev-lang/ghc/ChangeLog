@@ -1,6 +1,34 @@
 # ChangeLog for dev-lang/ghc
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.165 2009/07/29 18:02:58 kolmodin Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.171 2009/10/31 13:29:17 kolmodin Exp $
+
+  31 Oct 2009; <kolmodin@gentoo.org> -ghc-6.10.2.ebuild, -ghc-6.10.3.ebuild,
+  metadata.xml:
+  Remove previous ghc versions 6.10.2 and 6.10.3 as 6.10.4 now is unmasked.
+  Remove ghcmakebinary USE flag from metadata, it was unused.
+
+  16 Sep 2009; Lennart Kolmodin <kolmodin@gentoo.org> ghc-6.10.4.ebuild,
+  +files/ghc-6.10.4-ppc64-always-minimal-toc.patch,
+  +files/ghc-6.10.4-propagate-hc-options-to-all-libraries.patch:
+  Add blocker on <haddock-2.4.2. Older versions will not work with this
+  version of ghc. We add the block in ghc rather than in haddock, as blocks
+  can't be trusted to be retroactive.
+
+  Also add ppc64 binary and patches,
+  work done by Sergei Trofimovich <slyfox@community.haskell.org>.
+
+  10 Sep 2009; Christian Faulhammer <fauli@gentoo.org> ghc-6.8.2-r1.ebuild:
+  stable x86/amd64, bug 283155
+
+  02 Aug 2009; Lennart Kolmodin <kolmodin@gentoo.org> ghc-6.8.2.ebuild:
+  Make ppc work in pkg_setup.
+
+  02 Aug 2009; Lennart Kolmodin <kolmodin@gentoo.org> ghc-6.10.4.ebuild:
+  Add sparc binary for ghc 6.10.4. Binary compiled by
+  Duncan Coutts <duncan.coutts@worc.ox.ac.uk>.
+
+  01 Aug 2009; <mabi@gentoo.org> ghc-6.8.2.ebuild:
+  ~ppc added back
 
   29 Jul 2009; Lennart Kolmodin <kolmodin@gentoo.org> Manifest:
   Fix broken manifest, ghc-6.8.2-ia64. Reported by Jeremy Olexa (darkside).

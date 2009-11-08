@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.8.2.ebuild,v 1.11 2009/05/10 21:03:06 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ghc-6.8.2.ebuild,v 1.13 2009/08/02 11:01:42 kolmodin Exp $
 
 # Brief explanation of the bootstrap logic:
 #
@@ -43,6 +43,7 @@ SRC_URI="!binary? ( http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${P}-src.tar.bz
 	amd64?	( mirror://gentoo/ghc-bin-${PV}-amd64.tbz2 )
 	hppa?	( mirror://gentoo/ghc-bin-${PV}-hppa.tbz2 )
 	ia64?	( mirror://gentoo/ghc-bin-${PV}-ia64.tbz2 )
+	ppc?	( mirror://gentoo/ghc-bin-${PV}-ppc.tbz2 )
 	sparc?	( mirror://gentoo/ghc-bin-${PV}-sparc.tbz2 )
 	x86?	( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )
 	ppc-macos? ( http://dev.gentooexperimental.org/~grobian/distfiles/ghc-bin-${PV}-ppc-macos.tbz2 )
@@ -135,12 +136,6 @@ pkg_setup() {
 			die "USE=\"ghcbootstrap binary\" is not a valid combination."
 		[[ -z $(type -P ghc) ]] && \
 			die "Could not find a ghc to bootstrap with."
-	elif use ppc || use ppc64; then
-		eerror "No binary .tbz2 package available yet for these arches:"
-		eerror "  ppc, ppc64"
-		eerror "Please try emerging with USE=ghcbootstrap and report build"
-		eerror "sucess or failure to the haskell team (haskell@gentoo.org)"
-		die "No binary available for this arch yet, USE=ghcbootstrap"
 	fi
 }
 
