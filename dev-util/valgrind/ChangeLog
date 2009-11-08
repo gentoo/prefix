@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/valgrind
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.107 2009/10/23 19:17:39 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/ChangeLog,v 1.108 2009/11/08 00:28:35 griffon26 Exp $
+
+  08 Nov 2009; Maurice van der Pot <griffon26@gentoo.org>
+  valgrind-3.5.0.ebuild, +files/valgrind-3.5.0-glibc-2.11.patch,
+  +files/valgrind-3.5.0-non-exec-stack.patch:
+  Adapted configure.in to not abort when glibc-2.11 is installed (bug #292231).
+  Now using emake during installation instead of just make (bug #285513).
+  Fixed QA warning about executable stacks.
 
   23 Oct 2009; Maurice van der Pot <griffon26@gentoo.org>
   valgrind-3.5.0.ebuild, +files/valgrind-3.5.0-local-labels.patch:

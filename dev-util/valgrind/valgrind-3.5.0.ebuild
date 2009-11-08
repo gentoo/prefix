@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.5.0.ebuild,v 1.2 2009/10/23 19:17:39 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/valgrind/valgrind-3.5.0.ebuild,v 1.3 2009/11/08 00:28:35 griffon26 Exp $
 
 inherit autotools eutils flag-o-matic toolchain-funcs
 
@@ -42,6 +42,13 @@ src_unpack() {
 	# Yet more local labels, this time for ppc32 & ppc64
 	epatch "${FILESDIR}/valgrind-3.5.0-local-labels.patch"
 
+	# Don't just reject glibc-2.11
+	epatch "${FILESDIR}/valgrind-3.5.0-glibc-2.11.patch"
+
+	# Don't build in empty assembly files for other platforms or we'll get a QA
+	# warning about executable stacks.
+	epatch "${FILESDIR}/valgrind-3.5.0-non-exec-stack.patch"
+
 	# Regenerate autotools files
 	eautoreconf
 }
@@ -81,7 +88,7 @@ src_compile() {
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die "Install failed!"
+	emake DESTDIR="${D}" install || die "Install failed!"
 	dodoc AUTHORS FAQ.txt NEWS README*
 }
 
