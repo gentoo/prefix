@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2009o.ebuild,v 1.1 2009/10/20 16:46:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2009q.ebuild,v 1.1 2009/11/03 08:38:00 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
-code_ver=${PV/o/k}
+code_ver=${PV}
 data_ver=${PV}
 DESCRIPTION="Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)"
 HOMEPAGE="ftp://elsie.nci.nih.gov/pub/"
@@ -25,7 +25,6 @@ S=${WORKDIR}
 src_unpack() {
 	unpack ${A}
 	epatch "${FILESDIR}"/${PN}-2008h-makefile.patch
-	epatch "${FILESDIR}"/${PN}-2009n-argentina.patch #289345
 	tc-is-cross-compiler && cp -pR "${S}" "${S}"-native
 
 	sed -i -e '1c\#!'"${EPREFIX}"'/bin/bash' tzselect.ksh || die
