@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6-r1.ebuild,v 1.9 2009/10/06 17:05:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6-r1.ebuild,v 1.10 2009/11/06 17:47:32 arfrever Exp $
 
 EAPI="2"
 
@@ -25,8 +25,6 @@ S="${WORKDIR}/distribute-${PV}"
 DOCS="README.txt docs/easy_install.txt docs/pkg_resources.txt docs/setuptools.txt"
 
 src_prepare() {
-	distutils_src_prepare
-
 	epatch "${FILESDIR}/${PN}-0.6_rc7-noexe.patch"
 
 	# Remove tests that access the network (bugs #198312, #191117)

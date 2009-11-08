@@ -1,6 +1,11 @@
 # ChangeLog for dev-python/setuptools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.79 2009/11/01 23:40:02 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/ChangeLog,v 1.80 2009/11/06 17:47:32 arfrever Exp $
+
+  06 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  setuptools-0.6-r1.ebuild, setuptools-0.6.3-r3.ebuild,
+  setuptools-0.6.4.ebuild, setuptools-0.6.6.ebuild, setuptools-0.6.8.ebuild:
+  Fix building after last improvement to distutils.eclass (bug #292095).
 
 *setuptools-0.6.8 (02 Nov 2009)
 
