@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.8.ebuild,v 1.8 2009/03/12 14:28:15 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-emacs/eselect-emacs-1.11.ebuild,v 1.1 2009/11/07 13:24:57 ulm Exp $
 
 DESCRIPTION="Manage multiple Emacs versions on one system"
 HOMEPAGE="http://www.gentoo.org/proj/en/lisp/emacs/"
@@ -12,7 +12,7 @@ KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux 
 IUSE=""
 
 DEPEND=""
-RDEPEND=">=app-admin/eselect-1.0.10
+RDEPEND=">=app-admin/eselect-1.2.6
 	~app-admin/eselect-ctags-${PV}"
 
 src_unpack() {
