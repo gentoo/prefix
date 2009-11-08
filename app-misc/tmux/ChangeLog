@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/tmux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/ChangeLog,v 1.26 2009/10/30 22:57:26 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/tmux/ChangeLog,v 1.27 2009/11/05 15:38:58 tcunha Exp $
+
+*tmux-1.1 (05 Nov 2009)
+
+  05 Nov 2009; Tiago Cunha <tcunha@gentoo.org> +tmux-1.1.ebuild:
+  Version bump.
 
   30 Oct 2009; Tiago Cunha <tcunha@gentoo.org> tmux-1.0.ebuild:
   stable sparc, bug 290079
