@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/groff
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.102 2009/08/16 04:38:31 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.103 2009/11/07 06:10:09 matsuu Exp $
+
+*groff-1.20.1-r2 (07 Nov 2009)
+
+  05 Nov 2009; MATSUU Takuto <matsuu@gentoo.org> +groff-1.20.1-r2.ebuild:
+  Fixed japanese patch, bug #290103. The patch was submitted by Naohiro
+  Aota.
 
   16 Aug 2009; Michael Sterrett <mr_bones_@gentoo.org>
   groff-1.20.1-r1.ebuild:
