@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/gtkhtml-3.28.1.ebuild,v 1.1 2009/10/29 21:59:53 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/gtkhtml-3.28.1.ebuild,v 1.2 2009/11/04 23:05:25 eva Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -21,7 +21,7 @@ RDEPEND=">=x11-libs/gtk+-2.16
 	>=gnome-base/gail-1.1
 	>=x11-themes/gnome-icon-theme-2.22.0
 	>=gnome-base/orbit-2
-	app-text/enchant
+	>=app-text/enchant-1.1.7
 	gnome-base/gconf:2
 	>=app-text/iso-codes-0.49
 	>=net-libs/libsoup-2.26.0:2.4

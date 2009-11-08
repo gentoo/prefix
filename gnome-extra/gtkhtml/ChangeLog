@@ -1,6 +1,13 @@
 # ChangeLog for gnome-extra/gtkhtml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.197 2009/10/29 21:59:53 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.199 2009/11/05 19:56:30 maekke Exp $
+
+  05 Nov 2009; Markus Meier <maekke@gentoo.org> gtkhtml-3.26.3.ebuild:
+  arm stable, bug #281427
+
+  04 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org> gtkhtml-3.24.5.ebuild,
+  gtkhtml-3.26.3.ebuild, gtkhtml-3.28.1.ebuild:
+  Update enchant dependency per bug #289209.
 
 *gtkhtml-3.28.1 (29 Oct 2009)
 
