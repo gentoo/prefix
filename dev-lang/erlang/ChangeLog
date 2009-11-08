@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.169 2009/09/30 08:39:31 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.170 2009/11/05 16:25:39 armin76 Exp $
+
+  05 Nov 2009; Raúl Porcel <armin76@gentoo.org> erlang-13.2.1.ebuild,
+  erlang-13.2.2.ebuild:
+  Add ~arm/~ia64 wrt #270500
 
 *erlang-13.2.2 (30 Sep 2009)
 
