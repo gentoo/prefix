@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/vte
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.234 2009/10/29 21:26:52 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.235 2009/11/05 20:08:08 maekke Exp $
+
+  05 Nov 2009; Markus Meier <maekke@gentoo.org> vte-0.20.5.ebuild:
+  arm stable, bug #281427
 
 *vte-0.22.3 (29 Oct 2009)
 
