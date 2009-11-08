@@ -1,6 +1,18 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.236 2009/10/13 19:26:08 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.238 2009/11/04 22:35:31 billie Exp $
+
+*cdrtools-2.01.01_alpha67-r1 (04 Nov 2009)
+
+  04 Nov 2009; Pielmeier Daniel <billie@gentoo.org>
+  +cdrtools-2.01.01_alpha67-r1.ebuild:
+  Also use LINKMODE in src_install. This should fix bug #289110.
+
+*cdrtools-2.01.01_alpha67 (04 Nov 2009)
+
+  04 Nov 2009; Pielmeier Daniel <billie@gentoo.org>
+  -cdrtools-2.01.01_alpha65.ebuild, +cdrtools-2.01.01_alpha67.ebuild:
+  Version bump. Fix comment position. Remove old.
 
 *cdrtools-2.01.01_alpha66 (13 Oct 2009)
 
