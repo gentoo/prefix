@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/popt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.72 2009/10/16 13:50:30 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.73 2009/11/04 18:11:54 armin76 Exp $
+
+  04 Nov 2009; Raúl Porcel <armin76@gentoo.org> popt-1.14.ebuild:
+  ia64/m68k/s390/sh stable wrt #286199
 
   16 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> metadata.xml:
   Change from maintainer-needed to base-system (net-misc/rsync is
