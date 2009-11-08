@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.13 2009/09/07 02:12:31 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.14 2009/11/06 16:05:06 leio Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -91,6 +91,8 @@ gst-plugins-base_src_unpack() {
 		-e "s:\${top_builddir}/gst-libs/gst/interfaces/libgstinterfaces:${EROOT}/usr/$(get_libdir)/libgstinterfaces:" \
 		-e "s:\$(top_builddir)/gst-libs/gst/audio/libgstaudio:${EROOT}/usr/$(get_libdir)/libgstaudio:" \
 		-e "s:\${top_builddir}/gst-libs/gst/audio/libgstaudio:${EROOT}/usr/$(get_libdir)/libgstaudio:" \
+		-e "s:\$(top_builddir)/gst-libs/gst/cdda/libgstcdda:${EROOT}/usr/$(get_libdir)/libgstcdda:" \
+		-e "s:\${top_builddir}/gst-libs/gst/cdda/libgstcdda:${EROOT}/usr/$(get_libdir)/libgstcdda:" \
 		-e "s:\$(top_builddir)/gst-libs/gst/riff/libgstriff:${EROOT}/usr/$(get_libdir)/libgstriff:" \
 		-e "s:\${top_builddir}/gst-libs/gst/riff/libgstriff:${EROOT}/usr/$(get_libdir)/libgstriff:" \
 		-e "s:\$(top_builddir)/gst-libs/gst/tag/libgsttag:${EROOT}/usr/$(get_libdir)/libgsttag:" \

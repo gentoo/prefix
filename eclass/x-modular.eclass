@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.114 2009/10/11 07:41:36 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.116 2009/10/31 23:08:25 dirtyepic Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -453,6 +453,7 @@ x-modular_src_install() {
 			|| die
 	else
 		make \
+			docdir="${EPREFIX}"/usr/share/doc/${PF} \
 			DESTDIR="${D}" \
 			install \
 			|| die
@@ -528,7 +529,7 @@ x-modular_pkg_postrm() {
 # @DESCRIPTION:
 # Get rid of font directories that only contain generated files
 cleanup_fonts() {
-	local ALLOWED_FILES="encodings.dir fonts.cache-1 fonts.dir fonts.scale"
+	local ALLOWED_FILES="encodings.dir fonts.alias fonts.cache-1 fonts.dir fonts.scale"
 	for DIR in ${FONT_DIR}; do
 		unset KEEP_FONTDIR
 		REAL_DIR=${EROOT}usr/share/fonts/${DIR}

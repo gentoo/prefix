@@ -1,6 +1,6 @@
-# Copyright 2007-2009 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.46 2009/10/06 18:02:12 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.52 2009/10/28 15:50:56 scarabeus Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -13,29 +13,35 @@
 # NOTE: KDE 4 ebuilds by default define EAPI="2", this can be redefined but
 # eclass will fail with version older than 2.
 
-# @ECLASS-VARIABLE: WANT_CMAKE
+# @ECLASS-VARIABLE: CMAKE_REQUIRED
 # @DESCRIPTION:
-# Specify if cmake-utils eclass is required. Defaults to true. Please note that
-# if the variable is set otherwise src_configure/compile/install calls in ebuild
-# must be overrided (can't use the eclass ones).
-WANT_CMAKE="${WANT_CMAKE:-true}"
-if [[ ${WANT_CMAKE} = true ]]; then
-	exports="src_configure src_compile src_test src_install"
-	cmake_eclass="cmake-utils"
+# Specify if cmake buildsystem is being used. Possible values are 'always' and 'never'.
+# Please note that if it's set to 'never' you need to explicitly override following phases:
+# src_configure, src_compile, src_test and src_install.
+# Defaults to 'always'.
+CMAKE_REQUIRED="${CMAKE_REQUIRED:-${CMAKE_REQUIRED:-always}}"
+if [[ ${CMAKE_REQUIRED} = false || ${CMAKE_REQUIRED} = never ]]; then
+	buildsystem_eclass=""
+	export_fns=""
 else
-	exports=""
-	cmake_eclass=""
+	buildsystem_eclass="cmake-utils"
+	export_fns="src_configure src_compile src_test src_install"
 fi
 
-inherit base ${cmake_eclass} eutils kde4-functions
+inherit kde4-functions
 
 get_build_type
 if [[ ${BUILD_TYPE} = live ]]; then
-	inherit subversion
+	subversion_eclass="subversion"
 fi
 
+inherit base ${buildsystem_eclass} eutils ${subversion_eclass}
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare ${exports} pkg_postinst pkg_postrm
+EXPORT_FUNCTIONS pkg_setup src_unpack src_prepare  ${export_fns} pkg_postinst pkg_postrm
+
+unset buildsystem_eclass
+unset export_fns
+unset subversion_eclass
 
 case ${KDEBASE} in
 	kde-base)
@@ -94,84 +100,6 @@ fi
 # Note that it is fixed to ${SLOT} for kde-base packages.
 KDE_MINIMAL="${KDE_MINIMAL:-4.3}"
 
-# Fallback behaviour (for now)
-# TODO Remove when tree is clean
-if [[ -n ${NEED_KDE} ]]; then
-	case ${NEED_KDE} in
-		none)
-			KDE_REQUIRED="never"
-			;;
-		*)
-			KDE_REQUIRED="always"
-			KDE_MINIMAL="${NEED_KDE}"
-			;;
-	esac
-fi
-
-# @ECLASS-VARIABLE: QT_DEPEND
-# @DESCRIPTION:
-# Determine version of qt we enforce as minimal for the package. 4.4.0 4.5.1..
-# Currently defaults to 4.5.1
-QT_DEPEND="${QT_DEPEND:-4.5.1}"
-
-# OpenGL dependencies
-qtopengldepend="
-	>=x11-libs/qt-opengl-${QT_DEPEND}:4
-"
-case ${OPENGL_REQUIRED} in
-	always)
-		COMMONDEPEND+=" ${qtopengldepend}"
-		;;
-	optional)
-		IUSE+=" opengl"
-		COMMONDEPEND+=" opengl? ( ${qtopengldepend} )"
-		;;
-	*) ;;
-esac
-unset qtopengldepend
-
-# WebKit dependencies
-case ${KDE_REQUIRED} in
-	always)
-		qtwebkitusedeps="[kde]"
-		;;
-	optional)
-		qtwebkitusedeps="[kde?]"
-		;;
-	*) ;;
-esac
-qtwebkitdepend="
-	>=x11-libs/qt-webkit-${QT_DEPEND}:4${qtwebkitusedeps}
-"
-unset qtwebkitusedeps
-case ${WEBKIT_REQUIRED} in
-	always)
-		COMMONDEPEND+=" ${qtwebkitdepend}"
-		;;
-	optional)
-		IUSE+=" webkit"
-		COMMONDEPEND+=" webkit? ( ${qtwebkitdepend} )"
-		;;
-	*) ;;
-esac
-unset qtwebkitdepend
-
-# CppUnit dependencies
-cppuintdepend="
-	dev-util/cppunit
-"
-case ${CPPUNIT_REQUIRED} in
-	always)
-		DEPEND+=" ${cppuintdepend}"
-		;;
-	optional)
-		IUSE+=" test"
-		DEPEND+=" test? ( ${cppuintdepend} )"
-		;;
-	*) ;;
-esac
-unset cppuintdepend
-
 # Setup packages inheriting this eclass
 case ${KDEBASE} in
 	kde-base)
@@ -203,34 +131,94 @@ case ${KDEBASE} in
 		esac
 		KDE_MINIMAL="${SLOT}"
 		_kdedir="${SLOT}"
-		_pv="-${PV}:${SLOT}"
-		_pvn="-${PV}"
 
 		# Block installation of other SLOTS unless kdeprefix
 		RDEPEND+=" $(block_other_slots)"
 		;;
 	koffice)
 		SLOT="2"
-		_pv="-${KDE_MINIMAL}"
-		_pvn="${_pv}"
 		;;
-	*)
-		_pv="-${KDE_MINIMAL}"
-		_pvn="${_pv}"
-		;;
-
 esac
+
+# @ECLASS-VARIABLE: QT_MINIMAL
+# @DESCRIPTION:
+# Determine version of qt we enforce as minimal for the package. 4.4.0 4.5.1..
+# Currently defaults to 4.5.1 for KDE 4.3 and earlier
+# or 4.6.0_beta for KDE 4.4 and later
+if slot_is_at_least 4.4 "${KDE_MINIMAL}"; then
+	QT_MINIMAL="${QT_MINIMAL:-4.6.0_beta}"
+fi
+
+QT_MINIMAL="${QT_MINIMAL:-4.5.1}"
+
+# OpenGL dependencies
+qtopengldepend="
+	>=x11-libs/qt-opengl-${QT_MINIMAL}:4
+"
+case ${OPENGL_REQUIRED} in
+	always)
+		COMMONDEPEND+=" ${qtopengldepend}"
+		;;
+	optional)
+		IUSE+=" opengl"
+		COMMONDEPEND+=" opengl? ( ${qtopengldepend} )"
+		;;
+	*) ;;
+esac
+unset qtopengldepend
+
+# WebKit dependencies
+case ${KDE_REQUIRED} in
+	always)
+		qtwebkitusedeps="[kde]"
+		;;
+	optional)
+		qtwebkitusedeps="[kde?]"
+		;;
+	*) ;;
+esac
+qtwebkitdepend="
+	>=x11-libs/qt-webkit-${QT_MINIMAL}:4${qtwebkitusedeps}
+"
+unset qtwebkitusedeps
+case ${WEBKIT_REQUIRED} in
+	always)
+		COMMONDEPEND+=" ${qtwebkitdepend}"
+		;;
+	optional)
+		IUSE+=" webkit"
+		COMMONDEPEND+=" webkit? ( ${qtwebkitdepend} )"
+		;;
+	*) ;;
+esac
+unset qtwebkitdepend
+
+# CppUnit dependencies
+cppuintdepend="
+	dev-util/cppunit
+"
+case ${CPPUNIT_REQUIRED} in
+	always)
+		DEPEND+=" ${cppuintdepend}"
+		;;
+	optional)
+		IUSE+=" test"
+		DEPEND+=" test? ( ${cppuintdepend} )"
+		;;
+	*) ;;
+esac
+unset cppuintdepend
 
 # KDE dependencies
 kdecommondepend="
 	dev-lang/perl
-	>=x11-libs/qt-core-${QT_DEPEND}:4[qt3support,ssl]
-	>=x11-libs/qt-gui-${QT_DEPEND}:4[accessibility,dbus]
-	>=x11-libs/qt-qt3support-${QT_DEPEND}:4[accessibility,kde]
-	>=x11-libs/qt-script-${QT_DEPEND}:4
-	>=x11-libs/qt-sql-${QT_DEPEND}:4[qt3support]
-	>=x11-libs/qt-svg-${QT_DEPEND}:4
-	>=x11-libs/qt-test-${QT_DEPEND}:4
+	>=x11-libs/qt-core-${QT_MINIMAL}:4[qt3support,ssl]
+	>=x11-libs/qt-gui-${QT_MINIMAL}:4[accessibility,dbus]
+	>=x11-libs/qt-qt3support-${QT_MINIMAL}:4[accessibility,kde]
+	>=x11-libs/qt-script-${QT_MINIMAL}:4
+	>=x11-libs/qt-sql-${QT_MINIMAL}:4[qt3support]
+	>=x11-libs/qt-svg-${QT_MINIMAL}:4
+	>=x11-libs/qt-test-${QT_MINIMAL}:4
 	!aqua? (
 		x11-libs/libXext
 		x11-libs/libXt
@@ -239,24 +227,16 @@ kdecommondepend="
 "
 if [[ ${PN} != kdelibs ]]; then
 	if [[ ${KDEBASE} = kde-base ]]; then
+		kdecommondepend+=" $(add_kdebase_dep kdelibs)"
 		# libknotificationitem only when SLOT is 4.3
-		[[ ${PN} != libknotificationitem ]] && [[ ${SLOT} = 4.3 ]] && local libknotificationitem_required=1
-		kdecommondepend+="
-			kdeprefix? ( >=kde-base/kdelibs${_pv}[kdeprefix] )
-			!kdeprefix? ( >=kde-base/kdelibs${_pvn}[-kdeprefix] )
-		"
-		[[ -n ${libknotificationitem_required} ]] && \
-			kdecommondepend+="
-				kdeprefix? ( >=kde-base/libknotificationitem${_pv}[kdeprefix] )
-				!kdeprefix? ( >=kde-base/libknotificationitem${_pvn}[-kdeprefix] )
-			"
+		[[ ${PN} != libknotificationitem ]] && [[ ${SLOT} = 4.3 ]] && \
+			kdecommondepend+=" $(add_kdebase_dep libknotificationitem)"
 	else
 		kdecommondepend+="
-			>=kde-base/kdelibs${_pv}
+			>=kde-base/kdelibs-${KDE_MINIMAL}
 		"
 	fi
 fi
-unset _pv _pvn
 kdedepend="
 	dev-util/pkgconfig
 "
@@ -373,7 +353,6 @@ case ${BUILD_TYPE} in
 				_kmname=${PN}
 			fi
 			_kmname_pv="${_kmname}-${PV}"
-			if [[ $NEED_KDE != live ]]; then
 			case ${KDEBASE} in
 				kde-base)
 					case ${PV} in
@@ -391,7 +370,6 @@ case ${BUILD_TYPE} in
 						*) SRC_URI="mirror://kde/stable/${_kmname_pv}/src/${_kmname_pv}.tar.bz2" ;;
 					esac
 			esac
-			fi
 			unset _kmname _kmname_pv
 		fi
 		;;
@@ -412,11 +390,12 @@ debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: SRC_URI is ${SRC_URI}"
 kde4-base_pkg_setup() {
 	debug-print-function ${FUNCNAME} "$@"
 
+	# Prefix compat:
+	use prefix || EROOT=${ROOT}
+	# Append missing trailing slash character
+	[[ ${EROOT} = */ ]] || EROOT+="/"
+
 	# QA ebuilds
-	case ${NEED_KDE} in
-		none) ewarn "QA Notice: using deprecated NEED_KDE variable, use KDE_REQUIRED=\"never\" or KDE_REQUIRED=\"optional\" instead. You may want to override KDE_MINIMAL as well (default is KDE_MINIMAL=\"${KDE_MINIMAL}\")." ;;
-		*) [[ -n ${NEED_KDE} ]] && ewarn "QA Notice: using deprecated NEED_KDE variable, use KDE_MINIMAL instead (default is KDE_MINIMAL=\"${KDE_MINIMAL}\")." ;;
-	esac
 	[[ -z ${KDE_MINIMAL_VALID} ]] && ewarn "QA Notice: ignoring invalid KDE_MINIMAL (defaulting to ${KDE_MINIMAL})."
 
 	# Don't set KDEHOME during compilation, it will cause access violations
@@ -460,6 +439,8 @@ kde4-base_pkg_setup() {
 	# Point to correct QT plugins path
 	QT_PLUGIN_PATH="${KDEDIR}/$(get_libdir)/kde4/plugins/"
 
+	# Fix XDG collision with sandbox
+	export XDG_CONFIG_HOME="${T}"
 	# Not needed anymore
 	unset _kdedir
 }
@@ -628,12 +609,12 @@ kde4-base_src_make_doc() {
 		done
 	fi
 
-	if [[ -n ${KDEBASE} ]] && [[ -d "${ED}${ROOT}usr/share/doc/${PF}" ]]; then
+	if [[ -n ${KDEBASE} ]] && [[ -d "${D}${EROOT}usr/share/doc/${PF}" ]]; then
 		# work around bug #97196
 		dodir /usr/share/doc/KDE4 && \
-			cp -r "${ED}${EROOT}usr/share/doc/${PF}" "${ED}${EROOT}usr/share/doc/KDE4/" || \
+			cp -r "${D}${EROOT}usr/share/doc/${PF}" "${D}${EROOT}usr/share/doc/KDE4/" || \
 			die "Failed to move docs to KDE4/."
-			rm -rf "${ED}${EROOT}usr/share/doc/${PF}"
+			rm -rf "${D}${EROOT}usr/share/doc/${PF}"
 	fi
 }
 

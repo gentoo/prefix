@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.30 2009/10/11 11:40:53 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.31 2009/10/20 10:05:47 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -92,7 +92,7 @@ fi
 #	${EGIT_STORE_DIR}/subversion
 : ${EGIT_PROJECT:=${PN/-git}}
 
-# @ECLASS-VARIABLE: EGIT_BOOSTRAP
+# @ECLASS-VARIABLE: EGIT_BOOTSTRAP
 # @DESCRIPTION:
 # bootstrap script or command like autogen.sh or etc...
 : ${EGIT_BOOTSTRAP:=}

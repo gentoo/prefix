@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.179 2009/10/17 18:30:40 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/vim.eclass,v 1.180 2009/10/21 22:20:36 lack Exp $
 
 # Authors:
 # 	Jim Ramsay <i.am@gentoo.org>
@@ -30,11 +30,15 @@ LICENSE="vim"
 
 # Check for EAPI functions we need:
 case "${EAPI:-0}" in
+	0|1)
+		;;
 	2)
 		HAS_SRC_PREPARE=1
 		HAS_USE_DEP=1
 		;;
-	*) ;;
+	*)
+		die "Unknown EAPI ${EAPI}"
+		;;
 esac
 
 if [[ ${PN##*-} == "cvs" ]] ; then
@@ -48,7 +52,7 @@ IUSE="nls acl"
 
 TO_EXPORT="pkg_setup src_compile src_install src_test pkg_postinst pkg_postrm"
 if [[ $HAS_SRC_PREPARE ]]; then
-	TO_EXPORT="${TO_EXPORT} src_prepare"
+	TO_EXPORT="${TO_EXPORT} src_prepare src_configure"
 else
 	TO_EXPORT="${TO_EXPORT} src_unpack"
 fi
@@ -354,7 +358,7 @@ vim_src_unpack() {
 	vim_src_prepare
 }
 
-vim_src_compile() {
+vim_src_configure() {
 	local myconf
 
 	# Fix bug 37354: Disallow -funroll-all-loops on amd64
@@ -480,6 +484,10 @@ vim_src_compile() {
 
 	myconf="${myconf} --with-modified-by=Gentoo-${PVR}"
 	econf ${myconf} || die "vim configure failed"
+}
+
+vim_src_compile() {
+	has src_configure ${TO_EXPORT} || vim_src_configure
 
 	# The following allows emake to be used
 	make -j1 -C src auto/osdef.h objects || die "make failed"

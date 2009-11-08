@@ -1,13 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.25 2009/10/06 18:02:12 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.26 2009/10/27 14:16:49 scarabeus Exp $
 
 inherit versionator
-
-# Prefix compat:
-: ${EROOT:=${EROOT}}
-# Append missing trailing slash character
-[[ ${EROOT} = */ ]] || EROOT+="/"
 
 # @ECLASS: kde4-functions.eclass
 # @MAINTAINER:
@@ -450,7 +445,7 @@ _do_blocker() {
 		if [[ ${param/:} == ${param} ]]; then
 			def=${param}
 		else # the parameter *does* have a ":" in it
-			# so everythin after the : is the slot...
+			# so everything after the : is the slot...
 			slot=${param#*:}
 			# ...and everything before the : is the version
 			local block_${slot//./_}=${param%:*}
@@ -464,10 +459,9 @@ _do_blocker() {
 		# if we didn't pass *:${slot}, then use the unsloted value
 		[[ ${!var} == "unset" ]] && var=def
 
-		# If the no version was passed, or the version is greater than the
-		# maximum possible version in this slot, block all versions in this
-		# slot
-		if [[ ${!var} == "unset" ]] || _greater_max_in_slot ${!var#<} ${slot}; then
+		# If no version was passed, or the version is greater than the maximum
+		# possible version in this slot, block all versions in this slot
+		if [[ ${!var} == "unset" ]] || [[ -z ${!var} ]] || _greater_max_in_slot ${!var#<} ${slot}; then
 			atom=${pkg}
 		# If the version is "0" or less than the minimum possible version in
 		# this slot, do nothing
@@ -512,7 +506,7 @@ _do_blocker() {
 # name, the optional second, is additional USE flags to append.
 # The output of this should be added directly to DEPEND/RDEPEND, and
 # may be wrapped in a USE conditional (but not an || conditional
-# without an extra set of parentheses.
+# without an extra set of parentheses).
 add_kdebase_dep() {
 	debug-print-function ${FUNCNAME} "$@"
 

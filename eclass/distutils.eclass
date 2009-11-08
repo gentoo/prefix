@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.65 2009/10/11 13:38:12 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.66 2009/11/06 00:35:30 arfrever Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -65,12 +65,21 @@ distutils_src_prepare() {
 	fi
 
 	# Delete ez_setup files to prevent packages from installing
-	# setuptools on their own.
-	local ez_setup_existence
+	# Setuptools on their own.
+	local ez_setup_existence="0"
 	[[ -d ez_setup || -f ez_setup.py ]] && ez_setup_existence="1"
 	rm -fr ez_setup*
 	if [[ "${ez_setup_existence}" == "1" ]]; then
 		echo "def use_setuptools(*args, **kwargs): pass" > ez_setup.py
+	fi
+
+	# Delete distribute_setup files to prevent packages from installing
+	# Distribute on their own.
+	local distribute_setup_existence="0"
+	[[ -d distribute_setup || -f distribute_setup.py ]] && distribute_setup_existence="1"
+	rm -fr distribute_setup*
+	if [[ "${distribute_setup_existence}" == "1" ]]; then
+		echo "def use_setuptools(*args, **kwargs): pass" > distribute_setup.py
 	fi
 
 	if [[ -n "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]]; then

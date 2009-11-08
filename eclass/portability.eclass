@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/portability.eclass,v 1.13 2009/03/27 08:00:56 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/portability.eclass,v 1.14 2009/10/31 15:34:59 grobian Exp $
 #
 # Author: Diego Pettenò <flameeyes@gentoo.org>
 #
@@ -59,7 +59,7 @@ dlopen_lib() {
 	# - Darwin needs nothing
 	# - *BSD needs nothing
 	# - Linux needs -ldl (glibc and uclibc)
-	if [[ ${CHOST} == *-linux-gnu || ${CHOST} == *-linux-uclibc ]]; then
+	if [[ ${CHOST} == *-linux-gnu* || ${CHOST} == *-linux-uclibc ]]; then
 		echo "-ldl"
 	fi
 }

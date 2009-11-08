@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.220 2009/10/11 11:43:56 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.222 2009/10/20 19:51:24 robbat2 Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -289,8 +289,8 @@ if [[ ${ETYPE} == sources ]]; then
 	DEPEND="!build? ( sys-apps/sed
 					  >=sys-devel/binutils-2.11.90.0.31 )"
 	RDEPEND="!build? ( >=sys-libs/ncurses-5.2
-			           sys-devel/make )
-			 virtual/dev-manager"
+			           sys-devel/make )"
+	PDEPEND="!build? ( virtual/dev-manager )"
 
 	PROVIDE="virtual/linux-sources"
 	kernel_is gt 2 4 && PROVIDE="${PROVIDE} virtual/alsa"
