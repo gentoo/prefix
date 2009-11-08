@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.146 2009/10/29 22:53:44 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.147 2009/11/05 19:34:40 maekke Exp $
+
+  05 Nov 2009; Markus Meier <maekke@gentoo.org>
+  gnome-doc-utils-0.16.1.ebuild:
+  arm stable, bug #281427
 
 *gnome-doc-utils-0.18.0 (29 Oct 2009)
 
