@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/taglib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/ChangeLog,v 1.73 2009/10/29 12:28:43 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/ChangeLog,v 1.75 2009/11/05 10:50:19 jmbsvicetto Exp $
+
+*taglib-1.6.1 (05 Nov 2009)
+
+  05 Nov 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  +taglib-1.6.1.ebuild, metadata.xml:
+  Bumped taglib to the 1.6.1 release.
+  Made asf/mp4 support optional.
+
+  03 Nov 2009; Raúl Porcel <armin76@gentoo.org> taglib-1.6.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #290487
 
   29 Oct 2009; Christian Faulhammer <fauli@gentoo.org> taglib-1.6.ebuild:
   stable x86, bug 290487
