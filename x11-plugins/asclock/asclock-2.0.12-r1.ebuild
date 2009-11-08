@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/asclock/asclock-2.0.12-r1.ebuild,v 1.7 2009/05/03 02:13:07 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/asclock/asclock-2.0.12-r1.ebuild,v 1.8 2009/11/03 15:27:09 voyageur Exp $
 
 inherit eutils toolchain-funcs
 
@@ -28,10 +28,10 @@ src_compile() {
 	local x
 	# can greatly break Solaris with this lousy stuff
 	[[ ${CHOST} == *-linux-gnu ]] && CFLAGS="${CFLAGS} \
+				-Dlinux \
 			    -D_POSIX_C_SOURCE=199309L \
 			    -D_POSIX_SOURCE \
-			    -D_XOPEN_SOURCE \
-				-Dlinux -D__i386__"
+			    -D_XOPEN_SOURCE"
 	for x in asclock parser symbols config
 	do
 		$(tc-getCC) \

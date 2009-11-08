@@ -1,6 +1,10 @@
 # ChangeLog for x11-plugins/asclock
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/asclock/ChangeLog,v 1.21 2009/05/03 02:13:07 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/asclock/ChangeLog,v 1.22 2009/11/03 15:27:09 voyageur Exp $
+
+  03 Nov 2009; Bernard Cafarelli <voyageur@gentoo.org>
+  asclock-2.0.12-r1.ebuild:
+  ~amd64 fix and keyword, bug #234642
 
   03 May 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   asclock-2.0.12-r1.ebuild:
