@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.9.ebuild,v 1.4 2009/11/01 16:28:36 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/apr-1.3.9.ebuild,v 1.5 2009/11/04 12:10:08 arfrever Exp $
 
 EAPI="2"
 
@@ -101,7 +101,7 @@ src_install() {
 	dodoc CHANGES NOTICE
 
 	if use doc; then
-		dohtml docs/dox/html/* || die "dohtml failed"
+		dohtml -r docs/dox/html/* || die "dohtml failed"
 	fi
 
 	# This file is only used on AIX systems, which Gentoo is not,
