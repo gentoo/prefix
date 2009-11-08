@@ -10,11 +10,9 @@ HOMEPAGE="http://www.gentoo.org/"
 # Source:
 # http://www.opengl.org/registry/api/glext.h
 # http://www.opengl.org/registry/api/glxext.h
-
 GLEXT="56"
 GLXEXT="25"
 
-#MIRROR="mirror://gentoo/"
 MIRROR="http://dev.gentooexperimental.org/~scarabeus/"
 SRC_URI="${MIRROR}/glext.h.${GLEXT}.bz2
 	${MIRROR}/glxext.h.${GLXEXT}.bz2
@@ -28,39 +26,12 @@ IUSE=""
 DEPEND="app-arch/bzip2"
 RDEPEND=">=app-admin/eselect-1.2.4"
 
-S=${WORKDIR}
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
 	sed -i -e "/^\(ENV_FILE=\|PREFIX=\|DST_PREFIX=\)/s:ROOT}:ROOT}${EPREFIX}:" \
-		eselect-opengl-${PV}/opengl.eselect || die
-}
-
-pkg_preinst() {
-	# It needs to be before 04multilib
-	[[ -f "${EROOT}/etc/env.d/09opengl" ]] && mv ${EROOT}/etc/env.d/09opengl ${EROOT}/etc/env.d/03opengl
-
-	OABI="${ABI}"
-	for ABI in $(get_install_abis); do
-		if [[ -e "${EROOT}/usr/$(get_libdir)/opengl/xorg-x11/lib/libMesaGL.so" ]]
-		then
-			einfo "Removing libMesaGL.so from xorg-x11 profile. See bug #47598."
-			rm -f "${EROOT}/usr/$(get_libdir)/opengl/xorg-x11/lib/libMesaGL.so"
-		fi
-		if [[ -e "${EROOT}/usr/$(get_libdir)/libMesaGL.so" ]]
-		then
-			einfo "Removing libMesaGL.so from /usr/$(get_libdir).  See bug #47598."
-			rm -f "${EROOT}/usr/$(get_libdir)/libMesaGL.so"
-		fi
-
-		for f in "${EROOT}/usr/$(get_libdir)"/libGL.so.* "${EROOT}/usr/$(get_libdir)"/libGLcore.so.* "${EROOT}/usr/$(get_libdir)"/libnvidia-tls* "${EROOT}/usr/$(get_libdir)"/tls/libnvidia-tls* ; do
-			[[ -e ${f} ]] && rm -f "${f}"
-		done
-	done
-	ABI="${OABI}"
-	unset OABI
+		opengl.eselect || die
 }
 
 pkg_postinst() {
