@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/gnome-themes-2.26.3.1.ebuild,v 1.5 2009/10/24 16:34:25 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gnome-themes/gnome-themes-2.26.3.1.ebuild,v 1.6 2009/11/05 19:42:50 maekke Exp $
 
 GCONF_DEBUG="no"
 
