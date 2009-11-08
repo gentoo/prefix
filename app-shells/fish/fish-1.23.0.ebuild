@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/fish-1.23.0.ebuild,v 1.4 2009/10/23 15:40:54 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/fish-1.23.0.ebuild,v 1.5 2009/11/03 15:27:55 vostorga Exp $
 
 inherit eutils autotools
 
@@ -15,8 +15,7 @@ RDEPEND="sys-libs/ncurses
 	sys-devel/bc
 	www-client/htmlview
 	X? ( x11-misc/xsel )"
-DEPEND="${RDEPEND}
-	app-doc/doxygen"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}

@@ -1,6 +1,9 @@
 # ChangeLog for app-shells/fish
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/ChangeLog,v 1.39 2009/10/23 15:40:54 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/fish/ChangeLog,v 1.40 2009/11/03 15:27:55 vostorga Exp $
+
+  03 Nov 2009; Víctor Ostorga <vostorga@gentoo.org> fish-1.23.0.ebuild:
+  Removing doxygen DEPEND, bug #172586
 
   23 Oct 2009; Víctor Ostorga <vostorga@gentoo.org> fish-1.23.0.ebuild:
   Adding die to emake install
