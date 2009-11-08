@@ -1,6 +1,16 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.265 2009/11/01 15:29:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.268 2009/11/04 19:52:06 armin76 Exp $
+
+  04 Nov 2009; Raúl Porcel <armin76@gentoo.org> xulrunner-1.9.0.14.ebuild:
+  Add hack for ARM EABI
+
+  04 Nov 2009; Jory A. Pratt <anarchy@gentoo.org> xulrunner-1.9.1.4.ebuild:
+  apply patch in topsrc dir bug #291797
+
+  04 Nov 2009; Thomas Anderson <tanderson@gentoo.org>
+  xulrunner-1.9.1.4.ebuild:
+  stable amd64, as requested by Anarchy.
 
   01 Nov 2009; Raúl Porcel <armin76@gentoo.org> xulrunner-1.9.1.4.ebuild:
   External sqlite needs to be 3.6.16

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.4.ebuild,v 1.6 2009/11/01 15:29:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.4.ebuild,v 1.8 2009/11/04 14:12:30 anarchy Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
@@ -106,6 +106,7 @@ src_prepare() {
 
 	# Patch in support to reset all LANG variables to C
 	# Do NOT add to patchset as it must be applied after eautoreconf
+	cd "${S}"
 	epatch "${FILESDIR}/000_flex-configure-LANG.patch"
 }
 
