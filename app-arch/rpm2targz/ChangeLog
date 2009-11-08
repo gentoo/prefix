@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/rpm2targz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.79 2009/10/18 16:46:02 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm2targz/ChangeLog,v 1.80 2009/11/06 13:10:53 vapier Exp $
+
+*rpm2targz-9.0.0.4g (06 Nov 2009)
+
+  06 Nov 2009; Mike Frysinger <vapier@gentoo.org>
+  +rpm2targz-9.0.0.4g.ebuild:
+  Support xz rpms #292057 by Rafał Mużyło and always use rpmoffset
+  #249769 by Michael Haubenwallner.
 
   18 Oct 2009; Alexis Ballier <aballier@gentoo.org>
   rpm2targz-9.0.0.3g.ebuild:
