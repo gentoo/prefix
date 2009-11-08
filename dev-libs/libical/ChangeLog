@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libical
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.52 2009/06/09 16:19:12 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.53 2009/11/05 20:23:50 maekke Exp $
+
+  05 Nov 2009; Markus Meier <maekke@gentoo.org> libical-0.43.ebuild:
+  arm stable, bug #281427
 
   09 Jun 2009; Raúl Porcel <armin76@gentoo.org> libical-0.43.ebuild:
   Add ~arm
