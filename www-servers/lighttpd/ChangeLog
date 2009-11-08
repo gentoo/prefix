@@ -1,6 +1,11 @@
 # ChangeLog for www-servers/lighttpd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.210 2009/10/29 22:12:12 bangert Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.211 2009/11/05 18:19:29 tommy Exp $
+
+  05 Nov 2009; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  lighttpd-1.4.24.ebuild,
+  +files/lighttpd-1.4.24-mod_rewrite-without-pcre.patch:
+  Dont build mod_rewrite with disabled pcre USE flag, fixes bug 291183
 
 *lighttpd-1.4.24 (29 Oct 2009)
 

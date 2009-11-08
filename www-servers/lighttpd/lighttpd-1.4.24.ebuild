@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.24.ebuild,v 1.1 2009/10/29 22:12:12 bangert Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.24.ebuild,v 1.2 2009/11/05 18:19:29 tommy Exp $
 
 EAPI="2"
 
@@ -96,7 +96,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/lighttpd-1.4.24-mod_magnet-fix-pairs.patch
+	epatch "${FILESDIR}"/lighttpd-1.4.24-{mod_magnet-fix-pairs,mod_rewrite-without-pcre}.patch
 	# dev-python/docutils installs rst2html.py not rst2html
 	sed -i -e 's|\(rst2html\)|\1.py|g' doc/Makefile.am || \
 		die "sed doc/Makefile.am failed"
@@ -104,7 +104,7 @@ src_prepare() {
 	#epatch "${FILESDIR}"/${PN}-1.4.20-interix.patch
 	epatch "${FILESDIR}"/${PN}-darwin-bundle.patch
 
-	eautoreconf || die
+	eautoreconf
 }
 
 src_configure() {
@@ -122,8 +122,7 @@ src_configure() {
 		$(use_with ssl openssl) \
 		$(use_with webdav webdav-props) \
 		$(use_with webdav webdav-locks) \
-		$(use_with xattr attr) \
-		|| die "econf failed"
+		$(use_with xattr attr)
 }
 
 src_compile() {
