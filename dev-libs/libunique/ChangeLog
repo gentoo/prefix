@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libunique
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libunique/ChangeLog,v 1.16 2009/10/24 16:20:08 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libunique/ChangeLog,v 1.17 2009/11/05 20:14:49 maekke Exp $
+
+  05 Nov 2009; Markus Meier <maekke@gentoo.org> libunique-1.0.8.ebuild:
+  arm stable, bug #281427
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> libunique-1.0.8.ebuild:
   ppc stable #281427
