@@ -32,11 +32,10 @@ S=${WORKDIR}
 
 src_unpack() {
 	unpack ${A}
-
-	mv opengl.eselect-${PV} opengl.eselect
+	cd "${S}"
 
 	sed -i -e "/^\(ENV_FILE=\|PREFIX=\|DST_PREFIX=\)/s:ROOT}:ROOT}${EPREFIX}:" \
-		opengl.eselect || die
+		eselect-opengl-${PV}/opengl.eselect || die
 }
 
 pkg_preinst() {
