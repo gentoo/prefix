@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.26.2-r1.ebuild,v 1.5 2009/11/05 19:46:30 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/gconf-2.28.0-r1.ebuild,v 1.1 2009/11/04 21:43:37 mrpouet Exp $
 
 EAPI="2"
 
@@ -26,7 +26,7 @@ RDEPEND=">=dev-libs/glib-2.14
 	>=gnome-base/orbit-2.4
 	>=dev-libs/libxml2-2
 	ldap? ( net-nds/openldap )
-	policykit? ( >=sys-auth/policykit-0.7 )"
+	policykit? ( sys-auth/polkit )"
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.35
 	>=dev-util/pkgconfig-0.9
@@ -55,11 +55,14 @@ src_prepare() {
 	# Do not start gconfd when installing schemas, fix bug #238276, upstream ?
 	epatch "${FILESDIR}/${PN}-2.24.0-no-gconfd.patch"
 
+	# Do not crash in gconf_entry_set_value() when entry pointer is NULL
+	epatch "${FILESDIR}/${P}-entry-set-value-sigsegv.patch"
+
 	# Fix intltoolize broken file, see upstream #577133
 	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
 
 	# Don't try to link against modules
-	epatch "${FILESDIR}"/${P}-darwin-cant-link-module.patch
+	epatch "${FILESDIR}"/${PN}-2.26.2-darwin-cant-link-module.patch
 }
 
 # Can't run tests, missing script.
