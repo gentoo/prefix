@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/diction/diction-1.11.ebuild,v 1.9 2009/07/19 14:28:44 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/diction/diction-1.11.ebuild,v 1.10 2009/11/03 06:53:36 jer Exp $
 
 DESCRIPTION="Diction and style checkers for english and german texts"
 HOMEPAGE="http://www.gnu.org/software/diction/diction.html"
