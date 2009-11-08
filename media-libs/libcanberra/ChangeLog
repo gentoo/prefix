@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.29 2009/09/13 18:25:37 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.30 2009/11/04 22:39:49 eva Exp $
+
+*libcanberra-0.22 (04 Nov 2009)
+
+  04 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  -libcanberra-0.11-r5.ebuild,
+  -files/libcanberra-0.11-dont-crash-without-display.patch,
+  -libcanberra-0.14.ebuild, -libcanberra-0.15-r1.ebuild,
+  +libcanberra-0.22.ebuild:
+  Version bump. Updates to gtk+ support. Clean up old revisions.
 
 *libcanberra-0.17 (13 Sep 2009)
 
