@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxme/jaxme-0.5.2.ebuild,v 1.1 2009/05/23 00:55:55 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxme/jaxme-0.5.2.ebuild,v 1.3 2009/11/07 19:03:09 volkmar Exp $
 
 EAPI="2"
 
@@ -20,14 +20,14 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 COMMON_DEP="dev-java/antlr:0[java]
-	dev-db/hsqldb:0
 	>=dev-java/xerces-2.7
 	=dev-java/junit-3.8*
 	>=dev-java/log4j-1.2.8
 	dev-java/xmldb:0"
-RDEPEND=">=virtual/jre-1.4
+RDEPEND=">=virtual/jre-1.5
 	${COMMON_DEP}"
-DEPEND=">=virtual/jdk-1.4
+DEPEND=">=virtual/jdk-1.5
+	dev-db/hsqldb:0
 	${COMMON_DEP}"
 
 S="${WORKDIR}/${MY_P}"
@@ -39,7 +39,6 @@ java_prepare() {
 	cd "${S}/prerequisites"
 	rm *.jar
 	java-pkg_jarfrom antlr
-	java-pkg_jarfrom hsqldb hsqldb.jar hsqldb-1.7.1.jar
 	java-pkg_jarfrom junit
 	java-pkg_jarfrom log4j log4j.jar log4j-1.2.8.jar
 	java-pkg_jarfrom xerces-2
@@ -47,6 +46,8 @@ java_prepare() {
 	java-pkg_jarfrom xmldb xmldb-api-sdk.jar xmldb-api-sdk-20021118.jar
 	java-pkg_jarfrom --build-only ant-core ant.jar ant-1.5.4.jar
 	java-pkg_jarfrom --build-only ant-core ant.jar ant.jar
+	# no linking to it, probably should be test only (FIXME)
+	java-pkg_jarfrom --build-only hsqldb hsqldb.jar hsqldb-1.7.1.jar
 
 	# Special case: jaxme uses ant/*.xml files, so rewriting them by hand
 	# is better:
