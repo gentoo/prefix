@@ -1,6 +1,10 @@
 # ChangeLog for lxde-base/lxmenu-data
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxmenu-data/ChangeLog,v 1.5 2009/08/03 19:31:03 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxmenu-data/ChangeLog,v 1.6 2009/11/05 17:30:25 vostorga Exp $
+
+  05 Nov 2009; Víctor Ostorga <vostorga@gentoo.org>
+  -lxmenu-data-0.1.ebuild:
+  Cleaning out old ebuild
 
   03 Aug 2009; Víctor Ostorga <vostorga@gentoo.org>
   lxmenu-data-0.1.1.ebuild:
