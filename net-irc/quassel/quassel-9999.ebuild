@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/quassel-9999.ebuild,v 1.27 2009/10/30 00:17:28 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/quassel-9999.ebuild,v 1.30 2009/11/04 23:29:11 scarabeus Exp $
 
 EAPI="2"
 
@@ -17,31 +17,32 @@ KEYWORDS="~amd64-linux"
 SLOT="0"
 IUSE="ayatana dbus debug kde monolithic phonon postgres +server +ssl webkit +X"
 
+SERVER_RDEPEND="
+	!postgres? ( x11-libs/qt-sql:4[sqlite] dev-db/sqlite[threadsafe] )
+	postgres? ( x11-libs/qt-sql:4[postgres] )
+	x11-libs/qt-script:4
+"
+
+GUI_RDEPEND="
+	x11-libs/qt-gui:4
+	ayatana? ( dev-libs/libindicate-qt )
+	kde? (
+		>=kde-base/kdelibs-4.3
+		ayatana? ( kde-misc/plasma-indicatordisplay )
+	)
+	phonon? ( || ( media-sound/phonon x11-libs/qt-phonon ) )
+	webkit? ( x11-libs/qt-webkit:4 )
+"
+
 RDEPEND="
 	dbus? ( x11-libs/qt-dbus:4 )
 	monolithic? (
-		!postgres? ( x11-libs/qt-sql:4[sqlite] dev-db/sqlite[threadsafe] )
-		postgres? ( x11-libs/qt-sql:4[postgres] >=virtual/postgresql-base-8.3 )
-		x11-libs/qt-script:4
-		x11-libs/qt-gui:4
-		ayatana? ( dev-libs/libindicate-qt )
-		kde? ( >=kde-base/kdelibs-4.3 )
-		phonon? ( || ( media-sound/phonon x11-libs/qt-phonon ) )
-		webkit? ( x11-libs/qt-webkit:4 )
+		${SERVER_RDEPEND}
+		${GUI_RDEPEND}
 	)
 	!monolithic? (
-		server? (
-			!postgres? ( x11-libs/qt-sql:4[sqlite] dev-db/sqlite[threadsafe] )
-			postgres? ( x11-libs/qt-sql:4[postgres] )
-			x11-libs/qt-script:4
-		)
-		X? (
-			x11-libs/qt-gui:4
-			ayatana? ( dev-libs/libindicate-qt )
-			kde? ( >=kde-base/kdelibs-4.1 )
-			phonon? ( || ( media-sound/phonon x11-libs/qt-phonon ) )
-			webkit? ( x11-libs/qt-webkit:4 )
-		)
+		server? ( ${SERVER_RDEPEND} )
+		X? ( ${GUI_RDEPEND} )
 	)
 	ssl? ( x11-libs/qt-core:4[ssl] )
 	"

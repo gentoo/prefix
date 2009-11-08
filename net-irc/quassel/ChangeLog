@@ -1,6 +1,15 @@
 # ChangeLog for net-irc/quassel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.68 2009/10/30 00:17:28 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/quassel/ChangeLog,v 1.71 2009/11/04 23:29:11 scarabeus Exp $
+
+  04 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org> quassel-9999.ebuild:
+  Fix missing a in useflagname. Billie reported.
+
+  04 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org> quassel-9999.ebuild:
+  Reorder deps in order to not duplicate them
+
+  04 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org> quassel-9999.ebuild:
+  Depend on plasma-indicatordisplay for ayatana in kde.
 
   30 Oct 2009; Tomáš Chvátal <scarabeus@gentoo.org> quassel-9999.ebuild,
   metadata.xml:
