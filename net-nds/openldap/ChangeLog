@@ -1,6 +1,23 @@
 # ChangeLog for net-nds/openldap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.347 2009/08/10 10:32:18 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.351 2009/11/05 20:11:58 maekke Exp $
+
+  05 Nov 2009; Markus Meier <maekke@gentoo.org> openldap-2.4.19.ebuild:
+  amd64 stable, bug #290345
+
+  05 Nov 2009; Jeroen Roovers <jer@gentoo.org> openldap-2.4.19.ebuild:
+  Stable for HPPA (bug #290345).
+
+  04 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  openldap-2.4.19.ebuild:
+  stable x86, security bug 290345
+
+*openldap-2.4.19 (03 Nov 2009)
+
+  03 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +openldap-2.4.19.ebuild, +files/openldap-2.4.19-contrib-smbk5pwd.patch:
+  Version bump per bug #290345 (CVE-2009-3767). Also fix: #286427
+  disable-syslog w/ USE=minimal. #280986 ldflags.
 
   10 Aug 2009; Samuli Suominen <ssuominen@gentoo.org>
   openldap-2.4.17-r1.ebuild, +files/openldap-2.4.17-gcc44.patch:
