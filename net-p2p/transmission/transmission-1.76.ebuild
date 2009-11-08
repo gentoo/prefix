@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.76.ebuild,v 1.1 2009/10/26 11:58:23 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.76.ebuild,v 1.2 2009/11/06 12:26:26 flameeyes Exp $
 
 EAPI=2
 inherit autotools eutils fdo-mime gnome2-utils qt4
@@ -17,7 +17,8 @@ IUSE="+dht gtk libnotify qt4"
 RDEPEND=">=dev-libs/libevent-1.4.11
 	<dev-libs/libevent-2
 	>=dev-libs/openssl-0.9.4
-	|| ( >=net-misc/curl-7.16.3[ssl]
+	|| ( >=net-misc/curl-7.16.3[openssl]
+		>=net-misc/curl-7.16.3[ssl]
 		>=net-misc/curl-7.16.3[gnutls] )
 	gtk? ( >=dev-libs/glib-2.15.5:2
 		>=x11-libs/gtk+-2.12:2
