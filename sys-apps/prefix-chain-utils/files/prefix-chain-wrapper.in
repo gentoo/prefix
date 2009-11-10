@@ -13,7 +13,7 @@ for opt in "$@"; do
   -L*)	link_dirs=("${link_dirs[@]}" "${opt}") ;;
   *)
   	case "${opt}" in
-	-v)			mode=version ;;
+	--version)	mode=version ;;
 	-c|-E|-S)	mode=compile ;;
 	-print-search-dirs) mode=dirs ;;
 	esac
@@ -46,7 +46,7 @@ pfx_link=("-L${prefix}/lib" "-L${prefix}/usr/lib" "${rpath_opt}${prefix}/lib" "$
 pfx_comp=("-I${prefix}/include" "-I${prefix}/usr/include")
 
 case "$mode" in
-link) 		exec "$(basename $0)" "${link_dirs[@]}" "${pfx_link[@]}" "${opts[@]}" ;;
+link) 		exec "$(basename $0)" "${link_dirs[@]}" "${pfx_link[@]}" "${opts[@]}" "${pfx_comp[@]}" ;;
 compile)	exec "$(basename $0)" "${link_dirs[@]}" "${opts[@]}" "${pfx_comp[@]}" ;;
 version)	exec "$(basename $0)" "${orig_args[@]}" ;;
 dirs)

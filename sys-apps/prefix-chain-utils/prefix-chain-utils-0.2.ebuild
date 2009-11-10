@@ -10,7 +10,7 @@ SRC_URI=""
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~x86-interix ~x86-linux ~x86-winnt"
+KEYWORDS="~x86-interix ~x86-linux ~x86-solaris ~x86-winnt"
 IUSE=""
 
 DEPEND=""
