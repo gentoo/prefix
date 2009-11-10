@@ -24,6 +24,7 @@ src_unpack() {
 	cd "${S}"
 	cp "${FILESDIR}"/${P} ./${PN} || die "cannot gain ${FILESDIR}/${P}"
 	epatch "${FILESDIR}"/${PV}-extwrapper.patch
+	epatch "${FILESDIR}"/${P}-libpath-ordering.patch
 	eprefixify ${PN} || die "eprefixify failed."
 }
 
