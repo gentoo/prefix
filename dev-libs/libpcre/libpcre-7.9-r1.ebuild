@@ -30,7 +30,7 @@ DEPEND="${RDEPEND}
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
-	sed -i -e "s:libdir=@libdir@:libdir=/$(get_libdir):" libpcre.pc.in || die "Fixing libpcre pkgconfig files failed"
+	sed -i -e "s:libdir=@libdir@:libdir=${EPREFIX}/$(get_libdir):" libpcre.pc.in || die "Fixing libpcre pkgconfig files failed"
 	sed -i -e "s:-lpcre ::" libpcrecpp.pc.in || die "Fixing libpcrecpp pkgconfig files failed"
 	echo "Requires: libpcre = @PACKAGE_VERSION@" >> libpcrecpp.pc.in
 	epatch "${FILESDIR}"/libpcre-7.9-pkg-config.patch
