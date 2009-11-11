@@ -21,6 +21,11 @@ RDEPEND="nls? ( virtual/libintl )"
 src_prepare() {
 	# Update timestamp so it isn't regenerated #76610
 	touch -r man/Makefile.am man/texinfo2man.c
+
+	# comply to the standard
+	cp -a man/texinfo2man.c{,.orig} || die
+	sed -i -e 's/<malloc\.h>/<stdlib.h>/' man/texinfo2man.c || die
+	touch -r man/texinfo2man.c{.orig,} || die # avoid regen
 }
 
 src_configure() {
