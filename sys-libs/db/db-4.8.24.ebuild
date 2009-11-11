@@ -56,18 +56,15 @@ src_unpack() {
 
 	# need to upgrade local copy of libtool.m4
 	# for correct shared libs on aix (#213277).
-	local _ltpath="$(dirname "$(dirname "$(type -P libtoolize)")")"
+	local g="" ; type -P glibtoolize > /dev/null && g=g
+	local _ltpath="$(dirname "$(dirname "$(type -P ${g}libtoolize)")")"
 	cp -f "${_ltpath}"/share/aclocal/libtool.m4 aclocal/libtool.m4 \
-	|| die "cannot update libtool.ac from libtool.m4"
+		|| die "cannot update libtool.ac from libtool.m4"
 
 	# need to upgrade ltmain.sh for AIX,
 	# but aclocal.m4 is created in ./s_config,
 	# and elibtoolize does not work when there is no aclocal.m4, so:
-	if type -P glibtoolize > /dev/null ; then
-		glibtoolize --force --copy || die "glibtoolize failed."
-	else
-		libtoolize --force --copy || die "libtoolize failed."
-	fi
+	${g}libtoolize --force --copy || die "${g}libtoolize failed."
 	# now let shipped script do the autoconf stuff, it really knows best.
 	#see code below
 	#sh ./s_config || die "Cannot execute ./s_config"
