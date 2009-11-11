@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/xvid-1.2.2-r1.ebuild,v 1.13 2009/07/21 07:48:07 ssuominen Exp $
 
 EAPI=2
-inherit multilib
+inherit multilib eutils
 
 MY_PN=${PN}core
 MY_P=${MY_PN}-${PV}
