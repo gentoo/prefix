@@ -40,6 +40,7 @@ src_prepare() {
 		-e '/"dispatch"/d' -i "${S}/bus/test-main.c"
 
 	epatch "${FILESDIR}"/${PN}-1.2.3-darwin.patch
+	epatch "${FILESDIR}"/${P}-unix-fd-check.patch # from upstream
 	epatch "${FILESDIR}"/${PN}-1.2.1-interix.patch
 	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix5.patch
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix3.patch
