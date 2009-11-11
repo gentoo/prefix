@@ -62,7 +62,7 @@ src_unpack() {
 
 	# make sure we don't get a crappy `g' nameprefix
 	epatch "${FILESDIR}"/groff-1.19.2-no-g-nameprefix.patch
-	eautoreconf
+	AT_M4DIR=m4 eautoreconf
 }
 
 src_compile() {
