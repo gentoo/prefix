@@ -12,7 +12,7 @@ LICENSE="BSD"
 
 SRC_URI="mirror://rubyforge/sqlite-ruby/${P}.tar.bz2"
 
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 SLOT="0"
 IUSE="doc +swig"
 
