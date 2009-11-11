@@ -25,7 +25,7 @@ http://bugs.gentoo.org/show_bug.cgi?id=262118
  
  $(destdir)test_opaque$x: $(MODEL)/test_opaque$o $(LOCAL_LIBS)
 -	$(LINK) -o $@ $(MODEL)/test_opaque$o $(LDFLAGS_CURSES)
-+	$(LINK) -o $@ $(MODEL)/test_opaque$o -L../lib -lncurses $(LDFLAGS_CURSES)
++	$(LINK) -o $@ $(MODEL)/test_opaque$o $(TEST_ARGS) $(LDFLAGS_CURSES)
  
  $(destdir)testaddch$x: $(MODEL)/testaddch$o $(LOCAL_LIBS)
  	$(LINK) -o $@ $(MODEL)/testaddch$o $(LDFLAGS_CURSES)
