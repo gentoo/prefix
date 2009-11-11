@@ -86,6 +86,8 @@ src_prepare() {
 		EPATCH_EXCLUDE=21_all_ctypes-execstack.patch
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
+	epatch "${FILESDIR}"/${P}-readline-prefix.patch
+
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
 		Lib/distutils/sysconfig.py \
@@ -107,7 +109,6 @@ src_prepare() {
 	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
 	use prefix && epatch "${FILESDIR}"/${P}-use-first-bsddb-found.patch
 	use prefix && epatch "${FILESDIR}"/${P}-prefix.patch
-	epatch "${FILESDIR}"/${P}-readline-prefix.patch
 
 	# build static for mint
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${P}-mint.patch

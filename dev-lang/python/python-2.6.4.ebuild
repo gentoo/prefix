@@ -31,7 +31,7 @@ IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline 
 
 RDEPEND=">=app-admin/eselect-python-20090606
 		>=sys-libs/zlib-1.1.3
-		!m68k-mint? ( virtual/libffi )
+		!m68k-mint? ( !mips-irix? ( virtual/libffi ) )
 		virtual/libintl
 		!build? (
 			berkdb? ( || (
@@ -75,7 +75,7 @@ pkg_setup() {
 src_prepare() {
 	# Ensure that internal copies of expat and libffi aren't used.
 	rm -fr Modules/expat
-	rm -fr Modules/_ctypes/libffi*
+	use mips-irix || rm -fr Modules/_ctypes/libffi*
 
 	if tc-is-cross-compiler; then
 		epatch "${FILESDIR}/python-2.5-cross-printf.patch"
@@ -95,6 +95,9 @@ src_prepare() {
 		;;
 	esac
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+
+	# apply before Gentoo libdir comes into effect
+	epatch "${FILESDIR}"/${PN}-2.6.2-readline-prefix.patch
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -117,7 +120,6 @@ src_prepare() {
 	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
 	use prefix && epatch "${FILESDIR}"/${PN}-2.6.2-use-first-bsddb-found.patch
 	use prefix && epatch "${FILESDIR}"/${PN}-2.6.2-prefix.patch
-	epatch "${FILESDIR}"/${PN}-2.6.2-readline-prefix.patch
 
 	# build static for mint
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.6.2-mint.patch
@@ -149,8 +151,8 @@ src_prepare() {
 	# at least IRIX starts spitting out ugly errors, but we want to use Prefix
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
-	# make it compile on IRIX as well
-	epatch "${FILESDIR}"/${PN}-2.6.4-irix-noffi.patch
+	# make it compile on IRIX as well (depends on internal libffi)
+	use mips-irix && epatch "${FILESDIR}"/${PN}-2.6.4-irix-ffi.patch
 	# and generate a libpython2.6.so
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
@@ -283,7 +285,7 @@ src_configure() {
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
 		--with-libc='' \
-		--with-system-ffi \
+		$(use_with !mips-irix system-ffi) \
 		${myconf}
 }
 
