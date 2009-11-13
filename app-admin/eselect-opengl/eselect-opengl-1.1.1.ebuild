@@ -29,6 +29,7 @@ RDEPEND=">=app-admin/eselect-1.2.4"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}"/${P}-soname-copy-for-prefix.patch 
 
 	sed -i -e "/^\(ENV_FILE=\|PREFIX=\|DST_PREFIX=\)/s:ROOT}:ROOT}${EPREFIX}:" \
 		opengl.eselect || die
