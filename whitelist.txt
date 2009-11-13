@@ -25,6 +25,7 @@ app-portage/eix
 app-shells/bash-completion
 app-shells/tcsh
 dev-db/tokyocabinet
+dev-libs/libebml
 dev-php5/pecl-pdflib
 dev-python/astng
 dev-python/beautifulsoup
