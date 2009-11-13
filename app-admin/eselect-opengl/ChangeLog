@@ -1,6 +1,16 @@
 # ChangeLog for app-admin/eselect-opengl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/ChangeLog,v 1.57 2009/11/07 21:57:07 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/ChangeLog,v 1.59 2009/11/08 21:28:21 scarabeus Exp $
+
+*eselect-opengl-1.1.1 (08 Nov 2009)
+
+  08 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -eselect-opengl-1.1.0.ebuild, +eselect-opengl-1.1.1.ebuild:
+  Verbump and drop old to make nvidia work again.
+
+  08 Nov 2009; Michael Sterrett <mr_bones_@gentoo.org>
+  +eselect-opengl-1.0.8-r1.ebuild:
+  resurrect stable version
 
 *eselect-opengl-1.1.0 (07 Nov 2009)
 
