@@ -14,30 +14,33 @@ PROVIDE="virtual/portage"
 SLOT="0"
 IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
 
-python_dep=">=dev-lang/python-2.5 <dev-lang/python-3.0"
+python_dep=">=dev-lang/python-2.6 <dev-lang/python-3.0"
 
 DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
 	epydoc? ( >=dev-python/epydoc-2.0 )"
+# the debugedit blocker is for bug #289967
 RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
 		>=app-shells/bash-3.2_p17
 		|| ( >=app-admin/eselect-1.1 >=app-admin/eselect-news-20071201 ) )
 	elibc_FreeBSD? ( !prefix? ( sys-freebsd/freebsd-bin ) )
-	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-1.6 ) )
-	elibc_uclibc? ( !prefix? ( >=sys-apps/sandbox-1.6 ) )
+	elibc_glibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
+	elibc_uclibc? ( !prefix? ( >=sys-apps/sandbox-2.2 ) )
 	kernel_linux? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_SunOS? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_FreeBSD? ( >=app-misc/pax-utils-0.1.17 )
 	kernel_Darwin? ( >=app-misc/pax-utils-0.1.18 )
 	kernel_HPUX? ( !hppa-hpux? ( >=app-misc/pax-utils-0.1.19 ) )
-	selinux? ( >=dev-python/python-selinux-2.16 )"
+	kernel_AIX? ( >=sys-apps/aix-miscutils-0.1.1634 )
+	selinux? ( >=dev-python/python-selinux-2.16 )
+	!>=dev-util/debugedit-4.4.6-r2"
 PDEPEND="
 	!build? (
 		>=net-misc/rsync-2.6.4
 		userland_GNU? ( >=sys-apps/coreutils-6.4 )
-		|| ( >=dev-lang/python-2.5 >=dev-python/pycrypto-2.0.1-r6 )
+		|| ( >=dev-lang/python-2.6 >=dev-python/pycrypto-2.0.1-r6 )
 	)"
 # coreutils-6.4 rdep is for date format in emerge-webrsync #164532
 # rsync-2.6.4 rdep is for the --filter option #167668
@@ -77,9 +80,8 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
-	epatch "${FILESDIR}"/${P}-brokentty-more-platforms.patch
 
-	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14487-prefix-chaining.patch
+	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.14771-prefix-chaining.patch
 }
 
 src_compile() {
@@ -176,14 +178,12 @@ src_install() {
 
 pkg_preinst() {
 	if ! use build && ! has_version dev-python/pycrypto && \
-		has_version '>=dev-lang/python-2.5' ; then
-		if ! built_with_use '>=dev-lang/python-2.5' ssl ; then
-			ewarn "If you are an ebuild developer and you plan to commit ebuilds"
-			ewarn "with this system then please install dev-python/pycrypto or"
-			ewarn "enable the ssl USE flag for >=dev-lang/python-2.5 in order"
-			ewarn "to enable RMD160 hash support."
-			ewarn "See bug #198398 for more information."
-		fi
+		! has_version '>=dev-lang/python-2.6[ssl]' ; then
+		ewarn "If you are an ebuild developer and you plan to commit ebuilds"
+		ewarn "with this system then please install dev-python/pycrypto or"
+		ewarn "enable the ssl USE flag for >=dev-lang/python-2.6 in order"
+		ewarn "to enable RMD160 hash support."
+		ewarn "See bug #198398 for more information."
 	fi
 	if [ -f "${EROOT}/etc/make.globals" ]; then
 		rm "${EROOT}/etc/make.globals"

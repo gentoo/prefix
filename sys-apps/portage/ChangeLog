@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.14813 (13 Nov 2009)
+
+  13 Nov 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.14487.ebuild, +portage-2.2.00.14813.ebuild:
+  Bump, restore bash-3 compatability, no longer provide ld.so.conf file for
+  offset installs
+
 *portage-2.2.00.14771 (01 Nov 2009)
 
   01 Nov 2009; Fabian Groffen <grobian@gentoo.org>
