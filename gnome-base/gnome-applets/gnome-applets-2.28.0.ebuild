@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.28.0.ebuild,v 1.1 2009/10/29 23:48:33 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-applets/gnome-applets-2.28.0.ebuild,v 1.2 2009/11/12 22:38:42 eva Exp $
 
 inherit eutils gnome2 python
 
@@ -78,6 +78,10 @@ src_unpack() {
 
 	# Fixes a crash when creating new sticky note, bug #207877, upstream #594797
 	epatch "${FILESDIR}/${P}-stickynotes-duplicate-labels-ui.patch"
+
+	# Fix intltoolize broken file, see upstream #577133
+	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
+		|| die "intltool rules fix failed"
 }
 
 pkg_setup() {
