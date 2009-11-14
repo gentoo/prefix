@@ -1,6 +1,18 @@
 # ChangeLog for perl-core/Pod-Simple
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Pod-Simple/ChangeLog,v 1.2 2009/07/18 08:18:40 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Pod-Simple/ChangeLog,v 1.4 2009/11/13 02:18:23 robbat2 Exp $
+
+*Pod-Simple-3.10 (13 Nov 2009)
+
+  13 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +Pod-Simple-3.10.ebuild:
+  Version bump via perl-bump experimental tool.
+
+*Pod-Simple-3.09 (10 Nov 2009)
+
+  10 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +Pod-Simple-3.09.ebuild:
+  Version bump via perl-bump experimental tool.
 
 *Pod-Simple-3.08 (18 Jul 2009)
 
