@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Data-UUID/Data-UUID-1.201.ebuild,v 1.1 2009/04/19 13:55:58 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Data-UUID/Data-UUID-1.203.ebuild,v 1.1 2009/11/10 10:00:30 robbat2 Exp $
 
 EAPI=2
 
