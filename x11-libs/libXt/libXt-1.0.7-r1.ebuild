@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.7-r1.ebuild,v 1.1 2009/11/05 11:41:08 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.7-r1.ebuild,v 1.2 2009/11/09 09:55:23 remi Exp $
 
 SNAPSHOT="yes"
 
@@ -36,7 +36,7 @@ pkg_setup() {
 	filter-ldflags -Wl,-Bdirect
 
 	if tc-is-cross-compiler; then
-		CFLAGS_FOR_BUILD="${BUILD_CFLAGS}"
+		export CFLAGS_FOR_BUILD="${BUILD_CFLAGS}"
 	fi
 }
 

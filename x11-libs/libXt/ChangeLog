@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.61 2009/11/05 11:41:08 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.62 2009/11/09 09:55:23 remi Exp $
+
+  09 Nov 2009; Rémi Cardona <remi@gentoo.org> libXt-1.0.7-r1.ebuild:
+  fix cross-compile for real this time, closes bug #290307
 
 *libXt-1.0.7-r1 (05 Nov 2009)
 
