@@ -44,14 +44,11 @@ CMAKE_IN_SOURCE_BUILD=1
 PATCHES=(
 	"${FILESDIR}/${PN}-FindPythonLibs.patch"
 	"${FILESDIR}/${PN}-FindPythonInterp.patch"
-	"${FILESDIR}"/${PN}-2.6.1-no_host_paths.patch
 	"${FILESDIR}"/${PN}-2.6.0-interix.patch
-	"${FILESDIR}"/${PN}-2.6.3-solaris-jni-support.patch
-	"${FILESDIR}"/${PN}-2.6.4-more-no_host_paths.patch
+	"${FILESDIR}"/${PN}-2.8.0-more-no_host_paths.patch
 	"${FILESDIR}"/${PN}-2.6.3-darwin-bundle.patch
 	"${FILESDIR}"/${PN}-2.6.3-no-duplicates-in-rpath.patch
 	"${FILESDIR}"/${PN}-2.6.3-fix_broken_lfs_on_aix.patch
-	"${FILESDIR}"/${PN}-2.6.3-curl-include.patch
 )
 
 src_configure() {
