@@ -1,6 +1,12 @@
 # ChangeLog for app-i18n/enca
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.47 2009/11/03 18:37:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.48 2009/11/12 22:59:56 arfrever Exp $
+
+*enca-1.12 (13 Nov 2009)
+
+  13 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -enca-1.9-r1.ebuild, +enca-1.12.ebuild:
+  Version bump.
 
   03 Nov 2009; Raúl Porcel <armin76@gentoo.org> enca-1.10.ebuild:
   arm/ia64/sparc stable wrt #288568
