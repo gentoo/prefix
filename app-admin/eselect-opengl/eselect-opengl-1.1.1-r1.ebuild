@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/eselect-opengl-1.1.1.ebuild,v 1.1 2009/11/08 21:28:21 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/eselect-opengl-1.1.1-r1.ebuild,v 1.1 2009/11/13 21:35:23 scarabeus Exp $
+
+EAPI=2
 
 inherit multilib eutils
 
@@ -26,13 +28,14 @@ IUSE=""
 DEPEND="app-arch/bzip2"
 RDEPEND=">=app-admin/eselect-1.2.4"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${P}-soname-copy-for-prefix.patch 
 
 	sed -i -e "/^\(ENV_FILE=\|PREFIX=\|DST_PREFIX=\)/s:ROOT}:ROOT}${EPREFIX}:" \
 		opengl.eselect || die
+
+	# fix la FAIL
+	sed -i -e 's/{la}/la/' opengl.eselect || die
 }
 
 pkg_postinst() {
