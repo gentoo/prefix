@@ -1,0 +1,11 @@
+--- setuptools/tests/test_resources.py
++++ setuptools/tests/test_resources.py
+@@ -536,6 +536,8 @@
+                              '#!%s -x\n' % self.non_ascii_exe)
+ 
+     def test_get_script_header_jython_workaround(self):
++        if os.environ.get("LC_ALL") == "C":
++            return
+         platform = sys.platform
+         sys.platform = 'java1.5.0_13'
+         stdout = sys.stdout

@@ -1,15 +1,18 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6.8.ebuild,v 1.3 2009/11/06 17:47:32 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6.8.ebuild,v 1.5 2009/11/12 21:23:26 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils eutils
 
+MY_PN="distribute"
+MY_P="${MY_PN}-${PV}"
+
 DESCRIPTION="Distribute (fork of Setuptools) is a collection of extensions to Distutils"
 HOMEPAGE="http://pypi.python.org/pypi/distribute"
-SRC_URI="http://pypi.python.org/packages/source/d/distribute/distribute-${PV}.tar.gz"
+SRC_URI="http://pypi.python.org/packages/source/${MY_PN:0:1}/${MY_PN}/${MY_P}.tar.gz"
 
 LICENSE="PSF-2.2"
 SLOT="0"
@@ -19,7 +22,7 @@ IUSE=""
 DEPEND=""
 RDEPEND=""
 
-S="${WORKDIR}/distribute-${PV}"
+S="${WORKDIR}/${MY_P}"
 
 DOCS="README.txt docs/easy_install.txt docs/pkg_resources.txt docs/setuptools.txt"
 
@@ -27,6 +30,8 @@ src_prepare() {
 	distutils_src_prepare
 
 	epatch "${FILESDIR}/${PN}-0.6_rc7-noexe.patch"
+
+	epatch "${FILESDIR}/${MY_P}-C_locale_tests.patch"
 
 	# Remove tests that access the network (bugs #198312, #191117)
 	rm setuptools/tests/test_packageindex.py
