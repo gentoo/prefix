@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/qtjambi
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.20 2009/07/22 07:29:15 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.21 2009/11/09 10:47:23 abcd Exp $
+
+  09 Nov 2009; Jonathan Callen <abcd@gentoo.org>
+  -files/generator-4.3.3.patch, -files/jambi.pri.diff,
+  -files/java_files_remove_accessibility.diff,
+  -files/java_files_remove_ssl.diff, -files/qtjambi_base.pri.diff:
+  Drop unneeded patches
 
   19 Jul 2009; Dominik Kapusta <d@ayoy.net> qtjambi-4.5.0_p1.ebuild,
   +files/gcc4.4-4.5.0_p1.patch, +metadata.xml:
