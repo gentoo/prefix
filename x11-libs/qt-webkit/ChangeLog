@@ -1,6 +1,32 @@
 # ChangeLog for x11-libs/qt-webkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.60 2009/11/01 23:42:04 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/ChangeLog,v 1.66 2009/11/11 14:31:53 yngwin Exp $
+
+  11 Nov 2009; Ben de Groot <yngwin@gentoo.org> -qt-webkit-4.4.2-r1.ebuild,
+  -qt-webkit-4.4.2-r2.ebuild, -qt-webkit-4.5.1.ebuild,
+  -qt-webkit-4.5.1-r1.ebuild, -qt-webkit-4.5.2.ebuild,
+  -qt-webkit-4.5.2-r1.ebuild:
+  Remove obsolete versions
+
+  10 Nov 2009; Jeroen Roovers <jer@gentoo.org> qt-webkit-4.5.3.ebuild:
+  Stable for HPPA (bug #290922).
+
+  09 Nov 2009; Raúl Porcel <armin76@gentoo.org> qt-webkit-4.5.3.ebuild:
+  alpha/ia64 stable wrt #290922
+
+  09 Nov 2009; Joseph Jezak <josejx@gentoo.org> qt-webkit-4.5.3-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #290922.
+
+  09 Nov 2009; Markus Meier <maekke@gentoo.org> qt-webkit-4.5.3.ebuild:
+  arm stable, bug #290922
+
+*qt-webkit-4.5.3-r1 (08 Nov 2009)
+
+  08 Nov 2009; Ben de Groot <yngwin@gentoo.org>
+  +files/30_webkit_unaligned_access.diff, +qt-webkit-4.5.3-r1.ebuild:
+  Add patch to fix unaligned access which caused sigbus in sparc (bug 235685).
+  Patch originally from Debian:
+  http://patch-tracker.debian.org/package/qt4-x11/4:4.5.3-4
 
   01 Nov 2009; Ben de Groot <yngwin@gentoo.org> qt-webkit-4.5.3.ebuild,
   qt-webkit-4.6.0_beta1.ebuild:
