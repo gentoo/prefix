@@ -1,6 +1,22 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.283 2009/11/05 20:28:17 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.286 2009/11/12 23:13:29 eva Exp $
+
+  12 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org> gedit-2.28.2.ebuild:
+  intltool rules fix.
+
+*gedit-2.28.2 (12 Nov 2009)
+
+  12 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org> -gedit-2.28.0.ebuild,
+  +gedit-2.28.2.ebuild:
+  Version bump. Regression/warning fixes due to OSX integration.
+
+*gedit-2.28.1 (11 Nov 2009)
+
+  11 Nov 2009; Romain Perier <mrpouet@gentoo.org>
+  +gedit-2.28.1.ebuild:
+  Version bump. Fix regressions in the External Tools plugin,
+  Misc bugfixes.
 
   05 Nov 2009; Markus Meier <maekke@gentoo.org> gedit-2.26.3.ebuild:
   arm stable, bug #281427
