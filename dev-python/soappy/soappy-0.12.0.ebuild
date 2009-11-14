@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/soappy/soappy-0.12.0.ebuild,v 1.12 2009/10/25 19:53:53 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/soappy/soappy-0.12.0.ebuild,v 1.13 2009/11/11 15:51:31 jer Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
