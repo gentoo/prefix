@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/urwid/urwid-0.9.8.4.ebuild,v 1.6 2009/10/30 20:41:21 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/urwid/urwid-0.9.8.4.ebuild,v 1.7 2009/11/08 06:27:02 josejx Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
