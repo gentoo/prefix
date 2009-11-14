@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gjdoc/gjdoc-0.7.9.ebuild,v 1.7 2009/03/24 19:38:04 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gjdoc/gjdoc-0.7.9-r2.ebuild,v 1.1 2009/11/13 23:37:57 caster Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="source"
@@ -31,11 +31,9 @@ RDEPEND=">=virtual/jre-1.4
 DEPEND="${RDEPEND}
 		>=virtual/jdk-1.4"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	epatch "${FILESDIR}/${PN}-0.7.7-gcp.patch"
+	epatch "${FILESDIR}/0.7.9-main-execute.patch"
 	AT_M4DIR="m4" eautoreconf
 }
 
@@ -64,7 +62,7 @@ src_install() {
 		java-pkg_newjar ${jar}-${PV}.jar ${jar}.jar
 	done
 
-	dobin "${FILESDIR}"/gjdoc
+	java-pkg_dolauncher ${PN} --main gnu.classpath.tools.gjdoc.Main
 	dodoc AUTHORS ChangeLog NEWS README || die
 
 	cd "${S}"/docs

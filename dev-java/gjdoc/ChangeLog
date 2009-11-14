@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/gjdoc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gjdoc/ChangeLog,v 1.43 2009/03/24 19:38:04 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gjdoc/ChangeLog,v 1.44 2009/11/13 23:37:57 caster Exp $
+
+*gjdoc-0.7.9-r2 (13 Nov 2009)
+
+  13 Nov 2009; Vlastimil Babka <caster@gentoo.org> -gjdoc-0.7.9.ebuild,
+  +gjdoc-0.7.9-r2.ebuild:
+  Revbump to use gjl launcher instead of custom script. Bug #293007 by
+  Martin von Gagern <Martin.vGagern@gmx.net>.
 
   24 Mar 2009; Petteri Räty <betelgeuse@gentoo.org> gjdoc-0.7.9.ebuild,
   gjdoc-0.7.9-r1.ebuild:
