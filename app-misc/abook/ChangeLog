@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/abook
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/abook/ChangeLog,v 1.52 2009/10/24 18:35:20 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/abook/ChangeLog,v 1.53 2009/11/13 15:01:50 tcunha Exp $
+
+  13 Nov 2009; Tiago Cunha <tcunha@gentoo.org> abook-0.5.6-r1.ebuild:
+  stable sparc, bug 289956
 
   24 Oct 2009; Tobias Klausmann <klausman@gentoo.org> abook-0.5.6-r1.ebuild:
   Stable on alpha, bug #289956
