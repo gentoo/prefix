@@ -1,6 +1,12 @@
 # ChangeLog for dev-java/mockobjects
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/mockobjects/ChangeLog,v 1.24 2009/05/18 19:31:13 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/mockobjects/ChangeLog,v 1.25 2009/11/08 21:19:19 caster Exp $
+
+*mockobjects-0.09-r4 (08 Nov 2009)
+
+  08 Nov 2009; Vlastimil Babka <caster@gentoo.org>
+  +mockobjects-0.09-r4.ebuild:
+  Revbump to remove dependency on 1.5 jdk - bug #292001.
 
   18 May 2009; Petteri Räty <betelgeuse@gentoo.org>
   -mockobjects-0.09-r2.ebuild:
