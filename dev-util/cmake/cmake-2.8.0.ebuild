@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.8.0_rc4.ebuild,v 1.1 2009/11/03 03:34:51 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/cmake-2.8.0.ebuild,v 1.1 2009/11/14 01:01:37 scarabeus Exp $
 
 EAPI=2
 
@@ -22,8 +22,10 @@ DEPEND="
 	>=dev-libs/expat-2.0.1
 	>=dev-libs/libxml2-2.6.28
 	>=dev-libs/xmlrpc-c-1.06.27[curl]
-	emacs? ( virtual/emacs )
 	qt4? ( x11-libs/qt-gui:4 )
+"
+RDEPEND="${DEPEND}
+	emacs? ( virtual/emacs )
 	vim-syntax? (
 		|| (
 			app-editors/vim
@@ -31,7 +33,6 @@ DEPEND="
 		)
 	)
 "
-RDEPEND="${DEPEND}"
 
 SITEFILE="50${PN}-gentoo.el"
 VIMFILE="${PN}.vim"
@@ -124,9 +125,7 @@ src_compile() {
 }
 
 src_test() {
-	einfo "Please note that test \"58 - SimpleInstall-Stage2\" might fail."
-	einfo "If any package installs with cmake, it means test failed but cmake work."
-	emake test
+	emake test || die "Tests failed"
 }
 
 src_install() {

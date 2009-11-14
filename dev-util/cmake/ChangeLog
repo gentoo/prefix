@@ -1,6 +1,22 @@
 # ChangeLog for dev-util/cmake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.114 2009/11/03 03:34:50 cryos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.118 2009/11/14 01:01:37 scarabeus Exp $
+
+*cmake-2.8.0 (14 Nov 2009)
+
+  14 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -cmake-2.8.0_rc4.ebuild, +cmake-2.8.0.ebuild:
+  Version bump for new 2.8.0 release. Remove old rc. Tests are fatal, 100%
+  pased on all my machines right now.
+
+  11 Nov 2009; Jeroen Roovers <jer@gentoo.org> cmake-2.6.4-r3.ebuild:
+  Stable for HPPA (bug #290723).
+
+  08 Nov 2009; Tobias Klausmann <klausman@gentoo.org> cmake-2.6.4-r3.ebuild:
+  Stable on alpha, bug #290723
+
+  08 Nov 2009; Mounir Lamouri <volkmar@gentoo.org> cmake-2.6.4-r3.ebuild:
+  Stable for ppc, bug 290723
 
 *cmake-2.8.0_rc4 (03 Nov 2009)
 
