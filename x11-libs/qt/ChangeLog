@@ -1,6 +1,16 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.596 2009/11/02 16:01:31 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.599 2009/11/11 12:53:17 yngwin Exp $
+
+  11 Nov 2009; Ben de Groot <yngwin@gentoo.org> -qt-4.4.2.ebuild,
+  -qt-4.5.1.ebuild, -qt-4.5.2.ebuild:
+  Remove obsolete versions
+
+  09 Nov 2009; Joseph Jezak <josejx@gentoo.org> qt-4.5.3.ebuild:
+  Marked ppc/ppc64 stable for bug #290922.
+
+  09 Nov 2009; Markus Meier <maekke@gentoo.org> qt-4.5.3.ebuild:
+  arm stable, bug #290922
 
   02 Nov 2009; Theo Chatzimichos <tampakrap@gentoo.org>
   +files/qt-ulibc.patch:
