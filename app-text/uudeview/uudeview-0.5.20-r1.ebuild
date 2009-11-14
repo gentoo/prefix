@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/uudeview/uudeview-0.5.20-r1.ebuild,v 1.4 2008/08/03 17:58:05 dertobi123 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/uudeview/uudeview-0.5.20-r1.ebuild,v 1.5 2009/11/10 04:19:17 abcd Exp $
 
 inherit eutils autotools
 IUSE="tk"
@@ -21,8 +21,12 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	EPATCH_SOURCE="${FILESDIR}" EPATCH_SUFFIX="patch" \
-		EPATCH_FORCE="yes" epatch
+
+	epatch "${FILESDIR}/${P}-bugfixes.patch"
+	epatch "${FILESDIR}/${P}-CVE-2004-2265.patch"
+	epatch "${FILESDIR}/${P}-CVE-2008-2266.patch"
+	epatch "${FILESDIR}/${P}-man.patch"
+	epatch "${FILESDIR}/${P}-rename.patch"
 
 	eautoreconf
 }
@@ -30,7 +34,7 @@ src_unpack() {
 src_compile() {
 	econf \
 		$(use_enable tk tcl) \
-		$(use_enable tk  tk)  || die
+		$(use_enable tk)
 	emake || die "emake failed"
 }
 

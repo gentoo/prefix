@@ -1,6 +1,9 @@
 # ChangeLog for app-text/uudeview
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/uudeview/ChangeLog,v 1.30 2009/05/29 14:07:15 rbu Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/uudeview/ChangeLog,v 1.31 2009/11/10 04:19:17 abcd Exp $
+
+  10 Nov 2009; Jonathan Callen <abcd@gentoo.org> uudeview-0.5.20-r1.ebuild:
+  List all patches to be applied directly; clean up ebuild
 
   29 May 2009; Robert Buchholz <rbu@gentoo.org> -uudeview-0.5.20.ebuild:
   Remove ebuild that is vulnerable to GLSA 200808-11, bug #271750.
