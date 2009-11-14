@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/math-pari-2.010801-r1.ebuild,v 1.1 2009/04/19 09:26:18 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/math-pari-2.01080602.ebuild,v 1.1 2009/11/13 02:17:34 robbat2 Exp $
 
 EAPI=2
 
@@ -8,7 +8,7 @@ MODULE_AUTHOR=ILYAZ
 MODULE_SECTION=modules
 MY_PN=Math-Pari
 MY_P=${MY_PN}-${PV}
-inherit perl-module
+inherit perl-module eutils
 
 PARI_VER=2.3.4
 
@@ -18,25 +18,36 @@ SRC_URI="${SRC_URI}
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
 # Math::Pari requires that a copy of the pari source in a parallel
 # directory to where you build it. It does not need to compile it, but
 # it does need to be the same version as is installed, hence the hard
 # DEPEND below
-# Math::Pari does NOT work with 2.3. The Makefile.PL gives warnings, and if you
-# run the tests, you get failures.
 RDEPEND="~sci-mathematics/pari-${PARI_VER}"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
+S_PARI=${WORKDIR}/pari-${PARI_VER}
 SRC_TEST=do
 
 src_prepare() {
+	# On 64-bit hardware, these files are needed in both the 64/ and 32/
+	# directories for the testsuite to pass.
+	cd "${S_PARI}"/src/test/
+	for t in analyz compat ellglobalred elliptic galois graph intnum kernel \
+		linear nfields number objets ploth polyser program qfbsolve rfrac \
+		round4 stark sumiter trans ; do
+		i="in/${t}"
+		o32="32/${t}"
+		o64="64/${t}"
+		[ -f "$i" -a ! -f "$o32" ] && cp -al "$i" "$o32"
+		[ -f "$i" -a ! -f "$o64" ] && cp -al "$i" "$o64"
+	done
 	perl-module_src_prepare
-	cd "${WORKDIR}"
-	epatch "${FILESDIR}"/${P}-duplicate-object-darwin.patch
+
+	epatch "${FILESDIR}"/${PN}-darwin.patch
 }
 
 src_configure() {

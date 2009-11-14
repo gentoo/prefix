@@ -1,6 +1,22 @@
 # ChangeLog for dev-perl/math-pari
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/ChangeLog,v 1.44 2009/08/16 08:41:09 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/math-pari/ChangeLog,v 1.47 2009/11/13 02:17:34 robbat2 Exp $
+
+*math-pari-2.01080602 (13 Nov 2009)
+
+  13 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +math-pari-2.01080602.ebuild:
+  Version bump via perl-bump experimental tool.
+
+  11 Nov 2009; Torsten Veller <tove@gentoo.org>
+  -math-pari-2.010801-r1.ebuild:
+  Remove outdated masked version.
+
+*math-pari-2.01080601 (11 Nov 2009)
+
+  11 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +math-pari-2.01080601.ebuild:
+  Version bump, now with working src_test again.
 
   16 Aug 2009; Torsten Veller <tove@gentoo.org> -math-pari-2.010706.ebuild,
   -math-pari-2.010800.ebuild, -files/math-pari-hppa.patch:
