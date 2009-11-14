@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/eselect-opengl-1.1.1-r1.ebuild,v 1.1 2009/11/13 21:35:23 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-opengl/eselect-opengl-1.1.1-r2.ebuild,v 1.1 2009/11/14 12:03:27 scarabeus Exp $
 
-EAPI=2
+EAPI="2"
 
 inherit multilib eutils
 
