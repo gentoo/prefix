@@ -1,6 +1,11 @@
 # ChangeLog for app-text/cwtext
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/cwtext/ChangeLog,v 1.18 2009/06/16 17:51:03 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/cwtext/ChangeLog,v 1.19 2009/11/08 13:18:09 patrick Exp $
+
+*cwtext-0.96 (08 Nov 2009)
+
+  08 Nov 2009; Patrick Lauer <patrick@gentoo.org> +cwtext-0.96.ebuild:
+  Bump
 
   16 Jun 2009; Tobias Klausmann <klausman@gentoo.org> cwtext-0.94.ebuild:
   Keyworded on alpha, bug #272771
