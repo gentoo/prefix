@@ -1,6 +1,15 @@
 # ChangeLog for app-admin/eselect-wxwidgets
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-wxwidgets/ChangeLog,v 1.43 2009/10/31 14:44:09 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-wxwidgets/ChangeLog,v 1.44 2009/11/13 01:48:24 dirtyepic Exp $
+
+*eselect-wxwidgets-1.2 (13 Nov 2009)
+
+  13 Nov 2009; Ryan Hill <dirtyepic@gentoo.org> -files/wx-config-0.7,
+  -files/wxrc-0.7, -files/wxwidgets.eselect-0.7,
+  -eselect-wxwidgets-0.8.ebuild, -files/wx-config-1, -files/wxrc-1,
+  -eselect-wxwidgets-1.0.ebuild, +eselect-wxwidgets-1.2.ebuild:
+  Version bump, support --brief (bug #292119). Minor cleanup.
+  Remove old.
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> eselect-wxwidgets-1.1.ebuild:
   Marking eselect-wxwidgets-1.1 ppc64 for bug 287362
