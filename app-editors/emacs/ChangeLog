@@ -1,6 +1,21 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.342 2009/10/28 19:38:52 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.344 2009/11/09 17:15:23 ulm Exp $
+
+  09 Nov 2009; Ulrich Mueller <ulm@gentoo.org> emacs-22.3-r3.ebuild,
+  emacs-23.1-r2.ebuild:
+  Fix undefined reference to x_any_window_to_frame in xterm.c, bug 292492.
+  This regression was introduced with the previous bugfix.
+
+*emacs-23.1-r2 (08 Nov 2009)
+*emacs-22.3-r3 (08 Nov 2009)
+
+  08 Nov 2009; Ulrich Mueller <ulm@gentoo.org> +emacs-22.3-r3.ebuild,
+  -files/emacs-23.0.94-handle-xz-suffix.patch, emacs-23.1.ebuild,
+  -emacs-23.1-r1.ebuild, +emacs-23.1-r2.ebuild,
+  -files/emacs-23.1-backspace.patch:
+  Fix updating of menus with GTK+ 2.18, bug 292007. Patchsets for Emacs 23
+  moved to Gentoo mirrors.
 
 *emacs-23.1-r1 (28 Oct 2009)
 
