@@ -54,6 +54,13 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
 	epatch "${FILESDIR}"/${PN}-2.20.3-mint.patch
+	# configure script lets itself being fooled by bind 8 stuff
+	[[ ${CHOST} == *-darwin[678] ]] && append-libs -lresolv
+
+	# make default sane for us
+	if use prefix ; then
+		sed -i -e "s:/usr/local:${EPREFIX}:" gio/xdgmime/xdgmime.c || die
+	fi
 
 	# build glib with parity for native win32
 	if [[ ${CHOST} == *-winnt* ]] ; then
@@ -117,9 +124,6 @@ src_configure() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "Installation failed"
-
-	# Do not install charset.alias even if generated, leave it to libiconv
-	rm -f "${ED}/usr/lib/charset.alias"
 
 	dodoc AUTHORS ChangeLog* NEWS* README || die "dodoc failed"
 }
