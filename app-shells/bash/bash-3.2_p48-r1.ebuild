@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p48-r1.ebuild,v 1.4 2009/03/23 18:34:21 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p48-r1.ebuild,v 1.5 2009/11/11 04:15:27 vapier Exp $
 
 EAPI=1
 
@@ -15,7 +15,7 @@ READLINE_VER=5.2
 READLINE_PLEVEL=0 # both readline patches are also released as bash patches
 
 DESCRIPTION="The standard GNU Bourne again shell"
-HOMEPAGE="http://cnswww.cns.cwru.edu/~chet/bash/bashtop.html"
+HOMEPAGE="http://tiswww.case.edu/php/chet/bash/bashtop.html"
 SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
 	ftp://ftp.cwru.edu/pub/bash/${MY_P}.tar.gz
 	$(for ((i=1; i<=PLEVEL; i++)); do

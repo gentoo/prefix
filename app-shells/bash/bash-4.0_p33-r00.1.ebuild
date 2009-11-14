@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p33.ebuild,v 1.2 2009/10/09 21:32:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p33.ebuild,v 1.3 2009/11/11 04:15:27 vapier Exp $
 
 EAPI="1"
 
@@ -30,7 +30,7 @@ patches() {
 }
 
 DESCRIPTION="The standard GNU Bourne again shell"
-HOMEPAGE="http://cnswww.cns.cwru.edu/~chet/bash/bashtop.html"
+HOMEPAGE="http://tiswww.case.edu/php/chet/bash/bashtop.html"
 SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)
 	$(patches ${READLINE_PLEVEL} readline ${READLINE_VER})"
 
