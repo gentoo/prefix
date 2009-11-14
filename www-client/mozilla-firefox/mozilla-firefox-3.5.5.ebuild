@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.5.ebuild,v 1.1 2009/11/07 01:42:52 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.5.ebuild,v 1.2 2009/11/11 00:45:55 anarchy Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -18,7 +18,7 @@ MAJ_PV="${PV/_*/}" # Without the _rc and _beta stuff
 DESKTOP_PV="3.5"
 MY_PV="${PV/_beta/b}" # Handle betas for SRC_URI
 MY_PV="${PV/_/}" # Handle rcs for SRC_URI
-PATCH="${PN}-3.5.2-patches-0.1"
+PATCH="${PN}-3.5.5-patches-0.1"
 
 DESCRIPTION="Firefox Web Browser"
 HOMEPAGE="http://www.mozilla.com/firefox"
@@ -71,12 +71,6 @@ DEPEND="${RDEPEND}
 PDEPEND="restrict-javascript? ( >=www-plugins/noscript-1.9.6.6 )"
 
 S="${WORKDIR}/mozilla-1.9.1"
-
-# Needed by src_compile() and src_install().
-# Would do in pkg_setup but that loses the export attribute, they
-# become pure shell variables.
-export BUILD_OFFICIAL=1
-export MOZILLA_OFFICIAL=1
 
 linguas() {
 	local LANG SLANG
