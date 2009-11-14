@@ -503,6 +503,10 @@ src_configure() {
 		use debug || append-flags -fomit-frame-pointer
 	fi
 
+	# workaround bug, x86 just has too few registers, see c.f.
+	# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=402950#44
+	[[ ${CHOST} == i?86-*solaris* ]] && append-flags -fomit-frame-pointer
+
 	myconf="--cc=$(tc-getCC)
 		--host-cc=$(tc-getBUILD_CC)
 		--prefix=${EPREFIX}/usr
