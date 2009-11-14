@@ -22,6 +22,7 @@ PHP, Pike, Python, and Ruby.
 	<flag name="audio">Control audio support (disable at your own risk)</flag>
 	<flag name="joystick">Control joystick support (disable at your own risk)</flag>
 	<flag name="ps3">Build the PS3 video driver</flag>
+	<flag name="tslib">Build with tslib support for touchscreen devices</flag>
 	<flag name="video">Control video support (disable at your own risk)</flag>
   </use>
 </pkgmetadata>
