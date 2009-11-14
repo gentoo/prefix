@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.13_rc2.ebuild,v 1.1 2009/09/12 13:38:13 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.13.ebuild,v 1.2 2009/11/12 20:12:46 idl0r Exp $
 
 EAPI="2"
 
@@ -29,6 +29,10 @@ src_prepare() {
 		src/imlate/imlate
 }
 
+src_prepare() {
+	sed -i -e 's:sh test:bash test:' src/echangelog/Makefile || die
+}
+
 src_test() {
 	# echangelog test is not able to run as root
 	# the EUID check may not work for everybody
@@ -41,5 +45,5 @@ src_test() {
 }
 
 src_install() {
-	make DESTDIR="${D}/${EPREFIX}" install-gentoolkit-dev || die
+	emake DESTDIR="${D}${EPREFIX}" install || die
 }
