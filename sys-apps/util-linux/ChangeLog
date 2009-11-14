@@ -1,6 +1,14 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.283 2009/10/31 14:14:36 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.285 2009/11/09 12:29:07 fauli Exp $
+
+  09 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  util-linux-2.16.1.ebuild:
+  fix wrong KEYWORDS assignment
+
+  09 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  util-linux-2.16.1.ebuild:
+  stable x86, bug 284744
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> util-linux-2.16.1.ebuild:
   Marking util-linux-2.16.1 ppc64 for bug 284744
