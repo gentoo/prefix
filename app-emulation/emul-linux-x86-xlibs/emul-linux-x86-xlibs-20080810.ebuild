@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/emul-linux-x86-xlibs-20080810.ebuild,v 1.2 2008/12/21 13:54:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/emul-linux-x86-xlibs-20080810.ebuild,v 1.3 2009/11/09 22:12:27 ssuominen Exp $
 
 inherit emul-linux-x86
 
@@ -13,6 +13,7 @@ IUSE="opengl"
 
 DEPEND="opengl? ( app-admin/eselect-opengl )"
 RDEPEND=">=app-emulation/emul-linux-x86-baselibs-20071114
+	!>=app-emulation/emul-linux-x86-gtklibs-20090101
 	x11-libs/libX11"
 
 src_unpack() {

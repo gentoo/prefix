@@ -1,6 +1,10 @@
 # ChangeLog for app-emulation/emul-linux-x86-xlibs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/ChangeLog,v 1.82 2009/11/03 21:07:56 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/ChangeLog,v 1.83 2009/11/09 22:12:27 ssuominen Exp $
+
+  09 Nov 2009; Samuli Suominen <ssuominen@gentoo.org>
+  emul-linux-x86-xlibs-20080810.ebuild:
+  Block >=app-emulation/emul-linux-x86-gtklibs-20090101 wrt #288278.
 
   03 Nov 2009; Samuli Suominen <ssuominen@gentoo.org>
   emul-linux-x86-xlibs-20081109.ebuild:
