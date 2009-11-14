@@ -1,6 +1,31 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.76 2009/11/05 11:31:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.82 2009/11/11 15:10:19 yngwin Exp $
+
+  11 Nov 2009; Ben de Groot <yngwin@gentoo.org> -qt-gui-4.4.2-r3.ebuild,
+  -qt-gui-4.5.1.ebuild, -qt-gui-4.5.1-r1.ebuild, -qt-gui-4.5.1-r2.ebuild,
+  -qt-gui-4.5.2-r2.ebuild:
+  Remove obsolete versions
+
+  10 Nov 2009; Jeroen Roovers <jer@gentoo.org> qt-gui-4.5.3-r2.ebuild:
+  Stable for HPPA (bug #290922).
+
+  09 Nov 2009; Joseph Jezak <josejx@gentoo.org> qt-gui-4.5.3-r2.ebuild:
+  Marked ppc/ppc64 stable for bug #290922.
+
+  09 Nov 2009; Raúl Porcel <armin76@gentoo.org> qt-gui-4.5.3-r2.ebuild:
+  alpha/ia64/sparc stable wrt #290922
+
+  09 Nov 2009; Markus Meier <maekke@gentoo.org> qt-gui-4.5.3-r2.ebuild:
+  arm stable, bug #290922
+
+  09 Nov 2009; Jonathan Callen <abcd@gentoo.org>
+  -files/qt-gui-4.4.0-scrollbars.patch, -files/qt-gui-designer-4.4.1.patch,
+  -files/qt-x11-opensource-src-4.5.0-linguist-crash.patch,
+  -files/qt-x11-opensource-src-4.5.0-lrelease.patch,
+  -qt-gui-4.5.2-r1.ebuild, -qt-gui-4.5.3-r1.ebuild, -files/Designer.desktop,
+  -files/Linguist.desktop, -files/xinerama.patch:
+  Drop old versions; files
 
   05 Nov 2009; Markus Meier <maekke@gentoo.org> qt-gui-4.5.3-r2.ebuild:
   x86 stable, bug #290922
