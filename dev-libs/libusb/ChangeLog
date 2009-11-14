@@ -1,6 +1,17 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.95 2009/08/30 23:26:54 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.97 2009/11/11 08:02:02 robbat2 Exp $
+
+*libusb-0.1.12-r6 (11 Nov 2009)
+
+  11 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +libusb-0.1.12-r6.ebuild, +files/libusb-0.1-ansi.patch:
+  Bug #273752: ANSI compat patch from Debian, rediffed.
+
+*libusb-1.0.4 (11 Nov 2009)
+
+  11 Nov 2009; Robin H. Johnson <robbat2@gentoo.org> +libusb-1.0.4.ebuild:
+  Bug #292658: version bump.
 
 *libusb-1.0.3 (30 Aug 2009)
 
