@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.371 2009/10/19 07:33:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.372 2009/11/14 04:16:52 vapier Exp $
+
+  14 Nov 2009; Mike Frysinger <vapier@gentoo.org> binutils-2.20.ebuild:
+  Add fix from upstream for USE=multitarget #289756 by Rafał Mużyło.
 
 *binutils-2.20 (19 Oct 2009)
 
