@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/sdl-gfx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-gfx/ChangeLog,v 1.61 2009/11/02 20:27:33 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-gfx/ChangeLog,v 1.62 2009/11/08 20:10:01 nixnut Exp $
+
+  08 Nov 2009; nixnut <nixnut@gentoo.org> sdl-gfx-2.0.20.ebuild:
+  ppc stable #290963
 
   02 Nov 2009; Markus Meier <maekke@gentoo.org> sdl-gfx-2.0.20.ebuild:
   amd64/x86 stable, bug #290963
