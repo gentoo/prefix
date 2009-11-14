@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime/DateTime-0.49.ebuild,v 1.1 2009/05/05 06:41:11 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateTime/DateTime-0.51.ebuild,v 1.1 2009/11/10 10:03:19 robbat2 Exp $
 
 EAPI=2
 
-inherit versionator
-MY_P=${PN}-$(delete_version_separator 2)
-S=${WORKDIR}/${MY_P}
+#inherit versionator
+#MY_P=${PN}-$(delete_version_separator 2)
+#S=${WORKDIR}/${MY_P}
 MODULE_AUTHOR=DROLSKY
 inherit perl-module
 
