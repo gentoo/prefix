@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/c3p0
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/c3p0/ChangeLog,v 1.25 2007/11/28 03:15:14 betelgeuse Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/c3p0/ChangeLog,v 1.26 2009/11/08 22:53:55 caster Exp $
+
+*c3p0-0.9.1.2 (08 Nov 2009)
+
+  08 Nov 2009; Vlastimil Babka <caster@gentoo.org> +c3p0-0.9.1.2.ebuild:
+  Version bump. Remove dependency on 1.5 jdk - bug #292001.
 
   28 Nov 2007; Petteri Räty <betelgeuse@gentoo.org> c3p0-0.9.0.4.ebuild:
   Prefer 1.5 over 1.4 and ebuild cleanup.
