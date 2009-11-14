@@ -1,6 +1,17 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.179 2009/10/20 21:40:14 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.181 2009/11/09 15:06:35 chainsaw Exp $
+
+  09 Nov 2009; <chainsaw@gentoo.org> -audacious-2.2_alpha2.ebuild,
+  -audacious-2.2_beta1.ebuild:
+  Remove early alpha/beta ebuilds.
+
+*audacious-2.2_beta2 (09 Nov 2009)
+
+  09 Nov 2009; <chainsaw@gentoo.org> +audacious-2.2_beta2.ebuild:
+  Version bump, more bug fixes applied. Please continue to report your bugs
+  upstream so the final 2.2 release can be our best release yet. Bug #292526
+  for lost ~alpha keyword.
 
 *audacious-2.2_beta1 (20 Oct 2009)
 
