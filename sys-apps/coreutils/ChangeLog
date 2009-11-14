@@ -1,8 +1,11 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.276 2009/10/31 14:16:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.278 2009/11/09 22:55:13 vapier Exp $
 
-  31 Oct 2009; Brent Baude <ranger@gentoo.org> coreutils-7.5.ebuild:
+  09 Nov 2009; Mike Frysinger <vapier@gentoo.org> coreutils-7.6.ebuild:
+  Use new packager flags to tag binaries with Gentoo info.
+
+  31 Oct 2009; Brent Baude <ranger@gentoo.org> coreutils-7.5-r1.ebuild:
   Marking coreutils-7.5 ppc64 for bug 287219
 
   21 Oct 2009; Jeroen Roovers <jer@gentoo.org> coreutils-7.5-r1.ebuild:

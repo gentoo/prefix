@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.6.ebuild,v 1.3 2009/10/12 18:38:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.6.ebuild,v 1.4 2009/11/09 22:55:13 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -87,6 +87,9 @@ src_compile() {
 	[[ ${CHOST} == *-aix6* ]] && export ac_cv_func_getppriv=no
 
 	econf \
+		--with-packager="Gentoo" \
+		--with-packager-version="${PVR} (p${PATCH_VER:-0})" \
+		--with-packager-bug-reports="http://bugs.gentoo.org/" \
 		${myconf} \
 		--enable-largefile \
 		$(use caps || echo --disable-libcap) \
