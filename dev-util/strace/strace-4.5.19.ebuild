@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/strace-4.5.19.ebuild,v 1.2 2009/10/28 13:59:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/strace-4.5.19.ebuild,v 1.3 2009/11/11 21:11:20 vapier Exp $
 
 inherit flag-o-matic
 
@@ -13,14 +13,16 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="static aio"
 
+# strace only uses the header from libaio
 DEPEND="aio? ( >=dev-libs/libaio-0.3.106 )"
+RDEPEND=""
 
 src_compile() {
-	filter-lfs-flags
-
+	filter-lfs-flags # configure handles this sanely
 	use static && append-ldflags -static
 
-	econf $(use_enable aio libaio) || die
+	use aio || export ac_cv_header_libaio_h=no #
+	econf || die
 	emake || die
 }
 

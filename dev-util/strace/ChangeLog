@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/strace
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/ChangeLog,v 1.134 2009/10/28 13:59:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/ChangeLog,v 1.135 2009/11/11 21:11:20 vapier Exp $
+
+  11 Nov 2009; Mike Frysinger <vapier@gentoo.org> strace-4.5.19.ebuild:
+  Fix up USE=aio disabling #292362 by Alex HeadHunter Pyattaev.
 
   28 Oct 2009; Jeroen Roovers <jer@gentoo.org> strace-4.5.19.ebuild:
   Stable for HPPA (bug #250631).
