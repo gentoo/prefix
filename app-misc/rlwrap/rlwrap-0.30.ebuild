@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/rlwrap/rlwrap-0.30.ebuild,v 1.3 2009/10/24 12:55:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/rlwrap/rlwrap-0.30.ebuild,v 1.4 2009/11/09 17:14:46 tcunha Exp $
 
 DESCRIPTION="GNU readline wrapper"
 HOMEPAGE="http://utopia.knoware.nl/~hlub/uck/rlwrap"
