@@ -1,6 +1,13 @@
 # ChangeLog for dev-python/twisted
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.111 2009/11/01 16:40:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/ChangeLog,v 1.113 2009/11/11 17:00:55 jer Exp $
+
+  11 Nov 2009; Jeroen Roovers <jer@gentoo.org> twisted-8.2.0-r2.ebuild:
+  Stable for HPPA (bug #289680).
+
+  08 Nov 2009; Tobias Klausmann <klausman@gentoo.org>
+  twisted-8.2.0-r2.ebuild:
+  Stable on alpha, bug #289680
 
   01 Nov 2009; Raúl Porcel <armin76@gentoo.org> twisted-8.2.0-r2.ebuild:
   Revert keywords until all twisted-8.2.0-related packages are stable as
