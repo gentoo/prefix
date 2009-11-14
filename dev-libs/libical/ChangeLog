@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/libical
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.53 2009/11/05 20:23:50 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libical/ChangeLog,v 1.54 2009/11/12 10:45:38 pva Exp $
+
+*libical-0.44 (12 Nov 2009)
+
+  12 Nov 2009; Peter Volkov <pva@gentoo.org> +libical-0.44.ebuild:
+  Version bump. Addes improvements, Gilles Dartiguelongue suggested in bug
+  #268350. Drops -lpthread hack since upstream fixed sources. Got another
+  confirmation that tests are supposed to fail.
 
   05 Nov 2009; Markus Meier <maekke@gentoo.org> libical-0.43.ebuild:
   arm stable, bug #281427
@@ -23,7 +30,7 @@
   29 Apr 2009; Jeroen Roovers <jer@gentoo.org> libical-0.43.ebuild:
   Stable for HPPA (bug #238625).
 
-  281 Apr 2009; Michele Noberasco <s4t4n@gentoo.org> libical-0.33-r1.ebuild:
+  28 Apr 2009; Michele Noberasco <s4t4n@gentoo.org> libical-0.33-r1.ebuild:
   Added 'test' to RESTRICT for this version. Closes bugs #238625 and #257280.
   libical-0.43.ebuild:
   Stable for x86.
