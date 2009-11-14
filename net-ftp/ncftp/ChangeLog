@@ -1,6 +1,9 @@
 # ChangeLog for net-ftp/ncftp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.90 2009/07/30 19:30:37 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.91 2009/11/10 17:27:18 jer Exp $
+
+  10 Nov 2009; Jeroen Roovers <jer@gentoo.org> ncftp-3.2.3.ebuild:
+  Readd USE=ipv6, remove ncurses version specification.
 
 *ncftp-3.2.3 (30 Jul 2009)
 
