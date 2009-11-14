@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/levee
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/ChangeLog,v 1.22 2009/10/24 13:55:03 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/ChangeLog,v 1.23 2009/11/09 11:22:48 abcd Exp $
+
+  09 Nov 2009; Jonathan Callen <abcd@gentoo.org> -files/levee-3.5-QA.patch:
+  Drop unused file
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> levee-3.5a.ebuild:
   ppc stable #289333
