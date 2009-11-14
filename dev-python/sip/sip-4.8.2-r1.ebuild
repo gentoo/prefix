@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.8.2-r1.ebuild,v 1.2 2009/10/03 17:30:39 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.8.2-r1.ebuild,v 1.3 2009/11/10 17:33:32 yngwin Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -11,7 +11,7 @@ MY_P=${P/_pre/-snapshot-}
 
 DESCRIPTION="A tool for generating bindings for C++ classes so that they can be used by Python"
 HOMEPAGE="http://www.riverbankcomputing.co.uk/software/sip/intro"
-SRC_URI="http://www.riverbankcomputing.com/static/Downloads/${PN}${PV%%.*}/${MY_P}.tar.gz"
+SRC_URI="mirror://gentoo/${MY_P}.tar.gz"
 
 LICENSE="sip"
 SLOT="0"
@@ -65,6 +65,10 @@ src_install() {
 
 pkg_postinst() {
 	python_mod_optimize sipconfig.py sipdistutils.py
+	ewarn 'When updating sip, you usually need to recompile packages that'
+	ewarn 'depend on sip, such as PyQt4 and qscintilla-python. If you have'
+	ewarn 'app-portage/gentoolkit installed you can find these packages with'
+	ewarn '`equery d sip` and `equery d PyQt4`.'
 }
 
 pkg_postrm() {

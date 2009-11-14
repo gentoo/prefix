@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.8.2.ebuild,v 1.10 2009/10/18 14:40:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.8.2.ebuild,v 1.11 2009/11/10 17:33:32 yngwin Exp $
 
 EAPI="2"
 NEED_PYTHON="2.3"
@@ -12,7 +12,7 @@ MY_P=${P/_pre/-snapshot-}
 
 DESCRIPTION="A tool for generating bindings for C++ classes so that they can be used by Python"
 HOMEPAGE="http://www.riverbankcomputing.co.uk/software/sip/intro"
-SRC_URI="http://www.riverbankcomputing.com/static/Downloads/${PN}${PV%%.*}/${MY_P}.tar.gz"
+SRC_URI="mirror://gentoo/${MY_P}.tar.gz"
 
 LICENSE="sip"
 SLOT="0"
