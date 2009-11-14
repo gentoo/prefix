@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/libXfont-1.4.1.ebuild,v 1.1 2009/10/11 23:53:57 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/libXfont-1.4.1.ebuild,v 1.2 2009/11/08 09:31:09 remi Exp $
 
 inherit x-modular flag-o-matic
 
