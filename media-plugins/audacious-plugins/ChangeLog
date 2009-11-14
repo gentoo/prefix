@@ -1,6 +1,24 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.142 2009/10/20 21:39:46 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.145 2009/11/11 13:04:45 ssuominen Exp $
+
+  11 Nov 2009; Samuli Suominen <ssuominen@gentoo.org>
+  audacious-plugins-1.5.1-r3.ebuild:
+  Remove USE arts (deprecated).
+
+  09 Nov 2009; <chainsaw@gentoo.org> -audacious-plugins-2.2_alpha2.ebuild,
+  -audacious-plugins-2.2_beta1.ebuild, audacious-plugins-2.2_beta2.ebuild:
+  USE-flags timidity & tta are no longer relevant and have been removed,
+  along with older alpha/beta ebuilds.
+
+*audacious-plugins-2.2_beta2 (09 Nov 2009)
+
+  09 Nov 2009; <chainsaw@gentoo.org> +audacious-plugins-2.2_beta2.ebuild,
+  metadata.xml:
+  Version bump. Properly express dependency on LAME, as requested by Alexis
+  Ballier <aballier@gentoo.org> in bug #285745. The much-loved PulseAudio
+  returns and CUE files are now handled using libcue. ~alpha keyword lost
+  over this new dependency, filed bug #292526.
 
 *audacious-plugins-2.2_beta1 (20 Oct 2009)
 

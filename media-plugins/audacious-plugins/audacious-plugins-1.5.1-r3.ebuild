@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.1-r3.ebuild,v 1.10 2009/10/15 10:17:12 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-1.5.1-r3.ebuild,v 1.11 2009/11/11 13:04:45 ssuominen Exp $
 
 inherit eutils flag-o-matic autotools
 
@@ -13,7 +13,7 @@ SRC_URI="http://distfiles.atheme.org/${MY_P}.tgz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux"
-IUSE="aac adplug alsa arts chardet esd flac gnome jack lirc modplug mp3 mtp nls oss pulseaudio scrobbler sdl sid sndfile sse2 timidity tta vorbis wavpack wma"
+IUSE="aac adplug alsa chardet esd flac gnome jack lirc modplug mp3 mtp nls oss pulseaudio scrobbler sdl sid sndfile sse2 timidity tta vorbis wavpack wma"
 
 RDEPEND="app-arch/unzip
 	>=dev-libs/libcdio-0.79-r1
@@ -25,7 +25,6 @@ RDEPEND="app-arch/unzip
 	>=x11-libs/gtk+-2.10
 	adplug? ( >=dev-cpp/libbinio-1.4 )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
-	arts? ( kde-base/arts )
 	esd? ( >=media-sound/esound-0.2.38-r1 )
 	flac? ( >=media-libs/libvorbis-1.0
 		>=media-libs/flac-1.2.1-r1 )
@@ -84,7 +83,7 @@ src_compile() {
 		$(use_enable aac) \
 		$(use_enable adplug) \
 		$(use_enable alsa) \
-		$(use_enable arts) \
+		--disable-arts \
 		$(use_enable chardet) \
 		$(use_enable esd) \
 		$(use_enable flac flacng) \
