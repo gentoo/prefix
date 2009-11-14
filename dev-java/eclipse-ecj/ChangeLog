@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/eclipse-ecj
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/eclipse-ecj/ChangeLog,v 1.59 2009/11/04 19:05:35 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/eclipse-ecj/ChangeLog,v 1.60 2009/11/10 20:15:54 caster Exp $
+
+  10 Nov 2009; Vlastimil Babka <caster@gentoo.org>
+  -files/compiler-settings-3.2, -eclipse-ecj-3.2.2-r1.ebuild,
+  -files/eclipse-ecj-3.2-build-gentoo.patch:
+  Remove the obsolete 3.2.
 
 *eclipse-ecj-3.5.1 (04 Nov 2009)
 
