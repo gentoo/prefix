@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/icu
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.99 2009/10/24 02:14:39 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.100 2009/11/09 19:24:41 jer Exp $
+
+  09 Nov 2009; Jeroen Roovers <jer@gentoo.org> icu-4.2.1.ebuild:
+  Stable for HPPA (bug #275769).
 
   24 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   icu-4.2.1.ebuild,
