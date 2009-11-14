@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/schroedinger
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.40 2009/11/03 14:53:26 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.41 2009/11/13 00:42:33 josejx Exp $
+
+  13 Nov 2009; Joseph Jezak <josejx@gentoo.org> schroedinger-1.0.8.ebuild:
+  Marked ppc64 stable.
 
   03 Nov 2009; Jeroen Roovers <jer@gentoo.org> schroedinger-1.0.8.ebuild:
   Stable for HPPA (bug #290761).
