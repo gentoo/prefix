@@ -40,6 +40,10 @@ src_unpack() {
 	
 	cp "${FILESDIR}"/eselect.blas.reference "${T}"/
 	sed -i -e "s:/usr:${EPREFIX}/usr:" "${T}"/eselect.blas.reference || die
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i -e 's/\.so\([\.0-9]\+\)\?/\1.dylib/g' \
+			"${T}"/eselect.blas.reference || die
+	fi
 }
 
 src_compile() {
