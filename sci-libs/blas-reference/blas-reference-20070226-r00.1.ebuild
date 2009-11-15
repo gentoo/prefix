@@ -37,6 +37,9 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-autotool.patch
 	eautoreconf
+	
+	cp "${FILESDIR}"/eselect.blas.reference "${T}"/
+	sed -i -e "s:/usr:${EPREFIX}/usr:" "${T}"/eselect.blas.reference || die
 }
 
 src_compile() {
@@ -48,7 +51,7 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
-	eselect blas add $(get_libdir) "${FILESDIR}"/eselect.blas.reference ${ESELECT_PROF}
+	eselect blas add $(get_libdir) "${T}"/eselect.blas.reference ${ESELECT_PROF}
 }
 
 pkg_postinst() {
