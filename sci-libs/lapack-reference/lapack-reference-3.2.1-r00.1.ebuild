@@ -51,6 +51,13 @@ src_unpack() {
 		-e "s:lapack\$(PLAT).a:SRC/.libs/liblapack.a:" \
 		make.inc.example > make.inc \
 		|| die "Failed to set up make.inc"
+
+	cp "${FILESDIR}"/eselect.lapack.reference "${T}"/
+	sed -i -e "s:/usr:${EPREFIX}/usr:" "${T}"/eselect.lapack.reference || die
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i -e 's/\.so\([\.0-9]\+\)\?/\1.dylib/g' \
+			"${T}"/eselect.lapack.reference || die
+	fi
 }
 
 src_compile() {
@@ -64,9 +71,7 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc README || die "dodoc failed"
-	local sys
-	[[ ${CHOST} == *-darwin* ]] && sys=.Darwin
-	eselect lapack add $(get_libdir) "${FILESDIR}"/eselect.lapack.reference${sys} ${ESELECT_PROF}
+	eselect lapack add $(get_libdir) "${T}"/eselect.lapack.reference ${ESELECT_PROF}
 }
 
 src_test() {
