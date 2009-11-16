@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/screen
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.143 2009/05/12 19:47:21 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.144 2009/11/14 13:10:04 scarabeus Exp $
+
+  14 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -screen-4.0.3_p20070403.ebuild:
+  Drop old 2 years masked cvs snapshot. If you want to use experimental
+  version I recomend to write live git version ebuild.
 
   12 May 2009; Sven Wegener <swegener@gentoo.org>
   files/screen-4.0.3-crosscompile.patch:
