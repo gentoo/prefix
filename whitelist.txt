@@ -124,6 +124,7 @@ dev-python/pyyaml
 dev-util/confix
 dev-util/confix-wrapper
 dev-util/uncrustify
+games-misc/wtf
 mail-client/mutt
 media-gfx/asymptote
 media-video/mpeg-tools
