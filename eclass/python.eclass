@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.77 2009/10/11 13:34:23 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.79 2009/11/15 22:00:47 arfrever Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -110,6 +110,10 @@ PYTHON() {
 	else
 		echo -n "python${slot}"
 	fi
+
+	if [[ -n "${ABI}" && "${ABI}" != "${DEFAULT_ABI}" && "${DEFAULT_ABI}" != "default" ]]; then
+		echo -n "-${ABI}"
+	fi
 }
 
 unset PYTHON_ABIS
@@ -134,7 +138,7 @@ validate_PYTHON_ABIS() {
 
 	# USE_${ABI_TYPE^^} and RESTRICT_${ABI_TYPE^^}_ABIS variables hopefully will be included in EAPI >= 4.
 	if [[ "$(declare -p PYTHON_ABIS 2> /dev/null)" != "declare -x PYTHON_ABIS="* ]] && has "${EAPI:-0}" 0 1 2 3; then
-		local ABI python2_supported_versions python3_supported_versions restricted_ABI support_ABI supported_PYTHON_ABIS=
+		local PYTHON_ABI python2_supported_versions python3_supported_versions restricted_ABI support_ABI supported_PYTHON_ABIS=
 		PYTHON_ABI_SUPPORTED_VALUES="2.4 2.5 2.6 2.7 3.0 3.1 3.2"
 		python2_supported_versions="2.4 2.5 2.6 2.7"
 		python3_supported_versions="3.0 3.1 3.2"
@@ -146,26 +150,26 @@ validate_PYTHON_ABIS() {
 				die "USE_PYTHON variable is empty"
 			fi
 
-			for ABI in ${USE_PYTHON}; do
-				if ! has "${ABI}" ${PYTHON_ABI_SUPPORTED_VALUES}; then
-					die "USE_PYTHON variable contains invalid value '${ABI}'"
+			for PYTHON_ABI in ${USE_PYTHON}; do
+				if ! has "${PYTHON_ABI}" ${PYTHON_ABI_SUPPORTED_VALUES}; then
+					die "USE_PYTHON variable contains invalid value '${PYTHON_ABI}'"
 				fi
 
-				if has "${ABI}" ${python2_supported_versions}; then
+				if has "${PYTHON_ABI}" ${python2_supported_versions}; then
 					python2_enabled="1"
 				fi
-				if has "${ABI}" ${python3_supported_versions}; then
+				if has "${PYTHON_ABI}" ${python3_supported_versions}; then
 					python3_enabled="1"
 				fi
 
 				support_ABI="1"
 				for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
-					if [[ "${ABI}" == ${restricted_ABI} ]]; then
+					if [[ "${PYTHON_ABI}" == ${restricted_ABI} ]]; then
 						support_ABI="0"
 						break
 					fi
 				done
-				[[ "${support_ABI}" == "1" ]] && supported_PYTHON_ABIS+=" ${ABI}"
+				[[ "${support_ABI}" == "1" ]] && supported_PYTHON_ABIS+=" ${PYTHON_ABI}"
 			done
 			export PYTHON_ABIS="${supported_PYTHON_ABIS# }"
 
@@ -191,10 +195,10 @@ validate_PYTHON_ABIS() {
 
 				python2_version="$("${EPREFIX}"/usr/bin/python2 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
 
-				for ABI in ${python2_supported_versions}; do
+				for PYTHON_ABI in ${python2_supported_versions}; do
 					support_python_major_version="1"
 					for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
-						if [[ "${ABI}" == ${restricted_ABI} ]]; then
+						if [[ "${PYTHON_ABI}" == ${restricted_ABI} ]]; then
 							support_python_major_version="0"
 						fi
 					done
@@ -218,10 +222,10 @@ validate_PYTHON_ABIS() {
 
 				python3_version="$("${EPREFIX}"/usr/bin/python3 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
 
-				for ABI in ${python3_supported_versions}; do
+				for PYTHON_ABI in ${python3_supported_versions}; do
 					support_python_major_version="1"
 					for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
-						if [[ "${ABI}" == ${restricted_ABI} ]]; then
+						if [[ "${PYTHON_ABI}" == ${restricted_ABI} ]]; then
 							support_python_major_version="0"
 						fi
 					done
@@ -260,6 +264,12 @@ validate_PYTHON_ABIS() {
 
 			# Ensure that EPYTHON variable is respected.
 			if [[ "$(EPYTHON="$(PYTHON)" python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')" != "${PYTHON_ABI}" ]]; then
+				eerror "python:                    '$(type -p python)'"
+				eerror "ABI:                       '${ABI}'"
+				eerror "DEFAULT_ABI:               '${DEFAULT_ABI}'"
+				eerror "EPYTHON:                   '$(PYTHON)'"
+				eerror "PYTHON_ABI:                '${PYTHON_ABI}'"
+				eerror "Version of enabled Python: '$(EPYTHON="$(PYTHON)" python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')'"
 				die "'python' doesn't respect EPYTHON variable"
 			fi
 		done
@@ -489,9 +499,9 @@ python_execute_function() {
 				fi
 			elif has "${PYTHON_ABI}" ${FAILURE_TOLERANT_PYTHON_ABIS}; then
 				if [[ "${EBUILD_PHASE}" != "test" ]] || ! has test-fail-continue ${FEATURES}; then
-					local ABI enabled_PYTHON_ABIS=
-					for ABI in ${PYTHON_ABIS}; do
-						[[ "${ABI}" != "${PYTHON_ABI}" ]] && enabled_PYTHON_ABIS+=" ${ABI}"
+					local enabled_PYTHON_ABIS= other_PYTHON_ABI
+					for other_PYTHON_ABI in ${PYTHON_ABIS}; do
+						[[ "${other_PYTHON_ABI}" != "${PYTHON_ABI}" ]] && enabled_PYTHON_ABIS+=" ${other_PYTHON_ABI}"
 					done
 					export PYTHON_ABIS="${enabled_PYTHON_ABIS# }"
 				fi
@@ -599,6 +609,7 @@ python_convert_shebangs() {
 	done
 
 	for file in "${files[@]}"; do
+		file="${file#./}"
 		[[ "${only_executables}" == "1" && ! -x "${file}" ]] && continue
 
 		if [[ "$(head -n1 "${file}")" =~ ^'#!'.*python ]]; then
@@ -725,8 +736,6 @@ python_disable_pyc() {
 python_enable_pyc() {
 	unset PYTHONDONTWRITEBYTECODE
 }
-
-python_disable_pyc
 
 # @FUNCTION: python_need_rebuild
 # @DESCRIPTION: Run without arguments, specifies that the package should be
@@ -942,7 +951,7 @@ python_mod_optimize() {
 
 		if ((${#other_dirs[@]})) || ((${#other_files[@]})); then
 			return_code="0"
-			ebegin "Compilation and optimization of Python modules placed outside of site-packages directories for Python ${PYVER}..."
+			ebegin "Compilation and optimization of Python modules placed outside of site-packages directories for Python ${PYVER}"
 			if ((${#other_dirs[@]})); then
 				python${PYVER} "${root}$(python_get_libdir)/compileall.py" "${options[@]}" "${other_dirs[@]}" || return_code="1"
 				python${PYVER} -O "${root}$(python_get_libdir)/compileall.py" "${options[@]}" "${other_dirs[@]}" &> /dev/null || return_code="1"
@@ -998,7 +1007,7 @@ python_mod_optimize() {
 		# set additional opts
 		myopts+=(-q)
 
-		ebegin "Byte compiling python modules for python-${PYVER} .."
+		ebegin "Compilation and optimization of Python modules for Python ${PYVER}"
 		if ((${#mydirs[@]})); then
 			python${PYVER} \
 				"${myroot}"/usr/$(get_libdir)/python${PYVER}/compileall.py \
@@ -1017,10 +1026,10 @@ python_mod_optimize() {
 }
 
 # @FUNCTION: python_mod_cleanup
-# @USAGE: [directory]
+# @USAGE: [directory|file]
 # @DESCRIPTION:
-# Run with optional arguments, where arguments are directories of
-# python modules. If none given, it will look in /usr/lib/python[0-9].[0-9].
+# Run with optional arguments, where arguments are Python modules. If none given,
+# it will look in /usr/lib/python[0-9].[0-9].
 #
 # It will recursively scan all compiled Python modules in the directories and
 # determine if they are orphaned (i.e. their corresponding .py files are missing.)
@@ -1028,7 +1037,7 @@ python_mod_optimize() {
 #
 # This function should only be run in pkg_postrm().
 python_mod_cleanup() {
-	local PYTHON_ABI SEARCH_PATH=() root src_py
+	local path py_file PYTHON_ABI SEARCH_PATH=() root
 
 	# Check if phase is pkg_postrm().
 	[[ ${EBUILD_PHASE} != "postrm" ]] && die "${FUNCNAME} should only be run in pkg_postrm()"
@@ -1055,22 +1064,45 @@ python_mod_cleanup() {
 			SEARCH_PATH=("${SEARCH_PATH[@]/#/${root}/}")
 		fi
 	else
-		SEARCH_PATH=("${root}"/usr/lib*/python*/site-packages)
+		local dir sitedir
+		for dir in "${root}"/usr/lib*; do
+			if [[ -d "${dir}" && ! -L "${dir}" ]]; then
+				for sitedir in "${dir}"/python*/site-packages; do
+					if [[ -d "${sitedir}" ]]; then
+						SEARCH_PATH+=("${sitedir}")
+					fi
+				done
+			fi
+		done
+	fi
+
+	local BLUE CYAN NORMAL
+	if [[ "${NOCOLOR:-false}" =~ ^(false|no)$ ]]; then
+		BLUE=$'\e[34m'
+		CYAN=$'\e[36m'
+		NORMAL=$'\e[0m'
+	else
+		BLUE=
+		CYAN=
+		NORMAL=
 	fi
 
 	for path in "${SEARCH_PATH[@]}"; do
-		[[ ! -d "${path}" ]] && continue
-		einfo "Cleaning orphaned Python bytecode from ${path} .."
-		find "${path}" -name '*.py[co]' -print0 | while read -rd ''; do
-			src_py="${REPLY%[co]}"
-			[[ -f "${src_py}" || (! -f "${src_py}c" && ! -f "${src_py}o") ]] && continue
-			einfo "Purging ${src_py}[co]"
-			rm -f "${src_py}"[co]
-		done
+		if [[ -d "${path}" ]]; then
+			find "${path}" -name '*.py[co]' -print0 | while read -rd ''; do
+				py_file="${REPLY%[co]}"
+				[[ -f "${py_file}" || (! -f "${py_file}c" && ! -f "${py_file}o") ]] && continue
+				einfo "${BLUE}<<< ${py_file}[co]${NORMAL}"
+				rm -f "${py_file}"[co]
+			done
 
-		# Attempt to remove directories that may be empty.
-		find "${path}" -type d | sort -r | while read -r dir; do
-			rmdir "${dir}" 2>/dev/null && einfo "Removing empty directory ${dir}"
-		done
+			# Attempt to delete directories, which may be empty.
+			find "${path}" -type d | sort -r | while read -r dir; do
+				rmdir "${dir}" 2>/dev/null && einfo "${CYAN}<<< ${dir}${NORMAL}"
+			done
+		elif [[ "${path}" == *.py && ! -f "${path}" && (-f "${path}c" || -f "${path}o") ]]; then
+			einfo "${BLUE}<<< ${path}[co]${NORMAL}"
+			rm -f "${path}"[co]
+		fi
 	done
 }

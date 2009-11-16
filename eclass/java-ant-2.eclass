@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.45 2009/02/15 01:24:59 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.46 2009/11/08 20:39:30 caster Exp $
 
 inherit java-utils-2
 
@@ -450,4 +450,50 @@ java-ant_xml-rewrite() {
 		eerror "Do you have dev-java/javatoolkit installed?"
 		die "xml-rewrite not found"
 	fi
+}
+
+# ------------------------------------------------------------------------------
+# @public java-ant_rewrite-bootclasspath
+#
+# Adds bootclasspath to javac-like tasks in build.xml filled with jars of a
+# bootclasspath package of given version.
+#
+# Affected by:
+#	JAVA_PKG_BSFIX_TARGET_TAGS - the tags of javac tasks
+#
+# @param $1 - the version of bootclasspath (e.g. 1.5), 'auto' for bootclasspath
+#             of the current JDK
+# @param $2 - path to desired build.xml file, defaults to 'build.xml'
+# @param $3 - (optional) what to prepend the bootclasspath with (to override)
+# @param $4 - (optional) what to append to the bootclasspath
+# ------------------------------------------------------------------------------
+
+java-ant_rewrite-bootclasspath() {
+	local version="${1}"
+	local file="${2-build.xml}"
+	local extra_before="${3}"
+	local extra_after="${4}"
+
+	local bcp
+	case "${version}" in 
+		auto)
+			bcp="$(java-config -g BOOTCLASSPATH)"
+			;;
+		1.5)
+			bcp="$(java-pkg_getjars --build-only gnu-classpath-0.98)"
+			;;
+		*)
+			eerror "unknown parameter of java-ant_rewrite-bootclasspath"
+			die "unknown parameter of java-ant_rewrite-bootclasspath"
+			;;
+	esac
+	if [[ -n "${extra_before}" ]]; then
+		bcp="${extra_before}:${bcp}"
+	fi
+	if [[ -n "${extra_after}" ]]; then
+		bcp="${bcp}:${extra_after}"
+	fi
+
+	java-ant_xml-rewrite -f "${file}" -c -e ${JAVA_PKG_BSFIX_TARGET_TAGS// / -e } \
+		-a bootclasspath -v "${bcp}"
 }

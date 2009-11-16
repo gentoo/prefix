@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.117 2009/09/27 07:00:32 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.119 2009/11/14 08:58:50 tove Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 
@@ -45,7 +45,7 @@ LICENSE="${LICENSE:-|| ( Artistic GPL-2 )}"
 [[ -z "${SRC_URI}" && -n "${MODULE_AUTHOR}" ]] && \
 	SRC_URI="mirror://cpan/authors/id/${MODULE_AUTHOR:0:1}/${MODULE_AUTHOR:0:2}/${MODULE_AUTHOR}/${MODULE_SECTION}/${MODULE_A}"
 [[ -z "${HOMEPAGE}" ]] && \
-	HOMEPAGE="http://search.cpan.org/dist/${MY_PN:-${PN}}"
+	HOMEPAGE="http://search.cpan.org/dist/${MY_PN:-${PN}}/"
 
 SRC_PREP="no"
 SRC_TEST="skip"
@@ -253,7 +253,7 @@ fixlocalpod() {
 }
 
 linkduallifescripts() {
-	if [[ ${CATEGORY} != perl-core ]] || ! has_version ">=dev-lang/perl-5.10.1" ; then
+	if [[ ${CATEGORY} != perl-core ]] || ! has_version ">=dev-lang/perl-5.8.8-r8" ; then
 		return 0
 	fi
 

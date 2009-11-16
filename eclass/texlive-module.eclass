@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.25 2009/08/19 07:43:20 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.26 2009/11/12 19:04:01 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -179,6 +179,10 @@ texlive-module_src_compile() {
 				die "No rule to proccess ${command}. Please file a bug."
 		esac
 	done
+
+	# Delete ls-R files, these should not be created but better be certain they
+	# do not end up being installed.
+	find . -name 'ls-R' -delete
 }
 
 # @FUNCTION: texlive-module_src_install

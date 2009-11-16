@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.129 2009/06/07 08:22:42 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.130 2009/11/08 20:39:30 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -74,6 +74,23 @@ hasq "${EAPI}" 0 1 && JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1.2.7"
 # -----------------------------------------------------------------------------
 JAVA_PKG_E_DEPEND="!x86-winnt? ( >=dev-java/java-config-2.1.6 ${JAVA_PKG_PORTAGE_DEP} )"
 hasq source ${JAVA_PKG_IUSE} && JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} source? ( app-arch/zip )"
+
+# -----------------------------------------------------------------------------
+# @variable-preinherit JAVA_PKG_WANT_BOOTCLASSPATH
+#
+# The version of bootclasspath the package needs to work. Translates to a proper
+# dependency. The bootclasspath has to be obtained by java-ant_rewrite-bootclasspath
+# -----------------------------------------------------------------------------
+
+if [[ -n "${JAVA_PKG_WANT_BOOTCLASSPATH}" ]]; then
+	if [[ "${JAVA_PKG_WANT_BOOTCLASSPATH}" == "1.5" ]]; then
+		JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} >=dev-java/gnu-classpath-0.98-r1:0.98"
+	else
+		eerror "Unknown value of JAVA_PKG_WANT_BOOTCLASSPATH"
+		# since die in global scope doesn't work, this will make repoman fail
+		JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} BAD_JAVA_PKG_WANT_BOOTCLASSPATH"
+	fi
+fi
 
 # -----------------------------------------------------------------------------
 # @variable-external JAVA_PKG_ALLOW_VM_CHANGE

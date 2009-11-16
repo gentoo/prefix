@@ -1,6 +1,6 @@
-# Copyright 1999-2006 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.21 2009/10/11 11:46:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.24 2009/11/09 02:43:05 leio Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -16,12 +16,14 @@
 # drac at gentoo.org:
 # This list is current to gst-plugins-bad-0.10.5 except for:
 #   Not present in 0.10.5 - wavpack
-my_gst_plugins_bad="opengl x alsa amrwb bz2 cdaudio directfb dts divx faac
-faad gsm gst_v4l2 ivorbis jack ladspa libmms mpeg2enc musepack musicbrainz
-mythtv nas neon timidity wildmidi sdl sdltest sndfile soundtouch spc swfdec
-theoradec x264 xvid dvb wavpack quicktime dc1394 metadata fbdev soup dirac
-mplex ofa oss4 apexsink celt dvdnav jp2k twolame assrender mimic modplug vcd
-schro lv2 gme vdpau"
+# This list is current for gst-plugins-bad-0.10.14 and is only getting entries
+# added to it, and never removed for longer backwards compatibility.
+my_gst_plugins_bad="alsa amrwb apexsink assrender bz2 cdaudio celt dc1394 dirac
+directfb divx dts dvb dvdnav faac faad fbdev gme gsm gst_v4l2 ivorbis jack jp2k
+kate ladspa libmms lv2 metadata mimic modplug mpeg2enc mplex musepack
+musicbrainz mythtv nas neon ofa opengl oss4 quicktime schro sdl sdltest sndfile
+soundtouch soup spc swfdec theoradec timidity twolame vcd vdpau wavpack wildmidi
+x x264 xvid"
 
 #qtdemux spped tta
 
@@ -31,6 +33,9 @@ MY_PN="gst-plugins-bad"
 MY_P=${MY_PN}-${PV}
 
 SRC_URI="http://gstreamer.freedesktop.org/src/gst-plugins-bad/${MY_P}.tar.bz2"
+if [ ${PV} == "0.10.14" ]; then
+	SRC_URI="${SRC_URI} http://dev.gentoo.org/~leio/distfiles/gst-plugins-bad-0.10.14-kate-configure-fix.patch.bz2"
+fi
 
 # added to remove circular deps
 # 6/2/2006 - zaheerm
@@ -59,7 +64,13 @@ gst-plugins-bad_src_unpack() {
 		-e "s:\$(top_builddir)/gst-libs/gst/video/libgstbasevideo:${EROOT}/usr/$(get_libdir)/libgstbasevideo:" \
 		-i Makefile.in
 
-#	cd ${S}
+	# 0.10.14 configure errors when --disable-kate is passed:
+	# configure: error: conditional "USE_TIGER" was never defined.
+	# Fix it - this has to stay until any 0.10.14 split or main is in tree:
+	if [ ${PV} == "0.10.14" ]; then
+		cd ${S}
+		epatch "${WORKDIR}/gst-plugins-bad-0.10.14-kate-configure-fix.patch"
+	fi
 
 	# Remove generation of any other Makefiles except the plugin's Makefile
 #	if [[ -d "${S}/sys/${GST_PLUGINS_BUILD_DIR}" ]] ; then

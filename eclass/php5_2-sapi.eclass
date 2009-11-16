@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.25 2009/07/20 10:32:34 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.26 2009/11/13 15:57:24 cla Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -147,7 +147,13 @@ PHP_INI_UPSTREAM="php.ini-dist"
 # @ECLASS-VARIABLE: PHP_PATCHSET_REV
 # @DESCRIPTION:
 # Provides PHP patchsets support.
-SRC_URI="${SRC_URI} http://gentoo.longitekk.com/php-patchset-${MY_PHP_PV}-r${PHP_PATCHSET_REV}.tar.bz2"
+# This condition will help non php maintainers in fixing bugs and let them to
+# upload patchset tarballs somewhere else.
+if [[ ! -n ${PHP_PATCHSET_URI} ]]; then
+	SRC_URI="${SRC_URI} http://gentoo.longitekk.com/php-patchset-${MY_PHP_PV}-r${PHP_PATCHSET_REV}.tar.bz2"
+else
+	SRC_URI="${SRC_URI} ${PHP_PATCHSET_URI}"
+fi
 
 # @ECLASS-VARIABLE: SUHOSIN_PATCH
 # @DESCRIPTION:
