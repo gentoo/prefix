@@ -1,6 +1,23 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.296 2009/11/14 09:08:34 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.301 2009/11/15 20:17:01 tove Exp $
+
+  15 Nov 2009; Torsten Veller <tove@gentoo.org> perl-5.10.1.ebuild:
+  Add patch for ICE on ia64 (#293312)
+
+  15 Nov 2009; Raúl Porcel <armin76@gentoo.org> perl-5.10.1.ebuild:
+  Add ~m68k wrt #288028, thanks to kolla for testing
+
+  15 Nov 2009; Torsten Veller <tove@gentoo.org> perl-5.10.1.ebuild:
+  Disable parallel tests (#293241)
+
+  15 Nov 2009; Torsten Veller <tove@gentoo.org> perl-5.8.8-r8.ebuild,
+  +files/perl-5.8.8-libnet-hostname.patch:
+  Add libnet hostname patch from perl-core/libnet
+
+  14 Nov 2009; Torsten Veller <tove@gentoo.org> perl-5.8.8-r8.ebuild,
+  perl-5.10.1.ebuild:
+  Check for alternative scripts in ROOT
 
 *perl-5.8.8-r8 (14 Nov 2009)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r8.ebuild,v 1.1 2009/11/14 09:08:34 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r8.ebuild,v 1.3 2009/11/15 09:06:30 tove Exp $
 
 inherit eutils alternatives flag-o-matic toolchain-funcs multilib
 
@@ -47,7 +47,7 @@ dual_scripts() {
 	src_remove_dual_scripts perl-core/ExtUtils-MakeMaker 6.30    instmodsh
 	src_remove_dual_scripts perl-core/Test-Harness       2.56    prove
 	src_remove_dual_scripts perl-core/CPAN               1.76_02 cpan
-	src_remove_dual_scripts !perl-core/podlators         1.37    pod2man pod2text
+	src_remove_dual_scripts perl-core/podlators          1.37    pod2man pod2text
 }
 
 pkg_setup() {
@@ -172,6 +172,9 @@ src_unpack() {
 
 	# perlcc fix patch - bug #181229
 	epatch "${FILESDIR}"/${P}-perlcc.patch
+
+	# libnet hostname test patch
+	epatch "${FILESDIR}"/${P}-libnet-hostname.patch
 
 	# patch to fix bug #198196
 	# UTF/Regular expressions boundary error (CVE-2007-5116)
@@ -552,11 +555,9 @@ src_remove_dual_scripts() {
 		done
 	elif has "${EBUILD_PHASE:-none}" "setup" ; then
 		for i in "$@" ; do
-			if [[ -f /usr/bin/${i} && ! -h /usr/bin/${i} ]] ; then
-				if [[ ${pkg::1} != "!" ]] && has_version ${pkg} ; then
-					ewarn "You must reinstall $pkg !"
-					break
-				fi
+			if [[ -f ${EROOT}/usr/bin/${i} && ! -h ${EROOT}/usr/bin/${i} ]] ; then
+				has_version ${pkg} && ewarn "You must reinstall $pkg !"
+				break
 			fi
 		done
 	else
