@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/libperl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.146 2009/11/04 12:37:54 haubi Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.147 2009/11/15 19:21:57 armin76 Exp $
+
+  15 Nov 2009; Raúl Porcel <armin76@gentoo.org> libperl-5.10.1.ebuild:
+  Add ~m68k wrt #288028, thanks to kolla for testing
 
   04 Nov 2009; Michael Haubenwallner <haubi@gentoo.org>
   libperl-5.8.8-r2.ebuild, +files/libperl-5.8.8-ccld-cflags.patch:
