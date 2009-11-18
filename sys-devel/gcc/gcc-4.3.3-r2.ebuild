@@ -152,8 +152,9 @@ src_compile() {
 
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
-	# so force it into our own bash.
-	export CONFIG_SHELL="${EPREFIX}/bin/sh"
+	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
+	# in case that doesn't exist yet
+	export CONFIG_SHELL="${BASH}"
 	gcc_src_compile
 }
 

@@ -96,6 +96,6 @@ src_compile() {
 	esac
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, so force it into our own bash
-	export CONFIG_SHELL="${EPREFIX}/bin/sh"
+	export CONFIG_SHELL="${BASH}"
 	gcc_src_compile
 }
