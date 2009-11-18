@@ -10,7 +10,7 @@ inherit perl-module
 DESCRIPTION="Object Oriented time objects"
 
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 IUSE=""
 
 SRC_TEST="do"
