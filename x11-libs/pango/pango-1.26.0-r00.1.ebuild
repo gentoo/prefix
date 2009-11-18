@@ -49,11 +49,6 @@ pkg_setup() {
 		$(use_with X x)
 		$(use X && echo --x-includes=${EPREFIX}/usr/include)
 		$(use X && --x-libraries=${EPREFIX}/usr/lib)"
-
-	if [[ ${CHOST} == *64-apple-darwin* ]] ; then
-		# Carbon is dead in 64-bits land
-		export ac_cv_header_Carbon_Carbon_h=no
-	fi
 }
 
 src_prepare() {
