@@ -19,4 +19,3 @@ IUSE=""
 S=${WORKDIR}/${MY_P}
 
 SRC_TEST="do"
-myconf="INSTALLDIRS=vendor"
