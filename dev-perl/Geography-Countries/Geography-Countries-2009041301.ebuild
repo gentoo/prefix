@@ -11,9 +11,7 @@ DESCRIPTION="2-letter, 3-letter, and numerical codes for countries."
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 SRC_TEST="do"
-
-DEPEND="dev-lang/perl"
