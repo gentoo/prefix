@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Audio-FLAC-Header
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Audio-FLAC-Header/ChangeLog,v 1.14 2008/12/30 15:50:57 tove Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Audio-FLAC-Header/ChangeLog,v 1.15 2009/11/16 11:18:30 tove Exp $
+
+  16 Nov 2009; Torsten Veller <tove@gentoo.org>
+  -Audio-FLAC-Header-1.7.ebuild, Audio-FLAC-Header-2.3.ebuild:
+  Stable on amd64. Cleanup
 
   30 Dec 2008; Torsten Veller <tove@gentoo.org>
   -Audio-FLAC-Header-2.1.ebuild, -Audio-FLAC-Header-2.2.ebuild:
