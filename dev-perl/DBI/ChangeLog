@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/DBI
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/ChangeLog,v 1.123 2009/10/31 14:34:48 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DBI/ChangeLog,v 1.124 2009/11/14 15:47:18 armin76 Exp $
+
+  14 Nov 2009; Raúl Porcel <armin76@gentoo.org> DBI-1.609.ebuild:
+  ia64/s390/sh/sparc/x86 stable wrt #289461
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> DBI-1.609.ebuild:
   Marking DBI-1.609 ppc64 for bug 289461
