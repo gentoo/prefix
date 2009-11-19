@@ -36,6 +36,13 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-cblas.patch
 	epatch "${FILESDIR}"/${P}-cblas-vars.patch
 	eautoreconf
+
+	cp "${FILESDIR}"/eselect.cblas.gsl "${T}"/
+	sed -i -e "s:/usr:${EPREFIX}/usr:" "${T}"/eselect.cblas.gsl || die
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i -e 's/\.so\([\.0-9]\+\)\?/\1.dylib/g' \
+			"${T}"/eselect.cblas.gsl || die
+	fi
 }
 
 src_configure() {
@@ -53,11 +60,13 @@ src_install() {
 	# take care of pkgconfig file for cblas implementation.
 	sed -e "s/@LIBDIR@/$(get_libdir)/" \
 		-e "s/@PV@/${PV}/" \
+		-e "/^prefix=/s:=:=${EPREFIX}:" \
+		-e "/^libdir=/s:=:=${EPREFIX}:" \
 		"${FILESDIR}"/cblas.pc.in > cblas.pc \
 		|| die "sed cblas.pc failed"
 	insinto /usr/$(get_libdir)/blas/gsl
 	doins cblas.pc || die "installing cblas.pc failed"
-	eselect cblas add $(get_libdir) "${FILESDIR}"/eselect.cblas.gsl \
+	eselect cblas add $(get_libdir) "${T}"/eselect.cblas.gsl \
 		${ESELECT_PROF}
 }
 
