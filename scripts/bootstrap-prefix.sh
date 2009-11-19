@@ -241,6 +241,7 @@ HOSTCC='gcc -m64'
 			;;
 		hppa2.0*-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa2.0"
+			ldflags_make_globals="LDFLAGS=\"-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L/usr/local/lib -R/usr/local/lib\""
 			;;
 		ia64-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
