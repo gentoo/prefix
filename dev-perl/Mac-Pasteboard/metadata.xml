@@ -4,7 +4,7 @@
 	<herd>perl</herd>
 	<maintainer>
 		<email>prefix@gentoo.org</email>
-		<description>Primary Maintainer</description>
+		<description>Primary Maintainer (for OSX part)</description>
 	</maintainer>
 	<longdescription></longdescription>
 </pkgmetadata>
