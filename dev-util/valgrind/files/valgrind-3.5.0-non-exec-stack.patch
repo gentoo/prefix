@@ -1,6 +1,6 @@
 diff -ruN valgrind-3.5.0/coregrind/Makefile.am valgrind-3.5.0-fixed/coregrind/Makefile.am
 --- valgrind-3.5.0/coregrind/Makefile.am	2009-08-19 15:37:47.000000000 +0200
-+++ valgrind-3.5.0-fixed/coregrind/Makefile.am	2009-11-08 01:18:58.000000000 +0100
++++ valgrind-3.5.0-fixed/coregrind/Makefile.am	2009-11-16 21:38:32.000000000 +0100
 @@ -277,22 +277,12 @@
  	m_demangle/demangle.c \
  	m_demangle/dyn-string.c \
@@ -41,15 +41,19 @@ diff -ruN valgrind-3.5.0/coregrind/Makefile.am valgrind-3.5.0-fixed/coregrind/Ma
  	m_syswrap/syswrap-main.c \
  	m_syswrap/syswrap-generic.c \
  	m_syswrap/syswrap-linux.c \
-@@ -333,6 +313,20 @@
+@@ -333,6 +313,24 @@
  	m_ume/main.c \
  	m_ume/script.c
  
 +COREGRIND_SOURCES_COMMON += \
 +	m_dispatch/dispatch-@VGCONF_ARCH_PRI@-@VGCONF_OS@.S \
++	m_syswrap/syscall-@VGCONF_ARCH_PRI@-@VGCONF_OS@.S
++
++if VGCONF_HAVE_PLATFORM_SEC
++COREGRIND_SOURCES_COMMON += \
 +	m_dispatch/dispatch-@VGCONF_ARCH_SEC@-@VGCONF_OS@.S \
-+	m_syswrap/syscall-@VGCONF_ARCH_PRI@-@VGCONF_OS@.S \
 +	m_syswrap/syscall-@VGCONF_ARCH_SEC@-@VGCONF_OS@.S
++endif
 +
 +if VGCONF_OS_IS_DARWIN
 +COREGRIND_SOURCES_COMMON += \
@@ -64,7 +68,7 @@ diff -ruN valgrind-3.5.0/coregrind/Makefile.am valgrind-3.5.0-fixed/coregrind/Ma
  nodist_libcoregrind_@VGCONF_ARCH_PRI@_@VGCONF_OS@_a_SOURCES = \
 diff -ruN valgrind-3.5.0/coregrind/m_dispatch/dispatch-amd64-linux.S valgrind-3.5.0-fixed/coregrind/m_dispatch/dispatch-amd64-linux.S
 --- valgrind-3.5.0/coregrind/m_dispatch/dispatch-amd64-linux.S	2009-08-19 15:37:41.000000000 +0200
-+++ valgrind-3.5.0-fixed/coregrind/m_dispatch/dispatch-amd64-linux.S	2009-11-08 01:17:30.000000000 +0100
++++ valgrind-3.5.0-fixed/coregrind/m_dispatch/dispatch-amd64-linux.S	2009-11-16 21:38:08.000000000 +0100
 @@ -338,11 +338,11 @@
  	ret
  .size VG_(run_a_noredir_translation), .-VG_(run_a_noredir_translation)
@@ -81,7 +85,7 @@ diff -ruN valgrind-3.5.0/coregrind/m_dispatch/dispatch-amd64-linux.S valgrind-3.
  /*--------------------------------------------------------------------*/
 diff -ruN valgrind-3.5.0/coregrind/m_dispatch/dispatch-x86-linux.S valgrind-3.5.0-fixed/coregrind/m_dispatch/dispatch-x86-linux.S
 --- valgrind-3.5.0/coregrind/m_dispatch/dispatch-x86-linux.S	2009-08-19 15:37:41.000000000 +0200
-+++ valgrind-3.5.0-fixed/coregrind/m_dispatch/dispatch-x86-linux.S	2009-11-08 01:17:20.000000000 +0100
++++ valgrind-3.5.0-fixed/coregrind/m_dispatch/dispatch-x86-linux.S	2009-11-16 21:38:08.000000000 +0100
 @@ -305,11 +305,11 @@
  .size VG_(run_a_noredir_translation), .-VG_(run_a_noredir_translation)
  
@@ -98,7 +102,7 @@ diff -ruN valgrind-3.5.0/coregrind/m_dispatch/dispatch-x86-linux.S valgrind-3.5.
  /*--------------------------------------------------------------------*/
 diff -ruN valgrind-3.5.0/coregrind/m_syswrap/syscall-amd64-linux.S valgrind-3.5.0-fixed/coregrind/m_syswrap/syscall-amd64-linux.S
 --- valgrind-3.5.0/coregrind/m_syswrap/syscall-amd64-linux.S	2009-08-19 15:37:42.000000000 +0200
-+++ valgrind-3.5.0-fixed/coregrind/m_syswrap/syscall-amd64-linux.S	2009-11-08 01:16:46.000000000 +0100
++++ valgrind-3.5.0-fixed/coregrind/m_syswrap/syscall-amd64-linux.S	2009-11-16 21:38:08.000000000 +0100
 @@ -205,11 +205,11 @@
  ML_(blksys_finished):	.quad 5b
  .previous
@@ -115,7 +119,7 @@ diff -ruN valgrind-3.5.0/coregrind/m_syswrap/syscall-amd64-linux.S valgrind-3.5.
  /*--------------------------------------------------------------------*/
 diff -ruN valgrind-3.5.0/coregrind/m_syswrap/syscall-x86-linux.S valgrind-3.5.0-fixed/coregrind/m_syswrap/syscall-x86-linux.S
 --- valgrind-3.5.0/coregrind/m_syswrap/syscall-x86-linux.S	2009-08-19 15:37:42.000000000 +0200
-+++ valgrind-3.5.0-fixed/coregrind/m_syswrap/syscall-x86-linux.S	2009-11-08 01:16:55.000000000 +0100
++++ valgrind-3.5.0-fixed/coregrind/m_syswrap/syscall-x86-linux.S	2009-11-16 21:38:08.000000000 +0100
 @@ -165,11 +165,11 @@
  ML_(blksys_finished):	.long 5b
  .previous
