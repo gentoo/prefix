@@ -1,20 +1,27 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/scipy/scipy-0.7.1.ebuild,v 1.3 2009/09/04 21:31:22 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/scipy/scipy-0.7.1.ebuild,v 1.4 2009/11/20 21:00:08 bicatali Exp $
 
 EAPI="2"
 NEED_PYTHON="2.4"
 SUPPORT_PYTHON_ABIS="1"
 
-inherit eutils distutils flag-o-matic toolchain-funcs
+inherit eutils distutils flag-o-matic toolchain-funcs versionator
 
-SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
+SP="${PN}-$(get_version_component_range 1-2)"
+
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
+	doc? (
+		http://docs.scipy.org/doc/${SP}.x/${PN}-html.zip -> ${SP}-html.zip
+		http://docs.scipy.org/doc/${SP}.x/${PN}-ref.pdf -> ${SP}-ref.pdf
+	)"
 DESCRIPTION="Scientific algorithms library for Python"
 HOMEPAGE="http://www.scipy.org/"
+
 LICENSE="BSD"
 
 SLOT="0"
-IUSE="umfpack"
+IUSE="doc umfpack"
 #IUSE="test umfpack"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
@@ -25,7 +32,8 @@ CDEPEND=">=dev-python/numpy-1.2
 
 DEPEND="${CDEPEND}
 	dev-util/pkgconfig
-	umfpack? ( dev-lang/swig )"
+	umfpack? ( dev-lang/swig )
+	doc? ( app-arch/unzip )"
 #	test? ( dev-python/nose )
 
 RDEPEND="${CDEPEND}
@@ -47,6 +55,13 @@ pkg_setup() {
 	# hack to force F77 to be FC until bug #278772 is fixed
 	[[ -z ${F77} ]] && export F77=$(tc-getFC)
 	export SCIPY_FCONFIG="config_fc --noopt --noarch"
+}
+
+src_unpack() {
+	unpack ${P}.tar.gz
+	if use doc; then
+		unzip -qo "${DISTDIR}"/${SP}-html.zip -d html || die
+	fi
 }
 
 src_prepare() {
@@ -103,6 +118,11 @@ src_test() {
 
 src_install() {
 	distutils_src_install ${SCIPY_FCONFIG}
+	if use doc; then
+		insinto /usr/share/doc/${PF}
+		doins -r "${WORKDIR}"/html || die
+		doins  "${DISTDIR}"/${SP}*pdf || die
+	fi
 }
 
 pkg_postinst() {

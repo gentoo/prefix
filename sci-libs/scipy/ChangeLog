@@ -1,6 +1,15 @@
 # ChangeLog for sci-libs/scipy
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/scipy/ChangeLog,v 1.43 2009/09/04 21:31:22 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/scipy/ChangeLog,v 1.44 2009/11/20 21:00:08 bicatali Exp $
+
+  20 Nov 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  -scipy-0.6.0-r6.ebuild, -files/scipy-0.6.0-cdf.patch,
+  -files/scipy-0.6.0-fftw-fix.patch, -files/scipy-0.6.0-implicit.patch,
+  -files/scipy-0.6.0-ndimage.patch,
+  -files/scipy-0.6.0-python-2.6-c_abs.patch,
+  -files/scipy-0.6.0-randomkit.patch, -scipy-0.7.0.ebuild,
+  scipy-0.7.1.ebuild:
+  Added doc flag, bug #293525, thanks Denilson
 
   04 Sep 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   scipy-0.7.1.ebuild:
