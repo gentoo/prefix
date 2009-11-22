@@ -1,6 +1,27 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.239 2009/10/20 22:10:51 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.244 2009/11/21 20:09:47 nixnut Exp $
+
+  21 Nov 2009; nixnut <nixnut@gentoo.org> lftp-4.0.3.ebuild:
+  ppc stable #293737
+
+  21 Nov 2009; Jeroen Roovers <jer@gentoo.org> lftp-4.0.3.ebuild,
+  -files/lftp-4.0.3+autoconf-2.64.patch,
+  +files/lftp-4.0.3-autoconf-2.64.patch:
+  Filename fix.
+
+  21 Nov 2009; Diego E. Pettenò <flameeyes@gentoo.org> lftp-4.0.3.ebuild,
+  +files/lftp-4.0.3+autoconf-2.64.patch:
+  Add patch to fix autoconf 2.64 regeneration, by Rafał Mużyło in bug
+  #293958.
+
+  19 Nov 2009; Jeroen Roovers <jer@gentoo.org>
+  -files/lftp-3.99.5-torrent_la.patch:
+  Remove unused patch.
+
+  19 Nov 2009; Jeroen Roovers <jer@gentoo.org> -lftp-4.0.1.ebuild,
+  -lftp-4.0.2.ebuild, -lftp-4.0.2.91.ebuild, -lftp-4.0.2.91-r1.ebuild:
+  Remove old.
 
 *lftp-4.0.3 (20 Oct 2009)
 
