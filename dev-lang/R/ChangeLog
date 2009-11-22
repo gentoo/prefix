@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/R
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.164 2009/11/03 22:25:44 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.165 2009/11/18 20:35:22 ranger Exp $
+
+  18 Nov 2009; Brent Baude <ranger@gentoo.org> R-2.9.2.ebuild:
+  Marking R-2.9.2 ppc64 for bug 289381
 
 *R-2.10.0 (03 Nov 2009)
 
