@@ -1,6 +1,22 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.238 2009/11/10 16:04:51 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.242 2009/11/18 21:44:20 fauli Exp $
+
+  18 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  gstreamer-0.10.24.ebuild:
+  x86 stable, bug 290343
+
+  18 Nov 2009; Jeroen Roovers <jer@gentoo.org> gstreamer-0.10.24.ebuild:
+  Stable for HPPA (bug #290343).
+
+  17 Nov 2009; Brent Baude <ranger@gentoo.org> gstreamer-0.10.24.ebuild:
+  Marking gstreamer-0.10.24 ppc64 stable for bug 290343
+
+*gstreamer-0.10.25 (15 Nov 2009)
+
+  15 Nov 2009; Mart Raudsepp <leio@gentoo.org> +gstreamer-0.10.25.ebuild:
+  Version bump. Improved byte-reader API; Various optimizations, bug fixes
+  and improvements
 
   10 Nov 2009; Olivier Crête <tester@gentoo.org> gstreamer-0.10.24.ebuild:
   Stable on amd64, bug #290343
