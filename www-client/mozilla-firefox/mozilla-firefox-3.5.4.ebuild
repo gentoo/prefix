@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.4.ebuild,v 1.9 2009/11/12 15:21:01 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.4.ebuild,v 1.10 2009/11/20 18:23:46 armin76 Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -71,12 +71,6 @@ DEPEND="${RDEPEND}
 PDEPEND="restrict-javascript? ( >=www-plugins/noscript-1.9.6.6 )"
 
 S="${WORKDIR}/mozilla-1.9.1"
-
-# Needed by src_compile() and src_install().
-# Would do in pkg_setup but that loses the export attribute, they
-# become pure shell variables.
-export BUILD_OFFICIAL=1
-export MOZILLA_OFFICIAL=1
 
 linguas() {
 	local LANG SLANG
@@ -263,6 +257,9 @@ src_install() {
 	# Plugins dir
 	dosym ../nsbrowser/plugins "${MOZILLA_FIVE_HOME}"/plugins \
 		|| die "failed to symlink"
+
+	# very ugly hack to make firefox not sigbus on sparc
+	use sparc && sed -i -e 's/Firefox/FirefoxGentoo/g' ${ED}/${MOZILLA_FIVE_HOME}/application.ini
 }
 
 pkg_postinst() {
