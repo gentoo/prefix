@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.19.ebuild,v 1.6 2009/11/17 19:48:34 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.20-r1.ebuild,v 1.1 2009/11/15 09:13:48 betelgeuse Exp $
 
 EAPI="2"
 
@@ -17,7 +17,7 @@ SRC_URI="http://www.sqlite.org/${P}.tar.gz
 LICENSE="as-is"
 SLOT="3"
 KEYWORDS="~ppc-aix ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug doc icu +readline soundex tcl +threadsafe"
+IUSE="debug doc fts3 icu +readline soundex tcl +threadsafe"
 RESTRICT="!tcl? ( test )"
 
 RDEPEND="icu? ( dev-libs/icu )
@@ -46,8 +46,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-3.6.11-interix.patch
 
-	epatch "${FILESDIR}/${P}-icu.test.patch"
-
 	epunt_cxx
 }
 
@@ -68,6 +66,9 @@ src_configure() {
 
 	# Support soundex, bug #143794
 	use soundex && append-cppflags -DSQLITE_SOUNDEX
+
+	# http://bugs.gentoo.org/show_bug.cgi?id=207701
+	use fts3 && append-cppflags -DSQLITE_ENABLE_FTS3=1
 
 	econf \
 		$(use_enable debug) \

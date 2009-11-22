@@ -1,6 +1,18 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.291 2009/11/11 14:26:35 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.294 2009/11/17 19:48:34 ranger Exp $
+
+  17 Nov 2009; Brent Baude <ranger@gentoo.org> sqlite-3.6.19.ebuild:
+  Marking sqlite-3.6.19 ppc64 for bug 291913
+
+  16 Nov 2009; Markus Meier <maekke@gentoo.org> sqlite-3.6.19.ebuild:
+  amd64/arm/x86 stable, bug #291913
+
+*sqlite-3.6.20-r1 (15 Nov 2009)
+
+  15 Nov 2009; Petteri Räty <betelgeuse@gentoo.org>
+  +sqlite-3.6.20-r1.ebuild, metadata.xml:
+  Add support for the fts3 module requested in bug #207701.
 
   11 Nov 2009; Jeroen Roovers <jer@gentoo.org> sqlite-3.6.19.ebuild:
   Stable for HPPA (bug #291913).

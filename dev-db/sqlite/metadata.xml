@@ -11,6 +11,7 @@
   <description>Take if you want it</description>
 </maintainer>
 <use>
+  <flag name='fts3'>Full text search using the fts3 module</flag>
   <flag name='soundex'>Enable the soundex function to compute soundex
     encodings of strings</flag>
   <flag name='threadsafe'>Enable thread safe operation of sqlite</flag>
