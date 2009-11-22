@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.6.ebuild,v 1.9 2009/10/26 21:06:36 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/xkeyboard-config-1.6.ebuild,v 1.10 2009/11/21 14:36:38 armin76 Exp $
 
 inherit eutils
 
