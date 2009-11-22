@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-xmlpatterns/qt-xmlpatterns-4.6.0_beta1.ebuild,v 1.2 2009/10/16 19:50:34 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-xmlpatterns/qt-xmlpatterns-4.6.0_rc1.ebuild,v 1.1 2009/11/18 20:48:56 wired Exp $
 
 EAPI=2
 inherit qt4-build
