@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/pango
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.277 2009/11/01 12:53:20 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.278 2009/11/21 09:35:37 mrpouet Exp $
+
+*pango-1.26.1 (21 Nov 2009)
+
+  21 Nov 2009; Romain Perier <mrpouet@gentoo.org> +pango-1.26.1.ebuild:
+  Version bump.
 
   01 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org> pango-1.26.0.ebuild:
   Add missing gtk-doc-am to DEPEND, bug #291119.
