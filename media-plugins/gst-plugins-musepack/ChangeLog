@@ -1,6 +1,14 @@
 # ChangeLog for media-plugins/gst-plugins-musepack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-musepack/ChangeLog,v 1.64 2009/11/10 16:20:10 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-musepack/ChangeLog,v 1.66 2009/11/18 23:06:06 fauli Exp $
+
+  18 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  gst-plugins-musepack-0.10.14.ebuild:
+  x86 stable, bug 290343
+
+  17 Nov 2009; Brent Baude <ranger@gentoo.org>
+  gst-plugins-musepack-0.10.14.ebuild:
+  Marking gst-plugins-musepack-0.10.14 ppc64 stable for bug 290343
 
   10 Nov 2009; Olivier Crête <tester@gentoo.org>
   gst-plugins-musepack-0.10.14.ebuild:
