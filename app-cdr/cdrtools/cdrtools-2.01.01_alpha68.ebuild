@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha65.ebuild,v 1.1 2009/09/16 18:22:07 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha68.ebuild,v 1.1 2009/11/19 18:09:55 billie Exp $
 
 EAPI=2
 
@@ -57,11 +57,20 @@ src_prepare() {
 	sed -i "s:/usr/src/linux/include::g" Defaults.${MYARCH} || die "sed linux-include failed"
 	sed -i "/RUNPATH/ c\RUNPATH= " Defaults.${MYARCH} || die "sed RUNPATH failed"
 
-	# For dynamic linking.
-	sed -i "s:static:dynamic:" Defaults.${MYARCH} || die "sed static-remove failed"
+	cd "${S}"/RULES
+
+	# Respect CC/CXX variables
+	local tcCC=$(tc-getCC)
+	local tcCXX=$(tc-getCXX)
+	sed -i -e "/cc-config.sh/s|\$(C_ARCH:%64=%) \$(CCOM_DEF)|${tcCC} ${tcCC}|" \
+		rules1.top || die "sed rules1.top failed"
+	sed -i -e "/^\(CC\|DYNLD\|LDCC\|MKDEP\)/s|gcc|${tcCC}|" \
+		-e "/^\(CC++\|DYNLDC++\|LDCC++\|MKC++DEP\)/s|g++|${tcCXX}|" \
+		cc-gcc.rul || die "sed cc-gcc.rul failed"
+	sed -i -e "s|^#CONFFLAGS +=\t-cc=\$(XCC_COM)$|CONFFLAGS +=\t-cc=${tcCC}|g" \
+		rules.cnf || die "sed rules.cnf failed"
 
 	# Create additional symlinks needed for some archs.
-	cd "${S}"/RULES
 	local t
 	for t in ppc64 sh4 s390x ; do
 		ln -s i586-linux-cc.rul ${t}-linux-cc.rul || die
@@ -91,13 +100,13 @@ src_compile() {
 	# If not built with -j1, "sometimes" cdda2wav will not be built. Bug?
 	emake -j1 CC="$(tc-getCC) -D__attribute_const__=const" COPTX="${CFLAGS}" \
 		LIB_ACL_TEST="${ACL}" CPPOPTX="${CPPFLAGS}" LDOPTX="${LDFLAGS}" \
-		GMAKE_NOWARN="true" || die "emake failed"
+		LINKMODE="dynamic" GMAKE_NOWARN="true" || die "emake failed"
 }
 
 src_install() {
 	# If not built with -j1, "sometimes" manpages are not installed. Bug?
 	emake -j1 MANDIR="share/man" INS_BASE="${ED}/usr/" INS_RBASE="${ED}" \
-		GMAKE_NOWARN="true" install
+		LINKMODE="dynamic" GMAKE_NOWARN="true" install
 
 	# These symlinks are for compat with cdrkit.
 	dosym schily /usr/include/scsilib

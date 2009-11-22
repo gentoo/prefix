@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha67-r1.ebuild,v 1.1 2009/11/04 22:35:31 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha67-r1.ebuild,v 1.2 2009/11/14 19:10:39 billie Exp $
 
 EAPI=2
 
@@ -62,12 +62,12 @@ src_prepare() {
 	# Respect CC/CXX variables
 	local tcCC=$(tc-getCC)
 	local tcCXX=$(tc-getCXX)
-	sed -i -e "/cc-config.sh/s/\$(C_ARCH:%64=%) \$(CCOM_DEF)/${tcCC} ${tcCC}/" \
+	sed -i -e "/cc-config.sh/s|\$(C_ARCH:%64=%) \$(CCOM_DEF)|${tcCC} ${tcCC}|" \
 		rules1.top || die "sed rules1.top failed"
-	sed -i -e "/^\(CC\|DYNLD\|LDCC\|MKDEP\)/s/gcc/${tcCC}/" \
-		-e "/^\(CC++\|DYNLDC++\|LDCC++\|MKC++DEP\)/s/g++/${tcCXX}/" \
+	sed -i -e "/^\(CC\|DYNLD\|LDCC\|MKDEP\)/s|gcc|${tcCC}|" \
+		-e "/^\(CC++\|DYNLDC++\|LDCC++\|MKC++DEP\)/s|g++|${tcCXX}|" \
 		cc-gcc.rul || die "sed cc-gcc.rul failed"
-	sed -i -e "s/^#CONFFLAGS +=\t-cc=\$(XCC_COM)$/CONFFLAGS +=\t-cc=${tcCC}/g" \
+	sed -i -e "s|^#CONFFLAGS +=\t-cc=\$(XCC_COM)$|CONFFLAGS +=\t-cc=${tcCC}|g" \
 		rules.cnf || die "sed rules.cnf failed"
 
 	# Create additional symlinks needed for some archs.
