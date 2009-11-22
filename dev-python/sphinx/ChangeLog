@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/sphinx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.36 2009/11/11 00:01:23 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sphinx/ChangeLog,v 1.37 2009/11/14 16:40:38 armin76 Exp $
+
+  14 Nov 2009; Raúl Porcel <armin76@gentoo.org> sphinx-0.6.3.ebuild:
+  ia64/s390/sh/sparc stable wrt #287617
 
   10 Nov 2009; Brent Baude <ranger@gentoo.org> sphinx-0.6.3.ebuild:
   Marking sphinx-0.6.3 ppc64 for bug 287617
