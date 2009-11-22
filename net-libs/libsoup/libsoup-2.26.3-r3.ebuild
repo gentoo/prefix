@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.26.3-r3.ebuild,v 1.6 2009/11/05 19:33:13 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.26.3-r3.ebuild,v 1.7 2009/11/16 21:41:12 eva Exp $
 
 EAPI="2"
 
@@ -17,9 +17,10 @@ IUSE="debug doc gnome ssl"
 
 RDEPEND=">=dev-libs/glib-2.15.3
 	>=dev-libs/libxml2-2
-	ssl? ( >=net-libs/gnutls-1 )"
+	ssl? ( >=net-libs/gnutls-2.1.7 )"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9
+	dev-util/gtk-doc-am
 	doc? ( >=dev-util/gtk-doc-1 )"
 #	test? (
 #		www-servers/apache

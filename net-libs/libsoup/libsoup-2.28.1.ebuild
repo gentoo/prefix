@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.28.1.ebuild,v 1.1 2009/10/29 21:22:03 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsoup/libsoup-2.28.1.ebuild,v 1.2 2009/11/16 21:41:12 eva Exp $
 
 EAPI="2"
 
@@ -26,7 +26,7 @@ DEPEND="${RDEPEND}
 #		www-servers/apache
 #		dev-lang/php
 #		net-misc/curl )
-PDEPEND="gnome? ( ~net-libs/libsoup-gnome-${PV} )"
+PDEPEND="gnome? ( ~net-libs/${PN}-gnome-${PV} )"
 
 DOCS="AUTHORS NEWS README"
 
