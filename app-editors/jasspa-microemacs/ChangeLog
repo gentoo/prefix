@@ -1,6 +1,13 @@
 # ChangeLog for app-editors/jasspa-microemacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/ChangeLog,v 1.36 2009/10/14 22:04:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/jasspa-microemacs/ChangeLog,v 1.38 2009/11/21 18:58:04 nixnut Exp $
+
+  21 Nov 2009; nixnut <nixnut@gentoo.org> jasspa-microemacs-20091011.ebuild:
+  ppc stable #293025
+
+  18 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  jasspa-microemacs-20091011.ebuild:
+  stable x86, bug 293025
 
 *jasspa-microemacs-20091011 (14 Oct 2009)
 
