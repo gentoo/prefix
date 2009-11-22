@@ -1,6 +1,22 @@
 # ChangeLog for media-plugins/gst-plugins-x
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-x/ChangeLog,v 1.67 2009/11/10 16:08:55 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-x/ChangeLog,v 1.71 2009/11/18 22:04:17 fauli Exp $
+
+  18 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  gst-plugins-x-0.10.24.ebuild:
+  x86 stable, bug 290343
+
+  18 Nov 2009; Jeroen Roovers <jer@gentoo.org> gst-plugins-x-0.10.24.ebuild:
+  Stable for HPPA (bug #290343).
+
+  17 Nov 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking gst-plugins-x-0.10.24 ppc64 stable for bug 290343
+
+*gst-plugins-x-0.10.25 (16 Nov 2009)
+
+  16 Nov 2009; Mart Raudsepp <leio@gentoo.org>
+  -gst-plugins-x-0.10.22.ebuild, +gst-plugins-x-0.10.25.ebuild:
+  Version bump, trivial changes. Add missing xshm support dependencies
 
   10 Nov 2009; Olivier Crête <tester@gentoo.org>
   gst-plugins-x-0.10.24.ebuild:
