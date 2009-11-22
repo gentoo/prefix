@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.124 2009/11/11 15:34:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.125 2009/11/18 17:39:05 ranger Exp $
+
+  18 Nov 2009; Brent Baude <ranger@gentoo.org> apache-2.2.14-r1.ebuild:
+  Marking apache-2.2.14-r1 ppc64 for bug 291810
 
   11 Nov 2009; Jeroen Roovers <jer@gentoo.org> apache-2.2.14-r1.ebuild:
   Stable for HPPA (bug #291810).
