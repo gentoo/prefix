@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gtkimageview
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gtkimageview/ChangeLog,v 1.10 2009/10/05 21:53:49 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gtkimageview/ChangeLog,v 1.11 2009/11/21 19:31:25 nixnut Exp $
+
+  21 Nov 2009; nixnut <nixnut@gentoo.org> gtkimageview-1.6.4.ebuild:
+  ppc stable #293850
 
   05 Oct 2009; Mounir Lamouri <volkmar@gentoo.org>
   gtkimageview-1.6.4.ebuild:
