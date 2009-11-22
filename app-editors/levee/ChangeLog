@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/levee
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/ChangeLog,v 1.23 2009/11/09 11:22:48 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/ChangeLog,v 1.24 2009/11/21 17:24:33 maekke Exp $
+
+  21 Nov 2009; Markus Meier <maekke@gentoo.org> levee-3.5a.ebuild:
+  x86 stable, bug #289333
 
   09 Nov 2009; Jonathan Callen <abcd@gentoo.org> -files/levee-3.5-QA.patch:
   Drop unused file
