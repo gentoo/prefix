@@ -1,6 +1,9 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.100 2009/11/06 12:26:26 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.101 2009/11/21 19:57:14 maekke Exp $
+
+  21 Nov 2009; Markus Meier <maekke@gentoo.org> transmission-1.75.ebuild:
+  x86 stable, bug #289629
 
   06 Nov 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   transmission-1.76.ebuild:
