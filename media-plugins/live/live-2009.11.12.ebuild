@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/live/live-2009.07.28.ebuild,v 1.1 2009/08/01 16:14:52 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/live/live-2009.11.12.ebuild,v 1.1 2009/11/21 12:23:51 aballier Exp $
 
 inherit flag-o-matic eutils toolchain-funcs multilib
 
@@ -23,12 +23,13 @@ LIVE_ABI_VERSION=3
 src_unpack() {
 	unpack ${A}
 	cd "${WORKDIR}"
+	epatch "${FILESDIR}/${PN}-recursive.patch"
 
 	cp -pPR live live-shared
 	mv live live-static
 
 	cp "${FILESDIR}/config.gentoo" live-static
-	cp "${FILESDIR}/config.gentoo-so" live-shared
+	cp "${FILESDIR}/config.gentoo-so-r1" live-shared
 
 	case ${CHOST} in
 		*-solaris*)
@@ -36,7 +37,7 @@ src_unpack() {
 				-e '/^COMPILE_OPTS /s/$/ -DSOLARIS/' \
 				-e '/^LIBS_FOR_CONSOLE_APPLICATION /s/$/ -lsocket -lnsl/' \
 				live-static/config.gentoo \
-				live-shared/config.gentoo-so \
+				live-shared/config.gentoo-so-r1 \
 				|| die
 		;;
 		*-darwin*)
@@ -52,7 +53,7 @@ src_unpack() {
 				-e '/^LINK /s/$/ /' \
 				-e '/^LIBRARY_LINK /s/=.*$/= $(CXX) -o /' \
 				-e '/^LIBRARY_LINK_OPTS /s:-shared.*$:-undefined suppress -flat_namespace -dynamiclib -install_name '"${EPREFIX}/usr/$(get_libdir)/"'$@:' \
-				live-shared/config.gentoo-so \
+				live-shared/config.gentoo-so-r1 \
 				|| die shared
 		;;
 	esac
@@ -65,7 +66,7 @@ src_compile() {
 
 	einfo "Beginning static library build"
 	./genMakefiles gentoo
-	emake -j1 LINK_OPTS="-L. $(raw-ldflags)" TESTPROGS_APP="" MEDIA_SERVER_APP="" || die "failed to build static libraries"
+	emake -j1 LINK_OPTS="-L. $(raw-ldflags)" || die "failed to build static libraries"
 
 	einfo "Beginning programs build"
 	cd "${WORKDIR}/live-static/testProgs"
@@ -75,9 +76,9 @@ src_compile() {
 
 	cd "${WORKDIR}/live-shared"
 	einfo "Beginning shared library build"
-	./genMakefiles gentoo-so
+	./genMakefiles gentoo-so-r1
 	local suffix=$(get_libname ${LIVE_ABI_VERSION})
-	emake -j1 LINK_OPTS="-L. ${LDFLAGS}" LIB_SUFFIX="${suffix#.}" TESTPROGS_APP="" MEDIA_SERVER_APP="" || die "failed to build shared libraries"
+	emake -j1 LINK_OPTS="-L. ${LDFLAGS}" LIB_SUFFIX="${suffix#.}" || die "failed to build shared libraries"
 }
 
 src_install() {
