@@ -1,6 +1,30 @@
 # ChangeLog for app-arch/dpkg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.103 2009/10/21 06:12:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.108 2009/11/18 15:52:14 yvasilev Exp $
+
+  18 Nov 2009; Yuri Vasilevski <yvasilev@gentoo.org> -dpkg-1.15.5.1.ebuild:
+  Removed broken (due to lack of perl 5.10) version.
+
+*dpkg-1.15.5.2 (18 Nov 2009)
+
+  18 Nov 2009; Jeroen Roovers <jer@gentoo.org> +dpkg-1.15.5.2.ebuild:
+  Version bump (fixes bug 293516).
+
+*dpkg-1.15.5.1 (17 Nov 2009)
+
+  17 Nov 2009; Yuri Vasilevski <yvasilev@gentoo.org> -dpkg-1.15.5.ebuild,
+  +dpkg-1.15.5.1.ebuild:
+  Replaced 1.15.5 with fixed 1.15.5.1
+  (http://packages.qa.debian.org/d/dpkg/news/20091117T161805Z.html) version.
+
+  17 Nov 2009; Jeroen Roovers <jer@gentoo.org> dpkg-1.15.5.ebuild:
+  Do not attempt to rm install-info man page (it is gone and soon the
+  utility itself too). Die and be verbose about it too.
+
+*dpkg-1.15.5 (17 Nov 2009)
+
+  17 Nov 2009; Jeroen Roovers <jer@gentoo.org> +dpkg-1.15.5.ebuild:
+  Version bump.
 
   21 Oct 2009; Jeroen Roovers <jer@gentoo.org> dpkg-1.15.2.ebuild,
   dpkg-1.15.3.ebuild, dpkg-1.15.3.1.ebuild, dpkg-1.15.4.ebuild,
