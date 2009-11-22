@@ -1,6 +1,27 @@
 # ChangeLog for x11-libs/qt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.599 2009/11/11 12:53:17 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt/ChangeLog,v 1.605 2009/11/21 18:24:15 nixnut Exp $
+
+  21 Nov 2009; nixnut <nixnut@gentoo.org> qt-3.3.8b-r2.ebuild:
+  ppc stable #292929
+
+*qt-4.6.0_rc1 (18 Nov 2009)
+
+  18 Nov 2009; Alex Alexander <wired@gentoo.org> -qt-4.6.0_beta1.ebuild,
+  +qt-4.6.0_rc1.ebuild:
+  added 4.6.0_rc1, removed 4.6.0_beta1
+
+  18 Nov 2009; Raúl Porcel <armin76@gentoo.org> qt-3.3.8b-r2.ebuild:
+  alpha/ia64/sparc stable wrt #292929
+
+  16 Nov 2009; Jeroen Roovers <jer@gentoo.org> qt-4.5.3.ebuild:
+  Stable for HPPA (bug #290922).
+
+  16 Nov 2009; Jeroen Roovers <jer@gentoo.org> qt-3.3.8b-r2.ebuild:
+  Stable for HPPA (bug #292929).
+
+  14 Nov 2009; Markus Meier <maekke@gentoo.org> qt-3.3.8b-r2.ebuild:
+  amd64/x86 stable, bug #292929
 
   11 Nov 2009; Ben de Groot <yngwin@gentoo.org> -qt-4.4.2.ebuild,
   -qt-4.5.1.ebuild, -qt-4.5.2.ebuild:
