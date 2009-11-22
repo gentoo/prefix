@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/sandbox
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.131 2009/10/26 07:05:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sandbox/ChangeLog,v 1.132 2009/11/21 14:02:47 armin76 Exp $
+
+  21 Nov 2009; Raúl Porcel <armin76@gentoo.org> sandbox-2.2.ebuild:
+  Mark 2.2 -sparc as it doesn't work very well, bug #293632
 
 *sandbox-2.2 (26 Oct 2009)
 
