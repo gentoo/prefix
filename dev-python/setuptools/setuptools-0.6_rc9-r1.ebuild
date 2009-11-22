@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc9-r1.ebuild,v 1.2 2009/11/12 21:23:26 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6_rc9-r1.ebuild,v 1.3 2009/11/21 03:13:00 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -24,6 +24,7 @@ RESTRICT_PYTHON_ABIS="3.*"
 
 S="${WORKDIR}/${MY_P}"
 
+PYTHON_MODNAME="easy_install.py pkg_resources.py setuptools site.py"
 DOCS="EasyInstall.txt api_tests.txt pkg_resources.txt setuptools.txt README.txt"
 
 src_prepare() {

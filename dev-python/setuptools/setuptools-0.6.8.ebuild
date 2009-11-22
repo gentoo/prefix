@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6.8.ebuild,v 1.5 2009/11/12 21:23:26 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/setuptools/setuptools-0.6.8.ebuild,v 1.7 2009/11/21 03:13:00 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -24,6 +24,7 @@ RDEPEND=""
 
 S="${WORKDIR}/${MY_P}"
 
+PYTHON_MODNAME="easy_install.py pkg_resources.py setuptools site.py"
 DOCS="README.txt docs/easy_install.txt docs/pkg_resources.txt docs/setuptools.txt"
 
 src_prepare() {
@@ -38,6 +39,9 @@ src_prepare() {
 
 	# https://bitbucket.org/tarek/distribute/issue/87/
 	sed -e 's:if copied and outf.endswith(".py"):& and outf != "build/src/distribute_setup.py":' -i setup.py || die "sed setup.py failed"
+
+	# https://bitbucket.org/tarek/distribute/issue/80/
+	epatch "${FILESDIR}/${MY_P}-fix_tests.patch"
 }
 
 src_test() {
