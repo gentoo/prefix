@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.3.2.ebuild,v 1.1 2009/10/25 20:42:00 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.3.2.ebuild,v 1.2 2009/11/21 23:30:18 griffon26 Exp $
 
 EAPI="1"
 
@@ -9,7 +9,7 @@ inherit x-modular toolchain-funcs flag-o-matic
 DESCRIPTION="X.Org X11 library"
 
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="ipv6 test +xcb"
+IUSE="doc ipv6 test +xcb"
 
 RDEPEND=">=x11-libs/xtrans-1.2.3
 	x11-proto/kbproto
@@ -20,6 +20,10 @@ RDEPEND=">=x11-libs/xtrans-1.2.3
 		x11-libs/libXdmcp
 	)"
 DEPEND="${RDEPEND}
+	doc? (
+		app-text/ghostscript-gpl
+		sys-apps/groff
+	)
 	test? ( dev-lang/perl )
 	x11-proto/xf86bigfontproto
 	xcb? (
@@ -30,7 +34,7 @@ DEPEND="${RDEPEND}
 	x11-proto/xextproto"
 
 pkg_setup() {
-	CONFIGURE_OPTIONS="$(use_enable ipv6)
+	CONFIGURE_OPTIONS="$(use_enable doc specs) $(use_enable ipv6)
 		$(use_with xcb) $(use_with test perl)"
 	# xorg really doesn't like xlocale disabled.
 	# $(use_enable nls xlocale)

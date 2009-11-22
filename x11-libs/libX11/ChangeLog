@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.124 2009/10/26 20:55:35 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.125 2009/11/21 23:30:18 griffon26 Exp $
+
+  21 Nov 2009; Maurice van der Pot <griffon26@gentoo.org>
+  libX11-1.3.2.ebuild:
+  Added doc USE flag to allow generation of documentation to be disabled.
+  Also added dependencies for doc generation.
 
   26 Oct 2009; Jeroen Roovers <jer@gentoo.org> libX11-1.2.2.ebuild:
   Stable for HPPA (bug #282290).
