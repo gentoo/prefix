@@ -1,7 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/backport-util-concurrent/backport-util-concurrent-3.0-r1.ebuild,v 1.2 2009/11/02 21:48:00 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/backport-util-concurrent/backport-util-concurrent-3.0-r1.ebuild,v 1.3 2009/11/17 15:16:51 caster Exp $
 
+EAPI=2
 JAVA_PKG_IUSE="doc source test"
 inherit java-pkg-2 java-ant-2
 
@@ -19,15 +20,9 @@ DEPEND="=virtual/jdk-1.5*
 	app-arch/unzip"
 RDEPEND=">=virtual/jdk-1.5"
 
-S="${WORKDIR}/${P}-src"
+S="${WORKDIR}/${PN}-Java50-${PV}-src"
 
-src_unpack() {
-	unpack ${A}
-	# This is just workaround because setting ${S} in pkg_setup doesn't currently
-	# work and this seems better than doing it in global scope
-	mv ${PN}-Java50-${PV}-src ${P}-src || die
-	cd "${S}"
-
+java_prepare() {
 	if use test; then
 		# make test not dependo n make
 		epatch "${FILESDIR}/${P}-test.patch"
