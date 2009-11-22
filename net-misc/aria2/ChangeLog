@@ -1,6 +1,14 @@
 # ChangeLog for net-misc/aria2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.49 2009/11/04 11:25:59 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.51 2009/11/14 19:12:21 dev-zero Exp $
+
+  14 Nov 2009; Tiziano Müller <dev-zero@gentoo.org>
+  +files/1.6.3-unaligned_pointers.patch, aria2-1.6.3.ebuild:
+  Added patch to fix sigbus errors on sparc.
+
+  14 Nov 2009; Tiziano Müller <dev-zero@gentoo.org> -aria2-0.15.3.ebuild,
+  -aria2-1.5.2.ebuild, -aria2-1.6.2.ebuild:
+  Removed vulnerable old versions.
 
   04 Nov 2009; Markus Meier <maekke@gentoo.org> aria2-1.6.3.ebuild:
   amd64 stable, bug #288291

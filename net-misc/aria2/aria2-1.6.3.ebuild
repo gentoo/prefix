@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/aria2-1.6.3.ebuild,v 1.3 2009/11/04 11:25:59 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/aria2-1.6.3.ebuild,v 1.4 2009/11/14 19:12:21 dev-zero Exp $
 
 EAPI="2"
 
-inherit multilib
+inherit eutils multilib
 
 DESCRIPTION="A download utility with resuming and segmented downloading with HTTP/HTTPS/FTP/BitTorrent support."
 HOMEPAGE="http://aria2.sourceforge.net/"
@@ -35,6 +35,8 @@ RDEPEND="${CDEPEND}
 
 src_prepare() {
 	sed -i -e "s|/tmp|${T}|" test/*.cc test/*.txt || die "sed failed"
+
+	epatch "${FILESDIR}/${PV}-unaligned_pointers.patch"
 }
 
 src_configure() {
