@@ -1,6 +1,9 @@
 # ChangeLog for games-strategy/wormux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/ChangeLog,v 1.34 2009/10/21 18:08:39 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/wormux/ChangeLog,v 1.35 2009/11/21 19:50:57 maekke Exp $
+
+  21 Nov 2009; Markus Meier <maekke@gentoo.org> wormux-0.8.5.ebuild:
+  x86 stable, bug #289425
 
   21 Oct 2009; <chainsaw@gentoo.org> wormux-0.8.5.ebuild:
   Marked stable on AMD64 as requested by Michael "Mr. Bones." Sterrett in
