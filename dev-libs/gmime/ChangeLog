@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.96 2009/11/13 21:52:00 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.99 2009/11/21 18:20:51 nixnut Exp $
+
+  21 Nov 2009; nixnut <nixnut@gentoo.org> gmime-2.2.24.ebuild,
+  gmime-2.4.9.ebuild:
+  ppc stable #292960
+
+  16 Nov 2009; Markus Meier <maekke@gentoo.org> gmime-2.2.24.ebuild,
+  gmime-2.4.9.ebuild:
+  amd64/x86 stable, bug #292960
+
+  14 Nov 2009; Jeroen Roovers <jer@gentoo.org> gmime-2.2.24.ebuild,
+  gmime-2.4.9.ebuild:
+  Stable for HPPA (bug #292960).
 
   13 Nov 2009; Romain Perier <mrpouet@gentoo.org>
   gmime-2.4.11.ebuild:
