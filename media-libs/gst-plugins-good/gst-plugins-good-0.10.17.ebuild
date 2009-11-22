@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.15.ebuild,v 1.1 2009/08/21 11:08:46 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/gst-plugins-good-0.10.17.ebuild,v 1.1 2009/11/17 03:44:14 leio Exp $
 
 # order is important, gnome2 after gst-plugins
 inherit gst-plugins-good gst-plugins10 gnome2 eutils flag-o-matic libtool
@@ -10,24 +10,21 @@ HOMEPAGE="http://gstreamer.net/"
 SRC_URI="http://gstreamer.freedesktop.org/src/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-2.1"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~x86-solaris"
 IUSE=""
 
-RDEPEND=">=media-libs/gst-plugins-base-0.10.23
-	 >=media-libs/gstreamer-0.10.23
+RDEPEND=">=media-libs/gst-plugins-base-0.10.25
+	 >=media-libs/gstreamer-0.10.25
 	 >=dev-libs/liboil-0.3.14"
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.11.5
 	dev-util/pkgconfig
-	!<media-libs/gst-plugins-bad-0.10.12"
+	!<media-libs/gst-plugins-bad-0.10.14"
 
 # overrides the eclass
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	# Fix tests related to us having flac built in a split package
-	epatch "${FILESDIR}/${P}-fix-tests.patch"
 
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-0.10.8-interix3.patch
 

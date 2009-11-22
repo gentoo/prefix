@@ -1,6 +1,32 @@
 # ChangeLog for media-libs/gst-plugins-good
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.72 2009/11/10 16:09:55 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.77 2009/11/18 22:07:10 fauli Exp $
+
+  18 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  gst-plugins-good-0.10.16.ebuild:
+  x86 stable, bug 290343
+
+  18 Nov 2009; Jeroen Roovers <jer@gentoo.org>
+  gst-plugins-good-0.10.16.ebuild:
+  Stable for HPPA (bug #290343).
+
+  17 Nov 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking gst-plugins-good-0.10.16 ppc64 stable for bug 290343
+
+  17 Nov 2009; Mart Raudsepp <leio@gentoo.org>
+  -files/gst-plugins-good-0.10.15-fix-tests.patch,
+  -gst-plugins-good-0.10.15.ebuild:
+  Remove old
+
+*gst-plugins-good-0.10.17 (17 Nov 2009)
+
+  17 Nov 2009; Mart Raudsepp <leio@gentoo.org>
+  +gst-plugins-good-0.10.17.ebuild:
+  Version bump. Quicktime demuxer, FLV demuxer and RTP improvements; audio
+  noise fixes in equalizer plugin; AVI demuxer push mode fixes and
+  performance improvements, muxer fixes; automatic cropping support in
+  videobox; interlaced Y4M file output support; various other bug fixes and
+  improvements
 
   10 Nov 2009; Olivier Crête <tester@gentoo.org>
   gst-plugins-good-0.10.16.ebuild:
