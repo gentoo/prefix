@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.37.ebuild,v 1.1 2009/04/07 09:00:36 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.40.ebuild,v 1.1 2009/11/21 08:07:57 bicatali Exp $
 
 EAPI=2
 inherit flag-o-matic autotools
