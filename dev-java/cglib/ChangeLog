@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/cglib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/ChangeLog,v 1.45 2009/10/15 08:12:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/ChangeLog,v 1.46 2009/11/20 10:51:33 caster Exp $
+
+  20 Nov 2009; Vlastimil Babka <caster@gentoo.org> cglib-2.2.ebuild,
+  +files/cglib-2.2-no-leak-test.patch:
+  Patch out failures on memory leak tests. Calling gc() does not guarantee
+  that memory will be freed. Bug #284316.
 
   15 Oct 2009; Markus Meier <maekke@gentoo.org> cglib-2.2.ebuild:
   amd64/x86 stable, bug #284316

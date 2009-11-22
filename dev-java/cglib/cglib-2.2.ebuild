@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.2.ebuild,v 1.2 2009/10/15 08:12:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/cglib/cglib-2.2.ebuild,v 1.3 2009/11/20 10:51:33 caster Exp $
 
 EAPI="2"
 JAVA_PKG_IUSE="test doc examples source"
@@ -27,6 +27,10 @@ S=${WORKDIR}
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-build.patch"
+	# mem leak tests fail on ppc #284316
+	# assuming gc() guarantees to free all memory is wrong, so don't make them fail
+	epatch "${FILESDIR}/${P}-no-leak-test.patch"
+
 	cp "${FILESDIR}/words.txt" "${S}/src/test/net/sf/cglib/util/"
 }
 
