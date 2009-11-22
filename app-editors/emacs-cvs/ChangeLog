@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.256 2009/08/20 07:40:30 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.257 2009/11/17 10:09:47 ulm Exp $
+
+  17 Nov 2009; Ulrich Mueller <ulm@gentoo.org>
+  emacs-cvs-23.1.9999-r1.ebuild, metadata.xml:
+  Add gconf USE flag.
 
   20 Aug 2009; Ulrich Mueller <ulm@gentoo.org>
   emacs-cvs-23.1.9999-r1.ebuild:
