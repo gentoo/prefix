@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gifsicle/gifsicle-1.55.ebuild,v 1.3 2009/10/07 17:09:05 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gifsicle/gifsicle-1.55.ebuild,v 1.4 2009/11/18 18:41:52 armin76 Exp $
 
 DESCRIPTION="A command-line tool for creating, editing, and getting information about GIF images and animations"
 HOMEPAGE="http://www.lcdf.org/~eddietwo/gifsicle/"
