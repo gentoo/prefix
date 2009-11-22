@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.4.ebuild,v 1.6 2009/10/09 19:59:16 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.4.ebuild,v 1.7 2009/11/16 20:57:10 darkside Exp $
 
 EAPI=2
 
@@ -32,7 +32,6 @@ IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd
 
 # Common to both DEPEND and RDEPEND
 CDEPEND="
-	!app-misc/git
 	dev-libs/openssl
 	sys-libs/zlib
 	app-arch/cpio

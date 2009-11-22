@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.4.2.ebuild,v 1.7 2009/11/16 20:57:10 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.5.3.ebuild,v 1.5 2009/11/18 17:31:09 armin76 Exp $
 
 EAPI=2
 
@@ -18,23 +18,23 @@ if [ "$PV" != "9999" ]; then
 	SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 			mirror://kernel/software/scm/git/${PN}-manpages-${DOC_VER}.tar.bz2
 			doc? ( mirror://kernel/software/scm/git/${PN}-htmldocs-${DOC_VER}.tar.bz2 )"
+KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 else
 	SRC_URI=""
 	EGIT_BRANCH="master"
 	EGIT_REPO_URI="git://git.kernel.org/pub/scm/git/git.git"
 	# EGIT_REPO_URI="http://www.kernel.org/pub/scm/git/git.git"
+	KEYWORDS=""
 fi
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="curl cgi doc emacs gtk iconv mozsha1 perl ppcsha1 tk threads webdav xinetd cvs subversion"
+IUSE="+blksha1 +curl cgi doc emacs gtk iconv +perl ppcsha1 tk +threads +webdav xinetd cvs subversion"
 
 # Common to both DEPEND and RDEPEND
 CDEPEND="
-	dev-libs/openssl
+	!blksha1? ( dev-libs/openssl )
 	sys-libs/zlib
-	app-arch/cpio
 	perl?   ( dev-lang/perl )
 	tk?     ( dev-lang/tk )
 	curl?   (
@@ -57,15 +57,23 @@ RDEPEND="${CDEPEND}
 		|| ( dev-python/pygtksourceview:2  dev-python/gtksourceview-python )
 	)"
 
-DEPEND="${CDEPEND}"
+# This is how info docs are created with Git:
+#   .txt/asciidoc --(asciidoc)---------> .xml/docbook
+#   .xml/docbook  --(docbook2texi.pl)--> .texi
+#   .texi         --(makeinfo)---------> .info
+DEPEND="${CDEPEND}
+	app-arch/cpio
+	doc?    (
+		app-text/asciidoc
+		app-text/docbook2X
+		sys-apps/texinfo
+	)"
 
-# These are needed to build the docs
+# Live ebuild builds HTML docs, additionally
 if [ "$PV" == "9999" ]; then
 	DEPEND="${DEPEND}
 		doc?    (
-			app-text/asciidoc
 			app-text/xmlto
-			app-text/docbook2X
 		)"
 fi
 
@@ -93,8 +101,8 @@ pkg_setup() {
 exportmakeopts() {
 	local myopts="lib=$(get_libdir)"
 
-	if use mozsha1 ; then
-		myopts="${myopts} MOZILLA_SHA1=YesPlease"
+	if use blksha1 ; then
+		myopts="${myopts} BLK_SHA1=YesPlease"
 	elif use ppcsha1 ; then
 		myopts="${myopts} PPC_SHA1=YesPlease"
 	fi
@@ -144,7 +152,18 @@ exportmakeopts() {
 		myopts="${myopts} NO_STRTOULL=YesPlease"
 		myopts="${myopts} NO_INET_NTOP=YesPlease"
 		myopts="${myopts} NO_INET_PTON=YesPlease"
+		myopts="${myopts} NO_NSEC=YesPlease"
+		myopts="${myopts} NO_MKSTEMPS=YesPlease"
 	fi
+
+	has_version '>=app-text/asciidoc-8.0' \
+		&& myopts="${myopts} ASCIIDOC8=YesPlease"
+	myopts="${myopts} ASCIIDOC_NO_ROFF=YesPlease"
+
+	# Bug 290465:
+	# builtin-fetch-pack.c:816: error: 'struct stat' has no member named 'st_mtim'
+	[[ "${CHOST}" == *-uclibc* ]] && \
+		myopts="${myopts} NO_NSEC=YesPlease"
 
 	export MY_MAKEOPTS="${myopts}"
 }
@@ -188,6 +207,8 @@ src_prepare() {
 	# Fix docbook2texi command
 	sed -i 's/DOCBOOK2X_TEXI=docbook2x-texi/DOCBOOK2X_TEXI=docbook2texi.pl/' \
 		Documentation/Makefile || die "sed failed"
+	
+	epatch "${FILESDIR}"/${PN}-1.6.5-interix.patch
 }
 
 git_emake() {
@@ -221,10 +242,19 @@ src_compile() {
 			|| die "emake gitweb/gitweb.cgi failed"
 	fi
 
-	if [[ "$PV" == "9999" ]] && use doc; then
-		cd Documentation
-		git_emake man info html \
-			|| die "emake man html info failed"
+	cd "${S}"/Documentation
+	if [[ "$PV" == "9999" ]] ; then
+		git_emake man \
+			|| die "emake man failed"
+		if use doc ; then
+			git_emake info html \
+				|| die "emake info html failed"
+		fi
+	else
+		if use doc ; then
+			git_emake info \
+				|| die "emake info html failed"
+		fi
 	fi
 }
 
@@ -243,6 +273,8 @@ src_install() {
 		use doc && dohtml -p ${d} Documentation${d}*.html
 	done
 	docinto /
+	# Upstream does not ship this pre-built :-(
+	use doc && doinfo Documentation/{git,gitman}.info
 
 	dobashcompletion contrib/completion/git-completion.bash ${PN}
 
@@ -323,6 +355,14 @@ src_test() {
 	local tests_perl="t5502-quickfetch.sh \
 					t5512-ls-remote.sh \
 					t5520-pull.sh"
+	# Bug #225601 - t0004 is not suitable for root perm
+	# Bug #219839 - t1004 is not suitable for root perm
+	# t0001-init.sh - check for init notices EPERM*  fails
+	local tests_nonroot="t0001-init.sh \
+		t0004-unwritable.sh \
+		t1004-read-tree-m-u-wf.sh \
+		t3700-add.sh \
+		t7300-clean.sh"
 
 	# Unzip is used only for the testcase code, not by any normal parts of Git.
 	if ! has_version app-arch/unzip ; then
@@ -338,9 +378,8 @@ src_test() {
 			ewarn "You should retest with FEATURES=userpriv!"
 			disabled="${disabled} ${tests_cvs}"
 		fi
-		# Bug #225601 - t0004 is not suitable for root perm
-		# Bug #219839 - t1004 is not suitable for root perm
-		disabled="${disabled} t0004-unwritable.sh t1004-read-tree-m-u-wf.sh"
+		einfo "Skipping other tests that require being non-root"
+		disabled="${disabled} ${tests_nonroot}"
 	else
 		[[ $cvs -gt 0 ]] && \
 			has_version dev-util/cvs && \

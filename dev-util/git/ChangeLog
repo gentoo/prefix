@@ -1,6 +1,36 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.376 2009/10/30 08:49:49 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.383 2009/11/18 17:31:09 armin76 Exp $
+
+  18 Nov 2009; Raúl Porcel <armin76@gentoo.org> git-1.6.5.1-r1.ebuild,
+  git-1.6.5.2.ebuild, git-1.6.5.3.ebuild:
+  Add ~alpha/~ia64 wrt #290163
+
+  17 Nov 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.5.3.ebuild:
+  Bug #290163: rekeyword for arm. Tested on mv78100.
+
+  17 Nov 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.5.3.ebuild:
+  Bug #290465: uclibc needs an additional define to select a codepath that
+  it will compile against.
+
+  17 Nov 2009; Robin H. Johnson <robbat2@gentoo.org> git-1.6.5.3.ebuild:
+  Bug #290131: cpio is only needed for building git-gui now, and nothing
+  else at runtime.
+
+*git-1.6.5.3 (17 Nov 2009)
+
+  17 Nov 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.5.3.ebuild:
+  Version bump. Testcases updated to run a working subset with
+  FEATURES=-userpriv per bug #292865.
+
+  16 Nov 2009; Jeremy Olexa <darkside@gentoo.org> git-1.6.3.1.ebuild,
+  git-1.6.3.3.ebuild, git-1.6.3.4.ebuild, git-1.6.4.ebuild,
+  git-1.6.4.1.ebuild, git-1.6.4.2.ebuild, git-1.6.4.3.ebuild,
+  git-1.6.4.4.ebuild, git-1.6.5_rc1.ebuild, git-1.6.5_rc2.ebuild,
+  git-1.6.5.ebuild, git-1.6.5.1.ebuild, git-1.6.5.1-r1.ebuild,
+  git-1.6.5.2.ebuild, git-9999.ebuild:
+  Since app-misc/git was removed from the tree, remove that invalid atom
+  from the CDEPEND variable in dev-util/git ebuilds
 
 *git-1.6.5.2 (30 Oct 2009)
 
