@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-7.5.ebuild,v 1.7 2009/10/31 14:16:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.1.ebuild,v 1.1 2009/11/19 04:13:46 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -48,13 +48,13 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
 	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 	epatch "${FILESDIR}"/${PN}-7.4-hppa-hpux.patch
-	epatch "${FILESDIR}"/${PN}-7.5-wctype-mint.patch
 
 	# interix has no setgroups, so this won't work.
-	epatch "${FILESDIR}"/${P}-interix-setgroups.patch
+	epatch "${FILESDIR}"/${PN}-7.5-interix-setgroups.patch
 
 	# thank god not all things are as **** up as interix' security...
-	epatch "${FILESDIR}"/${P}-interix-security.patch
+#http://bugs.gentoo.org/show_bug.cgi?id=286459
+#	epatch "${FILESDIR}"/${PN}-7.5-interix-security.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
@@ -87,6 +87,9 @@ src_compile() {
 	[[ ${CHOST} == *-aix6* ]] && export ac_cv_func_getppriv=no
 
 	econf \
+		--with-packager="Gentoo" \
+		--with-packager-version="${PVR} (p${PATCH_VER:-0})" \
+		--with-packager-bug-reports="http://bugs.gentoo.org/" \
 		${myconf} \
 		--enable-largefile \
 		$(use caps || echo --disable-libcap) \
