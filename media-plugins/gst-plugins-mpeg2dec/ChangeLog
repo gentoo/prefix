@@ -1,6 +1,25 @@
 # ChangeLog for media-plugins/gst-plugins-mpeg2dec
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-mpeg2dec/ChangeLog,v 1.91 2009/11/10 16:17:25 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/gst-plugins-mpeg2dec/ChangeLog,v 1.95 2009/11/18 22:51:30 fauli Exp $
+
+  18 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  gst-plugins-mpeg2dec-0.10.12.ebuild:
+  x86 stable, bug 290343
+
+  18 Nov 2009; Jeroen Roovers <jer@gentoo.org>
+  gst-plugins-mpeg2dec-0.10.12.ebuild:
+  Stable for HPPA (bug #290343).
+
+  17 Nov 2009; Brent Baude <ranger@gentoo.org>
+  gst-plugins-mpeg2dec-0.10.12.ebuild:
+  Marking gst-plugins-mpeg2dec-0.10.12 ppc64 stable for bug 290343
+
+*gst-plugins-mpeg2dec-0.10.13 (16 Nov 2009)
+
+  16 Nov 2009; Mart Raudsepp <leio@gentoo.org>
+  -gst-plugins-mpeg2dec-0.10.10.ebuild,
+  +gst-plugins-mpeg2dec-0.10.13.ebuild:
+  Version bump. Indexing related fixes
 
   10 Nov 2009; Olivier Crête <tester@gentoo.org>
   gst-plugins-mpeg2dec-0.10.12.ebuild:
