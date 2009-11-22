@@ -1,6 +1,14 @@
 # ChangeLog for app-emacs/wanderlust
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.79 2009/09/27 19:47:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/wanderlust/ChangeLog,v 1.80 2009/11/14 15:12:51 ulm Exp $
+
+*wanderlust-2.15.7_pre20090820 (14 Nov 2009)
+
+  14 Nov 2009; Ulrich Mueller <ulm@gentoo.org> -files/70wl-gentoo.el,
+  -wanderlust-2.15.5_pre20070921.ebuild,
+  -wanderlust-2.15.5_pre20071215.ebuild,
+  +wanderlust-2.15.7_pre20090820.ebuild:
+  New snapshot from CVS. Remove old.
 
   27 Sep 2009; Ulrich Mueller <ulm@gentoo.org> -wanderlust-2.14.0-r3.ebuild:
   Remove old.
