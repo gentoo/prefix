@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/qt-demo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.34 2009/11/11 15:13:17 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-demo/ChangeLog,v 1.35 2009/11/18 20:48:39 wired Exp $
+
+*qt-demo-4.6.0_rc1 (18 Nov 2009)
+
+  18 Nov 2009; Alex Alexander <wired@gentoo.org>
+  -qt-demo-4.6.0_beta1.ebuild, +qt-demo-4.6.0_rc1.ebuild:
+  added 4.6.0_rc1, removed 4.6.0_beta1
 
   11 Nov 2009; Ben de Groot <yngwin@gentoo.org> -qt-demo-4.4.2.ebuild,
   -qt-demo-4.4.2-r1.ebuild, -qt-demo-4.5.1.ebuild, -qt-demo-4.5.2.ebuild:
