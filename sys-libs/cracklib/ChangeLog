@@ -1,6 +1,21 @@
 # ChangeLog for sys-libs/cracklib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.133 2009/06/30 13:57:21 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.136 2009/11/19 04:17:31 vapier Exp $
+
+*cracklib-2.8.15 (19 Nov 2009)
+
+  19 Nov 2009; Mike Frysinger <vapier@gentoo.org> -cracklib-2.8.14.ebuild,
+  +cracklib-2.8.15.ebuild:
+  Version bump to include license fix.
+
+*cracklib-2.8.14 (18 Nov 2009)
+
+  18 Nov 2009; Mike Frysinger <vapier@gentoo.org> +cracklib-2.8.14.ebuild:
+  Version bump.
+
+  18 Nov 2009; Mike Frysinger <vapier@gentoo.org> cracklib-2.8.13-r1.ebuild:
+  Stabilize for everyone as this version only changed how the ldscript was
+  generated (and it works the same on all arches).
 
 *cracklib-2.8.13-r1 (30 Jun 2009)
 

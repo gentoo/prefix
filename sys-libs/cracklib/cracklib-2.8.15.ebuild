@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.13-r1.ebuild,v 1.2 2009/11/18 23:49:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.15.ebuild,v 1.1 2009/11/19 04:17:31 vapier Exp $
 
 inherit eutils toolchain-funcs multilib libtool autotools
 
@@ -9,7 +9,7 @@ DESCRIPTION="Password Checking Library"
 HOMEPAGE="http://sourceforge.net/projects/cracklib"
 SRC_URI="mirror://sourceforge/cracklib/${MY_P}.tar.gz"
 
-LICENSE="CRACKLIB"
+LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint"
 IUSE="nls python"
@@ -30,7 +30,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-python-linkage.patch #246747
+	epatch "${FILESDIR}"/${PN}-2.8.13-python-linkage.patch #246747
 
 	epatch "${FILESDIR}"/${PN}-2.8.12-interix.patch
 
