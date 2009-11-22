@@ -1,6 +1,12 @@
 # ChangeLog for app-admin/eselect-fontconfig
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-fontconfig/ChangeLog,v 1.17 2007/12/24 16:46:45 ranger Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-fontconfig/ChangeLog,v 1.18 2009/11/14 22:00:47 dirtyepic Exp $
+
+*eselect-fontconfig-1.1 (14 Nov 2009)
+
+  14 Nov 2009; Ryan Hill <dirtyepic@gentoo.org>
+  +eselect-fontconfig-1.1.ebuild:
+  Version bump. Support for --brief by ulm (bug #292104). Prefixy goodness.
 
   24 Dec 2007; Brent Baude <ranger@gentoo.org>
   eselect-fontconfig-1.0.ebuild:
