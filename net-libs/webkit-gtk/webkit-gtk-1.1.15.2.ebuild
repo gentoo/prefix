@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.1.15.2.ebuild,v 1.2 2009/11/09 19:12:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.1.15.2.ebuild,v 1.4 2009/11/15 05:35:20 mr_bones_ Exp $
 
 EAPI="2"
 
-inherit autotools
+inherit autotools flag-o-matic eutils
 
 MY_P="webkit-${PV}"
 DESCRIPTION="Open source web browser engine"
@@ -51,6 +51,10 @@ DEPEND="${RDEPEND}
 S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
+
+	# FIXME: Fix unaligned accesses on ARM, IA64 and SPARC
+	use sparc && epatch "${FILESDIR}"/sigbus.patch
+
 	# Make it libtool-1 compatible
 	rm -v autotools/lt* autotools/libtool.m4 \
 		|| die "removing libtool macros failed"
@@ -63,6 +67,9 @@ src_prepare() {
 src_configure() {
 	# It doesn't compile on alpha without this in LDFLAGS
 	use alpha && append-ldflags "-Wl,--no-relax"
+
+	# Sigbuses on SPARC with mcpu
+	use sparc && filter-flags "-mcpu=*" "-mtune=*"
 
 	local myconf
 
