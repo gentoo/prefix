@@ -1,6 +1,9 @@
 # ChangeLog for dev-cpp/tree
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/tree/ChangeLog,v 1.3 2009/06/26 22:16:43 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/tree/ChangeLog,v 1.4 2009/11/17 19:51:29 halcy0n Exp $
+
+  17 Nov 2009; Mark Loeser <halcy0n@gentoo.org> tree-2.65.ebuild:
+  Mark ~ppc64
 
 *tree-2.65 (26 Jun 2009)
 
