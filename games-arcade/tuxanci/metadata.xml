@@ -3,7 +3,10 @@
 <pkgmetadata>
 <maintainer>
 	<email>scarabeus@gentoo.org</email>
-	<name>Tomas Chvatal</name>
+	<name>Tomáš Chvátal</name>
 </maintainer>
 <herd>games</herd>
+<use>
+	<flag name="sound">Enable sound</flag>
+</use>
 </pkgmetadata>
