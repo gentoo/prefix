@@ -1,6 +1,13 @@
 # ChangeLog for dev-db/maatkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/maatkit/ChangeLog,v 1.6 2009/08/05 01:07:25 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/maatkit/ChangeLog,v 1.7 2009/11/16 15:16:35 wschlich Exp $
+
+*maatkit-5014 (16 Nov 2009)
+
+  16 Nov 2009; Wolfram Schlich <wschlich@gentoo.org> -maatkit-2325.ebuild,
+  -maatkit-2442.ebuild, -maatkit-2582.ebuild, -maatkit-3329.ebuild,
+  -maatkit-4334.ebuild, +maatkit-5014.ebuild:
+  version bump (also fixes bug #285442), removed old versions
 
 *maatkit-4334 (05 Aug 2009)
 

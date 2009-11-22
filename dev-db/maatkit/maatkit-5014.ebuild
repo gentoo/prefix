@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/maatkit/maatkit-4334.ebuild,v 1.1 2009/08/05 01:07:25 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/maatkit/maatkit-5014.ebuild,v 1.1 2009/11/16 15:16:35 wschlich Exp $
 
 EAPI=2
 inherit perl-app toolchain-funcs
@@ -15,6 +15,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="udf"
 
 DEPEND="dev-perl/DBD-mysql
+		dev-perl/TermReadKey
 		udf? ( dev-db/mysql[-minimal] )"
 RDEPEND="${DEPEND}"
 
