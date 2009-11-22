@@ -1,6 +1,25 @@
 # ChangeLog for x11-libs/qt-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.74 2009/11/11 15:26:48 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.78 2009/11/20 00:00:35 spatz Exp $
+
+  20 Nov 2009; Dror Levin <spatz@gentoo.org> qt-core-4.6.0_rc1.ebuild:
+  Revert /etc/env.d/44qt4 removal, seems like it's still needed.
+
+  18 Nov 2009; Dror Levin <spatz@gentoo.org> qt-core-4.6.0_rc1.ebuild:
+  Don't install /etc/env.d/44qt4 anymore.
+
+*qt-core-4.6.0_rc1 (18 Nov 2009)
+
+  18 Nov 2009; Alex Alexander <wired@gentoo.org>
+  -qt-core-4.6.0_beta1.ebuild, +qt-core-4.6.0_rc1.ebuild:
+  added 4.6.0_rc1, removed 4.6.0_beta1
+
+  16 Nov 2009; Jonathan Callen <abcd@gentoo.org>
+  -files/0167-fix-group-reading.diff,
+  -files/0253-qmake_correct_path_separators.diff,
+  -files/0257-qurl-validate-speedup.diff,
+  -files/qt-core-4.5-boilerplate.diff:
+  Drop unused files
 
   11 Nov 2009; Ben de Groot <yngwin@gentoo.org> -qt-core-4.4.2.ebuild,
   -qt-core-4.4.2-r2.ebuild, -qt-core-4.5.1.ebuild, -qt-core-4.5.2.ebuild,
