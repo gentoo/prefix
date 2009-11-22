@@ -1,16 +1,17 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/cholmod/cholmod-1.7.0-r1.ebuild,v 1.1 2009/03/14 12:04:19 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/cholmod/cholmod-1.7.1.ebuild,v 1.1 2009/11/21 07:10:50 bicatali Exp $
 
 EAPI=2
 inherit eutils autotools
 
 MY_PN=CHOLMOD
+PPV=1.7.0
 
 DESCRIPTION="Sparse Cholesky factorization and update/downdate library"
 HOMEPAGE="http://www.cise.ufl.edu/research/sparse/cholmod"
 SRC_URI="http://www.cise.ufl.edu/research/sparse/${PN}/${MY_PN}-${PV}.tar.gz
-	mirror://gentoo/${P}-autotools.patch.bz2"
+	mirror://gentoo/${PN}-${PPV}-autotools.patch.bz2"
 
 LICENSE="LGPL-2.1 GPL-2"
 SLOT="0"
@@ -32,7 +33,7 @@ S="${WORKDIR}/${MY_PN}"
 
 src_prepare() {
 	cd "${WORKDIR}"
-	epatch "${WORKDIR}"/${P}-autotools.patch
+	epatch "${WORKDIR}"/${PN}-${PPV}-autotools.patch
 	cd "${S}"
 	# We need to take care of cholmod.h here as well depending on
 	# the USE flags, otherwise the installed file will reference
