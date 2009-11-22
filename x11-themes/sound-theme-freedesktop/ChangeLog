@@ -1,6 +1,13 @@
 # ChangeLog for x11-themes/sound-theme-freedesktop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/sound-theme-freedesktop/ChangeLog,v 1.18 2009/08/23 21:54:18 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/sound-theme-freedesktop/ChangeLog,v 1.19 2009/11/16 21:47:17 eva Exp $
+
+*sound-theme-freedesktop-0.7 (16 Nov 2009)
+
+  16 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +sound-theme-freedesktop-0.7.ebuild:
+  Version bump. Sound additions/removal (hopefully for the best), renamed to
+  .oga.
 
 *sound-theme-freedesktop-0.4 (23 Aug 2009)
 
