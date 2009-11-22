@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libnet
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/ChangeLog,v 1.46 2009/10/20 11:50:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/ChangeLog,v 1.47 2009/11/20 13:13:31 maekke Exp $
+
+  20 Nov 2009; Markus Meier <maekke@gentoo.org> libnet-1.1.4.ebuild:
+  amd64/arm/x86 stable, bug #289857
 
 *libnet-1.1.4 (20 Oct 2009)
 
