@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.222 2009/11/02 21:53:46 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.223 2009/11/17 14:53:52 caster Exp $
+
+  17 Nov 2009; Vlastimil Babka <caster@gentoo.org> -tomcat-5.5.27-r3.ebuild:
+  Remove old.
 
   02 Nov 2009; Markus Meier <maekke@gentoo.org> tomcat-5.5.27-r4.ebuild:
   amd64/x86 stable, bug #291480
