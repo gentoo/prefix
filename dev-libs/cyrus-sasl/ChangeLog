@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/cyrus-sasl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.210 2009/11/10 14:36:27 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.211 2009/11/18 19:33:28 ranger Exp $
+
+  18 Nov 2009; Brent Baude <ranger@gentoo.org> cyrus-sasl-2.1.23-r1.ebuild:
+  Marking cyrus-sasl-2.1.23-r1 ppc64 for bug 289481
 
   10 Nov 2009; Markus Meier <maekke@gentoo.org> cyrus-sasl-2.1.23-r1.ebuild:
   arm stable, bug #289481
