@@ -1,6 +1,11 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.304 2009/09/20 18:36:04 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.305 2009/11/14 13:15:08 scarabeus Exp $
+
+  14 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -mozilla-thunderbird-1.5.0.14.ebuild:
+  QA: since mips was unable to keyword never versions for 2 years. Drop
+  their latest availible.
 
   20 Sep 2009; Mounir Lamouri <volkmar@gentoo.org>
   mozilla-thunderbird-2.0.0.23.ebuild:
