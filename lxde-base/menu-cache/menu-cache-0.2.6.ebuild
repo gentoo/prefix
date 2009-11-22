@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/menu-cache/menu-cache-0.2.6.ebuild,v 1.1 2009/11/08 17:17:46 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/menu-cache/menu-cache-0.2.6.ebuild,v 1.3 2009/11/21 18:32:49 nixnut Exp $
 
 EAPI="1"
 
