@@ -1,6 +1,24 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.352 2009/11/13 16:11:51 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.358 2009/11/21 19:53:36 nixnut Exp $
+
+  21 Nov 2009; nixnut <nixnut@gentoo.org> php-5.2.11-r1.ebuild:
+  ppc stable #292132
+
+  17 Nov 2009; Raúl Porcel <armin76@gentoo.org> php-5.2.11-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #292132
+
+  17 Nov 2009; Brent Baude <ranger@gentoo.org> php-5.2.11-r1.ebuild:
+  Marking php-5.2.11-r1 ppc64 for bug 292132
+
+  15 Nov 2009; Jeroen Roovers <jer@gentoo.org> php-5.2.11-r1.ebuild:
+  Stable for HPPA (bug #292132).
+
+  14 Nov 2009; Markus Meier <maekke@gentoo.org> php-5.2.11-r1.ebuild:
+  arm stable, bug #292132
+
+  14 Nov 2009; Markus Meier <maekke@gentoo.org> php-5.2.11-r1.ebuild:
+  amd64/x86 stable, bug #292132
 
 *php-5.2.11-r1 (13 Nov 2009)
 
