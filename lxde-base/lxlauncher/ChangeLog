@@ -1,6 +1,9 @@
 # ChangeLog for lxde-base/lxlauncher
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxlauncher/ChangeLog,v 1.4 2009/11/05 17:28:54 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/lxde-base/lxlauncher/ChangeLog,v 1.5 2009/11/20 14:16:39 maekke Exp $
+
+  20 Nov 2009; Markus Meier <maekke@gentoo.org> lxlauncher-0.2.1.ebuild:
+  amd64/x86 stable, bug #292698
 
   05 Nov 2009; Víctor Ostorga <vostorga@gentoo.org> -lxlauncher-0.2.ebuild:
   Cleaning out old ebuild
