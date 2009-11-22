@@ -1,0 +1,34 @@
+http://bugs.gentoo.org/288977
+
+From 59869a0ec5f8f8bfcaea12fecd17053e3f2b1764 Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Fri, 23 Oct 2009 16:18:51 +0200
+Subject: [PATCH] Fix fill_mmap for sections past the section headers
+
+If fill_mmap() was run for a section that's past the shdr_end, but does
+not immediately follow the section headers the fill start would be
+determined incorrectly as shdr_end, which would wipe off contents of
+sections between shdr_end and current one.
+
+Issue was reported and triaged by Hugo Mildenberger and Peter Alfredsen.
+---
+ libelf/ChangeLog          |    5 +++++
+ libelf/elf32_updatefile.c |    7 +++++--
+ 2 files changed, 10 insertions(+), 2 deletions(-)
+
+--- a/libelf/elf32_updatefile.c	2009-10-23 21:33:06.000000000 +0200
++++ b/libelf/elf32_updatefile.c	2009-10-23 21:39:38.000000000 +0200
+@@ -322,8 +322,11 @@
+ 
+ 	    if (last_position + written != scn_start + offset
+ 		&& shdr_end < scn_start + offset)
+-	      memset (shdr_end, __libelf_fill_byte,
+-		      scn_start + offset - shdr_end);
++	      {
++		char *fill_start = MAX (shdr_end, scn_start);
++		memset (fill_start, __libelf_fill_byte,
++			scn_start + offset - fill_start);
++	      }
+ 	  }
+ 
+ 	  if (scn->data_list_rear != NULL)
