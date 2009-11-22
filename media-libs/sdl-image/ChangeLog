@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/sdl-image
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.55 2009/11/13 03:50:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.56 2009/11/15 20:06:09 vapier Exp $
+
+*sdl-image-1.2.10 (15 Nov 2009)
+
+  15 Nov 2009; Mike Frysinger <vapier@gentoo.org> +sdl-image-1.2.10.ebuild:
+  Version bump.
 
 *sdl-image-1.2.9 (13 Nov 2009)
 
