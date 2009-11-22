@@ -1,6 +1,11 @@
 # ChangeLog for dev-tcltk/tls
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tls/ChangeLog,v 1.25 2009/09/22 11:40:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tcltk/tls/ChangeLog,v 1.26 2009/11/16 19:57:19 mescalinum Exp $
+
+*tls-1.6-r1 (16 Nov 2009)
+
+  16 Nov 2009; Federico Ferri <mescalinum@gentoo.org> +tls-1.6-r1.ebuild:
+  fix sandbox violation wrt bug #267576
 
   22 Sep 2009; Markus Meier <maekke@gentoo.org> tls-1.5.0-r1.ebuild:
   amd64 stable, bug #281393
