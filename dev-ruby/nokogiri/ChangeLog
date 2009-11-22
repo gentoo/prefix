@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/nokogiri
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/nokogiri/ChangeLog,v 1.13 2009/08/01 07:39:22 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/nokogiri/ChangeLog,v 1.14 2009/11/21 03:30:12 gengor Exp $
+
+*nokogiri-1.4.0 (21 Nov 2009)
+
+  21 Nov 2009; Gordon Malm <gengor@gentoo.org> +nokogiri-1.4.0.ebuild:
+  Version bump, bug 293346.
 
 *nokogiri-1.3.3 (01 Aug 2009)
 
