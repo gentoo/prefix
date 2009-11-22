@@ -1,6 +1,18 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.294 2009/09/01 09:09:53 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.297 2009/11/16 23:09:58 maekke Exp $
+
+  16 Nov 2009; Markus Meier <maekke@gentoo.org> gimp-2.6.7-r1.ebuild:
+  amd64/x86 stable, bug #293127
+
+  16 Nov 2009; Jeroen Roovers <jer@gentoo.org> gimp-2.6.7-r1.ebuild:
+  Stable for HPPA (bug #293127).
+
+*gimp-2.6.7-r1 (16 Nov 2009)
+
+  16 Nov 2009; Hanno Boeck <hanno@gentoo.org> +gimp-2.6.7-r1.ebuild,
+  +files/gimp-2.6.7-bmp-overflow.patch:
+  Fix for integer overflow in bmp handling, CVE-2009-1570.
 
 *gimp-2.6.7 (01 Sep 2009)
 
