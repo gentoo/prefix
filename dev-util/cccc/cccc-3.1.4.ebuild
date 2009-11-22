@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cccc/cccc-3.1.4.ebuild,v 1.4 2009/08/31 16:42:31 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cccc/cccc-3.1.4.ebuild,v 1.5 2009/11/18 16:25:04 vostorga Exp $
 
 inherit eutils toolchain-funcs
 
@@ -34,7 +34,8 @@ src_compile() {
 }
 
 src_install() {
-	dodoc readme.txt changes.txt
+	dodoc readme.txt changes.txt || die "dodoc failed"
+	dohtml cccc/*.html || die "dohtml failed"
 	cd install
 	dodir /usr
 	emake -f install.mak INSTDIR="${ED}"/usr/bin || die "install failed"
