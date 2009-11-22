@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/cdk-5.0.20081105.ebuild,v 1.4 2009/11/09 13:51:19 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/cdk-5.0.20081105.ebuild,v 1.5 2009/11/16 23:38:59 jer Exp $
 
 inherit eutils versionator toolchain-funcs
 
