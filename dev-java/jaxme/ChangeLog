@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jaxme
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxme/ChangeLog,v 1.30 2009/11/07 19:03:09 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jaxme/ChangeLog,v 1.31 2009/11/16 22:04:03 maekke Exp $
+
+  16 Nov 2009; Markus Meier <maekke@gentoo.org> jaxme-0.5.2.ebuild:
+  amd64/x86 stable, bug #292286
 
   07 Nov 2009; Vlastimil Babka <caster@gentoo.org> jaxme-0.5.2.ebuild:
   Update deps to 1.5 jdk - bug #271797. Make hsqldb dep build-only.
