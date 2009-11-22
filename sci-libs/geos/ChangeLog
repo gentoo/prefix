@@ -1,6 +1,14 @@
 # ChangeLog for sci-libs/geos
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.38 2009/10/11 16:28:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/geos/ChangeLog,v 1.39 2009/11/17 07:23:15 bicatali Exp $
+
+  17 Nov 2009; Sébastien Fabbro <bicatali@gentoo.org> -geos-2.2.1.ebuild,
+  -files/geos-2.2.1-gcc-41.patch, -geos-2.2.3.ebuild,
+  -files/geos-2.2.3-gcc43.patch, -files/geos-2.2.3-python-shared.patch,
+  -files/geos-2.2.3-swig.patch, -geos-3.1.0.ebuild, geos-3.1.1.ebuild,
+  +files/geos-3.1.1-missing-includes.patch, -files/python.i:
+  Added a patch for possible missing includes, thanks Kacper Kowalik, bug
+  #286804
 
   11 Oct 2009; Raúl Porcel <armin76@gentoo.org> geos-3.1.1.ebuild:
   sparc stable wrt #279359
