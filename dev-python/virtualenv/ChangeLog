@@ -1,6 +1,22 @@
 # ChangeLog for dev-python/virtualenv
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/virtualenv/ChangeLog,v 1.18 2009/11/07 03:05:53 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/virtualenv/ChangeLog,v 1.21 2009/11/21 02:53:20 arfrever Exp $
+
+*virtualenv-1.4.3 (21 Nov 2009)
+
+  21 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -virtualenv-1.4.ebuild, +virtualenv-1.4.3.ebuild:
+  Version bump.
+
+  15 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  virtualenv-1.4.2.ebuild:
+  Restrict Python 2.7 (bug #292409).
+
+*virtualenv-1.4.2 (15 Nov 2009)
+
+  15 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -virtualenv-1.4_rc1.ebuild, +virtualenv-1.4.2.ebuild:
+  Version bump.
 
 *virtualenv-1.4 (07 Nov 2009)
 
