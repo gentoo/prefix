@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.2.ebuild,v 1.10 2009/07/13 18:23:17 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.2.ebuild,v 1.11 2009/11/18 19:12:20 ulm Exp $
 
 inherit autotools eutils flag-o-matic multilib
 
@@ -62,6 +62,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}/${PN}-2.3.1-multilist-stipple.patch" #215984
 	epatch "${FILESDIR}/${PN}-2.3.1-ac-editres.patch" #82081
+	epatch "${FILESDIR}/${P}-ldflags.patch" #293573
 
 	# disable compilation of demo binaries
 	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/[ \t\n\\]*demos//;}' Makefile.am
