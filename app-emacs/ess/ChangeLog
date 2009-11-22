@@ -1,6 +1,15 @@
 # ChangeLog for app-emacs/ess
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ChangeLog,v 1.47 2009/10/15 16:38:35 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/ess/ChangeLog,v 1.50 2009/11/21 19:20:44 nixnut Exp $
+
+  21 Nov 2009; nixnut <nixnut@gentoo.org> ess-5.5.ebuild:
+  ppc stable #293029
+
+  19 Nov 2009; Raúl Porcel <armin76@gentoo.org> ess-5.5.ebuild:
+  alpha/sparc stable wrt #293029
+
+  18 Nov 2009; Christian Faulhammer <fauli@gentoo.org> ess-5.5.ebuild:
+  stable x86, bug 293029
 
 *ess-5.5 (15 Oct 2009)
 
