@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/whois
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.133 2009/11/02 20:55:04 ken69267 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.134 2009/11/17 19:49:49 ranger Exp $
+
+  17 Nov 2009; Brent Baude <ranger@gentoo.org> whois-4.7.36.ebuild:
+  Marking whois-4.7.36 ppc64 for bug 291095
 
   02 Nov 2009; Kenneth Prugh <ken69267@gentoo.org> whois-4.7.36.ebuild:
   amd64 stable, bug #291095
