@@ -1,6 +1,30 @@
 # ChangeLog for media-libs/gst-plugins-base
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.109 2009/11/10 16:05:11 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-base/ChangeLog,v 1.114 2009/11/18 21:45:34 fauli Exp $
+
+  18 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  gst-plugins-base-0.10.24.ebuild:
+  x86 stable, bug 290343
+
+  18 Nov 2009; Jeroen Roovers <jer@gentoo.org>
+  gst-plugins-base-0.10.24.ebuild:
+  Stable for HPPA (bug #290343).
+
+  17 Nov 2009; Brent Baude <ranger@gentoo.org>
+  gst-plugins-base-0.10.24.ebuild:
+  Marking gst-plugins-base-0.10.24 ppc64 stable for bug 290343
+
+  17 Nov 2009; Olivier Crête <tester@gentoo.org>
+  gst-plugins-base-0.10.25.ebuild:
+  Add dep on gst core 0.10.25
+
+*gst-plugins-base-0.10.25 (16 Nov 2009)
+
+  16 Nov 2009; Mart Raudsepp <leio@gentoo.org>
+  +gst-plugins-base-0.10.25.ebuild:
+  Version bump. Per-stream volume control support; interlaced content
+  support in videoscale and ffmpegcolorspace; improved audio capture timing
+  and audio output starting; many other bug fixes and improvements
 
   10 Nov 2009; Olivier Crête <tester@gentoo.org>
   gst-plugins-base-0.10.24.ebuild:
