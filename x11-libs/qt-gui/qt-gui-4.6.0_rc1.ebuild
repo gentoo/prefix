@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.5.2-r1.ebuild,v 1.3 2009/07/15 18:57:29 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/qt-gui-4.6.0_rc1.ebuild,v 1.1 2009/11/18 20:50:35 wired Exp $
 
 EAPI=2
 inherit eutils qt4-build
@@ -30,7 +30,8 @@ RDEPEND="media-libs/fontconfig
 	mng? ( >=media-libs/libmng-1.0.9 )
 	nas? ( >=media-libs/nas-1.5 )
 	tiff? ( media-libs/tiff )
-	xinerama? ( x11-libs/libXinerama )"
+	xinerama? ( x11-libs/libXinerama )
+	"
 DEPEND="${RDEPEND}
 	xinerama? ( x11-proto/xineramaproto )
 	x11-proto/xextproto
@@ -39,20 +40,27 @@ PDEPEND="qt3support? ( ~x11-libs/qt-qt3support-${PV}[debug=] )"
 
 QT4_TARGET_DIRECTORIES="
 src/gui
-src/scripttools/
+src/scripttools
 tools/designer
-tools/linguist
+tools/linguist/linguist
 src/plugins/imageformats/gif
 src/plugins/imageformats/ico
 src/plugins/imageformats/jpeg
 src/plugins/inputmethods"
 
 QT4_EXTRACT_DIRECTORIES="
-include/
-src/
-tools/shared/"
+include
+src
+tools/linguist/phrasebooks
+tools/linguist/shared
+tools/shared"
 
 pkg_setup() {
+	if ! use qt3support; then
+		ewarn "WARNING: if you need 'qtconfig', you _must_ enable qt3support."
+		ebeep 5
+	fi
+
 	if use raster; then
 		ewarn "WARNING: You have enabled raster backend rendering engine."
 		ewarn "This is a new feature and may lead to composite problems"
@@ -80,10 +88,6 @@ src_prepare() {
 
 	# Don't build plugins this go around, because they depend on qt3support lib
 	sed -i -e "s:CONFIG(shared:# &:g" "${S}"/tools/designer/src/src.pro
-
-	# fixing hardcoded fonts, bug #252312
-	EPATCH_OPTS="--ignore-whitespace"
-	epatch "${FILESDIR}"/hardcoded_fonts.patch
 }
 
 src_configure() {
@@ -106,7 +110,7 @@ src_configure() {
 
 	myconf="${myconf} -qt-gif -system-libpng -system-libjpeg
 		-no-sql-mysql -no-sql-psql -no-sql-ibase -no-sql-sqlite -no-sql-sqlite2 -no-sql-odbc
-		-xrender -xrandr -xkb -xshape -sm  -no-svg"
+		-xrender -xrandr -xkb -xshape -sm -no-svg"
 
 	# Explicitly don't compile these packages.
 	# Emerge "qt-webkit", "qt-phonon", etc for their functionality.
@@ -161,14 +165,4 @@ src_install() {
 			/usr/share/pixmaps/designer.png \
 			'Qt;Development;GUIDesigner' \
 			|| die "designer make_desktop_entry failed"
-}
-
-pkg_postinst() {
-	if use gtk ; then
-		ewarn 'If you get the following error when setting Qt to use the GTK style:'
-		ewarn '    "QGtkStyle cannot be used together with the GTK_Qt engine."'
-		ewarn 'make sure you have GTK configured to NOT use the GTK_Qt engine and'
-		ewarn 'export GTK2_RC_FILES="$HOME/.gtkrc-2.0" in your environment.'
-	fi
-	qt4-build_pkg_postinst
 }
