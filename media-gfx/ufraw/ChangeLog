@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/ufraw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ChangeLog,v 1.67 2009/10/22 21:09:52 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ChangeLog,v 1.68 2009/11/21 19:32:10 nixnut Exp $
+
+  21 Nov 2009; nixnut <nixnut@gentoo.org> ufraw-0.16.ebuild:
+  ppc stable #293850
 
   22 Oct 2009; Markus Meier <maekke@gentoo.org> ufraw-0.16.ebuild:
   fix building with -gtk and fix die message, pointed out by spatz
