@@ -1,6 +1,10 @@
 # ChangeLog for app-emulation/emul-linux-x86-gtklibs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.64 2009/11/03 21:09:20 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.65 2009/11/14 13:57:05 scarabeus Exp $
+
+  14 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -emul-linux-x86-gtklibs-20080810.ebuild:
+  QA: drop old masked. Since newer is around.
 
   03 Nov 2009; Samuli Suominen <ssuominen@gentoo.org>
   emul-linux-x86-gtklibs-20081109.ebuild:
