@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/libperl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.147 2009/11/15 19:21:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.148 2009/11/16 20:19:25 armin76 Exp $
+
+  16 Nov 2009; Raúl Porcel <armin76@gentoo.org> libperl-5.10.1.ebuild:
+  Add ~alpha/~ia64/~s390/~sparc wrt #288028
 
   15 Nov 2009; Raúl Porcel <armin76@gentoo.org> libperl-5.10.1.ebuild:
   Add ~m68k wrt #288028, thanks to kolla for testing
