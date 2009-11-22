@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.9-r1.ebuild,v 1.5 2009/11/05 18:21:52 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/java-config-2.1.9-r1.ebuild,v 1.6 2009/11/18 14:03:40 volkmar Exp $
 
 inherit fdo-mime gnome2-utils distutils eutils prefix
 
