@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/beecrypt/beecrypt-4.1.2-r2.ebuild,v 1.7 2009/05/30 09:21:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/beecrypt/beecrypt-4.1.2-r2.ebuild,v 1.9 2009/11/15 09:44:26 swegener Exp $
 
 inherit flag-o-matic eutils multilib autotools java-pkg-opt-2
 
@@ -37,6 +37,7 @@ src_unpack() {
 	# let configure figure out libpaths, not a pokey build system
 	sed -i \
 		-e '/^libaltdir=/s:=.*:=$(libdir):' \
+		-e '/^pkgaltlibdir=/s:=.*:=$(libdir)/beecrypt:' \
 		$(find . -name Makefile.am) || die
 	epatch "${FILESDIR}"/${P}-python-Makefile-am.patch
 	epatch "${FILESDIR}"/${P}-python-debug-py-c.patch
@@ -52,6 +53,7 @@ src_compile() {
 	[[ -z ${myarch} ]] && myarch=${CHOST%%-*}
 	[[ ${myarch} == "athlon64" || ${myarch} == "k8" || ${myarch} == "opteron" || ${myarch} == "athlon-fx" ]] && \
 		[[ ${CHOST%%-*} != "x86_64" ]] && myarch=${CHOST%%-*}
+	[[ ${myarch} == "native" ]] && myarch=${CHOST%%-*}
 	replace-flags pentium4m pentium4
 	econf \
 		$(use_enable threads) \

@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/beecrypt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/beecrypt/ChangeLog,v 1.62 2009/09/12 02:05:35 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/beecrypt/ChangeLog,v 1.65 2009/11/15 12:23:28 swegener Exp $
+
+*beecrypt-4.2.1 (15 Nov 2009)
+
+  15 Nov 2009; Sven Wegener <swegener@gentoo.org> +beecrypt-4.2.1.ebuild,
+  +files/beecrypt-4.2.1-build-system.patch:
+  Version bump, bug #278713.
+
+  15 Nov 2009; Sven Wegener <swegener@gentoo.org> beecrypt-4.1.2-r1.ebuild,
+  beecrypt-4.1.2-r2.ebuild:
+  Fix installation on multilib systems with multilib-strict, bug #293236.
+
+  14 Nov 2009; Daniel Gryniewicz <dang@gentoo.org> beecrypt-4.1.2-r2.ebuild:
+  Fix building with march=native; bug #220267
 
   12 Sep 2009; Víctor Ostorga <vostorga@gentoo.org> -files/beecrypt-4.1.2-athlon.patch,
   -files/beecrypt-4.1.2-custom-cflags.patch:
