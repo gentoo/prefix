@@ -21,6 +21,8 @@ profiles
 # regular packages (do NOT put portage in here!)
 app-admin/eselect
 app-editors/nedit
+app-misc/banner
+app-misc/figlet
 app-portage/eix
 app-shells/bash-completion
 app-shells/tcsh
