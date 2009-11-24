@@ -18,9 +18,18 @@
 licenses
 profiles
 
+# extras
+skel.ChangeLog
+skel.ebuild
+skel.metadata.xml
+header.txt
+
 # regular packages (do NOT put portage in here!)
 app-admin/eselect
 app-editors/nedit
+app-emacs/autoconf-mode
+app-emacs/bbdb
+app-emacs/cedet
 app-misc/abook
 app-misc/banner
 app-misc/colordiff

@@ -1,15 +1,0 @@
-diff -ur cedet-1.0pre3.orig/eieio/eieio-tests.el cedet-1.0pre3/eieio/eieio-tests.el
---- cedet-1.0pre3.orig/eieio/eieio-tests.el	2005-06-29 22:08:02.000000000 -0500
-+++ cedet-1.0pre3/eieio/eieio-tests.el	2006-05-15 11:28:22.000000000 -0500
-@@ -469,8 +469,9 @@
- 
- ;;; Test function type in a class
- ;;
--(defvar class-typep-var 0
--  "A variable used in an initform.")
-+(eval-when-compile
-+  (defvar class-typep-var 0
-+    "A variable used in an initform."))
- 
- (setq class-typep-var 1)
- 
