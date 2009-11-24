@@ -149,6 +149,7 @@ x11-terms/terminal
 x11-wm/windowmaker
 
 # entire categories
+net-print
 xfce-base
 xfce-extra
 
