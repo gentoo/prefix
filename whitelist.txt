@@ -30,6 +30,17 @@ app-editors/nedit
 app-emacs/autoconf-mode
 app-emacs/bbdb
 app-emacs/cedet
+app-emacs/color-theme
+app-emacs/gentoo-syntax
+app-emacs/matlab
+app-emacs/nxml-mode
+app-emacs/paredit
+app-emacs/php-mode
+app-emacs/po-mode
+app-emacs/pymacs
+app-emacs/python-mode
+app-emacs/ruby-mode
+app-emacs/scheme-complete
 app-misc/abook
 app-misc/banner
 app-misc/colordiff
