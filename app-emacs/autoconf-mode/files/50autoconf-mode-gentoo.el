@@ -1,5 +1,5 @@
 
-;;; autoconf site-lisp configuration
+;;; autoconf-mode site-lisp configuration
 
 (add-to-list 'load-path "@SITELISP@")
 (autoload 'autoconf-mode "autoconf-mode"
