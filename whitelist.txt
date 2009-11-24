@@ -18,11 +18,7 @@
 licenses
 profiles
 
-# extras
-skel.ChangeLog
-skel.ebuild
-skel.metadata.xml
-header.txt
+# remember: you can't import individual files, only directories
 
 # regular packages (do NOT put portage in here!)
 app-admin/eselect
