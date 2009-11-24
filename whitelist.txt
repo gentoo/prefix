@@ -150,6 +150,7 @@ x11-wm/windowmaker
 
 # entire categories
 net-print
+sci-electronics
 xfce-base
 xfce-extra
 
