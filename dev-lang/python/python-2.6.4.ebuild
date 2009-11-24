@@ -86,8 +86,8 @@ src_prepare() {
 	fi
 
 	# stupidos hardcoding GNU specifics
-	case $($(tc-getAS) -v 2>&1 </dev/null) in
-		*"GNU Binutils"*) # GNU ld
+	case $($(tc-getAS) --noexecstack -v 2>&1 </dev/null) in
+		*"GNU Binutils"*) # GNU as with noexecstack support
 			:
 		;;
 		*)
