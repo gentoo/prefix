@@ -21,9 +21,15 @@ profiles
 # regular packages (do NOT put portage in here!)
 app-admin/eselect
 app-editors/nedit
+app-misc/abook
 app-misc/banner
 app-misc/colordiff
+app-misc/dvorak7min
 app-misc/figlet
+app-misc/geekcode
+app-misc/mime-types
+app-misc/pipeworks
+app-misc/rlwrap
 app-portage/eix
 app-shells/bash-completion
 app-shells/tcsh
