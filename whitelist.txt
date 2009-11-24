@@ -22,6 +22,7 @@ profiles
 app-admin/eselect
 app-editors/nedit
 app-misc/banner
+app-misc/colordiff
 app-misc/figlet
 app-portage/eix
 app-shells/bash-completion
