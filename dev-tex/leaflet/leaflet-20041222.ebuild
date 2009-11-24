@@ -12,7 +12,7 @@ HOMEPAGE="http://www.ctan.org/tex-archive/macros/latex/contrib/leaflet/"
 
 LICENSE="LPPL-1.3"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos"
 IUSE=""
 
 # checksum from official ftp site changes frequently so we mirror it
