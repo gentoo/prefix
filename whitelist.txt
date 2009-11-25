@@ -22,6 +22,7 @@ profiles
 
 # regular packages (do NOT put portage in here!)
 app-admin/eselect
+app-editors/mg
 app-editors/nedit
 app-emacs/autoconf-mode
 app-emacs/bbdb
