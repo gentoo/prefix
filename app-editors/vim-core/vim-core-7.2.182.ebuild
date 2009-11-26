@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/vim-core-7.2.182.ebuild,v 1.8 2009/07/26 12:26:50 ranger Exp $
 
-inherit vim 
+inherit vim
 
 VIM_VERSION="7.2"
 VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"

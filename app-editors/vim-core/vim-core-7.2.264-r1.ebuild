@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/vim-core-7.2.264-r1.ebuild,v 1.1 2009/10/17 18:36:21 lack Exp $
 
 EAPI=2
-inherit vim 
+inherit vim
 
 VIM_VERSION="7.2"
 VIM_CORE_GENTOO_PATCHES="vim-core-${VIM_VERSION}-gentoo-patches.tar.bz2"
