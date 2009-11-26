@@ -147,6 +147,7 @@ src_configure() {
 	mozconfig_annotate '' --enable-system-hunspell
 	mozconfig_annotate '' --with-system-nspr --with-nspr-prefix="${EPREFIX}"/usr
 	mozconfig_annotate '' --with-system-nss --with-nss-prefix="${EPREFIX}"/usr
+	mozconfig_annotate '' --x-includes="${EPREFIX}"/usr/include --x-libraries="${EPREFIX}"/usr/$(get_libdir)
 	mozconfig_annotate '' --enable-system-lcms
 	mozconfig_annotate '' --with-system-bz2
 
