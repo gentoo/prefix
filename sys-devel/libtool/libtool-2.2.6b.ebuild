@@ -39,7 +39,7 @@ src_unpack() {
 	if ! use vanilla ; then
 		[[ ${CHOST} == *-winnt* || ${CHOST} == *-interix* ]] &&
 			epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-winnt.patch
-# fails to apply		epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-mint.patch
+		epatch "${FILESDIR}"/2.2.6b/${PN}-2.2.6b-mint.patch
 		epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-hppa-hpux.patch
 
 		# seems that libtool has to know about EPREFIX a little bit better,
