@@ -1,6 +1,16 @@
 # ChangeLog for dev-perl/URI
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/URI/ChangeLog,v 1.68 2009/09/19 08:09:17 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/URI/ChangeLog,v 1.70 2009/11/24 07:41:36 robbat2 Exp $
+
+*URI-1.51 (24 Nov 2009)
+
+  24 Nov 2009; Robin H. Johnson <robbat2@gentoo.org> +URI-1.51.ebuild:
+  Version bump via perl-bump experimental tool.
+
+*URI-1.50 (22 Nov 2009)
+
+  22 Nov 2009; Robin H. Johnson <robbat2@gentoo.org> +URI-1.50.ebuild:
+  Version bump via perl-bump experimental tool.
 
   19 Sep 2009; Torsten Veller <tove@gentoo.org> -URI-1.35.ebuild,
   -URI-1.37.ebuild:
