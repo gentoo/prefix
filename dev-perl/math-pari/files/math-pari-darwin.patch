@@ -1,3 +1,6 @@
+On Darwin, libm doesn't exist, its contents is included in libSystem
+(equivalent of libc)
+
 --- Makefile.PL
 +++ Makefile.PL
 @@ -80,7 +80,7 @@
