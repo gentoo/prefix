@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Class-Singleton
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Singleton/ChangeLog,v 1.20 2009/10/24 11:56:38 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Class-Singleton/ChangeLog,v 1.21 2009/11/25 10:21:23 maekke Exp $
+
+  25 Nov 2009; Markus Meier <maekke@gentoo.org> Class-Singleton-1.4.ebuild:
+  amd64 stable, bug #284544
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> Class-Singleton-1.4.ebuild:
   ppc stable #284544
