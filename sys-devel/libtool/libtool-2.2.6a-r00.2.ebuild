@@ -14,12 +14,13 @@ SLOT="1.5"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="vanilla test"
 
-RDEPEND="sys-devel/gnuconfig
-	>=sys-devel/autoconf-2.60
-	>=sys-devel/automake-1.10.1"
+RDEPEND=""
 DEPEND="${RDEPEND}
 	|| ( app-arch/xz-utils app-arch/lzma-utils )
-	sys-apps/help2man"
+	>=sys-devel/autoconf-2.60
+	>=sys-devel/automake-1.10.1
+	sys-apps/help2man
+	sys-devel/gnuconfig"
 
 S=${WORKDIR}/${P%a}
 
