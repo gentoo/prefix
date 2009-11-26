@@ -395,6 +395,7 @@ vim_src_configure() {
 		myconf="--with-features=tiny \
 			--enable-gui=no \
 			--without-x \
+			--disable-darwin \
 			--disable-perlinterp \
 			--disable-pythoninterp \
 			--disable-rubyinterp \
@@ -429,7 +430,7 @@ vim_src_configure() {
 		if [[ ${MY_PN} == vim ]] ; then
 			# don't test USE=X here ... see bug #19115
 			# but need to provide a way to link against X ... see bug #20093
-			myconf="${myconf} --enable-gui=no `use_with vim-with-x x`"
+			myconf="${myconf} --enable-gui=no --disable-darwin `use_with vim-with-x x`"
 
 		elif [[ ${MY_PN} == gvim ]] ; then
 			myconf="${myconf} --with-vim-name=gvim --with-x"
@@ -437,7 +438,7 @@ vim_src_configure() {
 			echo ; echo
 			if use aqua ; then
 				einfo "Building gvim with the Carbon GUI"
-				myconf="${myconf} --enable-gui=carbon"
+				myconf="${myconf} --enable-darwin --enable-gui=carbon"
 			elif use gtk ; then
 				myconf="${myconf} --enable-gtk2-check"
 				if use gnome ; then
