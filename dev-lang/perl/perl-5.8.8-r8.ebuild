@@ -152,6 +152,13 @@ src_unpack() {
 		*) die "Something's wrong with your libdir, don't know how to treat it.";;
 	esac
 
+	# rest of usr-local patch
+	sed -i \
+		-e '/^locincpth=/c\locincpth=""' \
+		-e '/^loclibpth=/c\loclibpth=""' \
+		-e '/^glibpth=.*\/local\//s: /usr/local/lib.*":":' \
+		Configure || die
+
 	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch "${FILESDIR}"/${P}-dragonfly-clean.patch
 	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch "${FILESDIR}"/${P}-fbsdhints.patch
 	cd ${S}; epatch "${FILESDIR}"/${P}-USE_MM_LD_RUN_PATH.patch
