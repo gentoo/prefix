@@ -13,6 +13,11 @@ for opt in "$@"; do
   -L*)	link_dirs=("${link_dirs[@]}" "${opt}") ;;
   *)
   	case "${opt}" in
+	-v)	
+		# -v done right: only use mode version if -v is the _only_
+		# argument on the command line.
+		[[ ${#orig_args[@]} -gt 1 ]] || mode=version
+		;;
 	--version)	mode=version ;;
 	-c|-E|-S)	mode=compile ;;
 	-print-search-dirs) mode=dirs ;;
