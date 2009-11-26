@@ -1,6 +1,12 @@
 # ChangeLog for dev-perl/Sub-Uplevel
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Sub-Uplevel/ChangeLog,v 1.61 2009/08/16 09:22:08 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Sub-Uplevel/ChangeLog,v 1.62 2009/11/22 11:22:06 robbat2 Exp $
+
+*Sub-Uplevel-0.22 (22 Nov 2009)
+
+  22 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +Sub-Uplevel-0.22.ebuild:
+  Version bump via perl-bump experimental tool.
 
   16 Aug 2009; Torsten Veller <tove@gentoo.org> -files/uplevel.patch:
   Remove unused patch
