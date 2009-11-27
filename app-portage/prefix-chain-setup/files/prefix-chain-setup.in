@@ -126,9 +126,9 @@ ebegin "installing required basic packages"
 	EPREFIX="${CHILD_EPREFIX}" emerge -p1qO baselayout > /dev/null 2>&1
 
 	if [[ ${DO_MINIMAL} == yes ]]; then
-		EPREFIX="${CHILD_EPREFIX}" emerge -1qO baselayout prefix-chain-utils
+		EPREFIX="${CHILD_EPREFIX}" emerge -1qO baselayout prefix-chain-utils libtool
 	else
-		EPREFIX="${CHILD_EPREFIX}" emerge -1qO baselayout portage prefix-chain-utils gcc-config
+		EPREFIX="${CHILD_EPREFIX}" emerge -1qO baselayout portage prefix-chain-utils gcc-config libtool
 
 		# select the chain wrapper profile from gcc-config
 		env -i "${CHILD_EPREFIX}"/usr/bin/gcc-config 1
