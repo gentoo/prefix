@@ -26,11 +26,16 @@ RDEPEND="${DEPEND}"
 src_install() {
 	perl-module_src_install
 
-	touch "${T}"/lowercase
-	if [[ ! -f ${T}/LOWERCASE ]] ; then
-		# most OSX users are on a case-INsensitive filesystem, so don't install
-		# these, as in particular HEAD will collide with head (coreutils)
-		# this also applies for interix (windows underneath)
+	# Perform a check to see if the live filesystem is case-INsensitive
+	# or not.  If it is, the symlinks GET, POST and in particular HEAD
+	# will collide with e.g. head from coreutils.  While under Linux
+	# having a case-INsensitive filesystem is really unusual, most Mac
+	# OS X users are on it, and also Interix users deal with
+	# case-INsensitivity since Windows is underneath.
+
+	# bash should always be there, if we can find it in capitals, we're
+	# on a case-INsensitive filesystem.
+	if [[ ! -f ${EROOT}/BIN/BASH ]] ; then
 		dosym /usr/bin/lwp-request /usr/bin/GET
 		dosym /usr/bin/lwp-request /usr/bin/POST
 		dosym /usr/bin/lwp-request /usr/bin/HEAD
