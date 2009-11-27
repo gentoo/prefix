@@ -4,6 +4,7 @@ PARENT_EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
 CHILD_EPREFIX=
 CHILD_PROFILE=
 DO_MINIMAL=no
+DO_SOURCES=no
 
 #
 # get ourselfs the functions.sh script for ebegin/eend/etc.
@@ -15,12 +16,13 @@ for arg in "$@"; do
 	--eprefix=*)	CHILD_EPREFIX="${arg#--eprefix=}"	;;
 	--profile=*)	CHILD_PROFILE="${arg#--profile=}"	;;
 	--minimal)		DO_MINIMAL=yes						;;
+	--sources)		DO_SOURCES=yes						;;
 
 	--help)
 		einfo "$0 usage:"
 		einfo "  --eprefix=[PATH]       Path to new EPREFIX to create chained to the prefix"
 		einfo "                         where this script is installed (${PARENT_EPREFIX})"
-		einfo "  --proflie=[PATH]       The absolute path to the profile to use. This path"
+		einfo "  --profile=[PATH]       The absolute path to the profile to use. This path"
 		einfo "                         must point to a directory within ${PARENT_EPREFIX}"
 		einfo "  --minimal              just create the very basics, this omits portage and"
 		einfo "                         gcc-config, which are required to use the normal"
@@ -29,6 +31,7 @@ for arg in "$@"; do
 		einfo "                         use this, to have a cleaner chained prefix. (one"
 		einfo "                         example for this would be building a x86-winnt prefix"
 		einfo "                         from a x86-interix prefix)"
+		einfo "  --sources				inherit 'source' statements from the parent make.conf"
 		exit 0
 		;;
 	esac
@@ -42,7 +45,6 @@ test -n "${CHILD_EPREFIX}" || { eerror "no eprefix argument given"; exit 1; }
 test -d "${CHILD_EPREFIX}" && { eerror "${CHILD_EPREFIX} already exists"; exit 1; }
 test -n "${CHILD_PROFILE}" || { eerror "no profile argument given"; exit 1; }
 test -d "${CHILD_PROFILE}" || { eerror "${CHILD_PROFILE} does not exist"; exit 1; }
-test "${CHILD_PROFILE#${PARENT_EPREFIX}}" != "${CHILD_PROFILE}" || { eerror "${CHILD_PROFILE} is not withing ${CHILD_EPREFIX}"; exit 1; }
 
 einfo "creating chained prefix ${CHILD_EPREFIX}"
 
@@ -95,6 +97,8 @@ ebegin "creating make.conf"
 	*)			echo "PORTAGE_TMPDIR=\"${CHILD_EPREFIX}/var/tmp\"" ;;
 	esac
 	echo "READONLY_EPREFIX=\"${PARENT_EPREFIX}:DEPEND\""
+
+	egrep "^source .*" "${PARENT_EPREFIX}/etc/make.conf" 2>/dev/null
 ) > "${CHILD_EPREFIX}"/etc/make.conf
 eend_exit $?
 
@@ -128,10 +132,13 @@ ebegin "installing required basic packages"
 	if [[ ${DO_MINIMAL} == yes ]]; then
 		EPREFIX="${CHILD_EPREFIX}" emerge -1qO baselayout prefix-chain-utils libtool
 	else
-		EPREFIX="${CHILD_EPREFIX}" emerge -1qO baselayout portage prefix-chain-utils gcc-config libtool
+		EPREFIX="${CHILD_EPREFIX}" emerge -1qO baselayout portage prefix-chain-utils gcc-config
 
 		# select the chain wrapper profile from gcc-config
 		env -i "${CHILD_EPREFIX}"/usr/bin/gcc-config 1
+
+		# do this _AFTER_ selecting the correct compiler!
+		EPREFIX="${CHILD_EPREFIX}" emerge -1qO libtool
 	fi
 )
 eend_exit $?
