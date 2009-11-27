@@ -1,3 +1,8 @@
+This one is a very hackish temporary workaround for a bug deep down in interix itself.
+The problem is reported at Microsoft, and beeing worked on (hopefully). I'll keep
+track of MS, and remove that patch when a Interix hotfix exists that fixes the underlying
+problem. Until then - happy hack ;)
+
 --- Python-2.6.2.orig/Modules/arraymodule.c	2009-11-13 09:06:09 +0100
 +++ Python-2.6.2/Modules/arraymodule.c	2009-11-13 09:05:36 +0100
 @@ -1255,8 +1255,59 @@
