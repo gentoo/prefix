@@ -173,6 +173,7 @@ src_prepare() {
 		# some more modules fixed (_multiprocessing, dl)
 		epatch "${FILESDIR}"/${P}-interix-modules.patch
 		epatch "${FILESDIR}"/${P}-interix-nis.patch
+		epatch "${FILESDIR}"/${P}-interix-fread.patch
 	fi
 
 	# Don't silence output of setup.py.
