@@ -1,17 +1,50 @@
-diff -ru prefix-portage-2.2.00.14771.orig/bin/ebuild.sh prefix-portage-2.2.00.14771/bin/ebuild.sh
---- prefix-portage-2.2.00.14771.orig/bin/ebuild.sh	2009-11-09 15:12:20.525967899 +0100
-+++ prefix-portage-2.2.00.14771/bin/ebuild.sh	2009-11-09 15:13:09.660317804 +0100
-@@ -120,6 +120,47 @@
+diff -ru prefix-portage-2.2.00.14555.orig/bin/ebuild.sh prefix-portage-2.2.00.14555/bin/ebuild.sh
+--- prefix-portage-2.2.00.14555.orig/bin/ebuild.sh	2009-11-05 11:39:31.178753237 +0100
++++ prefix-portage-2.2.00.14555/bin/ebuild.sh	2009-11-05 11:54:50.796288280 +0100
+@@ -120,6 +120,83 @@
  # Unset some variables that break things.
  unset GZIP BZIP BZIP2 CDPATH GREP_OPTIONS GREP_COLOR GLOBIGNORE
  
 +if [[ -n "${PORTAGE_READONLY_EPREFIXES}" ]]; then
 +	new_PATH=${PATH}
 +
-+	save_IFS=$IFS
-+	IFS=':'
 +	prefixes="${PORTAGE_READONLY_EPREFIXES}:${EPREFIX}"
 +
++	# build up a PATH for the current environment. the path has to
++	# contain all the paths the start with $EPREFIX _first_, and
++	# after that, all the others. We have to re-order the new_PATH,
++	# so that EPREFIX paths move to the front. after that, the paths
++	# of all parent prefixes are added, and finally, after that, the
++	# paths not containing any prefix are added.
++
++	save_IFS=$IFS
++	IFS=':'
++	pth_pfx=
++	pth_nopfx=
++	for pth in ${new_PATH}; do
++		IFS=$save_IFS
++		if [[ "${pth#${EPREFIX}}" == "${pth}" ]]; then
++			[[ ":${pth_nopfx}:" == *":${pth}:"* ]] && continue
++			if [[ -z "${pth_nopfx}" ]]; then
++				pth_nopfx="${pth}"
++			else
++				pth_nopfx="${pth_nopfx}:${pth}"
++			fi
++		else
++			[[ ":${pth_pfx}:" == *":${pth}:"* ]] && continue
++			if [[ -z "${pth_pfx}" ]]; then
++				pth_pfx="${pth}"
++			else
++				pth_pfx="${pth_pfx}:${pth}"
++			fi
++		fi
++	done
++	IFS=$save_IFS
++
++	new_PATH=
++
++	save_IFS=$IFS
++	IFS=':'
 +	for eroot in ${prefixes}; do
 +		IFS=$save_IFS
 +		if [[ -f ${eroot}/usr/share/portage/config/make.globals ]]; then
@@ -24,7 +57,10 @@ diff -ru prefix-portage-2.2.00.14771.orig/bin/ebuild.sh prefix-portage-2.2.00.14
 +			IFS=':'
 +			for p in $defpath; do
 +				IFS=$save_IFS2
++				# we have that one already...
 +				[[ ":${new_PATH}:" == *":$p:"* ]] && continue
++				# we skip paths, that are outside our prefix ...
++				[[ "${p#${eroot}}" == "${p}" ]] && continue
 +				if [[ -z "${okpath}" ]]; then
 +					okpath="${p}"
 +				else
@@ -43,7 +79,7 @@ diff -ru prefix-portage-2.2.00.14771.orig/bin/ebuild.sh prefix-portage-2.2.00.14
 +	done
 +	IFS=$save_IFS
 +
-+	export PATH=$new_PATH
++	export PATH=${pth_pfx}:$new_PATH:${pth_nopfx}
 +fi
 +
  source "${PORTAGE_BIN_PATH}/isolated-functions.sh"  &>/dev/null
