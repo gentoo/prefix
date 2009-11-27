@@ -31,7 +31,7 @@ for arg in "$@"; do
 		einfo "                         use this, to have a cleaner chained prefix. (one"
 		einfo "                         example for this would be building a x86-winnt prefix"
 		einfo "                         from a x86-interix prefix)"
-		einfo "  --sources				inherit 'source' statements from the parent make.conf"
+		einfo "  --sources              inherit 'source' statements from the parent make.conf"
 		exit 0
 		;;
 	esac
