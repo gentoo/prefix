@@ -17,6 +17,13 @@ else
 	export EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
 fi
 
+# a common problem: the child has no less installed, but baselayout insists
+# on setting PAGER to EPREFIX/usr/bin/less. everything gets back to normal
+# when unsetting PAGER in this case.
+if [[ ! -x "${PAGER}" ]]; then
+	unset PAGER
+fi
+
 ${BASH} --noprofile
 einfo "leaving chained prefix @GENTOO_PORTAGE_EPREFIX@ ..."
 
