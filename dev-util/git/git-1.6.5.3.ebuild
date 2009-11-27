@@ -18,7 +18,7 @@ if [ "$PV" != "9999" ]; then
 	SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 			mirror://kernel/software/scm/git/${PN}-manpages-${DOC_VER}.tar.bz2
 			doc? ( mirror://kernel/software/scm/git/${PN}-htmldocs-${DOC_VER}.tar.bz2 )"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 else
 	SRC_URI=""
 	EGIT_BRANCH="master"
@@ -154,6 +154,9 @@ exportmakeopts() {
 		myopts="${myopts} NO_INET_PTON=YesPlease"
 		myopts="${myopts} NO_NSEC=YesPlease"
 		myopts="${myopts} NO_MKSTEMPS=YesPlease"
+	fi
+	if [[ ${CHOST} == ia64-*-hpux* ]]; then
+		myopts="${myopts} NO_NSEC=YesPlease"
 	fi
 
 	has_version '>=app-text/asciidoc-8.0' \
