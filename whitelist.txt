@@ -1,10 +1,11 @@
 # $Id$
 
-# This file is used for rsync generation on the master rsync mirror. Once a
-# directory is moved to gentoo-x86 repository and it should be included in the
-# rync checkout, then add an entry here. You can add a subdirectory or the whole
-# category. You need to remove the directory from svn once it is checked into
-# CVS (gentoo-x86)
+# This file is used for rsync generation on the master rsync mirror.
+# Once a directory is moved to gentoo-x86 repository and it should be
+# included in the rsync checkout, then add an entry here. You can add a
+# subdirectory or the whole category. You need to remove the directory
+# from svn once it is checked into CVS (gentoo-x86) to avoid confusion
+# and double work.
 #
 # Examples:
 # profiles
@@ -53,6 +54,36 @@ app-shells/tcsh
 dev-db/tokyocabinet
 dev-libs/libebml
 dev-php5/pecl-pdflib
+dev-util/confix
+dev-util/confix-wrapper
+dev-util/uncrustify
+games-misc/wtf
+mail-client/mutt
+media-gfx/asymptote
+media-video/mpeg-tools
+net-analyzer/linkchecker
+net-libs/libsoup-gnome
+net-mail/getmail
+net-misc/mico
+sys-devel/binutils-apple
+sys-devel/gcc-apple
+sys-devel/gdb-apple
+sys-process/iotop
+sys-process/unixtop
+x11-terms/terminal
+x11-wm/windowmaker
+
+# entire categories
+net-print
+sci-electronics
+xfce-base
+xfce-extra
+
+# separate projects encompassing a large amount of packages in progress
+
+# Mission Dandy Pearl (Perl), bug #294758
+
+# Mission Deadly Snake (Python)
 dev-python/astng
 dev-python/beautifulsoup
 dev-python/buildutils
@@ -147,28 +178,5 @@ dev-python/python-memcached
 dev-python/pytz
 dev-python/pyxml
 dev-python/pyyaml
-dev-util/confix
-dev-util/confix-wrapper
-dev-util/uncrustify
-games-misc/wtf
-mail-client/mutt
-media-gfx/asymptote
-media-video/mpeg-tools
-net-analyzer/linkchecker
-net-libs/libsoup-gnome
-net-mail/getmail
-net-misc/mico
-sys-devel/binutils-apple
-sys-devel/gcc-apple
-sys-devel/gdb-apple
-sys-process/iotop
-sys-process/unixtop
-x11-terms/terminal
-x11-wm/windowmaker
 
-# entire categories
-net-print
-sci-electronics
-xfce-base
-xfce-extra
-
+# Mission Shiny Jewel (Ruby)
