@@ -18,7 +18,7 @@ SRC_URI="${SRC_URI}
 
 LICENSE="|| ( Artistic GPL-2 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 # Math::Pari requires that a copy of the pari source in a parallel
@@ -46,8 +46,6 @@ src_prepare() {
 		[ -f "$i" -a ! -f "$o64" ] && cp -al "$i" "$o64"
 	done
 	perl-module_src_prepare
-
-	epatch "${FILESDIR}"/${PN}-darwin.patch
 }
 
 src_configure() {
