@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-python/sqlalchemy/sqlalchemy-0.5.5.ebuild,v 1.2 2009/07/16 23:32:21 neurogeek Exp $
 
-EAPI=2
+EAPI="2"
 
 NEED_PYTHON=2.4
 
