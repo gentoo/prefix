@@ -1,6 +1,18 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.128 2009/10/22 15:14:31 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.130 2009/11/28 11:18:29 a3li Exp $
+
+*actionpack-2.2.3-r1 (28 Nov 2009)
+
+  28 Nov 2009; Alex Legler <a3li@gentoo.org>
+  -files/2.1.2-csrf-circumvention.patch, +actionpack-2.2.3-r1.ebuild,
+  +files/actionpack-2.2.3-strip_tags.patch:
+  Revision bump, security bug 294797. Remove stale patch
+
+*actionpack-2.3.5 (28 Nov 2009)
+
+  28 Nov 2009; Alex Legler <a3li@gentoo.org> +actionpack-2.3.5.ebuild:
+  Version bump, security bug 294797
 
   22 Oct 2009; Alex Legler <a3li@gentoo.org> -actionpack-1.13.6.ebuild,
   -actionpack-2.0.5.ebuild, -actionpack-2.1.2-r1.ebuild:
