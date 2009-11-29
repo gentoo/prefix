@@ -1,6 +1,16 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.157 2009/10/22 08:05:19 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.159 2009/11/28 11:20:27 a3li Exp $
+
+*rails-2.2.3-r1 (28 Nov 2009)
+
+  28 Nov 2009; Alex Legler <a3li@gentoo.org> +rails-2.2.3-r1.ebuild:
+  Revision bump, security bug 294797.
+
+*rails-2.3.5 (28 Nov 2009)
+
+  28 Nov 2009; Alex Legler <a3li@gentoo.org> +rails-2.3.5.ebuild:
+  Version bump, security bug 294797
 
   22 Oct 2009; Alex Legler <a3li@gentoo.org> -rails-1.2.6-r1.ebuild,
   -rails-2.0.5-r1.ebuild, -rails-2.1.2-r1.ebuild:
