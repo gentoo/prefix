@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/activeresource
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/ChangeLog,v 1.50 2009/10/22 08:29:08 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/ChangeLog,v 1.51 2009/11/28 09:22:37 a3li Exp $
+
+*activeresource-2.3.5 (28 Nov 2009)
+
+  28 Nov 2009; Alex Legler <a3li@gentoo.org> +activeresource-2.3.5.ebuild:
+  Version bump, security bug 294797
 
   22 Oct 2009; Alex Legler <a3li@gentoo.org> -activeresource-2.0.5.ebuild,
   -activeresource-2.1.2.ebuild:
