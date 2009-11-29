@@ -81,9 +81,9 @@ xfce-extra
 
 # separate projects encompassing a large amount of packages in progress
 
-# Mission Dandy Pearl (Perl), bug #294758
+# Operation Dandy Pearl (Perl), bug #294758
 
-# Mission Deadly Snake (Python)
+# Operation Deadly Snake (Python)
 dev-python/astng
 dev-python/beautifulsoup
 dev-python/buildutils
@@ -179,4 +179,4 @@ dev-python/pytz
 dev-python/pyxml
 dev-python/pyyaml
 
-# Mission Shiny Jewel (Ruby)
+# Operation Shiny Jewel (Ruby)
