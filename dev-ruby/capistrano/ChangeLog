@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/capistrano
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.48 2009/10/23 15:16:22 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.49 2009/11/24 14:35:12 flameeyes Exp $
+
+  24 Nov 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  capistrano-2.5.9.ebuild:
+  Bump net-ssh version requirement.
 
 *capistrano-2.5.9 (23 Oct 2009)
 
