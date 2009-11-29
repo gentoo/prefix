@@ -83,7 +83,7 @@ xfce-extra
 
 # Operation Dandy Pearl (Perl), bug #294758
 
-# Operation Deadly Snake (Python)
+# Operation Deadly Snake (Python), bug #295035
 dev-python/astng
 dev-python/beautifulsoup
 dev-python/buildutils
