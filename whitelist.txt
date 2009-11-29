@@ -179,4 +179,4 @@ dev-python/pytz
 dev-python/pyxml
 dev-python/pyyaml
 
-# Operation Shiny Jewel (Ruby)
+# Operation Shiny Jewel (Ruby), bug #295040
