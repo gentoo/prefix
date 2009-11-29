@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/activesupport
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.104 2009/10/22 08:29:58 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.105 2009/11/28 09:16:37 a3li Exp $
+
+*activesupport-2.3.5 (28 Nov 2009)
+
+  28 Nov 2009; Alex Legler <a3li@gentoo.org> +activesupport-2.3.5.ebuild:
+  Version bump, security bug 294797
 
   22 Oct 2009; Alex Legler <a3li@gentoo.org> -activesupport-1.4.4.ebuild,
   -activesupport-2.0.5.ebuild, -activesupport-2.1.2.ebuild:
