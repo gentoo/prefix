@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/quixote
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/quixote/ChangeLog,v 1.25 2009/09/04 17:50:56 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/quixote/ChangeLog,v 1.26 2009/11/26 10:06:21 djc Exp $
+
+  26 Nov 2009; Dirkjan Ochtman <djc@gentoo.org> quixote-2.6.ebuild:
+  Fix problems with non-existent documentation files.
 
   04 Sep 2009; Patrick Lauer <patrick@gentoo.org> -quixote-1.0.ebuild,
   -quixote-1.2.ebuild, -quixote-2.4.ebuild, -quixote-2.5.ebuild:
