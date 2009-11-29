@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/twisted-web-8.2.0.ebuild,v 1.4 2009/11/11 17:02:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-web/twisted-web-8.2.0.ebuild,v 1.5 2009/11/28 15:15:45 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -21,5 +21,7 @@ RESTRICT_PYTHON_ABIS="3.*"
 PYTHON_MODNAME="twisted/plugins twisted/web"
 
 src_prepare() {
+	distutils_src_prepare
 	epatch "${FILESDIR}/${PN}-0.5.0-root-skip.patch"
+	sed -e "s/test_erroneousResponse/_&/" -i twisted/web/test/test_xmlrpc.py || die "sed failed"
 }
