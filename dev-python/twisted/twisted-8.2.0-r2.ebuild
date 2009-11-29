@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.2.0-r2.ebuild,v 1.9 2009/11/15 14:19:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.2.0-r2.ebuild,v 1.10 2009/11/28 01:16:34 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -66,11 +66,9 @@ src_test() {
 		PYTHONPATH=. "${T}/tests/usr/bin/trial" twisted || die "trial failed with Python ${PYTHON_ABI}"
 
 		popd > /dev/null || die
+		rm -fr "${T}/tests"
 	}
 	python_execute_function testing
-
-	cd "${S}"
-	rm -rf "${T}/tests"
 }
 
 src_install() {
