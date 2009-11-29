@@ -305,7 +305,7 @@ diff -ur /dev/null ./hints/freemint.sh
 +cc='gcc'
 +ccflags="$ccflags"
 +cccdlflags=' '; # avoid -fPIC
-+ccdlflags="-Wl,-whole-archive -lgcc -Wl,-no-whole-archive -Wl,-E $ccdlflags"
++ccdlflags="-Wl,-whole-archive -lgcc -Wl,-no-whole-archive"
 +
 +# libs
 +libpth="$prefix/lib /usr/local/lib /usr/lib"
@@ -322,7 +322,7 @@ diff -ur /dev/null ./hints/freemint.sh
 +#
 +# compiler & linker flags
 +#
-+optimize='-O2 -fno-inline'
++optimize='-O2'
 +locale_cflags='optimize=" "'
 +
 +#sbrk() returns -1 (failure) somewhere in lib/unicore/mktables at
