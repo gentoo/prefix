@@ -21,6 +21,7 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linu
 IUSE=""
 
 src_prepare() {
+	vim_src_prepare
 	# new prefix patch tarball needs to be rolled!
 	rm "${S}/vim-misc-prefix/vim-darwin-optimize.patch" # does not apply
 
