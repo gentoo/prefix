@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.222 2009/10/20 19:51:24 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.223 2009/11/25 18:46:57 mpagano Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -377,7 +377,7 @@ unpack_2_6() {
 }
 
 universal_unpack() {
-	cd ${WORKDIR}
+	cd "${WORKDIR}"
 	unpack linux-${OKV}.tar.bz2
 	if [[ -d "linux" ]]; then
 		mv linux linux-${KV_FULL} \
@@ -491,7 +491,7 @@ compile_headers_tweak_config() {
 #==============================================================
 install_universal() {
 	#fix silly permissions in tarball
-	cd ${WORKDIR}
+	cd "${WORKDIR}"
 	chown -R root:0 * >& /dev/null
 	chmod -R a+r-w+X,u+w *
 	cd ${OLDPWD}
@@ -507,8 +507,8 @@ install_headers() {
 		emake headers_install INSTALL_HDR_PATH="${D}"/${ddir}/.. ${xmakeopts} || die
 
 		# let other packages install some of these headers
-		rm -rf "${D}"/${ddir}/sound #alsa-headers
-		rm -rf "${D}"/${ddir}/scsi  #glibc/uclibc/etc...
+		rm -rf "${ED}"/${ddir}/sound #alsa-headers
+		rm -rf "${ED}"/${ddir}/scsi  #glibc/uclibc/etc...
 		return 0
 	fi
 
@@ -516,8 +516,8 @@ install_headers() {
 	# $S values where the cmdline to cp is too long
 	cd "${S}"
 	dodir ${ddir}/linux
-	cp -pPR "${S}"/include/linux "${D}"/${ddir}/ || die
-	rm -rf "${D}"/${ddir}/linux/modules
+	cp -pPR "${S}"/include/linux "${ED}"/${ddir}/ || die
+	rm -rf "${ED}"/${ddir}/linux/modules
 
 	# Handle multilib headers and crap
 	local multi_dirs="" multi_defs=""
@@ -540,28 +540,28 @@ install_headers() {
 			;;
 		arm)
 			dodir ${ddir#{EPREFIX}}/asm
-			cp -pPR "${S}"/include/asm/* "${D}"/${ddir}/asm
-			[[ ! -e ${D}/${ddir}/asm/arch ]] && ln -sf arch-ebsa285 "${D}"/${ddir}/asm/arch
-			[[ ! -e ${D}/${ddir}/asm/proc ]] && ln -sf proc-armv "${D}"/${ddir}/asm/proc
+			cp -pPR "${S}"/include/asm/* "${ED}"/${ddir}/asm
+			[[ ! -e ${ED}/${ddir}/asm/arch ]] && ln -sf arch-ebsa285 "${ED}"/${ddir}/asm/arch
+			[[ ! -e ${ED}/${ddir}/asm/proc ]] && ln -sf proc-armv "${ED}"/${ddir}/asm/proc
 			;;
 		powerpc)
 			dodir ${ddir}/asm
-			cp -pPR "${S}"/include/asm/* ${D}/${ddir}/asm
+			cp -pPR "${S}"/include/asm/* "${ED}"/${ddir}/asm
 			if [[ -e "${S}"/include/asm-ppc ]] ; then
 				dodir ${ddir}/asm-ppc
-				cp -pPR "${S}"/include/asm-ppc/* ${D}/${ddir}/asm-ppc
+				cp -pPR "${S}"/include/asm-ppc/* "${ED}"/${ddir}/asm-ppc
 			fi
 			;;
 		*)
 			dodir ${ddir}/asm
-			cp -pPR "${S}"/include/asm/* ${D}/${ddir}/asm
+			cp -pPR "${S}"/include/asm/* "${ED}"/${ddir}/asm
 			;;
 	esac
 	if [[ -n ${multi_dirs} ]] ; then
 		local d ml_inc=""
 		for d in ${multi_dirs} ; do
 			dodir ${ddir}/asm-${d}
-			cp -pPR "${S}"/include/asm-${d}/* ${D}/${ddir}/asm-${d}/ || die "cp asm-${d} failed"
+			cp -pPR "${S}"/include/asm-${d}/* "${ED}"/${ddir}/asm-${d}/ || die "cp asm-${d} failed"
 
 			ml_inc="${ml_inc} ${multi_defs%% *}:${ddir}/asm-${d}"
 			multi_defs=${multi_defs#* }
@@ -571,7 +571,7 @@ install_headers() {
 
 	if kernel_is 2 6; then
 		dodir ${ddir}/asm-generic
-		cp -pPR "${S}"/include/asm-generic/* ${D}/${ddir}/asm-generic
+		cp -pPR "${S}"/include/asm-generic/* "${ED}"/${ddir}/asm-generic
 	fi
 
 	# clean up
@@ -605,7 +605,7 @@ install_sources() {
 			> "${S}"/patches.txt
 	fi
 
-	mv ${WORKDIR}/linux* ${ED}/usr/src
+	mv ${WORKDIR}/linux* "${ED}"/usr/src
 }
 
 # pkg_preinst functions
@@ -634,7 +634,7 @@ postinst_sources() {
 	[[ ! -h ${EROOT}usr/src/linux ]] && MAKELINK=1
 
 	if [[ ${MAKELINK} == 1 ]]; then
-		cd ${EROOT}usr/src
+		cd "${EROOT}"usr/src
 		ln -sf linux-${KV_FULL} linux
 		cd ${OLDPWD}
 	fi
@@ -888,7 +888,7 @@ unipatch() {
 	local tmp
 	for i in ${UNIPATCH_DOCS}; do
 		tmp="${tmp} ${i//*\/}"
-		cp -f ${i} ${T}/
+		cp -f ${i} "${T}"/
 	done
 	UNIPATCH_DOCS="${tmp}"
 

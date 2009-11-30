@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.52 2009/10/28 15:50:56 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.53 2009/11/25 19:51:11 tampakrap Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -367,7 +367,7 @@ case ${BUILD_TYPE} in
 				koffice)
 					case ${PV} in
 						2.0.[6-9]*) SRC_URI="mirror://kde/unstable/${_kmname_pv}/src/${_kmname_pv}.tar.bz2" ;;
-						*) SRC_URI="mirror://kde/stable/${_kmname_pv}/src/${_kmname_pv}.tar.bz2" ;;
+						*) SRC_URI="mirror://kde/stable/${_kmname_pv}/${_kmname_pv}.tar.bz2" ;;
 					esac
 			esac
 			unset _kmname _kmname_pv

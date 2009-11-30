@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.62 2009/10/08 10:50:35 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.63 2009/11/22 12:06:43 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -357,7 +357,11 @@ elisp-site-regen() {
 	else
 		mv "${T}"/site-gentoo.el "${EROOT}${SITELISP}"/site-gentoo.el
 		echo
-		einfo "... ${#sflist[@]} site initialisation file(s) included."
+		case ${#sflist[@]} in
+			0) ewarn "... Huh? No site initialisation files found." ;;
+			1) einfo "... ${#sflist[@]} site initialisation file included." ;;
+			*) einfo "... ${#sflist[@]} site initialisation files included." ;;
+		esac
 	fi
 
 	if [ "${obsolete}" ]; then

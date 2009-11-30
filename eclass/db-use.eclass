@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/db-use.eclass,v 1.7 2006/07/13 13:11:14 pauldv Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/db-use.eclass,v 1.8 2009/11/24 05:24:20 robbat2 Exp $
 # This is a common location for functions that aid the use of sys-libs/db
 #
 # Bugs: pauldv@gentoo.org
@@ -36,7 +36,7 @@ db_findver() {
 	PKG="$(best_version $1)"
 	VER="$(get_version_component_range 1-2 "${PKG/*db-/}")"
 	if [ -d "${EPREFIX}"/usr/include/db$(db_ver_to_slot "$VER") ]; then
-		einfo "Found db version ${VER}" >&2
+		#einfo "Found db version ${VER}" >&2
 		echo -n "$VER"
 		return 0
 	else

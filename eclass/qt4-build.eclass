@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.51 2009/11/10 00:56:29 spatz Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.53 2009/11/19 12:01:35 deathwing00 Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -133,6 +133,23 @@ qt4-build_pkg_setup() {
 		echo
 		ebeep 3
 	fi
+
+	if [[ "${P}" == "qt-core-4.6.0_rc1" ]]; then
+		ewarn
+		ewarn "Binary compatibility broke between 4.6.0_beta1 and 4.6.0_rc1."
+		ewarn "If you are upgrading from 4.6.0_beta1, you'll have to"
+		ewarn "re-emerge everything that depends on Qt."
+		ewarn "Use the following command:"
+		ewarn
+		ewarn "   emerge -av1 \$(for i in \$(qlist -IC x11-libs/qt-);"
+		ewarn "   do equery -q d \$i | grep -v 'x11-libs/qt-' |"
+		ewarn "   sed \"s/^/=/\"; done)"
+		ewarn 
+		ewarn "YOU'VE BEEN WARNED"
+		ewarn
+		ebeep 3
+	fi
+		
 }
 
 # @ECLASS-VARIABLE: QT4_TARGET_DIRECTORIES
@@ -669,20 +686,23 @@ qt4-build_pkg_postrm() {
 # breakages and proposed solutions.
 qt4-build_pkg_postinst() {
 	generate_qconfigs
-	echo
-	ewarn "After a rebuild or upgrade of Qt, it can happen that Qt plugins (such as Qt"
-	ewarn "and KDE styles and widgets) can no longer be loaded. In this situation you"
-	ewarn "should recompile the packages providing these plugins. Also, make sure you"
-	ewarn "compile the Qt packages, and the packages that depend on it, with the same"
-	ewarn "GCC version and the same USE flag settings (especially the debug flag)."
-	ewarn
-	ewarn "Packages that typically need to be recompiled are kdelibs from KDE4, any"
-	ewarn "additional KDE4/Qt4 styles, qscintilla and PyQt4. Before filing a bug report,"
-	ewarn "make sure all your Qt4 packages are up-to-date and built with the same"
-	ewarn "configuration."
-	ewarn
-	ewarn "For more information, see http://doc.trolltech.com/${PV%.*}/plugins-howto.html"
-	echo
+
+	if [[ "${PN}" == "qt-core" ]]; then
+		echo
+		ewarn "After a rebuild or upgrade of Qt, it can happen that Qt plugins (such as Qt"
+		ewarn "and KDE styles and widgets) can no longer be loaded. In this situation you"
+		ewarn "should recompile the packages providing these plugins. Also, make sure you"
+		ewarn "compile the Qt packages, and the packages that depend on it, with the same"
+		ewarn "GCC version and the same USE flag settings (especially the debug flag)."
+		ewarn
+		ewarn "Packages that typically need to be recompiled are kdelibs from KDE4, any"
+		ewarn "additional KDE4/Qt4 styles, qscintilla and PyQt4. Before filing a bug report,"
+		ewarn "make sure all your Qt4 packages are up-to-date and built with the same"
+		ewarn "configuration."
+		ewarn
+		ewarn "For more information, see http://doc.trolltech.com/${PV%.*}/plugins-howto.html"
+		echo
+	fi
 }
 
 # @FUNCTION: skip_qmake_build_patch

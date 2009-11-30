@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.29 2009/08/20 08:55:01 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.32 2009/11/29 19:10:01 flameeyes Exp $
 
 # @ECLASS: gems.eclass
 # @MAINTAINER:
@@ -20,7 +20,7 @@
 
 inherit eutils ruby
 
-SRC_URI="mirror://rubyforge/gems/${P}.gem"
+SRC_URI="mirror://rubygems/${P}.gem"
 
 IUSE="doc"
 
@@ -69,6 +69,10 @@ gems_src_install() {
 		myconf="--rdoc --ri"
 	else
 		myconf="--no-rdoc --no-ri"
+	fi
+
+	if [[ -n "${GEMS_FORCE_INSTALL}" ]]; then
+		myconf="${myconf} --force"
 	fi
 
 	# I'm not sure how many ebuilds have correctly set USE_RUBY - let's assume

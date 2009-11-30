@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.95 2009/09/02 20:08:31 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.96 2009/11/27 21:31:29 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -89,6 +89,10 @@ tc-getFC() { tc-getPROG FC gfortran "$@"; }
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the java compiler
 tc-getGCJ() { tc-getPROG GCJ gcj "$@"; }
+# @FUNCTION: tc-getPKG_CONFIG
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the pkg-config tool
+tc-getPKG_CONFIG() { tc-getPROG PKG_CONFIG pkg-config "$@"; }
 
 # @FUNCTION: tc-getBUILD_CC
 # @USAGE: [toolchain prefix]

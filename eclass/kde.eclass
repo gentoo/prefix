@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.223 2009/05/12 12:55:46 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.224 2009/11/20 19:02:05 abcd Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -20,28 +20,6 @@ inherit base eutils kde-functions flag-o-matic libtool autotools
 DESCRIPTION="Based on the $ECLASS eclass"
 HOMEPAGE="http://www.kde.org/"
 IUSE="debug elibc_FreeBSD"
-
-
-if [[ ${CATEGORY} == "kde-base" ]]; then
-	if [[ ${PV##*.} -lt 10 ]] ; then
-		# Keep old ebuilds as is
-	        IUSE="${IUSE} kdeenablefinal"
-	else
-		# Don't use --enable-final anymore. Does only cause problems for users and
-		# as an unwelcome extra invalid bug reports, without any reasonable benefit.
-
-		# Get the aRts dependencies right - finally.
-		case "${PN}" in
-			blinken|juk|kalarm|kanagram|kbounce|kcontrol|konq-plugins|kscd|kscreensaver|kttsd|kwifimanager|kdelibs) ARTS_REQUIRED="" ;;
-			artsplugin-*|kaboodle|kasteroids|kdemultimedia-arts|kolf|krec|ksayit|noatun*) ARTS_REQUIRED="yes" ;;
-			*) ARTS_REQUIRED="never" ;;
-		esac
-	fi
-fi
-
-if [[ ${ARTS_REQUIRED} != "yes" && ${ARTS_REQUIRED} != "never" && ${PN} != "arts" ]]; then
-	IUSE="${IUSE} arts"
-fi
 
 # @ECLASS-VARIABLE: KDE_S
 # @DESCRIPTION:
@@ -64,7 +42,7 @@ DEPEND="sys-devel/make
 	dev-util/pkgconfig
 	dev-lang/perl"
 
-if [[ ${CATEGORY} != "kde-base" ]] || [[ ${CATEGORY} == "kde-base" &&  ${PV##*.} -lt 10 ]] ; then
+if [[ ${CATEGORY} != "kde-base" ]] ; then
 	DEPEND="${DEPEND}
 		x11-libs/libXt
 		x11-proto/xf86vidmodeproto
@@ -75,55 +53,13 @@ else
 	RDEPEND=""
 fi
 
-if [[ ${ARTS_REQUIRED} == "yes" ]]; then
-	DEPEND="${DEPEND} kde-base/arts"
-	RDEPEND="${RDEPEND} kde-base/arts"
-elif [[ ${ARTS_REQUIRED} != "never" && ${PN} != "arts" ]]; then
-	DEPEND="${DEPEND} arts? ( kde-base/arts )"
-	RDEPEND="${RDEPEND} arts? ( kde-base/arts )"
-fi
-
 # overridden in other places like kde-dist, kde-source and some individual ebuilds
 SLOT="0"
 
-# @ECLASS-VARIABLE: ARTS_REQUIRED
-# @DESCRIPTION:
-# Is aRTs-support required or not? Possible values are 'yes', 'never'. Otherwise
-# leave this variable unset. This results in an arts USE flag.
-
 # @FUNCTION: kde_pkg_setup
 # @DESCRIPTION:
-# Some basic test about arts-support. It also filters some compiler flags
+# Filters some compiler flags that can break things
 kde_pkg_setup() {
-	if [[ ${PN} != "arts" ]] && [[ ${PN} != "kdelibs" ]] ; then
-		if [[ ${ARTS_REQUIRED} == 'yes' ]] || \
-			( [[ ${ARTS_REQUIRED} != "never" ]] && use arts )  ; then
-			if ! built_with_use =kde-base/kdelibs-3.5* arts ; then
-				if has arts ${IUSE} && use arts; then
-					eerror "You are trying to compile ${CATEGORY}/${PF} with the \"arts\" USE flag enabled."
-				else
-					eerror "The package ${CATEGORY}/${PF} you're trying to merge requires aRTs."
-				fi
-				eerror "However, $(best_version =kde-base/kdelibs-3.5*) was compiled with the arts USE flag disabled."
-				eerror
-				if has arts ${IUSE} && use arts; then
-					eerror "You must either disable this USE flag, or recompile"
-				else
-					eerror "To build this package you have to recompile"
-				fi
-				eerror "$(best_version =kde-base/kdelibs-3.5*) with the arts USE flag enabled."
-				die "kdelibs missing arts"
-			fi
-		fi
-	fi
-
-	if [[ "${PN}" = "kdelibs" ]]; then
-		use doc && if ! built_with_use =x11-libs/qt-3* doc ; then
-			eerror "Building kdelibs with the doc USE flag requires qt to be built with the doc USE flag."
-			eerror "Please re-emerge qt-3 with this USE flag enabled."
-		fi
-	fi
-
 	# Let filter visibility flags that will *really* hurt your KDE
 	# _experimental_ support for this is enabled by kdehiddenvisibility useflag
 	filter-flags -fvisibility=hidden -fvisibility-inlines-hidden
@@ -289,14 +225,7 @@ kde_src_configure() {
 				if hasq kdeenablefinal ${IUSE}; then
 					myconf="$myconf $(use_enable kdeenablefinal final)"
 				fi
-				if [[ ${ARTS_REQUIRED} == "never" ]]; then
-					myconf="$myconf --without-arts"
-				elif [[ ${ARTS_REQUIRED} != 'yes' && ${PN} != "arts" ]]; then
-					# This might break some external package until
-					# ARTS_REQUIRED="yes" is set on them, KDE 3.2 is no more
-					# supported anyway.
-					myconf="$myconf $(use_with arts)"
-				fi
+				myconf="$myconf --without-arts"
 				debug-print "$FUNCNAME: myconf: set to ${myconf}"
 				;;
 			configure)

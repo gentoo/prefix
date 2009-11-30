@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.12 2009/09/23 21:23:56 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gnustep-base.eclass,v 1.13 2009/11/25 10:11:40 voyageur Exp $
 
 inherit eutils flag-o-matic
 
@@ -40,6 +40,10 @@ gnustep-base_src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	gnustep-base_src_prepare
+}
+
+gnustep-base_src_prepare() {
 	if [[ -f ./GNUmakefile ]] ; then
 		# Kill stupid includes that are simply overdone or useless on normal
 		# Gentoo, but (may) cause major headaches on Prefixed Gentoo.  If this
@@ -224,5 +228,5 @@ EOF
 
 case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst ;;
-	2) EXPORT_FUNCTIONS pkg_setup src_unpack src_configure src_compile src_install pkg_postinst ;;
+	2) EXPORT_FUNCTIONS pkg_setup src_prepare src_configure src_compile src_install pkg_postinst ;;
 esac

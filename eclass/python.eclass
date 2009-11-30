@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.79 2009/11/15 22:00:47 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.81 2009/11/22 16:45:54 arfrever Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -339,12 +339,12 @@ python_set_build_dir_symlink() {
 }
 
 # @FUNCTION: python_execute_function
-# @USAGE: [--action-message message] [-d|--default-function] [--failure-message message] [--nonfatal] [-q|--quiet] [-s|--separate-build-dirs] [--] <function> [arguments]
+# @USAGE: [--action-message message] [-d|--default-function] [--failure-message message] [--nonfatal] [-q|--quiet] [-s|--separate-build-dirs] [--source-dir source_directory] [--] <function> [arguments]
 # @DESCRIPTION:
 # Execute specified function for each value of PYTHON_ABIS, optionally passing additional
 # arguments. The specified function can use PYTHON_ABI and BUILDDIR variables.
 python_execute_function() {
-	local action action_message action_message_template= default_function="0" failure_message failure_message_template= function nonfatal="0" previous_directory previous_directory_stack previous_directory_stack_length PYTHON_ABI quiet="0" separate_build_dirs="0"
+	local action action_message action_message_template= default_function="0" failure_message failure_message_template= function nonfatal="0" previous_directory previous_directory_stack previous_directory_stack_length PYTHON_ABI quiet="0" separate_build_dirs="0" source_dir=
 
 	while (($#)); do
 		case "$1" in
@@ -368,6 +368,10 @@ python_execute_function() {
 			-s|--separate-build-dirs)
 				separate_build_dirs="1"
 				;;
+			--source-dir)
+				source_dir="$2"
+				shift
+				;;
 			--)
 				break
 				;;
@@ -380,6 +384,10 @@ python_execute_function() {
 		esac
 		shift
 	done
+
+	if [[ -n "${source_dir}" && "${separate_build_dirs}" == 0 ]]; then
+		die "${FUNCNAME}(): '--source-dir' option can be specified only with '--separate-build-dirs' option"
+	fi
 
 	if [[ "${default_function}" == "0" ]]; then
 		if [[ "$#" -eq "0" ]]; then
@@ -470,7 +478,11 @@ python_execute_function() {
 		fi
 
 		if [[ "${separate_build_dirs}" == "1" ]]; then
-			export BUILDDIR="${S}-${PYTHON_ABI}"
+			if [[ -n "${source_dir}" ]]; then
+				export BUILDDIR="${S}/${source_dir}-${PYTHON_ABI}"
+			else
+				export BUILDDIR="${S}-${PYTHON_ABI}"
+			fi
 			pushd "${BUILDDIR}" > /dev/null || die "pushd failed"
 		else
 			export BUILDDIR="${S}"
@@ -1078,8 +1090,8 @@ python_mod_cleanup() {
 
 	local BLUE CYAN NORMAL
 	if [[ "${NOCOLOR:-false}" =~ ^(false|no)$ ]]; then
-		BLUE=$'\e[34m'
-		CYAN=$'\e[36m'
+		BLUE=$'\e[1;34m'
+		CYAN=$'\e[1;36m'
 		NORMAL=$'\e[0m'
 	else
 		BLUE=
