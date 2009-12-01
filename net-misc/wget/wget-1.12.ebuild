@@ -32,6 +32,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-1.12-no-solaris-md5.patch
 	epatch "${FILESDIR}"/${PN}-1.12-static-link-libz.patch
+	epatch "${FILESDIR}"/${PN}-1.12-PATH_MAX.patch #293551
 }
 
 src_compile() {
