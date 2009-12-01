@@ -72,6 +72,7 @@ sys-process/iotop
 sys-process/unixtop
 x11-terms/terminal
 x11-themes/xfce4-icon-theme
+x11-themes/xfwm4-themes
 x11-wm/windowmaker
 
 # entire categories
