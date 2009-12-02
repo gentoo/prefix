@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/emacs-common-gentoo-1.2.ebuild,v 1.9 2009/10/12 16:36:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/emacs-common-gentoo-1.2.ebuild,v 1.10 2009/12/01 06:45:19 ulm Exp $
 
 inherit elisp-common eutils fdo-mime gnome2-utils
 
@@ -74,7 +74,11 @@ make-site-start() {
 }
 
 pkg_config() {
+	# make sure that site-gentoo.el exists since site-start.el requires it
+	elisp-site-regen
+
 	if [ ! -e "${EROOT}${SITELISP}/site-start.el" ]; then
+		echo
 		einfo "Press ENTER to create a default site-start.el file"
 		einfo "for GNU Emacs, or Control-C to abort now ..."
 		read

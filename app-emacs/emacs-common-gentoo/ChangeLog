@@ -1,6 +1,10 @@
 # ChangeLog for app-emacs/emacs-common-gentoo
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.24 2009/10/12 16:36:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.25 2009/12/01 06:45:19 ulm Exp $
+
+  01 Dec 2009; Ulrich Mueller <ulm@gentoo.org>
+  emacs-common-gentoo-1.2.ebuild:
+  Regenerate site-gentoo file in pkg_config, too.
 
   12 Oct 2009; Raúl Porcel <armin76@gentoo.org>
   emacs-common-gentoo-1.2.ebuild:
