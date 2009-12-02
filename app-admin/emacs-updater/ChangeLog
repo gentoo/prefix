@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/emacs-updater
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/emacs-updater/ChangeLog,v 1.31 2009/10/24 12:58:02 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/emacs-updater/ChangeLog,v 1.33 2009/11/26 11:33:41 fauli Exp $
+
+  26 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  -emacs-updater-1.5.ebuild:
+  clean up
+
+  26 Nov 2009; Markus Meier <maekke@gentoo.org> emacs-updater-1.6.ebuild:
+  amd64 stable, bug #287461
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> emacs-updater-1.6.ebuild:
   ppc stable #287461
