@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.8.ebuild,v 1.7 2009/08/17 20:24:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.8.ebuild,v 1.8 2009/12/01 04:49:06 vapier Exp $
 
 EAPI=2
 
@@ -57,7 +57,7 @@ src_configure() {
 		--disable-libblkid \
 		--disable-libuuid \
 		${libtype} \
-		$(use_enable !elibc_uclibc tls) \
+		$(tc-has-tls || echo --disable-tls) \
 		$(use_enable nls)
 }
 

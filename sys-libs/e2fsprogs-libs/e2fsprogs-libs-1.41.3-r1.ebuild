@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.3-r1.ebuild,v 1.3 2009/06/20 11:58:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.3-r1.ebuild,v 1.4 2009/12/01 04:49:06 vapier Exp $
 
 EAPI="2"
 
@@ -44,7 +44,7 @@ src_configure() {
 
 	econf \
 		--enable-${libtype}-shlibs \
-		$(use_enable !elibc_uclibc tls) \
+		$(tc-has-tls || echo --disable-tls) \
 		$(use_enable nls) \
 		|| die
 

@@ -1,6 +1,24 @@
 # ChangeLog for sys-libs/e2fsprogs-libs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.38 2009/11/09 11:31:12 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.42 2009/12/01 04:49:06 vapier Exp $
+
+  01 Dec 2009; Mike Frysinger <vapier@gentoo.org>
+  e2fsprogs-libs-1.41.3-r1.ebuild, e2fsprogs-libs-1.41.6.ebuild,
+  e2fsprogs-libs-1.41.7.ebuild, e2fsprogs-libs-1.41.8.ebuild,
+  e2fsprogs-libs-1.41.9.ebuild:
+  Switch to new tc-has-tls function rather than USE=elibc_uclibc.
+
+  29 Nov 2009; Joseph Jezak <josejx@gentoo.org>
+  e2fsprogs-libs-1.41.9.ebuild:
+  Marked ppc stable for bug #284745.
+
+  28 Nov 2009; Raúl Porcel <armin76@gentoo.org>
+  e2fsprogs-libs-1.41.9.ebuild:
+  ia64/sparc stable wrt #284745
+
+  23 Nov 2009; Markus Meier <maekke@gentoo.org>
+  e2fsprogs-libs-1.41.9.ebuild:
+  arm stable, bug #284745
 
   09 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
   e2fsprogs-libs-1.41.9.ebuild:
