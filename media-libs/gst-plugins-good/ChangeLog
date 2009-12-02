@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/gst-plugins-good
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.77 2009/11/18 22:07:10 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.79 2009/11/27 15:25:55 maekke Exp $
+
+  27 Nov 2009; Markus Meier <maekke@gentoo.org>
+  gst-plugins-good-0.10.16.ebuild:
+  arm stable, bug #290343
+
+  22 Nov 2009; Tobias Klausmann <klausman@gentoo.org>
+  gst-plugins-good-0.10.16.ebuild:
+  Stable on alpha, bug #290343
 
   18 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
   gst-plugins-good-0.10.16.ebuild:
