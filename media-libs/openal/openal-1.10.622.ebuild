@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-1.9.563-r1.ebuild,v 1.1 2009/10/27 18:11:17 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/openal-1.10.622.ebuild,v 1.1 2009/11/28 18:56:47 ssuominen Exp $
 
 EAPI=2
 inherit cmake-utils
@@ -16,29 +16,19 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 IUSE="alsa debug oss portaudio pulseaudio"
 
-RDEPEND="alsa? ( media-libs/alsa-lib )
+DEPEND="alsa? ( media-libs/alsa-lib )
 	portaudio? ( >=media-libs/portaudio-19_pre )
 	pulseaudio? ( media-sound/pulseaudio )"
-DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
+
 DOCS="alsoftrc.sample"
-PATCHES=( "${FILESDIR}/${P}-oss.patch" )
 
 src_configure() {
-	local mycmakeargs="$(cmake-utils_use alsa ALSA)
+	mycmakeargs="${mycmakeargs}
+		$(cmake-utils_use alsa ALSA)
 		$(cmake-utils_use oss OSS)
 		$(cmake-utils_use portaudio PORTAUDIO)
 		$(cmake-utils_use pulseaudio PULSEAUDIO)"
-
-	use debug && mycmakeargs+=" -DCMAKE_BUILD_TYPE=Debug"
-
 	cmake-utils_src_configure
-}
-
-pkg_postinst() {
-	elog "If you have performance problems using this library, then"
-	elog "try add these lines to your ~/.alsoftrc config file:"
-	elog "[alsa]"
-	elog "mmap = off"
 }

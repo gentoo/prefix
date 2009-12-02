@@ -1,6 +1,16 @@
 # ChangeLog for media-libs/openal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.130 2009/10/31 14:39:01 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.132 2009/11/29 12:21:51 ssuominen Exp $
+
+  29 Nov 2009; Samuli Suominen <ssuominen@gentoo.org> openal-1.8.466.ebuild,
+  openal-1.9.563.ebuild:
+  Pass -DPULSEAUDIO=OFF where it doesn't work properly.
+
+*openal-1.10.622 (28 Nov 2009)
+
+  28 Nov 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +openal-1.10.622.ebuild:
+  Version bump.
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> openal-1.9.563.ebuild:
   Marking openal-1.9.563 ppc64 for bug 287653
