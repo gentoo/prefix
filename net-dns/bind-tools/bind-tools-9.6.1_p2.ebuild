@@ -1,15 +1,15 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.6.1.ebuild,v 1.3 2009/07/26 16:03:14 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.6.1_p2.ebuild,v 1.1 2009/11/25 19:05:36 idl0r Exp $
 
 inherit eutils autotools
 
 MY_PN=${PN//-tools}
-MY_PV=${PV/_p1/-P1}
+MY_PV=${PV/_p/-P}
 MY_P="${MY_PN}-${MY_PV}"
 
 DESCRIPTION="bind tools: dig, nslookup, host, nsupdate, dnssec-keygen"
-HOMEPAGE="https://www.isc.org/software/bind"
+HOMEPAGE="http://www.isc.org/software/bind"
 SRC_URI="ftp://ftp.isc.org/isc/bind9/${MY_PV}/${MY_P}.tar.gz"
 
 LICENSE="as-is"
@@ -45,7 +45,7 @@ src_unpack() {
 		lib/isc/unix/socket.c || die
 
 	# bug 278364 (workaround)
-	epatch "${FILESDIR}/${P}-parallel.patch"
+	epatch "${FILESDIR}/${PN}-9.6.1-parallel.patch"
 
 	eautoreconf
 }
