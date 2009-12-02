@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.344 2009/11/09 17:15:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.345 2009/11/25 11:26:34 maekke Exp $
+
+  25 Nov 2009; Markus Meier <maekke@gentoo.org> emacs-18.59-r6.ebuild:
+  amd64 stable, bug #259916
 
   09 Nov 2009; Ulrich Mueller <ulm@gentoo.org> emacs-22.3-r3.ebuild,
   emacs-23.1-r2.ebuild:
