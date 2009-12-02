@@ -1,6 +1,11 @@
 # ChangeLog for dev-ruby/capistrano
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.49 2009/11/24 14:35:12 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.50 2009/11/29 07:49:32 graaff Exp $
+
+*capistrano-2.5.10 (29 Nov 2009)
+
+  29 Nov 2009; Hans de Graaff <graaff@gentoo.org> +capistrano-2.5.10.ebuild:
+  Version bump.
 
   24 Nov 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   capistrano-2.5.9.ebuild:
