@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r3.ebuild,v 1.1 2009/10/28 12:18:12 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r3.ebuild,v 1.2 2009/11/22 08:33:28 vapier Exp $
 
 EAPI="1"
 inherit eutils flag-o-matic toolchain-funcs multilib
@@ -61,7 +61,7 @@ src_compile() {
 	# when cross-compiling, we need to build up our own tic
 	# because people often don't keep matching host/target
 	# ncurses versions #249363
-	if tc-is-cross-compiler ; then
+	if tc-is-cross-compiler && ! ROOT=/ has_version ~sys-libs/${P} ; then
 		make_flags="-C progs tic"
 		CHOST=${CBUILD} \
 		CFLAGS=${BUILD_CFLAGS} \

@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.167 2009/10/28 12:18:12 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.168 2009/11/22 08:33:28 vapier Exp $
+
+  22 Nov 2009; Mike Frysinger <vapier@gentoo.org> ncurses-5.7-r3.ebuild:
+  Optimize cross compile step if host version already matches.
 
 *ncurses-5.7-r3 (28 Oct 2009)
 
