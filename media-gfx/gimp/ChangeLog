@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.297 2009/11/16 23:09:58 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.298 2009/11/27 00:06:42 lu_zero Exp $
+
+  26 Nov 2009; Luca Barbato <lu_zero@gentoo.org> gimp-9999.ebuild:
+  Update 9999 ebuild
 
   16 Nov 2009; Markus Meier <maekke@gentoo.org> gimp-2.6.7-r1.ebuild:
   amd64/x86 stable, bug #293127
