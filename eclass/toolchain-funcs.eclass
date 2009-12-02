@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.96 2009/11/27 21:31:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.97 2009/12/01 04:44:17 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -169,6 +169,35 @@ tc-is-static-only() {
 
 	# *MiNT doesn't have shared libraries, only platform so far
 	return $([[ ${host} == *-mint* ]])
+}
+
+# @FUNCTION: tc-has-tls
+# @USAGE: [-s|-c|-l] [toolchain prefix]
+# @DESCRIPTION:
+# See if the toolchain supports thread local storage (TLS).  Use -s to test the
+# compiler, -c to also test the assembler, and -l to also test the C library
+# (the default).
+tc-has-tls() {
+	local base="${T}/test-tc-tls"
+	cat <<-EOF > "${base}.c"
+	int foo(int *i) {
+		static __thread int j = 0;
+		return *i ? j : *i;
+	}
+	EOF
+	local flags
+	case $1 in
+		-s) flags="-S";;
+		-c) flags="-c";;
+		-l) ;;
+		-*) die "Usage: tc-has-tls [-c|-l] [toolchain prefix]";;
+	esac
+	: ${flags:=-fPIC -shared -Wl,-z,defs}
+	[[ $1 == -* ]] && shift
+	$(tc-getCC "$@") ${flags} "${base}.c" -o "${base}" >&/dev/null
+	local ret=$?
+	rm -f "${base}"*
+	return ${ret}
 }
 
 
