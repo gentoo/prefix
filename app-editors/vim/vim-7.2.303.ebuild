@@ -7,13 +7,11 @@ inherit vim
 
 VIM_VERSION="7.2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
-PREFIX_VER="5"
 
 SRC_URI="ftp://ftp.vim.org/pub/vim/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-extra.tar.gz
-	mirror://gentoo/${VIM_ORG_PATCHES}
-	http://dev.gentoo.org/~grobian/distfiles/vim-misc-prefix-${PREFIX_VER}.tar.bz2"
+	mirror://gentoo/${VIM_ORG_PATCHES}"
 
 S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="Vim, an improved vi-style text editor"

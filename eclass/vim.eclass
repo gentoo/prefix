@@ -342,10 +342,6 @@ END
 			"${S}"/src/po/Makefile
 	fi
 
-	# It's perfectly fine to optimise on Darwin, as we have a fixed compiler,
-	# which Vim people don't know about
-	epatch "${WORKDIR}"/vim-misc-prefix/vim-darwin-optimize.patch
-
 }
 
 vim_src_unpack() {
