@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.7.ebuild,v 1.3 2009/05/24 21:49:21 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.7.ebuild,v 1.4 2009/11/24 17:26:22 jer Exp $
 
 EAPI=2
 
@@ -75,7 +75,7 @@ pkg_postinst() {
 	ewarn "it contains an xml header and a DOCTYPE definition. Unfortunately this"
 	ewarn "causes older versions of rrdtool restore to be unhappy."
 	ewarn
-	ewarn "To restore a new dump with ann old rrdtool restore version, either remove"
+	ewarn "To restore a new dump with an old rrdtool restore version, either remove"
 	ewarn "the xml header and the doctype by hand (both on the first line of the dump)"
 	ewarn "or use rrdtool dump --no-header."
 	ewarn

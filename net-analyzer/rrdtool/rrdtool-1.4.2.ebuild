@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.3.8.ebuild,v 1.11 2009/11/24 17:26:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/rrdtool-1.4.2.ebuild,v 1.4 2009/11/25 03:53:43 jer Exp $
 
 EAPI=2
 
-inherit eutils flag-o-matic multilib perl-module
+inherit eutils flag-o-matic multilib perl-module autotools
 
 DESCRIPTION="A system to store and display time-series data"
 HOMEPAGE="http://oss.oetiker.ch/rrdtool/"
@@ -13,7 +13,7 @@ SRC_URI="http://oss.oetiker.ch/rrdtool/pub/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-solaris"
-IUSE="doc nls perl python ruby rrdcgi tcl"
+IUSE="doc lua perl python ruby rrdcgi tcl"
 
 # This versions are minimal versions upstream tested with.
 RDEPEND="
@@ -22,19 +22,23 @@ RDEPEND="
 	>=x11-libs/cairo-1.4.6[svg]
 	>=dev-libs/glib-2.12.12
 	>=x11-libs/pango-1.17
-	tcl? ( dev-lang/tcl )
+	lua? ( dev-lang/lua )
 	perl? ( dev-lang/perl )
 	python? ( dev-lang/python )
-	ruby? ( >=dev-lang/ruby-1.8.6_p287-r13
-			!dev-ruby/ruby-rrd )"
+	ruby? ( >=dev-lang/ruby-1.8.6_p287-r13 !dev-ruby/ruby-rrd )
+	tcl? ( dev-lang/tcl )"
 
 DEPEND="${RDEPEND}
-	nls? ( >=dev-util/intltool-0.35
-		sys-devel/gettext )
 	sys-apps/gawk"
 
 pkg_setup() {
 	use perl && perl-module_pkg_setup
+}
+
+src_prepare() {
+	epatch "${FILESDIR}/rrdtool-1.3.8-configure.ac.patch"
+	sed -i '/PERLLD/s:same as PERLCC:same-as-PERLCC:' configure.ac #281694
+	eautoconf
 }
 
 src_configure() {
@@ -46,8 +50,8 @@ src_configure() {
 	[[ ${CHOST} == *-solaris* ]] && append-flags -D__EXTENSIONS__
 
 	econf $(use_enable rrdcgi) \
-		$(use_enable nls) \
-		$(use_enable nls libintl) \
+		$(use_enable lua) \
+		$(use_enable lua lua-site-install) \
 		$(use_enable ruby) \
 		$(use_enable ruby ruby-site-install) \
 		$(use_enable perl) \

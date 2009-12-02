@@ -1,6 +1,28 @@
 # ChangeLog for net-analyzer/rrdtool
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/ChangeLog,v 1.193 2009/10/26 13:50:27 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/rrdtool/ChangeLog,v 1.199 2009/11/25 03:53:43 jer Exp $
+
+  25 Nov 2009; Jeroen Roovers <jer@gentoo.org> rrdtool-1.4.2.ebuild:
+  Sort dependencies alphabetically. Add missing lua dependency.
+
+  24 Nov 2009; Jeroen Roovers <jer@gentoo.org> rrdtool-1.3.7.ebuild,
+  rrdtool-1.3.8.ebuild, rrdtool-1.3.8-r1.ebuild, rrdtool-1.3.9.ebuild,
+  rrdtool-1.4.2.ebuild:
+  Spelling correction.
+
+  24 Nov 2009; Jeroen Roovers <jer@gentoo.org> -rrdtool-1.4.1.ebuild,
+  rrdtool-1.4.2.ebuild:
+  Remove old. Make lua support optional. Remove last USE=nls usage.
+
+*rrdtool-1.4.2 (23 Nov 2009)
+
+  23 Nov 2009; Jeroen Roovers <jer@gentoo.org> +rrdtool-1.4.2.ebuild:
+  Version bump.
+
+*rrdtool-1.4.1 (23 Nov 2009)
+
+  23 Nov 2009; Jeroen Roovers <jer@gentoo.org> +rrdtool-1.4.1.ebuild:
+  Version bump thanks to Opportunist (bug #291145).
 
 *rrdtool-1.3.9 (26 Oct 2009)
 
