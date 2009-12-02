@@ -1,6 +1,12 @@
 # ChangeLog for app-admin/eselect-unison
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-unison/ChangeLog,v 1.8 2008/06/30 20:37:46 armin76 Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-unison/ChangeLog,v 1.9 2009/11/22 17:39:04 ulm Exp $
+
+*eselect-unison-0.2 (22 Nov 2009)
+
+  22 Nov 2009; Ulrich Mueller <ulm@gentoo.org> +files/unison.eselect-0.2,
+  +eselect-unison-0.2.ebuild:
+  Version bump: support brief output mode, bug 292115.
 
   30 Jun 2008; Raúl Porcel <armin76@gentoo.org> eselect-unison-0.1.ebuild:
   sparc stable wrt #229187
