@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.1.ebuild,v 1.1 2009/11/19 04:13:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/coreutils-8.1.ebuild,v 1.2 2009/12/02 00:34:18 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -32,7 +32,7 @@ RDEPEND="caps? ( sys-libs/libcap )
 	!<sci-chemistry/ccp4-6.1.1
 	>=sys-libs/ncurses-5.3-r5"
 DEPEND="${RDEPEND}
-	|| ( app-arch/xz-utils app-arch/lzma-utils )"
+	app-arch/xz-utils"
 
 src_unpack() {
 	unpack ${A}
