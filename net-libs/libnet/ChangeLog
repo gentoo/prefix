@@ -1,6 +1,15 @@
 # ChangeLog for net-libs/libnet
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/ChangeLog,v 1.47 2009/11/20 13:13:31 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/ChangeLog,v 1.50 2009/12/01 00:09:43 tcunha Exp $
+
+  01 Dec 2009; Tiago Cunha <tcunha@gentoo.org> libnet-1.1.4.ebuild:
+  stable sparc, bug 289857
+
+  22 Nov 2009; Jeroen Roovers <jer@gentoo.org> libnet-1.1.4.ebuild:
+  Stable for HPPA (bug #289857).
+
+  22 Nov 2009; Tobias Klausmann <klausman@gentoo.org> libnet-1.1.4.ebuild:
+  Stable on alpha, bug #289857
 
   20 Nov 2009; Markus Meier <maekke@gentoo.org> libnet-1.1.4.ebuild:
   amd64/arm/x86 stable, bug #289857
