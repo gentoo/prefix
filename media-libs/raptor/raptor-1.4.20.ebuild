@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/raptor-1.4.18.ebuild,v 1.10 2009/06/22 13:04:45 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/raptor-1.4.20.ebuild,v 1.1 2009/11/30 12:35:11 ssuominen Exp $
 
 EAPI=2
 inherit eutils libtool
@@ -11,10 +11,10 @@ SRC_URI="http://download.librdf.org/source/${P}.tar.gz"
 
 LICENSE="LGPL-2.1 Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="curl unicode xml"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="curl debug unicode xml"
 
-RDEPEND="unicode? ( >=dev-libs/glib-2 )
+RDEPEND="unicode? ( dev-libs/glib:2 )
 	xml? ( >=dev-libs/libxml2-2.6.8 )
 	!xml? ( dev-libs/expat )
 	curl? ( net-misc/curl )
@@ -25,7 +25,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epunt_cxx
-	elibtoolize # needed for .so versionning on bsd
+	elibtoolize # Required by FreeBSD .so versioning
 }
 
 src_configure() {
@@ -36,8 +36,6 @@ src_configure() {
 	else
 		myconf="${myconf} --with-xml-parser=expat"
 	fi
-	# libtool needs help to find {libxml2,expat}.la from our prefix
-	append-ldflags -L${EPREFIX}/usr/$(get_libdir)
 
 	if use curl; then
 		myconf="${myconf} --with-www=curl"
@@ -49,6 +47,7 @@ src_configure() {
 
 	econf \
 		$(use_enable unicode nfc-check) \
+		$(use_enable debug) \
 		${myconf}
 }
 
