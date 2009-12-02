@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/trove
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/trove/ChangeLog,v 1.11 2009/10/24 18:13:42 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/trove/ChangeLog,v 1.12 2009/11/30 10:30:22 maekke Exp $
+
+  30 Nov 2009; Markus Meier <maekke@gentoo.org> trove-2.1.0.ebuild:
+  amd64/x86 stable, bug #294990
 
 *trove-2.1.0 (24 Oct 2009)
 
