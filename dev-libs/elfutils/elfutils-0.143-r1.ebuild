@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/elfutils-0.143-r1.ebuild,v 1.1 2009/11/21 03:53:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/elfutils-0.143-r1.ebuild,v 1.2 2009/11/26 19:09:40 truedfx Exp $
 
 inherit eutils
 
@@ -34,6 +34,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.118-PaX-support.patch
+	epatch "${FILESDIR}"/${P}-configure.patch #287130
 	epatch "${FILESDIR}"/${P}-fix-fill_mmap-for-sections-past-the-section-headers.patch #288977
 	find . -name Makefile.in -print0 | xargs -0 sed -i -e 's:-W\(error\|extra\)::g'
 	use test || sed -i -e 's: tests::' Makefile.in #226349
