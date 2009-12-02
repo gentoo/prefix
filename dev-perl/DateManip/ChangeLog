@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/DateManip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateManip/ChangeLog,v 1.39 2009/06/29 23:37:46 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/DateManip/ChangeLog,v 1.40 2009/11/26 21:05:24 tove Exp $
+
+*DateManip-6.04 (26 Nov 2009)
+
+  26 Nov 2009; Torsten Veller <tove@gentoo.org> +DateManip-6.04.ebuild:
+  Version bump
 
   29 Jun 2009; Jeroen Roovers <jer@gentoo.org> DateManip-5.54.ebuild:
   Stable for HPPA too.
