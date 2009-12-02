@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libev/libev-3.80-r1.ebuild,v 1.1 2009/09/03 13:41:15 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libev/libev-3.80-r1.ebuild,v 1.2 2009/11/26 20:30:08 maekke Exp $
 
 inherit autotools eutils
 
