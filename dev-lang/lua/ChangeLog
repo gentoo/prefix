@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/lua
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.135 2009/09/29 08:04:20 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.137 2009/11/26 10:21:04 robbat2 Exp $
+
+*lua-5.1.4-r4 (26 Nov 2009)
+
+  26 Nov 2009; Robin H. Johnson <robbat2@gentoo.org> +lua-5.1.4-r4.ebuild:
+  jer's earlier fix missed some of the pkgconfig calls for the INSTALL_LIB
+  and libdir settings. Fixup so I can do Lua SWIG bindings.
+
+*lua-5.1.4-r3 (24 Nov 2009)
+
+  24 Nov 2009; Jeroen Roovers <jer@gentoo.org> +lua-5.1.4-r3.ebuild:
+  Fix libdir path for CMOD in pkgconfig file (bug #294368).
 
   29 Sep 2009; Ulrich Mueller <ulm@gentoo.org> lua-5.1.4-r2.ebuild:
   Depend on app-emacs/lua-mode with USE=emacs, fixes bug 263249. Explicitly
