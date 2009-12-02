@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpeginfo/jpeginfo-1.6.0.ebuild,v 1.15 2008/11/27 22:18:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/jpeginfo/jpeginfo-1.6.0.ebuild,v 1.16 2009/11/27 11:53:53 flameeyes Exp $
 
 inherit toolchain-funcs
 
@@ -23,7 +23,8 @@ src_compile() {
 }
 
 src_install() {
-	make INSTALL_ROOT="${D}" install || die
+	# bug #294820
+	emake -j1 INSTALL_ROOT="${D}" install || die
 
 	dodoc COPY* README
 }
