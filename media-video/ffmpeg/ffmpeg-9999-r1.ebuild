@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.23 2009/11/06 12:46:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.25 2009/11/25 06:06:20 beandog Exp $
 
 EAPI=2
 SCM=""
@@ -43,7 +43,7 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 		faac? ( media-libs/faac )
 		mp3? ( media-sound/lame )
 		vorbis? ( media-libs/libvorbis media-libs/libogg )
-		theora? ( media-libs/libtheora[encode] media-libs/libogg )
+		theora? ( >=media-libs/libtheora-1.1.1[encode] media-libs/libogg )
 		x264? ( >=media-libs/x264-0.0.20091021 )
 		xvid? ( >=media-libs/xvid-1.1.0 ) )
 	faad? ( >=media-libs/faad2-2.6.1 )
@@ -59,7 +59,7 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 	jack? ( media-sound/jack-audio-connection-kit )
 	X? ( x11-libs/libX11 x11-libs/libXext )
 	video_cards_nvidia? (
-		vdpau? ( >=x11-drivers/nvidia-drivers-180.29 )
+		vdpau? ( x11-libs/libvdpau )
 	)"
 
 DEPEND="${RDEPEND}
