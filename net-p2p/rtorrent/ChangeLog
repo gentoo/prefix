@@ -1,6 +1,9 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.141 2009/11/18 20:17:13 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.142 2009/11/23 21:04:54 maekke Exp $
+
+  23 Nov 2009; Markus Meier <maekke@gentoo.org> rtorrent-0.8.5.ebuild:
+  x86 stable, bug #291036
 
   18 Nov 2009; Brent Baude <ranger@gentoo.org> rtorrent-0.8.5.ebuild:
   Marking rtorrent-0.8.5 ppc64 for bug 291036
