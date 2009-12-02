@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4.ebuild,v 1.1 2009/10/30 11:49:20 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4.ebuild,v 1.2 2009/11/29 15:29:21 arfrever Exp $
 
 EAPI="2"
 
@@ -54,7 +54,8 @@ RDEPEND=">=app-admin/eselect-python-20090606
 			xml? ( >=dev-libs/expat-2 )
 		)"
 DEPEND="${RDEPEND}
-		dev-util/pkgconfig"
+		dev-util/pkgconfig
+		!sys-devel/gcc[libffi]"
 RDEPEND+=" !build? ( app-misc/mime-types )"
 PDEPEND="app-admin/python-updater"
 
@@ -485,8 +486,8 @@ EOF
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
 
-	# Installs empty directory.
-	rmdir "${ED}usr/$(get_libdir)/${PN}${PYVER}/lib-old"
+	# Don't install empty directory.
+	rmdir "${ED}usr/$(get_libdir)/python${PYVER}/lib-old"
 
 	# fix invalid shebang /usr/local/bin/python
 	sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python' \

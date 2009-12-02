@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.17 2009/11/07 23:17:35 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.18 2009/11/29 15:29:21 arfrever Exp $
 
 EAPI="2"
 
@@ -43,7 +43,8 @@ RDEPEND=">=app-admin/eselect-python-20090606
 			xml? ( >=dev-libs/expat-2 )
 		)"
 DEPEND="${RDEPEND}
-		dev-util/pkgconfig"
+		dev-util/pkgconfig
+		!sys-devel/gcc[libffi]"
 RDEPEND+=" !build? ( app-misc/mime-types )"
 PDEPEND="app-admin/python-updater
 		=dev-lang/python-2*"
@@ -248,8 +249,8 @@ src_configure() {
 		$(use_with !ucs2 wide-unicode) \
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
-		--with-libc='' \
 		--with-dbmliborder=${dbmliborder} \
+		--with-libc='' \
 		--with-system-ffi
 }
 
