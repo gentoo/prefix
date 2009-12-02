@@ -1,6 +1,9 @@
 # ChangeLog for app-misc/mc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.176 2009/11/12 02:02:55 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.177 2009/11/26 18:34:35 armin76 Exp $
+
+  26 Nov 2009; Raúl Porcel <armin76@gentoo.org> mc-4.7.0_pre3.ebuild:
+  arm/ia64/s390/sh/sparc stable wrt #290347
 
   12 Nov 2009; Jeroen Roovers <jer@gentoo.org> mc-4.7.0_pre3.ebuild:
   Stable for HPPA (bug #290347).
