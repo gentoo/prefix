@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/qhull
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.32 2009/10/12 19:55:35 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/qhull/ChangeLog,v 1.33 2009/11/26 19:24:20 bicatali Exp $
+
+  26 Nov 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  qhull-2003.1-r1.ebuild:
+  Added forced -fno-strict-aliasing to flags to avoid seg faults
 
   12 Oct 2009; Jeroen Roovers <jer@gentoo.org> qhull-3.1-r1.ebuild:
   Stable for HPPA (bug #245707).
