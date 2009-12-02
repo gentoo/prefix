@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.20-r1.ebuild,v 1.1 2009/11/15 09:13:48 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/sqlite-3.6.20-r1.ebuild,v 1.2 2009/11/22 09:09:37 betelgeuse Exp $
 
 EAPI="2"
 
@@ -45,6 +45,11 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-3.6.11-interix.patch
+
+	# http://bugs.gentoo.org/show_bug.cgi?id=293405
+	# Needed to compile without tcl installed but fails to compile when it
+	# it installed
+	use fts3 && ! has_version dev-lang/tcl && epatch "${FILESDIR}/sqlite-3.6.20-fts3.patch"
 
 	epunt_cxx
 }

@@ -1,6 +1,16 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.294 2009/11/17 19:48:34 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.296 2009/11/29 14:08:02 armin76 Exp $
+
+  29 Nov 2009; Raúl Porcel <armin76@gentoo.org> sqlite-3.6.19.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #291913
+
+  22 Nov 2009; Petteri Räty <betelgeuse@gentoo.org>
+  sqlite-3.6.20-r1.ebuild, +files/sqlite-3.6.20-fts3.patch:
+  Fix bug #293405 so that fts3 support compiles when tcl is not installed.
+  The patch is applied only when tcl is not installed because otherwise the
+  build breaks. Because mozilla needs the support doing it like this so that
+  we get the fix in tree faster. Patch originally from anarchy.
 
   17 Nov 2009; Brent Baude <ranger@gentoo.org> sqlite-3.6.19.ebuild:
   Marking sqlite-3.6.19 ppc64 for bug 291913
