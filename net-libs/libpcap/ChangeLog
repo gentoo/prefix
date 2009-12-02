@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/libpcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.131 2009/10/12 09:03:00 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libpcap/ChangeLog,v 1.132 2009/11/24 23:09:26 vapier Exp $
+
+  24 Nov 2009; Mike Frysinger <vapier@gentoo.org>
+  libpcap-1.0.1_pre20090812.ebuild, +files/libpcap-1.0.1-autoconf.patch:
+  Fix building with autoconf-2.64+ #281690.
 
   12 Oct 2009; Jeroen Roovers <jer@gentoo.org> libpcap-1.0.0-r2.ebuild:
   Stable for HPPA (bug #284790).
