@@ -1,10 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/indent-2.2.10.ebuild,v 1.2 2009/11/23 03:46:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/indent-2.2.10-r1.ebuild,v 1.3 2009/11/23 05:36:49 jer Exp $
 
 EAPI="2"
 
-inherit eutils
+inherit autotools eutils
 
 DESCRIPTION="Indent program source files"
 HOMEPAGE="http://www.gnu.org/software/indent/indent.html"
@@ -19,8 +19,11 @@ DEPEND="nls? ( sys-devel/gettext )"
 RDEPEND="nls? ( virtual/libintl )"
 
 src_prepare() {
-	# Update timestamp so it isn't regenerated #76610
-	touch -r man/Makefile.am man/texinfo2man.c
+	# Fix parallel make issue in man/ (bug #76610)
+	# and do not install texinfo2man
+	epatch "${FILESDIR}"/${PV}-man.patch
+	epatch "${FILESDIR}"/${PV}-segfault.patch
+	eautoreconf
 
 	# comply to the standard
 	cp -a man/texinfo2man.c{,.orig} || die
@@ -29,9 +32,13 @@ src_prepare() {
 }
 
 src_configure() {
-	# LINGUAS is used in aclocal.m4 #94837
+	# LINGUAS is used in aclocal.m4 (bug #94837)
 	unset LINGUAS
-	econf $(use_enable nls) || die
+	econf $(use_enable nls) || die "configure failed"
+}
+
+src_test() {
+	emake -C regression/ || die "regression tests failed"
 }
 
 src_install() {
@@ -39,5 +46,5 @@ src_install() {
 		DESTDIR="${D}" \
 		htmldir="${EPREFIX}/usr/share/doc/${PF}/html" \
 		install || die "make install failed"
-	dodoc AUTHORS NEWS README*
+	dodoc AUTHORS NEWS README* ChangeLog*
 }

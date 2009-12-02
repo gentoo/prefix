@@ -1,6 +1,23 @@
 # ChangeLog for dev-util/indent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.35 2009/10/28 01:36:29 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.38 2009/11/23 05:36:49 jer Exp $
+
+  23 Nov 2009; Jeroen Roovers <jer@gentoo.org> indent-2.2.10-r1.ebuild:
+  Add src_test().
+
+  23 Nov 2009; Jeroen Roovers <jer@gentoo.org> files/2.2.10-man.patch,
+  indent-2.2.10-r1.ebuild, +files/2.2.10-segfault.patch:
+  Do install texinfo2man but reapply the usage patch (bug #71690).
+
+*indent-2.2.10-r1 (23 Nov 2009)
+
+  23 Nov 2009; Jeroen Roovers <jer@gentoo.org> +files/2.2.10-man.patch,
+  indent-2.2.10.ebuild, +indent-2.2.10-r1.ebuild:
+  Update license. Do apply the Makefile.am patch because we do need to
+  update the (empty) man file (thanks to Drake Wyrm (bug #76610). At the
+  same time, do not install the undocumented texinfo2man. Bumping because we
+  do need to get the man page out there and because perhaps people want
+  texinfo2man after all.
 
 *indent-2.2.10 (28 Oct 2009)
 
