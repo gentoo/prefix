@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/geoip
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/ChangeLog,v 1.108 2009/10/24 13:59:55 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/geoip/ChangeLog,v 1.109 2009/11/26 17:31:00 maekke Exp $
+
+  26 Nov 2009; Markus Meier <maekke@gentoo.org> geoip-1.4.6.ebuild:
+  amd64 stable, bug #289360
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> geoip-1.4.6.ebuild:
   ppc stable #289360
