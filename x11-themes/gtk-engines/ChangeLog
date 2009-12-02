@@ -1,6 +1,9 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.154 2009/11/05 19:41:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.155 2009/11/28 16:50:04 armin76 Exp $
+
+  28 Nov 2009; Raúl Porcel <armin76@gentoo.org> gtk-engines-2.18.3.ebuild:
+  alpha/ia64/sparc stable wrt #281427
 
   05 Nov 2009; Markus Meier <maekke@gentoo.org> gtk-engines-2.18.3.ebuild:
   arm stable, bug #281427
