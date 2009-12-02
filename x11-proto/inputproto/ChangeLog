@@ -1,6 +1,11 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.87 2009/10/26 20:43:08 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.88 2009/11/22 23:50:30 scarabeus Exp $
+
+  22 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/0001-C-sucks-define-XEventClass-in-terms-of-unsigned-int.patch,
+  -files/0002-Typo-fix.patch:
+  Drop stale patches.
 
   26 Oct 2009; Jeroen Roovers <jer@gentoo.org> inputproto-1.5.1.ebuild:
   Stable for HPPA (bug #282290).
