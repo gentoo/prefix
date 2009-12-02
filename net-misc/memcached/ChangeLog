@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/memcached
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.104 2009/10/12 19:42:46 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/memcached/ChangeLog,v 1.105 2009/11/27 23:24:52 robbat2 Exp $
+
+*memcached-1.4.4 (27 Nov 2009)
+
+  27 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +memcached-1.4.4.ebuild, +files/memcached-1.4.4-as-needed.patch:
+  Version bump. Also fix bug #288833 for --as-needed.
 
   12 Oct 2009; Robin H. Johnson <robbat2@gentoo.org> memcached-1.4.2.ebuild:
   Disable doc building as it wants a bunch of stuff that Gentoo doesn't
