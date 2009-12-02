@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-names/twisted-names-8.2.0.ebuild,v 1.5 2009/12/01 09:50:23 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted-names/twisted-names-9.0.0.ebuild,v 1.1 2009/11/30 01:33:04 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
