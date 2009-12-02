@@ -1,6 +1,24 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.285 2009/11/09 12:29:07 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.290 2009/12/01 04:52:17 vapier Exp $
+
+  01 Dec 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.16.1.ebuild,
+  util-linux-2.16.2.ebuild, util-linux-9999.ebuild:
+  Disable tls if the toolchain lacks support.
+
+*util-linux-2.16.2 (30 Nov 2009)
+
+  30 Nov 2009; Mike Frysinger <vapier@gentoo.org> +util-linux-2.16.2.ebuild:
+  Version bump.
+
+  29 Nov 2009; Joseph Jezak <josejx@gentoo.org> util-linux-2.16.1.ebuild:
+  Marked ppc stable for bug #284744.
+
+  28 Nov 2009; Raúl Porcel <armin76@gentoo.org> util-linux-2.16.1.ebuild:
+  ia64/sparc stable wrt #284744
+
+  23 Nov 2009; Markus Meier <maekke@gentoo.org> util-linux-2.16.1.ebuild:
+  arm stable, bug #284744
 
   09 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
   util-linux-2.16.1.ebuild:
