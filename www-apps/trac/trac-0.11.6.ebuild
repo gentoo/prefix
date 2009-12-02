@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.2.ebuild,v 1.4 2009/03/07 20:43:18 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.6.ebuild,v 1.1 2009/11/29 20:11:54 arfrever Exp $
 
 EAPI=2
 
@@ -15,7 +15,7 @@ HOMEPAGE="http://trac.edgewall.com/"
 LICENSE="trac"
 SRC_URI="http://ftp.edgewall.com/pub/trac/${MY_P}.tar.gz"
 
-IUSE="cgi fastcgi mysql postgres sqlite subversion"
+IUSE="cgi fastcgi mysql postgres +sqlite subversion"
 
 KEYWORDS="~amd64-linux ~x86-linux"
 
@@ -23,16 +23,12 @@ KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 WEBAPP_MANUAL_SLOT="yes"
 
-DEPEND="
-	${DEPEND}
-	dev-python/setuptools
-	"
-
 RDEPEND="
-	${RDEPEND}
+	dev-python/setuptools
+	>=dev-python/docutils-0.3.9
+	dev-python/flup
 	>=dev-python/genshi-0.5
 	dev-python/pygments
-	>=dev-python/docutils-0.3.9
 	dev-python/pytz
 	cgi? (
 		virtual/httpd-cgi
@@ -59,11 +55,12 @@ RDEPEND="
 	)
 	!www-apps/trac-webadmin
 	"
+DEPEND="${RDEPEND}"
 
 pkg_setup() {
 	webapp_pkg_setup
 
-	if ! use mysql && ! use postgres && ! use sqlite ; then
+	if ! use mysql && ! use postgres && ! use sqlite; then
 		eerror "You must select at least one database backend, by enabling"
 		eerror "at least one of the 'mysql', 'postgres' or 'sqlite' USE flags."
 		die "no database backend selected"
@@ -92,10 +89,10 @@ src_install() {
 	newconfd "${FILESDIR}"/tracd.confd tracd
 	newinitd "${FILESDIR}"/tracd.initd.2 tracd
 
-	if use cgi ; then
+	if use cgi; then
 		cp cgi-bin/trac.cgi "${ED}"/${MY_CGIBINDIR#${EPREFIX}} || die
 	fi
-	if use fastcgi ; then
+	if use fastcgi; then
 		cp cgi-bin/trac.fcgi "${ED}"/${MY_CGIBINDIR#${EPREFIX}} || die
 	fi
 

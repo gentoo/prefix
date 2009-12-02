@@ -1,6 +1,12 @@
 # ChangeLog for www-apps/trac
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.90 2009/10/17 08:26:29 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.91 2009/11/29 20:11:54 arfrever Exp $
+
+*trac-0.11.6 (29 Nov 2009)
+
+  29 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -trac-0.11.2.ebuild, +trac-0.11.6.ebuild:
+  Version bump. Fix dependencies (bug #256000).
 
   17 Oct 2009; <djc@gentoo.org> trac-0.11.5.ebuild:
   Set +sqlite to make default config work (#261281).
