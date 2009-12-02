@@ -1,6 +1,21 @@
 # ChangeLog for app-arch/dpkg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.108 2009/11/18 15:52:14 yvasilev Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.110 2009/11/27 21:10:35 yvasilev Exp $
+
+*dpkg-1.15.5.3 (27 Nov 2009)
+
+  27 Nov 2009; Yuri Vasilevski <yvasilev@gentoo.org> +dpkg-1.15.5.3.ebuild:
+  Version bump to 1.15.5.3
+
+*dpkg-1.15.5.2-r1 (25 Nov 2009)
+
+  25 Nov 2009; Yuri Vasilevski <yvasilev@gentoo.org>
+  +dpkg-1.15.5.2-r1.ebuild, +files/dpkg-1.15.5-nls.patch,
+  +files/dpkg-1.15.5-unicode.patch:
+  Replaced useless dpkg-1.15.1-nls patch with one that allows to select
+  specific LINGUAS and fixed unicode flag support (previously was building
+  with wide headers and linking with normal ncurces lib when USE=-unicode).
+  Thanks to guillem@d.o for pointing some of this problems.
 
   18 Nov 2009; Yuri Vasilevski <yvasilev@gentoo.org> -dpkg-1.15.5.1.ebuild:
   Removed broken (due to lack of perl 5.10) version.

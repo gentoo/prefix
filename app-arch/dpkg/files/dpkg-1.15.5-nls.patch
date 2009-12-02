@@ -1,0 +1,12 @@
+diff -Naurp dpkg-1.15.5.2.orig/man/Makefile.am dpkg-1.15.5.2/man/Makefile.am
+--- dpkg-1.15.5.2.orig/man/Makefile.am	2009-11-18 07:28:44.000000000 +0000
++++ dpkg-1.15.5.2/man/Makefile.am	2009-11-21 07:14:37.000000000 +0000
+@@ -36,7 +36,7 @@ update-po:
+ 	$(PO4A) $(PO4A_BUILD_OPTS) --force po/po4a.cfg
+ 
+ # Extract the list of languages from the po4a config file.
+-LINGUAS = `sed -ne 's/^.*\[po4a_langs\] \(.*\)$$/\1/p' $(srcdir)/po/po4a.cfg`
++LINGUAS := `sed -ne 's/^.*\[po4a_langs\] \(.*\)$$/\1/p' $(srcdir)/po/po4a.cfg`
+ 
+ install-data-local: install-data-local-@USE_PO4A@
+ 
