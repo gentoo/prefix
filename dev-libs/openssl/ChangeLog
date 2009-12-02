@@ -1,6 +1,26 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.304 2009/11/21 19:57:06 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.309 2009/11/27 22:00:12 vapier Exp $
+
+*openssl-0.9.8l-r2 (27 Nov 2009)
+
+  27 Nov 2009; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8l-r2.ebuild,
+  files/openssl-0.9.8l-CVE-2009-2409.patch:
+  Add other half of MD2 disable so that root certs arent checked #294615 by
+  Alexander Danilov.
+
+  23 Nov 2009; Raúl Porcel <armin76@gentoo.org> openssl-0.9.8l-r1.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #292022
+
+  23 Nov 2009; Brent Baude <ranger@gentoo.org> openssl-0.9.8l-r1.ebuild:
+  Marking openssl-0.9.8l-r1 ppc64 for bug 292022
+
+  23 Nov 2009; Markus Meier <maekke@gentoo.org> openssl-0.9.8l-r1.ebuild:
+  amd64/arm/x86 stable, bug #292022
+
+  22 Nov 2009; Tobias Klausmann <klausman@gentoo.org>
+  openssl-0.9.8l-r1.ebuild:
+  Stable on alpha, bug #292022
 
   21 Nov 2009; nixnut <nixnut@gentoo.org> openssl-0.9.8l-r1.ebuild:
   ppc stable #292022
