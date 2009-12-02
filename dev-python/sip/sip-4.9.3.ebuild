@@ -1,9 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.8.2.ebuild,v 1.12 2009/11/30 06:29:23 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sip/sip-4.9.3.ebuild,v 1.1 2009/11/23 17:32:23 hwoarang Exp $
 
 EAPI="2"
-NEED_PYTHON="2.3"
 SUPPORT_PYTHON_ABIS="1"
 
 inherit python toolchain-funcs
@@ -11,10 +10,10 @@ inherit python toolchain-funcs
 MY_P=${P/_pre/-snapshot-}
 
 DESCRIPTION="A tool for generating bindings for C++ classes so that they can be used by Python"
-HOMEPAGE="http://www.riverbankcomputing.co.uk/software/sip/intro"
-SRC_URI="mirror://gentoo/${MY_P}.tar.gz"
+HOMEPAGE="http://www.riverbankcomputing.co.uk/software/sip/intro http://pypi.python.org/pypi/SIP"
+SRC_URI="http://www.riverbankcomputing.com/static/Downloads/${PN}${PV%%.*}/${MY_P}.tar.gz"
 
-LICENSE="sip"
+LICENSE="|| ( GPL-2 GPL-3 sip )"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="debug doc"
@@ -65,8 +64,13 @@ src_install() {
 
 pkg_postinst() {
 	python_mod_optimize sipconfig.py sipdistutils.py
+
+	ewarn 'When updating sip, you usually need to recompile packages that'
+	ewarn 'depend on sip, such as PyQt4 and qscintilla-python. If you have'
+	ewarn 'app-portage/gentoolkit installed you can find these packages with'
+	ewarn '`equery d sip` and `equery d PyQt4`.'
 }
 
 pkg_postrm() {
-	python_mod_cleanup
+	python_mod_cleanup sipconfig.py sipdistutils.py
 }
