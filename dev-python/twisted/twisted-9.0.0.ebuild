@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-8.2.0-r2.ebuild,v 1.12 2009/12/01 09:44:17 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/twisted/twisted-9.0.0.ebuild,v 1.2 2009/11/30 12:45:57 arfrever Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -18,8 +18,7 @@ SLOT="0"
 KEYWORDS="~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="crypt gtk serial"
 
-DEPEND=">=dev-lang/python-2.3
-	>=net-zope/zope-interface-3.0.1
+DEPEND=">=net-zope/zope-interface-3.0.1
 	serial? ( dev-python/pyserial )
 	crypt? ( >=dev-python/pyopenssl-0.5.1 )
 	gtk? ( >=dev-python/pygtk-1.99 )
@@ -38,9 +37,6 @@ src_prepare(){
 
 	# Pass valid arguments to "head" in the zsh completion function.
 	epatch "${FILESDIR}/${PN}-2.1.0-zsh-head.patch"
-
-	# Skip tests that demand non-root user
-	epatch "${FILESDIR}/${P}_tests.patch"
 }
 
 src_test() {
@@ -48,10 +44,6 @@ src_test() {
 		"$(PYTHON)" setup.py build -b "build-${PYTHON_ABI}" install --root="${T}/tests" --no-compile || die "Installation of tests failed with Python ${PYTHON_ABI}"
 
 		pushd "${T}/tests$(python_get_sitedir)" > /dev/null || die
-
-		# Skip tests that demand non-root user.
-		rm -f twisted/test/test_plugin.py
-		rm -f twisted/test/test_process.py
 
 		# Skip broken tests.
 		rm -f twisted/python/test/test_release.py
@@ -73,6 +65,8 @@ src_test() {
 
 src_install() {
 	distutils_src_install
+
+	python_convert_shebangs "" "${ED}usr/bin/trial"
 
 	# get rid of this to prevent collision-protect from killing us. it
 	# is regenerated in pkg_postinst.
@@ -100,7 +94,7 @@ update_plugin_cache() {
 		# twisted is still installed, update.
 	    # we have to use getPlugIns here for <=twisted-2.0.1 compatibility
 		einfo "Regenerating plugin cache"
-		python -c "from twisted.plugin import IPlugin, getPlugIns;list(getPlugIns(IPlugin))"
+		"$(PYTHON)" -c "from twisted.plugin import IPlugin, getPlugIns;list(getPlugIns(IPlugin))"
 	fi
 }
 
