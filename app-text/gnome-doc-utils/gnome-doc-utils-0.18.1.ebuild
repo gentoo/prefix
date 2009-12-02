@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.18.1.ebuild,v 1.1 2009/11/21 10:05:44 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/gnome-doc-utils-0.18.1.ebuild,v 1.2 2009/11/23 20:47:51 eva Exp $
 
 EAPI="2"
 
@@ -29,12 +29,20 @@ DOCS="AUTHORS ChangeLog NEWS README"
 # FIXME: Highly broken with parallel make, see bug #286889
 MAKEOPTS="${MAKEOPTS} -j1"
 
+# If there is a need to reintroduce eautomake or eautoreconf, make sure
+# to AT_M4DIR="tools m4", bug #224609 (m4 removes glib build time dep)
+
 pkg_setup() {
 	G2CONF="${G2CONF} --disable-scrollkeeper"
 }
 
-# If there is a need to reintroduce eautomake or eautoreconf, make sure
-# to AT_M4DIR="tools m4", bug #224609 (m4 removes glib build time dep)
+src_prepare() {
+	gnome2_src_prepare
+
+	# disable pyc compiling
+	mv py-compile py-compile.orig
+	ln -s $(type -P true) py-compile
+}
 
 pkg_postinst() {
 	python_need_rebuild

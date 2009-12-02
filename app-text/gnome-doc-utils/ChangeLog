@@ -1,6 +1,18 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.148 2009/11/21 10:05:44 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.151 2009/11/30 19:47:29 ranger Exp $
+
+  30 Nov 2009; Brent Baude <ranger@gentoo.org>
+  gnome-doc-utils-0.16.1.ebuild:
+  Marking gnome-doc-utils-0.16.1 ppc64 for bug 281427
+
+  28 Nov 2009; Raúl Porcel <armin76@gentoo.org>
+  gnome-doc-utils-0.16.1.ebuild:
+  alpha/ia64/sparc stable wrt #281427
+
+  23 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-doc-utils-0.18.1.ebuild:
+  Kill generation of *.py{c,o} at build time, bug #294140.
 
 *gnome-doc-utils-0.18.1 (21 Nov 2009)
 
