@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/gnokii-0.6.27-r2.ebuild,v 1.12 2009/08/31 22:08:39 ikelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/gnokii-0.6.27-r2.ebuild,v 1.13 2009/11/30 06:05:17 josejx Exp $
 
 inherit eutils linux-info autotools
 
