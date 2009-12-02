@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/levee
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/ChangeLog,v 1.24 2009/11/21 17:24:33 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/levee/ChangeLog,v 1.25 2009/11/30 23:30:54 tcunha Exp $
+
+  01 Dec 2009; Tiago Cunha <tcunha@gentoo.org> levee-3.5a.ebuild:
+  stable sparc, bug 289333
 
   21 Nov 2009; Markus Meier <maekke@gentoo.org> levee-3.5a.ebuild:
   x86 stable, bug #289333
