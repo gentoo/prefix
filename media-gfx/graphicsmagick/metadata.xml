@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>no-herd</herd>
-<maintainer><email>kloeri@gentoo.org</email></maintainer>
+<maintainer>
+  <email>bicatali@gentoo.org</email>
+</maintainer>
+<herd>graphics</herd>
+<longdescription lang='en'>
+  This is a port of GraphicsMagick(TM), the "swiss army knife" of
+  image processing. It provides a robust collection of tools and libraries
+  which support reading, writing, and manipulating an image in over 88 major
+  formats including formats like DPX, GIF, JPEG, JPEG-2000, PNG, PDF,
+  SVG and TIFF.
+  The program is the fork of a better-known ImageMagick (5.5.2), which
+  emphasizes end-user and API-stabilities.
+</longdescription>
+<use>
+  <flag name='fpx'>Enable FlashPix support</flag>
+  <flag name='gs'>Enable Ghoscript support</flag>
+  <flag name='q16'>Set quantum depth to 16</flag>
+  <flag name='q32'>Set quantum depth to 32</flag>
+</use>
 </pkgmetadata>
