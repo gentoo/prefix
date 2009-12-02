@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.24.ebuild,v 1.2 2009/11/05 18:19:29 tommy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.25.ebuild,v 1.1 2009/11/25 09:59:17 bangert Exp $
 
 EAPI="2"
 
@@ -8,7 +8,7 @@ inherit eutils autotools depend.php
 
 DESCRIPTION="Lightweight high-performance web server"
 HOMEPAGE="http://www.lighttpd.net/"
-SRC_URI="http://www.lighttpd.net/download/${P}.tar.bz2"
+SRC_URI="http://download.lighttpd.net/lighttpd/releases-1.4.x/${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
@@ -96,12 +96,11 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/lighttpd-1.4.24-{mod_magnet-fix-pairs,mod_rewrite-without-pcre}.patch
+	epatch "${FILESDIR}"/1.4.25-fix-unknown-AM_SILENT_RULES.patch
 	# dev-python/docutils installs rst2html.py not rst2html
 	sed -i -e 's|\(rst2html\)|\1.py|g' doc/Makefile.am || \
 		die "sed doc/Makefile.am failed"
 
-	#epatch "${FILESDIR}"/${PN}-1.4.20-interix.patch
 	epatch "${FILESDIR}"/${PN}-darwin-bundle.patch
 
 	eautoreconf
