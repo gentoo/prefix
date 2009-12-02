@@ -10,13 +10,11 @@ VIM_GENTOO_PATCHES="vim-${VIM_VERSION}-gentoo-patches.tar.bz2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
 GVIMRC_FILE_SUFFIX="-r1"
 GVIM_DESKTOP_SUFFIX="-r2"
-PREFIX_VER="5"
 
 SRC_URI="ftp://ftp.vim.org/pub/vim/unstable/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-extra.tar.gz
-	mirror://gentoo/${VIM_ORG_PATCHES}
-	http://dev.gentoo.org/~grobian/distfiles/vim-misc-prefix-${PREFIX_VER}.tar.bz2"
+	mirror://gentoo/${VIM_ORG_PATCHES}"
 
 S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="GUI version of the Vim text editor"
