@@ -1,6 +1,9 @@
 # ChangeLog for dev-python/sancho
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/sancho/ChangeLog,v 1.42 2009/10/31 14:35:53 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/sancho/ChangeLog,v 1.43 2009/11/26 10:34:37 maekke Exp $
+
+  26 Nov 2009; Markus Meier <maekke@gentoo.org> sancho-2.4.ebuild:
+  arm stable, bug #288563
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> sancho-2.4.ebuild:
   Marking sancho-2.4 ppc64 for bug 288563
