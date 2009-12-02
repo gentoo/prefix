@@ -6,5 +6,6 @@
 <use>
 	<flag name='transparent-proxy'>Enables support for transparent
 		proxies</flag>
+	<flag name='http-via-header'>Add Via field to HTTP headers</flag>
 </use>
 </pkgmetadata>

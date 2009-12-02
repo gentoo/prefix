@@ -1,6 +1,12 @@
 # ChangeLog for net-proxy/tinyproxy
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/ChangeLog,v 1.12 2008/09/25 21:01:49 mrness Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/ChangeLog,v 1.13 2009/11/29 09:58:56 mrness Exp $
+
+*tinyproxy-1.6.5 (29 Nov 2009)
+
+  29 Nov 2009; Alin Năstac <mrness@gentoo.org> +tinyproxy-1.6.5.ebuild,
+  +files/tinyproxy-no-via.patch, metadata.xml:
+  Add http-via-header USE flag (#292715). Migrate to EAPI 2.
 
 *tinyproxy-1.6.4 (25 Sep 2008)
 
