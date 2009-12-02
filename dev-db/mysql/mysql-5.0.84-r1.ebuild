@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.84-r1.ebuild,v 1.7 2009/11/09 18:00:20 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.84-r1.ebuild,v 1.9 2009/11/29 18:13:17 klausman Exp $
 
 MY_EXTRAS_VER="20090908-1245Z"
 EAPI=2
@@ -29,7 +29,7 @@ src_unpack() {
 }
 
 # Official test instructions:
-# USE='berkdb cluster embedded extraengine' \
+# USE='berkdb cluster embedded extraengine perl ssl community' \
 # FEATURES='test userpriv -usersandbox' \
 # ebuild mysql-X.X.XX.ebuild \
 # digest clean package

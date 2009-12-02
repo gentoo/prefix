@@ -1,6 +1,13 @@
 # ChangeLog for dev-db/mysql
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.495 2009/11/09 18:00:20 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.497 2009/11/29 18:13:17 klausman Exp $
+
+  29 Nov 2009; Tobias Klausmann <klausman@gentoo.org>
+  mysql-5.0.84-r1.ebuild:
+  Stable on alpha, bug #290485
+
+  26 Nov 2009; Robin H. Johnson <robbat2@gentoo.org> mysql-5.0.84-r1.ebuild:
+  Update my official test instructions for arches seeking to mark as stable.
 
   09 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
   mysql-5.0.84-r1.ebuild:
