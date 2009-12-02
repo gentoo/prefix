@@ -1,6 +1,9 @@
 # ChangeLog for net-irc/irssi
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.154 2009/11/18 20:38:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.155 2009/11/22 21:58:41 swegener Exp $
+
+  22 Nov 2009; Sven Wegener <swegener@gentoo.org> irssi-0.8.14.ebuild:
+  Switch ebuild to EAPI-2.
 
   18 Nov 2009; Brent Baude <ranger@gentoo.org> irssi-0.8.14.ebuild:
   Marking irssi-0.8.14 ppc64 for bug 287273

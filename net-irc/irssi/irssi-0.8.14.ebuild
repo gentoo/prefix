@@ -1,6 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.14.ebuild,v 1.8 2009/11/18 20:38:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.14.ebuild,v 1.9 2009/11/22 21:58:41 swegener Exp $
+
+EAPI="2"
 
 inherit perl-module
 
@@ -11,7 +13,7 @@ SRC_URI="http://irssi.org/files/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="ipv6 perl ssl socks5"
+IUSE="ipv6 +perl ssl socks5"
 
 RDEPEND="sys-libs/ncurses
 	>=dev-libs/glib-2.2.1
@@ -24,14 +26,11 @@ RDEPEND="${RDEPEND}
 	perl? ( !net-im/silc-client )
 	!net-irc/irssi-svn"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	epunt_cxx
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		--with-proxy \
 		--with-ncurses \
@@ -41,11 +40,10 @@ src_compile() {
 		$(use_enable ssl) \
 		$(use_enable ipv6) \
 		|| die "econf failed"
-	emake || die "emake failed"
 }
 
 src_install() {
-	make \
+	emake \
 		DESTDIR="${D}" \
 		docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		install || die "make install failed"
