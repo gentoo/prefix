@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.1.11.ebuild,v 1.1 2009/11/02 22:58:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/nano/nano-2.2.0.ebuild,v 1.1 2009/11/30 16:20:49 vapier Exp $
 
 EAPI=2
 inherit eutils
@@ -31,7 +31,6 @@ src_unpack() {
 		unpack ${A}
 	fi
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-proto.patch
 	if [[ ! -e configure ]] ; then
 		./autogen.sh || die "autogen failed"
 	fi
