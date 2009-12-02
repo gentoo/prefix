@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/bzr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.113 2009/10/20 17:05:38 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.116 2009/12/01 13:05:34 maekke Exp $
+
+  01 Dec 2009; Markus Meier <maekke@gentoo.org> bzr-2.0.1.ebuild:
+  amd64 stable, bug #294803
+
+  30 Nov 2009; Joseph Jezak <josejx@gentoo.org> bzr-2.0.1.ebuild:
+  Marked ppc stable for bug #294803, and marked ~ppc64.
+
+  27 Nov 2009; Christian Faulhammer <fauli@gentoo.org> bzr-2.0.1.ebuild:
+  stable x86, bug 294803
 
 *bzr-2.1.0_beta1 (20 Oct 2009)
 
