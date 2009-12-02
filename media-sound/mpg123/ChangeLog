@@ -1,6 +1,14 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.209 2009/11/03 17:54:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.210 2009/12/01 18:20:24 ssuominen Exp $
+
+*mpg123-1.9.2 (01 Dec 2009)
+
+  01 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> +mpg123-1.9.2.ebuild,
+  +files/mpg123-1.9.2-libtool.patch:
+  Version bump wrt #294106, thanks to Shark <shark at bitchx.it> for
+  reporting. Fix ABI handling wrt #295075, thanks to Ferret <ferret at
+  explodingferret.com> for reporting.
 
   03 Nov 2009; Raúl Porcel <armin76@gentoo.org> mpg123-1.9.0.ebuild:
   ia64/sparc stable wrt #287239
