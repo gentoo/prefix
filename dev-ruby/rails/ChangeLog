@@ -1,6 +1,20 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.159 2009/11/28 11:20:27 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.163 2009/11/30 18:46:39 armin76 Exp $
+
+  30 Nov 2009; Raúl Porcel <armin76@gentoo.org> rails-2.2.3-r1.ebuild,
+  rails-2.3.5.ebuild:
+  ia64/sparc stable wrt #294797
+
+  30 Nov 2009; Brent Baude <ranger@gentoo.org> rails-2.2.3-r1.ebuild,
+  rails-2.3.5.ebuild:
+  Marking rails-2.3.5 ppc64 stable for bug 294797
+
+  30 Nov 2009; Markus Meier <maekke@gentoo.org> rails-2.3.5.ebuild:
+  amd64/x86 stable, bug #294797
+
+  30 Nov 2009; Markus Meier <maekke@gentoo.org> rails-2.2.3-r1.ebuild:
+  amd64/x86 stable, bug #294797
 
 *rails-2.2.3-r1 (28 Nov 2009)
 
