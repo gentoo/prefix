@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.17 2009/10/28 15:53:59 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.25 2009/11/28 20:54:32 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI="2"
@@ -11,7 +11,7 @@ inherit bash-completion check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-
 
 IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
-MY_PV=3.1.1.4
+MY_PV=3.1.1.5
 PATCHLEVEL=OOO310
 SRC=OOo_${PV}_src
 MST=ooo310-m19
@@ -62,6 +62,13 @@ LANGS="${LANGS1} en en_US"
 
 for X in ${LANGS} ; do
 	IUSE="${IUSE} linguas_${X}"
+done
+
+# intersection of available linguas and app-dicts/myspell-* dictionaries
+SPELL_DIRS="af bg ca cs cy da de el en eo es et fr ga gl he hr hu it ku lt mk nb nl nn pl pt ru sk sl sv tn zu"
+SPELL_DIRS_DEPEND=""
+for X in ${SPELL_DIRS} ; do
+	SPELL_DIRS_DEPEND="${SPELL_DIRS_DEPEND} linguas_${X}? ( app-dicts/myspell-${X} )"
 done
 
 HOMEPAGE="http://go-oo.org"
@@ -115,6 +122,7 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	>=virtual/poppler-0.8.0"
 
 RDEPEND="java? ( >=virtual/jre-1.5 )
+	${SPELL_DIRS_DEPEND}
 	${COMMON_DEPEND}"
 
 DEPEND="${COMMON_DEPEND}
@@ -126,8 +134,6 @@ DEPEND="${COMMON_DEPEND}
 	x11-proto/xineramaproto
 	>=sys-apps/findutils-4.1.20-r1
 	dev-perl/Archive-Zip
-	virtual/perl-IO-Compress
-	>=virtual/perl-Compress-Raw-Zlib-2.002
 	dev-util/pkgconfig
 	dev-util/intltool
 	>=dev-libs/boost-1.33.1
@@ -155,10 +161,7 @@ pkg_setup() {
 	ewarn " build when it comes to CFLAGS.  A number of flags have already "
 	ewarn " been filtered out.  If you experience difficulty merging this  "
 	ewarn " package and use agressive CFLAGS, lower the CFLAGS and try to  "
-	ewarn " merge again. Also note that building OOo takes a lot of time and "
-	ewarn " hardware ressources: 4-6 GB free diskspace and 256 MB RAM are "
-	ewarn " the minimum requirements. If you have less, use openoffice-bin "
-	ewarn " instead. "
+	ewarn " merge again. "
 	ewarn
 	ewarn " Also if you experience a build break, please make sure to retry "
 	ewarn " with MAKEOPTS="-j1" before filing a bug. "
@@ -166,7 +169,7 @@ pkg_setup() {
 
 	# Check if we have enough RAM and free diskspace to build this beast
 	CHECKREQS_MEMORY="512"
-	use debug && CHECKREQS_DISK_BUILD="8192" || CHECKREQS_DISK_BUILD="6144"
+	use debug && CHECKREQS_DISK_BUILD="12288" || CHECKREQS_DISK_BUILD="6144"
 	check_reqs
 
 	strip-linguas ${LANGS}
@@ -240,6 +243,8 @@ src_prepare() {
 	epatch "${FILESDIR}/gentoo-${PV}.diff"
 	epatch "${FILESDIR}/gentoo-pythonpath.diff"
 	epatch "${FILESDIR}/ooo-env_log.diff"
+	epatch "${FILESDIR}/Gentoo_ODK_install.patch"
+	use !gtk && use !gnome && epatch "${FILESDIR}/nocairofonts.diff"
 	cp -f "${FILESDIR}/base64.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/boost-undefined-references.diff" "${S}/patches/hotfixes" || die
 
@@ -402,8 +407,8 @@ pkg_postinst() {
 	fdo-mime_mime_database_update
 	BASH_COMPLETION_NAME=ooffice && bash-completion_pkg_postinst
 
-# does this make sense for Prefix?
-	[[ -x ${EPREFIX}/sbin/chpax ]] && [[ -e ${EPREFIX}/usr/$(get_libdir)/openoffice/program/soffice.bin ]] && chpax -zm ${EPREFIX}/usr/$(get_libdir)/openoffice/program/soffice.bin
+	# does this make sense for Prefix?
+	( [[ -x /sbin/chpax ]] || [[ -x /sbin/paxctl ]] ) && [[ -e "${EPREFIX}"/usr/$(get_libdir)/openoffice/program/soffice.bin ]] && scanelf -Xzm "${EPREFIX}"/usr/$(get_libdir)/openoffice/program/soffice.bin
 
 	# Add available & useful jars to openoffice classpath
 	use java && ${EPREFIX}/usr/$(get_libdir)/openoffice/${BASIS}/program/java-set-classpath $(java-config --classpath=jdbc-mysql 2>/dev/null) >/dev/null

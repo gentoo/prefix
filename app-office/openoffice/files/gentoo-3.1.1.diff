@@ -11,6 +11,15 @@
  
  [ LinuxOnly ]
  # fix that allows OOo to work with a standard (unpatched) libjpeg,
+@@ -1528,6 +1528,8 @@
+ gentoo-sandbox.diff
+ # specific JVM search path
+ jvm-search-path.diff
++# build against xulrunner 1.9.1+
++xulrunner-1.9.1.diff, ccheney
+ 
+ [ DebianBaseOnly ]
+ SectionOwner => rengelha
 --- patches/dev300/kde4-configure2.diff
 +++ patches/dev300/kde4-configure2.diff
 @@ -7,7 +7,7 @@

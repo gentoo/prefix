@@ -1,6 +1,50 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.496 2009/10/29 11:43:23 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.504 2009/11/28 20:54:32 suka Exp $
+
+  28 Nov 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  Automatically depend on myspell dictionaries according to 
+  LINGUAS-settings, patch by Lars <lars.winterfeld@tu-ilmenau.de>
+  Closes bug #292813
+
+  28 Nov 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild, files/gentoo-3.1.1.diff,
+  +files/nocairofonts.diff, -files/ooo-build-patchver.diff:
+  Do not use cairo-font patches for systems without gtk and gnome, otherwise
+  the build breaks, see bug #285084
+
+  28 Nov 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  Bump ooo-build patchset to latest release (3.1.1.5), bunch of 
+  bugfixes, see:
+
+  http://cgit.freedesktop.org/ooo-build/ooo-build/tree/NEWS?h=ooo-build-3-1-
+  1
+
+  for more information.
+
+  27 Nov 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  Remove unnecessary dependencies
+
+  26 Nov 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild, +files/Gentoo_ODK_install.patch:
+  Finally fix ODK installation, see bug #151798
+
+  25 Nov 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  better pax check, see bug #258051
+
+  25 Nov 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  Remove outdated mem- and disk-requirement info, also raise disk-usage 
+  warning for debug builds
+
+  25 Nov 2009; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild, +files/ooo-build-patchver.diff:
+  Fix build with sys-devel/patch-2.6, thanks to Anthony Low
+  <shinji@pikopiko.org> for the fix. Closes bug #293385
 
   29 Oct 2009; Andreas Proschofsky <suka@gentoo.org>
   files/gentoo-3.1.1.diff:
