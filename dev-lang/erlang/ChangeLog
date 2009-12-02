@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/erlang
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.172 2009/11/19 14:53:31 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/ChangeLog,v 1.173 2009/11/25 11:21:02 maekke Exp $
+
+  25 Nov 2009; Markus Meier <maekke@gentoo.org> erlang-13.2.2.ebuild:
+  amd64 stable, bug #291742
 
   19 Nov 2009; Christian Faulhammer <fauli@gentoo.org> erlang-13.2.2.ebuild:
   stable x86, bug 291742
