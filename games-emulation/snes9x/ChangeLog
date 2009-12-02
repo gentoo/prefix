@@ -1,6 +1,9 @@
 # ChangeLog for games-emulation/snes9x
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/snes9x/ChangeLog,v 1.34 2009/10/21 18:05:25 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/snes9x/ChangeLog,v 1.35 2009/11/26 10:58:26 fauli Exp $
+
+  26 Nov 2009; Christian Faulhammer <fauli@gentoo.org> snes9x-1.51.ebuild:
+  stable x86, bug 289000
 
   21 Oct 2009; <chainsaw@gentoo.org> snes9x-1.51.ebuild:
   Marked stable on AMD64 as requested by Michael "Mr. Bones." Sterrett in

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-emulation/snes9x/snes9x-1.51.ebuild,v 1.4 2009/10/21 18:05:25 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-emulation/snes9x/snes9x-1.51.ebuild,v 1.5 2009/11/26 10:58:26 fauli Exp $
 
 # 3dfx support (glide) is disabled because it requires
 # glide-v2 while we only provide glide-v3 in portage
