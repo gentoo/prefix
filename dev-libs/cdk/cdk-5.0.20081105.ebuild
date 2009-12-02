@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/cdk-5.0.20081105.ebuild,v 1.5 2009/11/16 23:38:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/cdk-5.0.20081105.ebuild,v 1.6 2009/11/26 18:11:11 vostorga Exp $
 
 inherit eutils versionator toolchain-funcs
 
@@ -37,7 +37,7 @@ src_compile() {
 src_install() {
 	emake -j1 \
 		DESTDIR="${D}" \
-		DOCUMENT_DIR="${ED}/usr/share/doc/${MY_P}" install \
+		DOCUMENT_DIR="${ED}/usr/share/doc/${PF}" install \
 		|| die
 
 	if $(use examples); then
