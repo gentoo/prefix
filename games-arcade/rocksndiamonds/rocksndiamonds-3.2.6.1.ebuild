@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.2.6.0.ebuild,v 1.5 2009/02/07 20:47:32 gentoofan23 Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/rocksndiamonds-3.2.6.1.ebuild,v 1.1 2009/11/27 22:39:08 mr_bones_ Exp $
 
 EAPI=2
 inherit flag-o-matic eutils games toolchain-funcs
@@ -12,12 +12,12 @@ SRC_URI="http://www.artsoft.org/RELEASES/unix/rocksndiamonds/${P}.tar.gz
 	http://www.artsoft.org/RELEASES/rocksndiamonds/levels/BD2K3-1.0.0.zip
 	http://www.artsoft.org/RELEASES/rocksndiamonds/levels/Boulder_Dash_Dream-1.0.0.zip
 	http://www.artsoft.org/RELEASES/rocksndiamonds/levels/rnd-contrib-1.0.0.tar.gz
+	http://www.artsoft.org/RELEASES/rocksndiamonds/levels/Snake_Bite-1.0.0.zip
+	http://www.artsoft.org/RELEASES/rocksndiamonds/levels/Sokoban-1.0.0.zip
 	http://www.artsoft.org/RELEASES/unix/rocksndiamonds/levels/rockslevels-emc-1.0.tar.gz
 	http://www.artsoft.org/RELEASES/unix/rocksndiamonds/levels/rockslevels-sp-1.0.tar.gz
 	http://www.artsoft.org/RELEASES/unix/rocksndiamonds/levels/rockslevels-dx-1.0.tar.gz
-	http://www.artsoft.org/RELEASES/rocksndiamonds/levels/Snake_Bite-1.0.0.zip
-	http://www.artsoft.org/RELEASES/rocksndiamonds/levels/Sokoban-1.0.0.zip
-	http://www.jb-line.de/rnd_jue-v7.zip"
+	http://www.jb-line.de/hp/rnd_jue-v7.zip"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -29,7 +29,7 @@ RDEPEND="
 	X? ( x11-libs/libX11 )
 	!sdl? ( x11-libs/libX11 )
 	sdl? (
-		>=media-libs/libsdl-1.2.3
+		>=media-libs/libsdl-1.2.3[joystick,video]
 		>=media-libs/sdl-mixer-1.2.4[mikmod,mp3,timidity]
 		media-libs/sdl-net
 		>=media-libs/sdl-image-1.2.2[gif]
@@ -54,7 +54,7 @@ src_prepare() {
 	# make it parallel-friendly.
 	epatch "${FILESDIR}"/${P}-parallel-build.patch
 	# make it build on windows with X11
-	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${P}-winnt.patch
+	[[ ${CHOST} == *-winnt* ]] && epatch "${FILESDIR}"/${PN}-3.2.6.0-winnt.patch
 	sed -i \
 		-e 's:\$(MAKE_CMD):$(MAKE) -C $(SRC_DIR):' \
 		-e '/^MAKE/d' \
