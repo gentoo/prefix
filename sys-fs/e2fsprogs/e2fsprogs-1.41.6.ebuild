@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.6.ebuild,v 1.3 2009/06/20 12:00:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.6.ebuild,v 1.4 2009/12/01 04:47:34 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -76,7 +76,7 @@ src_compile() {
 		--sbindir="${EPREFIX}"/sbin \
 		--enable-${libtype}-shlibs \
 		--with-ldopts="${LDFLAGS}" \
-		$(use_enable !elibc_uclibc tls) \
+		$(tc-has-tls || echo --disable-tls) \
 		--without-included-gettext \
 		$(use_enable nls) \
 		$(use_enable userland_GNU fsck) \
