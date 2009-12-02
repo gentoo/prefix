@@ -1,6 +1,9 @@
 # ChangeLog for app-text/clara
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/clara/ChangeLog,v 1.19 2009/03/22 07:56:01 spock Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/clara/ChangeLog,v 1.20 2009/11/28 12:04:32 spock Exp $
+
+  28 Nov 2009; Michał Januszewski <spock@gentoo.org> clara-20031214.ebuild:
+  Fix bug #294816.
 
   22 Mar 2009; Michał Januszewski <spock@gentoo.org>
   +files/clara_open_mode.patch, clara-20031214.ebuild:

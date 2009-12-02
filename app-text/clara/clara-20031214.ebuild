@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/clara/clara-20031214.ebuild,v 1.21 2009/03/22 07:56:01 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/clara/clara-20031214.ebuild,v 1.22 2009/11/28 12:04:32 spock Exp $
 
 inherit eutils toolchain-funcs
 
@@ -15,6 +15,11 @@ IUSE=""
 
 RDEPEND="x11-libs/libX11"
 DEPEND="${RDEPEND}"
+
+# The test provided by clara doesn't seem to make any sense.  It just
+# calls the binary with an unsupported option, which results in an
+# error.
+RESTRICT="test"
 
 src_unpack() {
 	unpack ${A}
