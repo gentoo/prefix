@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.3.2.ebuild,v 1.2 2009/11/21 23:30:18 griffon26 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.3.2.ebuild,v 1.3 2009/11/28 12:13:02 remi Exp $
 
 EAPI="1"
 
@@ -26,7 +26,7 @@ DEPEND="${RDEPEND}
 	)
 	test? ( dev-lang/perl )
 	x11-proto/xf86bigfontproto
-	xcb? (
+	!xcb? (
 		x11-proto/bigreqsproto
 		x11-proto/xcmiscproto
 	)
