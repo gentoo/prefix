@@ -1,6 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-1.17.ebuild,v 1.11 2008/04/20 17:01:55 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/lcms-1.19.ebuild,v 1.1 2009/12/01 11:02:40 pva Exp $
+
+EAPI=2
 
 inherit libtool eutils multilib
 
@@ -15,23 +17,11 @@ IUSE="tiff jpeg zlib python"
 
 RDEPEND="tiff? ( media-libs/tiff )
 	jpeg? ( media-libs/jpeg )
-	zlib? ( sys-libs/zlib )
-	python? ( >=dev-lang/python-1.5.2 )"
-		# ugly workaround because arches have not keyworded it
+	zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}
 	python? ( >=dev-lang/swig-1.3.31 )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# Fix multilib-strict; bug #185294
-#	epatch "${FILESDIR}"/${P}-multilib.patch
-	# use sed expression due to bug #228711
-	sed -i -e '/LCMS_PYEXECDIR=/s/sysconfig\.get_python_lib()/sysconfig.get_python_lib(True)/g' configure{.ac,}
-
-	elibtoolize
-
+src_prepare() {
 	# run swig to regenerate lcms_wrap.cxx and lcms.py (bug #148728)
 	if use python; then
 		cd "${S}"/python
@@ -39,15 +29,13 @@ src_unpack() {
 	fi
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		--disable-dependency-tracking \
 		$(use_with jpeg) \
-		$(use_with tiff) \
-		$(use_with zlib) \
 		$(use_with python) \
-		|| die
-	emake || die "emake failed"
+		$(use_with tiff) \
+		$(use_with zlib)
 }
 
 src_install() {

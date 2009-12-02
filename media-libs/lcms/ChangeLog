@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/lcms
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.105 2009/10/19 19:17:53 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.106 2009/12/01 11:02:40 pva Exp $
+
+*lcms-1.19 (01 Dec 2009)
+
+  01 Dec 2009; Peter Volkov <pva@gentoo.org> -lcms-1.14-r1.ebuild,
+  -lcms-1.15.ebuild, -files/lcms-1.15-bsd.patch, -lcms-1.16.ebuild,
+  -lcms-1.17.ebuild, -files/lcms-1.17-multilib.patch, -lcms-1.18.ebuild,
+  +lcms-1.19.ebuild, -files/lcms.i.diff:
+  Version bump, drop vulnerable versions.
 
   19 Oct 2009; Alexis Ballier <aballier@gentoo.org> lcms-1.18-r1.ebuild:
   keyword ~sparc-fbsd
