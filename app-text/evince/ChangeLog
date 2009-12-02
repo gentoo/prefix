@@ -1,6 +1,9 @@
 # ChangeLog for app-text/evince
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.178 2009/11/01 10:38:20 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/evince/ChangeLog,v 1.179 2009/11/28 17:36:09 armin76 Exp $
+
+  28 Nov 2009; Raúl Porcel <armin76@gentoo.org> evince-2.26.2.ebuild:
+  alpha/ia64/sparc stable wrt #281427
 
   01 Nov 2009; Nirbheek Chauhan <nirbheek@gentoo.org> +files/gconf-2.m4:
   Fix bug 291339 -- need gconf-2.m4 for autoconf
