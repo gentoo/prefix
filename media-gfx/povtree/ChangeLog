@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/povtree
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povtree/ChangeLog,v 1.12 2008/01/15 18:23:46 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povtree/ChangeLog,v 1.13 2009/11/25 22:20:51 maekke Exp $
+
+  25 Nov 2009; Markus Meier <maekke@gentoo.org> povtree-1.5.ebuild:
+  amd64 stable, bug #286640
 
   15 Jan 2008; Fabian Groffen <grobian@gentoo.org> povtree-1.5.ebuild:
   Dropped ppc-macos keyword, see you in prefix
