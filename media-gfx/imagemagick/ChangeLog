@@ -1,6 +1,20 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.368 2009/10/27 18:46:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.371 2009/11/24 20:51:16 fauli Exp $
+
+  24 Nov 2009; Christian Faulhammer <fauli@gentoo.org>
+  imagemagick-6.5.7.0.ebuild:
+  stable x86, bug 291696
+
+  24 Nov 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  imagemagick-6.5.2.9.ebuild, imagemagick-6.5.4.10.ebuild,
+  imagemagick-6.5.7.0.ebuild:
+  Blocks graphicsmagick but with imagemagick USE flag enabled only
+
+  24 Nov 2009; Sébastien Fabbro <bicatali@gentoo.org>
+  imagemagick-6.5.2.9.ebuild, imagemagick-6.5.4.10.ebuild,
+  imagemagick-6.5.7.0.ebuild:
+  Added blocking on graphicsmagick
 
   27 Oct 2009; Raúl Porcel <armin76@gentoo.org>
   imagemagick-6.5.4.10.ebuild, imagemagick-6.5.7.0.ebuild:

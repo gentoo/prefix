@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.2.9.ebuild,v 1.12 2009/09/11 20:58:42 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.2.9.ebuild,v 1.14 2009/11/24 16:48:27 bicatali Exp $
 
 EAPI="2"
 
@@ -51,6 +51,7 @@ RDEPEND="bzip2? ( app-arch/bzip2 )
 		svg? ( >=gnome-base/librsvg-2.9.0 )
 	)
 	!dev-perl/perlmagick
+	!media-gfx/graphicsmagick[imagemagick]
 	!sys-apps/compare
 	>=sys-devel/libtool-1.5.2-r6"
 
