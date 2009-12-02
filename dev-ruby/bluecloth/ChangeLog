@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/bluecloth
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/ChangeLog,v 1.23 2009/11/25 09:46:24 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/ChangeLog,v 1.24 2009/11/29 14:33:44 a3li Exp $
+
+  29 Nov 2009; Alex Legler <a3li@gentoo.org> bluecloth-1.0.0.ebuild:
+  Fix SRC_URI
 
   25 Nov 2009; Markus Meier <maekke@gentoo.org> bluecloth-2.0.5.ebuild:
   amd64 stable, bug #283020
