@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/boost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.175 2009/11/09 21:48:51 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.176 2009/11/25 17:59:16 jer Exp $
+
+  25 Nov 2009; Jeroen Roovers <jer@gentoo.org> boost-1.36.0-r1.ebuild,
+  boost-1.37.0-r1.ebuild, boost-1.39.0.ebuild, boost-1.40.0.ebuild:
+  Remove ~hppa where the endian patch has not been applied (bug #290243).
 
   09 Nov 2009; Mark Loeser <halcy0n@gentoo.org> boost-1.35.0-r5.ebuild,
   boost-1.36.0-r1.ebuild, boost-1.37.0-r1.ebuild, boost-1.39.0.ebuild,

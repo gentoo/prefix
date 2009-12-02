@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.37.0-r1.ebuild,v 1.13 2009/11/09 21:48:51 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.37.0-r1.ebuild,v 1.14 2009/11/25 17:59:16 jer Exp $
 
 EAPI="2"
 
