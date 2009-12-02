@@ -1,6 +1,39 @@
 # ChangeLog for net-nds/openldap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.356 2009/11/21 20:06:14 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.362 2009/11/28 22:25:36 robbat2 Exp $
+
+  28 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openldap-2.4.19-r1.ebuild:
+  2.4.19-r1 is a compile-fix for ldapc++ and some additional safety checks
+  not present in the r0 ebuild. Taking the -r0 keywords per bug 290345 GLSA.
+
+  28 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openldap-2.4.19-r1.ebuild:
+  Bug #294401: ldapc++ will not build on a fresh system as it needs liblber
+  to finish it's configure process.
+
+  28 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openldap-2.4.19-r1.ebuild:
+  Fixup the bash4 usage and go into slightly more detail on the berkdb
+  prebuilt check so users do not block themselves out of their database.
+
+  27 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  openldap-2.4.19-r1.ebuild:
+  Check previously used version of sys-libs/db only with USE="berkdb".
+
+  24 Nov 2009; Robin H. Johnson <robbat2@gentoo.org> openldap-2.4.17.ebuild,
+  openldap-2.4.17-r1.ebuild, openldap-2.4.19.ebuild,
+  openldap-2.4.19-r1.ebuild:
+  Bug #291923, fix missing prefix /.
+
+*openldap-2.4.19-r1 (24 Nov 2009)
+
+  24 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +openldap-2.4.19-r1.ebuild:
+  Bug #293699: Ensure new contrib overlays work properly when dynamically
+  compiled. Bug #291821: Detect that the to-be-linked against version of DB
+  is not the same as the existing linked version and prevent the users data
+  from becoming inaccessible.
 
   21 Nov 2009; nixnut <nixnut@gentoo.org> openldap-2.4.19.ebuild:
   ppc stable #290345

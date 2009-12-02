@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.17-r1.ebuild,v 1.4 2009/11/24 23:31:54 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.19-r1.ebuild,v 1.7 2009/11/28 22:25:36 robbat2 Exp $
 
 EAPI=2
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator toolchain-funcs
@@ -118,6 +118,39 @@ openldap_find_versiontags() {
 		fi
 	done
 
+	# Now we must check for the major version of sys-libs/db linked against.
+	SLAPD_PATH=${EROOT}/usr/$(get_libdir)/openldap/slapd
+	if [ -f "${SLAPD_PATH}" ]; then
+		OLDVER="$(/usr/bin/ldd ${SLAPD_PATH} \
+			| awk '/libdb-/{gsub("^libdb-","",$1);gsub(".so$","",$1);print $1}')"
+		NEWVER="$(use berkdb && db_findver sys-libs/db)"
+		local fail=0
+		if [ -z "${OLDVER}" -a -z "${NEWVER}" ]; then
+			:
+			# Nothing wrong here.
+		elif [ -z "${OLDVER}" -a -n "${NEWVER}" ]; then
+			eerror "	Your existing version of OpenLDAP was not built against"
+			eerror "	any version of sys-libs/db, but the new one will build"
+			eerror "	against	${NEWVER} and your database may be inaccessible."
+			echo
+			fail=1
+		elif [ -n "${OLDVER}" -a -z "${NEWVER}" ]; then
+			eerror "	Your existing version of OpenLDAP was built against"
+			eerror "	sys-libs/db:${OLDVER}, but the new one will not be"
+			eerror "	built against any version and your database may be"
+			eerror "	inaccessible."
+			echo
+			fail=1
+		elif [ "${OLDVER}" != "${NEWVER}" ]; then
+			eerror "	Your existing version of OpenLDAP was built against"
+			eerror "	sys-libs/db:${OLDVER}, but the new one will build against"
+			eerror "	${NEWVER} and your database would be inaccessible."
+			echo
+			fail=1
+		fi
+		[ "${fail}" == "1" ] && openldap_upgrade_howto
+	fi
+
 	echo
 	einfo
 	einfo "All datadirs are fine, proceeding with merge now..."
@@ -131,6 +164,9 @@ openldap_upgrade_howto() {
 	eerror
 	eerror "As major version upgrades can corrupt your database,"
 	eerror "you need to dump your database and re-create it afterwards."
+	eerror
+	eerror "Additionally, rebuilding against different major versions of the"
+	eerror "sys-libs/db libraries will cause your database to be inaccessible."
 	eerror ""
 	d="$(date -u +%s)"
 	l="/root/ldapdump.${d}"
@@ -176,14 +212,14 @@ src_prepare() {
 	sed -i -e 's,\(#define LDAPI_SOCK\).*,\1 "'"${EPREFIX}"'/var/run/openldap/slapd.sock",' \
 		"${S}"/include/ldap_defaults.h
 
-	epatch "${FILESDIR}"/${P}-gcc44.patch
+	epatch "${FILESDIR}"/${PN}-2.4.17-gcc44.patch
 
 	epatch \
 		"${FILESDIR}"/${PN}-2.2.14-perlthreadsfix.patch \
 		"${FILESDIR}"/${PN}-2.4.15-ppolicy.patch
 
-	# bug #116045 - still present in 2.4.17
-	epatch "${FILESDIR}"/${PN}-2.4.17-contrib-smbk5pwd.patch
+	# bug #116045 - still present in 2.4.19
+	epatch "${FILESDIR}"/${PN}-2.4.19-contrib-smbk5pwd.patch
 
 	# bug #189817
 	epatch "${FILESDIR}"/${PN}-2.4.11-libldap_r.patch
@@ -208,8 +244,11 @@ build_contrib_module() {
 	# <dir> <sources> <outputname>
 	cd "${S}/contrib/slapd-modules/$1"
 	einfo "Compiling contrib-module: $3"
+	# Make sure it's uppercase
+	local define_name="$(echo "SLAPD_OVER_${1}" | LC_ALL=C tr '[:lower:]' '[:upper:]')"
 	"${lt}" --mode=compile --tag=CC \
 		"${CC}" \
+		-D${define_name}=SLAPD_MOD_DYNAMIC \
 		-I../../../include -I../../../servers/slapd ${CFLAGS} \
 		-o ${2%.c}.lo -c $2 || die "compiling $3 failed"
 	einfo "Linking contrib-module: $3"
@@ -262,7 +301,7 @@ src_configure() {
 
 		# slapd options
 		myconf="${myconf} $(use_enable crypt) $(use_enable slp)"
-		myconf="${myconf} $(use_enable samba lmpasswd)"
+		myconf="${myconf} $(use_enable samba lmpasswd) $(use_enable syslog)"
 		if use experimental ; then
 			myconf="${myconf} --enable-dynacl"
 			myconf="${myconf} --enable-aci=mod"
@@ -275,9 +314,10 @@ src_configure() {
 		# Compile-in the syncprov, the others as module
 		myconf="${myconf} --enable-syncprov=yes"
 		use overlays && myconf="${myconf} --enable-overlays=mod"
+
 	else
 		myconf="${myconf} --disable-slapd --disable-bdb --disable-hdb"
-		myconf="${myconf} --disable-overlays"
+		myconf="${myconf} --disable-overlays --disable-syslog"
 	fi
 
 	# basic functionality stuff
@@ -293,7 +333,7 @@ src_configure() {
 
 	myconf="${myconf} --with-tls=${ssl_lib}"
 
-	for basicflag in dynamic local proctitle shared static syslog; do
+	for basicflag in dynamic local proctitle shared static; do
 		myconf="${myconf} --enable-${basicflag}"
 	done
 
@@ -301,8 +341,13 @@ src_configure() {
 	STRIP=/bin/true \
 	econf \
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/openldap \
-		${myconf}
+		${myconf} || die "econf failed"
+}
 
+src_configure_cxx() {
+	# This needs the libraries built by the first build run.
+	# So we have to run it AFTER the main build, not just after the main
+	# configure.
 	if ! use minimal ; then
 		 if use cxx ; then
 		 	local myconf_ldapcpp
@@ -310,14 +355,15 @@ src_configure() {
 		 	cd "${S}/contrib/ldapc++"
 		 	OLD_LDFLAGS="$LDFLAGS"
 		 	OLD_CPPFLAGS="$CPPFLAGS"
-		 	append-ldflags "-L../../libraries/liblber/.libs -L../../libraries/libldap/.libs"
-		 	append-ldflags "-L../../../libraries/liblber/.libs -L../../../libraries/libldap/.libs"
-		 	append-cppflags "-I../../../include"
+		 	append-ldflags -L../../libraries/liblber/.libs -L../../libraries/libldap/.libs
+		 	append-ldflags -L../../../libraries/liblber/.libs -L../../../libraries/libldap/.libs
+		 	append-cppflags -I../../../include
 		 	econf ${myconf_ldapcpp} \
 		 		CC="${CC}" \
 		 		CXX="${CXX}" \
 		 		|| die "econf ldapc++ failed"
 		 	CPPFLAGS="$OLD_CPPFLAGS"
+			LDFLAGS="${OLD_LDFLAGS}"
 		 fi
 	fi
 }
@@ -331,6 +377,7 @@ src_compile() {
 	if ! use minimal ; then
 		 if use cxx ; then
 		 	einfo "Building contrib library: ldapc++"
+			src_configure_cxx
 		 	cd "${S}/contrib/ldapc++"
 		 	emake \
 		 		CC="${CC}" CXX="${CXX}" \
@@ -388,6 +435,7 @@ src_compile() {
 
 		build_contrib_module "addpartial" "addpartial-overlay.c" "addpartial-overlay"
 		build_contrib_module "allop" "allop.c" "overlay-allop"
+		build_contrib_module "allowed" "allowed.c" "allowed"
 		build_contrib_module "autogroup" "autogroup.c" "autogroup"
 		build_contrib_module "denyop" "denyop.c" "denyop-overlay"
 		build_contrib_module "dsaschema" "dsaschema.c" "dsaschema-plugin"
