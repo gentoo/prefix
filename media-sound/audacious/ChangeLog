@@ -1,6 +1,20 @@
 # ChangeLog for media-sound/audacious
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.181 2009/11/09 15:06:35 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/audacious/ChangeLog,v 1.184 2009/11/27 12:16:14 chainsaw Exp $
+
+  27 Nov 2009; <chainsaw@gentoo.org> -files/1.5.1-commandline-options.patch,
+  -audacious-1.5.1-r1.ebuild:
+  Remove old ebuild.
+
+  26 Nov 2009; Raúl Porcel <armin76@gentoo.org> audacious-2.1.ebuild:
+  sparc stable wrt #279238
+
+*audacious-2.2 (22 Nov 2009)
+
+  22 Nov 2009; <chainsaw@gentoo.org> +audacious-2.2.ebuild:
+  Our best release yet. The MIDI support has had much love and the
+  PulseAudio plugin works a lot better too. An appropriate output plugin
+  should be selected automatically.
 
   09 Nov 2009; <chainsaw@gentoo.org> -audacious-2.2_alpha2.ebuild,
   -audacious-2.2_beta1.ebuild:
