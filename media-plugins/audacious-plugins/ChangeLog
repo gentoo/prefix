@@ -1,6 +1,40 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.145 2009/11/11 13:04:45 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.151 2009/11/27 12:16:14 chainsaw Exp $
+
+  27 Nov 2009; <chainsaw@gentoo.org> -files/1.5.1-libmtp-0.3.0-API.patch,
+  -files/1.5.1-missing-include.patch, -audacious-plugins-1.5.1-r3.ebuild,
+  metadata.xml:
+  Remove old ebuild.
+
+  26 Nov 2009; Raúl Porcel <armin76@gentoo.org>
+  audacious-plugins-2.1-r1.ebuild:
+  sparc stable wrt #279238
+
+*audacious-plugins-2.2-r2 (25 Nov 2009)
+
+  25 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +audacious-plugins-2.2-r2.ebuild, metadata.xml:
+  Less automagic - explicit control over use of fluidsynth as the midi synth
+  backend. ACKed by chainsaw.
+
+*audacious-plugins-2.2-r1 (25 Nov 2009)
+
+  25 Nov 2009; <chainsaw@gentoo.org> -audacious-plugins-2.2.ebuild,
+  +audacious-plugins-2.2-r1.ebuild, metadata.xml:
+  Add gtkglext dependency for projectm USE-flag and add midi USE-flag for
+  amidiplug now that timidity is gone. Both requests by Mad3.
+
+  23 Nov 2009; Alexis Ballier <aballier@gentoo.org>
+  +files/2.2-jackcompat.patch, audacious-plugins-2.2.ebuild:
+  Fix build with latest jack, bug #294226
+
+*audacious-plugins-2.2 (22 Nov 2009)
+
+  22 Nov 2009; <chainsaw@gentoo.org> +audacious-plugins-2.2.ebuild:
+  Our best release yet. The MIDI support has had much love and the
+  PulseAudio plugin works a lot better too. An appropriate output plugin
+  should be selected automatically.
 
   11 Nov 2009; Samuli Suominen <ssuominen@gentoo.org>
   audacious-plugins-1.5.1-r3.ebuild:
