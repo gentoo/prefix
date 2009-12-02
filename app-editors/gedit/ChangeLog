@@ -1,6 +1,9 @@
 # ChangeLog for app-editors/gedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.286 2009/11/12 23:13:29 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gedit/ChangeLog,v 1.287 2009/11/28 17:37:39 armin76 Exp $
+
+  28 Nov 2009; Raúl Porcel <armin76@gentoo.org> gedit-2.26.3.ebuild:
+  alpha/ia64/sparc stable wrt #281427
 
   12 Nov 2009; Gilles Dartiguelongue <eva@gentoo.org> gedit-2.28.2.ebuild:
   intltool rules fix.
