@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-4.0.3.ebuild,v 1.7 2009/11/28 16:10:38 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-4.0.4.ebuild,v 1.1 2009/11/30 02:46:12 jer Exp $
 
 EAPI="2"
 
@@ -36,7 +36,7 @@ DEPEND="
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.7.14-darwin-bundle.patch
 	epatch "${FILESDIR}/${PN}-4.0.2.91-lafile.patch"
-	epatch "${FILESDIR}/${P}-autoconf-2.64.patch"
+	epatch "${FILESDIR}/${PN}-4.0.3-autoconf-2.64.patch"
 	eautoreconf
 	elibtoolize # for Darwin bundles
 }
