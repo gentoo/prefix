@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/nspr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.130 2009/11/12 15:07:36 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.131 2009/11/30 15:07:32 anarchy Exp $
+
+*nspr-4.8.2 (30 Nov 2009)
+
+  30 Nov 2009; Jory A. Pratt <anarchy@gentoo.org> +nspr-4.8.2.ebuild,
+  +files/nspr-4.8-config.patch, +files/nspr-4.8-pkgconfig-gentoo.patch:
+  version bump
 
   12 Nov 2009; Joseph Jezak <josejx@gentoo.org> nspr-4.8.ebuild:
   Marked ppc64 stable for bug #280837.
