@@ -1,6 +1,14 @@
 # ChangeLog for media-libs/freeglut
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/ChangeLog,v 1.62 2009/10/11 19:36:01 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/ChangeLog,v 1.63 2009/11/30 12:43:55 scarabeus Exp $
+
+*freeglut-2.6.0 (30 Nov 2009)
+
+  30 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/2.6.0-GFX_radeon.patch, -freeglut-2.6.0_rc1.ebuild,
+  +freeglut-2.6.0.ebuild, -files/freeglut-2.6.0_rc1-bsd_joystick.patch,
+  metadata.xml:
+  Version bump. Per bug #295163. Thx to bug reporter for the patches.
 
   11 Oct 2009; nixnut <nixnut@gentoo.org> freeglut-2.6.0_rc1.ebuild:
   revert to ~ppc #287229

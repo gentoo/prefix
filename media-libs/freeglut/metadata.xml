@@ -3,7 +3,17 @@
 <pkgmetadata>
 <herd>x11</herd>
 <maintainer>
-  <email>x11@gentoo.org</email>
+	<email>x11@gentoo.org</email>
 </maintainer>
-<longdescription>Freeglut provides an open-source alternative to the OpenGL Utility Toolkit (GLUT) library. It is actively developed and maintained, while not being restricted by its license.</longdescription>
+<use>
+	<flag name="mpx">
+		Enable support for multi-pointer-X. One pointer for each pointer
+		device.
+	</flag>
+</use>
+<longdescription>
+	Freeglut provides an open-source alternative to the OpenGL Utility Toolkit
+	(GLUT) library. It is actively developed and maintained, while not being
+	restricted by its license.
+</longdescription>
 </pkgmetadata>
