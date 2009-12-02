@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lout/lout-3.31.ebuild,v 1.4 2009/09/06 18:36:26 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lout/lout-3.31.ebuild,v 1.5 2009/11/23 20:02:04 jer Exp $
 
 inherit toolchain-funcs
 
@@ -47,7 +47,7 @@ src_install() {
 	local bindir libdir docdir mandir
 	bindir=${ED}/usr/bin
 	libdir=${ED}/usr/share/lout
-	docdir=${ED}/usr/share/doc/${P}
+	docdir=${ED}/usr/share/doc/${PF}
 	mandir=${ED}/usr/share/man/man1
 	export LOUTLIB=${libdir}
 	export PATH="${bindir}:${PATH}"

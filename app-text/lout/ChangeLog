@@ -1,6 +1,10 @@
 # ChangeLog for app-text/lout
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lout/ChangeLog,v 1.25 2009/09/06 18:36:26 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/lout/ChangeLog,v 1.26 2009/11/23 20:02:04 jer Exp $
+
+  23 Nov 2009; Jeroen Roovers <jer@gentoo.org> lout-3.30.ebuild,
+  lout-3.31.ebuild, lout-3.38.ebuild, lout-3.38-r1.ebuild:
+  Fix docdir (bug #294283).
 
   06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
   -files/lout-3.25-r1-makefile-gentoo.patch,
