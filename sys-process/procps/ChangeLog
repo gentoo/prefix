@@ -1,6 +1,9 @@
 # ChangeLog for sys-process/procps
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.37 2009/10/31 14:17:56 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/procps/ChangeLog,v 1.38 2009/11/23 04:56:23 vapier Exp $
+
+  23 Nov 2009; Mike Frysinger <vapier@gentoo.org> procps-3.2.8.ebuild:
+  Add USE=unicode to control multibyte code.
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> procps-3.2.8.ebuild:
   Marking procps-3.2.8 ppc64 for bug 287743
