@@ -22,8 +22,6 @@ IUSE=""
 
 src_prepare() {
 	vim_src_prepare
-	# new prefix patch tarball needs to be rolled!
-	rm "${S}/vim-misc-prefix/vim-darwin-optimize.patch" # does not apply
 
 	if [[ ${CHOST} == *-interix* ]]; then
 		epatch "${FILESDIR}"/${PN}-7.1-interix-link.patch

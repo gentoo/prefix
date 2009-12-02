@@ -346,11 +346,6 @@ END
 	# which Vim people don't know about
 	epatch "${WORKDIR}"/vim-misc-prefix/vim-darwin-optimize.patch
 
-	if ! version_is_at_least 7.2 ; then
-		# Make vim not look into /usr/local for tools, our prefix contains all
-		# coolness
-		epatch "${WORKDIR}"/vim-misc-prefix/with-local-dir.patch
-	fi
 }
 
 vim_src_unpack() {
