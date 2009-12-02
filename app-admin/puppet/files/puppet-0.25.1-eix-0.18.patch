@@ -60,7 +60,7 @@ index e920580..2a8654c 100644
      def query
 -        result_format = /(\S+) (\S+) \[(?:([0-9.a-zA-Z]+(?:_(?:alpha|beta|pre|rc|p)[0-9]*)*(?:-r[0-9]*)?)(?:\([^\)]+\))?(?:\[([^\]]+)\])?[ ]*)*\] \[(?:(?:\{M\})?(?:\([~*]+\))?([0-9.a-zA-Z]+(?:_(?:alpha|beta|pre|rc|p)[0-9]*)*(?:-r[0-9]*)?)(?:\(([^\)]+)\))?(?:![mf])*(?:\[([^\]]+)\])?)?\] ([\S]*) (.*)/
 -        result_fields = [:category, :name, :ensure, :ensure_overlay, :version_available, :slot, :overlay, :vendor, :description]
-+        result_format = /(\S+) (\S+) \[(\S+)\] \[(\S+)\] (\S+) (.*)/
++        result_format = /(\S+) (\S+) \[(\S*)\] \[(\S+)\] (\S+) (.*)/
 +        result_fields = [:category, :name, :ensure, :version_available, :vendor, :description]
 +
 +        version_format = "{last}<version>{}"
