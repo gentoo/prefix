@@ -1,6 +1,18 @@
 # ChangeLog for net-misc/youtube-dl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/youtube-dl/ChangeLog,v 1.49 2009/09/27 14:23:37 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/youtube-dl/ChangeLog,v 1.52 2009/11/26 13:36:16 josejx Exp $
+
+  26 Nov 2009; Joseph Jezak <josejx@gentoo.org>
+  youtube-dl-2009.09.13.ebuild:
+  Marked ppc/ppc64 stable for bug #292989.
+
+  23 Nov 2009; Markus Meier <maekke@gentoo.org>
+  youtube-dl-2009.09.13.ebuild:
+  amd64/x86 stable, bug #292989
+
+  23 Nov 2009; Patrick Lauer <patrick@gentoo.org>
+  -youtube-dl-2009.08.08.ebuild, -youtube-dl-2009.09.08.ebuild:
+  Remove old
 
 *youtube-dl-2009.09.13 (27 Sep 2009)
 
