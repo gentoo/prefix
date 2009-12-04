@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.9_rc3.ebuild,v 1.1 2009/10/30 12:57:10 ssuominen Exp $
 
-inherit libtool
+inherit libtool eutils
 
 DESCRIPTION="a portable, high level programming interface to various calling conventions."
 HOMEPAGE="http://sourceware.org/libffi"
@@ -22,6 +22,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-3.0.8-interix.patch
+	epatch "${FILESDIR}"/${PN}-3.0.9-irix.patch
 	elibtoolize
 }
 
