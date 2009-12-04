@@ -5,7 +5,7 @@
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
 
-inherit python toolchain-funcs
+inherit python toolchain-funcs eutils
 
 MY_P=${P/_pre/-snapshot-}
 
@@ -24,6 +24,7 @@ DEPEND=""
 RDEPEND=""
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-darwin.patch
 	python_copy_sources
 }
 
@@ -31,8 +32,8 @@ src_configure() {
 	configuration() {
 		local myconf="$(PYTHON) configure.py
 				--bindir=${EPREFIX}/usr/bin
-				--destdir=$(python_get_sitedir)
-				--incdir=$(python_get_includedir)
+				--destdir=${EPREFIX}$(python_get_sitedir)
+				--incdir=${EPREFIX}$(python_get_includedir)
 				--sipdir=${EPREFIX}/usr/share/sip
 				$(use debug && echo '--debug')
 				CC=$(tc-getCC) CXX=$(tc-getCXX)
