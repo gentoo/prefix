@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.53 2009/11/25 19:51:11 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.55 2009/12/02 17:07:05 abcd Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -19,7 +19,7 @@
 # Please note that if it's set to 'never' you need to explicitly override following phases:
 # src_configure, src_compile, src_test and src_install.
 # Defaults to 'always'.
-CMAKE_REQUIRED="${CMAKE_REQUIRED:-${CMAKE_REQUIRED:-always}}"
+: ${CMAKE_REQUIRED:=always}
 if [[ ${CMAKE_REQUIRED} = false || ${CMAKE_REQUIRED} = never ]]; then
 	buildsystem_eclass=""
 	export_fns=""
@@ -144,9 +144,9 @@ esac
 # @DESCRIPTION:
 # Determine version of qt we enforce as minimal for the package. 4.4.0 4.5.1..
 # Currently defaults to 4.5.1 for KDE 4.3 and earlier
-# or 4.6.0_beta for KDE 4.4 and later
+# or 4.6.0_rc1 for KDE 4.4 and later
 if slot_is_at_least 4.4 "${KDE_MINIMAL}"; then
-	QT_MINIMAL="${QT_MINIMAL:-4.6.0_beta}"
+	QT_MINIMAL="${QT_MINIMAL:-4.6.0}"
 fi
 
 QT_MINIMAL="${QT_MINIMAL:-4.5.1}"
@@ -239,6 +239,10 @@ if [[ ${PN} != kdelibs ]]; then
 fi
 kdedepend="
 	dev-util/pkgconfig
+	!aqua? (
+		|| ( >=x11-libs/libXtst-1.1.0 <x11-proto/xextproto-7.1.0 )
+		x11-proto/xf86vidmodeproto
+	)
 "
 case ${KDE_REQUIRED} in
 	always)
@@ -253,6 +257,7 @@ case ${KDE_REQUIRED} in
 		;;
 	*) ;;
 esac
+
 unset kdecommondepend kdedepend
 
 debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: COMMONDEPEND is ${COMMONDEPEND}"
@@ -263,6 +268,9 @@ debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: RDEPEND (only) is ${RDEPEND}"
 DEPEND+=" ${COMMONDEPEND}"
 RDEPEND+=" ${COMMONDEPEND}"
 unset COMMONDEPEND
+
+# Add experimental kdeenablefinal, disabled by default
+IUSE+=" kdeenablefinal"
 
 # Fetch section - If the ebuild's category is not 'kde-base' and if it is not a
 # koffice ebuild, the URI should be set in the ebuild itself
@@ -305,7 +313,7 @@ case ${BUILD_TYPE} in
 				kdelibs-*)
 					ESVN_REPO_URI="${ESVN_MIRROR}/${branch_prefix}/kdelibs/${KMNAME#kdelibs-}"
 					;;
-				kdereview)
+				kdereview*)
 					ESVN_REPO_URI="${ESVN_MIRROR}/trunk/${KMNAME}/${KMMODULE}"
 					;;
 				kdesupport)
@@ -356,11 +364,14 @@ case ${BUILD_TYPE} in
 			case ${KDEBASE} in
 				kde-base)
 					case ${PV} in
-						4.3.85 | 4.3.9[0568])
+						4.3.8[05] | 4.3.9[0568])
 							# block for normally packed unstable releases
 							SRC_URI="mirror://kde/unstable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 						4.3.[6-9]*)
-							SRC_URI="http://dev.gentooexperimental.org/~alexxy/kde/${PV}/${_kmname_pv}.tar.lzma" ;;
+							# Repacked tarballs: need to depend on xz-utils to ensure that they can be unpacked
+							SRC_URI="http://dev.gentooexperimental.org/~alexxy/kde/${PV}/${_kmname_pv}.tar.xz"
+							DEPEND+=" app-arch/xz-utils"
+							;;
 						*)	SRC_URI="mirror://kde/stable/${PV}/src/${_kmname_pv}.tar.bz2" ;;
 					esac
 					;;
@@ -454,8 +465,25 @@ kde4-base_src_unpack() {
 	if [[ ${BUILD_TYPE} = live ]]; then
 		migrate_store_dir
 		subversion_src_unpack
+	elif [[ ${EAPI} == 2 ]]; then
+		local file
+		for file in ${A}; do
+			# This setup is because EAPI <= 2 cannot unpack *.tar.xz files
+			# directly, so we do it ourselves (using the exact same code as portage)
+			case ${file} in
+				*.tar.xz)
+					echo ">>> Unpacking ${file} to ${PWD}"
+					xz -dc "${DISTDIR}"/${file} | tar xof -
+					assert "failed unpacking ${file}"
+					;;
+				*)
+					unpack ${file}
+					;;
+			esac
+		done
 	else
-		base_src_unpack
+		# For EAPI >= 3, we can just use unpack() directly
+		unpack ${A}
 	fi
 }
 
@@ -500,17 +528,19 @@ kde4-base_src_prepare() {
 kde4-base_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	# Handle common release builds
-	if ! has debug ${IUSE//+} || ! use debug; then
-		append-cppflags -DQT_NO_DEBUG
-	fi
-
 	# Build tests in src_test only, where we override this value
 	local cmakeargs="-DKDE4_BUILD_TESTS=OFF"
 
-	# set "real" debug mode
+	if has kdeenablefinal ${IUSE//+} && use kdeenablefinal; then
+		cmakeargs+=" -DKDE4_ENABLE_FINAL=ON"
+	fi
+
 	if has debug ${IUSE//+} && use debug; then
+		# Set "real" debug mode
 		CMAKE_BUILD_TYPE="Debugfull"
+	else
+		# Handle common release builds
+		append-cppflags -DQT_NO_DEBUG
 	fi
 
 	# Set distribution name

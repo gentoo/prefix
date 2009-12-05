@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.86 2009/05/18 11:24:30 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.87 2009/12/04 09:11:14 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -223,7 +223,7 @@ eautomake() {
 		local used_automake
 		local installed_automake
 
-		installed_automake=$(automake --version | head -n 1 | \
+		installed_automake=$(WANT_AUTOMAKE= automake --version | head -n 1 | \
 			sed -e 's:.*(GNU automake) ::')
 		used_automake=$(head -n 1 < ${makefile_name}.in | \
 			sed -e 's:.*by automake \(.*\) from .*:\1:')

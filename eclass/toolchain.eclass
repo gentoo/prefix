@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.410 2009/10/19 01:49:36 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.411 2009/12/04 15:00:47 flameeyes Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1986,11 +1986,16 @@ gcc_slot_java() {
 	[[ -f ${ED}${PREFIX}/lib/libgcj.spec ]] && \
 		mv -f "${ED}"${PREFIX}/lib/libgcj.spec "${ED}"${LIBPATH}/libgcj.spec
 
-	# SLOT up libgcj.pc (and let gcc-config worry about links)
 	local libgcj=$(find "${ED}"${PREFIX}/lib/pkgconfig/ -name 'libgcj*.pc')
 	if [[ -n ${libgcj} ]] ; then
-		sed -i "/^libdir=/s:=.*:=${EPREFIX}${LIBPATH}:" "${libgcj}"
-		mv "${libgcj}" "${ED}"/usr/lib/pkgconfig/libgcj-${GCC_PV}.pc || die
+		if is_crosscompile ; then
+			# Simply remove the libgcj.pc file for cross-compilers
+			rm "${libgcj}" || die
+		else
+			# SLOT up libgcj.pc (and let gcc-config worry about links)
+			sed -i "/^libdir=/s:=.*:=${EPREFIX}${LIBPATH}:" "${libgcj}"
+			mv "${libgcj}" "${ED}"/usr/lib/pkgconfig/libgcj-${GCC_PV}.pc || die
+		fi
 	fi
 
 	# Rename jar because it could clash with Kaffe's jar if this gcc is

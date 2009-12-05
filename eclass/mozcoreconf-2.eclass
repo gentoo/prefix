@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.12 2009/04/02 21:40:39 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mozcoreconf-2.eclass,v 1.13 2009/12/02 22:41:59 anarchy Exp $
 #
 # mozcoreconf.eclass : core options for mozilla
 # inherit mozconfig-2 if you need USE flags
@@ -32,6 +32,7 @@ mozconfig_init() {
 	declare EM=$([[ ${PN} == enigmail ]] && echo true || echo false)
 	declare XUL=$([[ ${PN} == *xulrunner ]] && echo true || echo false)
 	declare SM=$([[ ${PN} == seamonkey ]] && echo true || echo false)
+	declare IC=$([[ ${PN} == *icecat ]] && echo true || echo false)
 
 	####################################
 	#
@@ -69,6 +70,9 @@ mozconfig_init() {
 			: >.mozconfig || die "initial mozconfig creation failed"
 			mozconfig_annotate "" --enable-application=suite
 			mozconfig_annotate "" --enable-extensions=default ;;
+		*icecat)
+			cp browser/config/mozconfig .mozconfig \
+				|| die "cp browser/config/mozconfig failed" ;;
 	esac
 
 	####################################
