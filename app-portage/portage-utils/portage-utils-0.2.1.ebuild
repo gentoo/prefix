@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.2.1.ebuild,v 1.1 2009/09/05 16:50:00 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/portage-utils-0.2.1.ebuild,v 1.2 2009/12/05 10:02:49 vapier Exp $
 
 inherit toolchain-funcs eutils flag-o-matic prefix
 
