@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Module-Build/Module-Build-0.34.0201.ebuild,v 1.1 2009/08/10 11:11:58 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Module-Build/Module-Build-0.34.0201.ebuild,v 1.3 2009/12/04 13:16:34 tove Exp $
 
 inherit versionator
 MODULE_AUTHOR=DAGOLDEN
