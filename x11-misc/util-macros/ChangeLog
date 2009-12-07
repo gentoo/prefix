@@ -1,6 +1,10 @@
 # ChangeLog for x11-misc/util-macros
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/ChangeLog,v 1.81 2009/11/28 10:24:12 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/util-macros/ChangeLog,v 1.82 2009/12/02 09:32:10 scarabeus Exp $
+
+  02 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/1.1.1-driver-man-suffix.patch:
+  Drop unused patches.
 
   28 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   -util-macros-1.1.5.ebuild, -util-macros-1.2.1.ebuild,
