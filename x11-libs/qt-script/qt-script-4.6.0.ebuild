@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/qt-script-4.6.0.ebuild,v 1.1 2009/12/01 14:58:10 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-script/qt-script-4.6.0.ebuild,v 1.2 2009/12/03 17:23:22 wired Exp $
 
 EAPI=2
 inherit qt4-build
@@ -21,6 +21,10 @@ include/QtScript/
 src/corelib/
 src/3rdparty/javascriptcore/
 "
+
+PATCHES=(
+	"${FILESDIR}/qt-4.6-nolibx11.diff"
+)
 
 src_configure() {
 	myconf="${myconf} $(qt_use iconv) -script -no-xkb  -no-fontconfig -no-xrender -no-xrandr
