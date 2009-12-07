@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.136 2009/11/28 16:57:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.137 2009/12/03 17:00:08 ranger Exp $
+
+  03 Dec 2009; Brent Baude <ranger@gentoo.org> libxklavier-4.0.ebuild:
+  Marking libxklavier-4.0 ppc64 stable for bug 281427
 
   28 Nov 2009; Raúl Porcel <armin76@gentoo.org> libxklavier-4.0.ebuild:
   alpha/ia64/sparc stable wrt #281427
