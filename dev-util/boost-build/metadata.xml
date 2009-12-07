@@ -10,4 +10,8 @@
     <email>djc@gentoo.org</email>
     <name>Dirkjan Ochtman</name>
   </maintainer>
+  <maintainer>
+    <email>s.mingramm@gmx.de</email>
+    <name>Sebastian Mingramm</name>
+  </maintainer>
 </pkgmetadata>
