@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.171 2009/10/28 20:54:14 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.172 2009/12/05 23:00:35 arfrever Exp $
+
+  05 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  gentoolkit-0.3.0_rc7.ebuild, gentoolkit-9999.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
 
   28 Oct 2009; Christian Ruppert <idl0r@gentoo.org> gentoolkit-9999.ebuild:
   Add app-misc/realpath dependency wrt r696.
