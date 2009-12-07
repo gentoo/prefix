@@ -22,6 +22,7 @@ profiles
 # remember: you can't import individual files, only directories
 
 # regular packages (do NOT put portage in here!)
+app-admin/chrpath
 app-admin/eselect
 app-editors/mg
 app-editors/nedit
