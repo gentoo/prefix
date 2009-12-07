@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/cook
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cook/ChangeLog,v 1.23 2009/03/22 13:12:08 jmbsvicetto Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cook/ChangeLog,v 1.24 2009/12/05 11:45:38 flameeyes Exp $
+
+  05 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org> cook-2.31.ebuild:
+  Add -j1 as per bug #295821.
 
   22 Mar 2009; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
   metadata.xml:
