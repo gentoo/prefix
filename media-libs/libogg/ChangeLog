@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/libogg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libogg/ChangeLog,v 1.62 2009/10/31 14:39:16 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libogg/ChangeLog,v 1.63 2009/12/03 17:36:30 armin76 Exp $
+
+  03 Dec 2009; Raúl Porcel <armin76@gentoo.org> libogg-1.1.4.ebuild:
+  ia64/sh/sparc stable wrt #288042
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> libogg-1.1.4.ebuild:
   Marking libogg-1.1.4 ppc64 for bug 288042
