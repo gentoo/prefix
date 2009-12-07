@@ -1,6 +1,9 @@
 # ChangeLog for x11-themes/gtk-engines
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.155 2009/11/28 16:50:04 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines/ChangeLog,v 1.156 2009/12/03 16:56:45 ranger Exp $
+
+  03 Dec 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking gtk-engines-2.18.3 ppc64 stable for bug 281427
 
   28 Nov 2009; Raúl Porcel <armin76@gentoo.org> gtk-engines-2.18.3.ebuild:
   alpha/ia64/sparc stable wrt #281427
