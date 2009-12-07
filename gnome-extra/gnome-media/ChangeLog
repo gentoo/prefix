@@ -1,6 +1,9 @@
 # ChangeLog for gnome-extra/gnome-media
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.206 2009/11/28 17:14:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gnome-media/ChangeLog,v 1.207 2009/12/03 17:12:07 ranger Exp $
+
+  03 Dec 2009; Brent Baude <ranger@gentoo.org> gnome-media-2.26.0-r1.ebuild:
+  Marking gnome-media-2.26.0-r1 ppc64 stable for bug 281427
 
   28 Nov 2009; Raúl Porcel <armin76@gentoo.org>
   gnome-media-2.26.0-r1.ebuild:
