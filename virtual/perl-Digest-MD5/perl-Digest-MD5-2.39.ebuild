@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Digest-MD5/perl-Digest-MD5-2.39.ebuild,v 1.2 2009/08/25 10:56:46 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Digest-MD5/perl-Digest-MD5-2.39.ebuild,v 1.4 2009/12/04 13:40:18 tove Exp $
 
 DESCRIPTION="Virtual for Digest-MD5"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
