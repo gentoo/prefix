@@ -1,6 +1,9 @@
 # ChangeLog for x11-misc/xkeyboard-config
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.80 2009/11/21 14:36:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xkeyboard-config/ChangeLog,v 1.81 2009/12/03 16:54:00 ranger Exp $
+
+  03 Dec 2009; Brent Baude <ranger@gentoo.org> xkeyboard-config-1.6.ebuild:
+  Marking xkeyboard-config-1.6 ppc64 stable for bug 281427
 
   21 Nov 2009; Raúl Porcel <armin76@gentoo.org>
   xkeyboard-config-1.6.ebuild:
