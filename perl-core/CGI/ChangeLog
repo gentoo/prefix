@@ -1,6 +1,9 @@
 # ChangeLog for perl-core/CGI
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/CGI/ChangeLog,v 1.64 2009/09/26 07:52:16 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/CGI/ChangeLog,v 1.65 2009/12/04 10:39:02 fauli Exp $
+
+  04 Dec 2009; Christian Faulhammer <fauli@gentoo.org> CGI-3.48.ebuild:
+  x86 stable, bug 288026
 
 *CGI-3.48 (26 Sep 2009)
 
