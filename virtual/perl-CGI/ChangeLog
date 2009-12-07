@@ -1,6 +1,9 @@
 # ChangeLog for virtual/perl-CGI
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-CGI/ChangeLog,v 1.56 2009/09/26 07:52:45 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-CGI/ChangeLog,v 1.57 2009/12/04 10:40:43 fauli Exp $
+
+  04 Dec 2009; Christian Faulhammer <fauli@gentoo.org> perl-CGI-3.48.ebuild:
+  x86 stable, bug 288026
 
 *perl-CGI-3.48 (26 Sep 2009)
 

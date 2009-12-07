@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-CGI/perl-CGI-3.48.ebuild,v 1.1 2009/09/26 07:52:45 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-CGI/perl-CGI-3.48.ebuild,v 1.2 2009/12/04 10:40:43 fauli Exp $
 
 DESCRIPTION="Virtual for CGI"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
