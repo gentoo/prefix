@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.1.15.2.ebuild,v 1.4 2009/11/15 05:35:20 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.1.15.2.ebuild,v 1.5 2009/12/03 21:53:14 armin76 Exp $
 
 EAPI="2"
 
@@ -53,7 +53,7 @@ S="${WORKDIR}/${MY_P}"
 src_prepare() {
 
 	# FIXME: Fix unaligned accesses on ARM, IA64 and SPARC
-	use sparc && epatch "${FILESDIR}"/sigbus.patch
+	use sparc && epatch "${FILESDIR}"/${P}-unaligned.patch
 
 	# Make it libtool-1 compatible
 	rm -v autotools/lt* autotools/libtool.m4 \
