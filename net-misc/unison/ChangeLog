@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/unison
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.60 2009/08/28 21:59:21 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/unison/ChangeLog,v 1.61 2009/12/04 17:33:18 flameeyes Exp $
+
+*unison-2.32.52 (04 Dec 2009)
+
+  04 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +unison-2.32.52.ebuild:
+  Version bump.
 
   28 Aug 2009; Petteri Räty <betelgeuse@gentoo.org>
   unison-2.27.57-r1.ebuild:
