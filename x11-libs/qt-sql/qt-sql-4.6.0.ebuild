@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.6.0.ebuild,v 1.1 2009/12/01 14:59:33 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-sql/qt-sql-4.6.0.ebuild,v 1.2 2009/12/03 17:23:59 wired Exp $
 
 EAPI=2
 inherit qt4-build
@@ -30,6 +30,10 @@ src/plugins
 src/sql
 src/3rdparty
 src/tools"
+
+PATCHES=(
+	"${FILESDIR}/qt-4.6-nolibx11.diff"
+)
 
 pkg_setup() {
 	if ! (use firebird || use mysql || use odbc || use postgres || use sqlite); then
