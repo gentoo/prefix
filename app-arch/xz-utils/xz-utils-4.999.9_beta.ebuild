@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/xz-utils-4.999.9_beta.ebuild,v 1.2 2009/09/26 16:49:19 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/xz-utils-4.999.9_beta.ebuild,v 1.3 2009/12/06 00:02:10 vapier Exp $
 
 # Remember: we cannot leverage autotools in this ebuild in order
 #           to avoid circular deps with autotools
@@ -71,5 +71,8 @@ src_compile() {
 
 src_install() {
 	emake install DESTDIR="${D}" || die
+	rm "${ED}"/usr/share/doc/xz/COPYING* || die
+	mv "${ED}"/usr/share/doc/{xz,${PF}} || die
+	prepalldocs
 	dodoc AUTHORS ChangeLog NEWS README THANKS
 }
