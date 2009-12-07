@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/indent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.38 2009/11/23 05:36:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.39 2009/12/02 18:58:57 jer Exp $
+
+  02 Dec 2009; Jeroen Roovers <jer@gentoo.org> indent-2.2.10-r1.ebuild:
+  Correct patch reason.
 
   23 Nov 2009; Jeroen Roovers <jer@gentoo.org> indent-2.2.10-r1.ebuild:
   Add src_test().

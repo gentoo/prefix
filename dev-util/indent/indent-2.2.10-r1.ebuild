@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/indent-2.2.10-r1.ebuild,v 1.3 2009/11/23 05:36:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/indent-2.2.10-r1.ebuild,v 1.4 2009/12/02 18:58:57 jer Exp $
 
 EAPI="2"
 
@@ -20,8 +20,8 @@ RDEPEND="nls? ( virtual/libintl )"
 
 src_prepare() {
 	# Fix parallel make issue in man/ (bug #76610)
-	# and do not install texinfo2man
 	epatch "${FILESDIR}"/${PV}-man.patch
+	# Make texinfo2man behave when insufficient arguments are fed
 	epatch "${FILESDIR}"/${PV}-segfault.patch
 	eautoreconf
 
