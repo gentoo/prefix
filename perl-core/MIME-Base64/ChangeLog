@@ -1,6 +1,13 @@
 # ChangeLog for perl-core/MIME-Base64
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/MIME-Base64/ChangeLog,v 1.17 2009/06/11 10:44:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/MIME-Base64/ChangeLog,v 1.19 2009/12/04 13:36:45 tove Exp $
+
+  04 Dec 2009; Torsten Veller <tove@gentoo.org> MIME-Base64-3.08.ebuild:
+  Stable on amd64 (#288026)
+
+  04 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  MIME-Base64-3.08.ebuild:
+  x86 stable, bug 288026
 
   11 Jun 2009; Alexis Ballier <aballier@gentoo.org> MIME-Base64-3.08.ebuild:
   keyword ~x86-fbsd
