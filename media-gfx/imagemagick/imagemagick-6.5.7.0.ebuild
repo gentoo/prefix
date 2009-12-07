@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.7.0.ebuild,v 1.5 2009/11/24 20:51:16 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.7.0.ebuild,v 1.6 2009/12/03 11:07:26 maekke Exp $
 
 EAPI="2"
 
