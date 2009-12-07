@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Temp/File-Temp-0.22.ebuild,v 1.1 2009/06/29 15:00:10 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/File-Temp/File-Temp-0.22.ebuild,v 1.3 2009/12/04 14:11:56 tove Exp $
 
 EAPI=2
 
