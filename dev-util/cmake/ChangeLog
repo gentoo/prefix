@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/cmake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.122 2009/11/29 18:01:05 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cmake/ChangeLog,v 1.123 2009/12/05 06:46:00 abcd Exp $
+
+  05 Dec 2009; Jonathan Callen <abcd@gentoo.org> -cmake-2.6.4.ebuild,
+  -cmake-2.6.4-r1.ebuild:
+  Drop old ebuilds
 
   29 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org> cmake-2.8.0.ebuild:
   Update deps so the tests are not failing, and features are not missing.
