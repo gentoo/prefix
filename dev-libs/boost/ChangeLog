@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/boost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.176 2009/11/25 17:59:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.177 2009/12/02 14:32:19 djc Exp $
+
+*boost-1.41.0 (02 Dec 2009)
+
+  02 Dec 2009; Dirkjan Ochtman <djc@gentoo.org> +boost-1.41.0.ebuild,
+  +files/boost-1.41.0-mpi_process_group-missing-include.patch,
+  +files/boost-1.41.0-parameter-needs-python.patch,
+  +files/remove-toolset-1.41.0.patch, metadata.xml:
+  Version bump to 1.41.0. Add maintainer-by-proxy.
 
   25 Nov 2009; Jeroen Roovers <jer@gentoo.org> boost-1.36.0-r1.ebuild,
   boost-1.37.0-r1.ebuild, boost-1.39.0.ebuild, boost-1.40.0.ebuild:

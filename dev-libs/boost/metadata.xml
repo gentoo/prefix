@@ -10,6 +10,10 @@
     <email>djc@gentoo.org</email>
     <name>Dirkjan Ochtman</name>
   </maintainer>
+  <maintainer>
+    <email>s.mingramm@gmx.de</email>
+    <name>Sebastian Mingramm</name>
+  </maintainer>
 <longdescription>
 Boost is a free peer-reviewed portable C++ source libraries.
 </longdescription>
