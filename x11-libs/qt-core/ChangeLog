@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/qt-core
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.80 2009/12/01 18:10:44 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-core/ChangeLog,v 1.81 2009/12/03 17:22:07 wired Exp $
+
+  03 Dec 2009; Alex Alexander <wired@gentoo.org>
+  +files/qt-4.6-nolibx11.diff, qt-core-4.6.0.ebuild:
+  added qt-4.6-nolibx11.diff patch
 
   01 Dec 2009; Theo Chatzimichos <tampakrap@gentoo.org>
   -qt-core-4.6.0_rc1.ebuild:
