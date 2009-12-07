@@ -26,6 +26,7 @@ app-admin/chrpath
 app-admin/eselect
 app-admin/eselect-ctags
 app-admin/eselect-emacs
+app-admin/emacs-updater
 app-editors/mg
 app-editors/nedit
 app-emacs/autoconf-mode
