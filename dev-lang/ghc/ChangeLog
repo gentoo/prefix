@@ -1,6 +1,21 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.171 2009/10/31 13:29:17 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.172 2009/12/05 09:19:27 kolmodin Exp $
+
+*ghc-6.10.4-r1 (05 Dec 2009)
+
+  05 Dec 2009; <kolmodin@gentoo.org> +ghc-6.10.4-r1.ebuild,
+  +files/ghc-6.10.4-autoconf.patch, +files/ghc-6.10.4-libm-detection.patch:
+  Attempt to fix a lot of recent trouble with building ghc-6.10.4;
+  * bug #295487, could not build with >=autoconf-2.64;
+    patch by int-e, reported by Tobias Hommel <tobi@keksbude.net>
+  * bug #292772, add CFLAGS to ghc wrapper enables hardended to build;
+    reported and fixed by Zhang, Hongjiu <secludedsage@gmail.com> with the
+    help of ivanm, trofi, dcoutts and igloo.
+  * bug #293208, undefined reference to `sqrt', libm detection trouble;
+    Roie Kerstein and Renato Gallo found and tracked down the bug,
+    asuffield suggested the fix and Sergei Trofimovich <slyfox@inbox.ru>
+    patched.
 
   31 Oct 2009; <kolmodin@gentoo.org> -ghc-6.10.2.ebuild, -ghc-6.10.3.ebuild,
   metadata.xml:
