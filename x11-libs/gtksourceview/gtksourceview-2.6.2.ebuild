@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/gtksourceview-2.6.2.ebuild,v 1.6 2009/11/28 16:45:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/gtksourceview-2.6.2.ebuild,v 1.7 2009/12/03 17:01:04 ranger Exp $
 
 GCONF_DEBUG="no"
 
