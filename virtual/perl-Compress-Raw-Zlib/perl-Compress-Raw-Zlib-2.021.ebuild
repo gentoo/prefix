@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Compress-Raw-Zlib/perl-Compress-Raw-Zlib-2.021.ebuild,v 1.1 2009/08/31 08:16:46 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Compress-Raw-Zlib/perl-Compress-Raw-Zlib-2.021.ebuild,v 1.3 2009/12/04 13:48:15 tove Exp $
 
 DESCRIPTION="Low-Level Interface to zlib compression library"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
