@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/aria2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.51 2009/11/14 19:12:21 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.52 2009/12/04 21:25:02 dev-zero Exp $
+
+*aria2-1.6.3-r1 (04 Dec 2009)
+
+  04 Dec 2009; Tiziano Müller <dev-zero@gentoo.org> +aria2-1.6.3-r1.ebuild,
+  metadata.xml:
+  Fixed dependencies (added xmlrpc USE flag for that), added scripts USE
+  flag to install optional scripts.
 
   14 Nov 2009; Tiziano Müller <dev-zero@gentoo.org>
   +files/1.6.3-unaligned_pointers.patch, aria2-1.6.3.ebuild:
