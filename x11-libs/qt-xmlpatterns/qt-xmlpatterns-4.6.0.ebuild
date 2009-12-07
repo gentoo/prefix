@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-xmlpatterns/qt-xmlpatterns-4.6.0.ebuild,v 1.1 2009/12/01 15:03:59 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-xmlpatterns/qt-xmlpatterns-4.6.0.ebuild,v 1.2 2009/12/03 17:25:18 wired Exp $
 
 EAPI=2
 inherit qt4-build
@@ -25,6 +25,10 @@ src/corelib/"
 
 QCONFIG_ADD="xmlpatterns"
 QCONFIG_DEFINE="QT_XMLPATTERNS"
+
+PATCHES=(
+	"${FILESDIR}/qt-4.6-nolibx11.diff"
+)
 
 src_configure() {
 	myconf="${myconf} -xmlpatterns"
