@@ -1,6 +1,12 @@
 # ChangeLog for perl-core/IO
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/ChangeLog,v 1.12 2009/05/14 10:07:34 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/ChangeLog,v 1.14 2009/12/04 14:14:56 tove Exp $
+
+  04 Dec 2009; Torsten Veller <tove@gentoo.org> IO-1.25.ebuild:
+  Stable on amd64 (#288026)
+
+  04 Dec 2009; Christian Faulhammer <fauli@gentoo.org> IO-1.25.ebuild:
+  x86 stable, bug 288026
 
 *IO-1.25 (14 May 2009)
 

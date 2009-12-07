@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/IO-1.25.ebuild,v 1.1 2009/05/14 10:07:34 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/IO/IO-1.25.ebuild,v 1.3 2009/12/04 14:14:56 tove Exp $
 
 EAPI=2
 
