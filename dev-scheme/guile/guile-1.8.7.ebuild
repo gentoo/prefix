@@ -1,19 +1,23 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.3-r2.ebuild,v 1.12 2009/10/19 00:32:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.7.ebuild,v 1.1 2009/12/05 14:23:55 ulm Exp $
 
 EAPI=1
-inherit eutils autotools flag-o-matic
+inherit flag-o-matic elisp-common
 
 DESCRIPTION="Scheme interpreter"
 HOMEPAGE="http://www.gnu.org/software/guile/"
 SRC_URI="mirror://gnu/guile/${P}.tar.gz"
 
-LICENSE="GPL-2"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+LICENSE="LGPL-2.1"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+IUSE="networking +regex discouraged +deprecated elisp emacs nls debug-freelist debug-malloc debug +threads"
 RESTRICT="!regex? ( test )"
 
-DEPEND=">=dev-libs/gmp-4.1 >=sys-devel/libtool-1.5.6 sys-devel/gettext"
+DEPEND=">=dev-libs/gmp-4.1
+	>=sys-devel/libtool-1.5.6
+	sys-devel/gettext
+	emacs? ( virtual/emacs )"
 
 # Guile seems to contain some slotting support, /usr/share/guile/ is slotted,
 # but there are lots of collisions. Most in /usr/share/libguile. Therefore
@@ -21,14 +25,21 @@ DEPEND=">=dev-libs/gmp-4.1 >=sys-devel/libtool-1.5.6 sys-devel/gettext"
 SLOT="12"
 MAJOR="1.8"
 
-IUSE="networking +regex discouraged +deprecated elisp nls debug-freelist debug-malloc debug +threads"
-
 src_unpack() {
 	unpack ${A}; cd "${S}"
 
-	epatch "${FILESDIR}"/fix-reader-cr.diff
+	epatch "${FILESDIR}"/${PN}-1.8.6-interix.patch
 
 	sed "s_sleep 999_sleep 1_" -i test-suite/tests/popen.test
+
+#	cp configure.in configure.in.old
+
+	#for libtool-2.2*, bug 212723
+#	sed 's/AC_CONFIG_MACRO_DIR(\[m4\])/AC_CONFIG_MACRO_DIR(\[guile-config\])/' -i configure.in
+
+#	diff -u configure.in.old configure.in
+
+#	eautoreconf
 }
 
 
@@ -36,7 +47,7 @@ src_compile() {
 	# see bug #178499
 	filter-flags -ftree-vectorize
 
-#will fail for me if posix is disabled or without modules -- hkBst
+	#will fail for me if posix is disabled or without modules -- hkBst
 	econf \
 		--disable-error-on-warning \
 		--disable-static \
@@ -52,15 +63,23 @@ src_compile() {
 		$(use_enable debug-malloc) \
 		$(use_enable debug guile-debug) \
 		$(use_with threads) \
-		--with-modules
+		--with-modules \
+		EMACS=no
 
 	emake || die "make failed"
+
+	# Above we have disabled the build system's Emacs support;
+	# for USE=emacs we compile (and install) the files manually
+	if use emacs; then
+		cd emacs
+		elisp-compile *.el || die
+	fi
 }
 
 src_install() {
 	einstall || die "install failed"
 
-	dodoc AUTHORS ChangeLog GUILE-VERSION HACKING NEWS README SNAPSHOTS THANKS
+	dodoc AUTHORS ChangeLog GUILE-VERSION HACKING NEWS README THANKS
 
 	# texmacs needs this, closing bug #23493
 	dodir /etc/env.d
@@ -68,6 +87,11 @@ src_install() {
 
 	# necessary for registering slib, see bug 206896
 	keepdir /usr/share/guile/site
+
+	if use emacs; then
+		elisp-install ${PN} emacs/*.{el,elc} || die
+		elisp-site-file-install "${FILESDIR}/50${PN}-gentoo.el" || die
+	fi
 }
 
 pkg_postinst() {

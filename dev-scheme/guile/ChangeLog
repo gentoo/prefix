@@ -1,6 +1,20 @@
 # ChangeLog for dev-scheme/guile
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.73 2009/09/19 14:07:54 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.74 2009/12/05 14:23:55 ulm Exp $
+
+*guile-1.8.7 (05 Dec 2009)
+
+  05 Dec 2009; Ulrich Mueller <ulm@gentoo.org>
+  -files/guile-1.4-inet_aton.patch, -files/guile-1.6.7-gcc4.patch,
+  -files/guile-1.6.7-posix.patch, -files/guile-1.6.7-scmsigs.patch,
+  -files/guile-1.8.1-autotools_fixes.patch,
+  -files/guile-1.8.1-clog-cexp.patch,
+  -files/guile-1.8.1-defaultincludes.patch, -guile-1.8.2.ebuild,
+  -guile-1.8.3.ebuild, -files/guile-1.8-rational.patch,
+  -files/fix-reader-cr.diff, -files/guile-amd64.patch,
+  -guile-1.8.3-r1.ebuild, -guile-1.8.3-r2.ebuild, +guile-1.8.7.ebuild:
+  Version bump, fixes bug 291617, proxy commit for Tomás Touceda (chiiph).
+  Remove intermediate versions and stale patches.
 
   19 Sep 2009; Markus Meier <maekke@gentoo.org> guile-1.8.5-r1.ebuild:
   arm stable, bug #245701
