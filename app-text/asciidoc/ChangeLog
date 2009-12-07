@@ -1,6 +1,17 @@
 # ChangeLog for app-text/asciidoc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/asciidoc/ChangeLog,v 1.50 2009/11/06 00:05:52 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/asciidoc/ChangeLog,v 1.51 2009/12/04 16:55:12 flameeyes Exp $
+
+*asciidoc-8.5.1 (04 Dec 2009)
+
+  04 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -asciidoc-7.0.4.ebuild, -asciidoc-8.1.0.ebuild, -asciidoc-8.2.7.ebuild,
+  -asciidoc-8.4.4.ebuild, -asciidoc-8.4.5.ebuild, -asciidoc-8.5.0.ebuild,
+  +asciidoc-8.5.1.ebuild:
+  Cleanup: remove older versions; bump to 8.5.1; fix dependencies
+  (previously DEPEND and RDEPEND were swapped); remove doc USE flag, always
+  install the HTML documentation; use /usr/share to install the data files
+  (closes bug #274319).
 
 *asciidoc-8.5.0 (06 Nov 2009)
 
