@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/xfce4-dev-tools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/xfce4-dev-tools/ChangeLog,v 1.24 2009/11/30 04:08:24 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/xfce4-dev-tools/ChangeLog,v 1.25 2009/12/03 20:38:19 ranger Exp $
+
+  03 Dec 2009; Brent Baude <ranger@gentoo.org> xfce4-dev-tools-4.7.0.ebuild:
+  Marking xfce4-dev-tools-4.7.0 ppc64 stable for bug 289179
 
   30 Nov 2009; Jonathan Callen <abcd@gentoo.org>
   xfce4-dev-tools-4.6.0.ebuild:
