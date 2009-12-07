@@ -24,6 +24,8 @@ profiles
 # regular packages (do NOT put portage in here!)
 app-admin/chrpath
 app-admin/eselect
+app-admin/eselect-ctags
+app-admin/eselect-emacs
 app-editors/mg
 app-editors/nedit
 app-emacs/autoconf-mode
