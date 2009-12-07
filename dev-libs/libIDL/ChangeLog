@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libIDL
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.115 2009/11/28 16:49:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/ChangeLog,v 1.116 2009/12/03 16:54:54 ranger Exp $
+
+  03 Dec 2009; Brent Baude <ranger@gentoo.org> libIDL-0.8.13.ebuild:
+  Marking libIDL-0.8.13 ppc64 stable for bug 281427
 
   28 Nov 2009; Raúl Porcel <armin76@gentoo.org> libIDL-0.8.13.ebuild:
   alpha/ia64/sparc stable wrt #281427
