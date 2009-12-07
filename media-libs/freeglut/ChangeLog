@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/freeglut
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/ChangeLog,v 1.63 2009/11/30 12:43:55 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/ChangeLog,v 1.64 2009/12/04 20:44:27 aballier Exp $
+
+  04 Dec 2009; Alexis Ballier <aballier@gentoo.org> freeglut-2.6.0.ebuild:
+  Restore bsd joystick patch... still needed and silently dropped again.
 
 *freeglut-2.6.0 (30 Nov 2009)
 

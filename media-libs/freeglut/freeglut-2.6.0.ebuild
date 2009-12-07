@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/freeglut-2.6.0.ebuild,v 1.1 2009/11/30 12:43:55 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/freeglut-2.6.0.ebuild,v 1.2 2009/12/04 20:44:27 aballier Exp $
 
 EAPI="2"
 
@@ -29,6 +29,10 @@ src_prepare() {
 	epatch "${FILESDIR}/${PV}-GFX_radeon.patch"
 
 	use mpx && epatch "${DISTDIR}/${P}-mpx-r6.patch"
+
+	# Please read the comments in the patch before thinking about dropping it
+	# yet again...
+	epatch "${FILESDIR}/${PN}-2.4.0-bsd-usb-joystick.patch"
 
 	eautoreconf
 	# Needed for sane .so versionning on bsd, please don't drop
