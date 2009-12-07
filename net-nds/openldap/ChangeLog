@@ -1,6 +1,21 @@
 # ChangeLog for net-nds/openldap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.362 2009/11/28 22:25:36 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.366 2009/12/04 20:46:19 robbat2 Exp $
+
+  04 Dec 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openldap-2.4.19-r1.ebuild:
+  Bug #295622: Try for a major improvement in the detection of an existing
+  on-disk DB.
+
+  03 Dec 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openldap-2.4.19.ebuild, openldap-2.4.19-r1.ebuild:
+  Make cxx NOT defaulted per the profile, due to the circular dependency it
+  brings in with dev-libs/cyrus-sasl. Thanks to Cardoe for pointing out.
+
+  03 Dec 2009; Robin H. Johnson <robbat2@gentoo.org>
+  openldap-2.4.19-r1.ebuild:
+  Bug #291821 redux Cleanup the sys-libs/db check more to NOT fire when
+  there are no database files present.
 
   28 Nov 2009; Robin H. Johnson <robbat2@gentoo.org>
   openldap-2.4.19-r1.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.19-r1.ebuild,v 1.7 2009/11/28 22:25:36 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.19-r1.ebuild,v 1.10 2009/12/04 20:46:19 robbat2 Exp $
 
 EAPI=2
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator toolchain-funcs
@@ -18,7 +18,7 @@ IUSE_BACKEND="+berkdb"
 IUSE_OVERLAY="overlays perl"
 IUSE_OPTIONAL="gnutls iodbc sasl ssl odbc debug ipv6 syslog selinux"
 IUSE_CONTRIB="smbkrb5passwd kerberos"
-IUSE_CONTRIB="${IUSE_CONTRIB} cxx"
+IUSE_CONTRIB="${IUSE_CONTRIB} -cxx"
 IUSE="${IUSE_DAEMON} ${IUSE_BACKEND} ${IUSE_OVERLAY} ${IUSE_OPTIONAL} ${IUSE_CONTRIB}"
 
 # openssl is needed to generate lanman-passwords required by samba
@@ -48,6 +48,11 @@ DEPEND="${RDEPEND}"
 OPENLDAP_VERSIONTAG=".version-tag"
 OPENLDAP_DEFAULTDIR_VERSIONTAG="/var/lib/openldap-data"
 
+openldap_filecount() {
+	local dir="$1"
+	find "${dir}" -type f ! -name '.*' ! -name 'DB_CONFIG.example' | wc -l
+}
+
 openldap_find_versiontags() {
 	# scan for all datadirs
 	openldap_datadirs=""
@@ -64,6 +69,7 @@ openldap_find_versiontags() {
 
 	# scan datadirs if we have a version tag
 	openldap_found_tag=0
+	have_files=0
 	for each in ${openldap_datadirs}; do
 		CURRENT_TAGDIR=${EROOT}`echo ${each} | sed "s:\/::"`
 		CURRENT_TAG=${CURRENT_TAGDIR}/${OPENLDAP_VERSIONTAG}
@@ -82,10 +88,12 @@ openldap_find_versiontags() {
 
 				OLD_MAJOR=`get_version_component_range 2-3 ${OLDPF}`
 
+				[ $(openldap_filecount ${CURRENT_TAGDIR}) -gt 0 ] && have_files=1
+
 				# are we on the same branch?
 				if [ "${OLD_MAJOR}" != "${PV:0:3}" ] ; then
 					ewarn "   Versiontag doesn't match current major release!"
-					if [[ `ls -a ${CURRENT_TAGDIR} | wc -l` -gt 5 ]] ; then
+					if [[ "${have_files}" == "1" ]] ; then
 						eerror "   Versiontag says other major and you (probably) have datafiles!"
 						echo
 						openldap_upgrade_howto
@@ -97,7 +105,8 @@ openldap_find_versiontags() {
 				fi
 			else
 				einfo "   Non-tagged dir ${each}"
-				if [[ `ls -a ${each} | wc -l` > 5 ]] ; then
+				[ $(openldap_filecount ${each}) -gt 0 ] && have_files=1
+				if [[ "${have_files}" == "1" ]] ; then
 					einfo "   EEK! Non-empty non-tagged datadir, counting `ls -a ${each} | wc -l` files"
 					echo
 
@@ -117,10 +126,11 @@ openldap_find_versiontags() {
 			einfo
 		fi
 	done
+	[ "${have_files}" == "1" ] && einfo "DB files present" || einfo "No DB files present"
 
 	# Now we must check for the major version of sys-libs/db linked against.
 	SLAPD_PATH=${EROOT}/usr/$(get_libdir)/openldap/slapd
-	if [ -f "${SLAPD_PATH}" ]; then
+	if [ "${have_files}" == "1" -a -f "${SLAPD_PATH}" ]; then
 		OLDVER="$(/usr/bin/ldd ${SLAPD_PATH} \
 			| awk '/libdb-/{gsub("^libdb-","",$1);gsub(".so$","",$1);print $1}')"
 		NEWVER="$(use berkdb && db_findver sys-libs/db)"
