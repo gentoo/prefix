@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprint/libgnomeprint-2.18.6.ebuild,v 1.6 2009/11/28 16:45:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomeprint/libgnomeprint-2.18.6.ebuild,v 1.7 2009/12/03 17:09:29 ranger Exp $
 
 GCONF_DEBUG="no"
 
