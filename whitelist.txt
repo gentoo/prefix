@@ -35,6 +35,7 @@ app-emacs/cedet
 app-emacs/color-theme
 app-emacs/gentoo-syntax
 app-emacs/matlab
+app-emacs/mmm-mode
 app-emacs/nxml-mode
 app-emacs/paredit
 app-emacs/php-mode
