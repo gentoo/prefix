@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/gnome-session
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/ChangeLog,v 1.244 2009/11/28 17:35:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/ChangeLog,v 1.245 2009/12/03 17:04:36 ranger Exp $
+
+  03 Dec 2009; Brent Baude <ranger@gentoo.org> gnome-session-2.26.2.ebuild:
+  Marking gnome-session-2.26.2 ppc64 stable for bug 281427
 
   28 Nov 2009; Raúl Porcel <armin76@gentoo.org>
   gnome-session-2.26.2.ebuild:
