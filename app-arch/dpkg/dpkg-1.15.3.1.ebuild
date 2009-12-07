@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.15.3.1.ebuild,v 1.4 2009/10/21 06:12:07 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.15.3.1.ebuild,v 1.5 2009/12/02 18:43:18 jer Exp $
 
 inherit eutils multilib autotools
 
 DESCRIPTION="Package maintenance system for Debian"
 HOMEPAGE="http://packages.qa.debian.org/dpkg"
-SRC_URI="mirror://debian/pool/main/d/dpkg/${P/-/_}.tar.gz"
+SRC_URI="mirror://debian/pool/main/d/${PN}/${P/-/_}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
