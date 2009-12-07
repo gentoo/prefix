@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/perl-core/Package-Constants/Package-Constants-0.02.ebuild,v 1.1 2008/12/23 08:48:00 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/perl-core/Package-Constants/Package-Constants-0.02.ebuild,v 1.3 2009/12/04 13:51:43 tove Exp $
 
 MODULE_AUTHOR=KANE
 inherit perl-module
