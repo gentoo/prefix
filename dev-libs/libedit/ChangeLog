@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.41 2009/11/23 13:23:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.42 2009/12/03 06:13:01 jer Exp $
+
+  03 Dec 2009; Jeroen Roovers <jer@gentoo.org> libedit-20090923.3.0.ebuild:
+  Stable for HPPA (bug #293863).
 
   23 Nov 2009; Markus Meier <maekke@gentoo.org> libedit-20090923.3.0.ebuild:
   amd64/arm/x86 stable, bug #293863
