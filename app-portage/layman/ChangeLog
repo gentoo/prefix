@@ -1,6 +1,16 @@
 # ChangeLog for app-portage/layman
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.77 2009/05/24 22:09:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.79 2009/12/05 00:44:07 arfrever Exp $
+
+  05 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  layman-1.2.4.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
+
+*layman-1.2.4 (04 Dec 2009)
+
+  04 Dec 2009; Sebastian Pipping <sping@gentoo.org> +layman-1.2.4.ebuild,
+  metadata.xml:
+  Trivial bump to 1.2.4, take over maintenance
 
   24 May 2009; Jeroen Roovers <jer@gentoo.org> layman-1.2.3.ebuild:
   Stable for HPPA (bug #257155).
