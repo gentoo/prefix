@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Storable/perl-Storable-2.20.ebuild,v 1.2 2009/08/25 10:56:48 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/virtual/perl-Storable/perl-Storable-2.20.ebuild,v 1.4 2009/12/04 13:59:57 tove Exp $
 
 DESCRIPTION="Virtual for Storable"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
