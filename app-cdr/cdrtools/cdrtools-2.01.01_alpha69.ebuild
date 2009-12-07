@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha69.ebuild,v 1.1 2009/12/01 20:18:22 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha69.ebuild,v 1.2 2009/12/02 18:54:00 billie Exp $
 
 EAPI=2
 
@@ -23,6 +23,11 @@ RDEPEND="${DEPEND}"
 S=${WORKDIR}/${PN}-2.01.01
 
 src_prepare() {
+	epatch "${FILESDIR}"/${PN}-2.01.01_alpha50-asneeded.patch
+
+	# Remove profiled make files.
+	rm -f $(find . -name '*_p.mk') || die "rm failed"
+
 	# Adjusting hardcoded paths.
 	sed -i -e 's:opt/schily:usr:' \
 		$(grep -l --include='*.1' --include='*.8' -r 'opt/schily' .) \
@@ -38,28 +43,12 @@ src_prepare() {
 		$(grep -l -r '^INSDIR.\+lib\(/siconv\)\?$' .) \
 		|| die "404 on multilib-sed"
 
-	# See previous comment s/libdir/--disable-static/.
 	sed -i -e 's:include\t\t.*rules.lib::' \
 		$(grep -l -r '^include.\+rules\.lib' .) \
 		|| die "404 on rules sed"
 
-	# Remove profiled make files.
-	rm -f $(find . -name '*_p.mk') || die "rm failed"
-
-	epatch "${FILESDIR}"/${PN}-2.01.01_alpha50-asneeded.patch
-
-	# Schily make setup.
-	cd "${S}"/DEFAULTS
-	local MYARCH="linux"
-	[[ ${CHOST} == *-darwin* ]] && MYARCH="mac-os10"
-
-	sed -i "s:/opt/schily:/usr:g" Defaults.${MYARCH} || die "sed schily-opt failed"
-	sed -i "s:/usr/src/linux/include::g" Defaults.${MYARCH} || die "sed linux-include failed"
-	sed -i "/RUNPATH/ c\RUNPATH= " Defaults.${MYARCH} || die "sed RUNPATH failed"
-
+	# Respect CC/CXX variables.
 	cd "${S}"/RULES
-
-	# Respect CC/CXX variables
 	local tcCC=$(tc-getCC)
 	local tcCXX=$(tc-getCXX)
 	sed -i -e "/cc-config.sh/s|\$(C_ARCH:%64=%) \$(CCOM_DEF)|${tcCC} ${tcCC}|" \
@@ -72,10 +61,22 @@ src_prepare() {
 
 	# Create additional symlinks needed for some archs.
 	local t
-	for t in ppc64 sh4 s390x ; do
+	for t in ppc64 s390x ; do
 		ln -s i586-linux-cc.rul ${t}-linux-cc.rul || die
 		ln -s i586-linux-gcc.rul ${t}-linux-gcc.rul || die
 	done
+
+	# Schily make setup.
+	cd "${S}"/DEFAULTS
+	local MYARCH="linux"
+	[[ ${CHOST} == *-darwin* ]] && MYARCH="mac-os10"
+
+	sed -i \
+		-e "s:/opt/schily:/usr:g" \
+		-e "s:/usr/src/linux/include::g" \
+		-e "/RUNPATH/ c\RUNPATH= " \
+		-e "s:bin:root:g" \
+		 Defaults.${MYARCH} || die "sed Schily make setup failed"
 }
 
 src_configure() { : ; }
