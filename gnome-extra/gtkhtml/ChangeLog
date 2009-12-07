@@ -1,6 +1,9 @@
 # ChangeLog for gnome-extra/gtkhtml
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.200 2009/11/28 18:05:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/gtkhtml/ChangeLog,v 1.201 2009/12/03 17:01:43 ranger Exp $
+
+  03 Dec 2009; Brent Baude <ranger@gentoo.org> gtkhtml-3.26.3.ebuild:
+  Marking gtkhtml-3.26.3 ppc64 stable for bug 281427
 
   28 Nov 2009; Raúl Porcel <armin76@gentoo.org> gtkhtml-3.26.3.ebuild:
   alpha/ia64/sparc stable wrt #281427
