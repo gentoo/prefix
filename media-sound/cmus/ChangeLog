@@ -1,6 +1,11 @@
 # ChangeLog for media-sound/cmus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.30 2009/09/25 11:21:35 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/ChangeLog,v 1.31 2009/12/04 10:32:54 ssuominen Exp $
+
+  04 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> cmus-2.2.0-r2.ebuild,
+  -files/cmus-2.2.0-libmpcdecsv7.patch:
+  Remove media-libs/libmpcdecsv7 support, because it can't decode SV8 format
+  and doesn't pass ./configure with Autoconf >= 2.65.
 
   25 Sep 2009; Markus Meier <maekke@gentoo.org> cmus-2.2.0-r2.ebuild:
   amd64 stable, bug #281605

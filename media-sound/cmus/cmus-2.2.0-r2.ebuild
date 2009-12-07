@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0-r2.ebuild,v 1.4 2009/09/25 11:21:35 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/cmus/cmus-2.2.0-r2.ebuild,v 1.5 2009/12/04 10:32:54 ssuominen Exp $
 
 EAPI=2
 inherit eutils multilib
@@ -12,8 +12,8 @@ SRC_URI="http://mirror.greaterscope.net/cmus/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="aac alsa ao debug examples flac mad mikmod modplug mp4 musepack \
-	oss pidgin unicode vorbis wavpack wma zsh-completion"
+IUSE="aac alsa ao debug examples flac mad mikmod modplug mp4 oss pidgin unicode
+vorbis wavpack wma zsh-completion"
 
 DEPEND="sys-libs/ncurses[unicode?]
 	aac? ( media-libs/faad2 )
@@ -24,7 +24,6 @@ DEPEND="sys-libs/ncurses[unicode?]
 	mikmod? ( media-libs/libmikmod )
 	modplug? ( >=media-libs/libmodplug-0.7 )
 	mp4? ( >=media-libs/libmp4v2-1.9 )
-	musepack? ( media-libs/libmpcdecsv7 )
 	vorbis? ( >=media-libs/libvorbis-1.0 )
 	wavpack? ( media-sound/wavpack )
 	wma? ( >=media-video/ffmpeg-0.4.9_p20080326 )"
@@ -41,15 +40,14 @@ my_config() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-new-ffmpeg.patch \
-		"${FILESDIR}"/${P}-symlink_attack.patch \
-		"${FILESDIR}"/${P}-libmpcdecsv7.patch
+		"${FILESDIR}"/${P}-symlink_attack.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 
-	sed -i -e 's:<mp4.h>:<mp4v2/mp4v2.h>:' mp4.c || die "sed failed"
+	sed -i -e 's:<mp4.h>:<mp4v2/mp4v2.h>:' mp4.c || die
 }
 
 src_configure() {
-	local debuglevel=1 myconf="CONFIG_SUN=n"
+	local debuglevel=1 myconf="CONFIG_SUN=n CONFIG_MPC=n"
 
 	use debug && debuglevel=2
 
@@ -61,7 +59,6 @@ src_configure() {
 	my_config mikmod CONFIG_MIKMOD
 	my_config mp4 CONFIG_MP4
 	my_config modplug CONFIG_MODPLUG
-	my_config musepack CONFIG_MPC
 	my_config oss CONFIG_OSS
 	my_config vorbis CONFIG_VORBIS
 	my_config wavpack CONFIG_WAVPACK
