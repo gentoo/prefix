@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/arora/arora-0.8.0.ebuild,v 1.2 2009/11/08 23:14:24 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/arora/arora-0.10.2.ebuild,v 1.1 2009/12/05 23:49:23 yngwin Exp $
 
 EAPI=2
 inherit eutils qt4
@@ -12,14 +12,15 @@ SRC_URI="http://arora.googlecode.com/files/${P}.tar.gz"
 LICENSE="|| ( GPL-3 GPL-2 )"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="debug"
+IUSE="debug doc"
 
-RDEPEND="x11-libs/qt-gui
-	x11-libs/qt-sql
-	x11-libs/qt-webkit"
+RDEPEND=">=x11-libs/qt-gui-4.6.0_rc1
+	>=x11-libs/qt-sql-4.6.0_rc1
+	>=x11-libs/qt-webkit-4.6.0_rc1
+	>=x11-libs/qt-xmlpatterns-4.6.0_rc1"
 DEPEND="${RDEPEND}"
 
-ARORA_LANGS="ast ca es es_CR et_EE fr_CA gl ms nb_NO pt_BR sr@latin sr_CS uk
+ARORA_LANGS="ast ca es es_CR et_EE fr_CA gl ms nb_NO pt_BR pt_PT sr@latin sr_CS uk
 zh_CN zh_TW"
 ARORA_NOLONGLANGS="cs_CZ da_DK de_DE el_GR fi_FI fr_FR he_IL hu_HU it_IT ja_JP
 nl_NL pl_PL ru_RU sk_SK tr_TR"
