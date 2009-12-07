@@ -1,6 +1,9 @@
 # ChangeLog for app-emacs/auctex
 # Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.94 2009/05/05 07:49:25 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/ChangeLog,v 1.95 2009/12/04 23:18:57 ulm Exp $
+
+  04 Dec 2009; Ulrich Mueller <ulm@gentoo.org> auctex-11.85.ebuild:
+  Properly configure docdir location, fixes bug 295781.
 
   05 May 2009; Christian Faulhammer <fauli@gentoo.org> auctex-11.85.ebuild:
   set explicit RDEPEND

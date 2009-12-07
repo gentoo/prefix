@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.85.ebuild,v 1.10 2009/05/30 09:31:54 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/auctex/auctex-11.85.ebuild,v 1.11 2009/12/04 23:18:57 ulm Exp $
 
 inherit elisp eutils latex-package
 
@@ -31,6 +31,7 @@ src_compile() {
 		--with-packagelispdir="${ESITELISP}/${PN}" \
 		--with-packagedatadir="${ESITEETC}/${PN}" \
 		--with-texmf-dir="${EPREFIX}${TEXMF}" \
+		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		$(use_enable preview-latex preview) || die "econf failed"
 	emake || die "emake failed"
 	cd doc; emake tex-ref.pdf || die "creation of tex-ref.pdf failed"
@@ -43,7 +44,7 @@ src_install() {
 		elisp-site-file-install "${FILESDIR}/60${PN}-gentoo.el" || die
 	fi
 	keepdir /var/lib/auctex
-	dodoc ChangeLog CHANGES README RELEASE TODO FAQ INSTALL* doc/tex-ref.pdf
+	dodoc ChangeLog CHANGES README RELEASE TODO FAQ INSTALL*
 }
 
 pkg_postinst() {
