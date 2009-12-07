@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/fhist/fhist-1.16.ebuild,v 1.3 2008/09/20 10:08:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/fhist/fhist-1.16.ebuild,v 1.4 2009/12/04 21:57:41 flameeyes Exp $
 
 DESCRIPTION="File history and comparison tools"
 HOMEPAGE="http://fhist.sourceforge.net/fhist.html"
@@ -19,15 +19,16 @@ DEPEND="${RDEPEND}
 
 src_compile() {
 	econf || die "econf failed"
+	# bug #295744
 	emake -j1 || die "emake failed"
 }
 
 src_test() {
-	make sure || die "src_test failed"
+	emake -j1 sure || die "src_test failed"
 }
 
 src_install () {
-	make RPM_BUILD_ROOT="${D}" NLSDIR="${ED}/usr/share/locale" \
+	emake -j1 RPM_BUILD_ROOT="${D}" NLSDIR="${ED}/usr/share/locale" \
 		install || die "make install failed"
 
 	dodoc lib/en/*.txt
