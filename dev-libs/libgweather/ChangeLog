@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libgweather
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.45 2009/11/28 18:03:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/ChangeLog,v 1.46 2009/12/03 17:11:28 ranger Exp $
+
+  03 Dec 2009; Brent Baude <ranger@gentoo.org> libgweather-2.26.2.1.ebuild:
+  Marking libgweather-2.26.2.1 ppc64 stable for bug 281427
 
   28 Nov 2009; Raúl Porcel <armin76@gentoo.org>
   libgweather-2.26.2.1.ebuild:
