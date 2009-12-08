@@ -30,6 +30,17 @@ src_configure() {
 		export ac_cv_lib_dl_dladdr=no
 		export ac_cv_func_poll=no
 	fi
+	if [[ ${CHOST} == powerpc-apple-darwin* ]] ; then
+		# GCC groks this, but then refers to an implementation (___multi3,
+		# ___udivti3) that don't exist (at least I can't find it), so force
+		# this one to be off, such that we use 2x64bit emulation code.
+		export gst_cv_uint128_t=no
+	fi
+
+	# PREFIX: for some reason Debug is on by default, which causes
+	# -g to be injected in CFLAGS, which in turn causes gcc to generate code
+	# that the assembler segfaults on (yay) on Darwin, so disable it using
+	# --disable-debug
 
 	# Disable static archives, dependency tracking and examples
 	# to speed up build time
@@ -39,6 +50,7 @@ src_configure() {
 		$(use_enable nls) \
 		--disable-valgrind \
 		--disable-examples \
+		--disable-debug \
 		--enable-check \
 		--disable-introspection \
 		$(use_enable test tests) \
