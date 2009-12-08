@@ -36,7 +36,7 @@ src_unpack() {
 src_prepare() {
 	epatch "${FILESDIR}/boost-1.41-fix-mpich2-detection.patch"
 
-	epatch "${FILESDIR}"/1.39.0-darwin-sanitise.patch
+	epatch "${FILESDIR}"/boost-1.41-darwin-sanitise.patch
 
 	# adds support for boosting with parity ...
 #fails
