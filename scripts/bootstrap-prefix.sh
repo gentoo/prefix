@@ -164,6 +164,9 @@ HOSTCC='gcc -m64'
 		powerpc-unknown-linux-gnu)
 			profile="${PORTDIR}/profiles/prefix/linux/ppc"
 			;;
+		armv7l-pc-linux-gnu)
+			profile="${PORTDIR}/profiles/prefix/linux/arm"
+			;;
 		sparc-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc"
 			;;
