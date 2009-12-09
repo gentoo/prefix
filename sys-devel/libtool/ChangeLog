@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/libtool
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.159 2009/11/16 19:53:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.162 2009/12/07 23:03:32 maekke Exp $
+
+  07 Dec 2009; Markus Meier <maekke@gentoo.org> libtool-2.2.6b.ebuild:
+  amd64/arm/x86 stable, bug #295535
+
+  07 Dec 2009; Tiago Cunha <tcunha@gentoo.org> libtool-2.2.6b.ebuild:
+  stable sparc, security bug 295535
+
+  07 Dec 2009; Jeroen Roovers <jer@gentoo.org> libtool-2.2.6b.ebuild:
+  Stable for HPPA (bug #295535).
 
 *libtool-2.2.6b (16 Nov 2009)
 

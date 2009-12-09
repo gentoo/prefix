@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6b.ebuild,v 1.1 2009/11/16 19:53:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6b.ebuild,v 1.4 2009/12/07 23:03:32 maekke Exp $
 
 LIBTOOLIZE="true" #225559
 inherit eutils autotools flag-o-matic multilib prefix
@@ -48,8 +48,10 @@ src_unpack() {
 		# thinking that libraries are unavailable (argh...). This could also be
 		# fixed by making the gcc wrapper return the correct result for
 		# -print-search-dirs (doesn't include prefix dirs ...).
-		epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-eprefix.patch
-		eprefixify libltdl/m4/libtool.m4
+		if use prefix ; then
+			epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-eprefix.patch
+			eprefixify libltdl/m4/libtool.m4
+		fi
 
 		epunt_cxx
 		cd libltdl/m4
