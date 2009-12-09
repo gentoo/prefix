@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.14994 (09 Dec 2009)
+
+  09 Dec 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.14813.ebuild, +portage-2.2.00.14994.ebuild:
+  Version bump, one step closer to the same behaviour as trunk with
+  EPREFIX=''
+
   07 Dec 2009; Fabian Groffen <grobian@gentoo.org>
   -files/portage-2.2.00.14487-brokentty-more-platforms.patch,
   -files/portage-2.2.00.14487-prefix-chaining.patch,

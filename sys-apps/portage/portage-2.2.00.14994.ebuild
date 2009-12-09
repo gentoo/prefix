@@ -85,26 +85,33 @@ src_unpack() {
 }
 
 src_compile() {
-	local defaultpath="/usr/bin:/bin"
-	# ok, we can't rely on PORTAGE_ROOT_USER being there yet, as people
-	# tend not to update that often, as long as we are a separate ebuild
-	# we can assume when unset, it's time for some older trick
-	if [[ -z ${PORTAGE_ROOT_USER} ]] ; then
-		PORTAGE_ROOT_USER=$(python -c 'from portage.const import rootuser; print rootuser')
+	if use prefix ; then
+		local extrapath="/usr/bin:/bin"
+		# ok, we can't rely on PORTAGE_ROOT_USER being there yet, as people
+		# tend not to update that often, as long as we are a separate ebuild
+		# we can assume when unset, it's time for some older trick
+		if [[ -z ${PORTAGE_ROOT_USER} ]] ; then
+			PORTAGE_ROOT_USER=$(python -c 'from portage.const import rootuser; print rootuser')
+		fi
+		# lazy check, but works for now
+		if [[ ${PORTAGE_ROOT_USER} == "root" ]] ; then
+			# we need this for e.g. mtree on FreeBSD (and Darwin) which is in
+			# /usr/sbin
+			extrapath="/usr/sbin:/usr/bin:/sbin:/bin"
+		fi
+
+		econf \
+			--with-portage-user="${PORTAGE_USER:-portage}" \
+			--with-portage-group="${PORTAGE_GROUP:-portage}" \
+			--with-root-user="${PORTAGE_ROOT_USER}" \
+			--with-offset-prefix="${EPREFIX}" \
+			--with-extra-path="${extrapath}" \
+			|| die "econf failed"
+	else
+		# even though above options would be correct, just keep it clean for
+		# non-Prefix installs, relying on the autoconf defaults
+		econf || die "econf failed"
 	fi
-	# lazy check, but works for now
-	if [[ ${PORTAGE_ROOT_USER} == "root" ]] ; then
-		# we need this for e.g. mtree on FreeBSD (and Darwin) which is in
-		# /usr/sbin
-		defaultpath="${defaultpath}:/usr/sbin:/sbin"
-	fi
-	econf \
-		--with-portage-user="${PORTAGE_USER:-portage}" \
-		--with-portage-group="${PORTAGE_GROUP:-portage}" \
-		--with-root-user="${PORTAGE_ROOT_USER}" \
-		--with-offset-prefix="${EPREFIX}" \
-		--with-default-path="${defaultpath}" \
-		|| die "econf failed"
 	emake || die "emake failed"
 
 	if use elibc_FreeBSD; then
