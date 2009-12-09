@@ -27,11 +27,16 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.3.8-install-symlinks.patch
 
 	epatch "${FILESDIR}"/${PN}-1.3.12-mint.patch
-	epatch "${FILESDIR}"/${PN}-1.3.12-prefix.patch
 	epatch "${FILESDIR}"/${PN}-1.3.13-gl-stat-aix-largefiles.patch
-	eprefixify \
-		g{unzip,zexe}.in \
-		z{cat,cmp,diff,egrep,fgrep,force,grep,less,more,new}.in
+	epatch "${FILESDIR}"/${PN}-1.3.12-prefix.patch
+	eprefixify gzexe.in
+
+	# Fix regression introduced in gnulib regarding the fseeko detection macro,
+	# due to a syntax error, fseeko is never detected, and the gnulib code
+	# doesn't compile on Solaris (hence I noticed).  The issue has already been
+	# fixed upstream:
+	# http://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=commit;h=77a9c05de878d2f3efd2c4612ab2b64cc94ee0b7
+	sed -i -e 's:\[\(#include <stdio.h>\)\]:\1:' configure || die
 }
 
 src_compile() {
