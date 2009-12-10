@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.15027 (10 Dec 2009)
+
+  10 Dec 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.14994.ebuild, +portage-2.2.00.15027.ebuild:
+  Replace faulty snapshot (SRC_URI fetch weirdness) with version which
+  resembles 2.2_rc58+
+
 *portage-2.2.00.14994 (09 Dec 2009)
 
   09 Dec 2009; Fabian Groffen <grobian@gentoo.org>
