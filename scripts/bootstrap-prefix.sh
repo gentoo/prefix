@@ -870,6 +870,9 @@ case ${CHOST} in
 	*-*-netbsd*)
 		MAKE=make
 	;;
+	*)
+		MAKE=make
+	;;
 esac
 
 # Just guessing a prefix is kind of scary.  Hence, to make it a bit less
