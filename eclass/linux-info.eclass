@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.73 2009/10/11 11:48:33 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.76 2009/12/11 21:33:30 robbat2 Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
@@ -223,12 +223,28 @@ getfilevar_noexec() {
 	fi
 }
 
+# @PRIVATE-VARIABLE: _LINUX_CONFIG_EXISTS_DONE
+# @DESCRIPTION:
+# This is only set if one of the linux_config_*exists functions has been called.
+# We use it for a QA warning that the check for a config has not been performed,
+# as linux_chkconfig* in non-legacy mode WILL return an undefined value if no
+# config is available at all.
+_LINUX_CONFIG_EXISTS_DONE=
+
+linux_config_qa_check() {
+	local f="$1"
+	if [ -z "${_LINUX_CONFIG_EXISTS_DONE}" ]; then
+		ewarn "QA: You called $f before any linux_config_exists!"
+		ewarn "QA: The return value of $f will NOT gaurenteed later!"
+	fi
+}
 
 # @FUNCTION: linux_config_src_exists
 # @RETURN: true or false
 # @DESCRIPTION:
 # It returns true if .config exists in a build directory otherwise false
 linux_config_src_exists() {
+	export _LINUX_CONFIG_EXISTS_DONE=1
 	[ -s "${KV_OUT_DIR}/.config" ]
 }
 
@@ -237,7 +253,8 @@ linux_config_src_exists() {
 # @DESCRIPTION:
 # It returns true if .config exists in /proc, otherwise false
 linux_config_bin_exists() {
-	[ -s "/proc/config.gz" ]
+	export _LINUX_CONFIG_EXISTS_DONE=1
+	[ -n "${I_KNOW_WHAT_I_AM_DOING}" -a -s "/proc/config.gz" ]
 }
 
 # @FUNCTION: linux_config_exists
@@ -273,7 +290,8 @@ require_configured_kernel() {
 # If linux_config_exists returns false, the results of this are UNDEFINED. You
 # MUST call linux_config_exists first.
 linux_chkconfig_present() {
-local	RESULT
+	linux_config_qa_check linux_chkconfig_present
+	local	RESULT
 	[ -z "${I_KNOW_WHAT_I_AM_DOING}" ] && require_configured_kernel
 	local config
 	config="${KV_OUT_DIR}/.config"
@@ -290,7 +308,8 @@ local	RESULT
 # If linux_config_exists returns false, the results of this are UNDEFINED. You
 # MUST call linux_config_exists first.
 linux_chkconfig_module() {
-local	RESULT
+	linux_config_qa_check linux_chkconfig_module
+	local	RESULT
 	[ -z "${I_KNOW_WHAT_I_AM_DOING}" ] && require_configured_kernel
 	local config
 	config="${KV_OUT_DIR}/.config"
@@ -307,7 +326,8 @@ local	RESULT
 # If linux_config_exists returns false, the results of this are UNDEFINED. You
 # MUST call linux_config_exists first.
 linux_chkconfig_builtin() {
-local	RESULT
+	linux_config_qa_check linux_chkconfig_builtin
+	local	RESULT
 	[ -z "${I_KNOW_WHAT_I_AM_DOING}" ] && require_configured_kernel
 	local config
 	config="${KV_OUT_DIR}/.config"
@@ -324,6 +344,7 @@ local	RESULT
 # If linux_config_exists returns false, the results of this are UNDEFINED. You
 # MUST call linux_config_exists first.
 linux_chkconfig_string() {
+	linux_config_qa_check linux_chkconfig_string
 	[ -z "${I_KNOW_WHAT_I_AM_DOING}" ] && require_configured_kernel
 	local config
 	config="${KV_OUT_DIR}/.config"
@@ -624,6 +645,10 @@ check_modules_supported() {
 check_extra_config() {
 	local	config negate die error reworkmodulenames
 	local	soft_errors_count=0 hard_errors_count=0 config_required=0
+	# store the value of the QA check, because otherwise we won't catch usages
+	# after if check_extra_config is called AND other direct calls are done
+	# later.
+	local   old_LINUX_CONFIG_EXISTS_DONE="${_LINUX_CONFIG_EXISTS_DONE}"
 
 	# if we haven't determined the version yet, we need to
 	linux-info_get_any_version
@@ -652,6 +677,7 @@ check_extra_config() {
 				ewarn " - ${config#\~}"
 			done
 			ewarn "You're on your own to make sure they are set if needed."
+			export LINUX_CONFIG_EXISTS_DONE="${old_LINUX_CONFIG_EXISTS_DONE}"
 			return 0
 		fi
 	else
@@ -738,6 +764,7 @@ check_extra_config() {
 		eerror "Failure to do so may cause unexpected problems."
 		eerror "Once you have satisfied these options, please try merging"
 		eerror "this package again."
+		export LINUX_CONFIG_EXISTS_DONE="${old_LINUX_CONFIG_EXISTS_DONE}"
 		die "Incorrect kernel configuration options"
 	elif [[ ${soft_errors_count} > 0 ]]; then
 		ewarn "Please check to make sure these options are set correctly."
@@ -745,6 +772,7 @@ check_extra_config() {
 	else
 		eend 0
 	fi
+	export LINUX_CONFIG_EXISTS_DONE="${old_LINUX_CONFIG_EXISTS_DONE}"
 }
 
 check_zlibinflate() {

@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.117 2009/11/28 10:25:37 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/x-modular.eclass,v 1.118 2009/12/09 10:21:49 vapier Exp $
 #
 # @ECLASS: x-modular.eclass
 # @MAINTAINER:
@@ -67,13 +67,11 @@ XDIR="${EPREFIX}/usr"
 IUSE=""
 HOMEPAGE="http://xorg.freedesktop.org/"
 
-if [[ -z ${SNAPSHOT} ]]; then
 # @ECLASS-VARIABLE: SNAPSHOT
 # @DESCRIPTION:
 # If set to 'yes' and configure.ac exists, eautoreconf will run. Set
 # before inheriting this eclass.
-	SNAPSHOT="no"
-fi
+: ${SNAPSHOT:=no}
 
 # Set up SRC_URI for individual modular releases
 BASE_INDIVIDUAL_URI="http://xorg.freedesktop.org/releases/individual"
@@ -83,7 +81,6 @@ BASE_INDIVIDUAL_URI="http://xorg.freedesktop.org/releases/individual"
 # doc, data, util, driver, font, lib, proto, xserver. Set above the
 # inherit to override the default autoconfigured module.
 if [[ -z ${MODULE} ]]; then
-	MODULE=""
 	case ${CATEGORY} in
 		app-doc)             MODULE="doc"     ;;
 		media-fonts)         MODULE="font"    ;;
@@ -130,17 +127,13 @@ if [[ -n "${FONT}" ]]; then
 	# Starting with 7.0RC3, we can specify the font directory
 	# But oddly, we can't do the same for encodings or font-alias
 
-	# Wrap in `if` so ebuilds can set it too
-	if [[ -z ${FONT_DIR} ]]; then
 # @ECLASS-VARIABLE: FONT_DIR
 # @DESCRIPTION:
 # If you're creating a font package and the suffix of PN is not equal to
 # the subdirectory of /usr/share/fonts/ it should install into, set
 # FONT_DIR to that directory or directories. Set before inheriting this
 # eclass.
-		FONT_DIR=${PN##*-}
-
-	fi
+	: ${FONT_DIR:=${PN##*-}}
 
 	# Fix case of font directories
 	FONT_DIR=${FONT_DIR/ttf/TTF}
@@ -408,8 +401,7 @@ x-modular_src_configure() {
 
 # @VARIABLE: CONFIGURE_OPTIONS
 # @DESCRIPTION:
-# Any options to pass to configure
-[[ -n ${CONFIGURE_OPTIONS} ]]
+# Any extra options to pass to configure
 
 	# If prefix isn't set here, .pc files cause problems
 	if [[ -x ${ECONF_SOURCE:-.}/configure ]]; then
@@ -474,7 +466,7 @@ x-modular_src_install() {
 	fi
 # @VARIABLE: DOCS
 # @DESCRIPTION:
-# Any documentation to install
+# Any documentation to install via dodoc
 	[[ -n ${DOCS} ]] && dodoc ${DOCS}
 
 	# Don't install libtool archives for server modules
