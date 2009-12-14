@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.63 2009/11/22 12:06:43 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.64 2009/12/07 21:05:08 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -134,12 +134,16 @@
 # @DESCRIPTION:
 # Directory where packages install Emacs Lisp files.
 SITELISP=/usr/share/emacs/site-lisp
+# this one should go as soon as we removed it usage from all ebuilds (as the
+# emacs team prefers)
 ESITELISP=${EPREFIX}${SITELISP}
 
 # @ECLASS-VARIABLE: SITEETC
 # @DESCRIPTION:
 # Directory where packages install miscellaneous (not Lisp) files.
 SITEETC=/usr/share/emacs/etc
+# this one should go as soon as we removed it usage from all ebuilds (as the
+# emacs team prefers)
 ESITEETC=${EPREFIX}${SITEETC}
 
 # @ECLASS-VARIABLE: EMACS
@@ -263,8 +267,8 @@ elisp-site-file-install() {
 	ebegin "Installing site initialisation file for GNU Emacs"
 	[[ $1 = ${sf} ]] || cp "$1" "${sf}"
 	sed -i -e "1{:x;/^\$/{n;bx;};/^;.*${PN}/I!s:^:${header}\n\n:;1s:^:\n:;}" \
-		-e "s:@SITELISP@:${ESITELISP}/${my_pn}:g" \
-		-e "s:@SITEETC@:${ESITEETC}/${my_pn}:g;\$q" "${sf}"
+		-e "s:@SITELISP@:${EPREFIX}${SITELISP}/${my_pn}:g" \
+		-e "s:@SITEETC@:${EPREFIX}${SITEETC}/${my_pn}:g;\$q" "${sf}"
 	( # subshell to avoid pollution of calling environment
 		insinto "${SITELISP}/site-gentoo.d"
 		doins "${sf}"
@@ -285,11 +289,12 @@ elisp-site-file-install() {
 # location is still supported when generating site-gentoo.el.
 
 elisp-site-regen() {
+	local sitelisp=${EROOT}${EPREFIX}${SITELISP}
 	local i sf line obsolete null="" page=$'\f'
 	local -a sflist
 
-	if [ ! -d "${EROOT}${SITELISP}" ]; then
-		eerror "elisp-site-regen: Directory ${SITELISP} does not exist"
+	if [ ! -d "${sitelisp}" ]; then
+		eerror "elisp-site-regen: Directory ${sitelisp} does not exist"
 		return 1
 	fi
 
@@ -302,14 +307,14 @@ elisp-site-regen() {
 
 	# Until January 2009, elisp-common.eclass sometimes created an
 	# auxiliary file for backwards compatibility. Remove any such file.
-	rm -f "${EROOT}${SITELISP}"/00site-gentoo.el
+	rm -f "${sitelisp}"/00site-gentoo.el
 
 	# set nullglob option, there may be a directory without matching files
 	local old_shopts=$(shopt -p nullglob)
 	shopt -s nullglob
 
-	for sf in "${EROOT}${SITELISP}"/[0-9][0-9]*-gentoo.el \
-		"${EROOT}${SITELISP}"/site-gentoo.d/[0-9][0-9]*.el
+	for sf in "${sitelisp}"/[0-9][0-9]*-gentoo.el \
+		"${sitelisp}"/site-gentoo.d/[0-9][0-9]*.el
 	do
 		[ -r "${sf}" ] || continue
 		# sort files by their basename. straight insertion sort.
@@ -319,7 +324,7 @@ elisp-site-regen() {
 		done
 		sflist[i]=${sf}
 		# set a flag if there are obsolete files
-		[ "${sf%/*}" = "${EROOT}${SITELISP}" ] && obsolete=t
+		[ "${sf%/*}" = "${sitelisp}" ] && obsolete=t
 	done
 
 	eval "${old_shopts}"
@@ -348,14 +353,13 @@ elisp-site-regen() {
 	;;; site-gentoo.el ends here
 	EOF
 
-	if cmp -s "${EROOT}${SITELISP}"/site-gentoo.el "${T}"/site-gentoo.el
-	then
+	if cmp -s "${sitelisp}"/site-gentoo.el "${T}"/site-gentoo.el; then
 		# This prevents outputting unnecessary text when there
 		# was actually no change.
 		# A case is a remerge where we have doubled output.
 		echo " no changes."
 	else
-		mv "${T}"/site-gentoo.el "${EROOT}${SITELISP}"/site-gentoo.el
+		mv "${T}"/site-gentoo.el "${sitelisp}"/site-gentoo.el
 		echo
 		case ${#sflist[@]} in
 			0) ewarn "... Huh? No site initialisation files found." ;;
