@@ -27,6 +27,7 @@ app-admin/eselect
 app-admin/eselect-ctags
 app-admin/eselect-emacs
 app-admin/emacs-updater
+app-crypt/qca
 app-editors/mg
 app-editors/nedit
 app-emacs/autoconf-mode
