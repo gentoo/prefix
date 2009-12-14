@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.55 2009/12/02 17:07:05 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.56 2009/12/10 17:35:52 abcd Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -59,6 +59,12 @@ esac
 # Is qt-opengl required? Possible values are 'always', 'optional' and 'never'.
 # This variable must be set before inheriting any eclasses. Defaults to 'never'.
 OPENGL_REQUIRED="${OPENGL_REQUIRED:-never}"
+
+# @ECLASS-VARIABLE: MULTIMEDIA_REQUIRED
+# @DESCRIPTION:
+# Is qt-multimedia required? Possible values are 'always', 'optional' and 'never'.
+# This variable must be set before inheriting any eclasses. Defaults to 'never'.
+MULTIMEDIA_REQUIRED="${MULTIMEDIA_REQUIRED:-never}"
 
 # @ECLASS-VARIABLE: WEBKIT_REQUIRED
 # @DESCRIPTION:
@@ -166,6 +172,22 @@ case ${OPENGL_REQUIRED} in
 	*) ;;
 esac
 unset qtopengldepend
+
+# MultiMedia dependencies
+qtmultimediadepend="
+	>=x11-libs/qt-multimedia-${QT_MINIMAL}:4
+"
+case ${MULTIMEDIA_REQUIRED} in
+	always)
+		COMMONDEPEND+=" ${qtmultimediadepend}"
+		;;
+	optional)
+		IUSE+=" multimedia"
+		COMMONDEPEND+=" multimedia? ( ${qtmultimediadepend} )"
+		;;
+	*) ;;
+esac
+unset qtmultimediadepend
 
 # WebKit dependencies
 case ${KDE_REQUIRED} in
@@ -402,7 +424,11 @@ kde4-base_pkg_setup() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# Prefix compat:
-	use prefix || EROOT=${ROOT}
+	if [[ ${EAPI} == 2 ]] && ! use prefix; then
+		EPREFIX=
+		EROOT=${ROOT}
+	fi
+
 	# Append missing trailing slash character
 	[[ ${EROOT} = */ ]] || EROOT+="/"
 
@@ -414,11 +440,11 @@ kde4-base_pkg_setup() {
 
 	if [[ ${KDEBASE} = kde-base ]]; then
 		if use kdeprefix; then
-			KDEDIR="${ROOT}usr/kde/${_kdedir}"
+			KDEDIR=${EPREFIX}/usr/kde/${_kdedir}
 		else
-			KDEDIR="${ROOT}usr"
+			KDEDIR=${EPREFIX}/usr
 		fi
-		PREFIX="${PREFIX:-${KDEDIR}}"
+		: ${PREFIX:=${KDEDIR}}
 	else
 		# Determine KDEDIR by loooking for the closest match with KDE_MINIMAL
 		KDEDIR=
@@ -427,9 +453,9 @@ kde4-base_pkg_setup() {
 			[[ -z ${kde_minimal_met} ]] && [[ ${slot} = ${KDE_MINIMAL} ]] && kde_minimal_met=1
 			if [[ -n ${kde_minimal_met} ]] && has_version "kde-base/kdelibs:${slot}"; then
 				if has_version "kde-base/kdelibs:${slot}[kdeprefix]"; then
-					KDEDIR="${ROOT}usr/kde/${slot}"
+					KDEDIR=${EPREFIX}/usr/kde/${slot}
 				else
-					KDEDIR="${ROOT}usr"
+					KDEDIR=${EPREFIX}/usr
 				fi
 				break;
 			fi
@@ -440,10 +466,10 @@ kde4-base_pkg_setup() {
 		if [[ ${KDE_REQUIRED} = always ]] || { [[ ${KDE_REQUIRED} = optional ]] && use kde; }; then
 			[[ -z ${KDEDIR} ]] && die "Failed to determine KDEDIR!"
 		else
-			[[ -z ${KDEDIR} ]] && KDEDIR="${EROOT}usr"
+			[[ -z ${KDEDIR} ]] && KDEDIR=${EPREFIX}/usr
 		fi
 
-		PREFIX="${PREFIX:-${EROOT}usr}"
+		: ${PREFIX:=${EPREFIX}/usr}
 	fi
 	# Point pkg-config path to KDE *.pc files
 	export PKG_CONFIG_PATH="${KDEDIR}/$(get_libdir)/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
@@ -465,10 +491,10 @@ kde4-base_src_unpack() {
 	if [[ ${BUILD_TYPE} = live ]]; then
 		migrate_store_dir
 		subversion_src_unpack
-	elif [[ ${EAPI} == 2 ]]; then
+	elif [[ ${EAPI} == [23] ]]; then
 		local file
 		for file in ${A}; do
-			# This setup is because EAPI <= 2 cannot unpack *.tar.xz files
+			# This setup is because EAPI <= 3 cannot unpack *.tar.xz files
 			# directly, so we do it ourselves (using the exact same code as portage)
 			case ${file} in
 				*.tar.xz)
@@ -482,7 +508,7 @@ kde4-base_src_unpack() {
 			esac
 		done
 	else
-		# For EAPI >= 3, we can just use unpack() directly
+		# For EAPI >= 4, we can just use unpack() directly
 		unpack ${A}
 	fi
 }
@@ -529,10 +555,10 @@ kde4-base_src_configure() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# Build tests in src_test only, where we override this value
-	local cmakeargs="-DKDE4_BUILD_TESTS=OFF"
+	local cmakeargs=(-DKDE4_BUILD_TESTS=OFF)
 
 	if has kdeenablefinal ${IUSE//+} && use kdeenablefinal; then
-		cmakeargs+=" -DKDE4_ENABLE_FINAL=ON"
+		cmakeargs+=(-DKDE4_ENABLE_FINAL=ON)
 	fi
 
 	if has debug ${IUSE//+} && use debug; then
@@ -544,10 +570,10 @@ kde4-base_src_configure() {
 	fi
 
 	# Set distribution name
-	[[ ${PN} = kdelibs ]] && cmakeargs+=" -DKDE_DISTRIBUTION_TEXT=Gentoo"
+	[[ ${PN} = kdelibs ]] && cmakeargs+=(-DKDE_DISTRIBUTION_TEXT=Gentoo)
 
 	# Here we set the install prefix
-	cmakeargs+=" -DCMAKE_INSTALL_PREFIX=${PREFIX}"
+	cmakeargs+=(-DCMAKE_INSTALL_PREFIX="${PREFIX}")
 
 	# Use colors
 	QTEST_COLORED=1
@@ -556,27 +582,31 @@ kde4-base_src_configure() {
 	unset KDEDIRS
 
 	# Handle kdeprefix-ed KDE
-	if [[ ${KDEDIR} != "${EROOT}usr" ]]; then
+	if [[ ${KDEDIR} != ${EPREFIX}/usr ]]; then
 		# Override some environment variables - only when kdeprefix is different,
 		# to not break ccache/distcc
 		PATH="${KDEDIR}/bin:${PATH}"
 		LDPATH="${KDEDIR}/$(get_libdir):${LDPATH}"
 
 		# Append full RPATH
-		cmakeargs+=" -DCMAKE_SKIP_RPATH=OFF"
+		cmakeargs+=(-DCMAKE_SKIP_RPATH=OFF)
 
 		# Set cmake prefixes to allow buildsystem to locate valid KDE installation
 		# when more are present
-		cmakeargs+=" -DCMAKE_SYSTEM_PREFIX_PATH=${KDEDIR}"
+		cmakeargs+=(-DCMAKE_SYSTEM_PREFIX_PATH="${KDEDIR}")
 	fi
 
 	# Handle kdeprefix in application itself
 	if ! has kdeprefix ${IUSE//+} || ! use kdeprefix; then
 		# If prefix is /usr, sysconf needs to be /etc, not /usr/etc
-		cmakeargs+=" -DSYSCONF_INSTALL_DIR=${EROOT}etc"
+		cmakeargs+=(-DSYSCONF_INSTALL_DIR="${EPREFIX}"/etc)
 	fi
 
-	mycmakeargs="${cmakeargs} ${mycmakeargs}"
+	if [[ $(declare -p mycmakeargs) != "declare -a mycmakeargs="* ]]; then
+		mycmakeargs=(${mycmakeargs})
+	fi
+
+	mycmakeargs=("${cmakeargs[@]}" "${mycmakeargs[@]}")
 
 	cmake-utils_src_configure
 }
@@ -597,7 +627,7 @@ kde4-base_src_test() {
 	debug-print-function ${FUNCNAME} "$@"
 
 	# Override this value, set in kde4-base_src_configure()
-	mycmakeargs+=" -DKDE4_BUILD_TESTS=ON"
+	mycmakeargs+=(-DKDE4_BUILD_TESTS=ON)
 	cmake-utils_src_configure
 	kde4-base_src_compile
 
@@ -639,12 +669,14 @@ kde4-base_src_make_doc() {
 		done
 	fi
 
-	if [[ -n ${KDEBASE} ]] && [[ -d "${D}${EROOT}usr/share/doc/${PF}" ]]; then
+	[[ -z ${ED} ]] && ED=${D}${EPREFIX}
+
+	if [[ -n ${KDEBASE} ]] && [[ -d ${ED}usr/share/doc/${PF} ]]; then
 		# work around bug #97196
 		dodir /usr/share/doc/KDE4 && \
-			cp -r "${D}${EROOT}usr/share/doc/${PF}" "${D}${EROOT}usr/share/doc/KDE4/" || \
+			cp -r "${ED}usr/share/doc/${PF}" "${ED}usr/share/doc/KDE4/" || \
 			die "Failed to move docs to KDE4/."
-			rm -rf "${D}${EROOT}usr/share/doc/${PF}"
+			rm -rf "${ED}usr/share/doc/${PF}"
 	fi
 }
 
