@@ -56,6 +56,7 @@ app-misc/rlwrap
 app-portage/eix
 app-shells/bash-completion
 app-shells/tcsh
+dev-cpp/clucene
 dev-db/tokyocabinet
 dev-libs/libebml
 dev-php5/pecl-pdflib
