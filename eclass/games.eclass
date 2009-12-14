@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.138 2009/07/26 11:05:04 nyhm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.139 2009/12/09 00:27:24 mr_bones_ Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -44,8 +44,7 @@ egamesconf() {
 		--datadir="${GAMES_DATADIR}" \
 		--sysconfdir="${GAMES_SYSCONFDIR}" \
 		--localstatedir="${GAMES_STATEDIR}" \
-		"$@" \
-		|| die "egamesconf failed"
+		"$@"
 }
 
 gameswrapper() {
@@ -140,14 +139,14 @@ games_pkg_setup() {
 }
 
 games_src_configure() {
-	[[ -x ./configure ]] && { egamesconf || die "egamesconf failed"; }
+	[[ -x ./configure ]] && { egamesconf; }
 }
 
 games_src_compile() {
 	case ${EAPI:-0} in
 		0|1) games_src_configure ;;
 	esac
-	[ -e [Mm]akefile ] && { emake || die "emake failed"; }
+	base_src_compile make
 }
 
 games_pkg_preinst() {
