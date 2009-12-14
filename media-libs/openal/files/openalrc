@@ -1,9 +1,0 @@
-# Contains user settings for OpenAL
-# Goes in ~/.openalrc
-
-# Use ALSA (also valid: sdl, native)
-(define devices '(alsa))
-
-# Four speaker surround with ALSA
-(define speaker-num 4)
-(define alsa-out-device "surround40:0,0")
