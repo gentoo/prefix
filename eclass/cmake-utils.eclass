@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.34 2009/10/27 21:20:40 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.36 2009/12/10 19:58:42 abcd Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -40,7 +40,7 @@ inherit toolchain-funcs multilib flag-o-matic base
 
 CMAKE_EXPF="src_compile src_test src_install"
 case ${EAPI:-0} in
-	2) CMAKE_EXPF+=" src_configure" ;;
+	3|2) CMAKE_EXPF+=" src_configure" ;;
 	1|0) ;;
 	*) die "Unknown EAPI, Bug eclass maintainers." ;;
 esac
@@ -148,7 +148,7 @@ _check_build_dir() {
 	# files should be located.
 	#
 	# For installing binary doins "${CMAKE_BUILD_DIR}/${PN}"
-	if [[ -n "${CMAKE_IN_SOURCE_BUILD}" ]]; then
+	if [[ -n ${CMAKE_IN_SOURCE_BUILD} ]]; then
 		# we build in source dir
 		CMAKE_BUILD_DIR="${CMAKE_USE_DIR}"
 	elif [[ ${CMAKE_USE_DIR} = ${WORKDIR} ]]; then
@@ -247,10 +247,12 @@ _modify-cmakelists() {
 		|| die "${LINENO}: failed to disable hardcoded settings"
 
 	# NOTE Append some useful summary here
-	echo '
-MESSAGE(STATUS "<<< Gentoo configuration >>>
-Build type: ${CMAKE_BUILD_TYPE}
-Install path: ${CMAKE_INSTALL_PREFIX}\n")' >> CMakeLists.txt
+	cat >> CMakeLists.txt <<- _EOF_
+
+		MESSAGE(STATUS "<<< Gentoo configuration >>>
+		Build type: ${CMAKE_BUILD_TYPE}
+		Install path: ${CMAKE_INSTALL_PREFIX}\n")
+	_EOF_
 }
 
 # @FUNCTION: enable_cmake-utils_src_configure
@@ -263,7 +265,7 @@ enable_cmake-utils_src_configure() {
 	_check_build_dir init
 
 	# check if CMakeLists.txt exist and if no then die
-	if [[ ! -e "${CMAKE_USE_DIR}"/CMakeLists.txt ]] ; then
+	if [[ ! -e ${CMAKE_USE_DIR}/CMakeLists.txt ]] ; then
 		eerror "I was unable to locate CMakeLists.txt under:"
 		eerror "\"${CMAKE_USE_DIR}/CMakeLists.txt\""
 		eerror "You should consider not inheriting the cmake eclass."
@@ -285,46 +287,58 @@ enable_cmake-utils_src_configure() {
 	fi
 
 	# Prepare Gentoo override rules (set valid compiler, append CPPFLAGS)
-	local build_rules="${TMPDIR}"/gentoo_rules.cmake
-cat > ${build_rules} << _EOF_
-SET (CMAKE_C_COMPILER $(type -P $(tc-getCC)) CACHE FILEPATH "C compiler" FORCE)
-SET (CMAKE_C_COMPILE_OBJECT "<CMAKE_C_COMPILER> <DEFINES> ${CPPFLAGS} <FLAGS> -o <OBJECT> -c <SOURCE>" CACHE STRING "C compile command" FORCE)
-SET (CMAKE_CXX_COMPILER $(type -P $(tc-getCXX)) CACHE FILEPATH "C++ compiler" FORCE)
-SET (CMAKE_CXX_COMPILE_OBJECT "<CMAKE_CXX_COMPILER> <DEFINES> ${CPPFLAGS} <FLAGS> -o <OBJECT> -c <SOURCE>" CACHE STRING "C++ compile command" FORCE)
+	local build_rules=${T}/gentoo_rules.cmake
+	cat > "${build_rules}" <<- _EOF_
+		SET (CMAKE_C_COMPILER $(type -P $(tc-getCC)) CACHE FILEPATH "C compiler" FORCE)
+		SET (CMAKE_C_COMPILE_OBJECT "<CMAKE_C_COMPILER> <DEFINES> ${CPPFLAGS} <FLAGS> -o <OBJECT> -c <SOURCE>" CACHE STRING "C compile command" FORCE)
+		SET (CMAKE_CXX_COMPILER $(type -P $(tc-getCXX)) CACHE FILEPATH "C++ compiler" FORCE)
+		SET (CMAKE_CXX_COMPILE_OBJECT "<CMAKE_CXX_COMPILER> <DEFINES> ${CPPFLAGS} <FLAGS> -o <OBJECT> -c <SOURCE>" CACHE STRING "C++ compile command" FORCE)
+	_EOF_
 
-# in Prefix we need rpath and must ensure cmake gets our default linker path
-# right ... except for Darwin hosts
-IF (NOT APPLE)
-SET (CMAKE_SKIP_RPATH OFF CACHE BOOL "" FORCE)
-SET (CMAKE_PLATFORM_REQUIRED_RUNTIME_PATH "${EPREFIX}/usr/${CHOST}/lib/gcc;${EPREFIX}/usr/${CHOST}/lib;${EPREFIX}/usr/$(get_libdir);${EPREFIX}/$(get_libdir)"
-CACHE STRING "" FORCE)
-ENDIF (NOT APPLE)
-_EOF_
+	if use prefix; then
+		cat >> "${build_rules}" <<- _EOF_
+			# in Prefix we need rpath and must ensure cmake gets our default linker path
+			# right ... except for Darwin hosts
+			IF (NOT APPLE)
+			SET (CMAKE_SKIP_RPATH OFF CACHE BOOL "" FORCE)
+			SET (CMAKE_PLATFORM_REQUIRED_RUNTIME_PATH "${EPREFIX}/usr/${CHOST}/lib/gcc;${EPREFIX}/usr/${CHOST}/lib;${EPREFIX}/usr/$(get_libdir);${EPREFIX}/$(get_libdir)"
+			CACHE STRING "" FORCE)
+			ENDIF (NOT APPLE)
+		_EOF_
+	fi
+
+	# Common configure parameters (invariants)
+	local common_config=${T}/gentoo_common_config.cmake
+	local libdir=$(get_libdir)
+	cat > "${common_config}" <<- _EOF_
+		SET (LIB_SUFFIX ${libdir/lib} CACHE STRING "library path suffix" FORCE)
+	_EOF_
+	[[ -n ${CMAKE_NO_COLOR} ]] && echo 'SET (CMAKE_COLOR_MAKEFILE OFF CACHE BOOL "pretty colors during make" FORCE)' >> "${common_config}"
+
+	# Convert mycmakeargs to an array, for backwards compatibility
+	if [[ $(declare -p mycmakeargs 2>&-) != "declare -a mycmakeargs="* ]]; then
+		mycmakeargs=(${mycmakeargs})
+	fi
+
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 
 	# Common configure parameters (overridable)
 	# NOTE CMAKE_BUILD_TYPE can be only overriden via CMAKE_BUILD_TYPE eclass variable
 	# No -DCMAKE_BUILD_TYPE=xxx definitions will be in effect.
-	local cmakeargs="
-		-DCMAKE_INSTALL_PREFIX=${PREFIX:-${EPREFIX}/usr}
-		${mycmakeargs}
-		-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+	local cmakeargs=(
+		-C "${common_config}"
+		-DCMAKE_INSTALL_PREFIX="${PREFIX:-${EPREFIX}/usr}"
+		"${mycmakeargs[@]}"
+		-DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE}"
 		-DCMAKE_INSTALL_DO_STRIP=OFF
-		-DCMAKE_USER_MAKE_RULES_OVERRIDE=${build_rules}"
-
-	# Common configure parameters (invariants)
-	local common_config="${TMPDIR}"/gentoo_common_config.cmake
-	local libdir=$(get_libdir)
-cat > ${common_config} << _EOF_
-SET (LIB_SUFFIX ${libdir/lib} CACHE STRING "library path suffix" FORCE)
-_EOF_
-	[[ -n ${CMAKE_NO_COLOR} ]] && echo 'SET (CMAKE_COLOR_MAKEFILE OFF CACHE BOOL "pretty colors during make" FORCE)' >> ${common_config}
-	cmakeargs="-C ${common_config} ${cmakeargs}"
+		-DCMAKE_USER_MAKE_RULES_OVERRIDE="${build_rules}"
+	)
 
 	mkdir -p "${CMAKE_BUILD_DIR}"
 	pushd "${CMAKE_BUILD_DIR}" > /dev/null
-	debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: mycmakeargs is $cmakeargs"
-	echo cmake ${cmakeargs} "${CMAKE_USE_DIR}"
-	cmake ${cmakeargs} "${CMAKE_USE_DIR}" || die "cmake failed"
+	debug-print "${LINENO} ${ECLASS} ${FUNCNAME}: mycmakeargs is ${cmakeargs[*]}"
+	echo cmake "${cmakeargs[@]}" "${CMAKE_USE_DIR}"
+	cmake "${cmakeargs[@]}" "${CMAKE_USE_DIR}" || die "cmake failed"
 
 	popd > /dev/null
 }
@@ -343,8 +357,7 @@ enable_cmake-utils_src_compile() {
 # @FUNCTION: cmake-utils_src_make
 # @DESCRIPTION:
 # Function for building the package. Automatically detects the build type.
-# All arguments are passed to emake:
-# "cmake-utils_src_make -j1" can be used to work around parallel make issues.
+# All arguments are passed to emake
 cmake-utils_src_make() {
 	debug-print-function ${FUNCNAME} "$@"
 
