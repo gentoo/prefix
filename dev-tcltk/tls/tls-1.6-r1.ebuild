@@ -23,7 +23,10 @@ DEPEND=">=dev-lang/tcl-8.3.3
 S="${WORKDIR}/${MY_P}"
 
 src_compile() {
-	econf --with-ssl-dir="${EPREFIX}"/usr || die
+	econf \
+		--with-ssl-dir="${EPREFIX}"/usr \
+		--with-tcl="${EPREFIX}"/usr/$(get_libdir) \
+		|| die
 	emake || die
 }
 
