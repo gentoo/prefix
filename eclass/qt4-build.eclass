@@ -1,6 +1,6 @@
 # Copyright 2007-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.53 2009/11/19 12:01:35 deathwing00 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/qt4-build.eclass,v 1.54 2009/12/06 09:34:36 hwoarang Exp $
 
 # @ECLASS: qt4-build.eclass
 # @MAINTAINER:
@@ -241,10 +241,10 @@ qt4-build_src_prepare() {
 		replace-flags -O2 -O3
 	fi
 
-	# Bug 282984
-	sed -e "s/\(^SYSTEM_VARIABLES\)/CC=$(tc-getCC)\nCXX=$(tc-getCXX)\n\1/" \
+	# Bug 282984 && Bug 295530
+	sed -e "s:\(^SYSTEM_VARIABLES\):CC=$(tc-getCC)\nCXX=$(tc-getCXX)\n\1:" \
 		-i configure || die "sed qmake compilers failed"
-	sed -e "s/\(\$MAKE\)/\1 CC=$(tc-getCC) CXX=$(tc-getCXX) LD=$(tc-getCXX)/" \
+	sed -e "s:\(\$MAKE\):\1 CC=$(tc-getCC) CXX=$(tc-getCXX) LD=$(tc-getCXX):" \
 		-i config.tests/unix/compile.test || die "sed test compilers failed"
 
 	# Bug 178652
