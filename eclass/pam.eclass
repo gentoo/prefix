@@ -1,7 +1,7 @@
 # Copyright 2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License, v2 or later
 # Author Diego Pettenò <flameeyes@gentoo.org>
-# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.17 2008/06/28 19:57:40 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/pam.eclass,v 1.18 2009/12/11 20:33:11 vapier Exp $
 #
 # This eclass contains functions to install pamd configuration files and
 # pam modules.
@@ -212,10 +212,9 @@ pam_epam_expand() {
 
 # Think about it before uncommenting this one, for now run it by hand
 # pam_pkg_preinst() {
-# 	local shopts=$-
-# 	set -o noglob # so that bash doen't expand "*"
+# 	eshopts_push -o noglob # so that bash doen't expand "*"
 #
 # 	pam_epam_expand "${ED}"/etc/pam.d/*
 #
-# 	set +o noglob; set -$shopts # reset old shell opts
+# 	eshopts_pop # reset old shell opts
 # }
