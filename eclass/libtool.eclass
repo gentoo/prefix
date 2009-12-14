@@ -209,7 +209,7 @@ elibtoolize() {
 	# to create correct shared libraries and executables on hppa-hpux via
 	# libtool in combination with DESTDIR to avoid $D getting encoded.
 	[[ ${CHOST} == *"-hpux"* ]] && \
-		elt_patches="${elt_patches} hpux-conf deplibs hc-flag-ld hardcode hardcode-relink relink-prog"
+		elt_patches="${elt_patches} hpux-conf deplibs hc-flag-ld hardcode hardcode-relink relink-prog no-lc"
 
 	for x in ${my_dirlist} ; do
 		local tmp=$(echo "${x}" | sed -e "s|${WORKDIR}||")
