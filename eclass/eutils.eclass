@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.321 2009/10/18 07:52:23 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.322 2009/12/11 20:31:34 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -68,6 +68,50 @@ ecvs_clean() {
 esvn_clean() {
 	[[ -z $* ]] && set -- .
 	find "$@" -type d -name '.svn' -prune -print0 | xargs -0 rm -rf
+}
+
+# @FUNCTION: eshopts_push
+# @USAGE: [options to `set`]
+# @DESCRIPTION:
+# Often times code will want to enable a shell option to change code behavior.
+# Since changing shell options can easily break other pieces of code (which
+# assume the default state), eshopts_push is used to (1) push the current shell
+# options onto a stack and (2) pass the specified arguments to set.
+#
+# A common example is to disable shell globbing so that special meaning/care
+# may be used with variables/arguments to custom functions.  That would be:
+# @CODE
+#		eshopts_push -o noglob
+#		for x in ${foo} ; do
+#			if ...some check... ; then
+#				eshopts_pop
+#				return 0
+#			fi
+#		done
+#		eshopts_pop
+# @CODE
+eshopts_push() {
+	# have to assume __ESHOPTS_SAVE__ isn't screwed with
+	# as a `declare -a` here will reset its value
+	local i=${#__ESHOPTS_SAVE__[@]}
+	__ESHOPTS_SAVE__[$i]=$-
+	[[ $# -eq 0 ]] && return 0
+	set "$@" || die "eshopts_push: bad options to set: $*"
+}
+
+# @FUNCTION: eshopts_pop
+# @USAGE:
+# @DESCRIPTION:
+# Restore the shell options to the state saved with the corresponding
+# eshopts_push call.  See that function for more details.
+eshopts_pop() {
+	[[ $# -ne 0 ]] && die "eshopts_pop takes no arguments"
+	local i=$(( ${#__ESHOPTS_SAVE__[@]} - 1 ))
+	[[ ${i} -eq -1 ]] && die "eshopts_{push,pop}: unbalanced pair"
+	local s=${__ESHOPTS_SAVE__[$i]}
+	unset __ESHOPTS_SAVE__[$i]
+	set +$-   || die "eshopts_pop: sanity: invalid shell settings: $-"
+	set -${s} || die "eshopts_pop: sanity: unable to restore saved shell settings: ${s}"
 }
 
 # Default directory where patches are located
@@ -1357,16 +1401,15 @@ check_license() {
 
 	# here is where we check for the licenses the user already
 	# accepted ... if we don't find a match, we make the user accept
-	local shopts=$-
 	local alic
-	set -o noglob #so that bash doesn't expand "*"
+	eshopts_push -o noglob # so that bash doesn't expand "*"
 	for alic in ${ACCEPT_LICENSE} ; do
 		if [[ ${alic} == ${l} ]]; then
-			set +o noglob; set -${shopts} #reset old shell opts
+			eshopts_pop
 			return 0
 		fi
 	done
-	set +o noglob; set -$shopts #reset old shell opts
+	eshopts_pop
 
 	local licmsg=$(emktemp)
 	cat <<-EOF > ${licmsg}
