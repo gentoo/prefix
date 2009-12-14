@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.27 2009/12/01 10:56:17 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.28 2009/12/10 17:35:52 abcd Exp $
 
 inherit versionator
 
@@ -17,7 +17,7 @@ inherit versionator
 # By default kde4 eclasses want EAPI 2 which might be redefinable to newer
 # versions.
 case ${EAPI} in
-	2) : ;;
+	2|3) : ;;
 	*) DEPEND="EAPI-TOO-OLD" ;;
 esac
 
@@ -64,6 +64,8 @@ slot_is_at_least() {
 # All KDE ebuilds should run this in pkg_postinst and pkg_postrm.
 buildsycoca() {
 	debug-print-function ${FUNCNAME} "$@"
+
+	[[ -z ${EROOT} ]] && EROOT=${EROOT}${EPREFIX}
 
 	local KDE3DIR="${EROOT}usr/kde/3.5"
 	if [[ -z ${EROOT%%/} && -x "${KDE3DIR}"/bin/kbuildsycoca ]]; then
@@ -320,7 +322,7 @@ install_library_dependencies() {
 	local depsfile="${T}/${PN}:${SLOT}"
 
 	ebegin "Installing library dependencies as ${depsfile##*/}"
-	insinto ${ROOT}var/lib/kde
+	insinto /var/lib/kde
 	doins "${depsfile}" || die "Failed to install library dependencies."
 	eend $?
 }
@@ -335,7 +337,7 @@ load_library_dependencies() {
 	i=0
 	for pn in ${KMLOADLIBS} ; do
 		((i++))
-		depsfile="${EROOT}var/lib/kde/${pn}:${SLOT}"
+		depsfile="${EPREFIX}/var/lib/kde/${pn}:${SLOT}"
 		[[ -r "${depsfile}" ]] || die "Depsfile '${depsfile}' not accessible. You probably need to reinstall ${pn}."
 		sed -i -e "${i}iINCLUDE(\"${depsfile}\")" "${S}/CMakeLists.txt" || \
 			die "Failed to include library dependencies for ${pn}"
