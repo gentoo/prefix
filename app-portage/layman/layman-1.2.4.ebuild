@@ -43,7 +43,7 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.2.0-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.2.4-prefix.patch
 	eprefixify layman/config.py etc/layman.cfg
 	find layman/overlays -name "*.py" | xargs sed -i \
 		-e '/binary\(_command \)\? = '"'"'.*'"'"'/s|'"'"'\(.*\)'"'"'|'"'${EPREFIX}"'\1'"'"'|'
