@@ -77,7 +77,6 @@ sys-devel/gcc-apple
 sys-devel/gdb-apple
 sys-process/iotop
 sys-process/unixtop
-virtual/poppler-utils
 x11-terms/terminal
 x11-themes/xfce4-icon-theme
 x11-themes/xfwm4-themes
@@ -86,6 +85,7 @@ x11-wm/windowmaker
 # entire categories
 net-print
 sci-electronics
+virtual
 xfce-base
 xfce-extra
 
