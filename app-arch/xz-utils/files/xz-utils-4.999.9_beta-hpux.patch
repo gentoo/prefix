@@ -1,0 +1,24 @@
+*** src/common/physmem.h.orig	Thu Dec 10 08:32:24 2009
+--- src/common/physmem.h	Thu Dec 10 08:33:56 2009
+***************
+*** 38,43 ****
+--- 38,45 ----
+  
+  #elif defined(__DJGPP__)
+  #	include <dpmi.h>
++ #elif defined(__hpux)
++ #	include <ulimit.h>
+  #endif
+  
+  
+***************
+*** 132,137 ****
+--- 134,141 ----
+  	// tried with an error, that 12MiB is not enough... :(
+  	// I'm assuming 1024MB RAM here on all interix boxes...
+  	ret = (1024 * (1024 * 1024));
++ #elif defined(__hpux)
++ 	ret = ulimit(UL_GETMAXBRK, 0);
+  #endif
+  
+  	return ret;

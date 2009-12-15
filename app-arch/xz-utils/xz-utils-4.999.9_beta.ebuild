@@ -20,7 +20,7 @@ else
 	EXTRA_DEPEND=
 fi
 
-inherit eutils
+inherit eutils libtool
 
 DESCRIPTION="utils for managing LZMA compressed files"
 HOMEPAGE="http://tukaani.org/xz/"
@@ -47,6 +47,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${P}-darwin.patch
+	epatch "${FILESDIR}"/${P}-hpux.patch
+	elibtoolize
 }
 fi
 
