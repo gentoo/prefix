@@ -59,6 +59,7 @@ app-shells/bash-completion
 app-shells/tcsh
 dev-cpp/clucene
 dev-db/tokyocabinet
+dev-java/hp-jdk-bin
 dev-libs/libebml
 dev-php5/pecl-pdflib
 dev-util/confix
