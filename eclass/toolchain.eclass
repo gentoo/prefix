@@ -1783,6 +1783,8 @@ gcc-compiler_src_install() {
 
 	cd "${WORKDIR}"/build
 	# Do allow symlinks in private gcc include dir as this can break the build
+	# Keep them in prefix for things like 'machine->ia64' #gcc PR26189
+	use prefix ||
 	find gcc/include*/ -type l -print0 | xargs rm -f
 	# Remove generated headers, as they can cause things to break
 	# (ncurses, openssl, etc), unless when in a prefix.
