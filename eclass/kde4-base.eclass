@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.56 2009/12/10 17:35:52 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-base.eclass,v 1.57 2009/12/14 19:44:15 abcd Exp $
 
 # @ECLASS: kde4-base.eclass
 # @MAINTAINER:
@@ -440,9 +440,9 @@ kde4-base_pkg_setup() {
 
 	if [[ ${KDEBASE} = kde-base ]]; then
 		if use kdeprefix; then
-			KDEDIR=${EPREFIX}/usr/kde/${_kdedir}
+			KDEDIR=/usr/kde/${_kdedir}
 		else
-			KDEDIR=${EPREFIX}/usr
+			KDEDIR=/usr
 		fi
 		: ${PREFIX:=${KDEDIR}}
 	else
@@ -453,9 +453,9 @@ kde4-base_pkg_setup() {
 			[[ -z ${kde_minimal_met} ]] && [[ ${slot} = ${KDE_MINIMAL} ]] && kde_minimal_met=1
 			if [[ -n ${kde_minimal_met} ]] && has_version "kde-base/kdelibs:${slot}"; then
 				if has_version "kde-base/kdelibs:${slot}[kdeprefix]"; then
-					KDEDIR=${EPREFIX}/usr/kde/${slot}
+					KDEDIR=/usr/kde/${slot}
 				else
-					KDEDIR=${EPREFIX}/usr
+					KDEDIR=/usr
 				fi
 				break;
 			fi
@@ -466,15 +466,17 @@ kde4-base_pkg_setup() {
 		if [[ ${KDE_REQUIRED} = always ]] || { [[ ${KDE_REQUIRED} = optional ]] && use kde; }; then
 			[[ -z ${KDEDIR} ]] && die "Failed to determine KDEDIR!"
 		else
-			[[ -z ${KDEDIR} ]] && KDEDIR=${EPREFIX}/usr
+			[[ -z ${KDEDIR} ]] && KDEDIR=/usr
 		fi
 
-		: ${PREFIX:=${EPREFIX}/usr}
+		: ${PREFIX:=/usr}
 	fi
+	EKDEDIR=${EPREFIX}${KDEDIR}
+
 	# Point pkg-config path to KDE *.pc files
-	export PKG_CONFIG_PATH="${KDEDIR}/$(get_libdir)/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
+	export PKG_CONFIG_PATH="${EKDEDIR}/$(get_libdir)/pkgconfig${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
 	# Point to correct QT plugins path
-	QT_PLUGIN_PATH="${KDEDIR}/$(get_libdir)/kde4/plugins/"
+	QT_PLUGIN_PATH="${EKDEDIR}/$(get_libdir)/kde4/plugins/"
 
 	# Fix XDG collision with sandbox
 	export XDG_CONFIG_HOME="${T}"
@@ -573,7 +575,7 @@ kde4-base_src_configure() {
 	[[ ${PN} = kdelibs ]] && cmakeargs+=(-DKDE_DISTRIBUTION_TEXT=Gentoo)
 
 	# Here we set the install prefix
-	cmakeargs+=(-DCMAKE_INSTALL_PREFIX="${PREFIX}")
+	cmakeargs+=(-DCMAKE_INSTALL_PREFIX="${EPREFIX}${PREFIX}")
 
 	# Use colors
 	QTEST_COLORED=1
@@ -582,18 +584,18 @@ kde4-base_src_configure() {
 	unset KDEDIRS
 
 	# Handle kdeprefix-ed KDE
-	if [[ ${KDEDIR} != ${EPREFIX}/usr ]]; then
+	if [[ ${KDEDIR} != /usr ]]; then
 		# Override some environment variables - only when kdeprefix is different,
 		# to not break ccache/distcc
-		PATH="${KDEDIR}/bin:${PATH}"
-		LDPATH="${KDEDIR}/$(get_libdir):${LDPATH}"
+		PATH="${EKDEDIR}/bin:${PATH}"
+		LDPATH="${EKDEDIR}/$(get_libdir)${LDPATH+:}${LDPATH}"
 
 		# Append full RPATH
 		cmakeargs+=(-DCMAKE_SKIP_RPATH=OFF)
 
 		# Set cmake prefixes to allow buildsystem to locate valid KDE installation
 		# when more are present
-		cmakeargs+=(-DCMAKE_SYSTEM_PREFIX_PATH="${KDEDIR}")
+		cmakeargs+=(-DCMAKE_SYSTEM_PREFIX_PATH="${EKDEDIR}")
 	fi
 
 	# Handle kdeprefix in application itself
@@ -602,7 +604,7 @@ kde4-base_src_configure() {
 		cmakeargs+=(-DSYSCONF_INSTALL_DIR="${EPREFIX}"/etc)
 	fi
 
-	if [[ $(declare -p mycmakeargs) != "declare -a mycmakeargs="* ]]; then
+	if [[ $(declare -p mycmakeargs 2>&-) != "declare -a mycmakeargs="* ]]; then
 		mycmakeargs=(${mycmakeargs})
 	fi
 
@@ -640,6 +642,11 @@ kde4-base_src_test() {
 kde4-base_src_install() {
 	debug-print-function ${FUNCNAME} "$@"
 
+	# Prefix support, for usage in ebuilds
+	if [[ ${EAPI} == 2 ]] && ! use prefix; then
+		ED=${D}
+	fi
+
 	if [[ -n ${KMSAVELIBS} ]] ; then
 		install_library_dependencies
 	fi
@@ -669,7 +676,7 @@ kde4-base_src_make_doc() {
 		done
 	fi
 
-	[[ -z ${ED} ]] && ED=${D}${EPREFIX}
+	[[ -z ${ED} ]] && ED=${D}
 
 	if [[ -n ${KDEBASE} ]] && [[ -d ${ED}usr/share/doc/${PF} ]]; then
 		# work around bug #97196

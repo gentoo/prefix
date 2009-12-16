@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.36 2009/12/10 19:58:42 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.37 2009/12/14 19:44:15 abcd Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -303,6 +303,7 @@ enable_cmake-utils_src_configure() {
 			SET (CMAKE_SKIP_RPATH OFF CACHE BOOL "" FORCE)
 			SET (CMAKE_PLATFORM_REQUIRED_RUNTIME_PATH "${EPREFIX}/usr/${CHOST}/lib/gcc;${EPREFIX}/usr/${CHOST}/lib;${EPREFIX}/usr/$(get_libdir);${EPREFIX}/$(get_libdir)"
 			CACHE STRING "" FORCE)
+			SET (CMAKE_BUILD_WITH_INSTALL_RPATH ON CACHE BOOL "" FORCE)
 			ENDIF (NOT APPLE)
 		_EOF_
 	fi
@@ -327,7 +328,7 @@ enable_cmake-utils_src_configure() {
 	# No -DCMAKE_BUILD_TYPE=xxx definitions will be in effect.
 	local cmakeargs=(
 		-C "${common_config}"
-		-DCMAKE_INSTALL_PREFIX="${PREFIX:-${EPREFIX}/usr}"
+		-DCMAKE_INSTALL_PREFIX="${EPREFIX}${PREFIX:-/usr}"
 		"${mycmakeargs[@]}"
 		-DCMAKE_BUILD_TYPE="${CMAKE_BUILD_TYPE}"
 		-DCMAKE_INSTALL_DO_STRIP=OFF

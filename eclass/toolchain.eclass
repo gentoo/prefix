@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.412 2009/12/09 21:25:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.413 2009/12/14 21:14:13 truedfx Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1144,7 +1144,6 @@ gcc_src_unpack() {
 	if [[ ${GCCMAJOR}.${GCCMINOR} > 4.0 ]] ; then
 		if [[ -n ${SNAPSHOT} || -n ${PRERELEASE} ]] ; then
 			echo ${PV/_/-} > "${S}"/gcc/BASE-VER
-			echo "" > "${S}"/gcc/DATESTAMP
 		fi
 	fi
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.28 2009/12/10 17:35:52 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde4-functions.eclass,v 1.29 2009/12/14 19:44:15 abcd Exp $
 
 inherit versionator
 
@@ -65,7 +65,9 @@ slot_is_at_least() {
 buildsycoca() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	[[ -z ${EROOT} ]] && EROOT=${EROOT}${EPREFIX}
+	if [[ ${EAPI} == 2 ]] && ! use prefix; then
+		EROOT=${ROOT}
+	fi
 
 	local KDE3DIR="${EROOT}usr/kde/3.5"
 	if [[ -z ${EROOT%%/} && -x "${KDE3DIR}"/bin/kbuildsycoca ]]; then
@@ -85,7 +87,7 @@ buildsycoca() {
 
 	# fix permission for some directories
 	for x in share/{config,kde4}; do
-		[[ ${KDEDIR} = ${EROOT}usr ]] && DIRS="${EROOT}usr" || DIRS="${EROOT}usr ${KDEDIR}"
+		[[ ${KDEDIR} == /usr ]] && DIRS=${EROOT}usr || DIRS="${EROOT}usr ${EROOT}${KDEDIR}"
 		for y in ${DIRS}; do
 			[[ -d "${y}/${x}" ]] || break # nothing to do if directory does not exist
 			if [[ $(stat --format=%a "${y}/${x}") != 755 ]]; then
