@@ -101,7 +101,19 @@ java_set_default_vm_() {
 
 get_system_arch() {
 	local sarch
-	sarch=$(echo ${ARCH} | sed -e s/[i]*.86/i386/ -e s/x86_64/amd64/ -e s/sun4u/sparc/ -e s/sparc64/sparc/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/-aix//)
+	sarch=$(echo ${ARCH} | sed \
+		-e s/[i]*.86/i386/ \
+		-e s/x86_64/amd64/ \
+		-e s/sun4u/sparc/ \
+		-e s/sparc64/sparc/ \
+		-e s/arm.*/arm/ \
+		-e s/sa110/arm/ \
+		-e s/-aix// \
+		-e s/hppa64-hpux/PA_RISC2.0W/ \
+		-e s/hppa-hpux/PA_RISC2.0/ \
+		-e s/ia64w-hpux/IA64W/ \
+		-e s/ia64-hpux/IA64N/ \
+	)
 	if [ -z "${sarch}" ]; then
 		sarch=$(uname -m | sed -e s/[i]*.86/i386/ -e s/x86_64/amd64/ -e s/sun4u/sparc/ -e s/sparc64/sparc/ -e s/arm.*/arm/ -e s/sa110/arm/ -e s/-aix//)
 	fi
