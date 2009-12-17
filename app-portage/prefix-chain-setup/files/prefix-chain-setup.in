@@ -41,9 +41,11 @@ test -n "${CHILD_EPREFIX}" || { eerror "no eprefix argument given"; exit 1; }
 test -d "${CHILD_EPREFIX}" && { eerror "${CHILD_EPREFIX} already exists"; exit 1; }
 test -n "${CHILD_PROFILE}" || { eerror "no profile argument given"; exit 1; }
 test -d "${CHILD_PROFILE}" || { eerror "${CHILD_PROFILE} does not exist"; exit 1; }
-if ! test -d "${PORT_TMPDIR}"; then
-	einfo "creating temporary directory ${PORT_TMPDIR}"
-	mkdir -p "${PORT_TMPDIR}"
+if test -n "${PORT_TMPDIR}"; then
+	if ! test -d "${PORT_TMPDIR}"; then
+		einfo "creating temporary directory ${PORT_TMPDIR}"
+		mkdir -p "${PORT_TMPDIR}"
+	fi
 fi
 
 einfo "creating chained prefix ${CHILD_EPREFIX}"
