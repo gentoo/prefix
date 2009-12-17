@@ -9,7 +9,7 @@ MODULE="data"
 inherit x-modular
 
 DESCRIPTION="X.Org bitmaps data"
-KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE=""
 
 RDEPEND=""
