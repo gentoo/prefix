@@ -72,6 +72,8 @@ src_prepare() {
 	# presence.
 	epatch "${FILESDIR}"/${PN}-3.8.1-static-names.patch
 
+	epatch "${FILESDIR}"/${P}-ia64-as.patch
+
 	eautoreconf # for winnt
 }
 

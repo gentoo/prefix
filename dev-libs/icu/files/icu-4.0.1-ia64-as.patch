@@ -1,0 +1,11 @@
+--- icu/source/tools/genccode/genccode.c.orig	2007-10-17 23:03:50.771468000 +0200
++++ icu/source/tools/genccode/genccode.c	2007-10-17 23:04:00.851163000 +0200
+@@ -209,7 +209,7 @@
+         "\t.type   %s,@object\n"
+         "\t.global %s\n"
+         "\t.secalias .abe$0.rodata, \".rodata\"\n"
+-        "\t.section .abe$0.rodata = \"a\", \"progbits\"\n"
++        "\t.section .abe$0.rodata, \"a\", \"progbits\"\n"
+         "\t.align  16\n"
+         "%s::\t",
+ 
