@@ -11,7 +11,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.lzma"
 
 LICENSE="GPL-2"
 SLOT="1.5"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="vanilla test"
 
 RDEPEND=""
@@ -41,8 +41,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PV}/${P}-tests-locale.patch #249168
 
 	if ! use vanilla ; then
-		[[ ${CHOST} == *-winnt* || ${CHOST} == *-interix* ]] &&
+		[[ ${CHOST} == *-winnt* ]] &&
 			epatch "${FILESDIR}"/${PV}/${P}-winnt.patch
+
 		epatch "${FILESDIR}"/${PV}/${P}-mint.patch
 		epatch "${FILESDIR}"/${PV}/${P}-hppa-hpux.patch
 

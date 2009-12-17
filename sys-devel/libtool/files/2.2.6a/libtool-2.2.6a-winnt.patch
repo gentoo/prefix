@@ -1311,3 +1311,17 @@ diff -ru -x configure -x Makefile -x Makefile.in -x aclocal.m4 -x 'config.*' -x 
  	   if test $lt_status -eq 0; then :;
  	   elif test "X$host" != "X$build" && \
  	        { test -x "$1" || test -x "$1"$EXEEXT; }
+diff -ru -x '*.Po' -x '*.Plo' libtool-2.2.6.orig/libltdl/lt__dirent.c libtool-2.2.6/libltdl/lt__dirent.c
+--- libtool-2.2.6.orig/libltdl/lt__dirent.c	2009-11-16 11:07:10 +0100
++++ libtool-2.2.6/libltdl/lt__dirent.c	2009-11-16 11:11:22 +0100
+@@ -35,7 +35,9 @@
+ 
+ #include "lt__dirent.h"
+ 
+-#if defined(__WINDOWS__)
++/* parity provides it's own dirent implementation on windows,
++ * so avoid compile problems by re-defining these things :) */
++#if defined(__WINDOWS__) && !defined(__PARITY__)
+ 
+ void
+ closedir (DIR *entry)
