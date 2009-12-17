@@ -24,6 +24,7 @@ src_unpack() {
 	epunt_cxx
 
 	epatch "${FILESDIR}"/${P}-winnt.patch
+	epatch "${FILESDIR}"/${P}-winnt-wrapped.patch
 	eautoreconf # required for winnt.
 }
 

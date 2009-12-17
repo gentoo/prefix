@@ -1,0 +1,19 @@
+diff -ru libIDL-0.8.13.orig/configure.in libIDL-0.8.13/configure.in
+--- libIDL-0.8.13.orig/configure.in	2009-12-09 15:05:17 +0100
++++ libIDL-0.8.13/configure.in	2009-12-09 15:11:00 +0100
+@@ -65,8 +65,13 @@
+ 	# use it directly.
+ 	set dummy $CPP_PROGRAM
+ 	shift
+-	cpp_abs="$(bash -c "type -P $1")"
+-	cpp_conf="$(dirname "$cpp_abs")/../../etc/parity.conf"
++
++	# NOT a good idea, if parity is installed _somewhere...
++	#cpp_abs="$(bash -c "type -P $1")"
++	#cpp_conf="$(dirname "$cpp_abs")/../../etc/parity.conf"
++
++	# BETTER idea: call parity and ask where we should look :)
++	cpp_conf="$($1 -v | grep "Sysconf Directory" | sed -e 's,.*:[ \t]*,,')/parity.conf"
+ 	CPP_PROGRAM="$(unixpath2win "$(cat "$cpp_conf" | grep "CompilerExe" | sed -e 's,.*CompilerExe.*=[ \t]*,,')" | sed -e 's,\\,\\\\,g') /E /nologo"
+ 	while read line; do
+ 		CPP_PATHS="$CPP_PATHS;$(unixpath2win $line | sed -e 's,\\,\\\\,g')";
