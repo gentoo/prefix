@@ -2,6 +2,11 @@
 
 . "@GENTOO_PORTAGE_EPREFIX@"/sbin/functions.sh
 einfo "entering chained prefix @GENTOO_PORTAGE_EPREFIX@ ..."
+
+# inform profiles very early of us beeing interactive (or at least,
+# we will _start_ an interactive shell, so we want the according bits.)
+set -i
+
 . "@GENTOO_PORTAGE_EPREFIX@"/etc/profile
 
 # if there is no local portage, foreign portage instances need to know 
