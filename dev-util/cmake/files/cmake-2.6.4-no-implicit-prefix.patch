@@ -1,0 +1,11 @@
+diff -ru cmake-2.6.4.orig/Modules/Platform/UnixPaths.cmake cmake-2.6.4/Modules/Platform/UnixPaths.cmake
+--- cmake-2.6.4.orig/Modules/Platform/UnixPaths.cmake	2009-12-15 13:47:33.007268371 +0100
++++ cmake-2.6.4/Modules/Platform/UnixPaths.cmake	2009-12-15 13:47:45.597365002 +0100
+@@ -43,7 +43,6 @@
+   )
+ 
+ LIST(APPEND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES
+-  "${CMAKE_INSTALL_PREFIX}/lib" "${CMAKE_INSTALL_PREFIX}/../lib"
+ 	@GENTOO_PORTAGE_GCCLIBDIR@/gcc
+ 	@GENTOO_PORTAGE_GCCLIBDIR@
+ 	@GENTOO_PORTAGE_EPREFIX@/usr/lib64

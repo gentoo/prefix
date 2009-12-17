@@ -54,6 +54,7 @@ PATCHES=(
 	"${FILESDIR}"/${PN}-2.6.3-no-duplicates-in-rpath.patch
 	"${FILESDIR}"/${PN}-2.6.3-fix_broken_lfs_on_aix.patch
 	"${FILESDIR}"/${PN}-2.6.3-curl-include.patch
+	"${FILESDIR}"/${PN}-2.6.4-no-implicit-prefix.patch
 )
 
 src_configure() {
