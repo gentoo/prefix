@@ -23,11 +23,16 @@ profiles
 
 # regular packages (do NOT put portage in here!)
 app-admin/chrpath
+app-admin/emacs-updater
 app-admin/eselect
 app-admin/eselect-ctags
 app-admin/eselect-emacs
-app-admin/emacs-updater
 app-crypt/qca
+app-doc/blas-docs
+app-doc/lapack-docs
+app-doc/linkers-and-loaders
+app-doc/phrack
+app-doc/phrack-all
 app-editors/mg
 app-editors/nedit
 app-emacs/autoconf-mode
@@ -62,6 +67,7 @@ dev-db/tokyocabinet
 dev-java/hp-jdk-bin
 dev-libs/libebml
 dev-php5/pecl-pdflib
+dev-util/bzrtools
 dev-util/confix
 dev-util/confix-wrapper
 dev-util/uncrustify
@@ -82,6 +88,7 @@ x11-terms/terminal
 x11-themes/xfce4-icon-theme
 x11-themes/xfwm4-themes
 x11-wm/windowmaker
+
 
 # entire categories
 app-vim
