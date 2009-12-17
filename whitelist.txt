@@ -84,6 +84,7 @@ x11-themes/xfwm4-themes
 x11-wm/windowmaker
 
 # entire categories
+app-vim
 java-virtuals
 net-print
 sci-electronics
