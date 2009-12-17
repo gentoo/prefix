@@ -25,6 +25,7 @@ src_unpack() {
 	cp "${FILESDIR}"/${P} ./${PN} || die "cannot gain ${FILESDIR}/${P}"
 	epatch "${FILESDIR}"/${PV}-extwrapper.patch
 	epatch "${FILESDIR}"/${P}-libpath-ordering.patch
+	epatch "${FILESDIR}"/${P}-solaris-native-ld.patch
 	eprefixify ${PN} || die "eprefixify failed."
 }
 
