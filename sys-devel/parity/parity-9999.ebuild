@@ -38,12 +38,14 @@ src_install() {
 
 	[[ -f ${ED}/usr/bin/parity.gnu.gcc.exe ]] && exeext=.exe
 
-	dobin "${FILESDIR}"/parity-prefix-wrapper.sh
-	sed -i -e "s,@EXEEXT@,$exeext,g" "${ED}"/usr/bin/parity-prefix-wrapper.sh
+	#dobin "${FILESDIR}"/parity-prefix-wrapper.sh
+	#sed -i -e "s,@EXEEXT@,$exeext,g" "${ED}"/usr/bin/parity-prefix-wrapper.sh
 
-	for x in c++ g++ gcc ld; do
-		dosym /usr/bin/parity-prefix-wrapper.sh /usr/bin/i586-pc-winnt$(uname -r)-${x}
-	done
+	# create cross compiler syms
+	dosym /usr/bin/parity.gnu.gcc${exeext} /usr/bin/i586-pc-winnt$(uname -r)-gcc
+	dosym /usr/bin/parity.gnu.gcc${exeext} /usr/bin/i586-pc-winnt$(uname -r)-c++
+	dosym /usr/bin/parity.gnu.gcc${exeext} /usr/bin/i586-pc-winnt$(uname -r)-g++
+	dosym /usr/bin/parity.gnu.ld${exeext} /usr/bin/i586-pc-winnt$(uname -r)-ld
 
 	# we don't need the header files installed by parity... private
 	# header files are supported with a patch from 2.1.0-r1 onwards,
