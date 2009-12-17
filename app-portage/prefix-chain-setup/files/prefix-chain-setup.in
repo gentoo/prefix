@@ -1,6 +1,7 @@
 #!/bin/env bash
 
 PARENT_EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
+PARENT_CHOST="@GENTOO_PORTAGE_CHOST@"
 CHILD_EPREFIX=
 CHILD_PROFILE=
 DO_MINIMAL=no
@@ -134,7 +135,14 @@ ebegin "installing required basic packages"
 	# there on the first emerge run.
 	EPREFIX="${CHILD_EPREFIX}" emerge -p1qO baselayout > /dev/null 2>&1
 
-	EPREFIX="${CHILD_EPREFIX}" emerge -1qO baselayout prefix-chain-utils gcc-config
+	EPREFIX="${CHILD_EPREFIX}" emerge -1qO baselayout prefix-chain-utils
+
+	# merge with the parent's chost. this forces the use of the parent
+	# compiler, which generally would be illegal - this is an exception.
+	# This is required for example on winnt, because the wrapper has to
+	# be able to use/resolve symlinks, etc. native winnt binaries miss that
+	# ability, but interix binaries don't.
+	EPREFIX="${CHILD_EPREFIX}" CHOST="${PARENT_CHOST}" emerge -1qO gcc-config
 
 	# select the chain wrapper profile from gcc-config
 	env -i "${CHILD_EPREFIX}"/usr/bin/gcc-config 1
