@@ -145,7 +145,7 @@ ebegin "installing required basic packages"
 	EPREFIX="${CHILD_EPREFIX}" CHOST="${PARENT_CHOST}" emerge -1qO gcc-config
 
 	# select the chain wrapper profile from gcc-config
-	env -i "${CHILD_EPREFIX}"/usr/bin/gcc-config 1
+	env -i "$(type -P bash)" "${CHILD_EPREFIX}"/usr/bin/gcc-config 1
 
 	# do this _AFTER_ selecting the correct compiler!
 	EPREFIX="${CHILD_EPREFIX}" emerge -1qO libtool
