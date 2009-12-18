@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/openmotif
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.224 2009/11/18 19:12:20 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.225 2009/12/15 09:22:29 ulm Exp $
+
+  15 Dec 2009; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.1.1.ebuild,
+  openmotif-2.3.2.ebuild:
+  Change libXpm to MIT in LICENSE.
 
   18 Nov 2009; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.2.ebuild,
   +files/openmotif-2.3.2-ldflags.patch:
