@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/libXpm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.54 2009/10/14 16:12:00 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.57 2009/12/15 19:38:05 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> libXpm-3.5.8.ebuild:
+  Marking libXpm-3.5.8 ppc64 stable for bug 294958
+
+  10 Dec 2009; Christian Faulhammer <fauli@gentoo.org> libXpm-3.5.8.ebuild:
+  x86 stable, bug 294958
+
+  10 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> libXpm-3.5.8.ebuild:
+  amd64 stable wrt #294958
 
   14 Oct 2009; Rémi Cardona <remi@gentoo.org> libXpm-3.5.8.ebuild:
   sync ebuild with overlay
