@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/qt-webkit-4.5.3-r1.ebuild,v 1.3 2009/11/18 15:36:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-webkit/qt-webkit-4.5.3-r1.ebuild,v 1.4 2009/12/11 15:00:42 armin76 Exp $
 
 EAPI="2"
 inherit eutils qt4-build flag-o-matic
