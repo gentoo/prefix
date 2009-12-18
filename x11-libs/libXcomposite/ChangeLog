@@ -1,6 +1,17 @@
 # ChangeLog for x11-libs/libXcomposite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcomposite/ChangeLog,v 1.54 2009/10/12 17:08:24 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcomposite/ChangeLog,v 1.57 2009/12/15 19:34:56 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> libXcomposite-0.4.1.ebuild:
+  Marking libXcomposite-0.4.1 ppc64 stable for bug 294958
+
+  10 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  libXcomposite-0.4.1.ebuild:
+  x86 stable, bug 294958
+
+  10 Dec 2009; Samuli Suominen <ssuominen@gentoo.org>
+  libXcomposite-0.4.1.ebuild:
+  amd64 stable wrt #294958
 
   12 Oct 2009; Rémi Cardona <remi@gentoo.org> libXcomposite-0.4.1.ebuild:
   add "doc" USE flag (fixes bug #288738)

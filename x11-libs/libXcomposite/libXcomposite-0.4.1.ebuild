@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcomposite/libXcomposite-0.4.1.ebuild,v 1.2 2009/10/12 17:08:24 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcomposite/libXcomposite-0.4.1.ebuild,v 1.5 2009/12/15 19:34:56 ranger Exp $
 
 inherit x-modular
 
