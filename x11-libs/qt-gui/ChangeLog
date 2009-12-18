@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/qt-gui
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.86 2009/12/01 18:16:30 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-gui/ChangeLog,v 1.87 2009/12/07 15:19:56 hwoarang Exp $
+
+*qt-gui-4.6.0-r1 (07 Dec 2009)
+
+  07 Dec 2009; Markos Chandras <hwoarang@gentoo.org>
+  +qt-gui-4.6.0-r1.ebuild, +files/qt-gui-4.6.0-fix-qgraphicsscence.patch:
+  Add patch to fix plasma crash on kde4. Bug #296003
 
   01 Dec 2009; Theo Chatzimichos <tampakrap@gentoo.org>
   -qt-gui-4.6.0_rc1.ebuild:
