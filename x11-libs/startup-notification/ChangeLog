@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/startup-notification
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/startup-notification/ChangeLog,v 1.69 2009/10/26 22:28:49 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/startup-notification/ChangeLog,v 1.70 2009/12/15 18:17:12 armin76 Exp $
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org>
+  startup-notification-0.10.ebuild:
+  ia64/sh/sparc stable wrt #287214
 
   26 Oct 2009; Jeroen Roovers <jer@gentoo.org>
   startup-notification-0.10.ebuild:
