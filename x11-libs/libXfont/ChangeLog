@@ -1,6 +1,19 @@
 # ChangeLog for x11-libs/libXfont
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/ChangeLog,v 1.116 2009/11/08 09:31:09 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/ChangeLog,v 1.120 2009/12/15 19:36:50 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> libXfont-1.4.1.ebuild:
+  Marking libXfont-1.4.1 ppc64 stable for bug 294958
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> libXfont-1.4.0.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #282290
+
+  10 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  libXfont-1.4.1.ebuild:
+  x86 stable, bug 294958
+
+  10 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> libXfont-1.4.1.ebuild:
+  amd64 stable wrt #294958
 
   08 Nov 2009; Rémi Cardona <remi@gentoo.org> libXfont-1.4.1.ebuild:
   sync with the overlay, add missing dep on bzip2, fixes bug #265761
