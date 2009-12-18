@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/libXext-1.0.5.ebuild,v 1.8 2009/10/26 21:01:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXext/libXext-1.0.5.ebuild,v 1.10 2009/12/15 19:36:12 ranger Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
