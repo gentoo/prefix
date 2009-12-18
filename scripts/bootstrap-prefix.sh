@@ -622,6 +622,10 @@ bootstrap_coreutils6() {
 	bootstrap_gnu coreutils 6.11
 }
 
+bootstrap_coreutils8() {
+	bootstrap_gnu coreutils 8.2
+}
+
 bootstrap_tar15() {
 	bootstrap_gnu tar 1.15.1
 }
