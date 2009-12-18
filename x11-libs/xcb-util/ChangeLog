@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/xcb-util
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xcb-util/ChangeLog,v 1.45 2009/10/26 21:05:36 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xcb-util/ChangeLog,v 1.47 2009/12/15 16:25:13 armin76 Exp $
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> xcb-util-0.3.6.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #282290
+
+  14 Dec 2009; Rémi Cardona <remi@gentoo.org> xcb-util-0.3.3.ebuild,
+  -xcb-util-0.3.4.ebuild, -xcb-util-0.3.5.ebuild, xcb-util-0.3.6.ebuild:
+  drop old ebuilds, change LICENSE to MIT
 
   26 Oct 2009; Jeroen Roovers <jer@gentoo.org> xcb-util-0.3.6.ebuild:
   Stable for HPPA (bug #282290).

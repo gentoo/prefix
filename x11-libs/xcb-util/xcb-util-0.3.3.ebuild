@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xcb-util/xcb-util-0.3.3.ebuild,v 1.9 2009/07/22 14:10:40 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xcb-util/xcb-util-0.3.3.ebuild,v 1.10 2009/12/14 11:11:27 remi Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
@@ -11,7 +11,6 @@ DESCRIPTION="X C-language Bindings sample implementations"
 HOMEPAGE="http://xcb.freedesktop.org/"
 SRC_URI="http://xcb.freedesktop.org/dist/${P}.tar.bz2"
 
-LICENSE="X11"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE="test"
 
