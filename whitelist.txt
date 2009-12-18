@@ -95,6 +95,7 @@ x11-wm/windowmaker
 app-vim
 java-virtuals
 net-print
+perl-core
 sci-electronics
 virtual
 xfce-base
