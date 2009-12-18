@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/qt-qt3support
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/ChangeLog,v 1.58 2009/12/01 18:14:32 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/ChangeLog,v 1.59 2009/12/07 14:45:28 wired Exp $
+
+  07 Dec 2009; Alex Alexander <wired@gentoo.org> qt-qt3support-4.6.0.ebuild:
+  removed invalid block
 
   01 Dec 2009; Theo Chatzimichos <tampakrap@gentoo.org>
   -qt-qt3support-4.6.0_rc1.ebuild:

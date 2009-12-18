@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/qt-qt3support-4.6.0.ebuild,v 1.1 2009/12/01 14:54:11 tampakrap Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-qt3support/qt-qt3support-4.6.0.ebuild,v 1.2 2009/12/07 14:45:28 wired Exp $
 
 EAPI=2
 inherit qt4-build
@@ -18,9 +18,7 @@ DEPEND="~x11-libs/qt-core-${PV}[debug=,qt3support]
 			media-sound/phonon[gstreamer] ) )
 		kde? ( media-sound/phonon[gstreamer] ) )"
 
-RDEPEND="${DEPEND}
-	!=x11-libs/qt-gui-${PV}-r1
-"
+RDEPEND="${DEPEND}"
 
 QT4_TARGET_DIRECTORIES="
 src/qt3support
