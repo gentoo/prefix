@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/libXft
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXft/ChangeLog,v 1.55 2009/10/12 00:07:57 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXft/ChangeLog,v 1.58 2009/12/15 19:37:27 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> libXft-2.1.14.ebuild:
+  Marking libXft-2.1.14 ppc64 stable for bug 294958
+
+  10 Dec 2009; Christian Faulhammer <fauli@gentoo.org> libXft-2.1.14.ebuild:
+  x86 stable, bug 294958
+
+  10 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> libXft-2.1.14.ebuild:
+  amd64 stable wrt #294958
 
 *libXft-2.1.14 (12 Oct 2009)
 
