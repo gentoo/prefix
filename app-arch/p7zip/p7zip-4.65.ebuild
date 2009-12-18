@@ -54,6 +54,9 @@ src_prepare() {
 	elif [[ ${CHOST} == *-darwin* ]] ; then
 		# Mac OS X needs this special makefile, because it has a non-GNU linker
 		cp -f makefile.macosx makefile.machine
+		# bundles have extension .bundle
+		sed -i -e '/^PROG=/s/\.so/.bundle/' \
+			CPP/7zip/Bundles/Format7zFree/makefile || die
 	elif use x86-fbsd; then
 		# FreeBSD needs this special makefile, because it hasn't -ldl
 		sed -e 's/-lc_r/-pthread/' makefile.freebsd > makefile.machine
@@ -112,10 +115,10 @@ src_install() {
 
 	exeinto /usr/$(get_libdir)/${PN}
 	doexe bin/7z bin/7za bin/7zr bin/7zCon.sfx || die "doexe bins"
-	doexe bin/*.so || die "doexe *.so files"
+	doexe bin/*$(get_modname) || die "doexe *$(get_modname) files"
 	if use rar; then
 		exeinto /usr/$(get_libdir)/${PN}/Codecs/
-		doexe bin/Codecs/*.so || die "doexe Codecs/*.so files"
+		doexe bin/Codecs/*$(get_modname) || die "doexe Codecs/*$(get_modname) files"
 	fi
 
 	doman man1/7z.1 man1/7za.1 man1/7zr.1
