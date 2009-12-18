@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/Xaw3d
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/Xaw3d/ChangeLog,v 1.27 2009/09/26 21:50:25 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/Xaw3d/ChangeLog,v 1.28 2009/12/14 11:13:41 remi Exp $
+
+  14 Dec 2009; Rémi Cardona <remi@gentoo.org> Xaw3d-1.5-r1.ebuild:
+  change LICENSE to MIT
 
   26 Sep 2009; Víctor Ostorga <vostorga@gentoo.org> Xaw3d-1.5-r1.ebuild:
   Respecting LDFLAGS , bug 209744
