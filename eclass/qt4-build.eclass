@@ -517,7 +517,15 @@ standard_configure_options() {
 	case "${PV}" in
 		4.6.*)
 			if [[ ${PN} != "qt-core" ]] && [[ ${PN} != "qt-xmlpatterns" ]]; then
+				case "${PV}:${CHOST}" in
+					4.6.0*:*-darwin*)
+					: # http://bugreports.qt.nokia.com/browse/QTBUG-5909
+					  # workaround for compilation error on OSX (qt-gui)
+					;;
+					*)
 				exceptions="-no-exceptions"
+					;;
+				esac
 			fi
 		;;
 		*)
