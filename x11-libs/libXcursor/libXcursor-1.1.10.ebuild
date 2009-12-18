@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcursor/libXcursor-1.1.10.ebuild,v 1.1 2009/09/29 09:50:30 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXcursor/libXcursor-1.1.10.ebuild,v 1.4 2009/12/15 19:35:16 ranger Exp $
 
 inherit x-modular
 
