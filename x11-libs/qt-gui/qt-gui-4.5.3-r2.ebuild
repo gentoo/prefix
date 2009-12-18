@@ -15,6 +15,7 @@ RDEPEND="media-libs/fontconfig
 	media-libs/jpeg
 	media-libs/libpng
 	sys-libs/zlib
+	!aqua? (
 	x11-libs/libX11
 	x11-libs/libXext
 	x11-libs/libXrandr
@@ -22,20 +23,23 @@ RDEPEND="media-libs/fontconfig
 	x11-libs/libXfont
 	x11-libs/libSM
 	x11-libs/libXi
-	~x11-libs/qt-core-${PV}[debug=,glib=,qt3support=]
-	~x11-libs/qt-script-${PV}[debug=]
+	)
+	~x11-libs/qt-core-${PV}[debug=,glib=,qt3support=,aqua=]
+	~x11-libs/qt-script-${PV}[debug=,aqua=]
 	cups? ( net-print/cups )
-	dbus? ( ~x11-libs/qt-dbus-${PV}[debug=] )
-	gtk? ( x11-libs/gtk+:2 )
+	dbus? ( ~x11-libs/qt-dbus-${PV}[debug=,aqua=] )
+	gtk? ( x11-libs/gtk+:2[aqua=] )
 	mng? ( >=media-libs/libmng-1.0.9 )
 	nas? ( >=media-libs/nas-1.5 )
 	tiff? ( media-libs/tiff )
 	xinerama? ( x11-libs/libXinerama )"
 DEPEND="${RDEPEND}
 	xinerama? ( x11-proto/xineramaproto )
+	!aqua? (
 	x11-proto/xextproto
-	x11-proto/inputproto"
-PDEPEND="qt3support? ( ~x11-libs/qt-qt3support-${PV}[debug=] )"
+	x11-proto/inputproto
+	)"
+PDEPEND="qt3support? ( ~x11-libs/qt-qt3support-${PV}[debug=,aqua=] )"
 
 QT4_TARGET_DIRECTORIES="
 src/gui
