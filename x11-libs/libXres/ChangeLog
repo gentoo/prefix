@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/libXres
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXres/ChangeLog,v 1.44 2009/10/12 19:54:39 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXres/ChangeLog,v 1.47 2009/12/15 19:39:01 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> libXres-1.0.4.ebuild:
+  Marking libXres-1.0.4 ppc64 stable for bug 294958
+
+  10 Dec 2009; Christian Faulhammer <fauli@gentoo.org> libXres-1.0.4.ebuild:
+  x86 stable, bug 294958
+
+  10 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> libXres-1.0.4.ebuild:
+  amd64 stable wrt #294958
 
 *libXres-1.0.4 (12 Oct 2009)
 
