@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.6.ebuild,v 1.7 2009/10/26 21:02:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/libXt-1.0.6.ebuild,v 1.8 2009/12/15 16:23:34 armin76 Exp $
 
 # Must be before x-modular eclass is inherited
 SNAPSHOT="yes"
