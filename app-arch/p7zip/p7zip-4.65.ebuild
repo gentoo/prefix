@@ -46,7 +46,6 @@ src_prepare() {
 		-e "/^CC=/s:gcc:$(tc-getCC):" \
 		-e "s:OPTFLAGS=-O:OPTFLAGS=${CXXFLAGS}:" \
 		-e 's:-s ::' \
-		-e '/Rar/d' \
 		makefile* || die "changing makefiles"
 
 	if use amd64; then
