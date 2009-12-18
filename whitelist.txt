@@ -74,6 +74,7 @@ dev-util/uncrustify
 games-misc/wtf
 mail-client/mutt
 media-gfx/asymptote
+media-libs/libwpg
 media-video/mpeg-tools
 net-analyzer/linkchecker
 net-libs/libsoup-gnome
