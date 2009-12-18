@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libXau
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXau/ChangeLog,v 1.67 2009/10/26 20:57:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXau/ChangeLog,v 1.69 2009/12/15 19:33:59 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> libXau-1.0.5.ebuild:
+  Marking libXau-1.0.5 ppc64 stable for bug 294958
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> libXau-1.0.5.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #282290
 
   26 Oct 2009; Jeroen Roovers <jer@gentoo.org> libXau-1.0.5.ebuild:
   Stable for HPPA (bug #282290).
