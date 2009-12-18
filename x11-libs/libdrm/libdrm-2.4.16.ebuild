@@ -24,7 +24,7 @@ DEPEND="${RDEPEND}"
 CONFIGURE_OPTIONS="--enable-udev --enable-nouveau-experimental-api --enable-radeon-experimental-api"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-2.4.5-solaris.patch
+	"${FILESDIR}"/${PN}-2.4.16-solaris.patch
 	"${FILESDIR}"/${PN}-2.4.15-solaris.patch
 )
 
