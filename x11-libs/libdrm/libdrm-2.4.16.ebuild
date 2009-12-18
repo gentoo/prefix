@@ -1,9 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.14.ebuild,v 1.1 2009/09/23 06:25:48 remi Exp $
-
-# Must be before x-modular eclass is inherited
-#SNAPSHOT="yes"
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.16.ebuild,v 1.1 2009/12/13 21:06:51 scarabeus Exp $
 
 inherit x-modular
 
@@ -28,6 +25,7 @@ CONFIGURE_OPTIONS="--enable-udev --enable-nouveau-experimental-api --enable-rade
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.4.5-solaris.patch
+	"${FILESDIR}"/${PN}-2.4.15-solaris.patch
 )
 
 # FIXME, we should try to see how we can fit the --enable-udev configure flag

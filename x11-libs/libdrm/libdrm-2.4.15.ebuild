@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.15.ebuild,v 1.1 2009/10/09 21:04:43 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.15.ebuild,v 1.5 2009/12/15 19:51:52 ranger Exp $
 
 # Must be before x-modular eclass is inherited
-#SNAPSHOT="yes"
+SNAPSHOT="yes"
 
 inherit x-modular
 
@@ -32,6 +32,12 @@ PATCHES=(
 )
 
 # FIXME, we should try to see how we can fit the --enable-udev configure flag
+
+PATCHES=(
+"${FILESDIR}/2.4.15-0001-configure-Conditionally-build-libdrm_intel.patch"
+"${FILESDIR}/2.4.15-0002-configure-Typo-in-error-message.patch"
+"${FILESDIR}/2.4.15-0003-intel-Fallback-to-atomic-ops.h-libatomic-ops-dev.patch"
+)
 
 pkg_postinst() {
 	x-modular_pkg_postinst

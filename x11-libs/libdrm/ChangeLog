@@ -1,6 +1,35 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.89 2009/10/26 20:23:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.96 2009/12/15 19:51:52 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> libdrm-2.4.15.ebuild:
+  Marking libdrm-2.4.15 ppc64 stable for bug 294958
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> libdrm-2.4.13.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #282290
+
+*libdrm-2.4.16 (13 Dec 2009)
+
+  13 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +libdrm-2.4.16.ebuild:
+  Version bump.
+
+  11 Dec 2009; Rémi Cardona <remi@gentoo.org>
+  +files/2.4.15-0001-configure-Conditionally-build-libdrm_intel.patch,
+  libdrm-2.4.15.ebuild,
+  +files/2.4.15-0002-configure-Typo-in-error-message.patch,
+  +files/2.4.15-0003-intel-Fallback-to-atomic-ops.h-libatomic-ops-dev.patch:
+  fix build on !intel arches wrt atomic ops (see bug #296482)
+
+  11 Dec 2009; Rémi Cardona <remi@gentoo.org> -libdrm-2.4.11.ebuild,
+  -libdrm-2.4.12.ebuild, -libdrm-2.4.14.ebuild:
+  prune old versions
+
+  10 Dec 2009; Christian Faulhammer <fauli@gentoo.org> libdrm-2.4.15.ebuild:
+  x86 stable, bug 294958
+
+  10 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> libdrm-2.4.15.ebuild:
+  amd64 stable wrt #294958
 
   26 Oct 2009; Jeroen Roovers <jer@gentoo.org> libdrm-2.4.13.ebuild:
   Stable for HPPA (bug #282290).
