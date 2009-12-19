@@ -71,6 +71,7 @@ dev-util/bzrtools
 dev-util/confix
 dev-util/confix-wrapper
 dev-util/uncrustify
+games-board/gnugo
 games-misc/wtf
 games-puzzle/freesweep
 mail-client/mutt
