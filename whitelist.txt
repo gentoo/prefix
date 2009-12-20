@@ -220,5 +220,11 @@ dev-python/twisted
 dev-python/twisted-mail
 dev-python/twisted-names
 dev-python/twisted-web
+dev-python/urwid
+dev-python/virtualenv
+dev-python/webhelpers
+dev-python/webob
+dev-python/webpy
+dev-python/werkzeug
 
 # Operation Shiny Jewel (Ruby), bug #295040
