@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils versionator flag-o-matic autotools prefix
+inherit eutils versionator flag-o-matic autotools prefix multilib
 
 DESCRIPTION="GTK+ version of wxWidgets, a cross-platform C++ GUI toolkit."
 HOMEPAGE="http://wxwidgets.org/"
@@ -38,7 +38,7 @@ RDEPEND="
 		opengl? ( virtual/opengl )
 		)
 	aqua? (
-		>=x11-libs/gtk+-2.4[aqua]
+		>=x11-libs/gtk+-2.4[aqua=]
 		media-libs/jpeg
 		media-libs/tiff
 		)"
@@ -71,8 +71,11 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-2.8.9.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.8.9.2-x11-search.patch
+	epatch "${FILESDIR}"/${PN}-2.8.10.1-libdir.patch
 
 	eprefixify "${S}"/configure.in
+	sed -i -e "s:@GENTOO_PORTAGE_LIBDIR@:$(get_libdir):" \
+		"${S}"/configure.in || die
 
 	# Upstream issue, see Gentoo bug 271421
 	einfo "Copying missing get-version.sh to ${S}/src/expat/conftools/"
