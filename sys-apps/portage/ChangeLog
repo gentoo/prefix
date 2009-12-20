@@ -2,6 +2,13 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.15123 (20 Dec 2009)
+
+  20 Dec 2009; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.15118.ebuild, +portage-2.2.00.15123.ebuild:
+  Replace latest snapshot, it doesn't properly set the full path during
+  merges.
+
 *portage-2.2.00.15118 (18 Dec 2009)
 
   18 Dec 2009; Fabian Groffen <grobian@gentoo.org>
