@@ -117,6 +117,7 @@ src_configure() {
 			--with-libxpm=sys
 			--with-libjpeg=sys
 			--with-libtiff=sys
+			--with-gtk
 			$(use_enable gstreamer mediactrl)
 			$(use_enable opengl)
 			$(use_with opengl)
