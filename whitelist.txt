@@ -212,5 +212,9 @@ dev-python/setuptools
 dev-python/simplejson
 dev-python/sip
 dev-python/soappy
+dev-python/sphinx
+dev-python/sqlalchemy
+dev-python/sqlobject
+dev-python/turbojson
 
 # Operation Shiny Jewel (Ruby), bug #295040
