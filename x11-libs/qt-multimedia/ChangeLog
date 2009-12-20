@@ -1,0 +1,26 @@
+# ChangeLog for x11-libs/qt-multimedia
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/qt-multimedia/ChangeLog,v 1.4 2009/12/01 18:07:54 tampakrap Exp $
+
+  01 Dec 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  -qt-multimedia-4.6.0_rc1.ebuild:
+  Remove Qt 4.6.0 RC
+
+*qt-multimedia-4.6.0 (01 Dec 2009)
+
+  01 Dec 2009; Theo Chatzimichos <tampakrap@gentoo.org>
+  +qt-multimedia-4.6.0.ebuild:
+  Version Bump to 4.6.0
+
+*qt-multimedia-4.6.0_rc1 (18 Nov 2009)
+
+  18 Nov 2009; Alex Alexander <wired@gentoo.org>
+  -qt-multimedia-4.6.0_beta1.ebuild, +qt-multimedia-4.6.0_rc1.ebuild:
+  added 4.6.0_rc1, removed 4.6.0_beta1
+
+*qt-multimedia-4.6.0_beta1 (16 Oct 2009)
+
+  16 Oct 2009; Alex Alexander <wired@gentoo.org>
+  +qt-multimedia-4.6.0_beta1.ebuild, +metadata.xml:
+  added version 4.6.0_beta1
+
