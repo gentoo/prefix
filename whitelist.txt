@@ -208,5 +208,9 @@ dev-python/quixote
 dev-python/routes
 dev-python/ruledispatch
 dev-python/sancho
+dev-python/setuptools
+dev-python/simplejson
+dev-python/sip
+dev-python/soappy
 
 # Operation Shiny Jewel (Ruby), bug #295040
