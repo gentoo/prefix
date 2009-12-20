@@ -10,7 +10,7 @@ SRC_URI="http://libtorrent.rakshasa.no/downloads/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE="daemon debug ipv6 xmlrpc"
 
 COMMON_DEPEND=">=net-libs/libtorrent-0.12.${PV##*.}
@@ -23,7 +23,7 @@ RDEPEND="${COMMON_DEPEND}
 DEPEND="${COMMON_DEPEND}
 	dev-util/pkgconfig"
 
-PATCHES=( "${FILESDIR}/${PN}-0.8.2-gcc34.patch" )
+PATCHES=( "${FILESDIR}/${PN}-0.8.2-gcc34.patch" "${FILESDIR}"/${P}-solaris.patch )
 
 src_compile() {
 	replace-flags -Os -O2
@@ -32,6 +32,9 @@ src_compile() {
 	if [[ $(tc-arch) = "x86" ]]; then
 		filter-flags -fomit-frame-pointer -fforce-addr
 	fi
+
+	# need this, or configure script bombs out on some null shift, bug #291229
+	export CONFIG_SHELL=${BASH}
 
 	econf	$(use_enable debug) \
 		$(use_enable ipv6) \
