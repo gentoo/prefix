@@ -24,9 +24,9 @@ IUSE="aqua cairo doc examples opengl"
 
 RDEPEND="
 	dev-python/setuptools
-	>=x11-libs/wxGTK-${PV}:2.8[opengl?]
+	>=x11-libs/wxGTK-${PV}:2.8[opengl?,aqua=]
 	>=dev-lang/python-2.4
-	>=x11-libs/gtk+-2.4[aqua?]
+	>=x11-libs/gtk+-2.4[aqua=]
 	>=x11-libs/pango-1.2
 	>=dev-libs/glib-2.0
 	media-libs/libpng
@@ -34,7 +34,7 @@ RDEPEND="
 	media-libs/tiff
 	cairo?	( >=dev-python/pycairo-1.8.4 )
 	opengl?	( >=dev-python/pyopengl-2.0.0.44 )
-	aqua? ( >=dev-lang/python-2.6[aqua] )"
+	aqua? ( >=dev-lang/python-2.6[aqua?] )"
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
