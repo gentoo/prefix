@@ -216,5 +216,9 @@ dev-python/sphinx
 dev-python/sqlalchemy
 dev-python/sqlobject
 dev-python/turbojson
+dev-python/twisted
+dev-python/twisted-mail
+dev-python/twisted-names
+dev-python/twisted-web
 
 # Operation Shiny Jewel (Ruby), bug #295040
