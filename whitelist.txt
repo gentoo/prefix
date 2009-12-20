@@ -204,5 +204,9 @@ dev-python/python-memcached
 dev-python/pytz
 dev-python/pyxml
 dev-python/pyyaml
+dev-python/quixote
+dev-python/routes
+dev-python/ruledispatch
+dev-python/sancho
 
 # Operation Shiny Jewel (Ruby), bug #295040
