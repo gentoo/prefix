@@ -93,16 +93,25 @@ src_prepare() {
 	ln -s ${LIBPERL} libperl$(get_libname ${SHORT_PV})
 	ln -s ${LIBPERL} libperl$(get_libname )
 
-	#epatch "${FILESDIR}"/${P}-mint.patch
-	#epatch "${FILESDIR}"/${P}-aix.patch
-	#epatch "${FILESDIR}"/${P}-hpux.patch
-	#epatch "${FILESDIR}"/${P}-solaris-64bit.patch # may clash with native linker
-	#epatch "${FILESDIR}"/${P}-solaris-relocation.patch
-	#epatch "${FILESDIR}"/${P}-irix.patch
-	#epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
-	#epatch "${FILESDIR}"/${P}-usr-local.patch
-	#epatch "${FILESDIR}"/${P}-hpux1131.patch
+	# commented out patches fail and need evaluation if they're still necessary
+	#epatch "${FILESDIR}"/${PN}-5.8.8-mint.patch
+	#epatch "${FILESDIR}"/${PN}-5.8.8-aix.patch
+	#epatch "${FILESDIR}"/${PN}-5.8.8-hpux.patch
+	#epatch "${FILESDIR}"/${PN}-5.8.8-solaris-64bit.patch # may clash with native linker
+	epatch "${FILESDIR}"/${PN}-5.8.8-solaris-relocation.patch
+	epatch "${FILESDIR}"/${PN}-5.8.8-irix.patch
+	epatch "${FILESDIR}"/${P}-cleanup-paths.patch
+	epatch "${FILESDIR}"/${PN}-5.8.8-usr-local.patch
+	#epatch "${FILESDIR}"/${PN}-5.8.8-hpux1131.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-darwin-cc-ld.patch
+	epatch "${FILESDIR}"/${P}-stack-protector-check.patch
+
+	# rest of usr-local patch
+	sed -i \
+		-e '/^locincpth=/c\locincpth=""' \
+		-e '/^loclibpth=/c\loclibpth=""' \
+		-e '/^glibpth=.*\/local\//s: /usr/local/lib.*":":' \
+		Configure || die
 
 	# Also add the directory prefix of the current file when the quote syntax is
 	# used; 'require' will only look in @INC, not the current directory.
