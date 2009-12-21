@@ -102,6 +102,7 @@ src_prepare() {
 	#epatch "${FILESDIR}"/${PN}-cleanup-paths.patch
 	#epatch "${FILESDIR}"/${P}-usr-local.patch
 	#epatch "${FILESDIR}"/${P}-hpux1131.patch
+	epatch "${FILESDIR}"/${PN}-5.8.8-darwin-cc-ld.patch
 
 	# Also add the directory prefix of the current file when the quote syntax is
 	# used; 'require' will only look in @INC, not the current directory.

@@ -142,6 +142,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-usr-local.patch
 	epatch "${FILESDIR}"/${P}-ndbm-location.patch
 	epatch "${FILESDIR}"/${P}-hpux1131.patch
+	epatch "${FILESDIR}"/${P}-darwin-cc-ld.patch
 
 	# activate Solaris 11 workaround...
 	[[ ${CHOST} == *-solaris2.11 ]] && append-flags -DSOLARIS11
