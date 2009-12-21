@@ -1,6 +1,20 @@
 # ChangeLog for app-text/docbook-xml-dtd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/ChangeLog,v 1.70 2009/08/23 16:04:34 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/ChangeLog,v 1.72 2009/12/21 03:16:55 vapier Exp $
+
+*docbook-xml-dtd-4.5-r1 (21 Dec 2009)
+*docbook-xml-dtd-4.4-r2 (21 Dec 2009)
+
+  21 Dec 2009; Mike Frysinger <vapier@gentoo.org>
+  +docbook-xml-dtd-4.4-r2.ebuild, +docbook-xml-dtd-4.5-r1.ebuild:
+  Workaround entity parsing issue with openjade #238785 by Robert Wohlrab.
+
+  21 Dec 2009; Mike Frysinger <vapier@gentoo.org>
+  docbook-xml-dtd-4.1.2-r6.ebuild, docbook-xml-dtd-4.2-r2.ebuild,
+  docbook-xml-dtd-4.3-r1.ebuild, docbook-xml-dtd-4.4-r1.ebuild,
+  docbook-xml-dtd-4.5.ebuild:
+  Clean up ebuilds -- make them uniform style, settings, and check install
+  with "die".
 
   23 Aug 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   docbook-xml-dtd-4.1.2-r6.ebuild, docbook-xml-dtd-4.2-r1.ebuild,

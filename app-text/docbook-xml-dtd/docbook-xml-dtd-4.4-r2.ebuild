@@ -1,17 +1,17 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/docbook-xml-dtd-4.1.2-r6.ebuild,v 1.19 2009/12/21 03:06:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-dtd/docbook-xml-dtd-4.4-r2.ebuild,v 1.1 2009/12/21 03:16:55 vapier Exp $
 
 inherit sgml-catalog
 
-MY_P="docbkx412"
+MY_P=${P/-dtd/}
 DESCRIPTION="Docbook DTD for XML"
 HOMEPAGE="http://www.docbook.org/"
 SRC_URI="http://www.docbook.org/xml/${PV}/${MY_P}.zip"
 
 LICENSE="X11"
 SLOT="${PV}"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND=""
@@ -38,11 +38,16 @@ src_install() {
 	keepdir /etc/xml
 
 	insinto /usr/share/sgml/docbook/xml-dtd-${PV}
-	doins *.cat *.dtd *.mod || die
+	doins *.cat *.dtd *.mod *.xml || die
 	insinto /usr/share/sgml/docbook/xml-dtd-${PV}/ent
 	doins ent/*.ent || die
 
-	dodoc ChangeLog *.txt
+	# work around unicode parser issues #238785
+	ln -sf ../../../xml-iso-entities-8879.1986/ISOgrk4.ent \
+		"${ED}"/usr/share/sgml/docbook/xml-dtd-${PV}/ent/isogrk4.ent || die
+
+	cp ent/README README.ent
+	dodoc ChangeLog README*
 }
 
 pkg_postinst() {
