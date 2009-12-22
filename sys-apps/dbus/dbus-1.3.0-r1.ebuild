@@ -73,7 +73,7 @@ src_configure() {
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		# struct msghdr doesn't include msg_controllen if _XPG4_2 isn't
 		# defined (or the kernel view).  To enable it, _XOPEN_SOURCE
-		# must be set to 500.  However, the we loose *DIR->dd_fd, so we
+		# must be set to 500.  However, then we loose *DIR->dd_fd, so we
 		# just do an ugly hack and enable the private macro.
 		append-flags -D_XPG4_2
 	fi
