@@ -12,7 +12,7 @@ SRC_URI="mirror://apache/maven/binaries/${MY_P}-bin.tar.bz2"
 HOMEPAGE="http://maven.apache.org/"
 LICENSE="Apache-2.0"
 SLOT="2.2"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 
 RDEPEND=">=virtual/jdk-1.5
 	app-admin/eselect-maven"
