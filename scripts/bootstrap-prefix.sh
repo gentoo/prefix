@@ -309,6 +309,11 @@ bootstrap_latest_tree() {
 	do_tree "${SNAPSHOT_URL}" portage-latest.tar.bz2
 }
 
+# Added for darkside, don't remove.
+bootstrap_tree_arm() {
+	do_tree http://dev.gentooexperimental.org/~darkside/distfiles/prefix/ prefix-overlay-20091220.tar.bz2
+}
+
 bootstrap_startscript() {
 	theshell=${SHELL##*/}
 	if [[ ${theshell} == "sh" ]] ; then
