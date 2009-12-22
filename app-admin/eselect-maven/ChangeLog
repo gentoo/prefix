@@ -1,0 +1,28 @@
+# ChangeLog for app-admin/eselect-maven
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-maven/ChangeLog,v 1.5 2009/10/26 07:58:29 volkmar Exp $
+
+  26 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> eselect-maven-0.1.ebuild:
+  Keywording for ppc, bug 269616
+
+  18 Oct 2009; Petteri Räty <betelgeuse@gentoo.org>
+  eselect-maven-0.1.ebuild:
+  add maven-bin:2.2 and fix so that the latest version is the first to be
+  matched.
+
+  13 May 2009; Alistair Bush <ali_bush@gentoo.org> eselect-maven-0.1.ebuild:
+  Restrict blocker to slot.
+
+  12 May 2009; Alistair Bush <ali_bush@gentoo.org> eselect-maven-0.1.ebuild:
+  Update blocker on maven-bin. We have versionbumped maven-bin in tree.
+
+  12 May 2009; Alistair Bush <ali_bush@gentoo.org>
+  +eselect-maven-0.1.ebuild, +files/maven.eselect, +metadata.xml:
+  Move eselect-maven from java-experimental overlay.
+
+*eselect-maven-0.1 (08 May 2009)
+
+  08 May 2009; Jesse Farinacci <jieryn@gmail.com> +eselect-maven-0.1.ebuild,
+  +files/maven.eselect, +metadata.xml:
+  initial import, related to bug #264027
+
