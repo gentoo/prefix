@@ -31,6 +31,8 @@ src_prepare() {
 	if use sparc; then
 		epatch "${FILESDIR}"/sparc-qt-webkit-sigbus.patch
 	fi
+	epatch "${FILESDIR}"/${P}-solaris-jsvalue.patch
+	epatch "${FILESDIR}"/${P}-solaris-strnstr.patch
 	qt4-build_src_prepare
 }
 

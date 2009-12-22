@@ -1,0 +1,21 @@
+../JavaScriptCore/runtime/JSValue.h:479: error: cast from ‘JSC::JSCell*’
+to ‘int32_t’ loses precision
+
+Fix inspired by:
+http://bugreports.qt.nokia.com/browse/QTBUG-6948
+
+Seems already to have been fixed upstream webkit in a different way
+(PLATFORM(UNIX) iso DARWIN/LINUX/SOLARIS)
+
+
+--- src/3rdparty/webkit/JavaScriptCore/wtf/Platform.h
++++ src/3rdparty/webkit/JavaScriptCore/wtf/Platform.h
+@@ -709,7 +709,7 @@
+ #endif
+ 
+ #if !defined(WTF_USE_JSVALUE64) && !defined(WTF_USE_JSVALUE32) && !defined(WTF_USE_JSVALUE32_64)
+-#if PLATFORM(X86_64) && (PLATFORM(DARWIN) || PLATFORM(LINUX) || PLATFORM(WIN_OS))
++#if PLATFORM(X86_64) && (PLATFORM(DARWIN) || PLATFORM(LINUX) || PLATFORM(WIN_OS) || PLATFORM(SOLARIS))
+ #define WTF_USE_JSVALUE64 1
+ #elif PLATFORM(ARM) || PLATFORM(PPC64)
+ #define WTF_USE_JSVALUE32 1
