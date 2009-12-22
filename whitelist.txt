@@ -66,6 +66,7 @@ dev-cpp/clucene
 dev-db/tokyocabinet
 dev-java/hp-jdk-bin
 dev-libs/libebml
+dev-ml/lablgtk
 dev-php5/pecl-pdflib
 dev-util/bzrtools
 dev-util/confix
