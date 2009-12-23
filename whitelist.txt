@@ -27,6 +27,7 @@ app-admin/emacs-updater
 app-admin/eselect
 app-admin/eselect-ctags
 app-admin/eselect-emacs
+app-backup/boxbackup
 app-crypt/qca
 app-doc/blas-docs
 app-doc/lapack-docs
