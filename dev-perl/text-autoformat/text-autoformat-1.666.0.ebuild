@@ -12,7 +12,7 @@ inherit perl-module
 DESCRIPTION="Automatic text wrapping and reformatting"
 
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND=">=dev-perl/text-reform-1.11
