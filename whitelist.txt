@@ -111,6 +111,40 @@ xfce-extra
 # separate projects encompassing a large amount of packages in progress
 
 # Operation Dandy Pearl (Perl), bug #294758
+dev-perl/AnyEvent
+dev-perl/AppConfig
+dev-perl/AutoXS-Header
+dev-perl/Cache-Cache
+dev-perl/Carp-Clan
+dev-perl/Class-C3
+dev-perl/Class-C3-Componentised
+dev-perl/Class-C3-XS
+dev-perl/Class-Virtual
+dev-perl/Class-XSAccessor
+dev-perl/common-sense
+dev-perl/DateTime-Format-Mail
+dev-perl/DateTime-Format-W3CDTF
+dev-perl/Event
+dev-perl/Exporter-Lite
+dev-perl/File-HomeDir
+dev-perl/File-ReadBackwards
+dev-perl/GD
+dev-perl/GDGraph
+dev-perl/GDTextUtil
+dev-perl/IPC-ShareLite
+dev-perl/JSON-XS
+dev-perl/Math-VecStat
+dev-perl/Module-Find
+dev-perl/MRO-Compat
+dev-perl/Scope-Guard
+dev-perl/SQL-Abstract
+dev-perl/SQL-Abstract-Limit
+dev-perl/Template-DBI
+dev-perl/Template-GD
+dev-perl/Template-Latex
+dev-perl/Template-Toolkit
+dev-perl/Template-XML
+dev-perl/XML-RSS
 perl-core
 
 # Operation Deadly Snake (Python), bug #295035
