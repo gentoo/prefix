@@ -10,7 +10,7 @@ inherit perl-module
 DESCRIPTION="Cross-platform path specification manipulation"
 
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="test"
 
 RDEPEND="dev-lang/perl
