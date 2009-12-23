@@ -9,7 +9,7 @@ DESCRIPTION="Encode::Detect - An Encode::Encoding subclass that detects the enco
 
 LICENSE="MPL-1.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 RDEPEND=""
