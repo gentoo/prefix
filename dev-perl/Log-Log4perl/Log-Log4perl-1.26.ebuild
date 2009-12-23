@@ -11,7 +11,7 @@ DESCRIPTION="Log::Log4perl is a Perl port of the widely popular log4j logging pa
 HOMEPAGE="http://log4perl.sourceforge.net/"
 
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="test"
 
 RDEPEND="virtual/perl-Time-HiRes"
