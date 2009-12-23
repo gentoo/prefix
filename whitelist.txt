@@ -64,6 +64,7 @@ app-portage/eix
 app-shells/bash-completion
 app-shells/tcsh
 dev-cpp/clucene
+dev-db/mysql++
 dev-db/tokyocabinet
 dev-java/hp-jdk-bin
 dev-libs/libebml
