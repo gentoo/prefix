@@ -23,7 +23,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	cp "${FILESDIR}"/${P} ./${PN} || die "cannot gain ${FILESDIR}/${P}"
-	epatch "${FILESDIR}"/${PV}-extwrapper.patch
+	epatch "${FILESDIR}"/1.9-extwrapper.patch
 	# this patch seems only to be needed for sunld, but that one got its own
 	# plugin now, so it feels unneeded to me
 	#epatch "${FILESDIR}"/${P}-libpath-ordering.patch
