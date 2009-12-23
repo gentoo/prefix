@@ -10,7 +10,7 @@ HOMEPAGE="http://search.cpan.org/~msergeant/"
 
 SLOT="0"
 LICENSE="Artistic"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 DEPEND=">=dev-perl/XML-Parser-2.30
