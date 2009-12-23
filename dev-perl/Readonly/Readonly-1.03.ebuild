@@ -9,7 +9,7 @@ SRC_URI="mirror://cpan/authors/id/R/RO/ROODE/${P}.tar.gz"
 HOMEPAGE="http://search.cpan.org/dist/Readonly/Readonly.pm"
 SLOT="0"
 LICENSE="|| ( Artistic GPL-2 )"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE=""
 
 SRC_TEST="do"
