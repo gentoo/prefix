@@ -9,7 +9,7 @@ DESCRIPTION="Perl extension for manipulating IPv4/IPv6 addresses"
 
 LICENSE="Artistic"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE=""
 
 PATCHES=( "${FILESDIR}/initip-0.patch" )
