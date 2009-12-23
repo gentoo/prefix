@@ -1,3 +1,7 @@
+fixed binutils-config to work with native solais ld (which requires
+library paths to appear before libs). should not hurt other gnus.
+
+
 diff -ru toolchain-prefix-wrapper-0.3.1660.orig/ld/gnuplugin.c toolchain-prefix-wrapper-0.3.1660/ld/gnuplugin.c
 --- toolchain-prefix-wrapper-0.3.1660.orig/ld/gnuplugin.c	2009-11-09 12:11:24.552590166 +0100
 +++ toolchain-prefix-wrapper-0.3.1660/ld/gnuplugin.c	2009-11-09 14:42:56.056096154 +0100

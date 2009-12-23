@@ -1,3 +1,6 @@
+added solaris plugin for ld wrapper, to correctly handle the sparc
+native linker.
+
 diff -ruN toolchain-prefix-wrapper-0.3.1660.orig/ld/Makefile.am toolchain-prefix-wrapper-0.3.1660/ld/Makefile.am
 --- toolchain-prefix-wrapper-0.3.1660.orig/ld/Makefile.am	2009-11-25 15:48:46.960464000 +0100
 +++ toolchain-prefix-wrapper-0.3.1660/ld/Makefile.am	2009-11-25 15:38:36.645826000 +0100

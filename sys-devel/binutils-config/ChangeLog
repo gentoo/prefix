@@ -2,6 +2,15 @@
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils-config/ChangeLog,v 1.35 2007/05/06 09:04:01 vapier Exp $
 
+*binutils-config-1.9-r04.16 (23 Dec 2009)
+
+  23 Dec 2009; Fabian Groffen <grobian@gentoo.org>
+  files/binutils-config-1.9-libpath-ordering.patch,
+  +binutils-config-1.9-r04.16.ebuild,
+  files/binutils-config-1.9-solaris-native-ld.patch, metadata.xml:
+  Snapshot bump, setting BINUTILS_CONFIG_VERBOSE in the environment makes
+  the wrapper print how exactly it calls the target ld.
+
 *binutils-config-1.9-r04.13 (31 Jan 2009)
 
   31 Jan 2009; Fabian Groffen <grobian@gentoo.org>

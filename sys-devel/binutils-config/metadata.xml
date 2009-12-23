@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<herd>prefix</herd>
+	<use>
+		<flag name="sunld">Build binutils-config to use native Sun ld plugin
+			instead of GNU ld on Solaris</flag>
+	</use>
+</pkgmetadata>
