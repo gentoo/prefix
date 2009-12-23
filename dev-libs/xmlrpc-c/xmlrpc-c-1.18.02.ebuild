@@ -55,7 +55,7 @@ src_prepare() {
 		-e "/CXXFLAGS_COMMON/s|-g$|${CXXFLAGS}|" \
 		"${S}"/common.mk || die "404. File not found while sedding"
 
-	# solaris req. c99
+	# solaris req. c99 (should be solved in 1.19)
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		sed -i \
 			-e "/^CFLAGS_COMMON/s/= /= -std=c99 /" \
