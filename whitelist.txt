@@ -93,6 +93,8 @@ sys-devel/gcc-apple
 sys-devel/gdb-apple
 sys-process/iotop
 sys-process/unixtop
+x11-libs/cairo
+x11-libs/gtk+
 x11-terms/terminal
 x11-themes/xfce4-icon-theme
 x11-themes/xfwm4-themes
