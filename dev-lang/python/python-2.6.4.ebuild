@@ -31,7 +31,7 @@ IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline 
 
 RDEPEND=">=app-admin/eselect-python-20090606
 		>=sys-libs/zlib-1.1.3
-		!m68k-mint? ( !mips-irix? ( virtual/libffi ) )
+		!m68k-mint? ( virtual/libffi )
 		virtual/libintl
 		!build? (
 			berkdb? ( || (
@@ -75,8 +75,7 @@ pkg_setup() {
 
 src_prepare() {
 	# Ensure that internal copies of expat and libffi aren't used.
-	rm -fr Modules/expat
-	use mips-irix || rm -fr Modules/_ctypes/libffi*
+	rm -fr Modules/expat Modules/_ctypes/libffi*
 
 	if tc-is-cross-compiler; then
 		epatch "${FILESDIR}/python-2.5-cross-printf.patch"
@@ -152,8 +151,8 @@ src_prepare() {
 	# at least IRIX starts spitting out ugly errors, but we want to use Prefix
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
-	# make it compile on IRIX as well (depends on internal libffi)
-	use mips-irix && epatch "${FILESDIR}"/${PN}-2.6.4-irix-ffi.patch
+	# make it compile on IRIX as well
+	epatch "${FILESDIR}"/${PN}-2.6.4-irix.patch
 	# and generate a libpython2.6.so
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
@@ -249,7 +248,7 @@ src_configure() {
 			Makefile.pre.in || die "sed failed"
 	fi
 
-	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
+	# Export CXX so it ends up in /usr/$(get_libdir)/python2.X/config/Makefile.
 	tc-export CXX
 
 	# Set LDFLAGS so we link modules with -lpython2.6 correctly.
@@ -286,7 +285,7 @@ src_configure() {
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
 		--with-libc='' \
-		$(use_with !mips-irix system-ffi) \
+		--with-system-ffi \
 		${myconf}
 }
 
