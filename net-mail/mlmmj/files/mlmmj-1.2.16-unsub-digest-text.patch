@@ -1,0 +1,56 @@
+Provide more hints to the users on how to unsubscribe from the nomail
+and digest forms. Frequently seen where users try to unsubscribe from
+the normal version of the list when they are really subscribed to the
+digest form.
+
+Signed-off-by: "Robin H. Johnson" <robbat2@gentoo.org>
+
+diff -Nuar mlmmj-1.2.16.orig/listtexts/en/listhelp mlmmj-1.2.16/listtexts/en/listhelp
+--- mlmmj-1.2.16.orig/listtexts/en/listhelp	2008-10-30 20:06:29.000000000 +0000
++++ mlmmj-1.2.16/listtexts/en/listhelp	2009-12-16 20:58:30.864716161 +0000
+@@ -8,6 +8,14 @@
+ 
+ $listunsubaddr$
+ 
++To unsubscribe from the digest of this list send a message to:
++
++$digestunsubaddr$
++
++To unsubscribe from the "nomail" version this list send a message to:
++
++$nomailunsubaddr$
++
+ To subscribe to the digest of this list send a message to:
+ 
+ $digestsubaddr$
+diff -Nuar mlmmj-1.2.16.orig/listtexts/en/sub-subscribed mlmmj-1.2.16/listtexts/en/sub-subscribed
+--- mlmmj-1.2.16.orig/listtexts/en/sub-subscribed	2008-10-30 20:06:30.000000000 +0000
++++ mlmmj-1.2.16/listtexts/en/sub-subscribed	2009-12-16 20:59:21.504710982 +0000
+@@ -11,6 +11,14 @@
+ 
+ $listunsubaddr$
+ 
++To unsubscribe from the digest of this list send a message to:
++
++$digestunsubaddr$
++
++To unsubscribe from the "nomail" version this list send a message to:
++
++$nomailunsubaddr$
++
+ And for help send a message to:
+ 
+ $helpaddr$
+diff -Nuar mlmmj-1.2.16.orig/listtexts/en/unsub-notsubscribed mlmmj-1.2.16/listtexts/en/unsub-notsubscribed
+--- mlmmj-1.2.16.orig/listtexts/en/unsub-notsubscribed	2008-10-30 20:06:30.000000000 +0000
++++ mlmmj-1.2.16/listtexts/en/unsub-notsubscribed	2009-12-16 20:59:00.624713133 +0000
+@@ -6,6 +6,9 @@
+ 
+ You are not subscribed to this list, so you cannot unsubscribe.
+ 
++To unsubscribe from the digest of this list send a message to:
++
++$digestunsubaddr$
+ 
+ To subscribe send a message to:
+ 

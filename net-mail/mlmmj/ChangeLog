@@ -1,6 +1,18 @@
 # ChangeLog for net-mail/mlmmj
-# Copyright 2004-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/mlmmj/ChangeLog,v 1.29 2009/03/18 07:08:18 josejx Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/mlmmj/ChangeLog,v 1.31 2009/12/16 21:15:57 robbat2 Exp $
+
+  16 Dec 2009; Robin H. Johnson <robbat2@gentoo.org> mlmmj-1.2.16-r1.ebuild,
+  +files/mlmmj-1.2.16-unsub-digest-text.patch:
+  Include the listtext modifications from lists.gentoo.org that offer hints
+  about unsubscribing from the digest form of the list.
+
+*mlmmj-1.2.16-r1 (16 Dec 2009)
+
+  16 Dec 2009; Robin H. Johnson <robbat2@gentoo.org>
+  +mlmmj-1.2.16-r1.ebuild, +files/mlmmj-1.2.16-requeue-unlink-fix.patch:
+  Critical bugfix to 1.2.16 that can cause mail loss. Upstream is releasing
+  a 1.2.17 with it soon, but we need it already.
 
   18 Mar 2009; Joseph Jezak <josejx@gentoo.org> mlmmj-1.2.15-r1.ebuild:
   Marked ppc stable for bug #249615.
