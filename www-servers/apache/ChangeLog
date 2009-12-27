@@ -1,6 +1,9 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.125 2009/11/18 17:39:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.126 2009/12/18 15:33:24 armin76 Exp $
+
+  18 Dec 2009; Raúl Porcel <armin76@gentoo.org> apache-2.2.14-r1.ebuild:
+  ia64/s390/sh/sprc stable wrt #291810
 
   18 Nov 2009; Brent Baude <ranger@gentoo.org> apache-2.2.14-r1.ebuild:
   Marking apache-2.2.14-r1 ppc64 for bug 291810

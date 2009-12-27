@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.14-r1.ebuild,v 1.5 2009/11/18 17:39:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.14-r1.ebuild,v 1.6 2009/12/18 15:33:24 armin76 Exp $
 
 # latest gentoo apache files
 GENTOO_PATCHSTAMP="20091008"
