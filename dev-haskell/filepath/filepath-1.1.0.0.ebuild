@@ -1,11 +1,11 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/filepath-1.1.0.0.ebuild,v 1.6 2009/08/01 15:32:54 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/filepath/filepath-1.1.0.0.ebuild,v 1.7 2009/12/13 07:09:17 mr_bones_ Exp $
 
 CABAL_FEATURES="haddock lib profile"
 inherit haskell-cabal
 
-DESCRIPTION="Library for manipulating FilePath's in a cross platform way."
+DESCRIPTION="Library for manipulating FilePaths in a cross platform way."
 HOMEPAGE="http://www-users.cs.york.ac.uk/~ndm/projects/libraries.php"
 SRC_URI="http://hackage.haskell.org/packages/archive/${PN}/${PV}/${P}.tar.gz"
 LICENSE="BSD"
