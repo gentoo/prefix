@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/filezilla-3.3.0.1.ebuild,v 1.1 2009/11/15 20:05:04 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/filezilla-3.3.0.1.ebuild,v 1.3 2009/12/25 00:08:57 fauli Exp $
 
 EAPI=2
 
