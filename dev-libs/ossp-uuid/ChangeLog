@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/ossp-uuid
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.17 2009/10/24 12:24:53 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ossp-uuid/ChangeLog,v 1.18 2009/12/15 14:54:05 pva Exp $
+
+  15 Dec 2009; Peter Volkov <pva@gentoo.org> metadata.xml:
+  metadata.xml: added required herd tag.
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> ossp-uuid-1.6.2.ebuild:
   ppc stable #285475
