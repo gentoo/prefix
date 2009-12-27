@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.28.0.1.ebuild,v 1.2 2009/10/30 16:18:43 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.28.0.1.ebuild,v 1.3 2009/12/27 04:16:09 nirbheek Exp $
 
 inherit eutils gnome2 python autotools
 
@@ -67,7 +67,7 @@ pkg_postinst() {
 		python_mod_optimize $(python_get_sitedir)/GMenuSimpleEditor
 	fi
 
-	ewarn "Due to bug #256614, you might loose icons in applications menus."
+	ewarn "Due to bug #256614, you might lose icons in applications menus."
 	ewarn "If you use a login manager, please re-select your session."
 	ewarn "If you use startx and have no .xinitrc, just export XSESSION=Gnome."
 	ewarn "If you use startx and have .xinitrc, export XDG_MENU_PREFIX=gnome-."

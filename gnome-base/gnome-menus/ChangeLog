@@ -1,6 +1,10 @@
 # ChangeLog for gnome-base/gnome-menus
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.137 2009/12/03 16:56:08 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.138 2009/12/27 04:16:09 nirbheek Exp $
+
+  27 Dec 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  gnome-menus-2.26.2.ebuild, gnome-menus-2.28.0.1.ebuild:
+  Fix typo, bug 292441
 
   03 Dec 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
   Marking gnome-menus-2.26.2 ppc64 stable for bug 281427
