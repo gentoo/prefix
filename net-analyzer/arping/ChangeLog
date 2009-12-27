@@ -1,6 +1,15 @@
 # ChangeLog for net-analyzer/arping
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/arping/ChangeLog,v 1.38 2008/09/28 13:05:18 cedk Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/arping/ChangeLog,v 1.40 2009/12/10 18:00:16 jer Exp $
+
+  10 Dec 2009; Jeroen Roovers <jer@gentoo.org> arping-2.08-r1.ebuild:
+  Add yet more sed scripts (bug #257864).
+
+*arping-2.08-r1 (10 Dec 2009)
+
+  10 Dec 2009; Jeroen Roovers <jer@gentoo.org> +arping-2.08-r1.ebuild:
+  Fix executable name in man page and example script, and fix example script
+  name (bug #257864). Use PN instead of hardcoding package name.
 
 *arping-2.08 (28 Sep 2008)
 
