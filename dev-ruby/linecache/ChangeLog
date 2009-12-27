@@ -1,6 +1,15 @@
 # ChangeLog for dev-ruby/linecache
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/linecache/ChangeLog,v 1.2 2009/03/20 05:07:23 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/linecache/ChangeLog,v 1.4 2009/12/23 12:50:59 flameeyes Exp $
+
+  23 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  linecache-0.43-r1.ebuild:
+  Build even when tests are disabled.
+
+*linecache-0.43-r1 (23 Dec 2009)
+
+  23 Dec 2009; Hans de Graaff <graaff@gentoo.org> +linecache-0.43-r1.ebuild:
+  Convert to use ruby-fakegem.
 
   20 Mar 2009; Joseph Jezak <josejx@gentoo.org> linecache-0.43.ebuild:
   Marked ~ppc for bug #252815.
