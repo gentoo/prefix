@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/gnome-control-center
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/ChangeLog,v 1.42 2009/12/03 17:22:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/ChangeLog,v 1.43 2009/12/27 02:41:47 nirbheek Exp $
+
+*gnome-control-center-2.28.1-r2 (27 Dec 2009)
+
+  27 Dec 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -gnome-control-center-2.28.1-r1.ebuild,
+  +gnome-control-center-2.28.1-r2.ebuild:
+  Fix deps for changing the default background using gconf/polkit
 
   03 Dec 2009; Brent Baude <ranger@gentoo.org>
   gnome-control-center-2.26.0.ebuild:

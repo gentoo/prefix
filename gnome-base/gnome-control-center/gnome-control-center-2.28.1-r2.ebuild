@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-2.28.1-r1.ebuild,v 1.1 2009/11/17 18:58:31 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-control-center/gnome-control-center-2.28.1-r2.ebuild,v 1.1 2009/12/27 02:41:47 nirbheek Exp $
 
 EAPI="2"
 
@@ -12,8 +12,9 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="eds"
+IUSE="eds policykit"
 
+# Newer gconf[policykit] needed for CanSetSystem attribute for default bg patch
 RDEPEND="x11-libs/libXft
 	>=x11-libs/libXi-1.2
 	>=x11-libs/gtk+-2.15.0
@@ -37,6 +38,7 @@ RDEPEND="x11-libs/libXft
 	>=media-libs/libcanberra-0.4[gtk]
 
 	eds? ( >=gnome-extra/evolution-data-server-1.7.90 )
+	policykit? ( >=gnome-base/gconf-2.28[policykit] )
 
 	x11-apps/xmodmap
 	x11-libs/libXScrnSaver
@@ -82,8 +84,8 @@ src_prepare() {
 
 	# Fix compilation on fbsd, bug #256958
 	epatch "${FILESDIR}/${PN}-2.24.0.1-fbsd.patch"
-	# Add functionality for setting the default background in gdm,
-	# bug 293439.
+
+	# Add functionality for setting the default background in gdm, bug 293439
 	epatch "${FILESDIR}/${P}-gdm-default-bg.patch"
 }
 
