@@ -1,6 +1,9 @@
 # ChangeLog for app-text/clara
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/clara/ChangeLog,v 1.20 2009/11/28 12:04:32 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/clara/ChangeLog,v 1.21 2009/12/15 17:04:29 spock Exp $
+
+  15 Dec 2009; Michał Januszewski <spock@gentoo.org> clara-20031214.ebuild:
+  Fix homepage URL, point SRC_URI to the Gentoo mirrors.
 
   28 Nov 2009; Michał Januszewski <spock@gentoo.org> clara-20031214.ebuild:
   Fix bug #294816.

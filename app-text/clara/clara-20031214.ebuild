@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/clara/clara-20031214.ebuild,v 1.22 2009/11/28 12:04:32 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/clara/clara-20031214.ebuild,v 1.23 2009/12/15 17:04:29 spock Exp $
 
 inherit eutils toolchain-funcs
 
 DESCRIPTION="An OCR (Optical Character Recognition) program"
-SRC_URI="http://www.geocities.com/claraocr/clara-20031214.tar.gz"
-HOMEPAGE="http://www.geocities.com/claraocr/"
+SRC_URI="mirror://gentoo/clara-20031214.tar.gz"
+HOMEPAGE="http://www.claraocr.org/"
 
 SLOT="0"
 LICENSE="GPL-2"
