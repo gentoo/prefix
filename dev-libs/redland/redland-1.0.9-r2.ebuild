@@ -1,10 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/redland-1.0.8.ebuild,v 1.16 2009/08/12 17:28:46 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/redland/redland-1.0.9-r2.ebuild,v 1.1 2009/12/11 19:49:18 ssuominen Exp $
 
 EAPI=2
-
-inherit libtool
+inherit autotools eutils libtool
 
 DESCRIPTION="High-level interface for the Resource Description Framework"
 HOMEPAGE="http://librdf.org"
@@ -16,8 +15,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="berkdb mysql postgres sqlite ssl threads xml"
 
 RDEPEND="mysql? ( virtual/mysql )
-	sqlite? ( =dev-db/sqlite-3*
-		<dev-db/sqlite-3.6.17 )
+	sqlite? ( =dev-db/sqlite-3* )
 	berkdb? ( sys-libs/db )
 	xml? ( dev-libs/libxml2 )
 	!xml? ( dev-libs/expat )
@@ -26,10 +24,21 @@ RDEPEND="mysql? ( virtual/mysql )
 	>=dev-libs/rasqal-0.9.16
 	postgres? ( virtual/postgresql-base )"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	dev-util/pkgconfig
+	dev-util/gtk-doc-am
+	>=sys-devel/libtool-2"
+
+# Please, remove this RESTRICT from next version. See bug #285110.
+RESTRICT="test"
 
 src_prepare() {
-	elibtoolize # for sande .so versionning on bsd
+	epatch "${FILESDIR}"/${P}-ldflags.patch \
+		"${FILESDIR}"/${P}-sqlite.patch \
+		"${FILESDIR}"/${P}-librdf_storage_register_factory.patch
+	sed -i \
+		-e 's:bdbc_version in 4.7:bdbc_version in 4.8 4.7:g' \
+		configure.ac || die
+	eautoreconf
 }
 
 src_configure() {
