@@ -1,6 +1,11 @@
 # ChangeLog for app-text/gocr
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/ChangeLog,v 1.57 2009/04/29 22:53:15 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/gocr/ChangeLog,v 1.58 2009/12/26 17:31:31 pva Exp $
+
+  26 Dec 2009; Peter Volkov <pva@gentoo.org> gocr-0.45.ebuild,
+  gocr-0.46.ebuild, gocr-0.47.ebuild:
+  virtual/ghostscript->app-text/ghostscript-gpl: ghostscript-gpl is the only
+  implementation left in the tree.
 
 *gocr-0.47 (29 Apr 2009)
 
