@@ -1,6 +1,11 @@
 # ChangeLog for app-text/gv
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.78 2009/06/27 10:57:22 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.79 2009/12/26 17:31:42 pva Exp $
+
+  26 Dec 2009; Peter Volkov <pva@gentoo.org> gv-3.6.3.ebuild,
+  gv-3.6.4.ebuild, gv-3.6.6.ebuild, gv-3.6.7.ebuild:
+  virtual/ghostscript->app-text/ghostscript-gpl: ghostscript-gpl is the only
+  implementation left in the tree.
 
 *gv-3.6.7 (27 Jun 2009)
 

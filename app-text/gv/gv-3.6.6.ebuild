@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/gv-3.6.6.ebuild,v 1.1 2009/02/04 17:25:55 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/gv-3.6.6.ebuild,v 1.2 2009/12/26 17:31:42 pva Exp $
 
 inherit autotools eutils
 
@@ -20,7 +20,7 @@ DEPEND="x11-libs/libICE
 	x11-libs/libXmu
 	x11-libs/libXpm
 	x11-libs/Xaw3d
-	virtual/ghostscript
+	app-text/ghostscript-gpl
 	x11-libs/libXt"
 
 src_unpack() {

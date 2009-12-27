@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/gv-3.6.3.ebuild,v 1.8 2007/10/18 13:21:14 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/gv-3.6.3.ebuild,v 1.9 2009/12/26 17:31:42 pva Exp $
 
 inherit eutils
 
@@ -21,7 +21,7 @@ RDEPEND="x11-libs/libICE
 	x11-libs/libXpm
 	x11-libs/libXt
 	x11-libs/Xaw3d
-	virtual/ghostscript"
+	app-text/ghostscript-gpl"
 DEPEND="${RDEPEND}
 	x11-libs/libXt"
 
