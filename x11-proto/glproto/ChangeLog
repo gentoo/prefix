@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/glproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/ChangeLog,v 1.64 2009/10/26 20:47:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/glproto/ChangeLog,v 1.66 2009/12/15 19:46:58 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> glproto-1.4.10.ebuild:
+  Marking glproto-1.4.10 ppc64 stable for bug 294958
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> glproto-1.4.10.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #282290
 
   26 Oct 2009; Jeroen Roovers <jer@gentoo.org> glproto-1.4.10.ebuild:
   Stable for HPPA (bug #282290).
