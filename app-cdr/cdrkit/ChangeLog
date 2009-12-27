@@ -1,6 +1,11 @@
 # ChangeLog for app-cdr/cdrkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.78 2009/10/15 20:14:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrkit/ChangeLog,v 1.79 2009/12/07 17:13:02 ssuominen Exp $
+
+*cdrkit-1.1.10 (07 Dec 2009)
+
+  07 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> +cdrkit-1.1.10.ebuild:
+  Version bump.
 
   15 Oct 2009; Raúl Porcel <armin76@gentoo.org> cdrkit-1.1.9-r1.ebuild:
   alpha stable
