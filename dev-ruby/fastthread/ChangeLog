@@ -1,6 +1,24 @@
 # ChangeLog for dev-ruby/fastthread
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/fastthread/ChangeLog,v 1.32 2009/10/10 15:18:53 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/fastthread/ChangeLog,v 1.36 2009/12/26 08:30:01 graaff Exp $
+
+  26 Dec 2009; Hans de Graaff <graaff@gentoo.org>
+  fastthread-1.0.7-r1.ebuild:
+  Fix build with -doc and -test by always depending on rake, fixing #298384.
+
+  23 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  fastthread-1.0.7-r1.ebuild:
+  Make echoe an unconditional dependency as it's needed for compile as well.
+  Thanks to Harris Landgarten in bug #298048.
+
+*fastthread-1.0.7-r1 (21 Dec 2009)
+
+  21 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +fastthread-1.0.7-r1.ebuild:
+  Port to ruby-fakegem.
+
+  09 Dec 2009; Hans de Graaff <graaff@gentoo.org> -fastthread-1.0.1.ebuild:
+  Remove old version.
 
   10 Oct 2009; Raúl Porcel <armin76@gentoo.org> fastthread-1.0.7.ebuild:
   sparc stable wrt #282374
