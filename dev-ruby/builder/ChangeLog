@@ -1,6 +1,19 @@
 # ChangeLog for dev-ruby/builder
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/builder/ChangeLog,v 1.31 2009/06/07 17:39:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/builder/ChangeLog,v 1.34 2009/12/21 00:07:19 flameeyes Exp $
+
+  21 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  builder-2.1.2-r1.ebuild:
+  Restore keywords for those arches having rake.
+
+  16 Dec 2009; Jeroen Roovers <jer@gentoo.org> builder-2.1.2-r1.ebuild:
+  Marked ~hppa (bug #297081).
+
+*builder-2.1.2-r1 (15 Dec 2009)
+
+  15 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +builder-2.1.2-r1.ebuild, +files/builder-2.1.2-activesupport.patch:
+  Bump to ruby-fakegem, add a patch from activesupport.
 
   07 Jun 2009; Raúl Porcel <armin76@gentoo.org> builder-2.1.2.ebuild:
   Add ~arm/~s390
