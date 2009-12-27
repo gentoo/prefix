@@ -1,6 +1,11 @@
 # ChangeLog for app-office/texmacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/ChangeLog,v 1.77 2009/11/29 12:12:55 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/texmacs/ChangeLog,v 1.78 2009/12/26 17:26:26 pva Exp $
+
+  26 Dec 2009; Peter Volkov <pva@gentoo.org> texmacs-1.0.7.2.ebuild,
+  texmacs-1.0.7.2-r1.ebuild, texmacs-1.0.7.3.ebuild:
+  virtual/ghostscript->app-text/ghostscript-gpl: ghostscript-gpl is the only
+  implementation left in the tree.
 
 *texmacs-1.0.7.3 (29 Nov 2009)
 
