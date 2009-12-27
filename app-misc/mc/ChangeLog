@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/mc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.177 2009/11/26 18:34:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.178 2009/12/26 13:42:31 wired Exp $
+
+*mc-4.7.0 (26 Dec 2009)
+
+  26 Dec 2009; Alex Alexander <wired@gentoo.org> +mc-4.7.0.ebuild:
+  version bump, bug #298385
 
   26 Nov 2009; Raúl Porcel <armin76@gentoo.org> mc-4.7.0_pre3.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #290347
