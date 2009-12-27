@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.4-r1.ebuild,v 1.2 2009/12/08 00:02:40 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.6.ebuild,v 1.1 2009/12/23 16:29:20 flameeyes Exp $
 
 EAPI="2"
 
@@ -47,15 +47,11 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-2.7.1-catalog_path.patch
 	epatch "${FILESDIR}"/${PN}-2.7.2-winnt.patch
-	epatch "${FILESDIR}"/${P}-ld-version-script-check.patch # needs eautoreconf
+	epatch "${FILESDIR}"/${PN}-2.7.4-ld-version-script-check.patch # needs eautoreconf
 
 	eprefixify catalog.c xmlcatalog.c runtest.c xmllint.c
 
 	eautoreconf # required for winnt
-
-	# Fix inkscape extension loader problem, bug #285125,
-	# patch import from upstream bug #595128.
-	epatch "${FILESDIR}"/${P}-parser-grow.patch
 }
 
 src_prepare() {
