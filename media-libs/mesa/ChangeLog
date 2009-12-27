@@ -1,6 +1,64 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.239 2009/11/22 23:45:17 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.253 2009/12/26 15:58:50 scarabeus Exp $
+
+  26 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> mesa-7.7.ebuild:
+  Do not depend on xorg-server.
+
+  24 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> mesa-7.7.ebuild:
+  Rdepend on xorg-server[-minimal]. Thx to Tommy for reporting.
+
+  22 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> mesa-7.7.ebuild:
+  Sync with in-overlay updates prepared for 7.7 final release.
+
+  22 Dec 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -mesa-7.6.1_rc4.ebuild, -mesa-7.7_rc3.ebuild:
+  Remove old rcs (forgot to cvs rm them with previous commit)
+
+*mesa-7.7 (22 Dec 2009)
+*mesa-7.6.1 (22 Dec 2009)
+
+  22 Dec 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +files/0001-st-xorg-Adopt-to-new-dirty-clip-rect-type.patch,
+  +mesa-7.6.1.ebuild, +mesa-7.7.ebuild:
+  Bump to 7.6.1 (with a patch to fix bug 297891) and 7.7 (fixes bug 297807)
+
+  16 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> mesa-7.7_rc3.ebuild:
+  Fix S location.
+
+*mesa-7.7_rc3 (16 Dec 2009)
+*mesa-7.6.1_rc4 (16 Dec 2009)
+
+  16 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> -mesa-7.3-r1.ebuild,
+  -mesa-7.6.1_rc3.ebuild, +mesa-7.6.1_rc4.ebuild, -mesa-7.7_rc2.ebuild,
+  +mesa-7.7_rc3.ebuild:
+  Version bump. Drop old.
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> mesa-7.5.2.ebuild:
+  Marking mesa-7.5.2 ppc64 stable for bug 294958
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> mesa-7.5.1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #282290
+
+  14 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> mesa-7.7_rc2.ebuild:
+  Drop unused video cards
+
+  13 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> -mesa-7.1.ebuild,
+  -mesa-7.2.ebuild, -mesa-7.4.4.ebuild:
+  rm
+
+*mesa-7.7_rc2 (13 Dec 2009)
+*mesa-7.6.1_rc3 (13 Dec 2009)
+
+  13 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +mesa-7.6.1_rc3.ebuild, +mesa-7.7_rc2.ebuild, metadata.xml:
+  Bump to latest rcs.
+
+  10 Dec 2009; Christian Faulhammer <fauli@gentoo.org> mesa-7.5.2.ebuild:
+  x86 stable, bug 294958
+
+  10 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> mesa-7.5.2.ebuild:
+  amd64 stable wrt #294958
 
   22 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   -files/6.5.2-i965-wine-fix.patch:
