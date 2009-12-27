@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.8-r1.ebuild,v 1.5 2009/08/27 13:55:46 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.5.8-r1.ebuild,v 1.6 2009/12/26 17:24:39 pva Exp $
 
 EAPI=1
 
@@ -25,7 +25,7 @@ RDEPEND="qt4? ( x11-libs/qt-gui:4 )
 	dev-lang/python
 	virtual/libiconv
 	media-libs/libpng
-	virtual/ghostscript
+	app-text/ghostscript-gpl
 	!nodot? ( >=media-gfx/graphviz-2.6
 		media-libs/freetype )"
 DEPEND=">=sys-apps/sed-4
