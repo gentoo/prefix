@@ -1,6 +1,14 @@
 # ChangeLog for dev-scheme/gauche
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gauche/ChangeLog,v 1.20 2009/01/12 17:28:40 hattya Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gauche/ChangeLog,v 1.22 2009/12/25 13:23:11 hattya Exp $
+
+*gauche-0.9 (25 Dec 2009)
+
+  25 Dec 2009; Akinori Hattori <hattya@gentoo.org> +gauche-0.9.ebuild:
+  new upstream release.
+
+  25 Dec 2009; Akinori Hattori <hattya@gentoo.org> gauche-0.8.14.ebuild:
+  stable on x86.
 
   12 Jan 2009; Akinori Hattori <hattya@gentoo.org>
   -files/gauche-0.8.11-socket-buffering.diff, -files/gauche-dbm.ac.diff,

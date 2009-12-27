@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gauche/gauche-0.8.14.ebuild,v 1.2 2009/12/25 13:20:42 hattya Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/gauche/gauche-0.9.ebuild,v 1.1 2009/12/25 13:23:11 hattya Exp $
 
 inherit autotools eutils flag-o-matic
 
@@ -17,7 +17,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 SLOT="0"
 S="${WORKDIR}/${MY_P}"
 
-DEPEND=">=sys-libs/gdbm-1.8.0"
+DEPEND="sys-libs/gdbm"
 
 src_unpack() {
 
