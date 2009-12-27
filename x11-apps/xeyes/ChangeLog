@@ -1,6 +1,11 @@
 # ChangeLog for x11-apps/xeyes
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xeyes/ChangeLog,v 1.15 2009/05/05 07:51:26 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xeyes/ChangeLog,v 1.16 2009/12/19 15:20:25 scarabeus Exp $
+
+*xeyes-1.1.0 (19 Dec 2009)
+
+  19 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> +xeyes-1.1.0.ebuild:
+  Version bump.
 
   05 May 2009; Christian Faulhammer <fauli@gentoo.org> xeyes-1.0.1.ebuild:
   fix repoman warnings
