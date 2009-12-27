@@ -1,12 +1,14 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5_alpha87.ebuild,v 1.7 2007/12/16 08:51:02 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5.1.ebuild,v 1.1 2009/12/10 13:25:52 pva Exp $
+
+EAPI="2"
 
 inherit eutils toolchain-funcs
 
 DESCRIPTION="An enhanced (world's fastest) tar, as well as enhanced mt/rmt"
 HOMEPAGE="http://cdrecord.berlios.de/old/private/star.html"
-SRC_URI="ftp://ftp.berlios.de/pub/${PN}/alpha/${PN}-${PV/_alpha/a}.tar.bz2"
+SRC_URI="ftp://ftp.berlios.de/pub/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2 LGPL-2.1 CDDL-Schily"
 SLOT="0"
@@ -15,30 +17,15 @@ IUSE=""
 
 S=${WORKDIR}/${P/_alpha[0-9][0-9]}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	cd "${S}"/DEFAULTS
+src_prepare() {
 	sed -i \
 		-e "s:/opt/schily:${EPREFIX}/usr:g" \
 		-e 's:bin:root:g' \
 		-e "s:/usr/src/linux/include:${EPREFIX}/usr/include:" \
-		Defaults.linux
-
-	if use amd64 ; then
-		cd "${S}"/RULES
-		cp i386-linux-cc.rul x86_64-linux-cc.rul
-		cp i386-linux-gcc.rul x86_64-linux-gcc.rul
-	fi
-
-	if use ppc64 ; then
-		cd "${S}"/RULES
-		cp ppc-linux-cc.rul ppc64-linux-cc.rul
-		cp ppc-linux-gcc.rul ppc64-linux-gcc.rul
-	fi
-
+			DEFAULTS/Defaults.linux || die
 }
+
+src_configure() { :; } #avoid ./configure run
 
 src_compile() {
 	make CC="$(tc-getCC)" COPTX="${CFLAGS}" CPPOPTX="${CPPFLAGS}" LDOPTX="${LDFLAGS}" || die
