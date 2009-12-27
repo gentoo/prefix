@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.15-r2.ebuild,v 1.5 2009/07/19 14:00:44 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/log4j-1.2.15-r2.ebuild,v 1.6 2009/12/08 18:22:22 betelgeuse Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc javamail jms jmx source"
@@ -23,10 +23,6 @@ CDEPEND="javamail? ( java-virtuals/javamail java-virtuals/jaf )
 
 RDEPEND=">=virtual/jre-1.4
 		${CDEPEND}"
-
-# We should get log4j working with openjms but at the moment that would bring
-# a circular dependency.
-#	jms? ( || (=dev-java/openjms-0.7.6* =dev-java/openjms-bin-0.7.6* ))"
 
 DEPEND=">=virtual/jdk-1.4
 		${CDEPEND}"
