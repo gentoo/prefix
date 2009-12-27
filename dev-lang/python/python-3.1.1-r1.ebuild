@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.18 2009/11/29 15:29:21 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.21 2009/12/19 21:16:36 arfrever Exp $
 
 EAPI="2"
 
@@ -24,7 +24,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="3.1"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite ssl +threads tk ucs2 wininst +xml"
+IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite ssl +threads tk +wide-unicode wininst +xml"
 
 RDEPEND=">=app-admin/eselect-python-20090606
 		>=sys-libs/zlib-1.1.3
@@ -220,9 +220,8 @@ src_configure() {
 
 	local dbmliborder
 	if use gdbm; then
-		dbmliborder+=":gdbm"
+		dbmliborder+="${dbmliborder:+:}gdbm"
 	fi
-	dbmliborder="${dbmliborder#:}"
 
 	# python defaults to use 'cc_r' on aix
 	[[ ${CHOST} == *-aix* ]] && myconf="${myconf} --with-gcc=$(tc-getCC)"
@@ -242,13 +241,17 @@ src_configure() {
 		&& myconf="${myconf} --enable-framework=${EPREFIX}/usr/lib" \
 		|| myconf="${myconf} --enable-shared"
 
+	# note: for a framework build we need to use ucs2 because OSX
+	# uses that internally too:
+	# http://bugs.python.org/issue763708
 	econf \
 		--with-fpectl \
 		$(use_enable ipv6) \
 		$(use_with threads) \
-		$(use_with !ucs2 wide-unicode) \
+		$( (use wide-unicode && use !aqua) && echo "--with-wide-unicode" || echo "--without-wide-unicode") \
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
+		--with-computed-gotos \
 		--with-dbmliborder=${dbmliborder} \
 		--with-libc='' \
 		--with-system-ffi

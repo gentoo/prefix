@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4.ebuild,v 1.2 2009/11/29 15:29:21 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4.ebuild,v 1.9 2009/12/20 16:02:41 armin76 Exp $
 
 EAPI="2"
 
@@ -24,7 +24,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="2.6"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite ssl +threads tk ucs2 wininst +xml"
+IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite ssl +threads tk +wide-unicode wininst +xml"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes}
 #       do not conflict with the ones in python proper. - liquidx
@@ -85,7 +85,7 @@ src_prepare() {
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
 
-	# stupidos hardcoding GNU specifics
+	# hardcoding GNU specifics breaks certain platforms
 	case $($(tc-getAS) --noexecstack -v 2>&1 </dev/null) in
 		*"GNU Binutils"*) # GNU as with noexecstack support
 			:
@@ -270,18 +270,18 @@ src_configure() {
 	# we need this to get pythonw, the GUI version of python
 	# --enable-framework and --enable-shared are mutually exclusive:
 	# http://bugs.python.org/issue5809
-	# notice that for a framework build we also need to use ucs2 because OSX
-	# uses that internally too:
-	# http://bugs.python.org/issue763708
 	use aqua \
 		&& myconf="${myconf} --enable-framework=${EPREFIX}/usr/lib" \
 		|| myconf="${myconf} --enable-shared"
 
+	# note: for a framework build we need to use ucs2 because OSX
+	# uses that internally too:
+	# http://bugs.python.org/issue763708
 	econf \
 		--with-fpectl \
 		$(use_enable ipv6) \
 		$(use_with threads) \
-		$( (use ucs2 || use aqua) && echo "--enable-unicode=ucs2" || echo "--enable-unicode=ucs4") \
+		$( (use wide-unicode && use !aqua) && echo "--enable-unicode=ucs4" || echo "--enable-unicode=ucs2") \
 		--infodir='${prefix}'/share/info \
 		--mandir='${prefix}'/share/man \
 		--with-libc='' \
@@ -302,7 +302,7 @@ src_test() {
 
 	# Skip all tests that fail during emerge but pass without emerge:
 	# (See bug #67970)
-	local skip_tests="distutils minidom pyexpat sax tcl"
+	local skip_tests="distutils httpservers minidom pyexpat sax tcl"
 
 	# test_ctypes fails with PAX kernel (bug #234498).
 	host-is-pax && skip_tests+=" ctypes"

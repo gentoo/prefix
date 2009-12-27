@@ -1,6 +1,36 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.432 2009/11/29 15:29:21 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.440 2009/12/20 16:02:41 armin76 Exp $
+
+  20 Dec 2009; Raúl Porcel <armin76@gentoo.org> python-2.6.4.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #295066
+
+  19 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.6.4.ebuild:
+  Restrict tests from test_httpservers (bug #293201).
+
+  19 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-3.1.1-r1.ebuild:
+  Use --with-computed-gotos (bug #296574).
+
+  13 Dec 2009; Raúl Porcel <armin76@gentoo.org> python-2.6.4.ebuild,
+  python-3.1.1-r1.ebuild:
+  Add ~m68k, thanks to kolla for testing
+
+  09 Dec 2009; nixnut <nixnut@gentoo.org> python-2.6.4.ebuild:
+  ppc stable #295066
+
+  06 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.4.6.ebuild, python-2.5.4-r3.ebuild, python-2.6.2-r1.ebuild,
+  python-2.6.2-r2.ebuild, python-2.6.3.ebuild, python-2.6.4.ebuild,
+  python-3.1.1-r1.ebuild, metadata.xml:
+  Remove "ucs2" USE flag and add "wide-unicode" USE flag (bug #293135).
+
+  04 Dec 2009; Jeroen Roovers <jer@gentoo.org> python-2.6.4.ebuild:
+  Stable for HPPA (bug #295066).
+
+  03 Dec 2009; Markus Meier <maekke@gentoo.org> python-2.6.4.ebuild:
+  amd64/arm/x86 stable, bug #295066
 
   29 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   python-2.6.4.ebuild, python-3.1.1-r1.ebuild:
