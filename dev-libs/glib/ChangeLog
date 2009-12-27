@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.394 2009/11/17 15:41:51 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.396 2009/12/18 13:35:16 mrpouet Exp $
+
+*glib-2.22.3 (18 Dec 2009)
+
+  18 Dec 2009; Romain Perier <mrpouet@gentoo.org> +glib-2.22.3.ebuild:
+  Version bump
+
+  10 Dec 2009; Raúl Porcel <armin76@gentoo.org> glib-2.22.2.ebuild:
+  sparc stable
 
   17 Nov 2009; Brent Baude <ranger@gentoo.org> glib-2.20.5-r1.ebuild:
   Marking glib-2.20.5-r1 ppc64 for bug 286102
