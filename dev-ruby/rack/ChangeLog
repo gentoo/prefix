@@ -1,6 +1,16 @@
 # ChangeLog for dev-ruby/rack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/ChangeLog,v 1.17 2009/11/30 18:24:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rack/ChangeLog,v 1.19 2009/12/20 22:42:15 flameeyes Exp $
+
+*rack-1.0.1-r1 (20 Dec 2009)
+
+  20 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +rack-1.0.1-r1.ebuild:
+  Bump to use fakegem; this only supports 1.8 because 1.9 has broken test
+  dependencies.
+
+  19 Dec 2009; Jeroen Roovers <jer@gentoo.org> rack-1.0.1.ebuild:
+  Stable for PPC (bug #294797).
 
   30 Nov 2009; Raúl Porcel <armin76@gentoo.org> rack-1.0.1.ebuild:
   ia64/sparc stable wrt #294797
