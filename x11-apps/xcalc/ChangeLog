@@ -1,6 +1,11 @@
 # ChangeLog for x11-apps/xcalc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xcalc/ChangeLog,v 1.29 2009/07/07 01:32:38 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xcalc/ChangeLog,v 1.30 2009/12/19 15:16:55 scarabeus Exp $
+
+*xcalc-1.0.3 (19 Dec 2009)
+
+  19 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> +xcalc-1.0.3.ebuild:
+  Version bump.
 
   07 Jul 2009; Jeroen Roovers <jer@gentoo.org> xcalc-1.0.2-r1.ebuild:
   Stable for HPPA too.
