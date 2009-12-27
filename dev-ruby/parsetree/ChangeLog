@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/parsetree
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/parsetree/ChangeLog,v 1.12 2009/08/12 05:30:42 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/parsetree/ChangeLog,v 1.13 2009/12/26 17:49:58 flameeyes Exp $
+
+*parsetree-3.0.4-r1 (26 Dec 2009)
+
+  26 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +parsetree-3.0.4-r1.ebuild:
+  Port to fakegem.
 
   12 Aug 2009; Hans de Graaff <graaff@gentoo.org> -parsetree-2.1.1.ebuild,
   -parsetree-2.2.0.ebuild, -parsetree-3.0.2.ebuild:
