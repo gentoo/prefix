@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/ack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ChangeLog,v 1.13 2009/11/20 15:22:22 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ack/ChangeLog,v 1.15 2009/12/11 18:36:46 rajiv Exp $
+
+*ack-1.92 (11 Dec 2009)
+
+  11 Dec 2009; Rajiv Aaron Manglani <rajiv@gentoo.org> +ack-1.92.ebuild:
+  version bump.
+
+  08 Dec 2009; Rajiv Aaron Manglani <rajiv@gentoo.org> -ack-1.88.ebuild,
+  -ack-1.88-r1.ebuild:
+  cleanup.
 
   20 Nov 2009; Markus Meier <maekke@gentoo.org> ack-1.90.ebuild:
   x86 stable, bug #288704
