@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.139 2009/11/22 23:53:58 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.140 2009/12/14 10:02:29 remi Exp $
+
+  14 Dec 2009; Rémi Cardona <remi@gentoo.org> fontconfig-2.5.0-r1.ebuild,
+  fontconfig-2.6.0-r2.ebuild, fontconfig-2.7.1-r1.ebuild,
+  fontconfig-2.7.2.ebuild, fontconfig-2.7.3.ebuild, fontconfig-2.8.0.ebuild:
+  change LICENSE to MIT
 
 *fontconfig-2.8.0 (22 Nov 2009)
 
