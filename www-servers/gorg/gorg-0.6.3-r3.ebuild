@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/gorg-0.6.3-r3.ebuild,v 1.1 2009/08/24 16:43:06 ramereth Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/gorg-0.6.3-r3.ebuild,v 1.2 2009/12/25 14:14:13 graaff Exp $
 
 EAPI=2
 
@@ -16,7 +16,7 @@ USE_RUBY="ruby18"
 LICENSE="GPL-2"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
-DEPEND="virtual/ruby
+DEPEND="
 	>=dev-libs/libxml2-2.6.16
 	>=dev-libs/libxslt-1.1.12"
 RDEPEND="${DEPEND}

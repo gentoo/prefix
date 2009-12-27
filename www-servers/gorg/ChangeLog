@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/gorg
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/ChangeLog,v 1.22 2009/10/17 15:39:49 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/ChangeLog,v 1.23 2009/12/25 14:14:13 graaff Exp $
+
+  25 Dec 2009; Hans de Graaff <graaff@gentoo.org> gorg-0.6.3-r2.ebuild,
+  gorg-0.6.3-r3.ebuild, gorg-0.6.4.ebuild:
+  Remove obsolete virtual/ruby dependency.
 
 *gorg-0.6.4 (17 Oct 2009)
 
