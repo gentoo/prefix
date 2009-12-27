@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.8.ebuild,v 1.23 2009/10/19 21:20:20 alexxy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/libffi-3.0.8.ebuild,v 1.26 2009/12/20 16:16:31 armin76 Exp $
 
 inherit autotools eutils
 
@@ -21,7 +21,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-fbsd.patch \
-		"${FILESDIR}"/${P}-autoconf-2.64.patch
+		"${FILESDIR}"/${P}-autoconf-2.64.patch \
+		"${FILESDIR}"/${P}-arm.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 	eautoreconf
 }
