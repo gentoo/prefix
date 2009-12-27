@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/speex
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.93 2009/11/18 18:26:15 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/speex/ChangeLog,v 1.94 2009/12/11 19:59:55 ranger Exp $
+
+  11 Dec 2009; Brent Baude <ranger@gentoo.org> speex-1.2_rc1.ebuild:
+  Marking speex-1.2_rc1 ppc64 for bug 289701
 
   18 Nov 2009; Raúl Porcel <armin76@gentoo.org> speex-1.2_rc1.ebuild:
   ia64/sh/sparc stable wrt #289701
