@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4-r3.ebuild,v 1.7 2009/05/18 18:53:30 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4-r3.ebuild,v 1.8 2009/12/26 17:39:22 pva Exp $
 
 inherit eutils autotools
 
@@ -17,7 +17,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE="X expat xml debug doc gtk"
 
-RDEPEND="virtual/ghostscript
+RDEPEND="app-text/ghostscript-gpl
 	xml? ( !expat? ( dev-libs/libxml2 ) )
 	expat? ( dev-libs/expat )
 	>=media-libs/freetype-2.0.1
