@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.15.ebuild,v 1.1 2009/09/24 11:09:11 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.15.ebuild,v 1.6 2009/12/11 14:41:18 ranger Exp $
 
 EAPI=2
 inherit eutils autotools

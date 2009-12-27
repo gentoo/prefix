@@ -1,6 +1,21 @@
 # ChangeLog for dev-libs/popt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.73 2009/11/04 18:11:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.78 2009/12/11 14:41:18 ranger Exp $
+
+  11 Dec 2009; Brent Baude <ranger@gentoo.org> popt-1.15.ebuild:
+  Marking popt-1.15 ppc64 for bug 296420
+
+  10 Dec 2009; Tiago Cunha <tcunha@gentoo.org> popt-1.15.ebuild:
+  stable sparc, bug 296420
+
+  10 Dec 2009; Christian Faulhammer <fauli@gentoo.org> popt-1.15.ebuild:
+  stable x86, bug 296420
+
+  10 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> popt-1.15.ebuild:
+  amd64 stable wrt #296420
+
+  10 Dec 2009; Jeroen Roovers <jer@gentoo.org> popt-1.15.ebuild:
+  Stable for HPPA PPC (bug #296420).
 
   04 Nov 2009; Raúl Porcel <armin76@gentoo.org> popt-1.14.ebuild:
   ia64/m68k/s390/sh stable wrt #286199
