@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/surfraw-2.2.6.ebuild,v 1.1 2009/11/20 14:36:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/surfraw-2.2.6.ebuild,v 1.2 2009/12/24 18:01:07 pacho Exp $
 
 inherit bash-completion eutils
 
