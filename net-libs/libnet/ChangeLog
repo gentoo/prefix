@@ -1,6 +1,24 @@
 # ChangeLog for net-libs/libnet
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/ChangeLog,v 1.50 2009/12/01 00:09:43 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libnet/ChangeLog,v 1.55 2009/12/24 17:51:31 pacho Exp $
+
+  24 Dec 2009; Pacho Ramos <pacho@gentoo.org> libnet-1.1.4-r1.ebuild:
+  amd64 stable, bug 289857
+
+  22 Dec 2009; Jeroen Roovers <jer@gentoo.org> libnet-1.1.4-r1.ebuild:
+  Stable for HPPA PPC (bug #289857).
+
+*libnet-1.1.4-r1 (22 Dec 2009)
+
+  22 Dec 2009; Peter Volkov <pva@gentoo.org> +libnet-1.1.4-r1.ebuild:
+  Bump revision to apply crasher fix from Jeroen Roovers.
+
+  10 Dec 2009; Jeroen Roovers <jer@gentoo.org> libnet-1.1.4.ebuild,
+  +files/libnet-1.1.4-zero-pointers-after-free.patch:
+  Apply Debian patch (bug #296417).
+
+  09 Dec 2009; nixnut <nixnut@gentoo.org> libnet-1.1.4.ebuild:
+  ppc stable #289857
 
   01 Dec 2009; Tiago Cunha <tcunha@gentoo.org> libnet-1.1.4.ebuild:
   stable sparc, bug 289857
