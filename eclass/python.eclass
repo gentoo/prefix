@@ -829,7 +829,7 @@ if EPYTHON:
 		sys.exit(1)
 else:
 	try:
-		eselect_process = subprocess.Popen(["/usr/bin/eselect", "python", "show"${eselect_python_option:+, $(echo "\"")}${eselect_python_option}${eselect_python_option:+$(echo "\"")}], stdout=subprocess.PIPE)
+		eselect_process = subprocess.Popen(["${EPREFIX}/usr/bin/eselect", "python", "show"${eselect_python_option:+, $(echo "\"")}${eselect_python_option}${eselect_python_option:+$(echo "\"")}], stdout=subprocess.PIPE)
 		if eselect_process.wait() != 0:
 			raise ValueError
 	except (OSError, ValueError):
@@ -854,7 +854,7 @@ EOF
 		else
 			cat << EOF >> "${file}"
 try:
-	eselect_process = subprocess.Popen(["/usr/bin/eselect", "python", "show"${eselect_python_option:+, $(echo "\"")}${eselect_python_option}${eselect_python_option:+$(echo "\"")}], stdout=subprocess.PIPE)
+	eselect_process = subprocess.Popen(["${EPREFIX}/usr/bin/eselect", "python", "show"${eselect_python_option:+, $(echo "\"")}${eselect_python_option}${eselect_python_option:+$(echo "\"")}], stdout=subprocess.PIPE)
 	if eselect_process.wait() != 0:
 		raise ValueError
 except (OSError, ValueError):
@@ -889,7 +889,7 @@ EOF
 		if [[ "$?" != "0" ]]; then
 			die "${FUNCNAME}(): Generation of '$1' failed"
 		fi
-		fperms +x "${file#${D%/}}" || die "fperms '${file}' failed"
+		fperms +x "${file#${ED%/}}" || die "fperms '${file}' failed"
 	done
 }
 
