@@ -1,0 +1,62 @@
+Fix automagic gconf for thumbnailer
+
+http://bugs.gentoo.org/attachment.cgi?id=207912&action=view
+
+---
+--- configure.in
++++ configure.in
+@@ -499,21 +499,41 @@
+ 
+ # ===================
+ # GConf configuration
++AC_ARG_WITH([gconf],
++    AC_HELP_STRING([--without-gconf],[disable the use of gconf (default: auto)]),
++		[],
++    [with_gconf=auto])
++
++have_gconf=not_tested
++if test "x$with_gconf" = "xyes" -o "x$with_gconf" = "xauto" ; then
++    PKG_CHECK_EXISTS([gconf-2.0 >= 2.24.0],[have_gconf=yes],[have_gconf=no])
++fi
+ 
+-dnl The following conditional is set in AM_GCONF_SOURCE_2.
+-dnl Because we may skip its execution, we have to set a default here.
+-AM_CONDITIONAL([GCONF_SCHEMAS_INSTALL], [false])
+-
+-dnl Don't publish the GCONFTOOL variable, AM_GCONF_SOURCE_2 has ``gconftool-2'' hardwired.
+-m4_pattern_allow([^AM_GCONF_SOURCE_2$])
+-GCONFTOOL=
+-AC_CHECK_PROG([GCONFTOOL], [gconftool-2], [gconftool-2], [no])
+-if test "x$GCONFTOOL" = "xno"; then
+-    AC_MSG_WARN([thumbnailer will not be built, unable to find gconftool-2])
+-else
+-    AM_GCONF_SOURCE_2
++if test "x$with_gconf" = "xyes" -a "x$have_gconf" != "xyes" ; then
++    AC_MSG_ERROR([gconf support requested, but not available.])
+ fi
+-AM_CONDITIONAL(WITH_GCONF, test "x$GCONFTOOL" != "xno")
++m4_pattern_allow([AM_GCONF_SOURCE_2])dnl in case no autotools are available
++AM_GCONF_SOURCE_2
++# ===================
++
++# ===================
++# thumbnailer configuration
++build_thumbnailer=dont_know
++case "${with_gconf}" in
++no)
++    AC_MSG_WARN([gconf support disabled as requested (the thumbnailer won't be built)]);
++    build_thumbnailer=no;;
++yes)
++    build_thumbnailer=yes;;
++auto)
++    if test "xhave_conf" = "xyes"; then
++        build_thumbnailer=yes;
++    else
++        build_thumbnailer=no;
++    fi;;
++esac
++AM_CONDITIONAL(WITH_GCONF, test "x$build_thumbnailer" = "xyes")
++# ===================
+ 
+ LDFLAGS="-no-undefined $LDFLAGS"
+ 

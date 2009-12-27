@@ -1,11 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.16.ebuild,v 1.1 2009/10/19 21:14:39 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/libgsf-1.14.16.ebuild,v 1.2 2009/12/27 04:07:52 nirbheek Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
 
-inherit eutils gnome2 python multilib
+inherit autotools eutils gnome2 python multilib
 
 DESCRIPTION="The GNOME Structured File Library"
 HOMEPAGE="http://www.gnome.org/"
@@ -15,16 +15,14 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="bzip2 doc gnome gtk python"
 
-# FIXME: gconf is actually automagic and only needed for thumbnailer
 RDEPEND="
 	>=dev-libs/glib-2.16
 	>=dev-libs/libxml2-2.4.16
-	>=gnome-base/gconf-2
 	sys-libs/zlib
 	bzip2? ( app-arch/bzip2 )
 	gnome? (
-		>=gnome-base/libbonobo-2
-		>=gnome-base/gnome-vfs-2.2 )
+		>=gnome-base/gconf-2
+		>=gnome-base/libbonobo-2 )
 	gtk? ( >=x11-libs/gtk+-2 )
 	python? (
 		>=dev-python/pygobject-2.10
@@ -44,7 +42,7 @@ pkg_setup() {
 		--with-gio
 		--disable-static
 		$(use_with bzip2 bz2)
-		$(use_with gnome gnome-vfs)
+		$(use_with gnome gconf)
 		$(use_with gnome bonobo)
 		$(use_with python)
 		$(use_with gtk gdk-pixbuf)"
@@ -52,6 +50,11 @@ pkg_setup() {
 
 src_prepare() {
 	gnome2_src_prepare
+
+	# Fix gconf automagic, bug 289856
+	epatch "${FILESDIR}/${P}-gconf-automagic.patch"
+
+	eautoreconf
 
 	# disable pyc compiling
 	mv py-compile py-compile.orig

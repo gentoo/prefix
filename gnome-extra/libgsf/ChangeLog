@@ -1,6 +1,11 @@
 # ChangeLog for gnome-extra/libgsf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.147 2009/12/03 17:14:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-extra/libgsf/ChangeLog,v 1.148 2009/12/27 04:07:52 nirbheek Exp $
+
+  27 Dec 2009; Nirbheek Chauhan <nirbheek@gentoo.org> libgsf-1.14.16.ebuild,
+  +files/libgsf-1.14.16-gconf-automagic.patch:
+  Fix gconf automagic, patch by Jan Aniŝĉuk and Sylvain BERTRAND, bug
+  289856
 
   03 Dec 2009; Brent Baude <ranger@gentoo.org> libgsf-1.14.15.ebuild:
   Marking libgsf-1.14.15 ppc64 stable for bug 281427
