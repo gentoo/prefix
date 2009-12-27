@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/avalon-logkit-2.1-r4.ebuild,v 1.2 2009/11/07 11:21:27 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/avalon-logkit/avalon-logkit-2.1-r4.ebuild,v 1.4 2009/12/14 19:25:47 ranger Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc source test"
