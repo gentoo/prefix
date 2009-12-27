@@ -1,6 +1,16 @@
 # ChangeLog for x11-proto/dri2proto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/dri2proto/ChangeLog,v 1.22 2009/10/26 20:48:15 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/dri2proto/ChangeLog,v 1.25 2009/12/15 19:45:45 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> dri2proto-2.1.ebuild:
+  Marking dri2proto-2.1 ppc64 stable for bug 294958
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> dri2proto-2.1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #282290
+
+  14 Dec 2009; Rémi Cardona <remi@gentoo.org> dri2proto-1.99.3.ebuild,
+  dri2proto-2.1.ebuild:
+  change LICENSE to MIT
 
   26 Oct 2009; Jeroen Roovers <jer@gentoo.org> dri2proto-2.1.ebuild:
   Stable for HPPA (bug #282290).
