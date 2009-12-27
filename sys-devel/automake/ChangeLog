@@ -1,6 +1,24 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.138 2009/05/29 23:41:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.139 2009/12/09 09:01:46 vapier Exp $
+
+*automake-1.11.1 (09 Dec 2009)
+*automake-1.10.3 (09 Dec 2009)
+*automake-1.9.6-r3 (09 Dec 2009)
+*automake-1.8.5-r4 (09 Dec 2009)
+*automake-1.7.9-r2 (09 Dec 2009)
+*automake-1.6.3-r1 (09 Dec 2009)
+*automake-1.5-r1 (09 Dec 2009)
+*automake-1.4_p6-r1 (09 Dec 2009)
+
+  09 Dec 2009; Mike Frysinger <vapier@gentoo.org>
+  +automake-1.4_p6-r1.ebuild, +files/automake-1.4-CVE-2009-4029.patch,
+  +automake-1.5-r1.ebuild, +files/automake-1.5-CVE-2009-4029.patch,
+  +automake-1.6.3-r1.ebuild, +automake-1.7.9-r2.ebuild,
+  +automake-1.8.5-r4.ebuild, +files/automake-1.8.5-CVE-2009-4029.patch,
+  +automake-1.9.6-r3.ebuild, +automake-1.10.3.ebuild,
+  +automake-1.11.1.ebuild:
+  Version bump and apply fixes from upstream for CVE-2009-4029 #295357.
 
   29 May 2009; Mike Frysinger <vapier@gentoo.org> automake-1.5.ebuild,
   automake-1.6.3.ebuild, automake-1.7.9-r1.ebuild, automake-1.8.5-r3.ebuild,
