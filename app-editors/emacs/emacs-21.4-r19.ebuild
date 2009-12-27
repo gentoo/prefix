@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r19.ebuild,v 1.9 2009/08/31 18:07:40 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r19.ebuild,v 1.12 2009/12/20 13:12:33 ulm Exp $
 
 EAPI=2
 
@@ -9,10 +9,10 @@ inherit flag-o-matic eutils toolchain-funcs autotools
 DESCRIPTION="The extensible, customizable, self-documenting real-time display editor"
 HOMEPAGE="http://www.gnu.org/software/emacs/"
 SRC_URI="mirror://gnu/emacs/${P}a.tar.gz
-	mirror://gentoo/${P}-patches-8.tar.bz2
+	mirror://gentoo/${P}-patches-9.tar.bz2
 	leim? ( mirror://gnu/emacs/leim-${PV}.tar.gz )"
 
-LICENSE="GPL-2 FDL-1.1 BSD as-is X11"
+LICENSE="GPL-2 FDL-1.1 BSD as-is MIT"
 SLOT="21"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="X Xaw3d leim motif sendmail"
@@ -45,9 +45,6 @@ src_prepare() {
 		-e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
 		"${S}"/src/s/freebsd.h || die "unable to sed freebsd.h settings"
-
-	# install emacsclient.1 man page (bug 165466)
-	sed -i -e "s/for page in emacs/& emacsclient/" Makefile.in || die
 
 	# This will need to be updated for X-Compilation
 	sed -i -e "s:/usr/lib/\([^ ]*\).o:/usr/$(get_libdir)/\1.o:g" \
@@ -167,13 +164,7 @@ emacs-infodir-rebuild() {
 
 pkg_postinst() {
 	emacs-infodir-rebuild
-
-	if [[ $(readlink "${EROOT}"/usr/bin/emacs) == emacs.emacs-${SLOT}* ]]; then
-		# transition from pre-eselect revision
-		eselect emacs set emacs-${SLOT}
-	else
-		eselect emacs update ifunset
-	fi
+	eselect emacs update ifunset
 
 	if ! use sendmail && ! has_version "virtual/mta"; then
 		elog "You disabled sendmail support for Emacs. If you later install"

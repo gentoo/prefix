@@ -1,6 +1,37 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.345 2009/11/25 11:26:34 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.356 2009/12/21 07:08:45 ulm Exp $
+
+  20 Dec 2009; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r19.ebuild,
+  emacs-22.3-r3.ebuild:
+  Remove old compatibility code. Replace sed tweak by proper patch.
+
+  15 Dec 2009; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r19.ebuild,
+  emacs-22.3-r2.ebuild, emacs-22.3-r3.ebuild, emacs-23.1.ebuild,
+  emacs-23.1-r2.ebuild:
+  Change X11 to MIT in LICENSE.
+
+  11 Dec 2009; Tiago Cunha <tcunha@gentoo.org> emacs-23.1-r2.ebuild:
+  stable sparc, bug 296159
+
+  11 Dec 2009; Tiago Cunha <tcunha@gentoo.org> emacs-22.3-r3.ebuild:
+  stable sparc, bug 296159
+
+  10 Dec 2009; Markus Meier <maekke@gentoo.org> emacs-22.3-r3.ebuild,
+  emacs-23.1-r2.ebuild:
+  amd64/x86 stable, bug #296159
+
+  09 Dec 2009; Brent Baude <ranger@gentoo.org> emacs-23.1-r2.ebuild:
+  Marking emacs-23.1-r2 ppc64 for bug 296159
+
+  09 Dec 2009; Brent Baude <ranger@gentoo.org> emacs-22.3-r3.ebuild:
+  Marking emacs-22.3-r3 ppc64 for bug 296159
+
+  09 Dec 2009; Jeroen Roovers <jer@gentoo.org> emacs-22.3-r3.ebuild:
+  Remove obsolete replace-flags call. Stable for HPPA (bug #296159).
+
+  08 Dec 2009; Jeroen Roovers <jer@gentoo.org> emacs-23.1-r2.ebuild:
+  Stable for HPPA (bug #296159).
 
   25 Nov 2009; Markus Meier <maekke@gentoo.org> emacs-18.59-r6.ebuild:
   amd64 stable, bug #259916

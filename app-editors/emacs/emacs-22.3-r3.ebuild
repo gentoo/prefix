@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r3.ebuild,v 1.2 2009/11/09 17:15:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r3.ebuild,v 1.9 2009/12/21 07:08:45 ulm Exp $
 
 EAPI=2
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnu.org/software/emacs/"
 SRC_URI="mirror://gnu/emacs/${P}.tar.gz
 	mirror://gentoo/${P}-patches-3.tar.bz2"
 
-LICENSE="GPL-3 FDL-1.2 BSD as-is X11"
+LICENSE="GPL-3 FDL-1.2 BSD as-is MIT"
 SLOT="22"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="aqua alsa gif gtk gzip-el hesiod jpeg kerberos motif png sound source tiff toolkit-scroll-bars X Xaw3d +xpm"
@@ -81,11 +81,7 @@ src_configure() {
 	ALLOWED_FLAGS=""
 	strip-flags
 	#unset LDFLAGS
-	if use hppa; then # bug #193703
-		replace-flags -O[2-9] -O
-	else
-		replace-flags -O[3-9] -O2
-	fi
+	replace-flags -O[3-9] -O2
 	sed -i -e "s/-lungif/-lgif/g" configure* src/Makefile* || die
 
 	local myconf
@@ -249,13 +245,7 @@ pkg_postinst() {
 
 	elisp-site-regen
 	emacs-infodir-rebuild
-
-	if [[ $(readlink "${EROOT}"/usr/bin/emacs) == emacs.emacs-${SLOT}* ]]; then
-		# transition from pre-eselect revision
-		eselect emacs set emacs-${SLOT}
-	else
-		eselect emacs update ifunset
-	fi
+	eselect emacs update ifunset
 
 	echo
 	elog "You can set the version to be started by /usr/bin/emacs through"
