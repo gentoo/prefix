@@ -1,6 +1,12 @@
 # ChangeLog for x11-proto/inputproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.88 2009/11/22 23:50:30 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/inputproto/ChangeLog,v 1.90 2009/12/15 19:47:18 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> inputproto-1.5.1.ebuild:
+  Marking inputproto-1.5.1 ppc64 stable for bug 294958
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> inputproto-1.5.1.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #282290
 
   22 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   -files/0001-C-sucks-define-XEventClass-in-terms-of-unsigned-int.patch,
