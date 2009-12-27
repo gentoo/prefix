@@ -1,6 +1,17 @@
 # ChangeLog for dev-lang/R
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.165 2009/11/18 20:35:22 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.167 2009/12/26 17:32:26 pva Exp $
+
+  26 Dec 2009; Peter Volkov <pva@gentoo.org> R-2.7.2.ebuild, R-2.8.1.ebuild,
+  R-2.9.2.ebuild, R-2.10.0.ebuild, R-2.10.1.ebuild:
+  virtual/ghostscript->app-text/ghostscript-gpl: ghostscript-gpl is the only
+  implementation left in the tree.
+
+*R-2.10.1 (14 Dec 2009)
+
+  14 Dec 2009; Sébastien Fabbro <bicatali@gentoo.org> -R-2.9.1.ebuild,
+  +R-2.10.1.ebuild:
+  Version bump
 
   18 Nov 2009; Brent Baude <ranger@gentoo.org> R-2.9.2.ebuild:
   Marking R-2.9.2 ppc64 for bug 289381

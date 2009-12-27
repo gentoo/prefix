@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.9.1.ebuild,v 1.3 2009/08/07 17:18:52 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.10.1.ebuild,v 1.2 2009/12/26 17:32:26 pva Exp $
 
 EAPI=2
 inherit eutils flag-o-matic bash-completion versionator
@@ -14,20 +14,20 @@ LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
-IUSE="doc java jpeg lapack minimal nls png readline threads tk X cairo"
+IUSE="doc java jpeg lapack minimal nls perl png readline threads tk X cairo"
 
 # common depends
-CDEPEND="dev-lang/perl
-	dev-libs/libpcre
+CDEPEND="dev-libs/libpcre
 	app-arch/bzip2
 	virtual/blas
-	virtual/ghostscript
+	app-text/ghostscript-gpl
 	cairo? ( x11-libs/cairo[X]
 		|| ( >=x11-libs/pango-1.20[X] <x11-libs/pango-1.20 ) )
-	readline? ( sys-libs/readline )
 	jpeg? ( media-libs/jpeg )
-	png? ( media-libs/libpng )
 	lapack? ( virtual/lapack )
+	perl? ( dev-lang/perl )
+	png? ( media-libs/libpng )
+	readline? ( sys-libs/readline )
 	tk? ( dev-lang/tk )
 	X? ( x11-libs/libXmu x11-misc/xdg-utils )"
 
@@ -72,7 +72,7 @@ src_prepare() {
 		export R_BROWSER="$(type -p xdg-open)"
 		export R_PDFVIEWER="$(type -p xdg-open)"
 	fi
-	export PERL5LIB="${S}/share/perl:${PERL5LIB:+:}${PERL5LIB}"
+	use perl && export PERL5LIB="${S}/share/perl:${PERL5LIB:+:}${PERL5LIB}"
 }
 
 src_configure() {
