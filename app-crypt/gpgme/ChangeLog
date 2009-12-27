@@ -1,6 +1,10 @@
 # ChangeLog for app-crypt/gpgme
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.169 2009/08/31 00:47:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/ChangeLog,v 1.170 2009/12/12 21:55:37 arfrever Exp $
+
+  12 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  gpgme-1.2.0.ebuild, metadata.xml:
+  Add "common-lisp" USE flag.
 
   31 Aug 2009; Brent Baude <ranger@gentoo.org> gpgme-1.2.0.ebuild:
   stable ppc64, bug 278625

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.2.0.ebuild,v 1.6 2009/08/31 00:47:20 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gpgme/gpgme-1.2.0.ebuild,v 1.7 2009/12/12 21:55:37 arfrever Exp $
 
 EAPI="2"
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://gnupg/gpgme/${P}.tar.gz"
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="1"
 KEYWORDS="~x64-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x86-solaris"
-IUSE="pth"
+IUSE="common-lisp pth"
 
 DEPEND=">=dev-libs/libgpg-error-1.4
 	app-crypt/gnupg
@@ -40,4 +40,8 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS README THANKS TODO
+
+	if ! use common-lisp; then
+		rm -fr "${ED}usr/share/common-lisp"
+	fi
 }
