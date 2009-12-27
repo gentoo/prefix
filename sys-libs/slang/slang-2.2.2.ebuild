@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.1.4.ebuild,v 1.8 2009/05/06 17:56:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.2.2.ebuild,v 1.1 2009/12/08 12:13:30 matsuu Exp $
 
 EAPI=2
 inherit eutils multilib
@@ -12,13 +12,14 @@ SRC_URI="ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v${PV%.*}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
-IUSE="cjk pcre png readline"
+IUSE="cjk pcre png readline zlib"
 
 RDEPEND="sys-libs/ncurses
 	pcre? ( dev-libs/libpcre )
 	png? ( media-libs/libpng )
 	cjk? ( dev-libs/oniguruma )
-	readline? ( sys-libs/readline )"
+	readline? ( sys-libs/readline )
+	zlib? ( sys-libs/zlib )"
 DEPEND="${RDEPEND}"
 
 src_prepare() {
@@ -40,6 +41,7 @@ src_configure() {
 		$(use_with cjk onig) \
 		$(use_with pcre) \
 		$(use_with png) \
+		$(use_with zlib z) \
 		${myconf}
 }
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.2.0.ebuild,v 1.8 2009/10/31 14:22:25 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/slang-2.2.0.ebuild,v 1.9 2009/12/17 18:32:56 armin76 Exp $
 
 EAPI=2
 inherit eutils multilib
