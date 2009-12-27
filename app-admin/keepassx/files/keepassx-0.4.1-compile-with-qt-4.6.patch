@@ -1,0 +1,11 @@
+--- trunk/src/Database.h	2009/12/12 23:06:47	349
++++ trunk/src/Database.h	2009/12/12 23:28:46	350
+@@ -233,7 +233,7 @@
+ /*!
+ This is the common base interface for databases. Every database class must implement this interface necessarily.
+ */
+-class IDatabase:public QObject{
++class IDatabase{
+ public:
+ 	virtual ~IDatabase(){};
+ 	

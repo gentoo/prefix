@@ -2,10 +2,14 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer>
+    <email>spatz@gentoo.org</email>
+    <name>Dror Levin</name>
+  </maintainer>
+  <maintainer>
     <email>tgurr@gentoo.org</email>
     <name>Timo Gurr</name>
   </maintainer>
-  <herd>no-herd</herd>
+  <herd>qt</herd>
   <longdescription>
     KeePassX provides a safe location for your passwords and similar
     data.  It encrypts its databasee with AES either by passphrase or a key
