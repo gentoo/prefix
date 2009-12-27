@@ -1,6 +1,15 @@
 # ChangeLog for x11-apps/xev
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xev/ChangeLog,v 1.33 2009/10/14 11:41:29 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xev/ChangeLog,v 1.36 2009/12/15 19:14:17 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking xev-1.0.4 ppc64 stable for bug 294958
+
+  10 Dec 2009; Christian Faulhammer <fauli@gentoo.org> xev-1.0.4.ebuild:
+  x86 stable, bug 294958
+
+  10 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> xev-1.0.4.ebuild:
+  amd64 stable wrt #294958
 
 *xev-1.0.4 (14 Oct 2009)
 
