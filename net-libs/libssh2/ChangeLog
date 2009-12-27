@@ -1,6 +1,10 @@
 # ChangeLog for net-libs/libssh2
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh2/ChangeLog,v 1.23 2009/11/23 00:27:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh2/ChangeLog,v 1.24 2009/12/14 19:14:29 pva Exp $
+
+  14 Dec 2009; Peter Volkov <pva@gentoo.org> libssh2-1.2.2.ebuild:
+  Disable ssh2.sh test in case FEATURES=userpriv, bug #286741, thank Kent
+  Fredric for report.
 
 *libssh2-1.2.2 (23 Nov 2009)
 

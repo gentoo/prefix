@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh2/libssh2-1.2.2.ebuild,v 1.1 2009/11/23 00:27:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libssh2/libssh2-1.2.2.ebuild,v 1.2 2009/12/14 19:14:29 pva Exp $
 
 EAPI="2"
 
@@ -27,7 +27,7 @@ src_prepare() {
 src_configure() {
 	local myconf
 
-	if use gcrypt ; then
+	if use gcrypt; then
 		myconf="--with-libgcrypt"
 	else
 		myconf="--with-openssl"
@@ -36,6 +36,15 @@ src_configure() {
 	econf \
 		$(use_with zlib libz) \
 		${myconf}
+}
+
+src_test() {
+	if [[ ${EUID} -ne 0 ]]; then #286741
+		ewarn "Some tests require real user that is allowed to login."
+		ewarn "ssh2.sh test disabled."
+		sed -e 's:ssh2.sh::' -i tests/Makefile
+	fi
+	emake check || die
 }
 
 src_install() {
