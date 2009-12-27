@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/colorgcc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/colorgcc/ChangeLog,v 1.26 2009/09/06 05:34:09 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/colorgcc/ChangeLog,v 1.27 2009/12/25 03:19:56 darkside Exp $
+
+*colorgcc-1.3.2-r5 (25 Dec 2009)
+
+  25 Dec 2009; Jeremy Olexa <darkside@gentoo.org> +colorgcc-1.3.2-r5.ebuild,
+  +files/colorgcc-1.3.2-note.patch:
+  Revision bump to include patch for 'note' messages by Cyril42e in bug
+  291060
 
   06 Sep 2009; Jeremy Olexa <darkside@gentoo.org> colorgcc-1.3.2-r4.ebuild:
   update HOMEPAGE and SRC_URI to reflect reality, bug 280821
