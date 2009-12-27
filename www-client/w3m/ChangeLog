@@ -1,6 +1,21 @@
 # ChangeLog for www-client/w3m
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.46 2008/08/23 05:13:38 cardoe Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.50 2009/12/13 23:25:21 matsuu Exp $
+
+*w3m-0.5.2-r3 (13 Dec 2009)
+
+  13 Dec 2009; MATSUU Takuto <matsuu@gentoo.org> +w3m-0.5.2-r3.ebuild,
+  +files/w3m-0.5.2-gc72.patch:
+  boehm-gc 7.2 support.
+
+  12 Dec 2009; Tiago Cunha <tcunha@gentoo.org> w3m-0.5.2-r2.ebuild:
+  stable sparc, bug 296051
+
+  09 Dec 2009; Markus Meier <maekke@gentoo.org> w3m-0.5.2-r2.ebuild:
+  amd64/x86 stable, bug #296051
+
+  09 Dec 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking w3m-0.5.2-r2 ~ppc64 for bug 296051
 
   23 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
