@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/gnet
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.66 2009/06/27 11:49:57 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnet/ChangeLog,v 1.67 2009/12/08 00:04:54 eva Exp $
+
+*gnet-2.0.8-r1 (08 Dec 2009)
+
+  08 Dec 2009; Gilles Dartiguelongue <eva@gentoo.org> +gnet-2.0.8-r1.ebuild,
+  +files/gnet-2.0.8-define-location.patch:
+  Fix build issue with newer gcc, bug #294558
 
   27 Jun 2009; Alexis Ballier <aballier@gentoo.org> gnet-2.0.8.ebuild:
   keyword ~x86-fbsd thanks to Davide Italiano <dav_it@gentoo.org>, bug
