@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.185 2009/08/03 00:40:07 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.186 2009/12/20 19:55:21 vapier Exp $
+
+*gcc-config-1.5 (20 Dec 2009)
+
+  20 Dec 2009; Mike Frysinger <vapier@gentoo.org> +files/gcc-config-1.5,
+  +gcc-config-1.5.ebuild:
+  Punt dead code (stdxx-incdir and GCC_SPECS checking), unify a bunch of
+  common code constructs, improve error displaying in cases that dont
+  matter, and add support for /etc/ld.so.conf.d/.
 
   03 Aug 2009; Mark Loeser <halcy0n@gentoo.org> files/gcc-config-1.4.1:
   Make --use-old work again, thanks to Brian Childs <brian AT rentec DOT
