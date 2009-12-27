@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/renderproto-0.11.ebuild,v 1.1 2009/10/03 12:33:16 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/renderproto/renderproto-0.11.ebuild,v 1.4 2009/12/15 19:48:18 ranger Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
