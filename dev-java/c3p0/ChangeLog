@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/c3p0
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/c3p0/ChangeLog,v 1.26 2009/11/08 22:53:55 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/c3p0/ChangeLog,v 1.27 2009/12/09 22:35:22 maekke Exp $
+
+  09 Dec 2009; Markus Meier <maekke@gentoo.org> c3p0-0.9.1.2.ebuild:
+  amd64/x86 stable, bug #296209
 
 *c3p0-0.9.1.2 (08 Nov 2009)
 
