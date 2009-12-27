@@ -1,6 +1,17 @@
 # ChangeLog for dev-ruby/sqlite3-ruby
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.31 2009/04/27 15:40:47 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.33 2009/12/26 21:36:33 flameeyes Exp $
+
+  26 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  sqlite3-ruby-1.2.5.ebuild:
+  Add missing dependency over redcloth when building documentation (bug
+  #298468 by keytoaster).
+
+*sqlite3-ruby-1.2.5 (21 Dec 2009)
+
+  21 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +sqlite3-ruby-1.2.5.ebuild:
+  Bump and port to fakegem.
 
   27 Apr 2009; Petteri Räty <betelgeuse@gentoo.org> sqlite3-ruby-1.2.4:
   EAPI 1 to turn on swig by default.
