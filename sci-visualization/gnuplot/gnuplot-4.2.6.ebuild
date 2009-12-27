@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.6.ebuild,v 1.9 2009/11/11 19:47:39 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/gnuplot-4.2.6.ebuild,v 1.10 2009/12/26 17:46:45 pva Exp $
 
 EAPI=2
 
@@ -27,7 +27,7 @@ RDEPEND="
 	ggi? ( media-libs/libggi )
 	gd? ( >=media-libs/gd-2[png] )
 	doc? ( virtual/latex-base
-		virtual/ghostscript )
+		app-text/ghostscript-gpl )
 	latex? ( virtual/latex-base
 		lua? ( dev-tex/pgf
 			>=dev-texlive/texlive-latexrecommended-2008-r2 ) )
