@@ -1,6 +1,30 @@
 # ChangeLog for dev-ruby/rake
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.82 2009/09/05 15:17:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake/ChangeLog,v 1.87 2009/12/17 14:15:23 flameeyes Exp $
+
+  17 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  rake-0.8.7-r2.ebuild:
+  Fix bug #297237: remember to load rake from the build directory since it
+  might not be installed. Also make sure to respect the doc USE flag
+  (slipped away in the previous fixes).
+
+  16 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  rake-0.8.7-r2.ebuild:
+  Fix eclass to avoid looping dependencies: use the local rake for tests and
+  documentation building rather than ruby-fakegem's boilerplate functions.
+
+  15 Dec 2009; Hans de Graaff <graaff@gentoo.org> rake-0.8.7-r2.ebuild:
+  Explicitly turn off the fakegem doc and test tasks since this will trigger
+  a circular dependency on rake itself.
+
+*rake-0.8.7-r2 (14 Dec 2009)
+
+  14 Dec 2009; Hans de Graaff <graaff@gentoo.org> +rake-0.8.7-r2.ebuild:
+  Convert to ruby-fakegem eclass so that packages depending on it can be
+  bumped.
+
+  09 Dec 2009; Hans de Graaff <graaff@gentoo.org> -rake-0.8.3.ebuild:
+  Remove old version.
 
   05 Sep 2009; Brent Baude <ranger@gentoo.org> rake-0.8.7.ebuild:
   Marking rake-0.8.7 ppc64 stable for bug 280851
