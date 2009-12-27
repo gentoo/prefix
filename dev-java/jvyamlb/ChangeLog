@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jvyamlb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jvyamlb/ChangeLog,v 1.6 2009/10/25 21:28:54 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jvyamlb/ChangeLog,v 1.7 2009/12/14 12:23:37 pva Exp $
+
+  14 Dec 2009; Peter Volkov <pva@gentoo.org> metadata.xml:
+  Fixed invalid metadata.xml (no DTD found)
 
   25 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> jvyamlb-0.2.5.ebuild:
   Keywording for ppc, bug 270910
