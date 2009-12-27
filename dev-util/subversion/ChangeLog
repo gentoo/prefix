@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/subversion
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.417 2009/11/26 17:58:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.418 2009/12/08 19:01:55 nixnut Exp $
+
+  08 Dec 2009; nixnut <nixnut@gentoo.org> subversion-1.6.6.ebuild:
+  ppc stable #294077
 
   26 Nov 2009; Markus Meier <maekke@gentoo.org> subversion-1.6.6.ebuild:
   arm stable, bug #294077
