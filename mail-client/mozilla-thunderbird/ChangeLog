@@ -1,6 +1,29 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.305 2009/11/14 13:15:08 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.310 2009/12/20 18:32:11 anarchy Exp $
+
+  20 Dec 2009; Jory A. Pratt <anarchy@gentoo.org>
+  mozilla-thunderbird-3.0.ebuild:
+  cleanup locale support
+
+  20 Dec 2009; Jory A. Pratt <anarchy@gentoo.org>
+  -mozilla-thunderbird-2.0.0.22.ebuild:
+  remove security infected builds.
+
+  19 Dec 2009; Jory A. Pratt <anarchy@gentoo.org>
+  mozilla-thunderbird-3.0.ebuild:
+  Add en-GB linguas support back
+
+  15 Dec 2009; Jory A. Pratt <anarchy@gentoo.org>
+  mozilla-thunderbird-3.0.ebuild:
+  update patchset for sparc users, bug #296883
+
+*mozilla-thunderbird-3.0 (08 Dec 2009)
+
+  08 Dec 2009; Jory A. Pratt <anarchy@gentoo.org>
+  +files/1000_fix-menus-gentoo.patch, +mozilla-thunderbird-3.0.ebuild,
+  +files/thunderbird-gentoo-default-prefs.js, metadata.xml:
+  version bump
 
   14 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   -mozilla-thunderbird-1.5.0.14.ebuild:

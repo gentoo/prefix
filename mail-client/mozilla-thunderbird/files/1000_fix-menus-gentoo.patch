@@ -1,0 +1,11 @@
+--- a/mail/base/content/mailWindowOverlay.xul	2009-12-08 14:15:28.891818550 -0600
++++ b/mail/base/content/mailWindowOverlay.xul	2009-12-08 14:15:33.154839643 -0600
+@@ -40,6 +40,8 @@
+ <?xml-stylesheet href="chrome://messenger/skin/folderMenus.css" type="text/css"?>
+ <?xml-stylesheet href="chrome://communicator/skin/tasksOverlay.css" type="text/css"?>
+ 
++<?xul-overlay href="chrome://communicator/content/utilityOverlay.xul"?>
++
+ <?xul-overlay href="chrome://global/content/charsetOverlay.xul"?>
+ #ifdef XP_MACOSX
+ <?xul-overlay href="chrome://messenger/content/macMenuOverlay.xul"?>
