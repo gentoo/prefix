@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.4.1.ebuild,v 1.1 2009/12/02 08:30:40 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.4.1.ebuild,v 1.2 2009/12/24 13:38:18 djc Exp $
 
 EAPI=2
 
@@ -78,8 +78,6 @@ EOF
 }
 
 src_test() {
-	local testdir="${T}/tests"
-	mkdir -p -m1777 "${testdir}" || die
 	cd "${S}/tests/"
 	rm -rf *svn*				# Subversion tests fail with 1.5
 	rm -f test-archive			# Fails due to verbose tar output changes
@@ -98,6 +96,8 @@ src_test() {
 		rm -f test-permissions		# Test is broken when run as root
 		rm -f test-pull-permission	# Test is broken when run as root
 	fi
+	local testdir="${T}/tests"
+	rm -rf "${testdir}"
 	einfo "Running Mercurial tests ..."
 	python run-tests.py --tmpdir="${testdir}" || die "test failed"
 }
