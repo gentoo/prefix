@@ -12,5 +12,8 @@
 		<name>Olivier Crête</name>
 		<description>is upstream</description>
 	</maintainer>
+	<use>
+		<flag name="upnp">Enable UPnP IGD support</flag>
+	</use>
 </pkgmetadata>
 
