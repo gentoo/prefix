@@ -1,6 +1,14 @@
 # ChangeLog for x11-plugins/enigmail
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.165 2009/10/25 17:58:42 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.167 2009/12/15 15:03:45 anarchy Exp $
+
+  15 Dec 2009; Jory A. Pratt <anarchy@gentoo.org> enigmail-1.0.0.ebuild:
+  update patchset for sparc users, bug #296883
+
+*enigmail-1.0.0 (08 Dec 2009)
+
+  08 Dec 2009; Jory A. Pratt <anarchy@gentoo.org> +enigmail-1.0.0.ebuild:
+  revision bump for thunderbird
 
   25 Oct 2009; Jory A. Pratt <anarchy@gentoo.org> enigmail-0.96.0.ebuild:
   reverse preferred qt on pinetry

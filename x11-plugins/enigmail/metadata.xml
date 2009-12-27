@@ -5,4 +5,7 @@
 <longdescription>
 Gnupg encryption plugin for thunderbird.
 </longdescription>
+<use>
+        <flag name='custom-optimization'>Enable user CFLAGS</flag>
+</use>
 </pkgmetadata>
