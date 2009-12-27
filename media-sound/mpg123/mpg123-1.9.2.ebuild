@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.9.2.ebuild,v 1.4 2009/12/03 20:40:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.9.2.ebuild,v 1.7 2009/12/09 17:44:10 armin76 Exp $
 
 EAPI=2
 inherit eutils
