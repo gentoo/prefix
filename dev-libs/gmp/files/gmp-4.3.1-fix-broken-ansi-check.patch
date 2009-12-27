@@ -1,0 +1,18 @@
+http://bugs.gentoo.org/296964
+
+the real bug is in acinclude.m4:
+http://gmplib.org:8000/gmp/rev/43784518850d
+
+but we don't run autotools, so tweak the configure script
+
+--- a/configure
++++ b/configure
+@@ -7967,7 +7967,7 @@
+ else
+   cat >conftest.c <<EOF
+ int
+-main (int argc, char *argv)
++main (int argc, char **argv)
+ {
+   exit(0);
+ }

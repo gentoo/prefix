@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.122 2009/10/31 14:41:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.123 2009/12/15 11:14:29 vapier Exp $
+
+  15 Dec 2009; Mike Frysinger <vapier@gentoo.org> gmp-4.3.1.ebuild,
+  +files/gmp-4.3.1-fix-broken-ansi-check.patch:
+  Fix up ANSI configure test #296964 by Andrew Jeffery.
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> gmp-4.3.1.ebuild:
   Marking gmp-4.3.1 ppc64 for bug 287519
