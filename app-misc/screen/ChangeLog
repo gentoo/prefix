@@ -1,6 +1,10 @@
 # ChangeLog for app-misc/screen
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.144 2009/11/14 13:10:04 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/screen/ChangeLog,v 1.145 2009/12/12 19:51:13 swegener Exp $
+
+  12 Dec 2009; Sven Wegener <swegener@gentoo.org> screen-4.0.3.ebuild:
+  Drop dependency on sec-policy/selinux-base-policy as requested by Chris
+  PeBenito and bug #287486.
 
   14 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org>
   -screen-4.0.3_p20070403.ebuild:
