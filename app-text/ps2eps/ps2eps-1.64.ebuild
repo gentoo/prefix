@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ps2eps-1.64.ebuild,v 1.16 2009/03/18 19:16:50 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ps2eps/ps2eps-1.64.ebuild,v 1.17 2009/12/26 19:27:38 pva Exp $
 
 inherit toolchain-funcs
 
@@ -14,7 +14,7 @@ KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-maco
 IUSE=""
 
 DEPEND=""
-RDEPEND="virtual/ghostscript
+RDEPEND="app-text/ghostscript-gpl
 	!<app-text/texlive-core-2007-r7"
 
 S="${WORKDIR}/${PN}"
