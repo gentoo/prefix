@@ -1,6 +1,21 @@
 # ChangeLog for dev-lang/lua
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.137 2009/11/26 10:21:04 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.142 2009/12/08 17:12:02 ranger Exp $
+
+  08 Dec 2009; Brent Baude <ranger@gentoo.org> lua-5.1.4-r4.ebuild:
+  Marking lua-5.1.4-r4 ppc64 for bug 295134
+
+  07 Dec 2009; Markus Meier <maekke@gentoo.org> lua-5.1.4-r4.ebuild:
+  arm stable, bug #295134
+
+  07 Dec 2009; Tiago Cunha <tcunha@gentoo.org> lua-5.1.4-r4.ebuild:
+  stable sparc, bug 295134
+
+  07 Dec 2009; Markus Meier <maekke@gentoo.org> lua-5.1.4-r4.ebuild:
+  amd64/x86 stable, bug #295134
+
+  04 Dec 2009; Jeroen Roovers <jer@gentoo.org> lua-5.1.4-r4.ebuild:
+  Stable for HPPA (bug #295134).
 
 *lua-5.1.4-r4 (26 Nov 2009)
 
