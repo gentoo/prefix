@@ -1,6 +1,11 @@
 # ChangeLog for dev-haskell/hunit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.36 2009/09/12 17:28:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hunit/ChangeLog,v 1.37 2009/12/15 23:16:20 kolmodin Exp $
+
+*hunit-1.2.2.1 (15 Dec 2009)
+
+  15 Dec 2009; <kolmodin@gentoo.org> +hunit-1.2.2.1.ebuild:
+  Version bump.
 
   12 Sep 2009; Raúl Porcel <armin76@gentoo.org> hunit-1.2.0.3.ebuild:
   ia64/sparc stable wrt #279736
