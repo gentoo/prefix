@@ -1,6 +1,9 @@
 # ChangeLog for www-client/pybugz
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.60 2009/11/28 17:54:56 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/pybugz/ChangeLog,v 1.61 2009/12/08 17:14:53 ranger Exp $
+
+  08 Dec 2009; Brent Baude <ranger@gentoo.org> pybugz-0.8.0.ebuild:
+  Marking pybugz-0.8.0 ppc64 for bug 289863
 
   28 Nov 2009; Tiago Cunha <tcunha@gentoo.org> pybugz-0.8.0.ebuild:
   stable sparc, bug 289863
