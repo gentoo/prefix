@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/libotr
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libotr/ChangeLog,v 1.36 2009/10/31 14:33:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libotr/ChangeLog,v 1.37 2009/12/21 15:34:42 armin76 Exp $
+
+  21 Dec 2009; Raúl Porcel <armin76@gentoo.org> libotr-3.2.0.ebuild:
+  sparc stable wrt #281643
 
   31 Oct 2009; Brent Baude <ranger@gentoo.org> libotr-3.2.0.ebuild:
   Marking libotr-3.2.0 ppc64 for bug 262554
