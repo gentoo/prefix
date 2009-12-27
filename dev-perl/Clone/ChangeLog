@@ -1,6 +1,9 @@
 # ChangeLog for dev-perl/Clone
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Clone/ChangeLog,v 1.56 2009/12/03 20:32:18 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Clone/ChangeLog,v 1.57 2009/12/15 19:26:06 armin76 Exp $
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> Clone-0.31.ebuild:
+  alpha/ia64 stable
 
   03 Dec 2009; Tiago Cunha <tcunha@gentoo.org> Clone-0.31.ebuild:
   stable sparc, bug 278409
