@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/mockobjects
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/mockobjects/ChangeLog,v 1.25 2009/11/08 21:19:19 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/mockobjects/ChangeLog,v 1.26 2009/12/10 20:01:39 maekke Exp $
+
+  10 Dec 2009; Markus Meier <maekke@gentoo.org> mockobjects-0.09-r4.ebuild:
+  amd64/x86 stable, bug #296231
 
 *mockobjects-0.09-r4 (08 Nov 2009)
 
