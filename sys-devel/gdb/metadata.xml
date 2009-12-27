@@ -4,6 +4,5 @@
 <herd>toolchain</herd>
 <use>
  <flag name='multitarget'>Support all known targets in one gdb binary</flag>
- <flag name='sim'>Support all known targets in one gdb binary</flag>
 </use>
 </pkgmetadata>
