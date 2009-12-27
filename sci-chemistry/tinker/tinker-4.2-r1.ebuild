@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/tinker-4.2-r1.ebuild,v 1.5 2009/07/26 16:11:44 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-chemistry/tinker/tinker-4.2-r1.ebuild,v 1.6 2009/12/14 13:55:26 flameeyes Exp $
 
 inherit fortran toolchain-funcs
 
@@ -90,25 +90,25 @@ src_install() {
 
 	if use X; then
 		if [[ ${CHOST} == *-darwin* ]] ; then
-			dolib.so "${WORKDIR}"/tinker/jar/macosx/libffe.jnilib
+			dolib.so "${WORKDIR}"/tinker/jar/macosx/libffe.jnilib || die
 		else
-			dolib.so "${WORKDIR}"/tinker/jar/linux/libffe.so
+			dolib.so ${WORKDIR}/tinker/jar/linux/libffe.so || die
 		fi
 	fi
 
-	dolib.a libtinker.a
+	dolib.a libtinker.a || die
 
 	insinto /usr/lib/tinker
 	if use X; then
-		doins "${WORKDIR}"/tinker/jar/ffe.jar
+		doins ${WORKDIR}/tinker/jar/ffe.jar || die
 	fi
 
 	for EXE in *.x; do
-		newexe ${EXE} ${EXE%.x}
+		newexe ${EXE} ${EXE%.x} || die
 	done
 
 	if use X; then
-		doexe tinker
+		doexe tinker || die
 	fi
 
 	docinto example
@@ -116,10 +116,10 @@ src_install() {
 	docinto test
 	dodoc ${WORKDIR}/tinker/test/*
 
-	doexe ${WORKDIR}/tinker/perl/mdavg
+	doexe ${WORKDIR}/tinker/perl/mdavg || die
 
 	insinto /usr/share/tinker/params
-	doins ${WORKDIR}/tinker/params/*
+	doins ${WORKDIR}/tinker/params/* || die
 }
 
 pkg_postinst() {
