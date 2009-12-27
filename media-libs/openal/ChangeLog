@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/openal
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.132 2009/11/29 12:21:51 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openal/ChangeLog,v 1.133 2009/12/15 18:34:35 armin76 Exp $
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> openal-1.9.563.ebuild:
+  ia64/sparc stable wrt #287653
 
   29 Nov 2009; Samuli Suominen <ssuominen@gentoo.org> openal-1.8.466.ebuild,
   openal-1.9.563.ebuild:
