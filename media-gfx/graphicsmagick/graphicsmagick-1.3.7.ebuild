@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphicsmagick/graphicsmagick-1.3.7.ebuild,v 1.1 2009/11/24 00:20:48 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphicsmagick/graphicsmagick-1.3.7.ebuild,v 1.2 2009/12/26 17:37:55 pva Exp $
 
 EAPI="2"
 
@@ -20,7 +20,7 @@ IUSE="bzip2 cxx debug fpx -gs imagemagick jbig +jpeg +jpeg2k lcms openmp
 
 RDEPEND="bzip2? ( app-arch/bzip2 )
 	fpx? ( media-libs/libfpx )
-	gs? ( virtual/ghostscript )
+	gs? ( app-text/ghostscript-gpl )
 	jbig? ( media-libs/jbigkit )
 	jpeg? ( media-libs/jpeg )
 	jpeg2k? ( >=media-libs/jasper-1.701.0 )
