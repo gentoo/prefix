@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/meme/meme-4.3.0.ebuild,v 1.1 2009/11/13 16:12:24 weaver Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/meme/meme-4.3.0.ebuild,v 1.2 2009/12/15 18:07:59 flameeyes Exp $
 
 EAPI="2"
 
@@ -59,5 +59,6 @@ src_install() {
 #}
 
 src_test() {
-	make test || die "Regression tests failed."
+	# bug #297070
+	emake -j1 test || die "Regression tests failed."
 }

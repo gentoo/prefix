@@ -1,6 +1,9 @@
 # ChangeLog for sci-biology/meme
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/meme/ChangeLog,v 1.10 2009/11/13 16:12:24 weaver Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/meme/ChangeLog,v 1.11 2009/12/15 18:07:59 flameeyes Exp $
+
+  15 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org> meme-4.3.0.ebuild:
+  Add -j1 to tests as per bug #297070.
 
 *meme-4.3.0 (13 Nov 2009)
 
