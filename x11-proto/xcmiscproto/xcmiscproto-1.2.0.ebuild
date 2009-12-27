@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcmiscproto/xcmiscproto-1.2.0.ebuild,v 1.2 2009/10/03 15:55:23 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xcmiscproto/xcmiscproto-1.2.0.ebuild,v 1.5 2009/12/15 19:49:21 ranger Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
