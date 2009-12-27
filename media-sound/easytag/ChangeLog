@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/easytag
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/ChangeLog,v 1.138 2009/10/10 16:05:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/easytag/ChangeLog,v 1.139 2009/12/21 15:18:50 ssuominen Exp $
+
+*easytag-2.1.6-r3 (21 Dec 2009)
+
+  21 Dec 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +easytag-2.1.6-r3.ebuild, +files/easytag-2.1.6-cddb.patch:
+  Upstream patch for CDDB searching wrt #279375.
 
   10 Oct 2009; Raúl Porcel <armin76@gentoo.org> easytag-2.1.6-r2.ebuild:
   sparc stable wrt #280793
