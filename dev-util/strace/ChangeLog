@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/strace
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/ChangeLog,v 1.135 2009/11/11 21:11:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/strace/ChangeLog,v 1.137 2009/12/20 16:24:45 ranger Exp $
+
+  20 Dec 2009; Brent Baude <ranger@gentoo.org> strace-4.5.19.ebuild:
+  Marking strace-4.5.19 ppc64 for bug 297079
+
+  16 Dec 2009; Richard Freeman <rich0@gentoo.org> strace-4.5.19.ebuild:
+  amd64 stable - 297079
 
   11 Nov 2009; Mike Frysinger <vapier@gentoo.org> strace-4.5.19.ebuild:
   Fix up USE=aio disabling #292362 by Alex HeadHunter Pyattaev.
