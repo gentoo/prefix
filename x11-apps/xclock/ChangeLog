@@ -1,6 +1,15 @@
 # ChangeLog for x11-apps/xclock
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xclock/ChangeLog,v 1.42 2009/10/03 11:31:35 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xclock/ChangeLog,v 1.45 2009/12/15 19:12:11 ranger Exp $
+
+  15 Dec 2009; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking xclock-1.0.4 ppc64 stable for bug 294958
+
+  10 Dec 2009; Christian Faulhammer <fauli@gentoo.org> xclock-1.0.4.ebuild:
+  x86 stable, bug 294958
+
+  10 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> xclock-1.0.4.ebuild:
+  amd64 stable wrt #294958
 
 *xclock-1.0.4 (03 Oct 2009)
 
