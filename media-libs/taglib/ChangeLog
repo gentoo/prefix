@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/taglib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/ChangeLog,v 1.77 2009/11/11 18:35:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/ChangeLog,v 1.79 2009/12/15 00:27:20 abcd Exp $
+
+*taglib-1.6.1-r1 (15 Dec 2009)
+
+  15 Dec 2009; Jonathan Callen <abcd@gentoo.org> +taglib-1.6.1-r1.ebuild,
+  +files/taglib-1.6.1-install-examples.patch:
+  Switch build system from autotools to cmake (faster, cleaner)
+
+  08 Dec 2009; Brent Baude <ranger@gentoo.org> taglib-1.6.ebuild:
+  Marking taglib-1.6 ppc64 for bug 290487
 
   11 Nov 2009; Jeroen Roovers <jer@gentoo.org> taglib-1.6.ebuild:
   Stable for HPPA (bug #290487).

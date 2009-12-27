@@ -1,9 +1,9 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/taglib-1.6.ebuild,v 1.7 2009/12/08 19:20:56 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/taglib/taglib-1.6.1-r1.ebuild,v 1.1 2009/12/15 00:27:20 abcd Exp $
 
 EAPI=2
-inherit base
+inherit cmake-utils
 
 DESCRIPTION="A library for reading and editing audio meta data"
 HOMEPAGE="http://developer.kde.org/~wheeler/taglib.html"
@@ -12,7 +12,7 @@ SRC_URI="http://developer.kde.org/~wheeler/files/src/${P}.tar.gz"
 LICENSE="GPL-2"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 SLOT="0"
-IUSE="debug examples static-libs test"
+IUSE="+asf debug examples +mp4 static-libs test"
 
 DEPEND="
 	dev-util/pkgconfig
@@ -20,14 +20,23 @@ DEPEND="
 "
 RDEPEND=""
 
+PATCHES=(
+	"${FILESDIR}"/${P}-install-examples.patch
+)
+
+DOCS="AUTHORS NEWS"
+
 src_configure() {
 	# prefix: do not "invent" lib64 (--disable-libsuffix) 
-	econf \
-		--enable-asf \
-		--enable-mp4 \
-		$(use_enable debug) \
-		$(use_enable static-libs static) \
-		$(use_enable !prefix libsuffix)
+	mycmakeargs=(
+		$(cmake-utils_use_enable static-libs STATIC)
+		$(cmake-utils_use_build examples)
+		$(cmake-utils_use_with asf)
+		$(cmake-utils_use_with mp4)
+		$(cmake-utils_use_enable !prefix libsuffix)
+	)
+
+	cmake-utils_src_configure
 }
 
 src_compile() {
@@ -46,5 +55,16 @@ src_install() {
 
 	if use examples; then
 		cd examples && emake DESTDIR="${D}" install || die "emake examples install failed"
+	fi
+}
+
+pkg_postinst() {
+	if ! use asf; then
+		elog "You've chosen to disable the asf use flag, thus taglib won't include"
+		elog "support for Microsoft's 'advanced systems format' media container"
+	fi
+	if ! use mp4; then
+		elog "You've chosen to disable the mp4 use flag, thus taglib won't include"
+		elog "support for the MPEG-4 part 14 / MP4 media container"
 	fi
 }
