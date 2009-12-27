@@ -1,6 +1,9 @@
 # ChangeLog for sci-visualization/xgraph
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/xgraph/ChangeLog,v 1.12 2009/11/08 18:45:31 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/xgraph/ChangeLog,v 1.13 2009/12/26 16:19:05 armin76 Exp $
+
+  26 Dec 2009; Raúl Porcel <armin76@gentoo.org> xgraph-12.1-r2.ebuild:
+  sparc stable wrt #289447
 
   08 Nov 2009; nixnut <nixnut@gentoo.org> xgraph-12.1-r2.ebuild:
   ppc stable #289447
