@@ -1,6 +1,27 @@
 # ChangeLog for media-plugins/audacious-plugins
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.151 2009/11/27 12:16:14 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/ChangeLog,v 1.156 2009/12/23 20:03:21 jer Exp $
+
+  23 Dec 2009; Jeroen Roovers <jer@gentoo.org>
+  audacious-plugins-2.2-r2.ebuild:
+  Marked ~hppa (bug #294508).
+
+  17 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  audacious-plugins-2.2-r2.ebuild:
+  stable x86, bug 295051
+
+  16 Dec 2009; <chainsaw@gentoo.org> audacious-plugins-2.2-r2.ebuild:
+  Tighten up wavpack dependency; 4.41.0 is too old. 4.50.1-r1 is stable
+  everywhere and will work. Closes bug #297167 by sYdRo.
+
+  16 Dec 2009; <chainsaw@gentoo.org> -audacious-plugins-2.2_beta2.ebuild,
+  -audacious-plugins-2.2-r1.ebuild, audacious-plugins-2.2-r2.ebuild:
+  Marked stable on AMD64 as it addresses bug #295051 (JACK plugin build
+  failure). Tested using MP3, AAC, LDS, SID & WMA files on a Lifebook S6420.
+
+  14 Dec 2009; Tobias Klausmann <klausman@gentoo.org>
+  audacious-plugins-2.2-r2.ebuild:
+  Re-keyworded on alpha, bug 292526
 
   27 Nov 2009; <chainsaw@gentoo.org> -files/1.5.1-libmtp-0.3.0-API.patch,
   -files/1.5.1-missing-include.patch, -audacious-plugins-1.5.1-r3.ebuild,

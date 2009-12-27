@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.2-r2.ebuild,v 1.1 2009/11/25 01:49:32 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-plugins/audacious-plugins/audacious-plugins-2.2-r2.ebuild,v 1.6 2009/12/23 20:03:21 jer Exp $
 
 inherit eutils flag-o-matic
 
@@ -22,7 +22,7 @@ RDEPEND="app-arch/unzip
 	>=media-sound/audacious-2.2
 	>=net-misc/neon-0.26.4
 	>=x11-libs/gtk+-2.14
-	aac? ( >=media-libs/faad2-2.7-r1 )
+	aac? ( >=media-libs/faad2-2.7 )
 	adplug? ( >=dev-cpp/libbinio-1.4 )
 	alsa? ( >=media-libs/alsa-lib-1.0.16 )
 	bs2b? ( media-libs/libbs2b )
@@ -50,7 +50,7 @@ RDEPEND="app-arch/unzip
 	sndfile? ( >=media-libs/libsndfile-1.0.17-r1 )
 	vorbis? ( >=media-libs/libvorbis-1.2.0
 		  >=media-libs/libogg-1.1.3 )
-	wavpack? ( >=media-sound/wavpack-4.41.0 )"
+	wavpack? ( >=media-sound/wavpack-4.50.1-r1 )"
 
 DEPEND="${RDEPEND}
 	nls? ( dev-util/intltool )
