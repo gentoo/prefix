@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/apache-tools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.68 2009/11/18 17:37:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.70 2009/12/18 15:30:39 armin76 Exp $
+
+  18 Dec 2009; Raúl Porcel <armin76@gentoo.org> apache-tools-2.2.14.ebuild:
+  ia64/s390/sh/sprc stable wrt #291810
+
+  13 Dec 2009; Tobias Klausmann <klausman@gentoo.org>
+  apache-tools-2.2.14.ebuild:
+  Stable on alpha, bug #291810
 
   18 Nov 2009; Brent Baude <ranger@gentoo.org> apache-tools-2.2.14.ebuild:
   Marking apache-tools-2.2.14 ppc64 for bug 291810
