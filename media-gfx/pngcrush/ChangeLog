@@ -1,6 +1,11 @@
 # ChangeLog for media-gfx/pngcrush
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngcrush/ChangeLog,v 1.47 2009/11/26 09:24:44 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/pngcrush/ChangeLog,v 1.48 2009/12/21 21:04:42 spatz Exp $
+
+*pngcrush-1.7.6 (21 Dec 2009)
+
+  21 Dec 2009; Dror Levin <spatz@gentoo.org> +pngcrush-1.7.6.ebuild:
+  Version bump.
 
   26 Nov 2009; Markus Meier <maekke@gentoo.org> pngcrush-1.6.15.ebuild,
   pngcrush-1.6.19.ebuild:
