@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/crossdev
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.63 2009/11/23 04:56:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.64 2009/12/10 01:59:02 vapier Exp $
+
+*crossdev-20091209 (10 Dec 2009)
+
+  10 Dec 2009; Mike Frysinger <vapier@gentoo.org> +crossdev-20091209.ebuild:
+  Version bump and merge crossdev-wrappers.
 
 *crossdev-99999999 (23 Nov 2009)
 
