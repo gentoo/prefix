@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ffcall-1.10-r2.ebuild,v 1.4 2009/09/22 02:05:21 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ffcall-1.10-r2.ebuild,v 1.5 2009/12/25 15:56:25 flameeyes Exp $
 
 inherit eutils flag-o-matic
 
@@ -38,7 +38,8 @@ src_compile() {
 		--datadir="${EPREFIX}"/usr/share/doc/${PF} \
 		--enable-shared \
 		|| die "./configure failed"
-	make ${cpu_setting} || die
+	# bug #298348
+	emake -j1 ${cpu_setting} || die
 }
 
 src_install() {

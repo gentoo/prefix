@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/ffcall
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ChangeLog,v 1.37 2009/09/22 02:05:21 tgall Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/ffcall/ChangeLog,v 1.38 2009/12/25 15:56:25 flameeyes Exp $
+
+  25 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  ffcall-1.10-r2.ebuild:
+  Use -j1 for build (bug #298348).
 
   21 Sep 2009; Tom Gall <tgall@gentoo.org> ffcall-1.10-r2.ebuild:
   keyword ppc64
