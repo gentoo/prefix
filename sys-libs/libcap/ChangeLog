@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/libcap
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.101 2009/11/11 13:36:45 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.102 2009/12/09 15:00:26 ranger Exp $
+
+  09 Dec 2009; Brent Baude <ranger@gentoo.org> libcap-2.17.ebuild:
+  Marking libcap-2.17 ppc64 for bug 290045
 
   11 Nov 2009; Jeroen Roovers <jer@gentoo.org> libcap-2.17.ebuild:
   Stable for HPPA (bug #290045).
