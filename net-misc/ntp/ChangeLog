@@ -1,6 +1,30 @@
 # ChangeLog for net-misc/ntp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.151 2009/08/28 21:24:01 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.157 2009/12/15 12:52:32 flameeyes Exp $
+
+  15 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  files/ntp-4.2.6-linking.patch:
+  Further fix the linking patch to link fine with USE=readline/libedit as
+  well.
+
+  14 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  +files/ntp-4.2.6-as-needed.patch, ntp-4.2.6.ebuild:
+  Apply as-needed fix per bug #296832. Thanks to Martin von Gagern for
+  patch.
+
+*ntp-4.2.6 (14 Dec 2009)
+
+  14 Dec 2009; Mike Frysinger <vapier@gentoo.org> +ntp-4.2.6.ebuild:
+  Version bump.
+
+  11 Dec 2009; Raúl Porcel <armin76@gentoo.org> ntp-4.2.4_p7-r1.ebuild:
+  alpha/arm/ia64/s390/sh stable wrt #290881
+
+*ntp-4.2.4_p7-r1 (10 Dec 2009)
+
+  10 Dec 2009; Jeroen Roovers <jer@gentoo.org> +ntp-4.2.4_p7-r1.ebuild,
+  +files/ntp-4.2.4_p7-CVE-2009-3563.patch:
+  Revision bump (bug #290881).
 
   28 Aug 2009; Petteri Räty <betelgeuse@gentoo.org> ntp-4.2.4_p6.ebuild,
   ntp-4.2.4_p7.ebuild:
