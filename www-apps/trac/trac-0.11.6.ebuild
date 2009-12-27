@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.6.ebuild,v 1.1 2009/11/29 20:11:54 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.6.ebuild,v 1.2 2009/12/26 17:20:56 armin76 Exp $
 
 EAPI=2
 
