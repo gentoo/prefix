@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-5.00-r2.ebuild,v 1.7 2009/12/08 17:12:39 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-5.10_beta1.ebuild,v 1.1 2009/12/08 07:30:18 jer Exp $
 
 EAPI=2
 
 inherit eutils flag-o-matic
 
-MY_P=${P//_rc1/RC1}
+MY_P=${P/_beta/BETA}
 
 DESCRIPTION="A utility for network exploration or security auditing"
 HOMEPAGE="http://nmap.org/"
@@ -32,6 +32,7 @@ S="${WORKDIR}/${MY_P}"
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-4.75-include.patch"
 	epatch "${FILESDIR}/${PN}-4.75-nolua.patch"
+	epatch "${FILESDIR}/${P}-string.patch"
 	sed -i -e 's/-m 755 -s ncat/-m 755 ncat/' ncat/Makefile.in
 }
 
