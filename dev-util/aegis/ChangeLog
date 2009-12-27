@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/aegis
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/aegis/ChangeLog,v 1.24 2008/06/30 01:43:53 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/aegis/ChangeLog,v 1.25 2009/12/17 21:29:01 flameeyes Exp $
+
+  17 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org> aegis-4.24.ebuild:
+  Use emake -j1 for build, bug #297334.
 
 *aegis-4.24 (30 Jun 2008)
 
