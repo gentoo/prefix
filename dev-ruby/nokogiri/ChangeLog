@@ -1,6 +1,16 @@
 # ChangeLog for dev-ruby/nokogiri
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/nokogiri/ChangeLog,v 1.14 2009/11/21 03:30:12 gengor Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/nokogiri/ChangeLog,v 1.16 2009/12/21 18:55:33 flameeyes Exp $
+
+  21 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  nokogiri-1.4.1.ebuild:
+  Fix compile step.
+
+*nokogiri-1.4.1 (21 Dec 2009)
+
+  21 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +nokogiri-1.4.1.ebuild:
+  Version bump and port to fakegem.
 
 *nokogiri-1.4.0 (21 Nov 2009)
 
