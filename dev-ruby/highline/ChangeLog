@@ -1,6 +1,21 @@
 # ChangeLog for dev-ruby/highline
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/ChangeLog,v 1.24 2009/09/27 15:42:57 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/highline/ChangeLog,v 1.27 2009/12/25 13:57:27 a3li Exp $
+
+*highline-1.5.1-r2 (25 Dec 2009)
+
+  25 Dec 2009; Alex Legler <a3li@gentoo.org> -highline-1.5.1-r1.ebuild,
+  +highline-1.5.1-r2.ebuild:
+  Fix building with USE=docs and actually install the RDoc docs, bug 298313
+
+*highline-1.5.1-r1 (15 Dec 2009)
+
+  15 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +highline-1.5.1-r1.ebuild:
+  Bump to ruby-fakegem.
+
+  09 Dec 2009; Hans de Graaff <graaff@gentoo.org> -highline-1.4.0.ebuild:
+  Remove old version.
 
   27 Sep 2009; nixnut <nixnut@gentoo.org> highline-1.5.1.ebuild:
   ppc stable #282356
