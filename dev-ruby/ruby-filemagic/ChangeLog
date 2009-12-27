@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/ruby-filemagic
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-filemagic/ChangeLog,v 1.5 2009/07/14 17:41:06 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/ruby-filemagic/ChangeLog,v 1.6 2009/12/20 14:09:08 graaff Exp $
+
+  20 Dec 2009; Hans de Graaff <graaff@gentoo.org>
+  ruby-filemagic-0.1.1.ebuild:
+  Remove obsolete virtual/ruby dependency.
 
   14 Jul 2009; Hans de Graaff <graaff@gentoo.org>
   ruby-filemagic-0.1.1.ebuild:
