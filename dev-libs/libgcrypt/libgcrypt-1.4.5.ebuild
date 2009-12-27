@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.4.ebuild,v 1.11 2009/12/13 18:03:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/libgcrypt-1.4.5.ebuild,v 1.1 2009/12/12 02:41:35 arfrever Exp $
 
 EAPI="2"
 
@@ -25,7 +25,6 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-1.4.0-interix.patch
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.4.0-interix3.patch
-	epatch "${FILESDIR}"/${P}-irix.patch
 
 	# remove the included libtool.m4 to force a new libtool
 	# to be used.
@@ -34,21 +33,20 @@ src_unpack() {
 	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 }
 
-pkg_setup() {
-	[[ $(tc-arch) == x86 && $(gcc-version) == 4.1 ]] && replace-flags -O3 -O2
-}
-
 src_prepare() {
 	epunt_cxx
 }
 
 src_configure() {
 	# --disable-padlock-support for bug #201917
+	# O-flag-mungling: https://bugs.g10code.com/gnupg/issue992
 	econf \
 		--disable-padlock-support \
 		--disable-dependency-tracking \
 		--with-pic \
-		--enable-noexecstack
+		--enable-noexecstack \
+		$(use_enable !mips-irix O-flag-munging)
+	
 }
 
 src_install() {

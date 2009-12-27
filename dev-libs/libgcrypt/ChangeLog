@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libgcrypt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.125 2009/11/07 18:18:38 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgcrypt/ChangeLog,v 1.127 2009/12/13 18:03:39 armin76 Exp $
+
+  13 Dec 2009; Raúl Porcel <armin76@gentoo.org> libgcrypt-1.4.4.ebuild:
+  m68k stable, thanks to kolla for testing
+
+*libgcrypt-1.4.5 (12 Dec 2009)
+
+  12 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +libgcrypt-1.4.5.ebuild:
+  Version bump.
 
   07 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   libgcrypt-1.4.4.ebuild:
