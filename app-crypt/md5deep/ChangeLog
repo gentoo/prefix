@@ -1,6 +1,9 @@
 # ChangeLog for app-crypt/md5deep
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/md5deep/ChangeLog,v 1.52 2009/11/25 23:11:28 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/md5deep/ChangeLog,v 1.53 2009/12/09 19:31:45 nixnut Exp $
+
+  09 Dec 2009; nixnut <nixnut@gentoo.org> md5deep-3.4.ebuild:
+  ppc stable #293994
 
   25 Nov 2009; Tiago Cunha <tcunha@gentoo.org> md5deep-3.4.ebuild:
   stable sparc, bug 293994
