@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/libxslt
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.196 2009/10/08 11:42:49 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.199 2009/12/18 01:30:08 jer Exp $
+
+  18 Dec 2009; Jeroen Roovers <jer@gentoo.org> libxslt-1.1.26.ebuild:
+  Stable for HPPA (bug #296430).
+
+  14 Dec 2009; Brent Baude <ranger@gentoo.org> libxslt-1.1.26.ebuild:
+  stable ppc64, bug 296430
+
+  14 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> libxslt-1.1.26.ebuild:
+  amd64 stable wrt #296430
 
   08 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> libxslt-1.1.26.ebuild:
   Because libgcrypt is missing pkg-config file, fixing cross-compile here
