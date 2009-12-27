@@ -1,6 +1,9 @@
 # ChangeLog for games-arcade/tuxanci
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/tuxanci/ChangeLog,v 1.6 2009/11/16 19:01:56 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-arcade/tuxanci/ChangeLog,v 1.7 2009/12/13 21:28:12 scarabeus Exp $
+
+  13 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> tuxanci-9999.ebuild:
+  Update live ebuild syntax to new cmake-utils one.
 
 *tuxanci-9999 (16 Nov 2009)
 
