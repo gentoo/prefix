@@ -10,7 +10,6 @@
 GnuPG is a complete and free replacement for PGP. Because it does not use the patented IDEA algorithm, it can be used without any restrictions. GnuPG is a RFC2440 (OpenPGP) compliant application.
 </longdescription>
 <use>
-	<flag name='ecc'>Use elliptic curve cryptosystem patch</flag>
 	<flag name='idea'>Use the patented IDEA algorithm</flag>
 	<flag name='openct'>build using <pkg>dev-libs/openct</pkg> compat</flag>
 	<flag name='pcsc-lite'>build with <pkg>sys-apps/pcsc-lite</pkg></flag>
