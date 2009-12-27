@@ -1,6 +1,45 @@
 # ChangeLog for dev-db/sqlite
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.296 2009/11/29 14:08:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.307 2009/12/23 18:24:55 pacho Exp $
+
+  23 Dec 2009; Pacho Ramos <pacho@gentoo.org> sqlite-3.6.20-r1.ebuild:
+  amd64 stable, bug 297658
+
+  22 Dec 2009; Jeroen Roovers <jer@gentoo.org> sqlite-3.6.20-r1.ebuild:
+  Stable for PPC (bug #297658).
+
+  22 Dec 2009; Jeroen Roovers <jer@gentoo.org> sqlite-3.6.20-r1.ebuild:
+  Stable for HPPA (bug #297532).
+
+  20 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  sqlite-3.6.21.ebuild:
+  Fix building with USE="icu -tcl -test" (bug #297534).
+
+  20 Dec 2009; Brent Baude <ranger@gentoo.org> sqlite-3.6.20-r1.ebuild:
+  Marking sqlite-3.6.20-r1 ppc64 for bug 297532
+
+  20 Dec 2009; Brent Baude <ranger@gentoo.org> sqlite-3.6.20.ebuild:
+  Marking sqlite-3.6.20 ppc64 for bug 297532
+
+  19 Dec 2009; Petteri Räty <betelgeuse@gentoo.org> sqlite-3.6.21.ebuild:
+  Fix a couple QA issues with the last commit.
+
+  19 Dec 2009; Petteri Räty <betelgeuse@gentoo.org> sqlite-3.6.21.ebuild:
+  Make building work without tcl installed using the amalgamation tarball
+  from upstream. Fixes tests to work with -tcl. Thanks to Andrew
+  <abrouwers@gmail.com>. Fixes bug #297113 and bug #297332.
+
+  12 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  sqlite-3.6.21.ebuild:
+  Fix building and dependencies (bug #296245). SQLite's build system
+  requires TCL at build time for so called amalgamation build. SQLite's
+  upstream doesn't support non-amalgamation build.
+
+*sqlite-3.6.21 (08 Dec 2009)
+
+  08 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +sqlite-3.6.21.ebuild:
+  Version bump.
 
   29 Nov 2009; Raúl Porcel <armin76@gentoo.org> sqlite-3.6.19.ebuild:
   alpha/ia64/s390/sh/sparc stable wrt #291913
