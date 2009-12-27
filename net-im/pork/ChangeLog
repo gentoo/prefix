@@ -1,6 +1,9 @@
 # ChangeLog for net-im/pork
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pork/ChangeLog,v 1.39 2008/02/05 21:15:25 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-im/pork/ChangeLog,v 1.40 2009/12/26 10:18:51 tove Exp $
+
+  26 Dec 2009; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove smithj from metadata (#95385)
 
   05 Feb 2008; Fabian Groffen <grobian@gentoo.org> pork-0.99.8.1.ebuild:
   Dropped ppc-macos keyword, see you in prefix

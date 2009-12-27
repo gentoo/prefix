@@ -2,7 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>no-herd</herd>
-<maintainer><email>smithj@gentoo.org</email></maintainer>
+<maintainer><email>maintainer-needed@gentoo.org</email></maintainer>
 <longdescription>
 	Pork is an AIM client based on the GAIM libraries with an interface similar to IRCII.
 </longdescription>
