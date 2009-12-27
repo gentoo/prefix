@@ -1,6 +1,22 @@
 # ChangeLog for net-ftp/ncftp
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.91 2009/11/10 17:27:18 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/ncftp/ChangeLog,v 1.96 2009/12/22 22:00:30 jer Exp $
+
+  22 Dec 2009; Jeroen Roovers <jer@gentoo.org> -ncftp-3.2.2-r1.ebuild,
+  -files/ncftp-3.2.2-build.patch:
+  Remove old.
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> ncftp-3.2.3.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #296364
+
+  11 Dec 2009; Brent Baude <ranger@gentoo.org> ncftp-3.2.3.ebuild:
+  Marking ncftp-3.2.3 ppc64 for bug 296364
+
+  10 Dec 2009; Markus Meier <maekke@gentoo.org> ncftp-3.2.3.ebuild:
+  amd64/x86 stable, bug #296364
+
+  10 Dec 2009; Jeroen Roovers <jer@gentoo.org> ncftp-3.2.3.ebuild:
+  Stable for HPPA PPC (bug #296364).
 
   10 Nov 2009; Jeroen Roovers <jer@gentoo.org> ncftp-3.2.3.ebuild:
   Readd USE=ipv6, remove ncurses version specification.
