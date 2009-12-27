@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-13.2.2.ebuild,v 1.7 2009/12/11 14:54:33 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/erlang/erlang-13.2.3.ebuild,v 1.1 2009/12/10 21:58:07 fauli Exp $
 
 EAPI=2
 WX_GTK_VER="2.8"
@@ -16,7 +16,7 @@ inherit autotools elisp-common eutils multilib versionator wxwidgets
 
 # the next line selects the right source.
 ERL_VER=($(get_version_components))
-MY_PV="R$(get_major_version)B0${ERL_VER[2]}-1"
+MY_PV="R$(get_major_version)B0${ERL_VER[2]}"
 
 # ATTN!! Take care when processing the C, etc version!
 MY_P=otp_src_${MY_PV}
@@ -24,8 +24,8 @@ MY_P=otp_src_${MY_PV}
 DESCRIPTION="Erlang programming language, runtime environment, and large collection of libraries"
 HOMEPAGE="http://www.erlang.org/"
 SRC_URI="http://www.erlang.org/download/${MY_P}.tar.gz
-	doc? ( http://erlang.org/download/otp_doc_man_${MY_PV}.tar.gz
-		http://erlang.org/download/otp_doc_html_${MY_PV}.tar.gz )"
+	http://erlang.org/download/otp_doc_man_${MY_PV}.tar.gz
+	doc? ( http://erlang.org/download/otp_doc_html_${MY_PV}.tar.gz )"
 
 LICENSE="EPL"
 SLOT="0"
@@ -124,18 +124,19 @@ src_install() {
 	## Clean up the no longer needed files
 	rm "${ED}/${ERL_LIBDIR}/Install"
 
-	if use doc ; then
-		for i in "${WORKDIR}"/man/man* ; do
-			dodir "${ERL_LIBDIR}/${i##${WORKDIR}}"
-		done
-		for file in "${WORKDIR}"/man/man*/*.[1-9]; do
+	for i in "${WORKDIR}"/man/man* ; do
+		dodir "${ERL_LIBDIR}/${i##${WORKDIR}}"
+	done
+	for file in "${WORKDIR}"/man/man*/*.[1-9]; do
 			# doman sucks so we can't use it
-			cp ${file} "${ED}/${ERL_LIBDIR}"/man/man${file##*.}/
-		done
-		# extend MANPATH, so the normal man command can find it
-		# see bug 189639
-		dodir /etc/env.d/
-		echo "MANPATH=\"${EPREFIX}${ERL_LIBDIR}/man\"" > "${ED}/etc/env.d/90erlang"
+		cp ${file} "${ED}/${ERL_LIBDIR}"/man/man${file##*.}/
+	done
+	# extend MANPATH, so the normal man command can find it
+	# see bug 189639
+	dodir /etc/env.d/
+	echo "MANPATH=\"${EPREFIX}${ERL_LIBDIR}/man\"" > "${ED}/etc/env.d/90erlang"
+
+	if use doc ; then
 		dohtml -A README,erl,hrl,c,h,kwc,info -r \
 			"${WORKDIR}"/doc "${WORKDIR}"/lib "${WORKDIR}"/erts-*
 	fi
