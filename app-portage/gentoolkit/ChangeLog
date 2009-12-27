@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.172 2009/12/05 23:00:35 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.173 2009/12/10 20:52:22 fuzzyray Exp $
+
+  10 Dec 2009; Paul Varner <fuzzyray@gentoo.org> gentoolkit-9999.ebuild:
+  Modify live ebuild to use setup.py to set the version of gentoolkit
+  installed.
 
   05 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   gentoolkit-0.3.0_rc7.ebuild, gentoolkit-9999.ebuild:
