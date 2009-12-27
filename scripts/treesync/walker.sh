@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
 export PTREEDIR="$(pwd -P)"
-for d in \
-		eclass \
-		*-*/* virtual/* \
-; do
+
+stuff=
+if [[ -n $* ]] ; then
+	stuff="$*"
+else
+	# default to "everything"
+	for d in eclass *-*/* ; do
+		stuff="${stuff} ${d}"
+	done
+fi
+
+for d in ${stuff} ; do
 	pushd ${d} > /dev/null
 	if [[ -f eupdate.noupdate ]] || [[ -f eupdate.skip ]] ; then
 		echo "S skipping $d"
