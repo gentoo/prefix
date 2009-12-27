@@ -1,6 +1,11 @@
 # ChangeLog for dev-perl/Crypt-Rijndael
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-Rijndael/ChangeLog,v 1.24 2009/08/16 09:36:30 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Crypt-Rijndael/ChangeLog,v 1.25 2009/12/10 15:51:55 tove Exp $
+
+*Crypt-Rijndael-1.08 (10 Dec 2009)
+
+  10 Dec 2009; Torsten Veller <tove@gentoo.org> +Crypt-Rijndael-1.08.ebuild:
+  Version bump
 
   16 Aug 2009; Torsten Veller <tove@gentoo.org>
   -files/crypt-rijndael-amd64.patch:
