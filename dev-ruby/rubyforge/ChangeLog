@@ -1,6 +1,23 @@
 # ChangeLog for dev-ruby/rubyforge
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.48 2009/10/23 15:06:11 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubyforge/ChangeLog,v 1.52 2009/12/26 17:49:20 flameeyes Exp $
+
+  26 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  rubyforge-2.0.3.ebuild:
+  Allow use with Ruby 1.9.
+
+  25 Dec 2009; Hans de Graaff <graaff@gentoo.org> rubyforge-2.0.3.ebuild:
+  The Rakefile requires hoe, so add this as a dependency for doc and test
+  USE flags. Drop x86 keyword due to the hoe dependency. Bug #297828.
+
+  23 Dec 2009; Jeroen Roovers <jer@gentoo.org> rubyforge-2.0.3.ebuild:
+  Marked ~hppa (bug #297830).
+
+*rubyforge-2.0.3 (21 Dec 2009)
+
+  21 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +rubyforge-2.0.3.ebuild:
+  Version bump and port to fakegem.
 
   23 Oct 2009; Hans de Graaff <graaff@gentoo.org> -rubyforge-1.0.1.ebuild,
   -rubyforge-1.0.4.ebuild:
