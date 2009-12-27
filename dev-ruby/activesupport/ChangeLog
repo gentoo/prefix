@@ -1,6 +1,26 @@
 # ChangeLog for dev-ruby/activesupport
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.108 2009/11/30 18:06:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.113 2009/12/21 00:10:42 flameeyes Exp $
+
+  21 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  activesupport-2.3.5-r1.ebuild:
+  Restore keywords (test-unit recursion).
+
+  20 Dec 2009; Alex Legler <a3li@gentoo.org> -activesupport-2.3.4.ebuild:
+  Removing vulnerable version
+
+  19 Dec 2009; Jeroen Roovers <jer@gentoo.org> activesupport-2.3.5.ebuild:
+  Stable for PPC (bug #294797).
+
+  16 Dec 2009; Jeroen Roovers <jer@gentoo.org>
+  activesupport-2.3.5-r1.ebuild:
+  Marked ~hppa (bug #297086).
+
+*activesupport-2.3.5-r1 (15 Dec 2009)
+
+  15 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +activesupport-2.3.5-r1.ebuild:
+  Bump to ruby-fakegem, unbundle builder and tzinfo.
 
   30 Nov 2009; Raúl Porcel <armin76@gentoo.org> activesupport-2.3.5.ebuild:
   ia64/sparc stable wrt #294797
