@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.3.ebuild,v 1.3 2009/09/15 02:15:25 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.6.ebuild,v 1.5 2009/12/23 18:27:22 pacho Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
@@ -9,9 +9,9 @@ inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-p
 
 MY_PV="${PV/_beta/b}" # Handle betas
 MY_PV="${PV/_/}" # Handle rc1, rc2 etc
-MY_PV="${MY_PV/1.9.1.3/3.5.3}"
+MY_PV="${MY_PV/1.9.1.6/3.5.6}"
 MAJ_PV="1.9.1" # from mozilla-* branch name
-PATCH="${PN}-1.9.1.2-patches-0.3"
+PATCH="${PN}-1.9.1.5-patches-0.1"
 
 DESCRIPTION="Mozilla runtime package that can be used to bootstrap XUL+XPCOM applications"
 HOMEPAGE="http://developer.mozilla.org/en/docs/XULRunner"
@@ -21,19 +21,19 @@ SRC_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/${MY_PV}/s
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="1.9"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="+alsa debug python" # qt-experimental
+IUSE="+alsa debug python sqlite" # qt-experimental
 
 #	qt-experimental? (
 #		x11-libs/qt-gui
 #		x11-libs/qt-core )
 
 # nspr-4.8 due to BMO #499144
-# Disable sqlite temporarily  	>=dev-db/sqlite-3.6.7
 RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=dev-lang/python-2.3[threads]
 	>=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12.3
 	>=dev-libs/nspr-4.8
+	sqlite? ( >=dev-db/sqlite-3.6.20-r1[fts3] )
 	alsa? ( media-libs/alsa-lib )
 	>=app-text/hunspell-1.2
 	>=media-libs/lcms-1.17
@@ -47,24 +47,29 @@ DEPEND="java? ( >=virtual/jdk-1.4 )
 
 S="${WORKDIR}/mozilla-${MAJ_PV}"
 
-# Needed by src_compile() and src_install().
-# Would do in pkg_setup but that loses the export attribute, they
-# become pure shell variables.
-export BUILD_OFFICIAL=1
-export MOZILLA_OFFICIAL=1
-
 pkg_setup() {
 	java-pkg-opt-2_pkg_setup
+
+	if use sqlite ; then
+		elog "You are enabling system sqlite. Do not file a bug with gentoo if you have"
+		elog "issues that arise from enabling system sqlite. All bugs will be considered"
+		elog "invalid. All patches are welcomed to fix any issues that might be found with"
+		elog "system sqlite. If you are starting with a fresh profile you can enable sqlite"
+		elog "without any major issues."
+		epause 10
+	fi
 }
 
 src_prepare() {
 	# Apply our patches
+	EPATCH_EXCLUDE="136-fix_ftbfs_with_cairo_fb.patch" \
 	EPATCH_SUFFIX="patch" \
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"
 
 	epatch "${FILESDIR}"/${PN}-1.9-no_sunstudio.patch # breaks sunstudio
 	epatch "${FILESDIR}"/${PN}-1.9-solaris64.patch
+	epatch "${FILESDIR}"/${PN}-1.9.1.5-solaris-undef-regs.patch
 	epatch "${FILESDIR}"/${PN}-1.9_beta5-prefix.patch
 	eprefixify \
 		extensions/java/xpcom/interfaces/org/mozilla/xpcom/Mozilla.java \
@@ -97,6 +102,7 @@ src_prepare() {
 
 	# Patch in support to reset all LANG variables to C
 	# Do NOT add to patchset as it must be applied after eautoreconf
+	cd "${S}"
 	epatch "${FILESDIR}/000_flex-configure-LANG.patch"
 }
 
@@ -141,11 +147,17 @@ src_configure() {
 	# Use system libraries
 	mozconfig_annotate '' --enable-system-cairo
 	mozconfig_annotate '' --enable-system-hunspell
-	# mozconfig_annotate '' --enable-system-sqlite
 	mozconfig_annotate '' --with-system-nspr --with-nspr-prefix="${EPREFIX}"/usr
 	mozconfig_annotate '' --with-system-nss --with-nss-prefix="${EPREFIX}"/usr
+	mozconfig_annotate '' --x-includes="${EPREFIX}"/usr/include --x-libraries="${EPREFIX}"/usr/$(get_libdir)
 	mozconfig_annotate '' --enable-system-lcms
 	mozconfig_annotate '' --with-system-bz2
+
+	if use sqlite ; then
+		mozconfig_annotate 'sqlite' --enable-system-sqlite
+	else
+		mozconfig_annotate '-sqlite' --disable-system-sqlite
+	fi
 
 	# IUSE qt-experimental
 #	if use qt-experimental ; then
@@ -249,6 +261,10 @@ pkg_postinst() {
 	einfo "All prefs can be overridden by the user. The preferences are to make"
 	einfo "use of xulrunner out of the box on an average system without the user"
 	einfo "having to go through and enable the basics."
+
+	einfo
+	ewarn "Please remember to rebuild your browser(s) after update to prevent an xpcom error."
+	ewarn "This bump is needed in order to bring icecat to the tree to replace iceweasel useflag."
 }
 
 pkg_postrm() {
