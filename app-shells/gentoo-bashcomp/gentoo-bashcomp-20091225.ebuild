@@ -1,8 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20090222.ebuild,v 1.6 2009/04/12 18:18:48 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20091225.ebuild,v 1.1 2009/12/26 04:45:32 darkside Exp $
 
-DESCRIPTION="Gentoo-specific bash command-line completions (emerge, ebuild, equery, etc)"
+inherit eutils prefix
+
+DESCRIPTION="Gentoo-specific bash command-line completions (emerge, ebuild, equery, repoman, layman, etc)"
 HOMEPAGE="http://www.gentoo.org/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 
@@ -13,10 +15,20 @@ IUSE=""
 
 RDEPEND="app-shells/bash-completion"
 
+src_unpack() {
+	unpack "${A}"
+	cd "${S}"
+
+	# make gentoo completion prefix compatible
+	epatch "${FILESDIR}/${PN}-20090613-prefix.patch"
+	eprefixify gentoo
+}
+
 src_install() {
 	insinto /usr/share/bash-completion
-	doins gentoo || die "failed to install gentoo module"
-	doins repoman || die "failed to install repoman module"
+	doins gentoo 	|| die "failed to install gentoo module"
+	doins repoman 	|| die "failed to install repoman module"
+	doins layman 	|| die "failed to install layman module"
 	dodoc AUTHORS ChangeLog TODO
 }
 
