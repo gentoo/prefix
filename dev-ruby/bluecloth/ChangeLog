@@ -1,6 +1,19 @@
 # ChangeLog for dev-ruby/bluecloth
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/ChangeLog,v 1.24 2009/11/29 14:33:44 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/bluecloth/ChangeLog,v 1.27 2009/12/22 19:04:26 ranger Exp $
+
+  22 Dec 2009; Brent Baude <ranger@gentoo.org> bluecloth-2.0.5.ebuild:
+  stable ppc64, bug 283020
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> bluecloth-2.0.5.ebuild:
+  ia64 stable wrt #283020
+
+*bluecloth-2.0.5-r1 (15 Dec 2009)
+
+  15 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +bluecloth-2.0.5-r1.ebuild:
+  Add ruby-fakegem based ebuild for bluecloth; keywords dropped because of
+  build dependency over rdoc.
 
   29 Nov 2009; Alex Legler <a3li@gentoo.org> bluecloth-1.0.0.ebuild:
   Fix SRC_URI
