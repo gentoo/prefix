@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/schroedinger
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.42 2009/11/19 16:17:40 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/schroedinger/ChangeLog,v 1.44 2009/12/15 18:44:00 armin76 Exp $
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> schroedinger-1.0.8.ebuild:
+  ia64/sparc stable wrt #290761
+
+  06 Dec 2009; Tobias Klausmann <klausman@gentoo.org>
+  schroedinger-1.0.8.ebuild:
+  Stable on alpha, bug #290761
 
   19 Nov 2009; Markus Meier <maekke@gentoo.org> schroedinger-1.0.8.ebuild:
   arm stable, bug #290761
