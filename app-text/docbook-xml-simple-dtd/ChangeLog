@@ -1,6 +1,14 @@
 # ChangeLog for app-text/docbook-xml-simple-dtd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/ChangeLog,v 1.49 2009/08/23 15:52:47 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/ChangeLog,v 1.50 2009/12/16 10:18:36 flameeyes Exp $
+
+*docbook-xml-simple-dtd-4.1.2.5-r1 (16 Dec 2009)
+
+  16 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -docbook-xml-simple-dtd-4.1.2.5.ebuild,
+  +docbook-xml-simple-dtd-4.1.2.5-r1.ebuild,
+  +files/docbook-xml-simple-dtd-4.1.2.5.catalog:
+  Add catalog file for 4.1.2.5 version, closes bug #197288.
 
   23 Aug 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   docbook-xml-simple-dtd-4.1.2.4-r2.ebuild:
