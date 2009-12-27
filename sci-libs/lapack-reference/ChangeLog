@@ -1,6 +1,11 @@
 # ChangeLog for sci-libs/lapack-reference
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/lapack-reference/ChangeLog,v 1.48 2009/07/14 04:44:44 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/lapack-reference/ChangeLog,v 1.49 2009/12/12 17:43:05 markusle Exp $
+
+  12 Dec 2009; Markus Dittrich <markusle@gentoo.org>
+  lapack-reference-3.2.1.ebuild,
+  +files/lapack-reference-3.2.1-parallel-make.patch:
+  Fixed parallel make failures in tests (see bug #295964).
 
 *lapack-reference-3.2.1 (13 Jul 2009)
 

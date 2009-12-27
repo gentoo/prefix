@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/lapack-reference/lapack-reference-3.2.1.ebuild,v 1.1 2009/07/14 01:57:15 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/lapack-reference/lapack-reference-3.2.1.ebuild,v 1.2 2009/12/12 17:43:05 markusle Exp $
 
 inherit eutils autotools flag-o-matic fortran multilib
 
@@ -41,6 +41,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${WORKDIR}"/${PN}-${PATCH_V}-autotools.patch
+	epatch "${FILESDIR}"/${P}-parallel-make.patch
 	eautoreconf
 
 	# set up the testing routines
