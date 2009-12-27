@@ -1,6 +1,10 @@
 # ChangeLog for sci-libs/blas-atlas
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.89 2009/01/14 19:11:06 bicatali Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.90 2009/12/22 21:06:16 flameeyes Exp $
+
+  22 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  blas-atlas-3.9.3.ebuild:
+  Use emake -j1 for build, bug #294172.
 
   14 Jan 2009; Sébastien Fabbro <bicatali@gentoo.org> files/blas.pc.in,
   files/cblas.pc.in, blas-atlas-3.9.3.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.3.ebuild,v 1.4 2009/01/14 19:11:06 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.3.ebuild,v 1.5 2009/12/22 21:06:16 flameeyes Exp $
 
 inherit eutils toolchain-funcs fortran multilib
 
@@ -115,17 +115,18 @@ src_compile() {
 	cd "${BLD_DIR}"
 
 	# atlas does its own parallel builds
+	# — and it fails parallel make, bug #294172
 	emake -j1 || die "emake failed"
 
 	RPATH="${DESTTREE}"/$(get_libdir)/blas
-	make \
+	emake -j1 \
 		LIBDIR=$(get_libdir) \
 		RPATH="${RPATH}"/atlas \
 		shared || die "failed to build shared libraries"
 
 	# build shared libraries of threaded libraries if applicable
 	if [[ -d gentoo/libptcblas.a ]]; then
-		make \
+		emake -j1 \
 			LIBDIR=$(get_libdir) \
 			RPATH="${RPATH}"/threaded-atlas \
 			ptshared || die "failed to build threaded shared libraries"
