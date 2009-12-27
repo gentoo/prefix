@@ -1,6 +1,12 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.358 2009/11/21 19:53:36 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.359 2009/12/16 21:53:55 hoffie Exp $
+
+  16 Dec 2009; Christian Hoffmann <hoffie@gentoo.org> php-5.2.11.ebuild,
+  php-5.2.11-r1.ebuild:
+  trying to fix the circular dependency we are seeing with suhosin since
+  5.2.11 (where I added a version dependency without much thinking), bug
+  295871, thanks to Oleg Gawriloff <barzog@telecom.by>
 
   21 Nov 2009; nixnut <nixnut@gentoo.org> php-5.2.11-r1.ebuild:
   ppc stable #292132

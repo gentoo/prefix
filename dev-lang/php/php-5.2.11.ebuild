@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.11.ebuild,v 1.8 2009/10/19 09:12:38 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.11.ebuild,v 1.9 2009/12/16 21:53:55 hoffie Exp $
 
 CGI_SAPI_USE="discard-path force-cgi-redirect"
 APACHE2_SAPI_USE="concurrentmodphp threads"
@@ -42,8 +42,7 @@ DEPEND="app-admin/php-toolkit
 	imap? ( >=virtual/imap-c-client-2006k )
 	pcre? ( >=dev-libs/libpcre-7.8 )
 	xml? ( >=dev-libs/libxml2-2.7.2-r2 )
-	xmlrpc? ( >=dev-libs/libxml2-2.7.2-r2 virtual/libiconv )
-	suhosin? ( >=dev-php5/suhosin-0.9.29 )"
+	xmlrpc? ( >=dev-libs/libxml2-2.7.2-r2 virtual/libiconv )"
 
 RDEPEND="${DEPEND}"
 if [[ -n "${KOLAB_PATCH}" ]] ; then
@@ -51,6 +50,8 @@ if [[ -n "${KOLAB_PATCH}" ]] ; then
 	DEPEND="${DEPEND}
 		kolab? ( >=net-libs/c-client-2004g-r1 )"
 fi
+
+PDEPEND="suhosin? ( >=dev-php5/suhosin-0.9.29 )"
 
 want_apache
 
