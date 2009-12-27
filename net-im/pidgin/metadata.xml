@@ -6,16 +6,12 @@
 Pidgin is an instant messaging program for Windows, Linux, BSD, and other Unixes. You can talk to your friends using AIM, ICQ, Jabber/XMPP, MSN Messenger, Yahoo!, Bonjour, Gadu-Gadu, IRC, Novell GroupWise Messenger, QQ, Lotus Sametime, SILC, SIMPLE, and Zephyr.
 </longdescription>
 <use>
-	<flag name='bonjour'>Enable bonjour support</flag>
-	<flag name='gadu'>Enable Gadu Gadu protocol support.</flag>
-	<flag name='groupwise'>Enable Novell Groupwise protocol support.</flag>
-	<flag name='meanwhile'>Enable meanwhile support for Sametime
-		protocol.
-	</flag>
-	<flag name='prediction'>Enable Contact Availability Prediction
-		plugin.
-	</flag>
-	<flag name='qq'>Enable QQ protocol support.</flag>
+	<flag name='bonjour'>Enable bonjour (zeroconf) support</flag>
+	<flag name='gadu'>Enable Gadu Gadu protocol support</flag>
+	<flag name='groupwise'>Enable Novell Groupwise protocol support</flag>
+	<flag name='meanwhile'>Enable meanwhile support for Sametime protocol</flag>
+	<flag name='prediction'>Enable Contact Availability Prediction plugin</flag>
+	<flag name='qq'>Enable QQ protocol support</flag>
 	<flag name='silc'>Enable SILC protocol support</flag>
 	<flag name='zephyr'>Enable Zephyr protocol support</flag>
 </use>

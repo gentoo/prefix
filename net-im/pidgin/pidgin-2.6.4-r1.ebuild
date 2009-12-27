@@ -1,9 +1,10 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.5.9.ebuild,v 1.8 2009/08/30 23:33:15 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.6.4-r1.ebuild,v 1.3 2009/12/22 09:19:11 pva Exp $
 
 EAPI=2
 
+GENTOO_DEPEND_ON_PERL=no
 inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 autotools
 
 DESCRIPTION="GTK Instant Messenger client"
@@ -13,39 +14,47 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="aqua bonjour dbus debug doc eds gadu gnutls +gstreamer meanwhile"
-IUSE="${IUSE} networkmanager nls perl silc tcl tk spell qq gadu"
-IUSE="${IUSE} +gtk sasl ncurses groupwise prediction zephyr" # mono"
+IUSE="aqua dbus debug doc eds gadu gnutls +gstreamer idn meanwhile networkmanager"
+IUSE+=" nls perl silc tcl tk spell qq gadu +gtk sasl startup-notification"
+IUSE+=" ncurses groupwise prediction xscreensaver zephyr zeroconf" # mono"
 
 RDEPEND="
-	bonjour? ( net-dns/avahi )
+	>=dev-libs/glib-2.4
+	>=dev-libs/libxml2-2.6.18
+	ncurses? ( sys-libs/ncurses[unicode] )
+	gtk? (
+		>=x11-libs/gtk+-2.4:2[aqua=]
+		x11-libs/libSM
+		xscreensaver? ( x11-libs/libXScrnSaver )
+		startup-notification? ( >=x11-libs/startup-notification-0.5 )
+		spell? ( >=app-text/gtkspell-2.0.2 )
+		eds? ( gnome-extra/evolution-data-server )
+		prediction? ( >=dev-db/sqlite-3.3:3 ) )
+	gstreamer? ( =media-libs/gstreamer-0.10*
+		=media-libs/gst-plugins-good-0.10*
+		>=net-libs/farsight2-0.0.14
+		media-plugins/gst-plugins-meta
+		media-plugins/gst-plugins-gconf )
+	zeroconf? ( net-dns/avahi )
 	dbus? ( >=dev-libs/dbus-glib-0.71
 		>=dev-python/dbus-python-0.71
 		>=sys-apps/dbus-0.90
 		>=dev-lang/python-2.4 )
-	gtk? (
-		spell? ( >=app-text/gtkspell-2.0.2 )
-		>=x11-libs/gtk+-2.0
-		>=x11-libs/startup-notification-0.5
-		x11-libs/libXScrnSaver
-		eds? ( gnome-extra/evolution-data-server ) 	)
-	>=dev-libs/glib-2.0
-	gstreamer? ( =media-libs/gstreamer-0.10*
-		=media-libs/gst-plugins-good-0.10* )
-	perl? ( >=dev-lang/perl-5.8.2-r1 )
+	perl? ( >=dev-lang/perl-5.8.2-r1[-build] )
 	gadu?  ( net-libs/libgadu[-ssl] )
 	gnutls? ( net-libs/gnutls )
 	!gnutls? ( >=dev-libs/nss-3.11 )
 	meanwhile? ( net-libs/meanwhile )
-	silc? ( >=net-im/silc-toolkit-0.9.12-r3 )
+	silc? ( >=net-im/silc-toolkit-1.0.1 )
 	zephyr? ( >=app-crypt/mit-krb5-1.3.6-r1[krb4] )
 	tcl? ( dev-lang/tcl )
 	tk? ( dev-lang/tk )
-	sasl? ( >=dev-libs/cyrus-sasl-2 )
-	dev-libs/libxml2
+	sasl? ( dev-libs/cyrus-sasl:2 )
+	>=dev-libs/libxml2-2.6.18
 	networkmanager? ( net-misc/networkmanager )
 	prediction? ( =dev-db/sqlite-3* )
-	ncurses? ( sys-libs/ncurses[unicode] )"
+	ncurses? ( sys-libs/ncurses[unicode] )
+	idn? ( net-dns/libidn )"
 	# Mono support crashes pidgin
 	#mono? ( dev-lang/mono )"
 
@@ -65,15 +74,25 @@ DYNAMIC_PRPLS="irc,jabber,oscar,yahoo,simple,msn,myspace"
 #   app-accessibility/pidgin-festival
 #   net-im/librvp
 #   x11-plugins/guifications
+#	x11-plugins/msn-pecan
 #   x11-plugins/pidgin-encryption
 #   x11-plugins/pidgin-extprefs
 #   x11-plugins/pidgin-hotkeys
 #   x11-plugins/pidgin-latex
+#   x11-plugins/pidgintex
 #   x11-plugins/pidgin-libnotify
 #   x11-plugins/pidgin-otr
 #   x11-plugins/pidgin-rhythmbox
 #   x11-plugins/purple-plugin_pack
 #   x11-themes/pidgin-smileys
+# Plugins in Sunrise:
+#	x11-plugins/pidgimpd
+#	x11-plugins/pidgin-birthday
+#	x11-plugins/pidgin-botsentry
+#	x11-plugins/pidgin-convreverse
+#	x11-plugins/pidgin-extended-blist-sort
+#	x11-plugins/pidgin-lastfm
+#	x11-plugins/pidgin-mbpurple
 
 pkg_setup() {
 	if ! use gtk && ! use ncurses ; then
@@ -89,6 +108,10 @@ src_prepare() {
 	eautoreconf
 }
 
+src_prepare() {
+	intltoolize --automake --copy --force
+}
+
 src_configure() {
 	# Stabilize things, for your own good
 	strip-flags
@@ -102,29 +125,12 @@ src_configure() {
 			myconf="${myconf} --with-gadu-libs=."
 	fi
 
-	if use silc; then
-		DYNAMIC_PRPLS="${DYNAMIC_PRPLS},silc"
-	fi
-
-	if use qq; then
-		DYNAMIC_PRPLS="${DYNAMIC_PRPLS},qq"
-	fi
-
-	if use meanwhile; then
-		DYNAMIC_PRPLS="${DYNAMIC_PRPLS},sametime"
-	fi
-
-	if use bonjour; then
-		DYNAMIC_PRPLS="${DYNAMIC_PRPLS},bonjour"
-	fi
-
-	if use groupwise; then
-		DYNAMIC_PRPLS="${DYNAMIC_PRPLS},novell"
-	fi
-
-	if use zephyr; then
-		DYNAMIC_PRPLS="${DYNAMIC_PRPLS},zephyr"
-	fi
+	use silc && DYNAMIC_PRPLS+=",silc"
+	use qq && DYNAMIC_PRPLS+=",qq"
+	use meanwhile && DYNAMIC_PRPLS+=",sametime"
+	use zeroconf && DYNAMIC_PRPLS+=",bonjour"
+	use groupwise && DYNAMIC_PRPLS+=",novell"
+	use zephyr && DYNAMIC_PRPLS+=",zephyr"
 
 	if use gnutls ; then
 		einfo "Disabling NSS, using GnuTLS"
@@ -139,33 +145,36 @@ src_configure() {
 	econf \
 		$(use_enable ncurses consoleui) \
 		$(use_enable nls) \
-		$(use_enable perl) \
 		$(use_enable gtk gtkui) \
-		$(use_enable gtk startup-notification) \
-		$(use_enable gtk screensaver) \
 		$(use_enable gtk sm) \
+		$(use gtk && use_enable startup-notification) \
+		$(use gtk && use_enable xscreensaver screensaver) \
+		$(use gtk && use_enable prediction cap) \
+		$(use gtk && use_enable eds gevolution) \
+		$(use gtk && use_enable spell gtkspell) \
+		$(use_enable perl) \
+		$(use_enable tk) \
+		$(use_enable tcl) \
+		$(use_enable debug) \
+		$(use_enable dbus) \
+		$(use_enable meanwhile) \
+		$(use_enable gstreamer) \
+		$(use_enable gstreamer farsight) \
+		$(use_enable gstreamer vv) \
+		$(use_enable sasl cyrus-sasl ) \
+		$(use_enable doc doxygen) \
+		$(use_enable networkmanager nm) \
+		$(use_with zephyr krb4) \
+		$(use_enable zeroconf avahi) \
+		$(use_enable idn) \
 		$(use_enable aqua gtkstatusicon) \
 		$(use_enable !aqua gestures) \
 		$(use_enable !aqua startup-notification) \
 		$(use_with !aqua x) \
-		$(use_enable tcl) \
-		$(use_enable spell gtkspell) \
-		$(use_enable tk) \
-		$(use_enable debug) \
-		$(use_enable dbus) \
-		$(use_enable meanwhile) \
-		$(use_enable eds gevolution) \
-		$(use_enable gstreamer) \
-		$(use_enable sasl cyrus-sasl ) \
-		$(use_enable doc doxygen) \
-		$(use_enable prediction cap) \
-		$(use_enable networkmanager nm) \
-		$(use_with zephyr krb4) \
-		$(use_enable bonjour avahi) \
 		"--with-dynamic-prpls=${DYNAMIC_PRPLS}" \
 		--disable-mono \
 		--x-includes="${EPREFIX}/usr/include/X11" \
-		${myconf} || die "Configuration failed"
+		${myconf}
 		#$(use_enable mono) \
 }
 
