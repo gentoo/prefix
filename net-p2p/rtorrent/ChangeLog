@@ -1,6 +1,18 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.142 2009/11/23 21:04:54 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.145 2009/12/22 20:16:45 ssuominen Exp $
+
+*rtorrent-0.8.6 (22 Dec 2009)
+
+  22 Dec 2009; Samuli Suominen <ssuominen@gentoo.org>
+  +rtorrent-0.8.6.ebuild:
+  Version bump.
+
+  09 Dec 2009; nixnut <nixnut@gentoo.org> rtorrent-0.8.5.ebuild:
+  ppc stable #291036
+
+  08 Dec 2009; Jeroen Roovers <jer@gentoo.org> rtorrent-0.8.5.ebuild:
+  Stable for HPPA (bug #291036).
 
   23 Nov 2009; Markus Meier <maekke@gentoo.org> rtorrent-0.8.5.ebuild:
   x86 stable, bug #291036
