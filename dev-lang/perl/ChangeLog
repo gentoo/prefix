@@ -1,6 +1,27 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.302 2009/11/16 20:20:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.309 2009/12/10 20:50:09 ranger Exp $
+
+  10 Dec 2009; Brent Baude <ranger@gentoo.org> perl-5.8.8-r8.ebuild:
+  Marking perl-5.8.8-r8 ppc64 for bug 295028
+
+  10 Dec 2009; Raúl Porcel <armin76@gentoo.org> perl-5.8.8-r8.ebuild:
+  alpha/ia64/m68k/s390/sh stable wrt #295028
+
+  09 Dec 2009; nixnut <nixnut@gentoo.org> perl-5.8.8-r8.ebuild:
+  ppc stable #295028
+
+  09 Dec 2009; Raúl Porcel <armin76@gentoo.org> perl-5.10.1.ebuild:
+  Add ~sh wrt #288028
+
+  08 Dec 2009; Jeroen Roovers <jer@gentoo.org> perl-5.8.8-r8.ebuild:
+  Stable for HPPA (bug #295028).
+
+  08 Dec 2009; Tiago Cunha <tcunha@gentoo.org> perl-5.8.8-r8.ebuild:
+  stable sparc, bug 295028
+
+  03 Dec 2009; Markus Meier <maekke@gentoo.org> perl-5.8.8-r8.ebuild:
+  amd64/arm/x86 stable, bug #295028
 
   16 Nov 2009; Raúl Porcel <armin76@gentoo.org> perl-5.10.1.ebuild:
   Add ~alpha/~ia64/~s390/~sparc wrt #288028
