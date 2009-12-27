@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/eclass-manpages-20091007.ebuild,v 1.1 2009/10/07 19:58:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/eclass-manpages-20091209.ebuild,v 1.1 2009/12/09 10:15:56 vapier Exp $
 
 DESCRIPTION="collection of Gentoo eclass manpages"
 HOMEPAGE="http://www.gentoo.org/"

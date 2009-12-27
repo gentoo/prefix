@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/files/eclass-to-manpage.awk,v 1.14 2008/02/19 05:22:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/files/eclass-to-manpage.awk,v 1.15 2009/12/09 10:15:57 vapier Exp $
 
 # This awk converts the comment documentation found in eclasses
 # into man pages for easier/nicer reading.
@@ -192,14 +192,23 @@ function _handle_variable() {
 		desc = eat_paragraph()
 
 	# extract the default variable value
-	val = $0
-	regex = "^.*" var_name "="
-	sub(regex, "", val)
-	if ($0 == val) {
-		warn(var_name ": unable to extract default variable content: " $0)
-		val = ""
-	} else
-		val = " = \\fI" val "\\fR"
+	# first try var="val"
+	op = "="
+	regex = "^.*" var_name "=(.*)$"
+	val = gensub(regex, "\\1", "", $0)
+	if (val == $0) {
+		# next try : ${var:=val}
+		op = "?="
+		regex = "^[[:space:]]*:[[:space:]]*[$]{" var_name ":?=(.*)}"
+		val = gensub(regex, "\\1", "", $0)
+		if (val == $0) {
+			warn(var_name ": unable to extract default variable content: " $0)
+			val = ""
+		} else if (val !~ /^["']/ && val ~ / /)
+			val = "\"" val "\""
+	}
+	if (length(val))
+		val = " " op " \\fI" val "\\fR"
 
 	# now accumulate the stuff
 	ret = \

@@ -1,6 +1,12 @@
 # ChangeLog for app-portage/eclass-manpages
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/ChangeLog,v 1.16 2009/10/07 19:58:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/eclass-manpages/ChangeLog,v 1.17 2009/12/09 10:15:56 vapier Exp $
+
+*eclass-manpages-20091209 (09 Dec 2009)
+
+  09 Dec 2009; Mike Frysinger <vapier@gentoo.org>
+  +eclass-manpages-20091209.ebuild, files/eclass-to-manpage.awk:
+  Detect variables given default values via :${var:=val}.
 
 *eclass-manpages-20091007 (07 Oct 2009)
 
