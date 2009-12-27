@@ -1,6 +1,26 @@
 # ChangeLog for dev-ruby/redcloth
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/ChangeLog,v 1.30 2009/07/14 05:36:27 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/redcloth/ChangeLog,v 1.34 2009/12/27 00:23:09 flameeyes Exp $
+
+  27 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  redcloth-4.2.2-r2.ebuild:
+  Move rspec to unconditional depend, this solves bug #298483 by keytoaster.
+
+*redcloth-4.2.2-r2 (26 Dec 2009)
+
+  26 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  -redcloth-4.2.2-r1.ebuild, +redcloth-4.2.2-r2.ebuild:
+  Bump revision and fix case sensitivity for require statement.
+
+*redcloth-4.2.2-r1 (25 Dec 2009)
+
+  25 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  +redcloth-4.2.2-r1.ebuild:
+  Bump to ruby-fakegem, make sure that tests are executed.
+
+  09 Dec 2009; Hans de Graaff <graaff@gentoo.org> -redcloth-3.0.4.ebuild,
+  -redcloth-4.2.1.ebuild:
+  Remove old version.
 
 *redcloth-4.2.2 (14 Jul 2009)
 
