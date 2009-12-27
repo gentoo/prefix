@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/emacs-cvs
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.257 2009/11/17 10:09:47 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-cvs/ChangeLog,v 1.259 2009/12/15 09:30:42 ulm Exp $
+
+  15 Dec 2009; Ulrich Mueller <ulm@gentoo.org> emacs-cvs-23.1.90.ebuild,
+  emacs-cvs-23.1.9999-r1.ebuild:
+  Change X11 to MIT in LICENSE.
+
+*emacs-cvs-23.1.90 (09 Dec 2009)
+
+  09 Dec 2009; Ulrich Mueller <ulm@gentoo.org> +emacs-cvs-23.1.90.ebuild:
+  Pretest for Emacs 23.2.
 
   17 Nov 2009; Ulrich Mueller <ulm@gentoo.org>
   emacs-cvs-23.1.9999-r1.ebuild, metadata.xml:
