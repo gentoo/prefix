@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/nasm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/ChangeLog,v 1.60 2009/09/12 19:31:03 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/ChangeLog,v 1.61 2009/12/26 17:33:05 pva Exp $
+
+  26 Dec 2009; Peter Volkov <pva@gentoo.org> nasm-2.07.ebuild:
+  virtual/ghostscript->app-text/ghostscript-gpl: ghostscript-gpl is the only
+  implementation left in the tree.
 
   12 Sep 2009; Michael Sterrett <mr_bones_@gentoo.org> nasm-2.07.ebuild:
   work around parallel-build issues and use the upstream makefiles for more

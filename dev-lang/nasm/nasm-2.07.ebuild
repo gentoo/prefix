@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.07.ebuild,v 1.3 2009/09/12 19:31:03 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/nasm/nasm-2.07.ebuild,v 1.4 2009/12/26 17:33:05 pva Exp $
 
 EAPI=2
 inherit autotools eutils toolchain-funcs flag-o-matic
@@ -15,7 +15,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-macos"
 IUSE="doc"
 
 DEPEND="dev-lang/perl
-	doc? ( virtual/ghostscript sys-apps/texinfo )"
+	doc? ( app-text/ghostscript-gpl sys-apps/texinfo )"
 RDEPEND=""
 
 S=${WORKDIR}/${P/_}
