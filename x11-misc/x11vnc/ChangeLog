@@ -1,6 +1,11 @@
 # ChangeLog for x11-misc/x11vnc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.75 2009/11/21 10:42:30 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/x11vnc/ChangeLog,v 1.76 2009/12/22 10:47:48 swegener Exp $
+
+*x11vnc-0.9.9 (22 Dec 2009)
+
+  22 Dec 2009; Sven Wegener <swegener@gentoo.org> +x11vnc-0.9.9.ebuild:
+  Version bump.
 
   21 Nov 2009; Sven Wegener <swegener@gentoo.org> x11vnc-0.9.8-r1.ebuild:
   Adjust libvncserver dependency to also force the jpeg and zlib flags.
