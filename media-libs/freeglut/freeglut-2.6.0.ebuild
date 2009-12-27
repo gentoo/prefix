@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/freeglut-2.6.0.ebuild,v 1.2 2009/12/04 20:44:27 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freeglut/freeglut-2.6.0.ebuild,v 1.3 2009/12/14 11:49:26 remi Exp $
 
 EAPI="2"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://freeglut.sourceforge.net/"
 SRC_URI="mirror://sourceforge/freeglut/${P/_/-}.tar.gz
 	mpx? ( http://tisch.sourceforge.net/freeglut-2.6.0-mpx-r6.patch )"
 
-LICENSE="X11"
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="debug mpx"
