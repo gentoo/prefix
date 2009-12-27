@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exif/exif-0.6.19.ebuild,v 1.1 2009/11/14 20:31:50 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exif/exif-0.6.19.ebuild,v 1.3 2009/12/16 20:20:16 jer Exp $
 
 EAPI=2
 
