@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/printproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/printproto/ChangeLog,v 1.38 2009/10/11 10:53:13 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/printproto/ChangeLog,v 1.39 2009/12/15 16:16:13 armin76 Exp $
+
+  15 Dec 2009; Raúl Porcel <armin76@gentoo.org> printproto-1.0.4.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #282290
 
   11 Oct 2009; nixnut <nixnut@gentoo.org> ChangeLog:
   ppc stable #282290
