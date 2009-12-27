@@ -23,5 +23,7 @@
     (<pkg>dev-lisp/sbcl</pkg>)</flag>
   <flag name='ecl'>Add support for Embeddable Common Lisp
     (<pkg>dev-lisp/ecls</pkg>)</flag>
+  <flag name='openmcl'>Add support for Clozure Common Lisp
+    (former OpenMCL, <pkg>dev-lisp/closurecl</pkg>)</flag>
 </use>
 </pkgmetadata>

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.18.1.ebuild,v 1.7 2009/12/26 16:05:56 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.20.1.ebuild,v 1.2 2009/12/24 14:13:42 grozin Exp $
 EAPI=2
 inherit eutils elisp-common
 
@@ -15,7 +15,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 # Supported lisps with readline
 SUPP_RL="gcl clisp"
 # Supported lisps without readline
-SUPP_NORL="cmucl sbcl"
+SUPP_NORL="cmucl sbcl ecl openmcl"
 SUPP_LISPS="${SUPP_RL} ${SUPP_NORL}"
 # Default lisp if none selected
 DEF_LISP="sbcl"
@@ -44,8 +44,16 @@ for LISP in ${SUPP_LISPS}; do
 	if [ "${LISP}" = "gcl" ]
 	then
 		RDEPEND="${RDEPEND} gcl? ( >=dev-lisp/gcl-2.6.8_pre[ansi] )"
+	else if [ "${LISP}" = "ecl" ]
+	then
+		RDEPEND="${RDEPEND} ecl? ( >=dev-lisp/ecls-9.8.3 )"
+	else if [ "${LISP}" = "openmcl" ]
+	then
+		RDEPEND="${RDEPEND} openmcl? ( dev-lisp/clozurecl )"
 	else
 		RDEPEND="${RDEPEND} ${LISP}? ( dev-lisp/${LISP} )"
+	fi
+	fi
 	fi
 	DEF_DEP="${DEF_DEP} !${LISP}? ( "
 done
@@ -66,6 +74,7 @@ DEPEND="${RDEPEND}
 	sys-apps/texinfo"
 
 TEXMF=/usr/share/texmf-site
+NO_INIT_PATCH_PV="5.19.1"
 
 pkg_setup() {
 	LISPS=""
@@ -90,13 +99,19 @@ pkg_setup() {
 src_prepare() {
 	# use xdg-open to view ps, pdf
 	epatch "${FILESDIR}"/${PN}-xdg-utils.patch
-	epatch "${FILESDIR}"/${PN}-no-init-files.patch
-	# remove rmaxima if neither cmucl nor sbcl
+
+	epatch "${FILESDIR}"/${PN}-${NO_INIT_PATCH_PV}-no-init-files.patch
+
+	# ClozureCL executable name is now ccl
+	epatch "${FILESDIR}"/${PN}-clozurecl.patch
+
+	# remove rmaxima if not needed
 	if [ -z "${RL}" ]; then
 		sed -e '/^@WIN32_FALSE@bin_SCRIPTS/s/rmaxima//' \
 			-i "${S}"/src/Makefile.in \
 			|| die "sed for rmaxima failed"
 	fi
+
 	# don't install imaxima, since we have a separate package for it
 	sed -i -e '/^SUBDIRS/s/imaxima//' interfaces/emacs/Makefile.in \
 		|| die "sed for imaxima failed"
@@ -160,9 +175,6 @@ pkg_preinst() {
 	for infofile in "${ED}"/usr/share/info/*.bz2 ; do
 		bunzip2 "${infofile}"
 	done
-	for infofile in "${ED}"/usr/share/info/*.gz ; do
-		gunzip "${infofile}"
-	done
 }
 
 pkg_postinst() {
@@ -172,4 +184,5 @@ pkg_postinst() {
 
 pkg_postrm() {
 	use emacs && elisp-site-regen
+	use latex && mktexlsr
 }

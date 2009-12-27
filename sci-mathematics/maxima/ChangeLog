@@ -1,6 +1,18 @@
 # ChangeLog for sci-mathematics/maxima
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.71 2009/10/07 16:22:36 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.74 2009/12/26 16:05:56 armin76 Exp $
+
+  26 Dec 2009; Raúl Porcel <armin76@gentoo.org> maxima-5.18.1.ebuild:
+  sparc stable wrt #264649
+
+  24 Dec 2009; Andrey Grozin <grozin@gentoo.org> maxima-5.20.1.ebuild:
+  Restored ~ppc ~sparc keywords
+
+*maxima-5.20.1 (17 Dec 2009)
+
+  17 Dec 2009; Andrey Grozin <grozin@gentoo.org> +maxima-5.20.1.ebuild,
+  +files/maxima-clozurecl.patch, metadata.xml:
+  Version bump, added clozurecl as a supported lisp
 
   07 Oct 2009; nixnut <nixnut@gentoo.org> maxima-5.18.1.ebuild:
   ppc stable #264649
