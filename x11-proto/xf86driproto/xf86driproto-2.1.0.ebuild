@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86driproto/xf86driproto-2.1.0.ebuild,v 1.1 2009/09/19 13:37:13 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xf86driproto/xf86driproto-2.1.0.ebuild,v 1.4 2009/12/15 19:50:16 ranger Exp $
 
 inherit x-modular
 
