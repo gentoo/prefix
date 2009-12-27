@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.1.15.2.ebuild,v 1.6 2009/12/10 16:09:05 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/webkit-gtk-1.1.15.4.ebuild,v 1.2 2009/12/14 14:45:36 nirbheek Exp $
 
 EAPI="2"
 
@@ -15,9 +15,10 @@ LICENSE="LGPL-2 LGPL-2.1 BSD"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux"
 # geoclue
-IUSE="coverage debug doc +gstreamer pango ruby +websockets"
+IUSE="coverage debug doc +gstreamer pango +websockets"
 
 # use sqlite, svg by default
+# dependency on >=x11-libs/gtk+-2.13 for gail
 RDEPEND="
 	dev-libs/libxml2
 	dev-libs/libxslt
@@ -25,8 +26,8 @@ RDEPEND="
 	media-libs/libpng
 	x11-libs/cairo
 
-	>=x11-libs/gtk+-2.10
-	>=gnome-base/gail-1.8
+	>=x11-libs/gtk+-2.13
+	>=dev-libs/glib-2.21.3
 	>=dev-libs/icu-3.8.1-r1
 	>=net-libs/libsoup-2.27.91
 	>=dev-db/sqlite-3
@@ -53,7 +54,7 @@ S="${WORKDIR}/${MY_P}"
 src_prepare() {
 
 	# FIXME: Fix unaligned accesses on ARM, IA64 and SPARC
-	use sparc && epatch "${FILESDIR}"/${P}-unaligned.patch
+	use sparc && epatch "${FILESDIR}"/webkit-gtk-1.1.15.2-unaligned.patch
 
 	# Make it libtool-1 compatible
 	rm -v autotools/lt* autotools/libtool.m4 \
@@ -77,9 +78,8 @@ src_configure() {
 		$(use_enable coverage)
 		$(use_enable debug)
 		$(use_enable gstreamer video)
-		$(use_enable ruby)
 		$(use_enable websockets web_sockets)
-		--enable-filters"
+		--enable-filters --enable-ruby"
 
 	# USE-flag controlled font backend because upstream default is freetype
 	# Remove USE-flag once font-backend becomes pango upstream

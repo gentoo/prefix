@@ -1,6 +1,20 @@
 # ChangeLog for net-libs/webkit-gtk
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/ChangeLog,v 1.56 2009/12/03 21:53:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/webkit-gtk/ChangeLog,v 1.59 2009/12/14 14:45:36 nirbheek Exp $
+
+  14 Dec 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  webkit-gtk-1.1.15.4.ebuild:
+  Bump gtk+ dependency to 2.13 for gail; in-tree gnome-base/gail is just a
+  blank ebuild pulling in x11-libs/gtk+-2.13
+
+  10 Dec 2009; Raúl Porcel <armin76@gentoo.org> webkit-gtk-1.1.15.2.ebuild:
+  sparc stable
+
+*webkit-gtk-1.1.15.4 (06 Dec 2009)
+
+  06 Dec 2009; Luca Barbato <lu_zero@gentoo.org> metadata.xml,
+  +webkit-gtk-1.1.15.4.ebuild:
+  Version bump, HTML5 ruby/furigana support always enabled
 
   03 Dec 2009; Raúl Porcel <armin76@gentoo.org> webkit-gtk-1.1.15.2.ebuild:
   Fix wrong patch name
