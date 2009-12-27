@@ -1,6 +1,50 @@
 # ChangeLog for dev-util/git
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.384 2009/12/03 22:31:43 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/ChangeLog,v 1.392 2009/12/26 00:44:34 robbat2 Exp $
+
+*git-1.6.6-r2 (26 Dec 2009)
+
+  26 Dec 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.6-r2.ebuild,
+  git-9999.ebuild:
+  Bug #298390: All the Subversion ebuilds now offer perl, so we can USE-dep
+  on it.
+
+*git-1.6.6-r1 (26 Dec 2009)
+
+  26 Dec 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.6-r1.ebuild,
+  +files/git-1.6.6-always-install-js.patch, git-9999.ebuild:
+  Bug #298277: Fixup JS install for Gitweb. Also port all recent fixes to
+  the live ebuild.
+
+*git-1.6.6 (24 Dec 2009)
+
+  24 Dec 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.6.ebuild:
+  Version bump.
+
+*git-1.6.6_rc4 (21 Dec 2009)
+
+  21 Dec 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.6_rc4.ebuild:
+  Version bump.
+
+*git-1.6.6_rc3 (17 Dec 2009)
+
+  17 Dec 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.6_rc3.ebuild:
+  Version bump for the upstream rc.
+
+*git-1.6.5.7 (17 Dec 2009)
+
+  17 Dec 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.5.7.ebuild:
+  Version bump and fix bug #296310 for Perl 5.10 users.
+
+*git-1.6.5.6 (11 Dec 2009)
+
+  11 Dec 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.5.6.ebuild:
+  version bump
+
+*git-1.6.5.5 (06 Dec 2009)
+
+  06 Dec 2009; Robin H. Johnson <robbat2@gentoo.org> +git-1.6.5.5.ebuild:
+  Version bump.
 
 *git-1.6.5.4 (03 Dec 2009)
 
