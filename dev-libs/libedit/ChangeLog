@@ -1,6 +1,16 @@
 # ChangeLog for dev-libs/libedit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.42 2009/12/03 06:13:01 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libedit/ChangeLog,v 1.45 2009/12/16 16:35:46 armin76 Exp $
+
+  16 Dec 2009; Raúl Porcel <armin76@gentoo.org>
+  libedit-20090923.3.0.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #293863
+
+  09 Dec 2009; Brent Baude <ranger@gentoo.org> libedit-20090923.3.0.ebuild:
+  Marking libedit-20090923.3.0 ppc64 for bug 293863
+
+  08 Dec 2009; nixnut <nixnut@gentoo.org> libedit-20090923.3.0.ebuild:
+  ppc stable #293863
 
   03 Dec 2009; Jeroen Roovers <jer@gentoo.org> libedit-20090923.3.0.ebuild:
   Stable for HPPA (bug #293863).
