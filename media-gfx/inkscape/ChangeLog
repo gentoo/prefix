@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/inkscape
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.128 2009/11/30 19:46:45 lxnay Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.129 2009/12/07 11:18:43 maekke Exp $
+
+  07 Dec 2009; Markus Meier <maekke@gentoo.org> inkscape-0.46-r5.ebuild,
+  inkscape-0.47.ebuild:
+  tweak python/xml deps, bug #295978
 
   30 Nov 2009; Fabio Erculiani <lxnay@gentoo.org> inkscape-0.47.ebuild,
   metadata.xml:
