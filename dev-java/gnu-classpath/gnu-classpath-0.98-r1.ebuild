@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.98-r1.ebuild,v 1.3 2009/11/13 23:41:25 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.98-r1.ebuild,v 1.5 2009/12/14 19:12:42 ranger Exp $
 
 EAPI=2
 
