@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/xca/xca-0.6.4.ebuild,v 1.7 2009/04/20 20:15:51 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/xca/xca-0.6.4.ebuild,v 1.8 2009/12/16 15:53:56 ssuominen Exp $
 
 EAPI=1
 inherit eutils toolchain-funcs flag-o-matic
@@ -15,7 +15,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc"
 
 RDEPEND=">=dev-libs/openssl-0.9.8
-	|| ( x11-libs/qt-gui:4 =x11-libs/qt-4.3* )"
+	x11-libs/qt-gui:4"
 DEPEND="${RDEPEND}
 	doc? ( app-text/linuxdoc-tools )"
 
