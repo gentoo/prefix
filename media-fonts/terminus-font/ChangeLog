@@ -1,6 +1,11 @@
 # ChangeLog for media-fonts/terminus-font
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/ChangeLog,v 1.70 2009/09/07 19:55:53 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/ChangeLog,v 1.71 2009/12/22 11:50:45 pva Exp $
+
+*terminus-font-4.30 (22 Dec 2009)
+
+  22 Dec 2009; Peter Volkov <pva@gentoo.org> +terminus-font-4.30.ebuild:
+  Version bump, bug #297841, thank Jacek Sowiński for report.
 
   07 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> -terminus-font-4.20.ebuild,
   -terminus-font-4.26.ebuild:
