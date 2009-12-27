@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.21a.ebuild,v 1.1 2009/09/13 21:53:54 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/alsa-lib-1.0.21a.ebuild,v 1.2 2009/12/09 14:58:16 jer Exp $
 
 inherit eutils libtool
 
@@ -49,9 +49,6 @@ src_unpack() {
 src_compile() {
 	local myconf
 	use elibc_uclibc && myconf="--without-versioned"
-
-	# needed to avoid gcc looping internaly
-	use hppa && export CFLAGS="-O1 -pipe"
 
 	econf \
 		--enable-static \

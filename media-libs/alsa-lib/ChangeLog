@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/alsa-lib
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.294 2009/10/13 17:50:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/alsa-lib/ChangeLog,v 1.295 2009/12/09 14:58:16 jer Exp $
+
+  09 Dec 2009; Jeroen Roovers <jer@gentoo.org> alsa-lib-1.0.20-r1.ebuild,
+  alsa-lib-1.0.21.ebuild, alsa-lib-1.0.21a.ebuild:
+  Seems to work fine without this horrible hack.
 
   13 Oct 2009; Raúl Porcel <armin76@gentoo.org> alsa-lib-1.0.20-r1.ebuild:
   ia64/sh/sparc stable wrt #280464
