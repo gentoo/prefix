@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.46.00-r1.ebuild,v 1.7 2009/09/29 19:54:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.46.00-r1.ebuild,v 1.8 2009/12/12 15:58:23 vapier Exp $
 
 inherit toolchain-funcs eutils multilib prefix
 
@@ -82,6 +82,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${P}-min_DCT_v_scaled_size.patch
+	epatch "${FILESDIR}"/netpbm-10.35.0-pnmtopng-zlib.patch #291987
 
 	# glibc2.10 compat (bug 270351)
 	sed "s:getline:getline_nonlibc:" -i converter/ppm/xvminitoppm.c || die

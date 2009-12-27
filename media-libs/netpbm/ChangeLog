@@ -1,6 +1,22 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.228 2009/11/06 17:57:16 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.231 2009/12/12 16:02:47 vapier Exp $
+
+*netpbm-10.48.00-r1 (12 Dec 2009)
+
+  12 Dec 2009; Mike Frysinger <vapier@gentoo.org>
+  +netpbm-10.48.00-r1.ebuild, +files/netpbm-10.48.00-pngx.patch:
+  Add fix from upstream for pngtopnm errors #287725 by Denys Duchier.
+
+*netpbm-10.35.71 (12 Dec 2009)
+
+  12 Dec 2009; Mike Frysinger <vapier@gentoo.org> +netpbm-10.35.71.ebuild:
+  Version bump.
+
+  12 Dec 2009; Mike Frysinger <vapier@gentoo.org>
+  +files/netpbm-10.35.0-pnmtopng-zlib.patch, netpbm-10.46.00-r1.ebuild,
+  netpbm-10.48.00.ebuild, +files/netpbm-10.48.00-pnmtopng-zlib.patch:
+  Link pnmtopng directly to zlib #291987 Marcin Marszalek.
 
   06 Nov 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   netpbm-10.48.00.ebuild:

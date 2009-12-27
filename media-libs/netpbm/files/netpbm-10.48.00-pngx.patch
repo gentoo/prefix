@@ -1,0 +1,51 @@
+http://bugs.gentoo.org/287725
+
+fix from upstream
+
+--- netpbm/converter/other/pngx.c	(revision 1021)
++++ netpbm/converter/other/pngx.c	(revision 1022)
+@@ -69,6 +69,7 @@
+             else
+                 *pngxPP = pngxP;
+         }
++        pngxP->rw = rw;
+     }
+ }
+ 
+@@ -77,7 +78,14 @@
+ void
+ pngx_destroy(struct pngx * const pngxP) {
+ 
+-    png_destroy_write_struct(&pngxP->png_ptr, &pngxP->info_ptr);
++    switch(pngxP->rw) {
++    case PNGX_READ:
++        png_destroy_read_struct(&pngxP->png_ptr, &pngxP->info_ptr, NULL);
++        break;
++    case PNGX_WRITE:
++        png_destroy_write_struct(&pngxP->png_ptr, &pngxP->info_ptr);
++        break;
++    }
+ 
+     free(pngxP);
+ }
+--- netpbm/converter/other/pngx.h	(revision 1021)
++++ netpbm/converter/other/pngx.h	(revision 1022)
+@@ -5,14 +5,14 @@
+    the PNG library easier and cleaner.
+ */
+ 
++typedef enum {PNGX_READ, PNGX_WRITE} pngx_rw;
++
+ struct pngx {
+     png_structp png_ptr;
+-    png_infop info_ptr;
++    png_infop   info_ptr;
++    pngx_rw     rw;
+ };
+ 
+-typedef enum {PNGX_READ, PNGX_WRITE} pngx_rw;
+-
+-
+ void
+ pngx_create(struct pngx ** const pngxPP,
+             pngx_rw        const rw,
