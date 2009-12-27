@@ -1,6 +1,13 @@
 # ChangeLog for www-servers/nginx
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.230 2009/09/28 15:37:52 voxus Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.231 2009/12/08 14:49:37 djc Exp $
+
+*nginx-0.8.29 (08 Dec 2009)
+*nginx-0.7.64 (08 Dec 2009)
+
+  08 Dec 2009; Dirkjan Ochtman <djc@gentoo.org> +nginx-0.7.64.ebuild,
+  +nginx-0.8.29.ebuild:
+  Bump nginx 0.7 and 0.8 to 0.7.64 and 0.8.29.
 
 *nginx-0.8.17 (28 Sep 2009)
 
