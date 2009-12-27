@@ -1,6 +1,10 @@
 # ChangeLog for app-mobilephone/gnokii
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/ChangeLog,v 1.101 2009/11/30 06:05:17 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/ChangeLog,v 1.102 2009/12/12 10:37:53 mrness Exp $
+
+  12 Dec 2009; Alin Năstac <mrness@gentoo.org> gnokii-9999.ebuild,
+  files/gnokii-9999-translations.patch:
+  Update patch for git version (#296381).
 
   30 Nov 2009; Joseph Jezak <josejx@gentoo.org> gnokii-0.6.27-r2.ebuild:
   Marked ppc64 stable.
