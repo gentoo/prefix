@@ -1,6 +1,10 @@
 # ChangeLog for app-text/gnome-doc-utils
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.151 2009/11/30 19:47:29 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/gnome-doc-utils/ChangeLog,v 1.152 2009/12/09 22:12:55 eva Exp $
+
+  09 Dec 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  gnome-doc-utils-0.18.0.ebuild, gnome-doc-utils-0.18.1.ebuild:
+  Add scrollkeeper-dtd to DEPEND, bug #295059.
 
   30 Nov 2009; Brent Baude <ranger@gentoo.org>
   gnome-doc-utils-0.16.1.ebuild:
