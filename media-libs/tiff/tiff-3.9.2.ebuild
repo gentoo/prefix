@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.9.2.ebuild,v 1.6 2009/11/18 17:58:31 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/tiff/tiff-3.9.2.ebuild,v 1.8 2009/12/20 16:25:46 armin76 Exp $
 
 EAPI=2
 inherit eutils libtool
