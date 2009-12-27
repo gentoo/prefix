@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/bubblemon-2.0.14.ebuild,v 1.1 2009/07/18 22:10:43 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/bubblemon/bubblemon-2.0.14.ebuild,v 1.2 2009/12/23 15:50:03 ssuominen Exp $
 
 EAPI=2
 GCONF_DEBUG=no
@@ -31,5 +31,7 @@ pkg_setup() {
 
 src_prepare() {
 	gnome2_src_prepare
+	# Fix test suite wrt #295753
+	echo gnome/GNOME_BubblemonApplet.server.in >> po/POTFILES.skip
 	sed -i -e 's:-g -O2 -Wall -Werror:-Wall:' configure || die "sed failed"
 }
