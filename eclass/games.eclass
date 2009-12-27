@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.139 2009/12/09 00:27:24 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.140 2009/12/16 23:55:44 abcd Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -139,7 +139,7 @@ games_pkg_setup() {
 }
 
 games_src_configure() {
-	[[ -x ./configure ]] && { egamesconf; }
+	[[ -x ./configure ]] && egamesconf
 }
 
 games_src_compile() {

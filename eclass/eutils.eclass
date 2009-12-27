@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.322 2009/12/11 20:31:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.323 2009/12/19 00:01:04 zmedico Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -397,7 +397,7 @@ epatch_user() {
 	[[ $# -ne 0 ]] && die "epatch_user takes no options"
 
 	# don't clobber any EPATCH vars that the parent might want
-	local EPATCH_SOURCE check base=${PORTAGE_CONFIGROOT}/etc/portage/patches
+	local EPATCH_SOURCE check base=${PORTAGE_CONFIGROOT%/}/etc/portage/patches
 	for check in {${CATEGORY}/${PF},${CATEGORY}/${P},${CATEGORY}/${PN}}; do
 		EPATCH_SOURCE=${base}/${CTARGET}/${check}
 		[[ -r ${EPATCH_SOURCE} ]] || EPATCH_SOURCE=${base}/${CHOST}/${check}

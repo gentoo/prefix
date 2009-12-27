@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.31 2009/10/20 10:05:47 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.32 2009/12/16 20:35:38 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -47,12 +47,12 @@ DEPEND=">=dev-util/git-1.6"
 # @ECLASS-VARIABLE: EGIT_FETCH_CMD
 # @DESCRIPTION:
 # Command for cloning the repository.
-: ${EGIT_FETCH_CMD:="git clone --bare"}
+: ${EGIT_FETCH_CMD:="git clone"}
 
 # @ECLASS-VARIABLE: EGIT_UPDATE_CMD
 # @DESCRIPTION:
 # Git fetch command.
-EGIT_UPDATE_CMD="git fetch -f -u"
+EGIT_UPDATE_CMD="git pull -f -u"
 
 # @ECLASS-VARIABLE: EGIT_DIFFSTAT_CMD
 # @DESCRIPTION:
@@ -120,14 +120,14 @@ else
 	EGIT_BRANCH="${X}"
 fi
 
-# @ECLASS-VARIABLE: EGIT_TREE
+# @ECLASS-VARIABLE: EGIT_COMMIT
 # @DESCRIPTION:
-# git eclass can checkout any tree (commit).
-eval X="\$${PN//[-+]/_}_LIVE_TREE"
+# git eclass can checkout any commit.
+eval X="\$${PN//[-+]/_}_LIVE_COMMIT"
 if [[ ${X} = "" ]]; then
-	: ${EGIT_TREE:=${EGIT_BRANCH}}
+	: ${EGIT_COMMIT:=${EGIT_BRANCH}}
 else
-	EGIT_TREE="${X}"
+	EGIT_COMMIT="${X}"
 fi
 
 # @ECLASS-VARIABLE: EGIT_REPACK
@@ -138,9 +138,19 @@ fi
 
 # @ECLASS-VARIABLE: EGIT_PRUNE
 # @DESCRIPTION:
-# git.eclass can prune the local clone. This is useful if upstream rewinds and
+# git eclass can prune the local clone. This is useful if upstream rewinds and
 # rebases branches too often.
 : ${EGIT_PRUNE:=false}
+
+# @FUNCTION: git_submodules
+# @DESCRIPTION:
+# Internal function wrapping the submodule initialisation and update
+git_sumbodules() {
+	debug-print "git submodule init"
+	git submodule init
+	debug-print "git submodule update"
+	git submodule update
+}
 
 # @FUNCTION: git_fetch
 # @DESCRIPTION:
@@ -148,7 +158,7 @@ fi
 git_fetch() {
 	debug-print-function ${FUNCNAME} "$@"
 
-	local EGIT_CLONE_DIR oldsha1 cursha1
+	local GIT_DIR EGIT_CLONE_DIR oldsha1 cursha1
 
 	# choose if user wants elog or just einfo.
 	if [[ ${EGIT_QUIET} != OFF ]]; then
@@ -161,8 +171,13 @@ git_fetch() {
 	# which outputs into really smaller data transfers.
 	# Sadly we can do shallow copy for now because quite a few packages need .git
 	# folder.
-	#[[ ${EGIT_TREE} = ${EGIT_BRANCH} ]] && \
+	#[[ ${EGIT_COMMIT} = ${EGIT_BRANCH} ]] && \
 	#	EGIT_FETCH_CMD="${EGIT_FETCH_CMD} --depth 1"
+	if [[ ! -z ${EGIT_TREE} ]] ; then
+		EGIT_COMMIT=${EGIT_TREE}
+		eqawarn "Usage of deprecated EGIT_TREE variable detected."
+		eqawarn "Use EGIT_COMMIT variable instead."
+	fi
 
 	# EGIT_REPO_URI is empty.
 	[[ -z ${EGIT_REPO_URI} ]] && die "${EGIT}: EGIT_REPO_URI is empty."
@@ -196,47 +211,59 @@ git_fetch() {
 
 	debug-print "${FUNCNAME}: EGIT_OPTIONS = \"${EGIT_OPTIONS}\""
 
-	export GIT_DIR="${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}"
-
+	GIT_DIR="${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}"
+	pushd ${EGIT_STORE_DIR} &> /dev/null
 	# we also have to remove all shallow copied repositories
 	# and fetch them again
-	if [[ -e "${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}/shallow" ]]; then
-		rm -rf "${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}"
+	if [[ -e "${GIT_DIR}/shallow" ]]; then
+		rm -rf "${GIT_DIR}"
 		einfo "The ${EGIT_CLONE_DIR} was shallow copy. Refetching."
 	fi
+	# repack from bare copy to normal one
+	if [[ -d ${GIT_DIR} && ! -d "${GIT_DIR}/.git/" ]]; then
+		rm -rf "${GIT_DIR}"
+		einfo "The ${EGIT_CLONE_DIR} was bare copy. Refetching."
+	fi
 
-	if [[ ! -d ${EGIT_CLONE_DIR} ]] ; then
+	if [[ ! -d ${GIT_DIR} ]] ; then
 		# first clone
 		${elogcmd} "GIT NEW clone -->"
 		${elogcmd} "   repository: 		${EGIT_REPO_URI}"
 
-		${EGIT_FETCH_CMD} ${EGIT_OPTIONS} "${EGIT_REPO_URI}" ${EGIT_PROJECT} \
+		debug-print "${EGIT_FETCH_CMD} ${EGIT_OPTIONS} \"${EGIT_REPO_URI}\" ${GIT_DIR}"
+		${EGIT_FETCH_CMD} ${EGIT_OPTIONS} "${EGIT_REPO_URI}" ${GIT_DIR} \
 			|| die "${EGIT}: can't fetch from ${EGIT_REPO_URI}."
-
-		cursha1=$(git rev-parse ${EGIT_BRANCH})
+		
+		pushd "${GIT_DIR}" &> /dev/null
+		cursha1=$(git rev-parse origin/${EGIT_BRANCH})
 		${elogcmd} "   at the commit:		${cursha1}"
-		# We use --bare cloning, so git doesn't do this for us.
-		git config remote.origin.url "${EGIT_REPO_URI}"
+
+		git_sumbodules
+		popd &> /dev/null
 	elif [[ -n ${EGIT_OFFLINE} ]] ; then
-		cursha1=$(git rev-parse ${EGIT_BRANCH})
+		pushd "${GIT_DIR}" &> /dev/null
+		cursha1=$(git rev-parse origin/${EGIT_BRANCH})
 		${elogcmd} "GIT offline update -->"
 		${elogcmd} "   repository: 		${EGIT_REPO_URI}"
 		${elogcmd} "   at the commit:		${cursha1}"
+		popd &> /dev/null
 	else
+		pushd "${GIT_DIR}" &> /dev/null
 		# Git urls might change, so unconditionally set it here
 		git config remote.origin.url "${EGIT_REPO_URI}"
 
 		# fetch updates
 		${elogcmd} "GIT update -->"
 		${elogcmd} "   repository: 		${EGIT_REPO_URI}"
+		
+		oldsha1=$(git rev-parse origin/${EGIT_BRANCH})
 
-		oldsha1=$(git rev-parse ${EGIT_BRANCH})
-
-		${elogcmd} ${EGIT_UPDATE_CMD} ${EGIT_OPTIONS} origin ${EGIT_BRANCH}:${EGIT_BRANCH}
-		${EGIT_UPDATE_CMD} ${EGIT_OPTIONS} origin ${EGIT_BRANCH}:${EGIT_BRANCH} \
+		debug-print "${EGIT_UPDATE_CMD} ${EGIT_OPTIONS}"
+		${EGIT_UPDATE_CMD} ${EGIT_OPTIONS} \
 			|| die "${EGIT}: can't update from ${EGIT_REPO_URI}."
 
-		cursha1=$(git rev-parse ${EGIT_BRANCH})
+		git_sumbodules
+		cursha1=$(git rev-parse origin/${EGIT_BRANCH})
 
 		# write out message based on the revisions
 		if [[ ${oldsha1} != ${cursha1} ]]; then
@@ -255,40 +282,40 @@ git_fetch() {
 				debug-print "${FUNCNAME}: Repository \"${EGIT_REPO_URI}\" is up-to-date. Skipping." && \
 				die "${EGIT}: Repository \"${EGIT_REPO_URI}\" is up-to-date. Skipping."
 		fi
-		${EGIT_DIFFSTAT_CMD} ${oldsha1}..${EGIT_BRANCH}
+		${EGIT_DIFFSTAT_CMD} ${oldsha1}..origin/${EGIT_BRANCH}
+		popd &> /dev/null
 	fi
-
+	
+	pushd "${GIT_DIR}" &> /dev/null
 	if ${EGIT_REPACK} || ${EGIT_PRUNE} ; then
 		ebegin "Garbage collecting the repository"
 		git gc $(${EGIT_PRUNE} && echo '--prune')
 		eend $?
 	fi
+	popd &> /dev/null
 
 	# export the git version
 	export EGIT_VERSION="${cursha1}"
 
-	[[ ${EGIT_TREE} != ${EGIT_BRANCH} ]] && elog "   tree:			${EGIT_TREE}"
+	[[ ${EGIT_COMMIT} != ${EGIT_BRANCH} ]] && elog "   commit:			${EGIT_COMMIT}"
 	${elogcmd} "   branch: 			${EGIT_BRANCH}"
 	${elogcmd} "   storage directory: 	\"${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}\""
 
 	# unpack to the ${S}
-	unset GIT_DIR
-	debug-print "git clone -l -s -n \"${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}\" \"${S}\""
-	git clone -l -s -n "${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}" "${S}"
+	popd &> /dev/null
+	debug-print "cp -aR \"${GIT_DIR}\" \"${S}\""
+	cp -aR "${GIT_DIR}" "${S}"
 
 	# set correct branch and the tree ebuild specified
 	pushd "${S}" > /dev/null
 	local branchname=branch-${EGIT_BRANCH} src=origin/${EGIT_BRANCH}
-	if [[ ${EGIT_TREE} != ${EGIT_BRANCH} ]]; then
-		branchname=tree-${EGIT_TREE}
-		src=${EGIT_TREE}
+	if [[ ${EGIT_COMMIT} != ${EGIT_BRANCH} ]]; then
+		branchname=tree-${EGIT_COMMIT}
+		src=${EGIT_COMMIT}
 	fi
 	debug-print "git checkout -b ${branchname} ${src}"
 	git checkout -b ${branchname} ${src} 2>&1 > /dev/null
-	debug-print "git submodule init"
-	git submodule init 2>&1 > /dev/null
-	debug-print "git submodule update"
-	git submodule update 2>&1 > /dev/null
+	git_sumbodules
 	popd > /dev/null
 
 	unset branchname src

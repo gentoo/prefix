@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/virtualx.eclass,v 1.32 2009/10/21 23:59:51 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/virtualx.eclass,v 1.33 2009/12/21 17:27:28 abcd Exp $
 #
 # Author: Martin Schlemmer <azarah@gentoo.org>
 #
@@ -44,18 +44,9 @@ esac
 
 DESCRIPTION="Based on the $ECLASS eclass"
 
-#
-# Brian Harring <ferringb@gentoo.org> 11/04/2004
-# do not disable the sandbox during the depend phase.
-# ebuilds shouldn't touch the fs during depend phase, nor screw with the sandbox.
-#
-if [[ ${EBUILD_PHASE/depend} == "${EBUILD_PHASE}" ]] ; then
-	[[ -z ${SANDBOX_DISABLED} ]] && export SANDBOX_DISABLED="0" || :
-fi
-
 virtualmake() {
 	local retval=0
-	local OLD_SANDBOX_DISABLED="${SANDBOX_DISABLED}"
+	local OLD_SANDBOX_ON="${SANDBOX_ON}"
 	local XVFB=$(type -p Xvfb)
 	local XHOST=$(type -p xhost)
 
@@ -70,7 +61,7 @@ virtualmake() {
 		einfo "Scanning for an open DISPLAY to start Xvfb ..."
 
 		# We really do not want SANDBOX enabled here
-		export SANDBOX_DISABLED="1"
+		export SANDBOX_ON="0"
 
 		local i=0
 		XDISPLAY=$(i=0; while [[ -f /tmp/.X${i}-lock ]] ; do ((i++));done; echo ${i})
@@ -119,7 +110,7 @@ virtualmake() {
 		done
 
 		# Now enable SANDBOX again if needed.
-		export SANDBOX_DISABLED="${OLD_SANDBOX_DISABLED}"
+		export SANDBOX_ON="${OLD_SANDBOX_ON}"
 
 		einfo "Starting Xvfb on \$DISPLAY=${XDISPLAY} ..."
 

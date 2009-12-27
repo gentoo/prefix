@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.86 2009/11/21 05:06:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.88 2009/12/24 13:16:16 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -172,9 +172,6 @@ tc-binutils_apply_patches() {
 }
 
 toolchain-binutils_src_unpack() {
-	is_cross && [[ $(binutils-config -V) != binutils-config-1.9* ]] \
-		&& die "You need to upgrade your binutils-config to 1.9 or newer"
-
 	tc-binutils_unpack
 	tc-binutils_apply_patches
 }
@@ -242,7 +239,7 @@ toolchain-binutils_src_compile() {
 	# we have makeinfo (may not exist when we bootstrap)
 	if ! has noinfo ${FEATURES} ; then
 		if type -p makeinfo > /dev/null ; then
-			make info || die "make info failed"
+			emake info || die "make info failed"
 		fi
 	fi
 	# we nuke the manpages when we're left with junk

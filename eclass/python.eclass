@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.81 2009/11/22 16:45:54 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.82 2009/12/23 23:43:42 arfrever Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -62,29 +62,48 @@ python_version() {
 	[[ -n "${PYVER}" ]] && return 0
 	local tmpstr
 	python=${python:-"$(type -P python)"}
-	tmpstr="$(${python} -V 2>&1 )"
+	tmpstr="$(EPYTHON= ${python} -V 2>&1 )"
 	export PYVER_ALL="${tmpstr#Python }"
 	__python_version_extract $PYVER_ALL
 }
 
 # @FUNCTION: PYTHON
-# @USAGE: [-a|--absolute-path] [--] <Python_ABI="${PYTHON_ABI}">
+# @USAGE: [-2] [-3] [-A|--only-ABI] [-a|--absolute-path] [-f|--final-ABI] [--] <Python_ABI="${PYTHON_ABI}">
 # @DESCRIPTION:
 # Get Python interpreter filename for specified Python ABI. If Python_ABI argument
 # is ommitted, then PYTHON_ABI environment variable must be set and is used.
+# If -2 option is specified, then active version of Python 2 is used.
+# If -3 option is specified, then active version of Python 3 is used.
+# If --final-ABI option is specified, then final ABI from the list of enabled ABIs is used.
+# -2, -3 and --final-ABI options and Python_ABI argument cannot be specified simultaneously.
+# If --only-ABI option is specified, then only specified Python ABI is printed instead of
+# Python interpreter filename.
+# --only-ABI and --absolute-path options cannot be specified simultaneously.
 PYTHON() {
-	local absolute_path="0" slot=
+	local absolute_path="0" final_ABI="0" only_ABI="0" python2="0" python3="0" slot=
 
 	while (($#)); do
 		case "$1" in
+			-2)
+				python2="1"
+				;;
+			-3)
+				python3="1"
+				;;
+			-A|--only-ABI)
+				only_ABI="1"
+				;;
 			-a|--absolute-path)
 				absolute_path="1"
+				;;
+			-f|--final-ABI)
+				final_ABI="1"
 				;;
 			--)
 				break
 				;;
 			-*)
-				die "${FUNCNAME}(): Unrecognized option $1"
+				die "${FUNCNAME}(): Unrecognized option '$1'"
 				;;
 			*)
 				break
@@ -93,19 +112,58 @@ PYTHON() {
 		shift
 	done
 
+	if [[ "${only_ABI}" == "1" && "${absolute_path}" == "1" ]]; then
+		die "${FUNCNAME}(): '--only-ABI and '--absolute-path' options cannot be specified simultaneously"
+	fi
+
+	if [[ "$((${python2} + ${python3} + ${final_ABI}))" -gt "1" ]]; then
+		die "${FUNCNAME}(): '-2', '-3' or '--final-ABI' options cannot be specified simultaneously"
+	fi
+
 	if [[ "$#" -eq "0" ]]; then
-		if [[ -n "${PYTHON_ABI}" ]]; then
+		if [[ "${final_ABI}" == "1" ]]; then
+			validate_PYTHON_ABIS
+			slot="${PYTHON_ABIS##* }"
+		elif [[ "${python2}" == "1" ]]; then
+			slot="$(eselect python show --python2)"
+			if [[ -z "${slot}" ]]; then
+				die "${FUNCNAME}(): Active Python 2 interpreter not set"
+			elif [[ "${slot}" != "python2."* ]]; then
+				die "${FUNCNAME}(): Internal error in \`eselect python show --python2\`"
+			fi
+			slot="${slot#python}"
+		elif [[ "${python3}" == "1" ]]; then
+			slot="$(eselect python show --python3)"
+			if [[ -z "${slot}" ]]; then
+				die "${FUNCNAME}(): Active Python 3 interpreter not set"
+			elif [[ "${slot}" != "python3."* ]]; then
+				die "${FUNCNAME}(): Internal error in \`eselect python show --python3\`"
+			fi
+			slot="${slot#python}"
+		elif [[ -n "${PYTHON_ABI}" ]]; then
 			slot="${PYTHON_ABI}"
 		else
 			die "${FUNCNAME}(): Invalid usage"
 		fi
 	elif [[ "$#" -eq "1" ]]; then
+		if [[ "${final_ABI}" == "1" ]]; then
+			die "${FUNCNAME}(): '--final-ABI' option and Python ABI cannot be specified simultaneously"
+		fi
+		if [[ "${python2}" == "1" ]]; then
+			die "${FUNCNAME}(): '-2' option and Python ABI cannot be specified simultaneously"
+		fi
+		if [[ "${python3}" == "1" ]]; then
+			die "${FUNCNAME}(): '-3' option and Python ABI cannot be specified simultaneously"
+		fi
 		slot="$1"
 	else
 		die "${FUNCNAME}(): Invalid usage"
 	fi
 
-	if [[ "${absolute_path}" == "1" ]]; then
+	if [[ "${only_ABI}" == "1" ]]; then
+		echo -n "${slot}"
+		return
+	elif [[ "${absolute_path}" == "1" ]]; then
 		echo -n "${EPREFIX}/usr/bin/python${slot}"
 	else
 		echo -n "python${slot}"
@@ -114,6 +172,40 @@ PYTHON() {
 	if [[ -n "${ABI}" && "${ABI}" != "${DEFAULT_ABI}" && "${DEFAULT_ABI}" != "default" ]]; then
 		echo -n "-${ABI}"
 	fi
+}
+
+# @FUNCTION: python_set_active_version
+# @USAGE: <Python_ABI|2|3>
+# @DESCRIPTION:
+# Set active version of Python.
+python_set_active_version() {
+	if [[ "$#" -ne "1" ]]; then
+		die "${FUNCNAME}() requires 1 argument"
+	fi
+
+	if [[ "$1" =~ ^[[:digit:]]+\.[[:digit:]]+$ ]]; then
+		if ! has_version "dev-lang/python:$1"; then
+			die "${FUNCNAME}(): 'dev-lang/python:$1' isn't installed"
+		fi
+		export EPYTHON="$(PYTHON "$1")"
+	elif [[ "$1" == "2" ]]; then
+		if ! has_version "=dev-lang/python-2*"; then
+			die "${FUNCNAME}(): '=dev-lang/python-2*' isn't installed"
+		fi
+		export EPYTHON="$(PYTHON -2)"
+	elif [[ "$1" == "3" ]]; then
+		if ! has_version "=dev-lang/python-3*"; then
+			die "${FUNCNAME}(): '=dev-lang/python-3*' isn't installed"
+		fi
+		export EPYTHON="$(PYTHON -3)"
+	else
+		die "${FUNCNAME}(): Unrecognized argument '$1'"
+	fi
+
+	# PYTHON_ABI variable is intended to be used only in ebuilds/eclasses,
+	# so it doesn't need to be exported to subprocesses.
+	PYTHON_ABI="${EPYTHON#python}"
+	PYTHON_ABI="${PYTHON_ABI%%-*}"
 }
 
 unset PYTHON_ABIS
@@ -136,8 +228,8 @@ validate_PYTHON_ABIS() {
 		die "'${EPREFIX}/usr/bin/python-config' isn't valid script"
 	fi
 
-	# USE_${ABI_TYPE^^} and RESTRICT_${ABI_TYPE^^}_ABIS variables hopefully will be included in EAPI >= 4.
-	if [[ "$(declare -p PYTHON_ABIS 2> /dev/null)" != "declare -x PYTHON_ABIS="* ]] && has "${EAPI:-0}" 0 1 2 3; then
+	# USE_${ABI_TYPE^^} and RESTRICT_${ABI_TYPE^^}_ABIS variables hopefully will be included in EAPI >= 5.
+	if [[ "$(declare -p PYTHON_ABIS 2> /dev/null)" != "declare -x PYTHON_ABIS="* ]] && has "${EAPI:-0}" 0 1 2 3 4; then
 		local PYTHON_ABI python2_supported_versions python3_supported_versions restricted_ABI support_ABI supported_PYTHON_ABIS=
 		PYTHON_ABI_SUPPORTED_VALUES="2.4 2.5 2.6 2.7 3.0 3.1 3.2"
 		python2_supported_versions="2.4 2.5 2.6 2.7"
@@ -169,9 +261,8 @@ validate_PYTHON_ABIS() {
 						break
 					fi
 				done
-				[[ "${support_ABI}" == "1" ]] && supported_PYTHON_ABIS+=" ${PYTHON_ABI}"
+				[[ "${support_ABI}" == "1" ]] && export PYTHON_ABIS+="${PYTHON_ABIS:+ }${PYTHON_ABI}"
 			done
-			export PYTHON_ABIS="${supported_PYTHON_ABIS# }"
 
 			if [[ -z "${PYTHON_ABIS//[${IFS}]/}" ]]; then
 				die "USE_PYTHON variable doesn't enable any version of Python supported by ${CATEGORY}/${PF}"
@@ -242,8 +333,13 @@ validate_PYTHON_ABIS() {
 				fi
 			fi
 
-			if ! has "${python_version}" "${python2_version}" "${python3_version}"; then
-				eerror "Python wrapper is configured incorrectly or /usr/bin/python2 or /usr/bin/python3 symlink"
+			if [[ -n "${python2_version}" && "${python_version}" == "2."* && "${python_version}" != "${python2_version}" ]]; then
+				eerror "Python wrapper is configured incorrectly or /usr/bin/python2 symlink"
+				eerror "is set incorrectly. Use \`eselect python\` to fix configuration."
+				die "Incorrect configuration of Python"
+			fi
+			if [[ -n "${python3_version}" && "${python_version}" == "3."* && "${python_version}" != "${python3_version}" ]]; then
+				eerror "Python wrapper is configured incorrectly or /usr/bin/python3 symlink"
 				eerror "is set incorrectly. Use \`eselect python\` to fix configuration."
 				die "Incorrect configuration of Python"
 			fi
@@ -257,7 +353,7 @@ validate_PYTHON_ABIS() {
 	if [[ "$(declare -p PYTHON_ABIS_SANITY_CHECKS 2> /dev/null)" != "declare -- PYTHON_ABIS_SANITY_CHECKS="* ]]; then
 		local PYTHON_ABI
 		for PYTHON_ABI in ${PYTHON_ABIS}; do
-			# Ensure that appropriate Python version is installed.
+			# Ensure that appropriate version of Python is installed.
 			if ! has_version "dev-lang/python:${PYTHON_ABI}"; then
 				die "dev-lang/python:${PYTHON_ABI} isn't installed"
 			fi
@@ -408,7 +504,7 @@ python_execute_function() {
 		fi
 
 		if [[ "${EBUILD_PHASE}" == "configure" ]]; then
-			if has "${EAPI}" 2; then
+			if has "${EAPI}" 2 3; then
 				python_default_function() {
 					econf
 				}
@@ -434,7 +530,7 @@ python_execute_function() {
 				emake DESTDIR="${D}" install
 			}
 		else
-			die "${FUNCNAME}(): --default-function option cannot be used in this ebuild phase"
+			die "${FUNCNAME}(): '--default-function' option cannot be used in this ebuild phase"
 		fi
 		function="python_default_function"
 	fi
@@ -492,7 +588,7 @@ python_execute_function() {
 		previous_directory_stack="$(dirs -p)"
 		previous_directory_stack_length="$(dirs -p | wc -l)"
 
-		if ! has "${EAPI}" 0 1 2 && has "${PYTHON_ABI}" ${FAILURE_TOLERANT_PYTHON_ABIS}; then
+		if ! has "${EAPI}" 0 1 2 3 && has "${PYTHON_ABI}" ${FAILURE_TOLERANT_PYTHON_ABIS}; then
 			EPYTHON="$(PYTHON)" nonfatal "${function}" "$@"
 		else
 			EPYTHON="$(PYTHON)" "${function}" "$@"
@@ -513,9 +609,9 @@ python_execute_function() {
 				if [[ "${EBUILD_PHASE}" != "test" ]] || ! has test-fail-continue ${FEATURES}; then
 					local enabled_PYTHON_ABIS= other_PYTHON_ABI
 					for other_PYTHON_ABI in ${PYTHON_ABIS}; do
-						[[ "${other_PYTHON_ABI}" != "${PYTHON_ABI}" ]] && enabled_PYTHON_ABIS+=" ${other_PYTHON_ABI}"
+						[[ "${other_PYTHON_ABI}" != "${PYTHON_ABI}" ]] && enabled_PYTHON_ABIS+="${enabled_PYTHON_ABIS:+ }${other_PYTHON_ABI}"
 					done
-					export PYTHON_ABIS="${enabled_PYTHON_ABIS# }"
+					export PYTHON_ABIS="${enabled_PYTHON_ABIS}"
 				fi
 				if [[ "${quiet}" == "0" ]]; then
 					ewarn "${RED}${failure_message}${NORMAL}"
@@ -625,12 +721,175 @@ python_convert_shebangs() {
 		[[ "${only_executables}" == "1" && ! -x "${file}" ]] && continue
 
 		if [[ "$(head -n1 "${file}")" =~ ^'#!'.*python ]]; then
-			[[ "${quiet}" == "0" ]] && einfo "Converting shebang in '${file}'"
+			if [[ "${quiet}" == "0" ]]; then
+				einfo "Converting shebang in '${file}'"
+			fi
 			sed -e "1s/python\([[:digit:]]\+\(\.[[:digit:]]\+\)\?\)\?/python${python_version}/" -i "${file}" || die "Conversion of shebang in '${file}' failed"
 
 			# Delete potential whitespace after "#!".
 			sed -e '1s/\(^#!\)[[:space:]]*/\1/' -i "${file}" || die "sed '${file}' failed"
 		fi
+	done
+}
+
+# @FUNCTION: python_generate_wrapper_scripts
+# @USAGE: [-E|--respect-EPYTHON] [-f|--force] [-q|--quiet] [--] <file> [files]
+# @DESCRIPTION:
+# Generate wrapper scripts. Existing files are overwritten only with --force option.
+# If --respect-EPYTHON option is specified, then generated wrapper scripts will
+# respect EPYTHON variable at run time.
+python_generate_wrapper_scripts() {
+	local eselect_python_option file force="0" quiet="0" PYTHON_ABI python2_enabled="0" python2_supported_versions python3_enabled="0" python3_supported_versions respect_EPYTHON="0"
+	python2_supported_versions="2.4 2.5 2.6 2.7"
+	python3_supported_versions="3.0 3.1 3.2"
+
+	while (($#)); do
+		case "$1" in
+			-E|--respect-EPYTHON)
+				respect_EPYTHON="1"
+				;;
+			-f|--force)
+				force="1"
+				;;
+			-q|--quiet)
+				quiet="1"
+				;;
+			--)
+				break
+				;;
+			-*)
+				die "${FUNCNAME}(): Unrecognized option '$1'"
+				;;
+			*)
+				break
+				;;
+		esac
+		shift
+	done
+
+	if [[ "$#" -eq 0 ]]; then
+		die "${FUNCNAME}(): Missing arguments"
+	fi
+
+	validate_PYTHON_ABIS
+	for PYTHON_ABI in ${python2_supported_versions}; do
+		if has "${PYTHON_ABI}" ${PYTHON_ABIS}; then
+			python2_enabled="1"
+		fi
+	done
+	for PYTHON_ABI in ${python3_supported_versions}; do
+		if has "${PYTHON_ABI}" ${PYTHON_ABIS}; then
+			python3_enabled="1"
+		fi
+	done
+
+	if [[ "${python2_enabled}" == "1" && "${python3_enabled}" == "1" ]]; then
+		eselect_python_option=
+	elif [[ "${python2_enabled}" == "1" && "${python3_enabled}" == "0" ]]; then
+		eselect_python_option="--python2"
+	elif [[ "${python2_enabled}" == "0" && "${python3_enabled}" == "1" ]]; then
+		eselect_python_option="--python3"
+	else
+		die "${FUNCNAME}(): Unsupported environment"
+	fi
+
+	for file in "$@"; do
+		if [[ -f "${file}" && "${force}" == "0" ]]; then
+			die "${FUNCNAME}(): '$1' already exists"
+		fi
+
+		if [[ "${quiet}" == "0" ]]; then
+			einfo "Generating '${file#${D%/}}' wrapper script"
+		fi
+
+		cat << EOF > "${file}"
+#!/usr/bin/env python
+# Gentoo '${file##*/}' wrapper script
+
+import os
+import re
+import subprocess
+import sys
+
+EPYTHON_re = re.compile(r"^python(\d+\.\d+)$")
+
+EOF
+		if [[ "$?" != "0" ]]; then
+			die "${FUNCNAME}(): Generation of '$1' failed"
+		fi
+		if [[ "${respect_EPYTHON}" == "1" ]]; then
+			cat << EOF >> "${file}"
+EPYTHON = os.environ.get("EPYTHON")
+if EPYTHON:
+	EPYTHON_matched = EPYTHON_re.match(EPYTHON)
+	if EPYTHON_matched:
+		PYTHON_ABI = EPYTHON_matched.group(1)
+	else:
+		sys.stderr.write("EPYTHON variable has unrecognized value '%s'\n" % EPYTHON)
+		sys.exit(1)
+else:
+	try:
+		eselect_process = subprocess.Popen(["/usr/bin/eselect", "python", "show"${eselect_python_option:+, $(echo "\"")}${eselect_python_option}${eselect_python_option:+$(echo "\"")}], stdout=subprocess.PIPE)
+		if eselect_process.wait() != 0:
+			raise ValueError
+	except (OSError, ValueError):
+		sys.stderr.write("Execution of 'eselect python show${eselect_python_option:+ }${eselect_python_option}' failed\n")
+		sys.exit(1)
+
+	eselect_output = eselect_process.stdout.read()
+	if not isinstance(eselect_output, str):
+		# Python 3
+		eselect_output = eselect_output.decode()
+
+	EPYTHON_matched = EPYTHON_re.match(eselect_output)
+	if EPYTHON_matched:
+		PYTHON_ABI = EPYTHON_matched.group(1)
+	else:
+		sys.stderr.write("'eselect python show${eselect_python_option:+ }${eselect_python_option}' printed unrecognized value '%s" % eselect_output)
+		sys.exit(1)
+EOF
+			if [[ "$?" != "0" ]]; then
+				die "${FUNCNAME}(): Generation of '$1' failed"
+			fi
+		else
+			cat << EOF >> "${file}"
+try:
+	eselect_process = subprocess.Popen(["/usr/bin/eselect", "python", "show"${eselect_python_option:+, $(echo "\"")}${eselect_python_option}${eselect_python_option:+$(echo "\"")}], stdout=subprocess.PIPE)
+	if eselect_process.wait() != 0:
+		raise ValueError
+except (OSError, ValueError):
+	sys.stderr.write("Execution of 'eselect python show${eselect_python_option:+ }${eselect_python_option}' failed\n")
+	sys.exit(1)
+
+eselect_output = eselect_process.stdout.read()
+if not isinstance(eselect_output, str):
+	# Python 3
+	eselect_output = eselect_output.decode()
+
+EPYTHON_matched = EPYTHON_re.match(eselect_output)
+if EPYTHON_matched:
+	PYTHON_ABI = EPYTHON_matched.group(1)
+else:
+	sys.stderr.write("'eselect python show${eselect_python_option:+ }${eselect_python_option}' printed unrecognized value '%s" % eselect_output)
+	sys.exit(1)
+EOF
+			if [[ "$?" != "0" ]]; then
+				die "${FUNCNAME}(): Generation of '$1' failed"
+			fi
+		fi
+		cat << EOF >> "${file}"
+
+target_executable = "%s-%s" % (sys.argv[0], PYTHON_ABI)
+if not os.path.exists(target_executable):
+	sys.stderr.write("'%s' does not exist\n" % target_executable)
+	sys.exit(1)
+
+os.execv(target_executable, sys.argv)
+EOF
+		if [[ "$?" != "0" ]]; then
+			die "${FUNCNAME}(): Generation of '$1' failed"
+		fi
+		fperms +x "${file#${D%/}}" || die "fperms '${file}' failed"
 	done
 }
 
@@ -839,9 +1098,8 @@ python_mod_compile() {
 	[[ ${EBUILD_PHASE} != postinst ]] &&\
 		die "${FUNCNAME} should only be run in pkg_postinst()"
 
-	# allow compiling for older python versions
-	if [[ "${PYTHON_OVERRIDE_PYVER}" ]]; then
-		PYVER=${PYTHON_OVERRIDE_PYVER}
+	if [[ -n "${PYTHON_ABI}" ]]; then
+		PYVER="${PYTHON_ABI}"
 	else
 		python_version
 	fi
@@ -1009,9 +1267,8 @@ python_mod_optimize() {
 			shift
 		done
 
-		# allow compiling for older python versions
-		if [ -n "${PYTHON_OVERRIDE_PYVER}" ]; then
-			PYVER=${PYTHON_OVERRIDE_PYVER}
+		if [[ -n "${PYTHON_ABI}" ]]; then
+			PYVER="${PYTHON_ABI}"
 		else
 			python_version
 		fi

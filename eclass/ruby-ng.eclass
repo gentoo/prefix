@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.6 2009/12/14 12:25:47 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.7 2009/12/25 18:01:34 flameeyes Exp $
 #
 # @ECLASS: ruby-ng.eclass
 # @MAINTAINER:
@@ -318,7 +318,8 @@ ruby-ng_src_prepare() {
 
 	_ruby_invoke_environment all _ruby_apply_patches
 
-	_ruby_each_implementation _ruby_source_copy
+	_PHASE="source copy" \
+		_ruby_each_implementation _ruby_source_copy
 
 	if type each_ruby_prepare &>/dev/null; then
 		_ruby_each_implementation each_ruby_prepare
