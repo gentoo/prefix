@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.9.ebuild,v 1.4 2009/11/21 18:20:51 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.9.ebuild,v 1.6 2009/12/26 16:49:53 armin76 Exp $
 
 inherit gnome2 eutils mono libtool
 
@@ -13,14 +13,16 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="doc mono"
 
 RDEPEND=">=dev-libs/glib-2.12
-	mono? ( dev-lang/mono
-			>=dev-dotnet/gtk-sharp-2.4.0 )
-	sys-libs/zlib"
+	sys-libs/zlib
+	mono? (
+		dev-lang/mono
+		>=dev-dotnet/gtk-sharp-2.4.0 )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? (
 		>=dev-util/gtk-doc-1.0
-		app-text/docbook-sgml-utils )"
+		app-text/docbook-sgml-utils )
+	mono? ( dev-dotnet/gtk-sharp-gapi )"
 
 DOCS="AUTHORS ChangeLog COPYING INSTALL NEWS PORTING README TODO doc/html/"
 
