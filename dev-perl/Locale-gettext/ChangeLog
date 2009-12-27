@@ -1,6 +1,10 @@
 # ChangeLog for dev-perl/Locale-gettext
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/ChangeLog,v 1.38 2009/11/08 19:37:22 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-perl/Locale-gettext/ChangeLog,v 1.39 2009/12/10 20:55:09 ranger Exp $
+
+  10 Dec 2009; Brent Baude <ranger@gentoo.org>
+  Locale-gettext-1.05-r1.ebuild:
+  Marking Locale-gettext-1.05-r1 ppc64 for bug 290340
 
   08 Nov 2009; nixnut <nixnut@gentoo.org> Locale-gettext-1.05-r1.ebuild:
   ppc stable #290340
