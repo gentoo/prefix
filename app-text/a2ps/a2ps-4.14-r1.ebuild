@@ -1,22 +1,20 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.14.ebuild,v 1.9 2009/12/26 17:26:35 pva Exp $
-
-WANT_AUTOCONF="latest"
-WANT_AUTOMAKE="latest"
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.14-r1.ebuild,v 1.2 2009/12/26 17:26:35 pva Exp $
 
 inherit eutils autotools elisp-common
 
-S=${WORKDIR}/${PN}-${PV:0:4}
 DESCRIPTION="Any to PostScript filter"
 HOMEPAGE="http://www.inf.enst.fr/~demaille/a2ps/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz
-	cjk? ( mirror://gentoo/${P}-ja_nls.patch.gz )"
+	linguas_ja? ( mirror://gentoo/${P}-ja_nls.patch.gz )"
 
 LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE="cjk emacs nls latex vanilla userland_BSD userland_GNU"
+IUSE="emacs nls latex vanilla userland_BSD userland_GNU linguas_ja"
+
+RESTRICT="test"
 
 DEPEND=">=dev-util/gperf-2.7.2
 	|| ( >=dev-util/yacc-1.9.1 sys-devel/bison )
@@ -34,7 +32,9 @@ RDEPEND="app-text/ghostscript-gpl
 	latex? ( virtual/latex-base )
 	nls? ( virtual/libintl )"
 
-SITEFILE=50${PN}-gentoo.el
+SITEFILE="50${PN}-gentoo.el"
+
+S="${WORKDIR}/${PN}-${PV:0:4}"
 
 src_unpack() {
 	unpack ${P}.tar.gz
@@ -44,13 +44,13 @@ src_unpack() {
 	# this will break
 	#epatch "${FILESDIR}/${PN}-4.13c-stdarg.patch"
 	use vanilla || epatch "${FILESDIR}/${PN}-4.13-stdout.diff"
-	use cjk && epatch "${DISTDIR}/${P}-ja_nls.patch.gz"
+	use linguas_ja && epatch "${DISTDIR}/${P}-ja_nls.patch.gz"
 
 	# fix fnmatch replacement, bug #134546
 	epatch "${FILESDIR}/${PN}-4.13c-fnmatch-replacement.patch"
 
-	# fix sandbox violation, bug #79012
-	sed -i -e 's:$acroread -helpall:acroread4 -helpall:' configure configure.in
+	# bug #122026
+	epatch "${FILESDIR}/${P}-psset.patch"
 
 	# fix emacs printing, bug #114627
 	epatch "${FILESDIR}/a2ps-4.13c-emacs.patch"
@@ -64,35 +64,36 @@ src_unpack() {
 	# fix compilation error due to invalid stpcpy() prototype, bug 216588
 	epatch "${FILESDIR}/${P}-fix-stpcpy-proto.patch"
 
-	AT_M4DIR="m4" eautoreconf || die "eautoreconf failed"
+	# fix compilation error due to obstack.h issue, bug 269638
+	epatch "${FILESDIR}/${P}-ptrdiff_t.patch"
+
+	eautoreconf
 }
 
 src_compile() {
-	#export YACC=yacc
-	export COM_netscape=no
-	use latex || COM_latex=no
-	econf --sysconfdir="${EPREFIX}"/etc/a2ps \
-		--includedir="${EPREFIX}"/usr/include \
-		$(useq emacs || echo EMACS=no) \
-		$(use_enable nls) || die "econf failed"
+	local myconf="COM_netscape=no COM_acroread=no"
 
-	export LANG=C
+	if ! use emacs ; then
+		myconf="${myconf} EMACS=no"
+	fi
 
-	# sometimes emake doesn't work
-	make || die "make failed"
+	if ! use latex ; then
+		myconf="${myconf} COM_latex=no"
+	fi
+
+	export LANG=C LC_ALL=C
+
+	econf \
+		--sysconfdir="${EPREFIX}"/etc/a2ps \
+		$(use_enable nls) \
+		${myconf} || die "econf failed"
+
+	# parallel make b0rked
+	emake -j1 || die "emake failed"
 }
 
 src_install() {
-	einstall \
-		sysconfdir="${ED}"/etc/a2ps \
-		includedir="${ED}"/usr/include \
-		lispdir="${ED}${SITELISP}/${PN}" \
-		|| die "einstall failed"
-
-	dosed /etc/a2ps/a2ps.cfg
-
-	# bug #122026
-	sed -i "s:^countdictstack: \0:" "${ED}"/usr/bin/psset || die "sed failed"
+	emake DESTDIR="${D}" install || die "emake install failed"
 
 	if use emacs; then
 		elisp-site-file-install "${FILESDIR}/${SITEFILE}" \

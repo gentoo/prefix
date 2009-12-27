@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.13c-r5.ebuild,v 1.22 2008/09/02 23:44:22 opfer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/a2ps/a2ps-4.13c-r5.ebuild,v 1.23 2009/12/26 17:26:35 pva Exp $
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
@@ -20,11 +20,11 @@ IUSE="nls latex cjk vanilla userland_BSD userland_GNU"
 
 DEPEND=">=dev-util/gperf-2.7.2
 	|| ( >=dev-util/yacc-1.9.1 sys-devel/bison )
-	virtual/ghostscript
+	app-text/ghostscript-gpl
 	>=app-text/psutils-1.17
 	latex? ( virtual/latex-base )
 	nls? ( sys-devel/gettext )"
-RDEPEND="virtual/ghostscript
+RDEPEND="app-text/ghostscript-gpl
 	userland_GNU? ( || ( >=sys-apps/coreutils-6.10-r1 sys-apps/mktemp ) )
 	userland_BSD? ( sys-freebsd/freebsd-ubin )
 	>=app-text/psutils-1.17
