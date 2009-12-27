@@ -1,6 +1,9 @@
 # ChangeLog for sci-mathematics/otter
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/otter/ChangeLog,v 1.10 2008/01/28 19:19:09 grobian Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/otter/ChangeLog,v 1.11 2009/12/24 14:27:10 flameeyes Exp $
+
+  24 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org> otter-3.3-r1.ebuild:
+  Use -j1 for build (bug #298208).
 
   28 Jan 2008; Fabian Groffen <grobian@gentoo.org> otter-3.3-r1.ebuild:
   Dropped ppc-macos keyword, see you in prefix
