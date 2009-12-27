@@ -1,6 +1,16 @@
 # ChangeLog for sys-apps/eject
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/eject/ChangeLog,v 1.73 2009/03/14 12:24:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/eject/ChangeLog,v 1.76 2009/12/16 20:21:29 jer Exp $
+
+  16 Dec 2009; Jeroen Roovers <jer@gentoo.org> eject-2.1.5-r2.ebuild:
+  Stable for HPPA (bug #296429).
+
+  15 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> eject-2.1.5-r1.ebuild,
+  eject-2.1.5-r2.ebuild:
+  amd64 stable wrt #296429. Remove geocities from HOMEPAGE wrt #297028.
+
+  14 Dec 2009; Brent Baude <ranger@gentoo.org> eject-2.1.5-r2.ebuild:
+  stable ppc64, bug 296429
 
 *eject-2.1.5-r2 (14 Mar 2009)
 
