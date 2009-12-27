@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.5-r2.ebuild,v 1.11 2007/10/06 14:14:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.8-r1.ebuild,v 1.1 2009/12/23 15:12:36 ssuominen Exp $
 
 inherit eutils autotools
 
@@ -22,26 +22,26 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-22.2-gcc2.patch
-	epatch "${FILESDIR}"/${P}-user-header.patch
-	epatch "${FILESDIR}"/${P}-sockets.patch
-	# this package doesnt actually need C++
-	sed -i '/AC_PROG_CXX/d' configure.ac || die
-	use nls || epatch "${FILESDIR}"/${P}-no-nls.patch #193920
+	epatch "${FILESDIR}"/${P}-fuser-r159.patch
+	use nls || epatch "${FILESDIR}"/${PN}-22.5-no-nls.patch #193920
 	eautoreconf
 }
 
 src_compile() {
+	# the nls looks weird, but it's because we actually delete the nls stuff
+	# above when USE=-nls.  this should get cleaned up so we dont have to patch
+	# it out, but until then, let's not confuse users ... #220787
 	econf \
+		--disable-dependency-tracking \
 		$(use_enable selinux) \
-		$(use_enable nls) \
 		$(use_enable ipv6) \
-		|| die
+		$(use nls && use_enable nls)
+
 	emake || die
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die
+	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog NEWS README
 	use X || rm "${ED}"/usr/bin/pstree.x11
 	# fuser is needed by init.d scripts
