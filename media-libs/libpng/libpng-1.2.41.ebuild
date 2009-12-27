@@ -1,12 +1,12 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.37.ebuild,v 1.9 2009/09/10 16:02:59 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.41.ebuild,v 1.1 2009/12/21 23:07:53 vapier Exp $
 
-inherit autotools multilib eutils
+inherit libtool
 
 DESCRIPTION="Portable Network Graphics library"
 HOMEPAGE="http://www.libpng.org/"
-SRC_URI="mirror://sourceforge/libpng/${P}.tar.lzma"
+SRC_URI="mirror://sourceforge/libpng/${P}.tar.bz2"
 
 LICENSE="as-is"
 SLOT="1.2"
@@ -14,18 +14,7 @@ KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-ma
 IUSE=""
 
 RDEPEND="sys-libs/zlib"
-DEPEND="${RDEPEND}
-	|| ( app-arch/xz-utils app-arch/lzma-utils )"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.2.25-interix.patch
-
-#	eautoreconf # required for winnt
-	# So we get sane .so versioning on FreeBSD
-	elibtoolize
-}
+DEPEND="${RDEPEND}"
 
 src_install() {
 	emake DESTDIR="${D}" install || die

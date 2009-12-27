@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.40.ebuild,v 1.1 2009/09/23 15:31:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.40.ebuild,v 1.6 2009/12/26 22:58:39 ranger Exp $
 
 inherit autotools multilib eutils
 
@@ -14,8 +14,7 @@ KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-ma
 IUSE=""
 
 RDEPEND="sys-libs/zlib"
-DEPEND="${RDEPEND}
-	|| ( app-arch/xz-utils app-arch/lzma-utils )"
+DEPEND="${RDEPEND}"
 
 src_unpack() {
 	unpack ${A}
