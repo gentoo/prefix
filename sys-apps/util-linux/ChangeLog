@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.290 2009/12/01 04:52:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.291 2009/12/07 11:09:20 ssuominen Exp $
+
+  07 Dec 2009; Samuli Suominen <ssuominen@gentoo.org>
+  util-linux-2.16.1.ebuild:
+  amd64 stable wrt #284744
 
   01 Dec 2009; Mike Frysinger <vapier@gentoo.org> util-linux-2.16.1.ebuild,
   util-linux-2.16.2.ebuild, util-linux-9999.ebuild:
