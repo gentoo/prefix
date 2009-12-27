@@ -1,33 +1,30 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/mpg321-0.2.10.6.ebuild,v 1.11 2009/12/15 12:02:08 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg321/mpg321-0.2.11.ebuild,v 1.1 2009/12/19 13:40:09 ssuominen Exp $
 
 EAPI=2
-inherit autotools
 
 DESCRIPTION="a realtime MPEG 1.0/2.0/2.5 audio player for layers 1, 2 and 3"
-HOMEPAGE="http://packages.debian.org/mpg321"
-SRC_URI="mirror://debian/pool/main/${PN:0:1}/${PN}/${PN}_${PV}.tar.gz"
+HOMEPAGE="http://mpg321.sourceforge.net/"
+SRC_URI="mirror://sourceforge/${PN}/${PN}_${PV}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="alsa"
+IUSE="alsa ipv6"
 
-RDEPEND="sys-libs/zlib
+DEPEND="sys-libs/zlib
 	media-libs/libmad
 	media-libs/libid3tag
 	media-libs/libao[alsa?]"
-DEPEND="${RDEPEND}"
 
-src_prepare() {
-	AT_M4DIR=m4 eautoreconf
-}
+S=${WORKDIR}/${PN}
 
 src_configure() {
 	econf \
 		--disable-dependency-tracking \
-		--disable-mpg123-symlink
+		--disable-mpg123-symlink \
+		$(use_enable ipv6)
 }
 
 src_install() {
