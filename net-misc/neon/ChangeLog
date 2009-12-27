@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/neon
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.145 2009/11/30 10:08:11 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/neon/ChangeLog,v 1.146 2009/12/19 20:31:21 arfrever Exp $
+
+*neon-0.29.1 (19 Dec 2009)
+
+  19 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +neon-0.29.1.ebuild:
+  Version bump.
 
   30 Nov 2009; Markus Meier <maekke@gentoo.org> neon-0.29.0.ebuild:
   arm stable, bug #289419
