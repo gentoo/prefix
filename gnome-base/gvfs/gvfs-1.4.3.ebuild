@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.4.1.ebuild,v 1.2 2009/10/30 00:35:57 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.4.3.ebuild,v 1.2 2009/12/27 05:14:18 nirbheek Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -97,4 +97,5 @@ pkg_postinst() {
 	use bash-completion && bash-completion_pkg_postinst
 
 	ewarn "In order to use the new gvfs services, please reload dbus configuration"
+	ewarn "You may need to log out and log back in for some changes to take effect"
 }
