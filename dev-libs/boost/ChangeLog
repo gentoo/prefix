@@ -1,6 +1,40 @@
 # ChangeLog for dev-libs/boost
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.177 2009/12/02 14:32:19 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.184 2009/12/21 10:13:40 djc Exp $
+
+*boost-1.41.0-r3 (21 Dec 2009)
+
+  21 Dec 2009; Dirkjan Ochtman <djc@gentoo.org> +boost-1.41.0-r3.ebuild,
+  +files/boost-1.41.0-spirit-fixed-include-guard-conflict.patch:
+  Add 1.41.0-r3 for bug 297500.
+
+*boost-1.41.0-r2 (17 Dec 2009)
+
+  17 Dec 2009; Dirkjan Ochtman <djc@gentoo.org> +boost-1.41.0-r2.ebuild,
+  +files/boost-1.41.0-fix-CRC-on-x64-during-gzip-decompression.patch:
+  Fix problems with gzip & iostreams on amd64, patch from upstream
+  (#297163).
+
+  11 Dec 2009; Dirkjan Ochtman <djc@gentoo.org> -boost-1.33.1-r1.ebuild,
+  -files/boost-1.33.1-gcc41_visit_each.patch,
+  -files/boost-alpha-threads.patch, metadata.xml:
+  Remove dev-libs/boost-1.33.1-r1 and related files (#271712).
+
+  11 Dec 2009; Dirkjan Ochtman <djc@gentoo.org> -boost-1.40.0.ebuild,
+  -files/remove-toolset-1.40.0.patch, -boost-1.41.0.ebuild:
+  Remove masked 1.40.0 and old 1.41.0 (superseded by -r1).
+
+  10 Dec 2009; Alexis Ballier <aballier@gentoo.org> boost-1.41.0-r1.ebuild:
+  keyword ~x86-fbsd
+
+  09 Dec 2009; Dirkjan Ochtman <djc@gentoo.org> boost-1.41.0-r1.ebuild:
+  Require threads use flag when depending on mpich2.
+
+*boost-1.41.0-r1 (08 Dec 2009)
+
+  08 Dec 2009; Dirkjan Ochtman <djc@gentoo.org> +boost-1.41.0-r1.ebuild,
+  +files/boost-1.41.0-iostreams-missing-include-guard.patch:
+  Bump 1.41.0 to r1 to fix bug with mapnik, also fix #241684.
 
 *boost-1.41.0 (02 Dec 2009)
 

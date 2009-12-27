@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.40.0.ebuild,v 1.7 2009/11/25 17:59:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.41.0-r3.ebuild,v 1.1 2009/12/21 10:13:40 djc Exp $
 
 EAPI="2"
 
@@ -19,7 +19,7 @@ KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solari
 
 RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	expat? ( dev-libs/expat )
-	mpi? ( || ( >=sys-cluster/openmpi-1.2.9[cxx] <sys-cluster/openmpi-1.2.9[-nocxx] ) )
+	mpi? ( || ( >=sys-cluster/openmpi-1.2.9[cxx] <sys-cluster/openmpi-1.2.9[-nocxx] sys-cluster/mpich2[cxx,threads] sys-cluster/lam-mpi ) )
 	sys-libs/zlib
 	python? ( virtual/python )
 	!!<=dev-libs/boost-1.35.0-r2
@@ -49,6 +49,17 @@ _add_line() {
 }
 
 pkg_setup() {
+	# It doesn't compile with USE="python mpi" and python-3 (bug 295705)
+	if use python && use mpi ; then
+		python_version
+		if [[ "${PYVER_MAJOR}" != "2" ]]; then
+			eerror "The Boost.MPI python bindings do not support any other python version"
+			eerror "than 2.x. Please either use eselect to select a python 2.x version or"
+			eerror "disable the python and/or mpi use flag for =${CATEGORY}/${PF}."
+			die "unsupported python version"
+		fi
+	fi
+
 	if use test ; then
 		CHECKREQS_DISK_BUILD="1024"
 		check_reqs
@@ -80,12 +91,29 @@ src_prepare() {
 	# right now, so ...
 	if [[ ${CHOST} == *-winnt* ]]; then
 		epatch "${FILESDIR}"/${PN}-1.35.0-winnt.patch
-		epatch "${FILESDIR}"/${P}-winnt.patch
+		epatch "${FILESDIR}"/${PN}-1.40.0-winnt.patch
 	fi
 
 	epatch "${FILESDIR}"/${PN}-1.37.0-darwin-long-double.patch
 
 	epatch "${FILESDIR}/remove-toolset-${PV}.patch"
+
+	 # bug 291660
+	epatch "${FILESDIR}/boost-${PV}-parameter-needs-python.patch"
+
+	# http://thread.gmane.org/gmane.comp.lib.boost.devel/196471
+	epatch "${FILESDIR}/boost-${PV}-mpi_process_group-missing-include.patch"
+
+	# https://svn.boost.org/trac/boost/ticket/3010
+	epatch "${FILESDIR}/boost-${PV}-iostreams-missing-include-guard.patch"
+
+	# bug 297163
+	# https://svn.boost.org/trac/boost/ticket/3352
+	epatch "${FILESDIR}/boost-${PV}-fix-CRC-on-x64-during-gzip-decompression.patch"
+
+	# bug 297500
+	# https://svn.boost.org/trac/boost/ticket/3724
+	epatch "${FILESDIR}/boost-${PV}-spirit-fixed-include-guard-conflict.patch"
 
 	# This enables building the boost.random library with /dev/urandom support
 	if [[ -e /dev/urandom ]] ; then
@@ -123,8 +151,8 @@ src_configure() {
 		compilerExecutable=$(tc-getCXX)
 	fi
 
-	# Huge number of strict-aliasing warnings cause a build failure w/ >= GCC 4.4 bug #252287
-	[[ $(gcc-version) > 4.3 ]] && append-flags -Wno-strict-aliasing
+	# Using -fno-strict-aliasing to prevent possible creation of invalid code.
+	append-flags -fno-strict-aliasing
 
 	use mpi && mpi="using mpi ;"
 
@@ -161,7 +189,8 @@ __EOF__
 	use mpi || OPTIONS="${OPTIONS} --without-mpi"
 	use python || OPTIONS="${OPTIONS} --without-python"
 
-	if use sparc || use mips || use hppa ; then
+	# https://svn.boost.org/trac/boost/attachment/ticket/2597/add-disable-long-double.patch
+	if use sparc || use mips || use hppa || use arm || use x86-fbsd; then
 		OPTIONS="${OPTIONS} --disable-long-double"
 	fi
 
@@ -174,11 +203,12 @@ __EOF__
 }
 
 src_compile() {
-
-	NUMJOBS=$(sed -e 's/.*\(\-j[ 0-9]\+\) .*/\1/; s/--jobs=\?/-j/' <<< ${MAKEOPTS})
-
-	einfo "Using the following options to build: "
-	einfo "  ${OPTIONS}"
+	jobs=$( echo " ${MAKEOPTS} " | \
+		sed -e 's/ --jobs[= ]/ -j /g' \
+			-e 's/ -j \([1-9][0-9]*\)/ -j\1/g' \
+			-e 's/ -j\>/ -j1/g' | \
+			( while read -d ' ' j ; do if [[ "${j#-j}" = "$j" ]]; then continue; fi; jobs="${j#-j}"; done; echo ${jobs} ) )
+	if [[ "${jobs}" != "" ]]; then NUMJOBS="-j"${jobs}; fi;
 
 	export BOOST_ROOT="${S}"
 
@@ -188,7 +218,10 @@ src_compile() {
 		mythreading="multi"
 	fi
 
-	${BJAM} ${NUMJOBS} -q \
+	einfo "Using the following command to build: "
+	einfo "${BJAM} ${NUMJOBS} -q -d+2 gentoorelease ${OPTIONS} threading=${mythreading} link=shared,static runtime-link=shared"
+
+	${BJAM} ${NUMJOBS} -q -d+2 \
 		gentoorelease \
 		${OPTIONS} \
 		threading=${mythreading} link=shared,static runtime-link=shared \
@@ -196,17 +229,23 @@ src_compile() {
 
 	# ... and do the whole thing one more time to get the debug libs
 	if use debug ; then
-		${BJAM} ${NUMJOBS} -q \
+		einfo "Using the following command to build: "
+		einfo "${BJAM} ${NUMJOBS} -q -d+2 gentoodebug ${OPTIONS} threading=${mythreading} link=shared,static runtime-link=shared --buildid=debug"
+
+		${BJAM} ${NUMJOBS} -q -d+2 \
 			gentoodebug \
 			${OPTIONS} \
-			threading=single,multi link=shared,static runtime-link=shared \
+			threading=${mythreading} link=shared,static runtime-link=shared \
 			--buildid=debug \
 			|| die "building boost failed"
 	fi
 
 	if use tools; then
 		cd "${S}/tools/"
-		${BJAM} ${NUMJOBS} -q \
+		einfo "Using the following command to build the tools: "
+		einfo "${BJAM} ${NUMJOBS} -q -d+2 gentoorelease ${OPTIONS}"
+
+		${BJAM} ${NUMJOBS} -q -d+2\
 			gentoorelease \
 			${OPTIONS} \
 			|| die "building tools failed"
@@ -215,9 +254,6 @@ src_compile() {
 }
 
 src_install () {
-	einfo "Using the following options to install: "
-	einfo "  ${OPTIONS}"
-
 	export BOOST_ROOT="${S}"
 
 	local mythreading="single,multi"
@@ -226,7 +262,10 @@ src_install () {
 		mythreading="multi"
 	fi
 
-	${BJAM} -q \
+	einfo "Using the following command to install: "
+	einfo "${BJAM} -q -d+2 gentoorelease ${OPTIONS} threading=${mythreading} link=shared,static runtime-link=shared --includedir=\"${ED}/usr/include\" --libdir=\"${ED}/usr/$(get_libdir)\" install"
+
+	${BJAM} -q -d+2 \
 		gentoorelease \
 		${OPTIONS} \
 		threading=${mythreading} link=shared,static runtime-link=shared \
@@ -235,10 +274,13 @@ src_install () {
 		install || die "install failed for options '${OPTIONS}'"
 
 	if use debug ; then
-		${BJAM} -q \
+		einfo "Using the following command to install: "
+		einfo "${BJAM} -q -d+2 gentoodebug ${OPTIONS} threading=${mythreading} link=shared,static runtime-link=shared --includedir=\"${ED}/usr/include\" --libdir=\"${ED}/usr/$(get_libdir)\" --buildid=debug"
+
+		${BJAM} -q -d+2 \
 			gentoodebug \
 			${OPTIONS} \
-			threading=single,multi link=shared,static runtime-link=shared \
+			threading=${mythreading} link=shared,static runtime-link=shared \
 			--includedir="${ED}/usr/include" \
 			--libdir="${ED}/usr/$(get_libdir)" \
 			--buildid=debug \
@@ -275,7 +317,7 @@ src_install () {
 		insinto /usr/share/doc/${PF}/html
 		doins LICENSE_1_0.txt
 
-		dosym /usr/include/boost /usr/share/doc/${PF}/html/boost
+		dosym /usr/include/boost-${MAJOR_PV}/boost /usr/share/doc/${PF}/html/boost
 	fi
 
 	cd "${ED}/usr/$(get_libdir)"
@@ -428,7 +470,10 @@ src_test() {
 	export BOOST_ROOT=${S}
 
 	cd "${S}/tools/regression/build"
-	${BJAM} -q \
+	einfo "Using the following command to build test helpers: "
+	einfo "${BJAM} -q -d+2 gentoorelease ${OPTIONS} process_jam_log compiler_status"
+
+	${BJAM} -q -d+2 \
 		gentoorelease \
 		${OPTIONS} \
 		process_jam_log compiler_status \
@@ -443,6 +488,9 @@ src_test() {
 	# but adapted to our needs.
 
 	# Run the tests & write them into a file for postprocessing
+	einfo "Using the following command to test: "
+	einfo "${BJAM} ${OPTIONS} --dump-tests"
+
 	${BJAM} \
 		${OPTIONS} \
 		--dump-tests 2>&1 | tee regress.log

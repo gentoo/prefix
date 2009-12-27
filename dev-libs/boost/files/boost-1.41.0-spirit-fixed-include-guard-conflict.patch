@@ -1,0 +1,13 @@
+Index: trunk/boost/spirit/include/version.hpp
+===================================================================
+--- a/trunk/boost/spirit/include/version.hpp
++++ b/trunk/boost/spirit/include/version.hpp
+@@ -7,6 +7,6 @@
+   file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+ =============================================================================*/
+-#if !defined(SPIRIT_VERSION_NOVEMBER_13_2008_0834AM)
+-#define SPIRIT_VERSION_NOVEMBER_13_2008_0834AM
++#if !defined(SPIRIT_VERSION)
++#define SPIRIT_VERSION
+ 
+ ///////////////////////////////////////////////////////////////////////////////
