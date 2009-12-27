@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libusb
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.98 2009/11/16 02:03:28 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libusb/ChangeLog,v 1.99 2009/12/26 01:22:46 robbat2 Exp $
+
+*libusb-1.0.6 (26 Dec 2009)
+
+  26 Dec 2009; Robin H. Johnson <robbat2@gentoo.org> +libusb-1.0.6.ebuild:
+  Bug #296408 version bump.
 
 *libusb-1.0.5 (16 Nov 2009)
 
