@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/gnome-desktop
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.264 2009/12/03 17:05:55 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-desktop/ChangeLog,v 1.265 2009/12/17 22:32:43 eva Exp $
+
+*gnome-desktop-2.28.2 (17 Dec 2009)
+
+  17 Dec 2009; Gilles Dartiguelongue <eva@gentoo.org>
+  +gnome-desktop-2.28.2.ebuild:
+  Version bump. GnomeRR, allow rotation if virtualsize is correct.
 
   03 Dec 2009; Brent Baude <ranger@gentoo.org> gnome-desktop-2.26.3.ebuild:
   Marking gnome-desktop-2.26.3 ppc64 stable for bug 281427
