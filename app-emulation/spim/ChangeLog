@@ -1,6 +1,13 @@
 # ChangeLog for app-emulation/spim
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/ChangeLog,v 1.48 2009/09/12 03:50:48 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/spim/ChangeLog,v 1.49 2009/12/22 19:53:09 spatz Exp $
+
+*spim-7.5 (22 Dec 2009)
+
+  22 Dec 2009; Dror Levin <spatz@gentoo.org> +spim-7.5.ebuild,
+  +files/spim-7.5-respect_env.patch:
+  Version bump and ebuild overhaul. Respect CC, CFLAGS and LDFLAGS. Fix bugs
+  240005, 243588, 246447.
 
   12 Sep 2009; Víctor Ostorga <vostorga@gentoo.org>
   -files/spim-7.2.1-font.patch:
