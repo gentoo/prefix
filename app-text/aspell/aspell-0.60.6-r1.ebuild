@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/aspell-0.60.6-r1.ebuild,v 1.1 2009/03/03 09:04:23 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/aspell-0.60.6-r1.ebuild,v 1.3 2009/12/26 20:36:02 pva Exp $
 
 # N.B. This is before inherit of autotools, as autotools.eclass adds the
 # relevant dependencies to DEPEND.
@@ -27,6 +27,8 @@ for l in \
 	"hr" "is" "it" "nl" "no" "pl" "pt" "ro" \
 	"ru" "sk" "sl" "sr" "sv" "uk" "vi"; do
 	dep="linguas_${l}? ( app-dicts/aspell-${l} )"
+	[[ ${l} = "de" ]] &&
+		dep="linguas_de? ( || ( app-dicts/aspell-de app-dicts/aspell-de-alt ) )"
 	[[ -z ${PDEPEND} ]] &&
 		PDEPEND="${dep}" ||
 		PDEPEND="${PDEPEND}
@@ -99,14 +101,10 @@ src_install() {
 }
 
 pkg_postinst() {
-	elog "You will need to install a dictionary now.  Please choose an"
-	elog "aspell-<LANG> dictionary from the app-dicts category"
+	elog "In case LINGUAS was not set correctly you may need to install"
+	elog "dictionaries now. Please choose an aspell-<LANG> dictionary or"
+	elog "set LINGUAS correctly and let aspell pull in required packages."
 	elog "After installing an aspell dictionary for your language(s),"
 	elog "You may use the aspell-import utility to import your personal"
 	elog "dictionaries from ispell, pspell and the older aspell"
-
-	ewarn ""
-	ewarn "Please re-install ALL your aspell-LANG dictionaries"
-	ewarn ""
-	ebeep 5
 }

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/aspell-0.60.6.ebuild,v 1.11 2009/03/18 07:35:09 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/aspell-0.60.6.ebuild,v 1.12 2009/12/26 20:36:02 pva Exp $
 
 # N.B. This is before inherit of autotools, as autotools.eclass adds the
 # relevant dependencies to DEPEND.
@@ -101,9 +101,4 @@ pkg_postinst() {
 	elog "After installing an aspell dictionary for your language(s),"
 	elog "You may use the aspell-import utility to import your personal"
 	elog "dictionaries from ispell, pspell and the older aspell"
-
-	ewarn ""
-	ewarn "Please re-install ALL your aspell-LANG dictionaries"
-	ewarn ""
-	ebeep 5
 }
