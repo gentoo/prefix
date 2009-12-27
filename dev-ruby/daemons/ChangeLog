@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/daemons
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.38 2009/08/23 20:27:08 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/daemons/ChangeLog,v 1.39 2009/12/09 17:38:37 ranger Exp $
+
+  09 Dec 2009; Brent Baude <ranger@gentoo.org> daemons-1.0.10.ebuild:
+  Marking daemons-1.0.10 ppc64 for bug 240375
 
   23 Aug 2009; Alex Legler <a3li@gentoo.org> +daemons-0.4.2.ebuild:
   Readding 0.4.2 to staisfy a dependency ba dev-ruby/nitro
