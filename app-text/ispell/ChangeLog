@@ -1,6 +1,9 @@
 # ChangeLog for app-text/ispell
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ChangeLog,v 1.42 2009/11/21 17:28:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ChangeLog,v 1.43 2009/12/26 16:27:35 armin76 Exp $
+
+  26 Dec 2009; Raúl Porcel <armin76@gentoo.org> ispell-3.3.02-r1.ebuild:
+  sparc stable wrt #289337
 
   21 Nov 2009; Markus Meier <maekke@gentoo.org> ispell-3.3.02-r1.ebuild:
   x86 stable, bug #289337

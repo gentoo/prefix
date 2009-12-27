@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ispell-3.3.02-r1.ebuild,v 1.7 2009/11/21 17:28:39 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ispell/ispell-3.3.02-r1.ebuild,v 1.8 2009/12/26 16:27:35 armin76 Exp $
 
 inherit eutils multilib toolchain-funcs
 
