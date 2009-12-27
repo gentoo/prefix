@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.28.1.ebuild,v 1.2 2009/12/13 23:06:29 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/file-roller/file-roller-2.28.2.ebuild,v 1.1 2009/12/17 23:17:14 eva Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
