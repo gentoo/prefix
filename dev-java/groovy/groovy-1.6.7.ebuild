@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/groovy-1.6.3.ebuild,v 1.2 2009/08/07 07:23:29 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/groovy-1.6.7.ebuild,v 1.1 2009/12/08 02:10:15 elvanor Exp $
 
 # Groovy's build system is Ant based, but they use Maven for fetching the dependencies.
 # We just have to remove the fetch dependencies target, and then we can use Ant for this ebuild.
@@ -71,8 +71,6 @@ S="${WORKDIR}/${MY_P}"
 JAVA_PKG_BSFIX=""
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}-build.patch"
-
 	rm -rf bootstrap
 	# security directory is needed for tests, but they currently don't pass
 	#rm -rf security
@@ -91,7 +89,7 @@ src_compile() {
 	eant -DskipTests="true" -DruntimeLibDirectory="target/lib/compile" \
 		-DtoolsLibDirectory="target/lib/compile" -DskipFetch="true" -DskipEmbeddable="true"
 
-	use doc && ANT_OPTS="-Duser.home=${T}" eant -Dno.grammars -DruntimeLibDirectory="target/lib/compile" \
+	use doc && ANT_OPTS="-Duser.home=${T}" eant -Dno.grammars="true" -DruntimeLibDirectory="target/lib/compile" \
 	 -DtoolsLibDirectory="target/lib/compile" -DtestLibDirectory="target/lib/compile" -DskipFetch="true" doc
 }
 
