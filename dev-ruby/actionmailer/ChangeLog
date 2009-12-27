@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/actionmailer
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.127 2009/11/30 18:36:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionmailer/ChangeLog,v 1.129 2009/12/20 09:55:35 a3li Exp $
+
+  20 Dec 2009; Alex Legler <a3li@gentoo.org> -actionmailer-2.3.4.ebuild:
+  Removing vulnerable version
+
+  19 Dec 2009; Jeroen Roovers <jer@gentoo.org> actionmailer-2.3.5.ebuild:
+  Stable for PPC (bug #294797).
 
   30 Nov 2009; Raúl Porcel <armin76@gentoo.org> actionmailer-2.3.5.ebuild:
   ia64/sparc stable wrt #294797
