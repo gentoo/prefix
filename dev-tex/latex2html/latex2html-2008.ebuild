@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/latex2html-2008.ebuild,v 1.8 2009/08/05 06:56:09 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/latex2html-2008.ebuild,v 1.9 2009/12/26 17:35:53 pva Exp $
 
 inherit eutils multilib
 
@@ -13,7 +13,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="gif png"
 
-DEPEND="virtual/ghostscript
+DEPEND="app-text/ghostscript-gpl
 	virtual/latex-base
 	media-libs/netpbm
 	dev-lang/perl
