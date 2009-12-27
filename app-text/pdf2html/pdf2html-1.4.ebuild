@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/pdf2html/pdf2html-1.4.ebuild,v 1.17 2008/05/12 15:57:26 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/pdf2html/pdf2html-1.4.ebuild,v 1.18 2009/12/26 19:27:30 pva Exp $
 
 inherit eutils toolchain-funcs
 
@@ -15,7 +15,7 @@ SLOT="0"
 
 DEPEND=">=media-libs/libpng-1.2.5"
 RDEPEND="${DEPEND}
-	virtual/ghostscript
+	app-text/ghostscript-gpl
 	>=sys-libs/zlib-1.1.4
 	>=media-gfx/imagemagick-5.4.9"
 

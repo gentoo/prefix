@@ -1,6 +1,10 @@
 # ChangeLog for app-text/pdf2html
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/pdf2html/ChangeLog,v 1.17 2008/05/12 15:57:26 aballier Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/pdf2html/ChangeLog,v 1.18 2009/12/26 19:27:30 pva Exp $
+
+  26 Dec 2009; Peter Volkov <pva@gentoo.org> pdf2html-1.4.ebuild:
+  virtual/ghostscript->app-text/ghostscript-gpl: ghostscript-gpl is the only
+  implementation left in the tree.
 
   12 May 2008; Alexis Ballier <aballier@gentoo.org> pdf2html-1.4.ebuild:
   improve deps, dont prestrip files (bug #152263), honour ldflags and
