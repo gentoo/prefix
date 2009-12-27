@@ -1,6 +1,21 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.229 2009/11/17 19:53:00 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.234 2009/12/22 10:06:06 maekke Exp $
+
+  22 Dec 2009; Markus Meier <maekke@gentoo.org> gnutls-2.8.5.ebuild:
+  arm/x86 stable, bug #296045
+
+  20 Dec 2009; Markos Chandras <hwoarang@gentoo.org> gnutls-2.8.5.ebuild:
+  Stable for amd64 wrt bug #296045
+
+  09 Dec 2009; nixnut <nixnut@gentoo.org> gnutls-2.8.5.ebuild:
+  ppc stable #296045
+
+  08 Dec 2009; Brent Baude <ranger@gentoo.org> gnutls-2.8.5.ebuild:
+  Marking gnutls-2.8.5 ppc64 for bug 296045
+
+  07 Dec 2009; Jeroen Roovers <jer@gentoo.org> gnutls-2.8.5.ebuild:
+  Stable for HPPA (bug #296045).
 
   17 Nov 2009; Brent Baude <ranger@gentoo.org> gnutls-2.8.4.ebuild:
   Marking gnutls-2.8.4 ppc64 for bug 289625
