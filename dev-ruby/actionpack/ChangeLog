@@ -1,6 +1,14 @@
 # ChangeLog for dev-ruby/actionpack
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.136 2009/11/30 18:25:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/actionpack/ChangeLog,v 1.138 2009/12/20 11:17:40 a3li Exp $
+
+  20 Dec 2009; Alex Legler <a3li@gentoo.org> -actionpack-2.2.3.ebuild,
+  -actionpack-2.3.4.ebuild:
+  Removing vulnerable version
+
+  19 Dec 2009; Jeroen Roovers <jer@gentoo.org> actionpack-2.2.3-r1.ebuild,
+  actionpack-2.3.5.ebuild:
+  Stable for PPC (bug #294797).
 
   30 Nov 2009; Raúl Porcel <armin76@gentoo.org> actionpack-2.2.3-r1.ebuild,
   actionpack-2.3.5.ebuild:
