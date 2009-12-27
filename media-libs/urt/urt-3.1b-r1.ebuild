@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/urt-3.1b-r1.ebuild,v 1.28 2008/05/23 16:36:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/urt/urt-3.1b-r1.ebuild,v 1.29 2009/12/26 17:40:18 pva Exp $
 
 inherit eutils toolchain-funcs
 
@@ -18,7 +18,7 @@ DEPEND="X? ( x11-libs/libXext
 		)
 	gif? ( media-libs/giflib )
 	tiff? ( media-libs/tiff )
-	gs? ( virtual/ghostscript )"
+	gs? ( app-text/ghostscript-gpl )"
 
 S=${WORKDIR}
 
