@@ -1,0 +1,67 @@
+# ChangeLog for dev-ruby/json
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/json/ChangeLog,v 1.14 2009/12/26 21:32:58 flameeyes Exp $
+
+  26 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  json-1.2.0-r1.ebuild:
+  Fix bug #298466 by keytoaster.
+
+  25 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  json-1.2.0-r1.ebuild:
+  Add support for JRuby (json_pure); make sure to test the new build rather
+  than the old one; avoid building the extensions twice.
+
+  25 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  json-1.2.0-r1.ebuild:
+  json works fine with Ruby 1.9 as well.
+
+  23 Dec 2009; Jeroen Roovers <jer@gentoo.org> json-1.2.0-r1.ebuild:
+  Marked ~hppa (bug #297622).
+
+  21 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  json-1.2.0-r1.ebuild:
+  Fix building when tests are not executed.
+
+*json-1.2.0-r1 (20 Dec 2009)
+
+  20 Dec 2009; Hans de Graaff <graaff@gentoo.org> +json-1.2.0-r1.ebuild:
+  Bump to use ruby-fakegem eclass since this is required by new rubyforge
+  packages.
+
+  09 Dec 2009; Hans de Graaff <graaff@gentoo.org> -json-1.1.7.ebuild,
+  -json-1.1.9.ebuild:
+  Remove old versions.
+
+*json-1.2.0 (04 Dec 2009)
+
+  04 Dec 2009; Hans de Graaff <graaff@gentoo.org> +json-1.2.0.ebuild:
+  Version bump with character encoding improvements.
+
+*json-1.1.9 (01 Sep 2009)
+
+  01 Sep 2009; Alex Legler <a3li@gentoo.org> +json-1.1.9.ebuild:
+  Version bump, fixing LICENSE
+
+  23 Aug 2009; Hans de Graaff <graaff@gentoo.org> -json-1.1.3.ebuild,
+  -json-1.1.6.ebuild:
+  Remove old versions.
+
+*json-1.1.7 (04 Jul 2009)
+
+  04 Jul 2009; Hans de Graaff <graaff@gentoo.org> +json-1.1.7.ebuild:
+  Version bump with a security fix.
+
+*json-1.1.6 (29 May 2009)
+
+  29 May 2009; Hans de Graaff <graaff@gentoo.org> +json-1.1.6.ebuild:
+  Version bump.
+
+  20 Mar 2009; Joseph Jezak <josejx@gentoo.org> json-1.1.3.ebuild:
+  Marked ~ppc for bug #252907.
+
+*json-1.1.3 (28 Dec 2008)
+
+  28 Dec 2008; Hans de Graaff <graaff@gentoo.org> +metadata.xml,
+  +json-1.1.3.ebuild:
+  Initial import from my personal overlay. Dependency for httparty.
+
