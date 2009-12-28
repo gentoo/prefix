@@ -36,8 +36,8 @@ src_prepare() {
 		rm -f test/like.test
 	fi
 
-	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
-	epatch "${FILESDIR}"/${PN}-3.6.11-interix.patch
+# fails to apply	epatch "${FILESDIR}"/${PN}-3.6.2-interix.patch
+# fails to apply	epatch "${FILESDIR}"/${PN}-3.6.11-interix.patch
 
 	epunt_cxx
 }
