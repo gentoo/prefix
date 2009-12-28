@@ -41,7 +41,7 @@ src_unpack() {
 	sed -i '/if test/s:==:=:' configure #261016
 	find . -type f -print0 | xargs -0 touch -r configure
 
-	epatch "${FILESDIR}"/${P}-interix.patch
+# fails to apply	epatch "${FILESDIR}"/${PN}-2.4.1_p5-interix.patch
 }
 
 src_install() {
