@@ -1,0 +1,17 @@
+Index: echoe-4.0/lib/echoe.rb
+===================================================================
+--- echoe-4.0.orig/lib/echoe.rb
++++ echoe-4.0/lib/echoe.rb
+@@ -21,7 +21,11 @@ require "#{$HERE}/echoe/extensions"
+ require 'rubygems'
+ require 'rubygems/specification'
+ require "#{$HERE}/echoe/rubygems"
+-require 'rubygems_plugin'
++begin
++  gem 'gemcutter'
++  require 'rubygems_plugin'
++rescue Gem::LoadError
++end
+ 
+ require 'highline/import'
+ 
