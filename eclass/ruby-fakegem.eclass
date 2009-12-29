@@ -168,7 +168,7 @@ EOF
 ruby_fakegem_binwrapper() {
 	(
 		local gembinary=$1
-		local newbinary=${2:-${EPREFIX}/usr/bin/$gembinary}
+		local newbinary=${2:-/usr/bin/$gembinary}
 		local relativegembinary=${RUBY_FAKEGEM_NAME}-${RUBY_FAKEGEM_VERSION}/bin/${gembinary}
 
 		cat - > "${T}"/gembin-wrapper-${gembinary} <<EOF
