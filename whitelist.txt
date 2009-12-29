@@ -90,6 +90,7 @@ net-analyzer/linkchecker
 net-libs/libsoup-gnome
 net-mail/getmail
 net-misc/mico
+sys-apps/acl
 sys-devel/binutils-apple
 sys-devel/gcc-apple
 sys-devel/gdb-apple
