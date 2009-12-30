@@ -20,7 +20,7 @@ RDEPEND=">=dev-libs/glib-2.21.2
 	>=net-libs/libsoup-2.25.1[gnome]
 	dev-libs/libxml2
 	net-misc/openssh
-	>=sys-fs/udev-138
+	!prefix? ( >=sys-fs/udev-138 )
 	archive? ( app-arch/libarchive )
 	avahi? ( >=net-dns/avahi-0.6 )
 	bluetooth? (
@@ -42,6 +42,7 @@ RDEPEND=">=dev-libs/glib-2.21.2
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40
 	>=dev-util/pkgconfig-0.19
+	dev-util/gtk-doc-am
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 DOCS="AUTHORS ChangeLog NEWS README TODO"
@@ -50,13 +51,20 @@ pkg_setup() {
 	# CFLAGS needed for Solaris. Took it from here:
 	# https://svn.sourceforge.net/svnroot/pkgbuild/spec-files-extra/trunk/SFEgnome-gvfs.spec
 	[[ ${CHOST} == *-solaris* ]] && append-flags "-D_XPG4_2 -D__EXTENSIONS__"
+	
 	if use cdda && ! use hal && ! use udev; then
 		ewarn "You have \"+cdda\", but you have \"-hal\" and \"-udev\""
 		ewarn "cdda support will NOT be built unless you enable EITHER hal OR udev"
 	fi
 
+	# --enable-udev does not work on Gentoo Prefix platforms. bug 293480
+	if use prefix; then
+		G2CONF="${G2CONF} --disable-udev"
+	else
+		G2CONF="${G2CONF} --enable-udev"
+	fi
+
 	G2CONF="${G2CONF}
-		--enable-udev
 		--enable-http
 		--disable-bash-completion
 		$(use_enable archive)
