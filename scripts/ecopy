@@ -65,7 +65,7 @@ return_greatest_wrapper() {
 	echo "$( return_greatest "$( \
 	wget -q "${RSURL}/${catpkg}" -O - | \
 	egrep "href=\"[^\"]+\.ebuild\"" -o | \
-	sed -e 's/^href="//' -e 's/"$//' )" )"
+	sed -e 's/^href="//' -e 's/"$//' -e 's/%2b/+/g' )" )"
 }
 
 # Mangle user input
@@ -129,8 +129,8 @@ done
 
 # Set explicit PATHs for scripts in the prefix tree so they don't need to be
 # copied to your PATH. IOW, you always want eapify & ecleankw to be ran.
-"${EPREFIX}/usr/portage/scripts/eapify" ${ebuild}
-"${EPREFIX}/usr/portage/scripts/ecleankw" ${ebuild}
+"$(portageq envvar PORTDIR)"/scripts/eapify ${ebuild}
+"$(portageq envvar PORTDIR)"/scripts/ecleankw ${ebuild}
 source "${EPREFIX}/etc/make.profile/make.defaults"
 
 # Force the user's keyword on the ebuild. Less work for the user.
