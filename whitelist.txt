@@ -96,6 +96,7 @@ sys-devel/gcc-apple
 sys-devel/gdb-apple
 sys-process/iotop
 sys-process/unixtop
+x11-apps/mesa-progs
 x11-libs/cairo
 x11-libs/gtk+
 x11-libs/qt
