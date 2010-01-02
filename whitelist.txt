@@ -69,6 +69,8 @@ dev-db/tokyocabinet
 dev-java/hp-jdk-bin
 dev-libs/libebml
 dev-libs/log4cxx
+dev-libs/rasqal
+dev-libs/redland
 dev-ml/lablgtk
 dev-php5/pecl-pdflib
 dev-util/bzrtools
