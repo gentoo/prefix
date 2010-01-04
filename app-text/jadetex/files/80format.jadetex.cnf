@@ -1,5 +1,0 @@
-# JadeTeX
-jadetex		pdflatex		language.dat	-translate-file=cp227.tcx "&latex"	jadetex.ini
-pdfjadetex	pdflatex		language.dat	-translate-file=cp227.tcx "&pdflatex"	pdfjadetex.ini
-
-
