@@ -126,6 +126,7 @@ x11-wm/windowmaker
 
 # entire categories
 app-vim
+dev-dotnet
 java-virtuals
 net-print
 sci-electronics
