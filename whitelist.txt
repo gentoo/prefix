@@ -294,6 +294,7 @@ dev-python/werkzeug
 # Operation Shiny Jewel (Ruby), bug #295040
 
 # Operation Fauli, bug #299250
+# comment #0
 app-shells/zsh-completion
 dev-cpp/gccxml
 dev-cpp/muParser
@@ -340,3 +341,51 @@ mail-mta/esmtp
 mail-mta/msmtp
 net-analyzer/fping
 net-analyzer/lft
+#comment #1
+app-admin/eselect-blas
+app-admin/eselect-cblas
+app-admin/eselect-lapack
+app-admin/eselect-maven
+app-admin/makepasswd
+app-admin/stow
+app-admin/eselect-fontconfig
+app-admin/gamin
+app-arch/bsdsfv
+app-arch/cfv
+app-arch/file-roller
+app-arch/lzma
+app-arch/lzop
+app-arch/makeself
+app-arch/mscompress
+app-arch/par
+app-arch/pigz
+app-arch/rzip
+app-arch/unace
+app-arch/unadf
+app-arch/undms
+app-arch/unlzx
+app-arch/unp
+app-arch/xar
+app-arch/xarchiver
+app-arch/zip
+app-arch/unarj
+app-arch/zoo
+app-backup/rdiff-backup
+app-cdr/ccd2iso
+app-cdr/bchunk
+app-cdr/bin2iso
+app-cdr/nrg2iso
+app-crypt/aespipe
+app-crypt/aesutil
+app-crypt/bcrypt
+app-crypt/md5deep
+app-crypt/shash
+app-crypt/sign
+app-crypt/opencdk
+app-dicts/aspell-de
+app-dicts/aspell-en
+app-dicts/aspell-nl
+app-dicts/aspell-sv
+app-dicts/ipadic
+app-dicts/migemo-dict
+app-dicts/myspell-en
