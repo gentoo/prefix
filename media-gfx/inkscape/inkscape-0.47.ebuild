@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47.ebuild,v 1.3 2009/12/07 11:18:43 maekke Exp $
 
 EAPI=2
-inherit gnome2
+inherit gnome2 eutils flag-o-matic
 
 MY_P="${P/_/}"
 S="${WORKDIR}/${MY_P}"
@@ -77,7 +77,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.46-solaris.patch
+	epatch "${FILESDIR}"/${PN}-0.47-solaris.patch
 
 	gnome2_src_prepare
 }
