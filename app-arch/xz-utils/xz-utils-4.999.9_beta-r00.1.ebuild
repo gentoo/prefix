@@ -53,22 +53,16 @@ src_unpack() {
 fi
 
 src_configure() {
+	local myconf=
+	# contains a reference to _GLOBAL_OFFSET_TABLE_, which does not exist
+	# when building with interix GCC (all code is PIC here).
+	[[ ${CHOST} == *-interix* ]] && myconf="${myconf} --disable-assembler"
 	econf \
+		${myconf} \
 		--enable-dynamic=yes \
 		$(use_enable nls) \
 		$(use_enable threads) \
 		$(use_enable static-libs static)
-}
-
-src_compile() {
-	local myconf=
-
-	# contains a reference to _GLOBAL_OFFSET_TABLE_, which does not exist
-	# when building with interix GCC (all code is PIC here).
-	[[ ${CHOST} == *-interix* ]] && myconf="${myconf} --disable-assembler"
-
-	econf ${myconf} || die econf failed
-	emake || die emake failed
 }
 
 src_install() {
