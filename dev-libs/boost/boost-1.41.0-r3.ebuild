@@ -95,6 +95,7 @@ src_prepare() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-1.37.0-darwin-long-double.patch
+	epatch "${FILESDIR}"/${P}-solaris-namespace-clash.patch
 
 	epatch "${FILESDIR}/remove-toolset-${PV}.patch"
 

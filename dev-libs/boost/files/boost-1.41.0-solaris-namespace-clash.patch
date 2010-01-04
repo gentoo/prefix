@@ -1,0 +1,24 @@
+./boost/serialization/static_warning.hpp:96: error: expected identifier before numeric constant
+./boost/serialization/static_warning.hpp:96: error: expected unqualified-id before numeric constant
+
+Rename SS to something that's more likely to be unique.
+
+
+--- boost_1_41_0/boost/serialization/static_warning.hpp
++++ boost_1_41_0/boost/serialization/static_warning.hpp
+@@ -93,13 +93,13 @@
+ };
+ 
+ template<int i>
+-struct SS {};
++struct boostSS {};
+ 
+ } // serialization
+ } // boost
+ 
+ #define BSW(B, L) \
+-    typedef boost::serialization::SS< \
++    typedef boost::serialization::boostSS< \
+         sizeof( boost::serialization::static_warning_test< B, L > ) \
+     > BOOST_JOIN(STATIC_WARNING_LINE, L);
+ 
