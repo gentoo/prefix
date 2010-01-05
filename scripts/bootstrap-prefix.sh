@@ -301,7 +301,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20091228"
+	local PV="20100104"
 	do_tree http://prefix.gentooexperimental.org/distfiles prefix-overlay-${PV}.tar.bz2
 }
 
