@@ -57,7 +57,7 @@ src_unpack() {
 	epatch "${FILESDIR}/${PN}-8.2.7-gentoo.patch"
 	epatch "${FILESDIR}/${PN}-8.2.7-sh.patch"
 
-# let's pray and stuff	epatch "${FILESDIR}"/${P}-solaris.patch
+	epatch "${FILESDIR}"/${PN}-8.2.7-solaris.patch
 
 	# Prepare package for future tests
 	if use test ; then
