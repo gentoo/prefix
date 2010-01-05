@@ -40,15 +40,15 @@ pkg_setup() {
 		$(use_enable python)"
 }
 
-#src_prepare() {
-#	gnome2_src_prepare
+src_prepare() {
+	gnome2_src_prepare
 
 	# Fix intltoolize broken file, see upstream #577133
 #	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
 
-#	use nowheelscroll && epatch "${FILESDIR}"/${PN}-0.16.12-mouse-wheel-scroll.patch
-#	epatch "${FILESDIR}"/${PN}-0.20.1-interix.patch
-#}
+	use nowheelscroll && epatch "${FILESDIR}"/${PN}-0.16.12-mouse-wheel-scroll.patch
+	epatch "${FILESDIR}"/${PN}-0.20.1-interix.patch
+}
 
 src_configure() {
 	local myconf=
