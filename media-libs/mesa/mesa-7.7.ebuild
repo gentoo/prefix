@@ -98,6 +98,9 @@ src_prepare() {
 	# FreeBSD 6.* doesn't have posix_memalign().
 	[[ ${CHOST} == *-freebsd6.* ]] && \
 		sed -i -e "s/-DHAVE_POSIX_MEMALIGN//" configure.ac
+	# Solaris needs some recent POSIX stuff in our case
+	[[ ${CHOST} == *-solaris* ]] && \
+		sed -i -e "s/-DSVR4/-D_POSIX_C_SOURCE=200112L/" configure.ac
 
 	eautoreconf
 }
