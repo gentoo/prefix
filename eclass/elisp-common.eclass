@@ -289,7 +289,7 @@ elisp-site-file-install() {
 # location is still supported when generating site-gentoo.el.
 
 elisp-site-regen() {
-	local sitelisp=${EROOT}${EPREFIX}${SITELISP}
+	local sitelisp=${ROOT}${EPREFIX}${SITELISP}
 	local i sf line obsolete null="" page=$'\f'
 	local -a sflist
 
