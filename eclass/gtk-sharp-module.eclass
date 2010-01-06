@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.25 2009/08/23 00:14:31 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gtk-sharp-module.eclass,v 1.26 2010/01/03 19:10:49 scarabeus Exp $
 
 # @ECLASS: gtk-sharp-module.eclass
 # @MAINTAINER:
@@ -452,7 +452,7 @@ gnome-sharp-tarball-post_src_prepare() {
 # phase_hook prefix trigger: ${TARBALL}-tarball-post
 # Is exported.
 gtk-sharp-module_src_prepare() {
-	base_src_util autopatch
+	base_src_prepare
 # @ECLASS-VARIABLE: EAUTORECONF
 # @DESCRIPTION:
 # If set, EAUTORECONF will be run during src_prepare.

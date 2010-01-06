@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.32 2009/12/16 20:35:38 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.33 2009/12/29 17:18:16 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -304,7 +304,7 @@ git_fetch() {
 	# unpack to the ${S}
 	popd &> /dev/null
 	debug-print "cp -aR \"${GIT_DIR}\" \"${S}\""
-	cp -aR "${GIT_DIR}" "${S}"
+	git clone "${GIT_DIR}" "${S}"
 
 	# set correct branch and the tree ebuild specified
 	pushd "${S}" > /dev/null

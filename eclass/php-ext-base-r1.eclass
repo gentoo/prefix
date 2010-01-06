@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-base-r1.eclass,v 1.9 2007/11/29 23:12:13 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-ext-base-r1.eclass,v 1.10 2009/12/30 01:05:42 hoffie Exp $
 #
 # Author: Tal Peer <coredumb@gentoo.org>
 # Author: Stuart Herbert <stuart@gentoo.org>
@@ -103,6 +103,14 @@ php-ext-base-r1_addextension() {
 				ext_type="zend_extension"
 			fi
 			ext_file="${EXT_DIR}/$1"
+		fi
+
+		# php-5.3 unifies zend_extension loading and just requires the
+		# zend_extension keyword with no suffix
+		# TODO: drop previous code and this check once <php-5.3 support is
+		# discontinued
+		if has_version '>=dev-lang/php-5.3' ; then
+			ext_type="zend_extension"
 		fi
 	else
 		# We don't need the full path for normal extensions!

@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.224 2009/11/20 19:02:05 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kde.eclass,v 1.225 2010/01/03 19:10:49 scarabeus Exp $
 
 # @ECLASS: kde.eclass
 # @MAINTAINER:
@@ -82,7 +82,7 @@ kde_src_unpack() {
 		# Unpack first and deal with KDE patches after examing possible patch sets.
 		# To be picked up, patches need to be named $PN-$PV-*{diff,patch} and be
 		# placed in $PATCHDIR. Monolithic ebuilds will use the split ebuild patches.
-		[[ -d "${KDE_S}" ]] || base_src_unpack unpack
+		[[ -d "${KDE_S}" ]] || base_src_unpack
 		if [[ -d "${PATCHDIR}" ]] ; then
 			local packages p f
 			if is-parent-package ${CATEGORY}/${PN} ; then
@@ -105,7 +105,7 @@ kde_src_unpack() {
 				fi
 			done
 		fi
-		[[ -n ${PATCHES[@]} ]] && base_src_unpack autopatch
+		[[ -n ${PATCHES[@]} ]] && base_src_prepare
 	else
 		# Call base_src_unpack, which has sections, to do unpacking and patching
 		# step by step transparently as defined in the ebuild.

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-fakegem.eclass,v 1.8 2009/12/26 17:06:02 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-fakegem.eclass,v 1.9 2010/01/01 23:13:26 flameeyes Exp $
 #
 # @ECLASS: ruby-fakegem.eclass
 # @MAINTAINER:
@@ -263,7 +263,8 @@ each_fakegem_install() {
 		[[ -d ${directory} ]] && _gemlibdirs="${_gemlibdirs} ${directory}"
 	done
 
-	ruby_fakegem_doins -r ${_gemlibdirs}
+	[[ -n ${_gemlibdirs} ]] && \
+		ruby_fakegem_doins -r ${_gemlibdirs}
 }
 
 # @FUNCTION: each_ruby_install

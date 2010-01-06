@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.64 2009/12/07 21:05:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/elisp-common.eclass,v 1.65 2009/12/29 20:15:12 ulm Exp $
 #
 # Copyright 2002-2004 Matthew Kennedy <mkennedy@gentoo.org>
 # Copyright 2003      Jeremy Maitin-Shepard <jbms@attbi.com>
@@ -290,7 +290,7 @@ elisp-site-file-install() {
 
 elisp-site-regen() {
 	local sitelisp=${ROOT}${EPREFIX}${SITELISP}
-	local i sf line obsolete null="" page=$'\f'
+	local sf i line null="" page=$'\f'
 	local -a sflist
 
 	if [ ! -d "${sitelisp}" ]; then
@@ -323,8 +323,6 @@ elisp-site-regen() {
 			sflist[i]=${sflist[i-1]}
 		done
 		sflist[i]=${sf}
-		# set a flag if there are obsolete files
-		[ "${sf%/*}" = "${sitelisp}" ] && obsolete=t
 	done
 
 	eval "${old_shopts}"
@@ -366,16 +364,6 @@ elisp-site-regen() {
 			1) einfo "... ${#sflist[@]} site initialisation file included." ;;
 			*) einfo "... ${#sflist[@]} site initialisation files included." ;;
 		esac
-	fi
-
-	if [ "${obsolete}" ]; then
-		echo
-		while read line; do ewarn "${line}"; done <<-EOF
-		Site-initialisation files of Emacs packages are now installed in
-		/usr/share/emacs/site-lisp/site-gentoo.d/. We strongly recommend
-		that you use app-admin/emacs-updater to rebuild the installed
-		Emacs packages.
-		EOF
 	fi
 
 	# cleanup

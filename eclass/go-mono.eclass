@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.7 2009/05/05 12:59:13 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/go-mono.eclass,v 1.8 2010/01/03 19:10:49 scarabeus Exp $
 
 # @ECLASS: go-mono.eclass
 # @MAINTAINER:
@@ -86,10 +86,10 @@ go-mono_src_unpack() {
 go-mono_src_prepare() {
 	if [[ "${PV%.9999}" != "${PV}" ||  "${PV}" == "9999" ]]
 	then
-		base_src_util autopatch
+		base_src_prepare
 		[[ "$EAUTOBOOTSTRAP" != "no" ]] && eautoreconf
 	else
-		base_src_util autopatch
+		base_src_prepare
 	fi
 }
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.323 2009/12/19 00:01:04 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.324 2010/01/03 19:57:10 zmedico Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1396,7 +1396,6 @@ check_license() {
 			lic="${lic}"
 		fi
 	fi
-	[ ! -f "${lic}" ] && die "Could not find requested license ${lic}"
 	local l="`basename ${lic}`"
 
 	# here is where we check for the licenses the user already
@@ -1410,6 +1409,7 @@ check_license() {
 		fi
 	done
 	eshopts_pop
+	[ ! -f "${lic}" ] && die "Could not find requested license ${lic}"
 
 	local licmsg=$(emktemp)
 	cat <<-EOF > ${licmsg}

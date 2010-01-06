@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.140 2009/12/16 23:55:44 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.141 2010/01/03 19:13:44 scarabeus Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -146,7 +146,7 @@ games_src_compile() {
 	case ${EAPI:-0} in
 		0|1) games_src_configure ;;
 	esac
-	base_src_compile make
+	base_src_make
 }
 
 games_pkg_preinst() {
