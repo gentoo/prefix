@@ -1,26 +1,24 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.22.ebuild,v 1.2 2009/10/28 09:50:48 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.22.ebuild,v 1.4 2010/01/05 11:17:24 ssuominen Exp $
 
 EAPI=1
-inherit fdo-mime nsplugins flag-o-matic eutils multilib toolchain-funcs confutils
+inherit fdo-mime flag-o-matic eutils multilib toolchain-funcs
 
 MY_P="${PN}libre-${PV#*_p}"
 
-DESCRIPTION="DjVu viewers, encoders and utilities."
+DESCRIPTION="DjVu viewers, encoders and utilities"
 HOMEPAGE="http://djvu.sourceforge.net"
 SRC_URI="mirror://sourceforge/djvu/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
-IUSE="xml qt3 jpeg tiff debug nls nsplugin kde doc"
+IUSE="xml jpeg tiff debug nls kde doc"
 
 RDEPEND="jpeg? ( >=media-libs/jpeg-6b-r2 )
-	tiff? ( media-libs/tiff )
-	qt3? ( x11-libs/qt:3 )"
-DEPEND="${RDEPEND}
-	qt3? ( nsplugin? ( x11-libs/libXt ) )"
+	tiff? ( media-libs/tiff )"
+DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${MY_P}
 
@@ -28,17 +26,6 @@ LANGS="cs de en fr ja zh"
 for X in ${LANGS}; do
 	IUSE="${IUSE} linguas_${X}"
 done
-
-pkg_setup() {
-	if ! use qt3; then
-		ewarn
-		ewarn "The standalone djvu viewer, djview, will not be compiled."
-		ewarn "Add \"qt3\" to your USE flags if you want it."
-		ewarn
-	fi
-
-	confutils_use_depend_all nsplugin qt3
-}
 
 src_unpack() {
 	unpack ${A}
@@ -67,19 +54,17 @@ src_compile() {
 		I18N="--disable-i18n"
 	fi
 
-	# We install all desktop files by hand.
-	econf --disable-desktopfiles \
-		$(use_with qt3 qt) \
+	# We install all desktop files by hand and Qt3 is deprecated
+	econf \
+		--disable-desktopfiles \
+		--without-qt \
 		$(use_enable xml xmltools) \
 		$(use_with jpeg) \
 		$(use_with tiff) \
 		"${I18N}" \
-		$(use_enable debug) \
-		${QTCONF}
+		$(use_enable debug)
 
-	if ! use nsplugin; then
-		sed -e 's:nsdejavu::' -i "${S}"/gui/Makefile || die
-	fi
+	sed -e 's:nsdejavu::' -i "${S}"/gui/Makefile || die
 
 	emake || die "emake failed"
 }
@@ -101,11 +86,6 @@ src_install() {
 		insinto /usr/share/mimelnk/image && doins vnd.djvu.desktop || die
 		cp "${ED}"/usr/share/mimelnk/image/{vnd.djvu.desktop,x-djvu.desktop}
 		sed -i -e 's:image/vnd.djvu:image/x-djvu:' "${ED}"/usr/share/mimelnk/image/x-djvu.desktop
-	fi
-
-	if use qt3 ; then
-		insinto /usr/share/icons/hicolor/32x32/apps && newins hi32-djview3.png djvulibre-djview3.png || die
-		insinto /usr/share/applications/ && doins djvulibre-djview3.desktop || die
 	fi
 }
 
