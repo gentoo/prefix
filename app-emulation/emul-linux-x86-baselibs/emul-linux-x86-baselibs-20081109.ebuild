@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/emul-linux-x86-baselibs-20081109.ebuild,v 1.3 2009/11/03 21:05:30 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/emul-linux-x86-baselibs-20081109.ebuild,v 1.4 2010/01/01 21:25:51 pacho Exp $
 
 inherit emul-linux-x86
 
@@ -8,6 +8,7 @@ LICENSE="|| ( Artistic GPL-2 ) || ( BSD GPL-2 ) BZIP2 CRACKLIB DB
 		GPL-2 || ( GPL-2 AFL-2.1 ) LGPL-2 LGPL-2.1 MIT OPENLDAP openssl
 		PAM ZLIB as-is"
 KEYWORDS="~amd64-linux"
+IUSE=""
 
 DEPEND=""
 RDEPEND="!<app-emulation/emul-linux-x86-medialibs-10.2" # bug 168507
