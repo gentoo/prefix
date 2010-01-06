@@ -39,25 +39,6 @@ src_configure() {
 	cmake-utils_src_configure
 }
 
-src_compile() {
-	base_src_compile
-
-	if use examples; then
-		emake examples || die "emake examples failed"
-	fi
-}
-
-src_install() {
-	base_src_install
-
-	dodoc AUTHORS NEWS || die "dodoc failed"
-	dohtml doc/* || die "dohtml failed"
-
-	if use examples; then
-		cd examples && emake DESTDIR="${D}" install || die "emake examples install failed"
-	fi
-}
-
 pkg_postinst() {
 	if ! use asf; then
 		elog "You've chosen to disable the asf use flag, thus taglib won't include"
