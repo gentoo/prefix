@@ -1,6 +1,19 @@
 # ChangeLog for dev-db/sqlite
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.307 2009/12/23 18:24:55 pacho Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/sqlite/ChangeLog,v 1.311 2010/01/03 09:38:38 betelgeuse Exp $
+
+  03 Jan 2010; Petteri Räty <betelgeuse@gentoo.org> sqlite-3.6.21.ebuild:
+  Turn on fts3 by default because FF3 needs it.
+
+  02 Jan 2010; Raúl Porcel <armin76@gentoo.org> sqlite-3.6.20-r1.ebuild:
+  alpha/ia64/sparc stable
+
+  02 Jan 2010; Markus Meier <maekke@gentoo.org> sqlite-3.6.20-r1.ebuild:
+  arm stable, bug #297658
+
+  27 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  sqlite-3.6.20-r1.ebuild:
+  stable x86, bug 297658
 
   23 Dec 2009; Pacho Ramos <pacho@gentoo.org> sqlite-3.6.20-r1.ebuild:
   amd64 stable, bug 297658
