@@ -32,6 +32,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.15.5-nls.patch
 	epatch "${FILESDIR}"/${PN}-1.15.5-unicode.patch
+	# /bin/sh isn't bash, believe me
+	sed -i -e '1c\#!'"${BASH}" get-version || die
 	eautoreconf
 	# don't mess with linker optimisation, respect user's flags (don't break!)
 	sed -i -e 's/ -Wl,-O1//' configure || die
@@ -39,7 +41,7 @@ src_unpack() {
 
 src_compile() {
 	econf \
-		$(use_with bzip2 bz2lib) \
+		$(use_with bzip2 bz2) \
 		$(use_enable nls) \
 		$(use_enable unicode) \
 		$(use_with zlib) \
