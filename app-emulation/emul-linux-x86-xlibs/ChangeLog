@@ -1,6 +1,49 @@
 # ChangeLog for app-emulation/emul-linux-x86-xlibs
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/ChangeLog,v 1.84 2009/12/26 21:51:40 pacho Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-xlibs/ChangeLog,v 1.89 2010/01/01 21:32:33 pacho Exp $
+
+  01 Jan 2010; Pacho Ramos <pacho@gentoo.org>
+  -emul-linux-x86-xlibs-10.0.ebuild, -emul-linux-x86-xlibs-10.1.ebuild,
+  -emul-linux-x86-xlibs-20071114.ebuild,
+  -emul-linux-x86-xlibs-20071128.ebuild,
+  -emul-linux-x86-xlibs-20071128-r1.ebuild,
+  -emul-linux-x86-xlibs-20071128-r2.ebuild,
+  -emul-linux-x86-xlibs-20071230.ebuild,
+  -emul-linux-x86-xlibs-20080316.ebuild,
+  -emul-linux-x86-xlibs-20080810.ebuild,
+  -emul-linux-x86-xlibs-20091004_rc1.ebuild,
+  -emul-linux-x86-xlibs-20091226.ebuild:
+  emul cleaning
+
+  31 Dec 2009; Pacho Ramos <pacho@gentoo.org> Manifest:
+  Fix Manifest
+
+*emul-linux-x86-xlibs-20091231 (31 Dec 2009)
+
+  31 Dec 2009; Pacho Ramos <pacho@gentoo.org>
+  +emul-linux-x86-xlibs-20091231.ebuild:
+  New emul set: fixed bug 290153
+
+  30 Dec 2009; Pacho Ramos <pacho@gentoo.org>
+  emul-linux-x86-xlibs-20081109.ebuild,
+  emul-linux-x86-xlibs-20091226.ebuild:
+  Prevent people from mixing different emul packages versions, as it causes
+  multiple problems (like bug 298615, thanks to Russell for reporting) and
+  is not supported
+
+  27 Dec 2009; Pacho Ramos <pacho@gentoo.org>
+  emul-linux-x86-xlibs-10.0.ebuild, emul-linux-x86-xlibs-10.1.ebuild,
+  emul-linux-x86-xlibs-20071114.ebuild,
+  emul-linux-x86-xlibs-20071128.ebuild,
+  emul-linux-x86-xlibs-20071128-r1.ebuild,
+  emul-linux-x86-xlibs-20071128-r2.ebuild,
+  emul-linux-x86-xlibs-20071230.ebuild,
+  emul-linux-x86-xlibs-20080316.ebuild,
+  emul-linux-x86-xlibs-20080810.ebuild,
+  emul-linux-x86-xlibs-20081109.ebuild,
+  emul-linux-x86-xlibs-20091004_rc1.ebuild,
+  emul-linux-x86-xlibs-20091226.ebuild:
+  X-related license cleanups. Thanks to Remi for reporting it in bug 298558
 
 *emul-linux-x86-xlibs-20091226 (26 Dec 2009)
 
