@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/emacs-vcs-23.1.9999-r2.ebuild,v 1.1 2009/12/27 18:48:45 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/emacs-vcs-23.1.9999-r2.ebuild,v 1.3 2010/01/05 08:17:40 ulm Exp $
 
 EAPI=2
 
@@ -28,7 +28,7 @@ HOMEPAGE="http://www.gnu.org/software/emacs/"
 LICENSE="GPL-3 FDL-1.3 BSD as-is MIT W3C unicode"
 SLOT="23"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="aqua alsa dbus gconf gif gpm gtk gzip-el hesiod jpeg kerberos m17n-lib motif png sound source svg tiff toolkit-scroll-bars X Xaw3d xft +xpm"
+IUSE="alsa dbus gconf gif gpm gtk gzip-el hesiod jpeg kerberos m17n-lib motif png sound source svg tiff toolkit-scroll-bars X Xaw3d xft +xpm"
 RESTRICT="strip"
 
 RDEPEND="sys-libs/ncurses
@@ -193,26 +193,10 @@ src_configure() {
 	myconf="${myconf} $(use_with kerberos) $(use_with kerberos kerberos5)"
 	myconf="${myconf} $(use_with gpm) $(use_with dbus)"
 
-	if use aqua; then
-		einfo "Configuring to build with Carbon Emacs"
-		econf \
-			--enable-carbon-app="${EPREFIX}"/Applications \
-			--program-suffix=-${EMACS_SUFFIX} \
-			--infodir="${EPREFIX}"/usr/share/info/${EMACS_SUFFIX} \
-			--without-x \
-			$(use_with jpeg) $(use_with tiff) \
-			$(use_with gif) $(use_with png) \
-			$(use_enable xft font-backend) \
-			 || die "econf carbon emacs failed"
-		make bootstrap || die "make carbon emacs bootstrap failed"
-	else # crappy indenting to keep diff small
-
 	econf \
 		--program-suffix=-${EMACS_SUFFIX} \
-		--infodir="${EPREFIX}"/usr/share/info/${EMACS_SUFFIX} \
+		--infodir=/usr/share/info/${EMACS_SUFFIX} \
 		${myconf} || die "econf emacs failed"
-
-	fi # end crappy indenting
 }
 
 src_compile() {
@@ -234,14 +218,6 @@ src_install () {
 		|| die "removing duplicate emacs executable failed"
 	mv "${ED}"/usr/bin/emacs-${EMACS_SUFFIX} "${ED}"/usr/bin/${EMACS_SUFFIX} \
 		|| die "moving Emacs executable failed"
-
-	if use aqua ; then
-		einfo "Installing Carbon Emacs..."
-		dodir /Applications/Emacs.app
-		pushd mac/Emacs.app
-		tar -chf - . | ( cd ${ED}/Applications/Emacs.app; tar -xf -)
-		popd
-	fi
 
 	# move info documentation to the correct place
 	for i in "${ED}"/usr/share/info/${EMACS_SUFFIX}/*; do
@@ -274,10 +250,10 @@ src_install () {
 	X
 	(when (string-match "\\\\\`${FULL_VERSION//./\\\\.}\\\\>" emacs-version)
 	X  ${c}(setq find-function-C-source-directory
-	X  ${c}      "${EPREFIX}/usr/share/emacs/${FULL_VERSION}/src")
+	X  ${c}      "/usr/share/emacs/${FULL_VERSION}/src")
 	X  (let ((path (getenv "INFOPATH"))
-	X	(dir "${EPREFIX}/usr/share/info/${EMACS_SUFFIX}")
-	X	(re "\\\\\`${EPREFIX}/usr/share/info\\\\>"))
+	X	(dir "/usr/share/info/${EMACS_SUFFIX}")
+	X	(re "\\\\\`/usr/share/info\\\\>"))
 	X    (and path
 	X	 ;; move Emacs Info dir before anything else in /usr/share/info
 	X	 (let* ((p (cons nil (split-string path ":" t))) (q p))
