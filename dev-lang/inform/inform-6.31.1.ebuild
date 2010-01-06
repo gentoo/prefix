@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/inform/inform-6.31.1.ebuild,v 1.3 2008/01/29 21:20:41 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/inform/inform-6.31.1.ebuild,v 1.4 2009/12/02 10:52:55 maekke Exp $
 
 DESCRIPTION="design system for interactive fiction"
 HOMEPAGE="http://www.inform-fiction.org/"
