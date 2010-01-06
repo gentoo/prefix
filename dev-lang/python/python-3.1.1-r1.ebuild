@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.21 2009/12/19 21:16:36 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.22 2010/01/01 19:54:42 arfrever Exp $
 
 EAPI="2"
 
@@ -14,7 +14,7 @@ PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
 
-PATCHSET_REVISION="3"
+PATCHSET_REVISION="4"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -26,7 +26,7 @@ SLOT="3.1"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite ssl +threads tk +wide-unicode wininst +xml"
 
-RDEPEND=">=app-admin/eselect-python-20090606
+RDEPEND=">=app-admin/eselect-python-20091230
 		>=sys-libs/zlib-1.1.3
 		virtual/libffi
 		virtual/libintl
@@ -299,6 +299,8 @@ src_test() {
 	elog "If you'd like to run them, you may:"
 	elog "cd /usr/$(get_libdir)/python${PYVER}/test"
 	elog "and run the tests separately."
+
+	python_disable_pyc
 }
 
 src_install() {
