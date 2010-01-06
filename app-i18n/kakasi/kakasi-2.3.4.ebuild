@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/kakasi/kakasi-2.3.4.ebuild,v 1.14 2009/09/23 15:41:27 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/kakasi/kakasi-2.3.4.ebuild,v 1.15 2009/12/31 21:04:14 ssuominen Exp $
 
 inherit autotools
 
@@ -27,7 +27,7 @@ src_unpack() {
 }
 
 src_install() {
-	make DESTDIR=${D} install || die
+	make DESTDIR="${D}" install || die
 	doman doc/kakasi.1
 	dodoc AUTHORS ChangeLog NEWS ONEWS README README-ja THANKS TODO
 	dodoc doc/ChangeLog.lib doc/JISYO doc/README.lib README.wakati
