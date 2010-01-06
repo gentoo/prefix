@@ -1,6 +1,26 @@
 # ChangeLog for app-emulation/emul-linux-x86-gtklibs
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.66 2009/12/26 21:47:07 pacho Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/ChangeLog,v 1.69 2010/01/01 21:28:22 pacho Exp $
+
+  01 Jan 2010; Pacho Ramos <pacho@gentoo.org>
+  -files/50emul-linux-x86-gtklibs, -emul-linux-x86-gtklibs-20071214.ebuild,
+  -emul-linux-x86-gtklibs-20080316.ebuild,
+  -emul-linux-x86-gtklibs-20091004_rc1.ebuild,
+  -emul-linux-x86-gtklibs-20091226.ebuild:
+  emul cleaning
+
+*emul-linux-x86-gtklibs-20091231 (31 Dec 2009)
+
+  31 Dec 2009; Pacho Ramos <pacho@gentoo.org>
+  +emul-linux-x86-gtklibs-20091231.ebuild:
+  New emul set, fixed bugs 258066 and 298518
+
+  30 Dec 2009; Pacho Ramos <pacho@gentoo.org>
+  emul-linux-x86-gtklibs-20081109.ebuild,
+  emul-linux-x86-gtklibs-20091226.ebuild:
+  Prevent people from mixing different emul packages versions, as it causes
+  multiple problems (like bug 298615, thanks to Russell for reporting) and
+  is not supported
 
 *emul-linux-x86-gtklibs-20091226 (26 Dec 2009)
 
