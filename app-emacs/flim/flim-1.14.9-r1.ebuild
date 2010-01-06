@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/flim-1.14.9-r1.ebuild,v 1.1 2009/11/13 14:49:07 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/flim/flim-1.14.9-r1.ebuild,v 1.3 2009/12/28 23:40:17 maekke Exp $
 
 inherit elisp
 
