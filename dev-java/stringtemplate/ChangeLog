@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/stringtemplate
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/stringtemplate/ChangeLog,v 1.7 2009/12/14 19:06:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/stringtemplate/ChangeLog,v 1.8 2009/12/29 17:32:11 josejx Exp $
+
+  29 Dec 2009; Joseph Jezak <josejx@gentoo.org> stringtemplate-3.2.ebuild:
+  Marked ppc stable.
 
   14 Dec 2009; Brent Baude <ranger@gentoo.org> stringtemplate-3.2.ebuild:
   Marking stringtemplate-3.2 ppc64 for bug 287425
