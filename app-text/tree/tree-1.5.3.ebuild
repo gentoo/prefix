@@ -1,7 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tree/tree-1.5.2.1.ebuild,v 1.10 2008/12/07 11:02:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tree/tree-1.5.3.ebuild,v 1.1 2010/01/01 20:54:22 mr_bones_ Exp $
 
+EAPI=2
 inherit toolchain-funcs flag-o-matic bash-completion
 
 DESCRIPTION="Lists directories recursively, and produces an indented listing of files."
@@ -13,23 +14,18 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE=""
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	sed -i \
 		-e 's:LINUX:__linux__:' tree.c \
 		|| die "sed failed"
 }
 
 src_compile() {
-	local MYXOBJS=""
-	[[ ${CHOST} == *-darwin* ]] && MYXOBJS="strverscmp.o"
-	
 	emake \
 		CC="$(tc-getCC)" \
 		CFLAGS="${CFLAGS}" \
 		LDFLAGS="${LDFLAGS}" \
-		XOBJS="${MYXOBJS}" \
+		XOBJS="$(use elibc_glibc || echo strverscmp.o)" \
 		|| die "emake failed"
 }
 

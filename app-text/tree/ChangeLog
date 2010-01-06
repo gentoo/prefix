@@ -1,6 +1,11 @@
 # ChangeLog for app-text/tree
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tree/ChangeLog,v 1.73 2009/03/24 20:33:13 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/tree/ChangeLog,v 1.74 2010/01/01 20:54:22 mr_bones_ Exp $
+
+*tree-1.5.3 (01 Jan 2010)
+
+  01 Jan 2010; Michael Sterrett <mr_bones_@gentoo.org> +tree-1.5.3.ebuild:
+  version bump
 
   24 Mar 2009; Brent Baude <ranger@gentoo.org> tree-1.5.2.2.ebuild:
   stable ppc64, bug 262873
