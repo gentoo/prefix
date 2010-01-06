@@ -1,6 +1,14 @@
 # ChangeLog for app-shells/bash
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.241 2009/12/22 16:23:48 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.243 2010/01/05 00:52:43 vapier Exp $
+
+*bash-4.1 (05 Jan 2010)
+
+  05 Jan 2010; Mike Frysinger <vapier@gentoo.org> +bash-4.1.ebuild:
+  Version bump.
+
+  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> bash-4.0_p35.ebuild:
+  Stable on alpha, bug #295405
 
   22 Dec 2009; Mike Frysinger <vapier@gentoo.org> bash-4.0_p35.ebuild:
   Mark ia64/s390/sh stable.
