@@ -514,3 +514,17 @@ sci-libs/ufconfig
 sci-libs/umfpack
 sci-mathematics/otter
 sci-visualization/fig2sxd
+# comment #5
+dev-tcltk/tcllib
+dev-ml/extlib
+dev-lang/gforth
+dev-lang/swig
+dev-lang/blassic
+dev-lang/cll1h
+dev-lang/nasm
+dev-lang/pasm
+dev-lang/squeak-fullimage
+dev-lang/srf
+dev-lang/ucblogo
+dev-lang/yasm
+
