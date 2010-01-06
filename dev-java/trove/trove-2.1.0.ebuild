@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/trove/trove-2.1.0.ebuild,v 1.2 2009/11/30 10:30:22 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/trove/trove-2.1.0.ebuild,v 1.3 2009/12/28 17:26:47 josejx Exp $
 
 EAPI="2"
 JAVA_PKG_IUSE="doc source"
