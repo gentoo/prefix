@@ -1,6 +1,10 @@
 # ChangeLog for app-text/glark
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/glark/ChangeLog,v 1.50 2009/08/01 17:54:44 darkside Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/glark/ChangeLog,v 1.51 2009/12/29 15:11:46 graaff Exp $
+
+  29 Dec 2009; Hans de Graaff <graaff@gentoo.org> glark-1.7.8.ebuild,
+  glark-1.8.0.ebuild:
+  Change ruby dependency per bug #265054.
 
   01 Aug 2009; Jeremy Olexa <darkside@gentoo.org> -glark-1.7.3.ebuild,
   -glark-1.7.5.ebuild:
