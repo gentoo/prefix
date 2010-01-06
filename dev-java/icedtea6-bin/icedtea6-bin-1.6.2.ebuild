@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/icedtea6-bin-1.6.2.ebuild,v 1.2 2009/12/16 23:13:24 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/icedtea6-bin-1.6.2.ebuild,v 1.3 2009/12/28 20:48:10 maekke Exp $
 
 EAPI="1"
 
