@@ -1,6 +1,34 @@
 # ChangeLog for dev-lang/php
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.359 2009/12/16 21:53:55 hoffie Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.367 2010/01/05 19:56:43 armin76 Exp $
+
+  05 Jan 2010; Raúl Porcel <armin76@gentoo.org> php-5.2.12.ebuild:
+  ia64/s390/sh/sparc stable wrt #293888
+
+  05 Jan 2010; Joseph Jezak <josejx@gentoo.org> php-5.2.12.ebuild:
+  Marked ppc stable for bug #293888.
+
+  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> php-5.2.12.ebuild:
+  Stable on alpha, bug #293888
+
+  31 Dec 2009; Markus Meier <maekke@gentoo.org> php-5.2.12.ebuild:
+  amd64/arm stable, bug #293888
+
+  31 Dec 2009; Christian Faulhammer <fauli@gentoo.org> php-5.2.12.ebuild:
+  stable x86, security bug 293888
+
+  31 Dec 2009; Jeroen Roovers <jer@gentoo.org> php-5.2.12.ebuild:
+  Stable for HPPA (bug #293888).
+
+  31 Dec 2009; Brent Baude <ranger@gentoo.org> php-5.2.12.ebuild:
+  Marking php-5.2.12 ppc64 for bug 293888
+
+*php-5.2.12 (30 Dec 2009)
+
+  30 Dec 2009; Christian Hoffmann <hoffie@gentoo.org> +php-5.2.12.ebuild:
+  version bump to 5.2.12 wrt security bug 297399, please note that
+  USE=concurrentmodphp is broken (but should not be needed at the moment
+  anyway), bug 298969
 
   16 Dec 2009; Christian Hoffmann <hoffie@gentoo.org> php-5.2.11.ebuild,
   php-5.2.11-r1.ebuild:
