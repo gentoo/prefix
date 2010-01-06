@@ -1,6 +1,18 @@
 # ChangeLog for app-admin/eselect-python
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.49 2009/10/04 01:56:58 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.51 2009/12/30 22:17:12 arfrever Exp $
+
+*eselect-python-20091230 (30 Dec 2009)
+
+  30 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +eselect-python-20091230.ebuild:
+  Version bump. Add support for --python2 / --python3 options (bug #296220).
+  Support `eselect --brief python list` (bug #292112). Fix some minor bugs.
+  Require GCC >=3.4 (bug #291980).
+
+  30 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  eselect-python-99999999.ebuild:
+  Require GCC >=3.4 (bug #291980). Update dependencies.
 
   04 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   eselect-python-20090824.ebuild:
