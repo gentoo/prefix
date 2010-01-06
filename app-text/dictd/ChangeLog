@@ -1,6 +1,24 @@
 # ChangeLog for app-text/dictd
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.79 2009/10/17 07:46:23 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/dictd/ChangeLog,v 1.80 2009/12/27 11:22:56 pva Exp $
+
+*dictd-1.11.2 (27 Dec 2009)
+
+  27 Dec 2009; Peter Volkov <pva@gentoo.org> -dictd-1.9.14.ebuild,
+  -files/dictd-1.10.11-automatic-plugins_build-failure.patch,
+  -files/dictd-1.10.11-dictd.8-man.patch,
+  -files/dictd-1.10.11-dictd.c-alen-init.patch,
+  -files/dictd-1.10.11-dictdplugin_popen-g++-4.3compile.patch,
+  -files/dictd-1.10.11-dictl-konwert.patch,
+  -files/dictd-1.10.11-dictl-translit.patch,
+  -files/dictd-1.11.0-automagic-plugins.patch,
+  -files/dictd-1.11.0-avoid-libs-in-LDFLAGS.patch,
+  -files/dictd-1.11.0-plugins-install-fix-and-cleanup.patch,
+  +dictd-1.11.2.ebuild, -files/1.9.11-r1/dict.conf, -files/1.9.11-r1/dictd,
+  -files/1.9.11-r1/dictd.conf, -files/1.9.11-r1/dictd.confd,
+  -files/1.9.11-r1/site.info, -dictd-1.10.11-r2.ebuild,
+  -dictd-1.10.11-r3.ebuild, -dictd-1.11.0.ebuild, -dictd-1.11.1.ebuild:
+  Version bump. Clean old.
 
   17 Oct 2009; Markus Meier <maekke@gentoo.org> metadata.xml:
   remove dbi description as it is global now
