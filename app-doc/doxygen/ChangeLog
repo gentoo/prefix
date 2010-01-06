@@ -1,6 +1,11 @@
 # ChangeLog for app-doc/doxygen
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.171 2009/12/26 17:24:39 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.172 2010/01/02 22:22:09 yngwin Exp $
+
+  02 Jan 2010; Ben de Groot <yngwin@gentoo.org> doxygen-1.4.7.ebuild,
+  doxygen-1.5.4.ebuild, doxygen-1.5.5.ebuild, doxygen-1.5.6.ebuild,
+  doxygen-1.5.7.1.ebuild:
+  Drop qt3 support
 
   26 Dec 2009; Peter Volkov <pva@gentoo.org> doxygen-1.4.7.ebuild,
   doxygen-1.5.4.ebuild, doxygen-1.5.5.ebuild, doxygen-1.5.6.ebuild,
