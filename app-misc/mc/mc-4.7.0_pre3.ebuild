@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0_pre3.ebuild,v 1.7 2009/11/26 18:34:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0_pre3.ebuild,v 1.8 2010/01/02 15:15:46 ranger Exp $
 
 EAPI=2
 MY_P=${P/_/-}
