@@ -17,13 +17,13 @@ esac
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
-export GAMES_PREFIX=${GAMES_PREFIX:-${EPREFIX}/usr/games}
-export GAMES_PREFIX_OPT=${GAMES_PREFIX_OPT:-${EPREFIX}/opt}
-export GAMES_DATADIR=${GAMES_DATADIR:-${EPREFIX}/usr/share/games}
-export GAMES_DATADIR_BASE=${GAMES_DATADIR_BASE:-${EPREFIX}/usr/share} # some packages auto append 'games'
-export GAMES_SYSCONFDIR=${GAMES_SYSCONFDIR:-${EPREFIX}/etc/games}
-export GAMES_STATEDIR=${GAMES_STATEDIR:-${EPREFIX}/var/games}
-export GAMES_LOGDIR=${GAMES_LOGDIR:-${EPREFIX}/var/log/games}
+export GAMES_PREFIX=${GAMES_PREFIX:-/usr/games}
+export GAMES_PREFIX_OPT=${GAMES_PREFIX_OPT:-/opt}
+export GAMES_DATADIR=${GAMES_DATADIR:-/usr/share/games}
+export GAMES_DATADIR_BASE=${GAMES_DATADIR_BASE:-/usr/share} # some packages auto append 'games'
+export GAMES_SYSCONFDIR=${GAMES_SYSCONFDIR:-/etc/games}
+export GAMES_STATEDIR=${GAMES_STATEDIR:-/var/games}
+export GAMES_LOGDIR=${GAMES_LOGDIR:-/var/log/games}
 export GAMES_LIBDIR=${GAMES_LIBDIR:-${GAMES_PREFIX}/$(get_libdir)}
 export GAMES_BINDIR=${GAMES_BINDIR:-${GAMES_PREFIX}/bin}
 export GAMES_ENVD="90games"
@@ -39,18 +39,18 @@ games_get_libdir() {
 
 egamesconf() {
 	econf \
-		--prefix="${GAMES_PREFIX}" \
-		--libdir="$(games_get_libdir)" \
-		--datadir="${GAMES_DATADIR}" \
-		--sysconfdir="${GAMES_SYSCONFDIR}" \
-		--localstatedir="${GAMES_STATEDIR}" \
+		--prefix="${EPREFIX}${GAMES_PREFIX}" \
+		--libdir="${EPREFIX}$(games_get_libdir)" \
+		--datadir="${EPREFIX}${GAMES_DATADIR}" \
+		--sysconfdir="${EPREFIX}${GAMES_SYSCONFDIR}" \
+		--localstatedir="${EPREFIX}${GAMES_STATEDIR}" \
 		"$@"
 }
 
 gameswrapper() {
 	# dont want to pollute calling env
 	(
-		into "${GAMES_PREFIX#${EPREFIX}}"
+		into "${GAMES_PREFIX}"
 		cmd=$1
 		shift
 		${cmd} "$@"
@@ -67,8 +67,8 @@ newgamessbin() { gameswrapper ${FUNCNAME/games} "$@"; }
 
 games_make_wrapper() { gameswrapper ${FUNCNAME/games_} "$@"; }
 
-gamesowners() { use prefix && chown ${GAMES_USER}:${GAMES_GROUP} "$@"; }
-gamesperms() { use prefix && chmod u+rw,g+r-w,o-rwx "$@"; }
+gamesowners() { use prefix || chown ${GAMES_USER}:${GAMES_GROUP} "$@"; }
+gamesperms() { use prefix || chmod u+rw,g+r-w,o-rwx "$@"; }
 prepgamesdirs() {
 	local dir f mode
 	for dir in \
@@ -76,13 +76,13 @@ prepgamesdirs() {
 		"${GAMES_SYSCONFDIR}" "${GAMES_STATEDIR}" "$(games_get_libdir)" \
 		"${GAMES_BINDIR}" "$@"
 	do
-		[[ ! -d ${D}/${dir} ]] && continue
+		[[ ! -d ${ED}/${dir} ]] && continue
 		use prefix || (
-			gamesowners -R "${D}/${dir}"
-			find "${D}/${dir}" -type d -print0 | xargs -0 chmod 750
+			gamesowners -R "${ED}/${dir}"
+			find "${ED}/${dir}" -type d -print0 | xargs -0 chmod 750
 			mode=o-rwx,g+r,g-w
 			[[ ${dir} = ${GAMES_STATEDIR} ]] && mode=o-rwx,g+r
-			find "${D}/${dir}" -type f -print0 | xargs -0 chmod $mode
+			find "${ED}/${dir}" -type f -print0 | xargs -0 chmod $mode
 
 			# common trees should not be games owned #264872
 			if [[ ${dir} == "${GAMES_PREFIX_OPT}" ]] ; then
@@ -95,29 +95,29 @@ prepgamesdirs() {
 			fi
 		) &>/dev/null
 
-		f=$(find "${D}/${dir}" -perm +4000 -a -uid 0 2>/dev/null)
+		f=$(find "${ED}/${dir}" -perm +4000 -a -uid 0 2>/dev/null)
 		if [[ -n ${f} ]] ; then
 			eerror "A game was detected that is setuid root!"
 			eerror "${f}"
 			die "refusing to merge a setuid root game"
 		fi
 	done
-	[[ -d ${D}/${GAMES_BINDIR} ]] || return 0
-	use prefix || find "${D}/${GAMES_BINDIR}" -maxdepth 1 -type f -exec chmod 750 '{}' \;
+	[[ -d ${ED}/${GAMES_BINDIR} ]] || return 0
+	use prefix || find "${ED}/${GAMES_BINDIR}" -maxdepth 1 -type f -exec chmod 750 '{}' \;
 }
 
 gamesenv() {
 	local d libdirs
 
 	for d in $(get_all_libdirs) ; do
-		libdirs="${libdirs}:${GAMES_PREFIX}/${d}"
+		libdirs="${libdirs}:${EPREFIX}${GAMES_PREFIX}/${d}"
 	done
 
 	# Wish we could use doevnd here, but we dont want the env
 	# file to be tracked in the CONTENTS of every game
 	cat <<-EOF > "${EROOT}"/etc/env.d/${GAMES_ENVD}
 	LDPATH="${libdirs:1}"
-	PATH="${GAMES_BINDIR}"
+	PATH="${EPREFIX}${GAMES_BINDIR}"
 	EOF
 }
 
@@ -127,15 +127,15 @@ games_pkg_setup() {
 
 	enewgroup "${GAMES_GROUP}" 35
 	[[ ${GAMES_USER} != "root" ]] \
-		&& enewuser "${GAMES_USER}" 35 -1 "${GAMES_PREFIX}" "${GAMES_GROUP}"
+		&& enewuser "${GAMES_USER}" 35 -1 "${EPREFIX}${GAMES_PREFIX}" "${GAMES_GROUP}"
 	[[ ${GAMES_USER_DED} != "root" ]] \
-		&& enewuser "${GAMES_USER_DED}" 36 /bin/bash "${GAMES_PREFIX}" "${GAMES_GROUP}"
+		&& enewuser "${GAMES_USER_DED}" 36 "${EPREFIX}"/bin/bash "${EPREFIX}${GAMES_PREFIX}" "${GAMES_GROUP}"
 
 	# Dear portage team, we are so sorry.  Lots of love, games team.
 	# See Bug #61680
 	[[ ${USERLAND} != "GNU" ]] && return 0
 	[[ $(getent passwd "${GAMES_USER_DED}" | cut -f7 -d:) == "/bin/false" ]] \
-		&& usermod -s /bin/bash "${GAMES_USER_DED}"
+		&& usermod -s "${EPREFIX}"/bin/bash "${GAMES_USER_DED}"
 }
 
 games_src_configure() {
@@ -153,15 +153,15 @@ games_pkg_preinst() {
 	local f
 
 	while read f ; do
-		if [[ -e ${ROOT}/${GAMES_STATEDIR}/${f} ]] ; then
+		if [[ -e ${EROOT}/${GAMES_STATEDIR}/${f} ]] ; then
 			cp -p \
-				"${ROOT}/${GAMES_STATEDIR}/${f}" \
-				"${D}/${GAMES_STATEDIR}/${f}" \
+				"${EROOT}/${GAMES_STATEDIR}/${f}" \
+				"${ED}/${GAMES_STATEDIR}/${f}" \
 				|| die "cp failed"
 			# make the date match the rest of the install
-			touch "${D}/${GAMES_STATEDIR}/${f}"
+			touch "${ED}/${GAMES_STATEDIR}/${f}"
 		fi
-	done < <(find "${D}/${GAMES_STATEDIR}" -type f -printf '%P\n' 2>/dev/null)
+	done < <(find "${ED}/${GAMES_STATEDIR}" -type f -printf '%P\n' 2>/dev/null)
 }
 
 # pkg_postinst function ... create env.d entry and warn about games group
