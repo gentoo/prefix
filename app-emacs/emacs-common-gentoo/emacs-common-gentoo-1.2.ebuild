@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/emacs-common-gentoo-1.2.ebuild,v 1.10 2009/12/01 06:45:19 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/emacs-common-gentoo-1.2.ebuild,v 1.11 2010/01/03 14:22:55 maekke Exp $
 
 inherit elisp-common eutils fdo-mime gnome2-utils
 

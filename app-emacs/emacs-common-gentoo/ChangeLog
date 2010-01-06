@@ -1,6 +1,14 @@
 # ChangeLog for app-emacs/emacs-common-gentoo
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.25 2009/12/01 06:45:19 ulm Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-emacs/emacs-common-gentoo/ChangeLog,v 1.27 2010/01/03 15:03:43 ulm Exp $
+
+  03 Jan 2010; Ulrich Mueller <ulm@gentoo.org>
+  -emacs-common-gentoo-1.0.ebuild:
+  Remove old.
+
+  03 Jan 2010; Markus Meier <maekke@gentoo.org>
+  emacs-common-gentoo-1.2.ebuild:
+  arm stable, bug #285063
 
   01 Dec 2009; Ulrich Mueller <ulm@gentoo.org>
   emacs-common-gentoo-1.2.ebuild:
