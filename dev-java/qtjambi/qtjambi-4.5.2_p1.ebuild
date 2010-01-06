@@ -1,15 +1,15 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/qtjambi-4.5.2_p1.ebuild,v 1.1 2009/12/18 16:07:51 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/qtjambi-4.5.2_p1.ebuild,v 1.2 2010/01/03 01:29:04 yngwin Exp $
 
 EAPI="2"
 
 JAVA_PKG_IUSE="doc source"
 WANT_ANT_TASKS="ant-trax"
 
-inherit eutils multilib qt4 java-pkg-2 java-ant-2
+inherit multilib qt4-r2 java-pkg-2 java-ant-2
 
-QTVER="${PV%%_p*}"
+QTVER="${PV%.*}*"
 MY_PV="${PV/p/0}"
 MY_P="${PN}-src-lgpl-${MY_PV}"
 
@@ -22,16 +22,16 @@ SLOT="4"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="debug examples opengl phonon webkit xmlpatterns"
 
-COMMON_DEPS=">=x11-libs/qt-gui-${QTVER}:${SLOT}
-	>=x11-libs/qt-sql-${QTVER}:${SLOT}
-	>=x11-libs/qt-svg-${QTVER}:${SLOT}
-	opengl? ( >=x11-libs/qt-opengl-${QTVER}:${SLOT} )
-	phonon? ( >=x11-libs/qt-phonon-${QTVER}:${SLOT} )
+COMMON_DEPS="=x11-libs/qt-gui-${QTVER}:${SLOT}
+	=x11-libs/qt-sql-${QTVER}:${SLOT}
+	=x11-libs/qt-svg-${QTVER}:${SLOT}
+	opengl? ( =x11-libs/qt-opengl-${QTVER}:${SLOT} )
+	phonon? ( =x11-libs/qt-phonon-${QTVER}:${SLOT} )
 	webkit? (
-		>=x11-libs/qt-phonon-${QTVER}:${SLOT}
-		>=x11-libs/qt-webkit-${QTVER}:${SLOT}
+		=x11-libs/qt-phonon-${QTVER}:${SLOT}
+		=x11-libs/qt-webkit-${QTVER}:${SLOT}
 	)
-	xmlpatterns? ( >=x11-libs/qt-xmlpatterns-${QTVER}:${SLOT} )"
+	xmlpatterns? ( =x11-libs/qt-xmlpatterns-${QTVER}:${SLOT} )"
 DEPEND="${COMMON_DEPS}
 	>=virtual/jdk-1.6"
 RDEPEND="${COMMON_DEPS}

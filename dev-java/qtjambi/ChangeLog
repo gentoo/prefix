@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/qtjambi
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.22 2009/12/18 16:07:51 hwoarang Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.23 2010/01/03 01:29:04 yngwin Exp $
+
+  03 Jan 2010; Ben de Groot <yngwin@gentoo.org> -qtjambi-4.4.3.ebuild,
+  -qtjambi-4.5.0_p1.ebuild, qtjambi-4.5.2_p1.ebuild:
+  Pin Qt deps on 4.5, bug 298269. Remove obsolete versions.
 
 *qtjambi-4.5.2_p1 (18 Dec 2009)
 
@@ -32,7 +36,7 @@
   07 Mar 2009; Petteri Räty <betelgeuse@gentoo.org>
   -qtjambi-4.3.3_p1.ebuild:
   Remove old version.
-  
+
   04 Mar 2009; Alistair Bush <ali_bush@gentoo.org>
   files/configuration-4.4.3.patch:
   Update to correct configuration patch. Old patch must have been applied
