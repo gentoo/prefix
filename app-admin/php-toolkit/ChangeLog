@@ -1,6 +1,22 @@
 # ChangeLog for app-admin/php-toolkit
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/php-toolkit/ChangeLog,v 1.29 2009/07/29 15:28:37 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/php-toolkit/ChangeLog,v 1.31 2009/12/30 00:47:19 hoffie Exp $
+
+*php-toolkit-1.0.2 (30 Dec 2009)
+
+  30 Dec 2009; Christian Hoffmann <hoffie@gentoo.org>
+  +php-toolkit-1.0.2.ebuild:
+  version bump; this version adds support for php-5.3's USE=embed
+  management, but should retain backward compatibility
+
+  29 Dec 2009; Christian Hoffmann <hoffie@gentoo.org> -files/php-select,
+  -files/php-select-modules/apache1.sh,
+  -files/php-select-modules/apache2.sh,
+  -files/php-select-modules/libapache.sh,
+  -files/php-select-modules/libsymlink.sh, -files/php-select-modules/php.sh,
+  -files/php-select-modules/php-cgi.sh,
+  -files/php-select-modules/php-devel.sh:
+  cleaning files/ from leftovers (pre-tarball times)
 
   29 Jul 2009; Jeremy Olexa <darkside@gentoo.org>
   -php-toolkit-1.0-r2.ebuild:
