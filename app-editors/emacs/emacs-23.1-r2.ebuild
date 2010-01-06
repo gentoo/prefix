@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-23.1-r2.ebuild,v 1.8 2009/12/21 07:08:45 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-23.1-r2.ebuild,v 1.11 2010/01/01 15:18:03 klausman Exp $
 
 EAPI=2
 
@@ -34,8 +34,8 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-sola
 IUSE="aqua alsa dbus gif gpm gtk gzip-el hesiod jpeg kerberos m17n-lib motif png sound source svg tiff toolkit-scroll-bars X Xaw3d xft +xpm"
 RESTRICT="strip"
 
-RDEPEND="!=app-editors/emacs-cvs-23.0*
-	!=app-editors/emacs-cvs-23.1.9999
+RDEPEND="!=app-editors/emacs-vcs-23.0*
+	!=app-editors/emacs-vcs-23.1.9999
 	sys-libs/ncurses
 	>=app-admin/eselect-emacs-1.2
 	net-libs/liblockfile

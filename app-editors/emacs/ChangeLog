@@ -1,6 +1,24 @@
 # ChangeLog for app-editors/emacs
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.356 2009/12/21 07:08:45 ulm Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.362 2010/01/01 15:18:03 klausman Exp $
+
+  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> emacs-23.1-r2.ebuild:
+  Stable on alpha, bug #296159
+
+  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> emacs-22.3-r3.ebuild:
+  Stable on alpha, bug #296159
+
+  30 Dec 2009; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r6.ebuild:
+  Drop X support for Emacs 18, because libX11[-xcb] will go away.
+  See bug 260676 comment #14. Remove "as-is" from LICENSE.
+
+  28 Dec 2009; nixnut <nixnut@gentoo.org> emacs-22.3-r3.ebuild,
+  emacs-23.1-r2.ebuild:
+  ppc stable #296159
+
+  27 Dec 2009; Ulrich Mueller <ulm@gentoo.org> emacs-22.3-r2.ebuild,
+  emacs-22.3-r3.ebuild, emacs-23.1.ebuild, emacs-23.1-r2.ebuild:
+  Update blockers after package move from emacs-cvs to emacs-vcs.
 
   20 Dec 2009; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r19.ebuild,
   emacs-22.3-r3.ebuild:
@@ -11,21 +29,17 @@
   emacs-23.1-r2.ebuild:
   Change X11 to MIT in LICENSE.
 
-  11 Dec 2009; Tiago Cunha <tcunha@gentoo.org> emacs-23.1-r2.ebuild:
-  stable sparc, bug 296159
-
-  11 Dec 2009; Tiago Cunha <tcunha@gentoo.org> emacs-22.3-r3.ebuild:
+  11 Dec 2009; Tiago Cunha <tcunha@gentoo.org> emacs-22.3-r3.ebuild,
+  emacs-23.1-r2.ebuild:
   stable sparc, bug 296159
 
   10 Dec 2009; Markus Meier <maekke@gentoo.org> emacs-22.3-r3.ebuild,
   emacs-23.1-r2.ebuild:
   amd64/x86 stable, bug #296159
 
-  09 Dec 2009; Brent Baude <ranger@gentoo.org> emacs-23.1-r2.ebuild:
-  Marking emacs-23.1-r2 ppc64 for bug 296159
-
-  09 Dec 2009; Brent Baude <ranger@gentoo.org> emacs-22.3-r3.ebuild:
-  Marking emacs-22.3-r3 ppc64 for bug 296159
+  09 Dec 2009; Brent Baude <ranger@gentoo.org> emacs-22.3-r3.ebuild,
+  emacs-23.1-r2.ebuild:
+  Marking emacs-22.3-r3 and emacs-23.1-r2 ppc64 for bug 296159
 
   09 Dec 2009; Jeroen Roovers <jer@gentoo.org> emacs-22.3-r3.ebuild:
   Remove obsolete replace-flags call. Stable for HPPA (bug #296159).
