@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.6.ebuild,v 1.3 2009/07/15 21:04:10 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/pinentry/pinentry-0.7.6.ebuild,v 1.4 2010/01/02 21:46:50 yngwin Exp $
 
-EAPI=1
+EAPI="1"
 
-inherit qt3 multilib eutils flag-o-matic
+inherit multilib eutils flag-o-matic
 
 DESCRIPTION="Collection of simple PIN or passphrase entry dialogs which utilize the Assuan protocol"
 HOMEPAGE="http://www.gnupg.org/aegypten/"
@@ -13,15 +13,14 @@ SRC_URI="mirror://gnupg/${PN}/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="gtk ncurses qt3 qt4 caps static"
+IUSE="gtk ncurses qt4 caps static"
 
 DEPEND="static? ( sys-libs/ncurses )
 	!static? (
 		gtk? ( x11-libs/gtk+:2 )
 		ncurses? ( sys-libs/ncurses )
-		qt3? ( x11-libs/qt:3 )
 		qt4? ( >=x11-libs/qt-gui-4.4.1 )
-		!gtk? ( !qt4? ( !qt3? ( !ncurses? ( sys-libs/ncurses ) ) ) )
+		!gtk? ( !qt4? ( !ncurses? ( sys-libs/ncurses ) ) )
 	)
 	caps? ( sys-libs/libcap )"
 
@@ -30,10 +29,9 @@ RDEPEND="${DEPEND}"
 pkg_setup() {
 	use static && append-ldflags -static
 
-	if use static && { use gtk || use qt3 || use qt4; }
-	then
+	if use static && { use gtk || use qt4; }; then
 		ewarn
-		ewarn "The static USE flag is only supported with the ncurses USE flags, disabling the gtk, qt3 and qt4 USE flags."
+		ewarn "The static USE flag is only supported with the ncurses USE flags, disabling the gtk and qt4 USE flags."
 		ewarn
 	fi
 }
@@ -55,7 +53,7 @@ src_unpack() {
 src_compile() {
 	local myconf=""
 
-	if ! { use qt3 || use qt4 || use gtk || use ncurses; }
+	if ! { use qt4 || use gtk || use ncurses; }
 	then
 		myconf="--enable-pinentry-curses --enable-fallback-curses"
 	elif use static
@@ -71,7 +69,7 @@ src_compile() {
 		--enable-maintainer-mode \
 		--disable-pinentry-gtk \
 		$(use_enable gtk pinentry-gtk2) \
-		$(use_enable qt3 pinentry-qt) \
+		--disable-pinentry-qt \
 		$(use_enable ncurses pinentry-curses) \
 		$(use_enable ncurses fallback-curses) \
 		$(use_enable qt4 pinentry-qt4) \
