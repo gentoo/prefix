@@ -36,7 +36,7 @@
 +		/* however, if you managed to find the prefix wrapper, you
 +		 * probably aren't looking for host stuff, so add prefix paths
 +		 * too */
-+		PATH = ":@GENTOO_PORTAGE_EPREFIX/bin:@GENTOO_PORTAGE_EPREFIX@/usr/bin:/bin:/usr/bin";
++		PATH = ":@GENTOO_PORTAGE_EPREFIX@/bin:@GENTOO_PORTAGE_EPREFIX@/usr/bin:/bin:/usr/bin";
  	}
  	char* path = strdup(PATH);
  	char* state = NULL;
