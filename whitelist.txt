@@ -727,3 +727,18 @@ dev-ruby/textpow
 dev-ruby/tzinfo
 dev-ruby/ultraviolet
 dev-ruby/zentest
+# comment #17
+net-mail/mlmmj
+x11-terms/gnome-terminal
+x11-terms/clusterssh
+x11-terms/tilda
+x11-themes/gtk-engines
+x11-themes/gtk-engines-aurora
+x11-themes/gnome-icon-theme
+x11-themes/gnome-themes
+x11-themes/gtk-engines-xfce
+x11-themes/gtk-theme-switch
+x11-themes/hicolor-icon-theme
+x11-themes/sound-theme-freedesktop
+x11-themes/tango-icon-theme-extras
+x11-themes/tango-icon-theme
