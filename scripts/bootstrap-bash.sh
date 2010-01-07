@@ -15,8 +15,8 @@ cd "$1"
 mkdir bash-build
 cd bash-build
 
-ftp ftp://ftp.gnu.org/gnu/bash/bash-3.2.tar.gz
-gzip -d bash-3.2.tar.gz
+ftp "http://dev.gentoo.org/~grobian/distfiles/bash-3.2-patched.tar.gz"
+gzip -d bash-3.2-patched.tar.gz
 tar -xf bash-3.2.tar
 cd bash-3.2
 
