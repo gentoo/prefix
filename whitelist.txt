@@ -743,3 +743,16 @@ x11-themes/hicolor-icon-theme
 x11-themes/sound-theme-freedesktop
 x11-themes/tango-icon-theme-extras
 x11-themes/tango-icon-theme
+# comment #20
+media-sound/audacious
+media-sound/mt-daapd
+media-sound/sox
+media-sound/streamripper
+media-sound/easytag
+media-sound/gpodder
+media-sound/gqmpeg
+media-sound/mp3gain
+media-sound/mp3info
+media-sound/mpg321
+media-sound/shntool
+
