@@ -1,0 +1,13 @@
+http://pogma.com/2009/09/09/snow-leopard-and-offlineimap/
+http://bugs.gentoo.org/show_bug.cgi?id=284925
+http://openradar.appspot.com/7209349
+
+--- offlineimap
++++ offlineimap
+@@ -17,5 +17,6 @@
+ #    along with this program; if not, write to the Free Software
+ #    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301 USA
+ 
++from locale import *
+ from offlineimap import init
+ init.startup('6.2.0')
