@@ -1,0 +1,101 @@
+* endian.h doesn't exist on most machines (just Linux)
+* don't use __THROW construct, it upsets gcc on OSX
+
+--- genisoimage/sha256.h
++++ genisoimage/sha256.h
+@@ -42,21 +42,20 @@
+ 
+ /* Initialize structure containing state of computation.
+    (FIPS 180-2: 5.3.2)  */
+-extern void sha256_init_ctx (struct sha256_ctx *ctx) __THROW;
++extern void sha256_init_ctx (struct sha256_ctx *ctx);
+ 
+ /* Starting with the result of former calls of this function (or the
+    initialization function update the context for the next LEN bytes
+    starting at BUFFER.
+    It is NOT required that LEN is a multiple of 64.  */
+ extern void sha256_process_bytes (const void *buffer, size_t len,
+-				    struct sha256_ctx *ctx) __THROW;
++				    struct sha256_ctx *ctx);
+ 
+ /* Process the remaining bytes in the buffer and put result from CTX
+    in first 32 bytes following RESBUF.
+ 
+    IMPORTANT: On some systems it is required that RESBUF is correctly
+    aligned for a 32 bits value.  */
+-extern void *sha256_finish_ctx (struct sha256_ctx *ctx, void *resbuf)
+-  __THROW;
++extern void *sha256_finish_ctx (struct sha256_ctx *ctx, void *resbuf);
+ 
+ #endif /* sha256.h */
+--- genisoimage/sha256.c
++++ genisoimage/sha256.c
+@@ -24,14 +24,17 @@
+ 
+ /* Written by Ulrich Drepper <drepper@redhat.com>, 2007.  */
+ 
+-#include <endian.h>
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/types.h>
+ 
+ #include "sha256.h"
+ 
+-#if __BYTE_ORDER == __LITTLE_ENDIAN
++#ifndef WORDS_BIGENDIAN
+ # ifdef _LIBC
+ #  include <byteswap.h>
+ #  define SWAP(n) bswap_32 (n)
+--- genisoimage/sha512.h
++++ genisoimage/sha512.h
+@@ -42,21 +42,20 @@
+ 
+ /* Initialize structure containing state of computation.
+    (FIPS 180-2: 5.3.3)  */
+-extern void sha512_init_ctx (struct sha512_ctx *ctx) __THROW;
++extern void sha512_init_ctx (struct sha512_ctx *ctx);
+ 
+ /* Starting with the result of former calls of this function (or the
+    initialization function update the context for the next LEN bytes
+    starting at BUFFER.
+    It is NOT required that LEN is a multiple of 128.  */
+ extern void sha512_process_bytes (const void *buffer, size_t len,
+-				    struct sha512_ctx *ctx) __THROW;
++				    struct sha512_ctx *ctx);
+ 
+ /* Process the remaining bytes in the buffer and put result from CTX
+    in first 64 bytes following RESBUF.
+ 
+    IMPORTANT: On some systems it is required that RESBUF is correctly
+    aligned for a 64 bits value.  */
+-extern void *sha512_finish_ctx (struct sha512_ctx *ctx, void *resbuf)
+-  __THROW;
++extern void *sha512_finish_ctx (struct sha512_ctx *ctx, void *resbuf);
+ 
+ #endif /* sha512.h */
+--- genisoimage/sha512.c
++++ genisoimage/sha512.c
+@@ -24,14 +24,17 @@
+ 
+ /* Written by Ulrich Drepper <drepper@redhat.com>, 2007.  */
+ 
+-#include <endian.h>
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/types.h>
+ 
+ #include "sha512.h"
+ 
+-#if __BYTE_ORDER == __LITTLE_ENDIAN
++#ifndef WORDS_BIGENDIAN
+ # ifdef _LIBC
+ #  include <byteswap.h>
+ #  define SWAP(n) bswap_64 (n)

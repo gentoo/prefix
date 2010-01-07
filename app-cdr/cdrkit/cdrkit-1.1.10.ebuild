@@ -19,7 +19,10 @@ DEPEND="${RDEPEND}
 	!app-cdr/cdrtools
 	hfs? ( sys-apps/file )"
 
-PATCHES=( "${FILESDIR}"/${PN}-1.1.9-darwin.patch )
+PATCHES=( 
+	"${FILESDIR}"/${PN}-1.1.9-darwin.patch
+	"${FILESDIR}"/${PN}-1.1.10-darwin.patch
+)
 
 pkg_setup() {
 	# this might break others (Solaris), since it removes -lrt from the
