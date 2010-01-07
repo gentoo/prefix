@@ -522,7 +522,11 @@ standard_configure_options() {
 build_directories() {
 	for x in "$@"; do
 		pushd "${S}"/${x} >/dev/null
-		sed -i -e "s:\$\$\[QT_INSTALL_LIBS\]:${EPREFIX}/usr/$(get_libdir)/qt4:g" $(find "${S}" -name '*.pr[io]') "${S}"/mkspecs/common/*.conf || die
+		# avoid running over the maximum argument number, bug #299810
+		{
+			echo "${S}"/mkspecs/common/*.conf
+			find "${S}" -name '*.pr[io]'
+		} | xargs sed -i -e "s:\$\$\[QT_INSTALL_LIBS\]:${EPREFIX}/usr/$(get_libdir)/qt4:g" || die
 		"${S}"/bin/qmake "LIBS+=-L${QTLIBDIR}" "CONFIG+=nostrip" || die "qmake failed"
 		emake CC="@echo compiling \$< && $(tc-getCC)" \
 			CXX="@echo compiling \$< && $(tc-getCXX)" \
