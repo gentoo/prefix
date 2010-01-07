@@ -32,6 +32,7 @@ src_unpack() {
 	# which's preprocessor understands '\'-linebreaks
 	epatch "${FILESDIR}"/${PN}-3.1.5-stupid-awk-clever-cc.patch
 	epatch "${FILESDIR}"/${PN}-3.1.6-mint.patch
+	epatch "${FILESDIR}"/${PN}-3.1.7-mint.patch # only patches configure
 }
 
 src_compile() {
