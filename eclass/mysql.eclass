@@ -937,7 +937,7 @@ mysql_pkg_postinst() {
 # @DESCRIPTION:
 # Configure mysql environment.
 mysql_pkg_config() {
-	local old_MY_DATADIR="${MY_DATADIR}"
+	local old_MY_DATADIR="${EPREFIX}${MY_DATADIR}"
 
 	# Make sure the vars are correctly initialized
 	mysql_init_vars
@@ -949,8 +949,8 @@ mysql_pkg_config() {
 	fi
 
 	if [[ ( -n "${MY_DATADIR}" ) && ( "${MY_DATADIR}" != "${old_MY_DATADIR}" ) ]]; then
-		local MY_DATADIR_s="$(strip_duplicate_slashes ${EROOT}/${MY_DATADIR})"
-		local old_MY_DATADIR_s="$(strip_duplicate_slashes ${EROOT}/${old_MY_DATADIR})"
+		local MY_DATADIR_s="$(strip_duplicate_slashes ${ROOT}/${MY_DATADIR})"
+		local old_MY_DATADIR_s="$(strip_duplicate_slashes ${ROOT}/${old_MY_DATADIR})"
 
 		if [[ -d "${old_MY_DATADIR_s}" ]]; then
 			if [[ -d "${MY_DATADIR_s}" ]]; then
