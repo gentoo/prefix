@@ -639,12 +639,16 @@ bootstrap_tar() {
 	bootstrap_gnu tar 1.19
 }
 
-bootstrap_patch() {
-	bootstrap_gnu patch 2.5.4
+bootstrap_tar22() {
+	bootstrap_gnu tar 1.22 ${GNU_URL}/tar/tar-1.22.tar.gz
 }
 
 bootstrap_make() {
 	bootstrap_gnu make 3.81
+}
+
+bootstrap_patch() {
+	bootstrap_gnu patch 2.5.4
 }
 
 bootstrap_patch9() {
