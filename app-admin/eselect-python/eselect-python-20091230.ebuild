@@ -19,7 +19,7 @@ RDEPEND=">=app-admin/eselect-1.2.3"
 DEPEND="${RDEPEND}
 	sys-devel/autoconf
 	>=sys-devel/gcc-3.4
-	dev-libs/gnulib"
+	sparc-solaris? ( dev-libs/gnulib )"
 
 pkg_setup() {
 	if [[ $(gcc-major-version) -lt 3 || ($(gcc-major-version) -eq 3 && $(gcc-minor-version) -lt 4) ]]; then
