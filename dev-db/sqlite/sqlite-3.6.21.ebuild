@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit eutils flag-o-matic multilib versionator
+inherit eutils flag-o-matic multilib versionator toolchain-funcs
 
 DESCRIPTION="an SQL Database Engine in a C Library"
 HOMEPAGE="http://www.sqlite.org/"
@@ -83,7 +83,8 @@ src_configure() {
 		--with-readline-inc=-I"${EPREFIX}"/usr/include/readline \
 		$(use_enable threadsafe) \
 		$(use tcl && echo --enable-tcl) \
-		$(use !tcl && use test && echo --disable-tcl)
+		$(use !tcl && use test && echo --disable-tcl) \
+		$(tc-is-static-only && echo --enable-dynamic-extensions=no)
 }
 
 src_compile() {
