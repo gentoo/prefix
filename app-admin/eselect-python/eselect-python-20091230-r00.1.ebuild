@@ -18,13 +18,9 @@ IUSE=""
 RDEPEND=">=app-admin/eselect-1.2.3"
 DEPEND="${RDEPEND}
 	sys-devel/autoconf
-	>=sys-devel/gcc-3.4
 	sparc-solaris? ( dev-libs/gnulib )"
 
 pkg_setup() {
-	if [[ $(gcc-major-version) -lt 3 || ($(gcc-major-version) -eq 3 && $(gcc-minor-version) -lt 4) ]]; then
-		die "GCC >=3.4 is required"
-	fi
 	if [[ ${CHOST} == *-solaris2.9 ]] ; then
 		# solaris2.9 does not have scandir yet
 		append-flags -I"${EPREFIX}/usr/$(get_libdir)/gnulib/include"
@@ -37,10 +33,17 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-20091230-mac.patch
-	epatch "${FILESDIR}"/${PN}-20090824-prefix.patch
+	epatch "${FILESDIR}"/${PN}-20091230-prefix.patch
 	epatch "${FILESDIR}"/${PN}-20091230-link-libs.patch
-	eprefixify python.eselect python-wrapper.c
+	epatch "${FILESDIR}"/${PN}-20091230-plain-c.patch
+	eprefixify python.eselect
 	./autogen.sh || die "autogen.sh failed"
+}
+
+src_compile() {
+	use prefix && append-flags -DEPREFIX='"\"'"${EPREFIX}"'\""'
+	econf || die
+	emake || die
 }
 
 src_install() {
