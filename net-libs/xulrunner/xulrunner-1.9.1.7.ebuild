@@ -231,7 +231,7 @@ src_install() {
 
 	# env.d file for ld search path
 	dodir /etc/env.d
-	echo "LDPATH=${MOZLIBDIR}" > "${ED}"/etc/env.d/08xulrunner || die "env.d failed"
+	echo "LDPATH=${EPREFIX}/${MOZLIBDIR}" > "${ED}"/etc/env.d/08xulrunner || die "env.d failed"
 
 	# Add our defaults to xulrunner and out of firefox
 	cp "${FILESDIR}"/xulrunner-default-prefs.js \
