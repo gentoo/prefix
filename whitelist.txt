@@ -93,6 +93,7 @@ media-sound/alac_decoder
 media-sound/phonon
 media-video/mpeg-tools
 net-analyzer/linkchecker
+net-libs/libetpan
 net-libs/libsoup-gnome
 net-libs/libssh
 net-mail/getmail
