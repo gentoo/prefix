@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.15176 (08 Jan 2010)
+
+  08 Jan 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.15123.ebuild, +portage-2.2.00.15176.ebuild:
+  New snapshot, whitelists UNIXMODE for MiNT platforms. Perhaps the last
+  snapshot from the original SVN repository
+
 *portage-2.2.00.15171 (05 Jan 2010)
 
   05 Jan 2010; Fabian Groffen <grobian@gentoo.org>
