@@ -91,6 +91,7 @@ media-sound/phonon
 media-video/mpeg-tools
 net-analyzer/linkchecker
 net-libs/libsoup-gnome
+net-libs/libssh
 net-mail/getmail
 net-misc/mico
 sys-apps/acl
