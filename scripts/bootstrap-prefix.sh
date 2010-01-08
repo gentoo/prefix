@@ -311,7 +311,7 @@ bootstrap_latest_tree() {
 
 # Added for darkside, don't remove. A static starting point it needed.
 bootstrap_tree_arm() {
-	do_tree http://dev.gentooexperimental.org/~darkside/distfiles/prefix/ prefix-overlay-20100104.tar.bz2
+	do_tree http://dev.gentooexperimental.org/~darkside/distfiles/prefix/ prefix-overlay-20100107.tar.bz2
 }
 
 bootstrap_startscript() {
