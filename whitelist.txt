@@ -95,6 +95,7 @@ net-libs/libssh
 net-mail/getmail
 net-misc/mico
 sys-apps/acl
+sys-apps/darwin-miscutils
 sys-devel/binutils-apple
 sys-devel/gcc-apple
 sys-devel/gdb-apple
