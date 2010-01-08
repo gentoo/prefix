@@ -63,6 +63,7 @@ app-misc/rlwrap
 app-portage/eix
 app-shells/bash-completion
 app-shells/tcsh
+app-text/libspectre
 dev-cpp/clucene
 dev-db/mysql++
 dev-db/tokyocabinet
@@ -86,6 +87,7 @@ kde-base/qimageblitz
 mail-client/mutt
 media-gfx/asymptote
 media-libs/libwpg
+media-libs/win32codecs
 media-sound/alac_decoder
 media-sound/phonon
 media-video/mpeg-tools
