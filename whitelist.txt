@@ -79,6 +79,7 @@ dev-php5/pecl-pdflib
 dev-util/bzrtools
 dev-util/confix
 dev-util/confix-wrapper
+dev-util/kdoc
 dev-util/uncrustify
 games-arcade/ascii-invaders
 games-board/gnugo
