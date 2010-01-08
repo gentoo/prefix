@@ -66,6 +66,7 @@ app-shells/tcsh
 app-text/libspectre
 dev-cpp/clucene
 dev-db/mysql++
+dev-db/sqlite
 dev-db/tokyocabinet
 dev-java/hp-jdk-bin
 dev-libs/libebml
