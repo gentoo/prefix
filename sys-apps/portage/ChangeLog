@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.15178 (08 Jan 2010)
+
+  08 Jan 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.15176.ebuild, +portage-2.2.00.15178.ebuild:
+  Replace previous snapshot. Include possible fix for installation problems
+  on AIX (bug #299163) and fix Portage behaviour for EPREFIX=''
+
 *portage-2.2.00.15176 (08 Jan 2010)
 
   08 Jan 2010; Fabian Groffen <grobian@gentoo.org>
