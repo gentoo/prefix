@@ -204,6 +204,14 @@ dev-perl/crypt-des-ede3
 dev-perl/crypt-idea
 dev-perl/crypt-primes
 dev-perl/crypt-random
+dev-perl/DBD-Pg
+dev-perl/DBD-SQLite
+dev-perl/DBD-mysql
+dev-perl/DBI
+dev-perl/Data-Compare
+dev-perl/Data-Hierarchy
+dev-perl/Data-UUID
+dev-perl/DateManip
 dev-perl/DateTime-Format-Mail
 dev-perl/DateTime-Format-W3CDTF
 dev-perl/Event
