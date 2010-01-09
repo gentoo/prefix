@@ -161,8 +161,15 @@ dev-perl/Array-Compare
 dev-perl/Audio-FLAC-Header
 dev-perl/Authen-SASL
 dev-perl/AutoXS-Header
+dev-perl/B-Keywords
 dev-perl/Cache-Cache
+dev-perl/Cache-Memcached
+dev-perl/Cairo
+dev-perl/Carp-Assert
+dev-perl/Carp-Assert-More
 dev-perl/Carp-Clan
+dev-perl/Class-Accessor
+dev-perl/Class-Autouse
 dev-perl/Class-C3
 dev-perl/Class-C3-Componentised
 dev-perl/Class-C3-XS
