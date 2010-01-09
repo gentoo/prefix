@@ -670,7 +670,7 @@ bootstrap_texinfo() {
 bootstrap_bash() {
 	# distfile with included patches to make portage happy
 	bootstrap_gnu bash 3.2 \
-		"http://dev.gentoo.org/~grobian/distfiles/bash-3.2-patched.tar.gz"
+		"${GENTOO_MIRROR}/bash-3.2-patched.tar.gz"
 }
 
 bootstrap_gzip() {
