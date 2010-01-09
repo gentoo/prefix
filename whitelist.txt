@@ -244,6 +244,11 @@ dev-perl/File-ReadBackwards
 dev-perl/File-Remove
 dev-perl/File-Slurp
 dev-perl/File-Type
+dev-perl/File-Which
+dev-perl/File-chdir
+dev-perl/File-chmod
+dev-perl/FreezeThaw
+dev-perl/frontier-rpc
 dev-perl/GD
 dev-perl/GDGraph
 dev-perl/GDTextUtil
