@@ -226,8 +226,15 @@ dev-perl/Digest-Nilsimsa
 dev-perl/Digest-SHA1
 dev-perl/data-buffer
 dev-perl/digest-md2
+dev-perl/Email-Address
+dev-perl/Encode-Detect
+dev-perl/Error
 dev-perl/Event
+dev-perl/Exception-Class
 dev-perl/Exporter-Lite
+dev-perl/ExtUtils-AutoInstall
+dev-perl/extutils-depends
+dev-perl/extutils-pkgconfig
 dev-perl/File-HomeDir
 dev-perl/File-ReadBackwards
 dev-perl/GD
