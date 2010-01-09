@@ -181,6 +181,14 @@ dev-perl/Class-Singleton
 dev-perl/Class-Trigger 
 dev-perl/Class-Virtual
 dev-perl/Class-XSAccessor
+dev-perl/Clone
+dev-perl/Config-Simple
+dev-perl/Config-Tiny
+dev-perl/Convert-ASN1
+dev-perl/Crypt-Blowfish
+dev-perl/Crypt-CAST5_PP
+dev-perl/Crypt-DES
+dev-perl/Crypt-OpenSSL-Bignum
 dev-perl/common-sense
 dev-perl/DateTime-Format-Mail
 dev-perl/DateTime-Format-W3CDTF
