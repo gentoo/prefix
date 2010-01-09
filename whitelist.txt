@@ -184,6 +184,7 @@ dev-perl/Template-Latex
 dev-perl/Template-Toolkit
 dev-perl/Template-XML
 dev-perl/XML-RSS
+dev-perl/YAML-Tiny
 perl-core
 
 # Operation Deadly Snake (Python), bug #295035
