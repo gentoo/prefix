@@ -81,6 +81,7 @@ dev-util/confix
 dev-util/confix-wrapper
 dev-util/kdoc
 dev-util/uncrustify
+dev-util/unifdef
 games-arcade/ascii-invaders
 games-board/gnugo
 games-misc/wtf
