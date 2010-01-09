@@ -90,6 +90,7 @@ kde-base/automoc
 kde-base/qimageblitz
 mail-client/mutt
 media-gfx/asymptote
+media-libs/libcuefile
 media-libs/libwpg
 media-libs/taglib
 media-libs/win32codecs
