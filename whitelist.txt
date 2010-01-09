@@ -173,6 +173,12 @@ dev-perl/Class-Autouse
 dev-perl/Class-C3
 dev-perl/Class-C3-Componentised
 dev-perl/Class-C3-XS
+dev-perl/Class-Data-Inheritable
+dev-perl/Class-ErrorHandler
+dev-perl/Class-Inspector
+dev-perl/Class-MethodMaker
+dev-perl/Class-Singleton
+dev-perl/Class-Trigger 
 dev-perl/Class-Virtual
 dev-perl/Class-XSAccessor
 dev-perl/common-sense
