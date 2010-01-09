@@ -150,8 +150,16 @@ xfce-extra
 # separate projects encompassing a large amount of packages in progress
 
 # Operation Dandy Pearl (Perl), bug #294758
+dev-perl/Algorithm-Annotate
+dev-perl/Algorithm-Dependency
+dev-perl/Algorithm-Diff
 dev-perl/AnyEvent
+dev-perl/App-CLI
 dev-perl/AppConfig
+dev-perl/Archive-Zip
+dev-perl/Array-Compare
+dev-perl/Audio-FLAC-Header
+dev-perl/Authen-SASL
 dev-perl/AutoXS-Header
 dev-perl/Cache-Cache
 dev-perl/Carp-Clan
