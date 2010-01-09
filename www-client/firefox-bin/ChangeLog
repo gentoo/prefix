@@ -1,6 +1,42 @@
-# ChangeLog for www-client/mozilla-firefox-bin
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/ChangeLog,v 1.213 2009/12/24 14:01:19 armin76 Exp $
+# ChangeLog for www-client/firefox-bin
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/firefox-bin/ChangeLog,v 1.5 2010/01/08 20:01:22 armin76 Exp $
+
+*firefox-bin-3.5.7 (08 Jan 2010)
+
+  08 Jan 2010; Raúl Porcel <armin76@gentoo.org> +firefox-bin-3.5.7.ebuild:
+  Version bump
+
+  03 Jan 2010; Jory A. Pratt <anarchy@gentoo.org> firefox-bin-3.5.6.ebuild:
+  Fix broken sed during pkgmove
+
+  02 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  firefox-bin-3.5.6.ebuild, files/firefox-bin.desktop:
+  Fix typo issues mark_alec pointed out on #gentoo-dev.
+
+  02 Jan 2010; Samuli Suominen <ssuominen@gentoo.org>
+  firefox-bin-3.5.6.ebuild:
+  Remove app-emulation/emul-linux-x86-compat (libstdc++.so.5) from RDEPEND.
+
+*firefox-bin-3.5.6 (01 Jan 2010)
+
+  01 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org> +files/10firefox-bin,
+  +firefox-bin-3.5.6.ebuild, +files/71firefox-bin,
+  +files/firefox-bin.desktop, +metadata.xml:
+  Move from mozilla-firefox-bin to firefox-bin.
+
+  01 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  -mozilla-firefox-bin-3.0.14.ebuild, -mozilla-firefox-bin-3.5.3.ebuild,
+  -mozilla-firefox-bin-3.5.4.ebuild, -mozilla-firefox-bin-3.5.5.ebuild:
+  rm
+
+  28 Dec 2009; Pacho Ramos <pacho@gentoo.org>
+  mozilla-firefox-bin-3.5.6.ebuild:
+  amd64 stable, bug 297532
+
+  27 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  mozilla-firefox-bin-3.5.6.ebuild:
+  stable x86, security bug 297532
 
 *mozilla-firefox-bin-3.5.6 (24 Dec 2009)
 

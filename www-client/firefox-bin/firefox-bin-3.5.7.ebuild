@@ -1,38 +1,39 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox-bin/mozilla-firefox-bin-3.5.6.ebuild,v 1.1 2009/12/24 14:01:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/firefox-bin/firefox-bin-3.5.7.ebuild,v 1.1 2010/01/08 20:01:22 armin76 Exp $
 EAPI="2"
 
-inherit eutils mozilla-launcher multilib mozextension prefix
+inherit eutils mozilla-launcher multilib mozextension
 
 LANGS="af ar be bg bn-IN ca cs cy da de el en-GB en-US eo es-AR es-ES et eu fa fi fr fy-NL ga-IE gl gu-IN he hi-IN hu id is it ja ka kk kn ko ku lt lv mk mr nb-NO nl nn-NO oc pa-IN pl pt-BR pt-PT ro ru si sk sl sq sr sv-SE ta te th uk vi zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR pt-BR zh-CN"
 
 MY_PV="${PV/_rc/rc}"
-MY_P="${PN/-bin/}-${MY_PV}"
+MY_PN="${PN/-bin}"
+MY_P="${MY_PN}-${MY_PV}"
 
 DESCRIPTION="Firefox Web Browser"
-REL_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/"
-SRC_URI="${REL_URI}/${MY_PV}/linux-i686/en-US/firefox-${MY_PV}.tar.bz2"
+REL_URI="http://releases.mozilla.org/pub/mozilla.org/${MY_PN}/releases/"
+SRC_URI="${REL_URI}/${MY_PV}/linux-i686/en-US/${MY_P}.tar.bz2"
 HOMEPAGE="http://www.mozilla.com/firefox"
-RESTRICT="strip"
+RESTRICT="strip mirror"
 
 KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="restrict-javascript"
+IUSE="restrict-javascript startup-notification"
 
 for X in ${LANGS} ; do
 	if [ "${X}" != "en" ] && [ "${X}" != "en-US" ]; then
 		SRC_URI="${SRC_URI}
-			linguas_${X/-/_}? ( ${REL_URI}/${MY_PV}/linux-i686/xpi/${X}.xpi -> ${P/-bin/}-${X}.xpi )"
+			linguas_${X/-/_}? ( ${REL_URI}/${MY_PV}/linux-i686/xpi/${X}.xpi -> ${MY_P}-${X}.xpi )"
 	fi
 	IUSE="${IUSE} linguas_${X/-/_}"
 	# english is handled internally
 	if [ "${#X}" == 5 ] && ! has ${X} ${NOSHORTLANGS}; then
 		if [ "${X}" != "en-US" ]; then
 			SRC_URI="${SRC_URI}
-				linguas_${X%%-*}? ( ${REL_URI}/${MY_PV}/linux-i686/xpi/${X}.xpi -> ${P/-bin/}-${X}.xpi )"
+				linguas_${X%%-*}? ( ${REL_URI}/${MY_PV}/linux-i686/xpi/${X}.xpi -> ${MY_P}-${X}.xpi )"
 		fi
 		IUSE="${IUSE} linguas_${X%%-*}"
 	fi
@@ -48,15 +49,14 @@ RDEPEND="dev-libs/dbus-glib
 		 >=media-libs/alsa-lib-1.0.16
 	)
 	amd64? (
-		>=app-emulation/emul-linux-x86-baselibs-1.0
-		>=app-emulation/emul-linux-x86-gtklibs-1.0
-		>=app-emulation/emul-linux-x86-soundlibs-20080418
-		app-emulation/emul-linux-x86-compat
+		>=app-emulation/emul-linux-x86-baselibs-20081109
+		>=app-emulation/emul-linux-x86-gtklibs-20081109
+		>=app-emulation/emul-linux-x86-soundlibs-20081109
 	)"
 
 PDEPEND="restrict-javascript? ( www-plugins/noscript )"
 
-S="${WORKDIR}/firefox"
+S="${WORKDIR}/${MY_PN}"
 
 pkg_setup() {
 	# This is a binary x86 package => ABI=x86
@@ -88,11 +88,11 @@ linguas() {
 }
 
 src_unpack() {
-	unpack firefox-${MY_PV}.tar.bz2
+	unpack ${MY_P}.tar.bz2
 
 	linguas
 	for X in ${linguas}; do
-		[[ ${X} != "en" ]] && xpi_unpack "${P/-bin/}-${X}.xpi"
+		[[ ${X} != "en" ]] && xpi_unpack "${MY_P}-${X}.xpi"
 	done
 	if [[ ${linguas} != "" && ${linguas} != "en" ]]; then
 		einfo "Selected language packs (first will be default): ${linguas}"
@@ -100,11 +100,11 @@ src_unpack() {
 }
 
 src_install() {
-	declare MOZILLA_FIVE_HOME="${EPREFIX}/opt/firefox"
+	declare MOZILLA_FIVE_HOME="${EPREFIX}/opt/${MY_PN}"
 
 	# Install icon and .desktop for menu entry
 	newicon "${S}"/chrome/icons/default/default48.png ${PN}-icon.png
-	domenu "${FILESDIR}"/icon/${PN}.desktop
+	domenu "${FILESDIR}"/${PN}.desktop
 
 	# Add StartupNotify=true bug 237317
 	if use startup-notification; then
@@ -126,35 +126,33 @@ src_install() {
 	local LANG=${linguas%% *}
 	if [[ -n ${LANG} && ${LANG} != "en" ]]; then
 		elog "Setting default locale to ${LANG}"
-		dosed -e "s:general.useragent.locale\", \"en-US\":general.useragent.locale\", \"${LANG}\":" \
-			"${MOZILLA_FIVE_HOME}"/defaults/pref/firefox.js \
-			"${MOZILLA_FIVE_HOME}"/defaults/pref/firefox-l10n.js || \
+		sed -e "s:general.useragent.locale\", \"en-US\":general.useragent.locale\", \"${LANG}\":" \
+			-i "${D}${MOZILLA_FIVE_HOME}"/defaults/pref/${MY_PN}.js \
+			-i "${D}${MOZILLA_FIVE_HOME}"/defaults/pref/${MY_PN}-l10n.js || \
 			die "sed failed to change locale"
 	fi
 
 		# Create /usr/bin/firefox-bin
 		dodir /usr/bin/
-		cat <<EOF >"${ED}"/usr/bin/firefox-bin
+		cat <<EOF >"${ED}"/usr/bin/${PN}
 #!/bin/sh
 unset LD_PRELOAD
-exec "@GENTOO_PORTAGE_EPREFIX@/opt/firefox/firefox" "\$@"
+exec "${EPREFIX}/opt/${MY_PN}/${MY_PN}" "\$@"
 EOF
-		eprefixify "${ED}"/usr/bin/firefox-bin
-		fperms 0755 /usr/bin/firefox-bin
+		fperms 0755 /usr/bin/${PN}
 
 	# revdep-rebuild entry
 	insinto /etc/revdep-rebuild
-	doins "${FILESDIR}"/10firefox-bin
+	doins "${FILESDIR}"/10${PN} || die
 
 	# install ldpath env.d
 	cat <<EOF >"${T}/71firefox-bin"
-LDPATH="@GENTOO_PORTAGE_EPREFIX@/opt/firefox"
+LDPATH="${EPREFIX}/opt/firefox"
 EOF
-	eprefixify "${T}/71firefox-bin"
-	doenvd "${T}"/71firefox-bin
+	doenvd "${T}"/71${PN} || die
 
 	rm -rf "${D}"${MOZILLA_FIVE_HOME}/plugins
-	dosym /usr/"$(get_libdir)"/nsbrowser/plugins ${MOZILLA_FIVE_HOME#${EPREFIX}}/plugins
+	dosym /usr/"$(get_libdir)"/nsbrowser/plugins ${MOZILLA_FIVE_HOME#${EPREFIX}}/plugins || die
 }
 
 pkg_postinst() {
@@ -175,7 +173,7 @@ pkg_postinst() {
 		fi
 	else
 		einfo
-		einfo "NB: You just installed a 32-bit firefox"
+		einfo "NB: You just installed a 32-bit ${MY_P}"
 		einfo
 		einfo "Crashreporter won't work on amd64"
 		einfo
