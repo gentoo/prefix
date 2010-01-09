@@ -195,7 +195,15 @@ dev-perl/Crypt-RIPEMD160
 dev-perl/Crypt-Rijndael
 dev-perl/Crypt-SSLeay
 dev-perl/Crypt-Twofish
+dev-perl/class-loader
 dev-perl/common-sense
+dev-perl/convert-ascii-armour
+dev-perl/convert-pem
+dev-perl/crypt-cbc
+dev-perl/crypt-des-ede3
+dev-perl/crypt-idea
+dev-perl/crypt-primes
+dev-perl/crypt-random
 dev-perl/DateTime-Format-Mail
 dev-perl/DateTime-Format-W3CDTF
 dev-perl/Event
