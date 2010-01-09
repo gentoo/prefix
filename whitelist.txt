@@ -235,8 +235,15 @@ dev-perl/Exporter-Lite
 dev-perl/ExtUtils-AutoInstall
 dev-perl/extutils-depends
 dev-perl/extutils-pkgconfig
+dev-perl/File-Copy-Recursive
+dev-perl/File-Find-Rule
+dev-perl/File-Flat
 dev-perl/File-HomeDir
+dev-perl/File-Next
 dev-perl/File-ReadBackwards
+dev-perl/File-Remove
+dev-perl/File-Slurp
+dev-perl/File-Type
 dev-perl/GD
 dev-perl/GDGraph
 dev-perl/GDTextUtil
