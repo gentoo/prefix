@@ -212,6 +212,13 @@ dev-perl/Data-Compare
 dev-perl/Data-Hierarchy
 dev-perl/Data-UUID
 dev-perl/DateManip
+dev-perl/DateTime
+dev-perl/DateTime-Locale
+dev-perl/DateTime-TimeZone
+dev-perl/DelimMatch
+dev-perl/Devel-Cycle
+dev-perl/Devel-StackTrace
+dev-perl/Devel-Symdump
 dev-perl/DateTime-Format-Mail
 dev-perl/DateTime-Format-W3CDTF
 dev-perl/Event
