@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.15184 (09 Jan 2010)
+
+  09 Jan 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.15178.ebuild, +portage-2.2.00.15184.ebuild:
+  Replace previous snapshot, fix spurious ValueError and NameErrors, added
+  back setting of EPREFIX in the internal environment.
+
 *portage-2.2.00.15178 (08 Jan 2010)
 
   08 Jan 2010; Fabian Groffen <grobian@gentoo.org>
