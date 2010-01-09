@@ -86,6 +86,7 @@ games-arcade/ascii-invaders
 games-board/gnugo
 games-misc/wtf
 games-puzzle/freesweep
+kde-base/automoc
 kde-base/qimageblitz
 mail-client/mutt
 media-gfx/asymptote
