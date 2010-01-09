@@ -1,6 +1,48 @@
-# ChangeLog for x11-plugins/noscript
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/noscript/ChangeLog,v 1.124 2009/03/07 03:33:12 darkside Exp $
+# ChangeLog for www-plugins/noscript
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-plugins/noscript/ChangeLog,v 1.10 2010/01/01 18:03:23 scarabeus Exp $
+
+  01 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  noscript-1.8.8.ebuild, noscript-1.9.0.4.ebuild, noscript-1.9.6.6.ebuild,
+  noscript-1.9.8.86.ebuild:
+  mozilla-firefox-bin -> firefox-bin
+
+  12 Nov 2009; Joseph Jezak <josejx@gentoo.org> noscript-1.9.6.6.ebuild:
+  Marked ppc64 stable for bug #282466.
+
+  04 Nov 2009; Jory A. Pratt <anarchy@gentoo.org> noscript-1.9.8.86.ebuild:
+  update noscript-1.9.8.86 to support icecat
+
+  19 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
+  noscript-1.9.6.6.ebuild:
+  amd64 stable wrt #282466
+
+*noscript-1.9.8.86 (16 Sep 2009)
+
+  16 Sep 2009; Mounir Lamouri <volkmar@gentoo.org>
+  +noscript-1.9.8.86.ebuild:
+  Version bump to 1.9.8.86. Bug 282468
+
+  15 Sep 2009; Jeroen Roovers <jer@gentoo.org> noscript-1.9.6.6.ebuild:
+  Stable for HPPA (bug #282466).
+
+  13 Sep 2009; Raúl Porcel <armin76@gentoo.org> noscript-1.9.6.6.ebuild:
+  alpha/arm/ia64/sparc/x86 stable wrt #282466
+
+  13 Sep 2009; Mounir Lamouri <volkmar@gentoo.org> noscript-1.9.6.6.ebuild:
+  Stable on ppc. Bug 282466
+
+*noscript-1.9.6.6 (21 Jul 2009)
+
+  21 Jul 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -noscript-1.6.9.ebuild, -noscript-1.8.1.3.ebuild,
+  +noscript-1.9.6.6.ebuild:
+  Bump to 1.9.6.6, cleanup old versions
+
+  21 Jul 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +noscript-1.6.9.ebuild, +noscript-1.8.1.3.ebuild, +noscript-1.8.8.ebuild,
+  +noscript-1.9.0.4.ebuild, +metadata.xml:
+  pkgmove from x11-plugins/ to www-plugins/
 
   07 Mar 2009; Jeremy Olexa <darkside@gentoo.org> noscript-1.8.8.ebuild:
   amd64 stable, bug 258746

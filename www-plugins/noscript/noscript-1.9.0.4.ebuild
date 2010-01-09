@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/noscript/noscript-1.6.9.ebuild,v 1.7 2008/09/24 17:27:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-plugins/noscript/noscript-1.9.0.4.ebuild,v 1.2 2010/01/01 18:03:23 scarabeus Exp $
 
 inherit mozextension multilib
 
@@ -14,7 +14,7 @@ KEYWORDS="~amd64-linux ~x86-linux"
 IUSE=""
 
 RDEPEND="|| (
-	>=www-client/mozilla-firefox-bin-1.5.0.7
+	>=www-client/firefox-bin-1.5.0.7
 	>=www-client/mozilla-firefox-1.5.0.7
 )"
 DEPEND="${RDEPEND}"
@@ -31,7 +31,7 @@ src_install() {
 		MOZILLA_FIVE_HOME="${EPREFIX}/usr/$(get_libdir)/mozilla-firefox"
 		xpi_install "${S}"/"${P}"
 	fi
-	if has_version '>=www-client/mozilla-firefox-bin-1.5.0.7'; then
+	if has_version '>=www-client/firefox-bin-1.5.0.7'; then
 		MOZILLA_FIVE_HOME="${EPREFIX}/opt/firefox"
 		xpi_install "${S}"/"${P}"
 	fi
