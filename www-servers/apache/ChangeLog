@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/apache
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.126 2009/12/18 15:33:24 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.127 2010/01/01 13:01:39 klausman Exp $
+
+  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org>
+  apache-2.2.14-r1.ebuild:
+  Stable on alpha, bug #291810
 
   18 Dec 2009; Raúl Porcel <armin76@gentoo.org> apache-2.2.14-r1.ebuild:
   ia64/s390/sh/sprc stable wrt #291810
