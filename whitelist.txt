@@ -953,3 +953,4 @@ media-gfx/optipng
 media-gfx/pngtoico
 media-gfx/potrace
 net-libs/libesmtp
+net-libs/gnet
