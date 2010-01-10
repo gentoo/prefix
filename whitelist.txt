@@ -973,3 +973,4 @@ gnome-base/libgnomeprintui
 gnome-base/gnome-desktop
 gnome-base/gnome-light
 gnome-base/gnome-mime-data
+gnome-base/gnome-settings-daemon
