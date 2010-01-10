@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.8-r1.ebuild,v 1.1 2009/12/23 15:12:36 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.10.ebuild,v 1.1 2010/01/04 12:55:46 ssuominen Exp $
 
-inherit eutils autotools
+inherit autotools eutils
 
 DESCRIPTION="A set of tools that use the proc filesystem"
 HOMEPAGE="http://psmisc.sourceforge.net/"
@@ -22,7 +22,6 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-fuser-r159.patch
 	use nls || epatch "${FILESDIR}"/${PN}-22.5-no-nls.patch #193920
 	eautoreconf
 }
