@@ -995,3 +995,8 @@ x11-misc/util-macros
 x11-misc/xclip
 x11-misc/xdg-utils
 x11-misc/xsel
+x11-misc/bubblemon
+x11-misc/makedepend
+x11-misc/notification-daemon
+x11-misc/x11vnc
+x11-misc/xbitmaps
