@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.7.ebuild,v 1.1 2009/08/15 23:53:29 vapier Exp $
 
-inherit eutils toolchain-funcs multilib
+inherit eutils toolchain-funcs multilib libtool
 
 DESCRIPTION="GNU awk pattern-matching language"
 HOMEPAGE="http://www.gnu.org/software/gawk/gawk.html"
@@ -32,7 +32,7 @@ src_unpack() {
 	# which's preprocessor understands '\'-linebreaks
 	epatch "${FILESDIR}"/${PN}-3.1.5-stupid-awk-clever-cc.patch
 	epatch "${FILESDIR}"/${PN}-3.1.6-mint.patch
-	epatch "${FILESDIR}"/${PN}-3.1.7-mint.patch # only patches configure
+	elibtoolize # needed for FreeMiNT
 }
 
 src_compile() {
