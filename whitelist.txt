@@ -303,6 +303,15 @@ dev-perl/Net-SSLeay
 dev-perl/Net-Telnet
 dev-perl/Number-Compare
 dev-perl/Ogg-Vorbis-Header-PurePerl
+dev-perl/PPI
+dev-perl/PadWalker
+dev-perl/Pango
+dev-perl/Params-Util
+dev-perl/Params-Validate
+dev-perl/Parse-RecDescent
+dev-perl/Parse-Yapp
+dev-perl/Path-Class
+dev-perl/Perl-Critic
 dev-perl/Scope-Guard
 dev-perl/SQL-Abstract
 dev-perl/SQL-Abstract-Limit
