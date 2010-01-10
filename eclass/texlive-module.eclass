@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.26 2009/11/12 19:04:01 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.32 2010/01/07 20:36:23 aballier Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -51,21 +51,28 @@ HOMEPAGE="http://www.tug.org/texlive/"
 
 COMMON_DEPEND=">=app-text/texlive-core-${PV}"
 
-IUSE=""
+IUSE="source"
 
-# TeX Live 2007 was providing .zip files of CTAN packages. For 2008 they are now
-# .tar.lzma
+# TeX Live 2008 was providing .tar.lzma files of CTAN packages. For 2009 they are now
+# .tar.xz
+if [ "${PV#2008}" != "${PV}" ]; then
+	PKGEXT=tar.lzma
+	DEPEND="${COMMON_DEPEND}
+		|| ( app-arch/xz-utils app-arch/lzma-utils )"
+else
+	PKGEXT=tar.xz
+	DEPEND="${COMMON_DEPEND}
+		app-arch/xz-utils"
+fi
+
 for i in ${TEXLIVE_MODULE_CONTENTS}; do
-	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
+	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.${PKGEXT}"
 done
-DEPEND="${COMMON_DEPEND}
-	|| ( app-arch/xz-utils app-arch/lzma-utils )"
-IUSE="${IUSE} source"
 
 # Forge doc SRC_URI
 [ -n "${PN##*documentation*}" ] && [ -n "${TEXLIVE_MODULE_DOC_CONTENTS}" ] && SRC_URI="${SRC_URI} doc? ("
 for i in ${TEXLIVE_MODULE_DOC_CONTENTS}; do
-	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
+	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.${PKGEXT}"
 done
 [ -n "${PN##*documentation*}" ] && [ -n "${TEXLIVE_MODULE_DOC_CONTENTS}" ] && SRC_URI="${SRC_URI} )"
 
@@ -73,7 +80,7 @@ done
 if [ -n "${TEXLIVE_MODULE_SRC_CONTENTS}" ] ; then
 	SRC_URI="${SRC_URI} source? ("
 	for i in ${TEXLIVE_MODULE_SRC_CONTENTS}; do
-		SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
+		SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.${PKGEXT}"
 	done
 	SRC_URI="${SRC_URI} )"
 fi
@@ -84,10 +91,57 @@ RDEPEND="${COMMON_DEPEND}"
 
 S="${WORKDIR}"
 
+if [ "${PV#2008}" == "${PV}" ]; then
+
+# @FUNCTION: texlive-module_src_unpack
+# @DESCRIPTION:
+# Only for TeX Live 2009.
+# Gives tar.xz unpack support until we can use an EAPI with that support.
+
+RELOC_TARGET=texmf-dist
+
+texlive-module_src_unpack() {
+	local i s
+	for i in ${A}
+	do
+		s="${DISTDIR%/}/${i}"
+		einfo "Unpacking ${s} to ${PWD}"
+		test -s "${s}" || die "${s} does not exist"
+		xz -dc -- "${s}" | tar xof - || die "Unpacking ${s} failed"
+	done
+	grep RELOC tlpkg/tlpobj/* | awk '{print $2}' | sed 's#^RELOC/##' > "${T}/reloclist"
+	{ for i in $(<"${T}/reloclist"); do  dirname $i; done; } | uniq > "${T}/dirlist"
+	for i in $(<"${T}/dirlist"); do
+		[ -d "${RELOC_TARGET}/${i}" ] || mkdir -p "${RELOC_TARGET}/${i}"
+	done
+	for i in $(<"${T}/reloclist"); do
+		mv "${i}" "${RELOC_TARGET}"/$(dirname "${i}") || die "failed to relocate ${i} to ${RELOC_TARGET}/$(dirname ${i})"
+	done
+}
+
+fi
+
+# @FUNCTION: texlive-module_add_format
+# @DESCRIPTION:
+# Creates/appends to a format.${PN}.cnf file for fmtutil.
+# This will make fmtutil generate the formats when asked and allow the remaining
+# src_compile phase to build the formats
+
+texlive-module_add_format() {
+	local name engine mode patterns options
+	eval $@
+	einfo "Appending to format.${PN}.cnf for $@"
+	[ -d texmf/fmtutil ] || mkdir -p texmf/fmtutil
+	[ -f texmf/fmtutil/format.${PN}.cnf ] || { echo "# Generated for ${PN} by texlive-module.eclass" > texmf/fmtutil/format.${PN}.cnf; }
+	if [ "${mode}" == "disabled" ]; then
+		printf "#! " >> texmf/fmtutil/format.${PN}.cnf
+	fi
+	[ -z "${patterns}" ] && patterns="-"
+	printf "${name}\t${engine}\t${patterns}\t${options}\n" >> texmf/fmtutil/format.${PN}.cnf
+}
 
 # @FUNCTION: texlive-module_make_language_def_lines
 # @DESCRIPTION:
-# Only valid for TeXLive 2008.
 # Creates a language.${PN}.def entry to put in /etc/texmf/language.def.d
 # It parses the AddHyphen directive of tlpobj files to create it.
 
@@ -137,16 +191,6 @@ texlive-module_make_language_dat_lines() {
 # files for different packages in a single one used by the whole tex installation.
 
 texlive-module_src_compile() {
-	# Build format files
-	for i in texmf/fmtutil/format*.cnf; do
-		if [ -f "${i}" ]; then
-			einfo "Building format ${i}"
-			VARTEXFONTS="${T}/fonts" TEXMFHOME="${S}/texmf:${S}/texmf-dist:${S}/texmf-var"\
-				env -u TEXINPUTS fmtutil --cnffile "${i}" --fmtdir "${S}/texmf-var/web2c" --all\
-				|| die "failed to build format ${i}"
-		fi
-	done
-
 	# Generate config files
 	# TeX Live 2007 was providing lists. For 2008 they are now tlpobj.
 	for i in "${S}"/tlpkg/tlpobj/*;
@@ -171,6 +215,8 @@ texlive-module_src_compile() {
 			AddHyphen)
 				texlive-module_make_language_def_lines "$parameter"
 				texlive-module_make_language_dat_lines "$parameter";;
+			AddFormat)
+				texlive-module_add_format "$parameter";;
 			BuildFormat)
 				einfo "Format $parameter already built.";;
 			BuildLanguageDat)
@@ -178,6 +224,16 @@ texlive-module_src_compile() {
 			*)
 				die "No rule to proccess ${command}. Please file a bug."
 		esac
+	done
+
+	# Build format files
+	for i in texmf/fmtutil/format*.cnf; do
+		if [ -f "${i}" ]; then
+			einfo "Building format ${i}"
+			VARTEXFONTS="${T}/fonts" TEXMFHOME="${S}/texmf:${S}/texmf-dist:${S}/texmf-var"\
+				env -u TEXINPUTS fmtutil --cnffile "${i}" --fmtdir "${S}/texmf-var/web2c" --all\
+				|| die "failed to build format ${i}"
+		fi
 	done
 
 	# Delete ls-R files, these should not be created but better be certain they
@@ -263,4 +319,8 @@ texlive-module_pkg_postrm() {
 	fi
 }
 
+if [ "${PV#2008}" != "${PV}" ]; then
 EXPORT_FUNCTIONS src_compile src_install pkg_postinst pkg_postrm
+else
+EXPORT_FUNCTIONS src_unpack src_compile src_install pkg_postinst pkg_postrm
+fi

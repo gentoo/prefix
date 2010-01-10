@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-fakegem.eclass,v 1.9 2010/01/01 23:13:26 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-fakegem.eclass,v 1.10 2010/01/09 21:16:37 flameeyes Exp $
 #
 # @ECLASS: ruby-fakegem.eclass
 # @MAINTAINER:
@@ -57,7 +57,7 @@ inherit ruby-ng
 # @ECLASS-VARIABLE: RUBY_FAKEGEM_REQUIRE_PATHS
 # @DESCRIPTION:
 # Extra require paths (beside lib) to add to the specification
-# RUBY_FAKEGEM_BINWRAP=""
+# RUBY_FAKEGEM_REQUIRE_PATHS=""
 
 RUBY_FAKEGEM_NAME="${RUBY_FAKEGEM_NAME:-${PN}}"
 RUBY_FAKEGEM_VERSION="${RUBY_FAKEGEM_VERSION:-${PV}}"
@@ -278,7 +278,7 @@ each_ruby_install() {
 # @DESCRIPTION:
 # Install files common to all ruby targets.
 all_fakegem_install() {
-	if [[ -n ${RUBY_FAKEGEM_DOCDIR} ]] && use doc; then
+	if [[ -n ${RUBY_FAKEGEM_DOCDIR} ]] && [[ ${RUBY_FAKEGEM_TASK_DOC} != "" ]] && use doc; then
 		for dir in ${RUBY_FAKEGEM_DOCDIR}; do
 			pushd ${dir}
 			dohtml -r * || die "failed to install documentation"

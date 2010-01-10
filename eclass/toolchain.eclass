@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.415 2009/12/20 19:06:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.416 2010/01/09 20:42:19 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -166,7 +166,7 @@ else
 
 			# gcc-{nios2,bfin} don't accept these
 			if [[ ${PN} == "gcc" ]] ; then
-				IUSE="${IUSE} ip28 ip32r10k n32 n64"
+				IUSE="${IUSE} n32 n64"
 			fi
 
 			tc_version_is_at_least "4.0" && IUSE="${IUSE} objc-gc mudflap"

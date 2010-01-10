@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.9 2008/11/06 19:51:30 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-common.eclass,v 1.12 2010/01/09 16:03:22 aballier Exp $
 
 # @ECLASS: texlive-common.eclass
 # @MAINTAINER:
@@ -30,11 +30,12 @@ texlive-common_handle_config_files() {
 	# Handle config files properly
 	[ -d "${ED}${TEXMF_PATH}" ] || return
 	cd "${ED}${TEXMF_PATH}"
-	for f in $(find . -name '*.cnf' -o -name '*.cfg' -type f | sed -e "s:\./::g") ; do
-		if [ "${f#*config}" != "${f}" ] ; then
+	for f in $(find . -name '*.cnf' -type f -o -name '*.cfg' -type f | sed -e "s:\./::g") ; do
+		if [ "${f#*config}" != "${f}" -o "${f#doc}" != "${f}" ] ; then
 			continue
 		fi
 		dodir /etc/texmf/$(dirname ${f}).d
+		einfo "Moving (and symlinking) ${EPREFIX}${TEXMF_PATH}/${f} to ${EPREFIX}/etc/texmf/$(dirname ${f}).d"
 		mv "${ED}/${TEXMF_PATH}/${f}" "${ED}/etc/texmf/$(dirname ${f}).d" || die "mv ${f} failed."
 		dosym /etc/texmf/$(dirname ${f}).d/$(basename ${f}) ${TEXMF_PATH}/${f}
 	done

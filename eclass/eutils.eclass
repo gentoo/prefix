@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.324 2010/01/03 19:57:10 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.325 2010/01/09 20:06:24 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -114,284 +114,272 @@ eshopts_pop() {
 	set -${s} || die "eshopts_pop: sanity: unable to restore saved shell settings: ${s}"
 }
 
-# Default directory where patches are located
+# @VARIABLE: EPATCH_SOURCE
+# @DESCRIPTION:
+# Default directory to search for patches.
 EPATCH_SOURCE="${WORKDIR}/patch"
-# Default extension for patches
+# @VARIABLE: EPATCH_SUFFIX
+# @DESCRIPTION:
+# Default extension for patches (do not prefix the period yourself).
 EPATCH_SUFFIX="patch.bz2"
-# Default options for patch
-# Set -g0 to keep RCS, ClearCase, Perforce and SCCS happy. Bug #24571
-# Set --no-backup-if-mismatch so we don't leave '.orig' files behind.
-# Set -E to automatically remove empty files.
+# @VARIABLE: EPATCH_OPTS
+# @DESCRIPTION:
+# Default options for patch:
+# @CODE
+#	-g0 - keep RCS, ClearCase, Perforce and SCCS happy #24571
+#	--no-backup-if-mismatch - do not leave .orig files behind
+#	-E - automatically remove empty files
+# @CODE
 EPATCH_OPTS="-g0 -E --no-backup-if-mismatch"
+# @VARIABLE: EPATCH_EXCLUDE
+# @DESCRIPTION:
 # List of patches not to apply.	 Note this is only file names,
-# and not the full path ..
+# and not the full path.  Globs accepted.
 EPATCH_EXCLUDE=""
+# @VARIABLE: EPATCH_SINGLE_MSG
+# @DESCRIPTION:
 # Change the printed message for a single patch.
 EPATCH_SINGLE_MSG=""
+# @VARIABLE: EPATCH_MULTI_MSG
+# @DESCRIPTION:
 # Change the printed message for multiple patches.
 EPATCH_MULTI_MSG="Applying various patches (bugfixes/updates) ..."
-# Force applying bulk patches even if not following the style:
-#
-#	??_${ARCH}_foo.${EPATCH_SUFFIX}
-#
+# @VARIABLE: EPATCH_FORCE
+# @DESCRIPTION:
+# Only require patches to match EPATCH_SUFFIX rather than the extended
+# arch naming style.
 EPATCH_FORCE="no"
 
-# This function is for bulk patching, or in theory for just one
-# or two patches.
+# @FUNCTION: epatch
+# @USAGE: [patches] [dirs of patches]
+# @DESCRIPTION:
+# epatch is designed to greatly simplify the application of patches.  It can
+# process patch files directly, or directories of patches.  The patches may be
+# compressed (bzip/gzip/etc...) or plain text.  You generally need not specify
+# the -p option as epatch will automatically attempt -p0 to -p5 until things
+# apply successfully.
 #
-# It should work with .bz2, .gz, .zip and plain text patches.
-# Currently all patches should be the same format.
+# If you do not specify any options, then epatch will default to the directory
+# specified by EPATCH_SOURCE.
 #
-# You do not have to specify '-p' option to patch, as it will
-# try with -p0 to -p5 until it succeed, or fail at -p5.
+# When processing directories, epatch will apply all patches that match:
+# @CODE
+#	${EPATCH_FORCE} == "yes"
+#		??_${ARCH}_foo.${EPATCH_SUFFIX}
+#	else
+#		*.${EPATCH_SUFFIX}
+# @CODE
+# The leading ?? are typically numbers used to force consistent patch ordering.
+# The arch field is used to apply patches only for the host architecture with
+# the special value of "all" means apply for everyone.  Note that using values
+# other than "all" is highly discouraged -- you should apply patches all the
+# time and let architecture details be detected at configure/compile time.
 #
-# Above EPATCH_* variables can be used to control various defaults,
-# bug they should be left as is to ensure an ebuild can rely on
-# them for.
+# If EPATCH_SUFFIX is empty, then no period before it is implied when searching
+# for patches to apply.
 #
-# Patches are applied in current directory.
-#
-# Bulk Patches should preferably have the form of:
-#
-#	??_${ARCH}_foo.${EPATCH_SUFFIX}
-#
-# For example:
-#
-#	01_all_misc-fix.patch.bz2
-#	02_sparc_another-fix.patch.bz2
-#
-# This ensures that there are a set order, and you can have ARCH
-# specific patches.
-#
-# If you however give an argument to epatch(), it will treat it as a
-# single patch that need to be applied if its a file.  If on the other
-# hand its a directory, it will set EPATCH_SOURCE to this.
-#
-# <azarah@gentoo.org> (10 Nov 2002)
-#
+# Refer to the other EPATCH_xxx variables for more customization of behavior.
 epatch() {
 	_epatch_draw_line() {
+		# create a line of same length as input string
 		[[ -z $1 ]] && set "$(printf "%65s" '')"
 		echo "${1//?/=}"
 	}
-	_epatch_assert() { local _pipestatus=${PIPESTATUS[*]}; [[ ${_pipestatus// /} -eq 0 ]] ; }
-	local PIPE_CMD=""
-	local STDERR_TARGET="${T}/$$.out"
-	local PATCH_TARGET="${T}/$$.patch"
-	local PATCH_SUFFIX=""
-	local SINGLE_PATCH="no"
-	local x=""
 
 	unset P4CONFIG P4PORT P4USER # keep perforce at bay #56402
 
-	if [ "$#" -gt 1 ]
-	then
-		local m=""
+	# Let the rest of the code process one user arg at a time --
+	# each arg may expand into multiple patches, and each arg may
+	# need to start off with the default global EPATCH_xxx values
+	if [[ $# -gt 1 ]] ; then
+		local m
 		for m in "$@" ; do
 			epatch "${m}"
 		done
 		return 0
 	fi
 
-	if [ -n "$1" -a -f "$1" ]
-	then
+	local SINGLE_PATCH="no"
+	# no args means process ${EPATCH_SOURCE}
+	[[ $# -eq 0 ]] && set -- "${EPATCH_SOURCE}"
+
+	if [[ -f $1 ]] ; then
 		SINGLE_PATCH="yes"
+		set -- "$1"
+		# Use the suffix from the single patch (localize it); the code
+		# below will find the suffix for us
+		local EPATCH_SUFFIX=$1
 
-		local EPATCH_SOURCE="$1"
-		local EPATCH_SUFFIX="${1##*\.}"
+	elif [[ -d $1 ]] ; then
+		# Some people like to make dirs of patches w/out suffixes (vim)
+		set -- "$1"/*${EPATCH_SUFFIX:+."${EPATCH_SUFFIX}"}
 
-	elif [ -n "$1" -a -d "$1" ]
-	then
-		# Allow no extension if EPATCH_FORCE=yes ... used by vim for example ...
-		if [ "${EPATCH_FORCE}" = "yes" ] && [ -z "${EPATCH_SUFFIX}" ]
-		then
-			local EPATCH_SOURCE="$1/*"
-		else
-			local EPATCH_SOURCE="$1/*.${EPATCH_SUFFIX}"
-		fi
 	else
-		if [[ ! -d ${EPATCH_SOURCE} ]] || [[ -n $1 ]] ; then
-			if [ -n "$1" -a "${EPATCH_SOURCE}" = "${WORKDIR}/patch" ]
-			then
-				EPATCH_SOURCE="$1"
-			fi
-
-			echo
-			eerror "Cannot find \$EPATCH_SOURCE!  Value for \$EPATCH_SOURCE is:"
-			eerror
-			eerror "  ${EPATCH_SOURCE}"
-			eerror "  ( ${EPATCH_SOURCE##*/} )"
-			echo
-			die "Cannot find \$EPATCH_SOURCE!"
-		fi
-
-		local EPATCH_SOURCE="${EPATCH_SOURCE}/*.${EPATCH_SUFFIX}"
+		# sanity check ... if it isn't a dir or file, wtf man ?
+		[[ $# -ne 0 ]] && EPATCH_SOURCE=$1
+		echo
+		eerror "Cannot find \$EPATCH_SOURCE!  Value for \$EPATCH_SOURCE is:"
+		eerror
+		eerror "  ${EPATCH_SOURCE}"
+		eerror "  ( ${EPATCH_SOURCE##*/} )"
+		echo
+		die "Cannot find \$EPATCH_SOURCE!"
 	fi
 
+	local PIPE_CMD
 	case ${EPATCH_SUFFIX##*\.} in
-		xz)
-			PIPE_CMD="xz -dc"
-			PATCH_SUFFIX="xz"
-			;;
-		lzma)
-			PIPE_CMD="lzma -dc"
-			PATCH_SUFFIX="lzma"
-			;;
-		bz2)
-			PIPE_CMD="bzip2 -dc"
-			PATCH_SUFFIX="bz2"
-			;;
-		gz|Z|z)
-			PIPE_CMD="gzip -dc"
-			PATCH_SUFFIX="gz"
-			;;
-		ZIP|zip)
-			PIPE_CMD="unzip -p"
-			PATCH_SUFFIX="zip"
-			;;
-		*)
-			PIPE_CMD="cat"
-			PATCH_SUFFIX="patch"
-			;;
+		xz)      PIPE_CMD="xz -dc"    ;;
+		lzma)    PIPE_CMD="lzma -dc"  ;;
+		bz2)     PIPE_CMD="bzip2 -dc" ;;
+		gz|Z|z)  PIPE_CMD="gzip -dc"  ;;
+		ZIP|zip) PIPE_CMD="unzip -p"  ;;
+		*)       ;;
 	esac
 
-	if [ "${SINGLE_PATCH}" = "no" ]
-	then
-		einfo "${EPATCH_MULTI_MSG}"
-	fi
-	for x in ${EPATCH_SOURCE}
-	do
-		# New ARCH dependant patch naming scheme ...
-		#
-		#	???_arch_foo.patch
-		#
-		if [ -f ${x} ] && \
-		   ([ "${SINGLE_PATCH}" = "yes" -o "${x/_all_}" != "${x}" -o "${x/_${ARCH}_}" != "${x}" ] || \
-			[ "${EPATCH_FORCE}" = "yes" ])
-		then
-			local count=0
-			local popts="${EPATCH_OPTS}"
-			local patchname=${x##*/}
+	[[ ${SINGLE_PATCH} == "no" ]] && einfo "${EPATCH_MULTI_MSG}"
 
-			if [ -n "${EPATCH_EXCLUDE}" ]
-			then
-				if [ "${EPATCH_EXCLUDE/${patchname}}" != "${EPATCH_EXCLUDE}" ]
-				then
+	local x
+	for x in "$@" ; do
+		# If the patch dir given contains subdirs, or our EPATCH_SUFFIX
+		# didn't match anything, ignore continue on
+		[[ ! -f ${x} ]] && continue
+
+		local patchname=${x##*/}
+
+		# Apply single patches, or forced sets of patches, or
+		# patches with ARCH dependant names.
+		#	???_arch_foo.patch
+		# Else, skip this input altogether
+		local a=${patchname#*_} # strip the ???_
+		a=${a%%_*}              # strip the _foo.patch
+		if ! [[ ${SINGLE_PATCH} == "yes" || \
+		        ${EPATCH_FORCE} == "yes" || \
+		        ${a} == all     || \
+		        ${a} == ${ARCH} ]]
+		then
+			continue
+		fi
+
+		# Let people filter things dynamically
+		if [[ -n ${EPATCH_EXCLUDE} ]] ; then
+			# let people use globs in the exclude
+			eshopts_push -o noglob
+
+			local ex
+			for ex in ${EPATCH_EXCLUDE} ; do
+				if [[ ${patchname} == ${ex} ]] ; then
+					eshopts_pop
 					continue
 				fi
-			fi
-
-			if [ "${SINGLE_PATCH}" = "yes" ]
-			then
-				if [ -n "${EPATCH_SINGLE_MSG}" ]
-				then
-					einfo "${EPATCH_SINGLE_MSG}"
-				else
-					einfo "Applying ${patchname} ..."
-				fi
-			else
-				einfo "  ${patchname} ..."
-			fi
-
-			echo "***** ${patchname} *****" > ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-			echo >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-
-			# Decompress the patch if need be
-			if [[ ${PATCH_SUFFIX} != "patch" ]] ; then
-				echo -n "PIPE_COMMAND:	" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-				echo "${PIPE_CMD} ${x} > ${PATCH_TARGET}" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-
-				if ! (${PIPE_CMD} ${x} > ${PATCH_TARGET}) >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/} 2>&1 ; then
-					echo
-					eerror "Could not extract patch!"
-					#die "Could not extract patch!"
-					count=5
-					break
-				fi
-			else
-				PATCH_TARGET="${x}"
-			fi
-
-			# Check for absolute paths in patches.  If sandbox is disabled,
-			# people could (accidently) patch files in the root filesystem.
-			# Or trigger other unpleasantries #237667.  So disallow -p0 on
-			# such patches.
-			local abs_paths=$(egrep -n '^[-+]{3} /' "${PATCH_TARGET}" | awk '$2 != "/dev/null" { print }')
-			if [[ -n ${abs_paths} ]] ; then
-				count=1
-				echo "NOTE: skipping -p0 due to absolute paths in patch:" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-				echo "${abs_paths}" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-			fi
-
-			# Allow for prefix to differ ... im lazy, so shoot me :/
-			while [ "${count}" -lt 5 ]
-			do
-				# Generate some useful debug info ...
-				_epatch_draw_line "***** ${patchname} *****" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-				echo >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-
-				echo -n "PATCH COMMAND:	 " >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-				echo "patch -p${count} ${popts} < ${PATCH_TARGET}" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-
-				echo >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-				_epatch_draw_line "***** ${patchname} *****" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-
-				if (cat ${PATCH_TARGET} | patch -p${count} ${popts} --dry-run -f ; _epatch_assert) >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/} 2>&1
-				then
-					_epatch_draw_line "***** ${patchname} *****" >	${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}.real
-					echo >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}.real
-					echo "ACTUALLY APPLYING ${patchname} ..." >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}.real
-					echo >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}.real
-					_epatch_draw_line "***** ${patchname} *****" >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}.real
-
-					cat ${PATCH_TARGET} | patch -p${count} ${popts} >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}.real 2>&1
-					_epatch_assert
-
-					if [ "$?" -ne 0 ]
-					then
-						cat ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}.real >> ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-						echo
-						eerror "A dry-run of patch command succeeded, but actually"
-						eerror "applying the patch failed!"
-						#die "Real world sux compared to the dreamworld!"
-						count=5
-					fi
-
-					rm -f ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}.real
-
-					break
-				fi
-
-				count=$((count + 1))
 			done
-
-			if [ "${PATCH_SUFFIX}" != "patch" ]
-			then
-				rm -f ${PATCH_TARGET}
-			fi
-
-			if [ "${count}" -eq 5 ]
-			then
-				echo
-				eerror "Failed Patch: ${patchname} !"
-				eerror " ( ${PATCH_TARGET} )"
-				eerror
-				eerror "Include in your bugreport the contents of:"
-				eerror
-				eerror "  ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}"
-				echo
-				die "Failed Patch: ${patchname}!"
-			fi
-
-			rm -f ${STDERR_TARGET%/*}/${patchname}-${STDERR_TARGET##*/}
-
-			eend 0
+			eshopts_pop
 		fi
+
+		if [[ ${SINGLE_PATCH} == "yes" ]] ; then
+			if [[ -n ${EPATCH_SINGLE_MSG} ]] ; then
+				einfo "${EPATCH_SINGLE_MSG}"
+			else
+				einfo "Applying ${patchname} ..."
+			fi
+		else
+			einfo "  ${patchname} ..."
+		fi
+
+		# most of the time, there will only be one run per unique name,
+		# but if there are more, make sure we get unique log filenames
+		local STDERR_TARGET="${T}/${patchname}.out"
+		if [[ -e ${STDERR_TARGET} ]] ; then
+			STDERR_TARGET="${T}/${patchname}-$$.out"
+		fi
+
+		printf "***** %s *****\n\n" "${patchname}" > "${STDERR_TARGET}"
+
+		# Decompress the patch if need be
+		local count=0
+		local PATCH_TARGET
+		if [[ -n ${PIPE_CMD} ]] ; then
+			PATCH_TARGET="${T}/$$.patch"
+			echo "PIPE_COMMAND:  ${PIPE_CMD} ${x} > ${PATCH_TARGET}" >> "${STDERR_TARGET}"
+
+			if ! (${PIPE_CMD} "${x}" > "${PATCH_TARGET}") >> "${STDERR_TARGET}" 2>&1 ; then
+				echo
+				eerror "Could not extract patch!"
+				#die "Could not extract patch!"
+				count=5
+				break
+			fi
+		else
+			PATCH_TARGET=${x}
+		fi
+
+		# Check for absolute paths in patches.  If sandbox is disabled,
+		# people could (accidently) patch files in the root filesystem.
+		# Or trigger other unpleasantries #237667.  So disallow -p0 on
+		# such patches.
+		local abs_paths=$(egrep -n '^[-+]{3} /' "${PATCH_TARGET}" | awk '$2 != "/dev/null" { print }')
+		if [[ -n ${abs_paths} ]] ; then
+			count=1
+			printf "NOTE: skipping -p0 due to absolute paths in patch:\n%s\n" "${abs_paths}" >> "${STDERR_TARGET}"
+		fi
+
+		# Dynamically detect the correct -p# ... i'm lazy, so shoot me :/
+		while [[ ${count} -lt 5 ]] ; do
+			# Generate some useful debug info ...
+			(
+			_epatch_draw_line "***** ${patchname} *****"
+			echo
+			echo "PATCH COMMAND:  patch -p${count} ${EPATCH_OPTS} < '${PATCH_TARGET}'"
+			echo
+			_epatch_draw_line "***** ${patchname} *****"
+			) >> "${STDERR_TARGET}"
+
+			if (patch -p${count} ${EPATCH_OPTS} --dry-run -f < "${PATCH_TARGET}") >> "${STDERR_TARGET}" 2>&1 ; then
+				(
+				_epatch_draw_line "***** ${patchname} *****"
+				echo
+				echo "ACTUALLY APPLYING ${patchname} ..."
+				echo
+				_epatch_draw_line "***** ${patchname} *****"
+				patch -p${count} ${EPATCH_OPTS} < "${PATCH_TARGET}" 2>&1
+				) >> "${STDERR_TARGET}"
+
+				if [ $? -ne 0 ] ; then
+					echo
+					eerror "A dry-run of patch command succeeded, but actually"
+					eerror "applying the patch failed!"
+					#die "Real world sux compared to the dreamworld!"
+					count=5
+				fi
+				break
+			fi
+
+			: $(( count++ ))
+		done
+
+		# if we had to decompress the patch, delete the temp one
+		if [[ -n ${PIPE_CMD} ]] ; then
+			rm -f "${PATCH_TARGET}"
+		fi
+
+		if [[ ${count} -ge 5 ]] ; then
+			echo
+			eerror "Failed Patch: ${patchname} !"
+			eerror " ( ${PATCH_TARGET} )"
+			eerror
+			eerror "Include in your bugreport the contents of:"
+			eerror
+			eerror "  ${STDERR_TARGET}"
+			echo
+			die "Failed Patch: ${patchname}!"
+		fi
+
+		# if everything worked, delete the patch log
+		rm -f "${STDERR_TARGET}"
+		eend 0
 	done
-	if [ "${SINGLE_PATCH}" = "no" ]
-	then
-		einfo "Done with patching"
-	fi
+
+	[[ ${SINGLE_PATCH} == "no" ]] && einfo "Done with patching"
+	: # everything worked
 }
 epatch_user() {
 	[[ $# -ne 0 ]] && die "epatch_user takes no options"
