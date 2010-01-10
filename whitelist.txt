@@ -971,3 +971,4 @@ gnome-base/libbonoboui
 gnome-base/libgnome
 gnome-base/libgnomeprintui
 gnome-base/gnome-desktop
+gnome-base/gnome-light
