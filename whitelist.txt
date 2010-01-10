@@ -257,6 +257,12 @@ dev-perl/glib-perl
 dev-perl/gnome2-vfs-perl
 dev-perl/gtk2-perl
 dev-perl/gtk2-spell
+dev-perl/HTML-Parser
+dev-perl/HTML-Tagset
+dev-perl/HTML-Tree
+dev-perl/HTTP-Response-Encoding
+dev-perl/HTTP-Server-Simple
+dev-perl/Hook-LexWrap
 dev-perl/IPC-ShareLite
 dev-perl/JSON-XS
 dev-perl/Math-VecStat
