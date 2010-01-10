@@ -966,3 +966,7 @@ net-libs/libnet
 gnome-base/eel
 gnome-base/gnome-applets
 gnome-base/gnome-common
+gnome-base/gail
+gnome-base/libbonoboui
+gnome-base/libgnome
+gnome-base/libgnomeprintui
