@@ -955,3 +955,4 @@ media-gfx/potrace
 net-libs/libesmtp
 net-libs/gnet
 net-libs/libgadu
+net-libs/libgmail
