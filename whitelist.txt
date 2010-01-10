@@ -992,3 +992,4 @@ x11-misc/gccmakedep
 x11-misc/hsetroot
 x11-misc/icon-naming-utils
 x11-misc/util-macros
+x11-misc/xclip
