@@ -958,3 +958,4 @@ net-libs/libgadu
 net-libs/libgmail
 net-libs/libgsasl
 net-libs/libnice
+net-libs/libotr
