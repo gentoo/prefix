@@ -94,6 +94,7 @@ media-libs/libcuefile
 media-libs/libreplaygain
 media-libs/libwpg
 media-libs/taglib
+media-libs/tiff
 media-libs/win32codecs
 media-sound/alac_decoder
 media-sound/phonon
