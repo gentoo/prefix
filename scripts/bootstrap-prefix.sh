@@ -674,7 +674,7 @@ bootstrap_bash() {
 }
 
 bootstrap_bison() {
-	bootstrap_gnu bison 2.4
+	bootstrap_gnu bison 2.4 "${GNU_URL}/bison/bison-2.4.tar.gz"
 }
 
 bootstrap_gzip() {
