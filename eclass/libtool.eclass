@@ -325,22 +325,19 @@ elibtoolize() {
 					;;
 				"aixrtl" | "hpux-conf" | "mint-conf" )
 					ret=1
-					local subret=0
-					while [[ $subret -eq 0 ]]; do
-						subret=1
-						if [[ -e ${x}/configure ]]; then
-							ELT_walk_patches "${x}/configure" "${y}"
-							subret=$?
-						# ltmain.sh and co might be in a subdirectory ...
-						elif [[ ! -e ${x}/configure && -e ${x}/../configure ]] ; then
-							ELT_walk_patches "${x}/../configure" "${y}"
-							subret=$?
-						fi
-						if [[ $subret -eq 0 ]]; then
-							# have at least one patch succeeded.
-							ret=0
-						fi
-					done
+					local subret=1
+					if [[ -e ${x}/configure ]]; then
+						ELT_walk_patches "${x}/configure" "${y}"
+						subret=$?
+					# ltmain.sh and co might be in a subdirectory ...
+					elif [[ ! -e ${x}/configure && -e ${x}/../configure ]] ; then
+						ELT_walk_patches "${x}/../configure" "${y}"
+						subret=$?
+					fi
+					if [[ $subret -eq 0 ]]; then
+						# have at least one patch succeeded.
+						ret=0
+					fi
 					;;
 				"install-sh")
 					ELT_walk_patches "${x}/install-sh" "${y}"
