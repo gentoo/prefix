@@ -263,6 +263,15 @@ dev-perl/HTML-Tree
 dev-perl/HTTP-Response-Encoding
 dev-perl/HTTP-Server-Simple
 dev-perl/Hook-LexWrap
+dev-perl/IO-Digest
+dev-perl/IO-Pager
+dev-perl/IO-Socket-INET6
+dev-perl/IO-Socket-SSL
+dev-perl/IO-String
+dev-perl/IO-Tty
+dev-perl/IO-stringy
+dev-perl/IP-Country
+dev-perl/IPC-Run3
 dev-perl/IPC-ShareLite
 dev-perl/JSON-XS
 dev-perl/Math-VecStat
