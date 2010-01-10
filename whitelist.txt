@@ -252,6 +252,11 @@ dev-perl/frontier-rpc
 dev-perl/GD
 dev-perl/GDGraph
 dev-perl/GDTextUtil
+dev-perl/Geography-Countries
+dev-perl/glib-perl
+dev-perl/gnome2-vfs-perl
+dev-perl/gtk2-perl
+dev-perl/gtk2-spell
 dev-perl/IPC-ShareLite
 dev-perl/JSON-XS
 dev-perl/Math-VecStat
