@@ -82,6 +82,7 @@ dev-util/confix-wrapper
 dev-util/kdoc
 dev-util/uncrustify
 dev-util/unifdef
+dev-util/wiggle
 games-arcade/ascii-invaders
 games-board/gnugo
 games-misc/wtf
@@ -112,6 +113,7 @@ sys-devel/binutils-apple
 sys-devel/gcc-apple
 sys-devel/gdb-apple
 sys-process/iotop
+sys-process/time
 sys-process/unixtop
 www-misc/htdig
 x11-apps/mesa-progs
