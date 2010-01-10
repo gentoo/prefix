@@ -956,3 +956,4 @@ net-libs/libesmtp
 net-libs/gnet
 net-libs/libgadu
 net-libs/libgmail
+net-libs/libgsasl
