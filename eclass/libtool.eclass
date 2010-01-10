@@ -205,6 +205,9 @@ elibtoolize() {
 	[[ ${CHOST} == *"-darwin"* ]] && \
 		elt_patches="${elt_patches} darwin-ltconf darwin-ltmain darwin-conf"
 
+	[[ ${CHOST} == *"-mint"* ]] && \
+		elt_patches="${elt_patches} mint-conf"
+
 	# Need help from binutils-config (>=toolchain-prefix-wrapper-0.3.1655)
 	# to create correct shared libraries and executables on hppa-hpux via
 	# libtool in combination with DESTDIR to avoid $D getting encoded.
@@ -320,7 +323,7 @@ elibtoolize() {
 						ret=$?
 					fi
 					;;
-				"aixrtl" | "hpux-conf")
+				"aixrtl" | "hpux-conf" | "mint-conf" )
 					ret=1
 					local subret=0
 					while [[ $subret -eq 0 ]]; do
