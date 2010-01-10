@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/xz-utils
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.7 2009/12/06 00:02:10 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.8 2010/01/09 19:56:03 pacho Exp $
+
+  09 Jan 2010; Pacho Ramos <pacho@gentoo.org> xz-utils-4.999.9_beta.ebuild:
+  amd64 stable, bug 298561
 
   06 Dec 2009; Mike Frysinger <vapier@gentoo.org>
   xz-utils-4.999.9_beta.ebuild, xz-utils-9999.ebuild:
