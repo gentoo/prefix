@@ -994,3 +994,4 @@ x11-misc/icon-naming-utils
 x11-misc/util-macros
 x11-misc/xclip
 x11-misc/xdg-utils
+x11-misc/xsel
