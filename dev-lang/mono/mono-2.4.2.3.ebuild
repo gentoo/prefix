@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.2-r5.ebuild,v 1.4 2009/04/20 05:01:45 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.2.3.ebuild,v 1.3 2009/09/27 16:51:17 nixnut Exp $
 
 EAPI=2
 
@@ -38,10 +38,8 @@ PATCHES=(
 	"${WORKDIR}/mono-2.2-libdir126.patch"
 	"${FILESDIR}/mono-2.2-ppc-threading.patch"
 	"${FILESDIR}/mono-2.2-uselibdir.patch"
-	"${FILESDIR}/mono-2.2-r121596-work-around-runtime-crash.patch"
-	"${FILESDIR}/mono-2.2-r123987-bless-crash.patch"
-	"${FILESDIR}/mono-2.2-freebsd-elf_common.patch"
 )
+
 pkg_setup() {
 	if use kernel_linux
 	then
@@ -115,6 +113,10 @@ src_install() {
 		"${ED}"/usr/bin/mod || die "Failed to fix mod."
 
 	find "${ED}"/usr/ -name '*nunit-docs*' -exec rm -rf '{}' '+' || die "Removing nunit .docs failed"
+
+	# Remove Jay to avoid colliding with dev-util/jay, the internal
+	# version is only used to build mcs.
+	rm -r "${ED}"/usr/share/jay "${ED}"/usr/bin/jay "${ED}"/usr/share/man/man1/jay.1*
 }
 
 #THINK!!!! Before touching postrm and postinst
@@ -138,10 +140,10 @@ pkg_preinst() {
 				einfo "be advised that this is a known problem, which will now be fixed:"
 				ebegin "Found broken symlinks created by $(best_version dev-lang/mono), fixing"
 				for symlink in						\
-				    "${EROOT}/${NUNIT_DIR}"				\
-				    "${EROOT}/usr/$(get_libdir)/pkgconfig/nunit.pc"	\
-				    "${EROOT}/usr/bin/nunit-console"			\
-				    "${EROOT}/usr/bin/nunit-console2"
+					"${EROOT}/${NUNIT_DIR}"				\
+					"${EROOT}/usr/$(get_libdir)/pkgconfig/nunit.pc"	\
+					"${EROOT}/usr/bin/nunit-console"			\
+					"${EROOT}/usr/bin/nunit-console2"
 				do
 					if [[ -L "${symlink}" ]]
 					then
