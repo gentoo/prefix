@@ -274,6 +274,12 @@ dev-perl/IP-Country
 dev-perl/IPC-Run3
 dev-perl/IPC-ShareLite
 dev-perl/JSON-XS
+dev-perl/List-MoreUtils
+dev-perl/Locale-gettext
+dev-perl/Log-Agent
+dev-perl/Log-Log4perl
+dev-perl/libwww-perl
+dev-perl/libxml-perl
 dev-perl/Math-VecStat
 dev-perl/Module-Find
 dev-perl/MRO-Compat
