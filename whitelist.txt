@@ -952,4 +952,4 @@ media-gfx/mkgallery
 media-gfx/optipng
 media-gfx/pngtoico
 media-gfx/potrace
-libesmtp
+net-libs/libesmtp
