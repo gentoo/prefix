@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-ruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.26 2010/01/02 14:08:18 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.27 2010/01/06 16:06:02 a3li Exp $
+
+  06 Jan 2010; Alex Legler <a3li@gentoo.org> -eselect-ruby-20081227.ebuild:
+  Remove old version
 
   02 Jan 2010; Brent Baude <ranger@gentoo.org> eselect-ruby-20090909.ebuild:
   Marking eselect-ruby-20090909 ppc64 for bug 288699
