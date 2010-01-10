@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.40 2009/12/23 00:32:02 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.41 2010/01/10 18:36:13 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -8,7 +8,7 @@
 #
 # @CODE
 # Tomáš Chvátal <scarabeus@gentoo.org>
-# Maciej Mrozowski <reavertm@poczta.fm>
+# Maciej Mrozowski <reavertm@gmail.com>
 # (undisclosed contributors)
 # Original author: Zephyrus (zephyrus@mirach.it)
 # @CODE

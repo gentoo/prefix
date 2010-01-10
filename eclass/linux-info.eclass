@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.76 2009/12/11 21:33:30 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/linux-info.eclass,v 1.81 2010/01/10 09:26:09 robbat2 Exp $
 #
 # Original author: John Mylchreest <johnm@gentoo.org>
 # Maintainer: kernel-misc@gentoo.org
@@ -101,10 +101,6 @@
 # A read-only variable. It's a string containing the kernel object directory, will be KV_DIR unless
 # KBUILD_OUTPUT is used. This should be used for referencing .config.
 
-# @ECLASS-VARIABLE: I_KNOW_WHAT_I_AM_DOING
-# @DESCRIPTION:
-# Temporary variable for the migration to making linux-info non-fatal.
-
 # And to ensure all the weirdness with crosscompile
 inherit toolchain-funcs versionator
 
@@ -112,9 +108,6 @@ EXPORT_FUNCTIONS pkg_setup
 
 DEPEND=""
 RDEPEND=""
-
-[ -z "${I_KNOW_WHAT_I_AM_DOING}${EPREFIX}" ] && \
-DEPEND="kernel_linux? ( virtual/linux-sources )"
 
 # Overwritable environment Var's
 # ---------------------------------------
@@ -254,7 +247,7 @@ linux_config_src_exists() {
 # It returns true if .config exists in /proc, otherwise false
 linux_config_bin_exists() {
 	export _LINUX_CONFIG_EXISTS_DONE=1
-	[ -n "${I_KNOW_WHAT_I_AM_DOING}" -a -s "/proc/config.gz" ]
+	[ -s "/proc/config.gz" ]
 }
 
 # @FUNCTION: linux_config_exists
@@ -292,7 +285,6 @@ require_configured_kernel() {
 linux_chkconfig_present() {
 	linux_config_qa_check linux_chkconfig_present
 	local	RESULT
-	[ -z "${I_KNOW_WHAT_I_AM_DOING}" ] && require_configured_kernel
 	local config
 	config="${KV_OUT_DIR}/.config"
 	[ ! -f "${config}" ] && config="/proc/config.gz"
@@ -310,7 +302,6 @@ linux_chkconfig_present() {
 linux_chkconfig_module() {
 	linux_config_qa_check linux_chkconfig_module
 	local	RESULT
-	[ -z "${I_KNOW_WHAT_I_AM_DOING}" ] && require_configured_kernel
 	local config
 	config="${KV_OUT_DIR}/.config"
 	[ ! -f "${config}" ] && config="/proc/config.gz"
@@ -328,7 +319,6 @@ linux_chkconfig_module() {
 linux_chkconfig_builtin() {
 	linux_config_qa_check linux_chkconfig_builtin
 	local	RESULT
-	[ -z "${I_KNOW_WHAT_I_AM_DOING}" ] && require_configured_kernel
 	local config
 	config="${KV_OUT_DIR}/.config"
 	[ ! -f "${config}" ] && config="/proc/config.gz"
@@ -345,7 +335,6 @@ linux_chkconfig_builtin() {
 # MUST call linux_config_exists first.
 linux_chkconfig_string() {
 	linux_config_qa_check linux_chkconfig_string
-	[ -z "${I_KNOW_WHAT_I_AM_DOING}" ] && require_configured_kernel
 	local config
 	config="${KV_OUT_DIR}/.config"
 	[ ! -f "${config}" ] && config="/proc/config.gz"
@@ -377,7 +366,7 @@ kernel_is() {
 	# if we haven't determined the version yet, we need to.
 	linux-info_get_any_version
 
-	local operator test value x=0 y=0 z=0
+	local operator testagainst value x=0 y=0 z=0
 
 	case ${1} in
 	  -lt|lt) operator="-lt"; shift;;
@@ -394,17 +383,17 @@ kernel_is() {
 		z=$((${z} + 1))
 
 		case ${z} in
-		  1) for((y=0; y<$((3 - ${#KV_MAJOR})); y++)); do test="${test}0"; done;
-		     test="${test}${KV_MAJOR}";;
-		  2) for((y=0; y<$((3 - ${#KV_MINOR})); y++)); do test="${test}0"; done;
-		     test="${test}${KV_MINOR}";;
-		  3) for((y=0; y<$((3 - ${#KV_PATCH})); y++)); do test="${test}0"; done;
-		     test="${test}${KV_PATCH}";;
+		  1) for((y=0; y<$((3 - ${#KV_MAJOR})); y++)); do testagainst="${testagainst}0"; done;
+		     testagainst="${testagainst}${KV_MAJOR}";;
+		  2) for((y=0; y<$((3 - ${#KV_MINOR})); y++)); do testagainst="${testagainst}0"; done;
+		     testagainst="${testagainst}${KV_MINOR}";;
+		  3) for((y=0; y<$((3 - ${#KV_PATCH})); y++)); do testagainst="${testagainst}0"; done;
+		     testagainst="${testagainst}${KV_PATCH}";;
 		  *) die "Error in kernel-2_kernel_is(): Too many parameters.";;
 		esac
 	done
 
-	[ ${test} ${operator} ${value} ] && return 0 || return 1
+	[ "${testagainst}" ${operator} "${value}" ] && return 0 || return 1
 }
 
 get_localversion() {
@@ -490,17 +479,32 @@ get_version() {
 	# do we pass KBUILD_OUTPUT on the CLI?
 	OUTPUT_DIR="${OUTPUT_DIR:-${KBUILD_OUTPUT}}"
 
+	# keep track of it
+	KERNEL_MAKEFILE="${KV_DIR}/Makefile"
+
+	# Check if the Makefile is valid for direct parsing.
+	# Check status results:
+	# - PASS, use 'getfilevar' to extract values
+	# - FAIL, use 'getfilevar_noexec' to extract values
+	# The check may fail if:
+	# - make is not present
+	# - corruption exists in the kernel makefile
+	local a='' b='' mkfunc='getfilevar'
+	a="$(getfilevar VERSION ${KERNEL_MAKEFILE})"
+	b="$(getfilevar_noexec VERSION ${KERNEL_MAKEFILE})"
+	[[ "${a}" != "${b}" ]] && mkfunc='getfilevar_noexec'
+
 	# And if we didn't pass it, we can take a nosey in the Makefile
-	kbuild_output="$(getfilevar_noexec KBUILD_OUTPUT ${KV_DIR}/Makefile)"
+	kbuild_output="$(${mkfunc} KBUILD_OUTPUT ${KERNEL_MAKEFILE})"
 	OUTPUT_DIR="${OUTPUT_DIR:-${kbuild_output}}"
 
 	# And contrary to existing functions I feel we shouldn't trust the
 	# directory name to find version information as this seems insane.
-	# so we parse ${KV_DIR}/Makefile
-	KV_MAJOR="$(getfilevar_noexec VERSION ${KV_DIR}/Makefile)"
-	KV_MINOR="$(getfilevar_noexec PATCHLEVEL ${KV_DIR}/Makefile)"
-	KV_PATCH="$(getfilevar_noexec SUBLEVEL ${KV_DIR}/Makefile)"
-	KV_EXTRA="$(getfilevar_noexec EXTRAVERSION ${KV_DIR}/Makefile)"
+	# so we parse ${KERNEL_MAKEFILE}
+	KV_MAJOR="$(${mkfunc} VERSION ${KERNEL_MAKEFILE})"
+	KV_MINOR="$(${mkfunc} PATCHLEVEL ${KERNEL_MAKEFILE})"
+	KV_PATCH="$(${mkfunc} SUBLEVEL ${KERNEL_MAKEFILE})"
+	KV_EXTRA="$(${mkfunc} EXTRAVERSION ${KERNEL_MAKEFILE})"
 
 	if [ -z "${KV_MAJOR}" -o -z "${KV_MINOR}" -o -z "${KV_PATCH}" ]
 	then
@@ -516,8 +520,7 @@ get_version() {
 	# but before we do this, we need to find if we use a different object directory.
 	# This *WILL* break if the user is using localversions, but we assume it was
 	# caught before this if they are.
-	[ "${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${KV_EXTRA}" == "$(uname -r)" ] && \
-		OUTPUT_DIR="${OUTPUT_DIR:-/lib/modules/${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${KV_EXTRA}/build}"
+	OUTPUT_DIR="${OUTPUT_DIR:-/lib/modules/${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}${KV_EXTRA}/build}"
 
 	[ -h "${OUTPUT_DIR}" ] && KV_OUT_DIR="$(readlink -f ${OUTPUT_DIR})"
 	[ -d "${OUTPUT_DIR}" ] && KV_OUT_DIR="${OUTPUT_DIR}"
@@ -663,25 +666,29 @@ check_extra_config() {
 		fi
 	done
 
-	# TODO: After we enable the new code for /proc/config.gz, we need to
-	# change this back to linux_config_exists.
 	if [[ ${config_required} == 0 ]]; then
 		# In the case where we don't require a .config, we can now bail out
 		# if the user has no .config as there is nothing to do. Otherwise
 		# code later will cause a failure due to missing .config.
-		if ! linux_config_src_exists; then
+		if ! linux_config_exists; then
 			ewarn "Unable to check for the following kernel config options due"
 			ewarn "to absence of any configured kernel sources or compiled"
 			ewarn "config:"
 			for config in ${CONFIG_CHECK}; do
-				ewarn " - ${config#\~}"
+				local_error="ERROR_${config#\~}"
+				msg="${!local_error}"
+				if [[ "x${msg}" == "x" ]]; then
+					local_error="WARNING_${config#\~}"
+					msg="${!local_error}"
+				fi
+				ewarn " - ${config#\~}${msg:+ - }${msg}"
 			done
 			ewarn "You're on your own to make sure they are set if needed."
 			export LINUX_CONFIG_EXISTS_DONE="${old_LINUX_CONFIG_EXISTS_DONE}"
 			return 0
 		fi
 	else
-		[ -n "${I_KNOW_WHAT_I_AM_DOING}" ] && require_configured_kernel
+		require_configured_kernel
 	fi
 
 	einfo "Checking for suitable kernel configuration options..."

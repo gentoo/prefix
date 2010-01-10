@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.87 2009/12/04 09:11:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.89 2010/01/10 18:39:16 scarabeus Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.68 2009/12/24 04:21:39 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.69 2010/01/10 17:24:32 arfrever Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
@@ -139,9 +139,8 @@ distutils_src_compile() {
 			python_execute_function building "$@"
 		fi
 	else
-		python_version
-		echo "$(PYTHON "${PYVER}")" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@"
-		"$(PYTHON "${PYVER}")" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@" || die "Building failed"
+		echo "$(PYTHON -A)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@"
+		"$(PYTHON -A)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@" || die "Building failed"
 	fi
 }
 
@@ -158,9 +157,6 @@ distutils_src_install() {
 	fi
 
 	local pylibdir
-
-	# Mark the package to be rebuilt after a python upgrade.
-	python_need_rebuild
 
 	if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
 		if [[ -z "${DISTUTILS_DISABLE_VERSIONING_OF_PYTHON_SCRIPTS}" && "${BASH_VERSINFO[0]}" -ge "4" ]]; then
@@ -236,18 +232,21 @@ distutils_src_install() {
 		fi
 		unset wrapper_scripts
 	else
+		# Mark the package to be rebuilt after a Python upgrade.
+		python_need_rebuild
+
 		# need this for python-2.5 + setuptools in cases where
 		# a package uses distutils but does not install anything
 		# in site-packages. (eg. dev-java/java-config-2.x)
 		# - liquidx (14/08/2006)
-		pylibdir="$("$(PYTHON "${PYVER}")" -c 'from distutils.sysconfig import get_python_lib; print(get_python_lib())')"
+		pylibdir="$("$(PYTHON -A)" -c 'from distutils.sysconfig import get_python_lib; print(get_python_lib())')"
 		# what comes out of python, includes our prefix, and the code below doesn't
 		# keep that in mind -- grobian
 		pylibdir=${pylibdir#${EPREFIX}}
 		[[ -n "${pylibdir}" ]] && dodir "${pylibdir}"
 
-		echo "$(PYTHON "${PYVER}")" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" install --root="${D}" --no-compile "$@"
-		"$(PYTHON "${PYVER}")" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" install --root="${D}" --no-compile "$@" || die "Installation failed"
+		echo "$(PYTHON -A)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" install --root="${D}" --no-compile "$@"
+		"$(PYTHON -A)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" install --root="${D}" --no-compile "$@" || die "Installation failed"
 	fi
 
 	if [[ -e "${ED}usr/local" ]]; then
@@ -331,7 +330,7 @@ distutils_pkg_postrm() {
 # @FUNCTION: distutils_python_version
 # @DESCRIPTION:
 # Calls python_version, so that you can use something like
-# e.g. insinto ${EROOT}/usr/include/python${PYVER}
+# e.g. insinto $(python_get_includedir)
 distutils_python_version() {
 	if ! has "${EAPI:-0}" 0 1 2; then
 		die "${FUNCNAME}() cannot be used in this EAPI"
