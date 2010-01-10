@@ -963,3 +963,4 @@ net-libs/farsight2
 net-libs/libssh2
 net-libs/webkit-gtk
 net-libs/libnet
+gnome-base/eel
