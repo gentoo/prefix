@@ -302,6 +302,7 @@ dev-perl/Net-SMTP-SSL
 dev-perl/Net-SSLeay
 dev-perl/Net-Telnet
 dev-perl/Number-Compare
+dev-perl/Ogg-Vorbis-Header-PurePerl
 dev-perl/Scope-Guard
 dev-perl/SQL-Abstract
 dev-perl/SQL-Abstract-Limit
