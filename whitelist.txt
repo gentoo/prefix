@@ -965,3 +965,4 @@ net-libs/webkit-gtk
 net-libs/libnet
 gnome-base/eel
 gnome-base/gnome-applets
+gnome-base/gnome-common
