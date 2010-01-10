@@ -976,3 +976,4 @@ gnome-base/gnome-mime-data
 gnome-base/gnome-settings-daemon
 gnome-base/libbonobo
 gnome-base/libgnomekbd
+gnome-base/libgnomeprint
