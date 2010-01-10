@@ -292,6 +292,16 @@ dev-perl/MailTools
 dev-perl/Math-VecStat
 dev-perl/Module-Find
 dev-perl/math-pari
+dev-perl/Net-CIDR-Lite
+dev-perl/Net-DNS
+dev-perl/Net-Daemon
+dev-perl/Net-IP 
+dev-perl/Net-Ident
+dev-perl/Net-LibIDN
+dev-perl/Net-SMTP-SSL
+dev-perl/Net-SSLeay
+dev-perl/Net-Telnet
+dev-perl/Number-Compare
 dev-perl/Scope-Guard
 dev-perl/SQL-Abstract
 dev-perl/SQL-Abstract-Limit
