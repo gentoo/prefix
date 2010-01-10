@@ -35,3 +35,31 @@ and another ...
  # rules for losing makes, like SunOS
  casemod.o: casemod.c
  clktck.o: clktck.c
+
+http://bugs.gentoo.org/300143
+
+and another ...
+
+--- bash-4.0/lib/glob/Makefile.in
++++ bash-4.0/lib/glob/Makefile.in
+@@ -119,6 +119,11 @@
+ mostlyclean: clean
+ 	-( cd doc && $(MAKE) $(MFLAGS) $@ )
+ 
++# Dependencies
++
++${BUILD_DIR}/pathnames.h: ${BUILD_DIR}/config.h ${BUILD_DIR}/Makefile Makefile
++	-( cd ${BUILD_DIR} && ${MAKE} ${MFLAGS} pathnames.h )
++
+ ######################################################################
+ #								     #
+ #  Dependencies for the object files which make up this library.     #
+@@ -136,7 +141,7 @@
+ strmatch.o: $(BUILD_DIR)/config.h
+ strmatch.o: $(BASHINCDIR)/stdc.h
+ 
+-glob.o: $(BUILD_DIR)/config.h
++glob.o: $(BUILD_DIR)/config.h $(topdir)/shell.h $(BUILD_DIR)/pathnames.h
+ glob.o: $(topdir)/bashtypes.h $(BASHINCDIR)/ansi_stdlib.h $(topdir)/bashansi.h
+ glob.o: $(BASHINCDIR)/posixstat.h $(BASHINCDIR)/memalloc.h
+ glob.o: strmatch.h glob.h

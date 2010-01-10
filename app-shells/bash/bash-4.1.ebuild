@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1.ebuild,v 1.1 2010/01/05 00:52:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1.ebuild,v 1.2 2010/01/09 03:50:39 vapier Exp $
 
 EAPI="1"
 
@@ -77,7 +77,7 @@ src_unpack() {
 			epause
 			epatch "${FILESDIR}"/${PN}-3.1-bash-logger.patch
 		fi
-		sed -i '/\.o: .*shell\.h/s:$: pathnames.h:' Makefile.in #267613
+		epatch "${FILESDIR}"/${PN}-4.1-parallel-build.patch
 	fi
 
 	# this adds additional prefixes
