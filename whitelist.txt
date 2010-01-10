@@ -1000,3 +1000,12 @@ x11-misc/makedepend
 x11-misc/notification-daemon
 x11-misc/x11vnc
 x11-misc/xbitmaps
+media-plugins/gst-plugins-alsa
+media-plugins/gst-plugins-esd
+media-plugins/gst-plugins-gconf
+media-plugins/gst-plugins-gnomevfs
+media-plugins/gst-plugins-mad
+media-plugins/gst-plugins-meta
+media-plugins/gst-plugins-mpeg2dec
+media-plugins/gst-plugins-x
+media-plugins/gst-plugins-musepack
