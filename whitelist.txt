@@ -989,3 +989,4 @@ gnome-base/libgnomeprint
 media-plugins/swh-plugins
 x11-misc/devilspie
 x11-misc/gccmakedep
+x11-misc/hsetroot
