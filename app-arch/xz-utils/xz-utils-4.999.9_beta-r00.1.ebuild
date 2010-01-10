@@ -48,7 +48,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-interix.patch
 	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${P}-hpux.patch
-	epatch "${FILESDIR}"/${P}-mint.patch
 	elibtoolize
 }
 fi
