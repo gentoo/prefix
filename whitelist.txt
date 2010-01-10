@@ -104,6 +104,7 @@ net-libs/libsoup-gnome
 net-libs/libssh
 net-mail/getmail
 net-misc/mico
+net-misc/youtube-dl
 sys-apps/acl
 sys-apps/darwin-miscutils
 sys-devel/binutils-apple
