@@ -673,6 +673,10 @@ bootstrap_bash() {
 		"${GENTOO_MIRROR}/bash-3.2-patched.tar.gz"
 }
 
+bootstrap_bison() {
+	bootstrap_gnu bison 2.4
+}
+
 bootstrap_gzip() {
 	bootstrap_gnu gzip 1.3.12
 }
