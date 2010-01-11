@@ -381,7 +381,7 @@ cvs_fetch() {
 
 			export CVS_RSH="${T}/cvs_sshwrapper"
 			cat > "${CVS_RSH}"<<EOF
-#!/usr/bin/python
+#!${EPREFIX}/usr/bin/python
 import fcntl
 import os
 import sys
@@ -425,7 +425,7 @@ EOF
 				>> "${CVS_RSH}"
 			echo "${CVS_ECLASS_STRICT_HOST_CHECKING}')" \
 				>> "${CVS_RSH}"
-			echo "os.execv('/usr/bin/ssh', newarglist)" \
+			echo "os.execv('${EPREFIX}/usr/bin/ssh', newarglist)" \
 				>> "${CVS_RSH}"
 
 			chmod a+x "${CVS_RSH}"
