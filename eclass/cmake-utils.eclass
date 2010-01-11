@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.41 2010/01/10 18:36:13 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cmake-utils.eclass,v 1.43 2010/01/11 17:02:49 scarabeus Exp $
 
 # @ECLASS: cmake-utils.eclass
 # @MAINTAINER:
@@ -29,7 +29,7 @@
 WANT_CMAKE="${WANT_CMAKE:-always}"
 CMAKEDEPEND=""
 case ${WANT_CMAKE} in
-	    always)
+		always)
 			;;
 		*)
 			IUSE+=" ${WANT_CMAKE}"
@@ -421,7 +421,7 @@ enable_cmake-utils_src_test() {
 # Wrapper for detection if we want to run enable_ prefixed function with same name
 # unconditionaly or only when some useflag is enabled.
 cmake-utils_src_configure() {
-	_execute_optionaly "src_configure"
+	_execute_optionaly "src_configure" "$@"
 }
 
 # @FUNCTION: cmake-utils_src_compile
@@ -429,7 +429,7 @@ cmake-utils_src_configure() {
 # Wrapper for detection if we want to run enable_ prefixed function with same name
 # unconditionaly or only when some useflag is enabled.
 cmake-utils_src_compile() {
-	_execute_optionaly "src_compile"
+	_execute_optionaly "src_compile" "$@"
 }
 
 # @FUNCTION: cmake-utils_src_install
@@ -437,7 +437,7 @@ cmake-utils_src_compile() {
 # Wrapper for detection if we want to run enable_ prefixed function with same name
 # unconditionaly or only when some useflag is enabled.
 cmake-utils_src_install() {
-	_execute_optionaly "src_install"
+	_execute_optionaly "src_install" "$@"
 }
 
 # @FUNCTION: cmake-utils_src_test
@@ -445,15 +445,15 @@ cmake-utils_src_install() {
 # Wrapper for detection if we want to run enable_ prefixed function with same name
 # unconditionaly or only when some useflag is enabled.
 cmake-utils_src_test() {
-	_execute_optionaly "src_test"
+	_execute_optionaly "src_test" "$@"
 }
 
 
 _execute_optionaly() {
-	local phase="$1"
+	local phase="$1" ; shift
 	if [[ ${WANT_CMAKE} = always ]]; then
-		enable_cmake-utils_${phase}
+		enable_cmake-utils_${phase} "$@"
 	else
-		use ${WANT_CMAKE} && enable_cmake-utils_${phase}
+		use ${WANT_CMAKE} && enable_cmake-utils_${phase} "$@"
 	fi
 }

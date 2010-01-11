@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.83 2010/01/10 17:03:08 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.84 2010/01/11 16:07:23 arfrever Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -190,6 +190,14 @@ PYTHON() {
 	fi
 }
 
+_python_implementation() {
+	if [[ "${CATEGORY}/${PN}" == "dev-lang/python" ]]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
 # @FUNCTION: python_set_active_version
 # @USAGE: <Python_ABI|2|3>
 # @DESCRIPTION:
@@ -200,18 +208,18 @@ python_set_active_version() {
 	fi
 
 	if [[ "$1" =~ ^[[:digit:]]+\.[[:digit:]]+$ ]]; then
-		if ! has_version "dev-lang/python:$1"; then
-			die "${FUNCNAME}(): 'dev-lang/python:$1' isn't installed"
+		if ! _python_implementation && ! has_version "dev-lang/python:$1"; then
+			die "${FUNCNAME}(): 'dev-lang/python:$1' is not installed"
 		fi
 		export EPYTHON="$(PYTHON "$1")"
 	elif [[ "$1" == "2" ]]; then
-		if ! has_version "=dev-lang/python-2*"; then
-			die "${FUNCNAME}(): '=dev-lang/python-2*' isn't installed"
+		if ! _python_implementation && ! has_version "=dev-lang/python-2*"; then
+			die "${FUNCNAME}(): '=dev-lang/python-2*' is not installed"
 		fi
 		export EPYTHON="$(PYTHON -2)"
 	elif [[ "$1" == "3" ]]; then
-		if ! has_version "=dev-lang/python-3*"; then
-			die "${FUNCNAME}(): '=dev-lang/python-3*' isn't installed"
+		if ! _python_implementation && ! has_version "=dev-lang/python-3*"; then
+			die "${FUNCNAME}(): '=dev-lang/python-3*' is not installed"
 		fi
 		export EPYTHON="$(PYTHON -3)"
 	else
@@ -219,7 +227,7 @@ python_set_active_version() {
 	fi
 
 	# PYTHON_ABI variable is intended to be used only in ebuilds/eclasses,
-	# so it doesn't need to be exported to subprocesses.
+	# so it does not need to be exported to subprocesses.
 	PYTHON_ABI="${EPYTHON#python}"
 	PYTHON_ABI="${PYTHON_ABI%%-*}"
 }
@@ -285,14 +293,14 @@ validate_PYTHON_ABIS() {
 			done
 
 			if [[ -z "${PYTHON_ABIS//[${IFS}]/}" ]]; then
-				die "USE_PYTHON variable doesn't enable any version of Python supported by ${CATEGORY}/${PF}"
+				die "USE_PYTHON variable does not enable any version of Python supported by ${CATEGORY}/${PF}"
 			fi
 
 			if [[ "${python2_enabled}" == "0" ]]; then
-				ewarn "USE_PYTHON variable doesn't enable any version of Python 2. This configuration is unsupported."
+				ewarn "USE_PYTHON variable does not enable any version of Python 2. This configuration is unsupported."
 			fi
 			if [[ "${python3_enabled}" == "0" ]]; then
-				ewarn "USE_PYTHON variable doesn't enable any version of Python 3. This configuration is unsupported."
+				ewarn "USE_PYTHON variable does not enable any version of Python 3. This configuration is unsupported."
 			fi
 		else
 			local python_version python2_version= python3_version= support_python_major_version
@@ -301,7 +309,7 @@ validate_PYTHON_ABIS() {
 
 			if has_version "=dev-lang/python-2*"; then
 				if [[ "$(readlink "${EPREFIX}"/usr/bin/python2)" != "python2."* ]]; then
-					die "'${EPREFIX}/usr/bin/python2' isn't valid symlink"
+					die "'${EPREFIX}/usr/bin/python2' is not valid symlink"
 				fi
 
 				python2_version="$("${EPREFIX}"/usr/bin/python2 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
@@ -318,7 +326,7 @@ validate_PYTHON_ABIS() {
 				if [[ "${support_python_major_version}" == "1" ]]; then
 					for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
 						if [[ "${python2_version}" == ${restricted_ABI} ]]; then
-							die "Active version of Python 2 isn't supported by ${CATEGORY}/${PF}"
+							die "Active version of Python 2 is not supported by ${CATEGORY}/${PF}"
 						fi
 					done
 				else
@@ -328,7 +336,7 @@ validate_PYTHON_ABIS() {
 
 			if has_version "=dev-lang/python-3*"; then
 				if [[ "$(readlink "${EPREFIX}"/usr/bin/python3)" != "python3."* ]]; then
-					die "'${EPREFIX}/usr/bin/python3' isn't valid symlink"
+					die "'${EPREFIX}/usr/bin/python3' is not valid symlink"
 				fi
 
 				python3_version="$("${EPREFIX}"/usr/bin/python3 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
@@ -345,7 +353,7 @@ validate_PYTHON_ABIS() {
 				if [[ "${support_python_major_version}" == "1" ]]; then
 					for restricted_ABI in ${RESTRICT_PYTHON_ABIS}; do
 						if [[ "${python3_version}" == ${restricted_ABI} ]]; then
-							die "Active version of Python 3 isn't supported by ${CATEGORY}/${PF}"
+							die "Active version of Python 3 is not supported by ${CATEGORY}/${PF}"
 						fi
 					done
 				else
@@ -370,12 +378,12 @@ validate_PYTHON_ABIS() {
 		fi
 	fi
 
-	if [[ "$(declare -p PYTHON_ABIS_SANITY_CHECKS 2> /dev/null)" != "declare -- PYTHON_ABIS_SANITY_CHECKS="* ]]; then
+	if ! _python_implementation && [[ "$(declare -p PYTHON_ABIS_SANITY_CHECKS 2> /dev/null)" != "declare -- PYTHON_ABIS_SANITY_CHECKS="* ]]; then
 		local PYTHON_ABI
 		for PYTHON_ABI in ${PYTHON_ABIS}; do
 			# Ensure that appropriate version of Python is installed.
 			if ! has_version "dev-lang/python:${PYTHON_ABI}"; then
-				die "dev-lang/python:${PYTHON_ABI} isn't installed"
+				die "dev-lang/python:${PYTHON_ABI} is not installed"
 			fi
 
 			# Ensure that EPYTHON variable is respected.
@@ -386,7 +394,7 @@ validate_PYTHON_ABIS() {
 				eerror "EPYTHON:                   '$(PYTHON)'"
 				eerror "PYTHON_ABI:                '${PYTHON_ABI}'"
 				eerror "Version of enabled Python: '$(EPYTHON="$(PYTHON)" python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')'"
-				die "'python' doesn't respect EPYTHON variable"
+				die "'python' does not respect EPYTHON variable"
 			fi
 		done
 		PYTHON_ABIS_SANITY_CHECKS="1"
@@ -449,7 +457,7 @@ python_set_build_dir_symlink() {
 	[[ -z "${PYTHON_ABI}" ]] && die "PYTHON_ABI variable not set"
 	[[ -z "${dir}" ]] && dir="build"
 
-	# Don't delete preexistent directories.
+	# Do not delete preexistent directories.
 	rm -f "${dir}" || die "Deletion of '${dir}' failed"
 	ln -s "${dir}-${PYTHON_ABI}" "${dir}" || die "Creation of '${dir}' directory symlink failed"
 }
@@ -513,7 +521,7 @@ python_execute_function() {
 		shift
 
 		if [[ -z "$(type -t "${function}")" ]]; then
-			die "${FUNCNAME}(): '${function}' function isn't defined"
+			die "${FUNCNAME}(): '${function}' function is not defined"
 		fi
 	else
 		if [[ "$#" -ne "0" ]]; then
@@ -644,7 +652,7 @@ python_execute_function() {
 			fi
 		fi
 
-		# Ensure that directory stack hasn't been decreased.
+		# Ensure that directory stack has not been decreased.
 		if [[ "$(dirs -p | wc -l)" -lt "${previous_directory_stack_length}" ]]; then
 			die "Directory stack decreased illegally"
 		fi
@@ -654,7 +662,7 @@ python_execute_function() {
 			popd > /dev/null || die "popd failed"
 		done
 
-		# Ensure that the bottom part of directory stack hasn't been changed. Restore
+		# Ensure that the bottom part of directory stack has not been changed. Restore
 		# previous directory (from before running of the specified function) before
 		# comparison of directory stacks to avoid mismatch of directory stacks after
 		# potential using of 'cd' to change current directory. Restoration of previous
@@ -718,7 +726,7 @@ python_convert_shebangs() {
 
 	for argument in "$@"; do
 		if [[ ! -e "${argument}" ]]; then
-			die "${FUNCNAME}(): '${argument}' doesn't exist"
+			die "${FUNCNAME}(): '${argument}' does not exist"
 		elif [[ -f "${argument}" ]]; then
 			files+=("${argument}")
 		elif [[ -d "${argument}" ]]; then
@@ -729,10 +737,10 @@ python_convert_shebangs() {
 					files+=($(find "${argument}" -type f))
 				fi
 			else
-				die "${FUNCNAME}(): '${argument}' isn't a regular file"
+				die "${FUNCNAME}(): '${argument}' is not a regular file"
 			fi
 		else
-			die "${FUNCNAME}(): '${argument}' isn't a regular file or a directory"
+			die "${FUNCNAME}(): '${argument}' is not a regular file or a directory"
 		fi
 	done
 
@@ -1014,7 +1022,7 @@ fi
 # @FUNCTION: python_disable_pyc
 # @DESCRIPTION:
 # Tell Python not to automatically recompile modules to .pyc/.pyo
-# even if the timestamps/version stamps don't match. This is done
+# even if the timestamps/version stamps do not match. This is done
 # to protect sandbox.
 python_disable_pyc() {
 	export PYTHONDONTWRITEBYTECODE="1"
@@ -1031,6 +1039,8 @@ python_enable_pyc() {
 # @FUNCTION: python_need_rebuild
 # @DESCRIPTION: Run without arguments, specifies that the package should be
 # rebuilt after a python upgrade.
+# Do not use this function in ebuilds of packages supporting installation
+# for multiple versions of Python.
 python_need_rebuild() {
 	export PYTHON_NEED_REBUILD="$(PYTHON -A --ABI)"
 }
@@ -1169,8 +1179,8 @@ python_mod_optimize() {
 					ewarn "${FUNCNAME}: Ignoring compile option $1"
 					;;
 				*)
-					if [[ "$1" =~ ^"${EPREFIX}"/usr/lib(32|64)?/python[[:digit:]]+\.[[:digit:]]+ ]]; then
-						die "${FUNCNAME} doesn't support absolute paths of directories/files in site-packages directories"
+					if ! _python_implementation && [[ "$1" =~ ^"${EPREFIX}"/usr/lib(32|64)?/python[[:digit:]]+\.[[:digit:]]+ ]]; then
+						die "${FUNCNAME} does not support absolute paths of directories/files in site-packages directories"
 					elif [[ "$1" =~ ^/ ]]; then
 						if [[ -d "${root}/$1" ]]; then
 							other_dirs+=("${root}/$1")
@@ -1179,7 +1189,7 @@ python_mod_optimize() {
 						elif [[ -e "${root}/$1" ]]; then
 							ewarn "'${root}/$1' is not a file or a directory!"
 						else
-							ewarn "'${root}/$1' doesn't exist!"
+							ewarn "'${root}/$1' does not exist!"
 						fi
 					else
 						for PYTHON_ABI in ${PYTHON_ABIS-${PYTHON_ABI-$(PYTHON -A --ABI)}}; do
@@ -1192,7 +1202,7 @@ python_mod_optimize() {
 							elif [[ -e "${root}$(python_get_sitedir)/$1" ]]; then
 								ewarn "'$1' is not a file or a directory!"
 							else
-								ewarn "'$1' doesn't exist!"
+								ewarn "'$1' does not exist!"
 							fi
 						done
 					fi
@@ -1227,7 +1237,7 @@ python_mod_optimize() {
 			unset site_packages_absolute_dirs site_packages_absolute_files
 		done
 
-		# Don't use PYTHON_ABI in next calls to python_get_libdir().
+		# Do not use PYTHON_ABI in next calls to python_get_libdir().
 		unset PYTHON_ABI
 
 		if ((${#other_dirs[@]})) || ((${#other_files[@]})); then
@@ -1271,7 +1281,7 @@ python_mod_optimize() {
 					elif [[ -e "${myroot}/$1" ]]; then
 						ewarn "${myroot}/$1 is not a file or directory!"
 					else
-						ewarn "${myroot}/$1 doesn't exist!"
+						ewarn "${myroot}/$1 does not exist!"
 					fi
 					;;
 			esac
@@ -1318,8 +1328,8 @@ python_mod_cleanup() {
 	if (($#)); then
 		if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
 			while (($#)); do
-				if [[ "$1" =~ ^"${EPREFIX}"/usr/lib(32|64)?/python[[:digit:]]+\.[[:digit:]]+ ]]; then
-					die "${FUNCNAME} doesn't support absolute paths of directories/files in site-packages directories"
+				if ! _python_implementation && [[ "$1" =~ ^"${EPREFIX}"/usr/lib(32|64)?/python[[:digit:]]+\.[[:digit:]]+ ]]; then
+					die "${FUNCNAME} does not support absolute paths of directories/files in site-packages directories"
 				elif [[ "$1" =~ ^/ ]]; then
 					SEARCH_PATH+=("${root}/${1#/}")
 				else
