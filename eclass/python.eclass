@@ -133,7 +133,7 @@ PYTHON() {
 			if [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
 				die "${FUNCNAME}(): '--active' option cannot be used in ebuilds of packages supporting installation for multiple versions of Python"
 			fi
-			slot="$(/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
+			slot="$("${EPREFIX}"/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
 		elif [[ "${final_ABI}" == "1" ]]; then
 			validate_PYTHON_ABIS
 			slot="${PYTHON_ABIS##* }"
