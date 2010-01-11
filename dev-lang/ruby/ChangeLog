@@ -1,6 +1,20 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.433 2010/01/02 14:09:28 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.435 2010/01/10 22:04:16 a3li Exp $
+
+*ruby-1.8.6_p388 (10 Jan 2010)
+
+  10 Jan 2010; Alex Legler <a3li@gentoo.org> -ruby-1.8.6_p383.ebuild,
+  +ruby-1.8.6_p388.ebuild:
+  Version bump (1.8.6), security bug 300468. Remove unneded vulnerable
+  version. The new ebuild also has the fix for bug 168939.
+
+*ruby-1.8.7_p249 (10 Jan 2010)
+
+  10 Jan 2010; Alex Legler <a3li@gentoo.org> -ruby-1.8.7_p248.ebuild,
+  +ruby-1.8.7_p249.ebuild:
+  Version bump (1.8.7) for security bug 300468, removing unneeded vulnerable
+  version
 
   02 Jan 2010; Brent Baude <ranger@gentoo.org> ruby-1.8.7_p174-r1.ebuild:
   Marking ruby-1.8.7_p174-r1 ppc64 for bug 288699

@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p383.ebuild,v 1.1 2009/08/20 09:09:50 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p388.ebuild,v 1.1 2010/01/10 22:04:16 a3li Exp $
 
 EAPI=1
 inherit autotools eutils flag-o-matic multilib versionator
@@ -14,7 +14,7 @@ MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
 SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2
-http://dev.a3li.info/gentoo/distfiles/${PN}-patches-${PV}.tar.bz2"
+http://dev.a3li.li/gentoo/distfiles/${PN}-patches-${PV}.tar.bz2"
 
 LICENSE="|| ( Ruby GPL-2 )"
 KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
@@ -26,7 +26,7 @@ RDEPEND="
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk )
-	app-admin/eselect-ruby
+	>=app-admin/eselect-ruby-20091225
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!<dev-ruby/rdoc-2
 	!dev-ruby/rexml"
@@ -59,7 +59,7 @@ src_unpack() {
 	cd "${S}"
 
 	EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
-	epatch "${WORKDIR}/patches-${PV}"
+		epatch "${WORKDIR}/patches-${PV}"
 
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
@@ -95,11 +95,14 @@ src_compile() {
 		append-flags "-DGC_MALLOC_LIMIT=${RUBY_GC_MALLOC_LIMIT}"
 	fi
 
+	# ipv6 hack, bug 168939. Needs --enable-ipv6.
+	use ipv6 || myconf="--with-lookup-order-hack=INET"
+
 	econf --program-suffix=$MY_SUFFIX --enable-shared \
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
 		$(use_enable threads pthread) \
-		$(use_enable ipv6) \
+		--enable-ipv6 \
 		$(use_enable debug) \
 		$(use_with berkdb dbm) \
 		$(use_with gdbm) \
@@ -183,7 +186,5 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
-		eselect ruby set ruby${MY_SUFFIX}
-	fi
+	eselect ruby cleanup
 }
