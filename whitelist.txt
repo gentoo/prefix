@@ -331,6 +331,11 @@ dev-perl/prefork
 dev-perl/Readonly
 dev-perl/Regexp-Shellish
 dev-perl/regexp-common
+dev-perl/SGMLSpm
+dev-perl/SVN-Mirror
+dev-perl/SVN-Simple
+dev-perl/Scalar-Properties
+dev-perl/Shell-EnvImporter
 dev-perl/Scope-Guard
 dev-perl/SQL-Abstract
 dev-perl/SQL-Abstract-Limit
