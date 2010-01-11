@@ -328,6 +328,9 @@ dev-perl/perl-ldap
 dev-perl/perl-tk
 dev-perl/perltidy
 dev-perl/prefork
+dev-perl/Readonly
+dev-perl/Regexp-Shellish
+dev-perl/regexp-common
 dev-perl/Scope-Guard
 dev-perl/SQL-Abstract
 dev-perl/SQL-Abstract-Limit
