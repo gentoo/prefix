@@ -33,6 +33,10 @@ src_unpack() {
 		src/profile.d/java-config-2.{,c}sh \
 		src/java_config_2/{EnvironmentManager.py,VM.py,VersionManager.py} \
 		man/java-config-2.1
+
+	{	echo "# This files contain the default support jdk's"
+		echo '*= hp-jdk-bin' 
+	} > config/jdk-defaults-hpux.conf
 }
 
 src_install() {
@@ -44,6 +48,7 @@ src_install() {
 		x64-freebsd)  a=x86-fbsd;; # as long as it isn't upstream
 		x64-macos)    a=x86-macos;; # as long as it isn't upstream
 		ppc*-aix)     a=${a%-aix};; # as long as ppc*-linux defaults to ibm-jdk-bin
+		*-hpux)       a=hpux;;
 		*-linux)      a=${a%-linux};;
 	esac
 
