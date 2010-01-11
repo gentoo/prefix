@@ -133,7 +133,7 @@ EOF
 	dodir /etc/logrotate.d
 	insopts -m0644
 	insinto /etc/logrotate.d
-	newins ${FILESDIR}/${PN}.logrotate ${PN}
+	newins "${FILESDIR}"/${PN}.logrotate ${PN}
 }
 
 pkg_postinst() {
