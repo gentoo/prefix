@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libXpm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.58 2009/12/26 20:44:51 solar Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.59 2009/12/27 18:08:03 josejx Exp $
+
+  27 Dec 2009; Joseph Jezak <josejx@gentoo.org> libXpm-3.5.8.ebuild:
+  Marked ppc stable for bug #294958.
 
   26 Dec 2009; <solar@gentoo.org> libXpm-3.5.8.ebuild:
   The gettext dep should be wrapped with the nls use flag
