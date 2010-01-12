@@ -1,6 +1,29 @@
 # ChangeLog for net-nntp/tin
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/tin/ChangeLog,v 1.22 2009/03/08 10:30:25 cla Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/tin/ChangeLog,v 1.27 2010/01/09 19:16:38 jer Exp $
+
+  09 Jan 2010; Jeroen Roovers <jer@gentoo.org> -tin-1.9.4.ebuild:
+  Remove old.
+
+*tin-1.9.4-r1 (09 Jan 2010)
+
+  09 Jan 2010; Jeroen Roovers <jer@gentoo.org> tin-1.8.3.ebuild,
+  tin-1.9.4.ebuild, +tin-1.9.4-r1.ebuild, metadata.xml:
+  Describe cancel-locks USE flag better. Do not strip. Do not install the
+  colliding man pages. Set unicode USE dep for ncurses. Unify if-thens in
+  configure or replace them with [..] [..]. Do not die() when
+  USE="cancel-locks -evil". econf needs no die(). Run emake build (or it
+  will compile in src_install(). emake instead of make. Sort DEPENDs
+  alphanumerically. Move patching to src_prepare().
+
+  08 Jan 2010; Patrick Lauer <patrick@gentoo.org> tin-1.9.4.ebuild:
+  Fixing unneeded built_with_use for eapi2
+
+*tin-1.9.4 (07 Jan 2010)
+
+  07 Jan 2010; Patrick Lauer <patrick@gentoo.org> +tin-1.9.4.ebuild,
+  metadata.xml:
+  Bump for #260370. Thanks to Sebastian Luettich
 
   08 Mar 2009; Dawid Węgliński <cla@gentoo.org> tin-1.8.3.ebuild:
   Prevent double emake
