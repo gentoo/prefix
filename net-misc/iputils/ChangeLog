@@ -1,6 +1,10 @@
 # ChangeLog for net-misc/iputils
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.76 2009/08/23 16:00:44 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/iputils/ChangeLog,v 1.77 2010/01/07 15:52:15 fauli Exp $
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  iputils-20071127-r2.ebuild:
+  Transfer Prefix keywords
 
   23 Aug 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   iputils-20070202.ebuild:
