@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/util-linux
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.291 2009/12/07 11:09:20 ssuominen Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.293 2010/01/08 09:55:00 vapier Exp $
+
+*util-linux-2.17 (08 Jan 2010)
+
+  08 Jan 2010; Mike Frysinger <vapier@gentoo.org> +util-linux-2.17.ebuild:
+  Version bump.
+
+  03 Jan 2010; <solar@gentoo.org> util-linux-2.16.2.ebuild:
+  - cross compile love. default libtool files try to link with the host
+  libc.so so we call elibtoolize to work the magic
 
   07 Dec 2009; Samuli Suominen <ssuominen@gentoo.org>
   util-linux-2.16.1.ebuild:
