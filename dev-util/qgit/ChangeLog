@@ -1,6 +1,23 @@
 # ChangeLog for dev-util/qgit
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.45 2009/05/19 22:19:08 jokey Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/qgit/ChangeLog,v 1.50 2010/01/07 20:23:03 ranger Exp $
+
+  07 Jan 2010; Brent Baude <ranger@gentoo.org> qgit-2.3.ebuild:
+  stable ppc, bug 298414
+
+*qgit-2.3-r1 (07 Jan 2010)
+
+  07 Jan 2010; <hwoarang@gentoo.org> -qgit-2.1.ebuild, +qgit-2.3-r1.ebuild:
+  Remove old ebuild, rebump based on qt4-r2 eclass
+
+  06 Jan 2010; Brent Baude <ranger@gentoo.org> qgit-2.3.ebuild:
+  Marking qgit-2.3 ppc64 for bug 298414
+
+  29 Dec 2009; Christian Faulhammer <fauli@gentoo.org> qgit-2.3.ebuild:
+  stable x86, bug 298414
+
+  27 Dec 2009; <hwoarang@gentoo.org> qgit-2.3.ebuild:
+  Stable on amd64 wrt bug #298414
 
 *qgit-2.3 (19 May 2009)
 
