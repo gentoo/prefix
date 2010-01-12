@@ -1,6 +1,9 @@
 # ChangeLog for net-ftp/lftp
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.250 2009/12/22 02:20:23 jer Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.251 2010/01/01 13:17:44 klausman Exp $
+
+  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> lftp-4.0.3.ebuild:
+  Stable on alpha, bug #293737
 
 *lftp-4.0.5 (22 Dec 2009)
 
