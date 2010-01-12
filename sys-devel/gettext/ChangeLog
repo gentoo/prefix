@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/gettext
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.169 2009/05/29 19:57:17 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.170 2010/01/05 07:13:54 pva Exp $
+
+*gettext-0.17-r1 (05 Jan 2010)
+
+  05 Jan 2010; Peter Volkov <pva@gentoo.org> +gettext-0.17-r1.ebuild,
+  +files/gettext-0.17-x-python.patch:
+  Backport upstream fix: replace a lone high surrogate with U+FFFD, bug
+  #299658. Required for gajim test suite to pass.
 
   29 May 2009; Diego E. Pettenò <flameeyes@gentoo.org> gettext-0.17.ebuild:
   Replace kernel-conditional dependency on sys-apps/acl with virtual/acl.
