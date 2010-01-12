@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/scala-2.7.7.ebuild,v 1.1 2009/11/30 09:16:19 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/scala/scala-2.7.7.ebuild,v 1.2 2010/01/09 14:29:08 betelgeuse Exp $
 
 JAVA_PKG_IUSE="doc examples source"
 WANT_ANT_TASKS="ant-nodeps"
@@ -80,7 +80,11 @@ src_unpack() {
 
 src_compile() {
 	if ! use binary; then
-		eant all.clean dist.done
+		# reported in bugzilla that multiple launches use less resources
+		# https://bugs.gentoo.org/show_bug.cgi?id=282023
+		eant all.clean
+		eant build
+		eant dist.done
 	else
 		einfo "Skipping compilation, USE=binary is set."
 	fi
