@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.12.ebuild,v 1.2 2009/10/12 02:50:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.12.ebuild,v 1.3 2010/01/11 18:52:08 arfrever Exp $
 
 EAPI="2"
 
@@ -32,7 +32,7 @@ COMMON_DEPEND_BINS="app-crypt/pinentry"
 # existence of bins are checked during configure
 DEPEND="${COMMON_DEPEND_LIBS}
 	${COMMON_DEPEND_BINS}
-	>=dev-libs/libassuan-1.0.4
+	=dev-libs/libassuan-1*
 	nls? ( sys-devel/gettext )
 	doc? ( sys-apps/texinfo )"
 
