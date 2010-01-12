@@ -1,6 +1,10 @@
 # ChangeLog for dev-lisp/cl-acl-compat
-# Copyright 2000-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-acl-compat/ChangeLog,v 1.24 2007/02/03 17:31:25 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-acl-compat/ChangeLog,v 1.25 2010/01/07 14:58:09 fauli Exp $
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  cl-acl-compat-1.2.42.20060121.ebuild:
+  Transfer Prefix keywords
 
   03 Feb 2007; Diego Pettenò <flameeyes@gentoo.org>
   cl-acl-compat-1.2.42.20050220.ebuild,
