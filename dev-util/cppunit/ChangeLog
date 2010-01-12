@@ -1,6 +1,32 @@
 # ChangeLog for dev-util/cppunit
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/cppunit/ChangeLog,v 1.44 2008/07/27 20:18:05 carlo Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/cppunit/ChangeLog,v 1.50 2010/01/08 19:35:29 armin76 Exp $
+
+  08 Jan 2010; Raúl Porcel <armin76@gentoo.org> cppunit-1.12.1.ebuild:
+  alpha/arm/ia64/sparc stable wrt #299403
+
+  05 Jan 2010; Jeroen Roovers <jer@gentoo.org> cppunit-1.12.1.ebuild:
+  Stable for HPPA (bug #299403).
+
+  05 Jan 2010; Joseph Jezak <josejx@gentoo.org> cppunit-1.12.1.ebuild:
+  Marked ppc/ppc64 stable for bug #299403.
+
+  03 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  cppunit-1.12.1.ebuild:
+  stable x86, bug 299403
+
+  02 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> cppunit-1.12.1.ebuild:
+  amd64 stable wrt #299403
+
+  02 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> cppunit-1.12.1.ebuild:
+  Remove AT_M4DIR because Makefile.am has reference of ACLOCAL_AMFLAGS to
+  the m4 config directory. Run full eautoreconf instead of eautomake because
+  of version mismatch.
+
+  02 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> cppunit-1.12.1.ebuild,
+  +files/cppunit-1.12.1-add_missing_include.patch:
+  Fix missing include with GCC 4.3+ wrt #271229 by Duncan Smith. Remove
+  deprecated USE="qt3".
 
   27 Jul 2008; Carsten Lohrke <carlo@gentoo.org> cppunit-1.12.0.ebuild,
   cppunit-1.12.1.ebuild:
