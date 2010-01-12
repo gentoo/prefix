@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/tcl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.115 2009/10/06 17:33:00 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/tcl/ChangeLog,v 1.116 2010/01/07 14:20:03 patrick Exp $
+
+*tcl-8.5.8 (07 Jan 2010)
+
+  07 Jan 2010; Patrick Lauer <patrick@gentoo.org> +tcl-8.5.8.ebuild:
+  Bump for #297448
 
   06 Oct 2009; Raúl Porcel <armin76@gentoo.org> tcl-8.5.7.ebuild:
   ia64/m68k/s390/sh/sparc stable wrt #280845
