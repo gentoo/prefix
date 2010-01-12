@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/popt
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.78 2009/12/11 14:41:18 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.80 2010/01/06 09:46:35 ssuominen Exp $
+
+  06 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> popt-1.14.ebuild,
+  popt-1.15.ebuild:
+  License "popt" is a duplicate of "MIT" wrt #299854, thanks to Ulrich
+  Müller for reporting.
+
+  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> popt-1.15.ebuild:
+  Stable on alpha, bug #296420
 
   11 Dec 2009; Brent Baude <ranger@gentoo.org> popt-1.15.ebuild:
   Marking popt-1.15 ppc64 for bug 296420
