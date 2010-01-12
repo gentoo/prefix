@@ -1,6 +1,16 @@
 # ChangeLog for app-arch/libarchive
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.70 2010/01/09 19:58:31 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/ChangeLog,v 1.73 2010/01/11 13:07:40 fauli Exp $
+
+  11 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  libarchive-2.7.1-r1.ebuild:
+  stable x86, bug 298563
+
+  11 Jan 2010; Jeroen Roovers <jer@gentoo.org> libarchive-2.7.1-r1.ebuild:
+  Stable for HPPA (bug #298563).
+
+  10 Jan 2010; Brent Baude <ranger@gentoo.org> libarchive-2.7.1-r1.ebuild:
+  stable ppc64, bug 298563
 
   09 Jan 2010; Pacho Ramos <pacho@gentoo.org> libarchive-2.7.1-r1.ebuild:
   amd64 stable, bug 298563
