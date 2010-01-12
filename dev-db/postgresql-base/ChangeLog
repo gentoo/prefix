@@ -1,6 +1,61 @@
 # ChangeLog for dev-db/postgresql-base
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.33 2009/12/14 18:56:21 patrick Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.44 2010/01/07 20:28:56 beandog Exp $
+
+  07 Jan 2010; Steve Dibb <beandog@gentoo.org>
+  postgresql-base-7.3.21.ebuild, postgresql-base-7.4.26.ebuild,
+  postgresql-base-7.4.27.ebuild, postgresql-base-8.0.22.ebuild,
+  postgresql-base-8.0.23.ebuild, postgresql-base-8.1.11.ebuild,
+  postgresql-base-8.1.18.ebuild, postgresql-base-8.1.19.ebuild,
+  postgresql-base-8.2.14.ebuild, postgresql-base-8.2.15.ebuild,
+  postgresql-base-8.3.8.ebuild, postgresql-base-8.3.9.ebuild,
+  postgresql-base-8.4.1.ebuild, postgresql-base-8.4.2.ebuild:
+  amd64 stable, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-base-8.1.18.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-base-8.0.22.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-base-7.4.26.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-base-8.4.2-r1.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-base-8.3.8.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-base-8.2.14.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Patrick Lauer <patrick@gentoo.org>
+  postgresql-base-8.4.2-r1.ebuild:
+  pg_legacytimestamp logic got inverted. Fixing it to work as expected.
+
+  07 Jan 2010; Steve Dibb <beandog@gentoo.org>
+  postgresql-base-8.4.2-r1.ebuild:
+  amd64 stable, bug 285475
+
+*postgresql-base-7.4.27 (07 Jan 2010)
+
+  07 Jan 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-7.4.27.ebuild, +files/postgresql-7.4.27-autoconf.patch:
+  Bump of 7.4 slot
+
+*postgresql-base-8.4.2-r1 (07 Jan 2010)
+
+  07 Jan 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-8.4.2-r1.ebuild, metadata.xml:
+  Changing pg-intdatetime to pg_legacytimestamp useflag since upstream
+  changed defaults and deprecated the old behaviour. See #285475 #290535
 
 *postgresql-base-8.4.2 (14 Dec 2009)
 *postgresql-base-8.3.9 (14 Dec 2009)

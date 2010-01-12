@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/postgresql-base-8.4.2.ebuild,v 1.2 2010/01/07 20:28:56 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/postgresql-base-8.4.2-r1.ebuild,v 1.4 2010/01/07 16:56:52 fauli Exp $
 
 EAPI=1
 
@@ -21,7 +21,7 @@ IUSE_LINGUAS="
 	linguas_hr linguas_hu linguas_it linguas_ko linguas_nb linguas_pl
 	linguas_pt_BR linguas_ro linguas_ru linguas_sk linguas_sl linguas_sv
 	linguas_tr linguas_zh_CN linguas_zh_TW"
-IUSE="doc kerberos nls pam pg-intdatetime readline ssl threads zlib ldap ${IUSE_LINGUAS}"
+IUSE="doc kerberos nls pam readline ssl threads zlib ldap pg_legacytimestamp ${IUSE_LINGUAS}"
 RESTRICT="test"
 
 wanted_languages() {
@@ -86,7 +86,7 @@ src_compile() {
 		$(use_with kerberos gssapi) \
 		"$(use_enable nls nls "$(wanted_languages)")" \
 		$(use_with pam) \
-		$(use_enable pg-intdatetime integer-datetimes ) \
+		$(use_enable !pg_legacytimestamp integer-datetimes ) \
 		$(use_with ssl openssl) \
 		$(use_enable threads thread-safety) \
 		$(use_enable threads thread-safety-force) \
