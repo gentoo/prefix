@@ -1,6 +1,10 @@
 # ChangeLog for net-irc/irssi
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.155 2009/11/22 21:58:41 swegener Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/ChangeLog,v 1.156 2010/01/03 15:08:27 swegener Exp $
+
+  03 Jan 2010; Sven Wegener <swegener@gentoo.org> -irssi-0.8.13-r1.ebuild,
+  -files/irssi-0.8.13-svn-5068.patch:
+  Cleanup.
 
   22 Nov 2009; Sven Wegener <swegener@gentoo.org> irssi-0.8.14.ebuild:
   Switch ebuild to EAPI-2.
