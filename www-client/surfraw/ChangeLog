@@ -1,6 +1,22 @@
 # ChangeLog for www-client/surfraw
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/ChangeLog,v 1.47 2009/12/24 18:01:07 pacho Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/surfraw/ChangeLog,v 1.52 2010/01/12 04:04:30 jer Exp $
+
+  12 Jan 2010; Jeroen Roovers <jer@gentoo.org>
+  -files/surfraw-2.1.5-gentoo_pkg_tools.patch, -surfraw-2.2.5.ebuild:
+  Remove old.
+
+  10 Jan 2010; Markus Meier <maekke@gentoo.org> surfraw-2.2.6.ebuild:
+  x86 stable, bug #298240
+
+  28 Dec 2009; Jeroen Roovers <jer@gentoo.org> surfraw-2.2.6.ebuild:
+  Stable for HPPA (bug #298240).
+
+  28 Dec 2009; Tiago Cunha <tcunha@gentoo.org> surfraw-2.2.6.ebuild:
+  stable sparc, bug 298240
+
+  28 Dec 2009; nixnut <nixnut@gentoo.org> surfraw-2.2.6.ebuild:
+  ppc stable #298240
 
   24 Dec 2009; Pacho Ramos <pacho@gentoo.org> surfraw-2.2.6.ebuild:
   amd64 stable, bug 298240
