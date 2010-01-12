@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/sdl-image
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.57 2009/12/04 20:26:12 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-image/ChangeLog,v 1.59 2010/01/01 22:09:56 fauli Exp $
+
+  01 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  sdl-image-1.2.10.ebuild:
+  stable x86, bug 299012
+
+  31 Dec 2009; Brent Baude <ranger@gentoo.org> sdl-image-1.2.10.ebuild:
+  Marking sdl-image-1.2.10 ppc64 for bug 299012
 
   04 Dec 2009; Raúl Porcel <armin76@gentoo.org> sdl-image-1.2.7-r1.ebuild:
   ia64/sparc stable wrt #294126
