@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/ufraw
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ChangeLog,v 1.71 2009/12/23 17:41:28 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/ufraw/ChangeLog,v 1.74 2009/12/28 22:34:38 maekke Exp $
+
+  28 Dec 2009; Markus Meier <maekke@gentoo.org> ufraw-0.16.ebuild:
+  x86 stable, bug #293850
+
+  28 Dec 2009; Markus Meier <maekke@gentoo.org> ufraw-0.16.ebuild:
+  autoenable gtk when gimp is enabled, bug #298187
+
+  27 Dec 2009; Markus Meier <maekke@gentoo.org> ufraw-0.16.ebuild:
+  improve gimp/gtk die message, bug #298314
 
   23 Dec 2009; Markos Chandras <hwoarang@gentoo.org> ufraw-0.16.ebuild:
   Stable on amd64 wrt bug #293850
