@@ -1,6 +1,14 @@
 # ChangeLog for games-misc/fortune-mod-gentoo-dev
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod-gentoo-dev/ChangeLog,v 1.29 2009/05/29 17:00:01 beandog Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod-gentoo-dev/ChangeLog,v 1.31 2010/01/10 10:08:17 fauli Exp $
+
+  10 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  fortune-mod-gentoo-dev-20090306.ebuild:
+  stable x86
+
+  10 Jan 2010; Jeroen Roovers <jer@gentoo.org>
+  fortune-mod-gentoo-dev-20090306.ebuild:
+  Stable for HPPA too.
 
   29 May 2009; Steve Dibb <beandog@gentoo.org>
   fortune-mod-gentoo-dev-20070428.ebuild,
