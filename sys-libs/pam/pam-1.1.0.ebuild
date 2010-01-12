@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/pam-1.1.0.ebuild,v 1.11 2009/11/26 10:11:59 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/pam-1.1.0.ebuild,v 1.13 2010/01/06 15:51:10 ulm Exp $
 
 inherit libtool multilib eutils autotools pam toolchain-funcs flag-o-matic
 
@@ -13,7 +13,7 @@ DESCRIPTION="Linux-PAM (Pluggable Authentication Modules)"
 SRC_URI="mirror://kernel/linux/libs/pam/library/${MY_P}.tar.bz2
 	mirror://kernel/linux/libs/pam/documentation/${MY_P}-docs.tar.bz2"
 
-LICENSE="PAM"
+LICENSE="|| ( BSD GPL-2 )"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="cracklib nls elibc_FreeBSD selinux vim-syntax audit test elibc_glibc debug"
