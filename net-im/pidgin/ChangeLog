@@ -1,6 +1,22 @@
 # ChangeLog for net-im/pidgin
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.141 2009/12/20 20:25:41 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.145 2010/01/11 16:03:36 tester Exp $
+
+  11 Jan 2010; Olivier Crête <tester@gentoo.org> pidgin-2.6.4-r1.ebuild,
+  pidgin-2.6.5.ebuild:
+  Make xscreensaver and startup-notification the default behavior
+
+  10 Jan 2010; Christian Faulhammer <fauli@gentoo.org> pidgin-2.6.5.ebuild:
+  stable x86, security bug 299751
+
+  10 Jan 2010; Peter Volkov <pva@gentoo.org> pidgin-2.6.5.ebuild:
+  Added note about xscreensaver USE flag and idle/active monitoring in
+  pidgin.
+
+*pidgin-2.6.5 (10 Jan 2010)
+
+  10 Jan 2010; Olivier Crête <tester@gentoo.org> +pidgin-2.6.5.ebuild:
+  Version bump for security bug #299751
 
 *pidgin-2.6.4-r1 (20 Dec 2009)
 

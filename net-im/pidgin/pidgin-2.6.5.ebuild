@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.6.4-r1.ebuild,v 1.4 2010/01/11 16:03:36 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.6.5.ebuild,v 1.4 2010/01/11 16:03:36 tester Exp $
 
 EAPI=2
 
@@ -100,6 +100,10 @@ pkg_setup() {
 		elog "You did not pick the ncurses or gtk use flags, only libpurple"
 		elog "will be built."
 		einfo
+	fi
+	if ! use xscreensaver; then
+		elog "Note: xscreensaver USE flag is disabled. Thus pidgin will be unable"
+		elog "to monitor idle/active status based on mouse/keyboard events"
 	fi
 }
 
