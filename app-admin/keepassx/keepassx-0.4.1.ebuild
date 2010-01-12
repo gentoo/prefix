@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/keepassx/keepassx-0.4.1.ebuild,v 1.7 2010/01/07 22:06:45 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/keepassx/keepassx-0.4.1.ebuild,v 1.8 2010/01/10 21:35:25 spatz Exp $
 
 EAPI=2
 
@@ -17,7 +17,8 @@ IUSE="debug pch"
 
 DEPEND="x11-libs/qt-core:4
 	x11-libs/qt-gui:4
-	x11-libs/qt-xmlpatterns:4"
+	x11-libs/qt-xmlpatterns:4
+	|| ( >=x11-libs/libXtst-1.1.0 <x11-proto/xextproto-7.1.0 )"
 RDEPEND="${DEPEND}"
 
 PATCHES=( "${FILESDIR}/${P}-compile-with-qt-4.6.patch" )
