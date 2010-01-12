@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake-compiler/rake-compiler-0.7.0.ebuild,v 1.1 2009/12/21 18:40:31 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rake-compiler/rake-compiler-0.7.0.ebuild,v 1.3 2010/01/04 23:21:31 maekke Exp $
 
 EAPI=2
 USE_RUBY="ruby18"
@@ -22,3 +22,5 @@ S="${WORKDIR}/luislavena-${PN}-2834041"
 KEYWORDS="~amd64-linux ~x86-solaris"
 SLOT="0"
 IUSE=""
+
+ruby_add_bdepend doc ">=dev-ruby/rdoc-2.4.3"
