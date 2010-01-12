@@ -1,6 +1,10 @@
 # ChangeLog for www-client/arora
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/arora/ChangeLog,v 1.30 2009/12/27 03:15:28 yngwin Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-client/arora/ChangeLog,v 1.31 2010/01/05 19:51:21 armin76 Exp $
+
+  05 Jan 2010; Raúl Porcel <armin76@gentoo.org> arora-0.10.1-r1.ebuild,
+  arora-0.10.2-r1.ebuild:
+  Add ~arm wrt #287996
 
 *arora-0.10.2-r1 (27 Dec 2009)
 *arora-0.10.1-r1 (27 Dec 2009)
