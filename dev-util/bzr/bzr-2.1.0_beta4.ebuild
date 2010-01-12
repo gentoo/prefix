@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-1.15.1.ebuild,v 1.6 2009/09/29 23:48:02 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/bzr-2.1.0_beta4.ebuild,v 1.1 2010/01/10 11:26:26 pva Exp $
 
 EAPI=1
 
@@ -9,6 +9,7 @@ NEED_PYTHON=2.4
 inherit distutils bash-completion elisp-common eutils versionator
 
 MY_PV=${PV/_rc/rc}
+MY_PV=${PV/_beta/b}
 MY_P=${PN}-${MY_PV}
 SERIES=$(get_version_component_range 1-2)
 
@@ -41,7 +42,7 @@ src_unpack() {
 	distutils_src_unpack
 
 	# Don't regenerate .c files from .pyx when pyrex is found.
-	epatch "${FILESDIR}/${PN}-1.8-no-pyrex.patch"
+	epatch "${FILESDIR}/${PN}-2.1-no-pyrex-citon.patch"
 	# Don't run lock permission tests when running as root
 	epatch "${FILESDIR}/${PN}-0.90-tests-fix_root.patch"
 	# Fix permission errors when run under directories with setgid set.
@@ -105,18 +106,10 @@ src_test() {
 	export LC_ALL=C
 	# Define tests which are known to fail below.
 	local skip_tests="("
-	# https://bugs.launchpad.net/bzr/+bug/306264
-	skip_tests+="test_http.SmartHTTPTunnellingTest*|"
-	skip_tests+="test_http.TestWallServer.test_http_*|"
-	skip_tests+="blackbox.test_too_much.SFTPTestsRelative.test_*|"
-	# https://bugs.launchpad.net/bzr/+bug/383920
-	skip_tests+="test_transport_implementations.TransportTests.test_get*|"
-	# This tests were fixed in trunk. Drop in 1.15.x or 1.16
-	skip_tests+="bzrlib.tests.test_http.TestActivity*|"
-	#skip_tests+="bzrlib.tests.tree_implementations.test_get_file_mtime*|"
-	#skip_tests+="test_source.TestSource.test_no_asserts*|"
-	#https://bugs.launchpad.net/bzr/+bug/341648
-	skip_tests+="test_osutils.TestWalkDirs.test_walkdirs_os_error"
+	#https://bugs.launchpad.net/bzr/+bug/456471
+	skip_tests+="bzrlib.tests.blackbox.test_version.*|"
+	# https://bugs.launchpad.net/bzr/+bug/392127
+	skip_tests+="test_http.*"
 	skip_tests+=")"
 	# Some tests expect the usual pyc compiling behaviour.
 	python_enable_pyc

@@ -1,6 +1,28 @@
 # ChangeLog for dev-util/bzr
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.116 2009/12/01 13:05:34 maekke Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/bzr/ChangeLog,v 1.121 2010/01/10 11:26:26 pva Exp $
+
+*bzr-2.1.0_beta4 (10 Jan 2010)
+
+  10 Jan 2010; Peter Volkov <pva@gentoo.org> -bzr-2.1.0_beta1.ebuild,
+  +bzr-2.1.0_beta4.ebuild, +files/bzr-2.1-no-pyrex-citon.patch:
+  Version bump, bug #300350, thank Jeroen Roovers for report. Added missed
+  patch, bug #297268, thank Christian Faulhammer for report.
+
+  10 Jan 2010; Jeroen Roovers <jer@gentoo.org> bzr-2.0.1.ebuild:
+  Stable for HPPA too.
+
+  27 Dec 2009; Christian Faulhammer <fauli@gentoo.org> -bzr-1.15.1.ebuild,
+  -bzr-1.18.ebuild, -bzr-2.0.0.ebuild, bzr-2.1.0_beta1.ebuild:
+  clean up and silently propagate ppc64 keyword
+
+*bzr-2.0.3 (27 Dec 2009)
+
+  27 Dec 2009; Christian Faulhammer <fauli@gentoo.org> +bzr-2.0.3.ebuild:
+  version bump
+
+  27 Dec 2009; Raúl Porcel <armin76@gentoo.org> bzr-2.0.1.ebuild:
+  sparc stable wrt #294803
 
   01 Dec 2009; Markus Meier <maekke@gentoo.org> bzr-2.0.1.ebuild:
   amd64 stable, bug #294803
