@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/pssh
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/pssh/ChangeLog,v 1.13 2009/05/14 07:22:37 ssuominen Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/pssh/ChangeLog,v 1.14 2010/01/06 19:28:26 fauli Exp $
+
+  06 Jan 2010; Christian Faulhammer <fauli@gentoo.org> pssh-1.4.3.ebuild:
+  Transfer Prefix keywords
 
   14 May 2009; Christian Faulhammer <fauli@gentoo.org> pssh-1.4.3.ebuild:
   stable x86, bug 268710
