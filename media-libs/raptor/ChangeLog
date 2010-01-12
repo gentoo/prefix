@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/raptor
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/ChangeLog,v 1.73 2009/11/30 12:35:11 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/raptor/ChangeLog,v 1.74 2009/12/27 17:14:24 armin76 Exp $
+
+  27 Dec 2009; Raúl Porcel <armin76@gentoo.org> raptor-1.4.19.ebuild,
+  raptor-1.4.20.ebuild:
+  Add ~arm
 
 *raptor-1.4.20 (30 Nov 2009)
 
