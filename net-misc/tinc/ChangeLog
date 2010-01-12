@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/tinc
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/ChangeLog,v 1.17 2009/06/09 01:43:28 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/tinc/ChangeLog,v 1.18 2009/12/31 03:25:37 rbu Exp $
+
+*tinc-1.0.11 (31 Dec 2009)
+
+  31 Dec 2009; Robert Buchholz <rbu@gentoo.org> +tinc-1.0.11.ebuild:
+  Version bump by non-maintainer, bug 295813.
 
   09 Jun 2009; Jeroen Roovers <jer@gentoo.org> metadata.xml:
   Reassign to no-herd because secure-tunneling does not exist.
