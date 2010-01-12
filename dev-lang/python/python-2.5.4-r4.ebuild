@@ -1,15 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r4.ebuild,v 1.1 2010/01/01 18:56:30 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r4.ebuild,v 1.2 2010/01/10 17:18:59 arfrever Exp $
 
 EAPI="1"
 
 inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs versionator
-
-# We need this so that we don't depend on python.eclass.
-PYVER_MAJOR="$(get_major_version)"
-PYVER_MINOR="$(get_version_component_range 2)"
-PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
@@ -59,6 +54,8 @@ PDEPEND="app-admin/python-updater"
 PROVIDE="virtual/python"
 
 pkg_setup() {
+	python_set_active_version ${SLOT}
+
 	if use berkdb; then
 		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
 		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
@@ -281,7 +278,7 @@ src_test() {
 	done
 
 	elog "If you'd like to run them, you may:"
-	elog "cd /usr/$(get_libdir)/python${PYVER}/test"
+	elog "cd $(python_get_libdir)/test"
 	elog "and run the tests separately."
 
 	python_disable_pyc
@@ -291,28 +288,28 @@ src_install() {
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${PYVER}/lib-dynload/
 	emake DESTDIR="${D}" altinstall maninstall || die "emake altinstall maninstall failed"
 
-	mv "${ED}usr/bin/python${PYVER}-config" "${ED}usr/bin/python-config-${PYVER}"
+	mv "${ED}usr/bin/python${SLOT}-config" "${ED}usr/bin/python-config-${SLOT}"
 
 	# Fix collisions between different slots of Python.
-	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${PYVER}"
-	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${PYVER}"
-	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${PYVER}.1"
+	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${SLOT}"
+	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${SLOT}"
+	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${SLOT}.1"
 	rm -f "${ED}usr/bin/smtpd.py"
 
 	# Fix the OPT variable so that it doesn't have any flags listed in it.
 	# Prevents the problem with compiling things with conflicting flags later.
-	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}usr/$(get_libdir)/python${PYVER}/config/Makefile"
+	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
 
 	if use build ; then
-		rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb,email,lib-tk,sqlite3,test}
+		rm -fr "${ED}$(python_get_libdir)/"{bsddb,email,lib-tk,sqlite3,test}
 	else
-		use elibc_uclibc && rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb/test,test}
-		use berkdb || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{bsddb,test/test_bsddb*}
-		use sqlite || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{sqlite3,test/test_sqlite*}
-		use tk || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/lib-tk"
+		use elibc_uclibc && rm -fr "${ED}$(python_get_libdir)/"{bsddb/test,test}
+		use berkdb || rm -fr "${ED}$(python_get_libdir)/"{bsddb,test/test_bsddb*}
+		use sqlite || rm -fr "${ED}$(python_get_libdir)/"{sqlite3,test/test_sqlite*}
+		use tk || rm -fr "${ED}$(python_get_libdir)/lib-tk"
 	fi
 
-	prep_ml_includes usr/include/python${PYVER}
+	prep_ml_includes $(python_get_includedir)
 
 	if use examples ; then
 		insinto /usr/share/doc/${PF}/examples
@@ -342,7 +339,7 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -x "(site-packages|test)" /usr/$(get_libdir)/python${PYVER}
+	python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn
@@ -360,5 +357,5 @@ pkg_postinst() {
 pkg_postrm() {
 	eselect_python_update
 
-	python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
+	python_mod_cleanup $(python_get_libdir)
 }

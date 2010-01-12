@@ -1,15 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.24 2009/12/06 17:50:22 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.25 2010/01/10 17:18:59 arfrever Exp $
 
 EAPI="1"
 
 inherit autotools eutils flag-o-matic multilib python toolchain-funcs versionator prefix
-
-# We need this so that we don't depend on python.eclass.
-PYVER_MAJOR="$(get_major_version)"
-PYVER_MINOR="$(get_version_component_range 2)"
-PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
@@ -52,6 +47,8 @@ PDEPEND="app-admin/python-updater"
 PROVIDE="virtual/python"
 
 pkg_setup() {
+	python_set_active_version ${SLOT}
+
 	if use berkdb; then
 		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
 		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
@@ -243,7 +240,7 @@ src_test() {
 	done
 
 	elog "If you'd like to run them, you may:"
-	elog "cd /usr/$(get_libdir)/python${PYVER}/test"
+	elog "cd $(python_get_libdir)/test"
 	elog "and run the tests separately."
 }
 
@@ -252,33 +249,33 @@ src_install() {
 
 	# Install our own custom python-config
 	exeinto /usr/bin
-	newexe "${FILESDIR}"/python-config-${PYVER}-r1 python-config-${PYVER}
+	newexe "${FILESDIR}"/python-config-${SLOT}-r1 python-config-${SLOT}
 
 	# Use correct libdir in python-config
-	dosed "s:/usr/lib/:${EPREFIX}/usr/$(get_libdir)/:" /usr/bin/python-config-${PYVER}
+	dosed "s:/usr/lib/:${EPREFIX}/usr/$(get_libdir)/:" /usr/bin/python-config-${SLOT}
 	# Use correct shebang
-	dosed "1s|^#!/usr/bin/python$|#!${EPREFIX}/usr/bin/python|" /usr/bin/python-config-${PYVER}
+	dosed "1s|^#!/usr/bin/python$|#!${EPREFIX}/usr/bin/python|" /usr/bin/python-config-${SLOT}
 
 	# Fix collisions between different slots of Python.
-	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${PYVER}"
-	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${PYVER}"
-	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${PYVER}.1"
+	mv "${ED}usr/bin/pydoc" "${ED}usr/bin/pydoc${SLOT}"
+	mv "${ED}usr/bin/idle" "${ED}usr/bin/idle${SLOT}"
+	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${SLOT}.1"
 	rm -f "${ED}usr/bin/smtpd.py"
 
 	# Fix the OPT variable so that it doesn't have any flags listed in it.
 	# Prevents the problem with compiling things with conflicting flags later.
-	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}usr/$(get_libdir)/python${PYVER}/config/Makefile"
+	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
 
 	# Python 2.4 partially doesn't respect $(get_libdir).
 	if use build; then
-		rm -fr "${ED}"usr/lib*/python${PYVER}/{bsddb,email,lib-tk,test}
+		rm -fr "${ED}"usr/lib*/python${SLOT}/{bsddb,email,lib-tk,test}
 	else
-		use elibc_uclibc && rm -fr "${ED}"usr/lib*/python${PYVER}/{bsddb/test,test}
-		use berkdb || rm -fr "${ED}"usr/lib*/python${PYVER}/{bsddb,test/test_bsddb*}
-		use tk || rm -fr "${ED}"usr/lib*/python${PYVER}/lib-tk
+		use elibc_uclibc && rm -fr "${ED}"usr/lib*/python${SLOT}/{bsddb/test,test}
+		use berkdb || rm -fr "${ED}"usr/lib*/python${SLOT}/{bsddb,test/test_bsddb*}
+		use tk || rm -fr "${ED}"usr/lib*/python${SLOT}/lib-tk
 	fi
 
-	prep_ml_includes usr/include/python${PYVER}
+	prep_ml_includes $(python_get_includedir)
 
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
@@ -309,7 +306,7 @@ pkg_postinst() {
 	eselect_python_update
 
 	# Python 2.4 partially doesn't respect $(get_libdir).
-	python_mod_optimize -x "(site-packages|test)" /usr/lib/python${PYVER}
+	python_mod_optimize -x "(site-packages|test)" /usr/lib/python${SLOT}
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn
@@ -328,5 +325,5 @@ pkg_postrm() {
 	eselect_python_update
 
 	# Python 2.4 partially doesn't respect $(get_libdir).
-	python_mod_cleanup /usr/lib/python${PYVER}
+	python_mod_cleanup /usr/lib/python${SLOT}
 }

@@ -1,15 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.22 2010/01/01 19:54:42 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.23 2010/01/10 17:18:59 arfrever Exp $
 
 EAPI="2"
 
 inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs versionator
-
-# We need this so that we don't depend on python.eclass.
-PYVER_MAJOR="$(get_major_version)"
-PYVER_MINOR="$(get_version_component_range 2)"
-PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
@@ -50,6 +45,10 @@ PDEPEND="app-admin/python-updater
 		=dev-lang/python-2*"
 
 PROVIDE="virtual/python"
+
+pkg_setup() {
+	python_set_active_version ${SLOT}
+}
 
 src_prepare() {
 	# Ensure that internal copies of expat and libffi aren't used.
@@ -297,14 +296,14 @@ src_test() {
 	done
 
 	elog "If you'd like to run them, you may:"
-	elog "cd /usr/$(get_libdir)/python${PYVER}/test"
+	elog "cd $(python_get_libdir)/test"
 	elog "and run the tests separately."
 
 	python_disable_pyc
 }
 
 src_install() {
-	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${PYVER}/lib-dynload/
+	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${SLOT}/lib-dynload/
 	# do not make multiple targets in parallel when there are broken
 	# sharedmods (during bootstrap), would build them twice in parallel.
 	if use aqua ; then
@@ -315,20 +314,20 @@ src_install() {
 
 		# avoid framework incompatability, degrade to a normal UNIX lib
 		mkdir -p "${ED}"/usr/$(get_libdir)
-		cp "${D}${fwdir}"/Versions/${PYVER}/Python \
-			"${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib || die
-		chmod u+w "${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
+		cp "${D}${fwdir}"/Versions/${SLOT}/Python \
+			"${ED}"/usr/$(get_libdir)/libpython${SLOT}.dylib || die
+		chmod u+w "${ED}"/usr/$(get_libdir)/libpython${SLOT}.dylib
 		install_name_tool \
-			-id "${EPREFIX}"/usr/$(get_libdir)/libpython${PYVER}.dylib \
-			"${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
-		chmod u-w "${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib
-		cp "${S}"/libpython${PYVER}.a \
+			-id "${EPREFIX}"/usr/$(get_libdir)/libpython${SLOT}.dylib \
+			"${ED}"/usr/$(get_libdir)/libpython${SLOT}.dylib
+		chmod u-w "${ED}"/usr/$(get_libdir)/libpython${SLOT}.dylib
+		cp "${S}"/libpython${SLOT}.a \
 			"${ED}"/usr/$(get_libdir)/ || die
 
 		# rebuild python executable to be the non-pythonw (python wrapper)
 		# version so we don't get framework crap
-		$(tc-getCC) "${ED}"/usr/$(get_libdir)/libpython${PYVER}.dylib \
-			-o "${ED}"/usr/bin/python${PYVER} \
+		$(tc-getCC) "${ED}"/usr/$(get_libdir)/libpython${SLOT}.dylib \
+			-o "${ED}"/usr/bin/python${SLOT} \
 			Modules/python.o || die
 
 		# don't install the "Current" symlink, will always conflict
@@ -338,36 +337,36 @@ src_install() {
 
 		# remove unversioned files (that are not made versioned below)
 		pushd "${ED}"/usr/bin > /dev/null
-		rm -f python python-config python${PYVER}-config
-		# python${PYVER} was created above
-		for f in pythonw smtpd${PYVER}.py pydoc idle ; do
-			rm -f ${f} ${f}${PYVER}
+		rm -f python python-config python${SLOT}-config
+		# python${SLOT} was created above
+		for f in pythonw smtpd${SLOT}.py pydoc idle ; do
+			rm -f ${f} ${f}${SLOT}
 		done
 		# pythonw needs to remain in the framework (that's the whole
 		# reason we go through this framework hassle)
-		ln -s ../lib/Python.framework/Versions/${PYVER}/bin/pythonw2.6 || die
+		ln -s ../lib/Python.framework/Versions/${SLOT}/bin/pythonw2.6 || die
 		# copy the scripts to we can fix their shebangs
-		for f in 2to3 pydoc${PYVER} idle${PYVER} python${PYVER}-config ; do
-			cp "${D}${fwdir}"/Versions/${PYVER}/bin/${f} . || die
-			sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python'"${PYVER}" \
+		for f in 2to3 pydoc${SLOT} idle${SLOT} python${SLOT}-config ; do
+			cp "${D}${fwdir}"/Versions/${SLOT}/bin/${f} . || die
+			sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python'"${SLOT}" \
 				${f} || die
 		done
 		# "fix" to have below collision fix not to bail
-		mv pydoc${PYVER} pydoc || die
-		mv idle${PYVER} idle || die
+		mv pydoc${SLOT} pydoc || die
+		mv idle${SLOT} idle || die
 		popd > /dev/null
 
 		# basically we don't like the framework stuff at all, so just move
 		# stuff around or add some symlinks to make our life easier
 		mkdir -p "${ED}"/usr
-		mv "${D}${fwdir}"/Versions/${PYVER}/share \
+		mv "${D}${fwdir}"/Versions/${SLOT}/share \
 			"${ED}"/usr/ || die "can't move share"
 		# get includes just UNIX style
 		mkdir -p "${ED}"/usr/include
-		mv "${D}${fwdir}"/Versions/${PYVER}/include/python${PYVER} \
+		mv "${D}${fwdir}"/Versions/${SLOT}/include/python${SLOT} \
 			"${ED}"/usr/include/ || die "can't move include"
-		pushd "${D}${fwdir}"/Versions/${PYVER}/include > /dev/null
-		ln -s ../../../../../include/python${PYVER} || die
+		pushd "${D}${fwdir}"/Versions/${SLOT}/include > /dev/null
+		ln -s ../../../../../include/python${SLOT} || die
 		popd > /dev/null
 
 		# same for libs
@@ -375,10 +374,10 @@ src_install() {
 		# on upgrade (site-packages), however since we h4x0rzed python to
 		# actually look into the UNIX-style dir, we just switch them around.
 		mkdir -p "${ED}"/usr/$(get_libdir)
-		mv "${D}${fwdir}"/Versions/${PYVER}/lib/python${PYVER} \
-			"${ED}"/usr/lib/ || die "can't move python${PYVER}"
-		pushd "${D}${fwdir}"/Versions/${PYVER}/lib > /dev/null
-		ln -s ../../../../python${PYVER} || die
+		mv "${D}${fwdir}"/Versions/${SLOT}/lib/python${SLOT} \
+			"${ED}"/usr/lib/ || die "can't move python${SLOT}"
+		pushd "${D}${fwdir}"/Versions/${SLOT}/lib > /dev/null
+		ln -s ../../../../python${SLOT} || die
 		popd > /dev/null
 
 		# fix up Makefile
@@ -391,11 +390,11 @@ src_install() {
 			-e '/^PYTHONFRAMEWORKPREFIX=/s/=.*$/=/' \
 			-e '/^PYTHONFRAMEWORKINSTALLDIR=/s/=.*$/=/' \
 			-e '/^LDLIBRARY=/s:=.*$:libpython$(VERSION).dylib:' \
-			"${ED}"/usr/lib/python${PYVER}/config/Makefile || die
+			"${ED}"/usr/lib/python${SLOT}/config/Makefile || die
 
 		# add missing version.plist file
-		mkdir -p "${D}${fwdir}"/Versions/${PYVER}/Resources
-		cat > "${D}${fwdir}"/Versions/${PYVER}/Resources/version.plist << EOF
+		mkdir -p "${D}${fwdir}"/Versions/${SLOT}/Resources
+		cat > "${D}${fwdir}"/Versions/${SLOT}/Resources/version.plist << EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
 "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -418,36 +417,35 @@ EOF
 		emake DESTDIR="${D}" altinstall || die "emake altinstall failed"
 	fi
 
-	mv "${ED}usr/bin/python${PYVER}-config" "${ED}usr/bin/python-config-${PYVER}"
+	mv "${ED}usr/bin/python${SLOT}-config" "${ED}usr/bin/python-config-${SLOT}"
 
 	# Fix collisions between different slots of Python.
-	mv "${ED}usr/bin/2to3" "${ED}usr/bin/2to3-${PYVER}"
-	mv "${ED}usr/bin/pydoc3" "${ED}usr/bin/pydoc${PYVER}"
-	mv "${ED}usr/bin/idle3" "${ED}usr/bin/idle${PYVER}"
-	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${PYVER}.1"
+	mv "${ED}usr/bin/2to3" "${ED}usr/bin/2to3-${SLOT}"
+	mv "${ED}usr/bin/pydoc3" "${ED}usr/bin/pydoc${SLOT}"
+	mv "${ED}usr/bin/idle3" "${ED}usr/bin/idle${SLOT}"
 	rm -f "${ED}usr/bin/smtpd.py"
 
 	# Fix the OPT variable so that it doesn't have any flags listed in it.
 	# Prevents the problem with compiling things with conflicting flags later.
-	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}usr/$(get_libdir)/python${PYVER}/config/Makefile"
+	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
 
 	# http://src.opensolaris.org/source/xref/jds/spec-files/trunk/SUNWPython.spec
 	# These #defines cause problems when building c99 compliant python modules
 	[[ ${CHOST} == *-solaris* ]] && dosed -e \
 		's:^\(^#define \(_POSIX_C_SOURCE\|_XOPEN_SOURCE\|_XOPEN_SOURCE_EXTENDED\).*$\):/* \1 */:' \
-		 /usr/include/python${PYVER}/pyconfig.h
+		 /usr/include/python${SLOT}/pyconfig.h
 
 	if use build; then
-		rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{email,sqlite3,test,tkinter}
+		rm -fr "${ED}$(python_get_libdir)/"{email,sqlite3,test,tkinter}
 	else
-		use elibc_uclibc && rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/test"
-		use sqlite || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{sqlite3,test/test_sqlite*}
-		use tk || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/"{tkinter,test/test_tk*}
+		use elibc_uclibc && rm -fr "${ED}$(python_get_libdir)/test"
+		use sqlite || rm -fr "${ED}$(python_get_libdir)/"{sqlite3,test/test_sqlite*}
+		use tk || rm -fr "${ED}$(python_get_libdir)/"{tkinter,test/test_tk*}
 	fi
 
-	use threads || rm -fr "${ED}usr/$(get_libdir)/python${PYVER}/multiprocessing"
+	use threads || rm -fr "${ED}$(python_get_libdir)/multiprocessing"
 
-	prep_ml_includes usr/include/python${PYVER}
+	prep_ml_includes $(python_get_includedir)
 
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
@@ -477,7 +475,7 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -x "(site-packages|test)" /usr/$(get_libdir)/python${PYVER}
+	python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
 
 	if [[ "$(eselect python show)" == "python2."* ]]; then
 		ewarn
@@ -507,5 +505,5 @@ pkg_postinst() {
 pkg_postrm() {
 	eselect_python_update
 
-	python_mod_cleanup /usr/$(get_libdir)/python${PYVER}
+	python_mod_cleanup $(python_get_libdir)
 }
