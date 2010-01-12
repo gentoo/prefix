@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/mutagen-1.18.ebuild,v 1.1 2009/10/27 11:37:33 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/mutagen-1.18.ebuild,v 1.4 2010/01/09 15:44:20 fauli Exp $
 
 EAPI=2
 inherit distutils

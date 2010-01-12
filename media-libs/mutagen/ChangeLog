@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/mutagen
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/ChangeLog,v 1.73 2009/12/08 01:43:19 jer Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mutagen/ChangeLog,v 1.76 2010/01/09 15:44:20 fauli Exp $
+
+  09 Jan 2010; Christian Faulhammer <fauli@gentoo.org> mutagen-1.18.ebuild:
+  stable x86, bug 299212
+
+  06 Jan 2010; Brent Baude <ranger@gentoo.org> mutagen-1.18.ebuild:
+  Marking mutagen-1.18 ppc64 for bug 299212
+
+  05 Jan 2010; Jeroen Roovers <jer@gentoo.org> mutagen-1.18.ebuild:
+  Stable for HPPA (bug #299212).
 
   08 Dec 2009; Jeroen Roovers <jer@gentoo.org> mutagen-1.15.ebuild:
   Stable for HPPA (bug #289703).
