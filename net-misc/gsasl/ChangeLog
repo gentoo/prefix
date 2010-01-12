@@ -1,6 +1,9 @@
 # ChangeLog for net-misc/gsasl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/gsasl/ChangeLog,v 1.31 2009/09/23 19:36:12 patrick Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/gsasl/ChangeLog,v 1.32 2010/01/07 15:47:25 fauli Exp $
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org> gsasl-1.1.ebuild:
+  Transfer Prefix keywords
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org> gsasl-0.2.4.ebuild:
   Remove virtual/libc
