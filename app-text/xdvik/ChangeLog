@@ -1,6 +1,10 @@
 # ChangeLog for app-text/xdvik
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.64 2009/10/03 09:32:30 aballier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/ChangeLog,v 1.65 2010/01/09 13:22:12 aballier Exp $
+
+  09 Jan 2010; Alexis Ballier <aballier@gentoo.org> xdvik-22.84.16.ebuild,
+  +files/xdvik-22.84.16-cvararg.patch:
+  Make sure system kpathsea headers are used
 
 *xdvik-22.84.16 (03 Oct 2009)
 

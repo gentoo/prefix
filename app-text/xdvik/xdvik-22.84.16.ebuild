@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.16.ebuild,v 1.1 2009/10/03 09:32:30 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvik/xdvik-22.84.16.ebuild,v 1.2 2010/01/09 13:22:12 aballier Exp $
 
 inherit eutils flag-o-matic elisp-common toolchain-funcs
 
@@ -30,6 +30,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}/${P}-open-mode.patch"
+	epatch "${FILESDIR}/${P}-cvararg.patch"
+	# Make sure system kpathsea headers are used
+	cd "${WORKDIR}/${P}/texk/kpathsea"
+	for i in *.h ; do echo "#include_next \"$i\"" > $i; done
 }
 
 src_compile() {
