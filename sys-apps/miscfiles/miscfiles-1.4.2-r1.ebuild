@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/miscfiles-1.4.2-r1.ebuild,v 1.3 2009/10/17 22:43:08 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/miscfiles-1.4.2-r1.ebuild,v 1.4 2010/01/07 13:03:16 aballier Exp $
 
 inherit eutils
 
@@ -16,6 +16,8 @@ LICENSE="GPL-2 unicode"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint"
 IUSE="minimal"
+# Collides with older versions/revisions
+RDEPEND="!<sys-freebsd/freebsd-share-7.2-r1"
 
 src_unpack() {
 	unpack ${A}
