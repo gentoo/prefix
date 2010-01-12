@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.19.ebuild,v 1.3 2009/12/16 20:19:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libexif/libexif-0.6.19.ebuild,v 1.6 2010/01/07 15:37:16 josejx Exp $
 
 EAPI=2
 inherit eutils autotools
