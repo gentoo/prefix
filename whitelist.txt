@@ -88,8 +88,6 @@ games-arcade/ascii-invaders
 games-board/gnugo
 games-misc/wtf
 games-puzzle/freesweep
-kde-base/automoc
-kde-base/qimageblitz
 mail-client/mutt
 media-gfx/asymptote
 media-libs/libcuefile
@@ -146,6 +144,7 @@ x11-wm/windowmaker
 app-vim
 dev-dotnet
 java-virtuals
+kde-base
 net-print
 sci-electronics
 virtual
