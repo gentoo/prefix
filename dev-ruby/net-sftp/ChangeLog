@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/net-sftp
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-sftp/ChangeLog,v 1.35 2009/12/01 06:28:01 graaff Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-sftp/ChangeLog,v 1.36 2010/01/04 10:52:40 fauli Exp $
+
+  04 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  net-sftp-1.1.1.ebuild, net-sftp-2.0.4.ebuild:
+  Transfer Prefix keywords
 
 *net-sftp-2.0.4 (01 Dec 2009)
 
