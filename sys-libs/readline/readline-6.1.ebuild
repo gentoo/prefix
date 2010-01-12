@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.0_p4.ebuild,v 1.10 2010/01/06 22:31:08 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.1.ebuild,v 1.1 2010/01/05 00:54:55 vapier Exp $
 
 inherit autotools eutils multilib toolchain-funcs flag-o-matic
 
@@ -8,6 +8,7 @@ inherit autotools eutils multilib toolchain-funcs flag-o-matic
 # See ftp://ftp.cwru.edu/pub/bash/readline-6.0-patches/
 PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
+MY_PV=${MY_PV/_/-}
 MY_P=${PN}-${MY_PV}
 [[ ${PV} != *_p* ]] && PLEVEL=0
 patches() {
@@ -49,7 +50,6 @@ src_unpack() {
 	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
 
 	epatch "${FILESDIR}"/${PN}-5.0-no_rpath.patch
-	epatch "${FILESDIR}"/${PN}-6.0-rlfe-build.patch #151174
 	epatch "${FILESDIR}"/${PN}-5.2-no-ignore-shlib-errors.patch #216952
 
 	epatch "${FILESDIR}"/${PN}-5.1-rlfe-extern.patch
@@ -67,11 +67,7 @@ src_unpack() {
 	# objformat for years, so we don't want to rely on that.
 	sed -i -e '/objformat/s:if .*; then:if true; then:' support/shobj-conf || die
 
-	# the bundled rlfe had its configure.in updated, but no one actually
-	# ran autoconf to have the configure file updated
-	ln -s ../.. examples/rlfe/readline # for headers
-	cd examples/rlfe
-	eautoconf
+	ln -s ../.. examples/rlfe/readline # for local readline headers
 }
 
 src_compile() {
