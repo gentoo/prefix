@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1.0.ebuild,v 1.1 2009/12/19 19:44:31 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1.0-r1.ebuild,v 1.1 2009/12/29 18:13:05 cedk Exp $
 
 inherit eutils multilib toolchain-funcs autotools prefix
 
@@ -46,7 +46,6 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PN}-2.1_rc13-peercred.patch"
 	epatch "${FILESDIR}/${PN}-2.1_rc20-pkcs11.patch"
-	epatch "${FILESDIR}/${PN}-2.1.0-stdbool.patch"
 	use ipv6 && epatch "${WORKDIR}/${PN}-2.1_rc22-ipv6-${IPV6_VERSION}.patch"
 	use eurephia && epatch "${DISTDIR}/${P}_eurephia.patch"
 	sed -i \
