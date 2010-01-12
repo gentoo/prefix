@@ -1,12 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/emul-linux-x86-baselibs-20081109.ebuild,v 1.4 2010/01/01 21:25:51 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/emul-linux-x86-baselibs-20081109.ebuild,v 1.5 2010/01/06 16:12:52 ulm Exp $
 
 inherit emul-linux-x86
 
 LICENSE="|| ( Artistic GPL-2 ) || ( BSD GPL-2 ) BZIP2 CRACKLIB DB
 		GPL-2 || ( GPL-2 AFL-2.1 ) LGPL-2 LGPL-2.1 MIT OPENLDAP openssl
-		PAM ZLIB as-is"
+		ZLIB as-is"
 KEYWORDS="~amd64-linux"
 IUSE=""
 

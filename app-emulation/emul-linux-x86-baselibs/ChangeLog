@@ -1,6 +1,12 @@
 # ChangeLog for app-emulation/emul-linux-x86-baselibs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.102 2010/01/01 21:25:51 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-baselibs/ChangeLog,v 1.103 2010/01/06 16:12:52 ulm Exp $
+
+  06 Jan 2010; Ulrich Mueller <ulm@gentoo.org>
+  emul-linux-x86-baselibs-20081109.ebuild,
+  emul-linux-x86-baselibs-20091231.ebuild:
+  Fix LICENSE, "PAM" is the same as "|| ( BSD GPL-2 )" which is already
+  listed.
 
   01 Jan 2010; Pacho Ramos <pacho@gentoo.org> -files/75emul-linux-x86-base,
   -emul-linux-x86-baselibs-2.5.5-r3.ebuild,
