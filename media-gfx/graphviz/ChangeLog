@@ -1,6 +1,19 @@
 # ChangeLog for media-gfx/graphviz
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.208 2009/11/04 18:18:51 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.211 2010/01/07 16:06:33 armin76 Exp $
+
+  07 Jan 2010; Raúl Porcel <armin76@gentoo.org> graphviz-2.12.ebuild,
+  graphviz-2.20.3.ebuild:
+  Drop m68k keyword
+
+  29 Dec 2009; Markus Meier <maekke@gentoo.org> -graphviz-2.22.1.ebuild,
+  -graphviz-2.22.2.ebuild, -graphviz-2.22.2-r1.ebuild:
+  remove old
+
+*graphviz-2.26.0 (29 Dec 2009)
+
+  29 Dec 2009; Markus Meier <maekke@gentoo.org> +graphviz-2.26.0.ebuild:
+  bump to 2.26.0
 
   04 Nov 2009; Raúl Porcel <armin76@gentoo.org> graphviz-2.24.0-r2.ebuild:
   ia64/s390/sh/sparc stable wrt #284689
