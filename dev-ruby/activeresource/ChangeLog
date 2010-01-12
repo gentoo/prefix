@@ -1,6 +1,10 @@
 # ChangeLog for dev-ruby/activeresource
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/ChangeLog,v 1.56 2009/12/20 10:34:46 a3li Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activeresource/ChangeLog,v 1.57 2010/01/04 11:03:08 fauli Exp $
+
+  04 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  activeresource-2.3.5.ebuild:
+  Transfer Prefix keywords
 
   20 Dec 2009; Alex Legler <a3li@gentoo.org> -activeresource-2.3.4.ebuild:
   Removing vulnerable version
