@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.5.ebuild,v 1.7 2009/12/09 19:28:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.5.ebuild,v 1.8 2009/12/28 20:35:30 armin76 Exp $
 
 inherit base eutils toolchain-funcs flag-o-matic
 
