@@ -1,6 +1,12 @@
 # ChangeLog for dev-ruby/sqlite3-ruby
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.33 2009/12/26 21:36:33 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/ChangeLog,v 1.35 2010/01/05 07:36:19 maekke Exp $
+
+  05 Jan 2010; Markus Meier <maekke@gentoo.org> sqlite3-ruby-1.2.5.ebuild:
+  add ~x86, bug #297832
+
+  03 Jan 2010; Hans de Graaff <graaff@gentoo.org> sqlite3-ruby-1.2.5.ebuild:
+  There is no api directory. Fixes #298468.
 
   26 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   sqlite3-ruby-1.2.5.ebuild:

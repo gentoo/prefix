@@ -1,12 +1,12 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/sqlite3-ruby-1.2.5.ebuild,v 1.2 2009/12/26 21:36:33 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/sqlite3-ruby/sqlite3-ruby-1.2.5.ebuild,v 1.4 2010/01/05 07:36:19 maekke Exp $
 
 EAPI=2
 USE_RUBY="ruby18"
 
 RUBY_FAKEGEM_TASK_DOC="docs"
-RUBY_FAKEGEM_DOCDIR="doc api faq"
+RUBY_FAKEGEM_DOCDIR="doc faq"
 RUBY_FAKEGEM_EXTRADOC="README.txt History.txt ChangeLog.cvs"
 
 inherit ruby-fakegem
