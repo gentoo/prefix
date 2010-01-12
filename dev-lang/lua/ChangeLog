@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/lua
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.143 2010/01/01 14:23:16 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.144 2010/01/10 18:27:53 nixnut Exp $
+
+  10 Jan 2010; nixnut <nixnut@gentoo.org> lua-5.1.4-r4.ebuild:
+  ppc stable #295134
 
   01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> lua-5.1.4-r4.ebuild:
   Stable on alpha, bug #295698
