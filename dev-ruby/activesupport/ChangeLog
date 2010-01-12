@@ -1,6 +1,17 @@
 # ChangeLog for dev-ruby/activesupport
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.113 2009/12/21 00:10:42 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activesupport/ChangeLog,v 1.115 2010/01/04 10:50:11 fauli Exp $
+
+  04 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  activesupport-2.3.5-r2.ebuild:
+  Transfer Prefix keywords
+
+*activesupport-2.3.5-r2 (02 Jan 2010)
+
+  02 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +activesupport-2.3.5-r2.ebuild:
+  Version bump unbundling i18n; unfortunately the deptree is no longer jruby
+  compatible (for now).
 
   21 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   activesupport-2.3.5-r1.ebuild:
