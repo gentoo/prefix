@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/gimp
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.304 2009/12/26 14:22:08 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.305 2010/01/05 02:44:37 josejx Exp $
+
+  05 Jan 2010; Joseph Jezak <josejx@gentoo.org> gimp-2.6.8.ebuild:
+  Marked ppc stable for bug #293127.
 
   26 Dec 2009; Raúl Porcel <armin76@gentoo.org> gimp-2.6.8.ebuild:
   alpha/ia64/sparc stable
