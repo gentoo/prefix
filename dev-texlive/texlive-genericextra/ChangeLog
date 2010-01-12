@@ -1,6 +1,12 @@
 # ChangeLog for dev-texlive/texlive-genericextra
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-genericextra/ChangeLog,v 1.28 2009/06/10 14:06:11 alexxy Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-genericextra/ChangeLog,v 1.29 2010/01/11 03:17:35 aballier Exp $
+
+*texlive-genericextra-2009 (11 Jan 2010)
+
+  11 Jan 2010; Alexis Ballier <aballier@gentoo.org>
+  +texlive-genericextra-2009.ebuild, metadata.xml:
+  Bump to TeX Live 2009
 
   10 Jun 2009; Alexey Shvetsov <alexxy@gentoo.org>
   texlive-genericextra-2008.ebuild:
