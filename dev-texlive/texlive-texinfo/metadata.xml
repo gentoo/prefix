@@ -7,6 +7,8 @@
 		<name>Alexis Ballier</name>
 	</maintainer>
 <longdescription lang="en">
-Programs and macros for the GNU Texinfo documentation system.
+TeX macros for the GNU Texinfo documentation system.  The programs
+and documentation are no longer distributed with TeX Live; get
+the original Texinfo package for your system.
 </longdescription>
 </pkgmetadata>
