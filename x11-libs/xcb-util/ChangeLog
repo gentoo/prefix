@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/xcb-util
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xcb-util/ChangeLog,v 1.47 2009/12/15 16:25:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xcb-util/ChangeLog,v 1.48 2009/12/31 17:39:43 ranger Exp $
+
+  31 Dec 2009; Brent Baude <ranger@gentoo.org> xcb-util-0.3.6.ebuild:
+  Marking xcb-util-0.3.6 ppc64 for bug 287208
 
   15 Dec 2009; Raúl Porcel <armin76@gentoo.org> xcb-util-0.3.6.ebuild:
   alpha/ia64/s390/sh/sparc stable wrt #282290
