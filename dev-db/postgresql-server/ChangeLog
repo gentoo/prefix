@@ -1,6 +1,80 @@
 # ChangeLog for dev-db/postgresql-server
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.35 2009/12/14 18:57:33 patrick Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.50 2010/01/09 19:04:31 patrick Exp $
+
+  09 Jan 2010; Patrick Lauer <patrick@gentoo.org>
+  postgresql-server-8.4.2-r1.ebuild:
+  Add elog message for pg_legacytimestamp to avoid startup failures
+
+  09 Jan 2010; Patrick Lauer <patrick@gentoo.org>
+  postgresql-server-8.4.2-r1.ebuild, metadata.xml:
+  Adding pg_legacytimestamp useflag so server gets rebuilt when it changes
+  in -base. This way some user errors can be avoided. Bump to EAPI2
+
+  08 Jan 2010; Steve Dibb <beandog@gentoo.org>
+  postgresql-server-7.4.27.ebuild:
+  Remove leading spaces
+
+  08 Jan 2010; Steve Dibb <beandog@gentoo.org>
+  postgresql-server-7.3.21.ebuild, postgresql-server-7.4.26.ebuild,
+  postgresql-server-7.4.27.ebuild, postgresql-server-8.0.22.ebuild,
+  postgresql-server-8.0.23.ebuild, postgresql-server-8.1.18.ebuild,
+  postgresql-server-8.1.19.ebuild, postgresql-server-8.2.14.ebuild,
+  postgresql-server-8.2.15.ebuild, postgresql-server-8.3.8.ebuild,
+  postgresql-server-8.3.9.ebuild, postgresql-server-8.4.1.ebuild,
+  postgresql-server-8.4.1-r1.ebuild, postgresql-server-8.4.2.ebuild:
+  amd64 stable, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.1.18.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.0.22.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-7.4.26.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.4.2-r1.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.3.8.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.2.14.ebuild:
+  stable x86, bug 285475
+
+  07 Jan 2010; Steve Dibb <beandog@gentoo.org>
+  postgresql-server-8.4.2-r1.ebuild:
+  amd64 stable, bug 285475
+
+  07 Jan 2010; Patrick Lauer <patrick@gentoo.org>
+  postgresql-server-7.4.27.ebuild:
+  Adding abort for tests run as root, behaviour has changed upstream.
+
+*postgresql-server-7.4.27 (07 Jan 2010)
+
+  07 Jan 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-7.4.27.ebuild, +files/postgresql-7.4.27-autoconf.patch:
+  Bump
+
+*postgresql-server-8.4.2-r1 (07 Jan 2010)
+
+  07 Jan 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-8.4.2-r1.ebuild:
+  Fix autovacuum message and do a revision bump to force rebuilding against
+  changed postgresql-base ebuild
+
+  06 Jan 2010; Patrick Lauer <patrick@gentoo.org> files/postgresql.init-7.3,
+  files/postgresql.init-7.4, files/postgresql.init-8.0,
+  files/postgresql.init-8.1, files/postgresql.init-8.2,
+  files/postgresql.init-8.3, files/postgresql.init-8.4:
+  Fixing init script sourcing for non-bash shells, #298490
 
 *postgresql-server-8.4.2 (14 Dec 2009)
 *postgresql-server-8.3.9 (14 Dec 2009)

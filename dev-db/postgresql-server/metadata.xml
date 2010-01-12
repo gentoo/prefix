@@ -5,5 +5,8 @@
 <use>
   <flag name='uuid'>Enable server side UUID generation
     (via <pkg>dev-libs/ossp-uuid</pkg>)</flag>
+  <flag name='pg_legacytimestamp'>Use double precision floating-point numbers
+    instead of 64-bit integers for timestamp storage.
+  </flag>
 </use>
 </pkgmetadata>

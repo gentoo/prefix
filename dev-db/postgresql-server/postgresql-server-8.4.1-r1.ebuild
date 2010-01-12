@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-8.4.1-r1.ebuild,v 1.2 2009/10/24 12:25:40 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-8.4.1-r1.ebuild,v 1.3 2010/01/08 01:25:13 beandog Exp $
 
 EAPI=1
 
@@ -82,9 +82,9 @@ src_compile() {
 		$(use_with xml libxml) \
 		$(use_with xml libxslt) \
 		$(use_with uuid ossp-uuid) \
-		--with-system-tzdata="/usr/share/zoneinfo" \
-		--with-includes="/usr/include/postgresql-${SLOT}/" \
-		--with-libraries="/usr/$(get_libdir)/postgresql-${SLOT}/$(get_libdir)" \
+		--with-system-tzdata="${EPREFIX}/usr/share/zoneinfo" \
+		--with-includes="${EPREFIX}/usr/include/postgresql-${SLOT}/" \
+		--with-libraries="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/$(get_libdir)" \
 		"$(built_with_use ~dev-db/postgresql-base-${PV} nls && use_enable nls nls "$(wanted_languages)")" \
 		|| die "configure failed"
 
@@ -153,7 +153,7 @@ pkg_postrm() {
 }
 
 pkg_config() {
-	[[ -z "${PGDATA}" ]] && PGDATA="/var/lib/postgresql/${SLOT}/data"
+	[[ -z "${PGDATA}" ]] && PGDATA="${EPREFIX}/var/lib/postgresql/${SLOT}/data"
 
 	einfo "You can pass options to initdb by setting the PG_INITDB_OPTS variable."
 	einfo "More information can be found here:"
@@ -223,13 +223,13 @@ pkg_config() {
 
 	einfo "Initializing the database ..."
 
-	su postgres -c "/usr/$(get_libdir)/postgresql-${SLOT}/bin/initdb --pgdata \"${PGDATA}\" ${PG_INITDB_OPTS}"
+	su postgres -c "${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin/initdb --pgdata \"${PGDATA}\" ${PG_INITDB_OPTS}"
 
 	einfo
 	einfo "You can use the '${EROOT}/etc/init.d/postgresql-${SLOT}' script to run PostgreSQL instead of 'pg_ctl'."
 	einfo
 
-	if [ "${PGDATA}" != "/var/lib/postgresql/${SLOT}/data" ] ; then
+	if [ "${PGDATA}" != "${EPREFIX}/var/lib/postgresql/${SLOT}/data" ] ; then
 		ewarn "You didn't install the database cluster in the standard location, please make sure that you set"
 		ewarn "PGDATA=\"${PGDATA}\" in the appropriate conf.d file (probably /etc/conf.d/postgresql-${SLOT})"
 	fi
@@ -237,7 +237,7 @@ pkg_config() {
 
 src_test() {
 	einfo ">>> Test phase [check]: ${CATEGORY}/${PF}"
-	PATH="/usr/$(get_libdir)/postgresql-${SLOT}/bin:${PATH}" \
+	PATH="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin:${PATH}" \
 		emake -j1 check  || die "Make check failed. See above for details."
 
 	einfo "Yes, there are other tests which could be run."
