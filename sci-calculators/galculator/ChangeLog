@@ -1,6 +1,20 @@
 # ChangeLog for sci-calculators/galculator
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-calculators/galculator/ChangeLog,v 1.24 2009/12/19 12:42:00 pacho Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-calculators/galculator/ChangeLog,v 1.28 2010/01/11 17:46:54 armin76 Exp $
+
+  11 Jan 2010; Raúl Porcel <armin76@gentoo.org> galculator-1.3.4.ebuild:
+  alpha stable wrt #297422
+
+  07 Jan 2010; Joseph Jezak <josejx@gentoo.org> galculator-1.3.4.ebuild:
+  Marked ppc stable for bug #297422.
+
+  01 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  galculator-1.3.4.ebuild:
+  Transfer Prefix keywords
+
+  01 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  galculator-1.3.4.ebuild:
+  stable x86, bug 297422
 
   19 Dec 2009; Pacho Ramos <pacho@gentoo.org> galculator-1.3.4.ebuild:
   amd64 stable, bug 297422
