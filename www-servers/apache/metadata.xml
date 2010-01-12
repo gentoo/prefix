@@ -12,8 +12,6 @@
 		provides HTTP services in sync with the current HTTP standards.
 	</longdescription>
 	<use>
-		<flag name='sni'>Enable TLS Server Name Indication (SNI) -
-			EXPERIMENTAL!</flag>
 		<flag name='suexec'>Install suexec with apache</flag>
 	</use>
 </pkgmetadata>
