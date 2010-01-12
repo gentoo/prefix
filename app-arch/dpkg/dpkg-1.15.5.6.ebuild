@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.15.5.6.ebuild,v 1.1 2010/01/09 15:58:19 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/dpkg-1.15.5.6.ebuild,v 1.2 2010/01/10 20:21:14 vapier Exp $
 
 inherit eutils multilib autotools
 
