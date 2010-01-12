@@ -1,6 +1,19 @@
 # ChangeLog for media-libs/sdl-mixer
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-mixer/ChangeLog,v 1.64 2009/11/15 20:09:30 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-mixer/ChangeLog,v 1.68 2010/01/05 00:32:14 josejx Exp $
+
+  05 Jan 2010; Joseph Jezak <josejx@gentoo.org> sdl-mixer-1.2.11.ebuild:
+  Marked ppc stable for bug #297119.
+
+  31 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  sdl-mixer-1.2.11.ebuild:
+  stable x86, bug 297119
+
+  31 Dec 2009; Markus Meier <maekke@gentoo.org> sdl-mixer-1.2.11.ebuild:
+  amd64/arm stable, bug #297119
+
+  31 Dec 2009; Brent Baude <ranger@gentoo.org> sdl-mixer-1.2.11.ebuild:
+  Marking sdl-mixer-1.2.11 ppc64 for bug 297119
 
 *sdl-mixer-1.2.11 (15 Nov 2009)
 
