@@ -1,6 +1,12 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.377 2009/12/26 17:38:06 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.378 2009/12/28 15:37:28 maekke Exp $
+
+*imagemagick-6.5.8.8 (28 Dec 2009)
+
+  28 Dec 2009; Markus Meier <maekke@gentoo.org> +imagemagick-6.5.8.8.ebuild:
+  version bump, install perl modules into correct location by tove in bug
+  #294590
 
   26 Dec 2009; Peter Volkov <pva@gentoo.org> imagemagick-6.5.2.9.ebuild,
   imagemagick-6.5.4.10.ebuild, imagemagick-6.5.7.0.ebuild:
