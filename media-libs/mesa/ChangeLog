@@ -1,6 +1,18 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.253 2009/12/26 15:58:50 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.256 2009/12/28 23:47:30 ssuominen Exp $
+
+  28 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> mesa-7.7-r1.ebuild:
+  Fix typing error wrt #298805.
+
+*mesa-7.7-r1 (28 Dec 2009)
+
+  28 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> -mesa-7.7.ebuild,
+  +mesa-7.7-r1.ebuild:
+  Revision bump to make sure everyone has disabled gallium intel.
+
+  27 Dec 2009; Joseph Jezak <josejx@gentoo.org> mesa-7.5.2.ebuild:
+  Marked ppc stable for bug #294958.
 
   26 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org> mesa-7.7.ebuild:
   Do not depend on xorg-server.

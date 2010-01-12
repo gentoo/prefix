@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.7.ebuild,v 1.4 2009/12/26 15:58:50 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.7-r1.ebuild,v 1.2 2009/12/28 23:47:30 ssuominen Exp $
 
 EAPI=2
 
@@ -127,16 +127,17 @@ src_configure() {
 	if use gallium; then
 		elog "You have enabled gallium infrastructure."
 		elog "This infrastructure currently support these drivers:"
-		elog "    Intel: works only i915."
-		elog "    Nouveau: only available implementation, so no other choice"
-		elog "    Radeon: implementation up to the r500."
-		elog "    Svga: VMWare Virtual GPU driver."
+		elog "    Intel: driver not really functional, thus disabled."
+		elog "    Nouveau: only available implementation. Experimental Quality."
+		elog "    Radeon: implementation up to the r500. Testing Quality."
+		elog "    Svga: VMWare Virtual GPU driver. Hic sunt leones."
 		echo
 		myconf="${myconf}
+			--disable-gallium-intel
 			--with-state-trackers=glx,dri,egl
 			$(use_enable video_cards_svga gallium-svga)
-			$(use_enable video_cards_nouveau gallium-nouveau)
-			$(use_enable video_cards_intel gallium-intel)"
+			$(use_enable video_cards_nouveau gallium-nouveau)"
+			#$(use_enable video_cards_intel gallium-intel)"
 		if use video_cards_radeon || use video_cards_radeonhd; then
 			myconf="${myconf} --enable-gallium-radeon"
 		else
@@ -145,7 +146,7 @@ src_configure() {
 	else
 		if use video_cards_nouveau || use video_cards_svga; then
 			elog "SVGA and nouveau drivers are available only via gallium interface."
-			elog "Enable gallium useflag if you want to use them."
+			elog "Enable gallium useflag if you insist to use them."
 		fi
 	fi
 
