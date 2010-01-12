@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p388.ebuild,v 1.1 2010/01/10 22:04:16 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p388.ebuild,v 1.3 2010/01/11 16:09:23 ranger Exp $
 
 EAPI=1
 inherit autotools eutils flag-o-matic multilib versionator
