@@ -1,6 +1,22 @@
 # ChangeLog for dev-ruby/rdoc
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rdoc/ChangeLog,v 1.16 2009/12/25 17:21:10 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rdoc/ChangeLog,v 1.20 2010/01/10 23:04:27 a3li Exp $
+
+*rdoc-2.4.3-r1 (10 Jan 2010)
+
+  10 Jan 2010; Alex Legler <a3li@gentoo.org> -rdoc-2.4.3.ebuild,
+  +rdoc-2.4.3-r1.ebuild:
+  Properly install the binaries into /usr/bin, bug 300489 by Andy Kittner
+
+  04 Jan 2010; Markus Meier <maekke@gentoo.org> rdoc-2.4.3.ebuild:
+  add ~x86, bug #297041
+
+  01 Jan 2010; Alex Legler <a3li@gentoo.org> rdoc-2.4.3.ebuild:
+  Fix tests when rdoc is not yet installed (bug 298910), add test dependency
+  on minitest, s/$PN/rdoc/ in HOMEPAGE
+
+  30 Dec 2009; Hans de Graaff <graaff@gentoo.org> rdoc-2.4.3.ebuild:
+  Use proper task name for USE=doc, partially fixing #298910.
 
   25 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org> rdoc-2.4.3.ebuild:
   Add missing test and doc dependency over hoe (drop jruby support because
