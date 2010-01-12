@@ -1,6 +1,14 @@
 # ChangeLog for dev-ruby/activerecord
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.125 2009/12/20 09:09:53 a3li Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/activerecord/ChangeLog,v 1.126 2010/01/02 00:09:23 flameeyes Exp $
+
+*activerecord-2.3.5-r1 (02 Jan 2010)
+
+  02 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +activerecord-2.3.5-r1.ebuild:
+  Bump to fakegem, replace ruby-postgres dependency with pg instead, drop
+  sqlite USE flag (just for now, maybe). Tests are only executed with
+  sqlite3 USE flag enabled.
 
   20 Dec 2009; Alex Legler <a3li@gentoo.org> -activerecord-2.3.4.ebuild:
   Removing vulnerable version
