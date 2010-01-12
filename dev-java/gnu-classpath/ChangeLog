@@ -1,6 +1,17 @@
 # ChangeLog for dev-java/gnu-classpath
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.98 2010/01/01 17:59:55 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.100 2010/01/09 14:24:31 betelgeuse Exp $
+
+  09 Jan 2010; Petteri Räty <betelgeuse@gentoo.org>
+  -gnu-classpath-0.98.ebuild:
+  Remove old revision.
+
+*gnu-classpath-0.98-r2 (09 Jan 2010)
+
+  09 Jan 2010; Petteri Räty <betelgeuse@gentoo.org>
+  +gnu-classpath-0.98-r2.ebuild:
+  Pull in eclipse-ecj with hyphen instead of semicolon. The semicolon
+  support has never been fully working. Fixes bug #293370.
 
   01 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org>
   gnu-classpath-0.97-r1.ebuild, gnu-classpath-0.97.2.ebuild:
