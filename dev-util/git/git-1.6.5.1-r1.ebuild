@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.5.1-r1.ebuild,v 1.5 2009/11/18 17:31:09 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/git/git-1.6.5.1-r1.ebuild,v 1.6 2010/01/02 15:16:11 ranger Exp $
 
 EAPI=2
 
