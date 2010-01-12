@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-0.8.29.ebuild,v 1.1 2009/12/08 14:49:37 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-0.8.29.ebuild,v 1.4 2010/01/03 11:32:08 fauli Exp $
 
 inherit eutils ssl-cert toolchain-funcs
 
@@ -14,8 +14,8 @@ KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="addition debug fastcgi flv imap ipv6 pcre perl random-index securelink ssl status sub webdav zlib"
 
 DEPEND="dev-lang/perl
+	dev-libs/openssl
 	pcre? ( >=dev-libs/libpcre-4.2 )
-	ssl? ( dev-libs/openssl )
 	zlib? ( sys-libs/zlib )
 	perl? ( >=dev-lang/perl-5.8 )"
 
@@ -71,6 +71,8 @@ src_compile() {
 	tc-export CC
 	./configure \
 		--prefix="${EPREFIX}"/usr \
+		--with-cc-opt="-I${EROOT}/usr/include" \
+		--with-ld-opt="-L${EROOT}/usr/lib" \
 		--conf-path="${EPREFIX}"/etc/${PN}/${PN}.conf \
 		--http-log-path="${EPREFIX}"/var/log/${PN}/access_log \
 		--error-log-path="${EPREFIX}"/var/log/${PN}/error_log \
@@ -78,8 +80,6 @@ src_compile() {
 		--http-client-body-temp-path="${EPREFIX}"/var/tmp/${PN}/client \
 		--http-proxy-temp-path="${EPREFIX}"/var/tmp/${PN}/proxy \
 		--http-fastcgi-temp-path="${EPREFIX}"/var/tmp/${PN}/fastcgi \
-		--with-md5-asm --with-md5="${EPREFIX}"/usr/include \
-		--with-sha1-asm --with-sha1="${EPREFIX}"/usr/include \
 		${myconf} || die "configure failed"
 
 	emake LINK="${CC} ${LDFLAGS}" OTHERLDFLAGS="${LDFLAGS}" || die "failed to compile"

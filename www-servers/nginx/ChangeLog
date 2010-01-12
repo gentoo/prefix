@@ -1,6 +1,52 @@
 # ChangeLog for www-servers/nginx
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.231 2009/12/08 14:49:37 djc Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.241 2010/01/03 20:58:11 djc Exp $
+
+  03 Jan 2010; Dirkjan Ochtman <djc@gentoo.org> -nginx-0.7.64-r2.ebuild:
+  Remove superseded 0.7.64-r2.
+
+*nginx-0.8.31 (03 Jan 2010)
+
+  03 Jan 2010; Dirkjan Ochtman <djc@gentoo.org> +nginx-0.8.31.ebuild,
+  metadata.xml:
+  Bump to 0.8.31, adding the aio use flag.
+
+*nginx-0.7.64-r3 (03 Jan 2010)
+
+  03 Jan 2010; Dirkjan Ochtman <djc@gentoo.org> +nginx-0.7.64-r3.ebuild,
+  +files/nginx.logrotate, metadata.xml:
+  Fix bug 296168 (logrotate) and 247474 (realip use flag).
+
+  03 Jan 2010; Dirkjan Ochtman <djc@gentoo.org> -nginx-0.7.64-r1.ebuild,
+  -nginx-0.8.17.ebuild, -files/nginx, -files/nginx.conf,
+  -files/nginx.conf-r1, -files/nginx.conf-r2, -files/nginx.conf-r3,
+  -files/nginx-secure-link-timeout.patch:
+  Clean up all kinds of old, unused cruft.
+
+*nginx-0.7.64-r2 (03 Jan 2010)
+
+  03 Jan 2010; Dirkjan Ochtman <djc@gentoo.org> +nginx-0.7.64-r2.ebuild,
+  +files/nginx.init-r2, metadata.xml:
+  Fix bug 272964 and bug 272964 in nginx-0.7.64-r2.
+
+*nginx-0.7.64-r1 (03 Jan 2010)
+
+  03 Jan 2010; Dirkjan Ochtman <djc@gentoo.org> +nginx-0.7.64-r1.ebuild,
+  metadata.xml:
+  Fix bugs 241756 (perllocal.pod) and 210086 (mail flags).
+
+  03 Jan 2010; Christian Faulhammer <fauli@gentoo.org> nginx-0.8.29.ebuild:
+  revert to testing for x86
+
+  02 Jan 2010; Christian Faulhammer <fauli@gentoo.org> nginx-0.8.29.ebuild:
+  stable x86, security bug 293785
+
+  02 Jan 2010; Christian Faulhammer <fauli@gentoo.org> nginx-0.7.64.ebuild:
+  stable x86, security bug 293785
+
+  01 Jan 2010; Dirkjan Ochtman <djc@gentoo.org> nginx-0.7.64.ebuild,
+  nginx-0.8.29.ebuild:
+  Fix problems with ssl requirements (see bug 293785 for discussion).
 
 *nginx-0.8.29 (08 Dec 2009)
 *nginx-0.7.64 (08 Dec 2009)
