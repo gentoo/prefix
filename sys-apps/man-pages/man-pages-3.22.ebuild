@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.22.ebuild,v 1.2 2009/10/03 07:05:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.22.ebuild,v 1.3 2010/01/08 07:07:50 ulm Exp $
 
 GENTOO_PATCH=2
 
@@ -10,7 +10,7 @@ SRC_URI="mirror://kernel/linux/docs/manpages/Archive/${P}.tar.bz2
 	mirror://gentoo/man-pages-gentoo-${GENTOO_PATCH}.tar.bz2
 	http://dev.gentoo.org/~cardoe/files/man-pages-gentoo-${GENTOO_PATCH}.tar.bz2"
 
-LICENSE="freedist"
+LICENSE="as-is GPL-2 BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="nls linguas_cs linguas_da linguas_de linguas_es linguas_fr linguas_it

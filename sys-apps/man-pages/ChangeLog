@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/man-pages
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.140 2009/10/03 07:06:41 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/ChangeLog,v 1.141 2010/01/08 07:07:50 ulm Exp $
+
+  08 Jan 2010; Ulrich Mueller <ulm@gentoo.org> man-pages-3.21.ebuild,
+  man-pages-3.22.ebuild, man-pages-3.23.ebuild:
+  Fix LICENSE, bug 299893.
 
 *man-pages-3.23 (03 Oct 2009)
 
