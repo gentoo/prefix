@@ -142,6 +142,9 @@ lesspipe() {
 		fi
 		;;
 
+	### Filesystems ###
+	*.squashfs)   unsquashfs -s "$1" && unsquashfs -ll "$1" ;;
+
 	### Media ###
 	*.bmp|*.gif|*.jpeg|*.jpg|*.ico|*.pcd|*.pcx|*.png|*.ppm|*.tga|*.tiff|*.tif)
 		identify "$1" || file -L -- "$1"
@@ -229,7 +232,7 @@ if [[ -z $1 ]] ; then
 	echo "Usage: lesspipe.sh <file>"
 elif [[ $1 == "-V" || $1 == "--version" ]] ; then
 	Id="cvsid"
-	cvsid="$Id: lesspipe.sh,v 1.35 2009/04/11 23:20:51 vapier Exp $"
+	cvsid="$Id: lesspipe.sh,v 1.36 2009/10/22 07:53:42 vapier Exp $"
 	cat <<-EOF
 		$cvsid
 		Copyright 2001-2009 Gentoo Foundation
