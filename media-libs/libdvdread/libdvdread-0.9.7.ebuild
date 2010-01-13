@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/libdvdread-0.9.7.ebuild,v 1.18 2009/08/21 20:22:48 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/libdvdread-0.9.7.ebuild,v 1.19 2009/12/28 09:32:36 lxnay Exp $
 
 inherit eutils libtool autotools
 
@@ -11,10 +11,10 @@ SRC_URI="http://www.dtek.chalmers.se/groups/dvd/dist/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE=""
+IUSE="css"
 
-RDEPEND=">=media-libs/libdvdcss-1.1.1"
-DEPEND="${RDEPEND}"
+DEPEND="css? ( >=media-libs/libdvdcss-0.9.7 )"
+RDEPEND="${DEPEND}" # libdvdcss is dlopened at runtime btw
 
 src_unpack() {
 	unpack ${A}

@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libdvdread
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/ChangeLog,v 1.60 2009/03/09 18:55:16 beandog Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libdvdread/ChangeLog,v 1.61 2009/12/28 09:32:36 lxnay Exp $
+
+  28 Dec 2009; Fabio Erculiani <lxnay@gentoo.org> libdvdread-0.9.6.ebuild,
+  libdvdread-0.9.7.ebuild:
+  Fix media-libs/libdvdcss dependency, close bug #286543
 
   09 Mar 2009; Steve Dibb <beandog@gentoo.org>
   libdvdread-4.1.3_p1168.ebuild, libdvdread-9999.ebuild:
