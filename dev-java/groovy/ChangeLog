@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/groovy
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.36 2009/12/08 02:10:15 elvanor Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/groovy/ChangeLog,v 1.37 2010/01/07 20:35:06 ranger Exp $
+
+  07 Jan 2010; Brent Baude <ranger@gentoo.org> groovy-1.6.5.ebuild:
+  Marking groovy-1.6.5 ppc for bug 279873
 
 *groovy-1.6.7 (08 Dec 2009)
 
