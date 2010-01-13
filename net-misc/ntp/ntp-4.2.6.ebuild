@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.6.ebuild,v 1.3 2009/12/14 18:47:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.6.ebuild,v 1.4 2009/12/29 07:33:20 vapier Exp $
 
 EAPI="2"
 
@@ -36,8 +36,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# Needs to be ported ...
-	#epatch "${FILESDIR}"/4.2.0.20040617-hostname.patch
 	epatch "${FILESDIR}"/${PN}-4.2.4_p5-adjtimex.patch #254030
 	epatch "${FILESDIR}"/${PN}-4.2.4_p7-nano.patch #270483
 	epatch "${FILESDIR}"/${P}-linking.patch #296832
