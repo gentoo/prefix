@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/icecream-0.9.4.ebuild,v 1.3 2009/09/23 20:41:51 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/icecream-0.9.4.ebuild,v 1.5 2010/01/04 10:16:00 ssuominen Exp $
 
 inherit autotools eutils flag-o-matic prefix
 
@@ -13,11 +13,9 @@ SRC_URI="ftp://ftp.suse.com/pub/projects/${PN}/${MY_P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="doc"
+IUSE=""
 
-RDEPEND=""
-DEPEND="${RDEPEND}
-		doc? ( =kde-base/kdelibs-3.5* )"
+DEPEND="!x11-misc/icecc"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -50,19 +48,19 @@ src_compile() {
 	emake || die "compiling icecc failed"
 
 	# compile manpages...yeah, we need meinproc, ergo kdelibs for this :(
-	if use doc; then
-		cd doc
-		for docfile in *.docbook; do
-			outputfile="${docfile/man-/}"
-			outputfile="${outputfile/.docbook/}"
+	#if use doc; then
+	#	cd doc
+	#	for docfile in *.docbook; do
+	#		outputfile="${docfile/man-/}"
+	#		outputfile="${outputfile/.docbook/}"
 
-			meinproc \
-			--stylesheet "${EPREFIX}"/usr/kde/3.5/share/apps/ksgmltools2/customization/kde-man.xsl \
-			"${docfile}" && \
-			mv manpage.troff "${outputfile}" || \
-			die "compiling manpages failed"
-		done
-	fi
+	#		meinproc \
+	#		--stylesheet /usr/kde/3.5/share/apps/ksgmltools2/customization/kde-man.xsl \
+	#		"${docfile}" && \
+	#		mv manpage.troff "${outputfile}" || \
+	#		die "compiling manpages failed"
+	#	done
+	#fi
 }
 
 src_install() {
@@ -78,10 +76,10 @@ src_install() {
 	diropts -m0755
 	keepdir /usr/lib/icecc/bin
 
-	if use doc; then
-		cd doc
-		doman icecc.1 iceccd.1 icecream.7 scheduler.1 || die "doman failed"
-	fi
+	#if use doc; then
+	#	cd doc
+	#	doman icecc.1 iceccd.1 icecream.7 scheduler.1 || die "doman failed"
+	#fi
 }
 
 pkg_postinst() {

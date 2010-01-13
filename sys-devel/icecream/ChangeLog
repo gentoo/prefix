@@ -1,6 +1,13 @@
 # ChangeLog for sys-devel/icecream
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/ChangeLog,v 1.33 2009/09/23 20:41:51 patrick Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/ChangeLog,v 1.35 2010/01/04 10:16:00 ssuominen Exp $
+
+  04 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> icecream-0.9.4.ebuild:
+  Block x11-misc/icecc wrt #299564, thanks to Joost Ruis for reporting.
+
+  31 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> icecream-0.9.2.ebuild,
+  icecream-0.9.3.ebuild, icecream-0.9.4.ebuild:
+  Remove kde-base/kdelibs:3.5 USE="doc" depend.
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org> icecream-0.9.2.ebuild,
   icecream-0.9.3.ebuild, icecream-0.9.4.ebuild:
