@@ -24,7 +24,7 @@ SITEFILE="50${PN}-gentoo.el"
 S="${WORKDIR}/${MY_P}"
 
 src_compile() {
-	econf --with-lispdir="${ESITELISP}/${PN}" || die "econf failed"
+	econf --with-lispdir="${EPREFIX}${SITELISP}/${PN}" || die "econf failed"
 	emake || die "emake failed"
 }
 
