@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libev
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libev/ChangeLog,v 1.21 2009/12/14 18:44:37 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libev/ChangeLog,v 1.22 2010/01/04 15:53:46 matsuu Exp $
+
+*libev-3.90 (04 Jan 2010)
+
+  04 Jan 2010; MATSUU Takuto <matsuu@gentoo.org> +libev-3.90.ebuild:
+  Version bumped.
 
   14 Dec 2009; Brent Baude <ranger@gentoo.org> libev-3.80-r1.ebuild:
   stable ppc64, bug 294609

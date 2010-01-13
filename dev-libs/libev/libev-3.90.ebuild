@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libev/libev-3.80.ebuild,v 1.1 2009/08/19 16:38:41 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libev/libev-3.90.ebuild,v 1.1 2010/01/04 15:53:46 matsuu Exp $
 
 inherit autotools eutils
 
@@ -14,6 +14,10 @@ LICENSE="|| ( BSD GPL-2 )"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
+
+# Bug #283558
+DEPEND=">=sys-libs/glibc-2.9_p20081201"
+RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
