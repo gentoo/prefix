@@ -27,9 +27,9 @@ src_compile() {
 
 	EMACS_NAME=emacs EMACS_FLAVOUR=emacs econf --disable-build-dir-test \
 		--with-auto-dir="${EPREFIX}/var/lib/auctex" \
-		--with-lispdir="${ESITELISP}/${PN}" \
-		--with-packagelispdir="${ESITELISP}/${PN}" \
-		--with-packagedatadir="${ESITEETC}/${PN}" \
+		--with-lispdir="${EPREFIX}${SITELISP}/${PN}" \
+		--with-packagelispdir="${EPREFIX}${SITELISP}/${PN}" \
+		--with-packagedatadir="${EPREFIX}${SITEETC}/${PN}" \
 		--with-texmf-dir="${EPREFIX}${TEXMF}" \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		$(use_enable preview-latex preview) || die "econf failed"
