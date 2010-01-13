@@ -1,6 +1,29 @@
 # ChangeLog for x11-terms/rxvt-unicode
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.144 2009/12/13 15:35:05 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.150 2010/01/11 21:56:44 ranger Exp $
+
+  11 Jan 2010; Brent Baude <ranger@gentoo.org> rxvt-unicode-9.06-r3.ebuild:
+  stable ppc64, bug 299158
+
+  08 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  rxvt-unicode-9.06-r3.ebuild:
+  stable x86, bug 299158
+
+  08 Jan 2010; Dawid Węgliński <cla@gentoo.org>
+  rxvt-unicode-9.06-r3.ebuild:
+  Stable on amd64 (bug #299159)
+
+  08 Jan 2010; Jeroen Roovers <jer@gentoo.org> -rxvt-unicode-9.05.ebuild,
+  -rxvt-unicode-9.05-r2.ebuild:
+  Remove old.
+
+  08 Jan 2010; Jeroen Roovers <jer@gentoo.org> rxvt-unicode-9.06-r3.ebuild:
+  Stable for HPPA PPC (bug #299158).
+
+*rxvt-unicode-9.07 (31 Dec 2009)
+
+  31 Dec 2009; Alex Alexander <wired@gentoo.org> +rxvt-unicode-9.07.ebuild:
+  version bump, bug #298952
 
   13 Dec 2009; Brent Baude <ranger@gentoo.org> rxvt-unicode-9.05-r3.ebuild:
   Marking rxvt-unicode-9.05-r3 ppc64 for bug 260199

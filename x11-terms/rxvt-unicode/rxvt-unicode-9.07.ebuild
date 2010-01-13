@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-9.06-r3.ebuild,v 1.5 2010/01/11 21:56:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-9.07.ebuild,v 1.1 2009/12/31 00:45:14 wired Exp $
 
 EAPI="2"
 
@@ -31,10 +31,7 @@ src_prepare() {
 	if use aqua ; then
 		cp "${FILESDIR}"/macosx-clipboard src/perl/ || die
 	fi
-	epatch "${FILESDIR}"/${P}-case-insensitive-fs.patch
-
-	#Bug 270694
-	epatch "${FILESDIR}/${PN}-9.06-glibc-2.10.patch"
+	epatch "${FILESDIR}"/${PN}-9.06-case-insensitive-fs.patch
 
 	if (use xterm-color || use wcwidth); then
 		ewarn "You enabled xterm-color or wcwidth or both."
@@ -61,7 +58,7 @@ src_prepare() {
 	use wcwidth && epatch doc/wcwidth.patch
 
 	# bug #240165
-	epatch "${FILESDIR}"/${P}-no-urgency-if-focused.diff
+	epatch "${FILESDIR}"/${PN}-9.06-no-urgency-if-focused.diff
 
 	# ncurses will provide rxvt-unicode terminfo, so we don't install them again
 	# see bug #192083
@@ -80,7 +77,7 @@ src_prepare() {
 	#fi
 
 	# bug #263638
-	epatch "${FILESDIR}"/${P}-popups-hangs.patch
+	epatch "${FILESDIR}"/${PN}-9.06-popups-hangs.patch
 
 	# bug #237271
 	if ! use vanilla; then
