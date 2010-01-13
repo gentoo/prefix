@@ -1,9 +1,9 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.4-r1.ebuild,v 1.6 2009/10/29 15:51:34 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.4-r1.ebuild,v 1.9 2010/01/11 22:38:57 jer Exp $
 
 EAPI=2
-inherit elisp-common eutils flag-o-matic
+inherit elisp-common eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="A software package for computer-aided number theory"
 HOMEPAGE="http://pari.math.u-bordeaux.fr/"
@@ -18,13 +18,12 @@ SRC_URI="${SRC_COM}/unix/${P}.tar.gz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="doc data emacs fltk gmp qt3 static X"
+IUSE="doc data emacs fltk gmp static X"
 
 RDEPEND="sys-libs/readline
 	emacs? ( virtual/emacs )
 	fltk? ( x11-libs/fltk )
 	gmp? ( dev-libs/gmp )
-	qt3? ( x11-libs/qt:3 )
 	X? ( x11-libs/libX11 )
 	doc? ( X? ( x11-misc/xdg-utils ) )"
 DEPEND="${RDEPEND}
@@ -65,6 +64,7 @@ src_prepare() {
 }
 
 src_configure() {
+	tc-export CC
 	# need to force optimization here, as it breaks without
 	if   is-flag -O0; then
 		replace-flags -O0 -O2
