@@ -305,7 +305,7 @@ diff -ur /dev/null ./hints/freemint.sh
 +cc='gcc'
 +ccflags="$ccflags"
 +cccdlflags=' '; # avoid -fPIC
-+ccdlflags="-Wl,-whole-archive -lgcc -Wl,-no-whole-archive"
++ccdlflags="-Wl,-whole-archive -lgcc -lpthread -Wl,-no-whole-archive"
 +
 +# libs
 +libpth="$prefix/lib /usr/local/lib /usr/lib"
