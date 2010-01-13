@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/keychain
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/keychain/ChangeLog,v 1.81 2009/12/17 19:55:21 pacho Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/keychain/ChangeLog,v 1.83 2010/01/01 15:01:37 klausman Exp $
+
+  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> keychain-2.7.0.ebuild:
+  Stable on alpha, bug #296404
+
+  28 Dec 2009; nixnut <nixnut@gentoo.org> keychain-2.7.0.ebuild:
+  ppc stable #296404
 
   17 Dec 2009; Pacho Ramos <pacho@gentoo.org> keychain-2.7.0.ebuild:
   stable amd64, bug 296404
