@@ -1,6 +1,9 @@
 # ChangeLog for dev-lisp/cl-asdf
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/ChangeLog,v 1.31 2009/01/10 15:31:00 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/cl-asdf/ChangeLog,v 1.32 2010/01/07 15:00:26 fauli Exp $
+
+  07 Jan 2010; Christian Faulhammer <fauli@gentoo.org> cl-asdf-1.89.ebuild:
+  Transfer Prefix keywords
 
   10 Jan 2009; Raúl Porcel <armin76@gentoo.org> cl-asdf-1.89.ebuild:
   alpha/ia64/s390/sparc/x86 stable
