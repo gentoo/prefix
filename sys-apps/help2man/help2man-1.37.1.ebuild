@@ -1,6 +1,8 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/help2man-1.36.4.ebuild,v 1.13 2007/11/03 19:52:48 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/help2man-1.37.1.ebuild,v 1.1 2010/01/11 04:32:37 vapier Exp $
+
+inherit eutils
 
 DESCRIPTION="GNU utility to convert program --help output to a man page"
 HOMEPAGE="http://www.gnu.org/software/help2man"
@@ -22,6 +24,12 @@ src_unpack() {
 	[[ ${CHOST} == *-darwin* ]] && sed -i \
 		-e 's|-fPIC -shared|-dynamiclib|g' \
 		Makefile.in
+}
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-1.36.4-respect-LDFLAGS.patch
 }
 
 src_compile() {

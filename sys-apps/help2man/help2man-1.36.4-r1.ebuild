@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/help2man-1.36.4-r1.ebuild,v 1.5 2009/12/16 20:24:59 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/help2man-1.36.4-r1.ebuild,v 1.9 2010/01/11 04:23:03 vapier Exp $
 
 inherit eutils
 
