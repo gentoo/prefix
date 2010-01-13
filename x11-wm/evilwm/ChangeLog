@@ -1,6 +1,18 @@
 # ChangeLog for x11-wm/evilwm
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/evilwm/ChangeLog,v 1.46 2009/09/23 15:37:38 jer Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/evilwm/ChangeLog,v 1.50 2010/01/05 22:02:54 tcunha Exp $
+
+  05 Jan 2010; Tiago Cunha <tcunha@gentoo.org> evilwm-1.0.1.ebuild:
+  stable sparc, bug 285141
+
+  01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> evilwm-1.0.1.ebuild:
+  Stable on alpha, bug #285141
+
+  29 Dec 2009; Joseph Jezak <josejx@gentoo.org> evilwm-1.0.1.ebuild:
+  Marked ppc stable for bug #285141.
+
+  28 Dec 2009; Markus Meier <maekke@gentoo.org> evilwm-1.0.1.ebuild:
+  amd64/x86 stable, bug #285141
 
 *evilwm-1.0.1 (23 Sep 2009)
 
