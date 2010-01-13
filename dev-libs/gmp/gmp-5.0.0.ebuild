@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.3.0.ebuild,v 1.1 2009/04/27 06:46:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.0.ebuild,v 1.1 2010/01/08 14:13:44 vapier Exp $
 
-inherit flag-o-matic eutils libtool
+inherit flag-o-matic eutils libtool flag-o-matic
 
 DESCRIPTION="Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers"
 HOMEPAGE="http://gmplib.org/"
@@ -11,23 +11,25 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
 
 LICENSE="LGPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+#KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
 IUSE="nocxx" #doc
 
-RDEPEND=""
-DEPEND=""
-
-src_unpack () {
+src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	[[ -d ${FILESDIR}/${PV} ]] && EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
 
 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
-	epatch "${FILESDIR}"/${PN}-4.3.0-ABI-multilib.patch
-	epatch "${FILESDIR}"/${PN}-4.2.1-s390.diff
+	epatch "${FILESDIR}"/${PN}-5.0.0-s390.diff
 
-	sed -i -e 's:ABI = @ABI@:GMPABI = @GMPABI@:' \
-		Makefile.in */Makefile.in */*/Makefile.in
+	# GMP uses the "ABI" env var during configure as does Gentoo (econf)
+	mv configure configure.wrapped || die
+	cat <<-\EOF > configure
+	#!/bin/sh
+	export ABI=$GMPABI
+	exec "${0}.wrapped" "$@"
+	EOF
+	chmod a+rx configure
 
 	# note: we cannot run autotools here as gcc depends on this package
 	elibtoolize
@@ -52,11 +54,13 @@ src_compile() {
 
 	# ABI mappings (needs all architectures supported)
 	case ${ABI} in
-		32|x86)       export GMPABI=32;;
-		64|amd64|n64) export GMPABI=64;;
-		o32|n32)      export GMPABI=${ABI};;
+		32|x86)       GMPABI=32;;
+		64|amd64|n64) GMPABI=64;;
+		o32|n32)      GMPABI=${ABI};;
 	esac
+	export GMPABI
 
+	tc-export CC
 	econf \
 		--localstatedir="${EPREFIX}"/var/state/gmp \
 		--disable-mpfr \
