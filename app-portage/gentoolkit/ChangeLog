@@ -1,6 +1,30 @@
 # ChangeLog for app-portage/gentoolkit
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.173 2009/12/10 20:52:22 fuzzyray Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.177 2010/01/11 18:57:19 fuzzyray Exp $
+
+  11 Jan 2010; Paul Varner <fuzzyray@gentoo.org> gentoolkit-9999.ebuild:
+  Fix previous commit.
+
+  11 Jan 2010; Paul Varner <fuzzyray@gentoo.org> gentoolkit-9999.ebuild:
+  Apply fix for eclean-dist/eclean-pkg symlinks to gentoolkit-9999 (bug
+  #300070).
+
+*gentoolkit-0.3.0_rc8-r1 (11 Jan 2010)
+
+  11 Jan 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +gentoolkit-0.3.0_rc8-r1.ebuild:
+  Fix eclean-dist and eclean-pkg symlinks (bug #300070).
+
+*gentoolkit-0.3.0_rc8 (06 Jan 2010)
+
+  06 Jan 2010; Paul Varner <fuzzyray@gentoo.org>
+  -gentoolkit-0.3.0_rc5.ebuild, -gentoolkit-0.3.0_rc6.ebuild,
+  +gentoolkit-0.3.0_rc8.ebuild:
+  gentoolkit-0.3.0_rc8 version bump. Bug 237964 tracks changes to
+  gentoolkit-0.3.0.
+  Dropped keywords for ~m68k ~s390 ~sh ~sparc-fbsd ~x86-fbsd in
+  gentoolkit-0.3.0_rc8 due to new runtime dependency on app-misc/realpath.
+  Removed older unused ebuilds.
 
   10 Dec 2009; Paul Varner <fuzzyray@gentoo.org> gentoolkit-9999.ebuild:
   Modify live ebuild to use setup.py to set the version of gentoolkit
