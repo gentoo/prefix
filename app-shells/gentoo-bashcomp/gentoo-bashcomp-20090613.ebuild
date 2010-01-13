@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20090613.ebuild,v 1.8 2009/09/21 18:46:30 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/gentoo-bashcomp-20090613.ebuild,v 1.9 2010/01/06 17:47:28 armin76 Exp $
 
 inherit eutils prefix
 

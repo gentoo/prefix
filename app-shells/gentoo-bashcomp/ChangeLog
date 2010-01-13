@@ -1,6 +1,18 @@
 # ChangeLog for app-shells/gentoo-bashcomp
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.38 2009/12/26 04:45:32 darkside Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/gentoo-bashcomp/ChangeLog,v 1.41 2010/01/09 15:11:39 aballier Exp $
+
+  09 Jan 2010; Alexis Ballier <aballier@gentoo.org>
+  gentoo-bashcomp-20091225.ebuild:
+  keyword ~sparc-fbsd, bug #299051
+
+  07 Jan 2010; Alexis Ballier <aballier@gentoo.org>
+  gentoo-bashcomp-20091225.ebuild:
+  keyword ~x86-fbsd
+
+  06 Jan 2010; Raúl Porcel <armin76@gentoo.org>
+  gentoo-bashcomp-20090613.ebuild, gentoo-bashcomp-20091225.ebuild:
+  sh stable
 
 *gentoo-bashcomp-20091225 (26 Dec 2009)
 
