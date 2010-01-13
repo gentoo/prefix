@@ -30,7 +30,7 @@ src_unpack() {
 src_compile() {
 	cd lisp
 	cat >jde-compile-script-init <<-EOF
-	(load "${ESITELISP}/cedet/common/cedet")
+	(load "${EPREFIX}${SITELISP}/cedet/common/cedet")
 	(add-to-list 'load-path "${S}/lisp")
 	(require 'jde)
 	EOF

@@ -48,8 +48,8 @@ src_prepare() {
 
 src_compile() {
 	eant dist \
-		-Dcedet.dir="${ESITELISP}/cedet" \
-		-Delib.dir="${ESITELISP}/elib"
+		-Dcedet.dir="${EPREFIX}${SITELISP}/cedet" \
+		-Delib.dir="${EPREFIX}${SITELISP}/elib"
 }
 
 src_install() {

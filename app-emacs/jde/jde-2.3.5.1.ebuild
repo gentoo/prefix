@@ -23,7 +23,7 @@ SITEFILE="70${PN}-gentoo.el"
 src_compile() {
 	cd "${S}"/lisp
 	cat >jde-compile-script-init <<-EOF
-	(load "${ESITELISP}/cedet/common/cedet")
+	(load "${EPREFIX}${SITELISP}/cedet/common/cedet")
 	(add-to-list 'load-path "$PWD")
 	EOF
 	emacs -batch -l jde-compile-script-init -f batch-byte-compile *.el || die
