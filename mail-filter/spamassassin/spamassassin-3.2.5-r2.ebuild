@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/spamassassin-3.2.4.ebuild,v 1.2 2008/11/18 16:13:26 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/spamassassin-3.2.5-r2.ebuild,v 1.1 2010/01/02 06:37:05 tove Exp $
 
 inherit perl-module eutils
 
@@ -53,6 +53,9 @@ DEPEND=">=dev-lang/perl-5.8.2-r1
 	ipv6? (
 		dev-perl/IO-Socket-INET6
 	)"
+
+PATCHES=( "${FILESDIR}/${PN}-3.2.5-DESTDIR.patch"
+	"${FILESDIR}/FH_DATE_PAST_20XX.patch" )
 
 src_compile() {
 	# - Set SYSCONFDIR explicitly so we can't get bitten by bug 48205 again
@@ -114,7 +117,7 @@ src_compile() {
 	use doc && make text_html_doc
 }
 
-src_install () {
+src_test() {
 	perl-module_src_test
 }
 
@@ -133,18 +136,17 @@ src_install () {
 	dosym /etc/mail/spamassassin /etc/spamassassin
 
 	# Disable plugin by default
-	sed -i -e 's/^loadplugin/\#loadplugin/g' ${ED}/etc/mail/spamassassin/init.pre
+	sed -i -e 's/^loadplugin/\#loadplugin/g' "${ED}"/etc/mail/spamassassin/init.pre
 
 	# Add the init and config scripts.
 	newinitd "${FILESDIR}"/3.0.0-spamd.init spamd
 	newconfd "${FILESDIR}"/3.0.0-spamd.conf spamd
 
 	if use doc; then
-		dodoc NOTICE TRADEMARK CREDITS INSTALL UPGRADE BUGS USAGE \
-		sql/README.bayes sql/README.awl README.ldap procmailrc.example \
-		sample-nonspam.txt sample-spam.txt rules/STATISTICS-set0.txt \
-		STATISTICS-set1.txt STATISTICS-set2.txt STATISTICS-set3.txt \
-		spamd/PROTOCOL
+		dodoc NOTICE TRADEMARK CREDITS INSTALL INSTALL.VMS UPGRADE USAGE \
+		sql/README.bayes sql/README.awl procmailrc.example sample-nonspam.txt \
+		sample-spam.txt spamassassin.spec spamd/PROTOCOL spamd/README.vpopmail \
+		spamd-apache2/README.apache
 
 		# Rename some docu files so they don't clash with others
 		newdoc spamd/README README.spamd
@@ -163,7 +165,7 @@ src_install () {
 		dodoc tools/*
 	fi
 
-	cp ${FILESDIR}/secrets.cf ${ED}/etc/mail/spamassassin/secrets.cf.example
+	cp "${FILESDIR}"/secrets.cf "${ED}"/etc/mail/spamassassin/secrets.cf.example
 	fperms 0400 /etc/mail/spamassassin/secrets.cf.example
 	echo "">>${ED}/etc/mail/spamassassin/local.cf.example
 	echo "# Sensitive data, such as database connection info, should">>${ED}/etc/mail/spamassassin/local.cf.example
@@ -192,13 +194,13 @@ pkg_postinst() {
 
 	if use doc; then
 		einfo
-		einfo "Please read the file"
-		einfo "  /usr/share/doc/${PF}/INSTALL.gz"
+		einfo "Please read the file INSTALL in"
+		einfo "  /usr/share/doc/${PF}/"
 		einfo "to find out which optional modules you need to install to enable"
 		einfo "additional features which depend on them."
 		einfo
-		einfo "If upgraded from 2.x, please read the file"
-		einfo "  /usr/share/doc/${PF}/UPGRADE.gz"
+		einfo "If upgraded from 2.x, please read the file UPGRADE in"
+		einfo "  /usr/share/doc/${PF}/"
 		einfo
 	fi
 
