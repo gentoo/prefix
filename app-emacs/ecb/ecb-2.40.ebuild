@@ -29,10 +29,10 @@ src_unpack() {
 src_compile() {
 	local loadpath=""
 	if use java; then
-		loadpath="${ESITELISP}/elib ${ESITELISP}/jde ${ESITELISP}/jde/lisp"
+		loadpath="${EPREFIX}${SITELISP}/elib ${EPREFIX}${SITELISP}/jde ${EPREFIX}${SITELISP}/jde/lisp"
 	fi
 
-	emake CEDET="${ESITELISP}/cedet" LOADPATH="${loadpath}" \
+	emake CEDET="${EPREFIX}${SITELISP}/cedet" LOADPATH="${loadpath}" \
 		|| die "emake failed"
 }
 
