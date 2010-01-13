@@ -22,7 +22,7 @@ src_compile() {
 
 src_install() {
 	emake -j1 < /dev/null \
-		DESTDIR="${D}" PREFIX="${EPREFIX}"/usr LISPDIR="${ESITELISP}/${PN}" install \
+		DESTDIR="${D}" PREFIX="${EPREFIX}"/usr LISPDIR="${EPREFIX}${SITELISP}/${PN}" install \
 		|| die "emake install failed"
 	elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
 	dodoc ChangeLog || die "dodoc failed"
