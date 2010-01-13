@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/patch
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/patch/ChangeLog,v 1.42 2009/11/14 15:33:39 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/patch/ChangeLog,v 1.44 2010/01/02 03:35:04 vapier Exp $
+
+  02 Jan 2010; Mike Frysinger <vapier@gentoo.org> patch-2.6.1.ebuild:
+  Pull in ed for tests #299270 by Patrick Lauer.
+
+*patch-2.6.1 (01 Jan 2010)
+
+  01 Jan 2010; Mike Frysinger <vapier@gentoo.org> +patch-2.6.1.ebuild:
+  Version bump.
 
 *patch-2.6 (14 Nov 2009)
 
