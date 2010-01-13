@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/compositeproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/compositeproto/ChangeLog,v 1.38 2009/12/15 19:45:08 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/compositeproto/ChangeLog,v 1.39 2009/12/27 18:14:46 josejx Exp $
+
+  27 Dec 2009; Joseph Jezak <josejx@gentoo.org> compositeproto-0.4.1.ebuild:
+  Marked ppc stable for bug #294958.
 
   15 Dec 2009; Brent Baude <ranger@gentoo.org> compositeproto-0.4.1.ebuild:
   Marking compositeproto-0.4.1 ppc64 stable for bug 294958
