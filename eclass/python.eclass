@@ -1126,7 +1126,7 @@ python_mod_compile() {
 		die "${FUNCNAME} should only be run in pkg_postinst()"
 
 	# strip trailing slash
-	myroot="${ROOT%/}"
+	myroot="${EROOT%/}"
 
 	# respect ROOT
 	for f in "$@"; do
