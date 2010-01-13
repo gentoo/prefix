@@ -13,14 +13,3 @@ http://rt.openssl.org/Ticket/Display.html?id=2085
      args=""
      while [ $# -gt 0 ]; do
  	if [ "$1" != "--" ]; then args="$args $1"; fi
---- Makefile.org
-+++ Makefile.org
-@@ -69,7 +69,7 @@
- PERL= perl
- TAR= tar
- TARFLAGS= --no-recursion
--MAKEDEPPROG=makedepend
-+MAKEDEPPROG=$(CC)
- 
- # We let the C compiler driver to take care of .s files. This is done in
- # order to be excused from maintaining a separate set of architecture

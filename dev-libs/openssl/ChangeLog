@@ -1,6 +1,30 @@
 # ChangeLog for dev-libs/openssl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.309 2009/11/27 22:00:12 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.315 2010/01/11 03:33:31 vapier Exp $
+
+*openssl-1.0.0_beta4 (11 Jan 2010)
+
+  11 Jan 2010; Mike Frysinger <vapier@gentoo.org>
+  +openssl-1.0.0_beta4.ebuild:
+  Add testing version #269482 by Daniel Black.
+
+  11 Jan 2010; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8l-r2.ebuild:
+  Drop gcc-3 flag munging, add -fno-strict-aliasing for everyone, and use
+  SET_X when linking things to make logs more useful.
+
+  11 Jan 2010; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8l-r2.ebuild:
+  Handle renamed man pages in SEE ALSO #287783 by Guido Winkelmann.
+
+  11 Jan 2010; Mike Frysinger <vapier@gentoo.org>
+  files/openssl-0.9.8h-ldflags.patch, openssl-0.9.8l-r2.ebuild:
+  Respect LDFLAGS on openssl again #181438.
+
+  11 Jan 2010; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8l-r2.ebuild,
+  files/openssl-0.9.8e-bsd-sparc64.patch:
+  Update the bsd-sparc patch to apply again.
+
+  11 Jan 2010; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8l-r2.ebuild:
+  Link in gmp when USE=gmp #276557 by Justin Lecher.
 
 *openssl-0.9.8l-r2 (27 Nov 2009)
 

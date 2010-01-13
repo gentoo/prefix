@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8l-r2.ebuild,v 1.1 2009/11/27 22:00:12 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8l-r2.ebuild,v 1.8 2010/01/11 03:32:09 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -28,22 +28,21 @@ src_unpack() {
 
 # this patch kills Darwin, but seems not necessary on Solaris and Linux
 #	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
-	#Forward port of the -b patch. Parallel make fails though.
 	epatch "${FILESDIR}"/${PN}-0.9.8j-parallel-build.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-make-engines-dir.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8k-toolchain.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8b-doc-updates.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8-makedepend.patch #149583
 	epatch "${FILESDIR}"/${PN}-0.9.8e-make.patch #146316
-	#epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-sslv3-no-tlsext.patch
-	#epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
+	epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
 	epatch "${FILESDIR}"/${PN}-0.9.8l-CVE-2009-137{7,8,9}.patch #270305
 	epatch "${FILESDIR}"/${P}-CVE-2009-1387.patch #270305
 	epatch "${FILESDIR}"/${P}-CVE-2009-2409.patch #280591
 	epatch "${FILESDIR}"/${P}-dtls-compat.patch #280370
 	epatch "${FILESDIR}"/${PN}-0.9.8l-binutils.patch #289130
-	sed -i -e '/DIRS/ s/ fips / /g' Makefile{,.org} \
+	sed -i -e '/DIRS/ s/ fips / /g' Makefile.org \
 		|| die "Removing fips from openssl failed."
 
 	epatch "${FILESDIR}"/${PN}-0.9.8k-cc-mxx.patch
@@ -71,13 +70,7 @@ src_unpack() {
 		&& sed -i '/^install:/s:install_docs::' Makefile.org \
 		|| sed -i '/^MANDIR=/s:=.*:='"${EPREFIX}"'/usr/share/man:' Makefile.org
 
-	# Try to derice users and work around broken ass toolchains
-	if [[ $(gcc-major-version) == "3" ]] ; then
-		filter-flags -fprefetch-loop-arrays -freduce-all-givs -funroll-loops
-		[[ $(tc-arch) == "ppc64" ]] && replace-flags -O? -O
-	fi
-	[[ $(tc-arch) == ppc* ]] && append-flags -fno-strict-aliasing
-
+	append-flags -fno-strict-aliasing
 	[[ $(tc-arch) == *-macos   ]] ||
 	[[ $(tc-arch) == *-aix     ]] ||
 	[[ $(tc-arch) == *-interix ]] ||
@@ -85,6 +78,9 @@ src_unpack() {
 	[[ $(tc-arch) == *-hpux    ]] ||
 	[[ ${CHOST} == *-mint* ]] ||
 		append-flags -Wa,--noexecstack
+	# show the actual commands in the log
+	sed -i '/^SET_X/s:=.*:=set -x:' Makefile.shared
+	sed -i '/^MAKEDEPPROG/s:=.*:=$(CC):' Makefile.org
 
 	# using a library directory other than lib requires some magic
 	sed -i \
@@ -154,7 +150,7 @@ src_compile() {
 		enable-mdc2 \
 		$(use_ssl !bindist rc5) \
 		enable-tlsext \
-		$(use_ssl gmp) \
+		$(use_ssl gmp gmp -lgmp) \
 		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
 		$(use_ssl zlib) \
 		--prefix="${EPREFIX}"/usr \
@@ -214,6 +210,8 @@ src_install() {
 		[[ ${m} == openssl.1* ]] && continue
 		[[ -n $(find -L ${d} -type l) ]] && die "erp, broken links already!"
 		mv ${d}/{,ssl-}${m}
+		# fix up references to renamed man pages
+		sed -i '/^[.]SH "SEE ALSO"/,/^[.]/s:\([^(, ]*(1)\):ssl-\1:g' ${d}/ssl-${m}
 		ln -s ssl-${m} ${d}/openssl-${m}
 		# locate any symlinks that point to this man page ... we assume
 		# that any broken links are due to the above renaming

@@ -2,8 +2,8 @@ http://bugs.gentoo.org/181438
 
 make sure we respect LDFLAGS
 
---- openssl-0.9.8h/Makefile
-+++ openssl-0.9.8h/Makefile
+--- openssl-0.9.8h/Makefile.org
++++ openssl-0.9.8h/Makefile.org
 @@ -180,6 +181,7 @@
  		MAKEDEPEND='$$$${TOP}/util/domd $$$${TOP} -MD ${MAKEDEPPROG}' \
  		DEPFLAG='-DOPENSSL_NO_DEPRECATED ${DEPFLAG}'	\
