@@ -1,6 +1,20 @@
 # ChangeLog for sci-mathematics/calc
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/calc/ChangeLog,v 1.17 2008/06/02 22:39:34 coldwind Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/calc/ChangeLog,v 1.20 2010/01/07 17:21:15 bicatali Exp $
+
+  07 Jan 2010; Sébastien Fabbro <bicatali@gentoo.org> calc-2.12.4.0.ebuild:
+  Added quotes
+
+*calc-2.12.4.0 (05 Jan 2010)
+
+  05 Jan 2010; Sébastien Fabbro <bicatali@gentoo.org>
+  -calc-2.11.9.3.ebuild, -calc-2.11.10.1.ebuild, +calc-2.12.4.0.ebuild,
+  metadata.xml:
+  Version bump
+
+  01 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  calc-2.12.2.2.ebuild:
+  Use -j1 for build (bug #299224).
 
   02 Jun 2008; Santiago M. Mola <coldwind@gentoo.org> calc-2.12.2.2.ebuild:
   amd64 stable and quoting fixed.
