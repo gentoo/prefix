@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4.ebuild,v 1.11 2010/01/10 17:18:59 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4.ebuild,v 1.14 2010/01/12 16:08:42 arfrever Exp $
 
 EAPI="2"
 
-inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs versionator
+inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
 
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
@@ -18,6 +18,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 
 LICENSE="PSF-2.2"
 SLOT="2.6"
+PYTHON_ABI="${SLOT}"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite ssl +threads tk +wide-unicode wininst +xml"
 
@@ -57,8 +58,6 @@ PDEPEND="app-admin/python-updater"
 PROVIDE="virtual/python"
 
 pkg_setup() {
-	python_set_active_version ${SLOT}
-
 	if use berkdb; then
 		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
 		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
@@ -72,7 +71,8 @@ pkg_setup() {
 
 src_prepare() {
 	# Ensure that internal copies of expat and libffi aren't used.
-	rm -fr Modules/expat Modules/_ctypes/libffi*
+	rm -fr Modules/expat
+	rm -fr Modules/_ctypes/libffi*
 
 	if tc-is-cross-compiler; then
 		epatch "${FILESDIR}/python-2.5-cross-printf.patch"
@@ -245,7 +245,7 @@ src_configure() {
 			Makefile.pre.in || die "sed failed"
 	fi
 
-	# Export CXX so it ends up in /usr/$(get_libdir)/python2.X/config/Makefile.
+	# Export CXX so it ends up in /usr/lib/python2.X/config/Makefile.
 	tc-export CXX
 
 	# Set LDFLAGS so we link modules with -lpython2.6 correctly.
@@ -511,7 +511,7 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
+	EPYTHON="$(PYTHON)" python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn

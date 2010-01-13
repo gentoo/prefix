@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.23 2010/01/10 17:18:59 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.26 2010/01/12 16:08:42 arfrever Exp $
 
 EAPI="2"
 
-inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs versionator
+inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
 
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
@@ -18,6 +18,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 
 LICENSE="PSF-2.2"
 SLOT="3.1"
+PYTHON_ABI="${SLOT}"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite ssl +threads tk +wide-unicode wininst +xml"
 
@@ -45,10 +46,6 @@ PDEPEND="app-admin/python-updater
 		=dev-lang/python-2*"
 
 PROVIDE="virtual/python"
-
-pkg_setup() {
-	python_set_active_version ${SLOT}
-}
 
 src_prepare() {
 	# Ensure that internal copies of expat and libffi aren't used.
@@ -475,7 +472,7 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
+	EPYTHON="$(PYTHON)" python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
 
 	if [[ "$(eselect python show)" == "python2."* ]]; then
 		ewarn

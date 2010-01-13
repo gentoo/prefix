@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.25 2010/01/10 17:18:59 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.28 2010/01/12 16:08:42 arfrever Exp $
 
 EAPI="1"
 
-inherit autotools eutils flag-o-matic multilib python toolchain-funcs versionator prefix
+inherit autotools eutils flag-o-matic multilib python toolchain-funcs prefix
 
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
@@ -18,6 +18,7 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 
 LICENSE="PSF-2.2"
 SLOT="2.4"
+PYTHON_ABI="${SLOT}"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="-berkdb bootstrap build +cxx doc elibc_uclibc examples gdbm ipv6 +ncurses +readline ssl +threads tk +wide-unicode wininst +xml"
 
@@ -47,8 +48,6 @@ PDEPEND="app-admin/python-updater"
 PROVIDE="virtual/python"
 
 pkg_setup() {
-	python_set_active_version ${SLOT}
-
 	if use berkdb; then
 		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
 		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
@@ -306,7 +305,7 @@ pkg_postinst() {
 	eselect_python_update
 
 	# Python 2.4 partially doesn't respect $(get_libdir).
-	python_mod_optimize -x "(site-packages|test)" /usr/lib/python${SLOT}
+	EPYTHON="$(PYTHON)" python_mod_optimize -x "(site-packages|test)" /usr/lib/python${SLOT}
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn
