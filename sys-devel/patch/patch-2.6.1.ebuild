@@ -17,6 +17,13 @@ RDEPEND=""
 DEPEND="${RDEPEND}
 	test? ( sys-apps/ed )"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	# this file is missing from the tarball bug #300845
+	cp "${FILESDIR}"/gnulib_strnlen.c gl/lib/strnlen.c || die
+}
+
 src_compile() {
 	use static && append-ldflags -static
 
