@@ -451,6 +451,14 @@ EOF
 
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
+
+	# Remove .py[co] files from the installed image,
+	# python_mod_optimize will (re)generate them.  Removing
+	# them here makes sure they don't end up in binpkgs, and
+	# fixes Bad Marshalling Data in Prefix when the offset
+	# was changed with a binpkg installation to match the
+	# target offset.
+	find "${D}" -name "*.py[co]" -delete
 }
 
 pkg_preinst() {
