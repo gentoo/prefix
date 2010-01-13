@@ -1,6 +1,25 @@
 # ChangeLog for dev-libs/mpfr
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.106 2009/12/18 17:30:46 jer Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.111 2010/01/11 09:16:23 vapier Exp $
+
+*mpfr-2.4.2_p2 (11 Jan 2010)
+
+  11 Jan 2010; Mike Frysinger <vapier@gentoo.org> +files/2.4.2/patch02,
+  +mpfr-2.4.2_p2.ebuild:
+  Add another fix from upstream and fix docs install #298316 by Diego E.
+  Pettenò.
+
+  06 Jan 2010; Jeroen Roovers <jer@gentoo.org> mpfr-2.4.1_p5.ebuild:
+  Stable for PPC (bug #297297).
+
+  02 Jan 2010; Markus Meier <maekke@gentoo.org> mpfr-2.4.1_p5.ebuild:
+  amd64 stable, bug #297297
+
+  02 Jan 2010; Brent Baude <ranger@gentoo.org> mpfr-2.4.1_p5.ebuild:
+  Marking mpfr-2.4.1_p5 ppc64 for bug 297297
+
+  31 Dec 2009; Christian Faulhammer <fauli@gentoo.org> mpfr-2.4.1_p5.ebuild:
+  stable x86, bug 297297
 
   18 Dec 2009; Jeroen Roovers <jer@gentoo.org> mpfr-2.4.1_p5.ebuild:
   Stable for HPPA (bug #297297).
