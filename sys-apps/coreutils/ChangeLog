@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/coreutils
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.281 2009/12/11 20:21:08 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.283 2010/01/08 03:35:07 vapier Exp $
+
+*coreutils-8.3 (08 Jan 2010)
+
+  08 Jan 2010; Mike Frysinger <vapier@gentoo.org> +coreutils-8.3.ebuild:
+  Version bump.
+
+  05 Jan 2010; Mike Frysinger <vapier@gentoo.org> coreutils-8.2.ebuild:
+  Add tac/-lrt build fix from upstream #298581 by Yuri Vasilevski. Include
+  unicode patch from Fedora via USE=unicode #266866 by Glenn Sommer.
 
 *coreutils-8.2 (11 Dec 2009)
 
