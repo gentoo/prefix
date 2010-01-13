@@ -1,6 +1,10 @@
 # ChangeLog for sci-biology/ncbi-tools
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.73 2009/10/03 03:44:33 weaver Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/ncbi-tools/ChangeLog,v 1.74 2009/12/29 21:23:11 fauli Exp $
+
+  29 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  ncbi-tools-20090809.ebuild:
+  stable x86, bug 298779
 
   02 Oct 2009; Andrey Kislyuk <weaver@gentoo.org>
   ncbi-tools-20090809.ebuild:
