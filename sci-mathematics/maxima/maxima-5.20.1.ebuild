@@ -147,7 +147,7 @@ src_configure() {
 }
 
 src_install() {
-	einstall emacsdir="${D}${ESITELISP}/${PN}" || die "einstall failed"
+	einstall emacsdir="${ED}${SITELISP}/${PN}" || die "einstall failed"
 
 	use tk && make_desktop_entry xmaxima xmaxima \
 		/usr/share/${PN}/${PV}/xmaxima/maxima-new.png \
