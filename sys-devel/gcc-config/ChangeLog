@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gcc-config
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.186 2009/12/20 19:55:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/ChangeLog,v 1.187 2009/12/27 16:03:53 grobian Exp $
+
+  27 Dec 2009; Fabian Groffen <grobian@gentoo.org> files/gcc-config-1.4.1,
+  files/gcc-config-1.5:
+  Fix typo in gcc-config, tsch -> tcsh, caused -E to use export iso setenv.
+  Not bumping as this bug in gcc-config went unnoticed for years.
 
 *gcc-config-1.5 (20 Dec 2009)
 

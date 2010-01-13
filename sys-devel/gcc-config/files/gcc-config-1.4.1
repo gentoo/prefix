@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.1,v 1.9 2009/08/03 00:40:07 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.4.1,v 1.10 2009/12/27 16:03:52 grobian Exp $
 
 trap ":" INT QUIT TSTP
 
@@ -787,7 +787,7 @@ print_environ() {
 	GCC_PATH=$(source "${GCC_ENV_D}/${CC_COMP}"; echo ${GCC_PATH:-${PATH}})
 
 	case ${SHELL} in
-		*/csh|*/tsch)
+		*/csh|*/tcsh)
 			ENV_CMD="setenv"
 			SET_ELEMENT=" "
 			;;
@@ -1001,9 +1001,9 @@ for x in "$@" ; do
 			rcsfile="$RCSfile: gcc-config-1.4.1,v $"
 			rcsfile=${rcsfile#: }
 			rcsfile=${rcsfile%,v*}
-			cvsrev="$Revision: 1.9 $"
+			cvsrev="$Revision: 1.10 $"
 			cvsrev=${cvsrev#: }
-			cvsdate="$Date: 2009/08/03 00:40:07 $"
+			cvsdate="$Date: 2009/12/27 16:03:52 $"
 			cvsdate=${cvsdate#: }
 			echo "${rcsfile} (r${cvsrev% *} @ ${cvsdate% *})"
 			exit 0

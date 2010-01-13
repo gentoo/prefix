@@ -1,7 +1,7 @@
 #!/bin/bash
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.5,v 1.1 2009/12/20 19:55:21 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc-config/files/gcc-config-1.5,v 1.2 2009/12/27 16:03:52 grobian Exp $
 
 # Format of /etc/env.d/gcc/:
 #  config-TARGET:	CURRENT=version for TARGET
@@ -768,7 +768,7 @@ print_environ() {
 	source_var GCC_PATH "${GCC_ENV_D}/${CC_COMP}" "${PATH}"
 
 	case ${SHELL} in
-		*/csh|*/tsch)
+		*/csh|*/tcsh)
 			ENV_CMD="setenv"
 			SET_ELEMENT=" "
 			;;
@@ -929,9 +929,9 @@ for x in "$@" ; do
 			rcsfile="$RCSfile: gcc-config-1.5,v $"
 			rcsfile=${rcsfile#: }
 			rcsfile=${rcsfile%,v*}
-			cvsrev="$Revision: 1.1 $"
+			cvsrev="$Revision: 1.2 $"
 			cvsrev=${cvsrev#: }
-			cvsdate="$Date: 2009/12/20 19:55:21 $"
+			cvsdate="$Date: 2009/12/27 16:03:52 $"
 			cvsdate=${cvsdate#: }
 			echo "${rcsfile} (r${cvsrev% *} @ ${cvsdate% *})"
 			exit 0
