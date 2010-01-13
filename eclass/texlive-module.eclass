@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.32 2010/01/07 20:36:23 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/texlive-module.eclass,v 1.34 2010/01/13 15:16:49 fauli Exp $
 
 # @ECLASS: texlive-module.eclass
 # @MAINTAINER:
@@ -24,20 +24,20 @@
 # The list of packages that will be installed. This variable will be expanded to
 # SRC_URI:
 #
-# For TeX Live 2007: foo -> texlive-module-foo-${PV}.zip
 # For TeX Live 2008: foo -> texlive-module-foo-${PV}.tar.lzma
+# For TeX Live 2009: foo -> texlive-module-foo-${PV}.tar.xz
 
 # @ECLASS-VARIABLE: TEXLIVE_MODULE_DOC_CONTENTS
 # @DESCRIPTION:
 # The list of packages that will be installed if the doc useflag is enabled.
 # Expansion to SRC_URI is the same as for TEXLIVE_MODULE_CONTENTS. This is only
-# valid for TeX Live 2008
+# valid for TeX Live 2008 and later
 
 # @ECLASS-VARIABLE: TEXLIVE_MODULE_SRC_CONTENTS
 # @DESCRIPTION:
 # The list of packages that will be installed if the source useflag is enabled.
 # Expansion to SRC_URI is the same as for TEXLIVE_MODULE_CONTENTS. This is only
-# valid for TeX Live 2008
+# valid for TeX Live 2008 and later
 
 # @ECLASS-VARIABLE: TEXLIVE_MODULE_BINSCRIPTS
 # @DESCRIPTION:
@@ -45,11 +45,17 @@
 # texmf tree and that we want to be available directly. They will be installed in
 # /usr/bin.
 
+# @ECLASS-VARIABLE: TL_PV
+# @DESCRIPTION:
+# Normally the module's PV reflects the TeXLive release it belongs to.
+# If this is not the case, TL_PV takes the version number for the
+# needed app-text/texlive-core.
+
 inherit texlive-common
 
 HOMEPAGE="http://www.tug.org/texlive/"
 
-COMMON_DEPEND=">=app-text/texlive-core-${PV}"
+COMMON_DEPEND=">=app-text/texlive-core-${TL_PV:-${PV}}"
 
 IUSE="source"
 

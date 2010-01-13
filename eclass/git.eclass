@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.33 2009/12/29 17:18:16 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/git.eclass,v 1.34 2010/01/13 09:51:53 scarabeus Exp $
 
 # @ECLASS: git.eclass
 # @MAINTAINER:
@@ -52,7 +52,7 @@ DEPEND=">=dev-util/git-1.6"
 # @ECLASS-VARIABLE: EGIT_UPDATE_CMD
 # @DESCRIPTION:
 # Git fetch command.
-EGIT_UPDATE_CMD="git pull -f -u"
+EGIT_UPDATE_CMD="git pull -f -u --all"
 
 # @ECLASS-VARIABLE: EGIT_DIFFSTAT_CMD
 # @DESCRIPTION:
@@ -299,12 +299,14 @@ git_fetch() {
 
 	[[ ${EGIT_COMMIT} != ${EGIT_BRANCH} ]] && elog "   commit:			${EGIT_COMMIT}"
 	${elogcmd} "   branch: 			${EGIT_BRANCH}"
-	${elogcmd} "   storage directory: 	\"${EGIT_STORE_DIR}/${EGIT_CLONE_DIR}\""
+	${elogcmd} "   storage directory: 	\"${GIT_DIR}\""
+
+	popd &> /dev/null
 
 	# unpack to the ${S}
-	popd &> /dev/null
-	debug-print "cp -aR \"${GIT_DIR}\" \"${S}\""
-	git clone "${GIT_DIR}" "${S}"
+	# "${EGIT_REPO_URI}"
+	debug-print "git clone -l -s -n \"${GIT_DIR}\" \"${S}\""
+	git clone -l -s -n "${GIT_DIR}" "${S}"
 
 	# set correct branch and the tree ebuild specified
 	pushd "${S}" > /dev/null
@@ -315,6 +317,7 @@ git_fetch() {
 	fi
 	debug-print "git checkout -b ${branchname} ${src}"
 	git checkout -b ${branchname} ${src} 2>&1 > /dev/null
+
 	git_sumbodules
 	popd > /dev/null
 

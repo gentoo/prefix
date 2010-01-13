@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.43 2010/01/13 01:58:53 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/base.eclass,v 1.44 2010/01/13 09:51:53 scarabeus Exp $
 
 # @ECLASS: base.eclass
 # @MAINTAINER:
@@ -16,7 +16,7 @@ inherit eutils
 
 BASE_EXPF="src_unpack src_compile src_install"
 case "${EAPI:-0}" in
-	2|3|4) BASE_EXPF="${BASE_EXPF} src_prepare src_configure" ;;
+	2|3|4) BASE_EXPF+=" src_prepare src_configure" ;;
 	*) ;;
 esac
 
