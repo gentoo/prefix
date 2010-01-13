@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/gdal
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.69 2009/10/24 12:29:26 nixnut Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.70 2010/01/06 19:24:12 ranger Exp $
+
+  06 Jan 2010; Brent Baude <ranger@gentoo.org> gdal-1.6.1.ebuild:
+  Marking gdal-1.6.1 ppc64 for bug 285489
 
   24 Oct 2009; nixnut <nixnut@gentoo.org> gdal-1.6.1.ebuild:
   ppc stable #285489
