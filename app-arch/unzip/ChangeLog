@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/unzip
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.66 2009/10/16 16:44:56 jer Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.67 2010/01/10 00:28:54 jer Exp $
+
+  10 Jan 2010; Jeroen Roovers <jer@gentoo.org> unzip-6.0-r1.ebuild:
+  Stable for HPPA too.
 
   16 Oct 2009; Jeroen Roovers <jer@gentoo.org> unzip-6.0-r1.ebuild:
   Marked ~hppa (bug #287368).
