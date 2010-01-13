@@ -136,7 +136,7 @@ src_install () {
 	if use emacs; then
 		cd lisp
 		einfo "Configuring gnuplot-mode for GNU Emacs..."
-		EMACS="emacs" econf --with-lispdir="${ESITELISP}/${PN}" || die
+		EMACS="emacs" econf --with-lispdir="${EPREFIX}${SITELISP}/${PN}" || die
 		emake DESTDIR="${D}" install || die
 		emake clean
 		cd ..
