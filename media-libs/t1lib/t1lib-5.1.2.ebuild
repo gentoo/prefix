@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.2.ebuild,v 1.4 2009/09/30 09:48:49 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/t1lib-5.1.2.ebuild,v 1.9 2010/01/06 19:07:12 jer Exp $
 
 inherit eutils flag-o-matic libtool toolchain-funcs
 
