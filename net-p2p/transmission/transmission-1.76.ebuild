@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.76.ebuild,v 1.2 2009/11/06 12:26:26 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/transmission-1.76.ebuild,v 1.3 2009/12/29 18:03:00 armin76 Exp $
 
 EAPI=2
 inherit autotools eutils fdo-mime gnome2-utils qt4

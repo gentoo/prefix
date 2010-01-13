@@ -1,6 +1,10 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.101 2009/11/21 19:57:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.102 2009/12/29 18:03:00 armin76 Exp $
+
+  29 Dec 2009; Raúl Porcel <armin76@gentoo.org> transmission-1.72.ebuild,
+  transmission-1.75.ebuild, transmission-1.76.ebuild:
+  Add ~arm wrt #264046
 
   21 Nov 2009; Markus Meier <maekke@gentoo.org> transmission-1.75.ebuild:
   x86 stable, bug #289629
