@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/smartmontools
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.83 2009/09/23 03:19:34 robbat2 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.85 2010/01/05 03:44:57 vapier Exp $
+
+*smartmontools-5.39 (05 Jan 2010)
+
+  05 Jan 2010; Mike Frysinger <vapier@gentoo.org>
+  +smartmontools-5.39.ebuild:
+  Version bump #296785 by Michał Guminiak.
+
+  11 Oct 2009; Mike Frysinger <vapier@gentoo.org> files/smartd.rc:
+  Switch killall to ssd.
 
 *smartmontools-9999 (23 Sep 2009)
 
