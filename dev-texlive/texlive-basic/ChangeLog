@@ -1,6 +1,23 @@
 # ChangeLog for dev-texlive/texlive-basic
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-basic/ChangeLog,v 1.31 2009/12/20 17:04:10 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-texlive/texlive-basic/ChangeLog,v 1.35 2010/01/11 03:05:55 aballier Exp $
+
+*texlive-basic-2009 (11 Jan 2010)
+
+  11 Jan 2010; Alexis Ballier <aballier@gentoo.org>
+  +texlive-basic-2009.ebuild:
+  Bump to TeX Live 2009
+
+  07 Jan 2010; Brent Baude <ranger@gentoo.org> texlive-basic-2008-r1.ebuild:
+  Marking texlive-basic-2008-r1 ppc for bug 297283
+
+  01 Jan 2010; Raúl Porcel <armin76@gentoo.org>
+  texlive-basic-2008-r1.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #297283
+
+  29 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  texlive-basic-2008-r1.ebuild:
+  stable x86, bug 297283
 
   20 Dec 2009; Brent Baude <ranger@gentoo.org> texlive-basic-2008-r1.ebuild:
   Marking texlive-basic-2008-r1 ppc64 for bug 297283
