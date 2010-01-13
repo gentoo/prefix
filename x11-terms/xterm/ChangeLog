@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.286 2009/12/15 19:52:12 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.287 2009/12/27 18:19:30 josejx Exp $
+
+  27 Dec 2009; Joseph Jezak <josejx@gentoo.org> xterm-250.ebuild:
+  Marked ppc stable for bug #294958.
 
   15 Dec 2009; Brent Baude <ranger@gentoo.org> xterm-250.ebuild:
   Marking xterm-250 ppc64 stable for bug 294958
