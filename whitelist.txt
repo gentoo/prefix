@@ -144,7 +144,8 @@ x11-wm/windowmaker
 app-vim
 dev-dotnet
 java-virtuals
-kde-base
+# please also add the eclasses that are necessary for this category -- grobian
+#kde-base
 net-print
 sci-electronics
 virtual
