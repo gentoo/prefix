@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4-r3.ebuild,v 1.8 2009/12/26 17:39:22 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/libwmf-0.2.8.4-r3.ebuild,v 1.9 2009/12/28 00:41:30 flameeyes Exp $
 
 inherit eutils autotools
 
@@ -83,7 +83,8 @@ src_compile() {
 }
 
 src_install() {
-	make install DESTDIR="${D}" || die
+	# bug #298596
+	emake -j1 install DESTDIR="${D}" || die
 	dodoc README AUTHORS CREDITS ChangeLog NEWS TODO
 }
 

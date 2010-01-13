@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/libwmf
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.65 2009/12/26 17:39:22 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libwmf/ChangeLog,v 1.66 2009/12/28 00:41:30 flameeyes Exp $
+
+  28 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
+  libwmf-0.2.8.4-r3.ebuild:
+  Use emake -j1 for install, as per bug #298596.
 
   26 Dec 2009; Peter Volkov <pva@gentoo.org> libwmf-0.2.8.4.ebuild,
   libwmf-0.2.8.4-r2.ebuild, libwmf-0.2.8.4-r3.ebuild:
