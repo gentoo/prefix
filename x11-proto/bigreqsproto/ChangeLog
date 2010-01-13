@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/bigreqsproto
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/bigreqsproto/ChangeLog,v 1.33 2009/12/15 19:44:50 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/bigreqsproto/ChangeLog,v 1.34 2009/12/27 18:14:23 josejx Exp $
+
+  27 Dec 2009; Joseph Jezak <josejx@gentoo.org> bigreqsproto-1.1.0.ebuild:
+  Marked ppc stable for bug #294958.
 
   15 Dec 2009; Brent Baude <ranger@gentoo.org> bigreqsproto-1.1.0.ebuild:
   Marking bigreqsproto-1.1.0 ppc64 stable for bug 294958
