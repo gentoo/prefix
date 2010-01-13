@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-ttf/sdl-ttf-2.0.9.ebuild,v 1.9 2008/05/13 17:00:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/sdl-ttf/sdl-ttf-2.0.9.ebuild,v 1.10 2010/01/09 20:49:53 armin76 Exp $
 
 MY_P="${P/sdl-/SDL_}"
 DESCRIPTION="library that allows you to use TrueType fonts in SDL applications"
