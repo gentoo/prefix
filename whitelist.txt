@@ -354,6 +354,14 @@ dev-perl/Template-GD
 dev-perl/Template-Latex
 dev-perl/Template-Toolkit
 dev-perl/Template-XML
+dev-perl/Task-Weaken
+dev-perl/Term-ReadLine-Perl
+dev-perl/TermReadKey
+dev-perl/Test-Base
+dev-perl/Test-Class
+dev-perl/Test-ClassAPI
+dev-perl/Test-Deep
+dev-perl/Test-Differences
 dev-perl/XML-RSS
 dev-perl/YAML-Tiny
 perl-core
