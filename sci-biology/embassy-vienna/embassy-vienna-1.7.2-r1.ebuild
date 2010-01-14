@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-vienna/embassy-vienna-1.7.2.ebuild,v 1.2 2009/09/01 18:41:06 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-vienna/embassy-vienna-1.7.2-r1.ebuild,v 1.1 2009/09/01 21:52:15 ribosome Exp $
 
-EBOV="6.0.1"
+EBOV="6.1.0"
 
 inherit embassy
 
