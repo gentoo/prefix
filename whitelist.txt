@@ -1146,3 +1146,4 @@ x11-proto/xf86driproto
 x11-proto/xf86miscproto
 x11-proto/xf86rushproto
 x11-proto/xf86vidmodeproto
+x11-proto/xineramaproto
