@@ -1129,3 +1129,4 @@ x11-proto/fixesproto
 x11-proto/fontcacheproto
 x11-proto/fontsproto
 x11-proto/inputproto
+x11-proto/kbproto
