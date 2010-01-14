@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/pixman
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.57 2009/12/27 18:11:43 josejx Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.58 2010/01/12 20:47:11 armin76 Exp $
+
+  12 Jan 2010; Raúl Porcel <armin76@gentoo.org> pixman-0.16.2.ebuild,
+  pixman-0.17.2.ebuild, +files/pixman-0.17.2-armv7.patch:
+  Add patch to fix build failure on armv4 and mark 0.16.2 stable on arm
 
   27 Dec 2009; Joseph Jezak <josejx@gentoo.org> pixman-0.17.2.ebuild:
   Marked ppc stable for bug #294958.
