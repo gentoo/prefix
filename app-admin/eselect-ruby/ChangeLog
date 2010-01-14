@@ -1,6 +1,19 @@
 # ChangeLog for app-admin/eselect-ruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.29 2010/01/11 16:04:15 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.33 2010/01/13 19:50:05 a3li Exp $
+
+  13 Jan 2010; Alex Legler <a3li@gentoo.org> -eselect-ruby-20090909.ebuild:
+  Remove old ebuild
+
+  13 Jan 2010; Alex Legler <a3li@gentoo.org> eselect-ruby-20091225.ebuild:
+  amd64 stable, security bug 300468
+
+  13 Jan 2010; Raúl Porcel <armin76@gentoo.org>
+  eselect-ruby-20091225.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #300468
+
+  12 Jan 2010; Jeroen Roovers <jer@gentoo.org> eselect-ruby-20091225.ebuild:
+  Stable for HPPA (bug #300468).
 
   11 Jan 2010; Brent Baude <ranger@gentoo.org> eselect-ruby-20091225.ebuild:
   Marking eselect-ruby-20091225 ppc64 and ppc for bug 300468
