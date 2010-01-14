@@ -1,6 +1,11 @@
 # ChangeLog for app-misc/mc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.179 2010/01/02 15:15:46 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.180 2010/01/13 11:34:51 wired Exp $
+
+*mc-4.7.0.1 (13 Jan 2010)
+
+  13 Jan 2010; Alex Alexander <wired@gentoo.org> +mc-4.7.0.1.ebuild:
+  version bump
 
   02 Jan 2010; Brent Baude <ranger@gentoo.org> mc-4.7.0_pre3.ebuild:
   Marking mc-4.7.0_pre3 ppc64 for bug 290347
