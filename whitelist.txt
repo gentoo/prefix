@@ -1143,3 +1143,4 @@ x11-proto/xextproto
 x11-proto/xf86bigfontproto
 x11-proto/xf86dgaproto
 x11-proto/xf86driproto
+x11-proto/xf86miscproto
