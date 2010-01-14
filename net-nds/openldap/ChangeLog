@@ -1,6 +1,14 @@
 # ChangeLog for net-nds/openldap
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.366 2009/12/04 20:46:19 robbat2 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.367 2010/01/12 20:05:41 cardoe Exp $
+
+  12 Jan 2010; Doug Goldstein <cardoe@gentoo.org> openldap-2.3.41.ebuild,
+  openldap-2.3.41-r1.ebuild, openldap-2.3.43.ebuild,
+  openldap-2.3.43-r1.ebuild, openldap-2.4.16.ebuild, openldap-2.4.17.ebuild,
+  openldap-2.4.17-r1.ebuild, openldap-2.4.19.ebuild,
+  openldap-2.4.19-r1.ebuild:
+  modify the order of preserve_libs call so that a user that follows the
+  instructions to the T doesn't do needless rebuilds of openldap
 
   04 Dec 2009; Robin H. Johnson <robbat2@gentoo.org>
   openldap-2.4.19-r1.ebuild:

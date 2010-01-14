@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.19-r1.ebuild,v 1.10 2009/12/04 20:46:19 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.4.19-r1.ebuild,v 1.11 2010/01/12 20:05:41 cardoe Exp $
 
 EAPI=2
 inherit db-use eutils flag-o-matic multilib ssl-cert versionator toolchain-funcs
@@ -563,7 +563,7 @@ src_install() {
 
 pkg_preinst() {
 	# keep old libs if any
-	preserve_old_lib usr/$(get_libdir)/{liblber,libldap,libldap_r}-2.3$(get_libname 0)
+	preserve_old_lib usr/$(get_libdir)/{liblber,libldap_r,liblber}-2.3$(get_libname 0)
 }
 
 pkg_postinst() {

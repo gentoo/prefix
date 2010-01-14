@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.43.ebuild,v 1.12 2009/05/08 01:16:29 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/openldap-2.3.43.ebuild,v 1.13 2010/01/12 20:05:41 cardoe Exp $
 
 EAPI=2
 
@@ -543,7 +543,7 @@ pkg_preinst() {
 	# keep old libs if any
 	LIBSUFFIXES=".so.2.0.130 -2.2.so.7"
 	for LIBSUFFIX in ${LIBSUFFIXES} ; do
-		for each in liblber libldap libldap_r ; do
+		for each in libldap libldap_r liblber ; do
 			preserve_old_lib "usr/$(get_libdir)/${each}${LIBSUFFIX}"
 		done
 	done
