@@ -1123,3 +1123,4 @@ media-plugins/gst-plugins-musepack
 x11-proto/bigreqsproto
 x11-proto/compositeproto
 x11-proto/damageproto
+x11-proto/dri2proto
