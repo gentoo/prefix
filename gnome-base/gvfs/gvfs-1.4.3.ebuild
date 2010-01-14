@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.4.3.ebuild,v 1.3 2010/01/12 01:27:46 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.4.3.ebuild,v 1.4 2010/01/12 17:49:46 mr_bones_ Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -38,7 +38,7 @@ RDEPEND=">=dev-libs/glib-2.21.2
 	hal? (
 		cdda? ( >=dev-libs/libcdio-0.78.2[-minimal] )
 		>=sys-apps/hal-0.5.10 )
-	samba? ( || ( net-fs/samba-libs[smbclient] 
+	samba? ( || ( net-fs/samba-libs[smbclient]
 			<=net-fs/samba-3.3 ) )"
 DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40
