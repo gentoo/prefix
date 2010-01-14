@@ -906,3 +906,4 @@ dev-libs/libmemcache
 dev-libs/libmemcached
 dev-libs/libmowgli
 dev-libs/libnl
+dev-libs/liboop
