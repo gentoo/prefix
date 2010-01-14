@@ -894,3 +894,4 @@ x11-apps/xrdb
 x11-apps/xset
 x11-apps/xwininfo
 dev-libs/darts
+dev-libs/fribidi
