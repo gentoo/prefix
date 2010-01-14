@@ -556,6 +556,13 @@ python_execute_function() {
 		elif [[ "${EBUILD_PHASE}" == "install" ]]; then
 			python_default_function() {
 				emake DESTDIR="${D}" install
+				# Remove .py[co] files from the installed image,
+				# python_mod_optimize will (re)generate them.  Removing
+				# them here makes sure they don't end up in binpkgs, and
+				# fixes Bad Marshalling Data in Prefix when the offset
+				# was changed with a binpkg installation to match the
+				# target offset. bug #300922
+				find "${D}" -name "*.py[co]" -delete
 			}
 		else
 			die "${FUNCNAME}(): '--default-function' option cannot be used in this ebuild phase"
