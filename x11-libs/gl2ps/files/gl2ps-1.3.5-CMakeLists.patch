@@ -1,0 +1,37 @@
+diff -ur gl2ps-1.3.5-source.orig/CMakeLists.txt gl2ps-1.3.5-source/CMakeLists.txt
+--- gl2ps-1.3.5-source.orig/CMakeLists.txt	2009-10-16 22:14:07.000000000 +0300
++++ gl2ps-1.3.5-source/CMakeLists.txt	2010-01-01 12:01:00.000000000 +0200
+@@ -113,21 +113,21 @@
+     set_target_properties(shared PROPERTIES COMPILE_FLAGS "-DGL2PSDLL -DGL2PSDLL_EXPORTS")
+   endif(MSVC)
+ 
+-  install(TARGETS lib shared DESTINATION lib)
++  install(TARGETS lib shared DESTINATION lib${LIB_SUFFIX})
+ endif(OPENGL_FOUND)
+ 
+ if(WIN32)
+   set(GL2PS_DOC .)
+ else(WIN32)
+-  set(GL2PS_DOC share/doc/gl2ps)
++  set(GL2PS_DOC share/doc/gl2ps-${GL2PS_VERSION})
+ endif(WIN32)
+ 
+ install(FILES gl2ps.h DESTINATION include)
+ install(FILES ${CMAKE_SOURCE_DIR}/README.txt DESTINATION ${GL2PS_DOC})
+-install(FILES ${CMAKE_SOURCE_DIR}/COPYING.LGPL DESTINATION ${GL2PS_DOC})
+-install(FILES ${CMAKE_SOURCE_DIR}/COPYING.GL2PS DESTINATION ${GL2PS_DOC})
++install(FILES ${CMAKE_SOURCE_DIR}/TODO.txt DESTINATION ${GL2PS_DOC})
+ install(FILES ${CMAKE_SOURCE_DIR}/gl2psTest.c DESTINATION ${GL2PS_DOC})
+ install(FILES ${CMAKE_SOURCE_DIR}/gl2psTestSimple.c DESTINATION ${GL2PS_DOC})
++install(FILES ${CMAKE_SOURCE_DIR}/gl2ps.pdf DESTINATION ${GL2PS_DOC})
+ 
+ if(GLUT_FOUND)
+   add_executable(gl2psTest WIN32 gl2psTest.c)
+@@ -144,7 +144,6 @@
+                      COMMAND ${PDFLATEX_COMPILER} ARGS ${CMAKE_SOURCE_DIR}/gl2ps.tex
+                      COMMAND ${CMAKE_COMMAND} -E copy gl2ps.pdf ${CMAKE_SOURCE_DIR})
+   add_custom_target(pdf ALL DEPENDS gl2ps.pdf)
+-  install(FILES gl2ps.pdf DESTINATION ${GL2PS_DOC})
+   find_program(TTH tth)
+   if(TTH)
+     add_custom_command(OUTPUT gl2ps.html DEPENDS gl2ps.tex gl2ps.pdf
