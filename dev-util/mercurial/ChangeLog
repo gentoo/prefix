@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.119 2010/01/07 18:24:23 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.120 2010/01/12 19:07:10 hwoarang Exp $
+
+  12 Jan 2010; <hwoarang@gentoo.org> mercurial-1.4.1.ebuild:
+  Stable on amd64 wrt bug #299312
 
   07 Jan 2010; Joseph Jezak <josejx@gentoo.org> mercurial-1.4.1.ebuild:
   Marked ppc/ppc64 stable for bug #299312.
