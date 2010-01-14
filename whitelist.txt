@@ -897,3 +897,4 @@ dev-libs/darts
 dev-libs/fribidi
 dev-libs/libdshconfig
 dev-libs/libedit
+dev-libs/libevent
