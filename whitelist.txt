@@ -1134,3 +1134,4 @@ x11-proto/randrproto
 x11-proto/recordproto
 x11-proto/renderproto
 x11-proto/resourceproto
+x11-proto/scrnsaverproto
