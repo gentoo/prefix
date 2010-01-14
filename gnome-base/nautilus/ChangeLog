@@ -1,6 +1,9 @@
 # ChangeLog for gnome-base/nautilus
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.330 2009/12/30 00:11:41 nirbheek Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/ChangeLog,v 1.331 2010/01/14 01:32:43 jer Exp $
+
+  14 Jan 2010; Jeroen Roovers <jer@gentoo.org> nautilus-2.26.4.ebuild:
+  Stable for HPPA (bug #281427).
 
 *nautilus-2.26.4-r1 (30 Dec 2009)
 

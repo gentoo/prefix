@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.26.4.ebuild,v 1.9 2009/12/03 17:11:09 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/nautilus/nautilus-2.26.4.ebuild,v 1.10 2010/01/14 01:32:43 jer Exp $
 
 EAPI=2
 
