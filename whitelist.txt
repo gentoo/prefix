@@ -905,3 +905,4 @@ dev-libs/libmcs
 dev-libs/libmemcache
 dev-libs/libmemcached
 dev-libs/libmowgli
+dev-libs/libnl
