@@ -21,6 +21,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-3.0.8-interix.patch
 	epatch "${FILESDIR}"/${PN}-3.0.9-irix.patch
+	epatch "${FILESDIR}"/${PN}-3.0.9-interix.patch
 	elibtoolize
 }
 
