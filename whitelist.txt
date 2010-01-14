@@ -900,3 +900,4 @@ dev-libs/libedit
 dev-libs/libevent
 dev-libs/libev
 dev-libs/libksba
+dev-libs/libmaa
