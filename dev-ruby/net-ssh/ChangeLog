@@ -1,6 +1,21 @@
 # ChangeLog for dev-ruby/net-ssh
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/ChangeLog,v 1.58 2009/11/30 07:04:11 graaff Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/net-ssh/ChangeLog,v 1.61 2010/01/09 07:33:50 graaff Exp $
+
+*net-ssh-2.0.17 (09 Jan 2010)
+
+  09 Jan 2010; Hans de Graaff <graaff@gentoo.org> +net-ssh-2.0.17.ebuild:
+  Version bump with minor fix for Windows.
+
+*net-ssh-2.0.16-r1 (06 Jan 2010)
+
+  06 Jan 2010; Hans de Graaff <graaff@gentoo.org> +net-ssh-2.0.16-r1.ebuild:
+  Convert to ruby-fakegem. Both docs and tests depend on packages that are
+  not available right now, so leave them out for now.
+
+  04 Jan 2010; Christian Faulhammer <fauli@gentoo.org> net-ssh-1.1.3.ebuild,
+  net-ssh-2.0.16.ebuild:
+  Transfer Prefix keywords
 
 *net-ssh-2.0.16 (30 Nov 2009)
 
