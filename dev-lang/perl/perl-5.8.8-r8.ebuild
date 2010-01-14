@@ -155,11 +155,17 @@ src_unpack() {
 	esac
 
 	# rest of usr-local patch
-	sed -i \
-		-e '/^locincpth=/c\locincpth=""' \
-		-e '/^loclibpth=/c\loclibpth=""' \
-		-e '/^glibpth=.*\/local\//s: /usr/local/lib.*":":' \
-		Configure || die
+	#sed -i \
+	#	-e '/^locincpth=/c\locincpth=""' \
+	#	-e '/^loclibpth=/c\loclibpth=""' \
+	#	-e '/^glibpth=.*\/local\//s: /usr/local/lib.*":":' \
+	#	Configure || die
+	# SOMETHING in the above sed statement doomed Configure at least
+	# for interix, with the effect of miniperl bailing out with Out
+	# of Memory after allocating 2G RAM while building DynaLoader.
+	# with the below patch (which should do the same trick), it works
+	# like a charm again
+	epatch "${FILESDIR}"/${P}-no-usr-local2.patch
 
 	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch "${FILESDIR}"/${P}-dragonfly-clean.patch
 	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch "${FILESDIR}"/${P}-fbsdhints.patch
