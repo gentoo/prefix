@@ -1,6 +1,11 @@
 # ChangeLog for app-text/poppler-bindings
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.139 2009/10/05 19:31:16 ayoy Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-bindings/ChangeLog,v 1.140 2010/01/13 14:48:11 yngwin Exp $
+
+  13 Jan 2010; Ben de Groot <yngwin@gentoo.org>
+  poppler-bindings-0.8.7.ebuild, -poppler-bindings-0.10.4.ebuild,
+  -poppler-bindings-0.10.5.ebuild, poppler-bindings-0.10.5-r1.ebuild:
+  Remove obsolete, drop qt3 support (bug 300162).
 
   05 Oct 2009; Dominik Kapusta <ayoy@gentoo.org>
   poppler-bindings-0.8.7.ebuild, poppler-bindings-0.10.4.ebuild,
