@@ -882,3 +882,4 @@ x11-apps/rgb
 x11-apps/xcalc
 x11-apps/xdpyinfo
 x11-apps/xev
+x11-apps/xkill
