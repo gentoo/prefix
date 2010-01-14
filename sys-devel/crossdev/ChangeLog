@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/crossdev
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.64 2009/12/10 01:59:02 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/crossdev/ChangeLog,v 1.65 2010/01/08 10:52:54 vapier Exp $
+
+*crossdev-20100108 (08 Jan 2010)
+
+  08 Jan 2010; Mike Frysinger <vapier@gentoo.org> +crossdev-20100108.ebuild:
+  Improve .pc sysroot handling #299990.
 
 *crossdev-20091209 (10 Dec 2009)
 
