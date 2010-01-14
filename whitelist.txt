@@ -401,6 +401,8 @@ dev-perl/Tree-DAG_Node
 dev-perl/text-autoformat
 dev-perl/text-reform
 dev-perl/tie-encryptedhash
+dev-perl/UNIVERSAL-require
+dev-perl/URI
 dev-perl/XML-RSS
 dev-perl/YAML-Tiny
 perl-core
