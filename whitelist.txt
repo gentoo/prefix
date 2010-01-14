@@ -1136,3 +1136,4 @@ x11-proto/renderproto
 x11-proto/resourceproto
 x11-proto/scrnsaverproto
 x11-proto/trapproto
+x11-proto/videoproto
