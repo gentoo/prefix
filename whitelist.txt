@@ -903,3 +903,4 @@ dev-libs/libksba
 dev-libs/libmaa
 dev-libs/libmcs
 dev-libs/libmemcache
+dev-libs/libmemcached
