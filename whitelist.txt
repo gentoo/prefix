@@ -878,3 +878,4 @@ dev-ruby/ultraviolet
 dev-ruby/zentest
 
 # Operation Fauli, bug #299250
+x11-apps/rgb
