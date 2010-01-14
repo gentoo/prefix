@@ -404,6 +404,13 @@ dev-perl/tie-encryptedhash
 dev-perl/UNIVERSAL-require
 dev-perl/URI
 dev-perl/WWW-Mechanize
+dev-perl/X11-Protocol
+dev-perl/XML-DOM
+dev-perl/XML-Elemental
+dev-perl/XML-Filter-BufferText
+dev-perl/XML-Handler-YAWriter
+dev-perl/XML-LibXML
+dev-perl/XML-LibXML-Common
 dev-perl/XML-RSS
 dev-perl/YAML-Tiny
 perl-core
