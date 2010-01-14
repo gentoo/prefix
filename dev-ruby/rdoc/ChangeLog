@@ -1,6 +1,13 @@
 # ChangeLog for dev-ruby/rdoc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rdoc/ChangeLog,v 1.20 2010/01/10 23:04:27 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rdoc/ChangeLog,v 1.22 2010/01/13 18:43:28 flameeyes Exp $
+
+  13 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  rdoc-2.4.3-r1.ebuild:
+  Enable support for JRuby.
+
+  13 Jan 2010; Brent Baude <ranger@gentoo.org> rdoc-2.4.3-r1.ebuild:
+  Marking rdoc-2.4.3-r1 ~ppc64 for bug 297041
 
 *rdoc-2.4.3-r1 (10 Jan 2010)
 

@@ -1,9 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rdoc/rdoc-2.4.3-r1.ebuild,v 1.1 2010/01/10 23:04:27 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rdoc/rdoc-2.4.3-r1.ebuild,v 1.3 2010/01/13 18:43:28 flameeyes Exp $
 
 EAPI=2
-USE_RUBY="ruby18 ruby19"
+USE_RUBY="ruby18 ruby19 jruby"
 
 RUBY_FAKEGEM_TASK_DOC="docs"
 
