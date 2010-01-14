@@ -387,6 +387,13 @@ dev-perl/Text-Diff
 dev-perl/Text-German
 dev-perl/Text-Glob
 dev-perl/Text-Iconv
+dev-perl/Text-Kakasi
+dev-perl/Text-Levenshtein
+dev-perl/Text-LevenshteinXS
+dev-perl/Text-Quoted
+dev-perl/Text-Shellwords
+dev-perl/Text-Unaccent
+dev-perl/Text-WikiFormat
 dev-perl/XML-RSS
 dev-perl/YAML-Tiny
 perl-core
