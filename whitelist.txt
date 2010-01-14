@@ -1131,3 +1131,4 @@ x11-proto/fontsproto
 x11-proto/inputproto
 x11-proto/kbproto
 x11-proto/randrproto
+x11-proto/recordproto
