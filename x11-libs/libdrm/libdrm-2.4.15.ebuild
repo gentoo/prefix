@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.15.ebuild,v 1.6 2009/12/27 18:19:06 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.15.ebuild,v 1.7 2010/01/12 21:10:10 armin76 Exp $
 
 # Must be before x-modular eclass is inherited
 SNAPSHOT="yes"
@@ -25,6 +25,8 @@ RDEPEND="dev-libs/libpthread-stubs"
 DEPEND="${RDEPEND}"
 
 CONFIGURE_OPTIONS="--enable-udev --enable-nouveau-experimental-api --enable-radeon-experimental-api"
+# Fails to build on ARM if dev-libs/libatomic_ops is installed
+use arm && CONFIGURE_OPTIONS="${CONFIGURE_OPTIONS} --disable-intel"
 
 PATCHES=(
 	"${FILESDIR}"/${PN}-2.4.5-solaris.patch

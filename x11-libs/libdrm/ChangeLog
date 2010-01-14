@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/libdrm
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.98 2009/12/27 18:19:06 josejx Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.99 2010/01/12 21:10:10 armin76 Exp $
+
+  12 Jan 2010; Raúl Porcel <armin76@gentoo.org> libdrm-2.4.15.ebuild,
+  libdrm-2.4.16.ebuild, libdrm-2.4.17.ebuild:
+  Disable intel build on arm as it fails
 
   27 Dec 2009; Joseph Jezak <josejx@gentoo.org> libdrm-2.4.15.ebuild:
   Marked ppc stable for bug #294958.
