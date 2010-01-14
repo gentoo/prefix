@@ -960,7 +960,17 @@ dev-perl/XML-Filter-BufferText
 dev-perl/XML-Handler-YAWriter
 dev-perl/XML-LibXML
 dev-perl/XML-LibXML-Common
+dev-perl/XML-LibXSLT
+dev-perl/XML-NamespaceSupport
+dev-perl/XML-Parser
 dev-perl/XML-RSS
+dev-perl/XML-RegExp
+dev-perl/XML-SAX
+dev-perl/XML-SAX-Writer
+dev-perl/XML-Simple
+dev-perl/XML-Twig
+dev-perl/XML-XPath
+dev-perl/XML-XQL
 dev-perl/YAML-Tiny
 perl-core
 
