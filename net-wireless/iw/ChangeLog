@@ -1,6 +1,9 @@
 # ChangeLog for net-wireless/iw
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-wireless/iw/ChangeLog,v 1.22 2009/12/29 18:19:02 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-wireless/iw/ChangeLog,v 1.23 2010/01/12 18:26:59 nixnut Exp $
+
+  12 Jan 2010; nixnut <nixnut@gentoo.org> iw-0.9.17.ebuild:
+  ppc stable #298974
 
   29 Dec 2009; Raúl Porcel <armin76@gentoo.org> iw-0.9.16.ebuild:
   arm stable wrt #284607
