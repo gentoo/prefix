@@ -1120,3 +1120,4 @@ media-plugins/gst-plugins-meta
 media-plugins/gst-plugins-mpeg2dec
 media-plugins/gst-plugins-x
 media-plugins/gst-plugins-musepack
+x11-proto/bigreqsproto
