@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libffi
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/ChangeLog,v 1.95 2010/01/04 23:42:10 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libffi/ChangeLog,v 1.96 2010/01/13 14:21:00 ranger Exp $
+
+  13 Jan 2010; Brent Baude <ranger@gentoo.org> libffi-3.0.9.ebuild:
+  Marking libffi-3.0.9 ~ppc64 for bug 298322
 
   04 Jan 2010; Markus Meier <maekke@gentoo.org> libffi-3.0.9.ebuild:
   add ~arm, bug #298322
