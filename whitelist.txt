@@ -901,3 +901,4 @@ dev-libs/libevent
 dev-libs/libev
 dev-libs/libksba
 dev-libs/libmaa
+dev-libs/libmcs
