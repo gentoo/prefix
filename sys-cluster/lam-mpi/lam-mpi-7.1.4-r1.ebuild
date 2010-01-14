@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4-r1.ebuild,v 1.10 2009/11/06 16:30:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/lam-mpi-7.1.4-r1.ebuild,v 1.11 2009/12/06 03:50:14 jsbronder Exp $
 
 inherit autotools eutils fortran flag-o-matic multilib portability
 
@@ -15,7 +15,8 @@ HOMEPAGE="http://www.lam-mpi.org"
 DEPEND="pbs? ( sys-cluster/torque )
 	!sys-cluster/mpich
 	!sys-cluster/openmpi
-	!sys-cluster/mpich2"
+	!sys-cluster/mpich2
+	!app-misc/wipe"
 
 RDEPEND="${DEPEND}
 	crypt? ( net-misc/openssh )

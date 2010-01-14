@@ -1,6 +1,10 @@
 # ChangeLog for sys-cluster/lam-mpi
 # Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.81 2009/11/06 17:42:01 jsbronder Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-cluster/lam-mpi/ChangeLog,v 1.82 2009/12/06 03:50:14 jsbronder Exp $
+
+  06 Dec 2009; Justin Bronder <jsbronder@gentoo.org>
+  lam-mpi-7.1.4-r1.ebuild:
+  Add blocker for app-misc/wipe, #295841
 
   06 Nov 2009; Justin Bronder <jsbronder@gentoo.org> -lam-mpi-7.0.4.ebuild,
   -lam-mpi-7.1.2.ebuild, -lam-mpi-7.1.4.ebuild:
