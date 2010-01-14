@@ -362,6 +362,14 @@ dev-perl/Test-Class
 dev-perl/Test-ClassAPI
 dev-perl/Test-Deep
 dev-perl/Test-Differences
+dev-perl/Test-Exception
+dev-perl/Test-Inline
+dev-perl/Test-LongString
+dev-perl/Test-Manifest
+dev-perl/Test-Memory-Cycle
+dev-perl/Test-NoWarnings
+dev-perl/Test-Number-Delta
+dev-perl/Test-Object
 dev-perl/XML-RSS
 dev-perl/YAML-Tiny
 perl-core
