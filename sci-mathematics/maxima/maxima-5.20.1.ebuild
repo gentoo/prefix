@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.20.1.ebuild,v 1.2 2009/12/24 14:13:42 grozin Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.20.1.ebuild,v 1.3 2010/01/14 01:00:04 bicatali Exp $
 EAPI=2
 inherit eutils elisp-common
 
@@ -8,7 +8,7 @@ DESCRIPTION="Free computer algebra environment based on Macsyma"
 HOMEPAGE="http://maxima.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
-LICENSE="GPL-2 AECA"
+LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 

@@ -1,6 +1,11 @@
 # ChangeLog for sci-mathematics/maxima
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.74 2009/12/26 16:05:56 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.75 2010/01/14 01:00:04 bicatali Exp $
+
+  14 Jan 2010; Sébastien Fabbro <bicatali@gentoo.org>
+  -maxima-5.14.0.ebuild, -maxima-5.17.1-r1.ebuild, maxima-5.18.1.ebuild,
+  maxima-5.19.2.ebuild, maxima-5.20.1.ebuild:
+  AECA license removed, bug #300885
 
   26 Dec 2009; Raúl Porcel <armin76@gentoo.org> maxima-5.18.1.ebuild:
   sparc stable wrt #264649
