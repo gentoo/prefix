@@ -912,3 +912,4 @@ dev-libs/libyaml
 dev-libs/oniguruma
 dev-libs/syck
 dev-libs/tre
+dev-libs/uulib
