@@ -378,6 +378,15 @@ dev-perl/Test-SubCalls
 dev-perl/Test-Taint
 dev-perl/Test-Tester
 dev-perl/Test-WWW-Mechanize
+dev-perl/Test-Warn
+dev-perl/Text-Aspell
+dev-perl/Text-CSV-Simple
+dev-perl/Text-CSV_XS
+dev-perl/Text-CharWidth
+dev-perl/Text-Diff
+dev-perl/Text-German
+dev-perl/Text-Glob
+dev-perl/Text-Iconv
 dev-perl/XML-RSS
 dev-perl/YAML-Tiny
 perl-core
