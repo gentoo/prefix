@@ -459,6 +459,7 @@ media-gfx/pngcrush
 media-gfx/pngrewrite
 media-gfx/pngtoico
 media-gfx/potrace
+media-libs/a52dec
 media-libs/libcuefile
 media-libs/libreplaygain
 media-libs/libwpg
