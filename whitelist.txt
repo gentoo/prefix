@@ -370,6 +370,14 @@ dev-perl/Test-Memory-Cycle
 dev-perl/Test-NoWarnings
 dev-perl/Test-Number-Delta
 dev-perl/Test-Object
+dev-perl/Test-Pod
+dev-perl/Test-Pod-Coverage
+dev-perl/Test-Script
+dev-perl/Test-SimpleUnit
+dev-perl/Test-SubCalls
+dev-perl/Test-Taint
+dev-perl/Test-Tester
+dev-perl/Test-WWW-Mechanize
 dev-perl/XML-RSS
 dev-perl/YAML-Tiny
 perl-core
