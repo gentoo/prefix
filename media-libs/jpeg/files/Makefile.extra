@@ -1,3 +1,0 @@
-all %:
-	../../config.status --file=Makefile:Makefile.in
-	$(MAKE) $@
