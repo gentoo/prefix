@@ -349,12 +349,12 @@ dev-perl/Sub-Uplevel
 dev-perl/Sys-Hostname-Long
 dev-perl/set-scalar
 dev-perl/string-crc32
+dev-perl/Task-Weaken
 dev-perl/Template-DBI
 dev-perl/Template-GD
 dev-perl/Template-Latex
 dev-perl/Template-Toolkit
 dev-perl/Template-XML
-dev-perl/Task-Weaken
 dev-perl/Term-ReadLine-Perl
 dev-perl/TermReadKey
 dev-perl/Test-Base
@@ -394,6 +394,13 @@ dev-perl/Text-Quoted
 dev-perl/Text-Shellwords
 dev-perl/Text-Unaccent
 dev-perl/Text-WikiFormat
+dev-perl/Text-WrapI18N
+dev-perl/Tie-IxHash
+dev-perl/TimeDate
+dev-perl/Tree-DAG_Node
+dev-perl/text-autoformat
+dev-perl/text-reform
+dev-perl/tie-encryptedhash
 dev-perl/XML-RSS
 dev-perl/YAML-Tiny
 perl-core
