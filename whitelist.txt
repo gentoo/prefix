@@ -908,3 +908,4 @@ dev-libs/libmowgli
 dev-libs/libnl
 dev-libs/liboop
 dev-libs/libpthread-stubs
+dev-libs/libyaml
