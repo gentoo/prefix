@@ -97,6 +97,7 @@ media-libs/taglib
 media-libs/tiff
 media-libs/win32codecs
 media-sound/alac_decoder
+media-sound/musepack-tools
 media-sound/phonon
 media-video/mpeg-tools
 net-analyzer/linkchecker
