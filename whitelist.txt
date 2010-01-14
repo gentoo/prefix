@@ -899,3 +899,4 @@ dev-libs/libdshconfig
 dev-libs/libedit
 dev-libs/libevent
 dev-libs/libev
+dev-libs/libksba
