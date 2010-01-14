@@ -1,6 +1,19 @@
 # ChangeLog for sci-biology/embassy-mira
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-mira/ChangeLog,v 1.1 2008/08/27 20:52:41 ribosome Exp $
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-mira/ChangeLog,v 1.4 2009/09/01 22:12:25 ribosome Exp $
+
+  01 Sep 2009; Olivier Fisette <ribosome@gentoo.org> metadata.xml:
+  Giving up maintainership of this package.
+
+*embassy-mira-2.8.2-r1 (01 Sep 2009)
+
+  01 Sep 2009; Olivier Fisette <ribosome@gentoo.org>
+  +embassy-mira-2.8.2-r1.ebuild:
+  Updated version for EMBASSY 6.1.0.
+
+  01 Sep 2009; Olivier Fisette <ribosome@gentoo.org>
+  embassy-mira-2.8.2.ebuild:
+  Stabilised on amd64 and x86.
 
 *embassy-mira-2.8.2 (27 Aug 2008)
 
