@@ -1,0 +1,22 @@
+diff -ru patch-2.6.1.orig/gl/lib/quotearg.c patch-2.6.1/gl/lib/quotearg.c
+--- patch-2.6.1.orig/gl/lib/quotearg.c	2010-01-14 10:17:47 +0100
++++ patch-2.6.1/gl/lib/quotearg.c	2010-01-14 10:22:56 +0100
+@@ -447,6 +447,10 @@
+ 	      }
+ 	    else
+ 	      {
++#ifdef __INTERIX
++		/* broken wchar support :( */
++		printable = false;
++#else // !__INTERIX
+ 		mbstate_t mbstate;
+ 		memset (&mbstate, 0, sizeof mbstate);
+ 
+@@ -502,6 +506,7 @@
+ 		      }
+ 		  }
+ 		while (! mbsinit (&mbstate));
++#endif
+ 	      }
+ 
+ 	    if (1 < m || (backslash_escapes && ! printable))

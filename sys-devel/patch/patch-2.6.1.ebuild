@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-devel/patch/patch-2.6.1.ebuild,v 1.2 2010/01/02 03:35:04 vapier Exp $
 
-inherit flag-o-matic
+inherit flag-o-matic eutils
 
 DESCRIPTION="Utility to apply diffs to files"
 HOMEPAGE="http://www.gnu.org/software/patch/patch.html"
@@ -22,6 +22,8 @@ src_unpack() {
 	cd "${S}"
 	# this file is missing from the tarball bug #300845
 	cp "${FILESDIR}"/gnulib_strnlen.c gl/lib/strnlen.c || die
+
+	epatch "${FILESDIR}"/${P}-interix-nomultibyte.patch
 }
 
 src_compile() {
