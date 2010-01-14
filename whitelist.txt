@@ -971,7 +971,9 @@ dev-perl/XML-Simple
 dev-perl/XML-Twig
 dev-perl/XML-XPath
 dev-perl/XML-XQL
+dev-perl/YAML-Syck
 dev-perl/YAML-Tiny
+dev-perl/yaml
 perl-core
 
 # Operation Deadly Snake (Python), bug #295035
