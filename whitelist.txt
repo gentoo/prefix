@@ -1126,3 +1126,4 @@ x11-proto/damageproto
 x11-proto/dri2proto
 x11-proto/evieext
 x11-proto/fixesproto
+x11-proto/fontcacheproto
