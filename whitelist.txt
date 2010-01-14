@@ -910,3 +910,4 @@ dev-libs/liboop
 dev-libs/libpthread-stubs
 dev-libs/libyaml
 dev-libs/oniguruma
+dev-libs/syck
