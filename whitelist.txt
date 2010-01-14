@@ -879,3 +879,4 @@ dev-ruby/zentest
 
 # Operation Fauli, bug #299250
 x11-apps/rgb
+x11-apps/xcalc
