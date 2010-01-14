@@ -913,3 +913,6 @@ dev-libs/oniguruma
 dev-libs/syck
 dev-libs/tre
 dev-libs/uulib
+dev-libs/libsigsegv
+dev-libs/nettle
+dev-libs/uriparser
