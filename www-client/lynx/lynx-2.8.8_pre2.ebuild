@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.8_pre2.ebuild,v 1.1 2010/01/11 06:55:05 wormo Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/lynx-2.8.8_pre2.ebuild,v 1.2 2010/01/12 07:12:27 wormo Exp $
 
 EAPI=2
 
@@ -96,6 +96,7 @@ src_configure() {
 	fi
 
 	econf \
+		--enable-nested-tables \
 		--enable-cgi-links \
 		--enable-persistent-cookies \
 		--enable-prettysrc \

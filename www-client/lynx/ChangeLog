@@ -1,6 +1,10 @@
 # ChangeLog for www-client/lynx
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.101 2010/01/11 06:55:05 wormo Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/lynx/ChangeLog,v 1.102 2010/01/12 07:12:27 wormo Exp $
+
+  12 Jan 2010; Stephanie Lockwood-Childs <wormo@gentoo.org>
+  lynx-2.8.8_pre2.ebuild:
+  Enable nested table support (bug #292164)
 
 *lynx-2.8.8_pre2 (11 Jan 2010)
 
