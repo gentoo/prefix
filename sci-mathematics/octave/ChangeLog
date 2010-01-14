@@ -1,6 +1,13 @@
 # ChangeLog for sci-mathematics/octave
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/ChangeLog,v 1.79 2009/11/04 11:26:39 markusle Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/ChangeLog,v 1.80 2010/01/12 13:41:48 markusle Exp $
+
+*octave-3.2.3-r1 (12 Jan 2010)
+
+  12 Jan 2010; Markus Dittrich <markusle@gentoo.org>
+  +octave-3.2.3-r1.ebuild:
+  New revision pulls in sci-libs/qrupdate so everybody gets fast QR & Cholesky
+  updating functions.
 
 *octave-3.2.3 (04 Nov 2009)
 
