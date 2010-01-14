@@ -476,7 +476,11 @@ fetch_files() {
 	debug-print() { :; }
 	inherit() {
 		for p in $*; do
-			source '"${PTREEDIR}"'/eclass/${p}.eclass
+			if [[ -f '${PTREEDIR}'/eclass/${p}.eclass ]]; then
+				source '${PTREEDIR}'/eclass/${p}.eclass
+			else
+				source '${MTREEDIR}'/eclass/${p}.eclass
+			fi
 		done
 	}
 	:'
