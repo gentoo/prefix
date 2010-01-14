@@ -1,8 +1,8 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-cbstools/embassy-cbstools-1.0.0.ebuild,v 1.2 2009/09/01 18:20:52 ribosome Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-biology/embassy-cbstools/embassy-cbstools-1.0.0-r1.ebuild,v 1.1 2009/09/01 21:19:37 ribosome Exp $
 
-EBOV="6.0.1"
+EBOV="6.1.0"
 
 inherit embassy
 
