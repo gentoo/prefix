@@ -1042,3 +1042,4 @@ dev-util/dejagnu
 dev-util/diffball
 dev-util/dmake
 dev-util/flawfinder
+dev-util/ftjam
