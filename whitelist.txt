@@ -1064,3 +1064,4 @@ dev-util/re2c
 x11-libs/libXScrnSaver
 dev-util/statcvs
 x11-libs/libXtst
+dev-util/strace
