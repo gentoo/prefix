@@ -98,6 +98,8 @@ app-editors/mlview
 app-editors/mousepad
 app-editors/ne
 app-editors/nedit
+app-editors/teco
+app-editors/vim-core
 app-emacs/autoconf-mode
 app-emacs/bbdb
 app-emacs/cedet
