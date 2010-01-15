@@ -1050,3 +1050,4 @@ dev-util/gtk-doc-am
 x11-libs/libsvg-cairo
 dev-util/hgsvn
 x11-libs/libXau
+dev-util/huc
