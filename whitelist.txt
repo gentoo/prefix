@@ -115,6 +115,11 @@ app-emacs/pymacs
 app-emacs/python-mode
 app-emacs/ruby-mode
 app-emacs/scheme-complete
+app-emulation/emul-linux-x86-baselibs
+app-emulation/emul-linux-x86-compat
+app-emulation/emul-linux-x86-xlibs
+app-emulation/simh
+app-emulation/spim
 app-i18n/skk-jisyo
 app-misc/abook
 app-misc/banner
