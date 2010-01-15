@@ -1046,3 +1046,4 @@ dev-util/ftjam
 dev-util/gitosis-gentoo
 x11-libs/libnotify
 dev-util/gob
+dev-util/gtk-doc-am
