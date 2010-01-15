@@ -1037,3 +1037,4 @@ dev-util/diffstat
 dev-util/intltool
 dev-util/qgit
 dev-util/cvs2cl
+dev-util/cvsd
