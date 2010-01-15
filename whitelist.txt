@@ -1067,3 +1067,4 @@ x11-libs/libXtst
 dev-util/strace
 x11-libs/libXxf86vm
 dev-util/svk
+x11-libs/neXtaw
