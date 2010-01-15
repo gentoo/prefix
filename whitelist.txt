@@ -271,8 +271,6 @@ dev-tex/svninfo
 dev-tex/translator
 dev-tex/xcolor
 dev-texlive/texlive-basic 
-dev-texlive/texlive-latex 
-dev-texlive/texlive-psutils 
 dev-texlive/texlive-bibtexextra 
 dev-texlive/texlive-documentation-base 
 dev-texlive/texlive-fontsextra 
@@ -286,6 +284,7 @@ dev-texlive/texlive-langdutch
 dev-texlive/texlive-langgerman 
 dev-texlive/texlive-langpolish 
 dev-texlive/texlive-langukenglish 
+dev-texlive/texlive-latex 
 dev-texlive/texlive-latex3 
 dev-texlive/texlive-latexextra 
 dev-texlive/texlive-latexrecommended 
@@ -293,6 +292,7 @@ dev-texlive/texlive-mathextra
 dev-texlive/texlive-pictures 
 dev-texlive/texlive-plainextra 
 dev-texlive/texlive-pstricks 
+dev-texlive/texlive-psutils 
 dev-texlive/texlive-publishers 
 dev-texlive/texlive-science 
 dev-texlive/texlive-texinfo 
@@ -586,10 +586,10 @@ www-client/httrack
 www-client/links
 www-misc/htdig
 x11-apps/mesa-progs
+x11-libs/cairo
 x11-libs/gl2ps
 x11-libs/goffice
-x11-libs/libsexy
-x11-libs/libast
+x11-libs/gtk+
 x11-libs/libICE
 x11-libs/libXcomposite
 x11-libs/libXcursor
@@ -599,15 +599,14 @@ x11-libs/libXfixes
 x11-libs/libXfontcache
 x11-libs/libXft
 x11-libs/libXi
-x11-libs/libxkbfile
 x11-libs/libXrender
 x11-libs/libXres
 x11-libs/libXv
 x11-libs/libXvMC
 x11-libs/libXxf86misc
-x11-libs/startup-notification
-x11-libs/cairo
-x11-libs/gtk+
+x11-libs/libast
+x11-libs/libsexy
+x11-libs/libxkbfile
 x11-libs/qt
 x11-libs/qt-assistant
 x11-libs/qt-core
@@ -624,6 +623,7 @@ x11-libs/qt-svg
 x11-libs/qt-test
 x11-libs/qt-webkit
 x11-libs/qt-xmlpatterns
+x11-libs/startup-notification
 x11-misc/bubblemon
 x11-misc/devilspie
 x11-misc/gccmakedep
