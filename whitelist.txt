@@ -141,6 +141,7 @@ app-misc/tmux
 app-misc/ttyrec
 app-misc/zisofs-tools
 app-office/orage
+app-office/texmacs
 app-portage/eclass-manpages
 app-portage/eix
 app-shells/bash-completion
