@@ -238,6 +238,11 @@ dev-libs/log4cxx
 dev-libs/maloc
 dev-libs/rasqal
 dev-libs/redland
+dev-lisp/cl-acl-compat
+dev-lisp/cl-asdf
+dev-lisp/cl-asdf-binary-locations
+dev-lisp/cl-iterate
+dev-lisp/cl-parse-number
 dev-lisp/cl-pipes
 dev-lisp/cl-plus
 dev-lisp/cl-ppcre
