@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/${PN}/${PN}_${MY_PV}.zip"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE=""
 
 COMMON_DEP="dev-java/dom4j:1
