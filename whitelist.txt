@@ -1059,3 +1059,4 @@ x11-libs/libxkbui
 dev-util/pida
 x11-libs/libXp
 dev-util/pscan
+x11-libs/libXrandr
