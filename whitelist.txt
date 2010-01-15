@@ -1065,3 +1065,4 @@ x11-libs/libXScrnSaver
 dev-util/statcvs
 x11-libs/libXtst
 dev-util/strace
+x11-libs/libXxf86vm
