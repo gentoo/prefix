@@ -66,6 +66,7 @@ app-cdr/bchunk
 app-cdr/bin2iso
 app-cdr/ccd2iso
 app-cdr/nrg2iso
+app-cdr/xbiso
 app-crypt/aespipe
 app-crypt/aesutil
 app-crypt/bcrypt
