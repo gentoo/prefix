@@ -1061,3 +1061,4 @@ x11-libs/libXp
 dev-util/pscan
 x11-libs/libXrandr
 dev-util/re2c
+x11-libs/libXScrnSaver
