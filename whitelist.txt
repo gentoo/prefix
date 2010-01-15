@@ -1051,3 +1051,4 @@ x11-libs/libsvg-cairo
 dev-util/hgsvn
 x11-libs/libXau
 dev-util/huc
+x11-libs/libXext
