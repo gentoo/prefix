@@ -17,7 +17,7 @@ HOMEPAGE="http://freemind.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${PN}-src-${MY_PV}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE="doc groovy latex pdf svg"
 COMMON_DEP="dev-java/jgoodies-forms:0
 	dev-java/jibx:0
