@@ -28,6 +28,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-7.1.285-darwin-x11link.patch
 	# upstream: ftp://ftp.vim.org/pub/vim/patches/7.2/7.2.311
 	epatch "${FILESDIR}"/${PN}-7.2.021-mint.patch
+
+	# interix misses SA_NODEFER
+	epatch "${FILESDIR}"/${PN}-7.2.303-interix.patch
 }
 
 src_compile() {
