@@ -23,6 +23,7 @@ profiles
 
 # regular packages (do NOT put portage in here!)
 # including Operation Fauli, bug #299250
+app-admin/apg
 app-admin/chrpath
 app-admin/emacs-updater
 app-admin/eselect
