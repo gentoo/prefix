@@ -1107,3 +1107,4 @@ sys-devel/gnuconfig
 sci-biology/embassy-cbstools
 sci-biology/embassy-iprscan
 sci-biology/embassy-mira
+sci-biology/embassy-vienna
