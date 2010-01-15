@@ -1071,3 +1071,4 @@ x11-libs/neXtaw
 dev-util/tailor
 x11-libs/xcb-util
 dev-util/tig
+x11-libs/xforms
