@@ -1102,3 +1102,4 @@ dev-util/valgrind
 dev-util/xfce4-dev-tools
 www-servers/mongrel
 sys-devel/automake-wrapper
+sys-devel/bc
