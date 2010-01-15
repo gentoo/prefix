@@ -1039,3 +1039,4 @@ dev-util/qgit
 dev-util/cvs2cl
 dev-util/cvsd
 dev-util/dejagnu
+dev-util/diffball
