@@ -1052,3 +1052,4 @@ dev-util/hgsvn
 x11-libs/libXau
 dev-util/huc
 x11-libs/libXext
+dev-util/patchutils
