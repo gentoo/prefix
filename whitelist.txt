@@ -1104,3 +1104,4 @@ www-servers/mongrel
 sys-devel/automake-wrapper
 sys-devel/bc
 sys-devel/gnuconfig
+sci-biology/embassy-cbstools
