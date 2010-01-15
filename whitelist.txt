@@ -785,6 +785,7 @@ dev-ruby/ultraviolet
 dev-ruby/zentest
 
 # Operation Mocca Coffee (Java), no bug yet
+dev-java/ant
 dev-java/ant-antlr
 dev-java/ant-apache-bcel
 dev-java/ant-apache-bsf
@@ -817,13 +818,16 @@ dev-java/bsf
 dev-java/bsh
 dev-java/bytelist
 dev-java/c3p0
+dev-java/cglib
 dev-java/commons-beanutils
+dev-java/commons-cli
 dev-java/commons-codec
 dev-java/commons-collections
 dev-java/commons-dbcp
 dev-java/commons-httpclient
 dev-java/commons-io
 dev-java/commons-lang
+dev-java/commons-logging
 dev-java/commons-net
 dev-java/commons-pool
 dev-java/commons-vfs
@@ -834,6 +838,7 @@ dev-java/eclipse-ecj
 dev-java/ehcache
 dev-java/gjdoc
 dev-java/gnu-regexp
+dev-java/groovy
 dev-java/hamcrest-core
 dev-java/hoteqn
 dev-java/hp-jdk-bin
@@ -855,13 +860,16 @@ dev-java/jcommon
 dev-java/jdepend
 dev-java/jdom
 dev-java/jdom-jaxen
+dev-java/jettison
 dev-java/jfreechart
+dev-java/jgroups
 dev-java/jline
 dev-java/jmock
 dev-java/jna-posix
 dev-java/jnlp-bin
 dev-java/joda-time
 dev-java/joni
+dev-java/jrexx
 dev-java/jsch
 dev-java/jsr173
 dev-java/jta
@@ -883,6 +891,7 @@ dev-java/sax
 dev-java/saxpath
 dev-java/servletapi
 dev-java/simplyhtml
+dev-java/stringtemplate
 dev-java/sun-jacc-api
 dev-java/sun-jaf
 dev-java/sun-javamail
@@ -891,6 +900,7 @@ dev-java/sun-jmx
 dev-java/swarmcache
 dev-java/tagsoup
 dev-java/tomcat-servlet-api
+dev-java/trove
 dev-java/xalan
 dev-java/xalan-serializer
 dev-java/xerces
