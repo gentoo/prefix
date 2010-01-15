@@ -1,0 +1,19 @@
+diff -ru glib-2.22.3.orig/configure.in glib-2.22.3/configure.in
+--- glib-2.22.3.orig/configure.in	2010-01-14 17:13:21 +0100
++++ glib-2.22.3/configure.in	2010-01-14 17:20:12 +0100
+@@ -979,7 +979,14 @@
+ 
+ glib_failed=false
+ GLIB_CHECK_VALUE(AF_INET, $glib_inet_includes, glib_failed=true)
+-GLIB_CHECK_VALUE(AF_INET6, $glib_inet_includes, glib_failed=true)
++# NO ipv6 support in interix... there never will be propper support
++# for the older ones (since vista -> partial support)
++case "$host" in
++*-interix*) ;;
++*)
++	GLIB_CHECK_VALUE(AF_INET6, $glib_inet_includes, glib_failed=true)
++	;;
++esac
+ # winsock defines this even though it doesn't support it
+ GLIB_CHECK_VALUE(AF_UNIX, $glib_inet_includes, glib_failed=true)
+ if $glib_failed ; then

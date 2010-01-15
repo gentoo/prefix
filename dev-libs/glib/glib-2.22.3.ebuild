@@ -21,6 +21,10 @@ RDEPEND="virtual/libiconv
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
 	x86-winnt? ( >=dev-util/gtk-doc-am-1.11 )
+	x86-interix? ( 
+		sys-libs/itx-bind
+		>=dev-util/gtk-doc-am-1.11 
+	)
 	doc? (
 		>=dev-libs/libxslt-1.0
 		>=dev-util/gtk-doc-1.11
@@ -69,6 +73,21 @@ src_prepare() {
 		# be useful for others too, requires eautoreconf
 		epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
 		epatch "${FILESDIR}"/${PN}-2.20.5-winnt-exeext.patch
+		AT_M4DIR="m4macros" eautoreconf
+	fi
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		# conditional only to avoid auto-reconfing on other platforms.
+		# there are hunks disabling some GTK_DOC macros - i guess that
+		# the gtk-doc-am package in the tree is too old to bootstrap
+		# glib correctly ... :/
+		epatch "${FILESDIR}"/${P}-interix.patch
+
+		# interix 3 and 5 have no ipv6 support, so take it out (phew...)
+		if [[ ${CHOST} == *-interix[35]* ]]; then
+			epatch "${FILESDIR}"/${P}-interix-network.patch
+		fi
+
 		AT_M4DIR="m4macros" eautoreconf
 	fi
 
