@@ -1103,3 +1103,4 @@ dev-util/xfce4-dev-tools
 www-servers/mongrel
 sys-devel/automake-wrapper
 sys-devel/bc
+sys-devel/gnuconfig
