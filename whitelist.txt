@@ -1044,3 +1044,4 @@ dev-util/dmake
 dev-util/flawfinder
 dev-util/ftjam
 dev-util/gitosis-gentoo
+x11-libs/libnotify
