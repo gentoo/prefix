@@ -55,7 +55,7 @@ sgml-catalog_pkg_postrm() {
 	for entry in ${SGML_TOINSTALL}; do
 		arg1=`echo ${entry} | cut -f1 -d\:`
 		arg2=`echo ${entry} | cut -f2 -d\:`
-		if [ -e ${arg2} ]
+		if [ -e "${EPREFIX}"${arg2} ]
 		then
 			ewarn "${arg2} still exists!  Not removing from ${arg1}"
 			ewarn "This is normal behavior for an upgrade ..."
