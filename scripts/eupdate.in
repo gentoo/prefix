@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 # Copyright Gentoo Foundation 2006-2009
 
+# <abcd@gentoo.org> -- 2010-01-14
+# allow eclasses to be found in MTREEDIR if not in PTREEDIR
 # <zuxez@cs.tu-berlin.de> -- 2009-08-11
 # allow to use web-based viewcvs instead of anonymous CVS access
 # <grobian@gentoo.org> -- 2008-06-17
@@ -476,10 +478,10 @@ fetch_files() {
 	debug-print() { :; }
 	inherit() {
 		for p in $*; do
-			if [[ -f '${PTREEDIR}'/eclass/${p}.eclass ]]; then
-				source '${PTREEDIR}'/eclass/${p}.eclass
+			if [[ -f '"${PTREEDIR}"'/eclass/${p}.eclass ]]; then
+				source '"${PTREEDIR}"'/eclass/${p}.eclass
 			else
-				source '${MTREEDIR}'/eclass/${p}.eclass
+				source '"${MTREEDIR}"'/eclass/${p}.eclass
 			fi
 		done
 	}
