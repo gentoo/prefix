@@ -1054,3 +1054,4 @@ dev-util/huc
 x11-libs/libXext
 dev-util/patchutils
 x11-libs/libXinerama
+dev-util/pccts
