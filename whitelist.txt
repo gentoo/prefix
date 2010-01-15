@@ -1056,3 +1056,4 @@ dev-util/patchutils
 x11-libs/libXinerama
 dev-util/pccts
 x11-libs/libxkbui
+dev-util/pida
