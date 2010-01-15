@@ -44,9 +44,12 @@ app-arch/lzma
 app-arch/lzop
 app-arch/makeself
 app-arch/mscompress
+app-arch/p7zip
 app-arch/par
+app-arch/par2cmdline
 app-arch/pigz
 app-arch/rzip
+app-arch/sharutils
 app-arch/unace
 app-arch/unadf
 app-arch/unarj
