@@ -1047,3 +1047,4 @@ dev-util/gitosis-gentoo
 x11-libs/libnotify
 dev-util/gob
 dev-util/gtk-doc-am
+x11-libs/libsvg-cairo
