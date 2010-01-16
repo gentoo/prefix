@@ -341,9 +341,6 @@ gnustep-base/gnustep-back-art
 gnustep-base/gnustep-back-cairo
 gnustep-base/gnustep-back-xlib
 gnustep-base/mknfonts
-lxde-base/lxappearance
-lxde-base/lxmenu-data
-lxde-base/menu-cache
 mail-client/mailx
 mail-client/mutt
 mail-filter/razor
@@ -687,6 +684,7 @@ app-vim
 dev-dotnet
 kde-base
 gnome-extra
+lxde-base
 net-print
 sci-electronics
 virtual
