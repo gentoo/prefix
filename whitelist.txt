@@ -553,7 +553,6 @@ sci-biology/prosite
 sci-biology/rebase
 sci-biology/transfac
 sci-biology/tree-puzzle
-sci-calculators/wcalc
 sci-libs/amd
 sci-libs/buddy
 sci-libs/camd
@@ -702,6 +701,7 @@ kde-base
 gnome-extra
 lxde-base
 net-print
+sci-calculators
 sci-electronics
 virtual
 xfce-base
