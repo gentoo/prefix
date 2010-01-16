@@ -528,6 +528,7 @@ net-misc/wakeonlan
 net-misc/youtube-dl
 net-nntp/newspost
 net-p2p/mutella
+net-wireless/iw
 sci-biology/aaindex
 sci-biology/clustalw
 sci-biology/elph
