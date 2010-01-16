@@ -509,6 +509,12 @@ net-libs/webkit-gtk
 net-mail/getmail
 net-mail/mlmmj
 net-mail/offlineimap
+net-misc/aget
+net-misc/autossh
+net-misc/gsasl
+net-misc/iperf
+net-misc/iputils
+net-misc/keychain
 net-misc/mDNSResponder
 net-misc/memcached
 net-misc/mico
@@ -516,6 +522,7 @@ net-misc/neon
 net-misc/puf
 net-misc/sitecopy
 net-misc/throttle
+net-misc/tinc
 net-misc/unison
 net-misc/wakeonlan
 net-misc/youtube-dl
