@@ -1,5 +1,10 @@
---- configure.in.orig	2009-07-24 15:51:37 +0200
-+++ configure.in	2009-07-24 16:11:34 +0200
+fix shared library creation for aix (#278845)
+
+http://bugs.python.org/issue941346 looks like an alternative approach
+http://bugs.python.org/issue1542544 seems like a predecessor of the previous
+
+--- configure.in
++++ configure.in
 @@ -623,11 +623,16 @@
  	case $ac_sys_system in
  	AIX*)
