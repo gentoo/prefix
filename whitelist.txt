@@ -353,6 +353,7 @@ media-fonts/artwiz-aleczapka-en
 media-fonts/baekmuk-fonts
 media-fonts/corefonts
 media-fonts/dejavu
+media-fonts/font-adobe-75dpi
 media-fonts/font-cursor-misc
 media-fonts/font-misc-misc
 media-fonts/freefonts
