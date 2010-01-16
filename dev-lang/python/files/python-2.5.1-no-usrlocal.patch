@@ -1,5 +1,7 @@
---- setup.py.orig	2007-11-05 22:22:22 +0100
-+++ setup.py	2007-11-05 22:27:05 +0100
+http://bugs.python.org/issue7713
+
+--- setup.py
++++ setup.py
 @@ -252,8 +252,8 @@
      def detect_modules(self):
          global disable_ssl

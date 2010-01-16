@@ -1,4 +1,7 @@
 make gcc_version ignore --enable-version-specific-runtime-libs
+
+http://bugs.python.org/issue7714
+
 --- configure.in
 +++ configure.in
 @@ -1361,7 +1361,7 @@

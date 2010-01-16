@@ -1,6 +1,8 @@
 Framework related patches stolen from MacPorts
 http://trac.macports.org/browser/trunk/dports/lang/python26/files
 
+http://bugs.python.org/issue3646
+
 --- Mac/IDLE/Makefile.in.orig	2009-01-02 04:47:17.000000000 -0700
 +++ Mac/IDLE/Makefile.in	2009-04-16 00:54:43.000000000 -0600
 @@ -22,7 +22,7 @@

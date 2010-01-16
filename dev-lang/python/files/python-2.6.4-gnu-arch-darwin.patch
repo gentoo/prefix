@@ -1,5 +1,7 @@
 don't die if we happen to use GNU arch instead of Darwin arch
 
+http://bugs.python.org/issue7715
+
 --- configure.in
 +++ configure.in
 @@ -1593,10 +1593,10 @@
