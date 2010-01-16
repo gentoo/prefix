@@ -325,6 +325,7 @@ gnome-base/eel
 gnome-base/gail
 gnome-base/gnome-applets
 gnome-base/gnome-common
+gnome-base/gnome-control-center
 gnome-base/gnome-desktop
 gnome-base/gnome-light
 gnome-base/gnome-mime-data
@@ -335,6 +336,7 @@ gnome-base/libgnome
 gnome-base/libgnomekbd
 gnome-base/libgnomeprint
 gnome-base/libgnomeprintui
+gnome-base/nautilus
 gnome-extra/gcalctool
 gnome-extra/gconf-editor
 gnome-extra/gnome-media
