@@ -560,6 +560,7 @@ sci-libs/ccolamd
 sci-libs/cholmod
 sci-libs/colamd
 sci-libs/cxsparse
+sci-libs/fftw
 sci-libs/geos
 sci-libs/libgeotiff
 sci-libs/metis
