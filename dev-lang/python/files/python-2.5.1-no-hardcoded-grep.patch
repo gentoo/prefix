@@ -1,7 +1,8 @@
-* Every os that doesn't match any of the above cases, and has
-  /etc/netconfig (like IRIX) will bark that /usr/xpg4/bin/grep is not
-  available.  But then again, in prefix we want it to use our own grep
-  anyway.
+* Every os that doesn't match any of the previous cases, and has
+  /etc/netconfig (like IRIX) might bark that /usr/xpg4/bin/grep is not
+  available.  For Prefix we prefer to use our own grep anyway.
+
+http://bugs.python.org/issue7716
 
 --- configure.in
 +++ configure.in

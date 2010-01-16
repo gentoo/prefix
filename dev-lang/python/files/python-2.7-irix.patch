@@ -46,17 +46,6 @@ http://bugs.python.org/issue7717
  
  #if !defined(HAVE_NCURSES_H) && (defined(sgi) || defined(__sun) || defined(SCO5))
  #define STRICT_SYSV_CURSES       /* Don't use ncurses extensions */
---- Modules/_fileio.c.dist
-+++ Modules/_fileio.c
-@@ -33,7 +33,7 @@ typedef struct {
- 	unsigned int readable : 1;
- 	unsigned int writable : 1;
- 	signed int seekable : 2; /* -1 means unknown */
--	signed int closefd : 1;
-+	unsigned int closefd : 1; /* How can a 1-bit field be signed? */
- 	PyObject *weakreflist;
- } PyFileIOObject;
- 
 --- Modules/mmapmodule.c.orig
 +++ Modules/mmapmodule.c
 @@ -50,6 +50,10 @@ my_getallocationgranularity (void)
@@ -139,8 +128,8 @@ http://bugs.python.org/issue7717
  		}
  	}
  
--	result = _CallProc(pProc,
-+	result = _CallProc((PPROC)pProc,
+-	result = _ctypes_callproc(pProc,
++	result = _ctypes_callproc((PPROC)pProc,
  			   callargs,
  #ifdef MS_WIN32
  			   piunk,

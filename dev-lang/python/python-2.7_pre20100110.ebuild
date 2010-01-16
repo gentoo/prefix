@@ -117,7 +117,7 @@ src_prepare() {
 	# build static for mint
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.6.2-mint.patch
 
-	# python defaults to using .so files, however they are bundles
+	# python calls a bundle a .so file, however on Gentoo we use .bundle
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
 	# need this to have _NSGetEnviron being used, which by default isn't...
 	[[ ${CHOST} == *-darwin* ]] && \
@@ -129,9 +129,12 @@ src_prepare() {
 	# for Mac weenies
 	epatch "${FILESDIR}"/${PN}-2.7-mac.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-mac-just-prefix.patch
-	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}/usr"':' \
-		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}/usr"':' \
-		Makefile.pre.in || die
+	if use aqua ; then
+		# make sure we don't get a framework reference here
+		sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}/usr"':' \
+			-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}/usr"':' \
+			Makefile.pre.in || die
+	fi
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
@@ -139,17 +142,15 @@ src_prepare() {
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
 	# make it compile on IRIX as well
-	epatch "${FILESDIR}"/${PN}-2.6.4-irix.patch
+	epatch "${FILESDIR}"/${PN}-2.7-irix.patch
 	# and generate a libpython2.6.so
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
-	# don't try to build antique stuff
-	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
 	# this fails to compile on OpenSolaris at least, do we need it?
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-sunaudiodev.patch
 	# 64-bits Solaris 8-10 have a missing libcrypt symlink
-	epatch "${FILESDIR}"/${PN}-2.6.2-solaris64-crypt.patch
+	epatch "${FILESDIR}"/${PN}-2.7-solaris64-crypt.patch
 
 	# http://bugs.python.org/issue6308
 	epatch "${FILESDIR}"/${PN}-2.6.2-termios-noqnx.patch

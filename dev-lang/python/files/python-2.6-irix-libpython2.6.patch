@@ -1,5 +1,7 @@
 * <srcshelton@gmail.com>: make a shared libpython2.6.so on IRIX too...
 
+http://bugs.python.org/issue7718
+
 --- configure.in
 +++ configure.in
 @@ -706,6 +706,12 @@
