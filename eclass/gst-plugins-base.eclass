@@ -66,8 +66,12 @@ gst-plugins-base_src_configure() {
 		gst_conf="${gst_conf} --enable-${plugin} "
 	done
 
-	cd ${S}
-	econf ${@} --with-package-name="Gentoo GStreamer Ebuild" --with-package-origin="http://www.gentoo.org" ${gst_conf} || die "./configure failure"
+	cd "${S}"
+	# PREFIX: for some reason Debug is on by default, which causes
+	# -g to be injected in CFLAGS, which in turn causes gcc to generate code
+	# that the assembler segfaults on (yay) on Darwin, so disable it using
+	# --disable-debug
+	econf ${@} --disable-debug --with-package-name="Gentoo GStreamer Ebuild" --with-package-origin="http://www.gentoo.org" ${gst_conf} || die "./configure failure"
 
 }
 
