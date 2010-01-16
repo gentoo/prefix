@@ -458,6 +458,7 @@ media-sound/mt-daapd
 media-sound/musepack-tools
 media-sound/phonon
 media-sound/shntool
+media-sound/snd
 media-sound/sox
 media-sound/streamripper
 media-video/asfrecorder
