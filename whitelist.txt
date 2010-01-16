@@ -486,6 +486,7 @@ net-analyzer/ttcp
 net-dialup/lrzsz
 net-dns/c-ares
 net-fs/curlftpfs
+net-ftp/ncftp
 net-ftp/tnftp
 net-im/pork
 net-irc/quassel
