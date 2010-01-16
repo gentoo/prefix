@@ -1121,3 +1121,11 @@ sci-biology/embassy-mira
 sci-biology/embassy-vienna
 dev-ruby/actionpack
 dev-libs/libunique
+dev-ruby/activesupport
+dev-ruby/net-ssh
+dev-ruby/net-sftp
+dev-ruby/hpricot
+dev-ruby/activerecord
+dev-ruby/activeresource
+dev-ruby/actionmailer
+dev-ruby/sqlite3-ruby
