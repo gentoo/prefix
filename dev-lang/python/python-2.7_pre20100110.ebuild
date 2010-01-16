@@ -156,7 +156,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6.2-termios-noqnx.patch
 
 	# build shared library on aix #278845
-	epatch "${FILESDIR}"/${PN}-2.6.2-aix-shared.patch
+	# needs fixing, doesn't not apply cleanly any more
+#	epatch "${FILESDIR}"/${PN}-2.6.2-aix-shared.patch
 
 	epatch "${FILESDIR}"/${PN}-2.6.2-missing-SEM_FAILED.patch # hpux before 11.31
 
