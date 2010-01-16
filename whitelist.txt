@@ -501,6 +501,7 @@ net-libs/libgsasl
 net-libs/libnet
 net-libs/libnice
 net-libs/libotr
+net-libs/libpcap
 net-libs/libsoup-gnome
 net-libs/libssh
 net-libs/libssh2
