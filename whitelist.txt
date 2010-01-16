@@ -388,6 +388,7 @@ media-gfx/pngcrush
 media-gfx/pngrewrite
 media-gfx/pngtoico
 media-gfx/potrace
+media-gfx/ufraw
 media-libs/a52dec
 media-libs/alsa-lib
 media-libs/amrnb
