@@ -337,13 +337,6 @@ gnome-base/libgnomekbd
 gnome-base/libgnomeprint
 gnome-base/libgnomeprintui
 gnome-base/nautilus
-gnome-extra/gcalctool
-gnome-extra/gconf-editor
-gnome-extra/gnome-media
-gnome-extra/gtkhtml
-gnome-extra/libgsf
-gnome-extra/yelp
-gnome-extra/zenity
 gnustep-base/gnustep-back-art
 gnustep-base/gnustep-back-cairo
 gnustep-base/gnustep-back-xlib
@@ -693,6 +686,7 @@ x11-wm/windowmaker
 app-vim
 dev-dotnet
 kde-base
+gnome-extra
 net-print
 sci-electronics
 virtual
