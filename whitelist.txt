@@ -435,6 +435,7 @@ media-libs/swfdec
 media-libs/taglib
 media-libs/tiff
 media-libs/win32codecs
+media-plugins/audacious-plugins
 media-plugins/gst-plugins-alsa
 media-plugins/gst-plugins-esd
 media-plugins/gst-plugins-gconf
