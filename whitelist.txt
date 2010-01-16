@@ -469,11 +469,13 @@ media-video/mpeg2vidcodec
 media-video/mpgtx
 net-analyzer/argus
 net-analyzer/arping
+net-analyzer/cryptcat
 net-analyzer/fping
 net-analyzer/iftop
 net-analyzer/lft
 net-analyzer/libnasl
 net-analyzer/linkchecker
+net-analyzer/netcat
 net-analyzer/netio
 net-analyzer/p0f
 net-analyzer/packit
