@@ -178,41 +178,23 @@ elibtoolize() {
 	[[ ${do_uclibc} == "yes" ]] && \
 		elt_patches="${elt_patches} uclibc-conf uclibc-ltconf"
 
-	[[ ${CHOST} == *"-freebsd"* ]] && \
-		elt_patches="${elt_patches} fbsd-conf fbsd-ltconf"
-
-	# Hardcoding library path does not work with DESTDIR installs.
-	#
-	# Affects any platform with 'hardcode_direct=yes' or 'hardcode_minus_L=yes'.
-	# According to libtool.m4 (as of libtool-1.5.26), these are:
-	#    *-aix*
-	#    *-hpux9
-	#    hppa-hpux* (not hppa64 or ia64)
-	#    *-netbsd
-	#    *-openbsd
-	#    *-freebsd
-	#    *-dragonfly
-	#    *-newsos6
-	#    *-os2
-	#    *-amigaos
-	#    *-sunos4
-	#    *-sysv4
-	# It definitely is required for aix (to support DESTDIR),
-	# although it should help for others too...
-	[[ ${CHOST} == *"-aix"* ]] &&
-		elt_patches="${elt_patches} hardcode aixrtl"
-
-	[[ ${CHOST} == *"-darwin"* ]] && \
-		elt_patches="${elt_patches} darwin-ltconf darwin-ltmain darwin-conf"
-
-	[[ ${CHOST} == *"-mint"* ]] && \
-		elt_patches="${elt_patches} mint-conf"
-
-	# Need help from binutils-config (>=toolchain-prefix-wrapper-0.3.1655)
-	# to create correct shared libraries and executables on hppa-hpux via
-	# libtool in combination with DESTDIR to avoid $D getting encoded.
-	[[ ${CHOST} == *"-hpux"* ]] && \
-		elt_patches="${elt_patches} hpux-conf deplibs hc-flag-ld hardcode hardcode-relink relink-prog no-lc"
+	case "${CHOST}" in
+		*-aix*)
+			elt_patches="${elt_patches} hardcode aixrtl"
+		;;
+		*-darwin*)
+			elt_patches="${elt_patches} darwin-ltconf darwin-ltmain darwin-conf"
+		;;
+		*-freebsd*)
+			elt_patches="${elt_patches} fbsd-conf fbsd-ltconf"
+		;;
+		*-hpux*)
+			elt_patches="${elt_patches} hpux-conf deplibs hc-flag-ld hardcode hardcode-relink relink-prog no-lc"
+		;;
+		*-mint*)
+			elt_patches="${elt_patches} mint-conf"
+		;;
+	esac
 
 	for x in ${my_dirlist} ; do
 		local tmp=$(echo "${x}" | sed -e "s|${WORKDIR}||")
