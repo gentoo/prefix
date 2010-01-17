@@ -800,6 +800,7 @@ x11-themes/gnome-icon-theme
 x11-themes/gnome-themes
 x11-themes/gtk-engines
 x11-themes/gtk-engines-aurora
+x11-themes/gtk-engines-murrine
 x11-themes/gtk-engines-xfce
 x11-themes/gtk-theme-switch
 x11-themes/hicolor-icon-theme
