@@ -98,7 +98,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6.2-readline-prefix.patch
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-use-first-bsddb-found.patch
-#	epatch "${FILESDIR}"/${PN}-2.6.2-prefix.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
@@ -135,11 +134,14 @@ src_prepare() {
 	# for Mac weenies
 	epatch "${FILESDIR}"/${PN}-2.6.2-mac.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-mac-just-prefix.patch
+#	epatch "${FILESDIR}"/${PN}-2.6.2-prefix.patch
 	sed -i -e "s:@@APPLICATIONS_DIR@@:${EPREFIX}/Applications:g" \
 		Mac/Makefile.in \
 		Mac/IDLE/Makefile.in \
 		Mac/Tools/Doc/setup.py \
 		Mac/PythonLauncher/Makefile.in || die
+	# we need to set this to prevent the framework path to be used in an OSX
+	# Framework build, which causes misc unwanted effects in our UNIX-savvy env
 	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}/usr"':' \
 		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}/usr"':' \
 		Makefile.pre.in || die

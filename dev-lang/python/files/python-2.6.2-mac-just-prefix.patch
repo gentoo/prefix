@@ -1,6 +1,8 @@
 - don't mess with arch flags
 - use our own libtool
 - avoid rm complaining it has nothing to remove (xargs -r GNU extension)
+- don't add framework paths to the default search path, but the prefix
+  dirs instead
 
 --- Python-2.6.2/Mac/PythonLauncher/Makefile.in
 +++ Python-2.6.2/Mac/PythonLauncher/Makefile.in
@@ -47,3 +49,17 @@
      LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -install_name $(PYTHONFRAMEWORKINSTALLDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
      LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -compatibility_version $(VERSION) -current_version $(VERSION)';;
  esac
+--- Python-2.6.2/setup.py
++++ Python-2.6.2/setup.py
+@@ -365,9 +365,9 @@
+ 
+         if os.path.normpath(sys.prefix) != '/usr':
+             add_dir_to_list(self.compiler.library_dirs,
+-                            sysconfig.get_config_var("LIBDIR"))
++                            sys.prefix + "/@@GENTOO_LIBDIR@@")
+             add_dir_to_list(self.compiler.include_dirs,
+-                            sysconfig.get_config_var("INCLUDEDIR"))
++                            sys.prefix + "/include")
+ 
+         try:
+             have_unicode = unicode
