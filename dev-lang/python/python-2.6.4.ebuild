@@ -94,7 +94,12 @@ src_prepare() {
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
 	# apply before Gentoo libdir comes into effect
+	# these patches get rid of unwanted looking around in the host OS
 	epatch "${FILESDIR}"/${PN}-2.6.2-readline-prefix.patch
+	epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
+	epatch "${FILESDIR}"/${PN}-2.6.2-use-first-bsddb-found.patch
+#	epatch "${FILESDIR}"/${PN}-2.6.2-prefix.patch
+	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -113,10 +118,6 @@ src_prepare() {
 		# Remove Microsoft Windows executables.
 		rm Lib/distutils/command/wininst-*.exe
 	fi
-
-	use prefix && epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
-	use prefix && epatch "${FILESDIR}"/${PN}-2.6.2-use-first-bsddb-found.patch
-	use prefix && epatch "${FILESDIR}"/${PN}-2.6.2-prefix.patch
 
 	# build static for mint
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.6.2-mint.patch
@@ -154,20 +155,16 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
-	# don't try to build antique stuff
-	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
 	# this fails to compile on OpenSolaris at least, do we need it?
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-sunaudiodev.patch
 	# 64-bits Solaris 8-10 have a missing libcrypt symlink
 	epatch "${FILESDIR}"/${PN}-2.6.2-solaris64-crypt.patch
-
 	# http://bugs.python.org/issue6308
 	epatch "${FILESDIR}"/${PN}-2.6.2-termios-noqnx.patch
-
 	# build shared library on aix #278845
 	epatch "${FILESDIR}"/${PN}-2.6.2-aix-shared.patch
-
-	epatch "${FILESDIR}"/${PN}-2.6.2-missing-SEM_FAILED.patch # hpux before 11.31
+	# hpux before 11.31
+	epatch "${FILESDIR}"/${PN}-2.6.2-missing-SEM_FAILED.patch
 
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.

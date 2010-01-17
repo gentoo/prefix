@@ -75,25 +75,6 @@ IRIX's MIPSpro is a bit stricter, ffi needs some patching for mips too
  
  #if !defined(HAVE_NCURSES_H) && (defined(sgi) || defined(__sun) || defined(SCO5))
  #define STRICT_SYSV_CURSES       /* Don't use ncurses extensions */
---- Modules/_ctypes/libffi/src/mips/ffitarget.h.dist	2009-02-23 17:21:24.215344800 +0000
-+++ Modules/_ctypes/libffi/src/mips/ffitarget.h	2009-02-23 17:22:48.681740400 +0000
-@@ -121,12 +121,12 @@
- #else /* !LIBFFI_ASM */
- #ifdef FFI_MIPS_O32
- /* O32 stack frames have 32bit integer args */
--typedef unsigned int     ffi_arg __attribute__((__mode__(__SI__)));
--typedef signed   int     ffi_sarg __attribute__((__mode__(__SI__)));
-+typedef __uint32_t ffi_arg;
-+typedef __int32_t ffi_sarg;
- #else
- /* N32 and N64 frames have 64bit integer args */
--typedef unsigned int     ffi_arg __attribute__((__mode__(__DI__)));
--typedef signed   int     ffi_sarg __attribute__((__mode__(__DI__)));
-+typedef __uint64_t ffi_arg;
-+typedef __int64_t ffi_sarg;
- #endif
- 
- typedef enum ffi_abi {
 --- Makefile.pre.in.dist	2009-02-23 18:17:45.443021760 +0000
 +++ Makefile.pre.in	2009-02-23 18:18:07.095735440 +0000
 @@ -481,7 +481,7 @@ Modules/python.o: $(srcdir)/Modules/pyth
