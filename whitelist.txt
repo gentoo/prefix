@@ -675,6 +675,7 @@ sys-process/unixtop
 www-apps/scgi
 www-client/httrack
 www-client/links
+www-client/pybugz
 www-misc/htdig
 www-servers/mongrel
 x11-apps/appres
