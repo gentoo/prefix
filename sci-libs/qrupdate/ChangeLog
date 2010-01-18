@@ -1,0 +1,30 @@
+# ChangeLog for sci-libs/qrupdate
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/qrupdate/ChangeLog,v 1.7 2010/01/12 05:16:13 markusle Exp $
+
+*qrupdate-1.1.0 (12 Jan 2010)
+
+  12 Jan 2010; Markus Dittrich <markusle@gentoo.org> +qrupdate-1.1.0.ebuild:
+  Version bump.
+
+  26 Dec 2009; Raúl Porcel <armin76@gentoo.org> qrupdate-1.0.1.ebuild:
+  Add ~sparc wrt #285149
+
+  06 Nov 2009; Mounir Lamouri <volkmar@gentoo.org> qrupdate-1.0.1.ebuild:
+  Keywording for ppc, bug 285149
+
+  12 Oct 2009; Jeroen Roovers <jer@gentoo.org> qrupdate-1.0.1.ebuild:
+  Marked ~hppa (bug #285149).
+
+  01 Oct 2009; Tobias Klausmann <klausman@gentoo.org> qrupdate-1.0.1.ebuild:
+  Keyworded on alpha, bug #285149
+
+  25 Sep 2009; Brent Baude <ranger@gentoo.org> qrupdate-1.0.1.ebuild:
+  Marking qrupdate-1.0.1 ~ppc64 for bug 285149
+
+*qrupdate-1.0.1 (11 Sep 2009)
+
+  11 Sep 2009; Markus Dittrich <markusle@gentoo.org> +qrupdate-1.0.1.ebuild,
+  +files/qrupdate-1.0.1-makefile.patch, +metadata.xml:
+  Initial import into portage tree (fixes bug #282203).
+
