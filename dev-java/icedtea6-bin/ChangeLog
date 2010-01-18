@@ -1,6 +1,18 @@
 # ChangeLog for dev-java/icedtea6-bin
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/ChangeLog,v 1.9 2009/12/28 20:48:10 maekke Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/ChangeLog,v 1.12 2010/01/17 19:59:40 ssuominen Exp $
+
+  17 Jan 2010; Samuli Suominen <ssuominen@gentoo.org>
+  icedtea6-bin-1.6.1.ebuild, icedtea6-bin-1.6.2.ebuild,
+  icedtea6-bin-1.6.2-r1.ebuild:
+  Restrict depend to =media-libs/jpeg-7* for matching SONAME.
+
+*icedtea6-bin-1.6.2-r1 (16 Jan 2010)
+
+  16 Jan 2010; Petteri Räty <betelgeuse@gentoo.org>
+  +icedtea6-bin-1.6.2-r1.ebuild:
+  Add dep on x11-libs/libXt for the X use flag as the installed jni headers
+  need a file from it.
 
   28 Dec 2009; Markus Meier <maekke@gentoo.org> icedtea6-bin-1.6.2.ebuild:
   amd64 stable, bug #292003

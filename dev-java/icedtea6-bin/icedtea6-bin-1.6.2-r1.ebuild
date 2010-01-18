@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/icedtea6-bin-1.6.2.ebuild,v 1.4 2010/01/17 19:19:29 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/icedtea6-bin-1.6.2-r1.ebuild,v 1.2 2010/01/17 19:19:29 ssuominen Exp $
 
 EAPI="1"
 
@@ -8,18 +8,19 @@ inherit java-vm-2
 
 dist="mirror://gentoo/"
 DESCRIPTION="A Gentoo-made binary build of the icedtea6 JDK"
-SRC_URI="amd64? ( ${dist}/${PN}-core-${PVR}-amd64.tar.bz2 )
-	x86? ( ${dist}/${PN}-core-${PVR}-x86.tar.bz2 )
-	doc? ( ${dist}/${PN}-doc-${PVR}.tar.bz2 )
+TARBALL_VERSION="${PV}"
+SRC_URI="amd64? ( ${dist}/${PN}-core-${TARBALL_VERSION}-amd64.tar.bz2 )
+	x86? ( ${dist}/${PN}-core-${TARBALL_VERSION}-x86.tar.bz2 )
+	doc? ( ${dist}/${PN}-doc-${TARBALL_VERSION}.tar.bz2 )
 	examples? (
-		amd64? ( ${dist}/${PN}-examples-${PVR}-amd64.tar.bz2 )
-		x86? ( ${dist}/${PN}-examples-${PVR}-x86.tar.bz2 )
+		amd64? ( ${dist}/${PN}-examples-${TARBALL_VERSION}-amd64.tar.bz2 )
+		x86? ( ${dist}/${PN}-examples-${TARBALL_VERSION}-x86.tar.bz2 )
 	)
 	nsplugin? (
-		amd64? ( ${dist}/${PN}-nsplugin-${PVR}-amd64.tar.bz2 )
-		x86? ( ${dist}/${PN}-nsplugin-${PVR}-x86.tar.bz2 )
+		amd64? ( ${dist}/${PN}-nsplugin-${TARBALL_VERSION}-amd64.tar.bz2 )
+		x86? ( ${dist}/${PN}-nsplugin-${TARBALL_VERSION}-x86.tar.bz2 )
 	)
-	source? ( ${dist}/${PN}-src-${PVR}.tar.bz2 )"
+	source? ( ${dist}/${PN}-src-${TARBALL_VERSION}.tar.bz2 )"
 HOMEPAGE="http://icedtea.classpath.org"
 
 IUSE="X alsa doc examples nsplugin source"
@@ -29,7 +30,7 @@ LICENSE="GPL-2-with-linking-exception"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 
-S="${WORKDIR}/${PF}"
+S="${WORKDIR}/${PN}-${TARBALL_VERSION}"
 
 RDEPEND=">=sys-devel/gcc-4.3
 	!prefix? ( >=sys-libs/glibc-2.9 )
@@ -45,6 +46,7 @@ RDEPEND=">=sys-devel/gcc-4.3
 		>=x11-libs/libXi-1.2.1
 		>=x11-libs/libXtst-1.0.3
 		>=x11-libs/libX11-1.2.2
+		x11-libs/libXt
 	)
 	nsplugin? (
 		>=dev-libs/atk-1.26.0
