@@ -91,22 +91,22 @@ efetch() {
 bootstrap_setup() {
 	local profile=""
 	local keywords=""
-	local ldflags_make_globals="LDFLAGS=\"-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib\""
-	local cppflags_make_globals="CPPFLAGS=\"-I${EPREFIX}/usr/include\""
+	local ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib\""
+	local cppflags_make_defaults="CPPFLAGS=\"-I${ROOT}/usr/include\""
 	local extra_make_globals=""
 	einfo "setting up some guessed defaults"
 	case ${CHOST} in
 		powerpc-apple-darwin7)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.3"
-			ldflags_make_globals="LDFLAGS=\"-Wl,-search_paths_first -L${EPREFIX}/usr/lib -L${EPREFIX}/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
 		powerpc-apple-darwin8)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.4/ppc"
-			ldflags_make_globals="LDFLAGS=\"-Wl,-search_paths_first -L${EPREFIX}/usr/lib -L${EPREFIX}/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
 		powerpc64-apple-darwin8)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.4/ppc64"
-			ldflags_make_globals="LDFLAGS=\"-Wl,-search_paths_first -L${EPREFIX}/usr/lib -L${EPREFIX}/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
@@ -115,19 +115,19 @@ HOSTCC='gcc -m64'
 			;;
 		i*86-apple-darwin8)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.4/x86"
-			ldflags_make_globals="LDFLAGS=\"-Wl,-search_paths_first -L${EPREFIX}/usr/lib -L${EPREFIX}/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
 		powerpc-apple-darwin9)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/ppc"
-			ldflags_make_globals="LDFLAGS=\"-Wl,-search_paths_first -L${EPREFIX}/usr/lib -L${EPREFIX}/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
 		i*86-apple-darwin9)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/x86"
-			ldflags_make_globals="LDFLAGS=\"-Wl,-search_paths_first -L${EPREFIX}/usr/lib -L${EPREFIX}/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			;;
 		x86_64-apple-darwin9)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.5/x64"
-			ldflags_make_globals="LDFLAGS=\"-Wl,-search_paths_first -L${EPREFIX}/usr/lib -L${EPREFIX}/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
@@ -136,7 +136,7 @@ HOSTCC='gcc -m64'
 			;;
 		i*86-apple-darwin10)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.6/x86"
-			ldflags_make_globals="LDFLAGS=\"-Wl,-search_paths_first -L${EPREFIX}/usr/lib -L${EPREFIX}/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			extra_make_globals="
 CC='gcc -m32'
 CXX='g++ -m32'
@@ -145,7 +145,7 @@ HOSTCC='gcc -m32'
 			;;
 		x86_64-apple-darwin10)
 			profile="${PORTDIR}/profiles/prefix/darwin/macos/10.6/x64"
-			ldflags_make_globals="LDFLAGS=\"-Wl,-search_paths_first -L${EPREFIX}/usr/lib -L${EPREFIX}/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-Wl,-search_paths_first -L${ROOT}/usr/lib -L${ROOT}/lib\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
@@ -172,7 +172,7 @@ HOSTCC='gcc -m64'
 			;;
 		sparcv9-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc64"
-			ldflags_make_globals="LDFLAGS=\"-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
@@ -184,7 +184,7 @@ HOSTCC='gcc -m64'
 			;;
 		x86_64-pc-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/x64"
-			ldflags_make_globals="LDFLAGS=\"-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
@@ -196,7 +196,7 @@ HOSTCC='gcc -m64'
 			;;
 		sparcv9-sun-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/sparc64"
-			ldflags_make_globals="LDFLAGS=\"-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
@@ -208,7 +208,7 @@ HOSTCC='gcc -m64'
 			;;
 		x86_64-pc-solaris2.11)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/x64"
-			ldflags_make_globals="LDFLAGS=\"-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
@@ -220,7 +220,7 @@ HOSTCC='gcc -m64'
 			;;
 		sparcv9-sun-solaris2.11)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/sparc64"
-			ldflags_make_globals="LDFLAGS=\"-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L${EPREFIX}/lib -R${EPREFIX}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
@@ -244,7 +244,7 @@ HOSTCC='gcc -m64'
 			;;
 		hppa2.0*-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa2.0"
-			ldflags_make_globals="LDFLAGS=\"-L${EPREFIX}/usr/lib -R${EPREFIX}/usr/lib -L/usr/local/lib -R/usr/local/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L/usr/local/lib -R/usr/local/lib\""
 			;;
 		ia64-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#ia64-hp-hpux11}/ia64"
@@ -275,9 +275,11 @@ HOSTCC='gcc -m64'
 	if [[ -n ${profile} && ! -e ${ROOT}/etc/make.profile ]] ; then
 		ln -s "${profile}" "${ROOT}"/etc/make.profile
 		einfo "Your profile is set to ${profile}."
-		echo "${cppflags_make_globals}" >> "${ROOT}"/etc/make.globals
-		echo "${ldflags_make_globals}" >> "${ROOT}"/etc/make.globals
 		echo "${extra_make_globals}" >> "${ROOT}"/etc/make.globals
+		# this is darn ugly, but we can't use the make.globals hack,
+		# since the profiles overwrite CFLAGS/LDFLAGS in numerous cases
+		echo "${cppflags_make_defaults}" >> "${profile}"/make.defaults
+		echo "${ldflags_make_defaults}" >> "${profile}"/make.defaults
 		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
 }
@@ -375,7 +377,7 @@ bootstrap_portage() {
 
 	# Some people will skip the tree() step and hence var/log is not created 
 	# As such, portage complains..
-	[[ ! -d $EPREFIX/var/log ]] && mkdir ${EPREFIX}/var/log
+	[[ ! -d $ROOT/var/log ]] && mkdir ${ROOT}/var/log
 	
 	# during bootstrap_portage(), man pages are not compressed. This is
 	# problematic once you have a working prefix. So, remove them now.
