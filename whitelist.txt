@@ -259,6 +259,7 @@ dev-libs/nettle
 dev-libs/oniguruma
 dev-libs/rasqal
 dev-libs/redland
+dev-libs/soprano
 dev-libs/syck
 dev-libs/tre
 dev-libs/uriparser
