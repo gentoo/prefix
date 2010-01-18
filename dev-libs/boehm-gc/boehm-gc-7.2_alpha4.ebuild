@@ -19,6 +19,12 @@ IUSE="nocxx threads"
 DEPEND="dev-libs/libatomic_ops"
 RDEPEND="${DEPEND}"
 
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-7.2-darwin.patch
+}
+
 src_compile() {
 	local myconf="--with-libatomic-ops=yes"
 
