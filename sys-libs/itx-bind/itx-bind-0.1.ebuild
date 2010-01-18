@@ -36,7 +36,7 @@ src_install() {
 		[[ -x "${incdir}/sys" ]] || chmod a+x "${incdir}/sys"
 	fi
 
-	insinto /usr/include
+	insinto /usr/include/bind
 
 	for obj in "${incdir}"/*; do
 		[[ -f "${obj}" ]] && doins    "${obj}"
@@ -67,6 +67,11 @@ src_install() {
 		../weak.o /usr/lib/libdb.a || die "cannot link shared libbind"
 
 	dolib.so libbind.so.${PV}
-	dosym libbind.so.${PV} /usr/lib/libbind.so
-	dosym libbind.so.${PV} /usr/lib/libresolv.so # mean, huh? :)
+
+	# to prevent accidental linking during configure tests of packages which are
+	# not prepared for itx-bind, install things in a separate directory.
+	# packages need to explicitly add this and the include directory for this to
+	# work!
+	dosym ../libbind.so.${PV} /usr/lib/bind/libbind.so
+	dosym ../libbind.so.${PV} /usr/lib/bind/libresolv.so # mean, huh? :)
 }
