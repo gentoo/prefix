@@ -100,6 +100,30 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6.2-use-first-bsddb-found.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
 
+	# Darwin/OSX Framework related patches and tweaks
+	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
+	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
+	epatch "${FILESDIR}"/${PN}-2.6.2-no-special-darwin-libffi.patch
+	epatch "${FILESDIR}"/${PN}-2.6.4-gnu-arch-darwin.patch
+	epatch "${FILESDIR}"/${PN}-2.6.2-darwin-no-framework-lookup.patch
+	epatch "${FILESDIR}"/${PN}-2.6.2-mac.patch
+	epatch "${FILESDIR}"/${PN}-2.6.2-mac-just-prefix.patch # injects @@LIBDIR
+	# need this to have _NSGetEnviron being used, which by default isn't, also
+	# in a non-Framework build (use !aqua)
+	[[ ${CHOST} == *-darwin* ]] && \
+		append-flags -DWITH_NEXT_FRAMEWORK
+		# this activates stuff from python-2.6.2-mac.patch (2.7+ has this fixed)
+	sed -i -e "s:@@APPLICATIONS_DIR@@:${EPREFIX}/Applications:g" \
+		Mac/Makefile.in \
+		Mac/IDLE/Makefile.in \
+		Mac/Tools/Doc/setup.py \
+		Mac/PythonLauncher/Makefile.in || die
+	# we need to set this to prevent the framework path to be used in an OSX
+	# Framework build, which causes misc unwanted effects in our UNIX-savvy env
+	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}/usr"':' \
+		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}/usr"':' \
+		Makefile.pre.in || die
+
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
 		Lib/distutils/sysconfig.py \
@@ -120,31 +144,6 @@ src_prepare() {
 
 	# build static for mint
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-2.6.2-mint.patch
-
-	# python defaults to using .so files, however they are bundles
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
-	# need this to have _NSGetEnviron being used, which by default isn't...
-	[[ ${CHOST} == *-darwin* ]] && \
-		append-flags -DWITH_NEXT_FRAMEWORK
-	# but don't want framework path resolution stuff
-	epatch "${FILESDIR}"/${PN}-2.6.2-darwin-no-framework-lookup.patch
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
-	epatch "${FILESDIR}"/${PN}-2.6.2-no-special-darwin-libffi.patch
-	epatch "${FILESDIR}"/${PN}-2.6.4-gnu-arch-darwin.patch
-	# for Mac weenies
-	epatch "${FILESDIR}"/${PN}-2.6.2-mac.patch
-	epatch "${FILESDIR}"/${PN}-2.6.2-mac-just-prefix.patch
-#	epatch "${FILESDIR}"/${PN}-2.6.2-prefix.patch
-	sed -i -e "s:@@APPLICATIONS_DIR@@:${EPREFIX}/Applications:g" \
-		Mac/Makefile.in \
-		Mac/IDLE/Makefile.in \
-		Mac/Tools/Doc/setup.py \
-		Mac/PythonLauncher/Makefile.in || die
-	# we need to set this to prevent the framework path to be used in an OSX
-	# Framework build, which causes misc unwanted effects in our UNIX-savvy env
-	sed -i -e '/-DPREFIX=/s:$(prefix):'"${EPREFIX}/usr"':' \
-		-e '/-DEXEC_PREFIX=/s:$(exec_prefix):'"${EPREFIX}/usr"':' \
-		Makefile.pre.in || die
 
 	# do not use 'which' to find binaries, but go through the PATH.
 	epatch "${FILESDIR}"/${PN}-2.4.4-ld_so_aix-which.patch
