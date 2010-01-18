@@ -136,6 +136,7 @@ app-misc/openjnlp
 app-misc/pipeworks
 app-misc/rlwrap
 app-misc/sl
+app-misc/strigi
 app-misc/tmux
 app-misc/ttyrec
 app-misc/zisofs-tools
