@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Gentoo Foundation 2006-2009
+# Copyright 2006-2010 Gentoo Foundation; Distributed under the GPL v2
 
 # <abcd@gentoo.org> -- 2010-01-14
 # allow eclasses to be found in MTREEDIR if not in PTREEDIR

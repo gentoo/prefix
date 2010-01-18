@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
-# Copyright Gentoo Foundation 2006-2007
+# Copyright 2006-2010 Gentoo Foundation; Distributed under the GPL v2
 
+# <grobian@gentoo.org> -- 2010-01-18
+# no longer auto-migrate gx86 keywords to Prefix ones
 # <grobian@gentoo.org> -- 2009-09-29
 # warn when no KEYWORDS line is found, allow KEYWORDS to be preceded by
 # whitespace
@@ -43,10 +45,7 @@ for f in $files ; do
 	eval $(egrep "^[ 	]*KEYWORDS=" "$f")
 	for kw in $KEYWORDS ; do
 		for mkw in $my_keywords ; do
-			kw=${kw/-fbsd/-freebsd}
-			mkws=${mkw%-linux}
-			kws=${kw%-linux}
-			if [[ $kws == $mkws || $kws == ~$mkws ]] ; then
+			if [[ $kw == $mkw || $kw == ~$mkw ]] ; then
 				newkw="$newkw ~$mkw"
 				break
 			fi

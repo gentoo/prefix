@@ -1,4 +1,5 @@
 #!/bin/sh
+# Copyright 2006-2010 Gentoo Foundation; Distributed under the GPL v2
 
 # *BSD bash installer
 #

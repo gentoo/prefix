@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright Gentoo Foundation 2006-2008
+# Copyright 2006-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
 # This probably will blow up if not ran in a Prefix environment, sorry.
