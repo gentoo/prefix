@@ -24,7 +24,9 @@ FORTRAN="gfortran ifc g77"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.0.1-makefile.patch
+	# I mailed both patches below to the author -- grobian 2010-01-18
 	epatch "${FILESDIR}"/${PN}-1.1.0-darwin-dylib.patch
+	epatch "${FILESDIR}"/${PN}-1.1.0-destdir.patch
 
 	local BLAS_LIBS="$(pkg-config --libs blas)"
 	local LAPACK_LIBS="$(pkg-config --libs lapack)"
@@ -34,17 +36,16 @@ src_prepare() {
 		-e "s:FFLAGS=.*:FFLAGS=${FFLAGS}:" \
 		-e "s:BLAS=.*:BLAS=${BLAS_LIBS}:" \
 		-e "s:LAPACK=.*:LAPACK=${LAPACK_LIBS}:" \
+		-e "/^LIBDIR=/a\PREFIX=${EPREFIX}/usr" \
 		|| die "Failed to set up Makeconf"
 }
 
 src_compile() {
-	emake PREFIX="${EPREFIX}"/usr solib || die "emake failed"
+	emake solib || die "emake failed"
 }
 
 src_install() {
-#	dolib.so libqrupdate$(get_libname) \
-#		|| die "Failed to install libqrupdate$(get_libname)"
-	emake PREFIX="${D%/}${EPREFIX}/usr" install-shlib || die "emake install failed"
+	emake DESTDIR="${D}" install-shlib || die "emake install failed"
 
 	dodoc README ChangeLog || die "dodoc failed"
 }

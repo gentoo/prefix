@@ -1,6 +1,4 @@
-Add support for building Mach-O dylibs on Darwin.  Alternatively we
-could add a dylib target in the top-level Makefile and call the right
-target from the ebuild.
+Add support for building Mach-O dylibs on Darwin.
 
 --- src/Makefile
 +++ src/Makefile
