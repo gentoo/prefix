@@ -88,6 +88,10 @@ src_prepare() {
 			epatch "${FILESDIR}"/${P}-interix-network.patch
 		fi
 
+		# activate the itx-bind package...
+		append-flags "-I${EPREFIX}/usr/include/bind"
+		append-ldflags "-L${EPREFIX}/usr/lib/bind"
+
 		AT_M4DIR="m4macros" eautoreconf
 	fi
 
