@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.7 2009/12/25 18:01:34 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.8 2010/01/15 12:58:20 flameeyes Exp $
 #
 # @ECLASS: ruby-ng.eclass
 # @MAINTAINER:
@@ -121,6 +121,7 @@ _ruby_add_bdepend() {
 	local conditions=$2
 
 	for condition in $conditions; do
+		hasq $condition "$IUSE" || IUSE="${IUSE} $condition"
 		atom="${condition}? ( ${atom} )"
 	done
 
@@ -133,6 +134,7 @@ _ruby_add_rdepend() {
 	local conditions=$2
 
 	for condition in $conditions; do
+		hasq $condition "$IUSE" || IUSE="${IUSE} $condition"
 		atom="${condition}? ( ${atom} )"
 	done
 

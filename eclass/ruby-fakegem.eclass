@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-fakegem.eclass,v 1.10 2010/01/09 21:16:37 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-fakegem.eclass,v 1.11 2010/01/18 22:01:46 flameeyes Exp $
 #
 # @ECLASS: ruby-fakegem.eclass
 # @MAINTAINER:
@@ -215,11 +215,12 @@ all_ruby_unpack() {
 		eend $?
 
 		mkdir "${S}"
-		pushd "${S}"
+		pushd "${S}" &>/dev/null
 
 		ebegin "Unpacking data.tar.gz"
 		tar -mxf "${my_WORKDIR}"/data.tar.gz || die
 		eend $?
+		popd &>/dev/null
 	else
 		[[ -n ${A} ]] && unpack ${A}
 	fi
@@ -258,8 +259,8 @@ each_ruby_test() {
 each_fakegem_install() {
 	ruby_fakegem_genspec
 
-	local _gemlibdirs=
-	for directory in bin lib ${RUBY_FAKEGEM_EXTRAINSTALL}; do
+	local _gemlibdirs="${RUBY_FAKEGEM_EXTRAINSTALL}"
+	for directory in bin lib; do
 		[[ -d ${directory} ]] && _gemlibdirs="${_gemlibdirs} ${directory}"
 	done
 
@@ -280,9 +281,9 @@ each_ruby_install() {
 all_fakegem_install() {
 	if [[ -n ${RUBY_FAKEGEM_DOCDIR} ]] && [[ ${RUBY_FAKEGEM_TASK_DOC} != "" ]] && use doc; then
 		for dir in ${RUBY_FAKEGEM_DOCDIR}; do
-			pushd ${dir}
+			pushd ${dir} &>/dev/null
 			dohtml -r * || die "failed to install documentation"
-			popd
+			popd &>/dev/null
 		done
 	fi
 
@@ -296,12 +297,12 @@ all_fakegem_install() {
 		local bindir=$(find "${ED}" -type d -path "*/gems/${RUBY_FAKEGEM_NAME}-${RUBY_FAKEGEM_VERSION}/bin" -print -quit)
 
 		if [[ -d "${bindir}" ]]; then
-			pushd "${bindir}"
+			pushd "${bindir}" &>/dev/null
 			local binaries=$(eval ls ${RUBY_FAKEGEM_BINWRAP})
 			for binary in $binaries; do
 				ruby_fakegem_binwrapper $binary
 			done
-			popd
+			popd &>/dev/null
 		fi
 	fi
 }

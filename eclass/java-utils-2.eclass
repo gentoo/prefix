@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.130 2009/11/08 20:39:30 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.131 2010/01/17 12:53:18 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -73,6 +73,8 @@ hasq "${EAPI}" 0 1 && JAVA_PKG_PORTAGE_DEP=">=sys-apps/portage-2.1.2.7"
 # so that ebuilds can use new features without depending on specific versions.
 # -----------------------------------------------------------------------------
 JAVA_PKG_E_DEPEND="!x86-winnt? ( >=dev-java/java-config-2.1.6 ${JAVA_PKG_PORTAGE_DEP} )"
+JAVA_PKG_E_DEPEND="!x86-winnt? ( >=dev-java/java-config-2.1.9-r1
+${JAVA_PKG_PORTAGE_DEP} )"
 hasq source ${JAVA_PKG_IUSE} && JAVA_PKG_E_DEPEND="${JAVA_PKG_E_DEPEND} source? ( app-arch/zip )"
 
 # -----------------------------------------------------------------------------
