@@ -1,6 +1,15 @@
 # ChangeLog for media-fonts/font-util
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/font-util/ChangeLog,v 1.36 2009/12/27 10:30:22 josejx Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/font-util/ChangeLog,v 1.39 2010/01/18 18:35:01 armin76 Exp $
+
+  18 Jan 2010; Raúl Porcel <armin76@gentoo.org> font-util-1.1.1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #294958
+
+  14 Jan 2010; Markus Meier <maekke@gentoo.org> font-util-1.1.1.ebuild:
+  arm stable, bug #294958
+
+  14 Jan 2010; Jeroen Roovers <jer@gentoo.org> font-util-1.1.1.ebuild:
+  Stable for HPPA (bug #294958).
 
   27 Dec 2009; Joseph Jezak <josejx@gentoo.org> font-util-1.1.1.ebuild:
   Marked ppc stable for bug #294958.
