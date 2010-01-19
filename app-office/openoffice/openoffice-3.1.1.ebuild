@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.25 2009/11/28 20:54:32 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.26 2010/01/14 16:15:58 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI="2"
@@ -98,7 +98,7 @@ COMMON_DEPEND="!app-office/openoffice-bin
 		dev-java/lucene-analyzers:2.3
 		dev-java/rhino:1.5 )
 	mono? ( || ( >dev-lang/mono-2.4-r1 <dev-lang/mono-2.4 ) )
-	nsplugin? ( || ( net-libs/xulrunner:1.9 net-libs/xulrunner:1.8 =www-client/seamonkey-1* )
+	nsplugin? ( || ( net-libs/xulrunner:1.9 net-libs/xulrunner:1.8 )
 		>=dev-libs/nspr-4.6.6
 		>=dev-libs/nss-3.11-r1 )
 	opengl? ( virtual/opengl
@@ -211,10 +211,8 @@ pkg_setup() {
 			BRWS="libxul"
 		elif pkg-config --exists xulrunner-xpcom; then
 			BRWS="xulrunner"
-		elif pkg-config --exists seamonkey-xpcom; then
-			BRWS="seamonkey"
 		else
-			die "USE flag [nsplugin] set but no installed xulrunner or seamonkey found!"
+			die "USE flag [nsplugin] set but no installed xulrunner found!"
 		fi
 	fi
 

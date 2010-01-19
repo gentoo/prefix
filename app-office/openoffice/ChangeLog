@@ -1,6 +1,10 @@
 # ChangeLog for app-office/openoffice
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.504 2009/11/28 20:54:32 suka Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.505 2010/01/14 16:15:58 suka Exp $
+
+  14 Jan 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  Remove seamonkey-1 support for bug #300409
 
   28 Nov 2009; Andreas Proschofsky <suka@gentoo.org>
   openoffice-3.1.1.ebuild:
