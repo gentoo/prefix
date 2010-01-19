@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xprop/xprop-1.1.0.ebuild,v 1.6 2009/12/27 17:51:43 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xprop/xprop-1.1.0.ebuild,v 1.9 2010/01/18 19:18:23 armin76 Exp $
 
 inherit x-modular
 
