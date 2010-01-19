@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/wget
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.120 2009/10/18 14:26:26 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/wget/ChangeLog,v 1.121 2010/01/17 22:28:20 vapier Exp $
+
+*wget-1.12-r1 (17 Jan 2010)
+
+  17 Jan 2010; Mike Frysinger <vapier@gentoo.org> +wget-1.12-r1.ebuild,
+  +files/wget-1.12-sni.patch:
+  Add SNI support #301312 by Andreas Nüßlein.
 
   18 Oct 2009; Brent Baude <ranger@gentoo.org> wget-1.12.ebuild:
   Marking wget-1.12 ppc64 for bug 286058
