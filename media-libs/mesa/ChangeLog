@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/mesa
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.256 2009/12/28 23:47:30 ssuominen Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.259 2010/01/18 20:34:55 armin76 Exp $
+
+  18 Jan 2010; Raúl Porcel <armin76@gentoo.org> mesa-7.5.2.ebuild:
+  alpha/ia64/sh/sparc stable wrt #294958
+
+  14 Jan 2010; Markus Meier <maekke@gentoo.org> mesa-7.5.2.ebuild:
+  arm stable, bug #294958
+
+  14 Jan 2010; Jeroen Roovers <jer@gentoo.org> mesa-7.5.2.ebuild:
+  Stable for HPPA (bug #294958).
 
   28 Dec 2009; Samuli Suominen <ssuominen@gentoo.org> mesa-7.7-r1.ebuild:
   Fix typing error wrt #298805.
