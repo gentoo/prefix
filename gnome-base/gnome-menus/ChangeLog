@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/gnome-menus
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.138 2009/12/27 04:16:09 nirbheek Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.140 2010/01/17 23:56:43 jer Exp $
+
+  17 Jan 2010; Jeroen Roovers <jer@gentoo.org> gnome-menus-2.26.2.ebuild:
+  Stable for HPPA (bug #281427).
+
+  16 Jan 2010; Raúl Porcel <armin76@gentoo.org> gnome-menus-2.26.2.ebuild:
+  sh stable
 
   27 Dec 2009; Nirbheek Chauhan <nirbheek@gentoo.org>
   gnome-menus-2.26.2.ebuild, gnome-menus-2.28.0.1.ebuild:
