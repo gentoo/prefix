@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/gnustep-gui-0.16.0.ebuild,v 1.4 2009/07/19 13:19:16 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/gnustep-gui-0.16.0.ebuild,v 1.5 2010/01/16 14:38:43 armin76 Exp $
 
 inherit gnustep-base multilib
 
