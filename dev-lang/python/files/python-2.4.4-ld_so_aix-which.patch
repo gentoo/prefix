@@ -1,4 +1,5 @@
 do not use 'which' to find binaries, but go through the PATH.
+http://bugs.python.org/issue7742
 
 --- Python-2.3.5/Modules/ld_so_aix
 +++ Python-2.3.5/Modules/ld_so_aix
