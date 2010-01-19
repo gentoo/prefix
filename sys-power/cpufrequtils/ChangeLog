@@ -1,6 +1,30 @@
 # ChangeLog for sys-power/cpufrequtils
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/ChangeLog,v 1.45 2009/07/11 23:37:21 josejx Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/ChangeLog,v 1.49 2010/01/16 23:57:40 vapier Exp $
+
+*cpufrequtils-007 (16 Jan 2010)
+
+  16 Jan 2010; Mike Frysinger <vapier@gentoo.org> +cpufrequtils-007.ebuild,
+  +files/cpufrequtils-007-build.patch, +files/cpufrequtils-007-nls.patch:
+  Version bump.
+
+  15 Jan 2010; Mike Frysinger <vapier@gentoo.org> cpufrequtils-006.ebuild,
+  -files/cpufrequtils-006-modprobe-gov.patch:
+  Drop the modprobe patch since the kernel handles this for us
+  automatically.
+
+*cpufrequtils-006 (15 Jan 2010)
+
+  15 Jan 2010; Mike Frysinger <vapier@gentoo.org>
+  +files/cpufrequtils-conf.d-006, +files/cpufrequtils-init.d-006,
+  +cpufrequtils-006.ebuild, +files/cpufrequtils-006-modprobe-gov.patch,
+  +files/cpufrequtils-006-nls.patch:
+  Version bump #292246 by gionnico with updated NLS patch by Lars Wendler
+  and a more flexible init.d script #179729 by Oliver Koch.
+
+  15 Jan 2010; Mike Frysinger <vapier@gentoo.org>
+  cpufrequtils-005-r1.ebuild:
+  add ia64 love.
 
   11 Jul 2009; Joseph Jezak <josejx@gentoo.org> cpufrequtils-005-r1.ebuild:
   Marked ppc/ppc64 stable for bug #256599.

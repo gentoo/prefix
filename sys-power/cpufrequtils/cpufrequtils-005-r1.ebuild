@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/cpufrequtils-005-r1.ebuild,v 1.5 2009/07/11 23:37:21 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/cpufrequtils/cpufrequtils-005-r1.ebuild,v 1.6 2010/01/15 06:04:47 vapier Exp $
 
 inherit eutils toolchain-funcs multilib
 
