@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r19.ebuild,v 1.12 2009/12/20 13:12:33 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r19.ebuild,v 1.14 2010/01/16 18:48:32 ulm Exp $
 
 EAPI=2
 
@@ -159,7 +159,6 @@ emacs-infodir-rebuild() {
 			&& install-info --info-dir="${EROOT}"${infodir} "${f}" &>/dev/null
 	done
 	rmdir "${EROOT}"${infodir} 2>/dev/null	# remove dir if it is empty
-	echo
 }
 
 pkg_postinst() {
@@ -169,6 +168,13 @@ pkg_postinst() {
 	if ! use sendmail && ! has_version "virtual/mta"; then
 		elog "You disabled sendmail support for Emacs. If you later install"
 		elog "a MTA then you will need to recompile Emacs. See Bug #11104."
+	fi
+
+	if use X; then
+		echo
+		elog "You need to install some fonts for Emacs."
+		elog "Installing media-fonts/font-adobe-{75,100}dpi on the X server's"
+		elog "machine would satisfy basic Emacs requirements under X11."
 	fi
 }
 

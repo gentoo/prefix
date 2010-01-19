@@ -1,6 +1,10 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.362 2010/01/01 15:18:03 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.363 2010/01/16 18:48:31 ulm Exp $
+
+  16 Jan 2010; Ulrich Mueller <ulm@gentoo.org> emacs-21.4-r19.ebuild,
+  emacs-22.3-r3.ebuild, emacs-23.1-r2.ebuild:
+  Restore note in pkg_postinst that Emacs needs fonts, bug 137598.
 
   01 Jan 2010; Tobias Klausmann <klausman@gentoo.org> emacs-23.1-r2.ebuild:
   Stable on alpha, bug #296159
