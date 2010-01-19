@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.58 2010/01/12 20:47:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.61 2010/01/18 20:04:22 armin76 Exp $
+
+  18 Jan 2010; Raúl Porcel <armin76@gentoo.org> pixman-0.17.2.ebuild:
+  alpha/ia64/sh/sparc stable wrt #294958
+
+  16 Jan 2010; Raúl Porcel <armin76@gentoo.org> pixman-0.17.2.ebuild:
+  arm stable
+
+  14 Jan 2010; Jeroen Roovers <jer@gentoo.org> pixman-0.17.2.ebuild:
+  Stable for HPPA (bug #294958).
 
   12 Jan 2010; Raúl Porcel <armin76@gentoo.org> pixman-0.16.2.ebuild,
   pixman-0.17.2.ebuild, +files/pixman-0.17.2-armv7.patch:
