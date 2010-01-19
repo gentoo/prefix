@@ -48,7 +48,7 @@ pkg_setup() {
 		--disable-introspection
 		$(use_with X x)
 		$(use X && echo --x-includes=${EPREFIX}/usr/include)
-		$(use X && --x-libraries=${EPREFIX}/usr/lib)"
+		$(use X && echo --x-libraries=${EPREFIX}/usr/$(get_libdir))"
 }
 
 src_prepare() {
