@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-4.0.ebuild,v 1.12 2010/01/14 01:11:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/libxklavier-4.0.ebuild,v 1.13 2010/01/16 17:07:57 armin76 Exp $
 
 inherit autotools eutils
 
