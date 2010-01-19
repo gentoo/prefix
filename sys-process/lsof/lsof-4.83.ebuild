@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.82.ebuild,v 1.3 2010/01/19 03:56:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.83.ebuild,v 1.1 2010/01/18 21:52:48 vapier Exp $
 
 inherit flag-o-matic toolchain-funcs eutils
 
@@ -26,15 +26,7 @@ src_unpack() {
 	unpack ./${MY_P}_src.tar
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-4.81-aix.patch #278831
-
-	sed -i \
-		-e '/LSOF_CFGF="-/s:=":="$LSOF_CFGF :' \
-		-e '/^LSOF_CFGF=/s:$:" ${CFLAGS} ${CPPFLAGS}":' \
-		-e "/^LSOF_CFGL=/s:\$:' \$(LDFLAGS)':" \
-		-e "/^LSOF_RANLIB/s:ranlib:$(tc-getRANLIB):" \
-		Configure
-
-	epatch "${FILESDIR}"/${P}-config-solaris.patch
+	epatch "${FILESDIR}"/${PN}-4.82-config-solaris.patch
 	epatch "${FILESDIR}"/${PN}-4.80-solaris11.patch
 	if [[ ${CHOST} == *-solaris2.11 ]] ; then
 		mkdir -p ext/sys
@@ -69,6 +61,9 @@ src_compile() {
 	LINUX_HASSELINUX=$(yesno selinux) \
 	LSOF_CC=$(tc-getCC) \
 	LSOF_AR="$(ar)" \
+	LSOF_RANLIB=$(tc-getRANLIB) \
+	LSOF_CFGF="${CFLAGS} ${CPPFLAGS}" \
+	LSOF_CFGL="${CFLAGS} ${LDFLAGS}" \
 	./Configure -n $(target) < /dev/null || die
 
 	emake DEBUG="" all || die "emake failed"

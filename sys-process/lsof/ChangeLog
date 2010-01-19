@@ -1,6 +1,14 @@
 # ChangeLog for sys-process/lsof
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.63 2009/05/11 18:08:24 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.65 2010/01/19 03:56:41 jer Exp $
+
+  19 Jan 2010; Jeroen Roovers <jer@gentoo.org> lsof-4.82.ebuild:
+  Stable for HPPA (bug #301443).
+
+*lsof-4.83 (18 Jan 2010)
+
+  18 Jan 2010; Mike Frysinger <vapier@gentoo.org> +lsof-4.83.ebuild:
+  Version bump.
 
   11 May 2009; Mike Frysinger <vapier@gentoo.org> lsof-4.82.ebuild:
   Improve how we past build flags/settings to avoid custom patches.
