@@ -1,6 +1,10 @@
 # ChangeLog for app-office/ledger
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/ledger/ChangeLog,v 1.13 2009/09/29 18:28:32 vostorga Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-office/ledger/ChangeLog,v 1.14 2010/01/15 19:43:54 ulm Exp $
+
+  15 Jan 2010; Ulrich Mueller <ulm@gentoo.org> ledger-2.5-r2.ebuild,
+  ledger-2.6.1.ebuild, ledger-2.6.2.ebuild:
+  LICENSE is identical with BSD, bug 301123.
 
 *ledger-2.6.2 (29 Sep 2009)
 
