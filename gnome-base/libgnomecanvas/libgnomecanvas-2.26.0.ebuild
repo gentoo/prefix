@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomecanvas/libgnomecanvas-2.26.0.ebuild,v 1.8 2010/01/14 01:07:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgnomecanvas/libgnomecanvas-2.26.0.ebuild,v 1.9 2010/01/16 17:17:18 armin76 Exp $
 
 inherit virtualx gnome2 autotools
 
