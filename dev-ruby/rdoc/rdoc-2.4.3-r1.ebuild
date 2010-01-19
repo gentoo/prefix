@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rdoc/rdoc-2.4.3-r1.ebuild,v 1.3 2010/01/13 18:43:28 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rdoc/rdoc-2.4.3-r1.ebuild,v 1.4 2010/01/14 16:11:07 ranger Exp $
 
 EAPI=2
 USE_RUBY="ruby18 ruby19 jruby"
