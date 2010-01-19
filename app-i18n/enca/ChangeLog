@@ -1,6 +1,9 @@
 # ChangeLog for app-i18n/enca
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.57 2010/01/06 19:38:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-i18n/enca/ChangeLog,v 1.58 2010/01/16 14:31:02 klausman Exp $
+
+  16 Jan 2010; Tobias Klausmann <klausman@gentoo.org> enca-1.12.ebuild:
+  Stable on alpha, bug #296672
 
   06 Jan 2010; Jeroen Roovers <jer@gentoo.org> enca-1.12.ebuild:
   Stable for PPC (bug #296672).
