@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/inkscape
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.133 2010/01/07 18:14:56 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.134 2010/01/14 06:58:36 jer Exp $
+
+  14 Jan 2010; Jeroen Roovers <jer@gentoo.org> inkscape-0.47.ebuild:
+  Stable for HPPA (bug #299480).
 
   07 Jan 2010; Joseph Jezak <josejx@gentoo.org> inkscape-0.47.ebuild:
   Marked ppc/ppc64 stable for bug #299480.
