@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/euses
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.53 2010/01/14 02:39:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/euses/ChangeLog,v 1.54 2010/01/17 19:15:44 armin76 Exp $
+
+  17 Jan 2010; Raúl Porcel <armin76@gentoo.org> euses-2.5.7.ebuild:
+  alpha/sparc/x86 stable wrt #300865
 
   14 Jan 2010; Jeroen Roovers <jer@gentoo.org> euses-2.5.7.ebuild:
   Stable for HPPA (bug #300865).
