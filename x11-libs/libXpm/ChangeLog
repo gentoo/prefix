@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/libXpm
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.59 2009/12/27 18:08:03 josejx Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXpm/ChangeLog,v 1.62 2010/01/18 19:54:37 armin76 Exp $
+
+  18 Jan 2010; Raúl Porcel <armin76@gentoo.org> libXpm-3.5.8.ebuild:
+  alpha/ia64/sh/sparc stable wrt #294958
+
+  14 Jan 2010; Markus Meier <maekke@gentoo.org> libXpm-3.5.8.ebuild:
+  arm stable, bug #294958
+
+  14 Jan 2010; Jeroen Roovers <jer@gentoo.org> libXpm-3.5.8.ebuild:
+  Stable for HPPA (bug #294958).
 
   27 Dec 2009; Joseph Jezak <josejx@gentoo.org> libXpm-3.5.8.ebuild:
   Marked ppc stable for bug #294958.
