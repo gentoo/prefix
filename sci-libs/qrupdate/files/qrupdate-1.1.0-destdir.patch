@@ -1,5 +1,7 @@
 Support DESTDIR installs
 
+http://qrupdate.svn.sourceforge.net/viewvc/qrupdate?view=rev&revision=22
+
 --- Makeconf
 +++ Makeconf
 @@ -17,6 +17,9 @@
