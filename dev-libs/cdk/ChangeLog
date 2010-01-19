@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/cdk
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/ChangeLog,v 1.62 2009/12/15 19:08:03 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cdk/ChangeLog,v 1.63 2010/01/17 23:03:31 cla Exp $
+
+*cdk-5.0.20090215 (17 Jan 2010)
+
+  17 Jan 2010; Dawid Węgliński <cla@gentoo.org> +cdk-5.0.20090215.ebuild,
+  +files/cdk-5.0.20090215-ldflags.patch:
+  Version bump. Patches by Tim Harder. (bug #301028)
 
   15 Dec 2009; Raúl Porcel <armin76@gentoo.org> cdk-5.0.20081105.ebuild:
   ia64/s390/sparc stable wrt #287511
