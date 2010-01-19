@@ -1,6 +1,30 @@
 # ChangeLog for media-gfx/xfig
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/ChangeLog,v 1.57 2008/12/02 22:59:18 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/ChangeLog,v 1.58 2010/01/14 20:26:25 pva Exp $
+
+*xfig-3.2.5b (14 Jan 2010)
+
+  14 Jan 2010; Peter Volkov <pva@gentoo.org> -xfig-3.2.5-r1.ebuild,
+  -xfig-3.2.5-r2.ebuild, +xfig-3.2.5b.ebuild,
+  +files/xfig-3.2.5b-app-defaults.patch,
+  +files/xfig-3.2.5b-figparserstack.patch, +files/xfig-3.2.5b-mkstemp.patch,
+  +files/xfig-3.2.5b-network_images.patch,
+  +files/xfig-3.2.5b-papersize_b1.patch,
+  +files/xfig-3.2.5b-pdfimport_mediabox.patch,
+  +files/xfig-3.2.5b-spelling.patch, +files/xfig-3.2.5b-urwfonts.patch,
+  +files/xfig-3.2.5b-zoom-during-edit.patch:
+  Version bump, bug #286483, thank Sebastian Schubert for report. Fixes
+  crash during zoom, bug #289396, thank Martin Mokrejš for report and
+  a.peyser@umiami.edu for digging patch (which is fortunately upstream now).
+  Fix documenation location, bug #295209, thank Diego E. 'Flameeyes'
+  Pettenò for report. Added font-misc-misc into depend since xfig need it,
+  bug #282410, thank Daniel Gulotta for report and and Thomas Kahle for
+  digging fix. Upstream added pspdflatex export, thus bug #260951 is fixed,
+  thank Per Öberg for report. Partially fixes CVE-2009-4227 reported in bug
+  #297379 by Stefan Behte (another part should be handled by stack
+  protection which is enabled in gcc-4.3 and higher). Fixes CVE-2009-1962
+  reported in bug #264575 Robert Buchholz. Added urw-fonts into dep as it's
+  the same as gsfonts in Debian.
 
   02 Dec 2008; Brent Baude <ranger@gentoo.org> xfig-3.2.5-r3.ebuild:
   Marking xfig-3.2.5-r3 ppc64 for bug 244957
