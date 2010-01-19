@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/hsqldb
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.52 2009/10/03 17:17:54 betelgeuse Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.53 2010/01/15 17:43:33 grobian Exp $
+
+  15 Jan 2010; Fabian Groffen <grobian@gentoo.org> hsqldb-1.8.0.10.ebuild:
+  Marked ~x64-solaris
 
   03 Oct 2009; Petteri Räty <betelgeuse@gentoo.org>
   -files/server.properties-r1, -files/sqltool.rc-r1:
