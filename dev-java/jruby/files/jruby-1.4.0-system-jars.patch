@@ -1,0 +1,101 @@
+Index: jruby-1.4.0/bin/jruby
+===================================================================
+--- jruby-1.4.0.orig/bin/jruby
++++ jruby-1.4.0/bin/jruby
+@@ -19,16 +19,6 @@ case "`uname`" in
+   Darwin) darwin=true;;
+ esac
+ 
+-#
+-# Figure out the OS and cpu the same as JNA would, so the library path can be set
+-#
+-case "`uname -m`" in
+-  i[34567]86) JNA_CPU=i386; JNA_ALT_CPU=amd64;;
+-  i86pc) JNA_CPU="x86"; JNA_ALT_CPU=amd64;;
+-  amd64|x86_64) JNA_CPU=amd64; JNA_ALT_CPU=i386;;
+-  sparc*) JNA_CPU=sparc; JNA_ALT_CPU=sparcv9;;
+-esac
+-
+ # ----- Verify and Set Required Environment Variables -------------------------
+ 
+ ## resolve links - $0 may be a link to  home
+@@ -49,12 +39,17 @@ while [ -h "$PRG" ] ; do
+   fi
+ done
+ 
+-JRUBY_HOME_1=`dirname "$PRG"`           # the ./bin dir
+-if [ "$JRUBY_HOME_1" = '.' ] ; then
+-  cwd=`pwd`
+-  JRUBY_HOME=`dirname $cwd` # JRUBY-2699
+-else
+-  JRUBY_HOME=`dirname "$JRUBY_HOME_1"`  # the . dir
++# This will be filled in by the ebuild after install
++JRUBY_HOME=
++
++if [ -z "$JRUBY_HOME" ]; then
++  JRUBY_HOME_1=`dirname "$PRG"`           # the ./bin dir
++  if [ "$JRUBY_HOME_1" = '.' ] ; then
++    cwd=`pwd`
++    JRUBY_HOME=`dirname $cwd` # JRUBY-2699
++  else
++    JRUBY_HOME=`dirname "$JRUBY_HOME_1"`  # the . dir
++  fi
+ fi
+ 
+ if [ -z "$JRUBY_OPTS" ] ; then
+@@ -122,14 +117,7 @@ if [ "$JRUBY_PARENT_CLASSPATH" != "" ]; 
+     # Use same classpath propagated from parent jruby
+     CP=$JRUBY_PARENT_CLASSPATH
+ else
+-    # add other jars in lib to CP for command-line execution
+-    for j in "$JRUBY_HOME"/lib/*.jar; do
+-        if [ "$CP" ]; then
+-            CP="$CP$CP_DELIMITER$j"
+-            else
+-            CP="$j"
+-        fi
+-    done
++    CP=$(java-config -d -p jruby)
+ 
+     if $cygwin; then
+         CP=`cygpath -p -w "$CP"`
+@@ -270,23 +258,9 @@ ruby_args=("${ruby_args[@]}" "$@")
+ set -- "${ruby_args[@]}"
+ 
+ JAVA_OPTS="$JAVA_OPTS $JAVA_MEM $JAVA_STACK"
+-JNA_OS="`uname -s | tr '[:upper:]' '[:lower:]'`"
+-case "$JNA_OS" in
+-darwin) JNA_PATH="$JRUBY_HOME/lib/native/darwin";;
+-  *) JNA_PATH="$JRUBY_HOME/lib/native/${JNA_OS}-${JNA_CPU}:$JRUBY_HOME/lib/native/${JNA_OS}-${JNA_ALT_CPU}";;
+-esac
+-#JAVA_OPTS="$JAVA_OPTS -Djna.boot.library.path=$JNA_PATH"
+-JAVA_JNA="-Djna.boot.library.path=$JNA_PATH"
++JAVA_JNA="-Djna.boot.library.path=$(java-config -i jna)"
+ 
+-JFFI_BOOT=""
+-for d in $JRUBY_HOME/lib/native/*`uname -s`; do
+-  if [ -z "$JFFI_BOOT" ]; then
+-    JFFI_BOOT="$d"
+-  else
+-    JFFI_BOOT="$JFFI_BOOT:$d"
+-  fi
+-done
+-JFFI_OPTS="-Djffi.boot.library.path=$JFFI_BOOT"
++JFFI_OPTS="-Djffi.boot.library.path=$(java-config -i jffi-0.4)"
+ 
+ if $cygwin; then
+   JRUBY_HOME=`cygpath --mixed "$JRUBY_HOME"`
+@@ -308,12 +282,7 @@ if $cygwin; then
+ fi
+ 
+ if [ "$nailgun_client" != "" ]; then
+-  if [ -f $JRUBY_HOME/tool/nailgun/ng ]; then
+-    exec $JRUBY_HOME/tool/nailgun/ng org.jruby.util.NailMain $JRUBY_OPTS "$@"
+-  else
+-    echo "error: ng executable not found; run 'make' in ${JRUBY_HOME}/tool/nailgun"
+-    exit 1
+-  fi
++  exec /usr/bin/ng org.jruby.util.NailMain $JRUBY_OPTS "$@"
+ else
+ if [ "$VERIFY_JRUBY" != "" ]; then
+   if [ "$PROFILE_ARGS" != "" ]; then

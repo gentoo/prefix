@@ -1,6 +1,47 @@
 # ChangeLog for dev-java/jruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.44 2010/01/02 00:01:23 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.50 2010/01/16 23:34:28 flameeyes Exp $
+
+*jruby-1.4.0-r3 (16 Jan 2010)
+
+  16 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  -jruby-1.4.0-r2.ebuild, +jruby-1.4.0-r3.ebuild,
+  +files/jruby-1.4.0-system-jars.patch,
+  -files/jruby-1.4.0-system-nailgun.patch, metadata.xml:
+  Improve unbundled jar workings, make jffi and jna working as intended.
+  Drop ppc keyword so that proper keywording request can be filed. Take
+  co-maintainership with ruby team.
+
+*jruby-1.4.0-r2 (16 Jan 2010)
+
+  16 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  -jruby-1.4.0-r1.ebuild, +jruby-1.4.0-r2.ebuild,
+  +files/jruby-1.4.0-system-nailgun.patch:
+  Fix usage of system nailgun.
+
+  16 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  jruby-1.4.0-r1.ebuild:
+  Add pkg_postinst to note the JRUBY_OPTS variable behaviour.
+
+  16 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org> -jruby-1.4.0.ebuild,
+  jruby-1.4.0-r1.ebuild:
+  Fix SRC_URI, remove older broken 1.4.0 release.
+
+*jruby-1.4.0-r1 (14 Jan 2010)
+
+  14 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +jruby-1.4.0-r1.ebuild, +files/auto_gem.rb:
+  Fix (again) cache and doc directories creation for gems. Avoid installing
+  gentoo.rb at all, instead install auto_gem.rb like it's done for the other
+  Ruby packages (this finally completes the break-up of MRI 1.8 and JRuby
+  libraries). Install 1.9 mode libraries as well as 1.8, remove rake and
+  rspec symlinks (the bundled gems are not installed for either). Avoid
+  removing the yecht jar as it's currently not packaged in Gentoo.
+
+*jruby-1.4.0 (14 Jan 2010)
+
+  14 Jan 2010; Alistair Bush <ali_bush@gentoo.org> +jruby-1.4.0.ebuild:
+  Version Bump.
 
   02 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
   jruby-1.3.1-r1.ebuild:
