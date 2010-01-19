@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.172 2010/01/10 15:58:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.173 2010/01/16 13:24:38 klausman Exp $
+
+  16 Jan 2010; Tobias Klausmann <klausman@gentoo.org> ncurses-5.7-r3.ebuild:
+  Stable on alpha, bug #299158
 
   10 Jan 2010; Brent Baude <ranger@gentoo.org> ncurses-5.7-r3.ebuild:
   stable ppc64, bug 299159
