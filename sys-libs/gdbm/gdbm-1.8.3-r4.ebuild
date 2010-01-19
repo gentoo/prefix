@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r4.ebuild,v 1.8 2010/01/05 04:34:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/gdbm-1.8.3-r4.ebuild,v 1.9 2010/01/15 04:32:29 vapier Exp $
 
 inherit eutils libtool flag-o-matic
 
@@ -48,4 +48,9 @@ pkg_preinst() {
 
 pkg_postinst() {
 	preserve_old_lib_notify libgdbm.so.2 #32510
+
+	ewarn "32bit systems might have to rebuild all gdbm databases due to"
+	ewarn "LFS changes in the gdbm format.  You can either delete the db"
+	ewarn "and regenerate it from scratch, or use the converter:"
+	ewarn "http://bugs.gentoo.org/attachment.cgi?id=215326"
 }

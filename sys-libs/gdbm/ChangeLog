@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/gdbm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/ChangeLog,v 1.49 2010/01/05 04:34:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/ChangeLog,v 1.50 2010/01/15 04:32:29 vapier Exp $
+
+  15 Jan 2010; Mike Frysinger <vapier@gentoo.org> gdbm-1.8.3-r4.ebuild:
+  Add a warning for 32bit/LFS changes #299390.
 
   05 Jan 2010; Mike Frysinger <vapier@gentoo.org> gdbm-1.8.3-r4.ebuild:
   Mark alpha/amd64 stable #296825.
