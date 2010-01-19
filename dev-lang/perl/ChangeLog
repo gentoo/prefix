@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/perl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.309 2009/12/10 20:50:09 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.310 2010/01/17 11:34:21 tove Exp $
+
+  17 Jan 2010; Torsten Veller <tove@gentoo.org> -perl-5.8.8-r5.ebuild,
+  -perl-5.8.8-r6.ebuild, -files/perl-5.8.8-CAN-2005-0448-rmtree.patch:
+  Cleanup
 
   10 Dec 2009; Brent Baude <ranger@gentoo.org> perl-5.8.8-r8.ebuild:
   Marking perl-5.8.8-r8 ppc64 for bug 295028
