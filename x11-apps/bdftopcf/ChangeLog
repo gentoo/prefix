@@ -1,6 +1,15 @@
 # ChangeLog for x11-apps/bdftopcf
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/bdftopcf/ChangeLog,v 1.35 2009/12/27 17:36:34 josejx Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/bdftopcf/ChangeLog,v 1.38 2010/01/18 18:39:06 armin76 Exp $
+
+  18 Jan 2010; Raúl Porcel <armin76@gentoo.org> bdftopcf-1.0.2.ebuild:
+  alpha/ia64/sh/sparc stable wrt #294958
+
+  14 Jan 2010; Markus Meier <maekke@gentoo.org> bdftopcf-1.0.2.ebuild:
+  arm stable, bug #294958
+
+  14 Jan 2010; Jeroen Roovers <jer@gentoo.org> bdftopcf-1.0.2.ebuild:
+  Stable for HPPA (bug #294958).
 
   27 Dec 2009; Joseph Jezak <josejx@gentoo.org> bdftopcf-1.0.2.ebuild:
   Marked ppc stable for bug #294958.
