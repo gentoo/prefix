@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.18.02.ebuild,v 1.15 2009/06/16 14:39:16 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/xmlrpc-c-1.18.02.ebuild,v 1.16 2010/01/15 12:25:42 scarabeus Exp $
 
 EAPI=2
 
@@ -47,7 +47,7 @@ PATCHES=(
 	)
 
 src_prepare() {
-	base_src_util autopatch
+	base_src_prepare
 
 	# Respect the user's CFLAGS/CXXFLAGS.
 	sed -i \
@@ -92,8 +92,7 @@ src_configure() {
 		$(use_enable cgi cgi-server) \
 		$(use_enable abyss abyss-server) \
 		$(use_enable cxx cplusplus) \
-		$(use_enable curl curl-client) \
-		|| die "econf failed"
+		$(use_enable curl curl-client)
 }
 
 src_compile() {
@@ -121,8 +120,4 @@ src_test() {
 	else
 		elog "${CATEGORY}/${PN} tests will fail unless USE='abyss curl' is set."
 	fi
-}
-
-src_install() {
-	emake DESTDIR="${D}" install || die "installation failed"
 }

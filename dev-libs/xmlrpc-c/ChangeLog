@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/xmlrpc-c
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.94 2009/06/16 14:39:16 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xmlrpc-c/ChangeLog,v 1.95 2010/01/15 12:25:42 scarabeus Exp $
+
+  15 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  xmlrpc-c-1.18.02.ebuild:
+  Migrate to new base eclass structure.
 
   16 Jun 2009; Raúl Porcel <armin76@gentoo.org> xmlrpc-c-1.18.02.ebuild:
   arm/ia64/s390/sh/sparc stable wrt #271986
