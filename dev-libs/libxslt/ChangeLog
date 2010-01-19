@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libxslt
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.201 2010/01/07 19:17:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxslt/ChangeLog,v 1.202 2010/01/16 14:27:25 klausman Exp $
+
+  16 Jan 2010; Tobias Klausmann <klausman@gentoo.org> libxslt-1.1.26.ebuild:
+  Stable on alpha, bug #296430
 
   07 Jan 2010; Brent Baude <ranger@gentoo.org> libxslt-1.1.26.ebuild:
   Marking libxslt-1.1.26 ppc for bug 296430
