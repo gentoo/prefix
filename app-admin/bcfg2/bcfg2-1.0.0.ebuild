@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/bcfg2/bcfg2-1.0_pre2.ebuild,v 1.1 2009/05/20 02:42:34 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/bcfg2/bcfg2-1.0.0.ebuild,v 1.1 2010/01/17 22:10:45 darkside Exp $
 
 inherit distutils
 
@@ -13,19 +13,16 @@ SRC_URI="ftp://ftp.mcs.anl.gov/pub/bcfg/${MY_P}.tar.gz"
 S="${WORKDIR}/${MY_P}"
 
 LICENSE="BSD"
-SLOT="0"
+SLOT="1"
 KEYWORDS="~amd64-linux ~x86-linux ~x64-solaris"
 IUSE="server"
 
-DEPEND=">=dev-lang/python-2.5
-	dev-python/m2crypto"
-
-RDEPEND="app-portage/gentoolkit
-	dev-python/lxml
+DEPEND="app-portage/gentoolkit
+	>=dev-lang/python-2.6
 	server? (
 		dev-python/lxml
-		dev-python/pyopenssl
 		app-admin/gam-server )"
+RDEPEND="${DEPEND}"
 
 src_install() {
 	distutils_src_install --record=PY_SERVER_LIBS --install-scripts "${EPREFIX}"/usr/sbin
@@ -47,11 +44,10 @@ src_install() {
 }
 
 pkg_postinst () {
-	depscan.sh
 	use server && einfo "If this is a new installation, you probably need to run: "
 	use server && einfo "    bcfg2-admin init"
 }
 
 pkg_postrm () {
-	depscan.sh
+	python_mod_cleanup
 }
