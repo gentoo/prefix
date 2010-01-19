@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-9.06-r3.ebuild,v 1.5 2010/01/11 21:56:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-9.06-r3.ebuild,v 1.6 2010/01/16 13:25:06 klausman Exp $
 
 EAPI="2"
 
