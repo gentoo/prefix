@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/log4j
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.79 2009/12/08 18:22:22 betelgeuse Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.80 2010/01/16 19:09:56 armin76 Exp $
+
+  16 Jan 2010; Raúl Porcel <armin76@gentoo.org> log4j-1.2.15-r1.ebuild,
+  log4j-1.2.15-r2.ebuild:
+  Add ~ia64 wrt #296236
 
   08 Dec 2009; Petteri Räty <betelgeuse@gentoo.org> log4j-1.2.15-r2.ebuild:
   Remove comment about openjms as the ebuild uses jms virtual.
