@@ -29,14 +29,8 @@ documents
 a database of telephone calls or e-mail messages
 </longdescription>
 <use>
-	<flag name='cgraph'>
-		Enables cgraph (PostScript plotting library in C) library
-	</flag>
 	<flag name='lasi'>
 		Enables PostScript output via <pkg>media-libs/lasi</pkg> library
-	</flag>
-	<flag name='pango'>
-		Enables the rendering of the graphs using pango &amp; cairo (with antialiasing support)
 	</flag>
 </use>
 </pkgmetadata>

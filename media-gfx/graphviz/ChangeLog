@@ -1,6 +1,20 @@
 # ChangeLog for media-gfx/graphviz
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.211 2010/01/07 16:06:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/ChangeLog,v 1.213 2010/01/14 17:57:43 maekke Exp $
+
+  14 Jan 2010; Markus Meier <maekke@gentoo.org> -graphviz-2.12.ebuild,
+  -files/graphviz-2.12-bindings.patch, -files/graphviz-2.12-configure.patch,
+  -files/graphviz-2.12-find-system-libgd.patch,
+  -files/graphviz-2.12-notcl.patch,
+  -files/graphviz-2.12-parallel-build.patch,
+  -files/graphviz-2.16.1-pango-optional.patch,
+  -files/graphviz-2.16.1-python-345.patch,
+  -files/graphviz-2.16.1-python-buildfix.patch,
+  -files/graphviz-2.16.1-tcltk.patch, -graphviz-2.20.3.ebuild:
+  old
+
+  14 Jan 2010; Jeroen Roovers <jer@gentoo.org> graphviz-2.24.0-r2.ebuild:
+  Stable for HPPA (bug #284689).
 
   07 Jan 2010; Raúl Porcel <armin76@gentoo.org> graphviz-2.12.ebuild,
   graphviz-2.20.3.ebuild:
