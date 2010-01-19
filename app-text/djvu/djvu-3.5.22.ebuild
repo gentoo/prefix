@@ -1,9 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.22.ebuild,v 1.4 2010/01/05 11:17:24 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/djvu-3.5.22.ebuild,v 1.5 2010/01/18 10:05:45 pva Exp $
 
 EAPI=1
-inherit fdo-mime flag-o-matic eutils multilib toolchain-funcs
+inherit fdo-mime nsplugins flag-o-matic eutils multilib toolchain-funcs confutils
 
 MY_P="${PN}libre-${PV#*_p}"
 
@@ -14,11 +14,13 @@ SRC_URI="mirror://sourceforge/djvu/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
-IUSE="xml jpeg tiff debug nls kde doc"
+IUSE="xml qt3 jpeg tiff debug nls nsplugin kde doc"
 
 RDEPEND="jpeg? ( >=media-libs/jpeg-6b-r2 )
-	tiff? ( media-libs/tiff )"
-DEPEND="${RDEPEND}"
+	tiff? ( media-libs/tiff )
+	qt3? ( x11-libs/qt:3 )"
+DEPEND="${RDEPEND}
+	qt3? ( nsplugin? ( x11-libs/libXt ) )"
 
 S=${WORKDIR}/${MY_P}
 
@@ -32,6 +34,17 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-3.5.21-interix-atomic.patch
+}
+
+pkg_setup() {
+	if ! use qt3; then
+		ewarn
+		ewarn "The standalone djvu viewer, djview, will not be compiled."
+		ewarn "Add \"qt3\" to your USE flags if you want it."
+		ewarn
+	fi
+
+	confutils_use_depend_all nsplugin qt3
 }
 
 src_compile() {
@@ -54,17 +67,19 @@ src_compile() {
 		I18N="--disable-i18n"
 	fi
 
-	# We install all desktop files by hand and Qt3 is deprecated
-	econf \
-		--disable-desktopfiles \
-		--without-qt \
+	# We install all desktop files by hand.
+	econf --disable-desktopfiles \
+		$(use_with qt3 qt) \
 		$(use_enable xml xmltools) \
 		$(use_with jpeg) \
 		$(use_with tiff) \
 		"${I18N}" \
-		$(use_enable debug)
+		$(use_enable debug) \
+		${QTCONF}
 
-	sed -e 's:nsdejavu::' -i "${S}"/gui/Makefile || die
+	if ! use nsplugin; then
+		sed -e 's:nsdejavu::' -i "${S}"/gui/Makefile || die
+	fi
 
 	emake || die "emake failed"
 }
@@ -86,6 +101,11 @@ src_install() {
 		insinto /usr/share/mimelnk/image && doins vnd.djvu.desktop || die
 		cp "${ED}"/usr/share/mimelnk/image/{vnd.djvu.desktop,x-djvu.desktop}
 		sed -i -e 's:image/vnd.djvu:image/x-djvu:' "${ED}"/usr/share/mimelnk/image/x-djvu.desktop
+	fi
+
+	if use qt3 ; then
+		insinto /usr/share/icons/hicolor/32x32/apps && newins hi32-djview3.png djvulibre-djview3.png || die
+		insinto /usr/share/applications/ && doins djvulibre-djview3.desktop || die
 	fi
 }
 

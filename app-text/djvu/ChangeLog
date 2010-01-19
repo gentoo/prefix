@@ -1,6 +1,9 @@
 # ChangeLog for app-text/djvu
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.98 2010/01/05 03:08:54 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.99 2010/01/18 10:05:45 pva Exp $
+
+  18 Jan 2010; Peter Volkov <pva@gentoo.org> djvu-3.5.22.ebuild:
+  Revert qt3 drop, nsplugin should stay.
 
   05 Jan 2010; Ben de Groot <yngwin@gentoo.org>
   djvu-3.5.21_p20090103.ebuild, djvu-3.5.22.ebuild:
