@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jython
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.65 2009/08/06 08:22:17 ali_bush Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.66 2010/01/15 19:19:09 ulm Exp $
+
+  15 Jan 2010; Ulrich Mueller <ulm@gentoo.org> jython-2.1-r11.ebuild:
+  LICENSE is identical with BSD, bug 301123.
 
   06 Aug 2009; Alistair Bush <ali_bush@gentoo.org> jython-2.5.0-r1.ebuild:
   Fix build issue, thanks to Jeremy Stent for the report. see #280479

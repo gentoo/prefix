@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.1-r11.ebuild,v 1.9 2009/01/10 13:13:06 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/jython-2.1-r11.ebuild,v 1.10 2010/01/15 19:19:09 ulm Exp $
 
 inherit base java-pkg-2
 
@@ -9,7 +9,7 @@ HOMEPAGE="http://www.jython.org"
 MY_PV="21"
 #SRC_URI="mirror://sourceforge/${PN}/${PN}-${MY_PV}.class"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
-LICENSE="Jython"
+LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
 IUSE="readline source doc"
