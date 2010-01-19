@@ -1,5 +1,8 @@
 Add support for building Mach-O dylibs on Darwin.
 
+Applied upstream:
+http://qrupdate.svn.sourceforge.net/viewvc/qrupdate?view=rev&revision=21
+
 --- src/Makefile
 +++ src/Makefile
 @@ -36,7 +36,12 @@
