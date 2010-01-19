@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/xtrans
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xtrans/ChangeLog,v 1.71 2009/12/27 18:12:06 josejx Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xtrans/ChangeLog,v 1.74 2010/01/18 20:04:47 armin76 Exp $
+
+  18 Jan 2010; Raúl Porcel <armin76@gentoo.org> xtrans-1.2.5.ebuild:
+  alpha/ia64/sh/sparc stable wrt #294958
+
+  14 Jan 2010; Markus Meier <maekke@gentoo.org> xtrans-1.2.5.ebuild:
+  arm stable, bug #294958
+
+  14 Jan 2010; Jeroen Roovers <jer@gentoo.org> xtrans-1.2.5.ebuild:
+  Stable for HPPA (bug #294958).
 
   27 Dec 2009; Joseph Jezak <josejx@gentoo.org> xtrans-1.2.5.ebuild:
   Marked ppc stable for bug #294958.
