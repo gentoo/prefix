@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60_p20090728014017-r1.ebuild,v 1.6 2010/01/12 18:36:36 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/net-tools/net-tools-1.60_p20090728014017-r1.ebuild,v 1.8 2010/01/14 21:20:24 maekke Exp $
 
 inherit flag-o-matic toolchain-funcs eutils
 
