@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/wxGTK
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.241 2009/09/15 01:08:27 dirtyepic Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.242 2010/01/19 01:19:35 dirtyepic Exp $
+
+*wxGTK-2.8.10.1-r4 (19 Jan 2010)
+
+  19 Jan 2010; Ryan Hill <dirtyepic@gentoo.org> +wxGTK-2.8.10.1-r4.ebuild,
+  +files/wxGTK-2.8.10.1-wxTimer-unbounded-hook.patch:
+  Added upstream patch to prevent leaking timer handles in idle apps. (Bug
+  #301143 by Richard Ash)
 
   15 Sep 2009; Ryan Hill <dirtyepic@gentoo.org> -wxGTK-2.6.4.0-r4.ebuild,
   -wxGTK-2.8.9.1-r3.ebuild, -wxGTK-2.8.9.2-r1.ebuild,
