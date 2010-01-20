@@ -140,6 +140,7 @@ app-misc/strigi
 app-misc/tmux
 app-misc/ttyrec
 app-misc/zisofs-tools
+app-office/akonadi-server
 app-office/orage
 app-office/texmacs
 app-portage/eclass-manpages
