@@ -12,9 +12,12 @@ DESCRIPTION="X.Org font encodings"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
+# font-util is required for bootstrapping, which _may_ be done (depending on
+# platform) in the x-modular eclass...
 RDEPEND=""
 DEPEND="${RDEPEND}
-	x11-apps/mkfontscale"
+	x11-apps/mkfontscale
+	media-fonts/font-util"
 
 CONFIGURE_OPTIONS="--with-encodingsdir=${EPREFIX}/usr/share/fonts/encodings"
 
