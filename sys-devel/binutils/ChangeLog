@@ -1,6 +1,15 @@
 # ChangeLog for sys-devel/binutils
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.375 2009/12/18 18:42:41 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.377 2010/01/16 09:16:31 vapier Exp $
+
+*binutils-2.20.51.0.5 (16 Jan 2010)
+
+  16 Jan 2010; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.20.51.0.5.ebuild:
+  Version bump.
+
+  11 Jan 2010; Raúl Porcel <armin76@gentoo.org> binutils-2.19.1-r1.ebuild:
+  arm stable
 
 *binutils-2.20.51.0.4 (18 Dec 2009)
 
