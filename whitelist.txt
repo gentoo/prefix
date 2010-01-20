@@ -835,6 +835,7 @@ dev-perl
 perl-core
 
 # Operation Deadly Snake (Python), bug #295035
+dev-python/PyQt4
 dev-python/astng
 dev-python/beautifulsoup
 dev-python/boto
@@ -848,7 +849,7 @@ dev-python/clientform
 dev-python/configobj
 dev-python/coverage
 dev-python/cython
-dev-python/pysvn
+dev-python/dbus-python
 dev-python/decorator
 dev-python/decoratortools
 dev-python/django
@@ -922,6 +923,7 @@ dev-python/pyprotocols
 dev-python/pyrex
 dev-python/pyro
 dev-python/pysqlite
+dev-python/pysvn
 dev-python/python-cdb
 dev-python/python-dateutil
 dev-python/python-docs
