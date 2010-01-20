@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/libpng-1.2.41.ebuild,v 1.1 2009/12/21 23:07:53 vapier Exp $
 
-inherit libtool
+inherit libtool autotools
 
 DESCRIPTION="Portable Network Graphics library"
 HOMEPAGE="http://www.libpng.org/"
@@ -15,6 +15,14 @@ IUSE=""
 
 RDEPEND="sys-libs/zlib"
 DEPEND="${RDEPEND}"
+
+src_unpack() {
+	unpack ${A}
+	cd "${S}"
+
+	# required to get new/patched libtool, which knows better about eprefix!
+	eautoreconf
+}
 
 src_install() {
 	emake DESTDIR="${D}" install || die
