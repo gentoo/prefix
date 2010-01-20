@@ -203,6 +203,7 @@ app-text/xml2
 app-text/xmlstarlet
 dev-cpp/cairomm
 dev-cpp/clucene
+dev-cpp/eigen
 dev-cpp/gccxml
 dev-cpp/gtkmm
 dev-cpp/muParser
