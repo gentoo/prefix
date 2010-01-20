@@ -1,6 +1,10 @@
 # ChangeLog for app-doc/doxygen
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.172 2010/01/02 22:22:09 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/ChangeLog,v 1.173 2010/01/17 16:31:11 ayoy Exp $
+
+  17 Jan 2010; Dominik Kapusta <ayoy@gentoo.org> doxygen-1.5.9.ebuild,
+  doxygen-1.6.1.ebuild:
+  Ported to qt4-r2 eclass + switched to EAPI="2" for 1.5.9
 
   02 Jan 2010; Ben de Groot <yngwin@gentoo.org> doxygen-1.4.7.ebuild,
   doxygen-1.5.4.ebuild, doxygen-1.5.5.ebuild, doxygen-1.5.6.ebuild,

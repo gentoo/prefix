@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.6.1.ebuild,v 1.2 2009/12/26 17:24:39 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-doc/doxygen/doxygen-1.6.1.ebuild,v 1.3 2010/01/17 16:31:11 ayoy Exp $
 
 EAPI=2
 
-inherit eutils flag-o-matic toolchain-funcs qt4 fdo-mime
+inherit eutils flag-o-matic toolchain-funcs qt4-r2 fdo-mime
 
 DESCRIPTION="documentation system for C++, C, Java, Objective-C, Python, IDL, and other languages"
 HOMEPAGE="http://www.doxygen.org/"
