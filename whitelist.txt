@@ -652,6 +652,7 @@ sci-libs/proj
 sci-libs/scipy
 sci-libs/ufconfig
 sci-libs/umfpack
+sci-libs/qrupdate
 sci-mathematics/otter
 sci-visualization/fig2sxd
 sys-apps/ack
