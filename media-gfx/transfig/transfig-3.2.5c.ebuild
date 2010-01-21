@@ -55,7 +55,7 @@ src_prepare() {
 	sed -e 's:-L$(ZLIBDIR) -lz::' \
 		-e 's: -lX11::' \
 			-i fig2dev/Imakefile || die
-	epatch "${FILESDIR}"/${P}-3.2.5-solaris.patch
+	epatch "${FILESDIR}"/${PN}-3.2.5-solaris.patch
 	sed_Imakefile fig2dev/Imakefile fig2dev/dev/Imakefile
 }
 
