@@ -9,7 +9,7 @@ inherit x-modular
 
 DESCRIPTION="utility for modifying keymaps and pointer button mappings in X"
 
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE=""
 
 RDEPEND="x11-libs/libX11"
