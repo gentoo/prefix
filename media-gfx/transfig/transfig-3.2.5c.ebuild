@@ -74,7 +74,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${ED}" \
+	emake DESTDIR="${D}" \
 		${transfig_conf} install install.man || die
 
 	dobin "${WORKDIR}/fig2mpdf/fig2mpdf" || die
