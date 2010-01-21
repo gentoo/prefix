@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.35-r1.ebuild,v 1.7 2009/11/21 20:08:13 nixnut Exp $
 
-inherit autotools prefix
+inherit autotools prefix flag-o-matic
 
 DESCRIPTION="A graphics library for fast image creation"
 HOMEPAGE="http://libgd.org/"
@@ -36,6 +36,26 @@ src_unpack() {
 }
 
 src_compile() {
+	# setup a default FONT path that has a chance of existing using corefonts,
+	# as to make it more useful with e.g. gnuplot
+	local fontpath="${EPREFIX}/usr/share/fonts/corefonts"
+	# like with fontconfig, try to use fonts from the host OS, because that's
+	# beneficial for the user
+	use prefix && case ${CHOST} in
+		*-darwin*)
+			fontpath="${fontpath}:/Library/Fonts:/System/Library/Fonts"
+		;;
+		*-solaris*)
+			[[ -d /usr/X/lib/X11/fonts/TrueType ]] && \
+				fontpath="${fontpath}:/usr/X/lib/X11/fonts/TrueType"
+		;;
+		*-linux-gnu)
+			[[ -d /usr/share/fonts/truetype ]] && \
+				fontpath="${fontpath}:/usr/share/fonts/truetype"
+		;;
+	esac
+	append-flags "-DDEFAULT_FONTPATH=\\\"${fontpath}\\\""
+
 	econf \
 		$(use_with fontconfig) \
 		$(use_with png) \
