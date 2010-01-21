@@ -484,6 +484,7 @@ media-libs/jpeg
 media-libs/libcddb
 media-libs/libcuefile
 media-libs/libdca
+media-libs/libdiscid
 media-libs/libdvdcss
 media-libs/libdvdplay
 media-libs/libdvdread
@@ -501,6 +502,7 @@ media-libs/libsamplerate
 media-libs/libsvg
 media-libs/libuninameslist
 media-libs/libwpg
+media-libs/musicbrainz
 media-libs/mutagen
 media-libs/openal
 media-libs/portaudio
