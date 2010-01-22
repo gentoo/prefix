@@ -72,6 +72,7 @@ app-crypt/bcrypt
 app-crypt/md5deep
 app-crypt/opencdk
 app-crypt/qca
+app-crypt/qca-ossl
 app-crypt/shash
 app-crypt/sign
 app-dicts/aspell-de
