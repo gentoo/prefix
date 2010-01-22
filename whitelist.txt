@@ -591,6 +591,7 @@ net-libs/libpcap
 net-libs/libsoup-gnome
 net-libs/libssh
 net-libs/libssh2
+net-libs/libvncserver
 net-libs/webkit-gtk
 net-mail/getmail
 net-mail/mlmmj
