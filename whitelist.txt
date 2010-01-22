@@ -834,6 +834,7 @@ x11-wm/windowmaker
 # entire categories
 app-vim
 dev-dotnet
+dev-games
 kde-base
 gnome-extra
 lxde-base
