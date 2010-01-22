@@ -496,6 +496,7 @@ media-libs/libmng
 media-libs/libmp4v2
 media-libs/libmpd
 media-libs/libmpeg2
+media-libs/libofa
 media-libs/libpano13
 media-libs/libreplaygain
 media-libs/libsamplerate
