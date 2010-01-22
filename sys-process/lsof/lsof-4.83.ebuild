@@ -26,14 +26,14 @@ src_unpack() {
 	unpack ./${MY_P}_src.tar
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-4.81-aix.patch #278831
-	epatch "${FILESDIR}"/${PN}-4.82-config-solaris.patch
-	epatch "${FILESDIR}"/${PN}-4.80-solaris11.patch
-	if [[ ${CHOST} == *-solaris2.11 ]] ; then
-		mkdir -p ext/sys
-		# missing system header :(
-		cp "${FILESDIR}"/solaris11-extdirent.h ext/sys/extdirent.h
-		( cd lib && ln -s ../ext )
-	fi
+#	epatch "${FILESDIR}"/${PN}-4.82-config-solaris.patch
+#	epatch "${FILESDIR}"/${PN}-4.80-solaris11.patch
+#	if [[ ${CHOST} == *-solaris2.11 ]] ; then
+#		mkdir -p ext/sys
+#		# missing system header :(
+#		cp "${FILESDIR}"/solaris11-extdirent.h ext/sys/extdirent.h
+#		( cd lib && ln -s ../ext )
+#	fi
 }
 
 yesno() { use $1 && echo y || echo n ; }
