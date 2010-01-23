@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.2_rc1.ebuild,v 1.1 2010/01/03 16:13:59 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ocaml-3.11.2.ebuild,v 1.1 2010/01/20 18:42:48 aballier Exp $
 
 EAPI="1"
 
@@ -76,7 +76,7 @@ src_compile() {
 		-partialld "$(tc-getLD) -r" \
 		--with-pthread ${myconf} || die "configure failed!"
 
-	emake world || die "make world failed!"
+	emake -j1 world || die "make world failed!"
 
 	# Native code generation can be disabled now
 	if use ocamlopt ; then
