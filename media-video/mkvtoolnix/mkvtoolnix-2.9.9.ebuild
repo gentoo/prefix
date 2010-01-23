@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/mkvtoolnix-2.9.9.ebuild,v 1.2 2010/01/12 19:09:18 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/mkvtoolnix-2.9.9.ebuild,v 1.3 2010/01/20 20:22:20 maekke Exp $
 
 EAPI="1"
 inherit eutils wxwidgets flag-o-matic qt4 autotools
