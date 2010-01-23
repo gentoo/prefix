@@ -1,6 +1,11 @@
 # ChangeLog for mail-client/mozilla-thunderbird
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.312 2009/12/29 22:57:02 anarchy Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.313 2010/01/22 03:44:08 anarchy Exp $
+
+*mozilla-thunderbird-3.0.1 (22 Jan 2010)
+
+  22 Jan 2010; <anarchy@gentoo.org> +mozilla-thunderbird-3.0.1.ebuild:
+  version bump
 
   29 Dec 2009; Jory A. Pratt <anarchy@gentoo.org>
   files/thunderbird-gentoo-default-prefs.js:
