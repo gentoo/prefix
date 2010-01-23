@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.103 2010/01/10 15:22:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.104 2010/01/21 22:25:43 eva Exp $
+
+*gmime-2.4.13 (21 Jan 2010)
+
+  21 Jan 2010; Gilles Dartiguelongue <eva@gentoo.org> -gmime-2.2.23.ebuild,
+  -gmime-2.4.3.ebuild, -gmime-2.4.7.ebuild, +gmime-2.4.13.ebuild:
+  Version bump. Bug fixes.
 
   10 Jan 2010; Markus Meier <maekke@gentoo.org> gmime-2.4.11.ebuild:
   add ~arm, bug #290772

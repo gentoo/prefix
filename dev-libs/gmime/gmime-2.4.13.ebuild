@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.7.ebuild,v 1.3 2009/12/08 00:12:12 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.13.ebuild,v 1.1 2010/01/21 22:25:43 eva Exp $
 
 inherit gnome2 eutils mono libtool
 
@@ -31,7 +31,7 @@ src_unpack() {
 	cd "${S}"
 
 	if use doc ; then
-		#db2html should be docbook2html
+		# db2html should be docbook2html
 		sed -i -e 's:db2html:docbook2html -o gmime-tut:g' \
 			docs/tutorial/Makefile.am docs/tutorial/Makefile.in \
 			|| die "sed failed (1)"
