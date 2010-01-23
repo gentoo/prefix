@@ -1,6 +1,16 @@
 # ChangeLog for www-servers/lighttpd
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.212 2009/11/25 09:59:17 bangert Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.215 2010/01/21 14:19:16 fauli Exp $
+
+  21 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  lighttpd-1.4.25.ebuild:
+  stable x86, bug 301563
+
+  20 Jan 2010; <hwoarang@gentoo.org> lighttpd-1.4.25.ebuild:
+  Stable on amd64 wrt bug #301563
+
+  20 Jan 2010; Brent Baude <ranger@gentoo.org> lighttpd-1.4.25.ebuild:
+  Marking lighttpd-1.4.25 ppc64 for bug 301563
 
 *lighttpd-1.4.25 (25 Nov 2009)
 
