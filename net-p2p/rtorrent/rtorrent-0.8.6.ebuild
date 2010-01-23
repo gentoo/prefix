@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.6.ebuild,v 1.2 2009/12/28 20:35:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/rtorrent-0.8.6.ebuild,v 1.3 2010/01/21 11:19:34 cla Exp $
 
 EAPI=2
 
@@ -27,6 +27,10 @@ DEPEND="${COMMON_DEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.8.5-solaris.patch
+}
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-canvas-fix.patch
 }
 
 src_configure() {
