@@ -374,6 +374,7 @@ dev-util/pccts
 dev-util/pida
 dev-util/pscan
 dev-util/qgit
+dev-util/qt-creator
 dev-util/re2c
 dev-util/statcvs
 dev-util/strace
