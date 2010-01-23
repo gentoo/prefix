@@ -1,6 +1,15 @@
 # ChangeLog for dev-tex/texmfind
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/texmfind/ChangeLog,v 1.11 2009/09/20 15:50:31 aballier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/texmfind/ChangeLog,v 1.13 2010/01/21 09:45:17 fauli Exp $
+
+*texmfind-2009.1 (21 Jan 2010)
+
+  21 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  +texmfind-2009.1.ebuild:
+  version bump for TeXLive 2009 files
+
+  19 Jan 2010; Christian Faulhammer <fauli@gentoo.org> -texmfind-0.1.ebuild:
+  clean up
 
   20 Sep 2009; Alexis Ballier <aballier@gentoo.org> texmfind-2008.1.ebuild:
   keyword ~ppc64, working fine on a PowerMac 970
