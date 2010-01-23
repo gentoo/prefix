@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/xtrans
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/xtrans/ChangeLog,v 1.74 2010/01/18 20:04:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/xtrans/ChangeLog,v 1.75 2010/01/19 20:27:02 armin76 Exp $
+
+  19 Jan 2010; Raúl Porcel <armin76@gentoo.org> xtrans-1.2.5.ebuild:
+  s390 stable wrt #294958
 
   18 Jan 2010; Raúl Porcel <armin76@gentoo.org> xtrans-1.2.5.ebuild:
   alpha/ia64/sh/sparc stable wrt #294958
