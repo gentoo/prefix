@@ -835,6 +835,7 @@ x11-wm/twm
 x11-wm/windowmaker
 
 # entire categories
+app-pda
 app-vim
 dev-dotnet
 dev-games
