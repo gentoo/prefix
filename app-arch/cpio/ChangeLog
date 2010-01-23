@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/cpio
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.99 2009/06/20 10:20:01 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.100 2010/01/20 07:30:56 robbat2 Exp $
+
+*cpio-2.10-r1 (20 Jan 2010)
+
+  20 Jan 2010; Robin H. Johnson <robbat2@gentoo.org>
+  +files/cpio-2.9-64-bit-wide-inode-fixup.patch, +cpio-2.10-r1.ebuild:
+  Cpio on XFS fails to deal with hardlinks properly, apply fix from upstream
+  mailing list.
 
 *cpio-2.10 (20 Jun 2009)
 
