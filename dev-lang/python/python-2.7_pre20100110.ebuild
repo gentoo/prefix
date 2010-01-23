@@ -417,6 +417,8 @@ src_install() {
 		pushd "${D}${fwdir}"/Versions/${SLOT}/include > /dev/null
 		ln -s ../../../../../include/python${SLOT} || die
 		popd > /dev/null
+		# remove now dead symlink
+		rm "${ED}"/usr/lib/python${SLOT}/config/libpython${SLOT}.a
 
 		# same for libs
 		# NOTE: can't symlink the entire dir, because a real dir already exists
