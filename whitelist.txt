@@ -652,6 +652,7 @@ sci-libs/buddy
 sci-libs/camd
 sci-libs/ccolamd
 sci-libs/cholmod
+sci-libs/cln
 sci-libs/colamd
 sci-libs/cxsparse
 sci-libs/fftw
