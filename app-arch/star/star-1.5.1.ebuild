@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5.1.ebuild,v 1.1 2009/12/10 13:25:52 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5.1.ebuild,v 1.2 2010/01/21 18:08:51 billie Exp $
 
 EAPI="2"
 
@@ -23,6 +23,14 @@ src_prepare() {
 		-e 's:bin:root:g' \
 		-e "s:/usr/src/linux/include:${EPREFIX}/usr/include:" \
 			DEFAULTS/Defaults.linux || die
+
+	# Create additional symlinks needed for some archs.
+	cd "${S}"/RULES
+	local t
+	for t in ppc64 s390x ; do
+		ln -s i586-linux-cc.rul ${t}-linux-cc.rul || die
+		ln -s i586-linux-gcc.rul ${t}-linux-gcc.rul || die
+	done
 }
 
 src_configure() { :; } #avoid ./configure run

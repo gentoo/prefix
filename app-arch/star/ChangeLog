@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/star
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.82 2009/12/10 13:25:52 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.83 2010/01/21 18:08:51 billie Exp $
+
+  21 Jan 2010; Daniel Pielmeier <billie@gentoo.org> star-1.5.1.ebuild,
+  metadata.xml:
+  Add back symlinks needed for ppc64. Add myself to maintainers.
 
 *star-1.5.1 (10 Dec 2009)
 
