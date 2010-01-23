@@ -25,16 +25,10 @@ SITEFILE="50${PN}-gentoo.el"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	epatch "${FILESDIR}/${P}-ocs-sysdir.patch" #269305
 
 	epatch "${FILESDIR}"/${PN}-15.6-darwin.patch
 	epatch "${FILESDIR}"/${PN}-15.6-r3-interix.patch
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-ocs-sysdir.patch" #269305
-	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
