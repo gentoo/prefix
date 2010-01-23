@@ -41,6 +41,7 @@ src_unpack() {
 			epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-winnt.patch
 		epatch "${FILESDIR}"/2.2.6b/${PN}-2.2.6b-mint.patch
 		epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-hppa-hpux.patch
+		epatch "${FILESDIR}"/2.2.6b/${PN}-2.2.6b-irix.patch
 
 		# seems that libtool has to know about EPREFIX a little bit better,
 		# since it fails to find prefix paths to search libs from, resulting in
