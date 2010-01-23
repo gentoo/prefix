@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.23.ebuild,v 1.2 2010/01/08 07:07:50 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man-pages/man-pages-3.23.ebuild,v 1.3 2010/01/19 06:38:03 vapier Exp $
 
 GENTOO_PATCH=2
 
