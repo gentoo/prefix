@@ -58,7 +58,12 @@ src_unpack() {
 	epatch "${DISTDIR}"/${MY_PN}-${PV}-shared-libs.patch.bz2
 	epatch "${FILESDIR}"/${MY_PN}-asm-gentoo.patch
 
+	cp "${FILESDIR}"/eselect.{,c}blas.{,threaded-}atlas "${T}"/
+	sed -i -e "s:/usr:${EPREFIX}/usr:" \
+		"${T}"/eselect.{,c}blas.{,threaded-}atlas || die
 	if [[ ${CHOST} == *-darwin* ]] ; then
+		sed -i -e 's/\.so\([\.0-9]\+\)\?/\1.dylib/g' \
+			"${T}"/eselect.{,c}blas.{,threaded-}atlas || die
 		sed -e /LIBTOOL/s/libtool/glibtool/ -i CONFIG/src/SpewMakeInc.c
 		epatch "${FILESDIR}"/${PN}-3.9.3-darwin-make-top.patch
 	fi
@@ -160,6 +165,7 @@ src_install () {
 	cp "${FILESDIR}"/blas.pc.in blas.pc
 	cp "${FILESDIR}"/cblas.pc.in cblas.pc
 	sed -i \
+		-e "s:=/usr:=${EPREFIX}/usr:" \
 		-e "s:@LIBDIR@:$(get_libdir)/blas/atlas:" \
 		-e "s:@PV@:${PV}:" \
 		-e "s:@EXTLIBS@:${extlibs}:g" \
@@ -170,8 +176,8 @@ src_install () {
 		|| die "Failed to install blas/cblas"
 
 	ESELECT_PROF=atlas
-	eselect blas add $(get_libdir) "${FILESDIR}"/eselect.blas.atlas ${ESELECT_PROF}
-	eselect cblas add $(get_libdir) "${FILESDIR}"/eselect.cblas.atlas ${ESELECT_PROF}
+	eselect blas add $(get_libdir) "${T}"/eselect.blas.atlas ${ESELECT_PROF}
+	eselect cblas add $(get_libdir) "${T}"/eselect.cblas.atlas ${ESELECT_PROF}
 
 	if [[ -d "${BLD_DIR}"/gentoo/threaded-libs ]];	then
 		dodir "${RPATH}"/threaded-atlas
@@ -182,6 +188,7 @@ src_install () {
 		cp "${FILESDIR}"/cblas.pc.in cblas.pc
 		threadlibs="-lpthread"
 		sed -i \
+			-e "s:=/usr:=${EPREFIX}/usr:" \
 			-e "s:@LIBDIR@:$(get_libdir)/blas/threaded-atlas:" \
 			-e "s:@PV@:${PV}:" \
 			-e "s:@EXTLIBS@:${extlibs}:g" \
@@ -192,8 +199,8 @@ src_install () {
 			|| die "Failed to install threaded atlas"
 		ESELECT_PROF=atlas-threads
 
-		eselect blas add $(get_libdir) "${FILESDIR}"/eselect.blas.threaded-atlas ${ESELECT_PROF}
-		eselect cblas add $(get_libdir) "${FILESDIR}"/eselect.cblas.threaded-atlas ${ESELECT_PROF}
+		eselect blas add $(get_libdir) "${T}"/eselect.blas.threaded-atlas ${ESELECT_PROF}
+		eselect cblas add $(get_libdir) "${T}"/eselect.cblas.threaded-atlas ${ESELECT_PROF}
 	fi
 
 	insinto "${DESTTREE}"/include/atlas
