@@ -1,6 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p39.ebuild,v 1.20 2009/11/11 04:15:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1_p2.ebuild,v 1.1 2010/01/21 05:43:22 vapier Exp $
+
+EAPI="1"
 
 inherit eutils flag-o-matic toolchain-funcs multilib prefix
 
@@ -8,37 +10,42 @@ inherit eutils flag-o-matic toolchain-funcs multilib prefix
 # See ftp://ftp.cwru.edu/pub/bash/bash-3.2-patches/
 PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
+MY_PV=${MY_PV/_/-}
 MY_P=${PN}-${MY_PV}
-READLINE_VER=5.2
+[[ ${PV} != *_p* ]] && PLEVEL=0
+READLINE_VER=6.1
 READLINE_PLEVEL=0 # both readline patches are also released as bash patches
+patches() {
+	local opt=$1 plevel=${2:-${PLEVEL}} pn=${3:-${PN}} pv=${4:-${MY_PV}}
+	[[ ${plevel} -eq 0 ]] && return 1
+	eval set -- {1..${plevel}}
+	set -- $(printf "${pn}${pv/\.}-%03d " "$@")
+	if [[ ${opt} == -s ]] ; then
+		echo "${@/#/${DISTDIR}/}"
+	else
+		local u
+		for u in ftp://ftp.cwru.edu/pub/bash mirror://gnu/${pn} ; do
+			printf "${u}/${pn}-${pv}-patches/%s " "$@"
+		done
+	fi
+}
 
 DESCRIPTION="The standard GNU Bourne again shell"
 HOMEPAGE="http://tiswww.case.edu/php/chet/bash/bashtop.html"
-SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz
-	ftp://ftp.cwru.edu/pub/bash/${MY_P}.tar.gz
-	$(for ((i=1; i<=PLEVEL; i++)); do
-		printf 'ftp://ftp.cwru.edu/pub/bash/bash-%s-patches/bash%s-%03d\n' \
-			${MY_PV} ${MY_PV/\.} ${i}
-		printf 'mirror://gnu/bash/bash-%s-patches/bash%s-%03d\n' \
-			${MY_PV} ${MY_PV/\.} ${i}
-	done)
-	$(for ((i=1; i<=READLINE_PLEVEL; i++)); do
-		printf 'ftp://ftp.cwru.edu/pub/bash/readline-%s-patches/readline%s-%03d\n' \
-			${READLINE_VER} ${READLINE_VER/\.} ${i}
-		printf 'mirror://gnu/bash/readline-%s-patches/readline%s-%03d\n' \
-			${READLINE_VER} ${READLINE_VER/\.} ${i}
-	done)"
+SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)
+	$(patches ${READLINE_PLEVEL} readline ${READLINE_VER})"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="afs bashlogger examples nls plugins vanilla"
+#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="afs bashlogger examples i6fork +net nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2
 	nls? ( virtual/libintl )"
 RDEPEND="${DEPEND}
-	!<sys-apps/portage-2.1.5
-	!<sys-apps/paludis-0.26.0_alpha5"
+	!<sys-apps/portage-2.1.7.16
+	!<sys-apps/paludis-0.26.0_alpha5
+	i6fork? ( sys-libs/i6fork )"
 
 S=${WORKDIR}/${MY_P}
 
@@ -55,50 +62,39 @@ src_unpack() {
 	cd "${S}"
 
 	# Include official patches
-	local i
-	for ((i=1; i<=PLEVEL; i++)); do
-		epatch "${DISTDIR}"/${PN}${MY_PV/\.}-$(printf '%03d' ${i})
-	done
+	[[ ${PLEVEL} -gt 0 ]] && epatch $(patches -s)
 	cd lib/readline
-	for ((i=1; i<=READLINE_PLEVEL; i++)); do
-		epatch "${DISTDIR}"/readline${READLINE_VER/\.}-$(printf '%03d' ${i})
-	done
+	[[ ${READLINE_PLEVEL} -gt 0 ]] && epatch $(patches -s ${READLINE_PLEVEL} readline ${READLINE_VER})
 	cd ../..
 
 	if ! use vanilla ; then
-		epatch "${FILESDIR}"/autoconf-mktime-2.59.patch #220040
-		epatch "${FILESDIR}"/${PN}-3.1-gentoo.patch
-		epatch "${FILESDIR}"/${PN}-3.2-loadables.patch
-		epatch "${FILESDIR}"/${PN}-3.2-parallel-build.patch #189671
-		epatch "${FILESDIR}"/${PN}-3.2-ldflags-for-build.patch #211947
-
-		# Fix process substitution on BSD.
-		epatch "${FILESDIR}"/${PN}-3.2-process-subst.patch
-
-		epatch "${FILESDIR}"/${PN}-3.2-ulimit.patch
-		# Don't barf on handled signals in scripts
-		epatch "${FILESDIR}"/${PN}-3.0-trap-fg-signals.patch
-		epatch "${FILESDIR}"/${PN}-3.2-dev-fd-test-as-user.patch #131875
+		sed -i '1i#define NEED_FPURGE_DECL' execute_cmd.c # needs fpurge() decl
 		# Log bash commands to syslog #91327
 		if use bashlogger ; then
-			echo
 			ewarn "The logging patch should ONLY be used in restricted (i.e. honeypot) envs."
 			ewarn "This will log ALL output you enter into the shell, you have been warned."
 			ebeep
 			epause
 			epatch "${FILESDIR}"/${PN}-3.1-bash-logger.patch
 		fi
+		epatch "${FILESDIR}"/${PN}-4.1-parallel-build.patch
 	fi
 
-	epatch "${FILESDIR}"/${PN}-3.0-configs.patch
-	# this one makes the above one prefix paths + additional prefixes added
-	epatch "${FILESDIR}"/${PN}-3.0-configs-prefix.patch
-	eprefixify config-top.h pathnames.h.in
+	# this adds additional prefixes
+	epatch "${FILESDIR}"/${PN}-4.0-configs-prefix.patch
+	eprefixify pathnames.h.in
 
 	epatch "${FILESDIR}"/${PN}-3.2-getcwd-interix.patch
+	epatch "${FILESDIR}"/${PN}-4.0-mint.patch
+	epatch "${FILESDIR}"/${PN}-4.0-bashintl-in-siglist.patch
+	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
 
-	# intmax_t and uintmax_t should be looked for in stdint.h on interix
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
+	if [[ ${CHOST} == *-interix* ]]; then
+		epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
+		epatch "${FILESDIR}"/${PN}-4.0-interix.patch
+		epatch "${FILESDIR}"/${PN}-4.0-interix-access.patch
+		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
+	fi
 
 	# modify the bashrc file for prefix
 	cp "${FILESDIR}"/bashrc "${T}"
@@ -114,6 +110,26 @@ src_unpack() {
 src_compile() {
 	local myconf=
 
+	# For descriptions of these, see config-top.h
+	# bashrc/#26952 bash_logout/#90488 ssh/#24762
+	if use prefix ; then
+		append-cppflags \
+			-DDEFAULT_PATH_VALUE=\'\"${EPREFIX}/usr/sbin:${EPREFIX}/usr/bin:${EPREFIX}/sbin:${EPREFIX}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\' \
+			-DSTANDARD_UTILS_PATH=\'\"${EPREFIX}/bin:${EPREFIX}/usr/bin:${EPREFIX}/sbin:${EPREFIX}/usr/sbin:/bin:/usr/bin:/sbin:/usr/sbin\"\' \
+			-DSYS_BASHRC=\'\"${EPREFIX}/etc/bash/bashrc\"\' \
+			-DSYS_BASH_LOGOUT=\'\"${EPREFIX}/etc/bash/bash_logout\"\' \
+			-DNON_INTERACTIVE_LOGIN_SHELLS \
+			-DSSH_SOURCE_BASHRC
+	else
+	append-cppflags \
+		-DDEFAULT_PATH_VALUE=\'\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\' \
+		-DSTANDARD_UTILS_PATH=\'\"/bin:/usr/bin:/sbin:/usr/sbin\"\' \
+		-DSYS_BASHRC=\'\"/etc/bash/bashrc\"\' \
+		-DSYS_BASH_LOGOUT=\'\"/etc/bash/bash_logout\"\' \
+		-DNON_INTERACTIVE_LOGIN_SHELLS \
+		-DSSH_SOURCE_BASHRC
+	fi
+
 	# IRIX's MIPSpro produces garbage with >= -O2, bug #209137
 	[[ ${CHOST} == mips-sgi-irix* ]] && replace-flags -O? -O1
 
@@ -125,7 +141,7 @@ src_compile() {
 
 	# Don't even think about building this statically without
 	# reading Bug 7714 first.  If you still build it statically,
-	# don't come crying to use with bugs ;).
+	# don't come crying to us with bugs ;).
 	#use static && export LDFLAGS="${LDFLAGS} -static"
 	use nls || myconf="${myconf} --disable-nls"
 
@@ -133,28 +149,33 @@ src_compile() {
 	# sucks bad compared to ncurses
 	myconf="${myconf} --with-curses"
 
-	# Default path is to use /usr/local/..... regardless.  This little
-	# magic will set the default path to /usr/..... and keep us from
-	# worrying about the rest of the path getting out of sync with the
-	# ebuild code.
-	eval $(echo export $(ac_default_prefix="${EPREFIX}/usr"; eval echo $(grep DEBUGGER_START_FILE= configure)))
-
-	if [[ ${CHOST} == *-interix* ]]; then
-		export ac_cv_header_inttypes_h=no
-		export gt_cv_header_inttypes_h=no
-		export jm_ac_cv_header_inttypes_h=no
-	fi
-
 	use plugins && case ${CHOST} in
 		*-linux-gnu | *-solaris* | *-freebsd* )
 			append-ldflags -Wl,-rpath,"${EPREFIX}"/usr/$(get_libdir)/bash
 		;;
 		# Darwin doesn't need an rpath here
 	esac
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		export ac_cv_header_inttypes_h=no
+		export gt_cv_header_inttypes_h=no
+		export jm_ac_cv_header_inttypes_h=no
+
+		# argh... something doomed this test on windows ... ???
+		export bash_cv_type_intmax_t=yes
+		export bash_cv_type_uintmax_t=yes
+	fi
+
+	if use i6fork; then
+		append-libs -li6fork
+	fi
+
 	econf \
 		$(use_with afs) \
+		$(use_enable net net-redirections) \
 		--disable-profiling \
-		--without-gnu-malloc \
+		$(use_enable mem-scramble) \
+		$(use_with mem-scramble bash-malloc) \
 		${myconf} || die
 	emake || die "make failed"
 
@@ -171,8 +192,8 @@ src_install() {
 	dosym bash /bin/rbash
 
 	insinto /etc/bash
-	doins "${FILESDIR}"/bash_logout
 	doins "${T}"/bashrc
+	doins "${FILESDIR}"/bash_logout
 	insinto /etc/skel
 	for f in bash{_logout,_profile,rc} ; do
 		newins "${FILESDIR}"/dot-${f} .${f}

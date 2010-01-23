@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p48-r1.ebuild,v 1.5 2009/11/11 04:15:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-3.2_p50.ebuild,v 1.1 2010/01/21 05:43:22 vapier Exp $
 
 EAPI=1
 
