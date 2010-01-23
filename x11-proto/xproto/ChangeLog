@@ -1,6 +1,9 @@
 # ChangeLog for x11-proto/xproto
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.86 2010/01/18 20:27:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/ChangeLog,v 1.87 2010/01/19 20:34:42 armin76 Exp $
+
+  19 Jan 2010; Raúl Porcel <armin76@gentoo.org> xproto-7.0.16.ebuild:
+  s390 stable wrt #294958
 
   18 Jan 2010; Raúl Porcel <armin76@gentoo.org> xproto-7.0.16.ebuild:
   alpha/ia64/sh/sparc stable wrt #294958

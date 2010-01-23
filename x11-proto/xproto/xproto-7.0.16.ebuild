@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/xproto-7.0.16.ebuild,v 1.8 2010/01/18 20:27:32 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-proto/xproto/xproto-7.0.16.ebuild,v 1.9 2010/01/19 20:34:42 armin76 Exp $
 
 inherit x-modular
 
