@@ -1,6 +1,11 @@
 # ChangeLog for app-shells/ksh
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.39 2009/09/06 19:05:41 idl0r Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.40 2010/01/22 01:22:10 cla Exp $
+
+*ksh-93.20090505 (22 Jan 2010)
+
+  22 Jan 2010; Dawid Węgliński <cla@gentoo.org> +ksh-93.20090505.ebuild:
+  Version bump
 
   06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
   -files/ksh-93.20030724-libs.diff, ksh-93.20071105.ebuild,
