@@ -1,6 +1,12 @@
 # ChangeLog for sci-libs/blas-atlas
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.90 2009/12/22 21:06:16 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/ChangeLog,v 1.91 2010/01/21 22:37:30 markusle Exp $
+
+*blas-atlas-3.9.21 (21 Jan 2010)
+
+  21 Jan 2010; Markus Dittrich <markusle@gentoo.org>
+  blas-atlas-3.9.3.ebuild, +blas-atlas-3.9.21.ebuild:
+  Version bump (fixes bug #281688).
 
   22 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   blas-atlas-3.9.3.ebuild:

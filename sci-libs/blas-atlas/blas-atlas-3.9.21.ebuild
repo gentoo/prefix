@@ -1,10 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.3.ebuild,v 1.6 2010/01/21 22:37:30 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.21.ebuild,v 1.1 2010/01/21 22:37:30 markusle Exp $
 
 inherit eutils toolchain-funcs fortran multilib
-
-PATCH_V="3.9.0"
 
 DESCRIPTION="Automatically Tuned Linear Algebra Software BLAS implementation"
 HOMEPAGE="http://math-atlas.sourceforge.net/"
@@ -50,7 +48,7 @@ pkg_setup() {
 	ewarn "than using then sse instruction set depending on your"
 	ewarn "CPU."
 	echo
-	epause 10
+	epause 5
 }
 
 src_unpack() {
@@ -59,11 +57,10 @@ src_unpack() {
 	cd "${S}"
 	epatch "${DISTDIR}"/${MY_PN}-${PV}-shared-libs.patch.bz2
 	epatch "${FILESDIR}"/${MY_PN}-asm-gentoo.patch
-	epatch "${FILESDIR}"/${MY_PN}-${PATCH_V}-decl-fix.patch
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
 		sed -e /LIBTOOL/s/libtool/glibtool/ -i CONFIG/src/SpewMakeInc.c
-		epatch "${FILESDIR}"/${P}-darwin-make-top.patch
+		epatch "${FILESDIR}"/${PN}-3.9.3-darwin-make-top.patch
 	fi
 
 	BLD_DIR="${S}"/gentoo-build
@@ -115,7 +112,7 @@ src_compile() {
 	cd "${BLD_DIR}"
 
 	# atlas does its own parallel builds
-	# it fails parallel make, bug #294172
+	# â and it fails parallel make, bug #294172
 	emake -j1 || die "emake failed"
 
 	RPATH="${DESTTREE}"/$(get_libdir)/blas
