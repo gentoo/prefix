@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/gsl-1.13-r1.ebuild,v 1.4 2010/01/12 18:58:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gsl/gsl-1.13-r1.ebuild,v 1.5 2010/01/22 03:49:38 jer Exp $
 
 EAPI=2
 inherit eutils flag-o-matic autotools
