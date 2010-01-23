@@ -237,6 +237,7 @@ dev-lang/srf
 dev-lang/swig
 dev-lang/ucblogo
 dev-lang/yasm
+dev-libs/botan
 dev-libs/darts
 dev-libs/fribidi
 dev-libs/libatomic_ops
