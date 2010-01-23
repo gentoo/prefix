@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/app-misc/realpath/realpath-1.15.ebuild,v 1.1 2009/10/13 16:58:23 ulm Exp $
 
 EAPI=2
-inherit eutils toolchain-funcs prefix
+inherit eutils toolchain-funcs flag-o-matic prefix
 
 DESCRIPTION="Return the canonicalized absolute pathname"
 HOMEPAGE="http://packages.debian.org/unstable/utils/realpath"
@@ -17,6 +17,7 @@ IUSE="nls"
 
 RDEPEND="!sys-freebsd/freebsd-bin"
 DEPEND="${RDEPEND}
+	elibc_IRIX? ( dev-libs/gnulib )
 	virtual/libintl"
 
 src_unpack() {
@@ -42,7 +43,13 @@ src_prepare() {
 
 src_compile() {
 	tc-export CC
-	use !elibc_glibc && export LIBS="-lintl"
+	use !elibc_glibc && append-libs -lintl
+	if [[ ${CHOST} == *-irix* ]] ; then
+		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
+		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/$(get_libdir)
+		append-libs -lgnu
+	fi
+
 	emake VERSION="${PV}" SUBDIRS="src man $(use nls && echo po)" \
 		|| die "emake failed"
 }
