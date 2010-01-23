@@ -191,6 +191,9 @@ elibtoolize() {
 		*-hpux*)
 			elt_patches="${elt_patches} hpux-conf deplibs hc-flag-ld hardcode hardcode-relink relink-prog no-lc"
 		;;
+		*-irix*)
+			elt_patches="${elt_patches} irix-ltmain"
+		;;
 		*-mint*)
 			elt_patches="${elt_patches} mint-conf"
 		;;
