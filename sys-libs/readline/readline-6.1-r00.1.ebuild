@@ -59,6 +59,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.2-ia64hpux.patch
 	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
+	epatch "${FILESDIR}"/${PN}-6.1-mint.patch
 	epatch "${FILESDIR}"/${PN}-6.1-darwin-shlib-versioning.patch
 
 	# force ncurses linking #71420
