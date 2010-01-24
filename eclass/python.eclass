@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.85 2010/01/14 19:23:02 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.86 2010/01/15 14:46:20 arfrever Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -114,6 +114,11 @@ fi
 # ======== FUNCTIONS FOR PACKAGES SUPPORTING INSTALLATION FOR MULTIPLE VERSIONS OF PYTHON ========
 # ================================================================================================
 
+# @ECLASS-VARIABLE: SUPPORT_PYTHON_ABIS
+# @DESCRIPTION:
+# Set this in EAPI <= 4 to indicate that given package supports installation for
+# multiple versions of Python.
+
 # @ECLASS-VARIABLE: PYTHON_DEFINE_DEFAULT_FUNCTIONS
 # @DESCRIPTION:
 # Set this to define default functions for the following ebuild phases:
@@ -137,9 +142,10 @@ unset PYTHON_ABIS_SANITY_CHECKS
 # @FUNCTION: validate_PYTHON_ABIS
 # @DESCRIPTION:
 # Ensure that PYTHON_ABIS variable has valid value.
+# This function usually should not be directly called in ebuilds.
 validate_PYTHON_ABIS() {
-	# Ensure that some functions cannot be accidentally successfully used in EAPI <= 2 without setting SUPPORT_PYTHON_ABIS variable.
-	if has "${EAPI:-0}" 0 1 2 && [[ -z "${SUPPORT_PYTHON_ABIS}" ]]; then
+	# Ensure that some functions cannot be accidentally successfully used in EAPI <= 4 without setting SUPPORT_PYTHON_ABIS variable.
+	if has "${EAPI:-0}" 0 1 2 3 4 && [[ -z "${SUPPORT_PYTHON_ABIS}" ]]; then
 		die "${FUNCNAME}() cannot be used in this EAPI without setting SUPPORT_PYTHON_ABIS variable"
 	fi
 
@@ -868,6 +874,9 @@ PYTHON() {
 			fi
 			slot="$(/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
 		elif [[ "${final_ABI}" == "1" ]]; then
+			if has "${EAPI:-0}" 0 1 2 3 4 && [[ -z "${SUPPORT_PYTHON_ABIS}" ]]; then
+				die "${FUNCNAME}(): '--final-ABI' option cannot be used in ebuilds of packages not supporting installation for multiple versions of Python"
+			fi
 			validate_PYTHON_ABIS
 			slot="${PYTHON_ABIS##* }"
 		elif [[ "${python2}" == "1" ]]; then
@@ -924,10 +933,31 @@ PYTHON() {
 }
 
 # @FUNCTION: python_get_includedir
+# @USAGE: [-f|--final-ABI]
 # @DESCRIPTION:
-# Run without arguments, returns the Python include directory.
+# Print Python include directory.
+# If --final-ABI option is specified, then final ABI from the list of enabled ABIs is used.
 python_get_includedir() {
-	if [[ -n "${PYTHON_ABI}" ]]; then
+	local final_ABI="0"
+
+	while (($#)); do
+		case "$1" in
+			-f|--final-ABI)
+				final_ABI="1"
+				;;
+			-*)
+				die "${FUNCNAME}(): Unrecognized option '$1'"
+				;;
+			*)
+				die "${FUNCNAME}(): Invalid usage"
+				;;
+		esac
+		shift
+	done
+
+	if [[ "${final_ABI}" == "1" ]]; then
+		echo "/usr/include/python$(PYTHON -f --ABI)"
+	elif [[ -n "${PYTHON_ABI}" ]]; then
 		echo "/usr/include/python${PYTHON_ABI}"
 	else
 		echo "/usr/include/python$(PYTHON -A --ABI)"
@@ -935,10 +965,31 @@ python_get_includedir() {
 }
 
 # @FUNCTION: python_get_libdir
+# @USAGE: [-f|--final-ABI]
 # @DESCRIPTION:
-# Run without arguments, returns the Python library directory.
+# Print Python library directory.
+# If --final-ABI option is specified, then final ABI from the list of enabled ABIs is used.
 python_get_libdir() {
-	if [[ -n "${PYTHON_ABI}" ]]; then
+	local final_ABI="0"
+
+	while (($#)); do
+		case "$1" in
+			-f|--final-ABI)
+				final_ABI="1"
+				;;
+			-*)
+				die "${FUNCNAME}(): Unrecognized option '$1'"
+				;;
+			*)
+				die "${FUNCNAME}(): Invalid usage"
+				;;
+		esac
+		shift
+	done
+
+	if [[ "${final_ABI}" == "1" ]]; then
+		echo "/usr/$(get_libdir)/python$(PYTHON -f --ABI)"
+	elif [[ -n "${PYTHON_ABI}" ]]; then
 		echo "/usr/$(get_libdir)/python${PYTHON_ABI}"
 	else
 		echo "/usr/$(get_libdir)/python$(PYTHON -A --ABI)"
@@ -946,10 +997,29 @@ python_get_libdir() {
 }
 
 # @FUNCTION: python_get_sitedir
+# @USAGE: [-f|--final-ABI]
 # @DESCRIPTION:
-# Run without arguments, returns the Python site-packages directory.
+# Print Python site-packages directory.
+# If --final-ABI option is specified, then final ABI from the list of enabled ABIs is used.
 python_get_sitedir() {
-	echo "$(python_get_libdir)/site-packages"
+	local options=()
+
+	while (($#)); do
+		case "$1" in
+			-f|--final-ABI)
+				options+=("$1")
+				;;
+			-*)
+				die "${FUNCNAME}(): Unrecognized option '$1'"
+				;;
+			*)
+				die "${FUNCNAME}(): Invalid usage"
+				;;
+		esac
+		shift
+	done
+
+	echo "$(python_get_libdir "${options[@]}")/site-packages"
 }
 
 # ================================================================================================
@@ -1111,7 +1181,7 @@ python_mod_optimize() {
 	[[ ${EBUILD_PHASE} != "postinst" ]] && die "${FUNCNAME} should only be run in pkg_postinst()"
 
 	if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-		local dir file options=() other_dirs=() other_files=() PYTHON_ABI return_code root site_packages_absolute_dirs=() site_packages_dirs=() site_packages_absolute_files=() site_packages_files=()
+		local dir file options=() other_dirs=() other_files=() previous_PYTHON_ABI="${PYTHON_ABI}" PYTHON_ABI return_code root site_packages_absolute_dirs=() site_packages_dirs=() site_packages_absolute_files=() site_packages_files=()
 
 		# Strip trailing slash from ROOT.
 		root="${EROOT%/}"
@@ -1127,7 +1197,7 @@ python_mod_optimize() {
 					shift
 					;;
 				-*)
-					ewarn "${FUNCNAME}: Ignoring compile option $1"
+					ewarn "${FUNCNAME}: Ignoring option '$1'"
 					;;
 				*)
 					if ! _python_implementation && [[ "$1" =~ ^"${EPREFIX}"/usr/lib(32|64)?/python[[:digit:]]+\.[[:digit:]]+ ]]; then
@@ -1188,19 +1258,23 @@ python_mod_optimize() {
 			unset site_packages_absolute_dirs site_packages_absolute_files
 		done
 
-		# Do not use PYTHON_ABI in next calls to python_get_libdir().
-		unset PYTHON_ABI
+		# Restore previous value of PYTHON_ABI.
+		if [[ -n "${previous_PYTHON_ABI}" ]]; then
+			PYTHON_ABI="${previous_PYTHON_ABI}"
+		else
+			unset PYTHON_ABI
+		fi
 
 		if ((${#other_dirs[@]})) || ((${#other_files[@]})); then
 			return_code="0"
 			ebegin "Compilation and optimization of Python modules placed outside of site-packages directories for Python $(PYTHON -A --ABI)"
 			if ((${#other_dirs[@]})); then
-				"$(PYTHON -A)" "${root}$(python_get_libdir)/compileall.py" "${options[@]}" "${other_dirs[@]}" || return_code="1"
-				"$(PYTHON -A)" -O "${root}$(python_get_libdir)/compileall.py" "${options[@]}" "${other_dirs[@]}" &> /dev/null || return_code="1"
+				"$(PYTHON "${PYTHON_ABI--A}")" "${root}$(python_get_libdir)/compileall.py" "${options[@]}" "${other_dirs[@]}" || return_code="1"
+				"$(PYTHON "${PYTHON_ABI--A}")" -O "${root}$(python_get_libdir)/compileall.py" "${options[@]}" "${other_dirs[@]}" &> /dev/null || return_code="1"
 			fi
 			if ((${#other_files[@]})); then
-				"$(PYTHON -A)" "${root}$(python_get_libdir)/py_compile.py" "${other_files[@]}" || return_code="1"
-				"$(PYTHON -A)" -O "${root}$(python_get_libdir)/py_compile.py" "${other_files[@]}" &> /dev/null || return_code="1"
+				"$(PYTHON "${PYTHON_ABI--A}")" "${root}$(python_get_libdir)/py_compile.py" "${other_files[@]}" || return_code="1"
+				"$(PYTHON "${PYTHON_ABI--A}")" -O "${root}$(python_get_libdir)/py_compile.py" "${other_files[@]}" &> /dev/null || return_code="1"
 			fi
 			eend "${return_code}"
 		fi
@@ -1221,7 +1295,7 @@ python_mod_optimize() {
 					shift
 					;;
 				-*)
-					ewarn "${FUNCNAME}: Ignoring compile option $1"
+					ewarn "${FUNCNAME}: Ignoring option '$1'"
 					;;
 				*)
 					if [[ -d "${myroot}"/$1 ]]; then
@@ -1244,8 +1318,8 @@ python_mod_optimize() {
 
 		ebegin "Compilation and optimization of Python modules for Python $(PYTHON -A --ABI)"
 		if ((${#mydirs[@]})); then
-			"$(PYTHON -A)" "${myroot}$(python_get_libdir)/compileall.py" "${myopts[@]}" "${mydirs[@]}" || return_code="1"
-			"$(PYTHON -A)" -O "${myroot}$(python_get_libdir)/compileall.py" "${myopts[@]}" "${mydirs[@]}" &> /dev/null || return_code="1"
+			"$(PYTHON "${PYTHON_ABI--A}")" "${myroot}$(python_get_libdir)/compileall.py" "${myopts[@]}" "${mydirs[@]}" || return_code="1"
+			"$(PYTHON "${PYTHON_ABI--A}")" -O "${myroot}$(python_get_libdir)/compileall.py" "${myopts[@]}" "${mydirs[@]}" &> /dev/null || return_code="1"
 		fi
 
 		if ((${#myfiles[@]})); then
@@ -1342,45 +1416,22 @@ python_mod_cleanup() {
 # ===================================== DEPRECATED FUNCTIONS =====================================
 # ================================================================================================
 
-__python_eclass_test() {
-	__python_version_extract 2.3
-	echo -n "2.3 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
-	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
-	__python_version_extract 2.3.4
-	echo -n "2.3.4 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
-	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
-	__python_version_extract 2.3.5
-	echo -n "2.3.5 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
-	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
-	__python_version_extract 2.4
-	echo -n "2.4 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
-	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
-	__python_version_extract 2.5b3
-	echo -n "2.5b3 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
-	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
-}
-
 # @FUNCTION: python_version
 # @DESCRIPTION:
 # Run without arguments and it will export the version of python
 # currently in use as $PYVER; sets PYVER/PYVER_MAJOR/PYVER_MINOR
-__python_version_extract() {
-	local verstr=$1
-	export PYVER_MAJOR=${verstr:0:1}
-	export PYVER_MINOR=${verstr:2:1}
-	if [[ ${verstr:3:1} == . ]]; then
-		export PYVER_MICRO=${verstr:4}
-	fi
-	export PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
-}
-
 python_version() {
 	[[ -n "${PYVER}" ]] && return 0
 	local tmpstr
-	python=${python:-${EPREFIX}/usr/bin/python}
+	python="${python:-${EPREFIX}/usr/bin/python}"
 	tmpstr="$(EPYTHON= ${python} -V 2>&1 )"
 	export PYVER_ALL="${tmpstr#Python }"
-	__python_version_extract $PYVER_ALL
+	export PYVER_MAJOR="${PYVER_ALL:0:1}"
+	export PYVER_MINOR="${PYVER_ALL:2:1}"
+	if [[ "${PYVER_ALL:3:1}" == "." ]]; then
+		export PYVER_MICRO="${PYVER_ALL:4}"
+	fi
+	export PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
 }
 
 # @FUNCTION: python_mod_compile
@@ -1412,8 +1463,8 @@ python_mod_compile() {
 	done
 
 	if ((${#myfiles[@]})); then
-		"$(PYTHON -A)" "${myroot}$(python_get_libdir)/py_compile.py" "${myfiles[@]}"
-		"$(PYTHON -A)" -O "${myroot}$(python_get_libdir)/py_compile.py" "${myfiles[@]}" &> /dev/null
+		"$(PYTHON "${PYTHON_ABI--A}")" "${myroot}$(python_get_libdir)/py_compile.py" "${myfiles[@]}"
+		"$(PYTHON "${PYTHON_ABI--A}")" -O "${myroot}$(python_get_libdir)/py_compile.py" "${myfiles[@]}" &> /dev/null
 	else
 		ewarn "No files to compile!"
 	fi
