@@ -510,6 +510,7 @@ media-libs/libwpg
 media-libs/musicbrainz
 media-libs/mutagen
 media-libs/openal
+media-libs/opengl-apple
 media-libs/portaudio
 media-libs/raptor
 media-libs/schroedinger
