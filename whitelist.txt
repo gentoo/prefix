@@ -187,6 +187,7 @@ app-text/par
 app-text/passivetex
 app-text/pep
 app-text/po4a
+app-text/poppler
 app-text/poppler-bindings
 app-text/ps2eps
 app-text/rman
