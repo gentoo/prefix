@@ -133,7 +133,8 @@ src_configure() {
 			--with-libxpm=sys
 			--with-libjpeg=sys
 			--with-libtiff=sys
-			--with-mac=1"
+			--with-mac=1
+			--with-opengl"
 			# cocoa toolkit seems to be broken
 
 	# wxBase options
