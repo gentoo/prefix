@@ -124,7 +124,7 @@ src_configure() {
 			$(use_with opengl)
 			$(use_with gnome gnomeprint)
 			--without-gnomevfs"
-	
+
 	use aqua && \
 		myconf="${myconf}
 			--enable-graphics_ctx
