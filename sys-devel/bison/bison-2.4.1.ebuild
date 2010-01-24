@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.4.1.ebuild,v 1.1 2008/12/22 05:48:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.4.1.ebuild,v 1.2 2010/01/24 21:24:57 abcd Exp $
 
 inherit toolchain-funcs flag-o-matic
 
@@ -13,21 +13,12 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="nls static"
 
-# need flex since we patch scan-code.l in ${P}-compat.patch
-DEPEND="nls? ( sys-devel/gettext )
-	sys-devel/flex"
+DEPEND="nls? ( sys-devel/gettext )"
 RDEPEND="sys-devel/m4"
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	# since we patch sources, update mtimes on docs so we dont regen
-	touch doc/bison.1 doc/bison.info doc/cross-options.texi
-}
 
 src_compile() {
 	use static && append-ldflags -static
-	econf $(use_enable nls) || die
+	econf $(use_enable nls)
 	emake || die
 }
 
