@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.28 2010/01/12 16:08:42 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.29 2010/01/16 14:34:44 arfrever Exp $
 
 EAPI="1"
 
@@ -313,7 +313,7 @@ pkg_postinst() {
 	eselect_python_update
 
 	# Python 2.4 partially doesn't respect $(get_libdir).
-	EPYTHON="$(PYTHON)" python_mod_optimize -x "(site-packages|test)" /usr/lib/python${SLOT}
+	python_mod_optimize -x "(site-packages|test)" /usr/lib/python${SLOT}
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn

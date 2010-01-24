@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.26 2010/01/12 16:08:42 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.27 2010/01/16 14:34:44 arfrever Exp $
 
 EAPI="2"
 
@@ -480,7 +480,7 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	EPYTHON="$(PYTHON)" python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
+	python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
 
 	if [[ "$(eselect python show)" == "python2."* ]]; then
 		ewarn
