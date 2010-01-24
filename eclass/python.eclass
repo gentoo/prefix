@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.84 2010/01/11 16:07:23 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/python.eclass,v 1.85 2010/01/14 19:23:02 arfrever Exp $
 
 # @ECLASS: python.eclass
 # @MAINTAINER:
@@ -29,208 +29,107 @@ fi
 
 DEPEND+=" >=app-admin/eselect-python-20090804"
 
-__python_eclass_test() {
-	__python_version_extract 2.3
-	echo -n "2.3 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
-	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
-	__python_version_extract 2.3.4
-	echo -n "2.3.4 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
-	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
-	__python_version_extract 2.3.5
-	echo -n "2.3.5 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
-	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
-	__python_version_extract 2.4
-	echo -n "2.4 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
-	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
-	__python_version_extract 2.5b3
-	echo -n "2.5b3 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
-	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
-}
-
-# @FUNCTION: python_version
+# @ECLASS-VARIABLE: PYTHON_USE_WITH
 # @DESCRIPTION:
-# Run without arguments and it will export the version of python
-# currently in use as $PYVER; sets PYVER/PYVER_MAJOR/PYVER_MINOR
-__python_version_extract() {
-	local verstr=$1
-	export PYVER_MAJOR=${verstr:0:1}
-	export PYVER_MINOR=${verstr:2:1}
-	if [[ ${verstr:3:1} == . ]]; then
-		export PYVER_MICRO=${verstr:4}
-	fi
-	export PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
-}
+# Set this to a space separated list of use flags
+# the python slot in use must be built with.
 
-python_version() {
-	[[ -n "${PYVER}" ]] && return 0
-	local tmpstr
-	python=${python:-"$(type -P python)"}
-	tmpstr="$(EPYTHON= ${python} -V 2>&1 )"
-	export PYVER_ALL="${tmpstr#Python }"
-	__python_version_extract $PYVER_ALL
-}
-
-# @FUNCTION: PYTHON
-# @USAGE: [-2] [-3] [--ABI] [-A|--active] [-a|--absolute-path] [-f|--final-ABI] [--] <Python_ABI="${PYTHON_ABI}">
+# @ECLASS-VARIABLE: PYTHON_USE_WITH_OR
 # @DESCRIPTION:
-# Get Python interpreter filename for specified Python ABI. If Python_ABI argument
-# is ommitted, then PYTHON_ABI environment variable must be set and is used.
-# If -2 option is specified, then active version of Python 2 is used.
-# If -3 option is specified, then active version of Python 3 is used.
-# If --active option is specified, then active version of Python is used.
-# Active version of Python can be set by python_set_active_version().
-# If --final-ABI option is specified, then final ABI from the list of enabled ABIs is used.
-# -2, -3, --active and --final-ABI options and Python_ABI argument cannot be specified simultaneously.
-# If --ABI option is specified, then only specified Python ABI is printed instead of
-# Python interpreter filename.
-# --ABI and --absolute-path options cannot be specified simultaneously.
-PYTHON() {
-	local ABI_output="0" absolute_path_output="0" active="0" final_ABI="0" python2="0" python3="0" slot=
+# Set this to a space separated list of use flags
+# of which one must be turned on for the slot of
+# in use.
 
-	while (($#)); do
-		case "$1" in
-			-2)
-				python2="1"
-				;;
-			-3)
-				python3="1"
-				;;
-			--ABI)
-				ABI_output="1"
-				;;
-			-A|--active)
-				active="1"
-				;;
-			-a|--absolute-path)
-				absolute_path_output="1"
-				;;
-			-f|--final-ABI)
-				final_ABI="1"
-				;;
-			--)
-				break
-				;;
-			-*)
-				die "${FUNCNAME}(): Unrecognized option '$1'"
-				;;
-			*)
-				break
-				;;
-		esac
-		shift
-	done
+# @ECLASS-VARIABLE: PYTHON_USE_WITH_OPT
+# @DESCRIPTION:
+# Set this if you need to make either PYTHON_USE_WITH or
+# PYTHON_USE_WITH_OR atoms conditional under a use flag.
 
-	if [[ "${ABI_output}" == "1" && "${absolute_path_output}" == "1" ]]; then
-		die "${FUNCNAME}(): '--ABI and '--absolute-path' options cannot be specified simultaneously"
-	fi
+# @FUNCTION: python_pkg_setup
+# @DESCRIPTION:
+# Makes sure PYTHON_USE_WITH or PYTHON_USE_WITH_OR listed use flags
+# are respected. Only exported if one of those variables is set.
+if ! has "${EAPI:-0}" 0 1 && [[ -n ${PYTHON_USE_WITH} || -n ${PYTHON_USE_WITH_OR} ]]; then
+	python_pkg_setup() {
+		python_pkg_setup_fail() {
+			eerror "${1}"
+			die "${1}"
+		}
 
-	if [[ "$((${python2} + ${python3} + ${active} + ${final_ABI}))" -gt 1 ]]; then
-		die "${FUNCNAME}(): '-2', '-3', '--active' or '--final-ABI' options cannot be specified simultaneously"
-	fi
+		[[ ${PYTHON_USE_WITH_OPT} ]] && use !${PYTHON_USE_WITH_OPT} && return
 
-	if [[ "$#" -eq 0 ]]; then
-		if [[ "${active}" == "1" ]]; then
-			if [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-				die "${FUNCNAME}(): '--active' option cannot be used in ebuilds of packages supporting installation for multiple versions of Python"
+		python_pkg_setup_check_USE_flags() {
+			local pyatom use
+			if [[ -n "${PYTHON_ABI}" ]]; then
+				pyatom="dev-lang/python:${PYTHON_ABI}"
+			else
+				pyatom="dev-lang/python:$(PYTHON -A --ABI)"
 			fi
-			slot="$("${EPREFIX}"/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
-		elif [[ "${final_ABI}" == "1" ]]; then
-			validate_PYTHON_ABIS
-			slot="${PYTHON_ABIS##* }"
-		elif [[ "${python2}" == "1" ]]; then
-			slot="$(eselect python show --python2)"
-			if [[ -z "${slot}" ]]; then
-				die "${FUNCNAME}(): Active Python 2 interpreter not set"
-			elif [[ "${slot}" != "python2."* ]]; then
-				die "${FUNCNAME}(): Internal error in \`eselect python show --python2\`"
+
+			for use in ${PYTHON_USE_WITH}; do
+				if ! has_version "${pyatom}[${use}]"; then
+					python_pkg_setup_fail "Please rebuild ${pyatom} with the following USE flags enabled: ${PYTHON_USE_WITH}"
+				fi
+			done
+
+			for use in ${PYTHON_USE_WITH_OR}; do
+				if has_version "${pyatom}[${use}]"; then
+					return
+				fi
+			done
+
+			if [[ ${PYTHON_USE_WITH_OR} ]]; then
+				python_pkg_setup_fail "Please rebuild ${pyatom} with at least one of the following USE flags enabled: ${PYTHON_USE_WITH_OR}"
 			fi
-			slot="${slot#python}"
-		elif [[ "${python3}" == "1" ]]; then
-			slot="$(eselect python show --python3)"
-			if [[ -z "${slot}" ]]; then
-				die "${FUNCNAME}(): Active Python 3 interpreter not set"
-			elif [[ "${slot}" != "python3."* ]]; then
-				die "${FUNCNAME}(): Internal error in \`eselect python show --python3\`"
-			fi
-			slot="${slot#python}"
-		elif [[ -n "${PYTHON_ABI}" ]]; then
-			slot="${PYTHON_ABI}"
+		}
+
+		if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+			python_execute_function -q python_pkg_setup_check_USE_flags
 		else
-			die "${FUNCNAME}(): Invalid usage"
+			python_pkg_setup_check_USE_flags
 		fi
-	elif [[ "$#" -eq 1 ]]; then
-		if [[ "${active}" == "1" ]]; then
-			die "${FUNCNAME}(): '--active' option and Python ABI cannot be specified simultaneously"
-		fi
-		if [[ "${final_ABI}" == "1" ]]; then
-			die "${FUNCNAME}(): '--final-ABI' option and Python ABI cannot be specified simultaneously"
-		fi
-		if [[ "${python2}" == "1" ]]; then
-			die "${FUNCNAME}(): '-2' option and Python ABI cannot be specified simultaneously"
-		fi
-		if [[ "${python3}" == "1" ]]; then
-			die "${FUNCNAME}(): '-3' option and Python ABI cannot be specified simultaneously"
-		fi
-		slot="$1"
-	else
-		die "${FUNCNAME}(): Invalid usage"
+	}
+
+	EXPORT_FUNCTIONS pkg_setup
+
+	if [[ -n "${PYTHON_USE_WITH}" ]]; then
+		PYTHON_USE_WITH_ATOM="${PYTHON_ATOM}[${PYTHON_USE_WITH/ /,}]"
+	elif [[ -n "${PYTHON_USE_WITH_OR}" ]]; then
+		PYTHON_USE_WITH_ATOM="|| ( "
+		for use in ${PYTHON_USE_WITH_OR}; do
+			PYTHON_USE_WITH_ATOM+=" ${PYTHON_ATOM}[${use}]"
+		done
+		unset use
+		PYTHON_USE_WITH_ATOM+=" )"
 	fi
 
-	if [[ "${ABI_output}" == "1" ]]; then
-		echo -n "${slot}"
-		return
-	elif [[ "${absolute_path_output}" == "1" ]]; then
-		echo -n "${EPREFIX}/usr/bin/python${slot}"
-	else
-		echo -n "python${slot}"
+	if [[ -n "${PYTHON_USE_WITH_OPT}" ]]; then
+		PYTHON_USE_WITH_ATOM="${PYTHON_USE_WITH_OPT}? ( ${PYTHON_USE_WITH_ATOM} )"
 	fi
+	DEPEND+=" ${PYTHON_USE_WITH_ATOM}"
+	RDEPEND+=" ${PYTHON_USE_WITH_ATOM}"
+fi
 
-	if [[ -n "${ABI}" && "${ABI}" != "${DEFAULT_ABI}" && "${DEFAULT_ABI}" != "default" ]]; then
-		echo -n "-${ABI}"
-	fi
-}
+# ================================================================================================
+# ======== FUNCTIONS FOR PACKAGES SUPPORTING INSTALLATION FOR MULTIPLE VERSIONS OF PYTHON ========
+# ================================================================================================
 
-_python_implementation() {
-	if [[ "${CATEGORY}/${PN}" == "dev-lang/python" ]]; then
-		return 0
-	else
-		return 1
-	fi
-}
-
-# @FUNCTION: python_set_active_version
-# @USAGE: <Python_ABI|2|3>
+# @ECLASS-VARIABLE: PYTHON_DEFINE_DEFAULT_FUNCTIONS
 # @DESCRIPTION:
-# Set active version of Python.
-python_set_active_version() {
-	if [[ "$#" -ne "1" ]]; then
-		die "${FUNCNAME}() requires 1 argument"
-	fi
+# Set this to define default functions for the following ebuild phases:
+# src_prepare, src_configure, src_compile, src_test, src_install.
+if ! has "${EAPI:-0}" 0 1 && [[ -n "${PYTHON_DEFINE_DEFAULT_FUNCTIONS}" ]]; then
+	python_src_prepare() {
+		python_copy_sources
+	}
 
-	if [[ "$1" =~ ^[[:digit:]]+\.[[:digit:]]+$ ]]; then
-		if ! _python_implementation && ! has_version "dev-lang/python:$1"; then
-			die "${FUNCNAME}(): 'dev-lang/python:$1' is not installed"
-		fi
-		export EPYTHON="$(PYTHON "$1")"
-	elif [[ "$1" == "2" ]]; then
-		if ! _python_implementation && ! has_version "=dev-lang/python-2*"; then
-			die "${FUNCNAME}(): '=dev-lang/python-2*' is not installed"
-		fi
-		export EPYTHON="$(PYTHON -2)"
-	elif [[ "$1" == "3" ]]; then
-		if ! _python_implementation && ! has_version "=dev-lang/python-3*"; then
-			die "${FUNCNAME}(): '=dev-lang/python-3*' is not installed"
-		fi
-		export EPYTHON="$(PYTHON -3)"
-	else
-		die "${FUNCNAME}(): Unrecognized argument '$1'"
-	fi
+	for python_default_function in src_configure src_compile src_test src_install; do
+		eval "python_${python_default_function}() { python_execute_function -d -s; }"
+	done
+	unset python_default_function
 
-	# PYTHON_ABI variable is intended to be used only in ebuilds/eclasses,
-	# so it does not need to be exported to subprocesses.
-	PYTHON_ABI="${EPYTHON#python}"
-	PYTHON_ABI="${PYTHON_ABI%%-*}"
-}
+	EXPORT_FUNCTIONS src_prepare src_configure src_compile src_test src_install
+fi
 
 unset PYTHON_ABIS
 unset PYTHON_ABIS_SANITY_CHECKS
@@ -399,67 +298,6 @@ validate_PYTHON_ABIS() {
 		done
 		PYTHON_ABIS_SANITY_CHECKS="1"
 	fi
-}
-
-# @FUNCTION: python_copy_sources
-# @USAGE: [--no-link] [--] [directory]
-# @DESCRIPTION:
-# Copy unpacked sources of given package for each Python ABI.
-python_copy_sources() {
-	local dir dirs=() no_link="0" PYTHON_ABI
-
-	while (($#)); do
-		case "$1" in
-			--no-link)
-				no_link="1"
-				;;
-			--)
-				break
-				;;
-			-*)
-				die "${FUNCNAME}(): Unrecognized option '$1'"
-				;;
-			*)
-				break
-				;;
-		esac
-		shift
-	done
-
-	if [[ "$#" -eq 0 ]]; then
-		if [[ "${WORKDIR}" == "${S}" ]]; then
-			die "${FUNCNAME}() cannot be used"
-		fi
-		dirs="${S}"
-	else
-		dirs="$@"
-	fi
-
-	validate_PYTHON_ABIS
-	for PYTHON_ABI in ${PYTHON_ABIS}; do
-		for dir in "${dirs[@]}"; do
-			if [[ "${no_link}" == "1" ]]; then
-				cp -pr "${dir}" "${dir}-${PYTHON_ABI}" > /dev/null || die "Copying of sources failed"
-			else
-				cp -lpr "${dir}" "${dir}-${PYTHON_ABI}" > /dev/null || die "Copying of sources failed"
-			fi
-		done
-	done
-}
-
-# @FUNCTION: python_set_build_dir_symlink
-# @USAGE: [directory="build"]
-# @DESCRIPTION:
-# Create build directory symlink.
-python_set_build_dir_symlink() {
-	local dir="$1"
-
-	[[ -z "${PYTHON_ABI}" ]] && die "PYTHON_ABI variable not set"
-	[[ -z "${dir}" ]] && dir="build"
-
-	# Do not delete preexistent directories.
-	rm -f "${dir}" || die "Deletion of '${dir}' failed"
-	ln -s "${dir}-${PYTHON_ABI}" "${dir}" || die "Creation of '${dir}' directory symlink failed"
 }
 
 # @FUNCTION: python_execute_function
@@ -691,23 +529,17 @@ python_execute_function() {
 	fi
 }
 
-# @FUNCTION: python_convert_shebangs
-# @USAGE: [-q|--quiet] [-r|--recursive] [-x|--only-executables] [--] <Python_version> <file|directory> [files|directories]
+# @FUNCTION: python_copy_sources
+# @USAGE: [--no-link] [--] [directory]
 # @DESCRIPTION:
-# Convert shebangs in specified files. Directories can be specified only with --recursive option.
-python_convert_shebangs() {
-	local argument file files=() only_executables="0" python_version quiet="0" recursive="0"
+# Copy unpacked sources of given package for each Python ABI.
+python_copy_sources() {
+	local dir dirs=() no_link="0" PYTHON_ABI
 
 	while (($#)); do
 		case "$1" in
-			-r|--recursive)
-				recursive="1"
-				;;
-			-q|--quiet)
-				quiet="1"
-				;;
-			-x|--only-executables)
-				only_executables="1"
+			--no-link)
+				no_link="1"
 				;;
 			--)
 				break
@@ -723,48 +555,39 @@ python_convert_shebangs() {
 	done
 
 	if [[ "$#" -eq 0 ]]; then
-		die "${FUNCNAME}(): Missing Python version and files or directories"
-	elif [[ "$#" -eq 1 ]]; then
-		die "${FUNCNAME}(): Missing files or directories"
+		if [[ "${WORKDIR}" == "${S}" ]]; then
+			die "${FUNCNAME}() cannot be used"
+		fi
+		dirs="${S}"
+	else
+		dirs="$@"
 	fi
 
-	python_version="$1"
-	shift
-
-	for argument in "$@"; do
-		if [[ ! -e "${argument}" ]]; then
-			die "${FUNCNAME}(): '${argument}' does not exist"
-		elif [[ -f "${argument}" ]]; then
-			files+=("${argument}")
-		elif [[ -d "${argument}" ]]; then
-			if [[ "${recursive}" == "1" ]]; then
-				if [[ "${only_executables}" == "1" ]]; then
-					files+=($(find "${argument}" -perm /111 -type f))
-				else
-					files+=($(find "${argument}" -type f))
-				fi
+	validate_PYTHON_ABIS
+	for PYTHON_ABI in ${PYTHON_ABIS}; do
+		for dir in "${dirs[@]}"; do
+			if [[ "${no_link}" == "1" ]]; then
+				cp -pr "${dir}" "${dir}-${PYTHON_ABI}" > /dev/null || die "Copying of sources failed"
 			else
-				die "${FUNCNAME}(): '${argument}' is not a regular file"
+				cp -lpr "${dir}" "${dir}-${PYTHON_ABI}" > /dev/null || die "Copying of sources failed"
 			fi
-		else
-			die "${FUNCNAME}(): '${argument}' is not a regular file or a directory"
-		fi
+		done
 	done
+}
 
-	for file in "${files[@]}"; do
-		file="${file#./}"
-		[[ "${only_executables}" == "1" && ! -x "${file}" ]] && continue
+# @FUNCTION: python_set_build_dir_symlink
+# @USAGE: [directory="build"]
+# @DESCRIPTION:
+# Create build directory symlink.
+python_set_build_dir_symlink() {
+	local dir="$1"
 
-		if [[ "$(head -n1 "${file}")" =~ ^'#!'.*python ]]; then
-			if [[ "${quiet}" == "0" ]]; then
-				einfo "Converting shebang in '${file}'"
-			fi
-			sed -e "1s/python\([[:digit:]]\+\(\.[[:digit:]]\+\)\?\)\?/python${python_version}/" -i "${file}" || die "Conversion of shebang in '${file}' failed"
+	[[ -z "${PYTHON_ABI}" ]] && die "PYTHON_ABI variable not set"
+	[[ -z "${dir}" ]] && dir="build"
 
-			# Delete potential whitespace after "#!".
-			sed -e '1s/\(^#!\)[[:space:]]*/\1/' -i "${file}" || die "sed '${file}' failed"
-		fi
-	done
+	# Do not delete preexistent directories.
+	rm -f "${dir}" || die "Deletion of '${dir}' failed"
+	ln -s "${dir}-${PYTHON_ABI}" "${dir}" || die "Creation of '${dir}' directory symlink failed"
 }
 
 # @FUNCTION: python_generate_wrapper_scripts
@@ -929,118 +752,42 @@ EOF
 	done
 }
 
-# @ECLASS-VARIABLE: PYTHON_USE_WITH
+# ================================================================================================
+# ====== FUNCTIONS FOR PACKAGES NOT SUPPORTING INSTALLATION FOR MULTIPLE VERSIONS OF PYTHON ======
+# ================================================================================================
+
+# @FUNCTION: python_set_active_version
+# @USAGE: <Python_ABI|2|3>
 # @DESCRIPTION:
-# Set this to a space separated list of use flags
-# the python slot in use must be built with.
+# Set active version of Python.
+python_set_active_version() {
+	if [[ "$#" -ne "1" ]]; then
+		die "${FUNCNAME}() requires 1 argument"
+	fi
 
-# @ECLASS-VARIABLE: PYTHON_USE_WITH_OR
-# @DESCRIPTION:
-# Set this to a space separated list of use flags
-# of which one must be turned on for the slot of
-# in use.
-
-# @ECLASS-VARIABLE: PYTHON_USE_WITH_OPT
-# @DESCRIPTION:
-# Set this if you need to make either PYTHON_USE_WITH or
-# PYTHON_USE_WITH_OR atoms conditional under a use flag.
-
-# @FUNCTION: python_pkg_setup
-# @DESCRIPTION:
-# Makes sure PYTHON_USE_WITH or PYTHON_USE_WITH_OR listed use flags
-# are respected. Only exported if one of those variables is set.
-if ! has "${EAPI:-0}" 0 1 && [[ -n ${PYTHON_USE_WITH} || -n ${PYTHON_USE_WITH_OR} ]]; then
-	python_pkg_setup() {
-		python_pkg_setup_fail() {
-			eerror "${1}"
-			die "${1}"
-		}
-
-		[[ ${PYTHON_USE_WITH_OPT} ]] && use !${PYTHON_USE_WITH_OPT} && return
-
-		python_pkg_setup_check_USE_flags() {
-			local pyatom use
-			if [[ -n "${PYTHON_ABI}" ]]; then
-				pyatom="dev-lang/python:${PYTHON_ABI}"
-			else
-				pyatom="dev-lang/python:$(PYTHON -A --ABI)"
-			fi
-
-			for use in ${PYTHON_USE_WITH}; do
-				if ! has_version "${pyatom}[${use}]"; then
-					python_pkg_setup_fail "Please rebuild ${pyatom} with the following USE flags enabled: ${PYTHON_USE_WITH}"
-				fi
-			done
-
-			for use in ${PYTHON_USE_WITH_OR}; do
-				if has_version "${pyatom}[${use}]"; then
-					return
-				fi
-			done
-
-			if [[ ${PYTHON_USE_WITH_OR} ]]; then
-				python_pkg_setup_fail "Please rebuild ${pyatom} with at least one of the following USE flags enabled: ${PYTHON_USE_WITH_OR}"
-			fi
-		}
-
-		if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-			python_execute_function -q python_pkg_setup_check_USE_flags
-		else
-			python_pkg_setup_check_USE_flags
+	if [[ "$1" =~ ^[[:digit:]]+\.[[:digit:]]+$ ]]; then
+		if ! _python_implementation && ! has_version "dev-lang/python:$1"; then
+			die "${FUNCNAME}(): 'dev-lang/python:$1' is not installed"
 		fi
-	}
-
-	EXPORT_FUNCTIONS pkg_setup
-
-	if [[ -n "${PYTHON_USE_WITH}" ]]; then
-		PYTHON_USE_WITH_ATOM="${PYTHON_ATOM}[${PYTHON_USE_WITH/ /,}]"
-	elif [[ -n "${PYTHON_USE_WITH_OR}" ]]; then
-		PYTHON_USE_WITH_ATOM="|| ( "
-		for use in ${PYTHON_USE_WITH_OR}; do
-			PYTHON_USE_WITH_ATOM+=" ${PYTHON_ATOM}[${use}]"
-		done
-		unset use
-		PYTHON_USE_WITH_ATOM+=" )"
+		export EPYTHON="$(PYTHON "$1")"
+	elif [[ "$1" == "2" ]]; then
+		if ! _python_implementation && ! has_version "=dev-lang/python-2*"; then
+			die "${FUNCNAME}(): '=dev-lang/python-2*' is not installed"
+		fi
+		export EPYTHON="$(PYTHON -2)"
+	elif [[ "$1" == "3" ]]; then
+		if ! _python_implementation && ! has_version "=dev-lang/python-3*"; then
+			die "${FUNCNAME}(): '=dev-lang/python-3*' is not installed"
+		fi
+		export EPYTHON="$(PYTHON -3)"
+	else
+		die "${FUNCNAME}(): Unrecognized argument '$1'"
 	fi
-	if [[ -n "${PYTHON_USE_WITH_OPT}" ]]; then
-		PYTHON_USE_WITH_ATOM="${PYTHON_USE_WITH_OPT}? ( ${PYTHON_USE_WITH_ATOM} )"
-	fi
-	DEPEND+=" ${PYTHON_USE_WITH_ATOM}"
-	RDEPEND+=" ${PYTHON_USE_WITH_ATOM}"
-fi
 
-# @ECLASS-VARIABLE: PYTHON_DEFINE_DEFAULT_FUNCTIONS
-# @DESCRIPTION:
-# Set this to define default functions for the following ebuild phases:
-# src_prepare, src_configure, src_compile, src_test, src_install.
-if ! has "${EAPI:-0}" 0 1 && [[ -n "${PYTHON_DEFINE_DEFAULT_FUNCTIONS}" ]]; then
-	python_src_prepare() {
-		python_copy_sources
-	}
-
-	for python_default_function in src_configure src_compile src_test src_install; do
-		eval "python_${python_default_function}() { python_execute_function -d -s; }"
-	done
-	unset python_default_function
-
-	EXPORT_FUNCTIONS src_prepare src_configure src_compile src_test src_install
-fi
-
-# @FUNCTION: python_disable_pyc
-# @DESCRIPTION:
-# Tell Python not to automatically recompile modules to .pyc/.pyo
-# even if the timestamps/version stamps do not match. This is done
-# to protect sandbox.
-python_disable_pyc() {
-	export PYTHONDONTWRITEBYTECODE="1"
-}
-
-# @FUNCTION: python_enable_pyc
-# @DESCRIPTION:
-# Tell Python to automatically recompile modules to .pyc/.pyo if the
-# timestamps/version stamps have changed.
-python_enable_pyc() {
-	unset PYTHONDONTWRITEBYTECODE
+	# PYTHON_ABI variable is intended to be used only in ebuilds/eclasses,
+	# so it does not need to be exported to subprocesses.
+	PYTHON_ABI="${EPYTHON#python}"
+	PYTHON_ABI="${PYTHON_ABI%%-*}"
 }
 
 # @FUNCTION: python_need_rebuild
@@ -1050,6 +797,130 @@ python_enable_pyc() {
 # for multiple versions of Python.
 python_need_rebuild() {
 	export PYTHON_NEED_REBUILD="$(PYTHON -A --ABI)"
+}
+
+# ================================================================================================
+# ======================================= GETTER FUNCTIONS =======================================
+# ================================================================================================
+
+# @FUNCTION: PYTHON
+# @USAGE: [-2] [-3] [--ABI] [-A|--active] [-a|--absolute-path] [-f|--final-ABI] [--] <Python_ABI="${PYTHON_ABI}">
+# @DESCRIPTION:
+# Get Python interpreter filename for specified Python ABI. If Python_ABI argument
+# is ommitted, then PYTHON_ABI environment variable must be set and is used.
+# If -2 option is specified, then active version of Python 2 is used.
+# If -3 option is specified, then active version of Python 3 is used.
+# If --active option is specified, then active version of Python is used.
+# Active version of Python can be set by python_set_active_version().
+# If --final-ABI option is specified, then final ABI from the list of enabled ABIs is used.
+# -2, -3, --active and --final-ABI options and Python_ABI argument cannot be specified simultaneously.
+# If --ABI option is specified, then only specified Python ABI is printed instead of
+# Python interpreter filename.
+# --ABI and --absolute-path options cannot be specified simultaneously.
+PYTHON() {
+	local ABI_output="0" absolute_path_output="0" active="0" final_ABI="0" python2="0" python3="0" slot=
+
+	while (($#)); do
+		case "$1" in
+			-2)
+				python2="1"
+				;;
+			-3)
+				python3="1"
+				;;
+			--ABI)
+				ABI_output="1"
+				;;
+			-A|--active)
+				active="1"
+				;;
+			-a|--absolute-path)
+				absolute_path_output="1"
+				;;
+			-f|--final-ABI)
+				final_ABI="1"
+				;;
+			--)
+				break
+				;;
+			-*)
+				die "${FUNCNAME}(): Unrecognized option '$1'"
+				;;
+			*)
+				break
+				;;
+		esac
+		shift
+	done
+
+	if [[ "${ABI_output}" == "1" && "${absolute_path_output}" == "1" ]]; then
+		die "${FUNCNAME}(): '--ABI and '--absolute-path' options cannot be specified simultaneously"
+	fi
+
+	if [[ "$((${python2} + ${python3} + ${active} + ${final_ABI}))" -gt 1 ]]; then
+		die "${FUNCNAME}(): '-2', '-3', '--active' or '--final-ABI' options cannot be specified simultaneously"
+	fi
+
+	if [[ "$#" -eq 0 ]]; then
+		if [[ "${active}" == "1" ]]; then
+			if [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+				die "${FUNCNAME}(): '--active' option cannot be used in ebuilds of packages supporting installation for multiple versions of Python"
+			fi
+			slot="$(/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
+		elif [[ "${final_ABI}" == "1" ]]; then
+			validate_PYTHON_ABIS
+			slot="${PYTHON_ABIS##* }"
+		elif [[ "${python2}" == "1" ]]; then
+			slot="$(eselect python show --python2)"
+			if [[ -z "${slot}" ]]; then
+				die "${FUNCNAME}(): Active Python 2 interpreter not set"
+			elif [[ "${slot}" != "python2."* ]]; then
+				die "${FUNCNAME}(): Internal error in \`eselect python show --python2\`"
+			fi
+			slot="${slot#python}"
+		elif [[ "${python3}" == "1" ]]; then
+			slot="$(eselect python show --python3)"
+			if [[ -z "${slot}" ]]; then
+				die "${FUNCNAME}(): Active Python 3 interpreter not set"
+			elif [[ "${slot}" != "python3."* ]]; then
+				die "${FUNCNAME}(): Internal error in \`eselect python show --python3\`"
+			fi
+			slot="${slot#python}"
+		elif [[ -n "${PYTHON_ABI}" ]]; then
+			slot="${PYTHON_ABI}"
+		else
+			die "${FUNCNAME}(): Invalid usage"
+		fi
+	elif [[ "$#" -eq 1 ]]; then
+		if [[ "${active}" == "1" ]]; then
+			die "${FUNCNAME}(): '--active' option and Python ABI cannot be specified simultaneously"
+		fi
+		if [[ "${final_ABI}" == "1" ]]; then
+			die "${FUNCNAME}(): '--final-ABI' option and Python ABI cannot be specified simultaneously"
+		fi
+		if [[ "${python2}" == "1" ]]; then
+			die "${FUNCNAME}(): '-2' option and Python ABI cannot be specified simultaneously"
+		fi
+		if [[ "${python3}" == "1" ]]; then
+			die "${FUNCNAME}(): '-3' option and Python ABI cannot be specified simultaneously"
+		fi
+		slot="$1"
+	else
+		die "${FUNCNAME}(): Invalid usage"
+	fi
+
+	if [[ "${ABI_output}" == "1" ]]; then
+		echo -n "${slot}"
+		return
+	elif [[ "${absolute_path_output}" == "1" ]]; then
+		echo -n "/usr/bin/python${slot}"
+	else
+		echo -n "python${slot}"
+	fi
+
+	if [[ -n "${ABI}" && "${ABI}" != "${DEFAULT_ABI}" && "${DEFAULT_ABI}" != "default" ]]; then
+		echo -n "-${ABI}"
+	fi
 }
 
 # @FUNCTION: python_get_includedir
@@ -1081,18 +952,92 @@ python_get_sitedir() {
 	echo "$(python_get_libdir)/site-packages"
 }
 
-# @FUNCTION: python_tkinter_exists
-# @DESCRIPTION:
-# Run without arguments, checks if python was compiled with Tkinter
-# support.  If not, prints an error message and dies.
-python_tkinter_exists() {
-	if ! python -c "import Tkinter" >/dev/null 2>&1; then
-		eerror "You need to recompile python with Tkinter support."
-		eerror "Try adding: 'dev-lang/python tk'"
-		eerror "in to ${EPREFIX}/etc/portage/package.use"
-		echo
-		die "missing tkinter support with installed python"
+# ================================================================================================
+# =================================== MISCELLANEOUS FUNCTIONS ====================================
+# ================================================================================================
+
+_python_implementation() {
+	if [[ "${CATEGORY}/${PN}" == "dev-lang/python" ]]; then
+		return 0
+	else
+		return 1
 	fi
+}
+
+# @FUNCTION: python_convert_shebangs
+# @USAGE: [-q|--quiet] [-r|--recursive] [-x|--only-executables] [--] <Python_version> <file|directory> [files|directories]
+# @DESCRIPTION:
+# Convert shebangs in specified files. Directories can be specified only with --recursive option.
+python_convert_shebangs() {
+	local argument file files=() only_executables="0" python_version quiet="0" recursive="0"
+
+	while (($#)); do
+		case "$1" in
+			-r|--recursive)
+				recursive="1"
+				;;
+			-q|--quiet)
+				quiet="1"
+				;;
+			-x|--only-executables)
+				only_executables="1"
+				;;
+			--)
+				break
+				;;
+			-*)
+				die "${FUNCNAME}(): Unrecognized option '$1'"
+				;;
+			*)
+				break
+				;;
+		esac
+		shift
+	done
+
+	if [[ "$#" -eq 0 ]]; then
+		die "${FUNCNAME}(): Missing Python version and files or directories"
+	elif [[ "$#" -eq 1 ]]; then
+		die "${FUNCNAME}(): Missing files or directories"
+	fi
+
+	python_version="$1"
+	shift
+
+	for argument in "$@"; do
+		if [[ ! -e "${argument}" ]]; then
+			die "${FUNCNAME}(): '${argument}' does not exist"
+		elif [[ -f "${argument}" ]]; then
+			files+=("${argument}")
+		elif [[ -d "${argument}" ]]; then
+			if [[ "${recursive}" == "1" ]]; then
+				if [[ "${only_executables}" == "1" ]]; then
+					files+=($(find "${argument}" -perm /111 -type f))
+				else
+					files+=($(find "${argument}" -type f))
+				fi
+			else
+				die "${FUNCNAME}(): '${argument}' is not a regular file"
+			fi
+		else
+			die "${FUNCNAME}(): '${argument}' is not a regular file or a directory"
+		fi
+	done
+
+	for file in "${files[@]}"; do
+		file="${file#./}"
+		[[ "${only_executables}" == "1" && ! -x "${file}" ]] && continue
+
+		if [[ "$(head -n1 "${file}")" =~ ^'#!'.*python ]]; then
+			if [[ "${quiet}" == "0" ]]; then
+				einfo "Converting shebang in '${file}'"
+			fi
+			sed -e "1s/python\([[:digit:]]\+\(\.[[:digit:]]\+\)\?\)\?/python${python_version}/" -i "${file}" || die "Conversion of shebang in '${file}' failed"
+
+			# Delete potential whitespace after "#!".
+			sed -e '1s/\(^#!\)[[:space:]]*/\1/' -i "${file}" || die "sed '${file}' failed"
+		fi
+	done
 }
 
 # @FUNCTION: python_mod_exists
@@ -1112,40 +1057,39 @@ python_mod_exists() {
 	python -c "import $1" &>/dev/null
 }
 
-# @FUNCTION: python_mod_compile
-# @USAGE: <file> [more files ...]
+# @FUNCTION: python_tkinter_exists
 # @DESCRIPTION:
-# Given filenames, it will pre-compile the module's .pyc and .pyo.
-# This function should only be run in pkg_postinst()
-#
-# Example:
-#         python_mod_compile /usr/lib/python2.3/site-packages/pygoogle.py
-#
-python_mod_compile() {
-	if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-		die "${FUNCNAME}() cannot be used in this EAPI"
+# Run without arguments, checks if python was compiled with Tkinter
+# support.  If not, prints an error message and dies.
+python_tkinter_exists() {
+	if ! python -c "import Tkinter" >/dev/null 2>&1; then
+		eerror "You need to recompile python with Tkinter support."
+		eerror "Try adding: 'dev-lang/python tk'"
+		eerror "in to ${EPREFIX}/etc/portage/package.use"
+		echo
+		die "missing tkinter support with installed python"
 	fi
+}
 
-	local f myroot myfiles=()
+# ================================================================================================
+# ======================= FUNCTIONS FOR HANDLING OF BYTE-COMPILED MODULES ========================
+# ================================================================================================
 
-	# Check if phase is pkg_postinst()
-	[[ ${EBUILD_PHASE} != postinst ]] &&\
-		die "${FUNCNAME} should only be run in pkg_postinst()"
+# @FUNCTION: python_enable_pyc
+# @DESCRIPTION:
+# Tell Python to automatically recompile modules to .pyc/.pyo if the
+# timestamps/version stamps have changed.
+python_enable_pyc() {
+	unset PYTHONDONTWRITEBYTECODE
+}
 
-	# strip trailing slash
-	myroot="${EROOT%/}"
-
-	# respect ROOT
-	for f in "$@"; do
-		[[ -f "${myroot}/${f}" ]] && myfiles+=("${myroot}/${f}")
-	done
-
-	if ((${#myfiles[@]})); then
-		"$(PYTHON -A)" "${myroot}$(python_get_libdir)/py_compile.py" "${myfiles[@]}"
-		"$(PYTHON -A)" -O "${myroot}$(python_get_libdir)/py_compile.py" "${myfiles[@]}" &> /dev/null
-	else
-		ewarn "No files to compile!"
-	fi
+# @FUNCTION: python_disable_pyc
+# @DESCRIPTION:
+# Tell Python not to automatically recompile modules to .pyc/.pyo
+# even if the timestamps/version stamps do not match. This is done
+# to protect sandbox.
+python_disable_pyc() {
+	export PYTHONDONTWRITEBYTECODE="1"
 }
 
 # @FUNCTION: python_mod_optimize
@@ -1392,4 +1336,85 @@ python_mod_cleanup() {
 			rm -f "${path}"[co]
 		fi
 	done
+}
+
+# ================================================================================================
+# ===================================== DEPRECATED FUNCTIONS =====================================
+# ================================================================================================
+
+__python_eclass_test() {
+	__python_version_extract 2.3
+	echo -n "2.3 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
+	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
+	__python_version_extract 2.3.4
+	echo -n "2.3.4 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
+	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
+	__python_version_extract 2.3.5
+	echo -n "2.3.5 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
+	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
+	__python_version_extract 2.4
+	echo -n "2.4 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
+	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
+	__python_version_extract 2.5b3
+	echo -n "2.5b3 -> PYVER: $PYVER PYVER_MAJOR: $PYVER_MAJOR"
+	echo " PYVER_MINOR: $PYVER_MINOR PYVER_MICRO: $PYVER_MICRO"
+}
+
+# @FUNCTION: python_version
+# @DESCRIPTION:
+# Run without arguments and it will export the version of python
+# currently in use as $PYVER; sets PYVER/PYVER_MAJOR/PYVER_MINOR
+__python_version_extract() {
+	local verstr=$1
+	export PYVER_MAJOR=${verstr:0:1}
+	export PYVER_MINOR=${verstr:2:1}
+	if [[ ${verstr:3:1} == . ]]; then
+		export PYVER_MICRO=${verstr:4}
+	fi
+	export PYVER="${PYVER_MAJOR}.${PYVER_MINOR}"
+}
+
+python_version() {
+	[[ -n "${PYVER}" ]] && return 0
+	local tmpstr
+	python=${python:-${EPREFIX}/usr/bin/python}
+	tmpstr="$(EPYTHON= ${python} -V 2>&1 )"
+	export PYVER_ALL="${tmpstr#Python }"
+	__python_version_extract $PYVER_ALL
+}
+
+# @FUNCTION: python_mod_compile
+# @USAGE: <file> [more files ...]
+# @DESCRIPTION:
+# Given filenames, it will pre-compile the module's .pyc and .pyo.
+# This function should only be run in pkg_postinst()
+#
+# Example:
+#         python_mod_compile /usr/lib/python2.3/site-packages/pygoogle.py
+#
+python_mod_compile() {
+	if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+		die "${FUNCNAME}() cannot be used in this EAPI"
+	fi
+
+	local f myroot myfiles=()
+
+	# Check if phase is pkg_postinst()
+	[[ ${EBUILD_PHASE} != postinst ]] &&\
+		die "${FUNCNAME} should only be run in pkg_postinst()"
+
+	# strip trailing slash
+	myroot="${EROOT%/}"
+
+	# respect ROOT
+	for f in "$@"; do
+		[[ -f "${myroot}/${f}" ]] && myfiles+=("${myroot}/${f}")
+	done
+
+	if ((${#myfiles[@]})); then
+		"$(PYTHON -A)" "${myroot}$(python_get_libdir)/py_compile.py" "${myfiles[@]}"
+		"$(PYTHON -A)" -O "${myroot}$(python_get_libdir)/py_compile.py" "${myfiles[@]}" &> /dev/null
+	else
+		ewarn "No files to compile!"
+	fi
 }
