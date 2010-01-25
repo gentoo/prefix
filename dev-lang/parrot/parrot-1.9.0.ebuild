@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.parrot.org/pub/parrot/releases/devel/${PV}/${P}.tar.gz"
 
 LICENSE="Artistic-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="opengl nls doc examples gdbm gmp ssl unicode pcre"
 
 RDEPEND="opengl? ( virtual/glut )
@@ -27,6 +27,7 @@ DEPEND="dev-lang/perl[doc?]
 		${RDEPEND}"
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-fix-darwin-compile-and-link.patch
 	sed -e "s:/lib/:/$(get_libdir)/:" -i "${S}/tools/dev/install_files.pl"
 }
 
