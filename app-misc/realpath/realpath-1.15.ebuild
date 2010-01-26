@@ -18,6 +18,7 @@ IUSE="nls"
 RDEPEND="!sys-freebsd/freebsd-bin"
 DEPEND="${RDEPEND}
 	elibc_IRIX? ( dev-libs/gnulib )
+	x86-interix? ( dev-libs/gnulib )
 	virtual/libintl"
 
 src_unpack() {
@@ -44,7 +45,7 @@ src_prepare() {
 src_compile() {
 	tc-export CC
 	use !elibc_glibc && append-libs -lintl
-	if [[ ${CHOST} == *-irix* ]] ; then
+	if [[ ${CHOST} == *-irix* || ${CHOST} == *-interix[35]* ]] ; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/$(get_libdir)
 		append-libs -lgnu
