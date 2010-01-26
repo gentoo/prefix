@@ -267,12 +267,12 @@ validate_PYTHON_ABIS() {
 			fi
 
 			if [[ -n "${python2_version}" && "${python_version}" == "2."* && "${python_version}" != "${python2_version}" ]]; then
-				eerror "Python wrapper is configured incorrectly or /usr/bin/python2 symlink"
+				eerror "Python wrapper is configured incorrectly or ${EPREFIX}/usr/bin/python2 symlink"
 				eerror "is set incorrectly. Use \`eselect python\` to fix configuration."
 				die "Incorrect configuration of Python"
 			fi
 			if [[ -n "${python3_version}" && "${python_version}" == "3."* && "${python_version}" != "${python3_version}" ]]; then
-				eerror "Python wrapper is configured incorrectly or /usr/bin/python3 symlink"
+				eerror "Python wrapper is configured incorrectly or ${EPREFIX}/usr/bin/python3 symlink"
 				eerror "is set incorrectly. Use \`eselect python\` to fix configuration."
 				die "Incorrect configuration of Python"
 			fi
@@ -872,7 +872,7 @@ PYTHON() {
 			if [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
 				die "${FUNCNAME}(): '--active' option cannot be used in ebuilds of packages supporting installation for multiple versions of Python"
 			fi
-			slot="$(/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
+			slot="$("${EPREFIX}"/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
 		elif [[ "${final_ABI}" == "1" ]]; then
 			if has "${EAPI:-0}" 0 1 2 3 4 && [[ -z "${SUPPORT_PYTHON_ABIS}" ]]; then
 				die "${FUNCNAME}(): '--final-ABI' option cannot be used in ebuilds of packages not supporting installation for multiple versions of Python"
@@ -922,7 +922,7 @@ PYTHON() {
 		echo -n "${slot}"
 		return
 	elif [[ "${absolute_path_output}" == "1" ]]; then
-		echo -n "/usr/bin/python${slot}"
+		echo -n "${EPREFIX}/usr/bin/python${slot}"
 	else
 		echo -n "python${slot}"
 	fi
