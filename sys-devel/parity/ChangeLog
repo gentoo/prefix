@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/parity
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*parity-1.2.3 (26 Jan 2010)
+
+  26 Jan 2010; Markus Duft <mduft@gentoo.org> +parity-1.2.3.ebuild:
+  bumped to next release.
 
   14 Jul 2009; Markus Duft <mduft@gentoo.org>
   files/parity-prefix-wrapper.sh:
