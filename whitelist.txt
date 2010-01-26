@@ -285,6 +285,7 @@ dev-lisp/cl-puri
 dev-ml/extlib
 dev-ml/lablgtk
 dev-php5/pecl-pdflib
+dev-python/rdflib
 dev-ruby/actionmailer
 dev-ruby/actionpack
 dev-ruby/activerecord
