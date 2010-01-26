@@ -18,7 +18,7 @@ RDEPEND=">=app-admin/eselect-1.2.3
 
 src_unpack() {
 	unpack ${A}
-	epatch "${FILESDIR}"/esd.eselect-20060719-prefix.patch
+	epatch "${FILESDIR}"/esd.eselect-20091106-prefix.patch
 	eprefixify esd.eselect-${PVR}
 }
 
