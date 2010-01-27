@@ -6,7 +6,7 @@ PATCHVER="1.0"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 src_unpack() {
 	toolchain-binutils_src_unpack
@@ -24,5 +24,36 @@ src_compile() {
 		export EXTRA_EMAKE="MAKEINFO=true"
 	fi
 
+	case "${CTARGET}" in
+	*-interix*) EXTRA_ECONF="--without-gnu-ld --without-gnu-as" ;;
+	esac
+
 	toolchain-binutils_src_compile
+}
+
+src_install() {
+	toolchain-binutils_src_install
+
+	case "${CTARGET}" in
+    *-interix*)
+		ln -s /opt/gcc.3.3/bin/as "${ED}${BINPATH}"/as || die "Cannot create as symlink"
+		sed -e "s,@SCRIPTDIR@,${EPREFIX}${LIBPATH}/ldscripts," \
+			< "${FILESDIR}"/2.18-ldwrap-interix.sh \
+			> "${ED}${BINPATH}"/ld \
+			|| die "Cannot create ld wrapper"
+		chmod a+x "${ED}${BINPATH}"/ld
+
+		dodir "${LIBPATH}"/ldscripts
+	
+		# yes, this is "i586-pc-interix3" for SFU 3.5, SUA 5.2 and SUA 6.0
+		# additionally insert the prefix as absolute top search dir...
+		for x in /opt/gcc.3.3/i586-pc-interix3/lib/ldscripts/i386pe_posix.*; do
+			sed -e 's, SEARCH_DIR("/usr/local/lib"); , ,' \
+				-e "s,^\(SEARCH_DIR(\),SEARCH_DIR(\"${EPREFIX}/lib\"); SEARCH_DIR(\"${EPREFIX}/usr/lib\"); \1," \
+			< $x \
+			> "${ED}${LIBPATH}"/ldscripts/${x##*/} \
+			|| die "Cannot occupy ldscripts"
+		done
+		;;
+	esac
 }
