@@ -83,6 +83,9 @@ ebegin "creating make.conf"
 	echo "CXXFLAGS=\"$(portageq envvar CXXFLAGS)\""
 	echo "MAKEOPTS=\"$(portageq envvar MAKEOPTS)\""
 	echo "USE=\"prefix-chaining\""
+    echo
+    echo "# Mirrors from parent prefix."
+    echo "GENTOO_MIRRORS=\"$(portageq envvar GENTOO_MIRRORS)\""
 	echo
 	echo "#"
 	echo "# Below comes the chained-prefix setup. Only change things"
