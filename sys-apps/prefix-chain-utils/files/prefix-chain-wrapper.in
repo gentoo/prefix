@@ -43,8 +43,11 @@ IFS=$save_ifs
 
 PATH=${new_path}
 
+# toolchain-prefix-wrapper's ld-wrapper understands '-R' for aix and hpux too.
+# parity (winnt) understands -rpath only ...
 case "${chost}" in
-*) rpath_opt="-Wl,-rpath," ;;
+*-winnt*) rpath_opt="-Wl,-rpath," ;;
+*) rpath_opt="-Wl,-R," ;;
 esac
 
 pfx_link=("-L${prefix}/lib" "-L${prefix}/usr/lib" "${rpath_opt}${prefix}/lib" "${rpath_opt}${prefix}/usr/lib")
