@@ -13,8 +13,6 @@ SLOT="0"
 KEYWORDS="~x86-interix ~x86-winnt"
 IUSE=""
 
-DEPEND="dev-util/confix"
-
 pkg_setup() {
 	if [ -z "${MSSDK}" ]; then
 		einfo "NOTE: When using Visual Studio 2008, the Platform SDK is no longer"
