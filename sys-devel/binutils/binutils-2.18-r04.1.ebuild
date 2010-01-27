@@ -61,6 +61,7 @@ src_install() {
 		# additionally insert the prefix as absolute top search dir...
 		for x in /opt/gcc.3.3/i586-pc-interix3/lib/ldscripts/i386pe_posix.*; do
 			sed -e 's, SEARCH_DIR("/usr/local/lib"); , ,' \
+				-e "s,^\(SEARCH_DIR(\),SEARCH_DIR(\"${EPREFIX}/lib\"); SEARCH_DIR(\"${EPREFIX}/usr/lib\"); \1," \
 			< $x \
 			> "${ED}${LIBPATH}"/ldscripts/${x##*/} \
 			|| die "Cannot occupy ldscripts"
