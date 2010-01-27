@@ -1,12 +1,92 @@
---- esd.eselect-20091106.orig	2007-05-10 09:45:06.000000000 +0200
-+++ esd.eselect-20091106	2007-05-10 09:48:36.000000000 +0200
-@@ -7,6 +7,9 @@
- SVN_DATE='$Date: 2006-03-30 23:11:55 +0200 (gio, 30 mar 2006) $'
- VERSION=$(svn_date_to_version "${SVN_DATE}" )
- 
-+# prefix hack
-+ROOT="@GENTOO_PORTAGE_EPREFIX@"${ROOT}
-+
+>=eselect-1.2 proper defines EPREFIX and EROOT variables, so modules
+should just use them
+
+
+--- esd.eselect-20091106
++++ esd.eselect-20091106
+@@ -11,8 +11,8 @@
  # find a list of esd symlink targets, best first
  find_targets() {
  	for f in \
+-			${ROOT}/usr/bin/esound-esd \
+-			${ROOT}/usr/bin/esdcompat \
++			${EROOT}/usr/bin/esound-esd \
++			${EROOT}/usr/bin/esdcompat \
+ 		; do
+ 		if [[ -f ${f} ]] ; then
+ 			echo $(basename ${f} )
+@@ -22,7 +22,7 @@
+ 
+ # try to remove the esd symlink
+ remove_symlink() {
+-	rm "${ROOT}/usr/bin/esd" &>/dev/null
++	rm "${EROOT}/usr/bin/esd" &>/dev/null
+ }
+ 
+ # set the esd symlink
+@@ -32,9 +32,9 @@
+ 		targets=( $(find_targets ) )
+ 		target=${targets[$(( ${target} - 1 ))]}
+ 	fi
+-	if [[ -f "${ROOT}/usr/bin/${target}" ]] ; then
++	if [[ -f "${EROOT}/usr/bin/${target}" ]] ; then
+ 		remove_symlink
+-		ln -s "${ROOT}/usr/bin/${target}" "${ROOT}/usr/bin/esd" || \
++		ln -s "${EROOT}/usr/bin/${target}" "${EROOT}/usr/bin/esd" || \
+ 			die "Couldn't set ${target} symlink"
+ 	else
+ 		die -q  "Target \"${1}\" doesn't appear to be valid!"
+@@ -51,9 +51,9 @@
+ 	[[ -z "${@}" ]] || die -q "Too many parameters"
+ 
+ 	write_list_start "Current ESounD implementation:"
+-	if [[ -L "${ROOT}/usr/bin/esd" ]] ; then
++	if [[ -L "${EROOT}/usr/bin/esd" ]] ; then
+ 		write_kv_list_entry "$(basename $(canonicalise ${ROOT}/usr/bin/esd ) )" ""
+-	elif [[ -e "${ROOT}/usr/bin/esd" ]] ; then
++	elif [[ -e "${EROOT}/usr/bin/esd" ]] ; then
+ 		write_kv_list_entry "(not a symlink)" ""
+ 	else
+ 		write_kv_list_entry "(unset)" ""
+@@ -77,7 +77,7 @@
+ 	for (( i = 0; i < ${#targets[@]}; i++ )); do
+ 		targetname="targetname_${targets[${i}]/-/_}"
+ 		if [[ ${targets[i]} = \
+-			$(basename "$(canonicalise "${ROOT}/usr/bin/esd")") ]]
++			$(basename "$(canonicalise "${EROOT}/usr/bin/esd")") ]]
+ 		then
+ 			targets[i]=$(highlight_marker "${!targetname}")
+ 		else
+@@ -109,15 +109,15 @@
+ 	elif [[ -n "${2}" ]] ; then
+ 		die -q "Too many parameters"
+ 
+-	elif [[ -L "${ROOT}/usr/bin/esd" ]] ; then
++	elif [[ -L "${EROOT}/usr/bin/esd" ]] ; then
+ 		if ! remove_symlink ; then
+ 			die -q "Can't remove existing provider"
+ 		elif ! set_symlink "${1}" ; then
+ 			die -q "Can't set new provider"
+ 		fi
+ 
+-	elif [[ -e "${ROOT}/usr/bin/esd" ]] ; then
+-		die -q "Sorry, ${ROOT}/usr/bin/esd confuses me"
++	elif [[ -e "${EROOT}/usr/bin/esd" ]] ; then
++		die -q "Sorry, ${EROOT}/usr/bin/esd confuses me"
+ 
+ 	else
+ 		set_symlink "${1}" || die -q "Can't set a new provider"
+@@ -138,11 +138,11 @@
+ 	[[ -z "${1}" ]] || ( [[ -z "${2}" ]] && [[ "${1}" == "--if-unset" ]] ) || \
+ 		die -q "Usage error"
+ 
+-	if [[ -L "${ROOT}/usr/bin/esd" ]] ; then
++	if [[ -L "${EROOT}/usr/bin/esd" ]] ; then
+ 		[[ ${1} == "--if-unset" ]] && return
+ 		remove_symlink || die -q "Can't remove existing link"
+ 	fi
+-	if [[ -e "${ROOT}/usr/bin/esd" ]] ; then
++	if [[ -e "${EROOT}/usr/bin/esd" ]] ; then
+ 		die -q "Can't set a new provider"
+ 	elif ! [[ -z $(find_targets ) ]] ; then
+ 		set_symlink 1 || die -q "Can't set a new provider"
