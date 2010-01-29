@@ -1,6 +1,9 @@
 # ChangeLog for x11-terms/aterm
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/ChangeLog,v 1.113 2009/04/04 21:36:13 loki_val Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/ChangeLog,v 1.114 2010/01/22 16:50:50 ssuominen Exp $
+
+  22 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> aterm-1.0.1-r2.ebuild:
+  Require SLOT="0" of media-libs/jpeg for headers.
 
   04 Apr 2009; Peter Alfredsen <loki_val@gentoo.org> aterm-1.0.1-r2.ebuild:
   (non-maintainer commit) Fix pre-stripped files, bug 241532. Thanks to

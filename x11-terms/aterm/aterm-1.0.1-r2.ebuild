@@ -1,7 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.1-r2.ebuild,v 1.2 2009/04/04 21:36:13 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/aterm/aterm-1.0.1-r2.ebuild,v 1.3 2010/01/22 16:50:50 ssuominen Exp $
 
+EAPI=1
 inherit flag-o-matic
 
 DESCRIPTION="A terminal emulator with transparency support as well as rxvt backwards compatibility"
@@ -13,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris"
 IUSE="background cjk xgetdefault"
 
-RDEPEND="media-libs/jpeg
+RDEPEND="media-libs/jpeg:0
 	media-libs/libpng
 	background? ( x11-wm/afterstep )
 	x11-libs/libX11
