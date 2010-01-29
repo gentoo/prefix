@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/subversion
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.419 2010/01/01 13:37:15 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.421 2010/01/24 18:21:46 armin76 Exp $
+
+  24 Jan 2010; Raúl Porcel <armin76@gentoo.org> subversion-1.6.6.ebuild:
+  ia64/s390/sh/sparc stable wrt #294077
+
+*subversion-1.6.9 (23 Jan 2010)
+
+  23 Jan 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +subversion-1.6.9.ebuild:
+  Version bump.
 
   01 Jan 2010; Tobias Klausmann <klausman@gentoo.org>
   subversion-1.6.6.ebuild:
