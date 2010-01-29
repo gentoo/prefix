@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.0_p4.ebuild,v 1.10 2010/01/06 22:31:08 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/readline-6.0_p4.ebuild,v 1.11 2010/01/24 16:47:12 klausman Exp $
 
 inherit autotools eutils multilib toolchain-funcs flag-o-matic
 
