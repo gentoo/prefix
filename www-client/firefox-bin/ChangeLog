@@ -1,6 +1,11 @@
 # ChangeLog for www-client/firefox-bin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/firefox-bin/ChangeLog,v 1.5 2010/01/08 20:01:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/firefox-bin/ChangeLog,v 1.6 2010/01/24 12:10:57 armin76 Exp $
+
+*firefox-bin-3.6 (24 Jan 2010)
+
+  24 Jan 2010; Raúl Porcel <armin76@gentoo.org> +firefox-bin-3.6.ebuild:
+  Version bump
 
 *firefox-bin-3.5.7 (08 Jan 2010)
 
