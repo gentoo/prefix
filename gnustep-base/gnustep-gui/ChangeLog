@@ -1,6 +1,10 @@
 # ChangeLog for gnustep-base/gnustep-gui
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.77 2010/01/16 14:38:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnustep-base/gnustep-gui/ChangeLog,v 1.78 2010/01/22 16:57:45 ssuominen Exp $
+
+  22 Jan 2010; Samuli Suominen <ssuominen@gentoo.org>
+  gnustep-gui-0.16.0.ebuild:
+  Require SLOT="0" of media-libs/jpeg for headers.
 
   16 Jan 2010; Raúl Porcel <armin76@gentoo.org> gnustep-gui-0.16.0.ebuild:
   sparc stable wrt #272673
