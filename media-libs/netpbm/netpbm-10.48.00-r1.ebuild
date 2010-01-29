@@ -1,7 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.48.00-r1.ebuild,v 1.1 2009/12/12 16:02:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.48.00-r1.ebuild,v 1.2 2010/01/22 17:01:16 ssuominen Exp $
 
+EAPI=1
 inherit toolchain-funcs eutils multilib prefix
 
 MAN_VER=10.33
@@ -15,7 +16,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="jbig jpeg jpeg2k png rle svga tiff X xml zlib"
 
-RDEPEND="jpeg? ( >=media-libs/jpeg-7 )
+RDEPEND="jpeg? ( >=media-libs/jpeg-7:0 )
 	jpeg2k? ( media-libs/jasper )
 	tiff? ( >=media-libs/tiff-3.5.5 )
 	png? ( >=media-libs/libpng-1.2.1 )
