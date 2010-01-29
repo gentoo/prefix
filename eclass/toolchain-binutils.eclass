@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.88 2009/12/24 13:16:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.89 2010/01/28 00:25:22 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -79,7 +79,7 @@ if version_is_at_least 2.18 ; then
 else
 	LICENSE="|| ( GPL-2 LGPL-2 )"
 fi
-IUSE="gold nls multitarget multislot test vanilla"
+IUSE="nls multitarget multislot test vanilla"
 if use multislot ; then
 	SLOT="${CTARGET}-${BVER}"
 elif is_cross ; then
@@ -199,11 +199,9 @@ toolchain-binutils_src_compile() {
 
 	cd "${MY_BUILDDIR}"
 	local myconf=""
-	# new versions allow gold and ld while older allowed only one
-	if grep -q 'gold.*yes,both' "${S}"/configure ; then
-		myconf="${myconf} $(use_enable gold gold both) --enable-linker=bfd"
-	else
-		myconf="${myconf} $(use_enable gold)"
+	# new versions allow gold and ld; screw older versions
+	if grep -q 'enable-gold=both/bfd' "${S}"/configure ; then
+		myconf="${myconf} --enable-gold=both/bfd"
 	fi
 	use nls \
 		&& myconf="${myconf} --without-included-gettext" \

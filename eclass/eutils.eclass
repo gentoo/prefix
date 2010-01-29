@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.328 2010/01/10 15:58:58 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.329 2010/01/28 22:00:12 betelgeuse Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -19,13 +19,15 @@ inherit multilib portability
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
+if has "${EAPI:-0}" 0 1 2; then
+
 # @FUNCTION: epause
 # @USAGE: [seconds]
 # @DESCRIPTION:
 # Sleep for the specified number of seconds (default of 5 seconds).  Useful when
 # printing a message the user should probably be reading and often used in
 # conjunction with the ebeep function.  If the EPAUSE_IGNORE env var is set,
-# don't wait at all.
+# don't wait at all. Defined in EAPIs 0 1 and 2.
 epause() {
 	[[ -z ${EPAUSE_IGNORE} ]] && sleep ${1:-5}
 }
@@ -36,7 +38,7 @@ epause() {
 # Issue the specified number of beeps (default of 5 beeps).  Useful when
 # printing a message the user should probably be reading and often used in
 # conjunction with the epause function.  If the EBEEP_IGNORE env var is set,
-# don't beep at all.
+# don't beep at all. Defined in EAPIs 0 1 and 2.
 ebeep() {
 	local n
 	if [[ -z ${EBEEP_IGNORE} ]] ; then
@@ -48,6 +50,8 @@ ebeep() {
 		done
 	fi
 }
+
+fi
 
 # @FUNCTION: ecvs_clean
 # @USAGE: [list of dirs]
@@ -1765,6 +1769,9 @@ preserve_old_lib_notify() {
 # @FUNCTION: built_with_use
 # @USAGE: [--hidden] [--missing <action>] [-a|-o] <DEPEND ATOM> <List of USE flags>
 # @DESCRIPTION:
+#
+# Deprecated: Use EAPI 2 use deps in DEPEND|RDEPEND and with has_version calls.
+#
 # A temporary hack until portage properly supports DEPENDing on USE
 # flags being enabled in packages.  This will check to see if the specified
 # DEPEND atom was built with the specified list of USE flags.  The

@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.17 2009/10/28 23:46:16 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.18 2010/01/26 20:50:40 kolmodin Exp $
 #
 # Original authors: Andres Loeh <kosmikus@gentoo.org>
 #                   Duncan Coutts <dcoutts@gentoo.org>
@@ -193,6 +193,16 @@ cabal-configure() {
 	# Building GHCi libs on ppc64 causes "TOC overflow".
 	if use ppc64; then
 		cabalconf="${cabalconf} --disable-library-for-ghci"
+	fi
+
+	if version_is_at_least "1.4" "$(cabal-version)"; then
+		# disable executable stripping for the executables, as portage will
+		# strip by itself, and pre-stripping gives a QA warning.
+		# cabal versions previous to 1.4 does not strip executables, and does
+		# not accept the flag.
+		# this fixes numerous bugs, amongst them;
+		# bug #251881, bug #251882, bug #251884, bug #251886, bug #299494
+		cabalconf="${cabalconf} --disable-executable-stripping"
 	fi
 
 	if version_is_at_least "1.2.0" "$(cabal-version)"; then

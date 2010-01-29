@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.27 2009/11/25 00:03:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.28 2010/01/27 12:06:22 ssuominen Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -51,7 +51,7 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 		birdstep? ( >=dev-db/unixODBC-1.8.13 )
 		bzip2? ( app-arch/bzip2 )
 		cdb? ( || ( dev-db/cdb dev-db/tinycdb ) )
-		cjk? ( !gd? ( !gd-external? ( >=media-libs/jpeg-6b media-libs/libpng sys-libs/zlib ) ) )
+		cjk? ( !gd? ( !gd-external? ( >=media-libs/jpeg-7 media-libs/libpng sys-libs/zlib ) ) )
 		crypt? ( >=dev-libs/libmcrypt-2.4 )
 		curl? ( >=net-misc/curl-7.10.5 )
 		db2? ( >=dev-db/unixODBC-1.8.13 )

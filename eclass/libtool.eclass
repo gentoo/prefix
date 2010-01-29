@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.83 2009/05/03 20:03:10 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.84 2010/01/27 20:41:27 grobian $
 #
 # Maintainer: base-system@gentoo.org
 #

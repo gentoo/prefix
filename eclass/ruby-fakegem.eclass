@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-fakegem.eclass,v 1.11 2010/01/18 22:01:46 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-fakegem.eclass,v 1.13 2010/01/24 00:00:40 flameeyes Exp $
 #
 # @ECLASS: ruby-fakegem.eclass
 # @MAINTAINER:
@@ -170,6 +170,8 @@ ruby_fakegem_binwrapper() {
 		local gembinary=$1
 		local newbinary=${2:-/usr/bin/$gembinary}
 		local relativegembinary=${RUBY_FAKEGEM_NAME}-${RUBY_FAKEGEM_VERSION}/bin/${gembinary}
+		local binpath=$(dirname $newbinary)
+		[[ ${binpath} = . ]] && binpath=/usr/bin
 
 		cat - > "${T}"/gembin-wrapper-${gembinary} <<EOF
 #!/usr/bin/env ruby
@@ -183,7 +185,7 @@ load Gem::default_path[-1] + "/gems/${relativegembinary}"
 
 EOF
 
-		exeinto $(dirname $newbinary)
+		exeinto ${binpath:-/usr/bin}
 		newexe "${T}"/gembin-wrapper-${gembinary} $(basename $newbinary)
 	) || die "Unable to create fakegem wrapper"
 }
@@ -238,20 +240,17 @@ all_ruby_compile() {
 # Run tests for the package for each ruby target if the test task is defined.
 each_fakegem_test() {
 	local rubyflags=
-
-	if [[ ${RUBY_FAKEGEM_TASK_TEST} != "" ]]; then
-		${RUBY} ${rubyflags} -S rake ${RUBY_FAKEGEM_TASK_TEST} || die "tests failed"
-	else
-		echo "No test task defined, skipping tests."
-	fi
+	${RUBY} ${rubyflags} -S rake ${RUBY_FAKEGEM_TASK_TEST} || die "tests failed"
 }
 
-# @FUNCTION: each_ruby_test
-# @DESCRIPTION:
-# Run the tests for this package.
-each_ruby_test() {
-	each_fakegem_test
-}
+if [[ ${RUBY_FAKEGEM_TASK_TEST} != "" ]]; then
+	# @FUNCTION: each_ruby_test
+	# @DESCRIPTION:
+	# Run the tests for this package.
+	each_ruby_test() {
+		each_fakegem_test
+	}
+fi
 
 # @FUNCTION: each_fakegem_install
 # @DESCRIPTION:

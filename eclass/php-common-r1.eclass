@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.16 2008/05/29 14:45:38 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php-common-r1.eclass,v 1.17 2010/01/22 13:23:44 scarabeus Exp $
 
 # Based on robbat2's work on the php4 sapi eclass
 # Based on stuart's work on the php5 sapi eclass
@@ -221,6 +221,10 @@ php_check_pgsql() {
 			fi
 		else
 			local pgsql_ver=$(eselect postgresql show)
+			if [[ ${pgsql_ver} == "(none)" ]]; then
+				eerror "QA: Please select your PostgreSQL version \"eselect postgresql list\""
+				die "Can't determine PgSQL."
+			fi
 			if ! built_with_use "=dev-db/postgresql-base-${pgsql_ver}*" threads ; then
 				eerror
 				eerror "You must build =dev-db/postgresql-base-${pgsql_ver} with USE=threads"
