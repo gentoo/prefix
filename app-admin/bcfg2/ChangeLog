@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/bcfg2
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/bcfg2/ChangeLog,v 1.8 2010/01/17 22:10:45 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/bcfg2/ChangeLog,v 1.9 2010/01/22 16:06:50 darkside Exp $
+
+*bcfg2-1.0.1 (22 Jan 2010)
+
+  22 Jan 2010; Jeremy Olexa <darkside@gentoo.org> +bcfg2-1.0.1.ebuild:
+  Version bump, bug 301851
 
 *bcfg2-1.0.0 (17 Jan 2010)
 
