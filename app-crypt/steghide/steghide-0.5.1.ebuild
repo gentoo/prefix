@@ -1,7 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/steghide/steghide-0.5.1.ebuild,v 1.12 2008/05/13 20:42:48 drac Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/steghide/steghide-0.5.1.ebuild,v 1.13 2010/01/22 16:39:58 ssuominen Exp $
 
+EAPI=1
 inherit autotools eutils
 
 DESCRIPTION="A steganography program which hides data in various media files"
@@ -15,7 +16,7 @@ IUSE="debug"
 
 DEPEND=">=app-crypt/mhash-0.8.18-r1
 	>=dev-libs/libmcrypt-2.5.7
-	>=media-libs/jpeg-6b-r3
+	media-libs/jpeg:0
 	>=sys-libs/zlib-1.1.4-r2"
 
 src_unpack(){
