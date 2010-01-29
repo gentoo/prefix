@@ -1,7 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.2-r1.ebuild,v 1.7 2009/07/03 01:36:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.2-r1.ebuild,v 1.8 2010/01/22 17:04:39 ssuominen Exp $
 
+EAPI=1
 inherit enlightenment toolchain-funcs eutils libtool
 
 MY_P=${P/_/-}
@@ -16,7 +17,7 @@ DEPEND="=media-libs/freetype-2*
 	zlib? ( sys-libs/zlib )
 	gif? ( >=media-libs/giflib-4.1.0 )
 	png? ( >=media-libs/libpng-1.2.1 )
-	jpeg? ( media-libs/jpeg )
+	jpeg? ( media-libs/jpeg:0 )
 	tiff? ( >=media-libs/tiff-3.5.5 )
 	X? ( x11-libs/libXext x11-proto/xextproto )
 	mp3? ( media-libs/libid3tag )"
