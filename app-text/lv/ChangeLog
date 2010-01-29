@@ -1,6 +1,9 @@
 # ChangeLog for app-text/lv
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.32 2009/04/11 01:11:07 matsuu Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/lv/ChangeLog,v 1.33 2010/01/23 11:29:38 aballier Exp $
+
+  23 Jan 2010; Alexis Ballier <aballier@gentoo.org> lv-4.51-r1.ebuild:
+  keyword ~x86-fbsd thanks to Naohiro Aota <naota@elisp.net>, bug #301885
 
   11 Apr 2009; MATSUU Takuto <matsuu@gentoo.org> -lv-4.51.ebuild:
   Removed old version.
