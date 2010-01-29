@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/db
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.298 2009/11/04 11:17:50 maekke Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.299 2010/01/24 18:29:31 armin76 Exp $
+
+  24 Jan 2010; Raúl Porcel <armin76@gentoo.org> db-4.7.25_p4.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #285324
 
   04 Nov 2009; Markus Meier <maekke@gentoo.org> db-4.7.25_p4.ebuild:
   arm stable, bug #285324
