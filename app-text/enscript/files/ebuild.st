@@ -104,7 +104,7 @@ state ebuild extends bash
 |alternatives_pkg_postrm\
 |rpm_unpack|rpm_src_unpack\
 |python_version|python_tkinter_exists|python_mod_exists|python_mod_compile\
-|python_mod_optimize|python_mod_cleanup|python_makesym|python_disable_pyc\
+|python_mod_optimize|python_mod_cleanup|python_disable_pyc\
 |python_enable_pyc\
 |check_version_h|get_KV_info|is_2_4_kernel|is_2_5_kernel|is_2_6_kernel\
 |kernel_supports_modules\
