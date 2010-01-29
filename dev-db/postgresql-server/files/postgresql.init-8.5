@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/files/postgresql.init-8.4,v 1.4 2010/01/26 22:01:21 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/files/postgresql.init-8.5,v 1.2 2010/01/26 21:04:58 patrick Exp $
 
 opts="${opts} reload"
 
@@ -34,8 +34,7 @@ start() {
 	local retval
 
 	su -l ${PGUSER} \
-		-c "env PGDATA=\"${PGDATA}\" ${PG_EXTRA_ENV} /usr/lib/postgresql-8.4/bin/pg_ctl start ${WAIT_FOR_START} \
-		-o '--silent-mode=true ${PGOPTS}'"
+		-c "env PGDATA=\"${PGDATA}\" /usr/lib/postgresql-8.5/bin/pg_ctl start ${WAIT_FOR_START} -o '--silent-mode=true ${PGOPTS}'"
 	retval=$?
 	[ $retval -ne 0 ] && eend $retval && return $retval
 
@@ -60,7 +59,7 @@ stop() {
 	local retval
 
 	su -l ${PGUSER} \
-		-c "env PGDATA=\"${PGDATA}\" /usr/lib/postgresql-8.4/bin/pg_ctl stop -t ${WAIT_FOR_DISCONNECT} -m smart"
+		-c "env PGDATA=\"${PGDATA}\" /usr/lib/postgresql-8.5/bin/pg_ctl stop -t ${WAIT_FOR_DISCONNECT} -m smart"
 
 	retval=$?
 	[ $retval -eq 0 ] && eend $retval && return $retval
@@ -69,7 +68,7 @@ stop() {
 	ewarn "Going to shutdown the server anyway."
 
 	su -l ${PGUSER} \
-		-c "env PGDATA=\"${PGDATA}\" /usr/lib/postgresql-8.4/bin/pg_ctl stop -m fast"
+		-c "env PGDATA=\"${PGDATA}\" /usr/lib/postgresql-8.5/bin/pg_ctl stop -m fast"
 
 	retval=$?
 	[ $retval -eq 0 ] && eend $retval && return $retval
@@ -84,7 +83,7 @@ stop() {
 	ewarn "Forcing it to shutdown which leads to a recover-run on next startup."
 
 	su -l ${PGUSER} \
-		-c "env PGDATA=\"${PGDATA}\" /usr/lib/postgresql-8.4/bin/pg_ctl stop -m immediate"
+		-c "env PGDATA=\"${PGDATA}\" /usr/lib/postgresql-8.5/bin/pg_ctl stop -m immediate"
 
 	retval=$?
 	[ $retval -eq 0 ] && eend $retval && return $retval
@@ -96,6 +95,6 @@ stop() {
 reload() {
 	ebegin "Reloading PostgreSQL configuration"
 	su -l ${PGUSER} \
-		-c "env PGDATA=\"${PGDATA}\" /usr/lib/postgresql-8.4/bin/pg_ctl reload"	
+		-c "env PGDATA=\"${PGDATA}\" /usr/lib/postgresql-8.5/bin/pg_ctl reload"	
 	eend $?
 }

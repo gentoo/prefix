@@ -1,5 +1,5 @@
 # PostgreSQL's Database Directory
-PGDATA="/var/lib/postgresql/8.4/data"
+PGDATA="/var/lib/postgresql/8.5/data"
 
 # PostgreSQL User
 PGUSER="postgres"
@@ -14,10 +14,6 @@ PGGROUP="postgres"
 # can be set directly in the configuration-file.
 #PGOPTS="-N 512 -B 1024"
 
-# Pass extra environment variables 
-# If you have to export environment variables for the database process,
-# this can be done here.
-#PG_EXTRA_ENV=""
 
 # SERVER SHUTDOWN:
 # The server will receive 3 signals in the worst case:
@@ -49,3 +45,8 @@ WAIT_FOR_QUIT=60
 # PITR log shipping based replication standby
 WAIT_FOR_START="-w"
 
+# If you have to export environment variables for the database process,
+# this can be done here.
+#
+# Example:
+#   export R_HOME="/usr/lib/R"
