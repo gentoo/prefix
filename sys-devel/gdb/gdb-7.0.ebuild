@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-7.0.ebuild,v 1.5 2010/01/10 18:30:21 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/gdb-7.0.ebuild,v 1.6 2010/01/26 16:57:00 jer Exp $
 
 inherit flag-o-matic eutils
 
