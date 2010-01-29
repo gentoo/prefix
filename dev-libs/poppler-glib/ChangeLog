@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/poppler-glib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler-glib/ChangeLog,v 1.18 2010/01/15 22:35:42 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler-glib/ChangeLog,v 1.19 2010/01/26 00:30:44 yngwin Exp $
+
+  26 Jan 2010; Ben de Groot <yngwin@gentoo.org> -poppler-glib-0.10.6.ebuild,
+  -poppler-glib-0.12.0.ebuild, -poppler-glib-0.12.1.ebuild,
+  -poppler-glib-0.12.3.ebuild:
+  Remove obsoleted versions. Use app-text/poppler[cairo] instead.
 
 *poppler-glib-0.12.3 (15 Jan 2010)
 
