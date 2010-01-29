@@ -1,6 +1,11 @@
 # ChangeLog for x11-libs/libXfont
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/ChangeLog,v 1.125 2010/01/19 20:06:31 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXfont/ChangeLog,v 1.126 2010/01/23 20:46:43 scarabeus Exp $
+
+  23 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  -libXfont-1.3.1-r1.ebuild, -libXfont-1.3.4.ebuild, -libXfont-1.4.0.ebuild,
+  -files/0001-Fix-for-CVE-2008-0006-PCF-Font-parser-buffer-overf.patch:
+  rm
 
   19 Jan 2010; Raúl Porcel <armin76@gentoo.org> libXfont-1.4.1.ebuild:
   s390 stable wrt #294958
