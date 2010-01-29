@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.5.ebuild,v 1.5 2009/10/17 08:26:29 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.5.ebuild,v 1.6 2010/01/23 17:21:25 djc Exp $
 
 EAPI=2
 
@@ -12,7 +12,7 @@ S=${WORKDIR}/${MY_P}
 
 DESCRIPTION="Trac is a minimalistic web-based project management, wiki and bug/issue tracking system."
 HOMEPAGE="http://trac.edgewall.com/"
-LICENSE="trac"
+LICENSE="BSD"
 SRC_URI="http://ftp.edgewall.com/pub/trac/${MY_P}.tar.gz"
 
 IUSE="cgi fastcgi mysql postgres +sqlite subversion"
