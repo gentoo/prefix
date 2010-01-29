@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libSM
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.77 2009/12/15 19:32:55 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libSM/ChangeLog,v 1.78 2010/01/23 20:40:18 scarabeus Exp $
+
+  23 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org> -libSM-1.1.0.ebuild:
+  rm
 
   15 Dec 2009; Brent Baude <ranger@gentoo.org> libSM-1.1.1.ebuild:
   Marking libSM-1.1.1 ppc64 stable for bug 294958
