@@ -1,6 +1,12 @@
 # ChangeLog for sys-process/lsof
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.68 2010/01/21 13:51:01 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/ChangeLog,v 1.70 2010/01/24 17:56:18 armin76 Exp $
+
+  24 Jan 2010; Raúl Porcel <armin76@gentoo.org> lsof-4.82.ebuild:
+  alpha/arm/ia64/m68k/s390/sh stable wrt #301443
+
+  22 Jan 2010; Brent Baude <ranger@gentoo.org> lsof-4.82.ebuild:
+  stable ppc, bug 301443
 
   21 Jan 2010; Christian Faulhammer <fauli@gentoo.org> lsof-4.82.ebuild:
   stable x86, bug 301443
