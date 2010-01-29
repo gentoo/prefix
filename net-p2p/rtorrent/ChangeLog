@@ -1,6 +1,14 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.147 2010/01/21 11:19:34 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.149 2010/01/22 14:17:00 cla Exp $
+
+  22 Jan 2010; Dawid Węgliński <cla@gentoo.org> rtorrent-0.8.6-r1.ebuild:
+  Add some elog instructions messages
+
+*rtorrent-0.8.6-r1 (22 Jan 2010)
+
+  22 Jan 2010; Dawid Węgliński <cla@gentoo.org> +rtorrent-0.8.6-r1.ebuild:
+  Revision bump, so users can rebuild rtorrent with canvas colour patch.
 
   21 Jan 2010; Dawid Węgliński <cla@gentoo.org> rtorrent-0.8.6.ebuild,
   +files/rtorrent-0.8.6-canvas-fix.patch:
