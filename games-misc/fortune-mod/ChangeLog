@@ -1,6 +1,10 @@
 # ChangeLog for games-misc/fortune-mod
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod/ChangeLog,v 1.24 2008/01/14 19:43:25 grobian Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod/ChangeLog,v 1.25 2010/01/25 22:52:18 mr_bones_ Exp $
+
+  25 Jan 2010; Michael Sterrett <mr_bones_@gentoo.org>
+  fortune-mod-1.99.1-r2.ebuild:
+  EAPI=2; tidy
 
   14 Jan 2008; Fabian Groffen <grobian@gentoo.org>
   fortune-mod-1.99.1-r2.ebuild:

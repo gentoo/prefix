@@ -1,7 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod/fortune-mod-1.99.1-r2.ebuild,v 1.7 2008/01/14 19:43:25 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-misc/fortune-mod/fortune-mod-1.99.1-r2.ebuild,v 1.8 2010/01/25 22:52:18 mr_bones_ Exp $
 
+EAPI=2
 inherit eutils toolchain-funcs
 
 DESCRIPTION="The notorious fortune program"
@@ -15,10 +16,7 @@ IUSE="offensive elibc_glibc"
 
 DEPEND="app-text/recode"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	epatch "${FILESDIR}"/${P}-gentoo.patch \
 		"${FILESDIR}"/01_all_fortune_all-fix.patch
 
@@ -33,7 +31,7 @@ src_unpack() {
 	if ! use elibc_glibc ; then
 		[[ ${CHOST} == *-*bsd* ]] && local reglibs="-lcompat"
 		[[ ${CHOST} == *-darwin* ]] && local reglibs="-lc"
-		built_with_use app-text/recode nls && reglibs="${reglibs} -lintl"
+		has_version "app-text/recode[nls]" && reglibs="${reglibs} -lintl"
 		sed -i \
 			-e "/^REGEXLIBS=/s:=.*:= ${reglibs}:" \
 			Makefile \
@@ -58,6 +56,6 @@ src_compile() {
 }
 
 src_install() {
-	make prefix="${ED}" install || die "make install failed"
+	emake prefix="${ED}" install || die "make install failed"
 	dodoc ChangeLog INDEX Notes Offensive README TODO cookie-files
 }
