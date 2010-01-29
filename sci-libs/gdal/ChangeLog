@@ -1,6 +1,9 @@
 # ChangeLog for sci-libs/gdal
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.70 2010/01/06 19:24:12 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/gdal/ChangeLog,v 1.71 2010/01/23 20:21:34 scarabeus Exp $
+
+  23 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org> gdal-1.6.2.ebuild:
+  Replace dep postgresql-server to postgresql-base
 
   06 Jan 2010; Brent Baude <ranger@gentoo.org> gdal-1.6.1.ebuild:
   Marking gdal-1.6.1 ppc64 for bug 285489
