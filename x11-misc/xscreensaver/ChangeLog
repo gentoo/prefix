@@ -1,6 +1,10 @@
 # ChangeLog for x11-misc/xscreensaver
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.268 2009/11/16 18:47:18 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.269 2010/01/23 14:19:46 ssuominen Exp $
+
+  23 Jan 2010; Samuli Suominen <ssuominen@gentoo.org>
+  xscreensaver-5.10.ebuild:
+  Require SLOT="0" of media-libs/jpeg for headers.
 
   16 Nov 2009; Raúl Porcel <armin76@gentoo.org> xscreensaver-5.10.ebuild:
   ia64/sh/sparc stable wrt #287737

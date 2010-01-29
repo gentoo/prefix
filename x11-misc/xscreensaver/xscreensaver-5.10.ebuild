@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.10.ebuild,v 1.8 2009/11/16 18:47:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/xscreensaver-5.10.ebuild,v 1.9 2010/01/23 14:19:46 ssuominen Exp $
 
 EAPI=2
 inherit autotools eutils flag-o-matic multilib pam
@@ -28,7 +28,7 @@ RDEPEND="x11-libs/libXmu
 	>=x11-libs/gtk+-2:2
 	>=gnome-base/libglade-1.99
 	pam? ( virtual/pam )
-	jpeg? ( media-libs/jpeg )
+	jpeg? ( media-libs/jpeg:0 )
 	opengl? ( virtual/opengl )
 	xinerama? ( x11-libs/libXinerama )
 	new-login? ( gnome-base/gdm )"
