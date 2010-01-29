@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/portage-utils
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.106 2010/01/17 00:28:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.107 2010/01/24 21:19:28 vapier Exp $
+
+  24 Jan 2010; Mike Frysinger <vapier@gentoo.org>
+  portage-utils-0.3.1.ebuild:
+  Add support by Maksim Melnikau for USE=static #301993.
 
 *portage-utils-0.3.1 (17 Jan 2010)
 
