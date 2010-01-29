@@ -1,6 +1,15 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.62 2010/01/19 20:26:38 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.63 2010/01/22 09:24:07 scarabeus Exp $
+
+*pixman-0.17.4 (22 Jan 2010)
+*pixman-0.16.4 (22 Jan 2010)
+
+  22 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  -pixman-0.10.0.ebuild, -pixman-0.12.0.ebuild,
+  -files/pixman-0.12.0-sse.patch, -pixman-0.14.0-r1.ebuild,
+  -pixman-0.16.2.ebuild, +pixman-0.16.4.ebuild, +pixman-0.17.4.ebuild:
+  Version bumps. Drop old.
 
   19 Jan 2010; Raúl Porcel <armin76@gentoo.org> pixman-0.17.2.ebuild:
   s390 stable wrt #294958
