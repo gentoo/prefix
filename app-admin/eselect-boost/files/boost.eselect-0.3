@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id: boost.eselect-0.3,v 1.1 2009/04/07 09:39:39 dev-zero Exp $
+# $Id: boost.eselect-0.3,v 1.2 2010/01/22 15:00:56 jer Exp $
 
 # This eclass-module has been initially written by Łukasz Michalik <lmi@ift.uni.wroc.pl>
 # Corrections and extensions by Tiziano Müller <dev-zero@gentoo.org>
@@ -32,7 +32,7 @@ remove_installation() {
 		if [[ -L "${link}" ]] ; then
 			rm "${link}" || die -q "Couldn't remove \"${link}\" symlink"
 		else
-			[[ -e "${link}" ]] && die -q "\${link}\" exists and isn't a symlink"
+			[[ -e "${link}" ]] && die -q "\"${link}\" exists and isn't a symlink"
 		fi
 	done
 

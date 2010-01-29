@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/eselect-boost
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.13 2009/12/27 12:46:44 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.14 2010/01/22 15:00:56 jer Exp $
+
+  22 Jan 2010; Jeroen Roovers <jer@gentoo.org> files/boost.eselect-0.2,
+  files/boost.eselect-0.3:
+  Fix quoting thanks to Tobias Nielsen.
 
   27 Dec 2009; Raúl Porcel <armin76@gentoo.org> eselect-boost-0.3.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable
