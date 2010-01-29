@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.18.ebuild,v 1.1 2010/01/21 12:47:04 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.18.ebuild,v 1.2 2010/01/23 22:06:31 caster Exp $
 
 inherit versionator java-vm-2 eutils pax-utils
 
@@ -36,7 +36,8 @@ QA_TEXTRELS_x86="opt/${P}/jre/lib/i386/motif21/libmawt.so
 QA_DT_HASH="opt/${P}/.*"
 
 DEPEND="jce? ( =dev-java/sun-jce-bin-1.6.0* )"
-RDEPEND="doc? ( =dev-java/java-sdk-docs-1.6.0* )
+RDEPEND="${DEPEND}
+	doc? ( =dev-java/java-sdk-docs-1.6.0* )
 	kernel_linux? ( !prefix? ( sys-libs/glibc ) )
 	kernel_Solaris? ( app-arch/unzip )
 	alsa? ( media-libs/alsa-lib )
