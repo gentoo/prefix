@@ -1,6 +1,19 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.337 2010/01/19 11:41:08 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.340 2010/01/26 15:56:13 spatz Exp $
+
+  26 Jan 2010; Dror Levin <spatz@gentoo.org> ffmpeg-0.5_p20601-r1.ebuild,
+  ffmpeg-9999-r1.ebuild:
+  Handle -march=*-sse3 properly, bug 283968; Install the manpages, bug
+  288467.
+
+  26 Jan 2010; Dror Levin <spatz@gentoo.org> ffmpeg-0.5_p20601-r1.ebuild,
+  ffmpeg-9999-r1.ebuild:
+  Fix faac handling if USE=-encode, bug 300364.
+
+  24 Jan 2010; Tobias Klausmann <klausman@gentoo.org>
+  ffmpeg-0.5_p20373.ebuild:
+  Stable on alpha, bug #297847
 
   19 Jan 2010; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
   Adjust x264 deps
