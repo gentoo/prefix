@@ -1,6 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.02.ebuild,v 1.1 2009/05/05 01:02:48 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.04.ebuild,v 1.1 2010/01/25 02:54:39 vapier Exp $
+
+DISTUTILS_DISABLE_PYTHON_DEPENDENCY="1"
 
 inherit eutils distutils autotools flag-o-matic
 
@@ -11,9 +13,12 @@ SRC_URI="ftp://ftp.astron.com/pub/file/${P}.tar.gz
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 IUSE="python"
+
+DEPEND="python? ( virtual/python )"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${P}.tar.gz
@@ -21,10 +26,14 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.15-libtool.patch #99593
 	epatch "${FILESDIR}"/${PN}-5.00-strtoull.patch
-	epatch "${FILESDIR}"/${PN}-5.00-strtoull-limits.patch #263527
 
-	eautoreconf # required for interix, was elibtoolize
+	[[ ${CHOST} == *-interix* ]] && eautoreconf # required for interix
+	elibtoolize
 	epunt_cxx
+
+	# avoid eautoreconf when adding check for strtoull #263527
+	sed -i 's/ strtoul / strtoul strtoull __strtoull /' configure
+	sed -i "/#undef HAVE_STRTOUL\$/a#undef HAVE_STRTOULL\n#undef HAVE___STRTOULL" config.h.in
 
 	# make sure python links against the current libmagic #54401
 	sed -i "/library_dirs/s:'\.\./src':'../src/.libs':" python/setup.py
