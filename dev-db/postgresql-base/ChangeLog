@@ -1,6 +1,13 @@
 # ChangeLog for dev-db/postgresql-base
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.44 2010/01/07 20:28:56 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-base/ChangeLog,v 1.45 2010/01/26 19:25:40 patrick Exp $
+
+*postgresql-base-8.5_alpha3 (26 Jan 2010)
+
+  26 Jan 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-base-8.5_alpha3.ebuild, +files/postgresql-8.5-base.patch,
+  +files/postgresql-8.5-common.patch, +files/postgresql-8.5-makefile.patch:
+  Adding 8.5_alpha
 
   07 Jan 2010; Steve Dibb <beandog@gentoo.org>
   postgresql-base-7.3.21.ebuild, postgresql-base-7.4.26.ebuild,
