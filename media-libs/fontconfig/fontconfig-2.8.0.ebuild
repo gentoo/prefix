@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.8.0.ebuild,v 1.2 2009/12/14 10:02:29 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.8.0.ebuild,v 1.3 2010/01/26 21:00:32 spatz Exp $
 
 EAPI="2"
 
@@ -83,6 +83,7 @@ src_configure() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install"
+	emake DESTDIR="${D}" -C doc install-man || die "emake install-man"
 
 	#fc-lang directory contains language coverage datafiles
 	#which are needed to test the coverage of fonts.
