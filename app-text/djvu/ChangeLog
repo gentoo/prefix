@@ -1,6 +1,9 @@
 # ChangeLog for app-text/djvu
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.99 2010/01/18 10:05:45 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.100 2010/01/25 13:32:04 ssuominen Exp $
+
+  25 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> djvu-3.5.22.ebuild:
+  Require SLOT="0" of media-libs/jpeg for headers.
 
   18 Jan 2010; Peter Volkov <pva@gentoo.org> djvu-3.5.22.ebuild:
   Revert qt3 drop, nsplugin should stay.
