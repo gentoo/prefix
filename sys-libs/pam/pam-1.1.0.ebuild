@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/pam-1.1.0.ebuild,v 1.13 2010/01/06 15:51:10 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/pam-1.1.0.ebuild,v 1.14 2010/01/24 18:27:13 armin76 Exp $
 
 inherit libtool multilib eutils autotools pam toolchain-funcs flag-o-matic
 

@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/pam
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.254 2010/01/06 15:51:10 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.255 2010/01/24 18:27:13 armin76 Exp $
+
+  24 Jan 2010; Raúl Porcel <armin76@gentoo.org> pam-1.1.0.ebuild:
+  ia64/s390/sh/sparc stable wrt #284087
 
   06 Jan 2010; Ulrich Mueller <ulm@gentoo.org> pam-1.0.4.ebuild,
   pam-1.1.0.ebuild, pam-1.1.1.ebuild:
