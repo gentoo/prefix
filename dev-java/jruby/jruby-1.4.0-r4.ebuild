@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.3.1.ebuild,v 1.4 2009/10/25 21:51:27 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.4.0-r4.ebuild,v 1.2 2010/01/24 00:54:52 flameeyes Exp $
 
 EAPI="2"
 JAVA_PKG_IUSE="doc source test"
@@ -10,7 +10,7 @@ MY_PV="${PV/_rc1/RC1}"
 
 DESCRIPTION="Java-based Ruby interpreter implementation"
 HOMEPAGE="http://jruby.codehaus.org/"
-SRC_URI="http://dist.codehaus.org/${PN}/${MY_PV}/${PN}-src-${MY_PV}.tar.gz"
+SRC_URI="http://jruby.kenai.com/downloads/${PV}/${PN}-src-${MY_PV}.tar.gz"
 LICENSE="|| ( CPL-1.0 GPL-2 LGPL-2.1 )"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
@@ -22,14 +22,16 @@ CDEPEND=">=dev-java/bytelist-1.0.2:0
 	>=dev-java/joni-1.1.3:0
 	>=dev-java/jna-posix-1.0.1:0
 	>=dev-java/jvyamlb-0.2.5:0
-	dev-java/asm:3
+	>=dev-java/asm-3.2:3
 	dev-java/jcodings:0
-	dev-java/jffi:0.4
+	>=dev-java/jffi-0.6.0.2-r1:0.4
 	dev-java/jna:0
 	dev-java/joda-time:0
 	dev-util/jay:0[java]
 	!java6? ( dev-java/backport-util-concurrent:0 )
-	dev-java/nailgun:0"
+	dev-java/nailgun:0
+	dev-java/jaffl:0
+	dev-java/jgrapht:0"
 
 RDEPEND="${CDEPEND}
 	!java6? ( =virtual/jre-1.5* )
@@ -44,7 +46,8 @@ DEPEND="${CDEPEND}
 		=dev-java/junit-3*
 		dev-java/ant-junit
 		dev-java/ant-trax
-	)"
+	)
+	!!<dev-ruby/jruby-1.3.1-r1"
 
 PDEPEND="dev-ruby/rubygems
 	>=dev-ruby/rake-0.7.3
@@ -55,7 +58,7 @@ PDEPEND="dev-ruby/rubygems
 # Tests work for ali_bush inside the ebuild env
 # but fail when using vanilla src tarball.
 # Restrict tests so we can stablise this package.
-RESTRICT="test"
+#RESTRICT="test"
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 
@@ -66,7 +69,7 @@ GEMS=${RUBY_HOME}/gems
 JAVA_ANT_REWRITE_CLASSPATH="true"
 JAVA_ANT_IGNORE_SYSTEM_CLASSES="true"
 EANT_GENTOO_CLASSPATH="asm-3 bytelist constantine jay jcodings jffi-0.4 jline \
-joda-time joni jna jna-posix jvyamlb,nailgun"
+joda-time joni jna jna-posix jvyamlb nailgun jaffl jgrapht"
 EANT_NEEDS_TOOLS="true"
 
 pkg_setup() {
@@ -75,17 +78,12 @@ pkg_setup() {
 
 	local fail
 
-	if [[ -d "${GEMS}" && ! -L "${GEMS}" ]]; then
-		eerror "${GEMS} is a directory. Please remove this directory."
-		fail="true"
-	fi
-
-	# the symlink creates a collision with rubygems, bug #270953
-	# cannot be currently solved by removing in pkg_preinst, bug #233278
-	if [[ -L "${SITE_RUBY}" ]]; then
-		eerror "${SITE_RUBY} is a symlink. Please remove this symlink."
-		fail="true"
-	fi
+	for directory in "${GEMS}" "${SITE_RUBY}"; do
+		if [[ -L ${directory} ]]; then
+			eerror "${directory} is a symlink. Please remove this symlink."
+			fail="true"
+		fi
+	done
 
 	if [[ -n ${fail} ]]; then
 		eerror "Unmerging the old jruby version should also fix the problem(s)."
@@ -96,6 +94,8 @@ pkg_setup() {
 java_prepare() {
 	epatch "${FILESDIR}/ftype-test-fixes.patch"
 	epatch "${FILESDIR}/user-test-fixes.patch"
+	epatch "${FILESDIR}"/${P}-system-jars.patch
+	epatch "${FILESDIR}"/${P}-bindir.patch
 
 	# We don't need to use Retroweaver. There is a jarjar and a regular jar
 	# target but even with jarjarclean, both are a pain. The latter target
@@ -106,9 +106,12 @@ java_prepare() {
 		-e "/<zipfileset .+\/>/d" \
 		build.xml || die
 
+	sed -i -e '/Arndt/d' src/org/jruby/RubyBigDecimal.java
+
 	# Delete the bundled JARs but keep invokedynamic.jar.
 	# No source is available and it's only a dummy anyway.
-	find build_lib lib -name "*.jar" ! -name "invokedynamic.jar" -delete || die
+	find build_lib -name "*.jar" ! -name "jsr292-mock.jar" -delete || die
+	rm lib/profile.jar || die
 
 	if ! use bsf; then
 		# Remove BSF test cases.
@@ -121,7 +124,7 @@ java_prepare() {
 }
 
 src_compile() {
-	eant jar $(use_doc create-apidocs) -Djdk1.5+=true
+	eant jar $(use_doc apidocs) -Djdk1.5+=true
 }
 
 src_test() {
@@ -134,7 +137,7 @@ src_test() {
 	# ali_bush was getting crashes while attempting to run a test.
 	# No info about why it crashed seemed to be produced.
 	# remove it as temp fix.
-	sed -i -e '/MRI/d' build.xml || die "Failed to sed build.xml"
+	#sed -i -e '/MRI/d' build.xml || die "Failed to sed build.xml"
 
 	# BSF is a compile-time only dependency because it's just the adapter
 	# classes and they won't be used unless invoked from BSF itself.
@@ -155,46 +158,28 @@ src_install() {
 	use doc && java-pkg_dojavadoc docs/api
 	use source && java-pkg_dosrc src/org
 
-	dobin "${FILESDIR}/jruby" || die
-	exeinto "/usr/share/${PN}/bin"
-	doexe "${S}/bin/jruby" || die
+	# We run the sed here in install so that we don't get the wrong
+	# data during the test phase!
+	sed \
+		-e '/++ebuild-cut-here++/, /--ebuild-cut-here--/ d' \
+		-e '/^JRUBY_HOME=/s:=:=/usr/share/jruby:' \
+		bin/jruby > "${T}"/jruby
 
-	# Install some jruby tools.
-	dobin "${S}"/bin/j{gem,irb{,_swing},rubyc} || die
-
-	# Symlink some common tools so that jruby can launch them internally.
-	for bin in {j,}gem jirb jrubyc rake rdoc ri spec{,_translator} ; do
-		dosym "/usr/bin/${bin}" "/usr/share/${PN}/bin/${bin}" || die
-	done
+	dobin "${T}"/jruby "${S}"/bin/j{gem,irb{,_swing},rubyc} || die
 
 	insinto "${RUBY_HOME}"
-	doins -r "${S}/lib/ruby/1.8" || die
-	doins -r "${S}/lib/ruby/site_ruby" || die
+	doins -r "${S}"/lib/ruby/{1.8,1.9,site_ruby} || die
 
-	# Share gems with regular Ruby.
-	dosym /usr/$(get_libdir)/ruby/gems "${GEMS}" || die
+	insinto "${SITE_RUBY}/shared"
+	doins "${FILESDIR}/auto_gem.rb" || die
 
-	# Autoload rubygems and append regular site_ruby to $LOAD_PATH.
-	# Unfortunately the -I option prepends instead.
-	insinto "${SITE_RUBY}"
-	doins "${FILESDIR}/gentoo.rb" || die
-	doenvd "${FILESDIR}/10jruby" || die
+	keepdir "${GEMS}"/1.8/{cache,doc}
 }
 
-pkg_preinst() {
-	local bad_directory=0
-
-	if [[ -d ${SITE_RUBY} && ! -L ${SITE_RUBY} ]]; then
-		eerror "${SITE_RUBY} is a directory. Please move this directory out of the way, and then emerge --resume."
-		bad_directory=1
-	fi
-
-	if [[ -d ${GEMS} && ! -L ${GEMS} ]]; then
-		eerror "${GEMS} is a directory. Please move this directory out of the way, and then emerge --resume."
-		bad_directory=1
-	fi
-
-	if [[ ! ${bad_directory} ]]; then
-		die "Please address the above errors, then emerge --resume."
-	fi
+pkg_postinst() {
+	ewarn "If you're updating from <=jruby-1.4.0, you're going to get errors related"
+	ewarn "to gentoo.rb load failure."
+	ewarn "This is due to a stray definition of JRUBY_OPTS variable from the previous ebuilds."
+	ewarn "To solve the problem, either login in a new shell, use 'env -i ${SHELL} --login'"
+	ewarn "or explicitly unset the variable before running jruby."
 }

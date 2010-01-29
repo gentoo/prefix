@@ -1,6 +1,27 @@
 # ChangeLog for dev-java/jruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.50 2010/01/16 23:34:28 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.53 2010/01/24 00:54:52 flameeyes Exp $
+
+  24 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  jruby-1.4.0-r4.ebuild, +files/jruby-1.4.0-bindir.patch:
+  Add patch to fix one further issue (don't revbump just yet).
+
+*jruby-1.4.0-r4 (23 Jan 2010)
+
+  23 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  -jruby-1.4.0-r3.ebuild, +jruby-1.4.0-r4.ebuild,
+  files/jruby-1.4.0-system-jars.patch:
+  Revision bump with improvements to the launch script, this reduces its
+  complexity, and make sure that we run with the correct parameters. We also
+  don't symlink in /usr/share/bin any longer. Simplify ebuild logic for the
+  symlink checks, and add a hard blocker on the older versions so that most
+  users upgrading won't hit the error anyway.
+
+  23 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  -files/jruby-0.9.8-sandbox.patch, -jruby-1.0.0.ebuild,
+  -jruby-1.0.3.ebuild, -jruby-1.2.0-r1.ebuild, -jruby-1.3.1.ebuild:
+  Remove older versions, only leave around those supporting
+  ruby-ng-installed packages.
 
 *jruby-1.4.0-r3 (16 Jan 2010)
 
