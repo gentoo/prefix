@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/xli
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xli/ChangeLog,v 1.51 2009/10/26 18:22:57 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xli/ChangeLog,v 1.52 2010/01/22 21:04:35 ssuominen Exp $
+
+  22 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> xli-1.17.0-r4.ebuild:
+  Require SLOT="0" of media-libs/jpeg for headers.
 
   26 Oct 2009; Raúl Porcel <armin76@gentoo.org> xli-1.17.0-r4.ebuild:
   ia64/sparc stable wrt #285599

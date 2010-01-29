@@ -1,7 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xli/xli-1.17.0-r4.ebuild,v 1.9 2009/10/26 18:22:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xli/xli-1.17.0-r4.ebuild,v 1.10 2010/01/22 21:04:35 ssuominen Exp $
 
+EAPI=1
 inherit eutils
 
 SNAPSHOT="2005-02-27"
@@ -17,14 +18,13 @@ IUSE=""
 RDEPEND="x11-libs/libXext
 	>=sys-libs/zlib-1.1.4
 	>=media-libs/libpng-1.0.5
-	>=media-libs/jpeg-6b
+	>=media-libs/jpeg-6b:0
 	app-arch/bzip2"
 DEPEND="${RDEPEND}
 	x11-proto/xextproto
 	x11-misc/imake
 	app-text/rman
-	!media-gfx/xloadimage
-	!<media-gfx/xli-1.17.0-r3"
+	!media-gfx/xloadimage"
 
 S=${WORKDIR}/${PN}-${SNAPSHOT}
 
