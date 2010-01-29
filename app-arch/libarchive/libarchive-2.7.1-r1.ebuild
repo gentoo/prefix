@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.1-r1.ebuild,v 1.6 2010/01/14 20:59:50 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.1-r1.ebuild,v 1.7 2010/01/23 15:42:13 ranger Exp $
 
 EAPI="2"
 
