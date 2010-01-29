@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.21.ebuild,v 1.1 2010/01/21 22:37:30 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-libs/blas-atlas/blas-atlas-3.9.21.ebuild,v 1.4 2010/01/29 04:44:54 markusle Exp $
 
 inherit eutils toolchain-funcs fortran multilib
 
@@ -8,7 +8,7 @@ DESCRIPTION="Automatically Tuned Linear Algebra Software BLAS implementation"
 HOMEPAGE="http://math-atlas.sourceforge.net/"
 MY_PN=${PN/blas-/}
 SRC_URI="mirror://sourceforge/math-atlas/${MY_PN}${PV}.tar.bz2
-	mirror://gentoo/${MY_PN}-${PV}-shared-libs.patch.bz2"
+	mirror://gentoo/${MY_PN}-${PV}-shared-libs.2.patch.bz2"
 
 LICENSE="BSD"
 SLOT="0"
@@ -48,6 +48,10 @@ pkg_setup() {
 	ewarn "than using then sse instruction set depending on your"
 	ewarn "CPU."
 	echo
+	ewarn "If blas-atlas fails during linking with a message"
+	ewarn "'relocation R_X86_64_32 .... recompile with -fPIC.'"
+	ewarn "please re-emerge libtool and then try again."
+	echo
 	epause 5
 }
 
@@ -55,7 +59,7 @@ src_unpack() {
 	unpack ${A}
 
 	cd "${S}"
-	epatch "${DISTDIR}"/${MY_PN}-${PV}-shared-libs.patch.bz2
+	epatch "${DISTDIR}"/${MY_PN}-${PV}-shared-libs.2.patch.bz2
 	epatch "${FILESDIR}"/${MY_PN}-asm-gentoo.patch
 
 	cp "${FILESDIR}"/eselect.{,c}blas.{,threaded-}atlas "${T}"/
