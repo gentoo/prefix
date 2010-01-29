@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/dbus-glib
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.51 2009/11/07 20:00:54 eva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.52 2010/01/22 07:39:51 eva Exp $
+
+*dbus-glib-0.82-r1 (22 Jan 2010)
+
+  22 Jan 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  +dbus-glib-0.82-r1.ebuild:
+  Version bump. Do not use static dbus instrospection file. Enable checks
+  always just like for every other glib-based program.
 
 *dbus-glib-0.82 (07 Nov 2009)
 
