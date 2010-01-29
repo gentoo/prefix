@@ -1,6 +1,10 @@
 # ChangeLog for app-shells/ksh
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.40 2010/01/22 01:22:10 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/ksh/ChangeLog,v 1.41 2010/01/24 19:11:19 vapier Exp $
+
+  24 Jan 2010; Mike Frysinger <vapier@gentoo.org> ksh-93.20071105.ebuild,
+  ksh-93.20081104.ebuild, ksh-93.20090505.ebuild:
+  Run helper script through /bin/sh #294817.
 
 *ksh-93.20090505 (22 Jan 2010)
 
