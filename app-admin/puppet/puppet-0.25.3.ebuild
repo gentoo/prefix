@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.25.0-r1.ebuild,v 1.2 2009/11/16 20:18:49 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.25.3.ebuild,v 1.1 2010/01/26 15:58:13 matsuu Exp $
 
 EAPI="2"
 inherit elisp-common eutils ruby
@@ -19,18 +19,11 @@ DEPEND="dev-lang/ruby[ssl]
 	emacs? ( virtual/emacs )
 	>=dev-ruby/facter-1.5.0"
 RDEPEND="${DEPEND}
-	>=app-portage/eix-0.9.4
-	<app-portage/eix-0.18
+	>=app-portage/eix-0.18.0
 	augeas? ( dev-ruby/ruby-augeas )
 	ldap? ( dev-ruby/ruby-ldap )
 	rrdtool? ( >=net-analyzer/rrdtool-1.2.23[ruby] )
 	shadow? ( dev-ruby/ruby-shadow )"
-#	|| (
-#		www-servers/webrick
-#		www-servers/mongrel
-#	)
-#	dev-ruby/diff-lcs
-#	dev-ruby/rails
 
 S="${WORKDIR}/${MY_P}"
 USE_RUBY="ruby18"
@@ -42,11 +35,6 @@ pkg_setup() {
 	enewuser puppet -1 -1 /var/lib/puppet puppet
 }
 
-src_prepare() {
-	epatch "${FILESDIR}/${PN}-0.24.6-eix.patch"
-	epatch "${FILESDIR}/${PN}-0.25.0-cert-names.patch"
-}
-
 src_compile() {
 	if use emacs ; then
 		elisp-compile ext/emacs/puppet-mode.el || die "elisp-compile failed"
@@ -55,50 +43,45 @@ src_compile() {
 
 src_install() {
 	DESTDIR="${D}" ruby_einstall "$@" || die
-	DESTDIR="${D}" erubydoc
+	DESTDIR="${D}" erubydoc || die
 
-	#
-	# bug #237071
-	#
-	#doinitd conf/gentoo/init.d/puppetmaster
-	newinitd "${FILESDIR}"/puppetmaster-0.25.init puppetmaster
-	#doconfd conf/gentoo/conf.d/puppetmaster
-	newconfd "${FILESDIR}"/puppetmaster.confd puppetmaster
-	#doinitd conf/gentoo/init.d/puppet
-	newinitd "${FILESDIR}"/puppet-0.25.init puppet
-	doconfd conf/gentoo/conf.d/puppet
+	newinitd "${FILESDIR}"/puppetmaster-0.25.init puppetmaster || die
+	doconfd conf/gentoo/conf.d/puppetmaster || die
+	newinitd "${FILESDIR}"/puppet-0.25.init puppet || die
+	doconfd conf/gentoo/conf.d/puppet || die
 
 	# Initial configuration files
-	keepdir /etc/puppet/manifests
+	keepdir /etc/puppet/manifests || die
 	insinto /etc/puppet
-	doins conf/gentoo/puppet/*
+	doins conf/gentoo/puppet/* || die
+	doins conf/auth.conf || die
 
 	# Location of log and data files
-	keepdir /var/run/puppet
-	keepdir /var/log/puppet
-	keepdir /var/lib/puppet/ssl
-	keepdir /var/lib/puppet/files
-	fowners -R puppet:puppet /var/{run,log,lib}/puppet
+	keepdir /var/run/puppet || die
+	keepdir /var/log/puppet || die
+	keepdir /var/lib/puppet/ssl || die
+	keepdir /var/lib/puppet/files || die
+	use prefix || fowners -R puppet:puppet /var/{run,log,lib}/puppet || die
 
 	if use emacs ; then
 		elisp-install ${PN} ext/emacs/puppet-mode.el* || die "elisp-install failed"
-		elisp-site-file-install "${FILESDIR}/${SITEFILE}"
+		elisp-site-file-install "${FILESDIR}/${SITEFILE}" || die
 	fi
 
 	if use ldap ; then
-		insinto /etc/openldap/schema; doins ext/ldap/puppet.schema
+		insinto /etc/openldap/schema; doins ext/ldap/puppet.schema || die
 	fi
 
 	if use vim-syntax ; then
-		insinto /usr/share/vim/vimfiles/syntax; doins ext/vim/syntax/puppet.vim
-		insinto /usr/share/vim/vimfiles/ftdetect; doins	ext/vim/ftdetect/puppet.vim
+		insinto /usr/share/vim/vimfiles/syntax; doins ext/vim/syntax/puppet.vim || die
+		insinto /usr/share/vim/vimfiles/ftdetect; doins	ext/vim/ftdetect/puppet.vim || die
 	fi
 
 	# ext and examples files
 	for f in $(find ext examples -type f) ; do
-		docinto "$(dirname ${f})"; dodoc "${f}"
+		docinto "$(dirname ${f})"; dodoc "${f}" || die
 	done
-	docinto conf; dodoc conf/namespaceauth.conf
+	docinto conf; dodoc conf/namespaceauth.conf || die
 }
 
 pkg_postinst() {
@@ -106,7 +89,7 @@ pkg_postinst() {
 	elog "Please, *don't* include the --ask option in EMERGE_EXTRA_OPTS as this could"
 	elog "cause puppet to hang while installing packages."
 	elog
-	elog "Puppet uses eix to get information about currently installed	packages,"
+	elog "Puppet uses eix to get information about currently installed packages,"
 	elog "so please keep the eix metadata cache updated so puppet is able to properly"
 	elog "handle package installations."
 	elog
@@ -127,8 +110,10 @@ pkg_postinst() {
 		elog "	/etc/puppet/puppetmasterd.conf"
 		elog
 	fi
+
 	use emacs && elisp-site-regen
 }
+
 pkg_postrm() {
 	use emacs && elisp-site-regen
 }
