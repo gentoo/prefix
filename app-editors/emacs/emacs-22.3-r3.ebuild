@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r3.ebuild,v 1.14 2010/01/16 18:48:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-22.3-r3.ebuild,v 1.16 2010/01/25 18:43:47 armin76 Exp $
 
 EAPI=2
 
@@ -28,7 +28,7 @@ RDEPEND="sys-libs/ncurses
 		x11-libs/libXt
 		x11-misc/xbitmaps
 		gif? ( media-libs/giflib )
-		jpeg? ( media-libs/jpeg )
+		jpeg? ( media-libs/jpeg:0 )
 		tiff? ( media-libs/tiff )
 		png? ( media-libs/libpng )
 		xpm? ( x11-libs/libXpm )

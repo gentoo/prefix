@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r19.ebuild,v 1.14 2010/01/16 18:48:32 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-21.4-r19.ebuild,v 1.15 2010/01/22 17:50:19 ulm Exp $
 
 EAPI=2
 
@@ -27,7 +27,7 @@ DEPEND="sys-libs/ncurses
 		x11-libs/libXpm
 		x11-misc/xbitmaps
 		>=media-libs/giflib-4.1.0.1b
-		>=media-libs/jpeg-6b-r2
+		>=media-libs/jpeg-6b-r2:0
 		>=media-libs/tiff-3.5.5-r3
 		>=media-libs/libpng-1.2.1
 		Xaw3d? ( x11-libs/Xaw3d )
