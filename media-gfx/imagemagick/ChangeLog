@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/imagemagick
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.378 2009/12/28 15:37:28 maekke Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.379 2010/01/22 21:11:52 ssuominen Exp $
+
+  22 Jan 2010; Samuli Suominen <ssuominen@gentoo.org>
+  imagemagick-6.5.8.8.ebuild:
+  Require SLOT="0" of media-libs/jpeg for headers.
 
 *imagemagick-6.5.8.8 (28 Dec 2009)
 
