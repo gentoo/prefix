@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.17.ebuild,v 1.1 2010/01/08 09:55:00 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.17.ebuild,v 1.2 2010/01/23 10:07:38 ssuominen Exp $
 
 EAPI="2"
 
@@ -44,7 +44,7 @@ src_prepare() {
 		autopoint --force
 		eautoreconf
 	else
-		use loop-aes && epatch "${WORKDIR}"/${PN}-2.16.1-loop-aes.patch
+		use loop-aes && epatch "${WORKDIR}"/util-linux-ng-*.diff
 	fi
 	use uclibc && sed -i -e s/versionsort/alphasort/g -e s/strverscmp.h/dirent.h/g mount/lomount.c
 	use prefix && sed -i -e 's/chgrp tty/#chgrp tty/' misc-utils/Makefile.in || die
