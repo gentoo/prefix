@@ -1,8 +1,9 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6e-r3.ebuild,v 1.13 2008/01/10 09:21:46 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6f-r4.ebuild,v 1.2 2010/01/28 06:20:37 vapier Exp $
 
-inherit eutils toolchain-funcs prefix
+EAPI="2"
+inherit eutils toolchain-funcs flag-o-matic prefix
 
 DESCRIPTION="Standard commands to read man pages"
 HOMEPAGE="http://primates.ximian.com/~flucifredi/man/"
@@ -10,12 +11,14 @@ SRC_URI="http://primates.ximian.com/~flucifredi/man/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
-IUSE="nls"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="lzma nls"
 
 DEPEND="nls? ( sys-devel/gettext )"
-RDEPEND=">=sys-apps/groff-1.18
-	!sys-apps/man-db"
+RDEPEND="|| ( >=sys-apps/groff-1.19.2-r1 app-doc/heirloom-doctools )
+	!sys-apps/man-db
+	!app-arch/lzma
+	lzma? ( app-arch/xz-utils )"
 PROVIDE="virtual/man"
 
 pkg_setup() {
@@ -23,50 +26,34 @@ pkg_setup() {
 	enewuser man 13 -1 ${EPREFIX}/usr/share/man man
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	# add support for bzip2 pages
-	epatch "${FILESDIR}"/man-1.6e-man2html-bzip2.patch
-
-	# We love to cross-compile
+src_prepare() {
+	epatch "${FILESDIR}"/man-1.6f-man2html-compression-2.patch
 	epatch "${FILESDIR}"/man-1.6-cross-compile.patch
-
-	# Fix search order in man.conf so that system installed manpages
-	# will be found first ...
 	epatch "${FILESDIR}"/man-1.5p-search-order.patch
-
-	# For groff-1.18 or later we need to call nroff with '-c'
-	epatch "${FILESDIR}"/man-1.5m-groff-1.18.patch
-
-	# makewhatis traverses manpages twice, as default manpath
-	# contains two directories that are symlinked together
+	epatch "${FILESDIR}"/man-1.6f-unicode.patch #146315
 	epatch "${FILESDIR}"/man-1.5p-defmanpath-symlinks.patch
-
-	# add more sections to default search path
 	epatch "${FILESDIR}"/man-1.6b-more-sections.patch
-
-	# cut out symlinked paths #90186
 	epatch "${FILESDIR}"/man-1.6c-cut-duplicate-manpaths.patch
-
-	# Fedora patches
 	epatch "${FILESDIR}"/man-1.5m2-apropos.patch
-
-	# Fixes compilation in FreeBSD wrt #138123
 	epatch "${FILESDIR}"/man-1.6d-fbsd.patch
+	epatch "${FILESDIR}"/man-1.6e-headers.patch
+	epatch "${FILESDIR}"/man-1.6f-so-search-2.patch
+	epatch "${FILESDIR}"/man-1.6f-compress.patch
+	epatch "${FILESDIR}"/man-1.6f-parallel-build.patch #207148 #258916
+	epatch "${FILESDIR}"/man-1.6f-xz.patch #302380
+	# make sure `less` handles escape sequences #287183
+	sed -i -e '/^DEFAULTLESSOPT=/s:"$:R":' configure
 
 	# This patch could be easily merged with the FreeBSD one, but we don't
 	# because the files have no CVS header and then auto syncing overwrites the
 	# local difference we make.  <grobian@gentoo.org>
 	epatch "${FILESDIR}"/man-1.6e-bsdish.patch
-
 	# Solaris needs fcntl.h included for O_CREAT etc, like SYSV
 	epatch "${FILESDIR}"/man-1.6e-solaris.patch
-
 	# hpux does not have setenv()
 	epatch "${FILESDIR}"/man-1.6e-hpux.patch
-
+	# irix support is a bit messed up in defines
+	epatch "${FILESDIR}"/man-1.6f-irix.patch
 	# Results in grabbing as much tools from the prefix, instead of main
 	# system in a prefixed environment
 	epatch "${FILESDIR}"/man-1.6e-prefix-path.patch
@@ -77,11 +64,17 @@ src_unpack() {
 	epatch "${FILESDIR}"/makewhatis.cron-prefix.patch
 	popd > /dev/null
 	eprefixify "${T}"/makewhatis.cron
+	# Hardcode path to echo(1), to keep some shells (e.g. zsh, mksh) from
+	# expanding "\n".
+	epatch "${FILESDIR}"/man-1.6f-echo.patch
+	eprefixify "${S}"/src/man.c
+	# don't use built-in versions of bcopy and bzero if _ALL_SOURCE is deinfed
+	# on interix, since they have conflicting definitions with system headers.
+	epatch "${FILESDIR}"/${P}-interix-all_source.patch
+}
 
-	epatch "${FILESDIR}"/man-1.6e-dont-kill-shebangs.patch #159192
-	epatch "${FILESDIR}"/man-1.6e-headers.patch
-	epatch "${FILESDIR}"/man-1.6e-readonly-whatis2.patch #163932
-
+echoit() { echo "$@" ; "$@" ; }
+src_configure() {
 	strip-linguas $(eval $(grep ^LANGUAGES= configure) ; echo ${LANGUAGES//,/ })
 
 	if use prefix ; then
@@ -91,9 +84,7 @@ src_unpack() {
 			"${S}"/src/Makefile.in
 		eend $?
 	fi
-}
 
-src_compile() {
 	unset NLSPATH #175258
 
 	tc-export CC BUILD_CC
@@ -112,6 +103,15 @@ src_compile() {
 	local myconf=
 	use prefix || myconf="${myconf} +sgid"
 
+	[[ ${CHOST} == *-interix* ]] && append-flags "-D_POSIX_SOURCE"
+
+	export COMPRESS
+	if use lzma ; then
+		COMPRESS="${EPREFIX}"/usr/bin/xz
+	else
+		COMPRESS="${EPREFIX}"/bin/bzip2
+	fi
+	echoit \
 	./configure \
 		-prefix="${EPREFIX}/usr" \
 		-confdir="${EPREFIX}"/etc \
@@ -119,8 +119,6 @@ src_compile() {
 		+fhs \
 		+lang ${mylang} \
 		|| die "configure failed"
-
-	emake || die "emake failed"
 }
 
 src_install() {
@@ -152,11 +150,13 @@ src_install() {
 
 pkg_postinst() {
 	if use !prefix ; then
-		einfo "Forcing sane permissions onto ${EROOT}/var/cache/man (Bug #40322)"
-		chown -R root:man "${EROOT}"/var/cache/man
-		[[ -e ${EROOT}/var/cache/man/whatis ]] \
-			&& chown root:0 "${EROOT}"/var/cache/man/whatis
-	fi
+
+	einfo "Forcing sane permissions onto ${EROOT}var/cache/man (Bug #40322)"
+	chown -R root:man "${EROOT}"/var/cache/man
+	[[ -e ${EROOT}/var/cache/man/whatis ]] \
+		&& chown root:0 "${EROOT}"/var/cache/man/whatis
+
+	fi # end lame indenting
 
 	chmod -R g+w "${EROOT}"/var/cache/man
 
@@ -168,10 +168,18 @@ pkg_postinst() {
 		[[ $(md5sum "${f}") == "8b2016cc778ed4e2570b912c0f420266 "* ]] \
 			&& rm -f "${f}"
 	done
-	files=$(ls "${EROOT}"/etc/cron.{daily,weekly}/makewhatis{,.cron} 2>/dev/null)
+	files=$(ls "${EROOT}"etc/cron.{daily,weekly}/makewhatis{,.cron} 2>/dev/null)
 	if [[ ${files/$'\n'} != ${files} ]] ; then
 		ewarn "You have multiple makewhatis cron files installed."
 		ewarn "You might want to delete all but one of these:"
 		ewarn ${files}
+	fi
+
+	if has_version app-doc/heirloom-doctools; then
+		ewarn "Please note that the /etc/man.conf file installed will not"
+		ewarn "work with heirloom's nroff by default (yet)."
+		ewarn ""
+		ewarn "Check app-doc/heirloom-doctools elog messages for the proper"
+		ewarn "configuration."
 	fi
 }

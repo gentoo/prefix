@@ -1,6 +1,21 @@
 # ChangeLog for sys-apps/man
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.154 2009/09/29 11:45:01 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/ChangeLog,v 1.157 2010/01/28 06:21:12 vapier Exp $
+
+  28 Jan 2010; Mike Frysinger <vapier@gentoo.org>
+  files/man-1.6f-parallel-build.patch:
+  Fix building with all linguas #302423 by Ooblick.
+
+*man-1.6f-r4 (27 Jan 2010)
+
+  27 Jan 2010; Mike Frysinger <vapier@gentoo.org> +man-1.6f-r4.ebuild,
+  +files/man-1.6f-man2html-compression-2.patch,
+  +files/man-1.6f-parallel-build.patch, +files/man-1.6f-so-search-2.patch,
+  +files/man-1.6f-xz.patch:
+  Tweak log output #194532 by Ken Rushia. Fix by Kevin Pyle for parallel
+  build errors #207148 by Csaba Tóth. Fix parallel build warnings #258916
+  by Mr. Anderson. Add the -R option to default less options #287183 by
+  Martin Baselier. Add support for xz compression #302380 by Dror Levin.
 
   29 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org> man-1.6f-r3.ebuild:
   Fix package name.

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6f-r3.ebuild,v 1.13 2009/09/29 11:45:01 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/man/man-1.6f-r3.ebuild,v 1.14 2010/01/27 02:31:10 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic prefix
 
@@ -154,11 +154,13 @@ src_install() {
 
 pkg_postinst() {
 	if use !prefix ; then
-		einfo "Forcing sane permissions onto ${EROOT}/var/cache/man (Bug #40322)"
-		chown -R root:man "${EROOT}"/var/cache/man
-		[[ -e ${EROOT}/var/cache/man/whatis ]] \
-			&& chown root:0 "${EROOT}"/var/cache/man/whatis
-	fi
+
+	einfo "Forcing sane permissions onto ${EROOT}var/cache/man (Bug #40322)"
+	chown -R root:man "${EROOT}"/var/cache/man
+	[[ -e ${EROOT}/var/cache/man/whatis ]] \
+		&& chown root:0 "${EROOT}"/var/cache/man/whatis
+
+	fi # end lame indenting
 
 	chmod -R g+w "${EROOT}"/var/cache/man
 
@@ -170,7 +172,7 @@ pkg_postinst() {
 		[[ $(md5sum "${f}") == "8b2016cc778ed4e2570b912c0f420266 "* ]] \
 			&& rm -f "${f}"
 	done
-	files=$(ls "${EROOT}"/etc/cron.{daily,weekly}/makewhatis{,.cron} 2>/dev/null)
+	files=$(ls "${EROOT}"etc/cron.{daily,weekly}/makewhatis{,.cron} 2>/dev/null)
 	if [[ ${files/$'\n'} != ${files} ]] ; then
 		ewarn "You have multiple makewhatis cron files installed."
 		ewarn "You might want to delete all but one of these:"
