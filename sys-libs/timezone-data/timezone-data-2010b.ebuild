@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2009s.ebuild,v 1.2 2009/12/13 03:50:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/timezone-data-2010b.ebuild,v 1.1 2010/01/26 19:19:14 vapier Exp $
 
 inherit eutils toolchain-funcs flag-o-matic
 
-code_ver=${PV%s}r
+code_ver=${PV%10b}09t
 data_ver=${PV}
 DESCRIPTION="Timezone data (/usr/share/zoneinfo) and utilities (tzselect/zic/zdump)"
 HOMEPAGE="ftp://elsie.nci.nih.gov/pub/"
@@ -72,12 +72,12 @@ pkg_config() {
 	local tz src
 
 	if has_version '<sys-apps/baselayout-2' ; then
-		src="/etc/conf.d/clock"
-		tz=$(unset TIMEZONE ; source "${EROOT}"/etc/conf.d/clock ; echo ${TIMEZONE-FOOKABLOIE})
+		src="${EROOT}etc/conf.d/clock"
+		tz=$(unset TIMEZONE ; source "${src}" ; echo ${TIMEZONE-FOOKABLOIE})
 	else
-		src="/etc/timezone"
-		if [[ -e ${EROOT}/etc/timezone ]] ; then
-			tz=$(sed -e 's:#.*::' -e 's:[[:space:]]*::g' -e '/^$/d' "${EROOT}"/etc/timezone)
+		src="${EROOT}etc/timezone"
+		if [[ -e ${src} ]] ; then
+			tz=$(sed -e 's:#.*::' -e 's:[[:space:]]*::g' -e '/^$/d' "${src}")
 		else
 			tz="FOOKABLOIE"
 		fi
@@ -89,19 +89,19 @@ pkg_config() {
 
 		if [[ ! -e ${EROOT}/etc/localtime ]] ; then
 			cp -f "${EROOT}"/usr/share/zoneinfo/Factory "${EROOT}"/etc/localtime
-			elog "Setting /etc/localtime to Factory."
+			elog "Setting ${EROOT}etc/localtime to Factory."
 		else
-			elog "Skipping auto-update of /etc/localtime."
+			elog "Skipping auto-update of ${EROOT}etc/localtime."
 		fi
 		return 0
 	fi
 
 	if [[ ! -e ${EROOT}/usr/share/zoneinfo/${tz} ]] ; then
 		elog "You have an invalid TIMEZONE setting in ${EPREFIX}${src}"
-		elog "Your ${EPREFIX}/etc/localtime has been reset to Factory; enjoy!"
+		elog "Your ${EROOT}etc/localtime has been reset to Factory; enjoy!"
 		tz="Factory"
 	fi
-	einfo "Updating ${EPREFIX}/etc/localtime with ${EPREFIX}/usr/share/zoneinfo/${tz}"
+	einfo "Updating ${EROOT}etc/localtime with ${EROOT}usr/share/zoneinfo/${tz}"
 	[[ -L ${EROOT}/etc/localtime ]] && rm -f "${EROOT}"/etc/localtime
 	cp -f "${EROOT}"/usr/share/zoneinfo/"${tz}" "${EROOT}"/etc/localtime
 }
