@@ -1,8 +1,12 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.3.3.ebuild,v 1.2 2009/06/07 17:40:29 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/rubygems-1.3.5-r1.ebuild,v 1.1 2010/01/28 00:49:41 flameeyes Exp $
 
-inherit ruby prefix
+EAPI="2"
+
+USE_RUBY="ruby18"
+
+inherit ruby-ng prefix
 
 DESCRIPTION="Centralized Ruby extension management system"
 HOMEPAGE="http://rubyforge.org/projects/rubygems/"
@@ -11,44 +15,29 @@ LICENSE="|| ( Ruby GPL-2 )"
 # Needs to be installed first
 RESTRICT="test"
 
-# The URL depends implicitly on the version, unfortunately. Even if you
-# change the filename on the end, it still downloads the same file.
 SRC_URI="mirror://rubyforge/${PN}/${P}.tgz"
 
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 IUSE="doc server"
-DEPEND="=dev-lang/ruby-1.8*"
-RDEPEND="${DEPEND}"
-PDEPEND="server? ( dev-ruby/builder )" # index_gem_repository.rb
+PDEPEND="server? ( dev-ruby/builder[ruby_targets_ruby18] )" # index_gem_repository.rb
 
 USE_RUBY="ruby18"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}/${PN}-1.3.3-setup.patch"
+all_ruby_prepare() {
+	epatch "${FILESDIR}/${PN}-1.3.5-setup.patch"
 	# Fixes a new "feature" that would prevent us from recognizing installed
 	# gems inside the sandbox
 	epatch "${FILESDIR}/${PN}-1.3.3-gentoo.patch"
 
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.3.3-prefix.patch
 	eprefixify lib/rubygems/config_file.rb
 }
 
-src_compile() {
-	# Allowing ruby_src_compile would be bad with the new setup.rb
-	:
-}
-
-src_install() {
+each_ruby_install() {
 	# RUBYOPT=-rauto_gem without rubygems installed will cause ruby to fail, bug #158455
 	export RUBYOPT="${GENTOO_RUBYOPT}"
 	ewarn "RUBYOPT=${RUBYOPT}"
-
-	# Force ebuild to use Ruby 1.8
-	export RUBY="${EPREFIX}/usr/bin/ruby18"
 
 	ver=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["ruby_version"]')
 
@@ -67,9 +56,12 @@ src_install() {
 
 	${RUBY} setup.rb $myconf --destdir="${D}" || die "setup.rb install failed"
 
+	doruby "${FILESDIR}/auto_gem.rb"
+}
+
+all_ruby_install() {
 	dodoc README || die "dodoc README failed"
 
-	cp "${FILESDIR}/auto_gem.rb" "${D}"/$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitedir"]') || die "cp auto_gem.rb failed"
 	doenvd "${FILESDIR}/10rubygems" || die "doenvd 10rubygems failed"
 
 	if use server; then
@@ -78,8 +70,7 @@ src_install() {
 	fi
 }
 
-pkg_postinst()
-{
+pkg_postinst() {
 	SOURCE_CACHE="${EPREFIX}/usr/$(get_libdir)/ruby/gems/$ver/source_cache"
 	if [[ -e "${SOURCE_CACHE}" ]]; then
 		rm "${SOURCE_CACHE}"
@@ -96,8 +87,7 @@ pkg_postinst()
 	ewarn
 }
 
-pkg_postrm()
-{
+pkg_postrm() {
 	ewarn "If you have uninstalled dev-ruby/rubygems, Ruby applications are unlikely"
 	ewarn "to run in current shells because of missing auto_gem."
 	ewarn "Please run \"unset RUBYOPT\" in your shells before using ruby"
