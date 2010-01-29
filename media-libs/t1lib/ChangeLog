@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/t1lib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.78 2010/01/06 19:07:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/t1lib/ChangeLog,v 1.79 2010/01/23 16:39:24 klausman Exp $
+
+  23 Jan 2010; Tobias Klausmann <klausman@gentoo.org> t1lib-5.1.2.ebuild:
+  Stable on alpha, bug #297690
 
   06 Jan 2010; Jeroen Roovers <jer@gentoo.org> t1lib-5.1.2.ebuild:
   Stable for PPC (bug #297690).
