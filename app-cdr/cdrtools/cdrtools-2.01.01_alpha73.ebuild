@@ -1,63 +1,64 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha69.ebuild,v 1.2 2009/12/02 18:54:00 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha73.ebuild,v 1.1 2010/01/25 17:51:16 billie Exp $
 
 EAPI=2
 
 inherit multilib eutils toolchain-funcs flag-o-matic
 
 DESCRIPTION="A set of tools for CD/DVD reading and recording, including cdrecord"
-HOMEPAGE="http://cdrecord.berlios.de/"
+HOMEPAGE="http://cdrecord.berlios.de/private/cdrecord.html"
+if [[ ${PV%_alpha*} == ${PV} ]] ; then
+SRC_URI="ftp://ftp.berlios.de/pub/cdrecord/${P}.tar.bz2"
+else
 SRC_URI="ftp://ftp.berlios.de/pub/cdrecord/alpha/${P/_alpha/a}.tar.bz2"
+fi
 
 LICENSE="GPL-2 LGPL-2.1 CDDL-Schily"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="unicode acl"
+IUSE="acl unicode"
 
 DEPEND="acl? ( sys-apps/acl )
 	!app-cdr/dvdrtools
 	!app-cdr/cdrkit"
 RDEPEND="${DEPEND}"
 
-S=${WORKDIR}/${PN}-2.01.01
+S=${WORKDIR}/${P/_alpha[0-9][0-9]}
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.01.01_alpha50-asneeded.patch
-
 	# Remove profiled make files.
-	rm -f $(find . -name '*_p.mk') || die "rm failed"
+	rm -f $(find . -name '*_p.mk') || die "rm profiled"
 
 	# Adjusting hardcoded paths.
 	sed -i -e 's:opt/schily:usr:' \
-		$(grep -l --include='*.1' --include='*.8' -r 'opt/schily' .) \
-		$(grep -l --include='*.c' --include='*.h' -r 'opt/schily' .) \
-		|| die "404 on opt-schily sed"
+		$(find ./ -type f -name \*.[0-9ch] -exec grep -l 'opt/schily' '{}' '+') \
+		|| die "sed opt/schily"
 
 	sed -i -e "s:\(^INSDIR=\t\tshare/doc/\):\1${PF}/:" \
-		$(grep -l -r 'INSDIR.\+doc' .) \
-		|| die "404 on doc sed"
+		$(find ./ -type f -exec grep -l 'INSDIR.\+doc' '{}' '+') \
+		|| die "sed doc"
 
 	# Respect libdir.
 	sed -i -e "s:\(^INSDIR=\t\t\)lib:\1$(get_libdir):" \
-		$(grep -l -r '^INSDIR.\+lib\(/siconv\)\?$' .) \
-		|| die "404 on multilib-sed"
+		$(find ./ -type f -exec grep -l '^INSDIR.\+lib\(/siconv\)\?$' '{}' '+') \
+		|| die "sed multilib"
 
 	sed -i -e 's:include\t\t.*rules.lib::' \
-		$(grep -l -r '^include.\+rules\.lib' .) \
-		|| die "404 on rules sed"
+		$(find ./ -type f -exec grep -l '^include.\+rules\.lib' '{}' '+') \
+		|| die "sed rules"
 
 	# Respect CC/CXX variables.
 	cd "${S}"/RULES
 	local tcCC=$(tc-getCC)
 	local tcCXX=$(tc-getCXX)
 	sed -i -e "/cc-config.sh/s|\$(C_ARCH:%64=%) \$(CCOM_DEF)|${tcCC} ${tcCC}|" \
-		rules1.top || die "sed rules1.top failed"
+		rules1.top || die "sed rules1.top"
 	sed -i -e "/^\(CC\|DYNLD\|LDCC\|MKDEP\)/s|gcc|${tcCC}|" \
 		-e "/^\(CC++\|DYNLDC++\|LDCC++\|MKC++DEP\)/s|g++|${tcCXX}|" \
-		cc-gcc.rul || die "sed cc-gcc.rul failed"
+		cc-gcc.rul || die "sed cc-gcc.rul"
 	sed -i -e "s|^#CONFFLAGS +=\t-cc=\$(XCC_COM)$|CONFFLAGS +=\t-cc=${tcCC}|g" \
-		rules.cnf || die "sed rules.cnf failed"
+		rules.cnf || die "sed rules.cnf"
 
 	# Create additional symlinks needed for some archs.
 	local t
@@ -68,21 +69,20 @@ src_prepare() {
 
 	# Schily make setup.
 	cd "${S}"/DEFAULTS
-	local MYARCH="linux"
-	[[ ${CHOST} == *-darwin* ]] && MYARCH="mac-os10"
+local os="linux"
+	[[ ${CHOST} == *-darwin* ]] && os="mac-os10"
 
 	sed -i \
 		-e "s:/opt/schily:/usr:g" \
 		-e "s:/usr/src/linux/include::g" \
 		-e "/RUNPATH/ c\RUNPATH= " \
 		-e "s:bin:root:g" \
-		 Defaults.${MYARCH} || die "sed Schily make setup failed"
+		Defaults.${os} || die "sed Schily make setup"
 }
 
 src_configure() { : ; }
 
 src_compile() {
-	local ACL="-lacl"
 	if use unicode; then
 		local flags="$(test-flags -finput-charset=ISO-8859-1 -fexec-charset=UTF-8)"
 		if [[ -n ${flags} ]]; then
@@ -93,31 +93,39 @@ src_compile() {
 		fi
 	fi
 
+	local acl="-lacl"
 	if ! use acl
 	then
 		CFLAGS="${CFLAGS} -DNO_ACL"
-		ACL=""
+		acl=""
 	fi
+
 	# If not built with -j1, "sometimes" cdda2wav will not be built. Bug?
-	emake -j1 CC="$(tc-getCC) -D__attribute_const__=const" COPTX="${CFLAGS}" \
-		LIB_ACL_TEST="${ACL}" CPPOPTX="${CPPFLAGS}" LDOPTX="${LDFLAGS}" \
-		LINKMODE="dynamic" GMAKE_NOWARN="true" || die "emake failed"
+	emake -j1 CC="$(tc-getCC)" CPPOPTX="${CPPFLAGS}" COPTX="${CFLAGS}" \
+		LDOPTX="${LDFLAGS}" LINKMODE="dynamic" LIB_ACL_TEST="${acl}" \
+		GMAKE_NOWARN="true" || die "emake"
 }
 
 src_install() {
 	# If not built with -j1, "sometimes" manpages are not installed. Bug?
-	emake -j1 MANDIR="share/man" INS_BASE="${ED}/usr/" INS_RBASE="${ED}" \
-		LINKMODE="dynamic" GMAKE_NOWARN="true" install
+	emake -j1 INS_BASE="${ED}/usr/" INS_RBASE="${ED}" MANDIR="share/man" \
+		LINKMODE="dynamic" GMAKE_NOWARN="true" install || die "emake install"
 
 	# These symlinks are for compat with cdrkit.
-	dosym schily /usr/include/scsilib
-	dosym ../scg /usr/include/schily/scg
+	dosym schily /usr/include/scsilib || die "dosym scsilib"
+	dosym ../scg /usr/include/schily/scg || die "dosym scg"
 
-	dodoc ABOUT Changelog README README.linux-shm START READMEs/README.linux || die "dodoc cdrtools"
+	dodoc ABOUT Changelog* CONTRIBUTING PORTING README.linux-shm READMEs/README.linux \
+		|| die "dodoc"
 
 	cd "${S}"/cdda2wav
 	docinto cdda2wav
-	dodoc FAQ Frontends HOWTOUSE TODO || die "dodoc cdda2wav"
+	dodoc Changelog FAQ Frontends HOWTOUSE NEEDED README THANKS TODO \
+		|| die "dodoc cdda2wav"
+
+	cd "${S}"/mkisofs
+	docinto mkisofs
+	dodoc ChangeLog* TODO || die "dodoc mkisofs"
 }
 
 pkg_postinst() {
