@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.7-r1.ebuild,v 1.1 2009/12/27 02:37:02 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.8.ebuild,v 1.1 2010/01/24 19:35:30 eva Exp $
 
 # TODO
 # 1. Track upstream bug --disable-docs does not work.
@@ -8,7 +8,7 @@
 
 EAPI="2"
 
-inherit multilib eutils
+inherit autotools eutils multilib
 
 DESCRIPTION="Library that implements support for numerous digital cameras"
 HOMEPAGE="http://www.gphoto.org/"
@@ -17,9 +17,10 @@ SRC_URI="mirror://sourceforge/gphoto/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
+IUSE="bonjour doc examples exif hal nls kernel_linux"
 
-IUSE="bonjour doc exif hal nls kernel_linux"
-RESTRICT="test"
+# ???
+#RESTRICT="test"
 
 # By default, drivers for all supported cameras will be compiled.
 # If you want to only compile for specific camera(s), set CAMERAS
@@ -66,7 +67,7 @@ pkg_setup() {
 		einfo "libgphoto2 supports: all ${IUSE_CAMERAS}"
 		einfo "All camera drivers will be built since you did not specify"
 		einfo "via the CAMERAS variable what camera you use."
-		ewarn "NOTICE: Upstream will not support you if you do not compile all camera drivers first"
+		einfo "NOTICE: Upstream will not support you if you do not compile all camera drivers first"
 	fi
 
 	if use cameras_template || use cameras_sipix_blink; then
@@ -77,10 +78,22 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# Handle examples ourselves
+	sed 's/^\(SUBDIRS =.*\)examples\(.*\)$/\1\2/' -i Makefile.am Makefile.in \
+		|| die "examples sed failed"
+
 	# Fix pkgconfig file when USE="-exif"
 	if ! use exif; then
 		sed -i "s/, @REQUIREMENTS_FOR_LIBEXIF@//" libgphoto2.pc.in || die " libgphoto2.pc sed failed"
 	fi
+
+	# Fix USE=bonjour, bug #283332
+	epatch "${FILESDIR}/${PN}-2.4.7-respect-bonjour.patch"
+
+	# Do not build test if not running make check, bug #226241
+	epatch "${FILESDIR}/${PN}-2.4.7-no-test-build.patch"
+
+	eautoreconf
 
 	# Fix bug #216206, libusb detection
 	sed -i "s:usb_busses:usb_find_busses:g" libgphoto2_port/configure || die "libusb sed failed"
@@ -130,13 +143,20 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "install failed"
 
+	# Clean up unwanted files
+	rm "${ED}/usr/share/doc/${PF}/"{ABOUT-NLS,COPYING} || die "rm failed"
+	dodoc ChangeLog NEWS* README* AUTHORS TESTERS MAINTAINERS HACKING || die "dodoc failed"
+
+	if use examples; then
+		insinto /usr/share/doc/${PF}/examples
+		doins examples/README examples/*.c examples/*.h || die "examples installation failed"
+	fi
+
 	# FIXME: fixup autoconf bug
 	if ! use doc && [ -d "${ED}/usr/share/doc/${PF}/apidocs.html" ]; then
 		rm -fr "${ED}/usr/share/doc/${PF}/apidocs.html"
 	fi
 	# end fixup
-
-	dodoc ChangeLog NEWS* README AUTHORS TESTERS MAINTAINERS HACKING || die "dodoc failed"
 
 	HAL_FDI="/usr/share/hal/fdi/information/20thirdparty/10-camera-libgphoto2.fdi"
 	UDEV_RULES="/etc/udev/rules.d/70-libgphoto2.rules"
