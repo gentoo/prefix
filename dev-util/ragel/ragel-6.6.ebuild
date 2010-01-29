@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ragel/ragel-6.6.ebuild,v 1.3 2010/01/06 18:22:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ragel/ragel-6.6.ebuild,v 1.5 2010/01/27 00:18:02 ranger Exp $
 
 DESCRIPTION="Compiles finite state machines from regular languages into executable code."
 HOMEPAGE="http://www.complang.org/ragel/"
