@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/ant-eclipse-ecj
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ChangeLog,v 1.15 2010/01/18 19:15:14 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ChangeLog,v 1.16 2010/01/23 14:06:48 aballier Exp $
+
+  23 Jan 2010; Alexis Ballier <aballier@gentoo.org>
+  ant-eclipse-ecj-3.5.1.ebuild:
+  keyword ~x86-fbsd, bug #214768
 
   18 Jan 2010; Markus Meier <maekke@gentoo.org>
   ant-eclipse-ecj-3.5.1.ebuild:
