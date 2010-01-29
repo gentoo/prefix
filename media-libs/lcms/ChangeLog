@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/lcms
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.106 2009/12/01 11:02:40 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.108 2010/01/28 15:15:35 ssuominen Exp $
+
+  28 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> lcms-1.18-r1.ebuild:
+  Update SRC_URI to Gentoo mirrors wrt #302641, thanks to Eric Tamme for
+  reporting.
+
+  22 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> lcms-1.19.ebuild:
+  Require SLOT="0" of media-libs/jpeg for headers.
 
 *lcms-1.19 (01 Dec 2009)
 
