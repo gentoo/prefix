@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/wxpython-2.8.10.1.ebuild,v 1.10 2010/01/02 15:23:18 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/wxpython-2.8.10.1.ebuild,v 1.11 2010/01/25 13:34:03 ssuominen Exp $
 
 EAPI="2"
 WX_GTK_VER="2.8"
@@ -30,7 +30,7 @@ RDEPEND="
 	>=x11-libs/pango-1.2
 	>=dev-libs/glib-2.0
 	media-libs/libpng
-	media-libs/jpeg
+	media-libs/jpeg:0
 	media-libs/tiff
 	cairo?	( >=dev-python/pycairo-1.8.4 )
 	opengl?	( >=dev-python/pyopengl-2.0.0.44 )
