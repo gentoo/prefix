@@ -10,9 +10,6 @@
 		<name>Samuli Suominen</name>
 	</maintainer>
 	<herd>x11</herd>
-	<longdescription lang="en">
-		Default terminal for X-windows servers.
-	</longdescription>
 	<use>
 		<flag name='toolbar'>Enable the xterm toolbar to be built</flag>
 	</use>
