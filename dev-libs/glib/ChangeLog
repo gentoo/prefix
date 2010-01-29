@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.397 2010/01/19 17:17:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.398 2010/01/28 23:54:51 eva Exp $
+
+*glib-2.22.4 (28 Jan 2010)
+
+  28 Jan 2010; Gilles Dartiguelongue <eva@gentoo.org> -glib-2.20.5.ebuild,
+  +glib-2.22.4.ebuild:
+  Version bump. Bug fixes, and notably bug #297483. Disable test affecting
+  live filesystem, bug #297684.
 
   19 Jan 2010; Raúl Porcel <armin76@gentoo.org> glib-2.22.2.ebuild:
   arm stable

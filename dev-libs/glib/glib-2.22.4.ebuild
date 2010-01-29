@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.20.5.ebuild,v 1.10 2009/10/26 18:04:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.22.4.ebuild,v 1.1 2010/01/28 23:54:51 eva Exp $
 
 EAPI="2"
 
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/"
 
 LICENSE="LGPL-2"
 SLOT="2"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc fam hardened selinux xattr"
 
 RDEPEND="virtual/libiconv
@@ -21,6 +21,10 @@ RDEPEND="virtual/libiconv
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
 	x86-winnt? ( >=dev-util/gtk-doc-am-1.11 )
+	x86-interix? ( 
+		sys-libs/itx-bind
+		>=dev-util/gtk-doc-am-1.11 
+	)
 	doc? (
 		>=dev-libs/libxslt-1.0
 		>=dev-util/gtk-doc-1.11
@@ -51,9 +55,20 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
+	# Do not try to remove files on live filesystem, bug #XXX ?
+	sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
+		-i "${S}"/gio/tests/desktop-app-info.c || die "sed failed"
+
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
 	epatch "${FILESDIR}"/${PN}-2.20.3-mint.patch
+	# configure script lets itself being fooled by bind 8 stuff
+	[[ ${CHOST} == *-darwin[678] ]] && append-libs -lresolv
+
+	# make default sane for us
+	if use prefix ; then
+		sed -i -e "s:/usr/local:${EPREFIX}:" gio/xdgmime/xdgmime.c || die
+	fi
 
 	# build glib with parity for native win32
 	if [[ ${CHOST} == *-winnt* ]] ; then
@@ -61,7 +76,26 @@ src_prepare() {
 		# makes the iconv check more general, needed for winnt, but could
 		# be useful for others too, requires eautoreconf
 		epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
-		epatch "${FILESDIR}"/${P}-winnt-exeext.patch
+		epatch "${FILESDIR}"/${PN}-2.20.5-winnt-exeext.patch
+		AT_M4DIR="m4macros" eautoreconf
+	fi
+
+	if [[ ${CHOST} == *-interix* ]]; then
+		# conditional only to avoid auto-reconfing on other platforms.
+		# there are hunks disabling some GTK_DOC macros - i guess that
+		# the gtk-doc-am package in the tree is too old to bootstrap
+		# glib correctly ... :/
+		epatch "${FILESDIR}"/${P}-interix.patch
+
+		# interix 3 and 5 have no ipv6 support, so take it out (phew...)
+		if [[ ${CHOST} == *-interix[35]* ]]; then
+			epatch "${FILESDIR}"/${P}-interix-network.patch
+		fi
+
+		# activate the itx-bind package...
+		append-flags "-I${EPREFIX}/usr/include/bind"
+		append-ldflags "-L${EPREFIX}/usr/lib/bind"
+
 		AT_M4DIR="m4macros" eautoreconf
 	fi
 
@@ -118,15 +152,13 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die "Installation failed"
 
-	# Do not install charset.alias even if generated, leave it to libiconv
-	rm -f "${ED}/usr/lib/charset.alias"
-
 	dodoc AUTHORS ChangeLog* NEWS* README || die "dodoc failed"
 }
 
 src_test() {
 	unset DBUS_SESSION_BUS_ADDRESS
-	export XDG_CONFIG_DIRS=/etc/xdg
-	export XDG_DATA_DIRS=/usr/local/share:/usr/share
+	export XDG_CONFIG_DIRS="${EPREFIX}"/etc/xdg
+	export XDG_DATA_DIRS="${EPREFIX}"/usr/local/share:"${EPREFIX}"/usr/share
+	export XDG_DATA_HOME="${T}"
 	emake check || die "tests failed"
 }
