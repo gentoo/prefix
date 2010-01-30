@@ -30,6 +30,7 @@ app-admin/eselect-blas
 app-admin/eselect-cblas
 app-admin/eselect-ctags
 app-admin/eselect-emacs
+app-admin/eselect-esd
 app-admin/eselect-fontconfig
 app-admin/eselect-lapack
 app-admin/eselect-maven
@@ -100,10 +101,12 @@ app-editors/ne
 app-editors/nedit
 app-editors/teco
 app-editors/vim-core
+app-emacs/auctex
 app-emacs/autoconf-mode
 app-emacs/bbdb
 app-emacs/cedet
 app-emacs/color-theme
+app-emacs/emacs-common-gentoo
 app-emacs/gentoo-syntax
 app-emacs/matlab
 app-emacs/mmm-mode
