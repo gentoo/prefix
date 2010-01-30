@@ -25,6 +25,7 @@ src_unpack() {
 	cd "${S}"
 	epatch_user
 
+	epatch "${FILESDIR}"/${P}-mint.patch
 	cp "${FILESDIR}"/rsyncd.* "${T}"/
 	cd "${T}"
 	epatch "${FILESDIR}"/rsync-files-prefix.patch
