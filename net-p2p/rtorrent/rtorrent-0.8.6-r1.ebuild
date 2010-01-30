@@ -12,7 +12,7 @@ SRC_URI="http://libtorrent.rakshasa.no/downloads/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris"
 IUSE="daemon debug ipv6 xmlrpc"
 
 COMMON_DEPEND=">=net-libs/libtorrent-0.12.${PV##*.}
@@ -26,11 +26,8 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/pkgconfig"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.8.5-solaris.patch
-}
-
-src_prepare() {
 	epatch "${FILESDIR}"/${P}-canvas-fix.patch
+	epatch "${FILESDIR}"/${PN}-0.8.5-solaris.patch
 }
 
 src_configure() {
