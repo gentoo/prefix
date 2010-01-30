@@ -12,14 +12,15 @@ SRC_URI="mirror://debian/pool/main/r/${PN}/${PN}_${PV}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~x64-solaris ~x86-solaris"
 IUSE="nls"
 
 RDEPEND="!sys-freebsd/freebsd-bin"
 DEPEND="${RDEPEND}
 	elibc_IRIX? ( dev-libs/gnulib )
 	x86-interix? ( dev-libs/gnulib )
-	virtual/libintl"
+	virtual/libintl
+	elibc_mintlib? ( virtual/libiconv )"
 
 src_unpack() {
 	unpack ${PN}_${PV}.tar.gz
@@ -45,6 +46,7 @@ src_prepare() {
 src_compile() {
 	tc-export CC
 	use !elibc_glibc && append-libs -lintl
+	[[ ${CHOST} == *-mint* ]] && append-libs "-liconv -lpthread"
 	if [[ ${CHOST} == *-irix* || ${CHOST} == *-interix[35]* ]] ; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/$(get_libdir)
