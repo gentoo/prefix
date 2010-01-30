@@ -195,6 +195,7 @@ app-text/rpl
 app-text/scrollkeeper
 app-text/t1utils
 app-text/talkfilters
+app-text/teckit
 app-text/texlive
 app-text/txt2man
 app-text/txt2tags
