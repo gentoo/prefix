@@ -101,12 +101,14 @@ app-editors/ne
 app-editors/nedit
 app-editors/teco
 app-editors/vim-core
+app-emacs/apel
 app-emacs/auctex
 app-emacs/autoconf-mode
 app-emacs/bbdb
 app-emacs/cedet
 app-emacs/color-theme
 app-emacs/emacs-common-gentoo
+app-emacs/flim
 app-emacs/gentoo-syntax
 app-emacs/matlab
 app-emacs/mmm-mode
@@ -118,6 +120,8 @@ app-emacs/pymacs
 app-emacs/python-mode
 app-emacs/ruby-mode
 app-emacs/scheme-complete
+app-emacs/semi
+app-emacs/wanderlust
 app-emulation/emul-linux-x86-baselibs
 app-emulation/emul-linux-x86-compat
 app-emulation/emul-linux-x86-xlibs
