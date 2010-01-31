@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.1.1.ebuild,v 1.3 2009/09/26 14:08:45 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.1.1.ebuild,v 1.4 2010/01/29 14:50:50 suka Exp $
 
 inherit eutils fdo-mime rpm multilib prefix
 
-IUSE="gnome java kde"
+IUSE="gnome java"
 
 BUILDID="9420"
 BUILDID2="9420"
@@ -93,7 +93,6 @@ src_unpack() {
 	rpm_unpack "${S}/desktop-integration/openoffice.org3.1-freedesktop-menus-3.1-${BUILDID2}.noarch.rpm"
 
 	use gnome && rpm_unpack "${S}/${BASIS}-gnome-integration-${MY_PV3}.${OOARCH}.rpm"
-	use kde && rpm_unpack "${S}/${BASIS}-kde-integration-${MY_PV3}.${OOARCH}.rpm"
 	use java && rpm_unpack "${S}/${BASIS}-javafilter-${MY_PV3}.${OOARCH}.rpm"
 
 	strip-linguas ${LANGS}

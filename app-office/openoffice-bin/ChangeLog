@@ -1,6 +1,10 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.222 2010/01/28 09:20:06 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.223 2010/01/29 14:50:50 suka Exp $
+
+  29 Jan 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-3.1.1.ebuild:
+  remove kde3-support by request of the kde-herd, see bug #296465
 
 *openoffice-bin-3.2.0_rc4 (28 Jan 2010)
 
