@@ -1,6 +1,10 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.313 2010/01/22 03:44:08 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.314 2010/01/31 01:43:15 anarchy Exp $
+
+  31 Jan 2010; <anarchy@gentoo.org> -mozilla-thunderbird-3.0-r1.ebuild,
+  mozilla-thunderbird-3.0.1.ebuild:
+  add turkish support
 
 *mozilla-thunderbird-3.0.1 (22 Jan 2010)
 
