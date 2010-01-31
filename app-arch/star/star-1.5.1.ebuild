@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5.1.ebuild,v 1.2 2010/01/21 18:08:51 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/star-1.5.1.ebuild,v 1.3 2010/01/30 09:00:04 pva Exp $
 
 EAPI="2"
 
@@ -13,7 +13,11 @@ SRC_URI="ftp://ftp.berlios.de/pub/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2 LGPL-2.1 CDDL-Schily"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE=""
+IUSE="acl xattr"
+
+DEPEND="acl? ( sys-apps/acl )
+	xattr? ( sys-apps/attr )"
+RDEPEND="${DEPEND}"
 
 S=${WORKDIR}/${P/_alpha[0-9][0-9]}
 
@@ -24,8 +28,14 @@ src_prepare() {
 		-e "s:/usr/src/linux/include:${EPREFIX}/usr/include:" \
 			DEFAULTS/Defaults.linux || die
 
+	# Disable libacl autodependency (hacky build system, hacky fix...)
+	use acl || sed -e 's:[$]ac_cv_header_sys_acl_h:disable acl:' \
+					-i "${S}/autoconf/configure"
+	use xattr || sed -e 's:[$]ac_cv_header_attr_xattr_h:disable xattr:' \
+					-i "${S}/autoconf/configure"
+
 	# Create additional symlinks needed for some archs.
-	cd "${S}"/RULES
+	cd "${S}/RULES"
 	local t
 	for t in ppc64 s390x ; do
 		ln -s i586-linux-cc.rul ${t}-linux-cc.rul || die
