@@ -1,6 +1,13 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.591 2010/01/22 02:25:34 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.592 2010/01/29 15:01:08 anarchy Exp $
+
+*mozilla-firefox-3.6-r1 (29 Jan 2010)
+
+  29 Jan 2010; <anarchy@gentoo.org>
+  +files/xulrunner-1.9.2-noalsa-fixup.patch, +mozilla-firefox-3.6-r1.ebuild:
+  Fix sparc build issue thanks armin76, fix -alsa build error, change
+  networkmanager to wifi useflag
 
 *mozilla-firefox-3.6 (22 Jan 2010)
 
