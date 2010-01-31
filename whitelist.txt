@@ -93,6 +93,8 @@ app-editors/ghex
 app-editors/hexcurse
 app-editors/hexedit
 app-editors/hteditor
+app-editors/jasspa-microemacs
+app-editors/joe
 app-editors/leafpad
 app-editors/mg
 app-editors/mlview
@@ -101,6 +103,7 @@ app-editors/ne
 app-editors/nedit
 app-editors/teco
 app-editors/vim-core
+app-editors/zile
 app-emacs/apel
 app-emacs/auctex
 app-emacs/autoconf-mode
