@@ -1,6 +1,6 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler-glib/poppler-glib-0.12.3.ebuild,v 1.1 2010/01/15 22:35:42 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/poppler-glib/poppler-glib-0.10.7.ebuild,v 1.8 2009/08/09 11:55:00 nixnut Exp $
 
 EAPI=2
 
@@ -12,7 +12,7 @@ DESCRIPTION="Glib bindings for poppler"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="+cairo"
 
 # The Cairo renderer represents a superset of the splash renderer.
@@ -29,7 +29,7 @@ RDEPEND="
 	~dev-libs/poppler-${PV}
 	>=dev-libs/glib-2.16
 	cairo? (
-		>=x11-libs/cairo-1.8.4
+		>=x11-libs/cairo-1.8.2
 		>=x11-libs/gtk+-2.14.0:2
 	)
 	"
@@ -37,9 +37,6 @@ DEPEND="
 	${RDEPEND}
 	dev-util/pkgconfig
 	"
-
-# Is this still needed? (abcd, 2010/01/17)
-PATCHES=( "${FILESDIR}"/poppler-0.12.3-stdbool-darwin.patch )
 
 pkg_setup() {
 	POPPLER_CONF="$(use_enable cairo cairo-output) $(use_enable cairo gdk) $(use_enable cairo splash-output)"
@@ -55,7 +52,6 @@ src_prepare() {
 	sed -i	\
 		-e 's:reference::'	\
 		-e 's:demo::'		\
-		-e '/DISABLE_DEPRECATED/d' \
 		glib/Makefile.in || die "Fixing glib Makefile.in failed"
 	use cairo || { sed -i -e 's:gdk-2.0 gdk-pixbuf-2.0 ::' poppler-glib.pc.in || die "Sedding poppler-glib.pc.in failed" ; }
 }
