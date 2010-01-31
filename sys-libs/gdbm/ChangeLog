@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/gdbm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/ChangeLog,v 1.50 2010/01/15 04:32:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/gdbm/ChangeLog,v 1.51 2010/01/30 18:15:57 armin76 Exp $
+
+  30 Jan 2010; Raúl Porcel <armin76@gentoo.org> gdbm-1.8.3-r4.ebuild:
+  sparc stable wrt #296825
 
   15 Jan 2010; Mike Frysinger <vapier@gentoo.org> gdbm-1.8.3-r4.ebuild:
   Add a warning for 32bit/LFS changes #299390.
