@@ -94,7 +94,7 @@ app-editors/hexcurse
 app-editors/hexedit
 app-editors/hteditor
 app-editors/jasspa-microemacs
-app-editors/joe
+app-editors/jed
 app-editors/leafpad
 app-editors/mg
 app-editors/mlview
