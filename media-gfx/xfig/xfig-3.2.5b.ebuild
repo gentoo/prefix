@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/xfig-3.2.5b.ebuild,v 1.6 2010/01/24 17:51:51 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/xfig-3.2.5b.ebuild,v 1.7 2010/01/31 00:16:15 maekke Exp $
 
 EAPI="2"
 inherit eutils multilib
