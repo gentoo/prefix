@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.288 2010/01/22 03:59:01 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.289 2010/01/29 15:00:31 anarchy Exp $
+
+*xulrunner-1.9.2-r1 (29 Jan 2010)
+
+  29 Jan 2010; <anarchy@gentoo.org> +xulrunner-1.9.2-r1.ebuild,
+  +files/xulrunner-1.9.2-noalsa-fixup.patch:
+  Fix sparc build issue thanks armin76, fix -alsa build error, change
+  networkmanager to wifi useflag
 
   22 Jan 2010; <anarchy@gentoo.org> +files/301-xulrunner-xpctools.diff,
   +files/xulrunner-1.9.2-fix-pkgconfig-file.patch:
