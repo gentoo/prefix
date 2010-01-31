@@ -1,6 +1,9 @@
 # ChangeLog for net-ftp/filezilla
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/ChangeLog,v 1.61 2010/01/07 16:28:34 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/ChangeLog,v 1.62 2010/01/30 18:18:06 armin76 Exp $
+
+  30 Jan 2010; Raúl Porcel <armin76@gentoo.org> filezilla-3.3.0.1.ebuild:
+  sparc stable wrt #297020
 
   07 Jan 2010; Joseph Jezak <josejx@gentoo.org> filezilla-3.3.0.1.ebuild:
   Marked ppc stable for bug #297020.
