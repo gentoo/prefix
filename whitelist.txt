@@ -108,6 +108,7 @@ app-emacs/bbdb
 app-emacs/cedet
 app-emacs/color-theme
 app-emacs/emacs-common-gentoo
+app-emacs/emacs-w3m
 app-emacs/flim
 app-emacs/gentoo-syntax
 app-emacs/matlab
