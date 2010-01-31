@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.5.ebuild,v 1.8 2010/01/27 02:12:00 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.5.ebuild,v 1.9 2010/01/30 18:54:14 armin76 Exp $
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 

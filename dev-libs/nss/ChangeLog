@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/nss
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.167 2010/01/27 02:12:00 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.168 2010/01/30 18:54:14 armin76 Exp $
+
+  30 Jan 2010; Raúl Porcel <armin76@gentoo.org> nss-3.12.5.ebuild:
+  alpha/arm/ia64/sparc stable wrt #300606
 
   27 Jan 2010; <anarchy@gentoo.org> nss-3.12.5.ebuild:
   revert dynamic linking for prefix, fixed in nspr
