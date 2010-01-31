@@ -107,8 +107,10 @@ app-emacs/autoconf-mode
 app-emacs/bbdb
 app-emacs/cedet
 app-emacs/color-theme
+app-emacs/ecb
 app-emacs/emacs-common-gentoo
 app-emacs/emacs-w3m
+app-emacs/ess
 app-emacs/flim
 app-emacs/gentoo-syntax
 app-emacs/matlab
@@ -119,6 +121,7 @@ app-emacs/php-mode
 app-emacs/po-mode
 app-emacs/pymacs
 app-emacs/python-mode
+app-emacs/rst
 app-emacs/ruby-mode
 app-emacs/scheme-complete
 app-emacs/semi
