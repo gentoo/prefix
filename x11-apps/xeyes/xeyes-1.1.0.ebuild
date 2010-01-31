@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-apps/xeyes/xeyes-1.1.0.ebuild,v 1.1 2009/12/19 15:20:25 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-apps/xeyes/xeyes-1.1.0.ebuild,v 1.2 2010/01/30 18:35:34 ssuominen Exp $
 
 # Must be before x-modular eclass is inherited
 #SNAPSHOT="yes"
