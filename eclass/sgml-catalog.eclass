@@ -36,7 +36,7 @@ sgml-catalog_pkg_postinst() {
 		arg2=`echo ${entry} | cut -f2 -d\:`
 		if [ ! -e "${EPREFIX}"${arg2} ]
 		then
-			ewarn "${arg2} doesn't appear to exist, although it ought to!"
+			ewarn "${EPREFIX}${arg2} doesn't appear to exist, although it ought to!"
 			continue
 		fi
 		einfo "Now adding ${EPREFIX}${arg2} to ${EPREFIX}${arg1} and ${EPREFIX}/etc/sgml/catalog"
@@ -57,11 +57,11 @@ sgml-catalog_pkg_postrm() {
 		arg2=`echo ${entry} | cut -f2 -d\:`
 		if [ -e "${EPREFIX}"${arg2} ]
 		then
-			ewarn "${arg2} still exists!  Not removing from ${arg1}"
+			ewarn "${EPREFIX}${arg2} still exists!  Not removing from ${EPREFIX}${arg1}"
 			ewarn "This is normal behavior for an upgrade ..."
 			continue
 		fi
-		einfo "Now removing $arg1 from $arg2 and ${EPREFIX}/etc/sgml/catalog"
+		einfo "Now removing ${EPREFIX}${arg1} from ${EPREFIX}${arg2} and ${EPREFIX}/etc/sgml/catalog"
 		sgml-catalog_cat_doremove ${arg1} ${arg2}
 	done
 }
