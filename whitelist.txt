@@ -113,6 +113,7 @@ app-emacs/emacs-w3m
 app-emacs/ess
 app-emacs/flim
 app-emacs/gentoo-syntax
+app-emacs/imaxima
 app-emacs/matlab
 app-emacs/mmm-mode
 app-emacs/nxml-mode
@@ -381,6 +382,7 @@ games-board/xmahjongg
 games-emulation
 games-misc/fortune-mod-chucknorris
 games-misc/fortune-mod-dubya
+games-misc/fortune-mod-dune
 games-misc/fortune-mod-hitchhiker
 games-misc/fortune-mod-humorixfortunes
 games-misc/fortune-mod-powerpuff
