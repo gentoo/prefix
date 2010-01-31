@@ -1,6 +1,16 @@
 # ChangeLog for dev-db/mysql
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.497 2009/11/29 18:13:17 klausman Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.498 2010/01/31 04:47:39 robbat2 Exp $
+
+*mysql-5.0.90 (31 Jan 2010)
+*mysql-5.0.88 (31 Jan 2010)
+*mysql-5.0.87 (31 Jan 2010)
+
+  31 Jan 2010; Robin H. Johnson <robbat2@gentoo.org> +mysql-5.0.87.ebuild,
+  +mysql-5.0.88.ebuild, +mysql-5.0.90.ebuild:
+  Version bumps (bugs #301185, #292241, #279493). Only 5.0.87 contains the
+  Percona patchset, as no Percona patches have been released for 5.0.88 or
+  5.0.90.
 
   29 Nov 2009; Tobias Klausmann <klausman@gentoo.org>
   mysql-5.0.84-r1.ebuild:
