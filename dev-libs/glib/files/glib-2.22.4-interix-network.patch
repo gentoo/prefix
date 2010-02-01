@@ -1,0 +1,615 @@
+diff -ru glib-2.22.4.orig/gio/ginetaddress.c glib-2.22.4/gio/ginetaddress.c
+--- glib-2.22.4.orig/gio/ginetaddress.c	2010-02-01 14:53:48 +0100
++++ glib-2.22.4/gio/ginetaddress.c	2010-02-01 14:59:12 +0100
+@@ -78,7 +78,9 @@
+   GSocketFamily family;
+   union {
+     struct in_addr ipv4;
++#ifdef AF_INET6
+     struct in6_addr ipv6;
++#endif
+   } addr;
+ };
+ 
+@@ -115,9 +117,15 @@
+ 
+     case PROP_BYTES:
+       memcpy (&address->priv->addr, g_value_get_pointer (value),
+-	      address->priv->family == AF_INET ?
+-	      sizeof (address->priv->addr.ipv4) :
+-	      sizeof (address->priv->addr.ipv6));
++	      address->priv->family == 
++#ifdef AF_INET6
++		  AF_INET ?
++#endif // AF_INET6
++	      sizeof (address->priv->addr.ipv4) 
++#ifdef AF_INET6
++		  : sizeof (address->priv->addr.ipv6)
++#endif // AF_INET6
++		  );
+       break;
+ 
+     default:
+@@ -410,7 +418,9 @@
+   gint len;
+ #else /* !G_OS_WIN32 */
+   struct in_addr in_addr;
++#ifdef AF_INET6
+   struct in6_addr in6_addr;
++#endif // AF_INET6
+ #endif
+ 
+   /* Make sure _g_networking_init() has been called */
+@@ -426,16 +436,24 @@
+ 
+ #else /* !G_OS_WIN32 */
+ 
++#ifdef AF_INET6
+   if (inet_pton (AF_INET, string, &in_addr) > 0)
++#endif // AF_INET6
+     return g_inet_address_new_from_bytes ((guint8 *)&in_addr, AF_INET);
++#ifdef AF_INET6
+   else if (inet_pton (AF_INET6, string, &in6_addr) > 0)
+     return g_inet_address_new_from_bytes ((guint8 *)&in6_addr, AF_INET6);
++#endif // AF_INET6
+ #endif
+ 
+   return NULL;
+ }
+ 
++#ifdef AF_INET6
+ #define G_INET_ADDRESS_FAMILY_IS_VALID(family) ((family) == AF_INET || (family) == AF_INET6)
++#else // !AF_INET6
++#define G_INET_ADDRESS_FAMILY_IS_VALID(family) ((family) == AF_INET)
++#endif // !AF_INET6
+ 
+ /**
+  * g_inet_address_new_from_bytes:
+@@ -478,14 +496,18 @@
+ {
+   g_return_val_if_fail (G_INET_ADDRESS_FAMILY_IS_VALID (family), NULL);
+ 
++#ifdef AF_INET6
+   if (family == AF_INET)
+     {    
++#endif // AF_INET6
+       guint8 addr[4] = {127, 0, 0, 1};
+ 
+       return g_inet_address_new_from_bytes (addr, family);
++#ifdef AF_INET6
+     }
+   else
+     return g_inet_address_new_from_bytes (in6addr_loopback.s6_addr, family);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -505,14 +527,18 @@
+ {
+   g_return_val_if_fail (G_INET_ADDRESS_FAMILY_IS_VALID (family), NULL);
+ 
++#ifdef AF_INET6
+   if (family == AF_INET)
+     {    
++#endif // AF_INET6
+       guint8 addr[4] = {0, 0, 0, 0};
+ 
+       return g_inet_address_new_from_bytes (addr, family);
++#ifdef AF_INET6
+     }
+   else
+     return g_inet_address_new_from_bytes (in6addr_any.s6_addr, family);
++#endif // AF_INET6
+ }
+ 
+ 
+@@ -530,7 +556,11 @@
+ gchar *
+ g_inet_address_to_string (GInetAddress *address)
+ {
++#ifdef AF_INET6
+   gchar buffer[INET6_ADDRSTRLEN];
++#else // !AF_INET6
++  gchar buffer[16]; // interix misses ADDRSTRLEN, which i would use otherwise
++#endif // !AF_INET6
+ #ifdef G_OS_WIN32
+   DWORD buflen = sizeof (buffer), addrlen;
+   struct sockaddr_storage sa;
+@@ -561,10 +591,14 @@
+ 
+ #else /* !G_OS_WIN32 */
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
++#endif // AF_INET6
+     inet_ntop (AF_INET, &address->priv->addr.ipv4, buffer, sizeof (buffer));
++#ifdef AF_INET6
+   else
+     inet_ntop (AF_INET6, &address->priv->addr.ipv6, buffer, sizeof (buffer));
++#endif // AF_INET6
+ #endif
+ 
+   return g_strdup (buffer);
+@@ -604,9 +638,13 @@
+ gsize
+ g_inet_address_get_native_size (GInetAddress *address)
+ {
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
++#endif // AF_INET6
+     return sizeof (address->priv->addr.ipv4);
++#ifdef AF_INET6
+   return sizeof (address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -642,14 +680,18 @@
+ {
+   g_return_val_if_fail (G_IS_INET_ADDRESS (address), FALSE);
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
+     {
++#endif // AF_INET6
+       guint32 addr4 = g_ntohl (address->priv->addr.ipv4.s_addr);
+ 
+       return addr4 == INADDR_ANY;
++#ifdef AF_INET6
+     }
+   else
+     return IN6_IS_ADDR_UNSPECIFIED (&address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -667,15 +709,19 @@
+ {
+   g_return_val_if_fail (G_IS_INET_ADDRESS (address), FALSE);
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
+     {
++#endif // AF_INET6
+       guint32 addr4 = g_ntohl (address->priv->addr.ipv4.s_addr);
+ 
+       /* 127.0.0.0/8 */
+       return ((addr4 & 0xff000000) == 0x7f000000);
++#ifdef AF_INET6
+     }
+   else
+     return IN6_IS_ADDR_LOOPBACK (&address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -695,15 +741,19 @@
+ {
+   g_return_val_if_fail (G_IS_INET_ADDRESS (address), FALSE);
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
+     {
++#endif // AF_INET6
+       guint32 addr4 = g_ntohl (address->priv->addr.ipv4.s_addr);
+ 
+       /* 169.254.0.0/16 */
+       return ((addr4 & 0xffff0000) == 0xa9fe0000);
++#ifdef AF_INET6
+     }
+   else
+     return IN6_IS_ADDR_LINKLOCAL (&address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -724,17 +774,21 @@
+ {
+   g_return_val_if_fail (G_IS_INET_ADDRESS (address), FALSE);
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
+     {
++#endif // AF_INET6
+       guint32 addr4 = g_ntohl (address->priv->addr.ipv4.s_addr);
+ 
+       /* 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 */
+       return ((addr4 & 0xff000000) == 0x0a000000 ||
+ 	      (addr4 & 0xfff00000) == 0xac100000 ||
+ 	      (addr4 & 0xffff0000) == 0xc0a80000);
++#ifdef AF_INET6
+     }
+   else
+     return IN6_IS_ADDR_SITELOCAL (&address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -752,14 +806,18 @@
+ {
+   g_return_val_if_fail (G_IS_INET_ADDRESS (address), FALSE);
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
+     {
++#endif // AF_INET6
+       guint32 addr4 = g_ntohl (address->priv->addr.ipv4.s_addr);
+ 
+       return IN_MULTICAST (addr4);
++#ifdef AF_INET6
+     }
+   else
+     return IN6_IS_ADDR_MULTICAST (&address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -777,10 +835,14 @@
+ {
+   g_return_val_if_fail (G_IS_INET_ADDRESS (address), FALSE);
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
++#endif // AF_INET6
+     return FALSE;
++#ifdef AF_INET6
+   else
+     return IN6_IS_ADDR_MC_GLOBAL (&address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -798,10 +860,14 @@
+ {
+   g_return_val_if_fail (G_IS_INET_ADDRESS (address), FALSE);
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
++#endif // AF_INET6
+     return FALSE;
++#ifdef AF_INET6
+   else
+     return IN6_IS_ADDR_MC_LINKLOCAL (&address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -819,10 +885,14 @@
+ {
+   g_return_val_if_fail (G_IS_INET_ADDRESS (address), FALSE);
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
++#endif // AF_INET6
+     return FALSE;
++#ifdef AF_INET6
+   else
+     return IN6_IS_ADDR_MC_NODELOCAL (&address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -840,10 +910,14 @@
+ {
+   g_return_val_if_fail (G_IS_INET_ADDRESS (address), FALSE);
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
++#endif // AF_INET6
+     return FALSE;
++#ifdef AF_INET6
+   else
+     return IN6_IS_ADDR_MC_ORGLOCAL (&address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ /**
+@@ -861,10 +935,14 @@
+ {
+   g_return_val_if_fail (G_IS_INET_ADDRESS (address), FALSE);
+ 
++#ifdef AF_INET6
+   if (address->priv->family == AF_INET)
++#endif // AF_INET6
+     return FALSE;
++#ifdef AF_INET6
+   else
+     return IN6_IS_ADDR_MC_SITELOCAL (&address->priv->addr.ipv6);
++#endif // AF_INET6
+ }
+ 
+ #define __G_INET_ADDRESS_C__
+diff -ru glib-2.22.4.orig/gio/ginetsocketaddress.c glib-2.22.4/gio/ginetsocketaddress.c
+--- glib-2.22.4.orig/gio/ginetsocketaddress.c	2010-02-01 14:53:48 +0100
++++ glib-2.22.4/gio/ginetsocketaddress.c	2010-02-01 14:59:12 +0100
+@@ -152,8 +152,10 @@
+ 
+   if (family == AF_INET)
+     return sizeof (struct sockaddr_in);
++#ifdef AF_INET6
+   else if (family == AF_INET6)
+     return sizeof (struct sockaddr_in6);
++#endif // AF_INET6
+   else
+     return -1;
+ }
+@@ -189,6 +191,7 @@
+       memset (sock->sin_zero, 0, sizeof (sock->sin_zero));
+       return TRUE;
+     }
++#ifdef AF_INET6
+   else if (family == AF_INET6)
+     {
+       struct sockaddr_in6 *sock = (struct sockaddr_in6 *) dest;
+@@ -206,6 +209,7 @@
+       memcpy (&(sock->sin6_addr.s6_addr), g_inet_address_to_bytes (addr->priv->address), sizeof (sock->sin6_addr));
+       return TRUE;
+     }
++#endif // AF_INET6
+   else
+     {
+       g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_NOT_SUPPORTED,
+diff -ru glib-2.22.4.orig/gio/gioenums.h glib-2.22.4/gio/gioenums.h
+--- glib-2.22.4.orig/gio/gioenums.h	2010-02-01 14:53:48 +0100
++++ glib-2.22.4/gio/gioenums.h	2010-02-01 14:59:12 +0100
+@@ -559,7 +559,9 @@
+   G_SOCKET_FAMILY_UNIX = GLIB_SYSDEF_AF_UNIX,
+ #endif
+   G_SOCKET_FAMILY_IPV4 = GLIB_SYSDEF_AF_INET,
++#ifdef AF_INET6
+   G_SOCKET_FAMILY_IPV6 = GLIB_SYSDEF_AF_INET6
++#endif
+ } GSocketFamily;
+ 
+ /**
+diff -ru glib-2.22.4.orig/gio/gioenumtypes.c glib-2.22.4/gio/gioenumtypes.c
+--- glib-2.22.4.orig/gio/gioenumtypes.c	2010-02-01 14:53:48 +0100
++++ glib-2.22.4/gio/gioenumtypes.c	2010-02-01 14:59:12 +0100
+@@ -569,7 +569,9 @@
+         { G_SOCKET_FAMILY_INVALID, "G_SOCKET_FAMILY_INVALID", "invalid" },
+         { G_SOCKET_FAMILY_UNIX, "G_SOCKET_FAMILY_UNIX", "unix" },
+         { G_SOCKET_FAMILY_IPV4, "G_SOCKET_FAMILY_IPV4", "ipv4" },
++#ifdef AF_INET6
+         { G_SOCKET_FAMILY_IPV6, "G_SOCKET_FAMILY_IPV6", "ipv6" },
++#endif // AF_INET6
+         { 0, NULL, NULL }
+       };
+       GType g_define_type_id =
+diff -ru glib-2.22.4.orig/gio/gnetworkingprivate.h glib-2.22.4/gio/gnetworkingprivate.h
+--- glib-2.22.4.orig/gio/gnetworkingprivate.h	2010-02-01 14:53:49 +0100
++++ glib-2.22.4/gio/gnetworkingprivate.h	2010-02-01 15:00:51 +0100
+@@ -72,7 +72,11 @@
+ 					    GError          **error);
+ 
+ void   _g_resolver_address_to_sockaddr     (GInetAddress            *address,
++						#ifdef __INTERIX
++					    struct sockaddr *sa,
++						#else
+ 					    struct sockaddr_storage *sa,
++						#endif
+ 					    gsize                   *len);
+ char  *_g_resolver_name_from_nameinfo      (GInetAddress     *address,
+ 					    const gchar      *name,
+diff -ru glib-2.22.4.orig/gio/gresolver.c glib-2.22.4/gio/gresolver.c
+--- glib-2.22.4.orig/gio/gresolver.c	2010-02-01 14:53:49 +0100
++++ glib-2.22.4/gio/gresolver.c	2010-02-01 15:12:40 +0100
+@@ -758,7 +758,11 @@
+ /* Private method to set up a getnameinfo() request */
+ void
+ _g_resolver_address_to_sockaddr (GInetAddress            *address,
++								 #ifdef __INTERIX
++                                 struct sockaddr *sa,
++								 #else
+                                  struct sockaddr_storage *sa,
++								 #endif
+                                  gsize                   *len)
+ {
+   GSocketAddress *sockaddr;
+diff -ru glib-2.22.4.orig/gio/gsocket.c glib-2.22.4/gio/gsocket.c
+--- glib-2.22.4.orig/gio/gsocket.c	2010-02-01 14:53:49 +0100
++++ glib-2.22.4/gio/gsocket.c	2010-02-01 14:59:12 +0100
+@@ -55,6 +55,11 @@
+ 
+ #include "gioalias.h"
+ 
++#ifdef __INTERIX
++# define sockaddr_storage sockaddr
++# define ss_family sa_family
++#endif
++
+ /**
+  * SECTION:gsocket
+  * @short_description: Low-level socket object
+@@ -367,7 +372,9 @@
+   switch (address.ss_family)
+     {
+      case G_SOCKET_FAMILY_IPV4:
++#ifdef AF_INET6
+      case G_SOCKET_FAMILY_IPV6:
++#endif // AF_INET6
+      case G_SOCKET_FAMILY_UNIX:
+       socket->priv->family = address.ss_family;
+       break;
+@@ -1307,6 +1314,7 @@
+     case G_SOCKET_FAMILY_IPV4:
+       return TRUE;
+ 
++#ifdef AF_INET6
+     case G_SOCKET_FAMILY_IPV6:
+ #if defined (IPPROTO_IPV6) && defined (IPV6_V6ONLY)
+       {
+@@ -1323,6 +1331,7 @@
+ #else
+       return FALSE;
+ #endif
++#endif // AF_INET6
+ 
+     default:
+       return FALSE;
+diff -ru glib-2.22.4.orig/gio/gsocketaddress.c glib-2.22.4/gio/gsocketaddress.c
+--- glib-2.22.4.orig/gio/gsocketaddress.c	2010-02-01 14:53:49 +0100
++++ glib-2.22.4/gio/gsocketaddress.c	2010-02-01 14:59:12 +0100
+@@ -225,6 +225,7 @@
+       return sockaddr;
+     }
+ 
++#ifdef AF_INET6
+   if (family == AF_INET6)
+     {
+       struct sockaddr_in6 *addr = (struct sockaddr_in6 *) native;
+@@ -235,6 +236,7 @@
+       g_object_unref (iaddr);
+       return sockaddr;
+     }
++#endif // AF_INET6
+ 
+ #ifdef G_OS_UNIX
+   if (family == AF_UNIX)
+diff -ru glib-2.22.4.orig/gio/gsocketlistener.c glib-2.22.4/gio/gsocketlistener.c
+--- glib-2.22.4.orig/gio/gsocketlistener.c	2010-02-01 14:53:49 +0100
++++ glib-2.22.4/gio/gsocketlistener.c	2010-02-01 14:59:12 +0100
+@@ -369,7 +369,9 @@
+ {
+   gboolean need_ipv4_socket = TRUE;
+   GSocket *socket4 = NULL;
++#ifdef AF_INET6
+   GSocket *socket6;
++#endif // AF_INET6
+ 
+   g_return_val_if_fail (listener != NULL, FALSE);
+   g_return_val_if_fail (port != 0, FALSE);
+@@ -377,6 +379,7 @@
+   if (!check_listener (listener, error))
+     return FALSE;
+ 
++#ifdef AF_INET6
+   /* first try to create an IPv6 socket */
+   socket6 = g_socket_new (G_SOCKET_FAMILY_IPV6,
+                           G_SOCKET_TYPE_STREAM,
+@@ -420,6 +423,7 @@
+       if (g_socket_speaks_ipv4 (socket6))
+         need_ipv4_socket = FALSE;
+     }
++#endif // AF_INET6
+ 
+   if (need_ipv4_socket)
+     /* We are here for exactly one of the following reasons:
+@@ -462,8 +466,10 @@
+             {
+               g_object_unref (socket4);
+ 
++#ifdef AF_INET6
+               if (socket6 != NULL)
+                 g_object_unref (socket6);
++#endif // AF_INET6
+ 
+               return FALSE;
+             }
+@@ -479,17 +485,23 @@
+          * otherwise we need to tell the user we failed.
+          */
+         {
++#ifdef AF_INET6
+           if (socket6 != NULL)
+             g_clear_error (error);
+           else
++#endif // AF_INET6
+             return FALSE;
+         }
+     }
+ 
++#ifdef AF_INET6
+   g_assert (socket6 != NULL || socket4 != NULL);
+ 
+   if (socket6 != NULL)
+     g_ptr_array_add (listener->priv->sockets, socket6);
++#else // !AF_INET6
++  g_assert (socket4 != NULL);
++#endif // !AF_INET6
+ 
+   if (socket4 != NULL)
+     g_ptr_array_add (listener->priv->sockets, socket4);
+diff -ru glib-2.22.4.orig/gio/gtcpconnection.c glib-2.22.4/gio/gtcpconnection.c
+--- glib-2.22.4.orig/gio/gtcpconnection.c	2010-02-01 14:53:49 +0100
++++ glib-2.22.4/gio/gtcpconnection.c	2010-02-01 14:59:12 +0100
+@@ -42,18 +42,22 @@
+ 					     G_SOCKET_FAMILY_IPV4,
+ 					     G_SOCKET_TYPE_STREAM,
+ 					     G_SOCKET_PROTOCOL_DEFAULT);
++#ifdef AF_INET6
+   g_socket_connection_factory_register_type (g_define_type_id,
+ 					     G_SOCKET_FAMILY_IPV6,
+ 					     G_SOCKET_TYPE_STREAM,
+ 					     G_SOCKET_PROTOCOL_DEFAULT);
++#endif // AF_INET6
+   g_socket_connection_factory_register_type (g_define_type_id,
+ 					     G_SOCKET_FAMILY_IPV4,
+ 					     G_SOCKET_TYPE_STREAM,
+ 					     G_SOCKET_PROTOCOL_TCP);
++#ifdef AF_INET6
+   g_socket_connection_factory_register_type (g_define_type_id,
+ 					     G_SOCKET_FAMILY_IPV6,
+ 					     G_SOCKET_TYPE_STREAM,
+ 					     G_SOCKET_PROTOCOL_TCP);
++#endif // AF_INET6
+ 			 );
+ 
+ static gboolean g_tcp_connection_close       (GIOStream            *stream,
+diff -ru glib-2.22.4.orig/gio/gthreadedresolver.c glib-2.22.4/gio/gthreadedresolver.c
+--- glib-2.22.4.orig/gio/gthreadedresolver.c	2010-02-01 14:53:49 +0100
++++ glib-2.22.4/gio/gthreadedresolver.c	2010-02-01 14:59:12 +0100
+@@ -441,7 +441,11 @@
+ do_lookup_by_address (GThreadedResolverRequest  *req,
+                       GError                   **error)
+ {
++#ifdef __INTERIX
++  struct sockaddr sockaddr;
++#else
+   struct sockaddr_storage sockaddr;
++#endif
+   gsize sockaddr_size;
+   gchar name[NI_MAXHOST];
+   gint retval;
+diff -ru glib-2.22.4.orig/gio/gunixresolver.c glib-2.22.4/gio/gunixresolver.c
+--- glib-2.22.4.orig/gio/gunixresolver.c	2010-02-01 14:53:49 +0100
++++ glib-2.22.4/gio/gunixresolver.c	2010-02-01 14:59:12 +0100
+@@ -397,7 +397,11 @@
+   GUnixResolver *gur = G_UNIX_RESOLVER (resolver);
+   GUnixResolverRequest *req;
+   _g_asyncns_query_t *qy;
++#ifdef __INTERIX
++  struct sockaddr sockaddr;
++#else
+   struct sockaddr_storage sockaddr;
++#endif
+   gsize sockaddr_size;
+ 
+   _g_resolver_address_to_sockaddr (address, &sockaddr, &sockaddr_size);
+diff -ru glib-2.22.4.orig/gio/gwin32resolver.c glib-2.22.4/gio/gwin32resolver.c
+--- glib-2.22.4.orig/gio/gwin32resolver.c	2010-02-01 14:53:49 +0100
++++ glib-2.22.4/gio/gwin32resolver.c	2010-02-01 14:59:12 +0100
+@@ -114,7 +114,7 @@
+ 
+     struct {
+       GInetAddress *iaddr;
+-      struct sockaddr_storage addr;
++      struct sockaddr addr;
+       gsize addrlen;
+       gint retval;
+       gchar *namebuf;
+Only in glib-2.22.4/gio: gwin32resolver.c.orig
+diff -ru glib-2.22.4.orig/gio/libasyncns/asyncns.c glib-2.22.4/gio/libasyncns/asyncns.c
+--- glib-2.22.4.orig/gio/libasyncns/asyncns.c	2010-02-01 14:53:49 +0100
++++ glib-2.22.4/gio/libasyncns/asyncns.c	2010-02-01 14:59:12 +0100
+@@ -546,7 +546,11 @@
+             int ret;
+             const nameinfo_request_t *ni_req = (const nameinfo_request_t*) req;
+             char hostbuf[NI_MAXHOST], servbuf[NI_MAXSERV];
++#ifdef __INTERIX
++            struct sockaddr sa;
++#else
+             struct sockaddr_storage sa;
++#endif
+ 
+             assert(length >= sizeof(nameinfo_request_t));
+             assert(length == sizeof(nameinfo_request_t) + ni_req->sockaddr_len);

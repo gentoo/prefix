@@ -20,14 +20,14 @@ RDEPEND="virtual/libiconv
 	fam? ( virtual/fam )"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
-	x86-winnt? ( >=dev-util/gtk-doc-am-1.11 )
+	x86-winnt? ( >=dev-util/gtk-doc-am-1.13 )
 	x86-interix? ( 
 		sys-libs/itx-bind
-		>=dev-util/gtk-doc-am-1.11 
+		>=dev-util/gtk-doc-am-1.13 
 	)
 	doc? (
 		>=dev-libs/libxslt-1.0
-		>=dev-util/gtk-doc-1.11
+		>=dev-util/gtk-doc-1.13
 		~app-text/docbook-xml-dtd-4.1.2 )"
 
 src_prepare() {
