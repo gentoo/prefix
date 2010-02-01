@@ -58,13 +58,24 @@ src_install() {
 	# permissions are _totally_ broken here...
 	chmod 666 *.o
 
+	# find libdb.a from the system - need the _oold_ one...
+	local mydb=
+
+	for mydb in \
+			"/usr/lib/x86/libdb.a" \
+			"/usr/lib/libdb.a"; do
+		if test -f "${mydb}"; then
+			break
+		fi
+	done
+
 	# this needs a _stoneage_ berkeley db, so we really need to take the
 	# systems instead if installing db ourselves. newer db's don't have the
 	# requested symbols (they do support it, but with a different name). Another
 	# option would be to generate wrapper symbols for the things needed, but i'd
 	# rather avoid doing so, since i don't know them all.
 	$(tc-getCC) -shared -Wl,-h,libbind.so.${PV} -o libbind.so.${PV} *.o \
-		../weak.o /usr/lib/libdb.a || die "cannot link shared libbind"
+		../weak.o "${mydb}" || die "cannot link shared libbind"
 
 	dolib.so libbind.so.${PV}
 
