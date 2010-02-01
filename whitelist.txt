@@ -110,14 +110,17 @@ app-emacs/bbdb
 app-emacs/cedet
 app-emacs/color-theme
 app-emacs/ecb
+app-emacs/elib
 app-emacs/emacs-common-gentoo
 app-emacs/emacs-w3m
 app-emacs/ess
 app-emacs/flim
 app-emacs/gentoo-syntax
+app-emacs/howm
 app-emacs/imaxima
 app-emacs/matlab
 app-emacs/mmm-mode
+app-emacs/navi2ch
 app-emacs/nxml-mode
 app-emacs/paredit
 app-emacs/php-mode
