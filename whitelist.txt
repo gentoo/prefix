@@ -441,6 +441,7 @@ media-fonts/kochi-substitute
 media-fonts/sazanami
 media-fonts/texcm-ttf
 media-fonts/ttf-bitstream-vera
+media-fonts/urw-fonts
 media-gfx/album
 media-gfx/asymptote
 media-gfx/duhdraw
