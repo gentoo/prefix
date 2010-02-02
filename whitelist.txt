@@ -36,6 +36,7 @@ app-admin/eselect-lapack
 app-admin/eselect-maven
 app-admin/gamin
 app-admin/makepasswd
+app-admin/pwgen
 app-admin/stow
 app-arch/bsdsfv
 app-arch/cfv
@@ -118,6 +119,7 @@ app-emacs/flim
 app-emacs/gentoo-syntax
 app-emacs/howm
 app-emacs/imaxima
+app-emacs/jde
 app-emacs/matlab
 app-emacs/mmm-mode
 app-emacs/navi2ch
