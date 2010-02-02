@@ -43,12 +43,30 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.2.3-darwin.patch
 	epatch "${FILESDIR}"/${P}-unix-fd-check.patch # from upstream
 	epatch "${FILESDIR}"/${PN}-1.2.1-interix.patch
-	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix5.patch
+	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-1.2.1-interix3.patch
+
+	# don't apply this unconditionally, as it will doom dbus on all other
+	# platforms (root <-> Administrator - argl).
+	if [[ ${CHOST} == *-interix* ]]; then
+		cp "${FILESDIR}"/${P}-interix-all.patch "${T}"/itx.patch
+
+		# replace hardcoded values to enable portage pseudo root beeing
+		# system bus owner.
+		sed -i \
+			-e "s,+Administrators,$(id -gn),g" \
+			-e "s,Administrator,$(id -un),g" \
+			-e "s,197108,$(id -u),g" \
+				"${T}"/itx.patch
+
+		epatch "${T}"/itx.patch
+	fi
+
 	epatch "${FILESDIR}"/${P}-asneeded.patch
 	epatch "${FILESDIR}"/${P}-no-cloexec.patch
 	# required for asneeded patch but also for bug 263909, cross-compile so
 	# don't remove eautoreconf
+	# also required for interix patches
 	eautoreconf
 }
 
@@ -56,9 +74,16 @@ src_configure() {
 	local my_conf
 	local syssocket="${EPREFIX}"/var/run/dbus/system_bus_socket
 	local socketdir="${EPREFIX}"/tmp
+	local dbususer=messagebus
 
 	if [[ ${CHOST} == *-interix* ]]; then
+		# incorrect detection of some functions, and some are there but badly
+		# broken, so don't use them if possible.
 		export ac_cv_func_poll=no
+		export ac_cv_func_getgrouplist=no
+
+		# take the current portage running user, as this is our local "root"
+		dbususer=$(id -un)
 	fi
 
 	if [[ ${CHOST} == *-interix5* ]]; then
@@ -92,7 +117,7 @@ src_configure() {
 		--with-system-pid-file="${EPREFIX}"/var/run/dbus.pid
 		--with-system-socket=${syssocket}
 		--with-session-socket-dir=${socketdir}
-		--with-dbus-user=messagebus
+		--with-dbus-user="${dbususer}"
 		--localstatedir="${EPREFIX}"/var"
 
 	mkdir "${BD}"
