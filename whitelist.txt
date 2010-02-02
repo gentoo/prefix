@@ -220,6 +220,7 @@ app-text/txt2man
 app-text/txt2tags
 app-text/unix2dos
 app-text/unrtf
+app-text/vlna
 app-text/wgetpaste
 app-text/xml2
 app-text/xmlstarlet
