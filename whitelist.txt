@@ -321,6 +321,7 @@ dev-tex/algorithms
 dev-tex/chktex
 dev-tex/currvita
 dev-tex/detex
+dev-tex/dvi2tty
 dev-tex/envlab
 dev-tex/europecv
 dev-tex/feynmf
