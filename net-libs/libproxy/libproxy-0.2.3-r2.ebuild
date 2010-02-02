@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit autotools eutils python portability
+inherit autotools eutils python portability flag-o-matic
 
 DESCRIPTION="Library for automatic proxy configuration management"
 HOMEPAGE="http://code.google.com/p/libproxy/"
@@ -12,7 +12,7 @@ SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="gnome kde networkmanager python seamonkey webkit xulrunner"
 
 RDEPEND="
@@ -28,6 +28,7 @@ RDEPEND="
 	webkit? ( net-libs/webkit-gtk )
 	xulrunner? ( >=net-libs/xulrunner-1.9.0.11-r1:1.9 )
 	!xulrunner? ( seamonkey? ( www-client/seamonkey ) )
+	x86-interix? ( sys-libs/itx-bind )
 "
 # Since xulrunner-1.9.0.11-r1 its shipped mozilla-js.pc is fixed so we can use it
 
@@ -59,6 +60,9 @@ src_prepare() {
 	# Fix building on platforms that do not define INET_ADDRSTRLEN
 	epatch "${FILESDIR}/${P}-addrstrlen.patch"
 
+	# fix interix build with no ipv6...
+	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
+
 	eautoreconf
 }
 
@@ -72,8 +76,14 @@ src_configure() {
 	else myconf="--without-mozjs"
 	fi
 
-	local extralibs
-	[[ ${CHOST} == *-solaris* ]] && extralibs="-lsocket -lnsl"
+	[[ ${CHOST} == *-solaris* ]] && append-libs -lsocket -lnsl
+	if [[ ${CHOST} == *-interix* ]]; then
+		# activate the itx-bind package...
+		append-flags "-I${EPREFIX}/usr/include/bind"
+		append-ldflags "-L${EPREFIX}/usr/lib/bind"
+		append-libs -lbind -ldl
+	fi
+
 	econf --with-envvar \
 		--with-file \
 		--disable-static \
@@ -83,8 +93,7 @@ src_configure() {
 		$(use_with xulrunner mozjs) \
 		${myconf} \
 		$(use_with networkmanager) \
-		$(use_with python) \
-		LIBS="${extralibs}"
+		$(use_with python)
 }
 
 src_compile() {
