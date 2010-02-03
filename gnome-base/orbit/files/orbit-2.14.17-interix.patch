@@ -1,0 +1,15 @@
+diff -x '*.Po' -x '*.Plo' -ru ORBit2-2.14.17.orig/linc2/src/linc-protocols.c ORBit2-2.14.17/linc2/src/linc-protocols.c
+--- ORBit2-2.14.17.orig/linc2/src/linc-protocols.c	2010-02-03 11:16:18 +0100
++++ ORBit2-2.14.17/linc2/src/linc-protocols.c	2010-02-03 11:20:13 +0100
+@@ -27,6 +27,11 @@
+ #include <sys/ioctl.h>
+ #endif
+ 
++#ifdef __INTERIX
++/* for INADDR_LOOPBACK */
++# include <rpc/types.h>
++#endif
++
+ #undef LOCAL_DEBUG
+ 
+ static char *link_tmpdir = NULL;

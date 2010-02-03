@@ -34,6 +34,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-2.14.14-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.14.16-interix.patch
+	epatch "${FILESDIR}"/${PN}-2.14.17-interix.patch
 
 	if [[ ${CHOST} == *-winnt* ]]; then 
 		epatch "${FILESDIR}"/${PN}-2.14.16-winnt.patch
