@@ -494,6 +494,7 @@ media-libs/libfpx
 media-libs/liblrdf
 media-libs/libmikmod
 media-libs/libmng
+media-libs/libmodplug
 media-libs/libmp4v2
 media-libs/libmpd
 media-libs/libmpeg2
