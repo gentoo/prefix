@@ -55,4 +55,5 @@ src_prepare() {
 	# WARNING: libsoup may misbehave on interix3 regarding timeouts
 	# on sockets :)
 	[[ ${CHOST} == *-interix3* ]] && epatch "${FILESDIR}"/${PN}-2.4.1-interix3.patch
+	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
 }
