@@ -22,8 +22,8 @@ src_unpack() {
 	cd "${S}"
 	sed -i '/^prefix =/s:=.*:= '"${EPREFIX}"'/usr:' Makefile
 
-	# also necessary for Solaris
-	epatch "${FILESDIR}"/${PN}-9.0.0.3g-interix.patch
+	# necessary for Interix, Solaris and Darwin
+	epatch "${FILESDIR}"/${PN}-9.0.0.3g-memmove.patch
 }
 
 src_compile() {
