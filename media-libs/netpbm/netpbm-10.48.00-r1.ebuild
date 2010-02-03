@@ -87,18 +87,18 @@ src_unpack() {
 	epatch "${FILESDIR}"/netpbm-10.48.00-pnmtopng-zlib.patch #291987
 	epatch "${FILESDIR}"/netpbm-10.48.00-pngx.patch #287725
 
-	#epatch "${FILESDIR}"/${PN}-10.42.0-interix.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-darwin.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-solaris.patch
 	epatch "${FILESDIR}"/${PN}-10.48.00-solaris.patch
 	epatch "${FILESDIR}"/netpbm-prefix.patch
+	epatch "${FILESDIR}"/${P}-interix.patch
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
 		editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
 
 	# avoid ugly depend.mk warnings
 	touch $(find . -name Makefile | sed s:Makefile:depend.mk:g)
 
-	cat config.mk.in /dev/stdin >> config.mk <<-EOF
+	cat config.mk.in - >> config.mk <<-EOF
 	# Misc crap
 	BUILD_FIASCO = N
 	SYMLINK = ln -sf
@@ -140,14 +140,14 @@ src_unpack() {
 	# cannot chain the die with the heredoc above as bash-3
 	# has a parser bug in that setup #282902
 	[ $? -eq 0 ] || die "writing config.mk failed"
-
-	[[ ${CHOST} == *-interix3* ]] && echo "INTTYPES_H = <stdint.h>" >> Makefile.config
 }
 
 src_compile() {
 	# Solaris doesn't have vasprintf, libiberty does have it, for gethostbyname
 	# we need -lnsl, for connect -lsocket
 	[[ ${CHOST} == *-solaris* ]] && extlibs="-liberty -lnsl -lsocket"
+	# same holds for interix, but we only need iberty
+	[[ ${CHOST} == *-interix* ]] && extlibs="-liberty"
 
 	emake LIBS="${extlibs}" -j1 || die
 }

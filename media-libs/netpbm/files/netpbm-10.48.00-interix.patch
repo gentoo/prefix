@@ -1,0 +1,10 @@
+diff -ru netpbm-10.48.00.orig/pm_config.in.h netpbm-10.48.00/pm_config.in.h
+--- netpbm-10.48.00.orig/pm_config.in.h	2010-02-03 11:43:58 +0100
++++ netpbm-10.48.00/pm_config.in.h	2010-02-03 11:46:16 +0100
+@@ -321,3 +321,6 @@
+   #define pm_mkdir(dir, perm) mkdir(dir, perm) 
+ #endif
+ 
++#ifdef __INTERIX
++# include <stdint.h>
++#endif
