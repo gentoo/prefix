@@ -104,36 +104,6 @@ app-editors/ne
 app-editors/nedit
 app-editors/teco
 app-editors/zile
-app-emacs/apel
-app-emacs/auctex
-app-emacs/autoconf-mode
-app-emacs/bbdb
-app-emacs/cedet
-app-emacs/color-theme
-app-emacs/ecb
-app-emacs/elib
-app-emacs/emacs-common-gentoo
-app-emacs/emacs-w3m
-app-emacs/ess
-app-emacs/flim
-app-emacs/gentoo-syntax
-app-emacs/howm
-app-emacs/imaxima
-app-emacs/jde
-app-emacs/matlab
-app-emacs/mmm-mode
-app-emacs/navi2ch
-app-emacs/nxml-mode
-app-emacs/paredit
-app-emacs/php-mode
-app-emacs/po-mode
-app-emacs/pymacs
-app-emacs/python-mode
-app-emacs/rst
-app-emacs/ruby-mode
-app-emacs/scheme-complete
-app-emacs/semi
-app-emacs/wanderlust
 app-emulation/emul-linux-x86-baselibs
 app-emulation/emul-linux-x86-compat
 app-emulation/emul-linux-x86-xlibs
@@ -839,6 +809,7 @@ x11-wm/twm
 x11-wm/windowmaker
 
 # entire categories
+app-emacs
 app-pda
 app-vim
 dev-dotnet
