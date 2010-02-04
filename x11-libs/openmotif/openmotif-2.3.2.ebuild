@@ -82,6 +82,8 @@ src_compile() {
 	if use !elibc_glibc; then
 		# configure script is messed up in libiconv detection (thinks it isn't
 		# necessary)
+		e still need this on Solaris, despite
+		# http://bugs.motifzone.net/show_bug.cgi?id=1423
 		use unicode && append-libs -liconv
 	fi
 
