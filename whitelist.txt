@@ -18,6 +18,7 @@
 # do NOT mess with these, without these the tree is rendered useless
 licenses
 profiles
+eclass/ELT-patches
 
 # remember: you can't import individual files, only directories
 
