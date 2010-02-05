@@ -1,0 +1,20 @@
+--- texk/xdvipdfmx/configure.ac.orig	2010-02-05 11:33:07 +0100
++++ texk/xdvipdfmx/configure.ac	2010-02-05 11:34:22 +0100
+@@ -67,17 +67,11 @@
+   CHO_CHECK_LIBPAPER
+ fi
+ 
+-KPSE_CHECK_FRAMEWORK([ApplicationServices], [ATSFontRef fontRef])
+ KPSE_FONTCONFIG_FLAGS
+-if test "x$kpse_cv_have_ApplicationServices" = xyes; then
+-  build=yes
+-  AC_DEFINE([XETEX_MAC], 1, [Define if part of a teTeX/TeX Live build for Mac OS X.])
+-else
+   KPSE_ADD_FLAGS([fontconfig])
+   CHO_CHECK_LIBFONTCONFIG
+   KPSE_RESTORE_FLAGS
+   build=$cho_cv_have_fontconfig
+-fi
+ 
+ if test "x$build" = xyes; then
+   AC_DEFINE([XETEX], 1, [Define if part of a teTeX/TeX Live build.])

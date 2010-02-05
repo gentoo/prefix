@@ -110,6 +110,10 @@ src_unpack() {
 
 	# fixup some paths in config files
 	epatch "${FILESDIR}"/2008/${PN}-2008-prefix-config-paths.patch
+	# don't use deprecated interfaces from MacFreetype
+	epatch "${FILESDIR}"/${PV}/${P}-nomacfreetype.patch
+	# we don't autoreconf, so just hack configure script
+	sed -i -e 's/XETEX_MAC/NO_XETEX_MAC/' texk/xdvipdfmx/configure || die
 
 	elibtoolize
 }
