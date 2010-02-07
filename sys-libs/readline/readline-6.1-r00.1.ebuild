@@ -61,6 +61,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
 	epatch "${FILESDIR}"/${PN}-6.1-mint.patch
 	epatch "${FILESDIR}"/${PN}-6.1-darwin-shlib-versioning.patch
+	epatch "${FILESDIR}"/${PN}-6.1-freebsd.patch
 
 	# force ncurses linking #71420
 	sed -i -e 's:^SHLIB_LIBS=:SHLIB_LIBS=-lncurses:' support/shobj-conf || die "sed"
