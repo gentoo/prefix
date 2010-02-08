@@ -4,7 +4,7 @@
 
 EAPI=1
 
-inherit eutils flag-o-matic toolchain-funcs libtool texlive-common prefix
+inherit eutils flag-o-matic toolchain-funcs libtool texlive-common prefix autotools
 
 PATCHLEVEL="16"
 TEXMFD_VERSION="1"
@@ -112,8 +112,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/2008/${PN}-2008-prefix-config-paths.patch
 	# don't use deprecated interfaces from MacFreetype
 	epatch "${FILESDIR}"/${PV}/${P}-nomacfreetype.patch
-	# we don't autoreconf, so just hack configure script
-	sed -i -e 's/XETEX_MAC/NO_XETEX_MAC/' texk/xdvipdfmx/configure || die
+	pushd texk/xdvipdfmx > /dev/null
+	eautoreconf
+	popd > /dev/null
 
 	elibtoolize
 }
