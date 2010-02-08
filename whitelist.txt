@@ -88,6 +88,7 @@ app-dicts/myspell-en
 app-doc/blas-docs
 app-doc/lapack-docs
 app-doc/linkers-and-loaders
+app-doc/openmotif-manual
 app-doc/phrack
 app-doc/phrack-all
 app-editors/easyedit
