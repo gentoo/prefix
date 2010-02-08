@@ -85,12 +85,6 @@ app-dicts/aspell-sv
 app-dicts/ipadic
 app-dicts/migemo-dict
 app-dicts/myspell-en
-app-doc/blas-docs
-app-doc/lapack-docs
-app-doc/linkers-and-loaders
-app-doc/openmotif-manual
-app-doc/phrack
-app-doc/phrack-all
 app-editors/easyedit
 app-editors/ghex
 app-editors/hexcurse
@@ -811,6 +805,7 @@ x11-wm/twm
 x11-wm/windowmaker
 
 # entire categories
+app-doc
 app-emacs
 app-pda
 app-vim
