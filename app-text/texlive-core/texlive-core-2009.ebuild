@@ -113,8 +113,6 @@ src_unpack() {
 	# don't use deprecated interfaces from MacFreetype
 	epatch "${FILESDIR}"/${PV}/${P}-nomacfreetype.patch
 
-	# can't just autoreconf in one of the subdirs, results in libtool mismatch
-#	eautoreconf
 	elibtoolize
 }
 
