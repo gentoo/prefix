@@ -112,10 +112,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/2008/${PN}-2008-prefix-config-paths.patch
 	# don't use deprecated interfaces from MacFreetype
 	epatch "${FILESDIR}"/${PV}/${P}-nomacfreetype.patch
-	pushd texk/xdvipdfmx > /dev/null
-	eautoreconf
-	popd > /dev/null
 
+	# can't just autoreconf in one of the subdirs, results in libtool mismatch
+#	eautoreconf
 	elibtoolize
 }
 
