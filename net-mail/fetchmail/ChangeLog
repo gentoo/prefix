@@ -1,6 +1,11 @@
 # ChangeLog for net-mail/fetchmail
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.175 2009/10/30 10:16:51 tove Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.176 2010/02/05 07:06:41 tove Exp $
+
+*fetchmail-6.3.14 (05 Feb 2010)
+
+  05 Feb 2010; Torsten Veller <tove@gentoo.org> +fetchmail-6.3.14.ebuild:
+  Version bump
 
   30 Oct 2009; Torsten Veller <tove@gentoo.org> fetchmail-6.3.13.ebuild:
   Run --with-ssl before --with-kerberos. Kerberos requires ssl. Heimdal is
