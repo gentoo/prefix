@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/gvim
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.300 2009/11/24 19:24:47 lack Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.303 2010/02/07 20:13:44 maekke Exp $
+
+  07 Feb 2010; Markus Meier <maekke@gentoo.org> gvim-7.2.303.ebuild:
+  amd64/x86 stable, bug #301975
+
+  01 Feb 2010; Brent Baude <ranger@gentoo.org> gvim-7.2.303.ebuild:
+  Marking gvim-7.2.303 ppc for bug 301975
+
+  01 Feb 2010; Brent Baude <ranger@gentoo.org> gvim-7.2.303.ebuild:
+  Marking gvim-7.2.303 ppc64 for bug 301975
 
 *gvim-7.2.303 (24 Nov 2009)
 
