@@ -1,6 +1,23 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.296 2010/01/27 04:00:24 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.300 2010/02/09 01:55:11 vapier Exp $
+
+*util-linux-2.17-r1 (09 Feb 2010)
+
+  09 Feb 2010; Mike Frysinger <vapier@gentoo.org>
+  +files/0001-libblkid-fix-segfault-in-drdb.patch,
+  +util-linux-2.17-r1.ebuild:
+  Add fix from upstream for blkid segfaults #301787 by Alec M.
+
+  09 Feb 2010; Mike Frysinger <vapier@gentoo.org> util-linux-2.16.2.ebuild:
+  Mark alpha/ia64/s390/sh stable #301179.
+
+  04 Feb 2010; Markus Meier <maekke@gentoo.org> util-linux-2.16.2.ebuild:
+  amd64/arm stable, bug #301179
+
+  03 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  util-linux-2.16.2.ebuild:
+  stable x86, bug 301179
 
   27 Jan 2010; Jeroen Roovers <jer@gentoo.org> util-linux-2.16.2.ebuild:
   Stable for HPPA (bug #301179).
