@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/htop-0.8.3.ebuild,v 1.1 2009/09/01 08:04:14 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/htop/htop-0.8.3.ebuild,v 1.3 2010/02/01 20:29:40 hwoarang Exp $
 
 EAPI="2"
 inherit eutils flag-o-matic multilib
