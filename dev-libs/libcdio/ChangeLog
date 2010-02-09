@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libcdio
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.111 2009/10/27 15:08:31 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/ChangeLog,v 1.112 2010/02/03 16:08:05 scarabeus Exp $
+
+  03 Feb 2010; Tomáš Chvátal <scarabeus@gentoo.org> libcdio-0.82.ebuild:
+  Fix automagic cddb again. And it looks this time it is in upstream repo.
 
   27 Oct 2009; Diego E. Pettenò <flameeyes@gentoo.org> metadata.xml:
   Give up maintainership.

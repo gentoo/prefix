@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.82.ebuild,v 1.1 2009/10/27 15:08:00 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcdio/libcdio-0.82.ebuild,v 1.2 2010/02/03 16:08:05 scarabeus Exp $
 
-EAPI=1
+EAPI=2
 
-inherit eutils libtool multilib autotools
+inherit eutils libtool multilib autotools base
 
 DESCRIPTION="A library to encapsulate CD-ROM reading and control"
 HOMEPAGE="http://www.gnu.org/software/libcdio/"
@@ -21,17 +21,19 @@ DEPEND="${RDEPEND}
 	sys-devel/gettext
 	dev-util/pkgconfig"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+PATCHES=(
+	"${FILESDIR}"/${PN}-0.80-automagic-cddb.patch
+	"${FILESDIR}"/${P}-solaris.patch
+)
+DOCS=( AUTHORS ChangeLog NEWS README THANKS )
 
-	epatch "${FILESDIR}"/${P}-solaris.patch
-
-	eautomake
+src_prepare() {
+	base_src_prepare
+	eautoreconf
 	elibtoolize
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		$(use_enable cddb) \
 		$(use_with !minimal cd-drive) \
@@ -46,13 +48,7 @@ src_compile() {
 		--with-cd-paranoia-name=libcdio-paranoia \
 		--disable-vcd-info \
 		--disable-dependency-tracking \
-		--disable-maintainer-mode || die "configure failed"
-	emake || die "make failed"
-}
-
-src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
-	dodoc AUTHORS ChangeLog NEWS README THANKS
+		--disable-maintainer-mode
 }
 
 pkg_postinst() {
