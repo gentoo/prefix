@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/spamassassin-3.2.5-r2.ebuild,v 1.4 2010/01/24 17:54:27 tgall Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/spamassassin-3.2.5-r2.ebuild,v 1.5 2010/01/31 17:57:10 armin76 Exp $
 
 inherit perl-module eutils
 
