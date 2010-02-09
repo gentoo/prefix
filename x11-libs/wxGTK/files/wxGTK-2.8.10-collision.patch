@@ -59,7 +59,7 @@ diff -Naurp wxPython-src-2.8.10.1-orig/src/common/intl.cpp wxPython-src-2.8.10.1
    if ( bLoadDefault )
    {
 -    bOk = AddCatalog(wxT("wxstd"));
-+    bOk = AddCatalog(wxT("wxstd" wxSTRINGIZE2(wxMAJOR_VERSION) wxSTRINGIZE2(wxMINOR_VERSION)));bOk = AddCatalog(wxT("wxstd"));
++    bOk = AddCatalog(wxT("wxstd" wxSTRINGIZE2(wxMAJOR_VERSION) wxSTRINGIZE2(wxMINOR_VERSION)));
  
      // there may be a catalog with toolkit specific overrides, it is not
      // an error if this does not exist

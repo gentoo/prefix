@@ -1,6 +1,17 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.242 2010/01/19 01:19:35 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.243 2010/02/02 19:10:58 dirtyepic Exp $
+
+*wxGTK-2.8.10.1-r5 (02 Feb 2010)
+
+  02 Feb 2010; Ryan Hill <dirtyepic@gentoo.org>
+  -files/wxGTK-2.8.6-wxrc_link_fix.patch,
+  -files/wxGTK-2.8.8-collision.patch,
+  -files/wxGTK-2.8.9.2-nestedtables.patch,
+  -files/wxGTK-2.8.9-dont-touch-my-bools.patch, -wxGTK-2.8.10.1-r3.ebuild,
+  -wxGTK-2.8.10.1-r4.ebuild, +wxGTK-2.8.10.1-r5.ebuild,
+  files/wxGTK-2.8.10-collision.patch:
+  Revbump to fix typo in collision patch. Remove unused patches.
 
 *wxGTK-2.8.10.1-r4 (19 Jan 2010)
 
