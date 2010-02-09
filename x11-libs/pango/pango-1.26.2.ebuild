@@ -1,11 +1,11 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.26.2.ebuild,v 1.1 2009/12/21 23:28:30 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.26.2.ebuild,v 1.2 2010/02/07 19:45:58 solar Exp $
 
 EAPI="2"
 GCONF_DEBUG="yes"
 
-inherit autotools eutils gnome2 multilib
+inherit autotools eutils gnome2 multilib toolchain-funcs
 
 DESCRIPTION="Internationalized text layout and rendering library"
 HOMEPAGE="http://www.pango.org/"
@@ -43,6 +43,7 @@ function multilib_enabled() {
 }
 
 pkg_setup() {
+	tc-export CXX
 	# XXX: DO NOT add introspection support, collides with gir-repository[pango]
 	G2CONF="${G2CONF}
 		--disable-introspection
