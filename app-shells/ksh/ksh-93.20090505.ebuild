@@ -44,7 +44,7 @@ src_unpack() {
 	# `package read` will unpack any tarballs put in place.
 	"${S}"/bin/package read || die
 
-	epatch "${FILESDIR}/${P}-darwin-jobs.patch"
+	epatch "${FILESDIR}/${PN}-93.20080725-darwin-jobs.patch"
 	epatch "${FILESDIR}/${PN}-prefix.patch"
 	eprefixify src/cmd/ksh93/data/msg.c
 }
