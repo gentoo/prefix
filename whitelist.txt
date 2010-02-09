@@ -251,7 +251,6 @@ dev-libs/log4cxx
 dev-libs/maloc
 dev-libs/nettle
 dev-libs/oniguruma
-dev-libs/poppler-qt4
 dev-libs/rasqal
 dev-libs/redland
 dev-libs/soprano
