@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/gitosis
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gitosis/ChangeLog,v 1.10 2010/01/15 07:31:47 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gitosis/ChangeLog,v 1.11 2010/02/08 08:59:41 pva Exp $
+
+  08 Feb 2010; Peter Volkov <pva@gentoo.org> gitosis-0.2_p20080626.ebuild,
+  gitosis-0.2_p20080825.ebuild:
+  Add inherit eutils for enewgroup and enewuser.
 
   15 Jan 2010; Tiziano Müller <dev-zero@gentoo.org>
   gitosis-0.2_p20080825.ebuild:
