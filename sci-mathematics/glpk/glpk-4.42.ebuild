@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.40.ebuild,v 1.1 2009/11/21 08:07:57 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/glpk/glpk-4.42.ebuild,v 1.1 2010/01/31 21:55:05 bicatali Exp $
 
 EAPI=2
 inherit flag-o-matic autotools
@@ -57,7 +57,7 @@ src_install() {
 	fi
 	if use doc; then
 		cd "${S}"/doc
-		doins *.pdf notes/gomory.djvu || die "failed to instal djvu and pdf"
+		doins *.pdf notes/*.pdf || die "failed to instal djvu and pdf"
 		dodoc *.txt || die "failed to install manual files"
 	fi
 }
