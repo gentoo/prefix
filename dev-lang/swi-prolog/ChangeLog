@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.204 2010/01/31 01:27:44 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.205 2010/02/05 20:41:09 keri Exp $
+
+  05 Feb 2010; <keri@gentoo.org> swi-prolog-5.9.7.ebuild:
+  Support -gmp in USE flags. Closes #302941 reported by Nikos Chantziaras.
 
   31 Jan 2010; <keri@gentoo.org> -swi-prolog-5.9.1.ebuild,
   -swi-prolog-5.9.2.ebuild, -swi-prolog-5.9.3.ebuild,
