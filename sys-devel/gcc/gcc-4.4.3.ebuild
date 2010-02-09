@@ -1,11 +1,21 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.2.4-r1.ebuild,v 1.5 2010/01/09 12:58:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.3.ebuild,v 1.1 2010/02/08 12:58:14 vapier Exp $
 
-PATCH_VER="1.1"
+PATCH_VER="1.0"
 UCLIBC_VER="1.0"
 
 ETYPE="gcc-compiler"
+
+# Hardened gcc 4 stuff
+#PIE_VER="10.1.5"
+#SPECS_VER="0.9.4"
+
+# arch/libc configurations known to be stable or untested with {PIE,SSP,FORTIFY}-by-default
+#PIE_GLIBC_STABLE="x86 amd64 ~ppc ~ppc64 ~arm ~sparc"
+#PIE_UCLIBC_STABLE="x86 arm"
+#SSP_STABLE="amd64 x86 ppc ppc64 ~arm ~sparc"
+#SSP_UCLIBC_STABLE=""
 
 # whether we should split out specs files for multiple {PIE,SSP}-by-default
 # and vanilla configurations.
@@ -15,15 +25,17 @@ inherit toolchain flag-o-matic prefix
 
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
-LICENSE="GPL-3 LGPL-2.1 || ( GPL-3 libgcc libstdc++ ) FDL-1.2"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+LICENSE="GPL-3 LGPL-3 || ( GPL-3 libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.2"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	>=sys-devel/gcc-config-1.4
 	virtual/libiconv
-	fortran? (
-		>=dev-libs/gmp-4.2.1
-		>=dev-libs/mpfr-2.2.0_p10
+	>=dev-libs/gmp-4.2.1
+	>=dev-libs/mpfr-2.3.2
+	graphite? (
+		>=dev-libs/ppl-0.10
+		>=dev-libs/cloog-ppl-0.15.4
 	)
 	!build? (
 		gcj? (
@@ -44,85 +56,89 @@ RDEPEND=">=sys-libs/zlib-1.1.4
 		nls? ( sys-devel/gettext )
 	)"
 DEPEND="${RDEPEND}
-	test? ( sys-devel/autogen dev-util/dejagnu )
-	>=sys-apps/texinfo-4.2-r4
+	test? ( >=dev-util/dejagnu-1.4.4 >=sys-devel/autogen-5.5.4 )
+	>=sys-apps/texinfo-4.8
 	>=sys-devel/bison-1.875
-	sys-devel/flex
+	!prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )
 	kernel_Darwin? ( ${CATEGORY}/binutils-apple )
 	kernel_AIX? ( ${CATEGORY}/native-cctools )
-	kernel_Interix? ( || ( ${CATEGORY}/native-cctools >=${CATEGORY}/binutils-2.16 ) )
-	!kernel_Darwin? ( !kernel_AIX? ( !kernel_Interix? (
+	amd64? ( multilib? ( gcj? ( app-emulation/emul-linux-x86-xlibs ) ) )
+	kernel_linux? (
 		ppc? ( >=${CATEGORY}/binutils-2.17 )
 		ppc64? ( >=${CATEGORY}/binutils-2.17 )
 		>=${CATEGORY}/binutils-2.15.94
-	) ) )"
+	)"
 PDEPEND=">=sys-devel/gcc-config-1.4"
 if [[ ${CATEGORY} != cross-* ]] ; then
-	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.3.6 ) )"
+	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )"
 fi
 
 src_unpack() {
 	gcc_src_unpack
 
 	# work around http://gcc.gnu.org/bugzilla/show_bug.cgi?id=33637
-	epatch "${FILESDIR}"/4.2.2/targettools-checks.patch
+	epatch "${FILESDIR}"/4.3.0/targettools-checks.patch
 
 	# http://bugs.gentoo.org/show_bug.cgi?id=201490
 	epatch "${FILESDIR}"/4.2.2/gentoo-fixincludes.patch
 
 	# http://gcc.gnu.org/bugzilla/show_bug.cgi?id=27516
-	epatch "${FILESDIR}"/4.2.2/treelang-nomakeinfo.patch
+	epatch "${FILESDIR}"/4.3.0/treelang-nomakeinfo.patch
 
 	# add support for 64-bits native target on Solaris
-	epatch "${FILESDIR}"/4.2.2/solarisx86_64.patch
+	epatch "${FILESDIR}"/4.4.0/gcc-4.4.1-solaris-x86_64.patch
 
 	# make sure 64-bits native targets don't screw up the linker paths
 	epatch "${FILESDIR}"/solaris-searchpath.patch
 	epatch "${FILESDIR}"/no-libs-for-startfile.patch
 	# replace nasty multilib dirs like ../lib64 that occur on --disable-multilib
 	if use prefix; then
-		epatch "${FILESDIR}"/4.2.2/prefix-search-dirs.patch
+		epatch "${FILESDIR}"/4.3.3/prefix-search-dirs.patch
 		eprefixify "${S}"/gcc/gcc.c
 	fi
 
-	# interix patch from http://gcc.gnu.org/bugzilla/show_bug.cgi?id=15212
-	epatch "${FILESDIR}"/4.2.2/interix-x86.patch.bz2
-	# gcc sources are polluted with old stuff for interix 3.5 not needed here
-	epatch "${FILESDIR}"/4.2.2/interix-3.5-x86.patch
-	# define _ALL_SOURCE by default on Interix
-	epatch "${FILESDIR}"/${P}-interix-all-source.patch
-	# support for the $@#$% dir structure on 64bit SUA
-	epatch "${FILESDIR}"/${P}-interix-x64-support.patch
+	# make it have correct install_names on Darwin
+	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
+
+	# --- The following patches still cause failure for other
+	# platforms. Since gcc-4.4 is still masked on interix, and
+	# i have no time ATM to fix things, i for now just commented
+	# them out.
+
+	# interix patches - all from 4.2.4 updated and combined
+	#epatch "${FILESDIR}"/${P}-interix.patch
+	# and this one to avoid the need of a re-bootstrap.
+	#epatch "${FILESDIR}"/${P}-interix-avoid-bs.patch
 
 	if [[ ${CHOST} == *-mint* ]] ; then
-		epatch "${FILESDIR}"/gcc-4.2.3-mint.patch
-		epatch "${FILESDIR}"/gcc-4.2.3-mint2.patch
+		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint1.patch
+		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint2.patch
+		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-mint3.patch
+		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint3.patch
 	fi
 
-	# http://gcc.gnu.org/PR20366
-	epatch "${FILESDIR}"/${P}-aix-largefiles.patch
-
 	# Always behave as if -pthread were passed on AIX (#266548)
-	epatch "${FILESDIR}"/4.2.2/aix-force-pthread.patch
+	epatch "${FILESDIR}"/4.3.3/aix-force-pthread.patch
 
-	# Always behave as if -Wl,-brtl were passed on AIX (#213277)
-	epatch "${FILESDIR}"/4.2.2/aix-runtimelinking.patch
-
-	# allow gcj compilation to succeed on platforms with libiconv
-	epatch "${FILESDIR}"/gcj-${PV}-iconvlink.patch
+	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
 
 	epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
 	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
 
-	# try /usr/lib32 in 32bit profile on x86_64-linux (needs --enable-multilib)
+	# libgcc's Makefiles reuses $T, work around that :(
+	epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-T-namespace.patch
+
+	# try /usr/lib31 in 32bit profile on x86_64-linux (needs --enable-multilib),
 	# but this does make sense in prefix only.
-	use prefix && epatch "${FILESDIR}"/${P}-linux-x86-on-amd64.patch
+	use prefix && epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
 
 	use vanilla && return 0
 
+	sed -i 's/use_fixproto=yes/:/' gcc/config.gcc #PR33200
+
 	[[ ${CHOST} == ${CTARGET} ]] && epatch "${FILESDIR}"/gcc-spec-env.patch
 
-	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.0.2/gcc-4.0.2-softfloat.patch
+	[[ ${CTARGET} == *-softfloat-* ]] && epatch "${FILESDIR}"/4.4.0/gcc-4.4.0-softfloat.patch
 }
 
 src_compile() {
@@ -135,17 +151,25 @@ src_compile() {
 			# AIX doesn't use GNU binutils, because it doesn't produce usable
 			# code
 			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
+			# The linker finding libs isn't enough, collect2 also has to:
+			EXTRA_ECONF="${EXTRA_ECONF} --with-mpfr=${EPREFIX}/usr"
+			EXTRA_ECONF="${EXTRA_ECONF} --with-gmp=${EPREFIX}/usr"
 			append-ldflags -Wl,-bbigtoc,-bmaxdata:0x10000000 # bug#194635
-		;;
-		*-darwin7)
-			# libintl triggers inclusion of -lc which results in multiply
-			# defined symbols, so disable nls
-			EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
 		;;
 		*-interix*)
 			# disable usage of poll() on interix, since poll() only
 			# works on the /proc filesystem (.......)
 			export glibcxx_cv_POLL=no
+
+			# if using the old system as, gcc's configure script fails
+			# to detect that as cannot handle .lcomm with alignment.
+			# on interix, it is rather easy to detect the as, since there
+			# is only _one_ build of it with a fixed date in the version
+			# header...
+			if as --version | grep 20021111 > /dev/null 2>&1; then
+				einfo "preventing gcc from detecting .lcomm alignment option in interix system as."
+				export gcc_cv_as_lcomm_with_alignment=no
+			fi
 		;;
 		i[34567]86-*-linux*:*" prefix "*)
 			# to allow the linux-x86-on-amd64.patch become useful, we need
@@ -159,7 +183,6 @@ src_compile() {
 				CC="${CC} -m32"
 				CXX="${CC} -m32"
 			fi
-		;;
 	esac
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
@@ -211,5 +234,6 @@ src_install() {
 
 	insinto /etc/profile.d
 	doins "${T}"/00-gcc-paths.sh
+
 }
 
