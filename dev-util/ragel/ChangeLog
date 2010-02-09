@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/ragel
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/ragel/ChangeLog,v 1.35 2010/01/27 00:18:02 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/ragel/ChangeLog,v 1.36 2010/02/07 18:13:10 hwoarang Exp $
+
+  07 Feb 2010; Markos Chandras <hwoarang@gentoo.org> ragel-6.6.ebuild:
+  Stable on amd64 wrt bug #302197
 
   27 Jan 2010; Brent Baude <ranger@gentoo.org> ragel-6.6.ebuild:
   stable ppc64, bug 302197
