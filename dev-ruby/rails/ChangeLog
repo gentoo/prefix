@@ -1,6 +1,9 @@
 # ChangeLog for dev-ruby/rails
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.168 2010/01/18 20:57:49 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rails/ChangeLog,v 1.169 2010/02/01 21:15:10 maekke Exp $
+
+  01 Feb 2010; Markus Meier <maekke@gentoo.org> rails-2.3.5-r1.ebuild:
+  add ~x86, bug #301007
 
   18 Jan 2010; Brent Baude <ranger@gentoo.org> rails-2.3.5-r1.ebuild:
   Marking rails-2.3.5-r1 ~ppc64 for bug 301007
