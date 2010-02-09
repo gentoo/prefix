@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.10.1.ebuild,v 1.10 2009/12/11 14:25:22 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/libperl-5.10.1.ebuild,v 1.11 2010/02/03 00:15:25 hanno Exp $
 
 inherit multilib
 
@@ -8,7 +8,7 @@ DESCRIPTION="Larry Wall's Practical Extraction and Report Language"
 SRC_URI=""
 HOMEPAGE="http://www.gentoo.org/"
 
-LICENSE="GPL-2"
+LICENSE="|| ( Artistic GPL-1 GPL-2 GPL-3 )"
 SLOT="1"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""

@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/libperl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.150 2009/12/11 14:25:22 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.151 2010/02/03 00:15:25 hanno Exp $
+
+  03 Feb 2010; Hanno Boeck <hanno@gentoo.org> libperl-5.8.8-r2.ebuild,
+  libperl-5.10.1.ebuild:
+  Change license, Perl is Artistic or GPL-1 or later. We can't express or
+  later for now, so adding all GPL-1/2/3.
 
   11 Dec 2009; Brent Baude <ranger@gentoo.org> libperl-5.10.1.ebuild:
   Marking libperl-5.10.1 ~ppc64 for bug 288028
