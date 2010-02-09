@@ -1,6 +1,14 @@
 # ChangeLog for dev-java/jruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.53 2010/01/24 00:54:52 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.54 2010/01/31 17:19:09 flameeyes Exp $
+
+*jruby-1.4.0-r5 (31 Jan 2010)
+
+  31 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +jruby-1.4.0-r5.ebuild, +files/jruby-1.4.0-system-jars-r2.patch:
+  Require a new version of jffi so that the jruby wrapper has one less
+  java-config call. Also drop RubyGems and leave it to dev-ruby/rubygems to
+  install it.
 
   24 Jan 2010; Diego E. Pettenò <flameeyes@gentoo.org>
   jruby-1.4.0-r4.ebuild, +files/jruby-1.4.0-bindir.patch:
