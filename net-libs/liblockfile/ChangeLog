@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/liblockfile
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.55 2010/01/24 22:58:19 tgall Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.56 2010/02/07 22:25:01 maekke Exp $
+
+  07 Feb 2010; Markus Meier <maekke@gentoo.org> liblockfile-1.08.ebuild:
+  amd64/arm/x86 stable, bug #302016
 
   24 Jan 2010; Tom Gall <tgall@gentoo.org> liblockfile-1.08.ebuild:
   stable on ppc64, bug #302016
