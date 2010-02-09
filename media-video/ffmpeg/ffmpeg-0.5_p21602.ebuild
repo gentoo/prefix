@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5_p20373.ebuild,v 1.10 2010/01/31 17:34:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5_p21602.ebuild,v 1.2 2010/02/04 19:54:28 aballier Exp $
 
 EAPI=2
 SCM=""
@@ -26,7 +26,7 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="+3dnow +3dnowext alsa altivec cpudetection custom-cflags debug dirac
-	  doc ieee1394 +encode faac faad gsm ipv6 jack +mmx +mmxext vorbis test
+	  doc ieee1394 +encode faac faad gsm jack +mmx +mmxext vorbis test
 	  theora threads x264 xvid network zlib sdl X mp3 opencore-amr
 	  oss pic schroedinger +hardcoded-tables bindist v4l v4l2
 	  speex +ssse3 jpeg2k vdpau"
@@ -43,8 +43,8 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 		faac? ( media-libs/faac )
 		mp3? ( media-sound/lame )
 		vorbis? ( media-libs/libvorbis media-libs/libogg )
-		theora? ( media-libs/libtheora[encode] media-libs/libogg )
-		x264? ( >=media-libs/x264-0.0.20091021 )
+		theora? ( >=media-libs/libtheora-1.1.1[encode] media-libs/libogg )
+		x264? ( >=media-libs/x264-0.0.20100118 )
 		xvid? ( >=media-libs/xvid-1.1.0 ) )
 	faad? ( >=media-libs/faad2-2.6.1 )
 	zlib? ( sys-libs/zlib )
@@ -59,7 +59,7 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 	jack? ( media-sound/jack-audio-connection-kit )
 	X? ( x11-libs/libX11 x11-libs/libXext )
 	video_cards_nvidia? (
-		vdpau? ( >=x11-drivers/nvidia-drivers-180.29 )
+		vdpau? ( x11-libs/libvdpau )
 	)"
 
 DEPEND="${RDEPEND}
@@ -99,12 +99,7 @@ src_configure() {
 	use debug || myconf="${myconf} --disable-debug"
 	use zlib || myconf="${myconf} --disable-zlib"
 	use sdl || myconf="${myconf} --disable-ffplay"
-
-	if use network; then
-		use ipv6 || myconf="${myconf} --disable-ipv6"
-	else
-		myconf="${myconf} --disable-network"
-	fi
+	use network || myconf="${myconf} --disable-network"
 
 	use custom-cflags && myconf="${myconf} --disable-optimizations"
 	use cpudetection && myconf="${myconf} --enable-runtime-cpudetect"
@@ -117,6 +112,13 @@ src_configure() {
 		use theora && myconf="${myconf} --enable-libtheora"
 		use x264 && myconf="${myconf} --enable-libx264"
 		use xvid && myconf="${myconf} --enable-libxvid"
+		if use bindist
+		then
+			use faac && ewarn "faac is nonfree and cannot be distributed;
+			disabling faac support."
+		else
+			use faac && myconf="${myconf} --enable-libfaac --enable-nonfree"
+		fi
 	else
 		myconf="${myconf} --disable-encoders"
 	fi
@@ -147,14 +149,6 @@ src_configure() {
 		myconf="${myconf} --enable-libgsm"
 		# Crappy detection or our installation is weird, pick one (FIXME)
 		append-flags -I"${EPREFIX}"/usr/include/gsm
-	fi
-	if use bindist
-	then
-		use faac && ewarn "faac is nonfree and cannot be distributed; disabling
-		faac support."
-	else
-		use faac && myconf="${myconf} --enable-libfaac"
-		{ use faac ; } && myconf="${myconf} --enable-nonfree"
 	fi
 
 	#for i in h264_vdpau mpeg1_vdpau mpeg_vdpau vc1_vdpau wmv3_vdpau; do
@@ -187,6 +181,7 @@ src_configure() {
 	# will just ignore it.
 	for i in $(get-flag march) $(get-flag mcpu) $(get-flag mtune) ; do
 		[ "${i}" = "native" ] && i="host" # bug #273421
+		[[ ${i} = *-sse3 ]] && i="${i%-sse3}" # bug 283968
 		myconf="${myconf} --cpu=$i"
 		break
 	done
@@ -214,6 +209,7 @@ src_configure() {
 
 	# Misc stuff
 	use hardcoded-tables && myconf="${myconf} --enable-hardcoded-tables"
+	use doc || myconf="${myconf} --disable-doc"
 
 	# Specific workarounds for too-few-registers arch...
 	if [[ $(tc-arch) == "x86" || $(tc-arch) == x86-* ]]; then
@@ -256,7 +252,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "Install Failed"
+	emake DESTDIR="${D}" install install-man || die "Install Failed"
 
 	dodoc Changelog README INSTALL
 	dodoc doc/*

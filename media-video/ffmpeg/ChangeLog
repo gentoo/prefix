@@ -1,6 +1,20 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.340 2010/01/26 15:56:13 spatz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.343 2010/02/04 19:54:28 aballier Exp $
+
+  04 Feb 2010; Alexis Ballier <aballier@gentoo.org>
+  ffmpeg-0.5_p21602.ebuild, ffmpeg-9999-r1.ebuild:
+  Remove ipv6 useflag, it cannot be disabled separately anymore and is
+  automatically enabled when available with USE=network, reported by marienz
+
+*ffmpeg-0.5_p21602 (02 Feb 2010)
+
+  02 Feb 2010; Alexis Ballier <aballier@gentoo.org>
+  +ffmpeg-0.5_p21602.ebuild:
+  bump a new snapshot
+
+  31 Jan 2010; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.5_p20373.ebuild:
+  ia64/sparc stable
 
   26 Jan 2010; Dror Levin <spatz@gentoo.org> ffmpeg-0.5_p20601-r1.ebuild,
   ffmpeg-9999-r1.ebuild:
