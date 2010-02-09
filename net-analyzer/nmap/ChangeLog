@@ -1,6 +1,10 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.216 2010/01/29 23:20:38 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.217 2010/01/31 09:08:52 spock Exp $
+
+  31 Jan 2010; Michał Januszewski <spock@gentoo.org> nmap-5.21.ebuild,
+  +files/nmap-5.21-python.patch:
+  Fix bug #302636.
 
 *nmap-5.21 (29 Jan 2010)
 
