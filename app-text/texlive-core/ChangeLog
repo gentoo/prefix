@@ -1,6 +1,14 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.118 2010/01/11 02:23:19 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.119 2010/02/01 10:50:48 aballier Exp $
+
+*texlive-core-2009-r1 (01 Feb 2010)
+
+  01 Feb 2010; Alexis Ballier <aballier@gentoo.org>
+  +texlive-core-2009-r1.ebuild:
+  Copy texmf files after make install so that we do not get out of date
+  files, fixes texdoc warnings reported by Daniel Oehry <oda@gmx.li>, bug
+  #302683
 
 *texlive-core-2009 (11 Jan 2010)
 
