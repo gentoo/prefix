@@ -1,6 +1,9 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.150 2010/01/20 19:30:04 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.151 2010/02/03 20:28:20 maekke Exp $
+
+  03 Feb 2010; Markus Meier <maekke@gentoo.org> pidgin-2.6.5.ebuild:
+  amd64 stable, bug #299751
 
   20 Jan 2010; Brent Baude <ranger@gentoo.org> pidgin-2.6.5.ebuild:
   Marking pidgin-2.6.5 ~ppc64 for bug 299751
