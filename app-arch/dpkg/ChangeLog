@@ -1,6 +1,18 @@
 # ChangeLog for app-arch/dpkg
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.115 2010/01/10 20:21:13 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/dpkg/ChangeLog,v 1.117 2010/02/05 08:18:47 jer Exp $
+
+  05 Feb 2010; Jeroen Roovers <jer@gentoo.org> -dpkg-1.15.3.ebuild,
+  -dpkg-1.15.3.1.ebuild, -dpkg-1.15.4.ebuild, -dpkg-1.15.4.1.ebuild,
+  -dpkg-1.15.5.2.ebuild, -dpkg-1.15.5.2-r1.ebuild, -dpkg-1.15.5.3.ebuild,
+  -dpkg-1.15.5.4.ebuild:
+  Remove testing versions from the previous decade.
+
+*dpkg-1.15.5.6-r1 (05 Feb 2010)
+
+  05 Feb 2010; Jeroen Roovers <jer@gentoo.org> +dpkg-1.15.5.6-r1.ebuild,
+  +files/dpkg-1.15.5.6-bootstrap.patch:
+  Add bootstrap support thanks to Thomas Klute (bug #289094).
 
   10 Jan 2010; Mike Frysinger <vapier@gentoo.org> dpkg-1.15.5.6.ebuild:
   Add ppc64 love.
