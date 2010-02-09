@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.114 2010/01/10 17:47:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.115 2010/02/05 06:36:58 vapier Exp $
+
+  05 Feb 2010; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
+  Fix handling of short tarball names #303433 by Mike Williams, and add a
+  LESSDEBUG helper.
 
   10 Jan 2010; Ulrich Mueller <ulm@gentoo.org> less-436.ebuild:
   Fix LICENSE, less is the same as BSD-2.

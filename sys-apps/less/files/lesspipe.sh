@@ -5,16 +5,18 @@
 
 # TODO: handle compressed files better
 
+[[ -n ${LESSDEBUG} ]] && set -x
+
 trap 'exit 0' PIPE
 
 guesscompress() {
 	case "$1" in
-		*.gz|*.z) echo "gunzip -c" ;;
-		*.bz2)    echo "bunzip2 -c" ;;
-		*.lz)     echo "lzip -c" ;;
-		*.lzma)   echo "unlzma -c" ;;
-		*.xz)     echo "xzdec" ;;
-		*)        echo "cat" ;;
+		*.gz|*.z)   echo "gunzip -c" ;;
+		*.bz2|*.bz) echo "bunzip2 -c" ;;
+		*.lz)       echo "lzip -c" ;;
+		*.lzma)     echo "unlzma -c" ;;
+		*.xz)       echo "xzdec" ;;
+		*)          echo "cat" ;;
 	esac
 }
 
@@ -101,11 +103,12 @@ lesspipe() {
 
 	### Tar files ###
 	*.tar|\
-	*.tar.bz2|*.tbz2|*.tbz|\
-	*.tar.gz|*.tgz|*.tar.z|\
+	*.tar.bz2|*.tar.gz|*.tar.z|\
 	*.tar.lz|*.tar.tlz|\
 	*.tar.lzma|*.tar.xz)
 		${DECOMPRESSOR} -- "$1" | tar tvvf -;;
+	*.tbz2|*.tbz|*.tgz|*.tlz)
+		lesspipe "$1" "$1".tar.${1##*.t} ;;
 
 	### Misc archives ###
 	*.bz2|\
@@ -232,7 +235,7 @@ if [[ -z $1 ]] ; then
 	echo "Usage: lesspipe.sh <file>"
 elif [[ $1 == "-V" || $1 == "--version" ]] ; then
 	Id="cvsid"
-	cvsid="$Id: lesspipe.sh,v 1.36 2009/10/22 07:53:42 vapier Exp $"
+	cvsid="$Id: lesspipe.sh,v 1.37 2010/02/05 06:36:59 vapier Exp $"
 	cat <<-EOF
 		$cvsid
 		Copyright 2001-2009 Gentoo Foundation
@@ -266,5 +269,7 @@ elif [[ -d $1 ]] ; then
 	ls -alF -- "$1"
 else
 	recur=0
-	lesspipe "$1" 2> /dev/null
+	[[ -n ${LESSDEBUG} ]] \
+		&& lesspipe "$1" \
+		|| lesspipe "$1" 2> /dev/null
 fi
