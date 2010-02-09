@@ -1,9 +1,9 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-1.2.0-r1.ebuild,v 1.7 2009/04/12 18:07:35 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-1.2.0-r1.ebuild,v 1.8 2010/02/08 08:55:09 pva Exp $
 
 EAPI=2
-inherit distutils
+inherit eutils distutils
 
 DESCRIPTION="Extensible Python-based build utility"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz

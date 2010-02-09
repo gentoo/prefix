@@ -1,6 +1,10 @@
 # ChangeLog for dev-util/scons
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.75 2010/01/08 07:47:30 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.76 2010/02/08 08:55:09 pva Exp $
+
+  08 Feb 2010; Peter Volkov <pva@gentoo.org> scons-1.2.0-r1.ebuild,
+  scons-1.2.0_p20091224.ebuild:
+  Add inherit eutils for epatch.
 
   08 Jan 2010; Dirkjan Ochtman <djc@gentoo.org>
   scons-1.2.0_p20091224.ebuild:

@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-1.2.0_p20091224.ebuild,v 1.2 2010/01/08 07:47:30 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/scons-1.2.0_p20091224.ebuild,v 1.3 2010/02/08 08:55:09 pva Exp $
 
 EAPI=2
 
-inherit distutils
+inherit eutils distutils
 
 MY_PV=${PV/_p/.d}
 
