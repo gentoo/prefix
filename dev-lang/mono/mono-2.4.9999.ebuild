@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.9999.ebuild,v 1.4 2009/06/09 21:18:27 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/mono-2.4.9999.ebuild,v 1.5 2010/01/31 19:54:46 tove Exp $
 
 EAPI=2
 
@@ -107,7 +107,7 @@ src_configure() {
 }
 
 src_test() {
-	vecho ">>> Test phase [check]: ${CATEGORY}/${PF}"
+	echo ">>> Test phase [check]: ${CATEGORY}/${PF}"
 
 	export MONO_REGISTRY_PATH="${T}/registry"
 	export XDG_DATA_HOME="${T}/data"
