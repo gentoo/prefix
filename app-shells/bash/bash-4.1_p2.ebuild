@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1_p2.ebuild,v 1.1 2010/01/21 05:43:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1_p2.ebuild,v 1.2 2010/02/04 00:46:27 vapier Exp $
 
 EAPI="1"
 
@@ -55,6 +55,10 @@ pkg_setup() {
 		eerror "as it breaks LFS (struct stat64) on x86."
 		die "remove -malign-double from your CFLAGS mr ricer"
 	fi
+	if use bashlogger ; then
+		ewarn "The logging patch should ONLY be used in restricted (i.e. honeypot) envs."
+		ewarn "This will log ALL output you enter into the shell, you have been warned."
+	fi
 }
 
 src_unpack() {
@@ -69,14 +73,6 @@ src_unpack() {
 
 	if ! use vanilla ; then
 		sed -i '1i#define NEED_FPURGE_DECL' execute_cmd.c # needs fpurge() decl
-		# Log bash commands to syslog #91327
-		if use bashlogger ; then
-			ewarn "The logging patch should ONLY be used in restricted (i.e. honeypot) envs."
-			ewarn "This will log ALL output you enter into the shell, you have been warned."
-			ebeep
-			epause
-			epatch "${FILESDIR}"/${PN}-3.1-bash-logger.patch
-		fi
 		epatch "${FILESDIR}"/${PN}-4.1-parallel-build.patch
 	fi
 
@@ -119,7 +115,8 @@ src_compile() {
 			-DSYS_BASHRC=\'\"${EPREFIX}/etc/bash/bashrc\"\' \
 			-DSYS_BASH_LOGOUT=\'\"${EPREFIX}/etc/bash/bash_logout\"\' \
 			-DNON_INTERACTIVE_LOGIN_SHELLS \
-			-DSSH_SOURCE_BASHRC
+			-DSSH_SOURCE_BASHRC \
+			$(use bashlogger && echo -DSYSLOG_HISTORY)
 	else
 	append-cppflags \
 		-DDEFAULT_PATH_VALUE=\'\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\' \
@@ -127,7 +124,8 @@ src_compile() {
 		-DSYS_BASHRC=\'\"/etc/bash/bashrc\"\' \
 		-DSYS_BASH_LOGOUT=\'\"/etc/bash/bash_logout\"\' \
 		-DNON_INTERACTIVE_LOGIN_SHELLS \
-		-DSSH_SOURCE_BASHRC
+		-DSSH_SOURCE_BASHRC \
+		$(use bashlogger && echo -DSYSLOG_HISTORY)
 	fi
 
 	# IRIX's MIPSpro produces garbage with >= -O2, bug #209137
