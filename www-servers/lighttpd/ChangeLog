@@ -1,6 +1,31 @@
 # ChangeLog for www-servers/lighttpd
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.216 2010/01/24 23:05:09 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.223 2010/02/04 00:06:02 jer Exp $
+
+  04 Feb 2010; Jeroen Roovers <jer@gentoo.org> lighttpd-1.4.25-r1.ebuild:
+  Stable for PPC (bug #303213).
+
+  03 Feb 2010; Jeroen Roovers <jer@gentoo.org> lighttpd-1.4.25-r1.ebuild:
+  Stable for HPPA (bug #303213).
+
+  03 Feb 2010; Raúl Porcel <armin76@gentoo.org> lighttpd-1.4.25-r1.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #303213
+
+  03 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  lighttpd-1.4.25-r1.ebuild:
+  stable x86, security bug 303213
+
+  02 Feb 2010; Brent Baude <ranger@gentoo.org> lighttpd-1.4.25-r1.ebuild:
+  Marking lighttpd-1.4.25-r1 ppc64 for bug 303213
+
+*lighttpd-1.4.25-r1 (01 Feb 2010)
+
+  01 Feb 2010; Christian Hoffmann <hoffie@gentoo.org>
+  +lighttpd-1.4.25-r1.ebuild, +files/1.4.25-fix-CVE-2010-0295.patch:
+  revision bump with fix for CVE-2010-0295, straight to stable on amd64
+
+  01 Feb 2010; Markus Meier <maekke@gentoo.org> lighttpd-1.4.23.ebuild:
+  arm stable, bug #286134
 
   24 Jan 2010; Brent Baude <ranger@gentoo.org> lighttpd-1.4.25.ebuild:
   stable ppc, bug 301563

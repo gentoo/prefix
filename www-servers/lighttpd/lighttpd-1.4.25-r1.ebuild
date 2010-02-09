@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.23.ebuild,v 1.10 2010/02/01 19:53:41 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/lighttpd-1.4.25-r1.ebuild,v 1.6 2010/02/04 00:06:02 jer Exp $
 
 EAPI="2"
 
@@ -8,7 +8,7 @@ inherit eutils autotools depend.php
 
 DESCRIPTION="Lightweight high-performance web server"
 HOMEPAGE="http://www.lighttpd.net/"
-SRC_URI="http://www.lighttpd.net/download/${P}.tar.bz2"
+SRC_URI="http://download.lighttpd.net/lighttpd/releases-1.4.x/${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
@@ -96,13 +96,15 @@ pkg_setup() {
 }
 
 src_prepare() {
+	epatch "${FILESDIR}"/1.4.25-fix-unknown-AM_SILENT_RULES.patch
+	epatch "${FILESDIR}"/1.4.25-fix-CVE-2010-0295.patch
 	# dev-python/docutils installs rst2html.py not rst2html
 	sed -i -e 's|\(rst2html\)|\1.py|g' doc/Makefile.am || \
 		die "sed doc/Makefile.am failed"
 
 	epatch "${FILESDIR}"/${PN}-darwin-bundle.patch
 
-	eautoreconf || die
+	eautoreconf
 }
 
 src_configure() {
@@ -120,8 +122,7 @@ src_configure() {
 		$(use_with ssl openssl) \
 		$(use_with webdav webdav-props) \
 		$(use_with webdav webdav-locks) \
-		$(use_with xattr attr) \
-		|| die "econf failed"
+		$(use_with xattr attr)
 }
 
 src_compile() {
@@ -166,7 +167,7 @@ src_install() {
 	update_config
 
 	# docs
-	dodoc AUTHORS README NEWS ChangeLog doc/*.sh
+	dodoc AUTHORS README NEWS doc/*.sh
 	newdoc doc/lighttpd.conf lighttpd.conf.distrib
 
 	use doc && dohtml -r doc/*
