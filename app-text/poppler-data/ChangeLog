@@ -1,6 +1,28 @@
 # ChangeLog for app-text/poppler-data
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-data/ChangeLog,v 1.26 2010/01/14 02:55:32 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-data/ChangeLog,v 1.33 2010/02/08 18:18:30 nixnut Exp $
+
+  08 Feb 2010; nixnut <nixnut@gentoo.org> poppler-data-0.4.0.ebuild:
+  ppc stable #290464
+
+  05 Feb 2010; Raúl Porcel <armin76@gentoo.org> poppler-data-0.4.0.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #290464
+
+  04 Feb 2010; Markus Meier <maekke@gentoo.org> poppler-data-0.4.0.ebuild:
+  arm stable, bug #290464
+
+  03 Feb 2010; Markus Meier <maekke@gentoo.org> poppler-data-0.4.0.ebuild:
+  amd64 stable, bug #290464
+
+  02 Feb 2010; Brent Baude <ranger@gentoo.org> poppler-data-0.4.0.ebuild:
+  Marking poppler-data-0.4.0 ppc64 for bug 290464
+
+  01 Feb 2010; Jeroen Roovers <jer@gentoo.org> poppler-data-0.4.0.ebuild:
+  Stable for HPPA (bug #290464).
+
+  01 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  poppler-data-0.4.0.ebuild:
+  stable x86, security bug 290464
 
 *poppler-data-0.4.0 (14 Jan 2010)
 

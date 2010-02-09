@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-data/poppler-data-0.4.0.ebuild,v 1.1 2010/01/14 02:55:32 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/poppler-data/poppler-data-0.4.0.ebuild,v 1.8 2010/02/08 18:18:30 nixnut Exp $
 
 DESCRIPTION="Data files for poppler to support uncommon encodings without xpdfrc"
 HOMEPAGE="http://poppler.freedesktop.org/"
