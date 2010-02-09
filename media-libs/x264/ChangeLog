@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/x264
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/ChangeLog,v 1.32 2010/01/24 16:44:49 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/ChangeLog,v 1.33 2010/01/31 17:30:38 armin76 Exp $
+
+  31 Jan 2010; Raúl Porcel <armin76@gentoo.org> x264-0.0.20091021.ebuild:
+  sparc stable wrt #297845
 
   24 Jan 2010; Tobias Klausmann <klausman@gentoo.org>
   x264-0.0.20091021.ebuild:

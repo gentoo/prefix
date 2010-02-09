@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/x264-0.0.20091021.ebuild,v 1.6 2010/01/24 16:44:49 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/x264/x264-0.0.20091021.ebuild,v 1.7 2010/01/31 17:30:38 armin76 Exp $
 
 EAPI=2
 inherit eutils multilib toolchain-funcs versionator
