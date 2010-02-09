@@ -1,11 +1,11 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.9.0.ebuild,v 1.10 2009/11/03 17:54:59 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.10.0.ebuild,v 1.1 2010/02/01 05:40:28 ssuominen Exp $
 
 EAPI=2
 
 DESCRIPTION="a realtime MPEG 1.0/2.0/2.5 audio player for layers 1, 2 and 3"
-HOMEPAGE="http://www.mpg123.org"
+HOMEPAGE="http://www.mpg123.org/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2
 	http://www.mpg123.org/download/${P}.tar.bz2"
 
@@ -40,11 +40,11 @@ src_configure() {
 
 	use altivec && _cpu=altivec
 
-	if use amd64 && use sse; then
+	if [[ ${ABI} = amd64 ]] && use sse; then
 		_cpu=x86-64
 	fi
 
-	if use x86; then
+	if [[ ${ABI} = x86 ]]; then
 		_cpu=i586
 		use mmx && _cpu=mmx
 		use 3dnow && _cpu=3dnow
