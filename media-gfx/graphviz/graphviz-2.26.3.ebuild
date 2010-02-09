@@ -1,10 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.20.3.ebuild,v 1.13 2010/01/07 16:06:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.26.3.ebuild,v 1.1 2010/02/07 22:42:21 maekke Exp $
 
-WANT_AUTOCONF=latest
-WANT_AUTOMAKE=latest
-
+EAPI=2
 inherit eutils autotools multilib python
 
 DESCRIPTION="Open Source Graph Visualization Software"
@@ -14,7 +12,7 @@ SRC_URI="http://www.graphviz.org/pub/graphviz/ARCHIVE/${P}.tar.gz"
 LICENSE="CPL-1.0"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="cairo cgraph doc examples gnome gtk java jpeg nls perl png python ruby tcl"
+IUSE="cairo doc examples gtk java lasi nls perl python ruby tcl"
 
 # Requires ksh
 RESTRICT="test"
@@ -24,34 +22,34 @@ RDEPEND="
 	>=dev-libs/glib-2.11.1
 	>=media-libs/fontconfig-2.3.95
 	>=media-libs/freetype-2.1.10
-	>=media-libs/gd-2.0.28
+	>=media-libs/gd-2.0.28[jpeg,png]
 	>=media-libs/jpeg-6b
 	>=media-libs/libpng-1.2.10
 	virtual/libiconv
-	cairo?  (
+	cairo?	(
 		x11-libs/libXaw
 		>=x11-libs/pango-1.12
-		>=x11-libs/cairo-1.1.10
+		>=x11-libs/cairo-1.1.10[svg]
 	)
-	ruby?	( dev-lang/ruby )
-	tcl?	( >=dev-lang/tcl-8.3 )
 	gtk?	(
 		>=x11-libs/gtk+-2
 		x11-libs/libXaw
 		>=x11-libs/pango-1.12
 		>=x11-libs/cairo-1.1.10
-		gnome? ( gnome-base/libgnomeui )
-	)"
-
+	)
+	lasi?	( media-libs/lasi )
+	ruby?	( dev-lang/ruby )
+	tcl?	( >=dev-lang/tcl-8.3 )"
 DEPEND="${RDEPEND}
-	>=dev-util/pkgconfig-0.20
+	dev-util/pkgconfig
 	sys-devel/flex
 	java?	( dev-lang/swig )
 	nls?	( >=sys-devel/gettext-0.14.5 )
 	perl?	( dev-lang/swig )
 	python?	( dev-lang/swig )
 	ruby?	( dev-lang/swig )
-	tcl?	( dev-lang/swig )"
+	tcl?	( || ( <dev-lang/swig-1.3.38[tcl]
+		>=dev-lang/swig-1.3.38 ) )"
 
 # Dependency description / Maintainer-Info:
 
@@ -64,7 +62,8 @@ DEPEND="${RDEPEND}
 # - gdk-pixbuf
 #   Disabled, GTK-1 junk.
 # - ming
-#   Disabled, depends on ming-3.0 which is still p.masked.
+#   flash plugin via -Tswf requires media-libs/ming-0.4. Disabled as it's
+#   incomplete.
 # - cairo:
 #   Needs pango for text layout, uses cairo methods to draw stuff
 # - xlib :
@@ -96,33 +95,7 @@ DEPEND="${RDEPEND}
 # - dot, dotty, gvpr, lefty, lneato, tools/* :)
 # Lefty needs Xaw and X to build
 
-pkg_setup() {
-	if use tcl && ! built_with_use --missing true dev-lang/swig tcl ; then
-		eerror "SWIG has to be built with tcl support."
-		die "Missing tcl USE-flag for dev-lang/swig"
-	fi
-
-	# bug 181147
-	local gdflags
-	use png && gdflags="png"
-	use jpeg && gdflags="${gdflags} jpeg"
-	if [[ -n ${gdflags} ]] && ! built_with_use media-libs/gd ${gdflags} ; then
-		local diemsg="Re-emerge media-libs/gd with USE=\"${gdflags}\""
-		eerror "${diemsg}"
-		die "${diemsg}"
-	fi
-
-	# bug 202781
-	if use cairo && ! built_with_use x11-libs/cairo svg ; then
-		eerror "x11-libs/cairo has to be built with svg support"
-		die "emerge x11-libs/cairo with USE=\"svg\""
-	fi
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	[[ ${CHOST} == *-darwin* ]] && \
 		sed -i -e 's/\.so/.dylib/g' tclpkg/gv/Makefile.am
 
@@ -137,8 +110,10 @@ src_unpack() {
 	# This is an old version of libtool
 	rm -rf libltdl
 	sed -i -e '/libltdl/d' configure.ac || die
+	sed -i -e 's/AC_LIBLTDL_CONVENIENCE/AC_LIBLTDL_INSTALLABLE/' configure.ac || die
 	# this breaks, and it seems we don't need this "workaround"
-	sed -i -e 's/\$DARWIN9/forgetit/' configure.ac || die
+# check it! -- grobian@20090709
+#	sed -i -e 's/\$DARWIN9/forgetit/' configure.ac || die
 
 	# Update this file from our local libtool which is much newer than the
 	# bundled one. This allows MAKEOPTS=-j2 to work on FreeBSD.
@@ -158,50 +133,49 @@ src_unpack() {
 	sed -i -e 's:  :\t:g' doc/info/Makefile.am || die
 
 	# fix for interix.
-	epatch "${FILESDIR}"/${PN}-2.18-interix.patch
-	epatch "${FILESDIR}"/${PN}-2.20.2-interix.patch
+	#epatch "${FILESDIR}"/${PN}-2.18-interix.patch
+	#epatch "${FILESDIR}"/${PN}-2.20.2-interix.patch
 
 	eautoreconf
 }
 
-src_compile() {
-	local myconf
+src_configure() {
+	# libtool file collision, bug 276609
+	local myconf="--disable-ltdl-install"
 
 	# Core functionality:
 	# All of X, cairo-output, gtk need the pango+cairo functionality
-	if use gtk ; then
-		myconf="${myconf} --with-x"
-	elif use cairo ; then
+	if use gtk || use cairo; then
 		myconf="${myconf} --with-x"
 	else
 		myconf="${myconf} --without-x"
 	fi
 	myconf="${myconf}
-		$(use_with cgraph)
-		$(use_with gtk)
 		$(use_with cairo pangocairo)
-		--without-ming
+		$(use_with gtk)
+		$(use_with lasi)
 		--with-digcola
-		--with-ipsepcola
 		--with-fontconfig
 		--with-freetype2
+		--with-ipsepcola
 		--with-libgd
-		--without-gdk-pixbuf"
+		--without-gdk-pixbuf
+		--without-ming"
 
 	# new/experimental features, to be tested, disable for now
 	myconf="${myconf}
-		--without-sfdp
-		--without-smyrna
+		--without-cgraph
+		--without-devil
 		--without-digcola
-		--without-ipsepcola"
-
-	use gtk && myconf="${myconf} $(use_with gnome gnomeui)"
+		--without-ipsepcola
+		--without-sfdp
+		--without-smyrna"
 
 	# Bindings:
 	myconf="${myconf}
 		--disable-guile
-		$(use_enable java)
 		--disable-io
+		$(use_enable java)
 		--disable-lua
 		--disable-ocaml
 		$(use_enable perl)
@@ -214,10 +188,7 @@ src_compile() {
 
 	econf \
 		--enable-ltdl \
-		${myconf} \
-		|| die "econf failed"
-
-	emake || die "emake failed"
+		${myconf}
 }
 
 src_install() {
