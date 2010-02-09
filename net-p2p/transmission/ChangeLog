@@ -1,6 +1,11 @@
 # ChangeLog for net-p2p/transmission
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.102 2009/12/29 18:03:00 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.103 2010/02/04 08:03:12 remi Exp $
+
+*transmission-1.77 (04 Feb 2010)
+
+  04 Feb 2010; Rémi Cardona <remi@gentoo.org> +transmission-1.77.ebuild:
+  bump to 1.77
 
   29 Dec 2009; Raúl Porcel <armin76@gentoo.org> transmission-1.72.ebuild,
   transmission-1.75.ebuild, transmission-1.76.ebuild:
