@@ -1,6 +1,13 @@
 # ChangeLog for app-text/djvu
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.100 2010/01/25 13:32:04 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/djvu/ChangeLog,v 1.101 2010/02/01 07:27:39 pva Exp $
+
+*djvu-3.5.22-r1 (01 Feb 2010)
+
+  01 Feb 2010; Peter Volkov <pva@gentoo.org> +djvu-3.5.22-r1.ebuild:
+  Dropped qt3 support => djviewer gone, while browser plugin is now in
+  djview4, bug #298293. Respect CFLAGS, bug #263688, thank Maciej Mrozowski
+  for report.
 
   25 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> djvu-3.5.22.ebuild:
   Require SLOT="0" of media-libs/jpeg for headers.
