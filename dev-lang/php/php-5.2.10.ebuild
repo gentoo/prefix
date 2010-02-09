@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.10.ebuild,v 1.7 2009/06/30 13:33:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.10.ebuild,v 1.8 2010/01/31 19:53:09 tove Exp $
 
 CGI_SAPI_USE="discard-path force-cgi-redirect"
 APACHE2_SAPI_USE="concurrentmodphp threads"
@@ -529,7 +529,7 @@ pkg_postinst() {
 }
 
 src_test() {
-	vecho ">>> Test phase [test]: ${CATEGORY}/${PF}"
+	echo ">>> Test phase [test]: ${CATEGORY}/${PF}"
 	if [[ ! -x "${S}"/php-cli ]]; then
 		ewarn "Running the php test suite requires USE=cli"
 		return

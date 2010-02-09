@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.367 2010/01/05 19:56:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.368 2010/01/31 19:53:09 tove Exp $
+
+  31 Jan 2010; Torsten Veller <tove@gentoo.org> php-5.2.9-r2.ebuild,
+  php-5.2.10.ebuild, php-5.2.10-r1.ebuild, php-5.2.10-r2.ebuild,
+  php-5.2.11.ebuild, php-5.2.11-r1.ebuild, php-5.2.12.ebuild:
+  Change vecho to echo
 
   05 Jan 2010; Raúl Porcel <armin76@gentoo.org> php-5.2.12.ebuild:
   ia64/s390/sh/sparc stable wrt #293888
