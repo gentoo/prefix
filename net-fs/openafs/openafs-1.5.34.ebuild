@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/openafs-1.5.34.ebuild,v 1.2 2008/12/26 11:26:21 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/openafs-1.5.34.ebuild,v 1.3 2010/02/06 10:50:02 ulm Exp $
 
 inherit flag-o-matic eutils toolchain-funcs versionator pam
 
@@ -11,7 +11,7 @@ SRC_URI="http://openafs.org/dl/${PV}/${P}-src.tar.bz2
 	doc? ( http://openafs.org/dl/${PV}/${P}-doc.tar.bz2 )
 	mirror://gentoo/${PN}-gentoo-${PATCHVER}.tar.bz2"
 
-LICENSE="IBM openafs-krb5 openafs-krb5-a APSL-2 sun-rpc"
+LICENSE="IBM BSD openafs-krb5-a APSL-2 sun-rpc"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="debug kerberos pam doc"

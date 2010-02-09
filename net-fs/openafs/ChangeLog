@@ -1,6 +1,13 @@
 # ChangeLog for net-fs/openafs
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/ChangeLog,v 1.161 2009/08/30 09:27:33 stefaan Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/ChangeLog,v 1.162 2010/02/06 10:50:02 ulm Exp $
+
+  06 Feb 2010; Ulrich Mueller <ulm@gentoo.org> openafs-1.4.6.ebuild,
+  openafs-1.4.6_p20080222.ebuild, openafs-1.4.7.ebuild,
+  openafs-1.4.8_pre3.ebuild, openafs-1.4.8.ebuild, openafs-1.4.8-r1.ebuild,
+  openafs-1.4.9.ebuild, openafs-1.4.10.ebuild, openafs-1.4.11.ebuild,
+  openafs-1.5.34.ebuild:
+  Fix LICENSE, bug 301123.
 
 *openafs-1.4.11 (30 Aug 2009)
 
