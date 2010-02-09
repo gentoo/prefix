@@ -1,6 +1,9 @@
 # ChangeLog for dev-util/buildbot
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.52 2009/12/14 08:29:26 djc Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.53 2010/02/08 08:58:25 pva Exp $
+
+  08 Feb 2010; Peter Volkov <pva@gentoo.org> buildbot-0.7.11_p3.ebuild:
+  Add inherit eutils for epatch and enewuser.
 
   14 Dec 2009; Dirkjan Ochtman <djc@gentoo.org> metadata.xml:
   Add upstream developer to metadata.

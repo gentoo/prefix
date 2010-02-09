@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.7.11_p3.ebuild,v 1.8 2009/09/11 19:31:31 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.7.11_p3.ebuild,v 1.9 2010/02/08 08:58:25 pva Exp $
 
 EAPI=1
 NEED_PYTHON="2.4"
@@ -8,7 +8,7 @@ NEED_PYTHON="2.4"
 MY_PV="${PV/_p/p}"
 MY_P="${PN}-${MY_PV}"
 
-inherit distutils
+inherit eutils distutils
 
 DESCRIPTION="A Python system to automate the compile/test cycle to validate code changes"
 HOMEPAGE="http://buildbot.net/"
