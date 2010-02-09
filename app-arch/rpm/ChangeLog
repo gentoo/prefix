@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/rpm
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.104 2009/09/06 19:27:42 idl0r Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.105 2010/02/08 09:01:27 pva Exp $
+
+  08 Feb 2010; Peter Volkov <pva@gentoo.org> rpm-5.0.0.ebuild,
+  rpm-5.0.3.ebuild, rpm-5.1.6.ebuild:
+  Add inherit eutils for enewgroup and enewuser.
 
   06 Sep 2009; Christian Ruppert <idl0r@gentoo.org>
   -files/rpm-4.0.4-gentoo-uclibc.patch, -files/rpm-4.0.4-sandbox.patch,

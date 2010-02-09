@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-5.1.6.ebuild,v 1.3 2009/09/05 13:26:49 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-5.1.6.ebuild,v 1.4 2010/02/08 09:01:27 pva Exp $
 
-inherit multilib distutils python
+inherit eutils multilib distutils python
 
 MY_P=${P/_alpha/a}
 MY_P=${P/_beta/b}
