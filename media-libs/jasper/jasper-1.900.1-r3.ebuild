@@ -11,7 +11,7 @@ SRC_URI="http://www.ece.uvic.ca/~mdadams/jasper/software/jasper-${PV}.zip
 
 LICENSE="JasPer2.0"
 SLOT="0"
-KEYWORDS="~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="opengl jpeg"
 
 RDEPEND="jpeg? ( media-libs/jpeg )"
