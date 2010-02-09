@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/ufed
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.76 2010/01/26 22:56:47 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.77 2010/02/01 20:35:05 hwoarang Exp $
+
+  01 Feb 2010; Markos Chandras <hwoarang@gentoo.org> ufed-0.40.1.ebuild:
+  Stable on amd64 wrt bug #300519
 
   26 Jan 2010; Tiago Cunha <tcunha@gentoo.org> ufed-0.40.1.ebuild:
   stable sparc, bug 300519
