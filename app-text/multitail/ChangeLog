@@ -1,6 +1,13 @@
 # ChangeLog for app-text/multitail
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/multitail/ChangeLog,v 1.70 2009/08/01 17:49:09 darkside Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/multitail/ChangeLog,v 1.71 2010/02/03 21:47:59 jlec Exp $
+
+*multitail-5.2.2-r1 (03 Feb 2010)
+
+  03 Feb 2010; Justin Lecher (jlec) <jlec@gentoo.org>
+  +files/5.2.2-as-needed.patch, +multitail-5.2.2-r1.ebuild:
+  Adding as-needed patch, fixing 274700, thanks idl0r and Gef Lebster for
+  providing patches
 
   01 Aug 2009; Jeremy Olexa <darkside@gentoo.org> -multitail-4.2.0.ebuild,
   -multitail-5.2.0.ebuild, -multitail-5.2.1.ebuild:
