@@ -1,6 +1,10 @@
 # ChangeLog for www-apps/trac
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.96 2010/01/23 17:21:25 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.97 2010/02/08 08:36:10 pva Exp $
+
+  08 Feb 2010; Peter Volkov <pva@gentoo.org> trac-0.11.5.ebuild,
+  trac-0.11.6.ebuild:
+  Add inherit eutils for enewgroup and enewuser
 
   23 Jan 2010; Dirkjan Ochtman <djc@gentoo.org> trac-0.11.5.ebuild,
   trac-0.11.6.ebuild:

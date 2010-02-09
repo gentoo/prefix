@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.5.ebuild,v 1.6 2010/01/23 17:21:25 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.5.ebuild,v 1.7 2010/02/08 08:36:10 pva Exp $
 
 EAPI=2
 
-inherit distutils webapp
+inherit eutils distutils webapp
 
 MY_PV=${PV/_beta/b}
 MY_P=Trac-${MY_PV}
