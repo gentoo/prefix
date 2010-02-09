@@ -1,6 +1,16 @@
 # ChangeLog for www-servers/nginx
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.242 2010/01/24 15:50:21 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.244 2010/02/02 08:39:21 djc Exp $
+
+*nginx-0.8.33 (02 Feb 2010)
+*nginx-0.7.65 (02 Feb 2010)
+
+  02 Feb 2010; Dirkjan Ochtman <djc@gentoo.org> +nginx-0.7.65.ebuild,
+  +nginx-0.8.33.ebuild:
+  Version bump 0.7.x and 0.8.x branches.
+
+  01 Feb 2010; Markus Meier <maekke@gentoo.org> nginx-0.7.64.ebuild:
+  amd64 stable, bug #293785
 
 *nginx-0.8.32 (24 Jan 2010)
 
