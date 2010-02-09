@@ -1,6 +1,26 @@
 # ChangeLog for app-misc/mc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.180 2010/01/13 11:34:51 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/ChangeLog,v 1.186 2010/02/07 14:32:25 armin76 Exp $
+
+  07 Feb 2010; Raúl Porcel <armin76@gentoo.org> mc-4.7.0.1.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #302733
+
+*mc-4.7.0.2 (06 Feb 2010)
+
+  06 Feb 2010; Alex Alexander <wired@gentoo.org> +mc-4.7.0.2.ebuild:
+  [app-misc/mc] version bump to 4.7.0.2
+
+  04 Feb 2010; Jeroen Roovers <jer@gentoo.org> mc-4.7.0.1.ebuild:
+  Stable for HPPA (bug #302733).
+
+  01 Feb 2010; Christian Faulhammer <fauli@gentoo.org> mc-4.7.0.1.ebuild:
+  stable x86, bug 302733
+
+  01 Feb 2010; Brent Baude <ranger@gentoo.org> mc-4.7.0.1.ebuild:
+  stable ppc64, bug 302733
+
+  01 Feb 2010; Markos Chandras <hwoarang@gentoo.org> mc-4.7.0.1.ebuild:
+  Stable on amd64 wrt bug #302733
 
 *mc-4.7.0.1 (13 Jan 2010)
 

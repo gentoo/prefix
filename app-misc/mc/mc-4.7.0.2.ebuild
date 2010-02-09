@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0.1.ebuild,v 1.6 2010/02/07 14:32:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/mc/mc-4.7.0.2.ebuild,v 1.1 2010/02/06 12:46:18 wired Exp $
 
 EAPI=2
 MY_P=${P/_/-}
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
 IUSE="+edit gpm nls samba slang X"
 
-RDEPEND=">=dev-libs/glib-2.14:2
+RDEPEND=">=dev-libs/glib-2.8:2
 	gpm? ( sys-libs/gpm )
 	kernel_linux? ( sys-fs/e2fsprogs )
 	samba? ( net-fs/samba )
