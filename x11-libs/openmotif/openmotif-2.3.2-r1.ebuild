@@ -1,19 +1,27 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.2.ebuild,v 1.13 2010/02/06 15:47:55 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/openmotif-2.3.2-r1.ebuild,v 1.2 2010/02/06 15:51:36 ulm Exp $
+
+EAPI=3
 
 inherit autotools eutils flag-o-matic multilib
 
 DOC_P=${PN}-2.3.0
 DESCRIPTION="Open Motif"
 HOMEPAGE="http://www.motifzone.net/"
-SRC_URI="ftp://ftp.ics.com/openmotif/${PV%.*}/${PV}/${P}.tar.gz
-	doc? ( http://www.motifzone.net/files/documents/${DOC_P}-manual.pdf.tgz )"
+SRC_URI="ftp://ftp.ics.com/openmotif/${PV%.*}/${PV}/${P}.tar.gz"
 
-LICENSE="MOTIF MIT doc? ( OPL )"
+LICENSE="MOTIF MIT"
 SLOT="0"
 KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc examples jpeg png unicode xft"
+# License allows usage only on "open source operating systems"
+RESTRICT="!kernel_linux? (
+	!kernel_FreeBSD? (
+	!kernel_Darwin? (
+	!kernel_SunOS? (
+		fetch bindist
+	) ) ) )"
 
 # make people unmerge motif-config and all previous slots
 # since the slotting is finally gone now
@@ -22,6 +30,7 @@ RDEPEND="!x11-libs/motif-config
 	!<=x11-libs/openmotif-2.3.0
 	x11-libs/libXmu
 	x11-libs/libXp
+	doc? ( app-doc/openmotif-manual )
 	unicode? ( virtual/libiconv )
 	xft? ( x11-libs/libXft )
 	jpeg? ( media-libs/jpeg )
@@ -31,12 +40,27 @@ DEPEND="${RDEPEND}
 	sys-devel/flex
 	x11-misc/xbitmaps"
 
+pkg_nofetch() {
+	local line
+	while read line; do einfo "${line}"; done <<-EOF
+	From the Open Motif license: "This software is subject to an open
+	license. It may only be used on, with or for operating systems which
+	are themselves open source systems. You must contact The Open Group
+	for a license allowing distribution and sublicensing of this software
+	on, with, or for operating systems which are not open source programs."
+
+	If you have got such a license, you may download the file:
+	${SRC_URI}
+	and place it in ${DISTDIR}.
+	EOF
+}
+
 pkg_setup() {
 	# clean up orphaned cruft left over by motif-config
 	local i l count=0
-	for i in "${EROOT}"usr/bin/{mwm,uil,xmbind} \
-		"${EROOT}"usr/include/{Xm,uil,Mrm} \
-		"${EROOT}"usr/$(get_libdir)/lib{Xm,Uil,Mrm}.*; do
+	for i in "${EROOT}"/usr/bin/{mwm,uil,xmbind} \
+		"${EROOT}"/usr/include/{Xm,uil,Mrm} \
+		"${EROOT}"/usr/$(get_libdir)/lib{Xm,Uil,Mrm}.*; do
 		[[ -L "${i}" ]] || continue
 		l=$(readlink "${i}")
 		if [[ ${l} == *openmotif-* || ${l} == *lesstif-* ]]; then
@@ -45,7 +69,7 @@ pkg_setup() {
 		fi
 	done
 
-	cd "${EROOT}"usr/share/man
+	cd "${EROOT}"/usr/share/man
 	for i in $(find . -type l); do
 		l=$(readlink "${i}")
 		if [[ ${l} == *-openmotif-* || ${l} == *-lesstif-* ]]; then
@@ -54,15 +78,14 @@ pkg_setup() {
 		fi
 	done
 	[[ ${count} -ne 0 ]] && \
-		einfo "Cleaned up ${count} orphaned symlinks in ${EROOT}usr/share/man"
+		einfo "Cleaned up ${count} orphaned symlinks in ${EROOT}/usr/share/man"
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}/${PN}-2.3.1-multilist-stipple.patch" #215984
 	epatch "${FILESDIR}/${PN}-2.3.1-ac-editres.patch" #82081
 	epatch "${FILESDIR}/${P}-ldflags.patch" #293573
+	epatch "${FILESDIR}/${P}-sanitise-paths.patch"
 
 	# disable compilation of demo binaries
 	sed -i -e '/^SUBDIRS/{:x;/\\$/{N;bx;};s/[ \t\n\\]*demos//;}' Makefile.am
@@ -70,15 +93,13 @@ src_unpack() {
 	# add X.Org vendor string to aliases for virtual bindings
 	echo -e '"The X.Org Foundation"\t\t\t\t\tpc' >>bindings/xmbind.alias
 
-	# remove non-prefix paths
-	epatch "${FILESDIR}"/${PN}-2.3.1-prefix-sanitise.patch
 	# Solaris 11 fix
 	[[ ${CHOST} == *-solaris2.11 ]] && epatch "${FILESDIR}"/${PN}-2.3.1-solaris-2.11.patch
 
 	AT_M4DIR=.  eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	if use !elibc_glibc; then
 		# configure script is messed up in libiconv detection (thinks it isn't
 		# necessary)
@@ -103,12 +124,20 @@ src_compile() {
 	[[ ${CHOST} == *-solaris2.11 ]] && \
 		append-flags -DNEED_XOS_R_H=1
 
+	if use !elibc_glibc && use !elibc_uclibc && use unicode; then
+		# libiconv detection in configure script doesn't always work
+		# http://bugs.motifzone.net/show_bug.cgi?id=1423
+		export LIBS="${LIBS} -liconv"
+	fi
+
 	econf --with-x \
 		$(use_enable unicode utf8) \
 		$(use_enable xft) \
 		$(use_enable jpeg) \
 		$(use_enable png)
+}
 
+src_compile() {
 	emake -j1 || die "emake failed"
 }
 
@@ -132,15 +161,11 @@ src_install() {
 	rm -rf "${ED}"/usr/share/Xm
 
 	dodoc BUGREPORT ChangeLog README RELEASE RELNOTES TODO
-	use doc && cp "${WORKDIR}"/*.pdf "${ED}"/usr/share/doc/${PF}
 }
 
 pkg_postinst() {
 	local line
 	while read line; do elog "${line}"; done <<-EOF
-	Gentoo is no longer providing slotted Open Motif libraries.
-	See bug 204249 and its dependencies for the reasons.
-
 	From the Open Motif 2.3.0 (upstream) release notes:
 	"Open Motif 2.3 is an updated version of 2.2. Any applications
 	built against a previous 2.x release of Open Motif will be binary

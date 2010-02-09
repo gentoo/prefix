@@ -1,6 +1,13 @@
 # ChangeLog for x11-libs/openmotif
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.225 2009/12/15 09:22:29 ulm Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/openmotif/ChangeLog,v 1.226 2010/02/06 15:47:55 ulm Exp $
+
+*openmotif-2.3.2-r1 (06 Feb 2010)
+
+  06 Feb 2010; Ulrich Mueller <ulm@gentoo.org> -openmotif-2.3.1.1.ebuild,
+  +openmotif-2.3.2-r1.ebuild, +files/openmotif-2.3.2-sanitise-paths.patch:
+  Prepare for prefix support. Change EAPI to 3. Move PDF documentation into
+  separate package. Remove old.
 
   15 Dec 2009; Ulrich Mueller <ulm@gentoo.org> openmotif-2.3.1.1.ebuild,
   openmotif-2.3.2.ebuild:
