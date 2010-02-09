@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/fcgi-2.4.1_pre0910052249.ebuild,v 1.1 2010/01/30 08:29:43 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/fcgi-2.4.1_pre0910052249.ebuild,v 1.2 2010/02/01 11:24:28 flameeyes Exp $
 
 EAPI="2"
 
@@ -25,6 +25,7 @@ src_prepare() {
 	epatch "${FILESDIR}/fcgi-2.4.0-clientdata-pointer.patch"
 	epatch "${FILESDIR}/fcgi-2.4.0-html-updates.patch"
 	epatch "${FILESDIR}"/fcgi-2.4.1_pre0311112127-gcc44.patch
+	epatch "${FILESDIR}"/${P}-link.patch
 
 	eautoreconf
 }

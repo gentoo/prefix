@@ -1,6 +1,28 @@
 # ChangeLog for dev-libs/fcgi
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.40 2010/01/30 08:29:43 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/ChangeLog,v 1.45 2010/02/04 00:05:41 jer Exp $
+
+  04 Feb 2010; Jeroen Roovers <jer@gentoo.org>
+  fcgi-2.4.1_pre0311112127.ebuild:
+  Stable for PPC (bug #302477).
+
+  03 Feb 2010; Jeroen Roovers <jer@gentoo.org>
+  fcgi-2.4.1_pre0311112127.ebuild:
+  Stable for HPPA (bug #302477).
+
+  03 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  fcgi-2.4.1_pre0311112127.ebuild:
+  stable x86, bug 302477
+
+  01 Feb 2010; Brent Baude <ranger@gentoo.org>
+  fcgi-2.4.1_pre0311112127.ebuild:
+  stable ppc64, bug 302477
+
+  01 Feb 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  fcgi-2.4.1_pre0910052249.ebuild,
+  +files/fcgi-2.4.1_pre0910052249-link.patch:
+  Properly link and install libfcgi++. Closes bug #157821 after over three
+  years. Rejoice.
 
 *fcgi-2.4.1_pre0910052249 (30 Jan 2010)
 
