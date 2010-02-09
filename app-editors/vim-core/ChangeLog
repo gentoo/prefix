@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/vim-core
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.318 2009/12/17 10:51:49 fauli Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.321 2010/02/07 20:12:57 maekke Exp $
+
+  07 Feb 2010; Markus Meier <maekke@gentoo.org> vim-core-7.2.303.ebuild:
+  amd64/arm/x86 stable, bug #301975
+
+  01 Feb 2010; Brent Baude <ranger@gentoo.org> vim-core-7.2.303.ebuild:
+  Marking vim-core-7.2.303 ppc for bug 301975
+
+  01 Feb 2010; Brent Baude <ranger@gentoo.org> vim-core-7.2.303.ebuild:
+  Marking vim-core-7.2.303 ppc64 for bug 301975
 
   17 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
   vim-core-7.2.303.ebuild:
