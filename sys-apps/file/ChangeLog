@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/file
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.178 2010/01/25 02:54:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/ChangeLog,v 1.179 2010/02/04 18:25:47 arfrever Exp $
+
+  04 Feb 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  file-5.03.ebuild, file-5.04.ebuild:
+  Set PYTHON_DEPEND. Set SUPPORT_PYTHON_ABIS. Unset DISTUTILS_DISABLE_PYTHON_DEPENDENCY.
+  Restrict installation for Python 3.
 
 *file-5.04 (25 Jan 2010)
 

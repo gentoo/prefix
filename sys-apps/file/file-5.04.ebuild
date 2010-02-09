@@ -1,8 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.04.ebuild,v 1.1 2010/01/25 02:54:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/file/file-5.04.ebuild,v 1.2 2010/02/04 18:25:47 arfrever Exp $
 
-DISTUTILS_DISABLE_PYTHON_DEPENDENCY="1"
+PYTHON_DEPEND="python? 2"
+SUPPORT_PYTHON_ABIS="1"
 
 inherit eutils distutils autotools flag-o-matic
 
@@ -17,8 +18,9 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 
 IUSE="python"
 
-DEPEND="python? ( virtual/python )"
-RDEPEND="${DEPEND}"
+DEPEND=""
+RDEPEND=""
+RESTRICT_PYTHON_ABIS="3.*"
 
 src_unpack() {
 	unpack ${P}.tar.gz
