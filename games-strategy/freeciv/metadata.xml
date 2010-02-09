@@ -4,5 +4,6 @@
   <herd>games</herd>
   <use>
     <flag name="auth">Add authentication capability</flag>
+    <flag name="ggz">Add support for GGZ Gaming Zone</flag>
   </use>
 </pkgmetadata>
