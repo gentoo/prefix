@@ -1,6 +1,23 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.155 2010/01/29 04:48:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.159 2010/02/08 18:08:41 nixnut Exp $
+
+  08 Feb 2010; nixnut <nixnut@gentoo.org> rxvt-unicode-9.07.ebuild:
+  ppc stable #303305
+
+  08 Feb 2010; Jeroen Roovers <jer@gentoo.org> rxvt-unicode-9.07.ebuild:
+  Stable for HPPA (bug #303305).
+
+  07 Feb 2010; Markos Chandras <hwoarang@gentoo.org>
+  rxvt-unicode-9.07.ebuild:
+  Stable on amd64 wrt bug #303305
+
+*rxvt-unicode-9.07-r1 (03 Feb 2010)
+
+  03 Feb 2010; Jeroen Roovers <jer@gentoo.org>
+  +files/rxvt-unicode-9.06-font-width.patch, +rxvt-unicode-9.07-r1.ebuild:
+  Add character width patch thanks to Slava Gorbunov (bug #277830). Do not
+  evaluate USE flags in subshell. Die when emake fails.
 
   29 Jan 2010; Jeroen Roovers <jer@gentoo.org>
   +files/rxvt-unicode-9.05_no-MOTIF-WM-INFO.patch:

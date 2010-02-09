@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-9.07.ebuild,v 1.4 2010/02/08 18:08:41 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-9.07-r1.ebuild,v 1.1 2010/02/03 05:07:45 jer Exp $
 
 EAPI="2"
 
@@ -33,7 +33,7 @@ src_prepare() {
 	fi
 	epatch "${FILESDIR}"/${PN}-9.06-case-insensitive-fs.patch
 
-	if (use xterm-color || use wcwidth); then
+	if { use xterm-color || use wcwidth; }; then
 		ewarn "You enabled xterm-color or wcwidth or both."
 		ewarn "Please note that neither of them are supported by upstream."
 		ewarn "You are at your own if you run into problems."
@@ -86,6 +86,7 @@ src_prepare() {
 		ewarn "Gentoo community."
 		ebeep 5
 		epatch "${FILESDIR}"/${PN}-9.05_no-MOTIF-WM-INFO.patch
+		epatch "${FILESDIR}"/${PN}-9.06-font-width.patch
 	fi
 
 	eautoreconf
@@ -108,7 +109,7 @@ src_configure() {
 }
 
 src_compile() {
-	emake || die
+	emake || die "emake failed"
 
 	sed -i \
 		-e 's/RXVT_BASENAME = "rxvt"/RXVT_BASENAME = "urxvt"/' \
