@@ -1,6 +1,10 @@
 # ChangeLog for x11-themes/gtk-engines-nimbus
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.24 2009/12/28 16:33:04 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-nimbus/ChangeLog,v 1.25 2010/02/03 20:34:31 maekke Exp $
+
+  03 Feb 2010; Markus Meier <maekke@gentoo.org>
+  gtk-engines-nimbus-0.1.4.ebuild:
+  amd64/x86 stable, bug #301073
 
   28 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org> metadata.xml:
   Relinquish this to maintainer-needed.
