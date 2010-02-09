@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/elfutils-0.143.ebuild,v 1.1 2009/09/26 21:53:40 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/elfutils/elfutils-0.144.ebuild,v 1.1 2010/02/04 08:12:04 dirtyepic Exp $
 
 inherit eutils
 
@@ -34,6 +34,8 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-0.118-PaX-support.patch
+	epatch "${FILESDIR}"/${PN}-0.143-configure.patch #287130
+	epatch "${FILESDIR}"/${P}-sloppy-include.patch
 	find . -name Makefile.in -print0 | xargs -0 sed -i -e 's:-W\(error\|extra\)::g'
 	use test || sed -i -e 's: tests::' Makefile.in #226349
 }
@@ -51,7 +53,7 @@ src_compile() {
 
 src_test() {
 	env LD_LIBRARY_PATH="${S}/libelf:${S}/libebl:${S}/libdw:${S}/libasm" \
-		make check || die "test failed"
+		emake -j1 check || die "test failed"
 }
 
 src_install() {

@@ -1,0 +1,114 @@
+From b337b1fd5f3b3410fe522a690ccee70bce8519ee Mon Sep 17 00:00:00 2001
+From: Roland McGrath <roland@redhat.com>
+Date: Fri, 15 Jan 2010 01:02:27 -0800
+Subject: [PATCH] Fix sloppy #include use, breaks with latest glibc.
+
+---
+ src/ChangeLog |    8 ++++++++
+ src/ar.c      |    3 ++-
+ src/elflint.c |    1 +
+ src/readelf.c |    1 +
+ src/strip.c   |    3 ++-
+ src/unstrip.c |    3 ++-
+ 6 files changed, 16 insertions(+), 3 deletions(-)
+
+diff --git a/src/ChangeLog b/src/ChangeLog
+index c4b5b05..ee1b733 100644
+--- a/src/ChangeLog
++++ b/src/ChangeLog
+@@ -1,3 +1,11 @@
++2010-01-15  Roland McGrath  <roland@redhat.com>
++
++	* ar.c: Include <sys/stat.h>.
++	* elflint.c: Likewise.
++	* readelf.c: Likewise.
++	* strip.c: Likewise.
++	* unstrip.c: Likewise
++
+ 2010-01-07  Roland McGrath  <roland@redhat.com>
+ 
+ 	* readelf.c (print_ehdr): Handle PN_XNUM.
+diff --git a/src/ar.c b/src/ar.c
+index 5d7a6e7..149d116 100644
+--- a/src/ar.c
++++ b/src/ar.c
+@@ -1,5 +1,5 @@
+ /* Create, modify, and extract from archives.
+-   Copyright (C) 2005, 2007, 2009 Red Hat, Inc.
++   Copyright (C) 2005-2010 Red Hat, Inc.
+    Written by Ulrich Drepper <drepper@redhat.com>, 2005.
+ 
+    Red Hat elfutils is free software; you can redistribute it and/or modify
+@@ -45,6 +45,7 @@
+ #include <time.h>
+ #include <unistd.h>
+ #include <sys/mman.h>
++#include <sys/stat.h>
+ #include <sys/time.h>
+ 
+ #include <system.h>
+diff --git a/src/elflint.c b/src/elflint.c
+index 63d8389..531122b 100644
+--- a/src/elflint.c
++++ b/src/elflint.c
+@@ -42,6 +42,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <unistd.h>
++#include <sys/stat.h>
+ #include <sys/param.h>
+ 
+ #include <elf-knowledge.h>
+diff --git a/src/readelf.c b/src/readelf.c
+index 4464866..6ba259c 100644
+--- a/src/readelf.c
++++ b/src/readelf.c
+@@ -49,6 +49,7 @@
+ #include <time.h>
+ #include <unistd.h>
+ #include <sys/param.h>
++#include <sys/stat.h>
+ 
+ #include <system.h>
+ #include "../libelf/libelfP.h"
+diff --git a/src/strip.c b/src/strip.c
+index 32cf0d7..7b2b889 100644
+--- a/src/strip.c
++++ b/src/strip.c
+@@ -1,5 +1,5 @@
+ /* Discard section not used at runtime from object files.
+-   Copyright (C) 2000-2008, 2009 Red Hat, Inc.
++   Copyright (C) 2000-2010 Red Hat, Inc.
+    This file is part of Red Hat elfutils.
+    Written by Ulrich Drepper <drepper@redhat.com>, 2000.
+ 
+@@ -46,6 +46,7 @@
+ #include <string.h>
+ #include <unistd.h>
+ #include <sys/param.h>
++#include <sys/stat.h>
+ #include <sys/time.h>
+ 
+ #include <elf-knowledge.h>
+diff --git a/src/unstrip.c b/src/unstrip.c
+index 284607b..0984e6b 100644
+--- a/src/unstrip.c
++++ b/src/unstrip.c
+@@ -1,5 +1,5 @@
+ /* Combine stripped files with separate symbols and debug information.
+-   Copyright (C) 2007, 2009 Red Hat, Inc.
++   Copyright (C) 2007-2010 Red Hat, Inc.
+    This file is part of Red Hat elfutils.
+    Written by Roland McGrath <roland@redhat.com>, 2007.
+ 
+@@ -52,6 +52,7 @@
+ #include <stdlib.h>
+ #include <string.h>
+ #include <unistd.h>
++#include <sys/stat.h>
+ 
+ #include <gelf.h>
+ #include <libebl.h>
+-- 
+1.6.2.5
+
