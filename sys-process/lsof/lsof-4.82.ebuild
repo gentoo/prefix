@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.82.ebuild,v 1.8 2010/01/24 17:56:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/lsof/lsof-4.82.ebuild,v 1.9 2010/02/01 17:58:35 hwoarang Exp $
 
 inherit flag-o-matic toolchain-funcs eutils
 
