@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.3.0_rc8-r1.ebuild,v 1.1 2010/01/11 10:27:28 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/gentoolkit-0.3.0_rc8-r1.ebuild,v 1.2 2010/02/05 20:48:48 fuzzyray Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -42,6 +42,11 @@ src_prepare() {
 		-e "s|=/etc|=${EPREFIX}/etc|g"
 	eend $?
 	eprefixify data/revdep-rebuild/99revdep-rebuild bin/revdep-rebuild bin/eclean setup.py
+}
+
+distutils_src_compile_pre_hook() {
+	echo VERSION="$PVR" "$(PYTHON)" setup.py set_version
+	VERSION="$PVR" "$(PYTHON)" setup.py set_version
 }
 
 src_install() {

@@ -1,6 +1,11 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.177 2010/01/11 18:57:19 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.178 2010/02/05 20:48:48 fuzzyray Exp $
+
+  05 Feb 2010; Paul Varner <fuzzyray@gentoo.org>
+  gentoolkit-0.3.0_rc8-r1.ebuild:
+  Update ebuild to run 'setup.py set_version' to set the gentoolkit version
+  number to PVR
 
   11 Jan 2010; Paul Varner <fuzzyray@gentoo.org> gentoolkit-9999.ebuild:
   Fix previous commit.
