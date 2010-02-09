@@ -1,6 +1,31 @@
 # ChangeLog for dev-tex/luatex
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.51 2010/01/26 23:25:12 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.58 2010/02/05 19:53:01 armin76 Exp $
+
+  05 Feb 2010; Raúl Porcel <armin76@gentoo.org> luatex-0.50.0-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #290464
+
+  05 Feb 2010; Markus Meier <maekke@gentoo.org> luatex-0.50.0-r1.ebuild:
+  arm stable, bug #301943
+
+  04 Feb 2010; Markus Meier <maekke@gentoo.org> luatex-0.50.0-r1.ebuild:
+  x86 stable, bug #301943
+
+  04 Feb 2010; Markus Meier <maekke@gentoo.org> luatex-0.50.0.ebuild:
+  arm stable, bug #301943
+
+  04 Feb 2010; Jeroen Roovers <jer@gentoo.org> luatex-0.50.0-r1.ebuild:
+  Stable for HPPA (bug #301943).
+
+*luatex-0.50.0-r1 (04 Feb 2010)
+
+  04 Feb 2010; Alexis Ballier <aballier@gentoo.org>
+  +luatex-0.50.0-r1.ebuild:
+  disable largefile in kpathsea too to avoid sizeof(off_t) mismatch between
+  different .c files. Bug #302273
+
+  03 Feb 2010; Markus Meier <maekke@gentoo.org> luatex-0.50.0.ebuild:
+  amd64 stable, bug #301943
 
   26 Jan 2010; Alexis Ballier <aballier@gentoo.org> -luatex-0.46.0.ebuild,
   -luatex-0.47.0.ebuild:
