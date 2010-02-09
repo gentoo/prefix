@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/mercurial
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.122 2010/01/29 18:28:41 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/ChangeLog,v 1.124 2010/02/01 20:31:55 djc Exp $
+
+*mercurial-1.4.3 (01 Feb 2010)
+
+  01 Feb 2010; Dirkjan Ochtman <djc@gentoo.org> +mercurial-1.4.3.ebuild:
+  Newly released 1.4.3.
+
+  01 Feb 2010; Dirkjan Ochtman <djc@gentoo.org> -mercurial-1.2.1.ebuild,
+  -mercurial-1.3.1-r1.ebuild:
+  Remove old versions.
 
   29 Jan 2010; Raúl Porcel <armin76@gentoo.org> mercurial-1.4.1.ebuild:
   alpha/ia64/sparc wrt #299312

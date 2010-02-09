@@ -1,19 +1,21 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.2.1.ebuild,v 1.7 2009/07/25 10:02:01 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.4.3.ebuild,v 1.1 2010/02/01 20:31:55 djc Exp $
+
+EAPI=2
 
 inherit bash-completion elisp-common flag-o-matic eutils distutils prefix
 
 DESCRIPTION="Scalable distributed SCM"
-HOMEPAGE="http://www.selenic.com/mercurial/"
-SRC_URI="http://www.selenic.com/mercurial/release/${P}.tar.gz"
+HOMEPAGE="http://mercurial.selenic.com/"
+SRC_URI="http://mercurial.selenic.com/release/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="bugzilla emacs gpg test tk zsh-completion"
 
-CDEPEND=">=dev-lang/python-2.3"
+CDEPEND=">=dev-lang/python-2.4[threads]"
 RDEPEND="${CDEPEND}
 	bugzilla? ( dev-python/mysql-python )
 	gpg? ( app-crypt/gnupg )
@@ -54,11 +56,11 @@ src_install() {
 	dodoc CONTRIBUTORS PKG-INFO README doc/*.txt
 	cp hgweb*.cgi "${ED}"/usr/share/doc/${PF}/
 
+	dobin hgeditor
 	dobin contrib/hgk
-	dobin contrib/hg-relink
 	dobin contrib/hg-ssh
 
-	rm -f contrib/hgk contrib/hg-relink contrib/hg-ssh
+	rm -f contrib/hgk contrib/hg-ssh
 
 	rm -f contrib/bash_completion
 	cp -r contrib "${ED}"/usr/share/doc/${PF}/
@@ -77,8 +79,6 @@ EOF
 }
 
 src_test() {
-	local testdir="${T}/tests"
-	mkdir -p -m1777 "${testdir}" || die
 	cd "${S}/tests/"
 	rm -rf *svn*				# Subversion tests fail with 1.5
 	rm -f test-archive			# Fails due to verbose tar output changes
@@ -97,6 +97,8 @@ src_test() {
 		rm -f test-permissions		# Test is broken when run as root
 		rm -f test-pull-permission	# Test is broken when run as root
 	fi
+	local testdir="${T}/tests"
+	rm -rf "${testdir}"
 	einfo "Running Mercurial tests ..."
 	python run-tests.py --tmpdir="${testdir}" || die "test failed"
 }
