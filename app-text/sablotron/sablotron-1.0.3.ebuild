@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/sablotron/sablotron-1.0.3.ebuild,v 1.11 2009/06/19 21:40:17 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/sablotron/sablotron-1.0.3.ebuild,v 1.12 2010/02/06 14:19:59 tove Exp $
 
 inherit base autotools
 
@@ -27,6 +27,7 @@ PATCHES="${FILESDIR}/1.0.3-libsablot-expat.patch"
 src_unpack() {
 	base_src_unpack
 
+	cd "${S}"
 	eautoreconf
 	elibtoolize
 }
