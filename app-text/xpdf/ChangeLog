@@ -1,6 +1,15 @@
 # ChangeLog for app-text/xpdf
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.183 2009/10/27 13:35:23 loki_val Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/ChangeLog,v 1.186 2010/02/08 18:24:05 nixnut Exp $
+
+  08 Feb 2010; nixnut <nixnut@gentoo.org> xpdf-3.02-r4.ebuild:
+  ppc stable #303461
+
+  07 Feb 2010; Raúl Porcel <armin76@gentoo.org> xpdf-3.02-r4.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #303461
+
+  07 Feb 2010; Christian Faulhammer <fauli@gentoo.org> xpdf-3.02-r4.ebuild:
+  stable x86, bug 303461
 
 *xpdf-3.02-r4 (27 Oct 2009)
 
