@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.17.ebuild,v 1.3 2009/11/05 21:27:46 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.17.ebuild,v 1.4 2010/02/03 11:27:28 caster Exp $
 
 inherit versionator java-vm-2 eutils pax-utils
 
@@ -180,7 +180,4 @@ pkg_postinst() {
 		elog "For more info see https://jdk6.dev.java.net/plugin2/"
 		elog
 	fi
-
-	elog "Please reinstall eclipse-sdk if you have it installed and want"
-	elog "workaround for bug #215150."
 }
