@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.123 2009/12/10 01:27:59 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.132 2010/02/02 22:16:04 robbat2 Exp $
 
 # @ECLASS: mysql.eclass
 # @MAINTAINER:
@@ -18,7 +18,18 @@
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="latest"
 
-inherit eutils flag-o-matic gnuconfig autotools mysql_fx versionator
+inherit eutils flag-o-matic gnuconfig autotools mysql_fx versionator toolchain-funcs
+
+# Shorten the path because the socket path length must be shorter than 107 chars
+# and we will run a mysql server during test phase
+S="${WORKDIR}/mysql"
+
+[[ "${MY_EXTRAS_VER}" == "latest" ]] && MY_EXTRAS_VER="20090228-0714Z"
+if [[ "${MY_EXTRAS_VER}" == "live" ]]; then
+	EGIT_PROJECT=mysql-extras
+	EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/mysql-extras.git"
+	inherit git
+fi
 
 case "${EAPI:-0}" in
 	2)
@@ -41,17 +52,6 @@ case "${EAPI:-0}" in
 	*)
 		die "Unsupported EAPI: ${EAPI}" ;;
 esac
-
-# Shorten the path because the socket path length must be shorter than 107 chars
-# and we will run a mysql server during test phase
-S="${WORKDIR}/mysql"
-
-[[ "${MY_EXTRAS_VER}" == "latest" ]] && MY_EXTRAS_VER="20090228-0714Z"
-if [[ "${MY_EXTRAS_VER}" == "live" ]]; then
-	EGIT_PROJECT=mysql-extras
-	EGIT_REPO_URI="git://git.overlays.gentoo.org/proj/mysql-extras.git"
-	inherit git
-fi
 
 # @ECLASS-VARIABLE: MYSQL_VERSION_ID
 # @DESCRIPTION:
@@ -85,7 +85,11 @@ elif [ "${PV#5.0}" != "${PV}" ] && mysql_version_is_at_least "5.0.82"; then
 	MYSQL_COMMUNITY_FEATURES=1
 elif [ "${PV#5.1}" != "${PV}" ] && mysql_version_is_at_least "5.1.28"; then
 	MYSQL_COMMUNITY_FEATURES=1
-elif [ "${PV#5.4}" != "${PV}" ]; then
+elif [ "${PV#5.4}" != "${PV}" ] ; then
+	MYSQL_COMMUNITY_FEATURES=1
+elif [ "${PV#5.5}" != "${PV}" ] ; then
+	MYSQL_COMMUNITY_FEATURES=1
+elif [ "${PV#6.0}" != "${PV}" ] ; then
 	MYSQL_COMMUNITY_FEATURES=1
 else
 	MYSQL_COMMUNITY_FEATURES=0
@@ -136,12 +140,13 @@ PDEPEND="${PDEPEND} =virtual/mysql-$(get_version_component_range 1-2 ${PV})"
 
 # Work out the default SERVER_URI correctly
 if [ -z "${SERVER_URI}" ]; then
+	[ -z "${MY_PV}" ] && MY_PV="${PV//_/-}"
 	# The community build is on the mirrors
 	if [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ]; then
-		SERVER_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/mysql-${PV//_/-}.tar.gz"
+		SERVER_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/mysql-${MY_PV}.tar.gz"
 	# The (old) enterprise source is on the primary site only
 	elif [ "${PN}" == "mysql" ]; then
-		SERVER_URI="ftp://ftp.mysql.com/pub/mysql/src/mysql-${PV//_/-}.tar.gz"
+		SERVER_URI="ftp://ftp.mysql.com/pub/mysql/src/mysql-${MY_PV}.tar.gz"
 	fi
 fi
 
@@ -152,7 +157,8 @@ SRC_URI="${SERVER_URI}"
 [[ ${MY_EXTRAS_VER} != live ]] \
 && SRC_URI="${SRC_URI}
 		mirror://gentoo/mysql-extras-${MY_EXTRAS_VER}.tar.bz2
-		http://g3nt8.org/patches/mysql-extras-${MY_EXTRAS_VER}.tar.bz2"
+		http://g3nt8.org/patches/mysql-extras-${MY_EXTRAS_VER}.tar.bz2
+		http://dev.gentoo.org/~robbat2/distfiles/mysql-extras-${MY_EXTRAS_VER}.tar.bz2"
 
 # PBXT engine
 mysql_version_is_at_least "5.1.12" \
@@ -208,11 +214,42 @@ mysql_version_is_at_least "5.1.26" \
 # @DESCRIPTION:
 # Helper function to disable specific tests.
 mysql_disable_test() {
-	local testname="${1}" ; shift
-	local reason="${@}"
-	local mysql_disable_file="${S}/mysql-test/t/disabled.def"
+	local rawtestname testname testsuite reason mysql_disable_file
+	rawtestname="${1}" ; shift
+	reason="${@}"
+	ewarn "test '${rawtestname}' disabled: '${reason}'"
+	
+	testsuite="${rawtestname/.*}"
+	testname="${rawtestname/*.}"
+	mysql_disable_file="${S}/mysql-test/t/disabled.def"
+	#einfo "rawtestname=${rawtestname} testname=${testname} testsuite=${testsuite}"
 	echo ${testname} : ${reason} >> "${mysql_disable_file}"
-	ewarn "test '${testname}' disabled: '${reason}'"
+
+	# ${S}/mysql-tests/t/disabled.def
+	#
+	# ${S}/mysql-tests/suite/federated/disabled.def
+	#
+	# ${S}/mysql-tests/suite/jp/t/disabled.def
+	# ${S}/mysql-tests/suite/ndb/t/disabled.def
+	# ${S}/mysql-tests/suite/rpl/t/disabled.def
+	# ${S}/mysql-tests/suite/parts/t/disabled.def
+	# ${S}/mysql-tests/suite/rpl_ndb/t/disabled.def
+	# ${S}/mysql-tests/suite/ndb_team/t/disabled.def
+	# ${S}/mysql-tests/suite/binlog/t/disabled.def
+	# ${S}/mysql-tests/suite/innodb/t/disabled.def
+	if [ -n "${testsuite}" ]; then
+		for mysql_disable_file in \
+			${S}/mysql-test/suite/${testsuite}/disabled.def  \
+			${S}/mysql-test/suite/${testsuite}/t/disabled.def  \
+			FAILED ; do
+			[ -f "${mysql_disable_file}" ] && break
+		done
+		if [ "${mysql_disabled_file}" != "FAILED" ]; then
+			echo "${testname} : ${reason}" >> "${mysql_disable_file}"
+		else
+			ewarn "Could not find testsuite disabled.def location for ${rawtestname}"
+		fi
+	fi
 }
 
 # @FUNCTION: mysql_init_vars
@@ -466,23 +503,25 @@ configure_51() {
 	local plugins="csv,myisam,myisammrg,heap"
 	if use extraengine ; then
 		# like configuration=max-no-ndb, archive and example removed in 5.1.11
-		plugins="${plugins},archive,blackhole,example,federated,partition"
+		# not added yet: ibmdb2i
+		# Not supporting as examples: example,daemon_example,ftexample 
+		plugins="${plugins},archive,blackhole,federated,partition"
 
 		elog "Before using the Federated storage engine, please be sure to read"
 		elog "http://dev.mysql.com/doc/refman/5.1/en/federated-limitations.html"
 	fi
 
-	# Upstream specifically requests that InnoDB always be built.
-	plugins="${plugins},innobase"
+	# Upstream specifically requests that InnoDB always be built:
+	# - innobase, innodb_plugin
+	# Build falcon if available for 6.x series.
+	for i in innobase innodb_plugin falcon ; do
+		[ -e "${S}"/storage/${i} ] && plugins="${plugins},${i}"
+	done
 
 	# like configuration=max-no-ndb
 	if use cluster ; then
 		plugins="${plugins},ndbcluster"
 		myconf="${myconf} --with-ndb-binlog"
-	fi
-
-	if mysql_version_is_at_least "5.2" ; then
-		plugins="${plugins},falcon"
 	fi
 
 	myconf="${myconf} --with-plugins=${plugins}"
@@ -559,6 +598,14 @@ mysql_pkg_setup() {
 	&& use minimal ; then
 		eerror "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
 		die "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
+	fi
+
+	# Bug #290570 fun. Upstream made us need a fairly new GCC4.
+	if mysql_version_is_at_least "5.0.83" ; then
+		GCC_VER=$(gcc-version)
+		case ${GCC_VER} in
+			2*|3*|4.0|4.1|4.2) die "Active GCC too old! Must have at least GCC4.3" ;;
+		esac
 	fi
 
 	# This should come after all of the die statements

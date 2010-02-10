@@ -1,19 +1,17 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.69 2010/01/10 17:24:32 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/distutils.eclass,v 1.72 2010/02/08 09:35:38 pva Exp $
 
 # @ECLASS: distutils.eclass
 # @MAINTAINER:
-# <python@gentoo.org>
+# Gentoo Python Project <python@gentoo.org>
 #
 # Original author: Jon Nelson <jnelson@gentoo.org>
-# @BLURB: This eclass allows easier installation of distutils-based python modules
+# @BLURB: Eclass for packages with build systems using Distutils
 # @DESCRIPTION:
-# The distutils eclass is designed to allow easier installation of
-# distutils-based python modules and their incorporation into
-# the Gentoo Linux system.
+# The distutils eclass defines phase functions for packages with build systems using Distutils
 
-inherit eutils multilib python
+inherit multilib python
 
 case "${EAPI:-0}" in
 	0|1)
@@ -24,7 +22,7 @@ case "${EAPI:-0}" in
 		;;
 esac
 
-if [[ -z "${DISTUTILS_DISABLE_PYTHON_DEPENDENCY}" ]]; then
+if [[ -z "${PYTHON_DEPEND}" ]]; then
 	DEPEND="virtual/python"
 	RDEPEND="${DEPEND}"
 fi
@@ -32,6 +30,7 @@ fi
 if has "${EAPI:-0}" 0 1 2; then
 	python="python"
 else
+	# Use "$(PYTHON)" or "$(PYTHON -A)" instead of "${python}".
 	python="die"
 fi
 
@@ -43,6 +42,42 @@ fi
 # @DESCRIPTION:
 # Global options passed to setup.py.
 
+# @ECLASS-VARIABLE: DISTUTILS_SRC_TEST
+# @DESCRIPTION:
+# Type of test command used by distutils_src_test().
+# IUSE and DEPEND are automatically adjusted, unless DISTUTILS_DISABLE_TEST_DEPENDENCY is set.
+# Valid values:
+#   setup.py
+#   nosetests
+#   py.test
+#   trial [arguments]
+
+# @ECLASS-VARIABLE: DISTUTILS_DISABLE_TEST_DEPENDENCY
+# @DESCRIPTION:
+# Disable modification of IUSE and DEPEND caused by setting of DISTUTILS_SRC_TEST.
+
+if [[ -n "${DISTUTILS_SRC_TEST}" && ! "${DISTUTILS_SRC_TEST}" =~ ^(setup\.py|nosetests|py\.test|trial(\ .*)?)$ ]]; then
+	die "'DISTUTILS_SRC_TEST' variable has unsupported value '${DISTUTILS_SRC_TEST}'"
+fi
+
+if [[ -z "${DISTUTILS_DISABLE_TEST_DEPENDENCY}" ]]; then
+	if [[ "${DISTUTILS_SRC_TEST}" == "nosetests" ]]; then
+		IUSE="test"
+		DEPEND+="${DEPEND:+ }test? ( dev-python/nose )"
+	elif [[ "${DISTUTILS_SRC_TEST}" == "py.test" ]]; then
+		IUSE="test"
+		DEPEND+="${DEPEND:+ }test? ( dev-python/py )"
+	# trial requires an argument, which is usually equal to "${PN}".
+	elif [[ "${DISTUTILS_SRC_TEST}" =~ ^trial(\ .*)?$ ]]; then
+		IUSE="test"
+		DEPEND+="${DEPEND:+ }test? ( dev-python/twisted )"
+	fi
+fi
+
+if [[ -n "${DISTUTILS_SRC_TEST}" ]]; then
+	EXPORT_FUNCTIONS src_test
+fi
+
 # @ECLASS-VARIABLE: DISTUTILS_DISABLE_VERSIONING_OF_PYTHON_SCRIPTS
 # @DESCRIPTION:
 # Set this to disable renaming of Python scripts containing versioned shebangs
@@ -50,7 +85,23 @@ fi
 
 # @ECLASS-VARIABLE: DOCS
 # @DESCRIPTION:
-# Additional DOCS
+# Additional documentation files installed by distutils_src_install().
+
+_distutils_get_build_dir() {
+	if [[ -n "${SUPPORT_PYTHON_ABIS}" && -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]]; then
+		echo "build-${PYTHON_ABI}"
+	else
+		echo "build"
+	fi
+}
+
+_distutils_get_PYTHONPATH() {
+	if [[ -n "${SUPPORT_PYTHON_ABIS}" && -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]]; then
+		ls -d build-${PYTHON_ABI}/lib* 2> /dev/null
+	else
+		ls -d build/lib* 2> /dev/null
+	fi
+}
 
 _distutils_hook() {
 	if [[ "$#" -ne 1 ]]; then
@@ -63,7 +114,7 @@ _distutils_hook() {
 
 # @FUNCTION: distutils_src_unpack
 # @DESCRIPTION:
-# The distutils src_unpack function, this function is exported.
+# The distutils src_unpack function. This function is exported.
 distutils_src_unpack() {
 	if [[ "${EBUILD_PHASE}" != "unpack" ]]; then
 		die "${FUNCNAME}() can be used only in src_unpack() phase"
@@ -77,14 +128,13 @@ distutils_src_unpack() {
 
 # @FUNCTION: distutils_src_prepare
 # @DESCRIPTION:
-# The distutils src_prepare function, this function is exported.
+# The distutils src_prepare function. This function is exported.
 distutils_src_prepare() {
 	if ! has "${EAPI:-0}" 0 1 && [[ "${EBUILD_PHASE}" != "prepare" ]]; then
 		die "${FUNCNAME}() can be used only in src_prepare() phase"
 	fi
 
-	# Delete ez_setup files to prevent packages from installing
-	# Setuptools on their own.
+	# Delete ez_setup files to prevent packages from installing Setuptools on their own.
 	local ez_setup_existence="0"
 	[[ -d ez_setup || -f ez_setup.py ]] && ez_setup_existence="1"
 	rm -fr ez_setup*
@@ -92,8 +142,7 @@ distutils_src_prepare() {
 		echo "def use_setuptools(*args, **kwargs): pass" > ez_setup.py
 	fi
 
-	# Delete distribute_setup files to prevent packages from installing
-	# Distribute on their own.
+	# Delete distribute_setup files to prevent packages from installing Distribute on their own.
 	local distribute_setup_existence="0"
 	[[ -d distribute_setup || -f distribute_setup.py ]] && distribute_setup_existence="1"
 	rm -fr distribute_setup*
@@ -108,58 +157,78 @@ distutils_src_prepare() {
 
 # @FUNCTION: distutils_src_compile
 # @DESCRIPTION:
-# The distutils src_compile function, this function is exported.
-# In newer EAPIs this function calls distutils_src_compile_pre_hook() and
-# distutils_src_compile_post_hook(), if they are defined.
+# The distutils src_compile function. This function is exported.
+# In ebuilds of packages supporting installation for multiple versions of Python, this function
+# calls distutils_src_compile_pre_hook() and distutils_src_compile_post_hook(), if they are defined.
 distutils_src_compile() {
 	if [[ "${EBUILD_PHASE}" != "compile" ]]; then
 		die "${FUNCNAME}() can be used only in src_compile() phase"
 	fi
 
-	if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-		if [[ -n "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]]; then
-			building() {
-				_distutils_hook pre
+	if [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+		distutils_building() {
+			_distutils_hook pre
 
-				echo "$(PYTHON)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@"
-				"$(PYTHON)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@" || return "$?"
+			echo "$(PYTHON)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build -b "$(_distutils_get_build_dir)" "$@"
+			"$(PYTHON)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build -b "$(_distutils_get_build_dir)" "$@" || return "$?"
 
-				_distutils_hook post
-			}
-			python_execute_function -s building "$@"
-		else
-			building() {
-				_distutils_hook pre
-
-				echo "$(PYTHON)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build -b "build-${PYTHON_ABI}" "$@"
-				"$(PYTHON)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build -b "build-${PYTHON_ABI}" "$@" || return "$?"
-
-				_distutils_hook post
-			}
-			python_execute_function building "$@"
-		fi
+			_distutils_hook post
+		}
+		python_execute_function ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} distutils_building "$@"
 	else
 		echo "$(PYTHON -A)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@"
 		"$(PYTHON -A)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" build "$@" || die "Building failed"
 	fi
 }
 
+# @FUNCTION: distutils_src_test
+# @DESCRIPTION:
+# The distutils src_test function. This function is exported, when DISTUTILS_SRC_TEST variable is set.
+distutils_src_test() {
+	if [[ "${DISTUTILS_SRC_TEST}" == "setup.py" ]]; then
+		if [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+			distutils_testing() {
+				echo PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" $([[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo build -b "$(_distutils_get_build_dir)") test "$@"
+				PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" $([[ -z "${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES}" ]] && echo build -b "$(_distutils_get_build_dir)") test "$@"
+			}
+			python_execute_function ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} distutils_testing "$@"
+		else
+			echo PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON -A)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" test "$@" || die "Testing failed"
+			PYTHONPATH="$(_distutils_get_PYTHONPATH)" "$(PYTHON -A)" setup.py "${DISTUTILS_GLOBAL_OPTIONS[@]}" test "$@" || die "Testing failed"
+		fi
+	elif [[ "${DISTUTILS_SRC_TEST}" == "nosetests" ]]; then
+		python_execute_nosetests -P '$(_distutils_get_PYTHONPATH)' ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} -- "$@"
+	elif [[ "${DISTUTILS_SRC_TEST}" == "py.test" ]]; then
+		python_execute_py.test -P '$(_distutils_get_PYTHONPATH)' ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} -- "$@"
+	# trial requires an argument, which is usually equal to "${PN}".
+	elif [[ "${DISTUTILS_SRC_TEST}" =~ ^trial(\ .*)?$ ]]; then
+		local trial_arguments
+		if [[ "${DISTUTILS_SRC_TEST}" == "trial "* ]]; then
+			trial_arguments="${DISTUTILS_SRC_TEST#trial }"
+		else
+			trial_arguments="${PN}"
+		fi
+
+		python_execute_trial -P '$(_distutils_get_PYTHONPATH)' ${DISTUTILS_USE_SEPARATE_SOURCE_DIRECTORIES:+-s} -- ${trial_arguments} "$@"
+	else
+		die "'DISTUTILS_SRC_TEST' variable has unsupported value '${DISTUTILS_SRC_TEST}'"
+	fi
+}
+
 # @FUNCTION: distutils_src_install
 # @DESCRIPTION:
-# The distutils src_install function, this function is exported.
-# In newer EAPIs this function calls distutils_src_install_pre_hook() and
-# distutils_src_install_post_hook(), if they are defined.
-# It also installs the "standard docs" (CHANGELOG, Change*, KNOWN_BUGS, MAINTAINERS,
-# PKG-INFO, CONTRIBUTORS, TODO, NEWS, MANIFEST*, README*, and AUTHORS)
+# The distutils src_install function. This function is exported.
+# In ebuilds of packages supporting installation for multiple versions of Python, this function
+# calls distutils_src_install_pre_hook() and distutils_src_install_post_hook(), if they are defined.
+# It also installs some standard documentation files (AUTHORS, Change*, CHANGELOG, CONTRIBUTORS,
+# KNOWN_BUGS, MAINTAINERS, MANIFEST*, NEWS, PKG-INFO, README*, TODO).
 distutils_src_install() {
 	if [[ "${EBUILD_PHASE}" != "install" ]]; then
 		die "${FUNCNAME}() can be used only in src_install() phase"
 	fi
 
-	local pylibdir
-
-	if ! has "${EAPI:-0}" 0 1 2 || [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
-		if [[ -z "${DISTUTILS_DISABLE_VERSIONING_OF_PYTHON_SCRIPTS}" && "${BASH_VERSINFO[0]}" -ge "4" ]]; then
+	if [[ -n "${SUPPORT_PYTHON_ABIS}" ]]; then
+		if [[ -z "${DISTUTILS_DISABLE_VERSIONING_OF_PYTHON_SCRIPTS}" && "${BASH_VERSINFO[0]}" -ge 4 ]]; then
 			declare -A wrapper_scripts=()
 
 			rename_scripts_with_versioned_shebangs() {
@@ -268,8 +337,10 @@ distutils_src_install() {
 
 # @FUNCTION: distutils_pkg_postinst
 # @DESCRIPTION:
-# This is a generic optimization, you should override it if your package
-# installs modules in another directory. This function is exported.
+# The distutils pkg_postinst function. This function is exported.
+# When PYTHON_MODNAME variable is set, then this function calls python_mod_optimize() with modules
+# specified in PYTHON_MODNAME variable. Otherwise it calls python_mod_optimize() with module, whose
+# name is equal to name of current package, if this module exists.
 distutils_pkg_postinst() {
 	if [[ "${EBUILD_PHASE}" != "postinst" ]]; then
 		die "${FUNCNAME}() can be used only in pkg_postinst() phase"
@@ -295,7 +366,10 @@ distutils_pkg_postinst() {
 
 # @FUNCTION: distutils_pkg_postrm
 # @DESCRIPTION:
-# Generic pyc/pyo cleanup script. This function is exported.
+# The distutils pkg_postrm function. This function is exported.
+# When PYTHON_MODNAME variable is set, then this function calls python_mod_cleanup() with modules
+# specified in PYTHON_MODNAME variable. Otherwise it calls python_mod_cleanup() with module, whose
+# name is equal to name of current package, if this module exists.
 distutils_pkg_postrm() {
 	if [[ "${EBUILD_PHASE}" != "postrm" ]]; then
 		die "${FUNCNAME}() can be used only in pkg_postrm() phase"
@@ -329,10 +403,10 @@ distutils_pkg_postrm() {
 
 # @FUNCTION: distutils_python_version
 # @DESCRIPTION:
-# Calls python_version, so that you can use something like
-# e.g. insinto $(python_get_includedir)
+# Deprecated wrapper function for deprecated python_version().
 distutils_python_version() {
 	if ! has "${EAPI:-0}" 0 1 2; then
+		eerror "Use PYTHON() and/or python_get_*() instead of ${FUNCNAME}()."
 		die "${FUNCNAME}() cannot be used in this EAPI"
 	fi
 
@@ -341,9 +415,10 @@ distutils_python_version() {
 
 # @FUNCTION: distutils_python_tkinter
 # @DESCRIPTION:
-# Checks for if tkinter support is compiled into python
+# Deprecated wrapper function for python_tkinter_exists().
 distutils_python_tkinter() {
 	if ! has "${EAPI:-0}" 0 1 2; then
+		eerror "Use python_tkinter_exists() instead of ${FUNCNAME}()."
 		die "${FUNCNAME}() cannot be used in this EAPI"
 	fi
 
