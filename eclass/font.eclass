@@ -1,37 +1,33 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.47 2009/10/11 11:44:42 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/font.eclass,v 1.48 2010/02/09 17:15:08 scarabeus Exp $
 
 # @ECLASS: font.eclass
 # @MAINTAINER:
 # fonts@gentoo.org
-#
+
+# Author: Tomáš Chvátal <scarabeus@gentoo.org>
 # Author: foser <foser@gentoo.org>
 # @BLURB: Eclass to make font installation uniform
 
 inherit eutils
 
-
 EXPORT_FUNCTIONS pkg_setup src_install pkg_postinst pkg_postrm
-
-#
-# Variable declarations
-#
 
 # @ECLASS-VARIABLE: FONT_SUFFIX
 # @DESCRIPTION:
 # Space delimited list of font suffixes to install
-FONT_SUFFIX=${FONT_SUFFIX:-}
+FONT_SUFFIX=${FONT_SUFFIX:=}
 
 # @ECLASS-VARIABLE: FONT_S
 # @DESCRIPTION:
 # Dir containing the fonts
-FONT_S=${S}
+FONT_S=${FONT_S:=${S}}
 
 # @ECLASS-VARIABLE: FONT_PN
 # @DESCRIPTION:
 # Last part of $FONTDIR
-FONT_PN=${FONT_PN:-${PN}}
+FONT_PN=${FONT_PN:=${PN}}
 
 # @ECLASS-VARIABLE: FONTDIR
 # @DESCRIPTION:
@@ -124,11 +120,11 @@ font_src_install() {
 	rm -f fonts.{dir,scale} encodings.dir
 
 	font_xfont_config
-	font_xft_config
 	font_fontconfig
 
-	cd "${S}"
-	dodoc ${DOCS} 2> /dev/null
+	popd > /dev/null
+
+	[[ -n ${DOCS} ]] && { dodoc ${DOCS} || die "docs installation failed" ; }
 
 	# install common docs
 	for commondoc in COPYRIGHT README{,.txt} NEWS AUTHORS BUGS ChangeLog FONTLOG.txt; do
