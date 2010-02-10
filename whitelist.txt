@@ -255,6 +255,7 @@ dev-libs/nettle
 dev-libs/oniguruma
 dev-libs/rasqal
 dev-libs/redland
+dev-libs/redland-bindings
 dev-libs/soprano
 dev-libs/syck
 dev-libs/tre
