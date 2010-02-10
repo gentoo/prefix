@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.91 2010/01/17 01:09:04 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.92 2010/02/08 11:04:01 ssuominen Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -48,7 +48,7 @@ if [[ -n ${WANT_AUTOCONF} ]] ; then
 fi
 DEPEND="${_automake_atom}
 	${_autoconf_atom}"
-[[ ${CATEGORY}/${PN} != "sys-devel/libtool" ]] && DEPEND="${DEPEND} sys-devel/libtool"
+[[ ${CATEGORY}/${PN} != "sys-devel/libtool" ]] && DEPEND="${DEPEND} >=sys-devel/libtool-2.2.6b"
 RDEPEND=""
 unset _automake_atom _autoconf_atom
 
