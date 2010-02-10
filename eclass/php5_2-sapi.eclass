@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.28 2010/01/27 12:06:22 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/php5_2-sapi.eclass,v 1.29 2010/02/05 09:40:59 aballier Exp $
 
 # ========================================================================
 # Based on robbat2's work on the php4 sapi eclass
@@ -72,7 +72,7 @@ DEPEND="adabas? ( >=dev-db/unixODBC-1.8.13 )
 		kerberos? ( virtual/krb5 )
 		ldap? ( !oci8? ( >=net-nds/openldap-1.2.11 ) )
 		ldap-sasl? ( !oci8? ( dev-libs/cyrus-sasl >=net-nds/openldap-1.2.11 ) )
-		libedit? ( || ( sys-freebsd/freebsd-lib dev-libs/libedit ) )
+		libedit? ( dev-libs/libedit )
 		mcve? ( >=dev-libs/openssl-0.9.7 )
 		mhash? ( app-crypt/mhash )
 		mssql? ( dev-db/freetds )
