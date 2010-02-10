@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.121 2010/01/13 15:15:45 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/perl-module.eclass,v 1.122 2010/02/03 00:20:07 hanno Exp $
 #
 # Author: Seemant Kulleen <seemant@gentoo.org>
 
@@ -39,7 +39,7 @@ EXPORT_FUNCTIONS ${PERL_EXPF}
 
 DESCRIPTION="Based on the $ECLASS eclass"
 
-LICENSE="${LICENSE:-|| ( Artistic GPL-2 )}"
+LICENSE="${LICENSE:-|| ( Artistic GPL-1 GPL-2 GPL-3 )}"
 
 [[ -z "${SRC_URI}" && -z "${MODULE_A}" ]] && MODULE_A="${MY_P:-${P}}.tar.gz"
 [[ -z "${SRC_URI}" && -n "${MODULE_AUTHOR}" ]] && \
