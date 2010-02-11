@@ -229,8 +229,10 @@ dev-lang/ucblogo
 dev-lang/yasm
 dev-libs/botan
 dev-libs/darts
+dev-libs/dotconf
 dev-libs/fribidi
 dev-libs/libatomic_ops
+dev-libs/libattica
 dev-libs/libdshconfig
 dev-libs/libebml
 dev-libs/libedit
@@ -256,6 +258,7 @@ dev-libs/oniguruma
 dev-libs/rasqal
 dev-libs/redland
 dev-libs/redland-bindings
+dev-libs/shared-desktop-ontologies
 dev-libs/soprano
 dev-libs/syck
 dev-libs/tre
@@ -808,6 +811,7 @@ x11-wm/twm
 x11-wm/windowmaker
 
 # entire categories
+app-accessibility
 app-doc
 app-emacs
 app-pda
