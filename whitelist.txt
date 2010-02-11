@@ -721,6 +721,7 @@ x11-libs/libsvg-cairo
 x11-libs/libxkbfile
 x11-libs/libxkbui
 x11-libs/neXtaw
+x11-libs/openmotif
 x11-libs/qt
 x11-libs/qt-assistant
 x11-libs/qt-core
