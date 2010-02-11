@@ -231,7 +231,7 @@ src_configure() {
 	fi
 
 	# http://bugs.gentoo.org/show_bug.cgi?id=302137
-	[[ ${CHOST} == powerpc-*-darwin8 ]] && is-flag "-mtune=*" \
+	[[ ${CHOST} == powerpc-*-darwin* ]] && is-flag "-mtune=*" \
 		&& replace-flags -O2 -O3
 
 	if tc-is-cross-compiler; then
