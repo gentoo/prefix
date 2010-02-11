@@ -927,8 +927,7 @@ case $ROOT in
 	;;
 esac
 
-CFLAGS="-O2 -pipe"
-CXXFLAGS="${CFLAGS:--O2 -pipe}"
+CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
 PORTDIR=${ROOT}/usr/portage
 DISTDIR=${PORTDIR}/distfiles
 PORTAGE_TMPDIR=${ROOT}/var/tmp
@@ -939,7 +938,7 @@ GENTOO_MIRROR=${GENTOO_MIRROR:="http://distfiles.gentoo.org/distfiles"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
 GENTOO_URL=${GENTOO_URL:="http://gentoo.osuosl.org"}
 
-export CFLAGS CXXFLAGS MAKE
+export MAKE
 
 
 einfo "Bootstrapping Gentoo prefixed portage installation using"
