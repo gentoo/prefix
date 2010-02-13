@@ -1,6 +1,17 @@
 # ChangeLog for app-editors/gvim
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.303 2010/02/07 20:13:44 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.306 2010/02/12 19:27:25 lack Exp $
+
+*gvim-7.2.359 (12 Feb 2010)
+
+  12 Feb 2010; Jim Ramsay <lack@gentoo.org> +gvim-7.2.359.ebuild:
+  Version bump to 7.2.359
+
+  10 Feb 2010; Raúl Porcel <armin76@gentoo.org> gvim-7.2.303.ebuild:
+  alpha/ia64/sparc stable wrt #301975
+
+  09 Feb 2010; Jeroen Roovers <jer@gentoo.org> gvim-7.2.303.ebuild:
+  Stable for HPPA (bug #301975).
 
   07 Feb 2010; Markus Meier <maekke@gentoo.org> gvim-7.2.303.ebuild:
   amd64/x86 stable, bug #301975
