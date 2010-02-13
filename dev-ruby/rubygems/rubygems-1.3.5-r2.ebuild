@@ -49,9 +49,9 @@ each_ruby_install() {
 	# rubygems tries to create GEM_HOME if it doesn't exist, upsetting sandbox,
 	# bug #202109. Since 1.2.0 we also need to set GEM_PATH
 	# for this reason, bug #230163.
-	export GEM_HOME="${ED}${gemsitedir}"
+	export GEM_HOME="${D}${gemsitedir}"
 	export GEM_PATH="${GEM_HOME}/"
-	keepdir ${gemsitedir}/{doc,gems,cache,specifications}
+	keepdir ${gemsitedir#${EPREFIX}}/{doc,gems,cache,specifications}
 
 	myconf=""
 	if ! use doc; then
