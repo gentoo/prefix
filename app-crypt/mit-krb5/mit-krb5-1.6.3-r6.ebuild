@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r6.ebuild,v 1.3 2009/04/08 17:53:57 keytoaster Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/mit-krb5-1.6.3-r6.ebuild,v 1.4 2010/01/12 09:32:42 mueli Exp $
 
 inherit eutils flag-o-matic versionator autotools
 
@@ -30,7 +30,7 @@ src_unpack() {
 	unpack ${A}
 	unpack ./${MY_P}.tar.gz
 	cd "${S}"
-	EPATCH_SUFFIX="patch" epatch "${PATCHDIR}"
+	EPATCH_SOURCE="${WORKDIR}/patch" EPATCH_SUFFIX="patch" epatch
 	epatch "${FILESDIR}/CVE-2009-0844+CVE-2009-0847.patch"
 	epatch "${FILESDIR}/CVE-2009-0846.patch"
 
