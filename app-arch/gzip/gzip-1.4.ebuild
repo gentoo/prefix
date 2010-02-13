@@ -26,6 +26,7 @@ src_unpack() {
 	#epatch "${FILESDIR}"/${PN}-1.3.5-rsync.patch
 	epatch "${FILESDIR}"/${PN}-1.3.8-install-symlinks.patch
 
+	epatch "${FILESDIR}"/${P}-asmv.patch
 	epatch "${FILESDIR}"/${PN}-1.3.12-prefix.patch
 	eprefixify gzexe.in
 }
