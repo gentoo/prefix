@@ -160,6 +160,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-sunaudiodev.patch
 	# 64-bits Solaris 8-10 have a missing libcrypt symlink
 	epatch "${FILESDIR}"/${PN}-2.6.2-solaris64-crypt.patch
+	# fixes compilation on more recent OpenSolaris, from them
+	epatch "${FILESDIR}"/${PN}-2.6.4-netpacket-solaris.patch
 	# http://bugs.python.org/issue6308
 	epatch "${FILESDIR}"/${PN}-2.6.2-termios-noqnx.patch
 	# build shared library on aix #278845
