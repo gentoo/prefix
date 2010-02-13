@@ -1,12 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/vim-core-7.2.303.ebuild,v 1.7 2010/02/10 18:47:30 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/vim-core-7.2.359.ebuild,v 1.1 2010/02/12 19:26:31 lack Exp $
 
 EAPI=2
 inherit vim
 
 VIM_VERSION="7.2"
-VIM_CORE_GENTOO_PATCHES="vim-core-${VIM_VERSION}-gentoo-patches.tar.bz2"
+VIM_CORE_GENTOO_PATCHES="vim-core-${VIM_VERSION}-gentoo-patches-r1.tar.bz2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
 VIMRC_FILE_SUFFIX="-r4"
 
