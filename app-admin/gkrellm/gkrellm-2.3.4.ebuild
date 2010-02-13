@@ -37,6 +37,7 @@ pkg_setup() {
 src_prepare() {
 	sed -e 's:-O2 ::' \
 		-e 's:override CC:CFLAGS:' \
+		-e 's:-L/usr/X11R6/lib::' \
 		-i */Makefile || die "sed Makefile(s) failed"
 
 	sed -e 's:#user\tnobody:user\tgkrellmd:' \
