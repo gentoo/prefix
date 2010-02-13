@@ -285,6 +285,11 @@ src_compile_fastbuild() {
 		myconf="${my_conf} --with-pcre-dir=${EPREFIX}/usr"
 		phpconfutils_extension_with "pcre-regex" "pcre" 0 "${EPREFIX}/usr"
 	fi
+	
+	if use xml ; then
+		myconf="${my_conf} --with-libxml-dir=${EPREFIX}/usr"
+		phpconfutils_extension_with "libxml-dir" "xml" 0 "${EPREFIX}/usr"
+	fi
 
 	# Now we know what we are building, build it
 	php5_2-sapi_src_compile
@@ -353,6 +358,11 @@ src_compile_normal() {
 		if use pcre || phpconfutils_usecheck pcre ; then
 			myconf="${my_conf} --with-pcre-dir=${EPREFIX}/usr"
 			phpconfutils_extension_with "pcre-regex" "pcre" 0 "${EPREFIX}/usr"
+		fi
+
+		if use xml ; then
+			myconf="${my_conf} --with-libxml-dir=${EPREFIX}/usr"
+			phpconfutils_extension_with "libxml-dir" "xml" 0 "${EPREFIX}/usr"
 		fi
 
 		# Support the Apache2 extras, they must be set globally for all
