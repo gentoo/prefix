@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.2.303.ebuild,v 1.6 2010/02/10 18:50:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/vim-7.2.359.ebuild,v 1.1 2010/02/12 19:26:57 lack Exp $
 
 EAPI=2
 inherit vim
@@ -26,8 +26,6 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-7.1.319-interix-cflags.patch
 	fi
 	epatch "${FILESDIR}"/${PN}-7.1.285-darwin-x11link.patch
-	# upstream: ftp://ftp.vim.org/pub/vim/patches/7.2/7.2.311
-	epatch "${FILESDIR}"/${PN}-7.2.021-mint.patch
 
 	# interix misses SA_NODEFER
 	epatch "${FILESDIR}"/${PN}-7.2.303-interix.patch

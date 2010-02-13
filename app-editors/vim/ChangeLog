@@ -1,6 +1,17 @@
 # ChangeLog for app-editors/vim
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.339 2010/02/07 20:14:03 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.342 2010/02/12 19:26:57 lack Exp $
+
+*vim-7.2.359 (12 Feb 2010)
+
+  12 Feb 2010; Jim Ramsay <lack@gentoo.org> +vim-7.2.359.ebuild:
+  Version bump to 7.2.359
+
+  10 Feb 2010; Raúl Porcel <armin76@gentoo.org> vim-7.2.303.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #301975
+
+  09 Feb 2010; Jeroen Roovers <jer@gentoo.org> vim-7.2.303.ebuild:
+  Stable for HPPA (bug #301975).
 
   07 Feb 2010; Markus Meier <maekke@gentoo.org> vim-7.2.303.ebuild:
   amd64/arm/x86 stable, bug #301975
