@@ -1104,6 +1104,7 @@ dev-java/junit-addons
 dev-java/junitperf
 dev-java/jvyamlb
 dev-java/jzlib
+dev-java/lucene-analyzers
 dev-java/mockobjects
 dev-java/msv
 dev-java/mx4j-core
