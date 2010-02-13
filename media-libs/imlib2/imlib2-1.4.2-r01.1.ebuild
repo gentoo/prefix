@@ -35,7 +35,7 @@ src_unpack() {
 src_compile() {
 	# imlib2 has diff configure options for x86/amd64 mmx
 	local myconf=""
-	if [[ $(tc-arch) == "amd64" ]] ; then
+	if [[ ${CHOST} == x86_64-* ]] ; then
 		myconf="$(use_enable mmx amd64) --disable-mmx"
 	else
 		myconf="--disable-amd64 $(use_enable mmx)"
