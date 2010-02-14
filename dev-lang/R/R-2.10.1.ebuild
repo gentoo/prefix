@@ -134,8 +134,8 @@ src_install() {
 		|| die "emake install math library failed"
 
 	local mv=$(get_major_version ${RMATH_V})
-	mv  "${D}"/usr/$(get_libdir)/libRmath.so \
-		"${D}"/usr/$(get_libdir)/libRmath.so.${RMATH_V}
+	mv  "${ED}"/usr/$(get_libdir)/libRmath.so \
+		"${ED}"/usr/$(get_libdir)/libRmath.so.${RMATH_V}
 	dosym libRmath.so.${RMATH_V} /usr/$(get_libdir)/libRmath.so.${mv}
 	dosym libRmath.so.${mv} /usr/$(get_libdir)/libRmath.so
 
