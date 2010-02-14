@@ -218,6 +218,7 @@ dev-haskell/regex-posix
 dev-haskell/stm
 dev-haskell/time
 dev-lang/blassic
+dev-lang/cfortran
 dev-lang/cll1h
 dev-lang/gforth
 dev-lang/nasm
@@ -228,6 +229,7 @@ dev-lang/swig
 dev-lang/ucblogo
 dev-lang/yasm
 dev-libs/botan
+dev-libs/cvector
 dev-libs/darts
 dev-libs/dotconf
 dev-libs/fribidi
