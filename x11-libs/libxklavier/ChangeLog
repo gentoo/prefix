@@ -1,6 +1,9 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.139 2010/01/16 17:07:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.140 2010/02/15 04:30:42 abcd Exp $
+
+  15 Feb 2010; Jonathan Callen <abcd@gentoo.org> libxklavier-4.0.ebuild:
+  Add missing '\' to econf command, causing options to be ignored
 
   16 Jan 2010; Raúl Porcel <armin76@gentoo.org> libxklavier-4.0.ebuild:
   sh stable

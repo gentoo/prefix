@@ -45,7 +45,7 @@ src_compile() {
 	fi
 
 	econf \
-		--disable-static
+		--disable-static \
 		--with-xkb-base="${EPREFIX}"${xkbbase} \
 		--with-xkb-bin-base="${EPREFIX}"/usr/bin \
 		$(use_enable doc gtk-doc)
