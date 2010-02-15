@@ -1,62 +1,8 @@
-diff -ur src.orig/script/ant src/script/ant
---- src.orig/script/ant	2006-12-13 13:16:19 +0100
-+++ src/script/ant	2007-11-20 09:44:19 +0100
-@@ -1,4 +1,4 @@
--#! /bin/sh
-+#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
- 
- # Licensed to the Apache Software Foundation (ASF) under one or more
- # contributor license agreements.  See the NOTICE file distributed with
-diff -ur src.orig/script/antRun src/script/antRun
---- src.orig/script/antRun	2006-12-13 13:16:19 +0100
-+++ src/script/antRun	2007-11-20 09:44:44 +0100
-@@ -1,4 +1,4 @@
--#! /bin/sh
-+#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
- 
- # Licensed to the Apache Software Foundation (ASF) under one or more
- # contributor license agreements.  See the NOTICE file distributed with
-diff -ur src.orig/script/antRun.pl src/script/antRun.pl
---- src.orig/script/antRun.pl	2006-12-13 13:16:20 +0100
-+++ src/script/antRun.pl	2007-11-20 09:44:57 +0100
-@@ -1,4 +1,4 @@
--#!/usr/bin/perl
-+#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl
- #
- # Licensed to the Apache Software Foundation (ASF) under one or more
- #  contributor license agreements.  See the NOTICE file distributed with
-diff -ur src.orig/script/complete-ant-cmd.pl src/script/complete-ant-cmd.pl
---- src.orig/script/complete-ant-cmd.pl	2006-12-13 13:16:19 +0100
-+++ src/script/complete-ant-cmd.pl	2007-11-20 09:45:09 +0100
-@@ -1,4 +1,4 @@
--#!/usr/bin/perl
-+#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl
- #
- #  Licensed to the Apache Software Foundation (ASF) under one or more
- #  contributor license agreements.  See the NOTICE file distributed with
-diff -ur src.orig/script/runant.pl src/script/runant.pl
---- src.orig/script/runant.pl	2006-12-13 13:16:21 +0100
-+++ src/script/runant.pl	2007-11-20 09:45:27 +0100
-@@ -1,4 +1,4 @@
--#!/usr/bin/perl
-+#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl
- #
- # Licensed to the Apache Software Foundation (ASF) under one or more
- #  contributor license agreements.  See the NOTICE file distributed with
-diff -ur src.orig/script/runant.py src/script/runant.py
---- src.orig/script/runant.py	2006-12-13 13:16:21 +0100
-+++ src/script/runant.py	2007-11-20 09:45:36 +0100
-@@ -1,4 +1,4 @@
--#!/usr/bin/python
-+#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/python
- # Licensed to the Apache Software Foundation (ASF) under one or more
- #  contributor license agreements.  See the NOTICE file distributed with
- #  this work for additional information regarding copyright ownership.
 --- build.sh.orig	2007-11-20 09:51:19 +0100
 +++ build.sh	2007-11-20 09:52:28 +0100
 @@ -1,4 +1,4 @@
 -#!/bin/sh
-+#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
++#!/usr/bin/env sh
  
  # Licensed to the Apache Software Foundation (ASF) under one or more
  # contributor license agreements.  See the NOTICE file distributed with
@@ -84,7 +30,7 @@ diff -ur src.orig/script/runant.py src/script/runant.py
  
  if test ! -f bootstrap/lib/ant.jar -o  ! -x bootstrap/bin/ant -o ! -x bootstrap/bin/antRun ; then
 -  /bin/sh ./bootstrap.sh
-+  @GENTOO_PORTAGE_EPREFIX@/bin/sh ./bootstrap.sh
++  sh ./bootstrap.sh
  fi
  
  if test ! -f bootstrap/lib/ant.jar -o  ! -x bootstrap/bin/ant -o ! -x bootstrap/bin/antRun ; then
@@ -92,7 +38,7 @@ diff -ur src.orig/script/runant.py src/script/runant.py
 +++ bootstrap.sh	2007-11-20 09:55:07 +0100
 @@ -1,4 +1,4 @@
 -#!/bin/sh
-+#!@GENTOO_PORTAGE_EPREFIX@/bin/sh
++#!/usr/bin/env sh
  
  # Licensed to the Apache Software Foundation (ASF) under one or more
  # contributor license agreements.  See the NOTICE file distributed with

@@ -18,6 +18,8 @@
 #   Edited for Gentoo Linux
 #   $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/files/1.7.1-ant-r1,v 1.1 2008/11/09 00:19:14 caster Exp $
 
+EPREFIX="@GENTOO_PORTAGE_EPREFIX@"
+
 # Extract launch and ant arguments, (see details below).
 ant_exec_args=
 no_config=false
@@ -48,9 +50,9 @@ if $no_config ; then
   usejikes=$use_jikes_default
 else
   # load system-wide ant configuration (ONLY if ANT_HOME has NOT been set)
-  if [ -z "$ANT_HOME" -o "$ANT_HOME" = "@GENTOO_PORTAGE_EPREFIX@/usr/share/ant" ]; then
-      if [ -f "@GENTOO_PORTAGE_EPREFIX@/etc/ant.conf" ] ; then
-          . @GENTOO_PORTAGE_EPREFIX@/etc/ant.conf
+  if [ -z "$ANT_HOME" -o "$ANT_HOME" = "${EPREFIX}/usr/share/ant" ]; then
+      if [ -f "${EPREFIX}/etc/ant.conf" ] ; then
+          . "${EPREFIX}"/etc/ant.conf
       fi
   fi
 
@@ -86,7 +88,7 @@ if [ -z $JAVA_HOME ] ; then
   exit 1
 fi
 
-ANT_HOME="@GENTOO_PORTAGE_EPREFIX@"/usr/share/ant-core
+ANT_HOME="${EPREFIX}"/usr/share/ant-core
 
 # set ANT_LIB location
 ANT_LIB="${ANT_HOME}/lib"
@@ -121,11 +123,11 @@ ANT_TASKS="${ANT_TASKS:-all}"
 if [[ "${ANT_TASKS}" == "all" ]]; then
 	ANT_TASKS=""
 	# but only if it exists
-	if [[ -d "@GENTOO_PORTAGE_EPREFIX@"/usr/share/ant/tasks ]]; then
-		ANT_TASKS="${ANT_TASKS} "@GENTOO_PORTAGE_EPREFIX@/usr/share/ant/tasks/*
+	if [[ -d "${EPREFIX}"/usr/share/ant/tasks ]]; then
+		ANT_TASKS="${ANT_TASKS} ${EPREFIX}"/usr/share/ant/tasks/*
 	fi
-	if [[ -d "@GENTOO_PORTAGE_EPREFIX@"/usr/share/ant/tasks-1.7.1 ]]; then
-		ANT_TASKS="${ANT_TASKS} "@GENTOO_PORTAGE_EPREFIX@/usr/share/ant/tasks-1.7.1/*
+	if [[ -d "${EPREFIX}"/usr/share/ant/tasks-1.7.1 ]]; then
+		ANT_TASKS="${ANT_TASKS} ${EPREFIX}"/usr/share/ant/tasks-1.7.1/*
 	fi
 # if set to "none", make ANT_TASKS empty list
 elif [[ "${ANT_TASKS}" == "none" ]]; then

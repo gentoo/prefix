@@ -32,7 +32,8 @@ S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.7.0-prefix.patch
-	eprefixify src/script/* build.sh bootstrap.sh
+	cp "${FILESDIR}/${PV}-ant-r1" "${S}"/ || die "failed to copy wrapper"
+	eprefixify "${S}"/${PV}-ant-r1
 
 	# remove bundled xerces
 	rm -v lib/*.jar || die
@@ -72,8 +73,7 @@ src_install() {
 		dosym /usr/share/${PN}/lib/${jar} /usr/share/ant/lib/${jar}
 	done
 
-	newbin "${FILESDIR}/${PV}-ant-r1" ant || die "failed to install wrapper"
-	eprefixify "${ED}"/usr/bin/ant
+	newbin "${S}/${PV}-ant-r1" ant || die "failed to install wrapper"
 
 	dodir /usr/share/${PN}/bin
 	for each in antRun runant.pl runant.py complete-ant-cmd.pl ; do
