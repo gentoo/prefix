@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.0-r1.ebuild,v 1.9 2009/08/31 15:41:06 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.8.0.ebuild,v 1.1 2010/02/09 14:28:12 flameeyes Exp $
 
-EAPI=1
+EAPI="2"
 
 inherit eutils libtool toolchain-funcs flag-o-matic
 
@@ -14,9 +14,9 @@ SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc64-solaris ~x86-solaris"
-IUSE="static acl xattr kernel_linux +bzip2 +lzma +zlib"
+IUSE="static static-libs acl xattr kernel_linux +bzip2 +lzma +zlib"
 
-COMPRESS_LIBS_DEPEND="lzma? ( app-arch/lzma-utils )
+COMPRESS_LIBS_DEPEND="lzma? ( app-arch/xz-utils )
 		bzip2? ( app-arch/bzip2 )
 		zlib? ( sys-libs/zlib )"
 
@@ -30,22 +30,21 @@ DEPEND="${RDEPEND}
 	kernel_linux? ( sys-fs/e2fsprogs
 		virtual/os-headers )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
-	epatch "${FILESDIR}"/${P}-fortified-sources.patch
-	epatch "${FILESDIR}"/${P}-pipe.patch
-
+src_prepare() {
 	elibtoolize
 	epunt_cxx
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 
 	if ! use static ; then
 		myconf="--enable-bsdtar=shared --enable-bsdcpio=shared"
+	fi
+
+	# force static libs for static binaries
+	if use static && ! use static-libs; then
+		myconf="${myconf} --enable-static"
 	fi
 
 	# Check for need of this in 2.7.1 and later, on 2.7.0, -Werror was
@@ -56,22 +55,29 @@ src_compile() {
 	# for getpwnam_r usage
 	[[ ${CHOST} == *-solaris* ]] && append-flags -D_POSIX_PTHREAD_SEMANTICS
 
-	# We disable lzma because we don't have liblzma (not liblzmadec!)
-	# currently.
+	# We disable lzmadec because we support the newer liblzma from xz-utils
+	# and not liblzmadec with this version.
 	econf --bindir="${EPREFIX}"/bin \
 		--enable-bsdtar --enable-bsdcpio \
 		$(use_enable acl) $(use_enable xattr) \
 		$(use_with zlib) \
-		$(use_with bzip2 bz2lib) $(use_with lzma lzmadec) \
-		--without-lzma \
+		$(use_with bzip2 bz2lib) $(use_with lzma) \
+		$(use_enable static-libs static) \
+		--without-lzmadec \
 		${myconf} \
 		--disable-dependency-tracking || die "econf failed."
+}
 
-	emake || die "emake failed."
+src_test() {
+	# Replace the default src_test so that it builds tests in parallel
+	emake check || die "tests failed"
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed."
+
+	# remove useless .a and .la files (only for non static compilation)
+	use static-libs || find "${ED}" \( -name '*.a' -or -name '*.la' \) -delete
 
 	# Create tar symlink for FreeBSD
 	if ! use prefix && [[ ${CHOST} == *-freebsd* ]]; then
@@ -81,8 +87,5 @@ src_install() {
 	fi
 
 	dodoc NEWS README
-	#dodir /$(get_libdir)
-	#mv "${D}"/usr/$(get_libdir)/*.so* "${D}"/$(get_libdir)
-	#gen_usr_ldscript libarchive.so
 	gen_usr_ldscript -a archive
 }
