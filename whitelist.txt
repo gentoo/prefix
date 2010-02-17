@@ -660,6 +660,7 @@ sys-apps/which
 sys-auth/pam_mktemp
 sys-auth/pam_passwdqc
 sys-auth/pam_ssh
+sys-devel/autoconf-archive
 sys-devel/autoconf-wrapper
 sys-devel/automake-wrapper
 sys-devel/bc
