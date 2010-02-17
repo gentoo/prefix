@@ -830,6 +830,7 @@ net-print
 sci-calculators
 sci-chemistry
 sci-electronics
+sci-misc
 virtual
 xfce-base
 xfce-extra
