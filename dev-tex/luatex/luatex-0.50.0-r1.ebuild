@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.50.0-r1.ebuild,v 1.5 2010/02/05 19:53:01 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/luatex-0.50.0-r1.ebuild,v 1.7 2010/02/10 21:54:53 ssuominen Exp $
 
 EAPI="2"
 
@@ -20,7 +20,7 @@ IUSE="doc"
 
 RDEPEND="dev-libs/zziplib
 	media-libs/libpng
-	virtual/poppler
+	>=app-text/poppler-0.12.3-r3[xpdf-headers]
 	sys-libs/zlib
 	virtual/tex-base"
 DEPEND="${RDEPEND}
@@ -32,8 +32,6 @@ PRELIBS="libs/dummy libs/obsdcompat texk/kpathsea"
 kpathsea_extraconf="--disable-shared --disable-largefile"
 
 src_prepare() {
-	local EPATCH_EXCLUDE=""
-	has_version '>=virtual/poppler-0.11.3' || EPATCH_EXCLUDE="040_all_poppler-0.11.3.patch"
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 	eautoreconf
 	elibtoolize
