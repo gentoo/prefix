@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r2.ebuild,v 1.8 2009/05/14 19:54:42 loki_val Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xpdf/xpdf-3.02-r2.ebuild,v 1.10 2010/02/10 19:59:09 ssuominen Exp $
 
 EAPI=2
 
@@ -26,7 +26,7 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="nodrm linguas_ar linguas_zh_CN linguas_zh_TW linguas_ru linguas_el linguas_he linguas_ja linguas_ko linguas_la linguas_th linguas_tr"
 
-RDEPEND=">=virtual/poppler-0.6.1
+RDEPEND="app-text/poppler
 	x11-libs/openmotif
 	x11-libs/libX11
 	x11-libs/libXpm"
@@ -41,10 +41,8 @@ pkg_setup() {
 
 src_prepare() {
 	use nodrm && epatch "${FILESDIR}/${P}-poppler-nodrm.patch"
-	has_version '>=virtual/poppler-0.10.0' && \
-		epatch "${FILESDIR}/${P}-poppler-0.10.0.patch"
-	has_version '>=virtual/poppler-0.11.0' && \
-		epatch "${FILESDIR}/${P}-poppler-0.11.0.patch"
+	epatch "${FILESDIR}/${P}-poppler-0.10.0.patch"
+	epatch "${FILESDIR}/${P}-poppler-0.11.0.patch"
 	epatch "${FILESDIR}/${P}-as-needed.patch"
 	epatch "${FILESDIR}"/${P}-darwin.patch
 }
