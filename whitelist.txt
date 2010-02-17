@@ -39,6 +39,7 @@ app-admin/gamin
 app-admin/makepasswd
 app-admin/pwgen
 app-admin/stow
+app-arch/arc
 app-arch/bsdsfv
 app-arch/cfv
 app-arch/file-roller
