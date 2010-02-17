@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/inkscape
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.137 2010/02/07 17:08:24 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/ChangeLog,v 1.138 2010/02/10 12:12:43 ssuominen Exp $
+
+  10 Feb 2010; Samuli Suominen <ssuominen@gentoo.org> inkscape-0.47.ebuild:
+  Fix poppler depend.
 
   07 Feb 2010; Markus Meier <maekke@gentoo.org> -inkscape-0.46-r5.ebuild,
   -files/inkscape-0.46-bug-174720-0.patch,

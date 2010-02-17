@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47.ebuild,v 1.10 2010/02/07 16:02:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47.ebuild,v 1.11 2010/02/10 12:12:43 ssuominen Exp $
 
 EAPI=2
 inherit eutils gnome2
@@ -19,7 +19,7 @@ IUSE="dia gnome inkjar lcms mmx nls postscript spell wmf"
 RESTRICT="test"
 
 COMMON_DEPEND="
-	>=virtual/poppler-glib-0.8.3[cairo]
+	>=app-text/poppler-0.12.3-r3[cairo,xpdf-headers]
 	dev-cpp/glibmm
 	>=dev-cpp/gtkmm-2.10.0
 	>=dev-libs/boehm-gc-6.4
