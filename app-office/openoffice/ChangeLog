@@ -1,6 +1,10 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.505 2010/01/14 16:15:58 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.506 2010/02/10 21:10:36 ssuominen Exp $
+
+  10 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  openoffice-3.1.1.ebuild:
+  Fix poppler depend from obsolete virtual/ to app-text/.
 
   14 Jan 2010; Andreas Proschofsky <suka@gentoo.org>
   openoffice-3.1.1.ebuild:

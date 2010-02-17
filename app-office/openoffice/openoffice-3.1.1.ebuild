@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.26 2010/01/14 16:15:58 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.1.1.ebuild,v 1.27 2010/02/10 21:10:36 ssuominen Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI="2"
@@ -119,7 +119,7 @@ COMMON_DEPEND="!app-office/openoffice-bin
 	>=app-text/libwpd-0.8.8
 	>=dev-libs/redland-1.0.8
 	>=media-libs/vigra-1.4
-	>=virtual/poppler-0.8.0"
+	>=app-text/poppler-0.12.3-r3"
 
 RDEPEND="java? ( >=virtual/jre-1.5 )
 	${SPELL_DIRS_DEPEND}
