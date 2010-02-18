@@ -58,6 +58,8 @@ src_unpack() {
 #http://bugs.gentoo.org/show_bug.cgi?id=286459
 #	epatch "${FILESDIR}"/${PN}-7.5-interix-security.patch
 
+	epatch "${FILESDIR}"/${PN}-8.4-interix-3.5-sleep.patch
+
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.
