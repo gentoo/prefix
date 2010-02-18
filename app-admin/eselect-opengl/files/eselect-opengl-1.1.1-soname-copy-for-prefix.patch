@@ -1,6 +1,6 @@
 --- opengl.eselect.orig	2009-11-13 20:57:39 +0100
 +++ opengl.eselect	2009-11-13 21:08:59 +0100
-@@ -85,8 +85,19 @@
+@@ -85,8 +85,18 @@
  		# Note that we don't do .so*, just .so on purpose.  The
  		# loader knows to look in the profile dir, and the
  		# linked just needs the .so
@@ -13,8 +13,7 @@
  			upgrade_file ${file} ${target}
 +			if [[ ${file} == *.so ]] ; then
 +				# copy soname target, needed for loader in Prefix
-+				soname=$(scanelf -qBF '%S|%p' ${file})
-+				soname=${soname%|*}  # stupid scanelf must print filename
++				soname=$(scanelf -qBF '%S#p' ${file})
 +				upgrade_file ${file%/*}/${soname} ${target}
 +			fi
  		done
