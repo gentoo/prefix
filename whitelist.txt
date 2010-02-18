@@ -141,7 +141,6 @@ app-text/bogosort
 app-text/chasen
 app-text/clara
 app-text/convertlit
-app-text/cook
 app-text/cwtext
 app-text/dbacl
 app-text/diction
