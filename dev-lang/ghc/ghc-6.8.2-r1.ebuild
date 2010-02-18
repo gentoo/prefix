@@ -54,7 +54,7 @@ SRC_URI="http://haskell.org/ghc/dist/${EXTRA_SRC_URI}/${P}-src.tar.bz2
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE="doc ghcbootstrap"
 
 RDEPEND="
