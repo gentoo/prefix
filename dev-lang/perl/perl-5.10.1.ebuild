@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.10.1.ebuild,v 1.17 2010/02/03 00:18:06 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.10.1.ebuild,v 1.19 2010/02/15 08:10:59 tove Exp $
 
 EAPI=2
 
@@ -63,9 +63,13 @@ pkg_setup() {
 		ewarn "that compile against perl. You use threading at "
 		ewarn "your own discretion. "
 		echo
-		epause 5
 	fi
-	if has_version dev-lang/perl ; then
+	if has_version "~dev-lang/perl-5.8.8" ; then
+		ewarn "UPDATE THE PERL MODULES:"
+		ewarn "After updating dev-lang/perl you must reinstall"
+		ewarn "the installed perl modules."
+		ewarn "Use: perl-cleaner --all"
+	elif has_version dev-lang/perl ; then
 		# doesnot work
 		#if ! has_version dev-lang/perl[ithreads=,debug=] ; then
 		#if ! has_version dev-lang/perl[ithreads=] || ! has_version dev-lang/perl[debug=] ; then
@@ -77,7 +81,6 @@ pkg_setup() {
 			ewarn "You changed one of the use-flags ithreads or debug."
 			ewarn "You must rebuild all perl-modules installed."
 			ewarn "Use: perl-cleaner --modules ; perl-cleaner --force --libperl"
-			epause
 		fi
 	fi
 	dual_scripts
@@ -272,6 +275,12 @@ src_configure() {
 		-Dvendorarch="${EPREFIX}/usr/$(get_libdir)/perl5/vendor_perl/${MY_PV}/${myarch}${mythreading}" \
 		-Dsitelib="${EPREFIX}/usr/$(get_libdir)/perl5/site_perl/${MY_PV}" \
 		-Dsitearch="${EPREFIX}/usr/$(get_libdir)/perl5/site_perl/${MY_PV}/${myarch}${mythreading}" \
+		-Dman1dir="${EPREFIX}"/usr/share/man/man1 \
+		-Dman3dir="${EPREFIX}"/usr/share/man/man3 \
+		-Dinstallman1dir="${EPREFIX}"/usr/share/man/man1 \
+		-Dinstallman3dir="${EPREFIX}"/usr/share/man/man3 \
+		-Dman1ext='1' \
+		-Dman3ext='3pm' \
 		-Dlibperl="${LIBPERL}" \
 		-Dlocincpth="${EPREFIX}"'/usr/include ' \
 		-Dglibpth="${EPREFIX}/$(get_libdir) ${EPREFIX}/usr/$(get_libdir)"' ' \
@@ -349,10 +358,10 @@ src_install() {
 	dosed 's:./miniperl:/usr/bin/perl:' /usr/bin/xsubpp
 	fperms 0755 /usr/bin/xsubpp
 
-	# This removes ${ED} from Config.pm and .packlist
-	for i in $(find "${ED}" -iname "Config.pm" -o -iname ".packlist" ) ; do
-		einfo "Removing ${ED} from ${i}..."
-		sed -i -e "s:${ED}::" "${i}" || die "Sed failed"
+	# This removes ${D} from Config.pm and .packlist
+	for i in $(find "${D}" -iname "Config.pm" -o -iname ".packlist" ) ; do
+		einfo "Removing ${D} from ${i}..."
+		sed -i -e "s:${D}::" "${i}" || die "Sed failed"
 	done
 
 	# Note: find out from psm why we would need/want this.
@@ -387,26 +396,26 @@ pkg_postinst() {
 	dual_scripts
 
 	INC=$(perl -e 'for $line (@INC) { next if $line eq "."; next if $line =~ m/'${MY_PV}'|etc|local|perl$/; print "$line\n" }')
-	if [[ "${EROOT}" = "/" ]] ; then
+	if [[ "${ROOT}" = "/" ]] ; then
 		ebegin "Removing old .ph files"
 		for DIR in ${INC} ; do
-			if [[ -d "${EROOT}/${DIR}" ]] ; then
-				for file in $(find "${EROOT}/${DIR}" -name "*.ph" -type f ) ; do
-					rm -f "${EROOT}/${file}"
+			if [[ -d "${ROOT}/${DIR}" ]] ; then
+				for file in $(find "${ROOT}/${DIR}" -name "*.ph" -type f ) ; do
+					rm -f "${ROOT}/${file}"
 					einfo "<< ${file}"
 				done
 			fi
 		done
 		# Silently remove the now empty dirs
 		for DIR in ${INC} ; do
-			if [[ -d "${EROOT}/${DIR}" ]] ; then
-				find "${EROOT}/${DIR}" -depth -type d -print0 | xargs -0 -r rmdir &> /dev/null
+			if [[ -d "${ROOT}/${DIR}" ]] ; then
+				find "${ROOT}/${DIR}" -depth -type d -print0 | xargs -0 -r rmdir &> /dev/null
 			fi
 		done
 		ebegin "Generating ConfigLocal.pm (ignore any error)"
 		enc2xs -C
 		ebegin "Converting C header files to the corresponding Perl format"
-		cd /usr/include
+		cd "${EPREFIX}"/usr/include
 		h2ph -Q *
 		h2ph -Q -r sys/* arpa/* netinet/* bits/* security/* asm/* gnu/* linux/*
 	fi

@@ -167,12 +167,12 @@ src_unpack() {
 	# like a charm again
 	epatch "${FILESDIR}"/${P}-no-usr-local2.patch
 
-	[[ ${CHOST} == *-dragonfly* ]] && cd ${S} && epatch "${FILESDIR}"/${P}-dragonfly-clean.patch
-	[[ ${CHOST} == *-freebsd* ]] && cd ${S} && epatch "${FILESDIR}"/${P}-fbsdhints.patch
-	cd ${S}; epatch "${FILESDIR}"/${P}-USE_MM_LD_RUN_PATH.patch
-	cd ${S}; epatch "${FILESDIR}"/${P}-links.patch
+	[[ ${CHOST} == *-dragonfly* ]] && cd "${S}" && epatch "${FILESDIR}"/${P}-dragonfly-clean.patch
+	[[ ${CHOST} == *-freebsd* ]] && cd "${S}" && epatch "${FILESDIR}"/${P}-fbsdhints.patch
+	cd "${S}"; epatch "${FILESDIR}"/${P}-USE_MM_LD_RUN_PATH.patch
+	cd "${S}"; epatch "${FILESDIR}"/${P}-links.patch
 	# c++ patch - should address swig related items
-	cd ${S}; epatch "${FILESDIR}"/${P}-cplusplus.patch
+	cd "${S}"; epatch "${FILESDIR}"/${P}-cplusplus.patch
 
 	epatch "${FILESDIR}"/${P}-gcc42-command-line.patch
 
@@ -453,10 +453,10 @@ EOF
 	dosed 's:./miniperl:/usr/bin/perl:' /usr/bin/xsubpp
 	fperms 0755 /usr/bin/xsubpp
 
-	# This removes ${ED} from Config.pm and .packlist
-	for i in `find "${ED}" -iname "Config.pm"` `find "${ED}" -iname ".packlist"`;do
-		einfo "Removing ${ED} from ${i}..."
-		sed -e "s:${ED}::" ${i} > ${i}.new &&\
+	# This removes ${D} from Config.pm and .packlist
+	for i in `find "${D}" -iname "Config.pm"` `find "${D}" -iname ".packlist"`;do
+		einfo "Removing ${D} from ${i}..."
+		sed -e "s:${D}::" ${i} > ${i}.new &&\
 			mv ${i}.new ${i} || die "Sed failed"
 	done
 
@@ -493,27 +493,27 @@ EOF
 pkg_postinst() {
 	dual_scripts
 	INC=$(perl -e 'for $line (@INC) { next if $line eq "."; next if $line =~ m/'${MY_PV}'|etc|local|perl$/; print "$line\n" }')
-	if [[ "${EROOT}" = "/" ]]
+	if [[ "${ROOT}" = "/" ]]
 	then
 		ebegin "Removing old .ph files"
 		for DIR in $INC; do
-			if [[ -d "${EROOT}"/$DIR ]]; then
-				for file in $(find "${EROOT}"/$DIR -name "*.ph" -type f); do
-					rm "${EROOT}"/$file
+			if [[ -d "${ROOT}"/$DIR ]]; then
+				for file in $(find "${ROOT}"/$DIR -name "*.ph" -type f); do
+					rm "${ROOT}"/$file
 					einfo "<< $file"
 				done
 			fi
 		done
 		# Silently remove the now empty dirs
 		for DIR in $INC; do
-		   if [[ -d "${EROOT}"/$DIR ]]; then
-			find "${EROOT}"/$DIR -depth -type d | xargs -r rmdir &> /dev/null
+		   if [[ -d "${ROOT}"/$DIR ]]; then
+			find "${ROOT}"/$DIR -depth -type d | xargs -r rmdir &> /dev/null
 		   fi
 		done
 		ebegin "Generating ConfigLocal.pm (ignore any error)"
 		enc2xs -C
 		ebegin "Converting C header files to the corresponding Perl format"
-		cd /usr/include;
+		cd "${EPREFIX}"/usr/include;
 		h2ph *
 		h2ph -r sys/* arpa/* netinet/* bits/* security/* asm/* gnu/* linux/* gentoo*
 		cd /usr/include/linux
