@@ -186,6 +186,10 @@ src_configure() {
 	sed -i -e "s:/usr/lib/mozilla/plugins:/usr/$(get_libdir)/nsbrowser/plugins:" \
 		"${S}"/xpcom/io/nsAppFileLocationProvider.cpp || die "sed failed to replace plugin path!"
 
+	# hack added to workaround bug 299905 on hosts with libc that doesn't
+	# support tls, (probably will only hit this condition with Gentoo Prefix)
+	tc-has-tls -l || export ac_cv_thread_keyword=no
+
 	CC="$(tc-getCC)" CXX="$(tc-getCXX)" LD="$(tc-getLD)" econf
 }
 
