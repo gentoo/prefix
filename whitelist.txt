@@ -319,7 +319,6 @@ dev-util/cmake
 dev-util/cocom
 dev-util/confix
 dev-util/confix-wrapper
-dev-util/cook
 dev-util/cproto
 dev-util/cssc
 dev-util/cvs2cl
