@@ -1,6 +1,18 @@
 # ChangeLog for www-client/firefox-bin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/firefox-bin/ChangeLog,v 1.6 2010/01/24 12:10:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/firefox-bin/ChangeLog,v 1.8 2010/02/18 02:43:34 anarchy Exp $
+
+*firefox-bin-3.5.8 (18 Feb 2010)
+
+  18 Feb 2010; <anarchy@gentoo.org> -firefox-bin-3.5.7.ebuild,
+  +firefox-bin-3.5.8.ebuild:
+  Security bump
+
+*firefox-bin-3.6-r1 (14 Feb 2010)
+
+  14 Feb 2010; <anarchy@gentoo.org> -firefox-bin-3.6.ebuild,
+  +firefox-bin-3.6-r1.ebuild:
+  Add LD_LIBRARY_PATH to launcher, bug #305055
 
 *firefox-bin-3.6 (24 Jan 2010)
 
