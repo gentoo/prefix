@@ -20,16 +20,12 @@ DEPEND="${RDEPEND}
 
 src_unpack() {
 	unpack ${A}
-	cd ${S}
+	cd "${S}"
+	epatch "${FILESDIR}"/${PN}-1.36.4-respect-LDFLAGS.patch
+
 	[[ ${CHOST} == *-darwin* ]] && sed -i \
 		-e 's|-fPIC -shared|-dynamiclib|g' \
 		Makefile.in
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.36.4-respect-LDFLAGS.patch
 }
 
 src_compile() {
