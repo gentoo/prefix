@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.8.3-r1.ebuild,v 1.1 2010/02/09 04:33:08 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.8.3-r2.ebuild,v 1.1 2010/02/11 03:30:01 anarchy Exp $
 
 inherit eutils multilib toolchain-funcs versionator
 
@@ -45,7 +45,7 @@ src_compile() {
 		*) die "Failed to detect whether your arch is 64bits or 32bits, disable distcc if you're using it, please";;
 	esac
 
-	myconf="${myconf} --libdir=${EPREFIX}/usr/$(get_libdir)/nspr"
+	myconf="${myconf} --libdir=${EPREFIX}/usr/$(get_libdir)"
 
 	ECONF_SOURCE="../mozilla/nsprpub" CC=$(tc-getCC) CXX=$(tc-getCPP) econf \
 		$(use_enable debug) \
@@ -60,24 +60,21 @@ src_install () {
 	cd "${S}"/build
 	emake DESTDIR="${D}" install || die "emake install failed"
 
-	cd "${ED}"/usr/$(get_libdir)/nspr
-	if [[ $(get_libname) == .so ]] ; then
-	for file in *.so; do
-		mv ${file} ${file}.${MINOR_VERSION}
-		ln -s ${file}.${MINOR_VERSION} ${file}
+	cd "${ED}"/usr/$(get_libdir)
+	for file in *.a; do
+		einfo "removing static libraries as upstream has requested!"
+		rm ${file}
 	done
-	elif [[ $(get_libname) == .dylib ]] ; then
-		local n=
-		for file in *.dylib ; do
-			n=${file%.dylib}.${MINOR_VERSION}.dylib
-			mv ${file} ${n}
-			ln -s ${n} ${file}
-			install_name_tool -id "${EPREFIX}/usr/lib/nspr/${n}" ${n} || die
-		done
-	fi
-	# cope with libraries being in /usr/lib/nspr
-	dodir /etc/env.d
-	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/nspr" > "${ED}/etc/env.d/08nspr"
+
+	local n=
+	for file in *$(get_libname); do
+		n=${file%$(get_libname)}$(get_libname ${MINOR_VERSION})
+		mv ${file} ${n}
+		ln -s ${n} ${file}
+		if [[ ${CHOST} == *-darwin* ]]; then
+			install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${n}" ${n} || die
+		fi
+	done
 
 	# install nspr-config
 	dobin "${S}"/build/config/nspr-config
