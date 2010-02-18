@@ -280,15 +280,6 @@ dev-ml/extlib
 dev-ml/lablgtk
 dev-php5/pecl-pdflib
 dev-python/rdflib
-dev-ruby/actionmailer
-dev-ruby/actionpack
-dev-ruby/activerecord
-dev-ruby/activeresource
-dev-ruby/activesupport
-dev-ruby/hpricot
-dev-ruby/net-sftp
-dev-ruby/net-ssh
-dev-ruby/sqlite3-ruby
 dev-tcltk/tcllib
 dev-tex/algorithms
 dev-tex/chktex
@@ -961,7 +952,12 @@ dev-python/webpy
 dev-python/werkzeug
 
 # Operation Shiny Jewel (Ruby), bug #295040
+dev-ruby/actionmailer
+dev-ruby/actionpack
 dev-ruby/actionwebservice
+dev-ruby/activerecord
+dev-ruby/activeresource
+dev-ruby/activesupport
 dev-ruby/bluecloth
 dev-ruby/builder
 dev-ruby/camping
@@ -975,6 +971,7 @@ dev-ruby/fastthread
 dev-ruby/gem_plugin
 dev-ruby/highline
 dev-ruby/hoe
+dev-ruby/hpricot
 dev-ruby/i18n
 dev-ruby/json
 dev-ruby/linecache
@@ -983,6 +980,8 @@ dev-ruby/mechanize
 dev-ruby/metaid
 dev-ruby/needle
 dev-ruby/net-scp
+dev-ruby/net-sftp
+dev-ruby/net-ssh
 dev-ruby/net-ssh-gateway
 dev-ruby/nokogiri
 dev-ruby/oniguruma
@@ -994,6 +993,7 @@ dev-ruby/rack
 dev-ruby/rake
 dev-ruby/redcloth
 dev-ruby/rspec
+dev-ruby/ruby_parser
 dev-ruby/ruby-bsearch
 dev-ruby/ruby-debug
 dev-ruby/ruby-debug-base
@@ -1003,9 +1003,11 @@ dev-ruby/ruby-inline
 dev-ruby/ruby-postgres
 dev-ruby/ruby-romkan
 dev-ruby/ruby2ruby
-dev-ruby/ruby_parser
 dev-ruby/rubyforge
 dev-ruby/sexp-processor
+dev-ruby/sqlite3-ruby
+dev-ruby/text-format
+dev-ruby/text-hyphen
 dev-ruby/textpow
 dev-ruby/tmail
 dev-ruby/tzinfo
