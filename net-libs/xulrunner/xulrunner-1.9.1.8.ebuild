@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.7.ebuild,v 1.1 2010/01/08 02:58:41 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.1.8.ebuild,v 1.1 2010/02/18 03:16:34 anarchy Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
@@ -9,7 +9,7 @@ inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-p
 
 MY_PV="${PV/_beta/b}" # Handle betas
 MY_PV="${PV/_/}" # Handle rc1, rc2 etc
-MY_PV="${MY_PV/1.9.1.7/3.5.7}"
+MY_PV="${MY_PV/1.9.1.8/3.5.8}"
 MAJ_PV="1.9.1" # from mozilla-* branch name
 PATCH="${PN}-1.9.1.5-patches-0.1"
 

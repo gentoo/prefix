@@ -1,6 +1,19 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.289 2010/01/29 15:00:31 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.291 2010/02/18 03:16:34 anarchy Exp $
+
+*xulrunner-1.9.1.8 (18 Feb 2010)
+
+  18 Feb 2010; <anarchy@gentoo.org> -xulrunner-1.9.1.4.ebuild,
+  -xulrunner-1.9.1.5.ebuild, -xulrunner-1.9.1.7.ebuild,
+  +xulrunner-1.9.1.8.ebuild:
+  Security Bump
+
+*xulrunner-1.9.2-r2 (12 Feb 2010)
+
+  12 Feb 2010; <anarchy@gentoo.org> -xulrunner-1.9.2.ebuild,
+  -xulrunner-1.9.2-r1.ebuild, +xulrunner-1.9.2-r2.ebuild:
+  Fix system-sqlite and ensure we use secure-delete for sqlite
 
 *xulrunner-1.9.2-r1 (29 Jan 2010)
 
