@@ -45,7 +45,7 @@ src_install() {
 }
 
 pkg_postinst() {
-	if [[ ${EROOT} == "/" ]] && type -P create-cracklib-dict >/dev/null ; then
+	if [[ ${ROOT} == "/" ]] && type -P create-cracklib-dict >/dev/null ; then
 		ebegin "Regenerating cracklib dictionary"
 		create-cracklib-dict /usr/share/dict/* > /dev/null
 		eend $?
