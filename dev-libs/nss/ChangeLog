@@ -1,6 +1,20 @@
 # ChangeLog for dev-libs/nss
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.168 2010/01/30 18:54:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.172 2010/02/12 14:04:57 anarchy Exp $
+
+  12 Feb 2010; <anarchy@gentoo.org> nss-3.12.5-r1.ebuild:
+  Fix bugs #304687, #304571
+
+  11 Feb 2010; <anarchy@gentoo.org> nss-3.12.5-r1.ebuild:
+  Ensure we update nspr before nss
+
+*nss-3.12.5-r1 (11 Feb 2010)
+
+  11 Feb 2010; <anarchy@gentoo.org> +nss-3.12.5-r1.ebuild:
+  Address concerns from upstream about our build, move to /usr/lib{64}
+
+  09 Feb 2010; Pacho Ramos <pacho@gentoo.org> nss-3.12.5.ebuild:
+  amd64 stable, bug 300606
 
   30 Jan 2010; Raúl Porcel <armin76@gentoo.org> nss-3.12.5.ebuild:
   alpha/arm/ia64/sparc stable wrt #300606
