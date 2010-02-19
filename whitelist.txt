@@ -42,6 +42,7 @@ app-admin/stow
 app-arch/arc
 app-arch/bsdsfv
 app-arch/cfv
+app-arch/dpkg
 app-arch/file-roller
 app-arch/lzma
 app-arch/lzop
