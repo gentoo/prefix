@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-fakegem.eclass,v 1.13 2010/01/24 00:00:40 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-fakegem.eclass,v 1.14 2010/02/13 08:45:03 graaff Exp $
 #
 # @ECLASS: ruby-fakegem.eclass
 # @MAINTAINER:
@@ -145,11 +145,12 @@ ruby_fakegem_genspec() {
 		# copies with different implementations; while for now we're using
 		# the same exact content, we might have differences in the future,
 		# so better taking this into consideration.
+		local quoted_description=${DESCRIPTION//\"/\\\"}
 		cat - > "${T}"/${RUBY_FAKEGEM_NAME}-${_ruby_implementation} <<EOF
 Gem::Specification.new do |s|
   s.name = "${RUBY_FAKEGEM_NAME}"
   s.version = "${RUBY_FAKEGEM_VERSION}"
-  s.summary = "${DESCRIPTION}"
+  s.summary = "${quoted_description}"
   s.homepage = "${HOMEPAGE}"
   s.require_paths = [${required_paths}]
 end

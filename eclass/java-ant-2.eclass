@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.47 2010/02/01 09:38:44 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.48 2010/02/12 23:51:44 caster Exp $
 
 inherit java-utils-2
 
@@ -477,19 +477,8 @@ java-ant_rewrite-bootclasspath() {
 	local extra_before="${3}"
 	local extra_after="${4}"
 
-	local bcp
-	case "${version}" in 
-		auto)
-			bcp="$(java-config -g BOOTCLASSPATH)"
-			;;
-		1.5)
-			bcp="$(java-pkg_getjars --build-only gnu-classpath-0.98)"
-			;;
-		*)
-			eerror "unknown parameter of java-ant_rewrite-bootclasspath"
-			die "unknown parameter of java-ant_rewrite-bootclasspath"
-			;;
-	esac
+	local bcp="$(java-pkg_get-bootclasspath "${version}")"
+
 	if [[ -n "${extra_before}" ]]; then
 		bcp="${extra_before}:${bcp}"
 	fi

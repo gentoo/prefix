@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ssl-cert.eclass,v 1.17 2009/09/16 20:11:17 mrness Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ssl-cert.eclass,v 1.18 2010/02/16 14:23:39 pva Exp $
 #
 # @ECLASS: ssl-cert.eclass
 # @MAINTAINER:
@@ -48,7 +48,7 @@ gen_cnf() {
 	echo "01" > "${SSL_SERIAL}"
 
 	# Create the config file
-	ebegin "Generating OpenSSL configuration"
+	ebegin "Generating OpenSSL configuration${1:+ for CA}"
 	cat <<-EOF > "${SSL_CONF}"
 		[ req ]
 		prompt             = no
@@ -60,7 +60,7 @@ gen_cnf() {
 		L                  = ${SSL_LOCALITY}
 		O                  = ${SSL_ORGANIZATION}
 		OU                 = ${SSL_UNIT}
-		CN                 = ${SSL_COMMONNAME}
+		CN                 = ${SSL_COMMONNAME}${1:+ CA}
 		emailAddress       = ${SSL_EMAIL}
 	EOF
 	eend $?
@@ -191,14 +191,14 @@ install_cert() {
 			return 1 ;;
 	esac
 
-	# Initialize configuration
-	gen_cnf || return 1
-	echo
-
-	# Generate a CA environment
+	# Generate a CA environment #164601
+	gen_cnf 1 || return 1
 	gen_key 1 || return 1
 	gen_csr 1 || return 1
 	gen_crt 1 || return 1
+	echo
+
+	gen_cnf || return 1
 	echo
 
 	local count=0

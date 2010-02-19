@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.329 2010/01/28 22:00:12 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.333 2010/02/17 17:10:23 betelgeuse Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -51,6 +51,18 @@ ebeep() {
 	fi
 }
 
+else
+
+ebeep() {
+	[[ $(type -t eqawarn) == function ]] && \
+		eqawarn "QA Notice: ebeep is not defined in EAPI=3, please file a bug at http://bugs.gentoo.org"
+}
+
+epause() {
+	[[ $(type -t eqawarn) == function ]] && \
+		eqawarn "QA Notice: epause is not defined in EAPI=3, please file a bug at http://bugs.gentoo.org"
+}
+
 fi
 
 # @FUNCTION: ecvs_clean
@@ -75,12 +87,15 @@ esvn_clean() {
 }
 
 # @FUNCTION: eshopts_push
-# @USAGE: [options to `set`]
+# @USAGE: [options to `set` or `shopt`]
 # @DESCRIPTION:
 # Often times code will want to enable a shell option to change code behavior.
 # Since changing shell options can easily break other pieces of code (which
 # assume the default state), eshopts_push is used to (1) push the current shell
 # options onto a stack and (2) pass the specified arguments to set.
+#
+# If the first argument is '-s' or '-u', we assume you want to call `shopt`
+# rather than `set` as there are some options only available via that.
 #
 # A common example is to disable shell globbing so that special meaning/care
 # may be used with variables/arguments to custom functions.  That would be:
@@ -98,9 +113,15 @@ eshopts_push() {
 	# have to assume __ESHOPTS_SAVE__ isn't screwed with
 	# as a `declare -a` here will reset its value
 	local i=${#__ESHOPTS_SAVE__[@]}
-	__ESHOPTS_SAVE__[$i]=$-
-	[[ $# -eq 0 ]] && return 0
-	set "$@" || die "eshopts_push: bad options to set: $*"
+	if [[ $1 == -[su] ]] ; then
+		__ESHOPTS_SAVE__[$i]=$(shopt -p)
+		[[ $# -eq 0 ]] && return 0
+		shopt "$@" || die "eshopts_push: bad options to shopt: $*"
+	else
+		__ESHOPTS_SAVE__[$i]=$-
+		[[ $# -eq 0 ]] && return 0
+		set "$@" || die "eshopts_push: bad options to set: $*"
+	fi
 }
 
 # @FUNCTION: eshopts_pop
@@ -114,8 +135,12 @@ eshopts_pop() {
 	[[ ${i} -eq -1 ]] && die "eshopts_{push,pop}: unbalanced pair"
 	local s=${__ESHOPTS_SAVE__[$i]}
 	unset __ESHOPTS_SAVE__[$i]
-	set +$-   || die "eshopts_pop: sanity: invalid shell settings: $-"
-	set -${s} || die "eshopts_pop: sanity: unable to restore saved shell settings: ${s}"
+	if [[ ${s} == "shopt -"* ]] ; then
+		eval "${s}" || die "eshopts_pop: sanity: invalid shopt options: ${s}"
+	else
+		set +$-     || die "eshopts_pop: sanity: invalid shell settings: $-"
+		set -${s}   || die "eshopts_pop: sanity: unable to restore saved shell settings: ${s}"
+	fi
 }
 
 # @VARIABLE: EPATCH_SOURCE

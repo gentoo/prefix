@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.131 2010/01/17 12:53:18 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.132 2010/02/12 23:51:44 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -1305,6 +1305,36 @@ java-pkg_register-environment-variable() {
 
 	java-pkg_do_write_
 }
+
+# ------------------------------------------------------------------------------
+# @ebuild-function java-pkg_get-bootclasspath
+#
+# Returns classpath of a given bootclasspath-providing package version.
+#
+# @param $1 - the version of bootclasspath (e.g. 1.5), 'auto' for bootclasspath
+#             of the current JDK
+# ------------------------------------------------------------------------------
+
+java-pkg_get-bootclasspath() {
+	local version="${1}"
+
+	local bcp
+	case "${version}" in 
+		auto)
+			bcp="$(java-config -g BOOTCLASSPATH)"
+			;;
+		1.5)
+			bcp="$(java-pkg_getjars --build-only gnu-classpath-0.98)"
+			;;
+		*)
+			eerror "unknown parameter of java-pkg_get-bootclasspath"
+			die "unknown parameter of java-pkg_get-bootclasspath"
+			;;
+	esac
+
+	echo "${bcp}"
+}
+
 
 # This function reads stdin, and based on that input, figures out how to
 # populate jars from the filesystem.
