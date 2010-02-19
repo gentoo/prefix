@@ -86,6 +86,7 @@ app-dicts/ipadic
 app-dicts/migemo-dict
 app-dicts/myspell-en
 app-editors/easyedit
+app-editors/gedit
 app-editors/ghex
 app-editors/hexcurse
 app-editors/hexedit
