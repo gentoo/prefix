@@ -64,8 +64,6 @@ app-arch/xar
 app-arch/xarchiver
 app-arch/zip
 app-arch/zoo
-app-backup/boxbackup
-app-backup/rdiff-backup
 app-cdr/bchunk
 app-cdr/bin2iso
 app-cdr/ccd2iso
@@ -806,6 +804,7 @@ x11-wm/windowmaker
 
 # entire categories
 app-accessibility
+app-backup
 app-doc
 app-emacs
 app-pda
