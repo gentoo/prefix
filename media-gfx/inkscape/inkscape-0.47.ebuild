@@ -77,12 +77,7 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.47-solaris.patch
-
-	gnome2_src_prepare
-}
-
-src_prepare() {
+	#epatch "${FILESDIR}"/${PN}-0.47-solaris.patch
 	epatch "${FILESDIR}"/${P}-poppler.patch
 
 	gnome2_src_prepare
