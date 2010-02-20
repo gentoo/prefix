@@ -1,6 +1,13 @@
 # ChangeLog for app-text/aspell
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.114 2009/12/26 20:36:02 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/aspell/ChangeLog,v 1.116 2010/02/19 10:03:23 pva Exp $
+
+  19 Feb 2010; Peter Volkov <pva@gentoo.org> aspell-0.60.6-r1.ebuild:
+  Add pt_BR to the LINGUAS.
+
+  19 Feb 2010; Peter Volkov <pva@gentoo.org> aspell-0.60.6-r1.ebuild:
+  Added la and lt into LINGUAS, dropped ~m68k as a side effect of bug
+  #254425.
 
   26 Dec 2009; Peter Volkov <pva@gentoo.org> aspell-0.60.6.ebuild,
   aspell-0.60.6-r1.ebuild:
