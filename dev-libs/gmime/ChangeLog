@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/gmime
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.104 2010/01/21 22:25:43 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/ChangeLog,v 1.105 2010/02/14 23:50:43 eva Exp $
+
+*gmime-2.4.15 (14 Feb 2010)
+*gmime-2.2.25 (14 Feb 2010)
+
+  14 Feb 2010; Gilles Dartiguelongue <eva@gentoo.org> +gmime-2.2.25.ebuild,
+  -gmime-2.4.11.ebuild, -gmime-2.4.13.ebuild, +gmime-2.4.15.ebuild:
+  Version bump. Pass -fno-strict-aliasing to workaround gcc
+  misoptimizations. Fix in :2.4 to avoid possible buffer overflows.
 
 *gmime-2.4.13 (21 Jan 2010)
 
