@@ -16,7 +16,7 @@ IUSE=""
 PDEPEND=">=dev-lang/perl-5.10.1"
 
 pkg_postinst() {
-	if [[ $(readlink "${EROOT}/usr/$(get_libdir )/libperl$(get_libname)" ) == libperl$(get_libname).1 ]] ; then
+	if [[ $(readlink "${EROOT}/usr/$(get_libdir)/libperl$(get_libname)") == libperl$(get_libname 1) ]] ; then
 		einfo "Removing stale symbolic link: ${EROOT}usr/$(get_libdir)/libperl$(get_libname)"
 		rm "${EROOT}"/usr/$(get_libdir )/libperl$(get_libname)
 	fi
