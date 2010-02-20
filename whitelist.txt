@@ -119,6 +119,7 @@ app-misc/geekcode
 app-misc/getopt
 app-misc/glimpse
 app-misc/hilite
+app-misc/mc
 app-misc/mime-types
 app-misc/mtail
 app-misc/openjnlp
@@ -156,6 +157,7 @@ app-text/dvipng
 app-text/epstool
 app-text/evince
 app-text/expander
+app-text/glark
 app-text/gnome-doc-utils
 app-text/gtkspell
 app-text/hnb
@@ -169,6 +171,7 @@ app-text/jadetex
 app-text/lcdf-typetools
 app-text/libspectre
 app-text/libwpd
+app-text/lout
 app-text/mbtpdfasm
 app-text/o3read
 app-text/par
@@ -180,6 +183,7 @@ app-text/ps2eps
 app-text/rman
 app-text/rpl
 app-text/scrollkeeper
+app-text/sgrep
 app-text/t1utils
 app-text/talkfilters
 app-text/teckit
@@ -190,8 +194,11 @@ app-text/unix2dos
 app-text/unrtf
 app-text/vlna
 app-text/wgetpaste
+app-text/xhtml1
+app-text/xlhtml
 app-text/xml2
 app-text/xmlstarlet
+app-text/xmlto
 dev-cpp/cairomm
 dev-cpp/clucene
 dev-cpp/eigen
