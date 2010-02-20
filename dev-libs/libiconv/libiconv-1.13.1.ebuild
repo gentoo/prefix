@@ -72,10 +72,5 @@ src_install() {
 	emake DESTDIR="${D}" docdir="${EPREFIX}/usr/share/doc/${PF}/html" install || die "make install failed"
 
 	# Move static libs and creates ldscripts into /usr/lib
-	dodir /$(get_libdir)
-	if [[ $(get_libname) != ".irrelevant" ]] ; then
-		mv "${ED}"/usr/$(get_libdir)/lib{charset,iconv}*$(get_libname)* "${ED}/$(get_libdir)" || die #210239
-		gen_usr_ldscript libiconv$(get_libname)
-		gen_usr_ldscript libcharset$(get_libname)
-	fi
+	gen_usr_ldscript -a iconv charset
 }
