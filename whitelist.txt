@@ -130,6 +130,7 @@ app-misc/tmux
 app-misc/ttyrec
 app-misc/zisofs-tools
 app-office/akonadi-server
+app-office/ledger
 app-office/orage
 app-office/texmacs
 app-portage/eclass-manpages
