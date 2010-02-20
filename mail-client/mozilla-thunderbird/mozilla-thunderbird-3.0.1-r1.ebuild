@@ -228,18 +228,3 @@ src_install() {
 		"${ED}/${MOZILLA_FIVE_HOME}/defaults/pref/all-gentoo.js" || \
 		die "failed to cp thunderbird-gentoo-default-prefs.js"
 }
-
-pkg_postinst() {
-	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
-
-	# This should be called in the postinst and postrm of all the
-	# mozilla, mozilla-bin, firefox, firefox-bin, thunderbird and
-	# thunderbird-bin ebuilds.
-	update_mozilla_launcher_symlinks
-}
-
-pkg_postrm() {
-	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
-
-	update_mozilla_launcher_symlinks
-}
