@@ -24,6 +24,7 @@ eclass/ELT-patches
 
 # regular packages (do NOT put portage in here!)
 app-admin/apg
+app-admin/bcfg2
 app-admin/chrpath
 app-admin/emacs-updater
 app-admin/eselect
