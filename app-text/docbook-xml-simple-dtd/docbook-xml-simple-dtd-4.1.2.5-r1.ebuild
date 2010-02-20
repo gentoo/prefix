@@ -1,12 +1,12 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/docbook-xml-simple-dtd-4.1.2.5-r1.ebuild,v 1.1 2009/12/16 10:18:36 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/docbook-xml-simple-dtd-4.1.2.5-r1.ebuild,v 1.2 2010/02/11 14:58:30 ulm Exp $
 
 DESCRIPTION="Simplified Docbook DTD for XML"
 HOMEPAGE="http://www.oasis-open.org/docbook/xml/simple/4.1.2.5/"
 SRC_URI="http://www.nwalsh.com/docbook/simple/${PV}/simple4125.zip"
 
-LICENSE="X11"
+LICENSE="as-is"
 SLOT="4.1.2.5"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
 IUSE=""

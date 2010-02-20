@@ -1,6 +1,12 @@
 # ChangeLog for app-text/docbook-xml-simple-dtd
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/ChangeLog,v 1.50 2009/12/16 10:18:36 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/docbook-xml-simple-dtd/ChangeLog,v 1.51 2010/02/11 14:58:30 ulm Exp $
+
+  11 Feb 2010; Ulrich Mueller <ulm@gentoo.org>
+  docbook-xml-simple-dtd-1.0-r1.ebuild,
+  docbook-xml-simple-dtd-4.1.2.4-r2.ebuild,
+  docbook-xml-simple-dtd-4.1.2.5-r1.ebuild:
+  Fix LICENSE, bug 298556.
 
 *docbook-xml-simple-dtd-4.1.2.5-r1 (16 Dec 2009)
 
