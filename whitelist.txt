@@ -145,6 +145,7 @@ app-text/bogosort
 app-text/chasen
 app-text/clara
 app-text/convertlit
+app-text/convmv
 app-text/cwtext
 app-text/dbacl
 app-text/diction
@@ -267,6 +268,7 @@ dev-libs/libsigc++
 dev-libs/libsigsegv
 dev-libs/libtommath
 dev-libs/libunique
+dev-libs/libusb
 dev-libs/libusb-compat
 dev-libs/libyaml
 dev-libs/log4cxx
@@ -332,6 +334,7 @@ dev-util/confix
 dev-util/confix-wrapper
 dev-util/cproto
 dev-util/cssc
+dev-util/cvs
 dev-util/cvs2cl
 dev-util/cvs2svn
 dev-util/cvsd
