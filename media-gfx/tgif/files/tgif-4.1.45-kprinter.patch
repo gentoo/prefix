@@ -1,5 +1,0 @@
-diff -NurdB tgif-QPL-4.1.44_orig/Makefile.noimake tgif-QPL-4.1.44/Makefile.noimake
---- tgif-QPL-4.1.44_orig/Makefile.noimake	2005-01-15 01:26:20.000000000 +0100
-+++ tgif-QPL-4.1.44/Makefile.noimake	2005-05-01 20:04:59.000000000 +0200
-@@ -91,0 +91,1 @@
-+		  -DPRINT_CMD=\"kprinter\" \
