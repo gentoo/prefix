@@ -316,6 +316,7 @@ dev-tex/prosper
 dev-tex/svninfo
 dev-tex/translator
 dev-tex/xcolor
+dev-tex/xmltex
 dev-util/argouml
 dev-util/autoproject
 dev-util/bcpp
