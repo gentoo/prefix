@@ -350,6 +350,7 @@ dev-util/gitosis-gentoo
 dev-util/gob
 dev-util/gtk-doc-am
 dev-util/hgsvn
+dev-util/httpup
 dev-util/huc
 dev-util/intltool
 dev-util/kdoc
@@ -373,6 +374,8 @@ dev-util/valgrind
 dev-util/wiggle
 dev-util/xfce4-dev-tools
 games-arcade/ascii-invaders
+games-arcade/nibbles
+games-arcade/tuxanci
 games-board/gnugo
 games-board/xmahjongg
 games-emulation
