@@ -296,7 +296,6 @@ dev-lisp/cl-puri
 dev-ml/extlib
 dev-ml/lablgtk
 dev-php5/pecl-pdflib
-dev-python/rdflib
 dev-tcltk/tcllib
 dev-tex/algorithms
 dev-tex/chktex
@@ -947,6 +946,7 @@ dev-python/pytz
 dev-python/pyxml
 dev-python/pyyaml
 dev-python/quixote
+dev-python/rdflib
 dev-python/routes
 dev-python/ruledispatch
 dev-python/sancho
@@ -1008,7 +1008,10 @@ dev-ruby/plist
 dev-ruby/programming-ruby
 dev-ruby/racc
 dev-ruby/rack
+dev-ruby/rails
 dev-ruby/rake
+dev-ruby/rake-compiler
+dev-ruby/rdoc
 dev-ruby/redcloth
 dev-ruby/rspec
 dev-ruby/ruby_parser
