@@ -470,13 +470,16 @@ media-libs/a52dec
 media-libs/alsa-lib
 media-libs/amrnb
 media-libs/amrwb
+media-libs/audiofile
 media-libs/bio2jack
 media-libs/compface
 media-libs/faad2
 media-libs/freeglut
+media-libs/gegl
 media-libs/gst-plugins-bad
 media-libs/gst-plugins-base
 media-libs/id3lib
+media-libs/jasper
 media-libs/jpeg
 media-libs/libcddb
 media-libs/libcuefile
@@ -487,6 +490,7 @@ media-libs/libdvdplay
 media-libs/libdvdread
 media-libs/libexif-gtk
 media-libs/libfpx
+media-libs/liblo
 media-libs/liblrdf
 media-libs/libmikmod
 media-libs/libmng
