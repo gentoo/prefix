@@ -417,6 +417,7 @@ mail-filter/razor
 mail-mta/esmtp
 mail-mta/msmtp
 media-fonts/alee-fonts
+media-fonts/aquafont
 media-fonts/aquapfont
 media-fonts/arphicfonts
 media-fonts/artwiz-aleczapka-en
