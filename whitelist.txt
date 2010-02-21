@@ -317,12 +317,15 @@ dev-tex/svninfo
 dev-tex/translator
 dev-tex/xcolor
 dev-tex/xmltex
+dev-util/aegis
 dev-util/argouml
 dev-util/autoproject
 dev-util/bcpp
 dev-util/bsdiff
+dev-util/btyacc
 dev-util/byacc
 dev-util/bzrtools
+dev-util/checkstyle
 dev-util/cmake
 dev-util/cocom
 dev-util/confix
@@ -338,8 +341,11 @@ dev-util/desktop-file-utils
 dev-util/diffball
 dev-util/diffstat
 dev-util/dmake
+dev-util/filepp
 dev-util/flawfinder
 dev-util/ftjam
+dev-util/giggle
+dev-util/gitosis
 dev-util/gitosis-gentoo
 dev-util/gob
 dev-util/gtk-doc-am
@@ -350,6 +356,7 @@ dev-util/kdoc
 dev-util/patchutils
 dev-util/pccts
 dev-util/pida
+dev-util/pmk
 dev-util/pscan
 dev-util/qgit
 dev-util/qt-creator
