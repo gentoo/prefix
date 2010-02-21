@@ -25,9 +25,4 @@ src_install() {
 
 	# We do not distribute this
 	rm -f "${ED}"/usr/bin/dlist_test "${ED}"/usr/lib*/libsysfs.la
-
-	# Move shared libs to /
-	dodir /$(get_libdir)
-	mv "${ED}"/usr/$(get_libdir)/lib*$(get_libname)* "${ED}"/$(get_libdir)/ || die
-	gen_usr_ldscript libsysfs$(get_libname)
 }
