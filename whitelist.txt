@@ -859,6 +859,7 @@ sci-calculators
 sci-chemistry
 sci-electronics
 sci-misc
+sys-kernel
 virtual
 xfce-base
 xfce-extra
