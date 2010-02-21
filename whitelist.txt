@@ -239,10 +239,13 @@ dev-lang/swig
 dev-lang/ucblogo
 dev-lang/yasm
 dev-libs/botan
+dev-libs/cdk
 dev-libs/cvector
 dev-libs/darts
 dev-libs/dotconf
+dev-libs/elfutils
 dev-libs/fribidi
+dev-libs/gnulib
 dev-libs/libatomic_ops
 dev-libs/libattica
 dev-libs/libdshconfig
@@ -250,6 +253,7 @@ dev-libs/libebml
 dev-libs/libedit
 dev-libs/libev
 dev-libs/libevent
+dev-libs/libffi
 dev-libs/libksba
 dev-libs/libmaa
 dev-libs/libmcs
@@ -259,7 +263,9 @@ dev-libs/libmowgli
 dev-libs/libnl
 dev-libs/liboop
 dev-libs/libpthread-stubs
+dev-libs/libsigc++
 dev-libs/libsigsegv
+dev-libs/libtommath
 dev-libs/libunique
 dev-libs/libusb-compat
 dev-libs/libyaml
@@ -276,6 +282,7 @@ dev-libs/syck
 dev-libs/tre
 dev-libs/uriparser
 dev-libs/uulib
+dev-libs/zziplib
 dev-lisp/cl-acl-compat
 dev-lisp/cl-asdf
 dev-lisp/cl-asdf-binary-locations
