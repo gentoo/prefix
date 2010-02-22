@@ -142,6 +142,7 @@ app-shells/zsh-completion
 app-text/agrep
 app-text/aiksaurus
 app-text/bogosort
+app-text/catdoc
 app-text/chasen
 app-text/clara
 app-text/convertlit
@@ -160,7 +161,9 @@ app-text/evince
 app-text/expander
 app-text/glark
 app-text/gnome-doc-utils
+app-text/gocr
 app-text/gtkspell
+app-text/highlight
 app-text/hnb
 app-text/html-xml-utils
 app-text/html2text
@@ -181,6 +184,7 @@ app-text/pep
 app-text/po4a
 app-text/poppler
 app-text/ps2eps
+app-text/psutils
 app-text/rman
 app-text/rpl
 app-text/scrollkeeper
@@ -188,6 +192,7 @@ app-text/sgrep
 app-text/t1utils
 app-text/talkfilters
 app-text/teckit
+app-text/texi2html
 app-text/texlive
 app-text/txt2man
 app-text/txt2tags
@@ -195,9 +200,11 @@ app-text/unix2dos
 app-text/unrtf
 app-text/vlna
 app-text/wgetpaste
+app-text/xdvik
 app-text/xhtml1
 app-text/xlhtml
 app-text/xml2
+app-text/xmlformat
 app-text/xmlstarlet
 app-text/xmlto
 dev-cpp/cairomm
@@ -309,6 +316,7 @@ dev-tex/europecv
 dev-tex/feynmf
 dev-tex/g-brief
 dev-tex/glossaries
+dev-tex/hlatex
 dev-tex/latex-beamer
 dev-tex/latexdiff
 dev-tex/leaflet
