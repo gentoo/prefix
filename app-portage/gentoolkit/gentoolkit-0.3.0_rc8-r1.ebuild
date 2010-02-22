@@ -5,7 +5,7 @@
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
 
-inherit distutils prefix
+inherit eutils distutils prefix
 
 DESCRIPTION="Collection of administration scripts for Gentoo"
 HOMEPAGE="http://www.gentoo.org/proj/en/portage/tools/index.xml"
