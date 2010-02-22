@@ -1,6 +1,18 @@
 # ChangeLog for www-client/arora
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/arora/ChangeLog,v 1.31 2010/01/05 19:51:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/arora/ChangeLog,v 1.34 2010/02/17 21:13:59 wired Exp $
+
+  17 Feb 2010; Alex Alexander <wired@gentoo.org> -arora-0.10.1-r1.ebuild,
+  arora-0.10.2-r1.ebuild:
+  0.10.2 works with Qt 4.5 -> adjusting deps and killing 0.10.1 again since
+  its not needed anymore
+
+  17 Feb 2010; Alex Alexander <wired@gentoo.org> +arora-0.10.1-r1.ebuild:
+  resurrected 0.10.1 - the last version that supports Qt 4.5 which we still
+  support
+
+  09 Feb 2010; Ben de Groot <yngwin@gentoo.org> -arora-0.10.1-r1.ebuild:
+  Remove old version
 
   05 Jan 2010; Raúl Porcel <armin76@gentoo.org> arora-0.10.1-r1.ebuild,
   arora-0.10.2-r1.ebuild:

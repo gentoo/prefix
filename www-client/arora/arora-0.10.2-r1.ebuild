@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/arora/arora-0.10.2-r1.ebuild,v 1.2 2010/01/05 19:51:21 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/arora/arora-0.10.2-r1.ebuild,v 1.3 2010/02/17 21:13:59 wired Exp $
 
 EAPI=2
 inherit eutils qt4
@@ -14,10 +14,10 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="debug doc"
 
-RDEPEND=">=x11-libs/qt-gui-4.6.0_rc1
-	>=x11-libs/qt-sql-4.6.0_rc1
-	>=x11-libs/qt-webkit-4.6.0_rc1
-	>=x11-libs/qt-xmlpatterns-4.6.0_rc1"
+RDEPEND="x11-libs/qt-gui
+	x11-libs/qt-sql
+	x11-libs/qt-webkit
+	x11-libs/qt-xmlpatterns"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
