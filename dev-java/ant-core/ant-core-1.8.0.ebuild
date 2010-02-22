@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ant-core-1.7.1-r4.ebuild,v 1.5 2009/07/04 14:26:21 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ant-core-1.8.0.ebuild,v 1.1 2010/02/21 00:34:34 caster Exp $
 
 EAPI=3
 
@@ -32,14 +32,13 @@ S="${WORKDIR}/${MY_P}"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.7.0-prefix.patch
-	cp "${FILESDIR}/${PV}-ant-r1" "${S}"/ || die "failed to copy wrapper"
-	eprefixify "${S}"/${PV}-ant-r1
+	pushd "${WORKDIR}" > /dev/null
+	epatch "${FILESDIR}"/${P}-ant.patch
+	eprefixify ant
+	popd > /dev/null
 
 	# remove bundled xerces
 	rm -v lib/*.jar || die
-
-	epatch "${FILESDIR}/1.7.1-pkg-info.patch"
-	epatch "${FILESDIR}/1.7.1-jdk4-javadoc.patch"
 
 	# use our split-ant build.xml
 	mv -f "${WORKDIR}/build.xml" . || die
@@ -73,10 +72,10 @@ src_install() {
 		dosym /usr/share/${PN}/lib/${jar} /usr/share/ant/lib/${jar}
 	done
 
-	newbin "${S}/${PV}-ant-r1" ant || die "failed to install wrapper"
+	dobin "${WORKDIR}/ant" || die "failed to install wrapper"
 
 	dodir /usr/share/${PN}/bin
-	for each in antRun runant.pl runant.py complete-ant-cmd.pl ; do
+	for each in antRun antRun.pl runant.pl runant.py complete-ant-cmd.pl ; do
 		dobin "${S}/src/script/${each}"
 		dosym /usr/bin/${each} /usr/share/${PN}/bin/${each}
 	done
@@ -89,10 +88,9 @@ src_install() {
 	echo "ANT_HOME=\"${EPREFIX}/usr/share/ant\"" > "${T}/20ant"
 	doenvd "${T}/20ant" || die "failed to install env.d file"
 
-	dodoc README WHATSNEW KEYS
+	dodoc NOTICE README WHATSNEW KEYS || die
 
 	if use doc; then
-		dohtml welcome.html
 		dohtml -r docs/*
 		java-pkg_dojavadoc --symlink manual/api build/javadocs
 	fi

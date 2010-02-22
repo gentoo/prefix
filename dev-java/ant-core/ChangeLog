@@ -1,10 +1,15 @@
 # ChangeLog for dev-java/ant-core
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ChangeLog,v 1.100 2009/10/08 10:18:44 caster Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-core/ChangeLog,v 1.101 2010/02/21 00:34:34 caster Exp $
 
 # Ant-core blocks lower/older versions of ant-tasks, 
 # since it will not run when there is a version mismatch betwean the 2 packages
 # Please unemerge ant-tasks when updating ant-core.
+
+*ant-core-1.8.0 (21 Feb 2010)
+
+  21 Feb 2010; Vlastimil Babka <caster@gentoo.org> +ant-core-1.8.0.ebuild:
+  Version bump, bug #305929.
 
   08 Oct 2009; Vlastimil Babka <caster@gentoo.org>
   -ant-core-1.7.1-r2.ebuild:
