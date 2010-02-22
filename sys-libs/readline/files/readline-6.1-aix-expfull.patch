@@ -1,0 +1,24 @@
+On AIX, -bexpall does not export symbols starting with '_', and we get
+ld: 0711-317 ERROR: Undefined symbol: _rl_echoing_p
+With -bexpfull, all symbols are exported.
+
+--- support/shobj-conf.orig	2010-01-25 13:02:55 +0100
++++ support/shobj-conf	2010-01-25 13:03:36 +0100
+@@ -265,7 +265,7 @@
+ aix4.[2-9]*-*gcc*|aix[5-9].*-*gcc*)		# lightly tested by jik@cisco.com
+ 	SHOBJ_CFLAGS=-fpic
+ 	SHOBJ_LD='ld'
+-	SHOBJ_LDFLAGS='-bdynamic -bnoentry -bexpall'
++	SHOBJ_LDFLAGS='-bdynamic -bnoentry -bexpfull'
+ 	SHOBJ_XLDFLAGS='-G'
+ 
+ 	SHLIB_XLDFLAGS='-bM:SRE'
+@@ -276,7 +276,7 @@
+ aix4.[2-9]*|aix[5-9].*)
+ 	SHOBJ_CFLAGS=-K
+ 	SHOBJ_LD='ld'
+-	SHOBJ_LDFLAGS='-bdynamic -bnoentry -bexpall'
++	SHOBJ_LDFLAGS='-bdynamic -bnoentry -bexpfull'
+ 	SHOBJ_XLDFLAGS='-G'
+ 
+ 	SHLIB_XLDFLAGS='-bM:SRE'
