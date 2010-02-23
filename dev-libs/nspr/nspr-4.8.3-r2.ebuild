@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v${PV}/src/${P}.tar
 
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="debug"
 
 src_unpack() {
@@ -26,6 +26,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.8-pkgconfig-gentoo-1.patch
 	epatch "${FILESDIR}"/${PN}-4.7.1-solaris.patch
 	epatch "${FILESDIR}"/${PN}-4.7.4-solaris.patch
+	epatch "${FILESDIR}"/${P}-aix-gcc.patch
+	epatch "${FILESDIR}"/${P}-aix-soname.patch
 	# make sure it won't find Perl out of Prefix
 	sed -i -e "s/perl5//g" mozilla/nsprpub/configure || die
 
@@ -41,7 +43,7 @@ src_compile() {
 	$(tc-getCC) -c "${T}"/test.c -o "${T}"/test.o
 	case $(file "${T}"/test.o) in
 		*64-bit*|*ppc64*|*x86_64*) myconf="${myconf} --enable-64bit";;
-		*32-bit*|*ppc*|*i386*) ;;
+		*32-bit*|*ppc*|*i386*|*"RISC System/6000"*) ;;
 		*) die "Failed to detect whether your arch is 64bits or 32bits, disable distcc if you're using it, please";;
 	esac
 
@@ -67,6 +69,8 @@ src_install () {
 	done
 
 	local n=
+	# aix-soname.patch does this already
+	[[ ${CHOST} == *-aix* ]] ||
 	for file in *$(get_libname); do
 		n=${file%$(get_libname)}$(get_libname ${MINOR_VERSION})
 		mv ${file} ${n}
