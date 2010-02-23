@@ -334,6 +334,7 @@ dev-util/bcpp
 dev-util/bsdiff
 dev-util/btyacc
 dev-util/byacc
+dev-util/bzr
 dev-util/bzrtools
 dev-util/checkstyle
 dev-util/cmake
