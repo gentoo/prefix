@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.15444 (23 Feb 2010)
+
+  23 Feb 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.15443.ebuild, +portage-2.2.00.15444.ebuild:
+  Fix shebang code even more, so it doesn't prevent most merges
+
 *portage-2.2.00.15443 (23 Feb 2010)
 
   23 Feb 2010; Fabian Groffen <grobian@gentoo.org>
