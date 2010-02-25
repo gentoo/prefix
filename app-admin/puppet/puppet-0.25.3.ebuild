@@ -13,7 +13,7 @@ SRC_URI="http://reductivelabs.com/downloads/${PN}/${MY_P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="augeas emacs ldap rrdtool shadow vim-syntax"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x86-solaris"
 
 DEPEND="dev-lang/ruby[ssl]
 	emacs? ( virtual/emacs )
