@@ -708,6 +708,7 @@ sys-process/iotop
 sys-process/time
 sys-process/unixtop
 www-apps/scgi
+www-client/conkeror
 www-client/httrack
 www-client/links
 www-client/pybugz
