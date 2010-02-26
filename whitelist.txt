@@ -137,6 +137,7 @@ app-office/texmacs
 app-portage/eclass-manpages
 app-portage/eix
 app-shells/bash-completion
+app-shells/prll
 app-shells/tcsh
 app-shells/zsh-completion
 app-text/agrep
