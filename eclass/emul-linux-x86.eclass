@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/emul-linux-x86.eclass,v 1.4 2007/11/15 05:52:26 kingtaco Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/emul-linux-x86.eclass,v 1.5 2010/02/22 20:52:52 pacho Exp $
 
 #
 # Original Author: Mike Doty <kingtaco@gentoo.org>
@@ -13,7 +13,8 @@ EXPORT_FUNCTIONS src_unpack src_install
 SRC_URI="mirror://gentoo/${PN}-${PV}.tar.bz2"
 
 DESCRIPTION="Provides precompiled 32bit libraries"
-HOMEPAGE="http://amd64.gentoo.org/emul/content.xml"
+#HOMEPAGE="http://amd64.gentoo.org/emul/content.xml"
+HOMEPAGE="http://dev.gentoo.org/~pacho/emul.html"
 
 RESTRICT="strip"
 S=${WORKDIR}
