@@ -40,6 +40,7 @@ PATCHES=(
 	"${FILESDIR}/${P}/cpp-depends.patch"
 	"${FILESDIR}/${P}/dump-symlinks.patch"
 	"${FILESDIR}/${P}/libtool.patch"
+	"${FILESDIR}"/${PN}-1.06.09-darwin.patch # bug #305361
 	"${FILESDIR}/${P}/solaris.patch"
 	"${FILESDIR}/${P}/interix.patch"
 	"${FILESDIR}/${P}/have_sys_select_h.patch" # hpux11.11
