@@ -6,18 +6,15 @@ http://bugs.gentoo.org/show_bug.cgi?id=213277
 
 --- mozilla/nsprpub/config/rules.mk.orig	2010-02-23 15:55:00 +0100
 +++ mozilla/nsprpub/config/rules.mk	2010-02-23 16:04:31 +0100
-@@ -131,15 +131,20 @@
- SHARED_LIBRARY	= $(OBJDIR)/lib$(LIBRARY_NAME)$(LIBRARY_VERSION)_shr.a
+@@ -132,14 +132,17 @@
  else
  ifdef MKSHLIB
-+ifeq ($(OS_ARCH), AIX)
-+SHARED_LIBRARY	= $(OBJDIR)/lib$(LIBRARY_NAME)$(LIBRARY_VERSION).$(DLL_SUFFIX).$(MOD_MINOR_VERSION)
-+IMPORT_LIBRARY	= $(OBJDIR)/lib$(LIBRARY_NAME)$(LIBRARY_VERSION).$(DLL_SUFFIX)
-+else
  SHARED_LIBRARY	= $(OBJDIR)/lib$(LIBRARY_NAME)$(LIBRARY_VERSION).$(DLL_SUFFIX)
- endif
- endif
++ifeq ($(OS_ARCH), AIX)
++IMPORT_LIBRARY	= $(OBJDIR)/lib$(LIBRARY_NAME).$(DLL_SUFFIX)
 +endif
+ endif
+ endif
  
  endif
  endif
@@ -28,7 +25,7 @@ http://bugs.gentoo.org/show_bug.cgi?id=213277
  TARGETS		= $(LIBRARY) $(SHARED_LIBRARY) $(IMPORT_LIBRARY)
  ifndef BUILD_OPT
  ifdef MSC_VER
-@@ -327,6 +332,15 @@
+@@ -327,6 +330,15 @@
  else
  ifeq (,$(filter-out WIN95 WINCE,$(OS_TARGET)))
  $(IMPORT_LIBRARY): $(SHARED_LIBRARY)
