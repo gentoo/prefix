@@ -443,6 +443,11 @@ src_configure() {
 		else
 			myconf="${myconf} --disable-xv --disable-xvmc"
 		fi
+	elif use aqua; then
+		myconf="${myconf} $(use_enable ggi) $(use_enable osdmenu menu) \
+			--disable-dga1 --disable-dga2 --disable-dxr3 --disable-gl \
+			--disable-vdpau --disable-vidix --disable-vidix-pcidb \
+			--disable-xinerama --disable-xss --disable-xv --disable-xvmc"
 	else
 		myconf="${myconf} --disable-dga1 --disable-dga2 --disable-dxr3 \
 			--disable-ggi --disable-gl --disable-vdpau --disable-vidix \
