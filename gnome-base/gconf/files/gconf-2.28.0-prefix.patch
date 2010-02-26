@@ -1,0 +1,13 @@
+http://bugs.gentoo.org/show_bug.cgi?id=302571
+
+--- gconf/default.path.in
++++ gconf/default.path.in
+@@ -21,7 +21,7 @@
+ xml:readwrite:$(HOME)/.gconf
+ 
+ # Location for system-wide settings that are set by the defaults mechanism
+-xml:readonly:/etc/gconf/gconf.xml.system
++xml:readonly:@sysgconfdir@/gconf.xml.system
+ 
+ # To read in any defaults settings that the Sys Admin may have created
+ # prior to a desktop system upgrade. The SysAdmin can stick default values

@@ -63,6 +63,9 @@ src_prepare() {
 
 	# Don't try to link against modules
 	epatch "${FILESDIR}"/${PN}-2.26.2-darwin-cant-link-module.patch
+
+	# Set default location for system-wide settings correctly
+	epatch "${FILESDIR}"/${P}-prefix.patch
 }
 
 # Can't run tests, missing script.
@@ -93,10 +96,10 @@ pkg_postinst() {
 
 	# change the permissions to avoid some gconf bugs
 	einfo "changing permissions for gconf dirs"
-	find  /etc/gconf/ -type d -exec chmod ugo+rx "{}" \;
+	find  "${EPREFIX}"/etc/gconf/ -type d -exec chmod ugo+rx "{}" \;
 
 	einfo "changing permissions for gconf files"
-	find  /etc/gconf/ -type f -exec chmod ugo+r "{}" \;
+	find  "${EPREFIX}"/etc/gconf/ -type f -exec chmod ugo+r "{}" \;
 }
 
 kill_gconf() {
