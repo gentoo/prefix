@@ -1,4 +1,5 @@
 http://bugs.gentoo.org/show_bug.cgi?id=307159
+http://redmine.ruby-lang.org/issues/show/2826
 
 E.g. on Solaris you can't just do -lpthread, even though you can find
 symbols there.  In general, GCC knows best how to properly do it, so let
