@@ -1,0 +1,26 @@
+http://bugs.gentoo.org/show_bug.cgi?id=307159
+
+E.g. on Solaris you can't just do -lpthread, even though you can find
+symbols there.  In general, GCC knows best how to properly do it, so let
+it do it for us, instead of relying on our own deviced logic.
+
+--- configure.in
++++ configure.in
+@@ -1018,10 +1018,14 @@
+ 	AC_DEFINE(_REENTRANT)
+ 	AC_DEFINE(_THREAD_SAFE)
+ 	AC_DEFINE(HAVE_LIBPTHREAD)
+-	case $pthread_lib in
+-	c)
++	case $pthread_lib::$GCC in
++	*::yes)
++		# GCC knows best, let it handle it
++		LIBS="-pthread $LIBS"
++		;;
++	c::*)
+ 	    ;;
+-	c_r)
++	c_r::*)
+ 	    MAINLIBS="-pthread $MAINLIBS"
+ 	    ;;
+ 	*)
