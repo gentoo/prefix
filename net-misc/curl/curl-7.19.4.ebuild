@@ -13,7 +13,7 @@ HOMEPAGE="http://curl.haxx.se/ http://curl.planetmirror.com"
 #SRC_URI="http://curl.planetmirror.com/download/${P}.tar.bz2"
 SRC_URI="http://curl.haxx.se/download/${P}.tar.bz2"
 
-LICENSE="MIT X11"
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 #IUSE="ssl ipv6 ldap ares gnutls nss idn kerberos test"

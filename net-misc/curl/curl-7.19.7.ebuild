@@ -13,7 +13,7 @@ HOMEPAGE="http://curl.haxx.se/ http://curl.planetmirror.com"
 #SRC_URI="http://curl.planetmirror.com/download/${P}.tar.bz2"
 SRC_URI="http://curl.haxx.se/download/${P}.tar.bz2"
 
-LICENSE="MIT X11"
+LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="openssl ipv6 ldap ares gnutls libssh2 nss idn kerberos test"
@@ -43,16 +43,13 @@ src_unpack() {
 	epatch "${FILESDIR}"/curl-7.17.0-strip-ldflags.patch
 	epatch "${FILESDIR}"/curl-7.19.7-test241.patch
 
+	epatch "${FILESDIR}"/${P}-interix.patch
+
 	epatch "${FILESDIR}"/${PN}-7.18.2-prefix.patch
 	eprefixify curl-config.in || die "eprefixify failed"
 }
 
 src_compile() {
-	if [[ ${CHOST} == *-interix* ]] ; then
-		export ac_cv_func_poll=no
-		export skipcheck_poll=yes
-	fi
-
 	myconf="$(use_enable ldap)
 		$(use_enable ldap ldaps)
 		$(use_with idn libidn)
