@@ -31,11 +31,14 @@ app-admin/eselect
 app-admin/eselect-blas
 app-admin/eselect-cblas
 app-admin/eselect-ctags
+app-admin/eselect-ecj
 app-admin/eselect-emacs
 app-admin/eselect-esd
 app-admin/eselect-fontconfig
+app-admin/eselect-oodict
 app-admin/eselect-lapack
 app-admin/eselect-maven
+app-admin/eselect-unison
 app-admin/gamin
 app-admin/makepasswd
 app-admin/pwgen
