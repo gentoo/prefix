@@ -1,0 +1,19 @@
+reported upstream: https://bugs.freedesktop.org/show_bug.cgi?id=26839
+
+diff -ru -x '*.Po' -x '*.Plo' libX11-1.3.3.orig/src/xcb_io.c libX11-1.3.3/src/xcb_io.c
+--- libX11-1.3.3.orig/src/xcb_io.c	2010-03-02 16:20:25 +0100
++++ libX11-1.3.3/src/xcb_io.c	2010-03-02 16:22:04 +0100
+@@ -12,7 +12,13 @@
+ #include <xcb/xcbext.h>
+ 
+ #include <assert.h>
++#ifdef HAVE_INTTYPES_H
+ #include <inttypes.h>
++#else
++#ifdef HAVE_STDINT_H
++#include <stdint.h>
++#endif
++#endif
+ #include <stdint.h>
+ #include <stdlib.h>
+ #include <string.h>

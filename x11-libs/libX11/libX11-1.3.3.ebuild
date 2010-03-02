@@ -44,6 +44,7 @@ src_unpack() {
 		"${FILESDIR}"/${PN}-1.1.4-aix-pthread.patch
 		"${FILESDIR}"/${PN}-1.1.5-winnt-private.patch
 		"${FILESDIR}"/${PN}-1.1.5-solaris.patch
+		"${FILESDIR}"/${PN}-1.3.3-interix3-inttypes.patch
 	)
 	x-modular_src_unpack
 }
