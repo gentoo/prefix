@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.15742 (03 Mar 2010)
+
+  03 Mar 2010; Fabian Groffen <grobian@gentoo.org>
+  +portage-2.2.00.15742.ebuild:
+  Bump, matches 2.2_rc64+. This version has a changed chpathtool to overcome
+  problems with certain binary files.
+
 *portage-2.2.00.15444 (23 Feb 2010)
 
   23 Feb 2010; Fabian Groffen <grobian@gentoo.org>
