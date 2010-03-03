@@ -953,6 +953,7 @@ dev-python/pygobject
 dev-python/pygoogle
 dev-python/pygtk
 dev-python/pygtksourceview
+dev-python/pyinotify
 dev-python/pylint
 dev-python/pyopenssl
 dev-python/pyorbit
