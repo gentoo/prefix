@@ -609,6 +609,7 @@ net-libs/libsoup-gnome
 net-libs/libssh
 net-libs/libssh2
 net-libs/libvncserver
+net-libs/openmq-cclient
 net-libs/openslp
 net-libs/webkit-gtk
 net-mail/getmail
