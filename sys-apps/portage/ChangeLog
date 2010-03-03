@@ -5,7 +5,7 @@
 *portage-2.2.00.15742 (03 Mar 2010)
 
   03 Mar 2010; Fabian Groffen <grobian@gentoo.org>
-  +portage-2.2.00.15742.ebuild:
+  -portage-2.2.00.15335.ebuild, +portage-2.2.00.15742.ebuild:
   Bump, matches 2.2_rc64+. This version has a changed chpathtool to overcome
   problems with certain binary files.
 
