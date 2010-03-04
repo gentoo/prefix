@@ -242,6 +242,7 @@ dev-haskell/time
 dev-lang/blassic
 dev-lang/cfortran
 dev-lang/cll1h
+dev-lang/erlang
 dev-lang/gforth
 dev-lang/nasm
 dev-lang/pasm
