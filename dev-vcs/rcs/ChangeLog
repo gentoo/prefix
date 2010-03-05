@@ -1,6 +1,10 @@
-# ChangeLog for app-text/rcs
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rcs/ChangeLog,v 1.35 2009/09/23 16:38:12 patrick Exp $
+# ChangeLog for dev-vcs/rcs
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/rcs/ChangeLog,v 1.1 2010/03/05 07:10:36 ulm Exp $
+
+  05 Mar 2010; Ulrich Mueller <ulm@gentoo.org> +rcs-5.7-r3.ebuild,
+  +metadata.xml:
+  Move package from app-text to dev-vcs, bug 56967.
 
   23 Sep 2009; Patrick Lauer <patrick@gentoo.org> rcs-5.7-r2.ebuild,
   rcs-5.7-r3.ebuild:
@@ -90,7 +94,7 @@
   AMD64 keywords.
 
   06 Dec 2002; Rodney Rees <manson@gentoo.org> : changed sparc ~sparc keywords
- 
+
 *rcs-5.7-r2 (16 Jun 2002)
 
   10 Mar 2003; Aron Griffis <agriffis@gentoo.org> rcs-5.7-r2.ebuild:
@@ -98,13 +102,11 @@
 
   2 Aug 2002; phoen][x <phoenix@gentoo.org> rcs-5.7-r2.ebuild :
   Added LICENSE, SLOT.
-  
-  15 Jul 2002; Owen Stampflee <owen@gentoo.org> :
 
+  15 Jul 2002; Owen Stampflee <owen@gentoo.org> :
   Added KEYWORDS.
 
   16 Feb 2002; Michael Nazaroff <naz@gentoo.org) rcs-5.7-r2:
-
   Added a one line fix.. that hopefully makes conf.sh script to no fail like it
   was.  I don't seem to have problems either way on my machine.  So I'm not sure
   about the exact problem with this ebuild.
@@ -115,7 +117,7 @@
   Added LICENSE, SLOT.
 
   1 Feb 2002; G.Bevin <gbevin@gentoo.org> ChangeLog :
-  
+
   Added initial ChangeLog which should be updated whenever the package is
   updated in any way. This changelog is targetted to users. This means that the
   comments should well explained and written in clean English. The details about
