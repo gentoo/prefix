@@ -339,7 +339,6 @@ dev-util/bcpp
 dev-util/bsdiff
 dev-util/btyacc
 dev-util/byacc
-dev-util/bzr
 dev-util/bzrtools
 dev-util/checkstyle
 dev-util/cmake
@@ -390,6 +389,7 @@ dev-util/unifdef
 dev-util/valgrind
 dev-util/wiggle
 dev-util/xfce4-dev-tools
+dev-vcs/bzr
 games-arcade/ascii-invaders
 games-arcade/nibbles
 games-arcade/tuxanci
