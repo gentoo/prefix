@@ -345,7 +345,6 @@ dev-util/cocom
 dev-util/confix
 dev-util/confix-wrapper
 dev-util/cproto
-dev-util/cssc
 dev-util/cvs
 dev-util/cvs2cl
 dev-util/cvs2svn
@@ -359,7 +358,6 @@ dev-util/dmake
 dev-util/filepp
 dev-util/flawfinder
 dev-util/ftjam
-dev-util/giggle
 dev-util/gitosis
 dev-util/gitosis-gentoo
 dev-util/gob
@@ -377,7 +375,6 @@ dev-util/pscan
 dev-util/qgit
 dev-util/qt-creator
 dev-util/re2c
-dev-util/statcvs
 dev-util/strace
 dev-util/svk
 dev-util/tailor
@@ -390,6 +387,9 @@ dev-util/wiggle
 dev-util/xfce4-dev-tools
 dev-vcs/bzr
 dev-vcs/bzrtools
+dev-vcs/cssc
+dev-vcs/giggle
+dev-vcs/statcvs
 games-arcade/ascii-invaders
 games-arcade/nibbles
 games-arcade/tuxanci
