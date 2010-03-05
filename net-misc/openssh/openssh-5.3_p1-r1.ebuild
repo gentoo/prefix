@@ -125,6 +125,15 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-getpwuid.patch
 	epatch "${FILESDIR}"/${P}-interix.patch
 
+	# when installed as non-admin on interix6, chmoding with +s fails! ...
+	# (btw: administrator uid is constant across all windows versions).
+	if [[ ${CHOST} == *-interix6* ]]; then
+		if [[ $(id -u) != 197108 ]]; then
+			epatch "${FILESDIR}"/${P}-interix6-setuid.patch
+		fi
+	fi
+
+
 	# Disable PATH reset, trust what portage gives us. bug 254615
 	sed -i -e 's:^PATH=/:#PATH=/:' configure || die
 
