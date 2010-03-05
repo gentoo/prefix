@@ -23,7 +23,10 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-build.patch
 	epatch "${FILESDIR}"/${P}-solaris.patch
-	[[ ${CHOST} == *-solaris* ]] && append-ldflags -lsocket # libs doesn't work
+	# no configure around
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		sed -i -e '/^LDLIBS+=/s/$/ -lsocket/' Makefile || die
+	fi
 }
 
 src_install() {
