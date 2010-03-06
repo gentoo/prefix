@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.15754 (06 Mar 2010)
+
+  06 Mar 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.15742.ebuild, -files/portage-2.2.00.15742-aix-imp.patch,
+  +portage-2.2.00.15754.ebuild:
+  Replace faulty snapshot with fixed one (unknown variable EPREFIX_LSTRIP),
+  matches 2.2_rc65
+
 *portage-2.2.00.15742 (03 Mar 2010)
 
   03 Mar 2010; Fabian Groffen <grobian@gentoo.org>
