@@ -977,6 +977,7 @@ dev-python/rdflib
 dev-python/routes
 dev-python/ruledispatch
 dev-python/sancho
+dev-python/scientificpython
 dev-python/setuptools
 dev-python/simplejson
 dev-python/sip
