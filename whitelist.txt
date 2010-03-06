@@ -349,6 +349,7 @@ dev-util/cvs
 dev-util/cvs2cl
 dev-util/cvs2svn
 dev-util/cvsd
+dev-util/cvsps
 dev-util/darcs
 dev-util/dejagnu
 dev-util/desktop-file-utils
