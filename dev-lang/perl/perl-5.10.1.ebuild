@@ -99,12 +99,12 @@ src_prepare() {
 	# commented out patches fail and need evaluation if they're still necessary
 	#epatch "${FILESDIR}"/${PN}-5.8.8-mint.patch
 	#epatch "${FILESDIR}"/${PN}-5.8.8-aix.patch
-	#epatch "${FILESDIR}"/${PN}-5.8.8-hpux.patch
 	#epatch "${FILESDIR}"/${PN}-5.8.8-solaris-64bit.patch # may clash with native linker
 	epatch "${FILESDIR}"/${PN}-5.8.8-solaris-relocation.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-irix.patch
 	epatch "${FILESDIR}"/${P}-cleanup-paths.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-usr-local.patch
+	epatch "${FILESDIR}"/${P}-hpux.patch
 	#epatch "${FILESDIR}"/${PN}-5.8.8-hpux1131.patch
 	epatch "${FILESDIR}"/${PN}-5.8.8-darwin-cc-ld.patch
 	epatch "${FILESDIR}"/${P}-stack-protector-check.patch
