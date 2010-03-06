@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/mercurial/mercurial-1.4.2.ebuild,v 1.4 2010/03/05 17:10:28 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/mercurial/mercurial-1.4.1.ebuild,v 1.1 2010/03/06 12:20:08 djc Exp $
 
 EAPI=2
 
-inherit bash-completion elisp-common flag-o-matic eutils distutils prefix
+inherit bash-completion elisp-common flag-o-matic eutils distutils
 
 DESCRIPTION="Scalable distributed SCM"
 HOMEPAGE="http://mercurial.selenic.com/"
@@ -67,9 +67,8 @@ src_install() {
 	doman doc/*.?
 
 	cat > "${T}/80mercurial" <<-EOF
-HG="@GENTOO_PORTAGE_EPREFIX@/usr/bin/hg"
+HG="${EPREFIX}/usr/bin/hg"
 EOF
-	eprefixify "${T}/80mercurial"
 	doenvd "${T}/80mercurial"
 
 	if use emacs; then
