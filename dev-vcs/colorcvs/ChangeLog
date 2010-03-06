@@ -1,6 +1,9 @@
-# ChangeLog for dev-util/colorcvs
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/colorcvs/ChangeLog,v 1.12 2009/11/01 16:33:04 nixnut Exp $
+# ChangeLog for dev-vcs/colorcvs
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/colorcvs/ChangeLog,v 1.2 2010/03/06 13:36:58 ulm Exp $
+
+  06 Mar 2010; Justin Lecher (jlec) <jlec@gentoo.org> ChangeLog:
+  Moved CAT from dev-util to dev-vcs
 
   01 Nov 2009; nixnut <nixnut@gentoo.org> colorcvs-1.4-r1.ebuild:
   ppc stable #290164

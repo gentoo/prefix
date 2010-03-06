@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/colorcvs/colorcvs-1.4-r1.ebuild,v 1.3 2009/11/01 16:33:04 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/colorcvs/colorcvs-1.4-r1.ebuild,v 1.1 2010/03/06 13:32:09 jlec Exp $
 
 inherit eutils
 
