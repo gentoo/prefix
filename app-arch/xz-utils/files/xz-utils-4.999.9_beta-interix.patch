@@ -1,3 +1,7 @@
+rejected upstream:
+(21:18) <    Larhzu> Just add --enable-assume-ram=128 or something like
+that.
+
 diff -ru -x '*.Po' -x '*.Plo' xz-4.999.9beta.orig/src/common/physmem.h xz-4.999.9beta/src/common/physmem.h
 --- xz-4.999.9beta.orig/src/common/physmem.h	2009-09-23 14:06:03 +0200
 +++ xz-4.999.9beta/src/common/physmem.h	2009-09-23 14:06:30 +0200

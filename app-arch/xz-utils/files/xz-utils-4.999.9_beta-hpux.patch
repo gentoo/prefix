@@ -1,3 +1,9 @@
+rejected upstream:
+(21:29) <    Larhzu> Anyway, I'm not accepting your patch, because it
+does different thing than on other operating systems. If ulimit is
+better way then other systems would need to be changed too.
+
+
 *** src/common/physmem.h.orig	Thu Dec 10 08:32:24 2009
 --- src/common/physmem.h	Thu Dec 10 08:33:56 2009
 ***************
