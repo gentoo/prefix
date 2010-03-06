@@ -22,6 +22,9 @@ src_unpack() {
 	cd "${S}"
 	# this file is missing from the tarball bug #300845
 	cp "${FILESDIR}"/gnulib_strnlen.c gl/lib/strnlen.c || die
+	# from upstream for IRIX, bug #301005
+	epatch "${FILESDIR}"/${P}-continue-91e027ab1af51717f9229d07901158e7466fcd6f.patch
+	epatch "${FILESDIR}"/${P}-strlen-strdup-f376c5db4a4b169176996c67c8c5ac53c3b18a44.patch
 
 	epatch "${FILESDIR}"/${P}-interix-nomultibyte.patch
 }
