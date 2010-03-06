@@ -139,6 +139,7 @@ app-office/orage
 app-office/texmacs
 app-portage/eclass-manpages
 app-portage/eix
+app-portage/elogv
 app-shells/bash-completion
 app-shells/prll
 app-shells/tcsh
