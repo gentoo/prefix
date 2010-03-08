@@ -76,7 +76,7 @@ src_prepare() {
 	sed -e "s:/usr/lib/X11/xfig:${EPREFIX}/usr/share/doc/${PF}:" \
 		-i Doc/xfig.man -i Doc/xfig_man.html || die
 
-	epatch "${FILESDIR}"/${PN}-3.2.5-darwin.patch
+	epatch "${FILESDIR}"/${P}-darwin.patch
 	epatch "${FILESDIR}"/${PN}-3.2.5-solaris.patch
 }
 
