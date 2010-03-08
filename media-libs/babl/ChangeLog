@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/babl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/ChangeLog,v 1.16 2009/12/20 14:26:10 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/babl/ChangeLog,v 1.17 2010/02/19 13:41:42 patrick Exp $
+
+*babl-0.1.2 (19 Feb 2010)
+
+  19 Feb 2010; Patrick Lauer <patrick@gentoo.org> +babl-0.1.2.ebuild:
+  Bump for #305623
 
   20 Dec 2009; Brent Baude <ranger@gentoo.org> babl-0.0.22.ebuild:
   Marking babl-0.0.22 ppc64 for bug 293127
