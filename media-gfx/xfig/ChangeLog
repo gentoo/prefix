@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/xfig
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/ChangeLog,v 1.64 2010/01/31 00:16:15 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xfig/ChangeLog,v 1.65 2010/02/10 03:32:29 josejx Exp $
+
+  10 Feb 2010; Joseph Jezak <josejx@gentoo.org> xfig-3.2.5b.ebuild:
+  Marked ppc stable for bug #264575.
 
   31 Jan 2010; Markus Meier <maekke@gentoo.org> xfig-3.2.5b.ebuild:
   amd64 stable, bug #264575
