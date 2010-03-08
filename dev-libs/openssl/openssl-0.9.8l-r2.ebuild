@@ -92,6 +92,7 @@ src_unpack() {
 	# in the same prefix (prefix-chaining).
 	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure #141906
 	sed -i '/^"debug-steve/d' Configure # 0.9.8k shipped broken
+	sed -i '1s/perl5/perl/' tools/c_rehash #308455
 
 	# avoid waiting on terminal input forever when spitting
 	# 64bit warning message.
