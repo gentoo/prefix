@@ -19,10 +19,10 @@ RDEPEND=">=x11-libs/libICE-1.0.5
 	x11-proto/xproto
 	uuid? (
 	  !elibc_FreeBSD? (
+	  !elibc_IRIX? (
 	  !elibc_SunOS? (
 		|| ( >=sys-apps/util-linux-2.16 <sys-libs/e2fsprogs-libs-1.41.8 )
-	  )
-	  )
+	  ) ) )
 	)"
 DEPEND="${RDEPEND}"
 
