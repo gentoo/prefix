@@ -220,6 +220,7 @@ src_prepare() {
 		Documentation/Makefile || die "sed failed"
 	
 	epatch "${FILESDIR}"/${P}-interix.patch
+	epatch "${FILESDIR}"/${P}-interix6.patch
 }
 
 git_emake() {
