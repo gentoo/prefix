@@ -219,6 +219,7 @@ src_prepare() {
 	sed -i 's/DOCBOOK2X_TEXI=docbook2x-texi/DOCBOOK2X_TEXI=docbook2texi.pl/' \
 		Documentation/Makefile || die "sed failed"
 	
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 git_emake() {
