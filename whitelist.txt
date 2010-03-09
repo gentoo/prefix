@@ -428,10 +428,6 @@ gnome-base/libgnomekbd
 gnome-base/libgnomeprint
 gnome-base/libgnomeprintui
 gnome-base/nautilus
-gnustep-base/gnustep-back-art
-gnustep-base/gnustep-back-cairo
-gnustep-base/gnustep-back-xlib
-gnustep-base/mknfonts
 mail-client/mailx
 mail-client/mutt
 mail-filter/razor
@@ -813,6 +809,7 @@ dev-games
 dev-texlive
 kde-base
 gnustep-apps
+gnustep-base
 gnome-extra
 lxde-base
 net-print
