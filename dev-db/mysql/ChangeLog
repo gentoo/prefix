@@ -1,6 +1,120 @@
 # ChangeLog for dev-db/mysql
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.498 2010/01/31 04:47:39 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.515 2010/03/08 21:01:53 robbat2 Exp $
+
+  08 Mar 2010; Robin H. Johnson <robbat2@gentoo.org> mysql-5.0.90-r2.ebuild:
+  Backport more false positive disabling.
+
+  08 Mar 2010; Robin H. Johnson <robbat2@gentoo.org> mysql-5.1.39-r1.ebuild,
+  mysql-5.1.44.ebuild, mysql-5.1.44-r1.ebuild:
+  Accidently disabling a test twice.
+
+  06 Mar 2010; Robin H. Johnson <robbat2@gentoo.org> mysql-5.0.83.ebuild,
+  mysql-5.0.84.ebuild, mysql-5.0.84-r1.ebuild, mysql-5.0.87.ebuild,
+  mysql-5.0.88.ebuild, mysql-5.0.90.ebuild, mysql-5.0.90-r1.ebuild,
+  mysql-5.0.90-r2.ebuild:
+  Update the official test instructions to disable NDB tests per upstream.
+
+  01 Mar 2010; Robin H. Johnson <robbat2@gentoo.org> mysql-5.0.83.ebuild,
+  mysql-5.0.84.ebuild, mysql-5.0.84-r1.ebuild, mysql-5.0.87.ebuild,
+  mysql-5.0.88.ebuild, mysql-5.0.90.ebuild, mysql-5.0.90-r1.ebuild,
+  mysql-5.0.90-r2.ebuild, mysql-5.1.39-r1.ebuild, mysql-5.1.44.ebuild,
+  mysql-5.1.44-r1.ebuild, mysql-5.4.3_beta.ebuild,
+  mysql-5.5.1_alpha_pre2.ebuild:
+  Bug #307251: update the GCC DEPEND due to C++ template usage.
+
+*mysql-5.1.44-r1 (27 Feb 2010)
+
+  27 Feb 2010; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-5.1.44-r1.ebuild:
+  Now with PBXT support again. XtraDB 1.0.6-9 confirmed to not work yet.
+
+  23 Feb 2010; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
+  Resync the metadata.xml between mysql packages.
+
+*mysql-5.1.44 (21 Feb 2010)
+*mysql-5.1.39-r1 (21 Feb 2010)
+*mysql-5.0.90-r2 (21 Feb 2010)
+
+  21 Feb 2010; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-5.0.90-r2.ebuild, -mysql-5.1.39.ebuild, +mysql-5.1.39-r1.ebuild,
+  -mysql-5.1.41.ebuild, -mysql-5.1.42.ebuild, -mysql-5.1.43.ebuild,
+  +mysql-5.1.44.ebuild, metadata.xml:
+  5.0.90-r2: Bug #305221: Fix ppc64 builds with new revision due to updated
+  patches. 5.1.x: Drop older 5.1 ebuilds and add .39-r1 and .44 using latest
+  updates and patches, ready for ~arch.
+
+  15 Feb 2010; Robin H. Johnson <robbat2@gentoo.org> mysql-5.1.39.ebuild,
+  mysql-5.1.41.ebuild, mysql-5.1.42.ebuild, mysql-5.1.43.ebuild,
+  mysql-5.4.3_beta.ebuild, mysql-5.5.1_alpha_pre2.ebuild:
+  Disable cluster from the official test runs. Will be handled by the
+  upcoming mysql-cluster package instead.
+
+  10 Feb 2010; Jorge Manuel B. S. Vicetto <jmbsvicetto@gentoo.org>
+  mysql-5.1.39.ebuild, mysql-5.1.41.ebuild, mysql-5.1.42.ebuild,
+  mysql-5.1.43.ebuild, mysql-5.4.3_beta.ebuild,
+  mysql-5.5.1_alpha_pre2.ebuild:
+  Restricted amarok block to amarok[embedded].
+
+*mysql-5.5.1_alpha_pre2 (02 Feb 2010)
+
+  02 Feb 2010; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-5.5.1_alpha_pre2.ebuild:
+  Add mysql 5.5.1-m2, we don't support the same version syntax, so mangle
+  _alpha_pre -> -m, because _alpha on it's own means something else
+  upstream. -m comes BEFORE _alpha.
+
+  02 Feb 2010; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
+  Explicitly note what USE=extraengine turns on: Archive, CSV, Blackhole,
+  Federated(X), Partition.
+
+*mysql-5.4.3_beta (02 Feb 2010)
+
+  02 Feb 2010; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-5.4.3_beta.ebuild:
+  Add 5.4 series beta, based on hanno's overlay work. Testsuite false
+  positives/known failures updated for 5.4/5.5.
+
+  01 Feb 2010; Robin H. Johnson <robbat2@gentoo.org> mysql-5.1.39.ebuild,
+  mysql-5.1.41.ebuild, mysql-5.1.42.ebuild, mysql-5.1.43.ebuild:
+  We do not have shared-embedded support in MySQL 5.1 yet, still
+  work-in-progress, block amarok for now.
+
+*mysql-5.1.43 (01 Feb 2010)
+*mysql-5.1.42 (01 Feb 2010)
+*mysql-5.1.41 (01 Feb 2010)
+*mysql-5.1.39 (01 Feb 2010)
+
+  01 Feb 2010; Robin H. Johnson <robbat2@gentoo.org> +mysql-5.1.39.ebuild,
+  +mysql-5.1.41.ebuild, +mysql-5.1.42.ebuild, +mysql-5.1.43.ebuild:
+  Bring in 5.1 series again from the overlay. 5.1.39 includes working
+  Percona XtraDB. 5.1.42 should have XtraDB, but it does not compile. 5.1.43
+  is the latest from upstream, for security vulns. MANY thanks to
+  jmbsvicetto for all the work he has put in helping on 5.1 updates.
+
+  31 Jan 2010; Robin H. Johnson <robbat2@gentoo.org> mysql-5.0.54.ebuild,
+  mysql-5.0.70-r1.ebuild, mysql-5.0.72.ebuild, mysql-5.0.72-r1.ebuild,
+  mysql-5.0.76.ebuild, mysql-5.0.76-r1.ebuild, mysql-5.0.83.ebuild,
+  mysql-5.0.84.ebuild, mysql-5.0.84-r1.ebuild:
+  Disable the SSL tests in all old 5.x ebuilds because the SSL certificates
+  have expired now.
+
+  31 Jan 2010; Robin H. Johnson <robbat2@gentoo.org>
+  -mysql-5.0.26-r2.ebuild, -mysql-5.0.32.ebuild, -mysql-5.0.34.ebuild,
+  -mysql-5.0.38.ebuild, -mysql-5.0.40.ebuild, -mysql-5.0.42.ebuild,
+  -mysql-5.0.44.ebuild, -mysql-5.0.44-r1.ebuild, -mysql-5.0.44-r2.ebuild,
+  -mysql-5.0.56.ebuild, -mysql-5.0.60.ebuild, -mysql-5.0.60-r1.ebuild,
+  -mysql-5.0.70.ebuild:
+  Clean up some old versions, keeping only unstables newer than the majority
+  of the stables, and one of each of the old major versions.
+
+*mysql-5.0.90-r1 (31 Jan 2010)
+
+  31 Jan 2010; Robin H. Johnson <robbat2@gentoo.org>
+  +mysql-5.0.90-r1.ebuild:
+  Revision bump. 5.0.90-r1 includes the Percona 5.0.87-b20 patchset
+  directly. Passes upstream testsuite w/ USE='cluster profiling extraengine
+  embedded'. YMMV.
 
 *mysql-5.0.90 (31 Jan 2010)
 *mysql-5.0.88 (31 Jan 2010)

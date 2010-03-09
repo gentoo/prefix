@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.90.ebuild,v 1.1 2010/01/31 04:47:39 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/mysql-5.0.90.ebuild,v 1.3 2010/03/06 21:34:21 robbat2 Exp $
 
 MY_EXTRAS_VER="20100131-0301Z"
 EAPI=2
@@ -18,7 +18,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos 
 # When MY_EXTRAS is bumped, the index should be revised to exclude these.
 EPATCH_EXCLUDE=''
 
-DEPEND="|| ( >=sys-devel/gcc-4 >=sys-devel/gcc-apple-4 )"
+DEPEND="|| ( >=sys-devel/gcc-4.3 >=sys-devel/gcc-apple-4.2 )"
 RDEPEND=""
 
 # Please do not add a naive src_unpack to this ebuild
@@ -32,7 +32,7 @@ src_unpack() {
 }
 
 # Official test instructions:
-# USE='berkdb cluster embedded extraengine perl ssl community' \
+# USE='berkdb -cluster embedded extraengine perl ssl community' \
 # FEATURES='test userpriv -usersandbox' \
 # ebuild mysql-X.X.XX.ebuild \
 # digest clean package
