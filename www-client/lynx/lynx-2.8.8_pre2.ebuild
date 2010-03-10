@@ -68,9 +68,6 @@ src_prepare() {
 	# fix configure for openssl compiled with kerberos (bug #267749)
 	epatch "${FILESDIR}/lynx-2.8.7-configure-openssl.patch"
 
-# Given the context of this patch (no context), I can't tell if it was applied
-# or not at upstream level. --darkside
-#epatch "${FILESDIR}"/${PN}-2.8.6-darwin7.patch
 	epatch "${FILESDIR}"/${PN}-2.8.6-mint.patch
 }
 
