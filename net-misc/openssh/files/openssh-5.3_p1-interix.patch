@@ -488,7 +488,15 @@ diff -ruN openssh-5.3p1.orig/openbsd-compat/inet_ntop.c openssh-5.3p1/openbsd-co
 diff -ruN openssh-5.3p1.orig/openbsd-compat/port-aix.c openssh-5.3p1/openbsd-compat/port-aix.c
 --- openssh-5.3p1.orig/openbsd-compat/port-aix.c	2009-10-07 17:18:14 +0200
 +++ openssh-5.3p1/openbsd-compat/port-aix.c	2009-10-07 17:19:32 +0200
-@@ -245,7 +245,7 @@
+@@ -33,6 +33,7 @@
+ #include "auth.h"
+ #include "ssh.h"
+ #include "log.h"
++#include "misc.h"
+ 
+ #ifdef _AIX
+ 
+@@ -245,7 +246,7 @@
  	 * logins via ssh) or if running as non-root user (since
  	 * loginrestrictions will always fail due to insufficient privilege).
  	 */
@@ -497,7 +505,7 @@ diff -ruN openssh-5.3p1.orig/openbsd-compat/port-aix.c openssh-5.3p1/openbsd-com
  		debug3("%s: not checking", __func__);
  		return 1;
  	}
-@@ -309,7 +309,7 @@
+@@ -309,7 +310,7 @@
  void
  record_failed_login(const char *user, const char *hostname, const char *ttyname)
  {
