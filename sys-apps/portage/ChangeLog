@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.15817 (11 Mar 2010)
+
+  11 Mar 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.15444.ebuild, +portage-2.2.00.15817.ebuild:
+  Bump, matches 2.2_rc67
+
   11 Mar 2010; Markus Duft <mduft@gentoo.org> portage-2.2.00.15801.ebuild,
   +files/portage-2.2.00.15801-prefix-chaining.patch:
   updated prefix-chaining patch once more.
