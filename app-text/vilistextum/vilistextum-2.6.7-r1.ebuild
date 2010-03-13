@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/vilistextum/vilistextum-2.6.9.ebuild,v 1.2 2010/03/06 21:55:52 jlec Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/vilistextum/vilistextum-2.6.7-r1.ebuild,v 1.1 2010/03/06 21:55:52 jlec Exp $
 
 EAPI="2"
 
@@ -22,16 +22,18 @@ DEPEND=""
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-gentoo.diff"
+	epatch "${FILESDIR}/${P}-use-glibc-iconv.diff"
+
 	eautoreconf
 }
 
-src_configure(){
+src_configure() {
 	use elibc_glibc || append-libs -liconv
-	econf $(use_enable unicode multibyte)
+	econf $(use_enable unicode multibyte) || die
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	make DESTDIR="${D}" install || die
 	dodoc README CHANGES || die
 	dohtml doc/*.html || die
 }

@@ -1,6 +1,13 @@
 # ChangeLog for app-text/vilistextum
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/vilistextum/ChangeLog,v 1.24 2008/02/13 20:02:33 pclouds Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/vilistextum/ChangeLog,v 1.25 2010/03/06 21:55:52 jlec Exp $
+
+*vilistextum-2.6.7-r1 (06 Mar 2010)
+
+  06 Mar 2010; Justin Lecher (jlec) <jlec@gentoo.org>
+  +vilistextum-2.6.7-r1.ebuild, vilistextum-2.6.9.ebuild:
+  do not try to install *.css which are not available, #305543, thanks
+  Christophe LEFEBVRE for the patches
 
 *vilistextum-2.6.9 (13 Feb 2008)
 
