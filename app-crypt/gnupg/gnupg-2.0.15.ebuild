@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.14.ebuild,v 1.8 2010/02/12 20:22:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/gnupg/gnupg-2.0.15.ebuild,v 1.1 2010/03/10 18:55:07 arfrever Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit flag-o-matic toolchain-funcs
 
@@ -33,7 +33,7 @@ COMMON_DEPEND_BINS="app-crypt/pinentry"
 # existence of bins are checked during configure
 DEPEND="${COMMON_DEPEND_LIBS}
 	${COMMON_DEPEND_BINS}
-	=dev-libs/libassuan-1*
+	>=dev-libs/libassuan-2
 	nls? ( sys-devel/gettext )
 	doc? ( sys-apps/texinfo )"
 
