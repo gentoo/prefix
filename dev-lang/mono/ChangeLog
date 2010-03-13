@@ -1,6 +1,20 @@
 # ChangeLog for dev-lang/mono
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.184 2010/02/07 15:52:03 ford_prefect Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.187 2010/02/20 11:05:20 patrick Exp $
+
+*mono-2.4.3.1 (20 Feb 2010)
+
+  20 Feb 2010; Patrick Lauer <patrick@gentoo.org> +mono-2.4.3.1.ebuild:
+  Bump for #296373
+
+*mono-2.6.1 (20 Feb 2010)
+
+  20 Feb 2010; Patrick Lauer <patrick@gentoo.org> +mono-2.6.1.ebuild:
+  Bump for #296373
+
+  11 Feb 2010; Ulrich Mueller <ulm@gentoo.org> mono-1.2.5.1-r1.ebuild,
+  mono-1.2.6-r3.ebuild, mono-2.0.1-r1.ebuild:
+  Replace license X11 by MIT, bug 298556.
 
 *mono-2.4.3 (06 Feb 2010)
 
