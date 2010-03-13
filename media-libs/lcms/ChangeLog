@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/lcms
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.108 2010/01/28 15:15:35 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.111 2010/03/04 19:51:31 armin76 Exp $
+
+  04 Mar 2010; Raúl Porcel <armin76@gentoo.org> lcms-1.19.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #302647
+
+  17 Feb 2010; Markus Meier <maekke@gentoo.org> lcms-1.19.ebuild:
+  amd64/arm/x86 stable, bug #302647
+
+  10 Feb 2010; Jeroen Roovers <jer@gentoo.org> lcms-1.19.ebuild:
+  Stable for HPPA (bug #302647).
 
   28 Jan 2010; Samuli Suominen <ssuominen@gentoo.org> lcms-1.18-r1.ebuild:
   Update SRC_URI to Gentoo mirrors wrt #302641, thanks to Eric Tamme for
