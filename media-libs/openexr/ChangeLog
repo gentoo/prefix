@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/openexr
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/openexr/ChangeLog,v 1.76 2009/02/28 16:59:42 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/openexr/ChangeLog,v 1.77 2010/03/10 02:59:43 sping Exp $
+
+  10 Mar 2010; Sebastian Pipping <sping@gentoo.org> openexr-1.6.1.ebuild:
+  Fix SRC_URI (bug #262655)
 
   28 Feb 2009; Raúl Porcel <armin76@gentoo.org> openexr-1.6.1.ebuild:
   s390/sh stable
