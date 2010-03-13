@@ -1,6 +1,22 @@
 # ChangeLog for app-editors/joe
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.68 2010/01/16 22:39:38 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/joe/ChangeLog,v 1.73 2010/03/10 16:49:20 josejx Exp $
+
+  10 Mar 2010; Joseph Jezak <josejx@gentoo.org> joe-3.7-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #259482.
+
+  07 Mar 2010; Markus Meier <maekke@gentoo.org> joe-3.7-r1.ebuild:
+  arm stable, bug #259482
+
+  06 Mar 2010; Tiago Cunha <tcunha@gentoo.org> joe-3.7-r1.ebuild:
+  stable sparc, bug 259482
+
+  06 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> joe-3.7-r1.ebuild:
+  x86 stable wrt bug #259482
+
+  05 Mar 2010; Pacho Ramos <pacho@gentoo.org> -joe-3.7.ebuild,
+  joe-3.7-r1.ebuild:
+  amd64 stable, bug 259482 . Also remove old testing and broken version
 
 *joe-3.7-r1 (16 Jan 2010)
 
