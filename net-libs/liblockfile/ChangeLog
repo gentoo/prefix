@@ -1,6 +1,12 @@
 # ChangeLog for net-libs/liblockfile
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.56 2010/02/07 22:25:01 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/liblockfile/ChangeLog,v 1.58 2010/02/13 16:17:45 armin76 Exp $
+
+  13 Feb 2010; Raúl Porcel <armin76@gentoo.org> liblockfile-1.08.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #302016
+
+  10 Feb 2010; Joseph Jezak <josejx@gentoo.org> liblockfile-1.08.ebuild:
+  Marked ppc stable for bug #302016.
 
   07 Feb 2010; Markus Meier <maekke@gentoo.org> liblockfile-1.08.ebuild:
   amd64/arm/x86 stable, bug #302016
