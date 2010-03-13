@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/smartmontools
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.85 2010/01/05 03:44:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/smartmontools/ChangeLog,v 1.86 2010/03/06 23:00:19 vapier Exp $
+
+*smartmontools-5.39.1 (06 Mar 2010)
+
+  06 Mar 2010; Mike Frysinger <vapier@gentoo.org>
+  +smartmontools-5.39.1.ebuild:
+  Version bump #305405 by Walther which also fixes #299962 by Dennis
+  Schridde.
 
 *smartmontools-5.39 (05 Jan 2010)
 
