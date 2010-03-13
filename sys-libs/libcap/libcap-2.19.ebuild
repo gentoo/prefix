@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/libcap-2.16.ebuild,v 1.9 2009/05/16 16:17:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/libcap-2.19.ebuild,v 1.1 2010/03/07 00:12:48 vapier Exp $
 
 inherit eutils multilib toolchain-funcs pam
 
@@ -21,13 +21,12 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${P}.tar.bz2
 	cd "${S}"
-	epatch "${FILESDIR}"/${PV}/*.patch
-	epatch "${FILESDIR}"/${PN}-2.16-drop-linux-workarounds.patch #265304
+	epatch "${FILESDIR}"/2.16/*.patch
 	sed -i -e '/cap_setfcap.*morgan/s:^:#:' pam_cap/capability.conf
 	sed -i \
 		-e "/^PAM_CAP/s:=.*:=$(use pam && echo yes || echo no):" \
 		-e '/^DYNAMIC/s:=.*:=yes:' \
-		-e "/^lib=/s:=.*:=$(get_libdir):" \
+		-e "/^lib=/s:=.*:=/usr/$(get_libdir):" \
 		Make.Rules
 }
 
@@ -39,8 +38,7 @@ src_compile() {
 src_install() {
 	emake install DESTDIR="${ED}" || die
 
-	gen_usr_ldscript libcap.so
-	mv "${ED}"/$(get_libdir)/libcap.a "${ED}"/usr/$(get_libdir)/ || die
+	gen_usr_ldscript -a cap
 
 	dopammod pam_cap/pam_cap.so
 	dopamsecurity '' pam_cap/capability.conf

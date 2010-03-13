@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/libcap
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.103 2010/01/24 18:29:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/libcap/ChangeLog,v 1.104 2010/03/07 00:12:48 vapier Exp $
+
+*libcap-2.19 (07 Mar 2010)
+
+  07 Mar 2010; Mike Frysinger <vapier@gentoo.org> +libcap-2.19.ebuild:
+  Version bump #307269 by Arfrever Frehtes Taifersar Arahesis.
 
   24 Jan 2010; Raúl Porcel <armin76@gentoo.org> libcap-2.17.ebuild:
   ia64/s390/sh/sparc stable wrt #290045
