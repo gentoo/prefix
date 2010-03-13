@@ -1,6 +1,13 @@
 # ChangeLog for dev-db/mysql
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.515 2010/03/08 21:01:53 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql/ChangeLog,v 1.517 2010/03/12 18:50:33 ranger Exp $
+
+  12 Mar 2010; Brent Baude <ranger@gentoo.org> mysql-5.0.83.ebuild:
+  Marking mysql-5.0.83 ppc64 for bug 303747
+
+  09 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  mysql-5.0.90-r2.ebuild:
+  x86 stable, security bug 303747
 
   08 Mar 2010; Robin H. Johnson <robbat2@gentoo.org> mysql-5.0.90-r2.ebuild:
   Backport more false positive disabling.
