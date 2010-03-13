@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1.0-r1.ebuild,v 1.1 2009/12/29 18:13:05 cedk Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openvpn/openvpn-2.1.0-r1.ebuild,v 1.2 2010/02/28 16:11:18 cedk Exp $
 
-inherit eutils multilib toolchain-funcs autotools prefix
+inherit eutils multilib toolchain-funcs autotools flag-o-matic prefix
 
 IPV6_VERSION="0.4.10"
 DESCRIPTION="OpenVPN is a robust and highly flexible tunneling application compatible with many OSes."
@@ -56,6 +56,13 @@ src_unpack() {
 }
 
 src_compile() {
+	# basic.h defines a type 'bool' that conflicts with the altivec
+	# keyword bool which has to be fixed upstream, see bugs #293840
+	# and #297854.
+	# For now, filter out -maltivec on ppc and append -mno-altivec, as
+	# -maltivec is enabled implicitly by -mcpu and similar flags.
+	use ppc && filter-flags -maltivec && append-flags -mno-altivec
+
 	local myconf=""
 
 	if use minimal ; then
