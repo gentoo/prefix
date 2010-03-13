@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/xz-utils
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.15 2010/01/30 17:18:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/xz-utils/ChangeLog,v 1.16 2010/03/04 20:16:45 armin76 Exp $
+
+  04 Mar 2010; Raúl Porcel <armin76@gentoo.org>
+  xz-utils-4.999.9_beta.ebuild:
+  m68k stable, thanks to kolla for testing
 
   30 Jan 2010; Raúl Porcel <armin76@gentoo.org>
   xz-utils-4.999.9_beta.ebuild:
