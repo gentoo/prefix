@@ -18,7 +18,7 @@ cd bash-build
 
 ftp "http://distfiles.gentoo.org/distfiles/bash-3.2-patched.tar.gz"
 gzip -d bash-3.2-patched.tar.gz
-tar -xf bash-3.2.tar
+tar -xf bash-3.2-patched.tar
 cd bash-3.2
 
 ./configure --prefix="${1}"/usr --disable-nls
