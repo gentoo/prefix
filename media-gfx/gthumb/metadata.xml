@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>gnome</herd>
-<use>
-	<flag name='iptc'>
-		Add support for IPTC metadata
-	</flag>
-</use>
+	<herd>gnome</herd>
+	<use>
+		<flag name='iptc'>Add support for IPTC metadata</flag>
+		<flag name="http">Enable webservice integration through <pkg>net-libs/libsoup</pkg></flag>
+	</use>
 </pkgmetadata>

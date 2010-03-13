@@ -1,6 +1,17 @@
 # ChangeLog for media-gfx/gthumb
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/ChangeLog,v 1.103 2009/05/23 16:08:58 ssuominen Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/ChangeLog,v 1.105 2010/03/10 17:51:57 eva Exp $
+
+  10 Mar 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  gthumb-2.11.2.1.ebuild:
+  Fix use flags & configure, thanks to mr_bones.
+
+*gthumb-2.11.2.1 (08 Mar 2010)
+
+  08 Mar 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  +gthumb-2.11.2.1.ebuild, +files/gthumb-2.11.2.1-configure.patch,
+  metadata.xml:
+  Version bump, fixes usage of libjpeg, bug #306341.
 
   23 May 2009; Samuli Suominen <ssuominen@gentoo.org> gthumb-2.10.11.ebuild:
   Remove comment about unused gtkunique depend wrt #268722, which has been
