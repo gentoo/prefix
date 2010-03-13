@@ -1,6 +1,26 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.170 2010/01/05 07:13:54 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.176 2010/03/13 02:56:11 aballier Exp $
+
+  13 Mar 2010; Alexis Ballier <aballier@gentoo.org> gettext-0.17-r1.ebuild:
+  Create unversionned ld script on BSD; otherwise the loader tries (and
+  fails) to load the script.
+
+  11 Mar 2010; Markus Meier <maekke@gentoo.org> gettext-0.17-r1.ebuild:
+  amd64 stable, bug #307423
+
+  10 Mar 2010; Joseph Jezak <josejx@gentoo.org> gettext-0.17-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #307423.
+
+  07 Mar 2010; Raúl Porcel <armin76@gentoo.org> gettext-0.17-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #307423
+
+  04 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  gettext-0.17-r1.ebuild:
+  stable x86, bug 307423
+
+  02 Mar 2010; Jeroen Roovers <jer@gentoo.org> gettext-0.17-r1.ebuild:
+  Stable for HPPA (bug #307423).
 
 *gettext-0.17-r1 (05 Jan 2010)
 

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17-r1.ebuild,v 1.1 2010/01/05 07:13:54 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.17-r1.ebuild,v 1.7 2010/03/13 02:56:11 aballier Exp $
 
 inherit flag-o-matic eutils multilib toolchain-funcs mono autotools
 
@@ -114,7 +114,7 @@ src_install() {
 	rm -f "${ED}"/usr/share/locale/locale.alias "${ED}"/usr/lib/charset.alias
 
 	if [[ ${USERLAND} == "BSD" ]] ; then
-		libname="libintl$(get_libname 8)"
+		libname="libintl$(get_libname)"
 		# Move dynamic libs and creates ldscripts into /usr/lib
 		dodir /$(get_libdir)
 		mv "${ED}"/usr/$(get_libdir)/${libname}* "${ED}"/$(get_libdir)/
