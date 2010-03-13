@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.126 2010/02/08 23:42:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.129 2010/02/13 16:52:54 armin76 Exp $
+
+  13 Feb 2010; Raúl Porcel <armin76@gentoo.org> gmp-4.3.2.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #304083
+
+  11 Feb 2010; Christian Faulhammer <fauli@gentoo.org> gmp-4.3.2.ebuild:
+  stable x86, bug 304083
+
+  09 Feb 2010; Jeroen Roovers <jer@gentoo.org> gmp-4.3.2.ebuild:
+  Stable for HPPA (bug #304083).
 
 *gmp-5.0.1 (08 Feb 2010)
 
