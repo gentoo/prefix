@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/indent-2.2.10-r1.ebuild,v 1.8 2010/02/09 01:47:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/indent-2.2.10-r1.ebuild,v 1.10 2010/02/13 16:23:34 armin76 Exp $
 
 EAPI="2"
 

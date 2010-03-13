@@ -1,6 +1,18 @@
 # ChangeLog for dev-util/indent
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.43 2010/02/09 01:47:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.46 2010/03/04 04:57:43 jer Exp $
+
+  04 Mar 2010; Jeroen Roovers <jer@gentoo.org>
+  -files/2.2.9-deb-gentoo.patch, -indent-2.2.9-r3.ebuild,
+  -files/2.2.9-indent-off-segfault.patch, -indent-2.2.9-r4.ebuild,
+  -files/2.2.9-malloc.patch, -indent-2.2.10.ebuild:
+  Remove old.
+
+  13 Feb 2010; Raúl Porcel <armin76@gentoo.org> indent-2.2.10-r1.ebuild:
+  alpha/arm/ia64/s390/sh stable wrt #302346
+
+  10 Feb 2010; Joseph Jezak <josejx@gentoo.org> indent-2.2.10-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #302346.
 
   09 Feb 2010; Jeroen Roovers <jer@gentoo.org> indent-2.2.10-r1.ebuild:
   Stable for HPPA (bug #302346).
