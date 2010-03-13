@@ -1,6 +1,12 @@
 # ChangeLog for net-ftp/filezilla
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/ChangeLog,v 1.62 2010/01/30 18:18:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/ChangeLog,v 1.63 2010/02/21 19:19:54 voyageur Exp $
+
+*filezilla-3.3.2 (21 Feb 2010)
+
+  21 Feb 2010; Bernard Cafarelli <voyageur@gentoo.org>
+  +filezilla-3.3.2.ebuild:
+  Version bump
 
   30 Jan 2010; Raúl Porcel <armin76@gentoo.org> filezilla-3.3.0.1.ebuild:
   sparc stable wrt #297020
