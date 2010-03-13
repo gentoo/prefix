@@ -1,24 +1,23 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.5.6.ebuild,v 1.10 2010/01/02 18:32:23 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.6-r4.ebuild,v 1.2 2010/03/06 14:12:08 anarchy Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
-inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib pax-utils fdo-mime autotools mozextension
+inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib pax-utils fdo-mime autotools mozextension java-pkg-opt-2
 
 LANGS="af ar as be bg bn-BD bn-IN ca cs cy da de el en en-GB en-US eo es-AR
 es-CL es-ES es-MX et eu fa fi fr fy-NL ga-IE gl gu-IN he hi-IN hr hu id is it ja
-ka kk kn ko ku lt lv mk ml mn mr nb-NO nl nn-NO oc or pa-IN pl pt-BR pt-PT rm ro
+ka kk kn ko ku lt lv mk ml mr nb-NO nl nn-NO oc or pa-IN pl pt-BR pt-PT rm ro
 ru si sk sl sq sr sv-SE ta-LK ta te th tr uk vi zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR es-CL es-MX pt-BR zh-CN zh-TW"
 
-XUL_PV="1.9.1.6"
-MAJ_XUL_PV="1.9.1"
+XUL_PV="1.9.2"
+MAJ_XUL_PV="1.9.2"
 MAJ_PV="${PV/_*/}" # Without the _rc and _beta stuff
-DESKTOP_PV="3.5"
-MY_PV="${PV/_beta/b}" # Handle betas for SRC_URI
-MY_PV="${PV/_/}" # Handle rcs for SRC_URI
-PATCH="${PN}-3.5.5-patches-0.1"
+DESKTOP_PV="3.6"
+MY_PV="${PV/_rc/rc}" # Handle beta for SRC_URI
+PATCH="${PN}-3.6-patches-0.6"
 
 DESCRIPTION="Firefox Web Browser"
 HOMEPAGE="http://www.mozilla.com/firefox"
@@ -26,7 +25,7 @@ HOMEPAGE="http://www.mozilla.com/firefox"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="+alsa bindist java mozdevelop sqlite iceweasel" # qt-experimental
+IUSE="+alsa bindist java libnotify system-sqlite wifi"
 
 REL_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases"
 SRC_URI="${REL_URI}/${MY_PV}/source/firefox-${MY_PV}.source.tar.bz2
@@ -48,27 +47,26 @@ for X in ${LANGS} ; do
 	fi
 done
 
-# Not working.
-#	qt-experimental? (
-#		x11-libs/qt-gui
-#		x11-libs/qt-core )
-#	=net-libs/xulrunner-${XUL_PV}*[java=,qt-experimental=]
-
 RDEPEND="
 	>=sys-devel/binutils-2.16.1
-	>=dev-libs/nss-3.12.2
-	>=dev-libs/nspr-4.7.3
+	>=dev-libs/nss-3.12.4
+	>=dev-libs/nspr-4.8
 	>=app-text/hunspell-1.2
-	sqlite? ( >=dev-db/sqlite-3.6.20-r1[fts3] )
+	system-sqlite? ( >=dev-db/sqlite-3.6.22-r2[fts3,secure-delete] )
 	alsa? ( media-libs/alsa-lib )
-	~net-libs/xulrunner-${XUL_PV}[java=,sqlite=]
 	>=x11-libs/cairo-1.8.8[X]
-	x11-libs/pango[X]"
+	x11-libs/pango[X]
+	wifi? ( net-wireless/wireless-tools )
+	libnotify? ( >=x11-libs/libnotify-0.4 )
+	~net-libs/xulrunner-${XUL_PV}[java=,wifi=,libnotify=,system-sqlite=]"
 
 DEPEND="${RDEPEND}
+	java? ( >=virtual/jdk-1.4 )
 	dev-util/pkgconfig"
 
-S="${WORKDIR}/mozilla-1.9.1"
+RDEPEND="${RDEPEND} java? ( >=virtual/jre-1.4 )"
+
+S="${WORKDIR}/mozilla-1.9.2"
 
 QA_PRESTRIPPED="usr/$(get_libdir)/${PN}/firefox"
 
@@ -95,51 +93,48 @@ linguas() {
 }
 
 pkg_setup() {
+	# Ensure we always build with C locale.
+	export LANG="C"
+	export LC_ALL="C"
+	export LC_MESSAGES="C"
+	export LC_CTYPE="C"
+
 	if ! use bindist ; then
+		einfo
 		elog "You are enabling official branding. You may not redistribute this build"
 		elog "to any users on your network or the internet. Doing so puts yourself into"
 		elog "a legal problem with Mozilla Foundation"
 		elog "You can disable it by emerging ${PN} _with_ the bindist USE-flag"
 	fi
 
-	if use iceweasel ; then
-		elog "You have enabled iceweasel useflag which does nothing in current ebuild."
-		elog "Please 'emerge -C mozilla-firefox; emerge icecat' if you wish to have same support"
-		elog "as you currently had with iceweasel useflag."
-		eerror "Please 'emerge -C mozilla-firefox; emerge icecat' to have a same support"
-	fi
+	java-pkg-opt-2_pkg_setup
 }
 
 src_unpack() {
-	unpack ${A}
+	unpack firefox-${MY_PV}.source.tar.bz2 ${PATCH}.tar.bz2
 
 	linguas
 	for X in ${linguas}; do
 		# FIXME: Add support for unpacking xpis to portage
 		[[ ${X} != "en" ]] && xpi_unpack "${P}-${X}.xpi"
 	done
-	if [[ ${linguas} != "" && ${linguas} != "en" ]]; then
-		einfo "Selected language packs (first will be default): ${linguas}"
-	fi
 }
 
 src_prepare() {
 	# Apply our patches
-	EPATCH_EXCLUDE="136-fix_ftbfs_with_cairo_fb.patch" \
 	EPATCH_SUFFIX="patch" \
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"
 
 	epatch "${FILESDIR}"/${PN}-3.0-solaris64.patch
 
+	# Fix media build failure
+	epatch "${FILESDIR}/xulrunner-1.9.2-noalsa-fixup.patch"
+
 	eautoreconf
 
 	cd js/src
 	eautoreconf
-
-	# We need to re-patch this because autoreconf overwrites it
-	cd "${S}"
-	epatch "${FILESDIR}/000_flex-configure-LANG.patch"
 }
 
 src_configure() {
@@ -160,16 +155,19 @@ src_configure() {
 
 	mozconfig_annotate '' --enable-extensions="${MEXTENSIONS}"
 	mozconfig_annotate '' --enable-application=browser
-	mozconfig_annotate 'gtk' --enable-default-toolkit=cairo-gtk2
 	mozconfig_annotate '' --disable-mailnews
 	mozconfig_annotate 'broken' --disable-crashreporter
 	mozconfig_annotate '' --enable-image-encoder=all
 	mozconfig_annotate '' --enable-canvas
+	mozconfig_annotate 'gtk' --enable-default-toolkit=cairo-gtk2
 	# Bug 60668: Galeon doesn't build without oji enabled, so enable it
 	# regardless of java setting.
 	mozconfig_annotate '' --enable-oji --enable-mathml
 	mozconfig_annotate 'places' --enable-storage --enable-places
 	mozconfig_annotate '' --enable-safe-browsing
+
+	# Build mozdevelop permately
+	mozconfig_annotate ''  --enable-jsd --enable-xpctools
 
 	# System-wide install specs
 	mozconfig_annotate '' --disable-installer
@@ -188,16 +186,16 @@ src_configure() {
 	mozconfig_annotate '' --with-system-libxul
 	mozconfig_annotate '' --with-libxul-sdk="${EPREFIX}"/usr/$(get_libdir)/xulrunner-devel-${MAJ_XUL_PV}
 
-	# Enable/Disable based on useflag
-	mozconfig_use_enable sqlite system-sqlite
-	mozconfig_use_enable mozdevelop jsd
-	mozconfig_use_enable mozdevelop xpctools
+	mozconfig_use_enable libnotify
+	mozconfig_use_enable java javaxpcom
+	mozconfig_use_enable wifi necko-wifi
 	mozconfig_use_enable alsa ogg
 	mozconfig_use_enable alsa wave
+	mozconfig_use_enable system-sqlite
+	mozconfig_use_enable !bindist official-branding
 
-	if ! use bindist ; then
-		mozconfig_annotate '' --enable-official-branding
-	fi
+	# Other ff-specific settings
+	mozconfig_annotate '' --with-default-mozilla-five-home=${MOZILLA_FIVE_HOME}
 
 	# Finalize and report settings
 	mozconfig_final
@@ -237,10 +235,10 @@ src_install() {
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5.desktop \
 			${PN}-${DESKTOP_PV}.desktop
 	else
-		newicon "${S}"/browser/base/branding/icon48.png firefox-icon-unbranded.png
+		newicon "${S}"//browser/branding/unofficial/content/icon48.png firefox-icon-unbranded.png
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5-unbranded.desktop \
 			${PN}-${DESKTOP_PV}.desktop
-		sed -i -e "s:Bon Echo:Shiretoko:" \
+		sed -i -e "s:Bon Echo:Namoroka:" \
 			"${ED}"/usr/share/applications/${PN}-${DESKTOP_PV}.desktop || die "sed failed!"
 	fi
 
@@ -254,19 +252,16 @@ src_install() {
 	# Enable very specific settings not inherited from xulrunner
 	cp "${FILESDIR}"/firefox-default-prefs.js \
 		"${ED}/${MOZILLA_FIVE_HOME}/defaults/preferences/all-gentoo.js" || \
-		die "failed to cp xulrunner-default-prefs.js"
+		die "failed to cp firefox-default-prefs.js"
 
 	# Plugins dir
 	dosym ../nsbrowser/plugins "${MOZILLA_FIVE_HOME}"/plugins \
 		|| die "failed to symlink"
 
 	# very ugly hack to make firefox not sigbus on sparc
-	if use sparc ; then
-		sed -i \
-			-e 's/Firefox/FirefoxGentoo/g' \
-			"${ED}/${MOZILLA_FIVE_HOME}/application.ini" \
-			|| die "sparc sed failed"
-	fi
+	use sparc && { sed -e 's/Firefox/FirefoxGentoo/g' \
+					 -i "${ED}/${MOZILLA_FIVE_HOME}/application.ini" || \
+					 die "sparc sed failed"; }
 }
 
 pkg_postinst() {

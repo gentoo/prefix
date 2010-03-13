@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.6-r2.ebuild,v 1.1 2010/02/12 20:51:53 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.6-r2.ebuild,v 1.2 2010/02/20 03:01:42 anarchy Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -242,7 +242,7 @@ src_install() {
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5.desktop \
 			${PN}-${DESKTOP_PV}.desktop
 	else
-		newicon "${S}"/browser/base/branding/icon48.png firefox-icon-unbranded.png
+		newicon "${S}"/browser/branding/unofficial/content/icon48.png firefox-icon-unbranded.png
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5-unbranded.desktop \
 			${PN}-${DESKTOP_PV}.desktop
 		sed -i -e "s:Bon Echo:Namoroka:" \

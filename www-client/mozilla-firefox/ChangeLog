@@ -1,6 +1,45 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.594 2010/02/18 03:17:56 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.603 2010/03/06 14:12:08 anarchy Exp $
+
+  06 Mar 2010; <anarchy@gentoo.org> mozilla-firefox-3.6-r4.ebuild:
+  re-fix bindist icon installation
+
+  04 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -mozilla-firefox-3.5.6.ebuild:
+  Remove old, vulnerable 3.5.6
+
+*mozilla-firefox-3.6-r4 (04 Mar 2010)
+
+  04 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +mozilla-firefox-3.6-r4.ebuild, metadata.xml:
+  Move over the latest revision from the overlay. USE=system-sqlite is used
+  for toggling usage of internal/external sqlite + minor ebuild changes
+
+  02 Mar 2010; Tobias Heinlein <keytoaster@gentoo.org>
+  mozilla-firefox-3.5.8.ebuild:
+  amd64 stable, security bug #305689
+
+  25 Feb 2010; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.5.8.ebuild:
+  alpha/arm/ia64/sparc stable wrt #305689
+
+  23 Feb 2010; Joseph Jezak <josejx@gentoo.org>
+  mozilla-firefox-3.5.8.ebuild:
+  Marked ppc/ppc64 stable for bug #305689.
+
+  22 Feb 2010; Jeroen Roovers <jer@gentoo.org> mozilla-firefox-3.5.8.ebuild:
+  Stable for HPPA (bug #305689).
+
+  22 Feb 2010; Jeroen Roovers <jer@gentoo.org> mozilla-firefox-3.5.8.ebuild:
+  Stable for HPPA (bug #305689).
+
+  21 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  mozilla-firefox-3.5.8.ebuild:
+  stable x86, security bug 305689
+
+  20 Feb 2010; <anarchy@gentoo.org> mozilla-firefox-3.6-r2.ebuild:
+  Fix bindist icon installation
 
 *mozilla-firefox-3.5.8 (18 Feb 2010)
 
