@@ -1,6 +1,19 @@
 # ChangeLog for media-gfx/icoutils
-# Copyright 2002-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/icoutils/ChangeLog,v 1.18 2007/04/08 21:41:40 welp Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/icoutils/ChangeLog,v 1.21 2010/03/06 09:33:05 patrick Exp $
+
+*icoutils-0.29.1 (06 Mar 2010)
+
+  06 Mar 2010; Patrick Lauer <patrick@gentoo.org> +icoutils-0.29.1.ebuild:
+  Bump, fixes #307985
+
+  21 Feb 2010; Patrick Lauer <patrick@gentoo.org> metadata.xml:
+  Taking over maintenance as proxycommitter with upstream
+
+*icoutils-0.29.0 (21 Feb 2010)
+
+  21 Feb 2010; Patrick Lauer <patrick@gentoo.org> +icoutils-0.29.0.ebuild:
+  Bump for #305743
 
   08 Apr 2007; Peter Weller <welp@gentoo.org> icoutils-0.26.0.ebuild:
   Stable on amd64 wrt bug 169939
