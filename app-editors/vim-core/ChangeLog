@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/vim-core
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.324 2010/02/12 19:26:31 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.326 2010/03/09 18:47:26 lack Exp $
+
+  09 Mar 2010; Jim Ramsay <lack@gentoo.org> files/vimrc-r4:
+  Fix /etc/vim/vimrc so it does not accidentally override last-position-jump
+  (Bug #308545)
+
+*vim-core-7.2.376 (24 Feb 2010)
+
+  24 Feb 2010; Jim Ramsay <lack@gentoo.org> +vim-core-7.2.376.ebuild:
+  Version bump 7.2.376, now with ruby-1.9 support! (Bug #268608)
 
 *vim-core-7.2.359 (12 Feb 2010)
 

@@ -2,7 +2,7 @@ scriptencoding utf-8
 " ^^ Please leave the above line at the start of the file.
 
 " Default configuration file for Vim
-" $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/files/vimrc-r4,v 1.1 2009/07/22 14:05:52 lack Exp $
+" $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/files/vimrc-r4,v 1.2 2010/03/09 18:47:21 lack Exp $
 
 " Written by Aron Griffis <agriffis@gentoo.org>
 " Modified by Ryan Phillips <rphillips@gentoo.org>
@@ -181,7 +181,7 @@ augroup gentoo
   " Except of course if a byte-order mark is in effect.
   autocmd BufReadPost *
         \ if exists("g:added_fenc_utf8") && &fileencoding == "utf-8" && 
-        \    ! &bomb && search('[\x80-\xFF]','w') == 0 && &modifiable |
+        \    ! &bomb && search('[\x80-\xFF]','nw') == 0 && &modifiable |
         \       set fileencoding= |
         \ endif
 
