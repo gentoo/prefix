@@ -1,6 +1,17 @@
 # ChangeLog for sci-visualization/gnuplot
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.133 2009/12/31 17:43:49 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.135 2010/03/07 20:02:31 ulm Exp $
+
+  07 Mar 2010; Ulrich Mueller <ulm@gentoo.org> gnuplot-4.2.6-r1.ebuild:
+  Only build-time dependencies are needed with USE=doc.
+
+*gnuplot-4.2.6-r1 (26 Feb 2010)
+
+  26 Feb 2010; Ulrich Mueller <ulm@gentoo.org> -gnuplot-4.2.5-r1.ebuild,
+  -files/gnuplot-4.2.5-colorbox_accounting.patch, +gnuplot-4.2.6-r1.ebuild:
+  Move code for configuration and compilation of Emacs and XEmacs modes to
+  proper functions. Fix LICENSE, Emacs support files are released under GPL-2.
+  Use dodoc to install documentation. Other minor fixes. Remove old.
 
   31 Dec 2009; Brent Baude <ranger@gentoo.org> gnuplot-4.2.6.ebuild:
   Marking gnuplot-4.2.6 ppc64 for bug 288967
