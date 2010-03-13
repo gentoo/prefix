@@ -1,6 +1,12 @@
 # ChangeLog for app-text/rarian
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.41 2009/10/07 15:54:33 leio Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.42 2010/03/12 12:27:24 pacho Exp $
+
+*rarian-0.8.1-r1 (12 Mar 2010)
+
+  12 Mar 2010; Pacho Ramos <pacho@gentoo.org> +rarian-0.8.1-r1.ebuild,
+  +files/rarian-0.8.1-fix-old-doc.patch:
+  Fix bug 302900. Thanks to Rafał Mużyło for reporting and the patch.
 
   07 Oct 2009; Mart Raudsepp <leio@gentoo.org>
   -files/rarian-0.6.0-posix-getopt.patch,
