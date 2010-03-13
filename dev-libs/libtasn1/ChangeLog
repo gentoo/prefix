@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/libtasn1
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.102 2010/01/18 19:07:51 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.104 2010/03/04 15:32:57 jer Exp $
+
+  04 Mar 2010; Jeroen Roovers <jer@gentoo.org> libtasn1-2.4.ebuild:
+  Stable for HPPA (bug #306111).
+
+  23 Feb 2010; Markos Chandras <hwoarang@gentoo.org> libtasn1-2.4.ebuild:
+  Stable on amd64 wrt bug #306111
 
 *libtasn1-2.4 (18 Jan 2010)
 
