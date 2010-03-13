@@ -1,6 +1,12 @@
 # ChangeLog for app-text/enchant
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/enchant/ChangeLog,v 1.96 2009/04/12 21:04:12 bluebird Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/enchant/ChangeLog,v 1.97 2010/03/09 17:40:33 serkan Exp $
+
+*enchant-1.5.0 (09 Mar 2010)
+
+  09 Mar 2010; Serkan Kaba <serkan@gentoo.org> +enchant-1.5.0.ebuild,
+  +files/enchant-1.5.0-zemberek.patch:
+  Version bump. Fix upstream bug #12305.
 
   12 Apr 2009; Friedrich Oslage <bluebird@gentoo.org> enchant-1.4.2.ebuild:
   Stable on sparc, bug #260063
