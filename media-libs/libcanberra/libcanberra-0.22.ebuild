@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.22.ebuild,v 1.1 2009/11/04 22:39:49 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.22.ebuild,v 1.5 2010/03/04 12:30:51 phajdan.jr Exp $
 
 EAPI="1"
 
@@ -59,7 +59,8 @@ src_compile() {
 		$(use_enable pulseaudio pulse) \
 		$(use_enable doc gtk-doc) \
 		--disable-tdb \
-		--disable-lynx
+		--disable-lynx \
+		--with-html-dir=/usr/share/doc/${PF}/html
 	# tdb support would need a split-out from samba before we can use it
 
 	emake || die "emake failed."

@@ -2,6 +2,7 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>gnome</herd>
+<herd>sound</herd>
 <longdescription>A small and lightweight implementation of the XDG Sound Theme Specification (http://0pointer.de/public/sound-theme-spec.html).</longdescription>
 <use>
   <flag name='alsa'>Enables ALSA sound driver.</flag>
@@ -12,5 +13,6 @@
   <flag name='pulseaudio'>Enables PulseAudio sound driver that should be able to support positional event sounds.
 	This is the preferred choice for best sound events experience and picked by default if compiled in and
 	possible to use at runtime.</flag>
+  <flag name='tdb'>Enables Trivial Database support</flag>
 </use>
 </pkgmetadata>

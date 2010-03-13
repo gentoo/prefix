@@ -1,6 +1,31 @@
 # ChangeLog for media-libs/libcanberra
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.30 2009/11/04 22:39:49 eva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.36 2010/03/04 12:30:51 phajdan.jr Exp $
+
+  04 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  libcanberra-0.22.ebuild:
+  x86 stable wrt #305931
+
+  01 Mar 2010; Brent Baude <ranger@gentoo.org> libcanberra-0.22.ebuild:
+  Marking libcanberra-0.22 ppc64 for bug 305931
+
+  23 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libcanberra-0.23.ebuild:
+  Run elibtoolize for ~x86-fbsd.
+
+*libcanberra-0.23 (20 Feb 2010)
+
+  20 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +libcanberra-0.23.ebuild:
+  Version bump.
+
+  20 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libcanberra-0.22.ebuild:
+  amd64 stable wrt #305931
+
+  20 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libcanberra-0.22.ebuild:
+  Install HTML documentation to /usr/share/doc/${PF}/html.
 
 *libcanberra-0.22 (04 Nov 2009)
 
