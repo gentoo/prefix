@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/vigra-1.6.0.ebuild,v 1.7 2009/06/02 16:48:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/vigra/vigra-1.6.0.ebuild,v 1.8 2010/03/09 13:01:41 ssuominen Exp $
 
 EAPI=2
 
@@ -47,6 +47,9 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-gcc44.patch"
+	sed -i \
+		-e 's:png_set_gray_1_2_4_to_8:png_set_expand_gray_1_2_4_to_8:g' \
+		src/impex/png.cxx || die
 }
 
 src_configure() {
