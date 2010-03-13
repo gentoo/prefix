@@ -4,5 +4,6 @@
   <herd>net-p2p</herd>
   <use>
     <flag name="dht">Enable Distributed Hash Tables support</flag>
+	<flag name="sound">Enable sound event support with <pkg>media-libs/libcanberra</pkg></flag>
   </use>
 </pkgmetadata>
