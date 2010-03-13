@@ -1,6 +1,12 @@
 # ChangeLog for gnome-base/gnome-vfs
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/ChangeLog,v 1.314 2009/10/19 23:07:47 eva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/ChangeLog,v 1.316 2010/03/12 21:22:59 ranger Exp $
+
+  12 Mar 2010; Brent Baude <ranger@gentoo.org> gnome-vfs-2.24.2.ebuild:
+  Marking gnome-vfs-2.24.2 ppc64 stable for bug 308549
+
+  11 Mar 2010; Pacho Ramos <pacho@gentoo.org> gnome-vfs-2.24.2.ebuild:
+  amd64 stable, bug 308549
 
   13 Oct 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -files/gnome-vfs-2.18.1-drop-gtk-doc-check.patch,
