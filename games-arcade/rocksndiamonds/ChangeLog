@@ -1,6 +1,10 @@
 # ChangeLog for games-arcade/rocksndiamonds
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/ChangeLog,v 1.37 2010/01/14 12:46:27 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-arcade/rocksndiamonds/ChangeLog,v 1.38 2010/02/10 03:26:02 josejx Exp $
+
+  10 Feb 2010; Joseph Jezak <josejx@gentoo.org>
+  rocksndiamonds-3.2.6.1.ebuild:
+  Marked ppc stable for bug #299035.
 
   14 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
   rocksndiamonds-3.2.6.1.ebuild:
