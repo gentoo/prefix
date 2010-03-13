@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/xvid
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.113 2009/06/07 13:20:06 ssuominen Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.114 2010/02/21 10:15:36 ssuominen Exp $
+
+*xvid-1.2.2-r2 (21 Feb 2010)
+
+  21 Feb 2010; Samuli Suominen <ssuominen@gentoo.org> +xvid-1.2.2-r2.ebuild,
+  +files/xvid-1.2.2-noexecstack.patch:
+  Apply rpmfusion noexecstack patch from bug 258804, thanks to Pacho Ramos.
 
   07 Jun 2009; Samuli Suominen <ssuominen@gentoo.org> xvid-1.2.2-r1.ebuild:
   configure for x86_64 prefers yasm and it needs to be 0.8.0, so adjust the
