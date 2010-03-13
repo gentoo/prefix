@@ -1,6 +1,12 @@
 # ChangeLog for sys-fs/e2fsprogs
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.207 2009/12/07 11:11:31 ssuominen Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.208 2010/03/07 02:34:44 vapier Exp $
+
+*e2fsprogs-1.41.10 (07 Mar 2010)
+
+  07 Mar 2010; Mike Frysinger <vapier@gentoo.org> +e2fsprogs-1.41.10.ebuild,
+  +files/e2fsprogs-1.41.10-e2fsck-corruption.patch:
+  Version bump #306589 by Krzysztof Olędzki.
 
   07 Dec 2009; Samuli Suominen <ssuominen@gentoo.org>
   e2fsprogs-1.41.9.ebuild:

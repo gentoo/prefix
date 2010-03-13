@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.8.ebuild,v 1.6 2009/12/01 04:47:34 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/e2fsprogs-1.41.10.ebuild,v 1.1 2010/03/07 02:34:44 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs multilib
 
@@ -35,6 +35,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.38-tests-locale.patch #99766
 	epatch "${FILESDIR}"/${PN}-1.41.8-makefile.patch
 	epatch "${FILESDIR}"/${PN}-1.40-fbsd.patch
+	epatch "${FILESDIR}"/${P}-e2fsck-corruption.patch
 	# use symlinks rather than hardlinks
 	sed -i \
 		-e 's:$(LN) -f $(DESTDIR).*/:$(LN_S) -f :' \
@@ -55,10 +56,6 @@ src_unpack() {
 	sed -i -r \
 		-e '/^LIB_SUBDIRS/s:lib/(et|ss)::g' \
 		Makefile.in || die "remove subdirs"
-	# stupid configure script clobbers CC for us
-	sed -i \
-		-e '/if test -z "$CC" ; then CC=cc; fi/d' \
-		configure || die "touching configure"
 
 	# Avoid rebuild
 	touch lib/ss/ss_err.h
@@ -88,7 +85,6 @@ src_compile() {
 	econf \
 		--with-root-prefix="${EPREFIX}"/ \
 		${libtype} \
-		--with-ldopts="${LDFLAGS}" \
 		$(tc-has-tls || echo --disable-tls) \
 		--without-included-gettext \
 		$(use_enable nls) \
@@ -129,6 +125,9 @@ src_install() {
 		DESTDIR="${D}" \
 		install install-libs || die
 	dodoc README RELEASE-NOTES
+
+	insinto /etc
+	doins "${FILESDIR}"/e2fsck.conf || die
 
 	# Move shared libraries to /lib/, install static libraries to
 	# /usr/lib/, 	 
