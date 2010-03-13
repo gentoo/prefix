@@ -1,6 +1,15 @@
 # ChangeLog for app-editors/gvim
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.306 2010/02/12 19:27:25 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/gvim/ChangeLog,v 1.308 2010/02/24 17:00:08 lack Exp $
+
+*gvim-7.2.376 (24 Feb 2010)
+
+  24 Feb 2010; Jim Ramsay <lack@gentoo.org> +gvim-7.2.376.ebuild:
+  Version bump 7.2.376, now with ruby-1.9 support! (Bug #268608)
+
+  15 Feb 2010; Raúl Porcel <armin76@gentoo.org> gvim-7.2.182.ebuild,
+  gvim-7.2.264.ebuild, gvim-7.2.303.ebuild, gvim-7.2.359.ebuild:
+  Add ~arm
 
 *gvim-7.2.359 (12 Feb 2010)
 
