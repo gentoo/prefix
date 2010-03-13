@@ -1,6 +1,16 @@
 # ChangeLog for net-misc/curl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.151 2009/11/05 04:39:55 dragonheart Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.153 2010/03/11 18:01:15 spatz Exp $
+
+*curl-7.20.0 (11 Mar 2010)
+
+  11 Mar 2010; Dror Levin <spatz@gentoo.org> -curl-7.19.4.ebuild,
+  +curl-7.20.0.ebuild, +files/curl-7.20.0-strip-ldflags.patch:
+  Version bump (bug 306097), remove old.
+
+  11 Feb 2010; Ulrich Mueller <ulm@gentoo.org> curl-7.19.4.ebuild,
+  curl-7.19.6.ebuild, curl-7.19.7.ebuild:
+  Replace license X11 by MIT, bug 298556.
 
 *curl-7.19.7 (05 Nov 2009)
 
