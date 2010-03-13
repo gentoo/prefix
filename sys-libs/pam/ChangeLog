@@ -1,6 +1,15 @@
 # ChangeLog for sys-libs/pam
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.255 2010/01/24 18:27:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/pam/ChangeLog,v 1.256 2010/03/10 16:04:07 flameeyes Exp $
+
+*pam-1.1.1-r1 (10 Mar 2010)
+
+  10 Mar 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +pam-1.1.1-r1.ebuild, +files/Linux-PAM-1.1.1-gentoodb.patch, metadata.xml:
+  Merge back pam_userdb support into the main PAM ebuild. This time link
+  against the shared, installed libraries of Berkeley DB, even though they
+  might not be available at boot. Describe berkdb and cracklib USE flags in
+  the metadata file.
 
   24 Jan 2010; Raúl Porcel <armin76@gentoo.org> pam-1.1.0.ebuild:
   ia64/s390/sh/sparc stable wrt #284087
