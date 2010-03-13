@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/ufed
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.77 2010/02/01 20:35:05 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/ufed/ChangeLog,v 1.78 2010/02/13 16:16:47 armin76 Exp $
+
+  13 Feb 2010; Raúl Porcel <armin76@gentoo.org> ufed-0.40.1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh stable wrt #300519
 
   01 Feb 2010; Markos Chandras <hwoarang@gentoo.org> ufed-0.40.1.ebuild:
   Stable on amd64 wrt bug #300519
