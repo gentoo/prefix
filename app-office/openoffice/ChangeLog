@@ -1,6 +1,83 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.506 2010/02/10 21:10:36 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.523 2010/03/09 17:42:21 arfrever Exp $
+
+  09 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  openoffice-3.2.0.ebuild, +files/neon-remove-SSPI-support.diff:
+  Fix building with =net-misc/neon-0.30* (bug #307501).
+
+  03 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  stable x86, security bug 305195
+
+  27 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  Another bump for the patchset (ooo-build 3.2.0.7), minor fixes
+
+  26 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  poppler needs to be built with [xpdf-headers], depend on it. bug #306749
+  Thanks to Hanno <h.mth@web.de> for all the help in tracking this stuff 
+  down.
+
+  26 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  No matter how hard you try, there's always one LINGUAS case you forget 
+  about, bug #306221 again.
+
+  25 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  Disable system-redland for now, causes troubles, see 
+  http://qa.openoffice.org/issues/show_bug.cgi?id=108911
+
+  25 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild, files/gentoo-3.2.0.diff:
+  Properly fix linguas stuff, also brings back templates integration
+
+  23 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  Special case another LINGUAS combination until we have a better 
+  solution, bug #306221
+
+  22 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  quick fix for some build problems with en_US linguas, see bug #306221
+
+  22 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild, +files/npwrap-fix-nogtk.diff:
+  Fix build problems without gtk, see bug #306181
+
+  22 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  Simplify mozilla stuff, raises dep on xulrunner, fixes bug #306123
+
+  22 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  Fix disabling of sun-templates, bug #306269
+
+  22 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild, +files/qt-use-native-backend.diff:
+  hardcode native Qt graphics backend, doesn't startup otherwise, bug 
+  #306211
+
+  22 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  Forgot to set QT4LIB, see bug #306135
+
+  21 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild, files/gentoo-3.2.0.diff:
+  Silent bump to ooo-build 3.2.0.6 patchset, minor fixes
+
+  21 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  Raise boost-dependency to prevent build breakage, see bug #306151
+
+*openoffice-3.2.0 (20 Feb 2010)
+
+  20 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  +openoffice-3.2.0.ebuild, +files/gentoo-3.2.0.diff:
+  Bump to OpenOffice.org 3.2.0, remove templates integration for now, breaks
+  the build for me
 
   10 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
   openoffice-3.1.1.ebuild:
