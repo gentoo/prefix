@@ -1,6 +1,39 @@
 # ChangeLog for dev-java/icedtea6-bin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/ChangeLog,v 1.13 2010/01/22 10:25:17 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/ChangeLog,v 1.20 2010/03/11 13:40:02 ssuominen Exp $
+
+  11 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
+  icedtea6-bin-1.6.2-r2.ebuild, icedtea6-bin-1.7-r1.ebuild,
+  icedtea6-bin-1.7.1.ebuild:
+  Restrict libpng depend to libpng12.so.0.
+
+*icedtea6-bin-1.7.1 (03 Mar 2010)
+
+  03 Mar 2010; Vlastimil Babka <caster@gentoo.org>
+  -icedtea6-bin-1.6.2.ebuild, -icedtea6-bin-1.6.2-r1.ebuild,
+  -icedtea6-bin-1.7.ebuild, +icedtea6-bin-1.7.1.ebuild
+  Version bump. Built with jpeg-8 unconditionally since it's stable.
+
+  19 Feb 2010; Markus Meier <maekke@gentoo.org>
+  icedtea6-bin-1.6.2-r2.ebuild:
+  x86 stable, bug #304829
+
+  13 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  icedtea6-bin-1.6.2-r2.ebuild:
+  amd64 stable wrt #304829
+
+*icedtea6-bin-1.7-r1 (06 Feb 2010)
+
+  06 Feb 2010; Vlastimil Babka <caster@gentoo.org>
+  +icedtea6-bin-1.7-r1.ebuild:
+  Revbump to add missing package-list to USE=doc - bug #302654.
+
+*icedtea6-bin-1.7 (01 Feb 2010)
+
+  01 Feb 2010; Vlastimil Babka <caster@gentoo.org> +icedtea6-bin-1.7.ebuild:
+  Version bump. Contains new IcedTeaNPPlugin compatible with xulrunner 1.9.1
+  and 1.9.2, Firefox 3.5+, Chromium. Also compatible with both jpeg-7 and
+  jpeg-8 - the ebuild detects the installed version in src_unpack().
 
 *icedtea6-bin-1.6.2-r2 (22 Jan 2010)
 

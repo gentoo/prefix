@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/icedtea6-bin-1.6.2-r1.ebuild,v 1.2 2010/01/17 19:19:29 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/icedtea6-bin-1.7-r1.ebuild,v 1.2 2010/03/11 13:40:02 ssuominen Exp $
 
 EAPI="1"
 
@@ -9,9 +9,11 @@ inherit java-vm-2
 dist="mirror://gentoo/"
 DESCRIPTION="A Gentoo-made binary build of the icedtea6 JDK"
 TARBALL_VERSION="${PV}"
-SRC_URI="amd64? ( ${dist}/${PN}-core-${TARBALL_VERSION}-amd64.tar.bz2 )
-	x86? ( ${dist}/${PN}-core-${TARBALL_VERSION}-x86.tar.bz2 )
-	doc? ( ${dist}/${PN}-doc-${TARBALL_VERSION}.tar.bz2 )
+SRC_URI="amd64? ( ${dist}/${PN}-core-${TARBALL_VERSION}-amd64.tar.bz2
+		${dist}/${PN}-jpeg8-${TARBALL_VERSION}-amd64.tar.bz2 )
+	x86? ( ${dist}/${PN}-core-${TARBALL_VERSION}-x86.tar.bz2
+		${dist}/${PN}-jpeg8-${TARBALL_VERSION}-x86.tar.bz2 )
+	doc? ( ${dist}/${PN}-doc-${TARBALL_VERSION}-r1.tar.bz2 )
 	examples? (
 		amd64? ( ${dist}/${PN}-examples-${TARBALL_VERSION}-amd64.tar.bz2 )
 		x86? ( ${dist}/${PN}-examples-${TARBALL_VERSION}-x86.tar.bz2 )
@@ -35,8 +37,8 @@ S="${WORKDIR}/${PN}-${TARBALL_VERSION}"
 RDEPEND=">=sys-devel/gcc-4.3
 	!prefix? ( >=sys-libs/glibc-2.9 )
 	>=media-libs/giflib-4.1.6-r1
-	=media-libs/jpeg-7*
-	>=media-libs/libpng-1.2.38
+	>=media-libs/jpeg-7
+	=media-libs/libpng-1.2*
 	>=sys-libs/zlib-1.2.3-r1
 	alsa? ( >=media-libs/alsa-lib-1.0.20 )
 	X? (
@@ -61,6 +63,21 @@ DEPEND=""
 QA_EXECSTACK_amd64="opt/${P}/jre/lib/amd64/server/libjvm.so"
 QA_EXECSTACK_x86="opt/${P}/jre/lib/i386/server/libjvm.so
 	opt/${P}/jre/lib/i386/client/libjvm.so"
+
+src_unpack() {
+	unpack ${A}
+
+	if has_version '>=media-libs/jpeg-8'; then
+		einfo "Installing jpeg-8 ABI version"
+		local arch=${ARCH}
+		use x86 && arch=i386
+		mv -v ${PN}-jpeg8/jre/lib/${arch}/*.so ${P}/jre/lib/${arch} || die
+	else
+		elog "Installing jpeg-7 ABI version"
+		elog "You will have to remerge icedtea6-bin after upgrading to jpeg-8"
+		elog "Note that revdep-rebuild will not do it automatically due to the mask file."
+	fi
+}
 
 src_install() {
 	local dest="/opt/${P}"
@@ -87,7 +104,7 @@ src_install() {
 
 	if use nsplugin ; then
 		use x86 && arch=i386
-		install_mozilla_plugin "${dest}/jre/lib/${arch}/IcedTeaPlugin.so"
+		install_mozilla_plugin "${dest}/jre/lib/${arch}/IcedTeaNPPlugin.so"
 	fi
 
 	set_java_env
@@ -100,8 +117,8 @@ pkg_postinst() {
 
 	if use nsplugin; then
 		elog "The icedtea6-bin browser plugin can be enabled using eselect java-nsplugin"
-		elog "Note that the plugin works only in browsers based on xulrunner-1.9.1"
-		elog "such as Firefox 3.5, and not in older versions! The version for xulrunner-1.9.0"
-		elog "is not included anymore, as 1.9.1 is stable. If you still need it, fill a bug."
+		elog "We now install the new IcedTeaNPPlugin, note that it's alpha quality."
+		elog "Note that the plugin works only in browsers based on xulrunner-1.9.1+"
+		elog "such as Firefox 3.5+ and recent Chromium versions."
 	fi
 }
