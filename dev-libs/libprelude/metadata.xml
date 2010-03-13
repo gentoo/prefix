@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer>
-	<email>halcy0n@gentoo.org</email>
-	<name>Mark Loeser</name>
-</maintainer>
 <herd>netmon</herd>
 <longdescription>Prelude-IDS Framework Library</longdescription>
 <use>

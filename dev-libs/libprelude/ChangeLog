@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/libprelude
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.68 2009/10/03 19:36:19 halcy0n Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libprelude/ChangeLog,v 1.69 2010/02/28 22:02:44 halcy0n Exp $
+
+  28 Feb 2010; Mark Loeser <halcy0n@gentoo.org> metadata.xml:
+  I no longer use this on any systems, removing myself as the maintainer
 
   02 Oct 2009; Mark Loeser <halcy0n@gentoo.org> libprelude-0.9.24.ebuild,
   metadata.xml:
