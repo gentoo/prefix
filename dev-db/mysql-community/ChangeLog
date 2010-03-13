@@ -1,6 +1,9 @@
 # ChangeLog for dev-db/mysql-community
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.27 2009/07/07 16:10:48 robbat2 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.28 2010/02/23 06:04:00 robbat2 Exp $
+
+  23 Feb 2010; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
+  Resync the metadata.xml between mysql packages.
 
   07 Jul 2009; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
   USE=community/profiling descriptions for metadata. Additionally, this
