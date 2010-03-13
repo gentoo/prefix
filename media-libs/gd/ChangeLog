@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/gd
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.61 2009/11/21 20:08:13 nixnut Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.62 2010/03/08 09:42:43 ssuominen Exp $
+
+  08 Mar 2010; Samuli Suominen <ssuominen@gentoo.org> gd-2.0.35-r1.ebuild,
+  +files/gd-2.0.35-libpng14.patch:
+  Fix building with libpng14 wrt #305101 by Lars Wendler.
 
   21 Nov 2009; nixnut <nixnut@gentoo.org> gd-2.0.35-r1.ebuild:
   ppc stable #292130
