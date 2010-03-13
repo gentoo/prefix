@@ -15,12 +15,16 @@ tweaked a little to avoid regenerating autotools
 
 --- job.c.orig	2010-01-15 18:36:53.000000000 +0200
 +++ job.c	2010-01-15 18:41:09.000000000 +0200
-@@ -29,6 +29,11 @@
+@@ -29,6 +29,15 @@
  
  #include <string.h>
  
 +#if defined(__linux__) /* defined (HAVE_LINUX_BINFMTS_H) && defined (HAVE_SYS_USER_H) */
 +#include <sys/user.h>
++#include <unistd.h>
++#ifndef PAGE_SIZE
++#define PAGE_SIZE sysconf(_SC_PAGE_SIZE)
++#endif
 +#include <linux/binfmts.h>
 +#endif
 +

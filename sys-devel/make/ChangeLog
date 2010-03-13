@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/make
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.61 2010/01/17 00:44:26 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.62 2010/02/13 08:48:41 vapier Exp $
+
+  13 Feb 2010; Mike Frysinger <vapier@gentoo.org>
+  files/make-3.81-long-cmdline.patch:
+  Add some fall back code for PAGE_SIZE issues #301431 by Laurent G.
 
 *make-3.81-r1 (17 Jan 2010)
 
