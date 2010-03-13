@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-3.9.7.ebuild,v 1.1 2009/12/16 10:03:23 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-3.9.7.ebuild,v 1.4 2010/03/12 17:01:48 hwoarang Exp $
 
 inherit toolchain-funcs eutils
 
