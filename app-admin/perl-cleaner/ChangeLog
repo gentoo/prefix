@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/perl-cleaner
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.58 2009/12/19 13:58:51 tove Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.59 2010/02/16 22:20:58 tove Exp $
+
+*perl-cleaner-2.0 (16 Feb 2010)
+
+  16 Feb 2010; Torsten Veller <tove@gentoo.org> +perl-cleaner-2.0.ebuild:
+  Do not try to reinstall -MERGING-* packages (#305377)
 
 *perl-cleaner-2_pre091219 (19 Dec 2009)
 
