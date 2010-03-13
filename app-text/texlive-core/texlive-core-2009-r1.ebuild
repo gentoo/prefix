@@ -1,12 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2009-r1.ebuild,v 1.2 2010/02/10 21:29:36 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2009-r1.ebuild,v 1.4 2010/03/12 10:58:45 ssuominen Exp $
 
 EAPI=1
 
 inherit eutils flag-o-matic toolchain-funcs libtool texlive-common prefix
 
-PATCHLEVEL="16"
+PATCHLEVEL="17"
 TEXMFD_VERSION="1"
 
 DESCRIPTION="A complete TeX distribution"
