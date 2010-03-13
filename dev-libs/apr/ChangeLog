@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/apr
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.153 2009/11/17 15:26:22 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr/ChangeLog,v 1.154 2010/03/07 11:56:25 hollow Exp $
+
+  07 Mar 2010; Benedikt Böhm <hollow@gentoo.org> apr-1.3.8.ebuild,
+  apr-1.3.9.ebuild:
+  remove debug USE flag wrt #306651
 
   17 Nov 2009; Brent Baude <ranger@gentoo.org> apr-1.3.9.ebuild:
   Marking apr-1.3.9 ppc64 for bug 290319
