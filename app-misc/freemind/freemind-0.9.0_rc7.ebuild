@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/freemind-0.9.0_rc4-r1.ebuild,v 1.2 2009/07/30 07:38:55 elvanor Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/freemind-0.9.0_rc7.ebuild,v 1.1 2010/02/28 11:40:44 caster Exp $
 
 EAPI="2"
 
@@ -17,7 +17,7 @@ HOMEPAGE="http://freemind.sourceforge.net"
 SRC_URI="mirror://sourceforge/${PN}/${PN}-src-${MY_PV}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 IUSE="doc groovy latex pdf svg"
 COMMON_DEP="dev-java/jgoodies-forms:0
 	dev-java/jibx:0
@@ -47,6 +47,10 @@ java_prepare() {
 	else
 		epatch "${FILESDIR}/${PN}-0.9.0_rc1-build.xml.patch"
 	fi
+
+	# Ant 1.8.0 changed basedir handling in some subtle ways and probably
+	# correcly. This change does not break ant 1.7.1 builds. Bug #305929
+	sed -i 's/basedir="\."/basedir="\.\."/' plugins/build_*.xml || die
 
 	use groovy || rm plugins/build_scripting.xml || die
 	use latex || rm plugins/build_latex.xml || die
@@ -79,7 +83,7 @@ src_compile() {
 		jarblibs="$(java-pkg_getjars --build-only --with-dependencies jarbundler)"
 	ANT_TASKS="${WANT_ANT_TASKS} jibx xsd2jibx" eant -Djibxlibs="${jibxlibs}" \
 		-Djarblibs="${jarblibs}" \
-		-Dgentoo.classpath="${gcp}" dist browser $(use_doc doc)
+		-Dgentoo.classpath="${gcp}" -Dbasedir="${PWD}" dist browser $(use_doc doc)
 }
 
 src_install() {

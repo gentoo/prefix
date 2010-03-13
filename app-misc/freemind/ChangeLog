@@ -1,6 +1,14 @@
 # ChangeLog for app-misc/freemind
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.50 2009/10/25 10:22:48 caster Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-misc/freemind/ChangeLog,v 1.51 2010/02/28 11:40:44 caster Exp $
+
+*freemind-0.9.0_rc7 (28 Feb 2010)
+
+  28 Feb 2010; Vlastimil Babka <caster@gentoo.org>
+  -freemind-0.9.0_rc4-r1.ebuild, freemind-0.9.0_rc6.ebuild,
+  +freemind-0.9.0_rc7.ebuild:
+  Version bump. Fix building with Ant 1.8.0 (broken by basedir handling
+  change) with a sed call, compatible with Ant 1.7.1 too. Bug #305929.
 
 *freemind-0.9.0_rc6 (25 Oct 2009)
 
