@@ -1,6 +1,10 @@
 # ChangeLog for sys-libs/readline
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.149 2010/01/24 16:47:12 klausman Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.150 2010/03/12 18:14:16 ssuominen Exp $
+
+  12 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
+  readline-6.0_p4.ebuild, readline-6.1.ebuild:
+  Fix license from GPL-2 to GPL-3 wrt #308829 by Thomas Kahle.
 
   24 Jan 2010; Tobias Klausmann <klausman@gentoo.org>
   readline-6.0_p4.ebuild:
