@@ -1,19 +1,22 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.6.0-r1.ebuild,v 1.1 2008/05/21 14:13:19 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/rdesktop-1.6.0-r4.ebuild,v 1.1 2010/03/09 10:21:43 voyageur Exp $
 
-inherit eutils
+EAPI=2
+
+inherit autotools eutils
 
 MY_PV=${PV/_/-}
 
 DESCRIPTION="A Remote Desktop Protocol Client"
 HOMEPAGE="http://rdesktop.sourceforge.net/"
-SRC_URI="mirror://sourceforge/${PN}/${PN}-${MY_PV}.tar.gz"
+SRC_URI="mirror://sourceforge/${PN}/${PN}-${MY_PV}.tar.gz
+	rdpusb? ( mirror://gentoo/${P}-rdpusb.patch.bz2 )"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="ao debug ipv6 oss pcsc-lite"
+IUSE="alsa ao debug ipv6 libsamplerate oss pcsc-lite rdpusb"
 
 S=${WORKDIR}/${PN}-${MY_PV}
 
@@ -22,34 +25,46 @@ RDEPEND=">=dev-libs/openssl-0.9.6b
 	x11-libs/libXext
 	x11-libs/libXau
 	x11-libs/libXdmcp
+	alsa? ( media-libs/alsa-lib )
 	ao? ( >=media-libs/libao-0.8.6 )
+	libsamplerate? ( media-libs/libsamplerate )
 	pcsc-lite? ( sys-apps/pcsc-lite )"
 DEPEND="${RDEPEND}
 	x11-libs/libXt"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# Prevent automatic stripping
 	local strip="$(echo '$(STRIP) $(DESTDIR)$(bindir)/rdesktop')"
 	sed -i -e "s:${strip}::" Makefile.in \
 		|| die "sed failed in Makefile.in"
+
+	# Automagic dependency on libsamplerate
+	epatch "${FILESDIR}"/${P}-sound_configure.patch
+	# Fix --enable-smartcard logic
+	epatch "${FILESDIR}"/${P}-smartcard_configure.patch
+	# USB redirection support from virtualbox
+	use rdpusb && epatch "${WORKDIR}"/${P}-rdpusb.patch
+
+	eautoreconf
 }
 
-src_compile() {
-	if use oss; then
-		extra_conf=$(use_with oss sound)
-	else
-		extra_conf=$(use_with ao sound libao)
+src_configure() {
+	if use ao; then
+		sound_conf=$(use_with ao sound libao)
+	else if use alsa; then
+			sound_conf=$(use_with alsa sound alsa)
+		else
+			sound_conf=$(use_with oss sound oss)
+		fi
 	fi
 
 	econf \
 		--with-openssl="${EPREFIX}"/usr \
 		$(use_with debug) \
 		$(use_with ipv6) \
+		$(use_with libsamplerate) \
 		$(use_enable pcsc-lite smartcard) \
-		${extra_conf} \
+		${sound_conf} \
 		|| die "configuration failed"
 
 	emake || die "compilation failed"

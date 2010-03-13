@@ -1,6 +1,13 @@
 # ChangeLog for net-misc/rdesktop
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.113 2009/07/05 14:26:22 voyageur Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/rdesktop/ChangeLog,v 1.114 2010/03/09 10:21:43 voyageur Exp $
+
+*rdesktop-1.6.0-r4 (09 Mar 2010)
+
+  09 Mar 2010; Bernard Cafarelli <voyageur@gentoo.org>
+  -rdesktop-1.6.0-r1.ebuild, +rdesktop-1.6.0-r4.ebuild, metadata.xml:
+  Add support for virtualbox USB redirection, thanks Alexey Charkov
+  <alchark@gmail.com> in bug #300785
 
 *rdesktop-1.6.0-r3 (05 Jul 2009)
 
