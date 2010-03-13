@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/fcgi-2.4.1_pre0311112127.ebuild,v 1.6 2010/02/04 00:05:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/fcgi/fcgi-2.4.1_pre0311112127.ebuild,v 1.8 2010/03/01 10:59:34 ssuominen Exp $
 
 inherit eutils autotools multilib
 
@@ -17,6 +17,8 @@ DEPEND=""
 RDEPEND=""
 
 S="${WORKDIR}/fcgi-2.4.1-SNAP-0311112127"
+
+MAKEOPTS="${MAKEOPTS} -j1" # http://bugs.gentoo.org/show_bug.cgi?id=302477#c8
 
 src_unpack() {
 	unpack ${A}
