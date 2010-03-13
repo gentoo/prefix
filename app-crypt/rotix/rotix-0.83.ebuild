@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/rotix/rotix-0.83.ebuild,v 1.13 2009/10/14 00:58:35 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/rotix/rotix-0.83.ebuild,v 1.14 2010/02/22 18:37:02 phajdan.jr Exp $
 
 inherit eutils flag-o-matic
 
@@ -11,9 +11,10 @@ SRC_URI="http://elektron.its.tudelft.nl/~hemmin98/rotix_releases/${P}/${P}.tar.b
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~sparc-solaris ~x86-solaris"
-IUSE="nls"
+IUSE=""
 
-RDEPEND="nls? ( sys-devel/gettext )"
+DEPEND="sys-devel/gettext"
+RDEPEND="${DEPEND}"
 
 src_unpack() {
 	unpack ${A}
@@ -23,10 +24,8 @@ src_unpack() {
 }
 
 src_compile() {
-	local myconf
-	use nls && myconf="--i18n=1"
-	use elibc_glibc || use nls && append-flags -lintl
-	econf ${myconf} || die
+	use elibc_glibc || append-flags -lintl
+	econf --i18n=1 || die
 	emake || die
 }
 
