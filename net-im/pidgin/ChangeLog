@@ -1,6 +1,38 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.151 2010/02/03 20:28:20 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.160 2010/03/09 22:09:41 josejx Exp $
+
+  09 Mar 2010; Joseph Jezak <josejx@gentoo.org> pidgin-2.6.6.ebuild:
+  Marked ppc stable for bug #305715.
+
+  28 Feb 2010; Tobias Heinlein <keytoaster@gentoo.org> pidgin-2.6.6.ebuild:
+  amd64 stable, security bug #305715
+
+  27 Feb 2010; Raúl Porcel <armin76@gentoo.org> pidgin-2.6.6.ebuild:
+  alpha/ia64/sparc stable wrt #305715
+
+  23 Feb 2010; Brent Baude <ranger@gentoo.org> pidgin-2.6.6.ebuild:
+  Marking pidgin-2.6.6 ppc64 for bug 305715
+
+  21 Feb 2010; Christian Faulhammer <fauli@gentoo.org> pidgin-2.6.6.ebuild:
+  stable x86, security bug 305715
+
+  20 Feb 2010; Jeroen Roovers <jer@gentoo.org> pidgin-2.6.6.ebuild:
+  Stable for HPPA (bug #305715).
+
+  19 Feb 2010; Raúl Porcel <armin76@gentoo.org> pidgin-2.6.3.ebuild,
+  pidgin-2.6.5.ebuild, pidgin-2.6.6.ebuild:
+  ia64/sparc stable
+
+  18 Feb 2010; Peter Volkov <pva@gentoo.org> pidgin-2.6.6.ebuild:
+  Run eautoreconf after intltoolize.
+
+*pidgin-2.6.6 (18 Feb 2010)
+
+  18 Feb 2010; Peter Volkov <pva@gentoo.org> -pidgin-2.5.9-r1.ebuild,
+  -files/pidgin-2.5.9-xmpp-old-ssl.patch, -pidgin-2.6.4.ebuild,
+  -pidgin-2.6.4-r1.ebuild, +pidgin-2.6.6.ebuild:
+  Version bump, bug #305715, thank Dani Soufi for report. Drop old.
 
   03 Feb 2010; Markus Meier <maekke@gentoo.org> pidgin-2.6.5.ebuild:
   amd64 stable, bug #299751
