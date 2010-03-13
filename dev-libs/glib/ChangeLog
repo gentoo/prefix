@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.398 2010/01/28 23:54:51 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.400 2010/03/06 16:14:28 phajdan.jr Exp $
+
+  06 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> glib-2.22.4.ebuild:
+  x86 stable wrt bug #304777
+
+  06 Mar 2010; Samuli Suominen <ssuominen@gentoo.org> glib-2.22.4.ebuild:
+  amd64 stable wrt #304777
 
 *glib-2.22.4 (28 Jan 2010)
 
