@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/atk
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.187 2009/10/29 21:26:53 eva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.189 2010/03/06 16:18:47 phajdan.jr Exp $
+
+  06 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> atk-1.28.0.ebuild:
+  x86 stable wrt bug #304777
+
+  06 Mar 2010; Samuli Suominen <ssuominen@gentoo.org> atk-1.28.0.ebuild:
+  amd64 stable wrt #304777
 
 *atk-1.28.0 (29 Oct 2009)
 
