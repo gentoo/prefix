@@ -1,6 +1,11 @@
 # ChangeLog for dev-java/jruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.54 2010/01/31 17:19:09 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/ChangeLog,v 1.55 2010/02/09 17:10:23 caster Exp $
+
+  09 Feb 2010; Vlastimil Babka <caster@gentoo.org> jruby-1.3.1-r1.ebuild,
+  jruby-1.4.0-r4.ebuild, jruby-1.4.0-r5.ebuild:
+  Remove backport-util-concurrent dependency as there seem to be no usage of
+  it in jruby source anymore.
 
 *jruby-1.4.0-r5 (31 Jan 2010)
 

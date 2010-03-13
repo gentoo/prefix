@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.4.0-r5.ebuild,v 1.1 2010/01/31 17:19:09 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.4.0-r5.ebuild,v 1.2 2010/02/09 17:10:23 caster Exp $
 
 EAPI="2"
 JAVA_PKG_IUSE="doc source test"
@@ -28,7 +28,6 @@ CDEPEND=">=dev-java/bytelist-1.0.2:0
 	dev-java/jna:0
 	dev-java/joda-time:0
 	dev-util/jay:0[java]
-	!java6? ( dev-java/backport-util-concurrent:0 )
 	dev-java/nailgun:0
 	dev-java/jaffl:0
 	dev-java/jgrapht:0"
@@ -71,7 +70,6 @@ EANT_NEEDS_TOOLS="true"
 
 pkg_setup() {
 	java-pkg-2_pkg_setup
-	use java6 || EANT_GENTOO_CLASSPATH="${EANT_GENTOO_CLASSPATH} backport-util-concurrent"
 
 	local fail
 
