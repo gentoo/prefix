@@ -1,6 +1,28 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.224 2010/02/04 16:22:08 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.229 2010/03/08 18:14:42 rich0 Exp $
+
+  08 Mar 2010; Richard Freeman <rich0@gentoo.org>
+  openoffice-bin-3.2.0.ebuild:
+  amd64 stable - 305195
+
+  02 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  openoffice-bin-3.2.0.ebuild:
+  stable x86, security bug 305195
+
+  27 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-3.1.1.ebuild, openoffice-bin-3.2.0.ebuild:
+  Make sure the permissions of installed files are right, bug #306779
+
+  21 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-bin-3.2.0.ebuild:
+  Add missing ga and ja locales, closes bug #305433
+
+*openoffice-bin-3.2.0 (15 Feb 2010)
+
+  15 Feb 2010; Andreas Proschofsky <suka@gentoo.org>
+  -openoffice-bin-3.2.0_rc5.ebuild, +openoffice-bin-3.2.0.ebuild:
+  Final release for OpenOffice.org 3.2.0
 
 *openoffice-bin-3.2.0_rc5 (04 Feb 2010)
 

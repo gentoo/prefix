@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.1.1.ebuild,v 1.4 2010/01/29 14:50:50 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.1.1.ebuild,v 1.5 2010/02/27 20:57:06 suka Exp $
 
 inherit eutils fdo-mime rpm multilib prefix
 
@@ -145,6 +145,9 @@ src_install () {
 			newins "${WORKDIR}/usr/share/icons/gnome/48x48/apps/openofficeorg3-${desk}.png" ooo-${desk}.png
 		fi
 	done
+
+	# Make sure the permissions are right
+	fowners -R root:0 /
 
 	# Install wrapper script
 	newbin "${T}/wrapper.in" ooffice

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.2.0_rc5.ebuild,v 1.1 2010/02/04 16:22:08 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.2.0.ebuild,v 1.6 2010/03/08 18:14:42 rich0 Exp $
 
 EAPI="2"
 
@@ -11,9 +11,9 @@ IUSE="gnome java kde"
 BUILDID="9483"
 BUILDID2="9472"
 UREVER="1.6.0"
-MY_PV="${PV/_/}"
+MY_PV="${PV}rc5"
 MY_PV2="${MY_PV}_20100203"
-MY_PV3="${PV/_rc5/}-${BUILDID}"
+MY_PV3="${PV}-${BUILDID}"
 BASIS="ooobasis3.2"
 MST="OOO320_m12"
 
@@ -31,10 +31,10 @@ S="${WORKDIR}"
 UP="${PACKED}_en-US.${BUILDID}/RPMS"
 DESCRIPTION="OpenOffice productivity suite"
 
-SRC_URI="x86? ( mirror://openoffice-extended/${MY_PV}/OOo_${MY_PV2}_LinuxIntel_install_wJRE_en-US.tar.gz )
-	amd64? ( mirror://openoffice-extended/${MY_PV}/OOo_${MY_PV2}_LinuxX86-64_install_wJRE_en-US.tar.gz  )"
+SRC_URI="x86? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxIntel_install_en-US.tar.gz )
+	amd64? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxX86-64_install_wJRE_en-US.tar.gz  )"
 
-LANGS="ar as ast bg bn ca cs da de dz el en en_GB eo es et eu fi fr gl gu hi_IN hu id is it ka km kn ko ku lt lv mk ml mr my nb nl nn oc om or pa_IN pl pt pt_BR ro ru sh si sk sl sr sv ta te th  tr ug uk uz vi zh_CN zh_TW"
+LANGS="ar as ast bg bn ca cs da de dz el en en_GB eo es et eu fi fr ga gl gu hi_IN hu id is it ja ka km kn ko ku lt lv mk ml mr my nb nl nn oc om or pa_IN pl pt pt_BR ro ru sh si sk sl sr sv ta te th tr ug uk uz vi zh_CN zh_TW"
 
 for X in ${LANGS} ; do
 	[[ ${X} != "en" ]] && SRC_URI="${SRC_URI} linguas_${X}? (
@@ -82,7 +82,7 @@ src_unpack() {
 	sed -i 's:/usr:@GENTOO_PORTAGE_EPREFIX@/usr:g' "${T}"/{50-openoffice-bin,wrapper.in} || die
 	eprefixify "${T}"/{50-openoffice-bin,wrapper.in}
 
-	cd ${S}
+	cd "${S}"
 
 	for i in base binfilter calc core01 core02 core03 core04 core05 core06 core07 draw graphicfilter images impress math ooofonts oooimprovement ooolinguistic pyuno testtool writer xsltfilter ; do
 		rpm_unpack "./${UP}/${BASIS}-${i}-${MY_PV3}.${OOARCH}.rpm"
@@ -151,6 +151,9 @@ src_install () {
 			newins "${WORKDIR}/usr/share/icons/gnome/48x48/apps/openofficeorg3-${desk}.png" ooo-${desk}.png
 		fi
 	done
+
+	# Make sure the permissions are right
+	fowners -R root:0 /
 
 	# Install wrapper script
 	newbin "${T}/wrapper.in" ooffice
