@@ -1,6 +1,27 @@
 # ChangeLog for app-admin/puppet
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.51 2010/01/26 15:58:13 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.55 2010/03/04 19:27:16 armin76 Exp $
+
+  04 Mar 2010; Raúl Porcel <armin76@gentoo.org> puppet-0.25.4-r1.ebuild:
+  sparc stable wrt #306195
+
+*puppet-0.25.4-r1 (02 Mar 2010)
+
+  02 Mar 2010; MATSUU Takuto <matsuu@gentoo.org>
+  -files/puppet-0.25.0-cert-names.patch, -puppet-0.25.1-r1.ebuild,
+  -files/puppet-0.25.1-eix-0.18.patch, -puppet-0.25.4.ebuild,
+  +puppet-0.25.4-r1.ebuild, +files/puppet-0.25.4-r1-rrd.patch,
+  -files/puppet-0.25.4-rrd.patch:
+  Fixed rrd issue again, bug #294304. Removed old versions.
+
+  02 Mar 2010; Christian Faulhammer <fauli@gentoo.org> puppet-0.25.3.ebuild:
+  stable x86, bug 306195
+
+*puppet-0.25.4 (28 Feb 2010)
+
+  28 Feb 2010; MATSUU Takuto <matsuu@gentoo.org> +puppet-0.25.4.ebuild,
+  +files/puppet-0.25.4-rrd.patch:
+  Version bumped. Fixed rrd issue, bug #294304.
 
 *puppet-0.25.3 (26 Jan 2010)
 

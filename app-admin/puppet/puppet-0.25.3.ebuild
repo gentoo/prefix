@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.25.3.ebuild,v 1.1 2010/01/26 15:58:13 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.25.3.ebuild,v 1.2 2010/03/02 10:42:59 fauli Exp $
 
 EAPI="2"
 inherit elisp-common eutils ruby
