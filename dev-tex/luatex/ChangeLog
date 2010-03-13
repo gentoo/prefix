@@ -1,6 +1,18 @@
 # ChangeLog for dev-tex/luatex
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.61 2010/02/10 21:54:53 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.64 2010/03/12 10:56:41 aballier Exp $
+
+  12 Mar 2010; Alexis Ballier <aballier@gentoo.org> luatex-0.50.0-r1.ebuild,
+  -files/luatex-0.50.0-m4-error.patch:
+  clean up the mess and make a new patchset tarball
+
+  12 Mar 2010; Doug Goldstein <cardoe@gentoo.org> luatex-0.50.0-r1.ebuild,
+  +files/luatex-0.50.0-m4-error.patch:
+  fix bug #308337, with patch from Kacper Kowalik <xarthisius.kk@gmail.com>
+
+  25 Feb 2010; Alexis Ballier <aballier@gentoo.org> luatex-0.50.0-r1.ebuild:
+  require autoconf 2.63 at least, by Benjamin Peterson
+  <benjamin@python.org>, bug #303819
 
   10 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
   luatex-0.50.0-r1.ebuild:
