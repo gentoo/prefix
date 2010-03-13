@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/diffutils
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.54 2009/03/31 01:17:37 solar Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.55 2010/02/14 00:36:08 vapier Exp $
+
+*diffutils-2.9 (14 Feb 2010)
+
+  14 Feb 2010; Mike Frysinger <vapier@gentoo.org> +diffutils-2.9.ebuild:
+  Version bump #304917 by Rob.
 
   31 Mar 2009; <solar@gentoo.org> diffutils-2.8.7-r2.ebuild:
   fix rdep
