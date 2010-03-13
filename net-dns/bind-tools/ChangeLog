@@ -1,6 +1,15 @@
 # ChangeLog for net-dns/bind-tools
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.151 2010/01/27 18:43:06 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.154 2010/03/07 14:46:24 maekke Exp $
+
+  07 Mar 2010; Markus Meier <maekke@gentoo.org> bind-tools-9.4.3_p5.ebuild:
+  amd64 stable, bug #301548
+
+  03 Mar 2010; Jeroen Roovers <jer@gentoo.org> bind-tools-9.4.3_p5.ebuild:
+  Stable for HPPA (bug #301548).
+
+  03 Mar 2010; Raúl Porcel <armin76@gentoo.org> bind-tools-9.4.3_p5.ebuild:
+  alpha/arm/ia64/s390/sh/sparc/x86 stable wrt #301548
 
   27 Jan 2010; Jeroen Roovers <jer@gentoo.org> -bind-tools-9.4.3_p3.ebuild:
   Remove old.
