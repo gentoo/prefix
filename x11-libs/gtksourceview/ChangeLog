@@ -1,6 +1,10 @@
 # ChangeLog for x11-libs/gtksourceview
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.172 2010/01/17 23:29:44 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.173 2010/02/24 22:30:41 eva Exp $
+
+  24 Feb 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  -gtksourceview-2.4.2.ebuild, -gtksourceview-2.8.1.ebuild:
+  Clean up old revisions.
 
   17 Jan 2010; Jeroen Roovers <jer@gentoo.org> gtksourceview-2.6.2.ebuild:
   Stable for HPPA (bug #281427).
