@@ -1,6 +1,9 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.174 2010/01/21 19:51:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.175 2010/03/06 23:12:41 vapier Exp $
+
+  06 Mar 2010; Mike Frysinger <vapier@gentoo.org> ncurses-5.7-r3.ebuild:
+  Fix handling of leaks option #305889 by Nikolas Garofil.
 
   21 Jan 2010; Raúl Porcel <armin76@gentoo.org> ncurses-5.7-r3.ebuild:
   arm/ia64/m68k/sh/sparc stable wrt #299159
