@@ -1,33 +1,32 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.6.ebuild,v 1.3 2009/12/01 04:49:06 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.10.ebuild,v 1.1 2010/03/07 02:34:18 vapier Exp $
 
 EAPI=2
 
-inherit flag-o-matic toolchain-funcs
+inherit toolchain-funcs eutils
 
-DESCRIPTION="e2fsprogs libraries (common error, subsystem, uuid, block id)"
+DESCRIPTION="e2fsprogs libraries (common error and subsystem)"
 HOMEPAGE="http://e2fsprogs.sourceforge.net/"
 SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~m68k-mint"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~m68k-mint"
 IUSE="nls"
 
 RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.6 ) )
 	!sys-libs/com_err
 	!sys-libs/ss
-	!<sys-fs/e2fsprogs-1.41"
+	!<sys-fs/e2fsprogs-1.41.8"
 DEPEND="nls? ( sys-devel/gettext )
 	dev-util/pkgconfig
 	sys-devel/bc"
 
-src_prepare() {
-	# stupid configure script clobbers CC for us
-	sed -i '/if test -z "$CC" ; then CC=cc; fi/d' configure
+export VARTEXFONTS=${T}/fonts #281390
 
-	epatch "${FILESDIR}"/${PN}-1.41.1-darwin-makefile.patch
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-1.41.9-irix.patch
 	if [[ ${CHOST} == *-mint* ]]; then
 		sed -i -e 's/_SVID_SOURCE/_GNU_SOURCE/' lib/uuid/gen_uuid.c || die
 	fi
@@ -47,8 +46,13 @@ src_configure() {
 	# directory too late
 	mkdir ./lib/blkid/pic ./lib/et/pic ./lib/ss/pic ./lib/uuid/pic 
 
+	# we use blkid/uuid from util-linux now
+	ac_cv_lib_uuid_uuid_generate=yes \
+	ac_cv_lib_blkid_blkid_get_cache=yes \
 	ac_cv_path_LDCONFIG=: \
 	econf \
+		--disable-libblkid \
+		--disable-libuuid \
 		${libtype} \
 		$(tc-has-tls || echo --disable-tls) \
 		$(use_enable nls)
@@ -56,8 +60,5 @@ src_configure() {
 
 src_install() {
 	emake STRIP=: DESTDIR="${D}" install || die
-
-	set -- "${ED}"/usr/$(get_libdir)/*.a
-	set -- ${@/*\/lib}
-	gen_usr_ldscript -a "${@/.a}"
+	gen_usr_ldscript -a com_err ss
 }
