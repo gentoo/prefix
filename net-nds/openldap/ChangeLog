@@ -1,6 +1,9 @@
 # ChangeLog for net-nds/openldap
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.367 2010/01/12 20:05:41 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nds/openldap/ChangeLog,v 1.368 2010/02/19 00:37:23 robbat2 Exp $
+
+  19 Feb 2010; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
+  Describe the ODBC use flag better.
 
   12 Jan 2010; Doug Goldstein <cardoe@gentoo.org> openldap-2.3.41.ebuild,
   openldap-2.3.41-r1.ebuild, openldap-2.3.43.ebuild,
