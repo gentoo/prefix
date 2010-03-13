@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p37.ebuild,v 1.1 2010/01/21 05:43:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p37.ebuild,v 1.2 2010/03/06 22:52:36 vapier Exp $
 
 EAPI="1"
 
@@ -65,6 +65,9 @@ src_unpack() {
 	cd lib/readline
 	[[ ${READLINE_PLEVEL} -gt 0 ]] && epatch $(patches -s ${READLINE_PLEVEL} readline ${READLINE_VER})
 	cd ../..
+
+	# bash40-037 touches configure.in :x
+	epatch "${FILESDIR}"/${PN}-4.0-configure.patch #304901
 
 	if ! use vanilla ; then
 		sed -i '1i#define NEED_FPURGE_DECL' execute_cmd.c # needs fpurge() decl
