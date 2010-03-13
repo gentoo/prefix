@@ -1,6 +1,10 @@
 # ChangeLog for media-gfx/povray
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.98 2009/06/14 17:56:40 lavajoe Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.99 2010/03/12 08:54:19 ssuominen Exp $
+
+  12 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
+  povray-3.7.0_beta32.ebuild, +files/povray-3.7.0_beta32-libpng14.patch:
+  Fix building with libpng14.
 
 *povray-3.7.0_beta32 (14 Jun 2009)
 

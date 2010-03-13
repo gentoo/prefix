@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta32.ebuild,v 1.1 2009/06/14 17:56:40 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta32.ebuild,v 1.2 2010/03/12 08:54:19 ssuominen Exp $
 
 inherit eutils autotools flag-o-matic versionator
 
@@ -35,6 +35,8 @@ S="${WORKDIR}/${PN}-${MY_PV}"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+	# r_info_ptr->trans_alpha might be no-go with libpn12
+	has_version ">=media-libs/libpng-1.4" && epatch "${FILESDIR}"/${P}-libpng14.patch
 
 	# Print info on how to extend the expiration date of the beta
 	# if it has expired.
