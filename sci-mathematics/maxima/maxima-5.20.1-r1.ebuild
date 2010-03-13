@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.20.1.ebuild,v 1.3 2010/01/14 01:00:04 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.20.1-r1.ebuild,v 1.1 2010/03/06 08:49:59 ulm Exp $
 EAPI=2
 inherit eutils elisp-common
 
@@ -104,6 +104,8 @@ src_prepare() {
 
 	# ClozureCL executable name is now ccl
 	epatch "${FILESDIR}"/${PN}-clozurecl.patch
+
+	epatch "${FILESDIR}"/${P}-emacs-version.patch
 
 	# remove rmaxima if not needed
 	if [ -z "${RL}" ]; then
