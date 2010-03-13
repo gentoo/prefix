@@ -1,14 +1,14 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-3.0.1.ebuild,v 1.2 2010/01/31 01:43:15 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-3.0.3-r1.ebuild,v 1.1 2010/03/07 20:51:54 anarchy Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib mozextension autotools
 
-LANGS="af ar be ca cs de el en-US en-GB es-AR es-ES et eu fi fr fy-NL ga-IE hu id is it ja ko lt nb-NO nl nn-NO pa-IN pl pt-BR ro ru si sk sv-SE ta-LK tr uk"
-# Languages not rebuilt for beta3 "pt-PT he sr bg gl zn-CN vi"
-NOSHORTLANGS="es-AR en-GB pt-BR"
+LANGS="af be bg ca cs da de el en-GB en-US es-AR es-ES eu fi fr ga-IE he hu it ja ko lt nb-NO nl nn-NO pa-IN pl pt-BR pt-PT ru sk sv-SE tr uk zh-CN zh-TW"
+# Languages not rebuilt for "sl mk"
+NOSHORTLANGS="en-GB es-AR pt-BR zh-TW"
 
 MY_PV2="${PV/_rc/rc}"
 MY_P="${P/_rc/rc}"
@@ -19,7 +19,7 @@ HOMEPAGE="http://www.mozilla.com/en-US/thunderbird/"
 KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="ldap crypt bindist mozdom replytolist lightning"
+IUSE="ldap crypt bindist lightning mozdom system-sqlite"
 PATCH="${PN}-3.0-patches-0.3"
 
 REL_URI="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases"
@@ -45,7 +45,7 @@ done
 RDEPEND=">=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12.3
 	>=dev-libs/nspr-4.8
-	>=dev-db/sqlite-3.6.10
+	system-sqlite? ( >=dev-db/sqlite-3.6.22-r2[fts3,secure-delete] )
 	>=media-libs/lcms-1.17
 	>=app-text/hunspell-1.2
 	x11-libs/cairo[X]
@@ -55,12 +55,6 @@ RDEPEND=">=sys-devel/binutils-2.16.1
 PDEPEND="crypt? ( >=x11-plugins/enigmail-1.0 )"
 
 S="${WORKDIR}"/comm-1.9.1
-
-# Needed by src_compile() and src_install().
-# Would do in pkg_setup but that loses the export attribute, they
-# become pure shell variables.
-export BUILD_OFFICIAL=1
-export MOZILLA_OFFICIAL=1
 
 linguas() {
 	local LANG SLANG
@@ -84,7 +78,10 @@ linguas() {
 	done
 }
 
-pkg_setup(){
+pkg_setup() {
+	export BUILD_OFFICIAL=1
+	export MOZILLA_OFFICIAL=1
+
 	if ! use bindist; then
 		elog "You are enabling official branding. You may not redistribute this build"
 		elog "to any users on your network or the internet. Doing so puts yourself into"
@@ -146,11 +143,13 @@ src_configure() {
 	mozconfig_annotate '' --with-user-appdir=.thunderbird
 	mozconfig_annotate '' --with-system-nspr --with-nspr-prefix="${EPREFIX}"/usr
 	mozconfig_annotate '' --with-system-nss --with-nss-prefix="${EPREFIX}"/usr
+	mozconfig_annotate '' --with-sqlite-prefix="${EPREFIX}"/usr
 	mozconfig_annotate '' --x-includes="${EPREFIX}"/usr/include --x-libraries="${EPREFIX}"/usr/$(get_libdir)
 	mozconfig_annotate 'broken' --disable-crashreporter
 
 	# Use enable features
 	mozconfig_use_enable lightning calendar
+	mozconfig_use_enable system-sqlite
 
 	# Bug #72667
 	if use mozdom; then
@@ -214,7 +213,7 @@ src_install() {
 		newicon "${S}"/other-licenses/branding/thunderbird/content/icon48.png thunderbird-icon.png
 		domenu "${FILESDIR}"/icon/${PN}.desktop
 	else
-		newicon "${S}"/mail/base/content/icon48.png thunderbird-icon-unbranded.png
+		newicon "${S}"/mail/branding/nightly/content/icon48.png thunderbird-icon-unbranded.png
 		newmenu "${FILESDIR}"/icon/${PN}-unbranded.desktop \
 			${PN}.desktop
 	fi
@@ -226,19 +225,4 @@ src_install() {
 	cp "${FILESDIR}"/thunderbird-gentoo-default-prefs.js \
 		"${ED}/${MOZILLA_FIVE_HOME}/defaults/pref/all-gentoo.js" || \
 		die "failed to cp thunderbird-gentoo-default-prefs.js"
-}
-
-pkg_postinst() {
-	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
-
-	# This should be called in the postinst and postrm of all the
-	# mozilla, mozilla-bin, firefox, firefox-bin, thunderbird and
-	# thunderbird-bin ebuilds.
-	update_mozilla_launcher_symlinks
-}
-
-pkg_postrm() {
-	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/${PN}"
-
-	update_mozilla_launcher_symlinks
 }

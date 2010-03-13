@@ -10,5 +10,7 @@
 		plugin</flag>
 	<flag name='lightning'>Enable calendar support</flag>
 	<flag name='custom-optimization'>Enable user CFLAGS</flag>
+	 <flag name='system-sqlite'>Use the system-wide <pkg>dev-db/sqlite</pkg>
+		 installation with secure-delete enabled</flag>
 </use>
 </pkgmetadata>

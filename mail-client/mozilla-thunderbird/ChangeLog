@@ -1,6 +1,34 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.315 2010/02/05 12:39:04 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.321 2010/03/09 21:44:10 josejx Exp $
+
+  09 Mar 2010; Joseph Jezak <josejx@gentoo.org>
+  mozilla-thunderbird-3.0.3.ebuild:
+  Marked ppc stable for bug #307045.
+
+  08 Mar 2010; Brent Baude <ranger@gentoo.org>
+  mozilla-thunderbird-3.0.3.ebuild:
+  Marking mozilla-thunderbird-3.0.3 ppc64 for bug 307045
+
+*mozilla-thunderbird-3.0.3-r1 (07 Mar 2010)
+
+  07 Mar 2010; <anarchy@gentoo.org> +mozilla-thunderbird-3.0.3-r1.ebuild:
+  re-added a few of the missing locales
+
+  07 Mar 2010; Markus Meier <maekke@gentoo.org>
+  mozilla-thunderbird-3.0.3.ebuild:
+  amd64 stable, bug #307045
+
+  05 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  mozilla-thunderbird-3.0.3.ebuild:
+  stable x86, security bug 307045
+
+*mozilla-thunderbird-3.0.3 (04 Mar 2010)
+
+  04 Mar 2010; <anarchy@gentoo.org> -mozilla-thunderbird-3.0.1.ebuild,
+  -mozilla-thunderbird-3.0.1-r1.ebuild, +mozilla-thunderbird-3.0.3.ebuild,
+  metadata.xml:
+  Security Bump
 
 *mozilla-thunderbird-3.0.1-r1 (05 Feb 2010)
 
