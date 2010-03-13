@@ -11,9 +11,6 @@
 		write EXIF and IPTC image metadata.
 	</longdescription>
 	<use>
-		<flag name='xmp'>
-			Adds support for Adobe XMP
-		</flag>
 		<flag name='contrib'>
 			Build additional contrib components
 		</flag>
