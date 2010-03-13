@@ -1,6 +1,14 @@
 # ChangeLog for media-sound/gnump3d
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/ChangeLog,v 1.65 2008/12/19 17:06:13 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/ChangeLog,v 1.67 2010/02/23 15:49:31 beandog Exp $
+
+*gnump3d-3.0-r1 (23 Feb 2010)
+
+  23 Feb 2010; Steve Dibb <beandog@gentoo.org> +gnump3d-3.0-r1.ebuild:
+  Add runtime dep on sox
+
+  23 Feb 2010; Steve Dibb <beandog@gentoo.org> gnump3d-3.0.ebuild:
+  Update homepage
 
   19 Dec 2008; Peter Volkov <pva@gentoo.org> gnump3d-2.9_pre7.ebuild,
   gnump3d-2.9_pre99.ebuild, gnump3d-2.9.ebuild, gnump3d-3.0.ebuild:

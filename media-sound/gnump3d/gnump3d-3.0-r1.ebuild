@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/gnump3d-3.0.ebuild,v 1.9 2010/02/23 15:39:49 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gnump3d/gnump3d-3.0-r1.ebuild,v 1.1 2010/02/23 15:49:31 beandog Exp $
 
 inherit eutils multilib prefix
 
@@ -14,10 +14,11 @@ SRC_URI="http://savannah.gnu.org/download/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos"
-IUSE=""
+IUSE="sox"
 
-RDEPEND="dev-lang/perl"
-DEPEND="${RDEPEND}
+RDEPEND="dev-lang/perl
+	sox? ( media-sound/sox )"
+DEPEND="dev-lang/perl
 	sys-apps/sed"
 
 RESTRICT="test"
@@ -76,4 +77,11 @@ src_install() {
 pkg_postinst() {
 	elog "Please edit your /etc/gnump3d/gnump3d.conf before running"
 	elog "/etc/init.d/gnump3d start"
+	elog ""
+	elog "At the very least, you will need to change the root directory"
+	elog "where music is found.  By default, gnump3d will also listen"
+	elog "to any address on port 8888"
+	elog ""
+	elog "You can optionally use sox to downmix the quality of streamed"
+	elog "music in realtime for slow connections."
 }
