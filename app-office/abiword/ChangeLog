@@ -1,6 +1,9 @@
 # ChangeLog for app-office/abiword
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.210 2009/08/28 14:20:28 betelgeuse Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.211 2010/03/09 21:25:24 josejx Exp $
+
+  09 Mar 2010; Joseph Jezak <josejx@gentoo.org> abiword-2.6.8.ebuild:
+  Marked ppc/ppc64 stable for bug #283031.
 
   28 Aug 2009; Petteri Räty <betelgeuse@gentoo.org> abiword-2.6.8.ebuild:
   Migrate to EAPI 2 in order to nuke built_with_use.
