@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/octave-3.2.4.ebuild,v 1.3 2010/02/17 04:38:38 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/octave-3.2.4-r1.ebuild,v 1.3 2010/03/11 18:07:45 mr_bones_ Exp $
 
 EAPI="2"
 inherit flag-o-matic xemacs-elisp-common
@@ -11,11 +11,11 @@ HOMEPAGE="http://www.octave.org/"
 SRC_URI="ftp://ftp.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
 
 SLOT="0"
-IUSE="curl doc emacs fltk fftw hdf5 opengl readline sparse xemacs zlib"
+IUSE="curl doc emacs fltk fftw opengl readline sparse test xemacs zlib"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 
-# add 	media-gfx/graphicsmagick[cxx] when keyworded in arches
 RDEPEND="dev-libs/libpcre
+	media-gfx/graphicsmagick[cxx]
 	media-libs/qhull
 	sci-libs/qrupdate
 	sci-mathematics/glpk
@@ -26,7 +26,6 @@ RDEPEND="dev-libs/libpcre
 	curl? ( net-misc/curl )
 	fltk? ( x11-libs/fltk:1.1[opengl?] )
 	fftw? ( sci-libs/fftw:3.0 )
-	hdf5? ( sci-libs/hdf5 )
 	opengl? ( virtual/opengl media-libs/ftgl )
 	sparse? ( sci-libs/arpack
 		sci-libs/camd
@@ -50,28 +49,23 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.2.0_parallel_make.patch
 	epatch "${FILESDIR}"/${PN}-3.2.0_as_needed.patch
-
-	# without this we get MPI linker errors if hdf5
-	# was compiled against mpi (see #302621)
-	if has_version sci-libs/hdf5[mpi]; then
-		export CC=mpicc
-		export FC=mpif90
-		export CXX=mpicxx
-	fi
+	epatch "${FILESDIR}"/${PN}-3.2.4-imread.patch
+	epatch "${FILESDIR}"/${PN}-3.2.4-ldflags.patch
 }
 
 src_configure() {
 	use fltk || export FLTK_CONFIG="no"
+	# hdf5 disabled because not really useful (bug #)
 	econf \
 		--localstatedir="${EPREFIX}"/var/state/octave \
 		--enable-shared \
+		--without-hdf5 \
 		--with-qrupdate \
 		--with-blas="$(pkg-config --libs blas)" \
 		--with-lapack="$(pkg-config --libs lapack)" \
 		$(use_enable readline) \
 		$(use_with curl) \
 		$(use_with fftw) \
-		$(use_with hdf5) \
 		$(use_with opengl framework-opengl) \
 		$(use_with sparse arpack) \
 		$(use_with sparse umfpack) \
@@ -109,7 +103,7 @@ src_install() {
 		fi
 		cd ..
 	fi
-
+	use test && dodoc test/fntests.log
 	echo "LDPATH=${EPREFIX}/usr/$(get_libdir)/octave-${PV}" > 99octave
 	doenvd 99octave || die
 }
