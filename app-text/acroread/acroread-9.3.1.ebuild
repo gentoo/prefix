@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-9.3.ebuild,v 1.2 2010/02/07 10:18:01 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/acroread/acroread-9.3.1.ebuild,v 1.3 2010/03/05 19:26:47 pacho Exp $
 
 inherit eutils gnome2-utils nsplugins
 
@@ -166,7 +166,7 @@ src_install() {
 		doins Adobe/Reader9/Resource/Icons/${res}/* || die "Installing icons failed."
 	done
 
-	dodir /opt || die "Creating directoy failed."
+	dodir /opt || die "Creating directory failed."
 	chown -R --dereference -L root:0 Adobe
 	cp -dpR Adobe "${ED}"opt/
 
