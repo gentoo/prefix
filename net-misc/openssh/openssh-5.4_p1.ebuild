@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.2_p1-r2.ebuild,v 1.13 2009/10/07 18:22:57 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.4_p1.ebuild,v 1.2 2010/03/13 01:28:51 vapier Exp $
 
 inherit eutils flag-o-matic multilib autotools pam
 
@@ -8,26 +8,21 @@ inherit eutils flag-o-matic multilib autotools pam
 # and _p? releases.
 PARCH=${P/_/}
 
-HPN_PATCH="${PARCH}-hpn13v6.diff.gz"
-LDAP_PATCH="${PARCH/openssh/openssh-lpk}-0.3.11.patch.gz"
-PKCS11_PATCH="${PARCH/p1}pkcs11-0.26.tar.bz2"
-X509_VER="6.2" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
+#HPN_PATCH="${PARCH}-hpn13v7.diff.gz"
+#LDAP_PATCH="${PARCH/openssh/openssh-lpk}-0.3.11.patch.gz"
+X509_VER="6.2.2" X509_PATCH="${PARCH}+x509-${X509_VER}.diff.gz"
 
 DESCRIPTION="Port of OpenBSD's free SSH release"
 HOMEPAGE="http://www.openssh.org/"
-# HPN appears twice as sometimes Gentoo has a custom version of it.
 SRC_URI="mirror://openbsd/OpenSSH/portable/${PARCH}.tar.gz
-	http://www.sxw.org.uk/computing/patches/openssh-5.0p1-gsskex-20080404.patch
-	${HPN_PATCH:+hpn? ( mirror://gentoo/${HPN_PATCH} )}
 	${HPN_PATCH:+hpn? ( http://www.psc.edu/networking/projects/hpn-ssh/${HPN_PATCH} )}
 	${LDAP_PATCH:+ldap? ( mirror://gentoo/${LDAP_PATCH} )}
-	${PKCS11_PATCH:+pkcs11? ( http://alon.barlev.googlepages.com/${PKCS11_PATCH} )}
 	${X509_PATCH:+X509? ( http://roumenpetrov.info/openssh/x509-${X509_VER}/${X509_PATCH} )}"
 
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="hpn kerberos ldap libedit pam pkcs11 selinux skey smartcard static tcpd X X509"
+IUSE="hpn kerberos ldap libedit pam selinux skey static tcpd X X509"
 
 RDEPEND="pam? ( virtual/pam )
 	kerberos? ( virtual/krb5 )
@@ -37,8 +32,6 @@ RDEPEND="pam? ( virtual/pam )
 	libedit? ( dev-libs/libedit )
 	>=dev-libs/openssl-0.9.6d
 	>=sys-libs/zlib-1.2.3
-	smartcard? ( dev-libs/opensc )
-	pkcs11? ( dev-libs/pkcs11-helper )
 	tcpd? ( >=sys-apps/tcp-wrappers-7.6 )
 	X? ( x11-apps/xauth )
 	userland_GNU? ( sys-apps/shadow )"
@@ -58,7 +51,6 @@ pkg_setup() {
 	maybe_fail() { [[ -z ${!2} ]] && use ${1} && echo ${1} ; }
 	local fail="
 		$(maybe_fail ldap LDAP_PATCH)
-		$(maybe_fail pkcs11 PKCS11_PATCH)
 		$(maybe_fail X509 X509_PATCH)
 	"
 	fail=$(echo ${fail})
@@ -79,47 +71,40 @@ src_unpack() {
 		-e "/_PATH_XAUTH/s:/usr/X11R6/bin/xauth:${EPREFIX}/usr/bin/xauth:" \
 		pathnames.h || die
 
-	if use pkcs11 ; then
-		cd "${WORKDIR}"
-		unpack "${PKCS11_PATCH}"
-		cd "${S}"
-		EPATCH_OPTS="-p1" epatch "${WORKDIR}"/*pkcs11*/{1,2,4}*
-		use X509 && EPATCH_OPTS="-R" epatch "${WORKDIR}"/*pkcs11*/1000_all_log.patch
+	if use X509 ; then
+		# Apply X509 patch
+		epatch "${DISTDIR}"/${X509_PATCH}
+		# Apply glue so that HPN will still work after X509
+		#epatch "${FILESDIR}"/${PN}-5.2_p1-x509-hpn-glue.patch
 	fi
-	use X509 && epatch "${DISTDIR}"/${X509_PATCH}
-	use smartcard && epatch "${FILESDIR}"/openssh-3.9_p1-opensc.patch
 	if ! use X509 ; then
 		if [[ -n ${LDAP_PATCH} ]] && use ldap ; then
 			# The patch for bug 210110 64-bit stuff is now included.
 			epatch "${DISTDIR}"/${LDAP_PATCH}
-			# Not needed anymore of 0.3.11. Merged into the main patch.
-			#epatch "${FILESDIR}"/${PN}-5.1_p1-ldap-hpn-glue.patch
-
-			# Fixup per bug #266654
-			epatch "${FILESDIR}"/${PN}-5.2p1-ldap-stdargs.diff
+			epatch "${FILESDIR}"/${PN}-5.2p1-ldap-stdargs.diff #266654
 		fi
-		#epatch "${DISTDIR}"/openssh-5.0p1-gsskex-20080404.patch #115553 #216932
 	else
 		use ldap && ewarn "Sorry, X509 and ldap don't get along, disabling ldap"
 	fi
+	epatch "${FILESDIR}"/${P}-openssl.patch
 	epatch "${FILESDIR}"/${PN}-4.7_p1-GSSAPI-dns.patch #165444 integrated into gsskex
 	[[ -n ${HPN_PATCH} ]] && use hpn && epatch "${DISTDIR}"/${HPN_PATCH}
-	epatch "${FILESDIR}"/${PN}-4.7p1-selinux.diff #191665
-	epatch "${FILESDIR}"/${P}-autoconf.patch
-
-	# in 5.2p1, the AES-CTR multithreaded variant is temporarily broken, and
-	# causes random hangs when combined with the -f switch of ssh.
-	# To avoid this, we change the internal table to use the non-multithread
-	# version for the meantime.
-	sed -i \
-		-e '/aes...-ctr.*SSH_CIPHER_SSH2/s,evp_aes_ctr_mt,evp_aes_128_ctr,' \
-		cipher.c || die
+	epatch "${FILESDIR}"/${PN}-5.2_p1-autoconf.patch
 
 	sed -i "s:-lcrypto:$(pkg-config --libs openssl):" configure{,.ac} || die
 
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-copyfile.patch
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-getpwuid.patch
-	epatch "${FILESDIR}"/${P}-interix-new.patch
+	epatch "${FILESDIR}"/${PN}-5.3_p1-interix.patch
+
+	# when installed as non-admin on interix6, chmoding with +s fails! ...
+	# (btw: administrator uid is constant across all windows versions).
+	if [[ ${CHOST} == *-interix6* ]]; then
+		if [[ $(id -u) != 197108 ]]; then
+			epatch "${FILESDIR}"/${P}-interix6-setuid.patch
+		fi
+	fi
+
 
 	# Disable PATH reset, trust what portage gives us. bug 254615
 	sed -i -e 's:^PATH=/:#PATH=/:' configure || die
@@ -145,7 +130,6 @@ src_compile() {
 	addwrite /dev/ptmx
 	addpredict /etc/skey/skeykeys #skey configure code triggers this
 
-	local myconf=""
 	use static && append-ldflags -static
 
 	# for some reason the stack-protector detection code doesn't really work on
@@ -173,14 +157,11 @@ src_compile() {
 		$(static_use_with kerberos kerberos5 "${EPREFIX}"/usr) \
 		${LDAP_PATCH:+$(use ldap && use_with ldap)} \
 		$(use_with libedit) \
-		${PKCS11_PATCH:+$(use pkcs11 && static_use_with pkcs11)} \
 		$(use_with selinux) \
 		$(use_with skey) \
-		$(use_with smartcard opensc) \
 		$(use_with tcpd tcp-wrappers) \
-		${myconf} \
-		|| die "bad configure"
-	emake || die "compile problem"
+		|| die
+	emake || die
 }
 
 src_install() {
@@ -249,21 +230,12 @@ pkg_postinst() {
 	enewgroup sshd 22
 	enewuser sshd 22 -1 /var/empty sshd
 
-	# help fix broken perms caused by older ebuilds.
-	# can probably cut this after the next stage release.
-	chmod u+x "${EROOT}"/etc/skel/.ssh >& /dev/null
-
 	ewarn "Remember to merge your config files in /etc/ssh/ and then"
 	ewarn "reload sshd: '/etc/init.d/sshd reload'."
 	if use pam ; then
 		echo
 		ewarn "Please be aware users need a valid shell in /etc/passwd"
 		ewarn "in order to be allowed to login."
-	fi
-	if use pkcs11 ; then
-		echo
-		einfo "For PKCS#11 you should also emerge one of the askpass softwares"
-		einfo "Example: net-misc/x11-ssh-askpass"
 	fi
 	# This instruction is from the HPN webpage,
 	# Used for the server logging functionality

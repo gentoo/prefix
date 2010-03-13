@@ -1,6 +1,25 @@
 # ChangeLog for net-misc/openssh
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.368 2009/10/27 18:31:50 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.373 2010/03/13 01:28:51 vapier Exp $
+
+  13 Mar 2010; Mike Frysinger <vapier@gentoo.org> openssh-5.4_p1.ebuild:
+  Drop USE=pkcs11 per Alon Bar-Lev #308431.
+
+  12 Mar 2010; Jeroen Roovers <jer@gentoo.org> openssh-5.3_p1-r1.ebuild:
+  Stable for HPPA (bug #308555).
+
+  12 Mar 2010; Markos Chandras <hwoarang@gentoo.org>
+  openssh-5.3_p1-r1.ebuild:
+  Stable on amd64 wrt bug #308555
+
+  10 Mar 2010; Joseph Jezak <josejx@gentoo.org> openssh-5.3_p1-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #308555.
+
+*openssh-5.4_p1 (09 Mar 2010)
+
+  09 Mar 2010; Mike Frysinger <vapier@gentoo.org> +openssh-5.4_p1.ebuild,
+  +files/openssh-5.4_p1-openssl.patch:
+  Version bump #308431 by Dirkjan Ochtman.
 
   27 Oct 2009; Raúl Porcel <armin76@gentoo.org> openssh-5.2_p1-r3.ebuild:
   ia64/m68k/s390/sh/sparc stable wrt #287292
