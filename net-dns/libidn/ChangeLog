@@ -1,6 +1,11 @@
 # ChangeLog for net-dns/libidn
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.116 2010/01/14 04:01:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/ChangeLog,v 1.117 2010/02/15 22:05:38 jer Exp $
+
+*libidn-1.18 (15 Feb 2010)
+
+  15 Feb 2010; Jeroen Roovers <jer@gentoo.org> +libidn-1.18.ebuild:
+  Version bump.
 
 *libidn-1.16 (14 Jan 2010)
 
