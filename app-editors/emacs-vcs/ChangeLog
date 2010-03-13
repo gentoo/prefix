@@ -1,6 +1,35 @@
 # ChangeLog for app-editors/emacs-vcs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/ChangeLog,v 1.7 2010/01/30 08:46:23 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/ChangeLog,v 1.12 2010/03/11 16:40:08 ulm Exp $
+
+*emacs-vcs-23.1.94 (11 Mar 2010)
+
+  11 Mar 2010; Ulrich Mueller <ulm@gentoo.org> +emacs-vcs-23.1.94.ebuild:
+  New pretest version.
+
+*emacs-vcs-24.0.9999 (10 Mar 2010)
+
+  10 Mar 2010; Ulrich Mueller <ulm@gentoo.org>
+  -emacs-vcs-23.1.9999-r50.ebuild, +emacs-vcs-24.0.9999.ebuild:
+  Upstream has changed version number of trunk from 23.1.93 to 24.0.50.
+
+*emacs-vcs-23.1.9999-r50 (10 Mar 2010)
+*emacs-vcs-23.1.9999-r3 (10 Mar 2010)
+
+  10 Mar 2010; Ulrich Mueller <ulm@gentoo.org>
+  -emacs-vcs-23.1.9999-r2.ebuild, +emacs-vcs-23.1.9999-r3.ebuild,
+  +emacs-vcs-23.1.9999-r50.ebuild:
+  Upstream repository has been branched for the 23.2 release. 23.1.9999-r3 is
+  the live ebuild for the emacs-23 branch, 23.1.9999-r50 for the trunk.
+
+*emacs-vcs-23.1.93 (26 Feb 2010)
+
+  26 Feb 2010; Ulrich Mueller <ulm@gentoo.org> +emacs-vcs-23.1.93.ebuild:
+  New pretest version.
+
+  13 Feb 2010; Raúl Porcel <armin76@gentoo.org>
+  emacs-vcs-23.1.9999-r2.ebuild:
+  Add ~alpha/~arm/~s390/~sh wrt #297581
 
 *emacs-vcs-23.1.92 (30 Jan 2010)
 
