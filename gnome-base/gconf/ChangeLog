@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/gconf
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.221 2010/01/16 17:06:18 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.223 2010/03/10 08:54:12 josejx Exp $
+
+  10 Mar 2010; Joseph Jezak <josejx@gentoo.org> gconf-2.28.0-r1.ebuild:
+  Marked ~ppc/~ppc64 for bug #296548.
+
+  28 Feb 2010; Raúl Porcel <armin76@gentoo.org> gconf-2.28.0.ebuild,
+  gconf-2.28.0-r1.ebuild:
+  Add ~alpha/~arm/~ia64/~sparc
 
   16 Jan 2010; Raúl Porcel <armin76@gentoo.org> gconf-2.26.2-r1.ebuild:
   sh stable
