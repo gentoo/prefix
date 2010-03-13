@@ -1,11 +1,11 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/miscfiles-1.4.2.ebuild,v 1.8 2009/10/17 21:23:10 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/miscfiles-1.4.2.ebuild,v 1.9 2010/03/11 23:09:52 sping Exp $
 
 inherit eutils
 
 DESCRIPTION="Miscellaneous files"
-HOMEPAGE="http://www.gnu.org/directory/miscfiles.html"
+HOMEPAGE="http://savannah.gnu.org/projects/miscfiles/"
 SRC_URI="mirror://gnu/miscfiles/${P}.tar.gz"
 
 LICENSE="GPL-2 unicode"

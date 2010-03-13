@@ -1,12 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/miscfiles-1.4.2-r1.ebuild,v 1.4 2010/01/07 13:03:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/miscfiles-1.4.2-r1.ebuild,v 1.11 2010/03/11 23:09:52 sping Exp $
 
 inherit eutils
 
 UNI_PV=5.2.0
 DESCRIPTION="Miscellaneous files"
-HOMEPAGE="http://www.gnu.org/directory/miscfiles.html"
+HOMEPAGE="http://savannah.gnu.org/projects/miscfiles/"
 # updated unicode data file from:
 # http://www.unicode.org/Public/${UNI_PV}/ucd/UnicodeData.txt
 SRC_URI="mirror://gnu/miscfiles/${P}.tar.gz

@@ -1,6 +1,30 @@
 # ChangeLog for sys-apps/miscfiles
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/ChangeLog,v 1.26 2010/01/07 13:03:16 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/miscfiles/ChangeLog,v 1.33 2010/03/11 23:09:52 sping Exp $
+
+  11 Mar 2010; Sebastian Pipping <sping@gentoo.org> miscfiles-1.4.2.ebuild,
+  miscfiles-1.4.2-r1.ebuild:
+  Fix homepage (bug #261519)
+
+  04 Mar 2010; Jeroen Roovers <jer@gentoo.org> miscfiles-1.4.2-r1.ebuild:
+  Stable for PPC (bug #293265).
+
+  04 Mar 2010; Jeroen Roovers <jer@gentoo.org> miscfiles-1.4.2-r1.ebuild:
+  Stable for HPPA (bug #293265).
+
+  26 Feb 2010; Brent Baude <ranger@gentoo.org> miscfiles-1.4.2-r1.ebuild:
+  Marking miscfiles-1.4.2-r1 ppc64 for bug 293265
+
+  24 Feb 2010; Markos Chandras <hwoarang@gentoo.org>
+  miscfiles-1.4.2-r1.ebuild:
+  Stable on amd64 wrt bug #293265
+
+  23 Feb 2010; Raúl Porcel <armin76@gentoo.org> miscfiles-1.4.2-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #293265
+
+  23 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  miscfiles-1.4.2-r1.ebuild:
+  stable x86, bug 293265
 
   07 Jan 2010; Alexis Ballier <aballier@gentoo.org>
   miscfiles-1.4.2-r1.ebuild:
