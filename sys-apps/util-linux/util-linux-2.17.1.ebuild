@@ -1,11 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.16.1.ebuild,v 1.19 2010/03/01 17:24:26 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.17.1.ebuild,v 1.2 2010/03/09 00:58:33 vapier Exp $
 
 EAPI="2"
 
 EGIT_REPO_URI="git://git.kernel.org/pub/scm/utils/util-linux-ng/util-linux-ng.git"
-inherit eutils toolchain-funcs
+inherit eutils toolchain-funcs libtool
 [[ ${PV} == "9999" ]] && inherit git autotools
 
 MY_PV=${PV/_/-}
@@ -19,8 +19,8 @@ if [[ ${PV} == "9999" ]] ; then
 	#KEYWORDS=""
 else
 	SRC_URI="mirror://kernel/linux/utils/util-linux-ng/v${PV:0:4}/${MY_P}.tar.bz2
-		loop-aes? ( mirror://gentoo/${P}-loop-aes.patch.bz2 )"
-KEYWORDS="~amd64-linux ~x86-linux"
+		loop-aes? ( http://loop-aes.sourceforge.net/updates/util-linux-ng-2.17.1-20100308.diff.bz2 )"
+	KEYWORDS="~amd64-linux ~x86-linux"
 fi
 
 LICENSE="GPL-2"
@@ -44,10 +44,11 @@ src_prepare() {
 		autopoint --force
 		eautoreconf
 	else
-		use loop-aes && epatch "${WORKDIR}"/${P}-loop-aes.patch
+		use loop-aes && epatch "${WORKDIR}"/util-linux-ng-*.diff
 	fi
 	use uclibc && sed -i -e s/versionsort/alphasort/g -e s/strverscmp.h/dirent.h/g mount/lomount.c
 	use prefix && sed -i -e 's/chgrp tty/#chgrp tty/' misc-utils/Makefile.in || die
+	elibtoolize
 }
 
 src_configure() {

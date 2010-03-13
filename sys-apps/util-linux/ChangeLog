@@ -1,6 +1,20 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.300 2010/02/09 01:55:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.304 2010/03/09 00:58:33 vapier Exp $
+
+  09 Mar 2010; Mike Frysinger <vapier@gentoo.org> util-linux-2.17.1.ebuild:
+  Update loop-aes patch #307987.
+
+*util-linux-2.17.1 (05 Mar 2010)
+
+  05 Mar 2010; Mike Frysinger <vapier@gentoo.org> +util-linux-2.17.1.ebuild:
+  Version bump #307055 by Arseny Solokha.
+
+  15 Feb 2010; Joseph Jezak <josejx@gentoo.org> util-linux-2.16.2.ebuild:
+  Marked ppc stable for bug #301179.
+
+  12 Feb 2010; Raúl Porcel <armin76@gentoo.org> util-linux-2.16.2.ebuild:
+  sparc stable wrt #301179
 
 *util-linux-2.17-r1 (09 Feb 2010)
 
