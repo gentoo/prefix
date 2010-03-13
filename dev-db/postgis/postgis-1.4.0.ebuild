@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgis/postgis-1.4.0.ebuild,v 1.2 2009/09/20 22:21:12 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgis/postgis-1.4.0.ebuild,v 1.4 2010/02/21 14:58:27 mr_bones_ Exp $
 
 EAPI="1"
 
@@ -19,7 +19,8 @@ RDEPEND=">=virtual/postgresql-server-8.2
 	>=sci-libs/proj-4.5.0"
 
 DEPEND="${RDEPEND}
-	doc? ( app-text/docbook-xsl-stylesheets )"
+	doc? ( app-text/docbook-xsl-stylesheets
+		media-gfx/imagemagick )"
 
 RESTRICT="test"
 
@@ -44,14 +45,14 @@ pkg_setup(){
 src_compile(){
 	local myconf
 	if use doc; then
-		myconf="${myconf} --with-xsl=$(ls "${EROOT}"usr/share/sgml/docbook/* | \
+		myconf="${myconf} --with-xsldir=$(ls "${EROOT}"usr/share/sgml/docbook/* | \
 			grep xsl\- | cut -d':' -f1)"
 	fi
 
 	econf --enable-autoconf \
 		--datadir="${EPREFIX}"/usr/share/postgresql/contrib/ \
 		--libdir="${EPREFIX}"/usr/$(get_libdir)/postgresql/ \
-		--with-docdir="${EPREFIX}"/usr/share/doc/${PF}/html/ \
+		--docdir="${ED}"/usr/share/doc/${PF}/html/ \
 		${myconf} ||\
 			die "Error: econf failed"
 
