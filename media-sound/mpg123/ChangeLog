@@ -1,6 +1,12 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.218 2010/02/01 05:40:28 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.219 2010/02/13 17:51:22 ssuominen Exp $
+
+*mpg123-1.10.1_pre (13 Feb 2010)
+
+  13 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +mpg123-1.10.1_pre.ebuild:
+  Commit unkeyworded prerelease for testing bug 299490.
 
 *mpg123-1.10.0 (01 Feb 2010)
 

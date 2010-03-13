@@ -2,6 +2,12 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <herd>sound</herd>
+  <upstream>
+    <maintainer>
+      <email>thomas-forum@orgis.org</email>
+      <name>Thomas Orgis</name>
+    </maintainer>
+  </upstream>
   <use>
     <flag name="3dnowext">Enable 3dnowext cpu instructions</flag>
     <flag name="network">Enable network support (http streams / webradio)</flag>
