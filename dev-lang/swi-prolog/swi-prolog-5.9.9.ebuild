@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.9.7.ebuild,v 1.4 2010/02/13 08:26:32 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/swi-prolog-5.9.9.ebuild,v 1.2 2010/02/27 04:05:56 keri Exp $
 
 inherit eutils flag-o-matic java-pkg-opt-2
 
-PATCHSET_VER="2"
+PATCHSET_VER="1"
 
 DESCRIPTION="free, small, and standard compliant Prolog compiler"
 HOMEPAGE="http://www.swi-prolog.org/"
@@ -16,8 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 IUSE="berkdb debug doc gmp hardened java minimal odbc readline ssl static test zlib X"
 
-RDEPEND="!media-libs/ploticus
-	sys-libs/ncurses
+RDEPEND="sys-libs/ncurses
 	zlib? ( sys-libs/zlib )
 	odbc? ( dev-db/unixODBC )
 	berkdb? ( sys-libs/db )
@@ -50,8 +49,6 @@ src_unpack() {
 }
 
 src_compile() {
-	einfo "Building SWI-Prolog compiler"
-
 	append-flags -fno-strict-aliasing
 	use hardened && append-flags -fno-unit-at-a-time
 	use debug && append-flags -DO_DEBUG
@@ -71,8 +68,6 @@ src_compile() {
 	emake || die "emake failed"
 
 	if ! use minimal ; then
-		einfo "Building SWI-Prolog additional packages"
-
 		local jpltestconf
 		if use java && use test ; then
 			jpltestconf="--with-junit=$(java-config --classpath junit)"
@@ -96,9 +91,9 @@ src_compile() {
 			$(use_with odbc) \
 			--with-pldoc \
 			--with-plunit \
+			--with-RDF \
 			--with-semweb \
 			--with-sgml \
-			--with-sgml/RDF \
 			$(use_with ssl) \
 			--with-table \
 			$(use_with X xpce) \
@@ -132,4 +127,13 @@ src_test() {
 		cd "${S}/packages"
 		emake check || die "make check failed. See above for details."
 	fi
+}
+
+pkg_postinst() {
+	einfo "Please note that the following binaries have been renamed"
+	einfo "from earlier versions:"
+	einfo "    pl    ->  swipl"
+	einfo "    plld  ->  swipl-ld"
+	einfo "    plrc  ->  swipl-rc"
+	einfo "    xpce  ->  <deleted>"
 }

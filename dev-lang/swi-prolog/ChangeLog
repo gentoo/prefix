@@ -1,6 +1,39 @@
 # ChangeLog for dev-lang/swi-prolog
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.205 2010/02/05 20:41:09 keri Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/swi-prolog/ChangeLog,v 1.214 2010/03/07 16:01:27 armin76 Exp $
+
+  07 Mar 2010; Raúl Porcel <armin76@gentoo.org> swi-prolog-5.8.3.ebuild:
+  alpha/sparc stable wrt #305963
+
+  28 Feb 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  swi-prolog-5.8.3.ebuild:
+  x86 stable wrt bug #305963
+
+  27 Feb 2010; <keri@gentoo.org> swi-prolog-5.8.3.ebuild:
+  Regenerate expired demoCA certificate for SSL tests
+
+  27 Feb 2010; <keri@gentoo.org> swi-prolog-5.8.3.ebuild,
+  swi-prolog-5.9.9.ebuild:
+  Do not follow certificate chain outside of localhost in src_test()
+
+*swi-prolog-5.9.9 (24 Feb 2010)
+
+  24 Feb 2010; <keri@gentoo.org> +swi-prolog-5.9.9.ebuild:
+  Bump -5.9 development version
+
+  19 Feb 2010; <keri@gentoo.org> swi-prolog-5.8.3.ebuild:
+  Support tests for term_hash/2 on big-endian machines
+
+  17 Feb 2010; <keri@gentoo.org> swi-prolog-5.8.3.ebuild:
+  Support prolog_load_context/2
+
+  13 Feb 2010; <keri@gentoo.org> swi-prolog-5.8.3.ebuild,
+  swi-prolog-5.9.7.ebuild:
+  Move dev-java/junit from RDEPEND to DEPEND
+
+  13 Feb 2010; <keri@gentoo.org> swi-prolog-5.8.3.ebuild,
+  swi-prolog-5.9.7.ebuild:
+  Allow plld to support plld expensive runtime variables. Closes #293792
 
   05 Feb 2010; <keri@gentoo.org> swi-prolog-5.9.7.ebuild:
   Support -gmp in USE flags. Closes #302941 reported by Nikos Chantziaras.
