@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/unrar-gpl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar-gpl/ChangeLog,v 1.10 2009/01/29 16:38:51 hanno Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar-gpl/ChangeLog,v 1.11 2010/03/07 09:59:14 hanno Exp $
+
+  07 Mar 2010; Hanno Boeck <hanno@gentoo.org>
+  unrar-gpl-0.0.1_p20080417.ebuild:
+  Change description to note users that it's not useful for current rar
+  files, see #267913.
 
   29 Jan 2009; Hanno Boeck <hanno@gentoo.org>
   unrar-gpl-0.0.1_p20080417.ebuild:

@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar-gpl/unrar-gpl-0.0.1_p20080417.ebuild,v 1.3 2009/01/29 16:38:51 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar-gpl/unrar-gpl-0.0.1_p20080417.ebuild,v 1.4 2010/03/07 09:59:14 hanno Exp $
 
 inherit autotools flag-o-matic
 
-DESCRIPTION="Free rar unpacker"
+DESCRIPTION="Free rar unpacker for old (pre v3) rar files"
 HOMEPAGE="http://home.gna.org/unrar/"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
 LICENSE="GPL-2"
