@@ -1,0 +1,33 @@
+From d1a042fbd75b7f8d44293fbee01e783be79d884c Mon Sep 17 00:00:00 2001
+From: Nicola Fontana <ntd@entidi.it>
+Date: Mon, 03 Aug 2009 13:32:36 +0000
+Subject: gtkdoc-scan: touch MODULE-overrides.txt when missing. Fixes #590625
+
+gtk-doc.make puts $(DOC_MODULE)-overrides.txt in EXTRA_DIST, so this
+file must exist to be able to "make dist".
+---
+diff --git a/gtkdoc-scan.in b/gtkdoc-scan.in
+index ece8d99..c986f36 100755
+--- a/gtkdoc-scan.in
++++ b/gtkdoc-scan.in
+@@ -185,12 +185,12 @@ if ($REBUILD_SECTIONS || ! -e $sections_file) {
+   `cp $old_decl_list $sections_file`;
+ }
+ 
+-# If there is no MODULE-overrides.txt file we create an empty one.
+-# FIXME: why?
+-#my $overrides_file = "${OUTPUT_DIR}/$MODULE-overrides.txt";
+-#if (! -e $overrides_file) {
+-#  `touch $overrides_file`;
+-#}
++# If there is no MODULE-overrides.txt file we create an empty one
++# because EXTRA_DIST in gtk-doc.make requires it.
++my $overrides_file = "${OUTPUT_DIR}/$MODULE-overrides.txt";
++if (! -e $overrides_file) {
++  `touch $overrides_file`;
++}
+ 
+ 
+ 
+--
+cgit v0.8.3.1

@@ -1,6 +1,28 @@
 # ChangeLog for dev-util/gtk-doc
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.114 2009/10/26 17:58:47 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/ChangeLog,v 1.117 2010/03/06 22:47:06 nirbheek Exp $
+
+*gtk-doc-1.13-r2 (06 Mar 2010)
+
+  06 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +gtk-doc-1.13-r2.ebuild, +files/gtk-doc-1.13-fixxref-vim-u-NONE.patch:
+  Fix bug 306569 by not loading vim plugins while calling vim in
+  gtkdoc-fixxref
+
+*gtk-doc-1.13-r1 (16 Feb 2010)
+
+  16 Feb 2010; Romain Perier <mrpouet@gentoo.org>
+  +gtk-doc-1.13-r1.ebuild,
+  +files/gtk-doc-1.13-fixxref-compat.patch,
+  +files/gtk-doc-1.13-scan-touch-module-overrides.patch:
+  Import two patches from upstream: touch MODULE-overrides.txt when missing
+  in gtkdoc-scan, be compatible with old versions of gtk-doc in fixxref. Per
+  bug #305191, thanks to Kacper Kowalik.
+
+*gtk-doc-1.13 (14 Feb 2010)
+
+  14 Feb 2010; Gilles Dartiguelongue <eva@gentoo.org> +gtk-doc-1.13.ebuild:
+  Version bump. gtkdoc-rebase moved to gtk-doc-am, refs bug #262491.
 
   26 Oct 2009; Raúl Porcel <armin76@gentoo.org> gtk-doc-1.11.ebuild:
   ia64/m68k/s390/sh/sparc stable wrt #285586
