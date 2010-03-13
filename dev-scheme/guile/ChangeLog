@@ -1,6 +1,10 @@
 # ChangeLog for dev-scheme/guile
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.75 2009/12/14 19:30:22 ulm Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/ChangeLog,v 1.76 2010/03/08 22:46:31 volkmar Exp $
+
+  08 Mar 2010; Mounir Lamouri <volkmar@gentoo.org> guile-1.8.6.ebuild:
+  Stabilizing 1.8.6 for ppc, bug 245701.
+  Fix bug 228097, bug 267367 and bug 307233.
 
   14 Dec 2009; Ulrich Mueller <ulm@gentoo.org> guile-1.8.7.ebuild,
   +files/guile-1.8.7-fix_tests.patch:
