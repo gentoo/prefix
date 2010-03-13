@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/freeciv-2.1.11.ebuild,v 1.4 2010/02/09 05:51:43 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/freeciv-2.2.0.ebuild,v 1.3 2010/03/05 20:23:25 mr_bones_ Exp $
 
 EAPI=2
 inherit eutils gnome2-utils games
@@ -12,50 +12,34 @@ SRC_URI="mirror://sourceforge/freeciv/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
-IUSE="auth dedicated ggz gtk nls readline sdl Xaw3d"
+IUSE="auth dedicated ggz gtk ipv6 nls readline sdl +sound"
 
 RDEPEND="readline? ( sys-libs/readline )
 	sys-libs/zlib
+	app-arch/bzip2
 	!dedicated? (
 		nls? ( virtual/libintl )
 		gtk? ( x11-libs/gtk+:2 )
-		!gtk? (
-			sdl? (
-				media-libs/libsdl
-				media-libs/sdl-image
-				media-libs/freetype
-			)
-			!sdl? (
-				Xaw3d? ( x11-libs/Xaw3d )
-				!Xaw3d? ( x11-libs/libXaw )
-			)
+		sdl? (
+			media-libs/libsdl[video]
+			media-libs/sdl-image[png]
+			media-libs/freetype
+		)
+		!gtk? ( !sdl? ( x11-libs/gtk+:2 ) )
+		sound? (
+			media-libs/libsdl[audio]
+			media-libs/sdl-mixer
 		)
 		ggz? ( dev-games/ggz-client-libs )
 		media-libs/libpng
-		sdl? ( media-libs/sdl-mixer )
 		auth? ( virtual/mysql )
 	)"
 DEPEND="${RDEPEND}
-	nls? ( sys-devel/gettext )
+	dev-util/pkgconfig
 	!dedicated? (
-		gtk? ( dev-util/pkgconfig )
+		nls? ( sys-devel/gettext )
 		x11-proto/xextproto
 	)"
-
-pkg_setup() {
-	games_pkg_setup
-	if ! use dedicated ; then
-		if use gtk ; then
-			einfo "The Freeciv Client will be built with the GTK+-2 toolkit"
-		elif use sdl ; then
-			einfo "The Freeciv Client will be built with the SDL toolkit"
-		elif use Xaw3d ; then
-			einfo "The Freeciv Client will be built with the Xaw3d toolkit"
-		else
-			einfo "The Freeciv Client will be built with the Xaw toolkit"
-		fi
-	fi
-}
 
 src_prepare() {
 	# install the .desktop in /usr/share/applications
@@ -83,10 +67,7 @@ src_prepare() {
 
 	# remove civclient manpage if dedicated server
 	if use dedicated ; then
-		sed -i \
-			-e '/man_MANS = /s:civclient.6::' \
-			doc/man/Makefile.in \
-			|| die "sed failed"
+		epatch "${FILESDIR}"/${P}-clean-man.patch
 	fi
 }
 
@@ -96,34 +77,27 @@ src_configure() {
 	if use dedicated ; then
 		myclient="no"
 	else
-		myclient="xaw"
-		use Xaw3d && myclient="xaw3d"
-		use sdl && myclient="sdl"
-		if use gtk ; then
-			myclient="gtk"
-		fi
+		use sdl && myclient="${myclient} sdl"
+		use gtk && myclient="${myclient} gtk"
+		[[ -z ${myclient} ]] && myclient="gtk" # default to gtk if none specified
 	fi
 
 	egamesconf \
 		--disable-dependency-tracking \
 		--localedir=/usr/share/locale \
 		$(use_enable auth) \
+		$(use_enable ipv6) \
 		$(use_enable nls) \
 		$(use_with readline) \
-		$(use_enable sdl sdl-mixer) \
+		$(use_enable sound sdl-mixer) \
 		$(use_with ggz ggz-client) \
-		--enable-client=${myclient}
+		--enable-client="${myclient}"
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 
 	if ! use dedicated ; then
-		# Install the app-defaults if Xaw/Xaw3d toolkit
-		if ! use gtk && ! use sdl ; then
-			insinto /etc/X11/app-defaults
-			doins data/Freeciv || die "doins failed"
-		fi
 		# Create and install the html manual. It can't be done for dedicated
 		# servers, because the 'civmanual' tool is then not built. Also
 		# delete civmanual from the GAMES_BINDIR, because it's then useless.
@@ -132,6 +106,7 @@ src_install() {
 		./manual/civmanual || die "civmanual failed"
 		dohtml manual*.html || die "dohtml failed"
 		rm -f "${ED}/${GAMES_BINDIR}"/civmanual
+		use sdl && make_desktop_entry freeciv-sdl "Freeciv (SDL)" freeciv-client
 	fi
 
 	dodoc ChangeLog NEWS doc/{BUGS,CodingStyle,HACKING,HOWTOPLAY,README*,TODO}

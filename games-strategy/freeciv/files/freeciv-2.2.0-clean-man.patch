@@ -1,0 +1,22 @@
+diff -ru freeciv-2.2.0.orig/doc/man/Makefile.in freeciv-2.2.0/doc/man/Makefile.in
+--- freeciv-2.2.0.orig/doc/man/Makefile.in	2010-02-21 13:52:28.000000000 -0500
++++ freeciv-2.2.0/doc/man/Makefile.in	2010-02-26 04:00:07.713504939 -0500
+@@ -347,8 +347,7 @@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ MAN_PAGES = \
+-	freeciv-server.6	\
+-	freeciv-client.6
++	freeciv-server.6
+ 
+ MAN_LINKS = \
+ 	freeciv-gtk2.6		\
+@@ -357,7 +356,7 @@
+ 	freeciv-win32.6		\
+ 	freeciv-ftwl.6
+ 
+-man_MANS = $(MAN_PAGES) $(MAN_LINKS)
++man_MANS = $(MAN_PAGES)
+ EXTRA_DIST = $(man_MANS)
+ all: all-am
+ 

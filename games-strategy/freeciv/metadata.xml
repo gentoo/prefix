@@ -5,5 +5,6 @@
   <use>
     <flag name="auth">Add authentication capability</flag>
     <flag name="ggz">Add support for GGZ Gaming Zone</flag>
+	<flag name="sound">Add support for sound provided by <pkg>media-libs/sdl-mixer</pkg></flag>
   </use>
 </pkgmetadata>
