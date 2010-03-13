@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.13.ebuild,v 1.12 2009/05/09 18:13:56 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.13.ebuild,v 1.13 2010/03/08 22:35:46 zmedico Exp $
 
 inherit eutils toolchain-funcs multilib libtool autotools
 
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint"
 IUSE="nls python"
 
-DEPEND="python? ( dev-lang/python )"
+DEPEND="python? ( <dev-lang/python-3 )"
 
 S=${WORKDIR}/${MY_P}
 

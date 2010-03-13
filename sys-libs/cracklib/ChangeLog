@@ -1,6 +1,23 @@
 # ChangeLog for sys-libs/cracklib
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.136 2009/11/19 04:17:31 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.141 2010/03/08 22:35:46 zmedico Exp $
+
+  08 Mar 2010; Zac Medico <zmedico@gentoo.org> cracklib-2.8.13.ebuild,
+  cracklib-2.8.13-r1.ebuild, cracklib-2.8.15.ebuild:
+  Specify <python-3 since only python-2.x works.
+
+  04 Mar 2010; Jeroen Roovers <jer@gentoo.org> cracklib-2.8.15.ebuild:
+  Stable for HPPA (bug #305081).
+
+  26 Feb 2010; Brent Baude <ranger@gentoo.org> cracklib-2.8.15.ebuild:
+  Marking cracklib-2.8.15 ppc64 for bug 305081
+
+  23 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  cracklib-2.8.15.ebuild:
+  stable x86, bug 305081
+
+  14 Feb 2010; Mike Frysinger <vapier@gentoo.org> cracklib-2.8.15.ebuild:
+  Fix building with python-3 #302908 by Neil Funk.
 
 *cracklib-2.8.15 (19 Nov 2009)
 
