@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.8.3-r2.ebuild,v 1.1 2010/02/11 03:30:01 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/nspr-4.8.3-r3.ebuild,v 1.1 2010/02/22 00:59:01 anarchy Exp $
 
 inherit eutils multilib toolchain-funcs versionator
 
@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.mozilla.org/pub/mozilla.org/nspr/releases/v${PV}/src/${P}.tar
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 SLOT="0"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="debug"
+IUSE="debug ipv6"
 
 src_unpack() {
 	unpack ${A}
@@ -52,8 +52,9 @@ src_compile() {
 	ECONF_SOURCE="../mozilla/nsprpub" CC=$(tc-getCC) CXX=$(tc-getCPP) econf \
 		$(use_enable debug) \
 		$(use_enable !debug optimize) \
+		$(use_enable ipv6) \
 		${myconf} || die "econf failed"
-	make CC="$(tc-getCC)" CXX="$(tc-getCXX)" || die
+	emake CC="$(tc-getCC)" CXX="$(tc-getCXX)" || die "failed to build"
 }
 
 src_install () {
@@ -65,7 +66,7 @@ src_install () {
 	cd "${ED}"/usr/$(get_libdir)
 	for file in *.a; do
 		einfo "removing static libraries as upstream has requested!"
-		rm ${file}
+		rm -f ${file} || die "failed to remove staic libraries."
 	done
 
 	local n=
@@ -73,22 +74,22 @@ src_install () {
 	[[ ${CHOST} == *-aix* ]] ||
 	for file in *$(get_libname); do
 		n=${file%$(get_libname)}$(get_libname ${MINOR_VERSION})
-		mv ${file} ${n}
-		ln -s ${n} ${file}
+		mv ${file} ${n} || die "failed to mv files around"
+		ln -s ${n} ${file} || die "failed to symlink files."
 		if [[ ${CHOST} == *-darwin* ]]; then
 			install_name_tool -id "${EPREFIX}/usr/$(get_libdir)/${n}" ${n} || die
 		fi
 	done
 
 	# install nspr-config
-	dobin "${S}"/build/config/nspr-config
+	dobin "${S}"/build/config/nspr-config || die "failed to install nspr-config"
 
 	# create pkg-config file
 	insinto /usr/$(get_libdir)/pkgconfig/
-	doins "${S}"/build/config/nspr.pc
+	doins "${S}"/build/config/nspr.pc || die "failed to insall nspr pkg-config file"
 
 	# Remove stupid files in /usr/bin
-	rm "${ED}"/usr/bin/prerr.properties
+	rm -f "${ED}"/usr/bin/prerr.properties || die "failed to cleanup unneeded files"
 }
 
 pkg_postinst() {

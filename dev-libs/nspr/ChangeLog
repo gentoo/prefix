@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/nspr
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.135 2010/02/11 03:30:01 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nspr/ChangeLog,v 1.137 2010/03/09 01:55:51 anarchy Exp $
+
+*nspr-4.8.4 (09 Mar 2010)
+
+  09 Mar 2010; <anarchy@gentoo.org>
+  +files/nspr-4.8-pkgconfig-gentoo-2.patch, +nspr-4.8.4.ebuild:
+  Version bump
+
+*nspr-4.8.3-r3 (22 Feb 2010)
+
+  22 Feb 2010; <anarchy@gentoo.org> -nspr-4.8.3-r2.ebuild,
+  +nspr-4.8.3-r3.ebuild:
+  minor fix ups, readd ipv6 useflag
 
 *nspr-4.8.3-r2 (11 Feb 2010)
 
