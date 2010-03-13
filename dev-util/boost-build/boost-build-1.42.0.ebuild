@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.41.0.ebuild,v 1.4 2010/03/04 15:25:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/boost-build-1.42.0.ebuild,v 1.1 2010/03/03 12:32:08 djc Exp $
 
 EAPI=2
 
@@ -34,7 +34,7 @@ src_unpack() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/boost-1.41-fix-mpich2-detection.patch"
+	epatch "${FILESDIR}/boost-1.42-fix-mpich2-detection.patch"
 
 	epatch "${FILESDIR}"/boost-1.41-darwin-sanitise.patch
 

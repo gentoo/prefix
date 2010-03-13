@@ -1,6 +1,19 @@
 # ChangeLog for dev-util/boost-build
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.47 2009/12/27 12:49:08 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.50 2010/03/04 15:25:21 jer Exp $
+
+  04 Mar 2010; Jeroen Roovers <jer@gentoo.org> boost-build-1.41.0.ebuild:
+  Stable for HPPA (bug #306333).
+
+*boost-build-1.42.0 (03 Mar 2010)
+
+  03 Mar 2010; Dirkjan Ochtman <djc@gentoo.org>
+  +files/boost-1.42-fix-mpich2-detection.patch, +boost-build-1.42.0.ebuild:
+  Version bump to dev-util/boost-build-1.42.0.
+
+  03 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  boost-build-1.41.0.ebuild:
+  stable x86, security bug 305195
 
   27 Dec 2009; Raúl Porcel <armin76@gentoo.org>
   boost-build-1.35.0-r2.ebuild:
