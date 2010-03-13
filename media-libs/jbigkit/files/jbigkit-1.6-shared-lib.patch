@@ -8,7 +8,7 @@
 +AR = ar
 +RANLIB = ranlib
 +
-+ifeq ($(KERNEL),Darwin)
++ifeq ($(USERLAND),Darwin)
 +	SONAME = dylib
 +else
 +	SONAME = so
@@ -31,7 +31,7 @@
 +libjbig.so: $(SOBJS)
 +	$(CC) -shared $(LDFLAGS) -o $@ -Wl,-soname -Wl,$@ $(SOBJS)
 +libjbig.dylib: $(SOBJS)
-+	$(CC) -dynamic $(LDFLAGS) -o $@ -dynamiclib -install_name $(LIBDIR)/$@ $(SOBJS)
++	$(CC) -dynamic $(LDFLAGS) -o $@ -dynamiclib -install_name $@ $(SOBJS)
 +
 +%.lo: %.c jbig.h
 +	$(CC) $(CFLAGS) -fPIC -c $< -o $@
