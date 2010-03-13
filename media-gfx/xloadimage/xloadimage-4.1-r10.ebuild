@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/xloadimage-4.1-r10.ebuild,v 1.9 2010/01/22 21:03:52 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xloadimage/xloadimage-4.1-r10.ebuild,v 1.10 2010/03/10 17:37:06 ssuominen Exp $
 
 EAPI=2
 inherit eutils toolchain-funcs
@@ -47,6 +47,10 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-ldflags_and_exit.patch
 
 	sed -i -e "/^DEFS = /s:/etc:${EPREFIX}/etc:" Makefile.in
+
+	sed -i \
+		-e 's:png_set_gray_1_2_4_to_8:png_set_expand_gray_1_2_4_to_8:' \
+		png.c || die
 
 	chmod +x configure
 }
