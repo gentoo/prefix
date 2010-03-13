@@ -1,6 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.11.ebuild,v 1.4 2010/03/04 19:48:55 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.12.ebuild,v 1.1 2010/02/18 20:06:48 pva Exp $
+
+EAPI="2"
 
 inherit eutils flag-o-matic autotools
 
@@ -25,10 +27,7 @@ DEPEND="sys-libs/zlib
 RDEPEND="${DEPEND}
 		!<media-libs/fontconfig-2.3.2-r2"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	enable_option() {
 		sed -i -e "/#define $1/a #define $1" \
 			include/freetype/config/ftoption.h \
@@ -63,12 +62,12 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-2.3.2-enable-valid.patch
 
 	if use utils; then
-		cd "${WORKDIR}"/ft2demos-${PV}
+		cd "${WORKDIR}/ft2demos-${PV}"
 		sed -i -e "s:\.\.\/freetype2$:../freetype-${PV}:" Makefile
 
 		# Disable tests needing X11 when USE="-X". (bug #177597)
 		if ! use X; then
-			sed -i -e "/EXES\ +=\ ftview/ s:^:#:" Makefile
+			sed -i -e "/EXES\ +=\ ftdiff/ s:^:#:" Makefile
 		fi
 	fi
 
@@ -79,15 +78,17 @@ src_unpack() {
 	epunt_cxx
 }
 
-src_compile() {
+src_configure() {
 	append-flags -fno-strict-aliasing
-
 	type -P gmake &> /dev/null && export GNUMAKE=gmake
 	econf
+}
+
+src_compile() {
 	emake || die "emake failed"
 
 	if use utils; then
-		cd "${WORKDIR}"/ft2demos-${PV}
+		cd "${WORKDIR}/ft2demos-${PV}"
 		emake || die "ft2demos emake failed"
 	fi
 }
@@ -101,7 +102,7 @@ src_install() {
 	use doc && dohtml -r docs/*
 
 	if use utils; then
-		rm "${WORKDIR}"/ft2demos-${PV}/bin/README
+		rm "${WORKDIR}/ft2demos-${PV}/bin/README"
 		for ft2demo in ../ft2demos-${PV}/bin/*; do
 			./builds/unix/libtool --mode=install $(type -P install) -m 755 "$ft2demo" \
 				"${ED}"/usr/bin
