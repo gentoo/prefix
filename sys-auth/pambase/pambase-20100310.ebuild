@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/pambase-20090515.ebuild,v 1.1 2009/05/15 18:54:15 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-auth/pambase/pambase-20100310.ebuild,v 1.1 2010/03/10 00:37:55 flameeyes Exp $
 
 EAPI=2
 
@@ -33,24 +33,41 @@ RDEPEND="
 	sha512? ( >=sys-libs/pam-1.0.1 )
 	!<sys-freebsd/freebsd-pam-modules-6.2-r1
 	!<sys-libs/pam-0.99.9.0-r1"
-DEPEND=""
+DEPEND="app-portage/portage-utils"
 
 src_compile() {
-	has_version sys-libs/pam && implementation="linux-pam"
-	has_version sys-auth/openpam && implementation="openpam"
+	local implementation=
+	local linux_pam_version=
+	if has_version sys-libs/pam; then
+		implementation="linux-pam"
+		local ver_str=$(qatom `best_version sys-libs/pam` | cut -d ' ' -f 3)
+		linux_pam_version=$(printf "0x%02x%02x%02x" ${ver_str//\./ })
+	elif has_version sys-auth/openpam; then
+		implementation="openpam"
+	else
+		die "PAM implementation not identified"
+	fi
+
+	use_var() {
+		local varname=$(echo $1 | tr [a-z] [A-Z])
+		local usename=${2-$(echo $1 | tr [A-Z] [a-z])}
+		local varvalue=$(use $usename && echo yes || echo no)
+		echo "${varname}=${varvalue}"
+	}
 
 	emake \
 		GIT=true \
-		DEBUG=$(use debug && echo yes || echo no) \
-		CRACKLIB=$(use cracklib && echo yes || echo no) \
-		PASSWDQC=$(use passwdqc && echo yes || echo no) \
-		CONSOLEKIT=$(use consolekit && echo yes || echo no) \
-		GNOME_KEYRING=$(use gnome-keyring && echo yes || echo no) \
-		SELINUX=$(use selinux && echo yes || echo no) \
-		MKTEMP=$(use mktemp && echo yes || echo no) \
-		PAM_SSH=$(use ssh && echo yes || echo no) \
-		SHA512=$(use sha512 && echo yes || echo no) \
+		$(use_var debug) \
+		$(use_var cracklib) \
+		$(use_var passwdqc) \
+		$(use_var consolekit) \
+		$(use_var GNOME_KEYRING gnome-keyring) \
+		$(use_var selinux) \
+		$(use_var mktemp) \
+		$(use_var PAM_SSH ssh) \
+		$(use_var sha512) \
 		IMPLEMENTATION=${implementation} \
+		LINUX_PAM_VERSION=${linux_pam_version} \
 		|| die "emake failed"
 }
 
