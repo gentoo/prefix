@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/vim
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.342 2010/02/12 19:26:57 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim/ChangeLog,v 1.343 2010/02/24 16:56:13 lack Exp $
+
+*vim-7.2.376 (24 Feb 2010)
+
+  24 Feb 2010; Jim Ramsay <lack@gentoo.org> +vim-7.2.376.ebuild:
+  Version bump 7.2.376, now with ruby-1.9 support! (Bug #268608)
 
 *vim-7.2.359 (12 Feb 2010)
 
