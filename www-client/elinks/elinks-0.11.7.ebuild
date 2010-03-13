@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.7.ebuild,v 1.2 2009/09/15 16:12:57 spock Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/elinks-0.11.7.ebuild,v 1.3 2010/02/24 12:27:34 phajdan.jr Exp $
 
 EAPI="2"
 
@@ -62,7 +62,7 @@ src_prepare() {
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	# NOTE about GNUTSL SSL support (from the README -- 25/12/2002)
 	# As GNUTLS is not yet 100% stable and its support in ELinks is not so well
 	# tested yet, it's recommended for users to give a strong preference to OpenSSL whenever possible.
@@ -109,7 +109,6 @@ src_compile() {
 		$(use_enable nntp) \
 		$(use_enable finger) \
 		${myconf} || die
-	emake || die "compile problem"
 }
 
 src_install() {
