@@ -1,9 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/arora/arora-0.10.2-r1.ebuild,v 1.3 2010/02/17 21:13:59 wired Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/arora/arora-0.10.2-r1.ebuild,v 1.6 2010/03/11 18:21:57 hwoarang Exp $
 
 EAPI=2
-inherit eutils qt4
+inherit eutils qt4-r2
 
 DESCRIPTION="A cross-platform Qt4 WebKit browser"
 HOMEPAGE="http://arora.googlecode.com/"
@@ -14,10 +14,10 @@ SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
 IUSE="debug doc"
 
-RDEPEND="x11-libs/qt-gui
-	x11-libs/qt-sql
-	x11-libs/qt-webkit
-	x11-libs/qt-xmlpatterns"
+RDEPEND="x11-libs/qt-gui:4
+	x11-libs/qt-sql:4
+	x11-libs/qt-webkit:4
+	x11-libs/qt-xmlpatterns:4"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
@@ -63,7 +63,7 @@ src_prepare() {
 }
 
 src_configure() {
-	eqmake4 arora.pro PREFIX="${EPREFIX}"/usr
+	eqmake4 PREFIX="${EPREFIX}"/usr
 }
 
 src_compile() {
