@@ -1,6 +1,11 @@
 # ChangeLog for dev-php/PEAR-PEAR
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/ChangeLog,v 1.109 2009/10/05 18:27:51 beandog Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/ChangeLog,v 1.110 2010/02/16 04:16:42 beandog Exp $
+
+  16 Feb 2010; Steve Dibb <beandog@gentoo.org> PEAR-PEAR-1.8.1.ebuild,
+  PEAR-PEAR-1.9.0.ebuild:
+  Remove PDEPEND upon dev-php/pear, as the eclass will pull it in directly
+  now
 
   05 Oct 2009; Steve Dibb <beandog@gentoo.org> PEAR-PEAR-1.8.1.ebuild:
   Have PEAR-PEAR require same version of dev-php/pear
