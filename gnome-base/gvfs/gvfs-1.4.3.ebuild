@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.4.3.ebuild,v 1.4 2010/01/12 17:49:46 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.4.3.ebuild,v 1.6 2010/03/03 09:55:34 nirbheek Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -13,17 +13,18 @@ HOMEPAGE="http://www.gnome.org"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE="archive avahi bluetooth cdda doc fuse gdu gnome gnome-keyring gphoto2 hal samba +udev"
+IUSE="archive avahi bluetooth cdda doc fuse gdu gnome gnome-keyring gphoto2 hal
++http samba +udev"
 
 RDEPEND=">=dev-libs/glib-2.21.2
 	>=sys-apps/dbus-1.0
-	>=net-libs/libsoup-2.25.1[gnome]
 	dev-libs/libxml2
 	net-misc/openssh
 	!prefix? ( >=sys-fs/udev-138 )
 	archive? ( app-arch/libarchive )
 	avahi? ( >=net-dns/avahi-0.6 )
 	bluetooth? (
+		>=app-mobilephone/obex-data-server-0.4.5
 		dev-libs/dbus-glib
 		net-wireless/bluez
 		dev-libs/expat )
@@ -38,6 +39,7 @@ RDEPEND=">=dev-libs/glib-2.21.2
 	hal? (
 		cdda? ( >=dev-libs/libcdio-0.78.2[-minimal] )
 		>=sys-apps/hal-0.5.10 )
+	http? ( >=net-libs/libsoup-gnome-2.25.1 )
 	samba? ( || ( net-fs/samba-libs[smbclient]
 			<=net-fs/samba-3.3 ) )"
 DEPEND="${RDEPEND}
@@ -58,15 +60,10 @@ pkg_setup() {
 		ewarn "cdda support will NOT be built unless you enable EITHER hal OR udev"
 	fi
 
-	# --enable-udev does not work on Gentoo Prefix platforms. bug 293480
-	if use prefix; then
-		G2CONF="${G2CONF} --disable-udev"
-	else
-		G2CONF="${G2CONF} --enable-udev"
-	fi
+	# --enable-udev does not work on Gentoo Prefix platforms. bug #293480
+	G2CONF="${G2CONF} $(use_enable !prefix udev)"
 
 	G2CONF="${G2CONF}
-		--enable-http
 		--disable-bash-completion
 		$(use_enable archive)
 		$(use_enable avahi)
@@ -78,6 +75,7 @@ pkg_setup() {
 		$(use_enable gphoto2)
 		$(use_enable udev gudev)
 		$(use_enable hal)
+		$(use_enable http)
 		$(use_enable gnome-keyring keyring)
 		$(use_enable samba)"
 }
