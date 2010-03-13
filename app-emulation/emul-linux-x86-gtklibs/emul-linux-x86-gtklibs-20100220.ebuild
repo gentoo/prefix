@@ -1,17 +1,17 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/emul-linux-x86-gtklibs-20081109.ebuild,v 1.3 2009/12/30 19:49:23 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-emulation/emul-linux-x86-gtklibs/emul-linux-x86-gtklibs-20100220.ebuild,v 1.1 2010/02/20 23:06:13 pacho Exp $
 
 inherit emul-linux-x86
 
-LICENSE="GPL-2 LGPL-2 LGPL-2.1 FTL || ( LGPL-2.1 MPL-1.1 )"
+LICENSE="GPL-3 GPL-2 LGPL-2 LGPL-2.1 FTL MIT || ( LGPL-2.1 MPL-1.1 )"
 KEYWORDS="~amd64-linux"
 
-IUSE="qt3"
+IUSE=""
 
 DEPEND=""
-RDEPEND="=app-emulation/emul-linux-x86-baselibs-${PV}
-	=app-emulation/emul-linux-x86-xlibs-${PV}"
+RDEPEND="~app-emulation/emul-linux-x86-baselibs-${PV}
+	~app-emulation/emul-linux-x86-xlibs-${PV}"
 
 src_unpack() {
 	query_tools="${S}/usr/bin/gtk-query-immodules-2.0|${S}/usr/bin/gdk-pixbuf-query-loaders|${S}/usr/bin/pango-querymodules"
@@ -19,9 +19,9 @@ src_unpack() {
 	emul-linux-x86_src_unpack
 
 	# these tools generate an index in /etc/{pango,gtk-2.0}/${CHOST}
-	mv -f "${S}/usr/bin/pango-querymodules"{,32}
-	mv -f "${S}/usr/bin/gtk-query-immodules-2.0"{,-32}
-	mv -f "${S}/usr/bin/gdk-pixbuf-query-loaders"{,32}
+	mv -f "${S}/usr/bin/pango-querymodules"{,32} || die
+	mv -f "${S}/usr/bin/gtk-query-immodules-2.0"{,-32} || die
+	mv -f "${S}/usr/bin/gdk-pixbuf-query-loaders"{,32} || die
 }
 
 pkg_preinst() {
