@@ -1,6 +1,21 @@
 # ChangeLog for media-gfx/sane-backends
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/ChangeLog,v 1.166 2010/01/02 23:08:34 phosphan Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/ChangeLog,v 1.169 2010/03/09 20:26:39 phosphan Exp $
+
+  09 Mar 2010; Patrick Kursawe <phosphan@gentoo.org>
+  -sane-backends-1.0.19-r1.ebuild, -sane-backends-1.0.20.ebuild,
+  -sane-backends-1.0.20-r1.ebuild, -sane-backends-1.0.20-r2.ebuild:
+  Removing obsolete revisions.
+
+  14 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  sane-backends-1.0.20-r3.ebuild:
+  Fix USE v4l depends so that linux-headers isn't a runtime depend anymore.
+  Also USE v4l is now masked on ia64/sparc so drop the hack from deps.
+
+  14 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  sane-backends-1.0.20-r3.ebuild:
+  Remove amd64/x86 check from here because it's been properly handled in
+  profiles.
 
 *sane-backends-1.0.20-r3 (02 Jan 2010)
 
