@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.29 2010/02/04 19:54:28 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-9999-r1.ebuild,v 1.30 2010/03/10 11:24:36 aballier Exp $
 
 EAPI=2
 SCM=""
@@ -139,15 +139,10 @@ src_configure() {
 	# Decoders
 	use opencore-amr && myconf="${myconf} --enable-libopencore-amrwb
 		--enable-libopencore-amrnb"
-	for i in faad dirac schroedinger speex; do
+	for i in gsm faad dirac schroedinger speex; do
 		use $i && myconf="${myconf} --enable-lib$i"
 	done
 	use jpeg2k && myconf="${myconf} --enable-libopenjpeg"
-	if use gsm; then
-		myconf="${myconf} --enable-libgsm"
-		# Crappy detection or our installation is weird, pick one (FIXME)
-		append-flags -I"${EPREFIX}"/usr/include/gsm
-	fi
 
 	#for i in h264_vdpau mpeg1_vdpau mpeg_vdpau vc1_vdpau wmv3_vdpau; do
 	#	use video_cards_nvidia || myconf="${myconf} --disable-decoder=$i"
