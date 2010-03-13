@@ -1,6 +1,16 @@
 # ChangeLog for dev-cpp/glibmm
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.137 2009/10/29 22:47:23 eva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.140 2010/03/06 16:17:37 phajdan.jr Exp $
+
+  06 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> glibmm-2.22.1.ebuild:
+  x86 stable wrt bug #304777
+
+  06 Mar 2010; Samuli Suominen <ssuominen@gentoo.org> glibmm-2.22.1.ebuild:
+  amd64 stable wrt #304777
+
+  05 Mar 2010; Pacho Ramos <pacho@gentoo.org> glibmm-2.22.1.ebuild:
+  Workaround bug 295726 until upstream fixes it. Thanks a lot to Samuli
+  Suominen for his investigation and work on this.
 
 *glibmm-2.22.1 (29 Oct 2009)
 
