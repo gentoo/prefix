@@ -1,6 +1,21 @@
 # ChangeLog for app-text/ghostscript-gpl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.80 2009/08/07 02:22:05 tgurr Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.83 2010/03/08 10:25:36 ssuominen Exp $
+
+  08 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
+  ghostscript-gpl-8.71-r1.ebuild:
+  Fix libpng14 detection wrt #305111 by Lars Wendler.
+
+*ghostscript-gpl-8.71-r1 (07 Mar 2010)
+
+  07 Mar 2010; Timo Gurr <tgurr@gentoo.org> -ghostscript-gpl-8.71.ebuild,
+  +ghostscript-gpl-8.71-r1.ebuild:
+  Revbump including new patchset.
+
+*ghostscript-gpl-8.71 (15 Feb 2010)
+
+  15 Feb 2010; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-8.71.ebuild:
+  Version bump, fixing bug #280404, #300192 and #305227.
 
 *ghostscript-gpl-8.70-r1 (07 Aug 2009)
 
