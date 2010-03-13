@@ -1,12 +1,12 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.1.ebuild,v 1.4 2009/12/09 19:34:01 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/gprolog/gprolog-1.3.1.ebuild,v 1.5 2010/03/12 18:25:04 keri Exp $
 
 inherit eutils flag-o-matic
 
 DESCRIPTION="GNU Prolog is a native Prolog compiler with constraint solving over finite domains (FD)"
 HOMEPAGE="http://www.gprolog.org/"
-SRC_URI="ftp://ftp.gnu.org/gnu/gprolog/${P}.tar.gz"
+SRC_URI="mirror://gnu/gprolog/${P}.tar.gz"
 S="${WORKDIR}"/${P}/src
 
 LICENSE="GPL-2"
