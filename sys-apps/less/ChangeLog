@@ -1,6 +1,13 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.115 2010/02/05 06:36:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.116 2010/02/14 17:10:59 vapier Exp $
+
+  14 Feb 2010; Mike Frysinger <vapier@gentoo.org> less-436.ebuild,
+  files/lesspipe.sh:
+  Rework lesspipe to fallback to the coloring tool rather than maintaining a
+  list of matches #304359 by Dror Levin. Start renaming lesspipe.sh to
+  lesspipe to better match other distros. Tip people to run `lesspipe -h`
+  for color info #274457 by Jaak Ristioja.
 
   05 Feb 2010; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
   Fix handling of short tarball names #303433 by Mike Williams, and add a

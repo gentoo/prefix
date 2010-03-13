@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-436.ebuild,v 1.10 2010/01/10 17:47:11 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/less-436.ebuild,v 1.11 2010/02/14 17:10:59 vapier Exp $
 
 inherit eutils
 
@@ -41,9 +41,13 @@ src_install() {
 	emake install DESTDIR="${D}" || die
 
 	dobin code2color || die "dobin"
-	newbin "${FILESDIR}"/lesspipe.sh lesspipe.sh || die "newbin"
-	sed -i -e "1s|/bin/bash|${EPREFIX}/bin/bash|" "${ED}"/usr/bin/lesspipe.sh
+	newbin "${FILESDIR}"/lesspipe.sh lesspipe || die "newbin"
+	dosym lesspipe /usr/bin/lesspipe.sh
 	newenvd "${FILESDIR}"/less.envd 70less
 
 	dodoc NEWS README* "${FILESDIR}"/README.Gentoo
+}
+
+pkg_postinst() {
+	einfo "lesspipe offers colorization options.  Run 'lesspipe.sh -h' for info."
 }
