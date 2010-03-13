@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.7.0.ebuild,v 1.11 2010/02/11 20:23:27 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/imagemagick-6.5.9.4-r1.ebuild,v 1.1 2010/02/15 19:04:44 ssuominen Exp $
 
 EAPI="2"
 
@@ -21,8 +21,8 @@ LICENSE="imagemagick"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="autotrace bzip2 +corefonts djvu doc fftw fontconfig fpx graphviz gs hdri
-	jbig jpeg jpeg2k lcms lqr nocxx openexr openmp perl png q8 q32 raw svg tiff
-	truetype X wmf xml zlib"
+	jbig jpeg jpeg2k lcms lqr nocxx openexr openmp perl png q8 q32 raw
+	static-libs svg tiff truetype X wmf xml zlib"
 
 RDEPEND="
 	autotrace? ( >=media-gfx/autotrace-0.31.1 )
@@ -34,12 +34,12 @@ RDEPEND="
 	graphviz? ( >=media-gfx/graphviz-2.6 )
 	gs? ( app-text/ghostscript-gpl )
 	jbig? ( media-libs/jbigkit )
-	jpeg? ( >=media-libs/jpeg-6b )
+	jpeg? ( >=media-libs/jpeg-6b:0 )
 	jpeg2k? ( media-libs/jasper )
 	lcms? ( >=media-libs/lcms-1.06 )
 	lqr? ( >=media-libs/liblqr-0.1.0 )
 	openexr? ( media-libs/openexr )
-	perl? ( >=dev-lang/perl-5.8.6-r6 !=dev-lang/perl-5.8.7 )
+	perl? ( >=dev-lang/perl-5.8.6-r6 )
 	png? ( media-libs/libpng )
 	raw? ( media-gfx/ufraw )
 	tiff? ( >=media-libs/tiff-3.5.5 )
@@ -105,7 +105,7 @@ src_configure() {
 
 	# openmp support only works with >=sys-devel/gcc-4.3, bug #223825
 	if use openmp && version_is_at_least 4.3 $(gcc-version) ; then
-		if built_with_use --missing false =sys-devel/gcc-$(gcc-version)* openmp ; then
+		if has_version =sys-devel/gcc-$(gcc-version)*[openmp] ; then
 			myconf="${myconf} --enable-openmp"
 		else
 			elog "disabling openmp support (requires >=sys-devel/gcc-4.3 with USE='openmp')"
@@ -126,6 +126,7 @@ src_configure() {
 		--with-threads \
 		--with-modules \
 		$(use_with perl) \
+		--with-perl-options='INSTALLDIRS=vendor' \
 		--with-gs-font-dir="${EPREFIX}"/usr/share/fonts/default/ghostscript \
 		$(use_enable hdri) \
 		$(use_with !nocxx magick-plus-plus) \
@@ -144,6 +145,7 @@ src_configure() {
 		$(use_with lcms) \
 		$(use_with openexr) \
 		$(use_with png) \
+		$(use_enable static-libs static) \
 		$(use_with svg rsvg) \
 		$(use_with tiff) \
 		$(use_with truetype freetype) \
@@ -163,10 +165,7 @@ src_test() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "Installation of files into image failed"
-
-	# dont need these files with runtime plugins
-	rm -f "${ED}"/usr/$(get_libdir)/*/*/*.{la,a}
+	emake DESTDIR="${D}" install || die
 
 	use doc || rm -r "${ED}"/usr/share/doc/${PF}/{www,images,index.html}
 	dodoc NEWS.txt ChangeLog AUTHORS.txt README.txt

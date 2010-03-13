@@ -1,6 +1,31 @@
 # ChangeLog for media-gfx/imagemagick
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.380 2010/01/30 17:36:45 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/imagemagick/ChangeLog,v 1.387 2010/03/04 19:55:56 armin76 Exp $
+
+  04 Mar 2010; Raúl Porcel <armin76@gentoo.org> imagemagick-6.5.8.8.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #305051
+
+  21 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  imagemagick-6.5.8.8.ebuild:
+  stable x86, bug 305051
+
+  15 Feb 2010; Joseph Jezak <josejx@gentoo.org> imagemagick-6.5.8.8.ebuild:
+  Marked ppc/ppc64 stable for bug #305051.
+
+*imagemagick-6.5.9.4-r1 (15 Feb 2010)
+
+  15 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +imagemagick-6.5.9.4-r1.ebuild:
+  ImageMagick is using libtool to load plugins, so installation of libtool
+  files is required. Thanks to Tobias Klausmann for reporting.
+
+*imagemagick-6.5.9.4 (14 Feb 2010)
+
+  14 Feb 2010; Markus Meier <maekke@gentoo.org> +imagemagick-6.5.9.4.ebuild:
+  version bump, with static-libs USE-flag
+
+  11 Feb 2010; Jeroen Roovers <jer@gentoo.org> imagemagick-6.5.7.0.ebuild:
+  Stable for HPPA (bug #291696).
 
   30 Jan 2010; Markus Meier <maekke@gentoo.org> imagemagick-6.5.8.8.ebuild:
   replace built_with_use with has_version by Gordon Malm in bug #302145
