@@ -10,7 +10,7 @@
 </longdescription>
 <use>
 	<flag name='daemon'>Uses <pkg>app-misc/screen</pkg> to daemonize this
-		application"
+		application
 	</flag>
 </use>
 
