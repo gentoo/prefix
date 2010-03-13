@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.4-r1.ebuild,v 1.1 2009/09/18 22:37:37 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ml/findlib/findlib-1.2.4-r1.ebuild,v 1.2 2010/02/11 15:07:16 ulm Exp $
 
 EAPI=2
 
@@ -13,7 +13,7 @@ HOMEPAGE="http://projects.camlcity.org/projects/findlib.html"
 SRC_URI="http://download.camlcity.org/download/${P}.tar.gz"
 IUSE="doc +ocamlopt tk"
 
-LICENSE="MIT X11"
+LICENSE="MIT"
 
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
