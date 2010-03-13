@@ -1,6 +1,21 @@
 # ChangeLog for app-text/tree
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/tree/ChangeLog,v 1.74 2010/01/01 20:54:22 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/tree/ChangeLog,v 1.79 2010/03/08 15:25:58 pacho Exp $
+
+  08 Mar 2010; Pacho Ramos <pacho@gentoo.org> tree-1.5.3.ebuild:
+  amd64 stable, bug 306665
+
+  04 Mar 2010; Jeroen Roovers <jer@gentoo.org> tree-1.5.3.ebuild:
+  Stable for HPPA (bug #306665).
+
+  28 Feb 2010; nixnut <nixnut@gentoo.org> tree-1.5.3.ebuild:
+  ppc stable #306665
+
+  25 Feb 2010; Tiago Cunha <tcunha@gentoo.org> tree-1.5.3.ebuild:
+  stable sparc, bug 306665
+
+  25 Feb 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> tree-1.5.3.ebuild:
+  x86 stable, bug #306665
 
 *tree-1.5.3 (01 Jan 2010)
 
