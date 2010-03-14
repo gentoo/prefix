@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/libwnck-2.28.0.ebuild,v 1.1 2009/10/29 21:25:21 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libwnck/libwnck-2.28.0.ebuild,v 1.2 2010/02/23 14:52:38 fauli Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -28,7 +28,10 @@ DEPEND="${RDEPEND}
 	>=dev-util/intltool-0.40
 	dev-util/gtk-doc-am
 	gnome-base/gnome-common
-	doc? ( >=dev-util/gtk-doc-1.9 )"
+	doc? ( >=dev-util/gtk-doc-1.9 )
+	x86-interix? (
+		sys-libs/itx-bind
+	)"
 
 DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
@@ -40,6 +43,12 @@ pkg_setup() {
 
 src_prepare() {
 	gnome2_src_prepare
+
+	if use x86-interix; then
+		# activate the itx-bind package...
+		append-flags "-I${EPREFIX}/usr/include/bind"
+		append-ldflags "-L${EPREFIX}/usr/lib/bind"
+	fi
 
 	# Fix glib-mkenum auto generation (bug #279832)
 	epatch "${FILESDIR}"/${PN}-2.26.2-fix-glib-mkenums.diff
