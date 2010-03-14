@@ -95,7 +95,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-copyfile.patch
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-getpwuid.patch
-	epatch "${FILESDIR}"/${PN}-5.3_p1-interix.patch
+#	epatch "${FILESDIR}"/${PN}-5.3_p1-interix.patch
 
 	# when installed as non-admin on interix6, chmoding with +s fails! ...
 	# (btw: administrator uid is constant across all windows versions).
