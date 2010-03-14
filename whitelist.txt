@@ -353,7 +353,6 @@ dev-util/cvs2cl
 dev-util/cvs2svn
 dev-util/cvsd
 dev-util/cvsps
-dev-util/darcs
 dev-util/dejagnu
 dev-util/desktop-file-utils
 dev-util/diffball
@@ -392,6 +391,7 @@ dev-util/xfce4-dev-tools
 dev-vcs/bzr
 dev-vcs/bzrtools
 dev-vcs/cssc
+dev-vcs/darcs
 dev-vcs/giggle
 dev-vcs/statcvs
 games-arcade/ascii-invaders
