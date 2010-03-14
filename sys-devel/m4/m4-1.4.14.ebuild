@@ -22,7 +22,7 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-1.4.12-interix.patch
-	epatch "${FILESDIR}"/${PN}-1.4.13-interix.patch
+#	epatch "${FILESDIR}"/${PN}-1.4.13-interix.patch
 }
 
 src_compile() {
