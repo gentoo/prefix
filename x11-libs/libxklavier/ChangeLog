@@ -1,6 +1,12 @@
 # ChangeLog for x11-libs/libxklavier
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.140 2010/02/15 04:30:42 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libxklavier/ChangeLog,v 1.143 2010/02/16 10:24:39 ssuominen Exp $
+
+*libxklavier-5.0 (16 Feb 2010)
+
+  16 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +libxklavier-5.0.ebuild, metadata.xml:
+  Version bump. Change gnome to freedesktop-bugs in metadata.xml.
 
   15 Feb 2010; Jonathan Callen <abcd@gentoo.org> libxklavier-4.0.ebuild:
   Add missing '\' to econf command, causing options to be ignored
