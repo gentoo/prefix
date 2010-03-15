@@ -1,6 +1,20 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.380 2010/02/07 23:24:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.384 2010/03/08 04:44:40 vapier Exp $
+
+*binutils-2.20.1 (08 Mar 2010)
+
+  08 Mar 2010; Mike Frysinger <vapier@gentoo.org> +binutils-2.20.1.ebuild:
+  Version bump.
+
+  08 Mar 2010; Mike Frysinger <vapier@gentoo.org> binutils-2.20-r1.ebuild:
+  Fix random test failures due to our patches #242104 #245124 #267131 #292750.
+
+*binutils-2.20-r1 (26 Feb 2010)
+
+  26 Feb 2010; Mark Loeser <halcy0n@gentoo.org> -binutils-2.20.ebuild,
+  +binutils-2.20-r1.ebuild:
+  Bump for new patchset which fixes bug #302696
 
 *binutils-2.20.51.0.6 (07 Feb 2010)
 
