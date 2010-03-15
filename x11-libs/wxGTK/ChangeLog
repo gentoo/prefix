@@ -1,6 +1,22 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.243 2010/02/02 19:10:58 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.247 2010/03/09 23:51:58 dirtyepic Exp $
+
+  09 Mar 2010; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
+  Add note about modifications to metadata.xml.
+
+  21 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  wxGTK-2.6.4.0-r6.ebuild, wxGTK-2.8.10.1-r5.ebuild:
+  stable x86, bug 305331
+
+  19 Feb 2010; Pacho Ramos <pacho@gentoo.org> wxGTK-2.6.4.0-r6.ebuild,
+  wxGTK-2.8.10.1-r5.ebuild:
+  amd64 stable, bug 305331
+
+  14 Feb 2010; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.6.4.0-r6.ebuild,
+  wxGTK-2.8.10.1-r5.ebuild:
+  Build fix for >=libpng-1.4.0 (bug #305119 by Poly-C). Also ensure system
+  libs are always being used.
 
 *wxGTK-2.8.10.1-r5 (02 Feb 2010)
 

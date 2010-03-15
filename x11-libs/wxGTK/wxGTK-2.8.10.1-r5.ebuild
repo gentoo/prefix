@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.10.1-r5.ebuild,v 1.1 2010/02/02 19:10:58 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.10.1-r5.ebuild,v 1.4 2010/02/21 22:03:46 fauli Exp $
 
 EAPI=2
 
@@ -69,6 +69,9 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-CVE-2009-2369.patch              # Bug #277722
 	epatch "${FILESDIR}"/${P}-gsocket.patch                    # Bug #278778
 	epatch "${FILESDIR}"/${P}-wxTimer-unbounded-hook.patch     # Bug #301143
+
+	# Fix for >=libpng-1.4.0  Bug #305119.
+	sed -i -e 's:png_check_sig:png_sig_cmp:g' "${S}"/configure{,.in}
 
 	epatch "${FILESDIR}"/${PN}-2.8.9.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.8.9.2-x11-search.patch
