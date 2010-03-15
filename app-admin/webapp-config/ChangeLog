@@ -1,6 +1,10 @@
 # ChangeLog for app-admin/webapp-config
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-admin/webapp-config/ChangeLog,v 1.63 2008/04/03 10:24:04 hollow Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/ChangeLog,v 1.64 2010/03/10 03:16:31 sping Exp $
+
+  10 Mar 2010; Sebastian Pipping <sping@gentoo.org>
+  webapp-config-1.50.16-r1.ebuild, webapp-config-1.50.16-r3.ebuild:
+  Fix SRC_URI and HOMEPAGE (bug #267895)
 
   03 Apr 2008; Benedikt Böhm <hollow@gentoo.org>
   webapp-config-1.50.16-r1.ebuild, -webapp-config-1.50.16-r2.ebuild,

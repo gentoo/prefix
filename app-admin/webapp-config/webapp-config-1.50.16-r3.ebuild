@@ -1,12 +1,12 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/www/viewcvs.gentoo.org/raw_cvs/gentoo-x86/app-admin/webapp-config/webapp-config-1.50.16-r3.ebuild,v 1.2 2008/04/03 10:24:04 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/webapp-config/webapp-config-1.50.16-r3.ebuild,v 1.3 2010/03/10 03:16:31 sping Exp $
 
 inherit eutils distutils prefix
 
 DESCRIPTION="Gentoo's installer for web-based applications"
-HOMEPAGE="http://www.gentoo.org/"
-SRC_URI="http://build.pardus.de/downloads/${P}.tar.gz"
+HOMEPAGE="http://sourceforge.net/projects/webapp-config/"
+SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
