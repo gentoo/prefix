@@ -1,6 +1,15 @@
 # ChangeLog for dev-util/buildbot
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.53 2010/02/08 08:58:25 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.55 2010/02/20 18:48:48 arfrever Exp $
+
+  20 Feb 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  buildbot-0.7.12.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
+
+*buildbot-0.7.12 (19 Feb 2010)
+
+  19 Feb 2010; Patrick Lauer <patrick@gentoo.org> +buildbot-0.7.12.ebuild:
+  Bump for #304731
 
   08 Feb 2010; Peter Volkov <pva@gentoo.org> buildbot-0.7.11_p3.ebuild:
   Add inherit eutils for epatch and enewuser.
