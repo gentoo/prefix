@@ -15,4 +15,4 @@ RDEPEND=""
 DEPEND="${RDEPEND}
 	x11-apps/mkfontscale"
 
-CONFIGURE_OPTIONS="--with-top-fontdir=${EROOT}/usr/share/fonts"
+CONFIGURE_OPTIONS="--with-top-fontdir=${EPREFIX}/usr/share/fonts"
