@@ -10,8 +10,4 @@
   possible to add support for new shapes by writing simple XML
   files, using a subset of SVG to draw the shape.
 </longdescription>
-<use>
-  <flag name='gnome-print'>Gnome-Print support
-    (<pkg>gnome-base/libgnomeprint</pkg>)</flag>
-</use>
 </pkgmetadata>

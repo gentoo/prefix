@@ -1,25 +1,29 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.96.1-r1.ebuild,v 1.9 2008/12/04 22:08:27 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.97.1.ebuild,v 1.8 2010/03/09 19:57:07 josejx Exp $
+
+EAPI="2"
 
 inherit eutils gnome2 libtool autotools versionator python
 
+MY_P=${P/_/-}
 DESCRIPTION="Diagram/flowchart creation program"
 HOMEPAGE="http://www.gnome.org/projects/dia/"
 LICENSE="GPL-2"
 
 # dia used -1 instead of .1 for the new version.
-MY_PV_MM=$(get_version_component_range 1-2 )
-SRC_URI="mirror://gnome/sources/${PN}/${MY_PV_MM}/${P}.tar.bz2"
+MY_PV_MM=$(get_version_component_range 1-2)
+SRC_URI="mirror://gnome/sources/${PN}/${MY_PV_MM}/${MY_P}.tar.bz2"
 
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 # the doc USE flag doesn't seem to do anything without docbook2html
-IUSE="cairo doc gnome gnome-print png python zlib"
+# FIXME: configure mixes debug and devel meaning (see -DGTK_DISABLE...)
+IUSE="cairo doc gnome png python zlib"
 
 RDEPEND=">=x11-libs/gtk+-2.6.0
 	>=dev-libs/glib-2.6.0
-	>=x11-libs/pango-1.1.5
+	>=x11-libs/pango-1.8
 	>=dev-libs/libxml2-2.3.9
 	>=dev-libs/libxslt-1
 	>=media-libs/freetype-2.0.95
@@ -31,18 +35,18 @@ RDEPEND=">=x11-libs/gtk+-2.6.0
 	gnome? (
 		>=gnome-base/libgnome-2.0
 		>=gnome-base/libgnomeui-2.0 )
-	gnome-print? ( gnome-base/libgnomeprint )
-	cairo? ( x11-libs/cairo )
+	cairo? ( >=x11-libs/cairo-1 )
 	python? (
 		>=dev-lang/python-1.5.2
 		>=dev-python/pygtk-1.99 )
 	doc? (
-		~app-text/docbook-xml-dtd-4.2
+		~app-text/docbook-xml-dtd-4.5
 		 app-text/docbook-xsl-stylesheets )"
 
 DEPEND="${RDEPEND}
-	>=dev-util/intltool-0.21
-	  dev-util/pkgconfig"
+	>=dev-util/intltool-0.35.0
+	dev-util/pkgconfig
+	doc? ( dev-libs/libxslt )"
 
 DOCS="AUTHORS ChangeLog KNOWN_BUGS MAINTAINERS NEWS README RELEASE-PROCESS THANKS TODO"
 
@@ -52,36 +56,34 @@ pkg_setup() {
 		$(use_with python)
 		$(use_enable doc db2html)
 		$(use_enable gnome)
-		$(use_with gnome-print gnomeprint)
+		--disable-libemf
+		--without-swig
+		--without-hardbooks
+		--disable-static
+		--docdir=${EPREFIX}/usr/share/doc/${PF}
 		--exec-prefix=${EPREFIX}/usr"
 	# --exec-prefix makes Python look for modules in the Prefix
 }
 
-src_unpack() {
-	gnome2_src_unpack
-
-	# Disable python -c 'import gtk' during compile to prevent using
-	# X being involved (#31589)
-	# changed the patch to a sed to make it a bit more portable - AllanonJL
-	sed -i -e '/AM_CHECK_PYMOD/d' configure.in
+src_prepare() {
+	gnome2_src_prepare
 
 	# Fix compilation in a gnome environment, bug #159831
-	epatch "${FILESDIR}/${PN}-0.96.1-gnome-doc.patch"
+	epatch "${FILESDIR}/${PN}-0.97.0-gnome-doc.patch"
 
-	# Fix broken XML in documentation
-	epatch "${FILESDIR}/${PN}-0.96.1-xml-fixes.patch"
+	# Fix compilation with USE="python", bug #271855
+	if use python; then
+		epatch "${FILESDIR}/${PN}-0.97-acinclude-python-fixes.patch"
+	fi
 
 	# Skip man generation
-	use doc || sed -i -e '/if HAVE_DB2MAN/,/man_MANS/d' doc/*/Makefile.am
+	if ! use doc; then
+		sed -i -e '/if HAVE_DB2MAN/,/endif/d' doc/*/Makefile.am \
+			|| die "sed 2 failed"
+	fi
 
-	# Fix compilation QA, bug #191673
-	epatch "${FILESDIR}/${PN}-0.96.1-64bit-fixes.patch"
-
-	# Fix tests
-	echo "dia.desktop.in" >> po/POTFILES.skip
-
+	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
-	intltoolize --force || die "intltoolize failed"
 }
 
 pkg_postinst() {
@@ -94,5 +96,5 @@ pkg_postinst() {
 
 pkg_postrm() {
 	gnome2_pkg_postrm
-	use python && python_mod_cleanup /usr/share/dia
+	python_mod_cleanup /usr/share/dia
 }

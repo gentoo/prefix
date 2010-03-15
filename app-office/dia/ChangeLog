@@ -1,6 +1,36 @@
 # ChangeLog for app-office/dia
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.119 2009/08/03 03:48:46 jer Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/ChangeLog,v 1.127 2010/03/09 19:57:07 josejx Exp $
+
+  09 Mar 2010; Joseph Jezak <josejx@gentoo.org> dia-0.97.1.ebuild:
+  Marked ppc stable for bug #257020.
+
+  07 Mar 2010; Gilles Dartiguelongue <eva@gentoo.org> -dia-0.95.1.ebuild,
+  -dia-0.96.1-r1.ebuild, -files/dia-0.96.1-64bit-fixes.patch,
+  -files/dia-0.96.1-gnome-doc.patch, -files/dia-0.96.1-xml-fixes.patch,
+  -dia-0.97.ebuild, dia-0.97-r1.ebuild, metadata.xml:
+  Clean up old revisions, bug #277869.
+
+  28 Feb 2010; Tobias Heinlein <keytoaster@gentoo.org> dia-0.97.1.ebuild:
+  amd64 stable, security bug #257020
+
+  25 Feb 2010; Raúl Porcel <armin76@gentoo.org> dia-0.97.1.ebuild:
+  alpha/ia64/sparc stable wrt #257020
+
+  23 Feb 2010; Brent Baude <ranger@gentoo.org> dia-0.97.1.ebuild:
+  Marking dia-0.97.1 ppc64 for bug 257020
+
+  21 Feb 2010; Christian Faulhammer <fauli@gentoo.org> dia-0.97.1.ebuild:
+  stable x86, bug 257020
+
+  17 Feb 2010; Jeroen Roovers <jer@gentoo.org> dia-0.97.1.ebuild:
+  Stable for HPPA (bug #257020).
+
+*dia-0.97.1 (16 Feb 2010)
+
+  16 Feb 2010; Romain Perier <mrpouet@gentoo.org> +dia-0.97.1.ebuild:
+  Version bump, Many bugsfixes, Fix a security issue (CVE-2008-5984). Per
+  bug #257020.
 
   03 Aug 2009; Jeroen Roovers <jer@gentoo.org> dia-0.97-r1.ebuild:
   Stable for HPPA (bug #277843).
