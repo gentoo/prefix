@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-interface/zope-interface-3.5.3.ebuild,v 1.5 2010/02/07 19:39:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-zope/zope-interface/zope-interface-3.5.3.ebuild,v 1.6 2010/02/10 20:16:52 jer Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
