@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.84 2010/01/27 20:41:27 grobian $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.85 2010/03/12 08:17:40 haubi $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -308,7 +308,27 @@ elibtoolize() {
 						ret=$?
 					fi
 					;;
-				"aixrtl" | "hpux-conf" | "mint-conf" )
+				"aixrtl" | "hpux-conf")
+					ret=1
+					local subret=0
+					# apply multiple patches as often as they match
+					while [[ $subret -eq 0 ]]; do
+						subret=1
+						if [[ -e ${x}/configure ]]; then
+							ELT_walk_patches "${x}/configure" "${y}"
+							subret=$?
+						# ltmain.sh and co might be in a subdirectory ...
+						elif [[ ! -e ${x}/configure && -e ${x}/../configure ]] ; then
+							ELT_walk_patches "${x}/../configure" "${y}"
+							subret=$?
+						fi
+						if [[ $subret -eq 0 ]]; then
+							# have at least one patch succeeded.
+							ret=0
+						fi
+					done
+					;;
+				"mint-conf")
 					ret=1
 					local subret=1
 					if [[ -e ${x}/configure ]]; then
