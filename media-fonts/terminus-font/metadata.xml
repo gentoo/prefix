@@ -7,7 +7,7 @@
 		console)</flag>
 	<flag name='raw-font-data'>Install RAW font data which should be compatible
 	with most UNIX systems (you don't need this on linux)</flag>
-	<flag name='pcf'>Intall Portable Compiled Font (PCF) (required for X11)</flag>
+	<flag name='pcf'>Install Portable Compiled Font (PCF) (required for X11)</flag>
 	<flag name='a-like-o'>Changes view of letter 'a' - a looks like o
 		(see homepage)</flag>
 	<flag name='bolddiag'>Boldified diagonal parts of '4', 'k', 'x' and some

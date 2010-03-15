@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/terminus-font-4.28.ebuild,v 1.9 2009/06/05 16:59:12 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/terminus-font-4.28.ebuild,v 1.10 2010/02/11 19:31:07 halcy0n Exp $
 
 EAPI=1
 
@@ -42,6 +42,8 @@ pkg_setup() {
 		eerror "Fonts which works with Xserver are intalled only if pcf is enabled."
 		die "Either disable X use flag or enabled pcf."
 	fi
+
+	font_pkg_setup
 }
 
 src_unpack() {

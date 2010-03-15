@@ -1,6 +1,11 @@
 # ChangeLog for media-fonts/terminus-font
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/ChangeLog,v 1.71 2009/12/22 11:50:45 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-fonts/terminus-font/ChangeLog,v 1.72 2010/02/11 19:31:07 halcy0n Exp $
+
+  11 Feb 2010; Mark Loeser <halcy0n@gentoo.org> terminus-font-4.28.ebuild,
+  terminus-font-4.30.ebuild:
+  Add font_pkg_setup to pkg_setup so the eclass sets up the prefix compat
+  variables correctly
 
 *terminus-font-4.30 (22 Dec 2009)
 
