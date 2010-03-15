@@ -1,6 +1,18 @@
 # ChangeLog for dev-db/postgresql-server
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.54 2010/01/26 22:01:20 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.56 2010/02/26 15:48:30 patrick Exp $
+
+*postgresql-server-9.0_alpha4 (26 Feb 2010)
+
+  26 Feb 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-9.0_alpha4.ebuild, +files/postgresql.conf-9.0,
+  +files/postgresql.init-9.0, +files/postgresql-9.0-common.patch,
+  +files/postgresql-9.0-makefile.patch, +files/postgresql-9.0-server.patch:
+  Bump of the alpha, 8.5 became 9.0
+
+  21 Feb 2010; Patrick Lauer <patrick@gentoo.org>
+  postgresql-server-8.4.2-r1.ebuild:
+  Fix for #304401, thanks to Aaron W. Swenson
 
   26 Jan 2010; Patrick Lauer <patrick@gentoo.org> files/postgresql.init-8.4:
   Fixing init script for extra opts

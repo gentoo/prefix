@@ -1,15 +1,16 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-8.4.2-r1.ebuild,v 1.5 2010/01/09 19:04:31 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-8.4.2-r1.ebuild,v 1.7 2010/02/21 15:59:55 arfrever Exp $
 
 EAPI="2"
+PYTHON_DEPEND="python? 2"
 
 # weird test failures.
 RESTRICT="test"
 
 WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="none"
-inherit eutils multilib toolchain-funcs versionator autotools prefix
+inherit autotools eutils multilib python toolchain-funcs versionator prefix
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
@@ -33,7 +34,7 @@ wanted_languages() {
 
 RDEPEND="~dev-db/postgresql-base-${PV}:${SLOT}[pg_legacytimestamp=]
 	perl? ( >=dev-lang/perl-5.6.1-r2 )
-	python? ( >=dev-lang/python-2.2 dev-python/egenix-mx-base )
+	python? ( dev-python/egenix-mx-base )
 	selinux? ( sec-policy/selinux-postgresql )
 	tcl? ( >=dev-lang/tcl-8 )
 	uuid? ( dev-libs/ossp-uuid )
@@ -48,6 +49,10 @@ S="${WORKDIR}/postgresql-${PV}"
 pkg_setup() {
 	enewgroup postgres 70
 	enewuser postgres 70 /bin/bash /var/lib/postgresql postgres
+
+	if use python; then
+		python_set_active_version 2
+	fi
 }
 
 src_prepare() {
@@ -66,13 +71,12 @@ src_prepare() {
 	eautoconf
 }
 
-src_compile() {
+src_configure() {
 	# TODO: test if PPC really cannot work with other CFLAGS settings
 	# use ppc && CFLAGS="-pipe -fsigned-char"
 
 	# eval is needed to get along with pg_config quotation of space-rich entities.
 	eval econf "$(${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin/pg_config --configure)" \
-		--disable-thread-safety \
 		$(use_with perl) \
 		$(use_with python) \
 		$(use_with tcl) \
@@ -82,9 +86,11 @@ src_compile() {
 		--with-system-tzdata="${EPREFIX}/usr/share/zoneinfo" \
 		--with-includes="${EPREFIX}/usr/include/postgresql-${SLOT}/" \
 		--with-libraries="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/$(get_libdir)" \
-		"$(built_with_use ~dev-db/postgresql-base-${PV} nls && use_enable nls nls "$(wanted_languages)")" \
-		|| die "configure failed"
+		"$(built_with_use ~dev-db/postgresql-base-${PV} nls && use_enable nls nls "$(wanted_languages)")"
+}
 
+src_compile() {
+	local bd
 	for bd in .  contrib $(use xml && echo contrib/xml2); do
 		PATH="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin:${PATH}" \
 			emake -C $bd -j1 LD="$(tc-getLD) $(get_abi_LDFLAGS)" || die "emake in $bd failed"
