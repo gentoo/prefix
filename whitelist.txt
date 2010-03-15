@@ -451,6 +451,7 @@ media-fonts/gnu-gs-fonts-std
 media-fonts/ja-ipafonts
 media-fonts/kochi-substitute
 media-fonts/sazanami
+media-fonts/terminus-font
 media-fonts/texcm-ttf
 media-fonts/ttf-bitstream-vera
 media-fonts/urw-fonts
