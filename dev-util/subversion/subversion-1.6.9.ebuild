@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.9.ebuild,v 1.1 2010/01/23 21:54:10 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.9.ebuild,v 1.6 2010/03/11 21:46:43 sping Exp $
 
 EAPI="2"
 
@@ -9,7 +9,7 @@ WANT_AUTOMAKE="none"
 inherit autotools bash-completion db-use depend.apache elisp-common eutils flag-o-matic java-pkg-opt-2 libtool multilib perl-module python
 
 DESCRIPTION="Advanced version control system"
-HOMEPAGE="http://subversion.tigris.org/"
+HOMEPAGE="http://subversion.apache.org/"
 SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 
 LICENSE="Subversion"
