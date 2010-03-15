@@ -1,9 +1,10 @@
 # ChangeLog for x11-terms/mrxvt
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.71 2009/02/02 23:52:17 nelchael Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.72 2010/03/11 01:00:56 ssuominen Exp $
 
-  02 Feb 2009; Krzysiek Pawlik <nelchael@gentoo.org> ChangeLog:
-  Fix ChangeLog entries.
+  11 Mar 2010; Samuli Suominen <ssuominen@gentoo.org> mrxvt-0.5.4.ebuild,
+  +files/mrxvt-0.5.4-libpng14.patch:
+  Fix (detection and) building with libpng14.
 
   09 Jan 2009; Rémi Cardona <remi@gentoo.org> mrxvt-0.5.3-r2.ebuild,
   mrxvt-0.5.3-r3.ebuild, mrxvt-0.5.4.ebuild:

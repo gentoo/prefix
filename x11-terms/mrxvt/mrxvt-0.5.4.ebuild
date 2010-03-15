@@ -1,8 +1,9 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/mrxvt-0.5.4.ebuild,v 1.2 2009/01/09 14:41:53 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/mrxvt-0.5.4.ebuild,v 1.3 2010/03/11 01:00:56 ssuominen Exp $
 
-inherit eutils
+EAPI=2
+inherit autotools eutils
 
 DESCRIPTION="Multi-tabbed rxvt clone with XFT, transparent background and CJK support"
 HOMEPAGE="http://materm.sourceforge.net/"
@@ -29,16 +30,14 @@ RDEPEND="png? ( media-libs/libpng )
 DEPEND="${RDEPEND}
 	x11-proto/xproto"
 
-src_unpack() {
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-001-fix-segfault-when-wd-empty.patch \
+		"${FILESDIR}"/${P}-libpng14.patch
 
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-001-fix-segfault-when-wd-empty.patch"
-
+	eautoreconf
 }
 
-src_compile() {
-
+src_configure() {
 	local myconf
 
 	# if you want to pass any other flags, use EXTRA_ECONF.
@@ -92,24 +91,19 @@ src_compile() {
 		$(use_enable truetype xft) \
 		$(use_enable utempter) \
 		$(use_enable menubar) \
-		${myconf} || die
-
-	emake || die
-
+		${myconf}
 }
 
 src_install() {
 
-	make DESTDIR="${D}" docdir="${EPREFIX}"/usr/share/doc/${PF} install || die
+	emake DESTDIR="${D}" docdir="${EPREFIX}"/usr/share/doc/${PF} install || die
 	# Give mrxvt perms to update utmp
 	fowners root:utmp /usr/bin/mrxvt
 	fperms g+s /usr/bin/mrxvt
 	dodoc AUTHORS CREDITS ChangeLog FAQ NEWS README* TODO
-
 }
 
 pkg_postinst() {
-
 	if [[ -z $RXVT_TERM ]]; then
 		einfo
 		einfo "If you experience problems with curses programs, then this is"
@@ -124,5 +118,4 @@ pkg_postinst() {
 		einfo "in your ~/.mrxvtrc, or /etc/mrxvt/mrxvtrc."
 		einfo
 	fi
-
 }
