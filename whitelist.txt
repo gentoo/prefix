@@ -646,6 +646,7 @@ sci-mathematics/otter
 sci-visualization/fig2sxd
 sys-apps/ack
 sys-apps/acl
+sys-apps/aix-miscutils
 sys-apps/darwin-miscutils
 sys-apps/fakeroot
 sys-apps/hexdump-esr
