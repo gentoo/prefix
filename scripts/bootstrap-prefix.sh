@@ -303,7 +303,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20100119"
+	local PV="20100312"
 	do_tree http://prefix.gentooexperimental.org/distfiles prefix-overlay-${PV}.tar.bz2
 }
 
@@ -342,7 +342,7 @@ bootstrap_startscript() {
 }
 
 bootstrap_portage() {
-	PV="2.2.00.15134"
+	PV="2.2.00.15819"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
@@ -940,7 +940,6 @@ SNAPSHOT_URL="http://prefix.gentooexperimental.org/snapshots"
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 GENTOO_MIRROR=${GENTOO_MIRROR:="http://distfiles.gentoo.org/distfiles"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
-GENTOO_URL=${GENTOO_URL:="http://gentoo.osuosl.org"}
 
 export MAKE
 
