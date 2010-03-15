@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.2.3-r1.ebuild,v 1.2 2009/06/24 15:43:08 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/libproxy-0.2.3-r3.ebuild,v 1.1 2010/03/05 09:33:57 pacho Exp $
 
 EAPI="2"
 
-inherit autotools eutils python portability
+inherit autotools eutils python portability flag-o-matic
 
 DESCRIPTION="Library for automatic proxy configuration management"
 HOMEPAGE="http://code.google.com/p/libproxy/"
@@ -12,7 +12,7 @@ SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="gnome kde networkmanager python webkit xulrunner"
 
 RDEPEND="
@@ -26,10 +26,11 @@ RDEPEND="
 	networkmanager? ( net-misc/networkmanager )
 	python? ( >=dev-lang/python-2.5 )
 	webkit? ( net-libs/webkit-gtk )
-	xulrunner? (
-		|| ( >=net-libs/xulrunner-1.9
-			 www-client/seamonkey ) )
+	xulrunner? ( >=net-libs/xulrunner-1.9.0.11-r1:1.9 )
+	x86-interix? ( sys-libs/itx-bind )
 "
+# Since xulrunner-1.9.0.11-r1 its shipped mozilla-js.pc is fixed so we can use it
+
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.19"
 
@@ -43,26 +44,44 @@ src_prepare() {
 	# http://code.google.com/p/libproxy/issues/detail?id=25
 	epatch "${FILESDIR}/${P}-fix-as-needed-problem.patch"
 
-	# http://bugs.gentoo.org/show_bug.cgi?id=275127
-	epatch "${FILESDIR}/${P}-fix-mozjs-cflags.patch"
+	# Bug 275127 and 275318
+	epatch "${FILESDIR}/${P}-fix-automagic-mozjs.patch"
 
 	# Fix implicit declaration QA, bug #268546
 	epatch "${FILESDIR}/${P}-implicit-declaration.patch"
 
 	epatch "${FILESDIR}/${P}-fbsd.patch" # drop at next bump
 
-	# Fix test to follow POSIX (for x86-fbsd)
+	# Fix test to follow POSIX (for x86-fbsd).
+	# FIXME: This doesn't actually fix all == instances when two are on the same line
 	sed -e 's/\(test.*\)==/\1=/g' -i configure.ac configure || die "sed failed"
 
 	# Fix building on platforms that do not define INET_ADDRSTRLEN
 	epatch "${FILESDIR}/${P}-addrstrlen.patch"
 
+	# fix interix build with no ipv6...
+	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${P}-interix5.patch
+
 	eautoreconf
 }
 
 src_configure() {
-	local extralibs
-	[[ ${CHOST} == *-solaris* ]] && extralibs="-lsocket -lnsl"
+	local myconf
+
+	# xulrunner:1.9 => mozilla;
+	# xulrunner:1.8 => xulrunner; (firefox => mozilla-firefox[-xulrunner] ?)
+	if use xulrunner; then myconf="--with-mozjs=mozilla"
+	else myconf="--without-mozjs"
+	fi
+
+	[[ ${CHOST} == *-solaris* ]] && append-libs -lsocket -lnsl
+	if [[ ${CHOST} == *-interix* ]]; then
+		# activate the itx-bind package...
+		append-flags "-I${EPREFIX}/usr/include/bind"
+		append-ldflags "-L${EPREFIX}/usr/lib/bind"
+		append-libs -lbind -ldl
+	fi
+
 	econf --with-envvar \
 		--with-file \
 		--disable-static \
@@ -70,9 +89,9 @@ src_configure() {
 		$(use_with kde) \
 		$(use_with webkit) \
 		$(use_with xulrunner mozjs) \
+		${myconf} \
 		$(use_with networkmanager) \
-		$(use_with python) \
-		LIBS="${extralibs}"
+		$(use_with python)
 }
 
 src_compile() {
