@@ -13,4 +13,4 @@ IUSE=""
 RDEPEND=""
 DEPEND="${RDEPEND}"
 
-CONFIGURE_OPTIONS="--with-mapdir=${EROOT}/usr/share/fonts/util"
+CONFIGURE_OPTIONS="--with-mapdir=${EPREFIX}/usr/share/fonts/util"
