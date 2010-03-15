@@ -1,6 +1,18 @@
 # ChangeLog for x11-libs/vte
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.241 2010/01/16 17:14:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.245 2010/02/23 18:51:36 armin76 Exp $
+
+  23 Feb 2010; Raúl Porcel <armin76@gentoo.org> vte-0.22.5.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #294214
+
+  23 Feb 2010; Christian Faulhammer <fauli@gentoo.org> vte-0.22.5.ebuild:
+  stable x86, bug 294214
+
+  19 Feb 2010; Samuli Suominen <ssuominen@gentoo.org> vte-0.22.5.ebuild:
+  amd64 stable wrt #294214
+
+  19 Feb 2010; Samuli Suominen <ssuominen@gentoo.org> vte-0.22.5.ebuild:
+  Install HTML documentation to /usr/share/doc/${PF}/html.
 
   16 Jan 2010; Raúl Porcel <armin76@gentoo.org> vte-0.20.5.ebuild:
   sh stable

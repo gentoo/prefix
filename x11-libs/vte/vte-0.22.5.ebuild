@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.22.5.ebuild,v 1.1 2009/11/21 10:18:13 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/vte-0.22.5.ebuild,v 1.5 2010/02/23 18:51:36 armin76 Exp $
 
 EAPI="2"
 
@@ -22,7 +22,6 @@ RDEPEND=">=dev-libs/glib-2.18.0
 	python? ( >=dev-python/pygtk-2.4 )
 	x11-libs/libX11
 	x11-libs/libXft"
-
 DEPEND="${RDEPEND}
 	doc? ( >=dev-util/gtk-doc-1.0 )
 	>=dev-util/intltool-0.35
@@ -37,14 +36,12 @@ pkg_setup() {
 		--disable-static
 		$(use_enable debug)
 		$(use_enable glade glade-catalogue)
-		$(use_enable python)"
+		$(use_enable python)
+		--with-html-dir="${EPREFIX}"/usr/share/doc/${PF}/html"
 }
 
 src_prepare() {
 	gnome2_src_prepare
-
-	# Fix intltoolize broken file, see upstream #577133
-#	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in || die "sed failed"
 
 	use nowheelscroll && epatch "${FILESDIR}"/${PN}-0.16.12-mouse-wheel-scroll.patch
 	epatch "${FILESDIR}"/${PN}-0.20.1-interix.patch
