@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/xerces-c
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.84 2010/02/07 13:54:30 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.85 2010/02/26 05:47:20 halcy0n Exp $
+
+  26 Feb 2010; Mark Loeser <halcy0n@gentoo.org> -xerces-c-2.7.0-r1.ebuild,
+  -files/xerces-c-2.7.0-libpath.patch, -files/xerces-c-2.7.0-multilib.patch,
+  -xerces-c-2.8.0-r1.ebuild, -files/xerces-c-2.8.0-64bit_cast.patch,
+  -files/xerces-c-2.8.0-IconvGNUTransService.cpp.patch,
+  -files/xerces-c-2.8.0-icu_ressource_fix.patch,
+  -files/xqilla-xercesc_content_type.patch,
+  -files/xqilla-xercesc_regex.patch, metadata.xml:
+  Drop old security masked versions
 
   07 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
   xerces-c-3.0.1-r1.ebuild:

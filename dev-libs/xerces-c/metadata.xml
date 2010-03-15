@@ -13,7 +13,5 @@
     URLs, instead of the builtin method</flag>
   <flag name='threads'>Enable threading support through pthread (or other
     libraries on AIX, IRIX, HPUX, Solars). Highly recommended</flag>
-  <flag name='xqilla'>Apply patches from the XQilla project and install
-    additional header files</flag>
 </use>
 </pkgmetadata>
