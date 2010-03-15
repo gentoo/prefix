@@ -42,6 +42,8 @@ pkg_setup() {
 		eerror "Fonts which works with Xserver are intalled only if pcf is enabled."
 		die "Either disable X use flag or enabled pcf."
 	fi
+
+	font_pkg_setup
 }
 
 src_unpack() {
