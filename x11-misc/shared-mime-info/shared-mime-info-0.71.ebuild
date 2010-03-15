@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.70.ebuild,v 1.4 2010/03/06 16:19:56 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/shared-mime-info/shared-mime-info-0.71.ebuild,v 1.1 2010/03/09 05:10:08 ssuominen Exp $
 
 EAPI=2
 inherit fdo-mime
