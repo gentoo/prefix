@@ -1,6 +1,25 @@
 # ChangeLog for net-mail/fetchmail
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.176 2010/02/05 07:06:41 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.182 2010/03/10 11:08:12 jer Exp $
+
+  10 Mar 2010; Jeroen Roovers <jer@gentoo.org> fetchmail-6.3.14.ebuild:
+  Stable for HPPA (bug #307761).
+
+  09 Mar 2010; Joseph Jezak <josejx@gentoo.org> fetchmail-6.3.14.ebuild:
+  Marked ppc stable for bug #307761.
+
+  08 Mar 2010; Brent Baude <ranger@gentoo.org> fetchmail-6.3.14.ebuild:
+  Marking fetchmail-6.3.14 ppc64 for bug 307761
+
+  05 Mar 2010; Torsten Veller <tove@gentoo.org> fetchmail-6.3.14.ebuild:
+  Stable on amd64 (#307761)
+
+  04 Mar 2010; Raúl Porcel <armin76@gentoo.org> fetchmail-6.3.14.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #307761
+
+  04 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  fetchmail-6.3.14.ebuild:
+  stable x86, security bug 307761
 
 *fetchmail-6.3.14 (05 Feb 2010)
 
