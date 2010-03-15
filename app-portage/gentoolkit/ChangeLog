@@ -1,6 +1,38 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.178 2010/02/05 20:48:48 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.183 2010/03/12 20:19:12 fuzzyray Exp $
+
+  12 Mar 2010; Paul Varner <fuzzyray@gentoo.org> gentoolkit-9999.ebuild:
+  Update gentoolkit-9999 to support the python3 ABI
+
+*gentoolkit-0.2.4.6.1 (11 Mar 2010)
+
+  11 Mar 2010; Paul Varner <fuzzyray@gentoo.org> -gentoolkit-0.2.4.6.ebuild,
+  -gentoolkit-0.2.4.6-r1.ebuild, +gentoolkit-0.2.4.6.1.ebuild,
+  -files/revdep-rebuild.143498.patch:
+  Version bump to backport lastest epkginfo to fix bug 308929. Remove older
+  gentoolkit-0.2.4.6 releases.
+  Bug 305793 tracks fixes to the gentoolkit-0.2.4.6 release.
+
+  01 Mar 2010; Paul Varner <fuzzyray@gentoo.org>
+  files/revdep-rebuild.143498.patch:
+  Fix missing quote in patch
+
+*gentoolkit-0.2.4.6-r1 (01 Mar 2010)
+
+  01 Mar 2010; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.2.4.6-r1.ebuild, +files/revdep-rebuild.143498.patch:
+  Revision bump to add patch to fully fix Bug 143498
+
+*gentoolkit-0.3.0_rc9 (18 Feb 2010)
+*gentoolkit-0.2.4.6 (18 Feb 2010)
+
+  18 Feb 2010; Paul Varner <fuzzyray@gentoo.org> +gentoolkit-0.2.4.6.ebuild,
+  +gentoolkit-0.3.0_rc9.ebuild:
+  gentoolkit-0.3.0_rc9 version bump. Bug 237964 tracks changes to
+  gentoolkit-0.3.0.
+  gentoolkit-0.2.4.6 version bump. This is gentoolkit-0.2.4.5 with
+  revdep-rebuild from gentoolkit-0.3.0. Bug 305793 tracks the changes.
 
   05 Feb 2010; Paul Varner <fuzzyray@gentoo.org>
   gentoolkit-0.3.0_rc8-r1.ebuild:
