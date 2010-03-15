@@ -592,7 +592,7 @@ bootstrap_python() {
 	$MAKE ${MAKEOPTS} || exit 1
 
 	einfo "Installing ${A%-*}"
-	$MAKE -k altinstall || echo "??? Python failed to install *sigh* continuing anyway"
+	$MAKE -k install || echo "??? Python failed to install *sigh* continuing anyway"
 	cd "${ROOT}"/usr/bin
 	ln -sf python${PV%.*} python
 
