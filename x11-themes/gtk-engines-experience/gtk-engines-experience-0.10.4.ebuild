@@ -1,13 +1,13 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-experience/gtk-engines-experience-0.10.4.ebuild,v 1.5 2008/12/18 18:40:14 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-themes/gtk-engines-experience/gtk-engines-experience-0.10.4.ebuild,v 1.6 2010/02/24 14:48:47 ssuominen Exp $
 
 inherit autotools
 
 MY_PN=experience
 MY_P=${MY_PN}-${PV}
 
-DESCRIPTION="GTK+2 Experience Theme Engine"
+DESCRIPTION="GTK+ Experience Theme Engine"
 HOMEPAGE="http://benjamin.sipsolutions.net/Projects/eXperience"
 SRC_URI="http://benjamin.sipsolutions.net/${MY_PN}/${MY_P}.tar.bz2"
 
@@ -30,6 +30,6 @@ src_unpack() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed."
+	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog NEWS README TODO
 }
