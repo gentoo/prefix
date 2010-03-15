@@ -1,6 +1,23 @@
 # ChangeLog for dev-libs/boost
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.185 2009/12/27 12:51:09 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.189 2010/03/04 15:26:23 jer Exp $
+
+  04 Mar 2010; Jeroen Roovers <jer@gentoo.org> boost-1.41.0-r3.ebuild:
+  Stable for HPPA (bug #306333).
+
+*boost-1.42.0 (03 Mar 2010)
+
+  03 Mar 2010; Dirkjan Ochtman <djc@gentoo.org> +boost-1.42.0.ebuild,
+  +files/boost-1.42.0-parameter-needs-python.patch,
+  +files/remove-toolset-1.42.0.patch:
+  Version bump to 1.42.0.
+
+  03 Mar 2010; Dirkjan Ochtman <djc@gentoo.org> boost-1.41.0-r3.ebuild:
+  Fix bug 298489 in boost-1.41.0-r3.
+
+  03 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  boost-1.41.0-r3.ebuild:
+  stable x86, security bug 305195
 
   27 Dec 2009; Raúl Porcel <armin76@gentoo.org> boost-1.35.0-r5.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable
