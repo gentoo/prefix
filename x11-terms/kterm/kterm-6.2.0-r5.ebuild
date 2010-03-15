@@ -1,10 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r5.ebuild,v 1.2 2009/05/05 11:06:08 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/kterm/kterm-6.2.0-r5.ebuild,v 1.3 2010/02/11 16:06:38 ulm Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
-
-IUSE="Xaw3d"
 
 DESCRIPTION="Japanese Kanji X Terminal"
 SRC_URI="ftp://ftp.x.org/contrib/applications/${P}.tar.gz
@@ -12,9 +10,11 @@ SRC_URI="ftp://ftp.x.org/contrib/applications/${P}.tar.gz
 	http://www.st.rim.or.jp/~hanataka/${P}.ext02.patch.gz"
 # until someone who reads japanese can find a better place
 HOMEPAGE="http://www.asahi-net.or.jp/~hc3j-tkg/kterm/"
-LICENSE="X11"
+
+LICENSE="MIT as-is"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+IUSE="Xaw3d"
 
 RDEPEND="app-text/rman
 	sys-libs/ncurses
