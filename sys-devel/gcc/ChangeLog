@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.742 2010/02/08 12:58:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.743 2010/03/03 18:42:01 solar Exp $
+
+  03 Mar 2010; <solar@gentoo.org> gcc-4.3.4.ebuild:
+  - add armv7 patch to gcc-4.3.4 to keep stable from breaking due to a
+  recent toolchain.eclass change. We also inherit some alpha fixes
 
 *gcc-4.4.3 (08 Feb 2010)
 
