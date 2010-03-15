@@ -1,6 +1,37 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.291 2010/02/18 03:16:34 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.299 2010/03/04 18:23:04 halcy0n Exp $
+
+  04 Mar 2010; Mark Loeser <halcy0n@gentoo.org> +xulrunner-1.9.1.6.ebuild:
+  Adding back since icecat-3.5.6 depends upon this version
+
+  04 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -xulrunner-1.9.1.6.ebuild:
+  Remove old, vulnerable 1.9.1.6
+
+*xulrunner-1.9.2-r4 (04 Mar 2010)
+
+  04 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +xulrunner-1.9.2-r4.ebuild, metadata.xml:
+  Move over the latest revision from the overlay. USE=system-sqlite is used
+  for toggling usage of internal/external sqlite
+
+  02 Mar 2010; Tobias Heinlein <keytoaster@gentoo.org>
+  xulrunner-1.9.1.8.ebuild:
+  amd64 stable, security bug #305689
+
+  25 Feb 2010; Raúl Porcel <armin76@gentoo.org> xulrunner-1.9.1.8.ebuild:
+  alpha/arm/ia64/sparc stable wrt #305689
+
+  23 Feb 2010; Joseph Jezak <josejx@gentoo.org> xulrunner-1.9.1.8.ebuild:
+  Marked ppc/ppc64 stable for bug #305689.
+
+  22 Feb 2010; Jeroen Roovers <jer@gentoo.org> xulrunner-1.9.1.8.ebuild:
+  Stable for HPPA (bug #305689).
+
+  21 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  xulrunner-1.9.1.8.ebuild:
+  stable x86, security bug 305689
 
 *xulrunner-1.9.1.8 (18 Feb 2010)
 
