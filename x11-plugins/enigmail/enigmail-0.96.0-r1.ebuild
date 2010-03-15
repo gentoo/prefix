@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.96.0.ebuild,v 1.2 2009/10/25 17:58:42 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-0.96.0-r1.ebuild,v 1.1 2010/02/13 14:09:09 anarchy Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
@@ -46,7 +46,6 @@ RDEPEND="${DEPEND}
 			|| (
 				app-crypt/pinentry[gtk]
 				app-crypt/pinentry[qt4]
-				app-crypt/pinentry[qt3]
 			)
 		)
 		=app-crypt/gnupg-1.4*
@@ -111,9 +110,6 @@ src_prepare() {
 	makemake2
 
 	cd "${S}"
-
-	# Use the right theme for thunderbird #45609
-	sed -i -ne '/^enigmail-skin.jar:$/ { :x; n; /^\t/bx; }; p' mailnews/extensions/enigmail/ui/jar.mn
 
 	# Fix installation of enigmail.js
 	epatch "${FILESDIR}"/70_enigmail-fix.patch

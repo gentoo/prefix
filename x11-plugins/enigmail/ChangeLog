@@ -1,6 +1,35 @@
 # ChangeLog for x11-plugins/enigmail
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.168 2010/02/05 12:43:42 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.175 2010/03/09 21:45:07 josejx Exp $
+
+  09 Mar 2010; Joseph Jezak <josejx@gentoo.org> enigmail-1.0.1-r1.ebuild:
+  Marked ppc stable for bug #307045.
+
+  08 Mar 2010; Brent Baude <ranger@gentoo.org> enigmail-1.0.1-r1.ebuild:
+  Marking enigmail-1.0.1-r1 ppc64 for bug 307045
+
+  07 Mar 2010; Markus Meier <maekke@gentoo.org> enigmail-1.0.1-r1.ebuild:
+  amd64 stable, bug #307045
+
+  05 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  enigmail-1.0.1-r1.ebuild:
+  stable x86, security bug 307045
+
+*enigmail-1.0.1-r1 (04 Mar 2010)
+
+  04 Mar 2010; <anarchy@gentoo.org> -enigmail-1.0.1.ebuild,
+  +enigmail-1.0.1-r1.ebuild, metadata.xml:
+  Fix system-sqlite useage
+
+*enigmail-0.96.0-r1 (13 Feb 2010)
+
+  13 Feb 2010; <anarchy@gentoo.org> -enigmail-0.96.0.ebuild,
+  +enigmail-0.96.0-r1.ebuild:
+  Fix bug #290586
+
+  11 Feb 2010; <anarchy@gentoo.org> enigmail-0.96.0.ebuild,
+  enigmail-1.0.1.ebuild:
+  Remove pinentry[qt3] which is no longer valid
 
 *enigmail-1.0.1 (05 Feb 2010)
 
