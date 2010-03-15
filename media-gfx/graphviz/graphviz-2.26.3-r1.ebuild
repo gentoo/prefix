@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.24.0-r2.ebuild,v 1.8 2010/01/14 06:54:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/graphviz/graphviz-2.26.3-r1.ebuild,v 1.1 2010/02/14 12:23:59 maekke Exp $
 
 EAPI=2
 inherit eutils autotools multilib python
@@ -12,7 +12,7 @@ SRC_URI="http://www.graphviz.org/pub/graphviz/ARCHIVE/${P}.tar.gz"
 LICENSE="CPL-1.0"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris ~x86-solaris"
-IUSE="cairo doc examples gtk java lasi nls perl python ruby tcl"
+IUSE="cairo doc examples gtk java lasi nls perl python ruby static-libs tcl"
 
 # Requires ksh
 RESTRICT="test"
@@ -62,7 +62,8 @@ DEPEND="${RDEPEND}
 # - gdk-pixbuf
 #   Disabled, GTK-1 junk.
 # - ming
-#   Disabled, depends on ming-3.0 which is still p.masked.
+#   flash plugin via -Tswf requires media-libs/ming-0.4. Disabled as it's
+#   incomplete.
 # - cairo:
 #   Needs pango for text layout, uses cairo methods to draw stuff
 # - xlib :
@@ -144,7 +145,7 @@ src_configure() {
 
 	# Core functionality:
 	# All of X, cairo-output, gtk need the pango+cairo functionality
-	if use gtk || use cairo ; then
+	if use gtk || use cairo; then
 		myconf="${myconf} --with-x"
 	else
 		myconf="${myconf} --without-x"
@@ -187,6 +188,7 @@ src_configure() {
 
 	econf \
 		--enable-ltdl \
+		$(use_enable static-libs static) \
 		${myconf}
 }
 
@@ -202,6 +204,10 @@ src_install() {
 		install || die "emake install failed"
 
 	use examples || rm -rf "${ED}/usr/share/graphviz/demo"
+
+	if ! use static-libs; then
+		find "${ED}"/usr/$(get_libdir)/ -name '*.la' -delete || die
+	fi
 
 	dodoc AUTHORS ChangeLog NEWS README
 }
