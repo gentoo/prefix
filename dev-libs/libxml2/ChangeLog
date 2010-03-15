@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/libxml2
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.276 2009/12/23 16:29:20 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.277 2010/03/08 22:30:16 zmedico Exp $
+
+  08 Mar 2010; Zac Medico <zmedico@gentoo.org> libxml2-2.7.3-r2.ebuild,
+  libxml2-2.7.4-r1.ebuild, libxml2-2.7.6.ebuild:
+  Specify <python-3 since only python-2.x works.
 
 *libxml2-2.7.6 (23 Dec 2009)
 

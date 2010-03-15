@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.3-r2.ebuild,v 1.7 2009/08/30 23:18:00 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.3-r2.ebuild,v 1.8 2010/03/08 22:30:16 zmedico Exp $
 
 inherit libtool flag-o-matic eutils python autotools prefix
 
@@ -24,7 +24,7 @@ SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz
 		${XSTS_HOME}/${XSTS_NAME_2}/${XSTS_TARBALL_2} )"
 
 RDEPEND="sys-libs/zlib
-	python?   ( dev-lang/python )
+	python?   ( <dev-lang/python-3 )
 	readline? ( sys-libs/readline )"
 
 DEPEND="${RDEPEND}
