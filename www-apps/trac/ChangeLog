@@ -1,6 +1,11 @@
 # ChangeLog for www-apps/trac
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.97 2010/02/08 08:36:10 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.98 2010/03/11 10:40:45 djc Exp $
+
+*trac-0.11.7 (11 Mar 2010)
+
+  11 Mar 2010; Dirkjan Ochtman <djc@gentoo.org> +trac-0.11.7.ebuild:
+  Version bump to 0.11.7.
 
   08 Feb 2010; Peter Volkov <pva@gentoo.org> trac-0.11.5.ebuild,
   trac-0.11.6.ebuild:
