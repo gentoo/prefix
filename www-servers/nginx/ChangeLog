@@ -1,6 +1,29 @@
 # ChangeLog for www-servers/nginx
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.244 2010/02/02 08:39:21 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.249 2010/03/07 16:17:10 hollow Exp $
+
+  07 Mar 2010; Benedikt Böhm <hollow@gentoo.org> nginx-0.8.34-r1.ebuild:
+  fix USE flag typos
+
+*nginx-0.8.34-r1 (07 Mar 2010)
+
+  07 Mar 2010; Benedikt Böhm <hollow@gentoo.org> +nginx-0.8.34-r1.ebuild,
+  files/nginx.conf-r4, +files/passenger-CFLAGS.patch, metadata.xml:
+  rewrite ebuild for USE_EXPAND goodies. fixes #286772, #301513, #303205 and
+  #305691
+
+  04 Mar 2010; Benedikt Böhm <hollow@gentoo.org> metadata.xml:
+  take over maintainance wrt #303205
+
+  04 Mar 2010; Dirkjan Ochtman <djc@gentoo.org> -nginx-0.5.38.ebuild,
+  -nginx-0.6.39.ebuild, -nginx-0.7.62.ebuild, -nginx-0.8.31.ebuild,
+  -nginx-0.8.32.ebuild:
+  Clean up old versions.
+
+*nginx-0.8.34 (04 Mar 2010)
+
+  04 Mar 2010; Dirkjan Ochtman <djc@gentoo.org> +nginx-0.8.34.ebuild:
+  Version bump to 0.8.34.
 
 *nginx-0.8.33 (02 Feb 2010)
 *nginx-0.7.65 (02 Feb 2010)
