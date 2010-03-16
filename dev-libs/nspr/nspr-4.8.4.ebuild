@@ -26,8 +26,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.8-pkgconfig-gentoo-2.patch
 	epatch "${FILESDIR}"/${PN}-4.7.1-solaris.patch
 	epatch "${FILESDIR}"/${PN}-4.7.4-solaris.patch
-	epatch "${FILESDIR}"/${P}-aix-gcc.patch
-	epatch "${FILESDIR}"/${P}-aix-soname.patch
+	epatch "${FILESDIR}"/${PN}-4.8.3-aix-gcc.patch
+	epatch "${FILESDIR}"/${PN}-4.8.3-aix-soname.patch
 	# make sure it won't find Perl out of Prefix
 	sed -i -e "s/perl5//g" mozilla/nsprpub/configure || die
 
