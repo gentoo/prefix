@@ -9,14 +9,12 @@ VIM_VERSION="7.2"
 VIM_CORE_GENTOO_PATCHES="vim-core-${VIM_VERSION}-gentoo-patches-r1.tar.bz2"
 VIM_ORG_PATCHES="vim-patches-${PV}.tar.gz"
 VIMRC_FILE_SUFFIX="-r4"
-PREFIX_VER="5"
 
 SRC_URI="ftp://ftp.vim.org/pub/vim/unix/vim-${VIM_VERSION}.tar.bz2
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-lang.tar.gz
 	ftp://ftp.vim.org/pub/vim/extra/vim-${VIM_VERSION}-extra.tar.gz
 	mirror://gentoo/${VIM_CORE_GENTOO_PATCHES}
-	mirror://gentoo/${VIM_ORG_PATCHES}
-	http://dev.gentoo.org/~grobian/distfiles/vim-misc-prefix-${PREFIX_VER}.tar.bz2"
+	mirror://gentoo/${VIM_ORG_PATCHES}"
 
 S="${WORKDIR}/vim${VIM_VERSION/.}"
 DESCRIPTION="vim and gvim shared files"
