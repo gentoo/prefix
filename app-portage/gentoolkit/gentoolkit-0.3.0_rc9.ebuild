@@ -28,7 +28,7 @@ RDEPEND="${DEPEND}
 RESTRICT_PYTHON_ABIS="3.*"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.3.0_rc7-revdep-prefix.patch
+	epatch "${FILESDIR}"/${PN}-0.3.0_rc9-revdep-prefix.patch
 	epatch "${FILESDIR}"/${PN}-0.3.0_rc7-eclean-prefix.patch
 	epatch "${FILESDIR}"/${PN}-0.3.0_rc8-setup-prefix.patch
 
