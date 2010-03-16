@@ -94,7 +94,9 @@ src_prepare() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-1.37.0-darwin-long-double.patch
-	epatch "${FILESDIR}"/${P}-solaris-namespace-clash.patch
+
+# Doesn't apply and no clue if it is needed. --darkside
+	#epatch "${FILESDIR}"/${PN}-1.41.0-solaris-namespace-clash.patch
 
 	epatch "${FILESDIR}/remove-toolset-${PV}.patch"
 
