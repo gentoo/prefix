@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/curl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.153 2010/03/11 18:01:15 spatz Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.154 2010/03/16 21:43:01 vapier Exp $
+
+*curl-7.20.0-r1 (16 Mar 2010)
+
+  16 Mar 2010; Mike Frysinger <vapier@gentoo.org> +curl-7.20.0-r1.ebuild,
+  metadata.xml:
+  Rework local USE flags wrt USE=ssl #297096 by Leif Walsh.
 
 *curl-7.20.0 (11 Mar 2010)
 
