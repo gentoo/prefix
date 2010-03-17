@@ -185,6 +185,9 @@ src_prepare() {
 	# that stdin is a tty for bug #248081.
 	sed -e "s:'osf1V5':'osf1V5' and sys.stdin.isatty():" -i Lib/test/test_file.py || die "sed failed"
 
+	# don't do -arch(-only) specifics, we don't want multilib
+	sed -e "s:-lSystemStubs::g" -i configure.in || die
+
 	eautoreconf
 }
 
@@ -206,7 +209,7 @@ src_configure() {
 		use ssl      || export PYTHON_DISABLE_SSL="1"
 		use tk       || disable+=" _tkinter"
 		use xml      || disable+=" _elementtree pyexpat" # _elementtree uses pyexpat.
-		use x64-macos && disable+=" Nav" # Carbon
+		use x64-macos && disable+=" Nav _Qt" # Carbon
 		export PYTHON_DISABLE_MODULES="${disable}"
 
 		if ! use xml; then
