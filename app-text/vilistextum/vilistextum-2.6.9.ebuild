@@ -12,7 +12,7 @@ SRC_URI="http://bhaak.dyndns.org/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x64-solaris"
 #IUSE="unicode kde"
 IUSE="unicode"
 
@@ -27,7 +27,10 @@ src_prepare() {
 
 src_configure(){
 	use elibc_glibc || append-libs -liconv
-	econf $(use_enable unicode multibyte)
+	# need hardwired locale simply because locale -a | grep -i utf-8 | head -n1
+	# isn't always returning the most sensical (and working) locale
+	econf $(use_enable unicode multibyte) \
+		$(use_with unicode unicode-locale en_US.UTF-8)
 }
 
 src_install() {
