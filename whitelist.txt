@@ -204,6 +204,7 @@ app-text/txt2man
 app-text/txt2tags
 app-text/unix2dos
 app-text/unrtf
+app-text/vilistextum
 app-text/vlna
 app-text/wgetpaste
 app-text/xdvik
