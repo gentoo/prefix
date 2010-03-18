@@ -27,6 +27,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-strlen-strdup-f376c5db4a4b169176996c67c8c5ac53c3b18a44.patch
 
 	epatch "${FILESDIR}"/${P}-interix-nomultibyte.patch
+	epatch "${FILESDIR}"/${P}-mint.patch # applies on top of interix patch
 }
 
 src_compile() {
