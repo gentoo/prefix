@@ -90,7 +90,7 @@ src_prepare() {
 	# right now, so ...
 	if [[ ${CHOST} == *-winnt* ]]; then
 		epatch "${FILESDIR}"/${PN}-1.35.0-winnt.patch
-		epatch "${FILESDIR}"/${PN}-1.40.0-winnt.patch
+		epatch "${FILESDIR}"/${PN}-1.39.0-winnt.patch
 	fi
 
 	epatch "${FILESDIR}"/${PN}-1.37.0-darwin-long-double.patch
