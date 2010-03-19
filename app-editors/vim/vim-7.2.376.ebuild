@@ -30,6 +30,9 @@ src_prepare() {
 
 src_compile() {
 	if [[ ${CHOST} == *-interix* ]]; then
+		# avoid finding of this function, to avoid having to patch either
+		# configure or the source, which would be much more hackish.  after all
+		# vim does it right, only interix is badly broken (again).
 		export ac_cv_func_sigaction=no
 	fi
 	vim_src_compile || die "vim_src_compile failed"
