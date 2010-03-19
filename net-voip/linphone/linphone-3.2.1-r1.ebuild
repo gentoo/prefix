@@ -12,7 +12,7 @@ SRC_URI="http://download.savannah.nongnu.org/releases/${PN}/stable/sources/${P}.
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 IUSE="doc gtk ipv6 ncurses nls video"
 
 RDEPEND=">=media-libs/mediastreamer-2.3.0[video?]
