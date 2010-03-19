@@ -89,8 +89,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-10.46.00-darwin.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-solaris.patch
 	epatch "${FILESDIR}"/${PN}-10.48.00-solaris.patch
-	epatch "${FILESDIR}"/netpbm-prefix.patch
 	epatch "${FILESDIR}"/${PN}-10.48.00-interix.patch
+	epatch "${FILESDIR}"/${PN}-10.49.00-darwin-signals.patch
+	epatch "${FILESDIR}"/netpbm-prefix.patch
 	eprefixify converter/pbm/pbmtox10bm generator/ppmrainbow \
 		editor/{ppmfade,pnmflip,pnmquant,ppmquant,ppmshadow}
 
