@@ -86,7 +86,7 @@ src_configure() {
 	then
 		macaqsnd="--enable-macaqsnd"
 	else
-		macaqsnd="-disable-macaqsnd"
+		macaqsnd="--disable-macaqsnd"
 	fi
 	# strict: don't want -Werror
 	# external-ortp: don't use bundled libs
