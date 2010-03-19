@@ -15,7 +15,7 @@ SRC_URI="mirror://sourceforge/${MY_PN}/${MY_P}.tgz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 IUSE="aesicm console debug doc syslog"
 
 S=${WORKDIR}/${MY_PN}
