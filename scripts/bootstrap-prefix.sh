@@ -537,7 +537,7 @@ bootstrap_python() {
 		PV=2.6.4
 		A=python-${PV}-interix.tar.bz2
 	else
-		PV=2.6.2
+		PV=2.6.4
 		A=python-${PV}-patched.tar.bz2
 	fi
 	einfo "Bootstrapping ${A%-*}"
