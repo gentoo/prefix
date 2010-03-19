@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/mediastreamer/mediastreamer-2.3.0.ebuild,v 1.2 2010/02/23 06:51:31 josejx Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit eutils autotools multilib
 
