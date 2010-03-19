@@ -12,7 +12,7 @@ SRC_URI="http://download.savannah.nongnu.org/releases/linphone/${PN}/sources/${P
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 IUSE="debug doc examples ipv6 minimal srtp ssl"
 
 RDEPEND="srtp? ( net-libs/libsrtp )
