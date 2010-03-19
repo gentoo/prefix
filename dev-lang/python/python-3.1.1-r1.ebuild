@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.27 2010/01/16 14:34:44 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.29 2010/03/04 17:55:42 arfrever Exp $
 
 EAPI="2"
 
@@ -19,8 +19,9 @@ SRC_URI="http://www.python.org/ftp/python/${PV}/${MY_P}.tar.bz2
 LICENSE="PSF-2.2"
 SLOT="3.1"
 PYTHON_ABI="${SLOT}"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite ssl +threads tk +wide-unicode wininst +xml"
+# this ebuild isn't ready/verified/up-to-date at all
+#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="aqua build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 RDEPEND=">=app-admin/eselect-python-20091230
 		>=sys-libs/zlib-1.1.3
@@ -42,7 +43,7 @@ DEPEND="${RDEPEND}
 		dev-util/pkgconfig
 		!sys-devel/gcc[libffi]"
 RDEPEND+=" !build? ( app-misc/mime-types )"
-PDEPEND="app-admin/python-updater
+PDEPEND=">=app-admin/python-updater-0.8
 		=dev-lang/python-2*"
 
 PROVIDE="virtual/python"
@@ -245,11 +246,11 @@ src_configure() {
 		$(use_enable ipv6) \
 		$(use_with threads) \
 		$( (use wide-unicode && use !aqua) && echo "--with-wide-unicode" || echo "--without-wide-unicode") \
-		--infodir='${prefix}'/share/info \
-		--mandir='${prefix}'/share/man \
+		--infodir='${prefix}/share/info' \
+		--mandir='${prefix}/share/man' \
 		--with-computed-gotos \
-		--with-dbmliborder=${dbmliborder} \
-		--with-libc='' \
+		--with-dbmliborder="${dbmliborder}" \
+		--with-libc="" \
 		--with-system-ffi
 }
 
@@ -424,7 +425,7 @@ EOF
 
 	# Fix the OPT variable so that it doesn't have any flags listed in it.
 	# Prevents the problem with compiling things with conflicting flags later.
-	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
+	sed -e "s:^OPT=.*:OPT=\t\t-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
 
 	# http://src.opensolaris.org/source/xref/jds/spec-files/trunk/SUNWPython.spec
 	# These #defines cause problems when building c99 compliant python modules
@@ -433,11 +434,11 @@ EOF
 		 /usr/include/python${SLOT}/pyconfig.h
 
 	if use build; then
-		rm -fr "${ED}$(python_get_libdir)/"{email,sqlite3,test,tkinter}
+		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{email,idlelib,sqlite3,test,tkinter}
 	else
 		use elibc_uclibc && rm -fr "${ED}$(python_get_libdir)/test"
 		use sqlite || rm -fr "${ED}$(python_get_libdir)/"{sqlite3,test/test_sqlite*}
-		use tk || rm -fr "${ED}$(python_get_libdir)/"{tkinter,test/test_tk*}
+		use tk || rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{idlelib,tkinter,test/test_tk*}
 	fi
 
 	use threads || rm -fr "${ED}$(python_get_libdir)/multiprocessing"
@@ -468,13 +469,13 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local ignored_python_slots_options=
-	[[ "$(eselect python show)" == "python2."* ]] && ignored_python_slots_options="--ignore 3.0 --ignore 3.1 --ignore 3.2"
+	local eselect_python_options=
+	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
 
 	# Create python3 symlink.
-	eselect python update > /dev/null
+	eselect python update --python3 > /dev/null
 
-	eselect python update ${ignored_python_slots_options}
+	eselect python update ${eselect_python_options}
 }
 
 pkg_postinst() {

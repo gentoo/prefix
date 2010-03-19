@@ -1,6 +1,66 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.444 2010/01/12 13:52:52 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.459 2010/03/10 10:09:02 josejx Exp $
+
+  10 Mar 2010; Joseph Jezak <josejx@gentoo.org> python-2.6.4-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #306793.
+
+  07 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
+  python-2.6.4-r1.ebuild:
+  amd64 stable wrt #306793
+
+  07 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.4.6.ebuild, python-2.5.4-r4.ebuild, python-2.6.4.ebuild,
+  python-2.6.4-r1.ebuild:
+  Delete no longer needed recommendation (bug #307887).
+
+  04 Mar 2010; Raúl Porcel <armin76@gentoo.org> python-2.6.4-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #306793
+
+  04 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-3.1.1-r1.ebuild:
+  Depend on >=app-admin/python-updater-0.8, which supports packages
+  installable for multiple versions of Python.
+
+  26 Feb 2010; Jeroen Roovers <jer@gentoo.org> python-2.6.4-r1.ebuild:
+  Stable for HPPA (bug #306793).
+
+  25 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  python-2.6.4-r1.ebuild:
+  stable x86, bug 306793
+
+  21 Feb 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.4.6.ebuild, python-2.5.4-r4.ebuild, python-2.6.4-r1.ebuild,
+  python-3.1.1-r1.ebuild:
+  Don't install idle${SLOT} and idlelib module with USE="-tk" (bug #237788).
+  Enable "ssl" USE flag by default via IUSE (bug #304891).
+
+  13 Feb 2010; Raúl Porcel <armin76@gentoo.org> python-2.5.4-r4.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #303005
+
+  10 Feb 2010; Jeroen Roovers <jer@gentoo.org> python-2.5.4-r4.ebuild:
+  Stable for HPPA (bug #303005).
+
+  10 Feb 2010; Joseph Jezak <josejx@gentoo.org> python-2.5.4-r4.ebuild:
+  Marked ppc stable for bug #303005.
+
+  07 Feb 2010; Markus Meier <maekke@gentoo.org> python-2.5.4-r4.ebuild:
+  arm/x86 stable, bug #303005
+
+  04 Feb 2010; Brent Baude <ranger@gentoo.org> python-2.5.4-r4.ebuild:
+  Marking python-2.5.4-r4 ppc64 for bug 303005
+
+  01 Feb 2010; Markos Chandras <hwoarang@gentoo.org> python-2.5.4-r4.ebuild:
+  Stable on amd64 wrt bug #303005
+
+*python-2.6.4-r1 (26 Jan 2010)
+
+  26 Jan 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.6.4-r1.ebuild:
+  Respect PYTHONDONTWRITEBYTECODE / sys.dont_write_bytecode in distutils.
+  Check availability of nis headers before building of nis module (bug #288110).
+  Use pkg-config found by AC_PATH_TOOL() to avoid problem during crosscompilation
+  (bug #299044). Don't ignore __cmp__() of metaclasses.
 
   12 Jan 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   python-2.4.6.ebuild, python-2.5.4-r3.ebuild, python-2.5.4-r4.ebuild,

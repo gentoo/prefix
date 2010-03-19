@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.29 2010/01/16 14:34:44 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.31 2010/03/07 11:31:55 arfrever Exp $
 
 EAPI="1"
 
@@ -20,9 +20,9 @@ LICENSE="PSF-2.2"
 SLOT="2.4"
 PYTHON_ABI="${SLOT}"
 KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="-berkdb bootstrap build +cxx doc elibc_uclibc examples gdbm ipv6 +ncurses +readline ssl +threads tk +wide-unicode wininst +xml"
+IUSE="-berkdb bootstrap build +cxx doc elibc_uclibc examples gdbm ipv6 +ncurses +readline +ssl +threads tk +wide-unicode wininst +xml"
 
-RDEPEND=">=app-admin/eselect-python-20090606
+RDEPEND=">=app-admin/eselect-python-20091230
 		>=sys-libs/zlib-1.1.3
 		virtual/libintl
 		!build? (
@@ -52,10 +52,6 @@ pkg_setup() {
 		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
 		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
 		ewarn "module provided by dev-python/bsddb3 which supports both Python 2 and Python 3."
-	fi
-
-	if ! has_version "=dev-lang/python-3*"; then
-		elog "It is highly recommended to additionally install Python 3, but without configuring Python wrapper to use Python 3."
 	fi
 }
 
@@ -189,9 +185,9 @@ src_configure() {
 		$(use_enable ipv6) \
 		$(use_with threads) \
 		$(use wide-unicode && echo "--enable-unicode=ucs4" || echo "--enable-unicode=ucs2") \
-		--infodir='${prefix}'/share/info \
-		--mandir='${prefix}'/share/man \
-		--with-libc='' \
+		--infodir='${prefix}/share/info' \
+		--mandir='${prefix}/share/man' \
+		--with-libc="" \
 		--disable-framework \
 		--disable-toolbox-glue \
 		--with-gcc \
@@ -241,6 +237,8 @@ src_test() {
 	elog "If you'd like to run them, you may:"
 	elog "cd $(python_get_libdir)/test"
 	elog "and run the tests separately."
+
+	python_disable_pyc
 }
 
 src_install() {
@@ -263,15 +261,15 @@ src_install() {
 
 	# Fix the OPT variable so that it doesn't have any flags listed in it.
 	# Prevents the problem with compiling things with conflicting flags later.
-	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
+	sed -e "s:^OPT=.*:OPT=\t\t-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
 
 	# Python 2.4 partially doesn't respect $(get_libdir).
 	if use build; then
-		rm -fr "${ED}"usr/lib*/python${SLOT}/{bsddb,email,lib-tk,test}
+		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}"usr/lib*/python${SLOT}/{bsddb,email,idlelib,lib-tk,test}
 	else
 		use elibc_uclibc && rm -fr "${ED}"usr/lib*/python${SLOT}/{bsddb/test,test}
 		use berkdb || rm -fr "${ED}"usr/lib*/python${SLOT}/{bsddb,test/test_bsddb*}
-		use tk || rm -fr "${ED}"usr/lib*/python${SLOT}/lib-tk
+		use tk || rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}"usr/lib*/python${SLOT}/{idlelib,lib-tk}
 	fi
 
 	prep_ml_includes $(python_get_includedir)
@@ -300,13 +298,13 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local ignored_python_slots_options=
-	[[ "$(eselect python show)" == "python2."* ]] && ignored_python_slots_options="--ignore 3.0 --ignore 3.1 --ignore 3.2"
+	local eselect_python_options=
+	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
 
 	# Create python2 symlink.
-	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2 > /dev/null
+	eselect python update --python2 > /dev/null
 
-	eselect python update ${ignored_python_slots_options}
+	eselect python update ${eselect_python_options}
 }
 
 pkg_postinst() {
