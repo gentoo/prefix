@@ -27,12 +27,6 @@ RDEPEND="!media-sound/amarok[embedded]"
 # If you want to add a single patch, copy the ebuild to an overlay
 # and create your own mysql-extras tarball, looking at 000_index.txt
 
-src_unpack() {
-	mysql_src_unpack
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-5.0.60-darwin-bool.patch
-}
-
 # Official test instructions:
 # USE='berkdb -cluster embedded extraengine perl ssl community' \
 # FEATURES='test userpriv -usersandbox' \
