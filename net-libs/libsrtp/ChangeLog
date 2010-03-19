@@ -1,0 +1,46 @@
+# ChangeLog for net-libs/libsrtp
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libsrtp/ChangeLog,v 1.11 2009/07/08 20:45:37 maekke Exp $
+
+  08 Jul 2009; Markus Meier <maekke@gentoo.org> libsrtp-1.4.4-r1.ebuild:
+  amd64 stable, bug #259172
+
+  03 Jul 2009; Mounir Lamouri <volkmar@gentoo.org> libsrtp-1.4.4-r1.ebuild:
+  stable ppc, bug 259172
+
+  02 Jul 2009; Christian Faulhammer <fauli@gentoo.org>
+  libsrtp-1.4.4-r1.ebuild:
+  stable x86, bug 259172
+
+  26 Jun 2009; Alexis Ballier <aballier@gentoo.org> libsrtp-1.4.4-r1.ebuild:
+  keyword ~x86-fbsd
+
+  25 Apr 2009; Raúl Porcel <armin76@gentoo.org> libsrtp-1.4.4-r1.ebuild:
+  Add ~ia64/-sparc wrt #266193
+
+  23 Apr 2009; Markus Meier <maekke@gentoo.org> libsrtp-1.4.4-r1:
+  add ~amd64, bug #266193
+
+  20 Apr 2009; Jeroen Roovers <jer@gentoo.org> libsrtp-1.4.4-r1:
+  Marked ~hppa (bug #266193).
+
+  18 Apr 2009; Tobias Klausmann <klausman@gentoo.org>
+  libsrtp-1.4.4-r1.ebuild:
+  Keyworded on alpha, bug #266193
+
+  15 Apr 2009; Brent Baude <ranger@gentoo.org> libsrtp-1.4.4-r1.ebuild:
+  Marking libsrtp-1.4.4-r1 ~ppc64 for bug 266193
+
+*libsrtp-1.4.4-r1 (15 Apr 2009)
+
+  15 Apr 2009; Mounir Lamouri <volkmar@gentoo.org>
+  +files/libsrtp-1.4.4-shared.patch, -libsrtp-1.4.4.ebuild,
+  +libsrtp-1.4.4-r1.ebuild:
+	Adding shared lib generation with loki_val patch. Thanks also to solar.
+
+*libsrtp-1.4.4 (14 Apr 2009)
+
+  14 Apr 2009; Mounir Lamouri <volkmar@gentoo.org> +metadata.xml,
+  +libsrtp-1.4.4.ebuild:
+  Initial commit. See bug 257835
+
