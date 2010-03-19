@@ -12,7 +12,7 @@ SRC_URI="http://download.savannah.nongnu.org/releases/linphone/${PN}/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-macos"
+KEYWORDS="~ppc-macos ~x86-macos"
 IUSE="+alsa coreaudio debug examples gsm ilbc ipv6 jack oss portaudio +speex theora video x264 X"
 
 RDEPEND=">=net-libs/ortp-0.15.0_p1
