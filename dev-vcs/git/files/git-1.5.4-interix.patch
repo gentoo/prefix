@@ -1,0 +1,73 @@
+diff -ru git-1.5.4.3.orig/builtin-prune-packed.c git-1.5.4.3/builtin-prune-packed.c
+--- git-1.5.4.3.orig/builtin-prune-packed.c	2008-03-13 11:56:41 +0100
++++ git-1.5.4.3/builtin-prune-packed.c	2008-03-13 12:02:13 +0100
+@@ -85,7 +85,9 @@
+ 		/* Handle arguments here .. */
+ 		usage(prune_packed_usage);
+ 	}
++	#ifndef __INTERIX
+ 	sync();
++	#endif
+ 	prune_packed_objects(opts);
+ 	return 0;
+ }
+diff -ru git-1.5.4.3.orig/builtin-prune.c git-1.5.4.3/builtin-prune.c
+--- git-1.5.4.3.orig/builtin-prune.c	2008-03-13 11:56:41 +0100
++++ git-1.5.4.3/builtin-prune.c	2008-03-13 12:02:28 +0100
+@@ -151,7 +151,9 @@
+ 
+ 	prune_object_dir(get_object_directory());
+ 
++	#ifndef __INTERIX
+ 	sync();
++	#endif
+ 	prune_packed_objects(show_only);
+ 	remove_temporary_files();
+ 	return 0;
+diff -ru git-1.5.4.3.orig/daemon.c git-1.5.4.3/daemon.c
+--- git-1.5.4.3.orig/daemon.c	2008-03-13 11:56:41 +0100
++++ git-1.5.4.3/daemon.c	2008-03-13 13:27:00 +0100
+@@ -626,6 +626,10 @@
+ static unsigned int children_spawned;
+ static unsigned int children_deleted;
+ 
++#if defined(__INTERIX)
++# define sockaddr_storage sockaddr
++#endif
++
+ static struct child {
+ 	pid_t pid;
+ 	int addrlen;
+@@ -1007,9 +1011,13 @@
+ 		die("unable to allocate any listen sockets on host %s port %u",
+ 		    listen_addr, listen_port);
+ 
++#ifndef __INTERIX
+ 	if (pass && gid &&
+ 	    (initgroups(pass->pw_name, gid) || setgid (gid) ||
+ 	     setuid(pass->pw_uid)))
++#else
++	if (pass && gid && (setgid (gid) || setuid(pass->pw_uid)))
++#endif
+ 		die("cannot drop privileges");
+ 
+ 	return service_loop(socknum, socklist);
+diff -ru git-1.5.4.3.orig/git-compat-util.h git-1.5.4.3/git-compat-util.h
+--- git-1.5.4.3.orig/git-compat-util.h	2008-03-13 11:57:01 +0100
++++ git-1.5.4.3/git-compat-util.h	2008-03-13 12:09:29 +0100
+@@ -65,7 +65,14 @@
+ #include <signal.h>
+ #include <sys/wait.h>
+ #include <fnmatch.h>
+-#include <sys/poll.h>
++
++#ifndef __INTERIX
++# include <sys/poll.h>
++#else
++# include <poll.h>
++# include <stdint.h>
++#endif
++
+ #include <sys/socket.h>
+ #include <sys/ioctl.h>
+ #ifndef NO_SYS_SELECT_H

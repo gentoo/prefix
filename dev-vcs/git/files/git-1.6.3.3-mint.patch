@@ -1,0 +1,43 @@
+alanh@fairlite.co.uk: patch for FreeMiNT
+
+http://bugs.gentoo.org/show_bug.cgi?id=275944
+
+--- cache.h	2008-12-22 14:41:50.000000000 +0000
++++ cache.h	2008-12-22 14:42:32.000000000 +0000
+@@ -42,7 +42,7 @@
+  * happens that everybody shares the same bit representation
+  * in the UNIX world (and apparently wider too..)
+  */
+-#define S_IFGITLINK	0160000
++#define S_IFGITLINK	0140000
+ #define S_ISGITLINK(m)	(((m) & S_IFMT) == S_IFGITLINK)
+ 
+ /*
+--- git-compat-util.h	2008-12-22 18:35:58.000000000 +0000
++++ git-compat-util.h	2008-12-22 18:39:21.000000000 +0000
+@@ -81,6 +81,9 @@
+ #include <arpa/inet.h>
+ #include <netdb.h>
+ #include <pwd.h>
++#ifdef __MINT__
++#include "compat/mint.h"
++#endif
+ #include <inttypes.h>
+ #if defined(__CYGWIN__)
+ #undef _XOPEN_SOURCE
+--- /dev/null	2008-12-07 20:01:52.000000000 +0000
++++ compat/mint.h	2008-12-23 11:52:10.000000000 +0000
+@@ -0,0 +1,2 @@
++#define SA_RESTART 0
++#define sockaddr_storage sockaddr
+--- Makefile	2009-01-29 12:12:01.000000000 +0000
++++ Makefile	2009-01-29 12:13:39.000000000 +0000
+@@ -1292,7 +1292,7 @@
+ 
+ git-imap-send$X: imap-send.o $(GITLIBS)
+ 	$(QUIET_LINK)$(CC) $(ALL_CFLAGS) -o $@ $(ALL_LDFLAGS) $(filter %.o,$^) \
+-		$(LIBS) $(OPENSSL_LINK) $(OPENSSL_LIBSSL)
++		$(LIBS) $(OPENSSL_LINK) $(OPENSSL_LIBSSL) $(LIB_4_CRYPTO)
+ 
+ http.o http-walker.o http-push.o transport.o: http.h
+ 
