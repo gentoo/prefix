@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/net-voip/linphone/linphone-3.2.1-r1.ebuild,v 1.1 2010/03/18 06:04:09 pva Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit eutils autotools multilib
 
