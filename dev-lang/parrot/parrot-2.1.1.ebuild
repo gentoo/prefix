@@ -27,6 +27,7 @@ DEPEND="dev-lang/perl[doc?]
 		${RDEPEND}"
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-fix-darwin-compile-and-link.patch
 	sed -e "s:/lib/:/$(get_libdir)/:" -i "${S}/tools/dev/install_files.pl"
 }
 
