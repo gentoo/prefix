@@ -174,7 +174,8 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
 		# some more modules fixed (_multiprocessing, dl)
 		epatch "${FILESDIR}"/${PN}-2.6.2-interix-modules.patch
-		epatch "${FILESDIR}"/${PN}-2.6.2-interix-nis.patch
+		# -r1 because of 12_all_check_availability_of_nis_headers
+		epatch "${FILESDIR}"/${PN}-2.6.4-r1-interix-nis.patch
 	fi
 
 	# Fix OtherFileTests.testStdin() not to assume
