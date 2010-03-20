@@ -75,8 +75,10 @@ src_configure() {
 		$(use_with python)           \
 		$(use_with readline)         \
 		$(use_with readline history) \
-		$(use_enable ipv6) \
-		PYTHON_SITE_PACKAGES=$(python_get_sitedir)"
+		$(use_enable ipv6)"
+	# avoid needing python when we don't need it at all (like during bootstrap)
+	use python && \
+		myconf="${myconf} PYTHON_SITE_PACKAGES=$(python_get_sitedir)"
 
 	# Please do not remove, as else we get references to PORTAGE_TMPDIR
 	# in /usr/lib/python?.?/site-packages/libxml2mod.la among things.
