@@ -1,0 +1,64 @@
+Enable building a dylib and in the correct way.
+
+Besides that it's ugly, it also breaks the build since the Apple
+toolchain is broken enough to hit some assertion when compiling with
+debug enabled, so remove that.
+
+--- base/unix-dll.mak
++++ base/unix-dll.mak
+@@ -44,21 +44,24 @@
+ # shared library
+ GS_SONAME_BASE=lib$(GS)
+ 
++CPU = $(shell uname)
++ifneq ($(CPU),Darwin)
+ # GNU/Linux
+ GS_SOEXT=so
+ GS_SONAME=$(GS_SONAME_BASE).$(GS_SOEXT)
+ GS_SONAME_MAJOR=$(GS_SONAME).$(GS_VERSION_MAJOR)
+ GS_SONAME_MAJOR_MINOR=$(GS_SONAME).$(GS_VERSION_MAJOR).$(GS_VERSION_MINOR)
+ LDFLAGS_SO=-shared -Wl,-soname=$(GS_SONAME_MAJOR)
+-
++else
+ # MacOS X
+-#GS_SOEXT=dylib
+-#GS_SONAME=$(GS_SONAME_BASE).$(GS_SOEXT)
+-#GS_SONAME_MAJOR=$(GS_SONAME_BASE).$(GS_VERSION_MAJOR).$(GS_SOEXT)
+-#GS_SONAME_MAJOR_MINOR=$(GS_SONAME_BASE).$(GS_VERSION_MAJOR).$(GS_VERSION_MINOR).$(GS_SOEXT)
++GS_SOEXT=dylib
++GS_SONAME=$(GS_SONAME_BASE).$(GS_SOEXT)
++GS_SONAME_MAJOR=$(GS_SONAME_BASE).$(GS_VERSION_MAJOR).$(GS_SOEXT)
++GS_SONAME_MAJOR_MINOR=$(GS_SONAME_BASE).$(GS_VERSION_MAJOR).$(GS_VERSION_MINOR).$(GS_SOEXT)
+ #LDFLAGS_SO=-dynamiclib -flat_namespace
+-#LDFLAGS_SO=-dynamiclib -install_name $(GS_SONAME_MAJOR_MINOR)
++LDFLAGS_SO=-dynamiclib -install_name $(libdir)/$(GS_SONAME_MAJOR)
+ #LDFLAGS_SO=-dynamiclib -install_name $(FRAMEWORK_NAME)
++endif
+ 
+ GS_SO=$(BINDIR)/$(GS_SONAME)
+ GS_SO_MAJOR=$(BINDIR)/$(GS_SONAME_MAJOR) 
+@@ -82,11 +82,11 @@
+ # Build the small Ghostscript loaders, with Gtk+ and without
+ 
+ $(GSSOC_XE): $(GS_SO) $(PSSRC)$(SOC_LOADER)
+-	$(GLCC) -g -o $(GSSOC_XE) $(PSSRC)dxmainc.c \
++	$(GLCC) -o $(GSSOC_XE) $(PSSRC)dxmainc.c \
+ 	$(LDFLAGS) -L$(BINDIR) -l$(GS)
+ 
+ $(GSSOX_XE): $(GS_SO) $(PSSRC)$(SOC_LOADER)
+-	$(GLCC) -g $(SOC_CFLAGS) -o $(GSSOX_XE) $(PSSRC)$(SOC_LOADER) \
++	$(GLCC) $(SOC_CFLAGS) -o $(GSSOX_XE) $(PSSRC)$(SOC_LOADER) \
+ 	$(LDFLAGS) -L$(BINDIR) -l$(GS) $(SOC_LIBS)
+ 
+ # ------------------------- Recursive make targets ------------------------- #
+--- base/macos-fw.mak
++++ base/macos-fw.mak
+@@ -67,7 +67,7 @@
+ # it would be nice if we could link to the framework instead
+ 
+ $(GSSOC_XE): $(GS_SO) $(PSSRC)dxmainc.c
+-	$(GLCC) -g -o $(GSSOC_XE) $(PSSRC)dxmainc.c -L$(BINDIR) -l$(GS)
++	$(GLCC) -o $(GSSOC_XE) $(PSSRC)dxmainc.c -L$(BINDIR) -l$(GS)
+ 
+ # ------------------------- Recursive make targets ------------------------- #
+ 
