@@ -19,6 +19,7 @@ IUSE=""
 S="${WORKDIR}/${PN}-${MY_PV}"
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-darwin-malloc.patch
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix-getopt.patch
 	eautoreconf # required for interix, was elibtoolize
 }
