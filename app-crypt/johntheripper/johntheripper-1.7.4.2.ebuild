@@ -48,11 +48,12 @@ get_target() {
 	elif use amd64; then
 		echo "linux-x86-64"
 	elif use ppc-macos; then
-		if use altivec; then
+	# force AltiVec, the non-altivec profile contains ancient compiler cruft
+	#	if use altivec; then
 			echo "macosx-ppc32-altivec"
-		else
-			echo "macosx-ppc32"
-		fi
+	#	else
+	#		echo "macosx-ppc32"
+	#	fi
 		# for Tiger this can be macosx-ppc64
 	elif use x86-macos; then
 		if use sse2; then
@@ -94,6 +95,8 @@ src_prepare() {
 	for p in ${PATCHLIST}; do
 		epatch "${FILESDIR}/${PN}-1.7.3.1-${p}.patch"
 	done
+
+	epatch "${FILESDIR}"/${P}-darwin-hide-symbols.patch
 
 	if ! use minimal; then
 		sed -e "s/LDFLAGS  *=  */override LDFLAGS += /" -e "/LDFLAGS/s/-s//" \
