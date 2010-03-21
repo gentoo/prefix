@@ -624,6 +624,7 @@ net-misc/youtube-dl
 net-nntp/hellanzb
 net-nntp/newspost
 net-p2p/mutella
+net-voip/linphone
 net-wireless/iw
 sci-mathematics/gmm
 sci-mathematics/otter
