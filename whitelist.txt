@@ -590,6 +590,7 @@ net-libs/libosip
 net-libs/libotr
 net-libs/libpcap
 net-libs/libsoup-gnome
+net-libs/libsrtp
 net-libs/libssh
 net-libs/libssh2
 net-libs/libvncserver
