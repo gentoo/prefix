@@ -51,6 +51,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-3.2.0_as_needed.patch
 	epatch "${FILESDIR}"/${PN}-3.2.4-imread.patch
 	epatch "${FILESDIR}"/${PN}-3.2.4-ldflags.patch
+	epatch "${FILESDIR}"/${PN}-3.2.4-darwin.patch
 }
 
 src_configure() {
