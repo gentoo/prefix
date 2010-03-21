@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.00.15838 (21 Mar 2010)
+
+  21 Mar 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.15754.ebuild, +portage-2.2.00.15838.ebuild:
+  Bump, shebang check got more strict by checking existence of already
+  prefixed shebangs as well now
+
 *portage-2.2.00.15819 (11 Mar 2010)
 
   11 Mar 2010; Fabian Groffen <grobian@gentoo.org>
