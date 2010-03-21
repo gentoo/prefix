@@ -500,6 +500,7 @@ media-libs/libsamplerate
 media-libs/libsvg
 media-libs/libuninameslist
 media-libs/libwpg
+media-libs/mediastreamer
 media-libs/musicbrainz
 media-libs/mutagen
 media-libs/openal
