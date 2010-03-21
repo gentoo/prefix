@@ -596,6 +596,7 @@ net-libs/libssh2
 net-libs/libvncserver
 net-libs/openmq-cclient
 net-libs/openslp
+net-libs/ortp
 net-libs/webkit-gtk
 net-mail/getmail
 net-mail/mairix
