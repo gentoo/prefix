@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.4.2_p3.ebuild,v 1.1 2010/01/24 19:06:38 vapier Exp $
 
 # NOTE: we cannot depend on autotools here starting with gcc-4.3.x
-inherit eutils
+inherit eutils libtool
 
 MY_PV=${PV/_p*}
 MY_P=${PN}-${MY_PV}
