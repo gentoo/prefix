@@ -227,6 +227,7 @@ dev-db/maatkit
 dev-db/mysql++
 dev-db/sqlite
 dev-db/tokyocabinet
+dev-db/unixODBC
 dev-db/virtuoso-odbc
 dev-db/virtuoso-server
 dev-haskell/cabal
