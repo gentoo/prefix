@@ -32,7 +32,7 @@ LICENSE="vim"
 case "${EAPI:-0}" in
 	0|1)
 		;;
-	2)
+	2|3)
 		HAS_SRC_PREPARE=1
 		HAS_USE_DEP=1
 		;;
@@ -247,6 +247,7 @@ vim_pkg_setup() {
 }
 
 vim_src_prepare() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	if [[ ${PN##*-} == cvs ]] ; then
 		ECVS_SERVER="vim.cvs.sourceforge.net:/cvsroot/vim"
 		ECVS_PASS=""
@@ -325,7 +326,7 @@ vim_src_prepare() {
 	# conditionally make the manpager.sh script
 	if [[ ${MY_PN} == vim ]] && use vim-pager ; then
 		cat <<END > "${S}"/runtime/macros/manpager.sh
-#!${EPREFIX}/bin/sh
+#!/bin/sh
 sed -e 's/\x1B\[[[:digit:]]\+m//g' | col -b | \\
 		vim \\
 			-c 'let no_plugin_maps = 1' \\
@@ -341,7 +342,6 @@ END
 			'/-S check.vim/s,..VIM.,ln -s $(VIM) testvim \; ./testvim -X,' \
 			"${S}"/src/po/Makefile
 	fi
-
 }
 
 vim_src_unpack() {
@@ -500,6 +500,8 @@ vim_src_compile() {
 }
 
 vim_src_install() {
+	has "${EAPI:-0}" 0 1 2 && use !prefix && EPREFIX=
+	has "${EAPI:-0}" 0 1 2 && use !prefix && ED="${D}"
 	local vimfiles=/usr/share/vim/vim${VIM_VERSION/.}
 
 	if [[ ${MY_PN} == "vim-core" ]] ; then
@@ -604,6 +606,7 @@ vim_src_install() {
 # of these links are "owned" by the vim ebuild when it is installed,
 # but they might be good for gvim as well (see bug 45828)
 update_vim_symlinks() {
+	has "${EAPI:-0}" 0 1 2 && use !prefix && EROOT="${ROOT}"
 	local f syms
 	syms="vimdiff rvim rview"
 	einfo "Calling eselect vi update..."
