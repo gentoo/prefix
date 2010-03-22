@@ -4,7 +4,7 @@
 
 # NOTE: If you bump this ebuild, make sure you bump dev-python/pycurl!
 
-inherit multilib eutils prefix
+inherit multilib eutils libtool prefix
 
 #MY_P=${P/_pre/-}
 DESCRIPTION="A Client that groks URLs"
@@ -56,6 +56,9 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-7.18.2-prefix.patch
 	eprefixify curl-config.in || die "eprefixify failed"
+
+	# for FreeMiNT
+	elibtoolize
 }
 
 src_compile() {
