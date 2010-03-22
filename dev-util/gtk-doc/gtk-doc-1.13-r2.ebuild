@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gtk.org/gtk-doc/"
 
 LICENSE="GPL-2 FDL-1.1"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-macos ~sparc-solaris ~x64-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris"
 IUSE="debug doc emacs test"
 
 RDEPEND=">=dev-libs/glib-2.6
@@ -36,6 +36,10 @@ SITEFILE=61${PN}-gentoo.el
 
 DOCS="AUTHORS ChangeLog MAINTAINERS NEWS README TODO"
 
+pkg_setup() {
+	G2CONF="--with-xml-catalog=${EPREFIX}/etc/xml/catalog"
+}
+
 src_prepare() {
 	gnome2_src_prepare
 
@@ -53,13 +57,6 @@ src_prepare() {
 	# Fix bug 306569 by not loading vim plugins while calling vim in
 	# gtkdoc-fixxref for fixing vim syntax highlighting
 	epatch "${FILESDIR}/${P}-fixxref-vim-u-NONE.patch"
-}
-
-src_compile() {
-	G2CONF="--with-xml-catalog=${EPREFIX}/etc/xml/catalog"
-	gnome2_src_compile
-
-	use emacs && elisp-compile tools/gtk-doc.el
 }
 
 src_install() {
