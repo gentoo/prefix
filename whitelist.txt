@@ -156,6 +156,7 @@ app-text/convmv
 app-text/cwtext
 app-text/dbacl
 app-text/diction
+app-text/docbook-dsssl-stylesheets
 app-text/docbook-sgml-dtd
 app-text/docbook-xml-dtd
 app-text/docbook-xsl-stylesheets
