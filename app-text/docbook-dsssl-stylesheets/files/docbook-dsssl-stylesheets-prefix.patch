@@ -1,8 +1,0 @@
---- bin/collateindex.pl~	2007-10-14 10:44:28 +0200
-+++ bin/collateindex.pl	2007-10-14 10:44:59 +0200
-@@ -1,4 +1,4 @@
--#!/usr/bin/perl -- # -*- Perl -*-
-+#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl -- # -*- Perl -*-
- #
- # $Id: collateindex.pl,v 1.10 2004/10/24 17:05:41 petere78 Exp $
- 

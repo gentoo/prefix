@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/docbook-dsssl-stylesheets/docbook-dsssl-stylesheets-1.79.ebuild,v 1.20 2008/07/04 08:49:24 eva Exp $
 
-inherit sgml-catalog prefix
+inherit sgml-catalog
 
 MY_P=${P/-stylesheets/}
 S=${WORKDIR}/${MY_P}
@@ -26,8 +26,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	cp "${FILESDIR}/${PN}-1.77.Makefile" Makefile
-	epatch "${FILESDIR}"/${PN}-prefix.patch
-	eprefixify bin/collateindex.pl
 }
 
 src_compile() {
