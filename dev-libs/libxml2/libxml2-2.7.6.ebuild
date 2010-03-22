@@ -44,7 +44,9 @@ src_unpack() {
 			"${S}"/xstc/ \
 			|| die "Failed to install test tarballs"
 	fi
+}
 
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.7.1-catalog_path.patch
 	epatch "${FILESDIR}"/${PN}-2.7.2-winnt.patch
 	epatch "${FILESDIR}"/${PN}-2.7.4-ld-version-script-check.patch # needs eautoreconf
@@ -52,9 +54,6 @@ src_unpack() {
 	eprefixify catalog.c xmlcatalog.c runtest.c xmllint.c
 
 	eautoreconf # required for winnt
-}
-
-src_prepare() {
 	epunt_cxx
 }
 
