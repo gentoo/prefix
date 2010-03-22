@@ -41,10 +41,8 @@ src_unpack() {
 	sed -i '/if test/s:==:=:' configure #261016
 	find . -type f -print0 | xargs -0 touch -r configure
 
-# fails to apply	epatch "${FILESDIR}"/${PN}-2.4.1_p5-interix.patch
-
-	# http://bugs.gentoo.org/307907, can't do this unconditional for now
-	[[ ${CHOST} == *-mint* ]] && elibtoolize
+	# needed for FreeMiNT
+	elibtoolize
 }
 
 src_install() {
