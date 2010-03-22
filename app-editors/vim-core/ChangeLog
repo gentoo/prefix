@@ -1,6 +1,11 @@
 # ChangeLog for app-editors/vim-core
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.326 2010/03/09 18:47:26 lack Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/vim-core/ChangeLog,v 1.327 2010/03/17 22:00:16 lack Exp $
+
+*vim-core-7.2.402 (17 Mar 2010)
+
+  17 Mar 2010; Jim Ramsay <lack@gentoo.org> +vim-core-7.2.402.ebuild:
+  Version bump: 7.2.402 is released
 
   09 Mar 2010; Jim Ramsay <lack@gentoo.org> files/vimrc-r4:
   Fix /etc/vim/vimrc so it does not accidentally override last-position-jump
