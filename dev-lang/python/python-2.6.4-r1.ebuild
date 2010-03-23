@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4-r1.ebuild,v 1.8 2010/03/10 10:09:02 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4-r1.ebuild,v 1.9 2010/03/20 20:33:28 arfrever Exp $
 
 EAPI="2"
 
@@ -218,6 +218,10 @@ src_configure() {
 
 	if [[ -n "${PYTHON_DISABLE_MODULES}" ]]; then
 		einfo "Disabled modules: ${PYTHON_DISABLE_MODULES}"
+	fi
+
+	if [[ "$(gcc-major-version)" -ge 4 ]]; then
+		append-flags -fwrapv
 	fi
 
 	export OPT="${CFLAGS}"
@@ -470,7 +474,7 @@ EOF
 		 /usr/include/python${SLOT}/pyconfig.h
 
 	if use build; then
-		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{bsddb,email,idlelib,lib-tk,sqlite3,test}
+		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{bsddb,idlelib,lib-tk,sqlite3,test}
 	else
 		use elibc_uclibc && rm -fr "${ED}$(python_get_libdir)/"{bsddb/test,test}
 		use berkdb || rm -fr "${ED}$(python_get_libdir)/"{bsddb,test/test_bsddb*}

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r4.ebuild,v 1.14 2010/03/07 11:31:55 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r4.ebuild,v 1.15 2010/03/20 20:33:28 arfrever Exp $
 
 EAPI="1"
 
@@ -177,6 +177,10 @@ src_configure() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
 
+	if [[ "$(gcc-major-version)" -ge 4 ]]; then
+		append-flags -fwrapv
+	fi
+
 	export OPT="${CFLAGS}"
 
 	filter-flags -malign-double
@@ -297,7 +301,7 @@ src_install() {
 	sed -e "s:^OPT=.*:OPT=\t\t-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
 
 	if use build ; then
-		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{bsddb,email,idlelib,lib-tk,sqlite3,test}
+		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{bsddb,idlelib,lib-tk,sqlite3,test}
 	else
 		use elibc_uclibc && rm -fr "${ED}$(python_get_libdir)/"{bsddb/test,test}
 		use berkdb || rm -fr "${ED}$(python_get_libdir)/"{bsddb,test/test_bsddb*}

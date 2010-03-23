@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.31 2010/03/07 11:31:55 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.4.6.ebuild,v 1.32 2010/03/20 20:33:28 arfrever Exp $
 
 EAPI="1"
 
@@ -145,6 +145,10 @@ src_configure() {
 		einfo "Disabled modules: ${PYTHON_DISABLE_MODULES}"
 	fi
 
+	if [[ "$(gcc-major-version)" -ge 4 ]]; then
+		append-flags -fwrapv
+	fi
+
 	export OPT="${CFLAGS}"
 
 	local myconf
@@ -265,7 +269,7 @@ src_install() {
 
 	# Python 2.4 partially doesn't respect $(get_libdir).
 	if use build; then
-		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}"usr/lib*/python${SLOT}/{bsddb,email,idlelib,lib-tk,test}
+		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}"usr/lib*/python${SLOT}/{bsddb,idlelib,lib-tk,test}
 	else
 		use elibc_uclibc && rm -fr "${ED}"usr/lib*/python${SLOT}/{bsddb/test,test}
 		use berkdb || rm -fr "${ED}"usr/lib*/python${SLOT}/{bsddb,test/test_bsddb*}

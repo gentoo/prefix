@@ -1,6 +1,27 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.459 2010/03/10 10:09:02 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.462 2010/03/22 18:11:34 arfrever Exp $
+
+*python-3.1.2 (22 Mar 2010)
+
+  22 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-3.1.2.ebuild:
+  Version bump. Fixed bugs: #189283, #279234, #300961, #301848, #302519.
+  Respect GENTOO_PYTHON_PROCESS_NAME, GENTOO_PYTHON_WRAPPER_SCRIPT_PATH and
+  GENTOO_PYTHON_TARGET_SCRIPT_PATH environmental variables.
+
+*python-2.6.5 (21 Mar 2010)
+
+  21 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.6.5.ebuild:
+  Version bump. Fixed bugs: #189283, #279234, #282859, #300961, #301848.
+  Respect GENTOO_PYTHON_PROCESS_NAME, GENTOO_PYTHON_WRAPPER_SCRIPT_PATH and
+  GENTOO_PYTHON_TARGET_SCRIPT_PATH environmental variables.
+
+  20 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.4.6.ebuild, python-2.5.4-r4.ebuild, python-2.6.4-r1.ebuild,
+  python-3.1.1-r1.ebuild:
+  Use -fwrapv (bug #297276). Install email module with USE="build".
 
   10 Mar 2010; Joseph Jezak <josejx@gentoo.org> python-2.6.4-r1.ebuild:
   Marked ppc/ppc64 stable for bug #306793.
