@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.15 2009/11/16 00:38:24 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.16 2010/03/19 01:20:40 leio Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -27,7 +27,8 @@ MY_P=${MY_PN}-${PV}
 # need a better way to extract these
 # gst-plugins-base 0.9
 my_gst_plugins_base="x xvideo xshm gst_v4l alsa cdparanoia gnome_vfs
-gio libvisual ogg oggtest theora vorbis vorbistest examples freetypetest pango"
+gio libvisual ogg oggtest theora ivorbis vorbis vorbistest examples
+freetypetest pango"
 
 #SRC_URI="mirror://gnome/sources/gst-plugins/${PV_MAJ_MIN}/${MY_P}.tar.bz2"
 SRC_URI="http://gstreamer.freedesktop.org/src/gst-plugins-base/${MY_P}.tar.bz2"

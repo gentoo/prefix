@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.80 2009/03/07 22:28:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/enlightenment.eclass,v 1.81 2010/02/28 10:52:06 tommy Exp $
 #
 # Author: vapier@gentoo.org
 
@@ -62,6 +62,13 @@ if [[ ${WANT_AUTOTOOLS} == "yes" ]] ; then
 	inherit autotools
 fi
 
+ENLIGHTENMENT_EXPF="pkg_setup src_unpack src_compile src_install pkg_postinst"
+case "${EAPI:-0}" in
+        2|3|4) ENLIGHTENMENT_EXPF+=" src_prepare src_configure" ;;
+        *) ;;
+esac
+EXPORT_FUNCTIONS ${ENLIGHTENMENT_EXPF}
+
 DESCRIPTION="A DR17 production"
 HOMEPAGE="http://www.enlightenment.org/"
 case ${EURI_STATE:-${E_STATE}} in
@@ -117,15 +124,6 @@ enlightenment_pkg_setup() {
 	: enlightenment_warning_msg
 }
 
-# the stupid gettextize script prevents non-interactive mode, so we hax it
-gettext_modify() {
-	use nls || return 0
-	cp $(type -P gettextize) "${T}"/ || die "could not copy gettextize"
-	sed -i \
-		-e 's:read dummy < /dev/tty::' \
-		"${T}"/gettextize
-}
-
 enlightenment_src_unpack() {
 	if [[ ${E_STATE} == "live" ]] ; then
 		case ${E_LIVE_SOURCE} in
@@ -136,41 +134,38 @@ enlightenment_src_unpack() {
 	else
 		unpack ${A}
 	fi
-	gettext_modify
-	[[ -s gendoc ]] && chmod a+rx gendoc
+	hasq src_prepare ${ENLIGHTENMENT_EXPF} || enlightenment_src_prepare
 }
 
-enlightenment_src_compile() {
-	# gstreamer sucks, work around it doing stupid stuff
-	export GST_REGISTRY="${S}/registry.xml"
-
-	if [[ ! -e configure ]] ; then
-		env \
-			PATH="${T}:${PATH}" \
-			NOCONFIGURE=yes \
-			USER=blah \
-			./autogen.sh \
-			|| enlightenment_die "autogen failed"
-		# symlinked files will cause sandbox violation
-		local x
-		for x in config.{guess,sub} ; do
-			[[ ! -L ${x} ]] && continue
-			rm -f ${x}
-			touch ${x}
-		done
-	elif [[ ${WANT_AUTOTOOLS} == "yes" ]] ; then
+enlightenment_src_prepare() {
+	[[ -s gendoc ]] && chmod a+rx gendoc
+	if [[ ${WANT_AUTOTOOLS} == "yes" ]] ; then
+		[[ -d po ]] && eautopoint -f
+		# autotools require README, when README.in is around, but README
+		# is created later in configure step
+		[[ -f README.in ]] && touch README
 		eautoreconf
 	fi
 	epunt_cxx
 	elibtoolize
-	econf ${MY_ECONF} || enlightenment_die "econf failed"
+}
+
+enlightenment_src_configure() {
+	# gstreamer sucks, work around it doing stupid stuff
+	export GST_REGISTRY="${S}/registry.xml"
+
+	econf ${MY_ECONF}
+}
+
+enlightenment_src_compile() {
+	hasq src_configure ${ENLIGHTENMENT_EXPF} || enlightenment_src_configure
 	emake || enlightenment_die "emake failed"
 	use doc && [[ -x ./gendoc ]] && { ./gendoc || enlightenment_die "gendoc failed" ; }
 }
 
 enlightenment_src_install() {
 	emake install DESTDIR="${D}" || enlightenment_die
-	find "${ED}" '(' -name CVS -o -name .svn -o -name .git ')' -type d -exec rm -rf '{}' \; 2>/dev/null
+	find "${D}" '(' -name CVS -o -name .svn -o -name .git ')' -type d -exec rm -rf '{}' \; 2>/dev/null
 	for d in AUTHORS ChangeLog NEWS README TODO ${EDOCS}; do
 		[[ -f ${d} ]] && dodoc ${d}
 	done
@@ -181,4 +176,3 @@ enlightenment_pkg_postinst() {
 	: enlightenment_warning_msg
 }
 
-EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_postinst

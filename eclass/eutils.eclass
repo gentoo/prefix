@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.336 2010/02/26 05:33:57 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.341 2010/03/23 03:40:18 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -54,13 +54,11 @@ ebeep() {
 else
 
 ebeep() {
-	[[ $(type -t eqawarn) == function ]] && \
-		eqawarn "QA Notice: ebeep is not defined in EAPI=3, please file a bug at http://bugs.gentoo.org"
+	ewarn "QA Notice: ebeep is not defined in EAPI=${EAPI}, please file a bug at http://bugs.gentoo.org"
 }
 
 epause() {
-	[[ $(type -t eqawarn) == function ]] && \
-		eqawarn "QA Notice: epause is not defined in EAPI=3, please file a bug at http://bugs.gentoo.org"
+	ewarn "QA Notice: epause is not defined in EAPI=${EAPI}, please file a bug at http://bugs.gentoo.org"
 }
 
 fi
@@ -874,7 +872,7 @@ edos2unix() {
 # Great for making those icons in kde/gnome startmenu !
 # Amaze your friends !	Get the women !	 Join today !
 #
-# make_desktop_entry(<command>, [name], [icon], [type], [path])
+# make_desktop_entry(<command>, [name], [icon], [type], [fields])
 #
 # binary:	what command does the app run with ?
 # name:		the name that will show up in the menu
@@ -883,15 +881,15 @@ edos2unix() {
 #			a full path to an icon
 # type:		what kind of application is this ?	for categories:
 #			http://standards.freedesktop.org/menu-spec/latest/apa.html
-# path:		if your app needs to startup in a specific dir
+# fields:	extra fields to append to the desktop file; a printf string
 make_desktop_entry() {
-	[[ -z $1 ]] && eerror "make_desktop_entry: You must specify the executable" && return 1
+	[[ -z $1 ]] && die "make_desktop_entry: You must specify the executable"
 
 	local exec=${1}
 	local name=${2:-${PN}}
 	local icon=${3:-${PN}}
 	local type=${4}
-	local path=${5}
+	local fields=${5}
 
 	if [[ -z ${type} ]] ; then
 		local catmaj=${CATEGORY%%-*}
@@ -900,22 +898,21 @@ make_desktop_entry() {
 			app)
 				case ${catmin} in
 					accessibility) type=Accessibility;;
-					admin)	   type=System;;
-					antivirus) type=System;;
-					arch)      type=Archiving;;
-					backup)    type=Archiving;;
-					cdr)	   type=DiscBurning;;
-					dicts)	   type=Dictionary;;
-					doc)       type=Documentation;;
-					editors)   type=TextEditor;;
-					emacs)	   type=TextEditor;;
-					emulation) type=Emulator;;
-					laptop)	   type=HardwareSettings;;
-					office)	   type=Office;;
-					pda)       type=PDA;;
-					vim)	   type=TextEditor;;
-					xemacs)	   type=TextEditor;;
-					*)		   type=;;
+					admin)         type=System;;
+					antivirus)     type=System;;
+					arch)          type=Archiving;;
+					backup)        type=Archiving;;
+					cdr)           type=DiscBurning;;
+					dicts)         type=Dictionary;;
+					doc)           type=Documentation;;
+					editors)       type=TextEditor;;
+					emacs)         type=TextEditor;;
+					emulation)     type=Emulator;;
+					laptop)        type=HardwareSettings;;
+					office)        type=Office;;
+					pda)           type=PDA;;
+					vim)           type=TextEditor;;
+					xemacs)        type=TextEditor;;
 				esac
 				;;
 
@@ -926,17 +923,16 @@ make_desktop_entry() {
 			games)
 				case ${catmin} in
 					action|fps) type=ActionGame;;
-					arcade)		type=ArcadeGame;;
-					board)		type=BoardGame;;
-					emulation)	type=Emulator;;
-					kids)		type=KidsGame;;
-					puzzle)		type=LogicGame;;
-					roguelike)	type=RolePlaying;;
-					rpg)		type=RolePlaying;;
+					arcade)     type=ArcadeGame;;
+					board)      type=BoardGame;;
+					emulation)  type=Emulator;;
+					kids)       type=KidsGame;;
+					puzzle)     type=LogicGame;;
+					roguelike)  type=RolePlaying;;
+					rpg)        type=RolePlaying;;
 					simulation) type=Simulation;;
-					sports)		type=SportsGame;;
-					strategy)	type=StrategyGame;;
-					*)			type=;;
+					sports)     type=SportsGame;;
+					strategy)   type=StrategyGame;;
 				esac
 				type="Game;${type}"
 				;;
@@ -955,28 +951,32 @@ make_desktop_entry() {
 
 			media)
 				case ${catmin} in
-					gfx)   type=Graphics;;
-					radio) type=Tuner;;
-					sound) type=Audio;;
-					tv)	   type=TV;;
-					video) type=Video;;
-					*)	   type=;;
+					gfx)
+						type=Graphics
+						;;
+					*)
+						case ${catmin} in
+							radio) type=Tuner;;
+							sound) type=Audio;;
+							tv)    type=TV;;
+							video) type=Video;;
+						esac
+						type="AudioVideo;${type}"
+						;;
 				esac
-				type="AudioVideo;${type}"
 				;;
 
 			net)
 				case ${catmin} in
 					dialup) type=Dialup;;
-					ftp)	type=FileTransfer;;
-					im)		type=InstantMessaging;;
-					irc)	type=IRCClient;;
-					mail)	type=Email;;
-					news)	type=News;;
-					nntp)	type=News;;
-					p2p)	type=FileTransfer;;
-					voip)	type=Telephony;;
-					*)		type=;;
+					ftp)    type=FileTransfer;;
+					im)     type=InstantMessaging;;
+					irc)    type=IRCClient;;
+					mail)   type=Email;;
+					news)   type=News;;
+					nntp)   type=News;;
+					p2p)    type=FileTransfer;;
+					voip)   type=Telephony;;
 				esac
 				type="Network;${type}"
 				;;
@@ -984,15 +984,14 @@ make_desktop_entry() {
 			sci)
 				case ${catmin} in
 					astro*)  type=Astronomy;;
-					bio*)	 type=Biology;;
-					calc*)	 type=Calculator;;
-					chem*)	 type=Chemistry;;
+					bio*)    type=Biology;;
+					calc*)   type=Calculator;;
+					chem*)   type=Chemistry;;
 					elec*)   type=Electronics;;
-					geo*)	 type=Geology;;
-					math*)	 type=Math;;
+					geo*)    type=Geology;;
+					math*)   type=Math;;
 					physics) type=Physics;;
 					visual*) type=DataVisualization;;
-					*)		 type=;;
 				esac
 				type="Education;Science;${type}"
 				;;
@@ -1004,7 +1003,6 @@ make_desktop_entry() {
 			www)
 				case ${catmin} in
 					client) type=WebBrowser;;
-					*)		type=;;
 				esac
 				type="Network;${type}"
 				;;
@@ -1044,14 +1042,19 @@ make_desktop_entry() {
 	Categories=${type}
 	EOF
 
-	[[ ${path} ]] && echo "Path=${path}" >> "${desktop}"
+	if [[ ${fields:-=} != *=* ]] ; then
+		# 5th arg used to be value to Path=
+		ewarn "make_desktop_entry: update your 5th arg to read Path=${fields}"
+		fields="Path=${fields}"
+	fi
+	[[ -n ${fields} ]] && printf "${fields}\n" >> "${desktop}"
 
 	(
 		# wrap the env here so that the 'insinto' call
 		# doesn't corrupt the env of the caller
 		insinto /usr/share/applications
 		doins "${desktop}"
-	)
+	) || die "installing desktop file failed"
 }
 
 # @FUNCTION: validate_desktop_entries

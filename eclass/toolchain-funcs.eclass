@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.97 2009/12/01 04:44:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.98 2010/03/15 23:51:14 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -93,6 +93,14 @@ tc-getGCJ() { tc-getPROG GCJ gcj "$@"; }
 # @USAGE: [toolchain prefix]
 # @RETURN: name of the pkg-config tool
 tc-getPKG_CONFIG() { tc-getPROG PKG_CONFIG pkg-config "$@"; }
+# @FUNCTION: tc-getRC
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the Windows resource compiler
+tc-getRC() { tc-getPROG RC windres "$@"; }
+# @FUNCTION: tc-getDLLWRAP
+# @USAGE: [toolchain prefix]
+# @RETURN: name of the Windows dllwrap utility
+tc-getDLLWRAP() { tc-getPROG DLLWRAP dllwrap "$@"; }
 
 # @FUNCTION: tc-getBUILD_CC
 # @USAGE: [toolchain prefix]

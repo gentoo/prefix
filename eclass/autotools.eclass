@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.92 2010/02/08 11:04:01 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.94 2010/03/07 17:43:11 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -17,12 +17,12 @@ inherit eutils libtool
 # @ECLASS-VARIABLE: WANT_AUTOCONF
 # @DESCRIPTION:
 # The major version of autoconf your package needs
-[[ -z ${WANT_AUTOCONF} ]] && WANT_AUTOCONF="latest"
+: ${WANT_AUTOCONF:=latest}
 
 # @ECLASS-VARIABLE: WANT_AUTOMAKE
 # @DESCRIPTION:
 # The major version of automake your package needs
-[[ -z ${WANT_AUTOMAKE} ]] && WANT_AUTOMAKE="latest"
+: ${WANT_AUTOMAKE:=latest}
 
 _automake_atom="sys-devel/automake"
 _autoconf_atom="sys-devel/autoconf"
@@ -46,10 +46,21 @@ if [[ -n ${WANT_AUTOCONF} ]] ; then
 	esac
 	export WANT_AUTOCONF
 fi
-DEPEND="${_automake_atom}
-	${_autoconf_atom}"
-[[ ${CATEGORY}/${PN} != "sys-devel/libtool" ]] && DEPEND="${DEPEND} >=sys-devel/libtool-2.2.6b"
+
+AUTOTOOLS_DEPEND="${_automake_atom} ${_autoconf_atom}"
+[[ ${CATEGORY}/${PN} != "sys-devel/libtool" ]] && AUTOTOOLS_DEPEND="${AUTOTOOLS_DEPEND} >=sys-devel/libtool-2.2.6b"
 RDEPEND=""
+
+# @ECLASS-VARIABLE: AUTOTOOLS_AUTO_DEPEND
+# @DESCRIPTION:
+# Set to 'no' to disable automatically adding to DEPEND.  This lets
+# ebuilds former conditional depends by using ${AUTOTOOLS_DEPEND} in
+# their own DEPEND string.
+: ${AUTOTOOLS_AUTO_DEPEND:=yes}
+if [[ ${AUTOTOOLS_AUTO_DEPEND} != "no" ]] ; then
+	DEPEND=${AUTOTOOLS_DEPEND}
+fi
+
 unset _automake_atom _autoconf_atom
 
 # @ECLASS-VARIABLE: AM_OPTS
@@ -67,7 +78,7 @@ unset _automake_atom _autoconf_atom
 # @ECLASS-VARIABLE: AT_M4DIR
 # @DESCRIPTION:
 # Additional director(y|ies) aclocal should search
-AT_M4DIR=${AT_M4DIR:-${M4DIR}}
+: ${AT_M4DIR:=${M4DIR}}
 AT_GNUCONF_UPDATE="no"
 
 

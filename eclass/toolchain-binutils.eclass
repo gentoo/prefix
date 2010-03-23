@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.89 2010/01/28 00:25:22 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-binutils.eclass,v 1.90 2010/03/07 16:32:07 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 #
@@ -235,10 +235,8 @@ toolchain-binutils_src_compile() {
 
 	# only build info pages if we user wants them, and if
 	# we have makeinfo (may not exist when we bootstrap)
-	if ! has noinfo ${FEATURES} ; then
-		if type -p makeinfo > /dev/null ; then
-			emake info || die "make info failed"
-		fi
+	if type -p makeinfo > /dev/null ; then
+		emake info || die "make info failed"
 	fi
 	# we nuke the manpages when we're left with junk
 	# (like when we bootstrap, no perl -> no manpages)
@@ -371,9 +369,6 @@ toolchain-binutils_src_install() {
 		docinto opcodes
 		dodoc opcodes/ChangeLog*
 	fi
-	# Punt all the fun stuff if user doesn't want it :)
-	has noinfo ${FEATURES} && rm -r "${ED}"/${DATAPATH}/info
-	has noman ${FEATURES} && rm -r "${ED}"/${DATAPATH}/man
 	# Remove shared info pages
 	rm -f "${ED}"/${DATAPATH}/info/{dir,configure.info,standards.info}
 	# Trim all empty dirs

@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.19 2009/10/04 15:00:45 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.20 2010/03/05 09:01:07 hollow Exp $
 
 EAPI="2"
 
@@ -519,7 +519,7 @@ apache-2_src_install() {
 	generate_load_module
 	insinto /etc/apache2
 	doins -r "${GENTOO_PATCHDIR}"/conf/*
-	doins docs/conf/magic
+	use apache2_modules_mime_magic && doins docs/conf/magic
 
 	insinto /etc/logrotate.d
 	newins "${GENTOO_PATCHDIR}"/scripts/apache2-logrotate apache2

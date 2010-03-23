@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.134 2010/02/27 18:21:35 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.139 2010/03/15 19:27:04 robbat2 Exp $
 
 # @ECLASS: mysql.eclass
 # @MAINTAINER:
@@ -53,6 +53,14 @@ case "${EAPI:-0}" in
 		die "Unsupported EAPI: ${EAPI}" ;;
 esac
 
+
+# @ECLASS-VARIABLE: MYSQL_PV_MAJOR
+# @DESCRIPTION:
+# Upstream MySQL considers the first two parts of the version number to be the
+# major version. Upgrades that change major version should always run
+# mysql_upgrade.
+MYSQL_PV_MAJOR="$(get_version_component_range 1-2 ${PV})"
+
 # @ECLASS-VARIABLE: MYSQL_VERSION_ID
 # @DESCRIPTION:
 # MYSQL_VERSION_ID will be:
@@ -79,7 +87,7 @@ MYSQL_VERSION_ID=${MYSQL_VERSION_ID##"0"}
 # and 0 (no).
 # Community features are available in mysql-community
 # AND in the re-merged mysql-5.0.82 and newer
-if [ "${PN}" == "mysql-community" ]; then
+if [ "${PN}" == "mysql-community" -o "${PN}" == "mariadb" ]; then
 	MYSQL_COMMUNITY_FEATURES=1
 elif [ "${PV#5.0}" != "${PV}" ] && mysql_version_is_at_least "5.0.82"; then
 	MYSQL_COMMUNITY_FEATURES=1
@@ -114,10 +122,13 @@ DEPEND="ssl? ( >=dev-libs/openssl-0.9.6d )
 		>=sys-libs/readline-4.1
 		>=sys-libs/zlib-1.2.3"
 
+[[ "${PN}" == "mariadb" ]] \
+&& DEPEND="${DEPEND} libevent? ( >=dev-libs/libevent-1.4 )"
+
 # Having different flavours at the same time is not a good idea
-for i in "" "-community" ; do
-	[[ "${i}" == ${PN#mysql} ]] ||
-	DEPEND="${DEPEND} !dev-db/mysql${i}"
+for i in "mysql" "mysql-community" "mariadb" ; do
+	[[ "${i}" == ${PN} ]] ||
+	DEPEND="${DEPEND} !dev-db/${i}"
 done
 
 RDEPEND="${DEPEND}
@@ -136,13 +147,16 @@ mysql_version_is_at_least "5.1.12" \
 PDEPEND="perl? ( >=dev-perl/DBD-mysql-2.9004 )"
 
 # For other stuff to bring us in
-PDEPEND="${PDEPEND} =virtual/mysql-$(get_version_component_range 1-2 ${PV})"
+PDEPEND="${PDEPEND} =virtual/mysql-${MYSQL_PV_MAJOR}"
 
 # Work out the default SERVER_URI correctly
 if [ -z "${SERVER_URI}" ]; then
 	[ -z "${MY_PV}" ] && MY_PV="${PV//_/-}"
+	if [ "${PN}" == "mariadb" ]; then
+		MARIA_FULL_PV="$(replace_version_separator 3 '-' ${PV})"
+		SERVER_URI="http://launchpad.net/maria/${MYSQL_PV_MAJOR}/ongoing/+download/mariadb-${MARIA_FULL_PV}.tar.gz"
 	# The community build is on the mirrors
-	if [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ]; then
+	elif [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ]; then
 		SERVER_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/mysql-${MY_PV}.tar.gz"
 	# The (old) enterprise source is on the primary site only
 	elif [ "${PN}" == "mysql" ]; then
@@ -162,6 +176,10 @@ SRC_URI="${SERVER_URI}"
 
 DESCRIPTION="A fast, multi-threaded, multi-user SQL database server."
 HOMEPAGE="http://www.mysql.com/"
+if [[ "${PN}" == "mariadb" ]]; then
+	HOMEPAGE="http://askmonty.org/"
+	DESCRIPTION="MariaDB is a MySQL fork with 3rd-party patches and additional storage engines merged."
+fi
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="big-tables debug embedded minimal ${IUSE_DEFAULT_ON}perl selinux ssl static test"
@@ -184,17 +202,44 @@ mysql_version_is_at_least "5.1" \
 [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ] \
 && IUSE="${IUSE} ${IUSE_DEFAULT_ON}community profiling"
 
-# PBXT engine
-mysql_version_is_at_least "5.1.12" \
-&& [[ -n "${PBXT_VERSION}" ]] \
+[[ "${PN}" == "mariadb" ]] \
+&& IUSE="${IUSE} libevent"
+
+# MariaDB has integrated PBXT
+# PBXT_VERSION means that we have a PBXT patch for this PV
+# PBXT was only introduced after 5.1.12
+pbxt_patch_available() {
+	[[ "${PN}" != "mariadb" ]] \
+	&& mysql_version_is_at_least "5.1.12" \
+	&& [[ -n "${PBXT_VERSION}" ]]
+	return $?
+}
+
+pbxt_available() {
+	pbxt_patch_available || [[ "${PN}" == "mariadb" ]]
+	return $?
+}
+
+# Get the percona tarball if XTRADB_VER and PERCONA_VER are both set
+# MariaDB has integrated XtraDB
+# XTRADB_VERS means that we have a XTRADB patch for this PV
+# XTRADB was only introduced after 5.1.26
+xtradb_patch_available() {
+	[[ "${PN}" != "mariadb" ]] \
+	&& mysql_version_is_at_least "5.1.26" \
+	&& [[ -n "${XTRADB_VER}" && -n "${PERCONA_VER}" ]]
+	return $?
+}
+
+pbxt_patch_available \
 && PBXT_P="pbxt-${PBXT_VERSION}" \
 && PBXT_SRC_URI="http://www.primebase.org/download/${PBXT_P}.tar.gz mirror://sourceforge/pbxt/${PBXT_P}.tar.gz" \
 && SRC_URI="${SRC_URI} pbxt? ( ${PBXT_SRC_URI} )" \
+
+pbxt_available \
 && IUSE="${IUSE} pbxt"
 
-# Get the percona tarball if XTRADB_VER and PERCONA_VER are both set
-mysql_version_is_at_least "5.1.26" \
-&& [[ -n "${XTRADB_VER}" && -n "${PERCONA_VER}" ]] \
+xtradb_patch_available \
 && XTRADB_P="percona-xtradb-${XTRADB_VER}" \
 && XTRADB_SRC_URI_COMMON="${PERCONA_VER}/source/${XTRADB_P}.tar.gz" \
 && XTRADB_SRC_URI1="http://www.percona.com/percona-builds/xtradb/${XTRADB_SRC_URI_COMMON}" \
@@ -403,22 +448,14 @@ configure_40_41_50() {
 	myconf="${myconf} --with-extra-tools"
 	myconf="${myconf} --with-innodb"
 	myconf="${myconf} --without-readline"
+	myconf="${myconf} $(use_with ssl openssl "${EPREFIX}/usr")"
 	mysql_version_is_at_least "5.0" || myconf="${myconf} $(use_with raid)"
 
 	# --with-vio is not needed anymore, it's on by default and
 	# has been removed from configure
+	#  Apply to 4.x and 5.0.[0-3]
 	if use ssl ; then
 		 mysql_version_is_at_least "5.0.4" || myconf="${myconf} --with-vio"
-	fi
-
-	if mysql_version_is_at_least "5.1.11" ; then
-		myconf="${myconf} $(use_with ssl)"
-	else
-		if use ssl; then
-			myconf="${myconf} --with-openssl=${EPREFIX}/usr"
-		else
-			myconf="${myconf} --without-openssl"
-		fi
 	fi
 
 	if mysql_version_is_at_least "5.0.60" ; then
@@ -485,16 +522,25 @@ configure_51() {
 	# TODO: !!!! readd --without-readline
 	# the failure depend upon config/ac-macros/readline.m4 checking into
 	# readline.h instead of history.h
-	myconf="${myconf} $(use_with ssl)"
+	myconf="${myconf} $(use_with ssl ssl "${EPREFIX}"/usr)"
 	myconf="${myconf} --enable-assembler"
 	myconf="${myconf} --with-geometry"
 	myconf="${myconf} --with-readline"
 	myconf="${myconf} --with-zlib-dir=${EPREFIX}/usr/"
 	myconf="${myconf} --without-pstack"
 	use max-idx-128 && myconf="${myconf} --with-max-indexes=128"
+	if [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ]; then
+		myconf="${myconf} $(use_enable community community-features)"
+		if use community; then
+			myconf="${myconf} $(use_enable profiling)"
+		else
+			myconf="${myconf} --disable-profiling"
+		fi
+	fi
 
 	# 5.1 introduces a new way to manage storage engines (plugins)
 	# like configuration=none
+	# This base set are required, and will always be statically built.
 	local plugins="csv,myisam,myisammrg,heap"
 	if use extraengine ; then
 		# like configuration=max-no-ndb, archive and example removed in 5.1.11
@@ -502,8 +548,13 @@ configure_51() {
 		# Not supporting as examples: example,daemon_example,ftexample 
 		plugins="${plugins},archive,blackhole,federated,partition"
 
-		elog "Before using the Federated storage engine, please be sure to read"
-		elog "http://dev.mysql.com/doc/refman/5.1/en/federated-limitations.html"
+		if [[ "${PN}" != "mariadb" ]] ; then
+			elog "Before using the Federated storage engine, please be sure to read"
+			elog "http://dev.mysql.com/doc/refman/5.1/en/federated-limitations.html"
+		else
+			elog "MariaDB includes the FederatedX engine. Be sure to read"
+			elog "http://askmonty.org/wiki/index.php/Manual:FederatedX_storage_engine"
+		fi
 	fi
 
 	# Upstream specifically requests that InnoDB always be built:
@@ -519,21 +570,22 @@ configure_51() {
 		myconf="${myconf} --with-ndb-binlog"
 	fi
 
+	if [[ "${PN}" == "mariadb" ]] ; then
+		# In MariaDB, InnoDB is packaged in the xtradb directory, so it's not
+		# caught above.
+		plugins="${plugins},maria,innobase"
+		if use pbxt ; then
+			plugins="${plugins},pbxt"
+		else
+			myconf="${myconf} --without-plugin-pbxt"
+		fi
+		myconf="${myconf} $(use_with libevent)"
+		# This is not optional, without it several upstream testcases fail.
+		# Also strongly recommended by upstream.
+		myconf="${myconf} --with-maria-tmp-tables"
+	fi
+
 	myconf="${myconf} --with-plugins=${plugins}"
-}
-
-xtradb_applicable() {
-	mysql_version_is_at_least "5.1.26" \
-	&& [[ -n "${XTRADB_VER}" && -n "${PERCONA_VER}" ]] \
-	&& use xtradb
-	return $?
-}
-
-pbxt_applicable() {
-	mysql_version_is_at_least "5.1.12" \
-	&& [[ -n "${PBXT_VERSION}" ]] \
-	&& use pbxt
-	return $?
 }
 
 pbxt_src_configure() {
@@ -545,10 +597,9 @@ pbxt_src_configure() {
 	AT_GNUCONF_UPDATE="yes" eautoreconf
 
 	local myconf=""
-	myconf="${myconf} --with-mysql=${S} --libdir=${EPREFIX}${MY_LIBDIR}"
+	myconf="${myconf} --with-mysql=${S} --libdir=${EPREFIX}/usr/$(get_libdir)"
 	use debug && myconf="${myconf} --with-debug=full"
-	# TODO: is it safe/needed to use econf here ?
-	./configure ${myconf} || die "Problem configuring PBXT storage engine"
+	econf ${myconf} || die "Problem configuring PBXT storage engine"
 }
 
 pbxt_src_compile() {
@@ -699,7 +750,7 @@ mysql_src_prepare() {
 
 	local rebuilddirlist d
 
-	if xtradb_applicable ; then
+	if xtradb_patch_available && use xtradb ; then
 		einfo "Replacing InnoDB with Percona XtraDB"
 		pushd "${S}"/storage
 		i="innobase"
@@ -814,7 +865,7 @@ mysql_src_configure() {
 	-e 's|^pkglibdir *= *$(libdir)/mysql|pkglibdir = $(libdir)|;s|^pkgincludedir *= *$(includedir)/mysql|pkgincludedir = $(includedir)|'
 
 	if [[ $EAPI == 2 ]]; then
-		pbxt_applicable && pbxt_src_configure
+		pbxt_patch_available && use pbxt && pbxt_src_configure
 	fi
 }
 
@@ -823,14 +874,14 @@ mysql_src_configure() {
 # Compile the mysql code.
 mysql_src_compile() {
 	# Be backwards compatible for now
-        case ${EAPI:-0} in
-                2) : ;;
-                0 | 1) mysql_src_configure ;;
-        esac
+	case ${EAPI:-0} in
+		2) : ;;
+		0 | 1) mysql_src_configure ;;
+	esac
 
 	emake || die "emake failed"
 
-	pbxt_applicable && pbxt_src_compile
+	pbxt_patch_available && use pbxt && pbxt_src_compile
 }
 
 # @FUNCTION: mysql_src_install
@@ -846,7 +897,7 @@ mysql_src_install() {
 		testroot="${EPREFIX}${MY_SHAREDSTATEDIR}" \
 		|| die "emake install failed"
 
-	pbxt_applicable && pbxt_src_install
+	pbxt_patch_available && use pbxt && pbxt_src_install
 
 	# Convenience links
 	einfo "Making Convenience links for mysqlcheck multi-call binary"
@@ -982,12 +1033,15 @@ mysql_pkg_postinst() {
 			support-files/magic \
 			support-files/ndb-config-2-node.ini
 		do
-			dodoc "${script}"
+			[[ -f "${script}" ]] \
+			&& dodoc "${script}"
 		done
 
 		docinto "scripts"
 		for script in scripts/mysql* ; do
-			[[ "${script%.sh}" == "${script}" ]] && dodoc "${script}"
+			[[ -f "${script}" ]] \
+			&& [[ "${script%.sh}" == "${script}" ]] \
+			&& dodoc "${script}"
 		done
 
 		einfo
@@ -997,7 +1051,7 @@ mysql_pkg_postinst() {
 		einfo
 	fi
 
-	if pbxt_applicable ; then
+	if pbxt_available && use pbxt ; then
 		# TODO: explain it better
 		elog "    mysql> INSTALL PLUGIN pbxt SONAME 'libpbxt.so';"
 		elog "    mysql> CREATE TABLE t1 (c1 int, c2 text) ENGINE=pbxt;"
