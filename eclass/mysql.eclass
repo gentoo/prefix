@@ -612,8 +612,9 @@ mysql_pkg_setup() {
 	# Bug #290570 fun. Upstream made us need a fairly new GCC4.
 	if mysql_version_is_at_least "5.0.83" ; then
 		GCC_VER=$(gcc-version)
-		case ${GCC_VER} in
-			2*|3*|4.0|4.1|4.2) die "Active GCC too old! Must have at least GCC4.3" ;;
+		case ${CHOST}:${GCC_VER} in
+			*-darwin*:4.*) : ;; # bug #310615
+			*:2*|3*|4.0|4.1|4.2) ewarn "Active GCC too old! Must have at least GCC4.3" ;;
 		esac
 	fi
 
