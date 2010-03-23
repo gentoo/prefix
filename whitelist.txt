@@ -225,6 +225,7 @@ dev-cpp/pangomm
 dev-cpp/tree
 dev-db/libiodbc
 dev-db/maatkit
+dev-db/mysql
 dev-db/mysql++
 dev-db/sqlite
 dev-db/tokyocabinet
