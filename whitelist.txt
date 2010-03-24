@@ -392,12 +392,6 @@ dev-util/unifdef
 dev-util/valgrind
 dev-util/wiggle
 dev-util/xfce4-dev-tools
-dev-vcs/bzr
-dev-vcs/bzrtools
-dev-vcs/cssc
-dev-vcs/darcs
-dev-vcs/giggle
-dev-vcs/statcvs
 games-arcade/ascii-invaders
 games-arcade/nibbles
 games-arcade/tuxanci
@@ -771,6 +765,7 @@ app-vim
 dev-dotnet
 dev-games
 dev-texlive
+dev-vcs
 kde-base
 gnustep-apps
 gnustep-base
@@ -819,6 +814,7 @@ dev-python/decoratortools
 dev-python/django
 dev-python/dnspython
 dev-python/docutils
+dev-python/dulwich
 dev-python/egenix-mx-base
 dev-python/elementtree
 dev-python/epydoc
