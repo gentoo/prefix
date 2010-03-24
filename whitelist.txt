@@ -392,6 +392,13 @@ dev-util/unifdef
 dev-util/valgrind
 dev-util/wiggle
 dev-util/xfce4-dev-tools
+dev-vcs/bzr
+dev-vcs/bzrtools
+dev-vcs/cssc
+dev-vcs/darcs
+dev-vcs/giggle
+dev-vcs/hg-git
+dev-vcs/statcvs
 games-arcade/ascii-invaders
 games-arcade/nibbles
 games-arcade/tuxanci
@@ -765,7 +772,6 @@ app-vim
 dev-dotnet
 dev-games
 dev-texlive
-dev-vcs
 kde-base
 gnustep-apps
 gnustep-base
