@@ -303,7 +303,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20100312-r1"
+	local PV="20100323"
 	do_tree http://prefix.gentooexperimental.org/distfiles prefix-overlay-${PV}.tar.bz2
 }
 
@@ -342,7 +342,7 @@ bootstrap_startscript() {
 }
 
 bootstrap_portage() {
-	PV="2.2.00.15819"
+	PV="2.2.00.15842"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
 		
