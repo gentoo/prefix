@@ -6,7 +6,7 @@
 
   23 Mar 2010; Fabian Groffen <grobian@gentoo.org>
   -portage-2.2.00.15801.ebuild, +portage-2.2.00.15842.ebuild:
-  Bump, fix AIX hooks
+  Bump, fix AIX hooks.  This is the last SVN-based version.
 
 *portage-2.2.00.15838 (21 Mar 2010)
 
