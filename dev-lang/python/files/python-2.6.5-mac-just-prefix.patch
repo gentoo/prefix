@@ -28,19 +28,19 @@
  	$(INSTALL) -d -m $(DIRMODE)  \
 --- Python-2.6.2/configure.in
 +++ Python-2.6.2/configure.in
-@@ -1535,11 +1535,6 @@
+@@ -1619,11 +1619,6 @@
  case $ac_sys_system/$ac_sys_release in
    Darwin/@<:@01567@:>@\..*) 
      LIBTOOL_CRUFT="-framework System -lcc_dynamic"
 -    if test "${enable_universalsdk}"; then
 -	    :
 -    else
--        LIBTOOL_CRUFT="${LIBTOOL_CRUFT} -arch_only `arch`"
+-        LIBTOOL_CRUFT="${LIBTOOL_CRUFT} -arch_only `/usr/bin/arch`"
 -    fi
      LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -install_name $(PYTHONFRAMEWORKINSTALLDIR)/Versions/$(VERSION)/$(PYTHONFRAMEWORK)'
      LIBTOOL_CRUFT=$LIBTOOL_CRUFT' -compatibility_version $(VERSION) -current_version $(VERSION)';;
    Darwin/*)
-@@ -1591,7 +1586,7 @@
+@@ -1676,7 +1671,7 @@
  	#ARCH_RUN_32BIT="true"
      fi
  

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4.ebuild,v 1.16 2010/03/07 11:31:55 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5.ebuild,v 1.1 2010/03/21 12:42:25 arfrever Exp $
 
 EAPI="2"
 
@@ -20,12 +20,12 @@ LICENSE="PSF-2.2"
 SLOT="2.6"
 PYTHON_ABI="${SLOT}"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite ssl +threads tk +wide-unicode wininst +xml"
+IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
 # NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes}
 #       do not conflict with the ones in python proper. - liquidx
 
-RDEPEND=">=app-admin/eselect-python-20090606
+RDEPEND=">=app-admin/eselect-python-20091230
 		>=sys-libs/zlib-1.1.3
 		!m68k-mint? ( virtual/libffi )
 		virtual/libintl
@@ -70,11 +70,7 @@ src_prepare() {
 	rm -fr Modules/expat
 	rm -fr Modules/_ctypes/libffi*
 
-	if tc-is-cross-compiler; then
-		epatch "${FILESDIR}/python-2.5-cross-printf.patch"
-		epatch "${FILESDIR}/python-2.6-chflags-cross.patch"
-		epatch "${FILESDIR}/python-2.6-test-cross.patch"
-	else
+	if ! tc-is-cross-compiler; then
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
 
@@ -91,19 +87,17 @@ src_prepare() {
 
 	# apply before Gentoo libdir comes into effect
 	# these patches get rid of unwanted looking around in the host OS
-	epatch "${FILESDIR}"/${PN}-2.6.2-readline-prefix.patch
+	epatch "${FILESDIR}"/${PN}-2.6.5-readline-prefix.patch
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-usrlocal.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-use-first-bsddb-found.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-bsddb185.patch
 
 	# Darwin/OSX Framework related patches and tweaks
 	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-bundle.patch
-	epatch "${FILESDIR}"/${PN}-2.5.1-darwin-gcc-version.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-special-darwin-libffi.patch
-	epatch "${FILESDIR}"/${PN}-2.6.4-gnu-arch-darwin.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-darwin-no-framework-lookup.patch
 	epatch "${FILESDIR}"/${PN}-2.6.2-mac.patch
-	epatch "${FILESDIR}"/${PN}-2.6.2-mac-just-prefix.patch # injects @@LIBDIR
+	epatch "${FILESDIR}"/${PN}-2.6.5-mac-just-prefix.patch # injects @@LIBDIR
 	# need this to have _NSGetEnviron being used, which by default isn't, also
 	# in a non-Framework build (use !aqua)
 	[[ ${CHOST} == *-darwin* ]] && \
@@ -147,7 +141,7 @@ src_prepare() {
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
 	# make it compile on IRIX as well
-	epatch "${FILESDIR}"/${PN}-2.6.4-irix.patch
+	epatch "${FILESDIR}"/${PN}-2.6.5-irix.patch
 	# and generate a libpython2.6.so
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
@@ -174,7 +168,8 @@ src_prepare() {
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
 		# some more modules fixed (_multiprocessing, dl)
 		epatch "${FILESDIR}"/${PN}-2.6.2-interix-modules.patch
-		epatch "${FILESDIR}"/${PN}-2.6.2-interix-nis.patch
+		# -r1 because of 12_all_check_availability_of_nis_headers
+		epatch "${FILESDIR}"/${PN}-2.6.4-r1-interix-nis.patch
 	fi
 
 	# Fix OtherFileTests.testStdin() not to assume
@@ -216,7 +211,9 @@ src_configure() {
 		einfo "Disabled modules: ${PYTHON_DISABLE_MODULES}"
 	fi
 
-	export OPT="${CFLAGS}"
+	if [[ "$(gcc-major-version)" -ge 4 ]]; then
+		append-flags -fwrapv
+	fi
 
 	filter-flags -malign-double
 
@@ -274,16 +271,20 @@ src_configure() {
 	# note: for a framework build we need to use ucs2 because OSX
 	# uses that internally too:
 	# http://bugs.python.org/issue763708
-	econf \
+	OPT="" econf \
 		--with-fpectl \
 		$(use_enable ipv6) \
 		$(use_with threads) \
 		$( (use wide-unicode && use !aqua) && echo "--enable-unicode=ucs4" || echo "--enable-unicode=ucs2") \
-		--infodir='${prefix}'/share/info \
-		--mandir='${prefix}'/share/man \
-		--with-libc='' \
+		--infodir='${prefix}/share/info' \
+		--mandir='${prefix}/share/man' \
+		--with-libc="" \
 		--with-system-ffi \
 		${myconf}
+}
+
+src_compile() {
+	emake EXTRA_CFLAGS="${CFLAGS}" || die "emake failed"
 }
 
 src_test() {
@@ -455,10 +456,6 @@ EOF
 	mv "${ED}usr/share/man/man1/python.1" "${ED}usr/share/man/man1/python${SLOT}.1"
 	rm -f "${ED}usr/bin/smtpd.py"
 
-	# Fix the OPT variable so that it doesn't have any flags listed in it.
-	# Prevents the problem with compiling things with conflicting flags later.
-	sed -e "s:^OPT=.*:OPT=-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
-
 	# http://src.opensolaris.org/source/xref/jds/spec-files/trunk/SUNWPython.spec
 	# These #defines cause problems when building c99 compliant python modules
 	[[ ${CHOST} == *-solaris* ]] && dosed -e \
@@ -466,12 +463,12 @@ EOF
 		 /usr/include/python${SLOT}/pyconfig.h
 
 	if use build; then
-		rm -fr "${ED}$(python_get_libdir)/"{bsddb,email,lib-tk,sqlite3,test}
+		rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{bsddb,idlelib,lib-tk,sqlite3,test}
 	else
 		use elibc_uclibc && rm -fr "${ED}$(python_get_libdir)/"{bsddb/test,test}
 		use berkdb || rm -fr "${ED}$(python_get_libdir)/"{bsddb,test/test_bsddb*}
 		use sqlite || rm -fr "${ED}$(python_get_libdir)/"{sqlite3,test/test_sqlite*}
-		use tk || rm -fr "${ED}$(python_get_libdir)/lib-tk"
+		use tk || rm -fr "${ED}usr/bin/idle${SLOT}" "${ED}$(python_get_libdir)/"{idlelib,lib-tk}
 	fi
 
 	use threads || rm -fr "${ED}$(python_get_libdir)/multiprocessing"
@@ -509,13 +506,13 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local ignored_python_slots_options=
-	[[ "$(eselect python show)" == "python2."* ]] && ignored_python_slots_options="--ignore 3.0 --ignore 3.1 --ignore 3.2"
+	local eselect_python_options=
+	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
 
 	# Create python2 symlink.
-	eselect python update --ignore 3.0 --ignore 3.1 --ignore 3.2 > /dev/null
+	eselect python update --python2 > /dev/null
 
-	eselect python update ${ignored_python_slots_options}
+	eselect python update ${eselect_python_options}
 }
 
 pkg_postinst() {

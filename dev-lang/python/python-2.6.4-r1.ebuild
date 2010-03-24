@@ -182,9 +182,6 @@ src_prepare() {
 	# that stdin is a tty for bug #248081.
 	sed -e "s:'osf1V5':'osf1V5' and sys.stdin.isatty():" -i Lib/test/test_file.py || die "sed failed"
 
-	# don't do -arch(-only) specifics, we don't want multilib
-	sed -e "s:-lSystemStubs::g" -i configure.in || die
-
 	eautoreconf
 }
 
