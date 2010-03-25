@@ -517,10 +517,10 @@ diff -ru prefix-portage-2.2.00.15801.orig/pym/portage/dep/dep_check.py prefix-po
 +	for ro_root in ro_trees[dep_type]:
 +		if not ro_vartrees.has_key(ro_root):
 +			# target_root=ro_root ok? or should it be the real target_root?
-+			_tmp_settings = config(config_root=ro_root, target_root=ro_root,
++			_tmp_settings = portage.config(config_root=ro_root, target_root=ro_root,
 +				config_incrementals=portage.const.INCREMENTALS)
 +			
-+			ro_vartrees[ro_root] = vartree(root=ro_root, 
++			ro_vartrees[ro_root] = portage.vartree(root=ro_root, 
 +				categories=_tmp_settings.categories, 
 +				settings=_tmp_settings, kill_eprefix=True)
 +				
