@@ -7,7 +7,7 @@ Author:	Heiko Przybyl <zuxez@cs.tu-berlin.de>
  	# number will be embedded in debug information.
  
 -	T=`$(PWD_COMMAND)`/ \
-+	_T=_`$(PWD_COMMAND)`/ \
++	_T_=`$(PWD_COMMAND)`/ \
  	&& cd $(gcc_objdir) \
  	&& $(MAKE) GCC_FOR_TARGET="$(CC)" \
  	  MULTILIB_CFLAGS="$(CFLAGS)" \
