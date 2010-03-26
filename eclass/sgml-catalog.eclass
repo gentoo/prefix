@@ -20,20 +20,23 @@ sgml-catalog_cat_include() {
 
 sgml-catalog_cat_doinstall() {
 	debug-print function $FUNCNAME $*
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	"${EPREFIX}"/usr/bin/install-catalog --add "${EPREFIX}/$1" "${EPREFIX}/$2" &>/dev/null
 }
 
 sgml-catalog_cat_doremove() {
 	debug-print function $FUNCNAME $*
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	"${EPREFIX}"/usr/bin/install-catalog --remove "${EPREFIX}/$1" "${EPREFIX}/$2" &>/dev/null
 }
 
 sgml-catalog_pkg_postinst() {
 	debug-print function $FUNCNAME $*
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 
 	for entry in ${SGML_TOINSTALL}; do
-		arg1=`echo ${entry} | cut -f1 -d\:`
-		arg2=`echo ${entry} | cut -f2 -d\:`
+		arg1=${entry%%:*}
+		arg2=${entry#*:}
 		if [ ! -e "${EPREFIX}"${arg2} ]
 		then
 			ewarn "${EPREFIX}${arg2} doesn't appear to exist, although it ought to!"
@@ -51,10 +54,11 @@ sgml-catalog_pkg_prerm() {
 
 sgml-catalog_pkg_postrm() {
 	debug-print function $FUNCNAME $*
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 
 	for entry in ${SGML_TOINSTALL}; do
-		arg1=`echo ${entry} | cut -f1 -d\:`
-		arg2=`echo ${entry} | cut -f2 -d\:`
+		arg1=${entry%%:*}
+		arg2=${entry#*:}
 		if [ -e "${EPREFIX}"${arg2} ]
 		then
 			ewarn "${EPREFIX}${arg2} still exists!  Not removing from ${EPREFIX}${arg1}"
@@ -67,6 +71,7 @@ sgml-catalog_pkg_postrm() {
 }
 
 sgml-catalog_cleanup() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	if [ -e "${EPREFIX}/usr/bin/gensgmlenv" ]
 	then
 		einfo Regenerating SGML environment variables ...
