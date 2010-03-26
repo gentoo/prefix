@@ -1,6 +1,26 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.462 2010/03/22 18:11:34 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.463 2010/03/25 20:10:22 arfrever Exp $
+
+*python-3.1.2-r1 (25 Mar 2010)
+
+  25 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-3.1.2-r1.ebuild:
+  Allow str subclasses to override __str__ method (Python issue #1583863).
+  Fix argument validation in sys.setfilesystemencoding() (Python issue #8226).
+
+*python-2.6.5-r1 (25 Mar 2010)
+
+  25 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.6.5-r1.ebuild:
+  Allow unicode subclasses to override __unicode__ method (Python issue #1583863).
+  Fix thread creation in low memory condition (Python issue #7544).
+  Fix unicodedata.normalize (Python issue #1054943). Set sys.executable to
+  empty string when program name is invalid (Python issue #7774).
+
+  25 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.6.5.ebuild, python-3.1.2.ebuild:
+  Unset variables after using them to avoid affecting child processes.
 
 *python-3.1.2 (22 Mar 2010)
 
