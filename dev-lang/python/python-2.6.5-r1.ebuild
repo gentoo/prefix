@@ -99,10 +99,10 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6.2-mac.patch
 	epatch "${FILESDIR}"/${PN}-2.6.5-mac-just-prefix.patch # injects @@LIBDIR
 	# need this to have _NSGetEnviron being used, which by default isn't, also
-	# in a non-Framework build (use !aqua)
-	[[ ${CHOST} == *-darwin* ]] && \
+	# in a non-Framework build (use !aqua)   upstream doesn't build like this
+	[[ ${CHOST} == *-darwin* ]] && use !aqua && \
 		append-flags -DWITH_NEXT_FRAMEWORK
-		# this activates stuff from python-2.6.2-mac.patch (2.7+ has this fixed)
+	# this activates stuff from python-2.6.2-mac.patch (2.7+ has this fixed)
 	sed -i -e "s:@@APPLICATIONS_DIR@@:${EPREFIX}/Applications:g" \
 		Mac/Makefile.in \
 		Mac/IDLE/Makefile.in \
@@ -162,7 +162,6 @@ src_prepare() {
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
 	if [[ ${CHOST} == *-interix* ]] ; then
-		epatch "${FILESDIR}"/${PN}-2.6.1-interix-noffi.patch
 		# this one could be applied unconditionally, but to keep it
 		# clean, I do it together with the conditional one.
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
@@ -458,6 +457,7 @@ EOF
 
 	# http://src.opensolaris.org/source/xref/jds/spec-files/trunk/SUNWPython.spec
 	# These #defines cause problems when building c99 compliant python modules
+	# http://bugs.python.org/issue1759169
 	[[ ${CHOST} == *-solaris* ]] && dosed -e \
 		's:^\(^#define \(_POSIX_C_SOURCE\|_XOPEN_SOURCE\|_XOPEN_SOURCE_EXTENDED\).*$\):/* \1 */:' \
 		 /usr/include/python${SLOT}/pyconfig.h
