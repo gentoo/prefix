@@ -196,7 +196,7 @@ update_wrappers() {
 			f77) ref=g77;;
 			*)   ref=${x};;
 		esac
-		ref="${EROOT}/${GCC_PATH}/${ref}"
+		ref="${ROOT}/${GCC_PATH}/${ref}"
 		if [[ -x ${ref} ]] ; then
 			cp -f "${wrapper}" "${EROOT}/usr/bin/${x}"
 			touch -r "${ref}" "${EROOT}/usr/bin/${x}"
@@ -206,10 +206,9 @@ update_wrappers() {
 	rm -f "${EROOT}/usr/bin/${CTARGET}-cc"
 
 	# install the canonical cpp wrapper
-	[[ ${CTARGET} == *-solaris* ]] && return 0
 	if ! is_cross_compiler ; then
-		cp -f "${wrapper}" "${ROOT}/lib/cpp"
-		touch -r "${ROOT}/usr/bin/${CTARGET}-cpp" "${ROOT}/lib/cpp"
+		cp -f "${wrapper}" "${EROOT}/lib/cpp"
+		touch -r "${EROOT}/usr/bin/${CTARGET}-cpp" "${EROOT}/lib/cpp"
 	fi
 }
 
@@ -548,7 +547,8 @@ switch_profile() {
 			)
 
 			for multilib in $(
-				$([[ -n ${EPREFIX} ]] && echo ".;@X") # ensure we always operate on base libdir first
+				# ensure we always operate on base libdir first
+				[[ -n ${EPREFIX} ]] && echo ".;@X" ;
 				"${ROOT}/${GCC_PATH}"/gcc -print-multi-lib
 			); do
 
@@ -646,6 +646,8 @@ switch_profile() {
 	mv_if_diff "${envd}.tmp" "${envd}"
 	local envd_changed=$?
 
+	# reset correct value, since we have overwritten it in the above loop
+	source_var GCC_PATH "${GCC_ENV_D}/${CC_COMP}"
 	update_wrappers ${CTARGET}
 
 	if [[ ${ROOT} == "/" ]] && \
