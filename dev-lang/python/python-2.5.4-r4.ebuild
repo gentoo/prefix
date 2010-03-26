@@ -80,9 +80,15 @@ src_unpack() {
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
 
-	# stupidos hardcoding GNU specifics
-	[[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* || ${CHOST} == *bsd* ]] || \
-		EPATCH_EXCLUDE=21_all_ctypes-execstack.patch
+	# hardcoding GNU specifics breaks certain platforms
+	case $($(tc-getAS) --noexecstack -v 2>&1 </dev/null) in
+		*"GNU Binutils"*) # GNU as with noexecstack support
+			:
+		;;
+		*)
+			EPATCH_EXCLUDE=07_all_ctypes_execstack.patch
+		;;
+	esac
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
@@ -311,7 +317,7 @@ src_install() {
 
 	prep_ml_includes $(python_get_includedir)
 
-	if use examples ; then
+	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
 		doins -r "${S}/Tools" || die "doins failed"
 	fi
