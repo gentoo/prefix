@@ -696,6 +696,8 @@ x11-libs/libXvMC
 x11-libs/libXxf86misc
 x11-libs/libXxf86vm
 x11-libs/libast
+x11-libs/libjwc_c
+x11-libs/libjwc_f
 x11-libs/libnotify
 x11-libs/libsexy
 x11-libs/libsvg-cairo
