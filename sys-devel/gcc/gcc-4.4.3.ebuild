@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.3.ebuild,v 1.1 2010/02/08 12:58:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.3.ebuild,v 1.3 2010/03/28 20:35:46 halcy0n Exp $
 
 PATCH_VER="1.0"
 UCLIBC_VER="1.0"
@@ -126,7 +126,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
 
 	# libgcc's Makefiles reuses $T, work around that :(
-	epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-T-namespace.patch
+	[[ ${CHOST} == *-solaris* ]] && \
+		epatch "${FILESDIR}"/4.4.1/${PN}-4.4.1-T-namespace.patch
 
 	# try /usr/lib31 in 32bit profile on x86_64-linux (needs --enable-multilib),
 	# but this does make sense in prefix only.

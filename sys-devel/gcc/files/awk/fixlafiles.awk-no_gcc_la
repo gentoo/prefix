@@ -1,6 +1,6 @@
 # Copyright 1999-2005 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/awk/fixlafiles.awk-no_gcc_la,v 1.3 2009/03/31 07:59:19 drizzt Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/files/awk/fixlafiles.awk-no_gcc_la,v 1.4 2010/03/19 23:53:07 vapier Exp $
 
 #
 # Helper functions
@@ -50,6 +50,54 @@ function dosystem(command, ret) {
 		return 0
 }
 
+#
+# parse_ld_conf(config_file)
+#
+function parse_ld_conf(conf,    pipe, ldsoconf_data, CHILD, y) {
+	pipe = "cd @GENTOO_PORTAGE_EPREFIX@/etc; cat " conf " | sort 2>/dev/null"
+	while(((pipe) | getline ldsoconf_data) > 0) {
+		if (ldsoconf_data ~ /^[[:space:]]*#/)
+			continue
+		if (ldsoconf_data == "")
+			continue
+
+		# Handle the "include" keyword
+		if (ldsoconf_data ~ /^include /) {
+			sub(/^include /, "", ldsoconf_data)
+			parse_ld_conf(ldsoconf_data)
+			continue
+		}
+
+		# Remove any trailing comments
+		sub(/#.*$/, "", ldsoconf_data)
+		# Remove any trailing spaces
+		sub(/[[:space:]]+$/, "", ldsoconf_data)
+		# Eat duplicate slashes
+		sub(/\/\//, "/", ldsoconf_data)
+		# Prune trailing /
+		sub(/\/$/, "", ldsoconf_data)
+
+		#
+		# Drop the directory if its a child directory of
+		# one that was already added ...
+		# For example, if we have:
+		#   /usr/lib /usr/libexec /usr/lib/mozilla /usr/lib/nss
+		# We really just want to save /usr/lib /usr/libexec
+		#
+		CHILD = 0
+		for (y in DIRLIST) {
+			if (ldsoconf_data ~ "^" DIRLIST[y] "(/|$)") {
+				CHILD = 1
+				break
+			}
+		}
+		if (CHILD) continue
+
+		DIRLIST[++LIBCOUNT] = ldsoconf_data
+	}
+	close(pipe)
+}
+
 BEGIN {
 	#
 	# Get our variables from environment
@@ -71,50 +119,7 @@ BEGIN {
 	#
 	# Walk /etc/ld.so.conf to discover all our library paths
 	#
-	pipe = "cat @GENTOO_PORTAGE_EPREFIX@/etc/ld.so.conf | sort 2>/dev/null"
-	while(((pipe) | getline ldsoconf_data) > 0) {
-		if (ldsoconf_data !~ /^[[:space:]]*#/) {
-			if (ldsoconf_data == "") continue
-
-			# Remove any trailing comments
-			sub(/#.*$/, "", ldsoconf_data)
-			# Remove any trailing spaces
-			sub(/[[:space:]]+$/, "", ldsoconf_data)
-
-			# If there's more than one path per line, split 
-			# it up as if they were sep lines
-			split(ldsoconf_data, nodes, /[:,[:space:]]/)
-
-			# Now add the rest from ld.so.conf
-			for (x in nodes) {
-				# wtf does this line do ?
-				sub(/=.*/, "", nodes[x])
-				# Prune trailing /
-				sub(/\/$/, "", nodes[x])
-
-				if (nodes[x] == "") continue
-
-				#
-				# Drop the directory if its a child directory of
-				# one that was already added ...
-				# For example, if we have:
-				#   /usr/lib /usr/libexec /usr/lib/mozilla /usr/lib/nss
-				# We really just want to save /usr/lib /usr/libexec
-				#
-				CHILD = 0
-				for (y in DIRLIST) {
-					if (nodes[x] ~ "^" DIRLIST[y] "(/|$)") {
-						CHILD = 1
-						break
-					}
-				}
-				if (CHILD) continue
-
-				DIRLIST[++LIBCOUNT] = nodes[x]
-			}
-		}
-	}
-	close(pipe)
+	parse_ld_conf("@GENTOO_PORTAGE_EPREFIX@/etc/ld.so.conf")
 
 	#
 	# Get line from gcc's output containing CHOST
