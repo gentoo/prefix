@@ -317,7 +317,9 @@ dev-ml/extlib
 dev-ml/lablgtk
 dev-php5/pecl-pdflib
 dev-tcltk/blt
+dev-tcltk/iwidgets
 dev-tcltk/tcllib
+dev-tcltk/tdom
 dev-tcltk/tix
 dev-tex/algorithms
 dev-tex/chktex
@@ -703,6 +705,7 @@ x11-libs/libnotify
 x11-libs/libsexy
 x11-libs/libsvg-cairo
 x11-libs/libwnck
+x11-libs/libxdl_view
 x11-libs/libxkbfile
 x11-libs/libxkbui
 x11-libs/neXtaw
