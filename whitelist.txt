@@ -606,6 +606,7 @@ net-libs/webkit-gtk
 net-mail/getmail
 net-mail/mairix
 net-mail/mlmmj
+net-mail/mpack
 net-mail/offlineimap
 net-misc/aget
 net-misc/autossh
