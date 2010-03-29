@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.3_p1-r1.ebuild,v 1.6 2010/03/12 17:31:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/openssh-5.3_p1-r1.ebuild,v 1.10 2010/03/20 00:17:55 vapier Exp $
 
 inherit eutils flag-o-matic multilib autotools pam
 
@@ -184,7 +184,7 @@ src_compile() {
 		--with-ssl-engine \
 		$(static_use_with pam) \
 		$(static_use_with kerberos kerberos5 "${EPREFIX}"/usr) \
-		${LDAP_PATCH:+$(use ldap && use_with ldap)} \
+		${LDAP_PATCH:+$(use X509 || ( use ldap && use_with ldap ))} \
 		$(use_with libedit) \
 		${PKCS11_PATCH:+$(use pkcs11 && static_use_with pkcs11)} \
 		$(use_with selinux) \
