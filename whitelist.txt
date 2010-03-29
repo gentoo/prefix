@@ -44,6 +44,7 @@ app-admin/makepasswd
 app-admin/pwgen
 app-admin/stow
 app-arch/arc
+app-arch/arj
 app-arch/bsdsfv
 app-arch/cfv
 app-arch/dpkg
