@@ -642,6 +642,8 @@ sys-apps/aix-miscutils
 sys-apps/darwin-miscutils
 sys-apps/fakeroot
 sys-apps/hexdump-esr
+sys-apps/man-pages
+sys-apps/man-pages-posix
 sys-apps/mawk
 sys-apps/pv
 sys-apps/ren
