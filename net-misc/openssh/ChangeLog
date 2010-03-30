@@ -1,6 +1,22 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.377 2010/03/20 00:17:55 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.379 2010/03/29 06:39:37 robbat2 Exp $
+
+*openssh-5.4_p1-r2 (29 Mar 2010)
+
+  29 Mar 2010; Robin H. Johnson <robbat2@gentoo.org>
+  +openssh-5.4_p1-r2.ebuild:
+  Revbump with HPN and LPK patches available again now. Ported and submitted
+  to upstream authors. X509 now has more conflicts with HPN, future
+  revisions may require selection of: x509 XOR (hpn OR lpk).
+
+*openssh-5.4_p1-r1 (29 Mar 2010)
+
+  29 Mar 2010; Mike Frysinger <vapier@gentoo.org> +openssh-5.4_p1-r1.ebuild,
+  +files/openssh-5.4_p1-pkcs11.patch,
+  +files/openssh-5.4_p1-relative-AuthorizedKeysFile.patch:
+  Fixes from upstream for pkcs build problems #310929 by Alan Hourihane and
+  for relative AuthorizedKeysFile handling #308939 by Eric Vander Weele.
 
   20 Mar 2010; Mike Frysinger <vapier@gentoo.org> openssh-5.3_p1-r1.ebuild,
   openssh-5.4_p1.ebuild:

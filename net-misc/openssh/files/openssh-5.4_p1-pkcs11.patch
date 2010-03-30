@@ -1,0 +1,39 @@
+fixes from upstream
+
+https://bugzilla.mindrot.org/show_bug.cgi?id=1737
+https://bugzilla.mindrot.org/show_bug.cgi?id=1738
+
+http://bugs.gentoo.org/310929
+
+--- ssh-pkcs11-helper.c
++++ ssh-pkcs11-helper.c
+@@ -17,8 +17,6 @@
+ 
+ #include "includes.h"
+ 
+-#ifdef ENABLE_PKCS11
+-
+ #include <sys/types.h>
+ #ifdef HAVE_SYS_TIME_H
+ # include <sys/time.h>
+@@ -39,6 +37,8 @@
+ #include "authfd.h"
+ #include "ssh-pkcs11.h"
+ 
++#ifdef ENABLE_PKCS11
++
+ /* borrows code from sftp-server and ssh-agent */
+ 
+ struct pkcs11_keyinfo {
+--- Makefile.in
++++ Makefile.in
+@@ -160,7 +160,7 @@
+ 	$(LD) -o $@ ssh-keysign.o readconf.o roaming_dummy.o $(LDFLAGS) -lssh -lopenbsd-compat $(LIBS)
+ 
+ ssh-pkcs11-helper$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-pkcs11-helper.o ssh-pkcs11.o
+-	$(LD) -o $@ ssh-pkcs11-helper.o ssh-pkcs11.o $(LDFLAGS) -lssh -lopenbsd-compat $(LIBS)
++	$(LD) -o $@ ssh-pkcs11-helper.o ssh-pkcs11.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh $(LIBS)
+ 
+ ssh-keyscan$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keyscan.o roaming_dummy.o
+ 	$(LD) -o $@ ssh-keyscan.o roaming_dummy.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh $(LIBS)
+
