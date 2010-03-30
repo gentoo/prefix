@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8l.ebuild,v 1.5 2009/11/08 20:38:28 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8n.ebuild,v 1.7 2010/03/29 21:49:11 maekke Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -28,26 +28,31 @@ src_unpack() {
 
 # this patch kills Darwin, but seems not necessary on Solaris and Linux
 #	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
-	epatch "${FILESDIR}"/${PN}-0.9.7-alpha-default-gcc.patch
-	#Forward port of the -b patch. Parallel make fails though.
-	epatch "${FILESDIR}"/${PN}-0.9.8j-parallel-build.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8-make-engines-dir.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8k-toolchain.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8b-doc-updates.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8-makedepend.patch #149583
-	epatch "${FILESDIR}"/${PN}-0.9.8e-make.patch #146316
-	#epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-sslv3-no-tlsext.patch
-	#epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
-	epatch "${FILESDIR}"/${PN}-0.9.8l-CVE-2009-137{7,8,9}.patch #270305
-	sed -i -e '/DIRS/ s/ fips / /g' Makefile{,.org} \
-		|| die "Removing fips from openssl failed."
+	epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
+	epatch "${FILESDIR}"/${PN}-0.9.8m-binutils.patch #289130
+
+	# disable fips in the build
+	# make sure the man pages are suffixed #302165
+	# don't bother building man pages if they're disabled
+	sed -i \
+		-e '/DIRS/s: fips : :g' \
+		-e '/^MANSUFFIX/s:=.*:=ssl:' \
+		-e '/^MAKEDEPPROG/s:=.*:=$(CC):' \
+		-e $(has noman FEATURES \
+			&& echo '/^install:/s:install_docs::' \
+			|| echo '/^MANDIR=/s:=.*:='"${EPREFIX}"'/usr/share/man:') \
+		Makefile{,.org} \
+		|| die
+	# show the actual commands in the log
+	sed -i '/^SET_X/s:=.*:=set -x:' Makefile.shared
 
 	epatch "${FILESDIR}"/${PN}-0.9.8k-cc-mxx.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-mint.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8k-aixdll.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8l-aixso.patch #213277: with import files now
 	if [[ ${CHOST} == *-interix* ]] ; then
 		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
 	fi
@@ -60,39 +65,22 @@ src_unpack() {
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
 
 	# allow openssl to be cross-compiled
-	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp gentoo.config failed"
+	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"
 	chmod a+rx gentoo.config
 
-	# Don't build manpages if we don't want them
-	has noman FEATURES \
-		&& sed -i '/^install:/s:install_docs::' Makefile.org \
-		|| sed -i '/^MANDIR=/s:=.*:='"${EPREFIX}"'/usr/share/man:' Makefile.org
+	append-flags -fno-strict-aliasing
+	case $($(tc-getAS) --noexecstack -v 2>&1 </dev/null) in
+		*"GNU Binutils"*) # GNU as with noexecstack support
+			append-flags -Wa,--noexecstack
+		;;
+	esac
 
-	# Try to derice users and work around broken ass toolchains
-	if [[ $(gcc-major-version) == "3" ]] ; then
-		filter-flags -fprefetch-loop-arrays -freduce-all-givs -funroll-loops
-		[[ $(tc-arch) == "ppc64" ]] && replace-flags -O? -O
-	fi
-	[[ $(tc-arch) == ppc* ]] && append-flags -fno-strict-aliasing
 
-	[[ $(tc-arch) == *-macos   ]] ||
-	[[ $(tc-arch) == *-aix     ]] ||
-	[[ $(tc-arch) == *-interix ]] ||
-	[[ $(tc-arch) == *-winnt*  ]] ||
-	[[ $(tc-arch) == *-hpux    ]] ||
-	[[ ${CHOST} == *-mint* ]] ||
-		append-flags -Wa,--noexecstack
-
-	# using a library directory other than lib requires some magic
-	sed -i \
-		-e "s+\(\$(INSTALL_PREFIX)\$(INSTALLTOP)\)/lib+\1/$(get_libdir)+g" \
-		-e "s+libdir=\$\${exec_prefix}/lib+libdir=\$\${exec_prefix}/$(get_libdir)+g" \
-		Makefile.org engines/Makefile \
-		|| die "sed failed"
 	# type -P required on platforms where perl is not installed
 	# in the same prefix (prefix-chaining).
 	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure #141906
 	sed -i '/^"debug-steve/d' Configure # 0.9.8k shipped broken
+	sed -i '1s/perl5/perl/' tools/c_rehash #308455
 
 	# avoid waiting on terminal input forever when spitting
 	# 64bit warning message.
@@ -151,7 +139,7 @@ src_compile() {
 		enable-mdc2 \
 		$(use_ssl !bindist rc5) \
 		enable-tlsext \
-		$(use_ssl gmp) \
+		$(use_ssl gmp gmp -lgmp) \
 		$(use_ssl kerberos krb5 --with-krb5-flavor=${krb5}) \
 		$(use_ssl zlib) \
 		--prefix="${EPREFIX}"/usr \
@@ -174,7 +162,9 @@ src_compile() {
 		-e 's:-mcpu=[-a-z0-9]* ::g' \
 		-e 's:-m[a-z0-9]* ::g' \
 	)
+	# CFLAGS can contain : with e.g. MIPSpro
 	sed -i \
+		-e "/^LIBDIR=/s:=.*:=$(get_libdir):" \
 		-e "/^CFLAG/s|=.*|=${CFLAG} ${CFLAGS}|" \
 		-e "/^SHARED_LDFLAGS=/s|$| ${LDFLAGS}|" \
 		Makefile || die
@@ -196,7 +186,7 @@ src_test() {
 src_install() {
 	emake -j1 INSTALL_PREFIX="${D}" install || die
 	dodoc CHANGES* FAQ NEWS README doc/*.txt doc/c-indentation.el
-	dohtml doc/*
+	dohtml -r doc/*
 
 	# create the certs directory
 	dodir /etc/ssl/certs
@@ -208,6 +198,8 @@ src_install() {
 	local m d s
 	for m in $(find . -type f | xargs grep -L '#include') ; do
 		d=${m%/*} ; d=${d#./} ; m=${m##*/}
+		# fix up references to renamed man pages
+		sed -i '/^[.]SH "SEE ALSO"/,/^[.][^I]/s:\([^(, I]*([15])\):ssl-\1:g' ${d}/${m}
 		[[ ${m} == openssl.1* ]] && continue
 		[[ -n $(find -L ${d} -type l) ]] && die "erp, broken links already!"
 		mv ${d}/{,ssl-}${m}

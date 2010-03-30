@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8l-r2.ebuild,v 1.8 2010/01/11 03:32:09 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8l-r2.ebuild,v 1.10 2010/02/15 06:39:39 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -42,8 +42,21 @@ src_unpack() {
 	epatch "${FILESDIR}"/${P}-CVE-2009-2409.patch #280591
 	epatch "${FILESDIR}"/${P}-dtls-compat.patch #280370
 	epatch "${FILESDIR}"/${PN}-0.9.8l-binutils.patch #289130
-	sed -i -e '/DIRS/ s/ fips / /g' Makefile.org \
-		|| die "Removing fips from openssl failed."
+
+	# disable fips in the build
+	# make sure the man pages are suffixed #302165
+	# don't bother building man pages if they're disabled
+	sed -i \
+		-e '/DIRS/s: fips : :g' \
+		-e '/^MANSUFFIX/s:=.*:=ssl:' \
+		-e '/^MAKEDEPPROG/s:=.*:=$(CC):' \
+		-e $(has noman FEATURES \
+			&& echo '/^install:/s:install_docs::' \
+			|| echo '/^MANDIR=/s:=.*:='"${EPREFIX}"'/usr/share/man:') \
+		Makefile{,.org} \
+		|| die
+	# show the actual commands in the log
+	sed -i '/^SET_X/s:=.*:=set -x:' Makefile.shared
 
 	epatch "${FILESDIR}"/${PN}-0.9.8k-cc-mxx.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
@@ -65,11 +78,6 @@ src_unpack() {
 	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp gentoo.config failed"
 	chmod a+rx gentoo.config
 
-	# Don't build manpages if we don't want them
-	has noman FEATURES \
-		&& sed -i '/^install:/s:install_docs::' Makefile.org \
-		|| sed -i '/^MANDIR=/s:=.*:='"${EPREFIX}"'/usr/share/man:' Makefile.org
-
 	append-flags -fno-strict-aliasing
 	[[ $(tc-arch) == *-macos   ]] ||
 	[[ $(tc-arch) == *-aix     ]] ||
@@ -78,9 +86,6 @@ src_unpack() {
 	[[ $(tc-arch) == *-hpux    ]] ||
 	[[ ${CHOST} == *-mint* ]] ||
 		append-flags -Wa,--noexecstack
-	# show the actual commands in the log
-	sed -i '/^SET_X/s:=.*:=set -x:' Makefile.shared
-	sed -i '/^MAKEDEPPROG/s:=.*:=$(CC):' Makefile.org
 
 	# using a library directory other than lib requires some magic
 	sed -i \
@@ -208,11 +213,11 @@ src_install() {
 	local m d s
 	for m in $(find . -type f | xargs grep -L '#include') ; do
 		d=${m%/*} ; d=${d#./} ; m=${m##*/}
+		# fix up references to renamed man pages
+		sed -i '/^[.]SH "SEE ALSO"/,/^[.][^I]/s:\([^(, I]*([15])\):ssl-\1:g' ${d}/${m}
 		[[ ${m} == openssl.1* ]] && continue
 		[[ -n $(find -L ${d} -type l) ]] && die "erp, broken links already!"
 		mv ${d}/{,ssl-}${m}
-		# fix up references to renamed man pages
-		sed -i '/^[.]SH "SEE ALSO"/,/^[.]/s:\([^(, ]*(1)\):ssl-\1:g' ${d}/ssl-${m}
 		ln -s ssl-${m} ${d}/openssl-${m}
 		# locate any symlinks that point to this man page ... we assume
 		# that any broken links are due to the above renaming

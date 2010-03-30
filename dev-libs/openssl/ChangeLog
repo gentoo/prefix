@@ -1,6 +1,65 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.315 2010/01/11 03:33:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.329 2010/03/29 21:49:11 maekke Exp $
+
+  29 Mar 2010; Markus Meier <maekke@gentoo.org> openssl-0.9.8n.ebuild:
+  amd64 stable, bug #308011
+
+*openssl-1.0.0 (29 Mar 2010)
+
+  29 Mar 2010; Mike Frysinger <vapier@gentoo.org> +openssl-1.0.0.ebuild:
+  Version bump.
+
+  28 Mar 2010; Raúl Porcel <armin76@gentoo.org> openssl-0.9.8n.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #308011
+
+  26 Mar 2010; Brent Baude <ranger@gentoo.org> openssl-0.9.8n.ebuild:
+  Marking openssl-0.9.8n ppc64 for bug 308011
+
+  25 Mar 2010; Jeroen Roovers <jer@gentoo.org> openssl-0.9.8n.ebuild:
+  Stable for PPC (bug #308011).
+
+  25 Mar 2010; Jeroen Roovers <jer@gentoo.org> openssl-0.9.8n.ebuild:
+  Stable for HPPA (bug #308011).
+
+  25 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  openssl-0.9.8n.ebuild:
+  stable x86, security bug 308011
+
+*openssl-0.9.8n (25 Mar 2010)
+
+  25 Mar 2010; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8n.ebuild:
+  Version bump.
+
+*openssl-0.9.8m-r1 (09 Mar 2010)
+
+  09 Mar 2010; Fabio Erculiani <lxnay@gentoo.org> -openssl-0.9.8m.ebuild,
+  +openssl-0.9.8m-r1.ebuild, +files/openssl-0.9.8m-cfb.patch:
+  fix critical bug #308123, thanks Joost Ruis for reporting
+
+*openssl-0.9.8m (05 Mar 2010)
+
+  05 Mar 2010; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8m.ebuild,
+  +files/openssl-0.9.8m-binutils.patch:
+  Version bump #306925 by Hanno Boeck.
+
+  15 Feb 2010; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8l-r2.ebuild:
+  Fix up man page munging #304663 by William Throwe.
+
+  13 Feb 2010; Mike Frysinger <vapier@gentoo.org>
+  openssl-1.0.0_beta5.ebuild, metadata.xml:
+  Add support by Tony Cheneau for USE=rfc3779 #304717.
+
+  27 Jan 2010; Mike Frysinger <vapier@gentoo.org> openssl-0.9.8l-r2.ebuild,
+  openssl-1.0.0_beta5.ebuild:
+  Unify the sed statements and make sure we always set MANSUFFIX #302165 by
+  Hanno Boeck.
+
+*openssl-1.0.0_beta5 (21 Jan 2010)
+
+  21 Jan 2010; Mike Frysinger <vapier@gentoo.org>
+  +openssl-1.0.0_beta5.ebuild:
+  Version bump.
 
 *openssl-1.0.0_beta4 (11 Jan 2010)
 
