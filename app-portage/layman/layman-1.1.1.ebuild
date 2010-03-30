@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.14 2009/04/05 15:41:32 jokey Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.1.1.ebuild,v 1.16 2009/12/30 22:23:44 sping Exp $
 
 EAPI=2
 NEED_PYTHON=2.5
@@ -16,8 +16,12 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="subversion test"
 
-DEPEND="test? ( dev-util/subversion )"
-RDEPEND="
+COMMON_DEPS="|| (
+	dev-lang/python[xml]
+	( dev-lang/python dev-python/pyxml ) )"
+DEPEND="${COMMON_DEPS}
+	test? ( dev-util/subversion )"
+RDEPEND="${COMMON_DEPS}
 	subversion? (
 		|| (
 			>=dev-util/subversion-1.5.4[webdav-neon]
@@ -25,7 +29,7 @@ RDEPEND="
 		)
 	)"
 
-src_unpack() {
+src_prepare() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.1.1-prefix.patch

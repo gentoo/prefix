@@ -1,0 +1,47 @@
+diff --git a/layman/overlays/overlay.py b/layman/overlays/overlay.py
+index e10f562..99aadad 100644
+--- a/layman/overlays/overlay.py
++++ b/layman/overlays/overlay.py
+@@ -29,5 +29,7 @@ __version__ = "$Id: layman-1.2.4-non-ascii-backport.patch,v 1.2 2010/01/03 23:59:17 sping Exp $"
+ #-------------------------------------------------------------------------------
+ 
+ import sys, types, re, os, os.path, shutil, subprocess
++import codecs
++import locale
+ 
+ from   layman.utils             import node_to_dict, dict_to_node, path
+@@ -226,6 +227,16 @@ class Overlay:
+             result = cmd.wait()
+             return result
+ 
++    def _get_encoding(self):
++        if hasattr(sys.stdout, 'encoding') \
++                and sys.stdout.encoding != None:
++            return sys.stdout.encoding
++        else:
++            return locale.getpreferredencoding()
++
++    def _encode(self, unicode_text):
++        return codecs.encode(unicode_text, self._get_encoding(), 'replace')
++
+     def __str__(self):
+         '''
+         >>> here = os.path.dirname(os.path.realpath(__file__))
+@@ -272,7 +282,7 @@ class Overlay:
+             result += u'\n  '.join((u'\n' + link).split(u'\n'))
+             result += u'\n'
+ 
+-        return result
++        return self._encode(result)
+ 
+     def short_list(self, width = 0):
+         '''
+@@ -321,7 +331,7 @@ class Overlay:
+             source = source.replace("overlays.gentoo.org", "o.g.o")
+         source = ' (' + pad(source, srclen) + ')'
+ 
+-        return name + mtype + source
++        return self._encode(name + mtype + source)
+ 
+     def supported(self, binaries = []):
+         '''Is the overlay type supported?'''

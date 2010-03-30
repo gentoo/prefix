@@ -1,6 +1,149 @@
 # ChangeLog for app-portage/layman
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.79 2009/12/05 00:44:07 arfrever Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/ChangeLog,v 1.106 2010/03/17 15:39:37 sping Exp $
+
+  17 Mar 2010; Sebastian Pipping <sping@gentoo.org> layman-1.2.3.ebuild,
+  layman-1.2.4-r3.ebuild, layman-1.2.5.ebuild, layman-1.2.6.ebuild,
+  layman-1.3.0_rc1-r3.ebuild, layman-1.3.0.ebuild, layman-1.3.0-r1.ebuild,
+  layman-1.3.1.ebuild, layman-1.3.2-r1.ebuild, layman-1.3.2-r2.ebuild,
+  layman-9999.ebuild, metadata.xml:
+  Propagate move of dev-util/git to dev-vcs/git
+
+*layman-1.3.2-r2 (15 Mar 2010)
+
+  15 Mar 2010; Sebastian Pipping <sping@gentoo.org> +layman-1.3.2-r2.ebuild,
+  +files/layman-1.3.2-missing-text.patch:
+  Integrate backport patch for bug #309617
+
+  14 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org>
+  layman-1.3.0-r1.ebuild, layman-1.3.1.ebuild, layman-1.3.2-r1.ebuild,
+  layman-9999.ebuild, metadata.xml:
+  Change references to dev-uti/darcs to dev-vcs/darcs do to the move.
+
+  05 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  layman-1.3.0-r1.ebuild, layman-1.3.1.ebuild, layman-1.3.2-r1.ebuild,
+  layman-9999.ebuild, metadata.xml:
+  Bzr moved from dev-util to dev-vcs category
+
+*layman-1.3.2-r1 (21 Feb 2010)
+
+  21 Feb 2010; Sebastian Pipping <sping@gentoo.org> -layman-1.3.2.ebuild,
+  +layman-1.3.2-r1.ebuild, +files/layman-1.3.2-missing-import.patch:
+  Integrate fix for bug #306143
+
+*layman-1.3.2 (20 Feb 2010)
+
+  20 Feb 2010; Sebastian Pipping <sping@gentoo.org> +layman-1.3.2.ebuild:
+  Trivial-bump to 1.3.2
+
+  08 Feb 2010; Sebastian Pipping <sping@gentoo.org> layman-1.3.0.ebuild,
+  layman-1.3.1.ebuild, layman-9999.ebuild:
+  Add missing "inherit eutils" for epause (bug #303849)
+
+*layman-1.3.1 (05 Feb 2010)
+
+  05 Feb 2010; Sebastian Pipping <sping@gentoo.org> +layman-1.3.1.ebuild:
+  Trivial-bump to 1.3.1
+
+  27 Jan 2010; Sebastian Pipping <sping@gentoo.org> layman-1.3.0-r1.ebuild,
+  layman-9999.ebuild, metadata.xml:
+  Introduce use flags "bazaar" and "cvs", fix IUSE
+
+  27 Jan 2010; Sebastian Pipping <sping@gentoo.org> layman-1.3.0-r1.ebuild,
+  layman-9999.ebuild, metadata.xml:
+  Introduce use flags "darcs" and "mercurial"
+
+*layman-1.3.0-r1 (23 Jan 2010)
+
+  23 Jan 2010; Sebastian Pipping <sping@gentoo.org> +layman-1.3.0-r1.ebuild,
+  +files/layman-1.3.0-cvs-fix.patch:
+  Integrate patch to bug #301689 for 1.3.0-r1
+
+  19 Jan 2010; Sebastian Pipping <sping@gentoo.org> layman-9999.ebuild:
+  Propagate changes to 1.3.0 to 9999
+
+  19 Jan 2010; Sebastian Pipping <sping@gentoo.org> -layman-1.2.4.ebuild,
+  -layman-1.2.4-r1.ebuild, -layman-1.2.4-r2.ebuild:
+  Remove 1.2.4-r{0,1,2}
+
+*layman-1.3.0 (19 Jan 2010)
+
+  19 Jan 2010; Sebastian Pipping <sping@gentoo.org> +layman-1.3.0.ebuild:
+  Bump to 1.3.0
+
+  18 Jan 2010; Sebastian Pipping <sping@gentoo.org>
+  -layman-1.3.0_rc1.ebuild, -layman-1.3.0_rc1-r1.ebuild,
+  -layman-1.3.0_rc1-r2.ebuild:
+  Remove 1.3.0_rc1-r{0,1,2}
+
+*layman-1.3.0_rc1-r3 (18 Jan 2010)
+
+  18 Jan 2010; Sebastian Pipping <sping@gentoo.org>
+  +layman-1.3.0_rc1-r3.ebuild,
+  +files/layman-1.3.0_rc1-fix-sync-warnings.patch:
+  Integrate patch to bug #301327 for 1.3.0_rc1-r3
+
+*layman-1.3.0_rc1-r2 (17 Jan 2010)
+
+  17 Jan 2010; Sebastian Pipping <sping@gentoo.org>
+  +layman-1.3.0_rc1-r2.ebuild,
+  +files/layman-1.3.0_rc1-refactoring-fix.patch:
+  Integrate patch to bug #301253 for 1.3.0_rc1-r2
+
+*layman-1.3.0_rc1-r1 (16 Jan 2010)
+
+  16 Jan 2010; Sebastian Pipping <sping@gentoo.org>
+  +layman-1.3.0_rc1-r1.ebuild, +files/layman-1.3.0_rc1-sync-fix.patch:
+  Integrate patch to bug #301174 for 1.3.0_rc1-r1
+
+*layman-1.3.0_rc1 (15 Jan 2010)
+
+  15 Jan 2010; Sebastian Pipping <sping@gentoo.org>
+  +layman-1.3.0_rc1.ebuild:
+  Trivial-bump to 1.3.0_rc1
+
+*layman-1.2.6 (12 Jan 2010)
+
+  12 Jan 2010; Sebastian Pipping <sping@gentoo.org> +layman-1.2.6.ebuild:
+  Trivial-bump to 1.2.6
+
+*layman-1.2.5 (04 Jan 2010)
+
+  04 Jan 2010; Sebastian Pipping <sping@gentoo.org> +layman-1.2.5.ebuild:
+  Bump to 1.2.5
+
+  04 Jan 2010; Sebastian Pipping <sping@gentoo.org> layman-9999.ebuild:
+  Propagate upstream changes to live ebuild
+
+*layman-1.2.4-r3 (03 Jan 2010)
+
+  03 Jan 2010; Sebastian Pipping <sping@gentoo.org> +layman-1.2.4-r3.ebuild,
+  files/layman-1.2.4-non-ascii-backport.patch:
+  Update non-ASCII backport patch to fix bug #299305
+
+*layman-1.2.4-r2 (02 Jan 2010)
+
+  02 Jan 2010; Sebastian Pipping <sping@gentoo.org> +layman-1.2.4-r2.ebuild,
+  +files/layman-1.2.4-non-ascii-backport.patch:
+  Integrate 1.2.4 backport patch for bug #286290
+
+*layman-1.2.4-r1 (01 Jan 2010)
+
+  01 Jan 2010; Sebastian Pipping <sping@gentoo.org> +layman-1.2.4-r1.ebuild,
+  +files/layman-1.2.4-peg-backport.patch:
+  Integrate 1.2.4 backport patch for bug #295018
+
+  30 Dec 2009; Sebastian Pipping <sping@gentoo.org> layman-1.1.1.ebuild,
+  layman-1.2.3.ebuild, layman-1.2.4.ebuild, layman-9999.ebuild:
+  Fix dependency for xml.dom.minidom imports
+
+  29 Dec 2009; Sebastian Pipping <sping@gentoo.org> layman-1.1.1.ebuild:
+  Add dependency on pyxml for xml.dom.minidom (bug #264263)
+
+*layman-9999 (29 Dec 2009)
+
+  29 Dec 2009; Sebastian Pipping <sping@gentoo.org> +layman-9999.ebuild:
+  Add live ebuild
 
   05 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   layman-1.2.4.ebuild:

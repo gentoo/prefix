@@ -40,9 +40,7 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.2.4-prefix.patch
 	eprefixify layman/config.py etc/layman.cfg
 	find layman/overlays -name "*.py" | xargs sed -i \

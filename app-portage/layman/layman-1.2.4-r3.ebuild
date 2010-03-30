@@ -1,8 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.2.3.ebuild,v 1.10 2009/05/24 22:09:25 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.2.4-r3.ebuild,v 1.2 2010/03/17 15:39:37 sping Exp $
 
-EAPI=2
+EAPI="2"
+NEED_PYTHON=2.5
+SUPPORT_PYTHON_ABIS="1"
 
 inherit eutils distutils prefix
 
@@ -12,19 +14,32 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="git subversion test"
 
-DEPEND="dev-python/pyxml
+COMMON_DEPS="|| (
+	dev-lang/python[xml]
+	( dev-lang/python dev-python/pyxml ) )"
+DEPEND="${COMMON_DEPS}
 	test? ( dev-util/subversion )"
-RDEPEND=">=dev-lang/python-2.5
-	git? ( dev-util/git )
+RDEPEND="${COMMON_DEPS}
+	git? ( dev-vcs/git )
 	subversion? (
 		|| (
 			>=dev-util/subversion-1.5.4[webdav-neon]
 			>=dev-util/subversion-1.5.4[webdav-serf]
 		)
 	)"
+RESTRICT_PYTHON_ABIS="2.4 3.*"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-peg-backport.patch \
+			"${FILESDIR}"/${P}-non-ascii-backport.patch
+	epatch "${FILESDIR}"/${PN}-1.2.4-prefix.patch
+	eprefixify layman/config.py etc/layman.cfg
+	find layman/overlays -name "*.py" | xargs sed -i \
+		-e '/binary\(_command \)\? = '"'"'.*'"'"'/s|'"'"'\(.*\)'"'"'|'"'${EPREFIX}"'\1'"'"'|'
+}
 
 pkg_setup() {
 	if ! has_version dev-util/subversion; then
@@ -38,17 +53,14 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.2.0-prefix.patch
-	eprefixify layman/config.py etc/layman.cfg
-	find layman/overlays -name "*.py" | xargs sed -i \
-		-e '/binary\(_command \)\? = '"'"'.*'"'"'/s|'"'"'\(.*\)'"'"'|'"'${EPREFIX}"'\1'"'"'|'
+src_test() {
+	testing() {
+		PYTHONPATH="." "$(PYTHON)" layman/tests/dtest.py
+	}
+	python_execute_function testing
 }
 
 src_install() {
-
 	distutils_src_install
 
 	dodir /etc/layman
@@ -61,16 +73,9 @@ src_install() {
 	keepdir /usr/local/portage/layman
 }
 
-src_test() {
-	einfo "Running layman doctests..."
-	echo
-	if ! PYTHONPATH="." ${python} layman/tests/dtest.py; then
-		eerror "DocTests failed - please submit a bug report"
-		die "DocTesting failed!"
-	fi
-}
-
 pkg_postinst() {
+	distutils_pkg_postinst
+
 	einfo "You are now ready to add overlays into your system."
 	einfo
 	einfo "layman -L"
