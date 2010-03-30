@@ -651,9 +651,6 @@ sys-apps/ren
 sys-apps/rename
 sys-apps/ucspi-tcp
 sys-apps/which
-sys-auth/pam_mktemp
-sys-auth/pam_passwdqc
-sys-auth/pam_ssh
 sys-devel/autoconf-archive
 sys-devel/autoconf-wrapper
 sys-devel/automake-wrapper
@@ -794,6 +791,7 @@ sci-chemistry
 sci-electronics
 sci-libs
 sci-misc
+sys-auth
 sys-kernel
 virtual
 x11-apps
