@@ -1,0 +1,39 @@
+reported upstream to rt@openssl.org on 24 Apr 2009:
+http://rt.openssl.org/Ticket/Display.html?id=1908
+
+diff -ru openssl-0.9.8g.orig/Configure openssl-0.9.8g/Configure
+--- openssl-0.9.8g.orig/Configure	Mon Jan 21 11:20:03 2008
++++ openssl-0.9.8g/Configure	Mon Jan 21 11:22:20 2008
+@@ -464,6 +464,9 @@
+ "VC-CE","cl::::WINCE::BN_LLONG RC4_INDEX EXPORT_VAR_AS_FN ${x86_gcc_opts}:${no_asm}:win32",
+ "VC-WIN32","cl::::WIN32::BN_LLONG RC4_INDEX EXPORT_VAR_AS_FN ${x86_gcc_opts}:${no_asm}:win32",
+ 
++# Interix (GCC)
++"interix-gcc", "gcc:-D_ALL_SOURCE -DL_ENDIAN -DTERMIOS -O2 -Wall::-D_REENTRANT::-ldl:::::::::::::dlfcn:gnu:::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
++
+ # Borland C++ 4.5
+ "BC-32","bcc32::::WIN32::BN_LLONG DES_PTR RC4_INDEX EXPORT_VAR_AS_FN:${no_asm}:win32",
+ 
+diff -ru openssl-0.9.8g.orig/config openssl-0.9.8g/config
+--- openssl-0.9.8g.orig/config	Mon Jan 21 11:20:03 2008
++++ openssl-0.9.8g/config	Mon Jan 21 11:31:46 2008
+@@ -336,6 +336,10 @@
+ 	echo "mips-sony-newsos4"; exit 0;
+ 	;;
+ 
++	Interix*)
++	echo "i586-pc-interix${VERSION}"; exit 0;
++	;;
++
+     MINGW*)
+ 	echo "${MACHINE}-whatever-mingw"; exit 0;
+ 	;;
+@@ -763,6 +767,7 @@
+   t3e-cray-unicosmk) OUT="cray-t3e" ;;
+   j90-cray-unicos) OUT="cray-j90" ;;
+   nsr-tandem-nsk) OUT="tandem-c89" ;;
++  *-interix*) OUT="interix-gcc" ;;
+   x86pc-*-qnx6) OUT="QNX6-i386" ;;
+   *-*-qnx6) OUT="QNX6" ;;
+   *) OUT=`echo $GUESSOS | awk -F- '{print $3}'`;;
+

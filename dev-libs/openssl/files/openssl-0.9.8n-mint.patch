@@ -1,0 +1,33 @@
+--- Configure.old	2008-04-11 21:28:45.000000000 +0100
++++ Configure	2008-04-11 23:46:19.000000000 +0100
+@@ -467,6 +467,9 @@
+ # Interix (GCC)
+ "interix-gcc", "gcc:-D_ALL_SOURCE -DL_ENDIAN -DTERMIOS -O2 -Wall::-D_REENTRANT::-ldl:::::::::::::dlfcn:gnu:::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
+ 
++# FreeMiNT (GCC)
++"mint-gcc", "gcc:-O2 -fomit-frame-pointer -DB_ENDIAN -DTERMIOS::-D_REENTRANT:::BN_LLONG:::",
++
+ # Borland C++ 4.5
+ "BC-32","bcc32::::WIN32::BN_LLONG DES_PTR RC4_INDEX EXPORT_VAR_AS_FN:${no_asm}:win32",
+ 
+--- config.old	2008-04-11 23:41:29.000000000 +0100
++++ config	2008-04-11 23:42:19.000000000 +0100
+@@ -340,6 +340,10 @@
+ 	echo "i586-pc-interix${VERSION}"; exit 0;
+ 	;;
+ 
++	FreeMiNT*)
++	echo "m68k-atari-mint"; exit 0;
++	;;
++
+     MINGW*)
+ 	echo "${MACHINE}-whatever-mingw"; exit 0;
+ 	;;
+@@ -768,6 +772,7 @@
+   j90-cray-unicos) OUT="cray-j90" ;;
+   nsr-tandem-nsk) OUT="tandem-c89" ;;
+   *-interix*) OUT="interix-gcc" ;;
++  *-mint*) OUT="mint-gcc" ;;
+   x86pc-*-qnx6) OUT="QNX6-i386" ;;
+   *-*-qnx6) OUT="QNX6" ;;
+   *) OUT=`echo $GUESSOS | awk -F- '{print $3}'`;;

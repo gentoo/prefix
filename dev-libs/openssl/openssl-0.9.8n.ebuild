@@ -48,10 +48,9 @@ src_unpack() {
 	# show the actual commands in the log
 	sed -i '/^SET_X/s:=.*:=set -x:' Makefile.shared
 
-	epatch "${FILESDIR}"/${PN}-0.9.8k-cc-mxx.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-mint.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8n-interix.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8n-mint.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8l-aixso.patch #213277: with import files now
 	if [[ ${CHOST} == *-interix* ]] ; then
 		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
