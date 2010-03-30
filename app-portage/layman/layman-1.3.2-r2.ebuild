@@ -40,6 +40,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${P}-missing-text.patch
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	eprefixify etc/layman.cfg layman/config.py
+	find layman/overlays -name "*.py" | xargs sed -i \
+		-e '/binary\(_command \)\? = '"'"'.*'"'"'/s|'"'"'\(.*\)'"'"'|'"'${EPREFIX}"'\1'"'"'|'
 }
 
 pkg_setup() {
