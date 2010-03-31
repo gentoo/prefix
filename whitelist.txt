@@ -793,6 +793,7 @@ sci-libs
 sci-misc
 sys-auth
 sys-kernel
+sys-power
 virtual
 x11-apps
 x11-proto
