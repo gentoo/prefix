@@ -1,0 +1,18 @@
+# ChangeLog for dev-haskell/hashed-storage
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/ChangeLog,v 1.2 2010/03/28 17:31:50 kolmodin Exp $
+
+*hashed-storage-0.4.10 (28 Mar 2010)
+
+  28 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org>
+  -hashed-storage-0.3.9.ebuild, +hashed-storage-0.4.10.ebuild:
+  Bump version, and enabling the test suite!
+
+*hashed-storage-0.3.9 (13 Dec 2009)
+
+  13 Dec 2009; <kolmodin@gentoo.org> +hashed-storage-0.3.9.ebuild,
+  +metadata.xml:
+  Initial import, needed by upcomming darcs version.
+  It's not the latest version of hashed-storage, but it's the most recent
+  version that darcs supports.
+
