@@ -330,6 +330,7 @@ dev-tcltk/iwidgets
 dev-tcltk/tcllib
 dev-tcltk/tdom
 dev-tcltk/tix
+dev-tcltk/tkimg
 dev-tex/algorithms
 dev-tex/chktex
 dev-tex/currvita
