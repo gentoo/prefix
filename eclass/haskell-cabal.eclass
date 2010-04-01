@@ -70,6 +70,9 @@ for feature in ${CABAL_FEATURES}; do
 	esac
 done
 
+# no fun, but necessary for the cabalconf settings below
+has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
+
 if [[ -n "${CABAL_USE_HADDOCK}" ]]; then
 	IUSE="${IUSE} doc"
 	DEPEND="${DEPEND} doc? ( dev-haskell/haddock )"
@@ -192,6 +195,7 @@ cabal-haddock() {
 }
 
 cabal-configure() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	if [[ -n "${CABAL_USE_HADDOCK}" ]] && use doc; then
 		cabalconf="${cabalconf} --with-haddock=${EPREFIX}/usr/bin/haddock"
 	fi
@@ -246,6 +250,7 @@ cabal-build() {
 }
 
 cabal-copy() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED=${D}
 	./setup copy \
 		--copy-prefix="${ED}/usr" \
 		|| die "setup copy failed"
@@ -377,6 +382,7 @@ haskell-cabal_src_test() {
 
 # exported function: cabal-style copy and register
 cabal_src_install() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	if cabal-is-dummy-lib; then
 		# create a dummy local package conf file for the sake of ghc-updater
 		local ghc_confdir_with_prefix="$(ghc-confdir)"
