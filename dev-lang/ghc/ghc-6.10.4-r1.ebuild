@@ -53,7 +53,8 @@ arch_binaries="$arch_binaries ppc64? ( http://code.haskell.org/~slyfox/ghc-ppc64
 #arch_binaries="$arch_binaries x86? ( mirror://gentoo/ghc-bin-${PV}-x86.tbz2 )"
 
 arch_binaries="$arch_binaries x86-macos? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-i386-apple-darwin.tar.bz2 )"
-arch_binaries="$arch_binaries ppc-macos? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-powerpc-apple-darwin.tar.bz2 )"
+# 6.10.4 binary bus errors on Tiger (it's for Leopard only)
+arch_binaries="$arch_binaries ppc-macos? ( http://www.haskell.org/ghc/dist/6.10.1/maeder/ghc-6.10.1-powerpc-apple-darwin.tar.bz2 )"
 arch_binaries="$arch_binaries x86-solaris? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-i386-unknown-solaris2.tar.bz2 )"
 arch_binaries="$arch_binaries sparc-solaris? ( http://www.haskell.org/ghc/dist/${PV}/maeder/ghc-${PV}-sparc-sun-solaris2.tar.bz2 )"
 
@@ -189,44 +190,48 @@ src_unpack() {
 				pushd "${WORKDIR}"/ghc-bin-installer > /dev/null || die
 				use sparc-solaris && unpack ghc-${PV}-sparc-sun-solaris2.tar.bz2
 				use x86-solaris && unpack ghc-${PV}-i386-unknown-solaris2.tar.bz2
-				use ppc-macos && unpack ghc-${PV}-powerpc-apple-darwin.tar.bz2
+				use ppc-macos && unpack ghc-6.10.1-powerpc-apple-darwin.tar.bz2
 				use x86-macos && unpack ghc-${PV}-i386-apple-darwin.tar.bz2
 
+				# fix the binaries so they run, on Solaris we need an
+				# LD_LIBRARY_PATH which has our prefix libdirs, on Darwin we
+				# need to replace the install_names with our libs from the
+				# prefix
+				if [[ ${CHOST} == powerpc-*-darwin* ]] ; then
+					# this is necessary at least for PPC/Tiger ghc-6.10.1
+					# http://www.haskell.org/ghc/download_ghc_6_10_1.html#macosxppc
+					local line
+					scanmacho -yR -EMH_EXECUTE -F'%n' . | while read line ; do
+						if [[ ,${line} == *,/opt/local/lib/* ]] ; then
+							einfo "fixing ${line#* }"
+							install_name_tool -change \
+								/opt/local/lib/libncurses.5.dylib \
+								"${EPREFIX}"/lib/libncurses.5.dylib \
+								${line#* }
+							install_name_tool -change \
+								/opt/local/lib/libgmp.3.dylib \
+								"${EPREFIX}"/usr/lib/libgmp.3.dylib \
+								${line#* }
+						fi
+					done
+				elif [[ ${CHOST} == *-solaris* ]] ; then
+					export LD_LIBRARY_PATH="${EPREFIX}/$(get_libdir):${EPREFIX}/usr/$(get_libdir):${LD_LIBRARY_PATH}"
+				fi
+				pushd ${PN}-* > /dev/null || die
 				# it is autoconf, but we really don't want to give it too
 				# much arguments, in fact we do the make in-place anyway
-				pushd "${P}" > /dev/null || die
 				./configure --prefix="${WORKDIR}"/usr || die
 				make install || die
 				popd > /dev/null
 				popd > /dev/null
-				# fix the binaries so they run, on Solaris we need an
-				# LD_LIBRARY_PATH which has our prefix libdirs, on Darwin we
-				# need to replace the frameworks with our libs from the prefix
 				pushd "${WORKDIR}"/usr > /dev/null || die
-				if [[ ${CHOST} == *-solaris* ]] ; then
-					export LD_LIBRARY_PATH="${EPREFIX}/$(get_libdir):${EPREFIX}/usr/$(get_libdir):${LD_LIBRARY_PATH}"
-				elif [[ ${CHOST} == *-darwin* ]] ; then
-					local readline_framework
-					if [[ ${CHOST} == powerpc-*-darwin* ]]; then
-						readline_framework=GNUreadline.framework/GNUreadline
-					else
-						readline_framework=GNUreadline.framework/Versions/A/GNUreadline
-					fi
-					for binary in lib/*-apple-darwin/ghc-{${PV},pkg.bin}; do
-						install_name_tool -change \
-							${readline_framework} \
-							"${EPREFIX}"/lib/libreadline.dylib \
-							${binary} || die
-						install_name_tool -change \
-							GMP.framework/Versions/A/GMP \
-							"${EPREFIX}"/usr/lib/libgmp.dylib \
-							${binary} || die
-					done
+				if [[ ${CHOST} == *-darwin* ]] ; then
 					# we don't do frameworks!
 					sed -i \
 						-e 's/\(frameworks = \)\["GMP"\]/\1[]/g' \
 						-e 's/\(extraLibraries = \)\["m"\]/\1["m","gmp"]/g' \
-						lib/*-apple-darwin/package.conf || die
+						lib/${PN}-*/package.conf || die
+					# if this fails over versions, we can switch to find
 				fi
 				popd > /dev/null
 			fi
