@@ -1,6 +1,18 @@
 # ChangeLog for dev-haskell/haddock
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.67 2010/01/26 19:59:00 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.70 2010/03/30 22:22:52 kolmodin Exp $
+
+  30 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org> haddock-2.4.1.ebuild,
+  haddock-2.4.2.ebuild, files/haddock-2.4.2-Setup.hs:
+  Change deps of 2.4.1 to only work with cabal-1.6*.
+  For 2.4.2 we've patched so it workes with both cabal-1.6 and cabal-1.8.
+  See bug #302489.
+
+  30 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org> haddock-2.4.2.ebuild:
+  Change deps of 2.4.2, it only builds with cabal-1.6*. See bug #302489.
+
+  28 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org> haddock-2.6.0.ebuild:
+  Add dependencies alex and happy, see bug #302397.
 
 *haddock-2.6.0 (26 Jan 2010)
 

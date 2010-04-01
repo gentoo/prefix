@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-2.6.0.ebuild,v 1.2 2010/01/27 04:11:55 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/haddock-2.6.0.ebuild,v 1.4 2010/03/28 16:28:44 mr_bones_ Exp $
 
 CABAL_FEATURES="bin lib"
 # don't enable profiling as the 'ghc' package is not built with profiling
@@ -22,6 +22,8 @@ IUSE="doc"
 RDEPEND=">=dev-lang/ghc-6.12"
 DEPEND="${RDEPEND}
 		>=dev-haskell/cabal-1.6
+		dev-haskell/alex
+		dev-haskell/happy
 		doc? (  ~app-text/docbook-xml-dtd-4.2
 				app-text/docbook-xsl-stylesheets
 				>=dev-libs/libxslt-1.1.2 )"
