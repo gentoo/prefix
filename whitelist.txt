@@ -236,6 +236,7 @@ dev-db/virtuoso-server
 dev-haskell/cabal
 dev-haskell/filepath
 dev-haskell/html
+dev-haskell/http
 dev-haskell/mtl
 dev-haskell/network
 dev-haskell/parallel
