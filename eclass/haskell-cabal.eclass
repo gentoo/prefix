@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.18 2010/01/26 20:50:40 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/haskell-cabal.eclass,v 1.20 2010/03/30 22:18:37 kolmodin Exp $
 #
 # Original authors: Andres Loeh <kosmikus@gentoo.org>
 #                   Duncan Coutts <dcoutts@gentoo.org>
@@ -45,6 +45,14 @@
 
 inherit ghc-package multilib
 
+HASKELL_CABAL_EXPF="pkg_setup src_compile src_test src_install"
+
+case "${EAPI:-0}" in
+	2|3|4) HASKELL_CABAL_EXPF+=" src_configure" ;;
+	*) ;;
+esac
+
+EXPORT_FUNCTIONS ${HASKELL_CABAL_EXPF}
 
 for feature in ${CABAL_FEATURES}; do
 	case ${feature} in
@@ -320,11 +328,24 @@ haskell-cabal_pkg_setup() {
 	fi
 }
 
+haskell-cabal_src_configure() {
+	pushd "${S}" > /dev/null
+
+	cabal-bootstrap
+	cabal-configure "$@"
+
+	popd > /dev/null
+}
+
+# exported function: nice alias
+cabal_src_configure() {
+	haskell-cabal_src_configure "$@"
+}
+
 # exported function: cabal-style bootstrap configure and compile
 cabal_src_compile() {
 	if ! cabal-is-dummy-lib; then
-		cabal-bootstrap
-		cabal-configure
+		has src_configure ${HASKELL_CABAL_EXPF} || haskell-cabal_src_configure "$@"
 		cabal-build
 
 		if [[ -n "${CABAL_USE_HADDOCK}" ]] && use doc; then
@@ -334,7 +355,24 @@ cabal_src_compile() {
 }
 
 haskell-cabal_src_compile() {
-	cabal_src_compile
+	pushd "${S}" > /dev/null
+
+	cabal_src_compile "$@"
+
+	popd > /dev/null
+}
+
+haskell-cabal_src_test() {
+	pushd "${S}" > /dev/null
+
+	if cabal-is-dummy-lib; then
+		einfo ">>> No tests for dummy library: ${CATEGORY}/${PF}"
+	else
+		einfo ">>> Test phase [cabal test]: ${CATEGORY}/${PF}"
+		./setup test || die "cabal test failed"
+	fi
+
+	popd > /dev/null
 }
 
 # exported function: cabal-style copy and register
@@ -356,8 +394,39 @@ cabal_src_install() {
 		fi
 	fi
 }
+
 haskell-cabal_src_install() {
+	pushd "${S}" > /dev/null
+
 	cabal_src_install
+
+	popd > /dev/null
 }
 
-EXPORT_FUNCTIONS pkg_setup src_compile src_install
+# ebuild.sh:use_enable() taken as base
+#
+# Usage examples:
+#
+#     CABAL_CONFIGURE_FLAGS=$(cabal_flag gui)
+#  leads to "--flags=gui" or "--flags=-gui" (useflag 'gui')
+#
+#     CABAL_CONFIGURE_FLAGS=$(cabal_flag gtk gui)
+#  also leads to "--flags=gui" or " --flags=-gui" (useflag 'gtk')
+#
+cabal_flag() {
+	if [[ -z "$1" ]]; then
+		echo "!!! cabal_flag() called without a parameter." >&2
+		echo "!!! cabal_flag() <USEFLAG> [<cabal_flagname>]" >&2
+		return 1
+	fi
+
+	local UWORD=${2:-$1}
+
+	if use "$1"; then
+		echo "--flags=${UWORD}"
+	else
+		echo "--flags=-${UWORD}"
+	fi
+
+	return 0
+}
