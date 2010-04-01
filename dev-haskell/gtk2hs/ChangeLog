@@ -1,6 +1,15 @@
 # ChangeLog for dev-haskell/gtk2hs
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.52 2009/08/30 09:50:50 kolmodin Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.53 2010/03/27 09:01:56 kolmodin Exp $
+
+  27 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org> gtk2hs-0.10.1.ebuild,
+  +files/gtk2hs-0.10.1-ghc-6.12-c2hs.patch,
+  +files/gtk2hs-0.10.1-ghc-6.12-packages.patch:
+  Fix compilation issues when using GHC 6.12.1, patch from upstream.
+  Remove the seamonkey USE flag, see bug #300422.
+  If gtk2hs is emerged with doc flag, then mtl need it too.
+  Add ~ppc64 keyword, tested by Sergei Trofimovich.
+  Work done by Sergei Trofimovich <slyfox@community.haskell.org>.
 
 *gtk2hs-0.10.1 (30 Aug 2009)
 

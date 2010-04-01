@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.10.1.ebuild,v 1.1 2009/08/30 09:50:50 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.10.1.ebuild,v 1.2 2010/03/27 09:01:56 kolmodin Exp $
 
 EAPI="2"
 
-inherit base eutils ghc-package multilib toolchain-funcs versionator
+inherit base eutils autotools ghc-package multilib toolchain-funcs versionator
 
 DESCRIPTION="A GUI Library for Haskell based on Gtk+"
 HOMEPAGE="http://haskell.org/gtk2hs/"
@@ -16,10 +16,10 @@ SLOT="0"
 
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
-IUSE="doc profile glade gnome opengl svg seamonkey xulrunner"
+IUSE="doc profile glade gnome opengl svg xulrunner"
 
 RDEPEND=">=dev-lang/ghc-6.6
-		dev-haskell/mtl
+		dev-haskell/mtl[doc?]
 		x11-libs/gtk+:2
 		glade? ( gnome-base/libglade )
 		gnome? ( gnome-base/libglade
@@ -27,8 +27,7 @@ RDEPEND=">=dev-lang/ghc-6.6
 				gnome-base/gconf )
 		svg?   ( gnome-base/librsvg )
 		opengl? ( x11-libs/gtkglext )
-		xulrunner? ( =net-libs/xulrunner-1.8* )
-		seamonkey? ( =www-client/seamonkey-1* )"
+		xulrunner? ( =net-libs/xulrunner-1.8* )"
 
 DEPEND="${RDEPEND}
 		doc? ( >=dev-haskell/haddock-2.4.1 )
@@ -37,6 +36,13 @@ DEPEND="${RDEPEND}
 MY_P="${P/%_rc*}"
 
 S="${WORKDIR}/${MY_P}"
+
+src_prepare() {
+	epatch "${FILESDIR}/gtk2hs-0.10.1-ghc-6.12-packages.patch"
+	epatch "${FILESDIR}/gtk2hs-0.10.1-ghc-6.12-c2hs.patch"
+	cd "${S}"
+	eautoreconf
+}
 
 src_configure() {
 	econf \
@@ -51,7 +57,6 @@ src_configure() {
 		$(use_enable svg svg) \
 		$(use_enable opengl opengl) \
 		--disable-firefox \
-		$(use_enable seamonkey seamonkey) \
 		$(use_enable xulrunner xulrunner) \
 		$(use_enable doc docs) \
 		$(use_enable profile profiling) \
@@ -86,7 +91,7 @@ src_install() {
 			"${ED}/usr/$(get_libdir)/gtk2hs/svgcairo.package.conf") \
 		$(use opengl && echo \
 			"${ED}/usr/$(get_libdir)/gtk2hs/gtkglext.package.conf") \
-		$(use seamonkey || use xulrunner && echo \
+		$(use xulrunner && echo \
 			"${ED}/usr/$(get_libdir)/gtk2hs/mozembed.package.conf")
 	ghc-install-pkg
 }
