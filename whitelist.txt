@@ -332,12 +332,6 @@ dev-lisp/cl-puri
 dev-ml/extlib
 dev-ml/lablgtk
 dev-php5/pecl-pdflib
-dev-tcltk/blt
-dev-tcltk/iwidgets
-dev-tcltk/tcllib
-dev-tcltk/tdom
-dev-tcltk/tix
-dev-tcltk/tkimg
 dev-tex/algorithms
 dev-tex/chktex
 dev-tex/currvita
@@ -793,6 +787,7 @@ app-pda
 app-vim
 dev-dotnet
 dev-games
+dev-tcltk
 dev-texlive
 kde-base
 gnustep-apps
