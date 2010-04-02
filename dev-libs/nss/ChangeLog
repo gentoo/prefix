@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/nss
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.172 2010/02/12 14:04:57 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.174 2010/03/28 14:49:55 anarchy Exp $
+
+*nss-3.12.6-r1 (28 Mar 2010)
+
+  28 Mar 2010; <anarchy@gentoo.org> -nss-3.12.6.ebuild,
+  +nss-3.12.6-r1.ebuild:
+  Use official release media for completeness, fix bug #310149
+
+*nss-3.12.6 (24 Mar 2010)
+
+  24 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org> +nss-3.12.6.ebuild,
+  +files/nss-3.12.6-gentoo-fixup-warnings.patch:
+  Bump to 3.12.6; no upstream release, so we have our own little tarball
+  extracted from the firefox-3.6.2 sources.
 
   12 Feb 2010; <anarchy@gentoo.org> nss-3.12.5-r1.ebuild:
   Fix bugs #304687, #304571
