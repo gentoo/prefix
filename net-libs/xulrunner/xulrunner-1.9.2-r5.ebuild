@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.2-r2.ebuild,v 1.1 2010/02/12 20:47:45 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.2-r5.ebuild,v 1.1 2010/03/21 14:58:49 anarchy Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
@@ -20,14 +20,14 @@ SRC_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases/${MY_PV}/s
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="1.9"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="+alsa debug libnotify wifi"
+IUSE="+alsa debug libnotify system-sqlite wifi"
 
 RDEPEND="java? ( >=virtual/jre-1.4 )
 	>=dev-lang/python-2.3[threads]
 	>=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12.4
 	>=dev-libs/nspr-4.8
-	>=dev-db/sqlite-3.6.22-r2[fts3,secure-delete]
+	system-sqlite? ( >=dev-db/sqlite-3.6.22-r2[fts3,secure-delete] )
 	alsa? ( media-libs/alsa-lib )
 	>=app-text/hunspell-1.2
 	>=media-libs/lcms-1.17
@@ -70,6 +70,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.9.1.5-solaris-undef-regs.patch
 	epatch "${FILESDIR}"/${PN}-1.9.2-solaris-madvise.patch
 	epatch "${FILESDIR}"/${PN}-1.9_beta5-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.9.2-libpr0n-shellfix.patch
 	eprefixify \
 		extensions/java/xpcom/interfaces/org/mozilla/xpcom/Mozilla.java \
 		xpcom/build/nsXPCOMPrivate.h \
@@ -82,6 +83,9 @@ src_prepare() {
 
 	# Fix broken media support
 	epatch "${FILESDIR}/${PN}-1.9.2-noalsa-fixup.patch"
+
+	# Fix broken alignment
+	epatch "${FILESDIR}/1000_fix_alignment.patch"
 
 	# Same as in config/autoconf.mk.in
 	MOZLIBDIR="/usr/$(get_libdir)/${PN}-${MAJ_PV}"
@@ -133,7 +137,6 @@ src_configure() {
 	mozconfig_annotate '' --enable-oji --enable-mathml
 	mozconfig_annotate 'places' --enable-storage --enable-places
 	mozconfig_annotate '' --enable-safe-browsing
-	mozconfig_annotate 'sqlite' --enable-system-sqlite
 
 	# Build mozdevelop permately
 	mozconfig_annotate ''  --enable-jsd --enable-xpctools
@@ -158,6 +161,7 @@ src_configure() {
 	mozconfig_use_enable wifi necko-wifi
 	mozconfig_use_enable alsa ogg
 	mozconfig_use_enable alsa wave
+	mozconfig_use_enable system-sqlite
 
 	# Debug
 	if use debug ; then

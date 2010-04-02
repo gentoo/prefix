@@ -1,6 +1,26 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.299 2010/03/04 18:23:04 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.302 2010/03/24 22:32:55 nirbheek Exp $
+
+*xulrunner-1.9.2.2-r1 (24 Mar 2010)
+
+  24 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -xulrunner-1.9.2.2.ebuild, +xulrunner-1.9.2.2-r1.ebuild:
+  Bump nss dependency to prevent internal copy from being used. Fixes bug
+  311167
+
+*xulrunner-1.9.2.2 (24 Mar 2010)
+
+  24 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +xulrunner-1.9.2.2.ebuild:
+  Security bump to go with ff 3.6.2, bug 311021
+
+*xulrunner-1.9.2-r5 (21 Mar 2010)
+
+  21 Mar 2010; <anarchy@gentoo.org> +files/1000_fix_alignment.patch,
+  -xulrunner-1.9.2-r2.ebuild, -xulrunner-1.9.2-r4.ebuild,
+  +xulrunner-1.9.2-r5.ebuild:
+  Update for alignment issue in jemalloc
 
   04 Mar 2010; Mark Loeser <halcy0n@gentoo.org> +xulrunner-1.9.1.6.ebuild:
   Adding back since icecat-3.5.6 depends upon this version
