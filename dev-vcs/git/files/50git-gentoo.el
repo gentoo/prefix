@@ -1,5 +1,5 @@
 
-;;; dev-util/git site-lisp configuration
+;;; dev-vcs/git site-lisp configuration
 
 (add-to-list 'load-path "@SITELISP@")
 (autoload 'git-status "git" "Entry point into git-status mode." t)

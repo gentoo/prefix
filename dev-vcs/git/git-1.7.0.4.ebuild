@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.6.6.1.ebuild,v 1.3 2010/03/31 07:15:31 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.7.0.4.ebuild,v 1.1 2010/04/01 05:22:01 robbat2 Exp $
 
 EAPI=2
 
@@ -199,7 +199,7 @@ src_prepare() {
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.3.3-mint.patch
 
 	# JS install fixup
-	epatch "${FILESDIR}"/git-1.6.6-always-install-js.patch
+	epatch "${FILESDIR}"/git-1.7.0-always-install-js.patch
 
 	sed -i \
 		-e 's:^\(CFLAGS =\).*$:\1 $(OPTCFLAGS) -Wall:' \
@@ -219,8 +219,8 @@ src_prepare() {
 	sed -i 's/DOCBOOK2X_TEXI=docbook2x-texi/DOCBOOK2X_TEXI=docbook2texi.pl/' \
 		Documentation/Makefile || die "sed failed"
 
-	epatch "${FILESDIR}"/${P}-interix.patch
-	epatch "${FILESDIR}"/${P}-interix6.patch
+	epatch "${FILESDIR}"/${PN}-1.6.6.1-interix.patch
+	epatch "${FILESDIR}"/${PN}-1.6.6.1-interix6.patch
 }
 
 git_emake() {
