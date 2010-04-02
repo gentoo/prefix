@@ -70,6 +70,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.9.1.5-solaris-undef-regs.patch
 	epatch "${FILESDIR}"/${PN}-1.9.2-solaris-madvise.patch
 	epatch "${FILESDIR}"/${PN}-1.9_beta5-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.9.2-libpr0n-shellfix.patch
 	eprefixify \
 		extensions/java/xpcom/interfaces/org/mozilla/xpcom/Mozilla.java \
 		xpcom/build/nsXPCOMPrivate.h \
