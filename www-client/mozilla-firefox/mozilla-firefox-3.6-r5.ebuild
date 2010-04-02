@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.6-r2.ebuild,v 1.2 2010/02/20 03:01:42 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.6-r5.ebuild,v 1.1 2010/03/21 15:03:08 anarchy Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -25,7 +25,7 @@ HOMEPAGE="http://www.mozilla.com/firefox"
 KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="+alsa bindist java libnotify wifi"
+IUSE="+alsa bindist java libnotify system-sqlite wifi"
 
 REL_URI="http://releases.mozilla.org/pub/mozilla.org/firefox/releases"
 SRC_URI="${REL_URI}/${MY_PV}/source/firefox-${MY_PV}.source.tar.bz2
@@ -52,13 +52,13 @@ RDEPEND="
 	>=dev-libs/nss-3.12.4
 	>=dev-libs/nspr-4.8
 	>=app-text/hunspell-1.2
-	>=dev-db/sqlite-3.6.22-r2[fts3,secure-delete]
+	system-sqlite? ( >=dev-db/sqlite-3.6.22-r2[fts3,secure-delete] )
 	alsa? ( media-libs/alsa-lib )
 	>=x11-libs/cairo-1.8.8[X]
 	x11-libs/pango[X]
 	wifi? ( net-wireless/wireless-tools )
 	libnotify? ( >=x11-libs/libnotify-0.4 )
-	~net-libs/xulrunner-${XUL_PV}[java=,wifi=,libnotify=]"
+	~net-libs/xulrunner-${XUL_PV}[java=,wifi=,libnotify=,system-sqlite=]"
 
 DEPEND="${RDEPEND}
 	java? ( >=virtual/jdk-1.4 )
@@ -131,6 +131,9 @@ src_prepare() {
 	# Fix media build failure
 	epatch "${FILESDIR}/xulrunner-1.9.2-noalsa-fixup.patch"
 
+	# Fix broken alignment
+	epatch "${FILESDIR}/1000_fix_alignment.patch"
+
 	eautoreconf
 
 	cd js/src
@@ -165,7 +168,6 @@ src_configure() {
 	mozconfig_annotate '' --enable-oji --enable-mathml
 	mozconfig_annotate 'places' --enable-storage --enable-places
 	mozconfig_annotate '' --enable-safe-browsing
-	mozconfig_annotate 'sqlite' --enable-system-sqlite
 
 	# Build mozdevelop permately
 	mozconfig_annotate ''  --enable-jsd --enable-xpctools
@@ -192,17 +194,11 @@ src_configure() {
 	mozconfig_use_enable wifi necko-wifi
 	mozconfig_use_enable alsa ogg
 	mozconfig_use_enable alsa wave
+	mozconfig_use_enable system-sqlite
+	mozconfig_use_enable !bindist official-branding
 
 	# Other ff-specific settings
 	mozconfig_annotate '' --with-default-mozilla-five-home=${MOZILLA_FIVE_HOME}
-
-	# Enable/Disable audio in firefox
-	mozconfig_use_enable alsa ogg
-	mozconfig_use_enable alsa wave
-
-	if ! use bindist ; then
-		mozconfig_annotate '' --enable-official-branding
-	fi
 
 	# Finalize and report settings
 	mozconfig_final

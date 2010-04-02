@@ -1,6 +1,19 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.603 2010/03/06 14:12:08 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.605 2010/03/24 12:51:04 nirbheek Exp $
+
+*mozilla-firefox-3.6.2 (24 Mar 2010)
+
+  24 Mar 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +mozilla-firefox-3.6.2.ebuild:
+  Security bump to 3.6.2, bug 311021
+
+*mozilla-firefox-3.6-r5 (21 Mar 2010)
+
+  21 Mar 2010; <anarchy@gentoo.org> +files/1000_fix_alignment.patch,
+  -mozilla-firefox-3.6-r2.ebuild, -mozilla-firefox-3.6-r4.ebuild,
+  +mozilla-firefox-3.6-r5.ebuild:
+  Update for alignment issue in jemalloc, fix bug #310347
 
   06 Mar 2010; <anarchy@gentoo.org> mozilla-firefox-3.6-r4.ebuild:
   re-fix bindist icon installation

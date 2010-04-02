@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.6-r4.ebuild,v 1.2 2010/03/06 14:12:08 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.6.2.ebuild,v 1.1 2010/03/24 12:51:04 nirbheek Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -8,15 +8,15 @@ inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib pax-ut
 
 LANGS="af ar as be bg bn-BD bn-IN ca cs cy da de el en en-GB en-US eo es-AR
 es-CL es-ES es-MX et eu fa fi fr fy-NL ga-IE gl gu-IN he hi-IN hr hu id is it ja
-ka kk kn ko ku lt lv mk ml mr nb-NO nl nn-NO oc or pa-IN pl pt-BR pt-PT rm ro
-ru si sk sl sq sr sv-SE ta-LK ta te th tr uk vi zh-CN zh-TW"
+ka kk kn ko ku lt lv mk ml mr nb-NO nl nn-NO oc or pa-IN pl pt-BR pt-PT rm ro ru
+si sk sl sq sr sv-SE ta ta-LK te th tr uk vi zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR es-CL es-MX pt-BR zh-CN zh-TW"
 
-XUL_PV="1.9.2"
 MAJ_XUL_PV="1.9.2"
 MAJ_PV="${PV/_*/}" # Without the _rc and _beta stuff
 DESKTOP_PV="3.6"
 MY_PV="${PV/_rc/rc}" # Handle beta for SRC_URI
+XUL_PV="${MAJ_XUL_PV}${MAJ_PV/${DESKTOP_PV}/}" # Major + Minor version no.s
 PATCH="${PN}-3.6-patches-0.6"
 
 DESCRIPTION="Firefox Web Browser"
@@ -131,6 +131,9 @@ src_prepare() {
 	# Fix media build failure
 	epatch "${FILESDIR}/xulrunner-1.9.2-noalsa-fixup.patch"
 
+	# Fix broken alignment
+	epatch "${FILESDIR}/1000_fix_alignment.patch"
+
 	eautoreconf
 
 	cd js/src
@@ -235,7 +238,7 @@ src_install() {
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5.desktop \
 			${PN}-${DESKTOP_PV}.desktop
 	else
-		newicon "${S}"//browser/branding/unofficial/content/icon48.png firefox-icon-unbranded.png
+		newicon "${S}"/browser/branding/unofficial/content/icon48.png firefox-icon-unbranded.png
 		newmenu "${FILESDIR}"/icon/mozilla-firefox-1.5-unbranded.desktop \
 			${PN}-${DESKTOP_PV}.desktop
 		sed -i -e "s:Bon Echo:Namoroka:" \
