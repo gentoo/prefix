@@ -38,6 +38,7 @@ src_unpack() {
 	sed -i '/with_no_leaks=yes/s:=.*:=$enableval:' configure #305889
 
 	epatch "${FILESDIR}"/${PN}-5.7-mint.patch
+	epatch "${FILESDIR}"/${PN}-5.7-mint-terminfo.patch
 	epatch "${FILESDIR}"/${PN}-5.5-aix-shared.patch
 	epatch "${FILESDIR}"/${PN}-5.6-interix.patch
 	epatch "${FILESDIR}"/${PN}-5.6-netbsd.patch
