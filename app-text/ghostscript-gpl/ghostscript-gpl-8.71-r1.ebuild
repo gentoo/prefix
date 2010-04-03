@@ -127,6 +127,8 @@ src_unpack() {
 
 	cd "${S}"
 	eautoreconf
+	# fails with non-bash on at least Solaris
+	sed -i -e '1c\#!'"${EPREFIX}"'/bin/bash' configure || die
 
 	cd "${S}/jbig2dec"
 	eautoreconf
@@ -136,7 +138,7 @@ src_unpack() {
 }
 
 src_compile() {
-	CONFIG_SHELL="${EPREFIX}"/bin/bash econf \
+	econf \
 		$(use_enable cairo) \
 		$(use_enable cups) \
 		$(use_enable gtk) \
