@@ -613,6 +613,7 @@ net-libs/libsrtp
 net-libs/libssh
 net-libs/libssh2
 net-libs/libvncserver
+net-libs/ldns
 net-libs/openmq-cclient
 net-libs/openslp
 net-libs/ortp
@@ -915,6 +916,7 @@ dev-python/python-cdb
 dev-python/python-dateutil
 dev-python/python-docs
 dev-python/python-fchksum
+dev-python/python-gnutls
 dev-python/python-memcached
 dev-python/pytz
 dev-python/pyxml
