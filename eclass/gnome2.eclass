@@ -93,7 +93,7 @@ gnome2_src_install() {
 
 	if [[ -z "${USE_EINSTALL}" || "${USE_EINSTALL}" = "0" ]]; then
 		debug-print "Installing with 'make install'"
-		emake DESTDIR="${D}" "scrollkeeper_localstate_dir=${D}${sk_tmp_dir} " "$@" install || die "install failed"
+		emake DESTDIR="${D}" "scrollkeeper_localstate_dir=${ED}${sk_tmp_dir} " "$@" install || die "install failed"
 	else
 		debug-print "Installing with 'einstall'"
 		einstall "scrollkeeper_localstate_dir=${ED}${sk_tmp_dir} " "$@" || die "einstall failed"
