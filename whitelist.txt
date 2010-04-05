@@ -98,6 +98,9 @@ app-dicts/aspell-sv
 app-dicts/ipadic
 app-dicts/migemo-dict
 app-dicts/myspell-en
+app-editors/bvi
+app-editors/cooledit
+app-editors/dav
 app-editors/easyedit
 app-editors/gedit
 app-editors/ghex
@@ -107,9 +110,11 @@ app-editors/hteditor
 app-editors/jasspa-microemacs
 app-editors/jed
 app-editors/leafpad
+app-editors/lpe
 app-editors/mg
 app-editors/mlview
 app-editors/mousepad
+app-editors/mp
 app-editors/ne
 app-editors/nedit
 app-editors/teco
