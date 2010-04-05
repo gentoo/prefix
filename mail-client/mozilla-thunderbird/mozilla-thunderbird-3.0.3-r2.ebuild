@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-3.0.3-r1.ebuild,v 1.1 2010/03/07 20:51:54 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-3.0.3-r2.ebuild,v 1.1 2010/03/21 22:36:26 anarchy Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -19,7 +19,7 @@ HOMEPAGE="http://www.mozilla.com/en-US/thunderbird/"
 KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="ldap crypt bindist lightning mozdom system-sqlite"
+IUSE="alsa ldap crypt bindist lightning mozdom system-sqlite"
 PATCH="${PN}-3.0-patches-0.3"
 
 REL_URI="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases"
@@ -45,6 +45,7 @@ done
 RDEPEND=">=sys-devel/binutils-2.16.1
 	>=dev-libs/nss-3.12.3
 	>=dev-libs/nspr-4.8
+	alsa? ( media-libs/alsa-lib )
 	system-sqlite? ( >=dev-db/sqlite-3.6.22-r2[fts3,secure-delete] )
 	>=media-libs/lcms-1.17
 	>=app-text/hunspell-1.2
@@ -150,6 +151,8 @@ src_configure() {
 	# Use enable features
 	mozconfig_use_enable lightning calendar
 	mozconfig_use_enable system-sqlite
+	mozconfig_use_enable alsa ogg
+	mozconfig_use_enable alsa wave
 
 	# Bug #72667
 	if use mozdom; then

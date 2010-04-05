@@ -1,6 +1,16 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.321 2010/03/09 21:44:10 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.323 2010/03/21 22:36:26 anarchy Exp $
+
+*mozilla-thunderbird-3.0.3-r2 (21 Mar 2010)
+
+  21 Mar 2010; <anarchy@gentoo.org> -mozilla-thunderbird-3.0.3-r1.ebuild,
+  +mozilla-thunderbird-3.0.3-r2.ebuild:
+  remove magic dep for alsa-libs being installed bug #308363
+
+  14 Mar 2010; Raúl Porcel <armin76@gentoo.org>
+  mozilla-thunderbird-3.0.3.ebuild:
+  alpha/ia64/sparc stable wrt #307045
 
   09 Mar 2010; Joseph Jezak <josejx@gentoo.org>
   mozilla-thunderbird-3.0.3.ebuild:
