@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-vcs/colorcvs/colorcvs-1.4-r1.ebuild,v 1.1 2010/03/06 13:32:09 jlec Exp $
 
-inherit eutils
+inherit eutils prefix
 
 DESCRIPTION="A tool based on colorgcc to beautify cvs output"
 HOMEPAGE="http://www.hakubi.us/colorcvs/"
@@ -25,6 +25,7 @@ src_unpack() {
 	sed -i -e 's:compiler_pid:cvs_pid:' ${PN} || die "sed failed"
 
 	epatch "${FILESDIR}"/${P}-prefix.patch
+	eprefixify colorcvs
 }
 
 src_install() {
