@@ -124,7 +124,9 @@ app-emulation/emul-linux-x86-compat
 app-emulation/emul-linux-x86-xlibs
 app-emulation/simh
 app-emulation/spim
+app-i18n/enca
 app-i18n/kakasi
+app-i18n/man-pages-zh_CN
 app-i18n/skk-jisyo
 app-misc/abook
 app-misc/banner
