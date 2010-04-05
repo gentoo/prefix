@@ -632,6 +632,7 @@ net-mail/mpack
 net-mail/offlineimap
 net-misc/aget
 net-misc/autossh
+net-misc/axel
 net-misc/gsasl
 net-misc/iperf
 net-misc/iputils
