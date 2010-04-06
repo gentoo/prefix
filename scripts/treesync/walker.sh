@@ -4,7 +4,11 @@ export PTREEDIR="$(pwd -P)"
 
 stuff=
 if [[ -n $* ]] ; then
-	stuff="$*"
+	for e in $* ; do
+		for d in ${e}/* ; do
+			stuff="${stuff} ${d}"
+		done
+	done
 else
 	# default to "everything"
 	for d in eclass *-*/* ; do
