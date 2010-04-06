@@ -1,6 +1,33 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.260 2010/01/23 18:28:50 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.264 2010/04/03 17:15:50 chithanh Exp $
+
+  03 Apr 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  mesa-7.8.ebuild:
+  Bump libdrm dependency, bug #312933
+
+*mesa-7.8 (29 Mar 2010)
+*mesa-7.7.1 (29 Mar 2010)
+
+  29 Mar 2010; Tomáš Chvátal <scarabeus@gentoo.org> -mesa-7.6.1.ebuild,
+  -mesa-7.7-r1.ebuild, -mesa-7.7.1_rc2.ebuild, +mesa-7.7.1.ebuild,
+  -mesa-7.8_rc2.ebuild, +mesa-7.8.ebuild:
+  Version bump to latest releases. Drop old.
+
+*mesa-7.8_rc2 (23 Mar 2010)
+*mesa-7.7.1_rc2 (23 Mar 2010)
+
+  23 Mar 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  -mesa-7.7.1_rc1.ebuild, +mesa-7.7.1_rc2.ebuild, -mesa-7.8_rc1.ebuild,
+  +mesa-7.8_rc2.ebuild:
+  Version bump to new rc's remove old ones.
+
+*mesa-7.8_rc1 (16 Mar 2010)
+*mesa-7.7.1_rc1 (16 Mar 2010)
+
+  16 Mar 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  +mesa-7.7.1_rc1.ebuild, +mesa-7.8_rc1.ebuild:
+  Version bump to latest RC's.
 
   23 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org> -mesa-7.5.1.ebuild:
   rm
