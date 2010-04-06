@@ -1,6 +1,34 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.246 2010/01/05 18:07:48 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.251 2010/04/05 18:23:02 armin76 Exp $
+
+  05 Apr 2010; Raúl Porcel <armin76@gentoo.org> gstreamer-0.10.25.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #308379
+
+  24 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  gstreamer-0.10.25.ebuild:
+  stable x86, bug 308379
+
+  19 Mar 2010; Pacho Ramos <pacho@gentoo.org> gstreamer-0.10.25.ebuild:
+  amd64 stable, bug 308379
+
+  19 Mar 2010; Mart Raudsepp <leio@gentoo.org> -gstreamer-0.10.22.ebuild,
+  -gstreamer-0.10.23.ebuild:
+  Remove old
+
+*gstreamer-0.10.28 (19 Mar 2010)
+
+  19 Mar 2010; Mart Raudsepp <leio@gentoo.org> +gstreamer-0.10.28.ebuild:
+  Version bump with the following most noteworthy upstream changes:
+  Registry plugin scanning is now performed by an external binary.
+  Lots of performance improvements all over the place.
+  New GstByteWriter class for generic byte read-writing.
+  The queue2 element is now part of gstreamer coreelements, do not mix
+    >=gstreamer-0.10.26 and <gst-plugins-base-0.10.26.
+  Buffering mode support in multiqueue.
+  Ability to installing clipping functions in collectpads.
+  New tags for TV/Radio shows/episodes, lyrics, and more.
+  Many other improvements and bug fixes.
 
   05 Jan 2010; nixnut <nixnut@gentoo.org> gstreamer-0.10.24.ebuild:
   ppc stable #290343
