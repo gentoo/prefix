@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libsdl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.166 2009/11/14 07:55:24 mr_bones_ Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.167 2010/03/15 18:27:56 mr_bones_ Exp $
+
+*libsdl-1.2.14-r1 (15 Mar 2010)
+
+  15 Mar 2010; Michael Sterrett <mr_bones_@gentoo.org>
+  +libsdl-1.2.14-r1.ebuild:
+  don't use dlopen to open libraries but instead link against them.
 
   14 Nov 2009; Michael Sterrett <mr_bones_@gentoo.org>
   libsdl-1.2.13-r1.ebuild, libsdl-1.2.14.ebuild, metadata.xml:
