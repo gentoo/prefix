@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.8.ebuild,v 1.6 2010/04/05 14:57:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/libgphoto2-2.4.8-r1.ebuild,v 1.1 2010/03/14 11:19:31 pacho Exp $
 
 # TODO
 # 1. Track upstream bug --disable-docs does not work.
@@ -92,6 +92,9 @@ src_prepare() {
 
 	# Do not build test if not running make check, bug #226241
 	epatch "${FILESDIR}/${PN}-2.4.7-no-test-build.patch"
+
+	# Increase max entries from 1024 to 8192 to fix bug #291049
+	epatch "${FILESDIR}/${PN}-2.4.8-increase_max_entries.patch"
 
 	eautoreconf
 
