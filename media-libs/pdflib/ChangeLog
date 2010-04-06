@@ -1,6 +1,19 @@
 # ChangeLog for media-libs/pdflib
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.101 2009/07/29 15:38:41 darkside Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/ChangeLog,v 1.103 2010/04/02 20:40:17 mabi Exp $
+
+*pdflib-7.0.4_p4-r1 (02 Apr 2010)
+
+  02 Apr 2010; <mabi@gentoo.org> -pdflib-7.0.4_p4.ebuild,
+  +pdflib-7.0.4_p4-r1.ebuild, +files/pdflib-perl-vendor-dir.patch:
+  include vendor_perl patch from david abbott (bug #298019)
+
+*pdflib-7.0.4_p4 (02 Apr 2010)
+
+  02 Apr 2010; <mabi@gentoo.org> +pdflib-7.0.4_p4.ebuild,
+  +files/pdflib-noexec-stack.patch, +files/pdflib-python-libdir.patch:
+  bump (bug #214920), credit to Rafal Muzylo and Sergey Dryabzhinsky for the
+  ebuild and patches
 
   29 Jul 2009; Jeremy Olexa <darkside@gentoo.org> -pdflib-6.0.3-r1.ebuild,
   -pdflib-7.0.1.ebuild, -pdflib-7.0.2.ebuild:
