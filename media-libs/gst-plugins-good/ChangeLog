@@ -1,6 +1,33 @@
 # ChangeLog for media-libs/gst-plugins-good
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.81 2010/01/05 18:12:15 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.85 2010/04/05 18:29:28 armin76 Exp $
+
+  05 Apr 2010; Raúl Porcel <armin76@gentoo.org>
+  gst-plugins-good-0.10.17.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #308379
+
+*gst-plugins-good-0.10.21 (05 Apr 2010)
+
+  05 Apr 2010; Mart Raudsepp <leio@gentoo.org>
+  +gst-plugins-good-0.10.21.ebuild:
+  Version bump. Fix zlib/bz2 support for qtdemux/id3demux and matroska,
+  bug 300860. Add missing ChangeLog and NEWS to installed docs.
+  Most noteworthy upstream changes:
+  Stream sync improvements and push based mode support in matroska.
+  Many improvements and fixes to RTP and AVI support.
+  Many performance and playback startup speed optimizations.
+  Language code writing and extracting fixes to matroska/qtdemux/id3demux.
+  shapewipe moved from -bad to here. The shapewipe element provides custom
+  transitions on video streams based on a grayscale bitmap.
+  Many bug fixes and other improvements.
+
+  24 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  gst-plugins-good-0.10.17.ebuild:
+  stable x86, bug 308379
+
+  19 Mar 2010; Pacho Ramos <pacho@gentoo.org>
+  gst-plugins-good-0.10.17.ebuild:
+  amd64 stable, bug 308379
 
   05 Jan 2010; nixnut <nixnut@gentoo.org> ChangeLog:
   ppc stable #290343
