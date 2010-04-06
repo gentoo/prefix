@@ -41,6 +41,7 @@ app-admin/eselect-maven
 app-admin/eselect-unison
 app-admin/gamin
 app-admin/makepasswd
+app-admin/passook
 app-admin/pwgen
 app-admin/stow
 app-arch/arc
@@ -50,14 +51,17 @@ app-arch/cfv
 app-arch/dpkg
 app-arch/file-roller
 app-arch/lbzip2
+app-arch/lha
 app-arch/lzma
 app-arch/lzop
+app-arch/macutil
 app-arch/makeself
 app-arch/mscompress
 app-arch/p7zip
 app-arch/par
 app-arch/par2cmdline
 app-arch/pigz
+app-arch/ppmd
 app-arch/rzip
 app-arch/sharutils
 app-arch/unace
@@ -78,6 +82,7 @@ app-cdr/xbiso
 app-crypt/aespipe
 app-crypt/aesutil
 app-crypt/bcrypt
+app-crypt/bsign
 app-crypt/ccrypt
 app-crypt/gnupg
 app-crypt/gpgme
@@ -157,6 +162,7 @@ app-portage/eclass-manpages
 app-portage/eix
 app-portage/elogv
 app-shells/bash-completion
+app-shells/fish
 app-shells/prll
 app-shells/tcsh
 app-shells/zsh-completion
@@ -690,6 +696,7 @@ sys-devel/binutils-apple
 sys-devel/gcc-apple
 sys-devel/gdb-apple
 sys-devel/gnuconfig
+sys-libs/pam
 sys-process/iotop
 sys-process/time
 sys-process/unixtop
@@ -790,6 +797,7 @@ x11-themes/gnome-themes
 x11-themes/gtk-engines
 x11-themes/gtk-engines-aurora
 x11-themes/gtk-engines-murrine
+x11-themes/gtk-engines-nimbus
 x11-themes/gtk-engines-xfce
 x11-themes/gtk-theme-switch
 x11-themes/hicolor-icon-theme
