@@ -2,18 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>sound</herd>
-<maintainer>
-  <email>sound@gentoo.org</email>
-  <name>Gentoo Sound Team</name>
-</maintainer>
-<use>
-	<flag name='aotuv'>Applies the aoTuV patches. Aoyumi's Tuned Vorbis is 
-		a third-party patchset that improves the vorbis encoding quality.
-		A previous version of the aoTuV patchset has already been merged with 
-		the official libvorbis release. The current patchset especially 
-		improves encoding quality at low bitrate settings, and is very likely
-		to be merged at some point in the future. It is recommended that all 
-		users enable this useflag.
-	</flag>
-</use>
 </pkgmetadata>
