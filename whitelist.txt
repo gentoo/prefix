@@ -714,7 +714,6 @@ www-client/httrack
 www-client/links
 www-client/pybugz
 www-misc/htdig
-www-servers/apache
 www-servers/mongrel
 x11-libs/cairo
 x11-libs/gl2ps
