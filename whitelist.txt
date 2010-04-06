@@ -164,6 +164,7 @@ app-text/agrep
 app-text/aiksaurus
 app-text/antiword
 app-text/asciidoc
+app-text/aspell
 app-text/barcode
 app-text/bogosort
 app-text/catdoc
@@ -174,6 +175,7 @@ app-text/convertlit
 app-text/convmv
 app-text/cwtext
 app-text/dbacl
+app-text/dictd
 app-text/diction
 app-text/docbook-dsssl-stylesheets
 app-text/docbook-sgml-dtd
@@ -183,6 +185,7 @@ app-text/docbook-xsl-stylesheets
 app-text/dos2unix
 app-text/duconv
 app-text/dvipng
+app-text/enchant
 app-text/epstool
 app-text/evince
 app-text/expander
@@ -197,7 +200,9 @@ app-text/html2text
 app-text/html401
 app-text/htmlinc
 app-text/htmltidy
+app-text/hunspell
 app-text/iso-codes
+app-text/ispell
 app-text/jadetex
 app-text/lcdf-typetools
 app-text/libspectre
@@ -542,6 +547,7 @@ media-libs/libreplaygain
 media-libs/libsamplerate
 media-libs/libsvg
 media-libs/libuninameslist
+media-libs/libwmf
 media-libs/libwpg
 media-libs/mediastreamer
 media-libs/musicbrainz
@@ -669,6 +675,7 @@ net-misc/wakeonlan
 net-misc/youtube-dl
 net-nntp/hellanzb
 net-nntp/newspost
+net-nntp/nget
 net-p2p/mutella
 net-voip/linphone
 net-wireless/iw
