@@ -678,7 +678,6 @@ net-nntp/newspost
 net-nntp/nget
 net-p2p/mutella
 net-voip/linphone
-net-wireless/iw
 sci-mathematics/gmm
 sci-mathematics/otter
 sci-visualization/fig2sxd
@@ -835,6 +834,7 @@ gnome-extra
 lxde-base
 media-fonts
 net-print
+net-wireless
 sci-biology
 sci-calculators
 sci-chemistry
