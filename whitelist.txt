@@ -96,13 +96,6 @@ app-crypt/qca-ossl
 app-crypt/shash
 app-crypt/sign
 app-crypt/steghide
-app-dicts/aspell-de
-app-dicts/aspell-en
-app-dicts/aspell-nl
-app-dicts/aspell-sv
-app-dicts/ipadic
-app-dicts/migemo-dict
-app-dicts/myspell-en
 app-editors/bvi
 app-editors/cooledit
 app-editors/dav
@@ -819,6 +812,7 @@ x11-wm/windowmaker
 # entire categories
 app-accessibility
 app-backup
+app-dicts
 app-doc
 app-emacs
 app-pda
