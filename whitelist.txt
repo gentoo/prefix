@@ -291,6 +291,7 @@ dev-lang/cll1h
 dev-lang/erlang
 dev-lang/ferite
 dev-lang/gforth
+dev-lang/mosml
 dev-lang/nasm
 dev-lang/pasm
 dev-lang/squeak-fullimage
@@ -298,6 +299,7 @@ dev-lang/srf
 dev-lang/swig
 dev-lang/ucblogo
 dev-lang/yasm
+dev-libs/beecrypt
 dev-libs/botan
 dev-libs/cdk
 dev-libs/cvector
@@ -306,6 +308,7 @@ dev-libs/dotconf
 dev-libs/elfutils
 dev-libs/fribidi
 dev-libs/gnulib
+dev-libs/libaio
 dev-libs/libatomic_ops
 dev-libs/libattica
 dev-libs/libdshconfig
@@ -406,12 +409,14 @@ dev-util/ftjam
 dev-util/gitosis
 dev-util/gitosis-gentoo
 dev-util/gob
+dev-util/gperf
 dev-util/gtk-doc-am
 dev-util/hgsvn
 dev-util/httpup
 dev-util/huc
 dev-util/intltool
 dev-util/kdoc
+dev-util/linklint
 dev-util/patchutils
 dev-util/pccts
 dev-util/pida
@@ -424,6 +429,7 @@ dev-util/strace
 dev-util/svk
 dev-util/tailor
 dev-util/tig
+dev-util/tmake
 dev-util/treecc
 dev-util/uncrustify
 dev-util/unifdef
@@ -437,6 +443,7 @@ dev-vcs/cvs2svn
 dev-vcs/darcs
 dev-vcs/giggle
 dev-vcs/hg-git
+dev-vcs/rcs
 dev-vcs/statcvs
 games-arcade/ascii-invaders
 games-arcade/nibbles
