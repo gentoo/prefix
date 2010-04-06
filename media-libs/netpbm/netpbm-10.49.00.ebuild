@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.49.00.ebuild,v 1.1 2010/03/06 22:18:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/netpbm-10.49.00.ebuild,v 1.2 2010/03/20 20:37:24 vapier Exp $
 
 EAPI=1
 inherit toolchain-funcs eutils multilib prefix
@@ -85,6 +85,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/netpbm-10.31-build.patch
 	epatch "${FILESDIR}"/netpbm-10.48.00-pnmtopng-zlib.patch #291987
+	epatch "${FILESDIR}"/${P}-sigpower.patch #310179
 
 	epatch "${FILESDIR}"/${PN}-10.46.00-darwin.patch
 	epatch "${FILESDIR}"/${PN}-10.46.00-solaris.patch

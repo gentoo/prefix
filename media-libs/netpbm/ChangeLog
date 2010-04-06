@@ -1,6 +1,10 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.235 2010/03/06 22:18:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.236 2010/03/20 20:37:24 vapier Exp $
+
+  20 Mar 2010; Mike Frysinger <vapier@gentoo.org> netpbm-10.49.00.ebuild,
+  +files/netpbm-10.49.00-sigpower.patch:
+  Add fix from upstream for BSD systems #310179 by Naohiro Aota.
 
   06 Mar 2010; Mike Frysinger <vapier@gentoo.org> +netpbm-10.49.00.ebuild:
   Version bump #308025 by Stefan Behte.

@@ -1,17 +1,8 @@
 --- lib/libsystem.c.orig	2010-03-19 16:17:14 +0100
 +++ lib/libsystem.c	2010-03-19 16:20:21 +0100
-@@ -246,16 +246,20 @@
-             return "SIGWINCH";
-         case SIGIO:
-             return "SIGIO";
-+#ifdef SIGPWR
-         case SIGPWR:
-             return "SIGPWR";
-+#endif
-         case SIGSYS:
-             return "SIGSYS";
-         default:
-             return "???";
+@@ -255,9 +255,11 @@
+                not defined by POSIX, including: SIGPWR, SIGLOST, SIGINFO
+             */
          }
 -    } else if ((int)signalClass >= SIGRTMIN && (int)signalClass <= SIGRTMAX)
 +#if defined(SIGRTMIN) && defined(SIGRTMAX)
