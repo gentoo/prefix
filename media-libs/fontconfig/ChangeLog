@@ -1,6 +1,20 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.141 2010/01/26 21:00:32 spatz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.145 2010/03/31 16:40:22 fauli Exp $
+
+  31 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  fontconfig-2.8.0.ebuild:
+  stable x86, bug 309693
+
+  23 Mar 2010; Brent Baude <ranger@gentoo.org> fontconfig-2.8.0.ebuild:
+  stable ppc, bug 309693
+
+  21 Mar 2010; Brent Baude <ranger@gentoo.org> fontconfig-2.8.0.ebuild:
+  Marking fontconfig-2.8.0 ppc64 for bug 309693
+
+  18 Mar 2010; Markos Chandras <hwoarang@gentoo.org>
+  fontconfig-2.8.0.ebuild:
+  Stable on amd64 wrt bug #309693
 
   26 Jan 2010; Dror Levin <spatz@gentoo.org> fontconfig-2.8.0.ebuild:
   Install manpages again.
