@@ -1,0 +1,168 @@
+Fabian Groffen <grobian@gentoo.org>
+
+configure.ac: define GNU_LD for automake
+include/bitops.h: use WORDS_BIGENDIAN from autoconf instead of linux specifics
+lib/md5.c: likewise
+shlibs/blkid/samples/mkfs.c: don't use non-portable program_invocation_short_name
+shlibs/blkid/samples/partitions.c: likewise
+shlibs/blkid/samples/superblocks.c: likewise
+shlibs/blkid/samples/topology.c: likewise
+shlibs/blkid/src/Makefile.am: only use -Wl,--version-script on GNU ld
+shlibs/uuid/src/Makefile.am: likewise
+
+
+diff -ur util-linux-ng-2.17.1.orig/configure.ac util-linux-ng-2.17.1/configure.ac
+--- util-linux-ng-2.17.1.orig/configure.ac	2010-02-22 10:40:52.000000000 +0100
++++ util-linux-ng-2.17.1/configure.ac	2010-04-03 19:35:43.000000000 +0200
+@@ -90,6 +90,8 @@
+ esac
+ AM_CONDITIONAL([LINUX], test "x$linux_os" = xyes)
+ 
++AM_CONDITIONAL(GNU_LD, test "x$with_gnu_ld" = xyes)
++
+ AC_PATH_PROG(PERL, perl)
+ 
+ AC_SYS_LARGEFILE
+diff -ur util-linux-ng-2.17.1.orig/include/bitops.h util-linux-ng-2.17.1/include/bitops.h
+--- util-linux-ng-2.17.1.orig/include/bitops.h	2010-02-04 12:53:56.000000000 +0100
++++ util-linux-ng-2.17.1/include/bitops.h	2010-04-03 19:02:37.000000000 +0200
+@@ -2,7 +2,6 @@
+ #define BITOPS_H
+ 
+ #include <stdint.h>
+-#include <endian.h>
+ 
+ /*
+  * Bit map related macros. Usually provided by libc.
+@@ -20,10 +19,6 @@
+ # define isclr(a,i)	(((a)[(i)/NBBY] & (1<<((i)%NBBY))) == 0)
+ #endif
+ 
+-#if !defined __BYTE_ORDER || !(__BYTE_ORDER == __LITTLE_ENDIAN) && !(__BYTE_ORDER == __BIG_ENDIAN)
+-#error missing __BYTE_ORDER
+-#endif
+-
+ /*
+  * Byte swab macros (based on linux/byteorder/swab.h)
+  */
+@@ -51,7 +46,7 @@
+ 		(uint64_t)(((uint64_t)(x) & (uint64_t)0xff00000000000000ULL) >> 56) ))
+ 
+ 
+-#if (__BYTE_ORDER == __BIG_ENDIAN)
++#ifdef WORDS_BIGENDIAN
+ 
+ #define cpu_to_le16(x) swab16(x)
+ #define cpu_to_le32(x) swab32(x)
+@@ -67,7 +62,7 @@
+ #define be32_to_cpu(x) (x)
+ #define be64_to_cpu(x) (x)
+ 
+-#else /* __BYTE_ORDER != __BIG_ENDIAN */
++#else /* !WORDS_BIGENDIAN */
+ 
+ #define cpu_to_le16(x) (x)
+ #define cpu_to_le32(x) (x)
+diff -ur util-linux-ng-2.17.1.orig/lib/md5.c util-linux-ng-2.17.1/lib/md5.c
+--- util-linux-ng-2.17.1.orig/lib/md5.c	2010-02-04 12:53:56.000000000 +0100
++++ util-linux-ng-2.17.1/lib/md5.c	2010-04-03 19:46:38.000000000 +0200
+@@ -14,16 +14,11 @@
+  * needed on buffers full of bytes, and then call MD5Final, which
+  * will fill a supplied 16-byte array with the digest.
+  */
+-#include <endian.h>
+ #include <string.h>		/* for memcpy() */
+ 
+ #include "md5.h"
+ 
+-#if !defined __BYTE_ORDER || !(__BYTE_ORDER == __LITTLE_ENDIAN) && !(__BYTE_ORDER == __BIG_ENDIAN)
+-#error missing __BYTE_ORDER
+-#endif
+-
+-#if (__BYTE_ORDER == __LITTLE_ENDIAN)
++#if !defined(WORDS_BIGENDIAN)
+ #define byteReverse(buf, len)	/* Nothing */
+ #else
+ void byteReverse(unsigned char *buf, unsigned longs);
+diff -ur util-linux-ng-2.17.1.orig/shlibs/blkid/samples/mkfs.c util-linux-ng-2.17.1/shlibs/blkid/samples/mkfs.c
+--- util-linux-ng-2.17.1.orig/shlibs/blkid/samples/mkfs.c	2010-02-04 12:53:58.000000000 +0100
++++ util-linux-ng-2.17.1/shlibs/blkid/samples/mkfs.c	2010-04-03 19:53:08.000000000 +0200
+@@ -27,7 +27,7 @@
+ 	if (argc < 2) {
+ 		fprintf(stderr, "usage: %s <device>  "
+ 			"-- checks based on libblkid for mkfs-like programs.\n",
+-			program_invocation_short_name);
++			argv[0]);
+ 		return EXIT_FAILURE;
+ 	}
+ 
+diff -ur util-linux-ng-2.17.1.orig/shlibs/blkid/samples/partitions.c util-linux-ng-2.17.1/shlibs/blkid/samples/partitions.c
+--- util-linux-ng-2.17.1.orig/shlibs/blkid/samples/partitions.c	2010-02-04 12:53:58.000000000 +0100
++++ util-linux-ng-2.17.1/shlibs/blkid/samples/partitions.c	2010-04-03 19:52:46.000000000 +0200
+@@ -26,7 +26,7 @@
+ 	if (argc < 2) {
+ 		fprintf(stderr, "usage: %s <device|file>  "
+ 				"-- prints partitions\n",
+-				program_invocation_short_name);
++				argv[0]);
+ 		return EXIT_FAILURE;
+ 	}
+ 
+diff -ur util-linux-ng-2.17.1.orig/shlibs/blkid/samples/superblocks.c util-linux-ng-2.17.1/shlibs/blkid/samples/superblocks.c
+--- util-linux-ng-2.17.1.orig/shlibs/blkid/samples/superblocks.c	2010-02-04 12:53:58.000000000 +0100
++++ util-linux-ng-2.17.1/shlibs/blkid/samples/superblocks.c	2010-04-03 19:53:25.000000000 +0200
+@@ -26,7 +26,7 @@
+ 	if (argc < 2) {
+ 		fprintf(stderr, "usage: %s <device>  "
+ 				"-- prints superblocks details about the device\n",
+-				program_invocation_short_name);
++				argv[0]);
+ 		return EXIT_FAILURE;
+ 	}
+ 
+diff -ur util-linux-ng-2.17.1.orig/shlibs/blkid/samples/topology.c util-linux-ng-2.17.1/shlibs/blkid/samples/topology.c
+--- util-linux-ng-2.17.1.orig/shlibs/blkid/samples/topology.c	2010-02-04 12:53:58.000000000 +0100
++++ util-linux-ng-2.17.1/shlibs/blkid/samples/topology.c	2010-04-03 19:52:27.000000000 +0200
+@@ -27,7 +27,7 @@
+ 	if (argc < 2) {
+ 		fprintf(stderr, "usage: %s <device>  "
+ 				"-- prints topology details about the device\n",
+-				program_invocation_short_name);
++				argv[0]);
+ 		return EXIT_FAILURE;
+ 	}
+ 
+diff -ur util-linux-ng-2.17.1.orig/shlibs/blkid/src/Makefile.am util-linux-ng-2.17.1/shlibs/blkid/src/Makefile.am
+--- util-linux-ng-2.17.1.orig/shlibs/blkid/src/Makefile.am	2010-02-16 09:58:56.000000000 +0100
++++ util-linux-ng-2.17.1/shlibs/blkid/src/Makefile.am	2010-04-03 19:48:22.000000000 +0200
+@@ -42,8 +42,11 @@
+ 
+ libblkid_la_DEPENDENCIES = $(libblkid_la_LIBADD) blkid.sym blkid.h.in
+ 
+-libblkid_la_LDFLAGS = -Wl,--version-script=$(ul_libblkid_srcdir)/blkid.sym \
+-                      -version-info $(LIBBLKID_VERSION_INFO)
++libblkid_la_LDFLAGS =
++if GNU_LD
++libblkid_la_LDFLAGS += -Wl,--version-script=$(ul_libblkid_srcdir)/blkid.sym
++endif
++libblkid_la_LDFLAGS += -version-info $(LIBBLKID_VERSION_INFO)
+ 
+ tests = test_cache test_config test_dev test_devname test_devno test_getsize \
+ 	test_read test_resolve test_save test_tag test_verify test_evaluate
+diff -ur util-linux-ng-2.17.1.orig/shlibs/uuid/src/Makefile.am util-linux-ng-2.17.1/shlibs/uuid/src/Makefile.am
+--- util-linux-ng-2.17.1.orig/shlibs/uuid/src/Makefile.am	2010-02-04 12:53:58.000000000 +0100
++++ util-linux-ng-2.17.1/shlibs/uuid/src/Makefile.am	2010-04-03 19:39:15.000000000 +0200
+@@ -16,8 +16,11 @@
+ 
+ libuuid_la_DEPENDENCIES = uuid.sym
+ 
+-libuuid_la_LDFLAGS = -Wl,--version-script=$(ul_libuuid_srcdir)/uuid.sym \
+-                     -version-info $(LIBUUID_VERSION_INFO)
++libuuid_la_LDFLAGS =
++if GNU_LD
++libuuid_la_LDFLAGS += -Wl,--version-script=$(ul_libuuid_srcdir)/uuid.sym
++endif
++libuuid_la_LDFLAGS += -version-info $(LIBUUID_VERSION_INFO)
+ 
+ EXTRA_DIST = uuid.sym gen_uuid_nt.c
+ 
