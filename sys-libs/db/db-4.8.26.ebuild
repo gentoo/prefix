@@ -52,7 +52,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.6-interix.patch
 
-	cd dist || die "Cannot cd to 'dist'"
+	pushd dist > /dev/null || die "Cannot cd to 'dist'"
 
 	# need to upgrade local copy of libtool.m4
 	# for correct shared libs on aix (#213277).
@@ -72,6 +72,8 @@ src_unpack() {
 	# use the includes from the prefix
 	epatch "${FILESDIR}"/${PN}-4.6-jni-check-prefix-first.patch
 	epatch "${FILESDIR}"/${PN}-4.3-listen-to-java-options.patch
+
+	popd > /dev/null
 
 	sed -e "/^DB_RELEASE_DATE=/s/%B %e, %Y/%Y-%m-%d/" -i dist/RELEASE
 
