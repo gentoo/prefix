@@ -151,6 +151,7 @@ app-office/akonadi-server
 app-office/ledger
 app-office/orage
 app-office/texmacs
+app-portage/gentoolkit-dev
 app-portage/eclass-manpages
 app-portage/eix
 app-portage/elogv
