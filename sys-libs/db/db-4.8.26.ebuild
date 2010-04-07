@@ -173,7 +173,9 @@ src_install() {
 	mv "${ED}"/usr/bin/berkeley_db_svc "${ED}"/usr/sbin/berkeley_db"${SLOT/./}"_svc
 
 	if use java; then
-		java-pkg_regso "${ED}"/usr/"$(get_libdir)"/libdb_java*.so
+		local ext=so
+		[[ ${CHOST} == *-darwin* ]] && ext=jnilib #313085
+		java-pkg_regso "${ED}"/usr/"$(get_libdir)"/libdb_java*.${ext}
 		java-pkg_dojar "${ED}"/usr/"$(get_libdir)"/*.jar
 		rm -f "${ED}"/usr/"$(get_libdir)"/*.jar
 	fi
