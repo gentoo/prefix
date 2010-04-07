@@ -22,7 +22,6 @@ src_prepare() {
 	sed -i \
 		-e '/CFLAGS/s:-O20::' \
 		-e '/CFLAGS/s:-mcpu=750::' \
-		-e '/CFLAGS/s:-mv8::' \
 		configure.ac || die
 	
 	AT_M4DIR="m4" eautoreconf
