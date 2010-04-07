@@ -1,6 +1,32 @@
 # ChangeLog for app-portage/gentoolkit-dev
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.79 2009/11/12 20:12:46 idl0r Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/ChangeLog,v 1.83 2010/04/01 20:37:12 idl0r Exp $
+
+  01 Apr 2010; Christian Ruppert <idl0r@gentoo.org>
+  gentoolkit-dev-0.2.6.14.ebuild, gentoolkit-dev-9999.ebuild:
+  Fix PYTHON_DEPEND.
+
+*gentoolkit-dev-0.2.6.14 (30 Mar 2010)
+
+  30 Mar 2010; Christian Ruppert <idl0r@gentoo.org>
+  -gentoolkit-dev-0.2.6.13-r1.ebuild, +gentoolkit-dev-0.2.6.14.ebuild,
+  gentoolkit-dev-9999.ebuild, -files/echangelog_add-vcs-switch.patch,
+  -files/echangelog_fix-textwrap-regex.patch,
+  -files/echangelog_improve-vcs-detection.patch, metadata.xml:
+  Version bump to 0.2.6.14.
+  Add python-3 support in 0.2.6.14 and 9999, bug 311777.
+  Clean up.
+
+*gentoolkit-dev-0.2.6.13-r1 (13 Mar 2010)
+
+  13 Mar 2010; Christian Ruppert <idl0r@gentoo.org>
+  -gentoolkit-dev-0.2.6.13.ebuild, +gentoolkit-dev-0.2.6.13-r1.ebuild,
+  +files/echangelog_add-vcs-switch.patch,
+  +files/echangelog_fix-textwrap-regex.patch,
+  +files/echangelog_improve-vcs-detection.patch:
+  Rev bump to 0.2.6.13-r1. Apply patches to fix bug 302784 and bug 304249,
+  thanks to Martin von Gagern <Martin.vGagern@gmx.net> and Torsten Veller
+  <tove@gentoo.org>.
 
   12 Nov 2009; Christian Ruppert <idl0r@gentoo.org>
   gentoolkit-dev-0.2.6.13.ebuild:

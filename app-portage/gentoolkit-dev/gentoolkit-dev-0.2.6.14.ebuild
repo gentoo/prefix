@@ -1,8 +1,12 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.13.ebuild,v 1.2 2009/11/12 20:12:46 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit-dev/gentoolkit-dev-0.2.6.14.ebuild,v 1.2 2010/04/01 19:27:37 idl0r Exp $
 
-EAPI="2"
+EAPI="3"
+PYTHON_DEPEND="*:2.6"
+PYTHON_USE_WITH="xml"
+
+inherit python
 
 DESCRIPTION="Collection of developer scripts for Gentoo"
 HOMEPAGE="http://www.gentoo.org/proj/en/portage/tools/index.xml"
@@ -13,25 +17,9 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
-DEPEND="dev-lang/python[xml]"
-RDEPEND="${DEPEND}
-	sys-apps/portage
+DEPEND=""
+RDEPEND="sys-apps/portage
 	dev-lang/perl"
-
-src_prepare() {
-	# prefixify shebangs
-	sed -i -e '1s:^#! \?:#!'"${EPREFIX}"':' \
-		src/ebump/ebump \
-		src/echangelog/echangelog \
-		src/ekeyword/ekeyword \
-		src/eshowkw/eshowkw \
-		src/eviewcvs/eviewcvs \
-		src/imlate/imlate
-}
-
-src_prepare() {
-	sed -i -e 's:sh test:bash test:' src/echangelog/Makefile || die
-}
 
 src_test() {
 	# echangelog test is not able to run as root
@@ -45,5 +33,5 @@ src_test() {
 }
 
 src_install() {
-	emake DESTDIR="${D}${EPREFIX}" install || die
+	emake DESTDIR="${ED}" install || die
 }
