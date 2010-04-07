@@ -441,6 +441,7 @@ dev-vcs/cvs2svn
 dev-vcs/darcs
 dev-vcs/giggle
 dev-vcs/hg-git
+dev-vcs/hgsubversion
 dev-vcs/rcs
 dev-vcs/statcvs
 games-arcade/ascii-invaders
