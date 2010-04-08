@@ -27,6 +27,8 @@ src_unpack() {
 	sed -i 's|if test "`\(.*\) 2>&1`" = ""; then|if \1 2>/dev/null; then|' configure || die
 	sed -i -e '/ldconfig/d' Makefile* || die
 
+	# also set soname and stuff on Solaris
+	sed -i -e 's:Linux | linux:Linux | linux | SunOS:' configure || die
 	# put libz.so.1 into libz.a on AIX
 # fails, still necessary?
 #	epatch "${FILESDIR}"/${PN}-1.2.3-shlib-aix.patch
