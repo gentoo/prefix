@@ -51,11 +51,9 @@ src_unpack() {
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.7.1-catalog_path.patch
 	epatch "${FILESDIR}"/${PN}-2.7.2-winnt.patch
-	epatch "${FILESDIR}"/${PN}-2.7.4-ld-version-script-check.patch # needs eautoreconf
 
 	eprefixify catalog.c xmlcatalog.c runtest.c xmllint.c
 
-	eautoreconf # required for winnt
 	epunt_cxx
 
 	# Please do not remove, as else we get references to PORTAGE_TMPDIR
