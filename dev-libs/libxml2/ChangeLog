@@ -1,6 +1,25 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.277 2010/03/08 22:30:16 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.282 2010/04/06 22:44:40 eva Exp $
+
+  06 Apr 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  -libxml2-2.7.4-r1.ebuild, -files/libxml2-2.7.4-parser-grow.patch,
+  libxml2-2.7.7.ebuild:
+  Enable multiple python ABI support, bug #312193. Clean up old revision.
+
+  24 Mar 2010; Brent Baude <ranger@gentoo.org> libxml2-2.7.6.ebuild:
+  stable ppc, bug 309949
+
+  21 Mar 2010; Brent Baude <ranger@gentoo.org> libxml2-2.7.6.ebuild:
+  stable ppc64, bug 309949
+
+*libxml2-2.7.7 (18 Mar 2010)
+
+  18 Mar 2010; Samuli Suominen <ssuominen@gentoo.org> +libxml2-2.7.7.ebuild:
+  Version bump wrt #309723.
+
+  18 Mar 2010; Markos Chandras <hwoarang@gentoo.org> libxml2-2.7.6.ebuild:
+  Stable on amd64 wrt bug #309949
 
   08 Mar 2010; Zac Medico <zmedico@gentoo.org> libxml2-2.7.3-r2.ebuild,
   libxml2-2.7.4-r1.ebuild, libxml2-2.7.6.ebuild:

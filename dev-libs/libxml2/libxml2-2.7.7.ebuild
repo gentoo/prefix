@@ -1,8 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.4-r1.ebuild,v 1.3 2010/03/08 22:30:16 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.7.ebuild,v 1.3 2010/04/07 21:16:18 arfrever Exp $
 
 EAPI="2"
+SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.*"
 
 inherit libtool flag-o-matic eutils python autotools prefix
 
@@ -44,22 +46,24 @@ src_unpack() {
 			"${S}"/xstc/ \
 			|| die "Failed to install test tarballs"
 	fi
+}
 
+src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.7.1-catalog_path.patch
 	epatch "${FILESDIR}"/${PN}-2.7.2-winnt.patch
-	epatch "${FILESDIR}"/${P}-ld-version-script-check.patch # needs eautoreconf
+	epatch "${FILESDIR}"/${PN}-2.7.4-ld-version-script-check.patch # needs eautoreconf
 
 	eprefixify catalog.c xmlcatalog.c runtest.c xmllint.c
 
 	eautoreconf # required for winnt
-
-	# Fix inkscape extension loader problem, bug #285125,
-	# patch import from upstream bug #595128.
-	epatch "${FILESDIR}"/${P}-parser-grow.patch
-}
-
-src_prepare() {
 	epunt_cxx
+
+	# Please do not remove, as else we get references to PORTAGE_TMPDIR
+	# in /usr/lib/python?.?/site-packages/libxml2mod.la among things.
+	elibtoolize
+
+	# Python bindings are built/tested/installed manually.
+	sed -e "s/@PYTHON_SUBDIR@//" -i Makefile.in || die "sed failed"
 }
 
 src_configure() {
@@ -72,32 +76,62 @@ src_configure() {
 
 	# --with-mem-debug causes unusual segmentation faults (bug #105120).
 
-	local myconf="--with-zlib=${EPREFIX}/usr \
-		--with-html-subdir=${PF}/html \
-		--docdir=${EPREFIX}/usr/share/doc/${PF} \
-		$(use_with debug run-debug)  \
-		$(use_with python)           \
-		$(use_with readline)         \
-		$(use_with readline history) \
-		$(use_enable ipv6) \
-		PYTHON_SITE_PACKAGES=$(python_get_sitedir)"
-
-	# Please do not remove, as else we get references to PORTAGE_TMPDIR
-	# in /usr/lib/python?.?/site-packages/libxml2mod.la among things.
-	elibtoolize
+	local myconf="--with-zlib=${EPREFIX}/usr
+		--with-html-subdir=${PF}/html
+		--docdir=${EPREFIX}/usr/share/doc/${PF}
+		$(use_with debug run-debug)
+		$(use_with python)
+		$(use_with readline)
+		$(use_with readline history)
+		$(use_enable ipv6)"
 
 	# filter seemingly problematic CFLAGS (#26320)
 	filter-flags -fprefetch-loop-arrays -funroll-loops
 
-	econf $myconf
+	python_execute_function -f -q econf ${myconf}
+}
+
+src_compile() {
+	default
+
+	if use python; then
+		python_copy_sources python
+		building() {
+			emake PYTHON_INCLUDES="${EPREFIX}$(python_get_includedir)" \
+				PYTHON_SITE_PACKAGES="${EPREFIX}$(python_get_sitedir)"
+		}
+		python_execute_function -s --source-dir python building
+	fi
+}
+
+src_test() {
+	default
+
+	if use python; then
+		testing() {
+			emake test
+		}
+		python_execute_function -s --source-dir python testing
+	fi
 }
 
 src_install() {
 	emake DESTDIR="${D}" \
 		EXAMPLES_DIR="${EPREFIX}"/usr/share/doc/${PF}/examples \
-		docsdir="${EPREFIX}"/usr/share/doc/${PF}/python \
-		exampledir=${EPREFIX}/usr/share/doc/${PF}/python/examples \
 		install || die "Installation failed"
+
+	if use python; then
+		installation() {
+			emake DESTDIR="${D}" \
+				PYTHON_SITE_PACKAGES="${EPREFIX}$(python_get_sitedir)" \
+				docsdir="${EPREFIX}"/usr/share/doc/${PF}/python \
+				exampledir="${EPREFIX}"/usr/share/doc/${PF}/python/examples \
+				install
+		}
+		python_execute_function -s --source-dir python installation
+
+		python_clean_sitedirs
+	fi
 
 	rm -rf "${ED}"/usr/share/doc/${P}
 	dodoc AUTHORS ChangeLog Copyright NEWS README* TODO* || die "dodoc failed"
@@ -134,8 +168,7 @@ pkg_preinst() {
 
 pkg_postinst() {
 	if use python; then
-		python_need_rebuild
-		python_mod_optimize $(python_get_sitedir)
+		python_mod_optimize drv_libxml2.py libxml2.py
 	fi
 
 	# We don't want to do the xmlcatalog during stage1, as xmlcatalog will not
@@ -159,5 +192,7 @@ pkg_postinst() {
 }
 
 pkg_postrm() {
-	python_mod_cleanup /usr/$(get_libdir)/python*/site-packages
+	if use python; then
+		python_mod_cleanup drv_libxml2.py libxml2.py
+	fi
 }
