@@ -1,6 +1,24 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.105 2010/02/17 18:22:20 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.108 2010/04/03 16:10:15 chithanh Exp $
+
+*libdrm-2.4.20 (03 Apr 2010)
+
+  03 Apr 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +libdrm-2.4.20.ebuild:
+  Version bump.
+
+*libdrm-2.4.18_pre20100211-r1 (23 Mar 2010)
+
+  23 Mar 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +files/2.4.18-0001-datatypes.patch, +libdrm-2.4.18_pre20100211-r1.ebuild:
+  Fix int types, bug #298352
+
+*libdrm-2.4.19 (16 Mar 2010)
+
+  16 Mar 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +libdrm-2.4.19.ebuild:
+  Version bump.
 
 *libdrm-2.4.18 (17 Feb 2010)
 
