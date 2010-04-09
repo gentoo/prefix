@@ -68,8 +68,8 @@ src_prepare() {
 	# make default sane for us
 	if use prefix ; then
 		sed -i -e "s:/usr/local:${EPREFIX}:" gio/xdgmime/xdgmime.c || die
-		# bug #308609
-		export PERL="${EPREFIX}"/usr/bin/perl
+		# bug #308609, without path, bug #314057
+		export PERL=perl
 	fi
 
 	# build glib with parity for native win32
