@@ -50,6 +50,8 @@ src_compile() {
 		*-solaris*)
 			[[ -d /usr/X/lib/X11/fonts/TrueType ]] && \
 				fontpath="${fontpath}:/usr/X/lib/X11/fonts/TrueType"
+			[[ -d /usr/X/lib/X11/fonts/Type1 ]] && \
+				fontpath="${fontpath}:/usr/X/lib/X11/fonts/Type1"
 		;;
 		*-linux-gnu)
 			[[ -d /usr/share/fonts/truetype ]] && \
