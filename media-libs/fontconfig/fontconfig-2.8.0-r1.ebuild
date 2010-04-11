@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.7.2.ebuild,v 1.2 2009/12/14 10:02:29 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.8.0-r1.ebuild,v 1.1 2010/04/11 02:12:48 dirtyepic Exp $
 
 EAPI="2"
 
-inherit eutils libtool toolchain-funcs flag-o-matic autotools
+inherit autotools eutils libtool toolchain-funcs flag-o-matic
 
 DESCRIPTION="A library for configuring and customizing font access"
 HOMEPAGE="http://fontconfig.org/"
@@ -15,12 +15,8 @@ SLOT="1.0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="doc"
 
-# Purposefully dropped the xml USE flag and libxml2 support. Having this is
-# silly since expat is the preferred way to go per upstream and libxml2 support
-# simply exists as a fallback when expat isn't around. expat support is the main
-# way to go and every other distro uses it. By using the xml USE flag to enable
-# libxml2 support, this confuses users and results in most people getting the
-# non-standard behavior of libxml2 usage since most profiles have USE=xml
+# Purposefully dropped the xml USE flag and libxml2 support.  Expat is the
+# default and used by every distro.  See bug #283191.
 
 RDEPEND=">=media-libs/freetype-2.2.1
 	>=dev-libs/expat-1.95.3"
@@ -30,22 +26,20 @@ DEPEND="
 		app-text/docbook-sgml-utils[jadetex]
 		=app-text/docbook-sgml-dtd-3.1*
 	)"
-PDEPEND="!x86-winnt? (
-		app-admin/eselect-fontconfig
-		media-fonts/corefonts
-	)"
-# *some* fonts are needed by nearly every gui application. corefonts satisfies
-# this. In Gentoo Prefix, there is no fonts automatically pulled in by X, etc.
-# So we must install them here. (bug #235553)
+PDEPEND="!x86-winnt? ( app-admin/eselect-fontconfig )
+	virtual/ttf-fonts"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.7.1-latin-reorder.patch	#130466
-	epunt_cxx	#74077
+	epatch "${FILESDIR}"/${PN}-2.7.1-latin-reorder.patch	# 130466
+	epatch "${FILESDIR}"/${PN}-2.3.2-docbook.patch			# 310157
+	epatch "${FILESDIR}"/${PN}-2.8.0-urw-aliases.patch		# 303591
 
 	if [[ ${CHOST} == *-winnt* ]] ; then
 		epatch "${FILESDIR}"/${PN}-2.6.0-winnt.patch
-		eautoreconf
+		#eautoreconf
 	fi
+
+	eautoreconf
 
 	# Needed to get a sane .so versioning on fbsd, please dont drop
 	# If you have to run eautoreconf, you can also leave the elibtoolize call as
@@ -65,6 +59,8 @@ src_configure() {
 		*-solaris*)
 			[[ -d /usr/X/lib/X11/fonts/TrueType ]] && \
 				addfonts=",/usr/X/lib/X11/fonts/TrueType"
+			[[ -d /usr/X/lib/X11/fonts/Type1 ]] && \
+				addfonts="${addfonts},/usr/X/lib/X11/fonts/Type1"
 		;;
 		*-linux-gnu)
 			[[ -d /usr/share/fonts ]] && \
@@ -77,16 +73,18 @@ src_configure() {
 		replace-flags -mtune=* -DMTUNE_CENSORED
 		replace-flags -march=* -DMARCH_CENSORED
 	fi
-	econf $(use_enable doc docs) \
+	econf \
+		$(use_enable doc docs) \
+		$(use_enable doc docbook) \
 		--localstatedir="${EPREFIX}"/var \
-		--with-docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		--with-default-fonts="${EPREFIX}"/usr/share/fonts \
 		--with-add-fonts="${EPREFIX}/usr/local/share/fonts${addfonts}" \
 		${myconf} || die
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${D}" install || die "emake install"
+	emake DESTDIR="${D}" -C doc install-man || die "emake install-man"
 
 	#fc-lang directory contains language coverage datafiles
 	#which are needed to test the coverage of fonts.
@@ -96,17 +94,13 @@ src_install() {
 	insinto /etc/fonts
 	doins "${S}"/fonts.conf
 
-	doman $(find "${S}" -type f -name *.1 -print)
-	newman doc/fonts-conf.5 fonts.conf.5
 	dodoc doc/fontconfig-user.{txt,pdf}
+	dodoc AUTHORS ChangeLog README
 
-	if use doc; then
-		doman doc/Fc*.3
-		dohtml doc/fontconfig-devel.html
-		dodoc doc/fontconfig-devel.{txt,pdf}
+	if [[ -e ${ED}usr/share/doc/fontconfig/ ]];  then
+		mv "${ED}"usr/share/doc/fontconfig/* "${ED}"/usr/share/doc/${P}
+		rm -rf "${ED}"usr/share/doc/fontconfig
 	fi
-
-	dodoc AUTHORS ChangeLog README || die
 
 	# Changes should be made to /etc/fonts/local.conf, and as we had
 	# too much problems with broken fonts.conf, we force update it ...
@@ -123,7 +117,6 @@ pkg_preinst() {
 	# Bug #193476
 	# /etc/fonts/conf.d/ contains symlinks to ../conf.avail/ to include various
 	# config files.  If we install as-is, we'll blow away user settings.
-
 	ebegin "Syncing fontconfig configuration to system"
 	if [[ -e ${EROOT}/etc/fonts/conf.d ]]; then
 		for file in "${EROOT}"/etc/fonts/conf.avail/*; do
@@ -154,7 +147,7 @@ pkg_postinst() {
 
 	if [[ ${ROOT} = / ]]; then
 		ebegin "Creating global font cache"
-		"${EPREFIX}"/usr/bin/fc-cache -sr
+		"${EPREFIX}"/usr/bin/fc-cache -srf
 		eend $?
 	fi
 }

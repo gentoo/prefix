@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.8.0.ebuild,v 1.7 2010/03/31 16:40:22 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.8.0.ebuild,v 1.8 2010/04/11 01:00:59 dirtyepic Exp $
 
 EAPI="2"
 
-inherit eutils libtool toolchain-funcs flag-o-matic autotools
+inherit autotools eutils libtool toolchain-funcs flag-o-matic
 
 DESCRIPTION="A library for configuring and customizing font access"
 HOMEPAGE="http://fontconfig.org/"
@@ -35,13 +35,15 @@ PDEPEND="!x86-winnt? (
 # So we must install them here. (bug #235553)
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.7.1-latin-reorder.patch	#130466
-	epunt_cxx	#74077
+	epatch "${FILESDIR}"/${PN}-2.7.1-latin-reorder.patch	# 130466
+	epatch "${FILESDIR}"/${PN}-2.3.2-docbook.patch			# 310157
 
 	if [[ ${CHOST} == *-winnt* ]] ; then
 		epatch "${FILESDIR}"/${PN}-2.6.0-winnt.patch
-		eautoreconf
+		#eautoreconf
 	fi
+
+	eautoreconf
 
 	# Needed to get a sane .so versioning on fbsd, please dont drop
 	# If you have to run eautoreconf, you can also leave the elibtoolize call as
@@ -75,9 +77,10 @@ src_configure() {
 		replace-flags -mtune=* -DMTUNE_CENSORED
 		replace-flags -march=* -DMARCH_CENSORED
 	fi
-	econf $(use_enable doc docs) \
+	econf \
+		$(use_enable doc docs) \
+		$(use_enable doc docbook) \
 		--localstatedir="${EPREFIX}"/var \
-		--with-docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		--with-default-fonts="${EPREFIX}"/usr/share/fonts \
 		--with-add-fonts="${EPREFIX}/usr/local/share/fonts${addfonts}" \
 		${myconf} || die
