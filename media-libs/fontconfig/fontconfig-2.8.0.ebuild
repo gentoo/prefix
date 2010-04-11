@@ -61,6 +61,8 @@ src_configure() {
 		*-solaris*)
 			[[ -d /usr/X/lib/X11/fonts/TrueType ]] && \
 				addfonts=",/usr/X/lib/X11/fonts/TrueType"
+			[[ -d /usr/X/lib/X11/fonts/Type1 ]] && \
+				addfonts="${addfonts},/usr/X/lib/X11/fonts/Type1"
 		;;
 		*-linux-gnu)
 			[[ -d /usr/share/fonts ]] && \
