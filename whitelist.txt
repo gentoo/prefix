@@ -135,6 +135,7 @@ app-misc/figlet
 app-misc/geekcode
 app-misc/getopt
 app-misc/glimpse
+app-misc/hello
 app-misc/hilite
 app-misc/mc
 app-misc/mime-types
