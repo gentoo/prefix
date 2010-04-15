@@ -114,6 +114,7 @@ app-editors/mg
 app-editors/mlview
 app-editors/mousepad
 app-editors/mp
+app-editors/nano
 app-editors/ne
 app-editors/nedit
 app-editors/teco
