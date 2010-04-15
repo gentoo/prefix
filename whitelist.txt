@@ -102,6 +102,7 @@ app-editors/dav
 app-editors/easyedit
 app-editors/gedit
 app-editors/ghex
+app-editors/gvim
 app-editors/hexcurse
 app-editors/hexedit
 app-editors/hteditor
@@ -116,6 +117,8 @@ app-editors/mp
 app-editors/ne
 app-editors/nedit
 app-editors/teco
+app-editors/vim
+app-editors/vim-core
 app-editors/zile
 app-emulation/emul-linux-x86-baselibs
 app-emulation/emul-linux-x86-compat
