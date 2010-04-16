@@ -990,6 +990,7 @@ dev-python/webhelpers
 dev-python/webob
 dev-python/webpy
 dev-python/werkzeug
+dev-python/xlrd
 
 # Operation Shiny Jewel (Ruby), bug #295040
 dev-ruby/actionmailer
