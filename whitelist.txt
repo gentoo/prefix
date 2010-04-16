@@ -139,6 +139,7 @@ app-misc/figlet
 app-misc/geekcode
 app-misc/getopt
 app-misc/glimpse
+app-misc/hatools
 app-misc/hello
 app-misc/hilite
 app-misc/mc
