@@ -1,0 +1,17 @@
+http://bugs.gentoo.org/show_bug.cgi?id=308835
+http://bugs.gentoo.org/attachment.cgi?id=223057
+
+--- bin/ebuild.sh.orig	2010-03-10 15:26:23 +0100
++++ bin/ebuild.sh	2010-03-10 15:41:00 +0100
+@@ -581,9 +581,9 @@
+ 			--localstatedir="${EPREFIX}"/var/lib \
+ 			"$@" \
+ 			${EXTRA_ECONF}
+-		vecho "${ECONF_SOURCE}/configure" "$@"
++		vecho ${CONFIG_SHELL} "${ECONF_SOURCE}/configure" "$@"
+ 
+-		if ! "${ECONF_SOURCE}/configure" "$@" ; then
++		if ! ${CONFIG_SHELL} "${ECONF_SOURCE}/configure" "$@" ; then
+ 
+ 			if [ -s config.log ]; then
+ 				echo
