@@ -1,6 +1,10 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.77 2009/10/03 08:31:29 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.78 2010/04/03 11:53:34 graaff Exp $
+#
+# DEPRECATION NOTICE
+# This eclass is deprecated because it does not properly handle
+# multiple ruby targets. Please use ruby-ng.eclass instead.
 #
 # @ECLASS: ruby.eclass
 # @MAINTAINER:

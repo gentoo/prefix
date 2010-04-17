@@ -1,7 +1,11 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.32 2009/11/29 19:10:01 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.33 2010/04/03 11:53:34 graaff Exp $
 
+# DEPRECATION NOTICE
+# This eclass is deprecated because it does not properly handle
+# multiple ruby targets. Please use ruby-fakegem.eclass instead.
+#
 # @ECLASS: gems.eclass
 # @MAINTAINER:
 # ruby@gentoo.org

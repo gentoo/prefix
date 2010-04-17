@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.29 2009/10/11 11:46:59 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-vm-2.eclass,v 1.31 2010/04/17 08:30:36 betelgeuse Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -12,7 +12,7 @@
 #
 # -----------------------------------------------------------------------------
 
-inherit eutils fdo-mime prefix
+inherit eutils fdo-mime multilib prefix
 
 DEPEND="=dev-java/java-config-2*"
 hasq "${EAPI}" 0 1 && DEPEND="${DEPEND} >=sys-apps/portage-2.1"
@@ -153,18 +153,19 @@ set_java_env() {
 		-e "s/@PV@/${PV}/g" \
 		-e "s/@PF@/${PF}/g" \
 		-e "s/@PLATFORM@/${platform}/g" \
+		-e "s/@LIBDIR@/$(get_libdir)/g" \
 		-e "/^LDPATH=.*lib\\/\\\"/s|\"\\(.*\\)\"|\"\\1${platform}/:\\1${platform}/server/\"|" \
-		< ${source_env_file} \
-		> ${env_file} || die "sed failed"
+		< "${source_env_file}" \
+		> "${env_file}" || die "sed failed"
 
 	(
 		echo "VMHANDLE=\"${VMHANDLE}\""
 		echo "BUILD_ONLY=\"${JAVA_VM_BUILD_ONLY}\""
-	) >> ${env_file}
+	) >> "${env_file}"
 
 	[[ -n ${JAVA_PROVIDE} ]] && echo "PROVIDES=\"${JAVA_PROVIDE}\"" >> ${env_file}
 
-	local java_home=$(source ${env_file}; echo ${JAVA_HOME#${EPREFIX}})
+	local java_home=$(source "${env_file}"; echo ${JAVA_HOME#${EPREFIX}})
 	[[ -z "${EPREFIX}"${java_home} ]] && die "No JAVA_HOME defined in ${env_file}"
 
 	# prefix only - why do we need that in the first place?

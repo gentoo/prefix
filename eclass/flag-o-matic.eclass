@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.146 2010/02/17 18:20:49 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.147 2010/04/02 02:50:29 abcd Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -684,7 +684,7 @@ replace-sparc64-flags() {
 # @FUNCTION: append-libs
 # @USAGE: <libs>
 # @DESCRIPTION:
-# Add extra <libs> to the current LIBS.  Currently Prefix only.
+# Add extra <libs> to the current LIBS.
 append-libs() {
 	[[ -z $* ]] && return 0
 	local flag

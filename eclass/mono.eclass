@@ -36,7 +36,7 @@ unset MONO_AOT_CACHE
 
 egacinstall() {
 	gacutil -i "${1}" \
-		-root "${D}"/usr/$(get_libdir) \
+		-root "${ED}"/usr/$(get_libdir) \
 		-gacdir /usr/$(get_libdir) \
 		-package ${2:-${GACPN:-${PN}}} \
 		|| die "installing ${1} into the Global Assembly Cache failed"
@@ -48,7 +48,7 @@ mono_multilib_comply() {
 	then
 		if ! [[ -d "${ED}"/usr/"$(get_libdir)" ]]
 		then
-			mkdir "${ED}"/usr/"$(get_libdir)" || die "Couldn't mkdir ${D}/usr/$(get_libdir)"
+			mkdir "${ED}"/usr/"$(get_libdir)" || die "Couldn't mkdir ${ED}/usr/$(get_libdir)"
 		fi
 		${mv_command} "${ED}"/usr/lib/* "${ED}"/usr/"$(get_libdir)"/ || die "Moving files into correct libdir failed"
 		rm -rf "${ED}"/usr/lib

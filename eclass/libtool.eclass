@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.85 2010/03/12 08:17:40 haubi $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.87 2010/04/14 18:14:45 vapier Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -76,43 +76,38 @@ ELT_libtool_version() {
 # apply to $1 ...
 #
 ELT_walk_patches() {
-	local x=
-	local y=
+	local patch
 	local ret=1
 	local file=$1
 	local patch_set=$2
-	local patch_dir=
+	local patch_dir="${ELT_PATCH_DIR}/${patch_set}"
 	local rem_int_dep=$3
 
-	if [[ -n ${patch_set} ]] ; then
-		if [[ -d ${ELT_PATCH_DIR}/${patch_set} ]] ; then
-			patch_dir="${ELT_PATCH_DIR}/${patch_set}"
-		else
-			return "${ret}"
+	[[ -z ${patch_set} ]] && return 1
+	[[ ! -d ${patch_dir} ]] && return 1
+
+	pushd "${ELT_PATCH_DIR}" >/dev/null
+
+	# Go through the patches in reverse order (newer version to older)
+	for patch in $(find "${patch_set}" -maxdepth 1 -type f | LC_ALL=C sort -r) ; do
+		# For --remove-internal-dep ...
+		if [[ -n ${rem_int_dep} ]] ; then
+			# For replace @REM_INT_DEP@ with what was passed
+			# to --remove-internal-dep
+			local tmp="${T}/$$.rem_int_deps.patch"
+			sed -e "s|@REM_INT_DEP@|${rem_int_dep}|g" "${patch}" > "${tmp}"
+			patch=${tmp}
 		fi
 
-		# Go through the patches in reverse order (large to small)
-		for x in $(ls -d "${patch_dir}"/* 2> /dev/null | grep -v 'CVS' | sort -r) ; do
-			if [[ -n ${x} && -f ${x} ]] ; then
-				# For --remove-internal-dep ...
-				if [[ -n ${rem_int_dep} ]] ; then
-					# For replace @REM_INT_DEP@ with what was passed
-					# to --remove-internal-dep
-					sed -e "s|@REM_INT_DEP@|${rem_int_dep}|g" ${x} > \
-						"${T}/$$.rem_int_deps.patch"
+		if ELT_try_and_apply_patch "${file}" "${patch}" ; then
+			# Break to unwind w/popd rather than return directly
+			ret=0
+			break
+		fi
+	done
 
-					x="${T}/$$.rem_int_deps.patch"
-				fi
-
-				if ELT_try_and_apply_patch "${file}" "${x}" ; then
-					ret=0
-					break
-				fi
-			fi
-		done
-	fi
-
-	return "${ret}"
+	popd >/dev/null
+	return ${ret}
 }
 
 elibtoolize() {

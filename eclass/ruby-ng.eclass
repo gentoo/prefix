@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.8 2010/01/15 12:58:20 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.10 2010/04/05 07:41:09 a3li Exp $
 #
 # @ECLASS: ruby-ng.eclass
 # @MAINTAINER:
@@ -244,7 +244,16 @@ _ruby_each_implementation() {
 		# only proceed if it's requested
 		use ruby_targets_${_ruby_implementation} || continue
 
-		RUBY=$(type -p $_ruby_implementation 2>/dev/null)
+		local _ruby_name=$_ruby_implementation
+
+		# Add all USE_RUBY values where the flag name diverts from the binary here
+		case $_ruby_implementation in
+			ree18)
+				_ruby_name=rubyee18
+				;;
+		esac
+
+		RUBY=$(type -p $_ruby_name 2>/dev/null)
 		invoked=yes
 
 		if [[ -n "$1" ]]; then
@@ -452,4 +461,30 @@ ruby_get_hdrdir() {
 	fi
 
 	echo "${rubyhdrdir}"
+}
+
+# @FUNCTION: ruby_get_version
+# @RETURN: The version of the Ruby interpreter in ${RUBY}, or what 'ruby' points to.
+ruby_get_version() {
+	local ruby=${RUBY:-$(type -p ruby 2>/dev/null)}
+
+	echo $(${ruby} -e 'puts RUBY_VERSION')
+}
+
+# @FUNCTION: ruby_get_implementation
+# @RETURN: The implementation of the Ruby interpreter in ${RUBY}, or what 'ruby' points to.
+ruby_get_implementation() {
+	local ruby=${RUBY:-$(type -p ruby 2>/dev/null)}
+
+	case $(${ruby} --version) in
+		*Enterprise*)
+			echo "ree"
+			;;
+		*jruby*)
+			echo "jruby"
+			;;
+		*)
+			echo "mri"
+			;;
+	esac
 }
