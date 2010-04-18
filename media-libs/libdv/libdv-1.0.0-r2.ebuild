@@ -37,6 +37,7 @@ src_compile() {
 		--disable-gtk --disable-gtktest \
 		$(use_enable sdl) \
 		$(use_enable xv) \
+		$(use x86-macos && echo "--disable-asm") \
 		|| die "econf failed."
 	emake || die "emake failed."
 }
