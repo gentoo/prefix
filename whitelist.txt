@@ -797,6 +797,7 @@ x11-misc/x11vnc
 x11-misc/xbitmaps
 x11-misc/xclip
 x11-misc/xdg-utils
+x11-misc/xkeyboard-config
 x11-misc/xsel
 x11-plugins/bfm
 x11-plugins/replytolist
