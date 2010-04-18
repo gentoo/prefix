@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.18.ebuild,v 1.3 2010/02/03 11:27:28 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/sun-jdk-1.6.0.20.ebuild,v 1.1 2010/04/16 09:34:27 caster Exp $
 
 inherit versionator java-vm-2 eutils pax-utils
 
@@ -123,8 +123,8 @@ src_install() {
 		fi
 
 		if use x86 ; then
-			install_mozilla_plugin /opt/${P}/jre/plugin/i386/$plugin_dir/libjavaplugin_oji.so
-			install_mozilla_plugin /opt/${P}/jre/lib/i386/libnpjp2.so plugin2
+			install_mozilla_plugin /opt/${P}/jre/lib/i386/libnpjp2.so
+			install_mozilla_plugin /opt/${P}/jre/plugin/i386/$plugin_dir/libjavaplugin_oji.so old_oji
 		else
 			install_mozilla_plugin /opt/${P}/jre/lib/amd64/libnpjp2.so
 		fi
@@ -166,18 +166,19 @@ pkg_postinst() {
 	if use x86 && use nsplugin; then
 		elog
 		elog "Two variants of the nsplugin are available via eselect java-nsplugin:"
-		elog "${VMHANDLE} and ${VMHANDLE}-plugin2 (the Next-Generation Plug-In) "
-		ewarn "Note that the ${VMHANDLE}-plugin2 works only in Firefox 3!"
+		elog "Note that starting with ${PN}-1.6.0.18-r1 their naming and the default changed,"
+		elog "users with the old plugin set are switched to the new default automatically."
+		elog "The default ${VMHANDLE} is the new 'plugin2' which works in Firefox 3 (xulrunner-1.9)"
+		elog "and newer, the ${VMHANDLE}-old_oji is the old plugin using the OJI API"
+		elog "that was removed in Firefox 3.6 (xulrunner-1.9.2)."
 		elog "For more info see https://jdk6.dev.java.net/plugin2/"
 		elog
 	fi
 
 	if use amd64 && use nsplugin; then
 		elog
-		elog "This version finally brings a browser plugin for amd64"
-		elog "It is the so-called Next-Generation Plug-In (plugin2)"
-		elog "Use eselect java-nsplugin to select it (${VMHANDLE})."
-		ewarn "Note that it works only in Firefox 3 or newer browsers!"
+		elog "The amd64 version ships the new 'plugin2' browser plugin which works"
+		elog "in Firefox 3+ and other recent browser versions."
 		elog "For more info see https://jdk6.dev.java.net/plugin2/"
 		elog
 	fi
