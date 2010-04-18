@@ -46,6 +46,8 @@ src_unpack() {
 	EPATCH_FORCE=yes
 	EPATCH_SUFFIX=patch
 	epatch "${WORKDIR}"/${PV}
+
+	epatch "${FILESDIR}"/${P}-darwin.patch
 }
 
 src_compile() {
