@@ -28,6 +28,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.7.4-solaris.patch
 	epatch "${FILESDIR}"/${PN}-4.8.3-aix-gcc.patch
 	epatch "${FILESDIR}"/${PN}-4.8.3-aix-soname.patch
+	epatch "${FILESDIR}"/${PN}-4.8.4-darwin-install_name.patch
 	# make sure it won't find Perl out of Prefix
 	sed -i -e "s/perl5//g" mozilla/nsprpub/configure || die
 
