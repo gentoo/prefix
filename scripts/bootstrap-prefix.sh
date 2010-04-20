@@ -280,6 +280,12 @@ HOSTCC='gcc -m64'
 		# since the profiles overwrite CFLAGS/LDFLAGS in numerous cases
 		echo "${cppflags_make_defaults}" >> "${profile}"/make.defaults
 		echo "${ldflags_make_defaults}" >> "${profile}"/make.defaults
+		# The default profiles (and IUSE defaults) introduce circular deps. By
+		# shoving this USE line into make.defaults, we can ensure that the
+		# end-user always avoids circular deps while bootstrapping and it gets
+		# wiped after a --sync. Also simplifies bootstrapping instructions.
+		echo "USE=\"-berkdb -fortran -gdbm -nls -pcre -ssl -python\"" >>\
+			"${profile}"/make.defaults
 		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
 }
