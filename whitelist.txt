@@ -895,6 +895,7 @@ dev-python/epydoc
 dev-python/eyeD3
 dev-python/feedparser
 dev-python/flup
+dev-python/foolscap
 dev-python/formencode
 dev-python/fpconst
 dev-python/gconf-python
