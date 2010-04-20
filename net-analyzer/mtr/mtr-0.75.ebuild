@@ -3,7 +3,7 @@
 # $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/mtr-0.75.ebuild,v 1.9 2009/12/28 20:55:15 maekke Exp $
 
 EAPI="2"
-inherit eutils autotools
+inherit eutils autotools flag-o-matic
 
 DESCRIPTION="My TraceRoute. Excellent network diagnostic tool."
 HOMEPAGE="http://www.bitwizard.nl/mtr/"
@@ -12,7 +12,7 @@ SRC_URI="ftp://ftp.bitwizard.nl/mtr/${P}.tar.gz
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos"
 IUSE="gtk ipv6"
 
 RDEPEND="sys-libs/ncurses
@@ -28,6 +28,9 @@ src_prepare() {
 	AT_M4DIR="." eautoreconf
 }
 src_configure() {
+	# In the source's configure script -lresolv is commented out. Apparently it
+	# is needed for 64bit macos still.
+	use x64-macos && append-libs -lresolv
 	econf \
 		$(use_with gtk) \
 		$(use_enable ipv6)
