@@ -1,6 +1,18 @@
 # ChangeLog for sys-libs/zlib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.75 2010/03/20 18:21:51 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.78 2010/04/20 20:34:54 vapier Exp $
+
+  20 Apr 2010; Mike Frysinger <vapier@gentoo.org> zlib-1.2.5.ebuild:
+  Drop now unnecessary visibility patch #316343 by Alon Bar-Lev.
+
+*zlib-1.2.5 (20 Apr 2010)
+
+  20 Apr 2010; Mike Frysinger <vapier@gentoo.org> +zlib-1.2.5.ebuild:
+  Version bump #316343 by Samuli Suominen.
+
+  14 Apr 2010; Mike Frysinger <vapier@gentoo.org> zlib-1.2.4.ebuild:
+  Tweak the sed on configure tests to cover more cases #310573 by Jan-Erik
+  Skata.
 
   20 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
   files/zlib-1.2.4-configure-LANG.patch:
