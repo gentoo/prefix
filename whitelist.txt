@@ -494,6 +494,7 @@ mail-mta/esmtp
 mail-mta/msmtp
 media-gfx/album
 media-gfx/asymptote
+media-gfx/dcraw
 media-gfx/duhdraw
 media-gfx/ebdftopcf
 media-gfx/exif
