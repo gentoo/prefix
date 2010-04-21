@@ -296,6 +296,8 @@ dev-lang/cll1h
 dev-lang/erlang
 dev-lang/ferite
 dev-lang/gforth
+dev-lang/icc
+dev-lang/ifc
 dev-lang/mosml
 dev-lang/nasm
 dev-lang/pasm
