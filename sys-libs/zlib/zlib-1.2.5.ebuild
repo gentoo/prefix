@@ -25,8 +25,8 @@ src_unpack() {
 	# +if (...) 2>/dev/null; then
 	sed -i 's|\<test "`\([^"]*\) 2>&1`" = ""|\1 2>/dev/null|' configure || die
 
-	# also set soname and stuff on Solaris
-	sed -i -e 's:Linux\* | linux\*:Linux\* | linux\* | SunOS\*:' configure || die
+	# also set soname and stuff on Solaris (with CHOST compensation fix as below)
+	sed -i -e 's:Linux\* | linux\*:Linux\* | linux\* | SunOS\* | solaris\*:' configure || die
 	# and compensate for our ebuild env having CHOST set
 	sed -i -e 's:Darwin\*):Darwin\* | darwin\*):' configure || die
 
