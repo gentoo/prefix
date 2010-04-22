@@ -26,7 +26,11 @@ src_unpack() {
 	sed -i 's|\<test "`\([^"]*\) 2>&1`" = ""|\1 2>/dev/null|' configure || die
 
 	# also set soname and stuff on Solaris
-	sed -i -e 's:Linux | linux:Linux | linux | SunOS:' configure || die
+	sed -i -e 's:Linux\* | linux\*:Linux\* | linux\* | SunOS\*:' configure || die
+	# and compensate for our ebuild env having CHOST set
+	sed -i -e 's:Darwin\*):Darwin\* | darwin\*):' configure || die
+
+	sed -i -e '/case "$uname" in/i\echo "$uname"' configure
 	# put libz.so.1 into libz.a on AIX
 # fails, still necessary?
 #	epatch "${FILESDIR}"/${PN}-1.2.3-shlib-aix.patch
@@ -56,10 +60,6 @@ src_install() {
 	*-mingw*|mingw*)
 		dobin zlib1.dll || die
 		dolib libz.dll.a || die
-		;;
-	*-mint*)
-		# no shared libraries here
-		:
 		;;
 	*) gen_usr_ldscript -a z ;;
 	esac
