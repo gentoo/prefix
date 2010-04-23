@@ -447,6 +447,7 @@ dev-util/xfce4-dev-tools
 dev-vcs/bzr
 dev-vcs/bzrtools
 dev-vcs/cssc
+dev-vcs/colorcvs
 dev-vcs/cvs2svn
 dev-vcs/darcs
 dev-vcs/giggle
