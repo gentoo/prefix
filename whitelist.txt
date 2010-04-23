@@ -632,6 +632,7 @@ net-analyzer/tcpflow
 net-analyzer/ttcp
 net-dialup/lrzsz
 net-dns/c-ares
+net-dns/unbound
 net-fs/curlftpfs
 net-ftp/ncftp
 net-ftp/tnftp
