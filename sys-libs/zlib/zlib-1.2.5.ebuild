@@ -30,11 +30,14 @@ src_unpack() {
 	# and compensate for our ebuild env having CHOST set
 	sed -i -e 's:Darwin\*):Darwin\* | darwin\*):' configure || die
 
-	sed -i -e '/case "$uname" in/i\echo "$uname"' configure
+	# configure script isn't really /bin/sh, breaks on Solaris
+	sed -i -e '1c\#!/usr/bin/env bash' configure || die
+
 	# put libz.so.1 into libz.a on AIX
 # fails, still necessary?
 #	epatch "${FILESDIR}"/${PN}-1.2.3-shlib-aix.patch
-	epatch "${FILESDIR}"/${P}-static.patch
+	# patch breaks shared libs installation
+	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${P}-static.patch
 }
 
 src_compile() {
