@@ -1,0 +1,16 @@
+http://bugs.gentoo.org/show_bug.cgi?id=316815
+
+--- Makefile.in.old	2010-04-22 17:37:16.000000000 +0000
++++ Makefile.in	2010-04-22 17:36:17.000000000 +0000
+@@ -168,10 +168,10 @@
+ 	-@if [ ! -d $(DESTDIR)$(man3dir)      ]; then mkdir -p $(DESTDIR)$(man3dir); fi
+ 	-@if [ ! -d $(DESTDIR)$(pkgconfigdir) ]; then mkdir -p $(DESTDIR)$(pkgconfigdir); fi
+ 	cp $(STATICLIB) $(DESTDIR)$(libdir)
+-	cp $(SHAREDLIBV) $(DESTDIR)$(sharedlibdir)
+ 	cd $(DESTDIR)$(libdir); chmod u=rw,go=r $(STATICLIB)
+ 	-@(cd $(DESTDIR)$(libdir); $(RANLIB) libz.a || true) >/dev/null 2>&1
+ 	-@cd $(DESTDIR)$(sharedlibdir); if test "$(SHAREDLIBV)" -a -f $(SHAREDLIBV); then \
++	  cp $(SHAREDLIBV) $(DESTDIR)$(sharedlibdir); \
+ 	  chmod 755 $(SHAREDLIBV); \
+ 	  rm -f $(SHAREDLIB) $(SHAREDLIBM); \
+ 	  ln -s $(SHAREDLIBV) $(SHAREDLIB); \

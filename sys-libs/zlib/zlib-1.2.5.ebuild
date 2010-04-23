@@ -34,6 +34,7 @@ src_unpack() {
 	# put libz.so.1 into libz.a on AIX
 # fails, still necessary?
 #	epatch "${FILESDIR}"/${PN}-1.2.3-shlib-aix.patch
+	epatch "${FILESDIR}"/${P}-static.patch
 }
 
 src_compile() {
@@ -42,7 +43,7 @@ src_compile() {
 		emake -f win32/Makefile.gcc prefix="${EPREFIX}"/usr STRIP= PREFIX=${CHOST}- || die
 		;;
 	*-mint*)
-		./configure --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/$(get_libdir) || die
+		./configure --static --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/usr/$(get_libdir) || die
 		emake || die
 		;;
 	*)  # not an autoconf script, so cant use econf
