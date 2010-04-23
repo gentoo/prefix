@@ -34,6 +34,7 @@ src_unpack() {
 	sed -i '/PYTHON/s:\(print\) \([^"]*\):\1(\2):' configure #302908
 
 	epatch "${FILESDIR}"/${PN}-2.8.12-interix.patch
+	epatch "${FILESDIR}"/${P}-nls.patch
 
 	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 	elibtoolize #269003
