@@ -144,6 +144,9 @@ src_unpack() {
 
 src_compile() {
 	case ${CTARGET}:" ${USE} " in
+		*-mint*)
+			EXTRA_ECONF="${EXTRA_ECONF} --enable-multilib"
+		;;
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
 			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld --with-gnu-as"
