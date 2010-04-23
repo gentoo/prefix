@@ -860,6 +860,7 @@ sys-auth
 sys-kernel
 sys-power
 virtual
+www-plugins
 x11-apps
 x11-proto
 xfce-base
