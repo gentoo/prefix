@@ -1,6 +1,22 @@
 # ChangeLog for net-news/snownews
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-news/snownews/ChangeLog,v 1.29 2009/09/22 19:17:49 cedk Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-news/snownews/ChangeLog,v 1.32 2010/03/17 13:23:29 cedk Exp $
+
+  17 Mar 2010; Cédric Krier <cedk@gentoo.org> snownews-1.5.10.ebuild,
+  snownews-1.5.12-r1.ebuild:
+  Remove wrong dependency to XML-LibXSLT
+
+  17 Mar 2010; Cédric Krier <cedk@gentoo.org>
+  +files/snownews-1.5.7-stdint.patch:
+  Re-add snownews-1.5.7-stdint.patch for bug #309933
+
+*snownews-1.5.12-r1 (14 Mar 2010)
+
+  14 Mar 2010; Cédric Krier <cedk@gentoo.org> -snownews-1.5.7-r2.ebuild,
+  -files/snownews-1.5.7-manpath.patch, -files/snownews-1.5.7-stdint.patch,
+  -snownews-1.5.8.ebuild, -snownews-1.5.9.ebuild, -snownews-1.5.11.ebuild,
+  -snownews-1.5.12.ebuild, +snownews-1.5.12-r1.ebuild:
+  Fix unicode display for bug #309307 and remove old
 
 *snownews-1.5.12 (22 Sep 2009)
 

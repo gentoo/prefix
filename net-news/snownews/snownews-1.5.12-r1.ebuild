@@ -1,7 +1,8 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-news/snownews/snownews-1.5.10.ebuild,v 1.6 2008/11/09 23:48:05 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-news/snownews/snownews-1.5.12-r1.ebuild,v 1.2 2010/03/17 13:23:29 cedk Exp $
 
+EAPI=3
 inherit eutils toolchain-funcs
 
 DESCRIPTION="Snownews, a text-mode RSS/RDF newsreader"
@@ -11,27 +12,35 @@ LICENSE="GPL-2"
 
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
-IUSE=""
+IUSE="unicode"
 
 DEPEND=">=dev-libs/libxml2-2.5.6
-	>=sys-libs/ncurses-5.3"
+	>=sys-libs/ncurses-5.3
+	dev-libs/openssl"
 
-RDEPEND="dev-perl/XML-LibXML
-	dev-perl/XML-LibXSLT
+RDEPEND="${DEPEND}
+	dev-perl/XML-LibXML
 	dev-perl/libwww-perl"
+
+pkg_setup() {
+	if use unicode && ! built_with_use sys-libs/ncurses unicode; then
+		eerror "sys-libs/ncurses must be build with unicode"
+		die "${PN} requires sys-libs/ncurses with USE=unicode"
+	fi
+}
 
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
+
+	use unicode && sed -i -e "s/-lncurses/-lncursesw/" \
+		configure
 
 	sed -i -e "s/-O2//" \
 		configure
 
 	sed -i -e 's/$(INSTALL) -s/$(INSTALL)/' \
 		Makefile
-
-	#Bug #121805
-	epatch "${FILESDIR}"/${PN}-1.5.7-stdint.patch
 }
 
 src_compile() {
@@ -43,5 +52,5 @@ src_compile() {
 src_install() {
 	emake PREFIX="${ED}/usr" install || die "make install failed"
 
-	dodoc AUTHOR CREDITS README README.de README.patching
+	dodoc AUTHOR Changelog CREDITS README README.de README.patching
 }
