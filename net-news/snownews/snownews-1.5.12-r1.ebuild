@@ -29,10 +29,7 @@ pkg_setup() {
 	fi
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	use unicode && sed -i -e "s/-lncurses/-lncursesw/" \
 		configure
 
