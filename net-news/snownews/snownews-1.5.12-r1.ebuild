@@ -40,9 +40,12 @@ src_prepare() {
 		Makefile
 }
 
-src_compile() {
+src_configure() {
 	local conf="--prefix=${EPREFIX}/usr"
 	./configure ${conf} || die "configure failed"
+}
+
+src_compile() {
 	emake CC="$(tc-getCC)" EXTRA_CFLAGS="${CFLAGS}" EXTRA_LDFLAGS="${LDFLAGS}" || die "emake failed"
 }
 
