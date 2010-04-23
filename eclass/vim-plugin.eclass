@@ -20,19 +20,21 @@ SRC_URI="mirror://gentoo/${P}.tar.bz2"
 SLOT="0"
 
 vim-plugin_src_install() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && ED="${D}"
 	local f
 
-	# we run unprivileged
-#	ebegin "Fixing file permissions"
-#	# Make sure perms are good
-#	chmod -R a+rX "${S}" || die "chmod failed"
-#	find "${S}" -user  'portage' -exec chown root '{}' \; || die "chown failed"
-#	if use userland_BSD || use userland_Darwin ; then
-#		find "${S}" -group 'portage' -exec chgrp wheel '{}' \; || die "chgrp failed"
-#	else
-#		find "${S}" -group 'portage' -exec chgrp root '{}' \; || die "chgrp failed"
-#	fi
-#	eend $?
+	if ! use prefix; # Gentoo Prefix is unprivileged.
+		ebegin "Fixing file permissions"
+		# Make sure perms are good
+		chmod -R a+rX "${S}" || die "chmod failed"
+		find "${S}" -user  'portage' -exec chown root '{}' \; || die "chown failed"
+		if use userland_BSD || use userland_Darwin ; then
+			find "${S}" -group 'portage' -exec chgrp wheel '{}' \; || die "chgrp failed"
+		else
+			find "${S}" -group 'portage' -exec chgrp root '{}' \; || die "chgrp failed"
+		fi
+		eend $?
+	fi
 
 	# Install non-vim-help-docs
 	cd "${S}"
@@ -62,18 +64,21 @@ vim-plugin_pkg_postinst() {
 }
 
 vim-plugin_pkg_postrm() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	update_vim_helptags		# from vim-doc
 	update_vim_afterscripts	# see below
 
 	# Remove empty dirs; this allows
 	# /usr/share/vim to be removed if vim-core is unmerged
-	find ${EPREFIX}/usr/share/vim/vimfiles -depth -type d -exec rmdir {} \; 2>/dev/null
+	find "${EPREFIX}/usr/share/vim/vimfiles" -depth -type d -exec rmdir {} \; 2>/dev/null
 }
 
 # update_vim_afterscripts: create scripts in
 # /usr/share/vim/vimfiles/after/* comprised of the snippets in
 # /usr/share/vim/vimfiles/after/*/*.d
 update_vim_afterscripts() {
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EROOT="${ROOT}"
+	has "${EAPI:-0}" 0 1 2 && ! use prefix && EPREFIX=
 	local d f afterdir="${EROOT}"/usr/share/vim/vimfiles/after
 
 	# Nothing to do if the dir isn't there
