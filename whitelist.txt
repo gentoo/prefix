@@ -1201,6 +1201,7 @@ dev-java/xml-commons-external
 dev-java/xml-commons-resolver
 dev-java/xml-xmlbeans
 dev-java/xmldb
+dev-java/xmlgraphics-commons
 dev-java/xom
 dev-java/xpp2
 dev-java/xpp3
