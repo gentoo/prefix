@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/hsqldb-1.8.0.10.ebuild,v 1.5 2010/01/15 17:43:33 grobian Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/hsqldb-1.8.0.10.ebuild,v 1.6 2010/04/05 22:31:38 caster Exp $
 
 EAPI=1
 JAVA_PKG_IUSE="doc source test"
@@ -117,15 +117,15 @@ src_install() {
 	exeinto "${HSQLDB_HOME}/bin"
 	doexe bin/hsqldb || die
 
+	# Make sure that files have correct permissions
+	use prefix || chown -R hsqldb:hsqldb "${ED}${HSQLDB_HOME}"
+	chmod o-rwx "${ED}${HSQLDB_HOME}"
+
 	# Create symlinks to authorization files in the server home dir
 	# (required by the hqldb init script)
 	insinto "${HSQLDB_HOME}"
 	dosym /etc/hsqldb/server.properties "${HSQLDB_HOME}/server.properties" || die
 	dosym /etc/hsqldb/sqltool.rc "${HSQLDB_HOME}/sqltool.rc" || die
-
-	# Make sure that files have correct permissions
-	use prefix || chown -R hsqldb:hsqldb "${ED}${HSQLDB_HOME}"
-	chmod o-rwx "${ED}${HSQLDB_HOME}"
 }
 
 pkg_postinst() {

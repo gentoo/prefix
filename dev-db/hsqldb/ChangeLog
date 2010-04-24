@@ -1,6 +1,17 @@
 # ChangeLog for dev-db/hsqldb
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.54 2010/03/09 10:31:28 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/ChangeLog,v 1.56 2010/04/05 22:36:44 caster Exp $
+
+*hsqldb-1.8.1.2-r1 (05 Apr 2010)
+
+  05 Apr 2010; Vlastimil Babka <caster@gentoo.org>
+  +hsqldb-1.8.1.2-r1.ebuild:
+  Revbump to remove java6 flag and make it mandatory.
+
+  05 Apr 2010; Vlastimil Babka <caster@gentoo.org> hsqldb-1.8.0.10.ebuild,
+  hsqldb-1.8.1.2.ebuild:
+  Fix sandbox problems. Bug #253163, thanks to Jimmy.Jazz@gmx.net for the
+  patch.
 
 *hsqldb-1.8.1.2 (08 Mar 2010)
 
