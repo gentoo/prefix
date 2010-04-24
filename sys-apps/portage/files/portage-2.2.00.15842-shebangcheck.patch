@@ -1,0 +1,95 @@
+
+# HG changeset patch
+# User Fabian Groffen <grobian@gentoo.org>
+# Date 1272117247 -7200
+# Node ID 7fe09af704669eb9dbf8bb77d2ddc95250fb2565
+# Parent  fefe9d5e4bcc6698154e458724c86463dec5ebb7
+Rewrite of Prefix shebang check for bug #313731.
+
+The shebang check was basically working too well, or just being overly
+aggressive.  This caused files from e.g. gnuconfig, automake, autoconf,
+libtool to install template files with prefixed bin/sh in them.  This
+causes no problems for a user, but makes autotools useless for
+distribution.
+
+Hence the approach has now been changed to be less aggressive:
+1) For each script that has a shebang starting with $EPREFIX, check if
+   the target exists, or will exist after installation of the package.
+   If this fails, die with an appropriate error message: the shebang was
+   generated someway, and hence explicitly set that way to a
+   non-existing target, which is wrong.
+2) For scripts having a non-prefixed shebang, check if they reside in
+   $PATH.  If they do, check if the shebang can be prefixed, and if so,
+   prefix the shebang.  If the shebang doesn't exist in the offset, die
+   with an appropriate error message: the script would otherwise rely on
+   a host-provided tool which indicates a missing dependency (and will
+   cause random problems because of a non-Prefix-aware host-tool being
+   used).
+3) Scripts that do not match 1) and 2), e.g. they don't have a shebang
+   starting with $EPREFIX and do not reside in $PATH, we ignore invalid
+   shebangs, unless FEATURES=stricter is set, in which case we warn.
+   This allows packages like autoconf, automake, etc. to install without
+   warning of their template files with /bin/sh as shebang.
+
+diff -r fefe9d5e4bcc -r 7fe09af70466 bin/misc-functions.sh
+--- a/bin/misc-functions.sh	Sat Apr 24 14:38:12 2010 +0200
++++ b/bin/misc-functions.sh	Sat Apr 24 15:54:07 2010 +0200
+@@ -636,31 +636,42 @@
+ 		line=( ${line#"#!"} )
+ 		IFS=${oldIFS}
+ 		[[ ${WHITELIST} == *" ${line[0]} "* ]] && continue
++		# does the shebang start with ${EPREFIX}, and does it exist?
+ 		if [[ ${line[0]} == ${EPREFIX}/* ]] ; then
+-			# does the shebang start with ${EPREFIX}, and does it exist?
+-			if [[ -e ${ROOT}${line[0]} || -e ${D}${line[0]} ]] ; then
+-				continue
++			if [[ ! -e ${ROOT}${line[0]} && ! -e ${D}${line[0]} ]] ; then
++				# hmm, refers explicitly to $EPREFIX, but doesn't exist,
++				# that's wrong in any case
++				echo "${fn#${D}}:${line[0]} (explicit EPREFIX but target not found)" \
++					>> "${T}"/non-prefix-shebangs-errs
+ 			fi
+-		elif [[ -e ${EROOT}${line[0]} || -e ${ED}${line[0]} ]] ; then
+-			# is it unprefixed, but we can just fix it because a
+-			# prefixed variant exists
+-			eqawarn "prefixing shebang of ${fn#${D}}"
+-			sed -i -e '1s:^#! \?:#!'"${EPREFIX}"':' "${fn}"
+ 			continue
+ 		fi
+-		# all else is an error if the found script is in $PATH
++		# unprefixed shebang, is the script directly in $PATH?
+ 		local fp=${fn#${D}} ; fp=/${fp%/*}
+-		if [[ ":${PATH}:" == *":${fp}:"* ]] || hasq stricter ${FEATURES} ;
+-		then
+-			echo "${fn#${D}}:${line[0]}" \
+-				>> "${T}"/non-prefix-shebangs-errs
++		if [[ ":${PATH}:" == *":${fp}:"* ]] ; then
++			if [[ -e ${EROOT}${line[0]} || -e ${ED}${line[0]} ]] ; then
++				# is it unprefixed, but we can just fix it because a
++				# prefixed variant exists
++				eqawarn "prefixing shebang of ${fn#${D}}"
++				sed -i -e '1s:^#! \?:#!'"${EPREFIX}"':' "${fn}"
++				continue
++			else
++				# this is definitely wrong: script in $PATH and invalid shebang
++				echo "${fn#${D}}:${line[0]} (in PATH but target not found)" \
++					>> "${T}"/non-prefix-shebangs-errs
++			fi
+ 		else
+-			eqawarn "invalid shebang in ${fn#${D}}: ${line[0]}"
++			# unprefixed/invalid shebang, but outside $PATH, this may be
++			# intended (e.g. config.guess) so remain silent by default
++			hasq stricter ${FEATURES} && \
++				eqawarn "invalid shebang in ${fn#${D}}: ${line[0]}"
+ 		fi
+ 	done
+ 	if [[ -e "${T}"/non-prefix-shebangs-errs ]] ; then
+ 		eqawarn "QA Notice: the following files use invalid (possible non-prefixed) shebangs:"
+-		eqawarn "$(<"${T}"/non-prefix-shebangs-errs)"
++		while read line ; do
++			eqawarn "  ${line}"
++		done < "${T}"/non-prefix-shebangs-errs
+ 		rm -f "${T}"/non-prefix-shebangs-errs
+ 		die "Aborting due to QA concerns: invalid shebangs found"
+ 	fi
+
