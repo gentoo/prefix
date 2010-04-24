@@ -1,6 +1,11 @@
 # ChangeLog for app-admin/eselect-vi
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-vi/ChangeLog,v 1.34 2008/10/06 13:59:02 hawking Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-vi/ChangeLog,v 1.35 2010/04/23 18:41:59 lack Exp $
+
+*eselect-vi-1.1.7 (23 Apr 2010)
+
+  23 Apr 2010; Jim Ramsay <lack@gentoo.org> +eselect-vi-1.1.7.ebuild:
+  Fix for bugs #260593 #292899 #315613
 
 *eselect-vi-1.1.6 (06 Oct 2008)
 
