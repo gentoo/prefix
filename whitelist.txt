@@ -1157,6 +1157,7 @@ dev-java/jnlp-bin
 dev-java/joda-time
 dev-java/joni
 dev-java/jrexx
+dev-java/jsap
 dev-java/jsch
 dev-java/jsr173
 dev-java/jta
@@ -1176,10 +1177,12 @@ dev-java/oscache
 dev-java/qdox
 dev-java/relaxng-datatype
 dev-java/rhino
+dev-java/rundoc
 dev-java/sax
 dev-java/saxpath
 dev-java/servletapi
 dev-java/simplyhtml
+dev-java/snip
 dev-java/stringtemplate
 dev-java/sun-jacc-api
 dev-java/sun-jaf
