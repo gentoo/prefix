@@ -682,6 +682,7 @@ net-misc/mico
 net-misc/neon
 net-misc/puf
 net-misc/sitecopy
+net-misc/socat
 net-misc/throttle
 net-misc/tinc
 net-misc/tokyotyrant
