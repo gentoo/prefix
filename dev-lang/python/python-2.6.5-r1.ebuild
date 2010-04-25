@@ -74,7 +74,7 @@ src_prepare() {
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
 	fi
 
-	# hardcoding GNU specifics breaks certain platforms
+	# hardcoding GNU specifics breaks platforms not using GNU binutils
 	case $($(tc-getAS) --noexecstack -v 2>&1 </dev/null) in
 		*"GNU Binutils"*) # GNU as with noexecstack support
 			:
@@ -489,14 +489,6 @@ EOF
 	# fix invalid shebang /usr/local/bin/python
 	sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/python' \
 		"${ED}"/usr/$(get_libdir)/python${SLOT}/cgi.py
-
-	# Remove .py[co] files from the installed image,
-	# python_mod_optimize will (re)generate them.  Removing
-	# them here makes sure they don't end up in binpkgs, and
-	# fixes Bad Marshalling Data in Prefix when the offset
-	# was changed with a binpkg installation to match the
-	# target offset.
-	find "${D}" -name "*.py[co]" -delete
 }
 
 pkg_preinst() {
