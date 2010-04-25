@@ -493,8 +493,6 @@ gnome-base/nautilus
 mail-client/mailx
 mail-client/mutt
 mail-filter/razor
-mail-mta/esmtp
-mail-mta/msmtp
 media-gfx/album
 media-gfx/asymptote
 media-gfx/dcraw
@@ -849,6 +847,7 @@ gnustep-apps
 gnustep-base
 gnome-extra
 lxde-base
+mail-mta
 media-fonts
 net-print
 net-voip
