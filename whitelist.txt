@@ -290,6 +290,7 @@ dev-haskell/stm
 dev-haskell/terminfo
 dev-haskell/time
 dev-haskell/utf8-string
+dev-haskell/x11
 dev-haskell/zlib
 dev-lang/blassic
 dev-lang/cfortran
