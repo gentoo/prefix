@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.2.0.ebuild,v 1.17 2010/03/09 17:42:21 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.2.0.ebuild,v 1.22 2010/04/18 13:33:58 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI="2"
@@ -11,7 +11,7 @@ inherit autotools bash-completion check-reqs db-use eutils fdo-mime flag-o-matic
 
 IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
 
-MY_PV=3.2.0.7
+MY_PV=3.2.0.10
 PATCHLEVEL=OOO320
 SRC=OOo_${PV}_src
 MST=OOO320_m12
@@ -24,9 +24,9 @@ DESCRIPTION="OpenOffice.org, a full office productivity suite."
 
 SRC_URI="${DEVPATH}_core.tar.bz2
 	${DEVPATH}_extensions.tar.bz2
-	${DEVPATH}_l10n.tar.bz2
 	${DEVPATH}_system.tar.bz2
 	${DEVPATH}_testautomation.tar.bz2
+	mirror://gentoo/OOo_3.2.0_src_l10n-fixed.tar.bz2
 	binfilter? ( ${DEVPATH}_binfilter.tar.bz2 )
 	templates? ( http://extensions.services.openoffice.org/files/273/0/Sun_ODF_Template_Pack_en-US.oxt
 		http://extensions.services.openoffice.org/files/295/1/Sun_ODF_Template_Pack_de.oxt
@@ -147,7 +147,7 @@ pkg_setup() {
 	ewarn " It is important to note that OpenOffice.org is a very fragile  "
 	ewarn " build when it comes to CFLAGS.  A number of flags have already "
 	ewarn " been filtered out.  If you experience difficulty merging this  "
-	ewarn " package and use agressive CFLAGS, lower the CFLAGS and try to  "
+	ewarn " package and use aggressive CFLAGS, lower the CFLAGS and try to  "
 	ewarn " merge again. "
 	ewarn
 	ewarn " Also if you experience a build break, please make sure to retry "
@@ -384,7 +384,7 @@ pkg_postinst() {
 
 	fdo-mime_desktop_database_update
 	fdo-mime_mime_database_update
-	BASH_COMPLETION_NAME=ooffice && bash-completion_pkg_postinst
+	BASHCOMPLETION_NAME=ooffice && bash-completion_pkg_postinst
 
 	# does this make sense for Prefix?
 	( [[ -x /sbin/chpax ]] || [[ -x /sbin/paxctl ]] ) && [[ -e "${EPREFIX}"/usr/$(get_libdir)/openoffice/program/soffice.bin ]] && scanelf -Xzm "${EPREFIX}"/usr/$(get_libdir)/openoffice/program/soffice.bin

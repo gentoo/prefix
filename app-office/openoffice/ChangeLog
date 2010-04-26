@@ -1,6 +1,32 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.523 2010/03/09 17:42:21 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.529 2010/04/18 13:40:03 suka Exp $
+
+  18 Apr 2010; Andreas Proschofsky <suka@gentoo.org>
+  -openoffice-3.1.1.ebuild, -files/gentoo-3.1.1.diff,
+  -files/Gentoo_ODK_install.patch, -files/base64.diff,
+  -files/nocairofonts.diff:
+  Remove openoffice 3.1.1 for security bug #305195
+
+  18 Apr 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild:
+  Minor spelling fix, bug #308419
+
+  18 Apr 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.0.ebuild, files/gentoo-3.2.0.diff:
+  Patchset bump to ooo-build-3.2.0.10, also fix upstream tarball mess-up
+
+  17 Apr 2010; Joseph Jezak <josejx@gentoo.org> openoffice-3.2.0.ebuild:
+  Marked ppc stable for bug #305195.
+
+  07 Apr 2010; Jeremy Olexa <darkside@gentoo.org> openoffice-3.1.1.ebuild,
+  openoffice-3.2.0.ebuild:
+  Due to portage's environment filtering, variables that start with BASH_
+  cannot be used. As such, s/BASH_COMPLETION_NAME/BASHCOMPLETION_NAME/g for
+  bug 312671
+
+  30 Mar 2010; Pacho Ramos <pacho@gentoo.org> openoffice-3.2.0.ebuild:
+  stable x86, security bug 305195
 
   09 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   openoffice-3.2.0.ebuild, +files/neon-remove-SSPI-support.diff:

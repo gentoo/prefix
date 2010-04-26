@@ -9,6 +9,15 @@
  # support server-only versions of 64bit JDKs
  64bit-jdk-server-paths.diff, i#65974, hmth
  # use IBM j9vm over IBM classic JVM
+@@ -2932,7 +2932,7 @@
+ l10n-build-only-selected-langs.diff, i#106185, pmladek
+ 
+ [ LocalizeFixes < ooo320-m13 ]
+-i109407_BUSCAR.diff
++#i109407_BUSCAR.diff
+ 
+ [ PieceBits ]
+ # zipintro is not kind to us ...
 @@ -3561,7 +3561,6 @@
  [ BuildBits ]
  # Allow oowintool to detect java sdk 1.6.x
@@ -44,4 +53,15 @@
      AC_MSG_RESULT([$SUNTEMPLATES_LANG])
  fi
  AC_SUBST(SUNTEMPLATES_LANG)
+--- bin/setup.in 
++++ bin/setup.in 
+@@ -268,7 +268,7 @@
+     OOO_TARBALL="${UPSTREAM_NAME}_core.tar.bz2"
+     OOO_SYSTEM_TARBALL="${UPSTREAM_NAME}_system.tar.bz2"
+     OOO_BINFILTER_TARBALL="${UPSTREAM_NAME}_binfilter.tar.bz2"
+-    OOO_LANG_TARBALL="${UPSTREAM_NAME}_l10n.tar.bz2"
++    OOO_LANG_TARBALL="${UPSTREAM_NAME}_l10n-fixed.tar.bz2"
+     OOO_EXTENSIONS_TARBALL="${UPSTREAM_NAME}_extensions.tar.bz2"
+ else
+     OOO_TARBALL="$CVSTAG-core.tar.bz2"
 
