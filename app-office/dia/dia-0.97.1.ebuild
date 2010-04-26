@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit eutils gnome2 libtool autotools versionator python
+inherit eutils gnome2 libtool autotools versionator python multilib
 
 MY_P=${P/_/-}
 DESCRIPTION="Diagram/flowchart creation program"
@@ -74,6 +74,8 @@ src_prepare() {
 	# Fix compilation with USE="python", bug #271855
 	if use python; then
 		epatch "${FILESDIR}/${PN}-0.97-acinclude-python-fixes.patch"
+		# use proper shared lib extension, #298232
+		sed -i -e "s/\.so/$(get_libname)/" acinclude.m4 || die
 	fi
 
 	# Skip man generation
