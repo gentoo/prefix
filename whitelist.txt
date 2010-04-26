@@ -39,6 +39,7 @@ app-admin/eselect-oodict
 app-admin/eselect-lapack
 app-admin/eselect-maven
 app-admin/eselect-unison
+app-admin/eselect-vi
 app-admin/gamin
 app-admin/makepasswd
 app-admin/passook
