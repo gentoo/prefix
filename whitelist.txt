@@ -303,6 +303,7 @@ dev-lang/icc
 dev-lang/ifc
 dev-lang/mosml
 dev-lang/nasm
+dev-lang/orc
 dev-lang/pasm
 dev-lang/squeak-fullimage
 dev-lang/srf
