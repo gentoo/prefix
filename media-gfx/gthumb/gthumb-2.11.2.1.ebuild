@@ -58,9 +58,6 @@ src_prepare() {
 	# Do not require unstable libunique
 	epatch "${FILESDIR}/${P}-configure.patch"
 
-	# solaris glibc has no mkdtemp so here we need a patch
-	epatch "${FILESDIR}/${PN}-2.10.10-solaris.patch"
-
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
 }
