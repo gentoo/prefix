@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.341 2010/03/23 03:40:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.342 2010/04/19 19:54:47 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1047,7 +1047,7 @@ make_desktop_entry() {
 		ewarn "make_desktop_entry: update your 5th arg to read Path=${fields}"
 		fields="Path=${fields}"
 	fi
-	[[ -n ${fields} ]] && printf "${fields}\n" >> "${desktop}"
+	[[ -n ${fields} ]] && printf '%b\n' "${fields}" >> "${desktop}"
 
 	(
 		# wrap the env here so that the 'insinto' call

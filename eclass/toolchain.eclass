@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.421 2010/04/03 20:32:47 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.425 2010/04/25 18:04:48 armin76 Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -174,6 +174,7 @@ else
 			tc_version_is_at_least "4.2" && IUSE="${IUSE} openmp"
 			tc_version_is_at_least "4.3" && IUSE="${IUSE} fixed-point"
 			tc_version_is_at_least "4.4" && IUSE="${IUSE} graphite"
+			tc_version_is_at_least "4.5" && IUSE="${IUSE} lto"
 		fi
 	fi
 
@@ -1270,6 +1271,12 @@ gcc-compiler-configure() {
 				[[ ${arm_arch} == *eb ]] && arm_arch=${arm_arch%eb}
 				confgcc="${confgcc} --with-arch=${arm_arch}"
 			fi
+
+			# Enable hardvfp
+			if [[ ${CTARGET##*-} == *eabi ]] && [[ $(tc-is-hardfloat) == yes ]] && \
+			    tc_version_is_at_least "4.5" ; then
+			        confgcc="${confgcc} --with-float=hard"
+			fi
 			;;
 		# Add --with-abi flags to set default MIPS ABI
 		mips)
@@ -1382,8 +1389,14 @@ gcc_do_configure() {
 	tc_version_is_at_least "4.4" && \
 		confgcc="${confgcc} $(use_with graphite ppl) $(use_with graphite cloog)"
 
+	# lto support was added in 4.5, which depends upon elfutils.  This allows
+	# users to enable that option, and pull in the additional library
+	tc_version_is_at_least "4.5" && \
+		confgcc="${confgcc} $(use_enable lto)"
+
 
 	[[ $(tc-is-softfloat) == "yes" ]] && confgcc="${confgcc} --with-float=soft"
+	[[ $(tc-is-hardfloat) == "yes" ]] && confgcc="${confgcc} --with-float=hard"
 
 	# Native Language Support
 	if use nls ; then
@@ -1975,6 +1988,15 @@ gcc-compiler_src_install() {
 
 	# Cpoy the needed minispec for hardened gcc 4
 	copy_minispecs_gcc_specs
+
+	# Move pretty-printers to gdb datadir to shut ldconfig up
+	gdbdir=/usr/share/gdb/auto-load
+	for module in $(find "${ED}" -iname "*-gdb.py" -print); do
+		insinto ${gdbdir}/$(dirname "${module/${ED}/}" | \
+				sed -e "s:/lib/:/$(get_libdir)/:g")
+		doins "${module}"
+		rm "${module}"
+	done
 }
 
 gcc_slot_java() {

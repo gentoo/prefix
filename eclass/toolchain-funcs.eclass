@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.98 2010/03/15 23:51:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.99 2010/04/22 18:28:11 armin76 Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -151,7 +151,7 @@ tc-is-cross-compiler() {
 # The possible return values:
 #  - only: the target is always softfloat (never had fpu)
 #  - yes:  the target should support softfloat
-#  - no:   the target should support hardfloat
+#  - no:   the target doesn't support softfloat
 # @CODE
 # This allows us to react differently where packages accept
 # softfloat flags in the case where support is optional, but
@@ -166,6 +166,19 @@ tc-is-softfloat() {
 				|| echo "no"
 			;;
 	esac
+}
+
+# @FUNCTION: tc-is-hardfloat
+# @DESCRIPTION:
+# See if this toolchain is a hardfloat based one.
+# @CODE
+# The possible return values:
+#  - yes:  the target should support hardfloat
+#  - no:   the target doesn't support hardfloat
+tc-is-hardfloat() {
+	[[ ${CTARGET//_/-} == *-hardfloat-* ]] \
+		&& echo "yes" \
+		|| echo "no"
 }
 
 # @FUNCTION: tc-is-static-only
