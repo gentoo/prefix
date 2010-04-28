@@ -37,6 +37,5 @@ src_compile() {
 }
 
 src_install() {
-	dobin gtk-chtheme
-	doman gtk-chtheme.1
+	emake DESTDIR="${ED}" install || die "emake install failed"
 }
