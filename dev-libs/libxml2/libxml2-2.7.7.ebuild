@@ -86,7 +86,15 @@ src_configure() {
 	# filter seemingly problematic CFLAGS (#26320)
 	filter-flags -fprefetch-loop-arrays -funroll-loops
 
-	python_execute_function -f -q econf ${myconf}
+	# don't unconditionally run any python_* funcs, because at bootstrap:
+	# portage requires python, requires libintl, requires gettext (for !glibc
+	# && !uclibc), requires libxml2, calls python eclass method, fails because
+	# there is no python (yet).
+	if use python ; then
+		python_execute_function -f -q econf ${myconf}
+	else
+		econf ${myconf}
+	fi
 }
 
 src_compile() {
