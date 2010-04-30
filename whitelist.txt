@@ -720,6 +720,7 @@ sys-devel/gcc-apple
 sys-devel/gdb-apple
 sys-devel/gnuconfig
 sys-libs/pam
+sys-process/htop
 sys-process/iotop
 sys-process/time
 sys-process/unixtop
