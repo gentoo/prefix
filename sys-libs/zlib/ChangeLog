@@ -1,6 +1,21 @@
 # ChangeLog for sys-libs/zlib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.78 2010/04/20 20:34:54 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.80 2010/04/29 17:49:03 flameeyes Exp $
+
+*zlib-1.2.5-r2 (29 Apr 2010)
+
+  29 Apr 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  -zlib-1.2.5-r1.ebuild, +zlib-1.2.5-r2.ebuild,
+  files/zlib-1.2.5-lfs-decls.patch:
+  Try two at guessing what zlib wanted to do, assume a mistake between .4
+  and .5 where a condition was reversed, this one makes more sense in light
+  of 1.2.4, the definitions _and_ the comments.
+
+*zlib-1.2.5-r1 (25 Apr 2010)
+
+  25 Apr 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +zlib-1.2.5-r1.ebuild, +files/zlib-1.2.5-lfs-decls.patch:
+  Revision bump, add patch from bug #316377.
 
   20 Apr 2010; Mike Frysinger <vapier@gentoo.org> zlib-1.2.5.ebuild:
   Drop now unnecessary visibility patch #316343 by Alon Bar-Lev.
