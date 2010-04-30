@@ -1,6 +1,36 @@
 # ChangeLog for sys-libs/readline
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.150 2010/03/12 18:14:16 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/readline/ChangeLog,v 1.159 2010/04/09 08:51:05 hwoarang Exp $
+
+  09 Apr 2010; Markos Chandras <hwoarang@gentoo.org> readline-6.1.ebuild:
+  Stable on amd64 wrt bug #310819
+
+  07 Apr 2010; Mike Frysinger <vapier@gentoo.org> readline-6.1.ebuild:
+  Mark arm/ia64/s390/sh stable #310819.
+
+  01 Apr 2010; Jeroen Roovers <jer@gentoo.org> readline-6.1.ebuild:
+  Stable for HPPA (bug #310819).
+
+  30 Mar 2010; Christian Faulhammer <fauli@gentoo.org> readline-6.1.ebuild:
+  stable x86, bug 310819
+
+  27 Mar 2010; Tiago Cunha <tcunha@gentoo.org> readline-6.1.ebuild:
+  stable sparc, bug 310819
+
+  24 Mar 2010; Javier Villavicencio <the_paya@gentoo.org>
+  readline-6.1_p2.ebuild, +files/readline-6.1-rlfe-freebsd.patch:
+  Fix for bug 301508, rlfe build on FreeBSD.
+
+  23 Mar 2010; Brent Baude <ranger@gentoo.org> readline-6.1.ebuild:
+  stable ppc, bug 310819
+
+  23 Mar 2010; Brent Baude <ranger@gentoo.org> readline-6.1.ebuild:
+  Marking readline-6.1 ppc64 for bug 310819
+
+*readline-6.1_p2 (23 Mar 2010)
+
+  23 Mar 2010; Mike Frysinger <vapier@gentoo.org> +readline-6.1_p2.ebuild:
+  Version bump.
 
   12 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
   readline-6.0_p4.ebuild, readline-6.1.ebuild:
