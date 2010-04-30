@@ -14,7 +14,7 @@ SRC_URI="mirror://sourceforge/gnuplot/${MY_P}.tar.gz
 
 LICENSE="gnuplot GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc emacs +gd ggi latex lua pdf plotutils readline svga wxwidgets X xemacs"
 RESTRICT="wxwidgets? ( test )"
 
