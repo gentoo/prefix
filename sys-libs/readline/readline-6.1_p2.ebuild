@@ -62,7 +62,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-6.0-mint.patch
 	epatch "${FILESDIR}"/${PN}-6.1-mint.patch
 	epatch "${FILESDIR}"/${PN}-6.1-darwin-shlib-versioning.patch
-	epatch "${FILESDIR}"/${PN}-6.1-freebsd.patch
 	epatch "${FILESDIR}"/${PN}-6.1-aix-expfull.patch
 
 	# force ncurses linking #71420
