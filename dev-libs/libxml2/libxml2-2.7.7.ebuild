@@ -6,7 +6,7 @@ EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
 RESTRICT_PYTHON_ABIS="3.*"
 
-inherit libtool flag-o-matic eutils python autotools prefix
+inherit libtool flag-o-matic eutils python prefix
 
 DESCRIPTION="Version 2 of the library to manipulate XML files"
 HOMEPAGE="http://www.xmlsoft.org/"
