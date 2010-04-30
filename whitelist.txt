@@ -915,6 +915,7 @@ dev-python/gnome-python
 dev-python/gnome-python-base
 dev-python/gnome-python-desktop-base
 dev-python/gnome-vfs-python
+dev-python/gnuplot-py
 dev-python/gst-python
 dev-python/gtksourceview-python
 dev-python/imaging
