@@ -862,6 +862,7 @@ sci-electronics
 sci-libs
 sci-misc
 sys-auth
+sys-cluster
 sys-kernel
 sys-power
 virtual
