@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/mercurial/mercurial-1.5.ebuild,v 1.1 2010/03/06 13:26:58 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/mercurial/mercurial-1.5.ebuild,v 1.4 2010/04/16 15:24:46 ranger Exp $
 
 EAPI=2
 
@@ -110,8 +110,8 @@ pkg_postinst() {
 	elog "If you want to convert repositories from other tools using convert"
 	elog "extension please install correct tool:"
 	elog "  dev-util/cvs"
-	elog "  dev-util/darcs"
-	elog "  dev-util/git"
+	elog "  dev-vcs/darcs"
+	elog "  dev-vcs/git"
 	elog "  dev-vcs/monotone"
 	elog "  dev-util/subversion"
 }
