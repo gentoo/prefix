@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.7.0.2.ebuild,v 1.1 2010/03/17 15:13:19 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.7.1.ebuild,v 1.1 2010/05/01 08:53:10 robbat2 Exp $
 
 EAPI=2
 
@@ -199,7 +199,7 @@ src_prepare() {
 	[[ ${CHOST} == *-mint* ]] && epatch "${FILESDIR}"/${PN}-1.6.3.3-mint.patch
 
 	# JS install fixup
-	epatch "${FILESDIR}"/git-1.7.0-always-install-js.patch
+	epatch "${FILESDIR}"/git-1.7.1-always-install-js.patch
 
 	sed -i \
 		-e 's:^\(CFLAGS =\).*$:\1 $(OPTCFLAGS) -Wall:' \
@@ -366,7 +366,11 @@ src_test() {
 	local disabled=""
 	local tests_cvs="t9200-git-cvsexportcommit.sh \
 					t9400-git-cvsserver-server.sh \
-					t9600-cvsimport.sh"
+					t9401-git-cvsserver-crlf.sh \
+					t9600-cvsimport.sh \
+					t9601-cvsimport-vendor-branch.sh \
+					t9602-cvsimport-branches-tags.sh \
+					t9603-cvsimport-patchsets.sh"
 	local tests_perl="t5502-quickfetch.sh \
 					t5512-ls-remote.sh \
 					t5520-pull.sh"
