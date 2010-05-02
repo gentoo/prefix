@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r1.ebuild,v 1.1 2010/03/25 20:10:22 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r2.ebuild,v 1.2 2010/05/01 22:25:51 arfrever Exp $
 
 EAPI="2"
 
@@ -9,7 +9,7 @@ inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
 MY_P="Python-${PV}"
 S="${WORKDIR}/${MY_P}"
 
-PATCHSET_REVISION="2"
+PATCHSET_REVISION="4"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -22,7 +22,7 @@ PYTHON_ABI="${SLOT}"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="aqua -berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
-# NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes}
+# NOTE: dev-python/{elementtree,celementtree,pysqlite}
 #       do not conflict with the ones in python proper. - liquidx
 
 RDEPEND=">=app-admin/eselect-python-20091230
@@ -66,9 +66,10 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# Ensure that internal copies of expat and libffi aren't used.
+	# Ensure that internal copies of expat, libffi and zlib are not used.
 	rm -fr Modules/expat
 	rm -fr Modules/_ctypes/libffi*
+	rm -fr Modules/zlib
 
 	if ! tc-is-cross-compiler; then
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
@@ -288,7 +289,7 @@ src_compile() {
 }
 
 src_test() {
-	# Tests won't work when cross compiling.
+	# Tests will not work when cross compiling.
 	if tc-is-cross-compiler; then
 		elog "Disabling tests due to crosscompiling."
 		return
@@ -329,6 +330,8 @@ src_test() {
 }
 
 src_install() {
+	[[ -z "${ED}" ]] && ED="${D%/}${EPREFIX}/"
+
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${SLOT}/lib-dynload/
 	# do not make multiple targets in parallel when there are broken
 	# sharedmods (during bootstrap), would build them twice in parallel.
@@ -484,7 +487,7 @@ EOF
 	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
 	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
 
-	# Don't install empty directory.
+	# Do not install empty directory.
 	rmdir "${ED}$(python_get_libdir)/lib-old"
 
 	# fix invalid shebang /usr/local/bin/python
