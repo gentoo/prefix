@@ -284,7 +284,7 @@ HOSTCC='gcc -m64'
 		# shoving this USE line into make.defaults, we can ensure that the
 		# end-user always avoids circular deps while bootstrapping and it gets
 		# wiped after a --sync. Also simplifies bootstrapping instructions.
-		echo "USE=\"-berkdb -fortran -gdbm -nls -pcre -ssl -python\"" >>\
+		echo "USE=\"-berkdb -fortran -gdbm -nls -pcre -ssl -python bootstrap\"" >>\
 			"${profile}"/make.defaults
 		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
