@@ -22,6 +22,11 @@ eclass/ELT-patches
 
 # remember: you can't import individual files, only directories
 
+# seems removed
+#gnome-base/gail
+#media-libs/amrnb
+#media-libs/amrwb
+
 # regular packages (do NOT put portage in here!)
 app-admin/apg
 app-admin/bcfg2
@@ -477,7 +482,6 @@ games-misc/wtf
 games-puzzle/freesweep
 games-strategy/wormux
 gnome-base/eel
-gnome-base/gail
 gnome-base/gnome-applets
 gnome-base/gnome-common
 gnome-base/gnome-control-center
@@ -524,8 +528,6 @@ media-gfx/ufraw
 media-gfx/xli
 media-libs/a52dec
 media-libs/alsa-lib
-media-libs/amrnb
-media-libs/amrwb
 media-libs/audiofile
 media-libs/bio2jack
 media-libs/compface
