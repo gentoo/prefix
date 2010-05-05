@@ -628,7 +628,7 @@ bootstrap_grep() {
 }
 
 bootstrap_grep4() {
-	bootstrap_gnu grep 2.5.4 "${GNU_URL}/grep/grep-2.5.4.tar.gz"
+	bootstrap_gnu grep 2.5.4
 }
 
 bootstrap_coreutils() {
@@ -652,7 +652,7 @@ bootstrap_tar() {
 }
 
 bootstrap_tar22() {
-	bootstrap_gnu tar 1.22 ${GNU_URL}/tar/tar-1.22.tar.gz
+	bootstrap_gnu tar 1.22
 }
 
 bootstrap_make() {
@@ -664,7 +664,7 @@ bootstrap_patch() {
 }
 
 bootstrap_patch9() {
-	bootstrap_gnu patch 2.5.9 ${GENTOO_MIRROR}/patch-2.5.9.tar.gz
+	bootstrap_gnu patch 2.5.9
 }
 
 bootstrap_gawk() {
@@ -686,7 +686,7 @@ bootstrap_bash() {
 }
 
 bootstrap_bison() {
-	bootstrap_gnu bison 2.4 "${GNU_URL}/bison/bison-2.4.tar.gz"
+	bootstrap_gnu bison 2.4
 }
 
 bootstrap_gzip() {
