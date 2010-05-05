@@ -22,11 +22,6 @@ eclass/ELT-patches
 
 # remember: you can't import individual files, only directories
 
-# seems removed
-#gnome-base/gail
-#media-libs/amrnb
-#media-libs/amrwb
-
 # regular packages (do NOT put portage in here!)
 app-admin/apg
 app-admin/bcfg2
