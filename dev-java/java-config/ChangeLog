@@ -1,6 +1,68 @@
 # ChangeLog for dev-java/java-config
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.229 2009/11/18 14:03:40 volkmar Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/java-config/ChangeLog,v 1.243 2010/04/28 19:43:28 caster Exp $
+
+  28 Apr 2010; Vlastimil Babka <caster@gentoo.org>
+  -files/java-config-1.2.11-shebang.patch, -java-config-1.3.7-r1.ebuild,
+  -java-config-2.1.8-r1.ebuild,
+  -files/java-config-2.1.8-load_packages.patch,
+  -java-config-2.1.9-r1.ebuild, -java-config-2.1.9-r2.ebuild,
+  -files/java-config-2.1.9-r2.patch, -files/java-config-2.1.9.patch:
+  Remove old versions of java-config-2 and the whole java-config-1.
+
+  29 Apr 2010; Alistair Bush <ali_bush@gentoo.org>
+  java-config-2.1.11.ebuild:
+  Update 2.1.11 based on suggestions from Arfrever.
+
+*java-config-2.1.11 (28 Apr 2010)
+
+  28 Apr 2010; Alistair Bush <ali_bush@gentoo.org>
+  +java-config-2.1.11.ebuild:
+  Version Bump
+
+  20 Feb 2010; Raúl Porcel <armin76@gentoo.org> java-config-2.1.10.ebuild:
+  alpha/arm/ia64 stable wrt #299868
+
+  10 Feb 2010; Joseph Jezak <josejx@gentoo.org> java-config-2.1.10.ebuild:
+  Marked ppc stable for bug #299868.
+
+  09 Feb 2010; Pacho Ramos <pacho@gentoo.org> java-config-2.1.10.ebuild:
+  amd64 stable, bug 299868
+
+  20 Jan 2010; Brent Baude <ranger@gentoo.org> java-config-2.1.10.ebuild:
+  Marking java-config-2.1.10 ppc64 for bug 299868
+
+  19 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  java-config-2.1.10.ebuild:
+  stable x86, bug 299868
+
+  28 Dec 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  java-config-2.1.10.ebuild:
+  Set SUPPORT_PYTHON_ABIS. Add src_test().
+
+  28 Dec 2009; Markus Meier <maekke@gentoo.org> java-config-2.1.9-r2.ebuild:
+  amd64 stable, bug #292003
+
+  16 Dec 2009; Christian Faulhammer <fauli@gentoo.org>
+  java-config-2.1.9-r2.ebuild:
+  stable x86, bug 292003
+
+  14 Dec 2009; Brent Baude <ranger@gentoo.org> java-config-2.1.9-r1.ebuild:
+  stable ppc64, bug 289174
+
+*java-config-2.1.10 (06 Dec 2009)
+
+  06 Dec 2009; Alistair Bush <ali_bush@gentoo.org>
+  +java-config-2.1.10.ebuild:
+  Version Bump.
+
+*java-config-2.1.9-r2 (03 Dec 2009)
+
+  03 Dec 2009; Vlastimil Babka <caster@gentoo.org>
+  -files/java-config-2.1.6-portage-import.patch, -java-config-2.1.7.ebuild,
+  -java-config-2.1.8.ebuild, -java-config-2.1.9.ebuild,
+  +java-config-2.1.9-r2.ebuild, +files/java-config-2.1.9-r2.patch:
+  Add icedtea6 and icedtea6-bin to jdk defaults for amd64 and x86.
 
   18 Nov 2009; Mounir Lamouri <volkmar@gentoo.org>
   java-config-2.1.9-r1.ebuild:
