@@ -12,7 +12,7 @@ SRC_URI="http://www.exiv2.org/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
 IUSE="contrib doc examples nls unicode xmp zlib"
 IUSE_LINGUAS="de es fi fr pl ru sk"
 IUSE="${IUSE} $(printf 'linguas_%s ' ${IUSE_LINGUAS})"
