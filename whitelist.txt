@@ -437,7 +437,6 @@ dev-util/qgit
 dev-util/qt-creator
 dev-util/re2c
 dev-util/strace
-dev-util/svk
 dev-util/tailor
 dev-util/tig
 dev-util/tmake
@@ -458,6 +457,7 @@ dev-vcs/hg-git
 dev-vcs/hgsubversion
 dev-vcs/rcs
 dev-vcs/statcvs
+dev-vcs/svk
 games-arcade/ascii-invaders
 games-arcade/nibbles
 games-arcade/tuxanci
