@@ -327,6 +327,7 @@ dev-libs/libebml
 dev-libs/libedit
 dev-libs/libev
 dev-libs/libevent
+dev-libs/libf2c
 dev-libs/libffi
 dev-libs/libksba
 dev-libs/libmaa
