@@ -850,6 +850,7 @@ gnome-extra
 lxde-base
 mail-mta
 media-fonts
+net-news
 net-print
 net-voip
 net-wireless
