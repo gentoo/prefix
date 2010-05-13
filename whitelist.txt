@@ -851,6 +851,7 @@ gnome-extra
 lxde-base
 mail-mta
 media-fonts
+net-dialup
 net-news
 net-print
 net-voip
