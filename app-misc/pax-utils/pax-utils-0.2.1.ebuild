@@ -27,7 +27,7 @@ DEPEND="caps? ( sys-libs/libcap )
 
 src_compile() {
 	local libs
-	if [[ ${CHOST} == *-solaris* || ${CHOST} == *-hpux* ]]; then
+	if [[ ${CHOST} == *-hpux* ]]; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/lib
 		libs="-lgnu"
