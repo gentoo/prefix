@@ -101,6 +101,8 @@ src_unpack() {
 
 	# make it have correct install_names on Darwin
 	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
+	# and that it compiles as well, bug #318283
+	epatch "${FILESDIR}"/4.3.3/gcc-4.3.3-redundant-linkage.patch
 
 	if [[ ${CHOST} == *-mint* ]] ; then
 		epatch "${FILESDIR}"/4.3.2/${PN}-4.3.2-mint1.patch

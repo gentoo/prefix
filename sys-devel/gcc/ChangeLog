@@ -1,6 +1,35 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.746 2010/03/28 20:35:46 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.752 2010/05/09 11:26:06 armin76 Exp $
+
+  09 May 2010; Raúl Porcel <armin76@gentoo.org> gcc-4.4.3-r2.ebuild:
+  Add ~sh
+
+  27 Apr 2010; Ryan Hill <dirtyepic@gentoo.org> gcc-4.4.3-r2.ebuild:
+  Tweak message.
+
+*gcc-4.4.3-r2 (25 Apr 2010)
+
+  25 Apr 2010; Mark Loeser <halcy0n@gentoo.org> -gcc-4.4.3-r1.ebuild,
+  +gcc-4.4.3-r2.ebuild, gcc-4.5.0.ebuild:
+  Wrong version of the cloog patch. Thanks to Ryan for spotting my mistake;
+  bug #317059
+
+*gcc-4.4.3-r1 (25 Apr 2010)
+
+  25 Apr 2010; Mark Loeser <halcy0n@gentoo.org> -gcc-4.4.3.ebuild,
+  +gcc-4.4.3-r1.ebuild:
+  Patchset bump to include patch from bug #317059
+
+*gcc-4.5.0 (24 Apr 2010)
+
+  24 Apr 2010; Mark Loeser <halcy0n@gentoo.org> +gcc-4.5.0.ebuild,
+  metadata.xml:
+  Version bump to 4.5.0; fixes bug #315377. Thanks to Ryan Hill <dirtyepic
+  AT gentoo DOT org> for help figuring out the changes needed
+
+  24 Apr 2010; Mark Loeser <halcy0n@gentoo.org> gcc-4.4.3.ebuild:
+  Add ewarn about the use of graphite
 
   28 Mar 2010; Mark Loeser <halcy0n@gentoo.org> gcc-4.3.4.ebuild,
   gcc-4.4.3.ebuild:
