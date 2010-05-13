@@ -1,6 +1,43 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.250 2010/03/06 23:43:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.258 2010/05/12 18:28:17 armin76 Exp $
+
+  12 May 2010; Raúl Porcel <armin76@gentoo.org> libpng-1.2.43-r1.ebuild,
+  libpng-1.2.43-r2.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc/x86 stable wrt #307637
+
+  11 May 2010; Joseph Jezak <josejx@gentoo.org> libpng-1.2.43-r2.ebuild:
+  Marked ppc stable for bug #307637.
+
+  10 May 2010; Jeroen Roovers <jer@gentoo.org> libpng-1.2.43-r2.ebuild:
+  Stable for HPPA (bug #307637).
+
+  10 May 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libpng-1.2.43-r1.ebuild, libpng-1.2.43-r2.ebuild:
+  amd64 stable wrt #307637
+
+  10 May 2010; Samuli Suominen <ssuominen@gentoo.org> libpng-1.4.2.ebuild,
+  +files/libpng-1.4.x-update.sh:
+  Install rude libpng-1.4.x-update.sh which can be improved.
+
+  10 May 2010; Brent Baude <ranger@gentoo.org> libpng-1.2.43-r2.ebuild:
+  Marking libpng-1.2.43-r2 ppc64 for bug 307637
+
+*libpng-1.4.2 (09 May 2010)
+*libpng-1.2.43-r2 (09 May 2010)
+*libpng-1.2.43-r1 (09 May 2010)
+
+  09 May 2010; Samuli Suominen <ssuominen@gentoo.org> libpng-1.2.40.ebuild,
+  -libpng-1.2.42.ebuild, -libpng-1.2.43.ebuild, +libpng-1.2.43-r1.ebuild,
+  +libpng-1.2.43-r2.ebuild, -libpng-1.4.2_rc5.ebuild, +libpng-1.4.2.ebuild:
+  Version bump to final 1.4.2 and release it into arch wrt #305095.
+
+*libpng-1.4.2_rc5 (03 May 2010)
+
+  03 May 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +libpng-1.4.2_rc5.ebuild:
+  Replace 1.4.1 with 1.4.2_rc5 which should fix problems with xfig,
+  transfig, and timidity++ by restoring a function.
 
 *libpng-1.2.43 (06 Mar 2010)
 
