@@ -18,10 +18,6 @@ IUSE="caps"
 #RESTRICT="mirror"
 
 DEPEND="caps? ( sys-libs/libcap )
-	sparc-solaris? ( dev-libs/gnulib )
-	sparc64-solaris? ( dev-libs/gnulib )
-	x86-solaris? ( dev-libs/gnulib )
-	x64-solaris? ( dev-libs/gnulib )
 	ia64-hpux? ( dev-libs/gnulib )
 "
 
