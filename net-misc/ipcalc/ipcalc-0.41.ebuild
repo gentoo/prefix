@@ -8,13 +8,12 @@ SRC_URI="http://jodies.de/ipcalc-archive/${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
 IUSE=""
 
 RDEPEND=">=dev-lang/perl-5.6.0"
 
 src_install () {
 	dobin ${PN} || die
-	sed -i -e '1c\#!'"${EPREFIX}"'/usr/bin/perl -w' "${ED}"/usr/bin/${PN}
 	dodoc changelog
 }
