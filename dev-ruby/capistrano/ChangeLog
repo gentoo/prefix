@@ -1,6 +1,26 @@
 # ChangeLog for dev-ruby/capistrano
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.52 2010/02/28 08:07:43 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/capistrano/ChangeLog,v 1.56 2010/04/24 07:34:02 graaff Exp $
+
+  24 Apr 2010; Hans de Graaff <graaff@gentoo.org> -capistrano-2.5.9.ebuild,
+  -capistrano-2.5.16.ebuild, -capistrano-2.5.17.ebuild:
+  Remove old versions.
+
+  31 Mar 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  capistrano-2.5.18.ebuild:
+  Unbreak ebuild by adding proper runtime dependencies, fixes bug #310115.
+
+*capistrano-2.5.18 (16 Mar 2010)
+
+  16 Mar 2010; Hans de Graaff <graaff@gentoo.org> +capistrano-2.5.18.ebuild:
+  Version bump: fix for rolling back on local copy errors. Install VERSION
+  file to make cap -V work.
+
+*capistrano-2.5.17 (14 Mar 2010)
+
+  14 Mar 2010; Hans de Graaff <graaff@gentoo.org> +capistrano-2.5.17.ebuild:
+  Version bump. Stop using capistrano-launcher now that the old slot is
+  gone.
 
   28 Feb 2010; Hans de Graaff <graaff@gentoo.org> -capistrano-1.4.2.ebuild:
   Remove masked version.
