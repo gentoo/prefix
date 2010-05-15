@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/liboil
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.82 2009/11/13 00:41:54 josejx Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.83 2010/04/16 14:18:14 ssuominen Exp $
+
+*liboil-0.3.17 (16 Apr 2010)
+
+  16 Apr 2010; Samuli Suominen <ssuominen@gentoo.org> +liboil-0.3.17.ebuild:
+  Version bump.
 
   13 Nov 2009; Joseph Jezak <josejx@gentoo.org> liboil-0.3.16.ebuild:
   Marked ppc64 stable.
