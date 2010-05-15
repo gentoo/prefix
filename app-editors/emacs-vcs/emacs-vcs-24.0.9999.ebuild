@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/emacs-vcs-24.0.9999.ebuild,v 1.1 2010/03/10 18:05:48 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/emacs-vcs-24.0.9999.ebuild,v 1.5 2010/05/08 08:31:19 ulm Exp $
 
 EAPI=2
 
-inherit autotools elisp-common eutils flag-o-matic
+inherit autotools elisp-common eutils flag-o-matic multilib
 
 if [ "${PV##*.}" = "9999" ]; then
 	inherit bzr
@@ -195,7 +195,8 @@ src_configure() {
 
 	econf \
 		--program-suffix=-${EMACS_SUFFIX} \
-		--infodir=/usr/share/info/${EMACS_SUFFIX} \
+		--infodir="${EPREFIX}"/usr/share/info/${EMACS_SUFFIX} \
+		--with-crt-dir="${EPREFIX}"/usr/$(get_libdir) \
 		${myconf} || die "econf emacs failed"
 }
 
@@ -244,16 +245,16 @@ src_install () {
 		c=""
 	fi
 
-	sed 's/^X//' >"${SITEFILE}" <<-EOF
+	sed 's/^X//' >"${T}/${SITEFILE}" <<-EOF
 	X
 	;;; ${PN}-${SLOT} site-lisp configuration
 	X
 	(when (string-match "\\\\\`${FULL_VERSION//./\\\\.}\\\\>" emacs-version)
 	X  ${c}(setq find-function-C-source-directory
-	X  ${c}      "/usr/share/emacs/${FULL_VERSION}/src")
+	X  ${c}      "${EPREFIX}/usr/share/emacs/${FULL_VERSION}/src")
 	X  (let ((path (getenv "INFOPATH"))
-	X	(dir "/usr/share/info/${EMACS_SUFFIX}")
-	X	(re "\\\\\`/usr/share/info\\\\>"))
+	X	(dir "${EPREFIX}/usr/share/info/${EMACS_SUFFIX}")
+	X	(re "\\\\\`${EPREFIX}/usr/share/info\\\\>"))
 	X    (and path
 	X	 ;; move Emacs Info dir before anything else in /usr/share/info
 	X	 (let* ((p (cons nil (split-string path ":" t))) (q p))
@@ -262,7 +263,7 @@ src_install () {
 	X	   (setcdr q (cons dir (delete dir (cdr q))))
 	X	   (setq Info-directory-list (prune-directory-list (cdr p)))))))
 	EOF
-	elisp-site-file-install "${SITEFILE}" || die
+	elisp-site-file-install "${T}/${SITEFILE}" || die
 
 	dodoc README BUGS || die "dodoc failed"
 }
@@ -288,6 +289,7 @@ pkg_postinst() {
 	for f in "${EROOT}"/var/lib/games/emacs/{snake,tetris}-scores; do
 		[ -e "${f}" ] || touch "${f}"
 	done
+	chown games:games "${EROOT}"/var/lib/games/emacs
 
 	elisp-site-regen
 	emacs-infodir-rebuild
