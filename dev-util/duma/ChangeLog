@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/duma
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.13 2009/09/26 09:32:17 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/ChangeLog,v 1.14 2010/04/04 07:41:06 nerdboy Exp $
+
+*duma-2.5.15-r1 (04 Apr 2010)
+
+  04 Apr 2010; Steve Arnold <nerdboy@gentoo.org> -duma-2.5.15.ebuild,
+  +duma-2.5.15-r1.ebuild:
+  Updated with fix for duma shell script (closes bug #310701).
 
   26 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org> duma-2.5.15.ebuild,
   -files/duma-2.5.15-GNUmakefile.patch:

@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/duma-2.5.15.ebuild,v 1.2 2009/09/26 09:32:17 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/duma/duma-2.5.15-r1.ebuild,v 1.1 2010/04/04 07:41:06 nerdboy Exp $
 
 EAPI=2
 inherit eutils flag-o-matic multilib toolchain-funcs versionator prefix
@@ -75,6 +75,9 @@ src_test() {
 src_install(){
 	emake prefix="${ED}/usr" libdir="${ED}/usr/$(get_libdir)" \
 		docdir="${ED}/usr/share/doc/${PF}" install || die "emake install failed"
+
+	dosed "s|LD_PRELOAD=./libduma|LD_PRELOAD=libduma|" /usr/bin/duma \
+		|| die "dosed failed"
 
 	dodoc CHANGELOG TODO GNUmakefile
 
