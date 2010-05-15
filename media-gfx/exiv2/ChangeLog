@@ -1,6 +1,18 @@
 # ChangeLog for media-gfx/exiv2
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/ChangeLog,v 1.83 2010/03/04 15:27:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/ChangeLog,v 1.87 2010/04/18 19:24:55 maekke Exp $
+
+  18 Apr 2010; Markus Meier <maekke@gentoo.org> exiv2-0.19.ebuild:
+  amd64 stable, bug #306333
+
+  18 Apr 2010; <nixnut@gentoo.org> exiv2-0.19.ebuild:
+  ppc stable #306333
+
+  04 Apr 2010; Raúl Porcel <armin76@gentoo.org> exiv2-0.19.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #306333
+
+  23 Mar 2010; Brent Baude <ranger@gentoo.org> exiv2-0.19.ebuild:
+  stable ppc64, bug 306333
 
   04 Mar 2010; Jeroen Roovers <jer@gentoo.org> exiv2-0.19.ebuild:
   Stable for HPPA (bug #306333).
