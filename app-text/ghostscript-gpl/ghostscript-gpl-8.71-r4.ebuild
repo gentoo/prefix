@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.71-r1.ebuild,v 1.4 2010/03/25 20:48:57 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.71-r4.ebuild,v 1.1 2010/04/15 12:43:56 spatz Exp $
 
 EAPI=2
 inherit autotools eutils versionator flag-o-matic
@@ -13,7 +13,7 @@ GSDJVU_PV=1.4
 PVM=$(get_version_component_range 1-2)
 SRC_URI="!bindist? ( djvu? ( mirror://sourceforge/djvu/gsdjvu-${GSDJVU_PV}.tar.gz ) )
 	mirror://sourceforge/ghostscript/${MY_P}.tar.gz
-	mirror://gentoo/${P}-patchset-1.tar.bz2"
+	mirror://gentoo/${P}-patchset-2.tar.bz2"
 
 LICENSE="GPL-3 CPL-1.0"
 SLOT="0"
@@ -42,7 +42,7 @@ RDEPEND="${COMMON_DEPEND}
 	linguas_ko? ( media-fonts/baekmuk-fonts )
 	linguas_zh_CN? ( media-fonts/arphicfonts )
 	linguas_zh_TW? ( media-fonts/arphicfonts )
-	media-fonts/gnu-gs-fonts-std"
+	>=media-fonts/urw-fonts-2.4.9"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -50,6 +50,24 @@ LANGS="ja ko zh_CN zh_TW"
 for X in ${LANGS} ; do
 	IUSE="${IUSE} linguas_${X}"
 done
+
+pkg_setup() {
+	local p="/usr/share/fonts/default/ghostscript"
+	# die if path exists and is not a symbolic link so that
+	# installation of symbolic link doesn't fail, bug 311923
+	if [[ -e ${p} && ! -L ${p} ]]; then
+		eerror "The path ${p} exists and is not a"
+		eerror "symlink. It must be removed for ${CATEGORY}/${PN} to be installed."
+		eerror "Use the following command to check to which packages it belongs:"
+		eerror "  emerge gentoolkit ; equery belongs ${p}"
+		eerror
+		eerror "And remove packages listed. If it doesn't belong to any package, remove"
+		eerror "it manually and then re-emerge ${CATEGORY}/${PN}."
+		eerror "See bug 311923 for more details."
+		eerror
+		die "Path ${p} is not a symlink"
+	fi
+}
 
 src_prepare() {
 	# remove internal copies of expat, jasper, jpeg, libpng and zlib
@@ -63,7 +81,7 @@ src_prepare() {
 	rm -rf "${S}/Resource/Font"
 
 	# Fedora patches
-	# http://cvs.fedora.redhat.com/viewcvs/devel/ghostscript/
+	# http://cvs.fedoraproject.org/viewvc/devel/ghostscript/
 	epatch "${WORKDIR}/patches/${PN}-8.61-multilib.patch"
 	epatch "${WORKDIR}/patches/${PN}-8.64-scripts.patch"
 	epatch "${WORKDIR}/patches/${PN}-8.64-noopt.patch"
@@ -71,13 +89,16 @@ src_prepare() {
 	epatch "${WORKDIR}/patches/${PN}-8.70-runlibfileifexists.patch"
 	epatch "${WORKDIR}/patches/${PN}-8.64-system-jasper.patch"
 	epatch "${WORKDIR}/patches/${PN}-8.64-pksmraw.patch"
-	epatch "${WORKDIR}/patches/${PN}-8.71-CVE-2009-4270.patch"
-	epatch "${WORKDIR}/patches/${PN}-8.71-gdevcups-y-axis.patch"
 	epatch "${WORKDIR}/patches/${PN}-8.71-jbig2dec-nullderef.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.71-CVE-2009-4270.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.71-vsnprintf.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.71-pdftoraster-exit.patch"
 	epatch "${WORKDIR}/patches/${PN}-8.71-ldflags.patch"
 	epatch "${WORKDIR}/patches/${PN}-8.71-pdf2dsc.patch"
-	epatch "${WORKDIR}/patches/${PN}-8.71-pdftoraster-exit.patch"
-	epatch "${WORKDIR}/patches/${PN}-8.71-vsnprintf.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.71-cups-realloc-color-depth.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.71-tiff-fail-close.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.71-tiff-default-strip-size.patch"
+	epatch "${WORKDIR}/patches/${PN}-8.71-tiff-fixes.patch"
 
 	if use bindist && use djvu ; then
 		ewarn "You have bindist in your USE, djvu support will NOT be compiled!"
@@ -194,4 +215,6 @@ src_install() {
 			doins "${WORKDIR}/fontmaps/cidfmap.${X}" || die "doins cidfmap.${X} failed"
 		fi
 	done
+
+	dosym /usr/share/fonts/urw-fonts /usr/share/fonts/default/ghostscript || die
 }

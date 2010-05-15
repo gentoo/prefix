@@ -1,6 +1,29 @@
 # ChangeLog for app-text/ghostscript-gpl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.83 2010/03/08 10:25:36 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ChangeLog,v 1.87 2010/04/15 12:43:56 spatz Exp $
+
+*ghostscript-gpl-8.71-r4 (15 Apr 2010)
+
+  15 Apr 2010; Dror Levin <spatz@gentoo.org>
+  +ghostscript-gpl-8.71-r4.ebuild:
+  Add a check in pkg_setup to die if /usr/share/fonts/default/ghostscript
+  exists and is not a symlink to avoid installation issues, bug 311923.
+
+*ghostscript-gpl-8.71-r3 (31 Mar 2010)
+
+  31 Mar 2010; Timo Gurr <tgurr@gentoo.org> +ghostscript-gpl-8.71-r3.ebuild:
+  Revbump with new patchset.
+
+*ghostscript-gpl-8.71-r2 (26 Mar 2010)
+
+  26 Mar 2010; Dror Levin <spatz@gentoo.org>
+  +ghostscript-gpl-8.71-r2.ebuild:
+  Depend on media-fonts/urw-fonts instead of media-fonts/gnu-gs-fonts-std
+  and symlink font dir, wrt bugs 247657 and 256088.
+
+  25 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
+  ghostscript-gpl-8.71-r1.ebuild:
+  Port to EAPI="2" by request of Dror Levin.
 
   08 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
   ghostscript-gpl-8.71-r1.ebuild:
