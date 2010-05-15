@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.12.ebuild,v 1.10 2010/03/13 18:23:23 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.13.ebuild,v 1.7 2010/03/29 21:59:43 maekke Exp $
 
 CGI_SAPI_USE="discard-path force-cgi-redirect"
 APACHE2_SAPI_USE="concurrentmodphp threads"
@@ -20,8 +20,8 @@ MY_PHP_P="php-${MY_PHP_PV}"
 PHP_PACKAGE="1"
 # php patch settings, general
 PHP_PATCHSET_REV="${PR/r/}"
-PHP_PATCHSET_URI="http://dev.gentoo.org/~hoffie/distfiles/php-patchset-${PV}-r${PHP_PATCHSET_REV}.tar.bz2"
-SUHOSIN_PATCH="suhosin-patch-5.2.11-0.9.7.patch.gz"
+PHP_PATCHSET_URI="http://dev.gentoo.org/~keytoaster/distfiles/php-patchset-${PV}-r${PHP_PATCHSET_REV}.tar.bz2"
+SUHOSIN_PATCH="suhosin-patch-5.2.13-0.9.7.patch.gz"
 MULTILIB_PATCH="${MY_PHP_PV}/opt/multilib-search-path.patch"
 # php patch settings, ebuild specific
 FASTBUILD_PATCH="${MY_PHP_PV}/opt/fastbuild.patch"
@@ -33,7 +33,8 @@ KOLAB_PATCH="${MY_PHP_PV}/opt/kolab-imap-annotations.patch"
 inherit versionator php5_2-sapi apache-module
 
 # Suhosin patch support
-[[ -n "${SUHOSIN_PATCH}" ]] && SRC_URI="${SRC_URI} suhosin? ( http://gentoo.longitekk.com/${SUHOSIN_PATCH} )"
+[[ -n "${SUHOSIN_PATCH}" ]] && SRC_URI="${SRC_URI} suhosin? (
+http://download.suhosin.org/${SUHOSIN_PATCH} )"
 
 DESCRIPTION="The PHP language runtime engine: CLI, CGI and Apache2 SAPIs."
 
@@ -138,7 +139,7 @@ src_unpack() {
 
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${P}-libpng14.patch
+	epatch "${FILESDIR}"/${PN}-5.2.12-libpng14.patch
 
 	# Concurrent PHP Apache2 modules support
 	if use apache2 ; then
@@ -188,7 +189,7 @@ src_unpack() {
 	rm ext/standard/tests/general_functions/phpinfo.phpt
 
 	# never worked properly, no easy fix
-	rm ext/iconv/tests/bug16069.phpt ext/iconv/tests/iconv_stream_filter.phpt
+	rm ext/iconv/tests/iconv_stream_filter.phpt
 
 	# needs write access to /tmp and others
 	rm ext/session/tests/session_save_path_variation5.phpt
