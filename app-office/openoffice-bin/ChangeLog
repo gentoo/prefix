@@ -1,6 +1,10 @@
 # ChangeLog for app-office/openoffice-bin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.229 2010/03/08 18:14:42 rich0 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/ChangeLog,v 1.230 2010/04/18 13:43:00 suka Exp $
+
+  18 Apr 2010; Andreas Proschofsky <suka@gentoo.org>
+  -openoffice-bin-3.1.1.ebuild:
+  Remove openoffice-bin 3.1.1 for security bug #305195
 
   08 Mar 2010; Richard Freeman <rich0@gentoo.org>
   openoffice-bin-3.2.0.ebuild:
