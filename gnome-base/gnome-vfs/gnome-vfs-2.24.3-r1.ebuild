@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.24.2.ebuild,v 1.6 2010/04/05 14:50:08 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/gnome-vfs-2.24.3-r1.ebuild,v 1.2 2010/05/04 16:09:14 tester Exp $
 
 inherit autotools eutils gnome2
 
@@ -39,7 +39,7 @@ DEPEND="${RDEPEND}
 	gnome-base/gnome-common
 	>=dev-util/intltool-0.40
 	>=dev-util/pkgconfig-0.9
-	>=dev-util/gtk-doc-am-1.10-r1
+	>=dev-util/gtk-doc-am-1.13
 	doc? ( >=dev-util/gtk-doc-1 )"
 PDEPEND="hal? ( >=gnome-base/gnome-mount-0.6 )"
 
@@ -142,6 +142,7 @@ src_unpack() {
 
 src_test() {
 	unset DISPLAY
-	#unset DBUS_SESSION_BUS_ADDRESS
+	# Fix bug #285706
+	unset XAUTHORITY
 	emake check || die "tests failed"
 }

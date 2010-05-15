@@ -1,6 +1,50 @@
 # ChangeLog for gnome-base/gnome-vfs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/ChangeLog,v 1.316 2010/03/12 21:22:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-vfs/ChangeLog,v 1.325 2010/05/04 16:09:14 tester Exp $
+
+  03 May 2010; Olivier Crête <tester@gentoo.org>
+  gnome-vfs-2.24.3-r1.ebuild:
+  amd64 stable, bug #314899
+
+*gnome-vfs-2.24.3-r1 (18 Apr 2010)
+
+  18 Apr 2010; Pacho Ramos <pacho@gentoo.org> -gnome-vfs-2.24.3.ebuild,
+  +gnome-vfs-2.24.3-r1.ebuild:
+  Revision bump to get people using updated gnutls patch since old one was
+  causing other issues like mail-notification problems with gmail mailbox
+  (thanks to Joao Rodrigues in bug #295974 for reporting and testing).
+
+  17 Apr 2010; Pacho Ramos <pacho@gentoo.org>
+  files/gnome-vfs-2.24.0-gnutls27.patch:
+  Fix gnutls patch to stop getting have_ssl: command not found when building
+  with gnutls USE flag, see bug #312909. Thanks to Rafal for the fix and
+  Martin for reporting.
+
+  14 Apr 2010; Pacho Ramos <pacho@gentoo.org> gnome-vfs-2.24.3.ebuild:
+  Raise gtk-doc-am dependency solving bug #313645
+
+*gnome-vfs-2.24.3 (06 Apr 2010)
+
+  06 Apr 2010; Romain Perier <mrpouet@gentoo.org> +gnome-vfs-2.24.3.ebuild:
+  Version bump, bugfixes and updated translations.
+
+  05 Apr 2010; Raúl Porcel <armin76@gentoo.org> gnome-vfs-2.24.2.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #308549
+
+*gnome-vfs-2.24.2-r1 (19 Mar 2010)
+
+  19 Mar 2010; Pacho Ramos <pacho@gentoo.org> +gnome-vfs-2.24.2-r1.ebuild,
+  +files/gnome-vfs-2.24.2-symlink-crash.patch:
+  Fix crash if a null symlink is got (see bug #309621, thanks to Jacek for
+  reporting ubuntu/debian patch) and fix tests unsetting XAUTHORITY (see bug
+  #285706, thanks to Patrick for reporting)
+
+  16 Mar 2010; Christian Faulhammer <fauli@gentoo.org>
+  gnome-vfs-2.24.2.ebuild:
+  stable x86, bug 308549
+
+  15 Mar 2010; nixnut <nixnut@gentoo.org> gnome-vfs-2.24.2.ebuild:
+  ppc stable #308549
 
   12 Mar 2010; Brent Baude <ranger@gentoo.org> gnome-vfs-2.24.2.ebuild:
   Marking gnome-vfs-2.24.2 ppc64 stable for bug 308549

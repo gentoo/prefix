@@ -9,7 +9,7 @@
 -    AM_PATH_LIBGNUTLS(1.0.0, [AC_DEFINE(HAVE_GNUTLS, 1, [Define to 1 if GnuTLS is available])
 -			      have_ssl=true])
 +    PKG_CHECK_MODULES(LIBGNUTLS, gnutls >= 1.0.0, [AC_DEFINE(HAVE_GNUTLS, 1, [Define to 1 if GnuTLS is available])
-+    				 	   	  have_ssl = true])
++    				 	   	  have_ssl=true])
  
      if test "x${LIBGNUTLS_LIBS}" = "x"; then
 -      AM_PATH_LIBGNUTLS(0.5.1, [AC_DEFINE(HAVE_GNUTLS, 1, [Define to 1 if GnuTLS is available])
