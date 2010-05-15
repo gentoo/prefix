@@ -1,6 +1,14 @@
 # ChangeLog for dev-java/javacc
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/javacc/ChangeLog,v 1.30 2009/06/21 09:21:22 caster Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/javacc/ChangeLog,v 1.32 2010/03/21 15:32:57 phajdan.jr Exp $
+
+  21 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> javacc-4.2.ebuild:
+  x86 stable wrt bug #309265
+
+*javacc-5.0 (16 Mar 2010)
+
+  16 Mar 2010; Alistair Bush <ali_bush@gentoo.org> +javacc-5.0.ebuild:
+  Version Bump javacc to 5.0
 
   21 Jun 2009; Vlastimil Babka <caster@gentoo.org> javacc-4.2.ebuild:
   Fix building with ecj (bug #249288) and depend on 1.5 jdk only when tests
