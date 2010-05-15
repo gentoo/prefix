@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/log4j
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.81 2010/01/23 13:27:51 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/log4j/ChangeLog,v 1.82 2010/03/20 14:12:55 betelgeuse Exp $
+
+  20 Mar 2010; Petteri Räty <betelgeuse@gentoo.org>
+  -log4j-1.2.14-r1.ebuild, -log4j-1.2.15-r1.ebuild:
+  Remove old ebuilds.
 
   23 Jan 2010; Alexis Ballier <aballier@gentoo.org> log4j-1.2.15-r2.ebuild:
   keyword ~x86-fbsd, bug #296236
