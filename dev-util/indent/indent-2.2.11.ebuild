@@ -1,14 +1,14 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/indent-2.2.10-r1.ebuild,v 1.11 2010/03/23 16:46:22 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/indent-2.2.11.ebuild,v 1.5 2010/05/12 14:50:48 jer Exp $
 
 EAPI="2"
 
-inherit autotools eutils
+inherit eutils
 
 DESCRIPTION="Indent program source files"
-HOMEPAGE="http://www.gnu.org/software/indent/indent.html"
-SRC_URI="mirror://gnu/indent/${P}.tar.gz"
+HOMEPAGE="http://indent.isidore-it.eu/beautify.html"
+SRC_URI="http://${PN}.isidore-it.eu/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
@@ -22,16 +22,12 @@ DEPEND="
 RDEPEND="nls? ( virtual/libintl )"
 
 src_prepare() {
-	# Fix parallel make issue in man/ (bug #76610)
-	epatch "${FILESDIR}"/${PV}-man.patch
-	# Make texinfo2man behave when insufficient arguments are fed
 	epatch "${FILESDIR}"/${PV}-segfault.patch
-	eautoreconf
 
-	# comply to the standard
-	cp -a man/texinfo2man.c{,.orig} || die
-	sed -i -e 's/<malloc\.h>/<stdlib.h>/' man/texinfo2man.c || die
-	touch -r man/texinfo2man.c{.orig,} || die # avoid regen
+#	# comply to the standard
+#	cp -a man/texinfo2man.c{,.orig} || die
+#	sed -i -e 's/<malloc\.h>/<stdlib.h>/' man/texinfo2man.c || die
+#	touch -r man/texinfo2man.c{.orig,} || die # avoid regen
 }
 
 src_configure() {

@@ -1,6 +1,25 @@
 # ChangeLog for dev-util/indent
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.46 2010/03/04 04:57:43 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/indent/ChangeLog,v 1.51 2010/05/12 14:50:48 jer Exp $
+
+  12 May 2010; Jeroen Roovers <jer@gentoo.org> indent-2.2.11.ebuild:
+  Stable for HPPA (bug #318809).
+
+  11 May 2010; Brent Baude <ranger@gentoo.org> indent-2.2.11.ebuild:
+  stable ppc64, bug 318809
+
+  10 May 2010; nixnut <nixnut@gentoo.org> indent-2.2.11.ebuild:
+  ppc stable #318809
+
+  23 Mar 2010; Jeroen Roovers <jer@gentoo.org> indent-2.2.10-r1.ebuild,
+  indent-2.2.11.ebuild:
+  Depend on app-text/texi2html thanks to Leonid Podolny (bug #310833).
+
+*indent-2.2.11 (23 Mar 2010)
+
+  23 Mar 2010; Jeroen Roovers <jer@gentoo.org> +files/2.2.11-segfault.patch,
+  +indent-2.2.11.ebuild:
+  Version bump.
 
   04 Mar 2010; Jeroen Roovers <jer@gentoo.org>
   -files/2.2.9-deb-gentoo.patch, -indent-2.2.9-r3.ebuild,
