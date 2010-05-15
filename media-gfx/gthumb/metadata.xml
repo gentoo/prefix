@@ -5,5 +5,6 @@
 	<use>
 		<flag name='iptc'>Add support for IPTC metadata</flag>
 		<flag name="http">Enable webservice integration through <pkg>net-libs/libsoup</pkg></flag>
+		<flag name="slideshow">Enable slideshow plugin</flag>
 	</use>
 </pkgmetadata>
