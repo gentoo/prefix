@@ -1,10 +1,13 @@
 # ChangeLog for media-libs/libmad
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.54 2008/04/18 21:14:50 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libmad/ChangeLog,v 1.55 2010/04/30 08:21:51 ssuominen Exp $
 
-  28 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
-  libmad-0.15.1b-r5.ebuild:
-  mark ~x86-freebsd
+*libmad-0.15.1b-r6 (30 Apr 2010)
+
+  30 Apr 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +libmad-0.15.1b-r6.ebuild,
+  +files/libmad-0.15.1b-gcc44-mips-h-constraint-removal.patch:
+  Fix building with GCC 4.4 on MIPS wrt #317871 by Manuel Lauss.
 
 *libmad-0.15.1b-r5 (18 Apr 2008)
 
