@@ -1,6 +1,46 @@
 # ChangeLog for net-mail/fetchmail
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.182 2010/03/10 11:08:12 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.192 2010/05/12 22:32:15 josejx Exp $
+
+  12 May 2010; Joseph Jezak <josejx@gentoo.org> fetchmail-6.3.17.ebuild:
+  Marked ppc stable for bug #318875.
+
+  10 May 2010; Brent Baude <ranger@gentoo.org> fetchmail-6.3.17.ebuild:
+  Marking fetchmail-6.3.17 ppc64 for bug 318875
+
+  09 May 2010; Raúl Porcel <armin76@gentoo.org> fetchmail-6.3.17.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #318875
+
+  08 May 2010; Jeroen Roovers <jer@gentoo.org> fetchmail-6.3.17.ebuild:
+  Stable for HPPA (bug #318875).
+
+  08 May 2010; Torsten Veller <tove@gentoo.org> fetchmail-6.3.17.ebuild:
+  Stable on amd64 and x86 (#318875)
+
+  07 May 2010; Torsten Veller <tove@gentoo.org> fetchmail-6.3.17.ebuild:
+  Fix PYTHON_DEPEND. Thanks to Arfrever. Maintenance
+
+*fetchmail-6.3.17 (06 May 2010)
+
+  06 May 2010; Torsten Veller <tove@gentoo.org> +fetchmail-6.3.17.ebuild,
+  metadata.xml:
+  Version bump. Fetchmailconf is installed only if USE=tk.
+
+*fetchmail-6.3.16 (07 Apr 2010)
+
+  07 Apr 2010; Torsten Veller <tove@gentoo.org> +fetchmail-6.3.16.ebuild:
+  Version bump
+
+  29 Mar 2010; Torsten Veller <tove@gentoo.org>
+  -files/6.3.11-fix-free-corruption.patch, -fetchmail-6.3.11-r1.ebuild,
+  -fetchmail-6.3.13.ebuild:
+  Cleanup
+
+*fetchmail-6.3.15 (29 Mar 2010)
+
+  29 Mar 2010; Torsten Veller <tove@gentoo.org> +fetchmail-6.3.15.ebuild:
+  Version bump. Upstream introduces a bad-header option so remove our
+  bad-header patch
 
   10 Mar 2010; Jeroen Roovers <jer@gentoo.org> fetchmail-6.3.14.ebuild:
   Stable for HPPA (bug #307761).
