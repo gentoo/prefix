@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.98-r1.ebuild,v 1.6 2010/02/09 14:49:02 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.98-r1.ebuild,v 1.9 2010/03/25 13:15:47 caster Exp $
 
 EAPI=2
 
-inherit eutils flag-o-matic java-pkg-2 base multilib
+inherit eutils java-pkg-2 base multilib
 
 MY_P=${P/gnu-/}
 DESCRIPTION="Free core class libraries for use with virtual machines and compilers for the Java language"
@@ -15,9 +15,8 @@ LICENSE="GPL-2-with-linking-exception"
 SLOT="0.98"
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
-IUSE="alsa debug doc dssi examples gconf gjdoc gmp gtk gstreamer nsplugin qt4 xml"
+IUSE="alsa debug doc dssi examples gconf gjdoc gmp gtk gstreamer qt4 xml"
 
-# xulrunner: http://bugs.gentoo.org/show_bug.cgi?id=257803
 RDEPEND="alsa? ( media-libs/alsa-lib )
 		doc? ( >=dev-java/gjdoc-0.7.9-r2 )
 		dssi? ( >=media-libs/dssi-0.9 )
@@ -27,7 +26,7 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 		gstreamer? (
 			>=media-libs/gstreamer-0.10.10
 			>=media-libs/gst-plugins-base-0.10.10
-			dev-libs/glib
+			x11-libs/gtk+
 		)
 		gtk? (
 				>=x11-libs/gtk+-2.8
@@ -42,14 +41,6 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 				x11-libs/libXtst
 				x11-libs/pango
 		)
-		nsplugin? (
-			>=x11-libs/gtk+-2.8
-			|| (
-				<net-libs/xulrunner-1.9.1
-				<www-client/mozilla-firefox-3.5
-				www-client/seamonkey
-			)
-		)
 		qt4? ( x11-libs/qt-gui:4 )
 		xml? ( >=dev-libs/libxml2-2.6.8 >=dev-libs/libxslt-1.1.11 )
 		dev-java/eclipse-ecj:3.3"
@@ -57,12 +48,11 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 # We should make the build not pickup the wrong antlr binary from pccts
 DEPEND="app-arch/zip
 		gjdoc? ( !!dev-util/pccts )
-		gtk? ( || (
-					x11-libs/libXrender
-					x11-proto/xextproto
-					x11-proto/xproto
-				)
-			)
+		gtk? (
+			x11-libs/libXrender
+			|| ( >=x11-libs/libXtst-1.1.0 <x11-proto/xextproto-7.1 )
+			x11-proto/xproto
+		)
 		>=virtual/jdk-1.5
 		${RDEPEND}"
 
@@ -98,12 +88,12 @@ src_configure() {
 		$(use_enable gmp) \
 		$(use_enable gtk gtk-peer) \
 		$(use_enable gstreamer gstreamer-peer) \
-		$(use_enable nsplugin plugin) \
 		$(use_enable qt4 qt-peer) \
 		$(use_enable xml xmlj) \
 		$(use_enable dssi ) \
 		--enable-jni \
 		--disable-dependency-tracking \
+		--disable-plugin \
 		--host=${CHOST} \
 		--prefix="${EPREFIX}"/usr/${PN}-${SLOT} \
 		--with-ecj-jar=$(java-pkg_getjar eclipse-ecj:3.3 ecj.jar) \

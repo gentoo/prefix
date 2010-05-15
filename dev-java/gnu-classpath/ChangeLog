@@ -1,6 +1,46 @@
 # ChangeLog for dev-java/gnu-classpath
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.103 2010/03/02 07:44:57 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/ChangeLog,v 1.109 2010/04/29 19:50:01 caster Exp $
+
+*gnu-classpath-0.98-r3 (29 Apr 2010)
+
+  29 Apr 2010; Vlastimil Babka <caster@gentoo.org>
+  +gnu-classpath-0.98-r3.ebuild:
+  Revbump to remove ecj from RDEPEND as it's used only build-time. Also make
+  the dep unversioned thanks to globbing in new java-config.
+
+  25 Mar 2010; Vlastimil Babka <caster@gentoo.org>
+  gnu-classpath-0.97-r1.ebuild, gnu-classpath-0.97.2.ebuild,
+  gnu-classpath-0.97.2-r1.ebuild, gnu-classpath-0.98-r1.ebuild,
+  gnu-classpath-0.98-r2.ebuild:
+  Fix gtk and gstreamer dependencies, bugs #298854 and #309585.
+
+  25 Mar 2010; Vlastimil Babka <caster@gentoo.org>
+  gnu-classpath-0.97-r1.ebuild, gnu-classpath-0.97.2.ebuild,
+  gnu-classpath-0.97.2-r1.ebuild, gnu-classpath-0.98-r1.ebuild,
+  gnu-classpath-0.98-r2.ebuild:
+  Remove flag-o-matic from inherit as the workaround for bug #168800 was
+  already removed.
+
+  21 Mar 2010; Vlastimil Babka <caster@gentoo.org>
+  gnu-classpath-0.97-r1.ebuild, gnu-classpath-0.97.2.ebuild,
+  gnu-classpath-0.97.2-r1.ebuild:
+  Fix bug #225921 (not enough heap space with ecj compiler) for 0.97 as
+  well.
+
+*gnu-classpath-0.97.2-r1 (21 Mar 2010)
+
+  21 Mar 2010; Vlastimil Babka <caster@gentoo.org>
+  +gnu-classpath-0.97.2-r1.ebuild, metadata.xml:
+  Revbump to apply changes from java-overlay: move from /opt to /usr, add
+  missing deps, USE flag descriptions. Also move to ecj-3.5.
+
+  21 Mar 2010; Vlastimil Babka <caster@gentoo.org>
+  gnu-classpath-0.97-r1.ebuild, gnu-classpath-0.97.2.ebuild,
+  gnu-classpath-0.98-r1.ebuild, gnu-classpath-0.98-r2.ebuild:
+  Remove nsplugin support, which was already package.use.masked and is not
+  developed or recommended by upstream anymore. Removes the dependencies on
+  old mozilla software versions, fixing bugs #282162, #282286, #300423.
 
   02 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
   gnu-classpath-0.98-r2.ebuild:

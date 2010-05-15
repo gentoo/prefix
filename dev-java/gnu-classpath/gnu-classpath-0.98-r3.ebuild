@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.98-r2.ebuild,v 1.6 2010/03/25 13:15:47 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/gnu-classpath/gnu-classpath-0.98-r3.ebuild,v 1.1 2010/04/29 19:50:01 caster Exp $
 
 EAPI=2
 
@@ -42,11 +42,13 @@ RDEPEND="alsa? ( media-libs/alsa-lib )
 				x11-libs/pango
 		)
 		qt4? ( x11-libs/qt-gui:4 )
-		xml? ( >=dev-libs/libxml2-2.6.8 >=dev-libs/libxslt-1.1.11 )
-		dev-java/eclipse-ecj:3.3"
+		xml? ( >=dev-libs/libxml2-2.6.8 >=dev-libs/libxslt-1.1.11 )"
 
+# java-config >2.1.11 needed for ecj version globbing
 # We should make the build not pickup the wrong antlr binary from pccts
 DEPEND="app-arch/zip
+		dev-java/eclipse-ecj
+		>=dev-java/java-config-2.1.11
 		gjdoc? ( !!dev-util/pccts )
 		gtk? (
 			x11-libs/libXrender
@@ -63,7 +65,7 @@ S=${WORKDIR}/${MY_P}
 
 src_configure() {
 	# We require ecj anyway, so force it to avoid problems with bad versions of javac
-	export JAVAC="${EPREFIX}/usr/bin/ecj-3.3"
+	export JAVAC="${EPREFIX}/usr/bin/ecj"
 	export JAVA="${EPREFIX}/usr/bin/java"
 	# build takes care of them itself, duplicate -source -target kills ecj
 	export JAVACFLAGS="-nowarn"
@@ -97,7 +99,7 @@ src_configure() {
 		--disable-plugin \
 		--host=${CHOST} \
 		--prefix="${EPREFIX}"/usr/${PN}-${SLOT} \
-		--with-ecj-jar=$(java-pkg_getjar eclipse-ecj-3.3 ecj.jar) \
+		--with-ecj-jar=$(java-pkg_getjar --build-only eclipse-ecj-* ecj.jar) \
 		--disable-Werror \
 		${myconf} \
 		|| die "configure failed"
