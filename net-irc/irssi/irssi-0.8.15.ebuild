@@ -1,17 +1,22 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.13-r1.ebuild,v 1.6 2009/06/07 17:02:02 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-irc/irssi/irssi-0.8.15.ebuild,v 1.6 2010/04/30 14:23:51 ranger Exp $
+
+EAPI="2"
 
 inherit perl-module
 
+# Keep for _rc compability
+MY_P="${P/_/-}"
+
 DESCRIPTION="A modular textUI IRC client with IPv6 support"
 HOMEPAGE="http://irssi.org/"
-SRC_URI="http://irssi.org/files/${P}.tar.bz2"
+SRC_URI="http://irssi.org/files/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="ipv6 perl ssl socks5"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="ipv6 +perl ssl socks5"
 
 RDEPEND="sys-libs/ncurses
 	>=dev-libs/glib-2.2.1
@@ -24,16 +29,13 @@ RDEPEND="${RDEPEND}
 	perl? ( !net-im/silc-client )
 	!net-irc/irssi-svn"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+S="${WORKDIR}"/${MY_P}
 
-	epatch "${FILESDIR}"/${P}-svn-5068.patch
-
+src_prepare() {
 	epunt_cxx
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		--with-proxy \
 		--with-ncurses \
@@ -43,11 +45,10 @@ src_compile() {
 		$(use_enable ssl) \
 		$(use_enable ipv6) \
 		|| die "econf failed"
-	emake || die "emake failed"
 }
 
 src_install() {
-	make \
+	emake \
 		DESTDIR="${D}" \
 		docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		install || die "make install failed"
