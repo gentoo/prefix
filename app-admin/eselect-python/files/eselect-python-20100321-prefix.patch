@@ -1,0 +1,41 @@
+Only in eselect-python-20100321: prefix.patch
+diff -ur eselect-python-20100321.orig/python-wrapper.c eselect-python-20100321/python-wrapper.c
+--- eselect-python-20100321.orig/python-wrapper.c	2010-03-21 22:40:00.000000000 +0100
++++ eselect-python-20100321/python-wrapper.c	2010-05-15 15:20:24.000000000 +0200
+@@ -11,7 +11,11 @@
+ 
+ #include "config.h"
+ 
+-#define ENVD_CONFIG "/etc/env.d/python/config"
++#ifdef EPREFIX
++# define ENVD_CONFIG EPREFIX "/etc/env.d/python/config"
++#else
++# define ENVD_CONFIG "/etc/env.d/python/config"
++#endif
+ 
+ /* 127 is the standard return code for "command not found" */
+ #define EXIT_ERROR 127
+@@ -47,7 +51,11 @@
+ 		/* If PATH is unset, then it defaults to ":/bin:/usr/bin", per
+ 		 * execvp(3).
+ 		 */
++#ifdef EPREFIX
++		PATH = ":" EPREFIX "/bin:" EPREFIX "/usr/bin:/bin:/usr/bin";
++#else
+ 		PATH = ":/bin:/usr/bin";
++#endif
+ 	}
+ 	char* path = strdup(PATH);
+ #ifdef HAVE_STRTOK_R
+@@ -153,7 +161,11 @@
+ 	const char* path = find_path(exe);
+ 	if (! path || ! *path)
+ 	{
++#ifdef EPREFIX
++		path = EPREFIX "/usr/bin";
++#else
+ 		path = "/usr/bin";
++#endif
+ 	}
+ 	struct dirent** namelist;
+ 	int n = scandir(path, &namelist, filter_python, sort_python);

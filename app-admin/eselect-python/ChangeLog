@@ -1,6 +1,25 @@
 # ChangeLog for app-admin/eselect-python
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.57 2010/02/13 16:35:07 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-python/ChangeLog,v 1.60 2010/05/13 17:41:37 josejx Exp $
+
+  13 May 2010; Joseph Jezak <josejx@gentoo.org>
+  eselect-python-20100321.ebuild:
+  Marked ppc/ppc64 stable for bug #316637.
+
+  04 May 2010; Jeroen Roovers <jer@gentoo.org>
+  eselect-python-20100321.ebuild:
+  Stable for HPPA (bug #316367).
+
+*eselect-python-20100321 (21 Mar 2010)
+
+  21 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -eselect-python-20090824.ebuild,
+  -files/eselect-python-20090824-old-glibc.patch,
+  +eselect-python-20100321.ebuild:
+  Version bump. Fix process names of directly executed Python scripts (bug
+  #286424). Fix building on systems without strtok_r() (bug #299152). Set
+  a+rx permissions on /usr/bin/python-config (bug #299688). Handle files
+  specific to Mac OS X (bug #310551).
 
   13 Feb 2010; Raúl Porcel <armin76@gentoo.org>
   eselect-python-20091230.ebuild:
