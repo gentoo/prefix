@@ -1,6 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.6.1_p2.ebuild,v 1.1 2009/11/25 19:05:36 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/bind-tools-9.7.0_p1.ebuild,v 1.1 2010/05/12 23:09:25 idl0r Exp $
+
+EAPI="3"
 
 inherit eutils autotools
 
@@ -27,22 +29,21 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${MY_P}"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
+	# bug 122597
 	use idn && {
 		cd "${S}"/contrib/idn/idnkit-1.0-src
 		epatch "${FILESDIR}"/${PN}-configure.patch
-		cd -
+		cd "${S}"
 	}
 
+	# bug 231247
 	epatch "${FILESDIR}"/${PN}-9.5.0_p1-lwconfig.patch
 
 	# bug #151839
 	sed -i -e \
 		's:struct isc_socket {:#undef SO_BSDCOMPAT\n\nstruct isc_socket {:' \
-		lib/isc/unix/socket.c || die
+		lib/isc/include/isc/socket.h || die
 
 	# bug 278364 (workaround)
 	epatch "${FILESDIR}/${PN}-9.6.1-parallel.patch"
@@ -50,7 +51,7 @@ src_unpack() {
 	eautoreconf
 }
 
-src_compile() {
+src_configure() {
 	local myconf=
 
 	has_version sys-libs/glibc || myconf="${myconf} --with-iconv"
@@ -65,7 +66,9 @@ src_compile() {
 		$(use_with ssl openssl) \
 		$(use_with xml libxml2) \
 		${myconf}
+}
 
+src_compile() {
 	emake -C lib/ || die "emake lib failed"
 	emake -C bin/dig/ || die "emake bin/dig failed"
 	emake -C bin/nsupdate/ || die "emake bin/nsupdate failed"

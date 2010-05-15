@@ -1,6 +1,13 @@
 # ChangeLog for net-dns/bind-tools
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.154 2010/03/07 14:46:24 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/bind-tools/ChangeLog,v 1.155 2010/05/12 23:09:25 idl0r Exp $
+
+*bind-tools-9.7.0_p1 (12 May 2010)
+
+  12 May 2010; Christian Ruppert <idl0r@gentoo.org>
+  -bind-tools-9.6.1_p2.ebuild, +bind-tools-9.7.0_p1.ebuild:
+  Version bump to 9.7.0_p1. Remove bind-tools-9.6.1_p2. Use EAPI 3 and
+  src_prepare/src_configure. Fix the sed for bug 151839.
 
   07 Mar 2010; Markus Meier <maekke@gentoo.org> bind-tools-9.4.3_p5.ebuild:
   amd64 stable, bug #301548
