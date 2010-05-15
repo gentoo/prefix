@@ -1,6 +1,14 @@
 # ChangeLog for app-text/openjade
-# Copyright 2002-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/openjade/ChangeLog,v 1.53 2009/04/22 21:59:35 loki_val Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/openjade/ChangeLog,v 1.54 2010/03/21 13:41:32 tommy Exp $
+
+*openjade-1.3.2-r2 (21 Mar 2010)
+
+  21 Mar 2010; Thomas Sachau (Tommy[D]) <tommy@gentoo.org>
+  +openjade-1.3.2-r2.ebuild, -files/openjade-1.3.2-la-fix.patch,
+  +files/openjade-1.3.2-libosp-la.patch,
+  +files/openjade-1.3.2-respect-ldflags.patch:
+  Revision bump, fixes bug 136090, bug 181651, bug 209706 and bug 293754
 
   22 Apr 2009; Peter Alfredsen <loki_val@gentoo.org>
   +files/openjade-1.3.2-deplibs.patch, files/openjade-1.3.2-la-fix.patch,
