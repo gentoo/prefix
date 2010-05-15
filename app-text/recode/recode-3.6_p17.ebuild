@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6_p16.ebuild,v 1.7 2010/05/12 20:05:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/recode/recode-3.6_p17.ebuild,v 1.2 2010/05/11 11:07:39 jlec Exp $
 
 inherit autotools eutils libtool toolchain-funcs flag-o-matic
 
