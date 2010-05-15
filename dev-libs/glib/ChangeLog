@@ -1,6 +1,26 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.400 2010/03/06 16:14:28 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.407 2010/05/11 19:46:05 ranger Exp $
+
+  11 May 2010; Brent Baude <ranger@gentoo.org> glib-2.22.4.ebuild:
+  Marking glib-2.22.4 ppc64 for bug 304777
+
+  07 May 2010; Jeroen Roovers <jer@gentoo.org> glib-2.22.5.ebuild:
+  Stable for HPPA (bug #304777).
+
+  03 May 2010; Olivier Crête <tester@gentoo.org> glib-2.22.5.ebuild:
+  amd64 stable, bug #314899
+
+*glib-2.22.5 (26 Mar 2010)
+
+  26 Mar 2010; Pacho Ramos <pacho@gentoo.org> +glib-2.22.5.ebuild:
+  Version bump with bugfixes
+
+  24 Mar 2010; Raúl Porcel <armin76@gentoo.org> glib-2.22.4.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #304777
+
+  15 Mar 2010; nixnut <nixnut@gentoo.org> glib-2.22.4.ebuild:
+  ppc stable #304777
 
   06 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> glib-2.22.4.ebuild:
   x86 stable wrt bug #304777
