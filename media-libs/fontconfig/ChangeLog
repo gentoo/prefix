@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/fontconfig
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.147 2010/04/11 02:12:48 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/ChangeLog,v 1.148 2010/05/13 15:48:04 jer Exp $
+
+  13 May 2010; Jeroen Roovers <jer@gentoo.org> fontconfig-2.8.0.ebuild:
+  Stable for HPPA (bug #309693).
 
 *fontconfig-2.8.0-r1 (11 Apr 2010)
 
