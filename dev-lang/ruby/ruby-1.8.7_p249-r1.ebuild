@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p369.ebuild,v 1.11 2009/07/31 17:12:43 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p249-r1.ebuild,v 1.1 2010/05/06 20:10:08 a3li Exp $
 
 EAPI=1
 inherit autotools eutils flag-o-matic multilib versionator
@@ -13,10 +13,11 @@ MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
-SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2"
+SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2
+		 http://dev.a3li.li/gentoo/distfiles/${PN}-patches-${PVR}.tar.bz2"
 
 LICENSE="|| ( Ruby GPL-2 )"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="+berkdb debug doc emacs examples +gdbm ipv6 rubytests socks5 ssl threads tk xemacs"
 
 RDEPEND="
@@ -25,7 +26,7 @@ RDEPEND="
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk )
-	app-admin/eselect-ruby
+	>=app-admin/eselect-ruby-20091225
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!<dev-ruby/rdoc-2
 	!dev-ruby/rexml"
@@ -55,18 +56,14 @@ pkg_setup() {
 
 src_unpack() {
 	unpack ${A}
-
-	cd "${S}/ext/dl"
-	epatch "${FILESDIR}/${PN}-1.8.6-memory-leak.diff"
 	cd "${S}"
+
+	EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
+		epatch "${WORKDIR}/patches-${PVR}"
 
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
-	epatch "${FILESDIR}"/${PN}-1.8.7_p160-solaris.patch
-
-	epatch "${FILESDIR}/${PN}-mkconfig.patch"
-	epatch "${FILESDIR}/${PN}${MY_SUFFIX}-mkmf-parallel-install.patch"
-	epatch "${FILESDIR}/${PN}-1.8.6-uclibc-udp.patch"
+	epatch "${FILESDIR}/${P}-pthread-linking.patch"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
@@ -98,11 +95,14 @@ src_compile() {
 		append-flags "-DGC_MALLOC_LIMIT=${RUBY_GC_MALLOC_LIMIT}"
 	fi
 
+	# ipv6 hack, bug 168939. Needs --enable-ipv6.
+	use ipv6 || myconf="--with-lookup-order-hack=INET"
+
 	econf --program-suffix=$MY_SUFFIX --enable-shared \
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
 		$(use_enable threads pthread) \
-		$(use_enable ipv6) \
+		--enable-ipv6 \
 		$(use_enable debug) \
 		$(use_with berkdb dbm) \
 		$(use_with gdbm) \
@@ -180,14 +180,11 @@ pkg_postinst() {
 	fi
 
 	elog
-	elog "This ebuild is compatible to eselect-ruby"
 	elog "To switch between available Ruby profiles, execute as root:"
 	elog "\teselect ruby set ruby(18|19|...)"
 	elog
 }
 
 pkg_postrm() {
-	if [[ ! -n $(readlink "${EROOT}"usr/bin/ruby) ]] ; then
-		eselect ruby set ruby${MY_SUFFIX}
-	fi
+	eselect ruby cleanup
 }
