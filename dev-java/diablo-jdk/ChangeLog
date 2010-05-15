@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/diablo-jdk
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/diablo-jdk/ChangeLog,v 1.10 2010/03/11 10:42:38 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/diablo-jdk/ChangeLog,v 1.11 2010/03/13 14:12:58 aballier Exp $
+
+  13 Mar 2010; Alexis Ballier <aballier@gentoo.org>
+  diablo-jdk-1.6.0.07.02.ebuild:
+  It works fine with freebsd 8, adjust the dep to >=
 
   11 Mar 2010; Alexis Ballier <aballier@gentoo.org>
   -diablo-jdk-1.5.0.07.01.ebuild, -files/diablo-jdk-1.5.env:

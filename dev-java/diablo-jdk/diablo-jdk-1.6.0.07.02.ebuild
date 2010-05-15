@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/diablo-jdk/diablo-jdk-1.6.0.07.02.ebuild,v 1.1 2008/10/15 13:31:56 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/diablo-jdk/diablo-jdk-1.6.0.07.02.ebuild,v 1.2 2010/03/13 14:12:58 aballier Exp $
 
 inherit java-vm-2 eutils versionator
 
@@ -33,7 +33,7 @@ RDEPEND="X? ( x11-libs/libICE
 				x11-libs/libXt
 				x11-libs/libXtst
 			)
-		!prefix? ( =sys-freebsd/freebsd-lib-7* )
+		!prefix? ( >=sys-freebsd/freebsd-lib-7 )
 
 		${DEPEND}"
 
