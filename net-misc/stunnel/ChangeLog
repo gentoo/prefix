@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/stunnel
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.111 2010/03/07 21:36:28 ramereth Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/ChangeLog,v 1.112 2010/03/25 21:46:20 ramereth Exp $
+
+*stunnel-4.31-r1 (25 Mar 2010)
+
+  25 Mar 2010; Lance Albertson <ramereth@gentoo.org> -stunnel-4.31.ebuild,
+  +stunnel-4.31-r1.ebuild, +files/stunnel-4.31-x-forwarded-for.patch:
+  Add xforward patch for 4.31 (finally resolves #306127)
 
 *stunnel-4.29-r1 (07 Mar 2010)
 

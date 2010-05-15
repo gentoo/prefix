@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.31.ebuild,v 1.1 2010/03/07 21:17:13 ramereth Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.31-r1.ebuild,v 1.1 2010/03/25 21:46:20 ramereth Exp $
 
 EAPI="2"
 
@@ -13,7 +13,7 @@ SRC_URI="http://www.stunnel.org/download/stunnel/src/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="ipv6 selinux tcpd"
+IUSE="ipv6 selinux tcpd xforward"
 
 DEPEND="tcpd? ( sys-apps/tcp-wrappers )
 	>=dev-libs/openssl-0.9.8k"
@@ -27,6 +27,7 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-4.21-libwrap.patch"
+	use xforward && epatch "${FILESDIR}/${P}-x-forwarded-for.patch"
 	eautoreconf
 
 	# Hack away generation of certificate
