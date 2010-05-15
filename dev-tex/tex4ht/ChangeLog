@@ -1,6 +1,18 @@
 # ChangeLog for dev-tex/tex4ht
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/tex4ht/ChangeLog,v 1.68 2010/01/10 16:03:24 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/tex4ht/ChangeLog,v 1.72 2010/05/11 12:10:33 phajdan.jr Exp $
+
+  11 May 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  tex4ht-20090611_p1038-r1.ebuild:
+  x86 stable wrt bug #316143
+
+  23 Apr 2010; Pacho Ramos <pacho@gentoo.org>
+  tex4ht-20090611_p1038-r1.ebuild:
+  amd64 stable, bug 316143
+
+  20 Apr 2010; Jeroen Roovers <jer@gentoo.org>
+  tex4ht-20090611_p1038-r1.ebuild:
+  Stable for HPPA (bug #316143).
 
   10 Jan 2010; Brent Baude <ranger@gentoo.org> tex4ht-20090611_p1038.ebuild:
   stable ppc64, bug 286622
