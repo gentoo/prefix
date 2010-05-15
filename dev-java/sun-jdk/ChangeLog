@@ -1,6 +1,13 @@
 # ChangeLog for dev-java/sun-jdk
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.284 2010/04/16 09:34:27 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/sun-jdk/ChangeLog,v 1.286 2010/04/26 19:10:06 maekke Exp $
+
+  26 Apr 2010; Markus Meier <maekke@gentoo.org> sun-jdk-1.6.0.20.ebuild:
+  amd64 stable, bug #314531
+
+  20 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  sun-jdk-1.6.0.20.ebuild:
+  stable x86, security bug 314531
 
 *sun-jdk-1.6.0.20 (16 Apr 2010)
 
