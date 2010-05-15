@@ -1,6 +1,41 @@
 # ChangeLog for dev-ruby/rubygems
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.134 2010/02/14 23:37:10 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-ruby/rubygems/ChangeLog,v 1.141 2010/05/14 19:04:17 a3li Exp $
+
+*rubygems-1.3.7 (14 May 2010)
+
+  14 May 2010; Alex Legler <a3li@gentoo.org> rubygems-1.3.6-r2.ebuild,
+  +rubygems-1.3.7.ebuild, +files/rubygems-1.3.7-rubyee.patch:
+  Version bump. Closes bug 319531 by Dennis Schridde.
+
+  13 May 2010; Alex Legler <a3li@gentoo.org> rubygems-1.3.6-r2.ebuild:
+  More dying
+
+*rubygems-1.3.6-r2 (13 May 2010)
+
+  13 May 2010; Alex Legler <a3li@gentoo.org> -rubygems-1.3.6-r1.ebuild,
+  +rubygems-1.3.6-r2.ebuild, files/rubygems-rubyee.patch:
+  Revbump to fix gem loading on rubyee
+
+  01 May 2010; Alex Legler <a3li@gentoo.org> rubygems-1.3.6-r1.ebuild:
+  Add stricter dependency on ruby19
+
+*rubygems-1.3.6-r1 (01 May 2010)
+
+  01 May 2010; Alex Legler <a3li@gentoo.org> +rubygems-1.3.6-r1.ebuild,
+  +files/auto_gem.rb.jruby, +files/auto_gem.rb.ruby18,
+  +files/auto_gem.rb.ruby19, +files/auto_gem.rb.rubyee18:
+  Revision bump enabling support for Ruby 1.9. Improve automatic gem symlink
+  setting. Make use of the new ruby_rbconfig_value function from ruby-ng.
+  Add support for multiple auto_gem.rb versions. Closes bug 307863.
+
+  03 Apr 2010; Alex Legler <a3li@gentoo.org> +files/rubygems-rubyee.patch:
+  Add missing patch
+
+*rubygems-1.3.6 (03 Apr 2010)
+
+  03 Apr 2010; Alex Legler <a3li@gentoo.org> +rubygems-1.3.6.ebuild:
+  Version bump. Add support for ree18
 
 *rubygems-1.3.5-r3 (14 Feb 2010)
 
