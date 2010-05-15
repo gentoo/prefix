@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.342 2010/04/19 19:54:47 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.343 2010/05/11 20:08:02 mr_bones_ Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1343,7 +1343,7 @@ unpack_makeself() {
 	local shrtsrc=$(basename "${src}")
 	echo ">>> Unpacking ${shrtsrc} to ${PWD}"
 	if [[ -z ${skip} ]] ; then
-		local ver=$(grep -a '#.*Makeself' "${src}" | awk '{print $NF}')
+		local ver=$(grep -m1 -a '#.*Makeself' "${src}" | awk '{print $NF}')
 		local skip=0
 		exe=tail
 		case ${ver} in

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.147 2010/04/02 02:50:29 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/flag-o-matic.eclass,v 1.148 2010/05/08 03:47:41 dirtyepic Exp $
 
 # @ECLASS: flag-o-matic.eclass
 # @MAINTAINER:
@@ -54,6 +54,9 @@ setup-allowed-flags() {
 		-m32 -m64 -mabi -mlittle-endian -mbig-endian -EL -EB -fPIC \
 		-mlive-g0 -mcmodel -mstack-bias -mno-stack-bias \
 		-msecure-plt -m*-toc -D* -U*"
+
+	# 4.5
+	ALLOWED_FLAGS="${ALLOWED_FLAGS} -mno-fma4 -mno-movbe -mno-xop -mno-lwp"
 
 	# {C,CXX,F,FC}FLAGS that we are think is ok, but needs testing
 	# NOTE:  currently -Os have issues with gcc3 and K6* arch's
