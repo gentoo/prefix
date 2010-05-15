@@ -1,6 +1,15 @@
 # ChangeLog for media-sound/vorbis-tools
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/ChangeLog,v 1.88 2008/11/18 05:39:50 darkside Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/vorbis-tools/ChangeLog,v 1.90 2010/04/15 13:37:37 jer Exp $
+
+  15 Apr 2010; Jeroen Roovers <jer@gentoo.org> vorbis-tools-1.4.0.ebuild:
+  Marked ~hppa (bug #313245).
+
+*vorbis-tools-1.4.0 (05 Apr 2010)
+
+  05 Apr 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +vorbis-tools-1.4.0.ebuild:
+  Version bump wrt #312917 by William Swartzendruber.
 
   18 Nov 2008; Jeremy Olexa <darkside@gentoo.org>
   vorbis-tools-1.2.0-r2.ebuild:
