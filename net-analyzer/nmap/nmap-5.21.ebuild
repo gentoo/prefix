@@ -1,10 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-5.21.ebuild,v 1.4 2010/03/04 15:19:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/nmap-5.21.ebuild,v 1.9 2010/05/04 10:08:47 angelos Exp $
 
-EAPI=2
+EAPI="2"
+PYTHON_DEPEND="2"
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic python
 
 MY_P=${P/_beta/BETA}
 
@@ -28,6 +29,10 @@ DEPEND="dev-libs/libpcre
 	ssl? ( dev-libs/openssl )"
 
 S="${WORKDIR}/${MY_P}"
+
+pkg_setup() {
+	python_set_active_version 2
+}
 
 src_prepare() {
 	epatch "${FILESDIR}/${PN}-4.75-include.patch"

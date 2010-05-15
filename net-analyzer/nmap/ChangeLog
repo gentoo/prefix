@@ -1,6 +1,28 @@
 # ChangeLog for net-analyzer/nmap
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.219 2010/03/04 15:19:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/nmap/ChangeLog,v 1.226 2010/05/04 10:08:47 angelos Exp $
+
+  04 May 2010; <angelos@gentoo.org> nmap-5.21.ebuild:
+  amd64 stable, thanks to Roeland Douma (bug #306791)
+
+  11 Apr 2010; <nixnut@gentoo.org> nmap-5.21.ebuild:
+  ppc stable #306791
+
+  10 Apr 2010; Raúl Porcel <armin76@gentoo.org> nmap-5.21.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #306791
+
+  04 Apr 2010; Michał Januszewski <spock@gentoo.org> nmap-5.00-r2.ebuild,
+  +files/nmap-5.00-python.patch:
+  Disable compilation of Python modules.
+
+  03 Apr 2010; Michał Januszewski <spock@gentoo.org> nmap-5.21.ebuild:
+  Add a dep on Python 2 (bug #311157).
+
+  25 Mar 2010; Michał Januszewski <spock@gentoo.org> nmap-5.20.ebuild:
+  Fix bug #308723.
+
+  21 Mar 2010; Brent Baude <ranger@gentoo.org> nmap-5.21.ebuild:
+  stable ppc64, bug 306791
 
   04 Mar 2010; Jeroen Roovers <jer@gentoo.org> nmap-5.21.ebuild:
   Stable for HPPA (bug #306791).
