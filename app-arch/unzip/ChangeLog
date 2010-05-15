@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/unzip
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.67 2010/01/10 00:28:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.68 2010/03/23 04:01:42 vapier Exp $
+
+  23 Mar 2010; Mike Frysinger <vapier@gentoo.org> unzip-6.0-r1.ebuild:
+  Tweak by David James for how we set the toolchain to get better coverage
+  #305679.
 
   10 Jan 2010; Jeroen Roovers <jer@gentoo.org> unzip-6.0-r1.ebuild:
   Stable for HPPA too.
