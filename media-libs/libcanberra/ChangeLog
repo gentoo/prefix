@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.36 2010/03/04 12:30:51 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.39 2010/05/04 15:39:10 tester Exp $
+
+  03 May 2010; Olivier Crête <tester@gentoo.org> libcanberra-0.23.ebuild:
+  amd64 stable, bug #314899
+
+  11 Apr 2010; Raúl Porcel <armin76@gentoo.org> libcanberra-0.22.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #305931
+
+  07 Apr 2010; Brent Baude <ranger@gentoo.org> libcanberra-0.22.ebuild:
+  Marking libcanberra-0.22 ppc for bug 305931
 
   04 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
   libcanberra-0.22.ebuild:
