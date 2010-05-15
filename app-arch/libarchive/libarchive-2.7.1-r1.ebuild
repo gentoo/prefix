@@ -1,13 +1,13 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.1-r1.ebuild,v 1.8 2010/01/31 15:25:26 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/libarchive/libarchive-2.7.1-r1.ebuild,v 1.9 2010/03/24 13:03:26 pacho Exp $
 
 EAPI="2"
 
 inherit eutils libtool toolchain-funcs flag-o-matic
 
 DESCRIPTION="BSD tar command"
-HOMEPAGE="http://people.freebsd.org/~kientzle/libarchive"
+HOMEPAGE="http://code.google.com/p/libarchive/"
 SRC_URI="http://${PN}.googlecode.com/files/${P}.tar.gz
 	http://people.freebsd.org/~kientzle/libarchive/src/${P}.tar.gz"
 

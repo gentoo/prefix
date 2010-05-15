@@ -3,7 +3,7 @@
 <pkgmetadata>
   <herd>bsd</herd>
   <maintainer>
-    <email>flameeyes@gentoo.org</email>
+    <email>ferringb@gentoo.org</email>
   </maintainer>
   <longdescription lang="en">
     The bsdtar program creates and manipulates streaming archive files.
