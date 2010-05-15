@@ -1,6 +1,16 @@
 # ChangeLog for dev-java/maven-bin
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.59 2009/10/26 08:01:29 volkmar Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/maven-bin/ChangeLog,v 1.61 2010/04/26 11:05:56 phajdan.jr Exp $
+
+  26 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  maven-bin-2.0.11.ebuild, maven-bin-2.1.0.ebuild, maven-bin-2.2.1.ebuild:
+  x86 stable wrt bug #310331
+
+*maven-bin-2.0.11 (20 Mar 2010)
+
+  20 Mar 2010; Petteri Räty <betelgeuse@gentoo.org>
+  +maven-bin-2.0.11.ebuild:
+  Version bump. Fixes bug #308961.
 
   26 Oct 2009; Mounir Lamouri <volkmar@gentoo.org>
   maven-bin-2.0.10-r1.ebuild, maven-bin-2.1.0.ebuild,
