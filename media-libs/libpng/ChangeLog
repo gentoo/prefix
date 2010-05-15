@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libpng
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.258 2010/05/12 18:28:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libpng/ChangeLog,v 1.259 2010/05/13 20:05:17 ssuominen Exp $
+
+*libpng-1.2.43-r3 (13 May 2010)
+
+  13 May 2010; Samuli Suominen <ssuominen@gentoo.org>
+  -libpng-1.2.43-r1.ebuild, +libpng-1.2.43-r3.ebuild:
+  Rename revision to get slotted version preferred first wrt #319457 by
+  Vadim Kuznetsov.
 
   12 May 2010; Raúl Porcel <armin76@gentoo.org> libpng-1.2.43-r1.ebuild,
   libpng-1.2.43-r2.ebuild:
@@ -18,7 +25,7 @@
 
   10 May 2010; Samuli Suominen <ssuominen@gentoo.org> libpng-1.4.2.ebuild,
   +files/libpng-1.4.x-update.sh:
-  Install rude libpng-1.4.x-update.sh which can be improved.
+  Install libpng-1.4.x-update.sh which will rename libpng12 with libpng14 in .la files.
 
   10 May 2010; Brent Baude <ranger@gentoo.org> libpng-1.2.43-r2.ebuild:
   Marking libpng-1.2.43-r2 ppc64 for bug 307637
@@ -30,13 +37,13 @@
   09 May 2010; Samuli Suominen <ssuominen@gentoo.org> libpng-1.2.40.ebuild,
   -libpng-1.2.42.ebuild, -libpng-1.2.43.ebuild, +libpng-1.2.43-r1.ebuild,
   +libpng-1.2.43-r2.ebuild, -libpng-1.4.2_rc5.ebuild, +libpng-1.4.2.ebuild:
-  Version bump to final 1.4.2 and release it into arch wrt #305095.
+  Version bump to final 1.4.2 and release it into ~arch wrt #305095.
 
 *libpng-1.4.2_rc5 (03 May 2010)
 
   03 May 2010; Samuli Suominen <ssuominen@gentoo.org>
   +libpng-1.4.2_rc5.ebuild:
-  Replace 1.4.1 with 1.4.2_rc5 which should fix problems with xfig,
+  Replace 1.4.1 with 1.4.2_rc5 which will fix problems with xfig,
   transfig, and timidity++ by restoring a function.
 
 *libpng-1.2.43 (06 Mar 2010)
