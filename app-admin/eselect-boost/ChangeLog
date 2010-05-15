@@ -1,6 +1,9 @@
 # ChangeLog for app-admin/eselect-boost
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.14 2010/01/22 15:00:56 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-boost/ChangeLog,v 1.15 2010/03/21 15:10:05 ranger Exp $
+
+  21 Mar 2010; Brent Baude <ranger@gentoo.org> eselect-boost-0.3.ebuild:
+  Marking eselect-boost-0.3 ppc64 for bug 306335
 
   22 Jan 2010; Jeroen Roovers <jer@gentoo.org> files/boost.eselect-0.2,
   files/boost.eselect-0.3:
