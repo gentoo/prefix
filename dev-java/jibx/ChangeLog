@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/jibx
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jibx/ChangeLog,v 1.12 2009/07/19 13:54:52 nixnut Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jibx/ChangeLog,v 1.13 2010/03/20 09:25:03 betelgeuse Exp $
+
+  20 Mar 2010; Petteri Räty <betelgeuse@gentoo.org> -jibx-1.1.5.ebuild:
+  Remove old revision.
 
   19 Jul 2009; nixnut <nixnut@gentoo.org> jibx-1.1.5-r1.ebuild:
   ppc stable #274029
