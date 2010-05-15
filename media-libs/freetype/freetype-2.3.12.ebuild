@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.12.ebuild,v 1.1 2010/02/18 20:06:48 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/freetype-2.3.12.ebuild,v 1.2 2010/04/18 04:33:20 dirtyepic Exp $
 
 EAPI="2"
 
@@ -117,12 +117,4 @@ src_install() {
 			cp ${header} "${ED}/usr/include/freetype2/internal4fontforge/$(dirname ${header})"
 		done
 	fi
-}
-
-pkg_postinst() {
-	echo
-	elog "The utilities and demos previously bundled with freetype are now"
-	elog "optional.  Enable the utils USE flag if you would like them"
-	elog "to be installed."
-	echo
 }
