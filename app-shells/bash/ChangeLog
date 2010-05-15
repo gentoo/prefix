@@ -1,6 +1,47 @@
 # ChangeLog for app-shells/bash
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.247 2010/03/06 22:52:36 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/ChangeLog,v 1.258 2010/04/17 16:03:20 armin76 Exp $
+
+  17 Apr 2010; Raúl Porcel <armin76@gentoo.org> bash-4.0_p37.ebuild:
+  alpha stable wrt #310473
+
+*bash-4.1_p5 (07 Apr 2010)
+
+  07 Apr 2010; Mike Frysinger <vapier@gentoo.org> +bash-4.1_p5.ebuild:
+  Version bump #311655 by Lars Wendler.
+
+  05 Apr 2010; Markos Chandras <hwoarang@gentoo.org> bash-4.0_p37.ebuild:
+  Stable on amd64 wrt bug #310473
+
+  29 Mar 2010; Jeroen Roovers <jer@gentoo.org> bash-4.0_p37.ebuild:
+  Stable for HPPA (bug #310473).
+
+  28 Mar 2010; Javier Villavicencio <the_paya@gentoo.org>
+  bash-4.1_p2-r1.ebuild, +files/bash-4.1-fbsd-eaccess.patch:
+  Fix for bug 303411, reported and patched by Johan Hattne
+  <johan.hattne@utsouthwestern.edu>.
+
+  28 Mar 2010; Mike Frysinger <vapier@gentoo.org> bash-4.0_p37.ebuild:
+  Mark arm/ia64/s390/sh stable #310473.
+
+  27 Mar 2010; Tiago Cunha <tcunha@gentoo.org> bash-4.0_p37.ebuild:
+  stable sparc, bug 310473
+
+  23 Mar 2010; Brent Baude <ranger@gentoo.org> bash-4.0_p37.ebuild:
+  stable ppc, bug 310473
+
+*bash-4.1_p2-r1 (23 Mar 2010)
+*bash-4.0_p38 (23 Mar 2010)
+
+  23 Mar 2010; Mike Frysinger <vapier@gentoo.org> +bash-4.0_p38.ebuild,
+  +bash-4.1_p2-r1.ebuild, +files/bash-4.x-deferred-heredocs.patch:
+  Add fix from upstream for `set` heredoc output #310197 by Doktor Notor.
+
+  22 Mar 2010; Christian Faulhammer <fauli@gentoo.org> bash-4.0_p37.ebuild:
+  stable x86, bug 310473
+
+  21 Mar 2010; Brent Baude <ranger@gentoo.org> bash-4.0_p37.ebuild:
+  stable ppc64, bug 310473
 
   06 Mar 2010; Mike Frysinger <vapier@gentoo.org> bash-4.0_p37.ebuild,
   +files/bash-4.0-configure.patch:

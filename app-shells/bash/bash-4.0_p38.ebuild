@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.1_p2.ebuild,v 1.3 2010/02/14 00:48:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/bash/bash-4.0_p38.ebuild,v 1.1 2010/03/23 02:27:42 vapier Exp $
 
 EAPI="1"
 
@@ -10,10 +10,9 @@ inherit eutils flag-o-matic toolchain-funcs multilib prefix
 # See ftp://ftp.cwru.edu/pub/bash/bash-3.2-patches/
 PLEVEL=${PV##*_p}
 MY_PV=${PV/_p*}
-MY_PV=${MY_PV/_/-}
 MY_P=${PN}-${MY_PV}
 [[ ${PV} != *_p* ]] && PLEVEL=0
-READLINE_VER=6.1
+READLINE_VER=6.0
 READLINE_PLEVEL=0 # both readline patches are also released as bash patches
 patches() {
 	local opt=$1 plevel=${2:-${PLEVEL}} pn=${3:-${PN}} pv=${4:-${MY_PV}}
@@ -37,13 +36,13 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)
 
 LICENSE="GPL-3"
 SLOT="0"
-
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="afs bashlogger examples i6fork +net nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2
 	nls? ( virtual/libintl )"
 RDEPEND="${DEPEND}
-	!<sys-apps/portage-2.1.7.16
+	!<sys-apps/portage-2.1.5
 	!<sys-apps/paludis-0.26.0_alpha5
 	i6fork? ( sys-libs/i6fork )"
 
@@ -54,10 +53,6 @@ pkg_setup() {
 		eerror "Detected bad CFLAGS '-malign-double'.  Do not use this"
 		eerror "as it breaks LFS (struct stat64) on x86."
 		die "remove -malign-double from your CFLAGS mr ricer"
-	fi
-	if use bashlogger ; then
-		ewarn "The logging patch should ONLY be used in restricted (i.e. honeypot) envs."
-		ewarn "This will log ALL output you enter into the shell, you have been warned."
 	fi
 }
 
@@ -71,9 +66,24 @@ src_unpack() {
 	[[ ${READLINE_PLEVEL} -gt 0 ]] && epatch $(patches -s ${READLINE_PLEVEL} readline ${READLINE_VER})
 	cd ../..
 
+	epatch "${FILESDIR}"/${PN}-4.0-configure.patch #304901
+	epatch "${FILESDIR}"/${PN}-4.x-deferred-heredocs.patch
+
 	if ! use vanilla ; then
 		sed -i '1i#define NEED_FPURGE_DECL' execute_cmd.c # needs fpurge() decl
-		epatch "${FILESDIR}"/${PN}-4.1-parallel-build.patch
+		epatch "${FILESDIR}"/${PN}-3.2-parallel-build.patch #189671
+		epatch "${FILESDIR}"/${PN}-4.0-ldflags-for-build.patch #211947
+		epatch "${FILESDIR}"/${PN}-4.0-negative-return.patch
+		epatch "${FILESDIR}"/${PN}-4.0-parallel-build.patch #267613
+		# Log bash commands to syslog #91327
+		if use bashlogger ; then
+			ewarn "The logging patch should ONLY be used in restricted (i.e. honeypot) envs."
+			ewarn "This will log ALL output you enter into the shell, you have been warned."
+			ebeep
+			epause
+			epatch "${FILESDIR}"/${PN}-3.1-bash-logger.patch
+		fi
+		sed -i '/\.o: .*shell\.h/s:$: pathnames.h:' Makefile.in #267613
 	fi
 
 	# this adds additional prefixes
@@ -119,8 +129,7 @@ src_compile() {
 			-DSYS_BASHRC=\'\"${EPREFIX}/etc/bash/bashrc\"\' \
 			-DSYS_BASH_LOGOUT=\'\"${EPREFIX}/etc/bash/bash_logout\"\' \
 			-DNON_INTERACTIVE_LOGIN_SHELLS \
-			-DSSH_SOURCE_BASHRC \
-			$(use bashlogger && echo -DSYSLOG_HISTORY)
+			-DSSH_SOURCE_BASHRC
 	else
 	append-cppflags \
 		-DDEFAULT_PATH_VALUE=\'\"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"\' \
@@ -128,8 +137,7 @@ src_compile() {
 		-DSYS_BASHRC=\'\"/etc/bash/bashrc\"\' \
 		-DSYS_BASH_LOGOUT=\'\"/etc/bash/bash_logout\"\' \
 		-DNON_INTERACTIVE_LOGIN_SHELLS \
-		-DSSH_SOURCE_BASHRC \
-		$(use bashlogger && echo -DSYSLOG_HISTORY)
+		-DSSH_SOURCE_BASHRC
 	fi
 
 	# IRIX's MIPSpro produces garbage with >= -O2, bug #209137
