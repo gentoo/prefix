@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/hsqldb-1.8.1.2-r1.ebuild,v 1.1 2010/04/05 22:36:44 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/hsqldb/hsqldb-1.8.1.2-r1.ebuild,v 1.3 2010/05/11 21:27:40 ranger Exp $
 
 EAPI=1
 JAVA_PKG_IUSE="doc source test"
