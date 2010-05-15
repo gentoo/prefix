@@ -1,6 +1,31 @@
 # ChangeLog for dev-lang/R
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.167 2009/12/26 17:32:26 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.174 2010/05/13 15:51:39 josejx Exp $
+
+  13 May 2010; Joseph Jezak <josejx@gentoo.org> R-2.10.1.ebuild:
+  Marked ppc stable for bug #306747.
+
+*R-2.11.0 (28 Apr 2010)
+
+  28 Apr 2010; Sébastien Fabbro <bicatali@gentoo.org> -R-2.7.2.ebuild,
+  -R-2.8.1.ebuild, -R-2.10.0.ebuild, +R-2.11.0.ebuild:
+  Version bump
+
+  16 Apr 2010; Raúl Porcel <armin76@gentoo.org> R-2.10.1.ebuild:
+  alpha/ia64/sparc stable wrt #306747
+
+  02 Apr 2010; Jeroen Roovers <jer@gentoo.org> R-2.10.1.ebuild:
+  Stable for HPPA (bug #306747).
+
+  23 Mar 2010; Brent Baude <ranger@gentoo.org> R-2.10.1.ebuild:
+  stable ppc64, bug 306747
+
+  21 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> R-2.10.1.ebuild:
+  x86 stable wrt bug #306747
+
+  18 Mar 2010; Sébastien Fabbro <bicatali@gentoo.org> R-2.10.1.ebuild:
+  Restricting test when minimal flag is on (upstream recommendation), some
+  ebuild cleaning
 
   26 Dec 2009; Peter Volkov <pva@gentoo.org> R-2.7.2.ebuild, R-2.8.1.ebuild,
   R-2.9.2.ebuild, R-2.10.0.ebuild, R-2.10.1.ebuild:

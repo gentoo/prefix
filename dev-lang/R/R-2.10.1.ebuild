@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.10.1.ebuild,v 1.2 2009/12/26 17:32:26 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/R-2.10.1.ebuild,v 1.8 2010/05/13 15:51:39 josejx Exp $
 
 EAPI=2
 inherit eutils flag-o-matic bash-completion versionator
@@ -42,10 +42,14 @@ RDEPEND="${CDEPEND}
 	app-arch/zip
 	java? ( >=virtual/jre-1.5 )"
 
-R_HOME="${EPREFIX}"/usr/$(get_libdir)/${PN}
+RESTRICT="minimal? ( test )"
+
+R_DIR="${EPREFIX}"/usr/$(get_libdir)/${PN}
 
 pkg_setup() {
 	filter-ldflags -Wl,-Bdirect -Bdirect
+	# avoid using existing R installation
+	unset R_HOME
 }
 
 src_prepare() {
@@ -58,7 +62,7 @@ src_prepare() {
 
 	# fix Rscript
 	sed -i \
-		-e "s:-DR_HOME='\"\$(rhome)\"':-DR_HOME='\"${R_HOME}\"':" \
+		-e "s:-DR_HOME='\"\$(rhome)\"':-DR_HOME='\"${R_DIR}\"':" \
 		src/unix/Makefile.in || die "sed unix Makefile failed"
 
 	# fix HTML links to manual (bug #273957)
@@ -72,7 +76,8 @@ src_prepare() {
 		export R_BROWSER="$(type -p xdg-open)"
 		export R_PDFVIEWER="$(type -p xdg-open)"
 	fi
-	use perl && export PERL5LIB="${S}/share/perl:${PERL5LIB:+:}${PERL5LIB}"
+	use perl && \
+		export PERL5LIB="${S}/share/perl:${PERL5LIB:+:}${PERL5LIB}"
 }
 
 src_configure() {
@@ -112,12 +117,6 @@ src_compile(){
 	fi
 }
 
-src_test() {
-	# we need to unset R_HOME otherwise some of the diff based
-	# tests fail due to warnings in the output
-	R_HOME="" emake -j1 check || die "Some of the tests failed"
-}
-
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 
@@ -141,8 +140,8 @@ src_install() {
 
 	# env file
 	cat > 99R <<-EOF
-		LDPATH=${R_HOME}/lib
-		R_HOME=${R_HOME}
+		LDPATH=${R_DIR}/lib
+		R_HOME=${R_DIR}
 	EOF
 	doenvd 99R || die "doenvd failed"
 	dobashcompletion "${WORKDIR}"/R.bash_completion
