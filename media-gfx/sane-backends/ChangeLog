@@ -1,6 +1,21 @@
 # ChangeLog for media-gfx/sane-backends
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/ChangeLog,v 1.169 2010/03/09 20:26:39 phosphan Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/ChangeLog,v 1.172 2010/05/11 20:31:16 phosphan Exp $
+
+  11 May 2010; Patrick Kursawe <phosphan@gentoo.org>
+  sane-backends-1.0.21.ebuild:
+  Fixed one of the SRC_URIs
+
+*sane-backends-1.0.21 (11 May 2010)
+
+  11 May 2010; Patrick Kursawe <phosphan@gentoo.org>
+  +sane-backends-1.0.21.ebuild:
+  Version bump, see bug #317749. Renamed the udev rules file, see bug
+  #316909.
+
+  02 Apr 2010; Patrick Kursawe <phosphan@gentoo.org>
+  sane-backends-1.0.20-r3.ebuild:
+  libieee1284 was always linked with, see bug #283341.
 
   09 Mar 2010; Patrick Kursawe <phosphan@gentoo.org>
   -sane-backends-1.0.19-r1.ebuild, -sane-backends-1.0.20.ebuild,

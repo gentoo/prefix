@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/sane-backends-1.0.20-r3.ebuild,v 1.4 2010/04/02 22:15:15 phosphan Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sane-backends/sane-backends-1.0.21.ebuild,v 1.2 2010/05/11 20:31:16 phosphan Exp $
 
 EAPI="1"
 
@@ -8,6 +8,9 @@ inherit eutils flag-o-matic
 
 # gphoto and v4l are handled by their usual USE flags.
 # The pint backend was disabled because I could not get it to compile.
+# The mustek_usb2 backend would force us to use --enable-pthreads which is off
+# by default for linux. Let's keep this one out until we find a way how to
+# handle this cleanly.
 IUSE_SANE_BACKENDS="
 	abaton
 	agfafocus
@@ -46,6 +49,8 @@ IUSE_SANE_BACKENDS="
 	hpljm1005
 	hs2p
 	ibm
+	kodak
+	kvs1025
 	leo
 	lexmark
 	ma1509
@@ -55,10 +60,10 @@ IUSE_SANE_BACKENDS="
 	mustek
 	mustek_pp
 	mustek_usb
-	mustek_usb2
 	nec
 	net
 	niash
+	p5
 	pie
 	pixma
 	plustek
@@ -123,9 +128,10 @@ RDEPEND="${RDEPEND}
 	!<sys-fs/udev-114"
 
 # Could not access via ftp on 2006-07-20
-SRC_URI="http://alioth.debian.org/frs/download.php/2318/${P}.tar.gz
+SRC_URI="http://alioth.debian.org/frs/download.php/3258/${P}.tar.gz
 	ftp://ftp.sane-project.org/pub/sane/${P}/${P}.tar.gz
-	ftp://ftp.sane-project.org/pub/sane/old-versions/${P}/${P}.tar.gz"
+	ftp://ftp.sane-project.org/pub/sane/old-versions/${P}/${P}.tar.gz
+	ftp://ftp.sane-project.org/pub/sane/${P}/${P}-i18n.patch"
 SLOT="0"
 LICENSE="GPL-2 public-domain"
 KEYWORDS="~amd64-linux ~x86-linux"
@@ -153,9 +159,7 @@ src_unpack() {
 	# Add support for the HP-specific backend.  Needs net-print/hplip installed.
 	hpaio
 	EOF
-	epatch "${FILESDIR}/${PV}-unbreak-udev.diff"
-	epatch "${FILESDIR}/udev-rule-6.patch"
-	epatch "${FILESDIR}/genesys_io.patch"
+	epatch "${DISTDIR}/${P}-i18n.patch"
 }
 
 src_compile() {
@@ -207,7 +211,7 @@ src_install () {
 	cd tools/udev
 	dodir /etc/udev/rules.d
 	insinto /etc/udev/rules.d
-	newins libsane.rules 70-libsane.rules
+	newins libsane.rules 39-libsane.rules
 	cd ../..
 	dodoc NEWS AUTHORS ChangeLog* README README.linux
 	echo "SANE_CONFIG_DIR=${EPREFIX}/etc/sane.d" >> "${ED}"/etc/env.d/30sane
