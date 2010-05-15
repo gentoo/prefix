@@ -1,11 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.2-r5.ebuild,v 1.1 2010/03/21 14:58:49 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/xulrunner-1.9.2.3-r1.ebuild,v 1.7 2010/05/09 16:53:12 armin76 Exp $
 
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
-inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-pkg-opt-2 autotools prefix
+inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib java-pkg-opt-2 autotools python
 
 MY_PV="${PV/_rc/rc}" # Handle beta
 MY_PV="${MY_PV/1.9.2/3.6}"
@@ -23,9 +23,8 @@ LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
 IUSE="+alsa debug libnotify system-sqlite wifi"
 
 RDEPEND="java? ( >=virtual/jre-1.4 )
-	>=dev-lang/python-2.3[threads]
 	>=sys-devel/binutils-2.16.1
-	>=dev-libs/nss-3.12.4
+	>=dev-libs/nss-3.12.6
 	>=dev-libs/nspr-4.8
 	system-sqlite? ( >=dev-db/sqlite-3.6.22-r2[fts3,secure-delete] )
 	alsa? ( media-libs/alsa-lib )
@@ -39,6 +38,7 @@ RDEPEND="java? ( >=virtual/jre-1.4 )
 
 DEPEND="java? ( >=virtual/jdk-1.4 )
 	${RDEPEND}
+	=dev-lang/python-2*[threads]
 	dev-util/pkgconfig"
 
 S="${WORKDIR}/mozilla-${MAJ_PV}"
@@ -51,6 +51,8 @@ pkg_setup() {
 	export LC_CTYPE="C"
 
 	java-pkg-opt-2_pkg_setup
+
+	python_set_active_version 2
 }
 
 src_prepare() {
@@ -86,6 +88,12 @@ src_prepare() {
 
 	# Fix broken alignment
 	epatch "${FILESDIR}/1000_fix_alignment.patch"
+
+	# Ensure we find myspell dict.
+	epatch "${FILESDIR}/1002_fix-system-hunspell-dict-detections.patch"
+
+	# Allow user to apply additional patches without modifing ebuild
+	epatch_user
 
 	# Same as in config/autoconf.mk.in
 	MOZLIBDIR="/usr/$(get_libdir)/${PN}-${MAJ_PV}"
@@ -195,7 +203,7 @@ src_configure() {
 	# support tls, (probably will only hit this condition with Gentoo Prefix)
 	tc-has-tls -l || export ac_cv_thread_keyword=no
 
-	CC="$(tc-getCC)" CXX="$(tc-getCXX)" LD="$(tc-getLD)" econf
+	CC="$(tc-getCC)" CXX="$(tc-getCXX)" LD="$(tc-getLD)" PYTHON="$(PYTHON)" econf
 }
 
 src_install() {
@@ -220,6 +228,7 @@ src_install() {
 
 	if use java ; then
 		java-pkg_regjar "${ED}/${MOZLIBDIR}/javaxpcom.jar"
+		java-pkg_regso "${ED}/${MOZLIBDIR}/libjavaxpcomglue.so"
 		java-pkg_regjar "${ED}/${SDKDIR}/lib/MozillaGlue.jar"
 		java-pkg_regjar "${ED}/${SDKDIR}/lib/MozillaInterfaces.jar"
 	fi

@@ -1,6 +1,54 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.302 2010/03/24 22:32:55 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.314 2010/05/13 19:22:04 ssuominen Exp $
+
+  13 May 2010; Samuli Suominen <ssuominen@gentoo.org>
+  xulrunner-1.8.1.19.ebuild, +files/xulrunner-1.8.1.19-libpng14.patch:
+  Fix building with libpng14 wrt #319575.
+
+  09 May 2010; Raúl Porcel <armin76@gentoo.org>
+  xulrunner-1.9.2.3-r1.ebuild:
+  alpha/arm/ia64/sparc stable wrt #314025
+
+  20 Apr 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  xulrunner-1.9.2.3-r1.ebuild:
+  Use Python 2 (bug #315325).
+
+  20 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  xulrunner-1.9.2.3-r1.ebuild:
+  stable x86, bug 314025
+
+  18 Apr 2010; Pacho Ramos <pacho@gentoo.org> xulrunner-1.9.2.3-r1.ebuild:
+  amd64 stable, bug 314025
+
+  18 Apr 2010; <anarchy@gentoo.org> xulrunner-1.9.2.3-r1.ebuild:
+  make use of epatch_user
+
+  11 Apr 2010; <anarchy@gentoo.org> xulrunner-1.9.2.3-r1.ebuild:
+  register javaxpcom jni lib, bug#309337
+
+  10 Apr 2010; <anarchy@gentoo.org> -xulrunner-1.9.2-r5.ebuild,
+  -xulrunner-1.9.2.2-r1.ebuild, -xulrunner-1.9.2.2-r2.ebuild,
+  -xulrunner-1.9.2.3.ebuild:
+  remove stale ebuilds
+
+*xulrunner-1.9.2.3-r1 (08 Apr 2010)
+
+  08 Apr 2010; <anarchy@gentoo.org> -files/1001_fix-system-hunspell.patch,
+  +xulrunner-1.9.2.3-r1.ebuild,
+  +files/1002_fix-system-hunspell-dict-detections.patch:
+  Update for dictionaries to be found properly
+
+*xulrunner-1.9.2.3 (05 Apr 2010)
+
+  05 Apr 2010; <anarchy@gentoo.org> +xulrunner-1.9.2.3.ebuild:
+  Security Bump
+
+*xulrunner-1.9.2.2-r2 (05 Apr 2010)
+
+  05 Apr 2010; <anarchy@gentoo.org> +files/1001_fix-system-hunspell.patch,
+  +xulrunner-1.9.2.2-r2.ebuild:
+  Fix hunspell support bug #278927
 
 *xulrunner-1.9.2.2-r1 (24 Mar 2010)
 
