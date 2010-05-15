@@ -1,6 +1,17 @@
 # ChangeLog for gnome-base/gconf
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.223 2010/03/10 08:54:12 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gconf/ChangeLog,v 1.226 2010/05/04 16:16:05 tester Exp $
+
+  03 May 2010; Olivier Crête <tester@gentoo.org> gconf-2.28.1.ebuild:
+  amd64 stable, bug #314899
+
+  13 Apr 2010; Alexis Ballier <aballier@gentoo.org> gconf-2.28.1.ebuild:
+  keyword ~x86-fbsd
+
+*gconf-2.28.1 (03 Apr 2010)
+
+  03 Apr 2010; Romain Perier <mrpouet@gentoo.org> +gconf-2.28.1.ebuild:
+  Version bump, bugsfixes + translations updated.
 
   10 Mar 2010; Joseph Jezak <josejx@gentoo.org> gconf-2.28.0-r1.ebuild:
   Marked ~ppc/~ppc64 for bug #296548.
