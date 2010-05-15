@@ -1,6 +1,28 @@
 # ChangeLog for dev-lang/icon
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.38 2010/01/03 06:56:05 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.44 2010/05/13 14:18:34 jer Exp $
+
+  13 May 2010; Jeroen Roovers <jer@gentoo.org> icon-9.4.3-r5.ebuild:
+  Stable for HPPA (bug #274174).
+
+  13 May 2010; Markos Chandras <hwoarang@gentoo.org> icon-9.4.3-r5.ebuild:
+  Stable on amd64 wrt bug #274174
+
+  11 May 2010; Joseph Jezak <josejx@gentoo.org> icon-9.4.3-r5.ebuild:
+  Marked ppc/ppc64 stable for bug #274174.
+
+  28 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> icon-9.4.3-r5.ebuild:
+  x86 stable wrt bug #274174
+
+*icon-9.5.0 (18 Apr 2010)
+
+  18 Apr 2010; Harald van Dĳk <truedfx@gentoo.org> +icon-9.5.0.ebuild,
+  +files/icon-9.5.0-flags.patch:
+  Version bump, bug #314949
+
+  14 Apr 2010; Harald van Dĳk <truedfx@gentoo.org>
+  files/icon-9.4.3-flags.patch:
+  Use LDFLAGS when linking
 
 *icon-9.4.3-r5 (03 Jan 2010)
 

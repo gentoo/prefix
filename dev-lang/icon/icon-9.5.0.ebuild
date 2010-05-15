@@ -1,11 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/icon-9.4.3-r5.ebuild,v 1.5 2010/05/13 14:18:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/icon-9.5.0.ebuild,v 1.1 2010/04/18 20:33:15 truedfx Exp $
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
 MY_PV=${PV//./}
-SRC_URI="http://www.cs.arizona.edu/icon/ftp/packages/unix/icon.v${MY_PV}src.tgz"
+SRC_URI="http://www.cs.arizona.edu/icon/ftp/packages/unix/icon-v${MY_PV}src.tgz"
 HOMEPAGE="http://www.cs.arizona.edu/icon/"
 DESCRIPTION="very high level language"
 
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
 IUSE="X iplsrc"
 
-S="${WORKDIR}/icon.v${MY_PV}src"
+S="${WORKDIR}/icon-v${MY_PV}src"
 
 DEPEND="X? ( x11-proto/xextproto
 			x11-proto/xproto
@@ -25,16 +25,9 @@ DEPEND="X? ( x11-proto/xextproto
 
 src_unpack() {
 	unpack ${A}
+	cd "${S}"
 
 	epatch "${FILESDIR}"/${P}-flags.patch
-
-	# Patch the tests so that they do not fail
-	# The following files in tests/standard are patched..
-	# io.icn - change /etc/motd to /etc/gentoo-release
-	# io.std - change /etc/motd to /etc/gentoo-release
-	# kwds.std - add two lines for the two new added keywords
-	# nargs.std - a couple of functions picked up additional parameters
-	epatch "${FILESDIR}/tests-${MY_PV}.patch"
 
 	# do not prestrip files
 	find "${S}"/src -name 'Makefile' | xargs sed -i -e "/strip/d" || die
@@ -55,10 +48,6 @@ src_compile() {
 	else
 		emake Configure name=${mytarget} -j1 || die
 	fi
-
-	echo "#define MultiThread 1" >> src/h/define.h
-	echo "#define EventMon 1" >> src/h/define.h
-	echo "#define Eve 1" >> src/h/define.h
 
 	# sanitise the Makedefs file
 	sed -i \
