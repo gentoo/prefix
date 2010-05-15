@@ -1,6 +1,19 @@
 # ChangeLog for dev-java/commons-daemon
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-daemon/ChangeLog,v 1.34 2008/04/13 22:08:51 betelgeuse Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/commons-daemon/ChangeLog,v 1.37 2010/05/11 21:30:59 ranger Exp $
+
+  11 May 2010; Brent Baude <ranger@gentoo.org> commons-daemon-1.0.2.ebuild:
+  stable ppc64, bug 316297
+
+  28 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  commons-daemon-1.0.2.ebuild:
+  x86 stable wrt bug #316297
+
+*commons-daemon-1.0.2 (20 Mar 2010)
+
+  20 Mar 2010; Petteri Räty <betelgeuse@gentoo.org>
+  +commons-daemon-1.0.2.ebuild:
+  Version bump. Fixes bug #310369.
 
   13 Apr 2008; Petteri Räty <betelgeuse@gentoo.org>
   -commons-daemon-1.0.1-r1.ebuild:
