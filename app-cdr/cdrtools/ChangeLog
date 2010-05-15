@@ -1,6 +1,43 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.249 2010/03/01 20:57:08 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.258 2010/04/27 20:27:26 billie Exp $
+
+  27 Apr 2010; Daniel Pielmeier <billie@gentoo.org>
+  cdrtools-2.01.01_alpha77.ebuild, cdrtools-2.01.01_alpha78.ebuild:
+  Use virtual/acl to support x86-freebsd. Thanks to Alexis Ballier on irc.
+
+  27 Apr 2010; Daniel Pielmeier <billie@gentoo.org>
+  -cdrtools-2.01.01_alpha76.ebuild:
+  Remove old.
+
+*cdrtools-2.01.01_alpha78 (27 Apr 2010)
+
+  27 Apr 2010; Daniel Pielmeier <billie@gentoo.org>
+  +cdrtools-2.01.01_alpha78.ebuild:
+  Version bump
+
+  25 Apr 2010; Guy Martin <gmsoft@gentoo.org>
+  cdrtools-2.01.01_alpha75.ebuild:
+  hppa stable, #308245
+
+  18 Apr 2010; Markus Meier <maekke@gentoo.org>
+  cdrtools-2.01.01_alpha75.ebuild:
+  arm/x86 stable, bug #308245
+
+  06 Apr 2010; Markos Chandras <hwoarang@gentoo.org>
+  cdrtools-2.01.01_alpha75.ebuild:
+  Stable on amd64 wrt bug #308245
+
+  16 Mar 2010; Alexis Ballier <aballier@gentoo.org>
+  cdrtools-2.01.01_alpha77.ebuild:
+  keyword ~x86-fbsd
+
+  15 Mar 2010; Brent Baude <ranger@gentoo.org>
+  cdrtools-2.01.01_alpha75.ebuild:
+  stable ppc64, bug 308245
+
+  15 Mar 2010; nixnut <nixnut@gentoo.org> cdrtools-2.01.01_alpha75.ebuild:
+  ppc stable #308245
 
 *cdrtools-2.01.01_alpha77 (01 Mar 2010)
 
