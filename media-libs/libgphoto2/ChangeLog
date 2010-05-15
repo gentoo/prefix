@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/libgphoto2
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/ChangeLog,v 1.169 2010/04/05 14:57:39 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libgphoto2/ChangeLog,v 1.170 2010/05/08 11:23:30 pacho Exp $
+
+*libgphoto2-2.4.9 (08 May 2010)
+
+  08 May 2010; Pacho Ramos <pacho@gentoo.org> +libgphoto2-2.4.9.ebuild:
+  Version bump including updated drivers for ptp2, ST2205, AX203 and digita.
+  Thanks to Lebedev Roman for reporting bug #318027
 
   05 Apr 2010; Raúl Porcel <armin76@gentoo.org> libgphoto2-2.4.8.ebuild:
   alpha/ia64/sparc stable wrt #308549
