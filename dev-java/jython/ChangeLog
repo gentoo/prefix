@@ -1,6 +1,18 @@
 # ChangeLog for dev-java/jython
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.67 2010/03/05 21:18:48 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jython/ChangeLog,v 1.69 2010/03/20 13:17:20 arfrever Exp $
+
+  20 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  jython-2.5.1-r1.ebuild,
+  +files/jython-2.5.1-distutils_scripts_location.patch,
+  +files/jython-2.5.1-respect_PYTHONPATH.patch:
+  Make Distutils install scripts into /usr/bin (bug #305103). Respect
+  PYTHONPATH variable (bug #305103).
+
+*jython-2.5.1-r1 (19 Mar 2010)
+
+  19 Mar 2010; Alistair Bush <ali_bush@gentoo.org> +jython-2.5.1-r1.ebuild:
+  Prepare jython to be Python ABI provider #305103.
 
 *jython-2.5.1 (05 Mar 2010)
 
