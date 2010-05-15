@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.28.0.ebuild,v 1.1 2009/10/29 22:31:01 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.28.0.ebuild,v 1.3 2010/05/04 16:16:25 tester Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -15,10 +15,12 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="python doc"
 
+# FIXME: Technically we could use just libsoup too conditionally instead of libsoup-gnome,
+# but the detection of libsoup-gnome vs libgnome is currently automagic
 RDEPEND=">=x11-libs/gtk+-2.11
 	>=dev-libs/glib-2.13
 	>=gnome-base/gconf-2.8
-	>=net-libs/libsoup-2.25.1:2.4[gnome]
+	>=net-libs/libsoup-gnome-2.25.1:2.4
 	>=dev-libs/libxml2-2.6.0
 	python? (
 		>=dev-python/pygobject-2
