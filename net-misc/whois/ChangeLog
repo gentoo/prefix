@@ -1,6 +1,11 @@
 # ChangeLog for net-misc/whois
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.134 2009/11/17 19:49:49 ranger Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/ChangeLog,v 1.135 2010/04/26 20:26:06 vapier Exp $
+
+*whois-5.0.2 (26 Apr 2010)
+
+  26 Apr 2010; Mike Frysinger <vapier@gentoo.org> +whois-5.0.2.ebuild:
+  Version bump #317097 by Francois Chenier.
 
   17 Nov 2009; Brent Baude <ranger@gentoo.org> whois-4.7.36.ebuild:
   Marking whois-4.7.36 ppc64 for bug 291095

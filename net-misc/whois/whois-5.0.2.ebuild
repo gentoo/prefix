@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/whois-4.7.30.ebuild,v 1.8 2009/05/30 18:24:06 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/whois/whois-5.0.2.ebuild,v 1.1 2010/04/26 20:26:06 vapier Exp $
 
 inherit eutils toolchain-funcs
 
@@ -22,16 +22,12 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-4.7.26-gentoo-security.patch
 	epatch "${FILESDIR}"/${PN}-4.7.2-config-file.patch
 
 	if use nls ; then
-		cd po
-		sed -i -e "s:/usr/bin/install:install:" Makefile
-		echo 'install-pos: install' >> Makefile
+		sed -i -e 's:#\(.*pos\):\1:' Makefile
 	else
 		sed -i -e '/ENABLE_NLS/s:define:undef:' config.h
-		sed -i -e "s:cd po.*::" Makefile
 	fi
 }
 
@@ -44,7 +40,7 @@ src_install() {
 	emake BASEDIR="${ED}" prefix=/usr install || die
 	insinto /etc
 	doins whois.conf
-	dodoc README
+	dodoc README debian/changelog
 
 	if [[ ${USERLAND} != "GNU" ]]; then
 		mv "${ED}"/usr/share/man/man1/{whois,mdwhois}.1
