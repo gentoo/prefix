@@ -1,6 +1,14 @@
 # ChangeLog for gnome-base/libgtop
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/ChangeLog,v 1.231 2010/01/18 00:00:35 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/ChangeLog,v 1.233 2010/05/04 15:57:07 tester Exp $
+
+  03 May 2010; Olivier Crête <tester@gentoo.org> libgtop-2.28.1.ebuild:
+  amd64 stable, bug #314899
+
+*libgtop-2.28.1 (30 Mar 2010)
+
+  30 Mar 2010; Pacho Ramos <pacho@gentoo.org> +libgtop-2.28.1.ebuild:
+  Version bump with translation updates.
 
   18 Jan 2010; Jeroen Roovers <jer@gentoo.org> libgtop-2.26.1.ebuild:
   Stable for HPPA (bug #281427).
