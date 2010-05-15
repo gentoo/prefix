@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.7.12.ebuild,v 1.2 2010/02/20 18:48:48 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.7.12.ebuild,v 1.3 2010/05/02 19:47:01 arfrever Exp $
 
-EAPI="2"
+EAPI="3"
 PYTHON_DEPEND="2"
 SUPPORT_PYTHON_ABIS="1"
 DISTUTILS_SRC_TEST="trial"
@@ -22,18 +22,17 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris"
 IUSE="doc irc mail manhole test"
 
-CDEPEND=">=dev-python/twisted-2.0.1"
-RDEPEND="${CDEPEND}
+RDEPEND=">=dev-python/twisted-2.0.1
 	mail? ( dev-python/twisted-mail )
 	manhole? ( dev-python/twisted-conch )
 	irc? ( dev-python/twisted-words )
 	dev-python/twisted-web
 	dev-python/twisted-mail"
-DEPEND="${CDEPEND}
+DEPEND="${DEPEND}
 	test? ( dev-python/twisted-mail
 			dev-python/twisted-web
 			dev-python/twisted-words )
-	doc? ( =dev-python/epydoc-2* )"
+	doc? ( dev-python/epydoc )"
 RESTRICT_PYTHON_ABIS="3.*"
 
 S="${WORKDIR}/${MY_P}"
@@ -64,21 +63,23 @@ src_install() {
 	doins -r contrib
 	doins -r docs/examples
 
-	use doc && doins -r docs/reference
+	if use doc; then
+		doins -r docs/reference || die "doins failed"
+	fi
 
-	newconfd "${FILESDIR}/buildslave.confd" buildslave
-	newinitd "${FILESDIR}/buildbot.initd-r1" buildslave
-	newconfd "${FILESDIR}/buildmaster.confd" buildmaster
-	newinitd "${FILESDIR}/buildbot.initd-r1" buildmaster
+	newconfd "${FILESDIR}/buildslave.confd" buildslave || die "newconfd failed"
+	newinitd "${FILESDIR}/buildbot.initd-r1" buildslave || die "newinitd failed"
+	newconfd "${FILESDIR}/buildmaster.confd" buildmaster || die "newconfd failed"
+	newinitd "${FILESDIR}/buildbot.initd-r1" buildmaster || die "newinitd failed"
 
 	# Make it print the right names when you start/stop the script.
-	sed -i -e 's/@buildbot@/buildslave/' \
-		"${ED}/etc/init.d/buildslave" || die "buildslave sed failed"
-	sed -i -e 's/@buildbot@/buildmaster/' \
-		"${ED}/etc/init.d/buildmaster" || die "buildmaster sed failed"
+	sed -e "s/@buildbot@/buildslave/" -i "${ED}etc/init.d/buildslave" || die "sed buildslave failed"
+	sed -e "s/@buildbot@/buildmaster/" -i "${ED}etc/init.d/buildmaster" || die "sed buildmaster failed"
 }
 
 pkg_postinst() {
+	distutils_pkg_postinst
+
 	elog 'The "buildbot" user and the "buildmaster" and "buildslave" init'
 	elog "scripts were added to support starting buildbot through gentoo's"
 	elog "init system.  To use this set up your build master or build slave"
