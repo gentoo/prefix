@@ -1,6 +1,38 @@
 # ChangeLog for app-arch/rpm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.105 2010/02/08 09:01:27 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.112 2010/05/12 18:49:00 sochotnicky Exp $
+
+*rpm-4.4.7-r5 (12 May 2010)
+
+  12 May 2010; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  +rpm-4.4.7-r5.ebuild:
+  Updated dependency on db to >=sys-libs/db-4
+
+  05 May 2010; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  files/rpm-4.8.0-autotools.patch:
+  app-arch/rpm: Removed db3 from AC_CONFIG_SUBDIRS
+
+*rpm-4.8.0 (05 May 2010)
+
+  05 May 2010; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  +rpm-4.8.0.ebuild, +files/rpm-4.8.0-autotools.patch,
+  +files/rpm-4.8.0-db-path.patch, metadata.xml:
+  Added app-arch/rpm-4.8.0 as a new ebuild
+
+  22 Apr 2010; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  rpm-4.4.6-r6.ebuild, rpm-4.4.6-r7.ebuild,
+  +files/rpm-4.4.6-fix-cflags-stripping.patch:
+  Fix configure/build failure when using certain CFLAGS.
+
+*rpm-4.4.6-r7 (15 Apr 2010)
+
+  15 Apr 2010; Ioannis Aslanidis <iaslanidis@gentoo.org>
+  +rpm-4.4.6-r7.ebuild:
+  Fixes bug #207722. QA reviewed.
+
+  04 Apr 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  rpm-4.4.6-r6.ebuild, rpm-4.4.7-r4.ebuild, rpm-5.1.6.ebuild:
+  Delete calls to deprecated python_version().
 
   08 Feb 2010; Peter Volkov <pva@gentoo.org> rpm-5.0.0.ebuild,
   rpm-5.0.3.ebuild, rpm-5.1.6.ebuild:

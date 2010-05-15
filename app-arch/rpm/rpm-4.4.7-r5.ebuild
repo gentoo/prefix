@@ -1,19 +1,19 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r2.ebuild,v 1.4 2009/09/06 19:27:42 idl0r Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r5.ebuild,v 1.2 2010/05/12 19:59:42 sochotnicky Exp $
 
 inherit eutils autotools distutils perl-module flag-o-matic
 
 DESCRIPTION="Red Hat Package Management Utils"
-HOMEPAGE="http://www.rpm.org/"
-SRC_URI="http://wraptastic.org/pub/rpm-4.4.x/${P}.tar.gz"
+HOMEPAGE="http://www.rpm5.org/"
+SRC_URI="http://rpm5.org/files/rpm/rpm-4.4/${P}.tar.gz"
 
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="nls python perl doc sqlite"
 
-RDEPEND="=sys-libs/db-3.2*
+RDEPEND=">=sys-libs/db-4
 	>=sys-libs/zlib-1.2.3-r1
 	>=app-arch/bzip2-1.0.1
 	>=dev-libs/popt-1.7
@@ -25,7 +25,7 @@ RDEPEND="=sys-libs/db-3.2*
 	perl? ( >=dev-lang/perl-5.8.8 )
 	nls? ( virtual/libintl )
 	sqlite? ( >=dev-db/sqlite-3.3.5 )
-	net-misc/neon"
+	>=net-misc/neon-0.28"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	doc? ( app-doc/doxygen )"
@@ -39,6 +39,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/rpm-4.4.6-buffer-overflow.patch
 	epatch "${FILESDIR}"/${P}-qa-implicit-function-to-pointer.patch
 	epatch "${FILESDIR}"/${P}-qa-fix-undefined.patch
+	# bug 214799
+	epatch "${FILESDIR}"/${PN}-4.4.6-neon-0.28.patch
 
 	# rpm uses AM_GNU_GETTEXT() but fails to actually
 	# include any of the required gettext files
@@ -59,12 +61,11 @@ src_compile() {
 	# Until strict aliasing is porperly fixed...
 	filter-flags -fstrict-aliasing
 	append-flags -fno-strict-aliasing
-	python_version
 	econf \
 		--enable-posixmutexes \
 		--without-javaglue \
 		--without-selinux \
-		$(use_with python python ${PYVER}) \
+		$(use_with python python $(python_get_version)) \
 		$(use_with doc apidocs) \
 		$(use_with perl) \
 		$(use_with sqlite) \

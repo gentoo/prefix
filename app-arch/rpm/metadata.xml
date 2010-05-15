@@ -3,7 +3,8 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-  <email>maintainer-needed@gentoo.org</email>
+  <email>sochotnicky@gentoo.org</email>
+  <name>Stanislav Ochotnicky</name>
 </maintainer>
 <use>
   <flag name='magic'>Add magic file support (<pkg>sys-apps/file</pkg>)</flag>

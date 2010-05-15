@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-5.1.6.ebuild,v 1.4 2010/02/08 09:01:27 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-5.1.6.ebuild,v 1.5 2010/04/04 21:48:31 arfrever Exp $
 
 inherit eutils multilib distutils python
 
@@ -61,7 +61,6 @@ src_compile() {
 #		$(use_with keyutils) \
 #		$(use_with xar) \
 	# --with-libelf
-	use python && python_version
 	econf \
 		$(use_with berkdb db) \
 		$(use_with bzip2) \
@@ -77,7 +76,7 @@ src_compile() {
 		$(use_with sqlite) \
 		$(use berkdb || use sqlite || echo --with-db) \
 		--with-path-lib="${EPREFIX}/usr/$(get_libdir)/rpm" \
-		--with-python-lib-dir="${EPREFIX}/usr/$(get_libdir)/python${PYVER}" \
+		--with-python-lib-dir="${EPREFIX}$(python_get_libdir)" \
 		|| die "econf failed"
 	emake || die "emake failed"
 }
