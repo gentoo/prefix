@@ -1,6 +1,27 @@
 # ChangeLog for app-arch/star
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.84 2010/01/30 09:00:04 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/star/ChangeLog,v 1.91 2010/04/15 03:39:43 jer Exp $
+
+  15 Apr 2010; Jeroen Roovers <jer@gentoo.org> star-1.5.1.ebuild:
+  Stable for HPPA (bug #310013).
+
+  11 Apr 2010; <nixnut@gentoo.org> star-1.5.1.ebuild:
+  ppc stable #310013
+
+  04 Apr 2010; Markos Chandras <hwoarang@gentoo.org> star-1.5.1.ebuild:
+  Stable on amd64 wrt bug #310013
+
+  04 Apr 2010; Raúl Porcel <armin76@gentoo.org> star-1.5.1.ebuild:
+  alpha/ia64 stable wrt #310013
+
+  21 Mar 2010; Brent Baude <ranger@gentoo.org> star-1.5.1.ebuild:
+  stable ppc64, bug 310013
+
+  20 Mar 2010; Tiago Cunha <tcunha@gentoo.org> star-1.5.1.ebuild:
+  stable sparc, bug 310013
+
+  19 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> star-1.5.1.ebuild:
+  x86 stable wrt bug #310013
 
   30 Jan 2010; Peter Volkov <pva@gentoo.org> star-1.5.1.ebuild:
   Fixed automagic deps on libacl and libattr.
