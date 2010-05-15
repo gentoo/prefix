@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.118.0.ebuild,v 1.2 2009/11/19 22:21:39 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/jack-audio-connection-kit/jack-audio-connection-kit-0.118.0.ebuild,v 1.3 2010/04/12 19:07:50 maekke Exp $
 
 inherit flag-o-matic eutils multilib multilib
 
