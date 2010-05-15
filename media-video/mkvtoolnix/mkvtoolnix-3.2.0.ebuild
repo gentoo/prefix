@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/mkvtoolnix-3.2.0.ebuild,v 1.2 2010/02/24 20:04:17 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/mkvtoolnix-3.2.0.ebuild,v 1.3 2010/03/18 13:03:03 spatz Exp $
 
 EAPI="1"
 inherit eutils wxwidgets flag-o-matic qt4 autotools
@@ -12,7 +12,7 @@ SRC_URI="http://www.bunkus.org/videotools/mkvtoolnix/sources/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
-IUSE="wxwidgets flac bzip2 lzo qt4 debug"
+IUSE="bzip2 debug doc flac lzo qt4 wxwidgets"
 
 DEPEND=">=dev-libs/libebml-0.7.7
 	>=media-libs/libmatroska-0.8.1
@@ -64,11 +64,14 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" STRIP="true" install || die "make install failed"
-	dodoc AUTHORS ChangeLog README TODO
-	doman doc/man/mkv{merge,extract,info}.1 doc/man/mmg.1 || die "doman failed"
-	dohtml doc/mkvmerge-gui.html
-	docinto images
-	dohtml doc/images/*
-	docinto examples
-	dohtml examples/*
+	dodoc AUTHORS ChangeLog README TODO || die "dodoc failed"
+	doman doc/man/*.1 || die "doman failed"
+
+	if use doc; then
+		dohtml doc/guide/en/mkvmerge-gui.html || die "dohtml failed"
+		docinto html/images
+		dohtml doc/guide/en/images/* || die "dohtml failed"
+		docinto examples
+		dodoc examples/* || die "dodoc failed"
+	fi
 }
