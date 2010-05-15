@@ -1,6 +1,25 @@
 # ChangeLog for games-strategy/freeciv
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/ChangeLog,v 1.101 2010/03/05 20:23:25 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/ChangeLog,v 1.107 2010/05/11 21:14:38 ranger Exp $
+
+  11 May 2010; Brent Baude <ranger@gentoo.org> freeciv-2.2.0.ebuild:
+  keyworded ~arch for ppc64, bug 313345
+
+  09 May 2010; Raúl Porcel <armin76@gentoo.org> freeciv-2.2.0.ebuild:
+  Re-add ~alpha/~sparc wrt #317461
+
+  02 May 2010; Tristan Heaven <nyhm@gentoo.org> freeciv-2.2.0.ebuild:
+  Use games-ggz.eclass
+
+  27 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> freeciv-2.2.0.ebuild:
+  x86 stable wrt bug #313345. Keywords for alpha, mips, ppc64 and sparc are
+  dropped due to unsatisfied dependencies (filed bug #317461).
+
+  27 Apr 2010; Michael Sterrett <mr_bones_@gentoo.org> freeciv-2.2.0.ebuild:
+  add required ggz deps (bug #317289); drop mips due to missing keywords
+
+  13 Apr 2010; Michael Sterrett <mr_bones_@gentoo.org> freeciv-2.2.0.ebuild:
+  fix deps for auth support (bug #315005)
 
   05 Mar 2010; Michael Sterrett <mr_bones_@gentoo.org> freeciv-2.2.0.ebuild,
   metadata.xml:

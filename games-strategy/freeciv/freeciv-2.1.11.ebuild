@@ -106,7 +106,7 @@ src_configure() {
 
 	egamesconf \
 		--disable-dependency-tracking \
-		--localedir=/usr/share/locale \
+		--localedir="${EPREFIX}"/usr/share/locale \
 		$(use_enable auth) \
 		$(use_enable nls) \
 		$(use_with readline) \
