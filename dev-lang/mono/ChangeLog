@@ -1,6 +1,11 @@
 # ChangeLog for dev-lang/mono
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.187 2010/02/20 11:05:20 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.188 2010/03/19 10:33:27 patrick Exp $
+
+*mono-2.6.3 (19 Mar 2010)
+
+  19 Mar 2010; Patrick Lauer <patrick@gentoo.org> +mono-2.6.3.ebuild:
+  Bump
 
 *mono-2.4.3.1 (20 Feb 2010)
 
