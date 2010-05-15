@@ -1,9 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/xca/xca-0.6.4.ebuild,v 1.8 2009/12/16 15:53:56 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/xca/xca-0.8.1.ebuild,v 1.1 2010/04/29 20:21:27 arfrever Exp $
 
-EAPI=1
-inherit eutils toolchain-funcs flag-o-matic
+EAPI="3"
+
+inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="A graphical user interface to OpenSSL, RSA public keys, certificates, signing requests and revokation lists"
 HOMEPAGE="http://www.hohnstaedt.de/xca.html"
@@ -19,21 +20,14 @@ RDEPEND=">=dev-libs/openssl-0.9.8
 DEPEND="${RDEPEND}
 	doc? ( app-text/linuxdoc-tools )"
 
-# Upstream:
-# http://sourceforge.net/tracker/index.php?func=detail&aid=1800298&group_id=62274&atid=500028
-#
-# 1. Qt detection.
-# 2. doc hacks.
+src_prepare() {
+	# http://sourceforge.net/tracker/index.php?func=detail&aid=1800298&group_id=62274&atid=500028
+	epatch "${FILESDIR}/${P}-qt_detection.patch"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}/${P}-build.patch"
-	epatch "${FILESDIR}/${P}-openssl.patch"
-	epatch "${FILESDIR}/${P}-darwin.patch"
+	sed -e 's/$(LD) $(LDFLAGS)/$(LD) $(RAW_LDFLAGS)/' -i Makefile Rules.mak || die "sed failed"
 }
 
-src_compile() {
+src_configure() {
 	local LINUXDOC
 	use doc || LINUXDOC='touch $@ && true'
 
@@ -42,14 +36,18 @@ src_compile() {
 		LINUXDOC="${LINUXDOC}" \
 		CC="$(tc-getCXX)" \
 		LD="$(tc-getLD)" \
-		LDFLAGS="$(raw-ldflags)" \
+		CFLAGS="${CXXFLAGS}" \
 		prefix="${EPREFIX}"/usr \
+		docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		./configure || die	"configure failed"
-	emake || die "emake failed"
+}
+
+src_compile() {
+	emake RAW_LDFLAGS="$(raw-ldflags)" || die "emake failed"
 }
 
 src_install() {
-	emake destdir="${D}" mandir="share/man" install || die "install failed"
+	emake destdir="${D}" mandir="share/man" install || die "emake install failed"
 
 	dodoc AUTHORS
 
