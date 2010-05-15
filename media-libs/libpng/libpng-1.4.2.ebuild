@@ -21,13 +21,19 @@ DEPEND="${RDEPEND}
 	app-arch/xz-utils"
 
 src_prepare() {
+	cp "${FILESDIR}"/libpng-1.4.x-update.sh "${T}"/ || die
+	sed -i \
+		-e 's:-d /usr/lib64:-d '"${EPREFIX}"'/usr/lib64:' \
+		-e 's:^libdir=:libdir='"${EPREFIX}"':' \
+		"${T}"/libpng-1.4.x-update.sh || die
+
 	elibtoolize
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die
 	dodoc ANNOUNCE CHANGES README TODO || die
-	dosbin "${FILESDIR}"/libpng-1.4.x-update.sh || die
+	dosbin "${T}"/libpng-1.4.x-update.sh || die
 }
 
 pkg_postinst() {
