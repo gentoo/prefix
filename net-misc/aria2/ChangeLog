@@ -1,6 +1,22 @@
 # ChangeLog for net-misc/aria2
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.57 2010/02/22 10:37:32 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/ChangeLog,v 1.60 2010/05/14 13:23:33 dev-zero Exp $
+
+*aria2-1.9.3 (14 May 2010)
+
+  14 May 2010; Tiziano Müller <dev-zero@gentoo.org> +aria2-1.9.3.ebuild:
+  Version bump.
+
+*aria2-1.9.2 (06 May 2010)
+
+  06 May 2010; Tiziano Müller <dev-zero@gentoo.org> +aria2-1.9.2.ebuild:
+  Version bump (bug #315649).
+
+*aria2-1.9.0 (27 Mar 2010)
+
+  27 Mar 2010; Tiziano Müller <dev-zero@gentoo.org> -aria2-1.8.2.ebuild,
+  +aria2-1.9.0.ebuild:
+  Version bump (bug #311305). Dropped old.
 
 *aria2-1.8.3 (22 Feb 2010)
 
