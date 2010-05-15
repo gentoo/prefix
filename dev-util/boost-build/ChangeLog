@@ -1,6 +1,22 @@
 # ChangeLog for dev-util/boost-build
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.50 2010/03/04 15:25:21 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/boost-build/ChangeLog,v 1.55 2010/04/22 17:25:43 ssuominen Exp $
+
+  22 Apr 2010; Samuli Suominen <ssuominen@gentoo.org>
+  -boost-build-1.36.0.ebuild:
+  Remove boost-1.36.0 for gcc-porting wrt #287638.
+
+  17 Apr 2010; Joseph Jezak <josejx@gentoo.org> boost-build-1.41.0.ebuild:
+  Marked ppc stable for bug #305195.
+
+  31 Mar 2010; Raúl Porcel <armin76@gentoo.org> boost-build-1.41.0.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #306335
+
+  27 Mar 2010; Pacho Ramos <pacho@gentoo.org> boost-build-1.41.0.ebuild:
+  amd64 stable, security bug 305195
+
+  21 Mar 2010; Brent Baude <ranger@gentoo.org> boost-build-1.41.0.ebuild:
+  Marking boost-build-1.41.0 ppc64 for bug 306335
 
   04 Mar 2010; Jeroen Roovers <jer@gentoo.org> boost-build-1.41.0.ebuild:
   Stable for HPPA (bug #306333).
