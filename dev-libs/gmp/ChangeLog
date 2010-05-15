@@ -1,6 +1,19 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.129 2010/02/13 16:52:54 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.133 2010/05/06 19:04:00 polynomial-c Exp $
+
+  06 May 2010; Lars Wendler <polynomial-c@gentoo.org> gmp-5.0.1.ebuild:
+  Let's preserve libgmp.so.3 or else gcc breaks after upgrading to this
+  version. Ebuild patch applied with kind permission from vapier.
+
+  16 Apr 2010; Brent Baude <ranger@gentoo.org> gmp-4.3.2.ebuild:
+  Marking gmp-4.3.2 ppc for bug 304083
+
+  04 Apr 2010; Markos Chandras <hwoarang@gentoo.org> gmp-4.3.2.ebuild:
+  Stable on amd64 wrt bug #304083
+
+  22 Mar 2010; Brent Baude <ranger@gentoo.org> gmp-4.3.2.ebuild:
+  Marking gmp-4.3.2 ppc64 for bug 304083
 
   13 Feb 2010; Raúl Porcel <armin76@gentoo.org> gmp-4.3.2.ebuild:
   alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #304083

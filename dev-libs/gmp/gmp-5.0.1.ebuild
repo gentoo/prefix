@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.1.ebuild,v 1.1 2010/02/08 23:42:23 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.1.ebuild,v 1.2 2010/05/06 19:04:00 polynomial-c Exp $
 
 inherit flag-o-matic eutils libtool flag-o-matic
 
@@ -88,4 +88,12 @@ src_install() {
 	dohtml -r doc
 
 	#use doc && cp "${DISTDIR}"/gmp-man-${PV}.pdf "${ED}"/usr/share/doc/${PF}/
+}
+
+pkg_preinst() {
+	preserve_old_lib /usr/$(get_libdir)/libgmp.so.3
+}
+
+pkg_postinst() {
+	preserve_old_lib_notify /usr/$(get_libdir)/libgmp.so.3
 }
