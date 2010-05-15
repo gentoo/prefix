@@ -1,6 +1,12 @@
 # ChangeLog for dev-util/subversion
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.426 2010/03/11 21:46:43 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.428 2010/03/28 18:17:28 armin76 Exp $
+
+  28 Mar 2010; Raúl Porcel <armin76@gentoo.org> subversion-1.6.9.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #306343
+
+  23 Mar 2010; Brent Baude <ranger@gentoo.org> subversion-1.6.9.ebuild:
+  Marking subversion-1.6.9 ppc for bug 306343
 
   11 Mar 2010; Sebastian Pipping <sping@gentoo.org> subversion-1.6.6.ebuild,
   subversion-1.6.6-r10.ebuild, subversion-1.6.9.ebuild:
