@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r8.ebuild,v 1.10 2010/02/03 00:18:06 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.8.8-r8.ebuild,v 1.11 2010/03/31 18:49:57 armin76 Exp $
 
 inherit eutils alternatives flag-o-matic toolchain-funcs multilib
 
@@ -226,9 +226,7 @@ src_configure() {
 	declare -a myconf
 
 	# some arches and -O do not mix :)
-	use arm && replace-flags -O? -O1
 	use ppc && replace-flags -O? -O1
-	use ia64 && replace-flags -O? -O1
 	# Perl has problems compiling with -Os in your flags with glibc
 	use elibc_uclibc || replace-flags "-Os" "-O2"
 	( gcc-specs-ssp && use ia64 ) && append-flags -fno-stack-protector

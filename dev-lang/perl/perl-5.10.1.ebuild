@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.10.1.ebuild,v 1.19 2010/02/15 08:10:59 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/perl-5.10.1.ebuild,v 1.21 2010/03/31 18:49:57 armin76 Exp $
 
 EAPI=2
 
@@ -136,9 +136,7 @@ src_configure() {
 	declare -a myconf
 
 	# some arches and -O do not mix :)
-	use arm && replace-flags -O? -O1
 	use ppc && replace-flags -O? -O1
-	use ia64 && replace-flags -O? -O1
 	# Perl has problems compiling with -Os in your flags with glibc
 	use elibc_uclibc || replace-flags "-Os" "-O2"
 	# This flag makes compiling crash in interesting ways
