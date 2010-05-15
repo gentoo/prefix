@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-misc/realpath/realpath-1.15.ebuild,v 1.2 2010/04/01 17:14:14 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-misc/realpath/realpath-1.15-r1.ebuild,v 1.1 2010/04/30 17:09:52 jlec Exp $
 
 EAPI=2
 inherit eutils toolchain-funcs flag-o-matic prefix
@@ -33,6 +33,8 @@ src_unpack() {
 		unpack ${PN}_${PV}_i386.deb
 		unpack ./data.tar.gz
 		gunzip -r usr/share/man || die "gunzip failed"
+	else
+		epatch "${FILESDIR}"/${PN}-1.15-nonls.patch
 	fi
 }
 
