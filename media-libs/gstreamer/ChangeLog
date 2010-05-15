@@ -1,6 +1,9 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.251 2010/04/05 18:23:02 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.252 2010/04/18 15:37:57 nixnut Exp $
+
+  18 Apr 2010; <nixnut@gentoo.org> gstreamer-0.10.25.ebuild:
+  ppc stable #308379
 
   05 Apr 2010; Raúl Porcel <armin76@gentoo.org> gstreamer-0.10.25.ebuild:
   alpha/arm/ia64/sh/sparc stable wrt #308379
