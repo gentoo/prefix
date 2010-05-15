@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/filezilla-3.3.0.ebuild,v 1.1 2009/11/09 15:57:09 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/filezilla-3.3.2.1-r1.ebuild,v 1.1 2010/04/12 15:32:44 voyageur Exp $
 
 EAPI=2
 
@@ -21,6 +21,7 @@ KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux ~x86-macos"
 IUSE="aqua dbus nls test"
 
 RDEPEND=">=app-admin/eselect-wxwidgets-0.7-r1
+	dev-libs/tinyxml[-stl]
 	net-dns/libidn
 	>=net-libs/gnutls-2.8.3
 	>=x11-libs/wxGTK-2.8.9[aqua?]
@@ -38,6 +39,7 @@ S="${WORKDIR}"/${PN}-${MY_PV}
 
 src_configure() {
 	econf $(use_with dbus) $(use_enable nls locales) \
+		--with-tinyxml=system \
 		--disable-autoupdatecheck || die "econf failed"
 }
 

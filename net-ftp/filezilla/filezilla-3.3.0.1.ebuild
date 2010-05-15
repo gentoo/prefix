@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/filezilla-3.3.0.1.ebuild,v 1.5 2010/01/30 18:18:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/filezilla-3.3.0.1.ebuild,v 1.6 2010/04/12 15:32:44 voyageur Exp $
 
 EAPI=2
 
@@ -38,6 +38,7 @@ S="${WORKDIR}"/${PN}-${MY_PV}
 
 src_configure() {
 	econf $(use_with dbus) $(use_enable nls locales) \
+		--with-tinyxml=builtin \
 		--disable-autoupdatecheck || die "econf failed"
 }
 
