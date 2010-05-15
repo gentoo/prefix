@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.4.0.ebuild,v 1.7 2010/05/11 21:22:11 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.5.0.ebuild,v 1.1 2010/04/13 15:34:08 ssuominen Exp $
 
 EAPI=2
 MY_PN=${PN/lib}
@@ -18,14 +18,14 @@ IUSE="sse2"
 S=${WORKDIR}/${MY_PN}
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-flags.patch
+	epatch "${FILESDIR}"/${P}-flags_and_version.patch
 	eautoreconf
 
 	if use sse2; then
 		append-flags -msse2
 	else
 		sed -i -e '/^.*#define ALLOW_X86_OPTIMIZATIONS.*$/d' \
-			include/STTypes.h || die "sed failed"
+			include/STTypes.h || die
 	fi
 }
 
@@ -38,16 +38,16 @@ src_configure() {
 
 src_compile() {
 	emake CFLAGS="${CFLAGS}" \
-		CXXFLAGS="${CXXFLAGS}" || die "emake failed"
+		CXXFLAGS="${CXXFLAGS}" || die
 }
 
 src_install() {
 	emake DESTDIR="${D}" pkgdocdir="${EPREFIX}/usr/share/doc/${PF}/html" \
-		install || die "emake install failed"
+		install || die
 
 	# Upstream changed pkgconfig filename
 	dosym ${MY_PN}-1.4.pc \
-		/usr/$(get_libdir)/pkgconfig/${MY_PN}-1.0.pc || die "dosym failed"
+		/usr/$(get_libdir)/pkgconfig/${MY_PN}-1.0.pc || die
 
 	rm -f "${ED}"/usr/share/doc/${PF}/html/COPYING.TXT
 }

@@ -1,0 +1,39 @@
+diff -ur soundtouch.orig/configure.ac soundtouch/configure.ac
+--- soundtouch.orig/configure.ac	2009-12-28 23:22:41.000000000 +0200
++++ soundtouch/configure.ac	2010-04-13 18:28:40.000000000 +0300
+@@ -19,7 +19,7 @@
+ dnl Place - Suite 330, Boston, MA  02111-1307, USA
+ # Process this file with autoconf to produce a configure script.
+ 
+-AC_INIT(SoundTouch, 1.4.0, [http://www.surina.net/soundtouch])
++AC_INIT(SoundTouch, 1.5.0, [http://www.surina.net/soundtouch])
+ AC_CONFIG_AUX_DIR(config)
+ AM_CONFIG_HEADER([include/soundtouch_config.h])
+ AM_INIT_AUTOMAKE
+diff -ur soundtouch.orig/source/SoundStretch/Makefile.am soundtouch/source/SoundStretch/Makefile.am
+--- soundtouch.orig/source/SoundStretch/Makefile.am	2009-12-28 23:22:33.000000000 +0200
++++ soundtouch/source/SoundStretch/Makefile.am	2010-04-13 18:29:53.000000000 +0300
+@@ -43,11 +43,5 @@
+ ## linker. 
+ soundstretch_LDADD=../SoundTouch/libSoundTouch.la -lm
+ 
+-## linker flags
+-soundstretch_LDFLAGS=-s
+-
+-## additional compiler flags
+-soundstretch_CXXFLAGS=-O3
+-
+ #clean-local: 
+ #	-rm -f additional-files-to-remove-on-make-clean
+diff -ur soundtouch.orig/source/SoundTouch/Makefile.am soundtouch/source/SoundTouch/Makefile.am
+--- soundtouch.orig/source/SoundTouch/Makefile.am	2009-12-28 23:22:40.000000000 +0200
++++ soundtouch/source/SoundTouch/Makefile.am	2010-04-13 18:30:23.000000000 +0300
+@@ -36,7 +36,7 @@
+ # Note by authore: '-msse2' might not work in non-X86 compilations. If someone can
+ # fix this script to automatically check for CPU architecture, please submit a patch 
+ # to me.
+-AM_CXXFLAGS=-O3 -msse2 -fcheck-new -I../../include
++AM_CXXFLAGS=-fcheck-new -I../../include
+ 
+ 
+ # other linking flags to add
