@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.28.0.ebuild,v 1.1 2009/10/29 23:46:26 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-session/gnome-session-2.28.0.ebuild,v 1.4 2010/05/04 16:17:36 tester Exp $
 
 EAPI="2"
 
@@ -23,7 +23,7 @@ RDEPEND=">=dev-libs/glib-2.16
 	>=dev-libs/dbus-glib-0.76
 	>=gnome-base/gconf-2
 	>=x11-libs/startup-notification-0.9
-	>=sys-apps/devicekit-power-008
+	|| ( >=sys-apps/devicekit-power-008 sys-power/upower )
 	elibc_FreeBSD? ( dev-libs/libexecinfo )
 
 	x11-libs/libSM
