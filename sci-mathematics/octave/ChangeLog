@@ -1,6 +1,15 @@
 # ChangeLog for sci-mathematics/octave
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/ChangeLog,v 1.86 2010/03/11 15:30:03 bicatali Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/octave/ChangeLog,v 1.88 2010/05/13 06:35:13 jer Exp $
+
+  13 May 2010; Jeroen Roovers <jer@gentoo.org> octave-3.2.4-r1.ebuild:
+  Stable for HPPA (bug #318649).
+
+  05 May 2010; Sébastien Fabbro <bicatali@gentoo.org>
+  -octave-2.1.57-r1.ebuild, -octave-2.1.69.ebuild, -octave-2.1.72.ebuild,
+  -octave-3.2.3-r1.ebuild, -octave-3.2.4.ebuild, octave-3.2.4-r1.ebuild,
+  +files/octave-3.2.4-fltk-magic.patch:
+  Fixed some fltk automagic
 
   11 Mar 2010; Sébastien Fabbro <bicatali@gentoo.org>
   octave-3.2.4-r1.ebuild:
