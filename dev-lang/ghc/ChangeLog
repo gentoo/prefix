@@ -1,6 +1,13 @@
 # ChangeLog for dev-lang/ghc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.173 2010/01/26 19:54:10 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ghc/ChangeLog,v 1.174 2010/03/25 21:00:52 kolmodin Exp $
+
+  25 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org>
+  files/ghc-6.12.1-configure-CHOST.patch:
+  Fix building with CHOST="i486-pc-linux-gnu".
+  Issue reported by Sergey Mironov <ierton@gmail.com>,
+  patch contributed by Sergei Trofimovich <slyfox@inbox.ru>.
+  For details, see bug #310963.
 
 *ghc-6.12.1 (26 Jan 2010)
 
