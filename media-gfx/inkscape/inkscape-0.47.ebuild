@@ -1,9 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47.ebuild,v 1.11 2010/02/10 12:12:43 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47.ebuild,v 1.12 2010/04/16 10:44:23 ssuominen Exp $
 
 EAPI=2
-inherit eutils gnome2
+inherit eutils flag-o-matic gnome2
 
 MY_P="${P/_/}"
 S="${WORKDIR}/${MY_P}"
@@ -12,10 +12,11 @@ SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 DESCRIPTION="A SVG based generic vector-drawing program"
 HOMEPAGE="http://www.inkscape.org/"
 
-SLOT="0"
 LICENSE="GPL-2 LGPL-2.1"
+SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE="dia gnome inkjar lcms mmx nls postscript spell wmf"
+IUSE="dia gnome gs inkjar lcms mmx nls spell wmf"
+
 RESTRICT="test"
 
 COMMON_DEPEND="
@@ -54,7 +55,7 @@ RDEPEND="
 	${COMMON_DEPEND}
 	dev-python/numpy
 	dia? ( app-office/dia )
-	postscript? ( >=media-gfx/pstoedit-3.44[plotutils] media-gfx/skencil )
+	gs? ( app-text/ghostscript-gpl )
 	wmf? ( media-libs/libwmf )"
 
 DEPEND="${COMMON_DEPEND}
@@ -78,9 +79,15 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0.47-solaris.patch
-	epatch "${FILESDIR}"/${P}-poppler.patch
-
+	epatch "${FILESDIR}"/${P}-poppler.patch \
+		"${FILESDIR}"/${P}-gcc45.patch
 	gnome2_src_prepare
+}
+
+src_configure() {
+	# aliasing unsafe wrt #310393
+	append-flags -fno-strict-aliasing
+	gnome2_src_configure
 }
 
 pkg_postinst() {
