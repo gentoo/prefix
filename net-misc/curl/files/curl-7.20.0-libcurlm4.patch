@@ -1,0 +1,11 @@
+--- docs/libcurl/libcurl.m4.old	2010-03-21 15:50:23.000000000 +0100
++++ docs/libcurl/libcurl.m4	2010-03-21 15:51:41.000000000 +0100
+@@ -198,7 +198,7 @@
+ 
+ 	      # We don't have --protocols, so just assume that all
+ 	      # protocols are available
+-	      _libcurl_protocols="HTTP FTP FILE TELNET LDAP DICT TFTP
++	      _libcurl_protocols="HTTP FTP FILE TELNET LDAP DICT TFTP"
+ 
+ 	      if test x$libcurl_feature_SSL = xyes ; then
+ 	         _libcurl_protocols="$_libcurl_protocols HTTPS"

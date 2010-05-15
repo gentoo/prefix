@@ -1,6 +1,28 @@
 # ChangeLog for net-misc/curl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.154 2010/03/16 21:43:01 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/curl/ChangeLog,v 1.159 2010/05/11 20:58:16 josejx Exp $
+
+  11 May 2010; Joseph Jezak <josejx@gentoo.org> curl-7.20.0-r2.ebuild:
+  Marked ppc/ppc64 stable for bug #315507.
+
+  08 May 2010; Jeroen Roovers <jer@gentoo.org> curl-7.20.0-r2.ebuild:
+  Stable for HPPA (bug #315507).
+
+  26 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  curl-7.20.0-r2.ebuild:
+  x86 stable wrt bug #315507
+
+*curl-7.20.1 (15 Apr 2010)
+
+  15 Apr 2010; Dror Levin <spatz@gentoo.org> +curl-7.20.1.ebuild:
+  Version bump. Bump to EAPI 2, don't apply no longer needed libcurl.m4
+  patch.
+
+*curl-7.20.0-r2 (21 Mar 2010)
+
+  21 Mar 2010; Tupone Alfredo <tupone@gentoo.org> +curl-7.20.0-r2.ebuild,
+  +files/curl-7.20.0-libcurlm4.patch:
+  Fixing missing quotes in libcurl.m4
 
 *curl-7.20.0-r1 (16 Mar 2010)
 
