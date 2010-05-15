@@ -1,0 +1,38 @@
+diff -r -U1 maxima-5.21.1.orig/configure maxima-5.21.1/configure
+--- maxima-5.21.1.orig/configure	2010-04-24 18:34:21.000000000 +0200
++++ maxima-5.21.1/configure	2010-04-27 03:37:50.000000000 +0200
+@@ -2560,3 +2560,3 @@
+ 
+-openmcl_default_name=openmcl
++openmcl_default_name=ccl
+ # Check whether --enable-openmcl or --disable-openmcl was given.
+diff -r -U1 maxima-5.21.1.orig/src/maxima.in maxima-5.21.1/src/maxima.in
+--- maxima-5.21.1.orig/src/maxima.in	2009-07-13 17:25:25.000000000 +0200
++++ maxima-5.21.1/src/maxima.in	2010-04-27 03:36:24.000000000 +0200
+@@ -131,5 +131,5 @@
+     if [ "$layout_autotools" = "true" ]; then
+-	exec "$MAXIMA_IMAGESDIR/binary-$MAXIMA_LISP/@CLISP_RUNTIME@" $MAXIMA_LISP_OPTIONS -q -M "$maxima_image_base.mem" "" -- "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
++	exec "$MAXIMA_IMAGESDIR/binary-$MAXIMA_LISP/@CLISP_RUNTIME@" $MAXIMA_LISP_OPTIONS -q -norc -M "$maxima_image_base.mem" "" -- "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
+     else
+-	exec "@CLISP_NAME@" $MAXIMA_LISP_OPTIONS -q -M "$maxima_image_base.mem" "" -- "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
++	exec "@CLISP_NAME@" $MAXIMA_LISP_OPTIONS -q -norc -M "$maxima_image_base.mem" "" -- "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
+     fi
+@@ -137,5 +137,5 @@
+     if [ "$layout_autotools" = "true" ]; then
+-	exec "$MAXIMA_IMAGESDIR/binary-$MAXIMA_LISP/@CMUCL_RUNTIME@" $MAXIMA_LISP_OPTIONS -quiet -core "$maxima_image_base.core" -eval '(cl-user::run)' -- "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
++	exec "$MAXIMA_IMAGESDIR/binary-$MAXIMA_LISP/@CMUCL_RUNTIME@" $MAXIMA_LISP_OPTIONS -quiet -nositeinit -noinit -core "$maxima_image_base.core" -eval '(cl-user::run)' -- "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
+     else
+-	exec "@CMUCL_NAME@" $MAXIMA_LISP_OPTIONS -quiet -core "$maxima_image_base.core" -eval '(cl-user::run)' -- "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
++	exec "@CMUCL_NAME@" $MAXIMA_LISP_OPTIONS -quiet -nositeinit -noinit -core "$maxima_image_base.core" -eval '(cl-user::run)' -- "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
+     fi
+@@ -156,3 +156,3 @@
+ #        in the function get-application-args in command-line.lisp
+-    exec "@OPENMCL_NAME@" -I "$maxima_image_base.image"  $MAXIMA_LISP_OPTIONS -e '(cl-user::run)' -- "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
++    exec "@OPENMCL_NAME@" -I "$maxima_image_base.image"  $MAXIMA_LISP_OPTIONS -e "(let\* ((\*read-default-float-format\* 'double-float)) (cl-user::run))" -- "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
+ elif [ "$MAXIMA_LISP" = "ecl" ]; then
+@@ -160,3 +160,3 @@
+ elif [ "$MAXIMA_LISP" = "sbcl" ]; then
+-    exec "@SBCL_NAME@" --core "$maxima_image_base.core" --noinform $MAXIMA_LISP_OPTIONS --end-runtime-options --eval '(cl-user::run)' --end-toplevel-options "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
++    exec "@SBCL_NAME@" --core "$maxima_image_base.core" --noinform $MAXIMA_LISP_OPTIONS --end-runtime-options --no-sysinit --no-userinit --eval '(cl-user::run)' --end-toplevel-options "$arg1" "$arg2" "$arg3" "$arg4" "$arg5" "$arg6" "$arg7" "$arg8" "$arg9"
+ else
+Только в maxima-5.21.1/src: maxima.in.orig

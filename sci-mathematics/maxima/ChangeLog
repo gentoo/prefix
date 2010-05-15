@@ -1,6 +1,26 @@
 # ChangeLog for sci-mathematics/maxima
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.76 2010/03/06 08:49:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/ChangeLog,v 1.79 2010/05/01 12:18:10 grozin Exp $
+
+*maxima-5.21.1-r1 (01 May 2010)
+
+  01 May 2010; Andrey Grozin <grozin@gentoo.org> -maxima-5.21.1.ebuild,
+  +maxima-5.21.1-r1.ebuild, -files/maxima-5.21.1-clozurecl-1.5.patch,
+  +files/maxima-5.21.1.patch:
+  A patch to support clozurecl-1.5 added
+
+*maxima-5.21.1 (24 Apr 2010)
+
+  24 Apr 2010; Andrey Grozin <grozin@gentoo.org> +maxima-5.21.1.ebuild,
+  +files/maxima-5.21.1-clozurecl-1.5.patch,
+  +files/maxima-5.21.1-emacs-version.patch:
+  Version bump
+
+*maxima-5.20.1-r2 (12 Apr 2010)
+
+  12 Apr 2010; Andrey Grozin <grozin@gentoo.org> -maxima-5.20.1-r1.ebuild,
+  +maxima-5.20.1-r2.ebuild, +files/maxima-5.20.1-ecl-10.4.1.patch:
+  Added patch for ecl-10.4.1
 
 *maxima-5.20.1-r1 (06 Mar 2010)
 

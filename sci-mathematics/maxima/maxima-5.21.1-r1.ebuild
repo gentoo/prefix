@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.20.1-r1.ebuild,v 1.1 2010/03/06 08:49:59 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/maxima/maxima-5.21.1-r1.ebuild,v 1.1 2010/05/01 12:18:10 grozin Exp $
 EAPI=2
 inherit eutils elisp-common
 
@@ -46,7 +46,7 @@ for LISP in ${SUPP_LISPS}; do
 		RDEPEND="${RDEPEND} gcl? ( >=dev-lisp/gcl-2.6.8_pre[ansi] )"
 	else if [ "${LISP}" = "ecl" ]
 	then
-		RDEPEND="${RDEPEND} ecl? ( >=dev-lisp/ecls-9.8.3 )"
+		RDEPEND="${RDEPEND} ecl? ( >=dev-lisp/ecls-10.4.1 )"
 	else if [ "${LISP}" = "openmcl" ]
 	then
 		RDEPEND="${RDEPEND} openmcl? ( dev-lisp/clozurecl )"
@@ -100,10 +100,11 @@ src_prepare() {
 	# use xdg-open to view ps, pdf
 	epatch "${FILESDIR}"/${PN}-xdg-utils.patch
 
-	epatch "${FILESDIR}"/${PN}-${NO_INIT_PATCH_PV}-no-init-files.patch
-
+	# Don't use lisp init files
 	# ClozureCL executable name is now ccl
-	epatch "${FILESDIR}"/${PN}-clozurecl.patch
+	# *read-default-float-format* is now bound per-thread
+	# and isn't saved in a heap image
+	epatch "${FILESDIR}"/${P}.patch
 
 	epatch "${FILESDIR}"/${P}-emacs-version.patch
 
