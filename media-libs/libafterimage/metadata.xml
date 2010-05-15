@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<herd>graphics</herd>
-<maintainer>
-<email>bicatali@gentoo.org</email>
-<name>Sébastien Fabbro</name>
-</maintainer>
+<herd>afterstep</herd>
 <longdescription>
 libAfterImage is a generic image manipulation library.
 It was initially implemented to address AfterStep Window Manager's needs for
