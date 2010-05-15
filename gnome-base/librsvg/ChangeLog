@@ -1,6 +1,42 @@
 # ChangeLog for gnome-base/librsvg
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/ChangeLog,v 1.204 2010/01/16 17:21:43 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/librsvg/ChangeLog,v 1.210 2010/05/14 20:47:01 eva Exp $
+
+  14 May 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  -librsvg-2.22.3.ebuild, librsvg-2.26.3.ebuild:
+  Version bump. Lots of bugfixes.
+
+*librsvg-2.26.3 (08 May 2010)
+
+  08 May 2010; Pacho Ramos <pacho@gentoo.org> -librsvg-2.22.3-r1.ebuild,
+  +librsvg-2.26.3.ebuild:
+  Version bump with tons of bugfixes including crashes and rendering
+  problems. Drop old testing version.
+
+  03 May 2010; Olivier Crête <tester@gentoo.org> librsvg-2.26.2.ebuild:
+  amd64 stable, bug #314899
+
+  23 Apr 2010; Pacho Ramos <pacho@gentoo.org> librsvg-2.26.2.ebuild:
+  Needs gtk-doc-am-1.13 (bug #315953).
+
+  18 Apr 2010; Pacho Ramos <pacho@gentoo.org> librsvg-2.26.2.ebuild,
+  +files/librsvg-2.26.2-choosable-tools.patch, metadata.xml:
+  Build misc tools only when desired (bug #226231). Thanks a lot to Didier
+  Barvaux for his work on this.
+
+*librsvg-2.26.2 (30 Mar 2010)
+
+  30 Mar 2010; Pacho Ramos <pacho@gentoo.org> +librsvg-2.26.2.ebuild:
+  Version bump with these relevant changes: 
+  - Enable silent build by default
+  - Use GDK_DRAWABLE() instead of non-existing GTK_DRAWABLE()
+  - Fix compiler warnings
+  - Remove some deprecated gtk+/gdk functions and bump gtk+ requirement
+  - Fix linking with pedantic linkers
+  - Make librsvg compile with -DGSEAL_ENABLED
+  - Drop mozilla plugin. 
+  Ebuild modified to achieve mozilla plugin removal and gtk+ requeriment
+  bump.
 
   16 Jan 2010; Raúl Porcel <armin76@gentoo.org> librsvg-2.26.0.ebuild:
   sh stable
