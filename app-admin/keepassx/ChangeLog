@@ -1,6 +1,19 @@
 # ChangeLog for app-admin/keepassx
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/keepassx/ChangeLog,v 1.50 2010/03/07 10:27:26 spatz Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/keepassx/ChangeLog,v 1.54 2010/04/16 17:52:07 spatz Exp $
+
+  16 Apr 2010; Dror Levin <spatz@gentoo.org> -keepassx-0.4.1.ebuild:
+  Drop old.
+
+  16 Apr 2010; Brent Baude <ranger@gentoo.org> keepassx-0.4.3.ebuild:
+  stable ppc, bug 314851
+
+  13 Apr 2010; Markos Chandras <hwoarang@gentoo.org> keepassx-0.4.3.ebuild:
+  Stable on amd64 wrt bug #314851
+
+  13 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  keepassx-0.4.3.ebuild:
+  stable x86, bug 314851
 
 *keepassx-0.4.3 (07 Mar 2010)
 
