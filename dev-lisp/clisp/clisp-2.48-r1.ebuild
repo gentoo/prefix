@@ -1,19 +1,19 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.48.ebuild,v 1.2 2009/07/29 14:22:17 hkbst Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/clisp/clisp-2.48-r1.ebuild,v 1.1 2010/04/14 01:49:38 chiiph Exp $
 
-EAPI=2
+EAPI="2"
 
 inherit flag-o-matic eutils toolchain-funcs multilib
 
 DESCRIPTION="A portable, bytecode-compiled implementation of Common Lisp"
 HOMEPAGE="http://clisp.sourceforge.net/"
-SRC_URI="mirror://sourceforge/clisp/${P}.tar.bz2"
-LICENSE="GPL-2"
+SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 
+LICENSE="GPL-2"
 SLOT="2"
 KEYWORDS="~x86-macos"
-IUSE="hyperspec X new-clx dbus fastcgi gdbm gtk pari +pcre postgres +readline svm +unicode +zlib" #threads
+IUSE="berkdb hyperspec X new-clx dbus fastcgi gdbm gtk pari +pcre postgres +readline svm -threads +unicode +zlib"
 
 RDEPEND="virtual/libiconv
 		 >=dev-libs/libsigsegv-2.4
@@ -29,10 +29,11 @@ RDEPEND="virtual/libiconv
 		 svm? ( sci-libs/libsvm )
 		 zlib? ( sys-libs/zlib )
 		 X? ( new-clx? ( x11-libs/libXpm ) )
-		 hyperspec? ( dev-lisp/hyperspec )"
-# 		 berkdb? ( sys-libs/db:4.5 )
+		 hyperspec? ( dev-lisp/hyperspec )
+		 berkdb? ( sys-libs/db:4.5 )"
 
-DEPEND="${RDEPEND} X? ( new-clx? ( x11-misc/imake x11-proto/xextproto ) )"
+DEPEND="${RDEPEND}
+	X? ( new-clx? ( x11-misc/imake x11-proto/xextproto ) )"
 
 PDEPEND="dev-lisp/gentoo-init"
 
@@ -57,19 +58,31 @@ BUILDDIR="builddir"
 
 src_prepare() {
 	# More than -O1 breaks alpha/ia64
-	use alpha || use ia64 && sed -i -e 's/-O2//g' src/makemake.in
+	if use alpha || use ia64; then
+		sed -i -e 's/-O2//g' src/makemake.in || die
+	fi
 }
 
 src_configure() {
-	# built-in features
-	local myconf="--with-ffcall --with-dynamic-modules"
-#	use threads && myconf+=" --with-threads=POSIX_THREADS"
-
 	# We need this to build on alpha/ia64
 	if use alpha || use ia64; then
 		replace-flags -O? -O1
 		append-flags '-D NO_MULTIMAP_SHM -D NO_MULTIMAP_FILE -D NO_SINGLEMAP -D NO_TRIVIALMAP'
 	fi
+
+	# QA issue with lisp.run
+	append-flags -Wa,--noexecstack
+
+	# built-in features
+	local myconf="--with-ffcall --without-dynamic-modules"
+#    There's a problem with jit_allocai function
+#    if use jit; then
+#        myconf+=" --with-jitc=lightning"
+#    fi
+	if use threads; then
+		myconf+=" --with-threads=POSIX_THREADS"
+	fi
+
 	# default modules
 	enable_modules wildcard rawsock
 	# optional modules
@@ -83,12 +96,12 @@ src_configure() {
 	fi
 	if use postgres; then
 		enable_modules postgresql
-		CPPFLAGS="-I $(pg_config --includedir)"
+		append-flags -I$(pg_config --includedir)
 	fi
-# 	if use berkdb; then
-# 		enable_modules berkley-db
-# 		CPPFLAGS="${CPPFLAGS} -I /usr/include/db4.5"
-# 	fi
+	if use berkdb; then
+		enable_modules berkeley-db
+		append-flags -I/usr/include/db4.5
+	fi
 	use dbus && enable_modules dbus
 	use fastcgi && enable_modules fastcgi
 	use gdbm && enable_modules gdbm
@@ -112,10 +125,11 @@ src_configure() {
 	einfo "${configure}"
 	${configure} || die "./configure failed"
 
-	sed -i 's,"vi","nano",g' "${BUILDDIR}"/config.lisp
+	sed -i 's,"vi","nano",g' "${BUILDDIR}"/config.lisp || die
 
 	IMPNOTES="file://${EROOT%/}/usr/share/doc/${PN}-${PVR}/html/impnotes.html"
-	sed -i "s,http://clisp.cons.org/impnotes/,${IMPNOTES},g" "${BUILDDIR}"/config.lisp
+	sed -i "s,http://clisp.cons.org/impnotes/,${IMPNOTES},g" \
+		"${BUILDDIR}"/config.lisp || die
 }
 
 src_compile() {
@@ -128,13 +142,28 @@ src_compile() {
 src_install() {
 	pushd "${BUILDDIR}"
 	make DESTDIR="${D}" prefix="${EPREFIX}"/usr install-bin || die
-	doman clisp.1
-	dodoc SUMMARY README* NEWS MAGIC.add ANNOUNCE
-	chmod a+x "${ED}"/usr/$(get_libdir)/clisp-${PV/_*/}/clisp-link
+	doman clisp.1 || die
+	dodoc SUMMARY README* NEWS MAGIC.add ANNOUNCE || die
+	fperms a+x /usr/$(get_libdir)/clisp-${PV/_*/}/clisp-link || die
 	# stripping them removes common symbols (defined but uninitialised variables)
 	# which are then needed to build modules...
 	export STRIP_MASK="*/usr/$(get_libdir)/clisp-${PV}/*/*"
 	popd
-	dohtml doc/impnotes.{css,html} doc/regexp.html doc/clisp.png
-	dodoc doc/{CLOS-guide,LISP-tutorial}.txt
+	dohtml doc/impnotes.{css,html} doc/regexp.html doc/clisp.png || die
+	dodoc doc/{CLOS-guide,LISP-tutorial}.txt || die
+}
+
+pkg_postinst() {
+	if use threads || use jit; then
+		while read line; do elog ${line}; done <<EOF
+
+Upstream considers threads to be of Alpha quality, therefore
+it is likely that you will encounter bugs in using them. If you do,
+please report bugs upstream:
+
+Mailing list: https://lists.sourceforge.net/lists/listinfo/clisp-devel
+Bug tracker:  http://sourceforge.net/tracker/?atid=101355&group_id=1355
+
+EOF
+	fi
 }
