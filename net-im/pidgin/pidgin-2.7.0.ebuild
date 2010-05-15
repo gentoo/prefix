@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.6.6.ebuild,v 1.11 2010/04/13 06:21:42 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.7.0.ebuild,v 1.1 2010/05/13 16:03:48 tester Exp $
 
 EAPI=2
 
@@ -14,27 +14,29 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="aqua dbus debug doc eds gadu gnutls +gstreamer idn meanwhile networkmanager"
+IUSE="dbus debug doc eds gadu gnutls idn meanwhile networkmanager"
 IUSE+=" nls perl silc tcl tk spell qq gadu +gtk sasl +startup-notification"
 IUSE+=" ncurses groupwise prediction +xscreensaver zephyr zeroconf" # mono"
 
+IUSE+="aqua"
+
 RDEPEND="
-	>=dev-libs/glib-2.4
+	>=dev-libs/glib-2.12
 	>=dev-libs/libxml2-2.6.18
 	ncurses? ( sys-libs/ncurses[unicode] )
 	gtk? (
-		>=x11-libs/gtk+-2.4:2[aqua=]
+		>=x11-libs/gtk+-2.10:2[aqua=]
 		x11-libs/libSM
 		xscreensaver? ( x11-libs/libXScrnSaver )
 		startup-notification? ( >=x11-libs/startup-notification-0.5 )
 		spell? ( >=app-text/gtkspell-2.0.2 )
 		eds? ( <gnome-extra/evolution-data-server-2.30 )
 		prediction? ( >=dev-db/sqlite-3.3:3 ) )
-	gstreamer? ( =media-libs/gstreamer-0.10*
-		=media-libs/gst-plugins-good-0.10*
-		>=net-libs/farsight2-0.0.14
-		media-plugins/gst-plugins-meta
-		media-plugins/gst-plugins-gconf )
+	=media-libs/gstreamer-0.10*
+	=media-libs/gst-plugins-good-0.10*
+	>=net-libs/farsight2-0.0.14
+	media-plugins/gst-plugins-meta
+	media-plugins/gst-plugins-gconf
 	zeroconf? ( net-dns/avahi )
 	dbus? ( >=dev-libs/dbus-glib-0.71
 		>=dev-python/dbus-python-0.71
@@ -161,9 +163,6 @@ src_configure() {
 		$(use_enable debug) \
 		$(use_enable dbus) \
 		$(use_enable meanwhile) \
-		$(use_enable gstreamer) \
-		$(use_enable gstreamer farsight) \
-		$(use_enable gstreamer vv) \
 		$(use_enable sasl cyrus-sasl ) \
 		$(use_enable doc doxygen) \
 		$(use_enable networkmanager nm) \
@@ -176,6 +175,9 @@ src_configure() {
 		$(use_with !aqua x) \
 		"--with-dynamic-prpls=${DYNAMIC_PRPLS}" \
 		--disable-mono \
+		--enable-gstreamer \
+		--enable-farsight \
+		--enable-vv \
 		--x-includes="${EPREFIX}/usr/include/X11" \
 		${myconf}
 		#$(use_enable mono) \

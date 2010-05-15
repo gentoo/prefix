@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.6.5.ebuild,v 1.10 2010/02/19 19:15:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.6.5.ebuild,v 1.11 2010/04/12 13:55:43 tester Exp $
 
 EAPI=2
 
@@ -28,7 +28,7 @@ RDEPEND="
 		xscreensaver? ( x11-libs/libXScrnSaver )
 		startup-notification? ( >=x11-libs/startup-notification-0.5 )
 		spell? ( >=app-text/gtkspell-2.0.2 )
-		eds? ( gnome-extra/evolution-data-server )
+		eds? ( <gnome-extra/evolution-data-server-2.30 )
 		prediction? ( >=dev-db/sqlite-3.3:3 ) )
 	gstreamer? ( =media-libs/gstreamer-0.10*
 		=media-libs/gst-plugins-good-0.10*
