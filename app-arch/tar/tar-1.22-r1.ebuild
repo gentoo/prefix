@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.22.ebuild,v 1.1 2009/03/05 08:09:44 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.22-r1.ebuild,v 1.1 2010/04/25 18:53:46 chainsaw Exp $
 
 inherit flag-o-matic eutils prefix
 
@@ -29,6 +29,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.22-solaris-sparc64.patch
 
 	epatch "${FILESDIR}"/${PN}-1.21-revert-pipe.patch #252680
+	epatch "${FILESDIR}"/${P}-strncpy.patch #317139
 
 	# somehow, on interix 6, tar detects changing files/dirs
 	# all the time, although nothing is happening on the fs.
