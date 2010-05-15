@@ -1,6 +1,22 @@
 # ChangeLog for net-p2p/rtorrent
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.149 2010/01/22 14:17:00 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/ChangeLog,v 1.154 2010/05/04 10:13:39 angelos Exp $
+
+  04 May 2010; <angelos@gentoo.org> rtorrent-0.8.6-r1.ebuild:
+  amd64 stable, thanks to Roeland Douma (bug #311143)
+
+  18 Apr 2010; <nixnut@gentoo.org> rtorrent-0.8.6-r1.ebuild:
+  ppc stable #311143
+
+  08 Apr 2010; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  No need for "empty" maintainer tag when herd tag is present.
+
+  03 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  rtorrent-0.8.6-r1.ebuild:
+  x86 stable wrt bug #311143
+
+  18 Mar 2010; Dror Levin <spatz@gentoo.org> files/rtorrentd.init:
+  Fix screen invocation in initd script, bug 294435.
 
   22 Jan 2010; Dawid Węgliński <cla@gentoo.org> rtorrent-0.8.6-r1.ebuild:
   Add some elog instructions messages

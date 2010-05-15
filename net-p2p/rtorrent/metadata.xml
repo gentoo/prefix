@@ -2,9 +2,6 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 <herd>net-p2p</herd>
-<maintainer>
-	<email>maintainer-needed@gentoo.org</email>
-</maintainer>
 <longdescription lang="en">
 	Console BitTorrent client using ncurses based on libtorrent written in C++.
 </longdescription>

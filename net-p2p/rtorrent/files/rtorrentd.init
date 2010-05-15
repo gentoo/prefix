@@ -1,7 +1,7 @@
 #!/sbin/runscript
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/files/rtorrentd.init,v 1.4 2009/11/16 13:01:28 cla Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/rtorrent/files/rtorrentd.init,v 1.5 2010/03/18 20:30:24 spatz Exp $
 
 depend() {
 	use net ypbind nis
@@ -13,9 +13,12 @@ start() {
 
 	ebegin "Starting rtorrent"
 	env TERM="xterm" \
-	start-stop-daemon --start --chuid $USER \
-	--env HOME="${PWHOME:-/home/$USER}" \
-	--exec /usr/bin/screen -- -dmS rtorrentd /usr/bin/rtorrent
+		start-stop-daemon \
+			--start \
+			--user $USER \
+			--env HOME="${PWHOME:-/home/$USER}" \
+			--name rtorrent \
+			--exec /usr/bin/screen -- -dmS rtorrentd /usr/bin/rtorrent
 	eend $?
 }
 
