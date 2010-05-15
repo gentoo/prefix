@@ -335,6 +335,8 @@ webapp_src_preinst() {
 		die "Ebuild did not call webapp_pkg_setup() - report to http://bugs.gentoo.org"
 	fi
 
+	# Hint, see the webapp_read_config() function to find where these are
+	# defined.
 	dodir "${MY_HTDOCSDIR#${EPREFIX}}"
 	dodir "${MY_HOSTROOTDIR#${EPREFIX}}"
 	dodir "${MY_CGIBINDIR#${EPREFIX}}"
