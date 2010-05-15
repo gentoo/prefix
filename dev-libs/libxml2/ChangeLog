@@ -1,6 +1,30 @@
 # ChangeLog for dev-libs/libxml2
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.282 2010/04/06 22:44:40 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/ChangeLog,v 1.290 2010/05/14 08:16:34 robbat2 Exp $
+
+  14 May 2010; Robin H. Johnson <robbat2@gentoo.org> libxml2-2.7.7.ebuild:
+  Fix so that the catalyst autobuilds can continue safely. If the Python
+  binary is not present in $ROOT, python_execute_function returns
+  successfully but silently, WITHOUT running the command (with disasterous
+  side-effects).
+
+  11 May 2010; Brent Baude <ranger@gentoo.org> libxml2-2.7.7.ebuild:
+  stable ppc64, bug 317819
+
+  11 May 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> libxml2-2.7.7.ebuild:
+  x86 stable wrt bug #317819
+
+  10 May 2010; nixnut <nixnut@gentoo.org> libxml2-2.7.7.ebuild:
+  ppc stable #317819
+
+  04 May 2010; <angelos@gentoo.org> libxml2-2.7.7.ebuild:
+  amd64 stable, thanks to Roeland Douma (bug #317819)
+
+  24 Apr 2010; Raúl Porcel <armin76@gentoo.org> libxml2-2.7.6.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #309949
+
+  11 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> libxml2-2.7.6.ebuild:
+  x86 stable wrt bug #309949
 
   06 Apr 2010; Gilles Dartiguelongue <eva@gentoo.org>
   -libxml2-2.7.4-r1.ebuild, -files/libxml2-2.7.4-parser-grow.patch,

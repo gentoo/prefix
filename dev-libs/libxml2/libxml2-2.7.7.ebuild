@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.7.ebuild,v 1.3 2010/04/07 21:16:18 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.7.ebuild,v 1.8 2010/05/14 03:59:59 robbat2 Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -86,11 +86,11 @@ src_configure() {
 	# filter seemingly problematic CFLAGS (#26320)
 	filter-flags -fprefetch-loop-arrays -funroll-loops
 
-	# don't unconditionally run any python_* funcs, because at bootstrap:
-	# portage requires python, requires libintl, requires gettext (for !glibc
-	# && !uclibc), requires libxml2, calls python eclass method, fails because
-	# there is no python (yet).
-	if use python ; then
+	# This ebuild is critical during preparation of a stage1 build.
+	# If the Python binary is not present in $ROOT, python_execute_function
+	# returns successfully but silently, WITHOUT running the command (with
+	# disasterous side-effects).
+	if use python; then
 		python_execute_function -f -q econf ${myconf}
 	else
 		econf ${myconf}
