@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.144 2010/04/01 20:36:39 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.146 2010/05/13 19:45:47 robbat2 Exp $
 
 # @ECLASS: mysql.eclass
 # @MAINTAINER:
@@ -154,7 +154,12 @@ if [ -z "${SERVER_URI}" ]; then
 	[ -z "${MY_PV}" ] && MY_PV="${PV//_/-}"
 	if [ "${PN}" == "mariadb" ]; then
 		MARIA_FULL_PV="$(replace_version_separator 3 '-' ${PV})"
-		SERVER_URI="http://launchpad.net/maria/${MYSQL_PV_MAJOR}/ongoing/+download/mariadb-${MARIA_FULL_PV}.tar.gz"
+		MARIA_FULL_P="${PN}-${MARIA_FULL_PV}"
+		SERVER_URI="
+		http://ftp.rediris.es/mirror/MariaDB/${MARIA_FULL_P}/kvm-tarbake-jaunty-x86/${MARIA_FULL_P}.tar.gz
+		http://maria.llarian.net/download/${MARIA_FULL_P}/kvm-tarbake-jaunty-x86/${MARIA_FULL_P}.tar.gz
+		http://launchpad.net/maria/${MYSQL_PV_MAJOR}/ongoing/+download/${MARIA_FULL_P}.tar.gz
+		"
 	# The community build is on the mirrors
 	elif [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ]; then
 		SERVER_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/mysql-${MY_PV}.tar.gz"
@@ -234,20 +239,28 @@ xtradb_patch_available() {
 	return $?
 }
 
+
 pbxt_patch_available \
 && PBXT_P="pbxt-${PBXT_VERSION}" \
 && PBXT_SRC_URI="http://www.primebase.org/download/${PBXT_P}.tar.gz mirror://sourceforge/pbxt/${PBXT_P}.tar.gz" \
 && SRC_URI="${SRC_URI} pbxt? ( ${PBXT_SRC_URI} )" \
 
+# PBXT_NEWSTYLE means pbxt is in storage/ and gets enabled as other plugins
+# vs. built outside the dir
 pbxt_available \
-&& IUSE="${IUSE} pbxt"
+&& IUSE="${IUSE} pbxt" \
+&& mysql_version_is_at_least "5.1.40" \
+&& PBXT_NEWSTYLE=1
 
 xtradb_patch_available \
 && XTRADB_P="percona-xtradb-${XTRADB_VER}" \
 && XTRADB_SRC_URI_COMMON="${PERCONA_VER}/source/${XTRADB_P}.tar.gz" \
-&& XTRADB_SRC_URI1="http://www.percona.com/percona-builds/xtradb/${XTRADB_SRC_URI_COMMON}" \
-&& XTRADB_SRC_URI2="http://www.percona.com/${PN}/xtradb/${XTRADB_SRC_URI_COMMON}" \
-&& SRC_URI="${SRC_URI} xtradb? ( ${XTRADB_SRC_URI1} ${XTRADB_SRC_URI2} )" \
+&& XTRADB_SRC_B1="http://www.percona.com/" \
+&& XTRADB_SRC_B2="${XTRADB_SRC_B1}/percona-builds/" \
+&& XTRADB_SRC_URI1="${XTRADB_SRC_B2}/Percona-Server/Percona-Server-${XTRADB_SRC_URI_COMMON}" \
+&& XTRADB_SRC_URI2="${XTRADB_SRC_B2}/xtradb/${XTRADB_SRC_URI_COMMON}" \
+&& XTRADB_SRC_URI3="${XTRADB_SRC_B1}/${PN}/xtradb/${XTRADB_SRC_URI_COMMON}" \
+&& SRC_URI="${SRC_URI} xtradb? ( ${XTRADB_SRC_URI1} ${XTRADB_SRC_URI2} ${XTRADB_SRC_URI3} )" \
 && IUSE="${IUSE} xtradb"
 
 #
@@ -531,6 +544,8 @@ configure_51() {
 	myconf="${myconf} --with-readline"
 	myconf="${myconf} --with-zlib-dir=${EPREFIX}/usr/"
 	myconf="${myconf} --without-pstack"
+	myconf="${myconf} --with-plugindir=${EPREFIX}/usr/$(get_libdir)/mysql/plugin"
+
 	use max-idx-128 && myconf="${myconf} --with-max-indexes=128"
 	if [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ]; then
 		myconf="${myconf} $(use_enable community community-features)"
@@ -541,15 +556,45 @@ configure_51() {
 		fi
 	fi
 
+	# Scan for all available plugins
+	local plugins_avail="$(
+	LANG=C \
+	find "${S}" \
+		\( \
+		-name 'plug.in' \
+		-o -iname 'configure.in' \
+		-o -iname 'configure.ac' \
+		\) \
+		-print0 \
+	| xargs -0 sed -r -n \
+		-e '/^MYSQL_STORAGE_ENGINE/{
+			s~MYSQL_STORAGE_ENGINE\([[:space:]]*\[?([-_a-z0-9]+)\]?.*,~\1 ~g ;
+			s~^([^ ]+).*~\1~gp; 
+		}' \
+	| tr -s '\n' ' '
+	)"
+
 	# 5.1 introduces a new way to manage storage engines (plugins)
 	# like configuration=none
 	# This base set are required, and will always be statically built.
-	local plugins="csv,myisam,myisammrg,heap"
+	local plugins_sta="csv myisam myisammrg heap"
+	local plugins_dyn=""
+	local plugins_dis="example ibmdb2i"
+
+	# These aren't actually required by the base set, but are really useful:
+	plugins_sta="${plugins_sta} archive blackhole"
+
+	# default in 5.5.4
+	if mysql_version_is_at_least "5.5.4" ; then
+		plugins_sta="${plugins_sta} partition"
+	fi
+	# Now the extras
 	if use extraengine ; then
 		# like configuration=max-no-ndb, archive and example removed in 5.1.11
 		# not added yet: ibmdb2i
 		# Not supporting as examples: example,daemon_example,ftexample 
-		plugins="${plugins},archive,blackhole,federated,partition"
+		plugins_sta="${plugins_sta} partition"
+		plugins_dyn="${plugins_sta} federated"
 
 		if [[ "${PN}" != "mariadb" ]] ; then
 			elog "Before using the Federated storage engine, please be sure to read"
@@ -558,37 +603,60 @@ configure_51() {
 			elog "MariaDB includes the FederatedX engine. Be sure to read"
 			elog "http://askmonty.org/wiki/index.php/Manual:FederatedX_storage_engine"
 		fi
+	else
+		plugins_dis="${plugins_dis} partition federated"
 	fi
 
 	# Upstream specifically requests that InnoDB always be built:
 	# - innobase, innodb_plugin
 	# Build falcon if available for 6.x series.
-	for i in innobase innodb_plugin falcon ; do
-		[ -e "${S}"/storage/${i} ] && plugins="${plugins},${i}"
+	for i in innobase falcon ; do
+		[ -e "${S}"/storage/${i} ] && plugins_sta="${plugins_sta} ${i}"
+	done
+	for i in innodb_plugin ; do
+		[ -e "${S}"/storage/${i} ] && plugins_dyn="${plugins_dyn} ${i}"
 	done
 
 	# like configuration=max-no-ndb
 	if use cluster ; then
-		plugins="${plugins},ndbcluster"
+		plugins_sta="${plugins_sta} ndbcluster partition"
+		plugins_dis="${plugins_dis//partition}"
 		myconf="${myconf} --with-ndb-binlog"
+	else
+		plugins_dis="${plugins_dis} ndbcluster"
 	fi
 
 	if [[ "${PN}" == "mariadb" ]] ; then
 		# In MariaDB, InnoDB is packaged in the xtradb directory, so it's not
 		# caught above.
-		plugins="${plugins},maria,innobase"
-		if use pbxt ; then
-			plugins="${plugins},pbxt"
-		else
-			myconf="${myconf} --without-plugin-pbxt"
-		fi
+		plugins_sta="${plugins_sta} maria innobase"
 		myconf="${myconf} $(use_with libevent)"
 		# This is not optional, without it several upstream testcases fail.
 		# Also strongly recommended by upstream.
 		myconf="${myconf} --with-maria-tmp-tables"
 	fi
+	
+	if pbxt_available && [[ "${PBXT_NEWSTYLE}" == "1" ]]; then
+		use pbxt \
+		&& plugins_dyn="${plugins_dyn} pbxt" \
+		|| plugins_dis="${plugins_dis} pbxt"
+	fi
 
-	myconf="${myconf} --with-plugins=${plugins}"
+	use static && \
+	plugins_sta="${plugins_sta} ${plugins_dyn}" && \
+	plugins_dyn=""
+	
+	einfo "Available plugins: ${plugins_avail}"
+	einfo "Dynamic plugins: ${plugins_dyn}"
+	einfo "Static plugins: ${plugins_sta}"
+	einfo "Disabled plugins: ${plugins_dis}"
+
+	# These are the static plugins
+	myconf="${myconf} --with-plugins=${plugins_sta// /,}"
+	# And the disabled ones
+	for i in ${plugins_dis} ; do
+		myconf="${myconf} --without-plugin-${i}"
+	done
 }
 
 pbxt_src_configure() {
@@ -606,6 +674,7 @@ pbxt_src_configure() {
 }
 
 pbxt_src_compile() {
+
 	# Be backwards compatible for now
 	if [[ $EAPI != 2 ]]; then
 		pbxt_src_configure
@@ -644,8 +713,9 @@ mysql_pkg_setup() {
 
 	# Check for USE flag problems in pkg_setup
 	if use static && use ssl ; then
-		eerror "MySQL does not support being built statically with SSL support enabled!"
-		die "MySQL does not support being built statically with SSL support enabled!"
+		M="MySQL does not support being built statically with SSL support enabled!"
+		eerror "${M}"
+		die "${M}"
 	fi
 
 	if ! mysql_version_is_at_least "5.0" \
@@ -657,10 +727,20 @@ mysql_pkg_setup() {
 	fi
 
 	if mysql_version_is_at_least "4.1.3" \
-	&& ( use cluster || use extraengine ) \
+	&& ( use cluster || use extraengine || use embedded ) \
 	&& use minimal ; then
-		eerror "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
-		die "USE flags 'cluster' and 'extraengine' conflict with 'minimal' USE flag!"
+		M="USE flags 'cluster', 'extraengine', 'embedded' conflict with 'minimal' USE flag!"
+		eerror "${M}"
+		die "${M}"
+	fi
+	
+	if mysql_version_is_at_least "5.1" \
+	&& xtradb_patch_available \
+	&& use xtradb \
+	&& use embedded ; then
+		M="USE flags 'xtradb' and 'embedded' conflict and cause build failures"
+		eerror "${M}"
+		die "${M}"
 	fi
 
 	# Bug #290570, 284946, 307251
@@ -760,16 +840,25 @@ mysql_src_prepare() {
 	local rebuilddirlist d
 
 	if xtradb_patch_available && use xtradb ; then
-		einfo "Replacing InnoDB with Percona XtraDB"
-		pushd "${S}"/storage
+		einfo "Adding storage engine: Percona XtraDB (replacing InnoDB)"
+		pushd "${S}"/storage >/dev/null
 		i="innobase"
 		o="${WORKDIR}/storage-${i}.mysql-upstream"
 		# Have we been here already?
 		[ -d "${o}" ] && rm -f "${i}"
 		# Or maybe we haven't
 		[ -d "${i}" -a ! -d "${o}" ] && mv "${i}" "${o}"
-		cp -ra "${WORKDIR}/${XTRADB_P}" "${i}"
-		popd
+		cp -ral "${WORKDIR}/${XTRADB_P}" "${i}"
+		popd >/dev/null
+	fi
+	
+	if pbxt_available && [[ "${PBXT_NEWSTYLE}" == "1" ]] && use pbxt ; then
+		einfo "Adding storage engine: PBXT"
+		pushd "${S}"/storage >/dev/null
+		i='pbxt'
+		[ -d "${i}" ] && rm -rf "${i}"
+		cp -ral "${WORKDIR}/${PBXT_P}" "${i}"
+		popd >/dev/null
 	fi
 
 	if mysql_version_is_at_least "5.1.12" ; then
@@ -873,7 +962,7 @@ mysql_src_configure() {
 	| xargs -0 -n100 sed -i \
 	-e 's|^pkglibdir *= *$(libdir)/mysql|pkglibdir = $(libdir)|;s|^pkgincludedir *= *$(includedir)/mysql|pkgincludedir = $(includedir)|'
 
-	if [[ $EAPI == 2 ]]; then
+	if [[ $EAPI == 2 ]] && [[ "${PBXT_NEWSTYLE}" != "1" ]]; then
 		pbxt_patch_available && use pbxt && pbxt_src_configure
 	fi
 }
@@ -890,7 +979,9 @@ mysql_src_compile() {
 
 	emake || die "emake failed"
 
-	pbxt_patch_available && use pbxt && pbxt_src_compile
+	if [[ "${PBXT_NEWSTYLE}" != "1" ]]; then
+		pbxt_patch_available && use pbxt && pbxt_src_compile
+	fi
 }
 
 # @FUNCTION: mysql_src_install
@@ -906,7 +997,9 @@ mysql_src_install() {
 		testroot="${EPREFIX}${MY_SHAREDSTATEDIR}" \
 		|| die "emake install failed"
 
-	pbxt_patch_available && use pbxt && pbxt_src_install
+	if [[ "${PBXT_NEWSTYLE}" != "1" ]]; then
+		pbxt_patch_available && use pbxt && pbxt_src_install
+	fi
 
 	# Convenience links
 	einfo "Making Convenience links for mysqlcheck multi-call binary"
