@@ -1,6 +1,9 @@
 # ChangeLog for dev-java/batik
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/ChangeLog,v 1.63 2009/10/03 20:36:55 caster Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/ChangeLog,v 1.64 2010/05/05 15:07:01 caster Exp $
+
+  05 May 2010; Vlastimil Babka <caster@gentoo.org> batik-1.7-r2.ebuild:
+  Fix OOM in javadoc when building with USE=doc. Bug #318323.
 
   03 Oct 2009; Vlastimil Babka <caster@gentoo.org> -batik-1.6-r3.ebuild,
   -batik-1.6-r4.ebuild, -files/batik-1.6-dont-copy-deps.patch,
