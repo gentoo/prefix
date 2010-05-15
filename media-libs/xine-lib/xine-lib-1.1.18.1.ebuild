@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.1.18.1.ebuild,v 1.1 2010/03/16 10:31:56 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.1.18.1.ebuild,v 1.3 2010/05/13 11:26:07 phajdan.jr Exp $
 
 EAPI=3
 inherit eutils flag-o-matic toolchain-funcs multilib
