@@ -1,6 +1,9 @@
 # ChangeLog for app-portage/autounmask
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/autounmask/ChangeLog,v 1.43 2009/10/11 15:35:19 klausman Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/autounmask/ChangeLog,v 1.44 2010/04/17 16:41:27 armin76 Exp $
+
+  17 Apr 2010; Raúl Porcel <armin76@gentoo.org> autounmask-0.27.ebuild:
+  Add ~arm wrt #300823
 
   11 Oct 2009; Tobias Klausmann <klausman@gentoo.org>
   autounmask-0.27.ebuild:
