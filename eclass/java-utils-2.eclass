@@ -6,7 +6,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.134 2010/04/01 22:29:28 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-utils-2.eclass,v 1.135 2010/04/28 19:40:40 caster Exp $
 
 # -----------------------------------------------------------------------------
 # @eclass-begin
@@ -2682,8 +2682,9 @@ java-pkg_ensure-dep() {
 	local target_pkg="${2}"
 	local dev_error=""
 
+    # remove the version specification, which may include globbing (* and [123])
 	local stripped_pkg=$(echo "${target_pkg}" | sed \
-		's/-[0-9]*\(\.[0-9]\)*$//')
+		's/-\([0-9*]*\(\[[0-9]*\]\)*\)*\(\.\([0-9*]*\(\[[0-9]*\]\)*\)*\)*$//')
 
 	debug-print "Matching against: ${stripped_pkg}"
 

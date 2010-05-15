@@ -1,6 +1,6 @@
 # Copyright 1999-2006 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.63 2008/03/23 00:11:20 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/webapp.eclass,v 1.64 2010/05/09 22:32:16 darkside Exp $
 
 # @ECLASS: webapp.eclass
 # @MAINTAINER:

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.225 2010/04/01 21:12:20 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.233 2010/05/02 11:05:28 ulm Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -45,6 +45,13 @@
 #						  A value of "5" would apply genpatches-2.6.12-5 to
 #						  my-sources-2.6.12.ebuild
 # K_SECURITY_UNSUPPORTED- If set, this kernel is unsupported by Gentoo Security
+# K_DEBLOB_AVAILABLE	- A value of "0" will disable all of the optional deblob
+#						  code. If empty, will be set to "1" if deblobbing is
+#						  possible. Test ONLY for "1".
+# K_PREDEBLOBBED		- This kernel was already deblobbed elsewhere.
+#						  If false, either optional deblobbing will be available
+#						  or the license will note the inclusion of freedist
+#						  code.
 
 # H_SUPPORTEDARCH		- this should be a space separated list of ARCH's which
 #						  can be supported by the headers ebuild
@@ -74,9 +81,12 @@ if [[ ${CTARGET} == ${CHOST} && ${CATEGORY/cross-} != ${CATEGORY} ]]; then
 fi
 
 HOMEPAGE="http://www.kernel.org/ http://www.gentoo.org/ ${HOMEPAGE}"
-# Reflect that kernels contain firmware blobs unless otherwise stripped
 [[ -z ${LICENSE} ]] && \
-	LICENSE="GPL-2 freedist"
+	LICENSE="GPL-2"
+
+# This is the latest KV_PATCH of the deblob tool available from the
+# libre-sources upstream.
+[[ -z ${DEBLOB_MAX_VERSION} ]] && DEBLOB_MAX_VERSION=33
 
 # No need to run scanelf/strip on kernel sources/headers (bug #134453).
 RESTRICT="binchecks strip"
@@ -91,18 +101,11 @@ RESTRICT="binchecks strip"
 # if you are adding new functionality in, put a call to it
 # at the start of src_unpack, or during SRC_URI/dep generation.
 debug-print-kernel2-variables() {
-	debug-print "PVR: ${PVR}"
-	debug-print "CKV: ${CKV}"
-	debug-print "OKV: ${OKV}"
-	debug-print "KV: ${KV}"
-	debug-print "KV_FULL: ${KV_FULL}"
-	debug-print "RELEASETYPE: ${RELEASETYPE}"
-	debug-print "RELEASE: ${RELEASE}"
-	debug-print "UNIPATCH_LIST_DEFAULT: ${UNIPATCH_LIST_DEFAULT} "
-	debug-print "UNIPATCH_LIST_GENPATCHES: ${UNIPATCH_LIST_GENPATCHES} "
-	debug-print "UNIPATCH_LIST: ${UNIPATCH_LIST}"
-	debug-print "S: ${S}"
-	debug-print "KERNEL_URI: ${KERNEL_URI}"
+	for v in PVR CKV OKV KV KV_FULL KV_MAJOR KV_MINOR KV_PATCH RELEASETYPE \
+			RELEASE UNIPATCH_LIST_DEFAULT UNIPATCH_LIST_GENPATCHES \
+			UNIPATCH_LIST S KERNEL_URI ; do
+		debug-print "${v}: ${!v}"
+	done
 }
 
 #Eclass functions only from here onwards ...
@@ -247,7 +250,14 @@ detect_version() {
 }
 
 kernel_is() {
-	[[ -z ${OKV} ]] && detect_version
+	# ALL of these should be set before we can safely continue this function.
+	# some of the sources have in the past had only one set.
+	local v n=0
+	for v in OKV KV_{MAJOR,MINOR,PATCH} ; do [[ -z ${!v} ]] && n=1 ; done
+	[[ $n -eq 1 ]] && detect_version
+	unset v n
+
+	# Now we can continue
 	local operator test value x=0 y=0 z=0
 
 	case ${1} in
@@ -300,6 +310,36 @@ if [[ ${ETYPE} == sources ]]; then
 	SLOT="${PVR}"
 	DESCRIPTION="Sources for the ${KV_MAJOR}.${KV_MINOR} linux kernel"
 	IUSE="symlink build"
+
+	# Bug #266157, deblob for libre support
+	if [[ -z ${K_PREDEBLOBBED} ]] ; then
+		if [[ -z ${K_DEBLOB_AVAILABLE} ]] ; then
+			kernel_is ge 2 6 27 && \
+				kernel_is le 2 6 ${DEBLOB_MAX_VERSION} && \
+				K_DEBLOB_AVAILABLE=1
+		fi
+		if [[ ${K_DEBLOB_AVAILABLE} == "1" ]] ; then
+			IUSE="${IUSE} deblob"
+			# Reflect that kernels contain firmware blobs unless otherwise
+			# stripped
+			LICENSE="${LICENSE} !deblob? ( freedist )"
+
+			DEBLOB_PV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}"
+			DEBLOB_A="deblob-${DEBLOB_PV}"
+			DEBLOB_HOMEPAGE="http://www.fsfla.org/svnwiki/selibre/linux-libre/"
+			HOMEPAGE="${HOMEPAGE} ${DEBLOB_HOMEPAGE}"
+				
+			KERNEL_URI="${KERNEL_URI}
+				deblob? (
+					${DEBLOB_HOMEPAGE}/download/releases/LATEST-${DEBLOB_PV}.N/${DEBLOB_A}
+				)"
+		else
+			# We have no way to deblob older kernels, so just mark them as
+			# tainted with non-libre materials.
+			LICENSE="${LICENSE} freedist"
+		fi
+	fi
+
 elif [[ ${ETYPE} == headers ]]; then
 	DESCRIPTION="Linux system headers"
 
@@ -626,6 +666,11 @@ postinst_sources() {
 	# if we have USE=symlink, then force K_SYMLINK=1
 	use symlink && K_SYMLINK=1
 
+	# if we're using a deblobbed kernel, it's not supported
+	[[ $K_DEBLOB_AVAILABLE == 1 ]] && \
+		use deblob && \
+		K_SECURITY_UNSUPPORTED=deblob
+
 	# if we are to forcably symlink, delete it if it already exists first.
 	if [[ ${K_SYMLINK} > 0 ]]; then
 		[[ -h ${EROOT}usr/src/linux ]] && rm ${EROOT}usr/src/linux
@@ -669,9 +714,14 @@ postinst_sources() {
 	fi
 
 	# optionally display security unsupported message
-	if [[ -n ${K_SECURITY_UNSUPPORTED} ]]; then
-		echo
+	#  Start with why
+	if [[ ${K_SECURITY_UNSUPPORTED} = deblob ]]; then
+		ewarn "Deblobbed kernels are UNSUPPORTED by Gentoo Security."
+	elif [[ -n ${K_SECURITY_UNSUPPORTED} ]]; then
 		ewarn "${PN} is UNSUPPORTED by Gentoo Security."
+	fi
+	#  And now the general message.
+	if [[ -n ${K_SECURITY_UNSUPPORTED} ]]; then
 		ewarn "This means that it is likely to be vulnerable to recent security issues."
 		ewarn "For specific information on why this kernel is unsupported, please read:"
 		ewarn "http://www.gentoo.org/proj/en/security/kernel.xml"
@@ -1066,11 +1116,22 @@ kernel-2_src_unpack() {
 		kernel_is 2 4 && unpack_2_4
 		kernel_is 2 6 && unpack_2_6
 	fi
+
+	if [[ $K_DEBLOB_AVAILABLE == 1 ]] && use deblob ; then
+		cp "${DISTDIR}/${DEBLOB_A}" "${T}"
+		chmod +x "${T}/${DEBLOB_A}"
+	fi
 }
 
 kernel-2_src_compile() {
 	cd "${S}"
 	[[ ${ETYPE} == headers ]] && compile_headers
+
+	if [[ $K_DEBLOB_AVAILABLE == 1 ]] && use deblob ; then
+		echo ">>> Running deblob script ..."
+		sh "${T}/${DEBLOB_A}" --force || \
+			die "Deblob script failed to run!!!"
+	fi
 }
 
 kernel-2_pkg_preinst() {
