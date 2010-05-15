@@ -1,6 +1,30 @@
 # ChangeLog for mail-filter/spamassassin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/ChangeLog,v 1.174 2010/01/31 17:57:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-filter/spamassassin/ChangeLog,v 1.178 2010/04/29 21:17:34 darkside Exp $
+
+*spamassassin-3.3.1-r2 (29 Apr 2010)
+
+  29 Apr 2010; Jeremy Olexa <darkside@gentoo.org>
+  -spamassassin-3.3.1-r1.ebuild, +spamassassin-3.3.1-r2.ebuild:
+  Revision bump to add warning about importing new key, bug 313809. Patch by
+  David Abbott
+
+*spamassassin-3.3.1-r1 (07 Apr 2010)
+
+  07 Apr 2010; Jeremy Olexa <darkside@gentoo.org> files/3.3.1-spamd.init,
+  -spamassassin-3.3.1.ebuild, +spamassassin-3.3.1-r1.ebuild:
+  Revision bump to fix the init script. New behavior reports if it didn't
+  start properly instead of always reporting it started. Thanks to
+  Polynomial-C for reporting
+
+*spamassassin-3.3.1 (06 Apr 2010)
+
+  06 Apr 2010; Jeremy Olexa <darkside@gentoo.org> +files/3.3.1-spamd.init,
+  +spamassassin-3.3.1.ebuild:
+  Version bump. Thanks to David Abbott and others in bug 301119
+
+  19 Mar 2010; Jeroen Roovers <jer@gentoo.org> spamassassin-3.2.5-r2.ebuild:
+  Stable for HPPA (bug #301125).
 
   31 Jan 2010; Raúl Porcel <armin76@gentoo.org>
   spamassassin-3.2.5-r2.ebuild:
