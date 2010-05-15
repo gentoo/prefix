@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.22.1.ebuild,v 1.8 2010/05/11 19:47:44 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/glibmm-2.22.2.ebuild,v 1.1 2010/03/26 13:00:35 pacho Exp $
 
 inherit gnome2
 
@@ -40,11 +40,7 @@ src_test() {
 	cd "${S}/tests/"
 	emake check || die "emake check failed"
 
-	# Workaround bug 295726 until upstream fixes it
-	# for i in */test; do
-	export  \
-	LD_LIBRARY_PATH="${S}/glib/glibmm/.libs:${S}/gio/giomm/.libs:${LD_LIBRARY_PATH}"
-	for i in */.libs/test; do
+	for i in */test; do
 		${i} || die "Running tests failed at ${i}"
 	done
 }

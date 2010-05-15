@@ -1,6 +1,23 @@
 # ChangeLog for dev-cpp/glibmm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.140 2010/03/06 16:17:37 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-cpp/glibmm/ChangeLog,v 1.145 2010/05/11 19:47:44 ranger Exp $
+
+  11 May 2010; Brent Baude <ranger@gentoo.org> glibmm-2.22.1.ebuild:
+  Marking glibmm-2.22.1 ppc64 for bug 304777
+
+  07 May 2010; Jeroen Roovers <jer@gentoo.org> glibmm-2.22.1.ebuild:
+  Stable for HPPA (bug #304777).
+
+  07 Apr 2010; Brent Baude <ranger@gentoo.org> glibmm-2.22.1.ebuild:
+  Marking glibmm-2.22.1 ppc stable for bug 304777
+
+*glibmm-2.22.2 (26 Mar 2010)
+
+  26 Mar 2010; Pacho Ramos <pacho@gentoo.org> +glibmm-2.22.2.ebuild:
+  Version bump finally fixing bug 295726 and upstream bug 609552
+
+  24 Mar 2010; Raúl Porcel <armin76@gentoo.org> glibmm-2.22.1.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #304777
 
   06 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> glibmm-2.22.1.ebuild:
   x86 stable wrt bug #304777
