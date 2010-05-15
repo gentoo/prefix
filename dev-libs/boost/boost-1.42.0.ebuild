@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.42.0.ebuild,v 1.1 2010/03/03 13:01:59 djc Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.42.0.ebuild,v 1.3 2010/04/25 18:28:14 arfrever Exp $
 
 EAPI="2"
 
@@ -50,8 +50,7 @@ _add_line() {
 pkg_setup() {
 	# It doesn't compile with USE="python mpi" and python-3 (bug 295705)
 	if use python && use mpi ; then
-		python_version
-		if [[ "${PYVER_MAJOR}" != "2" ]]; then
+		if [[ "$(python_get_version --major)" != "2" ]]; then
 			eerror "The Boost.MPI python bindings do not support any other python version"
 			eerror "than 2.x. Please either use eselect to select a python 2.x version or"
 			eerror "disable the python and/or mpi use flag for =${CATEGORY}/${PF}."
@@ -150,8 +149,7 @@ src_configure() {
 	use mpi && mpi="using mpi ;"
 
 	if use python ; then
-		python_version
-		pystring="using python : ${PYVER} : ${EPREFIX}/usr :	${EPREFIX}/usr/include/python${PYVER} : ${EPREFIX}/usr/lib/python${PYVER} ;"
+		pystring="using python : $(python_get_version) : ${EPREFIX}/usr :	$(python_get_includedir) : $(python_get_libdir) ;"
 	fi
 
 	cat > "${S}/user-config.jam" << __EOF__
@@ -182,7 +180,7 @@ __EOF__
 	use python || OPTIONS="${OPTIONS} --without-python"
 
 	# https://svn.boost.org/trac/boost/attachment/ticket/2597/add-disable-long-double.patch
-	if use sparc || use mips || use hppa || use arm || use x86-fbsd; then
+	if use sparc || use mips || use hppa || use arm || use x86-fbsd || use sh; then
 		OPTIONS="${OPTIONS} --disable-long-double"
 	fi
 
@@ -297,10 +295,10 @@ src_install () {
 
 	# Move the mpi.so to the right place and make sure it's slotted
 	if use mpi && use python; then
-		mkdir -p "${ED}/usr/$(get_libdir)/python${PYVER}/site-packages/boost_${MAJOR_PV}" || die
-		mv "${ED}/usr/$(get_libdir)/mpi.so" "${ED}/usr/$(get_libdir)/python${PYVER}/site-packages/boost_${MAJOR_PV}/" || die
-		touch "${ED}/usr/$(get_libdir)/python${PYVER}/site-packages/boost_${MAJOR_PV}/__init__.py" || die
-		_add_line "python=\"${EPREFIX}/usr/$(get_libdir)/python${PYVER}/site-packages/boost_${MAJOR_PV}/mpi.so\""
+		mkdir -p "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}" || die
+		mv "${ED}/usr/$(get_libdir)/mpi.so" "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}/" || die
+		touch "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}/__init__.py" || die
+		_add_line "python=\"${EPREFIX}$(python_get_sitedir)/boost_${MAJOR_PV}/mpi.so\""
 	fi
 
 	if use doc ; then

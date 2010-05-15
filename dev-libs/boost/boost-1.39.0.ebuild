@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.39.0.ebuild,v 1.8 2009/11/25 17:59:16 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.39.0.ebuild,v 1.9 2010/04/25 18:28:14 arfrever Exp $
 
 EAPI="2"
 
@@ -137,8 +137,7 @@ src_configure() {
 	use mpi && mpi="using mpi ;"
 
 	if use python ; then
-		python_version
-		pystring="using python : ${PYVER} : ${EPREFIX}/usr :	${EPREFIX}/usr/include/python${PYVER} : ${EPREFIX}/usr/lib/python${PYVER} ;"
+		pystring="using python : $(python_get_version) : ${EPREFIX}/usr :	$(python_get_includedir) : $(python_get_libdir) ;"
 	fi
 
 	cat > "${S}/user-config.jam" << __EOF__
@@ -257,10 +256,10 @@ src_install () {
 
 	# Move the mpi.so to the right place and make sure it's slotted
 	if use mpi && use python; then
-		mkdir -p "${ED}/usr/$(get_libdir)/python${PYVER}/site-packages/boost_${MAJOR_PV}"
-		mv "${ED}/usr/$(get_libdir)/mpi.so" "${ED}/usr/$(get_libdir)/python${PYVER}/site-packages/boost_${MAJOR_PV}/"
-		touch "${ED}/usr/$(get_libdir)/python${PYVER}/site-packages/boost_${MAJOR_PV}/__init__.py"
-		_add_line "python=\"${EPREFIX}/usr/$(get_libdir)/python${PYVER}/site-packages/boost_${MAJOR_PV}/mpi.so\""
+		mkdir -p "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}"
+		mv "${ED}/usr/$(get_libdir)/mpi.so" "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}/"
+		touch "${ED}$(python_get_sitedir)/boost_${MAJOR_PV}/__init__.py"
+		_add_line "python=\"${EPREFIX}$(python_get_sitedir)/boost_${MAJOR_PV}/mpi.so\""
 	fi
 
 	if use doc ; then
