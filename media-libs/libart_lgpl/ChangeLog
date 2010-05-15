@@ -1,6 +1,24 @@
 # ChangeLog for media-libs/libart_lgpl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/ChangeLog,v 1.63 2009/09/07 22:07:33 eva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libart_lgpl/ChangeLog,v 1.66 2010/05/04 16:12:01 tester Exp $
+
+  03 May 2010; Olivier Crête <tester@gentoo.org>
+  libart_lgpl-2.3.21-r1.ebuild:
+  amd64 stable, bug #314899
+
+*libart_lgpl-2.3.21-r1 (08 Apr 2010)
+
+  08 Apr 2010; Mart Raudsepp <leio@gentoo.org> -libart_lgpl-2.3.21.ebuild,
+  +libart_lgpl-2.3.21-r1.ebuild:
+  Restore libtool file
+
+*libart_lgpl-2.3.21 (06 Apr 2010)
+
+  06 Apr 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  +libart_lgpl-2.3.21.ebuild, +files/libart_lgpl-2.3.21-crosscompile.patch,
+  +files/libart_lgpl-2.3.21-no-test-build.patch:
+  Version bump. Upstream supposedly integrated some crosscompile patch but
+  still didn't get it right.
 
   07 Sep 2009; Gilles Dartiguelongue <eva@gentoo.org>
   -libart_lgpl-2.3.19-r1.ebuild:
