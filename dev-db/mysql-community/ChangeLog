@@ -1,6 +1,18 @@
 # ChangeLog for dev-db/mysql-community
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.28 2010/02/23 06:04:00 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/mysql-community/ChangeLog,v 1.31 2010/03/24 20:39:03 robbat2 Exp $
+
+# -------------------------
+# This package is now obsolete. All users should migrate to dev-db/mysql!
+# -------------------------
+
+  24 Mar 2010; Robin H. Johnson <robbat2@gentoo.org> files/my.cnf-5.1:
+  Missed copying back last version of the new my.cnf from my personal
+  overlay, and caused bug #311151.
+
+  24 Mar 2010; Robin H. Johnson <robbat2@gentoo.org> +files/my.cnf-5.1:
+  Just add new config files that gets rid of some deprecated warnings, so
+  the eclass does not break anything.
 
   23 Feb 2010; Robin H. Johnson <robbat2@gentoo.org> metadata.xml:
   Resync the metadata.xml between mysql packages.
