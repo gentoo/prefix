@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.10 2010/04/05 07:41:09 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.13 2010/05/01 16:05:45 flameeyes Exp $
 #
 # @ECLASS: ruby-ng.eclass
 # @MAINTAINER:
@@ -216,7 +216,16 @@ done
 
 _ruby_invoke_environment() {
 	old_S=${S}
-	sub_S=${S#${WORKDIR}}
+	sub_S=${S#${WORKDIR}/}
+
+	# Special case, for the always-lovely GitHub fetches. With this,
+	# we allow the star glob to just expand to whatever directory it's
+	# called.
+	if [[ ${sub_S} = *"*" ]]; then
+		pushd "${WORKDIR}"/all &>/dev/null
+		sub_S=$(eval ls -d ${sub_S} 2>/dev/null)
+		popd &>/dev/null
+	fi
 
 	environment=$1; shift
 
@@ -431,6 +440,13 @@ ruby-ng_src_install() {
 		_ruby_each_implementation _each_ruby_check_install
 }
 
+# @FUNCTION: ruby_rbconfig_value
+# @USAGE: rbconfig item
+# @RETURN: Returns the value of the given rbconfig item of the Ruby interpreter in ${RUBY}.
+ruby_rbconfig_value() {
+	echo $(${RUBY} -rrbconfig -e "puts Config::CONFIG['$1']")
+}
+
 # @FUNCTION: doruby
 # @USAGE: file [file...]
 # @DESCRIPTION:
@@ -438,7 +454,7 @@ ruby-ng_src_install() {
 doruby() {
 	[[ -z ${RUBY} ]] && die "\$RUBY is not set"
 	( # don't want to pollute calling env
-		sitelibdir=$(${RUBY} -rrbconfig -e 'print Config::CONFIG["sitelibdir"]')
+		sitelibdir=$(ruby_rbconfig_value 'sitelibdir')
 		insinto ${sitelibdir#${EPREFIX}}
 		insopts -m 0644
 		doins "$@"
@@ -454,10 +470,10 @@ ruby_get_libruby() {
 # @FUNCTION: ruby_get_hdrdir
 # @RETURN: The location of the header files belonging to the Ruby interpreter in ${RUBY}.
 ruby_get_hdrdir() {
-	local rubyhdrdir=$(${RUBY} -rrbconfig -e 'puts Config::CONFIG["rubyhdrdir"]')
+	local rubyhdrdir=$(ruby_rbconfig_value 'rubyhdrdir')
 
 	if [[ "${rubyhdrdir}" = "nil" ]] ; then
-		rubyhdrdir=$(${RUBY} -rrbconfig -e 'puts Config::CONFIG["archdir"]')
+		rubyhdrdir=$(ruby_rbconfig_value 'archdir')
 	fi
 
 	echo "${rubyhdrdir}"
