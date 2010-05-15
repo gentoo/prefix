@@ -1,6 +1,26 @@
 # ChangeLog for app-editors/scite
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/ChangeLog,v 1.89 2010/02/27 11:53:15 nelchael Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/ChangeLog,v 1.95 2010/05/09 18:16:40 armin76 Exp $
+
+  09 May 2010; Raúl Porcel <armin76@gentoo.org> scite-2.03.ebuild:
+  sparc stable wrt #312851
+
+*scite-2.11 (21 Apr 2010)
+
+  21 Apr 2010; Krzysztof Pawlik <nelchael@gentoo.org> +scite-2.11.ebuild:
+  Version bump.
+
+  18 Apr 2010; <nixnut@gentoo.org> scite-2.03.ebuild:
+  ppc stable #312851
+
+  08 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> scite-2.03.ebuild:
+  x86 stable wrt bug #312851
+
+  05 Apr 2010; Markos Chandras <hwoarang@gentoo.org> scite-2.03.ebuild:
+  Stable on amd64 wrt bug #312851
+
+  05 Apr 2010; Krzysztof Pawlik <nelchael@gentoo.org> scite-2.03.ebuild:
+  Add LDFLAGS to makefile.
 
 *scite-2.03 (27 Feb 2010)
 

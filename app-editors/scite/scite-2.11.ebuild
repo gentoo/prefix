@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/scite-2.03.ebuild,v 1.6 2010/05/09 18:16:40 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/scite/scite-2.11.ebuild,v 1.1 2010/04/21 18:02:15 nelchael Exp $
 
 inherit toolchain-funcs eutils
 
