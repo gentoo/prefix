@@ -1,6 +1,42 @@
 # ChangeLog for mail-client/mozilla-thunderbird
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.323 2010/03/21 22:36:26 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/ChangeLog,v 1.331 2010/04/23 19:05:34 armin76 Exp $
+
+  23 Apr 2010; Raúl Porcel <armin76@gentoo.org>
+  mozilla-thunderbird-3.0.4-r1.ebuild:
+  alpha/ia64/sparc stable wrt #313003
+
+  18 Apr 2010; Markus Meier <maekke@gentoo.org>
+  mozilla-thunderbird-3.0.4-r1.ebuild:
+  amd64 stable, bug #313003
+
+  14 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  mozilla-thunderbird-3.0.4-r1.ebuild:
+  stable x86, security bug 313003
+
+  12 Apr 2010; Brent Baude <ranger@gentoo.org>
+  mozilla-thunderbird-3.0.4-r1.ebuild:
+  Marking mozilla-thunderbird-3.0.4-r1 ppc for bug 313003
+
+  12 Apr 2010; Brent Baude <ranger@gentoo.org>
+  mozilla-thunderbird-3.0.4-r1.ebuild:
+  Marking mozilla-thunderbird-3.0.4-r1 ppc64 for bug 313003
+
+  10 Apr 2010; <anarchy@gentoo.org> -mozilla-thunderbird-3.0.3-r2.ebuild,
+  -mozilla-thunderbird-3.0.4.ebuild:
+  cleanup unneeded builds
+
+*mozilla-thunderbird-3.0.4-r1 (10 Apr 2010)
+
+  10 Apr 2010; <anarchy@gentoo.org> +mozilla-thunderbird-3.0.4-r1.ebuild:
+  actually enable system hunspell support
+
+*mozilla-thunderbird-3.0.4 (08 Apr 2010)
+
+  08 Apr 2010; <anarchy@gentoo.org>
+  +files/1002_fix-system-hunspell-dict-detections.patch,
+  +mozilla-thunderbird-3.0.4.ebuild:
+  Security bump, include hunspell fixup for dictionaries.
 
 *mozilla-thunderbird-3.0.3-r2 (21 Mar 2010)
 

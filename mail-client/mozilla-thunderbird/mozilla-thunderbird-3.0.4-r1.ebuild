@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-3.0.3-r2.ebuild,v 1.1 2010/03/21 22:36:26 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/mail-client/mozilla-thunderbird/mozilla-thunderbird-3.0.4-r1.ebuild,v 1.6 2010/04/23 19:05:34 armin76 Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -111,6 +111,8 @@ src_prepare() {
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"
 
+	epatch "${FILESDIR}/1002_fix-system-hunspell-dict-detections.patch"
+
 	eautoreconf
 
 	cd mozilla
@@ -147,6 +149,7 @@ src_configure() {
 	mozconfig_annotate '' --with-sqlite-prefix="${EPREFIX}"/usr
 	mozconfig_annotate '' --x-includes="${EPREFIX}"/usr/include --x-libraries="${EPREFIX}"/usr/$(get_libdir)
 	mozconfig_annotate 'broken' --disable-crashreporter
+	mozconfig_annotate '' --enable-system-hunspell
 
 	# Use enable features
 	mozconfig_use_enable lightning calendar
