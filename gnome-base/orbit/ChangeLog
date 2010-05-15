@@ -1,6 +1,16 @@
 # ChangeLog for gnome-base/orbit
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/ChangeLog,v 1.157 2010/01/18 00:01:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/ChangeLog,v 1.159 2010/05/04 16:11:45 tester Exp $
+
+  03 May 2010; Olivier Crête <tester@gentoo.org> orbit-2.14.18.ebuild:
+  amd64 stable, bug #314899
+
+*orbit-2.14.18 (30 Mar 2010)
+
+  30 Mar 2010; Pacho Ramos <pacho@gentoo.org> +orbit-2.14.18.ebuild:
+  Version bump with some bug fixes: add a g_warning, fix FMR in forwarding
+  code, fix some problems with the preprocessor on Solaris, add a
+  CORBA_wstring_dup function.
 
   18 Jan 2010; Jeroen Roovers <jer@gentoo.org> orbit-2.14.17.ebuild:
   Stable for HPPA (bug #281427).
