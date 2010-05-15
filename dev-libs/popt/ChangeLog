@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/popt
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.81 2010/01/25 18:48:44 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/ChangeLog,v 1.82 2010/05/10 18:33:07 ssuominen Exp $
+
+*popt-1.16 (10 May 2010)
+
+  10 May 2010; Samuli Suominen <ssuominen@gentoo.org> +popt-1.16.ebuild:
+  Version bump.
 
   25 Jan 2010; Raúl Porcel <armin76@gentoo.org> popt-1.15.ebuild:
   arm/ia64/m68k/s390/sh stable wrt #296420

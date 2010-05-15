@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.14.ebuild,v 1.11 2010/01/06 09:46:35 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/popt/popt-1.16.ebuild,v 1.1 2010/05/10 18:33:07 ssuominen Exp $
 
-inherit eutils autotools
+EAPI=3
 
 DESCRIPTION="Parse Options - Command line parser"
 HOMEPAGE="http://rpm5.org/"
@@ -16,22 +16,16 @@ IUSE="nls"
 RDEPEND="nls? ( virtual/libintl )"
 DEPEND="nls? ( sys-devel/gettext )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.13-no-wchar-hack.patch # for Interix
-	epatch "${FILESDIR}"/${P}-interix.patch # for Interix
-}
+# FIXME
+RESTRICT="test"
 
-src_compile() {
+src_configure() {
 	econf \
-		--without-included-gettext \
-		$(use_enable nls) \
-		|| die
-	emake || die "emake failed"
+		--disable-dependency-tracking \
+		$(use_enable nls)
 }
 
 src_install() {
-	make DESTDIR="${D}" install || die
-	dodoc CHANGES README
+	emake DESTDIR="${D}" install || die
+	dodoc CHANGES README || die
 }
