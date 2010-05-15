@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.87 2010/04/14 18:14:45 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/libtool.eclass,v 1.88 2010/05/11 04:45:48 vapier Exp $
 #
 # Maintainer: base-system@gentoo.org
 #
@@ -374,7 +374,7 @@ elibtoolize() {
 							if [[ -z $(grep 'We do not want portage' "${x}/ltmain.sh") ]] ; then
 								echo
 								eerror "Portage patch requested, but failed to apply!"
-								eerror "Please bug azarah or vapier to add proper patch."
+								eerror "Please file a bug report to add a proper patch."
 								die "Portage patch requested, but failed to apply!"
 							fi
 						else
@@ -389,7 +389,7 @@ elibtoolize() {
 
 								echo
 								eerror "Portage patch failed to apply (ltmain.sh version ${version})!"
-								eerror "Please bug azarah or vapier to add proper patch."
+								eerror "Please file a bug report to add a proper patch."
 								die "Portage patch failed to apply!"
 							fi
 							# We do not want to run libtoolize ...

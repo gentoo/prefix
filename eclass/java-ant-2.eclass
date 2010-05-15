@@ -14,7 +14,7 @@
 #
 # Licensed under the GNU General Public License, v2
 #
-# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.48 2010/02/12 23:51:44 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/java-ant-2.eclass,v 1.49 2010/04/29 08:40:29 caster Exp $
 
 inherit java-utils-2
 
@@ -143,6 +143,11 @@ esac
 # src_configure rewrites the build.xml files
 # ------------------------------------------------------------------------------
 java-ant-2_src_configure() {
+	# if java support is optional, don't perform this when the USE flag is off
+	if hasq java-pkg-opt-2 ${INHERITED}; then
+		use ${JAVA_PKG_OPT_USE} || return
+	fi
+
 	# eant will call us unless called by Portage
 	[[ -e "${T}/java-ant-2_src_configure-run" ]] && return
 
