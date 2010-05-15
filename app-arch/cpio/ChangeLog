@@ -1,6 +1,20 @@
 # ChangeLog for app-arch/cpio
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.102 2010/03/12 18:55:08 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.106 2010/03/31 18:52:01 armin76 Exp $
+
+  31 Mar 2010; Raúl Porcel <armin76@gentoo.org> cpio-2.10-r1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #308827
+
+  15 Mar 2010; nixnut <nixnut@gentoo.org> cpio-2.10-r1.ebuild:
+  ppc stable #308827
+
+*cpio-2.11 (15 Mar 2010)
+
+  15 Mar 2010; Mike Frysinger <vapier@gentoo.org> +cpio-2.11.ebuild:
+  Version bump.
+
+  13 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> cpio-2.10-r1.ebuild:
+  x86 stable wrt bug #308827
 
   12 Mar 2010; Brent Baude <ranger@gentoo.org> cpio-2.10-r1.ebuild:
   Marking cpio-2.10-r1 ppc64 for bug 308827
