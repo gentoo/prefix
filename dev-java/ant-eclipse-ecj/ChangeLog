@@ -1,6 +1,20 @@
 # ChangeLog for dev-java/ant-eclipse-ecj
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ChangeLog,v 1.16 2010/01/23 14:06:48 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ChangeLog,v 1.19 2010/04/27 15:41:48 phajdan.jr Exp $
+
+  27 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  ant-eclipse-ecj-3.5.2.ebuild:
+  x86 stable wrt bug #316293
+
+  29 Mar 2010; Petteri Räty <betelgeuse@gentoo.org>
+  ant-eclipse-ecj-3.5.2.ebuild:
+  Filter jikes as a compiler. Fixes bug #311947.
+
+*ant-eclipse-ecj-3.5.2 (20 Mar 2010)
+
+  20 Mar 2010; Vlastimil Babka <caster@gentoo.org>
+  ant-eclipse-ecj-3.5.1.ebuild, +ant-eclipse-ecj-3.5.2.ebuild:
+  Version bump, bug #310415.
 
   23 Jan 2010; Alexis Ballier <aballier@gentoo.org>
   ant-eclipse-ecj-3.5.1.ebuild:
