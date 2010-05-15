@@ -1,6 +1,10 @@
 # ChangeLog for app-portage/splat
-# Copyright 2000-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/splat/ChangeLog,v 1.25 2008/01/26 16:13:33 grobian Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-portage/splat/ChangeLog,v 1.26 2010/03/31 13:03:55 idl0r Exp $
+
+  31 Mar 2010; Christian Ruppert <idl0r@gentoo.org> splat-0.07.ebuild,
+  splat-0.08.ebuild:
+  Fix repoman complains about useless dodoc "COPYING".
 
   26 Jan 2008; Fabian Groffen <grobian@gentoo.org> splat-0.08.ebuild:
   Dropped ppc-macos keyword, see you in prefix
