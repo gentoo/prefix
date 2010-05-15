@@ -1,26 +1,26 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.4_rc1.ebuild,v 1.1 2010/03/07 15:50:54 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.4-r1.ebuild,v 1.1 2010/04/15 23:31:43 arfrever Exp $
 
-EAPI="2"
+EAPI="3"
 
-inherit flag-o-matic versionator
+inherit eutils flag-o-matic versionator
+
+MAJOR_MINOR_VERSION="$(get_version_component_range 1-2)"
 
 DESCRIPTION="International Components for Unicode"
-HOMEPAGE="http://www.icu-project.org/ http://ibm.com/software/globalization/icu/"
+HOMEPAGE="http://www.icu-project.org/"
 
-BASEURI="http://download.icu-project.org/files/${PN}4c/${PV/_/}"
-DOCS_BASEURI="http://download.icu-project.org/files/${PN}4c/${PV/_/}"
-DOCS_PV="${DOCS_PV/./_}"
-SRCPKG="${PN}4c-${PV//./_}-src.tgz"
-APIDOCS="${PN}4c-${PV//./_}-docs.zip"
+BASE_URI="http://download.icu-project.org/files/icu4c/${PV}"
+DOCS_BASE_URI="http://download.icu-project.org/files/icu4c/${MAJOR_MINOR_VERSION}"
+SRC_ARCHIVE="icu4c-${PV//./_}-src.tgz"
+DOCS_ARCHIVE="icu4c-${MAJOR_MINOR_VERSION//./_}-docs.zip"
 
-SRC_URI="${BASEURI}/${SRCPKG}
-	doc? ( ${DOCS_BASEURI}/${APIDOCS} )"
+SRC_URI="${BASE_URI}/${SRC_ARCHIVE}
+	doc? ( ${DOCS_BASE_URI}/${DOCS_ARCHIVE} )"
 
 LICENSE="BSD"
 SLOT="0"
-#KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~x86-fbsd"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug doc examples"
 
@@ -29,19 +29,14 @@ RDEPEND=""
 
 S="${WORKDIR}/${PN}/source"
 
-pkg_setup() {
-	# ICU fails to build with enabled optimizations (bug #296901).
-	if use arm || use ia64 || use sparc; then
-		filter-flags -O*
-	fi
-}
+QA_DT_NEEDED="/usr/lib.*/libicudata.so.${MAJOR_MINOR_VERSION/./}.0"
 
 src_unpack() {
-	unpack ${SRCPKG}
+	unpack "${SRC_ARCHIVE}"
 	if use doc; then
-		mkdir apidocs
-		pushd apidocs > /dev/null
-		unpack ${APIDOCS}
+		mkdir docs
+		pushd docs > /dev/null
+		unpack "${DOCS_ARCHIVE}"
 		popd > /dev/null
 	fi
 }
@@ -54,7 +49,7 @@ src_prepare() {
 		sed -i -e "/^${x} =.*/s:@${x}@::" "config/Makefile.inc.in" || die "sed failed"
 	done
 
-#	epatch "${FILESDIR}/${PN}-4.2.1-pkgdata-build_data_without_assembly.patch"
+	epatch "${FILESDIR}/${P}-install_libicutest.patch"
 
 	# for correct install_names
 	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
@@ -109,7 +104,7 @@ src_install() {
 	dohtml ../readme.html
 	dodoc ../unicode-license.txt
 	if use doc; then
-		insinto /usr/share/doc/${PF}/html/apidocs
-		doins -r "${WORKDIR}"/apidocs/*
+		insinto /usr/share/doc/${PF}/html/api
+		doins -r "${WORKDIR}/docs/"*
 	fi
 }

@@ -1,6 +1,24 @@
 # ChangeLog for dev-libs/icu
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.104 2010/03/07 15:50:54 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.107 2010/04/29 18:22:54 arfrever Exp $
+
+*icu-4.4.1 (29 Apr 2010)
+
+  29 Apr 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -icu-4.4.ebuild, +icu-4.4.1.ebuild:
+  Version bump.
+
+*icu-4.4-r1 (15 Apr 2010)
+
+  15 Apr 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +icu-4.4-r1.ebuild, +files/icu-4.4-install_libicutest.patch:
+  Set QA_DT_NEEDED (bug #215729). Install libicutest (bug #310297).
+
+*icu-4.4 (19 Mar 2010)
+
+  19 Mar 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -icu-4.4_rc1.ebuild, +icu-4.4.ebuild:
+  Version bump.
 
 *icu-4.4_rc1 (07 Mar 2010)
 
