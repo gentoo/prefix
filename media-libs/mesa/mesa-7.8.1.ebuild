@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/Attic/mesa-7.8.ebuild,v 1.2 2010/04/03 17:15:50 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.8.1.ebuild,v 1.1 2010/04/06 08:43:11 scarabeus Exp $
 
 EAPI=3
 
@@ -11,13 +11,12 @@ if [[ ${PV} = 9999* ]]; then
 	EXPERIMENTAL="true"
 fi
 
-inherit autotools multilib flag-o-matic ${GIT_ECLASS} portability versionator
+inherit autotools multilib flag-o-matic ${GIT_ECLASS} portability
 
 OPENGL_DIR="xorg-x11"
 
 MY_PN="${PN/m/M}"
 MY_P="${MY_PN}-${PV/_/-}"
-MAJOR_MINOR=$(get_version_component_range 1-2)
 MY_SRC_P="${MY_PN}Lib-${PV/_/-}"
 DESCRIPTION="OpenGL-like graphic library for Linux"
 HOMEPAGE="http://mesa3d.sourceforge.net/"
@@ -26,7 +25,7 @@ HOMEPAGE="http://mesa3d.sourceforge.net/"
 if [[ $PV = 9999* ]]; then
 	SRC_URI="${SRC_PATCHES}"
 else
-	SRC_URI="ftp://ftp.freedesktop.org/pub/mesa/${MAJOR_MINOR}/${MY_SRC_P}.tar.bz2
+	SRC_URI="ftp://ftp.freedesktop.org/pub/mesa/${PV}/${MY_SRC_P}.tar.bz2
 		${SRC_PATCHES}"
 fi
 
