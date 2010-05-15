@@ -1,6 +1,17 @@
 # ChangeLog for net-misc/openssh
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.379 2010/03/29 06:39:37 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/openssh/ChangeLog,v 1.381 2010/04/20 04:50:38 robbat2 Exp $
+
+*openssh-5.5_p1-r1 (20 Apr 2010)
+
+  20 Apr 2010; Robin H. Johnson <robbat2@gentoo.org>
+  +openssh-5.5_p1-r1.ebuild:
+  The 5.4 patchsets for HPN and LPK apply and work perfectly with 5.5.
+
+*openssh-5.5_p1 (16 Apr 2010)
+
+  16 Apr 2010; Mike Frysinger <vapier@gentoo.org> +openssh-5.5_p1.ebuild:
+  Version bump.
 
 *openssh-5.4_p1-r2 (29 Mar 2010)
 
