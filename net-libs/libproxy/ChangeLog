@@ -1,6 +1,20 @@
 # ChangeLog for net-libs/libproxy
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.25 2010/03/05 09:33:57 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.29 2010/05/11 21:21:13 ranger Exp $
+
+  11 May 2010; Brent Baude <ranger@gentoo.org> libproxy-0.2.3-r3.ebuild:
+  stable ppc64, bug 314007
+
+  08 May 2010; Raúl Porcel <armin76@gentoo.org> libproxy-0.2.3-r3.ebuild:
+  alpha/arm//ia64/sh/sparc stable wrt #314007
+
+  26 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  libproxy-0.2.3-r3.ebuild:
+  stable x86, bug 314007
+
+  13 Apr 2010; Markos Chandras <hwoarang@gentoo.org>
+  libproxy-0.2.3-r3.ebuild:
+  Stable on amd64 wrt bug #314007
 
 *libproxy-0.2.3-r3 (05 Mar 2010)
 
