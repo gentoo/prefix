@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/confuse
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.40 2010/02/13 02:46:22 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.41 2010/03/19 16:33:06 matsuu Exp $
+
+*confuse-2.7 (19 Mar 2010)
+
+  19 Mar 2010; MATSUU Takuto <matsuu@gentoo.org> +confuse-2.7.ebuild:
+  Version bumped. the ebuild was submitted by Nathan Phillip Brink, bug
+  #306295.
 
   13 Feb 2010; MATSUU Takuto <matsuu@gentoo.org> -confuse-2.6.ebuild,
   -confuse-2.6-r2.ebuild:
