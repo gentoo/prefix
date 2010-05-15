@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.6-r1.ebuild,v 1.1 2010/03/28 14:49:55 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/nss-3.12.6-r1.ebuild,v 1.6 2010/05/09 16:51:40 armin76 Exp $
 
 inherit eutils flag-o-matic multilib toolchain-funcs
 
@@ -67,10 +67,8 @@ src_compile() {
 	*) die "Failed to detect whether your arch is 64bits or 32bits, disable distcc if you're using it, please";;
 	esac
 
-	export PKG_CONFIG_ALLOW_SYSTEM_LIBS=1
-	export PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1
-	export NSPR_INCLUDE_DIR=`pkg-config --cflags-only-I nspr | sed 's/-I//'`
-	export NSPR_LIB_DIR=`pkg-config --libs-only-L nspr | sed 's/-L//'`
+	export NSPR_INCLUDE_DIR=`nspr-config --includedir`
+	export NSPR_LIB_DIR=`nspr-config --libdir`
 	export BUILD_OPT=1
 	export NSS_USE_SYSTEM_SQLITE=1
 	export NSDISTMODE=copy
@@ -95,7 +93,7 @@ src_install () {
 	cp -L */lib/*.chk "${ED}"/usr/$(get_libdir) || die "copying chk files failed"
 	cp -L */lib/libcrmf.a "${ED}"/usr/$(get_libdir) || die "copying libs failed"
 
-	# Install nspr-config and pkgconfig file
+	# Install nss-config and pkgconfig file
 	dodir /usr/bin
 	cp -L */bin/nss-config "${ED}"/usr/bin
 	dodir /usr/$(get_libdir)/pkgconfig

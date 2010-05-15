@@ -1,6 +1,29 @@
 # ChangeLog for dev-libs/nss
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.174 2010/03/28 14:49:55 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/nss/ChangeLog,v 1.179 2010/05/09 16:51:40 armin76 Exp $
+
+  09 May 2010; Raúl Porcel <armin76@gentoo.org> nss-3.12.6-r1.ebuild:
+  alpha/arm/ia64/sparc stable wrt #314025
+
+  20 Apr 2010; Christian Faulhammer <fauli@gentoo.org> nss-3.12.6-r1.ebuild:
+  stable x86, bug 314025
+
+  18 Apr 2010; Pacho Ramos <pacho@gentoo.org> nss-3.12.6-r1.ebuild:
+  amd64 stable, bug 314025
+
+  10 Apr 2010; <anarchy@gentoo.org> -files/3.12-nss.pc.in,
+  -files/nss-3.11.5-config-1.patch, -nss-3.11.9-r1.ebuild,
+  -files/nss-3.11-config.patch, -nss-3.12.2.ebuild, -nss-3.12.3.ebuild,
+  -nss-3.12.3-r1.ebuild, -files/nss-3.12.3-executable-stacks.patch,
+  -files/nss-3.12-config-1.patch, -nss-3.12.4-r2.ebuild,
+  -files/nss-3.12.4-gentoo-fixups-1.diff, -files/3.12-nss-config.in,
+  -files/nss-3.11-config-1.patch, -files/nss-3.12-config.patch,
+  -files/nss.pc.in, -files/nss-config.in, -files/nss-fbsd7.patch,
+  -files/nss-mips64-2.patch, -files/nss-mips64.patch:
+  remove stable ebuilds/files
+
+  08 Apr 2010; <anarchy@gentoo.org> nss-3.12.6-r1.ebuild:
+  use nspr-config to determine includes/libdir
 
 *nss-3.12.6-r1 (28 Mar 2010)
 
