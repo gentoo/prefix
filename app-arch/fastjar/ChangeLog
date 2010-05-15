@@ -1,6 +1,23 @@
 # ChangeLog for app-arch/fastjar
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/fastjar/ChangeLog,v 1.11 2009/10/12 16:39:16 halcy0n Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/fastjar/ChangeLog,v 1.16 2010/05/13 17:37:38 josejx Exp $
+
+  13 May 2010; Joseph Jezak <josejx@gentoo.org> fastjar-0.98.ebuild:
+  Marked ppc stable for bug #316289.
+
+  11 May 2010; Brent Baude <ranger@gentoo.org> fastjar-0.98.ebuild:
+  stable ppc64, bug 316289
+
+  27 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> fastjar-0.98.ebuild:
+  x86 stable wrt bug #316289
+
+*fastjar-0.98 (20 Mar 2010)
+
+  20 Mar 2010; Petteri Räty <betelgeuse@gentoo.org> +fastjar-0.98.ebuild:
+  Version bump. Fixes bug #287018.
+
+  20 Mar 2010; Petteri Räty <betelgeuse@gentoo.org> -fastjar-0.94.ebuild:
+  Remove old version.
 
   12 Oct 2009; Mark Loeser <halcy0n@gentoo.org> fastjar-0.94.ebuild:
   QA fixes; unquoted variables
