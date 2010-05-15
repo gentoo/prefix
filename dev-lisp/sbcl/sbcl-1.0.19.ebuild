@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.19.ebuild,v 1.8 2009/10/04 14:54:36 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/sbcl-1.0.19.ebuild,v 1.9 2010/03/26 01:54:24 pchrist Exp $
 
 inherit eutils flag-o-matic
 
@@ -66,10 +66,6 @@ pkg_setup() {
 		eerror "architectures is not a supported configuration in Gentoo.  Please"
 		eerror "refer to Bug #119016 for more information."
 		die
-	fi
-	if use doc && ! built_with_use media-gfx/graphviz png; then
-		eerror "media-gfx/graphviz has to be built with png support."
-		die "Missing png USE-flag for media-gfx/graphviz"
 	fi
 }
 

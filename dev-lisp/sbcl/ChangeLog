@@ -1,6 +1,38 @@
 # ChangeLog for dev-lisp/sbcl
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.161 2009/10/04 14:54:36 ssuominen Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lisp/sbcl/ChangeLog,v 1.167 2010/03/26 01:54:24 pchrist Exp $
+
+  26 Mar 2010; Panagiotis Christopoulos <pchrist@gentoo.org>
+  sbcl-1.0.19.ebuild, sbcl-1.0.26-r10.ebuild, sbcl-1.0.27-r10.ebuild,
+  sbcl-1.0.28.ebuild, sbcl-1.0.31.ebuild:
+  Fix graphviz's built_with_use png wrong test case, thanks to Kacper
+  Kowalik (Xarthisius), reference bug #308869
+
+  26 Mar 2010; Panagiotis Christopoulos <pchrist@gentoo.org>
+  sbcl-1.0.36-r1.ebuild:
+  force again EAPI 3, fallback was from wrong decision
+
+  26 Mar 2010; Panagiotis Christopoulos <pchrist@gentoo.org>
+  sbcl-1.0.36-r1.ebuild:
+  Fallback to EAPI=2 and reenable the old BIG FAT timestamp hack, until
+  EAPI=3 is available to all testing versions of portage
+
+*sbcl-1.0.36-r1 (25 Mar 2010)
+
+  25 Mar 2010; Panagiotis Christopoulos <pchrist@gentoo.org>
+  -sbcl-1.0.36.ebuild, +sbcl-1.0.36-r1.ebuild:
+  force EAPI=3 to users who already have the .36 version
+
+  25 Mar 2010; Panagiotis Christopoulos <pchrist@gentoo.org>
+  sbcl-1.0.36.ebuild:
+  Update to EAPI=3
+
+*sbcl-1.0.36 (24 Mar 2010)
+
+  24 Mar 2010; Panagiotis Christopoulos <pchrist@gentoo.org>
+  +sbcl-1.0.36.ebuild, +files/sbcl-1.0.36-fix_linux-os-c.patch:
+  Version bump to 1.0.36, also thanks to Stelian Ionescu (fe[nl]ix)
+  <sionescu at cddr.org>, fixes bugs 292830,308869
 
   04 Oct 2009; Samuli Suominen <ssuominen@gentoo.org> sbcl-1.0.19.ebuild,
   sbcl-1.0.26-r10.ebuild, sbcl-1.0.27-r10.ebuild, sbcl-1.0.28.ebuild,
