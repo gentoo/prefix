@@ -1,6 +1,12 @@
 # ChangeLog for net-misc/ntp
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.157 2009/12/15 12:52:32 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ChangeLog,v 1.158 2010/04/16 22:42:22 vapier Exp $
+
+*ntp-4.2.6_p1 (16 Apr 2010)
+
+  16 Apr 2010; Mike Frysinger <vapier@gentoo.org> +ntp-4.2.6_p1.ebuild,
+  +files/ntp-4.2.6_p1-linking.patch:
+  Version bump #315651 by Lars Wendler.
 
   15 Dec 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   files/ntp-4.2.6-linking.patch:
