@@ -1,6 +1,18 @@
 # ChangeLog for net-irc/xchat
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.277 2009/09/07 13:36:02 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/xchat/ChangeLog,v 1.279 2010/04/25 17:46:16 armin76 Exp $
+
+  25 Apr 2010; Raúl Porcel <armin76@gentoo.org> xchat-2.8.6-r3.ebuild:
+  Add ~arm
+
+*xchat-2.8.6-r3 (06 Apr 2010)
+
+  06 Apr 2010; <polynomial-c@gentoo.org> +xchat-2.8.6-r3.ebuild,
+  +files/xchat-2.8.6-automagic-ntlm-configure-fix.patch,
+  +files/xchat-2.8.6-fix-button-underlines.patch:
+  Revbump. Converted ebuild to EAPI2. Fixed bug #286146 (thanks Evgen Boppi
+  for report and patch) and bug #294636 (reported by Joost Ruis).
+  Please CC me on bugreports regarding this revision.
 
   07 Sep 2009; Raúl Porcel <armin76@gentoo.org> xchat-2.8.6-r1.ebuild,
   xchat-2.8.6-r2.ebuild:

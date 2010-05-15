@@ -3,6 +3,7 @@
 <pkgmetadata>
 <herd>net-irc</herd>
 <use>
+<flag name='ntlm'>Enable NTLM authentication</flag>
 <flag name='xchatdccserver'>Enables support for the /dccserver command via a patch</flag>
 <flag name='xchatnogtk'>Disables building the GTK front end to XChat</flag>
 </use>
