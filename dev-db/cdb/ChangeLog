@@ -1,6 +1,12 @@
 # ChangeLog for dev-db/cdb
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/cdb/ChangeLog,v 1.44 2008/08/01 15:05:00 hattya Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-db/cdb/ChangeLog,v 1.45 2010/03/30 23:20:28 mabi Exp $
+
+*cdb-0.75-r3 (30 Mar 2010)
+
+  30 Mar 2010; <mabi@gentoo.org> +cdb-0.75-r3.ebuild,
+  +files/cdb-0.75-stdint.diff:
+  fix file collision (bug #248327) thanks to Rolf Eike Beer for the patch
 
   01 Aug 2008; Akinori Hattori <hattya@gentoo.org> cdb-0.75-r2.ebuild:
   fixes bug #210730.
