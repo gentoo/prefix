@@ -1,6 +1,13 @@
 # ChangeLog for media-libs/libsdl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.167 2010/03/15 18:27:56 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsdl/ChangeLog,v 1.168 2010/04/08 20:25:47 mr_bones_ Exp $
+
+*libsdl-1.2.14-r2 (08 Apr 2010)
+
+  08 Apr 2010; Michael Sterrett <mr_bones_@gentoo.org>
+  +libsdl-1.2.14-r2.ebuild, +files/libsdl-1.2.14-click.patch:
+  add static-libs support; add mouse click patch from Debian to try to
+  work around bug #290695
 
 *libsdl-1.2.14-r1 (15 Mar 2010)
 
