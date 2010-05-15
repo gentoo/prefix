@@ -1,6 +1,27 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.108 2010/03/09 22:02:11 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.113 2010/04/15 15:57:09 ranger Exp $
+
+  15 Apr 2010; Brent Baude <ranger@gentoo.org> transmission-1.92.ebuild:
+  Marking transmission-1.92 ppc for bug 309831
+
+  08 Apr 2010; Peter Volkov <pva@gentoo.org> transmission-1.92.ebuild:
+  amd64 stable, security bug #309831
+
+  08 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  transmission-1.92.ebuild:
+  x86 stable wrt security bug #309831
+
+  18 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
+  transmission-1.83.ebuild, transmission-1.91.ebuild,
+  transmission-1.92.ebuild:
+  Fix curl dependencies.
+
+*transmission-1.92 (16 Mar 2010)
+
+  16 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +transmission-1.92.ebuild:
+  Version bump wrt security #309831.
 
   09 Mar 2010; Joseph Jezak <josejx@gentoo.org> transmission-1.83.ebuild:
   Marked ppc stable for bug #301773.
