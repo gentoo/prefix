@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.8.4.ebuild,v 1.6 2009/11/17 19:53:00 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.9.10.ebuild,v 1.1 2010/04/23 00:02:10 arfrever Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit autotools libtool
 
@@ -26,7 +26,7 @@ fi
 # GPL-3 for the gnutls-extras library and LGPL for the gnutls library.
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="bindist +cxx doc examples guile lzo nls zlib"
 
 RDEPEND="dev-libs/libgpg-error
@@ -45,9 +45,8 @@ S="${WORKDIR}/${P%_pre*}"
 
 pkg_setup() {
 	if use lzo && use bindist; then
-		ewarn "lzo support was disabled for binary distribution of gnutls"
-		ewarn "due to licensing issues. See Bug 202381 for details."
-		epause 5
+		ewarn "lzo support was disabled for binary distribution of GnuTLS"
+		ewarn "due to licensing issues. See Bug #202381 for details."
 	fi
 }
 
