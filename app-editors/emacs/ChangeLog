@@ -1,6 +1,33 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.371 2010/03/11 08:50:36 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.377 2010/05/08 07:26:28 ulm Exp $
+
+*emacs-23.2 (08 May 2010)
+
+  08 May 2010; Ulrich Mueller <ulm@gentoo.org> +emacs-23.2.ebuild,
+  metadata.xml:
+  Version bump, based on emacs-vcs-23.1.97.ebuild. New gconf USE flag.
+  Initial patchset includes patch for crt* start files dir from bug 306831.
+
+  07 May 2010; Jeroen Roovers <jer@gentoo.org> emacs-21.4-r20.ebuild,
+  emacs-22.3-r4.ebuild, emacs-23.1-r3.ebuild:
+  Stable for HPPA (bug #313861).
+
+  01 May 2010; Ulrich Mueller <ulm@gentoo.org> emacs-22.3-r4.ebuild,
+  emacs-23.1-r3.ebuild:
+  Revert change of 2010-04-08. Fix directory owner.
+
+  25 Apr 2010; Tiago Cunha <tcunha@gentoo.org> emacs-21.4-r20.ebuild,
+  emacs-22.3-r4.ebuild, emacs-23.1-r3.ebuild:
+  stable sparc, bug 313861
+
+  09 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  emacs-21.4-r20.ebuild, emacs-22.3-r4.ebuild, emacs-23.1-r3.ebuild:
+  stable x86, bug 313861
+
+  08 Apr 2010; Ulrich Mueller <ulm@gentoo.org> emacs-22.3-r4.ebuild,
+  emacs-23.1-r3.ebuild:
+  Fix owner of scores files.
 
   11 Mar 2010; Ulrich Mueller <ulm@gentoo.org> emacs-18.59-r6.ebuild,
   emacs-21.4-r20.ebuild, emacs-22.3-r4.ebuild, emacs-23.1-r3.ebuild:

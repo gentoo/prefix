@@ -20,6 +20,8 @@
      available separately.
 </longdescription>
 <use>
+  <flag name='gconf'>Use <pkg>gnome-base/gconf</pkg> to read the system
+    font name</flag>
   <flag name='gzip-el'>Compress bundled Emacs Lisp source</flag>
   <flag name='hesiod'>Enable support for <pkg>net-dns/hesiod</pkg></flag>
   <flag name='leim'>Add support for Emacs input methods</flag>

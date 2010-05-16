@@ -1,23 +1,20 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-23.1-r3.ebuild,v 1.8 2010/05/08 07:26:28 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-23.2.ebuild,v 1.2 2010/05/08 08:06:50 ulm Exp $
 
 EAPI=2
 
-inherit autotools elisp-common eutils flag-o-matic
+inherit autotools elisp-common eutils flag-o-matic multilib
 
 if [ "${PV##*.}" = "9999" ]; then
-	ECVS_AUTH="pserver"
-	ECVS_SERVER="cvs.savannah.gnu.org:/sources/emacs"
-	ECVS_MODULE="emacs"
-	ECVS_BRANCH="HEAD"
-	ECVS_LOCALNAME="emacs"
-	inherit cvs
+	inherit bzr
+	EMACS_BRANCH="emacs-23"
+	EBZR_REPO_URI="http://bzr.savannah.gnu.org/r/emacs/${EMACS_BRANCH}/"
+	EBZR_CACHE_DIR="emacs-${EMACS_BRANCH#emacs-}"
 	SRC_URI=""
-	S="${WORKDIR}/${ECVS_LOCALNAME}"
 else
 	SRC_URI="mirror://gnu/emacs/${P}.tar.bz2
-		mirror://gentoo/${P}-patches-7.tar.bz2"
+		mirror://gentoo/${P}-patches-1.tar.bz2"
 	# FULL_VERSION keeps the full version number, which is needed in
 	# order to determine some path information correctly for copy/move
 	# operations later on
@@ -31,7 +28,7 @@ HOMEPAGE="http://www.gnu.org/software/emacs/"
 LICENSE="GPL-3 FDL-1.3 BSD as-is MIT W3C unicode"
 SLOT="23"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="aqua alsa dbus gif gpm gtk gzip-el hesiod jpeg kerberos m17n-lib motif png sound source svg tiff toolkit-scroll-bars X Xaw3d xft +xpm"
+IUSE="aqua alsa dbus gconf gif gpm gtk gzip-el hesiod jpeg kerberos m17n-lib motif png sound source svg tiff toolkit-scroll-bars X Xaw3d xft +xpm"
 RESTRICT="strip"
 
 RDEPEND="sys-libs/ncurses
@@ -46,6 +43,7 @@ RDEPEND="sys-libs/ncurses
 		x11-libs/libXmu
 		x11-libs/libXt
 		x11-misc/xbitmaps
+		gconf? ( >=gnome-base/gconf-2.26.2 )
 		gif? ( media-libs/giflib )
 		jpeg? ( media-libs/jpeg:0 )
 		png? ( media-libs/libpng )
@@ -85,7 +83,7 @@ src_prepare() {
 			| sed -e 's/^[^"]*"\([^"]*\)".*$/\1/')
 		[ "${FULL_VERSION}" ] || die "Cannot determine current Emacs version"
 		echo
-		einfo "Emacs CVS branch: ${ECVS_BRANCH}"
+		einfo "Emacs branch: ${EMACS_BRANCH}"
 		einfo "Emacs version number: ${FULL_VERSION}"
 		[ "${FULL_VERSION%.*}" = ${PV%.*} ] \
 			|| die "Upstream version number changed to ${FULL_VERSION}"
@@ -143,6 +141,7 @@ src_configure() {
 
 	if use X; then
 		myconf="${myconf} --with-x"
+		myconf="${myconf} $(use_with gconf)"
 		myconf="${myconf} $(use_with toolkit-scroll-bars)"
 		myconf="${myconf} $(use_with gif) $(use_with jpeg)"
 		myconf="${myconf} $(use_with png) $(use_with svg rsvg)"
@@ -199,6 +198,7 @@ src_configure() {
 	econf \
 		--program-suffix=-${EMACS_SUFFIX} \
 		--infodir="${EPREFIX}"/usr/share/info/${EMACS_SUFFIX} \
+		--with-crt-dir="${EPREFIX}"/usr/$(get_libdir) \
 		${myconf} || die "econf emacs failed"
 }
 
@@ -247,7 +247,7 @@ src_install () {
 		c=""
 	fi
 
-	sed 's/^X//' >"${SITEFILE}" <<-EOF
+	sed 's/^X//' >"${T}/${SITEFILE}" <<-EOF
 	X
 	;;; ${PN}-${SLOT} site-lisp configuration
 	X
@@ -265,7 +265,7 @@ src_install () {
 	X	   (setcdr q (cons dir (delete dir (cdr q))))
 	X	   (setq Info-directory-list (prune-directory-list (cdr p)))))))
 	EOF
-	elisp-site-file-install "${SITEFILE}" || die
+	elisp-site-file-install "${T}/${SITEFILE}" || die
 
 	dodoc README BUGS || die "dodoc failed"
 
