@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.6-r5.ebuild,v 1.1 2010/03/21 15:03:08 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/mozilla-firefox-3.6.3.ebuild,v 1.5 2010/05/09 16:56:22 armin76 Exp $
 EAPI="2"
 WANT_AUTOCONF="2.1"
 
@@ -8,15 +8,15 @@ inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib pax-ut
 
 LANGS="af ar as be bg bn-BD bn-IN ca cs cy da de el en en-GB en-US eo es-AR
 es-CL es-ES es-MX et eu fa fi fr fy-NL ga-IE gl gu-IN he hi-IN hr hu id is it ja
-ka kk kn ko ku lt lv mk ml mr nb-NO nl nn-NO oc or pa-IN pl pt-BR pt-PT rm ro
-ru si sk sl sq sr sv-SE ta-LK ta te th tr uk vi zh-CN zh-TW"
+ka kk kn ko ku lt lv mk ml mr nb-NO nl nn-NO oc or pa-IN pl pt-BR pt-PT rm ro ru
+si sk sl sq sr sv-SE ta ta-LK te th tr uk vi zh-CN zh-TW"
 NOSHORTLANGS="en-GB es-AR es-CL es-MX pt-BR zh-CN zh-TW"
 
-XUL_PV="1.9.2"
 MAJ_XUL_PV="1.9.2"
 MAJ_PV="${PV/_*/}" # Without the _rc and _beta stuff
 DESKTOP_PV="3.6"
 MY_PV="${PV/_rc/rc}" # Handle beta for SRC_URI
+XUL_PV="${MAJ_XUL_PV}${MAJ_PV/${DESKTOP_PV}/}" # Major + Minor version no.s
 PATCH="${PN}-3.6-patches-0.6"
 
 DESCRIPTION="Firefox Web Browser"
@@ -133,6 +133,9 @@ src_prepare() {
 
 	# Fix broken alignment
 	epatch "${FILESDIR}/1000_fix_alignment.patch"
+
+	# Allow user to apply additional patches without modifing ebuild
+	epatch_user
 
 	eautoreconf
 

@@ -11,9 +11,6 @@
 		Venkman)</flag>
 	<flag name='moznopango'>Disable <pkg>x11-libs/pango</pkg> during
 		runtime</flag>
-	<flag name='restrict-javascript'>Pull in <pkg>www-plugins/noscript</pkg>
-		extension to disable javascript globally, putting the user fully in
-		control of the sites he/she visits</flag>
 	<flag name='system-sqlite'>Use the system-wide <pkg>dev-db/sqlite</pkg>
 		installation with secure-delete enabled</flag>
 	<flag name='xforms'>XForms is a standard to split up XHTML into XForms,

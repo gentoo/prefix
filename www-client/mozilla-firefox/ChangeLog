@@ -1,6 +1,33 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.605 2010/03/24 12:51:04 nirbheek Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.613 2010/05/09 16:56:22 armin76 Exp $
+
+  09 May 2010; Raúl Porcel <armin76@gentoo.org>
+  mozilla-firefox-3.6.3.ebuild:
+  alpha/arm/ia64/sparc stable wrt #314025
+
+  20 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  mozilla-firefox-3.6.3.ebuild:
+  stable x86, bug 314025
+
+  18 Apr 2010; Pacho Ramos <pacho@gentoo.org> mozilla-firefox-3.6.3.ebuild:
+  amd64 stable, bug 314025
+
+  18 Apr 2010; Mounir Lamouri <volkmar@gentoo.org>
+  mozilla-firefox-2.0.0.19.ebuild, metadata.xml:
+  Removing noscript dep (bug 315999) and restrict-javascript USE flag.
+
+  18 Apr 2010; <anarchy@gentoo.org> mozilla-firefox-3.6.3.ebuild:
+  make use of epatch_user
+
+  10 Apr 2010; <anarchy@gentoo.org> -mozilla-firefox-3.6-r5.ebuild,
+  -mozilla-firefox-3.6.2.ebuild:
+  remove stale ebuilds
+
+*mozilla-firefox-3.6.3 (05 Apr 2010)
+
+  05 Apr 2010; <anarchy@gentoo.org> +mozilla-firefox-3.6.3.ebuild:
+  Security Bump
 
 *mozilla-firefox-3.6.2 (24 Mar 2010)
 
