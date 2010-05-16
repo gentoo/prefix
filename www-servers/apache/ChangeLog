@@ -1,6 +1,24 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.130 2010/03/07 16:20:22 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.138 2010/04/06 15:30:23 abcd Exp $
+
+  04 Apr 2010; Guy Martin <gmsoft@gentoo.org> apache-2.2.15.ebuild:
+  hppa stable, #308049
+
+  31 Mar 2010; Raúl Porcel <armin76@gentoo.org> apache-2.2.15.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #308049
+
+  31 Mar 2010; Brent Baude <ranger@gentoo.org> apache-2.2.15.ebuild:
+  Marking apache-2.2.15 ppc64 for bug 308049
+
+  31 Mar 2010; Brent Baude <ranger@gentoo.org> apache-2.2.15.ebuild:
+  Marking apache-2.2.15 ppc for bug 308049
+
+  29 Mar 2010; Markus Meier <maekke@gentoo.org> apache-2.2.15.ebuild:
+  amd64/arm stable, bug #308049
+
+  29 Mar 2010; Christian Faulhammer <fauli@gentoo.org> apache-2.2.15.ebuild:
+  stable x86, security bug 308049
 
   07 Mar 2010; Benedikt Böhm <hollow@gentoo.org> apache-2.2.15.ebuild:
   fix openssl DEPEND wrt #308049
