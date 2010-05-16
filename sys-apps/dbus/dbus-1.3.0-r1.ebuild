@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.3.0-r1.ebuild,v 1.3 2009/11/23 21:27:56 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.3.0-r1.ebuild,v 1.5 2010/04/20 11:36:30 ssuominen Exp $
 
 EAPI="2"
 
@@ -31,6 +31,11 @@ DEPEND="${RDEPEND}
 BD=${WORKDIR}/${P}-build
 # out of sources build dir for make check
 TBD=${WORKDIR}/${P}-tests-build
+
+pkg_setup() {
+	enewgroup messagebus
+	enewuser messagebus -1 "-1" -1 messagebus
+}
 
 src_prepare() {
 	# Remove CFLAGS that is not supported by all gcc, bug #274456
@@ -198,11 +203,6 @@ src_install() {
 	fi
 }
 
-pkg_preinst() {
-	enewgroup messagebus
-	enewuser messagebus -1 "-1" -1 messagebus
-}
-
 pkg_postinst() {
 	elog "To start the D-Bus system-wide messagebus by default"
 	elog "you should add it to the default runlevel :"
@@ -210,9 +210,6 @@ pkg_postinst() {
 	elog
 	elog "Some applications require a session bus in addition to the system"
 	elog "bus. Please see \`man dbus-launch\` for more information."
-	elog
-	elog
-	ewarn "You MUST run 'revdep-rebuild' after emerging this package"
 	elog
 	ewarn "You must restart D-Bus \`/etc/init.d/dbus restart\` to run"
 	ewarn "the new version of the daemon."
