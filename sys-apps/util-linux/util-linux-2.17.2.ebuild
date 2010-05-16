@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.17.1.ebuild,v 1.3 2010/03/20 04:07:43 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.17.2.ebuild,v 1.1 2010/03/22 19:31:56 vapier Exp $
 
 EAPI="2"
 
@@ -49,7 +49,7 @@ src_prepare() {
 	fi
 	use uclibc && sed -i -e s/versionsort/alphasort/g -e s/strverscmp.h/dirent.h/g mount/lomount.c
 	if use prefix ; then
-		epatch "${FILESDIR}"/${P}-non-linux-shlibs.patch
+		epatch "${FILESDIR}"/${PN}-2.17.1-non-linux-shlibs.patch
 		eautoreconf
 	fi
 	elibtoolize

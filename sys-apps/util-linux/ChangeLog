@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/util-linux
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.304 2010/03/09 00:58:33 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/ChangeLog,v 1.306 2010/03/22 19:31:56 vapier Exp $
+
+*util-linux-2.17.2 (22 Mar 2010)
+
+  22 Mar 2010; Mike Frysinger <vapier@gentoo.org> +util-linux-2.17.2.ebuild:
+  Version bump.
+
+  20 Mar 2010; Mike Frysinger <vapier@gentoo.org> util-linux-2.17.1.ebuild:
+  Work around broken glibc-2.10 on 32bit systems and fallocate #300307 by
+  Marco Clocchiatti.
 
   09 Mar 2010; Mike Frysinger <vapier@gentoo.org> util-linux-2.17.1.ebuild:
   Update loop-aes patch #307987.
