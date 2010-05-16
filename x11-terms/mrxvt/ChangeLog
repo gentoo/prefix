@@ -1,6 +1,12 @@
 # ChangeLog for x11-terms/mrxvt
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.72 2010/03/11 01:00:56 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/mrxvt/ChangeLog,v 1.74 2010/05/14 17:25:47 hwoarang Exp $
+
+  14 May 2010; Markos Chandras <hwoarang@gentoo.org> mrxvt-0.5.4.ebuild:
+  Stable on amd64 wrt bug #315809
+
+  26 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> mrxvt-0.5.4.ebuild:
+  x86 stable wrt bug #315809
 
   11 Mar 2010; Samuli Suominen <ssuominen@gentoo.org> mrxvt-0.5.4.ebuild,
   +files/mrxvt-0.5.4-libpng14.patch:
