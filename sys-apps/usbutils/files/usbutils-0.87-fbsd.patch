@@ -1,0 +1,27 @@
+--- usbutils-0.87/configure.ac
++++ usbutils-0.87/configure.ac
+@@ -34,6 +34,8 @@
+ 	Makefile
+ ])
+ 
++AC_CHECK_HEADERS([byteswap.h])
++
+ AC_OUTPUT
+ AC_MSG_RESULT([
+ 	usbutils $VERSION
+--- usbutils-0.87/lsusb.c
++++ usbutils-0.87/lsusb.c
+@@ -32,8 +32,13 @@
+ #include <errno.h>
+ #include <stdio.h>
+ #include <stdarg.h>
++
++#ifdef HAVE_BYTESWAP_H
+ #include <byteswap.h>
++#endif
++
+ #include <usb.h>
++#include <unistd.h>
+ 
+ #include "names.h"
+ #include "devtree.h"

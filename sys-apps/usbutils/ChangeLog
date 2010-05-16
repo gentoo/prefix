@@ -1,6 +1,16 @@
 # ChangeLog for sys-apps/usbutils
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/ChangeLog,v 1.97 2010/01/30 17:57:00 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/usbutils/ChangeLog,v 1.99 2010/04/25 18:02:09 aballier Exp $
+
+  25 Apr 2010; Alexis Ballier <aballier@gentoo.org> usbutils-0.87.ebuild,
+  +files/usbutils-0.87-fbsd.patch:
+  Fix build on FreeBSD, bug #316671, by Toffanin [Gentoo/FreeBSD AT]
+  <toffanin.mauro@gmail.com>
+
+*usbutils-0.87 (21 Mar 2010)
+
+  21 Mar 2010; Mike Frysinger <vapier@gentoo.org> +usbutils-0.87.ebuild:
+  Version bump #310577 by Samuli Suominen.
 
   30 Jan 2010; Raúl Porcel <armin76@gentoo.org> usbutils-0.86-r1.ebuild:
   sparc stable wrt #296426
