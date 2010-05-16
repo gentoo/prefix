@@ -1,6 +1,27 @@
 # ChangeLog for www-servers/tomcat
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.223 2009/11/17 14:53:52 caster Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.229 2010/04/10 21:17:30 caster Exp $
+
+  10 Apr 2010; Vlastimil Babka <caster@gentoo.org> tomcat-6.0.26.ebuild:
+  Always use ecj to compile on amd64 to prevent insufficient heap, fixes bug
+  #312293.
+
+  29 Mar 2010; Markus Meier <maekke@gentoo.org> tomcat-6.0.26.ebuild:
+  amd64 stable, bug #303719
+
+  29 Mar 2010; Christian Faulhammer <fauli@gentoo.org> tomcat-6.0.26.ebuild:
+  stable x86, security bug 303719
+
+  26 Mar 2010; Brent Baude <ranger@gentoo.org> tomcat-6.0.26.ebuild:
+  Marking tomcat-6.0.26 ppc for bug 303719
+
+  26 Mar 2010; Brent Baude <ranger@gentoo.org> tomcat-6.0.26.ebuild:
+  Marking tomcat-6.0.26 ppc64 for bug 303719
+
+*tomcat-6.0.26 (16 Mar 2010)
+
+  16 Mar 2010; Alistair Bush <ali_bush@gentoo.org> +tomcat-6.0.26.ebuild:
+  Version Bump.
 
   17 Nov 2009; Vlastimil Babka <caster@gentoo.org> -tomcat-5.5.27-r3.ebuild:
   Remove old.
