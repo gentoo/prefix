@@ -10,10 +10,6 @@
     <email>wired@gentoo.org</email>
 	<name>Alex Alexander</name>
   </maintainer>
-  <maintainer>
-    <email>vostorga@gentoo.org</email>
-	<name>Víctor Ostorga</name>
-  </maintainer>
   <use>
 	<flag name='afterimage'>Enable support for
 		<pkg>media-libs/libafterimage</pkg> </flag>
