@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.20.ebuild,v 1.1 2010/04/03 16:10:15 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.20.ebuild,v 1.3 2010/04/24 16:47:30 chithanh Exp $
 
 inherit x-modular
 
@@ -15,19 +15,21 @@ else
 fi
 
 KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE=""
+IUSE="kernel_linux"
 RESTRICT="test" # see bug #236845
 
 RDEPEND="dev-libs/libpthread-stubs"
 DEPEND="${RDEPEND}"
 
 pkg_setup() {
-	# Fails to build on ARM if dev-libs/libatomic_ops is installed, bug 297630
+	# libdrm_intel fails to build on some arches if dev-libs/libatomic_ops is
+	# installed, bugs 297630, bug 316421 and bug 316541, and is presently only
+	# useful on amd64 and x86.
 	CONFIGURE_OPTIONS="--enable-udev
 			--enable-nouveau-experimental-api
 			--enable-vmwgfx-experimental-api
-			$(use_enable !arm intel)
-			$(use_enable !arm radeon)"
+			$(use_enable kernel_linux libkms)
+			$(! use amd64 && ! use x86 && ! use x86-fbsd && echo "--disable-intel")"
 }
 
 PATCHES=(

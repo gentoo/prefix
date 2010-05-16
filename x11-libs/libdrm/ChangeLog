@@ -1,6 +1,33 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.108 2010/04/03 16:10:15 chithanh Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.115 2010/05/12 18:21:17 ranger Exp $
+
+  12 May 2010; Brent Baude <ranger@gentoo.org>
+  libdrm-2.4.18_pre20100211-r1.ebuild:
+  Marking libdrm-2.4.18_pre20100211-r1 ppc64 stable for bug 308521
+
+  24 Apr 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  libdrm-2.4.18_pre20100211-r1.ebuild, libdrm-2.4.20.ebuild:
+  restrict building of libdrm_intel to amd64 and x86
+
+  18 Apr 2010; Markus Meier <maekke@gentoo.org>
+  libdrm-2.4.18_pre20100211-r1.ebuild:
+  arm stable, bug #308521
+
+  18 Apr 2010; <nixnut@gentoo.org> libdrm-2.4.18_pre20100211-r1.ebuild:
+  ppc stable #308521
+
+  16 Apr 2010; Pacho Ramos <pacho@gentoo.org>
+  libdrm-2.4.18_pre20100211-r1.ebuild:
+  amd64 stable, bug 308521
+
+  13 Apr 2010; Alexis Ballier <aballier@gentoo.org> libdrm-2.4.20.ebuild:
+  Disable KMS on non linux systems, bug #314827, suggested by Naohiro Aota
+  <naota@elisp.net> and acked by remi
+
+  09 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  libdrm-2.4.18_pre20100211-r1.ebuild:
+  stable x86, bug 308521
 
 *libdrm-2.4.20 (03 Apr 2010)
 
