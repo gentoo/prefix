@@ -103,7 +103,7 @@ lesspipe() {
 
 	### Tar files ###
 	*.tar|\
-	*.tar.bz2|*.tar.gz|*.tar.z|\
+	*.tar.bz2|*.tar.bz|*.tar.gz|*.tar.z|\
 	*.tar.lz|*.tar.tlz|\
 	*.tar.lzma|*.tar.xz)
 		${DECOMPRESSOR} -- "$1" | tar tvvf -;;
@@ -231,7 +231,7 @@ if [[ -z $1 ]] ; then
 elif [[ $1 == "-V" || $1 == "--version" ]] ; then
 	Id="cvsid"
 	cat <<-EOF
-		$Id: lesspipe.sh,v 1.39 2010/02/14 17:11:00 vapier Exp $
+		$Id: lesspipe.sh,v 1.40 2010/03/23 20:54:13 vapier Exp $
 		Copyright 2001-2010 Gentoo Foundation
 		Mike Frysinger <vapier@gentoo.org>
 		     (with plenty of ideas stolen from other projects/distros)

@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/less
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.116 2010/02/14 17:10:59 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/less/ChangeLog,v 1.117 2010/03/23 20:54:13 vapier Exp $
+
+  23 Mar 2010; Mike Frysinger <vapier@gentoo.org> files/lesspipe.sh:
+  Fix by Jack Lloyd to handle .tbz and .tar.bz files #308855.
 
   14 Feb 2010; Mike Frysinger <vapier@gentoo.org> less-436.ebuild,
   files/lesspipe.sh:
