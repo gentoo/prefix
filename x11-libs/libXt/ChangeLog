@@ -1,6 +1,26 @@
 # ChangeLog for x11-libs/libXt
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.72 2010/01/23 20:57:07 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libXt/ChangeLog,v 1.78 2010/05/12 18:13:18 ranger Exp $
+
+  12 May 2010; Brent Baude <ranger@gentoo.org> ChangeLog:
+  Marking libXt-1.0.8 ppc64 stable for bug 308521
+
+  18 Apr 2010; Markus Meier <maekke@gentoo.org> libXt-1.0.8.ebuild:
+  arm stable, bug #308521
+
+  18 Apr 2010; <nixnut@gentoo.org> libXt-1.0.8.ebuild:
+  ppc stable #308521
+
+  16 Apr 2010; Pacho Ramos <pacho@gentoo.org> libXt-1.0.8.ebuild:
+  amd64 stable, bug 308521
+
+  09 Apr 2010; Christian Faulhammer <fauli@gentoo.org> libXt-1.0.8.ebuild:
+  stable x86, bug 308521
+
+*libXt-1.0.8 (15 Mar 2010)
+
+  15 Mar 2010; Rémi Cardona <remi@gentoo.org> +libXt-1.0.8.ebuild:
+  bump to 1.0.8, fixes bug #303097
 
   23 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org> -libXt-1.0.5.ebuild,
   -files/libXt-1.0.5-cross.patch, -libXt-1.0.6.ebuild,
