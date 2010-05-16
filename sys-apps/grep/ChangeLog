@@ -1,6 +1,27 @@
 # ChangeLog for sys-apps/grep
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.92 2009/10/22 16:32:40 loki_val Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/grep/ChangeLog,v 1.96 2010/04/02 20:06:36 vapier Exp $
+
+*grep-2.6.3 (02 Apr 2010)
+
+  02 Apr 2010; Mike Frysinger <vapier@gentoo.org> +grep-2.6.3.ebuild:
+  Version bump.
+
+*grep-2.6.2 (29 Mar 2010)
+
+  29 Mar 2010; Mike Frysinger <vapier@gentoo.org> +grep-2.6.2.ebuild:
+  Version bump.
+
+*grep-2.6.1 (27 Mar 2010)
+
+  27 Mar 2010; Mike Frysinger <vapier@gentoo.org> +grep-2.6.1.ebuild,
+  +files/grep-2.6.1-no-french.patch:
+  Version bump.
+
+*grep-2.6 (23 Mar 2010)
+
+  23 Mar 2010; Mike Frysinger <vapier@gentoo.org> +grep-2.6.ebuild:
+  Version bump. Fixes #232041 #269734 #274436 #283574.
 
   22 Oct 2009; Peter Alfredsen <loki_val@gentoo.org> -grep-2.5.1a-r1.ebuild,
   -grep-2.5.3-r1.ebuild, -grep-2.5.4.ebuild:
