@@ -1,6 +1,11 @@
 # ChangeLog for x11-terms/xterm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.292 2010/01/24 17:39:18 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/xterm/ChangeLog,v 1.293 2010/04/14 14:40:03 ssuominen Exp $
+
+*xterm-256 (14 Apr 2010)
+
+  14 Apr 2010; Samuli Suominen <ssuominen@gentoo.org> +xterm-256.ebuild:
+  Version bump.
 
 *xterm-255 (24 Jan 2010)
 
