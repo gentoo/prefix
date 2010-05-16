@@ -1,6 +1,25 @@
 # ChangeLog for sys-devel/binutils
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.384 2010/03/08 04:44:40 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/binutils/ChangeLog,v 1.387 2010/05/09 08:32:47 vapier Exp $
+
+*binutils-2.20.1-r1 (09 May 2010)
+
+  09 May 2010; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.20.1-r1.ebuild:
+  Add fix from upstream for ld internal error #317549, add fix from upstream
+  for dynamic PIEs #311081, and fix patching on mips systems #310279.
+
+*binutils-2.20.51.0.8 (14 Apr 2010)
+
+  14 Apr 2010; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.20.51.0.8.ebuild:
+  Version bump.
+
+*binutils-2.20.51.0.7 (11 Apr 2010)
+
+  11 Apr 2010; Mike Frysinger <vapier@gentoo.org>
+  +binutils-2.20.51.0.7.ebuild:
+  Version bump #312303.
 
 *binutils-2.20.1 (08 Mar 2010)
 
