@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.7.ebuild,v 1.8 2009/10/31 14:17:59 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-process/psmisc/psmisc-22.11.ebuild,v 1.1 2010/05/01 21:03:19 ssuominen Exp $
 
-inherit eutils autotools
+inherit autotools eutils
 
 DESCRIPTION="A set of tools that use the proc filesystem"
 HOMEPAGE="http://psmisc.sourceforge.net/"
@@ -10,7 +10,7 @@ SRC_URI="mirror://sourceforge/psmisc/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux"
+KEYWORDS="~amd64-linux ~ia64-linux ~x86-linux"
 IUSE="ipv6 nls selinux X"
 
 RDEPEND=">=sys-libs/ncurses-5.2-r2
@@ -22,9 +22,8 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	# this package doesnt actually need C++
-	sed -i '/AC_PROG_CXX/d' configure.ac || die
 	use nls || epatch "${FILESDIR}"/${PN}-22.5-no-nls.patch #193920
+	sed -i -e '/^ACLOCAL_AMFLAGS/d' Makefile.am || die
 	eautoreconf
 }
 
@@ -33,15 +32,16 @@ src_compile() {
 	# above when USE=-nls.  this should get cleaned up so we dont have to patch
 	# it out, but until then, let's not confuse users ... #220787
 	econf \
+		--disable-dependency-tracking \
 		$(use_enable selinux) \
-		$(use nls && use_enable nls) \
 		$(use_enable ipv6) \
-		|| die
+		$(use nls && use_enable nls)
+
 	emake || die
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die
+	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog NEWS README
 	use X || rm "${ED}"/usr/bin/pstree.x11
 	# fuser is needed by init.d scripts
