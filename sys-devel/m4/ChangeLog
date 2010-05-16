@@ -1,6 +1,19 @@
 # ChangeLog for sys-devel/m4
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.127 2010/03/05 19:00:52 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/ChangeLog,v 1.131 2010/03/31 11:51:16 flameeyes Exp $
+
+*m4-1.4.14-r1 (31 Mar 2010)
+
+  31 Mar 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +m4-1.4.14-r1.ebuild:
+  Disable libsigsegv automagic dependency (bug #278026).
+
+  28 Mar 2010; Javier Villavicencio <the_paya@gentoo.org> m4-1.4.14.ebuild,
+  +files/m4-1.4.14-gnulib_spawn.patch:
+  Add patch to fix gnulib's spawn, fixes bug 310335. Keyword again.
+
+  20 Mar 2010; Javier Villavicencio <the_paya@gentoo.org> m4-1.4.14.ebuild:
+  Drop *-fbsd keywords see bug 310335
 
 *m4-1.4.14 (05 Mar 2010)
 

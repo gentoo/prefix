@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.14.ebuild,v 1.3 2010/03/28 10:33:47 the_paya Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/m4/m4-1.4.14-r1.ebuild,v 1.1 2010/03/31 11:51:16 flameeyes Exp $
 
 inherit eutils
 
@@ -34,6 +34,9 @@ src_unpack() {
 }
 
 src_compile() {
+	# Disable automagic dependency over libsigsegv; see bug #278026
+	export ac_cv_libsigsegv=no
+
 	local myconf=""
 	[[ ${USERLAND} != "GNU" ]] && myconf="--program-prefix=g"
 	econf \
