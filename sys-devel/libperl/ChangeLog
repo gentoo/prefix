@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/libperl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.151 2010/02/03 00:15:25 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libperl/ChangeLog,v 1.153 2010/03/31 18:48:44 armin76 Exp $
+
+  31 Mar 2010; Raúl Porcel <armin76@gentoo.org> libperl-5.8.8-r2.ebuild:
+  Drop -O1 on arm/ia64 as it works fine
+
+  14 Mar 2010; Alexis Ballier <aballier@gentoo.org> libperl-5.10.1.ebuild:
+  keyword ~x86-fbsd
 
   03 Feb 2010; Hanno Boeck <hanno@gentoo.org> libperl-5.8.8-r2.ebuild,
   libperl-5.10.1.ebuild:
