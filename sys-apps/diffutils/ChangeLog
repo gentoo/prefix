@@ -1,6 +1,19 @@
 # ChangeLog for sys-apps/diffutils
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.55 2010/02/14 00:36:08 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/diffutils/ChangeLog,v 1.57 2010/05/05 17:17:14 jer Exp $
+
+*diffutils-3.0 (05 May 2010)
+
+  05 May 2010; Jeroen Roovers <jer@gentoo.org> +diffutils-3.0.ebuild:
+  Version bump by Samuli Suominen (bug #318421).
+
+*diffutils-2.9-r1 (31 Mar 2010)
+
+  31 Mar 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +diffutils-2.9-r1.ebuild:
+  Disable automagic dependency over libsigsegv (bug #312351); use parallel
+  make in src_test as it works and cuts in half the build time when using
+  highly parallel make.
 
 *diffutils-2.9 (14 Feb 2010)
 
