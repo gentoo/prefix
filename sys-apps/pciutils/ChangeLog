@@ -1,6 +1,12 @@
 # ChangeLog for sys-apps/pciutils
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pciutils/ChangeLog,v 1.174 2010/01/30 18:36:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pciutils/ChangeLog,v 1.175 2010/04/10 19:28:55 vapier Exp $
+
+*pciutils-3.1.7 (10 Apr 2010)
+
+  10 Apr 2010; Mike Frysinger <vapier@gentoo.org> +pciutils-3.1.7.ebuild,
+  +files/pciutils-3.1.7-fbsd.patch, +files/pciutils-3.1.7-install-lib.patch:
+  Version bump #314499 by Toffanin.
 
   30 Jan 2010; Raúl Porcel <armin76@gentoo.org> pciutils-3.1.4.ebuild:
   sparc stable wrt #296772
