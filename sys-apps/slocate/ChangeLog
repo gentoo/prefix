@@ -1,6 +1,10 @@
 # ChangeLog for sys-apps/slocate
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/ChangeLog,v 1.86 2009/08/15 23:47:26 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/slocate/ChangeLog,v 1.87 2010/04/11 19:57:35 vapier Exp $
+
+  11 Apr 2010; Mike Frysinger <vapier@gentoo.org>
+  files/slocate-3.1-cron2.patch:
+  Only run cronjob when on AC power #312583 by Daniel Troeder.
 
   15 Aug 2009; Mike Frysinger <vapier@gentoo.org> slocate-3.1-r2.ebuild:
   Respect CC/CPPFLAGS env vars #280847 by Chris Slycord.

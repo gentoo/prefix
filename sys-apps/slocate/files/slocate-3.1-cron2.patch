@@ -1,7 +1,11 @@
 --- debian/cron.daily
 +++ debian/cron.daily
-@@ -1,12 +1,21 @@
+@@ -1,12 +1,25 @@
  #! /bin/sh
++
++. /etc/init.d/functions.sh 2>/dev/null
++on_ac_power 2>/dev/null #312583
++[ $? -eq 1 ] && exit 0
  
 -if [ -x /usr/bin/slocate ]
 +if [ -x /usr/bin/updatedb ]
