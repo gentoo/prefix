@@ -1,6 +1,15 @@
 # ChangeLog for www-client/elinks
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.118 2010/02/24 12:27:34 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/elinks/ChangeLog,v 1.120 2010/04/07 21:14:29 patrick Exp $
+
+  07 Apr 2010; Patrick Lauer <patrick@gentoo.org> elinks-0.12_pre5.ebuild:
+  Fixing samba dep
+
+*elinks-0.12_pre5 (04 Apr 2010)
+
+  04 Apr 2010; Michał Januszewski <spock@gentoo.org>
+  +elinks-0.12_pre5.ebuild, +files/elinks-0.12_pre5-compilation-fix.patch:
+  Version bump (includes a workaround for bug #310495).
 
   24 Feb 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> elinks-0.11.7.ebuild:
   Run econf in src_configure, to be QA-correct and avoid running ./configure
