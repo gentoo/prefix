@@ -1,6 +1,6 @@
-# Copyright 1999-2007 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.16.1-r1.ebuild,v 1.15 2007/11/11 19:21:16 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/gettext-0.16.1-r1.ebuild,v 1.16 2010/03/30 23:22:10 solar Exp $
 
 inherit flag-o-matic eutils multilib toolchain-funcs mono libtool autotools
 
@@ -11,7 +11,7 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 LICENSE="GPL-2 LGPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="emacs nls doc nocxx openmp"
+IUSE="emacs nls doc nocxx elibc_glibc"
 
 DEPEND="virtual/libiconv
 	dev-libs/expat"

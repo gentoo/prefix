@@ -1,6 +1,11 @@
 # ChangeLog for sys-devel/gettext
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.176 2010/03/13 02:56:11 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gettext/ChangeLog,v 1.177 2010/03/30 23:22:10 solar Exp $
+
+  30 Mar 2010; <solar@gentoo.org> gettext-0.16.1-r1.ebuild,
+  gettext-0.17.ebuild, gettext-0.17-r1.ebuild:
+  - elibc_glibc has to be defined in IUSE= for profiles that are unable to
+  use.force that flag bug #312085
 
   13 Mar 2010; Alexis Ballier <aballier@gentoo.org> gettext-0.17-r1.ebuild:
   Create unversionned ld script on BSD; otherwise the loader tries (and
