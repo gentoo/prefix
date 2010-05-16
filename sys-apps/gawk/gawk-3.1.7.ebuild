@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.7.ebuild,v 1.1 2009/08/15 23:53:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.7.ebuild,v 1.2 2010/04/25 23:09:30 flameeyes Exp $
 
 inherit eutils toolchain-funcs multilib libtool
 
@@ -11,9 +11,9 @@ SRC_URI="mirror://gnu/gawk/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="libsigsegv nls"
+IUSE="nls"
 
-RDEPEND="libsigsegv? ( dev-libs/libsigsegv )"
+RDEPEND=""
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
@@ -42,7 +42,7 @@ src_compile() {
 		--bindir="${bindir}" \
 		--libexec='$(libdir)/misc' \
 		$(use_enable nls) \
-		$(use_enable libsigsegv) \
+		--disable-libsigsegv \
 		--enable-switch \
 		|| die
 	emake || die "emake failed"
