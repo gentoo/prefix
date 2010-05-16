@@ -1,6 +1,26 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.247 2010/03/09 23:51:58 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.252 2010/04/09 03:52:13 jer Exp $
+
+  09 Apr 2010; Jeroen Roovers <jer@gentoo.org> wxGTK-2.6.4.0-r6.ebuild,
+  wxGTK-2.8.10.1-r5.ebuild:
+  Stable for HPPA (bug #305331).
+
+  07 Apr 2010; Brent Baude <ranger@gentoo.org> wxGTK-2.6.4.0-r6.ebuild,
+  wxGTK-2.8.10.1-r5.ebuild:
+  Marking wxGTK-2.6.4.0-r6 and wxGTK-2.8.10.1-r5 ppc for bug 305331
+
+  02 Apr 2010; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.6.4.0-r6.ebuild,
+  wxGTK-2.8.10.1-r5.ebuild, +files/wxGTK-2.8.10.1-odbc-defines.patch:
+  Build fix for unixODBC-2.2.14 (bug #310923 by Martin von Gagern).
+
+  21 Mar 2010; Brent Baude <ranger@gentoo.org> wxGTK-2.6.4.0-r6.ebuild,
+  wxGTK-2.8.10.1-r5.ebuild:
+  Marking wxGTK-2.6.4.0-r6 and -2.8.10.1-r5 for bug 305331
+
+  14 Mar 2010; Raúl Porcel <armin76@gentoo.org> wxGTK-2.6.4.0-r6.ebuild,
+  wxGTK-2.8.10.1-r5.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #305331
 
   09 Mar 2010; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
   Add note about modifications to metadata.xml.
