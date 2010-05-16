@@ -1,6 +1,37 @@
 # ChangeLog for dev-libs/dbus-glib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.52 2010/01/22 07:39:51 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.59 2010/04/09 02:18:35 jer Exp $
+
+  09 Apr 2010; Jeroen Roovers <jer@gentoo.org> dbus-glib-0.82-r1.ebuild:
+  Stable for HPPA (bug #310705).
+
+  07 Apr 2010; Jeremy Olexa <darkside@gentoo.org> dbus-glib-0.82-r1.ebuild,
+  dbus-glib-0.84.ebuild, dbus-glib-0.86.ebuild:
+  Due to portage's environment filtering, variables that start with BASH_
+  cannot be used. As such, s/BASH_COMPLETION_NAME/BASHCOMPLETION_NAME/g for
+  bug 312671
+
+  05 Apr 2010; Markus Meier <maekke@gentoo.org> dbus-glib-0.82-r1.ebuild:
+  amd64/arm/x86 stable, bug #310705
+
+*dbus-glib-0.86 (31 Mar 2010)
+
+  31 Mar 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  -dbus-glib-0.80.ebuild, -dbus-glib-0.82.ebuild, +dbus-glib-0.86.ebuild:
+  Version bump. Fix some memory leaks, optimize object infos lookup, add
+  'shadowing'.
+
+  24 Mar 2010; Brent Baude <ranger@gentoo.org> dbus-glib-0.82-r1.ebuild:
+  stable ppc, bug 310705
+
+  23 Mar 2010; Brent Baude <ranger@gentoo.org> dbus-glib-0.82-r1.ebuild:
+  stable ppc64, bug 310705
+
+*dbus-glib-0.84 (22 Mar 2010)
+
+  22 Mar 2010; Pacho Ramos <pacho@gentoo.org> +dbus-glib-0.84.ebuild:
+  Version bump, fixing bugs 307771, 292418, 298511. Thanks to Ward, Xake and
+  Jens for reporting and to Guilles for reviewing
 
 *dbus-glib-0.82-r1 (22 Jan 2010)
 
