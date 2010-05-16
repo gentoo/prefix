@@ -1,6 +1,13 @@
 # ChangeLog for sci-visualization/gnuplot
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.135 2010/03/07 20:02:31 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-visualization/gnuplot/ChangeLog,v 1.136 2010/03/14 14:37:17 ulm Exp $
+
+*gnuplot-4.4.0 (14 Mar 2010)
+
+  14 Mar 2010; Ulrich Mueller <ulm@gentoo.org> +gnuplot-4.4.0.ebuild,
+  metadata.xml:
+  Version bump. This comprises changes from science overlay, thanks to
+  Christoph Junghans <kleiner_otti@gmx.de>. New thin-splines local USE flag.
 
   07 Mar 2010; Ulrich Mueller <ulm@gentoo.org> gnuplot-4.2.6-r1.ebuild:
   Only build-time dependencies are needed with USE=doc.

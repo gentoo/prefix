@@ -8,5 +8,6 @@
 <use>
   <flag name='gd'>Add support for <pkg>media-libs/gd</pkg>.
     Needed for GIF, JPEG, and PNG image output.</flag>
+  <flag name='thin-splines'>Enable thin plate splines</flag>
 </use>
 </pkgmetadata>
