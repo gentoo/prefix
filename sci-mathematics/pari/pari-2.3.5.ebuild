@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.4-r1.ebuild,v 1.11 2010/05/09 17:26:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.3.5.ebuild,v 1.1 2010/05/04 21:56:09 bicatali Exp $
 
 EAPI=2
 inherit elisp-common eutils flag-o-matic toolchain-funcs
@@ -98,7 +98,7 @@ src_compile() {
 
 	if use static-libs; then
 		emake ${mymake} CFLAGS="${CFLAGS} -DGCC_INLINE" lib-sta \
-			|| die "Building static-libs library failed!"
+			|| die "Building static library failed!"
 	fi
 
 	emake ${mymake} CFLAGS="${CFLAGS} -DGCC_INLINE" gp ../gp \
@@ -147,7 +147,7 @@ src_install() {
 	if use static-libs; then
 		emake \
 			DESTDIR="${D}" \
-			install-lib-sta || die "Install of static-libs library failed"
+			install-lib-sta || die "Install of static library failed"
 	fi
 
 	#remove superfluous doc directory

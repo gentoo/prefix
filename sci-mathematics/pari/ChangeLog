@@ -1,6 +1,22 @@
 # ChangeLog for sci-mathematics/pari
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.74 2010/01/11 22:38:57 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/ChangeLog,v 1.77 2010/05/09 17:26:03 armin76 Exp $
+
+  09 May 2010; Raúl Porcel <armin76@gentoo.org> pari-2.3.4-r1.ebuild:
+  sparc stable
+
+  05 May 2010; Sébastien Fabbro <bicatali@gentoo.org>
+  +pari-2.1.7-r1.ebuild:
+  Restored ugly old version to satisfy math-pari old stable
+
+*pari-2.3.5 (04 May 2010)
+
+  04 May 2010; Sébastien Fabbro <bicatali@gentoo.org> -pari-2.1.6.ebuild,
+  -pari-2.1.7-r1.ebuild, pari-2.3.4-r1.ebuild, +pari-2.3.5.ebuild,
+  -files/docs.patch, -files/pari-non-exec-stack-x86-gentoo.patch,
+  -files/wrong_functype.patch, -files/wrong_functype-r1.patch:
+  Version bump. Added -fno-strict-aliasing to compiler flags, per bug
+  #316139. Change use flag static to static-libs
 
   11 Jan 2010; Jeroen Roovers <jer@gentoo.org> pari-2.3.4-r1.ebuild:
   Reintroduce CC so for instance distcc will not say "...gcc is

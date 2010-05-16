@@ -1,6 +1,6 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.1.7-r1.ebuild,v 1.11 2008/05/18 11:40:06 markusle Exp $
+# $Header: /var/cvsroot/gentoo-x86/sci-mathematics/pari/pari-2.1.7-r1.ebuild,v 1.13 2010/05/05 16:07:24 bicatali Exp $
 
 inherit eutils toolchain-funcs flag-o-matic prefix
 
@@ -38,7 +38,7 @@ src_compile() {
 		|| myhost="$(echo ${CHOST} | cut -f "1 3" -d '-')"
 	einfo "Building for ${myhost}"
 
-	#need to force optimization here, as it breaks without
+	# need to force optimization here, as it breaks without
 	if   is-flag -O0; then
 		replace-flags -O0 -O2
 	elif ! is-flag -O?; then
@@ -48,7 +48,7 @@ src_compile() {
 	# fix up build scripts to get rid of insecure RUNPATHS
 	# see bug #117434
 	sed -e "s|\$runpathprefix \$TOP/\$objdir:\$tmp||" \
-	    -e "s|\$runpathprefix \$tmp||" -i config/Makefile.SH || \
+		-e "s|\$runpathprefix \$tmp||" -i config/Makefile.SH || \
 		die "Failed to fix Makefile.SH"
 	sed -e "s|-L\$libdir|-L./|" -i Configure || \
 		die "Failed to fix Configure"
@@ -98,6 +98,6 @@ src_install() {
 	if use emacs; then
 		insinto /usr/share/emacs/site-lisp
 		doins emacs/pari.el
-	fi
+		fi
 	dodoc AUTHORS Announce.2.1 CHANGES README TODO
 }
