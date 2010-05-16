@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.9.ebuild,v 1.11 2009/12/07 11:10:34 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/e2fsprogs-libs-1.41.9.ebuild,v 1.13 2010/03/31 17:59:11 solar Exp $
 
 EAPI=2
 
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/e2fsprogs/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~m68k-mint"
-IUSE="nls"
+IUSE="nls elibc_glibc"
 
 RDEPEND="elibc_glibc? ( !prefix? ( >=sys-libs/glibc-2.6 ) )
 	!sys-libs/com_err
@@ -23,9 +23,8 @@ DEPEND="nls? ( sys-devel/gettext )
 	dev-util/pkgconfig
 	sys-devel/bc"
 
-export VARTEXFONTS=${T}/fonts #281390
-
 src_prepare() {
+	echo 'all %:' > doc/Makefile.in # don't bother with docs #305613
 	# stupid configure script clobbers CC for us
 	sed -i '/if test -z "$CC" ; then CC=cc; fi/d' configure
 

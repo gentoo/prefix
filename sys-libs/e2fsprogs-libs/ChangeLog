@@ -1,6 +1,22 @@
 # ChangeLog for sys-libs/e2fsprogs-libs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.44 2010/03/07 02:34:18 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/e2fsprogs-libs/ChangeLog,v 1.47 2010/03/31 17:59:11 solar Exp $
+
+  31 Mar 2010; <solar@gentoo.org> e2fsprogs-libs-1.41.7.ebuild,
+  e2fsprogs-libs-1.41.9.ebuild, e2fsprogs-libs-1.41.10.ebuild,
+  e2fsprogs-libs-1.41.11.ebuild:
+  - elibc_glibc has to be defined in IUSE= for profiles that are unable to
+  use.force that flag bug #312085
+
+*e2fsprogs-libs-1.41.11 (20 Mar 2010)
+
+  20 Mar 2010; Mike Frysinger <vapier@gentoo.org>
+  +e2fsprogs-libs-1.41.11.ebuild:
+  Version bump.
+
+  20 Mar 2010; Mike Frysinger <vapier@gentoo.org>
+  e2fsprogs-libs-1.41.9.ebuild, e2fsprogs-libs-1.41.10.ebuild:
+  Dont install libext2fs.info #305613 by Christian Ostheimer.
 
 *e2fsprogs-libs-1.41.10 (07 Mar 2010)
 
