@@ -1,6 +1,35 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.300 2010/03/12 20:14:55 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.306 2010/05/14 10:56:44 robbat2 Exp $
+
+  14 May 2010; Robin H. Johnson <robbat2@gentoo.org> db-5.0.21-r1.ebuild:
+  Bug #319667: Disable the multi_repmgr tests in a different way.
+
+  14 May 2010; Robin H. Johnson <robbat2@gentoo.org> -db-5.0.21.ebuild:
+  Remove broken 5.0.21.
+
+*db-5.0.21-r1 (14 May 2010)
+
+  14 May 2010; Robin H. Johnson <robbat2@gentoo.org> +db-5.0.21-r1.ebuild,
+  +files/db-5.0.21-enable-dbm-autoconf.patch:
+  Bug #319583: DBM support was not actually being built due to bug in
+  upstream autoconf.
+
+*db-5.0.21 (11 May 2010)
+
+  11 May 2010; Robin H. Johnson <robbat2@gentoo.org> +db-5.0.21.ebuild:
+  Bug #313769: version bump. In package.mask still, has test failures. Some
+  false positives due to upstream, but still at least one failure that needs
+  work.
+
+  03 May 2010; Robin H. Johnson <robbat2@gentoo.org> db-4.5.20_p2.ebuild,
+  db-4.5.20_p2-r1.ebuild, db-4.6.21_p4.ebuild:
+  Bug #240568: Fix bad stripping output in older ebuilds.
+
+*db-4.8.30 (03 May 2010)
+
+  03 May 2010; Robin H. Johnson <robbat2@gentoo.org> +db-4.8.30.ebuild:
+  Version bump.
 
 *db-4.8.26 (12 Mar 2010)
 

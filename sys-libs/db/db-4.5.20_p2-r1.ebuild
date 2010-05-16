@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.5.20_p2-r1.ebuild,v 1.14 2009/09/20 19:52:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.5.20_p2-r1.ebuild,v 1.15 2010/05/03 23:21:52 robbat2 Exp $
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
@@ -181,7 +181,7 @@ src_compile() {
 		--host="${CHOST}" \
 		${myconf} "${javaconf}" || die "configure failed"
 
-	sed -e "s,\(^STRIP *=\).*,\1\"none\"," Makefile > Makefile.cpy \
+	sed -e "s,\(^STRIP *=\).*,\1\"true\"," Makefile > Makefile.cpy \
 	    && mv Makefile.cpy Makefile
 
 	# FreeBSD contains a broken version of rpcgen, see 
@@ -192,8 +192,7 @@ src_compile() {
 }
 
 src_install() {
-
-	einstall libdir="${ED}/usr/$(get_libdir)" strip="none" || die
+	einstall libdir="${ED}/usr/$(get_libdir)" STRIP="true" || die
 
 	db_src_install_usrbinslot
 
