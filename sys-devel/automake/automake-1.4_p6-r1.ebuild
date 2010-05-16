@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.4_p6-r1.ebuild,v 1.6 2010/03/09 22:35:46 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/automake-1.4_p6-r1.ebuild,v 1.7 2010/03/13 19:31:12 armin76 Exp $
 
 inherit eutils
 
