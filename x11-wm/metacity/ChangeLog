@@ -1,6 +1,13 @@
 # ChangeLog for x11-wm/metacity
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.246 2010/03/07 21:24:48 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/ChangeLog,v 1.248 2010/05/04 16:15:47 tester Exp $
+
+  03 May 2010; Olivier Crête <tester@gentoo.org> metacity-2.28.1.ebuild:
+  amd64 stable, bug #314899
+
+  16 Mar 2010; Alexis Ballier <aballier@gentoo.org> metacity-2.28.1.ebuild,
+  +files/metacity-2.28.1-wif_macros.patch:
+  Fix build on BSD, bug #309443
 
   07 Mar 2010; Gilles Dartiguelongue <eva@gentoo.org>
   -metacity-2.24.0-r2.ebuild, -files/metacity-2.24.0-crash-login.patch,

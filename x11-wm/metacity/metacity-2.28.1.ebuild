@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.28.1.ebuild,v 1.1 2010/02/06 18:18:03 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/metacity/metacity-2.28.1.ebuild,v 1.3 2010/05/04 16:15:47 tester Exp $
 
 EAPI="2"
 # debug only changes CFLAGS
@@ -82,4 +82,10 @@ src_prepare() {
 	# Use sys/wait.h header instead of wait.h as described in posix specs,
 	# bug 292009
 	epatch "${FILESDIR}/${PN}-2.28.0-sys-wait-header.patch"
+
+	# WIFEXITED and friends are defined in sys/wait.h
+	# Fixes a build failure on BSD.
+	# https://bugs.gentoo.org/show_bug.cgi?id=309443
+	# https://bugzilla.gnome.org/show_bug.cgi?id=605460
+	epatch "${FILESDIR}/${PN}-2.28.1-wif_macros.patch"
 }
