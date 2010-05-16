@@ -1,23 +1,33 @@
 # ChangeLog for sys-libs/timezone-data
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.229 2010/04/07 17:56:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/timezone-data/ChangeLog,v 1.233 2010/05/10 19:18:42 vapier Exp $
+
+*timezone-data-2010j (10 May 2010)
+
+  10 May 2010; Mike Frysinger <vapier@gentoo.org> +timezone-data-2010j.ebuild:
+  Version bump #319145 by Rodrigo Severo.
+
+  10 May 2010; Mike Frysinger <vapier@gentoo.org> timezone-data-2010i.ebuild:
+  Stabilize for everyone #319169 by Arfrever Frehtes Taifersar Arahesis.
+
+*timezone-data-2010i (19 Apr 2010)
+
+  19 Apr 2010; Mike Frysinger <vapier@gentoo.org> +timezone-data-2010i.ebuild:
+  Version bump #316103 by Rodrigo Severo.
 
 *timezone-data-2010h (07 Apr 2010)
 
-  07 Apr 2010; Mike Frysinger <vapier@gentoo.org>
-  +timezone-data-2010h.ebuild:
+  07 Apr 2010; Mike Frysinger <vapier@gentoo.org> +timezone-data-2010h.ebuild:
   Version bump #313235 by Rodrigo Severo.
 
 *timezone-data-2010g (29 Mar 2010)
 
-  29 Mar 2010; Mike Frysinger <vapier@gentoo.org>
-  +timezone-data-2010g.ebuild:
+  29 Mar 2010; Mike Frysinger <vapier@gentoo.org> +timezone-data-2010g.ebuild:
   Version bump #311925 by Rodrigo Severo.
 
 *timezone-data-2010f (23 Mar 2010)
 
-  23 Mar 2010; Mike Frysinger <vapier@gentoo.org>
-  +timezone-data-2010f.ebuild:
+  23 Mar 2010; Mike Frysinger <vapier@gentoo.org> +timezone-data-2010f.ebuild:
   Version bump #310739 by Rodrigo Severo.
 
 *timezone-data-2010e (08 Mar 2010)
@@ -29,12 +39,10 @@
 
 *timezone-data-2010d (08 Mar 2010)
 
-  08 Mar 2010; Mike Frysinger <vapier@gentoo.org>
-  +timezone-data-2010d.ebuild:
+  08 Mar 2010; Mike Frysinger <vapier@gentoo.org> +timezone-data-2010d.ebuild:
   Version bump #308429 by Rodrigo Severo & Dirkjan Ochtman.
 
-  07 Mar 2010; Mike Frysinger <vapier@gentoo.org>
-  timezone-data-2010b.ebuild:
+  07 Mar 2010; Mike Frysinger <vapier@gentoo.org> timezone-data-2010b.ebuild:
   Stabilize for everyone #306795 by Arfrever Frehtes Taifersar Arahesis.
 
   02 Mar 2010; Jeroen Roovers <jer@gentoo.org> timezone-data-2010b.ebuild:
@@ -42,14 +50,12 @@
 
 *timezone-data-2010b (26 Jan 2010)
 
-  26 Jan 2010; Mike Frysinger <vapier@gentoo.org>
-  +timezone-data-2010b.ebuild:
+  26 Jan 2010; Mike Frysinger <vapier@gentoo.org> +timezone-data-2010b.ebuild:
   Version bump #302296 by Rodrigo Severo.
 
 *timezone-data-2010a (19 Jan 2010)
 
-  19 Jan 2010; Mike Frysinger <vapier@gentoo.org>
-  +timezone-data-2010a.ebuild:
+  19 Jan 2010; Mike Frysinger <vapier@gentoo.org> +timezone-data-2010a.ebuild:
   Version bump #301441 by Rodrigo Severo.
 
   19 Jan 2010; Mike Frysinger <vapier@gentoo.org> timezone-data-2009u.ebuild:
@@ -57,14 +63,12 @@
 
 *timezone-data-2009u (29 Dec 2009)
 
-  29 Dec 2009; Mike Frysinger <vapier@gentoo.org>
-  +timezone-data-2009u.ebuild:
+  29 Dec 2009; Mike Frysinger <vapier@gentoo.org> +timezone-data-2009u.ebuild:
   Version bump #298690 by Rodrigo Severo.
 
 *timezone-data-2009t (26 Dec 2009)
 
-  26 Dec 2009; Mike Frysinger <vapier@gentoo.org>
-  +timezone-data-2009t.ebuild:
+  26 Dec 2009; Mike Frysinger <vapier@gentoo.org> +timezone-data-2009t.ebuild:
   Version bump #297816 by Rodrigo Severo.
 
   13 Dec 2009; Mike Frysinger <vapier@gentoo.org>
