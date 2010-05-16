@@ -1,6 +1,18 @@
 # ChangeLog for sys-libs/slang
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.111 2009/12/17 18:32:56 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/slang/ChangeLog,v 1.115 2010/05/11 21:04:45 ranger Exp $
+
+  11 May 2010; Brent Baude <ranger@gentoo.org> slang-2.2.2.ebuild:
+  stable ppc64, bug 318313
+
+  10 May 2010; nixnut <nixnut@gentoo.org> slang-2.2.2.ebuild:
+  ppc stable #318313
+
+  07 May 2010; Jeroen Roovers <jer@gentoo.org> slang-2.2.2.ebuild:
+  Stable for HPPA (bug #318313).
+
+  03 May 2010; Samuli Suominen <ssuominen@gentoo.org> slang-2.2.2.ebuild:
+  Make sure -ltermcap is not used wrt #276787 by Michal Janke.
 
   17 Dec 2009; Raúl Porcel <armin76@gentoo.org> slang-2.2.0.ebuild:
   ia64/s390/sh/sparc stable wrt #287733
