@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.15.ebuild,v 1.6 2010/03/08 22:35:46 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.15.ebuild,v 1.9 2010/04/01 17:24:35 armin76 Exp $
 
 inherit eutils toolchain-funcs multilib libtool autotools
 

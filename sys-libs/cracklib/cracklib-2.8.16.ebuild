@@ -1,15 +1,15 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.13-r1.ebuild,v 1.3 2010/03/08 22:35:46 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.16.ebuild,v 1.1 2010/04/30 13:02:14 vapier Exp $
 
-inherit eutils toolchain-funcs multilib libtool autotools
+inherit eutils toolchain-funcs multilib libtool
 
 MY_P=${P/_}
 DESCRIPTION="Password Checking Library"
 HOMEPAGE="http://sourceforge.net/projects/cracklib"
 SRC_URI="mirror://sourceforge/cracklib/${MY_P}.tar.gz"
 
-LICENSE="CRACKLIB"
+LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint"
 IUSE="nls python"
@@ -30,11 +30,9 @@ pkg_setup() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${P}-python-linkage.patch #246747
+	epatch "${FILESDIR}"/${PN}-2.8.13-python-linkage.patch #246747
+	sed -i '/PYTHON/s:\(print\) \([^"]*\):\1(\2):' configure #302908
 
-	epatch "${FILESDIR}"/${PN}-2.8.12-interix.patch
-
-	AT_M4DIR="m4" eautoreconf # need new libtool for interix
 	elibtoolize #269003
 }
 
@@ -50,6 +48,8 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	rm -r "${ED}"/usr/share/cracklib
+
+	find "${ED}" -name '_cracklibmodule.*a' -exec rm {} + #316495
 
 	# move shared libs to /
 	gen_usr_ldscript -a crack

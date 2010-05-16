@@ -1,6 +1,21 @@
 # ChangeLog for sys-libs/cracklib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.141 2010/03/08 22:35:46 zmedico Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.145 2010/04/30 13:02:14 vapier Exp $
+
+*cracklib-2.8.16 (30 Apr 2010)
+
+  30 Apr 2010; Mike Frysinger <vapier@gentoo.org> +cracklib-2.8.16.ebuild:
+  Version bump #317883 by Samuli Suominen and drop useless cracklib modules
+  #316495 by Diego E. Pettenò.
+
+  01 Apr 2010; Raúl Porcel <armin76@gentoo.org> cracklib-2.8.15.ebuild:
+  alpha/ia64/m68k/s390/sh/sparc stable wrt #305081
+
+  23 Mar 2010; Brent Baude <ranger@gentoo.org> cracklib-2.8.15.ebuild:
+  stable ppc, bug 305081
+
+  14 Mar 2010; Markus Meier <maekke@gentoo.org> cracklib-2.8.15.ebuild:
+  amd64/arm stable, bug #305081
 
   08 Mar 2010; Zac Medico <zmedico@gentoo.org> cracklib-2.8.13.ebuild,
   cracklib-2.8.13-r1.ebuild, cracklib-2.8.15.ebuild:
