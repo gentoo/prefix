@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/firefox-bin/firefox-bin-3.5.6.ebuild,v 1.4 2010/01/03 21:16:10 anarchy Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/firefox-bin/firefox-bin-3.5.6.ebuild,v 1.5 2010/04/18 18:59:44 volkmar Exp $
 EAPI="2"
 
 inherit eutils mozilla-launcher multilib mozextension
@@ -21,7 +21,7 @@ RESTRICT="strip mirror"
 KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="|| ( MPL-1.1 GPL-2 LGPL-2.1 )"
-IUSE="restrict-javascript startup-notification"
+IUSE="startup-notification"
 
 for X in ${LANGS} ; do
 	if [ "${X}" != "en" ] && [ "${X}" != "en-US" ]; then
@@ -53,8 +53,6 @@ RDEPEND="dev-libs/dbus-glib
 		>=app-emulation/emul-linux-x86-gtklibs-20081109
 		>=app-emulation/emul-linux-x86-soundlibs-20081109
 	)"
-
-PDEPEND="restrict-javascript? ( www-plugins/noscript )"
 
 S="${WORKDIR}/${MY_PN}"
 
