@@ -1,6 +1,14 @@
 # ChangeLog for sys-devel/make
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.62 2010/02/13 08:48:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.63 2010/03/31 22:42:05 robbat2 Exp $
+
+*make-3.81-r2 (31 Mar 2010)
+
+  31 Mar 2010; Robin H. Johnson <robbat2@gentoo.org> +make-3.81-r2.ebuild,
+  +files/make-3.81-jobserver.patch:
+  Bug #193258 reported some parallel make failures for complex cases. The
+  original patch with that was not however suitable, so take the much
+  simplier patch that Fedora did instead.
 
   13 Feb 2010; Mike Frysinger <vapier@gentoo.org>
   files/make-3.81-long-cmdline.patch:
