@@ -1,6 +1,36 @@
 # ChangeLog for x11-plugins/enigmail
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.175 2010/03/09 21:45:07 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.183 2010/04/23 19:06:49 armin76 Exp $
+
+  23 Apr 2010; Raúl Porcel <armin76@gentoo.org> enigmail-1.0.1-r3.ebuild:
+  alpha/ia64/sparc stable wrt #313003
+
+  18 Apr 2010; Markus Meier <maekke@gentoo.org> enigmail-1.0.1-r3.ebuild:
+  amd64 stable, bug #313003
+
+  15 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  enigmail-1.0.1-r3.ebuild:
+  x86 stable, security bug 313003
+
+  12 Apr 2010; Brent Baude <ranger@gentoo.org> enigmail-1.0.1-r3.ebuild:
+  Marking enigmail-1.0.1-r3 ppc for bug 313003
+
+  12 Apr 2010; Brent Baude <ranger@gentoo.org> enigmail-1.0.1-r3.ebuild:
+  Marking enigmail-1.0.1-r3 ppc64 for bug 313003
+
+*enigmail-1.0.1-r3 (08 Apr 2010)
+
+  08 Apr 2010; <anarchy@gentoo.org> +enigmail-1.0.1-r3.ebuild:
+  Use tb-3.0.4 sources
+
+*enigmail-1.0.1-r2 (28 Mar 2010)
+
+  28 Mar 2010; <anarchy@gentoo.org> +enigmail-1.0.1-r2.ebuild:
+  Fix sqlite useage, disable sound support as not required for building bug
+  #310675
+
+  14 Mar 2010; Raúl Porcel <armin76@gentoo.org> enigmail-1.0.1-r1.ebuild:
+  alpha/ia64/sparc stable wrt #307045
 
   09 Mar 2010; Joseph Jezak <josejx@gentoo.org> enigmail-1.0.1-r1.ebuild:
   Marked ppc stable for bug #307045.

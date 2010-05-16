@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-1.0.1-r1.ebuild,v 1.6 2010/03/14 19:24:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-1.0.1-r3.ebuild,v 1.6 2010/04/23 19:06:49 armin76 Exp $
 
 WANT_AUTOCONF="2.1"
 EAPI="2"
@@ -8,7 +8,7 @@ EAPI="2"
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib mozextension autotools
 MY_P="${P/_beta/b}"
 EMVER="${PV}"
-TBVER="3.0.1"
+TBVER="3.0.4"
 PATCH="mozilla-thunderbird-3.0-patches-0.3"
 
 DESCRIPTION="GnuPG encryption plugin for thunderbird."
@@ -92,7 +92,8 @@ src_configure() {
 	mozconfig_annotate '' \
 		--with-system-nspr \
 		--with-system-nss \
-		--enable-system-sqlite \
+		--disable-wave \
+		--disable-ogg \
 		--with-default-mozilla-five-home="${EPREFIX}"${MOZILLA_FIVE_HOME} \
 		--with-user-appdir=.thunderbird \
 		--enable-application=mail
