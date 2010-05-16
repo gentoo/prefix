@@ -1,6 +1,38 @@
 # ChangeLog for www-servers/lighttpd
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.224 2010/02/09 23:18:25 hoffie Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/lighttpd/ChangeLog,v 1.232 2010/05/13 16:18:03 josejx Exp $
+
+  13 May 2010; Joseph Jezak <josejx@gentoo.org> lighttpd-1.4.26-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #308405.
+
+  16 Apr 2010; Raúl Porcel <armin76@gentoo.org> lighttpd-1.4.26-r1.ebuild:
+  alpha/arm/ia64/sh stable wrt #308405
+
+  15 Apr 2010; Tiago Cunha <tcunha@gentoo.org> lighttpd-1.4.26-r1.ebuild:
+  stable sparc, bug 308405
+
+  11 Apr 2010; Tobias Heinlein <keytoaster@gentoo.org>
+  lighttpd-1.4.26-r1.ebuild:
+  amd64 stable, bug #308405
+
+  07 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  lighttpd-1.4.26-r1.ebuild:
+  x86 stable wrt bug #308405
+
+  06 Apr 2010; Jeroen Roovers <jer@gentoo.org> lighttpd-1.4.26-r1.ebuild:
+  Stable for HPPA (bug #308405).
+
+  14 Mar 2010; Thilo Bangert <bangert@gentoo.org>
+  files/conf/mime-types.conf:
+  add svg mimetypes (bug #298437)
+
+*lighttpd-1.4.26-r1 (14 Mar 2010)
+
+  14 Mar 2010; Thilo Bangert <bangert@gentoo.org>
+  +files/1.4.26-fix-ssl-return-check-r2716.patch,
+  +lighttpd-1.4.26-r1.ebuild:
+  add patch which fixes ssl support for newer versions of openssl (bug
+  #308405)
 
 *lighttpd-1.4.26 (09 Feb 2010)
 
