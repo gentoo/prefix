@@ -40,5 +40,5 @@ src_configure() {
 
 src_install() {
 	exeinto /usr/$(get_libdir)
-	newexe .libs/libpng12$(get_libame 0.43.0) libpng12$(get_libname 0) || die
+	newexe .libs/libpng12$(get_libname 0.43.0) libpng12$(get_libname 0) || die
 }
