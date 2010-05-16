@@ -48,13 +48,10 @@ src_unpack() {
 	fi
 
 	epatch "${FILESDIR}"/${PN}-7.2-mint.patch
-	epatch "${FILESDIR}"/${PN}-7.1-interix-fs.patch
 	epatch "${FILESDIR}"/${PN}-7.4-hppa-hpux.patch
 
 	# interix has no setgroups, so this won't work.
 	epatch "${FILESDIR}"/${PN}-7.5-interix-setgroups.patch
-
-	epatch "${FILESDIR}"/${PN}-8.4-interix-3.5-sleep.patch
 
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
