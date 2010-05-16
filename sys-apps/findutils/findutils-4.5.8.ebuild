@@ -23,24 +23,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	epatch "${FILESDIR}"/${PN}-4.3.2-irix.patch
-
-	# interix does not have any means of retrieving a list of
-	# mounted filesystems.
-	# Need to patch configure directly besides ls-mntd-fs.m4,
-	# because during bootstrap not all m4-files might be installed.
-	cp -a configure{,.ts} || die
-	cp -a find/fstype.c{,.ts} || die
-	cp -a gnulib/lib/mountlist.c{,.ts} || die
-	cp -a gnulib/m4/ls-mntd-fs.m4{,.ts} || die
-	epatch "${FILESDIR}"/${PN}-4.3.11-interix.patch
-#	epatch "${FILESDIR}"/${PN}-4.5.3-mint.patch
-	# avoid regeneration
-	touch -r configure{.ts,} || die
-	touch -r find/fstype.c{.ts,} || die
-	touch -r gnulib/lib/mountlist.c{.ts,} || die
-	touch -r gnulib/m4/ls-mntd-fs.m4{.ts,} || die
-
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
 	sed -i '/^SUBDIRS/s/locate//' Makefile.in
