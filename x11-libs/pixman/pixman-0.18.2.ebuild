@@ -1,17 +1,19 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/pixman-0.16.0.ebuild,v 1.7 2009/12/15 16:24:24 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/pixman-0.18.2.ebuild,v 1.1 2010/05/12 21:51:23 chithanh Exp $
 
-# Must be before x-modular eclass is inherited
-#SNAPSHOT="yes"
+EAPI=3
+inherit xorg-2 toolchain-funcs versionator
 
-inherit x-modular toolchain-funcs versionator eutils
-
+EGIT_REPO_URI="git://anongit.freedesktop.org/git/pixman"
 DESCRIPTION="Low-level pixel manipulation routines"
+
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="altivec mmx sse2"
 
 pkg_setup() {
+	xorg-2_pkg_setup
+
 	# (Open)Solaris /bin/sh is broken (at least on ~x64-solaris)
 	export CONFIG_SHELL="${BASH}"
 
@@ -44,14 +46,4 @@ pkg_setup() {
 	'0,0')
 		CONFIGURE_OPTIONS="${CONFIGURE_OPTIONS} --disable-mmx --disable-sse2" ;;
 	esac
-}
-
-src_unpack() {
-	x-modular_src_unpack
-	cd "${S}"
-
-	epatch "${FILESDIR}"/pixman-0.12.0-sse.patch
-
-	eautoreconf
-	elibtoolize
 }

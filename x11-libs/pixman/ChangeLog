@@ -1,6 +1,28 @@
 # ChangeLog for x11-libs/pixman
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.63 2010/01/22 09:24:07 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pixman/ChangeLog,v 1.67 2010/05/12 21:51:23 chithanh Exp $
+
+*pixman-0.18.2 (12 May 2010)
+
+  12 May 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  -pixman-0.18.0.ebuild, +pixman-0.18.2.ebuild:
+  Version bump.
+
+  08 Apr 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  -pixman-0.16.0.ebuild, -pixman-0.16.4.ebuild:
+  Drop old
+
+*pixman-0.18.0 (02 Apr 2010)
+
+  02 Apr 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  -pixman-0.17.4.ebuild, -pixman-0.17.14.ebuild, +pixman-0.18.0.ebuild:
+  Version bump. Drop dev. releases.
+
+*pixman-0.17.14 (31 Mar 2010)
+
+  31 Mar 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +pixman-0.17.14.ebuild:
+  Version bump.
 
 *pixman-0.17.4 (22 Jan 2010)
 *pixman-0.16.4 (22 Jan 2010)
