@@ -1,6 +1,17 @@
 # ChangeLog for sys-apps/preload
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.11 2009/05/20 02:59:02 darkside Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/ChangeLog,v 1.14 2010/03/29 16:03:49 pacho Exp $
+
+  29 Mar 2010; Pacho Ramos <pacho@gentoo.org> files/00-patch-configure.diff:
+  00-patch-configure.diff modified to install docs under /usr/share/doc/,
+  fixing bug 298191. Thanks to Diego for reporting.
+
+  29 Mar 2010; Pacho Ramos <pacho@gentoo.org> preload-0.6.4-r1.ebuild,
+  metadata.xml:
+  Taking its maintainership. Make repoman happier quoting some variables.
+
+  28 Mar 2010; Jeremy Olexa <darkside@gentoo.org> metadata.xml:
+  Drop myself from metadata, add maintainer-needed
 
   20 May 2009; Jeremy Olexa <darkside@gentoo.org> -preload-0.6.4.ebuild:
   remove old

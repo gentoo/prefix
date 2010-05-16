@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/preload-0.6.4-r1.ebuild,v 1.1 2009/05/20 02:58:30 darkside Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/preload/preload-0.6.4-r1.ebuild,v 1.2 2010/03/29 15:40:17 pacho Exp $
 
 inherit eutils autotools prefix
 
@@ -44,8 +44,8 @@ src_install() {
 	emake DESTDIR="${D}" install || die "install failed"
 	# Remove log and state file from image or they will be
 	# truncated during merge
-	rm ${ED}/var/lib/preload/preload.state || die "cleanup failed"
-	rm ${ED}/var/log/preload.log || die "cleanup failed"
+	rm "${ED}"/var/lib/preload/preload.state || die "cleanup failed"
+	rm "${ED}"/var/log/preload.log || die "cleanup failed"
 	keepdir /var/lib/preload
 	keepdir /var/log
 	newinitd "${FILESDIR}/init.d-preload" preload || die "initd failed"
