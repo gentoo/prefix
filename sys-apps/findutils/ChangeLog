@@ -1,6 +1,40 @@
 # ChangeLog for sys-apps/findutils
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.181 2009/12/11 20:38:57 vapier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/ChangeLog,v 1.192 2010/05/09 14:17:33 pebenito Exp $
+
+  09 May 2010; Chris PeBenito <pebenito@gentoo.org> findutils-4.4.2.ebuild,
+  +files/findutils-4.4.2-selinux.diff:
+  Fix findutils SELinux patch to deal with whitespace changes in findutils
+  4.4.2. #315759.
+
+  08 May 2010; Raúl Porcel <armin76@gentoo.org> findutils-4.4.2.ebuild:
+  alpha/arm/ia64/m68k/s390/sh stable wrt #314035
+
+  25 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  findutils-4.4.2.ebuild:
+  x86 stable wrt bug #314035
+
+  16 Apr 2010; Brent Baude <ranger@gentoo.org> findutils-4.4.2.ebuild:
+  stable ppc, bug 314035
+
+  16 Apr 2010; Jeroen Roovers <jer@gentoo.org> findutils-4.4.2.ebuild:
+  Stable for HPPA (bug #314035).
+
+  15 Apr 2010; Chris PeBenito <pebenito@gentoo.org>
+  -files/findutils-4.5.4-selinux.diff, findutils-4.5.8.ebuild:
+  Remove SELinux patch from 4.5.8, as the code is integrated.
+
+  14 Apr 2010; Tiago Cunha <tcunha@gentoo.org> findutils-4.4.2.ebuild:
+  stable sparc, bug 314035
+
+  13 Apr 2010; Markos Chandras <hwoarang@gentoo.org> findutils-4.4.2.ebuild:
+  Stable on amd64 wrt bug #314035
+
+*findutils-4.5.8 (09 Apr 2010)
+
+  09 Apr 2010; Mike Frysinger <vapier@gentoo.org> +findutils-4.5.8.ebuild:
+  Version bump #313797 by Sebastian Pipping. Should finally fix #253570 by
+  Barbu Eros Iulian.
 
 *findutils-4.4.2 (11 Dec 2009)
 
