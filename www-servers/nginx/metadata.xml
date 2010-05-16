@@ -9,6 +9,10 @@
 	<maintainer>
 		<email>voxus@gentoo.org</email>
 	</maintainer>
+	<maintainer>
+		<email>dev-zero@gentoo.org</email>
+		<name>Tiziano Müller</name>
+	</maintainer>
 	<use>
 		<flag name='addition'>Enables HTTP addition filter module</flag>
 		<flag name='aio'>Enables file AIO support</flag>
@@ -19,11 +23,13 @@
 		<flag name='pop'>Enables POP3 proxy support</flag>
 		<flag name='random-index'>Enables HTTP random index module</flag>
 		<flag name='realip'>Enables realip module</flag>
-		<flag name='securelink'>Enable HTTP secure link module</flag>
 		<flag name='smtp'>Enables SMTP proxy support</flag>
 		<flag name='static-gzip'>Enables support for gzipping static content</flag>
 		<flag name='status'>Enables stub_status module</flag>
 		<flag name='sub'>Enables sub_filter module</flag>
 		<flag name='webdav'>Enable webdav support</flag>
 	</use>
+	<upstream>
+		<changelog>http://nginx.org/en/CHANGES</changelog>
+	</upstream>
 </pkgmetadata>

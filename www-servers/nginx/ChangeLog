@@ -1,6 +1,45 @@
 # ChangeLog for www-servers/nginx
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.249 2010/03/07 16:17:10 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.257 2010/05/03 19:34:36 hollow Exp $
+
+*nginx-0.8.36-r1 (03 May 2010)
+
+  03 May 2010; Benedikt Böhm <hollow@gentoo.org> +nginx-0.8.36-r1.ebuild:
+  add uWSGI module wrt bug #314931
+
+*nginx-0.8.36 (26 Apr 2010)
+
+  26 Apr 2010; Tiziano Müller <dev-zero@gentoo.org> +nginx-0.8.36.ebuild:
+  Version bump. Make sure we don't depend on perl unconditionally.
+
+*nginx-0.8.35 (11 Apr 2010)
+
+  11 Apr 2010; Tiziano Müller <dev-zero@gentoo.org> +nginx-0.8.35.ebuild,
+  metadata.xml:
+  Version bump. Added the http_push module. Moved libatomic_ops dep to
+  DEPEND. Added myself as maintainer. Added upstream changelog URL.
+
+  26 Mar 2010; Benedikt Böhm <hollow@gentoo.org> nginx-0.7.65-r1.ebuild,
+  nginx-0.8.34-r1.ebuild:
+  fix pcre use flag for real
+
+  25 Mar 2010; Benedikt Böhm <hollow@gentoo.org> nginx-0.7.65-r1.ebuild,
+  nginx-0.8.34-r1.ebuild:
+  fix pcre USE flag
+
+*nginx-0.7.65-r1 (25 Mar 2010)
+
+  25 Mar 2010; Benedikt Böhm <hollow@gentoo.org> -nginx-0.7.64.ebuild,
+  -nginx-0.7.64-r3.ebuild, nginx-0.7.65.ebuild, +nginx-0.7.65-r1.ebuild,
+  -nginx-0.8.33.ebuild, -nginx-0.8.34.ebuild, nginx-0.8.34-r1.ebuild,
+  -files/nginx-r1, metadata.xml:
+  fix #308175, #308195, #308481 and #311277
+
+  21 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> nginx-0.7.65.ebuild:
+  x86 stable, arch-tested by Andreas Schurch, bug #308175
+
+  15 Mar 2010; nixnut <nixnut@gentoo.org> nginx-0.7.65.ebuild:
+  ppc stable #308175
 
   07 Mar 2010; Benedikt Böhm <hollow@gentoo.org> nginx-0.8.34-r1.ebuild:
   fix USE flag typos

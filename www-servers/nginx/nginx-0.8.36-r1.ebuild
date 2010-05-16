@@ -1,21 +1,46 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-0.8.34-r1.ebuild,v 1.5 2010/03/26 14:10:32 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/nginx-0.8.36-r1.ebuild,v 1.1 2010/05/03 19:34:35 hollow Exp $
 
 EAPI="2"
 
+# Maintainer notes:
+# - http_rewrite-independent pcre-support makes sense for matching locations without an actual rewrite
+# - any http-module activates the main http-functionality and overrides USE=-http
+# - keep the following 3 requirements in mind before adding external modules:
+#   * alive upstream
+#   * sane packaging
+#   * builds cleanly
+# - TODO: test the google-perftools module (included in vanilla tarball)
+
+# prevent perl-module from adding automagic perl DEPENDs
+GENTOO_DEPEND_ON_PERL="no"
+
+# http_passenger (http://www.modrails.com/, MIT license)
+# TODO: currently builds some stuff in src_configure
+PASSENGER_PV="2.2.11"
 USE_RUBY="ruby18"
 RUBY_OPTIONAL="yes"
-PASSENGER_PV="2.2.11"
+
+# http_push (http://pushmodule.slact.net/, MIT license)
+HTTP_PUSH_MODULE_P="nginx_http_push_module-0.692"
+
+# http_uwsgi (http://projects.unbit.it/uwsgi/, GPL-2 license)
+HTTP_UWSGI_MODULE_PV="0.9.5"
 
 inherit eutils ssl-cert toolchain-funcs perl-module ruby-ng flag-o-matic
 
 DESCRIPTION="Robust, small and high performance http and reverse proxy server"
-HOMEPAGE="http://nginx.net/"
+HOMEPAGE="http://nginx.net/
+	http://www.modrails.com/
+	http://pushmodule.slact.net/
+	http://projects.unbit.it/uwsgi/"
 SRC_URI="http://sysoev.ru/nginx/${P}.tar.gz
-	nginx_modules_http_passenger? ( mirror://rubyforge/passenger/passenger-${PASSENGER_PV}.tar.gz )"
+	nginx_modules_http_passenger? ( mirror://rubyforge/passenger/passenger-${PASSENGER_PV}.tar.gz )
+	nginx_modules_http_push? ( http://pushmodule.slact.net/downloads/${HTTP_PUSH_MODULE_P}.tar.gz )
+	nginx_modules_http_uwsgi? ( http://projects.unbit.it/downloads/uwsgi-${HTTP_UWSGI_MODULE_PV}.tar.gz )"
 
-LICENSE="BSD"
+LICENSE="BSD-2 GPL-2 MIT"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 
@@ -25,7 +50,7 @@ upstream_ip_hash userid"
 NGINX_MODULES_OPT="addition dav degradation flv geoip gzip_static image_filter
 perl random_index realip secure_link stub_status sub xslt"
 NGINX_MODULES_MAIL="imap pop3 smtp"
-NGINX_MODULES_3RD="http_passenger"
+NGINX_MODULES_3RD="http_passenger http_push http_uwsgi"
 
 IUSE="aio debug +http +http-cache ipv6 libatomic +pcre ssl"
 
@@ -46,7 +71,6 @@ for mod in $NGINX_MODULES_3RD; do
 done
 
 CDEPEND="
-	arm? ( dev-libs/libatomic_ops )
 	pcre? ( >=dev-libs/libpcre-4.2 )
 	ssl? ( dev-libs/openssl )
 	http-cache? ( userland_GNU? ( dev-libs/openssl ) )
@@ -64,10 +88,10 @@ CDEPEND="
 		>=dev-ruby/rake-0.8.1
 		>=dev-ruby/fastthread-1.0.1
 		>=dev-ruby/rack-1.0.0
-	)
-"
-RDEPEND="${RDEPEND} ${CDEPEND}"
-DEPEND="${DEPEND} ${CDEPEND}
+	)"
+RDEPEND="${CDEPEND}"
+DEPEND="${CDEPEND}
+	arm? ( dev-libs/libatomic_ops )
 	libatomic? ( dev-libs/libatomic_ops )"
 
 pkg_setup() {
@@ -91,12 +115,18 @@ pkg_setup() {
 	if [[ -n $NGINX_ADD_MODULES ]]; then
 		ewarn "You are building custom modules via \$NGINX_ADD_MODULES!"
 		ewarn "This nginx installation is not supported!"
-		ewarn "Please do not file bug reports!"
+		ewarn "Make sure you can reproduce the bug without those modules"
+		ewarn "_before_ reporting bugs."
 	fi
 
 	if use nginx_modules_http_passenger; then
 		ruby-ng_pkg_setup
 		use debug && append-flags -DPASSENGER_DEBUG
+	fi
+
+	if use !http; then
+		ewarn "To actually disable all http-functionality you also have to disable"
+		ewarn "all nginx http modules."
 	fi
 }
 
@@ -146,6 +176,16 @@ src_configure() {
 	if use nginx_modules_http_passenger; then
 		http_enabled=1
 		myconf="${myconf} --add-module=${WORKDIR}/passenger-${PASSENGER_PV}/ext/nginx"
+	fi
+
+	if use nginx_modules_http_push; then
+		http_enabled=1
+		myconf="${myconf} --add-module=${WORKDIR}/${HTTP_PUSH_MODULE_P}"
+	fi
+
+	if use nginx_modules_http_uwsgi; then
+		http_enabled=1
+		myconf="${myconf} --add-module=${WORKDIR}/uwsgi-${HTTP_UWSGI_MODULE_PV}/nginx"
 	fi
 
 	if use http || use http-cache; then
@@ -218,7 +258,7 @@ src_install() {
 	insinto /etc/${PN}
 	doins conf/*
 
-	dodoc CHANGES{,.ru} README
+	dodoc CHANGES* README
 
 	# logrotate
 	insinto /etc/logrotate.d
@@ -228,6 +268,16 @@ src_install() {
 		cd "${S}"/objs/src/http/modules/perl/
 		einstall DESTDIR="${D}" INSTALLDIRS=vendor || die "failed to install perl stuff"
 		fixlocalpod
+	fi
+
+	if use nginx_modules_http_push; then
+		docinto ${HTTP_PUSH_MODULE_P}
+		dodoc "${WORKDIR}"/${HTTP_PUSH_MODULE_P}/{changelog.txt,protocol.txt,README}
+	fi
+
+	if use nginx_modules_http_uwsgi; then
+		insinto /etc/nginx
+		doins "${WORKDIR}"/uwsgi-${HTTP_UWSGI_MODULE_PV}/nginx/uwsgi_params
 	fi
 
 	if use nginx_modules_http_passenger; then
