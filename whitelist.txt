@@ -509,6 +509,7 @@ media-gfx/gif2png
 media-gfx/gifsicle
 media-gfx/graphicsmagick
 media-gfx/igal
+media-gfx/imagemagick
 media-gfx/jhead
 media-gfx/jpeg2ps
 media-gfx/jpeginfo
