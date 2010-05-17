@@ -52,8 +52,6 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-7.20.0-strip-ldflags.patch \
 		"${FILESDIR}"/${PN}-7.19.7-test241.patch
 
-	epatch "${FILESDIR}"/${PN}-7.19.7-interix.patch
-
 	epatch "${FILESDIR}"/${PN}-7.18.2-prefix.patch
 	eprefixify curl-config.in || die "eprefixify failed"
 
