@@ -52,7 +52,7 @@ for X in ${LANGS} ; do
 done
 
 pkg_setup() {
-	local p="/usr/share/fonts/default/ghostscript"
+	local p="${EPREFIX}/usr/share/fonts/default/ghostscript"
 	# die if path exists and is not a symbolic link so that
 	# installation of symbolic link doesn't fail, bug 311923
 	if [[ -e ${p} && ! -L ${p} ]]; then
