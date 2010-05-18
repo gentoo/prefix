@@ -10,7 +10,7 @@ HOMEPAGE="http://www.libpng.org/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.xz"
 
 LICENSE="as-is"
-#KEYWORDS="~alpha ~amd64 ~arm ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86 ~sparc-fbsd ~x86-fbsd"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 SLOT="0"
 
 IUSE=""
