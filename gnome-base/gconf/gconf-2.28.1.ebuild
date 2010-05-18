@@ -65,7 +65,7 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.26.2-darwin-cant-link-module.patch
 
 	# Set default location for system-wide settings correctly
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-2.28.0-prefix.patch
 }
 
 # Can't run tests, missing script.
