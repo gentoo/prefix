@@ -18,7 +18,7 @@ IUSE="dbus debug doc eds gadu gnutls idn meanwhile networkmanager"
 IUSE+=" perl silc tcl tk spell qq gadu +gtk sasl +startup-notification"
 IUSE+=" ncurses groupwise prediction +xscreensaver zephyr zeroconf" # mono"
 
-IUSE+="aqua"
+IUSE+=" aqua"
 
 RDEPEND="
 	>=dev-libs/glib-2.12
