@@ -41,7 +41,7 @@ pkg_postinst() {
 	ewarn "Moving from libpng 1.2.x to 1.4.x will break installed libtool .la"
 	ewarn "files."
 	echo
-	elog "Run /usr/sbin/libpng-1.4.x-update.sh at your own risk only if"
+	elog "Run ${EPREFIX}/usr/sbin/libpng-1.4.x-update.sh at your own risk only if"
 	elog "revdep-rebuild fails."
 	echo
 	elog "Don't forget \"man emerge\" and useful parameters like --skip-first,"
