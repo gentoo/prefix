@@ -1184,6 +1184,7 @@ dev-java/mockobjects
 dev-java/msv
 dev-java/mx4j-core
 dev-java/nanoxml
+dev-java/odfdom-bin
 dev-java/oscache
 dev-java/qdox
 dev-java/relaxng-datatype
