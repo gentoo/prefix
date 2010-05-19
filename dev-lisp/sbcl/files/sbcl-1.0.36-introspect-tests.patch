@@ -1,0 +1,14 @@
+https://trac.macports.org/attachment/ticket/22085/patch-introspect-tests.diff
+https://trac.macports.org/ticket/22085
+
+--- contrib/sb-introspect/test-driver.lisp.orig	2010-03-28 02:24:42.000000000 +0900
++++ contrib/sb-introspect/test-driver.lisp	2010-03-28 02:25:03.000000000 +0900
+@@ -290,7 +290,7 @@
+          ;; FIXME: This is the canonical GENCGC result. On PPC we sometimes get
+          ;; :LARGE T, which doesn't seem right -- but ignore that for now.
+          '(:space :dynamic :generation 6 :write-protected t :boxed t :pinned nil :large nil)
+-         :ignore #+ppc '(:large) #-ppc nil)
++         :ignore #+ppc '(:large :boxed) #-ppc nil)
+     #-gencgc
+     (tai :cons :heap
+          ;; FIXME: Figure out what's the right cheney-result. SPARC at least

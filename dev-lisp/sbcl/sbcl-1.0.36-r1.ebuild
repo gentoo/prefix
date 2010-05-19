@@ -98,6 +98,8 @@ src_unpack() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.0.6-solaris.patch
+	epatch "${FILESDIR}"/${PN}-1.0.36-introspect-tests.patch
+
 	use source && sed 's%"$(BUILD_ROOT)%$(MODULE).lisp "$(BUILD_ROOT)%' -i contrib/vanilla-module.mk
 
 	sed "s,/lib,/$(get_libdir),g" -i install.sh
