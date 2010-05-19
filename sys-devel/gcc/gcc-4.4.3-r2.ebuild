@@ -164,9 +164,6 @@ src_compile() {
 			# AIX doesn't use GNU binutils, because it doesn't produce usable
 			# code
 			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
-			# The linker finding libs isn't enough, collect2 also has to:
-			EXTRA_ECONF="${EXTRA_ECONF} --with-mpfr=${EPREFIX}/usr"
-			EXTRA_ECONF="${EXTRA_ECONF} --with-gmp=${EPREFIX}/usr"
 			append-ldflags -Wl,-bbigtoc,-bmaxdata:0x10000000 # bug#194635
 		;;
 		*-interix*)
@@ -196,6 +193,11 @@ src_compile() {
 				CC="${CC} -m32"
 				CXX="${CC} -m32"
 			fi
+		;;
+		*:*" prefix "*)
+			# Bug 320487, generic Gentoo Prefix fix.
+			EXTRA_ECONF="${EXTRA_ECONF} --with-mpfr=${EPREFIX}/usr --with-gmp=${EPREFIX}/usr"
+		;;
 	esac
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
