@@ -4,6 +4,8 @@
 
 EAPI="2"
 
+inherit multilib
+
 DESCRIPTION="A download utility with resuming and segmented downloading with HTTP/HTTPS/FTP/BitTorrent support."
 HOMEPAGE="http://aria2.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
