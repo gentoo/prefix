@@ -22,15 +22,8 @@ RDEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-
-	epatch "${FILESDIR}"/${PN}-1.4.12-interix.patch
-#	epatch "${FILESDIR}"/${PN}-1.4.13-interix.patch
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.4.14-gnulib_spawn.patch # 310335
+	epatch "${FILESDIR}"/${PN}-1.4.12-interix.patch
 }
 
 src_compile() {
