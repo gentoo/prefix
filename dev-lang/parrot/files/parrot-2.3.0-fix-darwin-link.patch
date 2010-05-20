@@ -1,0 +1,40 @@
+http://bugs.gentoo.org/show_bug.cgi?id=302144
+
+Only the install_name part is left, and specific to Gentoo Prefix being
+strict about them being right.
+
+--- parrot-2.3.0/config/gen/makefiles/root.in
++++ parrot-2.3.0/config/gen/makefiles/root.in
+@@ -555,7 +555,7 @@
+ 
+ # Libraries
+ LIBPARROT_STATIC    = @blib_dir@/@libparrot_static@
+-#IF(darwin):export DYLD_LIBRARY_PATH := @blib_dir@:$(DYLD_LIBRARY_PATH)
++#IF(darwin):export DYLD_LIBRARY_PATH := @build_dir@/@blib_dir@:$(DYLD_LIBRARY_PATH)
+ #IF(win32):LIBPARROT_SHARED  = @libparrot_shared@
+ #ELSE:LIBPARROT_SHARED  = @blib_dir@/@libparrot_shared@
+ 
+--- parrot-2.3.0/config/init/hints/darwin.pm
++++ parrot-2.3.0/config/init/hints/darwin.pm
+@@ -56,9 +56,6 @@
+ 
+     $flagsref->{linkflags} .= " -undefined dynamic_lookup";
+ 
+-    _probe_for_libraries($conf, $flagsref, 'fink');
+-    _probe_for_libraries($conf, $flagsref, 'macports');
+-
+     for my $flag ( keys %$flagsref ) {
+         $flagsref->{$flag} =~ s/^\s+//;
+     }
+@@ -89,9 +86,8 @@
+         libparrot_shared_alias => "libparrot$share_ext",
+         rpath                  => "-L",
+         libparrot_soname       => "-install_name "
+-            . $lib_dir
+-            . '/libparrot'
+-            . $conf->data->get('share_ext')
++            . $conf->data->get('libdir')
++            . "/libparrot.$version$share_ext"
+     );
+ }
+ 

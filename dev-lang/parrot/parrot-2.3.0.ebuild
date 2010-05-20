@@ -27,6 +27,10 @@ RDEPEND="sys-libs/readline
 DEPEND="dev-lang/perl[doc?]
 	${RDEPEND}"
 
+src_prepare() {
+	epatch "${FILESDIR}"/${P}-fix-darwin-link.patch
+}
+
 src_configure() {
 	myconf="--disable-rpath"
 	use unicode || myconf+=" --without-icu"
@@ -40,10 +44,10 @@ src_configure() {
 	perl Configure.pl \
 		--ccflags="${CFLAGS}" \
 		--linkflags="${LDFLAGS}" \
-		--prefix="${EROOT}"/usr \
-		--libdir="${EROOT}"/usr/$(get_libdir) \
-		--sysconfdir="${EROOT}"/etc \
-		--sharedstatedir="${EROOT}"/var/lib/parrot \
+		--prefix="${EPREFIX}"/usr \
+		--libdir="${EPREFIX}"/usr/$(get_libdir) \
+		--sysconfdir="${EPREFIX}"/etc \
+		--sharedstatedir="${EPREFIX}"/var/lib/parrot \
 		--pkgconfigdir=pkgconfig \
 		$myconf || die
 }
