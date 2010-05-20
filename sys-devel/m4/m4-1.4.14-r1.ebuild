@@ -20,7 +20,8 @@ RDEPEND=""
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-1.4.14-gnulib_spawn.patch # 310335
+	# patch breaks Darwin 9+, bug #320131
+	[[ ${CHOST} == *-darwin* ]] || epatch "${FILESDIR}"/${PN}-1.4.14-gnulib_spawn.patch # 310335
 	epatch "${FILESDIR}"/${PN}-1.4.12-interix.patch
 }
 
