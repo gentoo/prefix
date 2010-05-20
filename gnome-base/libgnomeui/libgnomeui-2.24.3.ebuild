@@ -36,15 +36,3 @@ DEPEND="${RDEPEND}
 PDEPEND="x11-themes/gnome-icon-theme"
 
 DOCS="AUTHORS ChangeLog NEWS README"
-
-pkg_setup() {
-	G2CONF="${G2CONF} $(use_with jpeg libjpeg)"
-}
-
-src_unpack() {
-	gnome2_src_unpack
-
-	# Re-enable deprecated gnome druid code
-	epatch "${FILESDIR}"/${PN}-2.19.1-enable-druid.patch
-}
-
