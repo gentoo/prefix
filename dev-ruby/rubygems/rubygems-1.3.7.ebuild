@@ -72,7 +72,8 @@ each_ruby_install() {
 
 	${RUBY} setup.rb $myconf --destdir="${D}" || die "setup.rb install failed"
 
-	insinto $(ruby_rbconfig_value 'sitelibdir')
+	local sitelibdir=$(ruby_rbconfig_value 'sitelibdir')
+	insinto ${sitelibdir#${EPREFIX}}
 	newins "${FILESDIR}/auto_gem.rb.$(basename ${RUBY})" auto_gem.rb || die	"newins auto_gem failed"
 }
 
