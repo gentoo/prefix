@@ -194,6 +194,11 @@ src_configure() {
 	myconf="${myconf} $(use_with hesiod)"
 	myconf="${myconf} $(use_with kerberos) $(use_with kerberos kerberos5)"
 	myconf="${myconf} $(use_with gpm) $(use_with dbus)"
+	
+	# According to configure, this option is only used for GNU/Linux (x86_64 and
+	# s390). For Gentoo Prefix we have to explicitly spell out the location
+	# because $(get_libdir) returns a 32bit location on eg. RHEL.
+	use prefix && myconf="${myconf} --with-crt-dir=/usr/lib64"
 
 	econf \
 		--program-suffix=-${EMACS_SUFFIX} \
