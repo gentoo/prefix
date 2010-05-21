@@ -44,6 +44,7 @@ app-admin/gamin
 app-admin/makepasswd
 app-admin/passook
 app-admin/pwgen
+app-admin/pydf
 app-admin/stow
 app-arch/arc
 app-arch/arj
