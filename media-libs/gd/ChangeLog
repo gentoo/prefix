@@ -1,6 +1,11 @@
 # ChangeLog for media-libs/gd
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.62 2010/03/08 09:42:43 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/ChangeLog,v 1.63 2010/05/20 17:32:11 ssuominen Exp $
+
+  20 May 2010; Samuli Suominen <ssuominen@gentoo.org> gd-2.0.35-r1.ebuild:
+  Try libpng14-config and -lpng14 before falling back to libpng-config and
+  -lpng. This is working around issues in "prefix" picking up
+  libpng12-config from host over libpng-config from "prefix".
 
   08 Mar 2010; Samuli Suominen <ssuominen@gentoo.org> gd-2.0.35-r1.ebuild,
   +files/gd-2.0.35-libpng14.patch:

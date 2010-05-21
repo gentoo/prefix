@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.35-r1.ebuild,v 1.9 2010/03/08 20:14:28 ssuominen Exp $
 
+EAPI=1
+
 inherit autotools prefix flag-o-matic
 
 DESCRIPTION="A graphics library for fast image creation"
@@ -14,8 +16,9 @@ KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-maco
 IUSE="fontconfig jpeg png truetype xpm"
 
 RDEPEND="fontconfig? ( media-libs/fontconfig )
-	jpeg? ( >=media-libs/jpeg-6b )
-	png? ( >=media-libs/libpng-1.2.5 sys-libs/zlib )
+	jpeg? ( >=media-libs/jpeg-6b:0 )
+	png? ( >=media-libs/libpng-1.2.43-r2:0
+		sys-libs/zlib )
 	truetype? ( >=media-libs/freetype-2.1.5 )
 	xpm? ( x11-libs/libXpm x11-libs/libXt )
 	x86-interix? ( sys-devel/gettext )"
@@ -26,6 +29,12 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-libpng14.patch \
 		"${FILESDIR}"/${P}-maxcolors.patch
+
+	# Try libpng14 first, then fallback to plain libpng
+	sed -i \
+		-e 's/libpng12-config/libpng14-config/g' \
+		-e 's/-lpng12/-lpng14/' \
+		configure.ac || die
 
 	# need new libtool for interix
 	[[ ${CHOST} == *-interix* ]] \
