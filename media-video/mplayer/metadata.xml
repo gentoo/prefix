@@ -7,11 +7,12 @@
   </maintainer>
   <use>
     <flag name="3dnowext">Enable 3dnowext cpu instructions</flag>
+    <flag name="amr">Enables Adaptive Multi-Rate format support</flag>
     <flag name="ass">Internal SRT/SSA/ASS (SubRip / SubStation Alpha) subtitle support</flag>
-    <flag name="bl">Enables Blinkenlights support in mplayer</flag>
+    <flag name="bl">Blinkenlights video output</flag>
 	<flag name="bs2b">Enable Bauer stereophonic-to-binaural headphone filter</flag>
     <flag name="cdio">Use libcdio for CD support (instead of cdparanoia)</flag>
-    <flag name="cpudetection">Enables runtime cpudetection (useful for bindist, compatability on other CPUs)</flag>
+    <flag name="cpudetection">Enables runtime CPU detection (useful for bindist, compatibility on other CPUs)</flag>
     <flag name="custom-cpuopts">Fine-tune custom CPU optimizations (UNSUPPORTED)</flag>
 	<flag name="dirac">Enable Dirac video support (an advanced royalty-free video compression format) via the reference library: dirac.</flag>
     <flag name="dvdnav">Use forked libdvdnav, navigate menus in GUIs</flag>
@@ -21,16 +22,12 @@
     <flag name="faac">Use external faac library for AAC encoding</flag>
     <flag name="faad">Use external faad library for AAC decoding</flag>
 	<flag name="gmplayer">Build gmplayer, a GTK+ MPlayer gui (UNSUPPORTED)</flag>
-	<flag name="gtk">Build gmplayer, a GTK+ MPlayer gui (UNSUPPORTED)</flag>
     <flag name="live">Enables live.com streaming media support</flag>
     <flag name="md5sum">Enables md5sum video output</flag>
     <flag name="mmxext">Enables mmx2 support</flag>
     <flag name="mng">MNG input support</flag>
-    <flag name="mp2">Enables support for twolame, an MP2 audio library</flag>
-    <flag name="nemesi">Enable Nemesi Streaming Media support</flag>
 	<flag name="network">Enables network streaming support</flag>
 	<flag name="nut">Enables support for the NUT container format</flag>
-	<flag name="opencore-amr">Enables Adaptive Multi-Rate format support</flag>
 	<flag name="osdmenu">Enables support for on-screen display (OSD) menus</flag>
     <flag name="pnm">Add PNM video output option, to create PPM/PGM/PGMYUV images</flag>
     <flag name="pvr">Enable Video4Linux2 MPEG PVR</flag>

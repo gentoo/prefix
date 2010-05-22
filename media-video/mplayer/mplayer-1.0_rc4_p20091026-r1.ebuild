@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc4_p20091026-r1.ebuild,v 1.2 2009/10/27 13:59:32 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc4_p20091026-r1.ebuild,v 1.18 2010/04/23 13:04:43 ssuominen Exp $
 
 EAPI=2
 inherit eutils flag-o-matic multilib toolchain-funcs
@@ -12,7 +12,7 @@ IUSE="aqua 3dnow 3dnowext +a52 +aac aalib +alsa altivec +ass bidi bindist bl bs2
 doc +dts +dv dvb +dvd +dvdnav dxr3 +enca +encode esd +faac +faad fbcon ftp gif
 ggi -gmplayer +iconv ipv6 jack joystick jpeg kernel_linux ladspa libcaca lirc
 +live lzo mad md5sum +mmx mmxext mng +mp3 nas +network nut openal +opengl
-opencore-amr +osdmenu oss png pnm pulseaudio pvr +quicktime radio +rar +real
+amr +osdmenu oss png pnm pulseaudio pvr +quicktime radio +rar +real
 +rtc samba +shm +schroedinger sdl +speex sse sse2 ssse3 svga teletext tga
 +theora +toolame +tremor +truetype +twolame +unicode v4l v4l2 vdpau vidix +vorbis
 win32codecs +X +x264 xanim xinerama +xscreensaver +xv +xvid xvmc zoran"
@@ -35,7 +35,7 @@ SRC_URI="mirror://gentoo/${P}.tbz2
 			  mirror://mplayer/releases/fonts/font-arial-iso-8859-2.tar.bz2
 			  mirror://mplayer/releases/fonts/font-arial-cp1250.tar.bz2 )
 	gmplayer? ( mirror://mplayer/skins/Blue-${BLUV}.tar.bz2 )
-	svga? ( http://dev.gentoo.org/~ssuominen/svgalib_helper-${SVGV}-mplayer.tar.gz )"
+	svga? ( mirror://gentoo/svgalib_helper-${SVGV}-mplayer.tar.gz )"
 #	svga? ( http://mplayerhq.hu/~alex/svgalib_helper-${SVGV}-mplayer.tar.bz2 )
 
 DESCRIPTION="Media Player for Linux"
@@ -50,7 +50,7 @@ RDEPEND="sys-libs/ncurses
 	)
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
-	opencore-amr? ( media-libs/opencore-amr )
+	amr? ( media-libs/opencore-amr )
 	openal? ( media-libs/openal )
 	bidi? ( dev-libs/fribidi )
 	bs2b? ( media-libs/libbs2b )
@@ -86,7 +86,7 @@ RDEPEND="sys-libs/ncurses
 	png? ( media-libs/libpng )
 	pnm? ( media-libs/netpbm )
 	pulseaudio? ( media-sound/pulseaudio )
-	rar? ( || ( app-arch/unrar-gpl
+	rar? ( || (
 		app-arch/unrar
 		app-arch/rar ) )
 	samba? ( net-fs/samba )
@@ -100,7 +100,7 @@ RDEPEND="sys-libs/ncurses
 	xanim? ( media-video/xanim )
 	X? ( x11-libs/libXxf86vm
 		x11-libs/libXext
-		ass? ( || ( media-fonts/ttf-bitstream-vera media-fonts/dejavu )
+		ass? ( virtual/ttf-fonts
 			media-libs/freetype:2 media-libs/fontconfig )
 		dga? ( x11-libs/libXxf86dga  )
 		ggi? ( media-libs/libggi
@@ -185,6 +185,8 @@ pkg_setup() {
 		ewarn "please make sure your CPU optimization use flags (3dnow"
 		ewarn "3dnowext mmx mmxext sse sse2 ssse3) are properly set."
 	fi
+
+	epatch "${FILESDIR}"/${P}-arm_neon.patch
 }
 
 src_unpack() {
@@ -337,7 +339,7 @@ src_configure() {
 	# Use internal musepack codecs for SV7 and SV8 support
 	myconf="${myconf} --disable-musepack"
 
-	use opencore-amr || myconf="${myconf} --disable-libopencore_amrnb
+	use amr || myconf="${myconf} --disable-libopencore_amrnb
 		--disable-libopencore_amrwb"
 	use aac || myconf="${myconf} --disable-faad-internal"
 	use dirac || myconf="${myconf} --disable-libdirac-lavc"

@@ -1,6 +1,215 @@
 # ChangeLog for media-video/mplayer
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.685 2009/10/27 13:59:32 ssuominen Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.734 2010/04/29 17:08:12 ssuominen Exp $
+
+  29 Apr 2010; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc4_p20100427.ebuild, mplayer-9999.ebuild:
+  Fix liba52 handling wrt #317797 by Simone Scanzoni.
+
+  28 Apr 2010; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc4_p20100427.ebuild, mplayer-9999.ebuild:
+  Revert SRC_URI change for svgalib_helper; mirrors still ship the broken
+  copy.
+
+*mplayer-1.0_rc4_p20100427 (27 Apr 2010)
+
+  27 Apr 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +mplayer-1.0_rc4_p20100427.ebuild:
+  Version (snapshot) bump.
+
+  24 Apr 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  fix x264 deps
+
+  24 Apr 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  drop now unneeded append-flags
+
+  24 Apr 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  Build and install html documentation into the correct location, based on
+  the LINGUAS variable, from on a patch by Andrew Savchenko in bug #299405
+
+  24 Apr 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  dont depend on cdparanoia if cdio is enabled, we wont use it; patch by
+  Andrew Savchenko, bug #299405
+
+  24 Apr 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  remove aac useflag: let faad and faac useflags handle it; otherwise there
+  is support in ffmpeg; always use system libfaad
+
+  24 Apr 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  Disable opencore-amr support with bindist, Apache-2.0 vs GPL-2 issues,
+  https://bugs.gentoo.org/show_bug.cgi?id=299405#c6
+
+  24 Apr 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  allow ass and truetype without X, by Andrew Savchenko, bug #299405
+
+  24 Apr 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  use system libass, require freetype 2.2.1 at least
+
+  24 Apr 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  fix opencore-amr automagic dep
+
+  24 Apr 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  Fix codecsdir handling; default to real ones, the default can be overriden
+  with codecpath=somewhere in cli or config file, bug #310389 and bug
+  #309931
+
+  23 Apr 2010; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild, mplayer-1.0_rc4_p20100213-r1.ebuild,
+  mplayer-9999.ebuild, metadata.xml:
+  Rename USE opencore-amr to amr.
+
+  07 Apr 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild, mplayer-1.0_rc4_p20100213-r1.ebuild,
+  mplayer-9999.ebuild:
+  Drop unrar-gpl dep. Since it is useless.
+
+  26 Mar 2010; Dror Levin <spatz@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild, mplayer-1.0_rc4_p20100213-r1.ebuild,
+  mplayer-9999.ebuild:
+  Convert font deps to virtual/ttf-fonts wrt bug 282754.
+
+  26 Mar 2010; Dror Levin <spatz@gentoo.org> mplayer-9999.ebuild:
+  Remove dvbhead configure argument, bug 307951.
+
+  15 Mar 2010; Fabio Erculiani <lxnay@gentoo.org>
+  mplayer-1.0_rc4_p20100213-r1.ebuild, mplayer-9999.ebuild:
+  fine tune USE="vdpau" dependencies
+
+  15 Mar 2010; Fabio Erculiani <lxnay@gentoo.org>
+  mplayer-1.0_rc4_p20100213-r1.ebuild, mplayer-9999.ebuild:
+  there is no need to depend against x11-drivers/nvidia-drivers for
+  USE="vdpau", x11-libs/libvdpau is enough
+
+  09 Mar 2010; Steve Dibb <beandog@gentoo.org> mplayer-9999.ebuild:
+  Drop dvbhead argument, bug 307951
+
+  02 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc4_p20100213-r1.ebuild, mplayer-9999.ebuild:
+  Append -nopie to LDFLAGS wrt #93862 and only filter -fPIC -fPIE on x86.
+
+*mplayer-1.0_rc4_p20100213-r1 (27 Feb 2010)
+
+  27 Feb 2010; Sebastian Pipping <sping@gentoo.org>
+  -mplayer-1.0_rc4_p20100213.ebuild, +mplayer-1.0_rc4_p20100213-r1.ebuild,
+  mplayer-9999.ebuild:
+  Fix bug #307039:
+  - Add missing build dep dev-util/pkgconfig
+  - Fix "for i in uses; do" (should be ${uses})
+
+  26 Feb 2010; Sebastian Pipping <sping@gentoo.org>
+  mplayer-1.0_rc4_p20100213.ebuild, mplayer-9999.ebuild:
+  Restore lost dependencies (bug #287993)
+  - opencore-amr? ( media-libs/opencore-amr )
+  - bs2b? ( media-libs/libbs2b )
+
+  26 Feb 2010; Sebastian Pipping <sping@gentoo.org> mplayer-9999.ebuild:
+  Copy latest to 9999 before proceeding
+
+  13 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc4_p20100213.ebuild, metadata.xml:
+  Rename local USE flag openjpeg to global USE flag jpeg2k.
+
+*mplayer-1.0_rc4_p20100213 (13 Feb 2010)
+
+  13 Feb 2010; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0_rc4_p20100213.ebuild, metadata.xml:
+  Snapshot bump; Add OpenJPEG support; Drop ~mips due to openjpeg lib, bug
+  304931
+
+  11 Feb 2010; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc2_p20090731.ebuild:
+  Remove mips keyword wrt #280281.
+
+  02 Feb 2010; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Add arm to 9999 ebuild too.
+
+  01 Feb 2010; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild, mplayer-1.0_rc4_p20091124-r1.ebuild:
+  Add ~arm
+
+  31 Jan 2010; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild,
+  +files/mplayer-1.0_rc4_p20091026-arm_neon.patch:
+  Fix building with ARM NEON wrt #302073 by Raúl Porcel.
+
+  31 Jan 2010; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild:
+  alpha/ia64/sparc stable
+
+  24 Jan 2010; Tobias Klausmann <klausman@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild:
+  Stable on alpha, bug #297846
+
+  09 Jan 2010; Christian Faulhammer <fauli@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild:
+  stable x86, bug 297846
+
+  07 Jan 2010; Brent Baude <ranger@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild:
+  Marking mplayer-1.0_rc4_p20091026-r1 ppc for bug 297846
+
+  06 Jan 2010; Brent Baude <ranger@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild:
+  Marking mplayer-1.0_rc4_p20091026-r1 ppc64 for bug 297846
+
+  03 Jan 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  mplayer-1.0_rc4_p20091124-r1.ebuild, mplayer-9999.ebuild:
+  Drop epatch_user call, will be handled by new base eclass.
+
+  25 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  mplayer-1.0_rc4_p20091124-r1.ebuild, mplayer-9999.ebuild:
+  Add support for epatch_user.
+
+  24 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  mplayer-1.0_rc4_p20091124-r1.ebuild, mplayer-9999.ebuild:
+  Fix variable usage (${x} -> ${i})
+
+  24 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  mplayer-1.0_rc4_p20091124-r1.ebuild, mplayer-9999.ebuild:
+  Try to simplify the ebuild even bit more.
+
+  23 Dec 2009; Jeroen Roovers <jer@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild:
+  Stable for HPPA (bug #297846).
+
+  23 Dec 2009; Tomáš Chvátal <scarabeus@gentoo.org>
+  mplayer-1.0_rc4_p20091124-r1.ebuild, mplayer-9999.ebuild:
+  Update live ebuild, sync with latest snapshot.
+  Now latest snapshot and 9999 are 1:1, try to keep it up
+  by changing both ebuilds at once. More prefferably the live
+  ebuild to have the change as first one.
+
+  22 Dec 2009; Samuli Suominen <ssuominen@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild:
+  amd64 stable wrt #297846
+
+*mplayer-1.0_rc4_p20091124-r1 (26 Nov 2009)
+
+  26 Nov 2009; Steve Dibb <beandog@gentoo.org>
+  -mplayer-1.0_rc4_p20091124.ebuild, +mplayer-1.0_rc4_p20091124-r1.ebuild,
+  +files/mplayer-1.0_rc4_p20091124-r1-libtheora.patch:
+  Fix x264 dep; add patch to build against libtheora-1.0; bug 294496
+
+*mplayer-1.0_rc4_p20091124 (24 Nov 2009)
+
+  24 Nov 2009; Steve Dibb <beandog@gentoo.org>
+  +mplayer-1.0_rc4_p20091124.ebuild:
+  Snapshot bump
+
+  19 Nov 2009; Steve Dibb <beandog@gentoo.org> mplayer-9999.ebuild:
+  Remove teletext support, bug 292792
+
+  18 Nov 2009; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0_rc4_p20091026.ebuild, mplayer-1.0_rc4_p20091026-r1.ebuild:
+  Re-add ~ia64/~sparc wrt #280281
+
+  18 Nov 2009; Jeroen Roovers <jer@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild:
+  Marked ~hppa (bug #280281).
+
+  08 Nov 2009; Tobias Klausmann <klausman@gentoo.org>
+  mplayer-1.0_rc4_p20091026-r1.ebuild:
+  Keyworded on alpha, bug #280281
 
   27 Oct 2009; Samuli Suominen <ssuominen@gentoo.org>
   mplayer-1.0_rc4_p20091026-r1.ebuild:
