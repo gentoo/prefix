@@ -46,6 +46,9 @@ src_unpack() {
 	EPATCH_FORCE=yes
 	EPATCH_SUFFIX=patch
 	epatch "${WORKDIR}"/${PV}
+
+	# OSX/Intel ld doesn't like an archive without table of contents
+	sed -i -e 's/-cru/-scru/' packages/nlp/libstemmer_c/Makefile.pl || die
 }
 
 src_compile() {
