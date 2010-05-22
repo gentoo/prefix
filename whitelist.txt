@@ -927,7 +927,7 @@ dev-python/gst-python
 dev-python/gtksourceview-python
 dev-python/imaging
 dev-python/ipython
-dev-python/jinja2
+dev-python/jinja
 dev-python/kid
 dev-python/kiwi
 dev-python/libbonobo-python
