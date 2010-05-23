@@ -4,6 +4,8 @@
 
 EAPI="2"
 
+inherit eutils
+
 DESCRIPTION="GNU regular expression matcher"
 HOMEPAGE="http://www.gnu.org/software/grep/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz
@@ -23,6 +25,7 @@ src_prepare() {
 	sed -i '1i#include "../lib/progname.h"' tests/get-mb-cur-max.c
 
 #	epatch "${FILESDIR}"/${PN}-2.5.1a-mint.patch
+	epatch "${FILESDIR}"/${P}-aix-malloc.patch
 }
 
 src_configure() {
