@@ -1661,7 +1661,11 @@ java-pkg_get-jni-cflags() {
 	local flags="-I${JAVA_HOME}/include"
 
 	local platform="linux"
-	use elibc_FreeBSD && platform="freebsd"
+	case ${CHOST} in
+		*-darwin*)    platform=""         ;;
+		*-freebsd*)   platform="freebsd"  ;;
+		*-solaris*)   platform="solaris"  ;;
+	esac
 
 	# TODO do a check that the directories are valid
 	flags="${flags} -I${JAVA_HOME}/include/${platform}"
