@@ -39,7 +39,6 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	use vanilla || [[ -n ${PATCH_VER} ]] && EPATCH_SUFFIX="patch" epatch "${WORKDIR}"/patch
-	epatch "${FILESDIR}"/${PN}-6.8-solaris64.patch
 	strip-linguas -u bfd/po opcodes/po
 }
 
