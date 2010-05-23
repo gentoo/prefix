@@ -4,6 +4,8 @@
 
 EAPI=3
 
+inherit eutils libtool
+
 DESCRIPTION="Parse Options - Command line parser"
 HOMEPAGE="http://rpm5.org/"
 SRC_URI="http://rpm5.org/files/popt/${P}.tar.gz"
@@ -18,6 +20,11 @@ DEPEND="nls? ( sys-devel/gettext )"
 
 # FIXME
 RESTRICT="test"
+
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-1.15-mint.patch
+	elibtoolize # for FreeMiNT
+}
 
 src_configure() {
 	econf \
