@@ -2637,10 +2637,10 @@ java-pkg_jar-list() {
 java-pkg_verify-classes() {
 	#$(find ${ED} -type f -name '*.jar' -o -name '*.class')
 
-	local version_verify="/usr/bin/class-version-verify.py"
+	local version_verify="${EPREFIX}/usr/bin/class-version-verify.py"
 
 	if [[ ! -x "${version_verify}" ]]; then
-		version_verify="/usr/$(get_libdir)/javatoolkit/bin/class-version-verify.py"
+		version_verify="${EPREFIX}/usr/$(get_libdir)/javatoolkit/bin/class-version-verify.py"
 	fi
 
 	if [[ ! -x "${version_verify}" ]]; then
@@ -2654,11 +2654,11 @@ java-pkg_verify-classes() {
 	local result
 	local log="${T}/class-version-verify.log"
 	if [[ -n "${1}" ]]; then
-		${EPREFIX}${version_verify} -v -t ${target} "${1}" > "${log}"
+		${version_verify} -v -t ${target} "${1}" > "${log}"
 		result=$?
 	else
 		ebegin "Verifying java class versions (target: ${target})"
-		${EPREFIX}${version_verify} -v -t ${target} -r "${ED}" > "${log}"
+		${version_verify} -v -t ${target} -r "${ED}" > "${log}"
 		result=$?
 		eend ${result}
 	fi
