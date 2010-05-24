@@ -834,6 +834,7 @@ x11-themes/tango-icon-theme
 x11-themes/tango-icon-theme-extras
 x11-themes/xfce4-icon-theme
 x11-themes/xfwm4-themes
+x11-wm/metacity
 x11-wm/twm
 x11-wm/windowmaker
 
