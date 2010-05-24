@@ -1,0 +1,15 @@
+Make error about not reading list of mounted filesystems into a warning for interix.
+
+diff -pur coreutils-8.5.orig/configure coreutils-8.5/configure
+--- coreutils-8.5.orig/configure
++++ coreutils-8.5/configure
+@@ -33852,7 +33852,8 @@
+ fi
+ 
+ if test -z "$ac_list_mounted_fs"; then
+-  as_fn_error $? "could not determine how to read list of mounted file systems" "$LINENO" 5
++  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: could not determine how to read list of mounted file systems" >&5
++$as_echo "$as_me: WARNING: could not determine how to read list of mounted file systems" >&2;}
+   # FIXME -- no need to abort building the whole package
+   # Can't build mountlist.c or anything that needs its functions
+ fi

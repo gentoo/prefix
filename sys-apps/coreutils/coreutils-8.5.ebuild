@@ -53,6 +53,9 @@ src_unpack() {
 	# interix has no setgroups, so this won't work.
 	epatch "${FILESDIR}"/${PN}-7.5-interix-setgroups.patch
 
+	# interix has no method to determine mounted filesystems
+	epatch "${FILESDIR}"/${PN}-8.5-interix-warn-mount.patch
+
 	# Since we've patched many .c files, the make process will try to
 	# re-build the manpages by running `./bin --help`.  When doing a
 	# cross-compile, we can't do that since 'bin' isn't a native bin.
