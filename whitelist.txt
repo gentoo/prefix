@@ -486,6 +486,8 @@ gnome-base/gnome-control-center
 gnome-base/gnome-desktop
 gnome-base/gnome-light
 gnome-base/gnome-mime-data
+gnome-base/gnome-panel
+gnome-base/gnome-session
 gnome-base/gnome-settings-daemon
 gnome-base/libbonobo
 gnome-base/libbonoboui
@@ -493,6 +495,8 @@ gnome-base/libgnome
 gnome-base/libgnomekbd
 gnome-base/libgnomeprint
 gnome-base/libgnomeprintui
+gnome-base/libgnomeui
+gnome-base/librsvg
 gnome-base/nautilus
 mail-client/mailx
 mail-client/mutt
