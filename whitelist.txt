@@ -596,6 +596,7 @@ media-plugins/gst-plugins-musepack
 media-plugins/gst-plugins-x
 media-plugins/swh-plugins
 media-sound/alac_decoder
+media-sound/alsa-headers
 media-sound/audacious
 media-sound/cdparanoia
 media-sound/easytag
