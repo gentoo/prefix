@@ -256,14 +256,6 @@ app-text/xml2
 app-text/xmlformat
 app-text/xmlstarlet
 app-text/xmlto
-dev-cpp/cairomm
-dev-cpp/clucene
-dev-cpp/eigen
-dev-cpp/gccxml
-dev-cpp/gtkmm
-dev-cpp/muParser
-dev-cpp/pangomm
-dev-cpp/tree
 dev-db/libiodbc
 dev-db/maatkit
 dev-db/mysql
@@ -851,6 +843,7 @@ app-doc
 app-emacs
 app-pda
 app-vim
+dev-cpp
 dev-dotnet
 dev-games
 dev-tcltk
