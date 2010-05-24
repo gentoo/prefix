@@ -566,6 +566,7 @@ media-libs/libuninameslist
 media-libs/libwmf
 media-libs/libwpg
 media-libs/mediastreamer
+media-libs/mlt
 media-libs/musicbrainz
 media-libs/mutagen
 media-libs/openal
