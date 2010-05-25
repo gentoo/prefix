@@ -536,6 +536,7 @@ media-libs/jasper
 media-libs/jbigkit
 media-libs/jpeg
 media-libs/libao
+media-libs/libass
 media-libs/libcddb
 media-libs/libcuefile
 media-libs/libdca
