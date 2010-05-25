@@ -180,9 +180,6 @@ src_compile() {
 		;;
 	esac
 	
-	# Bug 320487, generic Gentoo Prefix fix.	
-	use prefix && EXTRA_ECONF="${EXTRA_ECONF} --with-mpfr=${EPREFIX}/usr --with-gmp=${EPREFIX}/usr"
-
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX
