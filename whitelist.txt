@@ -860,6 +860,7 @@ net-news
 net-print
 net-voip
 net-wireless
+net-zope
 sci-biology
 sci-calculators
 sci-chemistry
