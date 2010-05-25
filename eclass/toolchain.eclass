@@ -17,21 +17,6 @@ DESCRIPTION="Based on the ${ECLASS} eclass"
 FEATURES=${FEATURES/multilib-strict/}
 
 toolchain_pkg_setup() {
-	# yuck, but how else to do it portable?
-	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
-	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]] ; then
-		ewarn "Your \${EPREFIX} contains one or more symlinks.  GCC has a"
-		ewarn "bug which prevents it from working properly when there are"
-		ewarn "symlinks in your \${EPREFIX}."
-		ewarn "See http://gcc.gnu.org/bugzilla/show_bug.cgi?id=29831"
-		ewarn "Continuing with your EPREFIX set to:"
-		ewarn "${realEPREFIX}"
-		export EPREFIX=${realEPREFIX}
-	fi
-
-	# TPREFIX is the prefix of the CTARGET installation
-	export TPREFIX=${TPREFIX:-${EPREFIX}}
-
 	gcc_pkg_setup
 }
 toolchain_src_unpack() {
@@ -855,6 +840,21 @@ create_eselect_conf() {
 
 #---->> pkg_* <<----
 gcc_pkg_setup() {
+	# yuck, but how else to do it portable?
+	local realEPREFIX=$(python -c 'import os; print os.path.realpath("'"${EPREFIX}"'")')
+	if [[ -z ${I_KNOW_MY_GCC_WORKS_FINE_WITH_SYMLINKS} && ${EPREFIX} != ${realEPREFIX} ]] ; then
+		ewarn "Your \${EPREFIX} contains one or more symlinks.  GCC has a"
+		ewarn "bug which prevents it from working properly when there are"
+		ewarn "symlinks in your \${EPREFIX}."
+		ewarn "See http://gcc.gnu.org/bugzilla/show_bug.cgi?id=29831"
+		ewarn "Continuing with your EPREFIX set to:"
+		ewarn "${realEPREFIX}"
+		export EPREFIX=${realEPREFIX}
+	fi
+
+	# TPREFIX is the prefix of the CTARGET installation
+	export TPREFIX=${TPREFIX:-${EPREFIX}}
+
 	[[ -z ${ETYPE} ]] && die "Your ebuild needs to set the ETYPE variable"
 
 	if [[ ( $(tc-arch) == "amd64" || $(tc-arch) == "ppc64" ) && ( ${LD_PRELOAD} == "/lib/libsandbox.so" || ${LD_PRELOAD} == "/usr/lib/libsandbox.so" ) ]] && is_multilib ; then
