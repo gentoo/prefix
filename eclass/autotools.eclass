@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.97 2010/04/01 21:42:37 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/autotools.eclass,v 1.98 2010/05/23 22:52:41 vapier Exp $
 
 # @ECLASS: autotools.eclass
 # @MAINTAINER:
@@ -239,21 +239,27 @@ eautomake() {
 	local extra_opts
 	local makefile_name
 
-	if [[ -f GNUmakefile.am ]]; then
-		makefile_name="GNUmakefile"
-	elif [[ -f Makefile.am ]]; then
-		makefile_name="Makefile"
-	else
-		return 0
-	fi
+	# Run automake if:
+	#  - a Makefile.am type file exists
+	#  - a Makefile.in type file exists and the configure
+	#    script is using the AM_INIT_AUTOMAKE directive
+	for makefile_name in {GNUmakefile,{M,m}akefile}.{am,in} "" ; do
+		[[ -f ${makefile_name} ]] && break
+	done
+	[[ -z ${makefile_name} ]] && return 0
 
-	if [[ -z ${FROM_EAUTORECONF} && -f ${makefile_name}.in ]]; then
+	if [[ ${makefile_name} == *.in ]] ; then
+		if ! grep -qs AM_INIT_AUTOMAKE configure.?? ; then
+			return 0
+		fi
+
+	elif [[ -z ${FROM_EAUTORECONF} && -f ${makefile_name%.am}.in ]]; then
 		local used_automake
 		local installed_automake
 
 		installed_automake=$(WANT_AUTOMAKE= automake --version | head -n 1 | \
 			sed -e 's:.*(GNU automake) ::')
-		used_automake=$(head -n 1 < ${makefile_name}.in | \
+		used_automake=$(head -n 1 < ${makefile_name%.am}.in | \
 			sed -e 's:.*by automake \(.*\) from .*:\1:')
 
 		if [[ ${installed_automake} != ${used_automake} ]]; then

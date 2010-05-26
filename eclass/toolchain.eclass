@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.425 2010/04/25 18:04:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.426 2010/05/25 23:24:18 dirtyepic Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1245,6 +1245,14 @@ gcc-compiler-configure() {
 
 		# Stick the python scripts in their own slotted directory
 		# bug #279252
+		#
+		#  --with-python-dir=DIR
+		#    Specifies where to install the Python modules used for aot-compile. DIR
+		#  should not include the prefix used in installation. For example, if the 
+		#  Python modules are to be installed in /usr/lib/python2.5/site-packages, 
+		#  then –with-python-dir=/lib/python2.5/site-packages should be passed.
+		#
+		# This should translate into "/share/gcc-data/${CTARGET}/${GCC_CONFIG_VER}/python"
 		if tc_version_is_at_least "4.4" ; then
 			confgcc="${confgcc} --with-python-dir=${DATAPATH/$PREFIX/}/python"
 		fi

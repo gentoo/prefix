@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.99 2010/04/22 18:28:11 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain-funcs.eclass,v 1.100 2010/05/23 02:00:17 vapier Exp $
 
 # @ECLASS: toolchain-funcs.eclass
 # @MAINTAINER:
@@ -190,6 +190,30 @@ tc-is-static-only() {
 
 	# *MiNT doesn't have shared libraries, only platform so far
 	return $([[ ${host} == *-mint* ]])
+}
+
+# @FUNCTION: tc-has-openmp
+# @USAGE: [toolchain prefix]
+# @DESCRIPTION:
+# See if the toolchain supports OpenMP.
+tc-has-openmp() {
+	local base="${T}/test-tc-openmp"
+	cat <<-EOF > "${base}.c"
+	#include <omp.h>
+	int main() {
+		int nthreads, tid, ret = 0;
+		#pragma omp parallel private(nthreads, tid)
+		{
+		tid = omp_get_thread_num();
+		nthreads = omp_get_num_threads(); ret += tid + nthreads;
+		}
+		return ret;
+	}
+	EOF
+	$(tc-getCC "$@") -fopenmp "${base}.c" -o "${base}" >&/dev/null
+	local ret=$?
+	rm -f "${base}"*
+	return ${ret}
 }
 
 # @FUNCTION: tc-has-tls

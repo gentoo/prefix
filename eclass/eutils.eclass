@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.343 2010/05/11 20:08:02 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.344 2010/05/20 02:21:17 vapier Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -1355,15 +1355,15 @@ unpack_makeself() {
 				;;
 			2.1.1)
 				skip=$(grep -a ^offset= "${src}" | awk '{print $2}' | cut -b2-)
-				let skip="skip + 1"
+				(( skip++ ))
 				;;
 			2.1.2)
 				skip=$(grep -a ^offset= "${src}" | awk '{print $3}' | head -n 1)
-				let skip="skip + 1"
+				(( skip++ ))
 				;;
 			2.1.3)
 				skip=`grep -a ^offset= "${src}" | awk '{print $3}'`
-				let skip="skip + 1"
+				(( skip++ ))
 				;;
 			2.1.4|2.1.5)
 				skip=$(grep -a offset=.*head.*wc "${src}" | awk '{print $3}' | head -n 1)
@@ -1382,7 +1382,7 @@ unpack_makeself() {
 	fi
 	case ${exe} in
 		tail)	exe="tail -n +${skip} '${src}'";;
-		dd)		exe="dd ibs=${skip} skip=1 obs=1024 conv=sync if='${src}'";;
+		dd)		exe="dd ibs=${skip} skip=1 if='${src}'";;
 		*)		die "makeself cant handle exe '${exe}'"
 	esac
 
