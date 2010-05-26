@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.13 2010/05/01 16:05:45 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.20 2010/05/24 07:33:35 flameeyes Exp $
 #
 # @ECLASS: ruby-ng.eclass
 # @MAINTAINER:
@@ -112,95 +112,103 @@ ruby_samelib() {
 	echo "[${res%,}]"
 }
 
-_ruby_implementation_depend() {
-	echo "ruby_targets_${1}? ( ${2}[ruby_targets_${1}] )"
+_ruby_atoms_samelib_generic() {
+	eshopts_push -o noglob
+	echo "RUBYTARGET? ("
+	for token in $*; do
+		case "$token" in
+			"||" | "(" | ")" | *"?")
+				echo "${token}" ;;
+			*)
+				# TODO we need to deal with merging USE-based
+				# dependencies
+				echo "${token}[RUBYTARGET]" ;;
+		esac
+	done
+	echo ")"
+	eshopts_pop
 }
 
-_ruby_add_bdepend() {
-	local atom=$1
-	local conditions=$2
+_ruby_atoms_samelib() {
+	local atoms=$(_ruby_atoms_samelib_generic "$*")
 
-	for condition in $conditions; do
-		hasq $condition "$IUSE" || IUSE="${IUSE} $condition"
-		atom="${condition}? ( ${atom} )"
+	for _ruby_implementation in $USE_RUBY; do
+		echo "${atoms//RUBYTARGET/ruby_targets_${_ruby_implementation}}"
 	done
-
-	DEPEND="${DEPEND} ${atom}"
-	RDEPEND="${RDEPEND}"
 }
 
-_ruby_add_rdepend() {
-	local atom=$1
-	local conditions=$2
+_ruby_wrap_conditions() {
+	local conditions="$1"
+	local atoms="$2"
 
 	for condition in $conditions; do
-		hasq $condition "$IUSE" || IUSE="${IUSE} $condition"
-		atom="${condition}? ( ${atom} )"
+		atoms="${condition}? ( ${atoms} )"
 	done
 
-	RDEPEND="${RDEPEND} ${atom}"
-	_ruby_add_bdepend "$atom" test
+	echo "$atoms"
 }
 
 # @FUNCTION: ruby_add_rdepend
-# @USAGE: [conditions] atom
+# @USAGE: dependencies
 # @DESCRIPTION:
-# Adds the specified atom(s) with optional use condition(s) to
-# RDEPEND, taking the current set of ruby targets into account. This
-# makes sure that all ruby dependencies of the package are installed
-# for the same ruby targets. Use this function for all ruby
-# dependencies instead of setting RDEPEND yourself. Both atom and
-# conditions can be a space-separated list of atoms or conditions.
+# Adds the specified dependencies, with use condition(s) to RDEPEND,
+# taking the current set of ruby targets into account. This makes sure
+# that all ruby dependencies of the package are installed for the same
+# ruby targets. Use this function for all ruby dependencies instead of
+# setting RDEPEND yourself. The list of atoms uses the same syntax as
+# normal dependencies.
+#
+# Note: runtime dependencies are also added as build-time test
+# dependencies.
 ruby_add_rdepend() {
-	local atoms=
-	local conditions=
 	case $# in
-		1)
-			atoms=$1
-			;;
+		1) ;;
 		2)
-			conditions=$1
-			atoms=$2
+			[[ "${GENTOO_DEV}" == "yes" ]] && eqawarn "You can now use the usual syntax in ruby_add_rdepend for $CATEGORY/$PF"
+			ruby_add_rdepend "$(_ruby_wrap_conditions "$1" "$2")"
+			return
 			;;
 		*)
 			die "bad number of arguments to $0"
 			;;
 	esac
 
-	for atom in $atoms; do
-		_ruby_add_rdepend "${atom}$(ruby_samelib)" "$conditions"
-	done
+	local dependency=$(_ruby_atoms_samelib "$1")
+
+	RDEPEND="${RDEPEND} $dependency"
+
+	# Add the dependency as a test-dependency since we're going to
+	# execute the code during test phase.
+	DEPEND="${DEPEND} test? ( ${dependency} )"
+	hasq test "$IUSE" || IUSE="${IUSE} test"
 }
 
 # @FUNCTION: ruby_add_bdepend
-# @USAGE: [conditions] atom
+# @USAGE: dependencies
 # @DESCRIPTION:
-# Adds the specified atom(s) with optional use condition(s) to both
-# DEPEND and RDEPEND, taking the current set of ruby targets into
-# account. This makes sure that all ruby dependencies of the package
-# are installed for the same ruby targets. Use this function for all
-# ruby dependencies instead of setting DEPEND and RDEPEND
-# yourself. Both atom and conditions can be a space-separated list of
-# atoms or conditions.
+# Adds the specified dependencies, with use condition(s) to DEPEND,
+# taking the current set of ruby targets into account. This makes sure
+# that all ruby dependencies of the package are installed for the same
+# ruby targets. Use this function for all ruby dependencies instead of
+# setting DEPEND yourself. The list of atoms uses the same syntax as
+# normal dependencies.
 ruby_add_bdepend() {
-	local atoms=
-	local conditions=
 	case $# in
-		1)
-			atoms=$1
-			;;
+		1) ;;
 		2)
-			conditions=$1
-			atoms=$2
+			[[ "${GENTOO_DEV}" == "yes" ]] && eqawarn "You can now use the usual syntax in ruby_add_bdepend for $CATEGORY/$PF"
+			ruby_add_bdepend "$(_ruby_wrap_conditions "$1" "$2")"
+			return
 			;;
 		*)
 			die "bad number of arguments to $0"
 			;;
 	esac
 
-	for atom in $atoms; do
-		_ruby_add_bdepend "${atom}$(ruby_samelib)" "$conditions"
-	done
+	local dependency=$(_ruby_atoms_samelib "$1")
+
+	DEPEND="${DEPEND} $dependency"
+	RDEPEND="${RDEPEND}"
 }
 
 for _ruby_implementation in $USE_RUBY; do
@@ -419,9 +427,9 @@ _each_ruby_check_install() {
 	fi
 
 	if [[ -s "${T}"/ruby-ng-${_ruby_implementation}-mislink.log ]]; then
-		ewarn "Extensions installed for ${_ruby_implementation} with missing links to ${libruby}"
+		ewarn "Extensions installed for ${_ruby_implementation} with missing links to ${libruby_soname}"
 		ewarn $(< "${T}"/ruby-ng-${_ruby_implementation}-mislink.log )
-		die "Missing links to ${libruby}"
+		die "Missing links to ${libruby_soname}"
 	fi
 }
 
