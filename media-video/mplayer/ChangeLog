@@ -1,6 +1,38 @@
 # ChangeLog for media-video/mplayer
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.734 2010/04/29 17:08:12 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/ChangeLog,v 1.741 2010/05/20 14:39:32 jer Exp $
+
+  20 May 2010; Jeroen Roovers <jer@gentoo.org>
+  mplayer-1.0_rc4_p20100506.ebuild:
+  Marked ~hppa (bug #317459).
+
+  19 May 2010; Raúl Porcel <armin76@gentoo.org>
+  mplayer-1.0_rc4_p20100506.ebuild:
+  Readd ~ia64 wrt #317459
+
+  09 May 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  internal a52dec support has been dropped, use external one
+
+*mplayer-1.0_rc4_p20100506 (06 May 2010)
+
+  06 May 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/mplayer-1.0_rc2_p20090322-fix-undeclared-spudec.patch,
+  -files/mplayer-1.0_rc2_p20090530-fix-mp3lib-use-local-labels-2.patch,
+  -files/mplayer-1.0_rc2_p20090731-linguas.patch,
+  -mplayer-1.0_rc4_p20100213-r1.ebuild, -mplayer-1.0_rc4_p20100427.ebuild,
+  +mplayer-1.0_rc4_p20100506.ebuild,
+  -files/mplayer-1.0_rc4_p20091124-r1-libtheora.patch:
+  Rollup new snapshot. Drop old. This should be stable candidate.
+
+  05 May 2010; Tomáš Chvátal <scarabeus@gentoo.org> mplayer-9999.ebuild:
+  Remove emake call from src_compile, is already run by base eclass.
+
+  01 May 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  iconv should be in RDEPEND too
+
+  01 May 2010; Alexis Ballier <aballier@gentoo.org> mplayer-9999.ebuild:
+  Add missing dep on app-text/docbook-xml-dtd by Scott Burgess
+  <scottburgess@diamondkey.com>, bug #317559
 
   29 Apr 2010; Samuli Suominen <ssuominen@gentoo.org>
   mplayer-1.0_rc4_p20100427.ebuild, mplayer-9999.ebuild:

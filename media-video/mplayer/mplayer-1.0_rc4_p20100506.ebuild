@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc4_p20100427.ebuild,v 1.4 2010/04/29 17:08:12 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mplayer/mplayer-1.0_rc4_p20100506.ebuild,v 1.3 2010/05/20 14:39:33 jer Exp $
 
 EAPI="2"
 
@@ -625,7 +625,6 @@ src_configure() {
 			use ${i} && elog "Useflag \"${i}\" require \"X\" useflag enabled to work."
 		done
 	fi
-
 	############################
 	# OSX (aqua) configuration #
 	############################
@@ -653,12 +652,10 @@ src_configure() {
 		${myconf}"
 
 	CFLAGS="${CFLAGS}" ./configure ${myconf} || die "configure died"
-
 }
 
 src_compile() {
 	base_src_compile
-	emake || die "Failed to build MPlayer!"
 	# Build only user-requested docs if they're available.
 	if use doc ; then
 		# select available languages from $LINGUAS
@@ -757,7 +754,6 @@ _EOF_
 	fi
 
 	dosym ../../../etc/mplayer/mplayer.conf /usr/share/mplayer/mplayer.conf
-
 	newbin "${S}/TOOLS/midentify.sh" midentify || die
 }
 
