@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r2.ebuild,v 1.2 2010/05/01 22:25:51 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.5-r2.ebuild,v 1.11 2010/05/25 17:09:38 arfrever Exp $
 
 EAPI="2"
 
@@ -58,6 +58,8 @@ PDEPEND="app-admin/python-updater"
 PROVIDE="virtual/python"
 
 pkg_setup() {
+	python_pkg_setup
+
 	if use berkdb; then
 		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
 		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
@@ -220,8 +222,8 @@ src_configure() {
 	[[ "${ARCH}" == "alpha" ]] && append-flags -fPIC
 
 	# https://bugs.gentoo.org/show_bug.cgi?id=50309
-	if is-flag -O3; then
-		is-flag -fstack-protector-all && replace-flags -O3 -O2
+	if is-flagq -O3; then
+		is-flagq -fstack-protector-all && replace-flags -O3 -O2
 		use hardened && replace-flags -O3 -O2
 	fi
 
@@ -284,10 +286,6 @@ src_configure() {
 		${myconf}
 }
 
-src_compile() {
-	emake EXTRA_CFLAGS="${CFLAGS}" || die "emake failed"
-}
-
 src_test() {
 	# Tests will not work when cross compiling.
 	if tc-is-cross-compiler; then
@@ -311,7 +309,8 @@ src_test() {
 	done
 
 	# Rerun failed tests in verbose mode (regrtest -w).
-	EXTRATESTOPTS="-w" make test || die "make test failed"
+	EXTRATESTOPTS="-w" emake test
+	local result="$?"
 
 	for test in ${skip_tests}; do
 		mv "${T}/test_${test}.py" "${S}/Lib/test/test_${test}.py"
@@ -323,10 +322,14 @@ src_test() {
 	done
 
 	elog "If you'd like to run them, you may:"
-	elog "cd ${EPREFIX}$(python_get_libdir)/test"
+	elog "cd '${EPREFIX}$(python_get_libdir)/test'"
 	elog "and run the tests separately."
 
 	python_disable_pyc
+
+	if [[ "${result}" -ne 0 ]]; then
+		die "emake test failed"
+	fi
 }
 
 src_install() {
@@ -449,6 +452,7 @@ EOF
 		emake DESTDIR="${D}" altinstall || die "emake altinstall failed"
 		emake DESTDIR="${D}" maninstall || die "emake maninstall failed"
 	fi
+	python_clean_installation_image -q
 
 	mv "${ED}usr/bin/python${SLOT}-config" "${ED}usr/bin/python-config-${SLOT}"
 
@@ -479,13 +483,15 @@ EOF
 
 	prep_ml_includes $(python_get_includedir)
 
+	dodoc Misc/{ACKS,HISTORY,NEWS} || die "dodoc failed"
+
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
 		doins -r "${S}/Tools" || die "doins failed"
 	fi
 
-	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
-	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
+	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
+	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
 
 	# Do not install empty directory.
 	rmdir "${ED}$(python_get_libdir)/lib-old"
@@ -502,7 +508,7 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local eselect_python_options=
+	local eselect_python_options
 	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
 
 	# Create python2 symlink.
@@ -514,7 +520,7 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
+	python_mod_optimize -f -x "/(site-packages|test|tests)/" $(python_get_libdir)
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4-r1.ebuild,v 1.9 2010/03/20 20:33:28 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.6.4-r1.ebuild,v 1.12 2010/05/25 17:09:38 arfrever Exp $
 
 EAPI="2"
 
@@ -58,6 +58,8 @@ PDEPEND="app-admin/python-updater"
 PROVIDE="virtual/python"
 
 pkg_setup() {
+	python_pkg_setup
+
 	if use berkdb; then
 		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
 		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""

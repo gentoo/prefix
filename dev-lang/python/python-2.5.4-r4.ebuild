@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r4.ebuild,v 1.15 2010/03/20 20:33:28 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-2.5.4-r4.ebuild,v 1.21 2010/05/25 17:09:38 arfrever Exp $
 
 EAPI="1"
 
@@ -22,7 +22,7 @@ PYTHON_ABI="${SLOT}"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="-berkdb build doc elibc_uclibc examples gdbm ipv6 +ncurses +readline sqlite +ssl +threads tk +wide-unicode wininst +xml"
 
-# NOTE: dev-python/{elementtree,celementtree,pysqlite,ctypes}
+# NOTE: dev-python/{elementtree,celementtree,pysqlite}
 #       do not conflict with the ones in python proper. - liquidx
 
 RDEPEND=">=app-admin/eselect-python-20091230
@@ -55,6 +55,8 @@ PDEPEND="app-admin/python-updater"
 PROVIDE="virtual/python"
 
 pkg_setup() {
+	python_pkg_setup
+
 	if use berkdb; then
 		ewarn "\"bsddb\" module is out-of-date and no longer maintained inside dev-lang/python. It has"
 		ewarn "been additionally removed in Python 3. You should use external, still maintained \"bsddb3\""
@@ -70,9 +72,10 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
-	# Ensure that internal copies of expat and libffi aren't used.
+	# Ensure that internal copies of expat, libffi and zlib are not used.
 	rm -fr Modules/expat
 	rm -fr Modules/_ctypes/libffi*
+	rm -fr Modules/zlib
 
 	if tc-is-cross-compiler; then
 		epatch "${FILESDIR}/python-2.5-cross-printf.patch"
@@ -194,8 +197,8 @@ src_configure() {
 	[[ "${ARCH}" == "alpha" ]] && append-flags -fPIC
 
 	# https://bugs.gentoo.org/show_bug.cgi?id=50309
-	if is-flag -O3; then
-		is-flag -fstack-protector-all && replace-flags -O3 -O2
+	if is-flagq -O3; then
+		is-flagq -fstack-protector-all && replace-flags -O3 -O2
 		use hardened && replace-flags -O3 -O2
 	fi
 
@@ -249,7 +252,7 @@ src_compile() {
 }
 
 src_test() {
-	# Tests won't work when cross compiling.
+	# Tests will not work when cross compiling.
 	if tc-is-cross-compiler; then
 		elog "Disabling tests due to crosscompiling."
 		return
@@ -272,7 +275,8 @@ src_test() {
 
 	# Redirect stdin from /dev/tty as a workaround for bug #248081.
 	# Rerun failed tests in verbose mode (regrtest -w).
-	EXTRATESTOPTS="-w" make test < /dev/tty || die "make test failed"
+	EXTRATESTOPTS="-w" emake test < /dev/tty
+	local result="$?"
 
 	for test in ${skip_tests}; do
 		mv "${T}/test_${test}.py" "${S}/Lib/test/test_${test}.py"
@@ -283,16 +287,23 @@ src_test() {
 		elog "test_${test}.py"
 	done
 
-	elog "If you'd like to run them, you may:"
-	elog "cd $(python_get_libdir)/test"
+	elog "If you would like to run them, you may:"
+	elog "cd '${EPREFIX}$(python_get_libdir)/test'"
 	elog "and run the tests separately."
 
 	python_disable_pyc
+
+	if [[ "${result}" -ne 0 ]]; then
+		die "emake test failed"
+	fi
 }
 
 src_install() {
+	[[ -z "${ED}" ]] && use !prefix && ED="${D%/}${EPREFIX}/"
+
 	[[ ${CHOST} == *-mint* ]] && keepdir /usr/lib/python${PYVER}/lib-dynload/
 	emake DESTDIR="${D}" altinstall maninstall || die "emake altinstall maninstall failed"
+	python_clean_installation_image -q
 
 	mv "${ED}usr/bin/python${SLOT}-config" "${ED}usr/bin/python-config-${SLOT}"
 
@@ -317,13 +328,15 @@ src_install() {
 
 	prep_ml_includes $(python_get_includedir)
 
+	dodoc Misc/{ACKS,HISTORY,NEWS} || die "dodoc failed"
+
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
 		doins -r "${S}/Tools" || die "doins failed"
 	fi
 
-	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
-	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
+	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
+	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
 }
 
 pkg_preinst() {
@@ -333,7 +346,7 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local eselect_python_options=
+	local eselect_python_options
 	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
 
 	# Create python2 symlink.
@@ -345,7 +358,7 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
+	python_mod_optimize -f -x "/(site-packages|test|tests)/" $(python_get_libdir)
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
 		ewarn

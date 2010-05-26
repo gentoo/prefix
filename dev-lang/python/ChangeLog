@@ -1,6 +1,31 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.465 2010/05/01 21:54:37 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.471 2010/05/25 17:09:38 arfrever Exp $
+
+  25 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.4.6.ebuild, python-2.5.4-r4.ebuild, python-2.6.4-r1.ebuild,
+  python-2.6.5-r2.ebuild, python-3.1.2-r3.ebuild:
+  Work around bug #321145.
+
+  24 May 2010; <nixnut@gentoo.org> python-2.6.5-r2.ebuild:
+  ppc stable #319723
+
+  23 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.4.6.ebuild, python-2.5.4-r4.ebuild, python-2.6.5-r2.ebuild,
+  python-3.1.2-r3.ebuild:
+  Support FEATURES="test-fail-continue". Don't install byte-compiled Python
+  modules (bug #301915).
+
+  21 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.6.5-r2.ebuild:
+  amd64 stable (tested by rullzer) (bug #319723).
+
+  14 May 2010; Jeroen Roovers <jer@gentoo.org> python-2.6.5-r2.ebuild:
+  Stable for HPPA (bug #319723).
+
+  02 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-3.1.2-r3.ebuild:
+  Don't use ebeep() (bug #318091).
 
 *python-3.1.2-r3 (01 May 2010)
 
