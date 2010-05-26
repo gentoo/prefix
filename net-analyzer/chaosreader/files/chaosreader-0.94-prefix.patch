@@ -1,8 +1,0 @@
---- chaosreader-0.94
-+++ chaosreader-0.94
-@@ -1,4 +1,4 @@
--#!/usr/bin/perl
-+#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl
- #
- # Chaosreader can trace TCP/UDP/... sessions and fetch application data 
- #  from tcpdump or snoop logs. This is like an "any-snarf" program, it will 
