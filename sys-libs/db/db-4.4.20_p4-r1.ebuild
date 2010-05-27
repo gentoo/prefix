@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4-r1.ebuild,v 1.6 2009/09/20 19:52:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/db-4.4.20_p4-r1.ebuild,v 1.7 2010/05/27 01:08:57 robbat2 Exp $
 
 inherit eutils db flag-o-matic java-pkg-opt-2 autotools libtool
 
@@ -19,12 +19,13 @@ fi
 S="${WORKDIR}/${MY_P}/build_unix"
 DESCRIPTION="Oracle Berkeley DB"
 HOMEPAGE="http://www.oracle.com/technology/software/products/berkeley-db/index.html"
-SRC_URI="http://download.oracle.com/berkeley-db/${MY_P}.tar.gz"
+SRC_URI="http://download.oracle.com/berkeley-db/${MY_P}.tar.gz
+		 mirror://gentoo/${MY_P}-20060110-rpc_server-java.tar.gz"
 for (( i=1 ; i<=${PATCHNO} ; i++ )) ; do
 	export SRC_URI="${SRC_URI} http://www.oracle.com/technology/products/berkeley-db/db/update/${MY_PV}/patch.${MY_PV}.${i}"
 done
 
-LICENSE="OracleDB"
+LICENSE="OracleDB BSD"
 SLOT="4.4"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="tcl java doc nocxx"
@@ -37,6 +38,7 @@ RDEPEND="tcl? ( dev-lang/tcl )
 
 src_unpack() {
 	unpack "${MY_P}".tar.gz
+	unpack "${MY_P}-20060110-rpc_server-java".tar.gz
 	cd "${WORKDIR}"/"${MY_P}"
 	for (( i=1 ; i<=${PATCHNO} ; i++ ))
 	do

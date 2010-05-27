@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.306 2010/05/14 10:56:44 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.307 2010/05/27 01:08:56 robbat2 Exp $
+
+  27 May 2010; Robin H. Johnson <robbat2@gentoo.org> db-4.4.20_p4.ebuild,
+  db-4.4.20_p4-r1.ebuild:
+  Upstream respun the 4.4.20 tarballs with an entire subdir dropped and some
+  stuff dual-licensed.
 
   14 May 2010; Robin H. Johnson <robbat2@gentoo.org> db-5.0.21-r1.ebuild:
   Bug #319667: Disable the multi_repmgr tests in a different way.
