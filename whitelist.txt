@@ -956,7 +956,6 @@ dev-python/mocker
 dev-python/mysql-python
 dev-python/nevow
 dev-python/nose
-dev-python/numeric
 dev-python/numpy
 dev-python/paramiko
 dev-python/paste
