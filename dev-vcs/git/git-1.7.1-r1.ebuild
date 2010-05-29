@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.7.1.ebuild,v 1.1 2010/05/01 08:53:10 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.7.1-r1.ebuild,v 1.1 2010/05/28 20:27:41 robbat2 Exp $
 
 EAPI=2
 
@@ -200,6 +200,10 @@ src_prepare() {
 
 	# JS install fixup
 	epatch "${FILESDIR}"/git-1.7.1-always-install-js.patch
+
+	# USE=-iconv causes segfaults, fixed post 1.7.1
+	# Gentoo bug #321895
+	epatch "${FILESDIR}"/git-1.7.1-noiconv-segfault-fix.patch
 
 	sed -i \
 		-e 's:^\(CFLAGS =\).*$:\1 $(OPTCFLAGS) -Wall:' \
