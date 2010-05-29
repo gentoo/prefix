@@ -706,6 +706,7 @@ net-p2p/mutella
 sci-mathematics/gmm
 sci-mathematics/otter
 sci-visualization/fig2sxd
+sci-visualization/hippodraw
 sys-apps/ack
 sys-apps/acl
 sys-apps/aix-miscutils
