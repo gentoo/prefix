@@ -13,7 +13,7 @@ SRC_URI="ftp://ftp.videolan.org/pub/videolan/x264/snapshots/${MY_P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug +threads pic"
 
 RDEPEND=""
@@ -21,6 +21,7 @@ DEPEND="amd64? ( >=dev-lang/yasm-0.6.2 )
 	x86? ( >=dev-lang/yasm-0.6.2 )
 	x86-fbsd? ( >=dev-lang/yasm-0.6.2 )
 	x86-macos? ( >=dev-lang/yasm-0.6.2 )
+	x64-macos? ( >=dev-lang/yasm-0.6.2 )
 	x86-solaris? ( >=dev-lang/yasm-0.6.2 )
 	x64-solaris? ( >=dev-lang/yasm-0.6.2 )"
 
