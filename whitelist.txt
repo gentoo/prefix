@@ -651,6 +651,7 @@ net-irc/quassel
 net-irc/supybot
 net-libs/farsight2
 net-libs/gnet
+net-libs/libasyncns
 net-libs/libesmtp
 net-libs/libetpan
 net-libs/libeXosip
