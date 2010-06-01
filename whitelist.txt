@@ -612,6 +612,7 @@ media-sound/sox
 media-sound/streamripper
 media-video/asfrecorder
 media-video/dvdbackup
+media-video/kdenlive
 media-video/lsdvd
 media-video/mpeg-tools
 media-video/mpeg2vidcodec
