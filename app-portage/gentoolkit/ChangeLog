@@ -1,6 +1,56 @@
 # ChangeLog for app-portage/gentoolkit
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.183 2010/03/12 20:19:12 fuzzyray Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/gentoolkit/ChangeLog,v 1.193 2010/04/27 10:15:18 aballier Exp $
+
+  27 Apr 2010; Alexis Ballier <aballier@gentoo.org>
+  gentoolkit-0.3.0_rc10-r1.ebuild, gentoolkit-9999.ebuild:
+  adapt realpath deps for freebsd and keyword it, bug #299970
+
+  14 Apr 2010; Jeroen Roovers <jer@gentoo.org>
+  gentoolkit-0.2.4.6.1-r1.ebuild:
+  Stable for PPC (bug #305793).
+
+  14 Apr 2010; Jeroen Roovers <jer@gentoo.org>
+  gentoolkit-0.2.4.6.1-r1.ebuild:
+  Stable for HPPA (bug #305793).
+
+  14 Apr 2010; Markos Chandras <hwoarang@gentoo.org>
+  gentoolkit-0.2.4.6.1-r1.ebuild:
+  Stable on amd64 wrt bug #305793
+
+*gentoolkit-0.2.4.6.1-r1 (10 Apr 2010)
+
+  10 Apr 2010; Zac Medico <zmedico@gentoo.org>
+  +gentoolkit-0.2.4.6.1-r1.ebuild:
+  Bug #314247 - Stable revbump with patch just to avoid triggering a
+  'getvirtuals' deprecation warning with sys-apps/portage-2.1.8.x.
+
+*gentoolkit-0.3.0_rc10-r1 (08 Apr 2010)
+
+  08 Apr 2010; Paul Varner <fuzzyray@gentoo.org>
+  +gentoolkit-0.3.0_rc10-r1.ebuild, +files/eclean.313901.patch:
+  Revision bump to fix regression in eclean where metadata.dtd gets removed
+  (Bug 313901).
+
+*gentoolkit-0.3.0_rc10 (05 Apr 2010)
+
+  05 Apr 2010; Christian Ruppert <idl0r@gentoo.org>
+  +gentoolkit-0.3.0_rc10.ebuild, gentoolkit-9999.ebuild:
+  Version bump to 0.3.0_rc10, please take a look at bug 237964 for more
+  information about the changes in this release. Thanks to all contributors!
+  Merge ebuild related changes in _rc10 to gentoolkit-9999 as well.
+
+  01 Apr 2010; Raúl Porcel <armin76@gentoo.org>
+  gentoolkit-0.2.4.6.1.ebuild, gentoolkit-0.3.0_rc8.ebuild,
+  gentoolkit-0.3.0_rc8-r1.ebuild, gentoolkit-0.3.0_rc9.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #305793
+
+  29 Mar 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  gentoolkit-0.2.4.6.1.ebuild:
+  x86 stable wrt bug #305793
+
+  23 Mar 2010; Brent Baude <ranger@gentoo.org> gentoolkit-0.2.4.6.1.ebuild:
+  Marking gentoolkit-0.2.4.6.1 ppc64 for bug 305793
 
   12 Mar 2010; Paul Varner <fuzzyray@gentoo.org> gentoolkit-9999.ebuild:
   Update gentoolkit-9999 to support the python3 ABI

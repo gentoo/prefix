@@ -1,0 +1,40 @@
+Index: pym/gentoolkit/eclean/exclude.py
+===================================================================
+--- pym/gentoolkit/eclean/exclude.py	(revision 766)
++++ pym/gentoolkit/eclean/exclude.py	(working copy)
+@@ -223,6 +223,7 @@
+ 			pkgname = cp.split('/')[1]
+ 			p.add(pkgname)
+ 	if 'packages' in exclude:
++		for cp in exclude['packages']:
+ 			pkgname = cp.split('/')[1]
+ 			p.add(pkgname)
+ 	if 'anti-packages' in exclude:
+Index: pym/gentoolkit/eclean/cli.py
+===================================================================
+--- pym/gentoolkit/eclean/cli.py	(revision 766)
++++ pym/gentoolkit/eclean/cli.py	(working copy)
+@@ -463,6 +463,11 @@
+ 		if options['verbose']:
+ 			options['verbose-output'] = output.einfo
+ 	# parse the exclusion file
++	if not 'exclude-file' in options:
++		# set it to the default exclude file if it exists
++		exclude_file = "/etc/%s/%s.exclude" % (__productname__ , action)
++		if os.path.isfile(exclude_file):
++			options['exclude-file'] = exclude_file
+ 	if 'exclude-file' in options:
+ 		try:
+ 			exclude = parseExcludeFile(options['exclude-file'],
+@@ -475,10 +480,7 @@
+ 				"See format of this file in `man %s`" % __productname__), file=sys.stderr)
+ 			sys.exit(1)
+ 	else:
+-		exclude_file = "/etc/%s/%s.exclude" % (__productname__ , action)
+-		if os.path.isfile(exclude_file):
+-			options['exclude-file'] = exclude_file
+-		exclude={}
++			exclude = {}
+ 	# security check for non-pretend mode
+ 	if not options['pretend'] and portage.secpass == 0:
+ 		print( pp.error(
