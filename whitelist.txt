@@ -134,6 +134,7 @@ app-i18n/man-pages-zh_CN
 app-i18n/skk-jisyo
 app-misc/abook
 app-misc/banner
+app-misc/beanstalkd
 app-misc/colordiff
 app-misc/delay
 app-misc/dvorak7min
