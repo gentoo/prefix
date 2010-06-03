@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.426 2010/05/25 23:24:18 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.427 2010/06/02 21:31:12 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -1461,10 +1461,20 @@ gcc_do_configure() {
 		if [[ ${GCCMAJOR}.${GCCMINOR} > 4.1 ]] ; then
 			confgcc="${confgcc} --disable-bootstrap --disable-libgomp"
 		fi
-	elif [[ ${CHOST} == mingw* ]] || [[ ${CHOST} == *-mingw* ]] || [[ ${CHOST} == *-cygwin ]] ; then
-		confgcc="${confgcc} --enable-shared --enable-threads=win32"
 	else
-		confgcc="${confgcc} --enable-shared --enable-threads=posix"
+		if tc-is-static-only ; then
+			confgcc="${confgcc} --disable-shared"
+		else
+			confgcc="${confgcc} --enable-shared"
+		fi
+		case ${CHOST} in
+			mingw*|*-mingw*|*-cygwin)
+				confgcc="${confgcc} --enable-threads=win32" ;;
+			*-mint*)
+				confgcc="${confgcc} --disable-threads" ;;
+			*)
+				confgcc="${confgcc} --enable-threads=posix" ;;
+		esac
 
 		if use prefix ; then
 			# should be /usr, because it's the path to search includes for,
@@ -2617,8 +2627,8 @@ is_multilib() {
 	case ${CTARGET} in
 		mips64*|powerpc64*|s390x*|sparc*|x86_64*)
 			has_multilib_profile || use multilib ;;
-		*-*-solaris*) use multilib ;;
-		*-apple-darwin*) use multilib ;;
+		*-*-solaris*|*-apple-darwin*|*-mint*)
+			use multilib ;;
 		*)	false ;;
 	esac
 }
