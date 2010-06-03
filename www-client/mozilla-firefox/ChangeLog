@@ -1,6 +1,10 @@
 # ChangeLog for www-client/mozilla-firefox
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.613 2010/05/09 16:56:22 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/mozilla-firefox/ChangeLog,v 1.614 2010/05/31 19:25:45 josejx Exp $
+
+  31 May 2010; Joseph Jezak <josejx@gentoo.org>
+  mozilla-firefox-3.6.3.ebuild:
+  Marked ppc/ppc64 stable for bug #314025.
 
   09 May 2010; Raúl Porcel <armin76@gentoo.org>
   mozilla-firefox-3.6.3.ebuild:
