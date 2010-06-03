@@ -29,8 +29,8 @@ RDEPEND="${DEPEND}
 	sys-apps/grep"
 
 src_prepare() {
+	epatch "${FILESDIR}"/${PN}-0.3.0_rc10-eread-prefix.patch
 	epatch "${FILESDIR}"/${PN}-0.3.0_rc9-revdep-prefix.patch
-#	epatch "${FILESDIR}"/${PN}-0.3.0_rc7-eclean-prefix.patch
 	epatch "${FILESDIR}"/${PN}-0.3.0_rc8-setup-prefix.patch
 
 	ebegin "Adjusting to prefix (sloppyly)"
@@ -42,7 +42,7 @@ src_prepare() {
 		-e "s|^#!/bin/bash|#!${EPREFIX}/bin/bash|g" \
 		-e "s|=/etc|=${EPREFIX}/etc|g"
 	eend $?
-	eprefixify data/revdep-rebuild/99revdep-rebuild bin/revdep-rebuild bin/eclean setup.py
+	eprefixify data/revdep-rebuild/99revdep-rebuild bin/revdep-rebuild bin/eclean bin/eread setup.py
 	epatch "${FILESDIR}/eclean.313901.patch"
 }
 
