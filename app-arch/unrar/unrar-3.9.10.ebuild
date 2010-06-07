@@ -22,6 +22,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	epatch "${FILESDIR}"/${P}-solaris-byteorder.patch
 	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-3.8.5-interix.patch
 }
 

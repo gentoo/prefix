@@ -1,0 +1,18 @@
+Solaris defines _LITTLE_ENDIAN or _BIG_ENDIAN
+
+--- os.hpp
++++ os.hpp
+@@ -221,6 +221,13 @@
+   #endif
+ #endif
+ 
++#ifdef _LITTLE_ENDIAN
++  #define LITTLE_ENDIAN
++#endif
++#ifdef _BIG_ENDIAN
++  #define BIG_ENDIAN
++#endif
++
+ #endif
+ 
+   typedef const char* MSGID;
