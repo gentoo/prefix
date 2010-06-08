@@ -121,7 +121,7 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-8.63-solaris.patch
 	cd "${S}/src"
 	epatch "${FILESDIR}"/${PN}-8.64-darwin.patch
-	epatch "${FILESDIR}"/${PN}-8.64-darwin-nodebug.patch
+	epatch "${FILESDIR}"/${PN}-8.63-darwin-nodebug.patch
 
 	# http://repos.archlinux.org/wsvn/packages/ghostscript/trunk/libpng14.patch
 	sed -i \
