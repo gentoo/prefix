@@ -122,6 +122,11 @@ src_unpack() {
 	cd "${S}/src"
 	epatch "${FILESDIR}"/${PN}-8.64-darwin.patch
 
+	# http://repos.archlinux.org/wsvn/packages/ghostscript/trunk/libpng14.patch
+	sed -i \
+		-e 's:png_check_sig:png_sig_cmp:' \
+		"${S}"/{,base,jbig2dec}/configure.ac || die
+
 	cd "${S}"
 	eautoreconf
 
