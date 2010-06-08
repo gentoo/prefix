@@ -125,7 +125,7 @@ src_unpack() {
 	# http://repos.archlinux.org/wsvn/packages/ghostscript/trunk/libpng14.patch
 	sed -i \
 		-e 's:png_check_sig:png_sig_cmp:' \
-		"${S}"/{,base,jbig2dec}/configure.ac || die
+		"${S}"/{,src,jbig2dec}/configure.ac || die
 
 	cd "${S}"
 	eautoreconf
