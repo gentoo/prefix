@@ -48,7 +48,7 @@ src_prepare() {
 src_compile() {
 	tc-export CC
 	use !elibc_glibc && append-libs -lintl
-	[[ ${CHOST} == *-mint* ]] && append-libs "-liconv -lpthread"
+	[[ ${CHOST} == *-mint* ]] && append-libs "-liconv"
 	if [[ ${CHOST} == *-irix* || ${CHOST} == *-interix[35]* ]] ; then
 		append-flags -I"${EPREFIX}"/usr/$(get_libdir)/gnulib/include
 		append-ldflags -L"${EPREFIX}"/usr/$(get_libdir)/gnulib/$(get_libdir)
