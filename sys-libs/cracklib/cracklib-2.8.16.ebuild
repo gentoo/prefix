@@ -32,6 +32,7 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.8.13-python-linkage.patch #246747
 	sed -i '/PYTHON/s:\(print\) \([^"]*\):\1(\2):' configure #302908
+	epatch "${FILESDIR}"/${PN}-2.8.15-nls.patch
 
 	elibtoolize #269003
 }
