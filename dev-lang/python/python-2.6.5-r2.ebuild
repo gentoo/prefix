@@ -149,6 +149,8 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
 	epatch "${FILESDIR}"/${PN}-2.5.1-distutils-aixnfs.patch
+	# AIX 5.2 does not support sem_timedwait for multiprocessing module
+	epatch "${FILESDIR}"/${PN}-2.6-aix-multiprocessing.patch
 	# this fails to compile on OpenSolaris at least, do we need it?
 	epatch "${FILESDIR}"/${PN}-2.6.2-no-sunaudiodev.patch
 	# 64-bits Solaris 8-10 have a missing libcrypt symlink
