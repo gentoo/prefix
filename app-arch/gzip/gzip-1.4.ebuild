@@ -48,5 +48,5 @@ src_install() {
 	# keep most things in /usr, just the fun stuff in /
 	dodir /bin
 	mv "${ED}"/usr/bin/{gunzip,gzip,uncompress,zcat} "${ED}"/bin/ || die
-	sed -e 's:/usr::' -i "${ED}"/bin/gunzip || die
+	sed -e "s:${EPREFIX}/usr:${EPREFIX}:" -i "${ED}"/bin/gunzip || die
 }
