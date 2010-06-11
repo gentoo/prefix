@@ -163,6 +163,13 @@ src_install() {
 }
 
 pkg_postinst() {
+	if [[ ${EUID} == 0 ]] ; then
+		# setup portage user, such that things that require root privs
+		# don't fail, bug #321623
+		enewgroup portage 250
+		enewuser portage 250 -1 "${EPREFIX}"/var/tmp/portage portage
+	fi
+
 	# This is also written in src_install (so it's in CONTENTS), but
 	# write it here so that the new version is immediately in the file
 	# (without waiting for the user to do etc-update)

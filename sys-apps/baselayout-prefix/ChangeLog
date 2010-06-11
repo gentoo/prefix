@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  11 Jun 2010; Fabian Groffen <grobian@gentoo.org>
+  baselayout-prefix-1.12.5-r7.ebuild:
+  Create portage group and user for root installs, bug #321623
+
 *baselayout-prefix-1.12.5-r7 (14 May 2010)
 
   14 May 2010; Fabian Groffen <grobian@gentoo.org>
