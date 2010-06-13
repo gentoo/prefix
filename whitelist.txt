@@ -167,6 +167,7 @@ app-portage/elogv
 app-shells/bash-completion
 app-shells/dsh
 app-shells/fish
+app-shells/gentoo-bashcomp
 app-shells/prll
 app-shells/tcsh
 app-shells/zsh-completion
