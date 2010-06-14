@@ -1,6 +1,26 @@
 # ChangeLog for x11-terms/rxvt-unicode
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.162 2010/05/14 14:36:31 vostorga Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/ChangeLog,v 1.167 2010/05/31 01:45:06 jer Exp $
+
+*rxvt-unicode-9.07-r2 (31 May 2010)
+
+  31 May 2010; Jeroen Roovers <jer@gentoo.org> +rxvt-unicode-9.07-r2.ebuild,
+  metadata.xml:
+  Make blinking text optional thanks to jussx (bug #321655).
+
+  24 May 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  rxvt-unicode-9.07-r1.ebuild:
+  x86 stable wrt bug #319711
+
+  24 May 2010; <nixnut@gentoo.org> rxvt-unicode-9.07-r1.ebuild:
+  ppc stable #319711
+
+  20 May 2010; Jeroen Roovers <jer@gentoo.org> rxvt-unicode-9.07-r1.ebuild:
+  Stable for HPPA (bug #319711).
+
+  18 May 2010; Alex Alexander <wired@gentoo.org>
+  rxvt-unicode-9.07-r1.ebuild:
+  amd64 stable, bug #319711
 
   14 May 2010; Víctor Ostorga <vostorga@gentoo.org> metadata.xml:
   Removing myself from metadata, because I no longer use this software

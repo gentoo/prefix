@@ -12,9 +12,10 @@
   </maintainer>
   <use>
 	<flag name='afterimage'>Enable support for
-		<pkg>media-libs/libafterimage</pkg> </flag>
+		<pkg>media-libs/libafterimage</pkg></flag>
     <flag name='iso14755'>Enable ISO-14755 support</flag>
-    <flag name='xterm-color'>Enable xterm 256 color support</flag>
+	<flag name='blink'>Enable blinking text</flag>
     <flag name='wcwidth'>Enable wide char width support</flag>
+    <flag name='xterm-color'>Enable xterm 256 color support</flag>
   </use>
 </pkgmetadata>

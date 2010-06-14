@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-9.06-r3.ebuild,v 1.8 2010/01/27 07:00:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-terms/rxvt-unicode/rxvt-unicode-9.07-r2.ebuild,v 1.1 2010/05/31 01:45:06 jer Exp $
 
 EAPI="2"
 
@@ -13,7 +13,7 @@ SRC_URI="http://dist.schmorp.de/rxvt-unicode/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris"
-IUSE="aqua truetype perl iso14755 afterimage xterm-color wcwidth vanilla"
+IUSE="afterimage iso14755 perl blink truetype xterm-color +vanilla wcwidth"
 
 # see bug #115992 for modular x deps
 RDEPEND="x11-libs/libX11
@@ -22,21 +22,18 @@ RDEPEND="x11-libs/libX11
 	x11-libs/libXrender
 	perl? ( dev-lang/perl )
 	>=sys-libs/ncurses-5.7-r3
-	aqua? ( dev-perl/Mac-Pasteboard )"
+	kernel_Darwin? ( dev-perl/Mac-Pasteboard )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	x11-proto/xproto"
 
 src_prepare() {
-	if use aqua ; then
+	if use kernel_Darwin ; then
 		cp "${FILESDIR}"/macosx-clipboard src/perl/ || die
 	fi
-	epatch "${FILESDIR}"/${P}-case-insensitive-fs.patch
+	epatch "${FILESDIR}"/${PN}-9.06-case-insensitive-fs.patch
 
-	#Bug 270694
-	epatch "${FILESDIR}/${P}-glibc-2.10.patch"
-
-	if (use xterm-color || use wcwidth); then
+	if { use xterm-color || use wcwidth; }; then
 		ewarn "You enabled xterm-color or wcwidth or both."
 		ewarn "Please note that neither of them are supported by upstream."
 		ewarn "You are at your own if you run into problems."
@@ -61,7 +58,7 @@ src_prepare() {
 	use wcwidth && epatch doc/wcwidth.patch
 
 	# bug #240165
-	epatch "${FILESDIR}"/${P}-no-urgency-if-focused.diff
+	epatch "${FILESDIR}"/${PN}-9.06-no-urgency-if-focused.diff
 
 	# ncurses will provide rxvt-unicode terminfo, so we don't install them again
 	# see bug #192083
@@ -80,7 +77,7 @@ src_prepare() {
 	#fi
 
 	# bug #263638
-	epatch "${FILESDIR}"/${P}-popups-hangs.patch
+	epatch "${FILESDIR}"/${PN}-9.06-popups-hangs.patch
 
 	# bug #237271
 	if ! use vanilla; then
@@ -89,6 +86,7 @@ src_prepare() {
 		ewarn "Gentoo community."
 		ebeep 5
 		epatch "${FILESDIR}"/${PN}-9.05_no-MOTIF-WM-INFO.patch
+		epatch "${FILESDIR}"/${PN}-9.06-font-width.patch
 	fi
 
 	eautoreconf
@@ -104,14 +102,14 @@ src_configure() {
 		$(use_enable truetype xft) \
 		$(use_enable afterimage) \
 		$(use_enable perl) \
-		--disable-text-blink \
+		$(use_enable blink text-blink) \
 		--with-xpm-includes="${EPREFIX}"/usr/include \
 		--with-xpm-library="${EPREFIX}"/usr/lib \
 		${myconf}
 }
 
 src_compile() {
-	emake || die
+	emake || die "emake failed"
 
 	sed -i \
 		-e 's/RXVT_BASENAME = "rxvt"/RXVT_BASENAME = "urxvt"/' \
