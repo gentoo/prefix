@@ -12,7 +12,7 @@ EGIT_REPO_URI="git://anongit.freedesktop.org/git/xcb/libxcb"
 [[ ${PV} != 9999* ]] && \
 	SRC_URI="http://xcb.freedesktop.org/dist/${P}.tar.bz2"
 
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="doc selinux"
 
 RDEPEND="x11-libs/libXau
