@@ -492,9 +492,6 @@ gnome-base/libgnomeprintui
 gnome-base/libgnomeui
 gnome-base/librsvg
 gnome-base/nautilus
-mail-client/mailx
-mail-client/mutt
-mail-client/thunderbird
 mail-filter/razor
 media-gfx/album
 media-gfx/asymptote
@@ -869,6 +866,7 @@ gnustep-apps
 gnustep-base
 gnome-extra
 lxde-base
+mail-client
 mail-mta
 media-fonts
 net-dialup
