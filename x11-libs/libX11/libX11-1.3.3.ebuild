@@ -8,7 +8,7 @@ inherit x-modular toolchain-funcs flag-o-matic
 
 DESCRIPTION="X.Org X11 library"
 
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="doc ipv6 test +xcb"
 
 RDEPEND=">=x11-libs/xtrans-1.2.3
