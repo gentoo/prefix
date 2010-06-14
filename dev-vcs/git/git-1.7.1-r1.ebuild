@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.7.1-r1.ebuild,v 1.1 2010/05/28 20:27:41 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.7.1-r1.ebuild,v 1.3 2010/06/05 07:48:32 phajdan.jr Exp $
 
 EAPI=2
 
@@ -125,7 +125,8 @@ exportmakeopts() {
 	use !elibc_glibc && use iconv && myopts="${myopts} NEEDS_LIBICONV=YesPlease"
 
 	use iconv \
-		|| myopts="${myopts} NO_ICONV=YesPlease"
+		|| einfo "Forcing iconv for 1.7.1-r1 due to bugs #321895, #322205."
+	#	|| myopts="${myopts} NO_ICONV=YesPlease"
 	use tk \
 		|| myopts="${myopts} NO_TCLTK=YesPlease"
 	use perl \
@@ -224,8 +225,8 @@ src_prepare() {
 		Documentation/Makefile || die "sed failed"
 
 	# #318289
-	#epatch "${FILESDIR}"/${PN}-1.6.6.1-interix.patch
-	#epatch "${FILESDIR}"/${PN}-1.6.6.1-interix6.patch
+	epatch "${FILESDIR}"/${PN}-1.7.1-interix.patch
+	epatch "${FILESDIR}"/${PN}-1.6.6.1-interix6.patch
 }
 
 git_emake() {
