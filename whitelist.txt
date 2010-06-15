@@ -419,7 +419,6 @@ dev-util/gitosis-gentoo
 dev-util/gob
 dev-util/gperf
 dev-util/gtk-doc-am
-dev-util/hgsvn
 dev-util/httpup
 dev-util/huc
 dev-util/intltool
@@ -452,6 +451,7 @@ dev-vcs/darcs
 dev-vcs/giggle
 dev-vcs/hg-git
 dev-vcs/hgsubversion
+dev-vcs/hgsvn
 dev-vcs/rcs
 dev-vcs/statcvs
 dev-vcs/svk
