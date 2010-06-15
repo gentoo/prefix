@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.97.1.ebuild,v 1.8 2010/03/09 19:57:07 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/dia/dia-0.97.1.ebuild,v 1.9 2010/05/16 09:40:12 eva Exp $
 
 EAPI="2"
 
@@ -8,7 +8,7 @@ inherit eutils gnome2 libtool autotools versionator python multilib
 
 MY_P=${P/_/-}
 DESCRIPTION="Diagram/flowchart creation program"
-HOMEPAGE="http://www.gnome.org/projects/dia/"
+HOMEPAGE="http://live.gnome.org/Dia"
 LICENSE="GPL-2"
 
 # dia used -1 instead of .1 for the new version.
@@ -16,7 +16,7 @@ MY_PV_MM=$(get_version_component_range 1-2)
 SRC_URI="mirror://gnome/sources/${PN}/${MY_PV_MM}/${MY_P}.tar.bz2"
 
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
 # the doc USE flag doesn't seem to do anything without docbook2html
 # FIXME: configure mixes debug and devel meaning (see -DGTK_DISABLE...)
 IUSE="cairo doc gnome png python zlib"
@@ -84,8 +84,17 @@ src_prepare() {
 			|| die "sed 2 failed"
 	fi
 
+	# Fix naming conflict on Darwin/OSX
+	sed -i -e 's/isspecial/char_isspecial/' \
+		"${S}"/objects/GRAFCET/boolequation.c || die
+
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
+}
+
+src_install() {
+	gnome2_src_install
+	find "${ED}" -name "*.la" -delete || die "failed to remove *.la"
 }
 
 pkg_postinst() {
