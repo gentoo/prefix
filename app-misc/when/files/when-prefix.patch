@@ -1,9 +1,0 @@
-diff -ru when_dist.orig/when when_dist/when
---- when_dist.orig/when	2008-04-03 21:47:33 +0200
-+++ when_dist/when	2008-04-03 21:48:40 +0200
-@@ -1,4 +1,4 @@
--#!/usr/bin/perl 
-+#!@GENTOO_PORTAGE_EPREFIX@/usr/bin/perl 
- 
- #----------------------------------------------------------------
- #   When
