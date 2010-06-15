@@ -124,11 +124,6 @@ app-editors/teco
 app-editors/vim
 app-editors/vim-core
 app-editors/zile
-app-emulation/emul-linux-x86-baselibs
-app-emulation/emul-linux-x86-compat
-app-emulation/emul-linux-x86-xlibs
-app-emulation/simh
-app-emulation/spim
 app-i18n/enca
 app-i18n/kakasi
 app-i18n/man-pages-zh_CN
@@ -864,6 +859,7 @@ app-backup
 app-dicts
 app-doc
 app-emacs
+app-emulation
 app-pda
 app-vim
 dev-cpp
