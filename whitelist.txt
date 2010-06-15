@@ -448,7 +448,6 @@ dev-util/qt-creator
 dev-util/re2c
 dev-util/strace
 dev-util/tailor
-dev-util/tig
 dev-util/tmake
 dev-util/treecc
 dev-util/uncrustify
@@ -469,6 +468,7 @@ dev-vcs/hgsvn
 dev-vcs/rcs
 dev-vcs/statcvs
 dev-vcs/svk
+dev-vcs/tig
 games-arcade/ascii-invaders
 games-arcade/nibbles
 games-arcade/tuxanci
