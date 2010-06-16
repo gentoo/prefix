@@ -377,7 +377,6 @@ dev-lisp/cl-puri
 dev-ml/extlib
 dev-ml/lablgtk
 dev-php5/pecl-pdflib
-dev-tcltk/tkimg
 dev-tex/algorithms
 dev-tex/chktex
 dev-tex/currvita
