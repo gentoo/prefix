@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/atk
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.194 2010/05/11 19:48:58 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.195 2010/06/13 15:40:50 pacho Exp $
+
+*atk-1.30.0 (13 Jun 2010)
+
+  13 Jun 2010; Pacho Ramos <pacho@gentoo.org> +atk-1.30.0.ebuild:
+  Add new version for Gnome 2.30.
 
   11 May 2010; Brent Baude <ranger@gentoo.org> atk-1.28.0.ebuild:
   Marking atk-1.28.0 ppc64 for bug 304777
