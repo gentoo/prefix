@@ -1,6 +1,15 @@
 # ChangeLog for dev-libs/glib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.407 2010/05/11 19:46:05 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/ChangeLog,v 1.409 2010/06/13 15:23:34 pacho Exp $
+
+*glib-2.24.1 (13 Jun 2010)
+
+  13 Jun 2010; Pacho Ramos <pacho@gentoo.org> -glib-2.22.3.ebuild,
+  +glib-2.24.1.ebuild:
+  Add new version for Gnome 2.30, clean old testing version.
+
+  04 Jun 2010; Markus Meier <maekke@gentoo.org> glib-2.22.5.ebuild:
+  x86 stable, bug #314899
 
   11 May 2010; Brent Baude <ranger@gentoo.org> glib-2.22.4.ebuild:
   Marking glib-2.22.4 ppc64 for bug 304777

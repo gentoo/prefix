@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.22.3.ebuild,v 1.1 2009/12/18 13:35:16 mrpouet Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.24.1.ebuild,v 1.1 2010/06/13 15:23:34 pacho Exp $
 
 EAPI="2"
 
@@ -55,6 +55,10 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
+	# Do not try to remove files on live filesystem, bug #XXX ?
+	sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
+		-i "${S}"/gio/tests/desktop-app-info.c || die "sed failed"
+
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
 	epatch "${FILESDIR}"/${PN}-2.20.3-mint.patch
@@ -64,6 +68,8 @@ src_prepare() {
 	# make default sane for us
 	if use prefix ; then
 		sed -i -e "s:/usr/local:${EPREFIX}:" gio/xdgmime/xdgmime.c || die
+		# bug #308609, without path, bug #314057
+		export PERL=perl
 	fi
 
 	# build glib with parity for native win32
@@ -81,7 +87,7 @@ src_prepare() {
 		# there are hunks disabling some GTK_DOC macros - i guess that
 		# the gtk-doc-am package in the tree is too old to bootstrap
 		# glib correctly ... :/
-		epatch "${FILESDIR}"/${P}-interix.patch
+		epatch "${FILESDIR}"/${PN}-2.22.3-interix.patch
 
 		# interix 3 and 5 have no ipv6 support, so take it out (phew...)
 		if [[ ${CHOST} == *-interix[35]* ]]; then
