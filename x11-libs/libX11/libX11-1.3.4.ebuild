@@ -1,10 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.3.3.ebuild,v 1.9 2010/06/04 13:59:12 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/libX11-1.3.4.ebuild,v 1.1 2010/06/08 16:46:06 scarabeus Exp $
 
-EAPI="1"
-
-inherit x-modular toolchain-funcs flag-o-matic
+EAPI=3
+inherit xorg-2 toolchain-funcs flag-o-matic
 
 DESCRIPTION="X.Org X11 library"
 
@@ -24,36 +23,36 @@ DEPEND="${RDEPEND}
 		app-text/ghostscript-gpl
 		sys-apps/groff
 	)
+	test? ( dev-lang/perl )
 	x11-proto/xf86bigfontproto
 	!xcb? (
 		x11-proto/bigreqsproto
 		x11-proto/xcmiscproto
 	)
-	test? ( dev-lang/perl )
 	x11-proto/inputproto
 	x11-proto/xextproto"
 
+PATCHES=(
+	"${FILESDIR}"/${PN}-1.1.4-aix-pthread.patch
+	"${FILESDIR}"/${PN}-1.1.5-winnt-private.patch
+	"${FILESDIR}"/${PN}-1.1.5-solaris.patch
+)
+
 pkg_setup() {
+	xorg-2_pkg_setup
 	CONFIGURE_OPTIONS="$(use_enable doc specs) $(use_enable ipv6)
 		$(use_with xcb)"
 	# xorg really doesn't like xlocale disabled.
 	# $(use_enable nls xlocale)
 }
 
-src_unpack() {
-	PATCHES=(
-		"${FILESDIR}"/${PN}-1.1.4-aix-pthread.patch
-		"${FILESDIR}"/${PN}-1.1.5-winnt-private.patch
-		"${FILESDIR}"/${PN}-1.1.5-solaris.patch
-		"${FILESDIR}"/${PN}-1.3.3-interix3-inttypes.patch
-	)
-	x-modular_src_unpack
+src_configure() {
+	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
+	xorg-2_src_configure
 }
 
 src_compile() {
-	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
-	x-modular_src_configure
 	# [Cross-Compile Love] Disable {C,LD}FLAGS and redefine CC= for 'makekeys'
 	( filter-flags -m* ; cd src/util && make CC=$(tc-getBUILD_CC) CFLAGS="${CFLAGS}" LDFLAGS="" clean all)
-	x-modular_src_make
+	xorg-2_src_compile
 }
