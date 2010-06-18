@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/boost
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.196 2010/04/25 18:28:14 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/ChangeLog,v 1.197 2010/05/30 06:51:41 dirtyepic Exp $
+
+*boost-1.42.0-r1 (30 May 2010)
+
+  30 May 2010; Ryan Hill <dirtyepic@gentoo.org> +boost-1.42.0-r1.ebuild,
+  +files/boost-1.42.0-template_arity-gcc45.patch:
+  Add patch from upstream to fix broken MPL library when built with
+  GCC 4.5. Revision bumped due to this being a runtime error.
 
   25 Apr 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   boost-1.35.0-r2.ebuild, boost-1.35.0-r5.ebuild, boost-1.37.0-r1.ebuild,

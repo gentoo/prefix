@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.42.0.ebuild,v 1.3 2010/04/25 18:28:14 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.42.0-r1.ebuild,v 1.1 2010/05/30 06:51:41 dirtyepic Exp $
 
 EAPI="2"
 
@@ -101,6 +101,7 @@ src_prepare() {
 
 	 # bug 291660
 	epatch "${FILESDIR}/boost-${PV}-parameter-needs-python.patch"
+	epatch "${FILESDIR}"/${P}-template_arity-gcc45.patch
 
 	# This enables building the boost.random library with /dev/urandom support
 	if [[ -e /dev/urandom ]] ; then
