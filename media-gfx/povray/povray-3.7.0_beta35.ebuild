@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta29-r2.ebuild,v 1.1 2009/01/16 21:09:50 lavajoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/povray-3.7.0_beta35.ebuild,v 1.3 2010/06/01 12:58:33 lavajoe Exp $
 
 inherit eutils autotools flag-o-matic versionator
 
@@ -8,27 +8,26 @@ POVRAY_MAJOR_VER=$(get_version_component_range 1-3)
 POVRAY_MINOR_VER=$(get_version_component_range 4)
 if [ -n "$POVRAY_MINOR_VER" ]; then
 	POVRAY_MINOR_VER=${POVRAY_MINOR_VER/beta/beta.}
-	MY_PV="${POVRAY_MAJOR_VER}.${POVRAY_MINOR_VER}"
+	MY_PV="${POVRAY_MAJOR_VER}.${POVRAY_MINOR_VER}a"
 else
 	MY_PV=${POVRAY_MAJOR_VER}
 fi
 
 DESCRIPTION="The Persistence of Vision Raytracer"
 HOMEPAGE="http://www.povray.org/"
-SRC_URI="http://www.povray.org/beta/source/${PN}-src-${MY_PV}.tar.bz2"
+SRC_URI="http://www.povray.org/redirect/www.povray.org/beta/source/${PN}-${MY_PV}.tar.bz2"
 
 LICENSE="povlegal-3.6"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="svga tiff X"
+IUSE="tiff X"
 
 DEPEND="media-libs/libpng
 	tiff? ( >=media-libs/tiff-3.6.1 )
 	media-libs/jpeg
 	sys-libs/zlib
 	X? ( x11-libs/libXaw )
-	svga? ( media-libs/svgalib )
-	>=dev-libs/boost-1.33"
+	>=dev-libs/boost-1.36"
 
 S="${WORKDIR}/${PN}-${MY_PV}"
 
@@ -36,10 +35,16 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	# Remove logic disallowing libpng 1.4
+	epatch "${FILESDIR}"/${P}-configure-allow-libpng14.patch
+
+	# r_info_ptr->trans_alpha might be no-go with libpn12
+	has_version ">=media-libs/libpng-1.4" && epatch "${FILESDIR}"/${P}-libpng14.patch
+
 	# Print info on how to extend the expiration date of the beta
 	# if it has expired.
 	epatch "${FILESDIR}"/${P}-print-extend-expiration-info.patch
-	epatch "${FILESDIR}"/${P}-fix-expiration-bug.patch
+	#epatch "${FILESDIR}"/${P}-fix-expiration-bug.patch
 
 	# Change some destination directories that cannot be adjusted via configure
 	cp configure.ac configure.ac.orig
@@ -60,6 +65,8 @@ src_unpack() {
 }
 
 src_compile() {
+	local non_redist_conf
+
 	# Fixes bug 71255
 	if [[ $(get-flag march) == k6-2 ]]; then
 		filter-flags -fomit-frame-pointer
@@ -72,11 +79,17 @@ src_compile() {
 	append-flags -DPOVLIBDIR=\\\"${EROOT}usr/share/${PN}\\\"
 	append-flags -DPOVCONFDIR=\\\"${EROOT}etc/${PN}\\\"
 
+	if ! use tiff ; then
+		non_redist_conf="NON_REDISTRIBUTABLE_BUILD=yes"
+	else
+		non_redist_conf=""
+	fi
+
 	econf \
+		${non_redist_conf} \
 		COMPILED_BY="Portage (Gentoo `uname`) on `hostname -f`" \
-		$(use_with svga) \
-		$(use_with tiff) \
-		$(use_with X) \
+		$(use_with tiff libtiff) \
+		$(use_with X x) \
 		--disable-strip \
 		|| die
 

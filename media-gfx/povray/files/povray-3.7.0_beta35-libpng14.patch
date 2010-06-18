@@ -1,0 +1,20 @@
+--- source/base/image/png.cpp
++++ source/base/image/png.cpp
+@@ -433,7 +433,7 @@
+       entry.alpha = 1.0f ;
+       if (has_alpha)
+         if (index < r_info_ptr->num_trans)
+-          entry.alpha = (float) (r_info_ptr->trans[index]) / 255.0;
++          entry.alpha = (float) (r_info_ptr->trans_alpha[index]) / 255.0;
+       colormap.push_back (entry);
+     }
+ 
+@@ -459,7 +459,7 @@
+       entry.alpha = 1.0f ;
+       if (r_info_ptr->valid & PNG_INFO_tRNS)
+         if (index < r_info_ptr->num_trans)
+-          entry.alpha = (float) (r_info_ptr->trans[index]) / 255.0;
++          entry.alpha = (float) (r_info_ptr->trans_alpha[index]) / 255.0;
+       colormap.push_back (entry);
+     }
+ 

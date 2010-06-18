@@ -1,6 +1,27 @@
 # ChangeLog for media-gfx/povray
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.99 2010/03/12 08:54:19 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/povray/ChangeLog,v 1.103 2010/06/01 12:58:33 lavajoe Exp $
+
+  01 Jun 2010; Joe Peterson <lavajoe@gentoo.org> povray-3.7.0_beta35.ebuild:
+  Fix bug #322225; remove unused USE svga
+
+  24 May 2010; Joe Peterson <lavajoe@gentoo.org> povray-3.7.0_beta35.ebuild,
+  +files/povray-3.7.0_beta35-configure-allow-libpng14.patch:
+  Fix bug #321361
+
+*povray-3.7.0_beta35 (24 May 2010)
+
+  24 May 2010; Joe Peterson <lavajoe@gentoo.org>
+  -povray-3.7.0_beta32.ebuild, +povray-3.7.0_beta35.ebuild,
+  -files/povray-3.7.0_beta32-libpng14.patch,
+  -files/povray-3.7.0_beta32-print-extend-expiration-info.patch,
+  +files/povray-3.7.0_beta35-libpng14.patch,
+  +files/povray-3.7.0_beta35-print-extend-expiration-info.patch:
+  Add new beta version 35a; remove old beta (fix bug #320865)
+
+  15 May 2010; Samuli Suominen <ssuominen@gentoo.org>
+  povray-3.6.1-r4.ebuild, +files/povray-3.6.1-libpng14.patch:
+  Backport libpng14 patch to stable 3.6.1 release.
 
   12 Mar 2010; Samuli Suominen <ssuominen@gentoo.org>
   povray-3.7.0_beta32.ebuild, +files/povray-3.7.0_beta32-libpng14.patch:
