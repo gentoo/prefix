@@ -149,7 +149,7 @@ src_configure() {
 	use mpi && mpi="using mpi ;"
 
 	if use python ; then
-		pystring="using python : $(python_get_version) : ${EPREFIX}/usr :	$(python_get_includedir) : $(python_get_libdir) ;"
+		pystring="using python : $(python_get_version) : ${EPREFIX}/usr : ${EPREFIX}$(python_get_includedir) : ${EPREFIX}$(python_get_libdir) ;"
 	fi
 
 	cat > "${S}/user-config.jam" << __EOF__
