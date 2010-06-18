@@ -18,7 +18,6 @@
 
 <language name="gentoo" id="gentoo" version="2.0" _section="Scripts">
 	<metadata>
-		<property name="mimetypes">text/plain</property>
 		<property name="globs">*.ebuild;*.eclass</property>
 		<property name="line-comment-start">#</property>
 	</metadata>
