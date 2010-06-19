@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.6.6.1.ebuild,v 1.3 2010/03/31 07:15:31 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.6.6.1.ebuild,v 1.4 2010/06/19 00:49:43 abcd Exp $
 
 EAPI=2
 
@@ -48,7 +48,7 @@ RDEPEND="${CDEPEND}
 			dev-perl/Net-SMTP-SSL
 			dev-perl/Authen-SASL
 			cgi? ( virtual/perl-CGI )
-			cvs? ( >=dev-util/cvsps-2.1 dev-perl/DBI dev-perl/DBD-SQLite )
+			cvs? ( >=dev-vcs/cvsps-2.1 dev-perl/DBI dev-perl/DBD-SQLite )
 			subversion? ( dev-util/subversion[-dso,perl] dev-perl/libwww-perl dev-perl/TermReadKey )
 			)
 	gtk?
@@ -401,13 +401,13 @@ src_test() {
 		disabled="${disabled} ${tests_nonroot}"
 	else
 		[[ $cvs -gt 0 ]] && \
-			has_version dev-util/cvs && \
+			has_version dev-vcs/cvs && \
 			let cvs=$cvs+1
 		[[ $cvs -gt 1 ]] && \
-			built_with_use dev-util/cvs server && \
+			built_with_use dev-vcs/cvs server && \
 			let cvs=$cvs+1
 		if [[ $cvs -lt 3 ]]; then
-			einfo "Disabling CVS tests (needs dev-util/cvs[USE=server])"
+			einfo "Disabling CVS tests (needs dev-vcs/cvs[USE=server])"
 			disabled="${disabled} ${tests_cvs}"
 		fi
 	fi
