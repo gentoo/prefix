@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.3.2-r2.ebuild,v 1.4 2010/06/19 00:39:23 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.3.3.ebuild,v 1.4 2010/06/19 00:39:23 abcd Exp $
 
 EAPI="2"
 PYTHON_DEPEND="2:2.5"
@@ -36,9 +36,7 @@ RDEPEND="${COMMON_DEPS}
 RESTRICT_PYTHON_ABIS="2.4 3.*"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-missing-import.patch
-	epatch "${FILESDIR}"/${P}-missing-text.patch
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.3.2-prefix.patch
 	eprefixify etc/layman.cfg layman/config.py
 	find layman/overlays -name "*.py" | xargs sed -i \
 		-e '/binary\(_command \)\? = '"'"'.*'"'"'/s|'"'"'\(.*\)'"'"'|'"'${EPREFIX}"'\1'"'"'|'
