@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.70 2008/04/27 07:00:40 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/cvs.eclass,v 1.71 2010/06/19 00:35:11 abcd Exp $
 
 # @ECLASS: cvs.eclass
 # @MAINTAINER:
@@ -172,7 +172,7 @@ inherit eutils
 # add cvs to deps
 # ssh is used for ext auth
 # sudo is used to run as a specified user
-DEPEND="dev-util/cvs"
+DEPEND="dev-vcs/cvs"
 
 [ -n "$ECVS_RUNAS" ] && DEPEND="$DEPEND app-admin/sudo"
 
