@@ -418,8 +418,6 @@ dev-util/dmake
 dev-util/filepp
 dev-util/flawfinder
 dev-util/ftjam
-dev-util/gitosis
-dev-util/gitosis-gentoo
 dev-util/gob
 dev-util/gperf
 dev-util/gtk-doc-am
@@ -456,6 +454,8 @@ dev-vcs/cvsd
 dev-vcs/cvsps
 dev-vcs/darcs
 dev-vcs/giggle
+dev-vcs/gitosis
+dev-vcs/gitosis-gentoo
 dev-vcs/hg-git
 dev-vcs/hgsubversion
 dev-vcs/hgsvn
