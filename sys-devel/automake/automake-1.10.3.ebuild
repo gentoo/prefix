@@ -38,7 +38,7 @@ src_unpack() {
 	# this fixes --disable-dependency-tracking for all config.status files.
 	# the symptom was a "shift: nothing to shift" with ksh and a silent
 	# configure failure with bash. the patch has been reported upstream.
-	epatch "${FILESDIR}"/${PN}-1.10.3-depout.patch
+	epatch "${FILESDIR}"/${PN}-1.10.2-depout.patch
 }
 
 src_compile() {
