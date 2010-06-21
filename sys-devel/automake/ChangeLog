@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/automake
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.150 2010/04/18 12:36:55 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/automake/ChangeLog,v 1.151 2010/05/31 19:20:31 josejx Exp $
+
+  31 May 2010; Joseph Jezak <josejx@gentoo.org> automake-1.11.1.ebuild:
+  Marked ppc64 stable for bug #295947.
 
   18 Apr 2010; <nixnut@gentoo.org> automake-1.11.1.ebuild:
   ppc stable #295947
