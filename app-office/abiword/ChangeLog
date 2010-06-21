@@ -1,6 +1,18 @@
 # ChangeLog for app-office/abiword
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.215 2010/04/19 23:16:35 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/abiword/ChangeLog,v 1.217 2010/06/15 18:09:15 pacho Exp $
+
+*abiword-2.8.6 (15 Jun 2010)
+
+  15 Jun 2010; Pacho Ramos <pacho@gentoo.org> -abiword-2.8.4.ebuild,
+  +abiword-2.8.6.ebuild:
+  Version bump (bug #324135) with lots of bugfixes like prevent configure
+  --disable-collab-backend-{tcp,service} from checking for asio.hpp (bug
+  #316287; thanks to Juergen Rose, Thorsten Vollmer, Jan Psota and others).
+  Remove old and broken testing version.
+
+  16 May 2010; Raúl Porcel <armin76@gentoo.org> abiword-2.8.4.ebuild:
+  Re-add ~alpha/~ia64/~sparc wrt #316219
 
 *abiword-2.8.4 (19 Apr 2010)
 
