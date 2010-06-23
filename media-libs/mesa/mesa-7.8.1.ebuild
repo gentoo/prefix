@@ -104,8 +104,10 @@ src_prepare() {
 	[[ ${CHOST} == *-freebsd6.* ]] && \
 		sed -i -e "s/-DHAVE_POSIX_MEMALIGN//" configure.ac
 	# Solaris needs some recent POSIX stuff in our case
-	[[ ${CHOST} == *-solaris* ]] && \
-		sed -i -e "s/-DSVR4/-D_POSIX_C_SOURCE=200112L/" configure.ac
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		sed -i -e "s/-DSVR4/-D_POSIX_C_SOURCE=200112L/" configure.ac || die
+		sed -i -e 's/uint/unsigned int/g' src/egl/drivers/glx/egl_glx.c || die
+	fi
 
 	eautoreconf
 }
