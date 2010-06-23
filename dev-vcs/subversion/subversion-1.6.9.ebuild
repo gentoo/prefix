@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/subversion-1.6.5.ebuild,v 1.9 2009/10/08 18:01:03 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/subversion/subversion-1.6.9.ebuild,v 1.2 2010/06/22 20:01:56 arfrever Exp $
 
 EAPI="2"
 
@@ -9,13 +9,13 @@ WANT_AUTOMAKE="none"
 inherit autotools bash-completion db-use depend.apache elisp-common eutils flag-o-matic java-pkg-opt-2 libtool multilib perl-module python
 
 DESCRIPTION="Advanced version control system"
-HOMEPAGE="http://subversion.tigris.org/"
+HOMEPAGE="http://subversion.apache.org/"
 SRC_URI="http://subversion.tigris.org/downloads/${P/_/-}.tar.bz2"
 
 LICENSE="Subversion"
 SLOT="0"
-KEYWORDS="~ppc-aix ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="apache2 berkdb ctypes-python debug doc +dso emacs extras gnome-keyring java nls perl python ruby sasl test vim-syntax +webdav-neon webdav-serf"
+KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="apache2 berkdb ctypes-python debug doc +dso emacs extras gnome-keyring java kde nls perl python ruby sasl test vim-syntax +webdav-neon webdav-serf"
 
 CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
 	>=dev-libs/apr-1.3:1
@@ -25,13 +25,15 @@ CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
 	berkdb? ( =sys-libs/db-4* )
 	emacs? ( virtual/emacs )
 	gnome-keyring? ( dev-libs/glib:2 sys-apps/dbus gnome-base/gnome-keyring )
+	kde? ( sys-apps/dbus x11-libs/qt-core x11-libs/qt-dbus x11-libs/qt-gui >=kde-base/kdelibs-4 )
 	ruby? ( >=dev-lang/ruby-1.8.2 )
 	sasl? ( dev-libs/cyrus-sasl )
-	webdav-neon? ( >=net-misc/neon-0.28 )
+	webdav-neon? ( >=net-libs/neon-0.28 )
 	webdav-serf? ( >=net-libs/serf-0.3.0 )"
 RDEPEND="${CDEPEND}
 	apache2? ( www-servers/apache[apache2_modules_dav] )
 	java? ( >=virtual/jre-1.5 )
+	kde? ( kde-base/kwalletd )
 	nls? ( virtual/libintl )
 	perl? ( dev-perl/URI )"
 APACHE_TEST_DEPEND="|| (
@@ -39,10 +41,12 @@ APACHE_TEST_DEPEND="|| (
 	=www-servers/apache-2.2*[apache2_modules_auth_basic,apache2_modules_authn_file,apache2_modules_dav,apache2_modules_log_config]
 	)"
 DEPEND="${CDEPEND}
+	!prefix? ( >=sys-apps/sandbox-1.6 )
 	ctypes-python? ( dev-python/ctypesgen )
 	doc? ( app-doc/doxygen )
 	gnome-keyring? ( dev-util/pkgconfig )
 	java? ( >=virtual/jdk-1.5 )
+	kde? ( dev-util/pkgconfig )
 	nls? ( sys-devel/gettext )
 	test? (
 		webdav-neon? ( ${APACHE_TEST_DEPEND} )
@@ -59,6 +63,11 @@ S="${WORKDIR}/${P/_/-}"
 : ${SVN_REPOS_LOC:=${EPREFIX}/var/svn}
 
 pkg_setup() {
+	if use kde && ! use nls; then
+		eerror "Support for KWallet (KDE) requires Native Language Support (NLS)."
+		die "Enable \"nls\" USE flag"
+	fi
+
 	if use berkdb; then
 		einfo
 		if [[ -z "${SVN_BDB_VERSION}" ]]; then
@@ -234,7 +243,6 @@ src_configure() {
 	esac
 
 	econf --libdir="${EPREFIX}/usr/$(get_libdir)" \
-		${myconf} \
 		$(use_with apache2 apxs "${APXS}") \
 		$(use_with berkdb berkeley-db "db.h:${EPREFIX}/usr/include/db${SVN_BDB_VERSION}::db-${SVN_BDB_VERSION}") \
 		$(use_with ctypes-python ctypesgen "${EPREFIX}"/usr) \
@@ -242,10 +250,12 @@ src_configure() {
 		$(use_with gnome-keyring) \
 		$(use_enable java javahl) \
 		$(use_with java jdk "${JAVA_HOME}") \
+		$(use_with kde kwallet) \
 		$(use_enable nls) \
 		$(use_with sasl) \
 		$(use_with webdav-neon neon ${EPREFIX}/usr) \
 		$(use_with webdav-serf serf ${EPREFIX}/usr) \
+		${myconf} \
 		--with-apr="${EPREFIX}"/usr/bin/apr-1-config \
 		--with-apr-util="${EPREFIX}"/usr/bin/apu-1-config \
 		--disable-experimental-libtool \
@@ -253,8 +263,7 @@ src_configure() {
 		--enable-local-library-preloading \
 		--disable-mod-activation \
 		--disable-neon-version-check \
-		--with-sqlite="${EPREFIX}"/usr \
-		${myconf}
+		--with-sqlite="${EPREFIX}"/usr
 }
 
 src_compile() {
@@ -581,7 +590,7 @@ src_install() {
 		emake -j1 DESTDIR="${D}" install-javahl || die "Installation of Subversion JavaHL library failed"
 		java-pkg_regso "${ED}"usr/$(get_libdir)/libsvnjavahl*$(get_libname)
 		java-pkg_dojar "${ED}"usr/$(get_libdir)/svn-javahl/svn-javahl.jar
-		rm -Rf "${ED}"usr/$(get_libdir)/svn-javahl/*.jar
+		rm -fr "${ED}"usr/$(get_libdir)/svn-javahl/*.jar
 	fi
 
 	# Install Apache module configuration.
@@ -623,17 +632,12 @@ EOF
 
 	# Install svnserve init-script and xinet.d snippet, bug 43245.
 	newinitd "${FILESDIR}"/svnserve.initd svnserve
-	if use apache2; then
-		newconfd "${FILESDIR}"/svnserve.confd svnserve
-	else
-		newconfd "${FILESDIR}"/svnserve.confd2 svnserve
-	fi
+	newconfd "${FILESDIR}"/svnserve.confd svnserve
 	insinto /etc/xinetd.d
 	newins "${FILESDIR}"/svnserve.xinetd svnserve
 
 	# Install documentation.
 	dodoc CHANGES COMMITTERS README
-	dohtml www/hacking.html
 	dodoc tools/xslt/svnindex.{css,xsl}
 	rm -fr tools/xslt
 
@@ -683,7 +687,7 @@ EOF
 		einfo
 		einfo "Installation of Subversion HTML documentation"
 		einfo
-		dohtml doc/doxygen/html/* || die "Installation of Subversion HTML documentation failed"
+		dohtml -r doc/doxygen/html/* || die "Installation of Subversion HTML documentation failed"
 
 		insinto /usr/share/doc/${PF}
 		doins -r notes
@@ -715,7 +719,7 @@ pkg_postinst() {
 	use perl && perl-module_pkg_postinst
 
 	if use ctypes-python; then
-		python_mod_compile "$(python_get_sitedir)/csvn/"{.,core,ext}/*.py
+		python_mod_optimize "$(python_get_sitedir)/csvn"
 	fi
 
 	elog "Subversion Server Notes"
@@ -798,7 +802,7 @@ pkg_postrm() {
 	use perl && perl-module_pkg_postrm
 
 	if use ctypes-python; then
-		python_mod_cleanup
+		python_mod_cleanup "$(python_get_sitedir)/csvn"
 	fi
 }
 

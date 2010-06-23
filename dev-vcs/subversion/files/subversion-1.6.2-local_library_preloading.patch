@@ -41,8 +41,28 @@
  	cd $(abs_srcdir) && XGETTEXT="$(XGETTEXT)" MSGMERGE="$(MSGMERGE)" \
 --- build/transform_libtool_scripts.sh
 +++ build/transform_libtool_scripts.sh
-@@ -0,0 +1,100 @@
+@@ -0,0 +1,121 @@
 +#!/bin/sh
++#
++#
++# Licensed to the Apache Software Foundation (ASF) under one
++# or more contributor license agreements.  See the NOTICE file
++# distributed with this work for additional information
++# regarding copyright ownership.  The ASF licenses this file
++# to you under the Apache License, Version 2.0 (the
++# "License"); you may not use this file except in compliance
++# with the License.  You may obtain a copy of the License at
++#
++#   http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing,
++# software distributed under the License is distributed on an
++# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
++# KIND, either express or implied.  See the License for the
++# specific language governing permissions and limitations
++# under the License.
++#
++#
 +
 +# Dependencies of libraries
 +subr="subr"
@@ -126,6 +146,7 @@
 +current_directory="$(pwd)"
 +for libtool_script in $executables $tests; do
 +  eval "libtool_script_path=\$${libtool_script}_path"
++  libtool_script_libraries=""
 +  if [ -f "$libtool_script_path" ]; then
 +    if { grep LD_LIBRARY_PATH "$libtool_script_path" && ! grep LD_PRELOAD "$libtool_script_path"; } > /dev/null; then
 +      echo "Transforming $libtool_script_path"
