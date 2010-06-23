@@ -80,6 +80,10 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-freebsd7.patch
 	# /bin/sh on at least Solaris can't cope very will with these scripts
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# the version script on Solaris causes invalid symbol version problems
+		sed -i -e '/--version-script/d' configure || die
+	fi
 }
 
 src_prepare() {
