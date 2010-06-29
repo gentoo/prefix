@@ -1,6 +1,37 @@
 # ChangeLog for x11-libs/vte
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.247 2010/04/07 16:05:42 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/vte/ChangeLog,v 1.251 2010/06/23 15:01:20 pacho Exp $
+
+*vte-0.24.2 (23 Jun 2010)
+
+  23 Jun 2010; Pacho Ramos <pacho@gentoo.org> -vte-0.24.1-r1.ebuild,
+  +vte-0.24.2.ebuild, +files/vte-0.24.2-invisible-cursor.patch,
+  +files/vte-0.24.2-invisible-cursor2.patch:
+  Version bump with translations updates. This also provides patches to fix
+  upstream bug #602596 as demanded by some people, but they are not being
+  applied yet since they cause other problems (bug #323443). Finally, this
+  no longer applies second patch to solve ugly artifacts bug with
+  gnome-terminal since it also causes problems with x11-terms/terminal (bug
+  #324631) and the other patches seem to be enough for now.
+
+*vte-0.24.1-r1 (17 Jun 2010)
+
+  17 Jun 2010; Pacho Ramos <pacho@gentoo.org> -vte-0.24.1.ebuild,
+  +vte-0.24.1-r1.ebuild, +files/vte-0.24.1-background-color.patch,
+  +files/vte-0.24.1-background-color2.patch,
+  +files/vte-0.24.1-cleanup-background.patch:
+  Apply upstream patches from master to fix ugly artifacts I were seeing in
+  some situations. Thanks a lot to Behdad Esfahbod in upstream bug #621902
+  for pointing to the proper patches.
+
+  15 Jun 2010; Pacho Ramos <pacho@gentoo.org> vte-0.24.1.ebuild:
+  Update glib and gtk-doc dependencies per bug #324007 (by Nathan Phillip
+  Brink)
+
+*vte-0.24.1 (13 Jun 2010)
+
+  13 Jun 2010; Pacho Ramos <pacho@gentoo.org> +vte-0.24.1.ebuild:
+  Add new version for Gnome 2.30.
 
   07 Apr 2010; Brent Baude <ranger@gentoo.org> vte-0.22.5.ebuild:
   Marking vte-0.22.5 ppc for bug 294214
