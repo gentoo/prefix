@@ -11,7 +11,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
 IUSE="debug doc glade python"
 
 RDEPEND=">=dev-libs/glib-2.22.0
@@ -43,8 +43,6 @@ pkg_setup() {
 src_prepare() {
 	gnome2_src_prepare
 
-	epatch "${FILESDIR}"/${PN}-0.20.1-interix.patch
-
 	# Fix ugly artifacts with upstream patches from bgo#618749
 	# FIXME: Second patch needs to be skipped since it causes problems with
 	# x11-terms/terminal, see bug #324631. If this is not solved by upstream,
@@ -58,17 +56,3 @@ src_prepare() {
 #	epatch "${FILESDIR}/${PN}-0.24.2-invisible-cursor.patch"
 #	epatch "${FILESDIR}/${PN}-0.24.2-invisible-cursor2.patch"
 }
-
-src_configure() {
-	local myconf=
-
-	if [[ ${CHOST} == *-interix* ]]; then
-		append-flags -D_REENTRANT
-		export ac_cv_header_stropts_h=no
-	fi
-
-	[[ ${CHOST} == *-interix3* ]] && myconf="${myconf} --disable-gnome-pty-helper" 
-
-	gnome2_src_configure ${myconf}
-}
-
