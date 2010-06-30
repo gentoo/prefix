@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.7.1-r1.ebuild,v 1.5 2010/06/19 00:49:43 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/git-1.7.1.1.ebuild,v 1.1 2010/06/30 00:15:58 robbat2 Exp $
 
 EAPI=2
 
@@ -18,7 +18,7 @@ if [ "$PV" != "9999" ]; then
 	SRC_URI="mirror://kernel/software/scm/git/${MY_P}.tar.bz2
 			mirror://kernel/software/scm/git/${PN}-manpages-${DOC_VER}.tar.bz2
 			doc? ( mirror://kernel/software/scm/git/${PN}-htmldocs-${DOC_VER}.tar.bz2 )"
-KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+	KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux	~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 else
 	SRC_URI=""
 	EGIT_BRANCH="master"
@@ -49,7 +49,7 @@ RDEPEND="${CDEPEND}
 			dev-perl/Authen-SASL
 			cgi? ( virtual/perl-CGI )
 			cvs? ( >=dev-vcs/cvsps-2.1 dev-perl/DBI dev-perl/DBD-SQLite )
-			subversion? ( dev-util/subversion[-dso,perl] dev-perl/libwww-perl dev-perl/TermReadKey )
+			subversion? ( dev-vcs/subversion[-dso,perl] dev-perl/libwww-perl dev-perl/TermReadKey )
 			)
 	gtk?
 	(
@@ -89,7 +89,7 @@ pkg_setup() {
 	if use webdav && ! use curl ; then
 		ewarn "USE=webdav needs USE=curl. Ignoring"
 	fi
-	if use subversion && has_version dev-util/subversion && built_with_use --missing false dev-util/subversion dso ; then
+	if use subversion && has_version dev-vcs/subversion && built_with_use --missing false dev-vcs/subversion dso ; then
 		ewarn "Per Gentoo bugs #223747, #238586, when subversion is built"
 		ewarn "with USE=dso, there may be weird crashes in git-svn. You"
 		ewarn "have been warned."
@@ -120,6 +120,7 @@ exportmakeopts() {
 	myopts="${myopts} SANE_TOOL_PATH="
 	myopts="${myopts} OLD_ICONV="
 	myopts="${myopts} NO_EXTERNAL_GREP="
+
 	# can't define this to null, since the entire makefile depends on it
 	sed -i -e '/\/usr\/local/s/BASIC_/#BASIC_/' Makefile
 	use !elibc_glibc && use iconv && myopts="${myopts} NEEDS_LIBICONV=YesPlease"
@@ -204,7 +205,7 @@ src_prepare() {
 
 	# USE=-iconv causes segfaults, fixed post 1.7.1
 	# Gentoo bug #321895
-	epatch "${FILESDIR}"/git-1.7.1-noiconv-segfault-fix.patch
+	#epatch "${FILESDIR}"/git-1.7.1-noiconv-segfault-fix.patch
 
 	sed -i \
 		-e 's:^\(CFLAGS =\).*$:\1 $(OPTCFLAGS) -Wall:' \
@@ -223,7 +224,7 @@ src_prepare() {
 	# Fix docbook2texi command
 	sed -i 's/DOCBOOK2X_TEXI=docbook2x-texi/DOCBOOK2X_TEXI=docbook2texi.pl/' \
 		Documentation/Makefile || die "sed failed"
-
+	
 	# #318289
 	epatch "${FILESDIR}"/${PN}-1.7.1-interix.patch
 	epatch "${FILESDIR}"/${PN}-1.6.6.1-interix6.patch
@@ -447,8 +448,8 @@ showpkgdeps() {
 
 pkg_postinst() {
 	use emacs && elisp-site-regen
-	if use subversion && has_version dev-util/subversion && ! built_with_use --missing false dev-util/subversion perl ; then
-		ewarn "You must build dev-util/subversion with USE=perl"
+	if use subversion && has_version dev-vcs/subversion && ! built_with_use --missing false dev-vcs/subversion perl ; then
+		ewarn "You must build dev-vcs/subversion with USE=perl"
 		ewarn "to get the full functionality of git-svn!"
 	fi
 	elog "These additional scripts need some dependencies:"
