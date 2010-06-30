@@ -567,6 +567,7 @@ media-libs/libmpd
 media-libs/libmpeg2
 media-libs/libofa
 media-libs/libpano13
+media-libs/libpng
 media-libs/libreplaygain
 media-libs/libsamplerate
 media-libs/libsvg
