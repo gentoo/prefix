@@ -696,6 +696,7 @@ net-mail/offlineimap
 net-misc/aget
 net-misc/autossh
 net-misc/axel
+net-misc/curl
 net-misc/gsasl
 net-misc/ipcalc
 net-misc/iperf
