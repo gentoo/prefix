@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.67 2009/05/10 20:33:38 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/subversion.eclass,v 1.68 2010/06/22 18:34:29 arfrever Exp $
 
 # @ECLASS: subversion.eclass
 # @MAINTAINER:
@@ -30,7 +30,7 @@ esac
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
 
-SUBVERSION_DEPEND="dev-util/subversion
+SUBVERSION_DEPEND="dev-vcs/subversion
 	net-misc/rsync"
 
 if [[ -z "${ESVN_DISABLE_DEPENDENCIES}" ]]; then
@@ -197,7 +197,7 @@ subversion_fetch() {
 
 	case "${protocol}" in
 		http|https)
-			if ! built_with_use -o dev-util/subversion webdav-neon webdav-serf; then
+			if ! built_with_use -o dev-vcs/subversion webdav-neon webdav-serf; then
 				echo
 				eerror "In order to emerge this package, you need to"
 				eerror "reinstall Subversion with support for WebDAV."
@@ -233,7 +233,7 @@ subversion_fetch() {
 		ewarn "see \${ESVN_REPO_URI}"
 	fi
 
-	if has_version ">=dev-util/subversion-1.6.0"; then
+	if has_version ">=dev-vcs/subversion-1.6.0"; then
 		options="${options} --config-option=config:auth:password-stores="
 	fi
 

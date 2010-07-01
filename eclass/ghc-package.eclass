@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ghc-package.eclass,v 1.27 2009/03/23 20:06:19 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ghc-package.eclass,v 1.28 2010/06/24 13:50:10 kolmodin Exp $
 #
 # Author: Andres Loeh <kosmikus@gentoo.org>
 # Maintained by: Haskell herd <haskell@gentoo.org>
@@ -295,9 +295,13 @@ ghc-elem() {
 ghc-listpkg() {
 	local ghcpkgcall
 	local i
+	local extra_flags
+	if version_is_at_least '6.12.3' "$(ghc-version)"; then
+		extra_flags="${extra_flags} -v0"
+	fi
 	for i in $*; do
 		if ghc-cabal; then
-			echo $($(ghc-getghcpkg) list -f "${i}") \
+			echo $($(ghc-getghcpkg) list ${extra_flags} -f "${i}") \
 				| sed \
 					-e "s|^.*${i}:\([^:]*\).*$|\1|" \
 					-e "s|/.*$||" \

@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.344 2010/05/20 02:21:17 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.345 2010/06/23 21:24:50 cardoe Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -715,13 +715,13 @@ enewuser() {
 
 	*)
 		if [[ -z $@ ]] ; then
-			useradd ${opts} \
+			useradd -r ${opts} \
 				-c "added by portage for ${PN}" \
 				${euser} \
 				|| die "enewuser failed"
 		else
 			einfo " - Extra: $@"
-			useradd ${opts} "$@" \
+			useradd -r ${opts} "$@" \
 				${euser} \
 				|| die "enewuser failed"
 		fi
@@ -851,7 +851,8 @@ enewgroup() {
 		;;
 
 	*)
-		groupadd ${opts} ${egroup} || die "enewgroup failed"
+		# We specify -r so that we get a GID in the system range from login.defs
+		groupadd -r ${opts} ${egroup} || die "enewgroup failed"
 		;;
 	esac
 	export SANDBOX_ON="${oldsandbox}"
