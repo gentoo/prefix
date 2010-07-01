@@ -43,5 +43,5 @@ src_prepare() {
 src_configure() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 
-	default_src_configure || die
+	xorg2_src_configure || die
 }
