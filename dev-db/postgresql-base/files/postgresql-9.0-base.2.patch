@@ -1,0 +1,147 @@
+diff -Naur postgresql-8.5alpha3.orig/contrib/Makefile postgresql-8.5alpha3/contrib/Makefile
+--- postgresql-8.5alpha3.orig/contrib/Makefile	2009-03-26 00:20:01.000000000 +0100
++++ postgresql-8.5alpha3/contrib/Makefile	2009-07-09 21:17:38.000000000 +0200
+@@ -5,48 +5,12 @@
+ include $(top_builddir)/src/Makefile.global
+ 
+ SUBDIRS = \
+-		adminpack	\
+-		auto_explain	\
+-		btree_gin	\
+-		btree_gist	\
+-		chkpass		\
+-		citext		\
+-		cube		\
+-		dblink		\
+-		dict_int	\
+-		dict_xsyn	\
+-		earthdistance	\
+-		fuzzystrmatch	\
+-		hstore		\
+-		intagg		\
+-		intarray	\
+-		isn		\
+-		lo		\
+-		ltree		\
+ 		oid2name	\
+-		pageinspect	\
+		passwordcheck	\
+-		pg_buffercache	\
+-		pg_freespacemap \
+-		pg_standby	\
+-		pg_stat_statements \
+-		pg_trgm		\
+ 		pg_upgrade	\
+ 		pg_upgrade_support \
+ 		pgbench		\
+-		pgcrypto	\
+-		pgrowlocks	\
+-		pgstattuple	\
+-		seg		\
+-		spi		\
+-		tablefunc	\
+-		test_parser	\
+-		tsearch2	\
+		unaccent	\
+ 		vacuumlo
+ 
+-ifeq ($(with_openssl),yes)
+-SUBDIRS += sslinfo
+-endif
+-
+ ifeq ($(with_ossp_uuid),yes)
+ SUBDIRS += uuid-ossp
+ endif
+diff -Naur postgresql-8.5alpha3.orig/src/backend/Makefile postgresql-8.5alpha3/src/backend/Makefile
+--- postgresql-8.5alpha3.orig/src/backend/Makefile	2009-01-01 18:23:34.000000000 +0100
++++ postgresql-8.5alpha3/src/backend/Makefile	2009-07-09 21:22:13.000000000 +0200
+@@ -36,7 +36,7 @@
+ 
+ ##########################################################################
+ 
+-all: submake-libpgport submake-schemapg postgres $(POSTGRES_IMP)
++all: someheaders
+ 
+ ifneq ($(PORTNAME), cygwin)
+ ifneq ($(PORTNAME), win32)
+@@ -105,7 +105,7 @@
+ endif # aix
+ 
+ # Update the commonly used headers before building the subdirectories
+-$(SUBDIRS:%=%-recursive): $(top_builddir)/src/include/parser/gram.h $(top_builddir)/src/include/catalog/schemapg.h $(top_builddir)/src/include/utils/fmgroids.h $(top_builddir)/src/include/utils/probes.h
++someheaders $(SUBDIRS:%=%-recursive): $(top_builddir)/src/include/parser/gram.h $(top_builddir)/src/include/utils/fmgroids.h $(top_builddir)/src/include/utils/probes.h
+ 
+ 
+ # The postgres.o target is needed by the rule in Makefile.global that
+@@ -161,23 +161,7 @@
+ 
+ ##########################################################################
+ 
+-install: all installdirs install-bin
+-ifeq ($(PORTNAME), cygwin)
+-ifeq ($(MAKE_DLL), true)
+-	$(INSTALL_DATA) libpostgres.a '$(DESTDIR)$(libdir)/libpostgres.a'
+-endif
+-endif
+-ifeq ($(PORTNAME), win32)
+-ifeq ($(MAKE_DLL), true)
+-	$(INSTALL_DATA) libpostgres.a '$(DESTDIR)$(libdir)/libpostgres.a'
+-endif
+-endif
+-	$(MAKE) -C catalog install-data
+-	$(MAKE) -C tsearch install-data
+-	$(INSTALL_DATA) $(srcdir)/libpq/pg_hba.conf.sample '$(DESTDIR)$(datadir)/pg_hba.conf.sample'
+-	$(INSTALL_DATA) $(srcdir)/libpq/pg_ident.conf.sample '$(DESTDIR)$(datadir)/pg_ident.conf.sample'
+-	$(INSTALL_DATA) $(srcdir)/utils/misc/postgresql.conf.sample '$(DESTDIR)$(datadir)/postgresql.conf.sample'
+-	$(INSTALL_DATA) $(srcdir)/access/transam/recovery.conf.sample '$(DESTDIR)$(datadir)/recovery.conf.sample'
++install:
+ 
+ install-bin: postgres $(POSTGRES_IMP) installdirs
+ 	$(INSTALL_PROGRAM) postgres$(X) '$(DESTDIR)$(bindir)/postgres$(X)'
+diff -Naur postgresql-8.5alpha3.orig/src/bin/Makefile postgresql-8.5alpha3/src/bin/Makefile
+--- postgresql-8.5alpha3.orig/src/bin/Makefile	2009-01-01 18:23:53.000000000 +0100
++++ postgresql-8.5alpha3/src/bin/Makefile	2009-07-09 21:27:09.000000000 +0200
+@@ -13,8 +13,8 @@
+ top_builddir = ../..
+ include $(top_builddir)/src/Makefile.global
+ 
+-SUBDIRS = initdb pg_ctl pg_dump \
+-	psql scripts pg_config pg_controldata pg_resetxlog
++SUBDIRS = pg_dump \
++	psql scripts pg_config
+ ifeq ($(PORTNAME), win32)
+ SUBDIRS+=pgevent
+ endif
+diff -Naur postgresql-8.5alpha3.orig/src/include/pg_config_manual.h postgresql-8.5alpha3/src/include/pg_config_manual.h
+--- postgresql-8.5alpha3.orig/src/include/pg_config_manual.h	2009-06-11 16:49:08.000000000 +0200
++++ postgresql-8.5alpha3/src/include/pg_config_manual.h	2009-07-09 21:27:44.000000000 +0200
+@@ -146,7 +146,7 @@
+  * here's where to twiddle it.  You can also override this at runtime
+  * with the postmaster's -k switch.
+  */
+-#define DEFAULT_PGSOCKET_DIR  "/tmp"
++#define DEFAULT_PGSOCKET_DIR  "/var/run/postgresql"
+ 
+ /*
+  * The random() function is expected to yield values between 0 and
+diff -Naur postgresql-8.5alpha3.orig/src/Makefile postgresql-8.5alpha3/src/Makefile
+--- postgresql-8.5alpha3.orig/src/Makefile	2009-02-24 11:06:32.000000000 +0100
++++ postgresql-8.5alpha3/src/Makefile	2009-07-09 21:18:20.000000000 +0200
+@@ -15,17 +15,12 @@
+ 
+ all install installdirs uninstall distprep:
+ 	$(MAKE) -C port $@
+-	$(MAKE) -C timezone $@
+ 	$(MAKE) -C backend $@
+-	$(MAKE) -C backend/utils/mb/conversion_procs $@
+-	$(MAKE) -C backend/snowball $@
+ 	$(MAKE) -C include $@
+ 	$(MAKE) -C interfaces $@
+	$(MAKE) -C backend/replication/libpqwalreceiver $@
+ 	$(MAKE) -C bin $@
+-	$(MAKE) -C pl $@
+ 	$(MAKE) -C makefiles $@
+-	$(MAKE) -C test/regress $@
+ 
+ install: install-local
+ 
