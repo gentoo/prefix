@@ -23,6 +23,7 @@ RESTRICT="test"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.15-mint.patch
+	epatch "${FILESDIR}"/${PN}-1.13-no-wchar-hack.patch # for Interix and MiNT
 	elibtoolize # for FreeMiNT
 }
 
