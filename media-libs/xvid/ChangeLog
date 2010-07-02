@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/xvid
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.117 2010/05/11 21:54:36 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xvid/ChangeLog,v 1.120 2010/05/24 18:57:59 pacho Exp $
+
+  24 May 2010; Pacho Ramos <pacho@gentoo.org> xvid-1.2.2-r2.ebuild:
+  stable amd64, bug 318319
+
+  22 May 2010; Raúl Porcel <armin76@gentoo.org> xvid-1.2.2-r2.ebuild:
+  alpha/arm/ia64/sparc stable wrt #318319
+
+  17 May 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> xvid-1.2.2-r2.ebuild:
+  x86 stable wrt bug #318319
 
   11 May 2010; Brent Baude <ranger@gentoo.org> xvid-1.2.2-r2.ebuild:
   stable ppc64, bug 318319

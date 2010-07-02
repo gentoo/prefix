@@ -1,0 +1,69 @@
+http://bugs.gentoo.org/show_bug.cgi?id=326541
+
+--- xvidcore/build/generic/configure.in
++++ xvidcore/build/generic/configure.in
+@@ -17,6 +17,7 @@
+ 
+ dnl NASM/YASM version requirement
+ minimum_yasm_minor_version=8
++minimum_yasm_major_version=0
+ minimum_nasm_minor_version=0
+ minimum_nasm_major_version=2
+ nasm_prog="nasm"
+@@ -354,15 +355,22 @@
+        dnl Checking yasm version
+        dnl
+        AC_MSG_CHECKING([for yasm version])
+-       yasm_minor=`$yasm_prog --version | cut -d '.' -f 2 | cut -d ' ' -f 1`
++       yasm_version=`$yasm_prog --version | head -n 1`
++       yasm_minor=`echo "$yasm_version" | cut -d '.' -f 2 | cut -d ' ' -f 1`
++       yasm_major=`echo "$yasm_version" | cut -d ' ' -f 2 | cut -d '.' -f 1`
+        if test -z $yasm_minor ; then
+           yasm_minor=-1
+        fi
+-       AC_MSG_RESULT([$yasm_minor])
++       dnl if test -z $yasm_major ; then
++       dnl    yasm_major=-1
++       dnl fi
++       AC_MSG_RESULT([$yasm_major $yasm_minor])
+ 
+        dnl Actually, yasm >= 0.7.99.2161 should be ok
+        dnl But I'm too lazy to check also the patch version...
+-       if test "$yasm_minor" -lt "$minimum_yasm_minor_version" ; then
++       if test "$yasm_major" -lt "$minimum_yasm_major_version" \
++            -o "$yasm_major" -eq "$minimum_yasm_major_version" \
++            -a "$yasm_minor" -lt "$minimum_yasm_minor_version" ; then
+          AC_MSG_WARN([yasm version is too old])
+        else
+          found_nasm_comp_prog="yes"
+@@ -427,8 +435,13 @@
+ 	       MARK_FUNCS=""
+                ;;
+            *darwin*)
+-               AC_MSG_RESULT([macho])
+-               NASM_FORMAT="macho"
++               if test "$ARCHITECTURE" = "X86_64" ; then
++                   AC_MSG_RESULT([macho64])
++                   NASM_FORMAT="macho64"
++               else
++                   AC_MSG_RESULT([macho])
++                   NASM_FORMAT="macho"
++               fi
+                PREFIX="-DPREFIX"
+                MARK_FUNCS=""
+                ;;
+@@ -589,12 +602,12 @@
+ 	AC_CHECK_LIB(
+ 		pthread,
+ 		pthread_create,
+-		AC_CHECK_LIB(
++		[AC_CHECK_LIB(
+ 			pthread,
+ 			pthread_join,
+ 			SPECIFIC_CFLAGS="$SPECIFIC_CFLAGS -DHAVE_PTHREAD"
+ 			SPECIFIC_LDFLAGS="$SPECIFIC_LDFLAGS -lpthread",
+-			AC_MSG_WARN(Pthread not supported. No SMP support)),
++			AC_MSG_WARN(Pthread not supported. No SMP support))],
+ 		AC_MSG_WARN(Pthread not supported. No SMP support)),
+ 	AC_MSG_WARN(Pthread not supported. No SMP support))
+ 
