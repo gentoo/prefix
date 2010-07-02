@@ -67,7 +67,7 @@ src_configure() {
 	default
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 	# usr/bin/libtool is provided by binutils-apple
 	[[ ${CHOST} == *-darwin* ]] && myconf="--program-prefix=g"
