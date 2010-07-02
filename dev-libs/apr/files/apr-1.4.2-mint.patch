@@ -1,0 +1,14 @@
+https://issues.apache.org/bugzilla/show_bug.cgi?id=47181
+
+--- build/apr_hints.m4.old	2010-05-08 03:41:24.000000000 +0000
++++ build/apr_hints.m4	2010-05-08 04:26:29.000000000 +0000
+@@ -44,8 +44,7 @@
+ 
+   case "$host" in
+     *mint)
+-	APR_ADDTO(CPPFLAGS, [-DMINT])
+-	APR_ADDTO(LIBS, [-lportlib])
++	APR_ADDTO(CPPFLAGS, [-DMINT -D_GNU_SOURCE])
+ 	;;
+     *MPE/iX*)
+ 	APR_ADDTO(CPPFLAGS, [-DMPE -D_POSIX_SOURCE -D_SOCKET_SOURCE])
