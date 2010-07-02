@@ -55,13 +55,14 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
+	epatch "${FILESDIR}"/${PN}-2.22.5-nothreads.patch
+
 	# Do not try to remove files on live filesystem, bug #XXX ?
 	sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
 		-i "${S}"/gio/tests/desktop-app-info.c || die "sed failed"
 
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
-	epatch "${FILESDIR}"/${PN}-2.20.3-mint.patch
 	# configure script lets itself being fooled by bind 8 stuff
 	[[ ${CHOST} == *-darwin[678] ]] && append-libs -lresolv
 
@@ -131,7 +132,12 @@ src_configure() {
 
 	local mythreads=posix
 
-	[[ ${CHOST} == *-mint* ]] && append-libs -lpthread
+	if [[ ${CHOST} == *-mint* ]] ; then
+		myconf="${myconf} --disable-threads"
+	else
+		myconf="${myconf} --with-threads=${mythreads}"
+	fi
+
 	[[ ${CHOST} == *-winnt* ]] && mythreads=win32
 	# without this, AIX defines EEXIST and ENOTEMPTY to the same value
 	[[ ${CHOST} == *-aix* ]] && append-cppflags -D_LINUX_SOURCE_COMPAT
@@ -147,7 +153,6 @@ src_configure() {
 		  --enable-static           \
 		  --enable-regex            \
 		  --with-pcre=internal      \
-		  --with-threads=${mythreads} \
 		  --with-xml-catalog="${EPREFIX}"/etc/xml/catalog
 }
 
