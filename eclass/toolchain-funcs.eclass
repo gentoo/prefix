@@ -554,7 +554,10 @@ gen_usr_ldscript() {
 			else
 				tlib=$(scanmacho -qF'%S#F' "${ED}"/${libdir}/${lib})
 			fi
-			[[ -z ${tlib} ]] && die "unable to read install_name from ${lib}"
+			if [[ -z ${tlib} ]] ; then
+				ewarn "gen_usr_ldscript: unable to read install_name from ${lib}"
+				tlib=${lib}
+			fi
 			tlib=${tlib##*/}
 
 			if ${auto} ; then
@@ -563,7 +566,7 @@ gen_usr_ldscript() {
 				if [[ ${tlib} != ${lib%${suffix}}.*${suffix#.} ]] ; then
 					mv "${ED}"/usr/${libdir}/${tlib%${suffix}}.*${suffix#.} "${ED}"/${libdir}/ || die
 				fi
-				rm -f "${ED}"/${libdir}/${lib}
+				[[ ${tlib} != ${lib} ]] && rm -f "${ED}"/${libdir}/${lib}
 			fi
 
 			# Mach-O files have an id, which is like a soname, it tells how
@@ -649,13 +652,16 @@ gen_usr_ldscript() {
 		*)
 			if ${auto} ; then
 				tlib=$(scanelf -qF'%S#F' "${ED}"/usr/${libdir}/${lib})
-				[[ -z ${tlib} ]] && die "unable to read SONAME from ${lib}"
+				if [[ -z ${tlib} ]] ; then
+					ewarn "gen_usr_ldscript: unable to read SONAME from ${lib}"
+					tlib=${lib}
+				fi
 				mv "${ED}"/usr/${libdir}/${lib}* "${ED}"/${libdir}/ || die
 				# some SONAMEs are funky: they encode a version before the .so
 				if [[ ${tlib} != ${lib}* ]] ; then
 					mv "${ED}"/usr/${libdir}/${tlib}* "${ED}"/${libdir}/ || die
 				fi
-				rm -f "${ED}"/${libdir}/${lib}
+				[[ ${tlib} != ${lib} ]] && rm -f "${ED}"/${libdir}/${lib}
 			else
 				tlib=${lib}
 			fi
