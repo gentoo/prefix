@@ -29,7 +29,8 @@ pkg_setup() {
 	xorg-2_pkg_setup
 	CONFIGURE_OPTIONS="$(use_enable doc build-docs)
 		$(use_enable selinux)
-		--enable-xinput"
+		--enable-xinput
+		$([[ ${CHOST} == *-darwin* ]] && echo "--with-launchd=/sbin/launchd")"
 }
 
 src_prepare() {
@@ -43,5 +44,5 @@ src_prepare() {
 src_configure() {
 	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
 
-	xorg2_src_configure || die
+	xorg-2_src_configure || die
 }
