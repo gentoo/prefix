@@ -1,6 +1,20 @@
 # ChangeLog for media-sound/mpg123
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.228 2010/05/14 15:26:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/ChangeLog,v 1.231 2010/06/24 16:36:11 armin76 Exp $
+
+  24 Jun 2010; Raúl Porcel <armin76@gentoo.org> mpg123-1.12.1.ebuild:
+  alpha/arm/ia64/sparc stable wrt #317125
+
+*mpg123-1.12.2 (21 Jun 2010)
+
+  21 Jun 2010; <chainsaw@gentoo.org> +mpg123-1.12.2.ebuild:
+  Version bump, this upstream release is more resilient against large-file
+  mismatches between library & application and fixes an invalid memory
+  access bug resulting from a bad alignment algorithm.
+
+  08 Jun 2010; <chainsaw@gentoo.org> mpg123-1.9.2.ebuild,
+  -mpg123-1.10.1.ebuild:
+  Clean intermediate version now that 1.12.1 is going stable.
 
   14 May 2010; Jeroen Roovers <jer@gentoo.org> mpg123-1.12.1.ebuild:
   Stable for HPPA (bug #317125).

@@ -10,6 +10,5 @@
   </upstream>
   <use>
     <flag name="3dnowext">Enable 3dnowext cpu instructions</flag>
-    <flag name="network">Enable network support (http streams / webradio)</flag>
   </use>
 </pkgmetadata>

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.12.1.ebuild,v 1.9 2010/05/14 15:26:30 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.12.1.ebuild,v 1.10 2010/06/24 16:36:11 armin76 Exp $
 
 EAPI=2
 inherit toolchain-funcs
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
-IUSE="3dnow 3dnowext alsa altivec ipv6 jack mmx nas oss portaudio pulseaudio sdl sse"
+IUSE="3dnow 3dnowext alsa altivec coreaudio ipv6 jack mmx nas oss portaudio pulseaudio sdl sse"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )
 	jack? ( media-sound/jack-audio-connection-kit )
@@ -30,13 +30,12 @@ src_configure() {
 	local _output=dummy
 	local _cpu=generic_fpu
 
-	for flag in nas portaudio sdl oss jack alsa pulseaudio; do
+	for flag in nas portaudio sdl oss jack alsa pulseaudio coreaudio; do
 		if use ${flag}; then
 			_audio="${_audio} ${flag/pulseaudio/pulse}"
 			_output=${flag/pulseaudio/pulse}
 		fi
 	done
-	use elibc_Darwin && _audio="${_audio} coreaudio"
 
 	use altivec && _cpu=altivec
 
