@@ -1,6 +1,130 @@
 # ChangeLog for dev-db/postgresql-server
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.56 2010/02/26 15:48:30 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.68 2010/06/23 20:35:20 angelos Exp $
+
+  23 Jun 2010; Christoph Mende <angelos@gentoo.org>
+  postgresql-server-7.4.29-r1.ebuild, postgresql-server-8.0.25-r1.ebuild,
+  postgresql-server-8.1.21-r1.ebuild, postgresql-server-8.2.17-r1.ebuild,
+  postgresql-server-8.3.11-r1.ebuild, postgresql-server-8.4.4-r1.ebuild:
+  Stable on amd64 wrt bug #320967
+
+  21 Jun 2010; Jeroen Roovers <jer@gentoo.org>
+  postgresql-server-7.4.29-r1.ebuild, postgresql-server-8.0.25-r1.ebuild,
+  postgresql-server-8.1.21-r1.ebuild, postgresql-server-8.2.17-r1.ebuild,
+  postgresql-server-8.3.11-r1.ebuild, postgresql-server-8.4.4-r1.ebuild:
+  Stable for HPPA (bug #320967).
+
+  20 Jun 2010; Patrick Lauer <patrick@gentoo.org>
+  postgresql-server-9.0_beta2.ebuild:
+  Adapting elog messages for unmasking
+
+  15 Jun 2010; Patrick Lauer <patrick@gentoo.org>
+  postgresql-server-7.4.26.ebuild, postgresql-server-7.4.27.ebuild,
+  postgresql-server-8.0.22.ebuild, postgresql-server-8.0.23.ebuild,
+  postgresql-server-8.1.18.ebuild, postgresql-server-8.1.19.ebuild,
+  postgresql-server-8.2.14.ebuild, postgresql-server-8.2.15.ebuild,
+  postgresql-server-8.3.8.ebuild, postgresql-server-8.3.9.ebuild,
+  postgresql-server-8.4.1.ebuild, postgresql-server-8.4.1-r1.ebuild,
+  postgresql-server-8.4.2.ebuild, postgresql-server-8.4.2-r1.ebuild,
+  -postgresql-server-9.0_alpha4.ebuild, -postgresql-server-9.0_beta1.ebuild,
+  -postgresql-server-9.0_beta1-r1.ebuild:
+  Punt 9.0 alpha and beta1, fix repoman warnings
+
+  13 Jun 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  postgresql-server-7.4.29.ebuild, postgresql-server-8.0.25.ebuild,
+  postgresql-server-8.1.21.ebuild, postgresql-server-8.2.17.ebuild,
+  postgresql-server-8.3.11.ebuild, postgresql-server-8.4.4.ebuild:
+  x86 stable wrt security bug #320967
+
+*postgresql-server-9.0_beta2 (09 Jun 2010)
+
+  09 Jun 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-9.0_beta2.ebuild, +files/postgresql-9.0-server.2.patch:
+  Bump to 9.0 beta 2
+
+*postgresql-server-9.0_beta1-r1 (04 Jun 2010)
+*postgresql-server-8.4.4-r1 (04 Jun 2010)
+*postgresql-server-8.3.11-r1 (04 Jun 2010)
+*postgresql-server-8.2.17-r1 (04 Jun 2010)
+*postgresql-server-8.1.21-r1 (04 Jun 2010)
+*postgresql-server-8.0.25-r1 (04 Jun 2010)
+*postgresql-server-7.4.29-r1 (04 Jun 2010)
+
+  04 Jun 2010; Patrick Lauer <patrick@gentoo.org>
+  +files/postgresql.conf-7.4-r1, +files/postgresql.init-7.4-r1,
+  +postgresql-server-7.4.29-r1.ebuild, +files/postgresql.conf-8.0-r1,
+  +files/postgresql.init-8.0-r1, +postgresql-server-8.0.25-r1.ebuild,
+  +files/postgresql.conf-8.1-r1, +files/postgresql.init-8.1-r1,
+  +postgresql-server-8.1.21-r1.ebuild, +files/postgresql.conf-8.2-r1,
+  +files/postgresql.init-8.2-r1, +postgresql-server-8.2.17-r1.ebuild,
+  +files/postgresql.conf-8.3-r1, +files/postgresql.init-8.3-r1,
+  +postgresql-server-8.3.11-r1.ebuild, +files/postgresql.conf-8.4-r1,
+  +files/postgresql.init-8.4-r1, +postgresql-server-8.4.4-r1.ebuild,
+  +postgresql-server-9.0_beta1-r1.ebuild, +files/postgresql.conf-9.0-r1,
+  +files/postgresql.init-9.0-r1:
+  Bugfixes, thanks to Aaron Swenson for collecting and testing. Fixes
+  #312939, #311047, #189854, #237315, #274568, #284094, #255004, #310045,
+  #310619
+
+*postgresql-server-8.4.4 (17 May 2010)
+*postgresql-server-8.3.11 (17 May 2010)
+*postgresql-server-8.2.17 (17 May 2010)
+*postgresql-server-8.1.21 (17 May 2010)
+*postgresql-server-8.0.25 (17 May 2010)
+*postgresql-server-7.4.29 (17 May 2010)
+
+  17 May 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-7.4.29.ebuild, +files/postgresql-7.4.29-autoconf.patch,
+  +postgresql-server-8.0.25.ebuild, +postgresql-server-8.1.21.ebuild,
+  +postgresql-server-8.2.17.ebuild, +postgresql-server-8.3.11.ebuild,
+  +postgresql-server-8.4.4.ebuild:
+  Bump
+
+  12 May 2010; Brent Baude <ranger@gentoo.org>
+  postgresql-server-8.4.2-r1.ebuild:
+  Marking postgresql-server-8.4.2-r1 ppc64 for bug 285475
+
+*postgresql-server-9.0_beta1 (11 May 2010)
+
+  11 May 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-9.0_beta1.ebuild:
+  Bump to 9.0 beta1
+
+  25 Apr 2010; Raúl Porcel <armin76@gentoo.org>
+  postgresql-server-7.4.26.ebuild, postgresql-server-7.4.27.ebuild,
+  postgresql-server-7.4.28.ebuild, postgresql-server-8.0.22.ebuild,
+  postgresql-server-8.0.23.ebuild, postgresql-server-8.0.24.ebuild,
+  postgresql-server-8.1.18.ebuild, postgresql-server-8.1.19.ebuild,
+  postgresql-server-8.1.20.ebuild, postgresql-server-8.2.14.ebuild,
+  postgresql-server-8.2.15.ebuild, postgresql-server-8.2.16.ebuild,
+  postgresql-server-8.3.8.ebuild, postgresql-server-8.3.9.ebuild,
+  postgresql-server-8.3.10.ebuild, postgresql-server-8.4.1.ebuild,
+  postgresql-server-8.4.1-r1.ebuild, postgresql-server-8.4.2.ebuild,
+  postgresql-server-8.4.2-r1.ebuild, postgresql-server-8.4.3.ebuild,
+  postgresql-server-9.0_alpha4.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #285475
+
+*postgresql-server-8.4.3 (16 Mar 2010)
+*postgresql-server-8.3.10 (16 Mar 2010)
+*postgresql-server-8.2.16 (16 Mar 2010)
+*postgresql-server-8.1.20 (16 Mar 2010)
+*postgresql-server-8.0.24 (16 Mar 2010)
+*postgresql-server-7.4.28 (16 Mar 2010)
+
+  16 Mar 2010; Patrick Lauer <patrick@gentoo.org>
+  -files/postgresql.conf-7.3, -files/postgresql.init-7.3,
+  -postgresql-server-7.3.21.ebuild, -files/postgresql-7.3.21-autoconf.patch,
+  -files/postgresql-7.3-cubeparse.patch,
+  -files/postgresql-7.3-regress.patch, -files/postgresql-7.3-server.patch,
+  +postgresql-server-7.4.28.ebuild, +files/postgresql-7.4.28-autoconf.patch,
+  +postgresql-server-8.0.24.ebuild, +postgresql-server-8.1.20.ebuild,
+  +postgresql-server-8.2.16.ebuild, +postgresql-server-8.3.10.ebuild,
+  +postgresql-server-8.4.3.ebuild, -postgresql-server-8.5_alpha3.ebuild,
+  -files/postgresql.conf-8.5, -files/postgresql.init-8.5,
+  -files/postgresql-8.5-common.patch, -files/postgresql-8.5-makefile.patch,
+  -files/postgresql-8.5-server.patch, postgresql-server-9.0_alpha4.ebuild:
+  Bump, remove 7.3 (unsupported upstream) and 8.5alpha (now 9.0). Fixes
+  #110912 #278958 #214438 #233572. Thanks to Aaron W. Swenson.
 
 *postgresql-server-9.0_alpha4 (26 Feb 2010)
 
