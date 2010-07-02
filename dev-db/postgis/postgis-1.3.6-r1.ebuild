@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgis/postgis-1.3.6-r1.ebuild,v 1.1 2009/06/13 20:25:04 djay Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgis/postgis-1.3.6-r1.ebuild,v 1.2 2010/06/17 19:09:52 patrick Exp $
 
 EAPI="1"
 
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="geos proj doc"
 
-RDEPEND=">=virtual/postgresql-server-8.0
+RDEPEND=">=dev-db/postgresql-server-8.0
 	geos? ( sci-libs/geos )
 	proj? ( sci-libs/proj )"
 
