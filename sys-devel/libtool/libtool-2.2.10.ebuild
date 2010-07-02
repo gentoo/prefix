@@ -1,51 +1,38 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6a.ebuild,v 1.20 2009/10/13 17:25:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.10.ebuild,v 1.1 2010/06/09 20:37:07 vapier Exp $
+
+EAPI="3"
 
 LIBTOOLIZE="true" #225559
-inherit eutils autotools flag-o-matic multilib prefix
+inherit eutils autotools multilib prefix
 
 DESCRIPTION="A shared library tool for developers"
 HOMEPAGE="http://www.gnu.org/software/libtool/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.lzma"
 
 LICENSE="GPL-2"
-SLOT="1.5"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="vanilla test"
+SLOT="2"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="vanilla"
 
-RDEPEND=""
-DEPEND="${RDEPEND}
-	|| ( app-arch/xz-utils app-arch/lzma-utils )
+RDEPEND="sys-devel/gnuconfig
 	>=sys-devel/autoconf-2.60
 	>=sys-devel/automake-1.10.1
-	sys-apps/help2man
-	sys-devel/gnuconfig"
+	!=sys-devel/libtool-2*:1.5"
+DEPEND="${RDEPEND}
+	|| ( >=sys-devel/binutils-2.20
+		sys-devel/binutils-apple sys-devel/native-cctools )
+	|| ( app-arch/xz-utils app-arch/lzma-utils )"
 
-S=${WORKDIR}/${P%a}
-
-pkg_setup() {
-	if use test && ! has_version '>sys-devel/binutils-2.19.51'; then
-		einfo "Disabling --as-needed, since you got older binutils and you asked"
-		einfo "to run tests. With the stricter (older) --as-needed behaviour"
-		einfo "you'd be seeing a test failure in test #63; this has been fixed"
-		einfo "in the newer version of binutils."
-		append-ldflags $(no-as-needed)
-	fi
-}
-
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PV}/${P}-gnuinfo.patch #249168
-	epatch "${FILESDIR}"/${PV}/${P}-tests-locale.patch #249168
-
+src_prepare() {
 	if ! use vanilla ; then
-		[[ ${CHOST} == *-winnt* ]] &&
-			epatch "${FILESDIR}"/${PV}/${P}-winnt.patch
-
-		epatch "${FILESDIR}"/${PV}/${P}-mint.patch
-		epatch "${FILESDIR}"/${PV}/${P}-hppa-hpux.patch
+		[[ ${CHOST} == *-winnt* || ${CHOST} == *-interix* ]] &&
+			epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-winnt.patch
+		epatch "${FILESDIR}"/2.2.6b/${PN}-2.2.6b-mint.patch
+# fails on two hunks, likely is still necessary
+#		epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-hppa-hpux.patch
+		epatch "${FILESDIR}"/2.2.6b/${PN}-2.2.6b-irix.patch
 
 		# seems that libtool has to know about EPREFIX a little bit better,
 		# since it fails to find prefix paths to search libs from, resulting in
@@ -53,25 +40,31 @@ src_unpack() {
 		# thinking that libraries are unavailable (argh...). This could also be
 		# fixed by making the gcc wrapper return the correct result for
 		# -print-search-dirs (doesn't include prefix dirs ...).
-		epatch "${FILESDIR}"/${PV}/${P}-eprefix.patch
-		eprefixify libltdl/m4/libtool.m4
+		if use prefix ; then
+			epatch "${FILESDIR}"/2.2.10/${PN}-2.2.10-eprefix.patch
+			eprefixify libltdl/m4/libtool.m4
+		fi
 
 		epunt_cxx
 		cd libltdl/m4
 		epatch "${FILESDIR}"/1.5.20/${PN}-1.5.20-use-linux-version-in-fbsd.patch #109105
-		epatch "${FILESDIR}"/${PV}/${P}-darwin-module-bundle.patch
-		epatch "${FILESDIR}"/${PV}/${P}-darwin-use-linux-version.patch
+		epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-darwin-module-bundle.patch
+		epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-darwin-use-linux-version.patch
 		cd ..
 		AT_NOELIBTOOLIZE=yes eautoreconf
 		cd ..
 		AT_NOELIBTOOLIZE=yes eautoreconf
 	fi
+}
 
+src_configure() {
 	# the libtool script uses bash code in it and at configure time, tries
 	# to find a bash shell.  if /bin/sh is bash, it uses that.  this can
 	# cause problems for people who switch /bin/sh on the fly to other
 	# shells, so just force libtool to use /bin/bash all the time.
 	export CONFIG_SHELL="$(type -P bash)"
+
+	default
 }
 
 src_compile() {
@@ -85,14 +78,6 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die
 	dodoc AUTHORS ChangeLog* NEWS README THANKS TODO doc/PLATFORMS
-
-	local p=
-	[[ ${CHOST} == *-darwin* ]] && p=g
-	local x
-	for x in ${p}libtool ${p}libtoolize ; do
-		help2man ${x} > ${x}.1
-		doman ${x}.1 || die
-	done
 
 	for x in $(find "${ED}" -name config.guess -o -name config.sub) ; do
 		rm -f "${x}" ; ln -sf "${EPREFIX}"/usr/share/gnuconfig/${x##*/} "${x}"

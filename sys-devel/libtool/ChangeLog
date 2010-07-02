@@ -1,6 +1,33 @@
 # ChangeLog for sys-devel/libtool
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.165 2009/12/09 17:45:58 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/ChangeLog,v 1.170 2010/06/09 20:37:07 vapier Exp $
+
+*libtool-2.2.10 (09 Jun 2010)
+
+  09 Jun 2010; Mike Frysinger <vapier@gentoo.org> +libtool-2.2.10.ebuild:
+  Version bump.
+
+*libtool-2.2.8-r1 (08 Jun 2010)
+
+  08 Jun 2010; Mike Frysinger <vapier@gentoo.org> +libtool-2.2.8-r1.ebuild,
+  +files/libtool-2.2.8-versioning-as-needed-test.patch:
+  Add patch from upstream for as-needed test failures #321551 by Xake.
+  Transition the SLOT (and EAPI) so we can install libtool-1.5.x libltdl ABI
+  in parallel. Require newer binutils to avoid old as-needed test failures.
+  Drop help2man cruft now that the upstream tarball includes the man pages.
+
+*libtool-2.2.8 (05 Jun 2010)
+
+  05 Jun 2010; Mike Frysinger <vapier@gentoo.org> +libtool-2.2.8.ebuild:
+  Version bump.
+
+  25 May 2010; Mike Frysinger <vapier@gentoo.org> libtool-2.2.7b.ebuild:
+  Move into unstable.
+
+*libtool-2.2.7b (21 May 2010)
+
+  21 May 2010; Mike Frysinger <vapier@gentoo.org> +libtool-2.2.7b.ebuild:
+  Version bump.
 
   09 Dec 2009; Raúl Porcel <armin76@gentoo.org> libtool-2.2.6b.ebuild:
   alpha/ia64/m68k/s390/sh stable wrt #295535

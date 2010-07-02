@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.26.ebuild,v 1.9 2008/03/14 11:22:20 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-1.5.26.ebuild,v 1.10 2010/06/08 21:45:57 vapier Exp $
 
 inherit eutils
 
@@ -10,7 +10,8 @@ SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="1.5"
-KEYWORDS="~ppc-aix ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+# Keep around for a bit in case someone really needs libtool-1.x
+#KEYWORDS="alpha amd64 arm hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc ~sparc-fbsd x86 ~x86-fbsd"
 IUSE="vanilla"
 
 RDEPEND="sys-devel/gnuconfig
