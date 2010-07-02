@@ -15,6 +15,7 @@ HOMEPAGE="http://www.postgresql.org/"
 
 MY_PV=${PV/_/}
 SRC_URI="mirror://postgresql/source/v${MY_PV}/postgresql-${MY_PV}.tar.bz2"
+S=${WORKDIR}/postgresql-${MY_PV}
 
 LICENSE="POSTGRESQL"
 SLOT="$(get_version_component_range 1-2)"
@@ -66,7 +67,6 @@ src_prepare() {
 
 	# because psql/help.c includes the file
 	ln -s "${S}/src/include/libpq/pqsignal.h" "${S}/src/bin/psql/"
-
 	cd "${S}"
 	eautoconf
 }
