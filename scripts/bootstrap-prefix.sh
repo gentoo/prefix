@@ -564,11 +564,6 @@ bootstrap_python() {
 	local myconf=""
 
 	case $CHOST in
-		*-*-solaris*)
-			# Solaris manpage says we need -lrt for fdatasync and
-			# sem_wait & friends, Python apparently doesn't know
-			export LDFLAGS="-lrt -laio -lmd5"
-		;;
 		*-*-aix*)
 			# Python stubbornly insists on using cc_r to compile.  We
 			# know better, so force it to listen to us
