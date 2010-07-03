@@ -639,6 +639,10 @@ bootstrap_zlib() {
 	einfo "Installing ${A%-*}"
 	$MAKE install || exit 1
 
+	# this lib causes issues when emerging python again on Solaris
+	# because the tmp lib path is in the library search path there
+	rm -Rf "${ROOT}"/usr/lib/libpython*.a
+
 	einfo "${A%-*} bootstrapped"
 }
 
