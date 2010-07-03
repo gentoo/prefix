@@ -600,6 +600,33 @@ bootstrap_python() {
 	einfo "${A%-*} bootstrapped"
 }
 
+bootstrap_zlib() {
+	PV=1.2.5
+	A=zlib-${PV}.tar.bz2
+
+	einfo "Bootstrapping ${A%-*}"
+
+	efetch http://zlib.net/${A}
+
+	einfo "Unpacking ${A%%-*}"
+	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
+	rm -rf "${S}"
+	mkdir -p "${S}"
+	cd "${S}"
+	bzip2 -dc "${DISTDIR}"/${A} | $TAR -xf - || exit 1
+	S="${S}"/zlib-${PV}
+	cd "${S}"
+
+	einfo "Compiling ${A%-*}"
+	./configure --prefix="${ROOT}"/usr || exit 1
+	$MAKE ${MAKEOPTS} || exit 1
+
+	einfo "Installing ${A%-*}"
+	$MAKE install || exit 1
+
+	einfo "${A%-*} bootstrapped"
+}
+
 bootstrap_sed() {
 	bootstrap_gnu sed 4.1.4
 }
