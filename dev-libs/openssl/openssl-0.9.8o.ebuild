@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8l-r2.ebuild,v 1.10 2010/02/15 06:39:39 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8o.ebuild,v 1.6 2010/06/21 20:43:49 maekke Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -28,20 +28,9 @@ src_unpack() {
 
 # this patch kills Darwin, but seems not necessary on Solaris and Linux
 #	epatch "${FILESDIR}"/${PN}-0.9.7e-gentoo.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8j-parallel-build.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8-make-engines-dir.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8k-toolchain.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8b-doc-updates.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8-makedepend.patch #149583
-	epatch "${FILESDIR}"/${PN}-0.9.8e-make.patch #146316
 	epatch "${FILESDIR}"/${PN}-0.9.8e-bsd-sparc64.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-sslv3-no-tlsext.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8h-ldflags.patch #181438
-	epatch "${FILESDIR}"/${PN}-0.9.8l-CVE-2009-137{7,8,9}.patch #270305
-	epatch "${FILESDIR}"/${P}-CVE-2009-1387.patch #270305
-	epatch "${FILESDIR}"/${P}-CVE-2009-2409.patch #280591
-	epatch "${FILESDIR}"/${P}-dtls-compat.patch #280370
-	epatch "${FILESDIR}"/${PN}-0.9.8l-binutils.patch #289130
+	epatch "${FILESDIR}"/${PN}-0.9.8m-binutils.patch #289130
 
 	# disable fips in the build
 	# make sure the man pages are suffixed #302165
@@ -58,10 +47,9 @@ src_unpack() {
 	# show the actual commands in the log
 	sed -i '/^SET_X/s:=.*:=set -x:' Makefile.shared
 
-	epatch "${FILESDIR}"/${PN}-0.9.8k-cc-mxx.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8g-engines-installnames.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-interix.patch
-	epatch "${FILESDIR}"/${PN}-0.9.8g-mint.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8n-interix.patch
+	epatch "${FILESDIR}"/${PN}-0.9.8n-mint.patch
 	epatch "${FILESDIR}"/${PN}-0.9.8l-aixso.patch #213277: with import files now
 	if [[ ${CHOST} == *-interix* ]] ; then
 		sed -i -e 's/-Wl,-soname=/-Wl,-h -Wl,/' Makefile.shared || die
@@ -75,24 +63,17 @@ src_unpack() {
 	sed -i '/^"darwin/s,-arch [^ ]\+,,g' Configure
 
 	# allow openssl to be cross-compiled
-	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp gentoo.config failed"
+	cp "${FILESDIR}"/gentoo.config-0.9.8 gentoo.config || die "cp cross-compile failed"
 	chmod a+rx gentoo.config
 
 	append-flags -fno-strict-aliasing
-	[[ $(tc-arch) == *-macos   ]] ||
-	[[ $(tc-arch) == *-aix     ]] ||
-	[[ $(tc-arch) == *-interix ]] ||
-	[[ $(tc-arch) == *-winnt*  ]] ||
-	[[ $(tc-arch) == *-hpux    ]] ||
-	[[ ${CHOST} == *-mint* ]] ||
-		append-flags -Wa,--noexecstack
+	case $($(tc-getAS) --noexecstack -v 2>&1 </dev/null) in
+		*"GNU Binutils"*) # GNU as with noexecstack support
+			append-flags -Wa,--noexecstack
+		;;
+	esac
 
-	# using a library directory other than lib requires some magic
-	sed -i \
-		-e "s+\(\$(INSTALL_PREFIX)\$(INSTALLTOP)\)/lib+\1/$(get_libdir)+g" \
-		-e "s+libdir=\$\${exec_prefix}/lib+libdir=\$\${exec_prefix}/$(get_libdir)+g" \
-		Makefile.org engines/Makefile \
-		|| die "sed failed"
+
 	# type -P required on platforms where perl is not installed
 	# in the same prefix (prefix-chaining).
 	sed -i '1s,^:$,#!'"$(type -P perl)"',' Configure #141906
@@ -119,6 +100,7 @@ src_unpack() {
 
 src_compile() {
 	unset APPS #197996
+	unset SCRIPTS #312551
 
 	tc-export CC AR RANLIB
 
@@ -179,7 +161,9 @@ src_compile() {
 		-e 's:-mcpu=[-a-z0-9]* ::g' \
 		-e 's:-m[a-z0-9]* ::g' \
 	)
+	# CFLAGS can contain : with e.g. MIPSpro
 	sed -i \
+		-e "/^LIBDIR=/s:=.*:=$(get_libdir):" \
 		-e "/^CFLAG/s|=.*|=${CFLAG} ${CFLAGS}|" \
 		-e "/^SHARED_LDFLAGS=/s|$| ${LDFLAGS}|" \
 		Makefile || die

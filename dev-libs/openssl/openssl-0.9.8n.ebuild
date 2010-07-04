@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8n.ebuild,v 1.7 2010/03/29 21:49:11 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/openssl-0.9.8n.ebuild,v 1.8 2010/04/11 20:05:36 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
@@ -101,6 +101,7 @@ src_unpack() {
 
 src_compile() {
 	unset APPS #197996
+	unset SCRIPTS #312551
 
 	tc-export CC AR RANLIB
 
