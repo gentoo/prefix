@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.3.1.ebuild,v 1.10 2009/12/15 11:14:29 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-4.3.2.ebuild,v 1.7 2010/04/16 17:43:11 ranger Exp $
 
 inherit flag-o-matic eutils libtool flag-o-matic
 
@@ -20,9 +20,8 @@ src_unpack() {
 	[[ -d ${FILESDIR}/${PV} ]] && EPATCH_SUFFIX="diff" EPATCH_FORCE="yes" epatch "${FILESDIR}"/${PV}
 
 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
-	epatch "${FILESDIR}"/${PN}-4.3.0-ABI-multilib.patch
+	epatch "${FILESDIR}"/${PN}-4.3.2-ABI-multilib.patch
 	epatch "${FILESDIR}"/${PN}-4.2.1-s390.diff
-	epatch "${FILESDIR}"/${PN}-4.3.1-fix-broken-ansi-check.patch #296964
 
 	sed -i -e 's:ABI = @ABI@:GMPABI = @GMPABI@:' \
 		Makefile.in */Makefile.in */*/Makefile.in
