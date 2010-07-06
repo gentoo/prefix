@@ -1,6 +1,29 @@
 # ChangeLog for media-libs/gstreamer
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.252 2010/04/18 15:37:57 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/ChangeLog,v 1.259 2010/07/01 11:03:29 fauli Exp $
+
+  01 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  gstreamer-0.10.28.ebuild:
+  x86 stable, bug 324691
+
+*gstreamer-0.10.29 (28 Jun 2010)
+
+  28 Jun 2010; Mart Raudsepp <leio@gentoo.org> +gstreamer-0.10.29.ebuild:
+  Version bump
+
+  27 Jun 2010; <nixnut@gentoo.org> gstreamer-0.10.28.ebuild:
+  ppc stable #324691
+
+  24 Jun 2010; Jeroen Roovers <jer@gentoo.org> gstreamer-0.10.25.ebuild:
+  Stable for HPPA (bug #308379).
+
+  24 Jun 2010; Markos Chandras <hwoarang@gentoo.org>
+  gstreamer-0.10.28.ebuild:
+  Stable on amd64 wrt bug #324691
+
+  21 May 2010; Olivier Crête <tester@gentoo.org> gstreamer-0.10.25.ebuild,
+  gstreamer-0.10.28.ebuild:
+  GStreamer now has an internal copy of libcheck, removing dep on external one
 
   18 Apr 2010; <nixnut@gentoo.org> gstreamer-0.10.25.ebuild:
   ppc stable #308379
