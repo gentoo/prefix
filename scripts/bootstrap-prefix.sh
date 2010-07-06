@@ -621,7 +621,7 @@ bootstrap_zlib() {
 
 	einfo "Bootstrapping ${A%-*}"
 
-	efetch http://zlib.net/${A}
+	efetch ${GENTOO_MIRROR}/${A}
 
 	einfo "Unpacking ${A%%-*}"
 	export S="${PORTAGE_TMPDIR}/zlib-${PV}"
