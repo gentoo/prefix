@@ -968,6 +968,7 @@ dev-python/lxml
 dev-python/m2crypto
 dev-python/mako
 dev-python/markdown
+dev-python/markupsafe
 dev-python/matplotlib
 dev-python/mechanize
 dev-python/medusa
