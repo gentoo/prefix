@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.15354 (07 Jul 2010)
+
+  07 Jul 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.00.15819.ebuild, -portage-2.2.01.15352.ebuild,
+  +portage-2.2.01.15354.ebuild:
+  Bump, shebang fixing now also considers scripts that are symlinked from
+  inside path but reside outside path
+
 *portage-2.2.01.15352 (02 Jul 2010)
 
   02 Jul 2010; Fabian Groffen <grobian@gentoo.org>
