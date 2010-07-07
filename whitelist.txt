@@ -1021,6 +1021,7 @@ dev-python/pyyaml
 dev-python/quixote
 dev-python/rdflib
 dev-python/routes
+dev-python/rpy
 dev-python/ruledispatch
 dev-python/sancho
 dev-python/scientificpython
