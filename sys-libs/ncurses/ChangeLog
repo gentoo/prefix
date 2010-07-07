@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.175 2010/03/06 23:12:41 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.176 2010/07/06 18:48:19 abcd Exp $
+
+*ncurses-5.7-r4 (06 Jul 2010)
+
+  06 Jul 2010; Jonathan Callen <abcd@gentoo.org> +ncurses-5.7-r4.ebuild:
+  Revbump to add USE=static-libs support, fixes bug 324999
 
   06 Mar 2010; Mike Frysinger <vapier@gentoo.org> ncurses-5.7-r3.ebuild:
   Fix handling of leaks option #305889 by Nikolas Garofil.
