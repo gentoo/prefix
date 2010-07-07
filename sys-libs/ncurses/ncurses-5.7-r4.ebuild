@@ -110,6 +110,7 @@ do_compile() {
 	# src_install() ...
 #		$(use_with berkdb hashed-db) \
 	econf \
+		--libdir="${EPREFIX}/usr/$(get_libdir)" \
 		--with-terminfo-dirs="${EPREFIX}/etc/terminfo:${EPREFIX}/usr/share/terminfo" \
 		${myconf} \
 		--without-hashed-db \
@@ -140,6 +141,14 @@ do_compile() {
 	[[ ${CHOST} == *-solaris* ]] && \
 		sed -i -e 's/-D_XOPEN_SOURCE_EXTENDED//g' c++/Makefile
 
+	# Fix for install location of the lib{,n}curses{,w} libs as in Gentoo we
+	# want those in lib not usr/lib.  We cannot move them lateron after
+	# installing, because that will result in broken install_names for
+	# platforms that store pointers to the libs instead of directories.
+	# But this only is true when building without libtool.
+	need-libtool ||
+	sed -i -e '/^libdir/s:/usr/lib\(64\|\)$:/lib\1:' ncurses/Makefile || die "nlibdir"
+
 	# for IRIX to get tests compiling
 	epatch "${FILESDIR}"/${PN}-5.7-irix.patch
 
@@ -165,9 +174,23 @@ src_install() {
 		emake DESTDIR="${D}" install || die "make widec install failed"
 	fi
 
-	# Move libncurses{,w} into /lib
-	gen_usr_ldscript -a ncurses
-	use unicode && gen_usr_ldscript -a ncursesw
+	if need-libtool; then
+		# Move dynamic ncurses libraries into /lib
+		dodir /$(get_libdir)
+		local f
+		for f in "${ED}"usr/$(get_libdir)/lib{,n}curses{,w}$(get_libname)*; do
+			[[ -f ${f} ]] || continue
+			mv "${f}" "${ED}"$(get_libdir)/ || die "could not move ${f#${ED}}"
+		done
+	else # keeping intendation to keep diff small
+	# Move static and extraneous ncurses static libraries out of /lib
+	cd "${ED}"/$(get_libdir)
+	mv *.a "${ED}"/usr/$(get_libdir)/
+	fi
+	gen_usr_ldscript lib{,n}curses$(get_libname)
+	if use unicode ; then
+		gen_usr_ldscript libncursesw$(get_libname)
+	fi
 
 #	if ! use berkdb ; then
 		# We need the basic terminfo files in /etc, bug #37026
