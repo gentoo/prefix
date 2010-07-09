@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.431 2010/06/27 03:54:36 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/toolchain.eclass,v 1.434 2010/07/05 22:25:09 vapier Exp $
 #
 # Maintainer: Toolchain Ninjas <toolchain@gentoo.org>
 
@@ -248,7 +248,7 @@ gcc_get_s_dir() {
 #	SPECS_GCC_VER
 #			This is for the minispecs files included in the hardened gcc-4.x
 #			The specs files for hardenedno*, vanilla and for building the "specs" file.
-#			SPECS_VER is expected to be the version of this patch, SPECS_GCC_VER 
+#			SPECS_VER is expected to be the version of this patch, SPECS_GCC_VER
 #			the gcc version of the patch.
 #			An example:
 #					SPECS_VER="8.7.6.5"
@@ -345,7 +345,7 @@ get_gcc_src_uri() {
 	[[ -n ${PIE_VER} ]] && \
 		PIE_CORE=${PIE_CORE:-gcc-${PIE_GCC_VER}-piepatches-v${PIE_VER}.tar.bz2} && \
 		GCC_SRC_URI="${GCC_SRC_URI} $(gentoo_urls ${PIE_CORE})"
-		
+
 	# gcc minispec for the hardened gcc 4 compiler
 	[[ -n ${SPECS_VER} ]] && \
 		GCC_SRC_URI="${GCC_SRC_URI} $(gentoo_urls gcc-${SPECS_GCC_VER}-specs-${SPECS_VER}.tar.bz2)"
@@ -510,7 +510,9 @@ want_pie() {
 }
 want_ssp() { _want_stuff PP_VER !nossp ; }
 
+# SPLIT_SPECS are deprecated for >=GCC 4.4
 want_split_specs() {
+	tc_version_is_at_least 4.4 && return 1
 	[[ ${SPLIT_SPECS} == "true" ]] && want_pie
 }
 want_minispecs() {
@@ -752,10 +754,10 @@ copy_minispecs_gcc_specs() {
 	if hardened_gcc_works ; then
 		create_gcc_env_entry hardenednopiessp
 	fi
-	if hardened_gcc_works pie ; then 
+	if hardened_gcc_works pie ; then
 		create_gcc_env_entry hardenednopie
 	fi
-	if hardened_gcc_works ssp ; then 
+	if hardened_gcc_works ssp ; then
 		create_gcc_env_entry hardenednossp
 	fi
 	create_gcc_env_entry vanilla
@@ -769,111 +771,6 @@ copy_minispecs_gcc_specs() {
 		cat "${WORKDIR}"/build.specs >> "${WORKDIR}"/specs/specs
 		doins "${WORKDIR}"/specs/specs || die "failed to install the specs file"
 	fi	
-}
-add_profile_eselect_conf() {
-	local compiler_config_file=$1
-	local abi=$2
-	local specs=$3
-	local gcc_specs_file
-	local var
-
-	if [[ -z ${specs} ]] ; then
-		# I'm leaving the following commented out to remind me that it
-		# was an insanely -bad- idea. Stuff broke. GCC_SPECS isnt unset
-		# on chroot or in non-toolchain.eclass gcc ebuilds!
-		#gcc_specs_file="${LIBPATH}/specs"
-		gcc_specs_file=""
-
-		if use hardened ; then
-			specs="hardened"
-		else
-			specs="vanilla"
-		fi
-	else
-		gcc_specs_file="${LIBPATH}/${specs}.specs"
-	fi
-
-	echo >> ${compiler_config_file}
-	if ! is_multilib ; then
-		echo "[${specs}]" >> ${compiler_config_file}
-		echo "	ctarget=${CTARGET}" >> ${compiler_config_file}
-	else
-		echo "[${abi}-${specs}]" >> ${compiler_config_file}
-		var="CTARGET_${abi}"
-		if [[ -n ${!var} ]] ; then
-			echo "	ctarget=${!var}" >> ${compiler_config_file}
-		else
-			var="CHOST_${abi}"
-			if [[ -n ${!var} ]] ; then
-				echo "	ctarget=${!var}" >> ${compiler_config_file}
-			else
-				echo "	ctarget=${CTARGET}" >> ${compiler_config_file}
-			fi
-		fi
-	fi
-
-	local MULTIDIR=$($(XGCC) $(get_abi_CFLAGS ${abi}) --print-multi-directory)
-	local LDPATH=${LIBPATH}
-	if [[ ${MULTIDIR} != "." ]] ; then
-		LDPATH="${LIBPATH}/${MULTIDIR}"
-	fi
-
-	echo "	ldpath=${EPREFIX}${LDPATH}" >> ${compiler_config_file}
-
-	if [[ -n ${gcc_specs_file} ]] ; then
-		echo "	specs=${EPREFIX}${gcc_specs_file}" >> ${compiler_config_file}
-	fi
-
-	var="CFLAGS_${abi}"
-	if [[ -n ${!var} ]] ; then
-		echo "	cflags=${!var}" >> ${compiler_config_file}
-	fi
-}
-
-create_eselect_conf() {
-	local config_dir="/etc/eselect/compiler"
-	local compiler_config_file="${ED}/${config_dir}/${CTARGET}-${GCC_CONFIG_VER}.conf"
-	local abi
-
-	dodir ${config_dir}
-
-	echo "[global]" > ${compiler_config_file}
-	echo "	version=${CTARGET}-${GCC_CONFIG_VER}" >> ${compiler_config_file}
-	echo "	binpath=${EPREFIX}${BINPATH}" >> ${compiler_config_file}
-	echo "	manpath=${EPREFIX}${DATAPATH}/man" >> ${compiler_config_file}
-	echo "	infopath=${EPREFIX}${DATAPATH}/info" >> ${compiler_config_file}
-	echo "	alias_cc=gcc" >> ${compiler_config_file}
-	echo "	stdcxx_incdir=${STDCXX_INCDIR##*/}" >> ${compiler_config_file}
-	echo "	bin_prefix=${CTARGET}" >> ${compiler_config_file}
-
-	# Per spyderous, it is best not to alias the fortran compilers
-	#if [[ -x "${ED}/${BINPATH}/${CTARGET}-g77" ]] ; then
-	#	echo "	alias_gfortran=g77" >> ${compiler_config_file}
-	#elif [[ -x "${ED}/${BINPATH}/${CTARGET}-gfortran" ]] ; then
-	#	echo "	alias_g77=gfortran" >> ${compiler_config_file}
-	#fi
-
-	for abi in $(get_all_abis) ; do
-		add_profile_eselect_conf "${compiler_config_file}" "${abi}"
-
-		if want_split_specs ; then
-			if use hardened ; then
-				add_profile_eselect_conf "${compiler_config_file}" "${abi}" vanilla
-			elif hardened_gcc_works ; then
-				add_profile_eselect_conf "${compiler_config_file}" "${abi}" hardened
-			fi
-
-			if hardened_gcc_works || hardened_gcc_works pie ; then
-				add_profile_eselect_conf "${compiler_config_file}" "${abi}" hardenednossp
-			fi
-
-			if hardened_gcc_works || hardened_gcc_works ssp ; then
-				add_profile_eselect_conf "${compiler_config_file}" "${abi}" hardenednopie
-			fi
-
-			add_profile_eselect_conf "${compiler_config_file}" "${abi}" hardenednopiessp
-		fi
-	done
 }
 
 #----<< specs + env.d logic >>----
@@ -950,11 +847,7 @@ gcc-compiler_pkg_preinst() {
 }
 
 gcc-compiler_pkg_postinst() {
-	if has_version 'app-admin/eselect-compiler' ; then
-		do_eselect_compiler
-	else
-		do_gcc_config
-	fi
+	do_gcc_config
 
 	if ! is_crosscompile ; then
 		echo
@@ -1294,8 +1187,8 @@ gcc-compiler-configure() {
 		#
 		#  --with-python-dir=DIR
 		#    Specifies where to install the Python modules used for aot-compile. DIR
-		#  should not include the prefix used in installation. For example, if the 
-		#  Python modules are to be installed in /usr/lib/python2.5/site-packages, 
+		#  should not include the prefix used in installation. For example, if the
+		#  Python modules are to be installed in /usr/lib/python2.5/site-packages,
 		#  then –with-python-dir=/lib/python2.5/site-packages should be passed.
 		#
 		# This should translate into "/share/gcc-data/${CTARGET}/${GCC_CONFIG_VER}/python"
@@ -1793,7 +1686,7 @@ gcc_src_compile() {
 	einfo "CFLAGS=\"${CFLAGS}\""
 	einfo "CXXFLAGS=\"${CXXFLAGS}\""
 
-	# For hardened gcc 4.3 piepatchset to build the hardened specs 
+	# For hardened gcc 4.3 piepatchset to build the hardened specs
 	# file (build.specs) to use when building gcc.
 	if ! tc_version_is_at_least 4.4 && want_minispecs ; then
 		setup_minispecs_gcc_build_specs
@@ -2045,9 +1938,6 @@ gcc-compiler_src_install() {
 	# use gid of 0 because some stupid ports don't have
 	# the group 'root' set to gid 0
 	chown -R ${PORTAGE_INST_UID:-0}:${PORTAGE_INST_GID:-0} "${ED}"${LIBPATH}
-
-	# Create config files for eselect-compiler
-	create_eselect_conf
 
 	# Move pretty-printers to gdb datadir to shut ldconfig up
 	gdbdir=/usr/share/gdb/auto-load
@@ -2481,96 +2371,6 @@ do_gcc_config() {
 	fi
 
 	gcc-config ${CTARGET}-${GCC_CONFIG_VER}${use_specs}
-}
-
-should_we_eselect_compiler() {
-	# we always want to run gcc-config if we're bootstrapping, otherwise
-	# we might get stuck with the c-only stage1 compiler
-	use bootstrap && return 0
-	use build && return 0
-
-	# if the current config is invalid, we definitely want a new one
-	# Note: due to bash quirkiness, the following must not be 1 line
-	local curr_config
-	curr_config=$(env -i eselect compiler show ${CTARGET} 2>&1) || return 0
-	[[ -z ${curr_config} || ${curr_config} == "(none)" ]] && return 0
-
-	# if the previously selected config has the same major.minor (branch) as
-	# the version we are installing, then it will probably be uninstalled
-	# for being in the same SLOT, make sure we run gcc-config.
-	local curr_config_ver=$(echo ${curr_config} | cut -f1 -d/ | awk -F - '{ print $5 }')
-	local curr_branch_ver=$(get_version_component_range 1-2 ${curr_config_ver})
-
-	# If we're using multislot, just run gcc-config if we're installing
-	# to the same profile as the current one.
-	use multislot && return $([[ ${curr_config_ver} == ${GCC_CONFIG_VER} ]])
-
-	if [[ ${curr_branch_ver} == ${GCC_BRANCH_VER} ]] ; then
-		return 0
-	else
-		# if we're installing a genuinely different compiler version,
-		# we should probably tell the user -how- to switch to the new
-		# gcc version, since we're not going to do it for him/her.
-		# We don't want to switch from say gcc-3.3 to gcc-3.4 right in
-		# the middle of an emerge operation (like an 'emerge -e world'
-		# which could install multiple gcc versions).
-		einfo "The current gcc config appears valid, so it will not be"
-		einfo "automatically switched for you.	If you would like to"
-		einfo "switch to the newly installed gcc version, do the"
-		einfo "following:"
-		echo
-		einfo "eselect compiler set <profile>"
-		echo
-		ebeep
-		return 1
-	fi
-}
-
-do_eselect_compiler() {
-	if ! should_we_eselect_compiler; then
-		eselect compiler update
-		return 0
-	fi
-
-	for abi in $(get_all_abis) ; do
-		local ctarget=$(get_abi_CHOST ${abi})
-		local current_specs=$(env -i eselect compiler show ${ctarget} | cut -f2 -d/)
-
-		if [[ -n ${current_specs} && ${current_specs} != "(none)" ]] && eselect compiler set ${CTARGET}-${GCC_CONFIG_VER}/${current_specs} &> /dev/null; then
-			einfo "The following compiler profile has been activated based on your previous profile:"
-			einfo "${CTARGET}-${GCC_CONFIG_VER}/${current_specs}"
-		else
-			# We couldn't choose based on the old specs, so fall back on vanilla/hardened based on USE
-
-			local spec
-			if use hardened ; then
-				spec="hardened"
-			else
-				spec="vanilla"
-			fi
-
-			local profile
-			local isset=0
-			for profile in "${current_specs%-*}-${spec}" "${abi}-${spec}" "${spec}" ; do
-				if eselect compiler set ${CTARGET}-${GCC_CONFIG_VER}/${profile} &> /dev/null ; then
-					ewarn "The newly installed version of gcc does not have a profile that matches the name of your"
-					ewarn "currently selected profile for ${ctarget}, so we have enabled the following instead:"
-					ewarn "${CTARGET}-${GCC_CONFIG_VER}/${profile}"
-					ewarn "If this is incorrect, please use 'eselect compiler set' to"
-					ewarn "select another profile."
-
-					isset=1
-					break
-				fi
-			done
-
-			if [[ ${isset} == 0 ]] ; then
-				eerror "We were not able to automatically set the current compiler for ${ctarget}"
-				eerror "to your newly emerged gcc.	Please use 'eselect compiler set'"
-				eerror "to select your compiler."
-			fi
-		fi
-	done
 }
 
 # This function allows us to gentoo-ize gcc's version number and bugzilla

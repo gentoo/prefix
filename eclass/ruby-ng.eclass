@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.20 2010/05/24 07:33:35 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby-ng.eclass,v 1.21 2010/07/08 04:00:57 flameeyes Exp $
 #
 # @ECLASS: ruby-ng.eclass
 # @MAINTAINER:
@@ -119,9 +119,9 @@ _ruby_atoms_samelib_generic() {
 		case "$token" in
 			"||" | "(" | ")" | *"?")
 				echo "${token}" ;;
+			*])
+				echo "${token%[*}[RUBYTARGET,${token/*[}" ;;
 			*)
-				# TODO we need to deal with merging USE-based
-				# dependencies
 				echo "${token}[RUBYTARGET]" ;;
 		esac
 	done
