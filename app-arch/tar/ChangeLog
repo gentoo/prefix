@@ -1,6 +1,21 @@
 # ChangeLog for app-arch/tar
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.145 2010/04/25 18:57:31 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/ChangeLog,v 1.149 2010/07/05 21:08:58 ssuominen Exp $
+
+  05 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> tar-1.23-r2.ebuild:
+  ppc64 stable wrt #313333
+
+  05 Jul 2010; Jeroen Roovers <jer@gentoo.org> tar-1.23-r2.ebuild:
+  Stable for HPPA (bug #313333).
+
+  03 Jul 2010; Christian Faulhammer <fauli@gentoo.org> tar-1.23-r2.ebuild:
+  stable x86, security bug 313333
+
+*tar-1.23-r2 (21 May 2010)
+
+  21 May 2010; Mike Frysinger <vapier@gentoo.org> +tar-1.23-r2.ebuild,
+  +files/tar-1.23-revert-pipe.patch:
+  Restore sigpipe patch for now #309001.
 
   25 Apr 2010; <chainsaw@gentoo.org> -tar-1.22.ebuild, -tar-1.23.ebuild:
   Pull revisions that cause havoc with GCC 4.5; these should never be
