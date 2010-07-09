@@ -754,6 +754,7 @@ www-client/pybugz
 www-misc/htdig
 www-servers/mongrel
 x11-libs/cairo
+x11-libs/fltk
 x11-libs/gl2ps
 x11-libs/goffice
 x11-libs/gtk+
