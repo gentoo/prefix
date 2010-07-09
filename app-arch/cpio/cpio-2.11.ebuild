@@ -17,6 +17,7 @@ IUSE="nls"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-stat-darwin.patch
+	epatch "${FILESDIR}"/${PN}-2.10-irix.patch
 }
 
 src_configure() {
