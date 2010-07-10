@@ -46,6 +46,7 @@ src_unpack() {
 
 	epatch "${FILESDIR}/${PN}-2.1_rc13-peercred.patch"
 	epatch "${FILESDIR}"/openvpn-2.1_rc20-pkcs11.patch
+	epatch "${FILESDIR}"/openvpn-2.1_rc4-darwin.patch
 	use ipv6 && epatch "${WORKDIR}"/${P}-ipv6-${IPV6_VERSION}.patch
 	use eurephia && epatch "${DISTDIR}/${P}_eurephia.patch"
 	sed -i \
