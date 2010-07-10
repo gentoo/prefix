@@ -264,6 +264,7 @@ app-text/xml2
 app-text/xmlformat
 app-text/xmlstarlet
 app-text/xmlto
+dev-db/freetds
 dev-db/libiodbc
 dev-db/maatkit
 dev-db/mysql
