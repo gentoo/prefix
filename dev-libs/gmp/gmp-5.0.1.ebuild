@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.1.ebuild,v 1.3 2010/07/04 21:08:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.1.ebuild,v 1.4 2010/07/09 22:54:27 vapier Exp $
 
 inherit flag-o-matic eutils libtool flag-o-matic
 
@@ -23,17 +23,17 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
 	epatch "${FILESDIR}"/${PN}-5.0.0-s390.diff
 
-	# GMP uses the "ABI" env var during configure as does Gentoo (econf)
+	# note: we cannot run autotools here as gcc depends on this package
+	elibtoolize
+
+	# GMP uses the "ABI" env var during configure as does Gentoo (econf).
+	# So, to avoid patching the source constantly, wrap things up.
 	mv configure configure.wrapped || die
 	cat <<-\EOF > configure
 	#!/bin/sh
-	export ABI=$GMPABI
-	exec "${0}.wrapped" "$@"
+	exec env ABI="$GMPABI" "${0}.wrapped" "$@"
 	EOF
 	chmod a+rx configure
-
-	# note: we cannot run autotools here as gcc depends on this package
-	elibtoolize
 }
 
 src_compile() {
@@ -64,7 +64,6 @@ src_compile() {
 	tc-export CC
 	econf \
 		--localstatedir="${EPREFIX}"/var/state/gmp \
-		--disable-mpfr \
 		--disable-mpbsd \
 		$(use_enable !nocxx cxx) \
 		${myconf} \
