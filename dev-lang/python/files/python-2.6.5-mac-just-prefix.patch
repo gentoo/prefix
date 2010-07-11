@@ -3,6 +3,8 @@
 - avoid rm complaining it has nothing to remove (xargs -r GNU extension)
 - don't add framework paths to the default search path, but the prefix
   dirs instead
+- make the original autoconf ${prefix} available as
+  FRAMEWORKUNIXTOOLSPREFIX
 
 --- Python-2.6.2/Mac/PythonLauncher/Makefile.in
 +++ Python-2.6.2/Mac/PythonLauncher/Makefile.in
@@ -17,6 +19,14 @@
  FileSettings.o: $(srcdir)/FileSettings.m
 --- Python-2.6.2/Makefile.pre.in
 +++ Python-2.6.2/Makefile.pre.in
+@@ -120,6 +120,7 @@
+ PYTHONFRAMEWORKDIR=	@PYTHONFRAMEWORKDIR@
+ PYTHONFRAMEWORKPREFIX=	@PYTHONFRAMEWORKPREFIX@
+ PYTHONFRAMEWORKINSTALLDIR= @PYTHONFRAMEWORKINSTALLDIR@
++FRAMEWORKUNIXTOOLSPREFIX=@FRAMEWORKUNIXTOOLSPREFIX@
+ # Deployment target selected during configure, to be checked
+ # by distutils. The export statement is needed to ensure that the
+ # deployment target is active during build.
 @@ -441,7 +441,7 @@
  			-compatibility_version $(VERSION) \
  			-current_version $(VERSION); \

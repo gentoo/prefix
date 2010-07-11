@@ -5,26 +5,9 @@ Added configure check for alloca.h to enable the guards for bug #286943
 http://bugs.gentoo.org/show_bug.cgi?id=266494
 http://bugs.python.org/issue7717
 
---- setup.py.orig
-+++ setup.py
-@@ -1321,6 +1321,14 @@ class PyBuildExt(build_ext):
-                 )
-             libraries = []
- 
-+        elif platform.startswith('irix'):
-+            macros = dict(                  # IRIX
-+                HAVE_SEM_OPEN=1,
-+                HAVE_SEM_TIMEDWAIT=0,
-+                HAVE_FD_TRANSFER=1,
-+                )
-+            libraries = []
-+
-         else:                                   # Linux and other unices
-             macros = dict(
-                 HAVE_SEM_OPEN=1,
---- Lib/test/test_fileio.py.dist
-+++ Lib/test/test_fileio.py
-@@ -152,7 +152,8 @@ class OtherFileTests(unittest.TestCase):
+--- Python-2.7/Lib/test/test_fileio.py
++++ Python-2.7/Lib/test/test_fileio.py
+@@ -268,7 +268,8 @@
                      self.assertEquals(f.writable(), True)
                      if sys.platform != "darwin" and \
                         'bsd' not in sys.platform and \
@@ -34,120 +17,44 @@ http://bugs.python.org/issue7717
                          # Somehow /dev/tty appears seekable on some BSDs
                          self.assertEquals(f.seekable(), False)
                      self.assertEquals(f.isatty(), True)
---- Modules/_cursesmodule.c.orig
-+++ Modules/_cursesmodule.c
-@@ -120,9 +120,6 @@ char *PyCursesVersion = "2.2";
-     curses module in other ways.  So the code will just specify 
-     explicit prototypes here. */
- extern int setupterm(char *,int,int *);
--#ifdef __sgi
--#include <term.h>
--#endif
- 
- #if !defined(HAVE_NCURSES_H) && (defined(sgi) || defined(__sun) || defined(SCO5))
- #define STRICT_SYSV_CURSES       /* Don't use ncurses extensions */
---- Modules/mmapmodule.c.orig
-+++ Modules/mmapmodule.c
-@@ -50,6 +50,10 @@ my_getallocationgranularity (void)
- #include <sys/mman.h>
- #include <sys/stat.h>
- 
-+#ifdef HAVE_FCNTL_H
-+#include <fcntl.h>
-+#endif
-+
- #if defined(HAVE_SYSCONF) && defined(_SC_PAGESIZE)
- static int
- my_getpagesize(void)
---- Modules/posixmodule.c.orig
-+++ Modules/posixmodule.c
-@@ -169,7 +169,9 @@ corresponding Unix manual entries for mo
- extern char        *ctermid_r(char *);
- #endif
- 
--#ifndef HAVE_UNISTD_H
-+#ifdef HAVE_UNISTD_H
-+#include <unistd.h>
-+#else
- #if defined(PYCC_VACPP)
- extern int mkdir(char *);
- #else
---- Modules/python.c.orig
-+++ Modules/python.c
-@@ -3,7 +3,10 @@
- #include "Python.h"
- 
- #ifdef __FreeBSD__
--#include <floatingpoint.h>
-+# include <floatingpoint.h>
-+#endif
-+#ifdef __sgi
-+# include <sys/fpu.h>
- #endif
- 
- int
-@@ -20,5 +23,11 @@ main(int argc, char **argv)
- 	m = fpgetmask();
- 	fpsetmask(m & ~FP_X_OFL);
- #endif
-+#ifdef __sgi
-+	unsigned int m;
-+
-+	m = get_fpc_csr();
-+	set_fpc_csr(m & ~FPCSR_FLUSH_ZERO);
-+#endif
- 	return Py_Main(argc, argv);
- }
---- configure.in.orig
-+++ configure.in
-@@ -1267,7 +1267,7 @@
- # checks for header files
- AC_HEADER_STDC
- AC_CHECK_HEADERS(asm/types.h conio.h curses.h direct.h dlfcn.h errno.h \
--fcntl.h grp.h \
-+fcntl.h grp.h alloca.h \
- ieeefp.h io.h langinfo.h libintl.h ncurses.h poll.h process.h pthread.h \
- shadow.h signal.h stdint.h stropts.h termios.h thread.h \
- unistd.h utime.h \
---- Modules/_ctypes/_ctypes.c.orig
-+++ Modules/_ctypes/_ctypes.c
-@@ -123,8 +123,11 @@ bytes(cdata)
+--- Python-2.7/Modules/_ctypes/_ctypes.c
++++ Python-2.7/Modules/_ctypes/_ctypes.c
+@@ -123,7 +123,10 @@
  #  define GetProcAddress GetProcAddressA
  # endif
  #else
 -#include "ctypes_dlfcn.h"
 +# include "ctypes_dlfcn.h"
- #endif
++#endif
 +#ifdef HAVE_ALLOCA_H
 +#include <alloca.h>
-+#endif
+ #endif
  #include "ctypes.h"
  
- PyObject *PyExc_ArgError;
-@@ -3857,7 +3860,7 @@ CFuncPtr_call(CFuncPtrObject *self, PyOb
- 		}
- 	}
+@@ -3877,7 +3880,7 @@
+         }
+     }
  
--	result = _ctypes_callproc(pProc,
-+	result = _ctypes_callproc((PPROC)pProc,
- 			   callargs,
+-    result = _ctypes_callproc(pProc,
++    result = _ctypes_callproc((PPROC)pProc,
+                        callargs,
  #ifdef MS_WIN32
- 			   piunk,
---- Modules/_ctypes/_ctypes_test.c.orig
-+++ Modules/_ctypes/_ctypes_test.c
-@@ -369,8 +369,8 @@ EXPORT(PY_LONG_LONG) last_tf_arg_s;
+                        piunk,
+--- Python-2.7/Modules/_ctypes/_ctypes_test.c
++++ Python-2.7/Modules/_ctypes/_ctypes_test.c
+@@ -369,8 +369,8 @@
  EXPORT(unsigned PY_LONG_LONG) last_tf_arg_u;
  
  struct BITS {
--	int A: 1, B:2, C:3, D:4, E: 5, F: 6, G: 7, H: 8, I: 9;
--	short M: 1, N: 2, O: 3, P: 4, Q: 5, R: 6, S: 7;
-+	unsigned int A: 1, B:2, C:3, D:4, E: 5, F: 6, G: 7, H: 8, I: 9;
-+	unsigned short M: 1, N: 2, O: 3, P: 4, Q: 5, R: 6, S: 7;
+-    int A: 1, B:2, C:3, D:4, E: 5, F: 6, G: 7, H: 8, I: 9;
+-    short M: 1, N: 2, O: 3, P: 4, Q: 5, R: 6, S: 7;
++    unsigned int A: 1, B:2, C:3, D:4, E: 5, F: 6, G: 7, H: 8, I: 9;
++    unsigned short M: 1, N: 2, O: 3, P: 4, Q: 5, R: 6, S: 7;
  };
  
  DL_EXPORT(void) set_bitfields(struct BITS *bits, char name, int value)
---- Modules/_ctypes/callproc.c.orig
-+++ Modules/_ctypes/callproc.c
+--- Python-2.7/Modules/_ctypes/callproc.c
++++ Python-2.7/Modules/_ctypes/callproc.c
 @@ -73,6 +73,10 @@
  #include <malloc.h>
  #endif
@@ -159,26 +66,26 @@ http://bugs.python.org/issue7717
  #include <ffi.h>
  #include "ctypes.h"
  
-@@ -463,7 +467,7 @@ PyCArg_repr(PyCArgObject *self)
+@@ -474,7 +478,7 @@
  #ifdef MS_WIN32
- 			"<cparam '%c' (%I64d)>",
+             "<cparam '%c' (%I64d)>",
  #else
--			"<cparam '%c' (%qd)>",
-+			"<cparam '%c' (%lld)>",
+-            "<cparam '%c' (%qd)>",
++            "<cparam '%c' (%lld)>",
  #endif
- 			self->tag, self->value.q);
- 		break;
-@@ -813,7 +817,7 @@ static int _call_function_pointer(int fl
+             self->tag, self->value.q);
+         break;
+@@ -824,7 +828,7 @@
  #endif
- 		delta =
+         delta =
  #endif
--			ffi_call(&cif, (void *)pProc, resmem, avalues);
-+			ffi_call(&cif, FFI_FN(pProc), resmem, avalues);
+-                ffi_call(&cif, (void *)pProc, resmem, avalues);
++                ffi_call(&cif, FFI_FN(pProc), resmem, avalues);
  #ifdef MS_WIN32
  #ifndef DONT_USE_SEH
- 	}
---- Modules/_ctypes/malloc_closure.c.orig
-+++ Modules/_ctypes/malloc_closure.c
+     }
+--- Python-2.7/Modules/_ctypes/malloc_closure.c
++++ Python-2.7/Modules/_ctypes/malloc_closure.c
 @@ -5,12 +5,18 @@
  #include <Python.h>
  #include <ffi.h>
@@ -203,44 +110,43 @@ http://bugs.python.org/issue7717
  # endif
  #endif
  #include "ctypes.h"
-@@ -37,6 +43,8 @@ int _pagesize;
+@@ -37,6 +43,8 @@
  static void more_core(void)
  {
- 	ITEM *item;
-+	int flags = MAP_PRIVATE;
-+	int devzero = -1;
- 	int count, i;
+     ITEM *item;
++    int flags = MAP_PRIVATE;
++    int devzero = -1;
+     int count, i;
  
  /* determine the pagesize */
-@@ -68,12 +76,24 @@ static void more_core(void)
- 	if (item == NULL)
- 		return;
+@@ -68,12 +76,23 @@
+     if (item == NULL)
+         return;
  #else
 +#ifdef MAP_ANONYMOUS
-+		/* BSD way to map anonymous memory */
-+		flags |= MAP_ANONYMOUS;
++        /* BSD way to map anonymous memory */
++        flags |= MAP_ANONYMOUS;
 +#else
-+		/* SVR4 method to map anonymous memory is to open /dev/zero */
-+		devzero = open("/dev/zero", O_RDWR);
-+		if (devzero == -1)
-+			return;
++        /* SVR4 method to map anonymous memory is to open /dev/zero */
++        devzero = open("/dev/zero", O_RDWR);
++        if (devzero == -1)
++            return;
 +#endif
- 	item = (ITEM *)mmap(NULL,
- 			    count * sizeof(ITEM),
- 			    PROT_READ | PROT_WRITE | PROT_EXEC,
--			    MAP_PRIVATE | MAP_ANONYMOUS,
--			    -1,
-+			    flags,
-+			    devzero,
- 			    0);
-+	if (devzero != -1)
-+		close(devzero);
-+
- 	if (item == (void *)MAP_FAILED)
- 		return;
+     item = (ITEM *)mmap(NULL,
+                         count * sizeof(ITEM),
+                         PROT_READ | PROT_WRITE | PROT_EXEC,
+                         MAP_PRIVATE | MAP_ANONYMOUS,
+-                        -1,
+-                        0);
++                        flags,
++                        devzero);
++    if (devzero != -1)
++        close(devzero);
+     if (item == (void *)MAP_FAILED)
+         return;
  #endif
---- Modules/_ctypes/stgdict.c.orig
-+++ Modules/_ctypes/stgdict.c
+--- Python-2.7/Modules/_ctypes/stgdict.c
++++ Python-2.7/Modules/_ctypes/stgdict.c
 @@ -8,6 +8,9 @@
  #include <windows.h>
  #include <malloc.h>
@@ -251,3 +157,96 @@ http://bugs.python.org/issue7717
  #include "ctypes.h"
  
  /******************************************************************/
+--- Python-2.7/Modules/_cursesmodule.c
++++ Python-2.7/Modules/_cursesmodule.c
+@@ -118,9 +118,6 @@
+     curses module in other ways.  So the code will just specify
+     explicit prototypes here. */
+ extern int setupterm(char *,int,int *);
+-#ifdef __sgi
+-#include <term.h>
+-#endif
+ 
+ #if !defined(HAVE_NCURSES_H) && (defined(sgi) || defined(__sun) || defined(SCO5))
+ #define STRICT_SYSV_CURSES       /* Don't use ncurses extensions */
+--- Python-2.7/Modules/mmapmodule.c
++++ Python-2.7/Modules/mmapmodule.c
+@@ -50,6 +50,10 @@
+ #include <sys/mman.h>
+ #include <sys/stat.h>
+ 
++#ifdef HAVE_FCNTL_H
++#include <fcntl.h>
++#endif
++
+ #if defined(HAVE_SYSCONF) && defined(_SC_PAGESIZE)
+ static int
+ my_getpagesize(void)
+--- Python-2.7/Modules/posixmodule.c
++++ Python-2.7/Modules/posixmodule.c
+@@ -169,7 +169,9 @@
+ extern char        *ctermid_r(char *);
+ #endif
+ 
+-#ifndef HAVE_UNISTD_H
++#ifdef HAVE_UNISTD_H
++#include <unistd.h>
++#else
+ #if defined(PYCC_VACPP)
+ extern int mkdir(char *);
+ #else
+--- Python-2.7/Modules/python.c
++++ Python-2.7/Modules/python.c
+@@ -3,7 +3,10 @@
+ #include "Python.h"
+ 
+ #ifdef __FreeBSD__
+-#include <floatingpoint.h>
++# include <floatingpoint.h>
++#endif
++#ifdef __sgi
++# include <sys/fpu.h>
+ #endif
+ 
+ #ifdef __linux__
+@@ -33,6 +36,12 @@
+ 	m = fpgetmask();
+ 	fpsetmask(m & ~FP_X_OFL);
+ #endif
++#ifdef __sgi
++	unsigned int m;
++
++	m = get_fpc_csr();
++	set_fpc_csr(m & ~FPCSR_FLUSH_ZERO);
++#endif
+ 
+ #ifdef __linux__
+ 	char *process_name = getenv("GENTOO_PYTHON_PROCESS_NAME");
+--- Python-2.7/configure.in
++++ Python-2.7/configure.in
+@@ -1350,7 +1350,7 @@
+ # checks for header files
+ AC_HEADER_STDC
+ AC_CHECK_HEADERS(asm/types.h conio.h curses.h direct.h dlfcn.h errno.h \
+-fcntl.h grp.h \
++fcntl.h grp.h alloca.h \
+ ieeefp.h io.h langinfo.h libintl.h ncurses.h poll.h process.h pthread.h \
+ shadow.h signal.h stdint.h stropts.h termios.h thread.h \
+ unistd.h utime.h \
+--- Python-2.7/setup.py
++++ Python-2.7/setup.py
+@@ -1272,6 +1272,14 @@
+             macros = dict()
+             libraries = []
+ 
++        elif platform.startswith('irix'):
++            macros = dict(                  # IRIX
++                HAVE_SEM_OPEN=1,
++                HAVE_SEM_TIMEDWAIT=0,
++                HAVE_FD_TRANSFER=1,
++                )
++            libraries = []
++
+         else:                                   # Linux and other unices
+             macros = dict()
+             libraries = ['rt']

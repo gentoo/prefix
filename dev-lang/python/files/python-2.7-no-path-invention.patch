@@ -3,19 +3,19 @@ that break compilation or proper behaviour in Prefix.
 
 http://bugs.python.org/issue7713
 
---- setup.py
-+++ setup.py
-@@ -317,9 +317,6 @@
+--- Python-2.7/setup.py
++++ Python-2.7/setup.py
+@@ -362,9 +362,6 @@
  
      def detect_modules(self):
          global disable_ssl
 -        # Ensure that /usr/local is always used
--        add_dir_to_list(self.compiler_obj.library_dirs, '/usr/local/lib')
--        add_dir_to_list(self.compiler_obj.include_dirs, '/usr/local/include')
+-        add_dir_to_list(self.compiler.library_dirs, '/usr/local/lib')
+-        add_dir_to_list(self.compiler.include_dirs, '/usr/local/include')
  
          # Add paths specified in the environment variables LDFLAGS and
          # CPPFLAGS for header and library files.
-@@ -383,34 +380,6 @@
+@@ -428,34 +425,6 @@
          platform = self.get_platform()
          srcdir = sysconfig.get_config_var('srcdir')
  
@@ -49,48 +49,49 @@ http://bugs.python.org/issue7713
 -
          # Check for MacOS X, which doesn't need libm.a at all
          math_libs = ['m']
-         if platform in ['darwin', 'beos', 'mac']:
-@@ -566,25 +535,7 @@
+         if platform in ['darwin', 'beos']:
+@@ -631,40 +600,12 @@
+         elif self.compiler.find_library_file(lib_dirs, 'curses'):
+             curses_library = 'curses'
  
-         # readline
-         do_readline = self.compiler_obj.find_library_file(lib_dirs, 'readline')
 -        if platform == 'darwin':
 -            os_release = int(os.uname()[2].split('.')[0])
+-            dep_target = sysconfig.get_config_var('MACOSX_DEPLOYMENT_TARGET')
+-            if dep_target and dep_target.split('.') < ['10', '5']:
+-                os_release = 8
 -            if os_release < 9:
 -                # MacOSX 10.4 has a broken readline. Don't try to build
 -                # the readline module unless the user has installed a fixed
 -                # readline package
 -                if find_file('readline/rlconf.h', inc_dirs, []) is None:
 -                    do_readline = False
-         if do_readline:
+-        if do_readline:
 -            if platform == 'darwin' and os_release < 9:
 -                # In every directory on the search path search for a dynamic
 -                # library and then a static library, instead of first looking
 -                # for dynamic libraries on the entiry path.
 -                # This way a staticly linked custom readline gets picked up
--                # before the (broken) dynamic library in /usr/lib.
+-                # before the (possibly broken) dynamic library in /usr/lib.
 -                readline_extra_link_args = ('-Wl,-search_paths_first',)
 -            else:
 -                readline_extra_link_args = ()
 -
              readline_libs = ['readline']
-             if self.compiler_obj.find_library_file(lib_dirs,
-                                                    'ncursesw'):
-@@ -594,13 +545,7 @@
-                 readline_libs.append('ncurses')
-             elif self.compiler_obj.find_library_file(lib_dirs, 'curses'):
-                 readline_libs.append('curses')
--            elif self.compiler_obj.find_library_file(lib_dirs +
--                                                     ['/usr/lib/termcap'],
+             if readline_termcap_library:
+                 pass # Issue 7384: Already linked against curses or tinfo.
+             elif curses_library:
+                 readline_libs.append(curses_library)
+-            elif self.compiler.find_library_file(lib_dirs +
+-                                                     ['/usr/@@GENTOO_LIBDIR@@/termcap'],
 -                                                     'termcap'):
 -                readline_libs.append('termcap')
              exts.append( Extension('readline', ['readline.c'],
--                                   library_dirs=['/usr/lib/termcap'],
+-                                   library_dirs=['/usr/@@GENTOO_LIBDIR@@/termcap'],
 -                                   extra_link_args=readline_extra_link_args,
                                     libraries=readline_libs) )
          else:
              missing.append('readline')
-@@ -623,22 +568,17 @@
+@@ -684,22 +625,17 @@
          exts.append( Extension('_socket', ['socketmodule.c'],
                                 depends = ['socketmodule.h']) )
          # Detect SSL support for the socket module (via _ssl)
@@ -108,7 +109,7 @@ http://bugs.python.org/issue7713
 +                               [])
              if krb5_h:
                  ssl_incs += krb5_h
-         ssl_libs = find_library_file(self.compiler_obj, 'ssl',lib_dirs,
+         ssl_libs = find_library_file(self.compiler, 'ssl',lib_dirs,
 -                                     ['/usr/local/ssl/lib',
 -                                      '/usr/contrib/ssl/lib/'
 -                                     ] )
@@ -116,7 +117,7 @@ http://bugs.python.org/issue7713
  
          if (ssl_incs is not None and
              ssl_libs is not None and
-@@ -753,37 +693,6 @@
+@@ -814,36 +750,7 @@
              else:
                  raise ValueError("unknown major BerkeleyDB version", major)
  
@@ -150,11 +151,11 @@ http://bugs.python.org/issue7713
 -            db_inc_paths.append('/usr/local/include/db3%d' % x)
 -            db_inc_paths.append('/pkg/db-3.%d/include' % x)
 -            db_inc_paths.append('/opt/db-3.%d/include' % x)
--
++        db_inc_paths = []
+ 
          # Add some common subdirectories for Sleepycat DB to the list,
          # based on the standard include directories. This way DB3/4 gets
-         # picked up when it is installed in a non-standard prefix and
-@@ -836,6 +745,7 @@
+@@ -904,6 +809,7 @@
                              db_ver_inc_map[db_ver] = d
                              if db_setup_debug:
                                  print "db.h: found", db_ver, "in", d
@@ -162,7 +163,7 @@ http://bugs.python.org/issue7713
                          else:
                              # we already found a header for this library version
                              if db_setup_debug: print "db.h: ignoring", d
-@@ -905,13 +813,7 @@
+@@ -986,13 +892,7 @@
          # We hunt for #define SQLITE_VERSION "n.n.n"
          # We need to find >= sqlite version 3.0.8
          sqlite_incdir = sqlite_libdir = None
@@ -177,11 +178,10 @@ http://bugs.python.org/issue7713
          MIN_SQLITE_VERSION_NUMBER = (3, 0, 8)
          MIN_SQLITE_VERSION = ".".join([str(x)
                                      for x in MIN_SQLITE_VERSION_NUMBER])
-@@ -972,58 +874,17 @@
-             else:
-                 sqlite_defines.append(('MODULE_NAME', '\\"sqlite3\\"'))
+@@ -1063,63 +963,17 @@
+             # Comment this out if you want the sqlite3 module to be able to load extensions.
+             sqlite_defines.append(("SQLITE_OMIT_LOAD_EXTENSION", "1"))
  
--
 -            if sys.platform == 'darwin':
 -                # In every directory on the search path search for a dynamic
 -                # library and then a static library, instead of first looking
@@ -215,6 +215,12 @@ http://bugs.python.org/issue7713
 -        # the more recent berkeleydb's db.h file first in the include path
 -        # when attempting to compile and it will fail.
 -        f = "/usr/include/db.h"
+-
+-        if sys.platform == 'darwin':
+-            if is_macosx_sdk_path(f):
+-                sysroot = macosx_sdk_root()
+-                f = os.path.join(sysroot, f[1:])
+-
 -        if os.path.exists(f) and not db_incs:
 -            data = open(f).read()
 -            m = re.search(r"#s*define\s+HASHVERSION\s+2\s*", data)
@@ -237,22 +243,21 @@ http://bugs.python.org/issue7713
  
          dbm_order = ['gdbm']
          # The standard Unix dbm module:
-@@ -1142,10 +1003,7 @@
-             curses_libs = ['ncurses']
+@@ -1235,9 +1089,7 @@
+             curses_libs = [curses_library]
              exts.append( Extension('_curses', ['_cursesmodule.c'],
                                     libraries = curses_libs) )
--        elif (self.compiler_obj.find_library_file(lib_dirs, 'curses')
--              and platform != 'darwin'):
+-        elif curses_library == 'curses' and platform != 'darwin':
 -                # OSX has an old Berkeley curses, not good enough for
 -                # the _curses module.
-+        elif (self.compiler_obj.find_library_file(lib_dirs, 'curses')):
-             if (self.compiler_obj.find_library_file(lib_dirs, 'terminfo')):
++        elif curses_library == 'curses':
+             if (self.compiler.find_library_file(lib_dirs, 'terminfo')):
                  curses_libs = ['curses', 'terminfo']
-             elif (self.compiler_obj.find_library_file(lib_dirs, 'termcap')):
-@@ -1194,13 +1052,8 @@
+             elif (self.compiler.find_library_file(lib_dirs, 'termcap')):
+@@ -1286,13 +1138,8 @@
                      break
              if version >= version_req:
-                 if (self.compiler_obj.find_library_file(lib_dirs, 'z')):
+                 if (self.compiler.find_library_file(lib_dirs, 'z')):
 -                    if sys.platform == "darwin":
 -                        zlib_extra_link_args = ('-Wl,-search_paths_first',)
 -                    else:
@@ -264,7 +269,7 @@ http://bugs.python.org/issue7713
                      have_zlib = True
                  else:
                      missing.append('zlib')
-@@ -1214,7 +1067,7 @@
+@@ -1306,7 +1153,7 @@
          if have_zlib:
              extra_compile_args = ['-DUSE_ZLIB_CRC32']
              libraries = ['z']
@@ -273,10 +278,10 @@ http://bugs.python.org/issue7713
          else:
              extra_compile_args = []
              libraries = []
-@@ -1226,10 +1079,7 @@
+@@ -1318,10 +1165,7 @@
  
          # Gustavo Niemeyer's bz2 module.
-         if (self.compiler_obj.find_library_file(lib_dirs, 'bz2')):
+         if (self.compiler.find_library_file(lib_dirs, 'bz2')):
 -            if sys.platform == "darwin":
 -                bz2_extra_link_args = ('-Wl,-search_paths_first',)
 -            else:
@@ -285,7 +290,26 @@ http://bugs.python.org/issue7713
              exts.append( Extension('bz2', ['bz2module.c'],
                                     libraries = ['bz2'],
                                     extra_link_args = bz2_extra_link_args) )
-@@ -1578,9 +1428,6 @@
+@@ -1416,17 +1416,7 @@
+             for name in CARBON_EXTS:
+                 addMacExtension(name, carbon_kwds)
+ 
+-            # Workaround for a bug in the version of gcc shipped with Xcode 3.
+-            # The _Win extension should build just like the other Carbon extensions, but
+-            # this actually results in a hard crash of the linker.
+-            #
+-            if '-arch ppc64' in cflags and '-arch ppc' in cflags:
+-                win_kwds = {'extra_compile_args': carbon_extra_compile_args + ['-arch', 'i386', '-arch', 'ppc'],
+-                               'extra_link_args': ['-framework', 'Carbon', '-arch', 'i386', '-arch', 'ppc'],
+-                           }
+-                addMacExtension('_Win', win_kwds)
+-            else:
+-                addMacExtension('_Win', carbon_kwds)
++            addMacExtension('_Win', carbon_kwds)
+ 
+ 
+             # Application Services & QuickTime
+@@ -1684,9 +1528,6 @@
          # AquaTk is a separate method. Only one Tkinter will be built on
          # Darwin - either AquaTk, if it is found, or X11 based Tk.
          platform = self.get_platform()
@@ -295,7 +319,7 @@ http://bugs.python.org/issue7713
  
          # Assume we haven't found any of the libraries or include files
          # The versions with dots are used on Unix, and the versions without
-@@ -1626,22 +1473,6 @@
+@@ -1732,22 +1573,6 @@
              if dir not in include_dirs:
                  include_dirs.append(dir)
  
@@ -318,7 +342,17 @@ http://bugs.python.org/issue7713
          # If Cygwin, then verify that X is installed before proceeding
          if platform == 'cygwin':
              x11_inc = find_file('X11/Xlib.h', [], include_dirs)
-@@ -1812,11 +1643,6 @@
+@@ -1653,9 +1653,6 @@
+ 
+     def configure_ctypes(self, ext):
+         if not self.use_system_libffi:
+-            if sys.platform == 'darwin':
+-                return self.configure_ctypes_darwin(ext)
+-
+             srcdir = sysconfig.get_config_var('srcdir')
+             ffi_builddir = os.path.join(self.build_temp, 'libffi')
+             ffi_srcdir = os.path.abspath(os.path.join(srcdir, 'Modules',
+@@ -1920,11 +1745,6 @@
          if not '--with-system-ffi' in sysconfig.get_config_var("CONFIG_ARGS"):
              return
  
@@ -328,5 +362,5 @@ http://bugs.python.org/issue7713
 -            inc_dirs.append('/usr/include/ffi')
 -
          ffi_inc = [sysconfig.get_config_var("LIBFFI_INCLUDEDIR")]
-         if not ffi_inc:
+         if not ffi_inc or ffi_inc[0] == '':
              ffi_inc = find_file('ffi.h', [], inc_dirs)
