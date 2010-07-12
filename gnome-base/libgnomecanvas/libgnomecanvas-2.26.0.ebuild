@@ -32,6 +32,7 @@ src_unpack() {
 
 	# eautreconf requires a gtkdocize ran before it, otherwise the variable
 	# $GTKDOC_REBASE is not set in the Makefiles and causes failure.
+	# see also bug #280812
 	gtkdocize
 
 	eautoreconf # need new libtool for interix
