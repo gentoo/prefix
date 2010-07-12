@@ -42,7 +42,7 @@ pkg_setup() {
 	xorg-2_pkg_setup
 	CONFIGURE_OPTIONS="$(use_enable doc specs) $(use_enable ipv6)
 		$(use_with xcb)
-		$([[ ${CHOST} == *-darwin} ]] && echo "--with-launchd=/sbin/launchd")"
+		$([[ ${CHOST} == *-darwin* ]] && echo "--with-launchd")"
 	# xorg really doesn't like xlocale disabled.
 	# $(use_enable nls xlocale)
 }
