@@ -30,7 +30,7 @@ pkg_setup() {
 	CONFIGURE_OPTIONS="$(use_enable doc build-docs)
 		$(use_enable selinux)
 		--enable-xinput
-		$([[ ${CHOST} == *-darwin* ]] && echo "--with-launchd=/sbin/launchd")"
+		$([[ ${CHOST} == *-darwin* ]] && echo "--with-launchd")"
 }
 
 src_prepare() {
