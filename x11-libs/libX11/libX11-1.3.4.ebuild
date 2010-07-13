@@ -43,6 +43,7 @@ pkg_setup() {
 	CONFIGURE_OPTIONS="$(use_enable doc specs) $(use_enable ipv6)
 		$(use_with xcb)
 		$([[ ${CHOST} == *-darwin* ]] && echo "--with-launchd")"
+	# launchd: bug #326521, remove next release (see upstream bug)
 	# xorg really doesn't like xlocale disabled.
 	# $(use_enable nls xlocale)
 }
