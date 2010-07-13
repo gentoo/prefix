@@ -167,6 +167,7 @@ app-portage/eclass-manpages
 app-portage/eix
 app-portage/elogv
 app-portage/gentoolkit-dev
+app-portage/prefix-chain-setup
 app-shells/bash-completion
 app-shells/dsh
 app-shells/fish
@@ -734,6 +735,7 @@ sys-apps/ren
 sys-apps/rename
 sys-apps/ucspi-tcp
 sys-apps/which
+sys-apps/prefix-chain-utils
 sys-devel/autoconf-archive
 sys-devel/autoconf-wrapper
 sys-devel/automake-wrapper
