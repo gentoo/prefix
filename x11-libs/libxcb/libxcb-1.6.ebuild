@@ -31,6 +31,7 @@ pkg_setup() {
 		$(use_enable selinux)
 		--enable-xinput
 		$([[ ${CHOST} == *-darwin* ]] && echo "--with-launchd")"
+	# launchd: bug #326521, remove next release (see upstream bug)
 }
 
 src_prepare() {
