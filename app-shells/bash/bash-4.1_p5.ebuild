@@ -38,14 +38,13 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)
 LICENSE="GPL-3"
 SLOT="0"
 
-IUSE="afs bashlogger examples i6fork +net nls plugins vanilla"
+IUSE="afs bashlogger examples +net nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2
 	nls? ( virtual/libintl )"
 RDEPEND="${DEPEND}
 	!<sys-apps/portage-2.1.7.16
-	!<sys-apps/paludis-0.26.0_alpha5
-	i6fork? ( sys-libs/i6fork )"
+	!<sys-apps/paludis-0.26.0_alpha5"
 
 S=${WORKDIR}/${MY_P}
 
@@ -169,10 +168,6 @@ src_compile() {
 		# argh... something doomed this test on windows ... ???
 		export bash_cv_type_intmax_t=yes
 		export bash_cv_type_uintmax_t=yes
-	fi
-
-	if use i6fork; then
-		append-libs -li6fork
 	fi
 
 	econf \
