@@ -135,11 +135,11 @@ http://bugs.python.org/issue7717
      item = (ITEM *)mmap(NULL,
                          count * sizeof(ITEM),
                          PROT_READ | PROT_WRITE | PROT_EXEC,
-                         MAP_PRIVATE | MAP_ANONYMOUS,
+-                        MAP_PRIVATE | MAP_ANONYMOUS,
 -                        -1,
--                        0);
 +                        flags,
 +                        devzero);
+                         0);
 +    if (devzero != -1)
 +        close(devzero);
      if (item == (void *)MAP_FAILED)

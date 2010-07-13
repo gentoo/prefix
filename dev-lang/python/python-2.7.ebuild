@@ -139,8 +139,7 @@ src_prepare() {
 	# grep anyway
 	epatch "${FILESDIR}"/${PN}-2.5.1-no-hardcoded-grep.patch
 	# make it compile on IRIX as well
-# this one makes import ctypes segfault under Darwin!  Bug #328089
-#	epatch "${FILESDIR}"/${PN}-2.7-irix.patch
+	epatch "${FILESDIR}"/${PN}-2.7-irix.patch
 	# and generate a libpython2.6.so
 	epatch "${FILESDIR}"/${PN}-2.6-irix-libpython2.6.patch
 	# AIX sometimes keeps ".nfsXXX" files around: ignore them in distutils
