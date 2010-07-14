@@ -40,7 +40,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux"
 #KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
-IUSE="afs bashlogger examples +net nls plugins vanilla"
+IUSE="afs bashlogger examples mem-scramble +net nls plugins vanilla"
 
 DEPEND=">=sys-libs/ncurses-5.2-r2
 	nls? ( virtual/libintl )"
@@ -95,7 +95,7 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-4.0-interix-access.patch
 		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
 	fi
-	
+
 	# Nasty trick to set bashbug's shebang to bash instead of sh. We don't have
 	# sh while bootstrapping for the first time, This works around bug 309825
 	sed -i -e '1s:sh:bash:' support/bashbug.sh || die
