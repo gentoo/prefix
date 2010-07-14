@@ -1,0 +1,131 @@
+--- python-updater.orig2	2010-01-29 11:07:30.000000000 -0600
++++ python-updater	2010-07-14 08:46:30.000000000 -0500
+@@ -24,7 +24,7 @@
+ OLD_PYTHON_VERSIONS=""
+ OLD_PYTHON2_VERSIONS=""
+ OLD_PYTHON3_VERSIONS=""
+-NEW_PYTHON_VERSION="$(/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
++NEW_PYTHON_VERSION="$(@GENTOO_PORTAGE_EPREFIX@/usr/bin/python -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
+ NEW_PYTHON2_VERSION=""
+ NEW_PYTHON3_VERSION=""
+ 
+@@ -58,10 +58,10 @@
+ # load the gentoo-style info macros, but hack to get around
+ # it thinking this is an rc script
+ EBUILD="1"
+-source /etc/init.d/functions.sh
++source "@GENTOO_PORTAGE_EPREFIX@"/etc/init.d/functions.sh
+ 
+ # portage variables
+-PKG_DBDIR=/var/db/pkg
++PKG_DBDIR="@GENTOO_PORTAGE_EPREFIX@"/var/db/pkg
+ 
+ # usage()
+ # display usage
+@@ -130,7 +130,7 @@
+ # has_version(cpv)
+ has_version() {
+     if [[ "${PMS_COMMAND[${PMS_INDEX}]}" == "emerge" ]]; then
+-        /usr/bin/portageq has_version / "${1}"
++        "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq has_version / "${1}"
+     elif [[ "${PMS_COMMAND[${PMS_INDEX}]}" == "pmerge" ]]; then
+         pquery --vdb "${1}"
+     else
+@@ -167,7 +167,7 @@
+ get_USE_PYTHON() {
+     if [[ "${PMS_COMMAND[${PMS_INDEX}]}" =~ ^(emerge|pmerge)$ ]]; then
+         if [[ -z "${USE_PYTHON}" ]]; then
+-            USE_PYTHON="$(/usr/bin/portageq envvar USE_PYTHON)"
++            USE_PYTHON="$("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq envvar USE_PYTHON)"
+         fi
+     else
+         USE_PYTHON="$(paludis --environment-variable "${1}/${2}${3:+:}${3}::/?" USE_PYTHON)"
+@@ -183,7 +183,7 @@
+ # get_ebuild_path(CATEGORY, PN, SLOT)
+ get_ebuild_path() {
+     # These manual calls to Portage API are 2 times faster than 'portageq get_repo_path / "$(portageq metadata / ebuild "$(portageq best_visible / "${1}")" repository)"'.
+-    /usr/bin/python -c "
++    "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python -c "
+ import sys
+ 
+ if '' in sys.path:
+@@ -354,16 +354,16 @@
+ done
+ 
+ if has_version "=dev-lang/python-2*"; then
+-    if [[ "$(readlink /usr/bin/python2)" != "python2."* ]]; then
+-        die "'/usr/bin/python2' is not valid symlink"
++    if [[ "$(readlink "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python2)" != "python2."* ]]; then
++        die "'"@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python2' is not valid symlink"
+     fi
+-    NEW_PYTHON2_VERSION="$(/usr/bin/python2 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
++    NEW_PYTHON2_VERSION="$("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python2 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
+ fi
+ if has_version "=dev-lang/python-3*"; then
+-    if [[ "$(readlink /usr/bin/python3)" != "python3."* ]]; then
+-        die "'/usr/bin/python3' is not valid symlink"
++    if [[ "$(readlink "@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python3)" != "python3."* ]]; then
++        die "'"@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python3' is not valid symlink"
+     fi
+-    NEW_PYTHON3_VERSION="$(/usr/bin/python3 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
++    NEW_PYTHON3_VERSION="$("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/python3 -c 'from sys import version_info; print(".".join([str(x) for x in version_info[:2]]))')"
+ fi
+ if [[ -z "${NEW_PYTHON2_VERSION}" && -z "${NEW_PYTHON3_VERSION}" ]]; then
+     die "Python 2 and Python 3 not installed"
+@@ -373,10 +373,10 @@
+ for python_version in ${PYTHON_VERSIONS}; do
+     if [[ "${python_version}" != "${NEW_PYTHON_VERSION}" ]]; then
+         OLD_PYTHON_VERSIONS+="${OLD_PYTHON_VERSIONS:+ }${python_version}"
+-        soname="$(readlink -n /usr/lib/libpython${python_version}.so)"
++        soname="$(readlink -n "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${python_version}@GENTOO_PORTAGE_LIBSUFFIX@)"
+         if [[ -z "${soname}" ]]; then
+             # Use relatively safe, default value.
+-            soname="libpython${python_version}.so.1.0"
++            soname="libpython${python_version}@GENTOO_PORTAGE_LIBSUFFIX@.1.0"
+         fi
+         OLD_PYTHON_SHARED_LIBRARIES_REGEX+="${OLD_PYTHON_SHARED_LIBRARIES_REGEX:+|}${soname//./\.}"
+     fi
+@@ -389,10 +389,10 @@
+ for python_version in ${PYTHON2_VERSIONS}; do
+     if [[ "${python_version}" != "${NEW_PYTHON2_VERSION}" ]]; then
+         OLD_PYTHON2_VERSIONS+="${OLD_PYTHON2_VERSIONS:+ }${python_version}"
+-        soname="$(readlink -n /usr/lib/libpython${python_version}.so)"
++        soname="$(readlink -n /usr/lib/libpython${python_version}@GENTOO_PORTAGE_LIBSUFFIX@)"
+         if [[ -z "${soname}" ]]; then
+             # Use relatively safe, default value.
+-            soname="libpython${python_version}.so.1.0"
++            soname="libpython${python_version}@GENTOO_PORTAGE_LIBSUFFIX@.1.0"
+         fi
+         OLD_PYTHON2_SHARED_LIBRARIES_REGEX+="${OLD_PYTHON2_SHARED_LIBRARIES_REGEX:+|}${soname//./\.}"
+     fi
+@@ -405,10 +405,10 @@
+ for python_version in ${PYTHON3_VERSIONS}; do
+     if [[ "${python_version}" != "${NEW_PYTHON3_VERSION}" ]]; then
+         OLD_PYTHON3_VERSIONS+="${OLD_PYTHON3_VERSIONS:+ }${python_version}"
+-        soname="$(readlink -n /usr/lib/libpython${python_version}.so)"
++        soname="$(readlink -n "@GENTOO_PORTAGE_EPREFIX@"/usr/lib/libpython${python_version}.so)"
+         if [[ -z "${soname}" ]]; then
+             # Use relatively safe, default value.
+-            soname="libpython${python_version}.so.1.0"
++            soname="libpython${python_version}@GENTOO_PORTAGE_LIBSUFFIX@.1.0"
+         fi
+         OLD_PYTHON3_SHARED_LIBRARIES_REGEX+="${OLD_PYTHON3_SHARED_LIBRARIES_REGEX:+|}${soname//./\.}"
+     fi
+@@ -601,7 +601,7 @@
+         # /usr/lib/python$old
+         # /usr/lib32/python$old
+         # /usr/lib64/python$old
+-        if grep -qE "/usr/(include|lib(32|64)?)/python$(get_OLD_PYTHON_VERSIONS_REGEX)" "${content}"; then
++        if grep -qE "@GENTOO_PORTAGE_EPREFIX@/usr/(include|lib(32|64)?)/python$(get_OLD_PYTHON_VERSIONS_REGEX)" "${content}"; then
+             PKGS_TO_REMERGE+=" ${CATPKGVER}"
+             eindent
+             einfo "Adding to list: ${CATPKGVER}"
+@@ -643,7 +643,7 @@
+ if [[ "${PMS_COMMAND[${PMS_INDEX}]}" == "emerge" ]] ; then
+     # Filter out --getbinpkg, --getbinpkgonly, --usepkg and --usepkgonly options in EMERGE_DEFAULT_OPTS environment variable
+     emerge_default_opts=""
+-    for option in $(/usr/bin/portageq envvar EMERGE_DEFAULT_OPTS); do
++    for option in $("@GENTOO_PORTAGE_EPREFIX@"/usr/bin/portageq envvar EMERGE_DEFAULT_OPTS); do
+         if [[ "${option}" == -[[:alnum:]]* ]]; then
+             [[ "${option//[gGkK]/}" != "-" ]] && emerge_default_opts+=" ${option//[gGkK]/}"
+         elif [[ "${option}" != "--getbinpkg" && "${option}" != "--getbinpkgonly" && "${option}" != "--usepkg" && "${option}" != "--usepkgonly" ]]; then
