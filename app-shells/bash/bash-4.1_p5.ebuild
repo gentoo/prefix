@@ -37,6 +37,8 @@ SRC_URI="mirror://gnu/bash/${MY_P}.tar.gz $(patches)
 
 LICENSE="GPL-3"
 SLOT="0"
+KEYWORDS="~amd64-linux ~x86-linux"
+#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 IUSE="afs bashlogger examples +net nls plugins vanilla"
 
