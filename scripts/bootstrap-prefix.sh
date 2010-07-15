@@ -730,6 +730,10 @@ bootstrap_bison() {
 	bootstrap_gnu bison 2.4
 }
 
+bootstrap_m4() {
+	bootstrap_gnu m4 1.4.12
+}
+
 bootstrap_gzip() {
 	bootstrap_gnu gzip 1.3.12
 }
