@@ -1,6 +1,68 @@
 # ChangeLog for net-libs/xulrunner
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.315 2010/05/31 19:24:28 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/xulrunner/ChangeLog,v 1.330 2010/07/21 13:18:52 polynomial-c Exp $
+
+  21 Jul 2010; Lars Wendler <polynomial-c@gentoo.org>
+  +files/801-enable-x86_64-tracemonkey.patch, xulrunner-1.9.2.7.ebuild:
+  Enable tracemonkey on amd64 (bug #315997)
+
+*xulrunner-1.9.2.7 (21 Jul 2010)
+
+  21 Jul 2010; Lars Wendler <polynomial-c@gentoo.org>
+  -xulrunner-1.9.2.3-r1.ebuild, +xulrunner-1.9.2.7.ebuild:
+  Version bump. Removed old.
+
+  19 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  -files/xulrunner-1.8-gcc-4.4.patch, -xulrunner-1.8.1.19.ebuild,
+  -files/xulrunner-1.8.1.19-glibc-2.10-support.patch,
+  -files/xulrunner-1.8.1.19-libpng14.patch, -files/xulrunner.conf:
+  Remove xulrunner:1.8 wrt #282162 and #324953.
+
+  18 Jul 2010; Jory A. Pratt <anarchy@gentoo.org> xulrunner-1.9.2.4.ebuild,
+  xulrunner-1.9.2.6.ebuild:
+  remove lcms dep as it should not be there
+
+  18 Jul 2010; Jory A. Pratt <anarchy@gentoo.org> xulrunner-1.9.2.6.ebuild:
+  Fix multilib gre config file bug #325889
+
+  11 Jul 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  xulrunner-1.9.2.4.ebuild, xulrunner-1.9.2.6.ebuild,
+  +files/xulrunner-1.9.2-arm-fixes.patch:
+  Add patch for ARM OS detection, bug 327783
+
+  08 Jul 2010; Brent Baude <ranger@gentoo.org> xulrunner-1.9.2.4.ebuild:
+  Marking xulrunner-1.9.2.4 ppc64 and ppc for bug 324735
+
+  02 Jul 2010; Guy Martin <gmsoft@gentoo.org> xulrunner-1.9.2.4.ebuild:
+  hppa stable, #324735
+
+*xulrunner-1.9.2.6 (27 Jun 2010)
+
+  27 Jun 2010; Lars Wendler <polynomial-c@gentoo.org>
+  +xulrunner-1.9.2.6.ebuild:
+  Version bump. Thanks to tman who reported this in bug #325817.
+
+  25 Jun 2010; Raúl Porcel <armin76@gentoo.org> xulrunner-1.9.2.4.ebuild:
+  alpha/arm/ia64/sparc stable wrt #324735
+
+  24 Jun 2010; Christoph Mende <angelos@gentoo.org>
+  xulrunner-1.9.2.4.ebuild:
+  Stable on amd64 wrt bug #324735
+
+  23 Jun 2010; Christian Faulhammer <fauli@gentoo.org>
+  xulrunner-1.9.2.4.ebuild:
+  stable x86, bug 324735
+
+*xulrunner-1.9.2.4 (22 Jun 2010)
+
+  22 Jun 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  +xulrunner-1.9.2.4.ebuild, metadata.xml:
+  Bump to .4, fixes several security issues, stability issues, and adds
+  support for out-of-process plugins (USE=+ipc)
+
+  21 Jun 2010; Samuli Suominen <ssuominen@gentoo.org>
+  xulrunner-1.9.2.3-r1.ebuild:
+  Restrict media-libs/lcms depend to old version.
 
   31 May 2010; Joseph Jezak <josejx@gentoo.org> xulrunner-1.9.2.3-r1.ebuild:
   Marked ppc/ppc64 stable for bug #314025.
