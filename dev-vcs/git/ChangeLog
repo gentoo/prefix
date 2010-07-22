@@ -1,6 +1,12 @@
 # ChangeLog for dev-vcs/git
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/ChangeLog,v 1.15 2010/06/30 00:15:58 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/git/ChangeLog,v 1.17 2010/07/18 16:53:48 armin76 Exp $
+
+  18 Jul 2010; Raúl Porcel <armin76@gentoo.org> git-1.7.1-r1.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #321899
+
+  18 Jul 2010; <nixnut@gentoo.org> git-1.7.0.ebuild:
+  ppc stable #321899
 
 *git-1.7.1.1 (30 Jun 2010)
 
