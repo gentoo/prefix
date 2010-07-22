@@ -26,7 +26,6 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
 	epatch "${FILESDIR}"/${PN}-1.0.5-soldflags.patch # for AIX, HP-UX
 	epatch "${FILESDIR}"/${PN}-1.0.5-checkenv.patch # for AIX, Darwin?
-	epatch "${FILESDIR}"/${PN}-1.0.5-aix.patch # for AIX, needs checkenv, soldflags.
 	epatch "${FILESDIR}"/${PN}-1.0.4-prefix.patch
 	eprefixify bz{diff,grep,more}
 	sed -i -e 's:\$(PREFIX)/man:\$(PREFIX)/share/man:g' Makefile || die "sed manpath"
@@ -74,7 +73,7 @@ src_compile() {
 		*-aix*)
 			# AIX has shared object libbz2.so.1 inside libbz2.a.
 			# We build libbz2.a here to avoid static-only libbz2.a below.
-			emake "${makeopts[@]}" SOLDFLAGS=-shared -f Makefile-libbz2_so all-aix || die "Make failed libbz2"
+			emake "${makeopts[@]}" SOLDFLAGS=-shared -f Makefile-libbz2_so all || die "Make failed libbz2"
 			checkopts="TESTENV=LIBPATH=."
 		;;
 		*)
