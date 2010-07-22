@@ -459,6 +459,7 @@ dev-vcs/cvsd
 dev-vcs/cvsps
 dev-vcs/darcs
 dev-vcs/giggle
+dev-vcs/git
 dev-vcs/gitosis
 dev-vcs/gitosis-gentoo
 dev-vcs/hg-git
