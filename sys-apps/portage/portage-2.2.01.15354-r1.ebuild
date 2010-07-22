@@ -83,6 +83,8 @@ src_unpack() {
 	epatch "${FILESDIR}"/portage-2.2.00.15842-configshell.patch #308835
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
+
+	epatch "${FILESDIR}"/0001-emerge-webrsync-Redundant-Mirroring.patch
 }
 
 src_compile() {

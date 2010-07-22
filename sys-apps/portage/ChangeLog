@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.15354-r1 (22 Jul 2010)
+
+  22 Jul 2010; Jeremy Olexa <darkside@gentoo.org>
+  +files/0001-emerge-webrsync-Redundant-Mirroring.patch,
+  +portage-2.2.01.15354-r1.ebuild:
+  Add emerge-webrsync patch to use a redundant mirror
+
 *portage-2.2.01.15354 (07 Jul 2010)
 
   07 Jul 2010; Fabian Groffen <grobian@gentoo.org>

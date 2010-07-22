@@ -1,0 +1,27 @@
+From 66aeb4a2ff94e740a4fe5c0c699effab95a6e88a Mon Sep 17 00:00:00 2001
+From: Jeremy Olexa <darkside@gentoo.org>
+Date: Thu, 22 Jul 2010 10:10:46 -0500
+Subject: [PATCH] emerge-webrsync: Redundant Mirroring
+
+Since prefix.gentooexperimental.org went down, add in my personal
+mirror for users to abuse just the same.
+---
+ bin/emerge-webrsync |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/bin/emerge-webrsync b/bin/emerge-webrsync
+index 2cd3efc..a69e0b2 100755
+--- a/bin/emerge-webrsync
++++ b/bin/emerge-webrsync
+@@ -41,7 +41,7 @@ export http_proxy ftp_proxy
+ 
+ # PREFIX HACK: use Prefix servers, just because we want this and infra
+ # just can't support us yet
+-GENTOO_MIRRORS=http://prefix.gentooexperimental.org
++GENTOO_MIRRORS="http://prefix.gentooexperimental.org http://prefix.jolexa.net"
+ 
+ # If PORTAGE_NICENESS is overriden via the env then it will
+ # still pass through the portageq call and override properly.
+-- 
+1.7.1.1
+
