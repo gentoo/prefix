@@ -41,6 +41,7 @@ app-admin/eselect-oodict
 app-admin/eselect-unison
 app-admin/eselect-vi
 app-admin/gamin
+app-admin/lsyncd
 app-admin/makepasswd
 app-admin/passook
 app-admin/pwgen
