@@ -694,6 +694,7 @@ net-libs/openmq-cclient
 net-libs/openslp
 net-libs/ortp
 net-libs/webkit-gtk
+net-libs/xulrunner
 net-mail/getmail
 net-mail/mairix
 net-mail/mlmmj
@@ -757,6 +758,7 @@ www-apps/scgi
 www-client/conkeror
 www-client/httrack
 www-client/links
+www-client/mozilla-firefox
 www-client/pybugz
 www-misc/htdig
 www-servers/mongrel
