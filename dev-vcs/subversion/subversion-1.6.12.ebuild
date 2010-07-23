@@ -193,7 +193,7 @@ src_prepare() {
 	epatch "${FILESDIR}/${PN}-1.6.3-kwallet_window.patch"
 	chmod +x build/transform_libtool_scripts.sh || die "chmod failed"
 
-	sed -i -e '1c\#!'"${EPREFIX}"'/bin/sh' build/transform_libtool_scripts.sh || die "/bin/sh is not POSIX shell!"
+	sed -i -e '1c\#!/usr/bin/env sh' build/transform_libtool_scripts.sh || die "/bin/sh is not POSIX shell!"
 	epatch "${FILESDIR}"/${PN}-1.5.4-interix.patch
 	epatch "${FILESDIR}"/${PN}-1.5.6-aix-dso.patch
 	epatch "${FILESDIR}"/${PN}-1.6.3-hpux-dso.patch
@@ -260,7 +260,7 @@ src_configure() {
 		$(use_with kde kwallet) \
 		$(use_enable nls) \
 		$(use_with sasl) \
-		$(use_with webdav-neon neon ${EPREFIX}/usr) \
+		$(use_with webdav-neon ) \
 		$(use_with webdav-serf serf ${EPREFIX}/usr) \
 		${myconf} \
 		--with-apr="${EPREFIX}"/usr/bin/apr-1-config \
