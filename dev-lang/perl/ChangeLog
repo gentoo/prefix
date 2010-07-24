@@ -1,6 +1,20 @@
 # ChangeLog for dev-lang/perl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.316 2010/03/31 18:49:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/perl/ChangeLog,v 1.319 2010/07/20 07:01:42 tove Exp $
+
+*perl-5.12.1-r1 (20 Jul 2010)
+
+  20 Jul 2010; Torsten Veller <tove@gentoo.org> +perl-5.12.1-r1.ebuild:
+  Bump patchset. Fixes #329021 - Unquoted string "c" may clash with future
+  reserved word
+
+  15 Jul 2010; Torsten Veller <tove@gentoo.org> perl-5.12.1.ebuild:
+  Raise perl-cleaner version
+
+*perl-5.12.1 (19 Jun 2010)
+
+  19 Jun 2010; Torsten Veller <tove@gentoo.org> +perl-5.12.1.ebuild:
+  Version bump
 
   31 Mar 2010; Raúl Porcel <armin76@gentoo.org> perl-5.8.8-r8.ebuild,
   perl-5.10.1.ebuild:
