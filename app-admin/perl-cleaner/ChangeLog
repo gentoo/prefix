@@ -1,6 +1,15 @@
 # ChangeLog for app-admin/perl-cleaner
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.59 2010/02/16 22:20:58 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/ChangeLog,v 1.60 2010/07/14 06:06:08 tove Exp $
+
+*perl-cleaner-2.2 (14 Jul 2010)
+
+  14 Jul 2010; Torsten Veller <tove@gentoo.org> +perl-cleaner-2.2.ebuild:
+  Version bump. Cleanup
+  Create a smaller set of perl header files *.ph and move them to archlibexp
+  for perl-5.12. Fixes bugs #177833, #292985
+  Fix typo (#315469). Thanks to J.C. Wren.
+
 
 *perl-cleaner-2.0 (16 Feb 2010)
 

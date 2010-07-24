@@ -1,12 +1,13 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/perl-cleaner-2_pre091007.ebuild,v 1.1 2009/10/07 09:29:50 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/perl-cleaner/perl-cleaner-2.2.ebuild,v 1.1 2010/07/14 06:06:08 tove Exp $
 
 inherit eutils prefix
 
 DESCRIPTION="User land tool for cleaning up old perl installs"
 HOMEPAGE="http://www.gentoo.org/proj/en/perl/"
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI="mirror://gentoo/${P}.tar.bz2
+	http://dev.gentoo.org/~tove/files/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -20,7 +21,7 @@ RDEPEND="${DEPEND}
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2_pre090920-prefix.patch
+	epatch "${FILESDIR}"/${PN}-2.2-prefix.patch
 	eprefixify perl-cleaner
 }
 

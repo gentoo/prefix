@@ -1,0 +1,83 @@
+--- perl-cleaner-2.2.orig/perl-cleaner
++++ perl-cleaner-2.2/perl-cleaner
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@GENTOO_PORTAGE_EPREFIX@/bin/bash
+ # vim: set et sw=4 sts=4 tw=80:
+ # Copyright 2005-2009 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+@@ -26,10 +26,10 @@ PKGS_TO_REMERGE=""
+ PKGS_EXCEPTIONS="dev-lang/perl sys-devel/libperl app-emulation/emul-linux-x86-baselibs"
+ PKGS_MANUAL=""
+ 
+-PKG_DBDIR=/var/db/pkg
++PKG_DBDIR=@GENTOO_PORTAGE_EPREFIX@/var/db/pkg
+ 
+-. /etc/init.d/functions.sh || {
+-    echo "$0: Could not source /etc/init.d/functions.sh!"
++. @GENTOO_PORTAGE_EPREFIX@/etc/init.d/functions.sh || {
++    echo "$0: Could not source @GENTOO_PORTAGE_EPREFIX@/etc/init.d/functions.sh!"
+     exit 1
+ }
+ 
+@@ -105,13 +105,13 @@ ph_update() {
+         einfo "Pretend. Nothing to do."
+         return
+     fi
+-    cd /usr/include
++    cd @GENTOO_PORTAGE_EPREFIX@/usr/include
+     if [[ ${version} =~ ^5.(8|10) ]] ; then
+         eindent
+-        veinfo 1 "...in /usr/include"
++        veinfo 1 "...in @GENTOO_PORTAGE_EPREFIX@/usr/include"
+         h2ph ${option} * 2>/dev/null
+         for dir in sys arpa netinet bits security asm gnu linux ; do
+-            veinfo 1 "...in /usr/include/$dir/"
++            veinfo 1 "...in @GENTOO_PORTAGE_EPREFIX@/usr/include/$dir/"
+             h2ph ${option} -r $dir/*
+         done
+         eoutdent
+@@ -147,7 +147,11 @@ update_packages(){
+             ewarn "--libperl is disbled."
+             LIBPERL=false
+         else
+-            SONAME="$(scanelf -qBS $(readlink -f /usr/lib/libperl.so ) | awk '{ print $1 }')"
++            if [[ $(uname) == "Darwin" ]]; then
++                SONAME="$(scanmacho -qBS $(readlink -f @GENTOO_PORTAGE_EPREFIX@/usr/lib/libperl.dylib ) | awk '{ print $1 }')"
++            else
++                SONAME="$(scanelf -qBS $(readlink -f @GENTOO_PORTAGE_EPREFIX@/usr/lib/libperl.so ) | awk '{ print $1 }')"
++            fi
+             veinfo 3 SONAME="${SONAME}"
+         fi
+     fi
+@@ -202,7 +206,7 @@ update_packages(){
+ #        fi
+ 
+         if ${MODULES} ; then
+-            for file in $(grep -Ee "^obj /usr/(share|lib(32|64)?)/perl5" ${content} | cut -d' ' -f2 ) ; do
++            for file in $(grep -Ee "^obj @GENTOO_PORTAGE_EPREFIX@/usr/(share|lib(32|64)?)/perl5" ${content} | cut -d' ' -f2 ) ; do
+                 if ${FORCE} || outdated_path "${file}" ; then
+                     PKGS_TO_REMERGE+=" ${CATPKGVER}"
+                     exception=3
+@@ -232,7 +236,11 @@ update_packages(){
+ 
+         if ${LIBPERL} ; then
+             # We assume the broken libs have all bin or lib in their path
+-            broken_libs="$(scanelf -qBn < <(awk '/^obj [^ ]*\/(s?bin|lib(32|64)?)\// && ! /^obj [^ ]*\/usr\/lib\/debug\//{ print $2 }' ${content} ) | grep -o 'libperl\.so\.[0-9.]*' | sort | uniq )"
++            if [[ $(uname) == "Darwin" ]]; then
++                broken_libs="$(scanmacho -qBn < <(awk '/^obj [^ ]*\/(s?bin|lib(32|64)?)\// && ! /^obj [^ ]*\/usr\/lib\/debug\//{ print $2 }' ${content} ) | grep -o 'libperl\.[0-9.]*\.dylib' | sort | uniq )"
++            else
++                broken_libs="$(scanelf -qBn < <(awk '/^obj [^ ]*\/(s?bin|lib(32|64)?)\// && ! /^obj [^ ]*\/usr\/lib\/debug\//{ print $2 }' ${content} ) | grep -o 'libperl\.so\.[0-9.]*' | sort | uniq )"
++            fi
+             if [[ -n "${broken_libs}" ]] ; then
+                 if ${FORCE} || [[ ${broken_libs} != ${SONAME} ]] ; then
+                     PKGS_TO_REMERGE+=" ${CATPKGVER}"
+@@ -257,7 +265,7 @@ update_packages(){
+         exit $?
+     fi
+ 
+-    if [[ ${PMS_COMMAND[${PMS_INDEX}]} == emerge && -x /usr/bin/portageq ]] ; then
++    if [[ ${PMS_COMMAND[${PMS_INDEX}]} == emerge && -x @GENTOO_PORTAGE_EPREFIX@/usr/bin/portageq ]] ; then
+         # Filter out --getbinpkg, --getbinpkgonly, --usepkg and --usepkgonly options in EMERGE_DEFAULT_OPTS
+         emerge_default_opts=""
+         for option in $(portageq envvar EMERGE_DEFAULT_OPTS ) ; do
