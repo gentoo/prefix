@@ -758,7 +758,7 @@ www-apps/scgi
 www-client/conkeror
 www-client/httrack
 www-client/links
-www-client/mozilla-firefox
+www-client/firefox
 www-client/pybugz
 www-misc/htdig
 www-servers/mongrel
