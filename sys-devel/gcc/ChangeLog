@@ -1,6 +1,64 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.752 2010/05/09 11:26:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.766 2010/07/21 17:22:37 halcy0n Exp $
+
+  21 Jul 2010; Mark Loeser <halcy0n@gentoo.org> gcc-4.5.0.ebuild:
+  Bump patchset for bug #317579
+
+  18 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> gcc-4.4.3-r2.ebuild:
+  ppc64 stable wrt #302468
+
+  28 Jun 2010; Jeroen Roovers <jer@gentoo.org> gcc-4.4.4-r1.ebuild:
+  Marked ~hppa after setting STAGE1_CFLAGS to something sane.
+
+  27 Jun 2010; Ryan Hill <dirtyepic@gentoo.org> gcc-4.5.0.ebuild:
+  Bump patchset. This release fixes the following bugs:
+
+    #317187 - Wrong code w/ -foptimize-sibling-calls (enabled at -O2)
+    #317269 - Link shared libs to libc on FreeBSD
+    #317513 - Core i? CPUs misdetected as Atom with -march=native
+    #317755 - Bootstrap failure with -march=atom
+
+  21 Jun 2010; Magnus Granberg <zorry@gentoo.org> gcc-4.5.0.ebuild:
+  Add hardened support #318171
+
+*gcc-4.4.4-r1 (19 Jun 2010)
+*gcc-4.4.3-r3 (19 Jun 2010)
+
+  19 Jun 2010; Magnus Granberg <zorry@gentoo.org> +gcc-4.4.3-r3.ebuild,
+  +gcc-4.4.4-r1.ebuild:
+  bump for adding hardened support #318171
+
+  17 Jun 2010; Magnus Granberg <zorry@gentoo.org> gcc-4.3.5.ebuild:
+  fix typo in *_STABLE so we don't use hardened_gcc_check_unsupported
+
+  13 Jun 2010; Raúl Porcel <armin76@gentoo.org> gcc-4.4.3-r2.ebuild:
+  alpha/ia64/sh stable wrt #302468
+
+  10 Jun 2010; Markus Meier <maekke@gentoo.org> gcc-4.4.3-r2.ebuild:
+  arm stable, bug #302468
+
+*gcc-4.4.4 (10 Jun 2010)
+
+  10 Jun 2010; Mike Frysinger <vapier@gentoo.org> +gcc-4.4.4.ebuild:
+  Version bump #318075 by Richard. This release includes fixes for #281907
+  by Patrick Lauer and for #313009 by Julien Etienne. Backports from
+  upstream are included for #317211 by Javier Villavicencio, #317335 by
+  Alexis Ballier, and #322031 by Nico Baggus.
+
+*gcc-4.3.5 (10 Jun 2010)
+
+  10 Jun 2010; Mike Frysinger <vapier@gentoo.org> +gcc-4.3.5.ebuild:
+  Version bump.
+
+  04 Jun 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> gcc-4.4.3-r2.ebuild:
+  x86 stable wrt bug #302468
+
+  25 May 2010; Markos Chandras <hwoarang@gentoo.org> gcc-4.4.3-r2.ebuild:
+  Stable on amd64 wrt bug #302468
+
+  17 May 2010; Mark Loeser <halcy0n@gentoo.org> gcc-4.5.0.ebuild:
+  Bump patchset to fix bug #317217
 
   09 May 2010; Raúl Porcel <armin76@gentoo.org> gcc-4.4.3-r2.ebuild:
   Add ~sh
