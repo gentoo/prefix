@@ -75,7 +75,6 @@ src_compile() {
 	use perl || myconf="${myconf} --with-perl=no"
 
 	if use python ; then
-		python_version
 		myconf="${myconf} --with-py=${EPREFIX}/usr --with-pyincl=${EPREFIX}$(python_get_includedir)"
 	else
 		myconf="${myconf} --with-py=no"

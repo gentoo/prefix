@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.2_p8.ebuild,v 1.11 2009/09/30 09:47:59 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/pdflib/pdflib-7.0.2_p8.ebuild,v 1.12 2010/05/28 18:05:21 arfrever Exp $
 
 EAPI=1
 
@@ -74,8 +74,7 @@ src_compile() {
 	use perl || myconf="${myconf} --with-perl=no"
 
 	if use python ; then
-		python_version
-		myconf="${myconf} --with-py=${EPREFIX}/usr --with-pyincl=${EPREFIX}/usr/include/python${PYVER}"
+		myconf="${myconf} --with-py=${EPREFIX}/usr --with-pyincl=${EPREFIX}$(python_get_includedir)"
 	else
 		myconf="${myconf} --with-py=no"
 	fi
@@ -119,8 +118,7 @@ src_install() {
 
 	# this should create the correct lib dirs for perl and python.
 	if use python ; then
-		python_version
-		dodir /usr/$(get_libdir)/python${PYVER}/lib-dynload
+		dodir $(python_get_libdir)/lib-dynload
 	fi
 	if use perl ; then
 		perlinfo
