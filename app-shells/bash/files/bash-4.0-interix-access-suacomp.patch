@@ -1,0 +1,50 @@
+diff -ru -x '*.Po' -x '*.Plo' bash-4.0.orig/lib/readline/complete.c bash-4.0/lib/readline/complete.c
+--- bash-4.0.orig/lib/readline/complete.c	2009-08-25 10:57:39 +0200
++++ bash-4.0/lib/readline/complete.c	2009-08-25 11:35:09 +0200
+@@ -52,6 +52,10 @@
+ #include <pwd.h>
+ #endif
+ 
++/* can't include externs.h here - so directly define this one. this
++ * is required to fix interix access() which behaves totally stupid */
++extern int sh_eaccess(char*,int);
++
+ #include "posixdir.h"
+ #include "posixstat.h"
+ 
+@@ -554,7 +558,7 @@
+ #endif
+   else if (S_ISREG (finfo.st_mode))
+     {
+-      if (access (filename, X_OK) == 0)
++      if (sh_eaccess (filename, X_OK) == 0)
+ 	character = '*';
+     }
+   return (character);
+diff -ru -x '*.Po' -x '*.Plo' bash-4.0.orig/lib/sh/eaccess.c bash-4.0/lib/sh/eaccess.c
+--- bash-4.0.orig/lib/sh/eaccess.c	2009-08-25 10:57:40 +0200
++++ bash-4.0/lib/sh/eaccess.c	2009-08-25 16:34:38 +0200
+@@ -203,7 +203,7 @@
+ 
+ #if defined (HAVE_EACCESS)		/* FreeBSD */
+   return (eaccess (path, mode));
+-#elif defined (EFF_ONLY_OK)		/* SVR4(?), SVR4.2 */
++#elif defined (EFF_ONLY_OK) && !defined(__INTERIX)	/* SVR4(?), SVR4.2 */
+   return access (path, mode|EFF_ONLY_OK);
+ #else
+   if (mode == F_OK)
+@@ -214,8 +214,13 @@
+     return (sh_euidaccess (path, mode));
+ #  endif
+ 
++/* on interix, use stataccess always, since access on interix behaves bad:
++ * whenever a process has appropriate priviledges (speaking in windows terms),
++ * success is reported, even if the bits are not set. */
++#ifndef __INTERIX
+   if (current_user.uid == current_user.euid && current_user.gid == current_user.egid)
+     return (access (path, mode));  
++#endif
+ 
+   return (sh_stataccess (path, mode));
+ #endif
+

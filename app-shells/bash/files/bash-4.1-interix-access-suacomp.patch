@@ -1,0 +1,40 @@
+diff -ru bash-4.1.orig/lib/readline/complete.c bash-4.1/lib/readline/complete.c
+--- bash-4.1.orig/lib/readline/complete.c	2010-07-26 15:05:13 +0200
++++ bash-4.1/lib/readline/complete.c	2010-07-26 15:10:34 +0200
+@@ -52,6 +52,10 @@
+ #include <pwd.h>
+ #endif
+ 
++/* can't include externs.h here - so directly define this one. this
++ * is required to fix interix access() which behaves totally stupid */
++extern int sh_eaccess(char*,int);
++
+ #include "posixdir.h"
+ #include "posixstat.h"
+ 
+@@ -571,7 +575,7 @@
+ #endif
+   else if (S_ISREG (finfo.st_mode))
+     {
+-      if (access (filename, X_OK) == 0)
++      if (sh_eaccess (filename, X_OK) == 0)
+ 	character = '*';
+     }
+   return (character);
+diff -ru bash-4.1.orig/lib/sh/eaccess.c bash-4.1/lib/sh/eaccess.c
+--- bash-4.1.orig/lib/sh/eaccess.c	2010-07-26 15:05:15 +0200
++++ bash-4.1/lib/sh/eaccess.c	2010-07-26 15:06:58 +0200
+@@ -222,8 +222,13 @@
+     return (sh_euidaccess (path, mode));
+ #  endif
+ 
++/* on interix, use stataccess always, since access on interix behaves bad:
++ * whenever a process has appropriate priviledges (speaking in windows terms),
++ * success is reported, even if the bits are not set. */
++#ifndef __INTERIX
+   if (current_user.uid == current_user.euid && current_user.gid == current_user.egid)
+     return (access (path, mode));  
++#endif
+ 
+   return (sh_stataccess (path, mode));
+ #endif

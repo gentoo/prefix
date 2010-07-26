@@ -89,9 +89,9 @@ src_unpack() {
 	epatch "${FILESDIR}"/${PN}-4.0-cflags_for_build.patch
 
 	if [[ ${CHOST} == *-interix* ]]; then
-		epatch "${FILESDIR}"/${PN}-3.2-interix-stdint.patch
+		epatch "${FILESDIR}"/${PN}-4.1-interix-stdint.patch
 		epatch "${FILESDIR}"/${PN}-4.0-interix.patch
-		epatch "${FILESDIR}"/${PN}-4.0-interix-access.patch
+		epatch "${FILESDIR}"/${PN}-4.1-interix-access-suacomp.patch
 		epatch "${FILESDIR}"/${PN}-4.0-interix-x64.patch
 	fi
 
