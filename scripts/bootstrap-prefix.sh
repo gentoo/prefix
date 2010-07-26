@@ -325,7 +325,7 @@ do_tree() {
 
 bootstrap_tree() {
 	local PV="20100715"
-	do_tree http://prefix.gentooexperimental.org/distfiles prefix-overlay-${PV}.tar.bz2
+	do_tree http://91.191.147.229/distfiles prefix-overlay-${PV}.tar.bz2
 }
 
 bootstrap_latest_tree() {
@@ -334,7 +334,7 @@ bootstrap_latest_tree() {
 
 # Added for darkside, don't remove. A static starting point it needed.
 bootstrap_tree_arm() {
-	do_tree http://prefix.gentooexperimental.org/~darkside/distfiles/prefix/ prefix-overlay-20100114.tar.bz2
+	do_tree http://91.191.147.229/~darkside/distfiles/prefix/ prefix-overlay-20100114.tar.bz2
 }
 
 bootstrap_startscript() {
@@ -987,7 +987,7 @@ PORTDIR=${ROOT}/usr/portage
 DISTDIR=${PORTDIR}/distfiles
 PORTAGE_TMPDIR=${ROOT}/var/tmp
 DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
-SNAPSHOT_URL="http://prefix.gentooexperimental.org/snapshots"
+SNAPSHOT_URL="http://91.191.147.229/snapshots"
 GNU_URL=${GNU_URL:="http://ftp.gnu.org/gnu"}
 GENTOO_MIRROR=${GENTOO_MIRROR:="http://distfiles.gentoo.org/distfiles"}
 GCC_APPLE_URL="http://www.opensource.apple.com/darwinsource/tarballs/other"
