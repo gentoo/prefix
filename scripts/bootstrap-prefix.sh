@@ -325,7 +325,7 @@ do_tree() {
 
 bootstrap_tree() {
 	local PV="20100715"
-	do_tree http://91.191.147.229/distfiles prefix-overlay-${PV}.tar.bz2
+	do_tree http://files.prefix.freens.org/distfiles prefix-overlay-${PV}.tar.bz2
 }
 
 bootstrap_latest_tree() {
@@ -334,7 +334,7 @@ bootstrap_latest_tree() {
 
 # Added for darkside, don't remove. A static starting point it needed.
 bootstrap_tree_arm() {
-	do_tree http://91.191.147.229/~darkside/distfiles/prefix/ prefix-overlay-20100114.tar.bz2
+	do_tree http://files.prefix.freens.org/~darkside/distfiles/prefix/ prefix-overlay-20100114.tar.bz2
 }
 
 bootstrap_startscript() {
