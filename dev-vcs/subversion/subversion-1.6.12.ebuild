@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-vcs/subversion/subversion-1.6.12.ebuild,v 1.1 2010/06/22 20:20:59 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/subversion/subversion-1.6.12.ebuild,v 1.3 2010/07/26 13:31:16 fauli Exp $
 
 EAPI="3"
 SUPPORT_PYTHON_ABIS="1"
@@ -44,7 +44,7 @@ APACHE_TEST_DEPEND="|| (
 	=www-servers/apache-2.2*[apache2_modules_auth_basic,apache2_modules_authn_file,apache2_modules_dav,apache2_modules_log_config]
 	)"
 DEPEND="${CDEPEND}
-	!prefix? ( >=sys-apps/sandbox-1.6 )
+	!!<sys-apps/sandbox-1.6
 	ctypes-python? ( dev-python/ctypesgen )
 	doc? ( app-doc/doxygen )
 	gnome-keyring? ( dev-util/pkgconfig )
@@ -252,7 +252,7 @@ src_configure() {
 	econf --libdir="${EPREFIX}/usr/$(get_libdir)" \
 		$(use_with apache2 apxs "${APXS}") \
 		$(use_with berkdb berkeley-db "db.h:${EPREFIX}/usr/include/db${SVN_BDB_VERSION}::db-${SVN_BDB_VERSION}") \
-		$(use_with ctypes-python ctypesgen "${EPREFIX}"/usr) \
+		$(use_with ctypes-python ctypesgen "${EPREFIX}/usr") \
 		$(use_enable dso runtime-module-search) \
 		$(use_with gnome-keyring) \
 		$(use_enable java javahl) \
@@ -260,17 +260,17 @@ src_configure() {
 		$(use_with kde kwallet) \
 		$(use_enable nls) \
 		$(use_with sasl) \
-		$(use_with webdav-neon ) \
-		$(use_with webdav-serf serf ${EPREFIX}/usr) \
+		$(use_with webdav-neon neon) \
+		$(use_with webdav-serf serf "${EPREFIX}/usr") \
 		${myconf} \
-		--with-apr="${EPREFIX}"/usr/bin/apr-1-config \
-		--with-apr-util="${EPREFIX}"/usr/bin/apu-1-config \
+		--with-apr="${EPREFIX}/usr/bin/apr-1-config" \
+		--with-apr-util="${EPREFIX}/usr/bin/apu-1-config" \
 		--disable-experimental-libtool \
 		--without-jikes \
 		--enable-local-library-preloading \
 		--disable-mod-activation \
 		--disable-neon-version-check \
-		--with-sqlite="${EPREFIX}"/usr
+		--with-sqlite="${EPREFIX}/usr"
 }
 
 src_compile() {
@@ -670,7 +670,7 @@ src_install() {
 
 	# Install Apache module configuration.
 	if use apache2; then
-		dodir "${APACHE_MODULES_CONFDIR#${EPREFIX}}"
+		mkdir -p "${D}${APACHE_MODULES_CONFDIR}"
 		cat << EOF > "${D}${APACHE_MODULES_CONFDIR}"/47_mod_dav_svn.conf
 <IfDefine SVN>
 LoadModule dav_svn_module modules/mod_dav_svn.so

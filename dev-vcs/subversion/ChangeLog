@@ -1,6 +1,52 @@
-# ChangeLog for dev-util/subversion
+# ChangeLog for dev-vcs/subversion
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/subversion/ChangeLog,v 1.428 2010/03/28 18:17:28 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-vcs/subversion/ChangeLog,v 1.10 2010/07/26 13:31:16 fauli Exp $
+
+  26 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  subversion-1.6.12.ebuild:
+  stable x86, bug 329795
+
+  11 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  subversion-1.6.11.ebuild:
+  ppc64 stable wrt #325425
+
+  10 Jul 2010; Jeroen Roovers <jer@gentoo.org> subversion-1.6.11.ebuild:
+  Stable for HPPA (bug #325425).
+
+  03 Jul 2010; Raúl Porcel <armin76@gentoo.org> subversion-1.6.11.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #325425
+
+  28 Jun 2010; Christian Faulhammer <fauli@gentoo.org>
+  subversion-1.6.11.ebuild:
+  stable x86, bug 325425
+
+  27 Jun 2010; <nixnut@gentoo.org> subversion-1.6.11.ebuild:
+  ppc stable #325425
+
+  27 Jun 2010; Christoph Mende <angelos@gentoo.org>
+  subversion-1.6.11.ebuild:
+  Stable on amd64 wrt bug #325425
+
+*subversion-1.6.12 (22 Jun 2010)
+
+  22 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +subversion-1.6.12.ebuild:
+  Version bump.
+
+  22 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  subversion-1.6.9.ebuild, subversion-1.6.11.ebuild:
+  net-misc/neon renamed to net-libs/neon.
+
+  22 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  subversion-1.6.9.ebuild, subversion-1.6.11.ebuild, files/svnserve.confd,
+  -files/svnserve.confd2:
+  Merge svnserve.confd and svnserve.confd2.
+
+*subversion-1.6.11 (26 May 2010)
+
+  26 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +subversion-1.6.11.ebuild:
+  Version bump. Set SUPPORT_PYTHON_ABIS.
 
   28 Mar 2010; Raúl Porcel <armin76@gentoo.org> subversion-1.6.9.ebuild:
   alpha/arm/ia64/s390/sh/sparc stable wrt #306343
