@@ -404,6 +404,7 @@ dev-tex/translator
 dev-tex/xcolor
 dev-tex/xmltex
 dev-util/argouml
+dev-util/automoc
 dev-util/autoproject
 dev-util/bcpp
 dev-util/bsdiff
