@@ -758,9 +758,9 @@ sys-process/time
 sys-process/unixtop
 www-apps/scgi
 www-client/conkeror
+www-client/firefox
 www-client/httrack
 www-client/links
-www-client/firefox
 www-client/pybugz
 www-misc/htdig
 www-servers/mongrel
