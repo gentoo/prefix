@@ -1,6 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.9.0.ebuild,v 1.6 2010/07/18 12:17:59 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-php/PEAR-PEAR/PEAR-PEAR-1.9.0-r1.ebuild,v 1.1 2010/06/14 23:20:45 mabi Exp $
+
+EAPI="2"
 
 inherit depend.php
 
@@ -15,19 +17,13 @@ LICENSE="MIT"
 SLOT="0"
 IUSE=""
 
-DEPEND="dev-lang/php"
+DEPEND="|| ( <dev-lang/php-5.3[pcre] >=dev-lang/php-5.3 )
+		dev-lang/php[cli,xml,zlib]"
 
 S="${WORKDIR}"
 
 pkg_setup() {
 	has_php
-
-	# we check that PHP was compiled with the correct USE flags
-	if [[ ${PHP_VERSION} == "4" ]] ; then
-		require_php_with_use cli pcre expat zlib
-	else
-		require_php_with_use cli pcre xml zlib
-	fi
 
 	[[ -z "${PEAR_CACHEDIR}" ]] && PEAR_CACHEDIR="${EPREFIX}/var/cache/pear"
 	[[ -z "${PEAR_DOWNLOADDIR}" ]] && PEAR_DOWNLOADDIR="${EPREFIX}/var/tmp/pear"
