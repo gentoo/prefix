@@ -571,6 +571,9 @@ src_configure() {
 	# workaround bug, x86 just has too few registers, see c.f.
 	# http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=402950#44
 	[[ ${CHOST} == i?86-*solaris* ]] && append-flags -fomit-frame-pointer
+	# and 32b osx, bug 329861
+	[[ ${CHOST} == i?86-*darwin* ]] && append-flags -fomit-frame-pointer
+
 
 	###########################
 	# X enabled configuration #
