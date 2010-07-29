@@ -884,6 +884,7 @@ dev-games
 dev-tcltk
 dev-texlive
 kde-base
+kde-misc
 gnustep-apps
 gnustep-base
 gnome-extra
