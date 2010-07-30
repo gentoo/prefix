@@ -1106,14 +1106,15 @@ dev-ruby/rake
 dev-ruby/rake-compiler
 dev-ruby/rdoc
 dev-ruby/redcloth
+dev-ruby/rexical
 dev-ruby/rspec
-dev-ruby/ruby_parser
 dev-ruby/ruby-bsearch
 dev-ruby/ruby-debug
 dev-ruby/ruby-debug-base
 dev-ruby/ruby-fcgi
 dev-ruby/ruby-filemagic
 dev-ruby/ruby-inline
+dev-ruby/ruby_parser
 dev-ruby/ruby-postgres
 dev-ruby/ruby-romkan
 dev-ruby/ruby2ruby
