@@ -1070,6 +1070,8 @@ dev-ruby/activeresource
 dev-ruby/activesupport
 dev-ruby/bluecloth
 dev-ruby/builder
+dev-ruby/capistrano
+dev-ruby/capistrano-launcher
 dev-ruby/camping
 dev-ruby/cgi_multipart_eof_fix
 dev-ruby/columnize
