@@ -1096,6 +1096,7 @@ dev-ruby/net-ssh-gateway
 dev-ruby/nokogiri
 dev-ruby/oniguruma
 dev-ruby/parsetree
+dev-ruby/pg
 dev-ruby/plist
 dev-ruby/programming-ruby
 dev-ruby/racc
