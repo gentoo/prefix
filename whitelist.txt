@@ -931,6 +931,7 @@ perl-core
 # Operation Deadly Snake (Python), bug #295035
 dev-python/Babel
 dev-python/PyQt4
+dev-python/argparse
 dev-python/astng
 dev-python/beaker
 dev-python/beautifulsoup
