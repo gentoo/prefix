@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-23.2.ebuild,v 1.2 2010/05/08 08:06:50 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/emacs-23.2.ebuild,v 1.3 2010/06/25 17:44:18 ulm Exp $
 
 EAPI=2
 
@@ -119,6 +119,8 @@ src_configure() {
 	#unset LDFLAGS
 	if use sh; then
 		replace-flags -O[1-9] -O0		#262359
+	elif use ia64; then
+		replace-flags -O[2-9] -O1		#325373
 	else
 		replace-flags -O[3-9] -O2
 	fi

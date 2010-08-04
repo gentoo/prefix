@@ -1,6 +1,22 @@
 # ChangeLog for app-editors/emacs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.377 2010/05/08 07:26:28 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs/ChangeLog,v 1.381 2010/06/25 17:44:18 ulm Exp $
+
+  25 Jun 2010; Ulrich Mueller <ulm@gentoo.org> emacs-23.1-r3.ebuild,
+  emacs-23.2.ebuild:
+  Workaround for gcc 4.4 on ia64, bug 325373.
+
+  25 Jun 2010; Christoph Mende <angelos@gentoo.org> emacs-21.4-r20.ebuild,
+  emacs-22.3-r4.ebuild, emacs-23.1-r3.ebuild:
+  Stable on amd64 wrt bug #313861
+
+  05 Jun 2010; Raúl Porcel <armin76@gentoo.org> emacs-21.4-r20.ebuild,
+  emacs-22.3-r4.ebuild, emacs-23.1-r3.ebuild:
+  alpha/arm/ia64/sh stable wrt #313861
+
+  23 May 2010; <nixnut@gentoo.org> emacs-21.4-r20.ebuild,
+  emacs-22.3-r4.ebuild, emacs-23.1-r3.ebuild:
+  ppc stable #313861
 
 *emacs-23.2 (08 May 2010)
 
