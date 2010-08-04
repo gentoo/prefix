@@ -1,6 +1,24 @@
 # ChangeLog for media-libs/lcms
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.113 2010/03/24 18:12:07 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/lcms/ChangeLog,v 1.118 2010/07/23 20:40:22 ssuominen Exp $
+
+  23 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> lcms-1.19.ebuild,
+  lcms-2.0a.ebuild:
+  Use virtual/jpeg.
+
+  18 Jul 2010; Markos Chandras <hwoarang@gentoo.org> lcms-2.0a.ebuild:
+  Stable on amd64 wrt bug #328795
+
+  18 Jul 2010; Christian Faulhammer <fauli@gentoo.org> lcms-2.0a.ebuild:
+  stable x86, bug 328795
+
+  18 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> lcms-2.0a.ebuild:
+  ppc64 stable wrt #328795
+
+*lcms-2.0a (21 Jun 2010)
+
+  21 Jun 2010; Samuli Suominen <ssuominen@gentoo.org> +lcms-2.0a.ebuild:
+  Version bump wrt #324909 by Peter Volkov.
 
   24 Mar 2010; Brent Baude <ranger@gentoo.org> lcms-1.19.ebuild:
   stable ppc, bug 302647
