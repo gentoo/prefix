@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.35-r2.ebuild,v 1.1 2010/05/21 14:19:30 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gd/gd-2.0.35-r2.ebuild,v 1.2 2010/07/23 20:55:11 ssuominen Exp $
 
 EAPI=1
 inherit autotools prefix flag-o-matic
@@ -15,8 +15,8 @@ KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-maco
 IUSE="fontconfig jpeg png truetype xpm"
 
 RDEPEND="fontconfig? ( media-libs/fontconfig )
-	jpeg? ( >=media-libs/jpeg-6b:0 )
-	png? ( >=media-libs/libpng-1.2.43-r2:0
+	jpeg? ( virtual/jpeg )
+	png? ( >=media-libs/libpng-1.4
 		sys-libs/zlib )
 	truetype? ( >=media-libs/freetype-2.1.5 )
 	xpm? ( x11-libs/libXpm x11-libs/libXt )
