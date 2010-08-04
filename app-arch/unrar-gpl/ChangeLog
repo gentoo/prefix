@@ -1,6 +1,13 @@
 # ChangeLog for app-arch/unrar-gpl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar-gpl/ChangeLog,v 1.11 2010/03/07 09:59:14 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar-gpl/ChangeLog,v 1.12 2010/06/30 21:31:57 hanno Exp $
+
+*unrar-gpl-0.0.1_p20080417-r1 (30 Jun 2010)
+
+  30 Jun 2010; Hanno Boeck <hanno@gentoo.org>
+  +unrar-gpl-0.0.1_p20080417-r1.ebuild:
+  Change binary name to unrar-gpl, to avoid applications assuming they can
+  use it to unpack current rar files.
 
   07 Mar 2010; Hanno Boeck <hanno@gentoo.org>
   unrar-gpl-0.0.1_p20080417.ebuild:
