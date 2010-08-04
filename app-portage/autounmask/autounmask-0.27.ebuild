@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/autounmask/autounmask-0.27.ebuild,v 1.8 2010/04/17 16:41:27 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/autounmask/autounmask-0.27.ebuild,v 1.9 2010/06/05 18:50:45 armin76 Exp $
 
 inherit eutils prefix
 
