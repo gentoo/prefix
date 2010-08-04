@@ -1,6 +1,28 @@
 # ChangeLog for media-libs/libsoundtouch
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.34 2010/05/11 21:22:11 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/ChangeLog,v 1.40 2010/07/17 17:26:16 armin76 Exp $
+
+  17 Jul 2010; Raúl Porcel <armin76@gentoo.org> libsoundtouch-1.5.0.ebuild:
+  sparc stable wrt #325875
+
+  03 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libsoundtouch-1.5.0.ebuild:
+  ppc64 stable wrt #325875
+
+  02 Jul 2010; Jeroen Roovers <jer@gentoo.org> libsoundtouch-1.5.0.ebuild:
+  Stable for HPPA (bug #325875).
+
+  29 Jun 2010; Christian Faulhammer <fauli@gentoo.org>
+  libsoundtouch-1.5.0.ebuild:
+  stable x86, bug 325875
+
+  27 Jun 2010; Christoph Mende <angelos@gentoo.org>
+  libsoundtouch-1.5.0.ebuild:
+  Stable on amd64 wrt bug #325875
+
+  21 May 2010; Markos Chandras <hwoarang@gentoo.org>
+  libsoundtouch-1.4.0.ebuild:
+  Stable on amd64 wrt bug #315013
 
   11 May 2010; Brent Baude <ranger@gentoo.org> libsoundtouch-1.4.0.ebuild:
   stable ppc64, bug 315013

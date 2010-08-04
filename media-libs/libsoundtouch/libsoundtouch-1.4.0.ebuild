@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.4.0.ebuild,v 1.7 2010/05/11 21:22:11 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsoundtouch/libsoundtouch-1.4.0.ebuild,v 1.8 2010/05/21 22:01:08 hwoarang Exp $
 
 EAPI=2
 MY_PN=${PN/lib}
