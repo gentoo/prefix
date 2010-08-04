@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.28.ebuild,v 1.1 2010/03/19 01:32:02 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gstreamer/gstreamer-0.10.28.ebuild,v 1.8 2010/08/01 20:18:07 klausman Exp $
 
 EAPI=2
 
@@ -20,7 +20,6 @@ IUSE="nls test"
 
 RDEPEND=">=dev-libs/glib-2.18:2
 	dev-libs/libxml2
-	>=dev-libs/check-0.9.2
 	!<media-libs/gst-plugins-base-0.10.26"
 	# ^^ queue2 move, mustn't have both libgstcoreleements.so and libgstqueue2.so at runtime providing the element at once
 DEPEND="${RDEPEND}

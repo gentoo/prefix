@@ -3,4 +3,8 @@
 <pkgmetadata>
 	<herd>gstreamer</herd>
 	<herd>gnome</herd>
+	<use>
+		<flag name="introspection">Use <pkg>dev-libs/gobject-introspection</pkg>
+			for introspection</flag>
+	</use>
 </pkgmetadata>
