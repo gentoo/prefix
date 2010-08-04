@@ -1,42 +1,46 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.1.1.ebuild,v 1.5 2010/02/27 20:57:06 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice-bin/openoffice-bin-3.2.1.ebuild,v 1.1 2010/06/14 11:42:19 suka Exp $
+
+EAPI="2"
 
 inherit eutils fdo-mime rpm multilib prefix
 
-IUSE="gnome java"
+IUSE="gnome java kde"
 
-BUILDID="9420"
-BUILDID2="9420"
-UREVER="1.5.1"
+BUILDID="9502"
+BUILDID2="9502"
+UREVER="1.6.1"
 MY_PV="${PV}rc2"
-MY_PV2="${MY_PV}_20090820"
-MY_PV3="${PV}-${BUILDID}"
-BASIS="ooobasis3.1"
-MST="OOO310_m19"
+MY_PV2="${MY_PV}_20100521"
+MY_PV3="${PV/_rc1/}-${BUILDID}"
+BASIS="ooobasis3.2"
+MST="OOO320_m18"
+FILEPATH="http://download.services.openoffice.org/files/extended/${MY_PV}"
 
 if [ "${ARCH}" = "amd64" ] ; then
 	OOARCH="x86_64"
-	PACKED="${MST}_native_packed-2"
-	PACKED2="${MST}_native_packed-2"
+	PACKED="${MST}_native_packed-1"
+	PACKED2="${MST}_native_packed-1"
 else
 	OOARCH="i586"
 	PACKED="${MST}_native_packed-1"
 	PACKED2="${MST}_native_packed-1"
 fi
 
-S="${WORKDIR}/${PACKED}_en-US.${BUILDID}/RPMS"
+S="${WORKDIR}"
+UP="${PACKED}_en-US.${BUILDID}/RPMS"
 DESCRIPTION="OpenOffice productivity suite"
 
-SRC_URI="x86? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxIntel_install_en-US.tar.gz )
-	amd64? ( mirror://openoffice/stable/${PV}/OOo_${PV}_LinuxX86-64_install_wJRE_en-US.tar.gz  )"
+SRC_URI="x86? ( http://download.services.openoffice.org/files/stable/${PV}/OOo_${PV}_Linux_x86_install-rpm_en-US.tar.gz )
+	amd64? ( http://download.services.openoffice.org/files/stable/${PV}/OOo_${PV}_Linux_x86-64_install-rpm-wJRE_en-US.tar.gz  )"
 
-LANGS="af ar as_IN be_BY bg bn br brx bs ca cs cy de dgo dz el en en_GB en_ZA eo es et eu fa fi fr ga gl gu gu_IN he hi_IN hr hu id it ka kk km kn_IN ko kok ks ku lt mai mk ml_IN mn mni mr_IN my nb ne nl nn nr ns oc or_IN pa_IN pl pt pt_BR ru rw sa_IN sat sd sh sk sl sr ss st sv sw_TZ ta ta_IN te_IN tg th ti_ER tn tr ts uk ur_IN uz ve vi xh zh_CN zh_TW zu"
+LANGS="ar as ast bg bn ca cs da de dz el en en_GB eo es et eu fi fr ga gl gu hi hu id is it ja ka km kn ko ku lt lv mk ml mr my nb nl nn oc om or pa_IN pl pt pt_BR ro ru sh si sk sl sr sv ta te th tr ug uk uz vi zh_CN zh_TW"
 
 for X in ${LANGS} ; do
 	[[ ${X} != "en" ]] && SRC_URI="${SRC_URI} linguas_${X}? (
-		x86? ( mirror://openoffice-extended/${MY_PV}/OOo_${MY_PV2}_LinuxIntel_langpack_${X/_/-}.tar.gz )
-		amd64? ( mirror://openoffice-extended/${MY_PV}/OOo_${MY_PV2}_LinuxX86-64_langpack_${X/_/-}.tar.gz ) )"
+		x86? ( "${FILEPATH}"/OOo_${MY_PV2}_Linux_x86_langpack-rpm_${X/_/-}.tar.gz )
+		amd64? ( "${FILEPATH}"/OOo_${MY_PV2}_Linux_x86-64_langpack-rpm_${X/_/-}.tar.gz ) )"
 	IUSE="${IUSE} linguas_${X}"
 done
 
@@ -64,11 +68,11 @@ DEPEND="${RDEPEND}
 PROVIDE="virtual/ooo"
 RESTRICT="strip"
 
-QA_EXECSTACK="usr/$(get_libdir)/openoffice/basis3.1/program/*
+QA_EXECSTACK="usr/$(get_libdir)/openoffice/basis3.2/program/*
 	usr/$(get_libdir)/openoffice/ure/lib/*"
-QA_TEXTRELS="usr/$(get_libdir)/openoffice/basis3.1/program/libvclplug_genli.so \
-	usr/$(get_libdir)/openoffice/basis3.1/program/python-core-2.3.4/lib/lib-dynload/_curses_panel.so \
-	usr/$(get_libdir)/openoffice/basis3.1/program/python-core-2.3.4/lib/lib-dynload/_curses.so \
+QA_TEXTRELS="usr/$(get_libdir)/openoffice/basis3.2/program/libvclplug_genli.so \
+	usr/$(get_libdir)/openoffice/basis3.2/program/python-core-2.3.4/lib/lib-dynload/_curses_panel.so \
+	usr/$(get_libdir)/openoffice/basis3.2/program/python-core-2.3.4/lib/lib-dynload/_curses.so \
 	usr/$(get_libdir)/openoffice/ure/lib/*"
 
 src_unpack() {
@@ -79,21 +83,29 @@ src_unpack() {
 	sed -i 's:/usr:@GENTOO_PORTAGE_EPREFIX@/usr:g' "${T}"/{50-openoffice-bin,wrapper.in} || die
 	eprefixify "${T}"/{50-openoffice-bin,wrapper.in}
 
+	cd "${S}"
+
 	for i in base binfilter calc core01 core02 core03 core04 core05 core06 core07 draw graphicfilter images impress math ooofonts oooimprovement ooolinguistic pyuno testtool writer xsltfilter ; do
-		rpm_unpack "${S}/${BASIS}-${i}-${MY_PV3}.${OOARCH}.rpm"
+		rpm_unpack "./${UP}/${BASIS}-${i}-${MY_PV3}.${OOARCH}.rpm"
 	done
 
 	for j in base calc draw impress math writer; do
-		rpm_unpack "${S}/openoffice.org3-${j}-${MY_PV3}.${OOARCH}.rpm"
+		rpm_unpack "./${UP}/openoffice.org3-${j}-${MY_PV3}.${OOARCH}.rpm"
 	done
 
-	rpm_unpack "${S}/openoffice.org3-${MY_PV3}.${OOARCH}.rpm"
-	rpm_unpack "${S}/openoffice.org-ure-${UREVER}-${BUILDID}.${OOARCH}.rpm"
+	rpm_unpack "./${UP}/openoffice.org3-${MY_PV3}.${OOARCH}.rpm"
+	rpm_unpack "./${UP}/openoffice.org-ure-${UREVER}-${BUILDID}.${OOARCH}.rpm"
 
-	rpm_unpack "${S}/desktop-integration/openoffice.org3.1-freedesktop-menus-3.1-${BUILDID2}.noarch.rpm"
+	rpm_unpack "./${UP}/desktop-integration/openoffice.org3.2-freedesktop-menus-3.2-${BUILDID2}.noarch.rpm"
 
-	use gnome && rpm_unpack "${S}/${BASIS}-gnome-integration-${MY_PV3}.${OOARCH}.rpm"
-	use java && rpm_unpack "${S}/${BASIS}-javafilter-${MY_PV3}.${OOARCH}.rpm"
+	use gnome && rpm_unpack "./${UP}/${BASIS}-gnome-integration-${MY_PV3}.${OOARCH}.rpm"
+	use kde && rpm_unpack "./${UP}/${BASIS}-kde-integration-${MY_PV3}.${OOARCH}.rpm"
+	use java && rpm_unpack "./${UP}/${BASIS}-javafilter-${MY_PV3}.${OOARCH}.rpm"
+
+	# Unpack provided dictionaries, unless there is a better solution...
+	rpm_unpack "./${UP}/openoffice.org3-dict-en-${MY_PV3}.${OOARCH}.rpm"
+	rpm_unpack "./${UP}/openoffice.org3-dict-es-${MY_PV3}.${OOARCH}.rpm"
+	rpm_unpack "./${UP}/openoffice.org3-dict-fr-${MY_PV3}.${OOARCH}.rpm"
 
 	strip-linguas ${LANGS}
 
@@ -105,21 +117,16 @@ src_unpack() {
 		i="${k/_/-}"
 		if [[ ${i} = "en" ]] ; then
 			i="en-US"
-			LANGDIR="${WORKDIR}/${PACKED}_${i}.${BUILDID}/RPMS/"
+			LANGDIR="${PACKED}_${i}.${BUILDID}/RPMS/"
 		else
-			LANGDIR="${WORKDIR}/${PACKED2}_${i}.${BUILDID}/RPMS/"
+			LANGDIR="${PACKED2}_${i}.${BUILDID}/RPMS/"
 		fi
-		rpm_unpack ${LANGDIR}/${BASIS}-${i}-${MY_PV3}.${OOARCH}.rpm
-		rpm_unpack ${LANGDIR}/openoffice.org3-${i}-${MY_PV3}.${OOARCH}.rpm
+		rpm_unpack "./${LANGDIR}/${BASIS}-${i}-${MY_PV3}.${OOARCH}.rpm"
+		rpm_unpack "./${LANGDIR}/openoffice.org3-${i}-${MY_PV3}.${OOARCH}.rpm"
 		for j in base binfilter calc draw help impress math res writer; do
-			rpm_unpack ${LANGDIR}/${BASIS}-${i}-${j}-${MY_PV3}.${OOARCH}.rpm
+			rpm_unpack "./${LANGDIR}/${BASIS}-${i}-${j}-${MY_PV3}.${OOARCH}.rpm"
 		done
 	done
-
-	# Unpack provided dictionaries, unless there is a better solution...
-	rpm_unpack "${S}/openoffice.org3-dict-en-${MY_PV3}.${OOARCH}.rpm"
-	rpm_unpack "${S}/openoffice.org3-dict-es-${MY_PV3}.${OOARCH}.rpm"
-	rpm_unpack "${S}/openoffice.org3-dict-fr-${MY_PV3}.${OOARCH}.rpm"
 
 }
 
@@ -162,7 +169,7 @@ src_install () {
 	dosym ${INSTDIR}/program/soffice /usr/bin/soffice
 
 	rm -f "${ED}${INSTDIR}/basis-link" || die
-	dosym ${INSTDIR}/basis3.1 ${INSTDIR}/basis-link
+	dosym ${INSTDIR}/basis3.2 ${INSTDIR}/basis-link
 
 	# Change user install dir
 	sed -i -e "s/.openoffice.org\/3/.ooo3/g" "${ED}${INSTDIR}/program/bootstraprc" || die
