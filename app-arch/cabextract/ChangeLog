@@ -1,6 +1,28 @@
 # ChangeLog for app-arch/cabextract
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.57 2009/10/12 09:55:23 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cabextract/ChangeLog,v 1.63 2010/08/03 17:19:45 ranger Exp $
+
+  03 Aug 2010; Brent Baude <ranger@gentoo.org> cabextract-1.3.ebuild:
+  Marking cabextract-1.3 ppc64 for bug 329891
+
+  31 Jul 2010; Jeroen Roovers <jer@gentoo.org> cabextract-1.3.ebuild:
+  Stable for HPPA PPC (bug #329891).
+
+  31 Jul 2010; Raúl Porcel <armin76@gentoo.org> cabextract-1.3.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #329891
+
+  31 Jul 2010; Markos Chandras <hwoarang@gentoo.org> cabextract-1.3.ebuild:
+  Stable on amd64 wrt bug #329891
+
+  31 Jul 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  cabextract-1.3.ebuild:
+  x86 stable wrt security bug #329891
+
+*cabextract-1.3 (30 Jul 2010)
+
+  30 Jul 2010; Peter Volkov <pva@gentoo.org> +cabextract-1.3.ebuild:
+  Version bump, bug #329891, thank Samuli Suominen and upstream developer
+  Stuart Caie for reports.
 
   12 Oct 2009; Peter Volkov <pva@gentoo.org> -cabextract-1.2.ebuild:
   Drop old.
