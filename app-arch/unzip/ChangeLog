@@ -1,6 +1,9 @@
 # ChangeLog for app-arch/unzip
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.68 2010/03/23 04:01:42 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unzip/ChangeLog,v 1.70 2010/08/02 20:31:44 jer Exp $
+
+  02 Aug 2010; Jeroen Roovers <jer@gentoo.org> unzip-6.0-r1.ebuild:
+  Stable for PPC too.
 
   23 Mar 2010; Mike Frysinger <vapier@gentoo.org> unzip-6.0-r1.ebuild:
   Tweak by David James for how we set the toolchain to get better coverage
@@ -25,7 +28,7 @@
   amd64/x86 stable, bug #287368
 
   03 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> unzip-6.0-r1.ebuild:
-  Stable for ppc, bug 287368
+  Marked ~ppc, bug 287368
 
 *unzip-6.0-r1 (16 Aug 2009)
 
