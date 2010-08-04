@@ -1,6 +1,19 @@
 # ChangeLog for app-editors/emacs-vcs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/ChangeLog,v 1.19 2010/05/08 08:31:19 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/ChangeLog,v 1.22 2010/07/18 15:43:14 fauli Exp $
+
+  18 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  emacs-vcs-24.0.9999.ebuild:
+  Don't let the build system compress the info files, as reported in bug
+  328471 by Tassilo Horn <tassilo AT members DOT fsf DOT org>
+
+  25 Jun 2010; Ulrich Mueller <ulm@gentoo.org> emacs-vcs-23.2.9999.ebuild,
+  emacs-vcs-24.0.9999.ebuild:
+  Workaround for gcc 4.4 on ia64, bug 325373.
+
+  18 May 2010; Ulrich Mueller <ulm@gentoo.org> emacs-vcs-24.0.9999.ebuild:
+  Version information is now in src/emacs.c, thanks to Tassilo Horn
+  <tassilo@member.fsf.org> for reporting and providing a fix.
 
 *emacs-vcs-23.2.9999 (08 May 2010)
 

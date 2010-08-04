@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/emacs-vcs-24.0.9999.ebuild,v 1.5 2010/05/08 08:31:19 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-editors/emacs-vcs/emacs-vcs-24.0.9999.ebuild,v 1.8 2010/07/18 15:43:14 fauli Exp $
 
 EAPI=2
 
@@ -87,7 +87,7 @@ pkg_setup() {
 
 src_prepare() {
 	if [ "${PV##*.}" = "9999" ]; then
-		FULL_VERSION=$(grep 'defconst[	 ]*emacs-version' lisp/version.el \
+		FULL_VERSION=$(grep 'const char emacs_version' src/emacs.c \
 			| sed -e 's/^[^"]*"\([^"]*\)".*$/\1/')
 		[ "${FULL_VERSION}" ] || die "Cannot determine current Emacs version"
 		echo
@@ -102,20 +102,20 @@ src_prepare() {
 
 	sed -i -e "s:/usr/lib/crtbegin.o:$(`tc-getCC` -print-file-name=crtbegin.o):g" \
 		-e "s:/usr/lib/crtend.o:$(`tc-getCC` -print-file-name=crtend.o):g" \
-		"${S}"/src/s/freebsd.h || die "unable to sed freebsd.h settings"
+		"${S}"/src/s/freebsd.h || die
 
 	if ! use alsa; then
 		# ALSA is detected even if not requested by its USE flag.
 		# Suppress it by supplying pkg-config with a wrong library name.
 		sed -i -e "/ALSA_MODULES=/s/alsa/DiSaBlEaLsA/" configure.in \
-			|| die "unable to sed configure.in"
+			|| die
 	fi
 	if ! use gzip-el; then
 		# Emacs' build system automatically detects the gzip binary and
 		# compresses el files. We don't want that so confuse it with a
 		# wrong binary name
 		sed -i -e "s/ gzip/ PrEvEnTcOmPrEsSiOn/" configure.in \
-			|| die "unable to sed configure.in"
+			|| die
 	fi
 
 	eautoreconf
@@ -127,6 +127,8 @@ src_configure() {
 	#unset LDFLAGS
 	if use sh; then
 		replace-flags -O[1-9] -O0		#262359
+	elif use ia64; then
+		replace-flags -O[2-9] -O1		#325373
 	else
 		replace-flags -O[3-9] -O2
 	fi
@@ -197,37 +199,38 @@ src_configure() {
 		--program-suffix=-${EMACS_SUFFIX} \
 		--infodir="${EPREFIX}"/usr/share/info/${EMACS_SUFFIX} \
 		--with-crt-dir="${EPREFIX}"/usr/$(get_libdir) \
-		${myconf} || die "econf emacs failed"
+		--without-compress-info \
+		${myconf} || die
 }
 
 src_compile() {
 	export SANDBOX_ON=0			# for the unbelievers, see Bug #131505
 	if [ "${PV##*.}" = "9999" ]; then
-		emake CC="$(tc-getCC)" bootstrap || die "make bootstrap failed"
+		emake CC="$(tc-getCC)" bootstrap || die
 		# cleanup, otherwise emacs will be dumped again in src_install
 		(cd src; emake versionclean)
 	fi
-	emake CC="$(tc-getCC)" || die "emake failed"
+	emake CC="$(tc-getCC)" || die
 }
 
 src_install () {
 	local i m
 
-	emake install DESTDIR="${D}" || die "make install failed"
+	emake install DESTDIR="${D}" || die
 
 	rm "${ED}"/usr/bin/emacs-${FULL_VERSION}-${EMACS_SUFFIX} \
-		|| die "removing duplicate emacs executable failed"
+		|| die
 	mv "${ED}"/usr/bin/emacs-${EMACS_SUFFIX} "${ED}"/usr/bin/${EMACS_SUFFIX} \
-		|| die "moving Emacs executable failed"
+		|| die
 
 	# move info documentation to the correct place
 	for i in "${ED}"/usr/share/info/${EMACS_SUFFIX}/*; do
-		mv "${i}" "${i}.info" || die "mv info failed"
+		mv "${i}" "${i}.info" || die
 	done
 
 	# move man pages to the correct place
 	for m in "${ED}"/usr/share/man/man1/* ; do
-		mv "${m}" "${m%.1}-${EMACS_SUFFIX}.1" || die "mv man failed"
+		mv "${m}" "${m%.1}-${EMACS_SUFFIX}.1" || die
 	done
 
 	# avoid collision between slots, see bug #169033 e.g.
@@ -265,7 +268,7 @@ src_install () {
 	EOF
 	elisp-site-file-install "${T}/${SITEFILE}" || die
 
-	dodoc README BUGS || die "dodoc failed"
+	dodoc README BUGS || die
 }
 
 emacs-infodir-rebuild() {
