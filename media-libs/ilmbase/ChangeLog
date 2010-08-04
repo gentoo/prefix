@@ -1,6 +1,15 @@
 # ChangeLog for media-libs/ilmbase
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/ilmbase/ChangeLog,v 1.17 2010/03/10 02:55:29 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/ilmbase/ChangeLog,v 1.19 2010/07/24 16:20:04 ssuominen Exp $
+
+  24 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> ilmbase-1.0.2.ebuild,
+  +files/ilmbase-1.0.2-gcc43.patch:
+  Fix missing #include for memset.
+
+*ilmbase-1.0.2 (24 Jul 2010)
+
+  24 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> +ilmbase-1.0.2.ebuild:
+  Version bump wrt #329713 by Arfrever Frehtes Taifersar Arahesis.
 
   10 Mar 2010; Sebastian Pipping <sping@gentoo.org> ilmbase-1.0.0.ebuild,
   ilmbase-1.0.1.ebuild:
