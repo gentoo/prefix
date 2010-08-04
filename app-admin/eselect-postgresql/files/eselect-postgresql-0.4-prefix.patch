@@ -1,0 +1,195 @@
+--- eselect-postgresql-0.4/binwrapper	2007-01-21 13:08:33.000000000 +0100
++++ eselect-postgresql-0.4/binwrapper	2010-08-04 19:25:18.076014495 +0200
+@@ -1,6 +1,6 @@
+ #!/bin/bash
+-[[ -d /etc/eselect/postgresql/active ]] || { echo "Use eselect to set postgresql version"; exit 1; }
+-for src in /etc/eselect/postgresql/active/* ; do
++[[ -d "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/active ]] || { echo "Use eselect to set postgresql version"; exit 1; }
++for src in "@GENTOO_PORTAGE_EPREFIX@"/etc/eselect/postgresql/active/* ; do
+ 	[[ -f "${src}" ]] && source $src
+ done
+ bn="$(basename "$0")"
+--- eselect-postgresql-0.4/postgresql.eselect	2010-04-09 02:42:13.000000000 +0200
++++ eselect-postgresql-0.4/postgresql.eselect	2010-08-04 19:38:50.456152081 +0200
+@@ -18,7 +18,7 @@
+ 
+ 	do_list() {
+ 		write_list_start "Available PostgreSQL installations"
+-		for s in /etc/eselect/postgresql/slots/* ; do
++		for s in "${EPREFIX}"/etc/eselect/postgresql/slots/* ; do
+ 			[[ -d "$s" ]] || continue;
+ 			local slot=$(basename $s)
+ 			local postgres_ebuilds=""
+@@ -26,10 +26,10 @@
+ 				source "$src"
+ 			done
+ 			local kw="${slot}"
+-			if [[ "$(canonicalise /etc/eselect/postgresql/active)" = "$(canonicalise ${s})" ]] ; then
++			if [[ "$(canonicalise "${EPREFIX}"/etc/eselect/postgresql/active)" = "$(canonicalise ${s})" ]] ; then
+ 				kw="$kw <-*"
+ 			fi
+-			if [[ "$(canonicalise /etc/eselect/postgresql/service)" = "$(canonicalise ${s})" ]] ; then
++			if [[ "$(canonicalise "${EPREFIX}"/etc/eselect/postgresql/service)" = "$(canonicalise ${s})" ]] ; then
+ 				kw="$kw <-S"
+ 			fi
+ 			write_kv_list_entry "${kw}" "${postgres_ebuilds//postgresql-/}"
+@@ -44,8 +44,8 @@
+ 		echo "Show currently selected PostgreSQL installation"
+ 	}
+ 	do_show() {
+-		if [[ -r "/etc/eselect/postgresql/active" ]] ; then
+-			local bn=$(basename $(canonicalise /etc/eselect/postgresql/active))
++		if [[ -r "${EPREFIX}/etc/eselect/postgresql/active" ]] ; then
++			local bn=$(basename $(canonicalise "${EPREFIX}"/etc/eselect/postgresql/active))
+ 			local slot=${bn}
+ 			echo "${slot}"
+ 		else
+@@ -73,8 +73,8 @@
+ 		echo "Show currently selected PostgreSQL server"
+ 	}
+ 	do_show-service() {
+-		if [[ -r "/etc/eselect/postgresql/service" ]] ; then
+-			local bn=$(basename $(canonicalise /etc/eselect/postgresql/service))
++		if [[ -r "${EPREFIX}/etc/eselect/postgresql/service" ]] ; then
++			local bn=$(basename $(canonicalise "${EPREFIX}"/etc/eselect/postgresql/service))
+ 			local slot=${bn}
+ 			echo "${slot}"
+ 		else
+@@ -91,9 +91,9 @@
+ 	}
+ 
+ 	do_set() {
+-		local alibdir='/usr/lib/'
++		local alibdir="${EPREFIX}/usr/lib/"
+ 		[[ ${#@} -ne 1 ]] && die -q "Only one parameter is expected"
+-		local slotdir="/etc/eselect/postgresql/slots/${1}"
++		local slotdir="${EPREFIX}/etc/eselect/postgresql/slots/${1}"
+ 		[[ -d "${slotdir}" ]] || die -q "No such version installed"
+ 		do_reset
+ 		unset postgres_symlinks
+@@ -122,9 +122,9 @@
+ 				[[ -L "$d" ]] || die -q "$d exists and is not a symbolic link"
+ 			fi
+ 		done
+-		mkdir -p /etc/eselect/postgresql &>/dev/null || die "Failed to create /etc/eselect/postgresql"
+-		exec 9>/etc/eselect/postgresql/active.links || die "Failed to store list of links"
+-		ln -sf slots/${1} /etc/eselect/postgresql/active
++		mkdir -p "${EPREFIX}"/etc/eselect/postgresql &>/dev/null || die "Failed to create /etc/eselect/postgresql"
++		exec 9>"${EPREFIX}"/etc/eselect/postgresql/active.links || die "Failed to store list of links"
++		ln -sf slots/${1} "${EPREFIX}"/etc/eselect/postgresql/active
+ 		for (( i=0;i<slinks;i++ )); do
+ 			local s=${postgres_symlinks[i]};
+ 			(( i++ ));
+@@ -144,18 +144,18 @@
+ 	}
+ 
+ 	do_set-service() {
+-		local alibdir='/usr/lib/'
++		local alibdir="${EPREFIX}/usr/lib/"
+ 		[[ ${#@} -ne 1 ]] && die -q "Only one parameter is expected"
+-		local slotdir="/etc/eselect/postgresql/slots/${1}"
++		local slotdir="${EPREFIX}/etc/eselect/postgresql/slots/${1}"
+ 		[[ -d "${slotdir}" ]] || die -q "No such version installed"
+ 		do_reset-service
+ 		unset postgres_service
+ 		local p_service="$(for s in ${slotdir}/* ; do source $s ; done ; echo $postgres_service)"
+-		[[ -x "/etc/init.d/${p_service}" ]] || die -1 "Selected installation doesn't provide PostgreSQL service"
+-		mkdir -p /etc/eselect/postgresql &>/dev/null || die "Failed to create /etc/eselect/postgresql"
+-		rm -f /etc/eselect/postgresql/service
+-		ln -sf slots/${1} /etc/eselect/postgresql/service
+-		touch /etc/conf.d/${p_service}
++		[[ -x "${EPREFIX}/etc/init.d/${p_service}" ]] || die -1 "Selected installation doesn't provide PostgreSQL service"
++		mkdir -p "${EPREFIX}"/etc/eselect/postgresql &>/dev/null || die "Failed to create /etc/eselect/postgresql"
++		rm -f "${EPREFIX}"/etc/eselect/postgresql/service
++		ln -sf slots/${1} "${EPREFIX}"/etc/eselect/postgresql/service
++		touch "${EPREFIX}"/etc/conf.d/${p_service}
+ 	}
+ ## }}}
+ 
+@@ -181,10 +181,10 @@
+ 	}
+ 
+ 	do_reset() {
+-		local alibdir='/usr/lib/'
+-		if [[ -d "$(canonicalise /etc/eselect/postgresql/active)" ]] ; then
+-			if [[ -r /etc/eselect/postgresql/active.links ]] ; then
+-				exec 9</etc/eselect/postgresql/active.links || die "Failed to access the list of links"
++		local alibdir="${EPREFIX}/usr/lib/"
++		if [[ -d "$(canonicalise "${EPREFIX}"/etc/eselect/postgresql/active)" ]] ; then
++			if [[ -r "${EPREFIX}"/etc/eselect/postgresql/active.links ]] ; then
++				exec 9<"${EPREFIX}"/etc/eselect/postgresql/active.links || die "Failed to access the list of links"
+ 				while IFS='' read -u 9 slink ; do
+ 					if [[ -e "$slink" ]] ; then
+ 						if [[ -L "$slink" ]] ; then
+@@ -194,9 +194,9 @@
+ 						fi
+ 					fi
+ 				done
+-				rm -f /etc/eselect/postgresql/active.links
++				rm -f "${EPREFIX}"/etc/eselect/postgresql/active.links
+ 			fi
+-			rm -f /etc/eselect/postgresql/active
++			rm -f "${EPREFIX}"/etc/eselect/postgresql/active
+ 		fi
+ 	}
+ ## }}}
+@@ -209,10 +209,10 @@
+ 	}
+ 
+ 	do_reset-service() {
+-		if [[ -L /etc/eselect/postgresql/service ]] ; then
+-			local p_service="$(for s in /etc/eselect/postgresql/service/* ; do source $s ; done ; echo "$postgres_service")"
+-			[[ -e "/etc/conf.d/${p_service}" ]] && touch "/etc/conf.d/${p_service}"
+-			rm -f /etc/eselect/postgresql/service
++		if [[ -L "${EPREFIX}"/etc/eselect/postgresql/service ]] ; then
++			local p_service="$(for s in "${EPREFIX}"/etc/eselect/postgresql/service/* ; do source $s ; done ; echo "$postgres_service")"
++			[[ -e "${EPREFIX}/etc/conf.d/${p_service}" ]] && touch "${EPREFIX}/etc/conf.d/${p_service}"
++			rm -f "${EPREFIX}"/etc/eselect/postgresql/service
+ 		fi
+ 	}
+ ## }}}
+@@ -238,7 +238,7 @@
+ 	do_update() {
+ 		# collect all binaries names
+ 		local binaries="$((
+-			for s in /etc/eselect/postgresql/slots/* ; do
++			for s in "${EPREFIX}"/etc/eselect/postgresql/slots/* ; do
+ 				[[ -d "$s" ]] || continue;
+ 				local slot=$(basename $s)
+ 				for src in ${s}/* ; do
+@@ -247,28 +247,28 @@
+ 				ls -1 ${postgres_bindir}/
+ 			done
+ 		) | sort | uniq)"
+-		local links="$(find /usr/bin/* -type d -prune -o -lname /usr/lib/eselect-postgresql/binwrapper -print)"
++		local links="$(find "${EPREFIX}"/usr/bin/* -type d -prune -o -lname "${EPREFIX}"/usr/lib/eselect-postgresql/binwrapper -print)"
+ 		local i
+ 		for i in ${binaries} ; do
+-			local lip="/usr/bin/${i}"
++			local lip="${EPREFIX}/usr/bin/${i}"
+ 			links="$(echo "${links}"|grep -v "^${lip}\$")"
+ 			[[ -L "${lip}" ]] && continue
+ 			[[ -e "${lip}" ]] && die "${lip} exists and is not a symbolic link"
+ 			echo "Creating ${lip} symlink..."
+-			ln -s /usr/lib/eselect-postgresql/binwrapper "${lip}"
++			ln -s "${EPREFIX}"/usr/lib/eselect-postgresql/binwrapper "${lip}"
+ 		done
+ 		# cleanup leftovers
+ 		for i in ${links} ; do
+ 			echo "Removing ${i} symlink.."
+ 			rm "${i}"
+ 		done
+-		if test -L /etc/eselect/postgresql/active -a ! -d /etc/eselect/postgresql/active ; then
++		if test -L "${EPREFIX}"/etc/eselect/postgresql/active -a ! -d "${EPREFIX}"/etc/eselect/postgresql/active ; then
+ 			echo "Resetting uninstalled selection"
+ 			do_reset
+ 		fi
+-		if test -L /etc/eselect/postgresql/service -a ! -d /etc/eselect/postgresql/service ; then
++		if test -L "${EPREFIX}"/etc/eselect/postgresql/service -a ! -d "${EPREFIX}"/etc/eselect/postgresql/service ; then
+ 			echo "Resetting uninstalled selection"
+ 			do_reset-service
+ 		fi
+ 	}
+-## }}}
+\ No newline at end of file
++## }}}
