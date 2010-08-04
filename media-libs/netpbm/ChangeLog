@@ -1,6 +1,30 @@
 # ChangeLog for media-libs/netpbm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.236 2010/03/20 20:37:24 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/netpbm/ChangeLog,v 1.243 2010/07/23 20:52:24 ssuominen Exp $
+
+  23 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  netpbm-10.49.00.ebuild:
+  Use virtual/jpeg.
+
+  14 Jul 2010; Jeroen Roovers <jer@gentoo.org> netpbm-10.49.00.ebuild:
+  Stable for HPPA (bug #319521).
+
+  04 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  netpbm-10.49.00.ebuild:
+  ppc64 stable wrt #319521
+
+  19 Jun 2010; Raúl Porcel <armin76@gentoo.org> netpbm-10.49.00.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #319521
+
+  25 May 2010; Pacho Ramos <pacho@gentoo.org> netpbm-10.49.00.ebuild:
+  stable amd64, bug 319521
+
+  24 May 2010; <nixnut@gentoo.org> netpbm-10.49.00.ebuild:
+  ppc stable #319521
+
+  21 May 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  netpbm-10.49.00.ebuild:
+  x86 stable wrt bug #319521
 
   20 Mar 2010; Mike Frysinger <vapier@gentoo.org> netpbm-10.49.00.ebuild,
   +files/netpbm-10.49.00-sigpower.patch:
