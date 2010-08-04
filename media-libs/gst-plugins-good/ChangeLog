@@ -1,6 +1,78 @@
 # ChangeLog for media-libs/gst-plugins-good
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.86 2010/04/18 15:43:37 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/gst-plugins-good/ChangeLog,v 1.99 2010/08/03 21:52:50 maekke Exp $
+
+  03 Aug 2010; Markus Meier <maekke@gentoo.org>
+  gst-plugins-good-0.10.22.ebuild:
+  arm stable, bug #329703
+
+  03 Aug 2010; Mart Raudsepp <leio@gentoo.org>
+  gst-plugins-good-0.10.23.ebuild:
+  Add <gst-plugins-bad-0.10.19 blocker to ensure smooth upgrade
+  (gst-plugins-bad-0.10.19 first) in regards to capssetter element move
+
+  01 Aug 2010; Tobias Klausmann <klausman@gentoo.org>
+  gst-plugins-good-0.10.21.ebuild:
+  Stable on alpha, bug #324691
+
+*gst-plugins-good-0.10.23 (30 Jul 2010)
+
+  30 Jul 2010; Mart Raudsepp <leio@gentoo.org>
+  +gst-plugins-good-0.10.23.ebuild:
+  Version bump. Noteworthy changes in "Stylish Kids in Riot" release:
+  WebM demuxing support in matroskademux.
+  VP8 support in matroska muxer/demuxer, avimux and qtdemux.
+  Dedicated webmmux element for WebM muxing (restricted matroska).
+  Automatic interlacing detection now default in deinterlace element.
+  Push mode seeking support in matroskademux and qtdemux.
+  More color format support in alpha, deinterlace, gamma, smptealpha,
+  videobalance, videobox, videoflip, videomixer and y4menc elements
+  (to avoid unnecessary slow color format conversions).
+  Huge amount of RTP and RTSP improvements, as usual.
+  New imagefreeze plugin - still frame stream generator.
+  capssetter element moved from -bad to here (in debugutils).
+
+  27 Jul 2010; Pacho Ramos <pacho@gentoo.org>
+  gst-plugins-good-0.10.22.ebuild:
+  amd64 stable, bug 329703
+
+  27 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  gst-plugins-good-0.10.22.ebuild:
+  x86 stable, bug 329703
+
+  24 Jul 2010; Markus Meier <maekke@gentoo.org>
+  gst-plugins-good-0.10.21.ebuild:
+  arm stable, bug #324691
+
+  12 Jul 2010; Jeroen Roovers <jer@gentoo.org>
+  gst-plugins-good-0.10.21.ebuild:
+  Stable for HPPA (bug #324691).
+
+*gst-plugins-good-0.10.22 (03 Jul 2010)
+
+  03 Jul 2010; Mart Raudsepp <leio@gentoo.org>
+  +gst-plugins-good-0.10.22.ebuild:
+  Version bump, compatible with gst-plugins-base-0.10.29, fixing bug 326231
+  Huge amount of upstream improvements, some highlights:
+  Many more color formats supported in various elements (alpha, alphacolor,
+  videobox, videomixer, shapewipe) directly to avoid temporary conversions.
+  Matroska and FLV demuxers: backwards playback support in pull mode.
+  qtdemux: XMP parsing support, replaygain tag reading, etc
+
+  01 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  gst-plugins-good-0.10.21.ebuild:
+  x86 stable, bug 324691
+
+  27 Jun 2010; <nixnut@gentoo.org> gst-plugins-good-0.10.21.ebuild:
+  ppc stable #324691
+
+  24 Jun 2010; Jeroen Roovers <jer@gentoo.org>
+  gst-plugins-good-0.10.17.ebuild:
+  Stable for HPPA (bug #308379).
+
+  24 Jun 2010; Markos Chandras <hwoarang@gentoo.org>
+  gst-plugins-good-0.10.21.ebuild:
+  Stable on amd64 wrt bug #324691
 
   18 Apr 2010; <nixnut@gentoo.org> gst-plugins-good-0.10.17.ebuild:
   ppc stable #308379
