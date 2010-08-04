@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r5.ebuild,v 1.4 2010/06/22 19:59:58 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r6.ebuild,v 1.2 2010/07/19 05:20:05 mr_bones_ Exp $
 
 inherit eutils autotools distutils perl-module flag-o-matic
 
@@ -90,6 +90,9 @@ src_install() {
 
 	# Fix perllocal.pod file collision
 	use perl && fixlocalpod
+
+	#remove .la file. Bug #300096
+	rm "${ED}"/$(python_get_sitedir)/${PN}/_rpmmodule.la
 }
 
 pkg_postinst() {

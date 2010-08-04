@@ -8,6 +8,6 @@
 </maintainer>
 <use>
   <flag name='magic'>Add magic file support (<pkg>sys-apps/file</pkg>)</flag>
-  <flag name='neon'>Include support for <pkg>net-misc/neon</pkg></flag>
+  <flag name='neon'>Include support for <pkg>net-libs/neon</pkg></flag>
 </use>
 </pkgmetadata>

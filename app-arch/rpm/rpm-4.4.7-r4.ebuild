@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r4.ebuild,v 1.5 2010/05/12 19:59:42 sochotnicky Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-4.4.7-r4.ebuild,v 1.6 2010/06/22 19:59:58 arfrever Exp $
 
 inherit eutils autotools distutils perl-module flag-o-matic
 
@@ -25,7 +25,7 @@ RDEPEND="=sys-libs/db-3.2*
 	perl? ( >=dev-lang/perl-5.8.8 )
 	nls? ( virtual/libintl )
 	sqlite? ( >=dev-db/sqlite-3.3.5 )
-	>=net-misc/neon-0.28"
+	>=net-libs/neon-0.28"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 	doc? ( app-doc/doxygen )"

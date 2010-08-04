@@ -1,6 +1,20 @@
 # ChangeLog for app-arch/rpm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.112 2010/05/12 18:49:00 sochotnicky Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/ChangeLog,v 1.115 2010/07/18 23:57:33 hwoarang Exp $
+
+*rpm-4.4.7-r6 (18 Jul 2010)
+
+  18 Jul 2010; Markos Chandras <hwoarang@gentoo.org> +rpm-4.4.7-r6.ebuild:
+  Revbump to remove pointless .la file. Bug #300096
+
+  22 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  rpm-4.4.6-r7.ebuild, rpm-4.4.7-r4.ebuild, rpm-4.4.7-r5.ebuild,
+  rpm-5.1.6.ebuild, metadata.xml:
+  net-misc/neon renamed to net-libs/neon.
+
+  01 Jun 2010; Stanislav Ochotnicky <sochotnicky@gentoo.org>
+  rpm-4.4.7-r5.ebuild, +files/rpm-4.4.7-have-locale-h.patch:
+  Fix for bug #227939
 
 *rpm-4.4.7-r5 (12 May 2010)
 

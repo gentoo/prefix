@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-5.1.6.ebuild,v 1.5 2010/04/04 21:48:31 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/rpm/rpm-5.1.6.ebuild,v 1.6 2010/06/22 19:59:58 arfrever Exp $
 
 inherit eutils multilib distutils python
 
@@ -25,7 +25,7 @@ RDEPEND="dev-libs/beecrypt
 	berkdb? ( sys-libs/db )
 	bzip2? ( app-arch/bzip2 )
 	lua? ( dev-lang/lua )
-	neon? ( net-misc/neon )
+	neon? ( net-libs/neon )
 	pcre? ( dev-libs/libpcre )
 	perl? ( dev-lang/perl )
 	python? ( dev-lang/python )
