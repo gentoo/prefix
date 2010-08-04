@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.8.ebuild,v 1.7 2010/05/17 18:46:06 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.8.ebuild,v 1.8 2010/07/30 16:58:01 jer Exp $
 
 inherit eutils multilib
 

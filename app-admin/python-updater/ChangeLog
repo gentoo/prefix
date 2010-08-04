@@ -1,6 +1,46 @@
 # ChangeLog for app-admin/python-updater
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.43 2009/10/17 19:22:40 arfrever Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/ChangeLog,v 1.53 2010/07/30 16:58:01 jer Exp $
+
+  30 Jul 2010; Jeroen Roovers <jer@gentoo.org> python-updater-0.8.ebuild:
+  Stable for HPPA (bug #320043).
+
+  17 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-updater-0.8.ebuild:
+  amd64 stable (tested by rullzer) (bug #307265).
+
+  11 May 2010; Brent Baude <ranger@gentoo.org> python-updater-0.8.ebuild:
+  stable ppc64, bug 307265
+
+  17 Apr 2010; Raúl Porcel <armin76@gentoo.org> python-updater-0.8.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #307265
+
+  01 Apr 2010; Christian Faulhammer <fauli@gentoo.org>
+  python-updater-0.8.ebuild:
+  stable x86, bug 307265
+
+  15 Mar 2010; nixnut <nixnut@gentoo.org> python-updater-0.8.ebuild:
+  ppc stable #307265
+
+  09 Mar 2010; Joseph Jezak <josejx@gentoo.org>
+  python-updater-0.7-r1.ebuild:
+  Marked ppc64 stable.
+
+  01 Feb 2010; Christian Faulhammer <fauli@gentoo.org>
+  python-updater-0.7-r1.ebuild:
+  stable x86
+
+*python-updater-0.7-r1 (29 Jan 2010)
+
+  29 Jan 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-updater-0.7-r1.ebuild, +files/python-updater-0.7-fix_import.patch:
+  Backport fix for bug #288361.
+
+*python-updater-0.8 (29 Jan 2010)
+
+  29 Jan 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-updater-0.8.ebuild:
+  Version bump. Fixed bugs: #281692, #283284, #289253.
 
   17 Oct 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   python-updater-0.7.ebuild:

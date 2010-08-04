@@ -1,8 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.7.ebuild,v 1.9 2010/03/07 17:51:03 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/python-updater/python-updater-0.7-r1.ebuild,v 1.4 2010/03/09 22:50:07 josejx Exp $
 
 inherit eutils multilib
+
+inherit eutils
 
 DESCRIPTION="Script used to remerge python packages when changing Python version."
 HOMEPAGE="http://www.gentoo.org/proj/en/Python"
@@ -22,6 +24,9 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 
+	# Delete vulnerable code.
+	epatch "${FILESDIR}/${P}-fix_import.patch"
+
 	epatch "${FILESDIR}"/${P}-prefix.patch
 	ebegin "Adjusting to prefix"
 	sed -i \
@@ -31,7 +36,8 @@ src_unpack() {
 	eend $?
 }
 
-src_install() {
+src_install()
+{
 	dosbin ${PN} || die "dosbin failed"
 	doman ${PN}.1 || die "doman failed"
 	dodoc AUTHORS ChangeLog || die "dodoc failed"
