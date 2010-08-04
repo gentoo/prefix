@@ -1,6 +1,21 @@
 # ChangeLog for media-libs/libsndfile
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.111 2010/01/07 18:04:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libsndfile/ChangeLog,v 1.113 2010/06/25 12:07:14 aballier Exp $
+
+  25 Jun 2010; Alexis Ballier <aballier@gentoo.org>
+  -libsndfile-1.0.17-r1.ebuild, -files/libsndfile-1.0.17-autotools.patch,
+  -files/libsndfile-1.0.17-dontbuild-tests-examples.patch,
+  -files/libsndfile-1.0.17-flac-buffer-overflow.patch,
+  -files/libsndfile-1.0.17-ogg.patch, -libsndfile-1.0.18.ebuild,
+  -libsndfile-1.0.18-r1.ebuild,
+  -files/libsndfile-1.0.18-less_strict_tests.patch,
+  -files/libsndfile-1.0.18-m4macro.patch, -libsndfile-1.0.19.ebuild,
+  -files/libsndfile-1.0.19-automagic_jack.patch, -libsndfile-1.0.20.ebuild:
+  remove old
+
+  12 Jun 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libsndfile-1.0.21.ebuild:
+  append-lfs-flags wrt #313259 by Marc Joliet.
 
   07 Jan 2010; Raúl Porcel <armin76@gentoo.org> libsndfile-1.0.21.ebuild:
   alpha/arm/ia64/sh/sparc stable wrt #297631
