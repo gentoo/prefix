@@ -1,6 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.23-r2.ebuild,v 1.7 2010/07/18 20:26:19 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/tar/tar-1.23-r4.ebuild,v 1.1 2010/07/19 21:52:44 vapier Exp $
+
+EAPI="2"
 
 inherit flag-o-matic eutils prefix
 
@@ -19,10 +21,7 @@ RDEPEND=""
 DEPEND="${RDEPEND}
 	nls? ( >=sys-devel/gettext-0.10.35 )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# somehow, on interix 6, tar detects changing files/dirs
 	# all the time, although nothing is happening on the fs.
 	# probably a bug in stat()...
@@ -31,6 +30,8 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${P}-revert-pipe.patch #309001
 	epatch "${FILESDIR}"/${P}-strncpy.patch #317139
+	epatch "${FILESDIR}"/${P}-symlink-k-hang.patch #327641
+	epatch "${FILESDIR}"/${P}-tests.patch #326785
 
 	if ! use userland_GNU ; then
 		sed -i \
@@ -44,7 +45,7 @@ src_unpack() {
 	eprefixify rmt
 }
 
-src_compile() {
+src_configure() {
 	local myconf
 	# hack around ld: duplicate symbol _argp_fmtstream_putc problem
 	[[ ${CHOST} == *-darwin* ]] && append-flags -U__OPTIMIZE__
@@ -57,8 +58,7 @@ src_compile() {
 		--bindir="${EPREFIX}"/bin \
 		--libexecdir="${EPREFIX}"/usr/sbin \
 		$(use_enable nls) \
-		${myconf} || die
-	emake || die "emake failed"
+		${myconf}
 }
 
 src_install() {
