@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.1.18.ebuild,v 1.5 2010/03/01 16:49:04 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/xine-lib-1.1.19.ebuild,v 1.2 2010/07/27 19:52:04 ssuominen Exp $
 
 EAPI=3
 inherit eutils flag-o-matic toolchain-funcs multilib
@@ -17,8 +17,7 @@ else
 fi
 
 SRC_URI="${SRC_URI}
-	mirror://gentoo/${PN}-1.1.15-textrel-fix.patch
-	mirror://gentoo/${P}-compat.c.tbz2"
+	mirror://gentoo/${PN}-1.1.15-textrel-fix.patch"
 
 DESCRIPTION="Core libraries for Xine movie player"
 HOMEPAGE="http://xine.sourceforge.net"
@@ -54,14 +53,15 @@ RDEPEND="X? ( x11-libs/libXext
 	libcaca? ( >=media-libs/libcaca-0.99_beta14 )
 	samba? ( net-fs/samba )
 	mng? ( media-libs/libmng )
-	vcd? ( media-video/vcdimager )
+	vcd? ( media-video/vcdimager
+		dev-libs/libcdio[-minimal] )
 	a52? ( >=media-libs/a52dec-0.7.4-r5 )
 	mad? ( media-libs/libmad )
 	imagemagick? ( media-gfx/imagemagick )
 	dts? ( media-libs/libdca )
 	aac? ( >=media-libs/faad2-2.6.1 )
 	>=media-video/ffmpeg-0.4.9_p20070129
-	modplug? ( media-libs/libmodplug )
+	modplug? ( >=media-libs/libmodplug-0.8.8.1 )
 	nls? ( virtual/libintl )
 	gtk? ( =x11-libs/gtk+-2* )
 	pulseaudio? ( media-sound/pulseaudio )
@@ -90,7 +90,6 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "${DISTDIR}"/${PN}-1.1.15-textrel-fix.patch
-	cp -f "${WORKDIR}"/compat.c src/dxr3/ || die
 }
 
 src_configure() {

@@ -1,6 +1,25 @@
 # ChangeLog for media-libs/xine-lib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/ChangeLog,v 1.625 2010/05/13 11:26:07 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/xine-lib/ChangeLog,v 1.630 2010/07/27 19:49:32 ssuominen Exp $
+
+*xine-lib-1.1.19 (27 Jul 2010)
+
+  27 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +xine-lib-1.1.19.ebuild:
+  Version bump.
+
+  10 Jul 2010; Raúl Porcel <armin76@gentoo.org> xine-lib-1.1.18.1.ebuild:
+  alpha/arm/ia64/sparc stable wrt #317141
+
+  28 Jun 2010; Samuli Suominen <ssuominen@gentoo.org>
+  xine-lib-1.1.18.1.ebuild:
+  Missing dev-libs/libcdio[-minimal] depend wrt #325003 by dE.
+
+  24 May 2010; Pacho Ramos <pacho@gentoo.org> xine-lib-1.1.18.1.ebuild:
+  stable amd64, bug 317141
+
+  23 May 2010; <nixnut@gentoo.org> xine-lib-1.1.18.1.ebuild:
+  ppc stable #317141
 
   13 May 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
   xine-lib-1.1.18.1.ebuild:
