@@ -1,0 +1,16 @@
+diff -Nru vanilla//scite/src/SciTEProps.cxx patched//scite/src/SciTEProps.cxx
+--- vanilla//scite/src/SciTEProps.cxx	2010-06-23 18:04:42.639336085 +0100
++++ patched//scite/src/SciTEProps.cxx	2010-06-23 18:07:00.606351119 +0100
+@@ -1532,10 +1532,12 @@
+ 
+ // return the int value of the command name passed in.
+ int SciTEBase::GetMenuCommandAsInt(SString commandName) {
++#ifndef NO_LUA
+ 	int i = IFaceTable::FindConstant(commandName.c_str());
+ 	if (i != -1) {
+ 		return IFaceTable::constants[i].value;
+ 	}
++#endif
+ 	// Otherwise we might have entered a number as command to access a "SCI_" command
+ 	return commandName.value();
+ }
