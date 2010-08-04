@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.8.1.ebuild,v 1.1 2010/04/06 08:43:11 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/mesa-7.8.2.ebuild,v 1.8 2010/08/03 19:08:35 scarabeus Exp $
 
 EAPI=3
 
@@ -11,7 +11,7 @@ if [[ ${PV} = 9999* ]]; then
 	EXPERIMENTAL="true"
 fi
 
-inherit autotools multilib flag-o-matic ${GIT_ECLASS} portability
+inherit autotools multilib flag-o-matic toolchain-funcs ${GIT_ECLASS} portability
 
 OPENGL_DIR="xorg-x11"
 
@@ -49,6 +49,9 @@ RDEPEND="
 	>=app-admin/eselect-opengl-1.1.1-r2
 	dev-libs/expat
 	>=x11-libs/libdrm-2.4.19
+	gallium? (
+		video_cards_nouveau? ( <x11-libs/libdrm-2.4.21 )
+	)
 	x11-libs/libICE
 	x11-libs/libX11[xcb?]
 	x11-libs/libXdamage
@@ -107,6 +110,14 @@ src_prepare() {
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		sed -i -e "s/-DSVR4/-D_POSIX_C_SOURCE=200112L/" configure.ac || die
 		sed -i -e 's/uint/unsigned int/g' src/egl/drivers/glx/egl_glx.c || die
+	fi
+
+	# In order for mesa to complete it's build process we need to use a tool
+	# that it compiles. When we cross compile this clearly does not work
+	# so we require mesa to be built on the host system first. -solar
+	if tc-is-cross-compiler; then
+		sed -i -e "s#^GLSL_CL = .*\$#GLSL_CL = glsl-compile#g" \
+			"${S}"/src/mesa/shader/slang/library/Makefile || die
 	fi
 
 	eautoreconf
@@ -174,6 +185,12 @@ src_configure() {
 src_install() {
 	emake DESTDIR="${D}" install || die "Installation failed"
 
+	# Save the glsl-compiler for later use
+	if ! tc-is-cross-compiler; then
+		dodir /usr/bin/
+		cp "${S}"/src/glsl/apps/compile "${ED}"/usr/bin/glsl-compile \
+			|| die "failed to copy the glsl compiler."
+	fi
 	# Remove redundant headers
 	# GLUT thing
 	rm -f "${ED}"/usr/include/GL/glut*.h || die "Removing glut include failed."
@@ -186,7 +203,7 @@ src_install() {
 	ebegin "Moving libGL and friends for dynamic switching"
 		dodir /usr/$(get_libdir)/opengl/${OPENGL_DIR}/{lib,extensions,include}
 		local x
-		for x in "${ED}"/usr/$(get_libdir)/libGL.{la,a,so*}; do
+		for x in "${ED}"/usr/$(get_libdir)/libGL.{a,so*}; do
 			if [ -f ${x} -o -L ${x} ]; then
 				mv -f ${x} "${ED}"/usr/$(get_libdir)/opengl/${OPENGL_DIR}/lib \
 					|| die "Failed to move ${x}"

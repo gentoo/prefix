@@ -1,6 +1,47 @@
 # ChangeLog for media-libs/mesa
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.270 2010/05/12 18:21:43 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/mesa/ChangeLog,v 1.281 2010/08/03 19:08:35 scarabeus Exp $
+
+  03 Aug 2010; Tomáš Chvátal <scarabeus@gentoo.org>
+  -files/0001-st-xorg-Adopt-to-new-dirty-clip-rect-type.patch,
+  -mesa-7.5.2.ebuild, mesa-7.7.1.ebuild, mesa-7.8.2.ebuild,
+  -files/lib/libGL.la, -files/lib/libGLU.la:
+  Drop old. Remove remains of .la files.
+
+  02 Aug 2010; Raúl Porcel <armin76@gentoo.org> mesa-7.7.1.ebuild:
+  alpha/ia64/sh/sparc stable wrt #308521
+
+  22 Jul 2010; Markus Meier <maekke@gentoo.org> mesa-7.8.2.ebuild:
+  arm stable, bug #327777
+
+  19 Jul 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  mesa-7.8.2.ebuild:
+  Ease libdrm dependency for nouveau
+
+  14 Jul 2010; Jeroen Roovers <jer@gentoo.org> mesa-7.8.2.ebuild:
+  Stable for HPPA (bug #327777).
+
+  13 Jul 2010; Christian Faulhammer <fauli@gentoo.org> mesa-7.8.2.ebuild:
+  x86 stable, bug 327777
+
+  12 Jul 2010; Markos Chandras <hwoarang@gentoo.org> mesa-7.8.2.ebuild:
+  Stable on amd64 wrt bug #327777
+
+  18 Jun 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  mesa-7.8.2.ebuild:
+  depend on older libdrm for nouveau, bug #324539
+
+*mesa-7.8.2 (17 Jun 2010)
+
+  17 Jun 2010; Tomáš Chvátal <scarabeus@gentoo.org> -mesa-7.8.1.ebuild,
+  +mesa-7.8.2.ebuild:
+  Version bump.
+
+  31 May 2010; Guy Martin <gmsoft@gentoo.org> mesa-7.7.1.ebuild:
+  hppa stable, #308521
+
+  17 May 2010; Tomáš Chvátal <scarabeus@gentoo.org> mesa-7.8.1.ebuild:
+  Add cross-compile fixes. Thx solar.
 
   12 May 2010; Brent Baude <ranger@gentoo.org> mesa-7.7.1.ebuild:
   Marking mesa-7.7.1 ppc64 stable for bug 308521
