@@ -1,6 +1,14 @@
 # ChangeLog for app-crypt/johntheripper
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.112 2010/02/19 14:39:18 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/ChangeLog,v 1.114 2010/07/07 15:58:44 ssuominen Exp $
+
+  07 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  johntheripper-1.7.3.4.ebuild:
+  ppc64 stable wrt #287932
+
+  07 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  johntheripper-1.7.4.2.ebuild:
+  Missing gcc-specs-pie check wrt #325545 by Dane Smith.
 
 *johntheripper-1.7.4.2 (19 Feb 2010)
 

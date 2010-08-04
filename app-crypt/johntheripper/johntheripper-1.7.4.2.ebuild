@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.4.2.ebuild,v 1.1 2010/02/19 14:39:18 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/johntheripper/johntheripper-1.7.4.2.ebuild,v 1.2 2010/07/07 15:56:50 ssuominen Exp $
 
 EAPI="2"
 
@@ -108,7 +108,7 @@ src_prepare() {
 src_compile() {
 	use custom-cflags || strip-flags
 	append-flags -fPIC -fPIE
-	append-ldflags -nopie
+	gcc-specs-pie && append-ldflags -nopie
 
 	CPP=$(tc-getCXX) CC=$(tc-getCC) AS=$(tc-getCC) LD=$(tc-getCC)
 #	use mpi && CPP=mpicxx CC=mpicc AS=mpicc LD=mpicc
