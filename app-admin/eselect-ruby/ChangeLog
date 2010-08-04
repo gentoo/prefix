@@ -1,6 +1,13 @@
 # ChangeLog for app-admin/eselect-ruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.34 2010/04/02 20:01:18 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/eselect-ruby/ChangeLog,v 1.35 2010/06/03 14:40:12 a3li Exp $
+
+*eselect-ruby-20100603 (03 Jun 2010)
+
+  03 Jun 2010; Alex Legler <a3li@gentoo.org> +eselect-ruby-20100603.ebuild:
+  Version bump. Improve cleanup action, closes bug 320479 by flameeyes (also
+  reported by Timothy Miller). Improve wording re bug 322537 by
+  mjbjr@beaudesign.com.
 
 *eselect-ruby-20100402 (02 Apr 2010)
 
