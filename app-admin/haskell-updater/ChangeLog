@@ -1,6 +1,37 @@
 # ChangeLog for app-admin/haskell-updater
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/haskell-updater/ChangeLog,v 1.4 2010/01/26 19:34:16 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/haskell-updater/ChangeLog,v 1.11 2010/07/20 13:26:30 josejx Exp $
+
+  20 Jul 2010; Joseph Jezak <josejx@gentoo.org>
+  haskell-updater-1.1.0.0.ebuild:
+  Marked ~ppc for bug #283531.
+
+  15 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org>
+  haskell-updater-1.1.0.0.ebuild:
+  Marked ~x86-fbsd. Tested by Naohiro Aota (naota at
+  freenode://#gentoo-haskell)
+
+  09 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org>
+  haskell-updater-0.9.1.0.ebuild, haskell-updater-1.1.0.0.ebuild:
+  marked ~ia64 (tested with ghc-6.10.4-r1 and with ghc-6.12.3)
+
+  07 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org>
+  haskell-updater-0.9.1.0.ebuild, haskell-updater-1.1.0.0.ebuild:
+  marked ~alpha (tested with ghc-6.10.4-r1 and with ghc-6.12.3)
+
+  29 Jun 2010; Lennart Kolmodin <kolmodin@gentoo.org>
+  haskell-updater-1.1.0.0.ebuild:
+  Remove some keywords until those arches have ghc-6.12.3 keyworded.
+
+*haskell-updater-1.1.0.0 (13 Jun 2010)
+
+  13 Jun 2010; Lennart Kolmodin <kolmodin@gentoo.org>
+  -haskell-updater-1.0.0.0.ebuild, +haskell-updater-1.1.0.0.ebuild:
+  Version bump.
+
+  31 May 2010; Joseph Jezak <josejx@gentoo.org>
+  haskell-updater-0.9.1.0.ebuild, haskell-updater-1.0.0.0.ebuild:
+  Marked ~ppc.
 
 *haskell-updater-1.0.0.0 (26 Jan 2010)
 
