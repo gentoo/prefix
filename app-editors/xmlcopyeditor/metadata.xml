@@ -3,8 +3,10 @@
 <pkgmetadata>
 <herd>no-herd</herd>
 <maintainer>
-	<email>yoswink@gentoo.org</email>
-	<name>José Luis Rivero</name>
+	<email>dabbott@gentoo.org</email>
+</maintainer>
+<maintainer>
+	<email>tove@gentoo.org</email>
 </maintainer>
 <longdescription>
 	Fast, free, validating XML editor.
