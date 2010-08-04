@@ -1,6 +1,10 @@
 # ChangeLog for app-shells/mksh
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-shells/mksh/ChangeLog,v 1.18 2010/03/06 23:13:11 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-shells/mksh/ChangeLog,v 1.19 2010/07/11 12:02:59 patrick Exp $
+
+  11 Jul 2010; Patrick Lauer <patrick@gentoo.org> mksh-39c.ebuild,
+  +files/mksh-39c-urandom-write.patch:
+  Fix for #307983, thanks to Fabian Koester
 
 *mksh-39c (06 Mar 2010)
 
