@@ -1,6 +1,15 @@
 # ChangeLog for app-mobilephone/gnokii
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/ChangeLog,v 1.102 2009/12/12 10:37:53 mrness Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-mobilephone/gnokii/ChangeLog,v 1.104 2010/06/17 20:07:42 patrick Exp $
+
+  17 Jun 2010; Patrick Lauer <patrick@gentoo.org> gnokii-0.6.27-r2.ebuild,
+  gnokii-0.6.27-r4.ebuild, gnokii-0.6.28.1.ebuild, gnokii-9999.ebuild:
+  Migrating away from deprecated postgres virtuals
+
+  11 Jun 2010; Samuli Suominen <ssuominen@gentoo.org>
+  gnokii-0.6.27-r2.ebuild, gnokii-0.6.27-r4.ebuild, gnokii-0.6.28.1.ebuild,
+  gnokii-9999.ebuild:
+  Drop bluez-libs support wrt #301630.
 
   12 Dec 2009; Alin Năstac <mrness@gentoo.org> gnokii-9999.ebuild,
   files/gnokii-9999-translations.patch:
