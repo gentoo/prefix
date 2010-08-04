@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.2.0.ebuild,v 1.27 2010/06/22 20:00:18 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/openoffice-3.2.1.ebuild,v 1.3 2010/07/17 10:20:25 suka Exp $
 
 WANT_AUTOMAKE="1.9"
 EAPI="2"
@@ -9,14 +9,14 @@ CMAKE_REQUIRED="never"
 PYTHON_DEPEND="2"
 PYTHON_USE_WITH="threads"
 
-inherit autotools bash-completion check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde4-base mono multilib python toolchain-funcs
+inherit autotools bash-completion check-reqs db-use eutils fdo-mime flag-o-matic java-pkg-opt-2 kde4-base multilib python toolchain-funcs
 
-IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap mono nsplugin odk opengl pam templates"
+IUSE="binfilter cups dbus debug eds gnome gstreamer gtk kde ldap nsplugin odk opengl pam templates"
 
-MY_PV=3.2.0.10
+MY_PV=3.2.1.4
 PATCHLEVEL=OOO320
 SRC=OOo_${PV}_src
-MST=OOO320_m12
+MST=OOO320_m19
 DEVPATH=http://download.services.openoffice.org/files/stable/${PV}/${SRC}
 S=${WORKDIR}/ooo
 S_OLD=${WORKDIR}/ooo-build-${MY_PV}
@@ -27,8 +27,7 @@ DESCRIPTION="OpenOffice.org, a full office productivity suite."
 SRC_URI="${DEVPATH}_core.tar.bz2
 	${DEVPATH}_extensions.tar.bz2
 	${DEVPATH}_system.tar.bz2
-	${DEVPATH}_testautomation.tar.bz2
-	mirror://gentoo/OOo_3.2.0_src_l10n-fixed.tar.bz2
+	${DEVPATH}_l10n.tar.bz2
 	binfilter? ( ${DEVPATH}_binfilter.tar.bz2 )
 	templates? ( http://extensions.services.openoffice.org/files/273/0/Sun_ODF_Template_Pack_en-US.oxt
 		http://extensions.services.openoffice.org/files/295/1/Sun_ODF_Template_Pack_de.oxt
@@ -43,7 +42,8 @@ SRC_URI="${DEVPATH}_core.tar.bz2
 	http://download.go-oo.org/SRC680/lp_solve_5.5.0.12_source.tar.gz
 	http://download.go-oo.org/DEV300/scsolver.2008-10-30.tar.bz2
 	http://download.go-oo.org/DEV300/ooo_oxygen_images-2009-06-17.tar.gz
-	http://download.go-oo.org/SRC680/libwps-0.1.2.tar.gz"
+	http://download.go-oo.org/SRC680/libwps-0.1.2.tar.gz
+	http://multidimalgorithm.googlecode.com/files/mdds_0.3.0.tar.bz2"
 
 LANGS1="af ar as_IN be_BY bg bn br brx bs ca cs cy da de dgo dz el en_GB en_ZA eo es et eu fa fi fr ga gl gu he hi_IN hr hu id it ja ka kk km kn_IN ko kok ks ku lt mai mk ml_IN mn mni mr_IN nb ne nl nn nr ns oc or_IN pa_IN pl pt pt_BR ru rw sa_IN sat sd sh sk sl sr ss st sv sw_TZ ta ta_IN te_IN tg th ti_ER tn tr ts uk ur_IN uz ve vi xh zh_CN zh_TW zu"
 LANGS="${LANGS1} en en_US"
@@ -86,7 +86,6 @@ COMMON_DEPEND="!app-office/openoffice-bin
 		dev-java/lucene:2.3
 		dev-java/lucene-analyzers:2.3
 		dev-java/rhino:1.5 )
-	mono? ( || ( >dev-lang/mono-2.4-r1 <dev-lang/mono-2.4 ) )
 	nsplugin? ( net-libs/xulrunner:1.9
 		>=dev-libs/nspr-4.6.6
 		>=dev-libs/nss-3.11-r1 )
@@ -223,11 +222,8 @@ src_prepare() {
 	epatch "${FILESDIR}/gentoo-${PV}.diff"
 	epatch "${FILESDIR}/gentoo-pythonpath.diff"
 	epatch "${FILESDIR}/ooo-env_log.diff"
-	cp -f "${FILESDIR}/boost-undefined-references.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/qt-use-native-backend.diff" "${S}/patches/hotfixes" || die
-	cp -f "${FILESDIR}/npwrap-fix-nogtk.diff" "${S}/patches/hotfixes" || die
 	cp -f "${FILESDIR}/neon-remove-SSPI-support.diff" "${S}/patches/hotfixes" || die
-	cp -f "${FILESDIR}/gcc45-buildfix.diff" "${S}/patches/hotfixes" || die
 
 	# Prefix patch
 	epatch "${FILESDIR}/ooo-build-3.0.1.2-prefix.patch"
@@ -278,7 +274,7 @@ src_prepare() {
 	echo "--without-writer2latex" >> ${CONFFILE}
 
 	# Use splash screen without Sun logo
-	echo "--with-intro-bitmaps=\\\"${S}/build/${MST}/ooo_custom_images/nologo/introabout/intro.bmp\\\"" >> ${CONFFILE}
+	echo "--with-intro-bitmaps=\\\"${S}/build/${MST}/ooo_custom_images/nologo/introabout/intro.png\\\"" >> ${CONFFILE}
 
 	# Upstream this, disabled for now #i108911
 	#echo "--with-system-redland" >> ${CONFFILE}
@@ -337,7 +333,7 @@ src_configure() {
 		--without-git \
 		--without-split \
 		${GTKFLAG} \
-		$(use_enable mono) \
+		--disable-mono \
 		--disable-kde \
 		$(use_enable kde kde4) \
 		$(use_enable !debug strip) \

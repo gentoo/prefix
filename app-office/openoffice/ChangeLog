@@ -1,6 +1,36 @@
 # ChangeLog for app-office/openoffice
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.531 2010/05/12 12:25:08 suka Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-office/openoffice/ChangeLog,v 1.537 2010/07/17 10:20:25 suka Exp $
+
+  17 Jul 2010; Andreas Proschofsky <suka@gentoo.org>
+  openoffice-3.2.1.ebuild:
+  Silent patchset bump to ooo-build-3.2.1.4, couple of bugfixes 
+
+  22 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  openoffice-3.2.0.ebuild, openoffice-3.2.1.ebuild:
+  net-misc/neon renamed to net-libs/neon.
+
+*openoffice-3.2.1 (14 Jun 2010)
+
+  14 Jun 2010; Andreas Proschofsky <suka@gentoo.org>
+  -openoffice-3.2.1_rc1.ebuild, +openoffice-3.2.1.ebuild,
+  -files/gentoo-3.2.1_rc1.diff, +files/gentoo-3.2.1.diff:
+  Bump to OpenOffice.org 3.2.1
+
+  25 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  openoffice-3.2.0.ebuild, openoffice-3.2.1_rc1.ebuild:
+  Use Python 2 (bug #311683).
+
+*openoffice-3.2.1_rc1 (24 May 2010)
+
+  24 May 2010; Andreas Proschofsky <suka@gentoo.org>
+  +openoffice-3.2.1_rc1.ebuild, +files/gentoo-3.2.1_rc1.diff:
+  First release candidate for openoffice 3.2.1, masked for now
+
+  15 May 2010; Andreas Proschofsky <suka@gentoo.org>
+  +files/gcc45-buildfix.diff, openoffice-3.2.0.ebuild,
+  -files/gcc45-buildfix.patch:
+  Rename gcc-4.5 buildfix so that it actually gets applied
 
   12 May 2010; Andreas Proschofsky <suka@gentoo.org>
   +files/gcc45-buildfix.patch, openoffice-3.2.0.ebuild:
