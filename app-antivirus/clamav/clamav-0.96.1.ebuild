@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.95.3.ebuild,v 1.6 2009/12/15 19:15:48 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-antivirus/clamav/clamav-0.96.1.ebuild,v 1.6 2010/06/05 14:58:25 armin76 Exp $
 
 EAPI=2
 
