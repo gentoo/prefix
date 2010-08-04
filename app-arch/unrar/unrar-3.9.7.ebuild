@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-3.9.7.ebuild,v 1.7 2010/04/13 18:28:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/unrar-3.9.7.ebuild,v 1.8 2010/06/30 21:29:00 hanno Exp $
 
 inherit toolchain-funcs eutils
 
@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris"
 IUSE=""
 
-DEPEND="!app-arch/unrar-gpl"
+DEPEND="!<=app-arch/unrar-gpl-0.0.1_p20080417"
 
 S=${WORKDIR}/unrar
 

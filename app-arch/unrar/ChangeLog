@@ -1,6 +1,11 @@
 # ChangeLog for app-arch/unrar
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.136 2010/04/13 18:28:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/unrar/ChangeLog,v 1.137 2010/06/30 21:29:00 hanno Exp $
+
+  30 Jun 2010; Hanno Boeck <hanno@gentoo.org> unrar-3.8.5.ebuild,
+  unrar-3.9.7.ebuild, unrar-3.9.9.ebuild, unrar-3.9.10.ebuild:
+  Binary name of unrar-gpl will be changed, so both can be installed in
+  parallel. Block only old unrar-gpl versions.
 
   13 Apr 2010; Raúl Porcel <armin76@gentoo.org> unrar-3.9.7.ebuild:
   alpha/sparc stable wrt #308127
