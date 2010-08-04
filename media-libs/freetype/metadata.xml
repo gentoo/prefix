@@ -3,7 +3,9 @@
 <pkgmetadata>
   <herd>fonts</herd>
   <use>
-	<flag name="fontforge">Install internal headers required for truetype
+	<flag name="auto-hinter">Use the unpatented auto-hinter instead of the
+	(recommended) TrueType bytecode interpreter</flag>
+	<flag name="fontforge">Install internal headers required for TrueType
 	debugger in <pkg>media-gfx/fontforge</pkg> (built with
 	USE=truetype-debugger)</flag>
     <flag name="kpathsea">Enable TeX support (ttf2pk and ttf2pfb)</flag>

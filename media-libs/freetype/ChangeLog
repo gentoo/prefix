@@ -1,6 +1,37 @@
 # ChangeLog for media-libs/freetype
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.248 2010/04/18 04:33:20 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/freetype/ChangeLog,v 1.256 2010/07/20 16:19:47 jer Exp $
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> freetype-2.3.12.ebuild:
+  Stable for HPPA (bug #320715).
+
+*freetype-2.4.1 (18 Jul 2010)
+
+  18 Jul 2010; Ryan Hill <dirtyepic@gentoo.org> -freetype-2.4.0.ebuild,
+  +freetype-2.4.1.ebuild:
+  Version bump - fix missing glyphs in CFF fonts. Drop buggy version.
+
+*freetype-2.4.0 (15 Jul 2010)
+
+  15 Jul 2010; Ryan Hill <dirtyepic@gentoo.org> +freetype-2.4.0.ebuild,
+  metadata.xml:
+  Version bump.
+
+  19 Jun 2010; Raúl Porcel <armin76@gentoo.org> freetype-2.3.12.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #320715
+
+  31 May 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  freetype-2.3.12.ebuild:
+  x86 stable wrt bug #320715
+
+  24 May 2010; <nixnut@gentoo.org> freetype-2.3.12.ebuild:
+  ppc stable #320715
+
+  21 May 2010; Markos Chandras <hwoarang@gentoo.org> freetype-2.3.12.ebuild:
+  Stable on amd64 wrt bug #320715
+
+  20 May 2010; Jeroen Roovers <jer@gentoo.org> freetype-2.3.11.ebuild:
+  Stable for HPPA (bug #304835).
 
   18 Apr 2010; Ryan Hill <dirtyepic@gentoo.org> freetype-2.3.12.ebuild:
   Drop old note about utils.
