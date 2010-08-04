@@ -1,6 +1,40 @@
 # ChangeLog for app-cdr/cdrtools
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.258 2010/04/27 20:27:26 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/ChangeLog,v 1.265 2010/07/20 19:05:25 jer Exp $
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> cdrtools-3.00.ebuild:
+  Stable for HPPA (bug #328163).
+
+  17 Jul 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> cdrtools-3.00.ebuild:
+  x86 stable wrt bug #328163
+
+  13 Jul 2010; Markos Chandras <hwoarang@gentoo.org> cdrtools-3.00.ebuild:
+  Stable on amd64 wrt bug #328163
+
+*cdrtools-3.00 (07 Jun 2010)
+
+  07 Jun 2010; Daniel Pielmeier <billie@gentoo.org>
+  -cdrtools-2.01.01_alpha78.ebuild, -cdrtools-2.01.01_alpha79.ebuild,
+  +cdrtools-3.00.ebuild:
+  Version bump. Remove old.
+
+  18 May 2010; Daniel Pielmeier <billie@gentoo.org>
+  cdrtools-2.01.01_alpha75.ebuild, cdrtools-2.01.01_alpha78.ebuild:
+  Backport as-needed fix to older versions.
+
+*cdrtools-2.01.01_alpha79 (18 May 2010)
+
+  18 May 2010; Daniel Pielmeier <billie@gentoo.org>
+  -cdrtools-2.01.01_alpha57-r1.ebuild, -cdrtools-2.01.01_alpha77.ebuild,
+  +cdrtools-2.01.01_alpha79.ebuild,
+  -files/cdrtools-2.01.01_alpha34-asneeded.patch,
+  -files/cdrtools-2.01.01_alpha50-asneeded.patch,
+  -files/cdrtools-2.01.01a03-warnings.patch:
+  Version bump. This also fixes bug #289110. Remove old.
+
+  16 May 2010; Raúl Porcel <armin76@gentoo.org>
+  cdrtools-2.01.01_alpha75.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #308245
 
   27 Apr 2010; Daniel Pielmeier <billie@gentoo.org>
   cdrtools-2.01.01_alpha77.ebuild, cdrtools-2.01.01_alpha78.ebuild:

@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-2.01.01_alpha78.ebuild,v 1.2 2010/04/27 20:27:26 billie Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-cdr/cdrtools/cdrtools-3.00.ebuild,v 1.4 2010/07/20 19:05:25 jer Exp $
 
 EAPI=2
 
@@ -44,6 +44,7 @@ src_prepare() {
 		$(find ./ -type f -exec grep -l '^INSDIR.\+lib\(/siconv\)\?$' '{}' '+') \
 		|| die "sed multilib"
 
+	# Do not install static libraries.
 	sed -i -e 's:include\t\t.*rules.lib::' \
 		$(find ./ -type f -exec grep -l '^include.\+rules\.lib' '{}' '+') \
 		|| die "sed rules"
@@ -75,7 +76,6 @@ local os="linux"
 	sed -i \
 		-e "s:/opt/schily:/usr:g" \
 		-e "s:/usr/src/linux/include::g" \
-		-e "/RUNPATH/ c\RUNPATH= " \
 		-e "s:bin:root:g" \
 		Defaults.${os} || die "sed Schily make setup"
 }
@@ -97,16 +97,20 @@ src_compile() {
 		CFLAGS="${CFLAGS} -DNO_ACL"
 	fi
 
-	# If not built with -j1, "sometimes" cdda2wav will not be built. Bug?
+	# LIB_ACL_TEST removed to support x86-fbsd
+	# If not built with -j1, "sometimes" cdda2wav will not be built.
 	emake -j1 CC="$(tc-getCC)" CPPOPTX="${CPPFLAGS}" COPTX="${CFLAGS}" \
-		LDOPTX="${LDFLAGS}" LINKMODE="dynamic" \
-		GMAKE_NOWARN="true" || die "emake"
+		LDOPTX="${LDFLAGS}" \
+		INS_BASE="${ED}/usr" INS_RBASE="${ED}" LINKMODE="dynamic" \
+		RUNPATH="" GMAKE_NOWARN="true" || die "emake"
 }
 
 src_install() {
-	# If not built with -j1, "sometimes" manpages are not installed. Bug?
-	emake -j1 INS_BASE="${ED}/usr/" INS_RBASE="${ED}" MANDIR="share/man" \
-		LINKMODE="dynamic" GMAKE_NOWARN="true" install || die "emake install"
+	# If not built with -j1, "sometimes" manpages are not installed.
+	emake -j1 CC="$(tc-getCC)" CPPOPTX="${CPPFLAGS}" COPTX="${CFLAGS}" \
+		LDOPTX="${LDFLAGS}" \
+		INS_BASE="${ED}/usr" INS_RBASE="${ED}" LINKMODE="dynamic" \
+		RUNPATH="" GMAKE_NOWARN="true" install || die "emake install"
 
 	# These symlinks are for compat with cdrkit.
 	dosym schily /usr/include/scsilib || die "dosym scsilib"
