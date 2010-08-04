@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.23.ebuild,v 1.8 2010/07/20 04:24:31 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/libcanberra-0.25.ebuild,v 1.5 2010/08/01 11:08:29 fauli Exp $
 
 EAPI=2
 inherit gnome2-utils libtool
@@ -18,7 +18,7 @@ RDEPEND="media-libs/libvorbis
 	>=sys-devel/libtool-2.2.6b
 	alsa? ( media-libs/alsa-lib )
 	gstreamer? ( >=media-libs/gstreamer-0.10.15 )
-	gtk? ( >=x11-libs/gtk+-2.13.4:2
+	gtk? ( >=x11-libs/gtk+-2.20.0:2
 		>=gnome-base/gconf-2 )
 	pulseaudio? ( >=media-sound/pulseaudio-0.9.11 )
 	tdb? ( sys-libs/tdb )"
@@ -29,6 +29,7 @@ src_prepare() {
 	elibtoolize
 }
 
+# --disable-gtk3 for now
 src_configure() {
 	econf \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF} \
@@ -43,6 +44,7 @@ src_configure() {
 		--disable-gtk-doc \
 		--disable-gtk-doc-html \
 		--disable-gtk-doc-pdf \
+		--disable-gtk3 \
 		--with-html-dir="${EPREFIX}"/usr/share/doc/${PF}/html
 }
 

@@ -1,6 +1,38 @@
 # ChangeLog for media-libs/libcanberra
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.39 2010/05/04 15:39:10 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/libcanberra/ChangeLog,v 1.47 2010/08/01 11:08:29 fauli Exp $
+
+  01 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
+  libcanberra-0.25.ebuild:
+  x86 stable, bug 324077
+
+  31 Jul 2010; Pacho Ramos <pacho@gentoo.org> libcanberra-0.25.ebuild:
+  amd64 stable, bug 324077
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> libcanberra-0.23.ebuild:
+  Stable for HPPA (bug #314899).
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> libcanberra-0.11.ebuild,
+  libcanberra-0.22.ebuild, libcanberra-0.23.ebuild, libcanberra-0.25.ebuild:
+  Restore HPPA keywording thanks to ssuominen.
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> libcanberra-0.11.ebuild,
+  libcanberra-0.22.ebuild, libcanberra-0.23.ebuild, libcanberra-0.25.ebuild:
+  Drop HPPA keywording (bug #324511).
+
+  07 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libcanberra-0.23.ebuild:
+  ppc64 stable wrt #314899
+
+*libcanberra-0.25 (18 Jun 2010)
+
+  18 Jun 2010; Pacho Ramos <pacho@gentoo.org> +libcanberra-0.25.ebuild:
+  Version bump (bug #318721 by Samuli Suominen): GTK code is now fine with
+  GSEAL, minor fixes in the PulseAudio backend, other fixes. Optionally
+  build with Gtk+ 3.x in addition to Gtk+ 2.x (disabled for now).
+
+  04 Jun 2010; Markus Meier <maekke@gentoo.org> libcanberra-0.23.ebuild:
+  x86 stable, bug #314899
 
   03 May 2010; Olivier Crête <tester@gentoo.org> libcanberra-0.23.ebuild:
   amd64 stable, bug #314899
