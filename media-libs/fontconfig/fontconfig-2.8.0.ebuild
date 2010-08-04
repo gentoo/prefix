@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.8.0.ebuild,v 1.9 2010/05/13 15:48:04 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/fontconfig/fontconfig-2.8.0.ebuild,v 1.10 2010/05/24 16:09:04 armin76 Exp $
 
 EAPI="2"
 
