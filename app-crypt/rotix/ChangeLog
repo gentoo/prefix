@@ -1,6 +1,13 @@
 # ChangeLog for app-crypt/rotix
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/rotix/ChangeLog,v 1.12 2010/02/22 18:37:02 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/rotix/ChangeLog,v 1.13 2010/07/16 23:20:29 hwoarang Exp $
+
+  16 Jul 2010; Markos Chandras <hwoarang@gentoo.org>
+  files/0.83-respect-CFLAGS-and-dont-strip.patch, rotix-0.83.ebuild,
+  +files/rotix-0.83-locale.diff:
+  Apply patch from Dane Smith <smithdanea@gmail.com> to fix compilation
+  problems with USE=nls and -O0. Bug #239964. Respect LDFLAGS and drop
+  custom CFLAGS for debug mode
 
   22 Feb 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> rotix-0.83.ebuild:
   Make the gettext dependency required, wrt bug #232897 by mduft.

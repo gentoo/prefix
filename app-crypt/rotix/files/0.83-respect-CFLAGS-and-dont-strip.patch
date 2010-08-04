@@ -1,23 +1,31 @@
---- Makefile.orig	2007-03-21 22:43:39.000000000 +0100
-+++ Makefile	2007-03-21 22:44:16.000000000 +0100
-@@ -24,8 +24,6 @@
+Index: rotix-0.83/Makefile
+===================================================================
+--- rotix-0.83.orig/Makefile
++++ rotix-0.83/Makefile
+@@ -22,12 +22,6 @@
  
- ifdef DEBUG
- CFLAGS += -g3
+ include Makefile.settings
+ 
+-ifdef DEBUG
+-CFLAGS += -g3
 -else
 -CFLAGS += -O3
- endif
- 
+-endif
+-
  ifdef I18N
-@@ -40,11 +38,6 @@
+ CFLAGS += -DPACKAGE=\"${PACKAGE}\" -D LOCALEDIR=\"${LOCALE}\"
+ endif
+@@ -39,12 +33,7 @@ endif
+ all : rotix po
  
  rotix : rot.o help.o rotix.o
- 	$(CC) -Wall $(CFLAGS) -o rotix rot.o help.o rotix.o
+-	$(CC) -Wall $(CFLAGS) -o rotix rot.o help.o rotix.o
 -ifdef STRIP
 -ifndef DEBUG
 -	$(STRIP) rotix
 -endif
 -endif
++	$(CC) -Wall $(CFLAGS) $(LDFLAGS) -o rotix rot.o help.o rotix.o
  
  ifdef I18N
  CFLAGS += -D I18N=1
