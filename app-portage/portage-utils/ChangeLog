@@ -1,6 +1,23 @@
 # ChangeLog for app-portage/portage-utils
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.107 2010/01/24 21:19:28 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/portage-utils/ChangeLog,v 1.111 2010/06/08 05:49:29 vapier Exp $
+
+*portage-utils-0.4 (08 Jun 2010)
+
+  08 Jun 2010; Mike Frysinger <vapier@gentoo.org> +portage-utils-0.4.ebuild:
+  Version bump.
+
+  08 Jun 2010; Mike Frysinger <vapier@gentoo.org> portage-utils-0.3.1.ebuild:
+  Stabilize for peeps.
+
+  08 Jun 2010; Mike Frysinger <vapier@gentoo.org> files/q-reinitialize:
+  Run the postsync step in quiet mode if PORTAGE_QUIET is set #278336 by
+  Aaron Ten Clay.
+
+  08 Jun 2010; Mike Frysinger <vapier@gentoo.org>
+  portage-utils-0.3.1.ebuild:
+  Manually preserve +x bits on postsync.d files #301721 by Klaus Birkelund
+  Jensen.
 
   24 Jan 2010; Mike Frysinger <vapier@gentoo.org>
   portage-utils-0.3.1.ebuild:
