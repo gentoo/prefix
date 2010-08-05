@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/icedtea6-bin-1.8.0.ebuild,v 1.3 2010/06/24 20:58:12 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/icedtea6-bin-1.8.1.ebuild,v 1.3 2010/07/31 14:41:26 hwoarang Exp $
 
 EAPI="1"
 
@@ -9,10 +9,8 @@ inherit java-vm-2
 dist="mirror://gentoo/"
 DESCRIPTION="A Gentoo-made binary build of the icedtea6 JDK"
 TARBALL_VERSION="${PV}"
-SRC_URI="amd64? ( ${dist}/${PN}-core-${TARBALL_VERSION}-amd64.tar.bz2
-			${dist}/${PN}-libpng14-${TARBALL_VERSION}-amd64.tar.bz2 )
-	x86? ( ${dist}/${PN}-core-${TARBALL_VERSION}-x86.tar.bz2
-		${dist}/${PN}-libpng14-${TARBALL_VERSION}-x86.tar.bz2 )
+SRC_URI="amd64? ( ${dist}/${PN}-core-${TARBALL_VERSION}-amd64.tar.bz2 )
+	x86? ( ${dist}/${PN}-core-${TARBALL_VERSION}-x86.tar.bz2 )
 	doc? ( ${dist}/${PN}-doc-${TARBALL_VERSION}.tar.bz2 )
 	examples? (
 		amd64? ( ${dist}/${PN}-examples-${TARBALL_VERSION}-amd64.tar.bz2 )
@@ -38,7 +36,7 @@ RDEPEND=">=sys-devel/gcc-4.3
 	!prefix? ( >=sys-libs/glibc-2.9 )
 	>=media-libs/giflib-4.1.6-r1
 	>=media-libs/jpeg-8
-	>=media-libs/libpng-1.2
+	>=media-libs/libpng-1.4:0
 	>=sys-libs/zlib-1.2.3-r1
 	alsa? ( >=media-libs/alsa-lib-1.0.20 )
 	X? (
@@ -59,21 +57,6 @@ RDEPEND=">=sys-devel/gcc-4.3
 		>=x11-libs/pango-1.24.5
 	)"
 DEPEND=""
-
-src_unpack() {
-	unpack ${A}
-
-	if has_version '>=media-libs/libpng-1.4.0'; then
-		einfo "Installing libpng-1.4 ABI version"
-		local arch=${ARCH}
-		use x86 && arch=i386
-		mv -v ${P}-libpng14/jre/lib/${arch}/*.so ${P}/jre/lib/${arch} || die
-	else
-		elog "Installing libpng-1.2 ABI version"
-		elog "You will have to remerge icedtea6-bin after upgrading to libpng-1.4"
-		elog "Note that revdep-rebuild will not do it automatically due to the mask file."
-	fi
-}
 
 src_install() {
 	local dest="/opt/${P}"

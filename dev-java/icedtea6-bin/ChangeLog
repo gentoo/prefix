@@ -1,6 +1,27 @@
 # ChangeLog for dev-java/icedtea6-bin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/ChangeLog,v 1.29 2010/04/17 08:23:46 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/icedtea6-bin/ChangeLog,v 1.34 2010/07/31 14:41:26 hwoarang Exp $
+
+  31 Jul 2010; Markos Chandras <hwoarang@gentoo.org>
+  icedtea6-bin-1.8.1.ebuild:
+  Stable on amd64 wrt bug #330205
+
+  31 Jul 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  icedtea6-bin-1.8.1.ebuild:
+  x86 stable wrt security bug #330205
+
+*icedtea6-bin-1.8.1 (30 Jul 2010)
+
+  30 Jul 2010; Vlastimil Babka <caster@gentoo.org>
+  -icedtea6-bin-1.7.2.ebuild, +icedtea6-bin-1.8.1.ebuild:
+  Version bump, security bug #330205.
+
+  24 Jun 2010; Pacho Ramos <pacho@gentoo.org> icedtea6-bin-1.8.0.ebuild:
+  stable amd64, bug 320163
+
+  24 Jun 2010; Christian Faulhammer <fauli@gentoo.org>
+  icedtea6-bin-1.8.0.ebuild:
+  stable x86, bug 320163
 
 *icedtea6-bin-1.8.0 (17 Apr 2010)
 
