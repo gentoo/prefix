@@ -1,6 +1,20 @@
 # ChangeLog for app-text/gv
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.79 2009/12/26 17:31:42 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-text/gv/ChangeLog,v 1.82 2010/07/21 19:47:40 ssuominen Exp $
+
+  21 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> gv-3.7.1.ebuild:
+  amd64/ppc64 stable wrt #329125
+
+  20 Jul 2010; Christian Faulhammer <fauli@gentoo.org> gv-3.7.1.ebuild:
+  stable x86, bug 329125
+
+*gv-3.7.1 (12 Jun 2010)
+
+  12 Jun 2010; Samuli Suominen <ssuominen@gentoo.org> +gv-3.7.1.ebuild,
+  +files/gv_icon.xpm:
+  Version bump wrt #300537 by Jeroen Roovers. Fix automagic libXinerama
+  depend wrt #285733 by Alexis Ballier. Use .xpm instead of .xbm for icon
+  format to comply with f.d.o standard.
 
   26 Dec 2009; Peter Volkov <pva@gentoo.org> gv-3.6.3.ebuild,
   gv-3.6.4.ebuild, gv-3.6.6.ebuild, gv-3.6.7.ebuild:
