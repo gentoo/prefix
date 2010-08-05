@@ -1,6 +1,27 @@
 # ChangeLog for dev-libs/atk
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.195 2010/06/13 15:40:50 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/atk/ChangeLog,v 1.201 2010/08/01 11:11:53 fauli Exp $
+
+  01 Aug 2010; Christian Faulhammer <fauli@gentoo.org> atk-1.30.0.ebuild:
+  x86 stable, bug 324077
+
+  31 Jul 2010; Pacho Ramos <pacho@gentoo.org> atk-1.30.0.ebuild:
+  amd64 stable, bug 324077
+
+  27 Jul 2010; Gilles Dartiguelongue <eva@gentoo.org> atk-1.30.0.ebuild:
+  Remove deprecated comment in ebuild and remove debug USE flag.
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> atk-1.26.0.ebuild,
+  atk-1.28.0.ebuild, atk-1.30.0.ebuild:
+  Stable for HPPA (bug #314899).
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> atk-1.26.0.ebuild,
+  atk-1.28.0.ebuild, atk-1.30.0.ebuild:
+  Drop HPPA keywording (bug #324511).
+
+  20 Jun 2010; Arun Raghavan <ford_prefect@gentoo.org> atk-1.30.0.ebuild,
+  metadata.xml:
+  Add introspection support.
 
 *atk-1.30.0 (13 Jun 2010)
 
