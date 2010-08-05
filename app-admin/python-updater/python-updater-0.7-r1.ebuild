@@ -4,8 +4,6 @@
 
 inherit eutils multilib
 
-inherit eutils
-
 DESCRIPTION="Script used to remerge python packages when changing Python version."
 HOMEPAGE="http://www.gentoo.org/proj/en/Python"
 SRC_URI="mirror://gentoo/${P}.tar.bz2"
@@ -27,7 +25,7 @@ src_unpack() {
 	# Delete vulnerable code.
 	epatch "${FILESDIR}/${P}-fix_import.patch"
 
-	epatch "${FILESDIR}"/${P}-prefix.patch
+	epatch "${FILESDIR}"/${PF}-prefix.patch
 	ebegin "Adjusting to prefix"
 	sed -i \
 		-e "s:@GENTOO_PORTAGE_EPREFIX@:${EPREFIX}:g" \
