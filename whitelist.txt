@@ -756,6 +756,7 @@ sys-devel/gnuconfig
 sys-libs/pam
 sys-process/htop
 sys-process/iotop
+sys-process/psmisc
 sys-process/time
 sys-process/unixtop
 www-apps/scgi
