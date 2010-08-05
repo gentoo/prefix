@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/batik-1.7-r2.ebuild,v 1.6 2010/05/05 15:07:01 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/batik/batik-1.7-r2.ebuild,v 1.7 2010/06/04 12:03:24 caster Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc"
@@ -32,7 +32,7 @@ java_prepare() {
 	java-ant_rewrite-classpath contrib/rasterizertask/build.xml
 	for file in build.xml contrib/rasterizertask/build.xml; do
 		# bug #318323
-		java-ant_xml-rewrite -f ${file} -c -e javadoc -a failonerror -v yes -a maxmemory -v 256g
+		java-ant_xml-rewrite -f ${file} -c -e javadoc -a failonerror -v yes -a maxmemory -v 512m
 	done
 
 	cd lib
