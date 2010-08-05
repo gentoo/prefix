@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/qtjambi-4.5.2_p1.ebuild,v 1.2 2010/01/03 01:29:04 yngwin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/qtjambi-4.5.2_p1.ebuild,v 1.3 2010/05/19 14:27:29 caster Exp $
 
 EAPI="2"
 
@@ -43,7 +43,8 @@ src_prepare() {
 	epatch \
 		"${FILESDIR}"/generator-4.5.0_p1.patch \
 		"${FILESDIR}"/configuration-4.5.0_p1.patch \
-		"${FILESDIR}"/gcc4.4-4.5.0_p1.patch
+		"${FILESDIR}"/gcc4.4-4.5.0_p1.patch \
+		"${FILESDIR}"/ant180-4.5.2.patch
 
 	# Respect MAKEOPTS
 	sed -i -e "/String arguments =/s|=.*|=\" ${MAKEOPTS}\";|" \

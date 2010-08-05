@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/qtjambi
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.24 2010/02/16 06:46:27 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/qtjambi/ChangeLog,v 1.25 2010/05/19 14:27:28 caster Exp $
+
+  19 May 2010; Vlastimil Babka <caster@gentoo.org> qtjambi-4.5.2_p1.ebuild,
+  +files/ant180-4.5.2.patch:
+  Fix building with ant 1.8, bug #319597.
 
   16 Feb 2010; Jonathan Callen <abcd@gentoo.org>
   -files/configuration-4.4.3.patch, -files/generator-4.4.3.patch:
