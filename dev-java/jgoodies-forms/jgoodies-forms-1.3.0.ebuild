@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jgoodies-forms/jgoodies-forms-1.3.0.ebuild,v 1.1 2010/04/20 20:31:41 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jgoodies-forms/jgoodies-forms-1.3.0.ebuild,v 1.3 2010/06/01 07:40:08 phajdan.jr Exp $
 
 JAVA_PKG_IUSE="doc examples source"
 
