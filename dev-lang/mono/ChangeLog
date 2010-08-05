@@ -1,6 +1,34 @@
 # ChangeLog for dev-lang/mono
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.188 2010/03/19 10:33:27 patrick Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/mono/ChangeLog,v 1.194 2010/07/21 17:13:14 pacho Exp $
+
+*mono-2.6.7 (21 Jul 2010)
+
+  21 Jul 2010; Pacho Ramos <pacho@gentoo.org> +mono-2.6.7.ebuild:
+  Version bump
+
+  12 Jul 2010; Christian Faulhammer <fauli@gentoo.org> mono-2.6.4-r1.ebuild:
+  stable x86, bug 327279
+
+  11 Jul 2010; Raúl Porcel <armin76@gentoo.org> mono-1.2.5.1-r1.ebuild,
+  mono-1.2.6-r3.ebuild, mono-2.0.1-r1.ebuild:
+  Drop sparc keywords
+
+  09 Jul 2010; Pacho Ramos <pacho@gentoo.org> mono-2.6.4-r1.ebuild:
+  amd64 stable, bug 327279
+
+*mono-2.6.4-r1 (03 Jul 2010)
+
+  03 Jul 2010; Pacho Ramos <pacho@gentoo.org> -mono-2.4.3.ebuild,
+  -mono-2.6.1.ebuild, -mono-2.6.3.ebuild, -mono-2.6.4.ebuild,
+  +mono-2.6.4-r1.ebuild, +files/mono-2.6.4-require-glib.patch:
+  Revision bump to fix openoffice building problem against mono-2.6.4 (bug
+  #321139 by Brian Beardall, Aaron Haviland and others). Remove old.
+
+*mono-2.6.4 (19 May 2010)
+
+  19 May 2010; Patrick Lauer <patrick@gentoo.org> +mono-2.6.4.ebuild:
+  Bump for #318991
 
 *mono-2.6.3 (19 Mar 2010)
 

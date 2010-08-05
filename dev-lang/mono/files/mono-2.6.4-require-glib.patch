@@ -1,0 +1,12 @@
+--- data/mono.pc.in	2010-04-22 09:37:47.000000000 -0600
++++ data/mono.pc.in	2010-05-10 09:30:04.000000000 -0600
+@@ -7,8 +7,6 @@
+ Name: Mono
+ Description: Mono Runtime
+ Version: @VERSION@
+-## Commented out because SLE hides devel files in the SLE SDK,
+-## which not all customers will have.
+-#Requires: glib-2.0 gthread-2.0
++Requires: glib-2.0 gthread-2.0
+ Libs: -L${libdir} @export_ldflags@ -lmono @libmono_ldflags@
+ Cflags: -I${includedir} @libmono_cflags@
