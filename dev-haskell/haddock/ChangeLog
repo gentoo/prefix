@@ -1,6 +1,26 @@
 # ChangeLog for dev-haskell/haddock
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.70 2010/03/30 22:22:52 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/haddock/ChangeLog,v 1.75 2010/08/01 09:40:44 slyfox Exp $
+
+  01 Aug 2010; Sergei Trofimovich <slyfox@gentoo.org> haddock-2.6.1.ebuild:
+  Marked ~ppc. Thanks to Michael Mounteney (monty) for testing.
+
+  01 Jul 2010; Jeroen Roovers <jer@gentoo.org> haddock-0.8.ebuild,
+  haddock-0.9.ebuild, haddock-2.4.1.ebuild:
+  Drop support for ghc and darcs.
+
+  29 Jun 2010; Lennart Kolmodin <kolmodin@gentoo.org> haddock-2.6.1.ebuild:
+  Remove some keywords until those arches have ghc-6.12.3 keyworded.
+
+*haddock-2.6.1 (13 Jun 2010)
+
+  13 Jun 2010; Lennart Kolmodin <kolmodin@gentoo.org> -haddock-2.6.0.ebuild,
+  +haddock-2.6.1.ebuild:
+  Version bump.
+
+  31 May 2010; Joseph Jezak <josejx@gentoo.org> haddock-2.4.2.ebuild,
+  haddock-2.6.0.ebuild:
+  Marked ~ppc.
 
   30 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org> haddock-2.4.1.ebuild,
   haddock-2.4.2.ebuild, files/haddock-2.4.2-Setup.hs:
