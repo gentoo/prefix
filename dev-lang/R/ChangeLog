@@ -1,6 +1,22 @@
 # ChangeLog for dev-lang/R
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.174 2010/05/13 15:51:39 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/R/ChangeLog,v 1.178 2010/06/16 15:36:14 bicatali Exp $
+
+  16 Jun 2010; Sébastien Fabbro <bicatali@gentoo.org> -R-2.11.0.ebuild,
+  R-2.11.1.ebuild, +files/R-2.11.1-parallel.patch:
+  Fix occasional failures with parallel install, bug #322965
+
+*R-2.11.1 (01 Jun 2010)
+
+  01 Jun 2010; Sébastien Fabbro <bicatali@gentoo.org> +R-2.11.1.ebuild:
+  Version bump
+
+  25 May 2010; Sébastien Fabbro <bicatali@gentoo.org>
+  -files/R-2.7.1-test-fix.patch, -R-2.9.2.ebuild, -files/R-javareconf.patch:
+  Removed old, does not access docs, fixing bug #305641
+
+  23 May 2010; Pacho Ramos <pacho@gentoo.org> R-2.10.1.ebuild:
+  stable amd64, bug 306747
 
   13 May 2010; Joseph Jezak <josejx@gentoo.org> R-2.10.1.ebuild:
   Marked ppc stable for bug #306747.
