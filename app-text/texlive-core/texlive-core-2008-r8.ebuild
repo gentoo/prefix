@@ -1,47 +1,51 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2009.ebuild,v 1.3 2010/03/08 14:28:23 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008-r8.ebuild,v 1.1 2010/06/20 11:03:41 aballier Exp $
 
 EAPI=1
 
-inherit eutils flag-o-matic toolchain-funcs libtool texlive-common prefix
+inherit eutils flag-o-matic toolchain-funcs libtool autotools texlive-common prefix
 
-PATCHLEVEL="16"
+PATCHLEVEL="15.3"
 TEXMFD_VERSION="1"
 
 DESCRIPTION="A complete TeX distribution"
 HOMEPAGE="http://tug.org/texlive/"
 SLOT="0"
-LICENSE="GPL-2 LPPL-1.3c TeX"
+LICENSE="GPL-2 LPPL-1.3c"
 
-SRC_URI="mirror://gentoo/${P}.tar.xz"
+TEXLIVE_BASICBIN_CONTENTS="bin-bibtex bin-dialog bin-dvipdfmx bin-dvipsk bin-getnonfreefonts bin-gsftopk bin-kpathsea bin-makeindex bin-mfware bin-tetex bin-texlive bin-texconfig dvipdfmx-def glyphlist texlive.infra collection-basicbin"
+TEXLIVE_BASICBIN_DOC_CONTENTS="bin-bibtex.doc bin-dialog.doc bin-dvipsk.doc bin-getnonfreefonts.doc bin-gsftopk.doc bin-kpathsea.doc bin-makeindex.doc bin-mfware.doc bin-tetex.doc bin-texlive.doc bin-texconfig.doc texlive.infra.doc"
 
-# Fetch patches
-SRC_URI="${SRC_URI} mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.xz
-	mirror://gentoo/${P}-texmf.d-${TEXMFD_VERSION}.tar.xz"
+TEXLIVE_FONTBIN_CONTENTS="fontinst mft bin-afm2pl bin-fontware bin-ps2pkm collection-fontbin"
+TEXLIVE_FONTBIN_DOC_CONTENTS="fontinst.doc bin-afm2pl.doc bin-fontware.doc"
+TEXLIVE_FONTBIN_SRC_CONTENTS="fontinst.source"
 
-TL_CORE_BINEXTRA_MODULES="a2ping asymptote bibtex8 ctie cweb dtl dvi2tty dviasm dvicopy dvidvi dviljk dvipng dvipos findhyph fragmaster hyphenex lacheck latex2man latexdiff latexmk listings-ext mkind-english mkjobtexmf patgen pdfcrop pdftools pkfix pkfix-helper purifyeps seetexk synctex texcount texdiff texdirflatten texdoc texloganalyser texware tie tpic2pdftex web collection-binextra"
-TL_CORE_BINEXTRA_DOC_MODULES="a2ping.doc asymptote.doc bibtex8.doc ctie.doc cweb.doc dvicopy.doc dviljk.doc dvipng.doc dvipos.doc findhyph.doc fragmaster.doc latex2man.doc latexdiff.doc latexmk.doc listings-ext.doc mkjobtexmf.doc patgen.doc pdfcrop.doc pdftools.doc pkfix.doc pkfix-helper.doc purifyeps.doc synctex.doc texcount.doc texdiff.doc texdirflatten.doc texdoc.doc texloganalyser.doc texware.doc tie.doc tpic2pdftex.doc web.doc"
-TL_CORE_BINEXTRA_SRC_MODULES="hyphenex.source listings-ext.source mkjobtexmf.source"
+TEXLIVE_BINEXTRA_CONTENTS="a2ping bin-bibtex8 bin-ctie bin-cweb bin-dtl bin-dvicopy bin-dvidvi bin-dviljk bin-dvipos bin-lacheck bin-patgen bin-pdftools bin-seetexk bin-texdoc bin-texware bin-tie bin-tpic2pdftex bin-web cweb dviasm hyphenex mkind-english mkjobtexmf pdfcrop synctex texcount collection-binextra"
+TEXLIVE_BINEXTRA_DOC_CONTENTS="a2ping.doc bin-bibtex8.doc bin-ctie.doc bin-cweb.doc bin-dvicopy.doc bin-dviljk.doc bin-dvipos.doc bin-patgen.doc bin-pdftools.doc bin-texdoc.doc bin-texware.doc bin-tie.doc bin-tpic2pdftex.doc bin-web.doc cweb.doc mkjobtexmf.doc pdfcrop.doc synctex.doc texcount.doc"
+TEXLIVE_BINEXTRA_SRC_CONTENTS="hyphenex.source mkjobtexmf.source"
 
-TL_CORE_EXTRA_MODULES="tetex texlive.infra kpathsea hyphen-base dvips texconfig gsftopk ${TL_CORE_BINEXTRA_MODULES}"
-TL_CORE_EXTRA_DOC_MODULES="tetex.doc texlive.infra.doc kpathsea.doc dvips.doc texconfig.doc gsftopk.doc ${TL_CORE_BINEXTRA_DOC_MODULES}"
-TL_CORE_EXTRA_SRC_MODULES="${TL_CORE_BINEXTRA_SRC_MODULES}"
+TEXLIVE_CORE_INCLUDED_TEXMF="${TEXLIVE_BASICBIN_CONTENTS} ${TEXLIVE_FONTBIN_CONTENTS} ${TEXLIVE_BINEXTRA_CONTENTS}"
+TEXLIVE_CORE_INCLUDED_DOC_TEXMF="${TEXLIVE_BASICBIN_DOC_CONTENTS} ${TEXLIVE_FONTBIN_DOC_CONTENTS} ${TEXLIVE_BINEXTRA_DOC_CONTENTS}"
+TEXLIVE_CORE_INCLUDED_SRC_TEXMF="${TEXLIVE_FONTBIN_SRC_CONTENTS} ${TEXLIVE_BINEXTRA_SRC_CONTENTS}"
 
-for i in ${TL_CORE_EXTRA_MODULES}; do
-	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.xz"
+for i in ${TEXLIVE_CORE_INCLUDED_TEXMF}; do
+	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
 done
-
 SRC_URI="${SRC_URI} doc? ( "
-for i in ${TL_CORE_EXTRA_DOC_MODULES}; do
-	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.xz"
+for i in ${TEXLIVE_CORE_INCLUDED_DOC_TEXMF}; do
+	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
 done
 SRC_URI="${SRC_URI} )"
 SRC_URI="${SRC_URI} source? ( "
-for i in ${TL_CORE_EXTRA_SRC_MODULES}; do
-	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.xz"
+for i in ${TEXLIVE_CORE_INCLUDED_SRC_TEXMF}; do
+	SRC_URI="${SRC_URI} mirror://gentoo/texlive-module-${i}-${PV}.tar.lzma"
 done
 SRC_URI="${SRC_URI} )"
+
+# Fetch patches
+SRC_URI="${SRC_URI} mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.lzma
+ 	mirror://gentoo/${PN}-2008-texmf.d-${TEXMFD_VERSION}.tar.lzma"
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE="X doc source tk"
@@ -61,60 +65,56 @@ COMMON_DEPEND="${MODULAR_X_DEPEND}
 	!app-text/tetex
 	!<app-text/texlive-2007
 	!app-text/xetex
-	!<dev-texlive/texlive-basic-2009
+	!=dev-texlive/texlive-basic-2007*
 	!app-text/xdvipdfmx
 	!app-text/dvibook
 	sys-libs/zlib
-	app-text/teckit
-	media-libs/silgraphite
-	>=media-libs/libpng-1.2.1
-	<media-libs/libpng-1.4
-	>=app-text/poppler-0.12.3-r3
+	>=media-libs/libpng-1.2.43-r2:0
 	media-libs/freetype:2
 	media-libs/fontconfig"
 
 DEPEND="${COMMON_DEPEND}
-	dev-util/pkgconfig
 	sys-apps/ed
 	sys-devel/flex
-	app-arch/xz-utils"
+	|| ( app-arch/xz-utils app-arch/lzma-utils )"
 
 RDEPEND="${COMMON_DEPEND}
 	tk? ( dev-perl/perl-tk )"
 
 # texdoc needs luatex.
-PDEPEND=">=dev-tex/luatex-0.45"
+PDEPEND="dev-tex/luatex"
 
-S="${WORKDIR}/texlive-20091107-source"
+S="${WORKDIR}/texlive-20080816-source"
 
 src_unpack() {
-	local i s
-	for i in ${A}
-	do
-		s="${DISTDIR%/}/${i}"
-		einfo "Unpacking ${s} to ${PWD}"
-		test -s "${s}" || die "${s} does not exist"
-		xz -dc -- "${s}" | tar xof - || die "Unpacking ${s} failed"
-	done
+	unpack ${A}
 	cd "${S}"
 	mv "${WORKDIR}"/texmf* "${S}" || die "failed to move texmf files"
 
-	cp "${FILESDIR}"/texmf-update2009 "${T}" || die
-	cd "${T}"; epatch "${FILESDIR}"/texmf-update2009-prefix.patch; cd "${S}"
-	eprefixify "${T}"/texmf-update2009
+	cp "${FILESDIR}"/texmf-update2008 "${T}" || die
+	cd "${T}"; epatch "${FILESDIR}"/texmf-update2008-prefix.patch; cd "${S}"
+	eprefixify "${T}"/texmf-update2008
 
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/patches"
 
+	# Mac OS X has some ObjC compilation, make it use our CFLAGS or it fails
+	epatch "${FILESDIR}"/2007/${PN}-2007-objcflags.patch
+
 	# If $EPREFIX contains symlinks, kpsewhich will return a resolved path,
 	# which results in out of prefix errors for packages which use it
-	epatch "${FILESDIR}"/2009/${PN}-2009-respect_path.patch
+	epatch "${FILESDIR}"/2007/${PN}-2007-respect_path.patch
 
 	# fixup some paths in config files
-	epatch "${FILESDIR}"/2008/${PN}-2008-prefix-config-paths.patch
+	epatch "${FILESDIR}"/${PV}/${P}-prefix-config-paths.patch
 	# don't use deprecated interfaces from MacFreetype
 	epatch "${FILESDIR}"/${PV}/${P}-nomacfreetype.patch
 
 	elibtoolize
+
+	cd "${S}"/libs/teckit
+	AT_M4DIR="." eautoreconf
+	cd "${S}"/texk/xdvipdfmx
+	AT_M4DIR="." eautoreconf
 }
 
 src_compile() {
@@ -133,45 +133,44 @@ src_compile() {
 		--with-freetype2-include="${EPREFIX}"/usr/include/freetype2 \
 		--with-freetype2-libdir="${EPREFIX}"/usr/lib \
 		--with-system-zlib \
-		--with-system-libpng \
-		--with-system-xpdf \
-		--with-system-teckit \
-		--with-teckit-includes="${EPREFIX}"/usr/include/teckit \
-		--with-system-graphite \
+		--with-system-pnglib \
 		--without-texinfo \
-		--disable-dialog \
+		--without-dialog \
+		--without-texi2html \
 		--disable-multiplatform \
-		--enable-epsfwin \
-		--enable-mftalkwin \
-		--enable-regiswin \
-		--enable-tektronixwin \
-		--enable-unitermwin \
+		--with-epsfwin \
+		--with-mftalkwin \
+		--with-regiswin \
+		--with-tektronixwin \
+		--with-unitermwin \
 		--with-ps=gs \
-		--disable-psutils \
-		--disable-t1utils \
+		--without-psutils \
+		--without-sam2p \
+		--without-t1utils \
 		--enable-ipc \
-		--enable-xetex \
-		--disable-dvipng \
-		--disable-dvipdfmx \
-		--enable-xdvipdfmx \
-		--disable-lcdf-typetools \
-		--disable-pdfopen \
-		--disable-ps2eps \
-		--disable-detex \
-		--disable-ttf2pk \
-		--disable-tex4htk \
-		--disable-cjkutils \
-		--disable-xdvik \
-		--disable-xindy \
-		--disable-luatex \
-		--disable-dvi2tty \
-		--disable-vlna \
+		--without-etex \
+		--with-xetex \
+		--without-dvipng \
+		--without-dvipdfm \
+		--without-dvipdfmx \
+		--with-xdvipdfmx \
+		--without-lcdf-typetools \
+		--without-pdfopen \
+		--without-ps2eps \
+		--without-detex \
+		--without-ttf2pk \
+		--without-tex4htk \
+		--without-cjkutils \
+		--without-xdvik --without-oxdvik \
+		--without-xindy \
+		--without-luatex \
+		--without-dvi2tty \
+		--without-vlna \
 		--disable-largefile \
 		--enable-shared \
-		--disable-native-texlive-build \
-		$(use_with X x)
+		$(use_with X x) \
 
-	emake SHELL="${EPREFIX}"/bin/sh texmf="${EPREFIX}"${TEXMF_PATH:-/usr/share/texmf} || die "emake failed"
+	emake texmf="${EPREFIX}"${TEXMF_PATH:-/usr/share/texmf} || die "emake failed"
 
 	# Mimic updmap --syncwithtrees to enable only fonts installed
 	# Code copied from updmap script
@@ -203,9 +202,9 @@ src_install() {
 	fi
 
 	dodir ${TEXMF_PATH:-/usr/share/texmf}/web2c
-	emake DESTDIR="${D}" texmf="${ED}${TEXMF_PATH:-/usr/share/texmf}" run_texlinks="true" run_mktexlsr="true" install || die "install failed"
+	einstall bindir="${ED}/usr/bin" texmf="${ED}${TEXMF_PATH:-/usr/share/texmf}" run_texlinks="true" run_mktexlsr="true" || die "einstall failed"
 
-	newsbin "${T}/texmf-update2009" texmf-update
+	newsbin "${T}/texmf-update2008" texmf-update
 
 	# When X is disabled mf-nowin doesn't exist but some scripts expect it to
 	# exist. Instead, it is called mf, so we symlink it to please everything.
@@ -269,6 +268,18 @@ src_install() {
 
 	mv "${ED}${TEXMF_PATH}/web2c/updmap.cfg"	"${ED}/etc/texmf/updmap.d/00updmap.cfg" || die "moving updmap.cfg failed"
 
+	# dvips config file
+	keepdir /etc/texmf/dvips/config
+	dodir /etc/texmf/dvips.d
+	mv "${ED}${TEXMF_PATH}/dvips/config/config.ps" "${ED}/etc/texmf/dvips.d/00${PN}-config.ps" || die "moving config.ps failed"
+
+	# Create symlinks from format to engines
+	# This will avoid having to call texlinks in texmf-update
+	cd "${S}"
+	for i in texmf/fmtutil/format*.cnf; do
+		[ -f "${i}" ] && etexlinks "${i}"
+	done
+
 	texlive-common_handle_config_files
 
 	keepdir /usr/share/texmf-site
@@ -276,6 +287,7 @@ src_install() {
 	dosym /etc/texmf/web2c/fmtutil.cnf ${TEXMF_PATH}/web2c/fmtutil.cnf
 	dosym /etc/texmf/web2c/texmf.cnf ${TEXMF_PATH}/web2c/texmf.cnf
 	dosym /etc/texmf/web2c/updmap.cfg ${TEXMF_PATH}/web2c/updmap.cfg
+	dosym /etc/texmf/dvips/config/config.ps ${TEXMF_PATH}/dvips/config/config.ps
 
 	# the virtex symlink is not installed
 	# The links has to be relative, since the targets

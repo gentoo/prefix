@@ -1,6 +1,27 @@
 # ChangeLog for app-text/texlive-core
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.122 2010/05/14 14:47:25 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.126 2010/06/20 12:15:17 aballier Exp $
+
+*texlive-core-2009-r2 (20 Jun 2010)
+
+  20 Jun 2010; Alexis Ballier <aballier@gentoo.org>
+  +texlive-core-2009-r2.ebuild:
+  Bump with security fixes for bug #324019
+
+*texlive-core-2008-r8 (20 Jun 2010)
+
+  20 Jun 2010; Alexis Ballier <aballier@gentoo.org>
+  +texlive-core-2008-r8.ebuild:
+  revision bump with security fixes for bug #324019
+
+  15 May 2010; Samuli Suominen <ssuominen@gentoo.org>
+  texlive-core-2008-r7.ebuild:
+  Update libpng14 patch for 2008; extra chunk was required for XeTeX_ext.c
+  and "png_libpng_ver".
+
+  15 May 2010; Alexis Ballier <aballier@gentoo.org>
+  -texlive-core-2009.ebuild:
+  remove old
 
   14 May 2010; Samuli Suominen <ssuominen@gentoo.org>
   texlive-core-2008-r7.ebuild:

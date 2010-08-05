@@ -1,12 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008-r7.ebuild,v 1.10 2010/05/14 18:37:24 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/texlive-core-2008-r7.ebuild,v 1.12 2010/05/15 15:51:52 ssuominen Exp $
 
 EAPI=1
 
 inherit eutils flag-o-matic toolchain-funcs libtool autotools texlive-common prefix
 
-PATCHLEVEL="15.1"
+PATCHLEVEL="15.2"
 TEXMFD_VERSION="1"
 
 DESCRIPTION="A complete TeX distribution"
@@ -46,7 +46,7 @@ done
 SRC_URI="${SRC_URI} )"
 
 # Fetch patches
-SRC_URI="${SRC_URI} mirror://gentoo/${PN}-patches-${PATCHLEVEL}.tar.bz2
+SRC_URI="${SRC_URI} http://dev.gentoo.org/~ssuominen/${PN}-patches-${PATCHLEVEL}.tar.bz2
 	mirror://gentoo/${PN}-2008-texmf.d-${TEXMFD_VERSION}.tar.lzma"
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
@@ -71,8 +71,7 @@ COMMON_DEPEND="${MODULAR_X_DEPEND}
 	!app-text/xdvipdfmx
 	!app-text/dvibook
 	sys-libs/zlib
-	>=media-libs/libpng-1.2.1
-	<media-libs/libpng-1.4
+	>=media-libs/libpng-1.2.43-r2:0
 	media-libs/freetype:2
 	media-libs/fontconfig"
 
