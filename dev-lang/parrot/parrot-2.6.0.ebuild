@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/parrot-2.3.0.ebuild,v 1.1 2010/04/25 07:41:33 tove Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/parrot/parrot-2.6.0.ebuild,v 1.1 2010/07/23 15:02:04 tove Exp $
 
 EAPI=3
 
@@ -27,9 +27,9 @@ RDEPEND="sys-libs/readline
 DEPEND="dev-lang/perl[doc?]
 	${RDEPEND}"
 
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-fix-darwin-link.patch
-}
+#src_prepare() {
+#	epatch "${FILESDIR}"/${P}-fix-darwin-link.patch
+#}
 
 src_configure() {
 	myconf="--disable-rpath"
