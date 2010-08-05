@@ -1,6 +1,16 @@
 # ChangeLog for dev-haskell/gtk2hs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.53 2010/03/27 09:01:56 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/ChangeLog,v 1.56 2010/07/13 11:00:26 slyfox Exp $
+
+  13 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org> gtk2hs-0.10.1.ebuild:
+  Fixed build failure against ghc-6.12.2+ (bug #327903). Thanks to Renato
+  Gallo <renatogallo@unixproducts.com> and Diego E. 'Flameeyes' Pettenò
+  <flameeyes@gentoo.org> for the report. Thanks to Ivan Lazar Miljenovic
+  <Ivan.Miljenovic@gmail.com> for the fix.
+
+  28 Jun 2010; Samuli Suominen <ssuominen@gentoo.org>
+  gtk2hs-0.9.12.1.ebuild, gtk2hs-0.10.1.ebuild:
+  Remove support for vulnerable seamonkey (#305789) and xulrunner (#324953).
 
   27 Mar 2010; Lennart Kolmodin <kolmodin@gentoo.org> gtk2hs-0.10.1.ebuild,
   +files/gtk2hs-0.10.1-ghc-6.12-c2hs.patch,

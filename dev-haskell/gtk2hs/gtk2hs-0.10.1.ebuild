@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.10.1.ebuild,v 1.2 2010/03/27 09:01:56 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/gtk2hs/gtk2hs-0.10.1.ebuild,v 1.4 2010/07/13 11:00:26 slyfox Exp $
 
 EAPI="2"
 
@@ -16,7 +16,7 @@ SLOT="0"
 
 KEYWORDS="~amd64-linux ~x86-linux ~x86-macos"
 
-IUSE="doc profile glade gnome opengl svg xulrunner"
+IUSE="doc profile glade gnome opengl svg"
 
 RDEPEND=">=dev-lang/ghc-6.6
 		dev-haskell/mtl[doc?]
@@ -26,8 +26,7 @@ RDEPEND=">=dev-lang/ghc-6.6
 				>=x11-libs/gtksourceview-2.2
 				gnome-base/gconf )
 		svg?   ( gnome-base/librsvg )
-		opengl? ( x11-libs/gtkglext )
-		xulrunner? ( =net-libs/xulrunner-1.8* )"
+		opengl? ( x11-libs/gtkglext )"
 
 DEPEND="${RDEPEND}
 		doc? ( >=dev-haskell/haddock-2.4.1 )
@@ -41,6 +40,12 @@ src_prepare() {
 	epatch "${FILESDIR}/gtk2hs-0.10.1-ghc-6.12-packages.patch"
 	epatch "${FILESDIR}/gtk2hs-0.10.1-ghc-6.12-c2hs.patch"
 	cd "${S}"
+
+	# In GHC 6.12.2, qualified imports is now an error
+	sed -i -e "s/Map.findWithDefault, empty/findWithDefault, empty/" \
+		tools/c2hs/base/syms/Attributes.hs \
+		|| die "Can't remove qualified import"
+
 	eautoreconf
 }
 
@@ -56,8 +61,9 @@ src_configure() {
 		$(use_enable gnome gtksourceview2) \
 		$(use_enable svg svg) \
 		$(use_enable opengl opengl) \
+		--disable-seamonkey \
 		--disable-firefox \
-		$(use_enable xulrunner xulrunner) \
+		--disable-xulrunner \
 		$(use_enable doc docs) \
 		$(use_enable profile profiling) \
 		|| die "Configure failed"
@@ -90,8 +96,6 @@ src_install() {
 		$(use svg && echo \
 			"${ED}/usr/$(get_libdir)/gtk2hs/svgcairo.package.conf") \
 		$(use opengl && echo \
-			"${ED}/usr/$(get_libdir)/gtk2hs/gtkglext.package.conf") \
-		$(use xulrunner && echo \
-			"${ED}/usr/$(get_libdir)/gtk2hs/mozembed.package.conf")
+			"${ED}/usr/$(get_libdir)/gtk2hs/gtkglext.package.conf")
 	ghc-install-pkg
 }
