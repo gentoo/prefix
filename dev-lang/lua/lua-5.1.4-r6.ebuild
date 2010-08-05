@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.4-r1.ebuild,v 1.4 2009/03/23 20:45:42 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/lua-5.1.4-r6.ebuild,v 1.1 2010/06/19 17:04:05 mabi Exp $
 
 EAPI=1
 
-inherit eutils portability versionator toolchain-funcs
+inherit eutils multilib portability toolchain-funcs versionator
 
 DESCRIPTION="A powerful light-weight programming language designed for extending applications"
 HOMEPAGE="http://www.lua.org/"
@@ -12,10 +12,12 @@ SRC_URI="http://www.lua.org/ftp/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~ia64-hpux ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x86-solaris ~x86-winnt"
-IUSE="+deprecated readline static"
+KEYWORDS="~ppc-aix ~x64-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+IUSE="+deprecated emacs readline static"
 
 DEPEND="readline? ( sys-libs/readline )"
+RDEPEND="${DEPEND}"
+PDEPEND="emacs? ( app-emacs/lua-mode )"
 
 src_unpack() {
 	local PATCH_PV=$(get_version_component_range 1-2)
@@ -48,7 +50,7 @@ src_unpack() {
 			Makefile src/Makefile
 	fi
 
-	# EPATCH_SOURCE="${FILESDIR}/${PV}" EPATCH_SUFFIX="upstream.patch" epatch
+	EPATCH_SOURCE="${FILESDIR}/${PV}" EPATCH_SUFFIX="upstream.patch" epatch
 
 	# correct lua versioning
 	sed -i -e 's/\(LIB_VERSION = \)6:1:1/\16:4:1/' src/Makefile
@@ -65,7 +67,10 @@ src_unpack() {
 	fi
 
 	# We want packages to find our things...
-	sed -i -e "s:/usr/local:${EPREFIX}/usr:" etc/lua.pc
+	sed -i \
+		-e "s:/usr/local:${EPREFIX}/usr:" \
+		-e "s:/\<lib\>:/$(get_libdir):g" \
+		etc/lua.pc
 }
 
 src_compile() {
@@ -77,6 +82,8 @@ src_compile() {
 		mycflags="${mycflags} -DLUA_USE_MACOSX"
 	elif [[ ${CHOST} == *-winnt* ]]; then
 		: # nothing for now...
+	elif [[ ${CHOST} == *-interix* ]]; then
+		: # nothing here too...
 	else # building for standard linux (and bsd too)
 		mycflags="${mycflags} -DLUA_USE_LINUX"
 	fi
@@ -105,7 +112,7 @@ src_install() {
 	|| die "emake install gentoo_install failed"
 
 	dodoc HISTORY README
-	dohtml doc/*.html doc/*.gif
+	dohtml doc/*.html doc/*.png doc/*.css doc/*.gif
 
 	insinto /usr/share/pixmaps
 	doins etc/lua.ico

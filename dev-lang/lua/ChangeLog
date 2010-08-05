@@ -1,11 +1,19 @@
 # ChangeLog for dev-lang/lua
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.147 2010/04/10 17:00:10 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/lua/ChangeLog,v 1.148 2010/06/19 17:04:05 mabi Exp $
+
+*lua-5.1.4-r6 (19 Jun 2010)
+
+  19 Jun 2010; Matti Bickel <mabi@gentoo.org>
+  +files/5.1.4/05_all_string_format.upstream.patch, -lua-5.1.4-r1.ebuild,
+  -lua-5.1.4-r3.ebuild, +files/5.1.4/06_all_io_read.upstream.patch,
+  -lua-5.1.4-r2.ebuild, -lua-5.1.4-r5.ebuild, +lua-5.1.4-r6.ebuild:
+  add two upstream patches, remove old ebuilds
 
   10 Apr 2010; Raúl Porcel <armin76@gentoo.org> lua-5.1.4-r4.ebuild:
   ia64/s390/sh stable
 
-  05 Mar 2010; <mabi@gentoo.org> lua-5.1.4-r5.ebuild:
+  05 Mar 2010; Matti Bickel <mabi@gentoo.org> lua-5.1.4-r5.ebuild:
   fix bug #306869
 
 *lua-5.1.4-r5 (23 Feb 2010)
