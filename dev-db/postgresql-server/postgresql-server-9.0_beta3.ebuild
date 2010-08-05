@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-8.5_alpha3.ebuild,v 1.3 2010/02/21 15:59:55 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/postgresql-server-9.0_beta3.ebuild,v 1.1 2010/07/14 18:41:30 patrick Exp $
 
 EAPI="2"
 PYTHON_DEPEND="python? 2"
@@ -8,9 +8,8 @@ PYTHON_DEPEND="python? 2"
 # weird test failures.
 RESTRICT="test"
 
-WANT_AUTOCONF="latest"
 WANT_AUTOMAKE="none"
-inherit autotools eutils multilib python toolchain-funcs versionator prefix
+inherit autotools eutils multilib python versionator prefix
 
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux"
 
@@ -18,7 +17,8 @@ DESCRIPTION="PostgreSQL server"
 HOMEPAGE="http://www.postgresql.org/"
 
 MY_PV=${PV/_/}
-SRC_URI="mirror://postgresql/source/${MY_PV}/postgresql-${MY_PV}.tar.bz2"
+SRC_URI="mirror://postgresql/source/v${MY_PV}/postgresql-${MY_PV}.tar.bz2"
+S=${WORKDIR}/postgresql-${MY_PV}
 
 LICENSE="POSTGRESQL"
 SLOT="$(get_version_component_range 1-2)"
@@ -45,7 +45,7 @@ RDEPEND="~dev-db/postgresql-base-${PV}:${SLOT}[pg_legacytimestamp=]
 DEPEND="${RDEPEND}
 	sys-devel/flex
 	xml? ( dev-util/pkgconfig )"
-PDEPEND="doc? ( dev-db/postgresql-docs:${SLOT} )"
+PDEPEND="doc? ( ~dev-db/postgresql-docs-${PV} )"
 
 pkg_setup() {
 	enewgroup postgres 70
@@ -57,14 +57,13 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/postgresql-${SLOT}-common.patch" \
-		"${FILESDIR}/postgresql-${SLOT}-server.patch" \
-		"${FILESDIR}/postgresql-${SLOT}-makefile.patch" \
+	epatch "${FILESDIR}/postgresql-${SLOT}-common.3.patch" \
+		"${FILESDIR}/postgresql-${SLOT}-server.3.patch" \
 		"${FILESDIR}/postgresql-8.3-prefix.patch"
 
 	eprefixify "${S}/src/include/pg_config_manual.h"
 
-	if hasq test ${FEATURES}; then
+	if use test; then
 		sed -e "s|/no/such/location|${S}/src/test/regress/tmp_check/no/such/location|g" -i src/test/regress/{input,output}/tablespace.source
 	else
 		echo "all install:" > "${S}/src/test/regress/GNUmakefile"
@@ -89,14 +88,14 @@ src_configure() {
 		--with-system-tzdata="${EPREFIX}/usr/share/zoneinfo" \
 		--with-includes="${EPREFIX}/usr/include/postgresql-${SLOT}/" \
 		--with-libraries="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/$(get_libdir)" \
-		"$(built_with_use ~dev-db/postgresql-base-${PV} nls && use_enable nls nls "$(wanted_languages)")"
+		"$(has_version ~dev-db/postgresql-base-${PV}[nls] && use_enable nls nls "$(wanted_languages)")"
 }
 
 src_compile() {
 	local bd
 	for bd in .  contrib $(use xml && echo contrib/xml2); do
 		PATH="${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin:${PATH}" \
-			emake -C $bd -j1 LD="$(tc-getLD) $(get_abi_LDFLAGS)" || die "emake in $bd failed"
+			emake -C $bd -j1 || die "emake in $bd failed"
 	done
 }
 
@@ -123,8 +122,8 @@ src_install() {
 		postgres_service="postgresql-${SLOT}"
 	__EOF__
 
-	newinitd "${FILESDIR}/postgresql.init-${SLOT}" postgresql-${SLOT} || die "Inserting init.d-file failed"
-	newconfd "${FILESDIR}/postgresql.conf-${SLOT}" postgresql-${SLOT} || die "Inserting conf.d-file failed"
+	newinitd "${FILESDIR}/postgresql.init-${SLOT}-r1" postgresql-${SLOT} || die "Inserting init.d-file failed"
+	newconfd "${FILESDIR}/postgresql.conf-${SLOT}-r1" postgresql-${SLOT} || die "Inserting conf.d-file failed"
 
 	keepdir /var/run/postgresql
 	fperms 0770 /var/run/postgresql
@@ -136,27 +135,42 @@ pkg_postinst() {
 	[[ "$(eselect postgresql show)" = "(none)" ]] && eselect postgresql set ${SLOT}
 	[[ "$(eselect postgresql show-service)" = "(none)" ]] && eselect postgresql set-service ${SLOT}
 
-	ewarn "Please note that the standard location of the socket has changed from /tmp"
-	ewarn "to /var/run/postgresql and you have to be in the 'postgres' group to access"
-	ewarn "the socket."
-	ewarn "This can break applications which have the standard location hard-coded."
-	ewarn "If such an application links against the libpq, please re-emerge it,"
-	ewarn "if that doesn't help or the application accesses the socket without using libpq,"
-	ewarn "please file a bug-report."
-	ewarn "You can set PGOPTS='-k /tmp' in /etc/conf.d/postgresql-${SLOT} to restore the original location."
+	ewarn "Please note that the standard location of the socket has changed from /tmp to"
+	ewarn "/var/run/postgresql and you have to be in the 'postgres' group to access the"
+	ewarn "socket. This can break applications which have the standard location"
+	ewarn "hard-coded. If such an application links against the libpq, please reemerge"
+	ewarn "it. If that doesn't help or the application accesses the socket without using"
+	ewarn "libpq, please file a bug-report."
+	ewarn
+	ewarn "You can set PGOPTS='-k /tmp' in /etc/conf.d/postgresql-${SLOT} to restore the"
+	ewarn "original location."
+	ewarn
 
-	elog "Execute the following command to setup the initial database environment:"
+	elog "The PostgreSQL community has called for more testers of the upcoming 9.0"
+	elog "release. This beta version of the PostgreSQL server, while moved to ~arch, will"
+	elog "never be marked stable. As such, you may not want to use this package in an"
+	elog "environment where incompatible changes are unacceptable. Bear in mind, though,"
+	elog "that these packages are slotted and that you may run multiple server instances"
+	elog "simultaneously without conflict."
 	elog
-	elog "emerge --config =${CATEGORY}/${PF}"
+
+	elog "Before initializing the database, you may want to edit PG_INITDB_OPTS so that it"
+	elog "contains your preferred locale and character encoding in:"
+	elog
+	elog "    /etc/conf.d/postgresql-${SLOT}"
+	elog
+	elog "Then, execute the following command to setup the initial database environment:"
+	elog
+	elog "    emerge --config =${CATEGORY}/${PF}"
 	elog
 	elog "The autovacuum function, which was in contrib, has been moved to the main"
-	elog "PostgreSQL functions starting with 8.1 and starting with 8.4 is now"
-	elog "enabled by default. You can disable it in the cluster's postgresql.conf."
+	elog "PostgreSQL functions starting with 8.1, and starting with 8.4 is now enabled by"
+	elog "default. You can disable it in the cluster's postgresql.conf."
 	elog
-	elog "The timestamp format is 64bit integers now. If you upgrade from older databases"
-	elog "this may force you to either do a dump and reload or enable pg_legacytimestamp"
-	elog "until you find time to do so. If the database can't start please try enabling"
-	elog "pg_legacytimestamp and rebuild."
+	elog "The timestamp format is 64 bit integers now. If you upgrade from older"
+	elog "databases, this may force you to either do a dump and reload or enable"
+	elog "pg_legacytimestamp until you find time to do so. If the database can't start"
+	elog "please try enabling pg_legacytimestamp and rebuild."
 }
 
 pkg_postrm() {
@@ -164,16 +178,40 @@ pkg_postrm() {
 }
 
 pkg_config() {
+	[[ -f "${EPREFIX}"/etc/conf.d/postgresql-${SLOT} ]] && source "${EPREFIX}"/etc/conf.d/postgresql-${SLOT}
 	[[ -z "${PGDATA}" ]] && PGDATA="${EPREFIX}/var/lib/postgresql/${SLOT}/data"
+
+	# environment.bz2 may not contain the same locale as the current system
+	# locale. Unset and source from the current system locale.
+	if [ -f "${EPREFIX}"/etc/env.d/02locale ]; then
+		unset LANG
+		unset LC_CTYPE
+		unset LC_NUMERIC
+		unset LC_TIME
+		unset LC_COLLATE
+		unset LC_MONETARY
+		unset LC_MESSAGES
+		unset LC_ALL
+		source "${EPREFIX}"/etc/env.d/02locale
+		[ -n "${LANG}" ] && export LANG
+		[ -n "${LC_CTYPE}" ] && export LC_CTYPE
+		[ -n "${LC_NUMERIC}" ] && export LC_NUMERIC
+		[ -n "${LC_TIME}" ] && export LC_TIME
+		[ -n "${LC_COLLATE}" ] && export LC_COLLATE
+		[ -n "${LC_MONETARY}" ] && export LC_MONETARY
+		[ -n "${LC_MESSAGES}" ] && export LC_MESSAGES
+		[ -n "${LC_ALL}" ] && export LC_ALL
+	fi
 
 	einfo "You can pass options to initdb by setting the PG_INITDB_OPTS variable."
 	einfo "More information can be found here:"
 	einfo "    http://www.postgresql.org/docs/${SLOT}/static/creating-cluster.html"
 	einfo "    http://www.postgresql.org/docs/${SLOT}/static/app-initdb.html"
-	einfo "Simply add the options you would have added to initdb to the PG_INITDB_OPTS variable."
+	einfo "Simply add the options you would have added to initdb to the PG_INITDB_OPTS"
+	einfo "variable."
 	einfo
-	einfo "You can change the directory where the database cluster is being created by setting"
-	einfo "the PGDATA variable."
+	einfo "You can change the directory where the database cluster is being created by"
+	einfo "setting the PGDATA variable."
 	einfo
 	einfo "PG_INITDB_OPTS is currently set to:"
 	einfo "    \"${PG_INITDB_OPTS}\""
@@ -219,7 +257,7 @@ pkg_config() {
 				eerror "  - Set SKIP_SYSTEM_TESTS in case you want to ignore this test completely"
 				eerror "More information can be found here:"
 				eerror "  http://www.postgresql.org/docs/${SLOT}/static/kernel-resources.html"
-				die "system test failed"
+				die "System test failed."
 			fi
 		done
 		einfo "Passed."
@@ -237,13 +275,9 @@ pkg_config() {
 	su postgres -c "${EPREFIX}/usr/$(get_libdir)/postgresql-${SLOT}/bin/initdb --pgdata \"${PGDATA}\" ${PG_INITDB_OPTS}"
 
 	einfo
-	einfo "You can use the '${EROOT}/etc/init.d/postgresql-${SLOT}' script to run PostgreSQL instead of 'pg_ctl'."
+	einfo "You can use the '${EROOT}/etc/init.d/postgresql-${SLOT}' script to run PostgreSQL"
+	einfo "instead of 'pg_ctl'."
 	einfo
-
-	if [ "${PGDATA}" != "${EPREFIX}/var/lib/postgresql/${SLOT}/data" ] ; then
-		ewarn "You didn't install the database cluster in the standard location, please make sure that you set"
-		ewarn "PGDATA=\"${PGDATA}\" in the appropriate conf.d file (probably /etc/conf.d/postgresql-${SLOT})"
-	fi
 }
 
 src_test() {
@@ -253,7 +287,6 @@ src_test() {
 
 	einfo "Yes, there are other tests which could be run."
 	einfo "... and no, we don't plan to add/support them."
-	einfo "For now, the main regressions tests will suffice."
-	einfo "If you think other tests are necessary, please submit a"
-	einfo "bug including a patch for this ebuild to enable them."
+	einfo "For now, the main regressions tests will suffice. If you think other tests are"
+	einfo "necessary, please submit a bug including a patch for this ebuild to enable them."
 }

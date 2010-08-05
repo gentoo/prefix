@@ -1,6 +1,40 @@
 # ChangeLog for dev-db/postgresql-server
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.68 2010/06/23 20:35:20 angelos Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-db/postgresql-server/ChangeLog,v 1.75 2010/07/14 18:41:30 patrick Exp $
+
+*postgresql-server-9.0_beta3 (14 Jul 2010)
+
+  14 Jul 2010; Patrick Lauer <patrick@gentoo.org>
+  +postgresql-server-9.0_beta3.ebuild, +files/postgresql-9.0-common.3.patch,
+  +files/postgresql-9.0-server.3.patch:
+  Bump
+
+  13 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.4.4-r1.ebuild:
+  stable x86, security bug 320967
+
+  13 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.3.11-r1.ebuild:
+  stable x86, security bug 320967
+
+  13 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.2.17-r1.ebuild:
+  stable x86, security bug 320967
+
+  13 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  postgresql-server-8.1.21-r1.ebuild:
+  stable x86, security bug 320967
+
+  11 Jul 2010; Patrick Lauer <patrick@gentoo.org>
+  files/postgresql.init-8.1-r1, files/postgresql.init-8.4-r1:
+  Fixing missing reload in init scripts, thanks to Aaron Swenson for
+  reporting
+
+  10 Jul 2010; Raúl Porcel <armin76@gentoo.org>
+  postgresql-server-7.4.29-r1.ebuild, postgresql-server-8.0.25-r1.ebuild,
+  postgresql-server-8.1.21-r1.ebuild, postgresql-server-8.2.17-r1.ebuild,
+  postgresql-server-8.3.11-r1.ebuild, postgresql-server-8.4.4-r1.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #320967
 
   23 Jun 2010; Christoph Mende <angelos@gentoo.org>
   postgresql-server-7.4.29-r1.ebuild, postgresql-server-8.0.25-r1.ebuild,
