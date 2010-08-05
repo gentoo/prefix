@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.3.1-r1.ebuild,v 1.3 2010/02/09 17:10:23 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/jruby/jruby-1.3.1-r1.ebuild,v 1.6 2010/06/30 20:53:35 caster Exp $
 
 EAPI="2"
 JAVA_PKG_IUSE="doc source test"
