@@ -1,6 +1,21 @@
 # ChangeLog for app-text/rarian
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.43 2010/05/04 15:39:27 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/rarian/ChangeLog,v 1.47 2010/07/20 15:07:11 jer Exp $
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> rarian-0.8.1.ebuild,
+  rarian-0.8.1-r1.ebuild:
+  Stable for HPPA (bug #314899).
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> rarian-0.8.1.ebuild,
+  rarian-0.8.1-r1.ebuild:
+  Drop HPPA keywording (bug #324511).
+
+  04 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  rarian-0.8.1-r1.ebuild:
+  ppc64 stable wrt #314899
+
+  04 Jun 2010; Markus Meier <maekke@gentoo.org> rarian-0.8.1-r1.ebuild:
+  x86 stable, bug #314899
 
   03 May 2010; Olivier Crête <tester@gentoo.org> rarian-0.8.1-r1.ebuild:
   amd64 stable, bug #314899
