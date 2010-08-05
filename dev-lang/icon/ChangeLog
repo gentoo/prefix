@@ -1,6 +1,9 @@
 # ChangeLog for dev-lang/icon
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.44 2010/05/13 14:18:34 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/icon/ChangeLog,v 1.45 2010/05/19 20:05:01 armin76 Exp $
+
+  19 May 2010; Raúl Porcel <armin76@gentoo.org> icon-9.4.3-r5.ebuild:
+  alpha/ia64/sparc stable wrt #274174
 
   13 May 2010; Jeroen Roovers <jer@gentoo.org> icon-9.4.3-r5.ebuild:
   Stable for HPPA (bug #274174).
