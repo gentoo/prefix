@@ -1,6 +1,10 @@
 # ChangeLog for dev-java/ant-eclipse-ecj
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ChangeLog,v 1.19 2010/04/27 15:41:48 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/ant-eclipse-ecj/ChangeLog,v 1.20 2010/06/25 22:01:27 angelos Exp $
+
+  25 Jun 2010; Christoph Mende <angelos@gentoo.org>
+  ant-eclipse-ecj-3.5.2.ebuild:
+  Stable on amd64 wrt bug #316293
 
   27 Apr 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
   ant-eclipse-ecj-3.5.2.ebuild:
