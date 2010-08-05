@@ -1,6 +1,24 @@
 # ChangeLog for dev-lang/ocaml
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.177 2010/04/19 17:43:17 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ocaml/ChangeLog,v 1.180 2010/08/02 15:38:50 aballier Exp $
+
+*ocaml-3.12.0 (02 Aug 2010)
+
+  02 Aug 2010; Alexis Ballier <aballier@gentoo.org>
+  -ocaml-3.12.0_rc1.ebuild, +ocaml-3.12.0.ebuild:
+  version bump
+
+*ocaml-3.12.0_rc1 (25 Jul 2010)
+
+  25 Jul 2010; Alexis Ballier <aballier@gentoo.org>
+  -ocaml-3.12.0_beta1.ebuild, +ocaml-3.12.0_rc1.ebuild:
+  bump to rc1
+
+*ocaml-3.12.0_beta1 (17 Jun 2010)
+
+  17 Jun 2010; Alexis Ballier <aballier@gentoo.org>
+  +ocaml-3.12.0_beta1.ebuild:
+  Add the first beta of ocaml 3.12
 
   19 Apr 2010; Raúl Porcel <armin76@gentoo.org> ocaml-3.10.2.ebuild,
   ocaml-3.11.2.ebuild:
