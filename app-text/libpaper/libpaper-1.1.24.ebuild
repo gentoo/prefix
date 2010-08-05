@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libpaper/libpaper-1.1.23_p2.ebuild,v 1.1 2010/03/08 07:30:09 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libpaper/libpaper-1.1.24.ebuild,v 1.1 2010/07/31 13:55:51 tgurr Exp $
 
 EAPI="2"
 
-inherit eutils autotools
+inherit eutils
 
 MY_PV=${PV/_p/+nmu}
 DESCRIPTION="Library for handling paper characteristics"
@@ -17,12 +17,6 @@ KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-mac
 IUSE=""
 
 S="${WORKDIR}/${PN}-${MY_PV}"
-
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-darwin-malloc.patch
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${P}-interix-getopt.patch
-	eautoreconf # required for interix, was elibtoolize
-}
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"

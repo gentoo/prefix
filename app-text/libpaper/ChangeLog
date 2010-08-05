@@ -1,6 +1,12 @@
 # ChangeLog for app-text/libpaper
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/libpaper/ChangeLog,v 1.40 2010/03/08 08:14:49 sping Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/libpaper/ChangeLog,v 1.41 2010/07/31 13:55:51 tgurr Exp $
+
+*libpaper-1.1.24 (31 Jul 2010)
+
+  31 Jul 2010; Timo Gurr <tgurr@gentoo.org> -libpaper-1.1.21.ebuild,
+  -libpaper-1.1.23_p2.ebuild, +libpaper-1.1.24.ebuild:
+  Version bump, remove old.
 
   08 Mar 2010; Sebastian Pipping <sping@gentoo.org> libpaper-1.1.23.ebuild:
   Fix SRC_URI (bug #292706)
