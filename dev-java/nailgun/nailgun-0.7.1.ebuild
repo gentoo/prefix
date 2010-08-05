@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/nailgun/nailgun-0.7.1.ebuild,v 1.6 2009/10/25 21:13:55 volkmar Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-java/nailgun/nailgun-0.7.1.ebuild,v 1.9 2010/06/30 15:28:17 phajdan.jr Exp $
 
 EAPI="2"
 
@@ -18,7 +18,8 @@ KEYWORDS="~amd64-linux ~x86-linux ~x86-solaris"
 
 IUSE="test"
 
-RDEPEND=">=virtual/jre-1.4"
+RDEPEND=">=virtual/jre-1.4
+	!app-editor/ng"
 DEPEND=">=virtual/jdk-1.4
 	dev-java/java-getopt:1
 	dev-java/bcel:0

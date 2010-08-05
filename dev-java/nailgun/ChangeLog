@@ -1,6 +1,15 @@
 # ChangeLog for dev-java/nailgun
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-java/nailgun/ChangeLog,v 1.4 2009/10/25 21:13:55 volkmar Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-java/nailgun/ChangeLog,v 1.7 2010/06/30 15:28:17 phajdan.jr Exp $
+
+  30 Jun 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> nailgun-0.7.1.ebuild:
+  x86 stable wrt bug #325667
+
+  29 Jun 2010; Christoph Mende <angelos@gentoo.org> nailgun-0.7.1.ebuild:
+  Stable on amd64 wrt bug #325667
+
+  26 Jun 2010; Alistair Bush <ali_bush@gentoo.org> nailgun-0.7.1.ebuild:
+  Block app-editor/ng due to file collision. see #295840.
 
   25 Oct 2009; Mounir Lamouri <volkmar@gentoo.org> nailgun-0.7.1.ebuild:
   Keywording for ppc, bug 270910
