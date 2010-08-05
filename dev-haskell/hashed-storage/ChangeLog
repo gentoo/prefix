@@ -1,6 +1,24 @@
 # ChangeLog for dev-haskell/hashed-storage
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/ChangeLog,v 1.2 2010/03/28 17:31:50 kolmodin Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/ChangeLog,v 1.6 2010/07/20 13:46:00 josejx Exp $
+
+  20 Jul 2010; Joseph Jezak <josejx@gentoo.org>
+  hashed-storage-0.4.13.ebuild:
+  Marked ~ppc.
+
+  10 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org>
+  hashed-storage-0.4.10.ebuild, hashed-storage-0.4.13.ebuild:
+  marked ~ia64
+
+  08 Jul 2010; Sergei Trofimovich <slyfox@gentoo.org>
+  hashed-storage-0.4.10.ebuild, hashed-storage-0.4.13.ebuild:
+  ~alpha keyworded
+
+*hashed-storage-0.4.13 (23 May 2010)
+
+  23 May 2010; Lennart Kolmodin <kolmodin@gentoo.org>
+  +hashed-storage-0.4.13.ebuild:
+  Version bump.
 
 *hashed-storage-0.4.10 (28 Mar 2010)
 

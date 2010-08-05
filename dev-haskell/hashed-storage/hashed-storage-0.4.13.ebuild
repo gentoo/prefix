@@ -1,6 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/hashed-storage-0.4.10.ebuild,v 1.3 2010/07/10 19:01:46 slyfox Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-haskell/hashed-storage/hashed-storage-0.4.13.ebuild,v 1.4 2010/07/20 13:46:00 josejx Exp $
+
+EAPI=2
 
 CABAL_FEATURES="bin lib profile haddock"
 inherit haskell-cabal
@@ -29,9 +31,9 @@ DEPEND=">=dev-haskell/cabal-1.6
 		)
 		${RDEPEND}"
 
-if use test; then
-	CABAL_CONFIGURE_FLAGS="--flags=test"
-fi
+src_configure() {
+	cabal_src_configure $(cabal_flag test)
+}
 
 src_install() {
 	cabal_src_install
