@@ -1,6 +1,18 @@
 # ChangeLog for dev-libs/confuse
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.41 2010/03/19 16:33:06 matsuu Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/confuse/ChangeLog,v 1.45 2010/07/26 11:32:45 jer Exp $
+
+  26 Jul 2010; Jeroen Roovers <jer@gentoo.org> confuse-2.7.ebuild:
+  Stable for HPPA (bug #327597).
+
+  14 Jul 2010; Christian Faulhammer <fauli@gentoo.org> confuse-2.7.ebuild:
+  stable x86, bug 327597
+
+  11 Jul 2010; Thomas Anderson <tanderson@gentoo.org> confuse-2.7.ebuild:
+  stable amd64, bug 327597
+
+  09 Jul 2010; Tomáš Chvátal <scarabeus@gentoo.org> confuse-2.7.ebuild:
+  QA: introduce static-libs useflag.
 
 *confuse-2.7 (19 Mar 2010)
 
