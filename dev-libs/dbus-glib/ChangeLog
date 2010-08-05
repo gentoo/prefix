@@ -1,6 +1,32 @@
 # ChangeLog for dev-libs/dbus-glib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.59 2010/04/09 02:18:35 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dbus-glib/ChangeLog,v 1.67 2010/07/18 10:59:46 armin76 Exp $
+
+  18 Jul 2010; Raúl Porcel <armin76@gentoo.org> dbus-glib-0.86.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #319965
+
+  10 Jul 2010; Jeroen Roovers <jer@gentoo.org> dbus-glib-0.86.ebuild:
+  Stable for HPPA (bug #319965).
+
+  08 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> dbus-glib-0.86.ebuild:
+  ppc64 stable wrt #319965
+
+  26 Jun 2010; <nixnut@gentoo.org> dbus-glib-0.86.ebuild:
+  ppc stable #319965
+
+  28 May 2010; Markus Meier <maekke@gentoo.org> dbus-glib-0.86.ebuild:
+  arm/x86 stable, bug #319965
+
+  25 May 2010; Pacho Ramos <pacho@gentoo.org> dbus-glib-0.86.ebuild:
+  stable amd64, bug 319965
+
+  16 May 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  -dbus-glib-0.76.ebuild, -dbus-glib-0.84.ebuild,
+  -files/dbus-glib-introspection.patch:
+  Clean up old revisions.
+
+  15 May 2010; Raúl Porcel <armin76@gentoo.org> dbus-glib-0.82-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #310705
 
   09 Apr 2010; Jeroen Roovers <jer@gentoo.org> dbus-glib-0.82-r1.ebuild:
   Stable for HPPA (bug #310705).
