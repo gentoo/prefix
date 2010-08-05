@@ -223,9 +223,12 @@ src_configure() {
 	fi
 
 	# http://bugs.gentoo.org/show_bug.cgi?id=302137
-	[[ ${CHOST} == powerpc-*-darwin* ]] && \
-		( is-flag "-mtune=*" || is-flag "-mcpu=*" ) && \
+	if [[ ${CHOST} == powerpc-*-darwin* ]] && \
+		( is-flag "-mtune=*" || is-flag "-mcpu=*" ) ;
+	then
 		replace-flags -O2 -O3
+		replace-flags -Os -O3  # comment #14
+	fi
 
 	if use prefix ; then
 		# for Python's setup.py not to do false assumptions (only looking in

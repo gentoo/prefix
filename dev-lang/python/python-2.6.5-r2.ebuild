@@ -231,9 +231,12 @@ src_configure() {
 	fi
 
 	# http://bugs.gentoo.org/show_bug.cgi?id=302137
-	[[ ${CHOST} == powerpc-*-darwin* ]] && \
-		( is-flag "-mtune=*" || is-flag "-mcpu=*" ) && \
+	if [[ ${CHOST} == powerpc-*-darwin* ]] && \
+		( is-flag "-mtune=*" || is-flag "-mcpu=*" ) ;
+	then
 		replace-flags -O2 -O3
+		replace-flags -Os -O3  # comment #14
+	fi
 
 	if tc-is-cross-compiler; then
 		OPT="-O1" CFLAGS="" LDFLAGS="" CC="" \
