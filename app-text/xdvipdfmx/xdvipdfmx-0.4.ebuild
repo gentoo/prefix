@@ -1,10 +1,10 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/xdvipdfmx-0.4.ebuild,v 1.10 2008/05/12 20:18:09 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/xdvipdfmx/xdvipdfmx-0.4.ebuild,v 1.11 2010/06/12 16:20:21 aballier Exp $
 
 inherit eutils multilib
 
-DESCRIPTION="Extended xdvi for use with XeTeX and other unicode TeXs."
+DESCRIPTION="Extended dvipdfmx for use with XeTeX and other unicode TeXs."
 HOMEPAGE="http://scripts.sil.org/svn-view/xdvipdfmx/"
 SRC_URI="http://scripts.sil.org/svn-view/xdvipdfmx/TAGS/${P}.tar.gz"
 
