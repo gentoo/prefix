@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.39.0.ebuild,v 1.9 2010/04/25 18:28:14 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/boost/boost-1.39.0.ebuild,v 1.10 2010/06/17 14:39:18 jsbronder Exp $
 
 EAPI="2"
 
@@ -22,7 +22,7 @@ IUSE="debug doc +eselect expat icu mpi python test tools"
 
 RDEPEND="icu? ( >=dev-libs/icu-3.3 )
 	expat? ( dev-libs/expat )
-	mpi? ( || ( >=sys-cluster/openmpi-1.2.9[cxx] <sys-cluster/openmpi-1.2.9[-nocxx] ) )
+	mpi? ( sys-cluster/openmpi[cxx] )
 	sys-libs/zlib
 	python? ( virtual/python )
 	!!<=dev-libs/boost-1.35.0-r2
