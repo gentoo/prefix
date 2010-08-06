@@ -603,17 +603,6 @@ media-libs/taglib
 media-libs/tiff
 media-libs/tunepimp
 media-libs/win32codecs
-media-plugins/audacious-plugins
-media-plugins/gst-plugins-alsa
-media-plugins/gst-plugins-esd
-media-plugins/gst-plugins-gconf
-media-plugins/gst-plugins-gnomevfs
-media-plugins/gst-plugins-mad
-media-plugins/gst-plugins-meta
-media-plugins/gst-plugins-mpeg2dec
-media-plugins/gst-plugins-musepack
-media-plugins/gst-plugins-x
-media-plugins/swh-plugins
 media-sound/alac_decoder
 media-sound/alsa-headers
 media-sound/audacious
@@ -896,6 +885,7 @@ lxde-base
 mail-client
 mail-mta
 media-fonts
+media-plugins
 net-dialup
 net-news
 net-print
