@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/libgamin
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.24 2009/09/25 10:51:18 flameeyes Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/ChangeLog,v 1.25 2010/06/16 18:43:43 arfrever Exp $
+
+  16 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libgamin-0.1.10-r2.ebuild,
+  +files/libgamin-0.1.10-disable_python_static_library.patch:
+  Set SUPPORT_PYTHON_ABIS, don't build static version of Python module (bug #312187).
 
   25 Sep 2009; Diego E. Pettenò <flameeyes@gentoo.org>
   -files/gamin-0.1.9-freebsd.patch, libgamin-0.1.10-r1.ebuild,

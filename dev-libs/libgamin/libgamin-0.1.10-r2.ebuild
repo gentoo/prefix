@@ -1,8 +1,11 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/libgamin-0.1.10-r2.ebuild,v 1.11 2009/09/25 10:51:18 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgamin/libgamin-0.1.10-r2.ebuild,v 1.12 2010/06/16 18:43:43 arfrever Exp $
 
-EAPI=2
+EAPI="2"
+PYTHON_DEPEND="python? 2"
+SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.*"
 
 inherit autotools eutils flag-o-matic libtool python
 
@@ -21,14 +24,19 @@ IUSE="debug kernel_linux python"
 
 RESTRICT="test" # need gam-server
 
-RDEPEND="python? ( virtual/python )
-	!app-admin/fam
+RDEPEND="!app-admin/fam
 	!<app-admin/gamin-0.1.10"
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 S="${WORKDIR}/${MY_P}"
+
+pkg_setup() {
+	if use python; then
+		python_pkg_setup
+	fi
+}
 
 src_prepare() {
 	# Fix QA warnings, bug #257281, upstream #466791
@@ -46,6 +54,12 @@ src_prepare() {
 	# only be applied if on solaris.
 	[[ ${CHOST} == *-solaris* ]] && \
 	epatch "${FILESDIR}"/${P}-opensolaris.patch
+
+	# Build only shared version of Python module.
+	epatch "${FILESDIR}/${P}-disable_python_static_library.patch"
+
+	# Python bindings are built/installed manually.
+	sed -e "/SUBDIRS += python/d" -i Makefile.am
 
 	# autoconf is required as the user-cflags patch modifies configure.in
 	# however, elibtoolize is also required, so when the above patch is
@@ -65,8 +79,37 @@ src_configure() {
 		$(use_with python)
 }
 
+src_compile() {
+	default
+
+	if use python; then
+		python_copy_sources python
+
+		building() {
+			emake \
+				PYTHON_INCLUDES="$(python_get_includedir)" \
+				PYTHON_SITE_PACKAGES="$(python_get_sitedir)" \
+				PYTHON_VERSION="$(python_get_version)"
+		}
+		python_execute_function -s --source-dir python building
+	fi
+}
+
 src_install() {
 	emake DESTDIR="${D}" install || die "installation failed"
+
+	if use python; then
+		installation() {
+			emake \
+				DESTDIR="${D}" \
+				PYTHON_SITE_PACKAGES="$(python_get_sitedir)" \
+				PYTHON_VERSION="$(python_get_version)" \
+				install
+		}
+		python_execute_function -s --source-dir python installation
+
+		python_clean_installation_image
+	fi
 
 	dodoc AUTHORS ChangeLog README TODO NEWS doc/*txt || die "dodoc failed"
 	dohtml doc/* || die "dohtml failed"
@@ -74,11 +117,12 @@ src_install() {
 
 pkg_postinst() {
 	if use python; then
-		python_version
-		python_mod_optimize /usr/$(get_libdir)/python${PYVER}/site-packages
+		python_mod_optimize gamin.py
 	fi
 }
 
 pkg_postrm() {
-	python_mod_cleanup /usr/$(get_libdir)/python*/site-packages
+	if use python; then
+		python_mod_cleanup gamin.py
+	fi
 }
