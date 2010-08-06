@@ -444,6 +444,7 @@ dev-util/qt-creator
 dev-util/re2c
 dev-util/strace
 dev-util/tailor
+dev-util/tkdiff
 dev-util/tmake
 dev-util/treecc
 dev-util/uncrustify
