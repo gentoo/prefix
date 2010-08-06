@@ -747,6 +747,7 @@ sys-apps/which
 sys-apps/prefix-chain-utils
 sys-devel/autoconf-archive
 sys-devel/autoconf-wrapper
+sys-devel/autogen
 sys-devel/automake-wrapper
 sys-devel/bc
 sys-devel/binutils-apple
