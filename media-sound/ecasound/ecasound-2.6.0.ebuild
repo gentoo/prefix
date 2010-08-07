@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.6 2009/08/01 06:24:06 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ecasound-2.6.0.ebuild,v 1.7 2010/06/23 14:19:23 arfrever Exp $
 
-EAPI=2
+EAPI=3
 
-inherit eutils multilib python autotools
+inherit eutils python autotools
 
 DESCRIPTION="a package for multitrack audio processing"
 HOMEPAGE="http://ecasound.seul.org/ecasound"
@@ -41,10 +41,9 @@ src_configure() {
 	local PYConf
 
 	if use python; then
-		python_version
 		PYConf="--enable-pyecasound=c
-			--with-python-includes=${EPREFIX}/usr/include/python${PYVER}
-			--with-python-modules=${EPREFIX}/usr/$(get_libdir)/python${PYVER}"
+			--with-python-includes=${EPREFIX}$(python_get_includedir)
+			--with-python-modules=${EPREFIX}$(python_get_libdir)"
 	else
 		PYConf="$myconf --disable-pyecasound"
 	fi
@@ -74,16 +73,12 @@ src_install() {
 
 pkg_postinst() {
 	if use python; then
-		ebegin "Byte-compiling ${CATEGORY}/${PF} python modules"
-		python_version
-		local PYMODULE
-		for PYMODULE in ecacontrol.py pyeca.py eci.py; do
-			python_mod_compile /usr/$(get_libdir)/python${PYVER}/site-packages/${PYMODULE}
-		done
-		eend $?
+		python_mod_optimize ecacontrol.py eci.py pyeca.py
 	fi
 }
 
 pkg_postrm() {
-	python_mod_cleanup
+	if use python; then
+		python_mod_cleanup ecacontrol.py eci.py pyeca.py
+	fi
 }

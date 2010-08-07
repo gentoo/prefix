@@ -1,6 +1,10 @@
 # ChangeLog for media-sound/ecasound
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.57 2009/08/01 06:24:06 ssuominen Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-sound/ecasound/ChangeLog,v 1.58 2010/06/23 14:19:23 arfrever Exp $
+
+  23 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  ecasound-2.6.0.ebuild:
+  Delete deprecation warnings (bug #313945).
 
   01 Aug 2009; Samuli Suominen <ssuominen@gentoo.org> ecasound-2.6.0.ebuild:
   Remove USE depend for media-libs/alsa-lib[midi].
