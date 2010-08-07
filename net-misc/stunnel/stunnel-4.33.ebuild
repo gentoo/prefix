@@ -1,6 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.29.ebuild,v 1.2 2010/01/15 20:19:33 ramereth Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/stunnel/stunnel-4.33.ebuild,v 1.2 2010/07/07 05:41:40 ramereth Exp $
+
+EAPI="2"
 
 inherit autotools ssl-cert eutils
 
@@ -11,7 +13,7 @@ SRC_URI="http://www.stunnel.org/download/stunnel/src/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="ipv6 selinux tcpd"
+IUSE="ipv6 selinux tcpd xforward"
 
 DEPEND="tcpd? ( sys-apps/tcp-wrappers )
 	>=dev-libs/openssl-0.9.8k"
@@ -23,10 +25,9 @@ pkg_setup() {
 	enewuser stunnel -1 -1 -1 stunnel
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	epatch "${FILESDIR}/${PN}-4.21-libwrap.patch"
+	use xforward && epatch "${FILESDIR}/${PN}-4.31-x-forwarded-for.patch"
 	eautoreconf
 
 	# Hack away generation of certificate
@@ -34,11 +35,10 @@ src_unpack() {
 		tools/Makefile.in || die "sed failed"
 }
 
-src_compile() {
+src_configure() {
 	econf $(use_enable ipv6) \
 		--with-ssl="${EPREFIX}"/usr \
 		$(use_enable tcpd libwrap) || die "econf died"
-	emake || die "emake died"
 }
 
 src_install() {

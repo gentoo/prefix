@@ -38,6 +38,11 @@ start() {
             if [ "${PROCLIST}" ] && kill -0 ${PROCLIST} 2> /dev/null ; then
                 ewarn "  already running: ${file} "
             elif ${DAEMON} ${ARGS} ; then
+                if ! test -f ${CHROOT}/${PIDFILE} ; then
+                    # give the daemon time to create the pid file
+                    # See bug #308931 for more details
+                    sleep 0.5s
+                fi
                 if test -f ${CHROOT}/${PIDFILE} ; then
                     einfo "   ${file}"
                 else
