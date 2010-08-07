@@ -13,7 +13,8 @@
     <flag name="ip32r10k">Enable building a compiler capable of building an
     experimental kernel for SGI O2 w/ R1x000 CPUs (IP32)</flag>
     <flag name="libffi">Build the portable foreign function interface library</flag>
-    <flag name="lto">Add support for link-time optimizations</flag>
+    <flag name="lto">Add support for link-time optimizations (unsupported, use
+    at your own risk).</flag>
     <flag name="mudflap">Add support for mudflap, a pointer use checking library</flag>
     <flag name="multislot">Allow for SLOTs to include minor version (3.3.4
     instead of just 3.3)</flag>

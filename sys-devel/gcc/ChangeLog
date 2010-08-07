@@ -1,6 +1,16 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.766 2010/07/21 17:22:37 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.769 2010/08/01 21:04:50 dirtyepic Exp $
+
+  01 Aug 2010; Ryan Hill <dirtyepic@gentoo.org> gcc-4.4.3-r3.ebuild,
+  gcc-4.4.4-r1.ebuild:
+  Patchset bump to fix bug #327191 for SH.
+
+  01 Aug 2010; Ryan Hill <dirtyepic@gentoo.org> gcc-4.4.4-r1.ebuild:
+  Drop hppa STAGE1_CFLAGS hack (bug #326539).
+
+  28 Jul 2010; Ryan Hill <dirtyepic@gentoo.org> metadata.xml:
+  Set proper expectations for lto.
 
   21 Jul 2010; Mark Loeser <halcy0n@gentoo.org> gcc-4.5.0.ebuild:
   Bump patchset for bug #317579

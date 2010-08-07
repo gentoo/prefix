@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.4-r1.ebuild,v 1.2 2010/06/28 11:32:42 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.4-r1.ebuild,v 1.4 2010/08/01 21:04:50 dirtyepic Exp $
 
-PATCH_VER="1.0"
+PATCH_VER="1.1"
 UCLIBC_VER="1.0"
 
 ETYPE="gcc-compiler"
@@ -78,8 +78,6 @@ pkg_setup() {
 		ewarn "Graphite support is still experimental and unstable."
 		ewarn "Any bugs resulting from the use of Graphite will not be fixed."
 	fi
-
-	use hppa && STAGE1_CFLAGS="-O0"
 }
 
 src_unpack() {
