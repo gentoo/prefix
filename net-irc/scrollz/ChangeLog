@@ -1,6 +1,17 @@
 # ChangeLog for net-irc/scrollz
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-irc/scrollz/ChangeLog,v 1.29 2008/01/16 20:49:32 grobian Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-irc/scrollz/ChangeLog,v 1.32 2010/06/25 17:49:28 armin76 Exp $
+
+  25 Jun 2010; Raúl Porcel <armin76@gentoo.org> scrollz-2.1.ebuild:
+  ia64/x86 stable wrt #324813
+
+  24 Jun 2010; Markos Chandras <hwoarang@gentoo.org> scrollz-2.1.ebuild:
+  Stable on amd64 wrt bug #324813
+
+*scrollz-2.1 (20 Jun 2010)
+
+  20 Jun 2010; Samuli Suominen <ssuominen@gentoo.org> +scrollz-2.1.ebuild:
+  Version bump wrt #305045 by "Shark".
 
   16 Jan 2008; Fabian Groffen <grobian@gentoo.org> scrollz-1.9.99.ebuild:
   Dropped ppc-macos keyword, see you in prefix
