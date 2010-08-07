@@ -1,6 +1,33 @@
 # ChangeLog for media-gfx/gimp
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.309 2010/02/15 00:09:05 hanno Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/ChangeLog,v 1.315 2010/07/09 15:28:44 scarabeus Exp $
+
+  09 Jul 2010; Tomáš Chvátal <scarabeus@gentoo.org> gimp-9999.ebuild:
+  Depend on correct lcms. Per bug #324921.
+
+*gimp-2.6.10 (09 Jul 2010)
+
+  09 Jul 2010; Tomáš Chvátal <scarabeus@gentoo.org> -gimp-2.6.9.ebuild,
+  +gimp-2.6.10.ebuild, gimp-9999.ebuild:
+  Version bump. Remove older affected with quite annoying upstream bug
+  #622608.
+
+*gimp-2.6.9 (24 Jun 2010)
+
+  24 Jun 2010; Tomáš Chvátal <scarabeus@gentoo.org> +gimp-2.6.9.ebuild,
+  gimp-9999.ebuild:
+  Add new version. Add missing dep on libXpm (reported by revdep).
+
+  21 Jun 2010; Samuli Suominen <ssuominen@gentoo.org> gimp-2.6.8.ebuild:
+  Restrict media-libs/lcms depend to old version.
+
+  06 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  gimp-2.6.8.ebuild, gimp-9999.ebuild:
+  Use Python 2 (bug #313499).
+
+  05 Jun 2010; Maciej Mrozowski <reavertm@gentoo.org> gimp-2.6.8.ebuild,
+  gimp-9999.ebuild:
+  Optimize python modules only when needed.
 
   15 Feb 2010; Hanno Boeck <hanno@gentoo.org> gimp-2.6.8.ebuild,
   +files/gimp-2.6.8-libpng-1.4.patch:

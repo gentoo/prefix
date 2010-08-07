@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.8.ebuild,v 1.14 2010/06/21 09:45:08 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gimp/gimp-2.6.10.ebuild,v 1.1 2010/07/09 15:21:01 scarabeus Exp $
 
 EAPI=2
 PYTHON_DEPEND="python? 2:2.5"
@@ -20,6 +20,7 @@ IUSE="aqua alsa aalib altivec curl dbus debug doc exif gnome hal jpeg lcms mmx m
 RDEPEND=">=dev-libs/glib-2.18.1
 	>=x11-libs/gtk+-2.12.5[aqua?]
 	>=x11-libs/pango-1.18.0
+	x11-libs/libXpm
 	>=media-libs/freetype-2.1.7
 	>=media-libs/fontconfig-2.2.0
 	sys-libs/zlib
@@ -52,15 +53,6 @@ DEPEND="${RDEPEND}
 	doc? ( >=dev-util/gtk-doc-1 )"
 
 DOCS="AUTHORS ChangeLog* HACKING NEWS README*"
-
-src_prepare() {
-	epatch "${FILESDIR}/${P}-libpng-1.4.patch"
-
-	# interix has a problem linking gimp, although everything is there.
-	# this is solved by first extracting all the private static libs and
-	# linking the objects, which works perfectly. nobody else wants this :)
-	[[ ${CHOST} == *-interix* ]] && epatch "${FILESDIR}"/${PN}-2.4.5-interix.patch
-}
 
 pkg_setup() {
 	G2CONF="--enable-default-binary \
