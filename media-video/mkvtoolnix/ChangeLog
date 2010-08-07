@@ -1,6 +1,32 @@
 # ChangeLog for media-video/mkvtoolnix
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/ChangeLog,v 1.126 2010/03/25 13:51:53 beandog Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/mkvtoolnix/ChangeLog,v 1.131 2010/07/29 22:33:18 beandog Exp $
+
+*mkvtoolnix-4.2.0 (29 Jul 2010)
+
+  29 Jul 2010; Steve Dibb <beandog@gentoo.org> +mkvtoolnix-4.2.0.ebuild:
+  Version bump
+
+*mkvtoolnix-4.1.1 (23 Jul 2010)
+
+  23 Jul 2010; Steve Dibb <beandog@gentoo.org> +mkvtoolnix-4.1.1.ebuild:
+  Version bump
+
+*mkvtoolnix-4.0.0-r1 (08 Jun 2010)
+
+  08 Jun 2010; Steve Dibb <beandog@gentoo.org> -mkvtoolnix-4.0.0.ebuild,
+  +mkvtoolnix-4.0.0-r1.ebuild, +files/mkvtoolnix-4.0.0-qt4.patch:
+  Add qt4 patch, upstream warning, bug 322935
+
+*mkvtoolnix-4.0.0 (05 Jun 2010)
+
+  05 Jun 2010; Steve Dibb <beandog@gentoo.org> +mkvtoolnix-4.0.0.ebuild:
+  Version bump
+
+*mkvtoolnix-3.4.0 (05 Jun 2010)
+
+  05 Jun 2010; Steve Dibb <beandog@gentoo.org> +mkvtoolnix-3.4.0.ebuild:
+  Version bump, bug 321717
 
 *mkvtoolnix-3.3.0 (25 Mar 2010)
 
