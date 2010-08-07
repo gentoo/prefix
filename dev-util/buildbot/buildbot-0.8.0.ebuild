@@ -1,10 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.7.12.ebuild,v 1.6 2010/06/19 18:50:57 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/buildbot-0.8.0.ebuild,v 1.7 2010/07/24 14:52:04 maekke Exp $
 
 EAPI="3"
 PYTHON_DEPEND="2"
 SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.*"
 DISTUTILS_SRC_TEST="trial"
 DISTUTILS_DISABLE_TEST_DEPENDENCY="1"
 
@@ -14,7 +15,7 @@ MY_PV="${PV/_p/p}"
 MY_P="${PN}-${MY_PV}"
 
 DESCRIPTION="A Python system to automate the compile/test cycle to validate code changes"
-HOMEPAGE="http://buildbot.net/"
+HOMEPAGE="http://buildbot.net/ http://pypi.python.org/pypi/buildbot"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 
 LICENSE="GPL-2"
@@ -22,35 +23,34 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris"
 IUSE="doc irc mail manhole test"
 
-RDEPEND=">=dev-python/twisted-2.0.1
-	mail? ( dev-python/twisted-mail )
-	manhole? ( dev-python/twisted-conch )
-	irc? ( dev-python/twisted-words )
+# sqlite3 module of Python 2.5 is not supported.
+RDEPEND="dev-python/jinja
+	|| ( dev-python/pysqlite:2 >=dev-lang/python-2.6[sqlite] )
+	>=dev-python/twisted-2.0.1
 	dev-python/twisted-web
-	dev-python/twisted-mail"
+	dev-python/twisted-mail
+	irc? ( dev-python/twisted-words )
+	mail? ( dev-python/twisted-mail )
+	manhole? ( dev-python/twisted-conch )"
 DEPEND="${DEPEND}
+	doc? ( dev-python/epydoc )
 	test? ( dev-python/twisted-mail
 			dev-python/twisted-web
-			dev-python/twisted-words )
-	doc? ( dev-python/epydoc )"
-RESTRICT_PYTHON_ABIS="3.*"
+			dev-python/twisted-words )"
 
 S="${WORKDIR}/${MY_P}"
 
 pkg_setup() {
 	enewuser buildbot
-}
-
-src_prepare() {
-	distutils_src_prepare
-	epatch "${FILESDIR}/${PN}-0.7.5-root-skip-tests.patch"
+	python_pkg_setup
 }
 
 src_compile() {
 	distutils_src_compile
 
 	if use doc; then
-		PYTHONPATH="." "$(PYTHON -f)" docs/epyrun -o docs/reference || die "epyrun failed"
+		einfo "Generation of documentation"
+		PYTHONPATH="." "$(PYTHON -f)" docs/epyrun -o docs/reference || die "Generation of documentation failed"
 	fi
 }
 

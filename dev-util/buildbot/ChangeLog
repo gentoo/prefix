@@ -1,6 +1,46 @@
 # ChangeLog for dev-util/buildbot
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.55 2010/02/20 18:48:48 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/buildbot/ChangeLog,v 1.66 2010/07/24 14:52:04 maekke Exp $
+
+  24 Jul 2010; Markus Meier <maekke@gentoo.org> buildbot-0.8.0.ebuild:
+  arm stable, bug #325899
+
+  15 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  buildbot-0.8.0.ebuild:
+  stable x86, bug 325899
+
+  09 Jul 2010; Jeroen Roovers <jer@gentoo.org> buildbot-0.8.0.ebuild:
+  Stable for PPC (bug #325899).
+
+  08 Jul 2010; Jeroen Roovers <jer@gentoo.org> buildbot-0.8.0.ebuild:
+  Stable for HPPA (bug #325899).
+
+  06 Jul 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  buildbot-0.7.11_p3.ebuild:
+  Use PYTHON_DEPEND instead of NEED_PYTHON.
+
+  28 Jun 2010; Christoph Mende <angelos@gentoo.org> buildbot-0.8.0.ebuild:
+  Stable on amd64 wrt bug #325899
+
+  19 Jun 2010; Raúl Porcel <armin76@gentoo.org> buildbot-0.7.12.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #321601
+
+  08 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  buildbot-0.8.0.ebuild:
+  Fix dependencies (bug #323189).
+
+  03 Jun 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  buildbot-0.7.12.ebuild:
+  x86 stable wrt bug #321601
+
+  30 May 2010; Markos Chandras <hwoarang@gentoo.org> buildbot-0.7.12.ebuild:
+  Stable on amd64 wrt bug #321601
+
+*buildbot-0.8.0 (27 May 2010)
+
+  27 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +buildbot-0.8.0.ebuild:
+  Version bump.
 
   20 Feb 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   buildbot-0.7.12.ebuild:
