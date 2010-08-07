@@ -1,6 +1,18 @@
 # ChangeLog for sys-apps/groff
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.103 2009/11/07 06:10:09 matsuu Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/groff/ChangeLog,v 1.105 2010/07/25 21:29:44 jer Exp $
+
+  25 Jul 2010; Jeroen Roovers <jer@gentoo.org> groff-1.20.1-r3.ebuild:
+  Fix patch name thanks to Bobby Bingham (bug #329819).
+
+*groff-1.20.1-r3 (24 Jul 2010)
+
+  24 Jul 2010; Mike Frysinger <vapier@gentoo.org> +groff-1.20.1-r3.ebuild,
+  +files/groff-1.20.1-Thtml-mem-leak.patch,
+  +files/groff-1.20.1-double-frees-mem-leaks.patch,
+  +files/groff-1.20.1-tmac-ec.patch:
+  Add tmac fix from upstream #263524 by Horst Prote. Add memory fixes from
+  upstream #294045 by Maurice van der Pot.
 
 *groff-1.20.1-r2 (07 Nov 2009)
 
