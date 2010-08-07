@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.13-r2.ebuild,v 1.5 2010/07/20 15:08:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/gtk-doc/gtk-doc-1.15.ebuild,v 1.4 2010/08/01 11:13:59 fauli Exp $
 
 EAPI="2"
 
@@ -14,6 +14,7 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris"
 IUSE="debug doc emacs test"
 
+# dev-tex/tex4ht blocker needed due bug #315287
 RDEPEND=">=dev-libs/glib-2.6
 	>=dev-lang/perl-5.6
 	>=app-text/openjade-1.3.1
@@ -23,7 +24,8 @@ RDEPEND=">=dev-libs/glib-2.6
 	app-text/docbook-xsl-stylesheets
 	~app-text/docbook-sgml-dtd-3.0
 	>=app-text/docbook-dsssl-stylesheets-1.40
-	emacs? ( virtual/emacs )"
+	emacs? ( virtual/emacs )
+	!!<dev-tex/tex4ht-20090611_p1038-r1"
 
 DEPEND="${RDEPEND}
 	~dev-util/gtk-doc-am-${PV}
@@ -46,17 +48,9 @@ src_prepare() {
 	# Remove global Emacs keybindings.
 	epatch "${FILESDIR}/${PN}-1.8-emacs-keybindings.patch"
 
-	# gtk-doc.make puts $(DOC_MODULE)-overrides.txt in EXTRA_DIST,
-	# so this file must exist to be able to "make dist".
-	# fix bug #305191, upstream ##590625.
-	epatch "${FILESDIR}/${P}-scan-touch-module-overrides.patch"
-	# This restores a compatible behavior with previous versions of gtk-doc,
-	# which is required by many tarballs, fix bug #305191, upstream #605211
-	epatch "${FILESDIR}/${P}-fixxref-compat.patch"
-
 	# Fix bug 306569 by not loading vim plugins while calling vim in
 	# gtkdoc-fixxref for fixing vim syntax highlighting
-	epatch "${FILESDIR}/${P}-fixxref-vim-u-NONE.patch"
+	epatch "${FILESDIR}/${PN}-1.13-fixxref-vim-u-NONE.patch"
 }
 
 src_install() {
