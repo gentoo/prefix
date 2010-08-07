@@ -1,6 +1,27 @@
 # ChangeLog for x11-libs/gtksourceview
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.176 2010/06/13 16:13:18 pacho Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.181 2010/08/01 11:16:58 fauli Exp $
+
+  01 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
+  gtksourceview-2.10.4.ebuild:
+  x86 stable, bug 324077
+
+  31 Jul 2010; Pacho Ramos <pacho@gentoo.org> gtksourceview-2.10.4.ebuild:
+  amd64 stable, bug 324077
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org>
+  gtksourceview-1.8.5-r1.ebuild, gtksourceview-2.6.2.ebuild,
+  gtksourceview-2.8.2.ebuild, gtksourceview-2.10.4.ebuild:
+  Drop HPPA keywording (bug #324511).
+
+  08 Jul 2010; Pacho Ramos <pacho@gentoo.org> gtksourceview-2.10.4.ebuild:
+  Skip broken test until upstream bug #621383 is solved
+
+*gtksourceview-2.10.4 (23 Jun 2010)
+
+  23 Jun 2010; Pacho Ramos <pacho@gentoo.org> -gtksourceview-2.10.3.ebuild,
+  +gtksourceview-2.10.4.ebuild:
+  Version bump with updated translations and fixes, remove old.
 
 *gtksourceview-2.10.3 (13 Jun 2010)
 
