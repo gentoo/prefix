@@ -1,6 +1,12 @@
 # ChangeLog for dev-libs/xerces-c
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.85 2010/02/26 05:47:20 halcy0n Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/xerces-c/ChangeLog,v 1.87 2010/06/18 18:54:58 pacho Exp $
+
+  18 Jun 2010; Pacho Ramos <pacho@gentoo.org> xerces-c-3.0.1-r1.ebuild:
+  stable amd64, security bug 280613
+
+  15 May 2010; Raúl Porcel <armin76@gentoo.org> xerces-c-3.0.1-r1.ebuild:
+  alpha/sparc stable wrt #280613
 
   26 Feb 2010; Mark Loeser <halcy0n@gentoo.org> -xerces-c-2.7.0-r1.ebuild,
   -files/xerces-c-2.7.0-libpath.patch, -files/xerces-c-2.7.0-multilib.patch,
