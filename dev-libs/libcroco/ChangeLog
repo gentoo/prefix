@@ -1,6 +1,14 @@
 # ChangeLog for dev-libs/libcroco
-# Copyright 2000-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.47 2009/04/14 11:39:30 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libcroco/ChangeLog,v 1.49 2010/07/20 04:37:02 jer Exp $
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> libcroco-0.6.1.ebuild,
+  libcroco-0.6.2.ebuild:
+  Stable for HPPA (bug #314899).
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> libcroco-0.6.1.ebuild,
+  libcroco-0.6.2.ebuild:
+  Drop HPPA keywording (bug #324511).
 
   14 Apr 2009; Raúl Porcel <armin76@gentoo.org> libcroco-0.6.2.ebuild:
   arm/m68k/s390/sh stable
