@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/wxpython-2.8.10.1.ebuild,v 1.16 2010/07/28 13:56:51 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-python/wxpython/wxpython-2.8.11.0.ebuild,v 1.2 2010/07/28 13:56:51 arfrever Exp $
 
 EAPI="2"
 PYTHON_DEPEND="2"
@@ -25,8 +25,8 @@ IUSE="aqua cairo doc examples opengl"
 
 RDEPEND="
 	dev-python/setuptools
-	aqua? ( >=x11-libs/wxGTK-${PV}:2.8[opengl?,aqua=] )
-	!aqua? ( >=x11-libs/wxGTK-${PV}:2.8[X,opengl?] )
+	aqua? ( >=x11-libs/wxGTK-${PV}:2.8[opengl?,tiff,aqua=] )
+	!aqua? ( >=x11-libs/wxGTK-${PV}:2.8[opengl?,tiff,X] )
 	>=x11-libs/gtk+-2.4[aqua=]
 	>=x11-libs/pango-1.2
 	>=dev-libs/glib-2.0
@@ -50,7 +50,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-2.8.9-wxversion-scripts.patch
 	# drop editra - we have it as a separate package now
-	epatch "${FILESDIR}"/${PN}-${SLOT}-drop-editra.patch
+	epatch "${FILESDIR}"/${PN}-2.8.11-drop-editra.patch
 
 	if use doc; then
 		cd "${DOC_S}"
@@ -130,7 +130,7 @@ src_install() {
 	if use doc; then
 		dodir /usr/share/doc/${PF}/docs
 		cp -R "${DOC_S}"/docs/* "${ED}"usr/share/doc/${PF}/docs/
-		# For some reason 2.8.10.1 api docs are not available, so use 2.8.9.2's
+		# For some reason newer API docs aren't available so use 2.8.9.2's
 		cp -R "${WORKDIR}"/wxPython-2.8.9.2/docs/* "${ED}"usr/share/doc/${PF}/docs/
 	fi
 
