@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/libidn-1.16.ebuild,v 1.1 2010/01/14 04:01:41 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-dns/libidn/libidn-1.19.ebuild,v 1.7 2010/07/19 19:36:55 jer Exp $
 
 inherit java-pkg-opt-2 mono elisp-common
 
@@ -11,7 +11,7 @@ SRC_URI="mirror://gnu/libidn/${P}.tar.gz"
 LICENSE="LGPL-2.1 GPL-3"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="doc emacs java mono nls"
+IUSE="doc emacs java mono nls static-libs"
 
 COMMON_DEPEND="emacs? ( virtual/emacs )
 	mono? ( >=dev-lang/mono-0.95 )"
@@ -35,6 +35,7 @@ src_compile() {
 		$(use_enable nls) \
 		$(use_enable java) \
 		$(use_enable mono csharp mono) \
+		$(use_enable static-libs static) \
 		--with-lispdir="${EPREFIX}${SITELISP}/${PN}" \
 		--with-packager="Gentoo" \
 		--with-packager-version="r${PR}" \
