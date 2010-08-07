@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.65.ebuild,v 1.8 2010/06/04 05:32:54 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/autoconf/autoconf-2.65.ebuild,v 1.9 2010/07/05 09:57:14 ssuominen Exp $
 
 inherit eutils
 
