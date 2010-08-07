@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.236 2010/06/05 18:49:49 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/kernel-2.eclass,v 1.240 2010/08/03 18:31:08 robbat2 Exp $
 
 # Description: kernel.eclass rewrite for a clean base regarding the 2.6
 #              series of kernel with back-compatibility for 2.4
@@ -68,7 +68,7 @@
 #						  order, so they are applied in the order passed
 
 inherit eutils toolchain-funcs versionator multilib
-EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_install pkg_preinst pkg_postinst
+EXPORT_FUNCTIONS pkg_setup src_unpack src_compile src_test src_install pkg_preinst pkg_postinst
 
 # Added by Daniel Ostrow <dostrow@gentoo.org>
 # This is an ugly hack to get around an issue with a 32-bit userland on ppc64.
@@ -86,7 +86,7 @@ HOMEPAGE="http://www.kernel.org/ http://www.gentoo.org/ ${HOMEPAGE}"
 
 # This is the latest KV_PATCH of the deblob tool available from the
 # libre-sources upstream.
-[[ -z ${DEBLOB_MAX_VERSION} ]] && DEBLOB_MAX_VERSION=34
+[[ -z ${DEBLOB_MAX_VERSION} ]] && DEBLOB_MAX_VERSION=35
 
 # No need to run scanelf/strip on kernel sources/headers (bug #134453).
 RESTRICT="binchecks strip"
@@ -338,12 +338,21 @@ if [[ ${ETYPE} == sources ]]; then
 
 			DEBLOB_PV="${KV_MAJOR}.${KV_MINOR}.${KV_PATCH}"
 			DEBLOB_A="deblob-${DEBLOB_PV}"
+			DEBLOB_CHECK_A="deblob-check-${DEBLOB_PV}"
 			DEBLOB_HOMEPAGE="http://www.fsfla.org/svnwiki/selibre/linux-libre/"
+			DEBLOB_URI_PATH="download/releases/LATEST-${DEBLOB_PV}.N"
+			if ! has "${EAPI:-0}" 0 1 ; then
+				DEBLOB_CHECK_URI="${DEBLOB_HOMEPAGE}/${DEBLOB_URI_PATH}/deblob-check -> ${DEBLOB_CHECK_A}"
+			else
+				DEBLOB_CHECK_URI="mirror://gentoo/${DEBLOB_CHECK_A}"
+			fi
+			DEBLOB_URI="${DEBLOB_HOMEPAGE}/${DEBLOB_URI_PATH}/${DEBLOB_A}"
 			HOMEPAGE="${HOMEPAGE} ${DEBLOB_HOMEPAGE}"
 				
 			KERNEL_URI="${KERNEL_URI}
 				deblob? (
-					${DEBLOB_HOMEPAGE}/download/releases/LATEST-${DEBLOB_PV}.N/${DEBLOB_A}
+					${DEBLOB_URI}
+					${DEBLOB_CHECK_URI}
 				)"
 		else
 			# We have no way to deblob older kernels, so just mark them as
@@ -758,14 +767,6 @@ postinst_sources() {
 	fi
 }
 
-postinst_headers() {
-	elog "Kernel headers are usually only used when recompiling your system libc, as"
-	elog "such, following the installation of newer headers, it is advised that you"
-	elog "re-merge your system libc."
-	elog "Failure to do so will cause your system libc to not make use of newer"
-	elog "features present in the updated kernel headers."
-}
-
 # pkg_setup functions
 #==============================================================
 setup_headers() {
@@ -787,7 +788,7 @@ setup_headers() {
 #==============================================================
 unipatch() {
 	local i x y z extention PIPE_CMD UNIPATCH_DROP KPATCH_DIR PATCH_DEPTH ELINE
-	local STRICT_COUNT PATCH_LEVEL myLC_ALL myLANG extglob_bak
+	local STRICT_COUNT PATCH_LEVEL myLC_ALL myLANG
 
 	# set to a standard locale to ensure sorts are ordered properly.
 	myLC_ALL="${LC_ALL}"
@@ -799,8 +800,7 @@ unipatch() {
 	[ ! -d ${KPATCH_DIR} ] && mkdir -p ${KPATCH_DIR}
 
 	# We're gonna need it when doing patches with a predefined patchlevel
-	extglob_bak=$(shopt -p extglob)
-	shopt -s extglob
+	eshopts_push -s extglob
 
 	# This function will unpack all passed tarballs, add any passed patches, and remove any passed patchnumbers
 	# usage can be either via an env var or by params
@@ -934,6 +934,7 @@ unipatch() {
 						eend 1
 						eerror "Failed to apply patch ${i/*\//}"
 						eerror "Please attach ${STDERR_T} to any bug you may post."
+						eshopts_pop
 						die "Failed to apply ${i/*\//}"
 					fi
 				else
@@ -943,6 +944,7 @@ unipatch() {
 			if [ ${PATCH_DEPTH} -eq 5 ]; then
 				eend 1
 				eerror "Please attach ${STDERR_T} to any bug you may post."
+				eshopts_pop
 				die "Unable to dry-run patch."
 			fi
 		done
@@ -963,7 +965,7 @@ unipatch() {
 
 	LC_ALL="${myLC_ALL}"
 	LANG="${myLANG}"
-	eval ${extglob_bak}
+	eshopts_pop
 }
 
 # getfilevar accepts 2 vars as follows:
@@ -1132,8 +1134,9 @@ kernel-2_src_unpack() {
 	fi
 
 	if [[ $K_DEBLOB_AVAILABLE == 1 ]] && use deblob ; then
-		cp "${DISTDIR}/${DEBLOB_A}" "${T}"
-		chmod +x "${T}/${DEBLOB_A}"
+		cp "${DISTDIR}/${DEBLOB_A}" "${T}" || die "cp ${DEBLOB_A} failed"
+		cp "${DISTDIR}/${DEBLOB_CHECK_A}" "${T}/deblob-check" || die "cp ${DEBLOB_CHECK_A} failed"
+		chmod +x "${T}/${DEBLOB_A}" "${T}/deblob-check" || die "chmod deblob scripts failed"
 	fi
 }
 
@@ -1148,6 +1151,14 @@ kernel-2_src_compile() {
 	fi
 }
 
+# if you leave it to the default src_test, it will run make to
+# find whether test/check targets are present; since "make test"
+# actually produces a few support files, they are installed even
+# though the package is binchecks-restricted.
+#
+# Avoid this altogether by making the function moot.
+kernel-2_src_test() { :; }
+
 kernel-2_pkg_preinst() {
 	[[ ${ETYPE} == headers ]] && preinst_headers
 }
@@ -1159,7 +1170,6 @@ kernel-2_src_install() {
 }
 
 kernel-2_pkg_postinst() {
-	[[ ${ETYPE} == headers ]] && postinst_headers
 	[[ ${ETYPE} == sources ]] && postinst_sources
 }
 

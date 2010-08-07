@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.33 2010/04/03 11:53:34 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gems.eclass,v 1.34 2010/08/03 15:51:10 flameeyes Exp $
 
 # DEPRECATION NOTICE
 # This eclass is deprecated because it does not properly handle
@@ -29,7 +29,8 @@ SRC_URI="mirror://rubygems/${P}.gem"
 IUSE="doc"
 
 DEPEND="
-	|| ( >=dev-ruby/rubygems-1.3.1 =dev-lang/ruby-1.9* )
+	>=dev-ruby/rubygems-1.3.1
+	<=dev-ruby/rubygems-1.3.7-r1
 	!<dev-ruby/rdoc-2
 "
 RDEPEND="${DEPEND}"

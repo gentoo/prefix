@@ -1,6 +1,6 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.20 2010/03/05 09:01:07 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/apache-2.eclass,v 1.21 2010/07/11 08:22:40 lxnay Exp $
 
 EAPI="2"
 
@@ -243,14 +243,6 @@ setup_modules() {
 		MY_MODS="${MY_MODS} ssl"
 	else
 		MY_CONF="${MY_CONF} --without-ssl --disable-ssl"
-	fi
-
-	if use threads || has ${MY_MPM} ${IUSE_MPMS_THREAD} ; then
-		MY_CONF="${MY_CONF} --enable-cgid=${mod_type}"
-		MY_MODS="${MY_MODS} cgid"
-	else
-		MY_CONF="${MY_CONF} --enable-cgi=${mod_type}"
-		MY_MODS="${MY_MODS} cgi"
 	fi
 
 	if use suexec ; then
@@ -609,6 +601,14 @@ apache-2_pkg_postinst() {
 		mkdir -p "${EROOT}/var/www/localhost/htdocs"
 		echo "<html><body><h1>It works!</h1></body></html>" > "${EROOT}/var/www/localhost/htdocs/index.html"
 	fi
+
+	echo
+	elog "Attention: cgi and cgid modules are now handled via APACHE2_MODULES flags"
+	elog "make sure to enable those in order to compile them. In general, you should"
+	elog "use 'cgi' with non-multithreaded MPMs (such as prefork) and 'cgid' with"
+	elog "multithreaded ones (such as worker)"
+	echo
+
 }
 
 EXPORT_FUNCTIONS pkg_setup src_prepare src_configure src_install pkg_postinst

@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.16 2010/03/19 01:20:40 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-base.eclass,v 1.17 2010/07/28 05:17:58 leio Exp $
 
 # Author : foser <foser@gentoo.org>
 
@@ -57,12 +57,10 @@ gst-plugins-base_src_configure() {
 
 	einfo "Configuring to build ${GST_PLUGINS_BUILD} plugin(s) ..."
 
-	for plugin in ${GST_PLUGINS_BUILD}; do
-		my_gst_plugins_base=${my_gst_plugins_base/${plugin}/}
-	done
 	for plugin in ${my_gst_plugins_base}; do
 		gst_conf="${gst_conf} --disable-${plugin} "
 	done
+
 	for plugin in ${GST_PLUGINS_BUILD}; do
 		gst_conf="${gst_conf} --enable-${plugin} "
 	done

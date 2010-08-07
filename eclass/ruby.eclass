@@ -1,6 +1,6 @@
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.78 2010/04/03 11:53:34 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/ruby.eclass,v 1.79 2010/08/03 15:50:02 flameeyes Exp $
 #
 # DEPRECATION NOTICE
 # This eclass is deprecated because it does not properly handle
@@ -61,8 +61,8 @@ LICENSE="Ruby"
 
 # If you specify RUBY_OPTIONAL you also need to take care of ruby useflag and dependency.
 if [[ ${RUBY_OPTIONAL} != "yes" ]]; then
-	DEPEND="${DEPEND} virtual/ruby"
-	RDEPEND="${RDEPEND} virtual/ruby"
+	DEPEND="${DEPEND} =dev-lang/ruby-1.8*"
+	RDEPEND="${RDEPEND} =dev-lang/ruby-1.8*"
 fi
 
 [[ -z "${RUBY}" ]] && export RUBY=${EPREFIX}/usr/bin/ruby

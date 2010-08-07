@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.28 2010/04/05 02:06:59 leio Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/gst-plugins-bad.eclass,v 1.34 2010/07/30 12:00:43 leio Exp $
 
 #
 # Original Author: Saleem Abdulrasool <compnerd@gentoo.org>
@@ -9,17 +9,35 @@
 # plugin rather than in a single package.
 #
 
+inherit eutils versionator gst-plugins10
+
 # This list is current for gst-plugins-bad-0.10.18.
 my_gst_plugins_bad="directsound directdraw osx_video quicktime vcd
-alsa assrender amrwb apexsink bz2 cdaudio celt cog directfb dirac dts divx
-dvdnav metadata faac faad fbdev flite gsm jack jp2k kate ladspa lv2 libmms
+alsa assrender amrwb apexsink bz2 cdaudio celt cog dc1394 directfb dirac dts divx
+metadata faac faad fbdev flite gsm jack jp2k kate ladspa lv2 libmms
 modplug mimic mpeg2enc mplex musepack musicbrainz mythtv nas neon ofa rsvg
 timidity wildmidi sdl sdltest sndfile soundtouch spc gme swfdec theoradec xvid
-dvb oss4 wininet acm vdpau schro zbar
-ivorbis"
-# ivorbis  gone since 0.10.18 (moved to -base-0.10.27 as part of vorbis plugin)
+dvb wininet acm vdpau schro zbar"
 
-inherit eutils gst-plugins10
+# When adding conditionals like below, be careful about having leading spaces
+
+# Changes in 0.10.19:
+# dvdnav configure option changed from --enable-dvdnav to --enable-resindvd
+if version_is_at_least "0.10.19"; then
+	my_gst_plugins_bad+=" resindvd vp8"
+fi
+
+# dvdnav configure option changed from --enable-dvdnav to --enable-resindvd
+# oss4 moved to -good
+if ! version_is_at_least "0.10.19"; then
+	my_gst_plugins_bad+=" dvdnav oss4"
+fi
+
+# Changes in 0.10.18:
+# ivorbis gone (moved to -base-0.10.27 as part of vorbis plugin)
+if ! version_is_at_least "0.10.18"; then
+	my_gst_plugins_bad+=" ivorbis"
+fi
 
 MY_PN="gst-plugins-bad"
 MY_P=${MY_PN}-${PV}
@@ -35,7 +53,7 @@ if [ "${PN}" != "${MY_PN}" ]; then
 RDEPEND="=media-libs/gstreamer-0.10*
 		=media-libs/gst-plugins-base-0.10*
 		>=dev-libs/glib-2.6
-		>=dev-libs/liboil-0.3"
+		>=dev-libs/liboil-0.3.8"
 DEPEND="${RDEPEND}
 		sys-apps/sed
 		dev-util/pkgconfig
@@ -79,10 +97,6 @@ gst-plugins-bad_src_configure() {
 	local plugin gst_conf
 
 	einfo "Configuring to build ${GST_PLUGINS_BUILD} plugin(s) ..."
-
-	for plugin in ${GST_PLUGINS_BUILD} ; do
-		my_gst_plugins_bad="${my_gst_plugins_bad/${plugin}/}"
-	done
 
 	for plugin in ${my_gst_plugins_bad} ; do
 		gst_conf="${gst_conf} --disable-${plugin}"

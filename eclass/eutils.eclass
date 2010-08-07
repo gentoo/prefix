@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.345 2010/06/23 21:24:50 cardoe Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/eutils.eclass,v 1.348 2010/07/11 17:29:10 betelgeuse Exp $
 
 # @ECLASS: eutils.eclass
 # @MAINTAINER:
@@ -61,6 +61,17 @@ epause() {
 	ewarn "QA Notice: epause is not defined in EAPI=${EAPI}, please file a bug at http://bugs.gentoo.org"
 }
 
+fi
+
+# @FUNCTION: eqawarn
+# @USAGE: [message]
+# @DESCRIPTION:
+# Proxy to einfo for package managers that don't provide eqawarn and use the PM
+# implementation if available.
+if ! declare -F eqawarn >/dev/null ; then
+	eqawarn() {
+		einfo "$@"
+	}
 fi
 
 # @FUNCTION: ecvs_clean
@@ -1526,7 +1537,7 @@ cdrom_get_cds() {
 		export CDROM_SET=-1
 		for f in ${CDROM_CHECK_1//:/ } ; do
 			((++CDROM_SET))
-			[[ -e ${CD_ROOT}/${f} ]] && break
+			[[ -e ${CDROM_ROOT}/${f} ]] && break
 		done
 		export CDROM_MATCH=${f}
 		return
