@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.15.ebuild,v 1.6 2010/07/21 12:04:09 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmime/gmime-2.4.17.ebuild,v 1.4 2010/07/31 13:29:11 pacho Exp $
 
 inherit gnome2 eutils mono libtool
 
@@ -10,7 +10,7 @@ HOMEPAGE="http://spruce.sourceforge.net/gmime/"
 SLOT="2.4"
 LICENSE="LGPL-2.1"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~x86-solaris"
-IUSE="doc mono"
+IUSE="crypt doc mono"
 
 RDEPEND=">=dev-libs/glib-2.12
 	sys-libs/zlib
@@ -50,7 +50,7 @@ src_unpack() {
 }
 
 src_compile() {
-	econf $(use_enable mono) $(use_enable doc gtk-doc)
+	econf $(use_enable mono) $(use_enable doc gtk-doc) $(use_enable crypt cryptography)
 	MONO_PATH="${S}" emake || die "emake failed"
 }
 
