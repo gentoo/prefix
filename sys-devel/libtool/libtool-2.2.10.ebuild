@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.10.ebuild,v 1.1 2010/06/09 20:37:07 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.10.ebuild,v 1.3 2010/07/06 12:43:51 vapier Exp $
 
 EAPI="3"
 
@@ -17,8 +17,9 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 IUSE="vanilla"
 
 RDEPEND="sys-devel/gnuconfig
-	>=sys-devel/autoconf-2.60
+	>=sys-devel/autoconf-2.62
 	>=sys-devel/automake-1.10.1
+	!=sys-devel/automake-1.10
 	!=sys-devel/libtool-2*:1.5"
 DEPEND="${RDEPEND}
 	|| ( >=sys-devel/binutils-2.20

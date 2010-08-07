@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6b.ebuild,v 1.7 2009/12/09 17:45:58 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/libtool/libtool-2.2.6b.ebuild,v 1.8 2010/07/06 12:41:38 vapier Exp $
 
 LIBTOOLIZE="true" #225559
 inherit eutils autotools flag-o-matic multilib prefix
@@ -16,7 +16,8 @@ IUSE="vanilla test"
 
 RDEPEND="sys-devel/gnuconfig
 	>=sys-devel/autoconf-2.60
-	>=sys-devel/automake-1.10.1"
+	>=sys-devel/automake-1.10.1
+	!=sys-devel/automake-1.10"
 DEPEND="${RDEPEND}
 	|| ( app-arch/xz-utils app-arch/lzma-utils )
 	sys-apps/help2man"
