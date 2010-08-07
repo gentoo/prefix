@@ -1,6 +1,12 @@
 # ChangeLog for sys-devel/gdb
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.168 2010/05/09 11:34:33 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gdb/ChangeLog,v 1.170 2010/05/21 18:58:43 pva Exp $
+
+  21 May 2010; Peter Volkov <pva@gentoo.org> gdb-7.0.1.ebuild:
+  amd64 stable, bug 310159
+
+  20 May 2010; Jeroen Roovers <jer@gentoo.org> gdb-7.0.1.ebuild:
+  Stable for HPPA (bug #310159).
 
   09 May 2010; Raúl Porcel <armin76@gentoo.org> gdb-7.0.1.ebuild:
   alpha/arm/ia64/sparc stable wrt #310159
