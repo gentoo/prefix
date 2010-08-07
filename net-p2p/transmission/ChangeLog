@@ -1,6 +1,51 @@
 # ChangeLog for net-p2p/transmission
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.113 2010/04/15 15:57:09 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-p2p/transmission/ChangeLog,v 1.122 2010/07/22 14:20:07 pva Exp $
+
+*transmission-2.03 (22 Jul 2010)
+
+  22 Jul 2010; Peter Volkov <pva@gentoo.org> +transmission-2.03.ebuild:
+  Version bump, bug #329411, thank Samuli Suominen for report.
+
+  04 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  transmission-2.01.ebuild:
+  Keyword ~ppc64 wrt #264046 by Nita Vesa.
+
+*transmission-2.01 (28 Jun 2010)
+
+  28 Jun 2010; Peter Volkov <pva@gentoo.org> -transmission-2.00.ebuild,
+  +transmission-2.01.ebuild:
+  Version bump, bug #325841, thank Samuli Suominen for report. Drop not
+  going to be stable.
+
+  23 Jun 2010; <chainsaw@gentoo.org> transmission-2.00.ebuild:
+  Remanifest because of repackaged distfile. Talked to John Clay on
+  #transmission (FreeNode); MD5sum confirmed from upstream webpage.
+  Temporary restrict=mirror to avoid annoying redownloads, mirrors have a
+  different distfile.
+
+  18 Jun 2010; Peter Volkov <pva@gentoo.org> transmission-2.00.ebuild:
+  Avoid eautoreconf until upstream provides package with m4 directory, fixes
+  bug #324441, thank Heltem for report. Andrea Pinazzi and Xake for pushing
+  this upstream.
+
+  17 Jun 2010; Peter Volkov <pva@gentoo.org> transmission-2.00.ebuild:
+  Fix build problem due to missed m4 directory, bug #324425, thank Nikolay
+  S. Rybaloff for report.
+
+  16 Jun 2010; Peter Volkov <pva@gentoo.org> transmission-2.00.ebuild:
+  Drop -ggdb3 from CFLAGS, bug #324367, thank Samuli Suominen for report.
+
+*transmission-2.00 (16 Jun 2010)
+
+  16 Jun 2010; Peter Volkov <pva@gentoo.org> +transmission-2.00.ebuild:
+  Version bump, bug #324285, thank Samuli Suominen for report.
+
+*transmission-1.93 (18 May 2010)
+
+  18 May 2010; Peter Volkov <pva@gentoo.org> +transmission-1.93.ebuild,
+  metadata.xml:
+  Version bump, bug #318953, thank Pavel for report.
 
   15 Apr 2010; Brent Baude <ranger@gentoo.org> transmission-1.92.ebuild:
   Marking transmission-1.92 ppc for bug 309831
