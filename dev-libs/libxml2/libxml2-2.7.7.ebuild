@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.7.ebuild,v 1.8 2010/05/14 03:59:59 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.7.7.ebuild,v 1.11 2010/05/30 17:36:55 armin76 Exp $
 
 EAPI="2"
 SUPPORT_PYTHON_ABIS="1"
@@ -33,6 +33,12 @@ RDEPEND="sys-libs/zlib
 
 DEPEND="${RDEPEND}
 	hppa? ( >=sys-devel/binutils-2.15.92.0.2 )"
+
+pkg_setup() {
+	if use python; then
+		python_pkg_setup
+	fi
+}
 
 src_unpack() {
 	# ${A} isn't used to avoid unpacking of test tarballs into $WORKDIR,
@@ -86,15 +92,7 @@ src_configure() {
 	# filter seemingly problematic CFLAGS (#26320)
 	filter-flags -fprefetch-loop-arrays -funroll-loops
 
-	# This ebuild is critical during preparation of a stage1 build.
-	# If the Python binary is not present in $ROOT, python_execute_function
-	# returns successfully but silently, WITHOUT running the command (with
-	# disasterous side-effects).
-	if use python; then
-		python_execute_function -f -q econf ${myconf}
-	else
-		econf ${myconf}
-	fi
+	econf ${myconf}
 }
 
 src_compile() {
@@ -136,7 +134,7 @@ src_install() {
 		}
 		python_execute_function -s --source-dir python installation
 
-		python_clean_sitedirs
+		python_clean_installation_image
 	fi
 
 	rm -rf "${ED}"/usr/share/doc/${P}
