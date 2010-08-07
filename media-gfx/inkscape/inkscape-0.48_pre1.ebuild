@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.47.ebuild,v 1.13 2010/06/21 15:14:55 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.48_pre1.ebuild,v 1.2 2010/06/21 15:14:55 ssuominen Exp $
 
 EAPI=2
 inherit eutils flag-o-matic gnome2
@@ -15,7 +15,7 @@ HOMEPAGE="http://www.inkscape.org/"
 LICENSE="GPL-2 LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
-IUSE="dia gnome gs inkjar lcms mmx nls spell wmf"
+IUSE="dia gnome gs inkjar lcms nls spell wmf"
 
 RESTRICT="test"
 
@@ -72,17 +72,11 @@ pkg_setup() {
 	G2CONF="${G2CONF} $(use_with gnome gnome-vfs)"
 	G2CONF="${G2CONF} $(use_with inkjar)"
 	G2CONF="${G2CONF} $(use_enable lcms)"
-	G2CONF="${G2CONF} $(use_enable mmx)"
 	G2CONF="${G2CONF} $(use_enable nls)"
 	DOCS="AUTHORS ChangeLog NEWS README*"
 }
 
-src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0.47-solaris.patch
-	epatch "${FILESDIR}"/${P}-poppler.patch \
-		"${FILESDIR}"/${P}-gcc45.patch
-	gnome2_src_prepare
-}
+#epatch "${FILESDIR}"/${PN}-0.47-solaris.patch
 
 src_configure() {
 	# aliasing unsafe wrt #310393
