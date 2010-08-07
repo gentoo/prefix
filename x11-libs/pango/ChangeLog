@@ -1,6 +1,40 @@
 # ChangeLog for x11-libs/pango
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.282 2010/05/04 15:37:45 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/ChangeLog,v 1.291 2010/08/01 11:04:53 fauli Exp $
+
+  01 Aug 2010; Christian Faulhammer <fauli@gentoo.org> pango-1.28.1.ebuild:
+  x86 stable, bug 324077
+
+  31 Jul 2010; Pacho Ramos <pacho@gentoo.org> pango-1.28.1.ebuild:
+  amd64 stable, bug 324077
+
+  21 Jul 2010; Jeroen Roovers <jer@gentoo.org> pango-1.26.2.ebuild:
+  Stable for HPPA (bug #314899).
+
+  07 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> pango-1.26.2.ebuild:
+  ppc64 stable wrt #314899
+
+  23 Jun 2010; Pacho Ramos <pacho@gentoo.org> pango-1.28.1.ebuild:
+  Bump gtk-doc dependencies as reported in bug #324601 (by Geoff Madden)
+
+  20 Jun 2010; Nirbheek Chauhan <nirbheek@gentoo.org> pango-1.28.1.ebuild,
+  metadata.xml:
+  Add introspection support
+
+*pango-1.28.1 (16 Jun 2010)
+
+  16 Jun 2010; Pacho Ramos <pacho@gentoo.org> -pango-1.28.0.ebuild,
+  +pango-1.28.1.ebuild:
+  Version bump with bugfixes, build fixes, pango-view now accepts --margin
+
+*pango-1.28.0 (13 Jun 2010)
+
+  13 Jun 2010; Pacho Ramos <pacho@gentoo.org> -pango-1.26.0.ebuild,
+  -pango-1.26.1.ebuild, +pango-1.28.0.ebuild:
+  Add new version for Gnome 2.30, clean old testing versions.
+
+  04 Jun 2010; Markus Meier <maekke@gentoo.org> pango-1.26.2.ebuild:
+  x86 stable, bug #314899
 
   03 May 2010; Olivier Crête <tester@gentoo.org> pango-1.26.2.ebuild:
   amd64 stable, bug #314899

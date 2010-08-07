@@ -1,11 +1,11 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.26.0.ebuild,v 1.5 2009/11/28 17:39:38 remi Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/pango/pango-1.28.1.ebuild,v 1.5 2010/08/01 11:04:53 fauli Exp $
 
 EAPI="2"
 GCONF_DEBUG="yes"
 
-inherit autotools eutils gnome2 multilib
+inherit autotools eutils gnome2 multilib toolchain-funcs
 
 DESCRIPTION="Internationalized text layout and rendering library"
 HOMEPAGE="http://www.pango.org/"
@@ -13,7 +13,7 @@ HOMEPAGE="http://www.pango.org/"
 LICENSE="LGPL-2 FTL"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
-IUSE="X doc test"
+IUSE="X doc +introspection test"
 
 RDEPEND=">=dev-libs/glib-2.17.3
 	>=media-libs/fontconfig-2.5.0
@@ -25,13 +25,14 @@ RDEPEND=">=dev-libs/glib-2.17.3
 		x11-libs/libXft )"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.9
-	dev-util/gtk-doc-am
+	>=dev-util/gtk-doc-am-1.13
 	doc? (
-		>=dev-util/gtk-doc-1
+		>=dev-util/gtk-doc-1.13
 		~app-text/docbook-xml-dtd-4.1.2
 		x11-libs/libXft )
+	introspection? ( >=dev-libs/gobject-introspection-0.6.7 )
 	test? (
-		>=dev-util/gtk-doc-1
+		>=dev-util/gtk-doc-1.13
 		~app-text/docbook-xml-dtd-4.1.2
 		x11-libs/libXft )
 	X? ( x11-proto/xproto )"
@@ -43,9 +44,9 @@ function multilib_enabled() {
 }
 
 pkg_setup() {
-	# XXX: DO NOT add introspection support, collides with gir-repository[pango]
+	tc-export CXX
 	G2CONF="${G2CONF}
-		--disable-introspection
+		$(use_enable introspection)
 		$(use_with X x)
 		$(use X && echo --x-includes=${EPREFIX}/usr/include)
 		$(use X && echo --x-libraries=${EPREFIX}/usr/$(get_libdir))"
@@ -61,20 +62,10 @@ src_prepare() {
 		epatch "${FILESDIR}/${PN}-1.26.0-lib64.patch"
 	fi
 
-	# gtk-doc checks do not pass, upstream bug #578944
-	sed -e 's:TESTS = check.docs: TESTS = :g' \
-		-i docs/Makefile.am || die "sed failed"
-
-	# Fix introspection automagic.
-	# https://bugzilla.gnome.org/show_bug.cgi?id=596506
-	epatch "${FILESDIR}/${PN}-1.26.0-introspection-automagic.patch"
-
-	# Fix parallel build, bug 287825
-	epatch "${FILESDIR}/${PN}-1.26.0-fix-parallel-build.patch"
-
 	if [[ ${CHOST} == *-darwin8 ]] ; then
 		# http://old.nabble.com/-MacPorts---21656:-pango-1.26-%2Bquartz-doesn%27t-compile-on-tiger-td25636749.html
-		EPATCH_OPTS=-R epatch "${FILESDIR}"/${P}-atsui-coretext.patch
+		# forward ported patch for 1.26.2
+		epatch "${FILESDIR}"/${PN}-1.26.2-atsui-coretext-darwin8.patch
 	fi
 
 	eautoreconf
