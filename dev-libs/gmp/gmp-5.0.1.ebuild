@@ -1,8 +1,8 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.1.ebuild,v 1.4 2010/07/09 22:54:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/gmp-5.0.1.ebuild,v 1.5 2010/07/27 02:33:18 zorry Exp $
 
-inherit flag-o-matic eutils libtool flag-o-matic
+inherit flag-o-matic eutils libtool flag-o-matic toolchain-funcs
 
 DESCRIPTION="Library for arithmetic on arbitrary precision integers, rational numbers, and floating-point numbers"
 HOMEPAGE="http://gmplib.org/"
@@ -22,6 +22,11 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/${PN}-4.1.4-noexecstack.patch
 	epatch "${FILESDIR}"/${PN}-5.0.0-s390.diff
+
+	# disable -fPIE -pie in the tests for x86  #236054
+	if use x86 && gcc-specs-pie ; then
+		epatch "${FILESDIR}"/${PN}-5.0.1-x86-nopie-tests.patch
+	fi
 
 	# note: we cannot run autotools here as gcc depends on this package
 	elibtoolize

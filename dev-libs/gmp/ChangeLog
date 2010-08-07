@@ -1,6 +1,10 @@
 # ChangeLog for dev-libs/gmp
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.135 2010/07/09 22:54:27 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/gmp/ChangeLog,v 1.136 2010/07/27 02:33:18 zorry Exp $
+
+  27 Jul 2010; Magnus Granberg <zorry@gentoo.org> gmp-5.0.1.ebuild,
+  +files/gmp-5.0.1-x86-nopie-tests.patch:
+  fix the TEXTREL #236054 thanks Joshua Pettett
 
   09 Jul 2010; Mike Frysinger <vapier@gentoo.org> gmp-5.0.1.ebuild:
   Move elibtoolize up so it patches configure correctly #327091 by Alan
