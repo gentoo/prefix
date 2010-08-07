@@ -1,6 +1,33 @@
 # ChangeLog for sys-apps/help2man
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/ChangeLog,v 1.42 2010/01/11 04:32:37 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/help2man/ChangeLog,v 1.49 2010/07/11 18:00:55 armin76 Exp $
+
+  11 Jul 2010; Raúl Porcel <armin76@gentoo.org> help2man-1.37.1.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #325089
+
+  06 Jul 2010; Jeroen Roovers <jer@gentoo.org> help2man-1.37.1.ebuild:
+  Stable for HPPA (bug #325089).
+
+  05 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  help2man-1.37.1.ebuild:
+  ppc64 stable wrt #325089
+
+  27 Jun 2010; <nixnut@gentoo.org> help2man-1.37.1.ebuild:
+  ppc stable #325089
+
+  25 Jun 2010; Christian Faulhammer <fauli@gentoo.org>
+  help2man-1.37.1.ebuild:
+  stable x86, bug 325089
+
+  24 Jun 2010; Pacho Ramos <pacho@gentoo.org> help2man-1.37.1.ebuild:
+  stable amd64, bug 325089
+
+*help2man-1.38.2 (22 Jun 2010)
+
+  22 Jun 2010; Mike Frysinger <vapier@gentoo.org> +help2man-1.38.2.ebuild,
+  +files/help2man-1.38.2-build.patch:
+  Version bump #325039 by Samuli Suominen. Fix LINGUAS handling #205954 by
+  Arvid Norlander.
 
 *help2man-1.37.1 (11 Jan 2010)
 
