@@ -1,0 +1,40 @@
+From: Matthias Andree <matthias.andree@gmx.de>
+Date: Mon, 17 May 2010 21:10:16 +0200
+Subject: [PATCH] Fix MD5* library pickup.
+
+Avoid picking up libmd5, which fails if libwww is installed because libmd5
+uses "long" rather than fixed-width types. This fails on non-32-bit machines.
+
+Only probe libmd if md5.h is found.
+
+To fix Gentoo Bug #319283, reported by Karl Hakimian.
+---
+ NEWS         |    4 ++++
+ configure.ac |   12 +++++++++---
+ 2 files changed, 13 insertions(+), 3 deletions(-)
+
+index 2ff315f..943eb3e 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -171,9 +171,15 @@ dnl 		[LIBS="$LIBS -lintl"])
+ 
+ AC_REPLACE_FUNCS([strstr strcasecmp memmove stpcpy strlcpy strlcat])
+ 
+-AC_SEARCH_LIBS(MD5Init, [md5 md], [],
+-	      [AC_LIBSOURCE(md5c.c)
+-               EXTRAOBJ="$EXTRAOBJ md5c.\$(OBJEXT)"])
++have_md5=no
++if test "$ac_cv_header_md5_h" != no ; then
++    AC_SEARCH_LIBS(MD5Init, [md], [have_md5=yes])
++fi
++
++if test "$have_md5" != yes ; then
++    AC_LIBSOURCE(md5c.c)
++    EXTRAOBJ="$EXTRAOBJ md5c.\$(OBJEXT)"
++fi
+ 
+ AC_CHECK_FUNC(getopt_long, [],
+               [AC_LIBSOURCES([getopt.c, getopt1.c])
+-- 
+1.6.1
+

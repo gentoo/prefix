@@ -1,6 +1,21 @@
 # ChangeLog for net-mail/fetchmail
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.192 2010/05/12 22:32:15 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-mail/fetchmail/ChangeLog,v 1.195 2010/05/31 16:24:02 tove Exp $
+
+  31 May 2010; Torsten Veller <tove@gentoo.org>
+  -files/fetchmail-6.2.5-broken-headers.patch, -fetchmail-6.3.14.ebuild,
+  -fetchmail-6.3.15.ebuild, -fetchmail-6.3.16.ebuild:
+  Cleanup
+
+*fetchmail-6.3.17-r1 (18 May 2010)
+
+  18 May 2010; Torsten Veller <tove@gentoo.org>
+  +files/MD5_library_pickup.patch, +fetchmail-6.3.17-r1.ebuild,
+  +files/debian-580796.patch:
+  Remove insecure connection warning if sslfingerprint is given (#319907).
+  Thanks to David Fellows.
+  Fix linking of libwww's libmd5 (#319283). Thanks to Karl Hakimian and
+  Matthias Andree.
 
   12 May 2010; Joseph Jezak <josejx@gentoo.org> fetchmail-6.3.17.ebuild:
   Marked ppc stable for bug #318875.
