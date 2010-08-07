@@ -1,0 +1,124 @@
+#!/sbin/runscript
+# Copyright 1999-2004 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/files/6/tomcat.init.2,v 1.1 2010/06/06 12:32:34 caster Exp $
+
+opts="${opts} forcestop"
+
+init_env_vars() {
+	# Populate JAVA_HOME
+	JAVA_HOME=`java-config --jre-home`
+
+	# Set some sane defaults
+	if [ -z "${CATALINA_TMPDIR}" ] ; then
+		CATALINA_TMPDIR="${CATALINA_BASE}"/temp
+	fi
+	JPDA_TRANSPORT=${JPDA_TRANSPORT:="dt_socket"}
+	JPDA_ADDRESS=${JPDA_ADDRESS:="8000"}
+	JPDA_OPTS=${JPDA_OPTS="-Xdebug -Xrunjdwp:transport=${JPDA_TRANSPORT},address=${JPDA_ADDRESS},server=y,suspend=n"}
+
+	# Activate Logging
+	if [ -r "${CATALINA_HOME}"/bin/tomcat-juli.jar ]; then
+		JAVA_OPTS="${JAVA_OPTS} -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager \
+			-Djava.util.logging.config.file=${CATALINA_BASE}/conf/logging.properties"
+	fi
+
+	# Populate the classpath
+	unset CLASSPATH
+	CLASSPATH="${CATALINA_HOME}/lib:${JAVA_HOME}/lib/tools.jar"
+	if [ -n "${JSSE_HOME}" ]; then
+		CLASSPATH="${CLASSPATH}:${JSSE_HOME}/lib/jcert.jar:${JSSE_HOME}/lib/jnet.jar:${JSSE_HOME}/lib/jsse.jar"
+	fi
+	CLASSPATH="${CLASSPATH}:${CATALINA_HOME}/bin/bootstrap.jar:${CATALINA_HOME}/bin/tomcat-juli.jar"
+
+	OPTS_CP="${JAVA_OPTS} ${CATALINA_OPTS} -classpath ${CLASSPATH}"
+
+	CATALINA_ARGS="-Dcatalina.base=${CATALINA_BASE} \
+			-Dcatalina.home=${CATALINA_HOME} \
+			-Djava.io.tmpdir=${CATALINA_TMPDIR} \
+			org.apache.catalina.startup.Bootstrap "
+
+	if [ ! -f "${CATALINA_BASE}logs/catalina.out" ]; then
+		touch "${CATALINA_BASE}logs/catalina.out"
+		chown "${CATALINA_USER}:${CATALINA_GROUP}" "${CATALINA_BASE}logs/catalina.out"
+	fi
+}
+
+ssd() {
+	local exec=${1}
+	shift
+	local args="--start --quiet --background \
+		--chdir "${CATALINA_TMPDIR}" \
+		--chuid ${CATALINA_USER}:${CATALINA_GROUP} \
+		--make-pidfile --pidfile /var/run/tomcat-6.pid"
+
+	# bug #243348
+	if [ -e /etc/init.d/sysfs ] ; then
+		args="${args} \
+			 --stdout ${CATALINA_BASE}/logs/catalina.out \
+			 --stderr ${CATALINA_BASE}/logs/catalina.out"
+		start-stop-daemon ${args} --exec ${exec} -- ${OPTS_CP} "$@" ${CATALINA_ARGS} ${TOMCAT_START}
+	else
+		start-stop-daemon ${args} --startas /bin/bash -- -c \
+			"exec ${exec} ${OPTS_CP} $@ ${CATALINA_ARGS} ${TOMCAT_START} >> \
+			\"$CATALINA_BASE/logs/catalina.out\" 2>&1"
+	fi
+	return $?
+}
+
+depend() {
+	use dns logger net
+}
+
+start()	{
+	ebegin "Starting Tomcat"
+	init_env_vars
+
+	if [ ! -e "${CATALINA_TMPDIR}" ]; then
+		eerror "CATALINA_TMPDIR does not exist. Unable to start tomcat."
+		eerror "Please see /etc/conf.d/tomcat-6 for more information."
+		eend 1
+	fi
+
+	# Figure out what args to pass start_helper based on TOMCAT_START
+	if [ "${TOMCAT_START}" = "debug" ] ; then
+		ssd ${JAVA_HOME}/bin/jdb \
+			-sourcepath ${CATALINA_HOME}/../../jakarta-tomcat-catalina/catalina/src/share
+	elif [ "${TOMCAT_START}" = "-security debug" ] ; then
+		ssd ${JAVA_HOME}/bin/jdb \
+			-sourcepath ${CATALINA_HOME}/../../jakarta-tomcat-catalina/catalina/src/share \
+			-Djava.security.manager \
+			-Djava.security.policy=${CATALINA_BASE}/conf/catalina.policy
+	elif [ "${TOMCAT_START}" = "jpda start" ] ; then
+		ssd ${JAVA_HOME}/bin/java ${JPDA_OPTS}
+	elif [ "${TOMCAT_START}" = "start" ] ; then
+		ssd ${JAVA_HOME}/bin/java
+	elif [ "${TOMCAT_START}" = "-security start" ] ; then
+		ssd ${JAVA_HOME}/bin/java \
+			-Djava.security.manager \
+			-Djava.security.policy=${CATALINA_BASE}/conf/catalina.policy
+	else
+		eerror "Invalid TOMCAT_START variable value, or one is not set"
+		eerror "Please see /etc/conf.d/tomcat-6 for more information"
+		eend 1
+	fi
+	eend $?
+}
+
+stop()	{
+	ebegin "Stopping Tomcat"
+	init_env_vars
+	start-stop-daemon --stop --quiet --retry=60 \
+	       	--pidfile /var/run/tomcat-6.pid \
+		--exec ${JAVA_HOME}/bin/java -- ${OPTS_CP} ${CATALINA_args} stop ${STD_OUT}
+	eend $?
+}
+forcestop()	{
+	ebegin "Forcing Tomcat to Stop"
+	start-stop-daemon --stop --quiet --retry=60 \
+		--pidfile /var/run/tomcat-6.pid --signal=9
+	if service_started "${SVCNAME}"; then
+		mark_service_stopped "${SVCNAME}"
+	fi
+	eend $?
+}

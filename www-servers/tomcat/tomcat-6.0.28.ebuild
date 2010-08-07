@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.20.ebuild,v 1.4 2009/06/27 19:24:59 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.28.ebuild,v 1.2 2010/07/25 17:31:33 betelgeuse Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc examples source test"
@@ -27,7 +27,9 @@ COMMON_DEPEND="dev-java/eclipse-ecj:3.3
 	~dev-java/tomcat-servlet-api-${PV}
 	examples? ( dev-java/jakarta-jstl )"
 
-RDEPEND=">=virtual/jre-1.5
+RDEPEND="
+	!<dev-java/tomcat-native-1.1.20
+	>=virtual/jre-1.5
 	>=dev-java/commons-daemon-1.0.1
 	dev-java/ant-core
 	${COMMON_DEPEND}"
@@ -66,8 +68,8 @@ pkg_setup() {
 java_prepare() {
 	rm -v webapps/examples/WEB-INF/lib/*.jar || die
 
-	# bug # 178980
-	if use amd64 && [[ "${GENTOO_VM}" = "sun-jdk-1.5" ]] ; then
+	# bug # 178980 and #312293
+	if use amd64; then
 		java-pkg_force-compiler ecj-3.3
 	fi
 
@@ -93,7 +95,7 @@ src_install() {
 	local CATALINA_BASE=/var/lib/${TOMCAT_NAME}/
 
 	# init.d, conf.d
-	newinitd "${FILESDIR}"/${SLOT}/tomcat.init ${TOMCAT_NAME}
+	newinitd "${FILESDIR}"/${SLOT}/tomcat.init.2 ${TOMCAT_NAME}
 	newconfd "${FILESDIR}"/${SLOT}/tomcat.conf ${TOMCAT_NAME}
 
 	# create dir structure
@@ -168,6 +170,10 @@ src_install() {
 
 	dodoc  "${S}"/{RELEASE-NOTES,RUNNING.txt}
 	fperms 640 /etc/${TOMCAT_NAME}/tomcat-users.xml
+
+	#install *.sh scripts bug #278059
+	exeinto /usr/share/${TOMCAT_NAME}/bin
+	doexe "${S}"/bin/*.sh
 }
 
 pkg_postinst() {

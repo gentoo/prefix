@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.20-r1.ebuild,v 1.1 2009/07/03 11:02:15 ali_bush Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/tomcat-6.0.26-r1.ebuild,v 1.1 2010/06/06 12:32:34 caster Exp $
 
 EAPI=2
 JAVA_PKG_IUSE="doc examples source test"
@@ -66,8 +66,8 @@ pkg_setup() {
 java_prepare() {
 	rm -v webapps/examples/WEB-INF/lib/*.jar || die
 
-	# bug # 178980
-	if use amd64 && [[ "${GENTOO_VM}" = "sun-jdk-1.5" ]] ; then
+	# bug # 178980 and #312293
+	if use amd64; then
 		java-pkg_force-compiler ecj-3.3
 	fi
 
@@ -93,7 +93,7 @@ src_install() {
 	local CATALINA_BASE=/var/lib/${TOMCAT_NAME}/
 
 	# init.d, conf.d
-	newinitd "${FILESDIR}"/${SLOT}/tomcat.init ${TOMCAT_NAME}
+	newinitd "${FILESDIR}"/${SLOT}/tomcat.init.2 ${TOMCAT_NAME}
 	newconfd "${FILESDIR}"/${SLOT}/tomcat.conf ${TOMCAT_NAME}
 
 	# create dir structure

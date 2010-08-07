@@ -1,6 +1,24 @@
 # ChangeLog for www-servers/tomcat
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.229 2010/04/10 21:17:30 caster Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/tomcat/ChangeLog,v 1.232 2010/07/25 17:31:33 betelgeuse Exp $
+
+  25 Jul 2010; Petteri Räty <betelgeuse@gentoo.org> tomcat-6.0.28.ebuild:
+  Block tomcat-native older than 1.1.20. Fixes bug #316545.
+
+*tomcat-6.0.28 (10 Jul 2010)
+
+  10 Jul 2010; Petteri Räty <betelgeuse@gentoo.org> +tomcat-6.0.28.ebuild:
+  Version bump. Includes security fixes according to upstream ChangeLog.
+
+*tomcat-6.0.26-r1 (06 Jun 2010)
+
+  06 Jun 2010; Vlastimil Babka <caster@gentoo.org> +files/6/tomcat.init.2,
+  -tomcat-6.0.20.ebuild, -tomcat-6.0.20-r1.ebuild, +tomcat-6.0.26-r1.ebuild:
+  Revbump with updated init script by wltjr, including overlay changes by
+  weisso. Adds forcestop option to kill tomcat when normal stop doesn't
+  work. Note that CLASSPATH is now unset in the init script, as global
+  CLASSPATH is deprecated and should be set for tomcat specifically. Fixes
+  bugs #191611, #243348, #310029, #294846. Remove old.
 
   10 Apr 2010; Vlastimil Babka <caster@gentoo.org> tomcat-6.0.26.ebuild:
   Always use ecj to compile on amd64 to prevent insufficient heap, fixes bug
