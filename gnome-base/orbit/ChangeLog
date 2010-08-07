@@ -1,6 +1,13 @@
 # ChangeLog for gnome-base/orbit
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/ChangeLog,v 1.159 2010/05/04 16:11:45 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/orbit/ChangeLog,v 1.161 2010/07/20 02:13:46 jer Exp $
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> orbit-2.14.16.ebuild,
+  orbit-2.14.17.ebuild, orbit-2.14.18.ebuild:
+  Drop HPPA keywording (bug #324511).
+
+  04 Jun 2010; Markus Meier <maekke@gentoo.org> orbit-2.14.18.ebuild:
+  x86 stable, bug #314899
 
   03 May 2010; Olivier Crête <tester@gentoo.org> orbit-2.14.18.ebuild:
   amd64 stable, bug #314899
