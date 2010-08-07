@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/ratpoison/ratpoison-1.4.5.ebuild,v 1.5 2009/12/08 19:25:44 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/ratpoison/ratpoison-1.4.5.ebuild,v 1.7 2010/06/12 13:48:08 ssuominen Exp $
 
 EAPI=2
 
-inherit elisp-common eutils autotools
+inherit autotools elisp-common eutils
 
 DESCRIPTION="Ratpoison is an extremely light-weight and barebones wm modelled after screen"
 HOMEPAGE="http://www.nongnu.org/ratpoison/"
@@ -30,8 +30,8 @@ src_prepare() {
 	epatch "${FILESDIR}/ratpoison.el-gentoo.patch"
 
 	cd "${S}"
-	epatch "${FILESDIR}/${PN}-1.4.4-glibc210.patch"
-
+	epatch "${FILESDIR}/${PN}-1.4.4-glibc210.patch" \
+		"${FILESDIR}/${P}-asneeded.patch"
 	eautoreconf
 }
 
@@ -52,7 +52,10 @@ src_install() {
 	einstall || die
 
 	exeinto /etc/X11/Sessions
-	newexe "${FILESDIR}/ratpoison.xsession" ratpoison
+	newexe "${FILESDIR}"/ratpoison.xsession ratpoison || die
+
+	insinto /usr/share/xsessions
+	doins "${FILESDIR}"/${PN}.desktop || die
 
 	dodoc INSTALL TODO README NEWS AUTHORS ChangeLog
 	docinto example
