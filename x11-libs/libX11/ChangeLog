@@ -1,6 +1,21 @@
 # ChangeLog for x11-libs/libX11
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.140 2010/06/08 16:46:06 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libX11/ChangeLog,v 1.145 2010/08/02 18:03:30 armin76 Exp $
+
+  02 Aug 2010; Raúl Porcel <armin76@gentoo.org> libX11-1.3.3.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #308521
+
+  22 Jul 2010; Markus Meier <maekke@gentoo.org> libX11-1.3.4.ebuild:
+  arm stable, bug #327777
+
+  14 Jul 2010; Jeroen Roovers <jer@gentoo.org> libX11-1.3.4.ebuild:
+  Stable for HPPA (bug #327777).
+
+  13 Jul 2010; Christian Faulhammer <fauli@gentoo.org> libX11-1.3.4.ebuild:
+  x86 stable, bug 327777
+
+  12 Jul 2010; Markos Chandras <hwoarang@gentoo.org> libX11-1.3.4.ebuild:
+  Stable on amd64 wrt bug #327777
 
 *libX11-1.3.4 (08 Jun 2010)
 
