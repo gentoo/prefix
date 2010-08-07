@@ -1,6 +1,11 @@
 # ChangeLog for sys-apps/gawk
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.129 2010/04/25 23:09:30 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.130 2010/05/20 04:11:03 vapier Exp $
+
+*gawk-3.1.8 (20 May 2010)
+
+  20 May 2010; Mike Frysinger <vapier@gentoo.org> +gawk-3.1.8.ebuild:
+  Version bump #319763 by Samuli Suominen.
 
   25 Apr 2010; Diego E. Pettenò <flameeyes@gentoo.org> gawk-3.1.7.ebuild:
   Remove libsigsegv USE flag: the dependency, at a minimum, was off (it
