@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.4.1.ebuild,v 1.7 2010/05/11 13:32:32 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/bison/bison-2.4.1.ebuild,v 1.8 2010/05/24 13:53:00 armin76 Exp $
 
 inherit toolchain-funcs flag-o-matic
 
