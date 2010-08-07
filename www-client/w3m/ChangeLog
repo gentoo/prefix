@@ -1,6 +1,27 @@
 # ChangeLog for www-client/w3m
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.53 2010/01/16 20:38:19 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-client/w3m/ChangeLog,v 1.59 2010/07/09 00:02:45 jer Exp $
+
+  09 Jul 2010; Jeroen Roovers <jer@gentoo.org> w3m-0.5.2-r4.ebuild:
+  Stable for PPC (bug #325431).
+
+  08 Jul 2010; Brent Baude <ranger@gentoo.org> w3m-0.5.2-r4.ebuild:
+  Marking w3m-0.5.2-r4 ppc64 for bug 325431
+
+  26 Jun 2010; Raúl Porcel <armin76@gentoo.org> w3m-0.5.2-r4.ebuild:
+  alpha/ia64/sparc stable wrt #325431
+
+  25 Jun 2010; Christoph Mende <angelos@gentoo.org> w3m-0.5.2-r4.ebuild:
+  Stable on amd64 wrt bug #325431
+
+  25 Jun 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> w3m-0.5.2-r4.ebuild:
+  x86 stable wrt bug #325431
+
+*w3m-0.5.2-r4 (19 Jun 2010)
+
+  19 Jun 2010; MATSUU Takuto <matsuu@gentoo.org> +w3m-0.5.2-r4.ebuild,
+  +files/w3m-CVE-2010-2074.patch:
+  Fixed security issue.
 
   16 Jan 2010; Raúl Porcel <armin76@gentoo.org> w3m-0.5.2-r2.ebuild:
   ia64 stable wrt #296051
