@@ -1,13 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/sam2p-0.45-r1.ebuild,v 1.15 2010/06/11 20:13:04 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/sam2p-0.47.ebuild,v 1.1 2010/06/11 20:21:57 aballier Exp $
 
 inherit toolchain-funcs eutils autotools
 
 DESCRIPTION="Utility to convert raster images to EPS, PDF and many others"
 HOMEPAGE="http://code.google.com/p/sam2p/"
-# The author refuses to distribute
-SRC_URI="mirror://gentoo/${P}.tar.bz2"
+SRC_URI="http://sam2p.googlecode.com/files/${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
@@ -21,13 +20,11 @@ RESTRICT="test"
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}/${P}-fbsd.patch"
-	epatch "${FILESDIR}/${P}-nostrip.patch"
-	epatch "${FILESDIR}/${P}-cflags.patch"
-	epatch "${FILESDIR}/${P}-parallelmake.patch"
-	epatch "${FILESDIR}/${P}-distcc.patch"
+	epatch "${FILESDIR}/${PN}-0.45-fbsd.patch"
+	epatch "${FILESDIR}/${PN}-0.45-nostrip.patch"
+	epatch "${FILESDIR}/${PN}-0.45-cflags.patch"
 	# force an US locale, otherwise make Makedep will bail out
-	epatch "${FILESDIR}"/${P}-locales.patch
+	epatch "${FILESDIR}"/${PN}-0.45-locales.patch
 	eautoreconf
 }
 

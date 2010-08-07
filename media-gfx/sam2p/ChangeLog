@@ -1,6 +1,15 @@
 # ChangeLog for media-gfx/sam2p
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.37 2009/06/24 18:48:05 aballier Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/sam2p/ChangeLog,v 1.39 2010/06/11 20:21:57 aballier Exp $
+
+*sam2p-0.47 (11 Jun 2010)
+
+  11 Jun 2010; Alexis Ballier <aballier@gentoo.org> +sam2p-0.47.ebuild:
+  version bump, bug #317271
+
+  11 Jun 2010; Alexis Ballier <aballier@gentoo.org> sam2p-0.45-r1.ebuild,
+  sam2p-0.46.ebuild:
+  update homepage
 
 *sam2p-0.46 (24 Jun 2009)
 
