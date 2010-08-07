@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-4.0.7.ebuild,v 1.1 2010/05/01 05:33:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/lftp-4.0.9.1.ebuild,v 1.1 2010/07/21 12:45:58 jer Exp $
 
 EAPI="2"
 
@@ -8,7 +8,7 @@ inherit eutils autotools libtool
 
 DESCRIPTION="A sophisticated ftp/sftp/http/https/torrent client and file transfer program"
 HOMEPAGE="http://lftp.yar.ru/"
-SRC_URI="http://ftp.yars.free.net/pub/source/${PN}/${P}.tar.bz2"
+SRC_URI="http://ftp.yars.free.net/pub/source/${PN}/devel/${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"

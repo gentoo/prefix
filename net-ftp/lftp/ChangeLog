@@ -1,6 +1,42 @@
 # ChangeLog for net-ftp/lftp
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.260 2010/05/01 05:33:03 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/lftp/ChangeLog,v 1.270 2010/08/03 17:18:05 ranger Exp $
+
+  03 Aug 2010; Brent Baude <ranger@gentoo.org> lftp-4.0.9.ebuild:
+  Marking lftp-4.0.9 ppc64 for bug 329939
+
+  31 Jul 2010; Raúl Porcel <armin76@gentoo.org> lftp-4.0.9.ebuild:
+  alpha/arm/ia64/s390/sparc stable wrt #329939
+
+  26 Jul 2010; Jeroen Roovers <jer@gentoo.org> lftp-4.0.9.ebuild:
+  Stable for PPC (bug #329939).
+
+*lftp-4.0.9.1 (21 Jul 2010)
+
+  21 Jul 2010; Jeroen Roovers <jer@gentoo.org> +lftp-4.0.9.1.ebuild:
+  Version bump (masked development snapshot).
+
+  16 Jul 2010; Christian Faulhammer <fauli@gentoo.org> lftp-4.0.9.ebuild:
+  stable x86, bug 327979
+
+  15 Jul 2010; Jeroen Roovers <jer@gentoo.org> lftp-4.0.9.ebuild:
+  Stable for HPPA (bug #327979).
+
+  14 Jul 2010; Markos Chandras <hwoarang@gentoo.org> lftp-4.0.9.ebuild:
+  Stable on amd64 wrt bug #327979
+
+  08 Jul 2010; Jeroen Roovers <jer@gentoo.org> metadata.xml:
+  Fix metadata to reflect reality.
+
+*lftp-4.0.9 (12 Jun 2010)
+
+  12 Jun 2010; Jeroen Roovers <jer@gentoo.org> +lftp-4.0.9.ebuild:
+  Version bump.
+
+*lftp-4.0.8 (25 May 2010)
+
+  25 May 2010; Jeroen Roovers <jer@gentoo.org> +lftp-4.0.8.ebuild:
+  Version bump.
 
 *lftp-4.0.7 (01 May 2010)
 
