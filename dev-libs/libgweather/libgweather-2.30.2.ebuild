@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.28.0.ebuild,v 1.5 2010/07/16 17:45:40 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libgweather/libgweather-2.30.2.ebuild,v 1.4 2010/08/01 11:32:32 fauli Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -15,12 +15,10 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
 IUSE="python doc"
 
-# FIXME: Technically we could use just libsoup too conditionally instead of libsoup-gnome,
-# but the detection of libsoup-gnome vs libgnome is currently automagic
 RDEPEND=">=x11-libs/gtk+-2.11
 	>=dev-libs/glib-2.13
 	>=gnome-base/gconf-2.8
-	>=net-libs/libsoup-gnome-2.25.1:2.4
+	>=net-libs/libsoup-2.25.1:2.4[gnome]
 	>=dev-libs/libxml2-2.6.0
 	python? (
 		>=dev-python/pygobject-2
@@ -53,9 +51,8 @@ src_prepare() {
 		sed "/^TARGET_DIR/i \GTKDOC_REBASE=/$(type -P true)" \
 			-i gtk-doc.make || die "sed 2 failed"
 	fi
-
-	# Make it libtool-1 compatible, bug #278516
-	rm -v m4/lt* m4/libtool.m4 || die "removing libtool macros failed"
+	# Fix building -python, Gnome bug #596660.
+	epatch "${FILESDIR}/${PN}-2.30.0-fix-automagic-python-support.patch"
 
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf
