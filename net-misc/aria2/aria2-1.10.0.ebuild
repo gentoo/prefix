@@ -1,8 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/aria2-1.8.3.ebuild,v 1.1 2010/02/22 10:37:32 dev-zero Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/aria2/aria2-1.10.0.ebuild,v 1.1 2010/07/19 09:21:48 dev-zero Exp $
 
 EAPI="2"
+
+inherit multilib
 
 DESCRIPTION="A download utility with resuming and segmented downloading with HTTP/HTTPS/FTP/BitTorrent support."
 HOMEPAGE="http://aria2.sourceforge.net/"
@@ -28,6 +30,7 @@ CDEPEND="sys-libs/zlib
 		!expat? ( >=dev-libs/libxml2-2.6.26 )
 		expat? ( dev-libs/expat ) )"
 DEPEND="${CDEPEND}
+	dev-util/pkgconfig
 	nls? ( sys-devel/gettext )
 	test? ( >=dev-util/cppunit-1.12.0 )"
 RDEPEND="${CDEPEND}
