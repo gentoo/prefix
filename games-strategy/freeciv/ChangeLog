@@ -1,6 +1,39 @@
 # ChangeLog for games-strategy/freeciv
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/ChangeLog,v 1.107 2010/05/11 21:14:38 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/games-strategy/freeciv/ChangeLog,v 1.115 2010/08/02 18:46:30 mr_bones_ Exp $
+
+*freeciv-2.2.2 (02 Aug 2010)
+
+  02 Aug 2010; Michael Sterrett <mr_bones_@gentoo.org>
+  +freeciv-2.2.2.ebuild, +files/freeciv-2.2.2-clean-man.patch:
+  version bump
+
+  01 Aug 2010; Markos Chandras <hwoarang@gentoo.org> freeciv-2.2.1.ebuild:
+  Stable on amd64 wrt bug #329957
+
+  27 Jul 2010; Christian Faulhammer <fauli@gentoo.org> freeciv-2.2.1.ebuild:
+  stable x86, bug 329957
+
+  26 Jul 2010; Michael Sterrett <mr_bones_@gentoo.org>
+  -freeciv-2.1.9.ebuild, -freeciv-2.1.11.ebuild, -freeciv-2.2.0.ebuild,
+  -files/freeciv-2.2.0-clean-man.patch, freeciv-2.2.1.ebuild:
+  remove security-broken versions (bug #329949)
+
+*freeciv-2.2.1 (22 Jul 2010)
+
+  22 Jul 2010; Michael Sterrett <mr_bones_@gentoo.org> freeciv-2.2.0.ebuild,
+  +freeciv-2.2.1.ebuild, +files/freeciv-2.2.1-clean-man.patch:
+  version bump; remove bogus libggz dep (bug #317859)
+
+  19 Jul 2010; Joseph Jezak <josejx@gentoo.org> freeciv-2.2.0.ebuild:
+  Marked ppc stable for bug #313345.
+
+  30 May 2010; Raúl Porcel <armin76@gentoo.org> freeciv-2.1.9.ebuild,
+  freeciv-2.1.11.ebuild, freeciv-2.2.0.ebuild:
+  Drop alpha/sparc keywords
+
+  23 May 2010; Pacho Ramos <pacho@gentoo.org> freeciv-2.2.0.ebuild:
+  stable amd64, bug 313345
 
   11 May 2010; Brent Baude <ranger@gentoo.org> freeciv-2.2.0.ebuild:
   keyworded ~arch for ppc64, bug 313345
