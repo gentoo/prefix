@@ -1,6 +1,13 @@
 # ChangeLog for x11-wm/fluxbox
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.274 2009/11/14 16:09:34 scarabeus Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/fluxbox/ChangeLog,v 1.275 2010/05/29 15:01:29 lack Exp $
+
+*fluxbox-1.1.1-r2 (29 May 2010)
+
+  29 May 2010; Jim Ramsay <lack@gentoo.org> +fluxbox-1.1.1-r2.ebuild,
+  +files/mousefocus-1.1.1-r2.patch, +files/strictmousefocus-1.1.1.patch,
+  metadata.xml:
+  Fix focus-follows-mouse (Bug #290649)
 
   14 Nov 2009; Tomáš Chvátal <scarabeus@gentoo.org> fluxbox-9999.ebuild:
   QA: drop Keywords from live ebuild, make ebuild properly eapi2.

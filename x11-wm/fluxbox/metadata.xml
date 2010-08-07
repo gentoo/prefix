@@ -18,5 +18,7 @@
 		<flag name='disabletoolbar'>Disables the fluxbox toolbar</flag>
 		<flag name='slit'>Enables the fluxbox slit (or dock)</flag>
 		<flag name='toolbar'>Enables the fluxbox toolbar</flag>
+		<flag name='newmousefocus'>Patches the focus model to the upcoming 1.1.2
+			model, which adds a new 'StrictMouseFocus' mode</flag>
 	</use>
 </pkgmetadata>
