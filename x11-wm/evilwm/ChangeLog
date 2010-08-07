@@ -1,6 +1,16 @@
 # ChangeLog for x11-wm/evilwm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-wm/evilwm/ChangeLog,v 1.50 2010/01/05 22:02:54 tcunha Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-wm/evilwm/ChangeLog,v 1.52 2010/07/06 21:09:11 ssuominen Exp $
+
+  06 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  evilwm-1.1.0_pre8.ebuild:
+  Don't keyword this prerelease yet wrt #323879.
+
+*evilwm-1.1.0_pre8 (13 Jun 2010)
+
+  13 Jun 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +evilwm-1.1.0_pre8.ebuild:
+  Version bump wrt #317357 by Rasmus Thystrup Karstensen.
 
   05 Jan 2010; Tiago Cunha <tcunha@gentoo.org> evilwm-1.0.1.ebuild:
   stable sparc, bug 285141
