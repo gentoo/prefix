@@ -1,6 +1,14 @@
 # ChangeLog for sys-libs/zlib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.81 2010/05/01 11:02:10 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/zlib/ChangeLog,v 1.83 2010/07/08 04:28:06 vapier Exp $
+
+  08 Jul 2010; Mike Frysinger <vapier@gentoo.org> zlib-1.2.5-r2.ebuild:
+  Update by Alon Bar-Lev for mingw support #310307 by Nathan Phillip Brink.
+
+  07 Jul 2010; Mike Frysinger <vapier@gentoo.org> zlib-1.2.5-r2.ebuild,
+  files/zlib-1.2.5-fbsd_chosts.patch, +files/zlib-1.2.5-ldflags.patch,
+  files/zlib-1.2.5-lfs-decls.patch:
+  Clean up patch documentation and fix parallel builds #319661 by Xake.
 
   01 May 2010; Alexis Ballier <aballier@gentoo.org> zlib-1.2.5-r2.ebuild,
   +files/zlib-1.2.5-fbsd_chosts.patch:

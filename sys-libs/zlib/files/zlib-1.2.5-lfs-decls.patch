@@ -1,8 +1,10 @@
-Index: zlib-1.2.5/zlib.h
-===================================================================
---- zlib-1.2.5.orig/zlib.h
+http://bugs.gentoo.org/316377
+
+try to unbreak over-eager LFS logic in zlib header
+
+--- zlib-1.2.5/zlib.h
 +++ zlib-1.2.5/zlib.h
-@@ -1578,7 +1578,7 @@ ZEXTERN int ZEXPORT inflateBackInit_ OF(
+@@ -1578,7 +1578,7 @@
  #  define gzoffset gzoffset64
  #  define adler32_combine adler32_combine64
  #  define crc32_combine crc32_combine64

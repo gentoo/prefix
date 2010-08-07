@@ -1,5 +1,9 @@
---- zlib-1.2.5/configure.in	2010-05-01 12:45:30.000000000 +0200
-+++ zlib-1.2.5/configure	2010-05-01 12:45:55.000000000 +0200
+accept freebsd targets
+
+http://bugs.gentoo.org/316841
+
+--- zlib-1.2.5/configure
++++ zlib-1.2.5/configure
 @@ -118,7 +118,7 @@
      uname=`(uname -s || echo unknown) 2>/dev/null`
    fi
