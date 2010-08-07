@@ -1,6 +1,11 @@
 # ChangeLog for dev-libs/cyrus-sasl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.214 2010/04/29 07:04:31 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/ChangeLog,v 1.215 2010/06/17 20:12:32 patrick Exp $
+
+  17 Jun 2010; Patrick Lauer <patrick@gentoo.org>
+  cyrus-sasl-2.1.22-r2.ebuild, cyrus-sasl-2.1.23.ebuild,
+  cyrus-sasl-2.1.23-r1.ebuild:
+  Migrating away from deprecated postgres virtuals
 
   29 Apr 2010; Markos Chandras <hwoarang@gentoo.org>
   cyrus-sasl-2.1.23-r1.ebuild:

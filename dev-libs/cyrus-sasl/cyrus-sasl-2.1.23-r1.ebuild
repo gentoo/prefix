@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r1.ebuild,v 1.11 2010/04/29 07:04:31 hwoarang Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/cyrus-sasl/cyrus-sasl-2.1.23-r1.ebuild,v 1.12 2010/06/17 20:12:32 patrick Exp $
 
 inherit eutils flag-o-matic multilib autotools pam java-pkg-opt-2
 
@@ -25,7 +25,7 @@ RDEPEND="authdaemond? ( || ( >=net-mail/courier-imap-3.0.7 >=mail-mta/courier-0.
 	mysql? ( virtual/mysql )
 	ntlm_unsupported_patch? ( >=net-fs/samba-3.0.9 )
 	pam? ( virtual/pam )
-	postgres? ( >=virtual/postgresql-base-7.2 )
+	postgres? ( dev-db/postgresql-base )
 	sqlite? ( dev-db/sqlite )
 	ssl? ( >=dev-libs/openssl-0.9.6d )"
 DEPEND="${RDEPEND}
