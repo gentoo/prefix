@@ -1,6 +1,45 @@
 # ChangeLog for x11-libs/libdrm
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.116 2010/06/04 14:06:06 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/ChangeLog,v 1.126 2010/08/02 18:38:28 armin76 Exp $
+
+  02 Aug 2010; Raúl Porcel <armin76@gentoo.org>
+  libdrm-2.4.18_pre20100211-r1.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #308521
+
+  22 Jul 2010; Markus Meier <maekke@gentoo.org> libdrm-2.4.20-r1.ebuild:
+  arm stable, bug #327777
+
+  19 Jul 2010; Jeroen Roovers <jer@gentoo.org> libdrm-2.4.20-r1.ebuild:
+  Stable for HPPA (bug #327777).
+
+  17 Jul 2010; Markos Chandras <hwoarang@gentoo.org>
+  libdrm-2.4.20-r1.ebuild:
+  Stable on amd64 wrt bug #327777
+
+  16 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  libdrm-2.4.20-r1.ebuild:
+  stable x86, bug 327777
+
+*libdrm-2.4.20-r1 (16 Jul 2010)
+
+  16 Jul 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +libdrm-2.4.20-r1.ebuild:
+  re-add libdrm patch for bug #298352
+
+  14 Jul 2010; Jeroen Roovers <jer@gentoo.org> libdrm-2.4.20.ebuild:
+  Stable for HPPA (bug #327777).
+
+  13 Jul 2010; Christian Faulhammer <fauli@gentoo.org> libdrm-2.4.20.ebuild:
+  x86 stable, bug 327777
+
+  12 Jul 2010; Markos Chandras <hwoarang@gentoo.org> libdrm-2.4.20.ebuild:
+  Stable on amd64 wrt bug #327777
+
+*libdrm-2.4.21 (16 Jun 2010)
+
+  16 Jun 2010; Chí-Thanh Christopher Nguyễn <chithanh@gentoo.org>
+  +libdrm-2.4.21.ebuild:
+  Version bump.
 
   31 May 2010; Guy Martin <gmsoft@gentoo.org>
   libdrm-2.4.18_pre20100211-r1.ebuild:

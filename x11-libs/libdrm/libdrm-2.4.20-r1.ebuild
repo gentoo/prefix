@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.20.ebuild,v 1.6 2010/07/14 17:08:10 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/libdrm/libdrm-2.4.20-r1.ebuild,v 1.5 2010/07/22 15:46:49 maekke Exp $
 
 inherit x-modular
 
@@ -20,6 +20,12 @@ RESTRICT="test" # see bug #236845
 
 RDEPEND="dev-libs/libpthread-stubs"
 DEPEND="${RDEPEND}"
+
+PATCHES=(
+	# Fixes buidling of x11-drivers/xf86-video-openchrome, Gentoo bug 298352,
+	# upstream bug 26994
+	"${FILESDIR}"/2.4.18-0001-datatypes.patch
+	)
 
 pkg_setup() {
 	# libdrm_intel fails to build on some arches if dev-libs/libatomic_ops is
