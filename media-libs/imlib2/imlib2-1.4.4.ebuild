@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.4.ebuild,v 1.1 2010/05/08 00:10:58 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-libs/imlib2/imlib2-1.4.4.ebuild,v 1.2 2010/07/23 23:36:53 ssuominen Exp $
 
 EAPI="1"
 
@@ -17,8 +17,8 @@ DEPEND="=media-libs/freetype-2*
 	bzip2? ( app-arch/bzip2 )
 	zlib? ( sys-libs/zlib )
 	gif? ( >=media-libs/giflib-4.1.0 )
-	png? ( >=media-libs/libpng-1.2.1 )
-	jpeg? ( media-libs/jpeg:0 )
+	png? ( >=media-libs/libpng-1.4 )
+	jpeg? ( virtual/jpeg )
 	tiff? ( >=media-libs/tiff-3.5.5 )
 	X? ( x11-libs/libXext x11-proto/xextproto )
 	mp3? ( media-libs/libid3tag )"
