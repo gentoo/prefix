@@ -1,15 +1,14 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.1-r1.ebuild,v 1.30 2010/03/20 20:33:28 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/python-3.1.2-r4.ebuild,v 1.7 2010/08/06 18:15:24 hwoarang Exp $
 
-EAPI="2"
+EAPI="3"
 
 inherit autotools eutils flag-o-matic multilib pax-utils python toolchain-funcs
 
 MY_P="Python-${PV}"
-S="${WORKDIR}/${MY_P}"
 
-PATCHSET_REVISION="4"
+PATCHSET_REVISION="6"
 
 DESCRIPTION="Python is an interpreted, interactive, object-oriented programming language."
 HOMEPAGE="http://www.python.org/"
@@ -28,7 +27,6 @@ RDEPEND=">=app-admin/eselect-python-20091230
 		virtual/libffi
 		virtual/libintl
 		!build? (
-			doc? ( dev-python/python-docs:${SLOT} )
 			gdbm? ( sys-libs/gdbm )
 			ncurses? (
 				>=sys-libs/ncurses-5.2
@@ -38,20 +36,32 @@ RDEPEND=">=app-admin/eselect-python-20091230
 			ssl? ( dev-libs/openssl )
 			tk? ( >=dev-lang/tk-8.0 )
 			xml? ( >=dev-libs/expat-2 )
-		)"
+		)
+		doc? ( dev-python/python-docs:${SLOT} )"
 DEPEND="${RDEPEND}
 		dev-util/pkgconfig
 		!sys-devel/gcc[libffi]"
 RDEPEND+=" !build? ( app-misc/mime-types )"
 PDEPEND=">=app-admin/python-updater-0.8
-		=dev-lang/python-2*"
+		|| (
+			dev-lang/python:2.7[gdbm?,ipv6?,ncurses?,readline?,sqlite?,ssl?,threads?,tk?,xml?]
+			dev-lang/python:2.6[gdbm?,ipv6?,ncurses?,readline?,sqlite?,ssl?,threads?,tk?,xml?]
+		)"
 
 PROVIDE="virtual/python"
 
+S="${WORKDIR}/${MY_P}"
+
+pkg_setup() {
+	python_pkg_setup
+	die "this ebuild is BOOM-ware; it doesn't work, isn't up-to-date, and only exists to silence the update scripts"
+}
+
 src_prepare() {
-	# Ensure that internal copies of expat and libffi aren't used.
+	# Ensure that internal copies of expat, libffi and zlib are not used.
 	rm -fr Modules/expat
 	rm -fr Modules/_ctypes/libffi*
+	rm -fr Modules/zlib
 
 	if ! tc-is-cross-compiler; then
 		rm "${WORKDIR}/${PV}"/*_all_crosscompile.patch
@@ -61,6 +71,9 @@ src_prepare() {
 	[[ ${CHOST} == *-linux-gnu || ${CHOST} == *-solaris* || ${CHOST} == *bsd* ]] || \
 		EPATCH_EXCLUDE=21_all_ctypes-execstack.patch
 	EPATCH_SUFFIX="patch" epatch "${WORKDIR}/${PV}"
+
+	# Avoid regeneration, which would not change contents of files.
+	touch Include/Python-ast.h Python/Python-ast.c
 
 	sed -i -e "s:@@GENTOO_LIBDIR@@:$(get_libdir):g" \
 		Lib/distutils/command/install.py \
@@ -151,6 +164,9 @@ src_prepare() {
 	# that stdin is a tty for bug #248081.
 	sed -e "s:'osf1V5':'osf1V5' and sys.stdin.isatty():" -i Lib/test/test_file.py || die "sed failed"
 
+	# Fix parallel installation (bug #328009).
+	sed -e "s/^sharedinstall:/& sharedmods/" -i Makefile.pre.in || die "sed failed"
+
 	eautoreconf
 }
 
@@ -186,15 +202,13 @@ src_configure() {
 		append-flags -fwrapv
 	fi
 
-	export OPT="${CFLAGS}"
-
 	filter-flags -malign-double
 
 	[[ "${ARCH}" == "alpha" ]] && append-flags -fPIC
 
 	# https://bugs.gentoo.org/show_bug.cgi?id=50309
-	if is-flag -O3; then
-		is-flag -fstack-protector-all && replace-flags -O3 -O2
+	if is-flagq -O3; then
+		is-flagq -fstack-protector-all && replace-flags -O3 -O2
 		use hardened && replace-flags -O3 -O2
 	fi
 
@@ -245,7 +259,7 @@ src_configure() {
 	# note: for a framework build we need to use ucs2 because OSX
 	# uses that internally too:
 	# http://bugs.python.org/issue763708
-	econf \
+	OPT="" econf \
 		--with-fpectl \
 		$(use_enable ipv6) \
 		$(use_with threads) \
@@ -258,10 +272,19 @@ src_configure() {
 		--with-system-ffi
 }
 
+src_compile() {
+	LC_ALL="C" default
+}
+
 src_test() {
-	# Tests won't work when cross compiling.
+	# Tests will not work when cross compiling.
 	if tc-is-cross-compiler; then
 		elog "Disabling tests due to crosscompiling."
+		return
+	fi
+
+	if ! use threads; then
+		ewarn "Disabling tests due to USE=\"-threads\""
 		return
 	fi
 
@@ -269,14 +292,8 @@ src_test() {
 	# Otherwise test_import fails.
 	python_enable_pyc
 
-	# Skip all tests that fail during emerge but pass without emerge:
-	# (See bug #67970)
+	# Skip failing tests.
 	local skip_tests="distutils"
-
-	# test_debuglevel from test_telnetlib.py fails sometimes with
-	# socket.error: [Errno 104] Connection reset by peer
-	# http://bugs.python.org/issue6748
-	skip_tests+=" telnetlib"
 
 	# test_ctypes fails with PAX kernel (bug #234498).
 	host-is-pax && skip_tests+=" ctypes"
@@ -286,7 +303,8 @@ src_test() {
 	done
 
 	# Rerun failed tests in verbose mode (regrtest -w).
-	EXTRATESTOPTS="-w" make test || die "make test failed"
+	EXTRATESTOPTS="-w" emake test
+	local result="$?"
 
 	for test in ${skip_tests}; do
 		mv "${T}/test_${test}.py" "${S}/Lib/test/test_${test}.py"
@@ -297,11 +315,15 @@ src_test() {
 		elog "test_${test}.py"
 	done
 
-	elog "If you'd like to run them, you may:"
-	elog "cd $(python_get_libdir)/test"
+	elog "If you would like to run them, you may:"
+	elog "cd '${EPREFIX}$(python_get_libdir)/test'"
 	elog "and run the tests separately."
 
 	python_disable_pyc
+
+	if [[ "${result}" -ne 0 ]]; then
+		die "emake test failed"
+	fi
 }
 
 src_install() {
@@ -418,6 +440,7 @@ EOF
 	else
 		emake DESTDIR="${D}" altinstall || die "emake altinstall failed"
 	fi
+	python_clean_installation_image -q
 
 	mv "${ED}usr/bin/python${SLOT}-config" "${ED}usr/bin/python-config-${SLOT}"
 
@@ -426,10 +449,6 @@ EOF
 	mv "${ED}usr/bin/pydoc3" "${ED}usr/bin/pydoc${SLOT}"
 	mv "${ED}usr/bin/idle3" "${ED}usr/bin/idle${SLOT}"
 	rm -f "${ED}usr/bin/smtpd.py"
-
-	# Fix the OPT variable so that it doesn't have any flags listed in it.
-	# Prevents the problem with compiling things with conflicting flags later.
-	sed -e "s:^OPT=.*:OPT=\t\t-DNDEBUG:" -i "${ED}$(python_get_libdir)/config/Makefile"
 
 	# http://src.opensolaris.org/source/xref/jds/spec-files/trunk/SUNWPython.spec
 	# These #defines cause problems when building c99 compliant python modules
@@ -449,13 +468,15 @@ EOF
 
 	prep_ml_includes $(python_get_includedir)
 
+	dodoc Misc/{ACKS,HISTORY,NEWS} || die "dodoc failed"
+
 	if use examples; then
 		insinto /usr/share/doc/${PF}/examples
 		doins -r "${S}/Tools" || die "doins failed"
 	fi
 
-	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT}
-	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT}
+	newinitd "${FILESDIR}/pydoc.init" pydoc-${SLOT} || die "newinitd failed"
+	newconfd "${FILESDIR}/pydoc.conf" pydoc-${SLOT} || die "newconfd failed"
 
 	# Remove .py[co] files from the installed image,
 	# python_mod_optimize will (re)generate them.  Removing
@@ -473,7 +494,7 @@ pkg_preinst() {
 }
 
 eselect_python_update() {
-	local eselect_python_options=
+	local eselect_python_options
 	[[ "$(eselect python show)" == "python2."* ]] && eselect_python_options="--python2"
 
 	# Create python3 symlink.
@@ -485,18 +506,17 @@ eselect_python_update() {
 pkg_postinst() {
 	eselect_python_update
 
-	python_mod_optimize -x "(site-packages|test)" $(python_get_libdir)
+	python_mod_optimize -f -x "/(site-packages|test|tests)/" $(python_get_libdir)
 
 	if [[ "$(eselect python show)" == "python2."* ]]; then
 		ewarn
 		ewarn "WARNING!"
-		ewarn "Many Python modules haven't been ported yet to Python 3.*."
-		ewarn "Python 3 hasn't been activated and Python wrapper is still configured to use Python 2."
+		ewarn "Many Python modules have not been ported yet to Python 3.*."
+		ewarn "Python 3 has not been activated and Python wrapper is still configured to use Python 2."
 		ewarn "You can manually activate Python ${SLOT} using \`eselect python set python${SLOT}\`."
 		ewarn "It is recommended to currently have Python wrapper configured to use Python 2."
 		ewarn "Having Python wrapper configured to use Python 3 is unsupported."
 		ewarn
-		ebeep 6
 	fi
 
 	if [[ "${python_updater_warning}" == "1" ]]; then
@@ -508,7 +528,12 @@ pkg_postinst() {
 		ewarn
 		ewarn "\e[1;31m************************************************************************\e[0m"
 		ewarn
-		ebeep 12
+
+		local n
+		for ((n = 0; n < 12; n++)); do
+			echo -ne "\a"
+			sleep 1
+		done
 	fi
 }
 

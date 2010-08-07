@@ -1,6 +1,104 @@
 # ChangeLog for dev-lang/python
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.471 2010/05/25 17:09:38 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/python/ChangeLog,v 1.492 2010/08/06 18:15:24 hwoarang Exp $
+
+  06 Aug 2010; Markos Chandras <hwoarang@gentoo.org> python-2.6.5-r3.ebuild,
+  python-3.1.2-r4.ebuild:
+  Stable on amd64 wrt bug #325593
+
+  06 Aug 2010; Jeroen Roovers <jer@gentoo.org> python-2.6.5-r3.ebuild:
+  Stable for HPPA (bug #325593).
+
+  06 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
+  python-3.1.2-r4.ebuild:
+  stable x86, security bug 325593
+
+  06 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
+  python-2.6.5-r3.ebuild:
+  stable x86, security bug 325593
+
+  02 Aug 2010; Brian Harring <ferringb@gentoo.org>
+  -python-2.6.5_p20100801.ebuild, -python-2.7_p20100801.ebuild,
+  -python-3.1.2_p20100801.ebuild:
+  Remove untested versions, one of which flat out breaks emerge (bug 330937).
+  These should not be re-added without going through devrel/qa.
+
+*python-3.1.2_p20100801 (02 Aug 2010)
+*python-2.7_p20100801 (02 Aug 2010)
+*python-2.6.5_p20100801 (02 Aug 2010)
+
+  02 Aug 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.6.5_p20100801.ebuild, +python-2.7_p20100801.ebuild,
+  +python-3.1.2_p20100801.ebuild:
+  Improve usage of mmap in _ctypes module (bug #329499). Fix handling of
+  environmental variables (bug #329705). Backport some fixes from release
+  branches.
+
+  31 Jul 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-2.6.4-r1.ebuild, python-2.6.5-r2.ebuild, python-2.6.5-r3.ebuild,
+  python-2.7.ebuild, python-3.1.2-r3.ebuild, python-3.1.2-r4.ebuild:
+  Revert wrong change in _ctypes module (bug #329499).
+
+  30 Jul 2010; Jeroen Roovers <jer@gentoo.org> python-3.1.2-r3.ebuild:
+  Stable for HPPA (bug #320043).
+
+  25 Jul 2010; <solar@gentoo.org> python-2.6.4-r1.ebuild,
+  python-2.6.5-r2.ebuild, python-2.6.5-r3.ebuild, python-2.7.ebuild,
+  python-3.1.2-r3.ebuild, python-3.1.2-r4.ebuild:
+  - The Modules/_ctypes/malloc_closure.c misuses a mmap() call trying to set
+  a mem segment to rwx when it does not need it. Bug 329499
+
+  22 Jul 2010; Markus Meier <maekke@gentoo.org> python-2.6.5-r2.ebuild:
+  arm stable, bug #319723
+
+  18 Jul 2010; <nixnut@gentoo.org> python-3.1.2-r3.ebuild:
+  ppc stable #320043
+
+  17 Jul 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-3.1.2-r4.ebuild:
+  Fix parallel installation (bug #328009).
+
+  15 Jul 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-3.1.2-r4.ebuild:
+  Fix building with some locales (bug #328047).
+
+*python-3.1.2-r4 (12 Jul 2010)
+
+  12 Jul 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-3.1.2-r4.ebuild:
+  Fix segmentation fault with non-module encodings directory on PYTHONPATH (bug #314883).
+  Fix building with Linux <2.6.9 headers (bug #317937). Fix httplib.HTTPResponse.read()
+  (bug #321545). Fix vulnerabilities in audioop module (bug #325593). Backport some
+  fixes from 3.1 branch.
+
+*python-2.6.5-r3 (12 Jul 2010)
+
+  12 Jul 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.6.5-r3.ebuild:
+  Fix building with Linux <2.6.9 headers (bug #317937). Fix httplib.HTTPResponse.read()
+  (bug #321545). Fix vulnerabilities in audioop module (bug #325593). Backport some
+  fixes from 2.6 branch.
+
+*python-2.7 (04 Jul 2010)
+
+  04 Jul 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +python-2.7.ebuild:
+  Version bump.
+
+  22 Jun 2010; Christian Faulhammer <fauli@gentoo.org>
+  python-2.6.5-r2.ebuild:
+  stable x86, bug 319723
+
+  04 Jun 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  python-3.1.2-r3.ebuild:
+  x86 stable wrt bug #320043
+
+  04 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  python-3.1.2-r3.ebuild:
+  Disable tests with USE="-threads" (bug #322755).
+
+  26 May 2010; Markos Chandras <hwoarang@gentoo.org> python-3.1.2-r3.ebuild:
+  Stable on amd64 wrt bug #320043
 
   25 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   python-2.4.6.ebuild, python-2.5.4-r4.ebuild, python-2.6.4-r1.ebuild,
