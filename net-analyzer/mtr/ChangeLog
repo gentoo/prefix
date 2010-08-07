@@ -1,6 +1,32 @@
 # ChangeLog for net-analyzer/mtr
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.90 2009/12/28 20:55:15 maekke Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-analyzer/mtr/ChangeLog,v 1.98 2010/07/24 15:36:40 ssuominen Exp $
+
+  24 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> mtr-0.79.ebuild:
+  ppc64 stable wrt #327985
+
+  24 Jul 2010; Raúl Porcel <armin76@gentoo.org> mtr-0.79.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #327985
+
+  17 Jul 2010; Markos Chandras <hwoarang@gentoo.org> mtr-0.79.ebuild:
+  Stable on amd64 wrt bug #327985
+
+  17 Jul 2010; Christian Faulhammer <fauli@gentoo.org> mtr-0.79.ebuild:
+  stable x86, bug 327985
+
+  14 Jul 2010; Jeroen Roovers <jer@gentoo.org> mtr-0.79.ebuild:
+  Stable for PPC (bug #327985).
+
+  14 Jul 2010; Jeroen Roovers <jer@gentoo.org> mtr-0.79.ebuild:
+  Stable for HPPA (bug #327985).
+
+  02 Jul 2010; Jeremy Olexa <darkside@gentoo.org> mtr-0.79.ebuild:
+  Fix suid/permission handling. Bug 296413, approved by pva
+
+*mtr-0.79 (15 Jun 2010)
+
+  15 Jun 2010; Jeroen Roovers <jer@gentoo.org> +mtr-0.79.ebuild:
+  Version bump thanks to Rafael G. Martins (bug #324037).
 
   28 Dec 2009; Markus Meier <maekke@gentoo.org> mtr-0.75.ebuild:
   x86 stable, bug #290113
