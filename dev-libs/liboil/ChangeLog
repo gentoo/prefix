@@ -1,6 +1,24 @@
 # ChangeLog for dev-libs/liboil
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.83 2010/04/16 14:18:14 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/liboil/ChangeLog,v 1.89 2010/07/08 01:26:48 ssuominen Exp $
+
+  08 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> liboil-0.3.17.ebuild:
+  ppc64 stable wrt #319969
+
+  19 Jun 2010; Raúl Porcel <armin76@gentoo.org> liboil-0.3.17.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #319969
+
+  25 May 2010; Pacho Ramos <pacho@gentoo.org> liboil-0.3.17.ebuild:
+  stable amd64, bug 319969
+
+  24 May 2010; <nixnut@gentoo.org> liboil-0.3.17.ebuild:
+  ppc stable #319969
+
+  21 May 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> liboil-0.3.17.ebuild:
+  x86 stable wrt bug #319969
+
+  20 May 2010; Jeroen Roovers <jer@gentoo.org> liboil-0.3.17.ebuild:
+  Stable for HPPA (bug #319969).
 
 *liboil-0.3.17 (16 Apr 2010)
 
