@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/libIDL-0.8.12.ebuild,v 1.8 2009/03/05 22:32:10 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libIDL/libIDL-0.8.14.ebuild,v 1.4 2010/08/02 21:42:47 maekke Exp $
 
 inherit eutils gnome2 autotools
 
@@ -9,7 +9,7 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="LGPL-2"
 SLOT="0"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~ppc-aix ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE=""
 
 RDEPEND=">=dev-libs/glib-2.4"
@@ -23,8 +23,8 @@ src_unpack() {
 	gnome2_src_unpack
 	epunt_cxx
 
-	epatch "${FILESDIR}"/${PN}-0.8.11-winnt.patch
-
+	epatch "${FILESDIR}"/${PN}-0.8.13-winnt.patch
+	epatch "${FILESDIR}"/${PN}-0.8.13-winnt-wrapped.patch
 	eautoreconf # required for winnt.
 }
 
