@@ -1,6 +1,12 @@
 # ChangeLog for media-gfx/fondu
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/fondu/ChangeLog,v 1.7 2010/05/10 12:33:06 phajdan.jr Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/fondu/ChangeLog,v 1.9 2010/06/26 13:36:13 nixnut Exp $
+
+  26 Jun 2010; <nixnut@gentoo.org> fondu-20060102.ebuild:
+  ppc stable #317247
+
+  24 May 2010; Pacho Ramos <pacho@gentoo.org> fondu-20060102.ebuild:
+  stable amd64, bug 317247
 
   10 May 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
   fondu-20060102.ebuild:
