@@ -1,6 +1,39 @@
 # ChangeLog for net-libs/libproxy
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.29 2010/05/11 21:21:13 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libproxy/ChangeLog,v 1.37 2010/07/15 16:19:15 jer Exp $
+
+  15 Jul 2010; Jeroen Roovers <jer@gentoo.org> libproxy-0.4.2.ebuild:
+  Marked ~hppa (bug #320429).
+
+  15 Jul 2010; Jeroen Roovers <jer@gentoo.org> libproxy-0.2.3-r3.ebuild:
+  Stable for HPPA (bug #314007).
+
+  06 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> libproxy-0.4.2.ebuild:
+  Keyword ~ppc64 wrt #320429
+
+  29 Jun 2010; Robin H. Johnson <robbat2@gentoo.org> libproxy-0.4.2.ebuild,
+  +files/libproxy-0.4.2-mozjs-search-order.patch:
+  Minor patch to compile when both 1.8 and 1.9 slots of xulrunner are
+  present.
+
+  31 May 2010; Gilles Dartiguelongue <eva@gentoo.org> libproxy-0.4.2.ebuild:
+  Preserve old lib, bug #320511. Install perl binding in vendor directory,
+  bug #321807. Improve python binding handling, bug #315319.
+
+  23 May 2010; <nixnut@gentoo.org> libproxy-0.2.3-r3.ebuild:
+  ppc stable #314007
+
+*libproxy-0.4.2 (21 May 2010)
+
+  21 May 2010; Olivier Crête <tester@gentoo.org> -libproxy-0.4.1.ebuild,
+  +libproxy-0.4.2.ebuild:
+  Version bump
+
+*libproxy-0.4.1 (18 May 2010)
+
+  18 May 2010; Olivier Crête <tester@gentoo.org> +libproxy-0.4.1.ebuild,
+  metadata.xml:
+  Version bump, bug #318771, ebuild contributed by Nicolas Dufresne
 
   11 May 2010; Brent Baude <ranger@gentoo.org> libproxy-0.2.3-r3.ebuild:
   stable ppc64, bug 314007

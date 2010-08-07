@@ -10,6 +10,7 @@
 		<pkg>net-libs/webkit-gtk</pkg></flag>
 	<flag name='xulrunner'>Enable support for reading proxy settings from
 		<pkg>net-libs/xulrunner</pkg></flag>
+	<flag name='vala'>Enable support for the Vala programming language</flag>
 </use>
 </pkgmetadata>
 
