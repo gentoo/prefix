@@ -1,8 +1,11 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.18.1-r1.ebuild,v 1.2 2009/06/11 20:36:16 sbriesen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/exiv2/exiv2-0.20.ebuild,v 1.1 2010/07/20 20:43:32 sbriesen Exp $
 
-inherit eutils multilib toolchain-funcs
+EAPI="2"
+PYTHON_DEPEND="2"
+
+inherit eutils multilib toolchain-funcs python
 
 DESCRIPTION="EXIF and IPTC metadata C++ library and command line utility"
 HOMEPAGE="http://www.exiv2.org/"
@@ -10,7 +13,7 @@ SRC_URI="http://www.exiv2.org/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
 IUSE="contrib doc examples nls unicode xmp zlib"
 IUSE_LINGUAS="de es fi fr pl ru sk"
 IUSE="${IUSE} $(printf 'linguas_%s ' ${IUSE_LINGUAS})"
@@ -24,7 +27,6 @@ RDEPEND="
 DEPEND="${RDEPEND}
 	contrib? ( >=dev-libs/boost-1.37 )
 	doc? (
-		dev-lang/python
 		app-doc/doxygen
 		dev-libs/libxslt
 		dev-util/pkgconfig
@@ -33,19 +35,16 @@ DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )
 "
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	if use unicode; then
 		for i in doc/cmd.txt; do
-			echo ">>> Converting "${i}" to UTF-8"
+			einfo "Converting "${i}" to UTF-8"
 			iconv -f LATIN1 -t UTF-8 "${i}" > "${i}~" && mv -f "${i}~" "${i}" || rm -f "${i}~"
 		done
 	fi
 
 	if use doc; then
-		echo ">>> Updating doxygen config"
+		einfo "Updating doxygen config"
 		doxygen 2>&1 >/dev/null -u config/Doxyfile
 	fi
 
@@ -56,9 +55,12 @@ src_unpack() {
 			-e 's:/usr/local/lib/lib:-l:g' -e 's:-gcc..-mt-._..\.a::g' \
 			contrib/organize/boost.mk
 	fi
+
+	# fix python shebang
+	python_convert_shebangs -r 2 doc/templates
 }
 
-src_compile() {
+src_configure() {
 	local myconf="$(use_enable nls) $(use_enable xmp)"
 	use zlib || myconf="${myconf} --without-zlib"  # plain 'use_with' fails
 
@@ -68,6 +70,9 @@ src_compile() {
 	fi
 
 	econf ${myconf}
+}
+
+src_compile() {
 	# Needed for Solaris because /bin/sh is not a bash, bug #245647
 	sed -i -e "s:/bin/sh:${EPREFIX}/bin/sh:" src/Makefile || die "sed failed"
 	emake || die "emake failed"
