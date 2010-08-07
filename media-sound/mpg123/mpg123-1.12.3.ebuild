@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.12.2.ebuild,v 1.1 2010/06/21 11:25:41 chainsaw Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/mpg123/mpg123-1.12.3.ebuild,v 1.1 2010/07/24 10:27:54 ssuominen Exp $
 
 EAPI=2
 inherit toolchain-funcs libtool
