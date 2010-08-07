@@ -1,6 +1,34 @@
 # ChangeLog for sys-fs/e2fsprogs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.209 2010/03/20 21:00:50 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/e2fsprogs/ChangeLog,v 1.217 2010/07/08 15:46:06 ranger Exp $
+
+  08 Jul 2010; Brent Baude <ranger@gentoo.org> e2fsprogs-1.41.11.ebuild:
+  Marking e2fsprogs-1.41.11 for sec bug 323893
+
+  04 Jul 2010; Raúl Porcel <armin76@gentoo.org> e2fsprogs-1.41.11.ebuild:
+  sparc stable wrt #323893
+
+*e2fsprogs-1.41.12 (03 Jul 2010)
+
+  03 Jul 2010; Mike Frysinger <vapier@gentoo.org> +e2fsprogs-1.41.12.ebuild:
+  Version bump #326655 by Sebastian Koehler.
+
+  03 Jul 2010; Mike Frysinger <vapier@gentoo.org> e2fsprogs-1.41.11.ebuild:
+  Mark alpha/arm/ia64/s390/sh stable #323893.
+
+  27 Jun 2010; <nixnut@gentoo.org> e2fsprogs-1.41.11.ebuild:
+  ppc stable #323893
+
+  23 Jun 2010; Christoph Mende <angelos@gentoo.org>
+  e2fsprogs-1.41.11.ebuild:
+  Stable on amd64 wrt bug #323893
+
+  21 Jun 2010; Jeroen Roovers <jer@gentoo.org> e2fsprogs-1.41.11.ebuild:
+  Stable for HPPA (bug #322709).
+
+  14 Jun 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  e2fsprogs-1.41.11.ebuild:
+  x86 stable wrt bug #323893
 
 *e2fsprogs-1.41.11 (20 Mar 2010)
 
