@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.3.3.ebuild,v 1.6 2010/06/28 16:09:53 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-portage/layman/layman-1.4.1.ebuild,v 1.1 2010/07/09 18:52:25 sping Exp $
 
 EAPI="2"
 PYTHON_DEPEND="2:2.5"
@@ -8,8 +8,8 @@ SUPPORT_PYTHON_ABIS="1"
 
 inherit eutils distutils prefix
 
-DESCRIPTION="A python script for retrieving gentoo overlays."
-HOMEPAGE="http://layman.sourceforge.net"
+DESCRIPTION="Tool to manage Gentoo overlays."
+HOMEPAGE="http://layman.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz"
 
 LICENSE="GPL-2"
