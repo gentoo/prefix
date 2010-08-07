@@ -9,12 +9,6 @@
   <name>Paul de Vrieze</name>
   <description>Making db4 work with gentoo</description>
 </maintainer>
-<maintainer restrict="&gt;=sys-libs/db-3.2.9-r5">
-  <!-- Helping to maintain db 4, especially the newer versions -->
-  <email>caleb@gentoo.org</email>
-  <name>Caleb Tennis</name>
-</maintainer>
-
 
 <longdescription>The Berkeley Database (Berkeley DB) is a programmatic toolkit
 that provides embedded database support for both traditional and client/server

@@ -1,6 +1,15 @@
 # ChangeLog for sys-libs/db
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.307 2010/05/27 01:08:56 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/db/ChangeLog,v 1.310 2010/08/01 21:47:48 hwoarang Exp $
+
+  01 Aug 2010; Markos Chandras <hwoarang@gentoo.org> db-4.8.30.ebuild:
+  Stable on amd64 wrt bug #328609
+
+  17 Jul 2010; Christian Faulhammer <fauli@gentoo.org> db-4.8.30.ebuild:
+  stable x86, bug 328609
+
+  02 Jun 2010; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove caleb from metadata.xml (#317071)
 
   27 May 2010; Robin H. Johnson <robbat2@gentoo.org> db-4.4.20_p4.ebuild,
   db-4.4.20_p4-r1.ebuild:
