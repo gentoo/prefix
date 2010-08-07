@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.22.5.ebuild,v 1.5 2010/07/07 19:17:34 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/glib/glib-2.24.1-r1.ebuild,v 1.5 2010/08/01 11:04:08 fauli Exp $
 
 EAPI="2"
 
-inherit gnome.org libtool eutils flag-o-matic autotools
+inherit autotools gnome.org libtool eutils flag-o-matic
 
 DESCRIPTION="The GLib library of C routines"
 HOMEPAGE="http://www.gtk.org/"
@@ -20,15 +20,15 @@ RDEPEND="virtual/libiconv
 	fam? ( virtual/fam )"
 DEPEND="${RDEPEND}
 	>=dev-util/pkgconfig-0.16
-	x86-winnt? ( >=dev-util/gtk-doc-am-1.13 )
-	x86-interix? ( 
-		sys-libs/itx-bind
-		>=dev-util/gtk-doc-am-1.13 
-	)
+	>=sys-devel/gettext-0.11
+	>=dev-util/gtk-doc-am-1.11
+	x86-interix? ( sys-libs/itx-bind )
 	doc? (
 		>=dev-libs/libxslt-1.0
-		>=dev-util/gtk-doc-1.13
+		>=dev-util/gtk-doc-1.11
 		~app-text/docbook-xml-dtd-4.1.2 )"
+# eautoreconf needs gtk-doc-am
+# XXX: Consider adding test? ( sys-devel/gdb ); assert-msg-test tries to use it
 
 src_prepare() {
 	if use ppc64 && use hardened ; then
@@ -55,7 +55,12 @@ src_prepare() {
 	# Fix gmodule issues on fbsd; bug #184301
 	epatch "${FILESDIR}"/${PN}-2.12.12-fbsd.patch
 
-	epatch "${FILESDIR}"/${PN}-2.22.5-nothreads.patch
+	# Don't check for python, hence removing the build-time python dep.
+	# We remove the gdb python scripts in src_install due to bug 291328
+	epatch "${FILESDIR}/${PN}-2.24-punt-python-check.patch"
+
+	# Fix test failure when upgrading from 2.22 to 2.24, upstream bug 621368
+	epatch "${FILESDIR}/${PN}-2.24-assert-test-failure.patch"
 
 	# Do not try to remove files on live filesystem, bug #XXX ?
 	sed 's:^\(.*"/desktop-app-info/delete".*\):/*\1*/:' \
@@ -63,6 +68,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-2.16.3-macos-inline.patch
 	epatch "${FILESDIR}"/${PN}-2.18.4-compile-warning-sol64.patch
+	epatch "${FILESDIR}"/${PN}-2.20.3-mint.patch
 	# configure script lets itself being fooled by bind 8 stuff
 	[[ ${CHOST} == *-darwin[678] ]] && append-libs -lresolv
 
@@ -80,7 +86,7 @@ src_prepare() {
 		# be useful for others too, requires eautoreconf
 		epatch "${FILESDIR}"/${PN}-2.18.3-iconv.patch
 		epatch "${FILESDIR}"/${PN}-2.20.5-winnt-exeext.patch
-		AT_M4DIR="m4macros" eautoreconf
+#		AT_M4DIR="m4macros" eautoreconf
 	fi
 
 	if [[ ${CHOST} == *-interix* ]]; then
@@ -99,10 +105,14 @@ src_prepare() {
 		append-flags "-I${EPREFIX}/usr/include/bind"
 		append-ldflags "-L${EPREFIX}/usr/lib/bind"
 
-		AT_M4DIR="m4macros" eautoreconf
+#		AT_M4DIR="m4macros" eautoreconf
 	fi
 
-	elibtoolize
+	# Needed for the punt-python-check patch.
+	# Also needed to prevent croscompile failures, see bug #267603
+	eautoreconf
+
+	[[ ${CHOST} == *-freebsd* ]] && elibtoolize
 }
 
 src_configure() {
@@ -132,12 +142,7 @@ src_configure() {
 
 	local mythreads=posix
 
-	if [[ ${CHOST} == *-mint* ]] ; then
-		myconf="${myconf} --disable-threads"
-	else
-		myconf="${myconf} --with-threads=${mythreads}"
-	fi
-
+	[[ ${CHOST} == *-mint* ]] && append-libs -lpthread
 	[[ ${CHOST} == *-winnt* ]] && mythreads=win32
 	# without this, AIX defines EEXIST and ENOTEMPTY to the same value
 	[[ ${CHOST} == *-aix* ]] && append-cppflags -D_LINUX_SOURCE_COMPAT
@@ -153,11 +158,15 @@ src_configure() {
 		  --enable-static           \
 		  --enable-regex            \
 		  --with-pcre=internal      \
+		  --with-threads=${mythreads} \
 		  --with-xml-catalog="${EPREFIX}"/etc/xml/catalog
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "Installation failed"
+
+	# Don't install gdb python macros, bug 291328
+	rm -rf "${ED}/usr/share/gdb/" "${ED}/usr/share/glib-2.0/gdb/"
 
 	dodoc AUTHORS ChangeLog* NEWS* README || die "dodoc failed"
 }
