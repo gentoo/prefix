@@ -1,6 +1,45 @@
 # ChangeLog for gnome-base/gnome-menus
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.141 2010/05/04 16:16:44 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/ChangeLog,v 1.149 2010/08/01 11:33:14 fauli Exp $
+
+  01 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
+  gnome-menus-2.30.2-r1.ebuild:
+  x86 stable, bug 324077
+
+  31 Jul 2010; Pacho Ramos <pacho@gentoo.org> gnome-menus-2.30.2-r1.ebuild:
+  amd64 stable, bug 324077
+
+  20 Jul 2010; Jeroen Roovers <jer@gentoo.org> gnome-menus-2.24.2.ebuild,
+  gnome-menus-2.26.2.ebuild, gnome-menus-2.28.0.1.ebuild,
+  gnome-menus-2.30.2.ebuild, gnome-menus-2.30.2-r1.ebuild:
+  Drop HPPA keywording (bug #324511).
+
+*gnome-menus-2.30.2-r1 (05 Jul 2010)
+
+  05 Jul 2010; Pacho Ramos <pacho@gentoo.org> +gnome-menus-2.30.2-r1.ebuild,
+  +files/gnome-menus-2.30.2-XDG_MENU_PREFIX-fix.patch:
+  Revision bump to respect XDG_MENU_PREFIX when writing user menu file, bug
+  #291279 (thanks to netfab for notifying upstream fix).
+
+  23 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  gnome-menus-2.20.3.ebuild, gnome-menus-2.24.2.ebuild,
+  gnome-menus-2.26.2.ebuild, gnome-menus-2.28.0.1.ebuild,
+  gnome-menus-2.30.2.ebuild:
+  Delete deprecation warnings and fix usage of python_mod_cleanup (bug #313447).
+
+*gnome-menus-2.30.2 (22 Jun 2010)
+
+  22 Jun 2010; Pacho Ramos <pacho@gentoo.org> -gnome-menus-2.30.0.ebuild,
+  +gnome-menus-2.30.2.ebuild:
+  Version bump with translation updates
+
+*gnome-menus-2.30.0 (13 Jun 2010)
+
+  13 Jun 2010; Pacho Ramos <pacho@gentoo.org> +gnome-menus-2.30.0.ebuild:
+  Add new version for Gnome 2.30.
+
+  04 Jun 2010; Markus Meier <maekke@gentoo.org> gnome-menus-2.28.0.1.ebuild:
+  x86 stable, bug #314899
 
   03 May 2010; Olivier Crête <tester@gentoo.org>
   gnome-menus-2.28.0.1.ebuild:

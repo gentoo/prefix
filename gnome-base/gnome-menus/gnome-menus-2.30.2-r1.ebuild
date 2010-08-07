@@ -1,8 +1,9 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.26.2.ebuild,v 1.13 2010/07/20 01:51:05 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gnome-menus/gnome-menus-2.30.2-r1.ebuild,v 1.4 2010/08/01 11:33:14 fauli Exp $
 
-inherit eutils gnome2 python autotools
+EAPI="2"
+inherit eutils gnome2 python
 
 DESCRIPTION="The GNOME menu system, implementing the F.D.O cross-desktop spec"
 HOMEPAGE="http://www.gnome.org"
@@ -14,7 +15,7 @@ IUSE="debug python"
 
 RDEPEND=">=dev-libs/glib-2.18.0
 	python? (
-		>=dev-lang/python-2.4.4-r5
+		>=virtual/python-2.4.4-r5
 		dev-python/pygtk )"
 DEPEND="${RDEPEND}
 	sys-devel/gettext
@@ -25,29 +26,39 @@ DOCS="AUTHORS ChangeLog HACKING NEWS README"
 
 pkg_setup() {
 	# Do NOT compile with --disable-debug/--enable-debug=no
-	# FIXME: fix autofoo and report upstream
-	if use debug ; then
-		G2CONF="${G2CONF} --enable-debug=yes"
+	# It disables api usage checks
+	if ! use debug ; then
+		G2CONF="${G2CONF} --enable-debug=minimum"
 	fi
 
-	G2CONF="${G2CONF} $(use_enable python) --disable-static"
+	G2CONF="${G2CONF} \
+		$(use_enable python) \
+		--disable-static \
+		--disable-introspection"
 }
 
-src_unpack() {
-	gnome2_src_unpack
+src_prepare() {
+	gnome2_src_prepare
 
 	# Don't show KDE standalone settings desktop files in GNOME others menu
 	epatch "${FILESDIR}/${PN}-2.18.3-ignore_kde_standalone.patch"
 
+	# Respect XDG_MENU_PREFIX when writing user menu file, bug #291279
+	epatch "${FILESDIR}/${P}-XDG_MENU_PREFIX-fix.patch"
+
+	# Fix intltoolize broken file, see upstream #577133
+	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
+		|| die "sed failed"
+
 	# disable pyc compiling
 	mv py-compile py-compile-disabled
 	ln -s $(type -P true) py-compile
-
-	eautoreconf # need new libtool for interix
 }
 
 src_install() {
 	gnome2_src_install
+
+	find "${ED}" -name "*.la" -delete || die "remove of la files failed"
 
 	# Prefix menu, bug #256614
 	mv "${ED}"/etc/xdg/menus/applications.menu \
