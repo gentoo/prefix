@@ -1,13 +1,13 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.13.ebuild,v 1.4 2009/09/23 17:38:25 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-sound/gsm/gsm-1.0.13.ebuild,v 1.5 2010/07/29 17:35:54 ssuominen Exp $
 
 EAPI=2
 inherit eutils flag-o-matic multilib toolchain-funcs versionator
 
 DESCRIPTION="Lossy speech compression library and tool."
-HOMEPAGE="http://kbs.cs.tu-berlin.de/~jutta/toast.html"
-SRC_URI="http://www.cs.tu-berlin.de/~jutta/${PN}/${P}.tar.gz"
+HOMEPAGE="http://packages.qa.debian.org/libg/libgsm.html"
+SRC_URI="mirror://gentoo/${P}.tar.gz"
 
 LICENSE="gsm"
 SLOT="0"
