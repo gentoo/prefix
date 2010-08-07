@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.17.2.ebuild,v 1.6 2010/07/24 16:03:07 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/util-linux/util-linux-2.18-r1.ebuild,v 1.1 2010/07/19 21:50:36 vapier Exp $
 
 EAPI="2"
 
@@ -19,7 +19,7 @@ if [[ ${PV} == "9999" ]] ; then
 	#KEYWORDS=""
 else
 	SRC_URI="mirror://kernel/linux/utils/util-linux-ng/v${PV:0:4}/${MY_P}.tar.bz2
-		loop-aes? ( http://loop-aes.sourceforge.net/updates/util-linux-ng-2.17.1-20100308.diff.bz2 )"
+		loop-aes? ( http://loop-aes.sourceforge.net/updates/util-linux-ng-2.18-20100706.diff.bz2 )"
 # this works on OSX, but cannot be right at this moment
 #	KEYWORDS="~amd64-linux ~x86-linux"
 fi
@@ -48,6 +48,9 @@ src_prepare() {
 		use loop-aes && epatch "${WORKDIR}"/util-linux-ng-*.diff
 	fi
 	use uclibc && sed -i -e s/versionsort/alphasort/g -e s/strverscmp.h/dirent.h/g mount/lomount.c
+	epatch "${FILESDIR}"/${P}-ncursesw.patch
+	epatch "${FILESDIR}"/${P}-slang.patch #326373
+	epatch "${FILESDIR}"/${P}-cfdisk-string-len.patch #328959
 	if use prefix ; then
 		epatch "${FILESDIR}"/${PN}-2.17.1-non-linux-shlibs.patch
 		eautoreconf
@@ -92,7 +95,6 @@ src_configure() {
 			--disable-mesg
 			--disable-partx
 			--disable-raw
-			--disable-rdev
 			--disable-rename
 			--disable-reset
 			--disable-login-utils
@@ -117,7 +119,6 @@ src_configure() {
 			--disable-mesg
 			--enable-partx
 			--enable-raw
-			--enable-rdev
 			--enable-rename
 			--disable-reset
 			--disable-login-utils
@@ -131,6 +132,7 @@ src_configure() {
 
 	#	--with-fsprobe=blkid \
 	econf \
+		--enable-fs-paths-extra=/usr/sbin \
 		$(use_enable nls) \
 		$(use unicode || echo --with-ncurses) \
 		$(use_with slang) \
