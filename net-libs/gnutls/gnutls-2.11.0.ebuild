@@ -1,12 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.9.10.ebuild,v 1.1 2010/04/23 00:02:10 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/gnutls-2.11.0.ebuild,v 1.1 2010/07/22 20:13:14 arfrever Exp $
 
 EAPI="3"
 
 inherit autotools libtool
 
-DESCRIPTION="A TLS 1.0 and SSL 3.0 implementation for the GNU project"
+DESCRIPTION="A TLS 1.2 and SSL 3.0 implementation for the GNU project"
 HOMEPAGE="http://www.gnutls.org/"
 
 if [[ "${PV}" == *pre* ]]; then
@@ -18,7 +18,8 @@ else
 		#SRC_URI="ftp://ftp.gnu.org/pub/gnu/${PN}/${P}.tar.bz2"
 		SRC_URI="mirror://gnu/${PN}/${P}.tar.bz2"
 	else
-		SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.bz2"
+		#SRC_URI="ftp://alpha.gnu.org/gnu/${PN}/${P}.tar.bz2"
+		SRC_URI="ftp://ftp.gnutls.org/pub/${PN}/devel/${P}.tar.bz2"
 	fi
 	unset MINOR_VERSION
 fi
