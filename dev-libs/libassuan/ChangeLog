@@ -1,6 +1,30 @@
 # ChangeLog for dev-libs/libassuan
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.63 2010/01/11 18:45:33 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libassuan/ChangeLog,v 1.70 2010/07/21 16:54:55 ssuominen Exp $
+
+  21 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libassuan-2.0.0.ebuild:
+  ppc64 stable wrt #320037
+
+  19 Jul 2010; Markus Meier <maekke@gentoo.org> libassuan-2.0.0.ebuild:
+  arm stable, bug #320037
+
+  06 Jul 2010; Jeroen Roovers <jer@gentoo.org> libassuan-2.0.0.ebuild:
+  Stable for HPPA (bug #320037).
+
+  27 Jun 2010; Christian Faulhammer <fauli@gentoo.org>
+  libassuan-2.0.0.ebuild:
+  stable x86, bug 320037
+
+  26 May 2010; Markos Chandras <hwoarang@gentoo.org> libassuan-2.0.0.ebuild:
+  Stable on amd64 wrt bug #320037
+
+  24 May 2010; <nixnut@gentoo.org> libassuan-2.0.0.ebuild:
+  ppc stable #320037
+
+  19 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  libassuan-2.0.0.ebuild:
+  Add "static-libs" USE flag (bug #316065).
 
 *libassuan-2.0.0 (11 Jan 2010)
 
