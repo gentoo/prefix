@@ -1,6 +1,46 @@
 # ChangeLog for www-servers/nginx
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.257 2010/05/03 19:34:36 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/nginx/ChangeLog,v 1.265 2010/07/30 07:18:58 dev-zero Exp $
+
+*nginx-0.8.47 (29 Jul 2010)
+
+  29 Jul 2010; Tiziano Müller <dev-zero@gentoo.org>
+  -nginx-0.8.36-r1.ebuild, -nginx-0.8.38.ebuild, -nginx-0.8.38-r1.ebuild,
+  -nginx-0.8.42.ebuild, +nginx-0.8.47.ebuild:
+  Version bump. Dropped old.
+
+*nginx-0.8.46 (20 Jul 2010)
+
+  20 Jul 2010; Tiziano Müller <dev-zero@gentoo.org> +nginx-0.8.46.ebuild:
+  Version bump (bug #327951, thanks to George), also bumped passenger to
+  2.2.15 and headers_more to 0.13.
+
+*nginx-0.8.42 (02 Jul 2010)
+
+  02 Jul 2010; Tiziano Müller <dev-zero@gentoo.org> +nginx-0.8.42.ebuild:
+  Version bump (bug #323151, thanks to Johan Bergström).
+
+*nginx-0.8.38-r1 (04 Jun 2010)
+
+  04 Jun 2010; Tiziano Müller <dev-zero@gentoo.org>
+  +nginx-0.8.38-r1.ebuild:
+  Bumped uwsgi-module.
+
+  04 Jun 2010; Benedikt Böhm <hollow@gentoo.org> nginx-0.8.38.ebuild:
+  bump passenger wrt #322105
+
+  30 May 2010; Benedikt Böhm <hollow@gentoo.org> nginx-0.8.38.ebuild:
+  add split_clients module support
+
+*nginx-0.8.38 (30 May 2010)
+
+  30 May 2010; Benedikt Böhm <hollow@gentoo.org> +nginx-0.8.38.ebuild:
+  version bump wrt #321681
+
+  29 May 2010; Benedikt Böhm <hollow@gentoo.org> nginx-0.7.65-r1.ebuild,
+  -nginx-0.8.34-r1.ebuild, -nginx-0.8.35.ebuild, -nginx-0.8.36.ebuild,
+  nginx-0.8.36-r1.ebuild:
+  add vim-syntax support wrt #289926
 
 *nginx-0.8.36-r1 (03 May 2010)
 
