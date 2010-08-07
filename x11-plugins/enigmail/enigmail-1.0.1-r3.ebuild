@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-1.0.1-r3.ebuild,v 1.6 2010/04/23 19:06:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-1.0.1-r3.ebuild,v 1.7 2010/06/13 02:27:59 nirbheek Exp $
 
 WANT_AUTOCONF="2.1"
 EAPI="2"
@@ -22,7 +22,7 @@ SLOT="0"
 LICENSE="MPL-1.1 GPL-2"
 IUSE="system-sqlite"
 
-DEPEND=">=mail-client/mozilla-thunderbird-3.0[system-sqlite=]"
+DEPEND=">=mail-client/thunderbird-3.0[system-sqlite=]"
 RDEPEND="${DEPEND}
 	system-sqlite? ( >=dev-db/sqlite-3.6.22-r2[fts3,secure-delete] )
 	|| (

@@ -1,6 +1,76 @@
 # ChangeLog for x11-plugins/enigmail
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.183 2010/04/23 19:06:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/ChangeLog,v 1.198 2010/08/01 16:24:22 armin76 Exp $
+
+  01 Aug 2010; Raúl Porcel <armin76@gentoo.org> enigmail-1.1.2-r2.ebuild:
+  alpha/ia64/sparc stable wrt #329279
+
+*enigmail-1.1.2-r2 (31 Jul 2010)
+
+  31 Jul 2010; Jory A. Pratt <anarchy@gentoo.org> +enigmail-1.1.2-r2.ebuild:
+  Fix build for sparc, update patchset, install to /usr/$(get_libdir)/${PN}
+
+  26 Jul 2010; Markus Meier <maekke@gentoo.org> enigmail-1.1.2-r1.ebuild:
+  amd64 stable, bug #329279
+
+  25 Jul 2010; Lars Wendler <polynomial-c@gentoo.org>
+  enigmail-1.1.2-r1.ebuild:
+  Disabled sound support in 1.1.x as well. Thanks to Dirk Sondermann for
+  reporting this in bug #329831.
+
+  23 Jul 2010; Jeroen Roovers <jer@gentoo.org> enigmail-1.1.2-r1.ebuild:
+  Stable for PPC (bug #329279).
+
+  23 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  enigmail-1.1.2-r1.ebuild:
+  stable x86, security bug 329279
+
+  17 Jul 2010; Raúl Porcel <armin76@gentoo.org> enigmail-1.1.2-r1.ebuild:
+  Add ~arm
+
+*enigmail-1.1.2-r1 (14 Jul 2010)
+
+  14 Jul 2010; <anarchy@gentoo.org> +files/75_enigmai-js-fixup.patch,
+  -enigmail-1.1.ebuild, -enigmail-1.1.1.ebuild, -enigmail-1.1.2.ebuild,
+  +enigmail-1.1.2-r1.ebuild:
+  Fix bug #327099, issue connecting to gpg-agent for some
+
+  11 Jul 2010; Nirbheek Chauhan <nirbheek@gentoo.org> enigmail-1.1.2.ebuild,
+  +files/thunderbird-xul-1.9.2-arm-fixes.patch:
+  Add patch for ARM OS detection, bug 327783
+
+*enigmail-1.1.2 (04 Jul 2010)
+
+  04 Jul 2010; <anarchy@gentoo.org> +enigmail-1.1.2.ebuild:
+  version bump
+
+*enigmail-1.1.1 (26 Jun 2010)
+
+  26 Jun 2010; <anarchy@gentoo.org> +enigmail-1.1.1.ebuild:
+  Fix for decrypting messages
+
+  21 Jun 2010; <anarchy@gentoo.org> enigmail-1.1.ebuild:
+  Update to build with rc2 source
+
+*enigmail-1.1 (18 Jun 2010)
+
+  18 Jun 2010; <anarchy@gentoo.org> +enigmail-1.1.ebuild:
+  Version bump for latest tb-3.1
+
+  13 Jun 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  enigmail-1.0.1-r3.ebuild:
+  pkgmove from mozilla-thunderbird -> thunderbird
+
+  13 Jun 2010; Nirbheek Chauhan <nirbheek@gentoo.org>
+  -files/0.95.0-replytolist.patch, -enigmail-0.94.4.ebuild,
+  -enigmail-0.95.7-r5.ebuild, -files/50_enigmail_no_upgrade.patch,
+  -enigmail-0.96.0-r1.ebuild, -enigmail-1.0.1-r1.ebuild,
+  -enigmail-1.0.1-r2.ebuild, -files/firefox-1.5-visibility-check.patch,
+  -files/firefox-1.5-visibility-fix.patch,
+  -files/50_enigmail_no_upgrade-1.patch:
+  Remove stale versions of enigmail that build against versions of
+  thunderbird no longer in-tree. This drops ~mips, but that doesn't matter
+  since thunderbird isn't keyworded on mips anyway.
 
   23 Apr 2010; Raúl Porcel <armin76@gentoo.org> enigmail-1.0.1-r3.ebuild:
   alpha/ia64/sparc stable wrt #313003

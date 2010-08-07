@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-1.0.1-r1.ebuild,v 1.6 2010/03/14 19:24:35 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-plugins/enigmail/enigmail-1.1.2-r2.ebuild,v 1.2 2010/08/01 16:24:22 armin76 Exp $
 
 WANT_AUTOCONF="2.1"
 EAPI="2"
@@ -8,21 +8,22 @@ EAPI="2"
 inherit flag-o-matic toolchain-funcs eutils mozconfig-3 makeedit multilib mozextension autotools
 MY_P="${P/_beta/b}"
 EMVER="${PV}"
-TBVER="3.0.1"
-PATCH="mozilla-thunderbird-3.0-patches-0.3"
+TBVER="3.1.1"
+PATCH="thunderbird-3.1-patches-0.2"
 
 DESCRIPTION="GnuPG encryption plugin for thunderbird."
 HOMEPAGE="http://enigmail.mozdev.org"
+REL_URI="ftp://ftp.mozilla.org/pub/mozilla.org/thunderbird/nightly/"
 SRC_URI="http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/${TBVER}/source/thunderbird-${TBVER}.source.tar.bz2
 	http://www.mozilla-enigmail.org/download/source/${PN}-${EMVER}.tar.gz
-	http://dev.gentoo.org/~anarchy/dist/${PATCH}.tar.bz2"
+	http://dev.gentoo.org/~anarchy/mozilla/patchsets/${PATCH}.tar.bz2"
 
 KEYWORDS="~amd64-linux ~x86-linux"
 SLOT="0"
 LICENSE="MPL-1.1 GPL-2"
 IUSE="system-sqlite"
 
-DEPEND=">=mail-client/mozilla-thunderbird-3.0[system-sqlite=]"
+DEPEND=">=mail-client/thunderbird-3.1.1-r1[system-sqlite=]"
 RDEPEND="${DEPEND}
 	system-sqlite? ( >=dev-db/sqlite-3.6.22-r2[fts3,secure-delete] )
 	|| (
@@ -36,7 +37,7 @@ RDEPEND="${DEPEND}
 		=app-crypt/gnupg-1.4*
 	)"
 
-S="${WORKDIR}"/comm-1.9.1
+S="${WORKDIR}"/comm-1.9.2
 
 pkg_setup() {
 	# EAPI=2 ensures they are set properly.
@@ -51,7 +52,6 @@ src_unpack() {
 
 src_prepare(){
 	# Apply our patches
-	EPATCH_EXCLUDE="106-bz466250_att349521_fix_ftbfs_with_cairo_fb.patch" \
 	EPATCH_SUFFIX="patch" \
 	EPATCH_FORCE="yes" \
 	epatch "${WORKDIR}"
@@ -71,12 +71,13 @@ src_prepare(){
 
 	# Fix installation of enigmail.js
 	epatch "${FILESDIR}"/70_enigmail-fix.patch
+	epatch "${FILESDIR}"/75_enigmai-js-fixup.patch
 
 	eautoreconf
 }
 
 src_configure() {
-	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/mozilla-thunderbird"
+	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/thunderbird"
 
 	####################################
 	#
@@ -92,10 +93,13 @@ src_configure() {
 	mozconfig_annotate '' \
 		--with-system-nspr \
 		--with-system-nss \
-		--enable-system-sqlite \
+		--disable-wave \
+		--disable-ogg \
 		--with-default-mozilla-five-home="${EPREFIX}"${MOZILLA_FIVE_HOME} \
 		--with-user-appdir=.thunderbird \
-		--enable-application=mail
+		--enable-application=mail \
+		--disable-necko-wifi \
+		--disable-libnotify
 
 	mozconfig_use_enable system-sqlite
 
@@ -140,7 +144,7 @@ src_compile() {
 }
 
 src_install() {
-	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/mozilla-thunderbird"
+	declare MOZILLA_FIVE_HOME="/usr/$(get_libdir)/thunderbird"
 	declare emid
 
 	cd "${T}"
