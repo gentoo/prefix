@@ -1,6 +1,35 @@
 # ChangeLog for www-apps/trac
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.99 2010/04/16 15:26:38 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/ChangeLog,v 1.107 2010/07/29 18:46:59 hwoarang Exp $
+
+  29 Jul 2010; Markos Chandras <hwoarang@gentoo.org> trac-0.12.ebuild:
+  Stable on amd64 wrt bug #329155
+
+  22 Jul 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> trac-0.12.ebuild:
+  x86 stable wrt bug #329155
+
+  22 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  trac-0.11.7.ebuild, trac-0.12.ebuild:
+  dev-util/subversion renamed to dev-vcs/subversion.
+
+  14 Jun 2010; Dirkjan Ochtman <djc@gentoo.org> trac-0.12.ebuild:
+  Forgot to bump Genshi dependency.
+
+*trac-0.12 (14 Jun 2010)
+
+  14 Jun 2010; Dirkjan Ochtman <djc@gentoo.org> +trac-0.12.ebuild,
+  metadata.xml:
+  Version bump to 0.12.
+
+  28 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  trac-0.11.7.ebuild:
+  Set SUPPORT_PYTHON_ABIS.
+
+  28 May 2010; Markus Meier <maekke@gentoo.org> trac-0.11.7.ebuild:
+  x86 stable, bug #315153
+
+  23 May 2010; Pacho Ramos <pacho@gentoo.org> trac-0.11.7.ebuild:
+  stable amd64, bug 315153
 
   16 Apr 2010; Brent Baude <ranger@gentoo.org> trac-0.11.7.ebuild:
   stable ppc, bug 315153

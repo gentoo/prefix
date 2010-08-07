@@ -1,10 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.7.ebuild,v 1.2 2010/04/16 15:26:38 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.7.ebuild,v 1.6 2010/06/22 18:55:13 arfrever Exp $
 
-EAPI=2
+EAPI="2"
+PYTHON_DEPEND="2"
+SUPPORT_PYTHON_ABIS="1"
 
-inherit eutils distutils webapp
+inherit distutils eutils webapp
 
 MY_PV=${PV/_beta/b}
 MY_P=Trac-${MY_PV}
@@ -51,13 +53,15 @@ RDEPEND="
 		)
 	)
 	subversion? (
-		>=dev-util/subversion-1.4.2[python]
+		>=dev-vcs/subversion-1.4.2[python]
 	)
 	!www-apps/trac-webadmin
 	"
 DEPEND="${RDEPEND}"
+RESTRICT_PYTHON_ABIS="3.*"
 
 pkg_setup() {
+	python_pkg_setup
 	webapp_pkg_setup
 
 	if ! use mysql && ! use postgres && ! use sqlite; then
@@ -87,7 +91,7 @@ src_install() {
 
 	# tracd init script
 	newconfd "${FILESDIR}"/tracd.confd tracd
-	newinitd "${FILESDIR}"/tracd.initd.2 tracd
+	newinitd "${FILESDIR}"/tracd.initd tracd
 
 	if use cgi; then
 		cp cgi-bin/trac.cgi "${ED}"/${MY_CGIBINDIR#${EPREFIX}} || die
@@ -102,4 +106,9 @@ src_install() {
 	done
 
 	webapp_src_install
+}
+
+pkg_postinst() {
+	distutils_pkg_postinst
+	webapp_pkg_postinst
 }

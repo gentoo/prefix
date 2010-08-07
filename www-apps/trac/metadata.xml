@@ -6,4 +6,7 @@
     <email>djc@gentoo.org</email>
     <name>Dirkjan Ochtman</name>
   </maintainer>
+  <use>
+    <flag name="i18n">Enable support for i18n with dev-python/Babel</flag>
+  </use>
 </pkgmetadata>

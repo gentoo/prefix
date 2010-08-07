@@ -1,10 +1,12 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.11.6.ebuild,v 1.7 2010/02/08 08:36:10 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-apps/trac/trac-0.12.ebuild,v 1.5 2010/07/29 18:46:59 hwoarang Exp $
 
-EAPI=2
+EAPI="2"
+PYTHON_DEPEND="2"
+SUPPORT_PYTHON_ABIS="1"
 
-inherit eutils distutils webapp
+inherit distutils eutils webapp
 
 MY_PV=${PV/_beta/b}
 MY_P=Trac-${MY_PV}
@@ -15,7 +17,7 @@ HOMEPAGE="http://trac.edgewall.com/"
 LICENSE="BSD"
 SRC_URI="http://ftp.edgewall.com/pub/trac/${MY_P}.tar.gz"
 
-IUSE="cgi fastcgi mysql postgres +sqlite subversion"
+IUSE="cgi fastcgi i18n mysql postgres +sqlite subversion"
 
 KEYWORDS="~amd64-linux ~x86-linux"
 
@@ -27,22 +29,17 @@ RDEPEND="
 	dev-python/setuptools
 	>=dev-python/docutils-0.3.9
 	dev-python/flup
-	>=dev-python/genshi-0.5
+	>=dev-python/genshi-0.6
 	dev-python/pygments
 	dev-python/pytz
-	cgi? (
-		virtual/httpd-cgi
-	)
-	fastcgi? (
-		virtual/httpd-fastcgi
-	)
+	i18n? ( >=dev-python/Babel-0.9.5 )
+	cgi? ( virtual/httpd-cgi )
+	fastcgi? ( virtual/httpd-fastcgi )
 	mysql? (
 		>=dev-python/mysql-python-1.2.1
 		>=virtual/mysql-4.1
 	)
-	postgres? (
-		>=dev-python/psycopg-2
-	)
+	postgres? ( >=dev-python/psycopg-2 )
 	sqlite? (
 		>=dev-db/sqlite-3.3.4
 		|| (
@@ -50,14 +47,14 @@ RDEPEND="
 			>=dev-python/pysqlite-2.3.2
 		)
 	)
-	subversion? (
-		>=dev-util/subversion-1.4.2[python]
-	)
+	subversion? ( >=dev-vcs/subversion-1.4.2[python] )
 	!www-apps/trac-webadmin
 	"
 DEPEND="${RDEPEND}"
+RESTRICT_PYTHON_ABIS="3.*"
 
 pkg_setup() {
+	python_pkg_setup
 	webapp_pkg_setup
 
 	if ! use mysql && ! use postgres && ! use sqlite; then
@@ -69,6 +66,22 @@ pkg_setup() {
 	enewgroup tracd
 	enewuser tracd -1 -1 -1 tracd
 }
+
+src_test() {
+
+	testing() {
+		PYTHONPATH=. "$(PYTHON)" trac/test.py
+	}
+	python_execute_function testing
+
+	if use i18n; then
+		make check
+	fi
+
+}
+
+# the default src_compile just calls setup.py build
+# currently, this switches i18n catalog compilation based on presence of Babel
 
 src_install() {
 	webapp_src_preinst
@@ -87,7 +100,7 @@ src_install() {
 
 	# tracd init script
 	newconfd "${FILESDIR}"/tracd.confd tracd
-	newinitd "${FILESDIR}"/tracd.initd.2 tracd
+	newinitd "${FILESDIR}"/tracd.initd tracd
 
 	if use cgi; then
 		cp cgi-bin/trac.cgi "${ED}"/${MY_CGIBINDIR#${EPREFIX}} || die
@@ -102,4 +115,14 @@ src_install() {
 	done
 
 	webapp_src_install
+}
+
+pkg_postinst() {
+	distutils_pkg_postinst
+	webapp_pkg_postinst
+}
+
+pkg_postinst() {
+	distutils_pkg_postinst
+	webapp_pkg_postinst
 }
