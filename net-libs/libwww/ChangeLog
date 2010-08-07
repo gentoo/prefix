@@ -1,6 +1,13 @@
 # ChangeLog for net-libs/libwww
-# Copyright 1999-2007 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/ChangeLog,v 1.77 2007/07/12 10:21:05 uberlord Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-libs/libwww/ChangeLog,v 1.79 2010/07/18 21:41:26 ssuominen Exp $
+
+  18 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  libwww-5.4.0-r7.ebuild:
+  Fix installation wrt #318739 by Jeroen Roovers.
+
+  11 Jun 2010; Peter Volkov <pva@gentoo.org> libwww-5.4.0-r7.ebuild:
+  Fixed build issue, bug 323531.
 
   12 Jul 2007; Roy Marples <uberlord@gentoo.org> libwww-5.4.0-r7.ebuild:
   Keyworded ~sparc-fbsd.
