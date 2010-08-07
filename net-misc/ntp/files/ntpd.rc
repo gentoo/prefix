@@ -1,11 +1,10 @@
 #!/sbin/runscript
 # Copyright 1999-2004 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/files/ntpd.rc,v 1.23 2007/02/23 11:26:26 uberlord Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/files/ntpd.rc,v 1.24 2010/07/18 21:53:24 vapier Exp $
 
 depend() {
-	need net
-	use dns logger
+	use net dns logger
 	after ntp-client
 }
 

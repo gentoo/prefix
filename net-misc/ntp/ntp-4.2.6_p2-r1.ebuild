@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.4_p7.ebuild,v 1.10 2009/08/28 21:24:01 betelgeuse Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/ntp-4.2.6_p2-r1.ebuild,v 1.1 2010/07/27 13:06:37 flameeyes Exp $
 
 EAPI="2"
 
@@ -15,13 +15,14 @@ SRC_URI="http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-${PV:0:3}/${MY_P}.tar
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~m68k-mint"
-IUSE="caps debug ipv6 openntpd parse-clocks selinux ssl vim-syntax zeroconf"
+IUSE="caps debug ipv6 openntpd parse-clocks selinux snmp ssl vim-syntax zeroconf"
 
 DEPEND=">=sys-libs/ncurses-5.2
 	>=sys-libs/readline-4.1
 	kernel_linux? ( caps? ( sys-libs/libcap ) )
 	zeroconf? ( || ( net-dns/avahi[mdnsresponder-compat] net-misc/mDNSResponder ) )
 	!openntpd? ( !net-misc/openntpd )
+	snmp? ( net-analyzer/net-snmp )
 	ssl? ( dev-libs/openssl )
 	selinux? ( sec-policy/selinux-ntp )"
 RDEPEND="${DEPEND}
@@ -36,8 +37,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	# Needs to be ported ...
-	#epatch "${FILESDIR}"/4.2.0.20040617-hostname.patch
 	epatch "${FILESDIR}"/${PN}-4.2.4_p5-adjtimex.patch #254030
 	epatch "${FILESDIR}"/${PN}-4.2.4_p7-nano.patch #270483
 	append-cppflags -D_GNU_SOURCE #264109
@@ -51,12 +50,13 @@ src_configure() {
 	export ac_cv_header_dns_sd_h=$(use zeroconf && echo yes || echo no)
 	export ac_cv_lib_dns_sd_DNSServiceRegister=${ac_cv_header_dns_sd_h}
 	econf \
+		--with-lineeditlibs=readline,edit,editline \
 		$(use_enable caps linuxcaps) \
 		$(use_enable parse-clocks) \
 		$(use_enable ipv6) \
 		$(use_enable debug debugging) \
-		$(use_with ssl crypto) \
-		|| die
+		$(use_with snmp ntpsnmpd) \
+		$(use_with ssl crypto)
 }
 
 src_install() {
