@@ -1,6 +1,24 @@
 # ChangeLog for dev-util/pkgconfig
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/ChangeLog,v 1.79 2009/05/11 22:20:51 leio Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig/ChangeLog,v 1.83 2010/07/15 08:07:11 ssuominen Exp $
+
+*pkgconfig-0.25-r2 (11 Jul 2010)
+
+  11 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +pkgconfig-0.25-r2.ebuild, +files/pkgconfig-0.25-dnl.patch:
+  Fix for sys-devel/autoconf >= 2.66 compability wrt #326939.
+
+*pkgconfig-0.25-r1 (17 Jun 2010)
+
+  17 Jun 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +pkgconfig-0.25-r1.ebuild:
+  Use system copy of dev-libs/popt.
+
+*pkgconfig-0.25 (17 Jun 2010)
+
+  17 Jun 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +pkgconfig-0.25.ebuild:
+  Version bump wrt #321575 by Andrey Hippo.
 
   11 May 2009; Mart Raudsepp <leio@gentoo.org> -pkgconfig-0.17.2-r1.ebuild,
   -pkgconfig-0.20.ebuild:
