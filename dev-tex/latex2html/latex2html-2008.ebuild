@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/latex2html-2008.ebuild,v 1.9 2009/12/26 17:35:53 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/latex2html-2008.ebuild,v 1.10 2010/06/12 12:31:43 aballier Exp $
 
 inherit eutils multilib
 
@@ -66,7 +66,8 @@ src_install() {
 
 	# clean the perl scripts up to remove references to the sandbox
 	einfo "fixing sandbox references"
-	dosed "s:${T}:/tmp:g" /usr/$(get_libdir)/latex2html/pstoimg.pl
+	# pstoimg isn't built unless gif or png useflags are enabled
+	{ use png || use gif ; } && dosed "s:${T}:/tmp:g" /usr/$(get_libdir)/latex2html/pstoimg.pl
 	dosed "s:${S}::g" /usr/$(get_libdir)/latex2html/latex2html.pl
 	dosed "s:${T}:/tmp:g" /usr/$(get_libdir)/latex2html/cfgcache.pm
 	dosed "s:${T}:/tmp:g" /usr/$(get_libdir)/latex2html/l2hconf.pm

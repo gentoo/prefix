@@ -1,6 +1,10 @@
 # ChangeLog for dev-tex/latex2html
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/ChangeLog,v 1.51 2009/12/26 17:35:53 pva Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/latex2html/ChangeLog,v 1.52 2010/06/12 12:31:43 aballier Exp $
+
+  12 Jun 2010; Alexis Ballier <aballier@gentoo.org> latex2html-2008.ebuild:
+  do not try to sed a file that does not exist when use=-gif -png is used,
+  bug #298589
 
   26 Dec 2009; Peter Volkov <pva@gentoo.org> latex2html-2008.ebuild:
   virtual/ghostscript->app-text/ghostscript-gpl: ghostscript-gpl is the only
