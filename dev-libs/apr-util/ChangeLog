@@ -1,6 +1,13 @@
 # ChangeLog for dev-libs/apr-util
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.145 2009/11/04 12:12:05 arfrever Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/ChangeLog,v 1.147 2010/07/14 10:06:40 ssuominen Exp $
+
+  14 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> apr-util-1.3.9.ebuild,
+  +files/apr-util-1.3.9-support_berkeley_db-5.0.patch:
+  Fix building with BerkDB 5.0 wrt #319421 by Diego E. Pettenò.
+
+  17 Jun 2010; Patrick Lauer <patrick@gentoo.org> apr-util-1.3.9.ebuild:
+  Migrating away from deprecated postgres virtuals
 
   04 Nov 2009; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
   apr-util-1.3.9.ebuild:

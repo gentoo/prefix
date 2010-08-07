@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.9.ebuild,v 1.12 2009/11/04 12:12:05 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/apr-util/apr-util-1.3.9.ebuild,v 1.14 2010/07/14 10:06:40 ssuominen Exp $
 
 EAPI="2"
 
@@ -22,20 +22,20 @@ RESTRICT="test"
 
 RDEPEND="dev-libs/expat
 	>=dev-libs/apr-${APR_PV}:1
-	berkdb? ( =sys-libs/db-4* )
+	berkdb? ( >=sys-libs/db-4 )
 	freetds? ( dev-db/freetds )
 	gdbm? ( sys-libs/gdbm )
 	ldap? ( =net-nds/openldap-2* )
 	mysql? ( =virtual/mysql-5* )
 	odbc? ( dev-db/unixODBC )
-	postgres? ( virtual/postgresql-base )
+	postgres? ( dev-db/postgresql-base )
 	sqlite? ( dev-db/sqlite:0 )
 	sqlite3? ( dev-db/sqlite:3 )"
 DEPEND="${RDEPEND}
 	doc? ( app-doc/doxygen )"
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-support_berkeley_db-4.8.patch"
+	epatch "${FILESDIR}"/${P}-support_berkeley_db-{4.8,5.0}.patch
 	eautoreconf
 
 	elibtoolize
