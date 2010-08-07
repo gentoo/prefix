@@ -1,8 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/libtasn1-2.4.ebuild,v 1.7 2010/03/31 18:41:49 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/libtasn1-2.7.ebuild,v 1.6 2010/07/11 18:02:11 armin76 Exp $
 
-DESCRIPTION="provides ASN.1 structures parsing capabilities for use with GNUTLS"
+EAPI="3"
+
+DESCRIPTION="ASN.1 library"
 HOMEPAGE="http://www.gnu.org/software/libtasn1/"
 SRC_URI="mirror://gnu/${PN}/${P}.tar.gz"
 
@@ -17,15 +19,14 @@ RDEPEND=""
 
 src_compile() {
 	econf || die
-	# Darwin's ar doesn't like creating empty archives, so just skip doing so
-	# https://savannah.gnu.org/support/?106611
-	[[ ${CHOST} == *-darwin* ]] \
-		&& sed -i -e '/^SUBDIRS = gllib/d' lib/Makefile
 	emake || die
 }
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
 	dodoc AUTHORS ChangeLog NEWS README THANKS
-	use doc && dodoc doc/libtasn1.ps
+
+	if use doc; then
+		dodoc doc/libtasn1.ps || die "dodoc failed"
+	fi
 }

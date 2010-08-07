@@ -1,6 +1,42 @@
 # ChangeLog for dev-libs/libtasn1
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.112 2010/05/06 05:25:23 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libtasn1/ChangeLog,v 1.123 2010/07/11 18:02:11 armin76 Exp $
+
+  11 Jul 2010; Raúl Porcel <armin76@gentoo.org> libtasn1-2.7.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #325897
+
+  06 Jul 2010; Jeroen Roovers <jer@gentoo.org> libtasn1-2.7.ebuild:
+  Stable for HPPA (bug #325897).
+
+  06 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> libtasn1-2.7.ebuild:
+  ppc64 stable wrt #325897
+
+  30 Jun 2010; Christian Faulhammer <fauli@gentoo.org> libtasn1-2.7.ebuild:
+  stable x86, bug 325897
+
+  28 Jun 2010; Christoph Mende <angelos@gentoo.org> libtasn1-2.7.ebuild:
+  Stable on amd64 wrt bug #325897
+
+  20 Jun 2010; Raúl Porcel <armin76@gentoo.org> libtasn1-2.6.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #320943
+
+  11 Jun 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> libtasn1-2.6.ebuild:
+  x86 stable wrt bug #320943
+
+  04 Jun 2010; Jeroen Roovers <jer@gentoo.org> libtasn1-2.6.ebuild:
+  Stable for HPPA (bug #320943).
+
+*libtasn1-2.7 (26 May 2010)
+
+  26 May 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  +libtasn1-2.7.ebuild:
+  Version bump.
+
+  26 May 2010; Pacho Ramos <pacho@gentoo.org> libtasn1-2.6.ebuild:
+  stable amd64, bug 320943
+
+  23 May 2010; <nixnut@gentoo.org> libtasn1-2.6.ebuild:
+  ppc stable #320943
 
   06 May 2010; Jeroen Roovers <jer@gentoo.org> libtasn1-2.5.ebuild:
   Stable for HPPA (bug #315163).
