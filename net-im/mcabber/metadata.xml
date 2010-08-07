@@ -13,7 +13,9 @@
 		history logging, commands completion, and external actions triggers.
 	</longdescription>
 	<use>
-		<flag name='otr'> Enable encrypted conversations using Off-The-Records
+		<flag name="aspell">Adds support for app-text/aspell spell
+			checker.</flag>
+		<flag name="otr">Enable encrypted conversations using Off-The-Records
 			messaging
 		</flag>
 	</use>
