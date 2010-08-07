@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/make-3.81-r2.ebuild,v 1.2 2010/04/01 01:28:31 mr_bones_ Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/make-3.81-r2.ebuild,v 1.3 2010/07/25 14:36:05 vapier Exp $
 
 inherit flag-o-matic
 
@@ -21,8 +21,8 @@ src_unpack() {
 	cd "${S}"
 	epatch "${FILESDIR}"/${P}-tests-lang.patch
 	epatch "${FILESDIR}"/${P}-long-cmdline.patch #301116
-	# related to bug #193258, but this is the final patch that Fedora went with.
-	epatch "${FILESDIR}"/${P}-jobserver.patch
+	epatch "${FILESDIR}"/${P}-tests-recursion.patch #329153
+	epatch "${FILESDIR}"/${P}-jobserver.patch #193258
 	# https://savannah.gnu.org/bugs/index.php?18680
 	epatch "${FILESDIR}"/${P}-eintr-loop.patch
 

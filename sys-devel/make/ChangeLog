@@ -1,6 +1,10 @@
 # ChangeLog for sys-devel/make
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.63 2010/03/31 22:42:05 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/make/ChangeLog,v 1.64 2010/07/25 14:36:05 vapier Exp $
+
+  25 Jul 2010; Mike Frysinger <vapier@gentoo.org> make-3.81-r2.ebuild,
+  +files/make-3.81-tests-recursion.patch:
+  Add change from upstream for recursion test #329153 by Kent Fredric.
 
 *make-3.81-r2 (31 Mar 2010)
 

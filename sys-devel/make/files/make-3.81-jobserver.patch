@@ -1,4 +1,5 @@
-diff -urp make-3.81/main.c make-3.81-pm/main.c
+related to bug #193258, but this is the final patch that Fedora went with
+
 --- make-3.81/main.c	2007-09-24 15:28:34.000000000 +0200
 +++ make-3.81-pm/main.c	2007-09-24 15:32:50.000000000 +0200
 @@ -1669,8 +1669,12 @@ main (int argc, char **argv, char **envp
