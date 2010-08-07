@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/apache
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.138 2010/04/06 15:30:23 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/ChangeLog,v 1.139 2010/07/11 08:20:51 lxnay Exp $
+
+  11 Jul 2010; Fabio Erculiani <lxnay@gentoo.org> apache-2.2.14-r1.ebuild,
+  apache-2.2.15.ebuild:
+  make mod_cgi and mod_cgid modular and handled via USE flags
 
   04 Apr 2010; Guy Martin <gmsoft@gentoo.org> apache-2.2.15.ebuild:
   hppa stable, #308049

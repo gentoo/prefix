@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.14-r1.ebuild,v 1.9 2010/04/06 15:30:23 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/apache/apache-2.2.14-r1.ebuild,v 1.10 2010/07/11 08:20:51 lxnay Exp $
 
 # latest gentoo apache files
 GENTOO_PATCHSTAMP="20091008"
@@ -13,9 +13,9 @@ IUSE_MPMS_THREAD="event worker"
 IUSE_MODULES="actions alias asis auth_basic auth_digest authn_alias authn_anon
 authn_dbd authn_dbm authn_default authn_file authz_dbm authz_default
 authz_groupfile authz_host authz_owner authz_user autoindex cache cern_meta
-charset_lite dav dav_fs dav_lock dbd deflate dir disk_cache dumpio env expires
-ext_filter file_cache filter headers ident imagemap include info log_config
-log_forensic logio mem_cache mime mime_magic negotiation proxy proxy_ajp
+charset_lite cgi cgid dav dav_fs dav_lock dbd deflate dir disk_cache dumpio
+env expires ext_filter file_cache filter headers ident imagemap include info
+log_config log_forensic logio mem_cache mime mime_magic negotiation proxy proxy_ajp
 proxy_balancer proxy_connect proxy_ftp proxy_http rewrite setenvif speling
 status substitute unique_id userdir usertrack version vhost_alias"
 
