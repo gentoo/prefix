@@ -1,6 +1,9 @@
 # ChangeLog for dev-libs/lzo
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/ChangeLog,v 1.48 2008/06/18 08:21:09 dragonheart Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/lzo/ChangeLog,v 1.49 2010/07/18 09:32:47 dragonheart Exp $
+
+  18 Jul 2010; Daniel Black <dragonheart@gentoo.org> -lzo-1.08-r1.ebuild:
+  clean out old stuff
 
 *lzo-2.03 (18 Jun 2008)
 
