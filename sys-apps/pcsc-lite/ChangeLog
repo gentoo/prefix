@@ -1,6 +1,15 @@
 # ChangeLog for sys-apps/pcsc-lite
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/ChangeLog,v 1.81 2009/10/05 16:02:08 armin76 Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/pcsc-lite/ChangeLog,v 1.83 2010/07/31 23:23:45 hwoarang Exp $
+
+  31 Jul 2010; Markos Chandras <hwoarang@gentoo.org> pcsc-lite-1.6.1.ebuild:
+  Stable on amd64 wrt bug #330601
+
+*pcsc-lite-1.6.1 (28 Jun 2010)
+
+  28 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  -pcsc-lite-1.5.3.ebuild, -pcsc-lite-1.5.4.ebuild, +pcsc-lite-1.6.1.ebuild:
+  Version bump (bug #325863).
 
   05 Oct 2009; Raúl Porcel <armin76@gentoo.org> pcsc-lite-1.5.5.ebuild:
   arm/ia64/m68k/s390/sh/sparc stable wrt #283378
