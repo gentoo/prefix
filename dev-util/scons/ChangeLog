@@ -1,6 +1,32 @@
 # ChangeLog for dev-util/scons
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.76 2010/02/08 08:55:09 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-util/scons/ChangeLog,v 1.82 2010/07/18 18:00:16 ssuominen Exp $
+
+  18 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  scons-1.3.0_p20100501.ebuild:
+  ppc64 stable wrt #326241
+
+  18 Jul 2010; Raúl Porcel <armin76@gentoo.org>
+  scons-1.3.0_p20100501.ebuild:
+  alpha/ia64/sparc stable wrt #326241
+
+  10 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  scons-1.3.0_p20100501.ebuild:
+  stable x86, bug 326241
+
+  06 Jul 2010; Markos Chandras <hwoarang@gentoo.org>
+  scons-1.3.0_p20100501.ebuild:
+  Stable on amd64 wrt bug #326241
+
+  25 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  scons-1.3.0_p20100501.ebuild:
+  Use Python 2.
+
+*scons-1.3.0_p20100501 (19 May 2010)
+
+  19 May 2010; Krzysztof Pawlik <nelchael@gentoo.org>
+  +scons-1.3.0_p20100501.ebuild:
+  Version bump.
 
   08 Feb 2010; Peter Volkov <pva@gentoo.org> scons-1.2.0-r1.ebuild,
   scons-1.2.0_p20091224.ebuild:
