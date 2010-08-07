@@ -1,6 +1,21 @@
 # ChangeLog for net-fs/openafs
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/ChangeLog,v 1.162 2010/02/06 10:50:02 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/ChangeLog,v 1.165 2010/06/23 18:22:05 halcy0n Exp $
+
+  23 Jun 2010; Mark Loeser <halcy0n@gentoo.org> -openafs-1.4.6.ebuild,
+  openafs-1.4.9.ebuild, openafs-1.4.10.ebuild, openafs-1.4.11.ebuild,
+  openafs-1.4.12.1.ebuild, openafs-1.5.34.ebuild:
+  Drop ppc/ppc64 keywords since the the afs use flag is masked
+
+  23 Jun 2010; Mark Loeser <halcy0n@gentoo.org> +openafs-1.4.6.ebuild:
+  Add back only stable ppc/ppc64 version
+
+*openafs-1.4.12.1 (21 Jun 2010)
+
+  21 Jun 2010; Mike Frysinger <vapier@gentoo.org> +openafs-1.4.12.1.ebuild,
+  metadata.xml:
+  Version bump #310627 by William Throwe. Dont install kdump #222455 by
+  Gautam Iyer. Dont install lwp #200674 by John Gibson.
 
   06 Feb 2010; Ulrich Mueller <ulm@gentoo.org> openafs-1.4.6.ebuild,
   openafs-1.4.6_p20080222.ebuild, openafs-1.4.7.ebuild,

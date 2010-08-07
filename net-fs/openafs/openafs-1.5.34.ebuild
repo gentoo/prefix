@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/openafs-1.5.34.ebuild,v 1.3 2010/02/06 10:50:02 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-fs/openafs/openafs-1.5.34.ebuild,v 1.4 2010/06/23 18:22:05 halcy0n Exp $
 
 inherit flag-o-matic eutils toolchain-funcs versionator pam
 
