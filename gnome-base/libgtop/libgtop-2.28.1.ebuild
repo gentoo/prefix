@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.28.1.ebuild,v 1.2 2010/05/04 15:57:07 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/libgtop/libgtop-2.28.1.ebuild,v 1.4 2010/07/20 02:10:33 jer Exp $
 
 inherit gnome2 eutils autotools
 
