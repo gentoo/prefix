@@ -1,6 +1,42 @@
 # ChangeLog for sys-libs/cracklib
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.145 2010/04/30 13:02:14 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/ChangeLog,v 1.155 2010/08/02 03:11:33 jer Exp $
+
+  02 Aug 2010; Jeroen Roovers <jer@gentoo.org> cracklib-2.8.16.ebuild:
+  Stable for PPC (bug #329149).
+
+  24 Jul 2010; Raúl Porcel <armin76@gentoo.org> cracklib-2.8.16.ebuild:
+  alpha/arm/ia64/m68k/s390/sh/sparc stable wrt #329149
+
+  23 Jul 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  cracklib-2.8.16.ebuild, +files/cracklib-2.8.16-python.patch:
+  Fix building of Python bindings when cracklib isn't already installed.
+  Approved by Chainsaw.
+
+  23 Jul 2010; Peter Volkov <pva@gentoo.org> cracklib-2.8.16.ebuild:
+  amd64 stable, bug 329149
+
+  21 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  cracklib-2.8.16.ebuild:
+  ppc64 stable wrt #329149
+
+  21 Jul 2010; Jeroen Roovers <jer@gentoo.org> cracklib-2.8.16.ebuild:
+  Stable for HPPA (bug #329149).
+
+  21 Jul 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  cracklib-2.8.16.ebuild:
+  x86 stable wrt bug #329149
+
+  07 Jun 2010; Peter Volkov <pva@gentoo.org> cracklib-2.8.16.ebuild:
+  Generalize python code in do_python function, bug 316951
+
+  05 Jun 2010; Mike Frysinger <vapier@gentoo.org> cracklib-2.8.15.ebuild,
+  +files/cracklib-2.8.15-no-nls.patch, cracklib-2.8.16.ebuild:
+  Fix building on uClibc systems w/out nls support.
+
+  03 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  cracklib-2.8.16.ebuild:
+  Support installation for multiple Python ABIs (bug #316951).
 
 *cracklib-2.8.16 (30 Apr 2010)
 
