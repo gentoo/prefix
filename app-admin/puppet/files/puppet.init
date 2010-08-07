@@ -1,5 +1,5 @@
 #!/sbin/runscript
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 depend() {
@@ -24,7 +24,7 @@ start() {
 
 	ebegin "Starting puppet"
 	start-stop-daemon --start --quiet \
-		--pidfile "${PUPPET_PID_DIR}/puppetd.pid" \
+		--pidfile "${PUPPET_PID_DIR}/agent.pid" \
 		--exec /usr/bin/puppetd -- ${options}
 	eend $? "Failed to start puppet"
 }
@@ -32,9 +32,9 @@ start() {
 stop() {
 	ebegin "Stopping puppet"
 	start-stop-daemon --stop --quiet \
-		--pidfile "${PUPPET_PID_DIR}/puppetd.pid"
+		--pidfile "${PUPPET_PID_DIR}/agent.pid"
 	local ret=$?
 	eend ${ret} "Failed to stop puppet"
-	rm -f "${PUPPET_PID_DIR}/puppetd.pid"
+	rm -f "${PUPPET_PID_DIR}/agent.pid"
 	return ${ret}
 }

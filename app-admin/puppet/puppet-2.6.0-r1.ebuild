@@ -1,32 +1,42 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-0.25.3.ebuild,v 1.2 2010/03/02 10:42:59 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/puppet-2.6.0-r1.ebuild,v 1.1 2010/08/01 01:12:12 matsuu Exp $
 
 EAPI="2"
-inherit elisp-common eutils ruby
+USE_RUBY="ruby18"
 
-MY_P="${P/_}"
+RUBY_FAKEGEM_TASK_DOC=""
+RUBY_FAKEGEM_TASK_TEST="unit"
+RUBY_FAKEGEM_EXTRADOC="CHANGELOG* README*"
+
+inherit elisp-common eutils ruby-fakegem
+
 DESCRIPTION="A system automation and configuration management software"
-HOMEPAGE="http://reductivelabs.com/projects/puppet"
-SRC_URI="http://reductivelabs.com/downloads/${PN}/${MY_P}.tar.gz"
+HOMEPAGE="http://puppetlabs.com/"
 
 LICENSE="GPL-2"
 SLOT="0"
 IUSE="augeas emacs ldap rrdtool shadow vim-syntax"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x86-solaris"
 
-DEPEND="dev-lang/ruby[ssl]
-	emacs? ( virtual/emacs )
-	>=dev-ruby/facter-1.5.0"
-RDEPEND="${DEPEND}
-	>=app-portage/eix-0.18.0
-	augeas? ( dev-ruby/ruby-augeas )
-	ldap? ( dev-ruby/ruby-ldap )
-	rrdtool? ( >=net-analyzer/rrdtool-1.2.23[ruby] )
-	shadow? ( dev-ruby/ruby-shadow )"
+RESTRICT="test"
 
-S="${WORKDIR}/${MY_P}"
-USE_RUBY="ruby18"
+ruby_add_rdepend ">=dev-ruby/facter-1.5.1"
+ruby_add_rdepend augeas dev-ruby/ruby-augeas
+ruby_add_rdepend ldap dev-ruby/ruby-ldap
+#ruby_add_rdepend rrdtool ">=net-analyzer/rrdtool-1.2.23[ruby]"
+ruby_add_rdepend shadow dev-ruby/ruby-shadow
+
+DEPEND="${DEPEND}
+	emacs? ( virtual/emacs )"
+RDEPEND="${RDEPEND}
+	emacs? ( virtual/emacs )
+	rrdtool? ( >=net-analyzer/rrdtool-1.2.23[ruby] )
+	>=app-portage/eix-0.18.0"
+
+for _ruby in ${USE_RUBY}; do
+	DEPEND="${DEPEND} ruby_targets_${_ruby}? ( $(ruby_implementation_depend $_ruby)[ssl] )"
+done
 
 SITEFILE="50${PN}-mode-gentoo.el"
 
@@ -35,19 +45,24 @@ pkg_setup() {
 	enewuser puppet -1 -1 /var/lib/puppet puppet
 }
 
-src_compile() {
+all_ruby_compile() {
+	all_fakegem_compile
+
 	if use emacs ; then
 		elisp-compile ext/emacs/puppet-mode.el || die "elisp-compile failed"
 	fi
 }
 
-src_install() {
-	DESTDIR="${D}" ruby_einstall "$@" || die
-	DESTDIR="${D}" erubydoc || die
+each_fakegem_install() {
+	${RUBY} install.rb --destdir="${D}" install || die
+}
 
-	newinitd "${FILESDIR}"/puppetmaster-0.25.init puppetmaster || die
+all_ruby_install() {
+	all_fakegem_install
+
+	newinitd "${FILESDIR}"/puppetmaster.init puppetmaster || die
 	doconfd conf/gentoo/conf.d/puppetmaster || die
-	newinitd "${FILESDIR}"/puppet-0.25.init puppet || die
+	newinitd "${FILESDIR}"/puppet.init puppet || die
 	doconfd conf/gentoo/conf.d/puppet || die
 
 	# Initial configuration files

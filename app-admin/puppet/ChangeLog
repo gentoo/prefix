@@ -1,6 +1,37 @@
 # ChangeLog for app-admin/puppet
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.57 2010/04/11 12:22:42 nixnut Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/puppet/ChangeLog,v 1.65 2010/08/01 01:12:11 matsuu Exp $
+
+*puppet-2.6.0-r1 (01 Aug 2010)
+
+  01 Aug 2010; MATSUU Takuto <matsuu@gentoo.org>
+  -files/puppet-0.24.6-eix.patch, -puppet-0.24.8-r1.ebuild,
+  -files/puppet-0.24.8-rc-update-show.patch, -puppet-0.25.3.ebuild,
+  +puppet-2.6.0-r1.ebuild, files/puppet.init, files/puppetmaster.init:
+  Fixed pidfile issue, bug #330269. Fixed doc and test handling, bug
+  #329305. Removed old versions.
+
+  23 Jul 2010; Markus Meier <maekke@gentoo.org> puppet-0.25.5.ebuild:
+  amd64 stable, bug #325129
+
+  23 Jul 2010; Christian Faulhammer <fauli@gentoo.org> puppet-0.25.5.ebuild:
+  stable x86, bug 325129
+
+*puppet-2.6.0 (20 Jul 2010)
+
+  20 Jul 2010; MATSUU Takuto <matsuu@gentoo.org> +puppet-2.6.0.ebuild:
+  Version bumped. Convert to ruby-ng, bug #324355.
+
+  21 Jun 2010; Guy Martin <gmsoft@gentoo.org> puppet-0.25.5.ebuild:
+  added ~hppa to KEYWORDS
+
+  26 May 2010; Pacho Ramos <pacho@gentoo.org> puppet-0.25.4-r1.ebuild:
+  stable amd64, bug 306195
+
+*puppet-0.25.5 (18 May 2010)
+
+  18 May 2010; MATSUU Takuto <matsuu@gentoo.org> +puppet-0.25.5.ebuild:
+  Version bumped.
 
   11 Apr 2010; <nixnut@gentoo.org> puppet-0.25.4-r1.ebuild:
   ppc stable #306195
