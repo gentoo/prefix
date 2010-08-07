@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/xsane-0.997.ebuild,v 1.1 2009/10/03 07:46:16 phosphan Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/xsane-0.997.ebuild,v 1.2 2010/06/21 15:21:40 ssuominen Exp $
 
 inherit eutils
 
@@ -15,11 +15,11 @@ IUSE="nls jpeg png tiff gimp lcms"
 
 RDEPEND="media-gfx/sane-backends
 	>=x11-libs/gtk+-2.0
-	jpeg? ( media-libs/jpeg )
+	jpeg? ( >=media-libs/jpeg-8a )
 	png? ( media-libs/libpng )
 	tiff? ( media-libs/tiff )
 	gimp? ( media-gfx/gimp )
-	lcms? ( media-libs/lcms )"
+	lcms? ( =media-libs/lcms-1* )"
 
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"

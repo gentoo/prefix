@@ -1,6 +1,9 @@
 # ChangeLog for media-gfx/xsane
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/ChangeLog,v 1.82 2009/10/03 07:46:16 phosphan Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/xsane/ChangeLog,v 1.83 2010/06/21 15:21:40 ssuominen Exp $
+
+  21 Jun 2010; Samuli Suominen <ssuominen@gentoo.org> xsane-0.997.ebuild:
+  Restrict media-libs/lcms depend to old version.
 
 *xsane-0.997 (03 Oct 2009)
 
