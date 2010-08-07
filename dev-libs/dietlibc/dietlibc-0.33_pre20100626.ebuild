@@ -1,12 +1,12 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/dietlibc/dietlibc-0.32_pre20081116.ebuild,v 1.1 2008/11/16 14:13:41 hollow Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/dietlibc/dietlibc-0.33_pre20100626.ebuild,v 1.1 2010/06/26 06:06:55 hollow Exp $
 
-inherit eutils flag-o-matic
+inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="A minimal libc"
 HOMEPAGE="http://www.fefe.de/dietlibc/"
-SRC_URI="http://people.linux-vserver.org/~hollow/dietlibc/${P}.tar.bz2"
+SRC_URI="http://bb.xnull.de/projects/dietlibc/dist/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -14,6 +14,7 @@ KEYWORDS="~amd64-linux ~x86-linux"
 IUSE="debug"
 
 DEPEND=""
+RDEPEND=""
 
 DIETHOME=/usr/diet
 
@@ -31,10 +32,13 @@ pkg_setup() {
 	append-flags -nostdinc -W -Wall -Wextra -Wchar-subscripts \
 		-Wmissing-prototypes -Wmissing-declarations -Wno-switch \
 		-Wno-unused -Wredundant-decls
+
+	# only use -nopie on archs that support it
+	gcc-specs-pie && append-flags -nopie
 }
 
 src_compile() {
-	emake prefix="${EPREFIX}"${DIETHOME} CFLAGS="${CFLAGS}" -j1 || die "make failed"
+	emake prefix="${EPREFIX}"${DIETHOME} CC="$(tc-getCC)" CFLAGS="${CFLAGS}" -j1 || die "make failed"
 }
 
 src_install() {
