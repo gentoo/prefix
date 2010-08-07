@@ -1,12 +1,13 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.4.1.ebuild,v 1.1 2010/04/29 18:22:54 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/icu-4.4.1.ebuild,v 1.10 2010/07/25 14:52:35 klausman Exp $
 
 EAPI="3"
 
-inherit flag-o-matic versionator
+inherit eutils flag-o-matic versionator
 
 MAJOR_MINOR_VERSION="$(get_version_component_range 1-2)"
+MICRO_VERSION="$(get_version_component_range 3)"
 
 DESCRIPTION="International Components for Unicode"
 HOMEPAGE="http://www.icu-project.org/"
@@ -22,14 +23,14 @@ SRC_URI="${BASE_URI}/${SRC_ARCHIVE}
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~ppc-aix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
-IUSE="debug doc examples"
+IUSE="debug doc examples static-libs"
 
 DEPEND="doc? ( app-arch/unzip )"
 RDEPEND=""
 
 S="${WORKDIR}/${PN}/source"
 
-QA_DT_NEEDED="/usr/lib.*/libicudata.so.${MAJOR_MINOR_VERSION/./}.0"
+QA_DT_NEEDED="/usr/lib.*/libicudata.so.${MAJOR_MINOR_VERSION/./}.${MICRO_VERSION:-0}"
 
 src_unpack() {
 	unpack "${SRC_ARCHIVE}"
@@ -49,11 +50,17 @@ src_prepare() {
 		sed -i -e "/^${x} =.*/s:@${x}@::" "config/Makefile.inc.in" || die "sed failed"
 	done
 
+	epatch "${FILESDIR}/${P}-pkgdata.patch"
+	epatch "${FILESDIR}/${P}-et_EE.patch"
+	epatch "${FILESDIR}/${P}-arm.patch"
+
 	# for correct install_names
 	epatch "${FILESDIR}"/${PN}-3.8.1-darwin.patch
 }
 
 src_configure() {
+	append-flags -fno-strict-aliasing
+
 	if [[ ${CHOST} == *-irix* ]]; then
 		if [[ -n "${LD_LIBRARYN32_PATH}" || -n "${LD_LIBRARY64_PATH}" ]]; then
 			case "${ABI:-$DEFAULT_ABI}" in
@@ -82,22 +89,22 @@ src_configure() {
 	fi
 
 	econf \
-		--enable-static \
 		$(use_enable debug) \
-		$(use_enable examples samples)
+		$(use_enable examples samples) \
+		$(use_enable static-libs static)
 }
 
 src_compile() {
-	# Darwin needs an object index
+	# Darwin/x86 needs an object index
 	emake ARFLAGS="sr" || die
 }
 
 src_test() {
-	emake check || die "emake check failed"
+	emake -j1 check || die "emake check failed"
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "emake install failed"
+	emake -j1 DESTDIR="${D}" install || die "emake install failed"
 
 	dohtml ../readme.html
 	dodoc ../unicode-license.txt

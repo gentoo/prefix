@@ -1,6 +1,40 @@
 # ChangeLog for dev-libs/icu
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.107 2010/04/29 18:22:54 arfrever Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/icu/ChangeLog,v 1.116 2010/07/25 14:52:35 klausman Exp $
+
+  25 Jul 2010; Tobias Klausmann <klausman@gentoo.org> icu-4.4.1.ebuild:
+  Stable on alpha, bug #322297
+
+  24 Jul 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  icu-4.4.1.ebuild, +files/icu-4.4.1-arm.patch:
+  Fix building on arm (bug #329439).
+
+  02 Jul 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  icu-4.4.1.ebuild, +files/icu-4.4.1-et_EE.patch:
+  Fix icu-config with et_EE locale (bug #260127).
+
+  26 Jun 2010; <nixnut@gentoo.org> icu-4.4.1.ebuild:
+  ppc stable #322297
+
+  22 Jun 2010; Jeroen Roovers <jer@gentoo.org> icu-4.4.1.ebuild:
+  Stable for HPPA (bug #322297).
+
+  16 Jun 2010; Patrick Lauer <patrick@gentoo.org> icu-4.0.1.ebuild,
+  icu-4.2.1.ebuild, icu-4.4.1.ebuild:
+  Makefiles are parallel-unsafe, so adding -j1 until it is properly fixed.
+  See bug #272328
+
+  12 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  icu-4.4.1.ebuild, +files/icu-4.4.1-pkgdata.patch:
+  Fix buffer overflow in pkgdata (bug #285735). Add "static-libs" USE flag
+  (bug #319643).
+
+  05 Jun 2010; Arfrever Frehtes Taifersar Arahesis <arfrever@gentoo.org>
+  icu-4.4.1.ebuild:
+  amd64 stable (tested by rullzer) (bug #322297).
+
+  05 Jun 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> icu-4.4.1.ebuild:
+  x86 stable wrt bug #322297
 
 *icu-4.4.1 (29 Apr 2010)
 
