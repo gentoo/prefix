@@ -1,6 +1,11 @@
 # ChangeLog for sys-libs/ncurses
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.176 2010/07/06 18:48:19 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ChangeLog,v 1.177 2010/07/07 19:25:28 vapier Exp $
+
+*ncurses-5.7-r5 (07 Jul 2010)
+
+  07 Jul 2010; Mike Frysinger <vapier@gentoo.org> +ncurses-5.7-r5.ebuild:
+  Fix libcurses.so symlink #327265 by Martin Jansa.
 
 *ncurses-5.7-r4 (06 Jul 2010)
 

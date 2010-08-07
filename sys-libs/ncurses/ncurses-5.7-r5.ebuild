@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r4.ebuild,v 1.1 2010/07/06 18:48:19 abcd Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/ncurses/ncurses-5.7-r5.ebuild,v 1.1 2010/07/07 19:25:28 vapier Exp $
 
 EAPI="1"
 inherit eutils flag-o-matic toolchain-funcs multilib
@@ -191,6 +191,7 @@ src_install() {
 	if use unicode ; then
 		gen_usr_ldscript libncursesw$(get_libname)
 	fi
+	ln -sf libncurses$(get_libname) "${ED}"/usr/$(get_libdir)/libcurses.$(get_libname)
 
 #	if ! use berkdb ; then
 		# We need the basic terminfo files in /etc, bug #37026
