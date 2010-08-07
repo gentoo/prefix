@@ -1,11 +1,11 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.6.6.ebuild,v 1.11 2010/04/13 06:21:42 pva Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/pidgin-2.7.2.ebuild,v 1.5 2010/07/24 16:48:39 jer Exp $
 
 EAPI=2
 
 GENTOO_DEPEND_ON_PERL=no
-inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 autotools
+inherit flag-o-matic eutils toolchain-funcs multilib perl-app gnome2 python
 
 DESCRIPTION="GTK Instant Messenger client"
 HOMEPAGE="http://pidgin.im/"
@@ -14,21 +14,29 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x86-macos"
-IUSE="aqua dbus debug doc eds gadu gnutls +gstreamer idn meanwhile networkmanager"
-IUSE+=" nls perl silc tcl tk spell qq gadu +gtk sasl +startup-notification"
-IUSE+=" ncurses groupwise prediction +xscreensaver zephyr zeroconf" # mono"
+IUSE="dbus debug doc eds gadu gnutls +gstreamer +gtk idn krb4 meanwhile"
+IUSE+=" networkmanager nls perl silc tcl tk spell qq sasl +startup-notification"
+IUSE+=" ncurses groupwise prediction python +xscreensaver zephyr zeroconf" # mono"
 
+IUSE+=" aqua"
+
+# dbus requires python to generate C code for dbus bindings (thus DEPEND only).
+# finch uses libgnt that links with libpython - {R,}DEPEND. But still there is
+# no way to build dbus and avoid libgnt linkage with python. If you want this
+# send patch upstream.
 RDEPEND="
-	>=dev-libs/glib-2.4
+	>=dev-libs/glib-2.12
 	>=dev-libs/libxml2-2.6.18
-	ncurses? ( sys-libs/ncurses[unicode] )
+	ncurses? ( sys-libs/ncurses[unicode]
+		dbus? ( <dev-lang/python-3 )
+		python? ( <dev-lang/python-3 ) )
 	gtk? (
-		>=x11-libs/gtk+-2.4:2[aqua=]
+		>=x11-libs/gtk+-2.10:2[aqua=]
 		x11-libs/libSM
 		xscreensaver? ( x11-libs/libXScrnSaver )
 		startup-notification? ( >=x11-libs/startup-notification-0.5 )
 		spell? ( >=app-text/gtkspell-2.0.2 )
-		eds? ( <gnome-extra/evolution-data-server-2.30 )
+		eds? ( gnome-extra/evolution-data-server )
 		prediction? ( >=dev-db/sqlite-3.3:3 ) )
 	gstreamer? ( =media-libs/gstreamer-0.10*
 		=media-libs/gst-plugins-good-0.10*
@@ -37,23 +45,18 @@ RDEPEND="
 		media-plugins/gst-plugins-gconf )
 	zeroconf? ( net-dns/avahi )
 	dbus? ( >=dev-libs/dbus-glib-0.71
-		>=dev-python/dbus-python-0.71
-		>=sys-apps/dbus-0.90
-		>=dev-lang/python-2.4 )
+		>=sys-apps/dbus-0.90 )
 	perl? ( >=dev-lang/perl-5.8.2-r1[-build] )
-	gadu?  ( net-libs/libgadu[-ssl] )
+	gadu?  ( >=net-libs/libgadu-1.9.0[-ssl] )
 	gnutls? ( net-libs/gnutls )
 	!gnutls? ( >=dev-libs/nss-3.11 )
 	meanwhile? ( net-libs/meanwhile )
 	silc? ( >=net-im/silc-toolkit-1.0.1 )
-	zephyr? ( >=app-crypt/mit-krb5-1.3.6-r1[krb4] )
+	zephyr? ( >=app-crypt/mit-krb5-1.3.6-r1[krb4?] )
 	tcl? ( dev-lang/tcl )
 	tk? ( dev-lang/tk )
 	sasl? ( dev-libs/cyrus-sasl:2 )
-	>=dev-libs/libxml2-2.6.18
 	networkmanager? ( net-misc/networkmanager )
-	prediction? ( =dev-db/sqlite-3* )
-	ncurses? ( sys-libs/ncurses[unicode] )
 	idn? ( net-dns/libidn )"
 	# Mono support crashes pidgin
 	#mono? ( dev-lang/mono )"
@@ -62,10 +65,13 @@ DEPEND="$RDEPEND
 	dev-lang/perl
 	dev-perl/XML-Parser
 	dev-util/pkgconfig
-	dev-util/intltool
 	gtk? ( x11-proto/scrnsaverproto )
+	dbus? ( <dev-lang/python-3 )
 	doc? ( app-doc/doxygen )
-	nls? ( sys-devel/gettext )"
+	nls? ( >=dev-util/intltool-0.41.1
+		sys-devel/gettext )"
+
+DOCS="AUTHORS HACKING NEWS README ChangeLog"
 
 # Enable Default protocols
 DYNAMIC_PRPLS="irc,jabber,oscar,yahoo,simple,msn,myspace"
@@ -102,17 +108,13 @@ pkg_setup() {
 		elog "will be built."
 		einfo
 	fi
-	if ! use xscreensaver; then
-		elog "Note: xscreensaver USE flag is disabled. Thus pidgin will be unable"
-		elog "to monitor idle/active status based on mouse/keyboard events"
+	if use dbus && ! use python; then
+		elog "It's impossible to disable linkage with python in case dbus is enabled."
 	fi
-}
-
-src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.5.8-gtkdocklet-quartz.patch
-
-	intltoolize --automake --copy --force || die
-	eautoreconf
+	if use dbus || { use ncurses && use python; }; then
+		python_set_active_version 2
+		python_pkg_setup
+	fi
 }
 
 src_configure() {
@@ -135,14 +137,20 @@ src_configure() {
 	use groupwise && DYNAMIC_PRPLS+=",novell"
 	use zephyr && DYNAMIC_PRPLS+=",zephyr"
 
-	if use gnutls ; then
+	if use gnutls; then
 		einfo "Disabling NSS, using GnuTLS"
-		myconf="${myconf} --enable-nss=no --enable-gnutls=yes"
-		myconf="${myconf} --with-gnutls-includes=${EPREFIX}/usr/include/gnutls"
-		myconf="${myconf} --with-gnutls-libs=${EPREFIX}/usr/$(get_libdir)"
+		myconf+=" --enable-nss=no --enable-gnutls=yes"
+		myconf+=" --with-gnutls-includes=${EPREFIX}/usr/include/gnutls"
+		myconf+=" --with-gnutls-libs=${EPREFIX}/usr/$(get_libdir)"
 	else
 		einfo "Disabling GnuTLS, using NSS"
-		myconf="${myconf} --enable-gnutls=no --enable-nss=yes"
+		myconf+=" --enable-gnutls=no --enable-nss=yes"
+	fi
+
+	if use dbus || { use ncurses && use python; }; then
+		myconf+=" --with-python=$(PYTHON)"
+	else
+		myconf+=" --without-python"
 	fi
 
 	econf \
@@ -167,7 +175,7 @@ src_configure() {
 		$(use_enable sasl cyrus-sasl ) \
 		$(use_enable doc doxygen) \
 		$(use_enable networkmanager nm) \
-		$(use_with zephyr krb4) \
+		$(use zephyr && use_with krb4) \
 		$(use_enable zeroconf avahi) \
 		$(use_enable idn) \
 		$(use_enable aqua gtkstatusicon) \
@@ -176,13 +184,26 @@ src_configure() {
 		$(use_with !aqua x) \
 		"--with-dynamic-prpls=${DYNAMIC_PRPLS}" \
 		--disable-mono \
-		--x-includes="${EPREFIX}/usr/include/X11" \
+		--x-includes="${EPREFIX}"/usr/include/X11 \
 		${myconf}
 		#$(use_enable mono) \
 }
 
 src_install() {
 	gnome2_src_install
+	if use gtk; then
+		# Fix tray pathes for kde-3.5, e16 (x11-wm/enlightenment) and other
+		# implementations that are not complient with new hicolor theme yet, #323355
+		local pixmapdir
+		for d in 16 22 32 48; do
+			pixmapdir=${ED}/usr/share/pixmaps/pidgin/tray/hicolor/${d}x${d}/actions
+			mkdir "${pixmapdir}" || die
+			pushd "${pixmapdir}" >/dev/null || die
+			for f in ../status/*; do
+				ln -s ${f} || die
+			done
+			popd >/dev/null
+		done
+	fi
 	use perl && fixlocalpod
-	dodoc AUTHORS HACKING INSTALL NEWS README ChangeLog
 }

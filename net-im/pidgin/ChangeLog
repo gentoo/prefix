@@ -1,6 +1,87 @@
 # ChangeLog for net-im/pidgin
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.163 2010/05/17 00:59:23 tester Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-im/pidgin/ChangeLog,v 1.182 2010/07/24 16:48:39 jer Exp $
+
+  24 Jul 2010; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.2.ebuild:
+  Stable for HPPA (bug #328667).
+
+  24 Jul 2010; Raúl Porcel <armin76@gentoo.org> pidgin-2.7.2.ebuild:
+  alpha/ia64/sparc stable wrt #328667
+
+  23 Jul 2010; Markus Meier <maekke@gentoo.org> pidgin-2.7.2.ebuild:
+  amd64 stable, bug #328667
+
+  22 Jul 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> pidgin-2.7.2.ebuild:
+  x86 stable wrt security bug #328667
+
+*pidgin-2.7.2 (22 Jul 2010)
+
+  22 Jul 2010; Peter Volkov <pva@gentoo.org> -pidgin-2.6.6.ebuild,
+  -pidgin-2.7.1.ebuild, +pidgin-2.7.2.ebuild:
+  Version bump, bug #329401, thank tman for report.
+
+  22 Jul 2010; Peter Volkov <pva@gentoo.org> pidgin-2.7.1-r1.ebuild,
+  metadata.xml:
+  Add xscreensaver USE flag description, bug #327047.
+
+  19 Jul 2010; Joseph Jezak <josejx@gentoo.org> pidgin-2.7.1-r1.ebuild:
+  Marked ppc stable for bug #324023.
+
+  11 Jul 2010; Markos Chandras <hwoarang@gentoo.org> pidgin-2.7.1-r1.ebuild:
+  Stable on amd64 wrt bug #324023
+
+  08 Jul 2010; Brent Baude <ranger@gentoo.org> pidgin-2.7.1-r1.ebuild:
+  Marking pidgin-2.7.1-r1 ppc64 for bug 324023
+
+  03 Jul 2010; Raúl Porcel <armin76@gentoo.org> pidgin-2.7.1-r1.ebuild:
+  alpha/ia64/sparc stable wrt #324023
+
+  01 Jul 2010; Jeroen Roovers <jer@gentoo.org> pidgin-2.7.1-r1.ebuild:
+  Stable for HPPA (bug #324023).
+
+  01 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  pidgin-2.7.1-r1.ebuild:
+  stable x86, security bug 324023
+
+  14 Jun 2010; Peter Volkov <pva@gentoo.org> pidgin-2.7.1-r1.ebuild:
+  Fix build issue: create symlinks only in case USE=gtk is enabled, bug
+  #323731, thank Nikoli for report.
+
+*pidgin-2.7.1-r1 (11 Jun 2010)
+
+  11 Jun 2010; Peter Volkov <pva@gentoo.org> +pidgin-2.7.1-r1.ebuild:
+  Fix missed icons in tray that is not compatible with new hicolor theme,
+  bug #323355, thank P Purkayastha for report and test.
+
+  09 Jun 2010; Peter Volkov <pva@gentoo.org> pidgin-2.7.1.ebuild:
+  Set active python version, bug #315109, thank Arfrever Frehtes Taifersar
+  Arahesis for report.
+
+  09 Jun 2010; Peter Volkov <pva@gentoo.org> pidgin-2.7.1.ebuild,
+  metadata.xml:
+  Dropped restriction on <2.30 for evolution-data-server DEPEND, bug 323215,
+  thank Jens-Uwe Peter for report and checks. Improve python-related code,
+  bug #315109, thank Arfrever Frehtes Taifersar Arahesis for report. Also
+  avoid automagick dependency on python (in libgnt) and allow finch be built
+  without linkage with python. Make some USE flags more descriptive, bug
+  #282919, thank Mr. B for report. Small style cleanups.
+
+*pidgin-2.7.1 (04 Jun 2010)
+
+  04 Jun 2010; Olivier Crête <tester@gentoo.org> -pidgin-2.7.0.ebuild,
+  -pidgin-2.7.0-r1.ebuild, +pidgin-2.7.1.ebuild:
+  Version bump, bug #322699
+
+  27 May 2010; Peter Volkov <pva@gentoo.org> pidgin-2.7.0-r1.ebuild:
+  Fixed build issue with USE="-zephyr krb4", bug 320167, thank Martin Jansa
+  for report.
+
+*pidgin-2.7.0-r1 (26 May 2010)
+
+  26 May 2010; Peter Volkov <pva@gentoo.org> -pidgin-2.6.3.ebuild,
+  -pidgin-2.6.5.ebuild, +pidgin-2.7.0-r1.ebuild, metadata.xml:
+  Added upstream fixes, in particular, don't force gstreamer, bug 320167,
+  thank Milan Nikolic for report and Polynomial-C for this fix. Drop old.
 
   17 May 2010; Olivier Crête <tester@gentoo.org> pidgin-2.7.0.ebuild,
   +files/pidgin-2.7.0-icq-fix.patch:
