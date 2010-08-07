@@ -1,6 +1,33 @@
 # ChangeLog for x11-misc/xscreensaver
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.269 2010/01/23 14:19:46 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-misc/xscreensaver/ChangeLog,v 1.276 2010/07/24 16:48:44 armin76 Exp $
+
+  24 Jul 2010; Raúl Porcel <armin76@gentoo.org> xscreensaver-5.11.ebuild:
+  alpha/arm/ia64/sh/sparc stable wrt #327367
+
+  23 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  xscreensaver-5.11.ebuild:
+  Use virtual/jpeg.
+
+  21 Jul 2010; Jeroen Roovers <jer@gentoo.org> xscreensaver-5.11.ebuild:
+  Stable for HPPA (bug #327367).
+
+  19 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  xscreensaver-5.11.ebuild:
+  ppc64 stable wrt #327367
+
+  12 Jul 2010; Christian Faulhammer <fauli@gentoo.org>
+  xscreensaver-5.11.ebuild:
+  stable x86, bug 327367
+
+  09 Jul 2010; Pacho Ramos <pacho@gentoo.org> xscreensaver-5.11.ebuild:
+  stable amd64, bug 327367
+
+*xscreensaver-5.11 (15 Jun 2010)
+
+  15 Jun 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +xscreensaver-5.11.ebuild:
+  Version bump.
 
   23 Jan 2010; Samuli Suominen <ssuominen@gentoo.org>
   xscreensaver-5.10.ebuild:
