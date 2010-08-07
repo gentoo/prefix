@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.4.3-r1.ebuild,v 1.5 2010/07/06 13:22:53 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/gnome-base/gvfs/gvfs-1.6.3.ebuild,v 1.3 2010/08/01 11:30:21 fauli Exp $
 
 EAPI="2"
 GCONF_DEBUG="no"
@@ -14,9 +14,9 @@ LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~sparc-solaris ~x86-solaris"
 IUSE="archive avahi bluetooth cdda doc fuse gdu gnome gnome-keyring gphoto2 hal
-+http samba +udev"
++http iphone samba +udev"
 
-RDEPEND=">=dev-libs/glib-2.21.2
+RDEPEND=">=dev-libs/glib-2.23.4
 	>=sys-apps/dbus-1.0
 	dev-libs/libxml2
 	net-misc/openssh
@@ -33,13 +33,14 @@ RDEPEND=">=dev-libs/glib-2.21.2
 	gnome? ( >=gnome-base/gconf-2.0 )
 	gnome-keyring? ( >=gnome-base/gnome-keyring-1.0 )
 	gphoto2? ( >=media-libs/libgphoto2-2.4.7 )
+	iphone? ( app-pda/libimobiledevice )
 	udev? (
 		cdda? ( >=dev-libs/libcdio-0.78.2[-minimal] )
 		>=sys-fs/udev-145[extras] )
 	hal? (
 		cdda? ( >=dev-libs/libcdio-0.78.2[-minimal] )
 		>=sys-apps/hal-0.5.10 )
-	http? ( >=net-libs/libsoup-gnome-2.25.1 )
+	http? ( >=net-libs/libsoup-gnome-2.26.0 )
 	samba? ( || ( >=net-fs/samba-3.4.6[smbclient]
 			<=net-fs/samba-3.3 ) )"
 DEPEND="${RDEPEND}
@@ -65,6 +66,7 @@ pkg_setup() {
 
 	G2CONF="${G2CONF}
 		--disable-bash-completion
+		--with-dbus-service-dir=/usr/share/dbus-1/services
 		$(use_enable archive)
 		$(use_enable avahi)
 		$(use_enable bluetooth obexftp)
@@ -73,6 +75,7 @@ pkg_setup() {
 		$(use_enable gdu)
 		$(use_enable gnome gconf)
 		$(use_enable gphoto2)
+		$(use_enable iphone afc)
 		$(use_enable udev gudev)
 		$(use_enable hal)
 		$(use_enable http)
@@ -91,10 +94,6 @@ src_prepare() {
 		echo "mount-archive.desktop.in" >> po/POTFILES.in
 		echo "mount-archive.desktop.in.in" >> po/POTFILES.in
 	fi
-
-	# Fix intltoolize broken file, see upstream #577133
-	sed "s:'\^\$\$lang\$\$':\^\$\$lang\$\$:g" -i po/Makefile.in.in \
-		|| die "sed failed"
 
 	use gphoto2 || use archive && eautoreconf
 
