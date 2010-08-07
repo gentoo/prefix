@@ -1,12 +1,13 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/slrn/slrn-0.9.9_p1.ebuild,v 1.1 2008/10/07 21:31:16 swegener Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/slrn/slrn-0.9.9_p1.ebuild,v 1.3 2010/08/02 16:52:14 hwoarang Exp $
 
+EAPI=2
 inherit eutils
 
-MY_P="${P/_}"
+MY_P=${P/_}
 
-DESCRIPTION="a s-lang based newsreader"
+DESCRIPTION="A s-lang based newsreader"
 HOMEPAGE="http://slrn.sourceforge.net/"
 SRC_URI="mirror://sourceforge/${PN}/${MY_P}.tar.gz"
 
@@ -23,28 +24,22 @@ RDEPEND="virtual/mta
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
-S="${WORKDIR}"/${MY_P}
+S=${WORKDIR}/${MY_P}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	epatch "${FILESDIR}"/${P}-dont-strip.patch
 }
 
-src_compile() {
+src_configure() {
 	econf \
 		--with-docdir="${EPREFIX}"/usr/share/doc/${PF} \
 		--with-slrnpull \
 		$(use_with uudeview) \
 		$(use_enable nls) \
-		$(use_with ssl) \
-		|| die "econf failed"
-
-	emake || die "emake failed."
+		$(use_with ssl)
 }
 
 src_install () {
-	emake -j1 DESTDIR="${D}" install || die "emake install failed."
+	emake -j1 DESTDIR="${D}" install || die
 	prepalldocs
 }

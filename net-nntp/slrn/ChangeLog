@@ -1,6 +1,9 @@
 # ChangeLog for net-nntp/slrn
-# Copyright 2002-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-nntp/slrn/ChangeLog,v 1.17 2008/10/07 21:31:16 swegener Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-nntp/slrn/ChangeLog,v 1.19 2010/08/02 16:52:14 hwoarang Exp $
+
+  02 Aug 2010; Markos Chandras <hwoarang@gentoo.org> slrn-0.9.9_p1.ebuild:
+  Stable on amd64 wrt bug #330849
 
 *slrn-0.9.9_p1 (07 Oct 2008)
 
@@ -11,9 +14,7 @@
   22 Aug 2008; Doug Goldstein <cardoe@gentoo.org> metadata.xml:
   add GLEP 56 USE flag desc from use.local.desc
 
-  10 Mar 2008; Samuli Suominen <drac@gentoo.org>
-  -files/0.9.8.1/slrn-0.9.8.1-lastchar2.diff, -files/0.9.8.1-utf8.patch,
-  -files/0.9.8.1/slrn-0.9.8.1-fetch.diff, -slrn-0.9.8.1.ebuild,
+  10 Mar 2008; Samuli Suominen <ssuominen@gentoo.org>
   slrn-0.9.8.1_p1.ebuild:
   amd64 stable wrt #212787
 
@@ -26,13 +27,12 @@
   09 Mar 2008; Markus Meier <maekke@gentoo.org> slrn-0.9.8.1_p1.ebuild:
   x86 stable, bug #212787
 
-  12 Feb 2008; Samuli Suominen <drac@gentoo.org> slrn-0.9.8.1_p1.ebuild:
-  USE unicode was not doing anything, not sure if -utf8.patch is still needed
-  with slang-2.
+  12 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> slrn-0.9.8.1_p1.ebuild:
+  USE unicode was not doing anything.
 
 *slrn-0.9.8.1_p1 (11 Feb 2008)
 
-  11 Feb 2008; Samuli Suominen <drac@gentoo.org> +slrn-0.9.8.1_p1.ebuild:
+  11 Feb 2008; Samuli Suominen <ssuominen@gentoo.org> +slrn-0.9.8.1_p1.ebuild:
   Version bump for bug 209416 to get slang-2 compability.
 
   11 Mar 2007; Sven Wegener <swegener@gentoo.org> slrn-0.9.8.1.ebuild:
