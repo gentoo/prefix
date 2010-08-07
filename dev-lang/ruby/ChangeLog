@@ -1,6 +1,70 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.448 2010/05/06 20:10:08 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.458 2010/07/21 12:18:43 flameeyes Exp $
+
+  21 Jul 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  ruby-1.9.2_rc2.ebuild:
+  Try 2 to fix the berkdb 5 issue on 1.9.
+
+  20 Jul 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  ruby-1.8.6_p388-r1.ebuild, ruby-1.8.7_p299.ebuild, ruby-1.9.1_p429.ebuild,
+  ruby-1.9.2_rc2.ebuild:
+  Add a new patchset to add support for Berkeley DB 5.0 (bug #326937). Add
+  support for adding new patchsets without bumping the revision for all the
+  old ebuilds as well.
+
+*ruby-1.9.2_rc2 (14 Jul 2010)
+
+  14 Jul 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +ruby-1.9.2_rc2.ebuild:
+  Bump to 1.9.2 release candidate, that works with OpenSSL 1. This version
+  might cause _further_ build failures as it changed slightly behaviour.
+  You're going to need to rebuild rubygems and then all the packages
+  previously installed after upgrading to this.
+
+  04 Jul 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  -ruby-1.8.7_p249-r1.ebuild, -ruby-1.8.7_p249-r2.ebuild,
+  -ruby-1.9.1_p376.ebuild:
+  Cleanup old versions.
+
+*ruby-1.9.1_p429 (04 Jul 2010)
+
+  04 Jul 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +ruby-1.9.1_p429.ebuild:
+  Version bump to new 1.9.1 release.
+
+*ruby-1.8.7_p299 (23 Jun 2010)
+
+  23 Jun 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +ruby-1.8.7_p299.ebuild:
+  Version bump.
+
+  19 May 2010; Alex Legler <a3li@gentoo.org> ruby-1.8.6_p388-r1.ebuild,
+  ruby-1.8.7_p249-r2.ebuild, ruby-1.9.1_p376.ebuild:
+  remove useless comments
+
+  18 May 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  ruby-1.8.6_p388-r1.ebuild, ruby-1.8.7_p249-r2.ebuild,
+  ruby-1.9.1_p376.ebuild:
+  Update ebuilds to be consistent with ruby-enterprise; patches are moved to
+  dev.gentoo.org now.
+
+  18 May 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  ruby-1.9.1_p376.ebuild:
+  Use the correct RUBYLIB.
+
+*ruby-1.8.7_p249-r2 (18 May 2010)
+*ruby-1.8.6_p388-r1 (18 May 2010)
+
+  18 May 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +ruby-1.8.6_p388-r1.ebuild, +ruby-1.8.7_p249-r2.ebuild,
+  ruby-1.9.1_p376.ebuild, metadata.xml:
+  Add patches to build with BerkDB 5.0 (bug #319583) and OpenSSL 1.0 (bug
+  #304427) to Ruby 1.8.x. Also use --no-undefined as it's done for 1.9. Also
+  add USE flags for ncurses, readline and libedit, and properly depend on
+  zlib. Drop emacs USE flag and dependency on app-emacs/ruby-mode as the new
+  Emacs versions support ruby-mode themselves and it should be even more
+  updated.
 
 *ruby-1.8.7_p249-r1 (06 May 2010)
 
