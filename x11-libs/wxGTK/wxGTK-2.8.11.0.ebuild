@@ -1,10 +1,10 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.10.1-r1.ebuild,v 1.9 2009/07/29 21:43:35 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.11.0.ebuild,v 1.2 2010/06/29 01:06:19 dirtyepic Exp $
 
 EAPI=2
 
-inherit eutils versionator flag-o-matic autotools prefix
+inherit eutils versionator flag-o-matic autotools prefix multilib
 
 DESCRIPTION="GTK+ version of wxWidgets, a cross-platform C++ GUI toolkit."
 HOMEPAGE="http://wxwidgets.org/"
@@ -17,7 +17,7 @@ BASE_P="${PN}-${BASE_PV}"
 SRC_URI="mirror://sourceforge/wxpython/wxPython-src-${PV}.tar.bz2"
 
 KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="aqua X doc debug gnome gstreamer odbc opengl pch sdl"
+IUSE="aqua X doc debug gnome gstreamer odbc opengl pch sdl tiff"
 
 RDEPEND="
 	dev-libs/expat
@@ -27,7 +27,6 @@ RDEPEND="
 		>=x11-libs/gtk+-2.4
 		>=dev-libs/glib-2.4
 		media-libs/jpeg
-		media-libs/tiff
 		x11-libs/libSM
 		x11-libs/libXinerama
 		x11-libs/libXxf86vm
@@ -36,11 +35,12 @@ RDEPEND="
 			>=gnome-base/gconf-2.0
 			>=media-libs/gstreamer-0.10 )
 		opengl? ( virtual/opengl )
+		tiff?   ( media-libs/tiff )
 		)
 	aqua? (
-		>=x11-libs/gtk+-2.4[aqua]
+		>=x11-libs/gtk+-2.4[aqua=]
 		media-libs/jpeg
-		media-libs/tiff
+		tiff?   ( media-libs/tiff )
 		)"
 
 DEPEND="${RDEPEND}
@@ -62,17 +62,22 @@ LICENSE="wxWinLL-3
 S="${WORKDIR}/wxPython-src-${PV}"
 
 src_prepare() {
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.6.3-unicode-odbc.patch
-	epatch "${FILESDIR}"/${PN}-2.8.10-collision.patch
+	epatch "${FILESDIR}"/${PN}-2.8.11-unicode-odbc.patch
+	epatch "${FILESDIR}"/${PN}-2.8.11-collision.patch
 	epatch "${FILESDIR}"/${PN}-2.8.7-mmedia.patch              # Bug #174874
-	# this version only:
-	epatch "${FILESDIR}"/${P}-CVE-2009-2369.patch              # Bug #277722
+	epatch "${FILESDIR}"/${PN}-2.8.10.1-odbc-defines.patch     # Bug #310923
 
 	epatch "${FILESDIR}"/${PN}-2.8.9.2-interix.patch
 	epatch "${FILESDIR}"/${PN}-2.8.9.2-x11-search.patch
+	epatch "${FILESDIR}"/${PN}-2.8.10.1-libdir.patch
 
 	eprefixify "${S}"/configure.in
+	sed -i -e "s:@GENTOO_PORTAGE_LIBDIR@:$(get_libdir):" \
+		"${S}"/configure.in || die
+
+	# Upstream issue, see Gentoo bug 271421
+	einfo "Copying missing get-version.sh to ${S}/src/expat/conftools/"
+	cp -a "${FILESDIR}"/get-version.sh "${S}/src/expat/conftools/"
 
 	AT_M4DIR="${S}/build/aclocal" eautoreconf
 	eautoconf -B "build/autoconf_prepend-include"
@@ -92,11 +97,9 @@ src_configure() {
 			--with-expat=sys
 			$(use_enable debug)
 			$(use_enable pch precomp-headers)
-			$(use_with sdl)"
-
-	use odbc \
-		&& myconf="${myconf} --with-odbc=sys" \
-		|| myconf="${myconf} $(use_with odbc)"
+			$(use_with odbc odbc sys)
+			$(use_with sdl)
+			$(use_with tiff libtiff sys)"
 
 	# wxGTK options
 	#   --enable-graphics_ctx - needed for webkit, editra
@@ -109,7 +112,7 @@ src_configure() {
 			--with-libpng=sys
 			--with-libxpm=sys
 			--with-libjpeg=sys
-			--with-libtiff=sys
+			--with-gtk
 			$(use_enable gstreamer mediactrl)
 			$(use_enable opengl)
 			$(use_with opengl)
@@ -123,8 +126,8 @@ src_configure() {
 			--with-libpng=sys
 			--with-libxpm=sys
 			--with-libjpeg=sys
-			--with-libtiff=sys
-			--with-mac=1"
+			--with-mac=1
+			--with-opengl"
 			# cocoa toolkit seems to be broken
 
 	# wxBase options

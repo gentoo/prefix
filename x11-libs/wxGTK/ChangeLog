@@ -1,6 +1,17 @@
 # ChangeLog for x11-libs/wxGTK
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.252 2010/04/09 03:52:13 jer Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/ChangeLog,v 1.254 2010/06/29 01:06:19 dirtyepic Exp $
+
+  29 Jun 2010; Ryan Hill <dirtyepic@gentoo.org> wxGTK-2.8.11.0.ebuild:
+  Really make tiff dependency optional (bug #326061).
+
+*wxGTK-2.8.11.0 (27 May 2010)
+
+  27 May 2010; Ryan Hill <dirtyepic@gentoo.org> -wxGTK-2.6.4.0-r5.ebuild,
+  -wxGTK-2.8.10.1-r1.ebuild, +wxGTK-2.8.11.0.ebuild,
+  +files/wxGTK-2.8.11-collision.patch,
+  +files/wxGTK-2.8.11-unicode-odbc.patch:
+  Version bump, remove old.
 
   09 Apr 2010; Jeroen Roovers <jer@gentoo.org> wxGTK-2.6.4.0-r6.ebuild,
   wxGTK-2.8.10.1-r5.ebuild:
