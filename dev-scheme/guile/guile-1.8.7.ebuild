@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.7.ebuild,v 1.2 2009/12/14 19:30:22 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-scheme/guile/guile-1.8.7.ebuild,v 1.3 2010/05/30 06:10:46 dirtyepic Exp $
 
 EAPI=1
 inherit eutils autotools flag-o-matic elisp-common
@@ -32,6 +32,7 @@ src_unpack() {
 
 	sed "s_sleep 999_sleep 1_" -i test-suite/tests/popen.test
 	epatch "${FILESDIR}/${P}-fix_tests.patch"
+	epatch "${FILESDIR}"/${P}-gcc45.patch  # 317175
 
 #	cp configure.in configure.in.old
 
