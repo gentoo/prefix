@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/gthumb-2.11.3.ebuild,v 1.3 2010/05/05 23:07:38 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/gthumb-2.11.5-r1.ebuild,v 1.1 2010/07/18 18:06:07 pacho Exp $
 
 EAPI="3"
 
@@ -40,6 +40,7 @@ DEPEND="${RDEPEND}
 	app-text/scrollkeeper
 	>=dev-util/intltool-0.35
 	app-text/gnome-doc-utils
+	gnome-base/gnome-common
 	test? ( ~app-text/docbook-xml-dtd-4.1.2 )"
 
 DOCS="AUTHORS ChangeLog NEWS README"
@@ -48,7 +49,7 @@ pkg_setup() {
 	G2CONF="${G2CONF}
 		--disable-static
 		--disable-clutter
-		$(use_enable cdr brasero)
+		$(use_enable cdr libbrasero)
 		$(use_enable exif exiv2)
 		$(use_enable gstreamer)
 		$(use_enable gnome-keyring)
@@ -64,6 +65,15 @@ src_prepare() {
 
 	# Do not require unstable libunique
 	epatch "${FILESDIR}/${PN}-2.11.2.1-configure.patch"
+
+	# Do not link to the exiv2 extension if it's not built
+	epatch "${FILESDIR}/${P}-configure-exiv2.patch"
+
+	# Fixed lossless rotation with libjpeg8
+	epatch "${FILESDIR}/${P}-jpeg8-rotation.patch"
+
+	# Preserve the exif data after a lossless rotation
+	epatch "${FILESDIR}/${P}-exif-rotation.patch"
 
 	intltoolize --force --copy --automake || die "intltoolize failed"
 	eautoreconf

@@ -1,6 +1,46 @@
 # ChangeLog for media-gfx/gthumb
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/ChangeLog,v 1.108 2010/05/05 23:07:38 eva Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/ChangeLog,v 1.115 2010/07/18 18:06:07 pacho Exp $
+
+*gthumb-2.11.5-r1 (18 Jul 2010)
+
+  18 Jul 2010; Pacho Ramos <pacho@gentoo.org> -gthumb-2.11.5.ebuild,
+  +gthumb-2.11.5-r1.ebuild, +files/gthumb-2.11.5-exif-rotation.patch,
+  +files/gthumb-2.11.5-jpeg8-rotation.patch:
+  Revision bump applying upstream patches to fix jpeg8 rotation bug #309251.
+  Remove old.
+
+  14 Jul 2010; Pacho Ramos <pacho@gentoo.org> gthumb-2.11.5.ebuild,
+  +files/gthumb-2.11.5-configure-exiv2.patch:
+  Apply upstream patch to fix building without exif USE flag (bug #328221 by
+  Diego E. 'Flameeyes' Pettenò and Alexander Goetz), fix libbrasero
+  configure option.
+
+*gthumb-2.11.5 (13 Jul 2010)
+
+  13 Jul 2010; Pacho Ramos <pacho@gentoo.org> -gthumb-2.11.2.1.ebuild,
+  -gthumb-2.11.3.ebuild, -gthumb-2.11.4.ebuild, +gthumb-2.11.5.ebuild:
+  Version bump with more fixes and translation updates. Remove old buggy and
+  crashy versions that were not ready to go stable. Rekeyword on ppc now
+  that affected use flag is masked for them (bug #318691).
+
+  07 Jul 2010; Pacho Ramos <pacho@gentoo.org> gthumb-2.11.2.1.ebuild,
+  gthumb-2.11.3.ebuild, gthumb-2.11.4.ebuild:
+  gnome-base/gnome-common is needed when running eautoreconf (bug #327277 by
+  zvasylvv).
+
+  06 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> gthumb-2.11.3.ebuild,
+  gthumb-2.11.4.ebuild:
+  Keyword ~ppc64 wrt #318691
+
+*gthumb-2.11.4 (03 Jul 2010)
+
+  03 Jul 2010; Pacho Ramos <pacho@gentoo.org> +gthumb-2.11.4.ebuild:
+  Version bump with tons of fixes and some new features.
+
+  15 May 2010; Raúl Porcel <armin76@gentoo.org> gthumb-2.10.11.ebuild,
+  gthumb-2.11.2.1.ebuild:
+  Drop ia64 keywords
 
   05 May 2010; Gilles Dartiguelongue <eva@gentoo.org> gthumb-2.11.3.ebuild,
   metadata.xml:

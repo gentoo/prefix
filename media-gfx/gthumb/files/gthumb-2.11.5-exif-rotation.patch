@@ -1,0 +1,143 @@
+From c200cbf310109cba991bafa38d521c7a1af31360 Mon Sep 17 00:00:00 2001
+From: Paolo Bacchilega <paobac@src.gnome.org>
+Date: Fri, 16 Jul 2010 13:52:54 +0000
+Subject: preserve the exif data after a lossless rotation
+
+read the exif data from the input buffer to make sure that they are
+read correctly, instead of reading them from the output buffer after
+the transformation.
+---
+diff --git a/extensions/exiv2_tools/main.c b/extensions/exiv2_tools/main.c
+index a8dcf74..87dd411 100644
+--- a/extensions/exiv2_tools/main.c
++++ b/extensions/exiv2_tools/main.c
+@@ -24,6 +24,7 @@
+ #include <config.h>
+ #include <gtk/gtk.h>
+ #include <gthumb.h>
++#include <extensions/jpeg_utils/jpegtran.h>
+ #include "gth-edit-exiv2-page.h"
+ #include "gth-metadata-provider-exiv2.h"
+ #include "exiv2-utils.h"
+@@ -167,21 +168,19 @@ update_exif_dimensions (GFileInfo    *info,
+ 
+ 
+ static void
+-exiv2_jpeg_tran_cb (void         **out_buffer,
+-		    gsize         *out_buffer_size,
+-		    GthTransform  *transform)
++exiv2_jpeg_tran_cb (JpegTranInfo *tran_info)
+ {
+ 	GFileInfo *info;
+ 
+ 	info = g_file_info_new ();
+-	if (exiv2_read_metadata_from_buffer (*out_buffer, *out_buffer_size, info, NULL)) {
++	if (exiv2_read_metadata_from_buffer (tran_info->in_buffer, tran_info->in_buffer_size, info, NULL)) {
+ 		GthMetadata *metadata;
+ 
+-		update_exif_dimensions (info, *transform);
++		update_exif_dimensions (info, tran_info->transformation);
+ 
+ 		metadata = g_object_new (GTH_TYPE_METADATA, "raw", "1", NULL);
+ 		g_file_info_set_attribute_object (info, "Exif::Image::Orientation", G_OBJECT (metadata));
+-		exiv2_write_metadata_to_buffer (out_buffer, out_buffer_size, info, NULL, NULL);
++		exiv2_write_metadata_to_buffer (tran_info->out_buffer, tran_info->out_buffer_size, info, NULL, NULL);
+ 
+ 		g_object_unref (metadata);
+ 	}
+diff --git a/extensions/image_rotation/main.c b/extensions/image_rotation/main.c
+index 321ce7e..6a1195c 100644
+--- a/extensions/image_rotation/main.c
++++ b/extensions/image_rotation/main.c
+@@ -33,11 +33,10 @@ gthumb_extension_activate (void)
+ 	/**
+ 	 * Called after successfully rotating a jpeg image
+ 	 *
+-	 * @out_buffer (void **): pointer to file data
+-	 * @out_buffer_size (gsize *): pointer to file data size
+-	 * @tranform (GthTransform *): the transformation applied to the file
++	 * @info (JpegTranInfo *): the transformation info as described in
++	 * extensions/jpeg_utils/jpegtran.h
+ 	 **/
+-	gth_hook_register ("jpegtran-after", 3);
++	gth_hook_register ("jpegtran-after", 1);
+ 
+ 	gth_hook_add_callback ("gth-browser-construct", 10, G_CALLBACK (ir__gth_browser_construct_cb), NULL);
+ 	gth_hook_add_callback ("gth-browser-update-sensitivity", 10, G_CALLBACK (ir__gth_browser_update_sensitivity_cb), NULL);
+diff --git a/extensions/jpeg_utils/jpegtran.c b/extensions/jpeg_utils/jpegtran.c
+index 1aa302d..5484983 100644
+--- a/extensions/jpeg_utils/jpegtran.c
++++ b/extensions/jpeg_utils/jpegtran.c
+@@ -222,7 +222,6 @@ jpegtran_internal (struct jpeg_decompress_struct  *srcinfo,
+ 	/* Initialize destination compression parameters from source values */
+ 	jpeg_copy_critical_parameters (srcinfo, dstinfo);
+ 
+-
+ 	/* Do not output a JFIF marker for EXIF thumbnails.
+ 	 * This is not the optimal way to detect the difference
+ 	 * between a thumbnail and a normal image, but it works
+@@ -230,13 +229,6 @@ jpegtran_internal (struct jpeg_decompress_struct  *srcinfo,
+ 	if (option == JCOPYOPT_NONE)
+ 		dstinfo->write_JFIF_header = FALSE;
+ 
+-#if JPEG_LIB_VERSION < 80
+-	/* Adjust the markers to create a standard EXIF file if an EXIF marker
+-	 * is present in the input. By default, libjpeg creates a JFIF file,
+-	 * which is incompatible with the EXIF standard. */
+-	jcopy_markers_exif (srcinfo, dstinfo, option);
+-#endif
+-
+ 	/* Adjust destination parameters if required by transform options;
+ 	 * also find out which set of coefficient arrays will hold the output.
+ 	 */
+@@ -336,7 +328,14 @@ jpegtran (void           *in_buffer,
+ 	jpeg_destroy_decompress (&srcinfo);
+ 
+ 	if (success) {
+-		gth_hook_invoke ("jpegtran-after", out_buffer, out_buffer_size, &transformation);
++		JpegTranInfo info;
++
++		info.in_buffer = in_buffer;
++		info.in_buffer_size = in_buffer_size;
++		info.out_buffer = out_buffer;
++		info.out_buffer_size = out_buffer_size;
++		info.transformation = transformation;
++		gth_hook_invoke ("jpegtran-after", &info);
+ 	}
+ 	else {
+ 		g_free (*out_buffer);
+diff --git a/extensions/jpeg_utils/jpegtran.h b/extensions/jpeg_utils/jpegtran.h
+index 6c26139..80bafbe 100644
+--- a/extensions/jpeg_utils/jpegtran.h
++++ b/extensions/jpeg_utils/jpegtran.h
+@@ -46,6 +46,15 @@ typedef enum {
+ } JpegMcuAction;
+ 
+ 
++typedef struct {
++	void          *in_buffer;
++	gsize          in_buffer_size;
++	void         **out_buffer;
++	gsize         *out_buffer_size;
++	GthTransform   transformation;
++} JpegTranInfo;
++
++
+ gboolean   jpegtran  (void           *in_buffer,
+ 		      gsize           in_buffer_size,
+ 		      void          **out_buffer,
+diff --git a/extensions/jpeg_utils/transupp.h b/extensions/jpeg_utils/transupp.h
+index 104fa2e..5f0f69b 100644
+--- a/extensions/jpeg_utils/transupp.h
++++ b/extensions/jpeg_utils/transupp.h
+@@ -20,6 +20,8 @@
+  *  Foundation, Inc., 59 Temple Street #330, Boston, MA 02111-1307, USA.
+  */
+ 
++#include <config.h>
++
+ #ifdef HAVE_LIBJPEG
+ 
+ #include <jpeglib.h>
+--
+cgit v0.8.3.1

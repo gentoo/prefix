@@ -1,6 +1,6 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/gthumb-2.10.11.ebuild,v 1.6 2009/05/23 16:08:58 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/gthumb/gthumb-2.10.11.ebuild,v 1.7 2010/05/15 17:05:22 armin76 Exp $
 
 EAPI=2
 
