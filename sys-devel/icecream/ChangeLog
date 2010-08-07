@@ -1,6 +1,9 @@
 # ChangeLog for sys-devel/icecream
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/ChangeLog,v 1.36 2010/02/12 19:38:47 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/icecream/ChangeLog,v 1.37 2010/06/02 06:47:39 tove Exp $
+
+  02 Jun 2010; Torsten Veller <tove@gentoo.org> metadata.xml:
+  Remove bluebird from metadata.xml (#223101)
 
   12 Feb 2010; Raúl Porcel <armin76@gentoo.org> icecream-0.9.2.ebuild,
   icecream-0.9.3.ebuild, icecream-0.9.4.ebuild:
