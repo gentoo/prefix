@@ -5,10 +5,6 @@
 		<email>dickey@radix.net</email>
 		<name>Thomas Dickey</name>
 	</maintainer>
-	<maintainer>
-		<email>ssuominen@gentoo.org</email>
-		<name>Samuli Suominen</name>
-	</maintainer>
 	<herd>x11</herd>
 	<use>
 		<flag name='toolbar'>Enable the xterm toolbar to be built</flag>
