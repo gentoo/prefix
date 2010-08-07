@@ -1,6 +1,32 @@
 # ChangeLog for net-proxy/tinyproxy
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/ChangeLog,v 1.13 2009/11/29 09:58:56 mrness Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/net-proxy/tinyproxy/ChangeLog,v 1.20 2010/06/04 05:28:04 jer Exp $
+
+  04 Jun 2010; Jeroen Roovers <jer@gentoo.org> tinyproxy-1.8.1-r1.ebuild:
+  Invert USE=minimal logic thanks to Ben Kohler (bug #321753 again).
+
+*tinyproxy-1.8.1-r1 (03 Jun 2010)
+
+  03 Jun 2010; Jeroen Roovers <jer@gentoo.org> -tinyproxy-1.8.1.ebuild,
+  tinyproxy-1.8.1-r1.ebuild:
+  Fix various directory paths. Add tinyproxy user and make it own its
+  directories. Fix configuration file location as used in initd script.
+
+  03 Jun 2010; Jeroen Roovers <jer@gentoo.org> tinyproxy-1.8.1.ebuild:
+  Remove USE=doc, only use USE=minimal.
+
+  03 Jun 2010; Jeroen Roovers <jer@gentoo.org> tinyproxy-1.8.1.ebuild,
+  +files/tinyproxy-1.8.1-minimal.patch:
+  Introduce USE=minimal to not install documentation or man pages and to not
+  depend on app-text/asciidoc thanks to jakie jia (bug #321753). Do not move
+  HTML templates to docdir as they are not docs.
+
+*tinyproxy-1.8.1 (26 May 2010)
+
+  26 May 2010; Jeroen Roovers <jer@gentoo.org> +tinyproxy-1.8.1.ebuild,
+  +files/tinyproxy-1.8.1-ldflags.patch, metadata.xml:
+  Version bump thanks to Alexander Orlenko (bug #320079). Respect LDFLAGS.
+  Expose more configure options as USE flags.
 
 *tinyproxy-1.6.5 (29 Nov 2009)
 
