@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.4.2_p3.ebuild,v 1.1 2010/01/24 19:06:38 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/mpfr-2.4.2_p3.ebuild,v 1.6 2010/07/18 13:50:36 nixnut Exp $
 
 # NOTE: we cannot depend on autotools here starting with gcc-4.3.x
 inherit eutils libtool

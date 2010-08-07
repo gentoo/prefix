@@ -1,6 +1,29 @@
 # ChangeLog for dev-libs/mpfr
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.114 2010/01/29 19:56:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/mpfr/ChangeLog,v 1.121 2010/07/18 13:50:36 nixnut Exp $
+
+  18 Jul 2010; <nixnut@gentoo.org> mpfr-2.4.2_p3.ebuild:
+  ppc stable #324747
+
+  29 Jun 2010; Mike Frysinger <vapier@gentoo.org> mpfr-2.4.2_p3.ebuild:
+  Mark alpha/arm/ia64/s390/sh stable #324747.
+
+  24 Jun 2010; Markos Chandras <hwoarang@gentoo.org> mpfr-2.4.2_p3.ebuild:
+  Stable on amd64 wrt bug #324747
+
+  22 Jun 2010; Christian Faulhammer <fauli@gentoo.org> mpfr-2.4.2_p3.ebuild:
+  stable x86, bug 324747
+
+  21 Jun 2010; Jeroen Roovers <jer@gentoo.org> mpfr-2.4.2_p3.ebuild:
+  Stable for HPPA (bug #324747).
+
+  20 Jun 2010; Mike Frysinger <vapier@gentoo.org> mpfr-3.0.0.ebuild:
+  Revert unintentional SLOT update #324763 by William Throwe.
+
+*mpfr-3.0.0 (20 Jun 2010)
+
+  20 Jun 2010; Mike Frysinger <vapier@gentoo.org> +mpfr-3.0.0.ebuild:
+  Version bump.
 
   29 Jan 2010; Raúl Porcel <armin76@gentoo.org> mpfr-2.4.1_p5.ebuild:
   ia64/sparc stable wrt #297297
