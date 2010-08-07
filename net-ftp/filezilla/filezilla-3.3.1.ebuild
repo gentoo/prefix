@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/filezilla-3.3.1.ebuild,v 1.2 2010/04/12 15:32:44 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/filezilla-3.3.1.ebuild,v 1.3 2010/06/23 12:42:10 voyageur Exp $
 
 EAPI=2
 
@@ -23,7 +23,8 @@ IUSE="aqua dbus nls test"
 RDEPEND=">=app-admin/eselect-wxwidgets-0.7-r1
 	net-dns/libidn
 	>=net-libs/gnutls-2.8.3
-	>=x11-libs/wxGTK-2.8.9[aqua?]
+	aqua? ( >=x11-libs/wxGTK-2.8.9[aqua?] )
+	!aqua? ( >=x11-libs/wxGTK-2.8.9[X] )
 	dbus? ( sys-apps/dbus )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig

@@ -1,6 +1,20 @@
 # ChangeLog for net-ftp/filezilla
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/ChangeLog,v 1.65 2010/04/12 15:32:44 voyageur Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-ftp/filezilla/ChangeLog,v 1.67 2010/06/23 12:42:10 voyageur Exp $
+
+  23 Jun 2010; Bernard Cafarelli <voyageur@gentoo.org>
+  filezilla-3.3.0.1.ebuild, filezilla-3.3.1.ebuild, filezilla-3.3.2.ebuild,
+  filezilla-3.3.2.1.ebuild, -filezilla-3.3.2.1-r1.ebuild,
+  filezilla-3.3.3.ebuild, filezilla-3.3.3-r1.ebuild:
+  Drop a masked version, depend on wxGTK[X], spotted by Jacob Godserv
+  <jacobgodserv@gmail.com> in bug #324621
+
+*filezilla-3.3.3-r1 (14 Jun 2010)
+*filezilla-3.3.3 (14 Jun 2010)
+
+  14 Jun 2010; Bernard Cafarelli <voyageur@gentoo.org>
+  +filezilla-3.3.3.ebuild, +filezilla-3.3.3-r1.ebuild:
+  Version bump
 
 *filezilla-3.3.2.1-r1 (12 Apr 2010)
 
