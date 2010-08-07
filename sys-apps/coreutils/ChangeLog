@@ -1,6 +1,39 @@
 # ChangeLog for sys-apps/coreutils
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.292 2010/05/11 13:24:22 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/coreutils/ChangeLog,v 1.302 2010/07/19 20:42:59 vapier Exp $
+
+*coreutils-8.5-r1 (19 Jul 2010)
+
+  19 Jul 2010; Mike Frysinger <vapier@gentoo.org> +coreutils-8.5-r1.ebuild:
+  Include i18n patch from Fedora #328827 by Arago.
+
+  19 Jul 2010; Mike Frysinger <vapier@gentoo.org> coreutils-8.5.ebuild:
+  Stabilize for alpha/arm/ia64/s390/sh #327147.
+
+  19 Jul 2010; Mike Frysinger <vapier@gentoo.org> coreutils-8.5.ebuild:
+  Workaround stdbuf build failure when USE=static #321821 by Igor
+  Novgorodov.
+
+  14 Jul 2010; Markos Chandras <hwoarang@gentoo.org> coreutils-8.5.ebuild:
+  Stable on amd64 wrt bug #327147
+
+  11 Jul 2010; Christian Faulhammer <fauli@gentoo.org> coreutils-8.5.ebuild:
+  stable x86, bug 327147
+
+  10 Jul 2010; Brent Baude <ranger@gentoo.org> coreutils-8.5.ebuild:
+  Marking coreutils-8.5 ppc64 for bug 327147
+
+  10 Jul 2010; Jeroen Roovers <jer@gentoo.org> coreutils-8.5.ebuild:
+  Stable for HPPA (bug #327147).
+
+  24 May 2010; <nixnut@gentoo.org> coreutils-8.4.ebuild:
+  ppc stable #311827
+
+  22 May 2010; Raúl Porcel <armin76@gentoo.org> coreutils-8.4.ebuild:
+  sparc stable wrt #311827
+
+  20 May 2010; Mike Frysinger <vapier@gentoo.org> coreutils-8.4.ebuild:
+  Mark alpha/arm/ia64/s390/sh stable #311827.
 
   11 May 2010; Brent Baude <ranger@gentoo.org> coreutils-8.4.ebuild:
   Marking coreutils-8.4 ppc64 for bug 311827
