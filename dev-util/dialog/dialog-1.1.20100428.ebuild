@@ -31,7 +31,7 @@ DEPEND="${RDEPEND}
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-shared.patch
 	# configure searches all over the world for some things...
-	epatch "${FILESDIR}"/${PN}-1.1-no-usr-local.patch
+	epatch "${FILESDIR}"/${P}-no-path-invention.patch
 }
 
 src_configure() {

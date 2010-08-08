@@ -1,0 +1,121 @@
+Don't go looking on your own for headers and libs in /opt, /usr/local,
+$HOME ...
+
+--- configure
++++ configure
+@@ -5760,17 +5760,6 @@
+ 
+ cf_search=
+ 
+-test "/usr" != "$prefix" && \
+-test -d "/usr" && \
+-(test $prefix = NONE || test -d $prefix) && {
+-	test -n "$verbose" && echo "	... testing for include-directories under /usr"
+-	test -d /usr/include &&          cf_search="$cf_search /usr/include"
+-	test -d /usr/include/iconv &&       cf_search="$cf_search /usr/include/iconv"
+-	test -d /usr/include/iconv/include &&    cf_search="$cf_search /usr/include/iconv/include"
+-	test -d /usr/iconv/include &&       cf_search="$cf_search /usr/iconv/include"
+-	test -d /usr/iconv/include/iconv &&    cf_search="$cf_search /usr/iconv/include/iconv"
+-}
+-
+ test "$prefix" != "NONE" && \
+ test -d "$prefix" && \
+  {
+@@ -5782,39 +5771,6 @@
+ 	test -d $prefix/iconv/include/iconv &&    cf_search="$cf_search $prefix/iconv/include/iconv"
+ }
+ 
+-test "/usr/local" != "$prefix" && \
+-test -d "/usr/local" && \
+-(test $prefix = NONE || test -d $prefix) && {
+-	test -n "$verbose" && echo "	... testing for include-directories under /usr/local"
+-	test -d /usr/local/include &&          cf_search="$cf_search /usr/local/include"
+-	test -d /usr/local/include/iconv &&       cf_search="$cf_search /usr/local/include/iconv"
+-	test -d /usr/local/include/iconv/include &&    cf_search="$cf_search /usr/local/include/iconv/include"
+-	test -d /usr/local/iconv/include &&       cf_search="$cf_search /usr/local/iconv/include"
+-	test -d /usr/local/iconv/include/iconv &&    cf_search="$cf_search /usr/local/iconv/include/iconv"
+-}
+-
+-test "/opt" != "$prefix" && \
+-test -d "/opt" && \
+-(test $prefix = NONE || test -d $prefix) && {
+-	test -n "$verbose" && echo "	... testing for include-directories under /opt"
+-	test -d /opt/include &&          cf_search="$cf_search /opt/include"
+-	test -d /opt/include/iconv &&       cf_search="$cf_search /opt/include/iconv"
+-	test -d /opt/include/iconv/include &&    cf_search="$cf_search /opt/include/iconv/include"
+-	test -d /opt/iconv/include &&       cf_search="$cf_search /opt/iconv/include"
+-	test -d /opt/iconv/include/iconv &&    cf_search="$cf_search /opt/iconv/include/iconv"
+-}
+-
+-test "$HOME" != "$prefix" && \
+-test -d "$HOME" && \
+-(test $prefix = NONE || test -d $prefix) && {
+-	test -n "$verbose" && echo "	... testing for include-directories under $HOME"
+-	test -d $HOME/include &&          cf_search="$cf_search $HOME/include"
+-	test -d $HOME/include/iconv &&       cf_search="$cf_search $HOME/include/iconv"
+-	test -d $HOME/include/iconv/include &&    cf_search="$cf_search $HOME/include/iconv/include"
+-	test -d $HOME/iconv/include &&       cf_search="$cf_search $HOME/iconv/include"
+-	test -d $HOME/iconv/include/iconv &&    cf_search="$cf_search $HOME/iconv/include/iconv"
+-}
+-
+ test "$includedir" != NONE && \
+ test "$includedir" != "/usr/include" && \
+ test -d "$includedir" && {
+@@ -10312,17 +10268,6 @@
+ 
+ cf_search=
+ 
+-test "/usr" != "$prefix" && \
+-test -d "/usr" && \
+-(test $prefix = NONE || test -d $prefix) && {
+-	test -n "$verbose" && echo "	... testing for lib-directories under /usr"
+-	test -d /usr/lib &&          cf_search="$cf_search /usr/lib"
+-	test -d /usr/lib/$cf_nculib_root &&       cf_search="$cf_search /usr/lib/$cf_nculib_root"
+-	test -d /usr/lib/$cf_nculib_root/lib &&    cf_search="$cf_search /usr/lib/$cf_nculib_root/lib"
+-	test -d /usr/$cf_nculib_root/lib &&       cf_search="$cf_search /usr/$cf_nculib_root/lib"
+-	test -d /usr/$cf_nculib_root/lib/$cf_nculib_root &&    cf_search="$cf_search /usr/$cf_nculib_root/lib/$cf_nculib_root"
+-}
+-
+ test "$prefix" != "NONE" && \
+ test -d "$prefix" && \
+  {
+@@ -10334,39 +10279,6 @@
+ 	test -d $prefix/$cf_nculib_root/lib/$cf_nculib_root &&    cf_search="$cf_search $prefix/$cf_nculib_root/lib/$cf_nculib_root"
+ }
+ 
+-test "/usr/local" != "$prefix" && \
+-test -d "/usr/local" && \
+-(test $prefix = NONE || test -d $prefix) && {
+-	test -n "$verbose" && echo "	... testing for lib-directories under /usr/local"
+-	test -d /usr/local/lib &&          cf_search="$cf_search /usr/local/lib"
+-	test -d /usr/local/lib/$cf_nculib_root &&       cf_search="$cf_search /usr/local/lib/$cf_nculib_root"
+-	test -d /usr/local/lib/$cf_nculib_root/lib &&    cf_search="$cf_search /usr/local/lib/$cf_nculib_root/lib"
+-	test -d /usr/local/$cf_nculib_root/lib &&       cf_search="$cf_search /usr/local/$cf_nculib_root/lib"
+-	test -d /usr/local/$cf_nculib_root/lib/$cf_nculib_root &&    cf_search="$cf_search /usr/local/$cf_nculib_root/lib/$cf_nculib_root"
+-}
+-
+-test "/opt" != "$prefix" && \
+-test -d "/opt" && \
+-(test $prefix = NONE || test -d $prefix) && {
+-	test -n "$verbose" && echo "	... testing for lib-directories under /opt"
+-	test -d /opt/lib &&          cf_search="$cf_search /opt/lib"
+-	test -d /opt/lib/$cf_nculib_root &&       cf_search="$cf_search /opt/lib/$cf_nculib_root"
+-	test -d /opt/lib/$cf_nculib_root/lib &&    cf_search="$cf_search /opt/lib/$cf_nculib_root/lib"
+-	test -d /opt/$cf_nculib_root/lib &&       cf_search="$cf_search /opt/$cf_nculib_root/lib"
+-	test -d /opt/$cf_nculib_root/lib/$cf_nculib_root &&    cf_search="$cf_search /opt/$cf_nculib_root/lib/$cf_nculib_root"
+-}
+-
+-test "$HOME" != "$prefix" && \
+-test -d "$HOME" && \
+-(test $prefix = NONE || test -d $prefix) && {
+-	test -n "$verbose" && echo "	... testing for lib-directories under $HOME"
+-	test -d $HOME/lib &&          cf_search="$cf_search $HOME/lib"
+-	test -d $HOME/lib/$cf_nculib_root &&       cf_search="$cf_search $HOME/lib/$cf_nculib_root"
+-	test -d $HOME/lib/$cf_nculib_root/lib &&    cf_search="$cf_search $HOME/lib/$cf_nculib_root/lib"
+-	test -d $HOME/$cf_nculib_root/lib &&       cf_search="$cf_search $HOME/$cf_nculib_root/lib"
+-	test -d $HOME/$cf_nculib_root/lib/$cf_nculib_root &&    cf_search="$cf_search $HOME/$cf_nculib_root/lib/$cf_nculib_root"
+-}
+-
+ cf_search="$cf_library_path_list $cf_search"
+ 
+ 			for cf_libdir in $cf_search
