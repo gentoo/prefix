@@ -27,9 +27,9 @@ RDEPEND="sys-libs/readline
 DEPEND="dev-lang/perl[doc?]
 	${RDEPEND}"
 
-#src_prepare() {
-#	epatch "${FILESDIR}"/${P}-fix-darwin-link.patch
-#}
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-2.3.0-fix-darwin-link.patch
+}
 
 src_configure() {
 	myconf="--disable-rpath"
