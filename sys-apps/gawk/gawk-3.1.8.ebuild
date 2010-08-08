@@ -37,7 +37,8 @@ src_prepare() {
 
 	# on solaris, we have stupid /usr/bin/awk, but gcc,
 	# which's preprocessor understands '\'-linebreaks
-	epatch "${FILESDIR}"/${PN}-3.1.5-stupid-awk-clever-cc.patch
+# fails to apply, still necessary?
+#	epatch "${FILESDIR}"/${PN}-3.1.5-stupid-awk-clever-cc.patch
 	epatch "${FILESDIR}"/${PN}-3.1.6-mint.patch
 	#elibtoolize # needed for FreeMiNT
 }
