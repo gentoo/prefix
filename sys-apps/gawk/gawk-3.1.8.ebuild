@@ -58,7 +58,7 @@ src_compile() {
 
 src_install() {
 	emake install DESTDIR="${D}" || die
-	emake -C "${SFFS}" LIBDIR="$(get_libdir)" install || die
+	emake -C "${SFFS}" LIBDIR="${EPREFIX}$(get_libdir)" install || die
 
 	# Keep important gawk in /bin
 	if use userland_GNU ; then
