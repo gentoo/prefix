@@ -6,14 +6,14 @@ PATCHVER="1.0"
 ELF2FLT_VER=""
 inherit toolchain-binutils
 
-KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 src_unpack() {
 	toolchain-binutils_src_unpack
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-2.20.51.0.1-linux-x86-on-amd64.patch
-	epatch "${FILESDIR}"/${PN}-2.20.51.0.3-mint.patch
-	epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
+#	epatch "${FILESDIR}"/${PN}-2.20.51.0.3-mint.patch
+#	epatch "${FILESDIR}"/${PN}-2.19.50.0.1-mint.patch
 }
 
 src_compile() {
