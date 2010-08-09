@@ -62,12 +62,6 @@ src_prepare() {
 		epatch "${FILESDIR}/${PN}-1.26.0-lib64.patch"
 	fi
 
-	if [[ ${CHOST} == *-darwin8 ]] ; then
-		# http://old.nabble.com/-MacPorts---21656:-pango-1.26-%2Bquartz-doesn%27t-compile-on-tiger-td25636749.html
-		# forward ported patch for 1.26.2
-		epatch "${FILESDIR}"/${PN}-1.26.2-atsui-coretext-darwin8.patch
-	fi
-
 	eautoreconf
 	elibtoolize # for Darwin bundles
 }
