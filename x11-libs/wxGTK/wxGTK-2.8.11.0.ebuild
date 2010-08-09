@@ -2,9 +2,9 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/x11-libs/wxGTK/wxGTK-2.8.11.0.ebuild,v 1.2 2010/06/29 01:06:19 dirtyepic Exp $
 
-EAPI=2
+EAPI="2"
 
-inherit eutils versionator flag-o-matic autotools prefix multilib
+inherit eutils versionator flag-o-matic multilib
 
 DESCRIPTION="GTK+ version of wxWidgets, a cross-platform C++ GUI toolkit."
 HOMEPAGE="http://wxwidgets.org/"
@@ -67,20 +67,13 @@ src_prepare() {
 	epatch "${FILESDIR}"/${PN}-2.8.7-mmedia.patch              # Bug #174874
 	epatch "${FILESDIR}"/${PN}-2.8.10.1-odbc-defines.patch     # Bug #310923
 
-	epatch "${FILESDIR}"/${PN}-2.8.9.2-interix.patch
-	epatch "${FILESDIR}"/${PN}-2.8.9.2-x11-search.patch
-	epatch "${FILESDIR}"/${PN}-2.8.10.1-libdir.patch
+# this patch needs an eautoreconf which mysteriously breaks the OSX build
+#	epatch "${FILESDIR}"/${PN}-2.8.9.2-interix.patch
 
-	eprefixify "${S}"/configure.in
-	sed -i -e "s:@GENTOO_PORTAGE_LIBDIR@:$(get_libdir):" \
-		"${S}"/configure.in || die
-
-	# Upstream issue, see Gentoo bug 271421
-	einfo "Copying missing get-version.sh to ${S}/src/expat/conftools/"
-	cp -a "${FILESDIR}"/get-version.sh "${S}/src/expat/conftools/"
-
-	AT_M4DIR="${S}/build/aclocal" eautoreconf
-	eautoconf -B "build/autoconf_prepend-include"
+	sed -i \
+		-e '/^SEARCH_INCLUDE=/s:^:SEARCH_INCLUDE="'"${EPREFIX}"'/usr/include"\nX_DISABLE_:' \
+		-e '/^SEARCH_LIB=/s/\$wx_cv_std_libpath/'"$(get_libdir)"'/' \
+		configure || die
 }
 
 src_configure() {
@@ -112,7 +105,6 @@ src_configure() {
 			--with-libpng=sys
 			--with-libxpm=sys
 			--with-libjpeg=sys
-			--with-gtk
 			$(use_enable gstreamer mediactrl)
 			$(use_enable opengl)
 			$(use_with opengl)
@@ -126,14 +118,15 @@ src_configure() {
 			--with-libpng=sys
 			--with-libxpm=sys
 			--with-libjpeg=sys
-			--with-mac=1
+			--with-mac
 			--with-opengl"
 			# cocoa toolkit seems to be broken
 
 	# wxBase options
-	use X || use aqua \
+	if use !X && use !aqua ; then
 		myconf="${myconf}
 			--disable-gui"
+	fi
 
 	mkdir "${S}"/wxgtk_build
 	cd "${S}"/wxgtk_build
