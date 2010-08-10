@@ -91,6 +91,7 @@ app-crypt/ccrypt
 app-crypt/gnupg
 app-crypt/gpgme
 app-crypt/keylookup
+app-crypt/mcrypt
 app-crypt/md5deep
 app-crypt/mhash
 app-crypt/opencdk
@@ -340,6 +341,7 @@ dev-libs/libjwc_c
 dev-libs/libjwc_f
 dev-libs/libksba
 dev-libs/libmaa
+dev-libs/libmcrypt
 dev-libs/libmcs
 dev-libs/libmemcache
 dev-libs/libmemcached
