@@ -185,6 +185,9 @@ src_prepare() {
 }
 
 src_configure() {
+	# Apparently, no one knows how to solved this as-needed failure.
+	# bug 298674 Apply workaround for now.
+	use prefix && append-ldflags $(no-as-needed)
 	# Disable extraneous modules with extra dependencies.
 	if use build; then
 		export PYTHON_DISABLE_MODULES="dbm _bsddb gdbm _curses _curses_panel readline _sqlite3 _tkinter _elementtree pyexpat"
