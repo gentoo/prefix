@@ -24,8 +24,10 @@ src_prepare() {
 	[[ ${CHOST} == *-irix* ]] && epatch "${FILESDIR}"/${PN}-1.3.5-irix.patch
 
 	# Ensure that system libtool is used.
-	sed -e 's:${installbuilddir}/libtool:'"${EPREFIX}"'/usr/bin/libtool:' -i apr-config.in || die "sed failed"
-	sed -e 's:@LIBTOOL@:$(SHELL) '"${EPREFIX}"'/usr/bin/libtool:' -i build/apr_rules.mk.in || die "sed failed"
+	local g=
+	[[ ${CHOST} == *-darwin* ]] && g=g
+	sed -e 's:${installbuilddir}/libtool:'"${EPREFIX}/usr/bin/${g}libtool"':' -i apr-config.in || die "sed failed"
+	sed -e 's:@LIBTOOL@:$(SHELL) '"${EPREFIX}/usr/bin/${g}libtool"':' -i build/apr_rules.mk.in || die "sed failed"
 
 	AT_M4DIR="build" eautoreconf
 	elibtoolize
