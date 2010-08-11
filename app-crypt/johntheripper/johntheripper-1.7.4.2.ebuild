@@ -57,7 +57,7 @@ get_target() {
 		# for Tiger this can be macosx-ppc64
 	elif use x86-macos; then
 		if use sse2; then
-			echo "macosx-x86-sse"
+			echo "macosx-x86-sse2"
 		else
 			echo "macosx-x86"
 		fi
