@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit eutils toolchain-funcs multilib libtool
+inherit eutils toolchain-funcs multilib
 
 DESCRIPTION="GNU awk pattern-matching language"
 HOMEPAGE="http://www.gnu.org/software/gawk/gawk.html"
@@ -40,7 +40,6 @@ src_prepare() {
 # fails to apply, still necessary?
 #	epatch "${FILESDIR}"/${PN}-3.1.5-stupid-awk-clever-cc.patch
 	epatch "${FILESDIR}"/${PN}-3.1.6-mint.patch
-	elibtoolize # needed for FreeMiNT
 }
 
 src_configure() {
