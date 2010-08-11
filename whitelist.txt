@@ -162,6 +162,7 @@ app-misc/ttyrec
 app-misc/when
 app-misc/zisofs-tools
 app-office/akonadi-server
+app-office/calcurse
 app-office/ledger
 app-office/orage
 app-office/texmacs
