@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit eutils toolchain-funcs multilib
+inherit eutils toolchain-funcs multilib libtool
 
 DESCRIPTION="GNU awk pattern-matching language"
 HOMEPAGE="http://www.gnu.org/software/gawk/gawk.html"
@@ -40,7 +40,7 @@ src_prepare() {
 # fails to apply, still necessary?
 #	epatch "${FILESDIR}"/${PN}-3.1.5-stupid-awk-clever-cc.patch
 	epatch "${FILESDIR}"/${PN}-3.1.6-mint.patch
-	#elibtoolize # needed for FreeMiNT
+	elibtoolize # needed for FreeMiNT
 }
 
 src_configure() {
@@ -53,12 +53,16 @@ src_configure() {
 
 src_compile() {
 	emake || die
-	emake -C "${SFFS}" CC=$(tc-getCC) || die "filefuncs emake failed"
+	if ! $(tc-is-static-only) ; then
+		emake -C "${SFFS}" CC=$(tc-getCC) || die "filefuncs emake failed"
+	fi
 }
 
 src_install() {
 	emake install DESTDIR="${D}" || die
-	emake -C "${SFFS}" LIBDIR="${EPREFIX}$(get_libdir)" install || die
+	if ! $(tc-is-static-only) ; then
+		emake -C "${SFFS}" LIBDIR="${EPREFIX}$(get_libdir)" install || die
+	fi
 
 	# Keep important gawk in /bin
 	if use userland_GNU ; then
