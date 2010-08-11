@@ -17,7 +17,8 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="apache2 berkdb ctypes-python debug doc +dso emacs extras gnome-keyring java kde nls perl python ruby sasl test vim-syntax +webdav-neon webdav-serf"
 
-CDEPEND=">=dev-db/sqlite-3.4[threadsafe]
+CDEPEND="!m68k-mint? ( >=dev-db/sqlite-3.4[threadsafe] )
+	m68k-mint? ( >=dev-db/sqlite-3.4 )
 	>=dev-libs/apr-1.3:1
 	>=dev-libs/apr-util-1.3:1
 	dev-libs/expat
