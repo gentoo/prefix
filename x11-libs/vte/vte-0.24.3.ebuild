@@ -12,7 +12,7 @@ HOMEPAGE="http://www.gnome.org/"
 LICENSE="LGPL-2"
 SLOT="0"
 KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~x64-solaris ~x86-solaris"
-IUSE="debug doc glade python"
+IUSE="debug doc glade python nowheelscroll"
 
 RDEPEND=">=dev-libs/glib-2.22.0
 	>=x11-libs/gtk+-2.14.0
@@ -55,4 +55,6 @@ src_prepare() {
 	# FIXME: The following patches cannot be applied until bug #323443 is solved.
 #	epatch "${FILESDIR}/${PN}-0.24.2-invisible-cursor.patch"
 #	epatch "${FILESDIR}/${PN}-0.24.2-invisible-cursor2.patch"
+
+	use nowheelscroll && epatch "${FILESDIR}"/${PN}-0.16.12-mouse-wheel-scroll.patch
 }
