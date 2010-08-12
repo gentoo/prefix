@@ -341,6 +341,7 @@ dev-libs/libffi
 dev-libs/libjwc_c
 dev-libs/libjwc_f
 dev-libs/libksba
+dev-libs/liblist
 dev-libs/libmaa
 dev-libs/libmcrypt
 dev-libs/libmcs
