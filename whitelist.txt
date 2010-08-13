@@ -542,6 +542,7 @@ media-gfx/pngcrush
 media-gfx/pngrewrite
 media-gfx/pngtoico
 media-gfx/potrace
+media-gfx/povray
 media-gfx/tgif
 media-gfx/ufraw
 media-gfx/xli
