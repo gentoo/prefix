@@ -1030,6 +1030,7 @@ dev-python/python-dateutil
 dev-python/python-docs
 dev-python/python-fchksum
 dev-python/python-gnutls
+dev-python/python-ldap
 dev-python/python-memcached
 dev-python/pytz
 dev-python/pyxml
