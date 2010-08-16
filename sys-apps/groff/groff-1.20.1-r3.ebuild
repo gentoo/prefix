@@ -64,9 +64,9 @@ src_unpack() {
 	fi
 
 	# Darwin gcc has a bug? http://www.mail-archive.com/groff@gnu.org/msg04756.html
-	if [[ ${CHOST} == *-darwin* ]] ; then
-		sed -i -e 's/inline node/node/' src/roff/troff/node.cpp || die
-	fi
+	# Bigger problem than just darwin http://www.mail-archive.com/groff@gnu.org/msg05057.html
+	# Gentoo bug 332017
+	sed -i -e 's/inline node/node/' src/roff/troff/node.cpp || die
 	# make sure we don't get a crappy `g' nameprefix
 	epatch "${FILESDIR}"/groff-1.19.2-no-g-nameprefix.patch
 	AT_M4DIR=m4 eautoreconf
