@@ -851,20 +851,6 @@ x11-terms/gnome-terminal
 x11-terms/pssh
 x11-terms/terminal
 x11-terms/tilda
-x11-themes/gnome-icon-theme
-x11-themes/gnome-themes
-x11-themes/gtk-engines
-x11-themes/gtk-engines-aurora
-x11-themes/gtk-engines-murrine
-x11-themes/gtk-engines-nimbus
-x11-themes/gtk-engines-xfce
-x11-themes/gtk-theme-switch
-x11-themes/hicolor-icon-theme
-x11-themes/sound-theme-freedesktop
-x11-themes/tango-icon-theme
-x11-themes/tango-icon-theme-extras
-x11-themes/xfce4-icon-theme
-x11-themes/xfwm4-themes
 
 # entire categories
 app-accessibility
@@ -915,6 +901,7 @@ virtual
 www-plugins
 x11-apps
 x11-proto
+x11-themes
 x11-wm
 xfce-base
 xfce-extra
