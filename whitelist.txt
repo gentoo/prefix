@@ -846,6 +846,7 @@ x11-plugins/bfm
 x11-plugins/replytolist
 x11-plugins/wmdf
 x11-plugins/wmforkplop
+x11-terms/aterm
 x11-terms/clusterssh
 x11-terms/gnome-terminal
 x11-terms/pssh
