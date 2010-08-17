@@ -138,7 +138,7 @@ http://bugs.python.org/issue7717
 -                        MAP_PRIVATE | MAP_ANONYMOUS,
 -                        -1,
 +                        flags,
-+                        devzero);
++                        devzero,
                          0);
 +    if (devzero != -1)
 +        close(devzero);
