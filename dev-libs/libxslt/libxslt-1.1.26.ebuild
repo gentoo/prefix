@@ -11,7 +11,7 @@ SRC_URI="ftp://xmlsoft.org/${PN}/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="crypt debug python"
 
 DEPEND=">=dev-libs/libxml2-2.6.27
@@ -21,8 +21,8 @@ DEPEND=">=dev-libs/libxml2-2.6.27
 src_prepare() {
 	epatch "${FILESDIR}"/libxslt.m4-${P}.patch \
 		"${FILESDIR}"/${PN}-1.1.23-parallel-install.patch \
-		"${FILESDIR}"/${P}-undefined.patch
-	epatch "${FILESDIR}"/${P}-versionscript-solaris.patch
+		"${FILESDIR}"/${P}-undefined.patch \
+		"${FILESDIR}"/${P}-versionscript-solaris.patch
 	eautoreconf # also needed for new libtool on Interix
 	epunt_cxx
 	elibtoolize
