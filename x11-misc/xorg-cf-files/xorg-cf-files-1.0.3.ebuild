@@ -8,7 +8,7 @@
 inherit x-modular eutils
 
 DESCRIPTION="Old Imake-related build files"
-KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~x86-interix ~amd64-linux ~x86-linux ~ppc-macos x64-macos ~x86-macos ~sparc-solaris ~x64-solaris ~x86-solaris"
 IUSE=""
 
 RDEPEND=""
@@ -18,7 +18,8 @@ src_unpack() {
 	x-modular_src_unpack
 	cd "${S}"
 	# switch to linux library model (stupid .sa files on Solaris...)
-	epatch "${FILESDIR}"/${PN}-1.0.2-solaris-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0.2-solaris-prefix.patch \
+		"${FILESDIR}"/${PN}-1.0.3-x64-macos.patch
 }
 
 src_install() {
