@@ -694,6 +694,7 @@ net-libs/openslp
 net-libs/ortp
 net-libs/webkit-gtk
 net-libs/xulrunner
+net-mail/dovecot
 net-mail/getmail
 net-mail/mairix
 net-mail/mlmmj
