@@ -302,7 +302,7 @@ HOSTCC='gcc -m64'
 		echo "USE=\"-berkdb -fortran -gdbm -nls -pcre -ssl -python bootstrap\"" >> "${profile}"/make.defaults
 		# and we don't need to spam the user about news until after a --sync
 		# because the tools aren't available to read the news item yet anyway.
-		FEATURES="${FEATURES} -news" >> "${profile}"/make.defaults
+		echo 'FEATURES="${FEATURES} -news"' >> "${profile}"/make.defaults
 		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
 }
