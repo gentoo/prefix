@@ -1,7 +1,11 @@
 Desc:   Stop libgcc build from using ${T} which collides with portage's ${T}.
 Author: Heiko Przybyl <zuxez@cs.tu-berlin.de>/Updated for 4.4.4 Eric Meddaugh
---- gcc-4.4.4/libgcc/Makefile.in.orig	2010-08-02 14:29:53.108834007 -0400
-+++ gcc-4.4.4/libgcc/Makefile.in	2010-08-02 14:31:04.085561814 -0400
+
+Addition: Also apply the same fix for Sparc targets
+Author: Maurice van der Pot <griffon26@kfk4ever.com>
+
+--- gcc-4.4.4/libgcc/Makefile.in
++++ gcc-4.4.4/libgcc/Makefile.in
 @@ -888,12 +888,12 @@
  	# We must use cd && make rather than make -C, or else the stage
  	# number will be embedded in debug information.
@@ -18,8 +22,8 @@ Author: Heiko Przybyl <zuxez@cs.tu-berlin.de>/Updated for 4.4.4 Eric Meddaugh
  	  T_TARGET
  
  	# Early copyback; see "all" above for the rationale.  The
---- gcc-4.4.4/libgcc/config/i386/t-sol2.orig	2010-08-02 14:31:18.541499507 -0400
-+++ gcc-4.4.4/libgcc/config/i386/t-sol2	2010-08-02 14:32:20.894370921 -0400
+--- gcc-4.4.4/libgcc/config/i386/t-sol2
++++ gcc-4.4.4/libgcc/config/i386/t-sol2
 @@ -1,24 +1,24 @@
  # gmon build rule:
 -$(T)gmon.o:	$(gcc_srcdir)/config/i386/gmon-sol2.c $(GCC_PASSES) $(CONFIG_H)
@@ -52,6 +56,37 @@ Author: Heiko Przybyl <zuxez@cs.tu-berlin.de>/Updated for 4.4.4 Eric Meddaugh
  	sed -e '/^!/d' <$(gcc_srcdir)/config/i386/sol2-cn.asm >crtn.s
 -	$(GCC_FOR_TARGET) $(CFLAGS) -c -o $(T)crtn.o crtn.s
 +	$(GCC_FOR_TARGET) $(CFLAGS) -c -o $(_T_)crtn.o crtn.s
+ 
+ # We need to use -fPIC when we are using gcc to compile the routines in
+ # crtstuff.c.  This is only really needed when we are going to use gcc/g++
+--- gcc-4.4.4/gcc/config/sparc/t-sol2
++++ gcc-4.4.4/gcc/config/sparc/t-sol2
+@@ -1,18 +1,18 @@
+ # gmon build rule:
+-$(T)gmon.o:	$(srcdir)/config/sparc/gmon-sol2.c $(GCC_PASSES) \
++$(_T_)gmon.o:	$(srcdir)/config/sparc/gmon-sol2.c $(GCC_PASSES) \
+   $(TCONFIG_H) tsystem.h coretypes.h $(TM_H) stmp-int-hdrs
+ 	$(GCC_FOR_TARGET) $(GCC_CFLAGS) $(INCLUDES) $(MULTILIB_CFLAGS) \
+-		-c $(srcdir)/config/sparc/gmon-sol2.c -o $(T)gmon.o
++		-c $(srcdir)/config/sparc/gmon-sol2.c -o $(_T_)gmon.o
+ 
+ # Assemble startup files.
+-$(T)crt1.o: $(srcdir)/config/sparc/sol2-c1.asm $(GCC_PASSES)
+-	$(GCC_FOR_TARGET) $(MULTILIB_CFLAGS) -c -o $(T)crt1.o -x assembler-with-cpp $(srcdir)/config/sparc/sol2-c1.asm
+-$(T)crti.o: $(srcdir)/config/sparc/sol2-ci.asm $(GCC_PASSES)
+-	$(GCC_FOR_TARGET) $(MULTILIB_CFLAGS) -c -o $(T)crti.o -x assembler-with-cpp $(srcdir)/config/sparc/sol2-ci.asm
+-$(T)crtn.o: $(srcdir)/config/sparc/sol2-cn.asm $(GCC_PASSES)
+-	$(GCC_FOR_TARGET) $(MULTILIB_CFLAGS) -c -o $(T)crtn.o -x assembler-with-cpp $(srcdir)/config/sparc/sol2-cn.asm
+-$(T)gcrt1.o: $(srcdir)/config/sparc/sol2-c1.asm $(GCC_PASSES)
+-	$(GCC_FOR_TARGET) $(MULTILIB_CFLAGS) -c -DGCRT1 -o $(T)gcrt1.o -x assembler-with-cpp $(srcdir)/config/sparc/sol2-c1.asm
++$(_T_)crt1.o: $(srcdir)/config/sparc/sol2-c1.asm $(GCC_PASSES)
++	$(GCC_FOR_TARGET) $(MULTILIB_CFLAGS) -c -o $(_T_)crt1.o -x assembler-with-cpp $(srcdir)/config/sparc/sol2-c1.asm
++$(_T_)crti.o: $(srcdir)/config/sparc/sol2-ci.asm $(GCC_PASSES)
++	$(GCC_FOR_TARGET) $(MULTILIB_CFLAGS) -c -o $(_T_)crti.o -x assembler-with-cpp $(srcdir)/config/sparc/sol2-ci.asm
++$(_T_)crtn.o: $(srcdir)/config/sparc/sol2-cn.asm $(GCC_PASSES)
++	$(GCC_FOR_TARGET) $(MULTILIB_CFLAGS) -c -o $(_T_)crtn.o -x assembler-with-cpp $(srcdir)/config/sparc/sol2-cn.asm
++$(_T_)gcrt1.o: $(srcdir)/config/sparc/sol2-c1.asm $(GCC_PASSES)
++	$(GCC_FOR_TARGET) $(MULTILIB_CFLAGS) -c -DGCRT1 -o $(_T_)gcrt1.o -x assembler-with-cpp $(srcdir)/config/sparc/sol2-c1.asm
  
  # We need to use -fPIC when we are using gcc to compile the routines in
  # crtstuff.c.  This is only really needed when we are going to use gcc/g++
