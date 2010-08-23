@@ -628,6 +628,7 @@ media-sound/shntool
 media-sound/snd
 media-sound/sox
 media-sound/streamripper
+media-sound/twolame
 media-video/asfrecorder
 media-video/dvdbackup
 media-video/kdenlive
