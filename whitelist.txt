@@ -616,6 +616,7 @@ media-sound/cdparanoia
 media-sound/easytag
 media-sound/gpodder
 media-sound/gqmpeg
+media-sound/lame
 media-sound/mp3gain
 media-sound/mp3info
 media-sound/mpg321
