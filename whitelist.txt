@@ -617,8 +617,10 @@ media-sound/easytag
 media-sound/gpodder
 media-sound/gqmpeg
 media-sound/lame
+media-sound/madplay
 media-sound/mp3gain
 media-sound/mp3info
+media-sound/mpg123
 media-sound/mpg321
 media-sound/mt-daapd
 media-sound/musepack-tools
@@ -629,6 +631,7 @@ media-sound/snd
 media-sound/sox
 media-sound/streamripper
 media-sound/twolame
+media-sound/vorbis-tools
 media-video/asfrecorder
 media-video/dvdbackup
 media-video/kdenlive
