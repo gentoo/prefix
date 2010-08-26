@@ -851,10 +851,6 @@ x11-misc/xclip
 x11-misc/xdg-utils
 x11-misc/xkeyboard-config
 x11-misc/xsel
-x11-plugins/bfm
-x11-plugins/replytolist
-x11-plugins/wmdf
-x11-plugins/wmforkplop
 x11-terms/aterm
 x11-terms/clusterssh
 x11-terms/gnome-terminal
@@ -910,6 +906,7 @@ sys-power
 virtual
 www-plugins
 x11-apps
+x11-plugins
 x11-proto
 x11-themes
 x11-wm
