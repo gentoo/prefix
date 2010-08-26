@@ -387,7 +387,6 @@ dev-lisp/cl-ptester
 dev-lisp/cl-puri
 dev-ml/extlib
 dev-ml/lablgtk
-dev-php5/pecl-pdflib
 dev-tex/algorithms
 dev-tex/chktex
 dev-tex/currvita
@@ -871,6 +870,7 @@ app-vim
 dev-cpp
 dev-dotnet
 dev-games
+dev-php5
 dev-tcltk
 dev-texlive
 kde-base
