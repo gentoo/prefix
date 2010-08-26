@@ -425,6 +425,7 @@ dev-util/cproto
 dev-util/dejagnu
 dev-util/desktop-file-utils
 dev-util/diffball
+dev-util/difffilter
 dev-util/diffstat
 dev-util/dmake
 dev-util/filepp
