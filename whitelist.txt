@@ -753,9 +753,12 @@ sys-devel/autogen
 sys-devel/automake-wrapper
 sys-devel/bc
 sys-devel/binutils-apple
+sys-devel/clang
 sys-devel/gcc-apple
 sys-devel/gdb-apple
 sys-devel/gnuconfig
+sys-devel/llvm
+sys-devel/llvm-gcc
 sys-libs/pam
 sys-process/htop
 sys-process/iotop
