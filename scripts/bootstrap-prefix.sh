@@ -254,6 +254,9 @@ HOSTCC='gcc -m64'
 		i586-pc-winnt*)
 			profile="${PORTDIR}/profiles/prefix/windows/winnt/${CHOST#i586-pc-winnt}/x86"
 			;;
+		i686-pc-cygwin*)
+			profile="${PORTDIR}/profiles/prefix/windows/cygwin/${CHOST#i686-pc-cygwin}/x86"
+			;;
 		hppa64*-hp-hpux11*)
 			profile="${PORTDIR}/profiles/prefix/hpux/B.11${CHOST#hppa*-hpux11}/hppa64"
 			;;
@@ -825,6 +828,17 @@ if [[ -z ${CHOST} ]]; then
 					;;
 				esac
 				;;
+			CYGWIN*)
+				# http://www.cygwin.com/ml/cygwin/2009-02/msg00669.html
+				case `uname -r` in
+					1.7*)
+						CHOST="`uname -m`-pc-cygwin1.7"
+					;;
+					*)
+						CHOST="`uname -m`-pc-cygwin"
+					;;
+				esac
+				;;
 			HP-UX)
 				case `uname -m` in
 				ia64) HP_ARCH=ia64 ;;
@@ -912,12 +926,6 @@ fi
 # allows for user set CHOST still to result in the appropriate variables
 # being set.
 case ${CHOST} in
-	*-*-linux-gnu)
-		MAKE=make
-	;;
-	*-apple-darwin*)
-		MAKE=make
-	;;
 	*-*-solaris*)
 		if type -P gmake > /dev/null ; then
 			MAKE=gmake
@@ -925,26 +933,8 @@ case ${CHOST} in
 			MAKE=make
 		fi
 	;;
-	*-ibm-aix*)
-		MAKE=make
-	;;
 	*-sgi-irix*)
 		MAKE=gmake
-	;;
-	*-pc-interix*)
-		MAKE=make
-	;;
-	*-hp-hpux*)
-		MAKE=make
-	;;
-	*-*-freebsd*)
-		MAKE=make
-	;;
-	*-*-openbsd*)
-		MAKE=make
-	;;
-	*-*-netbsd*)
-		MAKE=make
 	;;
 	*)
 		MAKE=make
