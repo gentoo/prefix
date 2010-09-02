@@ -1,6 +1,10 @@
 # ChangeLog for www-servers/gorg
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/ChangeLog,v 1.23 2009/12/25 14:14:13 graaff Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/ChangeLog,v 1.24 2010/08/22 07:52:00 hollow Exp $
+
+  22 Aug 2010; Benedikt Böhm <hollow@gentoo.org> gorg-0.6.3-r2.ebuild,
+  gorg-0.6.3-r3.ebuild, gorg-0.6.4.ebuild:
+  replace dependency on apache with virtual/httpd-fastcgi wrt #308223
 
   25 Dec 2009; Hans de Graaff <graaff@gentoo.org> gorg-0.6.3-r2.ebuild,
   gorg-0.6.3-r3.ebuild, gorg-0.6.4.ebuild:

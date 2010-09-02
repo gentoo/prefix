@@ -1,0 +1,214 @@
+--- gorg-0.6.4/bin/gorg
++++ gorg-0.6.4/bin/gorg
+@@ -1,4 +1,4 @@
+-#! /usr/bin/ruby 
++#! @GENTOO_PORTAGE_EPREFIX@/usr/bin/ruby 
+ 
+ ###   Copyright 2004,   Xavier Neys   (neysx@gentoo.org)
+ # #
+--- gorg-0.6.4/etc/gorg/gorg.conf.sample
++++ gorg-0.6.4/etc/gorg/gorg.conf.sample
+@@ -53,7 +53,7 @@
+ # It must also be writable by the user who runs the stand-alone web server, i.e. not the apache user
+ # if you want to use both web servers. You can even run both at the same time.
+ # Default is no cache
+-cacheDir = "/var/cache/gorg"
++cacheDir = "@GENTOO_PORTAGE_EPREFIX@/var/cache/gorg"
+ 
+ # Number of seconds after which a document is considered too old, 0=never
+ # Can be used to force a refresh or to stress-test the system
+--- gorg-0.6.4/etc/gorg/lighttpd.conf.sample
++++ gorg-0.6.4/etc/gorg/lighttpd.conf.sample
+@@ -1,9 +1,9 @@
+ # Example lighttpd.conf for Gorg
+ 
+-var.basedir  = "/var/www/www.gentoo.org"
+-var.logdir   = "/var/log/lighttpd"
+-var.statedir = "/var/lib/lighttpd"
+-var.cache    = "/var/cache/gorg"
++var.basedir  = "@GENTOO_PORTAGE_EPREFIX@/var/www/www.gentoo.org"
++var.logdir   = "@GENTOO_PORTAGE_EPREFIX@/var/log/lighttpd"
++var.statedir = "@GENTOO_PORTAGE_EPREFIX@/var/lib/lighttpd"
++var.cache    = "@GENTOO_PORTAGE_EPREFIX@/var/cache/gorg"
+ 
+ server.modules = (
+ #    "mod_rewrite",
+@@ -23,7 +23,7 @@
+ server.groupname     = "lighttpd"
+ 
+ server.document-root = var.basedir + "/htdocs"
+-server.pid-file      = "/var/run/lighttpd.pid"
++server.pid-file      = "@GENTOO_PORTAGE_EPREFIX@/var/run/lighttpd.pid"
+ 
+ server.errorlog      = var.logdir  + "/error.log"
+ accesslog.filename   = var.logdir + "/access.log"
+@@ -94,10 +94,10 @@
+ 				    (
+ 					    "host"	=>	"127.0.0.1",
+ 					    "port"	=>	1026,
+-					    "bin-path"	=>	"/var/www/www.gentoo.org/fcgi-bin/gorg.fcgi",
++					    "bin-path"	=>	"@GENTOO_PORTAGE_EPREFIX@/var/www/www.gentoo.org/fcgi-bin/gorg.fcgi",
+ 					    "idle-timeout" =>   60,
+ 					    "broken-scriptfilename" => "enable",
+-					    "bin-environment" => ( "GORG_CONF" => "/etc/gorg/gorg.conf" ),
++					    "bin-environment" => ( "GORG_CONF" => "@GENTOO_PORTAGE_EPREFIX@/etc/gorg/gorg.conf" ),
+ 					    "max-procs" =>      5,
+ 					    "min-procs" =>      1
+ 				    )
+@@ -107,10 +107,10 @@
+ 				    (
+ 					    "host"	=>	"127.0.0.1",
+ 					    "port"	=>	1026,
+-					    "bin-path"	=>	"/var/www/www.gentoo.org/fcgi-bin/gorg.fcgi",
++					    "bin-path"	=>	"@GENTOO_PORTAGE_EPREFIX@/var/www/www.gentoo.org/fcgi-bin/gorg.fcgi",
+ 					    "idle-timeout" =>   60,
+ 					    "broken-scriptfilename" => "enable",
+-					    "bin-environment" => ( "GORG_CONF" => "/etc/gorg/gorg.conf" ),
++					    "bin-environment" => ( "GORG_CONF" => "@GENTOO_PORTAGE_EPREFIX@/etc/gorg/gorg.conf" ),
+ 					    "max-procs" =>      5,
+ 					    "min-procs" =>      1
+ 				    )
+--- gorg-0.6.4/etc/gorg/vhost.sample
++++ gorg-0.6.4/etc/gorg/vhost.sample
+@@ -1,14 +1,14 @@
+ <VirtualHost www.mygentoo.org>
+ ServerName www.mygentoo.org
+ ServerAlias mygentoo
+-DocumentRoot /var/www/www.mygentoo.org/htdocs
++DocumentRoot @GENTOO_PORTAGE_EPREFIX@/var/www/www.mygentoo.org/htdocs
+ ServerAdmin webman@mygentoo.org
+ LogFormat "%h %l %u %t \"%r\" %>s %b \"%{Referer}i\" \"%{User-agent}i\"" common
+-CustomLog "| /usr/sbin/cronolog /var/log/apache/www.mygentoo.org/%Y%m%d.%Z.www.mygentoo.org.access-log"  common
+-ErrorLog "| /usr/sbin/cronolog /var/log/apache/www.mygentoo.org/%Y%m%d.%Z.www.mygentoo.org.error-log"
++CustomLog "| @GENTOO_PORTAGE_EPREFIX@/usr/sbin/cronolog @GENTOO_PORTAGE_EPREFIX@/var/log/apache/www.mygentoo.org/%Y%m%d.%Z.www.mygentoo.org.access-log"  common
++ErrorLog "| @GENTOO_PORTAGE_EPREFIX@/usr/sbin/cronolog @GENTOO_PORTAGE_EPREFIX@/var/log/apache/www.mygentoo.org/%Y%m%d.%Z.www.mygentoo.org.error-log"
+ AddDefaultCharset utf-8
+ 
+-<Directory /var/www/www.mygentoo.org/htdocs>
++<Directory @GENTOO_PORTAGE_EPREFIX@/var/www/www.mygentoo.org/htdocs>
+   DirectoryIndex index.xml
+   Options +Includes -Indexes
+   AllowOverride All
+@@ -26,26 +26,26 @@
+   AddHandler gorg .rdf
+ </Directory>
+ 
+-ScriptAlias /cgi-bin/ /var/www/www.mygentoo.org/cgi-bin/
+-Alias /fcgi-bin/ /var/www/www.mygentoo.org/fcgi-bin/
++ScriptAlias /cgi-bin/ @GENTOO_PORTAGE_EPREFIX@/var/www/www.mygentoo.org/cgi-bin/
++Alias /fcgi-bin/ @GENTOO_PORTAGE_EPREFIX@/var/www/www.mygentoo.org/fcgi-bin/
+ 
+ # handle images and icons
+-Alias /images /var/www/www.mygentoo.org/images
+-Alias /icons /var/www/www.mygentoo.org/icons
++Alias /images @GENTOO_PORTAGE_EPREFIX@/var/www/www.mygentoo.org/images
++Alias /icons @GENTOO_PORTAGE_EPREFIX@/var/www/www.mygentoo.org/icons
+ 
+-<Directory /var/www/www.mygentoo.org/images>
++<Directory @GENTOO_PORTAGE_EPREFIX@/var/www/www.mygentoo.org/images>
+     AllowOverride None
+     Order allow,deny
+     Allow from all
+ </Directory>
+ 
+-<Directory /var/www/www.mygentoo.org/icons>
++<Directory @GENTOO_PORTAGE_EPREFIX@/var/www/www.mygentoo.org/icons>
+     AllowOverride None
+     Order allow,deny
+     Allow from all
+ </Directory>
+ 
+-<Directory /var/www/www.mygentoo.org/fcgi-bin>
++<Directory @GENTOO_PORTAGE_EPREFIX@/var/www/www.mygentoo.org/fcgi-bin>
+     AllowOverride All
+     Options ExecCGI
+     Order allow,deny
+@@ -59,7 +59,7 @@
+     </IfModule>
+ </Directory>
+ 
+-<Directory /var/www/www.mygentoo.org/cgi-bin>
++<Directory @GENTOO_PORTAGE_EPREFIX@/var/www/www.mygentoo.org/cgi-bin>
+     AllowOverride All
+     Options ExecCGI
+     Order allow,deny
+@@ -71,7 +71,7 @@
+ 
+ # You should use mod_fcgid, but just in case you insist on using mod_fastcgi:
+ #<IfModule mod_fastcgi.c>
+-#  FastCgiServer /var/www/gorg/fcgi-bin/gorg.fcgi -processes 3 -restart-delay 1 -idle-timeout 300 -appConnTimeout 240
++#  FastCgiServer @GENTOO_PORTAGE_EPREFIX@/var/www/gorg/fcgi-bin/gorg.fcgi -processes 3 -restart-delay 1 -idle-timeout 300 -appConnTimeout 240
+ #</IfModule>
+ 
+ <IfModule mod_fcgid.c>
+@@ -104,7 +104,7 @@
+   #ProcessLifeTime n (3600 seconds)
+   #A fastcgi application will be terminated if lifetime expired, even no error is detected.
+ 
+-  SocketPath /var/run
++  SocketPath @GENTOO_PORTAGE_EPREFIX@/var/run
+   #SocketPath path (logs/fcgidsock)
+   #The directory to put the UNIX domain socket. (UNIX only)
+ 
+@@ -135,7 +135,7 @@
+   #The maximum number of fastcgi application instances
+   #allowed to run for any one fastcgi application. 
+ 
+-  DefaultInitEnv GORG_CONF /etc/gorg/gorg.conf
++  DefaultInitEnv GORG_CONF @GENTOO_PORTAGE_EPREFIX@/etc/gorg/gorg.conf
+   #The default environment variables before a fastcgi application is spawned. You can set this configuration more than once.
+ 
+   IPCConnectTimeout 10
+--- gorg-0.6.4/lib/gorg/base.rb
++++ gorg-0.6.4/lib/gorg/base.rb
+@@ -57,7 +57,7 @@
+     # The return value is an array of 2 to 4 items: [{}, "", [[]], []]
+     # 1. hash with error information, its keys are
+     # 1.a  "xmlErrCode"  0 is no error, -9999 means an exception has been raised in this block (unlikely),
+-    #      anything else is an error code (see /usr/include/libxml2/libxml/xmlerror.h)
++    #      anything else is an error code (see @GENTOO_PORTAGE_EPREFIX@/usr/include/libxml2/libxml/xmlerror.h)
+     # 1.b  "xmlErrLevel" again, from libxml2, 0==OK, 1==Warning, 2==Error, 3==Fatal
+     # 1.c  "xmlErrLevel" again, from libxml2, some explanation about what went wrong
+     # 2. output from xsltprocessor (or error message from a raised exception)
+@@ -68,7 +68,7 @@
+     # 4. array of CGI::Cookie to be sent back
+     #
+     # Examples: [{"xmlErrMsg"=>"blah warning blah", "xmlErrCode"=>1509, "xmlErrLevel"=>1}, "This is the best XSLT could do!", nil]
+-    #           [{"xmlErrCode"=>0}, "Result of XSLT processing. Well done!", ["/etc/xml/catalog","/var/www/localhost/htdocs/doc/en/index.xml","/var/www/localhost/htdocs/dtd/guide.dtd"]]
++    #           [{"xmlErrCode"=>0}, "Result of XSLT processing. Well done!", ["@GENTOO_PORTAGE_EPREFIX@/etc/xml/catalog","@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/doc/en/index.xml","@GENTOO_PORTAGE_EPREFIX@/var/www/localhost/htdocs/dtd/guide.dtd"]]
+ 
+     xsltproc = Gorg::XSL.new
+     xsltproc.xroot = $Config["root"]
+@@ -304,7 +304,7 @@
+     $Log = Gorg::Log::MyLog.new(@syslog, 5) # Start with max
+     
+     # Check for config file
+-    configf = ENV["GORG_CONF"]||"/etc/gorg/gorg.conf"
++    configf = ENV["GORG_CONF"]||"@GENTOO_PORTAGE_EPREFIX@/etc/gorg/gorg.conf"
+     raise "Cannot find config file (#{configf})" unless FileTest.file?(configf) and FileTest.readable?(configf)
+     file = IO.read(configf)
+     parseConfig($Config, file)
+--- gorg-0.6.4/lib/gorg/cgi-bin/gorg.cgi
++++ gorg-0.6.4/lib/gorg/cgi-bin/gorg.cgi
+@@ -1,4 +1,4 @@
+-#! /usr/bin/ruby 
++#! @GENTOO_PORTAGE_EPREFIX@/usr/bin/ruby 
+ 
+ ###   Copyright 2004,   Xavier Neys   (neysx@gentoo.org)
+ # #
+--- gorg-0.6.4/lib/gorg/cgi-bin/search.cgi
++++ gorg-0.6.4/lib/gorg/cgi-bin/search.cgi
+@@ -1,4 +1,4 @@
+-#! /usr/bin/ruby
++#! @GENTOO_PORTAGE_EPREFIX@/usr/bin/ruby
+ 
+ ###   Copyright 2004,   Xavier Neys   (neysx@gentoo.org)
+ # #
+--- gorg-0.6.4/lib/gorg/fcgi-bin/gorg.fcgi
++++ gorg-0.6.4/lib/gorg/fcgi-bin/gorg.fcgi
+@@ -1,4 +1,4 @@
+-#! /usr/bin/ruby 
++#! @GENTOO_PORTAGE_EPREFIX@/usr/bin/ruby 
+ 
+ ###   Copyright 2004,   Xavier Neys   (neysx@gentoo.org)
+ # #

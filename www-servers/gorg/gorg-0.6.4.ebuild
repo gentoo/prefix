@@ -1,15 +1,15 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/gorg-0.6.4.ebuild,v 1.2 2009/12/25 14:14:13 graaff Exp $
+# $Header: /var/cvsroot/gentoo-x86/www-servers/gorg/gorg-0.6.4.ebuild,v 1.3 2010/08/22 07:52:00 hollow Exp $
 
 EAPI=2
 
-inherit ruby eutils
+inherit ruby eutils prefix
 
 DESCRIPTION="Back-end XSLT processor for an XML-based web site"
 HOMEPAGE="http://gentoo.neysx.org/mystuff/gorg/gorg.xml"
 SRC_URI="http://gentoo.neysx.org/mystuff/gorg/${P}.tgz"
-IUSE="apache2 fastcgi mysql"
+IUSE="fastcgi mysql"
 
 SLOT="0"
 USE_RUBY="ruby18"
@@ -21,9 +21,10 @@ DEPEND="
 	>=dev-libs/libxslt-1.1.12"
 RDEPEND="${DEPEND}
 	mysql? ( >=dev-ruby/ruby-dbi-0.0.21[mysql] )
-	apache2? ( www-servers/apache
-		fastcgi? ( www-apache/mod_fcgid ) )
-	fastcgi? ( >=dev-ruby/ruby-fcgi-0.8.5-r1 )"
+	fastcgi? (
+		virtual/httpd-fastcgi
+		>=dev-ruby/ruby-fcgi-0.8.5-r1
+	)"
 
 pkg_setup() {
 	enewgroup gorg
@@ -34,7 +35,7 @@ src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	
-	epatch "${FILESDIR}/${PN}-0.6.3-prefix.patch"
+	epatch "${FILESDIR}/${P}-prefix.patch"
 	eprefixify bin/gorg etc/gorg/gorg.conf.sample \
 		etc/gorg/lighttpd.conf.sample etc/gorg/vhost.sample lib/gorg/base.rb \
 		lib/gorg/cgi-bin/gorg.cgi lib/gorg/cgi-bin/search.cgi \
