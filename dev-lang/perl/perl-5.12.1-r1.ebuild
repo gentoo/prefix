@@ -276,6 +276,7 @@ src_configure() {
 		-Dcc="$(tc-getCC)" \
 		-Doptimize="${CFLAGS}" \
 		-Dprefix="${EPREFIX}"'/usr' \
+		-Dinstallprefix="${EPREFIX}"'/usr' \
 		-Dsiteprefix="${EPREFIX}"'/usr' \
 		-Dvendorprefix="${EPREFIX}"'/usr' \
 		-Dscriptdir="${EPREFIX}"'/usr/bin' \
