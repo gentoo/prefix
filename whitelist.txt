@@ -496,7 +496,6 @@ games-misc/sex
 games-misc/wtf
 games-puzzle/freesweep
 games-strategy/wormux
-gnome-base/eel
 gnome-base/gnome-applets
 gnome-base/gnome-common
 gnome-base/gnome-control-center
