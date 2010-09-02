@@ -4,11 +4,6 @@
 <herd>kerberos</herd>
 <longdescription>Kerberos 5 reference implementation from MIT</longdescription>
 <use>
-  <flag name="krb4">
-    This option enables Kerberos V4 backwards compatibility using the
-    builtin Kerberos V4 library. This is really outdated and dangerous
-    to use because not safe.
-  </flag>
   <flag name="doc">
     Creates and installs the API and implementation
     documentation. This is only useful if you want to develop software

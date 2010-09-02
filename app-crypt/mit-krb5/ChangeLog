@@ -1,6 +1,72 @@
 # ChangeLog for app-crypt/mit-krb5
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.215 2010/01/14 09:12:31 mueli Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-crypt/mit-krb5/ChangeLog,v 1.231 2010/08/05 14:34:57 darkside Exp $
+
+  05 Aug 2010; Jeremy Olexa <darkside@gentoo.org> metadata.xml,
+  -mit-krb5-1.6.3-r6.ebuild:
+  remove old version
+
+*mit-krb5-1.8.3 (05 Aug 2010)
+
+  05 Aug 2010; Jeremy Olexa <darkside@gentoo.org> +mit-krb5-1.8.3.ebuild:
+  Verion bump bug #331297 by Eray Aslan
+
+  19 Jul 2010; Joseph Jezak <josejx@gentoo.org> mit-krb5-1.8.2.ebuild:
+  Marked ppc stable for bug #323525.
+
+  18 Jul 2010; Raúl Porcel <armin76@gentoo.org> mit-krb5-1.8.2.ebuild:
+  arm/ia64/m68k/s390/sh/sparc stable wrt #323525
+
+*mit-krb5-1.8.2-r1 (14 Jul 2010)
+
+  14 Jul 2010; Jeremy Olexa <darkside@gentoo.org> -mit-krb5-1.6.3-r7.ebuild,
+  -mit-krb5-1.7-r2.ebuild, -mit-krb5-1.8.1.ebuild,
+  -mit-krb5-1.8.1-r1.ebuild, +mit-krb5-1.8.2-r1.ebuild:
+  Rev bump for: sys-apps/keyutils added to DEPEND - bug #326201. Remove
+  vulnerable versions
+
+  11 Jul 2010; Tobias Klausmann <klausman@gentoo.org> mit-krb5-1.8.2.ebuild:
+  Stable on alpha, bug #323525
+
+  08 Jul 2010; Brent Baude <ranger@gentoo.org> mit-krb5-1.8.2.ebuild:
+  Marking mit-krb5-1.8.2 ppc64 for bug 323525
+
+  23 Jun 2010; Christoph Mende <angelos@gentoo.org> mit-krb5-1.8.2.ebuild:
+  Stable on amd64 wrt bug #323525
+
+  22 Jun 2010; Jeroen Roovers <jer@gentoo.org> mit-krb5-1.8.2.ebuild:
+  Stable for HPPA (bug #323525).
+
+  16 Jun 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  mit-krb5-1.8.2.ebuild:
+  x86 stable wrt security bug #323525
+
+*mit-krb5-1.8.2 (11 Jun 2010)
+
+  11 Jun 2010; Jeremy Olexa <darkside@gentoo.org> +mit-krb5-1.8.2.ebuild,
+  +files/kpropd.xinetd:
+  Version bump bug #323525. Added xinetd USE flag bug #321939. Disabled
+  parallel make bug #321141. No need to inherit autotools anymore.
+
+  24 May 2010; Jeremy Olexa <darkside@gentoo.org> mit-krb5-1.8.1-r1.ebuild:
+  Fix kerberos.schema install issue. bug 318017 by Tilman Giese
+
+*mit-krb5-1.8.1-r1 (23 May 2010)
+
+  23 May 2010; Jeremy Olexa <darkside@gentoo.org> +mit-krb5-1.8.1-r1.ebuild,
+  +files/CVE-2010-1321.patch:
+  Patch for CVE-2010-1321 - bug #320445. Disable rpath - bug #187201.
+  Installs kerberos.schema - bug #318017. Ebuild clean up. Enable parallel
+  make. Thanks to Eray Aslan
+
+  01 May 2010; Jeremy Olexa <darkside@gentoo.org> mit-krb5-1.8.1.ebuild:
+  Fix configure call, patch by Eray Aslan
+
+*mit-krb5-1.8.1 (30 Apr 2010)
+
+  30 Apr 2010; Jeremy Olexa <darkside@gentoo.org> +mit-krb5-1.8.1.ebuild,
+  +files/CVE-2010-1320.patch:
+  Version bump by Eray Aslan, security bug 312481
 
 *mit-krb5-1.7-r2 (14 Jan 2010)
 *mit-krb5-1.6.3-r7 (14 Jan 2010)
