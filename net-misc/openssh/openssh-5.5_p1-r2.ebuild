@@ -244,6 +244,7 @@ src_install() {
 }
 
 src_test() {
+	use prefix && return # horse drug, see #335343
 	local t tests skipped failed passed shell
 	tests="interop-tests compat-tests"
 	skipped=""
