@@ -1005,7 +1005,6 @@ dev-python/pycxx
 dev-python/pyflakes
 dev-python/pygments
 dev-python/pygobject
-dev-python/pygoogle
 dev-python/pygtk
 dev-python/pygtksourceview
 dev-python/pyinotify
