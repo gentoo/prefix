@@ -1,6 +1,24 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.769 2010/08/01 21:04:50 dirtyepic Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.774 2010/08/30 17:27:36 armin76 Exp $
+
+  30 Aug 2010; Raúl Porcel <armin76@gentoo.org> gcc-4.4.3-r2.ebuild:
+  sparc stable
+
+  13 Aug 2010; Joseph Jezak <josejx@gentoo.org> gcc-4.4.3-r2.ebuild:
+  Marked ppc stable for bug #302468.
+
+  10 Aug 2010; Jeroen Roovers <jer@gentoo.org> gcc-4.4.4-r1.ebuild:
+  Stable for HPPA (bug #331531).
+
+*gcc-4.5.1 (07 Aug 2010)
+
+  07 Aug 2010; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.5.1.ebuild:
+  Version bump (bug #330873). Also fixes #321325 and #328451.
+
+  07 Aug 2010; Raúl Porcel <armin76@gentoo.org> gcc-4.4.3-r2.ebuild,
+  gcc-4.4.3-r3.ebuild, gcc-4.4.4.ebuild, gcc-4.4.4-r1.ebuild:
+  Add ~sparc to 4.4.{3,4}
 
   01 Aug 2010; Ryan Hill <dirtyepic@gentoo.org> gcc-4.4.3-r3.ebuild,
   gcc-4.4.4-r1.ebuild:
