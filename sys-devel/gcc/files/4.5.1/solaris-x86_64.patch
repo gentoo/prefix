@@ -1,0 +1,125 @@
+--- gcc-4.4.1/gcc/config.gcc
++++ gcc-4.4.1/gcc/config.gcc
+@@ -2235,6 +2235,70 @@
+ 		;;
+ 	esac
+ 	;;
++x86_64-*-solaris2*)
++	tm_file="${tm_file} i386/unix.h i386/att.h dbxelf.h elfos.h svr4.h i386/sysv4.h sol2.h"
++	case ${target} in
++	*-*-solaris2.1[0-9]*)
++		tm_file="${tm_file} sol2-10.h"
++		;;
++	esac
++	tm_file="${tm_file} i386/sol2.h"
++	tmake_file="${tmake_file} t-sol2 t-svr4"
++	c_target_objs="${c_target_objs} sol2-c.o"
++	cxx_target_objs="${cxx_target_objs} sol2-c.o"
++	extra_objs="sol2.o"
++	tm_p_file="${tm_p_file} sol2-protos.h"
++	if test x$gnu_ld = xyes; then
++		tmake_file="$tmake_file t-slibgcc-elf-ver"
++		tm_defines="${tm_defines} TARGET_GNU_LD=1"
++	else
++		tmake_file="$tmake_file t-slibgcc-sld"
++	fi
++	if test x$gas = xyes; then
++		tm_file="usegas.h ${tm_file}"
++	fi
++	tm_file="$tm_file tm-dwarf2.h"
++	case ${target} in
++	*-*-solaris2.1[0-9]*)
++		tm_file="${tm_file} i386/x86-64.h i386/sol2-10.h i386/sol2-64.h"
++		tm_defines="${tm_defines} TARGET_BI_ARCH=1"
++		tmake_file="$tmake_file i386/t-sol2-10"
++		# i386/t-crtstuff only affects libgcc.  Its inclusion
++		# depends on a runtime test and is thus performed in
++		# libgcc/configure.ac instead.
++		need_64bit_hwint=yes
++		case X"${with_cpu}" in
++		Xgeneric|Xcore2|Xnocona|Xx86-64|Xamdfam10|Xbarcelona|Xk8|Xopteron|Xathlon64|Xathlon-fx)
++			;;
++		X)
++			if test x$with_cpu_64 = x; then
++				with_cpu_64=generic
++			fi
++			;;
++		*)
++			echo "Unsupported CPU used in --with-cpu=$with_cpu, supported values:" 1>&2
++			echo "generic core2 nocona x86-64 amdfam10 barcelona k8 opteron athlon64 athlon-fx" 1>&2
++			exit 1
++			;;
++		esac
++		;;
++	esac
++	case ${enable_threads}:${have_pthread_h}:${have_thread_h} in
++	  "":yes:* | yes:yes:* )
++		case ${target} in
++		  *-*-solaris2.[0-6] | *-*-solaris2.[0-6].*)
++			thread_file=posix95
++			;;
++		  *)
++			thread_file=posix
++			;;
++		esac
++		;;
++	  "":*:yes | yes:*:yes )
++		thread_file=solaris
++		;;
++	esac
++	;;
+ i[4567]86-wrs-vxworks|i[4567]86-wrs-vxworksae)
+ 	tm_file="${tm_file} i386/unix.h i386/att.h elfos.h svr4.h vx-common.h"
+ 	case ${target} in
+--- gcc-4.4.1/libgcc/configure.ac
++++ gcc-4.4.1/libgcc/configure.ac
+@@ -176,7 +176,7 @@
+ # Link with -nostartfiles -nodefaultlibs since neither are present while
+ # building libgcc.
+ case ${host} in
+-i?86-*-solaris2.1[[0-9]]*)
++i?86-*-solaris2.1[[0-9]]*|x86_64-*-solaris2.1[[0-9]]*)
+   cat > conftest.s <<EOF
+ 	.section	.eh_frame,"a",@unwind
+ 	.zero	4
+--- gcc-4.4.1/libgcc/configure
++++ gcc-4.4.1/libgcc/configure
+@@ -3425,7 +3425,7 @@
+ # Link with -nostartfiles -nodefaultlibs since neither are present while
+ # building libgcc.
+ case ${host} in
+-i?86-*-solaris2.1[0-9]*)
++i?86-*-solaris2.1[0-9]*|x86_64-*-solaris2.1[0-9]*)
+   cat > conftest.s <<EOF
+ 	.section	.eh_frame,"a",@unwind
+ 	.zero	4
+--- gcc-4.4.1/libgcc/config.host
++++ gcc-4.4.1/libgcc/config.host
+@@ -316,7 +316,7 @@
+ 	;;
+ i[34567]86-*-rtems*)
+ 	;;
+-i[34567]86-*-solaris2*)
++i[34567]86-*-solaris2*|x86_64-*-solaris2*)
+ 	tmake_file="${tmake_file} i386/t-sol2"
+ 	case ${host} in
+ 	*-*-solaris2.1[0-9]*)
+--- gcc-4.4.1/gcc/config/i386/sol2-64.h
++++ gcc-4.4.1/gcc/config/i386/sol2-64.h
+@@ -0,0 +1,16 @@
++/* Definitions of target machine for GCC, for bi-arch i386
++   running Solaris 2, defaulting to 64-bit code generation.  */
++
++#undef MULTILIB_DEFAULTS
++#define MULTILIB_DEFAULTS { "m64" }
++
++#undef TARGET_LD_EMULATION
++#ifdef TARGET_GNU_LD
++#define TARGET_LD_EMULATION "%{!m32:-m elf_x86_64}%{m32:-m elf_i386} "
++#else
++#define TARGET_LD_EMULATION ""
++#endif
++
++#undef LINK_ARCH_SPEC
++#define LINK_ARCH_SPEC TARGET_LD_EMULATION \
++		       "%{!m32:" LINK_ARCH64_SPEC "}%{m32:" LINK_ARCH32_SPEC "}"
