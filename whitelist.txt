@@ -360,6 +360,7 @@ dev-libs/libusb-compat
 dev-libs/libyaml
 dev-libs/log4cxx
 dev-libs/maloc
+dev-libs/mpc
 dev-libs/nettle
 dev-libs/nspr
 dev-libs/nss
