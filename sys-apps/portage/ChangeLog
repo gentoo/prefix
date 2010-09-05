@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.16270 (05 Sep 2010)
+
+  05 Sep 2010; Fabian Groffen <grobian@gentoo.org>
+  +portage-2.2.01.16270.ebuild:
+  Bump, many main-stream EROOT support changes, includes fix for bug #334271
+
 *portage-2.2.01.15553 (09 Aug 2010)
 
   09 Aug 2010; Fabian Groffen <grobian@gentoo.org>
