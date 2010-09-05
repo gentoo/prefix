@@ -2,6 +2,11 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  05 Sep 2010; Fabian Groffen <grobian@gentoo.org>
+  portage-2.2.01.16270.ebuild:
+  dekeyword 2.2.01.16270 as it seems to have weird issues with merging
+  packages
+
 *portage-2.2.01.16270 (05 Sep 2010)
 
   05 Sep 2010; Fabian Groffen <grobian@gentoo.org>
