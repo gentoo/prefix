@@ -325,6 +325,7 @@ dev-libs/cdk
 dev-libs/cvector
 dev-libs/darts
 dev-libs/dotconf
+dev-libs/eggdbus
 dev-libs/elfutils
 dev-libs/fribidi
 dev-libs/gnulib
@@ -509,6 +510,7 @@ gnome-base/gnome-settings-daemon
 gnome-base/libbonobo
 gnome-base/libbonoboui
 gnome-base/libgnome
+gnome-base/libgnome-keyring
 gnome-base/libgnomekbd
 gnome-base/libgnomeprint
 gnome-base/libgnomeprintui
