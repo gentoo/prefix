@@ -1,6 +1,77 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.458 2010/07/21 12:18:43 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.475 2010/09/06 20:42:41 ranger Exp $
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> ruby-1.8.7_p302.ebuild:
+  Marking ruby-1.8.7_p302 ppc64 for bug 332957
+
+  28 Aug 2010; Raúl Porcel <armin76@gentoo.org> ruby-1.8.7_p302.ebuild:
+  alpha/ia64/s390/sh/sparc stable wrt #332957
+
+*ruby-1.9.2 (24 Aug 2010)
+
+  24 Aug 2010; Alex Legler <a3li@gentoo.org> +ruby-1.9.2.ebuild,
+  metadata.xml:
+  Version bump. Fixes rdoc handling wrt bug 333897 by Park Ji-in. Drop hppa
+  and x86-fbsd due to a new dependency on rdoc.
+
+  23 Aug 2010; Markus Meier <maekke@gentoo.org> ruby-1.8.7_p302.ebuild:
+  arm stable, bug #332957
+
+  21 Aug 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  ruby-1.8.7_p302.ebuild:
+  x86 stable wrt security bug #332957
+
+  21 Aug 2010; Markos Chandras <hwoarang@gentoo.org> ruby-1.8.7_p302.ebuild:
+  Stable on amd64 wrt bug #332957
+
+  21 Aug 2010; Jeroen Roovers <jer@gentoo.org> ruby-1.8.7_p302.ebuild:
+  Stable for PPC (bug #332957).
+
+  21 Aug 2010; Jeroen Roovers <jer@gentoo.org> ruby-1.8.7_p302.ebuild:
+  Stable for HPPA (bug #332957).
+
+*ruby-1.8.7_p302 (21 Aug 2010)
+
+  21 Aug 2010; Alex Legler <a3li@gentoo.org> -ruby-1.8.7_p299.ebuild,
+  +ruby-1.8.7_p302.ebuild:
+  Revision bump to 1.8.7_p302 for security bug 332957. Fix rubytests
+  installation path.
+
+*ruby-1.8.6_p399 (19 Aug 2010)
+
+  19 Aug 2010; Alex Legler <a3li@gentoo.org> -ruby-1.8.6_p388.ebuild,
+  -ruby-1.8.6_p388-r1.ebuild, +ruby-1.8.6_p399.ebuild:
+  Last patchlevel bump for Ruby 1.8.6 to 399, fixes CVE-2010-0541 (bug
+  332957). Also restrict Tk and OpenSSL dependencies and fix rubytests
+  installation path (reported by the x86 team in bug 332597)
+
+*ruby-1.9.2_rc2-r1 (18 Aug 2010)
+
+  18 Aug 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  +ruby-1.9.2_rc2-r1.ebuild, metadata.xml:
+  Update ebuild; apply webrick security patch; unbundle minitest, rdoc 2 and
+  the rubygems loading code. Add USE flag for psych.
+
+  17 Aug 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  ruby-1.9.2_rc2.ebuild:
+  Remove two keepdir that will try to keep an empty path, closes bug
+  #333163.
+
+  16 Aug 2010; Jeroen Roovers <jer@gentoo.org> ruby-1.9.2_rc2.ebuild:
+  Marked ~ppc (bug #332593).
+
+  15 Aug 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  ruby-1.9.2_rc2.ebuild:
+  Remove libedit USE flag from 1.9.2 because of upstream bug #3698.
+
+  13 Aug 2010; Alex Legler <a3li@gentoo.org> ruby-1.8.6_p388-r1.ebuild,
+  ruby-1.8.7_p299.ebuild:
+  Bump eselect-ruby dependency
+
+  13 Aug 2010; Diego E. Pettenò <flameeyes@gentoo.org>
+  -ruby-1.9.1_p429.ebuild:
+  Remove ebuild that is not target for unmask anyway.
 
   21 Jul 2010; Diego E. Pettenò <flameeyes@gentoo.org>
   ruby-1.9.2_rc2.ebuild:

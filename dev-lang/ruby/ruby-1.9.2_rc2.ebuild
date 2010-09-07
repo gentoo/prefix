@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.2_rc2.ebuild,v 1.3 2010/07/21 12:18:43 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/Attic/ruby-1.9.2_rc2.ebuild,v 1.6 2010/08/17 15:57:31 flameeyes Exp $
 
 EAPI=2
 
@@ -33,7 +33,10 @@ SRC_URI="mirror://ruby/${MY_P}.tar.bz2
 
 LICENSE="|| ( Ruby GPL-2 )"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc examples gdbm ipv6 rubytests socks5 ssl tk xemacs ncurses +readline libedit"
+IUSE="berkdb debug doc examples gdbm ipv6 rubytests socks5 ssl tk xemacs ncurses +readline" #libedit
+
+# libedit support is removed everywhere because of this upstream bug:
+# http://redmine.ruby-lang.org/issues/show/3698
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
@@ -42,14 +45,16 @@ RDEPEND="
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk[threads] )
 	ncurses? ( sys-libs/ncurses )
-	libedit? ( dev-libs/libedit )
-	!libedit? ( readline? ( sys-libs/readline ) )
+	readline?  ( sys-libs/readline )
 	dev-libs/libffi
 	sys-libs/zlib
 	>=app-admin/eselect-ruby-20100402
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!<dev-ruby/rdoc-2
 	!dev-ruby/rexml"
+#	libedit? ( dev-libs/libedit )
+#	!libedit? ( readline? ( sys-libs/readline ) )
+
 DEPEND="${RDEPEND}"
 PDEPEND="xemacs? ( app-xemacs/ruby-modes )"
 
@@ -102,15 +107,16 @@ src_configure() {
 	# ipv6 hack, bug 168939. Needs --enable-ipv6.
 	use ipv6 || myconf="${myconf} --with-lookup-order-hack=INET"
 
-	if use libedit; then
-		einfo "Using libedit to provide readline extension"
-		myconf="${myconf} --enable-libedit --with-readline"
-	elif use readline; then
-		einfo "Using readline to provide readline extension"
-		myconf="${myconf} --with-readline"
-	else
-		myconf="${myconf} --without-readline"
-	fi
+#	if use libedit; then
+#		einfo "Using libedit to provide readline extension"
+#		myconf="${myconf} --enable-libedit --with-readline"
+#	elif use readline; then
+#		einfo "Using readline to provide readline extension"
+#		myconf="${myconf} --with-readline"
+#	else
+#		myconf="${myconf} --without-readline"
+#	fi
+	myconf="${myconf} $(use_with readline)"
 
 	econf \
 		--program-suffix=${MY_SUFFIX} \
@@ -168,11 +174,6 @@ src_install() {
 	export LD_LIBRARY_PATH RUBYLIB
 
 	emake DESTDIR="${D}" install || die "make install failed"
-
-	d=$(${MINIRUBY} -rrbconfig -e "print Config::CONFIG['sitelibdir']")
-	keepdir ${d#${EPREFIX}}
-	d=$(${MINIRUBY} -rrbconfig -e "print Config::CONFIG['sitearchdir']")
-	keepdir ${d#${EPREFIX}}
 
 	if use doc; then
 		make DESTDIR="${D}" install-doc || die "make install-doc failed"

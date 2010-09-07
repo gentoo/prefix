@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.6_p388-r1.ebuild,v 1.4 2010/07/20 23:07:03 flameeyes Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.8.7_p302.ebuild,v 1.8 2010/09/06 20:42:41 ranger Exp $
 
 EAPI=2
 
@@ -30,7 +30,7 @@ SRC_URI="mirror://ruby/${SLOT}/${MY_P}.tar.bz2
 		 http://dev.gentoo.org/~flameeyes/ruby-team/${PN}-patches-${PATCHSET}.tar.bz2"
 
 LICENSE="|| ( Ruby GPL-2 )"
-KEYWORDS="~ppc-aix ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 IUSE="+berkdb debug doc examples +gdbm ipv6 rubytests socks5 ssl threads tk xemacs ncurses +readline libedit"
 
 RDEPEND="
@@ -43,7 +43,7 @@ RDEPEND="
 	libedit? ( dev-libs/libedit )
 	!libedit? ( readline? ( sys-libs/readline ) )
 	sys-libs/zlib
-	>=app-admin/eselect-ruby-20091225
+	>=app-admin/eselect-ruby-20100603
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!<dev-ruby/rdoc-2
 	!dev-ruby/rexml"
@@ -58,7 +58,7 @@ src_prepare() {
 
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.8.6_p36-prefix.patch"
-	epatch "${FILESDIR}"/${PN}-1.8.7_p160-solaris.patch
+	epatch "${FILESDIR}/${PN}-1.8.7_p249-pthread-linking.patch"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
@@ -185,7 +185,7 @@ src_install() {
 
 	if use rubytests; then
 		pushd test
-		insinto /usr/share/${PN}-${SLOT}
+		insinto /usr/share/${PN}-${SLOT}/test
 		doins -r .
 		popd
 	fi

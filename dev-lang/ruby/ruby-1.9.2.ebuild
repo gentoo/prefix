@@ -1,31 +1,44 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.1_p376.ebuild,v 1.1 2010/05/01 10:25:23 a3li Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ruby-1.9.2.ebuild,v 1.1 2010/08/24 18:08:09 a3li Exp $
 
 EAPI=2
 
+#PATCHSET=
+
 inherit autotools eutils flag-o-matic multilib versionator
 
-# Add patchlevel
-MY_P="${P/_/-}"
+RUBYPL=$(get_version_component_range 4)
 
-# 1.9.1.0 -> 1.9
+MY_P="${PN}-$(get_version_component_range 1-3)-p${RUBYPL:-0}"
+S=${WORKDIR}/${MY_P}
+
 SLOT=$(get_version_component_range 1-2)
-
-# 1.9.1.0 -> 1.9.1 (used in libdirs)
-RUBYVERSION=$(get_version_component_range 1-3)
-
-# 1.9 -> 19
 MY_SUFFIX=$(delete_version_separator 1 ${SLOT})
+# 1.9.2 still uses 1.9.1
+RUBYVERSION=1.9.1
+
+if [[ -n ${PATCHSET} ]]; then
+	if [[ ${PVR} == ${PV} ]]; then
+		PATCHSET="${PV}-r0.${PATCHSET}"
+	else
+		PATCHSET="${PVR}.${PATCHSET}"
+	fi
+else
+	PATCHSET="${PVR}"
+fi
 
 DESCRIPTION="An object-oriented scripting language"
 HOMEPAGE="http://www.ruby-lang.org/"
 SRC_URI="mirror://ruby/${MY_P}.tar.bz2
-		http://dev.a3li.li/gentoo/distfiles/${PN}-patches-${PVR}.tar.bz2"
+		 http://dev.gentoo.org/~flameeyes/ruby-team/${PN}-patches-${PATCHSET}.tar.bz2"
 
 LICENSE="|| ( Ruby GPL-2 )"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="berkdb debug doc emacs examples gdbm ipv6 rubytests socks5 ssl tk xemacs"
+IUSE="berkdb debug doc examples gdbm ipv6 +rdoc rubytests socks5 ssl tk xemacs ncurses +readline yaml" #libedit
+
+# libedit support is removed everywhere because of this upstream bug:
+# http://redmine.ruby-lang.org/issues/show/3698
 
 RDEPEND="
 	berkdb? ( sys-libs/db )
@@ -33,32 +46,40 @@ RDEPEND="
 	ssl? ( dev-libs/openssl )
 	socks5? ( >=net-proxy/dante-1.1.13 )
 	tk? ( dev-lang/tk[threads] )
+	ncurses? ( sys-libs/ncurses )
+	readline?  ( sys-libs/readline )
+	yaml? ( dev-libs/libyaml )
+	dev-libs/libffi
+	sys-libs/zlib
 	>=app-admin/eselect-ruby-20100402
 	!=dev-lang/ruby-cvs-${SLOT}*
 	!<dev-ruby/rdoc-2
+	!<dev-ruby/rubygems-1.3.7-r4
 	!dev-ruby/rexml"
+#	libedit? ( dev-libs/libedit )
+#	!libedit? ( readline? ( sys-libs/readline ) )
+
 DEPEND="${RDEPEND}"
 PDEPEND="
-	emacs? ( app-emacs/ruby-mode )
+	rdoc? ( >=dev-ruby/rdoc-2.5.11[ruby_targets_ruby19] )
 	xemacs? ( app-xemacs/ruby-modes )"
 
 PROVIDE="virtual/ruby"
 
-S="${WORKDIR}/${MY_P}"
-
 src_prepare() {
-	cd "${S}"
-
 	epatch "${FILESDIR}/${PN}-1.9.1-only-ncurses.patch"
 	epatch "${FILESDIR}/${PN}-1.9.1-prefix.patch"
 
 	EPATCH_FORCE="yes" EPATCH_SUFFIX="patch" \
-	epatch "${WORKDIR}/patches-${PVR}"
+		epatch "${WORKDIR}/patches"
 
-	einfo "Removing rake and rubygems..."
-	# Strip rake and rubygems
-	rm -rf bin/rake lib/rake.rb lib/rake || die "rm rake failed"
-	rm -rf bin/gem || die "rm gem failed"
+	einfo "Unbundling gems..."
+	rm -r \
+		{bin,lib}/rake \
+		{lib,ext}/racc* \
+		ext/json \
+		bin/gem \
+		|| die "removal failed"
 
 	# Fix a hardcoded lib path in configure script
 	sed -i -e "s:\(RUBY_LIB_PREFIX=\"\${prefix}/\)lib:\1$(get_libdir):" \
@@ -71,6 +92,8 @@ src_prepare() {
 }
 
 src_configure() {
+	local myconf=
+
 	# -fomit-frame-pointer makes ruby segfault, see bug #150413.
 	filter-flags -fomit-frame-pointer
 	# In many places aliasing rules are broken; play it safe
@@ -91,9 +114,24 @@ src_configure() {
 	fi
 
 	# ipv6 hack, bug 168939. Needs --enable-ipv6.
-	use ipv6 || myconf="--with-lookup-order-hack=INET"
+	use ipv6 || myconf="${myconf} --with-lookup-order-hack=INET"
 
-	econf --program-suffix=${MY_SUFFIX} --enable-shared --enable-pthread \
+#	if use libedit; then
+#		einfo "Using libedit to provide readline extension"
+#		myconf="${myconf} --enable-libedit --with-readline"
+#	elif use readline; then
+#		einfo "Using readline to provide readline extension"
+#		myconf="${myconf} --with-readline"
+#	else
+#		myconf="${myconf} --without-readline"
+#	fi
+	myconf="${myconf} $(use_with readline)"
+
+	econf \
+		--program-suffix=${MY_SUFFIX} \
+		--with-soname=ruby${MY_SUFFIX} \
+		--enable-shared \
+		--enable-pthread \
 		$(use_enable socks5 socks) \
 		$(use_enable doc install-doc) \
 		--enable-ipv6 \
@@ -102,6 +140,8 @@ src_configure() {
 		$(use_with gdbm) \
 		$(use_with ssl openssl) \
 		$(use_with tk) \
+		$(use_with ncurses curses) \
+		$(use_with yaml psych) \
 		${myconf} \
 		--with-readline-dir="${EPREFIX}"/usr \
 		--enable-option-checking=no \
@@ -113,18 +153,18 @@ src_compile() {
 }
 
 src_test() {
-	emake test || die "make test failed"
+	emake -j1 test || die "make test failed"
 
 	elog "Ruby's make test has been run. Ruby also ships with a make check"
 	elog "that cannot be run until after ruby has been installed."
 	elog
 	if use rubytests; then
 		elog "You have enabled rubytests, so they will be installed to"
-		elog "/usr/share/${PN}-${RUBYVERSION}/test. To run them you must be a user other"
+		elog "/usr/share/${PN}-${SLOT}/test. To run them you must be a user other"
 		elog "than root, and you must place them into a writeable directory."
 		elog "Then call: "
 		elog
-		elog "ruby19 -C /location/of/tests runner.rb"
+		elog "ruby${MY_SUFFIX} -C /location/of/tests runner.rb"
 	else
 		elog "Enable the rubytests USE flag to install the make check tests"
 	fi
@@ -134,7 +174,6 @@ src_install() {
 	# Ruby is involved in the install process, we don't want interference here.
 	unset RUBYOPT
 
-	# Creating the rubygems directories, bug #230163 once more.
 	local MINIRUBY=$(echo -e 'include Makefile\ngetminiruby:\n\t@echo $(MINIRUBY)'|make -f - getminiruby)
 
 	LD_LIBRARY_PATH="${ED}/usr/$(get_libdir)${LD_LIBRARY_PATH+:}${LD_LIBRARY_PATH}"
@@ -146,18 +185,18 @@ src_install() {
 
 	emake DESTDIR="${D}" install || die "make install failed"
 
-	d=$(${MINIRUBY} -rrbconfig -e "print Config::CONFIG['sitelibdir']")
-	keepdir ${d#${EPREFIX}}
-	d=$(${MINIRUBY} -rrbconfig -e "print Config::CONFIG['sitearchdir']")
-	keepdir ${d#${EPREFIX}}
+	# Remove installed rubygems copy
+	rm -r "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}/rubygems" || die "rm rubygems failed"
+	rm -r "${ED}/usr/$(get_libdir)/ruby/${RUBYVERSION}"/rdoc* || die "rm rdoc failed"
+	rm -r "${ED}/usr/bin/"{ri,rdoc}"${MY_SUFFIX}" || die "rm rdoc bins failed"
 
 	if use doc; then
 		make DESTDIR="${D}" install-doc || die "make install-doc failed"
 	fi
 
 	if use examples; then
-		dodir usr/share/doc/${PF}
-		cp -pPR sample "${ED}/usr/share/doc/${PF}"
+		insinto /usr/share/doc/${PF}
+		doins -r sample
 	fi
 
 	dosym "libruby${MY_SUFFIX}$(get_libname ${PV%_*})" \
@@ -165,11 +204,13 @@ src_install() {
 	dosym "libruby${MY_SUFFIX}$(get_libname ${PV%_*})" \
 		"/usr/$(get_libdir)/libruby$(get_libname ${PV%_*})"
 
-	dodoc ChangeLog NEWS doc/NEWS-1.8.7 README* ToDo
+	dodoc ChangeLog NEWS doc/NEWS-1.8.7 README* ToDo || die
 
 	if use rubytests; then
-		dodir /usr/share/${PN}-${RUBYVERSION}
-		cp -pPR test "${ED}/usr/share/${PN}-${RUBYVERSION}"
+		pushd test
+		insinto /usr/share/${PN}-${SLOT}/test
+		doins -r .
+		popd
 	fi
 }
 
