@@ -70,7 +70,7 @@ src_unpack() {
 	sed -i \
 		-e "s:/usr/local:${EPREFIX}/usr:" \
 		-e "s:/\<lib\>:/$(get_libdir):g" \
-		etc/lua.pc
+		etc/lua.pc src/luaconf.h || die
 }
 
 src_compile() {
