@@ -72,9 +72,14 @@ DEPEND="${RDEPEND}
 	v4l? ( sys-kernel/linux-headers )
 	v4l2? ( sys-kernel/linux-headers )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
+	if [[ ${PV} = *9999* ]]; then
+		# Set SVN version manually
+		subversion_wc_info
+		sed -i s/UNKNOWN/SVN-r${ESVN_WC_REVISION}/ "${S}/version.sh"
+	elif [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
+		sed -i s/UNKNOWN/SVN-r${FFMPEG_REVISION}/ "${S}/version.sh"
+	fi
 
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-solaris.patch
 	# let's hope this one isn't necessary any more (doesn't apply, but not hard
@@ -87,16 +92,6 @@ src_unpack() {
 	if [[ ${CHOST} == *-solaris* ]] ; then
 		# the version script on Solaris causes invalid symbol version problems
 		sed -i -e '/--version-script/d' configure || die
-	fi
-}
-
-src_prepare() {
-	if [[ ${PV} = *9999* ]]; then
-		# Set SVN version manually
-		subversion_wc_info
-		sed -i s/UNKNOWN/SVN-r${ESVN_WC_REVISION}/ "${S}/version.sh"
-	elif [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
-		sed -i s/UNKNOWN/SVN-r${FFMPEG_REVISION}/ "${S}/version.sh"
 	fi
 }
 
