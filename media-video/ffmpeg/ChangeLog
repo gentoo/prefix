@@ -1,6 +1,95 @@
 # ChangeLog for media-video/ffmpeg
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.344 2010/03/10 11:24:36 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ChangeLog,v 1.366 2010/08/10 09:57:39 ssuominen Exp $
+
+  10 Aug 2010; Samuli Suominen <ssuominen@gentoo.org> ffmpeg-9999.ebuild:
+  USE="qt-faststart" to replace separate media-video/qt-faststart package.
+
+  02 Aug 2010; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999.ebuild:
+  avfilter-lavf doesnt exist, bug #330247
+
+  22 Jul 2010; Alexis Ballier <aballier@gentoo.org> +ffmpeg-9999.ebuild,
+  -ffmpeg-9999-r1.ebuild:
+  go back to revision less for the live ebuild, revisions make no sense at
+  all there
+
+  22 Jul 2010; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  Add bzip2 and static-libs useflag, by Nikoli <nikoli@lavabit.com> in bug
+  #324453 and fix my previous mistake by reintroducing the faad dep.
+
+  22 Jul 2010; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  sort rdepend, use same detection of live ebuild everywhere, cosmetics, by
+  Nikoli <nikoli@lavabit.com> in bug #324453
+
+  11 Jul 2010; Jeroen Roovers <jer@gentoo.org> ffmpeg-0.6.ebuild:
+  Marked ~hppa (bug #324941).
+
+  27 Jun 2010; Raúl Porcel <armin76@gentoo.org> ffmpeg-0.6.ebuild:
+  Re-add ~alpha/~arm/~ia64/~sparc wrt #324941
+
+  22 Jun 2010; Christian Faulhammer <fauli@gentoo.org> ffmpeg-0.6.ebuild:
+  add ~x86, bug 324941
+
+  22 Jun 2010; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  faad support has been removed
+
+  18 Jun 2010; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  Sort IUSE and make zlib enabled by default, by Nikoli
+  <nikoli@lavabit.com>, bug #324453
+
+*ffmpeg-0.6 (16 Jun 2010)
+
+  16 Jun 2010; Alexis Ballier <aballier@gentoo.org> +ffmpeg-0.6.ebuild:
+  Bump to 0.6
+
+  12 Jun 2010; Dror Levin <spatz@gentoo.org> ffmpeg-9999-r1.ebuild:
+  Make KEYWORDS depend on PV to make it easier to bump.
+
+  11 Jun 2010; Luca Barbato <lu_zero@gentoo.org> metadata.xml,
+  ffmpeg-9999-r1.ebuild:
+  Update live ebuild, support libvpx, that should address the final bit of
+  bug #320817, thanks to Nikoli again for the support
+
+  06 Jun 2010; Luca Barbato <lu_zero@gentoo.org> metadata.xml,
+  ffmpeg-9999-r1.ebuild:
+  add librtmp support
+
+  06 Jun 2010; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  bump x264 requirements
+
+  11 May 2010; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild,
+  metadata.xml:
+  add vaapi useflag, by Olivier Huber <oli.huber@gmail.com>, bug #308857
+
+  11 May 2010; Alexis Ballier <aballier@gentoo.org>
+  ffmpeg-0.5_p20373.ebuild, ffmpeg-0.5_p22846.ebuild:
+  force disabling vaapi to avoid automagics on unmasked versions, bug
+  #308857
+
+  11 May 2010; Alexis Ballier <aballier@gentoo.org>
+  -ffmpeg-0.5_p20601-r1.ebuild, -ffmpeg-0.5_p21602.ebuild,
+  -files/ffmpeg-0.5_p20601-r1-libtheora.patch:
+  remove old
+
+  23 Apr 2010; Samuli Suominen <ssuominen@gentoo.org>
+  ffmpeg-0.5_p20373.ebuild, ffmpeg-0.5_p20601-r1.ebuild,
+  ffmpeg-0.5_p21602.ebuild, ffmpeg-0.5_p22846.ebuild, metadata.xml:
+  Rename USE opencore-amr to amr.
+
+  23 Apr 2010; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
+  rename opencore-amr useflag to amr, we should get rid of the old non free
+  one
+
+*ffmpeg-0.5_p22846 (12 Apr 2010)
+
+  12 Apr 2010; Alexis Ballier <aballier@gentoo.org>
+  +ffmpeg-0.5_p22846.ebuild:
+  push a new snapshot
+
+  13 Mar 2010; Luca Barbato <lu_zero@gentoo.org> ffmpeg-0.5_p20373.ebuild,
+  ffmpeg-0.5_p20601-r1.ebuild, ffmpeg-0.5_p21602.ebuild,
+  ffmpeg-9999-r1.ebuild:
+  Add dep on pkg-config, fixes bug #306943
 
   10 Mar 2010; Alexis Ballier <aballier@gentoo.org> ffmpeg-9999-r1.ebuild:
   simplify libgsm code as upstream now uses a more standard way for

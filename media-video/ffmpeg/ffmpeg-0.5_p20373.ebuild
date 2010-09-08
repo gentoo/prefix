@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5_p20373.ebuild,v 1.10 2010/01/31 17:34:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5_p20373.ebuild,v 1.13 2010/05/11 09:50:42 aballier Exp $
 
 EAPI=2
 SCM=""
@@ -27,7 +27,7 @@ SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="+3dnow +3dnowext alsa altivec cpudetection custom-cflags debug dirac
 	  doc ieee1394 +encode faac faad gsm ipv6 jack +mmx +mmxext vorbis test
-	  theora threads x264 xvid network zlib sdl X mp3 opencore-amr
+	  theora threads x264 xvid network zlib sdl X mp3 amr
 	  oss pic schroedinger +hardcoded-tables bindist v4l v4l2
 	  speex +ssse3 jpeg2k vdpau"
 
@@ -53,7 +53,7 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 	dirac? ( media-video/dirac )
 	gsm? ( >=media-sound/gsm-1.0.12-r1 )
 	jpeg2k? ( >=media-libs/openjpeg-1.3-r2 )
-	opencore-amr? ( media-libs/opencore-amr )
+	amr? ( media-libs/opencore-amr )
 	schroedinger? ( media-libs/schroedinger )
 	speex? ( >=media-libs/speex-1.2_beta3 )
 	jack? ( media-sound/jack-audio-connection-kit )
@@ -64,6 +64,8 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 
 DEPEND="${RDEPEND}
 	>=sys-devel/make-3.81
+	dirac? ( dev-util/pkgconfig )
+	schroedinger? ( dev-util/pkgconfig )
 	mmx? ( dev-lang/yasm )
 	doc? ( app-text/texi2html )
 	test? ( net-misc/wget )
@@ -137,7 +139,7 @@ src_configure() {
 	use threads && myconf="${myconf} --enable-pthreads"
 
 	# Decoders
-	use opencore-amr && myconf="${myconf} --enable-libopencore-amrwb
+	use amr && myconf="${myconf} --enable-libopencore-amrwb
 		--enable-libopencore-amrnb"
 	for i in faad dirac schroedinger speex; do
 		use $i && myconf="${myconf} --enable-lib$i"
@@ -163,6 +165,7 @@ src_configure() {
 	#done
 	use video_cards_nvidia || myconf="${myconf} --disable-vdpau"
 	use vdpau || myconf="${myconf} --disable-vdpau"
+	myconf="${myconf} --disable-vaapi"
 
 	# CPU features
 	for i in mmx ssse3 altivec ; do

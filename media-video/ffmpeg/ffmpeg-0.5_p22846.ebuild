@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5_p20601-r1.ebuild,v 1.4 2010/01/26 15:56:13 spatz Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-video/ffmpeg/ffmpeg-0.5_p22846.ebuild,v 1.3 2010/05/11 09:50:42 aballier Exp $
 
 EAPI=2
 SCM=""
@@ -26,8 +26,8 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~x64-solaris ~x86-solaris"
 IUSE="+3dnow +3dnowext alsa altivec cpudetection custom-cflags debug dirac
-	  doc ieee1394 +encode faac faad gsm ipv6 jack +mmx +mmxext vorbis test
-	  theora threads x264 xvid network zlib sdl X mp3 opencore-amr
+	  doc ieee1394 +encode faac faad gsm jack +mmx +mmxext vorbis test
+	  theora threads x264 xvid network zlib sdl X mp3 amr
 	  oss pic schroedinger +hardcoded-tables bindist v4l v4l2
 	  speex +ssse3 jpeg2k vdpau"
 
@@ -43,8 +43,8 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 		faac? ( media-libs/faac )
 		mp3? ( media-sound/lame )
 		vorbis? ( media-libs/libvorbis media-libs/libogg )
-		theora? ( media-libs/libtheora[encode] media-libs/libogg )
-		x264? ( >=media-libs/x264-0.0.20091124 )
+		theora? ( >=media-libs/libtheora-1.1.1[encode] media-libs/libogg )
+		x264? ( >=media-libs/x264-0.0.20100118 )
 		xvid? ( >=media-libs/xvid-1.1.0 ) )
 	faad? ( >=media-libs/faad2-2.6.1 )
 	zlib? ( sys-libs/zlib )
@@ -53,7 +53,7 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 	dirac? ( media-video/dirac )
 	gsm? ( >=media-sound/gsm-1.0.12-r1 )
 	jpeg2k? ( >=media-libs/openjpeg-1.3-r2 )
-	opencore-amr? ( media-libs/opencore-amr )
+	amr? ( media-libs/opencore-amr )
 	schroedinger? ( media-libs/schroedinger )
 	speex? ( >=media-libs/speex-1.2_beta3 )
 	jack? ( media-sound/jack-audio-connection-kit )
@@ -64,6 +64,8 @@ RDEPEND="sdl? ( >=media-libs/libsdl-1.2.10 )
 
 DEPEND="${RDEPEND}
 	>=sys-devel/make-3.81
+	dirac? ( dev-util/pkgconfig )
+	schroedinger? ( dev-util/pkgconfig )
 	mmx? ( dev-lang/yasm )
 	doc? ( app-text/texi2html )
 	test? ( net-misc/wget )
@@ -80,6 +82,10 @@ src_unpack() {
 		epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-freebsd7.patch
 	# /bin/sh on at least Solaris can't cope very will with these scripts
 	sed -i -e '1c\#!/usr/bin/env sh' configure version.sh || die
+	if [[ ${CHOST} == *-solaris* ]] ; then
+		# the version script on Solaris causes invalid symbol version problems
+		sed -i -e '/--version-script/d' configure || die
+	fi
 }
 
 src_prepare() {
@@ -90,10 +96,6 @@ src_prepare() {
 	elif [ "${PV%_p*}" != "${PV}" ] ; then # Snapshot
 		sed -i s/UNKNOWN/SVN-r${FFMPEG_REVISION}/ "${S}/version.sh"
 	fi
-
-	# This got added in right after this snapshot
-	# Small fix to build against libtheora-1.0
-	epatch "${FILESDIR}/${PF}-libtheora.patch"
 }
 
 src_configure() {
@@ -103,12 +105,7 @@ src_configure() {
 	use debug || myconf="${myconf} --disable-debug"
 	use zlib || myconf="${myconf} --disable-zlib"
 	use sdl || myconf="${myconf} --disable-ffplay"
-
-	if use network; then
-		use ipv6 || myconf="${myconf} --disable-ipv6"
-	else
-		myconf="${myconf} --disable-network"
-	fi
+	use network || myconf="${myconf} --disable-network"
 
 	use custom-cflags && myconf="${myconf} --disable-optimizations"
 	use cpudetection && myconf="${myconf} --enable-runtime-cpudetect"
@@ -148,17 +145,12 @@ src_configure() {
 	use threads && myconf="${myconf} --enable-pthreads"
 
 	# Decoders
-	use opencore-amr && myconf="${myconf} --enable-libopencore-amrwb
+	use amr && myconf="${myconf} --enable-libopencore-amrwb
 		--enable-libopencore-amrnb"
-	for i in faad dirac schroedinger speex; do
+	for i in gsm faad dirac schroedinger speex; do
 		use $i && myconf="${myconf} --enable-lib$i"
 	done
 	use jpeg2k && myconf="${myconf} --enable-libopenjpeg"
-	if use gsm; then
-		myconf="${myconf} --enable-libgsm"
-		# Crappy detection or our installation is weird, pick one (FIXME)
-		append-flags -I"${EPREFIX}"/usr/include/gsm
-	fi
 
 	#for i in h264_vdpau mpeg1_vdpau mpeg_vdpau vc1_vdpau wmv3_vdpau; do
 	#	use video_cards_nvidia || myconf="${myconf} --disable-decoder=$i"
@@ -166,6 +158,7 @@ src_configure() {
 	#done
 	use video_cards_nvidia || myconf="${myconf} --disable-vdpau"
 	use vdpau || myconf="${myconf} --disable-vdpau"
+	myconf="${myconf} --disable-vaapi"
 
 	# CPU features
 	for i in mmx ssse3 altivec ; do

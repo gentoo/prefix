@@ -19,11 +19,13 @@
     <flag name="hardcoded-tables">Use pre-calculated tables rather than calculating them on the fly.</flag>
     <flag name="mmxext">Enables mmx2 support</flag>
     <flag name="network">Enables network streaming support</flag>
-    <flag name="opencore-amr">Enables Adaptive Multi-Rate format support</flag>
     <flag name="pic">Force shared libraries to be built as PIC (this is slower)</flag>
+	<flag name="qt-faststart">Build and install qt-faststart application</flag>
+    <flag name="rtmp">Enable Real Time Messaging Protocol using librtmp</flag>
     <flag name="schroedinger">Enable Dirac video support (an advanced royalty-free video compression format) via libschroedinger (high-speed implementation in C of the Dirac codec).</flag>
     <flag name="ssse3">faster floating point optimization for SSSE3 capable chips (Intel Core 2 and later chips)</flag>
+	<flag name="vaapi">Enables VAAPI (Video Acceleration API) for hardware decoding</flag>
 	<flag name="vdpau">Enables VDPAU decoders (requires nVidia video cards to offload CPU processing to video card</flag>
-    <flag name="vhook">Enables video hooking support.</flag>
+	<flag name="vpx">Enables vp8 codec support using libvpx</flag>
   </use>
 </pkgmetadata>
