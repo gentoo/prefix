@@ -358,6 +358,7 @@ dev-libs/libtommath
 dev-libs/libunique
 dev-libs/libusb
 dev-libs/libusb-compat
+dev-libs/libxdg-basedir
 dev-libs/libyaml
 dev-libs/log4cxx
 dev-libs/maloc
