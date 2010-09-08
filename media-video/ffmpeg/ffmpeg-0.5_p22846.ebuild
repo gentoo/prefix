@@ -77,7 +77,9 @@ src_unpack() {
 	cd "${S}"
 
 	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-solaris.patch
-	epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-apple.patch
+	# let's hope this one isn't necessary any more (doesn't apply, but not hard
+	# to make applying again)
+	#epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-apple.patch
 	[[ ${CHOST} == *-freebsd7* ]] && \
 		epatch "${FILESDIR}"/${PN}-0.4.9_p20090201-freebsd7.patch
 	# /bin/sh on at least Solaris can't cope very will with these scripts
