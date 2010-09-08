@@ -2,8 +2,4 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
 	<herd>php</herd>
-	<maintainer>
-		<email>arfrever@gentoo.org</email>
-		<name>Arfrever Frehtes Taifersar Arahesis</name>
-	</maintainer>
 </pkgmetadata>
