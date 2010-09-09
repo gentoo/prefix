@@ -1,6 +1,6 @@
 # Copyright 1999-2008 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.141 2010/01/03 19:13:44 scarabeus Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/games.eclass,v 1.142 2010/08/31 17:04:48 nyhm Exp $
 
 # devlist: {vapier,wolf31o2,mr_bones_}@gentoo.org -> games@gentoo.org
 #
@@ -206,12 +206,12 @@ games_ut_unpack() {
 		die "You must provide an argument to games_ut_unpack"
 	fi
 	if [[ -f ${ut_unpack} ]] ; then
-		uz2unpack "${ut_unpack}" "${ut_unpack/.uz2/}" &>/dev/null \
+		uz2unpack "${ut_unpack}" "${ut_unpack%.uz2}" \
 			|| die "uncompressing file ${ut_unpack}"
 	fi
 	if [[ -d ${ut_unpack} ]] ; then
 		while read f ; do
-			uz2unpack "${ut_unpack}/${f}" "${ut_unpack}/${f%.uz2}" &>/dev/null \
+			uz2unpack "${ut_unpack}/${f}" "${ut_unpack}/${f%.uz2}" \
 				|| die "uncompressing file ${f}"
 			rm -f "${ut_unpack}/${f}" || die "deleting compressed file ${f}"
 		done < <(find "${ut_unpack}" -maxdepth 1 -name '*.uz2' -printf '%f\n' 2>/dev/null)
