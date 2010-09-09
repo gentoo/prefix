@@ -24,7 +24,6 @@ export GAMES_DATADIR_BASE=${GAMES_DATADIR_BASE:-/usr/share} # some packages auto
 export GAMES_SYSCONFDIR=${GAMES_SYSCONFDIR:-/etc/games}
 export GAMES_STATEDIR=${GAMES_STATEDIR:-/var/games}
 export GAMES_LOGDIR=${GAMES_LOGDIR:-/var/log/games}
-export GAMES_LIBDIR=${GAMES_LIBDIR:-${GAMES_PREFIX}/$(get_libdir)}
 export GAMES_BINDIR=${GAMES_BINDIR:-${GAMES_PREFIX}/bin}
 export GAMES_ENVD="90games"
 # if you want to use a different user/group than games.games,
