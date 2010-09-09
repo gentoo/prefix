@@ -12,7 +12,7 @@ inherit base multilib toolchain-funcs eutils
 
 case ${EAPI:-0} in
 	0|1) EXPORT_FUNCTIONS pkg_setup src_compile pkg_preinst pkg_postinst ;;
-	2) EXPORT_FUNCTIONS pkg_setup src_configure src_compile pkg_preinst pkg_postinst ;;
+	2|3) EXPORT_FUNCTIONS pkg_setup src_configure src_compile pkg_preinst pkg_postinst ;;
 esac
 
 DESCRIPTION="Based on the ${ECLASS} eclass"
@@ -33,11 +33,20 @@ export GAMES_USER=${GAMES_USER:-root}
 export GAMES_USER_DED=${GAMES_USER_DED:-games}
 export GAMES_GROUP=${GAMES_GROUP:-games}
 
+games_set_prefix_vars() {
+	if has "${EAPI:-0}" 0 1 2 && ! use prefix; then
+		EPREFIX=
+		EROOT=${ROOT}
+		ED=${D}
+	fi
+}
+
 games_get_libdir() {
 	echo ${GAMES_PREFIX}/$(get_libdir)
 }
 
 egamesconf() {
+	games_set_prefix_vars
 	econf \
 		--prefix="${EPREFIX}${GAMES_PREFIX}" \
 		--libdir="${EPREFIX}$(games_get_libdir)" \
@@ -70,6 +79,7 @@ games_make_wrapper() { gameswrapper ${FUNCNAME/games_} "$@"; }
 gamesowners() { use prefix || chown ${GAMES_USER}:${GAMES_GROUP} "$@"; }
 gamesperms() { use prefix || chmod u+rw,g+r-w,o-rwx "$@"; }
 prepgamesdirs() {
+	games_set_prefix_vars
 	local dir f mode
 	for dir in \
 		"${GAMES_PREFIX}" "${GAMES_PREFIX_OPT}" "${GAMES_DATADIR}" \
@@ -107,6 +117,7 @@ prepgamesdirs() {
 }
 
 gamesenv() {
+	games_set_prefix_vars
 	local d libdirs
 
 	for d in $(get_all_libdirs) ; do
@@ -122,6 +133,7 @@ gamesenv() {
 }
 
 games_pkg_setup() {
+	games_set_prefix_vars
 	tc-export CC CXX
 	[[ ${GAMES_CHECK_LICENSE} == "yes" ]] && check_license ${LICENSE}
 
@@ -150,6 +162,7 @@ games_src_compile() {
 }
 
 games_pkg_preinst() {
+	games_set_prefix_vars
 	local f
 
 	while read f ; do
