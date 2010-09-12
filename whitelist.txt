@@ -739,6 +739,7 @@ sys-apps/acl
 sys-apps/aix-miscutils
 sys-apps/darwin-miscutils
 sys-apps/dog
+sys-apps/ed
 sys-apps/fakeroot
 sys-apps/hexdump-esr
 sys-apps/man-pages
