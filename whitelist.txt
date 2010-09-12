@@ -740,11 +740,13 @@ sys-apps/aix-miscutils
 sys-apps/darwin-miscutils
 sys-apps/dog
 sys-apps/ed
+sys-apps/eject
 sys-apps/fakeroot
 sys-apps/hexdump-esr
 sys-apps/man-pages
 sys-apps/man-pages-posix
 sys-apps/mawk
+sys-apps/miscfiles
 sys-apps/pv
 sys-apps/ren
 sys-apps/rename
