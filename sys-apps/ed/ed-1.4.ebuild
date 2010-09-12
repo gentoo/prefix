@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ed-1.4.ebuild,v 1.2 2010/09/06 20:59:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ed-1.4.ebuild,v 1.3 2010/09/08 13:29:46 fauli Exp $
 
 inherit eutils toolchain-funcs
 

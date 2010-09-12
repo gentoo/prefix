@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/ed
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.79 2010/09/06 20:59:37 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/ed/ChangeLog,v 1.80 2010/09/08 13:29:46 fauli Exp $
+
+  08 Sep 2010; Christian Faulhammer <fauli@gentoo.org> ed-1.4.ebuild:
+  stable x86, bug 336277
 
   06 Sep 2010; Brent Baude <ranger@gentoo.org> ed-1.4.ebuild:
   Marking ed-1.4 ppc64 for bug 336277
