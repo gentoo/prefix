@@ -92,6 +92,8 @@ ruby_add_rdepend virtual/rubygems
 # This function returns the gems data directory for the ruby
 # implementation in question.
 ruby_fakegem_gemsdir() {
+	has "${EAPI}" 2 && ! use prefix && EPREFIX=
+
 	local _gemsitedir=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitelibdir"]' | sed -e 's:site_ruby:gems:' -e "s:^${EPREFIX}::")
 
 	[[ -z ${_gemsitedir} ]] && {
@@ -337,7 +339,7 @@ all_fakegem_install() {
 	# binary wrappers; we assume that all the implementations get the
 	# same binaries, or something is wrong anyway, so...
 	if [[ -n ${RUBY_FAKEGEM_BINWRAP} ]]; then
-		local bindir=$(find "${ED}" -type d -path "*/gems/${RUBY_FAKEGEM_NAME}-${RUBY_FAKEGEM_VERSION}/bin" -print -quit)
+		local bindir=$(find "${D}" -type d -path "*/gems/${RUBY_FAKEGEM_NAME}-${RUBY_FAKEGEM_VERSION}/bin" -print -quit)
 
 		if [[ -d "${bindir}" ]]; then
 			pushd "${bindir}" &>/dev/null
