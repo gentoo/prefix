@@ -599,6 +599,7 @@ media-libs/mutagen
 media-libs/openal
 media-libs/opengl-apple
 media-libs/portaudio
+media-libs/qimageblitz
 media-libs/raptor
 media-libs/schroedinger
 media-libs/sdl-gfx
