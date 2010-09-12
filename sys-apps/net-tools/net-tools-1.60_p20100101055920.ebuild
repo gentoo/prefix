@@ -76,7 +76,7 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die
+	emake DESTDIR="${ED}" install || die
 	dodoc README README.ipv6 TODO
 }
 
