@@ -4,7 +4,7 @@
 
 EAPI="2"
 
-inherit eutils toolchain-funcs
+inherit eutils toolchain-funcs autotools
 
 DESCRIPTION="Extended attributes tools"
 HOMEPAGE="http://savannah.nongnu.org/projects/attr"
@@ -29,6 +29,10 @@ src_prepare() {
 		-e '/HAVE_ZIPPED_MANPAGES/s:=.*:=false:' \
 		include/builddefs.in \
 		|| die "failed to update builddefs"
+	# libtool will clobber install-sh which is really a custom file
+	mv install-sh acl.install-sh || die
+	AT_M4DIR="m4" eautoreconf
+	mv acl.install-sh install-sh || die
 	strip-linguas po
 
 	if [[ ${CHOST} == *-darwin* ]] ; then
