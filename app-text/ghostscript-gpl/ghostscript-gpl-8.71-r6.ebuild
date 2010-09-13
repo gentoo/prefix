@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.71-r5.ebuild,v 1.1 2010/07/30 22:09:04 tgurr Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-text/ghostscript-gpl/ghostscript-gpl-8.71-r6.ebuild,v 1.1 2010/08/17 18:18:25 tgurr Exp $
 
 EAPI=3
 inherit autotools eutils versionator flag-o-matic
@@ -13,7 +13,7 @@ GSDJVU_PV=1.4
 PVM=$(get_version_component_range 1-2)
 SRC_URI="!bindist? ( djvu? ( mirror://sourceforge/djvu/gsdjvu-${GSDJVU_PV}.tar.gz ) )
 	mirror://sourceforge/ghostscript/${MY_P}.tar.xz
-	mirror://gentoo/${P}-patchset-3.tar.bz2"
+	mirror://gentoo/${P}-patchset-4.tar.bz2"
 
 LICENSE="GPL-3 CPL-1.0"
 SLOT="0"
@@ -38,11 +38,11 @@ DEPEND="${COMMON_DEPEND}
 	dev-util/pkgconfig"
 
 RDEPEND="${COMMON_DEPEND}
+	>=media-fonts/urw-fonts-2.4.9
 	linguas_ja? ( media-fonts/kochi-substitute )
 	linguas_ko? ( media-fonts/baekmuk-fonts )
 	linguas_zh_CN? ( media-fonts/arphicfonts )
-	linguas_zh_TW? ( media-fonts/arphicfonts )
-	>=media-fonts/urw-fonts-2.4.9"
+	linguas_zh_TW? ( media-fonts/arphicfonts )"
 
 S="${WORKDIR}/${MY_P}"
 
@@ -63,7 +63,7 @@ pkg_setup() {
 		eerror
 		eerror "And remove packages listed. If it doesn't belong to any package, remove"
 		eerror "it manually and then re-emerge ${CATEGORY}/${PN}."
-		eerror "See bug 311923 for more details."
+		eerror "See bug #311923 for more details."
 		eerror
 		die "Path ${p} is not a symlink"
 	fi
@@ -85,7 +85,7 @@ src_prepare() {
 	# remove internal urw-fonts
 	rm -rf "${S}/Resource/Font"
 
-	# Apply various patches, many borrowed from Fedora
+	# apply various patches, many borrowed from Fedora
 	# http://cvs.fedoraproject.org/viewvc/devel/ghostscript/
 	EPATCH_EXCLUDE="${PN}-8.64-gsdjvu-1.3.patch"
 	EPATCH_SUFFIX="patch" EPATCH_FORCE="yes"
@@ -123,7 +123,7 @@ src_prepare() {
 		base/Makefile.in base/*.mak || die "sed failed"
 
 	epatch "${FILESDIR}"/${PN}-8.64-interix.patch
-	epatch "${FILESDIR}"/${PN}-8.63-solaris.patch
+	epatch "${FILESDIR}"/${PN}-8.71-solaris.patch
 	epatch "${FILESDIR}"/${PN}-8.71-darwin.patch
 
 	cd "${S}"
@@ -185,10 +185,10 @@ src_install() {
 	cd "${S}/ijs"
 	emake DESTDIR="${D}" install || die "emake ijs install failed"
 
-	# Rename an original cidfmap to cidfmap.GS
+	# rename an original cidfmap to cidfmap.GS
 	mv "${ED}/usr/share/ghostscript/${PVM}/Resource/Init/cidfmap"{,.GS} || die
 
-	# Install our own cidfmap to allow the separated cidfmap
+	# install our own cidfmap to allow the separated cidfmap
 	insinto "/usr/share/ghostscript/${PVM}/Resource/Init"
 	doins "${WORKDIR}/fontmaps/CIDFnmap" || die "doins CIDFnmap failed"
 	doins "${WORKDIR}/fontmaps/cidfmap" || die "doins cidfmap failed"
