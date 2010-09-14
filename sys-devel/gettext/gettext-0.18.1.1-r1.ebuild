@@ -32,6 +32,9 @@ src_prepare() {
 		cd "${S}"/gettext-runtime/libasprintf || die
 		AT_M4DIR="../../m4 ../m4" eautoreconf
 	fi
+	# this script uses syntax that Solaris /bin/sh doesn't grok
+	sed -i -e '1c\#!/usr/bin/env sh' \
+		"${S}"/gettext-tools/misc/convert-archive.in || die
 
 	epunt_cxx
 	elibtoolize
