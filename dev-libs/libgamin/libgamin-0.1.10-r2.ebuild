@@ -87,8 +87,8 @@ src_compile() {
 
 		building() {
 			emake \
-				PYTHON_INCLUDES="$(python_get_includedir)" \
-				PYTHON_SITE_PACKAGES="$(python_get_sitedir)" \
+				PYTHON_INCLUDES="${EPREFIX}$(python_get_includedir)" \
+				PYTHON_SITE_PACKAGES="${EPREFIX}$(python_get_sitedir)" \
 				PYTHON_VERSION="$(python_get_version)"
 		}
 		python_execute_function -s --source-dir python building
@@ -102,7 +102,7 @@ src_install() {
 		installation() {
 			emake \
 				DESTDIR="${D}" \
-				PYTHON_SITE_PACKAGES="$(python_get_sitedir)" \
+				PYTHON_SITE_PACKAGES="${EPREFIX}$(python_get_sitedir)" \
 				PYTHON_VERSION="$(python_get_version)" \
 				install
 		}
