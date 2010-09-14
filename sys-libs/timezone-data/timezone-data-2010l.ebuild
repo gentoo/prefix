@@ -26,8 +26,6 @@ src_unpack() {
 	unpack ${A}
 	epatch "${FILESDIR}"/${PN}-2008h-makefile.patch
 	tc-is-cross-compiler && cp -pR "${S}" "${S}"-native
-
-	sed -i -e '1c\#!'"${EPREFIX}"'/bin/bash' tzselect.ksh || die
 }
 
 src_compile() {
