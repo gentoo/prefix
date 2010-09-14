@@ -1,6 +1,9 @@
 # ChangeLog for net-libs/gnutls
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.254 2010/07/25 16:52:06 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/net-libs/gnutls/ChangeLog,v 1.255 2010/08/06 16:50:42 jer Exp $
+
+  06 Aug 2010; Jeroen Roovers <jer@gentoo.org> gnutls-2.10.0.ebuild:
+  Stable for PPC (bug #292025).
 
   25 Jul 2010; Raúl Porcel <armin76@gentoo.org> gnutls-2.10.0.ebuild:
   arm/ia64/m68k/s390/sh/sparc stable wrt #292025
