@@ -744,6 +744,7 @@ sys-apps/ed
 sys-apps/eject
 sys-apps/fakeroot
 sys-apps/hexdump-esr
+sys-apps/keyutils
 sys-apps/man-pages
 sys-apps/man-pages-posix
 sys-apps/mawk
