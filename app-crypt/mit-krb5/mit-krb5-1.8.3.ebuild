@@ -15,11 +15,11 @@ SRC_URI="http://web.mit.edu/kerberos/dist/krb5/${P_DIR}/${MY_P}-signed.tar"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-macos"
-IUSE="ldap doc xinetd"
+IUSE="keyutils ldap doc xinetd"
 
 RDEPEND="!virtual/krb5
 	>=sys-libs/e2fsprogs-libs-1.41.0
-	sys-apps/keyutils
+	keyutils? ( sys-apps/keyutils )
 	ldap? ( net-nds/openldap )
 	xinetd? ( sys-apps/xinetd )"
 DEPEND="${RDEPEND}
@@ -36,6 +36,7 @@ src_unpack() {
 
 src_configure() {
 	append-flags "-I${EPREFIX}/usr/include/et"
+	use keyutils || export ac_cv_header_keyutils_h=no
 	econf \
 		$(use_with ldap) \
 		--without-krb4 \
