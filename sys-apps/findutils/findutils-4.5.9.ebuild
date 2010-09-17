@@ -2,7 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-apps/findutils/findutils-4.5.9.ebuild,v 1.1 2010/08/15 05:33:52 vapier Exp $
 
-inherit eutils flag-o-matic toolchain-funcs multilib
+EAPI=3
+inherit eutils flag-o-matic toolchain-funcs multilib autotools
 
 DESCRIPTION="GNU utilities for finding files"
 HOMEPAGE="http://www.gnu.org/software/findutils/"
@@ -19,16 +20,16 @@ RDEPEND="selinux? ( sys-libs/libselinux )
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-
+src_prepare() {
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
 	sed -i '/^SUBDIRS/s/locate//' Makefile.in
+
+	cd gnulib && epatch "${FILESDIR}"/${P}-without-selinux.patch
+	cd - && eautoreconf # only for above patch, remove when in released version
 }
 
-src_compile() {
+src_configure() {
 	use static && append-ldflags -static
 
 	local myconf
@@ -40,9 +41,13 @@ src_compile() {
 
 	econf \
 		$(use_enable nls) \
+		$(use_with selinux) \
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/find \
 		${myconf} \
 		|| die "configure failed"
+}
+
+src_compile() {
 	emake AR="$(tc-getAR)" || die "make failed"
 }
 

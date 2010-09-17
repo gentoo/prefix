@@ -1,0 +1,149 @@
+Gentoo bug 330139, upstream:
+
+From 83e52ee5a420f8b552745a72e5869001b0f6da60 Mon Sep 17 00:00:00 2001
+From: Bruno Haible <bruno@clisp.org>
+Date: Sun, 29 Aug 2010 19:35:03 +0000
+Subject: selinux-h: Offer a --without-selinux option.
+
+#---
+#diff --git a/ChangeLog b/ChangeLog
+#index 14edae4..74e86da 100644
+#--- a/ChangeLog
+#+++ b/ChangeLog
+#@@ -1,3 +1,16 @@
+#+2010-08-29  Bruno Haible  <bruno@clisp.org>
+#+
+#+	selinux-h: Offer a --without-selinux option.
+#+	* m4/selinux-selinux-h.m4 (gl_HEADERS_SELINUX_SELINUX_H): If
+#+	--without-selinux was specified, skip all tests and define
+#+	HAVE_SELINUX_SELINUX_H to 0.
+#+	(gl_LIBSELINUX): Offer --without-selinux option. If it is specified,
+#+	set LIB_SELINUX to empty.
+#+	* m4/selinux-context-h.m4 (gl_HEADERS_SELINUX_CONTEXT_H): Require
+#+	gl_LIBSELINUX. If --without-selinux was specified, replace
+#+	selinux/context.h.
+#+	Reported by Johan Hattne <johan.hattne@utsouthwestern.edu>.
+#+
+# 2010-08-29  Ralf Wildenhues <Ralf.Wildenhues@gmx.de>
+#             Bruno Haible  <bruno@clisp.org>
+# 
+diff --git a/m4/selinux-context-h.m4 b/m4/selinux-context-h.m4
+index 234b4e5..b9f75d8 100644
+--- a/m4/selinux-context-h.m4
++++ b/m4/selinux-context-h.m4
+@@ -1,4 +1,4 @@
+-# serial 1   -*- Autoconf -*-
++# serial 2   -*- Autoconf -*-
+ # Copyright (C) 2006-2007, 2009-2010 Free Software Foundation, Inc.
+ # This file is free software; the Free Software Foundation
+ # gives unlimited permission to copy and/or distribute it,
+@@ -9,8 +9,13 @@
+ 
+ AC_DEFUN([gl_HEADERS_SELINUX_CONTEXT_H],
+ [
+-  AC_CHECK_HEADERS([selinux/context.h],
+-                   [SELINUX_CONTEXT_H=],
+-                   [SELINUX_CONTEXT_H=selinux/context.h])
++  AC_REQUIRE([gl_LIBSELINUX])
++  if test "$with_selinux" != no; then
++    AC_CHECK_HEADERS([selinux/context.h],
++                     [SELINUX_CONTEXT_H=],
++                     [SELINUX_CONTEXT_H=selinux/context.h])
++  else
++    SELINUX_CONTEXT_H=selinux/context.h
++  fi
+   AC_SUBST([SELINUX_CONTEXT_H])
+ ])
+diff --git a/m4/selinux-selinux-h.m4 b/m4/selinux-selinux-h.m4
+index 35d2dbe..cfc122b 100644
+--- a/m4/selinux-selinux-h.m4
++++ b/m4/selinux-selinux-h.m4
+@@ -1,4 +1,4 @@
+-# serial 3   -*- Autoconf -*-
++# serial 4   -*- Autoconf -*-
+ # Copyright (C) 2006-2007, 2009-2010 Free Software Foundation, Inc.
+ # This file is free software; the Free Software Foundation
+ # gives unlimited permission to copy and/or distribute it,
+@@ -12,41 +12,54 @@
+ AC_DEFUN([gl_HEADERS_SELINUX_SELINUX_H],
+ [
+   AC_REQUIRE([gl_LIBSELINUX])
+-  AC_CHECK_HEADERS([selinux/selinux.h])
+-
+-  if test "$ac_cv_header_selinux_selinux_h" = yes; then
+-    # We do have <selinux/selinux.h>, so do compile getfilecon.c
+-    # and arrange to use its wrappers.
+-    AC_LIBOBJ([getfilecon])
+-    gl_CHECK_NEXT_HEADERS([selinux/selinux.h])
+-    AC_DEFINE([getfilecon], [rpl_getfilecon],
+-              [Always use our getfilecon wrapper.])
+-    AC_DEFINE([lgetfilecon], [rpl_lgetfilecon],
+-              [Always use our lgetfilecon wrapper.])
+-    AC_DEFINE([fgetfilecon], [rpl_fgetfilecon],
+-              [Always use our fgetfilecon wrapper.])
+-  fi
++  if test "$with_selinux" != no; then
++    AC_CHECK_HEADERS([selinux/selinux.h])
++
++    if test "$ac_cv_header_selinux_selinux_h" = yes; then
++      # We do have <selinux/selinux.h>, so do compile getfilecon.c
++      # and arrange to use its wrappers.
++      AC_LIBOBJ([getfilecon])
++      gl_CHECK_NEXT_HEADERS([selinux/selinux.h])
++      AC_DEFINE([getfilecon], [rpl_getfilecon],
++                [Always use our getfilecon wrapper.])
++      AC_DEFINE([lgetfilecon], [rpl_lgetfilecon],
++                [Always use our lgetfilecon wrapper.])
++      AC_DEFINE([fgetfilecon], [rpl_fgetfilecon],
++                [Always use our fgetfilecon wrapper.])
++    fi
+ 
+-  case "$ac_cv_search_setfilecon:$ac_cv_header_selinux_selinux_h" in
+-    no:*) # already warned
+-      ;;
+-    *:no)
+-      AC_MSG_WARN([libselinux was found but selinux/selinux.h is missing.])
+-      AC_MSG_WARN([AC_PACKAGE_NAME will be compiled without SELinux support.])
+-  esac
++    case "$ac_cv_search_setfilecon:$ac_cv_header_selinux_selinux_h" in
++      no:*) # already warned
++        ;;
++      *:no)
++        AC_MSG_WARN([libselinux was found but selinux/selinux.h is missing.])
++        AC_MSG_WARN([AC_PACKAGE_NAME will be compiled without SELinux support.])
++    esac
++  else
++    # Do as if <selinux/selinux.h> does not exist, even if
++    # AC_CHECK_HEADERS_ONCE has already determined that it exists.
++    AC_DEFINE([HAVE_SELINUX_SELINUX_H], [0])
++  fi
+ ])
+ 
+ AC_DEFUN([gl_LIBSELINUX],
+ [
+   AC_REQUIRE([AC_CANONICAL_HOST])
+   AC_REQUIRE([AC_CANONICAL_BUILD])
++
++  AC_ARG_WITH([selinux],
++    AS_HELP_STRING([--without-selinux], [do not use SELinux, even on systems with SELinux]),
++    [], [with_selinux=maybe])
++
+   LIB_SELINUX=
+-  gl_save_LIBS=$LIBS
+-  AC_SEARCH_LIBS([setfilecon], [selinux],
+-                 [test "$ac_cv_search_setfilecon" = "none required" ||
+-                  LIB_SELINUX=$ac_cv_search_setfilecon])
++  if test "$with_selinux" != no; then
++    gl_save_LIBS=$LIBS
++    AC_SEARCH_LIBS([setfilecon], [selinux],
++                   [test "$ac_cv_search_setfilecon" = "none required" ||
++                    LIB_SELINUX=$ac_cv_search_setfilecon])
++    LIBS=$gl_save_LIBS
++  fi
+   AC_SUBST([LIB_SELINUX])
+-  LIBS=$gl_save_LIBS
+ 
+   # Warn if SELinux is found but libselinux is absent;
+   if test "$ac_cv_search_setfilecon" = no &&
+--
+cgit v0.8.3.2
