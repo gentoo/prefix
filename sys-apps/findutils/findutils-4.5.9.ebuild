@@ -38,10 +38,10 @@ src_configure() {
 	if echo "#include <regex.h>" | $(tc-getCPP) | grep re_set_syntax > /dev/null ; then
 		myconf="${myconf} --without-included-regex"
 	fi
+	use selinux || myconf="${myconf} --without-selinux" # no --with-selinux
 
 	econf \
 		$(use_enable nls) \
-		$(use_with selinux) \
 		--libexecdir="${EPREFIX}"/usr/$(get_libdir)/find \
 		${myconf} \
 		|| die "configure failed"
