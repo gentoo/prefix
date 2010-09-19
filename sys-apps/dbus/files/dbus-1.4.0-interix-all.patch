@@ -1,7 +1,6 @@
-diff -ru dbus-1.3.0.orig/bus/activation-helper.c dbus-1.3.0/bus/activation-helper.c
---- dbus-1.3.0.orig/bus/activation-helper.c	2010-02-02 15:18:40 +0100
-+++ dbus-1.3.0/bus/activation-helper.c	2010-02-02 15:22:07 +0100
-@@ -210,7 +210,13 @@
+--- dbus-1.4.0.orig/bus/activation-helper.c
++++ dbus-1.4.0/bus/activation-helper.c
+@@ -210,7 +210,13 @@ check_permissions (const char *dbus_user
  
    /* bail out unless we are setuid to user root */
    euid = geteuid();
@@ -16,10 +15,9 @@ diff -ru dbus-1.3.0.orig/bus/activation-helper.c dbus-1.3.0/bus/activation-helpe
      {
        dbus_set_error (error, DBUS_ERROR_SPAWN_PERMISSIONS_INVALID,
                        "not setuid root");
-diff -ru dbus-1.3.0.orig/configure.in dbus-1.3.0/configure.in
---- dbus-1.3.0.orig/configure.in	2010-02-02 15:18:40 +0100
-+++ dbus-1.3.0/configure.in	2010-02-02 15:41:55 +0100
-@@ -871,16 +871,21 @@
+--- dbus-1.4.0.orig/configure.in
++++ dbus-1.4.0/configure.in
+@@ -975,16 +975,21 @@ else
     AC_MSG_RESULT(no)
  fi
  
@@ -49,12 +47,11 @@ diff -ru dbus-1.3.0.orig/configure.in dbus-1.3.0/configure.in
 +	;;
 +esac
  
- #### Set up final flags
- DBUS_CLIENT_CFLAGS=
-diff -ru dbus-1.3.0.orig/dbus/dbus-auth-script.c dbus-1.3.0/dbus/dbus-auth-script.c
---- dbus-1.3.0.orig/dbus/dbus-auth-script.c	2010-02-02 15:18:40 +0100
-+++ dbus-1.3.0/dbus/dbus-auth-script.c	2010-02-02 15:22:07 +0100
-@@ -455,7 +455,13 @@
+ NETWORK_libs=
+ if test x$dbus_win = xyes ; then
+--- dbus-1.4.0.orig/dbus/dbus-auth-script.c
++++ dbus-1.4.0/dbus/dbus-auth-script.c
+@@ -455,7 +455,13 @@ _dbus_auth_script_run (const DBusString
        else if (_dbus_string_starts_with_c_str (&line,
                                                 "ROOT_CREDENTIALS"))
          {
@@ -69,10 +66,9 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-auth-script.c dbus-1.3.0/dbus/dbus-auth-scrip
          }
        else if (_dbus_string_starts_with_c_str (&line,
                                                 "SILLY_CREDENTIALS"))
-diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-unix.c
---- dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c	2010-02-02 15:18:40 +0100
-+++ dbus-1.3.0/dbus/dbus-sysdeps-unix.c	2010-02-02 15:22:07 +0100
-@@ -1524,6 +1524,10 @@
+--- dbus-1.4.0.orig/dbus/dbus-sysdeps-unix.c
++++ dbus-1.4.0/dbus/dbus-sysdeps-unix.c
+@@ -1618,6 +1618,10 @@ write_credentials_byte (int
  {
    int bytes_written;
    char buf[1] = { '\0' };
@@ -80,12 +76,12 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
 +  struct sigaction oldsigaction, newsigaction;
 +  int sigactionfailed;
 +#endif
- #if defined(HAVE_CMSGCRED) 
+ #if defined(HAVE_CMSGCRED)
    union {
  	  struct cmsghdr hdr;
-@@ -1549,12 +1553,26 @@
+@@ -1643,12 +1647,26 @@ write_credentials_byte (int
    _DBUS_ASSERT_ERROR_IS_CLEAR (error);
-   
+ 
   again:
 -
 +#ifdef __INTERIX
@@ -99,7 +95,7 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
 +	sigactionfailed = 1;
 +  }
 +#endif
- #if defined(HAVE_CMSGCRED) 
+ #if defined(HAVE_CMSGCRED)
    bytes_written = sendmsg (server_fd, &msg, 0);
  #else
    bytes_written = write (server_fd, buf, 1);
@@ -111,7 +107,7 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
  
    if (bytes_written < 0 && errno == EINTR)
      goto again;
-@@ -1606,6 +1624,27 @@
+@@ -1700,6 +1718,27 @@ _dbus_read_credentials_socket  (int
                                  DBusCredentials *credentials,
                                  DBusError       *error)
  {
@@ -139,15 +135,15 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
    struct msghdr msg;
    struct iovec iov;
    char buf;
-@@ -1820,6 +1859,7 @@
+@@ -1914,6 +1953,7 @@ _dbus_read_credentials_socket  (int
      }
-   
+ 
    return TRUE;
 +#endif /* __INTERIX */
  }
  
  /**
-@@ -4043,7 +4083,7 @@
+@@ -3830,7 +3870,7 @@ _dbus_delete_directory (const DBusString
  dbus_bool_t
  _dbus_socket_can_pass_unix_fd(int fd) {
  
@@ -156,25 +152,9 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
    union {
      struct sockaddr sa;
      struct sockaddr_storage storage;
-diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-util-unix.c dbus-1.3.0/dbus/dbus-sysdeps-util-unix.c
---- dbus-1.3.0.orig/dbus/dbus-sysdeps-util-unix.c	2010-02-02 15:18:40 +0100
-+++ dbus-1.3.0/dbus/dbus-sysdeps-util-unix.c	2010-02-02 15:22:07 +0100
-@@ -339,7 +339,13 @@
-     }
-   
- #ifdef HAVE_LIBAUDIT
--  we_were_root = _dbus_geteuid () == 0;
-+  we_were_root =  _dbus_get_euid() == 
-+  #ifdef __INTERIX
-+    197108
-+  #else 
-+    0
-+  #endif
-+  ;
-   new_caps = NULL;
-   /* have a tmp set of caps that we use to transition to the usr/grp dbus should
-    * run as ... doesn't really help. But keeps people happy.
-@@ -735,6 +741,11 @@
+--- dbus-1.4.0.orig/dbus/dbus-sysdeps-util-unix.c
++++ dbus-1.4.0/dbus/dbus-sysdeps-util-unix.c
+@@ -644,6 +644,11 @@ dirent_buf_size(DIR * dirp, size_t *size
  #           error "buffer size for readdir_r cannot be determined"
  #       endif
  #   endif
@@ -186,10 +166,9 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-util-unix.c dbus-1.3.0/dbus/dbus-sysd
    if (size)
      *size = (size_t)offsetof(struct dirent, d_name) + name_max + 1;
    else
-diff -ru dbus-1.3.0.orig/dbus/dbus-transport.c dbus-1.3.0/dbus/dbus-transport.c
---- dbus-1.3.0.orig/dbus/dbus-transport.c	2010-02-02 15:18:40 +0100
-+++ dbus-1.3.0/dbus/dbus-transport.c	2010-02-02 15:22:07 +0100
-@@ -638,9 +638,13 @@
+--- dbus-1.4.0.orig/dbus/dbus-transport.c
++++ dbus-1.4.0/dbus/dbus-transport.c
+@@ -639,9 +639,13 @@ auth_via_default_rules (DBusTransport *t
      }
                
    if (transport->allow_anonymous ||
@@ -206,10 +185,9 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-transport.c dbus-1.3.0/dbus/dbus-transport.c
      {
        if (_dbus_credentials_include(our_identity,DBUS_CREDENTIAL_WINDOWS_SID))
            _dbus_verbose ("Client authorized as SID '%s'"
-diff -ru dbus-1.3.0.orig/test/data/auth/external-root.auth-script dbus-1.3.0/test/data/auth/external-root.auth-script
---- dbus-1.3.0.orig/test/data/auth/external-root.auth-script	2010-02-02 15:18:40 +0100
-+++ dbus-1.3.0/test/data/auth/external-root.auth-script	2010-02-02 15:22:07 +0100
-@@ -3,7 +3,7 @@
+--- dbus-1.4.0.orig/test/data/auth/external-root.auth-script
++++ dbus-1.4.0/test/data/auth/external-root.auth-script
+@@ -3,7 +3,7 @@ UNIX_ONLY
  SERVER
  ROOT_CREDENTIALS
  ## 30 is ASCII '0' in hex
@@ -218,9 +196,8 @@ diff -ru dbus-1.3.0.orig/test/data/auth/external-root.auth-script dbus-1.3.0/tes
  EXPECT_COMMAND OK
  EXPECT_STATE WAITING_FOR_INPUT
  SEND 'BEGIN'
-diff -ru dbus-1.3.0.orig/test/data/valid-config-files/many-rules.conf dbus-1.3.0/test/data/valid-config-files/many-rules.conf
---- dbus-1.3.0.orig/test/data/valid-config-files/many-rules.conf	2010-02-02 15:18:40 +0100
-+++ dbus-1.3.0/test/data/valid-config-files/many-rules.conf	2010-02-02 15:22:07 +0100
+--- dbus-1.4.0.orig/test/data/valid-config-files/many-rules.conf
++++ dbus-1.4.0/test/data/valid-config-files/many-rules.conf
 @@ -16,8 +16,8 @@
      <deny own="org.freedesktop.System"/>
      <deny send_destination="org.freedesktop.System"/>
@@ -243,9 +220,8 @@ diff -ru dbus-1.3.0.orig/test/data/valid-config-files/many-rules.conf dbus-1.3.0
      <allow send_type="error"/>
      <allow send_type="method_call"/>
      <allow send_type="method_return"/>
-diff -ru dbus-1.3.0.orig/test/data/valid-config-files/system.d/test.conf dbus-1.3.0/test/data/valid-config-files/system.d/test.conf
---- dbus-1.3.0.orig/test/data/valid-config-files/system.d/test.conf	2010-02-02 15:18:40 +0100
-+++ dbus-1.3.0/test/data/valid-config-files/system.d/test.conf	2010-02-02 15:22:07 +0100
+--- dbus-1.4.0.orig/test/data/valid-config-files/system.d/test.conf
++++ dbus-1.4.0/test/data/valid-config-files/system.d/test.conf
 @@ -7,7 +7,7 @@
  
    <!-- Only root can own the FooService service, and 

@@ -1,0 +1,233 @@
+--- dbus-1.4.0.orig/bus/activation-helper.c
++++ dbus-1.4.0/bus/activation-helper.c
+@@ -210,7 +210,13 @@ check_permissions (const char *dbus_user
+ 
+   /* bail out unless we are setuid to user root */
+   euid = geteuid();
+-  if (euid != 0)
++  if (euid != 
++  #ifdef __INTERIX
++    197108
++  #else
++    0
++  #endif
++  )
+     {
+       dbus_set_error (error, DBUS_ERROR_SPAWN_PERMISSIONS_INVALID,
+                       "not setuid root");
+--- dbus-1.4.0.orig/configure.in
++++ dbus-1.4.0/configure.in
+@@ -975,16 +975,21 @@ else
+    AC_MSG_RESULT(no)
+ fi
+ 
+-# Check for SCM_RIGHTS
+-AC_MSG_CHECKING([for SCM_RIGHTS])
+-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+-#include <sys/socket.h>
+-#include <sys/un.h>
+-static int x = SCM_RIGHTS;
+-]], [[]])],
+-[ AC_MSG_RESULT([supported])
+-  AC_DEFINE([HAVE_UNIX_FD_PASSING], [1], [Supports sending UNIX file descriptors]) ],
+-[ AC_MSG_RESULT([not supported]) ])
++case $host_os in
++*-interix*) ;;
++*)
++	# Check for SCM_RIGHTS
++	AC_MSG_CHECKING([for SCM_RIGHTS])
++	AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
++	#include <sys/socket.h>
++	#include <sys/un.h>
++	static int x = SCM_RIGHTS;
++	]], [[]])],
++	[ AC_MSG_RESULT([supported])
++	  AC_DEFINE([HAVE_UNIX_FD_PASSING], [1], [Supports sending UNIX file descriptors]) ],
++	[ AC_MSG_RESULT([not supported]) ])
++	;;
++esac
+ 
+ NETWORK_libs=
+ if test x$dbus_win = xyes ; then
+--- dbus-1.4.0.orig/dbus/dbus-auth-script.c
++++ dbus-1.4.0/dbus/dbus-auth-script.c
+@@ -455,7 +455,13 @@ _dbus_auth_script_run (const DBusString
+       else if (_dbus_string_starts_with_c_str (&line,
+                                                "ROOT_CREDENTIALS"))
+         {
+-          auth_set_unix_credentials (auth, 0, DBUS_PID_UNSET);
++          auth_set_unix_credentials (auth, 
++		  #ifdef __INTERIX
++		    197108
++		  #else
++		    0
++		  #endif
++		    , DBUS_PID_UNSET);
+         }
+       else if (_dbus_string_starts_with_c_str (&line,
+                                                "SILLY_CREDENTIALS"))
+--- dbus-1.4.0.orig/dbus/dbus-sysdeps-unix.c
++++ dbus-1.4.0/dbus/dbus-sysdeps-unix.c
+@@ -1618,6 +1618,10 @@ write_credentials_byte (int
+ {
+   int bytes_written;
+   char buf[1] = { '\0' };
++#ifdef __INTERIX
++  struct sigaction oldsigaction, newsigaction;
++  int sigactionfailed;
++#endif
+ #if defined(HAVE_CMSGCRED)
+   union {
+ 	  struct cmsghdr hdr;
+@@ -1643,12 +1647,26 @@ write_credentials_byte (int
+   _DBUS_ASSERT_ERROR_IS_CLEAR (error);
+ 
+  again:
+-
++#ifdef __INTERIX
++  /* It would seem that Interix SIGPIPE happens faster than other UNICES */
++  newsigaction.sa_handler = SIG_IGN;
++  newsigaction.sa_mask = 0;
++  newsigaction.sa_flags = 0;
++  sigactionfailed = 0;
++  if (sigaction(SIGPIPE, &newsigaction, &oldsigaction) < 0) {
++  	_dbus_warn("sigaction failed before writing to pipe.\n");
++	sigactionfailed = 1;
++  }
++#endif
+ #if defined(HAVE_CMSGCRED)
+   bytes_written = sendmsg (server_fd, &msg, 0);
+ #else
+   bytes_written = write (server_fd, buf, 1);
+ #endif
++#ifdef __INTERIX
++  if (!sigactionfailed)
++    sigaction(SIGPIPE, &oldsigaction, NULL);
++#endif
+ 
+   if (bytes_written < 0 && errno == EINTR)
+     goto again;
+@@ -1700,6 +1718,27 @@ _dbus_read_credentials_socket  (int
+                                 DBusCredentials *credentials,
+                                 DBusError       *error)
+ {
++#ifdef __INTERIX
++  int bytes_read = 0;
++  DBusString buf;
++  if ( _dbus_string_init( &buf )) {
++    bytes_read = _dbus_read_socket(client_fd, &buf, 1);
++	if (bytes_read == 1) {
++		_dbus_verbose("got one byte from server");
++	} else {
++      dbus_set_error (error, DBUS_ERROR_FAILED,
++                      "Failed to read credentials byte");
++      return FALSE;
++	} 
++	_dbus_string_free(&buf);
++  } else {
++	  _DBUS_SET_OOM(error);
++	  return FALSE;
++  }
++  _dbus_credentials_add_from_current_process(credentials); /* w/e */
++  _dbus_verbose("FIXME: Interix: got faked credentials from current process");
++  return TRUE;
++#else
+ #if defined(HAVE_CMSGCRED) || defined(LOCAL_CREDS)
+   struct msghdr msg;
+   struct iovec iov;
+@@ -1920,6 +1959,7 @@ _dbus_read_credentials_socket  (int
+     }
+ 
+   return TRUE;
++#endif /* __INTERIX */
+ }
+ 
+ /**
+@@ -3836,7 +3876,7 @@ _dbus_delete_directory (const DBusString
+ dbus_bool_t
+ _dbus_socket_can_pass_unix_fd(int fd) {
+ 
+-#ifdef SCM_RIGHTS
++#if defined(SCM_RIGHTS) && !defined(__INTERIX)
+   union {
+     struct sockaddr sa;
+     struct sockaddr_storage storage;
+--- dbus-1.4.0.orig/dbus/dbus-sysdeps-util-unix.c
++++ dbus-1.4.0/dbus/dbus-sysdeps-util-unix.c
+@@ -644,6 +644,11 @@ dirent_buf_size(DIR * dirp, size_t *size
+ #           error "buffer size for readdir_r cannot be determined"
+ #       endif
+ #   endif
++#ifdef __INTERIX
++  #define BFB 1024 /* big fine buffer */
++  /* bah... just use a nice big value here, was causing stack corruption */
++  name_max = name_max > BFB ? name_max : BFB;
++#endif
+   if (size)
+     *size = (size_t)offsetof(struct dirent, d_name) + name_max + 1;
+   else
+--- dbus-1.4.0.orig/dbus/dbus-transport.c
++++ dbus-1.4.0/dbus/dbus-transport.c
+@@ -639,9 +639,13 @@ auth_via_default_rules (DBusTransport *t
+     }
+               
+   if (transport->allow_anonymous ||
+-      _dbus_credentials_get_unix_uid (auth_identity) == 0 ||
+-      _dbus_credentials_same_user (our_identity,
+-                                   auth_identity))
++      _dbus_credentials_get_unix_uid (auth_identity) ==
++	  #ifdef __INTERIX
++	  197108
++	  #else
++	  0
++	  #endif
++	  || _dbus_credentials_same_user (our_identity, auth_identity))
+     {
+       if (_dbus_credentials_include(our_identity,DBUS_CREDENTIAL_WINDOWS_SID))
+           _dbus_verbose ("Client authorized as SID '%s'"
+--- dbus-1.4.0.orig/test/data/auth/external-root.auth-script
++++ dbus-1.4.0/test/data/auth/external-root.auth-script
+@@ -3,7 +3,7 @@ UNIX_ONLY
+ SERVER
+ ROOT_CREDENTIALS
+ ## 30 is ASCII '0' in hex
+-SEND 'AUTH EXTERNAL 30'
++SEND 'AUTH EXTERNAL 313937313038'
+ EXPECT_COMMAND OK
+ EXPECT_STATE WAITING_FOR_INPUT
+ SEND 'BEGIN'
+--- dbus-1.4.0.orig/test/data/valid-config-files/many-rules.conf
++++ dbus-1.4.0/test/data/valid-config-files/many-rules.conf
+@@ -16,8 +16,8 @@
+     <deny own="org.freedesktop.System"/>
+     <deny send_destination="org.freedesktop.System"/>
+     <deny receive_sender="org.freedesktop.System"/>
+-    <deny user="root"/>
+-    <deny group="root"/>
++    <deny user="Administrator"/>
++    <deny group="+Administrators"/>
+     <allow send_type="error"/>
+     <allow send_type="method_call"/>
+     <allow send_type="method_return"/>
+@@ -34,8 +34,8 @@
+     <deny own="org.freedesktop.System"/>
+     <deny send_destination="org.freedesktop.System"/>
+     <deny receive_sender="org.freedesktop.System"/>
+-    <deny user="root"/>
+-    <deny group="root"/>
++    <deny user="Administrator"/>
++    <deny group="+Administrators"/>
+     <allow send_type="error"/>
+     <allow send_type="method_call"/>
+     <allow send_type="method_return"/>
+--- dbus-1.4.0.orig/test/data/valid-config-files/system.d/test.conf
++++ dbus-1.4.0/test/data/valid-config-files/system.d/test.conf
+@@ -7,7 +7,7 @@
+ 
+   <!-- Only root can own the FooService service, and 
+        this user can only send the one kind of message -->
+-  <policy user="root">
++  <policy user="Administrator">
+     <allow own="org.foo.FooService"/>
+     <allow send_interface="org.foo.FooBroadcastInterface"/>
+   </policy>

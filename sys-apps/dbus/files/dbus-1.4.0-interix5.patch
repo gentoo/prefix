@@ -1,27 +1,6 @@
-diff -ru dbus-1.3.0.orig/dbus/dbus-server-unix.c dbus-1.3.0/dbus/dbus-server-unix.c
---- dbus-1.3.0.orig/dbus/dbus-server-unix.c	2010-02-02 15:10:03 +0100
-+++ dbus-1.3.0/dbus/dbus-server-unix.c	2010-02-02 15:12:54 +0100
-@@ -100,9 +100,16 @@
-               return DBUS_SERVER_LISTEN_DID_NOT_CONNECT;
-             }
-               
-+#if defined(__INTERIX)
-+		  // need to take good care that this doesn't get too long!!
-+          if (!_dbus_string_append (&filename,
-+                                    "ds") ||
-+              !_dbus_generate_random_ascii (&filename, 6) ||
-+#else
-           if (!_dbus_string_append (&filename,
-                                     "dbus-") ||
-               !_dbus_generate_random_ascii (&filename, 10) ||
-+#endif
-               !_dbus_string_append (&full_path, tmpdir) ||
-               !_dbus_concat_dir_and_file (&full_path, &filename))
-             {
-diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-unix.c
---- dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c	2010-02-02 15:10:03 +0100
-+++ dbus-1.3.0/dbus/dbus-sysdeps-unix.c	2010-02-02 15:13:26 +0100
-@@ -55,6 +55,10 @@
+--- dbus-1.4.0.orig/dbus/dbus-sysdeps-unix.c
++++ dbus-1.4.0/dbus/dbus-sysdeps-unix.c
+@@ -56,6 +56,10 @@
  #include <netdb.h>
  #include <grp.h>
  
@@ -32,7 +11,7 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
  #ifdef HAVE_ERRNO_H
  #include <errno.h>
  #endif
-@@ -1084,8 +1088,10 @@
+@@ -1158,8 +1162,10 @@ _dbus_connect_tcp_socket_with_nonce (con
  {
    int saved_errno = 0;
    int fd = -1, res;
@@ -43,7 +22,7 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
  
    _DBUS_ASSERT_ERROR_IS_CLEAR (error);
  
-@@ -1097,6 +1103,7 @@
+@@ -1171,6 +1177,7 @@ _dbus_connect_tcp_socket_with_nonce (con
  
    _DBUS_ASSERT_ERROR_IS_CLEAR(error);
  
@@ -51,7 +30,7 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
    _DBUS_ZERO (hints);
  
    if (!family)
-@@ -1149,6 +1156,60 @@
+@@ -1223,6 +1230,60 @@ _dbus_connect_tcp_socket_with_nonce (con
        break;
      }
    freeaddrinfo(ai);
@@ -112,13 +91,14 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
  
    if (fd == -1)
      {
-@@ -1197,12 +1258,15 @@
+@@ -1283,13 +1344,16 @@ _dbus_listen_tcp_socket (const char
  {
    int saved_errno;
    int nlisten_fd = 0, *listen_fd = NULL, res, i;
 +#ifndef __INTERIX
    struct addrinfo hints;
    struct addrinfo *ai, *tmp;
+   unsigned int reuseaddr;
 +#endif
  
    *fds_p = NULL;
@@ -128,7 +108,7 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
    _DBUS_ZERO (hints);
  
    if (!family)
-@@ -1335,6 +1399,92 @@
+@@ -1429,6 +1493,92 @@ _dbus_listen_tcp_socket (const char
      }
    freeaddrinfo(ai);
    ai = NULL;
@@ -221,7 +201,7 @@ diff -ru dbus-1.3.0.orig/dbus/dbus-sysdeps-unix.c dbus-1.3.0/dbus/dbus-sysdeps-u
  
    if (!nlisten_fd)
      {
-@@ -1358,8 +1508,10 @@
+@@ -1452,8 +1602,10 @@ _dbus_listen_tcp_socket (const char
    return nlisten_fd;
  
   failed:

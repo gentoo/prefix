@@ -1,0 +1,50 @@
+--- dbus-1.4.0.orig/bus/activation-helper.c
++++ dbus-1.4.0/bus/activation-helper.c
+@@ -321,6 +321,7 @@ switch_user (char *user, DBusError *erro
+       return FALSE;
+     }
+ 
++  #ifndef __INTERIX
+   /* initialize the group access list */
+   if (initgroups (user, pw->pw_gid))
+     {
+@@ -328,6 +329,7 @@ switch_user (char *user, DBusError *erro
+                       "could not initialize groups");
+       return FALSE;
+     }
++  #endif
+ 
+   /* change to the primary group for the user */
+   if (setgid (pw->pw_gid))
+--- dbus-1.4.0.orig/dbus/dbus-sysdeps-util-unix.c
++++ dbus-1.4.0/dbus/dbus-sysdeps-util-unix.c
+@@ -335,6 +335,7 @@ _dbus_change_to_daemon_user  (const char
+       return FALSE;
+     }
+ 
++#ifndef __INTERIX
+   /* setgroups() only works if we are a privileged process,
+    * so we don't return error on failure; the only possible
+    * failure is that we don't have perms to do it.
+@@ -346,6 +347,7 @@ _dbus_change_to_daemon_user  (const char
+     _dbus_warn ("Failed to drop supplementary groups: %s\n",
+                 _dbus_strerror (errno));
+ 
++#endif
+   /* Set GID first, or the setuid may remove our permission
+    * to change the GID
+    */
+--- dbus-1.4.0.orig/tools/dbus-send.c
++++ dbus-1.4.0/tools/dbus-send.c
+@@ -46,6 +46,11 @@
+ 
+ #include "dbus-print-message.h"
+ 
++#if defined(__INTERIX)
++# define strtoll strtoq
++# define strtoull strtouq
++#endif
++
+ static const char *appname;
+ 
+ static void
