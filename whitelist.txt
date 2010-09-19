@@ -332,6 +332,7 @@ dev-libs/gnulib
 dev-libs/libaio
 dev-libs/libatomic_ops
 dev-libs/libattica
+dev-libs/libdbusmenu-qt
 dev-libs/libdshconfig
 dev-libs/libebml
 dev-libs/libedit
