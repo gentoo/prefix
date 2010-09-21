@@ -308,6 +308,10 @@ HOSTCC='gcc -m64'
 		echo 'FEATURES="${FEATURES} -news"' >> "${profile}"/make.defaults
 		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
+	# Hack for bash becuase the curses is not always available (linux).
+	# This will be wiped upon emerge --sync and back to normal.
+	echo '[[ ${PN} == "bash" ]] && EXTRA_ECONF="--without-curses"' >> \
+		"${PORTDIR}/profiles/prefix/profile.bashrc"
 }
 
 do_tree() {
