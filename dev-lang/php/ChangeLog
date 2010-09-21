@@ -1,6 +1,186 @@
 # ChangeLog for dev-lang/php
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.376 2010/03/29 21:59:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/ChangeLog,v 1.418 2010/09/19 15:15:08 mabi Exp $
+
+  19 Sep 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_configure-v1.eblit, files/eblits/src_configure-v52.eblit:
+  fix building against IBM DB2, you now can use your DB2_HOME env variable
+  again (bug #337512, thanks reavertm for the patch)
+
+  07 Sep 2010; Matti Bickel <mabi@gentoo.org> php-5.2.14.ebuild:
+  enable spl and reflection by default, following upstream (bug #310383)
+
+  22 Aug 2010; Mark Loeser <halcy0n@gentoo.org> php-5.3.3-r1.ebuild:
+  Add back ~arm. It was dropped during the bump
+
+  16 Aug 2010; Jeroen Roovers <jer@gentoo.org> php-5.2.14.ebuild:
+  Stable for HPPA (bug #332039).
+
+  14 Aug 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_compile-v1.eblit:
+  snmp causes sandbox errors in src_compile, too (bug #324739)
+
+  14 Aug 2010; Raúl Porcel <armin76@gentoo.org> php-5.2.14.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #332039
+
+  12 Aug 2010; Matti Bickel <mabi@gentoo.org> php-5.2.14.ebuild:
+  patch tarball now includes the correctly named kolab patch (bug #332423)
+
+  11 Aug 2010; Joseph Jezak <josejx@gentoo.org> php-5.2.14.ebuild,
+  php-5.3.3-r1.ebuild:
+  Marked ppc/ppc64 stable for bug #332039. Marked ~ppc/~ppc64 for bug
+  #321743.
+
+  11 Aug 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_configure-v52.eblit, php-5.3.3-r1.ebuild:
+  5.3 does not need flex; also fix a compile error with
+  -Wimplicit-function-declaration (bug #332273)
+
+  11 Aug 2010; Matti Bickel <mabi@gentoo.org> -php-5.3.2.ebuild:
+  remove php-5.3.2 due to security issues (bug #332039)
+
+  11 Aug 2010; Matti Bickel <mabi@gentoo.org> php-5.2.14.ebuild,
+  php-5.3.3-r1.ebuild:
+  enable xml, xmlreader and xmlwriter per default, as upstream does, too
+  (bug #332311)
+
+  11 Aug 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org> php-5.2.14.ebuild:
+  x86 stable wrt security bug #332039
+
+  10 Aug 2010; Markos Chandras <hwoarang@gentoo.org> php-5.2.14.ebuild:
+  Stable on amd64 wrt bug #332039
+
+  09 Aug 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_configure-v1.eblit, files/eblits/src_configure-v52.eblit:
+  configure sapi build dirs in 5.2, too (bug #331751); use proper path for
+  libevent, fix sharedext, fpm config file install (bug #331735)
+
+  09 Aug 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_test-v1.eblit:
+  run from cli sapi build dir (bug #330023)
+
+  09 Aug 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_install-v1.eblit:
+  cd to sapi dirs to make fpm config patches apply again (bug #331735)
+
+*php-5.3.3-r1 (08 Aug 2010)
+
+  08 Aug 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_compile-v1.eblit, -php-5.3.3.ebuild,
+  files/eblits/src_configure-v1.eblit, files/eblits/src_install-v1.eblit,
+  +php-5.3.3-r1.ebuild:
+  fix QA warnings by building each SAPI in its own dir, add patch to fix bug
+  #327589 (thanks to Martin von Gagern)
+
+  03 Aug 2010; Matti Bickel <mabi@gentoo.org> php-5.2.14.ebuild:
+  added missing mhash in IUSE
+
+*php-5.2.14 (02 Aug 2010)
+
+  02 Aug 2010; Matti Bickel <mabi@gentoo.org>
+  +files/eblits/src_configure-v52.eblit, +php-5.2.14.ebuild:
+  version bump; this is a security update - see
+  http://www.php.net/archive/2010.php#id2010-07-22-1 for details
+
+  29 Jul 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_install-v1.eblit:
+  use /tmp for session.save_path (bug #282768)
+
+  29 Jul 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_install-v1.eblit:
+  add addpredict to work-around bug #324739
+
+  28 Jul 2010; Markus Meier <maekke@gentoo.org> php-5.3.3.ebuild:
+  add ~arm, bug #321743
+
+  26 Jul 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_compile-v1.eblit, files/eblits/src_configure-v1.eblit,
+  files/eblits/src_install-v1.eblit, +files/php-fpm.init,
+  +files/php-fpm-gentooified.patch, metadata.xml:
+  update fpm description, actually support fpm in the eblits
+
+*php-5.3.3 (26 Jul 2010)
+
+  26 Jul 2010; Matti Bickel <mabi@gentoo.org> php-5.3.2.ebuild,
+  +php-5.3.3.ebuild, metadata.xml:
+  version bump, simplify postgres deps (bug #326967), fixes strict aliasing
+  issues (#329753), version bump is a security update
+
+  25 Jul 2010; Tobias Klausmann <klausman@gentoo.org> php-5.3.2.ebuild:
+  Keyworded on alpha, bug #321743
+
+  19 Jul 2010; Jeroen Roovers <jer@gentoo.org> php-5.3.2.ebuild:
+  Marked ~hppa (bug #321743).
+
+  08 Jul 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/pkg_setup-v1.eblit, php-5.3.2.ebuild:
+  can not have use-deps on old style virtuals
+
+  05 Jul 2010; Matti Bickel <mabi@gentoo.org>
+  files/eblits/src_configure-v1.eblit:
+  fix compilation on x64 systems (bug #327025)
+
+  05 Jul 2010; Matti Bickel <mabi@gentoo.org> php-5.2.13.ebuild:
+  introduced new style virtual httpd-php (bug #319623)
+
+  05 Jul 2010; Matti Bickel <mabi@gentoo.org> -php-5.2.9-r2.ebuild,
+  -php-5.2.10.ebuild, -php-5.2.10-r1.ebuild, -php-5.2.10-r2.ebuild,
+  -php-5.2.11.ebuild, -php-5.2.11-r1.ebuild, -php-5.2.12.ebuild:
+  remove old
+
+  05 Jul 2010; Matti Bickel <mabi@gentoo.org> php-5.3.2.ebuild:
+  introduced new style virtual httpd-php (bug #319623)
+
+  04 Jul 2010; Matti Bickel <mabi@gentoo.org> php-5.3.2.ebuild:
+  include patch to compile with gmp-5* (bug #322303)
+
+  14 Jun 2010; <mabi@gentoo.org> files/eblits/src_install-v1.eblit,
+  php-5.3.2.ebuild:
+  sync with overlay: repair apache2 USE dep, cli SAPI on by default (bug
+  #310383), show all SAPIs in php-config (bug #278439)
+
+  12 Jun 2010; <mabi@gentoo.org> php-5.3.2.ebuild, metadata.xml:
+  USE="mbstring" already covered by USE="unicode"; set USE-defaults to match
+  upstream defaults (bug #285816)
+
+  11 Jun 2010; <mabi@gentoo.org> files/eblits/src_compile-v1.eblit,
+  php-5.3.2.ebuild, files/eblits/src_configure-v1.eblit:
+  make USE="iodbc" independant from USE="odbc", fix embed SAPI compile
+  failure
+
+  01 Jun 2010; <mabi@gentoo.org> -files/eblits/common-v2.eblit,
+  -files/eblits/src_compile-v2.eblit, -files/eblits/src_install-v2.eblit,
+  files/eblits/src_prepare-v1.eblit, php-5.3.2.ebuild, metadata.xml:
+  align more closely with original php-5.3 work from hoffie@gentoo.org, fix
+  missing mbstring use description, remove unneeded -v2 eblits, remove
+  dangling mcve references
+
+  30 May 2010; <mabi@gentoo.org> -files/20php4-envd, php-5.3.2.ebuild,
+  -files/php4-ldvs:
+  fix iodbc USE dep (bug #285419), remove unneeded php4 files
+
+  28 May 2010; <mabi@gentoo.org> php-5.3.2.ebuild:
+  add flex dependency (bug #221357)
+
+  28 May 2010; <mabi@gentoo.org> files/eblits/src_prepare-v1.eblit:
+  use portable find command (bug #321781)
+
+*php-5.3.2 (27 May 2010)
+
+  27 May 2010; <mabi@gentoo.org> files/70_mod_php5_concurr.conf-apache2,
+  files/70_mod_php5.conf-apache2, +files/eblits/common-v1.eblit,
+  +files/eblits/common-v2.eblit, +files/eblits/pkg_postinst-v1.eblit,
+  +files/eblits/pkg_setup-v1.eblit, +files/eblits/src_compile-v1.eblit,
+  +files/eblits/src_compile-v2.eblit, +files/eblits/src_configure-v1.eblit,
+  +files/eblits/src_install-v1.eblit, +files/eblits/src_install-v2.eblit,
+  +files/eblits/src_prepare-v1.eblit, +files/eblits/src_test-v1.eblit,
+  +php-5.3.2.ebuild:
+  version bump (bug #274512, #312775); see
+  http://www.php.net/ChangeLog-5.php#5.3.2 for a list of changes and the
+  migration guide for an update from 5.2:
+  http://www.php.net/manual/en/migration53.php; expect more bumps as we fix
+  open bugs
+  thanks to GiDis and olemarkus for providing patches and a lot of testing
 
   29 Mar 2010; Markus Meier <maekke@gentoo.org> php-5.2.13.ebuild:
   amd64 stable, bug #306939
@@ -1682,4 +1862,5 @@
 
   05 Sep 2005; <stuart@gentoo.org> ChangeLog:
   Initial version; replaces older dev-php/* packages
+
 

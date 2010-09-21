@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.13.ebuild,v 1.7 2010/03/29 21:59:43 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/php-5.2.13.ebuild,v 1.8 2010/07/05 23:19:20 mabi Exp $
 
 CGI_SAPI_USE="discard-path force-cgi-redirect"
 APACHE2_SAPI_USE="concurrentmodphp threads"
@@ -11,7 +11,7 @@ KEYWORDS="~x86-freebsd ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos
 # NOTE: Portage doesn't support setting PROVIDE based on the USE flags
 #		that have been enabled, so we have to PROVIDE everything for now
 #		and hope for the best
-PROVIDE="virtual/php virtual/httpd-php"
+PROVIDE="virtual/php"
 
 # php package settings
 SLOT="5"

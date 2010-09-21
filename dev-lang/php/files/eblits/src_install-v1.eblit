@@ -1,0 +1,159 @@
+# Copyright 1999-2010 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_install-v1.eblit,v 1.10 2010/08/11 19:13:32 mabi Exp $
+
+eblit-php-src_install() {
+	# see bug #324739 for what happens when we don't have that
+	addpredict /usr/share/snmp/mibs/.index
+
+	# grab the first SAPI that got built and install common files from there
+	local first_sapi=""
+	for sapi in $SAPIS ; do
+		if use $sapi ; then
+			first_sapi=$sapi
+			break
+		fi
+	done
+
+	# Makefile forgets to create this before trying to write to it...
+	dodir "${PHP_DESTDIR#${EPREFIX}}/bin"
+
+	# Install php environment (without any sapis)
+	cd "${WORKDIR}/sapis-build/$first_sapi"
+	emake INSTALL_ROOT="${D}" \
+		install-build install-headers install-programs \
+		|| die "emake install failed"
+
+	local extension_dir="$("${ED}/${PHP_DESTDIR#${EPREFIX}}/bin/php-config" --extension-dir)"
+
+	# And install the modules to it
+	if use sharedext ; then
+		insinto "${extension_dir#${EPREFIX}}"
+		doins "${WORKDIR}/sapis-build/${first_sapi}/modules/"*.so
+	fi
+
+	# Generate the USE file for PHP
+	phpconfutils_generate_usefile
+
+	# Create the directory where we'll put version-specific php scripts
+	keepdir /usr/share/php${PHP_MV}
+
+	local sapi="", file=""
+	local sapi_list=""
+
+	for sapi in ${SAPIS}; do
+		if use "${sapi}" ; then
+			einfo "Installing SAPI: ${sapi}"
+			cd "${WORKDIR}/sapis-build/${sapi}"
+			# needed each time, php_install_ini would reset it
+			into "${PHP_DESTDIR#${EPREFIX}}"
+			file=$(find "${SAPI_DIR}/${sapi}/" -type f | head -n 1)
+
+			if [[ "${file: -3}" == ".so" ]]; then 
+				if [[ "${sapi}" == "apache2" ]]; then
+					insinto "${PHP_DESTDIR#${EPREFIX}}/../apache2/modules/"
+					newins "${file}" "${file/*\/}"
+				else
+					dolib.so "${file}" || die "Unable to install ${sapi} sapi"
+				fi
+			else
+				dobin "${file}" || die "Unable to install ${sapi} sapi"
+			fi
+
+			php_install_ini "${sapi}"
+
+			# construct correct SAPI string for php-config
+			# thanks to ferringb for the bash voodoo
+			if [[ "${sapi}" == "apache2" ]]; then
+			    sapi_list="${sapi_list:+${sapi_list} }apache2handler"
+			else
+				sapi_list="${sapi_list:+${sapi_list} }${sapi}"
+			fi
+		fi
+	done
+
+	# Install env.d files
+	newenvd "${FILESDIR}/20php${PHP_MV}-envd" \
+		"20php${PHP_MV}"
+	eprefixify "${ED}/etc/env.d/20php${PHP_MV}"
+	sed -e "s|/lib/|/$(get_libdir)/|g" -i \
+		"${ED}/etc/env.d/20php${PHP_MV}"
+
+	# set php-config variable correctly (bug #278439)
+	sed -e "s:^\(php_sapis=\)\".*\"$:\1\"${sapi_list}\":" -i \
+		"${ED}/usr/$(get_libdir)/php5/bin/php-config"
+}
+
+php_install_ini() {
+	local phpsapi="${1}"
+
+	# work out where we are installing the ini file
+	php_set_ini_dir "${phpsapi}"
+
+	local phpinisrc="${PHP_INI_UPSTREAM}-${phpsapi}"
+	cp "${PHP_INI_UPSTREAM}" "${phpinisrc}"
+
+	# default to expose_php=Off, bug 300695
+	sed -e 's|^expose_php .*|expose_php = Off|g' -i "${phpinisrc}"
+
+	# default to /tmp for save_path, bug #282768
+	sed -e 's|^;session.save_path .*$|session.save_path = "'"${EPREFIX}"'/tmp"|g' -i "${phpinisrc}"
+
+	# Set the extension dir
+	sed -e "s|^extension_dir .*$|extension_dir = ${extension_dir}|g" -i "${phpinisrc}"
+
+	# Set the include path to point to where we want to find PEAR packages
+	sed -e 's|^;include_path = ".:/php/includes".*|include_path = ".:'"${EPREFIX}"'/usr/share/php'${PHP_MV}':$'"${EPREFIX}"'/usr/share/php"|' -i "${phpinisrc}"
+	
+	dodir "${PHP_INI_DIR#${EPREFIX}}"
+	insinto "${PHP_INI_DIR#${EPREFIX}}"
+	newins "${phpinisrc}" "${PHP_INI_FILE}"
+
+	dodir "${PHP_EXT_INI_DIR#${EPREFIX}}"
+	dodir "${PHP_EXT_INI_DIR_ACTIVE#${EPREFIX}}"
+
+	# Install any extensions built as shared objects
+	if use sharedext ; then
+		insinto "${PHP_EXT_INI_DIR#${EPREFIX}}"
+		for extension in "${ED}/${extension_dir}/"*.so ; do
+			extension="${extension##*/}"
+			inifilename="${extension/.so/.ini}"
+			echo "extension=${extension}" > "${WORKDIR}/sapis-build/${phpsapi}/modules/$inifilename"
+			doins "${WORKDIR}/sapis-build/${phpsapi}/modules/$inifilename"
+			dosym "${PHP_EXT_INI_DIR#${EPREFIX}}/${inifilename}" "${PHP_EXT_INI_DIR_ACTIVE#${EPREFIX}}/${inifilename}"
+		done
+	fi
+
+	# SAPI-specific handling
+	if [[ "${sapi}" == "apache2" ]] ; then
+		if use concurrentmodphp ; then
+			einfo "Installing Apache2 config file 70_mod_php${PHP_MV}_concurr.conf-r1"
+			insinto "${APACHE_MODULES_CONFDIR#${EPREFIX}}"
+			newins "${FILESDIR}/70_mod_php${PHP_MV}_concurr.conf-apache2-r1" \
+				"70_mod_php${PHP_MV}_concurr.conf"
+
+			# Put the ld version script in the right place so
+			# it's always accessible
+			insinto "/var/lib/php-pkg/${CATEGORY}/${PN}-${PVR}/"
+			doins "${FILESDIR}/php${PHP_MV}-ldvs"
+		else
+			einfo "Installing Apache2 config 70_mod_php${PHP_MV}.conf"
+			insinto "${APACHE_MODULES_CONFDIR#${EPREFIX}}"
+			newins "${FILESDIR}/70_mod_php${PHP_MV}.conf-apache2-r1" \
+				"70_mod_php${PHP_MV}.conf"
+		fi
+	fi
+
+	if [[ "${sapi}" == "fpm" ]] ; then
+		einfo "Installing FPM CGI config file php-fpm.conf"
+		epatch "${FILESDIR}/php-fpm-gentooified.patch"
+		insinto ${PHP_INI_DIR}
+		doins "${WORKDIR}/sapis-build/fpm/sapi/fpm/php-fpm.conf"
+		dodir "/etc/init.d"
+		insinto "/etc/init.d"
+		newins  "${FILESDIR}/php-fpm.init" "php-fpm"
+		eprefixify "/etc/init.d/php-fpm.init"
+		fperms 755 "/etc/init.d/php-fpm"
+		dosym "${PHP_DESTDIR}/bin/php-fpm" "/usr/bin/php-fpm"
+	fi
+}
