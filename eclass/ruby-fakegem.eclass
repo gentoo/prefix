@@ -94,7 +94,9 @@ ruby_add_rdepend virtual/rubygems
 ruby_fakegem_gemsdir() {
 	has "${EAPI}" 2 && ! use prefix && EPREFIX=
 
-	local _gemsitedir=$(${RUBY} -r rbconfig -e 'print Config::CONFIG["sitelibdir"]' | sed -e 's:site_ruby:gems:' -e "s:^${EPREFIX}::")
+	local _gemsitedir=$(ruby_rbconfig_value 'sitelibdir')
+	_gemsitedir=${_gemsitedir//site_ruby/gems}
+	_gemsitedir=${_gemsitedir#${EPREFIX}}
 
 	[[ -z ${_gemsitedir} ]] && {
 		eerror "Unable to find the gems dir"
