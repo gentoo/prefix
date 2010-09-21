@@ -1,0 +1,33 @@
+http://www.ruby-forum.com/topic/131149
+
+In Leopard, the setcontext/getcontext functions have been modified to
+confirm to the UNIX norm, however, their implementation changed to not
+use the default structure by default, which makes Ruby segfaulting
+during initialization. This patch just force the non-set/getcontext
+code path for Leopard environments, but use set/getcontext for systems
+below.
+
+
+--- node.h
++++ node.h
+@@ -375,9 +375,17 @@
+ void rb_add_event_hook _((rb_event_hook_func_t,rb_event_t));
+ int rb_remove_event_hook _((rb_event_hook_func_t));
+ 
+-#if defined(HAVE_GETCONTEXT) && defined(HAVE_SETCONTEXT)
+-#include <ucontext.h>
+-#define USE_CONTEXT
++#if defined(HAVE_GETCONTEXT) && defined(HAVE_SETCONTEXT) 
++# if defined(__APPLE__)
++#   include <AvailabilityMacros.h>
++#   if MAC_OS_X_VERSION_MAX_ALLOWED <= 1040
++#     include <ucontext.h>
++#     define USE_CONTEXT
++#   endif
++# else
++#   include <ucontext.h>
++#   define USE_CONTEXT
++# endif
+ #endif
+ #include <setjmp.h>
+ #include "st.h"
