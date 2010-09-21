@@ -1,0 +1,16 @@
+#!/bin/bash
+
+die() {
+	echo "#####"
+	echo $1
+	echo "#####"
+	exit 1
+}
+
+if [ $1 = "install" ]; then
+	cd ${MY_INSTALLDIR}/libraries
+	sed -e "s|\$cfg\['PmaAbsoluteUri'\] = '';|\$cfg\['PmaAbsoluteUri'\] = 'http://${VHOST_HOSTNAME}/${VHOST_APPDIR}';|g" -i config.default.php || die "sed failed"
+
+elif [ $1 = "clean" ]; then
+	echo $1
+fi
