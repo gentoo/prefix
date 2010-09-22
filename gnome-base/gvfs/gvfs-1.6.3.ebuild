@@ -66,7 +66,7 @@ pkg_setup() {
 
 	G2CONF="${G2CONF}
 		--disable-bash-completion
-		--with-dbus-service-dir=/usr/share/dbus-1/services
+		--with-dbus-service-dir="${EPREFIX}"/usr/share/dbus-1/services
 		$(use_enable archive)
 		$(use_enable avahi)
 		$(use_enable bluetooth obexftp)
