@@ -2,6 +2,12 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.16616 (23 Sep 2010)
+
+  23 Sep 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.16610.ebuild, +portage-2.2.01.16616.ebuild:
+  Replace snapshot for bug #338441
+
   22 Sep 2010; Fabian Groffen <grobian@gentoo.org>
   -portage-2.2.00.15838.ebuild, -portage-2.2.01.15417.ebuild:
   Drop some versions now we know that at least 15553 was stable enough (off
