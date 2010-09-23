@@ -946,7 +946,6 @@ dev-python/chardet
 dev-python/cheetah
 dev-python/cherrypy
 dev-python/clientcookie
-dev-python/clientform
 dev-python/configobj
 dev-python/coverage
 dev-python/cython
