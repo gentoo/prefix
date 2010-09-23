@@ -1,6 +1,10 @@
 # ChangeLog for dev-lang/ruby
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.475 2010/09/06 20:42:41 ranger Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/ruby/ChangeLog,v 1.476 2010/09/07 17:01:33 a3li Exp $
+
+  07 Sep 2010; Alex Legler <a3li@gentoo.org> -ruby-1.8.7_p249.ebuild,
+  -ruby-1.9.2_rc2.ebuild:
+  Removing old and vulnerable ebuilds
 
   06 Sep 2010; Brent Baude <ranger@gentoo.org> ruby-1.8.7_p302.ebuild:
   Marking ruby-1.8.7_p302 ppc64 for bug 332957
