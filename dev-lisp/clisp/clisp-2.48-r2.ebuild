@@ -69,7 +69,11 @@ src_configure() {
 	fi
 
 	# QA issue with lisp.run
-	append-flags -Wa,--noexecstack
+	case $($(tc-getAS) -v 2>&1 </dev/null) in
+		*"GNU Binutils"*) # GNU ld
+			append-flags -Wa,--noexecstack
+		;;
+	esac
 
 	# built-in features
 	local myconf="--with-ffcall --without-dynamic-modules"
