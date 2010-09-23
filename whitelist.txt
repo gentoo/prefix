@@ -182,6 +182,7 @@ app-text/adiff
 app-text/agrep
 app-text/aiksaurus
 app-text/antiword
+app-text/antixls
 app-text/asciidoc
 app-text/aspell
 app-text/barcode
