@@ -103,7 +103,7 @@ php_install_ini() {
 	sed -e "s|^extension_dir .*$|extension_dir = ${extension_dir}|g" -i "${phpinisrc}"
 
 	# Set the include path to point to where we want to find PEAR packages
-	sed -e 's|^;include_path = ".:/php/includes".*|include_path = ".:'"${EPREFIX}"'/usr/share/php'${PHP_MV}':$'"${EPREFIX}"'/usr/share/php"|' -i "${phpinisrc}"
+	sed -e 's|^;include_path = ".:/php/includes".*|include_path = ".:'"${EPREFIX}"'/usr/share/php'${PHP_MV}':'"${EPREFIX}"'/usr/share/php"|' -i "${phpinisrc}"
 	
 	dodir "${PHP_INI_DIR#${EPREFIX}}"
 	insinto "${PHP_INI_DIR#${EPREFIX}}"
