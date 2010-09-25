@@ -17,6 +17,9 @@
 		<flag name="selinux">
 			probably some SElinux crap
 		</flag>
+		<flag name="ipc">
+			enable Portage's IPC daemon
+		</flag>
 		<flag name="prefix-chaining">
 			mduft's experimental prefix chaining facilities
 		</flag>

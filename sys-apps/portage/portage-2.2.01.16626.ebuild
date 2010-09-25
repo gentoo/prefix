@@ -12,7 +12,7 @@ LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
-IUSE="build doc epydoc selinux linguas_pl prefix-chaining"
+IUSE="build doc epydoc selinux linguas_pl ipc prefix-chaining"
 
 python_dep=">=dev-lang/python-2.6 <dev-lang/python-3.0"
 
@@ -83,6 +83,11 @@ src_unpack() {
 #	epatch "${FILESDIR}"/${PN}-2.2.00.13849-ebuildshell.patch #155161
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
+
+	if use !ipc ; then
+		sed -i -e '/_enable_ipc_daemon = /s/True/False/' \
+			"${S}"/pym/_emerge/AbstractEbuildProcess.py || die
+	fi
 }
 
 src_compile() {

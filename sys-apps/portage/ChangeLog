@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.16626 (25 Sep 2010)
+
+  25 Sep 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.16616.ebuild, +portage-2.2.01.16626.ebuild, metadata.xml:
+  Replace snapshot, disable ipc by default as it is causing too many
+  problems
+
 *portage-2.2.01.16616 (23 Sep 2010)
 
   23 Sep 2010; Fabian Groffen <grobian@gentoo.org>
