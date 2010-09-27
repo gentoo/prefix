@@ -980,7 +980,7 @@ esac
 
 CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
 PORTDIR=${ROOT}/usr/portage
-DISTDIR=${PORTDIR}/distfiles
+DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
 PORTAGE_TMPDIR=${ROOT}/var/tmp
 DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
 SNAPSHOT_URL="http://files.prefix.freens.org/snapshots"
