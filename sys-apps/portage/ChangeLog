@@ -2,6 +2,16 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  28 Sep 2010; Fabian Groffen <grobian@gentoo.org>
+  +portage-2.2.01.16692.ebuild:
+  Bump, add macossandbox support by Michael Weiser
+
+*portage-2.2.01.16692 (28 Sep 2010)
+
+  28 Sep 2010; Fabian Groffen <grobian@gentoo.org>
+  +portage-2.2.01.16692.ebuild:
+  Bump, add macossandbox support by Michael Weiser
+
 *portage-2.2.01.16626 (25 Sep 2010)
 
   25 Sep 2010; Fabian Groffen <grobian@gentoo.org>
