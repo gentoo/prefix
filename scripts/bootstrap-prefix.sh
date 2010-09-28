@@ -324,7 +324,7 @@ do_tree() {
 		[[ -e ${PORTDIR} ]] || mkdir -p ${PORTDIR}
 		cd ${PORTDIR%portage}
 		einfo "Unpacking, this may take awhile"
-		bzip2 -dc /$2 | $TAR -xf - || exit 1
+		bzip2 -dc ${DISTDIR}/$2 | $TAR -xf - || exit 1
 		touch portage/.unpacked
 	fi
 }
