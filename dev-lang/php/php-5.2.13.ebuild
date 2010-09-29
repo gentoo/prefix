@@ -30,7 +30,7 @@ CONCURRENTMODPHP_PATCH="${MY_PHP_PV}/opt/concurrent_apache_modules.patch"
 # bugs about this go to wrobel@gentoo.org
 KOLAB_PATCH="${MY_PHP_PV}/opt/kolab-imap-annotations.patch"
 
-inherit versionator php5_2-sapi apache-module
+inherit versionator php5_2-sapi apache-module prefix
 
 # Suhosin patch support
 [[ -n "${SUHOSIN_PATCH}" ]] && SRC_URI="${SRC_URI} suhosin? (
@@ -463,6 +463,7 @@ src_install() {
 
 	# Install env.d files
 	newenvd "${FILESDIR}/20php5-envd" "20php5"
+	eprefixify "{ED}/etc/env.d/20php5"
 	sed -e "s|/lib/|/$(get_libdir)/|g" -i "${ED}/etc/env.d/20php5"
 }
 

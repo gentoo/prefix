@@ -1,0 +1,55 @@
+--- sapi/fpm/php-fpm.conf.orig	2010-06-03 21:04:30.000000000 +0200
++++ sapi/fpm/php-fpm.conf	2010-06-03 22:40:41.000000000 +0200
+@@ -8,7 +8,7 @@
+ ; Include one or more files. If glob(3) exists, it is used to include a bunch of
+ ; files from a glob(3) pattern. This directive can be used everywhere in the
+ ; file.
+-;include=/etc/fpm.d/*.conf
++;include=/etc/php/fpm-php5/fpm.d/*.conf
+ 
+ ;;;;;;;;;;;;;;;;;;
+ ; Global Options ;
+@@ -17,11 +17,11 @@
+ [global]
+ ; Pid file
+ ; Default Value: none
+-;pid = /var/lib/run/php-fpm.pid
++;pid = /var/run/php-fpm.pid
+ 
+ ; Error log file
+ ; Default Value: /var/lib/log/php-fpm.log
+-;error_log = /var/lib/log/php-fpm.log
++error_log = /var/log/php-fpm.log
+ 
+ ; Log level
+ ; Possible Values: alert, error, warning, notice, debug
+@@ -133,17 +133,17 @@
+ ; The number of child processes created on startup.
+ ; Note: Used only when pm is set to 'dynamic'
+ ; Default Value: min_spare_servers + (max_spare_servers - min_spare_servers) / 2
+-;pm.start_servers = 20
++pm.start_servers = 20
+ 
+ ; The desired minimum number of idle server processes.
+ ; Note: Used only when pm is set to 'dynamic'
+ ; Note: Mandatory when pm is set to 'dynamic'
+-;pm.min_spare_servers = 5
++pm.min_spare_servers = 5
+ 
+ ; The desired maximum number of idle server processes.
+ ; Note: Used only when pm is set to 'dynamic'
+ ; Note: Mandatory when pm is set to 'dynamic'
+-;pm.max_spare_servers = 35
++pm.max_spare_servers = 35
+  
+ ; The number of requests each child process should execute before respawning.
+ ; This can be useful to work around memory leaks in 3rd party libraries. For
+@@ -213,7 +213,7 @@
+  
+ ; The log file for slow requests
+ ; Default Value: /var/lib/log/php-fpm.log.slow
+-;slowlog = /var/lib/log/php-fpm.log.slow
++;slowlog = /var/log/php-fpm.log.slow
+  
+ ; Set open file descriptor rlimit.
+ ; Default Value: system defined value
