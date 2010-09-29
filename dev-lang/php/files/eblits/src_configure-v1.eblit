@@ -33,7 +33,7 @@ eblit-php-src_configure() {
 	phpconfutils_extension_disable "filter"       "filter"           0
 	phpconfutils_extension_enable  "ftp"          "ftp"              1
 	phpconfutils_extension_with    "gettext"      "nls"              1 "${EPREFIX}/usr"
-	phpconfutils_extension_with    "gmp"          "gmp"              1
+	phpconfutils_extension_with    "gmp"          "gmp"              1 "${EPREFIX}/usr"
 	phpconfutils_extension_disable "hash"         "hash"             0
 	phpconfutils_extension_with    "iconv"        "iconv"            0 "${EPREFIX}/usr"
 	phpconfutils_extension_enable  "intl"         "intl"             1
@@ -50,9 +50,9 @@ eblit-php-src_configure() {
 	phpconfutils_extension_enable  "pcntl"        "pcntl"            1
 	phpconfutils_extension_disable "phar"         "phar"             1
 	phpconfutils_extension_disable "pdo"          "pdo"              0
-	phpconfutils_extension_with    "pgsql"        "postgres"         1
+	phpconfutils_extension_with    "pgsql"        "postgres"         1 "${EPREFIX}/usr"
 	phpconfutils_extension_disable "posix"        "posix"            0
-	phpconfutils_extension_with    "pspell"       "spell"            1
+	phpconfutils_extension_with    "pspell"       "spell"            1 "${EPREFIX}/usr"
 	phpconfutils_extension_with    "recode"       "recode"           1
 	phpconfutils_extension_disable "simplexml"    "simplexml"        0
 	phpconfutils_extension_enable  "shmop"        "sharedmem"        0 "${EPREFIX}/usr"
@@ -83,12 +83,12 @@ eblit-php-src_configure() {
 	fi
 
 	# DBA drivers support
-	phpconfutils_extension_with   "cdb"        "cdb"      0
-	phpconfutils_extension_with   "db4"        "berkdb"   0
+	phpconfutils_extension_with   "cdb"        "cdb"      0 "${EPREFIX}/usr"
+	phpconfutils_extension_with   "db4"        "berkdb"   0 "${EPREFIX}/usr"
 	phpconfutils_extension_enable "flatfile"   "flatfile" 0
-	phpconfutils_extension_with   "gdbm"       "gdbm"     0
+	phpconfutils_extension_with   "gdbm"       "gdbm"     0 "${EPREFIX}/usr"
 	phpconfutils_extension_enable "inifile"    "inifile"  0
-	phpconfutils_extension_with   "qdbm"       "qdbm"     0
+	phpconfutils_extension_with   "qdbm"       "qdbm"     0 "${EPREFIX}/usr"
 
 	# Support for the GD graphics library
 	if use gd-external ; then
@@ -109,8 +109,8 @@ eblit-php-src_configure() {
 
 	# IMAP support
 	if use imap ; then
-		phpconfutils_extension_with "imap"     "imap" 1
-		phpconfutils_extension_with "imap-ssl" "ssl"  0
+		phpconfutils_extension_with "imap"     "imap" 1 "${EPREFIX}/usr"
+		phpconfutils_extension_with "imap-ssl" "ssl"  0 "${EPREFIX}/usr"
 	fi
 
 	phpconfutils_extension_with "interbase"	"interbase"	0 "${EPREFIX}/opt"
@@ -182,7 +182,7 @@ eblit-php-src_configure() {
 		else
 			phpconfutils_extension_with "pdo-mysql"  "mysql"    1 "${EPREFIX}/usr"
 		fi
-		phpconfutils_extension_with "pdo-pgsql"  "postgres"	1
+		phpconfutils_extension_with "pdo-pgsql"  "postgres"	1 "${EPREFIX}/usr"
 		phpconfutils_extension_with "pdo-sqlite" "sqlite"   1 "${EPREFIX}/usr"
 		phpconfutils_extension_with "pdo-odbc"   "odbc"     1 "unixODBC,${EPREFIX}/usr"
 		if use oci8 ; then

@@ -29,7 +29,7 @@ eblit-php-src_install() {
 	# And install the modules to it
 	if use sharedext ; then
 		insinto "${extension_dir#${EPREFIX}}"
-		doins "${WORKDIR}/sapis-build/${first_sapi}/modules/"*.so
+		doins "${WORKDIR}/sapis-build/${first_sapi}/modules/"*$(get_modname)
 	fi
 
 	# Generate the USE file for PHP
@@ -115,9 +115,9 @@ php_install_ini() {
 	# Install any extensions built as shared objects
 	if use sharedext ; then
 		insinto "${PHP_EXT_INI_DIR#${EPREFIX}}"
-		for extension in "${ED}/${extension_dir}/"*.so ; do
+		for extension in "${ED}/${extension_dir#${EPREFIX}}/"*$(get_modname) ; do
 			extension="${extension##*/}"
-			inifilename="${extension/.so/.ini}"
+			inifilename="${extension/$(get_modname)/.ini}"
 			echo "extension=${extension}" > "${WORKDIR}/sapis-build/${phpsapi}/modules/$inifilename"
 			doins "${WORKDIR}/sapis-build/${phpsapi}/modules/$inifilename"
 			dosym "${PHP_EXT_INI_DIR#${EPREFIX}}/${inifilename}" "${PHP_EXT_INI_DIR_ACTIVE#${EPREFIX}}/${inifilename}"
