@@ -2,6 +2,13 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.16706 (29 Sep 2010)
+
+  29 Sep 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.16626.ebuild, -portage-2.2.01.16692.ebuild,
+  +portage-2.2.01.16706.ebuild:
+  Drop broken versions wrt preserve-libs, add fixed one
+
 *portage-2.2.01.16692 (28 Sep 2010)
 
   28 Sep 2010; Fabian Groffen <grobian@gentoo.org>
