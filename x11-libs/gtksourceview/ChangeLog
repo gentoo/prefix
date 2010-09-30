@@ -1,6 +1,26 @@
 # ChangeLog for x11-libs/gtksourceview
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.181 2010/08/01 11:16:58 fauli Exp $
+# $Header: /var/cvsroot/gentoo-x86/x11-libs/gtksourceview/ChangeLog,v 1.186 2010/09/28 21:29:29 eva Exp $
+
+*gtksourceview-2.10.5 (28 Sep 2010)
+
+  28 Sep 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  +gtksourceview-2.10.5.ebuild:
+  Version bump. Translation updates.
+
+  11 Sep 2010; Joseph Jezak <josejx@gentoo.org> gtksourceview-2.10.4.ebuild:
+  Marked ppc for bug #324077.
+
+  18 Aug 2010; Markus Meier <maekke@gentoo.org> gtksourceview-2.8.2.ebuild:
+  arm stable, bug #314899
+
+  16 Aug 2010; Gilles Dartiguelongue <eva@gentoo.org>
+  gtksourceview-2.10.4.ebuild:
+  Adjust dependencies wrt configure.ac. Disable maintainer mode since it's
+  hard enabled in configure.
+
+  14 Aug 2010; Raúl Porcel <armin76@gentoo.org> gtksourceview-2.8.2.ebuild:
+  alpha/ia64/sh/sparc stable wrt #314899
 
   01 Aug 2010; Christian Faulhammer <fauli@gentoo.org>
   gtksourceview-2.10.4.ebuild:
