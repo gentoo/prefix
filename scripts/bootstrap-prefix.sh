@@ -608,7 +608,6 @@ bootstrap_python() {
 	econf \
 		--disable-toolbox-glue \
 		--disable-ipv6 \
-		--with-cxx=no \
 		--disable-shared \
 		${myconf}
 	$MAKE ${MAKEOPTS} || exit 1
