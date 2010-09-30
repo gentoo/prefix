@@ -998,6 +998,7 @@ dev-python/medusa
 dev-python/mocker
 dev-python/mysql-python
 dev-python/nevow
+dev-python/nltk
 dev-python/nose
 dev-python/numpy
 dev-python/paramiko
