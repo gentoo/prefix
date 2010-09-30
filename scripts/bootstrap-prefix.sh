@@ -976,7 +976,7 @@ case $ROOT in
 esac
 
 CXXFLAGS="${CXXFLAGS:-${CFLAGS}}"
-PORTDIR=${ROOT}/usr/portage
+PORTDIR=${PORTDIR:-"${ROOT}/usr/portage"}
 DISTDIR=${DISTDIR:-"${PORTDIR}/distfiles"}
 PORTAGE_TMPDIR=${ROOT}/var/tmp
 DISTFILES_URL="http://dev.gentoo.org/~grobian/distfiles"
