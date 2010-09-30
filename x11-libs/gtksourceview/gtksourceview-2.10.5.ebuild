@@ -12,13 +12,14 @@ HOMEPAGE="http://www.gnome.org/"
 
 LICENSE="GPL-2"
 SLOT="2.0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~x86-solaris"
+KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="doc glade"
 
 RDEPEND=">=x11-libs/gtk+-2.12
 	>=dev-libs/libxml2-2.5
 	>=dev-libs/glib-2.14
-	glade? ( >=dev-util/glade-3.2 )"
+	glade? ( >=dev-util/glade-3.2 )
+	kernel_Darwin? ( x11-libs/ige-mac-integration )"
 DEPEND="${RDEPEND}
 	>=sys-devel/gettext-0.17
 	>=dev-util/intltool-0.40
