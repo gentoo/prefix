@@ -202,6 +202,7 @@ app-text/docbook-sgml-dtd
 app-text/docbook-xml-dtd
 app-text/docbook-xml-simple-dtd
 app-text/docbook-xsl-stylesheets
+app-text/docbook2X
 app-text/dos2unix
 app-text/duconv
 app-text/dvipng
