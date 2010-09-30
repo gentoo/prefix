@@ -790,6 +790,7 @@ x11-libs/fltk
 x11-libs/gl2ps
 x11-libs/goffice
 x11-libs/gtk+
+x11-libs/ige-mac-integration
 x11-libs/libICE
 x11-libs/libXScrnSaver
 x11-libs/libXau
