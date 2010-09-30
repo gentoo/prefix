@@ -12,13 +12,15 @@ SRC_URI="http://www.surina.net/soundtouch/${P/lib}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~amd64-linux ~x86-linux ~ppc-macos ~x86-solaris"
 IUSE="sse2"
 
 S=${WORKDIR}/${MY_PN}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-flags_and_version.patch
+	# bug 337128
+	rm -Rf config/m4/{libtool,ltoptions,ltsugar,ltversion,lt~obsolete}.m4
 	eautoreconf
 
 	if use sse2; then
