@@ -1,6 +1,32 @@
 # ChangeLog for app-admin/apache-tools
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.77 2010/04/04 09:33:05 gmsoft Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-admin/apache-tools/ChangeLog,v 1.84 2010/09/19 17:40:01 gmsoft Exp $
+
+  19 Sep 2010; Guy Martin <gmsoft@gentoo.org> apache-tools-2.2.16.ebuild:
+  hppa stable wrt #330195
+
+  06 Sep 2010; Brent Baude <ranger@gentoo.org> apache-tools-2.2.16.ebuild:
+  Marking apache-tools-2.2.16 ppc64 for bug 330195
+
+  04 Sep 2010; Raúl Porcel <armin76@gentoo.org> apache-tools-2.2.16.ebuild:
+  alpha/arm/ia64/s390/sh/sparc stable wrt #330195
+
+  31 Aug 2010; Pawel Hajdan jr <phajdan.jr@gentoo.org>
+  apache-tools-2.2.16.ebuild:
+  x86 stable wrt security bug #330195
+
+  30 Aug 2010; Jeroen Roovers <jer@gentoo.org> apache-tools-2.2.16.ebuild:
+  Stable for PPC (bug #330195).
+
+  30 Aug 2010; Markos Chandras <hwoarang@gentoo.org>
+  apache-tools-2.2.16.ebuild:
+  Stable on amd64 wrt bug #330195
+
+*apache-tools-2.2.16 (28 Aug 2010)
+
+  28 Aug 2010; Benedikt Böhm <hollow@gentoo.org>
+  +apache-tools-2.2.16.ebuild:
+  version bump wrt #330195
 
   04 Apr 2010; Guy Martin <gmsoft@gentoo.org> apache-tools-2.2.15.ebuild:
   hppa stable, #308049
