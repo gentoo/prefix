@@ -1,10 +1,10 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.0.ebuild,v 1.4 2010/09/18 10:33:57 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/dbus/dbus-1.4.0.ebuild,v 1.7 2010/09/28 21:00:55 ssuominen Exp $
 
 EAPI="2"
 
-inherit autotools eutils multilib flag-o-matic
+inherit autotools eutils multilib flag-o-matic prefix
 
 DESCRIPTION="A message bus system, a simple way for applications to talk to each other"
 HOMEPAGE="http://dbus.freedesktop.org/"
@@ -12,7 +12,7 @@ SRC_URI="http://dbus.freedesktop.org/releases/dbus/${P}.tar.gz"
 
 LICENSE="|| ( GPL-2 AFL-2.1 )"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x64-freebsd ~x86-freebsd ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 IUSE="debug doc selinux static-libs test X"
 
 CDEPEND="
@@ -29,7 +29,7 @@ RDEPEND="${CDEPEND}
 	!<sys-apps/dbus-0.91
 	>=dev-libs/expat-1.95.8
 "
-DEPEND="${CDEPEND}
+DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	doc? (
 		app-doc/doxygen
@@ -49,12 +49,16 @@ pkg_setup() {
 }
 
 src_prepare() {
+	# Delete pregenerated files from tarball wrt #337989 (testsuite fails)
+	find test/data -type f -name '*.service' -exec rm -f '{}' +
+	find test/data -type f -name 'debug-*.conf' -exec rm -f '{}' +
+
 	# Remove CFLAGS that is not supported by all gcc, bug #274456
-	sed 's/-Wno-pointer-sign//g' -i configure.in configure || die "sed failed"
+	sed 's/-Wno-pointer-sign//g' -i configure.in configure || die
 
 	# Tests were restricted because of this
 	sed -e 's/.*bus_dispatch_test.*/printf ("Disabled due to excess noise\\n");/' \
-		-e '/"dispatch"/d' -i "${S}/bus/test-main.c" || die "sed failed"
+		-e '/"dispatch"/d' -i "${S}/bus/test-main.c" || die
 
 	epatch "${FILESDIR}"/${PN}-1.4.0-interix.patch
 	[[ ${CHOST} == *-interix[35]* ]] && epatch "${FILESDIR}"/${PN}-1.4.0-interix5.patch
@@ -83,6 +87,20 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${P}-asneeded.patch
 
+	# Doesn't build with PIE support
+	if [[ ${CHOST} == *-freebsd7.1 ]]; then
+		epatch "${FILESDIR}"/${PN}-1.2.3-freebsd71.patch
+	fi
+
+	# Enable launchd support on Darwin
+	if [[ ${CHOST} == *-darwin* ]]; then
+		epatch "${FILESDIR}"/darwin/${PN}-1.4.0-launchd_upstream_bug_14259_p2.patch
+		epatch "${FILESDIR}"/darwin/${PN}-1.4.0-launchd_upstream_bug_14259_p3.patch
+		epatch "${FILESDIR}"/darwin/${PN}-1.4.0-launchd_upstream_bug_14259_p4.patch
+		epatch "${FILESDIR}"/darwin/${PN}-1.4.0-launchd_upstream_bug_14259_p5.patch
+		epatch "${FILESDIR}"/darwin/${PN}-1.4.0-launchd_upstream_bug_14259_px_ported.patch
+	fi
+
 	# required for asneeded patch but also for bug 263909, cross-compile so
 	# don't remove eautoreconf
 	eautoreconf
@@ -92,16 +110,10 @@ src_configure() {
 	local my_conf
 	local syssocket="${EPREFIX}"/var/run/dbus/system_bus_socket
 	local socketdir="${EPREFIX}"/tmp
-	local dbususer=messagebus
+	local myconf=""
 
 	if [[ ${CHOST} == *-interix* ]]; then
-		# incorrect detection of some functions, and some are there but badly
-		# broken, so don't use them if possible.
 		export ac_cv_func_poll=no
-		export ac_cv_func_getgrouplist=no
-
-		# take the current portage running user, as this is our local "root"
-		dbususer=$(id -un)
 	fi
 
 	if [[ ${CHOST} == *-interix5* ]]; then
@@ -113,12 +125,13 @@ src_configure() {
 		myconf="${myconf} --with-test-socket-dir=/tmp"
 	fi
 
-	if [[ ${CHOST} == *-solaris* ]] ; then
-		# struct msghdr doesn't include msg_controllen if _XPG4_2 isn't
-		# defined (or the kernel view).  To enable it, _XOPEN_SOURCE
-		# must be set to 500.  However, then we loose *DIR->dd_fd, so we
-		# just do an ugly hack and enable the private macro.
-		append-flags -D_XPG4_2
+	if [[ ${CHOST} != *-interix* ]]; then
+		# so we can get backtraces from apps
+		append-flags -rdynamic
+	fi
+
+	if [[ ${CHOST} == *-darwin* ]]; then
+		myconf="${myconf} --enable-launchd --with-launchd-agent-dir=${EPREFIX}/Library/LaunchAgents"
 	fi
 
 	# so we can get backtraces from apps
@@ -130,17 +143,20 @@ src_configure() {
 		$(use_enable debug verbose-mode)
 		$(use_enable debug asserts)
 		$(use_enable kernel_linux inotify)
-		$(use kernel_Darwin && echo --enable-kqueue || use_enable kernel_FreeBSD kqueue)
+		$(use_enable kernel_FreeBSD kqueue)
+		$(use_enable kernel_Darwin kqueue) \
+		$(use_enable kernel_Darwin launchd) \
 		$(use_enable selinux)
 		$(use_enable selinux libaudit)
 		$(use_enable static-libs static)
 		--enable-shared
 		--with-xml=expat
-		--with-system-pid-file="${EPREFIX}"/var/run/dbus.pid
-		--with-system-socket=${syssocket}
-		--with-session-socket-dir=${socketdir}
-		--with-dbus-user="${dbususer}"
-		--localstatedir="${EPREFIX}"/var"
+		--with-system-pid-file=${EPREFIX}/var/run/dbus.pid
+		--with-system-socket=${EPREFIX}/var/run/dbus/system_bus_socket
+		--with-session-socket-dir=${EPREFIX}/tmp
+		--with-dbus-user=${PORTAGE_USER:-portage}
+		--localstatedir=${EPREFIX}/var
+		${myconf}"
 
 	mkdir "${BD}"
 	cd "${BD}"
@@ -222,7 +238,7 @@ src_install() {
 	fi
 
 	# Remove .la files
-	find "${D}" -type f -name '*.la' -exec rm -f '{}' +
+	find "${ED}" -type f -name '*.la' -exec rm -f '{}' +
 }
 
 pkg_postinst() {
@@ -239,4 +255,27 @@ pkg_postinst() {
 
 	# Ensure unique id is generated
 	dbus-uuidgen --ensure="${EROOT}"/var/lib/dbus/machine-id
+
+	if [[ ${CHOST} == *-darwin* ]]; then
+		local plist="org.freedesktop.dbus-session.plist"
+		elog
+		elog
+		elog "For MacOS/Darwin we now ship launchd support for dbus."
+		elog "This enables autolaunch of dbus at session login and makes"
+		elog "dbus usable under MacOS/Darwin."
+		elog
+		elog "The launchd plist file ${plist} has been"
+		elog "installed in ${EPREFIX}/Library/LaunchAgents."
+		elog "For it to be used, you will have to do all of the following:"
+		elog " + cd ~/Library/LaunchAgents"
+		elog " + ln -s ${EPREFIX}/Library/LaunchAgents/${plist}"
+		#elog "plus either one of the following:"
+		elog " + logout and log back in"
+		#elog " + issue: launchctl load ./${plist}"
+		elog
+		elog "If your application needs a proper DBUS_SESSION_BUS_ADDRESS"
+		elog "specified and refused to start otherwise, then export the"
+		elog "the following to your environment:"
+		elog " DBUS_SESSION_BUS_ADDRESS=\"launchd:env=DBUS_LAUNCHD_SESSION_BUS_SOCKET\""
+	fi
 }

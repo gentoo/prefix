@@ -1,0 +1,11 @@
+--- dbus-1.4.0/dbus/dbus-server-launchd.c.orig	2010-09-30 00:43:26.000000000 +0200
++++ dbus-1.4.0/dbus/dbus-server-launchd.c	2010-09-30 00:42:42.000000000 +0200
+@@ -183,7 +183,7 @@ _dbus_server_new_for_launchd (const char
+ 
+       }
+   
+-    server = _dbus_server_new_for_socket (&launchd_fd, 1, &address);
++    server = _dbus_server_new_for_socket (&launchd_fd, 1, &address, NULL);
+     if (server == NULL)
+       {
+         dbus_set_error (error, DBUS_ERROR_NO_SERVER,
