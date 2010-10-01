@@ -1,6 +1,95 @@
 # ChangeLog for dev-libs/openssl
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.337 2010/06/21 20:43:49 maekke Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/openssl/ChangeLog,v 1.355 2010/09/28 17:22:42 darkside Exp $
+
+  28 Sep 2010; Jeremy Olexa <darkside@gentoo.org> openssl-1.0.0a-r3.ebuild,
+  -files/openssl-c_rehash.sh-rev-1.7:
+  Revert revision 1.8 and just modify the SRC_URI to the converted character
+  instead for bug 339027
+
+  28 Sep 2010; Jeremy Olexa <darkside@gentoo.org> openssl-1.0.0a-r3.ebuild,
+  +files/openssl-c_rehash.sh-rev-1.7:
+  QA: Fix SRC_URI of c_rehash and move it to FILESDIR, bug 339027
+
+  28 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  openssl-0.9.8o-r2.ebuild, openssl-1.0.0a-r3.ebuild:
+  amd64 stable wrt #330437
+
+  28 Sep 2010; Samuli Suominen <ssuominen@gentoo.org>
+  openssl-1.0.0a-r3.ebuild:
+  ppc64 stable wrt #330437
+
+  14 Sep 2010; Mike Frysinger <vapier@gentoo.org> openssl-1.0.0a-r3.ebuild,
+  files/openssl-1.0.0a-alpha-mont.patch:
+  Add another fix from upstream for alpha so it actually (seems) to work
+  #330915 by Kazuyoshi Furutaka.
+
+  12 Sep 2010; Mike Frysinger <vapier@gentoo.org> openssl-1.0.0a-r3.ebuild,
+  +files/openssl-1.0.0a-alpha-mont.patch:
+  Fix alpha build issues in new alpha-mont.pl file #330915.
+
+  12 Sep 2010; Mike Frysinger <vapier@gentoo.org> openssl-1.0.0a-r3.ebuild,
+  +files/openssl-1.0.0a-alphacpuid.patch:
+  Fix alpha asm syntax error in new cpuid file #330915 by Matt Turner.
+
+  23 Aug 2010; Mike Frysinger <vapier@gentoo.org> +files/gentoo.config-1.0.0,
+  openssl-1.0.0a-r3.ebuild:
+  Split off gentoo.config for openssl-1.0.0 to take advantage of newer
+  optimized targets #333679 by Sergei Trofimovich.
+
+*openssl-1.0.0a-r3 (20 Aug 2010)
+
+  20 Aug 2010; Mike Frysinger <vapier@gentoo.org> +openssl-1.0.0a-r3.ebuild:
+  Revbump to revert USE=sslv2 screw up, and add epatch_user to accommodate
+  random needs (historical, new divers, etc...) #332661.
+
+  20 Aug 2010; Mike Frysinger <vapier@gentoo.org> openssl-1.0.0a-r2.ebuild,
+  metadata.xml:
+  Drop USE=sslv2 support as it doesnt do what was intended. Will revbump once
+  #332661 shakes out but for now, stop breaking random apps.
+
+*openssl-1.0.0a-r2 (19 Aug 2010)
+
+  19 Aug 2010; Mike Frysinger <vapier@gentoo.org> +openssl-1.0.0a-r2.ebuild,
+  metadata.xml:
+  Grab POSIX shell version of c_rehash from PLD #333117. Add a local USE=sslv2
+  flag so people can enable legacy support #332661 by Stefan de Konink.
+
+  17 Aug 2010; Mike Frysinger <vapier@gentoo.org> openssl-1.0.0a-r1.ebuild:
+  Automatically rehash ssl certs for people #333069.
+
+*openssl-0.9.8o-r2 (14 Aug 2010)
+
+  14 Aug 2010; Mike Frysinger <vapier@gentoo.org> +openssl-0.9.8o-r2.ebuild:
+  Add fix from upstream for double free to older version too #332027 by Hanno
+  Boeck.
+
+*openssl-1.0.0a-r1 (10 Aug 2010)
+
+  10 Aug 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +openssl-1.0.0a-r1.ebuild, +files/openssl-1.0.0a-fix-double-free.patch,
+  +files/openssl-1.0.0a-ldflags.patch:
+  Use environment LDFLAGS wrt #327421 by Olivier Huber. Fix double free wrt
+  #332027 by Hanno Boeck.
+
+  04 Aug 2010; Mike Frysinger <vapier@gentoo.org> openssl-1.0.0a.ebuild,
+  +files/alphacpuid.s:
+  Add missing file from upstream for alpha builds #330915 by Kazuyoshi
+  Furutaka.
+
+  18 Jul 2010; Mike Frysinger <vapier@gentoo.org> openssl-1.0.0a.ebuild:
+  Avoid preserve_old_lib when we have the old SLOT #328355.
+
+*openssl-0.9.8o-r1 (17 Jul 2010)
+
+  17 Jul 2010; Samuli Suominen <ssuominen@gentoo.org>
+  +openssl-0.9.8o-r1.ebuild:
+  This ebuild will only install libcrypto.so.0.9.8 and libssl.so.0.9.8 for
+  binary-only pkgs wrt #328355.
+
+  14 Jul 2010; Samuli Suominen <ssuominen@gentoo.org> openssl-1.0.0a.ebuild:
+  Release OpenSSL 1.x to testing. Known issues have been resolved wrt
+  #304279.
 
   21 Jun 2010; Markus Meier <maekke@gentoo.org> openssl-0.9.8o.ebuild:
   amd64 stable, bug #322575

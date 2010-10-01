@@ -1,0 +1,33 @@
+--- Configure
++++ Configure
+@@ -502,6 +502,9 @@
+ # Interix (GCC)
+ "interix-gcc", "gcc:-D_ALL_SOURCE -DL_ENDIAN -DTERMIOS -O2 -Wall::-D_REENTRANT::-ldl:::::::::::::dlfcn:gnu:::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
+ 
++# FreeMiNT (GCC)
++"mint-gcc", "gcc:-O2 -fomit-frame-pointer -DB_ENDIAN -DTERMIOS::-D_REENTRANT:::BN_LLONG:::",
++
+ # Borland C++ 4.5
+ "BC-32","bcc32::::WIN32::BN_LLONG DES_PTR RC4_INDEX EXPORT_VAR_AS_FN:${no_asm}:win32",
+ 
+--- config
++++ config
+@@ -348,6 +348,10 @@
+ 	echo "i586-pc-interix${VERSION}"; exit 0;
+ 	;;
+ 
++	FreeMiNT*)
++	echo "m68k-atari-mint"; exit 0;
++	;;
++
+     MINGW*)
+ 	echo "${MACHINE}-whatever-mingw"; exit 0;
+ 	;;
+@@ -812,6 +816,7 @@
+   j90-cray-unicos) OUT="cray-j90" ;;
+   nsr-tandem-nsk) OUT="tandem-c89" ;;
+   *-interix*) OUT="interix-gcc" ;;
++  *-mint*) OUT="mint-gcc" ;;
+   beos-*) OUT="$GUESSOS" ;;
+   x86pc-*-qnx6) OUT="QNX6-i386" ;;
+   *-*-qnx6) OUT="QNX6" ;;
