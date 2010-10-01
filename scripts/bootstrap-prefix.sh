@@ -319,13 +319,12 @@ do_tree() {
 	do
 		[[ -d ${ROOT}/${x} ]] || mkdir -p "${ROOT}/${x}"
 	done
-	if [[ ! -e ${ROOT}/usr/portage/.unpacked ]]; then
+	if [[ ! -e ${PORTDIR}/.unpacked ]]; then
 		efetch "$1/$2"
 		[[ -e ${PORTDIR} ]] || mkdir -p ${PORTDIR}
-		cd ${PORTDIR%portage}
 		einfo "Unpacking, this may take awhile"
-		bzip2 -dc ${DISTDIR}/$2 | $TAR -xf - || exit 1
-		touch portage/.unpacked
+		bzip2 -dc ${DISTDIR}/$2 | $TAR -xf - -C ${PORTDIR%portage} || exit 1
+		touch ${PORTDIR}/.unpacked
 	fi
 }
 
