@@ -1,6 +1,11 @@
 # ChangeLog for dev-tex/luatex
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.69 2010/07/21 19:47:29 aballier Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-tex/luatex/ChangeLog,v 1.70 2010/10/01 01:38:17 aballier Exp $
+
+*luatex-0.63.0 (01 Oct 2010)
+
+  01 Oct 2010; Alexis Ballier <aballier@gentoo.org> +luatex-0.63.0.ebuild:
+  version bump
 
   21 Jul 2010; Alexis Ballier <aballier@gentoo.org> -luatex-0.60.1.ebuild:
   remove old
