@@ -11,7 +11,7 @@ SRC_URI="http://www.libsdl.org/release/SDL-${PV}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~sparc-solaris ~x86-solaris"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~sparc-solaris ~x86-solaris"
 # WARNING:
 # if you disable the audio, video, joystick use flags or turn on the custom-cflags use flag
 # in USE and something breaks, you pick up the pieces.  Be prepared for
