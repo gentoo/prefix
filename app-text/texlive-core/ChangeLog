@@ -2,10 +2,6 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/app-text/texlive-core/ChangeLog,v 1.126 2010/06/20 12:15:17 aballier Exp $
 
-  02 Oct 2010; Fabian Groffen <grobian@gentoo.org>
-  texlive-core-2009-r2.ebuild:
-  Marked ~x64-macos, bug #333981
-
 *texlive-core-2009-r2 (20 Jun 2010)
 
   20 Jun 2010; Alexis Ballier <aballier@gentoo.org>
