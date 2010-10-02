@@ -10,7 +10,7 @@ SRC_URI="ftp://ftp.inet.no/pub/socks/${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos"
+KEYWORDS="~x86-freebsd ~amd64-linux ~x86-linux ~ppc-macos ~x64-macos"
 IUSE="tcpd debug selinux pam"
 
 RDEPEND="pam? ( virtual/pam )
