@@ -549,6 +549,11 @@ bootstrap_gnu() {
 		sed -i -e '/^#include "fcntl-safer.h"$/a\#define ESTALE -1' lib/savewd.c
 	fi
 
+	if [[ ${A%-*} == "tar" && ${CHOST} == *-hpux* ]] ; then
+		# Fix a compilation error due to a missing definition
+		export CPPFLAGS="${CPPFLAGS} -DCHAR_BIT=8"
+	fi
+
 	einfo "Compiling ${A%-*}"
 	econf ${myconf}
 	$MAKE ${MAKEOPTS} || exit 1
@@ -602,7 +607,7 @@ bootstrap_python() {
 	# just make sure Python won't find it
 	export HOME="${S}"
 
-	export PYTHON_DISABLE_MODULES="readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter _elementtree _locale"
+	export PYTHON_DISABLE_MODULES="_ctypes_test readline pyexpat dbm gdbm bsddb _curses _curses_panel _tkinter _elementtree _locale"
 	export PYTHON_DISABLE_SSL=1
 	export OPT="${CFLAGS}"
 
