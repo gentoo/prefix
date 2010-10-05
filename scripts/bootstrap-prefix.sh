@@ -329,7 +329,7 @@ do_tree() {
 }
 
 bootstrap_tree() {
-	local PV="20100715"
+	local PV="20101004"
 	do_tree http://files.prefix.freens.org/distfiles prefix-overlay-${PV}.tar.bz2
 }
 
@@ -370,7 +370,7 @@ bootstrap_startscript() {
 bootstrap_portage() {
 	# Set TESTING_PV in env if you want to test a new portage before bumping the
 	# STABLE_PV that is known to work. Intended for power users only.
-	STABLE_PV="2.2.01.15354" # this version should match the snapshot
+	STABLE_PV="2.2.01.15553" # this version should be included in the snapshot
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
