@@ -370,7 +370,9 @@ bootstrap_startscript() {
 bootstrap_portage() {
 	# Set TESTING_PV in env if you want to test a new portage before bumping the
 	# STABLE_PV that is known to work. Intended for power users only.
-	STABLE_PV="2.2.01.15553" # this version should be included in the snapshot
+	## It is critical that STABLE_PV is the lastest (non-masked) version that is
+	## included in the snapshop for bootstrap_tree.
+	STABLE_PV="2.2.01.15553"
 	PV="${TESTING_PV:-${STABLE_PV}}"
 	A=prefix-portage-${PV}.tar.bz2
 	einfo "Bootstrapping ${A%-*}"
