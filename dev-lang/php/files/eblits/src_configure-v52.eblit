@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_configure-v52.eblit,v 1.4 2010/08/11 22:30:23 mabi Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-lang/php/files/eblits/src_configure-v52.eblit,v 1.5 2010/09/19 15:15:08 mabi Exp $
 
 eblit-php-src_configure() {
 	export CFLAGS="${CFLAGS} -D_GNU_SOURCE"
@@ -149,7 +149,9 @@ eblit-php-src_configure() {
 			phpconfutils_extension_with "empress-bcs" "empress-bcs" 0
 		fi
 		phpconfutils_extension_with "esoob"   "esoob" 1
-		phpconfutils_extension_with "ibm-db2" "db2"   1
+		# Needed to run conftest for IBM DB2
+		[[ -n ${DB2_HOME} ]] && export LD_LIBRARY_PATH="${DB2_HOME}/`get_libdir`"
+		phpconfutils_extension_with "ibm-db2" "db2"   1 "${DB2_HOME}"
 		phpconfutils_extension_with "sapdb"   "sapdb" 1
 		phpconfutils_extension_with "solid"   "solid" 1
 	fi

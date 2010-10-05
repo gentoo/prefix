@@ -1,6 +1,6 @@
 #!/sbin/runscript
 
-PHP_FPM_CONF="@GENTOO_PORTAGE_EPREFIX@/etc/php/fpm-php5/php-fpm.conf"
+PHP_FPM_CONF="/etc/php/fpm-php5/php-fpm.conf"
 
 opts="depend start stop reload"
 
@@ -11,7 +11,7 @@ depend() {
 
 start() {
 	ebegin "Starting PHP FastCGI server"
-	start-stop-daemon --start --exec @GENTOO_PORTAGE_EPREFIX@/usr/bin/php-fpm -- -y "${PHP_FPM_CONF}"
+	start-stop-daemon --start --exec /usr/bin/php-fpm -- -y "${PHP_FPM_CONF}"
 	eend $?
 }
 
