@@ -270,11 +270,13 @@ app-text/xml2
 app-text/xmlformat
 app-text/xmlstarlet
 app-text/xmlto
+dev-cpp/ctemplate
 dev-db/freetds
 dev-db/libiodbc
 dev-db/maatkit
 dev-db/mysql
 dev-db/mysql++
+dev-db/mysql-workbench
 dev-db/sqlite
 dev-db/tokyocabinet
 dev-db/unixODBC
@@ -363,6 +365,7 @@ dev-libs/libusb
 dev-libs/libusb-compat
 dev-libs/libxdg-basedir
 dev-libs/libyaml
+dev-libs/libzip
 dev-libs/log4cxx
 dev-libs/maloc
 dev-libs/mpc
