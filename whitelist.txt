@@ -446,6 +446,7 @@ dev-util/huc
 dev-util/intltool
 dev-util/kdoc
 dev-util/linklint
+dev-util/meld
 dev-util/patchutils
 dev-util/pccts
 dev-util/pida
