@@ -412,6 +412,7 @@ dev-tex/leaflet
 dev-tex/mh
 dev-tex/pgf
 dev-tex/prosper
+dev-tex/qtexengine
 dev-tex/svninfo
 dev-tex/translator
 dev-tex/xcolor
