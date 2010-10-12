@@ -647,7 +647,7 @@ bootstrap_zlib() {
 	cd "${S}"
 
 	einfo "Compiling ${A%-*}"
-	./configure --prefix="${ROOT}"/usr || exit 1
+	CHOST= ./configure --prefix="${ROOT}"/usr || exit 1
 	$MAKE ${MAKEOPTS} || exit 1
 
 	einfo "Installing ${A%-*}"
