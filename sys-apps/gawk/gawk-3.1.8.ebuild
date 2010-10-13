@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.8.ebuild,v 1.1 2010/05/20 04:11:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/gawk-3.1.8.ebuild,v 1.2 2010/08/15 21:30:52 truedfx Exp $
 
 EAPI="2"
 
@@ -53,7 +53,7 @@ src_configure() {
 src_compile() {
 	emake || die
 	if ! $(tc-is-static-only) ; then
-		emake -C "${SFFS}" CC=$(tc-getCC) || die "filefuncs emake failed"
+		emake -C "${SFFS}" CC="$(tc-getCC)" || die "filefuncs emake failed"
 	fi
 }
 

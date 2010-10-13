@@ -1,6 +1,9 @@
 # ChangeLog for sys-apps/gawk
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.130 2010/05/20 04:11:03 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/gawk/ChangeLog,v 1.131 2010/08/15 21:30:52 truedfx Exp $
+
+  15 Aug 2010; Harald van Dĳk <truedfx@gentoo.org> gawk-3.1.8.ebuild:
+  Fix quoting
 
 *gawk-3.1.8 (20 May 2010)
 
