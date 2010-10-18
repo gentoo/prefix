@@ -284,7 +284,6 @@ dev-db/virtuoso-server
 dev-haskell/binary
 dev-haskell/cabal
 dev-haskell/dataenc
-dev-haskell/filepath
 dev-haskell/haskeline
 dev-haskell/html
 dev-haskell/http
