@@ -174,13 +174,17 @@ HOSTCC='gcc -m64'
 			;;
 		sparcv9-sun-solaris2.9)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.9/sparc64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64 -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			cppflags_make_defaults="CPPFLAGS=\"-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
 HOSTCC='gcc -m64'
 "
+			# we need this, or binutils can't link, can't add it to -L,
+			# since then binutils breaks on finding an old libiberty.a
+			# from there instead of its own
+			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		i386-pc-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/x86"
@@ -189,13 +193,17 @@ HOSTCC='gcc -m64'
 			;;
 		x86_64-pc-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/x64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64 -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			cppflags_make_defaults="CPPFLAGS=\"-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
 HOSTCC='gcc -m64'
 "
+			# we need this, or binutils can't link, can't add it to -L,
+			# since then binutils breaks on finding an old libiberty.a
+			# from there instead of its own
+			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		sparc-sun-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/sparc"
@@ -204,13 +212,17 @@ HOSTCC='gcc -m64'
 			;;
 		sparcv9-sun-solaris2.10)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.10/sparc64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64 -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			cppflags_make_defaults="CPPFLAGS=\"-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
 HOSTCC='gcc -m64'
 "
+			# we need this, or binutils can't link, can't add it to -L,
+			# since then binutils breaks on finding an old libiberty.a
+			# from there instead of its own
+			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		i386-pc-solaris2.11)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/x86"
@@ -219,13 +231,17 @@ HOSTCC='gcc -m64'
 			;;
 		x86_64-pc-solaris2.11)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/x64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64 -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			cppflags_make_defaults="CPPFLAGS=\"-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
 HOSTCC='gcc -m64'
 "
+			# we need this, or binutils can't link, can't add it to -L,
+			# since then binutils breaks on finding an old libiberty.a
+			# from there instead of its own
+			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		sparc-sun-solaris2.11)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/sparc"
@@ -234,13 +250,17 @@ HOSTCC='gcc -m64'
 			;;
 		sparcv9-sun-solaris2.11)
 			profile="${PORTDIR}/profiles/prefix/sunos/solaris/5.11/sparc64"
-			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L/usr/sfw/lib/64 -R/usr/sfw/lib/64 -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
+			ldflags_make_defaults="LDFLAGS=\"-L${ROOT}/usr/lib -R${ROOT}/usr/lib -L${ROOT}/lib -R${ROOT}/lib -L${ROOT}/tmp/usr/lib -R${ROOT}/tmp/usr/lib\""
 			cppflags_make_defaults="CPPFLAGS=\"-I${ROOT}/usr/include -I${ROOT}/tmp/usr/include\""
 			extra_make_globals="
 CC='gcc -m64'
 CXX='g++ -m64'
 HOSTCC='gcc -m64'
 "
+			# we need this, or binutils can't link, can't add it to -L,
+			# since then binutils breaks on finding an old libiberty.a
+			# from there instead of its own
+			cp /usr/sfw/lib/64/libgcc_s.so.1 "${ROOT}"/tmp/usr/lib/
 			;;
 		powerpc-ibm-aix*)
 			profile="${PORTDIR}/profiles/prefix/aix/${CHOST#powerpc-ibm-aix}/ppc"
@@ -308,7 +328,7 @@ HOSTCC='gcc -m64'
 		echo 'FEATURES="${FEATURES} -news"' >> "${profile}"/make.defaults
 		einfo "Your make.globals is prepared for your current bootstrap"
 	fi
-	# Hack for bash becuase the curses is not always available (linux).
+	# Hack for bash because curses is not always available (linux).
 	# This will be wiped upon emerge --sync and back to normal.
 	echo '[[ ${PN} == "bash" ]] && EXTRA_ECONF="--without-curses"' >> \
 		"${PORTDIR}/profiles/prefix/profile.bashrc"
@@ -646,6 +666,13 @@ bootstrap_zlib() {
 	S="${S}"/zlib-${PV}
 	cd "${S}"
 
+	if [[ ${CHOST} == x86_64-*-* || ${CHOST} == sparcv9-*-* ]] ; then
+		# 64-bits targets need zlib as library (not just to unpack),
+		# hence we need to make sure that we really bootstrap this
+		# 64-bits (in contrast to the tools which we don't care if they
+		# are 32-bits)
+		export CC="gcc -m64"
+	fi
 	einfo "Compiling ${A%-*}"
 	CHOST= ./configure --prefix="${ROOT}"/usr || exit 1
 	$MAKE ${MAKEOPTS} || exit 1
