@@ -561,6 +561,7 @@ media-libs/alsa-lib
 media-libs/audiofile
 media-libs/bio2jack
 media-libs/compface
+media-libs/emfengine
 media-libs/faad2
 media-libs/freeglut
 media-libs/gegl
@@ -580,6 +581,7 @@ media-libs/libdiscid
 media-libs/libdvdcss
 media-libs/libdvdplay
 media-libs/libdvdread
+media-libs/libemf
 media-libs/libexif-gtk
 media-libs/libfpx
 media-libs/liblo
