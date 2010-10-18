@@ -1,0 +1,29 @@
+diff -ru Python-2.6.5.orig/setup.py Python-2.6.5/setup.py
+--- Python-2.6.5.orig/setup.py	Mon Oct 18 15:08:57 2010
++++ Python-2.6.5/setup.py	Mon Oct 18 15:12:36 2010
+@@ -1228,7 +1228,9 @@
+         if sys.maxint == 0x7fffffff:
+             # This requires sizeof(int) == sizeof(long) == sizeof(char*)
+             dl_inc = find_file('dlfcn.h', [], inc_dirs)
+-            if (dl_inc is not None) and (platform not in ['atheos']):
++            # interix note: dlfcn.h is in a compiler private dir, which this
++            # script doesn't seem to see - so overriding manually.
++            if ((dl_inc is not None) and (platform not in ['atheos'])) or (platform.startswith('interix')):
+                 exts.append( Extension('dl', ['dlmodule.c']) )
+             else:
+                 missing.append('dl')
+@@ -1303,7 +1305,13 @@
+                 HAVE_FD_TRANSFER=1
+                 )
+             libraries = ['rt']
+-
++        elif platform.startswith('interix'):
++            macros = dict(
++                HAVE_SEM_OPEN=1,
++                HAVE_SEM_TIMEDWAIT=1,
++                HAVE_FD_TRANSFER=0,
++                )
++            libraries = []
+         else:                                   # Linux and other unices
+             macros = dict(
+                 HAVE_SEM_OPEN=1,

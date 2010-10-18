@@ -168,11 +168,12 @@ src_prepare() {
 	# patch to make python behave nice with interix. There is one part
 	# maybe affecting other x86-platforms, thus conditional.
 	if [[ ${CHOST} == *-interix* ]] ; then
+		epatch "${FILESDIR}"/${PN}-2.6.5-interix-noffi.patch
 		# this one could be applied unconditionally, but to keep it
 		# clean, I do it together with the conditional one.
 		epatch "${FILESDIR}"/${PN}-2.5.1-interix-sleep.patch
 		# some more modules fixed (_multiprocessing, dl)
-		epatch "${FILESDIR}"/${PN}-2.6.2-interix-modules.patch
+		epatch "${FILESDIR}"/${PN}-2.6.5-interix-modules.patch
 		# -r2 because of 12_all_check_availability_of_nis_headers
 		epatch "${FILESDIR}"/${PN}-2.6.4-r2-interix-nis.patch
 	fi
@@ -186,8 +187,10 @@ src_prepare() {
 
 src_configure() {
 	# Apparently, no one knows how to solved this as-needed failure.
-	# bug 298674 Apply workaround for now.
-	use prefix && append-ldflags $(no-as-needed)
+	# bug 298674 Apply workaround for now. (don't do it on interix - compiler
+	# will fail :))
+	[[ ${CHOST} != *-interix* ]] &&
+		use prefix && append-ldflags $(no-as-needed)
 	# Disable extraneous modules with extra dependencies.
 	if use build; then
 		export PYTHON_DISABLE_MODULES="dbm _bsddb gdbm _curses _curses_panel readline _sqlite3 _tkinter _elementtree pyexpat"
