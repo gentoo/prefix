@@ -373,6 +373,7 @@ dev-libs/nspr
 dev-libs/nss
 dev-libs/oniguruma
 dev-libs/protobuf
+dev-libs/quazip
 dev-libs/rasqal
 dev-libs/redland
 dev-libs/redland-bindings
