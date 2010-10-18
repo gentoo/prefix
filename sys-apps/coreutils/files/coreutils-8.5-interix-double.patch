@@ -1,0 +1,69 @@
+Binary files coreutils-8.5.orig/src/seq and coreutils-8.5/src/seq differ
+diff -ru coreutils-8.5.orig/src/seq.c coreutils-8.5/src/seq.c
+--- coreutils-8.5.orig/src/seq.c	Mon Oct 18 11:26:56 2010
++++ coreutils-8.5/src/seq.c	Mon Oct 18 13:03:01 2010
+@@ -245,12 +245,12 @@
+ 
+   if (! out_of_range)
+     {
+-      long double x = first;
+-      long double i;
++      double x = first;
++      double i;
+ 
+       for (i = 1; ; i++)
+         {
+-          long double x0 = x;
++          double x0 = x;
+           printf (fmt, x);
+           if (out_of_range)
+             break;
+@@ -267,7 +267,7 @@
+                  of stopping at 0.000002.  */
+ 
+               bool print_extra_number = false;
+-              long double x_val;
++              double x_val;
+               char *x_str;
+               int x_strlen;
+               setlocale (LC_NUMERIC, "C");
+@@ -277,7 +277,7 @@
+                 xalloc_die ();
+               x_str[x_strlen - layout.suffix_len] = '\0';
+ 
+-              if (xstrtold (x_str + layout.prefix_len, NULL, &x_val, c_strtold)
++              if (xstrtod (x_str + layout.prefix_len, NULL, &x_val, c_strtod)
+                   && x_val == last)
+                 {
+                   char *x0_str = NULL;
+@@ -303,7 +303,7 @@
+ static char const *
+ get_default_format (operand first, operand step, operand last)
+ {
+-  static char format_buf[sizeof "%0.Lf" + 2 * INT_STRLEN_BOUND (int)];
++  static char format_buf[sizeof "%0.f" + 2 * INT_STRLEN_BOUND (int)];
+ 
+   int prec = MAX (first.precision, step.precision);
+ 
+@@ -323,18 +323,18 @@
+           if (width <= INT_MAX)
+             {
+               int w = width;
+-              sprintf (format_buf, "%%0%d.%dLf", w, prec);
++              sprintf (format_buf, "%%0%d.%df", w, prec);
+               return format_buf;
+             }
+         }
+       else
+         {
+-          sprintf (format_buf, "%%.%dLf", prec);
++          sprintf (format_buf, "%%.%df", prec);
+           return format_buf;
+         }
+     }
+ 
+-  return "%Lg";
++  return "%g";
+ }
+ 
+ int
