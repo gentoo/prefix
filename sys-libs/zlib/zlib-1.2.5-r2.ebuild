@@ -61,7 +61,7 @@ src_compile() {
 		emake || die
 		;;
 	*)	# not an autoconf script, so can't use econf
-		./configure --shared --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/usr/$(get_libdir) || die
+		CC=$(tc-getCC) ./configure --shared --prefix="${EPREFIX}"/usr --libdir="${EPREFIX}"/usr/$(get_libdir) || die
 		emake || die
 		;;
 	esac
