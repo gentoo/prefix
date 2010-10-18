@@ -1,19 +1,20 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.1.5-r1.ebuild,v 1.7 2008/06/22 15:26:11 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-apps/sed/sed-4.2.1-r1.ebuild,v 1.1 2010/10/14 18:34:55 vapier Exp $
 
 inherit eutils flag-o-matic toolchain-funcs
 
 DESCRIPTION="Super-useful stream editor"
 HOMEPAGE="http://sed.sourceforge.net/"
-SRC_URI="mirror://gnu/sed/${P}.tar.gz"
+SRC_URI="mirror://gnu/sed/${P}.tar.bz2"
 
-LICENSE="GPL-2"
+LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
-IUSE="nls static"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+IUSE="acl nls selinux static"
 
-RDEPEND="nls? ( virtual/libintl )"
+RDEPEND="nls? ( virtual/libintl )
+	acl? ( virtual/acl )"
 DEPEND="${RDEPEND}
 	nls? ( sys-devel/gettext )"
 
@@ -32,19 +33,16 @@ src_bootstrap_sed() {
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-4.1.4-makeinfo-c-locale.patch
-	epatch "${FILESDIR}"/${P}-alloca.patch
-	epatch "${FILESDIR}"/${P}-prototypes.patch
+	epatch "${FILESDIR}"/${PN}-4.1.5-alloca.patch
 	epatch "${FILESDIR}"/${PN}-4.1.4-aix-malloc.patch
-	epatch "${FILESDIR}"/${P}-string.patch
-	epatch "${FILESDIR}"/${P}-regex-nobool.patch
-	epatch "${FILESDIR}"/${P}-irix.patch
+	epatch "${FILESDIR}"/${PN}-4.1.5-regex-nobool.patch
+	epatch "${FILESDIR}"/${P}-handle-incomplete-sequences-as-if-they-were-invalid.patch #284403
 	# don't use sed here if we have to recover a broken host sed
 }
 
 src_compile() {
 	src_bootstrap_sed
-	# make sure all sed operations here are repeatable
+	# this has to be after the bootstrap portion
 	sed -i \
 		-e '/docdir =/s:=.*/doc:= $(datadir)/doc/'${PF}'/html:' \
 		doc/Makefile.in || die "sed html doc"
@@ -55,16 +53,13 @@ src_compile() {
 		bindir="${EPREFIX}"/usr/bin
 	fi
 
-	if echo "#include <regex.h>" | $(tc-getCPP) > /dev/null ; then
-		myconf="${myconf} --without-included-regex"
-	fi
-
+	use selinux || export ac_cv_{search_setfilecon,header_selinux_{context,selinux}_h}=no
 	use static && append-ldflags -static
 	econf \
 		--bindir="${bindir}" \
+		$(use_enable acl) \
 		$(use_enable nls) \
-		${myconf} \
-		|| die "Configure failed"
+		${myconf}
 	emake || die "build failed"
 }
 
@@ -73,6 +68,4 @@ src_install() {
 	dodoc NEWS README* THANKS AUTHORS BUGS ChangeLog
 	docinto examples
 	dodoc "${FILESDIR}"/{dos2unix,unix2dos}
-
-	rm -f "${ED}"/usr/lib/charset.alias "${ED}"/usr/share/locale/locale.alias
 }
