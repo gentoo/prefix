@@ -105,6 +105,10 @@ do_compile() {
 		myconf="--with-shared $(use_enable static-libs normal)"
 	fi
 
+	if [[ ${CHOST} == *-interix* ]]; then
+		myconf="--without-leaks"
+	fi
+
 	# We need the basic terminfo files in /etc, bug #37026.  We will
 	# add '--with-terminfo-dirs' and then populate /etc/terminfo in
 	# src_install() ...
