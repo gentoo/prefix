@@ -25,7 +25,7 @@ src_compile() {
 	fi
 
 	case "${CTARGET}" in
-	*-interix*) EXTRA_ECONF="--without-gnu-ld --without-gnu-as" ;;
+	*-interix*) EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as" ;;
 	esac
 
 	toolchain-binutils_src_compile
