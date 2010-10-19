@@ -1,0 +1,10 @@
+--- lib/utils.c.orig	2008-01-29 19:23:27.000000000 -0500
++++ lib/utils.c	2008-01-29 19:23:37.000000000 -0500
+@@ -19,6 +19,7 @@
+ #include "config.h"
+ 
+ #include <stdio.h>
++#include <unistd.h>
+ 
+ #include <errno.h>
+ #ifndef errno
