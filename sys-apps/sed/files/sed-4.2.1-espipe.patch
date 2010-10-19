@@ -1,0 +1,19 @@
+reported upstream on 20101019 15:39 at sed-users mailing list (yahoo group).
+
+diff -ru sed-4.2.1.orig/sed/utils.c sed-4.2.1/sed/utils.c
+--- sed-4.2.1.orig/sed/utils.c	2010-10-19 14:18:44 +0200
++++ sed-4.2.1/sed/utils.c	2010-10-19 15:12:58 +0200
+@@ -284,7 +284,12 @@
+   FILE *stream;
+ {
+   clearerr(stream);
+-  if (fflush(stream) == EOF && errno != EBADF)
++  if (fflush(stream) == EOF 
++        && errno != EBADF
++#ifdef ESPIPE
++        && errno != ESPIPE
++#endif
++    )
+     panic("couldn't flush %s: %s", utils_fp_name(stream), strerror(errno));
+ }
+ 
