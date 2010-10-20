@@ -442,7 +442,7 @@ src_install() {
 				make INSTALL_ROOT="${D}" install-sapi || die "Unable to install ${x} SAPI"
 				if use concurrentmodphp ; then
 					einfo "Installing Apache${APACHE_VERSION} config file for PHP5-concurrent (70_mod_php5_concurr.conf)"
-					insinto ${APACHE_MODULES_CONFDIR#${EPREFIX}}
+					insinto ${APACHE_MODULES_CONFDIR}
 					newins "${FILESDIR}/70_mod_php5_concurr.conf-apache2-r1" "70_mod_php5_concurr.conf"
 
 					# Put the ld version script in the right place so it's always accessible
@@ -453,7 +453,7 @@ src_install() {
 					PHPEXTDIR="`"${ED}/${destdir}/bin/php-config" --extension-dir`-versioned"
 				else
 					einfo "Installing Apache${APACHE_VERSION} config file for PHP5 (70_mod_php5.conf)"
-					insinto ${APACHE_MODULES_CONFDIR#${EPREFIX}}
+					insinto ${APACHE_MODULES_CONFDIR}
 					newins "${FILESDIR}/70_mod_php5.conf-apache2-r1" "70_mod_php5.conf"
 				fi
 				php5_2-sapi_install_ini
