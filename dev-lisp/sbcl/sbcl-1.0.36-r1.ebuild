@@ -108,6 +108,14 @@ src_prepare() {
 
 	find . -type f -name .cvsignore -delete
 	epatch  "${FILESDIR}/${P}-fix_linux-os-c.patch"
+	# for prefix darwin (-arch x86_64 -> -m64)
+	sed -i -e 's/"-arch" "x86_64"/"-m64"/g' contrib/sb-grovel/def-to-lisp.lisp
+	for i in src/runtime/Config.x86-64-darwin* tests/foreign.test.sh; do
+ 		sed -i -e 's/-arch x86_64 */-m64 /g' $i;
+	done
+	for i in tests/*.impure.lisp; do
+		sed -i -e 's/"-arch" #\+.* "x86_64"/"-m64"/g' $i;
+	done
 	#fix CFLAGS and LDFLAGS
 	pushd src/runtime
 	sed -i -e "s/CFLAGS = -g -Wall -Wsign-compare -O3/CFLAGS =${CFLAGS}/g" GNUmakefile
