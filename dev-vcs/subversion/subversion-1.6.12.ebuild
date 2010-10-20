@@ -373,7 +373,7 @@ src_compile() {
 create_apache_tests_configuration() {
 	get_loadmodule_directive() {
 		if [[ "$("${APACHE_BIN}" -l)" != *"mod_$1.c"* ]]; then
-			echo "LoadModule $1_module \"${APACHE_MODULESDIR}/mod_$1.so\""
+			echo "LoadModule $1_module \"${EPREFIX}${APACHE_MODULESDIR}/mod_$1.so\""
 		fi
 	}
 	get_loadmodule_directives() {
@@ -671,8 +671,8 @@ src_install() {
 
 	# Install Apache module configuration.
 	if use apache2; then
-		mkdir -p "${D}${APACHE_MODULES_CONFDIR}"
-		cat << EOF > "${D}${APACHE_MODULES_CONFDIR}"/47_mod_dav_svn.conf
+		mkdir -p "${ED}${APACHE_MODULES_CONFDIR}"
+		cat << EOF > "${ED}${APACHE_MODULES_CONFDIR}"/47_mod_dav_svn.conf
 <IfDefine SVN>
 LoadModule dav_svn_module modules/mod_dav_svn.so
 <IfDefine SVN_AUTHZ>
