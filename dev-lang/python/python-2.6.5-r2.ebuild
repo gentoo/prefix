@@ -271,9 +271,6 @@ src_configure() {
 	# Don't include libmpc on IRIX - it is only available for 64bit MIPS4
 	[[ ${CHOST} == *-irix* ]] && export ac_cv_lib_mpc_usconfig=no
 
-	# Interix poll is broken
-	[[ ${CHOST} == *-interix* ]] && export ac_cv_func_poll=no
-
 	[[ ${CHOST} == *-mint* ]] && export ac_cv_func_poll=no
 
 	# we need this to get pythonw, the GUI version of python
