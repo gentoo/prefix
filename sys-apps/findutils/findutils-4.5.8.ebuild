@@ -26,6 +26,8 @@ src_unpack() {
 	# Don't build or install locate because it conflicts with slocate,
 	# which is a secure version of locate.  See bug 18729
 	sed -i '/^SUBDIRS/s/locate//' Makefile.in
+
+	epatch "${FILESDIR}"/${P}-interix.patch
 }
 
 src_compile() {
