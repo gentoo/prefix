@@ -22,6 +22,7 @@ S=${WORKDIR}/${MY_P}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-dnl.patch
+	epatch "${FILESDIR}"/${P}-interix-poll-h.patch
 	elibtoolize # for FreeMiNT, bug #333429
 }
 
@@ -32,10 +33,6 @@ src_configure() {
 	# lines are inherited between libraries
 	local myconf
 	use elibc_FreeBSD && myconf="--enable-indirect-deps"
-
-	if [[ ${CHOST} == *-interix* ]]; then 
-		export ac_cv_func_poll=no
-	fi
 
 	econf \
 		--docdir="${EPREFIX}"/usr/share/doc/${PF}/html \
