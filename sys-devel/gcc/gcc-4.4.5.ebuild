@@ -1,32 +1,30 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.1.ebuild,v 1.13 2010/01/09 12:58:57 ulm Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/gcc-4.4.5.ebuild,v 1.1 2010/10/17 11:54:40 dirtyepic Exp $
 
 PATCH_VER="1.0"
-UCLIBC_VER="1.1"
+UCLIBC_VER="1.0"
 
 ETYPE="gcc-compiler"
 
 # Hardened gcc 4 stuff
-#PIE_VER="10.1.5"
-#SPECS_VER="0.9.4"
-
-# arch/libc configurations known to be stable or untested with {PIE,SSP,FORTIFY}-by-default
-#PIE_GLIBC_STABLE="x86 amd64 ~ppc ~ppc64 ~arm ~sparc"
-#PIE_UCLIBC_STABLE="x86 arm"
-#SSP_STABLE="amd64 x86 ppc ppc64 ~arm ~sparc"
-#SSP_UCLIBC_STABLE=""
-
-# whether we should split out specs files for multiple {PIE,SSP}-by-default
-# and vanilla configurations.
-SPLIT_SPECS=no #${SPLIT_SPECS-true} hard disable until #106690 is fixed
+PIE_VER="0.4.5"
+SPECS_VER="0.2.0"
+SPECS_GCC_VER="4.4.3"
+# arch/libc configurations known to be stable with {PIE,SSP}-by-default
+PIE_GLIBC_STABLE="x86 amd64 ppc ppc64 arm ia64"
+PIE_UCLIBC_STABLE="x86 arm amd64 ppc ppc64"
+SSP_STABLE="amd64 x86 ppc ppc64 arm"
+# uclibc need tls and nptl support for SSP support
+SSP_UCLIBC_STABLE=""
+#end Hardened stuff
 
 inherit toolchain flag-o-matic prefix
 
 DESCRIPTION="The GNU Compiler Collection.  Includes C/C++, java compilers, pie+ssp extensions, Haj Ten Brugge runtime bounds checking"
 
 LICENSE="GPL-3 LGPL-3 || ( GPL-3 libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.2"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 
 RDEPEND=">=sys-libs/zlib-1.1.4
 	>=sys-devel/gcc-config-1.4
@@ -73,6 +71,15 @@ if [[ ${CATEGORY} != cross-* ]] ; then
 	PDEPEND="${PDEPEND} !prefix? ( elibc_glibc? ( >=sys-libs/glibc-2.8 ) )"
 fi
 
+pkg_setup() {
+	gcc_pkg_setup
+
+	if use graphite ; then
+		ewarn "Graphite support is still experimental and unstable."
+		ewarn "Any bugs resulting from the use of Graphite will not be fixed."
+	fi
+}
+
 src_unpack() {
 	gcc_src_unpack
 
@@ -97,6 +104,9 @@ src_unpack() {
 		eprefixify "${S}"/gcc/gcc.c
 	fi
 
+	# make it have correct install_names on Darwin
+	epatch "${FILESDIR}"/4.3.3/darwin-libgcc_s-installname.patch
+
 	# --- The following patches still cause failure for other
 	# platforms. Since gcc-4.4 is still masked on interix, and
 	# i have no time ATM to fix things, i for now just commented
@@ -119,12 +129,16 @@ src_unpack() {
 
 	epatch "${FILESDIR}"/gcj-4.3.1-iconvlink.patch
 
-	epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
+	#epatch "${FILESDIR}"/${PN}-4.2-pa-hpux-libgcc_s-soname.patch
 	epatch "${FILESDIR}"/${PN}-4.2-ia64-hpux-always-pthread.patch
 
-	# try /usr/lib32 in 32bit profile on x86_64-linux (needs --enable-multilib),
+	# libgcc's Makefiles reuses $T, work around that :(
+	[[ ${CHOST} == *-solaris* ]] && \
+		epatch "${FILESDIR}"/4.4.4/${PN}-4.4.4-T-namespace.patch
+
+	# try /usr/lib31 in 32bit profile on x86_64-linux (needs --enable-multilib),
 	# but this does make sense in prefix only.
-	use prefix && epatch "${FILESDIR}"/${P}-linux-x86-on-amd64.patch
+	use prefix && epatch "${FILESDIR}"/${PN}-4.4.1-linux-x86-on-amd64.patch
 
 	use vanilla && return 0
 
@@ -137,6 +151,9 @@ src_unpack() {
 
 src_compile() {
 	case ${CTARGET}:" ${USE} " in
+		*-mint*)
+			EXTRA_ECONF="${EXTRA_ECONF} --enable-multilib"
+		;;
 		*-solaris*)
 			# todo: some magic for native vs. GNU linking?
 			EXTRA_ECONF="${EXTRA_ECONF} --with-gnu-ld --with-gnu-as"
@@ -145,15 +162,7 @@ src_compile() {
 			# AIX doesn't use GNU binutils, because it doesn't produce usable
 			# code
 			EXTRA_ECONF="${EXTRA_ECONF} --without-gnu-ld --without-gnu-as"
-			# The linker finding libs isn't enough, collect2 also has to:
-			EXTRA_ECONF="${EXTRA_ECONF} --with-mpfr=${EPREFIX}/usr"
-			EXTRA_ECONF="${EXTRA_ECONF} --with-gmp=${EPREFIX}/usr"
 			append-ldflags -Wl,-bbigtoc,-bmaxdata:0x10000000 # bug#194635
-		;;
-		*-darwin7)
-			# libintl triggers inclusion of -lc which results in multiply
-			# defined symbols, so disable nls
-			EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
 		;;
 		*-interix*)
 			# disable usage of poll() on interix, since poll() only
@@ -182,7 +191,9 @@ src_compile() {
 				CC="${CC} -m32"
 				CXX="${CC} -m32"
 			fi
+		;;
 	esac
+
 	# Since GCC 4.1.2 some non-posix (?) /bin/sh compatible code is used, at
 	# least on Solaris, and AIX /bin/sh is ways too slow,
 	# so force it to use $BASH (that portage uses) - it can't be EPREFIX

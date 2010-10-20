@@ -1,6 +1,55 @@
 # ChangeLog for sys-devel/gcc
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.774 2010/08/30 17:27:36 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-devel/gcc/ChangeLog,v 1.785 2010/10/19 14:25:37 hwoarang Exp $
+
+  19 Oct 2010; Markos Chandras <hwoarang@gentoo.org> gcc-4.4.4-r2.ebuild:
+  Stable on amd64 wrt bug #331531
+
+*gcc-4.4.5 (17 Oct 2010)
+
+  17 Oct 2010; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.4.5.ebuild:
+  Version bump.
+
+  17 Oct 2010; Ryan Hill <dirtyepic@gentoo.org> -gcc-4.3.2-r3.ebuild,
+  -gcc-4.3.2-r4.ebuild, gcc-4.3.4.ebuild, gcc-4.3.5.ebuild,
+  -gcc-4.4.1.ebuild, -gcc-4.4.4.ebuild, -gcc-4.5.0.ebuild:
+  Push out new 4.3.4 and 4.3.5 patchsets for bugs #256608 and #335290.
+  Remove old.
+
+  10 Oct 2010; Mike Frysinger <vapier@gentoo.org> gcc-4.5.1.ebuild:
+  Push out SuperH multilib fix #320251.
+
+  08 Oct 2010; Raúl Porcel <armin76@gentoo.org> gcc-4.4.3-r3.ebuild:
+  arm/ia64/sh stable
+
+  24 Sep 2010; Luca Barbato <lu_zero@gentoo.org> gcc-4.4.3-r3.ebuild:
+  Revert bump mixup (-r2 got bumped as -r3 instead -r3 patchset being
+  bumped)
+
+  24 Sep 2010; Luca Barbato <lu_zero@gentoo.org> gcc-4.4.3-r3.ebuild:
+  Revert bump mixup (-r2 got bumped as -r3 instead -r3 patchset being
+  bumped)
+
+  23 Sep 2010; Luca Barbato <lu_zero@gentoo.org> gcc-4.4.3-r3.ebuild:
+  Patchset bump to 1.4 backporting 4.4.4 patches.
+
+  19 Sep 2010; Ryan Hill <dirtyepic@gentoo.org> gcc-4.5.0.ebuild,
+  gcc-4.5.1.ebuild:
+  Restore keywords. Drop mips until they keyword dev-libs/mpc (bug #279851).
+
+  16 Sep 2010; Ryan Hill <dirtyepic@gentoo.org> gcc-4.5.1.ebuild:
+  Bump 4.5.1 patchset to 1.1. Fixes bug #334269 and #331641.
+  Add ewarn about LTO to pkg_setup.
+
+*gcc-4.4.4-r2 (16 Sep 2010)
+
+  16 Sep 2010; Ryan Hill <dirtyepic@gentoo.org> +gcc-4.4.4-r2.ebuild:
+  Revision bump to push out patchset 1.2. Fixes kernel miscompilation 
+  (bug #334269) as well as bug #331641, #331825, and #335290.
+
+  06 Sep 2010; Raúl Porcel <armin76@gentoo.org> gcc-4.4.3-r2.ebuild,
+  gcc-4.4.3-r3.ebuild, gcc-4.4.4-r1.ebuild:
+  Add ~s390
 
   30 Aug 2010; Raúl Porcel <armin76@gentoo.org> gcc-4.4.3-r2.ebuild:
   sparc stable
