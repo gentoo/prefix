@@ -1,6 +1,6 @@
 # Copyright 1999-2009 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.146 2010/05/13 19:45:47 robbat2 Exp $
+# $Header: /var/cvsroot/gentoo-x86/eclass/mysql.eclass,v 1.152 2010/10/06 00:13:11 robbat2 Exp $
 
 # @ECLASS: mysql.eclass
 # @MAINTAINER:
@@ -61,6 +61,14 @@ esac
 # mysql_upgrade.
 MYSQL_PV_MAJOR="$(get_version_component_range 1-2 ${PV})"
 
+# Cluster is a special case...
+if [[ "${PN}" == "mysql-cluster" ]]; then
+	case $PV in
+		6.1*|7.0*|7.1*) MYSQL_PV_MAJOR=5.1 ;;
+	esac
+fi
+
+
 # @ECLASS-VARIABLE: MYSQL_VERSION_ID
 # @DESCRIPTION:
 # MYSQL_VERSION_ID will be:
@@ -97,7 +105,9 @@ elif [ "${PV#5.4}" != "${PV}" ] ; then
 	MYSQL_COMMUNITY_FEATURES=1
 elif [ "${PV#5.5}" != "${PV}" ] ; then
 	MYSQL_COMMUNITY_FEATURES=1
-elif [ "${PV#6.0}" != "${PV}" ] ; then
+elif [ "${PV#6}" != "${PV}" ] ; then
+	MYSQL_COMMUNITY_FEATURES=1
+elif [ "${PV#7}" != "${PV}" ] ; then
 	MYSQL_COMMUNITY_FEATURES=1
 else
 	MYSQL_COMMUNITY_FEATURES=0
@@ -116,7 +126,7 @@ PERCONA_VER="${PERCONA_VER}"
 # Be warned, *DEPEND are version-dependant
 # These are used for both runtime and compiletime
 DEPEND="ssl? ( >=dev-libs/openssl-0.9.6d )
-		kernel_linux? ( sys-process/procps )
+		userland_GNU? ( sys-process/procps )
 		>=sys-apps/sed-4
 		>=sys-apps/texinfo-4.7-r1
 		>=sys-libs/readline-4.1
@@ -126,7 +136,7 @@ DEPEND="ssl? ( >=dev-libs/openssl-0.9.6d )
 && DEPEND="${DEPEND} libevent? ( >=dev-libs/libevent-1.4 )"
 
 # Having different flavours at the same time is not a good idea
-for i in "mysql" "mysql-community" "mariadb" ; do
+for i in "mysql" "mysql-community" "mysql-cluster" "mariadb" ; do
 	[[ "${i}" == ${PN} ]] ||
 	DEPEND="${DEPEND} !dev-db/${i}"
 done
@@ -156,13 +166,27 @@ if [ -z "${SERVER_URI}" ]; then
 		MARIA_FULL_PV="$(replace_version_separator 3 '-' ${PV})"
 		MARIA_FULL_P="${PN}-${MARIA_FULL_PV}"
 		SERVER_URI="
+		http://ftp.osuosl.org/pub/mariadb/${MARIA_FULL_P}/kvm-tarbake-jaunty-x86/${MARIA_FULL_P}.tar.gz
 		http://ftp.rediris.es/mirror/MariaDB/${MARIA_FULL_P}/kvm-tarbake-jaunty-x86/${MARIA_FULL_P}.tar.gz
 		http://maria.llarian.net/download/${MARIA_FULL_P}/kvm-tarbake-jaunty-x86/${MARIA_FULL_P}.tar.gz
 		http://launchpad.net/maria/${MYSQL_PV_MAJOR}/ongoing/+download/${MARIA_FULL_P}.tar.gz
+		http://mirrors.fe.up.pt/pub/${PN}/${MARIA_FULL_P}/kvm-tarbake-jaunty-x86/${MARIA_FULL_P}.tar.gz
+		http://ftp-stud.hs-esslingen.de/pub/Mirrors/${PN}/${MARIA_FULL_P}/kvm-tarbake-jaunty-x86/${MARIA_FULL_P}.tar.gz
 		"
-	# The community build is on the mirrors
-	elif [ "${MYSQL_COMMUNITY_FEATURES}" == "1" ]; then
-		SERVER_URI="mirror://mysql/Downloads/MySQL-${PV%.*}/mysql-${MY_PV}.tar.gz"
+	# The community and cluster builds are on the mirrors
+	elif [[ "${MYSQL_COMMUNITY_FEATURES}" == "1" || ${PN} == "mysql-cluster" ]] ; then
+		if [[ "${PN}" == "mysql-cluster" ]] ; then
+			URI_DIR="MySQL-Cluster"
+			URI_FILE="mysql-cluster-gpl"
+		else
+			URI_DIR="MySQL"
+			URI_FILE="mysql"
+		fi
+		URI_A="${URI_FILE}-${MY_PV}.tar.gz"
+		MIRROR_PV=$(get_version_component_range 1-2 ${PV})
+		# Recently upstream switched to an archive site, and not on mirrors
+		SERVER_URI="http://downloads.mysql.com/archives/${URI_FILE}-${MIRROR_PV}/${URI_A}
+					mirror://mysql/Downloads/${URI_DIR}-${PV%.*}/${URI_A}"
 	# The (old) enterprise source is on the primary site only
 	elif [ "${PN}" == "mysql" ]; then
 		SERVER_URI="ftp://ftp.mysql.com/pub/mysql/src/mysql-${MY_PV}.tar.gz"
@@ -195,8 +219,12 @@ IUSE="big-tables debug embedded minimal ${IUSE_DEFAULT_ON}perl selinux ssl stati
 mysql_version_is_at_least "4.1" \
 && IUSE="${IUSE} latin1"
 
-mysql_version_is_at_least "4.1.3" \
-&& IUSE="${IUSE} cluster extraengine"
+if mysql_version_is_at_least "4.1.3" ; then
+	IUSE="${IUSE} extraengine"
+	if [[ "${PN}" != "mysql-cluster" ]] ; then
+		IUSE="${IUSE} cluster"
+	fi
+fi
 
 mysql_version_is_at_least "5.0" \
 || IUSE="${IUSE} raid"
@@ -275,7 +303,7 @@ mysql_disable_test() {
 	rawtestname="${1}" ; shift
 	reason="${@}"
 	ewarn "test '${rawtestname}' disabled: '${reason}'"
-	
+
 	testsuite="${rawtestname/.*}"
 	testname="${rawtestname/*.}"
 	mysql_disable_file="${S}/mysql-test/t/disabled.def"
@@ -371,8 +399,10 @@ mysql_init_vars() {
 		fi
 	fi
 
-	MY_SOURCEDIR=${SERVER_URI##*/}
-	MY_SOURCEDIR=${MY_SOURCEDIR%.tar*}
+	if [ "${MY_SOURCEDIR:-unset}" == "unset" ]; then
+		MY_SOURCEDIR=${SERVER_URI##*/}
+		MY_SOURCEDIR=${MY_SOURCEDIR%.tar*}
+	fi
 
 	export MY_SHAREDSTATEDIR MY_SYSCONFDIR
 	export MY_LIBDIR MY_LOCALSTATEDIR MY_LOGDIR
@@ -429,7 +459,7 @@ configure_common() {
 	else
 		myconf="${myconf} --without-debug"
 		mysql_version_is_at_least "4.1.3" \
-		&& use cluster \
+		&& ( use cluster || [[ "${PN}" == "mysql-cluster" ]] ) \
 		&& myconf="${myconf} --without-ndb-debug"
 	fi
 
@@ -494,10 +524,11 @@ configure_40_41_50() {
 	else
 		myconf="${myconf} --without-berkeley-db"
 	fi
-
 	if mysql_version_is_at_least "4.1.3" ; then
 		myconf="${myconf} --with-geometry"
-		myconf="${myconf} $(use_with cluster ndbcluster)"
+		if [[ "${PN}" != "mysql-cluster" ]] ; then
+			myconf="${myconf} $(use_with cluster ndbcluster)"
+		fi
 	fi
 
 	if mysql_version_is_at_least "4.1.3" && use extraengine ; then
@@ -618,7 +649,7 @@ configure_51() {
 	done
 
 	# like configuration=max-no-ndb
-	if use cluster ; then
+	if ( use cluster || [[ "${PN}" == "mysql-cluster" ]] ) ; then
 		plugins_sta="${plugins_sta} ndbcluster partition"
 		plugins_dis="${plugins_dis//partition}"
 		myconf="${myconf} --with-ndb-binlog"
@@ -629,13 +660,21 @@ configure_51() {
 	if [[ "${PN}" == "mariadb" ]] ; then
 		# In MariaDB, InnoDB is packaged in the xtradb directory, so it's not
 		# caught above.
-		plugins_sta="${plugins_sta} maria innobase"
+		plugins_sta="${plugins_sta} maria"
+
+		[ -e "${S}"/storage/innobase ] || [ -e "${S}"/storage/xtradb ] ||
+			die "The ${P} package doesn't provide innobase nor xtradb"
+
+		for i in innobase xtradb ; do
+			[ -e "${S}"/storage/${i} ] && plugins_sta="${plugins_sta} ${i}"
+		done
+
 		myconf="${myconf} $(use_with libevent)"
 		# This is not optional, without it several upstream testcases fail.
 		# Also strongly recommended by upstream.
 		myconf="${myconf} --with-maria-tmp-tables"
 	fi
-	
+
 	if pbxt_available && [[ "${PBXT_NEWSTYLE}" == "1" ]]; then
 		use pbxt \
 		&& plugins_dyn="${plugins_dyn} pbxt" \
@@ -645,7 +684,7 @@ configure_51() {
 	use static && \
 	plugins_sta="${plugins_sta} ${plugins_dyn}" && \
 	plugins_dyn=""
-	
+
 	einfo "Available plugins: ${plugins_avail}"
 	einfo "Dynamic plugins: ${plugins_dyn}"
 	einfo "Static plugins: ${plugins_sta}"
@@ -665,7 +704,7 @@ pbxt_src_configure() {
 	pushd "${WORKDIR}/pbxt-${PBXT_VERSION}" &>/dev/null
 
 	einfo "Reconfiguring dir '${PWD}'"
-	AT_GNUCONF_UPDATE="yes" eautoreconf
+	eautoreconf
 
 	local myconf=""
 	myconf="${myconf} --with-mysql=${S} --libdir=${EPREFIX}/usr/$(get_libdir)"
@@ -733,7 +772,7 @@ mysql_pkg_setup() {
 		eerror "${M}"
 		die "${M}"
 	fi
-	
+
 	if mysql_version_is_at_least "5.1" \
 	&& xtradb_patch_available \
 	&& use xtradb \
@@ -814,12 +853,15 @@ mysql_src_prepare() {
 	epatch
 
 	# last -fPIC fixup, per bug #305873
-	i="${S}"/storage/innodb_plugin/plug.in	
+	i="${S}"/storage/innodb_plugin/plug.in
 	[ -f "${i}" ] && sed -i -e '/CFLAGS/s,-prefer-non-pic,,g' "${i}"
 
-	# Additional checks, remove bundled zlib
-	rm -f "${S}/zlib/"*.[ch]
-	sed -i -e "s/zlib\/Makefile dnl/dnl zlib\/Makefile/" "${S}/configure.in"
+	# Additional checks, remove bundled zlib (Cluster needs this, for static
+	# memory management in zlib, leave available for Cluster)
+	if [[ "${PN}" != "mysql-cluster" ]] ; then
+		rm -f "${S}/zlib/"*.[ch]
+		sed -i -e "s/zlib\/Makefile dnl/dnl zlib\/Makefile/" "${S}/configure.in"
+	fi
 	rm -f "scripts/mysqlbug"
 
 	# Make charsets install in the right place
@@ -851,7 +893,7 @@ mysql_src_prepare() {
 		cp -ral "${WORKDIR}/${XTRADB_P}" "${i}"
 		popd >/dev/null
 	fi
-	
+
 	if pbxt_available && [[ "${PBXT_NEWSTYLE}" == "1" ]] && use pbxt ; then
 		einfo "Adding storage engine: PBXT"
 		pushd "${S}"/storage >/dev/null
@@ -877,7 +919,7 @@ mysql_src_prepare() {
 	for d in ${rebuilddirlist} ; do
 		einfo "Reconfiguring dir '${d}'"
 		pushd "${d}" &>/dev/null
-		AT_GNUCONF_UPDATE="yes" eautoreconf
+		eautoreconf
 		popd &>/dev/null
 	done
 
@@ -1033,24 +1075,20 @@ mysql_src_install() {
 	fi
 
 	# Configuration stuff
-	if mysql_version_is_at_least "5.1" ; then
-		mysql_mycnf_version="5.1"
-	elif mysql_version_is_at_least "4.1" ; then
-		mysql_mycnf_version="4.1"
-	else
-		mysql_mycnf_version="4.0"
-	fi
-	einfo "Building default my.cnf"
+	case ${MYSQL_PV_MAJOR} in
+		3*|4.0) mysql_mycnf_version="4.0" ;;
+		4.[1-9]|5.0) mysql_mycnf_version="4.1" ;;
+		5.[1-9]|6*|7*) mysql_mycnf_version="5.1" ;;
+	esac
+	einfo "Building default my.cnf (${mysql_mycnf_version})"
 	insinto "${MY_SYSCONFDIR}"
 	doins scripts/mysqlaccess.conf
+	mycnf_src="my.cnf-${mysql_mycnf_version}"
 	sed -e "s!@DATADIR@!${EPREFIX}${MY_DATADIR}!g" \
-		-e "s!/tmp!${EPREFIX}/tmp!" \
-		-e "s!/usr!${EPREFIX}/usr!" \
-		-e "s!= /var!= ${EPREFIX}/var!" \
-		"${FILESDIR}/my.cnf-${mysql_mycnf_version}" \
+		"${FILESDIR}/${mycnf_src}" \
 		> "${TMPDIR}/my.cnf.ok"
 	use prefix && sed -i -e '/^user[ 	]*= mysql$/d' "${TMPDIR}/my.cnf.ok"
-	if mysql_version_is_at_least "4.1" && use latin1 ; then
+	if use latin1 ; then
 		sed -i \
 			-e "/character-set/s|utf8|latin1|g" \
 			"${TMPDIR}/my.cnf.ok"
@@ -1154,6 +1192,11 @@ mysql_pkg_postinst() {
 		elog "You might want to run:"
 		elog "\"emerge --config =${CATEGORY}/${PF}\""
 		elog "if this is a new install."
+		einfo
+
+		einfo
+		elog "If you are upgrading major versions, you should run the"
+		elog "mysql_upgrade tool."
 		einfo
 	fi
 
@@ -1279,6 +1322,7 @@ mysql_pkg_config() {
 	${ROOT}/usr/sbin/mysqld --verbose --help >"${helpfile}" 2>/dev/null
 	for opt in grant-tables host-cache name-resolve networking slave-start bdb \
 		federated innodb ssl log-bin relay-log slow-query-log external-locking \
+		ndbcluster \
 		; do
 		optexp="--(skip-)?${opt}" optfull="--skip-${opt}"
 		egrep -sq -- "${optexp}" "${helpfile}" && options="${options} ${optfull}"
@@ -1342,7 +1386,6 @@ mysql_pkg_config() {
 	"${EROOT}/usr/bin/mysql" \
 		--socket=${socket} \
 		-hlocalhost \
-	
 		-p"${MYSQL_ROOT_PASSWORD}" \
 		mysql < "${sqltmp}"
 	rc=$?
