@@ -1,0 +1,12 @@
+diff -ru openssh-5.5p1.orig/Makefile.in openssh-5.5p1/Makefile.in
+--- openssh-5.5p1.orig/Makefile.in	2010-10-21 11:32:49 +0200
++++ openssh-5.5p1/Makefile.in	2010-10-21 11:33:11 +0200
+@@ -264,7 +264,7 @@
+ 	if test ! -z "$(INSTALL_SSH_RAND_HELPER)" ; then \
+ 		$(INSTALL) -m 0755 $(STRIP_OPT) ssh-rand-helper$(EXEEXT) $(DESTDIR)$(libexecdir)/ssh-rand-helper$(EXEEXT) ; \
+ 	fi
+-	$(INSTALL) -m 4711 $(STRIP_OPT) ssh-keysign$(EXEEXT) $(DESTDIR)$(SSH_KEYSIGN)$(EXEEXT)
++	$(INSTALL) -m 0711 $(STRIP_OPT) ssh-keysign$(EXEEXT) $(DESTDIR)$(SSH_KEYSIGN)$(EXEEXT)
+ 	$(INSTALL) -m 0755 $(STRIP_OPT) ssh-pkcs11-helper$(EXEEXT) $(DESTDIR)$(SSH_PKCS11_HELPER)$(EXEEXT)
+ 	$(INSTALL) -m 0755 $(STRIP_OPT) sftp$(EXEEXT) $(DESTDIR)$(bindir)/sftp$(EXEEXT)
+ 	$(INSTALL) -m 0755 $(STRIP_OPT) sftp-server$(EXEEXT) $(DESTDIR)$(SFTP_SERVER)$(EXEEXT)

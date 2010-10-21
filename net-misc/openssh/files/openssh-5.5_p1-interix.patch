@@ -1,0 +1,529 @@
+diff -ru openssh-5.5p1.orig/auth-passwd.c openssh-5.5p1/auth-passwd.c
+--- openssh-5.5p1.orig/auth-passwd.c	2010-10-21 11:14:15 +0200
++++ openssh-5.5p1/auth-passwd.c	2010-10-21 11:21:12 +0200
+@@ -53,6 +53,12 @@
+ #include "hostfile.h"
+ #include "auth.h"
+ #include "auth-options.h"
++#include "misc.h"
++
++#ifdef __INTERIX
++# include <interix/security.h>
++extern char* InterixPwdToken;
++#endif
+ 
+ extern Buffer loginmsg;
+ extern ServerOptions options;
+@@ -111,6 +117,14 @@
+ 		return ok;
+ 	}
+ #endif
++#ifdef __INTERIX
++	if(setuser(authctxt->user, password, SU_CHECK) == 0) {
++		InterixPwdToken = xstrdup(password);
++		return ok;
++	} else {
++		return 0;
++	}
++#endif
+ #ifdef USE_PAM
+ 	if (options.use_pam)
+ 		return (sshpam_auth_passwd(authctxt, password) && ok);
+diff -ru openssh-5.5p1.orig/auth.c openssh-5.5p1/auth.c
+--- openssh-5.5p1.orig/auth.c	2010-10-21 11:14:15 +0200
++++ openssh-5.5p1/auth.c	2010-10-21 11:22:23 +0200
+@@ -541,6 +541,25 @@
+ 
+ 	pw = getpwnam(user);
+ 
++#ifdef __INTERIX
++    /* on windows, is there is no such user in the principal domain
++	 * (which is checked by default), we also have a look at the
++	 * local accounts by prefixing the username with the hostname
++	 */
++	if (pw == NULL) {
++		char tmp[MAXHOSTNAMELEN];
++		if(gethostname(tmp, MAXHOSTNAMELEN) == 0) {
++			strcat(tmp, "+");
++			strcat(tmp, user);
++
++			pw = getpwnam(tmp);
++
++			if(pw)
++				debug2("found local %s as fallback for principal domain", tmp);
++		}
++	}
++#endif /* __INTERIX */
++
+ #if defined(_AIX) && defined(HAVE_SETAUTHDB)
+ 	aix_restoreauthdb();
+ #endif
+diff -ru openssh-5.5p1.orig/configure.ac openssh-5.5p1/configure.ac
+--- openssh-5.5p1.orig/configure.ac	2010-10-21 11:14:16 +0200
++++ openssh-5.5p1/configure.ac	2010-10-21 11:21:12 +0200
+@@ -448,6 +448,25 @@
+ 		file descriptor passing])
+ 	AC_DEFINE(SSH_IOBUFSZ, 65535, [Windows is sensitive to read buffer size])
+ 	;;
++*-*-interix*)
++	AC_DEFINE(MISSING_HOWMANY, 1, [howmany macro is missing])
++	#AC_DEFINE(USE_PIPES, 1, [Use PIPES instead of a socketpair()])
++	AC_DEFINE(DISABLE_LOGIN, 1,
++		[Define if you don't want to use your system's login() call])
++	AC_DEFINE(DISABLE_SHADOW, 1,
++	    [Define if you want to disable shadow passwords])
++	AC_DEFINE(IP_TOS_IS_BROKEN, 1,
++	    [Define if your system choked on IP TOS setting])
++	AC_DEFINE(NO_IPPORT_RESERVED_CONCEPT, 1,
++	    [Define if the concept of ports only accessible to
++		superusers isn't known])
++	AC_DEFINE(DISABLE_FD_PASSING, 1,
++		[Define if your platform needs to skip post auth
++		file descriptor passing])
++	AC_DEFINE(LOGIN_NO_ENDOPT, 1,
++	    [Define if your login program cannot handle end of options ("--")])
++	SSHDLIBS="$SSHDLIBS -lcrypt"
++	;;
+ *-*-dgux*)
+ 	AC_DEFINE(IP_TOS_IS_BROKEN, 1,
+ 		[Define if your system choked on IP TOS setting])
+diff -ru openssh-5.5p1.orig/defines.h openssh-5.5p1/defines.h
+--- openssh-5.5p1.orig/defines.h	2010-10-21 11:14:16 +0200
++++ openssh-5.5p1/defines.h	2010-10-21 11:21:12 +0200
+@@ -732,7 +732,11 @@
+ #endif
+ 
+ #ifndef IOV_MAX
+-# if defined(_XOPEN_IOV_MAX)
++# if defined(__INTERIX)
++   // Interix: has _XOPEN_IOV_MAX = INT_MAX which breaks
++   // the compilation, since an iovec array of INT_MAX is too large
++#  define	IOV_MAX		_SC_IOV_MAX
++# elif defined(_XOPEN_IOV_MAX)
+ #  define	IOV_MAX		_XOPEN_IOV_MAX
+ # elif defined(DEF_IOV_MAX)
+ #  define	IOV_MAX		DEF_IOV_MAX
+diff -ru openssh-5.5p1.orig/hostfile.c openssh-5.5p1/hostfile.c
+--- openssh-5.5p1.orig/hostfile.c	2010-10-21 11:14:16 +0200
++++ openssh-5.5p1/hostfile.c	2010-10-21 11:21:12 +0200
+@@ -45,7 +45,9 @@
+ #include <openssl/hmac.h>
+ #include <openssl/sha.h>
+ 
+-#include <resolv.h>
++#ifndef __INTERIX
++# include <resolv.h>
++#endif
+ #include <stdarg.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+diff -ru openssh-5.5p1.orig/openbsd-compat/bsd-misc.h openssh-5.5p1/openbsd-compat/bsd-misc.h
+--- openssh-5.5p1.orig/openbsd-compat/bsd-misc.h	2010-10-21 11:14:17 +0200
++++ openssh-5.5p1/openbsd-compat/bsd-misc.h	2010-10-21 11:21:12 +0200
+@@ -68,12 +68,14 @@
+ #endif /* HAVE_TRUNCATE */
+ 
+ #if !defined(HAVE_NANOSLEEP) && !defined(HAVE_NSLEEP)
++#ifndef __INTERIX
+ #ifndef HAVE_STRUCT_TIMESPEC
+ struct timespec {
+ 	time_t	tv_sec;
+ 	long	tv_nsec;
+ };
+ #endif
++#endif
+ int nanosleep(const struct timespec *, struct timespec *);
+ #endif
+ 
+diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c openssh-5.5p1/openbsd-compat/getrrsetbyname.c
+--- openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c	2010-10-21 11:14:17 +0200
++++ openssh-5.5p1/openbsd-compat/getrrsetbyname.c	2010-10-21 11:21:12 +0200
+@@ -61,6 +61,10 @@
+ extern int h_errno;
+ #endif
+ 
++/* on interix, all this stuff won't work that easy
++ * so we skip it for now. */
++#if !defined(__INTERIX)
++
+ /* We don't need multithread support here */
+ #ifdef _THREAD_PRIVATE
+ # undef _THREAD_PRIVATE
+@@ -182,11 +186,16 @@
+ 
+ static int count_dns_rr(struct dns_rr *, u_int16_t, u_int16_t);
+ 
++#endif /* __INTERIX */
++
+ int
+ getrrsetbyname(const char *hostname, unsigned int rdclass,
+     unsigned int rdtype, unsigned int flags,
+     struct rrsetinfo **res)
+ {
++#if defined(__INTERIX)
++	return (ERRSET_FAIL);
++#else
+ 	struct __res_state *_resp = _THREAD_PRIVATE(_res, _res, &_res);
+ 	int result;
+ 	struct rrsetinfo *rrset = NULL;
+@@ -343,6 +352,7 @@
+ 	if (response != NULL)
+ 		free_dns_response(response);
+ 	return (result);
++#endif
+ }
+ 
+ void
+@@ -376,6 +386,8 @@
+ 	free(rrset);
+ }
+ 
++#if !defined(__INTERIX)
++
+ /*
+  * DNS response parsing routines
+  */
+@@ -607,4 +619,6 @@
+ 	return (n);
+ }
+ 
++#endif /* __INTERIX */
++
+ #endif /* !defined(HAVE_GETRRSETBYNAME) */
+diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.h openssh-5.5p1/openbsd-compat/getrrsetbyname.h
+--- openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.h	2010-10-21 11:14:17 +0200
++++ openssh-5.5p1/openbsd-compat/getrrsetbyname.h	2010-10-21 11:21:12 +0200
+@@ -54,9 +54,11 @@
+ 
+ #include <sys/types.h>
+ #include <netinet/in.h>
+-#include <arpa/nameser.h>
++#ifndef __INTERIX
++# include <arpa/nameser.h>
++# include <resolv.h>
++#endif
+ #include <netdb.h>
+-#include <resolv.h>
+ 
+ #ifndef HFIXEDSZ
+ #define HFIXEDSZ 12
+diff -ru openssh-5.5p1.orig/openbsd-compat/inet_ntop.c openssh-5.5p1/openbsd-compat/inet_ntop.c
+--- openssh-5.5p1.orig/openbsd-compat/inet_ntop.c	2010-10-21 11:14:17 +0200
++++ openssh-5.5p1/openbsd-compat/inet_ntop.c	2010-10-21 11:21:12 +0200
+@@ -27,7 +27,9 @@
+ #include <sys/socket.h>
+ #include <netinet/in.h>
+ #include <arpa/inet.h>
+-#include <arpa/nameser.h>
++#ifndef __INTERIX
++# include <arpa/nameser.h>
++#endif
+ #include <string.h>
+ #include <errno.h>
+ #include <stdio.h>
+diff -ru openssh-5.5p1.orig/session.c openssh-5.5p1/session.c
+--- openssh-5.5p1.orig/session.c	2010-10-21 11:14:18 +0200
++++ openssh-5.5p1/session.c	2010-10-21 11:21:12 +0200
+@@ -91,6 +91,27 @@
+ #include "monitor_wrap.h"
+ #include "sftp.h"
+ 
++#ifdef __INTERIX
++# include <interix/env.h>
++# include <interix/security.h>
++char* InterixPwdToken = NULL;
++
++#define INTERIX_PWD_WARNING \
++		fprintf(stderr,"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n" \
++					   "@ WARNING: Due to limitations in the POSIX Subsystem and Win32  @\n" \
++					   "@     a Password is required to acquire a full authentication.  @\n" \
++					   "@     Without such an authentication token, certain things will @\n" \
++					   "@     only be available in a very limited way (Visual Studio's  @\n" \
++					   "@     link.exe can only link without debug information, network @\n" \
++					   "@     shares that require user authentication don't fully work, @\n" \
++					   "@     etc.). However if you don't require those things to work, @\n" \
++					   "@     you may be just fine without password (public-key, etc.). @\n" \
++					   "@ To obtain a full authentication you need to use password      @\n" \
++					   "@ authentication at the moment. To do so, remove your public    @\n" \
++					   "@ key from your ~/.ssh/authorized_keys[2] file(s).              @\n" \
++					   "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n");
++#endif
++
+ #if defined(KRB5) && defined(USE_AFS)
+ #include <kafs.h>
+ #endif
+@@ -1142,6 +1163,17 @@
+ 	}
+ #endif
+ 
++#ifdef __INTERIX
++	{
++		/* new stuff: create a full windows login environment */
++		struct passwd* fullpw = getpwuid_ex(pw->pw_uid, PW_FULLNAME);
++		env_t* w_env = env_login(fullpw);
++		
++		copy_environment(env_array(w_env), &env, &envsize);
++		env_free(w_env);
++	}
++#endif
++
+ #ifdef GSSAPI
+ 	/* Allow any GSSAPI methods that we've used to alter
+ 	 * the childs environment as they see fit
+@@ -1504,11 +1536,13 @@
+ 			perror("setgid");
+ 			exit(1);
+ 		}
++#ifndef __INTERIX
+ 		/* Initialize the group list. */
+ 		if (initgroups(pw->pw_name, pw->pw_gid) < 0) {
+ 			perror("initgroups");
+ 			exit(1);
+ 		}
++#endif
+ 		endgrent();
+ # ifdef USE_PAM
+ 		/*
+@@ -1572,8 +1606,29 @@
+ 			exit(1);
+ 		}
+ #else
++#ifdef __INTERIX
++		/* on interix, to get a full env, we _need_ the plain text
++		 * password during this! */
++		if(InterixPwdToken) {
++			debug2("re-setting user password");
++			strcpy(pw->pw_passwd, InterixPwdToken);
++		} else {
++			INTERIX_PWD_WARNING
++		}
++#endif
+ 		/* Permanently switch to the desired uid. */
+ 		permanently_set_uid(pw);
++
++#ifdef __INTERIX
++		/* after authentication, wipe out the memorized password
++		 * for increased security (tm) */
++		if(InterixPwdToken) {
++			memset(InterixPwdToken, 0, strlen(InterixPwdToken));
++			memset(pw->pw_passwd, 0, strlen(pw->pw_passwd));
++			strcpy(pw->pw_passwd, "*");
++			debug2("wiped password from memory");
++		}
++#endif
+ #endif
+ 	}
+ 
+@@ -1607,6 +1662,13 @@
+ launch_login(struct passwd *pw, const char *hostname)
+ {
+ 	/* Launch login(1). */
++	#ifdef __INTERIX
++	/* -f only works if the user is already autheticated as the requested user */
++	if (!InterixPwdToken)
++		INTERIX_PWD_WARNING
++	if (setuser(pw->pw_name, InterixPwdToken, SU_COMPLETE))
++		fatal("setuser %.100s: %.100s", pw->pw_name, strerror(errno));
++	#endif
+ 
+ 	execl(LOGIN_PROGRAM, "login", "-h", hostname,
+ #ifdef xxxLOGIN_NEEDS_TERM
+diff -ru openssh-5.5p1.orig/sshd.c openssh-5.5p1/sshd.c
+--- openssh-5.5p1.orig/sshd.c	2010-10-21 11:14:19 +0200
++++ openssh-5.5p1/sshd.c	2010-10-21 11:21:12 +0200
+@@ -137,6 +137,10 @@
+ #define REEXEC_CONFIG_PASS_FD		(STDERR_FILENO + 3)
+ #define REEXEC_MIN_FREE_FD		(STDERR_FILENO + 4)
+ 
++#ifdef __INTERIX
++# include <interix/security.h>
++#endif
++
+ extern char *__progname;
+ 
+ /* Server configuration options. */
+@@ -236,7 +240,11 @@
+ int startup_pipe;		/* in child */
+ 
+ /* variables used for privilege separation */
++#ifdef __INTERIX
++int use_privsep = 0;
++#else
+ int use_privsep = -1;
++#endif
+ struct monitor *pmonitor = NULL;
+ 
+ /* global authentication context */
+@@ -613,8 +621,10 @@
+ 	do_setusercontext(privsep_pw);
+ #else
+ 	gidset[0] = privsep_pw->pw_gid;
++#ifndef __INTERIX
+ 	if (setgroups(1, gidset) < 0)
+ 		fatal("setgroups: %.100s", strerror(errno));
++#endif
+ 	permanently_set_uid(privsep_pw);
+ #endif
+ }
+@@ -1310,8 +1320,10 @@
+ 	av = saved_argv;
+ #endif
+ 
++#ifndef __INTERIX
+ 	if (geteuid() == 0 && setgroups(0, NULL) == -1)
+ 		debug("setgroups(): %.200s", strerror(errno));
++#endif
+ 
+ 	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
+ 	sanitise_stdfd();
+@@ -1532,6 +1544,31 @@
+ 
+ 	debug("sshd version %.100s", SSH_RELEASE);
+ 
++#ifdef __INTERIX
++	/* on interix >= 6, there is a problem is sshd is started from init:
++	 * even though the process runs as "Administrator", it seems that
++	 * the authentication token is pretty much stripped down, so it is
++	 * not possible for the process to impersonate another user.
++	 * impersonating ourself works around the problem by creating a full
++	 * authetication token for the current user (Administrator...), which
++	 * then is allowed to set uid/gid of any other user as normal. */
++	if(getuid() == 0) {
++		struct passwd* _admin = getpwuid(getuid());
++
++		if(!_admin) {
++			fprintf(stderr, "Cannot retrieve user information for current user!\n");
++			exit(2);
++		}
++
++		debug3("impersonating %s to upgrade authentication token\n", _admin->pw_name);
++
++		if(setuser(_admin->pw_name, NULL, SU_COMPLETE) != 0) {
++			fprintf(stderr, "Cannot obtain full authentication for current user: %s\n", strerror(errno));
++			exit(2);
++		}
++	}
++#endif
++
+ 	/* Store privilege separation user for later use if required. */
+ 	if ((privsep_pw = getpwnam(SSH_PRIVSEP_USER)) == NULL) {
+ 		if (use_privsep || options.kerberos_authentication)
+@@ -1688,8 +1725,10 @@
+ 	 * to create a file, and we can't control the code in every
+ 	 * module which might be used).
+ 	 */
++#ifndef __INTERIX
+ 	if (setgroups(0, NULL) < 0)
+ 		debug("setgroups() failed: %.200s", strerror(errno));
++#endif
+ 
+ 	if (rexec_flag) {
+ 		rexec_argv = xcalloc(rexec_argc + 2, sizeof(char *));
+diff -ru openssh-5.5p1.orig/uidswap.c openssh-5.5p1/uidswap.c
+--- openssh-5.5p1.orig/uidswap.c	2010-10-21 11:14:19 +0200
++++ openssh-5.5p1/uidswap.c	2010-10-21 11:21:12 +0200
+@@ -14,6 +14,10 @@
+ 
+ #include "includes.h"
+ 
++#ifdef __INTERIX
++# include <interix/security.h>
++#endif
++
+ #include <sys/param.h>
+ #include <errno.h>
+ #include <pwd.h>
+@@ -81,6 +85,7 @@
+ 	privileged = 1;
+ 	temporarily_use_uid_effective = 1;
+ 
++#ifndef __INTERIX
+ 	saved_egroupslen = getgroups(0, NULL);
+ 	if (saved_egroupslen < 0)
+ 		fatal("getgroups: %.100s", strerror(errno));
+@@ -116,6 +121,7 @@
+ 	/* Set the effective uid to the given (unprivileged) uid. */
+ 	if (setgroups(user_groupslen, user_groups) < 0)
+ 		fatal("setgroups: %.100s", strerror(errno));
++#endif
+ #ifndef SAVED_IDS_WORK_WITH_SETEUID
+ 	/* Propagate the privileged gid to all of our gids. */
+ 	if (setgid(getegid()) < 0)
+@@ -153,7 +159,7 @@
+ 		fatal("setuid %u: %.100s", (u_int)uid, strerror(errno));
+ #endif
+ 
+-#ifndef HAVE_CYGWIN
++#if !defined(HAVE_CYGWIN) && !defined(__INTERIX)
+ 	/* Try restoration of UID if changed (test clearing of saved uid) */
+ 	if (old_uid != uid &&
+ 	    (setuid(old_uid) != -1 || seteuid(old_uid) != -1))
+@@ -198,8 +204,10 @@
+ 	setgid(getgid());
+ #endif /* SAVED_IDS_WORK_WITH_SETEUID */
+ 
++#ifndef __INTERIX
+ 	if (setgroups(saved_egroupslen, saved_egroups) < 0)
+ 		fatal("setgroups: %.100s", strerror(errno));
++#endif
+ 	temporarily_use_uid_effective = 0;
+ }
+ 
+@@ -220,6 +228,20 @@
+ 	debug("permanently_set_uid: %u/%u", (u_int)pw->pw_uid,
+ 	    (u_int)pw->pw_gid);
+ 
++#ifdef __INTERIX
++	if (0) {
++		fprintf(stderr, "WARNING: Your password will expire soon. This will make remote\n"
++						"logins via ssh impossible without notice of the occured error!\n");
++	}
++
++	if (strcmp(pw->pw_passwd, "*") == 0) {
++		if (setuser(pw->pw_name, NULL, SU_COMPLETE))
++			fatal("setuser %.100s: %.100s", pw->pw_name, strerror(errno));
++	} else {
++		if (setuser(pw->pw_name, pw->pw_passwd, SU_COMPLETE))
++			fatal("setuser %.100s: %.100s", pw->pw_name, strerror(errno));
++	}
++#else
+ #if defined(HAVE_SETRESGID) && !defined(BROKEN_SETRESGID)
+ 	if (setresgid(pw->pw_gid, pw->pw_gid, pw->pw_gid) < 0)
+ 		fatal("setresgid %u: %.100s", (u_int)pw->pw_gid, strerror(errno));
+@@ -257,10 +279,11 @@
+ 	if (setuid(pw->pw_uid) < 0)
+ 		fatal("setuid %u: %.100s", (u_int)pw->pw_uid, strerror(errno));
+ #endif
++#endif /* __INTERIX */
+ 
+-#ifndef HAVE_CYGWIN
++#if !defined(HAVE_CYGWIN) && !defined(__INTERIX)
+ 	/* Try restoration of GID if changed (test clearing of saved gid) */
+-	if (old_gid != pw->pw_gid && pw->pw_uid != 0 &&
++	if (old_gid != pw->pw_gid && pw->pw_uid != ROOT_UID &&
+ 	    (setgid(old_gid) != -1 || setegid(old_gid) != -1))
+ 		fatal("%s: was able to restore old [e]gid", __func__);
+ #endif
+@@ -272,7 +295,7 @@
+ 		    (u_int)pw->pw_gid);
+ 	}
+ 
+-#ifndef HAVE_CYGWIN
++#if !defined(HAVE_CYGWIN) && !defined(__INTERIX)
+ 	/* Try restoration of UID if changed (test clearing of saved uid) */
+ 	if (old_uid != pw->pw_uid &&
+ 	    (setuid(old_uid) != -1 || seteuid(old_uid) != -1))
+diff -ru openssh-5.5p1.orig/uuencode.c openssh-5.5p1/uuencode.c
+--- openssh-5.5p1.orig/uuencode.c	2010-10-21 11:14:19 +0200
++++ openssh-5.5p1/uuencode.c	2010-10-21 11:21:12 +0200
+@@ -27,7 +27,9 @@
+ 
+ #include <sys/types.h>
+ #include <netinet/in.h>
+-#include <resolv.h>
++#ifndef __INTERIX
++# include <resolv.h>
++#endif
+ #include <stdio.h>
+ 
+ #include "xmalloc.h"

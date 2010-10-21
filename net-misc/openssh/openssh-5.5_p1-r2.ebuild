@@ -120,16 +120,12 @@ src_prepare() {
 
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-copyfile.patch
 	epatch "${FILESDIR}"/${PN}-5.1_p1-apple-getpwuid.patch
-#	epatch "${FILESDIR}"/${PN}-5.3_p1-interix.patch
+	epatch "${FILESDIR}"/${PN}-5.5_p1-interix.patch
 
-	# when installed as non-admin on interix6, chmoding with +s fails! ...
-	# (btw: administrator uid is constant across all windows versions).
-	if [[ ${CHOST} == *-interix6* ]]; then
-		if [[ $(id -u) != 197108 ]]; then
-			epatch "${FILESDIR}"/${P}-interix6-setuid.patch
-		fi
+	# setting setuid bit may fail as non-priviledged user (prefix).
+	if [[ $(id -u) != 0 ]]; then
+		epatch "${FILESDIR}"/${P}-setuid.patch
 	fi
-
 
 	# Disable PATH reset, trust what portage gives us. bug 254615
 	sed -i -e 's:^PATH=/:#PATH=/:' configure || die
@@ -181,11 +177,6 @@ src_configure() {
 	[[ ${CHOST} == *-solaris* || ${CHOST} == *-mint* ]] && \
 		myconf="${myconf} --without-stackprotect"
 	
-	if [[ ${CHOST} == *-interix* ]]; then
-		export ac_cv_func_poll=no
-		export ac_cv_header_poll_h=no
-	fi
-
 	econf \
 		--with-ldflags="${LDFLAGS}" \
 		--disable-strip \
