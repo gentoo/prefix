@@ -25,8 +25,11 @@ src_prepare() {
 	# which is a secure version of locate.  See bug 18729
 	sed -i '/^SUBDIRS/s/locate//' Makefile.in
 
-	cd gnulib && epatch "${FILESDIR}"/${P}-without-selinux.patch
-	cd - && eautoreconf # only for above patch, remove when in released version
+	epatch "${FILESDIR}"/${P}-interix-mntlist.patch
+
+	( cd gnulib && epatch "${FILESDIR}"/${P}-without-selinux.patch )
+
+	eautoreconf # for the interix and selinux patches. remove if both are gone.
 }
 
 src_configure() {
