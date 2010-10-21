@@ -55,11 +55,6 @@ src_compile() {
 	tc-export BUILD_CC
 	export BUILD_CPPFLAGS+=" -D_GNU_SOURCE" #214642
 
-	if [[ ${CHOST} == *-interix* ]] ; then
-		export ac_cv_func_poll=no
-		export ac_cv_header_poll_h=no
-	fi
-
 	# when cross-compiling, we need to build up our own tic
 	# because people often don't keep matching host/target
 	# ncurses versions #249363
