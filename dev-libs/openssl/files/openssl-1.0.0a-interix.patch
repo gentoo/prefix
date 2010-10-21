@@ -8,7 +8,7 @@ http://rt.openssl.org/Ticket/Display.html?id=1908
  "VC-CE","cl::::WINCE::BN_LLONG RC4_INDEX EXPORT_VAR_AS_FN ${x86_gcc_opts}:${no_asm}:win32",
  
 +# Interix (GCC)
-+"interix-gcc", "gcc:-D_ALL_SOURCE -DL_ENDIAN -DTERMIOS -O2 -Wall::-D_REENTRANT::-ldl:::::::::::::dlfcn:gnu:::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
++"interix-gcc", "gcc:-D_ALL_SOURCE -DL_ENDIAN -DTERMIOS -O2 -Wall::-D_REENTRANT::-ldl::${no_asm}:dlfcn:gnu:::.so.\$(SHLIB_MAJOR).\$(SHLIB_MINOR)",
 +
  # Borland C++ 4.5
  "BC-32","bcc32::::WIN32::BN_LLONG DES_PTR RC4_INDEX EXPORT_VAR_AS_FN:${no_asm}:win32",
