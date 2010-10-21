@@ -330,6 +330,7 @@ dev-libs/dotconf
 dev-libs/eggdbus
 dev-libs/elfutils
 dev-libs/fribidi
+dev-libs/gf2x
 dev-libs/gnulib
 dev-libs/libaio
 dev-libs/libatomic_ops
@@ -370,6 +371,7 @@ dev-libs/mpc
 dev-libs/nettle
 dev-libs/nspr
 dev-libs/nss
+dev-libs/ntl
 dev-libs/oniguruma
 dev-libs/protobuf
 dev-libs/quazip
@@ -393,6 +395,7 @@ dev-lisp/cl-plus
 dev-lisp/cl-ppcre
 dev-lisp/cl-ptester
 dev-lisp/cl-puri
+dev-lisp/ecls
 dev-ml/extlib
 dev-ml/lablgtk
 dev-tex/algorithms
@@ -439,11 +442,13 @@ dev-util/dmake
 dev-util/filepp
 dev-util/flawfinder
 dev-util/ftjam
+dev-util/global
 dev-util/gob
 dev-util/gperf
 dev-util/gtk-doc-am
 dev-util/httpup
 dev-util/huc
+dev-util/idutils
 dev-util/intltool
 dev-util/kdoc
 dev-util/linklint
@@ -553,6 +558,7 @@ media-gfx/pngrewrite
 media-gfx/pngtoico
 media-gfx/potrace
 media-gfx/povray
+media-gfx/tachyon
 media-gfx/tgif
 media-gfx/ufraw
 media-gfx/xli
@@ -849,6 +855,7 @@ x11-libs/qt-svg
 x11-libs/qt-test
 x11-libs/qt-webkit
 x11-libs/qt-xmlpatterns
+x11-libs/qwt
 x11-libs/startup-notification
 x11-libs/xcb-util
 x11-libs/xforms
@@ -976,6 +983,7 @@ dev-python/foolscap
 dev-python/formencode
 dev-python/fpconst
 dev-python/gconf-python
+dev-python/gdmodule
 dev-python/genshi
 dev-python/gnome-python
 dev-python/gnome-python-base
@@ -1003,7 +1011,9 @@ dev-python/matplotlib
 dev-python/mechanize
 dev-python/medusa
 dev-python/mocker
+dev-python/mpmath
 dev-python/mysql-python
+dev-python/networkx
 dev-python/nevow
 dev-python/nltk
 dev-python/nose
