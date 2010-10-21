@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	if ! use vanilla ; then
-		[[ ${CHOST} == *-winnt* || ${CHOST} == *-interix* ]] &&
+		[[ ${CHOST} == *-winnt* ]] &&
 			epatch "${FILESDIR}"/2.2.6a/${PN}-2.2.6a-winnt.patch
 		epatch "${FILESDIR}"/2.2.6b/${PN}-2.2.6b-mint.patch
 # fails on two hunks, likely is still necessary
@@ -65,15 +65,10 @@ src_configure() {
 	# shells, so just force libtool to use /bin/bash all the time.
 	export CONFIG_SHELL="$(type -P bash)"
 
-	default
-}
-
-src_configure() {
 	local myconf
 	# usr/bin/libtool is provided by binutils-apple
 	[[ ${CHOST} == *-darwin* ]] && myconf="--program-prefix=g"
 	econf ${myconf} || die
-	emake || die
 }
 
 src_install() {
