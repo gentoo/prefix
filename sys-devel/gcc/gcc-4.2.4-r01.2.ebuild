@@ -142,11 +142,6 @@ src_compile() {
 			# defined symbols, so disable nls
 			EXTRA_ECONF="${EXTRA_ECONF} --disable-nls"
 		;;
-		*-interix*)
-			# disable usage of poll() on interix, since poll() only
-			# works on the /proc filesystem (.......)
-			export glibcxx_cv_POLL=no
-		;;
 		i[34567]86-*-linux*:*" prefix "*)
 			# to allow the linux-x86-on-amd64.patch become useful, we need
 			# to enable multilib, even if there is just one multilib option.
