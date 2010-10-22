@@ -784,6 +784,7 @@ sys-devel/gnuconfig
 sys-devel/llvm
 sys-devel/llvm-gcc
 sys-libs/pam
+sys-libs/suacomp
 sys-process/htop
 sys-process/iotop
 sys-process/psmisc
