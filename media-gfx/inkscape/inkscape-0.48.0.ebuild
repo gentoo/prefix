@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.48_pre1.ebuild,v 1.2 2010/06/21 15:14:55 ssuominen Exp $
+# $Header: /var/cvsroot/gentoo-x86/media-gfx/inkscape/inkscape-0.48.0.ebuild,v 1.2 2010/09/05 13:54:57 maekke Exp $
 
 EAPI=2
 inherit eutils flag-o-matic gnome2
@@ -22,7 +22,7 @@ RESTRICT="test"
 COMMON_DEPEND="
 	>=app-text/poppler-0.12.3-r3[cairo,xpdf-headers]
 	dev-cpp/glibmm
-	>=dev-cpp/gtkmm-2.10.0
+	>=dev-cpp/gtkmm-2.18.0
 	>=dev-libs/boehm-gc-6.4
 	>=dev-libs/glib-2.6.5
 	>=dev-libs/libsigc++-2.0.12
