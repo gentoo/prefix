@@ -1,6 +1,6 @@
 diff -ru openssh-5.5p1.orig/auth-passwd.c openssh-5.5p1/auth-passwd.c
---- openssh-5.5p1.orig/auth-passwd.c	2010-10-21 11:14:15 +0200
-+++ openssh-5.5p1/auth-passwd.c	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/auth-passwd.c	2010-10-22 14:14:13 +0200
++++ openssh-5.5p1/auth-passwd.c	2010-10-22 14:11:48 +0200
 @@ -53,6 +53,12 @@
  #include "hostfile.h"
  #include "auth.h"
@@ -30,8 +30,8 @@ diff -ru openssh-5.5p1.orig/auth-passwd.c openssh-5.5p1/auth-passwd.c
  	if (options.use_pam)
  		return (sshpam_auth_passwd(authctxt, password) && ok);
 diff -ru openssh-5.5p1.orig/auth.c openssh-5.5p1/auth.c
---- openssh-5.5p1.orig/auth.c	2010-10-21 11:14:15 +0200
-+++ openssh-5.5p1/auth.c	2010-10-21 11:22:23 +0200
+--- openssh-5.5p1.orig/auth.c	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/auth.c	2010-10-22 14:11:48 +0200
 @@ -541,6 +541,25 @@
  
  	pw = getpwnam(user);
@@ -59,8 +59,8 @@ diff -ru openssh-5.5p1.orig/auth.c openssh-5.5p1/auth.c
  	aix_restoreauthdb();
  #endif
 diff -ru openssh-5.5p1.orig/configure.ac openssh-5.5p1/configure.ac
---- openssh-5.5p1.orig/configure.ac	2010-10-21 11:14:16 +0200
-+++ openssh-5.5p1/configure.ac	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/configure.ac	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/configure.ac	2010-10-22 14:11:48 +0200
 @@ -448,6 +448,25 @@
  		file descriptor passing])
  	AC_DEFINE(SSH_IOBUFSZ, 65535, [Windows is sensitive to read buffer size])
@@ -88,8 +88,8 @@ diff -ru openssh-5.5p1.orig/configure.ac openssh-5.5p1/configure.ac
  	AC_DEFINE(IP_TOS_IS_BROKEN, 1,
  		[Define if your system choked on IP TOS setting])
 diff -ru openssh-5.5p1.orig/defines.h openssh-5.5p1/defines.h
---- openssh-5.5p1.orig/defines.h	2010-10-21 11:14:16 +0200
-+++ openssh-5.5p1/defines.h	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/defines.h	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/defines.h	2010-10-22 14:11:48 +0200
 @@ -732,7 +732,11 @@
  #endif
  
@@ -104,8 +104,8 @@ diff -ru openssh-5.5p1.orig/defines.h openssh-5.5p1/defines.h
  # elif defined(DEF_IOV_MAX)
  #  define	IOV_MAX		DEF_IOV_MAX
 diff -ru openssh-5.5p1.orig/hostfile.c openssh-5.5p1/hostfile.c
---- openssh-5.5p1.orig/hostfile.c	2010-10-21 11:14:16 +0200
-+++ openssh-5.5p1/hostfile.c	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/hostfile.c	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/hostfile.c	2010-10-22 14:11:48 +0200
 @@ -45,7 +45,9 @@
  #include <openssl/hmac.h>
  #include <openssl/sha.h>
@@ -118,8 +118,8 @@ diff -ru openssh-5.5p1.orig/hostfile.c openssh-5.5p1/hostfile.c
  #include <stdio.h>
  #include <stdlib.h>
 diff -ru openssh-5.5p1.orig/openbsd-compat/bsd-misc.h openssh-5.5p1/openbsd-compat/bsd-misc.h
---- openssh-5.5p1.orig/openbsd-compat/bsd-misc.h	2010-10-21 11:14:17 +0200
-+++ openssh-5.5p1/openbsd-compat/bsd-misc.h	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/openbsd-compat/bsd-misc.h	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/openbsd-compat/bsd-misc.h	2010-10-22 14:11:48 +0200
 @@ -68,12 +68,14 @@
  #endif /* HAVE_TRUNCATE */
  
@@ -136,8 +136,8 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/bsd-misc.h openssh-5.5p1/openbsd-comp
  #endif
  
 diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c openssh-5.5p1/openbsd-compat/getrrsetbyname.c
---- openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c	2010-10-21 11:14:17 +0200
-+++ openssh-5.5p1/openbsd-compat/getrrsetbyname.c	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/openbsd-compat/getrrsetbyname.c	2010-10-22 14:11:48 +0200
 @@ -61,6 +61,10 @@
  extern int h_errno;
  #endif
@@ -191,8 +191,8 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.c openssh-5.5p1/openbs
 +
  #endif /* !defined(HAVE_GETRRSETBYNAME) */
 diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.h openssh-5.5p1/openbsd-compat/getrrsetbyname.h
---- openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.h	2010-10-21 11:14:17 +0200
-+++ openssh-5.5p1/openbsd-compat/getrrsetbyname.h	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.h	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/openbsd-compat/getrrsetbyname.h	2010-10-22 14:11:48 +0200
 @@ -54,9 +54,11 @@
  
  #include <sys/types.h>
@@ -208,8 +208,8 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/getrrsetbyname.h openssh-5.5p1/openbs
  #ifndef HFIXEDSZ
  #define HFIXEDSZ 12
 diff -ru openssh-5.5p1.orig/openbsd-compat/inet_ntop.c openssh-5.5p1/openbsd-compat/inet_ntop.c
---- openssh-5.5p1.orig/openbsd-compat/inet_ntop.c	2010-10-21 11:14:17 +0200
-+++ openssh-5.5p1/openbsd-compat/inet_ntop.c	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/openbsd-compat/inet_ntop.c	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/openbsd-compat/inet_ntop.c	2010-10-22 14:11:48 +0200
 @@ -27,7 +27,9 @@
  #include <sys/socket.h>
  #include <netinet/in.h>
@@ -222,8 +222,8 @@ diff -ru openssh-5.5p1.orig/openbsd-compat/inet_ntop.c openssh-5.5p1/openbsd-com
  #include <errno.h>
  #include <stdio.h>
 diff -ru openssh-5.5p1.orig/session.c openssh-5.5p1/session.c
---- openssh-5.5p1.orig/session.c	2010-10-21 11:14:18 +0200
-+++ openssh-5.5p1/session.c	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/session.c	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/session.c	2010-10-22 14:11:48 +0200
 @@ -91,6 +91,27 @@
  #include "monitor_wrap.h"
  #include "sftp.h"
@@ -329,8 +329,8 @@ diff -ru openssh-5.5p1.orig/session.c openssh-5.5p1/session.c
  	execl(LOGIN_PROGRAM, "login", "-h", hostname,
  #ifdef xxxLOGIN_NEEDS_TERM
 diff -ru openssh-5.5p1.orig/sshd.c openssh-5.5p1/sshd.c
---- openssh-5.5p1.orig/sshd.c	2010-10-21 11:14:19 +0200
-+++ openssh-5.5p1/sshd.c	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/sshd.c	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/sshd.c	2010-10-22 14:11:48 +0200
 @@ -137,6 +137,10 @@
  #define REEXEC_CONFIG_PASS_FD		(STDERR_FILENO + 3)
  #define REEXEC_MIN_FREE_FD		(STDERR_FILENO + 4)
@@ -420,8 +420,8 @@ diff -ru openssh-5.5p1.orig/sshd.c openssh-5.5p1/sshd.c
  	if (rexec_flag) {
  		rexec_argv = xcalloc(rexec_argc + 2, sizeof(char *));
 diff -ru openssh-5.5p1.orig/uidswap.c openssh-5.5p1/uidswap.c
---- openssh-5.5p1.orig/uidswap.c	2010-10-21 11:14:19 +0200
-+++ openssh-5.5p1/uidswap.c	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/uidswap.c	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/uidswap.c	2010-10-22 14:13:47 +0200
 @@ -14,6 +14,10 @@
  
  #include "includes.h"
@@ -490,7 +490,7 @@ diff -ru openssh-5.5p1.orig/uidswap.c openssh-5.5p1/uidswap.c
  #if defined(HAVE_SETRESGID) && !defined(BROKEN_SETRESGID)
  	if (setresgid(pw->pw_gid, pw->pw_gid, pw->pw_gid) < 0)
  		fatal("setresgid %u: %.100s", (u_int)pw->pw_gid, strerror(errno));
-@@ -257,10 +279,11 @@
+@@ -257,8 +279,9 @@
  	if (setuid(pw->pw_uid) < 0)
  		fatal("setuid %u: %.100s", (u_int)pw->pw_uid, strerror(errno));
  #endif
@@ -499,11 +499,8 @@ diff -ru openssh-5.5p1.orig/uidswap.c openssh-5.5p1/uidswap.c
 -#ifndef HAVE_CYGWIN
 +#if !defined(HAVE_CYGWIN) && !defined(__INTERIX)
  	/* Try restoration of GID if changed (test clearing of saved gid) */
--	if (old_gid != pw->pw_gid && pw->pw_uid != 0 &&
-+	if (old_gid != pw->pw_gid && pw->pw_uid != ROOT_UID &&
+ 	if (old_gid != pw->pw_gid && pw->pw_uid != 0 &&
  	    (setgid(old_gid) != -1 || setegid(old_gid) != -1))
- 		fatal("%s: was able to restore old [e]gid", __func__);
- #endif
 @@ -272,7 +295,7 @@
  		    (u_int)pw->pw_gid);
  	}
@@ -514,8 +511,8 @@ diff -ru openssh-5.5p1.orig/uidswap.c openssh-5.5p1/uidswap.c
  	if (old_uid != pw->pw_uid &&
  	    (setuid(old_uid) != -1 || seteuid(old_uid) != -1))
 diff -ru openssh-5.5p1.orig/uuencode.c openssh-5.5p1/uuencode.c
---- openssh-5.5p1.orig/uuencode.c	2010-10-21 11:14:19 +0200
-+++ openssh-5.5p1/uuencode.c	2010-10-21 11:21:12 +0200
+--- openssh-5.5p1.orig/uuencode.c	2010-10-22 14:14:14 +0200
++++ openssh-5.5p1/uuencode.c	2010-10-22 14:11:48 +0200
 @@ -27,7 +27,9 @@
  
  #include <sys/types.h>
