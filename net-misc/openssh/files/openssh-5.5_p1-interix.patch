@@ -1,3 +1,5 @@
+reported upstream: http://marc.info/?l=openssh-unix-dev&m=128775465904341&w=2
+
 diff -ru openssh-5.5p1.orig/auth-passwd.c openssh-5.5p1/auth-passwd.c
 --- openssh-5.5p1.orig/auth-passwd.c	2010-10-22 14:14:13 +0200
 +++ openssh-5.5p1/auth-passwd.c	2010-10-22 14:11:48 +0200
