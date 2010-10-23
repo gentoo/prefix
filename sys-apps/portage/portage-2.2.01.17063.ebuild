@@ -4,12 +4,16 @@
 
 RESTRICT="test"
 
+# Require EAPI 2 since we now require at least python-2.6 (for python 3
+# syntax support) which also requires EAPI 2.
+EAPI=2
 inherit eutils multilib python
 
 DESCRIPTION="Prefix branch of the Portage Package Manager, used in Gentoo Prefix"
 HOMEPAGE="http://www.gentoo.org/proj/en/gentoo-alt/prefix/"
 LICENSE="GPL-2"
-KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
+#testing
+#KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
 IUSE="build doc epydoc ipc linguas_pl selinux prefix-chaining"
@@ -72,9 +76,7 @@ fi
 S="${WORKDIR}"/prefix-${PN}-${TARBALL_PV}
 S_PL="${WORKDIR}"/${PN}-${PV_PL}
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
+src_prepare() {
 	if [ -n "${PATCHVER}" ]; then
 		cd "${S}"
 		epatch "${WORKDIR}/${PN}-${PATCHVER}.patch"
@@ -93,7 +95,7 @@ src_unpack() {
 	fi
 }
 
-src_compile() {
+src_configure() {
 	if use prefix ; then
 		local extrapath="/usr/bin:/bin"
 		# ok, we can't rely on PORTAGE_ROOT_USER being there yet, as people
@@ -121,6 +123,9 @@ src_compile() {
 		# non-Prefix installs, relying on the autoconf defaults
 		econf || die "econf failed"
 	fi
+}
+
+src_compile() {
 	emake || die "emake failed"
 
 	if use elibc_FreeBSD; then
