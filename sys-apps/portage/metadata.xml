@@ -5,23 +5,8 @@
 	<maintainer><email>grobian@gentoo.org</email></maintainer>
 
 	<use>
-		<flag name="build">
-			for installing during a gentoo-x86 bootstrap, don't use this
-		</flag>
-		<flag name="doc">
-			build documentation
-		</flag>
-		<flag name="epydoc">
-			build epydoc documentation
-		</flag>
-		<flag name="selinux">
-			probably some SElinux crap
-		</flag>
-		<flag name="ipc">
-			enable Portage's IPC daemon
-		</flag>
-		<flag name="prefix-chaining">
-			mduft's experimental prefix chaining facilities
-		</flag>
+		<flag name="epydoc">Build html API documentation with epydoc.</flag>
+		<flag name="ipc">Use inter-process communication between portage and running ebuilds.</flag>
+		<flag name="prefix-chaining">mduft's experimental prefix chaining facilities</flag>
 	</use>
 </pkgmetadata>
