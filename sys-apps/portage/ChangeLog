@@ -2,6 +2,10 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  23 Oct 2010; Fabian Groffen <grobian@gentoo.org>
+  portage-2.2.01.16711.ebuild:
+  Sync ipc enabling/disabling code from portage-2.2.0_alpha1
+
 *portage-2.2.01.16711 (29 Sep 2010)
 
   29 Sep 2010; Fabian Groffen <grobian@gentoo.org>

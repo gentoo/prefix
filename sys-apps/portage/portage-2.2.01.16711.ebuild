@@ -4,6 +4,9 @@
 
 RESTRICT="test"
 
+# Require EAPI 2 since we now require at least python-2.6 (for python 3
+# syntax support) which also requires EAPI 2.
+EAPI=2
 inherit eutils multilib python
 
 DESCRIPTION="Prefix branch of the Portage Package Manager, used in Gentoo Prefix"
@@ -12,14 +15,15 @@ LICENSE="GPL-2"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris"
 PROVIDE="virtual/portage"
 SLOT="0"
-IUSE="build doc epydoc selinux linguas_pl ipc prefix-chaining"
+IUSE="build doc epydoc ipc linguas_pl python3 selinux prefix-chaining"
 
 python_dep=">=dev-lang/python-2.6 <dev-lang/python-3.0"
 
+# The pysqlite blocker is for bug #282760.
 DEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5 )
 	doc? ( app-text/xmlto ~app-text/docbook-xml-dtd-4.4 )
-	epydoc? ( >=dev-python/epydoc-2.0 )"
+	epydoc? ( >=dev-python/epydoc-2.0 !<=dev-python/pysqlite-2.4.1 )"
 # the debugedit blocker is for bug #289967
 RDEPEND="${python_dep}
 	!build? ( >=sys-apps/sed-4.0.5
@@ -84,9 +88,11 @@ src_unpack() {
 
 	use prefix-chaining && epatch "${FILESDIR}"/${PN}-2.2.00.15801-prefix-chaining.patch
 
-	if use !ipc ; then
-		sed -i -e '/_enable_ipc_daemon = /s/True/False/' \
-			"${S}"/pym/_emerge/AbstractEbuildProcess.py || die
+	if ! use ipc ; then
+		einfo "Disabling ipc..."
+		sed -e "s:_enable_ipc_daemon = True:_enable_ipc_daemon = False:" \
+			-i pym/_emerge/AbstractEbuildProcess.py || \
+			die "failed to patch AbstractEbuildProcess.py"
 	fi
 }
 
