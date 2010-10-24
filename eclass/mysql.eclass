@@ -126,7 +126,7 @@ PERCONA_VER="${PERCONA_VER}"
 # Be warned, *DEPEND are version-dependant
 # These are used for both runtime and compiletime
 DEPEND="ssl? ( >=dev-libs/openssl-0.9.6d )
-		userland_GNU? ( sys-process/procps )
+		kernel_linux? ( sys-process/procps )
 		>=sys-apps/sed-4
 		>=sys-apps/texinfo-4.7-r1
 		>=sys-libs/readline-4.1
@@ -524,6 +524,7 @@ configure_40_41_50() {
 	else
 		myconf="${myconf} --without-berkeley-db"
 	fi
+
 	if mysql_version_is_at_least "4.1.3" ; then
 		myconf="${myconf} --with-geometry"
 		if [[ "${PN}" != "mysql-cluster" ]] ; then
@@ -1085,6 +1086,9 @@ mysql_src_install() {
 	doins scripts/mysqlaccess.conf
 	mycnf_src="my.cnf-${mysql_mycnf_version}"
 	sed -e "s!@DATADIR@!${EPREFIX}${MY_DATADIR}!g" \
+		-e "s!/tmp!${EPREFIX}/tmp!" \
+		-e "s!/usr!${EPREFIX}/usr!" \
+		-e "s!= /var!= ${EPREFIX}/var!" \
 		"${FILESDIR}/${mycnf_src}" \
 		> "${TMPDIR}/my.cnf.ok"
 	use prefix && sed -i -e '/^user[ 	]*= mysql$/d' "${TMPDIR}/my.cnf.ok"
@@ -1340,7 +1344,7 @@ mysql_pkg_config() {
 			cat "${help_tables}" >> "${sqltmp}"
 		fi
 	fi
-	
+
 	einfo "Creating the mysql database and setting proper"
 	einfo "permissions on it ..."
 
@@ -1386,6 +1390,7 @@ mysql_pkg_config() {
 	"${EROOT}/usr/bin/mysql" \
 		--socket=${socket} \
 		-hlocalhost \
+	
 		-p"${MYSQL_ROOT_PASSWORD}" \
 		mysql < "${sqltmp}"
 	rc=$?
