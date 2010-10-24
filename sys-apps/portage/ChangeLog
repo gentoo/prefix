@@ -2,6 +2,14 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*portage-2.2.01.17086 (24 Oct 2010)
+
+  24 Oct 2010; Fabian Groffen <grobian@gentoo.org>
+  -portage-2.2.01.16711.ebuild, -portage-2.2.01.17063.ebuild,
+  +portage-2.2.01.17086.ebuild:
+  Version bump, improved install_name check for Darwin users, fixes many
+  bugs since 2.2.01.16711, hence, supersedes that version
+
 *portage-2.2.01.17063 (23 Oct 2010)
 
   23 Oct 2010; Fabian Groffen <grobian@gentoo.org>
