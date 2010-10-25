@@ -1,6 +1,45 @@
 # ChangeLog for app-arch/bzip2
-# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.74 2008/09/22 04:02:26 jer Exp $
+# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/ChangeLog,v 1.85 2010/10/09 16:30:07 armin76 Exp $
+
+  09 Oct 2010; Raúl Porcel <armin76@gentoo.org> bzip2-1.0.6.ebuild:
+  ia64/m68k/s390/sh/sparc stable wrt #338215
+
+  29 Sep 2010; Samuli Suominen <ssuominen@gentoo.org> bzip2-1.0.6.ebuild:
+  ppc64 stable wrt #338215
+
+  26 Sep 2010; Tobias Klausmann <klausman@gentoo.org> bzip2-1.0.6.ebuild:
+  Stable on alpha, bug #338215
+
+  23 Sep 2010; Markus Meier <maekke@gentoo.org> bzip2-1.0.6.ebuild:
+  arm stable, bug #338215
+
+*bzip2-1.0.6-r1 (23 Sep 2010)
+
+  23 Sep 2010; Mike Frysinger <vapier@gentoo.org> +bzip2-1.0.6-r1.ebuild:
+  Restore libbz2.so.1.0 symlink and document why it is kept around #338321
+  by Nathan Caldwell.
+
+  22 Sep 2010; Tomáš Chvátal <scarabeus@gentoo.org> bzip2-1.0.6.ebuild:
+  Stable on x86 per bug #338215. Thanks to Thomas Kahle for testing.
+
+  21 Sep 2010; Jeroen Roovers <jer@gentoo.org> bzip2-1.0.6.ebuild:
+  Stable for HPPA (bug #338215).
+
+  21 Sep 2010; Jeroen Roovers <jer@gentoo.org> bzip2-1.0.6.ebuild:
+  Stable for PPC (bug #338215).
+
+  21 Sep 2010; Markos Chandras <hwoarang@gentoo.org> bzip2-1.0.6.ebuild:
+  Stable on amd64 wrt bug #338215
+
+*bzip2-1.0.6 (20 Sep 2010)
+
+  20 Sep 2010; Mike Frysinger <vapier@gentoo.org> +bzip2-1.0.6.ebuild,
+  +files/bzip2-1.0.6-saneso.patch:
+  Version bump #338215 by Dirkjan Ochtman.
+
+  14 Aug 2010; Harald van Dĳk <truedfx@gentoo.org> bzip2-1.0.5-r1.ebuild:
+  Fix quoting
 
   22 Sep 2008; Jeroen Roovers <jer@gentoo.org> bzip2-1.0.5-r1.ebuild:
   Stable for HPPA (bug #238211).

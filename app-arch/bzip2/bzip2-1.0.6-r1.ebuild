@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.5-r1.ebuild,v 1.8 2010/08/14 20:05:30 truedfx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/bzip2/bzip2-1.0.6-r1.ebuild,v 1.1 2010/09/23 09:19:49 vapier Exp $
 
 inherit eutils multilib toolchain-funcs flag-o-matic prefix
 
@@ -13,36 +13,30 @@ SLOT="0"
 KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="static"
 
-DEPEND=""
-
 src_unpack() {
 	unpack ${A}
 	cd "${S}"
 	epatch "${FILESDIR}"/${PN}-1.0.4-makefile-CFLAGS.patch
-	epatch "${FILESDIR}"/${PN}-1.0.4-saneso.patch
+	epatch "${FILESDIR}"/${PN}-1.0.6-saneso.patch
 	epatch "${FILESDIR}"/${PN}-1.0.4-man-links.patch #172986
 	epatch "${FILESDIR}"/${PN}-1.0.2-progress.patch
 	epatch "${FILESDIR}"/${PN}-1.0.3-no-test.patch
 	epatch "${FILESDIR}"/${PN}-1.0.4-POSIX-shell.patch #193365
-	epatch "${FILESDIR}"/${PN}-1.0.5-soldflags.patch # for AIX, HP-UX
+#	epatch "${FILESDIR}"/${PN}-1.0.5-soldflags.patch # for AIX, HP-UX
 	epatch "${FILESDIR}"/${PN}-1.0.5-checkenv.patch # for AIX, Darwin?
 	epatch "${FILESDIR}"/${PN}-1.0.4-prefix.patch
 	eprefixify bz{diff,grep,more}
-	sed -i -e 's:\$(PREFIX)/man:\$(PREFIX)/share/man:g' Makefile || die "sed manpath"
 	# this a makefile for Darwin, which already "includes" saneso
 	cp "${FILESDIR}"/${P}-Makefile-libbz2_dylib Makefile-libbz2_dylib || die
 
+	# - Use right man path
 	# - Generate symlinks instead of hardlinks
 	# - pass custom variables to control libdir
 	sed -i \
+		-e 's:\$(PREFIX)/man:\$(PREFIX)/share/man:g' \
 		-e 's:ln -s -f $(PREFIX)/bin/:ln -s :' \
 		-e 's:$(PREFIX)/lib:$(PREFIX)/$(LIBDIR):g' \
-		Makefile || die "sed links"
-
-	# fixup broken version stuff
-	sed -i \
-		-e "s:1\.0\.4:${PV}:" \
-		bzip2.1 bzip2.txt Makefile-libbz2_so manual.{html,ps,xml} || die
+		Makefile || die
 
 	if [[ ${CHOST} == *-hpux* ]] ; then
 		sed -i -e 's,-soname,+h,' Makefile-libbz2_so || die "cannot replace -soname with +h"
@@ -55,16 +49,18 @@ src_unpack() {
 	fi
 }
 
+bemake() {
+	emake \
+		CC="$(tc-getCC)" \
+		AR="$(tc-getAR)" \
+		RANLIB="$(tc-getRANLIB)" \
+		"$@" || die
+}
 src_compile() {
-	local makeopts=(
-		"CC=$(tc-getCC)"
-		"AR=$(tc-getAR)"
-		"RANLIB=$(tc-getRANLIB)"
-	)
 	local checkopts=
 	case "${CHOST}" in
 		*-darwin*)
-			emake "${makeopts[@]}" PREFIX="${EPREFIX}"/usr -f Makefile-libbz2_dylib || die "Make failed libbz2"
+			bemake PREFIX="${EPREFIX}"/usr -f Makefile-libbz2_dylib || die
 		;;
 		*-mint*)
 			# do nothing, no shared libraries
@@ -73,47 +69,51 @@ src_compile() {
 		*-aix*)
 			# AIX has shared object libbz2.so.1 inside libbz2.a.
 			# We build libbz2.a here to avoid static-only libbz2.a below.
-			emake "${makeopts[@]}" SOLDFLAGS=-shared -f Makefile-libbz2_so all || die "Make failed libbz2"
+			bemake SOLDFLAGS=-shared -f Makefile-libbz2_so all || die
 			checkopts="TESTENV=LIBPATH=."
 		;;
 		*)
-			emake "${makeopts[@]}" -f Makefile-libbz2_so all || die "Make failed libbz2"
+			bemake -f Makefile-libbz2_so all || die
 		;;
 	esac
 	use static && append-flags -static
-	emake LDFLAGS="${LDFLAGS}" "${makeopts[@]}" all || die "Make failed"
+	bemake all || die
 }
 
 src_install() {
 	make PREFIX="${D}${EPREFIX}"/usr LIBDIR="$(get_libdir)" install || die
 	dodoc README* CHANGES bzip2.txt manual.*
 
+	if [[ $(get_libname) != ".irrelevant" ]] ; then
+
+	# Install the shared lib manually.  We install:
+	#  .x.x.x - standard shared lib behavior
+	#  .x.x   - SONAME some distros use #338321
+	#  .x     - SONAME Gentoo uses
+	dolib.so libbz2$(get_libname ${PV}) || die
+	local s
+	for v in libbz2$(get_libname) libbz2$(get_libname ${PV%%.*}) libbz2$(get_libname ${PV%.*}) ; do
+		dosym libbz2$(get_libname ${PV}) /usr/$(get_libdir)/${v} || die
+	done
+	gen_usr_ldscript -a bz2
+
+	if ! use static ; then
+		newbin bzip2-shared bzip2 || die
+	fi
+
+	fi
+
 	# move "important" bzip2 binaries to /bin and use the shared libbz2.so
 	dodir /bin
 	mv "${ED}"/usr/bin/b{zip2,zcat,unzip2} "${ED}"/bin/ || die
-	dosym bzip2 /bin/bzcat
-	dosym bzip2 /bin/bunzip2
-	into /
+	dosym bzip2 /bin/bzcat || die
+	dosym bzip2 /bin/bunzip2 || die
 
-	if [[ $(get_libname) != ".irrelevant" ]] ; then
-
-	if ! use static ; then
-		newbin bzip2-shared bzip2 || die "dobin shared"
-	fi
-
-	dolib.so libbz2$(get_libname ${PV}) || die "dolib shared"
 	if [[ ${CHOST} == *-winnt* ]]; then
 		dolib.so libbz2$(get_libname ${PV}).dll || die "dolib shared"
 
 		# on windows, we want to continue using bzip2 from interix.
 		# building bzip2 on windows gives the libraries only!
 		rm -rf "${ED}"/bin "${ED}"/usr/bin
-	fi
-	for v in libbz2$(get_libname) libbz2$(get_libname ${PV%%.*}) libbz2$(get_libname ${PV%.*}) ; do
-		[[ libbz2$(get_libname ${PV}) != ${v} ]] &&
-		dosym libbz2$(get_libname ${PV}) /$(get_libdir)/${v}
-	done
-	gen_usr_ldscript libbz2$(get_libname)
-
 	fi
 }
