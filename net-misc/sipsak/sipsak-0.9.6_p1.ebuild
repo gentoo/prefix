@@ -20,10 +20,19 @@ DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${P/_p1/}
 
+src_unpack() {
+	unpack ${A}
+
+	if [[ ${CHOST} == *-darwin* ]] ; then
+		# On Darwin this breaks compilation, it seems -fstack-protector is
+		# accepted by the compiler, but actually introduces a -lssp_nonshared
+		# which causes linking failures
+		sed -i -e 's/ssp_cc=yes/ssp_cc=no/' "${S}"/configure || die
+	fi
+}
+
 src_compile() {
 	econf $(use_enable gnutls) || die 'configure failed'
-	# On Darwin this breaks compilation with undefined symbols
-	[[ ${CHOST} == *-darwin* ]] && sed -i -e 's/-fstack-protector//' Makefile
 	emake || die 'make failed'
 }
 
