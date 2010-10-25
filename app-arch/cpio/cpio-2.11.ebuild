@@ -1,6 +1,6 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.11.ebuild,v 1.7 2010/07/18 20:47:44 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/cpio-2.11.ebuild,v 1.8 2010/10/10 00:04:57 vapier Exp $
 
 EAPI="2"
 
@@ -16,7 +16,7 @@ KEYWORDS="~ppc-aix ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix 
 IUSE="nls"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-stat-darwin.patch
+	epatch "${FILESDIR}"/${P}-stat.patch #328531
 	epatch "${FILESDIR}"/${PN}-2.10-irix.patch
 }
 
@@ -24,8 +24,7 @@ src_configure() {
 	econf \
 		$(use_enable nls) \
 		--bindir="${EPREFIX}"/bin \
-		--with-rmt="${EPREFIX}"/usr/sbin/rmt \
-		|| die
+		--with-rmt="${EPREFIX}"/usr/sbin/rmt
 }
 
 src_install() {

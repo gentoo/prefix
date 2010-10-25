@@ -1,6 +1,10 @@
 # ChangeLog for app-arch/cpio
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
-# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.113 2010/07/18 20:47:44 josejx Exp $
+# $Header: /var/cvsroot/gentoo-x86/app-arch/cpio/ChangeLog,v 1.114 2010/10/10 00:04:57 vapier Exp $
+
+  10 Oct 2010; Mike Frysinger <vapier@gentoo.org> cpio-2.11.ebuild,
+  +files/cpio-2.11-stat.patch:
+  Add fix from upstream for cross-compiling #328531 by Jacob Godserv.
 
   18 Jul 2010; Joseph Jezak <josejx@gentoo.org> cpio-2.11.ebuild:
   Marked ppc stable for bug #314663.
