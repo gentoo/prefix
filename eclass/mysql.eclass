@@ -1390,7 +1390,7 @@ mysql_pkg_config() {
 	"${EROOT}/usr/bin/mysql" \
 		--socket=${socket} \
 		-hlocalhost \
-	
+		-uroot \
 		-p"${MYSQL_ROOT_PASSWORD}" \
 		mysql < "${sqltmp}"
 	rc=$?
