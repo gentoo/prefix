@@ -127,12 +127,6 @@ src_configure() {
 src_compile() {
 	emake || die "emake failed"
 
-	if use elibc_FreeBSD; then
-		cd "${S}"/src/bsd-flags
-		chmod +x setup.py
-		./setup.py build || die "Failed to install bsd-chflags module"
-	fi
-
 	if use doc; then
 		cd "${S}"/doc
 		touch fragment/date

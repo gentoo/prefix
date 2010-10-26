@@ -2,13 +2,18 @@
 # Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  26 Oct 2010; Fabian Groffen <grobian@gentoo.org>
+  portage-2.2.01.17086.ebuild:
+  Drop no longer existing bsd-chflags installation, bug #342711
+
 *portage-2.2.01.17086 (24 Oct 2010)
 
   24 Oct 2010; Fabian Groffen <grobian@gentoo.org>
   -portage-2.2.01.16711.ebuild, -portage-2.2.01.17063.ebuild,
   +portage-2.2.01.17086.ebuild:
   Version bump, improved install_name check for Darwin users, fixes many
-  bugs since 2.2.01.16711, hence, supersedes that version
+  bugs since 2.2.01.16711, hence, supersedes that version, matches
+  portage-2.2.0_alpha1
 
 *portage-2.2.01.17063 (23 Oct 2010)
 
