@@ -271,7 +271,7 @@ src_prepare() {
 		mv "${WORKDIR}/svgalib_helper" "${S}/libdha"
 	fi
 
-	epatch "${FILESDIR}"/${PN}-1.0_rc4_p20100427-prefix.patch
+	epatch "${FILESDIR}"/${PN}-1.0_rc4_p20100612-prefix.patch
 	epatch "${FILESDIR}"/${PN}-1.0_rc2_p28058-nocona.patch
 	epatch "${FILESDIR}"/${PN}-20090226.28734-solaris.patch
 	sed -i -e "1c\#!${EPREFIX}/bin/bash" configure version.sh || die
