@@ -1,8 +1,13 @@
 # Copyright 1999-2010 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.15.ebuild,v 1.10 2010/06/05 20:46:31 vapier Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/cracklib/cracklib-2.8.18.ebuild,v 1.1 2010/09/29 22:35:57 vapier Exp $
 
-inherit eutils toolchain-funcs multilib libtool autotools
+EAPI="3"
+PYTHON_DEPEND="python? 2"
+SUPPORT_PYTHON_ABIS="1"
+RESTRICT_PYTHON_ABIS="3.*"
+
+inherit eutils distutils libtool toolchain-funcs
 
 MY_P=${P/_}
 DESCRIPTION="Password Checking Library"
@@ -14,9 +19,18 @@ SLOT="0"
 KEYWORDS="~x86-interix ~amd64-linux ~ia64-linux ~x86-linux ~ppc-macos ~x86-macos ~m68k-mint"
 IUSE="nls python"
 
-DEPEND="python? ( <dev-lang/python-3 )"
+RDEPEND="sys-libs/zlib"
+DEPEND="${RDEPEND}
+	python? ( dev-python/setuptools )"
 
 S=${WORKDIR}/${MY_P}
+
+PYTHON_MODNAME="cracklib.py"
+do_python() {
+	pushd python > /dev/null || die
+	distutils_src_${EBUILD_PHASE}
+	popd > /dev/null
+}
 
 pkg_setup() {
 	# workaround #195017
@@ -25,34 +39,32 @@ pkg_setup() {
 		eerror "Please run: FEATURES=-unmerge-orphans emerge cracklib"
 		die "Please run: FEATURES=-unmerge-orphans emerge cracklib"
 	fi
+
+	use python && python_pkg_setup
 }
 
-src_unpack() {
-	unpack ${A}
-	cd "${S}"
-	epatch "${FILESDIR}"/${PN}-2.8.13-python-linkage.patch #246747
-	epatch "${FILESDIR}"/${P}-no-nls.patch
-	sed -i '/PYTHON/s:\(print\) \([^"]*\):\1(\2):' configure #302908
-
-	epatch "${FILESDIR}"/${PN}-2.8.12-interix.patch
-	epatch "${FILESDIR}"/${P}-nls.patch
-
-	AT_M4DIR="m4" eautoreconf # need new libtool for interix
+src_prepare() {
 	elibtoolize #269003
+	use python && do_python
+}
+
+src_configure() {
+	econf \
+		--with-default-dict='$(libdir)/cracklib_dict' \
+		--without-python \
+		$(use_enable nls)
 }
 
 src_compile() {
-	econf \
-		--with-default-dict='$(libdir)/cracklib_dict' \
-		$(use_enable nls) \
-		$(use_with python) \
-		|| die
-	emake || die
+	default
+	use python && do_python
 }
 
 src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
+	emake DESTDIR="${D}" install || die "emake install failed"
 	rm -r "${ED}"/usr/share/cracklib
+
+	use python && do_python
 
 	# move shared libs to /
 	gen_usr_ldscript -a crack
@@ -69,4 +81,10 @@ pkg_postinst() {
 		create-cracklib-dict "${EPREFIX}"/usr/share/dict/* > /dev/null
 		eend $?
 	fi
+
+	use python && distutils_pkg_postinst
+}
+
+pkg_postrm() {
+	use python && distutils_pkg_postrm
 }
