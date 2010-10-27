@@ -1,0 +1,26 @@
+diff -ru findutils-4.5.9.orig/lib/arg-max.h findutils-4.5.9/lib/arg-max.h
+--- findutils-4.5.9.orig/lib/arg-max.h	2010-10-27 14:00:12 +0200
++++ findutils-4.5.9/lib/arg-max.h	2010-10-27 14:07:01 +0200
+@@ -28,6 +28,11 @@
+  * actually does not work (i.e. it is larger than the real limit).
+  * The value of ARG_MAX is reportedly smaller than the real limit.
+  *
++ * Unfortunately, ARG_MAX is not sufficient, and not anywhere near
++ * the real limit. by trial and error, the limit on all interix
++ * versions seems to be somewhere near (above) 50K. so we use this
++ * value, instead of relying on any of the broken defines...
++ *
+  * I considered a configure test for this which allocates an argument
+  * list longer than ARG_MAX but shorter than _SC_ARG_MAX and then
+  * tries to exec something, but this will not work for us when
+@@ -44,6 +49,10 @@
+  */
+ # undef _SC_ARG_MAX
+ # define BC_SC_ARG_MAX_IS_UNRELIABLE 1
++
++# undef ARG_MAX
++# define ARG_MAX 50000
++
+ #endif
+ 
+ #endif
